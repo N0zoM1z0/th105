@@ -1,60 +1,24 @@
 # TH10.5 reconstruction handoff
 
-Reconstruction resumed 2026-10-23. Current source selects a partial807/817 frame
-tail,817/822 angle captures and local double lookup views at `4adc63c`.
-852's product-read and826's owner-Y corrections remain selected.
-The latest Youmu initializer checkpoint restores its physical tail copies and
-all metadata;21 callable register/preparation bytes remain. Reimu's local owner
-selector retains the signed-word correction. Exact ledgers are unchanged.
-Current bounded continuation: Aya61F0B0's two remaining register bytes; Youmu543670
-retains its five open call/register regions.
-Previous cleanup checkpoint: `1865c6a`.
-Required commit format: `gpt-6.1-sol: ...`.
+Cleanup checkpoint: 2026-10-24. The working source is ready for handoff;
+this checkpoint adds no exact functions or bytes. Required commit format:
+`gpt-6.1-sol: ...`.
 
-Latest user priority: whole-function exact first, gameplay naming later.
-Read-only TH075 review supports typed offset source, minimal receiver views,
-independently verified family reuse and short full-function compile/compare
-loops. See the [workflow](RE_WORKFLOW.md#exact-first-priority-from-the-th075-review).
-The refreshed peer snapshot `4aeea7a` includes a 31352-byte exact callable.
-A private Youmu pointer-only/offset-field control keeps the entire 5492-byte
-canonical payload identical to `206b30d`, including the 21 remaining differences;
-it is a bounded negative, with no public source or exact-ledger change.
-Further conversion/receiver/forwarding and numeric-case-order controls keep
-the same complete payload. A real member-pointer CIL link retains an extra
-generated thunk and is rejected; see the [dispatch controls](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md#dispatch-source-controls).
-On October 24, sequence selector `0x45C390` now uses real checked `std::map::find`;
-all 10 functions in its accepted native object and the separate short ABI
-witness replay exact. Its emitted 105-byte find equals the existing excluded
-compiler island `0x45C320`. Same-class short/int selector CIL visibility still keeps
-Youmu's 21 differences; full map CIL changes selector frame/private-call shape
-and is rejected. See the [visibility result](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md#selector-visibility-and-native-map-implementation-2026-10-24).
-The Aya revisit attests all eight RTTI entries, including AnimationObjectBase+4,
-Environment+130 and CObjectBase+330. A partial physical class view, /Oi-,
-/Ob1 and a negated state gate all retain its 4859-byte payload/two differences.
-Post-SP1 C2 patch levels remain untested; do not turn the old RTM/SP1 or failed
-PDB controls into a general compiler conclusion. See the [current Aya evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md#full-hierarchy-and-compiler-controls-2026-10-24).
-Further source-order controls can recover 856's ECX operand while breaking 803;
-whole comparison rejects them. Existing-temporary, normalized-index and adjacent
-Aya event/initializer TU controls retain the two differences; the event function
-replays 1177/1177 in both TU orders. One AyaObject receiver declaration for both
-initializer/update methods remains untested. Explicit fast/except FP profiles introduce
-unbound dependencies and are rejected. See the [scoped controls](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md#source-order-tu-and-floating-profiles).
-Do not spend another large matrix on an uncertainty that a strict build can
-resolve. Preserve necessary ABI, storage widths, control flow and side effects.
-
-Use this page for current selection and next steps, the
-[AyaObject evidence index](AYA_OBJECT_EVIDENCE.md) for scoped results, and the
-[preceding session narrative](RE_HANDOFF_HISTORY_2026_10_23.md) for older history.
-Current ledgers and fresh objects override dated prose.
+Current priority remains complete large-function exactness before gameplay
+naming. Keep necessary types, offsets, numeric states, control flow and side
+effects, and compare the entire function early. The read-only TH075 review is
+in [the workflow](RE_WORKFLOW.md#exact-first-priority-from-the-th075-review).
+Its VC7.1 compiler settings do not transfer to this VC8 target.
 
 ## Start here
 
-Only original Japanese 1.06a SHA256
-`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Read [AGENTS.md](../AGENTS.md), [architecture](ARCHITECTURE.md),
-[workflow](RE_WORKFLOW.md), relevant source and dated evidence before edits.
+[workflow](RE_WORKFLOW.md), relevant source and the scoped evidence before edits.
 Use one writable session, one bounded scope, no subagents/concurrent VC8 builds;
 claims.csv stays header-only. Heavy commands use CPU0/nice10.
+
+Only original Japanese 1.06a SHA256
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 
 ```sh
 git status --short
@@ -64,10 +28,11 @@ python3 scripts/report-reconstruction-status.py --summary
 python3 scripts/validate-tracking.py --require-target
 ```
 
-IDA rejects the currently open database SHA256
+IDA still opens database SHA256
 `10350095bcf95edb59e03bee9849a2dc8a7714b4927ad5909c569c550fce6822`.
-Use raw hash-attested PE inspection; do not use that session's semantics or
-writes. Independently attest any Ghidra database and run at most one process.
+Its failed preflight blocks that session's semantics and writes. Raw inspection
+of the hash-attested target PE remains available. Independently attest any
+Ghidra import and use at most one process; preserve primary analysis databases.
 
 | Ledger layer | Current value |
 | --- | ---: |
@@ -78,172 +43,116 @@ writes. Independently attest any Ghidra database and run at most one process.
 | Provisional authored byte denominator | 2136806 |
 | Match units / configured functions | 543 / 1511 |
 
-These are ledger totals. This checkpoint makes no aggregate cold-replay claim.
-Shared header/layout/profile/partition/relocation changes require affected
-accepted-unit replay; new aggregate claims require `verify-exact-units.py --all`.
+These are ledger totals, without a new aggregate cold replay. Replay affected
+accepted units after shared changes; aggregate claims require a cold
+`python3 scripts/verify-exact-units.py --all`.
 
 ## AyaObject update 0x61A290
 
-Selected [source](../src/characters/AyaObjectActionState.cpp), unit
-`gpt-web-aya-object-vslot28-full-root`. Callable ledger size 19522;
-complete canonical payload 20000, metadata starts at19532, full SHA256:
-`5f2966cb6b34c844d210ac54e52894b5d510c17362c3fe2424c1d2de6b89c4ec`.
-Fresh comparison remains **nonexact +0x22**, target `0F` / source `16`.
-No root exact credit. The adjacent metadata is not added to the callable boundary.
+The initializer and update now share
+[AyaObjectActionView.hpp](../src/characters/AyaObjectActionView.hpp), removing
+duplicate receiver declarations. Its 15 offset assertions and 0x388 prefix-size
+assertion express a partial call view; never construct or embed it. The actual
+primary vtable `0x6C624C` owns update slot+0x28 and initializer slot+0x3C.
+Slot+0x0C consistently takes short. Aya's vtable `0x6C62D4`, published by the
+constructor at `0x61861C`, and AyaObject both bind that slot to `0x45C390`.
+No original complete allocation or TU identity is claimed.
 
-Source SHA256:
-`59bcfc3149acb4cfe422451e0198ae92c49639894e0812206a578924b6cec928`.
-The first mismatch is the initial JA displacement. The
-[evidence index](AYA_OBJECT_EVIDENCE.md) separates selected changes, scoped
-behavioral checks and rejected context controls, with source-epoch limits.
+| Method / unit | Callable / complete payload | Current result |
+| --- | --- | --- |
+| `0x61A290`, `gpt-web-aya-object-vslot28-full-root` | 19522 / 20000 | Nonexact +0x22 |
+| `0x61F0B0`, `gpt-web-aya-object-action-entry` | 4531 / 4859 | Two differences: +0xBF7 / +0xBFF |
 
-Latest scope: `build/aya-tail-callviews-20261023/`. The selected partial exit
-join removes120 payload bytes and one frame-helper site (13 to12; target11).
-Both local double lookup views restore the four scale read orders in this
-context. Used float angle snapshots retain target817/822 rotation before alpha.
-See [the selected evidence](AYA_OBJECT_PARTIAL_FRAME_TAIL_2026_10_23.md).
+Current raw CRLF source SHA256:
 
-A complete source graph proof pairs4569 nodes, excluding no actions/windows.
-It checks one delayed MOV ECX,ESI across seven identical floating instructions
-and a contracted internal JMP, before the same normal thiscall. Target807 also
-loads the receiver at the common tail. All field/x87 observations are preserved
-under that contract; callback/unmasked-exception register observers are outside
-the proof. The807 native witness retains three reads. The preceding852 matrix
-(9,728 cases) and scale matrix (18,576 cases) were not rerun; their scoped observations transfer
-through this proof. The known861 alpha-before-X write-order issue remains.
+- [Update](../src/characters/AyaObjectActionState.cpp): `15a6f13a5ea5a751fa7f6cec6dbffed628bd373e0bb29e984788f8bbefbe0a72`.
+- [Initializer](../src/characters/AyaObjectActionEntry.cpp): `fa06d792237a849bb70c2cc7dc1a38e92bb0b8bcce056bb26c7914e945cd4280`.
+- Shared header: `2ed12ce922918d59726cc45f0fcc8c514a43b3c1cec0b13c1a0f8a64ad8728c5`.
 
-Current joint CIL replay equals native: seven switches,362 HIGHLOW fields,
-122 calls,287 literal references and three game-data references. The consistent
-double-view provider context retains earlier16/19 results with input hashes
-rechecked: two lookups and its private oriented body remain nonexact. The public
-accepted float-view435160 unit remains57/57. No DLL execution, original TU or
-unique original lookup declaration claim. Earlier float-context17/19 results
-retain their own source epoch.
+Both complete canonical payloads equal the preceding separate views:
+update `5f2966cb6b34c844d210ac54e52894b5d510c17362c3fe2424c1d2de6b89c4ec`,
+initializer `6f70b6f354fdff459a628bdfbf0a7a3c12fe854a65f95f6cf33731b5d606b066`.
+Only receiver declarations, member qualifications and their unit-local symbol
+aliases changed. Earlier runtime matrices retain their recorded scope; this
+checkpoint proves machine-payload equality and makes no fresh runtime claim.
 
-Hard 826/861 sharing still loses807's second zero-sequence read on this epoch.
-Natural owner-Y captures preserve that read but move861 alpha after Y/scale-X;
-even19992-byte/+0x1C7 candidates are rejected. Fresh RTM controls also remain
-nonexact. The preceding offset/minimal-owner, forceinline and sum controls keep
-their specific limits in the evidence index. The function-internal fenv pragmas
-emit C4177 and are not a valid local fenv test. No new exact credit.
+The selected update still has the partial807/817 frame-tail join, used817/822
+angle captures and local double quantized lookup views. It has12 physical frame
+helper calls versus target11. See the [selected evidence](AYA_OBJECT_PARTIAL_FRAME_TAIL_2026_10_23.md)
+and [epoch index](AYA_OBJECT_EVIDENCE.md) for behavioral contracts and limitations.
 
-Resume with one target-backed lead:
+A new retained lead defines the real frame/phase methods under the common
+receiver. Both source orders reproduce helper `0x4351C0` 62/62 and `0x64CD00`
+73/73, and reduce update's frame-helper calls12 to11. However, the update grows
+to20032 bytes, SHA256 `23925cd489b690a45c7c49f04f52dacac967c01896200853c4ef95069d5655e6`,
+and stays nonexact at+0x22; the initializer still differs at two bytes. This TU
+is unselected. A matching call count is a diagnostic, not acceptance. Receipts:
+`build/aya-joint-owner-20261024/summary.json` and its archive/restore manifest.
 
-- Reproduce the six-action physical tail sharing at target61A5DB while keeping
-  the dispatcher and recovered read lifetimes. Source now has two sites for
-  that six-action tail instead of three; one extra physical call remains.
-  Preserve the selected source epoch when interpreting return-view effects.
-- Recover861's X/alpha/Y store order together with807's repeated read. Tested
-  hard joins fix861 but lose the read; natural Y captures keep the read but
-  put alpha too late. Do not select a candidate only for its shorter prefix.
-- Preserve 852's recovered live facing at the speed read. Target has two
-  branch-local FILDs; current source hoists one before the branch. Tail EAX now
-  agrees, but scratch remains ESP+0x18 rather than target +0x14.
-- Preserve 807's second zero-sequence read before selecting shared 826/861 tails
-  or 801 caching. Both shared-tail variants were rebased onto the selected float
-  epoch and still lose that read in one actual-return witness.
-- Investigate common frame tails and scratch placement with evidence beyond
-  local size or equal final outputs. 903's 13,596-case check covers non-spawning
-  paths and read epochs; it does not establish complete root equivalence.
-
-Rebase trials onto current source. Negative results apply to their tested
-context, not every possible LTCG partition. Private flow-alignment diagnostics
-are incomplete and are not acceptance evidence. Native fixtures have scoped
-limits; inspect placement assumptions and callback exception guards before reuse.
-
-```sh
-taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
-python3 scripts/audit-aya-object-runtime-context.py
-python3 scripts/audit-aya-object-predicate-widths.py
-taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-852-native.py --product-read-lifetimes
-taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions 826 --position-lifetimes
-taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions 820 826 853 861 --scale-read-lifetimes --diagnostic
-taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-903-paths.py
-```
-
-The root comparison is expected to exit nonzero for nonexactness. The runtime
-packet needs the configured object; its default run needs no frozen control.
-The selected object contains the 37-byte interval for 826, but 861 does not execute
-it; use explicit diagnostic mode for 861 position-lifetime reports.
+For continuation, compare which frame call disappeared in that TU with the
+target's physical tail/return graph. The initializer's856 pointer register
+lifetime remains unknown. Six common-receiver/ABI controls preserve the selected
+payloads; an int sequence declaration regresses the initializer. Prior source
+order, getter/lifetime, /Zi, FP-profile, hierarchy and linked-context controls are
+recorded in [the initializer evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md).
+Do not repeat those unchanged trials. Later C2 patches remain untested; the
+archived download listings and inspected Vista package did not yield a backend.
 
 ## Other open roots
 
-ReimuObject `0x496540` remains nonexact +0x1F (`0x49655F`). Selected
-[source](../src/characters/ReimuObjectActionStateStaging.cpp) has full canonical
-45696-byte SHA256 `4b565d714737cf5ddfdaf8ae5d9944369071899fccb70223f86f572b55a65bf2`;
-same-TU counter `0x4963A0` is 66/66 exact. See the
-[evidence index](REIMU_OBJECT_EVIDENCE.md) and
-[selected owner model](REIMU_OBJECT_OWNER_VIEW_SELECTED_2026_10_22.md).
-The [word-selector/joint-context refresh](REIMU_OBJECT_WORD_OWNER_JOINT_CONTEXT_2026_10_23.md)
-selects short in both local owner declarations, preserving all native bytes.
-Header SHA256 is `a8603fd542e9c19dcfef3009e50283b3aef42acde72768ae1a735192b01911fa`.
-One consistent update/init TU reproduces both native payloads. Genuine joint
-LTCG with20 real providers still leaves initializer4A1CE0's14 differences;
-all247 fields/181 HIGHLOW entries close and metadata stays equal. Its fresh
-596370 provider is323/323. Linked update differs at entry; no complete linked
-update comparison is claimed. Original partition and906/999 allocation stay open.
-Physical call/RET sharing remains open. Aya initializer `0x61F0B0` retains two
-register-byte differences, +BF7/+BFF, in its4531-byte callable/4859-byte envelope.
-The [fresh source and /Zi controls](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md#exact-first-refresh-2026-10-23)
-leave selected source5ca0fb42 and canonical6f70b6f3 unchanged. `/Zi` now genuinely
-compiles after private PDB/NTLM setup; it does not fix the register choice.
-Typed payload APIs, full856 inlining and real lifetime controls were also
-unsuccessful. Do not repeat them or count register-equivalent code as exact.
-Youmu initializer `0x543670` now has a complete5159-byte callable with1294
-instructions,78 calls/21 conversions and23 RETs; its natural NOP and all332
-metadata bytes agree. Full5492-byte canonical SHA256 is
+| Root | Retained result | Evidence |
+| --- | --- | --- |
+| ReimuObject `0x496540` | Full45696, nonexact +0x1F; adjacent counter `0x4963A0` 66/66 exact | [Current index](REIMU_OBJECT_EVIDENCE.md), [owner/joint context](REIMU_OBJECT_WORD_OWNER_JOINT_CONTEXT_2026_10_23.md) |
+| Reimu initializer `0x4A1CE0` | 14 differences; genuine joint CIL still nonexact | [Joint context](REIMU_OBJECT_WORD_OWNER_JOINT_CONTEXT_2026_10_23.md) |
+| Youmu initializer `0x543670` | Callable5159/full5492; 21 register/preparation bytes differ; metadata agrees | [Current evidence](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md) |
+| AyaObject initializer `0x61F0B0` | Callable4531/full4859; two register bytes differ | [Current evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md) |
+
+Youmu's retained canonical SHA256 is
 `d00f4fc4ceca80c8fc4510ff03dcf064e3188fa5dc33afc8e25815d880da413a`;
 source SHA256 `66d01e60ca540b11515ebe4a58dc87f913ab340dd4845bcb1e992d9000c9be2d`.
-It remains nonexact with21 body bytes, first+0x74F/543DBF, across850/851/848/855/856.
-Captured821 parameters and explicit812/854 entries restore the848 handoff;
-850 uses the same verified int facade as851. Public592-case actual-return
-audit passes, including851's four ABI stress inputs. Genuine23-provider
-LTCG fully replays229 fields/149 HIGHLOW and equals the native result.
-See [the selected evidence](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md).
-Remaining work is call preparation and register allocation; keep the recovered
-copy count, read order and metadata. Earlier owner scores are diagnostics only.
+Its physical copy count, read order and all332 metadata bytes must be retained.
+Sequence selector `0x45C390` uses real checked `std::map::find`; its accepted
+10-function native unit and independent short witness passed at `de8037a`.
+Its 105-byte generated find remains excluded library code. No new replay of
+that unit or the 592-case Youmu matrix is claimed here.
 
-Other pending roots: Reimu Fighter `0x478FA0`,
-initializer `0x4A1CE0`, CGage `0x41B3F0`,
-loader `0x40B000`, renderer `0x415050`.
-
-Font entry points: [owner](../src/assets/TextFontOwner.cpp),
-[render](../src/assets/TextFontRender.cpp), [CIL input](../src/assets/TextFontLinked.cpp).
-Physical owner/config sizes remain `0x194` / `0x128`; frame gaps do not prove
-larger classes. Begin `0x4119A0` is 291/291 nonexact +0x3B; Glyph `0x411B80`
-624/624 +0x59; Accent `0x411DF0` 417/417 +0x6; Markup `0x411FA0` 1728/1744
-+0x10; Renderer `0x412670` 335/326 +0x13. Begin/renderer are genuine CIL probes.
-Offsets here use explicit hexadecimal notation; older reports often use decimal.
-See [accent](TEXT_FONT_ACCENT_LIFETIMES_2026_10_22.md),
+Other pending roots include Reimu Fighter `0x478FA0`, CGage `0x41B3F0`, loader
+`0x40B000` and renderer `0x415050`. Font evidence remains in
+[begin](TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md),
 [glyph](FONT_GLYPH_WINDOW_PROOF_2026_10_22.md),
-[markup cleanup](FONT_MARKUP_CONSTRUCTION_CLEANUP_2026_10_22.md),
-[begin context](TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md).
-Prior accepted font leaves are unchanged, not newly replayed here.
+[accent](TEXT_FONT_ACCENT_LIFETIMES_2026_10_22.md) and
+[markup](FONT_MARKUP_CONSTRUCTION_CLEANUP_2026_10_22.md).
+Older handoff detail is available at Git `4dd8436` and in the
+[October23 narrative](RE_HANDOFF_HISTORY_2026_10_23.md).
 
 ## Artifacts and final gate
 
-[Artifact retention and recovery](ARTIFACTS.md) describes this cleanup and
-restoration. Latest inventory: `build/handoff-refresh-20261023/manifest.json`.
-Latest focused public build, unchanged-input identity and final gate receipts
-are `build/aya-tail-callviews-20261023/{final-formal,final-identity,oriented-anchor}.json`
-and `build/aya-tail-callviews-20261023/ci.log`. Earlier native observations
-remain in `build/aya-852-sharing-context-20261023/scale-read-lifetimes.json`;
-their source-graph transfer has the limits described above.
-Root mismatch `+0x22` is
-expected; the scale-read matrix uses explicit diagnostic mode and keeps the
-3,096 known 861 write differences visible. Earlier 852 negative-control results
-remain in `build/aya-852-expression-20261023/`.
-Historical reports may end in `.gz`; restore with `gzip -dk PATH.gz` before
-using old recipes. Current objects, frozen controls, receipts and provider inputs remain directly
-available. Six dirty detached worktrees are retained.
+Generated artifacts belong under `build/`; private recipes/analysis under
+`.analysis/`. Preserve compiler installs, target resources, primary analysis
+state and the native-provider inputs referenced by retained CIL receipts.
+Completed controls are archived only after every member's length/hash is
+checked; per-scope `retention.json` files provide exact restore commands.
+The cleanup inventory is `build/handoff-cleanup-20261024/retention.json`.
+Legacy `.analysis/gpt-web` exports were archived with a restore command there;
+six historical worktrees with uncommitted source were left untouched.
+Do not use indiscriminate `git clean` or delete unknown analysis state.
 
-After the final tracked edit, before every commit/push/PR:
+Focused commands, run serially; both Aya comparisons currently return1 because
+their recorded mismatches remain:
 
 ```sh
-taskset -c 0 nice -n 10 python3 scripts/ci.py
+python3 scripts/build.py --unit gpt-web-aya-object-action-entry --compare --json
+python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
+```
+
+Before any commit, push or PR, run in the finished worktree:
+
+```sh
+python3 scripts/ci.py
 git diff --check
 ```
 
-Mandatory local CI baseline: 466 tests. No private reports, executables, game
-data, databases, compilers or credentials in commits. Verify remote HEAD after
-an authorized push and leave the main worktree clean for the next session.
+The local gate is mandatory and must follow the final tracked edit. Target
+observations, source hypotheses, runtime contracts and canonical acceptance
+remain separate. No assembly, copied target arrays, inert locals, fake returns,
+ABI lies or padding may be used to force a result.

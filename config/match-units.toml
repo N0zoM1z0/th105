@@ -17793,11 +17793,11 @@ source = "src/characters/AyaObjectActionEntry.cpp"
 object = "build/match-units/GptWeb_AyaObjectActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Source-present4531-byte AyaObject initializer@61F0B0, nonexact at+BF7 with two ModRM differences. Local short vslot0C recovers all19 selector preparations. Direct800/810 angle-field writeback removes the float-copy double carrier while preserving the complete6f70b6f3 payload; source SHA5ca0fb42. This source also closes a genuine GL/LTCG diagnostic with the target10h frame,4532 metadata start and4859 envelope, unlike the earlier aligned-frame controls. Independent188-field/128-HIGHLOW replay proves linked/ordinary payload equality, not target exactness. Remaining61FCA7/61FCAF use EAX instead of ECX in856. Complete metadata agrees;31/33 diagnostics confer no credit. Shared types/helpers/profiles are unchanged. docs/AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md."
+notes = "JP1.06a AyaObject initializer61F0B0 callable4531, complete4859/6f70b6f3; nonexact at+BF7/+BFF. AyaObjectActionView shares the primary prefix and short slot0C with the update method. Both complete native payloads remain identical to their preceding separate views; receiver aliases retain the same target addresses. View instances are never created. Original register choice/TU/compiler patch remain unknown; no exact credit. docs/AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md."
 
 [[units.gpt-web-aya-object-action-entry.functions]]
 address = "0x0061F0B0"
-symbol_base = "?initialize_action_entry@AyaObjectActionEntryView@th105@@UAEXXZ"
+symbol_base = "?initialize_action_entry@AyaObjectActionView@th105@@UAEXXZ"
 rel32_targets = [
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
@@ -17805,7 +17805,7 @@ rel32_targets = [
   "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
   "?spawn_parented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x004FCA60",
   "?spawn_unparented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",
-  "?continue_action_980_596370@AyaObjectActionEntryView@th105@@QAEXXZ=0x00596370",
+  "?continue_action_980_596370@AyaObjectActionView@th105@@QAEXXZ=0x00596370",
   "__ftol2_sse=0x0068A1A0",
 ]
 
@@ -17815,20 +17815,20 @@ source = "src/characters/AyaObjectActionState.cpp"
 object = "build/match-units/GptWeb_AyaObjectActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "JP1.06a AyaObject root61A290 callable19522. Selected807/817 common frame tail plus used817/822 float angle captures and local double lookup views. Full20000/5f2966cb, metadata19532; root nonexact+0x22 target0F/source16. Frame sites13 to12, target11. Complete normal source graph pairs4569 nodes with no action/window exclusion and one checked MOV ECX,ESI delay across identical floating operations. Actual807 witness retains3 reads; known861 alpha-before-X writes remain. Genuine consistent-double joint CIL fully replays to native; pinned16/19 provider results retain three nonexact private math bodies, public accepted oriented unit unchanged. No shared header/profile/partition/global relocation or accepted-unit ABI change; existing float/double aliases retained. No root or aggregate exact credit. Current: docs/AYA_OBJECT_PARTIAL_FRAME_TAIL_2026_10_23.md; epochs: docs/AYA_OBJECT_EVIDENCE.md."
+notes = "JP1.06a AyaObject update61A290 callable19522; selected partial807/817 exit join retains complete20000/5f2966cb and first mismatch+22. Shared AyaObjectActionView now declares the real virtual slot28 method and short slot0C; complete payload equals preceding59bcfc31 source. Same header serves initializer61F0B0 without allocation/layout completeness claims. Helper-visibility control20032/23925cd4 has11 frame calls and exact62/73-byte helpers but remains nonexact and unselected. No new exact or runtime replay claim. docs/RE_HANDOFF.md."
 
 [[units.gpt-web-aya-object-vslot28-full-root.functions]]
 address = "0x0061A290"
-symbol_base = "?update_action_state@AyaObjectActionStateView@th105@@QAEXXZ"
+symbol_base = "?update_action_state@AyaObjectActionView@th105@@UAEXXZ"
 rel32_targets = [
   "AyaObjectSpawnCallView_spawn_unparented_related_object=0x0064CCB0",
-  "?advance_frame_and_dispatch@AyaObjectActionStateView@th105@@QAEEXZ=0x004351C0",
-  "?advance_phase_counter_conditional@AyaObjectActionStateView@th105@@QAEEH@Z=0x0064CD00",
-  "?aya_is_y_at_or_below_stage_surface@th105@@YIHPAVAyaObjectActionStateView@1@@Z=0x00435DC0",
-  "?aya_stage_surface_height_at_x@th105@@YIMPAVAyaObjectActionStateView@1@@Z=0x00435D60",
+  "?advance_frame_and_dispatch@AyaObjectActionView@th105@@QAEEXZ=0x004351C0",
+  "?advance_phase_counter_conditional@AyaObjectActionView@th105@@QAEEH@Z=0x0064CD00",
+  "?aya_is_y_at_or_below_stage_surface@th105@@YIHPAVAyaObjectActionView@1@@Z=0x00435DC0",
+  "?aya_stage_surface_height_at_x@th105@@YIMPAVAyaObjectActionView@1@@Z=0x00435D60",
   "?emit_fighter_effect_433cc0@CharacterObjectEffectEmitter@th105@@QAEXHMMHH@Z=0x00435240",
   "?emit_repeated_effects_for_owner_state@CharacterObjectEffectEmitter@th105@@QAEEHHH@Z=0x005575C0",
-  "?has_crossed_stage_surface_while_descending@AyaObjectActionStateView@th105@@QAEHXZ=0x005F9310",
+  "?has_crossed_stage_surface_while_descending@AyaObjectActionView@th105@@QAEHXZ=0x005F9310",
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
   "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",

@@ -1,119 +1,10 @@
-#include "battle/EffectSprite.hpp"
+#include "characters/AyaObjectActionView.hpp"
 #include "engine/AngleAtan2.hpp"
-#include "characters/AnimationSequenceVirtuals.hpp"
-#include "characters/CharacterObjectEffects.hpp"
-#include "characters/CharacterObjectRuntime.hpp"
-
-#include <stddef.h>
 
 namespace th105 {
 
 int __cdecl selector_random_roll(int limit);
 unsigned int __cdecl mt19937_next_u32();
-
-class AyaObjectActionEntryView {
-public:
-    virtual void scalar_delete_slot_00();
-    virtual int set_action_sequence_and_finalize(short action, int sequence);
-    virtual int set_action_and_finalize(short action);
-    // Slot +0x0C consumes the low word in a four-byte stack slot.
-    // See docs/AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md for the 202-byte witness.
-    virtual int select_sequence(short sequence);
-    virtual int reset_sequence();
-    virtual unsigned char next_sequence_block();
-    virtual int previous_sequence_block();
-    virtual int set_sequence_frame(short frame);
-    virtual unsigned char next_sequence_frame();
-    virtual int previous_sequence_frame();
-    virtual void update_slot_28();
-    virtual void render_main();
-    virtual void render_to_battle_scene();
-    virtual void prepare_render_transform();
-    virtual void render_color_mode();
-    virtual void initialize_action_entry();
-
-    void continue_action_980_596370();
-
-    CEffectSprite sprite_004;
-    unsigned int state_130;
-    unsigned char layout_absolute_134;
-    unsigned char render_to_battle_135;
-    unsigned char unknown_136[2];
-    float battle_y_offset_138;
-    short action_id_13c;
-    short sequence_index_13e;
-    short frame_index_140;
-    short frame_timer_142;
-    int time_counter_144;
-    short sequence_frame_count_148;
-    unsigned char unknown_14a[2];
-    short frame_limit_14c;
-    unsigned char unknown_14e[2];
-    AnimationSequenceFrame *frame_150;
-    void *aux_renderer_154;
-    AnimationSequenceFrame *frame_158;
-    AnimationSequenceBlock *sequence_15c;
-    AnimationSequenceTree *sequence_tree_160;
-    unsigned int *wave_handles_164;
-    void *owner_168;
-    CharacterObjectEffectEmitter *related_16c;
-    CharacterObjectEffectEmitter *target_170;
-    unsigned char unknown_174[8];
-    unsigned char state_17c;
-    unsigned char unknown_17d[3];
-    int phase_state_180;
-    unsigned char phase_index_184;
-    unsigned char unknown_185[0x1bb];
-    float *heading_340;
-    short state_344;
-    unsigned char unknown_346[2];
-    CharacterObjectEffectEmitter *fighter_owner_348;
-    unsigned char unknown_34c[0x18];
-    short state_364;
-    short state_366;
-    short state_368;
-    short state_36a;
-    short state_36c;
-    unsigned char unknown_36e[2];
-    float state_370;
-    float state_374;
-    float state_378;
-    float state_37c;
-    float state_380;
-    short state_six_counter_384;
-    short phase_counter_386;
-
-    float &velocity_x_f4()
-    {
-        return *reinterpret_cast<float *>(
-            reinterpret_cast<unsigned char *>(this) + 0xf4);
-    }
-    float &velocity_y_f8()
-    {
-        return *reinterpret_cast<float *>(
-            reinterpret_cast<unsigned char *>(this) + 0xf8);
-    }
-    CharacterObjectRuntime *motion_core()
-    {
-        return reinterpret_cast<CharacterObjectRuntime *>(
-            reinterpret_cast<unsigned char *>(this) + 4);
-    }
-    CharacterObjectEffectEmitter *effect_emitter()
-    {
-        return reinterpret_cast<CharacterObjectEffectEmitter *>(this);
-    }
-};
-
-typedef char AyaObjectActionEntry_action_offset[
-    offsetof(AyaObjectActionEntryView, action_id_13c) == 0x13c ? 1 : -1];
-typedef char AyaObjectActionEntry_heading_offset[
-    offsetof(AyaObjectActionEntryView, heading_340) == 0x340 ? 1 : -1];
-typedef char AyaObjectActionEntry_owner_offset[
-    offsetof(AyaObjectActionEntryView, fighter_owner_348) == 0x348 ? 1 : -1];
-typedef char AyaObjectActionEntry_state370_offset[
-    offsetof(AyaObjectActionEntryView, state_370) == 0x370 ? 1 : -1];
-typedef char AyaObjectActionEntry_size[
-    sizeof(AyaObjectActionEntryView) == 0x388 ? 1 : -1];
 
 __forceinline static float unsigned_random_as_float(int limit)
 {
@@ -126,7 +17,7 @@ __forceinline static float unsigned_mt_mod_as_float(unsigned int limit)
     return static_cast<float>(mt19937_next_u32() % limit);
 }
 
-void AyaObjectActionEntryView::initialize_action_entry()
+void AyaObjectActionView::initialize_action_entry()
 {
     velocity_x_f4() = 0.0f;
     velocity_y_f8() = 0.0f;

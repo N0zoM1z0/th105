@@ -1,15 +1,10 @@
-#include "battle/EffectSprite.hpp"
-#include "characters/AnimationSequenceVirtuals.hpp"
-#include "characters/CharacterObjectEffects.hpp"
-#include "characters/CharacterObjectRuntime.hpp"
-
-#include <stddef.h>
+#include "characters/AyaObjectActionView.hpp"
 
 namespace th105 {
 
-class AyaObjectActionStateView;
-float __fastcall aya_stage_surface_height_at_x(AyaObjectActionStateView *object);
-int __fastcall aya_is_y_at_or_below_stage_surface(AyaObjectActionStateView *object);
+
+float __fastcall aya_stage_surface_height_at_x(AyaObjectActionView *object);
+int __fastcall aya_is_y_at_or_below_stage_surface(AyaObjectActionView *object);
 int __cdecl selector_random_roll(int limit);
 unsigned int __cdecl mt19937_next_u32(void);
 extern int g_match_identifier;
@@ -38,114 +33,7 @@ public:
 // Complete semantic source probe for AyaObject RTTI primary-vtable +0x28
 // update root @ 0x0061A290. Canonical exactness remains a whole-function gate.
 
-class AyaObjectActionStateView {
-public:
-    virtual void scalar_delete_slot_00();
-    virtual int set_action_sequence_and_finalize(short action, int sequence);
-    virtual int set_action_and_finalize(short action);
-    virtual int select_sequence(int sequence);
-    virtual int reset_sequence();
-    virtual unsigned char next_sequence_block();
-    virtual int previous_sequence_block();
-    virtual int set_sequence_frame(short frame);
-    virtual unsigned char next_sequence_frame();
-    virtual int previous_sequence_frame();
-    virtual void update_slot_28();
-    virtual void render_main();
-    virtual void render_to_battle_scene();
-    virtual void prepare_render_transform();
-    virtual void render_color_mode();
-    virtual void initialize_action_entry();
-
-    void update_action_state();
-    int has_crossed_stage_surface_while_descending();
-    unsigned char advance_frame_and_dispatch();
-    unsigned char advance_state_six_counter_conditional(int limit);
-    unsigned char advance_phase_counter_conditional(int limit);
-
-    CEffectSprite sprite_004;
-    unsigned int state_130;
-    unsigned char layout_absolute_134;
-    unsigned char render_to_battle_135;
-    unsigned char unknown_136[2];
-    float battle_y_offset_138;
-    short action_id_13c;
-    short sequence_index_13e;
-    short frame_index_140;
-    short frame_timer_142;
-    int time_counter_144;
-    short sequence_frame_count_148;
-    unsigned char unknown_14a[2];
-    short frame_limit_14c;
-    unsigned char unknown_14e[2];
-    AnimationSequenceFrame *frame_150;
-    void *aux_renderer_154;
-    AnimationSequenceFrame *frame_158;
-    AnimationSequenceBlock *sequence_15c;
-    AnimationSequenceTree *sequence_tree_160;
-    unsigned int *wave_handles_164;
-    void *owner_168;
-    CharacterObjectEffectEmitter *related_16c;
-    CharacterObjectEffectEmitter *target_170;
-    short state_174;
-    unsigned char unknown_176[6];
-    unsigned char state_17c;
-    unsigned char unknown_17d[3];
-    int phase_state_180;
-    unsigned char phase_index_184;
-    unsigned char unknown_185[0x1ab];
-    int lifetime_330;
-    unsigned char unknown_334[0x0c];
-    float *heading_340;
-    short state_344;
-    unsigned char unknown_346[2];
-    CharacterObjectEffectEmitter *fighter_owner_348;
-    CharacterObjectEffectEmitter *related_34c;
-    unsigned char unknown_350[0x14];
-    short state_364;
-    short state_366;
-    short state_368;
-    short state_36a;
-    short state_36c;
-    unsigned char unknown_36e[2];
-    float state_370;
-    float state_374;
-    float state_378;
-    float state_37c;
-    float state_380;
-    short state_six_counter_384;
-    short phase_counter_386;
-
-    CharacterObjectRuntime *motion_core()
-    {
-        return reinterpret_cast<CharacterObjectRuntime *>(
-            reinterpret_cast<unsigned char *>(this) + 4);
-    }
-
-    CharacterObjectEffectEmitter *effect_emitter()
-    {
-        return reinterpret_cast<CharacterObjectEffectEmitter *>(this);
-    }
-};
-
-typedef char AyaObjectActionState_action_offset[
-    offsetof(AyaObjectActionStateView, action_id_13c) == 0x13c ? 1 : -1];
-typedef char AyaObjectActionState_related_34c_offset[
-    offsetof(AyaObjectActionStateView, related_34c) == 0x34c ? 1 : -1];
-typedef char AyaObjectActionState_state_174_offset[
-    offsetof(AyaObjectActionStateView, state_174) == 0x174 ? 1 : -1];
-typedef char AyaObjectActionState_phase_state_offset[
-    offsetof(AyaObjectActionStateView, phase_state_180) == 0x180 ? 1 : -1];
-typedef char AyaObjectActionState_lifetime_offset[
-    offsetof(AyaObjectActionStateView, lifetime_330) == 0x330 ? 1 : -1];
-typedef char AyaObjectActionState_heading_offset[
-    offsetof(AyaObjectActionStateView, heading_340) == 0x340 ? 1 : -1];
-typedef char AyaObjectActionState_owner_offset[
-    offsetof(AyaObjectActionStateView, fighter_owner_348) == 0x348 ? 1 : -1];
-typedef char AyaObjectActionState_size[
-    sizeof(AyaObjectActionStateView) == 0x388 ? 1 : -1];
-
-void AyaObjectActionStateView::update_action_state()
+void AyaObjectActionView::update_action_state()
 {
     float payload[3];
     switch (action_id_13c) {
@@ -1713,7 +1601,7 @@ aya_sequence_two_frame_tail:
             owner->x_ec = sprite_004.object_x_0e8;
             fighter_owner_348->y_f0 = sprite_004.object_y_0ec;
             if (sprite_004.object_x_0e8 > 0.0f && sprite_004.object_x_0e8 < 1280.0f && *reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x13e) == 2)
-                reinterpret_cast<AyaObjectActionStateView *>(fighter_owner_348)->select_sequence(1);
+                reinterpret_cast<AyaObjectActionView *>(fighter_owner_348)->select_sequence(1);
             if (((sprite_004.object_x_0e8 >= 1280.0f && sprite_004.object_facing_100 == 1) || (sprite_004.object_x_0e8 <= 0.0f && sprite_004.object_facing_100 == -1)) && !state_364) {
             switch (g_match_identifier) {
             case 3: {
@@ -1727,7 +1615,7 @@ aya_sequence_two_frame_tail:
             default: break;
             }
                 if (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(fighter_owner_348) + 0x13e) == 1)
-                    reinterpret_cast<AyaObjectActionStateView *>(fighter_owner_348)->next_sequence_block();
+                    reinterpret_cast<AyaObjectActionView *>(fighter_owner_348)->next_sequence_block();
                 state_364 = 1;
             }
             if (!(sprite_004.object_x_0e8 >= 2000.0f || sprite_004.object_x_0e8 <= -720.0f)) goto aya900_advance;

@@ -1,5 +1,9 @@
 # AyaObject entry sequence-word ABI, 2026-10-19
 
+Current code shares `AyaObjectActionView.hpp` between both AyaObject methods.
+Initializer source is now fa06d792; the complete canonical payload remains
+6f70b6f3. Earlier 5ca0fb42 receipts describe the preceding source epoch.
+
 The4531-byte initializer at61F0B0 now differs from target in only two bytes.
 Its local vslot+0C sequence parameter is `short`: this recovers all19 virtual
 call preparations. The root remains nonexact and earns no exact credit.
@@ -297,8 +301,7 @@ worse. The owner diagnostic is not byte-exact acceptance or a compiler barrier.
 
 Compiling the complete initializer and adjacent event bridge together, in either
 source order, retains the two root differences; the existing event witness
-`0x6203B0` remains 1177/1177 exact in both objects. Compiling AyaObject's
-initializer and update under one receiver declaration remains untested.
+`0x6203B0` remains 1177/1177 exact in both objects. The common-receiver test below supersedes this earlier two-source context.
 
 `/fp:fast` compiles a 4771-byte section with an unbound `__real@43020000`;
 `/fp:except` compiles 4623 bytes and introduces `_ftol2_sse_excpt`, whereas the
@@ -319,6 +322,38 @@ Recipes: `.analysis/aya-entry-backend-20261024/`. Start with `packet.json`,
 `build/aya-entry-backend-20261024/`. Completed proofs and archived web pages are
 compressed with verified member hashes and the restore command in `retention.json`.
 Public source, compiler profiles, accepted units and exact ledgers are unchanged.
+
+## Shared receiver and handoff cleanup, 2026-10-24
+
+One partial `AyaObjectActionView` now replaces the two duplicate class prefixes.
+It binds the update definition to virtual slot+28, keeps initializer slot+3C,
+and consistently declares short at+0C. Fifteen observed offsets and the388h
+represented prefix are checked at compilation. No view is constructed or embedded.
+Aya's constructor publishes primary vtable6C62D4 at61861C; both it and AyaObject
+6C624C bind+0C to45C390. The two casts through fighter_owner retain that common
+slot ABI. Original complete class layout and TU identity remain unknown.
+
+Six complete source/ABI controls precede the selection: the short update alone,
+both separate views together, unified int, two unified short source orders,
+and a nonvirtual-update calibration. Every short form retains both payloads;
+the int initializer regresses to b4f36926/83 differences. The selected shared
+header and member qualifications retain both complete old payloads: initializer
+4859/6f70b6f3 and update20000/5f2966cb. Update source is now15a6f13a; shared-header
+SHA256 is2ed12ce9. Runtime matrices were not rerun.
+
+A private TU also defines the real frame/phase member bodies under that receiver.
+Both definition orders reproduce4351C0 (62 bytes) and64CD00 (73 bytes) exactly.
+Its update has11 direct frame calls rather than12, but grows to20032 bytes,
+canonical23925cd4, and still differs at+22. The initializer retains its two
+register bytes. This candidate is unselected and earns no new exact credit.
+Comparing that removed frame-call site with the target is a retained lead.
+
+The new header is consumed only by the two nonexact Aya units. No global
+relocation, compiler profile, accepted source or match ledger changed.
+Recipes and frozen pre-cleanup inputs: `.analysis/aya-joint-owner-20261024/`
+and `build/aya-joint-owner-20261024/`. Start with `summary.json`; completed
+controls are compressed after member-hash verification, with restoration in
+`retention.json`. Current selection and continuation steps are in `RE_HANDOFF.md`.
 
 ## Rejected controls and analysis limits
 

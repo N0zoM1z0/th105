@@ -1942,7 +1942,7 @@ class WorkflowToolingTests(unittest.TestCase):
         full = (ROOT / "src" / "characters" / "AyaObjectActionState.cpp").read_text(
             encoding="utf-8"
         )
-        self.assertIn("void AyaObjectActionStateView::update_action_state()", full)
+        self.assertIn("void AyaObjectActionView::update_action_state()", full)
         self.assertIn("case 856:", full)
         self.assertIn("double object_y;", full)
         self.assertEqual(full.count("float payload[3];"), 1)
