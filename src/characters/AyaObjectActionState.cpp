@@ -323,9 +323,9 @@ void AyaObjectActionStateView::update_action_state()
                 --lifetime_330;
                 return;
             }
+            double const next_angle = sprite_004.reset_zero_128 + 10.0;
             alpha -= 15;
-            sprite_004.reset_zero_128 =
-                static_cast<float>(sprite_004.reset_zero_128 + 10.0);
+            sprite_004.reset_zero_128 = static_cast<float>(next_angle);
             sprite_004.reset_one_118 = static_cast<float>(
                 sprite_004.reset_one_118 + 0.05000000074505806);
             sprite_004.reset_one_11c = static_cast<float>(

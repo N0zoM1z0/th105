@@ -15,11 +15,20 @@ Source: [AyaObjectActionState.cpp](../src/characters/AyaObjectActionState.cpp).
 Configured unit: `gpt-web-aya-object-vslot28-full-root`.
 Target callable ledger size19522; selected complete canonical payload20136,
 metadata start19668. Full canonical SHA256:
-`fd8dc276b567f9d5fe846242204959697c489824250c9c29963313c6d4c04e0f`.
+`0e7ae68b65b6d31f195d4b8d82cf726847ae05c2f600faf1a276553d864613d4`.
 The configured19522-byte comparison remains **nonexact** at hex offset22,
 target0F/sourceA1. No Aya root exact credit has been added.
 
-Latest [861 phase-scope correction](AYA_OBJECT_861_PHASE_SCOPE_2026_10_23.md):
+Latest [807 angle lifetime recovery](AYA_OBJECT_807_ANGLE_LIFETIME_2026_10_23.md):
+a used double angle now spans the alpha write and recovers the exact26-byte
+61A86D interval.3968 actual-code cases preserve effects and688 alpha-write x87
+snapshots; all688 predecessor snapshot differences disappear.2044 sequence-read
+differences remain, requiring the explicit scoped-audit option. Complete payload
+changes only18 bytes inside that interval;4464 other-path strict graph nodes
+agree. Source sequence snapshot and explicit frame-tail controls are unselected.
+Neither resolves register/CSE or physical tail sharing; no root exact credit.
+
+Prior [861 phase-scope correction](AYA_OBJECT_861_PHASE_SCOPE_2026_10_23.md):
 phase/count advancement now stays inside initial sequence0. Target61D5F2 skips
 it for nonzero sequence.3072 actual-code cases have0 selected final-state or
 phase/count-write differences; predecessor differs in2304. The complete payload
