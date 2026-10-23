@@ -181,13 +181,62 @@ Fresh baseline, sources, commands and full packets are under
 `build/aya-entry-getter/`. Further unchanged source-API tuning is deferred
 pending new ownership/TU evidence.
 
+## Exact-first refresh, 2026-10-23
+
+A fresh configured build on selected source SHA256
+`5ca0fb4209861320d3e69564de51cc53f0ced9ff062e30990c537f1b5b0bb104`
+still produces the complete4859-byte payload6f70b6f3 above. Only+BF7/+BFF
+differ; callable4531, all19 conversion preparations and metadata are unchanged.
+IDA preflight again rejects its open database; no IDA semantics are used.
+
+Thirty complete native source controls were compiled serially on this epoch.
+Twenty-five valid controls are fully payload-identical: typed payload records,
+real conversion/getter APIs, used reset-zero values, short/implicit856 arguments,
+local903 scalar lifetime, full856 member/free-function inlining, and typed
+pointer/sequence reference accessors. Each helper uses its real inputs; no
+out-of-line code binding, dummy local or target-register prescription is added.
+Three controls are worse: split800/810 heading ownership differs at four bytes,
+an unsigned sequence field at six, and a pointer-value accessor at94. None fixes
+the two original bytes. These are tested source forms, not impossibility proofs.
+
+The remaining two controls require different qualifications. Pragmas placed
+inside856 emit **C4177** (global/namespace scope required): their byte-neutral
+result does not test local floating-environment constraints. A correctly placed
+namespace-scope pragma around the complete root emits4863 bytes and a new
+unmapped `__real@43020000` relocation. Formal replay stops there; no binding or
+full canonical hash is invented for that object.
+
+The earlier `/Zi` failure is now resolved in a private tooling context. Matching
+SP1 compiler/PDB components (14.0/8.0.50727.762) use the task-specific native
+PDB endpoint `th105_entry_vc8_20261023` in this repository's Wine prefix. Wine's
+missing NTLM helper was supplied by locally extracting verified Ubuntu packages,
+without a system install or daemon. The helper is Samba4.19.5; package versions
+and digests are in `.tools/pdb-ntlm/{receipt,dependency-receipt}.json`.
+With the same native profile plus `/Zi`, compilation exits0 and creates a real
+object and PDB. The full payload is again6f70b6f3 with only+BF7/+BFF different.
+This is an actual negative `/Zi` result; the old C1902 failure was not one.
+No other repository's PDB server was stopped or reused.
+
+Recipes: `.analysis/aya-entry-payload-view-20261023/`. Frozen controls and
+receipts: `build/aya-entry-payload-view-20261023/`, starting with `controls.json`,
+`scalar-views.json`, `lifetimes.json`, `field-views.json` and `zi-isolated.json`.
+The latter pins all six compiler/PDB inputs, the command, source, object and PDB;
+receipt SHA256 is
+`011e80269fdd775a9c6747473e765aa1ba057db69cc441bcaad971b4b95cee8f`.
+Completed source/object payloads are compressed with a verified retention list.
+Public source, unit, compiler profile and match ledgers remain unchanged.
+No new exact credit, native execution or aggregate replay is claimed. Further
+progress needs a different target-backed source/TU lead, rather than repeating
+these byte-neutral forms or importing TH075's VC7.1 `/Od` profile.
+
 ## Rejected controls and analysis limits
 
 The saved pre-change baseline is sourcec9d1abb5, canonical payloadb4f36926.
 Pinned RTM, embedded debug information/Z7,19 explicit int argument carriers,
 an inherited virtual-prefix view, a discarded-return declaration and an
 action856 heading-pointer local are fully payload-identical on that input.
-/Zi instead fails C1902 due to its PDB manager; it is not a codegen result.
+That earlier /Zi attempt failed C1902 in its PDB manager and was not a codegen
+result. The successful current-epoch /Zi refresh above supersedes that blocker.
 
 After the short fix, direct/explicit short conversions, inherited virtual
 prefix, local/shared heading carriers and real shared scalar carriers leave

@@ -59,7 +59,7 @@ locals, fabricated returns, ABI changes or comparison masks.
 | Join 807 to 817 | 1 | 20000 /19532 | Twelve frame sites, original dispatch instruction form preserved, but all four scale/rate pairs reverse their recovered operand order. |
 | Join 817/822/854 to 801 | 1 | 20000 /19532 | Eleven frame sites, unwanted constant hoist and reversed scale/rate pairs. |
 | Reversed addition operands, double rate operand, or used compound-add temporary | 3 | 20000 /19532 | Byte-neutral to the 807-to-817 control. First two alter all four sums; the compound control alters only826. |
-| Local fenv access around the four reversed sum expressions | 1 | 20000 /19532 | Byte-neutral; does not restore target operand order. |
+| Pragmas inside the function around four reversed sum expressions | 1 | 20000 /19532 | Byte-neutral, but VC8 emits C4177: this placement does not test valid local fenv access. |
 | Whole-root fenv access on the same source epoch | 1 | 20264 /19796 | Introduces new literal identities; formal replay stops at an unmapped F32 literal. Raw COFF still has the four reversed field pairs. |
 
 The 807-to-817 payload SHA256 is
@@ -81,6 +81,13 @@ readonly occurrence. Private replay stops there; no binding is fabricated or
 added to the public ledger, and no full canonical hash is claimed for that
 control. The unmodified formal comparison remains blocked on its first missing
 mapping. The reversed field-read order is independently visible in raw COFF.
+
+The local-placement qualification was checked again during the
+[initializer refresh](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md#exact-first-refresh-2026-10-23).
+The retained `fenv-controls.log` has eight C4177 warnings for that local control.
+Its negative fenv interpretation is withdrawn. The separate namespace-scope
+whole-root control above, and the earlier852 whole-function control, use valid
+pragma placement and retain their own results.
 
 ## Genuine link context and next action
 
