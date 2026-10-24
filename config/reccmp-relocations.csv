@@ -1468,3 +1468,9 @@ __real@3fe00000,0x006C4FB8,0000e03f,0,Hash-attested JP1.06a PatchouliObject52D20
 __real@3d4ccccd,0x006C4668,cdcc4c3d,0,Hash-attested JP1.06a YuyukoObject578000 float0.05; docs/YUYUKO_OBJECT_ENTRY_2026_10_24.md. New key only; root remains nonexact.,literal
 __real@3f35c28f,0x006C5F00,8fc2353f,0,Hash-attested JP1.06a UdongeObject5DF0E0 literal; docs/UDONGE_OBJECT_ENTRY_2026_10_24.md. New key only; existing mappings unchanged.,literal
 __real@41880000,0x006C4A94,00008841,0,Hash-attested JP1.06a UdongeObject5DF0E0 literal; docs/UDONGE_OBJECT_ENTRY_2026_10_24.md. New key only; existing mappings unchanged.,literal
+__real@403c000000000000,0x006C5470,0000000000003c40,0,Hash-attested JP1.06a RemiliaObject557690 literal; docs/REMILIA_OBJECT_UPDATE_2026_10_25.md. New key only; root remains nonexact.,literal
+__real@406cc00000000000,0x006C4D40,0000000000c06c40,0,Hash-attested JP1.06a RemiliaObject557690 literal; docs/REMILIA_OBJECT_UPDATE_2026_10_25.md. New key only; root remains nonexact.,literal
+__real@44848000,0x006C4684,00808444,0,Hash-attested JP1.06a RemiliaObject557690 literal; docs/REMILIA_OBJECT_UPDATE_2026_10_25.md. New key only; root remains nonexact.,literal
+__real@44910000,0x006C546C,00009144,0,Hash-attested JP1.06a RemiliaObject557690 literal; docs/REMILIA_OBJECT_UPDATE_2026_10_25.md. New key only; root remains nonexact.,literal
+__real@44aa0000,0x006C5468,0000aa44,0,Hash-attested JP1.06a RemiliaObject557690 literal; docs/REMILIA_OBJECT_UPDATE_2026_10_25.md. New key only; root remains nonexact.,literal
+__real@44af0000,0x006C4218,0000af44,0,Hash-attested JP1.06a RemiliaObject557690 literal; docs/REMILIA_OBJECT_UPDATE_2026_10_25.md. New key only; root remains nonexact.,literal

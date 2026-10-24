@@ -21543,3 +21543,33 @@ rel32_targets = [
     "?continue_action_980@UdongeObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-remilia-object-update]
+kind = "probe"
+source = "src/characters/RemiliaObjectActionState.cpp"
+object = "build/match-units/ExactFirst_RemiliaObjectActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a RemiliaObject slot28 update557690;17793 callable/full18388 target. Twelve destination tables; numeric states and pointer-only receiver. Nonexact; docs/REMILIA_OBJECT_UPDATE_2026_10_25.md."
+
+[[units.exact-first-remilia-object-update.functions]]
+address = "0x00557690"
+symbol_base = "?update_action_state@RemiliaObjectUpdateView@th105@@UAEXXZ"
+rel32_targets = [
+    "RemiliaObjectUpdateView_emit_repeated=0x005575C0",
+    "selector_random_roll=0x004067D0",
+    "RemiliaObjectUpdateView_spawn_unparented=0x0064CCB0",
+    "RemiliaObjectUpdateView_advance_frame=0x004351C0",
+    "RemiliaObjectUpdateView_replace_secondary=0x00496420",
+    "RemiliaObjectUpdateView_advance_phase=0x0064CD00",
+    "RemiliaObjectUpdateView_turn_heading=0x004E0BF0",
+    "RemiliaUpdateMotionView_set_components=0x00435160",
+    "RemiliaObjectUpdateView_position_relative=0x005B0400",
+    "RemiliaObjectUpdateView_dispatch_character_wave_handle=0x0045C030",
+    "atan2_degrees=0x00406540",
+    "__ftol2_sse=0x0068A1A0",
+    "lookup_orientation_sine_quantized_abs=0x00406360",
+    "lookup_orientation_cosine_quantized_abs=0x004063D0",
+    "RemiliaObjectUpdateView_stage_surface_height_at_x=0x00435D60",
+    "RemiliaObjectUpdateView_update_ping_pong_motion=0x0053CBC0",
+]
