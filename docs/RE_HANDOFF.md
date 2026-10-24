@@ -85,6 +85,16 @@ controls pass, including nine real RETs and308's pre-spawn prefix; unsigned
 skill guard fails the -1 negative control. Label and typed-prefix controls
 are byte-neutral; preserve receipts and switch representative. Formal/cold
 payloads agree. See `docs/UDONGE_ACTION_ENTRY_2026_10_24.md`; exact unchanged.
+YukariObject slot3C5964C0 now has complete7588-byte-target source/full7888
+against7920. All92 direct/28 virtual calls and real596370 tail remain;33 table
+entries and all200 remap bytes survive, remap independently equal. VC8 folds
+the target-retained851/854 suffix, leaving28 versus29 RETs and an825 epilogue
+schedule residual. Explicit-return and nested-switch controls are byte-neutral.
+Eleven scoped native inputs pass:8 real RETs and3 selector-entry prefixes.
+Positive-only selection fails negative/NaN; unsigned998 facing failsFF. Formal
+and independent cold canonical payloads agree. Keep this finite residual parked
+and select another complete representative. See `docs/YUKARI_OBJECT_ENTRY_2026_10_24.md`;
+exact unchanged.
 Commit format:
 `gpt-6.1-sol: ...`.
 
@@ -130,10 +140,10 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1550 / 1532 |
+| Mapped / source-present | 1551 / 1533 |
 | Accepted authored exact | 1400 functions / 332073 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 570 / 1538 |
+| Match units / configured functions | 571 / 1539 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold

@@ -21306,3 +21306,28 @@ rel32_targets = [
     "UdongeActionEntryView_dispatch_character_wave_handle=0x0045C030",
     "UdongeActionEntryView_initialize_common_action_state=0x00477830",
 ]
+
+[units.exact-first-yukari-object-entry]
+kind = "probe"
+source = "src/characters/YukariObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_YukariObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a YukariObject slot3C root5964C0;7588 callable/full7920 target. Nonexact complete source;851/854 suffix folding and epilogue schedule parked after two neutral controls. docs/YUKARI_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-yukari-object-entry.functions]]
+address = "0x005964C0"
+symbol_base = "?initialize_action_entry@YukariObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?set_components@YukariEntryMotionView@th105@@QAEXMM@Z=0x00435160",
+    "?random_range@YukariEntryMotionView@th105@@QAEHHH@Z=0x004351A0",
+    "?stage_height@YukariObjectEntryView@th105@@QAEMXZ=0x00435D60",
+    "?replace_auxiliary@YukariObjectEntryView@th105@@QAEXF@Z=0x0045CD70",
+    "YukariObjectEntryView_spawn_parented=0x004FCA60",
+    "YukariObjectEntryView_spawn_unparented=0x0064CCB0",
+    "?continue_action_980@YukariObjectEntryView@th105@@QAEXXZ=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]

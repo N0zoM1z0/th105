@@ -1530,3 +1530,4 @@ Reimu_update_control_mode
 Alice_update_cpu_action_policy
 SakuyaObject_initialize_action_entry
 Udonge_initialize_action_entry
+YukariObject_initialize_action_entry

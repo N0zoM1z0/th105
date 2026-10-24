@@ -1448,3 +1448,7 @@ __real@3f666666,0x006C3E40,6666663f,0,Hash-attested SakuyaObject4E8060 literal; 
 __real@3fa66666,0x006C3C70,6666a63f,0,Hash-attested Udonge entry5D0E60 literal; docs/UDONGE_ACTION_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal
 __real@c1400000,0x006C3C68,000040c1,0,Hash-attested Udonge entry5D0E60 literal; docs/UDONGE_ACTION_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal
 __real@40b00000,0x006C4798,0000b040,0,Hash-attested Udonge entry5D0E60 literal; docs/UDONGE_ACTION_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal
+__real@41900000,0x006C3E50,00009041,0,Hash-attested YukariObject entry5964C0 literal; docs/YUKARI_OBJECT_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal
+__real@c3660000,0x006C59C8,000066c3,0,Hash-attested YukariObject entry5964C0 literal; docs/YUKARI_OBJECT_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal
+__real@c37a0000,0x006C59C4,00007ac3,0,Hash-attested YukariObject entry5964C0 literal; docs/YUKARI_OBJECT_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal
+__real@c024000000000000,0x006C4AA0,00000000000024c0,0,Hash-attested YukariObject entry5964C0 literal; docs/YUKARI_OBJECT_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal
