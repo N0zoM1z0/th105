@@ -3,9 +3,9 @@
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
 Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0`, Yukari `0x58C2E0`
-Iku `0x631340`, Komachi `0x5F7AB0` and Aya `0x618660` cold-replay exact.
-The ten-function cohort adds60587 code bytes; latest peer adds7161 after a
-target-proven inclusive-height correction. Complete
+Iku `0x631340`, Komachi `0x5F7AB0`, Aya `0x618660` and Alice `0x4FACD0`
+cold-replay exact. The eleven-function cohort adds67264 code bytes; latest
+peer adds6677 and matches its first complete source. Complete
 Marisa7664/full7768 remains
 source-present, nonexact and parked after neutral controls.
 Required commit format:
@@ -53,14 +53,34 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1531 / 1513 |
-| Accepted authored exact | 1391 functions / 295501 bytes |
+| Mapped / source-present | 1532 / 1514 |
+| Accepted authored exact | 1392 functions / 302178 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 555 / 1523 |
+| Match units / configured functions | 556 / 1524 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Alice input policy 0x4FACD0
+
+[Accepted peer/evidence](ALICE_INPUT_POLICY_2026_10_24.md) closes1912
+instructions/40 RETs/seven tails and all10 table entries. Callable6677 and full
+6720 bytes/132 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-alice-input-policy --compare --json
+python3 scripts/audit-alice-input-policy.py
+```
+
+Full canonical SHA256:
+`3b430021d2cc28d0ce1810de20a55331bcc62ffe584828375424624301cba764`.
+Actual eager input initialization, signed words7A4/7A6 after window calls,
+query546/545 versus action543/542, surface==1, one air308/416 and float140.0
+are independently reviewed. Generated-table negative fails at+1A18. No source
+correction or compiler/source-shape controls. Earlier accepted sources/mappings
+are unchanged. Continue remaining complete peers; Marisa stays parked.
 
 ## Exact family peer: Aya input policy 0x618660
 

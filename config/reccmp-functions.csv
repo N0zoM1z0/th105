@@ -1530,3 +1530,4 @@ Yukari_dispatch_input_policy,0x0058C2E0,function
 Iku_dispatch_input_policy,0x00631340,function
 Komachi_dispatch_input_policy,0x005F7AB0,function
 Aya_dispatch_input_policy,0x00618660,function
+Alice_dispatch_input_policy,0x004FACD0,function
