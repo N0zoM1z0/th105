@@ -208,6 +208,37 @@ same build scope. Private controls and the diagnostic case differ live in the
 corresponding `.analysis/` directory. The differ ignores jump destinations
 only to locate source-shape problems and never records a match score or waiver.
 
+### Closed local lifetime controls after the natural-body checkpoint
+
+The source remains the18360-byte `89e5bd2e...` candidate above. Three further
+whole-function controls are unselected:
+
+| Control | Bytes | Canonical SHA256 | Finding |
+| --- | ---: | --- | --- |
+|811 independent positive post-frame conditions | 18364 | `8684b06a03b1e6665c4a5188261c140c6854c9a9ae07874333c97e73bca27e2d` | restores repeated142 guards but caches144 and holds minus-one in ECX |
+|811 real branch-defined decrement scalar, consumed by all three updates | 18364 | `1c8f2bd4ff015c91671075f7a60b7a5f470a50e89564801ba5ec389d0e1a97a2` | same811 instruction stream as the preceding control; four815 addition-operand bytes change |
+| One function-scope four-float packet replacing20 source array declarations | 18360 | `89e5bd2eb0955bb9f55cac1c2f423f9b93b9663417f0295145485cf8137536c5` | complete byte equality to selected source;28 spawn sites remain |
+
+The target811 sequence holds minus-one in EAX after the AL result test and
+retains both memory144 tests. The first control instead saves144 in EAX and
+keeps minus-one in ECX; the scalar control does not recover the target lifetime.
+Only811 is instruction-neutral between those two controls; their complete
+payloads differ at four815 bytes. Do not describe that pair as whole-byte
+neutral or select the scalar just to change a neighboring floating addition.
+The frame helper4351C0 delegates its nonzero exit through a virtual callback;
+its current physical AL-byte view is retained, without a new bool-domain claim.
+
+The shared packet control consumes all four elements in actual four-word spawn
+paths and preserves the separate live854 ground packet. It introduces no inert
+storage. Nevertheless, its canonical output is exactly unchanged, closing this
+packet-storage-duration hypothesis for826's missing physical spawn copy.
+No ABI, header, flags, relocation ledger, source selection or exact count changes
+are made for these controls. Receipts are `positive811-preview.json`,
+`positive811-opcode-diff.txt`, `delta811-preview.json`, `delta811-opcode-diff.txt`,
+`815-natural-opcode-diff.txt`, `815-delta811-opcode-diff.txt`,
+`shared-packet-preview.json` and `shared-packet-inventory.json` in the same scope.
+The raw811/826 facts and selected complete comparison remain authoritative.
+
 Run serially, CPU0/nice10, through the locked repository Python:
 
 ```sh
@@ -227,10 +258,9 @@ directory. Readonly Ghidra was target-attested, temporary views rolled back
 and all nine primary database pins unchanged; its decompilation remains a
 hypothesis. IDA's open GUI still has the wrong target and was not used.
 
-Next inspect811's minus-one lifetime and the retained826 spawn suffix using
-fresh raw evidence. The earlier global label, local-return and852 controls
-remain recorded in their original source context. The natural-body changes
-above now explain several previously different regions; avoid further naming
-or constant-spelling trials without independent evidence. No original TU/LTCG
-impossibility is established. Source-present remains1543 and exact remains
-1403 functions/359740 authored code bytes.
+Next inspect826's actual receiver/argument preparation around its shared spawn
+suffix. Packet storage duration and811 decrement spellings now have retained
+negative results; reopen them only with independent evidence. The earlier
+global label, local-return and852 controls remain recorded in their original
+source context. No original TU/LTCG impossibility is established. Source-present
+remains1543 and exact remains1403 functions/359740 authored code bytes.

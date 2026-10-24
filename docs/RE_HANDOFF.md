@@ -13,10 +13,13 @@ angle/fade/movement prefixes pass, including13 real RET0s. Moving801's bounds
 after movement fails two negative-control inputs. See
 [the full evidence and incremental controls](REMILIA_OBJECT_UPDATE_2026_10_25.md).
 
-Next inspect811's real minus-one lifetime and826's retained spawn suffix from
-fresh target evidence. The earlier globally shared-source label/return controls
-are closed in that context; the new independent-body experiment has actual
-opcode/register evidence and changes the CFG. Avoid naming or repeated
+Next inspect826's receiver/argument preparation around its shared spawn suffix.
+A real common four-float packet is whole-payload neutral;811 independent-positive
+conditions and a consumed branch-defined decrement still keep minus-one in ECX
+and cache144. The latter pair has identical811 instructions but differs at four
+815 addition-operand bytes; both are unselected. These local storage/decrement
+hypotheses are closed absent new evidence. The independent-body checkpoint is
+selected for actual opcode/register improvements; avoid naming or repeated
 constant-spelling trials. Keep prior parked initializers closed absent new
 evidence. Source-present1543/mapped1561; exact remains1403/359740 bytes.
 Use locked `scripts/repo-python`, serial CPU0/nice10; local CI is mandatory
