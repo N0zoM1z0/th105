@@ -20899,3 +20899,34 @@ rel32_targets = [
     "IkuInputPolicyView_gate4942c0=0x004942C0",
     "IkuInputPolicyView_gate494450=0x00494450",
 ]
+
+[units.exact-first-komachi-input-policy]
+kind = "probe"
+source = "src/characters/KomachiInputPolicy.cpp"
+object = "build/match-units/ExactFirst_KomachiInputPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Komachi primary slot50 input policy5F7AB0;6181 callable bytes/full6232-byte payload. Reviewed Sakuya-family changes with pointer-only views; no complete owner layout claim. docs/KOMACHI_INPUT_POLICY_2026_10_24.md."
+
+[[units.exact-first-komachi-input-policy.functions]]
+address = "0x005F7AB0"
+symbol_base = "?dispatch_input@KomachiInputPolicyView@th105@@UAEXXZ"
+rel32_targets = [
+    "is_y_at_or_below_stage_surface=0x00435DC0",
+    "KomachiInputPolicyView_pop_sequence=0x0045DDA0",
+    "KomachiInputPolicyView_pack_input=0x00464200",
+    "KomachiInputPolicyView_reset_input=0x004633A0",
+    "KomachiInputPolicyView_front_ready=0x0045D1B0",
+    "KomachiInputPolicyView_finalize_command=0x00493D00",
+    "KomachiInputPolicyView_command_window=0x00493D40",
+    "KomachiInputSequenceView_at=0x004399C0",
+    "KomachiInputPolicyView_gate493ac0=0x00493AC0",
+    "KomachiInputPolicyView_gate493b40=0x00493B40",
+    "KomachiInputPolicyView_gate493c50=0x00493C50",
+    "KomachiInputPolicyView_gate493d90=0x00493D90",
+    "KomachiInputPolicyView_gate493f90=0x00493F90",
+    "KomachiInputPolicyView_gate4940e0=0x004940E0",
+    "KomachiInputPolicyView_gate4941d0=0x004941D0",
+    "KomachiInputPolicyView_gate4942c0=0x004942C0",
+    "KomachiInputPolicyView_gate494450=0x00494450",
+]

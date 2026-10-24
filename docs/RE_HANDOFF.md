@@ -3,8 +3,8 @@
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
 Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0`, Yukari `0x58C2E0`
-and Iku `0x631340` cold-replay exact. The eight-function cohort adds47245 code
-bytes; latest peer adds6302 and matches its first complete source. Complete
+Iku `0x631340` and Komachi `0x5F7AB0` cold-replay exact. The nine-function cohort
+adds53426 code bytes; latest peer adds6181 and matches its first complete source. Complete
 Marisa7664/full7768 remains
 source-present, nonexact and parked after neutral controls.
 Required commit format:
@@ -52,14 +52,34 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1529 / 1511 |
-| Accepted authored exact | 1389 functions / 282159 bytes |
+| Mapped / source-present | 1530 / 1512 |
+| Accepted authored exact | 1390 functions / 288340 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 553 / 1521 |
+| Match units / configured functions | 554 / 1522 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Komachi input policy 0x5F7AB0
+
+[Accepted peer/evidence](KOMACHI_INPUT_POLICY_2026_10_24.md) closes1762
+instructions/34 RETs/six tails and all12 table entries. Callable6181 and full
+6232 bytes/124 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-komachi-input-policy --compare --json
+python3 scripts/audit-komachi-input-policy.py
+```
+
+Full canonical SHA256:
+`8d53e8dd92bdea44be96ed4ef0ded1fae0fb68e336f8e07edd721bc735c5c012`.
+Ground207..210 defaults, actual ignored-result air45D1B0 call without air deque
+reads, changed tiers, state303 fallback, float140.0 and air406/405/404 order are
+independently reviewed. Generated-table negative fails at+1828. No compiler or
+source-shape controls; earlier accepted sources/mappings are unchanged. Continue
+remaining complete peers while preserving Marisa's parked residual.
 
 ## Exact family peer: Iku input policy 0x631340
 

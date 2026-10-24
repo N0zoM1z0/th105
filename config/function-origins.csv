@@ -2549,7 +2549,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x005F79B0,authored_game,characters,authored,observed,canonical-exact-authored
 0x005F7A10,authored_game,characters,authored,observed,canonical-exact-authored
 0x005F7A30,authored_game,characters,authored,observed,canonical-exact-authored
-0x005F7AB0,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x005F7AB0,authored_game,characters,authored,observed,canonical-exact-authored
 0x005F9310,authored_game,battle,authored,observed,canonical-exact-authored
 0x005F9350,authored_game,characters,authored,observed,komachi-object-pair-emitter-authored-106a
 0x005F9420,authored_game,characters,authored,observed,roster-character-object-vtable-authored-106a
