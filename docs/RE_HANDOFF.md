@@ -1,30 +1,32 @@
 # TH10.5 reconstruction handoff
 
-Current bounded representative: **RemiliaObject slot28 update557690** now uses
-independent source movement/fade/frame/retirement bodies and compiler-owned
-joins. Premature explicit source joins had folded801's bounds into821 and
-prevented816's real EBP=4 lifetime. Restoring independent bodies recovers both;
-800/801/810 and852/855/856 instruction sequences agree apart from branch
-layout. Formal and independent object-deleting cold builds reproduce full18360
-versus18388 target, SHA256 `89e5bd2e...`, still nonexact+22 with15330 unequal
-byte positions. The28-byte size gap is not a matching score.12 table lengths
-and199 remap bytes agree; spawn28/29 and RETs32/28 remain different.54 native
-angle/fade/movement prefixes pass, including13 real RET0s. Moving801's bounds
-after movement fails two negative-control inputs. See
-[the full evidence and incremental controls](REMILIA_OBJECT_UPDATE_2026_10_25.md).
+Current transition: **park complete RemiliaObject update557690 and select the
+next complete representative, YoumuObject update53CEA0**. Remilia remains full
+18360 versus18388 target, SHA256 `89e5bd2e...`, nonexact+22 with15330 unequal
+byte positions. Its54 native angle/fade/movement prefixes pass; no new exact
+credit.12 table lengths and199 remap bytes agree; spawn28/29 and RETs32/28
+remain different. The full source and all finite controls are preserved in
+[the evidence](REMILIA_OBJECT_UPDATE_2026_10_25.md).
 
-Next inspect826's receiver/argument preparation around its shared spawn suffix.
-A real common four-float packet is whole-payload neutral;811 independent-positive
-conditions and a consumed branch-defined decrement still keep minus-one in ECX
-and cache144. The latter pair has identical811 instructions but differs at four
-815 addition-operand bytes; both are unselected. These local storage/decrement
-hypotheses are closed absent new evidence. The independent-body checkpoint is
-selected for actual opcode/register improvements; avoid naming or repeated
-constant-spelling trials. Keep prior parked initializers closed absent new
-evidence. Source-present1543/mapped1561; exact remains1403/359740 bytes.
-Use locked `scripts/repo-python`, serial CPU0/nice10; local CI is mandatory
-before every commit/push. IDA still has the wrong executable; use hash-attested
-raw bytes. Latest aggregate exact cold replay remains the Udonge checkpoint.
+The826 positive-guard control leaves28 spawn calls; independent per-sequence
+frame exits add a target-absent tenth frame call. A real rounded Y scalar with
+two consumers reproduces the selected payload exactly, as did the common four-
+float packet.811 decrement variants remain unselected. Close these storage,
+guard and exit-spelling questions absent new evidence. The private preview
+was corrected to replay every relocation even when a rejected section exceeds
+the target length; the public full comparator and selected source were already
+complete. This does not establish a TU/LTCG impossibility.
+
+Read-only roster census identifies the next smallest unselected Object update:
+YoumuObject53CEA0, candidate25944 bytes, primary vtable6C50BC/cell6C50E4.
+Its candidate/origin ledger is authored by the RTTI-backed roster rule; it has
+no selected source or exact claim. First close its complete raw CFG, then
+recover the full body and compare early. The separate Youmu initializer543670
+remains parked; do not reopen it as part of this new update scope.
+Source-present1543/mapped1561; exact remains1403/359740 bytes. Use locked
+`scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
+mandatory local CI before every commit/push. IDA still has the wrong executable;
+use hash-attested raw bytes. Latest aggregate cold replay is the Udonge checkpoint.
 
 Exact-first reconstruction checkpoint: 2026-10-25. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,

@@ -239,6 +239,48 @@ are made for these controls. Receipts are `positive811-preview.json`,
 `shared-packet-preview.json` and `shared-packet-inventory.json` in the same scope.
 The raw811/826 facts and selected complete comparison remain authoritative.
 
+###826 receiver/argument scheduling controls and parked state
+
+Raw559285..5592A8 and5593D9..5593FC retain two separate receiver preparations
+and spawn calls. The selected object instead joins the two paths just before
+publishing X, pushing action826 and setting ECX for one common spawn. Y is
+rounded, stored to the object and pushed before the real RNG call in both
+target and candidate. The remaining question is code generation and layout;
+the missing physical call is not an omitted runtime spawn on one sequence.
+
+Three serial whole-source controls tested the observed local graph:
+
+| Control | Full bytes | Spawn / frame calls | Canonical SHA256 |
+| --- | ---: | --- | --- |
+|826 independent positive post-frame guards | 18368 |28 /9 | `091dbff6646be88c08835848c0cc514753351714e236c5a48a81d035fa9489f4` |
+| Per-sequence copies of frame/post-frame exits | 18516 |28 /10 | `3351150221720e7f7ce41413d9c9a4193379925ba0c7c5621a68cec07450f302` |
+| A real rounded Y scalar consumed by both field and spawn argument | 18360 |28 /9 | `89e5bd2eb0955bb9f55cac1c2f423f9b93b9663417f0295145485cf8137536c5` |
+
+All are unselected. The first changes the post-frame guard shape but leaves
+the shared spawn. The second adds a target-absent frame call. The third is
+fully byte-neutral, as was the common-packet storage-duration control above.
+Do not keep trying local Y/packet/exit spellings without independent evidence.
+The known78-byte64CCB0 helper forwards the facing stack DWORD through a virtual
+manager entry; the caller's byte load alone does not prove its upper bits are
+irrelevant throughout that chain. No parameter-type change or argument mask
+was used to force these comparisons. Original nominal types remain unknown.
+
+The large18516-byte rejected control exposed a private preview limit: the old
+preview replayed relocations only through the target payload length. Its tail
+inventory/hash was superseded by a complete section replay and cross-checked
+with the public full-payload auditor. The corrected SHA is33511502... above;
+the bounded-replay83c1e39c... hash is retained only as an obsolete private
+receipt. The selected18360-byte source and all earlier shorter controls were
+fully covered already. The public comparator/auditor and exact acceptance
+were unchanged, and no accepted function used that rejected object.
+
+Receipts: `826-controls.json`, each control's full-replay preview, inventory
+and public-payload report; sources are `positive826.cpp`, `exits826.cpp` and
+`captured-y826.cpp` in the same private scope. Remilia557690 is now **parked**
+at its selected complete18360-byte, nonexact source. No compiler/TU/LTCG
+impossibility is established. Resume only with evidence beyond these closed
+storage, guard and placement questions.
+
 Run serially, CPU0/nice10, through the locked repository Python:
 
 ```sh
@@ -258,9 +300,8 @@ directory. Readonly Ghidra was target-attested, temporary views rolled back
 and all nine primary database pins unchanged; its decompilation remains a
 hypothesis. IDA's open GUI still has the wrong target and was not used.
 
-Next inspect826's actual receiver/argument preparation around its shared spawn
-suffix. Packet storage duration and811 decrement spellings now have retained
-negative results; reopen them only with independent evidence. The earlier
-global label, local-return and852 controls remain recorded in their original
-source context. No original TU/LTCG impossibility is established. Source-present
-remains1543 and exact remains1403 functions/359740 authored code bytes.
+The next complete authored representative is YoumuObject slot28 at53CEA0.
+Its RTTI-backed primary cell6C50E4 points to that entry; the current25944-byte
+candidate extent still requires complete raw control-flow reconciliation.
+Source-present remains1543 and exact remains1403 functions/359740 authored
+code bytes. These counts do not include a Youmu update implementation yet.
