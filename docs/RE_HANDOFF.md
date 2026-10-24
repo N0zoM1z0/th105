@@ -3,9 +3,9 @@
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
 Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0`, Yukari `0x58C2E0`
-Iku `0x631340`, Komachi `0x5F7AB0`, Aya `0x618660` and Alice `0x4FACD0`
-cold-replay exact. The eleven-function cohort adds67264 code bytes; latest
-peer adds6677 and matches its first complete source. Complete
+Iku `0x631340`, Komachi `0x5F7AB0`, Aya `0x618660`, Alice `0x4FACD0`
+and Reimu `0x494810` cold-replay exact. The twelve-function cohort adds74216
+code bytes; latest peer adds6952 and matches its first complete source. Complete
 Marisa7664/full7768 remains
 source-present, nonexact and parked after neutral controls.
 Required commit format:
@@ -53,14 +53,35 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1532 / 1514 |
-| Accepted authored exact | 1392 functions / 302178 bytes |
+| Mapped / source-present | 1533 / 1515 |
+| Accepted authored exact | 1393 functions / 309130 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 556 / 1524 |
+| Match units / configured functions | 557 / 1525 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Reimu input policy 0x494810
+
+[Accepted peer/evidence](REIMU_INPUT_POLICY_2026_10_24.md) closes1992
+instructions/42 RETs/seven tails, nine destinations and all20 remapped edges.
+Callable6952 and full7008 bytes/142 relocations match in the first complete
+source and independent formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-reimu-input-policy --compare --json
+python3 scripts/audit-reimu-input-policy.py
+```
+
+Full canonical SHA256:
+`ab3651e356c3b26be806d10352bd9c5af0ea8c8c8101e4addfba7c262926125a`.
+Actual ground input initialization before the third deque read/default switch,
+sparse records, query500/502 versus action501/503, double120.0 and different
+window/resource order in groups6F8/6FC are independently reviewed. Generated
+destination/remap negatives fail at+1B28/+1B4C. No source correction or compiler
+controls; earlier accepted sources/mappings are unchanged. Continue remaining
+complete peers; Marisa stays parked.
 
 ## Exact family peer: Alice input policy 0x4FACD0
 
