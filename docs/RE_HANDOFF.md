@@ -24,7 +24,11 @@ constant-promotion residual is parked; select another complete same-slot peer.
 Alice's next slot5C peer4F8E00 accepts2284 callable/full2560 payload bytes
 in formal and independent cold builds. First whole comparison catches the
 actual state2-to3 continuation; one correction makes the complete unit exact.
-Continue independently reviewed same-slot peers. Required commit format:
+Patchouli51CB40 now has complete reviewed source2686/full2736, nonexact at41
+frame/stack bytes. Operand-order and consumed-pair storage recover instruction
+forms; the pair-structure control is neutral and grouped storage regresses.
+Keep this local-layout residual parked and select another complete peer.
+Required commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -69,16 +73,39 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1540 / 1522 |
+| Mapped / source-present | 1541 / 1523 |
 | Accepted authored exact | 1397 functions / 327058 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 563 / 1531 |
+| Match units / configured functions | 564 / 1532 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: Alice slot5C control mode 0x4F8E00
+## Current checkpoint: Patchouli slot5C control mode 0x51CB40
+
+[Complete source and residual](PATCHOULI_CONTROL_MODE_2026_10_24.md) closes2686
+callable target bytes/710 instructions/10 RETs/33 calls plus50 alignment/table
+bytes. Complete same-size2736-byte source is nonexact at+8, frame4C versus44:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-patchouli-control-mode --compare --json
+python3 scripts/audit-patchouli-control-mode.py
+```
+
+Both correctly return1. Selected canonical SHA256:
+`1fbbee3ca927710d63d1b3a1ce9fce08fa81c3df67b289c2bce6cb54d8186885`.
+All instruction addresses/sizes/mnemonics and all50 metadata bytes agree.
+The41 byte differences are one frame immediate and40 ESP displacements; this
+classification gives no exact credit. The actual timer/action720 state4 guard,
+independent identifier rings, three-/four-word packets, two-float nested
+placement and sticky probability flag are reviewed. Operand-order and real
+pair storage recover forms. Struct-pair control is byte-neutral; grouped
+storage regresses and is unselected. Park until new lifetime/layout/TU evidence;
+continue another complete peer. No shared changes or runtime matrix. Full
+owner layout and nominal sine/cosine return types remain unknown.
+
+## Exact peer: Alice slot5C control mode 0x4F8E00
 
 [Complete source and evidence](ALICE_CONTROL_MODE_2026_10_24.md) closes2284
 callable bytes/581 instructions/10 RETs/44 calls/one virtual slot58 tail plus

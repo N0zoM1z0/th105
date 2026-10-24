@@ -21161,3 +21161,24 @@ rel32_targets = [
     "AliceControlSequenceView_at=0x004399C0",
     "AliceControlModeView_face_opponent_and_flip_horizontal_velocity=0x00478E60",
 ]
+
+[units.exact-first-patchouli-control-mode]
+kind = "probe"
+source = "src/characters/PatchouliControlMode.cpp"
+object = "build/match-units/ExactFirst_PatchouliControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Patchouli slot5C root51CB40;2686 callable/full2736 target bytes. Same-size complete source remains nonexact at41 stack-slot/frame bytes; all metadata agrees. Original local-layout/TU context unknown. docs/PATCHOULI_CONTROL_MODE_2026_10_24.md."
+
+[[units.exact-first-patchouli-control-mode.functions]]
+address = "0x0051CB40"
+symbol_base = "?update_control_mode@PatchouliControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+    "selector_random_roll=0x004067D0",
+    "PatchouliControlSequenceView_at=0x004399C0",
+    "PatchouliControlModeView_face_opponent_and_flip_horizontal_velocity=0x00478E60",
+    "PatchouliControlModeView_spawn_owned_object_via_manager=0x00465190",
+    "PatchouliControlModeView_dispatch_character_wave_handle=0x0045C030",
+    "lookup_orientation_cosine_quantized_abs=0x004063D0",
+    "lookup_orientation_sine_quantized_abs=0x00406360",
+]
