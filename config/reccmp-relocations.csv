@@ -1454,3 +1454,5 @@ __real@c37a0000,0x006C59C4,00007ac3,0,Hash-attested YukariObject entry5964C0 lit
 __real@c024000000000000,0x006C4AA0,00000000000024c0,0,Hash-attested YukariObject entry5964C0 literal; docs/YUKARI_OBJECT_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal
 __real@c034000000000000,0x006C4F88,00000000000034c0,0,Hash-attested IkuObject entry63B310 signed-facing multiplication uses double -20; docs/IKU_OBJECT_ENTRY_2026_10_24.md. New literal key only.,literal
 __real@3f866666,0x006C4244,6666863f,0,Hash-attested TenshiObject entry657150 auxiliary width1.05f; docs/TENSHI_OBJECT_ENTRY_2026_10_24.md. New literal key only; no exact claim.,literal
+__real@be19999a,0x006C5CA0,9a9919be,0,Hash-attested SuikaObject entry5BD380 ordered sign predicate literal; docs/SUIKA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal
+__real@bdcccccd,0x006C4278,cdccccbd,0,Hash-attested SuikaObject entry5BD380 ordered sign predicate literal; docs/SUIKA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal

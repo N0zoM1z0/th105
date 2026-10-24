@@ -21400,3 +21400,24 @@ rel32_targets = [
     "?continue_action_980@TenshiObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-suika-object-entry]
+kind = "probe"
+source = "src/characters/SuikaObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_SuikaObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a SuikaObject slot3C5BD380;8956 callable/full9284 target. Nonexact full9268; real double product lifetimes restore four arithmetic forms. docs/SUIKA_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-suika-object-entry.functions]]
+address = "0x005BD380"
+symbol_base = "?initialize_action_entry@SuikaObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?set_components@SuikaEntryMotionView@th105@@QAEXMM@Z=0x00435160",
+    "SuikaObjectEntryView_spawn_unparented=0x0064CCB0",
+    "?continue_action_980@SuikaObjectEntryView@th105@@QAEXXZ=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]

@@ -125,6 +125,16 @@ actual50 rolls. Two pointer/return-view controls are byte-neutral. Preserve
 the trig-pointer/register and regional-scheduling residual; switch complete
 representative. See `docs/TENSHI_OBJECT_ENTRY_2026_10_24.md`. Exact unchanged;
 the Iku aggregate cold receipt above predates this nonexact source addition.
+SuikaObject slot3C5BD380 now has complete8956-byte-target source/full9268 against
+9284. All153 direct/29 virtual calls,26 RETs and real980 tail remain;200 remap
+bytes compare equal. Real consumed double products restore four arithmetic
+forms. Twelve scoped native RETs pass:812 ordered vertical-sign/NaN and815/940
+product/input cancellation in both x87 precision modes. Float product captures
+fail8 negative controls; unordered sign fails1. Formal/cold payloads agree but
+retain6664 unmasked differing bytes/length difference, first+80. Two subsequent
+pointer/return-view controls are byte-neutral. Park trig-pointer/register,
+loop-entry and999 scheduling residuals; select another complete representative.
+See `docs/SUIKA_OBJECT_ENTRY_2026_10_24.md`; exact unchanged.
 Commit format:
 `gpt-6.1-sol: ...`.
 
