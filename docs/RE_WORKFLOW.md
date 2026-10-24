@@ -75,6 +75,18 @@ after the final pass invalidates that pass and requires another local run.
 
 ## Exact-first priority from the TH075 review
 
+The 2026-10-24 user direction renews this priority with an explicit throughput
+rule: choose a complete medium/large representative, compare the first complete
+body early, and make each subsequent trial answer one target-backed question.
+After repeated byte-neutral controls, retain a concise receipt and switch to
+another bounded candidate unless new independent evidence changes the question.
+After a representative succeeds, review and accept its family peers separately.
+Large execution matrices must resolve concrete ambiguities; naming, readability
+cleanup and abstraction follow stable exactness. Use serial CPU0/nice10 jobs,
+monitor available memory and swap, and commit/push stable locally gated work.
+The first new bounded checkpoint is
+[RemiliaObject 0x55BE70](REMILIA_OBJECT_ENTRY_2026_10_24.md), still nonexact.
+
 The 2026-10-23 user instruction prioritizes full-function exactness before
 high-level semantic reconstruction. Keep provisional address/offset names,
 numeric states and declaration-only callees where they express established

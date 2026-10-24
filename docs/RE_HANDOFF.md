@@ -1,6 +1,7 @@
 # TH10.5 reconstruction handoff
 
-Cleanup checkpoint: 2026-10-24. The working source is ready for handoff;
+Exact-first reconstruction checkpoint: 2026-10-24. RemiliaObject initializer
+`0x55BE70` now has complete selected source and a reproducible nonexact unit;
 this checkpoint adds no exact functions or bytes. Required commit format:
 `gpt-6.1-sol: ...`.
 
@@ -9,6 +10,14 @@ naming. Keep necessary types, offsets, numeric states, control flow and side
 effects, and compare the entire function early. The read-only TH075 review is
 in [the workflow](RE_WORKFLOW.md#exact-first-priority-from-the-th075-review).
 Its VC7.1 compiler settings do not transfer to this VC8 target.
+
+The renewed user direction is to prioritize complete medium/large functions,
+compare the first complete source early, test one evidence-backed hypothesis
+per trial, and switch candidates after repeated neutral controls. Follow a
+successful representative through independently reviewed family differences.
+Keep large execution matrices scoped to concrete ambiguities and defer naming,
+beautification and abstraction. Compile serially at CPU0/nice10 and monitor
+available memory/swap. Commit and push stable checkpoints only after local CI.
 
 ## Start here
 
@@ -38,14 +47,38 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1519 / 1501 |
+| Mapped / source-present | 1520 / 1502 |
 | Accepted authored exact | 1381 functions / 234914 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 543 / 1511 |
+| Match units / configured functions | 544 / 1512 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## RemiliaObject initializer 0x55BE70
+
+[Complete source/evidence](REMILIA_OBJECT_ENTRY_2026_10_24.md) covers the
+4997-byte callable and full5384-byte payload, including all three destination
+tables and the199-byte remap. Unit `exact-first-remilia-object-entry` freshly
+builds and remains nonexact at+0x80. The selected full canonical SHA256 is
+`d114fd28eaefcbc4fb8f1c8ebe1ceb7512661cdabb05624179ec85bab5be2aac`.
+All21 conversion/virtual calls,42 RNG calls, seven motion calls, two spawns and
+both replacements are present. Explicit used casts retain product rounding;
+a double captures851's input float across its byte write without an extra spill.
+
+Residuals are selector-call registers,901's shared heading-block placement and
+the980 CALL+RET versus target tail JMP. Named-field versus offset access is
+byte-neutral, and terminal/default controls regress the remap range. Do not
+repeat these controls unchanged. The selected receiver is declaration-only;
+never construct/embed it. No exact credit, runtime matrix or LTCG impossibility.
+
+Next, switch to another complete roster initializer rather than restarting Aya
+or Youmu's neutral trials. Remilia's source and retained controls are the bounded
+checkpoint. Read-only Ghidra was independently attested; all pinned primary DB
+files are unchanged. Receipts/recipes are under
+`build/exact-first-remilia-entry-20261024/` and
+`.analysis/exact-first-remilia-entry-20261024/`.
 
 ## AyaObject update 0x61A290
 

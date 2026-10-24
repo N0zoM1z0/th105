@@ -20599,3 +20599,24 @@ dir32_targets = [
   "??_C@_06EELLHCJD@v4Arg0?$AA@=??_C@_06EELLHCJD@v4Arg0?$AA@",
   "??_C@_06FNKAEDNC@v4Arg1?$AA@=??_C@_06FNKAEDNC@v4Arg1?$AA@",
 ]
+
+[units.exact-first-remilia-object-entry]
+kind = "probe"
+source = "src/characters/RemiliaObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_RemiliaObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "JP1.06a RemiliaObject primary slot3C @55BE70. Complete4997-byte callable/5384-byte payload source; numeric states and pointer-only receiver. Nonexact; no matching credit. docs/REMILIA_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-remilia-object-entry.functions]]
+address = "0x0055BE70"
+symbol_base = "?initialize_action_entry@RemiliaObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "selector_random_roll=0x004067D0",
+    "RemiliaEntryMotionView_set_components=0x00435160",
+    "RemiliaObjectEntryView_spawn_parented=0x004FCA60",
+    "RemiliaObjectEntryView_replace_secondary=0x00496420",
+    "RemiliaObjectEntryView_replace_auxiliary=0x0045CD70",
+    "RemiliaObjectEntryView_continue_action_980=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]
