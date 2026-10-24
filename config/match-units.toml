@@ -21283,3 +21283,26 @@ rel32_targets = [
     "?continue_action_980@SakuyaObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-udonge-action-entry]
+kind = "probe"
+source = "src/characters/UdongeActionEntry.cpp"
+object = "build/match-units/ExactFirst_UdongeActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Udonge Fighter slot3C root5D0E60;4057 callable/full5070 target. Complete numeric/offset source, nonexact; real payload lifetime, three regional switches,10 scoped native controls. docs/UDONGE_ACTION_ENTRY_2026_10_24.md."
+
+[[units.exact-first-udonge-action-entry.functions]]
+address = "0x005D0E60"
+symbol_base = "?initialize_action_entry@UdongeActionEntryView@th105@@QAEXXZ"
+rel32_targets = [
+    "UdongeActionEntryView_reset_action_visual_state=0x005D06D0",
+    "UdongeActionEntryView_advance_secondary_event_effect_cycle=0x00473F90",
+    "UdongeActionEntryView_emit_effect=0x00435240",
+    "UdongeActionEntryView_publish_battle_layout_scalar=0x004359D0",
+    "UdongeActionEntryView_dispatch_indexed_event_member=0x004359F0",
+    "UdongeActionEntryView_zero_velocity_acceleration=0x0045AF40",
+    "UdongeActionEntryView_spawn_owned_object_via_manager=0x00465190",
+    "UdongeActionEntryView_dispatch_character_wave_handle=0x0045C030",
+    "UdongeActionEntryView_initialize_common_action_state=0x00477830",
+]

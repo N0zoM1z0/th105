@@ -76,6 +76,15 @@ epoch:2 bounded native prefixes pass and old source fails the alias case.
 Two subsequent word-carrier/return-view controls are byte-neutral. Preserve
 this register/schedule residual and select another complete representative.
 See `docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md`; no exact credit is added.
+Udonge Fighter slot3C5D0E60 now has complete4057-byte-target source/full5118
+against5070. Function-scope real payload restores CALL/RET; byte-facing effect
+arguments recover all30 motion calls. Three28/31/19 tables and all695 remap
+bytes are retained; the remaps compare equal. Three extra visual-reset copies,
+regional placement and x87 scheduling remain nonexact+16. Ten scoped native
+controls pass, including nine real RETs and308's pre-spawn prefix; unsigned
+skill guard fails the -1 negative control. Label and typed-prefix controls
+are byte-neutral; preserve receipts and switch representative. Formal/cold
+payloads agree. See `docs/UDONGE_ACTION_ENTRY_2026_10_24.md`; exact unchanged.
 Commit format:
 `gpt-6.1-sol: ...`.
 
@@ -121,10 +130,10 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1547 / 1529 |
+| Mapped / source-present | 1550 / 1532 |
 | Accepted authored exact | 1400 functions / 332073 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 567 / 1535 |
+| Match units / configured functions | 570 / 1538 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
