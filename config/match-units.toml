@@ -21055,3 +21055,34 @@ rel32_targets = [
     "UdongeInputPolicyView_gate4942c0=0x004942C0",
     "UdongeInputPolicyView_gate494450=0x00494450",
 ]
+
+[units.exact-first-patchouli-input-policy]
+kind = "probe"
+source = "src/characters/PatchouliInputPolicy.cpp"
+object = "build/match-units/ExactFirst_PatchouliInputPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Patchouli primary slot50 input policy51EF60;6351 callable bytes/full6396-byte payload. Reviewed Sakuya-family changes with pointer-only views; no complete owner layout claim. docs/PATCHOULI_INPUT_POLICY_2026_10_24.md."
+
+[[units.exact-first-patchouli-input-policy.functions]]
+address = "0x0051EF60"
+symbol_base = "?dispatch_input@PatchouliInputPolicyView@th105@@UAEXXZ"
+rel32_targets = [
+    "is_y_at_or_below_stage_surface=0x00435DC0",
+    "PatchouliInputPolicyView_pop_sequence=0x0045DDA0",
+    "PatchouliInputPolicyView_pack_input=0x00464200",
+    "PatchouliInputPolicyView_reset_input=0x004633A0",
+    "PatchouliInputPolicyView_front_ready=0x0045D1B0",
+    "PatchouliInputPolicyView_finalize_command=0x00493D00",
+    "PatchouliInputPolicyView_command_window=0x00493D40",
+    "PatchouliInputSequenceView_at=0x004399C0",
+    "PatchouliInputPolicyView_gate493ac0=0x00493AC0",
+    "PatchouliInputPolicyView_gate493b40=0x00493B40",
+    "PatchouliInputPolicyView_gate493c50=0x00493C50",
+    "PatchouliInputPolicyView_gate493d90=0x00493D90",
+    "PatchouliInputPolicyView_gate493f90=0x00493F90",
+    "PatchouliInputPolicyView_gate4940e0=0x004940E0",
+    "PatchouliInputPolicyView_gate4941d0=0x004941D0",
+    "PatchouliInputPolicyView_gate4942c0=0x004942C0",
+    "PatchouliInputPolicyView_gate494450=0x00494450",
+]

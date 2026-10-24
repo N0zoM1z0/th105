@@ -1533,3 +1533,4 @@ Aya_dispatch_input_policy,0x00618660,function
 Alice_dispatch_input_policy,0x004FACD0,function
 Reimu_dispatch_input_policy,0x00494810,function
 Udonge_dispatch_input_policy,0x005D2C70,function
+Patchouli_dispatch_input_policy,0x0051EF60,function
