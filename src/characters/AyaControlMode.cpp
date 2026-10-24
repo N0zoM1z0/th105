@@ -1,306 +1,112 @@
-#include <stddef.h>
-#include "battle/Collision.hpp"
-#include "battle/SpellRuntime.hpp"
-
+#include "AyaControlMode.hpp"
 namespace th105 {
-
-int __cdecl selector_random_roll(int limit);
-
-struct AyaControlPeerView {
-    unsigned char unknown_000[0xec];
-    float x_ec;
-    unsigned char unknown_0f0[0x84];
-    short value_174;
-};
-
-class AyaControlModeView {
-public:
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void set_action(int action);
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void slot_14();
-    virtual void slot_18();
-    virtual void slot_1c();
-    virtual void slot_20();
-    virtual void slot_24();
-    virtual void slot_28();
-    virtual void slot_2c();
-    virtual void slot_30();
-    virtual void slot_34();
-    virtual void slot_38();
-    virtual void slot_3c();
-    virtual void slot_40();
-    virtual void slot_44();
-    virtual void slot_48();
-    virtual void slot_4c();
-    virtual void slot_50();
-    virtual void slot_54();
-    virtual void update_cpu_action_policy();
-
-    void update_control_mode();
-    void face_opponent_and_flip_horizontal_velocity();
-
-    unsigned char unknown_004[0xe8];
-    float x_ec;
-    float y_f0;
-    unsigned char unknown_0f4[0x10];
-    signed char facing_104;
-    unsigned char unknown_105[0x37];
-    short action_13c;
-    unsigned char unknown_13e[0x32];
-    AyaControlPeerView *other_fighter_170;
-    unsigned char unknown_174[0x3e6];
-    signed char sequence_state_55a;
-    signed char sequence_state_55b;
-    FighterSequenceController sequence_controller_55c;
-    unsigned char unknown_570[0x144];
-    int control_6b4;
-    int control_6b8;
-    int control_6bc;
-    int control_6c0;
-    int control_6c4;
-    int control_6c8;
-    int control_6cc;
-    int control_6d0;
-    unsigned char unknown_6d4[0x50];
-    int command_flags_724;
-    int command_flags_728;
-    unsigned char unknown_72c[0x38];
-    short policy_counter_764;
-    short policy_counter_766;
-    short policy_counter_768;
-    short policy_counter_76a;
-    short policy_counter_76c;
-    unsigned char unknown_76e[0x12];
-    float policy_x_780;
-    float policy_y_784;
-    float policy_scale_788;
-};
-
-typedef char AyaControl_action_offset[
-    offsetof(AyaControlModeView, action_13c) == 0x13c ? 1 : -1];
-typedef char AyaControl_sequence_offset[
-    offsetof(AyaControlModeView, sequence_controller_55c) == 0x55c ? 1 : -1];
-typedef char AyaControl_policy_offset[
-    offsetof(AyaControlModeView, policy_counter_764) == 0x764 ? 1 : -1];
-
+#define FIELD(t,o) (*reinterpret_cast<t *>(reinterpret_cast<unsigned char *>(this)+(o)))
+#define I(o) FIELD(int,o)
+#define S(o) FIELD(short,o)
+#define C(o) FIELD(signed char,o)
+#define F(o) FIELD(float,o)
+#define PEER(t,o) (*reinterpret_cast<t *>(FIELD(unsigned char *,0x170)+(o)))
+#define R(n) static_cast<unsigned>(selector_random_roll(n))
+#define READY (S(0x13C)==700 || S(0x13C)==0)
+#define FRONT (*reinterpret_cast<AyaControlSequenceView *>(reinterpret_cast<unsigned char *>(this)+0x55C)->at(0))
 void AyaControlModeView::update_control_mode()
 {
-    --policy_counter_768;
-    command_flags_724 = 0;
-    command_flags_728 = 0;
-    control_6b4 = 0;
-    control_6b8 = 0;
-    control_6bc = 0;
-    control_6c0 = 0;
-    control_6c4 = 0;
-    control_6c8 = 0;
-    control_6cc = 0;
-    control_6d0 = 0;
-
-    if (action_13c > 49 && action_13c < 150) {
-        policy_counter_76c = 0;
-        policy_counter_76a = 0;
-        policy_counter_766 = 0;
-        policy_counter_768 = 0;
-        policy_counter_764 = 0;
+    --S(0x768);
+    I(0x724)=0; I(0x728)=0;
+    I(0x6B4)=0; I(0x6B8)=0; I(0x6BC)=0; I(0x6C0)=0;
+    I(0x6C4)=0; I(0x6C8)=0; I(0x6CC)=0; I(0x6D0)=0;
+    if (S(0x13C)>49 && S(0x13C)<150) {
+        S(0x76C)=0; S(0x76A)=0; S(0x766)=0; S(0x768)=0; S(0x764)=0;
     }
-    if (action_13c <= 199) {
-        policy_counter_76c = 0;
-        policy_counter_764 = 0;
-    }
-    if (sequence_state_55a >= 1) {
-        const short record_id = sequence_controller_55c.entry_at_checked(0)->record_id_00;
-        switch (record_id) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-        if (policy_counter_76a == 0) {
-            if (action_13c == 700 || action_13c == 0) {
-                set_action(770);
-                policy_counter_76a = 1;
-                break;
-            }
-        }
-        if (policy_counter_76a == 1 && other_fighter_170->value_174 > 0) {
-            if (action_13c == 700 || action_13c == 0) {
-                face_opponent_and_flip_horizontal_velocity();
-                policy_x_780 = -static_cast<float>(
-                    static_cast<unsigned int>(selector_random_roll(20)));
-                policy_y_784 = static_cast<float>(
-                    static_cast<unsigned int>(selector_random_roll(4))) + 10.0f;
-                policy_scale_788 = 0.5f;
-                set_action(701);
-                policy_counter_76a = 2;
-                break;
-            }
-        }
-        if (policy_counter_76a == 2) {
-            if (other_fighter_170->value_174 <= 0) {
-                policy_counter_76a = 1;
-                break;
-            }
-            if (action_13c == 700 || action_13c == 0) {
-                set_action(710);
-                policy_counter_76a = 1;
-            }
-        }
-        break;
-
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-        if (policy_counter_76a == 0) {
-            if (action_13c == 700 || action_13c == 0) {
-                set_action(770);
-                policy_counter_76a = 1;
-                break;
-            }
-        }
-        if ((policy_counter_76a == 1 || policy_counter_76a == 3) &&
-            (action_13c == 700 || action_13c == 0)) {
+    if (S(0x13C)<=199) { S(0x76C)=0; S(0x764)=0; }
+    if (C(0x55A)<1) return;
+    switch (FRONT) {
+    case 0: case 1: case 2: case 3:
+        if (S(0x76A)==0 && READY) { set_action(770); S(0x76A)=1; return; }
+        if (S(0x76A)==1 && PEER(short,0x174)>0 && READY) {
             face_opponent_and_flip_horizontal_velocity();
-            if (static_cast<unsigned int>(selector_random_roll(100)) <= 50 &&
-                policy_counter_76a == 1) {
-                set_action(721);
-                policy_counter_76a = 3;
+            F(0x780)=-static_cast<float>(R(20));
+            F(0x784)=static_cast<float>(R(4))+10.0;
+            F(0x788)=0.5f; set_action(701); S(0x76A)=2; return;
+        }
+        if (S(0x76A)==2) {
+            if (PEER(short,0x174)>0) {
+                if (READY) { set_action(710); S(0x76A)=1; return; }
+            } else S(0x76A)=1;
+        }
+        return;
+    case 4: case 5: case 6: case 7:
+        if (S(0x76A)==0 && READY) { set_action(770); S(0x76A)=1; return; }
+        if ((S(0x76A)==1 || S(0x76A)==3) && READY) {
+            face_opponent_and_flip_horizontal_velocity();
+            if (R(100)<=50 && S(0x76A)==1) {
+                set_action(721); S(0x76A)=3; return;
             } else {
-                policy_x_780 =
-                    ((other_fighter_170->x_ec - x_ec) / 80.0f) *
-                    static_cast<float>(facing_104);
-                policy_y_784 = 16.0f;
-                policy_scale_788 = 0.4f;
-                set_action(701);
-                policy_counter_76a = 2;
+                F(0x780)=((PEER(float,0xEC)-F(0xEC))/80.0)*static_cast<float>(C(0x104));
+                F(0x784)=16.0f; F(0x788)=0.4f;
+                set_action(701); S(0x76A)=2; return;
             }
-        } else if (policy_counter_76a == 2 &&
-                   (action_13c == 700 || action_13c == 0)) {
-            set_action(720);
-            policy_counter_76a = 1;
+        } else if (S(0x76A)==2 && READY) { set_action(720); S(0x76A)=1; return; }
+        return;
+    case 8: case 9: case 10: case 11:
+        if (S(0x76A)==0 && READY) { set_action(770); S(0x76A)=1; return; }
+        if (S(0x76A)==1 && READY) {
+            face_opponent_and_flip_horizontal_velocity(); S(0x76A)=2; set_action(730); return;
         }
-        break;
-
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-        if (policy_counter_76a == 0) {
-            if (action_13c == 700 || action_13c == 0) {
-                set_action(770);
-                policy_counter_76a = 1;
-                break;
-            }
-        }
-        if (policy_counter_76a == 1) {
-            if (action_13c == 700 || action_13c == 0) {
-                face_opponent_and_flip_horizontal_velocity();
-                policy_counter_76a = 2;
-                set_action(730);
-                break;
-            }
-        }
-        if (policy_counter_76a != 2)
-            break;
-        if (action_13c == 700 || action_13c == 0) {
+        if (S(0x76A)==2 && READY) {
             face_opponent_and_flip_horizontal_velocity();
-            policy_counter_76c = static_cast<short>(selector_random_roll(3));
-            if (policy_counter_76c == 0) {
-                if ((x_ec >= 640.0f && facing_104 == 1) ||
-                    (x_ec <= 640.0f && facing_104 == -1)) {
-                    policy_x_780 = -static_cast<float>(
-                        static_cast<unsigned int>(selector_random_roll(8))) - 10.0f;
-                    policy_y_784 = static_cast<float>(
-                        static_cast<unsigned int>(selector_random_roll(4))) + 8.0f;
-                    policy_scale_788 = 0.5f;
-                    set_action(703);
-                    policy_counter_76a = 1;
-                    break;
+            S(0x76C)=static_cast<short>(selector_random_roll(3));
+            if (S(0x76C)==0) {
+                if ((F(0xEC)>=640.0f && C(0x104)==1) || (F(0xEC)<=640.0f && C(0x104)==-1)) {
+                    F(0x780)=-static_cast<float>(R(8))-10.0;
+                    F(0x784)=static_cast<float>(R(4))+8.0;
+                    F(0x788)=0.5f; set_action(703); S(0x76A)=1; return;
                 }
-                policy_y_784 = static_cast<float>(
-                    static_cast<unsigned int>(selector_random_roll(4))) + 8.0f;
-                policy_scale_788 = 0.5f;
-                unsigned int x_roll;
-                x_roll = static_cast<unsigned int>(selector_random_roll(8));
-                policy_x_780 = static_cast<float>(x_roll) + 10.0f;
-                set_action(702);
-                policy_counter_76a = 1;
-                break;
+                F(0x784)=static_cast<float>(R(4))+8.0;
+                F(0x788)=0.5f;
+                F(0x780)=static_cast<float>(R(8))+10.0;
+                set_action(702); S(0x76A)=1; return;
             }
-            if (policy_counter_76c == 1) {
-                policy_y_784 = static_cast<float>(
-                    static_cast<unsigned int>(selector_random_roll(4))) + 8.0f;
-                policy_scale_788 = 0.5f;
-                unsigned int x_roll;
-                x_roll = static_cast<unsigned int>(selector_random_roll(8));
-                policy_x_780 = static_cast<float>(x_roll) + 10.0f;
-                set_action(702);
-                policy_counter_76a = 1;
-                break;
+            if (S(0x76C)==1) {
+                F(0x784)=static_cast<float>(R(4))+8.0;
+                F(0x788)=0.5f;
+                F(0x780)=static_cast<float>(R(8))+10.0;
+                set_action(702); S(0x76A)=1; return;
             }
-            if (policy_counter_76c == 2) {
-                if (x_ec <= 640.0f) {
-                    facing_104 = 1;
-                    policy_x_780 = static_cast<float>(
-                        static_cast<unsigned int>(selector_random_roll(12))) + 8.0f;
+            if (S(0x76C)==2) {
+                if (F(0xEC)<=640.0f) {
+                    C(0x104)=1;
+                    F(0x780)=static_cast<float>(R(12))+8.0;
+                    F(0x784)=static_cast<float>(R(4))+8.0;
                 } else {
-                    facing_104 = -1;
-                    policy_x_780 = static_cast<float>(
-                        static_cast<unsigned int>(selector_random_roll(12))) + 8.0f;
+                    C(0x104)=-1;
+                    F(0x780)=static_cast<float>(R(12))+8.0;
+                    F(0x784)=static_cast<float>(R(4))+8.0;
                 }
-                unsigned int y_roll;
-                y_roll = static_cast<unsigned int>(selector_random_roll(4));
-                policy_y_784 = static_cast<float>(y_roll) + 8.0f;
-                policy_scale_788 = 0.5f;
-                set_action(702);
-                policy_counter_76a = 1;
-                break;
+                F(0x788)=0.5f; set_action(702); S(0x76A)=1; return;
             }
         }
-        break;
-
-    case 248:
-    case 249:
-    case 250:
-    case 251:
-    case 252:
-    case 253:
-    case 254:
-    case 255:
-        if (action_13c == 700)
-            set_action(0);
-        update_cpu_action_policy();
-        break;
-
-    case 12:
-    case 13:
-    case 14:
-    case 15:
-        if (policy_counter_76a == 0) {
-            if (action_13c == 700 || action_13c == 0) {
-                set_action(770);
-                policy_counter_76a = 1;
-                break;
-            }
-        }
-        if (policy_counter_76a == 1 && (action_13c == 700 || action_13c == 0)) {
-            policy_counter_76a = 2;
-            set_action(740);
-        }
-        break;
-
-    case 16:
-    case 17:
-    case 18:
-    case 19:
-        if (action_13c != 750)
-            command_flags_728 = 750;
-        break;
-        }
+        return;
+    case 12: case 13: case 14: case 15:
+        if (S(0x76A)==0 && READY) { set_action(770); S(0x76A)=1; return; }
+        if (S(0x76A)==1 && READY) { S(0x76A)=2; set_action(740); return; }
+        return;
+    case 248: case 249: case 250: case 251:
+    case 252: case 253: case 254: case 255:
+        if (S(0x13C)==700) set_action(0);
+        update_cpu_action_policy(); return;
+    case 16: case 17: case 18: case 19:
+        if (S(0x13C)!=750) I(0x728)=750;
+        return;
     }
 }
-
-} // namespace th105
+#undef FRONT
+#undef READY
+#undef R
+#undef PEER
+#undef F
+#undef C
+#undef S
+#undef I
+#undef FIELD
+}

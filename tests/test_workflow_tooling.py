@@ -67,7 +67,7 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1527)
+        self.assertEqual(len(implemented), 1528)
         root = next(row for row in functions if row["address"] == "0x00496540")
         self.assertEqual(root["status"], "implemented")
         self.assertEqual(root["match_percent"], "0.00")
@@ -1777,7 +1777,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn("Canonical exact functions | 1,399", markdown)
         self.assertIn("Canonical exact authored bytes | 330,507", markdown)
-        self.assertIn("Source-present authored mappings | 1,527", markdown)
+        self.assertIn("Source-present authored mappings | 1,528", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )

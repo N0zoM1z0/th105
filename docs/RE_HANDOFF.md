@@ -43,7 +43,12 @@ keep the recorded layout residuals parked. Yuyuko56C170 now accepts1653 callable
 all1688 emitted bytes in formal and independent cold builds. Complete raw review
 retains movement continuation/return differences and the signed timer/burst
 packet family. Shared callback order and capacity operand ownership recover
-exactness after two focused corrections. Continue remaining peers. Commit format:
+exactness after two focused corrections. Aya616800 now has complete reviewed
+1726-byte-target source/full2020 against2004. It restores both physical mode2
+vertical RNG sites and all30 calls. Forward conversion/common callback layout
+remains nonexact; unsigned-capture and split-state controls are byte-neutral,
+while explicit exits merge target-retained calls. Park and continue remaining
+peers. Commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -88,7 +93,7 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1545 / 1527 |
+| Mapped / source-present | 1546 / 1528 |
 | Accepted authored exact | 1399 functions / 330507 bytes |
 | Provisional authored byte denominator | 2136806 |
 | Match units / configured functions | 567 / 1535 |
@@ -97,7 +102,32 @@ These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: exact Yuyuko slot5C control mode 0x56C170
+## Current checkpoint: Aya slot5C control mode 0x616800
+
+[Complete source and residual](AYA_CONTROL_MODE_2026_10_24.md) closes1726
+callable target bytes/457 instructions/11 RETs/30 calls/one virtual CPU tail
+and all278 alignment/table bytes. Complete2020-byte source remains nonexact
+against2004:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-control-mode --compare --json
+python3 scripts/audit-aya-control-mode.py
+```
+
+Both correctly return1, first+0xA1 is a downstream return displacement.
+Selected full SHA256:
+`81bede8d9b0e07a86bcc97ed981e8b5248f60aeaa0bf9ca15c943bdb7f380839`.
+Fresh review replaces the unselected draft: pointer-only ABI, double80/10/8,
+actual callback/state order and two separate mode2 vertical selectors. All14
+selectors/4 facing/1 deque/11 virtual sites agree. Forward-conversion sharing
+and physical action702/703/common-return placement remain. Unsigned result
+captures and a split state gate are byte-neutral. Explicit conversion/callback
+labels merge retained selectors or callbacks and lose the conditional EBP
+lifetime; reject them. Keep the structured complete source and switch peer;
+new lifetime/TU evidence is needed to reopen. No exact credit, shared binding
+change, compiler search or broad matrix. Origin subset46/1028598 is unchanged.
+
+## Exact peer: Yuyuko slot5C control mode 0x56C170
 
 [Complete source and evidence](YUYUKO_CONTROL_MODE_2026_10_24.md) closes1653
 callable bytes/435 instructions/7 RETs/27 calls/one virtual CPU tail and all35

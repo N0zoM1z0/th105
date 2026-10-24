@@ -17302,12 +17302,12 @@ source = "src/characters/AyaControlMode.cpp"
 object = "build/match-units/GptWeb_AyaControlMode.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Natural current-target +0x5C hypothesis retained as a probe. Canonical comparison matches through +0xA0; first mismatch +0xA1 is the default-epilogue jump displacement. Target places the case-8..11 counter==2 region before the shared epilogue; superficial case reordering and equivalent guards do not change VC8 layout."
+notes = "Complete JP1.06a Aya slot5C target616800;1726 callable/full2004 target bytes. Selected full2020-byte pointer-only source retains all30 physical calls and independent mode2 RNG paths. Nonexact shared conversion/callback layout; unsigned-capture and early-state-return controls neutral. docs/AYA_CONTROL_MODE_2026_10_24.md."
 [[units.gpt-web-aya-control-mode.functions]]
 address = "0x00616800"
 symbol_base = "?update_control_mode@AyaControlModeView@th105@@QAEXXZ"
 rel32_targets = [
-  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "AyaControlSequenceView_at=0x004399C0",
   "?face_opponent_and_flip_horizontal_velocity@AyaControlModeView@th105@@QAEXXZ=0x00478E60",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
 ]
