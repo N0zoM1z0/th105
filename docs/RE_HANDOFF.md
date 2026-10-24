@@ -8,11 +8,13 @@ Reimu `0x494810`, Udonge `0x5D2C70` and Patchouli `0x51EF60` cold-replay exact.
 The fourteen-function cohort adds87251 code bytes; latest peer adds6351 and
 matches its first complete source. All fifteen roster slot50 policies now have
 complete source. Marisa7664/full7768 remains nonexact and parked after neutral
-controls. The next large representative is Marisa CPU slot58 `0x4B4070`: its
-complete source now compiles and passes1134 scoped native-helper inputs; the
-full16867-byte output remains nonexact at+12E. Native exits/ordered predicates
-and a real h180 equality error are recovered. Residual physical tail merging
-is recorded; select another complete representative unless new evidence appears.
+controls. Marisa CPU4B4070 has complete source and1134 scoped native-helper
+inputs; full16867 remains nonexact at+12E and its physical tail controls are
+parked. The subsequent Marisa slot5C control mode4B8280 now has complete
+reviewed1771-byte source/full1788-byte payload, with only a nine-byte receiver
+schedule residual at+3CD. Its ordered facing predicate fixes four native NaN
+counterexamples;18 bounded prefixes pass. ABI/argument controls are neutral,
+so select another complete representative instead of repeating spelling trials.
 Required commit format:
 `gpt-6.1-sol: ...`.
 
@@ -58,7 +60,7 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1536 / 1518 |
+| Mapped / source-present | 1537 / 1519 |
 | Accepted authored exact | 1395 functions / 322165 bytes |
 | Provisional authored byte denominator | 2136806 |
 | Match units / configured functions | 560 / 1528 |
@@ -67,7 +69,33 @@ These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current bounded representative: Marisa CPU policy 0x4B4070
+## Current checkpoint: Marisa slot5C control mode 0x4B8280
+
+[Complete source and receipt](MARISA_CONTROL_MODE_2026_10_24.md) closes1771
+callable bytes/442 instructions/eight RETs/26 calls/one slot58 virtual tail and
+all17 switch metadata/alignment bytes. Complete1788-byte source is nonexact
+only at4B864D..4B8655: one MOV ECX,ESI is scheduled around the same argument and
+slot load. Full selected SHA256:
+`0db6d5c7835af8e00bbaaa6edb28851dc75ed6ee9a1699c13a2a670813026849`.
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-marisa-control-mode --compare --json
+python3 scripts/audit-marisa-control-mode.py
+taskset -c 0 nice -n 10 python3 scripts/audit-marisa-control-facing.py
+```
+
+Canonical commands return1; prefix diagnostic returns0 for18 original-helper
+inputs, stopping at genuine45BFE0 callback entry. The old <=640 facing ternary
+fails four NaN controls; actual ordered x>640 leaves NaN facing+1. Native exits,
+direct state reads, peer-positive state ownership and F64 widths are retained.
+Correct method declarations and an argument increment control both reproduce
+the same payload. Keep those receipts; switch representative unless new
+independent source/type/lifetime evidence addresses the receiver schedule.
+Original full owner layout/TU is unknown. No exact credit, shared changes,
+compiler-profile search or synthetic dependency. Private scope is
+`.analysis/exact-first-marisa-slot5c-20261024/` and its `build/` counterpart.
+
+## Parked representative: Marisa CPU policy 0x4B4070
 
 [Complete source and residual](MARISA_CPU_TARGET_2026_10_24.md) retains16229
 callable target bytes/4159 instructions/46 RETs/161 direct calls and16907 full

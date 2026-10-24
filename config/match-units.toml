@@ -17268,7 +17268,7 @@ source = "src/characters/MarisaControlMode.cpp"
 object = "build/match-units/GptWeb_MarisaControlMode.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Natural current-target +0x5C hypothesis retained as a probe. Canonical comparison matches through +0xA2; first mismatch +0xA3 is branch-layout displacement, so semantics/ABI are close but CFG source shape is not yet canonical."
+notes = "Complete JP1.06a Marisa slot5C source1771/full1788; nonexact nine-byte MOV ECX scheduling residual at+3CD. Full boundary/tables and state/ABI/literal differences reviewed; no exact credit. docs/MARISA_CONTROL_MODE_2026_10_24.md."
 [[units.gpt-web-marisa-control-mode.functions]]
 address = "0x004B8280"
 symbol_base = "?update_control_mode@MarisaControlModeView@th105@@QAEXXZ"

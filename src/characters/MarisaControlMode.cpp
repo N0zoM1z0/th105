@@ -11,12 +11,13 @@ struct MarisaControlPeerView {
     short value_174;
 };
 
+// Partial runtime view only: never instantiate or embed as a complete owner.
 class MarisaControlModeView {
 public:
     virtual void slot_00();
     virtual void slot_04();
-    virtual void set_action(int action);
-    virtual void set_sequence(int sequence);
+    virtual int set_action(short action);
+    virtual int set_sequence(int sequence);
     virtual void slot_10();
     virtual void slot_14();
     virtual void slot_18();
@@ -119,26 +120,25 @@ void MarisaControlModeView::update_control_mode()
     case 1:
     case 2:
     case 3: {
-        short state = policy_counter_76a;
-        if (state == 0) {
+        if (policy_counter_76a == 0) {
             if (action_13c == 700 || action_13c == 0) {
                 set_action(770);
                 policy_counter_76a = 1;
                 return;
             }
         }
-        if (state == 1 && other_fighter_170->value_174 > 0 &&
+        if (policy_counter_76a == 1 && other_fighter_170->value_174 > 0 &&
             (action_13c == 700 || action_13c == 0)) {
             face_opponent_and_flip_horizontal_velocity();
             policy_x_780 = -static_cast<float>(
-                static_cast<unsigned int>(selector_random_roll(10))) - 10.0f;
+                static_cast<unsigned int>(selector_random_roll(10))) - 10.0;
             policy_y_784 = 12.0f;
             policy_scale_788 = 0.5f;
             set_action(703);
             policy_counter_76a = 2;
             return;
         }
-        if (state == 2) {
+        if (policy_counter_76a == 2) {
             if (other_fighter_170->value_174 > 0) {
                 if (action_13c == 700 || action_13c == 0) {
                     set_action(710);
@@ -151,18 +151,19 @@ void MarisaControlModeView::update_control_mode()
                 policy_counter_76a = 1;
             }
         }
-        state = policy_counter_76a;
-        if (state == 3 && other_fighter_170->value_174 > 0 &&
+        if (policy_counter_76a == 3 && other_fighter_170->value_174 > 0 &&
             (action_13c == 700 || action_13c == 0)) {
-            facing_104 = x_ec <= 640.0f ? 1 : -1;
+            if (x_ec > 640.0f) facing_104 = -1;
+            else facing_104 = 1;
             policy_x_780 = static_cast<float>(
-                static_cast<unsigned int>(selector_random_roll(10))) + 10.0f;
+                static_cast<unsigned int>(selector_random_roll(10))) + 10.0;
             policy_y_784 = 12.5f;
             policy_scale_788 = 0.4f;
             set_action(702);
             policy_counter_76a = 2;
+            return;
         }
-        if (state == 4 && other_fighter_170->value_174 > 0 &&
+        if (policy_counter_76a == 4 && other_fighter_170->value_174 > 0 &&
             (action_13c == 700 || action_13c == 0)) {
             set_action(711);
             policy_counter_76a = 3;
@@ -174,25 +175,24 @@ void MarisaControlModeView::update_control_mode()
     case 5:
     case 6:
     case 7: {
-        short state = policy_counter_76a;
-        if (state == 0) {
+        if (policy_counter_76a == 0) {
             if (action_13c == 700 || action_13c == 0) {
                 set_action(770);
                 policy_counter_76a = 1;
                 return;
             }
         }
-        if (state == 1 && (action_13c == 700 || action_13c == 0)) {
+        if (policy_counter_76a == 1 && (action_13c == 700 || action_13c == 0)) {
             face_opponent_and_flip_horizontal_velocity();
             set_action(720);
             policy_counter_76a = 2;
             return;
         }
-        if (state == 2 && action_13c == 720 && sequence_13e == 4) {
+        if (policy_counter_76a == 2 && action_13c == 720 && sequence_13e == 4) {
             policy_counter_76a = 3;
             return;
         }
-        if (state == 3 && action_13c == 720 && sequence_13e == 4 &&
+        if (policy_counter_76a == 3 && action_13c == 720 && sequence_13e == 4 &&
             policy_counter_768 <= 0) {
             int next = static_cast<int>(
                 static_cast<float>(
@@ -237,50 +237,52 @@ void MarisaControlModeView::update_control_mode()
     case 9:
     case 10:
     case 11: {
-        short state = policy_counter_76a;
-        if (state == 0) {
+        if (policy_counter_76a == 0) {
             if (action_13c == 700 || action_13c == 0) {
                 set_action(770);
                 policy_counter_76a = 1;
                 return;
             }
         }
-        if (state == 1 && other_fighter_170->value_174 > 0 &&
+        if (policy_counter_76a == 1 && other_fighter_170->value_174 > 0 &&
             (action_13c == 700 || action_13c == 0)) {
             face_opponent_and_flip_horizontal_velocity();
             policy_x_780 = -static_cast<float>(
-                static_cast<unsigned int>(selector_random_roll(10))) - 10.0f;
+                static_cast<unsigned int>(selector_random_roll(10))) - 10.0;
             policy_y_784 = 12.0f;
             policy_scale_788 = 0.5f;
             set_action(703);
             policy_counter_76a = 2;
             return;
         }
-        if (state == 2) {
-            if (other_fighter_170->value_174 <= 0) {
+        if (policy_counter_76a == 2) {
+            if (other_fighter_170->value_174 > 0) {
+                if (action_13c == 700 || action_13c == 0) {
+                    face_opponent_and_flip_horizontal_velocity();
+                    if (static_cast<unsigned int>(selector_random_roll(100)) < 50)
+                        set_action(730);
+                    else
+                        set_action(732);
+                    policy_counter_76a = 3;
+                    return;
+                }
+            } else {
                 policy_counter_76a = 1;
-            } else if (action_13c == 700 || action_13c == 0) {
-                face_opponent_and_flip_horizontal_velocity();
-                if (static_cast<unsigned int>(selector_random_roll(100)) < 50)
-                    set_action(730);
-                else
-                    set_action(732);
-                policy_counter_76a = 3;
-                return;
             }
         }
-        state = policy_counter_76a;
-        if (state == 3 && other_fighter_170->value_174 > 0 &&
+        if (policy_counter_76a == 3 && other_fighter_170->value_174 > 0 &&
             (action_13c == 700 || action_13c == 0)) {
-            facing_104 = x_ec <= 640.0f ? 1 : -1;
+            if (x_ec > 640.0f) facing_104 = -1;
+            else facing_104 = 1;
             policy_x_780 = static_cast<float>(
-                static_cast<unsigned int>(selector_random_roll(5))) + 5.0f;
+                static_cast<unsigned int>(selector_random_roll(5))) + 5.0;
             policy_y_784 = 12.5f;
             policy_scale_788 = 0.4f;
             set_action(702);
             policy_counter_76a = 2;
+            return;
         }
-        if (state == 4 && other_fighter_170->value_174 > 0 &&
+        if (policy_counter_76a == 4 && other_fighter_170->value_174 > 0 &&
             (action_13c == 700 || action_13c == 0)) {
             face_opponent_and_flip_horizontal_velocity();
             if (static_cast<unsigned int>(selector_random_roll(100)) < 50)
