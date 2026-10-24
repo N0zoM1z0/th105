@@ -2,8 +2,9 @@
 
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`
-and Suika `0x5AED00` cold-replay exact. The four-function cohort adds22513 code
-bytes; latest peer adds5849. Both Sakuya/Suika match their first complete source.
+Suika `0x5AED00` and Youmu `0x53B410` cold-replay exact. The five-function cohort
+adds28530 code bytes; latest peer adds6017. Youmu matches its first complete
+compiled source after a private source-composition syntax correction.
 Required commit format:
 `gpt-6.1-sol: ...`.
 
@@ -49,14 +50,34 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1524 / 1506 |
-| Accepted authored exact | 1385 functions / 257427 bytes |
+| Mapped / source-present | 1525 / 1507 |
+| Accepted authored exact | 1386 functions / 263444 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 548 / 1516 |
+| Match units / configured functions | 549 / 1517 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Youmu input policy 0x53B410
+
+[Accepted peer/evidence](YOUMU_INPUT_POLICY_2026_10_24.md) closes1714
+instructions/28 RETs/nine external tails and all8 table destinations. The first
+complete compiled source matches6017 callable/full6052 payload bytes and121
+relocations; formal and independent cold builds pass:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-youmu-input-policy --compare --json
+python3 scripts/audit-youmu-input-policy.py
+```
+
+Full canonical SHA256:
+`050e801122ba3cee6da69fb3abdcca297922e24d08913ef938c1b4e42a962fa1`.
+Three real slot0C sequence calls,540 continuation, changed command tiers,
+air queued pack-only exit,double100.0/float90.0 and actual query/resource order
+are independently reviewed. The generated table negative fails at+1784. No
+compiler/profile search; previous accepted headers/sources are unchanged. Keep
+the unrelated nonexact YoumuObject initializer parked as documented below.
 
 ## Exact family peer: Suika input policy 0x5AED00
 

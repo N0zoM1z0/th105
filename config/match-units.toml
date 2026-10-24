@@ -20744,3 +20744,34 @@ rel32_targets = [
     "SuikaInputPolicyView_gate4942c0=0x004942C0",
     "SuikaInputPolicyView_gate494450=0x00494450",
 ]
+
+[units.exact-first-youmu-input-policy]
+kind = "probe"
+source = "src/characters/YoumuInputPolicy.cpp"
+object = "build/match-units/ExactFirst_YoumuInputPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Youmu primary slot50 input policy53B410;6017 callable bytes/full6052-byte payload. Reviewed Suika-family changes with pointer-only views; no complete owner layout claim. docs/YOUMU_INPUT_POLICY_2026_10_24.md."
+
+[[units.exact-first-youmu-input-policy.functions]]
+address = "0x0053B410"
+symbol_base = "?dispatch_input@YoumuInputPolicyView@th105@@UAEXXZ"
+rel32_targets = [
+    "is_y_at_or_below_stage_surface=0x00435DC0",
+    "YoumuInputPolicyView_pop_sequence=0x0045DDA0",
+    "YoumuInputPolicyView_pack_input=0x00464200",
+    "YoumuInputPolicyView_reset_input=0x004633A0",
+    "YoumuInputPolicyView_front_ready=0x0045D1B0",
+    "YoumuInputPolicyView_finalize_command=0x00493D00",
+    "YoumuInputPolicyView_command_window=0x00493D40",
+    "YoumuInputSequenceView_at=0x004399C0",
+    "YoumuInputPolicyView_gate493ac0=0x00493AC0",
+    "YoumuInputPolicyView_gate493b40=0x00493B40",
+    "YoumuInputPolicyView_gate493c50=0x00493C50",
+    "YoumuInputPolicyView_gate493d90=0x00493D90",
+    "YoumuInputPolicyView_gate493f90=0x00493F90",
+    "YoumuInputPolicyView_gate4940e0=0x004940E0",
+    "YoumuInputPolicyView_gate4941d0=0x004941D0",
+    "YoumuInputPolicyView_gate4942c0=0x004942C0",
+    "YoumuInputPolicyView_gate494450=0x00494450",
+]
