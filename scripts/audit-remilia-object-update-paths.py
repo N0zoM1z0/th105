@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Check angle rounding and the ordered857 H3 guard at native call boundaries.
+"""Check angle/ordered857 H3 prefixes and852/855/856 shared fade exits.
 
 Execute actual atan2, FTOL and lookup instructions to the first spawn/advance.
 The mapped PE supplies zero-initialized lookup-table fixtures. No helper return,
 instruction or control-flow transfer is injected. This is a bounded diagnostic.
+Fade fixtures reach actual RET0 or the first animation call.
 """
 from __future__ import annotations
 
@@ -41,6 +42,12 @@ def cases():
     for h3_bits in (*[float_bits(x) for x in (44.999,45.,45.001)],0x7FC00000):
         yield dict(action=857,parent_action=607,sequence=1,angle=37.25,
                    h3_bits=h3_bits,parent_hp=100,timer=1,kind="ordered_h3")
+    for action in (852,855,856):
+        for sequence in (0,1):
+            for alpha in (9,10):
+                yield dict(action=action,parent_action=0,sequence=sequence,
+                           angle=37.25,h3_bits=0,parent_hp=100,timer=1,
+                           kind="fade",alpha=alpha)
 
 
 def execute(image,code,case):
@@ -60,8 +67,8 @@ def execute(image,code,case):
             (0x13E,"h",case["sequence"]),(0x144,"i",case["timer"]),
             (0x180,"i",0),(0x330,"i",3),(0x104,"B",255),
             (0xEC,"f",640.),(0xF0,"f",100.),(0x340,"I",PARAMETERS),
-            (0x348,"I",PARENT),(0x170,"I",TARGET),(0x113,"B",180),
-            (0x11C,"f",1.),(0x120,"f",1.)):
+            (0x348,"I",PARENT),(0x170,"I",TARGET),(0x113,"B",case.get("alpha",180)),
+            (0x11C,"f",1.),(0x120,"f",1.),(0x370,"f",3.25),(0x374,"f",5.5)):
         put(OWNER+offset,fmt,value)
     put(PARENT+0x13C,"h",case["parent_action"])
     put(PARENT+0x13E,"h",1)
@@ -92,6 +99,8 @@ def execute(image,code,case):
             result["arguments"] = [*args[:5],args[6]]
             result["receiver"] = uc.reg_read(registers.UC_X86_REG_ECX)
             result["payload"] = bytes(uc.mem_read(args[5],args[6]*4)).hex()
+        if address == RETURN:
+            result["stack_delta"] = uc.reg_read(registers.UC_X86_REG_ESP)-(STACK+0xFF00)
         uc.emu_stop()
 
     engine.hook_add(unicorn.UC_HOOK_CODE,step)
@@ -128,9 +137,20 @@ def audit(object_path):
     for case in cases():
         expected,actual = (execute(image,code,case) for code in (target,candidate))
         h3 = struct.unpack("<f",struct.pack("<I",case["h3_bits"]))[0]
-        want = 0x4351C0 if case["action"] == 857 and not h3 <= 45 else 0x64CCB0
+        if case["kind"] == "fade":
+            want = RETURN if case["alpha"] < 10 else 0x4351C0
+        else:
+            want = 0x4351C0 if case["action"] == 857 and not h3 <= 45 else 0x64CCB0
         if int(expected["boundary"],0) != want:
-            raise ValueError("target ordered H3 first-call contract changed")
+            raise ValueError("target ordered H3/fade boundary contract changed")
+        if case["kind"] == "fade":
+            actor = bytes.fromhex(expected["owner"])
+            if expected["calls"] or actor[0x113] != (9 if want == RETURN else 0):
+                raise ValueError("target fade prefix/helper contract changed")
+            if want == RETURN and (
+                    expected["stack_delta"] != 4
+                    or struct.unpack_from("<i",actor,0x330)[0] != 2):
+                raise ValueError("target fade retirement/RET0 contract changed")
         if want == 0x64CCB0 and (
                 expected["calls"] != ["0x406540","0x68a1a0","0x406360",
                                       "0x68a1a0","0x4063d0","0x68a1a0"]

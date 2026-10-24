@@ -7,6 +7,7 @@ import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import struct
 
 from workflow_manifest import load_manifest
 
@@ -52,6 +53,13 @@ def main() -> int:
             raise ValueError("reviewed complete target payload changed")
         mismatch = comparator.first_mismatch(target, candidate, ADDRESS)
         exact = len(candidate) == PAYLOAD_SIZE and candidate == target
+        # This diagnostic follows the actual byte-remap load in the reviewed
+        # entry. It neither rebases destinations nor masks comparison bytes.
+        candidate_remap = None
+        if len(candidate) >= 0x2D and candidate[0x26:0x29] == bytes.fromhex("0fb680"):
+            offset = struct.unpack_from("<I",candidate,0x29)[0]-ADDRESS
+            if 0 <= offset and offset+199 <= len(candidate):
+                candidate_remap = candidate[offset:offset+199]
         print(json.dumps({
             "result": "exact" if exact else "mismatch",
             "unit": UNIT,
@@ -62,6 +70,7 @@ def main() -> int:
             "first_mismatch": mismatch,
             "unmasked_differing_bytes": sum(a != b for a, b in zip(target, candidate)) + abs(len(target) - len(candidate)),
             "canonical_payload_sha256": hashlib.sha256(candidate).hexdigest(),
+            "diagnostic_remap_199_bytes_equal": candidate_remap == target[0x45F4:0x46BB],
         }, indent=2))
         return 0 if exact else 1
     except (OSError, ValueError, RuntimeError) as error:

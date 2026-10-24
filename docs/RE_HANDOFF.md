@@ -1,23 +1,26 @@
 # TH10.5 reconstruction handoff
 
-
 Current bounded representative: **RemiliaObject slot28 update557690** now has
-complete17793-byte-target source and a reproducible full18388-byte comparison.
-The first candidate is17804 bytes, nonexact+22, SHA256 `12b93e93...`.
-Raw CFG closes4238 reachable instructions/28 RET0/no external tail;12 destination
-tables and199-byte remap. All six virtual calls and14 of16 direct-callee counts
-agree;820 relative-position and826 burst calls each merge one target-retained
-site. Ten native prefixes resolve angle rounding and857 ordered H3<=45;
-all pass, while its unordered negative control fails the NaN case. These are
-bounded first-call checks, not whole-function runtime equivalence. See
-[the complete evidence](REMILIA_OBJECT_UPDATE_2026_10_25.md).
+complete17793-byte-target source/full18388-byte target payload. Formal and
+independent object-deleting cold builds select17832 bytes, nonexact+22,
+SHA256 `6866e295...`. All12 table lengths and199 remap bytes agree; all19
+position calls, six virtual calls and15 of16 direct-callee counts agree.
+Spawn remains28/29 and physical RETs26/28. The selected820 switch and855/856
+fade guards preserve real separate exits; direct826 unsigned-float arguments
+restore the observed correction width and remove extra float spills.22 native
+angle/ordered-H3/fade prefixes pass, including six real RET0s. The unordered
+negative control fails exactly NaN. These are scoped checks, not complete
+runtime equivalence. See [the full evidence and finite control table](REMILIA_OBJECT_UPDATE_2026_10_25.md).
 
-Next compare the target's800-local common movement/advance/retirement placement
-against the first source's final-switch labels, then inspect820/826 physical
-predecessors. Keep all prior parked initializers closed absent new evidence.
-Source-present1543/mapped1561; exact remains1403/359740 bytes. Use the locked
-`scripts/repo-python`, serial CPU0/nice10; local CI is mandatory before every
-commit/push. IDA still has the wrong executable; use hash-attested raw bytes.
+Next inspect801 heading/scale lifetime and816 angle/spawn block placement
+against raw target before another source trial. Global800 tail relocation,
+blanket local returns,855 label-only movement and852 shared-dispatch controls
+are recorded and unselected; do not repeat without new evidence.826's shared
+spawn suffix remains open. Keep prior parked initializers closed absent new
+evidence. Source-present1543/mapped1561; exact remains1403/359740 bytes.
+Use locked `scripts/repo-python`, serial CPU0/nice10; local CI is mandatory
+before every commit/push. IDA still has the wrong executable; use hash-attested
+raw bytes. Latest aggregate exact cold replay remains the Udonge checkpoint.
 
 Exact-first reconstruction checkpoint: 2026-10-25. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,

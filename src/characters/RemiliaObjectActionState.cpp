@@ -183,18 +183,20 @@ void RemiliaObjectUpdateView::update_action_state()
   if(S(0x13E)==2) { F(0x11C)+=D(0.05f); F(0x120)*=D(0.95f); if(B(0x113)<15) goto retire; B(0x111)-=15; B(0x110)-=15; B(0x113)-=15; }
   goto advance;
  case 820:
-  if(S(0x13E)==0) {
+  switch(S(0x13E)) {
+  case 0:
    if(AT(P,short,0x13C)!=540) goto retire;
-   if(AT(P,short,0x13E)<4) position_relative(0,0);
+   if(AT(P,short,0x13E)<=3) position_relative(0,0);
    else { if(B(0x113)<=20) goto retire; goto fade_820; }
-  } else if(S(0x13E)==1) {
+   break;
+  case 1:
    if(AT(P,short,0x13C)!=541) goto retire;
-   if(AT(P,short,0x13E)>3) { if(B(0x113)<=20) goto retire; goto fade_820; }
-   position_relative(0,0);
+   if(AT(P,short,0x13E)<=3) position_relative(0,0);
+   else { if(B(0x113)<=20) { --I(0x330); return; } goto fade_820; }
+   break;
+  fade_820: B(0x113)-=20; B(0x111)-=20; B(0x110)-=20; break;
   }
-  goto parent_hitstop_820;
- fade_820: B(0x113)-=20; B(0x111)-=20; B(0x110)-=20;
- parent_hitstop_820: if(AT(P,short,0x186)!=0) return; goto advance;
+  if(AT(P,short,0x186)!=0) return; goto advance;
  case 821:
   if(I(0x180)==5) goto retire;
   if(S(0x13E)==0) ACTIVE_821(10);
@@ -244,7 +246,7 @@ void RemiliaObjectUpdateView::update_action_state()
    MOVE(); H[1]-=3.0; if(H[1]<0.5f) H[1]=0.5f;
    F(0xEC)+=F(0xF4)*C(0x104); F(0xF0)=static_cast<float>(F(0xF8)+F(0xF0));
    float payload[3]; payload[0]=0; payload[1]=0; payload[2]=5;
-   SPAWN_AT(826,static_cast<float>(random_float(40)+F(0xEC)-20.0),F(0xF0),1,3); break;
+   SPAWN_AT(826,static_cast<float>(static_cast<float>(static_cast<unsigned>(selector_random_roll(40)))+F(0xEC)-20.0),F(0xF0),1,3); break;
   }
   case 5: case 7:
    F(0x11C)+=D(0.05f); F(0x120)*=D(0.98f);
@@ -257,7 +259,7 @@ void RemiliaObjectUpdateView::update_action_state()
    MOVE(); H[1]-=3.0; if(H[1]<0.5f) H[1]=0.5f;
    F(0xEC)+=F(0xF4)*C(0x104); F(0xF0)=static_cast<float>(F(0xF8)+F(0xF0));
    float payload[3]; payload[0]=0; payload[1]=0; payload[2]=7;
-   SPAWN_AT(826,static_cast<float>(random_float(40)+F(0xEC)-20.0),F(0xF0),1,3); break;
+   SPAWN_AT(826,static_cast<float>(static_cast<float>(static_cast<unsigned>(selector_random_roll(40)))+F(0xEC)-20.0),F(0xF0),1,3); break;
   }
   }
   if(advance_frame()) --I(0x330);
@@ -381,19 +383,34 @@ void RemiliaObjectUpdateView::update_action_state()
   if(I(0x144)!=0 || S(0x142)!=0 || S(0x140)!=0 || S(0x13E)!=2) return;
   goto retire;
  case 855:
-  if(S(0x13E)==0 || S(0x13E)==1) goto fade_855;
-  if(S(0x13E)==2) {
+  switch(S(0x13E)) {
+  case 0: goto fade0_855;
+  case 1: goto fade1_855;
+  case 2: {
    F(0x120)=F(0x11C)=static_cast<float>(1.0f-F(0x370)); F(0x370)*=D(0.9f);
    if(AT(P,short,0x13C)!=605 || AT(P,short,0x13E)>2) goto retire;
    position_relative(90,125);
+  } break;
   }
   goto advance;
+ fade1_855:
+ if(B(0x113)<10) { --I(0x330); return; }
+ goto fade_body_855;
+ fade0_855:
+ if(B(0x113)<10) goto retire;
+ fade_body_855:
+ B(0x113)-=10; B(0x111)-=10; B(0x110)-=10;
+ F(0x120)=F(0x11C)=static_cast<float>(F(0x370)+F(0x11C)); F(0x12C)-=F(0x374);
+ F(0x374)*=D(0.9f); F(0x370)=D(0.9f)*F(0x370); goto advance;
  case 856:
-  if(S(0x13E)==0 || S(0x13E)==1) goto fade_855;
-  if(S(0x13E)==2) {
+  switch(S(0x13E)) {
+  case 0: goto fade0_855;
+  case 1: goto fade1_855;
+  case 2: {
    F(0x120)=F(0x11C)=static_cast<float>(1.0f-F(0x370)); F(0x370)*=D(0.9f);
    if(AT(P,short,0x13C)!=606 || AT(P,short,0x13E)!=4) goto retire;
    position_relative(90,25);
+  } break;
   }
   goto advance;
  case 857: {
@@ -627,11 +644,6 @@ void RemiliaObjectUpdateView::update_action_state()
  default: advance_frame(); return;
  }
  return;
- fade_855:
- if(B(0x113)<10) goto retire;
- B(0x113)-=10; B(0x111)-=10; B(0x110)-=10;
- F(0x120)=F(0x11C)=static_cast<float>(F(0x370)+F(0x11C)); F(0x12C)-=F(0x374);
- F(0x374)*=D(0.9f); F(0x370)=D(0.9f)*F(0x370); goto advance;
  burst_902: {
   float payload[3]; payload[0]=0; payload[1]=0; payload[2]=4; SPAWN(902,1,3); goto retire;
  }

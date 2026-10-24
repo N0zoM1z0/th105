@@ -44,7 +44,7 @@ checking their IEEE bytes in both COFF and the attested PE. The durable unit
 then reproduced the same normalized payload. Existing literal bindings were
 not changed. These six new keys are not consumed by an accepted unit.
 
-The selected first candidate is **nonexact**:
+The first candidate, retained at commit `d15e178`, is **nonexact**:
 
 | Measurement | Target | First candidate |
 | --- | --- | --- |
@@ -93,6 +93,59 @@ ambiguity and is not a large gameplay matrix.
 
 ## Reproduction and continuation
 
+### Selected branch/argument follow-up
+
+The following complete-source controls were serial builds and whole-payload
+comparisons; no compiler flags, shared header or accepted binding changed.
+
+| Control | Bytes | RETs | Result |
+| --- | ---: | ---: | --- |
+| First source | 17804 | 24 | baseline |
+| Move common800 movement/advance/retirement labels before801 | 17664 | 22 | more merging; unselected |
+| Replace global retirement jumps with real local decrement/return | 17864 | 33 | extra exits; unselected |
+|820 switch plus target-local sequence1 fade exit | 17844 | 25 | restores both position sites; retained |
+|826 direct unsigned-to-double argument expression | 17812 | 25 | removes spill but widens2^32 correction load; unselected |
+|826 direct unsigned-to-float argument expression | 17812 | 25 | target DWORD correction/load epoch; retained |
+| Move shared855 fade label before856 | 17812 | 25 | byte-neutral to preceding source |
+|855/856 separate0/1 fade guards with real shared body | 17832 | 26 | retains distinct target-local RET; selected |
+|852 explicit switch/independent guards | 17836 | 26 | merges the fade body with855; unselected |
+
+The selected source naturally recovers820's signed-WORD dispatcher and its
+separate local sequence1 fade RET. All19 position calls now agree. The two826
+spawn arguments use the observed direct unsigned-to-float conversion instead
+of a force-inlined float-return helper. This removes an extra consumed float
+spill, pushes Y before RNG and retains the target's DWORD2^32 correction.
+The double control instead loads the equal-valued QWORD at6D6ED0; equal numeric
+results do not justify keeping the wrong observed load width. The two826 spawn
+suffixes still merge into one site; no source/TU impossibility is established.
+855/856 keep the observed separate sequence0/1 alpha guards and genuine shared
+fade body. Label placement alone was neutral and is not a reusable recipe.
+
+Formal and independent object-deleting cold builds agree on the selected
+**17832-byte** normalized payload, SHA256
+`6866e295fb8ab78fb38a890755f4bffba73d499100f1bc7cec9818cbed9bf679`.
+It remains nonexact at+22,556 bytes shorter than target. All15 other direct
+callee counts and all six virtual calls agree; spawn remains28/29 and RETs26/28.
+All12 destination-table lengths agree and the199 remap bytes are independently
+equal. This does not assert equality of the relocated destination entries.
+Selected raw CRLF source SHA256:
+`4662b783091f104f0f88dc4f35c9218c07517c32697926b9ffce23f3e37676ef`;
+unchanged header SHA256:
+`485d18d864b74c9b1977405cd4ff382313f17bc5a96386f34ef2d128d7edd30b`.
+
+The native diagnostic now also checks12 fade inputs:852/855/856, sequences0/1,
+alpha9/10, with nonzero370/374 values. Six reach real RET0; six stop at the
+first animation call after publishing the real fade results. All22 angle/guard/
+fade inputs pass for formal and cold candidates. The unordered857 negative
+control still fails exactly its NaN input. This remains a bounded diagnostic,
+with the lookup-fixture limitations above.
+
+Receipts include `controls.json`, each control's preview/inventory, plus
+`formal-selected.json`, `formal-selected-payload.json`, `formal-selected-paths.json`,
+`cold-selected.json`, `cold-selected-payload.json`, `cold-selected-paths.json` and
+`guard-control-paths-22.json`. The controls retain complete source in `.analysis/`.
+Do not repeat these label/retirement/dispatcher controls without new evidence.
+
 Run serially, CPU0/nice10, through the locked repository Python:
 
 ```sh
@@ -103,7 +156,7 @@ scripts/repo-python scripts/audit-remilia-object-update-paths.py
 ```
 
 The build/comparison and full payload audit currently return1 for the recorded
-mismatch; the target and ten-prefix audits return0. Receipts are under
+mismatch; the target and22-prefix audits return0. Receipts are under
 `build/exact-first-remilia-object-update-20261025/`: `first-preview.json`,
 `first-inventory.json`, `formal-first.json`, `formal-first-payload.json`,
 `formal-first-paths.json`, `guard-control-paths.json` and the Ghidra receipt.
@@ -112,10 +165,10 @@ directory. Readonly Ghidra was target-attested, temporary views rolled back
 and all nine primary database pins unchanged; its decompilation remains a
 hypothesis. IDA's open GUI still has the wrong target and was not used.
 
-Next test one source-tail-placement hypothesis against the whole function:
-the physical common movement/advance/retirement blocks follow800, while the
-first source puts their labels after the final switch case. Then inspect the
-820/826 call-site merging with their target predecessor graph. Preserve a
-receipt and switch hypotheses after repeated identical output. No original
-TU/LTCG impossibility is established. Source-present increases by one;
-exact remains1403 functions/359740 authored code bytes.
+Next inspect801's retained heading/scale lifetime and816's angle/spawn block
+placement against the target before another trial. The tested global-tail
+placement and852/855 dispatcher controls are closed;820 is resolved within
+this source and826's common spawn suffix remains open. Preserve a receipt and
+switch hypotheses after repeated identical output. No original TU/LTCG
+impossibility is established. Source-present increases by one; exact remains
+1403 functions/359740 authored code bytes.
