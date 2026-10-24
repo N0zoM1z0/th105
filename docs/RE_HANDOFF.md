@@ -1,8 +1,9 @@
 # TH10.5 reconstruction handoff
 
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
-`0x556070` and independently reviewed Tenshi peer `0x64B7A0` cold-replay exact.
-The two-function cohort adds10767 code bytes; latest peer adds5352.
+`0x556070` and independently reviewed Tenshi `0x64B7A0` / Sakuya `0x4DF4B0`
+peers cold-replay exact. The three-function cohort adds16664 code bytes; the
+latest peer adds5897 and matches in its first complete source.
 Required commit format:
 `gpt-6.1-sol: ...`.
 
@@ -48,14 +49,34 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1522 / 1504 |
-| Accepted authored exact | 1383 functions / 245681 bytes |
+| Mapped / source-present | 1523 / 1505 |
+| Accepted authored exact | 1384 functions / 251578 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 546 / 1514 |
+| Match units / configured functions | 547 / 1515 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Sakuya input policy 0x4DF4B0
+
+[Accepted peer/evidence](SAKUYA_INPUT_POLICY_2026_10_24.md) closes1687
+instructions/33 RETs/six external tails and independently checks all10 table
+entries. The first complete source matches5897 callable bytes and the full
+5940-byte payload/120 relocations. Formal and independent cold builds pass:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-sakuya-input-policy --compare --json
+python3 scripts/audit-sakuya-input-policy.py
+```
+
+Full canonical SHA256:
+`57689f32d9ee39731ad0682f45652b77a0f9c6e26323c9e879fe61a9504812c3`.
+The generated-table negative fails at+170C. Ten queued commands, changed tier
+fields/action pairs, air+608/+60C zero gates, repeated308/400 queries and90.0f
+are target-reviewed. No compiler/profile search or source correction was needed.
+Prior accepted inputs are unchanged. Continue complete slot+0x50 peers under
+independent review and both callable/full-payload comparisons.
 
 ## Exact family peer: Tenshi input policy 0x64B7A0
 
