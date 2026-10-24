@@ -162,7 +162,7 @@ comparisons; those three locations are separately checked against their x87
 flags/branches. The corrected hypothesis retains the target continuation.
 Ghidra's positive-inside spelling was not reliable evidence for this behavior.
 
-The retained complete hypothesis has26780 bytes, canonical SHA256
+The first retained complete hypothesis had26780 bytes, canonical SHA256
 `cb35d0d8d48b2a2c942458a8584d1f783696440dfbe89b3ead331e40236c10cf`.
 Formal and independent fresh-object payload audits reproduce it. The first
 difference remains+8: frame `0x40` versus target `0x48`. There are24446 unequal
@@ -221,11 +221,64 @@ Receipts under the build scope include `first-source-preview.json`,
 The initial8-prefix receipts are retained with a `-zero-` label; the public
 commands now cover all14 prefixes including the axis fixture.
 
-Next review the remaining complete instruction/source shape, especially the
-three merged frame calls, the independently retained899 dispatches and the
-real stack lifetimes. Identifier values outside0..3 fall through target arms
-without explicit period/count assignment; their domain/default behavior and
-the hypothesis's corresponding source shape remain unreviewed. Do not promote
-this complete probe into `implemented.csv` yet. Original source identity, full
-owner layout and original TU/compiler ownership remain unknown. No standalone
-TU/LTCG impossibility is established. Remilia557690 remains parked.
+## Finite controls, corrected expressions and parked hypothesis
+
+The target frame-call memberships locate all three missing physical copies.
+Target813/852 share53DBF9, but the candidate folds them into the main frame tail.
+Target811/820/850 retain53D90E/53E394/53E87B, whereas the candidate shares one.
+These memberships are CFG diagnostics that ignore branch predicates, not a
+full execution-equivalence proof. A normal break exit for813/852 and independent
+negative post-frame return guards for820/850 each reproduce the entire old
+26780-byte `cb35d0d8...` payload. Both questions are closed absent new evidence;
+do not repeat the same break/return or guard-polarity controls.
+
+The899 second switch has four target destinations, three pointing to one
+120 assignment. Writing independent case1/2/3 assignments, rather than stacked
+labels, restores that fourth-entry table without changing any values or adding
+behavior. Its separate control is26796 bytes/SHA256
+`3d93e5385b818fd66433e5788063f141ec991d3af9096bdd94cccbf01e4ae043`.
+All12 table lengths now agree:29,5,6,5,13,4,4,6,9,11,8,8. The metadata is632 bytes
+again. Destination byte equality is still required by the full comparator.
+
+The whole-function operand review also catches two unsupported expressions:
+
+- At53D1F3 the cosine result feeds `FADD [this+374]` directly, with no intervening
+  float store/reload. Removing the hypothesis's extra float cast recovers that
+  flow. The independent control is26784 bytes/SHA256
+  `dc1d17832632c5a6345d2df04bfd3065577b86c9b814e961cc4b85777d5cc401`.
+- At540EEA the returned cosine is multiplied by `field11C*300`, then signed
+  facing, then added to x. The hypothesis had multiplied facing into field11C
+  first. The correction restores the target arithmetic instruction order;
+  its independent control is26800 bytes/SHA256
+  `b26182f0dc837f5892e8077cf689ddc4d9a5fd49e2202c29181fb56f33370c8c`.
+  It is retained for target-backed expression fidelity, not a smaller byte count.
+
+The combined retained hypothesis is26784 bytes/SHA256
+`73359b445ada254b7454615891c98ab28be4bee943cd53d2668681dcfd3a5ec8`.
+Formal and independent fresh-object audits agree. It remains nonexact+8,
+with24412 unequal positions including the208-byte size difference. The frame
+is still0x40 versus0x48, physical frame calls13/16 and RETs57/49. All12 table
+lengths, all200 remap bytes, the other19 direct-callee counts and30 virtual
+calls survive. These inventories are diagnostics, not an exact claim.
+
+The original14 scoped930 prefixes still pass. An additional four900/0 prefixes
+execute actual bounds publication, six-state/phase, cosine/sine/FTOL and atan2
+instructions to the first spawn. They use a preallocated bounds descriptor,
+axis lookup data, facing1/FF and both x87 precisions. Boundary, owner, bounds,
+helper trace, spawn arguments and payload bytes agree without injected returns
+or edges. Run this focused new check with:
+
+```sh
+scripts/repo-python scripts/audit-youmu-object-update-paths.py --point900
+```
+
+Current receipts have the `expressions-` prefix under the same build scope;
+the finite controls retain their own named source/preview/inventory receipts.
+The two byte-neutral frame controls and remaining stack/callback layout gap
+justify parking this full hypothesis and selecting another complete authored
+representative. It remains unselected in `implemented.csv` and absent from
+`matches.csv`: remaining instruction/source/default-arm review is incomplete.
+Identifier values outside0..3 reach target arms without explicit period/count
+assignment; their domain/default behavior is still unknown. Original source,
+complete owner layout and original TU/compiler ownership remain unknown. No
+standalone TU/LTCG impossibility is established. Remilia557690 stays parked.

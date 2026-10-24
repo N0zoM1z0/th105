@@ -82,7 +82,7 @@ void YoumuObjectUpdateView::update_action_state()
   if(S(0x13E)==2) {
    F(0x370)+=5.0; if(F(0x370)>90.0f) F(0x370)=90;
    F(0x374)-=D(0.005f);
-   F(0x120)=F(0x11C)=static_cast<float>(static_cast<float>(lookup_orientation_cosine_quantized_abs(F(0x370)))+F(0x374));
+   F(0x120)=F(0x11C)=static_cast<float>(lookup_orientation_cosine_quantized_abs(F(0x370))+F(0x374));
    if(I(0x144)<18) { if(emit_repeated(0,0,3)) RETIRE(); }
    else { if(B(0x113)<15) RETIRE(); B(0x111)-=15; B(0x112)-=15; B(0x113)-=15; }
    if(I(0x144)==18) { payload[0]=0; payload[1]=5; payload[2]=1; payload[3]=0; payload[4]=H[4]; SPAWN(800,1,5); }
@@ -568,7 +568,7 @@ void YoumuObjectUpdateView::update_action_state()
     for(float n=0;n<count;n+=1.0) { payload[0]=n*360.0/count; payload[1]=random_float(15)*D(0.1f)+3.0; payload[2]=3; SPAWN(930,1,3); }
     payload[2]=7; SPAWN(930,1,3); P->dispatch_character_wave_handle(1);
    }
-   switch(g_match_identifier) { case 0: period=180; break; case 1: case 2: case 3: period=120; break; }
+   switch(g_match_identifier) { case 0: period=180; break; case 1: period=120; break; case 2: period=120; break; case 3: period=120; break; }
    if(I(0x144)%period==0) {
     payload[0]=random_float(80)-40.0; payload[1]=0; payload[2]=0;
     SPAWN_AT(930,AT(A,float,0xEC),static_cast<float>(AT(A,float,0xF0)+100.0),1,3); P->dispatch_character_wave_handle(50);
@@ -598,7 +598,7 @@ void YoumuObjectUpdateView::update_action_state()
     if(I(0x180)!=0 && ++S(0x366)>=10) { S(0x366)=0; B(0x184)=1; I(0x180)=0; }
     if(S(0x368)==0 && AT(P,short,0x13C)==710 && AT(P,short,0x730)==1) {
      S(0x368)=1;
-     float x=static_cast<float>(C(0x104)*F(0x11C)*300.0*lookup_orientation_cosine_quantized_abs(-H[0])+F(0xEC));
+     float x=static_cast<float>(lookup_orientation_cosine_quantized_abs(-H[0])*(F(0x11C)*300.0)*C(0x104)+F(0xEC));
      float y=static_cast<float>(F(0x11C)*300.0*lookup_orientation_sine_quantized_abs(-H[0])+F(0xF0));
      payload[0]=-atan2_degrees(static_cast<float>(AT(A,float,0xF0)+100.0-y),static_cast<float>(C(0x104)*(AT(A,float,0xEC)-x)));
      payload[1]=2; payload[2]=1; SPAWN_AT(900,x,y,1,3);

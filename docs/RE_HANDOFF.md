@@ -1,18 +1,26 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **complete YoumuObject update53CEA0 source hypothesis is
-compiled and whole-compared early; continue its instruction/source-shape review**.
-The retained unselected probe emits26780 versus26576 target, SHA256 `cb35d0d8...`,
-nonexact+8 at frame0x40/0x48. Its200-byte remap and19 of20 direct-callee counts agree;
-advance_frame is13/16, virtual calls30/30, RETs57/49 and destination tables11/12.
-The shared857/902 exit fixes a real return-continuation error. Fourteen scoped930/3
-native prefixes pass, including NaN and axis lookup inputs; a float-square-sum
-negative control fails4. The affected older4963A0 member cold-replays exact66/66.
-An independent period local changes bytes but does not restore the missing
-899 four-entry table; preserve that finite control. Identifier-domain/default
-behavior and the remaining source/stack/control-flow review are open. Keep this
-complete compiling hypothesis out of implemented.csv and matches.csv until
-review/acceptance supports promotion. See [the evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
+Current transition: **park the complete YoumuObject update53CEA0 hypothesis and
+select the next complete authored representative, CSelect constructor4231A0**.
+The retained Youmu probe emits26784 versus26576 target, SHA256 `73359b44...`,
+nonexact+8 at frame0x40/0x48. Independent899 case assignments restore the twelfth
+destination table/all632 metadata bytes. Direct800 cosine consumption and900
+product association now follow target instructions. Its200-byte remap and19
+of20 direct-callee counts agree; frame calls remain13/16, virtual calls30/30,
+RETs57/49. Two targeted break/guard controls reproduce the old full payload
+byte-for-byte: close those questions and switch instead of repeating spelling
+trials. Fourteen scoped930 and four900 native prefixes pass. The earlier float-
+square-sum negative fails4/14; older4963A0 cold-replays exact66/66. The full
+instruction/default-arm review is incomplete, so retain this compiling source
+hypothesis outside implemented.csv and matches.csv. No TU/LTCG impossibility
+is established. See [the evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
+
+CSelect4231A0 is the next source-missing authored function of at least4KiB
+below18KiB in the current ledger:4247 candidate main bytes, with a previously
+pinned19-state VC8 EH handler/map/actions and three accepted derived/factory
+call sites. Fresh target/CFG/ownership review must include those remote unwind
+actions before a complete source/acceptance claim. Do not inherit a standalone
+main-span assumption or launch another DB process for already saved evidence.
 
 Complete RemiliaObject update557690 stays parked. Remilia remains full
 18360 versus18388 target, SHA256 `89e5bd2e...`, nonexact+22 with15330 unequal
