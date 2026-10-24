@@ -1,26 +1,35 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **park the complete YoumuObject update53CEA0 hypothesis and
-select the next complete authored representative, CSelect constructor4231A0**.
-The retained Youmu probe emits26784 versus26576 target, SHA256 `73359b44...`,
-nonexact+8 at frame0x40/0x48. Independent899 case assignments restore the twelfth
-destination table/all632 metadata bytes. Direct800 cosine consumption and900
-product association now follow target instructions. Its200-byte remap and19
-of20 direct-callee counts agree; frame calls remain13/16, virtual calls30/30,
-RETs57/49. Two targeted break/guard controls reproduce the old full payload
-byte-for-byte: close those questions and switch instead of repeating spelling
-trials. Fourteen scoped930 and four900 native prefixes pass. The earlier float-
-square-sum negative fails4/14; older4963A0 cold-replays exact66/66. The full
-instruction/default-arm review is incomplete, so retain this compiling source
-hypothesis outside implemented.csv and matches.csv. No TU/LTCG impossibility
-is established. See [the evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
+Current transition: **park complete CSelect constructor4231A0 with a13-byte
+argument-scheduling residual; select medium Fighter virtual491C40**. CSelect
+now has complete ordinary C++ source and formal/fresh independent whole-source
+comparisons. Main4247/4247, SHA256 `76c04f84...`, differs only at423D13..423D28
+while preparing the seven407160 arguments. All461 remote EH code and188 EH
+metadata bytes agree, including19 natural unwind actions. Class handle values,
+hidden texture results, native helper visibility and actual virtual dispatch
+restore the complete initializer/frame/call behavior. The final handle-parameter
+and real-wrapper controls reproduce the whole payload unchanged; close those
+questions and switch. This is source-present, not exact; original names/TU and
+compiler-phase context remain unknown. See [the complete evidence and commands](SELECT_CONSTRUCTOR_2026_10_25.md).
 
-CSelect4231A0 is the next source-missing authored function of at least4KiB
-below18KiB in the current ledger:4247 candidate main bytes, with a previously
-pinned19-state VC8 EH handler/map/actions and three accepted derived/factory
-call sites. Fresh target/CFG/ownership review must include those remote unwind
-actions before a complete source/acceptance claim. Do not inherit a standalone
-main-span assumption or launch another DB process for already saved evidence.
+A read-only census finds no other source-missing authored candidate between4096
+and17999 bytes. Next select `491C40`, provisional3785 bytes, RTTI-owned Fighter
+primary virtual, for fresh target/CFG/caller/ABI review before implementing.
+Do not treat that provisional size or primary-vtable ownership as a compiler
+boundary. Keep the CSelect residual parked absent new independent evidence.
+
+Complete YoumuObject update53CEA0 remains parked. Its retained probe emits26784
+versus26576 target, SHA256 `73359b44...`, nonexact+8 at frame0x40/0x48.
+Independent899 case assignments restore the twelfth destination table/all632
+metadata bytes. Direct800 cosine consumption and900 product association follow
+target instructions. Its200-byte remap and19 of20 direct-callee counts agree;
+frame calls remain13/16, virtual calls30/30, RETs57/49. Two targeted break/guard
+controls reproduce the old full payload byte-for-byte: close those questions.
+Fourteen scoped930 and four900 native prefixes pass. The earlier float-square-
+sum negative fails4/14; older4963A0 cold-replays exact66/66. Full instruction/
+default-arm review is incomplete, so retain the compiling hypothesis outside
+implemented.csv and matches.csv. No TU/LTCG impossibility is established.
+See [the evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
 
 Complete RemiliaObject update557690 stays parked. Remilia remains full
 18360 versus18388 target, SHA256 `89e5bd2e...`, nonexact+22 with15330 unequal
@@ -51,7 +60,7 @@ mapped-section attestation; transaction rollback/readback and all nine primary
 project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
 The first full body has been compiled/compared as described above. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
-Source-present1543/mapped1562; exact remains1403/359740 bytes, units582. Use locked
+Source-present1544/mapped1563; exact remains1403/359740 bytes, units583. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
 mandatory local CI before every commit/push. IDA still has the wrong executable;
 use hash-attested raw bytes. Latest aggregate cold replay is the Udonge checkpoint.

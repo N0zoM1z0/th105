@@ -1541,3 +1541,4 @@ PatchouliObject_initialize_action_entry
 YuyukoObject_initialize_action_entry
 UdongeObject_initialize_action_entry
 RemiliaObject_update_action_state
+CSelect_ctor
