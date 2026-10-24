@@ -1551,3 +1551,4 @@ SakuyaObject_initialize_action_entry,0x004E8060,function
 Udonge_initialize_action_entry,0x005D0E60,function
 YukariObject_initialize_action_entry,0x005964C0,function
 KomachiObject_initialize_action_entry,0x00600390,function
+IkuObject_initialize_action_entry,0x0063B310,function

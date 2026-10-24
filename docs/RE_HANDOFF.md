@@ -104,6 +104,17 @@ scoped native inputs pass with original selector/frame/RNG helpers; unguarded930
 fails3 and unrounded810 product fails2 (both x87 precision modes). Two arithmetic
 spelling controls are byte-neutral. Preserve this residual and switch complete
 representative. See `docs/KOMACHI_OBJECT_ENTRY_2026_10_24.md`; exact unchanged.
+IkuObject slot3C63B310 now accepts6229 callable/all6551 emitted bytes on its
+first complete source. Formal and independent cold comparisons reproduce the
+target payload SHA328ac0f1... with all226 relocations replayed. Complete CFG
+closes1630 instructions/29 RETs/84 direct and25 virtual calls plus the real980
+tail. Its signed823 parent-skill guard, ordered-positive899/995 selectors,
+case-local payloads and distinct float-rounding boundaries are independently
+reviewed. See `docs/IKU_OBJECT_ENTRY_2026_10_24.md`. Continue independently
+reviewed Object slot3C peers; keep previous residuals parked. A fresh sequential
+`verify-exact-units.py --all` passes513 cold units/all1401 accepted functions;
+full Iku payload audit also passes after that replay. Receipt:
+`build/exact-first-iku-object-entry-20261024/cold-all.log`.
 Commit format:
 `gpt-6.1-sol: ...`.
 
@@ -149,14 +160,15 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1552 / 1534 |
-| Accepted authored exact | 1400 functions / 332073 bytes |
+| Mapped / source-present | 1553 / 1535 |
+| Accepted authored exact | 1401 functions / 338302 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 572 / 1540 |
+| Match units / configured functions | 573 / 1541 |
 
-These are ledger totals, without a new aggregate cold replay. Replay affected
-accepted units after shared changes; aggregate claims require a cold
-`python3 scripts/verify-exact-units.py --all`.
+The IkuObject checkpoint includes a fresh sequential cold
+`python3 scripts/verify-exact-units.py --all`:513 units/all1401 accepted functions
+pass. Its final full-payload audit also passes6551/6551. Replay affected accepted
+units after shared changes; future aggregate claims require another cold replay.
 
 ## Current checkpoint: exact Reimu slot5C control mode 0x491450
 

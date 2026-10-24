@@ -21353,3 +21353,25 @@ rel32_targets = [
     "?continue_action_980@KomachiObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-iku-object-entry]
+kind = "probe"
+source = "src/characters/IkuObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_IkuObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a IkuObject slot3C root63B310;6229 callable/full6551 target. First complete source reproduces the whole payload. docs/IKU_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-iku-object-entry.functions]]
+address = "0x0063B310"
+symbol_base = "?initialize_action_entry@IkuObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?set_components@IkuEntryMotionView@th105@@QAEXMM@Z=0x00435160",
+    "?stage_height@IkuObjectEntryView@th105@@QAEMXZ=0x00435D60",
+    "?replace_secondary@IkuObjectEntryView@th105@@QAEXHMHHH@Z=0x00496420",
+    "IkuObjectEntryView_spawn_parented=0x004FCA60",
+    "IkuObjectEntryView_spawn_unparented=0x0064CCB0",
+    "?continue_action_980@IkuObjectEntryView@th105@@QAEXXZ=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]
