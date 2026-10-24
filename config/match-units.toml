@@ -20620,3 +20620,34 @@ rel32_targets = [
     "RemiliaObjectEntryView_continue_action_980=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-remilia-input-policy]
+kind = "probe"
+source = "src/characters/RemiliaInputPolicy.cpp"
+object = "build/match-units/ExactFirst_RemiliaInputPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Remilia primary slot50 input policy556070;5415 callable bytes and full5448-byte payload/112 relocations. Pointer-only receiver with numeric commands; no complete owner layout claim. docs/REMILIA_INPUT_POLICY_2026_10_24.md."
+
+[[units.exact-first-remilia-input-policy.functions]]
+address = "0x00556070"
+symbol_base = "?dispatch_input@RemiliaInputPolicyView@th105@@UAEXXZ"
+rel32_targets = [
+    "is_y_at_or_below_stage_surface=0x00435DC0",
+    "RemiliaInputPolicyView_pop_sequence=0x0045DDA0",
+    "RemiliaInputPolicyView_pack_input=0x00464200",
+    "RemiliaInputPolicyView_reset_input=0x004633A0",
+    "RemiliaInputPolicyView_front_ready=0x0045D1B0",
+    "RemiliaInputPolicyView_finalize_command=0x00493D00",
+    "RemiliaInputPolicyView_command_window=0x00493D40",
+    "RemiliaInputSequenceView_at=0x004399C0",
+    "RemiliaInputPolicyView_gate493ac0=0x00493AC0",
+    "RemiliaInputPolicyView_gate493b40=0x00493B40",
+    "RemiliaInputPolicyView_gate493c50=0x00493C50",
+    "RemiliaInputPolicyView_gate493d90=0x00493D90",
+    "RemiliaInputPolicyView_gate493f90=0x00493F90",
+    "RemiliaInputPolicyView_gate4940e0=0x004940E0",
+    "RemiliaInputPolicyView_gate4941d0=0x004941D0",
+    "RemiliaInputPolicyView_gate4942c0=0x004942C0",
+    "RemiliaInputPolicyView_gate494450=0x00494450",
+]

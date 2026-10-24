@@ -1,8 +1,8 @@
 # TH10.5 reconstruction handoff
 
-Exact-first reconstruction checkpoint: 2026-10-24. RemiliaObject initializer
-`0x55BE70` now has complete selected source and a reproducible nonexact unit;
-this checkpoint adds no exact functions or bytes. Required commit format:
+Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
+`0x556070` now cold-replays exact5415/5415, with all5448 emitted bytes also exact.
+This checkpoint adds one exact function /5415 code bytes. Required commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -47,14 +47,40 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1520 / 1502 |
-| Accepted authored exact | 1381 functions / 234914 bytes |
+| Mapped / source-present | 1521 / 1503 |
+| Accepted authored exact | 1382 functions / 240329 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 544 / 1512 |
+| Match units / configured functions | 545 / 1513 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact representative: Remilia input policy 0x556070
+
+[Accepted source/evidence](REMILIA_INPUT_POLICY_2026_10_24.md) closes all1470
+instructions/16 RETs/eight external tails. Both the5415-byte callable and the
+complete5448-byte payload/112 relocations match after independent cold builds.
+Replay both commands:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-remilia-input-policy --compare --json
+python3 scripts/audit-remilia-input-policy.py
+```
+
+The complete canonical SHA256 is
+`aa8fea23fd443bab1f58993e3f8d41f3ee7d262b70f2ea3d5ec74a6e75c3dcec`.
+A generated-object table-byte negative fails the full-payload audit. Source
+retains numeric commands, offset fields and real repeated queries. Two initial
+query/action-number mistakes were corrected from native pushes; removing an
+eager queued-field cache recovers the native range guard. No compiler/profile
+or hierarchy search was needed. Only the representative earns credit; callees
+remain at their previous states. Never instantiate/embed its pointer-only views.
+
+Next, review another complete Fighter primary slot+0x50 peer against this
+representative, independently checking changed gates, command/action pairs,
+offsets, ABI and exits. Preserve RemiliaObject's nonexact checkpoint below;
+do not resume neutral initializer-register trials without new evidence.
 
 ## RemiliaObject initializer 0x55BE70
 
@@ -73,9 +99,9 @@ byte-neutral, and terminal/default controls regress the remap range. Do not
 repeat these controls unchanged. The selected receiver is declaration-only;
 never construct/embed it. No exact credit, runtime matrix or LTCG impossibility.
 
-Next, switch to another complete roster initializer rather than restarting Aya
-or Youmu's neutral trials. Remilia's source and retained controls are the bounded
-checkpoint. Read-only Ghidra was independently attested; all pinned primary DB
+The subsequent input-policy representative above is exact; this initializer's
+source and retained controls remain a separate nonexact checkpoint.
+Read-only Ghidra was independently attested; all pinned primary DB
 files are unchanged. Receipts/recipes are under
 `build/exact-first-remilia-entry-20261024/` and
 `.analysis/exact-first-remilia-entry-20261024/`.
