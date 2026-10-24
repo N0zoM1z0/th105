@@ -21331,3 +21331,25 @@ rel32_targets = [
     "?continue_action_980@YukariObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-komachi-object-entry]
+kind = "probe"
+source = "src/characters/KomachiObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_KomachiObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a KomachiObject slot3C root600390;6216 callable/full6540. Seven unmasked differing bytes; all324 metadata bytes equal. Native930 guard and810 rounding controls. docs/KOMACHI_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-komachi-object-entry.functions]]
+address = "0x00600390"
+symbol_base = "?initialize_action_entry@KomachiObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+    "?set_components@KomachiEntryMotionView@th105@@QAEXMM@Z=0x00435160",
+    "?stage_height@KomachiObjectEntryView@th105@@QAEMXZ=0x00435D60",
+    "?replace_secondary@KomachiObjectEntryView@th105@@QAEXHMHHH@Z=0x00496420",
+    "KomachiObjectEntryView_spawn_unparented=0x0064CCB0",
+    "?continue_action_980@KomachiObjectEntryView@th105@@QAEXXZ=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]

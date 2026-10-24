@@ -95,6 +95,15 @@ Positive-only selection fails negative/NaN; unsigned998 facing failsFF. Formal
 and independent cold canonical payloads agree. Keep this finite residual parked
 and select another complete representative. See `docs/YUKARI_OBJECT_ENTRY_2026_10_24.md`;
 exact unchanged.
+KomachiObject slot3C600390 now has complete6216-byte-target source/full6540.
+Formal and independent cold builds differ at only7 unmasked bytes: entry input
+pointer register and817 x87 addition operand order; all324 metadata bytes,
+115 direct/24 virtual calls and25 RETs agree. First whole comparison exposes
+902 third-payload-word and930 selector/guard omissions, both corrected. Eight
+scoped native inputs pass with original selector/frame/RNG helpers; unguarded930
+fails3 and unrounded810 product fails2 (both x87 precision modes). Two arithmetic
+spelling controls are byte-neutral. Preserve this residual and switch complete
+representative. See `docs/KOMACHI_OBJECT_ENTRY_2026_10_24.md`; exact unchanged.
 Commit format:
 `gpt-6.1-sol: ...`.
 
@@ -140,10 +149,10 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1551 / 1533 |
+| Mapped / source-present | 1552 / 1534 |
 | Accepted authored exact | 1400 functions / 332073 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 571 / 1539 |
+| Match units / configured functions | 572 / 1540 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold

@@ -1550,3 +1550,4 @@ Alice_update_cpu_action_policy,0x004F4B80,function
 SakuyaObject_initialize_action_entry,0x004E8060,function
 Udonge_initialize_action_entry,0x005D0E60,function
 YukariObject_initialize_action_entry,0x005964C0,function
+KomachiObject_initialize_action_entry,0x00600390,function
