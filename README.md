@@ -37,7 +37,7 @@ target is different and is deliberately rejected.
 
 ```bash
 scripts/import-target.sh /path/to/th105.exe
-python3 scripts/verify-target.py
+scripts/repo-python scripts/verify-target.py
 ```
 
 Copyrighted executables and game data are not included.
@@ -58,10 +58,10 @@ ledgers. Unselected retained files remain hypotheses, not 1.06a progress.
 Start a session with:
 
 ```bash
-python3 scripts/verify-target.py
-python3 scripts/check-ida-mcp.py
-python3 scripts/report-reconstruction-status.py --summary
-python3 scripts/validate-tracking.py --require-target
+scripts/repo-python scripts/verify-target.py
+scripts/repo-python scripts/check-ida-mcp.py
+scripts/repo-python scripts/report-reconstruction-status.py --summary
+scripts/repo-python scripts/validate-tracking.py --require-target
 ```
 
 ## Documentation
@@ -79,8 +79,30 @@ python3 scripts/validate-tracking.py --require-target
 - [Generated progress](docs/PROGRESS.md)
 - [Agent rules](AGENTS.md)
 
-Run public, target-independent checks with `python3 scripts/ci.py`. Local target
-and IDA checks are intentionally separate.
+Use `scripts/repo-python` for repository Python commands. It checks the exact
+CPython version in `.python-version`, all package versions in
+`scripts/requirements-ci.txt`, and the importable decoder/emulator native APIs
+before executing with that interpreter. Its default environment is `.venv`;
+`TH105_PYTHON` can select another interpreter meeting the same locks.
+
+Create the isolated environment with `uv`:
+
+```bash
+uv venv --python "$(cat .python-version)" .venv
+uv pip install --python .venv/bin/python -r scripts/requirements-ci.txt
+scripts/repo-python scripts/ci.py
+```
+
+With the exact configured CPython already installed, `python3 -m venv .venv`
+and `.venv/bin/python -m pip install -r scripts/requirements-ci.txt` are equivalent
+setup steps. GitHub Actions reads the same Python version file, installs those
+dependencies into `.venv`, and uses the same launcher.
+
+Public checks run without game files, IDA, or the proprietary compiler.
+Synthetic execution tests use the pinned Unicorn package. Tests that inspect
+the canonical executable explicitly skip when it is absent; when present,
+its identity and evidence checks still run. Local target and IDA checks remain
+separate.
 
 ## License
 

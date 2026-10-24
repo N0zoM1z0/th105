@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+repo_python="${TH105_PYTHON:-$repo_root/.venv/bin/python}"
+
+if [[ ! -x "$repo_python" ]]; then
+    printf '%s\n' \
+        'error: repository Python is missing; see README.md for the .venv setup commands' \
+        'TH105_PYTHON may point to another interpreter with the same locked environment.' >&2
+    exit 1
+fi
+
+# Check and execute with the same interpreter and import environment. Repository
+# scripts keep their own script directory, but ambient package overrides do not
+# replace the pinned decoder/emulator packages.
+env -u PYTHONPATH -u PYTHONHOME PYTHONNOUSERSITE=1 \
+    "$repo_python" "$repo_root/scripts/repo_python_env.py"
+exec env -u PYTHONPATH -u PYTHONHOME PYTHONNOUSERSITE=1 "$repo_python" "$@"

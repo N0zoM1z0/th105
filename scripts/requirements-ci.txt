@@ -2,5 +2,9 @@
 # No game executable, IDA instance, or proprietary compiler is needed in CI.
 capstone==4.0.2
 pefile==2024.8.26
-# Upstream Capstone 4 uses distutils, which Python 3.12 removed from stdlib.
-setuptools==75.8.0; python_version >= "3.12"
+# Synthetic instruction/fixture tests import the native execution diagnostics.
+# Match the local audited emulator; no proprietary target is needed for these tests.
+unicorn==1.0.2
+# Capstone 4 imports pkg_resources on every Python version; fresh venvs need it.
+# This pin also supplies the distutils compatibility needed on Python 3.12+.
+setuptools==75.8.0

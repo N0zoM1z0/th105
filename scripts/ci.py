@@ -37,6 +37,7 @@ def run(label: str, command: list[str]) -> None:
 
 def main() -> int:
     try:
+        run("Check repository Python environment", [sys.executable, "scripts/repo_python_env.py"])
         python_files = sorted(
             set(
                 tracked("scripts/*.py")
@@ -45,7 +46,7 @@ def main() -> int:
             )
         )
         run("Compile tracked Python", [sys.executable, "-m", "py_compile", *python_files])
-        shell_files = tracked("scripts/*.sh")
+        shell_files = tracked("scripts/*.sh") + tracked("scripts/repo-python")
         if shell_files:
             run("Check shell syntax", ["bash", "-n", *shell_files])
         run(

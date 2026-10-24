@@ -7,15 +7,21 @@ Do not analyze or substitute 1.06, a localized executable, or another patch.
 
 ## Before changing reconstruction state
 
+Use `scripts/repo-python` for repository Python commands. Set up the isolated
+environment as described in README.md; `.python-version` and
+`scripts/requirements-ci.txt` fix its interpreter and dependencies. The launcher
+checks the environment before executing, and Python subprocesses inherit the
+same interpreter. Do not substitute an ambient system/Conda decoder.
+
 1. Read `docs/RE_HANDOFF.md`, `docs/ARCHITECTURE.md`,
    `docs/RE_WORKFLOW.md`, and the relevant source.
 2. Inspect `git status`, then run:
 
    ```bash
-   python3 scripts/verify-target.py
-   python3 scripts/check-ida-mcp.py
-   python3 scripts/report-reconstruction-status.py --summary
-   python3 scripts/validate-tracking.py --require-target
+   scripts/repo-python scripts/verify-target.py
+   scripts/repo-python scripts/check-ida-mcp.py
+   scripts/repo-python scripts/report-reconstruction-status.py --summary
+   scripts/repo-python scripts/validate-tracking.py --require-target
    ```
 
 3. Confirm the address in `config/functions.csv`. Its candidate size is provisional;
@@ -83,7 +89,7 @@ writes before relying on them.
   flight. Commit stable checkpoints before a browser/session handoff.
 - Re-run all affected accepted units after any shared header, type/layout,
   compiler-flag, object partition, or relocation-ledger change. Aggregate exact
-  totals require a cold `python3 scripts/verify-exact-units.py --all` run.
+  totals require a cold `scripts/repo-python scripts/verify-exact-units.py --all` run.
 
 ## Handoff
 
@@ -91,7 +97,7 @@ Run the focused build/comparison, then run this final gate in the finished local
 worktree:
 
 ```bash
-python3 scripts/ci.py
+scripts/repo-python scripts/ci.py
 git diff --check
 ```
 

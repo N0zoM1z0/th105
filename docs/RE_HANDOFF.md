@@ -156,6 +156,25 @@ See `docs/ALICE_OBJECT_ENTRY_2026_10_24.md`. Continue independently reviewed Obj
 slot3C peers; keep the recorded nonexact residuals parked. Fresh sequential cold
 replay passes514 units/all1402 accepted functions. The final Alice full-payload
 audit also passes11072/11072 after that rebuild.
+Public CI environment repair: failed GitHub run40100514887 exposed missing
+Unicorn and21 unguarded private-target evidence tests. The requirements now pin
+Unicorn1.0.2 and setuptools75.8.0 explicitly; only unavailable target-backed
+tests skip, and a present wrong target still fails identity attestation.
+TH10's `scripts/repo-python` was reviewed read-only at887e0bab2dd6; its decoder
+selection pattern motivates the TH105 entry point. TH105 now selects one
+`.venv` interpreter, pins CPython3.11.14 in `.python-version`, and verifies the
+requirements plus importable native decoder/emulator APIs before each command.
+CI reads the same version file and uses the same launcher. Ambient PYTHONPATH/
+PYTHONHOME are cleared; TH105_PYTHON is an explicit, equally checked override.
+A completely isolated public checkout has no target/compiler/analysis state;
+its locked Python3.11 CI passes476 tests with31 target-dependent skips, including
+all ten new launcher/environment controls. A present-wrong-target negative
+control errors instead of skipping. Receipts are below
+`build/ci-public-checkout-20261024/`. Locked CPython3.11.14/Capstone4.0.2 full
+cold replay passes514 units/all1402 accepted functions (`locked-cold-all.log`),
+and final Alice/Iku complete-payload audits also pass11072/6551 bytes. Final
+local CI remains mandatory before commit. Patchouli Object52D200 raw inspection
+is private-only and resumes after the remote CI repair is verified.
 Commit format:
 `gpt-6.1-sol: ...`.
 
@@ -185,10 +204,10 @@ Only original Japanese 1.06a SHA256
 
 ```sh
 git status --short
-python3 scripts/verify-target.py
-python3 scripts/check-ida-mcp.py
-python3 scripts/report-reconstruction-status.py --summary
-python3 scripts/validate-tracking.py --require-target
+scripts/repo-python scripts/verify-target.py
+scripts/repo-python scripts/check-ida-mcp.py
+scripts/repo-python scripts/report-reconstruction-status.py --summary
+scripts/repo-python scripts/validate-tracking.py --require-target
 ```
 
 IDA still opens database SHA256
@@ -206,12 +225,12 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | Provisional authored byte denominator | 2136806 |
 | Match units / configured functions | 577 / 1545 |
 
-The AliceObject checkpoint includes a fresh sequential cold
-`python3 scripts/verify-exact-units.py --all`:514 units/all1402 accepted functions
-pass. Its final full-payload audit also passes11072/11072. Receipt:
-`build/exact-first-alice-object-entry-20261024/cold-all.log`. Replay affected
-accepted units after shared changes; future aggregate claims require another
-cold replay.
+The latest sequential cold replay uses the locked repository environment:
+`scripts/repo-python scripts/verify-exact-units.py --all` passes514 units/all1402
+accepted functions. Alice/Iku full-payload audits pass11072/6551 bytes after that
+rebuild. Receipt: `build/ci-public-checkout-20261024/locked-cold-all.log`.
+Replay affected accepted units after shared changes; future aggregate claims
+require another cold replay.
 
 ## Current checkpoint: exact Reimu slot5C control mode 0x491450
 

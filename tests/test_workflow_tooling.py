@@ -313,6 +313,9 @@ class WorkflowToolingTests(unittest.TestCase):
             rule, [source], [source, target], b"", lambda address, _size: bad_code[address]
         ))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_boost_rtti_adjustor_requires_matching_locator_and_slot(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -333,6 +336,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_adjustor_thunks"] = thunks
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_boost_deleting_destructor_requires_rtti_and_free_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -353,6 +359,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_deleting_dtors"] = dtors
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_game_deleting_destructors_require_own_rtti_types(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -373,6 +382,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_deleting_dtors"] = dtors
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_inline_deleting_destructors_require_rtti_slot_and_free_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -398,6 +410,9 @@ class WorkflowToolingTests(unittest.TestCase):
             changed["required_rtti_inline_deleting_dtors"] = dtors
             self.assertTrue(validate(changed, selected, rows, data, read_pe), field)
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_vc8_short_setters_require_coff_identity_and_runtime_consumer(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -423,6 +438,9 @@ class WorkflowToolingTests(unittest.TestCase):
             changed["required_msvc_short_setters"] = setters
             self.assertTrue(validate(changed, selected, rows, data, read_pe), field)
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_boost_copy_helpers_require_primary_and_secondary_rtti(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -450,6 +468,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_copy_helpers"] = helpers
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_generated_cleanup_tails_require_exact_callback_and_rtti(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -483,6 +504,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_eh_cleanup_tail"] = witness
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_array_record_constructors_require_paired_lifetime_callbacks(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -503,6 +527,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_array_zero_constructors"] = constructors
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_fighter_collision_phase_requires_exact_game_edges(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -523,6 +550,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_selected_body_calls"] = calls
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_render_rectangle_chain_requires_reviewed_edges_and_status(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -558,6 +588,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_direct_edges"] = edges
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_font_owner_canonical_family_retains_exact_callers(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -602,6 +635,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_direct_edges"] = edges
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_network_server_sender_requires_exact_server_edges(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -622,6 +658,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_direct_edges"] = edges
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_sprite_pivot_rotation_requires_all_three_axis_lookup_edges(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -644,6 +683,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_selected_body_calls"] = calls
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_select_constructor_requires_rtti_padding_and_mixed_eh_actions(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -678,6 +720,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_vc8_eh_unwind"] = eh
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_intermediate_battle_phase_requires_all_alignment_gaps(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -698,6 +743,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_branch_skipped_padding"] = gaps
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_family1_clash_pair_chain_requires_exact_reset_edges(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -718,6 +766,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_selected_body_calls"] = calls
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_collision_descriptor_pair_chain_requires_exact_geometry_edges(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -738,6 +789,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_selected_body_calls"] = calls
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_boost_throw_virtual_requires_terminal_runtime_edge(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -758,6 +812,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_rtti_virtual_bodies"] = methods
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_boost_clone_virtual_requires_shared_eh_unwind_action(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -778,6 +835,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_shared_eh"] = shared_eh
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_deck_csv_loader_requires_six_state_eh_map(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
@@ -800,6 +860,9 @@ class WorkflowToolingTests(unittest.TestCase):
         changed["required_vc8_eh_unwind"] = eh
         self.assertTrue(validate(changed, selected, rows, data, read_pe))
 
+    @unittest.skipUnless(
+        (ROOT / "resources" / "th105.exe").is_file(), "private target is unavailable"
+    )
     def test_profile_writer_terminal_throw_closes_candidate_boundary(self) -> None:
         with self.origins.RULES.open("rb") as stream:
             document = tomllib.load(stream)
