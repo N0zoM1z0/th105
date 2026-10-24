@@ -69,6 +69,26 @@ repeat visibility/FP/profile controls from earlier CPU attempts or expand an
 execution matrix without a specific ambiguity. Retain each trial and switch
 candidates after neutral controls; no register forcing or padding.
 
+## Bounded follow-up receipts
+
+The native target has46 RETs; selected source has38. A single follow-up replaces
+early returns in the final movement-policy section with a shared ordinary exit
+label (`probe02`). The complete canonical output remains byte-for-byte identical
+to the selected16419-byte payload above, with110 selector calls and38 RETs.
+This rejects the simple return-versus-shared-exit spelling explanation for the
+remaining duration-call copies. Keep the selected source and do not repeat this
+neutral control without new target/compiler evidence. No second execution matrix
+is needed for an identical canonical payload.
+
+The public native-path auditor also rejects a generated-COFF negative control:
+changing the source's real `mov edx,2` output constant at+144 to3 produces145
+mismatches among the same1056 inputs and returns1. This is a private generated
+object only; the target PE and public source are unchanged. The negative payload
+SHA256 is `e11c16b382f87bce26cf32aee0091f85262788ce51c181e783e5af6901cc064b`.
+`probe02.diagnostic.json`, the generated negative object and `negative-paths.json`
+are retained below the same build scope. Local CI and whitespace gates pass
+before saving each stable checkpoint.
+
 ## Observed target and ownership
 
 Only original Japanese1.06a SHA256

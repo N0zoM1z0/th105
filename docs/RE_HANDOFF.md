@@ -85,7 +85,10 @@ The canonical commands correctly return1; native-helper diagnostic returns0
 for1056 scoped inputs, not an exact result. Action/attack selector counts agree
 24/57; final movement policy is40 native versus29 source. First302 bytes match;
 register allocation, return structure and policy duration-call merging still
-differ. Investigate that specific evidence before more controls or matrices.
+differ. A single final-policy return-to-shared-exit trial is byte-neutral
+(full hash unchanged/38 RETs); do not repeat it. The public execution audit
+rejects a generated wrong-output constant in145/1056 cases. Investigate actual
+policy-tail evidence before more controls or matrices.
 Public source uses fresh pointer-only views, offsets and numeric states; no
 callee implementation/full-owner layout claim. Target hashes/slot58 cell6C45DC
 and independent read-only Ghidra attestation remain as documented. Original
