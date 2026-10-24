@@ -20,8 +20,14 @@ complete. This does not establish a TU/LTCG impossibility.
 Read-only roster census identifies the next smallest unselected Object update:
 YoumuObject53CEA0, candidate25944 bytes, primary vtable6C50BC/cell6C50E4.
 Its candidate/origin ledger is authored by the RTTI-backed roster rule; it has
-no selected source or exact claim. First close its complete raw CFG, then
-recover the full body and compare early. The separate Youmu initializer543670
+no selected source or exact claim. Its complete raw CFG now closes6233 reachable
+instructions/49 RET0s/224 direct and30 virtual calls. All632 metadata bytes are
+partitioned:108 DWORD destinations and200 remap bytes; full payload26576 ends
+at543670. Three unreachable alignment LEAs remain in the comparison extent.
+The single384MiB readonly Ghidra hypothesis completed after target/entry/all
+mapped-section attestation; transaction rollback/readback and all nine primary
+project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
+Recover the full body and compare early. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
 Source-present1543/mapped1561; exact remains1403/359740 bytes. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
