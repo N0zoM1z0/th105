@@ -2614,7 +2614,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0063D3E0,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x00649330,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x0064A000,authored_game,characters,authored,observed,canonical-exact-authored
-0x0064A0A0,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x0064A0A0,authored_game,characters,authored,observed,canonical-exact-authored
 0x0064AC70,authored_game,characters,authored,observed,canonical-exact-authored
 0x0064AD80,authored_game,characters,authored,observed,canonical-exact-authored
 0x0064ADA0,compiler_generated,input,exclude,observed,vc8-generated-direct-input-vectors-106a

@@ -21892,3 +21892,41 @@ dir32_targets = [
     "__real@4059000000000000=_suika_action_entry_006cd190",
     "__real@3ff0000000000000=_suika_action_entry_006cd160",
 ]
+
+
+[units.exact-first-tenshi-action-initialization]
+kind = "probe"
+source = "src/characters/TenshiActionInitialization.cpp"
+object = "build/match-units/ExactFirst_TenshiActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Tenshi primary slot3C64A0A0;2453 callable/full3023 payload, three remapped switches and actual packet/face/coordinate transport. scripts/audit-tenshi-action-initialization.py; docs/TENSHI_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-tenshi-action-initialization.functions]]
+address = "0x0064A0A0"
+symbol_base = "?initialize_action_entry@TenshiActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?zero_motion@TenshiActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?spawn_owned_object@TenshiActionEntryView@th105@@QAEHHMMEHPAMH@Z=0x00465190",
+    "?face_opponent_and_flip_horizontal_velocity@TenshiActionEntryView@th105@@QAEXXZ=0x00478E60",
+    "?initialize_common_action_entry@TenshiActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+    "__real@c0900000=_tenshi_action_entry_006c3ea4",
+    "__real@40900000=_tenshi_action_entry_006c3ea8",
+    "__real@3f19999a=_tenshi_action_entry_006c3e94",
+    "__real@42be0000=_tenshi_action_entry_006c4000",
+    "__real@41400000=_tenshi_action_entry_006c12b0",
+    "__real@41580000=_tenshi_action_entry_006c47d0",
+    "__real@3f000000=_tenshi_action_entry_006cd140",
+    "__real@3fc99999a0000000=_tenshi_action_entry_006c0e80",
+    "__real@40000000=_tenshi_action_entry_006c13f0",
+    "__real@3eb33333=_tenshi_action_entry_006c3e90",
+    "__real@41300000=_tenshi_action_entry_006c445c",
+    "__real@3f0ccccd=_tenshi_action_entry_006c3e9c",
+    "__real@41c80000=_tenshi_action_entry_006c3b3c",
+    "__real@4046800000000000=_tenshi_action_entry_006c3d48",
+    "__real@3f0e38e4=_tenshi_action_entry_006c66b0",
+    "__real@405e000000000000=_tenshi_action_entry_006c3e70",
+    "__real@c1700000=_tenshi_action_entry_006c3c7c",
+]
