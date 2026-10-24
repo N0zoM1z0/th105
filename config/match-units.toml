@@ -21751,3 +21751,55 @@ dir32_targets = [
     "__real@40800000=_common_entry_006cd200",
     "__real@c1000000=_common_entry_006cd230",
 ]
+
+
+[units.exact-first-yukari-action-initialization]
+kind = "probe"
+source = "src/characters/YukariActionInitialization.cpp"
+object = "build/match-units/ExactFirst_YukariActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Yukari primary slot3C58A4F0;3455 callable/full4381 bytes with57 destination words and696 remap bytes. Scoped spawn packets and independently retained arm publications; action214 has73C=10 and74C=0. scripts/audit-yukari-action-initialization.py; docs/YUKARI_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-yukari-action-initialization.functions]]
+address = "0x0058A4F0"
+symbol_base = "?initialize_action_entry@YukariActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?advance_secondary_event_effect_cycle@YukariActionEntryView@th105@@QAEXXZ=0x00473F90",
+    "?emit_effect@YukariActionEntryView@th105@@QAEXFMMEH@Z=0x00435240",
+    "?publish_layout_scalar@YukariActionEntryView@th105@@QAEXM@Z=0x004359D0",
+    "?dispatch_event@YukariActionEntryView@th105@@QAEXI@Z=0x004359F0",
+    "?spawn_owned_object@YukariActionEntryView@th105@@QAEHHMMEHPAMH@Z=0x00465190",
+    "?reset@YukariEntryScratchView@th105@@QAEXXZ=0x00435110",
+    "?zero_motion@YukariActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?advance_frame_and_dispatch@YukariActionEntryView@th105@@QAEEXZ=0x004351C0",
+    "?dispatch_character_wave_handle@YukariActionEntryView@th105@@QAEXI@Z=0x0045C030",
+    "?initialize_common_action_entry@YukariActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+    "__real@40900000=_yukari_action_entry_006c3ea8",
+    "__real@c0900000=_yukari_action_entry_006c3ea4",
+    "__real@3f4ccccd=_yukari_action_entry_006c3420",
+    "__real@3f000000=_yukari_action_entry_006cd140",
+    "__real@3fa66666=_yukari_action_entry_006c3c70",
+    "__real@4059000000000000=_yukari_action_entry_006cd190",
+    "__real@40c00000=_yukari_action_entry_006cd1d8",
+    "__real@42aa0000=_yukari_action_entry_006c4004",
+    "__real@40800000=_yukari_action_entry_006cd200",
+    "__real@c1200000=_yukari_action_entry_006c3b20",
+    "__real@41600000=_yukari_action_entry_006c3c64",
+    "__real@3f19999a=_yukari_action_entry_006c3e94",
+    "__real@42e60000=_yukari_action_entry_006c3da0",
+    "__real@41200000=_yukari_action_entry_006d6eec",
+    "__real@3fe0000000000000=_yukari_action_entry_006cd138",
+    "__real@41700000=_yukari_action_entry_006c3ea0",
+    "__real@42d20000=_yukari_action_entry_006c3ffc",
+    "__real@3fc99999a0000000=_yukari_action_entry_006c0e80",
+    "__real@3fb99999a0000000=_yukari_action_entry_006cd1e0",
+    "__real@41480000=_yukari_action_entry_006c3c48",
+    "__real@3fd0000000000000=_yukari_action_entry_006c33a8",
+    "__real@3e800000=_yukari_action_entry_006c3440",
+    "__real@42c80000=_yukari_action_entry_006d6ee4",
+    "__real@43b40000=_yukari_action_entry_006c0ee0",
+    "__real@44660000=_yukari_action_entry_006c57e8",
+]

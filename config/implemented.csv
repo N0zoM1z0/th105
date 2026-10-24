@@ -1544,3 +1544,4 @@ RemiliaObject_update_action_state
 CSelect_ctor
 Reimu_initialize_action_entry
 CommonFighter_initialize_action_entry
+Yukari_initialize_action_entry
