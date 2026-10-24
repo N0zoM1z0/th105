@@ -1520,3 +1520,4 @@ AuxiliarySprite_render_auxiliary,0x00434F30,function
 SpriteRenderEffect_render_luma_alpha,0x006656E0,function
 RemiliaObject_initialize_action_entry,0x0055BE70,function
 Remilia_dispatch_input_policy,0x00556070,function
+Tenshi_dispatch_input_policy,0x0064B7A0,function

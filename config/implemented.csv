@@ -1501,3 +1501,4 @@ AuxiliarySprite_render_auxiliary
 SpriteRenderEffect_render_luma_alpha
 RemiliaObject_initialize_action_entry
 Remilia_dispatch_input_policy
+Tenshi_dispatch_input_policy

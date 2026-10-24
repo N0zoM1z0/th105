@@ -1,8 +1,9 @@
 # TH10.5 reconstruction handoff
 
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
-`0x556070` now cold-replays exact5415/5415, with all5448 emitted bytes also exact.
-This checkpoint adds one exact function /5415 code bytes. Required commit format:
+`0x556070` and independently reviewed Tenshi peer `0x64B7A0` cold-replay exact.
+The two-function cohort adds10767 code bytes; latest peer adds5352.
+Required commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -47,14 +48,39 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1521 / 1503 |
-| Accepted authored exact | 1382 functions / 240329 bytes |
+| Mapped / source-present | 1522 / 1504 |
+| Accepted authored exact | 1383 functions / 245681 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 545 / 1513 |
+| Match units / configured functions | 546 / 1514 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Tenshi input policy 0x64B7A0
+
+[Accepted peer/evidence](TENSHI_INPUT_POLICY_2026_10_24.md) independently closes
+1515 instructions/26 RETs/seven external tails. The5352-byte callable and full
+5384-byte payload/108 relocations match after separate canonical and cold builds.
+Replay both commands:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-tenshi-input-policy --compare --json
+python3 scripts/audit-tenshi-input-policy.py
+```
+
+Full canonical SHA256:
+`20bb75cd53cebe9b7714eb97bc8fdd4160b2310e2599d38aaef74acbb2b064d5`.
+A table-byte generated-object negative fails. Changed special-command tiers,
+signed+82E gate, record207-to657, normal state200 transitions, absent Remilia
+cleanup/shortcuts and140.0f distance are independently reviewed. Correcting
+one copied541 fallback to the actual540 yields zero differences and the native
+shared block; no flag/profile or register search. Prior exact inputs stay intact.
+
+Next, continue another complete Fighter slot+0x50 peer from the two accepted
+representatives, reviewing its actual changes before comparison. Keep views
+pointer-only and do not normalize query/action-number differences or repeated
+calls. RemiliaObject's initializer below remains nonexact and parked.
 
 ## Exact representative: Remilia input policy 0x556070
 
