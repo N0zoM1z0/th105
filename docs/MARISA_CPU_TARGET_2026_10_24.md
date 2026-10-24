@@ -8,11 +8,11 @@ selected in `src/characters/MarisaCpuPolicy.cpp/.hpp`, with numeric states, type
 offset accesses, pointer-only views and declaration-only helpers. Never construct
 or embed either view. No complete nominal layout or original TU is claimed.
 
-The selected full payload is **16863 bytes versus16907 target bytes**. Strict
-canonical comparison remains nonexact at `+0x12E / 0x004B419E`, target2C/source00,
+The selected full payload is **16867 bytes versus16907 target bytes**. Strict
+canonical comparison remains nonexact at `+0x12E / 0x004B419E`, target2C/source06,
 in the inactive-opponent return branch displacement. Its first302 bytes match.
 This size difference is not an unreconstructed-byte count. Canonical full SHA256:
-`80ad69479bc244484a234feea58aebd3af5e414e8fd3592b0655046d0b0d9d18`.
+`b7872facbcbe0e9019026385d84694d52beb3e0d8eeecda5459b3411fda23127`.
 The formal manifest build reproduces this payload. **Source-present only; no
 matches.csv row or exact-byte credit is added.**
 
@@ -54,7 +54,7 @@ This is direct field-access evidence, not proof of unique original declarations.
 compares h with double500; for the lower path it loads v, writes DWORD6D0=2,
 compares v with double100 and reads x87 status before joining5362. The first
 source omitted the v predicate because decompiler output discarded its result.
-The selected `probe04` retains the natural `h<500.0 && v<100.0` predicate before
+The earlier `probe04` retains the natural `h<500.0 && v<100.0` predicate before
 the real shared sequence fallback. It reproduces those target instructions,
 without an artificial volatile read, unused temporary or synthetic padding.
 Both branches still publish the native input value. Original high-level reason
@@ -68,32 +68,77 @@ agree: actions five conversion/one MT/eight deque/three atan2; attacks two
 conversion/19 deque/two atan2. Final movement policy is now40 native versus38
 source, superseding the previous40/29 result. The two missing physical copies
 are the duration tails for policy17/16, merged with policy18's20-bound/+5 tail.
-The selected source has47 RETs versus46 target; counts and token alignments
-are diagnostic only. Physical ownership, output merging and coordinate-compare
-scheduling differences remain across all three phases. No overall similarity
-percentage or partial exact credit is inferred.
+The selected source now has45 RETs versus46 target. Counts and token alignments
+are diagnostic only. No overall similarity percentage or partial exact credit
+is inferred.
 
-The native-helper diagnostic addresses action-window boundaries, sequence switch
-edges, independent attack draws and policy0 duration-call merging. All selected
-source revisions pass the same1056 cases:460 action windows,84 sequence edges,
-64 attack-call inputs,404 policy0 inputs and44 terminal-policy inputs. Policy0
-uses all101 real native selection rolls in four posture/distance bands. Native
-target execution confirms every seed/roll; RNG, deque, atan2 and conversion calls
-all execute original PE code without substituted results. Complete actor fields,
-RNG state, helper-call trace, stack cleanup and x87 stack checks agree. Vector
-SHA256:
-`c1fb30f56362c0f32e2ef47c4af1e4a5c582490fa57f951de890513211c0f1ee`.
-This is sampled execution evidence, not exhaustive behavior or canonical equality.
-Policies101/102, numeric windows and field widths are independently reviewed.
+## Native control flow and operand follow-up
 
-Next investigate actual compare operand order and output/shared-duration tails.
-Do not repeat visibility/FP/profile controls from earlier CPU attempts or expand
-an execution matrix without a specific ambiguity. Keep each trial and switch
-candidates after neutral controls; no register forcing or padding.
+Source `probe05..probe22` makes each change against a specific raw discrepancy:
+
+| Trial | Question and observed result |
+| --- | --- |
+|05|Use the target's coordinate-comparison operand order. Scalar load/flag forms change; no fresh ABI or gameplay names. |
+|06|Use the observed integer angle thresholds >=30/50/20 instead of equivalent >29/49/19. Native CMP/SETGE forms return. |
+|07|Keep the genuine conversion result in an int and consume its signed low WORD. Two extra MOVZX instructions disappear. |
+|08|Use real early exits in the first action switch. All1291 reachable first-stage instruction forms align, retaining target common join5362. External epilogue/table references still differ; this is not a canonical match. |
+|09|Retain actual unsigned probability/resource endpoints and peer-state <=95/>=140 guards. Native comparison immediates/branches return. |
+|10|Rejected: a mistaken shared-tail ownership inference changed descending input1 to0. Real MT execution and CFG ownership disprove it; public source never selected it. |
+|11|Put the grounded-opponent air branch first, following604F/6052. Both posture bodies and their distinct vertical outputs remain. |
+|12/14|Recover ordered rising/falling/velocity predicates from x87 flags, then the actual height-operand order. Native zero lifetimes and branch forms return. |
+|13|Express the ordered >=300 distance guards. Native TEST AH,1 forms return at all four gaps. |
+|15|Retain the actual repeated peer-height check at7401/7412 and its native return edge. This is a target-observed reread, not an inserted volatile dependency. |
+|16|Retain the actual near-air height operand order. The extra reversed comparison disappears. |
+|17|Express shared horizontal/upward policy214 output tails as ordinary labels. Native output-store sharing returns. |
+|18|Move approach assignment into the first passing window with later gotos. Entire canonical output is neutral against17; keep its receipt. |
+|19|Use the native early timer/unsigned RNG guards in policies1/2. Two separate epilogues disappear; no threshold/behavior change. |
+|20|Put h before the computed angle-request threshold. Native x87 load/flag order returns in both posture bodies. |
+|21|Fix a real equality error: ground resource attack gate is h>=180, not h>180. |
+|22|Retain the ordered >320 vertical guard from77E2..77F1. Selected complete output is16867 bytes; still nonexact. |
+|23|Unselected repeated approach-assignment control changes a few branch/layout bytes but still leaves its block out of line and two policy-duration calls merged. Not an acceptance or reason for further spelling search. |
+|24|Unselected independent posture-guard arrangement emits16815 bytes/116 selector sites; it loses three more native physical copies and does not reproduce the repeated-guard structure. Retain selected22 and the alternative receipt. |
+
+The full comparator still differs at+12E. Residual instruction forms are now
+limited to approach100 block placement, one shared facing-output tail, two
+merged policy17/16 duration-call tails and minor store/scheduler order. Source
+first-stage1291 and attack1254 instruction counts agree with the target; final
+movement1605 versus1619 differs. Counts do not establish full edge equality.
+The selected common policy join is6943 versus target6941. Original TU/compiler
+phase remains unknown; no standalone-object impossibility or LTCG-only claim
+is proved. Keep the source and receipts, park unchanged text/visibility/profile
+controls, and switch to another complete representative unless independent
+source/lifetime evidence reopens this residual.
+
+## Scoped execution and a real boundary regression
+
+The earlier selected sources passed1056 diagnostic inputs. The current public
+auditor runs **1134**: the same460 action windows/84 sequence edges/64 attack
+inputs/404 policy0 inputs/44 terminal policies, plus four h180 boundary inputs,
+two positive posture-tail inputs and72 ordered-velocity inputs. Policy0 still
+uses all101 real selection rolls in four posture/distance bands. Native target
+execution confirms every seed/roll, both descending-tail button/vertical outputs and visits to
+the exact64A3/692F instruction sites before comparing the candidate. No helper result is substituted.
+
+At h180, raw5BD3 loads float180 and compares it against h. TEST AH,41/JP
+rejects h<180 or unordered, retaining equality. The previous >180 source skipped
+real RNG/control paths. All four new boundary inputs reject pre-fix `probe20`,
+while selected22 passes1134/1134. This is a real behavior regression, not a
+codegen score. Its full actor fields, RNG state, call trace, stack cleanup and
+x87 stack checks agree. New vector SHA256:
+`7444616d3d2f7df51d9151b06d0ac4e76e78b8e41e35bd3b12fb5c5a28645de1`.
+
+The descending-input false lead is resolved by an explicit positive control:
+real seed54, h250 and selfY300/peerY0 reaches64A3/64A9 and publishes vertical1;
+selfY400/peerY100 reaches692F/6935 and publishes0. The attempted zero-output
+change was rejected, not a public correction. Private seed search receipts are
+bounded diagnostics; the two durable positive inputs remove any need to repeat
+the search. Velocity inputs target the specific ordered comparison question,
+including quiet NaN and signed finite velocities. Sampled execution remains
+separate from canonical equality and exhaustive behavior.
 
 ## Bounded follow-up receipts
 
-The native target has46 RETs; then-selected source has38. A single follow-up replaces
+The native target has46 RETs; the initial selected source had38. A single follow-up replaces
 early returns in the final movement-policy section with a shared ordinary exit
 label (`probe02`). The complete canonical output remains byte-for-byte identical
 to the earlier16419-byte payload above, with110 selector calls and38 RETs.
@@ -212,8 +257,10 @@ phase traversal and native execution recipes. Generated
 evidence is under the corresponding `build/` directory: raw disassembly/facts,
 full CFG and12 tables, callee/literal observations, attested call-view and logs,
 DB hashes, initial scope summary, retained-input hashes, native-tail diagnostic,
-probe00..probe04 payloads/reports, phase call-site partitions and formal-build/
-formal-paths plus formal-field-build/audit/paths receipts. The initial target-only receipt is historical; the public
+probe00..probe24 payloads/reports, phase call-site partitions and formal-build/
+formal-paths, formal-field and formal-refined build/audit/paths receipts.
+`probe10` is rejected; `probe18` is neutral; `probe23`/`probe24` are unselected. `formal-refined-paths-pinned.json`
+adds per-input instruction-site attestation for the two posture witnesses. The initial target-only receipt is historical; the public
 source/unit and current comparison above supersede its source-selected flag.
 No target bytes are patched. Earlier CPU and input sources, compiler flags,
 layouts, object units and relocation ledgers remain unchanged.

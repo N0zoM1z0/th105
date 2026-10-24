@@ -9,9 +9,10 @@ The fourteen-function cohort adds87251 code bytes; latest peer adds6351 and
 matches its first complete source. All fifteen roster slot50 policies now have
 complete source. Marisa7664/full7768 remains nonexact and parked after neutral
 controls. The next large representative is Marisa CPU slot58 `0x4B4070`: its
-complete source now compiles and passes1056 scoped native-helper inputs; the
-full16863-byte output remains nonexact at+12E. Final movement-policy call/tail
-structure is the next bounded question.
+complete source now compiles and passes1134 scoped native-helper inputs; the
+full16867-byte output remains nonexact at+12E. Native exits/ordered predicates
+and a real h180 equality error are recovered. Residual physical tail merging
+is recorded; select another complete representative unless new evidence appears.
 Required commit format:
 `gpt-6.1-sol: ...`.
 
@@ -68,10 +69,10 @@ accepted units after shared changes; aggregate claims require a cold
 
 ## Current bounded representative: Marisa CPU policy 0x4B4070
 
-[Complete source and comparison](MARISA_CPU_TARGET_2026_10_24.md) retains16229
+[Complete source and residual](MARISA_CPU_TARGET_2026_10_24.md) retains16229
 callable target bytes/4159 instructions/46 RETs/161 direct calls and16907 full
-target bytes. Selected full16863-byte payload remains nonexact at+12E:
-`80ad69479bc244484a234feea58aebd3af5e414e8fd3592b0655046d0b0d9d18`.
+target bytes. Selected full16867-byte payload remains nonexact at+12E:
+`b7872facbcbe0e9019026385d84694d52beb3e0d8eeecda5459b3411fda23127`.
 All eight destination/four index tables remain; no exact credit.
 
 ```sh
@@ -80,25 +81,26 @@ python3 scripts/audit-marisa-cpu-policy.py
 taskset -c 0 nice -n 10 python3 scripts/audit-marisa-cpu-policy-paths.py
 ```
 
-The canonical commands correctly return1; native-helper diagnostic returns0
-for1056 scoped inputs. Direct published WORD76A range reads restore target signed
-comparisons, initial constant registers and nine physical selector copies.
-Action/attack counts agree24/57; final movement policy is40 native versus38
-source. Source47 RETs versus46 target, not acceptance. The h500/v100 predicate
-in sequence205's5162 tail is now retained from raw instructions, superseding
-incomplete decompiler output. Coordinate comparison order, first-stage shared
-outputs and two merged20/+5 policy17/16 duration tails remain specific questions.
-A return-to-shared-exit trial was neutral in the prior16419-byte source phase;
-no unchanged visibility/FP/profile controls. The public execution audit rejects
-a generated wrong-output constant in145/1056 cases.
+Canonical commands correctly return1; scoped execution returns0 on1134 inputs.
+The new h180 cases reject all four pre-fix inputs; actual gate is >=180. Native
+seed54 positively pins grounded/airborne opponent tails to vertical1/0, rejecting
+a mistaken zero-output ownership inference. That failed experiment was never
+selected. Ordered velocity/height checks, angle producer/consumer widths,
+integer thresholds, explicit action exits and policy214 sharing now follow raw
+instructions. First-stage1291 and attack1254 instruction counts agree; this is
+not canonical equality. Current source has119/121 selector sites and45/46 RETs;
+policy0's17/16 duration calls still merge with18. Approach100 placement, one
+shared facing tail and minor output scheduling remain. Original TU/compiler
+context is unknown, with no proof that LTCG is required.
 
-Pointer-only views, offsets, numeric policies and helper declarations remain;
-no callee implementation/full-owner layout claim. Raw target/slot58 cell6C45DC
-and read-only Ghidra attestation are documented. Original TU/compiler phase is
-unknown. Earlier accepted sources, flags, layouts and relocation maps remain
-unchanged. This root is distinct from parked input4B9FA0. Source revisions and
-phase/execution/formal receipts remain under `.analysis/exact-first-marisa-cpu-20261024/`
-and its `build/` counterpart.
+Receipts cover probe00..probe24 changes. Approach-label18 is byte-neutral;
+repeated-assignment23 still does not recover block placement or missing calls;
+independent-posture24 loses three more physical copies and is unselected.
+Park unchanged controls and select another complete representative; reopen only
+with independent source/lifetime evidence. Prior visibility/FP/profile trials
+remain parked. No shared source/header/layout/flag or relocation changes.
+This root is distinct from input4B9FA0. Recipes/reports remain under
+`.analysis/exact-first-marisa-cpu-20261024/` and its `build/` counterpart.
 
 ## Exact family peer: Patchouli input policy 0x51EF60
 

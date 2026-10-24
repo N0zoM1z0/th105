@@ -16,8 +16,8 @@ namespace th105 {
 #define RNG(n) static_cast<unsigned>(selector_random_roll(n))
 #define PREPARE() if (I(0x180)==0) S(0x764)=0; else if (I(0x180)!=3 && S(0x764)==0) S(0x764)=static_cast<short>(selector_random_roll(100))
 #define RANGE(a,b) (S(0x764)>=(a) && S(0x764)<=(b))
-#define OUTPUT(button,x,y) { I(button)=2; I(0x6B4)=(x); I(0x6B8)=(y); }
-#define AIM(limit) (-(int)(short)(int)atan2_degrees(PEER(0xF0)-F(0xF0), (float)C(0x104)*(PEER(0xEC)-F(0xEC))) > (limit))
+#define OUTPUT(button,x,y) { I(button)=2; I(0x6B4)=(x); I(0x6B8)=(y); break; }
+#define AIM(limit) (-(int)(short)(int)atan2_degrees(PEER(0xF0)-F(0xF0), (float)C(0x104)*(PEER(0xEC)-F(0xEC))) >= (limit))
 void MarisaCpuPolicyView::update_cpu_action_policy()
 {
     U(0x724)=0; U(0x728)=0;
@@ -46,75 +46,75 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
     case 300:
         PREPARE();
         if (RANGE(10,90)) OUTPUT(0x6BC,0,0)
-        else if (RANGE(90,95)) { I(0x6B4)=C(0x104); I(0x6BC)=2; I(0x6B8)=1; }
-        else if (S(0x764)>=95) OUTPUT(0x6BC,C(0x104),0)
+        if (RANGE(90,95)) { I(0x6B4)=C(0x104); I(0x6BC)=2; I(0x6B8)=1; break; }
+        if (S(0x764)>=95) OUTPUT(0x6BC,C(0x104),0)
         break;
     case 301:
         PREPARE();
         if (RANGE(30,35)) OUTPUT(0x6BC,C(0x104),0)
-        else if (RANGE(35,65)) { I(0x6B4)=C(0x104); I(0x6BC)=2; I(0x6B8)=1; }
-        else if (RANGE(65,80) && S(0x482)>=400) OUTPUT(0x6C0,0,0)
-        else if (RANGE(80,95) && S(0x482)>=400 && PEER(0xF0)==0.0f) OUTPUT(0x6C0,0,1)
+        if (RANGE(35,65)) { I(0x6B4)=C(0x104); I(0x6BC)=2; I(0x6B8)=1; break; }
+        if (RANGE(65,80) && S(0x482)>=400) OUTPUT(0x6C0,0,0)
+        if (RANGE(80,95) && S(0x482)>=400 && PEER(0xF0)==0.0f) OUTPUT(0x6C0,0,1)
         break;
     case 302:
         PREPARE();
-        if (RANGE(0,25) && C(0x609)==0 && I(0x180)!=1 && S(0x482)>=200 && h<200.0) U(0x728)=0x200;
-        else if (RANGE(25,50) && S(0x482)>=400) U(0x728)=2;
-        else if (RANGE(50,75) && S(0x482)>=400) U(0x728)=0x20;
-        else if (RANGE(75,85) && S(0x482)>=400) U(0x728)=0x20000000;
-        else if (RANGE(95,100) && C(0x55A)>0) {
+        if (RANGE(0,25) && C(0x609)==0 && I(0x180)!=1 && S(0x482)>=200 && h<200.0) { U(0x728)=0x200; break; }
+        if (RANGE(25,50) && S(0x482)>=400) { U(0x728)=2; break; }
+        if (RANGE(50,75) && S(0x482)>=400) { U(0x728)=0x20; break; }
+        if (RANGE(75,85) && S(0x482)>=400) { U(0x728)=0x20000000; break; }
+        if (RANGE(95,100) && C(0x55A)>0) {
             switch (FRONT) { case 205: I(0x6D0)=2; break; case 206: I(0x6D0)=2; break; case 207: I(0x6D0)=2; break; case 211: I(0x6D0)=2; break; }
         }
         break;
     case 303:
         PREPARE();
         if (RANGE(30,35)) OUTPUT(0x6BC,C(0x104),0)
-        else if (RANGE(35,60)) { I(0x6B4)=C(0x104); I(0x6BC)=2; I(0x6B8)=1; }
-        else if (RANGE(65,75) && S(0x482)>=400) OUTPUT(0x6C0,0,0)
-        else if (RANGE(75,95) && S(0x482)>=400 && PEER(0xF0)==0.0f) OUTPUT(0x6C0,0,1)
-        else if (RANGE(95,100) && C(0x55A)>0 && FRONT==205 && I(0x180)==1) I(0x6D0)=2;
+        if (RANGE(35,60)) { I(0x6B4)=C(0x104); I(0x6BC)=2; I(0x6B8)=1; break; }
+        if (RANGE(65,75) && S(0x482)>=400) OUTPUT(0x6C0,0,0)
+        if (RANGE(75,95) && S(0x482)>=400 && PEER(0xF0)==0.0f) OUTPUT(0x6C0,0,1)
+        if (RANGE(95,100) && C(0x55A)>0 && FRONT==205 && I(0x180)==1) { I(0x6D0)=2; break; }
         break;
     case 304:
         PREPARE();
         if (RANGE(30,55) && S(0x482)>=400) OUTPUT(0x6C0,0,0)
-        else if (RANGE(55,65) && S(0x482)>=400 && PEER(0xF0)==0.0f) OUTPUT(0x6C0,0,1)
-        else if (RANGE(65,75) && S(0x482)>=400) U(0x728)=2;
-        else if (RANGE(75,80) && S(0x482)>=400) U(0x728)=0x20;
-        else if (RANGE(80,85) && S(0x482)>=400) U(0x728)=0x20000000;
-        else if (RANGE(95,100) && C(0x55A)>0) {
+        if (RANGE(55,65) && S(0x482)>=400 && PEER(0xF0)==0.0f) OUTPUT(0x6C0,0,1)
+        if (RANGE(65,75) && S(0x482)>=400) { U(0x728)=2; break; }
+        if (RANGE(75,80) && S(0x482)>=400) { U(0x728)=0x20; break; }
+        if (RANGE(80,85) && S(0x482)>=400) { U(0x728)=0x20000000; break; }
+        if (RANGE(95,100) && C(0x55A)>0) {
             switch (FRONT) { case 205: I(0x6D0)=2; break; case 206: I(0x6D0)=2; break; case 208: I(0x6D0)=2; break; case 211: I(0x6D0)=2; break; }
         }
         break;
     case 305:
         PREPARE();
-        if (I(0x180)==1 && h<90.0f && RANGE(30,65) && S(0x482)>=400) U(0x728)=0x400;
-        else if (RANGE(65,75) && S(0x482)>=400) U(0x728)=2;
-        else if (RANGE(75,80) && S(0x482)>=400) U(0x728)=0x20;
-        else if (RANGE(85,100) && C(0x55A)>0) {
+        if (I(0x180)==1 && h<90.0f && RANGE(30,65) && S(0x482)>=400) { U(0x728)=0x400; break; }
+        if (RANGE(65,75) && S(0x482)>=400) { U(0x728)=2; break; }
+        if (RANGE(75,80) && S(0x482)>=400) { U(0x728)=0x20; break; }
+        if (RANGE(85,100) && C(0x55A)>0) {
             switch (FRONT) { case 205: I(0x6D0)=2; break; case 206: I(0x6D0)=2; break; case 208: I(0x6D0)=2; break; case 211: I(0x6D0)=2; break; }
         }
         break;
     case 306:
         PREPARE();
-        if (RANGE(0,15) && F(0xF0)<PEER(0xF0)) { I(0x6BC)=1; I(0x6B4)=C(0x104); I(0x6B8)=0; }
-        else if (RANGE(15,25) && S(0x482)>=300) OUTPUT(0x6C0,0,AIM(29))
-        else if (RANGE(25,30) && S(0x482)>=400) U(0x728)=2;
-        else if (RANGE(30,40) && S(0x482)>=400) U(0x728)=0x20;
-        else if (RANGE(40,45) && S(0x482)>=300) OUTPUT(0x6C4,0,AIM(49))
-        else if (RANGE(95,100) && C(0x55A)>0 && FRONT==205 && I(0x180)==1) I(0x6D0)=2;
+        if (RANGE(0,15) && PEER(0xF0)>F(0xF0)) { I(0x6BC)=1; I(0x6B4)=C(0x104); I(0x6B8)=0; break; }
+        if (RANGE(15,25) && S(0x482)>=300) OUTPUT(0x6C0,0,AIM(30))
+        if (RANGE(25,30) && S(0x482)>=400) { U(0x728)=2; break; }
+        if (RANGE(30,40) && S(0x482)>=400) { U(0x728)=0x20; break; }
+        if (RANGE(40,45) && S(0x482)>=300) OUTPUT(0x6C4,0,AIM(50))
+        if (RANGE(95,100) && C(0x55A)>0 && FRONT==205 && I(0x180)==1) { I(0x6D0)=2; break; }
         break;
     case 307:
         PREPARE();
-        if (RANGE(0,15) && S(0x482)>=300) OUTPUT(0x6C0,0,AIM(29))
-        else if (RANGE(15,40) && S(0x482)>=400) OUTPUT(0x6C4,C(0x104),0)
-        else if (RANGE(40,50) && S(0x482)>=400) U(0x728)=2;
-        else if (RANGE(50,65) && S(0x482)>=400) U(0x728)=0x20;
-        else if (RANGE(95,100) && C(0x55A)>0 && FRONT==205 && I(0x180)==1) I(0x6D0)=2;
+        if (RANGE(0,15) && S(0x482)>=300) OUTPUT(0x6C0,0,AIM(30))
+        if (RANGE(15,40) && S(0x482)>=400) OUTPUT(0x6C4,C(0x104),0)
+        if (RANGE(40,50) && S(0x482)>=400) { U(0x728)=2; break; }
+        if (RANGE(50,65) && S(0x482)>=400) { U(0x728)=0x20; break; }
+        if (RANGE(95,100) && C(0x55A)>0 && FRONT==205 && I(0x180)==1) { I(0x6D0)=2; break; }
         break;
     case 308:
         PREPARE();
-        if (RANGE(0,35) && S(0x482)>=500) OUTPUT(0x6C0,0,AIM(19))
-        else if (RANGE(35,45) && S(0x482)>=600) U(0x728)=0x20000000;
+        if (RANGE(0,35) && S(0x482)>=500) OUTPUT(0x6C0,0,AIM(20))
+        if (RANGE(35,45) && S(0x482)>=600) { U(0x728)=0x20000000; break; }
         break;
     case 320:
         PREPARE();
@@ -123,27 +123,27 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
     case 321:
         PREPARE();
         if (RANGE(0,50)) OUTPUT(0x6BC,0,0)
-        else if (RANGE(50,55)) OUTPUT(0x6BC,C(0x104),0)
-        else if (RANGE(55,70)) { I(0x6B4)=C(0x104); I(0x6BC)=2; I(0x6B8)=1; }
-        else if (RANGE(70,75) && S(0x482)>=800) OUTPUT(0x6C4,0,0)
-        else if (RANGE(75,80) && S(0x482)>=600) OUTPUT(0x6BC,0,0)
-        else if (RANGE(80,85) && S(0x482)>=400 && PEER(0xF0)==0.0f) { I(0x6B4)=0; I(0x6BC)=2; I(0x6B8)=1; }
+        if (RANGE(50,55)) OUTPUT(0x6BC,C(0x104),0)
+        if (RANGE(55,70)) { I(0x6B4)=C(0x104); I(0x6BC)=2; I(0x6B8)=1; break; }
+        if (RANGE(70,75) && S(0x482)>=800) OUTPUT(0x6C4,0,0)
+        if (RANGE(75,80) && S(0x482)>=600) OUTPUT(0x6BC,0,0)
+        if (RANGE(80,85) && S(0x482)>=400 && PEER(0xF0)==0.0f) { I(0x6B4)=0; I(0x6BC)=2; I(0x6B8)=1; break; }
         break;
     case 322:
         PREPARE();
-        if (RANGE(50,75) && S(0x482)>=600) U(0x728)=2;
-        else if (RANGE(75,85) && S(0x482)>=400 && I(0x180)!=1) U(0x728)=0x20;
-        else if (RANGE(95,100) && C(0x55A)>0) {
+        if (RANGE(50,75) && S(0x482)>=600) { U(0x728)=2; break; }
+        if (RANGE(75,85) && S(0x482)>=400 && I(0x180)!=1) { U(0x728)=0x20; break; }
+        if (RANGE(95,100) && C(0x55A)>0) {
             switch (FRONT) { case 200: I(0x6D0)=2; break; case 202: I(0x6D0)=2; break; case 205: I(0x6D0)=2; break; case 206: I(0x6D0)=2; break; case 208: I(0x6D0)=2; break; case 211: I(0x6D0)=2; break; }
         }
         break;
     case 400: case 401:
         PREPARE();
         if (RANGE(0,10) && S(0x482)>=400) OUTPUT(0x6C4,0,0)
-        else if (RANGE(10,15) && S(0x482)>=600) OUTPUT(0x6C4,0,1)
-        else if (RANGE(15,20) && S(0x482)>=600) OUTPUT(0x6C4,C(0x104),0)
-        else if (RANGE(25,35) && S(0x482)>=400) U(0x728)=2;
-        else if (RANGE(95,100) && C(0x55A)>0) {
+        if (RANGE(10,15) && S(0x482)>=600) OUTPUT(0x6C4,0,1)
+        if (RANGE(15,20) && S(0x482)>=600) OUTPUT(0x6C4,C(0x104),0)
+        if (RANGE(25,35) && S(0x482)>=400) { U(0x728)=2; break; }
+        if (RANGE(95,100) && C(0x55A)>0) {
             switch (FRONT) {
             case 205: if (h<500.0 && v<100.0) { I(0x6D0)=2; break; }
             case 200: case 208: case 211: I(0x6D0)=2; break;
@@ -153,25 +153,25 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
     case 402:
         PREPARE();
         if (RANGE(0,10) && S(0x482)>=400) OUTPUT(0x6C4,0,0)
-        else if (RANGE(10,15) && S(0x482)>=600) OUTPUT(0x6C4,0,1)
-        else if (RANGE(15,20) && S(0x482)>=600) OUTPUT(0x6C4,C(0x104),0)
-        else if (RANGE(20,30) && S(0x482)>=400) U(0x728)=2;
-        else if (RANGE(30,35) && S(0x482)>=600) U(0x728)=0x20;
-        else if (RANGE(35,40) && S(0x482)>=600) U(0x728)=0x20000000;
+        if (RANGE(10,15) && S(0x482)>=600) OUTPUT(0x6C4,0,1)
+        if (RANGE(15,20) && S(0x482)>=600) OUTPUT(0x6C4,C(0x104),0)
+        if (RANGE(20,30) && S(0x482)>=400) { U(0x728)=2; break; }
+        if (RANGE(30,35) && S(0x482)>=600) { U(0x728)=0x20; break; }
+        if (RANGE(35,40) && S(0x482)>=600) { U(0x728)=0x20000000; break; }
         break;
     case 404: case 405: case 406:
         PREPARE();
         if (RANGE(0,15) && S(0x482)>=400) OUTPUT(0x6C4,0,1)
-        else if (RANGE(15,25) && S(0x482)>=400 && v<150.0f) U(0x728)=2;
-        else if (RANGE(30,35) && S(0x482)>=600 && v<100.0) U(0x728)=0x20;
-        else if (RANGE(35,50) && S(0x482)>=800 && v>100.0 && PEER(0xF0)<50.0) U(0x728)=0x20000000;
+        if (RANGE(15,25) && S(0x482)>=400 && v<150.0f) { U(0x728)=2; break; }
+        if (RANGE(30,35) && S(0x482)>=600 && v<100.0) { U(0x728)=0x20; break; }
+        if (RANGE(35,50) && S(0x482)>=800 && v>100.0 && PEER(0xF0)<50.0) { U(0x728)=0x20000000; break; }
         break;
     case 410: case 411:
         PREPARE();
-        if (RANGE(15,25) && S(0x482)>=400 && v<150.0f) U(0x728)=2;
-        else if (RANGE(30,35) && S(0x482)>=600 && v<100.0) U(0x728)=0x20;
-        else if (RANGE(35,50) && S(0x482)>=800 && v>100.0 && PEER(0xF0)<50.0) U(0x728)=0x20000000;
-        else if (RANGE(95,100) && C(0x55A)>0) {
+        if (RANGE(15,25) && S(0x482)>=400 && v<150.0f) { U(0x728)=2; break; }
+        if (RANGE(30,35) && S(0x482)>=600 && v<100.0) { U(0x728)=0x20; break; }
+        if (RANGE(35,50) && S(0x482)>=800 && v>100.0 && PEER(0xF0)<50.0) { U(0x728)=0x20000000; break; }
+        if (RANGE(95,100) && C(0x55A)>0) {
             switch (FRONT) {
             case 205: if (h<500.0 && v<100.0) { I(0x6D0)=2; break; }
             case 200: case 208: case 211: I(0x6D0)=2; break;
@@ -180,20 +180,20 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
         break;
     case 414:
         PREPARE();
-        if (RANGE(15,25) && S(0x482)>=400 && v<150.0f) U(0x728)=2;
-        else if (RANGE(30,35) && S(0x482)>=600 && v<100.0) U(0x728)=0x20;
-        else if (RANGE(95,100) && C(0x55A)>0 && FRONT==207 && I(0x180)==1) I(0x6D0)=2;
+        if (RANGE(15,25) && S(0x482)>=400 && v<150.0f) { U(0x728)=2; break; }
+        if (RANGE(30,35) && S(0x482)>=600 && v<100.0) { U(0x728)=0x20; break; }
+        if (RANGE(95,100) && C(0x55A)>0 && FRONT==207 && I(0x180)==1) { I(0x6D0)=2; break; }
         break;
     case 416:
         PREPARE();
-        if (RANGE(20,25) && S(0x482)>=600 && PEER(0xF0)<50.0) U(0x728)=0x20000000;
-        else if (RANGE(95,100) && C(0x55A)>0 && FRONT==207 && I(0x180)==1) I(0x6D0)=2;
+        if (RANGE(20,25) && S(0x482)>=600 && PEER(0xF0)<50.0) { U(0x728)=0x20000000; break; }
+        if (RANGE(95,100) && C(0x55A)>0 && FRONT==207 && I(0x180)==1) { I(0x6D0)=2; break; }
         break;
     }
     // Common attack proposals; each RNG/deque evaluation remains independent.
     if (S(0x766)==0) {
         if (S(0x76C)==0) S(0x76C)=static_cast<short>(selector_random_roll(100));
-        if (((F(0xEC)>PEER(0xEC) && C(0x104)==-1) || (F(0xEC)<PEER(0xEC) && C(0x104)==1)) && (PEER_S(0x13C)<96 || PEER_S(0x13C)>139)) {
+        if (((F(0xEC)>PEER(0xEC) && C(0x104)==-1) || (F(0xEC)<PEER(0xEC) && C(0x104)==1)) && (PEER_S(0x13C)<=95 || PEER_S(0x13C)>=140)) {
 #define INPUT_DONE { I(0x6D0)=2; goto policy_dispatch; }
 #define TRY(condition,limit,sequence) if ((condition) && RNG(1000)<(limit) && FRONT==(sequence)) INPUT_DONE
 #define CONTROL_DONE(button,x,y) { I(button)=2; I(0x6B8)=(y); I(0x6B4)=(x); goto policy_dispatch; }
@@ -201,7 +201,7 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                 if (PEER(0xF0)==0.0f) {
                     if (h<=90.0f) {
                         if (RNG(1000)<75) CONTROL_DONE(0x6BC,0,0)
-                        if (RNG(1000)<10 && C(0x60B)==0 && S(0x482)<801) { U(0x728)=0x2000; goto policy_dispatch; }
+                        if (RNG(1000)<10 && C(0x60B)==0 && S(0x482)<=800) { U(0x728)=0x2000; goto policy_dispatch; }
                         if (C(0x55A)>0 && RNG(1000)<10 && FRONT==206) INPUT_DONE
                     }
                     if ((RNG(1000)<50 && h<250.0 && h>120.0) ||
@@ -219,18 +219,18 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                     }
                     if (h<=150.0f && RNG(1000)<50) CONTROL_DONE(0x6BC,0,0)
                     if (h<=200.0 && h>=90.0f && RNG(1000)<70) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=1; goto policy_dispatch; }
-                    if (h<=180.0f && h>=60.0 && RNG(1000)<51) CONTROL_DONE(0x6BC,0,1)
+                    if (h<=180.0f && h>=60.0 && RNG(1000)<=50) CONTROL_DONE(0x6BC,0,1)
                     if (h<520.0f && h>180.0f) {
-                        if (RNG(1000)<11 && S(0x482)>=400) { U(0x728)=0x20; goto policy_dispatch; }
-                        if (RNG(1000)<11 && S(0x482)>=400) { U(0x728)=0x40; goto policy_dispatch; }
+                        if (RNG(1000)<=10 && S(0x482)>=400) { U(0x728)=0x20; goto policy_dispatch; }
+                        if (RNG(1000)<=10 && S(0x482)>=400) { U(0x728)=0x40; goto policy_dispatch; }
                     }
                     if (S(0x76E)<=S(0x482)) {
-                        if (h>=120.0 && RNG(1000)<6) CONTROL_DONE(0x6C0,0,1)
-                        if (h>180.0f) {
-                            if (RNG(1000)<11) CONTROL_DONE(0x6C0,0,0)
-                            if (h>=240.0 && RNG(1000)<6) CONTROL_DONE(0x6C4,0,0)
-                            if (h<=300.0f && RNG(1000)<6) CONTROL_DONE(0x6C4,0,1)
-                            if (h>=400.0 && RNG(1000)<6) { I(0x6C4)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; }
+                        if (h>=120.0 && RNG(1000)<=5) CONTROL_DONE(0x6C0,0,1)
+                        if (h>=180.0f) {
+                            if (RNG(1000)<=10) CONTROL_DONE(0x6C0,0,0)
+                            if (h>=240.0 && RNG(1000)<=5) CONTROL_DONE(0x6C4,0,0)
+                            if (h<=300.0f && RNG(1000)<=5) CONTROL_DONE(0x6C4,0,1)
+                            if (h>=400.0 && RNG(1000)<=5) { I(0x6C4)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; }
                         }
                     }
                 } else {
@@ -254,10 +254,10 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                             if (v>200.0 && RNG(1000)<10 && S(0x482)>=600) { I(0x6C0)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; goto policy_dispatch; }
                             if (v<200.0 && RNG(1000)<10 && S(0x482)>=600) CONTROL_DONE(0x6C0,0,0)
                         }
-                        if (h<=150.0f && v<200.0 && RNG(1000)<6) CONTROL_DONE(0x6C4,0,1)
+                        if (h<=150.0f && v<200.0 && RNG(1000)<=5) CONTROL_DONE(0x6C4,0,1)
                     }
                 }
-            } else if (PEER(0xF0)!=0.0f) {
+            } else if (PEER(0xF0)==0.0f) {
                 if (C(0x55A)>0) {
                     TRY(h<150.0f,2,207)
                     if (h>150.0f && v<150.0f) {
@@ -265,24 +265,25 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                         TRY(true,5,211)
                     }
                 }
-                if (h<520.0f && h>180.0f && v<50.0 && RNG(1000)<6 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
-                if (h<200.0 && h>50.0 && v>150.0f && RNG(1000)<6 && S(0x482)>=600) { U(0x728)=0x20000000; goto policy_dispatch; }
-                if (h<=static_cast<float>(((0.0f<F(0xF4))+1)*120)) {
-                    int const rising=!(PEER(0xF0)<=F(0xF0) || F(0xF8)<=0.0f);
+                if (h<520.0f && h>180.0f && v<50.0 && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
+                if (h<200.0 && h>150.0f && v>150.0f && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20000000; goto policy_dispatch; }
+                if (h<=static_cast<float>(((F(0xF4)>0.0f)+1)*120)) {
+                    int const rising=(F(0xF0)<PEER(0xF0) && F(0xF8)>0.0f);
                     if (v<static_cast<float>(rising*150+100) && RNG(1000)<50) CONTROL_DONE(0x6BC,0,0)
                 }
-                if (h<=static_cast<float>((0.0f<F(0xF4))*120+180)) {
-                    int const falling=!(0.0f<=F(0xF8) || F(0xF0)<=PEER(0xF0));
-                    if (v<static_cast<float>((falling+2)*50) && RNG(1000)<75) CONTROL_DONE(0x6BC,0,1)
+                if (h<=static_cast<float>((F(0xF4)>0.0f)*120+180)) {
+                    int const falling=(F(0xF8)<0.0f && F(0xF0)>PEER(0xF0));
+                    if (v<static_cast<float>((falling+3)*50) && RNG(1000)<75) CONTROL_DONE(0x6BC,0,1)
                 }
-                if (h<=210.0 && h>=90.0f && v<80.0f && RNG(1000)<75) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; goto policy_dispatch; }
-                if (static_cast<float>((v<200.0)*180+120)<h && RNG(1000)<50) {
-                    I(0x6C0)=2;
-                    short const aim=static_cast<short>(static_cast<int>(atan2_degrees(PEER(0xF0)-F(0xF0),static_cast<float>(C(0x104))*(PEER(0xEC)-F(0xEC)))));
-                    I(0x6B4)=0; I(0x6B8)=-(int)aim>29;
+                if (S(0x76E)<=S(0x482)) {
+                    if (h>static_cast<float>((v<200.0)*180+120) && RNG(1000)<50) {
+                        I(0x6C0)=2;
+                        int const aim=static_cast<int>(atan2_degrees(PEER(0xF0)-F(0xF0),static_cast<float>(C(0x104))*(PEER(0xEC)-F(0xEC))));
+                        I(0x6B4)=0; I(0x6B8)=-static_cast<int>(static_cast<short>(aim))>=30;
+                    }
+                    if (h>250.0 && v<200.0 && RNG(1000)<20) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=0; }
+                    if (h<300.0f && v>200.0 && F(0xF0)>PEER(0xF0) && RNG(1000)<25) CONTROL_DONE(0x6C4,0,1)
                 }
-                if (h>250.0 && v<200.0 && RNG(1000)<20) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=0; }
-                if (h<300.0f && v>200.0 && PEER(0xF0)<F(0xF0) && RNG(1000)<25) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=0; }
             } else {
                 if (C(0x55A)>0) {
                     TRY(h<150.0f,2,207)
@@ -291,25 +292,24 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
                         TRY(true,5,211)
                     }
                 }
-                if (h<520.0f && h>180.0f && v<50.0 && RNG(1000)<6 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
-                if (h<200.0 && h>150.0f && v>150.0f && RNG(1000)<6 && S(0x482)>=600) { U(0x728)=0x20000000; goto policy_dispatch; }
-                if (h<=static_cast<float>(((0.0f<F(0xF4))+1)*120)) {
-                    int const rising=!(PEER(0xF0)<=F(0xF0) || F(0xF8)<=0.0f);
+                if (h<520.0f && h>180.0f && v<50.0 && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20; goto policy_dispatch; }
+                if (h<200.0 && h>50.0 && v>150.0f && RNG(1000)<=5 && S(0x482)>=600) { U(0x728)=0x20000000; goto policy_dispatch; }
+                if (h<=static_cast<float>(((F(0xF4)>0.0f)+1)*120)) {
+                    int const rising=(F(0xF0)<PEER(0xF0) && F(0xF8)>0.0f);
                     if (v<static_cast<float>(rising*150+100) && RNG(1000)<50) CONTROL_DONE(0x6BC,0,0)
                 }
-                if (h<=static_cast<float>((0.0f<F(0xF4))*120+180)) {
-                    int const falling=!(0.0f<=F(0xF8) || F(0xF0)<=PEER(0xF0));
-                    if (v<static_cast<float>((falling+3)*50) && RNG(1000)<75) CONTROL_DONE(0x6BC,0,1)
+                if (h<=static_cast<float>((F(0xF4)>0.0f)*120+180)) {
+                    int const falling=(F(0xF8)<0.0f && F(0xF0)>PEER(0xF0));
+                    if (v<static_cast<float>((falling+2)*50) && RNG(1000)<75) CONTROL_DONE(0x6BC,0,1)
                 }
-                if (S(0x76E)<=S(0x482)) {
-                    if (static_cast<float>((v<200.0)*180+120)<h && RNG(1000)<50) {
-                        I(0x6C0)=2;
-                        short const aim=static_cast<short>(static_cast<int>(atan2_degrees(PEER(0xF0)-F(0xF0),static_cast<float>(C(0x104))*(PEER(0xEC)-F(0xEC)))));
-                        I(0x6B4)=0; I(0x6B8)=-(int)aim>29;
-                    }
-                    if (h>250.0 && v<200.0 && RNG(1000)<20) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=0; }
-                    if (h<300.0f && v>200.0 && PEER(0xF0)<F(0xF0) && RNG(1000)<25) CONTROL_DONE(0x6C4,0,1)
+                if (h<=210.0 && h>=90.0f && v<80.0f && RNG(1000)<75) { I(0x6BC)=2; I(0x6B4)=C(0x104); I(0x6B8)=0; goto policy_dispatch; }
+                if (h>static_cast<float>((v<200.0)*180+120) && RNG(1000)<50) {
+                    I(0x6C0)=2;
+                    int const aim=static_cast<int>(atan2_degrees(PEER(0xF0)-F(0xF0),static_cast<float>(C(0x104))*(PEER(0xEC)-F(0xEC))));
+                    I(0x6B4)=0; I(0x6B8)=-static_cast<int>(static_cast<short>(aim))>=30;
                 }
+                if (h>250.0 && v<200.0 && RNG(1000)<20) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=0; }
+                if (h<300.0f && v>200.0 && F(0xF0)>PEER(0xF0) && RNG(1000)<25) { I(0x6C4)=2; I(0x6B8)=0; I(0x6B4)=0; }
             }
 #undef CONTROL_DONE
 #undef TRY
@@ -379,7 +379,7 @@ policy_dispatch:
                     if (P(83,89) && INTERIOR) DURATION((C(0x104)==1)+9,30,0)
                     WAIT(10)
                 }
-                if (h<300.0f) return;
+                if (!(h>=300.0f)) return;
                 if (P(0,2)) CHOOSE(4)
                 if (P(3,5)) CHOOSE(7)
                 if (P(6,8)) CHOOSE(5)
@@ -429,7 +429,7 @@ policy_dispatch:
                 if (P(55,95)) DURATION((C(0x104)==-1)+9,30,45)
                 WAIT(10)
             }
-            if (h<300.0f) return;
+            if (!(h>=300.0f)) return;
             if (P(0,6)) CHOOSE(4)
             if (P(7,12)) CHOOSE(7)
             if (P(13,20)) CHOOSE(5)
@@ -445,6 +445,7 @@ policy_dispatch:
             WAIT(10)
         }
         if (PEER(0xF0)==0.0f) {
+            if (PEER(0xF0)!=0.0f) return;
             if (h<=120.0) {
                 if (WALL) {
                     if (P(0,29) && v>200.0) DURATION((C(0x104)==-1)+9,30,15)
@@ -467,7 +468,7 @@ policy_dispatch:
                 if (P(35,39)) DURATION((C(0x104)==1)+9,30,10)
                 WAIT(10)
             }
-            if (h<300.0f) return;
+            if (!(h>=300.0f)) return;
             if (P(0,9)) DURATION((C(0x104)==-1)+9,15,15)
             if (P(10,19)) DURATION(11,30,30)
             if (P(20,24)) DURATION(12,30,20)
@@ -477,13 +478,13 @@ policy_dispatch:
         }
         if (h<=100.0) {
             if (P(0,5)) DURATION((C(0x104)==1)+9,30,0)
-            if (v<=320.0f) WAIT(60)
+            if (!(v>320.0f)) WAIT(60)
             if (F(0xF0)<PEER(0xF0)) {
                 if (P(5,9)) DURATION(12,30,15)
                 if (P(10,14)) DURATION(11,30,15)
                 if (P(15,24)) DURATION((C(0x104)==-1)+9,30,0)
             }
-            if (PEER(0xF0)<F(0xF0)) {
+            if (F(0xF0)>PEER(0xF0)) {
                 if (P(25,27)) DURATION(17,20,5)
                 if (P(28,31)) DURATION(16,20,5)
                 if (P(32,35)) DURATION(18,20,5)
@@ -493,7 +494,7 @@ policy_dispatch:
         }
         if (h<=240.0) {
             if (WALL) {
-                if (P(0,14) && PEER(0xF0)<F(0xF0)) DURATION(11,30,15)
+                if (P(0,14) && F(0xF0)>PEER(0xF0)) DURATION(11,30,15)
                 if (P(15,29) && v>150.0f) DURATION((C(0x104)==-1)+9,30,0)
             }
             if (P(30,34)) DURATION((C(0x104)==-1)+9,30,0)
@@ -508,7 +509,7 @@ policy_dispatch:
             if (P(4,5)) DURATION((C(0x104)==1)+9,30,0)
             WAIT(30)
         }
-        if (h<300.0f) return;
+        if (!(h>=300.0f)) return;
         if (P(0,4)) DURATION((C(0x104)==-1)+9,30,0)
         if (P(5,9)) DURATION((C(0x104)==1)+9,30,0)
         if (P(45,47)) DURATION(17,20,5)
@@ -519,12 +520,16 @@ policy_dispatch:
     }
     case 1:
         I(0x6B4)=1;
-        if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=10) goto wait60; }
-        return;
+        if (S(0x768)>0) return;
+        S(0x766)=0;
+        if (RNG(100)>10) return;
+        goto wait60;
     case 2:
         I(0x6B4)=-1;
-        if (S(0x768)<=0) { S(0x766)=0; if (RNG(100)<=10) goto wait60; }
-        return;
+        if (S(0x768)>0) return;
+        S(0x766)=0;
+        if (RNG(100)>10) return;
+        goto wait60;
     case 3: I(0x6B4)=C(0x104); I(0x6B8)=-1; break;
     case 4: I(0x6B4)=0; I(0x6B8)=-1; break;
     case 5: I(0x6B4)=1; I(0x6B8)=-1; break;
@@ -544,11 +549,15 @@ policy_dispatch:
     case 11: I(0x6B4)=C(0x104); I(0x6B8)=-1; I(0x6C8)=1; goto check214;
     case 12: I(0x6B4)=0; I(0x6B8)=-1; I(0x6C8)=1; goto check214;
     case 13: I(0x6B4)=-C(0x104); I(0x6B8)=-1; I(0x6C8)=1; goto check214;
-    case 14: I(0x6B4)=C(0x104); I(0x6B8)=0; I(0x6C8)=1; goto check214;
-    case 15: I(0x6B4)=-C(0x104); I(0x6B8)=0; I(0x6C8)=1; goto check214;
-    case 16: I(0x6B4)=C(0x104); I(0x6B8)=1; I(0x6C8)=1; goto check214;
-    case 17: I(0x6B4)=0; I(0x6B8)=1; I(0x6C8)=1; goto check214;
-    case 18: I(0x6B4)=-C(0x104); I(0x6B8)=1; I(0x6C8)=1;
+    case 14: I(0x6B4)=C(0x104); goto horizontal214;
+    case 15: I(0x6B4)=-C(0x104);
+    horizontal214:
+        I(0x6B8)=0; I(0x6C8)=1; goto check214;
+    case 16: I(0x6B4)=C(0x104); goto rising214;
+    case 17: I(0x6B4)=0; goto rising214;
+    case 18: I(0x6B4)=-C(0x104);
+    rising214:
+        I(0x6B8)=1; I(0x6C8)=1;
     check214:
         if (S(0x13C)==214) { if (S(0x768)<=0) goto expire_policy; }
         else S(0x766)=0;

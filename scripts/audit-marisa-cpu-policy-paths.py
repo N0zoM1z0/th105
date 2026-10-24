@@ -59,6 +59,28 @@ def cases():
         for timer in (0, 10):
             yield dict(base, tag="terminal-policies", policy=policy,
                        timer=timer, action=200)
+    # Native FCOMP180 / TEST AH,41 / JP includes equality in this gate.
+    for seed in (0, 1, 7, 42):
+        yield dict(base, tag="distance180", other_x=280., other_action=201,
+                   sequence=212, policy=0, timer=10, seed=seed)
+    # These two real streams reach different shared tails. Their vertical
+    # values must be attested before comparing the candidate.
+    for sy, oy, vertical, site in ((300., 0., 1, 0x4B64A3),
+                                   (400., 100., 0, 0x4B692F)):
+        yield dict(base, tag="descending-tail", self_y=sy, other_y=oy,
+                   sequence=212, other_action=201, policy=0, timer=10,
+                   seed=54, expected_descending_vertical=vertical,
+                   expected_descending_site=site)
+    # Resolve the ordered velocity predicates using specific exceptional inputs.
+    for sy, oy, distance in ((100., 250., 90.), (300., 100., 140.),
+                             (300., 0., 140.)):
+        for axis in ("vx_bits", "vy_bits"):
+            for bits in ("7fc00000", "40400000", "c0400000"):
+                for seed in (0, 1, 7, 42):
+                    yield dict(base, tag="velocity-predicates", self_y=sy,
+                               other_y=oy, other_x=100 + distance, sequence=212,
+                               other_action=201, policy=0, timer=10, seed=seed,
+                               **{axis: bits})
 
 
 def audit(object_path):
@@ -113,6 +135,8 @@ def audit(object_path):
                Probe(image, candidate, metadata_start - ADDRESS, address=ADDRESS))
     counts, digest, mismatches, examples = Counter(), hashlib.sha256(), 0, []
     for vector in cases():
+        for engine in engines:
+            engine.visited_root.clear()
         expected, actual = (engine.evaluate(vector) for engine in engines)
         counts[vector["tag"]] += 1
         digest.update(json.dumps(vector, sort_keys=True).encode())
@@ -120,6 +144,14 @@ def audit(object_path):
             roll = struct.unpack_from("<h", bytes.fromhex(expected["actor"]), 0x76A)[0]
             if roll != vector["expected_roll"]:
                 raise ValueError("native target did not confirm selection seed")
+        if "expected_descending_vertical" in vector:
+            actor = bytes.fromhex(expected["actor"])
+            vertical, = struct.unpack_from("<i", actor, 0x6B8)
+            button, = struct.unpack_from("<i", actor, 0x6C4)
+            if button != 2 or vertical != vector["expected_descending_vertical"]:
+                raise ValueError("native target did not confirm descending-tail ownership")
+            if vector["expected_descending_site"] not in engines[0].visited_root:
+                raise ValueError("native target did not visit the pinned descending tail")
         if expected != actual:
             mismatches += 1
             if len(examples) < 4:
