@@ -1443,3 +1443,5 @@ __real@44070000,0x006C4ADC,00000744,0,Hash-attested Alice CPU4F4B80 reads this e
 __real@44340000,0x006C4AD8,00003444,0,Hash-attested Alice CPU4F4B80 reads this exact float literal; docs/ALICE_CPU_TARGET_2026_10_24.md. New binding only; no exact claim.,literal
 __real@44110000,0x006C4AD0,00001144,0,Hash-attested Alice CPU4F4B80 reads this exact float literal; docs/ALICE_CPU_TARGET_2026_10_24.md. New binding only; no exact claim.,literal
 __real@43be0000,0x006C4AD4,0000be43,0,Hash-attested Alice CPU4F4B80 reads this exact float literal; docs/ALICE_CPU_TARGET_2026_10_24.md. New binding only; no exact claim.,literal
+__real@3ffb333340000000,0x006C4A00,000000403333fb3f,0,Hash-attested SakuyaObject4E8060 literal; docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal
+__real@3f666666,0x006C3E40,6666663f,0,Hash-attested SakuyaObject4E8060 literal; docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md. New binding only; no exact claim.,literal

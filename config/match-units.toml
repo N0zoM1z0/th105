@@ -21262,3 +21262,24 @@ rel32_targets = [
     "?at@AliceCpuSequenceView@th105@@QAEPAFI@Z=0x004399C0",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-sakuya-object-entry]
+kind = "probe"
+source = "src/characters/SakuyaObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_SakuyaObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a SakuyaObject slot3C root4E8060;6538 callable/full6868 bytes. Full source nonexact at13 bytes in803; native tables/tail and all helper counts agree. docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-sakuya-object-entry.functions]]
+address = "0x004E8060"
+symbol_base = "?initialize_action_entry@SakuyaObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?set_components@SakuyaEntryMotionView@th105@@QAEXMM@Z=0x00435160",
+    "SakuyaObjectEntryView_spawn_parented=0x004FCA60",
+    "SakuyaObjectEntryView_spawn_unparented=0x0064CCB0",
+    "?continue_action_980@SakuyaObjectEntryView@th105@@QAEXXZ=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]

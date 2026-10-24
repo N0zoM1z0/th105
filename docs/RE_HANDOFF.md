@@ -66,6 +66,16 @@ SHA. See `docs/ALICE_CPU_TARGET_2026_10_24.md`. All15 roster CPU owners now have
 selected complete source through five roots; this is source-only coverage.
 Keep the stack/shared-tail residual parked and select a new complete authored
 representative unless independent evidence opens it; exact totals unchanged.
+The next complete SakuyaObject slot3C initializer4E8060 now has6538 callable/
+full6868-byte source. Formal and independent cold comparisons retain only13
+unmasked differing bytes in803, first+2B3; all330 metadata/alignment bytes,
+all107 direct/25 virtual calls and the real596370 tail agree. Case-scoped
+payload lifetimes restore that tail; direct unsigned/float expressions retain
+native correction widths. A double capture preserves901's actual heading-read
+epoch:2 bounded native prefixes pass and old source fails the alias case.
+Two subsequent word-carrier/return-view controls are byte-neutral. Preserve
+this register/schedule residual and select another complete representative.
+See `docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md`; no exact credit is added.
 Commit format:
 `gpt-6.1-sol: ...`.
 
