@@ -28,7 +28,10 @@ Patchouli51CB40 now has complete reviewed source2686/full2736, nonexact at41
 frame/stack bytes. Operand-order and consumed-pair storage recover instruction
 forms; the pair-structure control is neutral and grouped storage regresses.
 Keep this local-layout residual parked and select another complete peer.
-Required commit format:
+Yukari5893C0 now has complete3934-byte-target source; full4244 remains nonexact
+against4260. All63 physical calls agree; addition-order and double-capture
+controls reproduce identical bytes. Preserve its physical-layout residual and
+continue another complete peer. Required commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -73,16 +76,40 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1541 / 1523 |
+| Mapped / source-present | 1542 / 1524 |
 | Accepted authored exact | 1397 functions / 327058 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 564 / 1532 |
+| Match units / configured functions | 565 / 1533 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: Patchouli slot5C control mode 0x51CB40
+## Current checkpoint: Yukari slot5C control mode 0x5893C0
+
+[Complete source and residual](YUKARI_CONTROL_MODE_2026_10_24.md) closes3934
+callable target bytes/1045 instructions/16 RETs/63 calls and all326 metadata/
+alignment bytes. Complete4244-byte source remains nonexact against4260 target,
+first+0xAE due the downstream return displacement:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-yukari-control-mode --compare --json
+python3 scripts/audit-yukari-control-mode.py
+```
+
+Both correctly return1. Selected canonical SHA256:
+`be2a46e3e11ae1500dd25b54d5634fb0d4d6ec631cedf52e5d9c5d8387badf04`.
+All63 physical calls now agree, including27 selectors/six spawns/19 virtual
+calls. Raw signed fields, peer168/170 distinction, zero-then-continue spawn,
+double(float0.33) coefficient, pre/post callback writes and retained ring
+packet are reviewed. One literal mapping is explicitly scoped to this unit;
+existing bindings remain unchanged. Mobility block placement, state store/Y
+load scheduling and radial stack slots remain. Label controls do not solve
+placement. Addition-order and double-capture controls are byte-neutral; park
+and switch peer. No exact credit, compiler search or runtime matrix. Full
+owner layout/TU remains unknown.
+
+## Parked representative: Patchouli slot5C control mode 0x51CB40
 
 [Complete source and residual](PATCHOULI_CONTROL_MODE_2026_10_24.md) closes2686
 callable target bytes/710 instructions/10 RETs/33 calls plus50 alignment/table

@@ -21182,3 +21182,23 @@ rel32_targets = [
     "lookup_orientation_cosine_quantized_abs=0x004063D0",
     "lookup_orientation_sine_quantized_abs=0x00406360",
 ]
+
+[units.exact-first-yukari-control-mode]
+kind = "probe"
+source = "src/characters/YukariControlMode.cpp"
+object = "build/match-units/ExactFirst_YukariControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Yukari slot5C target5893C0;3934 callable/full4260 target bytes. Selected full4244-byte source remains nonexact; all63 physical calls and native state/width/packet roles retained. Two neutral controls parked. docs/YUKARI_CONTROL_MODE_2026_10_24.md."
+
+[[units.exact-first-yukari-control-mode.functions]]
+address = "0x005893C0"
+symbol_base = "?update_control_mode@YukariControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+    "selector_random_roll=0x004067D0",
+    "YukariControlSequenceView_at=0x004399C0",
+    "YukariControlModeView_face_opponent_and_flip_horizontal_velocity=0x00478E60",
+    "YukariControlModeView_spawn_owned_object_via_manager=0x00465190",
+    "YukariControlModeView_dispatch_character_wave_handle=0x0045C030",
+]
+dir32_targets = ["__real@3fd51eb860000000=yukari_control_mode_health_ratio_033f_as_double"]
