@@ -21243,3 +21243,22 @@ rel32_targets = [
     "YuyukoControlModeView_spawn_owned_object_via_manager=0x00465190",
     "YuyukoControlModeView_dispatch_character_wave_handle=0x0045C030",
 ]
+
+[units.exact-first-alice-cpu-policy]
+kind = "probe"
+source = "src/characters/AliceCpuPolicy.cpp"
+object = "build/match-units/ExactFirst_AliceCpuPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Alice primary slot58 CPU root4F4B80;16354 callable/full17009 target bytes. Complete numeric/offset source, nonexact; all action/attack/policy tables independently reviewed. Original layout and compiler/TU context unknown. docs/ALICE_CPU_TARGET_2026_10_24.md."
+
+[[units.exact-first-alice-cpu-policy.functions]]
+address = "0x004F4B80"
+symbol_base = "?update_cpu_action_policy@AliceCpuPolicyView@th105@@QAEXXZ"
+rel32_targets = [
+    "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
+    "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?at@AliceCpuSequenceView@th105@@QAEPAFI@Z=0x004399C0",
+    "__ftol2_sse=0x0068A1A0",
+]

@@ -1,4 +1,4 @@
-# Alice CPU policy: bounded target and whole-source comparison
+# Alice CPU policy: complete source checkpoint, nonexact
 
 ## Observed target identity and complete boundary
 
@@ -70,8 +70,89 @@ Private bounded work is under
 `build/exact-first-alice-slot58-20261024/`. `raw.py`, `setup.py`, `phases.py`
 and `diagnose.py` reproduce target closure and complete-object diagnostics.
 These inputs and receipts are local working state, not committed artifacts.
-No source-present or exact credit is claimed at this boundary checkpoint.
+The first boundary-only checkpoint did not claim source or exact credit.
+The subsequent complete source selection below supersedes that phase.
 
 **Unknown:** original local names, full nominal owner layout, original TU,
 compiler phase and explanation for retained redundant probability checks.
 Compiler standalone/LTCG ownership is not established by this comparison.
+
+## Complete selected source: nonexact
+
+`src/characters/AliceCpuPolicy.cpp/.hpp` now supplies the complete numeric/offset
+candidate. It contains the real first-stage action dispatch, common attack
+proposals, all four posture pairs, policy0 probability bands, policies1..18,
+100 and default, native timer/command widths, inactive-opponent return and actual
+RNG/deque/angle declarations. There are no assembly bodies, copied bytes,
+padding, fake returns, invented helper behavior or full owner-layout claims.
+
+The formal manifest build and independent cold object both emit **16869 bytes
+versus17009 target**. Full canonical SHA256 is
+`8a05cfa0020973f731bc9950527ff7fdb4d1fa909f4246f4cd45a376439cdfde`.
+First mismatch is **+0x35 / 0x004F4BB5**, target10/source14: the first genuine
+integer-to-float temporary uses `[esp+10]` versus `[esp+14]`. Both frames are12
+bytes; no artificial local or ABI change is used to force reuse. This is not a
+missing-byte count or an exact match. `matches.csv` remains unchanged.
+
+Selected source retains all nine destination tables with counts
+18/6/5/5/7/7/7/7/21 and both217/101-byte remaps. Action helper counts match
+24 selector/7 deque/2 atan2/4 FTOL/1 MT; common attacks match57/13/1/1/0.
+The final policy emits30 physical selector sites versus37 native, and the whole
+body42 RETs versus48. Several equivalent duration/return tails merge. Counts
+are diagnostics, not semantic or canonical acceptance. Full comparison replays
+all callable and metadata relocations and requires complete length equality.
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py \
+  --unit exact-first-alice-cpu-policy --compare --json
+python3 scripts/audit-alice-cpu-policy.py
+taskset -c 0 nice -n 10 python3 scripts/audit-alice-cpu-policy-paths.py
+```
+
+The first two return1 with the recorded mismatch; the path diagnostic returns0.
+A cold object can be independently checked with `--object` on both audits.
+
+## Bounded source decisions and retained experiment receipts
+
+Every row compares a complete emitted candidate. None receives partial exact
+credit. Private frozen sources and generated canonical/report hashes remain
+under the paths recorded above.
+
+| Candidate | Evidence-backed question / result |
+| --- | --- |
+|family-control|Complete Marisa-shaped control16867; first+12E. Alice behavior is not inferred from this family control.|
+|actions-candidate|Independently restore Alice action windows, WORD timers, command724/728 distinction and sequence200..206 switches. All action helper/table counts return; caller is still a private mixed-family control.|
+|complete-v2|All three Alice phases are present. Two genuine air entries retain distinct proposal draws and merge the angle call. Emits16873, first+2 frame16 versus12. The44 bounded controls expose3 actual counterexamples.|
+|complete-v3|Correct the ground attack interval to h>=250 AND h<=400. Raw4F6934..6950 selects the <=400 path. The three real RNG streams now retain all17 draws, including the draw missed by v2. All44 controls pass; full16873 remains nonexact.|
+|complete-v4, unselected|Move the whole common angle expression into one source label. Frame12 returns, but one real physical proposal copy merges: attacks56 selectors versus57. Full16857, first+12E. Do not select it as a codegen improvement.|
+|probe05|Use the observed unsigned `<15/40/50/30/10/2/3` endpoints where native CMP/JAE retains them. Full16869; frame16 remains.|
+|probe06, unselected|Explicit first-stage exits test the same control-flow approach used for Marisa. Full16905, first+2; no helper-copy recovery. Preserve the receipt rather than assuming family codegen transfers.|
+|probe07, selected|Keep the live horizontal angle capture and evaluate the real vertical argument at the common call. The extra vertical temporary dies; frame12 returns. Full16869, first+35. All44 scoped controls pass.|
+
+**Observed source-specific details:** action301/304/308 producers use R200,
+other action producers R100; timer actions400/401/404..406 also produce R30 and
+increment signed WORD76C before checking76A. Action308 writes DWORD724 in its
+last two command windows. Action404..406 retains the target's repeated25..30
+window without deleting it. Sequence204 gates h<540f and206 h>320f. All final
+policy overlaps preserve the earlier passing branch; final modes101/102 are
+absent from this root. Common attack sequence accesses remain independent;
+falling/rising predicates retain their actual field read and FP ordering.
+
+The diagnostic executes44 inputs chosen for those ambiguities:13 action,
+19 policy-overlap and12 attack-order inputs. The original native MT, selector,
+checked deque, atan2 and FTOL2 all execute; no helper return is injected.
+Actor bytes, control/command words, RNG state, full helper argument/return trace,
+x87 control and real RET cleanup agree. Each selection seed is independently
+confirmed by the target. Native ground h400 streams must make17 selector calls
+before any source comparison. The old complete-v2 object fails3 of the same44
+inputs and is retained as a negative control. Vector SHA256:
+`0ab1c2e1a74fa3590066f0bd009f3b5ab741e4aad0a796ee7cb183799eee6fdf`.
+These scoped inputs do not establish complete gameplay equivalence.
+
+Four newly witnessed float bindings540/720/580/380 are added without changing
+existing bindings. Earlier sources, headers, flags, objects, accepted exact units
+and authored-origin denominator are unchanged. All15 roster CPU owners now have
+complete selected source through five roots (the shared root covers11 owners);
+this is source coverage, not exact coverage. No aggregate cold-exact claim is
+made. Preserve this local-stack/shared-tail residual and select another complete
+representative unless new target or compiler evidence justifies reopening it.

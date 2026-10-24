@@ -55,11 +55,17 @@ All15 slot5C owners now have complete selected source:9 exact ledger records,
 6 parked nonexact residuals. This cohort audit is not a new aggregate cold
 replay. Next choose a new complete medium/large authored representative;
 reopen parked controls only with new independent evidence. The next bounded
-representative is Alice CPU slot58 `4F4B80`: raw traversal closes4174 instructions,
-48 RETs, all nine destination/two remap tables and full17009-byte payload.
-Complete private family-control comparison is already recorded; independently
-reconstruct Alice action/attack/final-policy stages before source selection.
-See `docs/ALICE_CPU_TARGET_2026_10_24.md`; no source or exact credit yet.
+representative Alice CPU slot58 `4F4B80` now has complete selected16354-byte-target
+source/full16869 against17009. Raw traversal closes4174 instructions/48 RETs,
+all nine destination/two remap tables. The h250..400 correction restores a real
+RNG draw rejected by3 negative controls; all44 scoped native-helper inputs pass.
+Action/attack helper counts agree; policy duration copies remain30 versus37,
+with42/48 RETs and a temporary-slot mismatch+35 despite the restored12-byte
+frame. Formal and independent cold whole comparisons retain the same nonexact
+SHA. See `docs/ALICE_CPU_TARGET_2026_10_24.md`. All15 roster CPU owners now have
+selected complete source through five roots; this is source-only coverage.
+Keep the stack/shared-tail residual parked and select a new complete authored
+representative unless independent evidence opens it; exact totals unchanged.
 Commit format:
 `gpt-6.1-sol: ...`.
 
