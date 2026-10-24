@@ -39,7 +39,11 @@ select another complete peer. Sakuya4DD7E0 subsequently accepts1796 callable/
 all2116 emitted bytes in formal and independent cold builds. Fresh target review
 removes unsupported old stores/widths; descending timer cases and independently
 retained facing arms recover every byte. Continue the remaining same-slot peers;
-keep the recorded layout residuals parked. Required commit format:
+keep the recorded layout residuals parked. Yuyuko56C170 now accepts1653 callable/
+all1688 emitted bytes in formal and independent cold builds. Complete raw review
+retains movement continuation/return differences and the signed timer/burst
+packet family. Shared callback order and capacity operand ownership recover
+exactness after two focused corrections. Continue remaining peers. Commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -84,16 +88,41 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1544 / 1526 |
-| Accepted authored exact | 1398 functions / 328854 bytes |
+| Mapped / source-present | 1545 / 1527 |
+| Accepted authored exact | 1399 functions / 330507 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 566 / 1534 |
+| Match units / configured functions | 567 / 1535 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: exact Sakuya slot5C control mode 0x4DD7E0
+## Current checkpoint: exact Yuyuko slot5C control mode 0x56C170
+
+[Complete source and evidence](YUYUKO_CONTROL_MODE_2026_10_24.md) closes1653
+callable bytes/435 instructions/7 RETs/27 calls/one virtual CPU tail and all35
+alignment/table bytes. Formal and independent cold builds accept1688/1688:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-yuyuko-control-mode --compare --json
+python3 scripts/audit-yuyuko-control-mode.py
+```
+
+Both return0. Full canonical SHA256:
+`16a2e95625b1ac1f978f9615242d9e67472885c5e631a7254d0a4046a8f886bf`.
+The complete source independently retains edge motion continuation versus
+central return, state2 peer fallback, position-dependent725/726, signed timer
+modulo30 and identifier-specific capacity. The twelve-spawn loop consumes the
+actual three-float packet and captured RNG x/y; variant1/direction byte/wave13
+are preserved. Initial whole comparison exposes one duplicate callback and
+reversed capacity loads. Native branch order then count-left comparison make
+all62 relocations and the complete payload exact. A generated first-table
+negative fails+0x678. No shared bindings/headers, compiler changes or broad
+matrix. Full owner/TU and invalid-identifier behavior remain unknown. Origin
+subset46/1028598 retains its immutable73-root witness and all dispositions.
+Continue remaining independently reviewed peers; previous residuals stay parked.
+
+## Exact peer: Sakuya slot5C control mode 0x4DD7E0
 
 [Complete source and evidence](SAKUYA_CONTROL_MODE_2026_10_24.md) closes1796
 callable bytes/451 instructions/8 RETs/26 calls/four facing tails/one CPU tail

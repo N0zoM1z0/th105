@@ -61,13 +61,13 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1398)
+        self.assertEqual(len(matching), 1399)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1526)
+        self.assertEqual(len(implemented), 1527)
         root = next(row for row in functions if row["address"] == "0x00496540")
         self.assertEqual(root["status"], "implemented")
         self.assertEqual(root["match_percent"], "0.00")
@@ -81,15 +81,15 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(binder["match_percent"], "0.00")
         self.assertIn(binder["proposed_name"], implemented)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1398
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1399
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 566)
+        self.assertEqual(len(manifest["units"]), 567)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1534,
+            1535,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -1046,8 +1046,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 510)
-        self.assertEqual(sum(map(len, accepted.values())), 1398)
+        self.assertEqual(len(accepted), 511)
+        self.assertEqual(sum(map(len, accepted.values())), 1399)
         self.assertEqual(accepted["cross-v106a-animation-sprite-frame"], {"0x00436760"})
         self.assertEqual(accepted["cross-v106a-animation-auxiliary-render"], {"0x00434F30"})
         self.assertEqual(accepted["cross-v106a-sprite-render-luma-alpha"], {"0x006656E0"})
@@ -1775,9 +1775,9 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,398", markdown)
-        self.assertIn("Canonical exact authored bytes | 328,854", markdown)
-        self.assertIn("Source-present authored mappings | 1,526", markdown)
+        self.assertIn("Canonical exact functions | 1,399", markdown)
+        self.assertIn("Canonical exact authored bytes | 330,507", markdown)
+        self.assertIn("Source-present authored mappings | 1,527", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -2171,8 +2171,8 @@ class WorkflowToolingTests(unittest.TestCase):
             if rule["id"] == "roster-fighter-primary-vtable-authored-106a"
         )
         self.assertTrue(roster["skip_matching"])
-        self.assertEqual(roster["expected_count"], 47)
-        self.assertEqual(roster["expected_bytes"], 1_030_251)
+        self.assertEqual(roster["expected_count"], 46)
+        self.assertEqual(roster["expected_bytes"], 1_028_598)
         selected = self.origins.select(
             roster, self.validator.rows(ROOT / "config" / "functions.csv"), None
         )

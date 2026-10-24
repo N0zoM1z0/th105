@@ -2410,7 +2410,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0055BE70,authored_game,characters,authored,observed,roster-character-object-vtable-authored-106a
 0x0055D380,authored_game,characters,authored,observed,canonical-exact-authored
 0x0055D850,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
-0x0056C170,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x0056C170,authored_game,characters,authored,observed,canonical-exact-authored
 0x0056C810,authored_game,characters,authored,observed,canonical-exact-authored
 0x0056C840,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x0056D2A0,authored_game,characters,authored,observed,canonical-exact-authored

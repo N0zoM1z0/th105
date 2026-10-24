@@ -1543,3 +1543,4 @@ Patchouli_update_control_mode,0x0051CB40,function
 Yukari_update_control_mode,0x005893C0,function
 Suika_update_control_mode,0x005AC680,function
 Sakuya_update_control_mode,0x004DD7E0,function
+Yuyuko_update_control_mode,0x0056C170,function

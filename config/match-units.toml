@@ -21224,3 +21224,22 @@ dir32_targets = [
     "__real@c024000000000000=suika_control_mode_double_minus10",
     "__real@c008000000000000=suika_control_mode_double_minus3",
 ]
+
+[units.exact-first-yuyuko-control-mode]
+kind = "probe"
+source = "src/characters/YuyukoControlMode.cpp"
+object = "build/match-units/ExactFirst_YuyukoControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Yuyuko slot5C target56C170;1653 callable/full1688 payload bytes. Pointer-only views; independent edge continuation/central return, peer fallback, action725/726 and signed timer/burst packet review. docs/YUYUKO_CONTROL_MODE_2026_10_24.md."
+
+[[units.exact-first-yuyuko-control-mode.functions]]
+address = "0x0056C170"
+symbol_base = "?update_control_mode@YuyukoControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+    "selector_random_roll=0x004067D0",
+    "YuyukoControlSequenceView_at=0x004399C0",
+    "YuyukoControlModeView_face_opponent_and_flip_horizontal_velocity=0x00478E60",
+    "YuyukoControlModeView_spawn_owned_object_via_manager=0x00465190",
+    "YuyukoControlModeView_dispatch_character_wave_handle=0x0045C030",
+]
