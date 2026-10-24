@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Check angle/ordered857 H3 prefixes and852/855/856 shared fade exits.
+"""Check native angle, ordered-H3, fade-counter and movement-boundary prefixes.
 
 Execute actual atan2, FTOL and lookup instructions to the first spawn/advance.
 The mapped PE supplies zero-initialized lookup-table fixtures. No helper return,
 instruction or control-flow transfer is injected. This is a bounded diagnostic.
 Fade fixtures reach actual RET0 or the first animation call.
+Movement fixtures distinguish the original bounds-before-movement order.
 """
 from __future__ import annotations
 
@@ -48,6 +49,19 @@ def cases():
                 yield dict(action=action,parent_action=0,sequence=sequence,
                            angle=37.25,h3_bits=0,parent_hp=100,timer=1,
                            kind="fade",alpha=alpha)
+    for action in (816,857,900):
+        for sequence in (3,4):
+            for timer in (3,4):
+                for alpha in (29,30):
+                    yield dict(action=action,parent_action=0,sequence=sequence,
+                               angle=37.25,h3_bits=0,parent_hp=100,timer=timer,
+                               kind="effect_fade",alpha=alpha,phase=7)
+    for action,sequence in ((800,2),(801,1),(821,1),(902,4),(903,4)):
+        yield dict(action=action,parent_action=0,sequence=sequence,angle=37.25,
+                   h3_bits=0,parent_hp=100,timer=1,kind="movement",x_bits=float_bits(640.))
+    for x_bits in (float_bits(1379.5),float_bits(1380.5),0x7FC00000):
+        yield dict(action=801,parent_action=0,sequence=1,angle=37.25,
+                   h3_bits=0,parent_hp=100,timer=1,kind="movement",x_bits=x_bits)
 
 
 def execute(image,code,case):
@@ -74,6 +88,11 @@ def execute(image,code,case):
     put(PARENT+0x13E,"h",1)
     put(PARENT+0x174,"h",case["parent_hp"])
     put(PARAMETERS,"fffI",case["angle"],10.,1.,case["h3_bits"])
+    put(OWNER+0x184,"B",case.get("phase",0))
+    if case["kind"] == "movement":
+        put(OWNER+0xEC,"I",case["x_bits"])
+        put(OWNER+0xF4,"ff",1.75,-2.5)
+        put(OWNER+0x104,"B",1)
     put(TARGET+0xEC,"f",760.)
     put(TARGET+0xF0,"f",100.)
     put(STACK+0xFF00,"I",RETURN)
@@ -139,6 +158,11 @@ def audit(object_path):
         h3 = struct.unpack("<f",struct.pack("<I",case["h3_bits"]))[0]
         if case["kind"] == "fade":
             want = RETURN if case["alpha"] < 10 else 0x4351C0
+        elif case["kind"] == "effect_fade":
+            want = RETURN if case["timer"] >= 4 and case["alpha"] < 30 else 0x4351C0
+        elif case["kind"] == "movement":
+            x = struct.unpack("<f",struct.pack("<I",case["x_bits"]))[0]
+            want = RETURN if x > 1380.0 else 0x4351C0
         else:
             want = 0x4351C0 if case["action"] == 857 and not h3 <= 45 else 0x64CCB0
         if int(expected["boundary"],0) != want:
@@ -151,6 +175,24 @@ def audit(object_path):
                     expected["stack_delta"] != 4
                     or struct.unpack_from("<i",actor,0x330)[0] != 2):
                 raise ValueError("target fade retirement/RET0 contract changed")
+        if case["kind"] == "effect_fade":
+            actor = bytes.fromhex(expected["owner"])
+            alpha = case["alpha"]-30 if case["timer"] >= 4 and want != RETURN else case["alpha"]
+            phase = 0 if case["sequence"] == 4 and case["timer"] >= 4 else case["phase"]
+            if expected["calls"] or actor[0x113] != alpha or actor[0x184] != phase:
+                raise ValueError("target effect fade alpha/phase contract changed")
+        if case["kind"] == "movement":
+            actor = bytes.fromhex(expected["owner"])
+            actual_x,actual_y = struct.unpack_from("<ff",actor,0xEC)
+            wanted_x = x if want == RETURN else x+1.75
+            wanted_y = 100. if want == RETURN else 97. if case["action"] == 800 else 97.5
+            if (expected["calls"] or actual_y != wanted_y
+                    or (actual_x == actual_x and actual_x != wanted_x)
+                    or (actual_x != actual_x and wanted_x == wanted_x)):
+                raise ValueError("target movement/bounds load epoch changed")
+        if want == RETURN and (expected["stack_delta"] != 4
+                               or struct.unpack_from("<i",bytes.fromhex(expected["owner"]),0x330)[0] != 2):
+            raise ValueError("target retirement/RET0 contract changed")
         if want == 0x64CCB0 and (
                 expected["calls"] != ["0x406540","0x68a1a0","0x406360",
                                       "0x68a1a0","0x4063d0","0x68a1a0"]

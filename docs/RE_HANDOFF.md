@@ -1,22 +1,23 @@
 # TH10.5 reconstruction handoff
 
-Current bounded representative: **RemiliaObject slot28 update557690** now has
-complete17793-byte-target source/full18388-byte target payload. Formal and
-independent object-deleting cold builds select17832 bytes, nonexact+22,
-SHA256 `6866e295...`. All12 table lengths and199 remap bytes agree; all19
-position calls, six virtual calls and15 of16 direct-callee counts agree.
-Spawn remains28/29 and physical RETs26/28. The selected820 switch and855/856
-fade guards preserve real separate exits; direct826 unsigned-float arguments
-restore the observed correction width and remove extra float spills.22 native
-angle/ordered-H3/fade prefixes pass, including six real RET0s. The unordered
-negative control fails exactly NaN. These are scoped checks, not complete
-runtime equivalence. See [the full evidence and finite control table](REMILIA_OBJECT_UPDATE_2026_10_25.md).
+Current bounded representative: **RemiliaObject slot28 update557690** now uses
+independent source movement/fade/frame/retirement bodies and compiler-owned
+joins. Premature explicit source joins had folded801's bounds into821 and
+prevented816's real EBP=4 lifetime. Restoring independent bodies recovers both;
+800/801/810 and852/855/856 instruction sequences agree apart from branch
+layout. Formal and independent object-deleting cold builds reproduce full18360
+versus18388 target, SHA256 `89e5bd2e...`, still nonexact+22 with15330 unequal
+byte positions. The28-byte size gap is not a matching score.12 table lengths
+and199 remap bytes agree; spawn28/29 and RETs32/28 remain different.54 native
+angle/fade/movement prefixes pass, including13 real RET0s. Moving801's bounds
+after movement fails two negative-control inputs. See
+[the full evidence and incremental controls](REMILIA_OBJECT_UPDATE_2026_10_25.md).
 
-Next inspect801 heading/scale lifetime and816 angle/spawn block placement
-against raw target before another source trial. Global800 tail relocation,
-blanket local returns,855 label-only movement and852 shared-dispatch controls
-are recorded and unselected; do not repeat without new evidence.826's shared
-spawn suffix remains open. Keep prior parked initializers closed absent new
+Next inspect811's real minus-one lifetime and826's retained spawn suffix from
+fresh target evidence. The earlier globally shared-source label/return controls
+are closed in that context; the new independent-body experiment has actual
+opcode/register evidence and changes the CFG. Avoid naming or repeated
+constant-spelling trials. Keep prior parked initializers closed absent new
 evidence. Source-present1543/mapped1561; exact remains1403/359740 bytes.
 Use locked `scripts/repo-python`, serial CPU0/nice10; local CI is mandatory
 before every commit/push. IDA still has the wrong executable; use hash-attested

@@ -93,7 +93,7 @@ ambiguity and is not a large gameplay matrix.
 
 ## Reproduction and continuation
 
-### Selected branch/argument follow-up
+### Branch/argument checkpoint, b1c32b5
 
 The following complete-source controls were serial builds and whole-payload
 comparisons; no compiler flags, shared header or accepted binding changed.
@@ -110,7 +110,7 @@ comparisons; no compiler flags, shared header or accepted binding changed.
 |855/856 separate0/1 fade guards with real shared body | 17832 | 26 | retains distinct target-local RET; selected |
 |852 explicit switch/independent guards | 17836 | 26 | merges the fade body with855; unselected |
 
-The selected source naturally recovers820's signed-WORD dispatcher and its
+At b1c32b5, the source naturally recovers820's signed-WORD dispatcher and its
 separate local sequence1 fade RET. All19 position calls now agree. The two826
 spawn arguments use the observed direct unsigned-to-float conversion instead
 of a force-inlined float-return helper. This removes an extra consumed float
@@ -121,7 +121,7 @@ suffixes still merge into one site; no source/TU impossibility is established.
 855/856 keep the observed separate sequence0/1 alpha guards and genuine shared
 fade body. Label placement alone was neutral and is not a reusable recipe.
 
-Formal and independent object-deleting cold builds agree on the selected
+At b1c32b5, formal and independent object-deleting cold builds agree on the
 **17832-byte** normalized payload, SHA256
 `6866e295fb8ab78fb38a890755f4bffba73d499100f1bc7cec9818cbed9bf679`.
 It remains nonexact at+22,556 bytes shorter than target. All15 other direct
@@ -146,6 +146,68 @@ Receipts include `controls.json`, each control's preview/inventory, plus
 `guard-control-paths-22.json`. The controls retain complete source in `.analysis/`.
 Do not repeat these label/retirement/dispatcher controls without new evidence.
 
+### Natural branch bodies and compiler-owned joins
+
+The next target-pinned opcode inventory isolated a concrete premature join:
+801's bounds check had been folded into821's common tail in the source object,
+while the target retained both physical copies. Its other differences were
+mostly GP register choices. No extra gameplay branch was inferred from that
+folding. The earlier post-spawn801 local-return spelling control is also
+byte-neutral; retain `exit801-preview.json` and do not repeat it.
+
+The follow-up restores independent source operations and allows VC8 to form
+its own shared machine tails. Every trial below compares the complete payload;
+flags, header, literal ledger and accepted units are unchanged.
+
+| Incremental control | Bytes | RETs | Observation |
+| --- | ---: | ---: | --- |
+| Five independent movement bodies | 18048 | 25 |801's171-instruction block, including GP registers, agrees after branch-destination-only diagnostic normalization |
+| Move early common frame/retirement labels after that change | 18132 | 25 | extra movement body in801; unselected |
+| Independent816/857/900 fade bodies | 18056 | 25 | naturally restores EBP=4 and all three EBP argument pushes in816 |
+| Inline each fade-counter exit | 18052 | 25 | moves the retained fade bodies out of816; unselected |
+| Independent animation-call exits | 18108 | 24 | restores800's actual movement/frame-call block and its location |
+| Independent real retirement exits | 18212 | 31 |800/801/810 instruction sequences agree; no explicit global retire join |
+| Separate852/855/8560/1 branches and natural opposite-polarity guards | 18360 | 32 | restores all three complete physical fade blocks; selected |
+
+The second/third branches in this table build on the five independent movement
+bodies; the inline-fade control is not the parent of the animation-exit trial.
+This is a changed CFG experiment, not a repetition of the first-source global
+label control. The earlier globally shared move/frame/retire nodes constrained
+register lifetimes before machine tail merging. Source-independent bodies
+recover801 and promote the real constant4 without a forced register, inert
+local, padding, assembly or made-up call. This is a bounded source hypothesis;
+no general matching recipe is accepted until a whole unit reaches exactness.
+
+The **current selected** full payload is18360 bytes, SHA256
+`89e5bd2eb0955bb9f55cac1c2f423f9b93b9663417f0295145485cf8137536c5`.
+Formal and independent object-deleting cold builds reproduce it. Source raw
+CRLF SHA256 is
+`b644e2ffbe1eb7ef89d7aab414e5c64354a0e65889c404ca8ffb247358de965d`;
+the header remains unchanged. The complete comparison is **nonexact at+22**,
+with15330 unequal byte positions over the full18388-byte target range. The
+28-byte payload size gap is a separate measurement. All12 table lengths and
+199 remap bytes agree; spawn remains28/29 and physical RETs32/28. Several
+complete case instruction sequences now agree when only branch destinations
+are normalized for diagnosis. Acceptance still uses every unmasked byte and
+strict relocation replay, including all destination entries.
+
+The native diagnostic has54 inputs: the preceding22,24 effect-fade inputs
+(816/857/900, sequences3/4, timer3/4, alpha29/30 and live phase7), and eight
+movement inputs across all five independently expanded paths. The movement
+cases include801 at X=1379.5/1380.5/quiet NaN with a real +1.75 movement.
+All54 pass in formal and cold objects;13 reach real RET0 and the rest stop at
+first spawn/animation entries. A negative source control moves only801's bounds
+check after movement and fails exactly the two finite boundary-order fixtures.
+The production-lookup and whole-runtime-equivalence limits above still apply.
+
+Receipts: `natural-controls.json`, each control's preview/inventory and opcode
+packet, `natural-formal.json`, `natural-formal-payload.json`,
+`natural-formal-paths.json`, `natural-cold.json`, `natural-cold-payload.json`,
+`natural-cold-paths.json`, and `movement-order-control-paths.json`, all in the
+same build scope. Private controls and the diagnostic case differ live in the
+corresponding `.analysis/` directory. The differ ignores jump destinations
+only to locate source-shape problems and never records a match score or waiver.
+
 Run serially, CPU0/nice10, through the locked repository Python:
 
 ```sh
@@ -156,7 +218,7 @@ scripts/repo-python scripts/audit-remilia-object-update-paths.py
 ```
 
 The build/comparison and full payload audit currently return1 for the recorded
-mismatch; the target and22-prefix audits return0. Receipts are under
+mismatch; the target and54-prefix audits return0. Receipts are under
 `build/exact-first-remilia-object-update-20261025/`: `first-preview.json`,
 `first-inventory.json`, `formal-first.json`, `formal-first-payload.json`,
 `formal-first-paths.json`, `guard-control-paths.json` and the Ghidra receipt.
@@ -165,10 +227,10 @@ directory. Readonly Ghidra was target-attested, temporary views rolled back
 and all nine primary database pins unchanged; its decompilation remains a
 hypothesis. IDA's open GUI still has the wrong target and was not used.
 
-Next inspect801's retained heading/scale lifetime and816's angle/spawn block
-placement against the target before another trial. The tested global-tail
-placement and852/855 dispatcher controls are closed;820 is resolved within
-this source and826's common spawn suffix remains open. Preserve a receipt and
-switch hypotheses after repeated identical output. No original TU/LTCG
-impossibility is established. Source-present increases by one; exact remains
+Next inspect811's minus-one lifetime and the retained826 spawn suffix using
+fresh raw evidence. The earlier global label, local-return and852 controls
+remain recorded in their original source context. The natural-body changes
+above now explain several previously different regions; avoid further naming
+or constant-spelling trials without independent evidence. No original TU/LTCG
+impossibility is established. Source-present remains1543 and exact remains
 1403 functions/359740 authored code bytes.
