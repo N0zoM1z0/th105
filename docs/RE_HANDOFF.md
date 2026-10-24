@@ -1,7 +1,21 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **Yukari Fighter action initializer58A4F0 now matches3455
-callable/all4381 emitted bytes; continue independently reviewed same-slot peers**.
+Current transition: **Patchouli Fighter action initializer51D650 now matches3132
+callable/all3868 emitted bytes; continue independently reviewed same-slot peers**.
+Formal and independent cold ordinary VC8 source reproduce full target SHA256
+`ec90d466...` with all136 relocations replayed. Raw CFG reaches all732 main
+instructions/3132 bytes and closes41 RETs/seven45AF40 tails/477830 default.
+Two remaps and a15-way direct card table retain71 destination words/447 index
+bytes. First complete source3792 versus3868 exposes414's incorrectly shared
+suffix. Actual horizontal/vertical consumption around clears, independent
+797/798 entries and580 publication order restore the complete target. The
+unconditional three-by-five card path and Y-before-height epoch are separately
+reviewed. No new behavior matrix or compiler flags. See
+[complete source/evidence/commands](PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance check passes; complete serial cold replay passes517 units/all1405
+accepted functions. Receipt: `build/exact-first-patchouli-action-entry-20261025/cold-all.log`.
+
+Yukari Fighter initializer58A4F0 remains exact3455 callable/full4381 bytes.
 Formal and independent cold ordinary VC8 source reproduce full target SHA256
 `e0a7822f...` with all151 relocations replayed. Complete raw CFG closes866
 reachable instructions/36 RETs/four45AF40 tails and477830 default; all57
@@ -47,7 +61,7 @@ controls, including a neutral facing-expression control and rejected real input/
 product captures; do not repeat them without new evidence. See
 [the full source/evidence/commands](REIMU_ACTION_INITIALIZATION_2026_10_25.md).
 
-Next review Patchouli primary slot3C51D650, candidate3132 bytes, currently
+Next review Suika primary slot3C5AD4A0, candidate2577 bytes, currently
 authored but source-missing. Re-attest its slot and independently reconcile
 its complete raw CFG/ABI before implementation; no blanket pattern transfer.
 Keep parked common/Reimu/Udonge residuals closed absent new target evidence.
@@ -102,10 +116,10 @@ mapped-section attestation; transaction rollback/readback and all nine primary
 project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
 The first full body has been compiled/compared as described above. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
-Source-present1547/mapped1566; exact1404/363195 bytes, units586. Use locked
+Source-present1548/mapped1567; exact1405/366327 bytes, units587. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
 mandatory local CI before every commit/push. IDA still has the wrong executable;
-use hash-attested raw bytes. Latest aggregate cold replay is the Yukari checkpoint.
+use hash-attested raw bytes. Latest aggregate cold replay is the Patchouli checkpoint.
 
 Exact-first reconstruction checkpoint: 2026-10-25. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,

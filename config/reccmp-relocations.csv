@@ -1582,3 +1582,17 @@ _yukari_action_entry_006c3440,0x006C3440,0000803e,0,Hash-attested JP1.06a Yukari
 _yukari_action_entry_006d6ee4,0x006D6EE4,0000c842,0,Hash-attested JP1.06a Yukari slot3C58A4F0 direct floating operand; exclusive new alias; docs/YUKARI_ACTION_INITIALIZATION_2026_10_25.md.,literal
 _yukari_action_entry_006c0ee0,0x006C0EE0,0000b443,0,Hash-attested JP1.06a Yukari slot3C58A4F0 direct floating operand; exclusive new alias; docs/YUKARI_ACTION_INITIALIZATION_2026_10_25.md.,literal
 _yukari_action_entry_006c57e8,0x006C57E8,00006644,0,Hash-attested JP1.06a Yukari slot3C58A4F0 direct floating operand; exclusive new alias; docs/YUKARI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006c3e98,0x006C3E98,000080c0,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006cd200,0x006CD200,00008040,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006c445c,0x006C445C,00003041,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006c3c6c,0x006C3C6C,000030c1,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006c3e94,0x006C3E94,9a99193f,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006c3e5c,0x006C3E5C,00001041,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006d6eec,0x006D6EEC,00002041,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006c0e80,0x006C0E80,000000a09999c93f,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006cd140,0x006CD140,0000003f,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006c3ff8,0x006C3FF8,00000841,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006cd190,0x006CD190,0000000000005940,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006cd1d8,0x006CD1D8,0000c040,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006c3c60,0x006C3C60,0000c0c0,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_patchouli_action_entry_006c4480,0x006C4480,cdcccc3e,0,Hash-attested JP1.06a Patchouli slot3C51D650 direct floating operand; exclusive alias; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md.,literal

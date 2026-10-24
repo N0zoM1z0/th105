@@ -21803,3 +21803,45 @@ dir32_targets = [
     "__real@43b40000=_yukari_action_entry_006c0ee0",
     "__real@44660000=_yukari_action_entry_006c57e8",
 ]
+
+
+[units.exact-first-patchouli-action-initialization]
+kind = "probe"
+source = "src/characters/PatchouliActionInitialization.cpp"
+object = "build/match-units/ExactFirst_PatchouliActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Patchouli primary slot3C51D650;3132 callable/full3868 bytes. Two remapped action tables and15-way direct card table; five-column level resets and captured Y-before-height calls independently reviewed. scripts/audit-patchouli-action-initialization.py; docs/PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-patchouli-action-initialization.functions]]
+address = "0x0051D650"
+symbol_base = "?initialize_action_entry@PatchouliActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?reset@PatchouliEntryScratchView@th105@@QAEXXZ=0x00435110",
+    "?zero_motion@PatchouliActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?emit_effect@PatchouliActionEntryView@th105@@QAEXFMMEH@Z=0x00435240",
+    "?at@PatchouliEntryCardDeque@th105@@QAEAAUPatchouliEntryCardSlot@2@I@Z=0x004399C0",
+    "?dispatch_sequence_window@PatchouliActionEntryView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?stage_surface_height_at_x@th105@@YIMPAVPatchouliActionEntryView@1@@Z=0x00435D60",
+    "?finalize_sequence_entry@PatchouliActionEntryView@th105@@QAEXH@Z=0x0045D110",
+    "?publish_texture_state@PatchouliActionEntryView@th105@@QAEXCF@Z=0x0045F560",
+    "?copy_action_word_176_to_174@PatchouliActionEntryView@th105@@QAEXXZ=0x0045B250",
+    "?dispatch_event@PatchouliActionEntryView@th105@@QAEXI@Z=0x004359F0",
+    "?initialize_common_action_entry@PatchouliActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+    "__real@c0800000=_patchouli_action_entry_006c3e98",
+    "__real@40800000=_patchouli_action_entry_006cd200",
+    "__real@41300000=_patchouli_action_entry_006c445c",
+    "__real@c1300000=_patchouli_action_entry_006c3c6c",
+    "__real@3f19999a=_patchouli_action_entry_006c3e94",
+    "__real@41100000=_patchouli_action_entry_006c3e5c",
+    "__real@41200000=_patchouli_action_entry_006d6eec",
+    "__real@3fc99999a0000000=_patchouli_action_entry_006c0e80",
+    "__real@3f000000=_patchouli_action_entry_006cd140",
+    "__real@41080000=_patchouli_action_entry_006c3ff8",
+    "__real@4059000000000000=_patchouli_action_entry_006cd190",
+    "__real@40c00000=_patchouli_action_entry_006cd1d8",
+    "__real@c0c00000=_patchouli_action_entry_006c3c60",
+    "__real@3ecccccd=_patchouli_action_entry_006c4480",
+]
