@@ -35,7 +35,11 @@ continue another complete peer. Suika5AC680 now has complete3292-byte-target
 source/full3564 against3568. Both real tails and the final backward store edge
 are reviewed; byte255 fixes a decrement form but constant promotion/shared
 callback layout remains nonexact. Keep this finite experiment checkpoint and
-select another complete peer. Required commit format:
+select another complete peer. Sakuya4DD7E0 subsequently accepts1796 callable/
+all2116 emitted bytes in formal and independent cold builds. Fresh target review
+removes unsupported old stores/widths; descending timer cases and independently
+retained facing arms recover every byte. Continue the remaining same-slot peers;
+keep the recorded layout residuals parked. Required commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -80,8 +84,8 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1543 / 1525 |
-| Accepted authored exact | 1397 functions / 327058 bytes |
+| Mapped / source-present | 1544 / 1526 |
+| Accepted authored exact | 1398 functions / 328854 bytes |
 | Provisional authored byte denominator | 2136806 |
 | Match units / configured functions | 566 / 1534 |
 
@@ -89,7 +93,31 @@ These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: Suika slot5C control mode 0x5AC680
+## Current checkpoint: exact Sakuya slot5C control mode 0x4DD7E0
+
+[Complete source and evidence](SAKUYA_CONTROL_MODE_2026_10_24.md) closes1796
+callable bytes/451 instructions/8 RETs/26 calls/four facing tails/one CPU tail
+and all320 table bytes. Formal and independent cold builds accept2116/2116:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-sakuya-control-mode --compare --json
+python3 scripts/audit-sakuya-control-mode.py
+```
+
+Both return0. Full canonical SHA256:
+`7e064ea6ed9ee825d5e4bd7f2ae47810e9acf3446d8f44d12f43fa0ce865ce9f`.
+The existing unselected probe is replaced after full raw review: no4A8/4AC
+writes, double3/12/60, true callback/state/tail order and pointer-only ABI views.
+First full source narrows differences to timer case ordering and facing-arm
+placement. Descending cases recover native timer blocks; independently retained
+facing arms recover the complete payload without shaping code or profile changes.
+All61 relocations replay; a generated first-table addend negative fails+0x704.
+Only1796 callable bytes earn credit. No shared binding/header changes or broad
+matrix. Full owner layout/TU unknown. Origin subset47/1030251 retains its immutable
+73-root witness and all dispositions. Continue remaining independently reviewed
+slot5C peers; previous recorded residuals stay parked.
+
+## Parked representative: Suika slot5C control mode 0x5AC680
 
 [Complete source and residual](SUIKA_CONTROL_MODE_2026_10_24.md) closes3292
 callable target bytes/869 instructions/13 RETs/75 calls and both real tails,

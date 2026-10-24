@@ -17285,12 +17285,12 @@ source = "src/characters/SakuyaControlMode.cpp"
 object = "build/match-units/GptWeb_SakuyaControlMode.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Natural current-target +0x5C hypothesis retained as a probe. Canonical comparison diverges in the prologue: target creates a zero-valued EBP lifetime immediately after push ebp; current source does not. Do not promote until that source lifetime is explained naturally."
+notes = "Complete JP1.06a Sakuya slot5C target4DD7E0;1796 callable/full2116 payload bytes. Pointer-only calls; complete target state/peer/width/tail review. Descending timer case order and independent facing arms recover the full body. docs/SAKUYA_CONTROL_MODE_2026_10_24.md."
 [[units.gpt-web-sakuya-control-mode.functions]]
 address = "0x004DD7E0"
 symbol_base = "?update_control_mode@SakuyaControlModeView@th105@@QAEXXZ"
 rel32_targets = [
-  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "SakuyaControlSequenceView_at=0x004399C0",
   "?face_opponent_and_flip_horizontal_velocity@SakuyaControlModeView@th105@@QAEXXZ=0x00478E60",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
 ]

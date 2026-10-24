@@ -61,13 +61,13 @@ class WorkflowToolingTests(unittest.TestCase):
             functions = list(csv.DictReader(stream))
         self.assertEqual(len(functions), 4024)
         matching = [row for row in functions if row["status"] == "matching"]
-        self.assertEqual(len(matching), 1397)
+        self.assertEqual(len(matching), 1398)
         self.assertTrue(all(row["match_percent"] == "100.00" for row in matching))
         with (ROOT / "config" / "implemented.csv").open(
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1525)
+        self.assertEqual(len(implemented), 1526)
         root = next(row for row in functions if row["address"] == "0x00496540")
         self.assertEqual(root["status"], "implemented")
         self.assertEqual(root["match_percent"], "0.00")
@@ -81,7 +81,7 @@ class WorkflowToolingTests(unittest.TestCase):
         self.assertEqual(binder["match_percent"], "0.00")
         self.assertIn(binder["proposed_name"], implemented)
         self.assertEqual(
-            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1397
+            len(self.validator.rows(ROOT / "config" / "matches.csv")), 1398
         )
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
@@ -1046,8 +1046,8 @@ class WorkflowToolingTests(unittest.TestCase):
     def test_cold_replay_selects_only_accepted_exact_functions(self) -> None:
         units = self.manifest.load_manifest()["units"]
         accepted = self.exact_replay.accepted_functions(units)
-        self.assertEqual(len(accepted), 509)
-        self.assertEqual(sum(map(len, accepted.values())), 1397)
+        self.assertEqual(len(accepted), 510)
+        self.assertEqual(sum(map(len, accepted.values())), 1398)
         self.assertEqual(accepted["cross-v106a-animation-sprite-frame"], {"0x00436760"})
         self.assertEqual(accepted["cross-v106a-animation-auxiliary-render"], {"0x00434F30"})
         self.assertEqual(accepted["cross-v106a-sprite-render-luma-alpha"], {"0x006656E0"})
@@ -1775,9 +1775,9 @@ class WorkflowToolingTests(unittest.TestCase):
             f"Origin/boundary review pending | {len(functions) - len(authored) - len(excluded):,}",
             markdown,
         )
-        self.assertIn("Canonical exact functions | 1,397", markdown)
-        self.assertIn("Canonical exact authored bytes | 327,058", markdown)
-        self.assertIn("Source-present authored mappings | 1,525", markdown)
+        self.assertIn("Canonical exact functions | 1,398", markdown)
+        self.assertIn("Canonical exact authored bytes | 328,854", markdown)
+        self.assertIn("Source-present authored mappings | 1,526", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -2171,8 +2171,8 @@ class WorkflowToolingTests(unittest.TestCase):
             if rule["id"] == "roster-fighter-primary-vtable-authored-106a"
         )
         self.assertTrue(roster["skip_matching"])
-        self.assertEqual(roster["expected_count"], 48)
-        self.assertEqual(roster["expected_bytes"], 1_032_047)
+        self.assertEqual(roster["expected_count"], 47)
+        self.assertEqual(roster["expected_bytes"], 1_030_251)
         selected = self.origins.select(
             roster, self.validator.rows(ROOT / "config" / "functions.csv"), None
         )
