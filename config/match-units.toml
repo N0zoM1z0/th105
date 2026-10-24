@@ -21125,3 +21125,22 @@ rel32_targets = [
     "IkuControlModeView_dispatch_character_wave_handle=0x0045C030",
     "lookup_orientation_cosine_quantized_abs=0x004063D0",
 ]
+
+[units.exact-first-tenshi-control-mode]
+kind = "probe"
+source = "src/characters/TenshiControlMode.cpp"
+object = "build/match-units/ExactFirst_TenshiControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Tenshi slot5C source2973/full3268 target bytes; source full3252 remains nonexact due EBP constant promotion. Native state/health/timer/packet differences reviewed; two neutral controls parked. docs/TENSHI_CONTROL_MODE_2026_10_24.md."
+
+[[units.exact-first-tenshi-control-mode.functions]]
+address = "0x00649330"
+symbol_base = "?update_control_mode@TenshiControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+    "selector_random_roll=0x004067D0",
+    "TenshiControlSequenceView_at=0x004399C0",
+    "TenshiControlModeView_face_opponent_and_flip_horizontal_velocity=0x00478E60",
+    "TenshiControlModeView_spawn_owned_object_via_manager=0x00465190",
+]
+dir32_targets = ["__real@41900000=tenshi_control_mode_float18"]

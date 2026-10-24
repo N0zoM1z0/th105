@@ -18,7 +18,10 @@ so select another complete representative instead of repeating spelling trials.
 Iku's next complete slot5C representative62F450 now accepts2609 callable and
 all2916 emitted bytes after four focused corrections, formal and independent
 cold builds. Continue independently reviewed slot5C family peers; keep Marisa
-parked. Required commit format:
+parked. Tenshi649330 now has a complete reviewed2973-byte-target source;
+full3252 versus3268 remains nonexact after two byte-neutral controls. Its EBP
+constant-promotion residual is parked; select another complete same-slot peer.
+Required commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -63,16 +66,39 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1538 / 1520 |
+| Mapped / source-present | 1539 / 1521 |
 | Accepted authored exact | 1396 functions / 324774 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 561 / 1529 |
+| Match units / configured functions | 562 / 1530 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: Iku slot5C control mode 0x62F450
+## Current checkpoint: Tenshi slot5C control mode 0x649330
+
+[Complete source and residual](TENSHI_CONTROL_MODE_2026_10_24.md) closes2973
+callable target bytes/713 instructions/20 RETs/25 calls/one virtual slot58 tail
+and all295 metadata/alignment bytes. Complete source full3252 remains nonexact
+against3268 target bytes, first+0xA6 due downstream branch displacement:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-tenshi-control-mode --compare --json
+python3 scripts/audit-tenshi-control-mode.py
+```
+
+Both correctly return1. Selected canonical SHA256:
+`779c8af0d46764e6a8e1f13fee4e8dde6f82fc768fede6ecc0034c04b156f063`.
+Native EBP holds3 across three spawn packets, then240; source uses immediates
+and omits its save/12 restores. All physical helper/callback counts, repeated
+peer checks, inclusive health thresholds and independent phase checks agree.
+Byte-variant and unsigned EQ-state controls reproduce the exact same candidate;
+retain source and receipts, switch representative without more spelling trials.
+The new float18 mapping is explicitly scoped to this unit, leaving all earlier
+relocation bindings unchanged. No runtime matrix or new exact credit. Full
+owner layout/original TU and constant-promotion context remain unknown.
+
+## Exact representative: Iku slot5C control mode 0x62F450
 
 [Complete source and evidence](IKU_CONTROL_MODE_2026_10_24.md) closes2609
 callable bytes/710 instructions/11 RETs/37 calls and all307 metadata/alignment
