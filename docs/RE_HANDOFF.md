@@ -15,7 +15,10 @@ reviewed1771-byte source/full1788-byte payload, with only a nine-byte receiver
 schedule residual at+3CD. Its ordered facing predicate fixes four native NaN
 counterexamples;18 bounded prefixes pass. ABI/argument controls are neutral,
 so select another complete representative instead of repeating spelling trials.
-Required commit format:
+Iku's next complete slot5C representative62F450 now accepts2609 callable and
+all2916 emitted bytes after four focused corrections, formal and independent
+cold builds. Continue independently reviewed slot5C family peers; keep Marisa
+parked. Required commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -60,16 +63,44 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1537 / 1519 |
-| Accepted authored exact | 1395 functions / 322165 bytes |
+| Mapped / source-present | 1538 / 1520 |
+| Accepted authored exact | 1396 functions / 324774 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 560 / 1528 |
+| Match units / configured functions | 561 / 1529 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: Marisa slot5C control mode 0x4B8280
+## Current checkpoint: Iku slot5C control mode 0x62F450
+
+[Complete source and evidence](IKU_CONTROL_MODE_2026_10_24.md) closes2609
+callable bytes/710 instructions/11 RETs/37 calls and all307 metadata/alignment
+bytes. Formal and independent cold builds accept the entire2916-byte payload:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-iku-control-mode --compare --json
+python3 scripts/audit-iku-control-mode.py
+```
+
+Both return0. Full SHA256:
+`fc3ed17f652b11d6aa7f5b053fb32a87ed72f4665e5455820c41afe50682b135`.
+The first complete build already has the full2916-byte extent. Target-backed
+changes recover FADD doubling, native case order, period assignment order and
+counter-first x87 comparison. All98 relocations and four destination/two index
+tables are compared; a generated table negative fails at+0xA34. No shared
+header/flags/relocation change or broad execution matrix. The real unsigned
+RNG-minus3 conversion and uninitialized invalid-identifier defaults remain as
+observed; do not normalize them. Full owner layout/TU and nominal cosine
+return type remain unknown. Continue independently checked same-slot peers.
+The full origin census also repairs the stale nonmatching Fighter subset:
+49 roots/1034331 bytes after14 prior input peers plus Iku leave that selector.
+Immutable73-root pointer evidence and all dispositions remain unchanged.
+The prior14 labels are already canonical-exact-authored; only Iku's label
+changes now. Local CI also checks the actual selector count/sum, preventing
+silent maintenance drift.
+
+## Parked representative: Marisa slot5C control mode 0x4B8280
 
 [Complete source and receipt](MARISA_CONTROL_MODE_2026_10_24.md) closes1771
 callable bytes/442 instructions/eight RETs/26 calls/one slot58 virtual tail and

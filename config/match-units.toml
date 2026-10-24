@@ -21105,3 +21105,23 @@ rel32_targets = [
     "?at@MarisaCpuSequenceView@th105@@QAEPAFI@Z=0x004399C0",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-iku-control-mode]
+kind = "probe"
+source = "src/characters/IkuControlMode.cpp"
+object = "build/match-units/ExactFirst_IkuControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Iku slot5C root62F450;2609 callable/full2916 payload bytes. Pointer-only views; native branch order, unsigned RNG consumption, float packets and real double loop lifetimes. docs/IKU_CONTROL_MODE_2026_10_24.md."
+
+[[units.exact-first-iku-control-mode.functions]]
+address = "0x0062F450"
+symbol_base = "?update_control_mode@IkuControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+    "selector_random_roll=0x004067D0",
+    "IkuControlSequenceView_at=0x004399C0",
+    "IkuControlModeView_face_opponent_and_flip_horizontal_velocity=0x00478E60",
+    "IkuControlModeView_spawn_owned_object_via_manager=0x00465190",
+    "IkuControlModeView_dispatch_character_wave_handle=0x0045C030",
+    "lookup_orientation_cosine_quantized_abs=0x004063D0",
+]
