@@ -20837,3 +20837,34 @@ rel32_targets = [
     "YuyukoInputPolicyView_gate4942c0=0x004942C0",
     "YuyukoInputPolicyView_gate494450=0x00494450",
 ]
+
+[units.exact-first-yukari-input-policy]
+kind = "probe"
+source = "src/characters/YukariInputPolicy.cpp"
+object = "build/match-units/ExactFirst_YukariInputPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Yukari primary slot50 input policy58C2E0;6233 callable bytes/full6300-byte payload. Reviewed Sakuya-family changes with pointer-only views; no complete owner layout claim. docs/YUKARI_INPUT_POLICY_2026_10_24.md."
+
+[[units.exact-first-yukari-input-policy.functions]]
+address = "0x0058C2E0"
+symbol_base = "?dispatch_input@YukariInputPolicyView@th105@@UAEXXZ"
+rel32_targets = [
+    "is_y_at_or_below_stage_surface=0x00435DC0",
+    "YukariInputPolicyView_pop_sequence=0x0045DDA0",
+    "YukariInputPolicyView_pack_input=0x00464200",
+    "YukariInputPolicyView_reset_input=0x004633A0",
+    "YukariInputPolicyView_front_ready=0x0045D1B0",
+    "YukariInputPolicyView_finalize_command=0x00493D00",
+    "YukariInputPolicyView_command_window=0x00493D40",
+    "YukariInputSequenceView_at=0x004399C0",
+    "YukariInputPolicyView_gate493ac0=0x00493AC0",
+    "YukariInputPolicyView_gate493b40=0x00493B40",
+    "YukariInputPolicyView_gate493c50=0x00493C50",
+    "YukariInputPolicyView_gate493d90=0x00493D90",
+    "YukariInputPolicyView_gate58c170=0x0058C170",
+    "YukariInputPolicyView_gate4940e0=0x004940E0",
+    "YukariInputPolicyView_gate4941d0=0x004941D0",
+    "YukariInputPolicyView_gate4942c0=0x004942C0",
+    "YukariInputPolicyView_gate494450=0x00494450",
+]

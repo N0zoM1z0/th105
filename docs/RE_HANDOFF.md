@@ -2,9 +2,9 @@
 
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
-Suika `0x5AED00`, Youmu `0x53B410` and Yuyuko `0x56DEB0` cold-replay exact.
-The six-function cohort adds34710 code bytes; latest peer adds6180 after one
-actual call-argument correction. Complete Marisa7664/full7768 remains
+Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0` and Yukari `0x58C2E0`
+cold-replay exact. The seven-function cohort adds40943 code bytes; latest peer
+adds6233 and matches its first complete source. Complete Marisa7664/full7768 remains
 source-present, nonexact and parked after neutral controls.
 Required commit format:
 `gpt-6.1-sol: ...`.
@@ -51,14 +51,34 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1527 / 1509 |
-| Accepted authored exact | 1387 functions / 269624 bytes |
+| Mapped / source-present | 1528 / 1510 |
+| Accepted authored exact | 1388 functions / 275857 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 551 / 1519 |
+| Match units / configured functions | 552 / 1520 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Yukari input policy 0x58C2E0
+
+[Accepted peer/evidence](YUKARI_INPUT_POLICY_2026_10_24.md) closes1734
+instructions/26 RETs/seven tails and all16 table entries. Callable6233 and full
+6300 bytes/129 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-yukari-input-policy --compare --json
+python3 scripts/audit-yukari-input-policy.py
+```
+
+Full canonical SHA256:
+`6ad4c81e95ea54236fdcd3de48e1a8fa897f8f1a1d4deb83173f335138a9ef7d`.
+Existing58C170 gate, sparse215 selector, distinct query/action numbers, actual
+pre-action12C clears, double120.0 and query/resource order are independently
+reviewed. Generated-table negative fails at+185C. No compiler/source-shape
+controls; earlier accepted input and gate sources are unchanged. Continue the
+remaining complete peers while preserving Marisa's parked residual.
 
 ## Exact family peer: Yuyuko input policy 0x56DEB0
 

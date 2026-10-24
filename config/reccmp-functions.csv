@@ -1526,3 +1526,4 @@ Suika_dispatch_input_policy,0x005AED00,function
 Youmu_dispatch_input_policy,0x0053B410,function
 Marisa_dispatch_input_policy,0x004B9FA0,function
 Yuyuko_dispatch_input_policy,0x0056DEB0,function
+Yukari_dispatch_input_policy,0x0058C2E0,function
