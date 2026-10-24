@@ -1638,3 +1638,15 @@ _tenshi_action_entry_006c3d48,0x006C3D48,0000000000804640,0,Hash-attested JP1.06
 _tenshi_action_entry_006c66b0,0x006C66B0,e4380e3f,0,Hash-attested JP1.06a Tenshi slot3C64A0A0 direct floating operand; exclusive alias; docs/TENSHI_ACTION_INITIALIZATION_2026_10_25.md.,literal
 _tenshi_action_entry_006c3e70,0x006C3E70,0000000000005e40,0,Hash-attested JP1.06a Tenshi slot3C64A0A0 direct floating operand; exclusive alias; docs/TENSHI_ACTION_INITIALIZATION_2026_10_25.md.,literal
 _tenshi_action_entry_006c3c7c,0x006C3C7C,000070c1,0,Hash-attested JP1.06a Tenshi slot3C64A0A0 direct floating operand; exclusive alias; docs/TENSHI_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006c3b58,0x006C3B58,0000a0c0,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006cd1d8,0x006CD1D8,0000c040,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006c3e94,0x006C3E94,9a99193f,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006c4000,0x006C4000,0000be42,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006c12b0,0x006C12B0,00004041,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006c3e60,0x006C3E60,00008c41,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006cd140,0x006CD140,0000003f,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006c3e90,0x006C3E90,3333b33e,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006c0e80,0x006C0E80,000000a09999c93f,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006c3e9c,0x006C3E9C,cdcc0c3f,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006d6eec,0x006D6EEC,00002041,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_marisa_action_entry_006c3ea0,0x006C3EA0,00007041,0,Hash-attested JP1.06a Marisa slot3C4B89C0 direct floating operand; exclusive alias; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md.,literal

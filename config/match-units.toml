@@ -21930,3 +21930,39 @@ dir32_targets = [
     "__real@405e000000000000=_tenshi_action_entry_006c3e70",
     "__real@c1700000=_tenshi_action_entry_006c3c7c",
 ]
+
+
+[units.exact-first-marisa-action-initialization]
+kind = "probe"
+source = "src/characters/MarisaActionInitialization.cpp"
+object = "build/match-units/ExactFirst_MarisaActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Marisa primary slot3C4B89C0;2446 callable/full3034 payload. Actual scratch reset, low-byte landing gate, real603 packet and separately reviewed scaling/publication epochs. scripts/audit-marisa-action-initialization.py; docs/MARISA_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-marisa-action-initialization.functions]]
+address = "0x004B89C0"
+symbol_base = "?initialize_action_entry@MarisaActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?reset@MarisaEntryScratchView@th105@@QAEXXZ=0x00435110",
+    "?zero_motion@MarisaActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?has_crossed_stage_surface_while_descending@MarisaActionEntryView@th105@@QAEHXZ=0x005F9310",
+    "?spawn_owned_object@MarisaActionEntryView@th105@@QAEHHMMEHPAMH@Z=0x00465190",
+    "?face_opponent_and_flip_horizontal_velocity@MarisaActionEntryView@th105@@QAEXXZ=0x00478E60",
+    "?dispatch_character_wave_handle@MarisaActionEntryView@th105@@QAEXI@Z=0x0045C030",
+    "?initialize_common_action_entry@MarisaActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+    "__real@c0a00000=_marisa_action_entry_006c3b58",
+    "__real@40c00000=_marisa_action_entry_006cd1d8",
+    "__real@3f19999a=_marisa_action_entry_006c3e94",
+    "__real@42be0000=_marisa_action_entry_006c4000",
+    "__real@41400000=_marisa_action_entry_006c12b0",
+    "__real@418c0000=_marisa_action_entry_006c3e60",
+    "__real@3f000000=_marisa_action_entry_006cd140",
+    "__real@3eb33333=_marisa_action_entry_006c3e90",
+    "__real@3fc99999a0000000=_marisa_action_entry_006c0e80",
+    "__real@3f0ccccd=_marisa_action_entry_006c3e9c",
+    "__real@41200000=_marisa_action_entry_006d6eec",
+    "__real@41700000=_marisa_action_entry_006c3ea0",
+]

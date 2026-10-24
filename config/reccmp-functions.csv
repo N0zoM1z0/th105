@@ -1568,3 +1568,4 @@ Yukari_initialize_action_entry,0x0058A4F0,function
 Patchouli_initialize_action_entry,0x0051D650,function
 Suika_initialize_action_entry,0x005AD4A0,function
 Tenshi_initialize_action_entry,0x0064A0A0,function
+Marisa_initialize_action_entry,0x004B89C0,function
