@@ -1456,3 +1456,8 @@ __real@c034000000000000,0x006C4F88,00000000000034c0,0,Hash-attested IkuObject en
 __real@3f866666,0x006C4244,6666863f,0,Hash-attested TenshiObject entry657150 auxiliary width1.05f; docs/TENSHI_OBJECT_ENTRY_2026_10_24.md. New literal key only; no exact claim.,literal
 __real@be19999a,0x006C5CA0,9a9919be,0,Hash-attested SuikaObject entry5BD380 ordered sign predicate literal; docs/SUIKA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal
 __real@bdcccccd,0x006C4278,cdccccbd,0,Hash-attested SuikaObject entry5BD380 ordered sign predicate literal; docs/SUIKA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal
+__real@3fa47ae140000000,0x006C4700,00000040e17aa43f,0,Hash-attested MarisaObject entry4C8050 literal; docs/MARISA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal
+__real@40900000,0x006C3EA8,00009040,0,Hash-attested MarisaObject entry4C8050 literal; docs/MARISA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal
+__real@3fe66666,0x006C46F8,6666e63f,0,Hash-attested MarisaObject entry4C8050 literal; docs/MARISA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal
+__real@41b00000,0x006C3D58,0000b041,0,Hash-attested MarisaObject entry4C8050 literal; docs/MARISA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal
+__real@c010000000000000,0x006C4648,00000000000010c0,0,Hash-attested MarisaObject entry4C8050 literal; docs/MARISA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal

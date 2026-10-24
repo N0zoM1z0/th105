@@ -21421,3 +21421,28 @@ rel32_targets = [
     "?continue_action_980@SuikaObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-marisa-object-entry]
+kind = "probe"
+source = "src/characters/MarisaObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_MarisaObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a MarisaObject slot3C4C8050;10126 callable/full10532 target. Nonexact full10536; first whole comparison corrects822 payload item. docs/MARISA_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-marisa-object-entry.functions]]
+address = "0x004C8050"
+symbol_base = "?initialize_action_entry@MarisaObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?set_components@MarisaEntryMotionView@th105@@QAEXMM@Z=0x00435160",
+    "?replace_auxiliary@MarisaObjectEntryView@th105@@QAEXF@Z=0x0045CD70",
+    "?replace_secondary@MarisaObjectEntryView@th105@@QAEXHMHHH@Z=0x00496420",
+    "MarisaObjectEntryView_spawn_parented=0x004FCA60",
+    "MarisaObjectEntryView_spawn_unparented=0x0064CCB0",
+    "MarisaObjectEntryView_spawn_owned=0x00465190",
+    "?continue_action_980@MarisaObjectEntryView@th105@@QAEXXZ=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]

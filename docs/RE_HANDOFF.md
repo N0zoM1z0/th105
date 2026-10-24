@@ -135,6 +135,17 @@ retain6664 unmasked differing bytes/length difference, first+80. Two subsequent
 pointer/return-view controls are byte-neutral. Park trig-pointer/register,
 loop-entry and999 scheduling residuals; select another complete representative.
 See `docs/SUIKA_OBJECT_ENTRY_2026_10_24.md`; exact unchanged.
+MarisaObject slot3C4C8050 now has complete10126-byte-target source/full10536
+against10532. All146 direct/43 virtual calls,45 RETs and real980 tail remain;
+200 remap bytes compare equal. Whole comparison corrects822's third payload
+item; that306-byte region now compares equal without partial credit. Real
+producer captures restore input-write conversion forms. Ten native RETs pass
+for821 H[0] selection,902 raw MT modulo and900 match-table range. H[2] selection
+fails3 negative controls; bounded RNG substitution fails1; wrong822 item changes
+one canonical displacement. Formal/cold payloads agree but retain5019 unmasked
+differences, first+80. Two resource-carrier controls are byte-neutral. Park
+register/constant/table-order/tail placement residuals; select another complete
+representative. See `docs/MARISA_OBJECT_ENTRY_2026_10_24.md`; exact unchanged.
 Commit format:
 `gpt-6.1-sol: ...`.
 
@@ -180,10 +191,10 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1553 / 1535 |
+| Mapped / source-present | 1556 / 1538 |
 | Accepted authored exact | 1401 functions / 338302 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 573 / 1541 |
+| Match units / configured functions | 576 / 1544 |
 
 The IkuObject checkpoint includes a fresh sequential cold
 `python3 scripts/verify-exact-units.py --all`:513 units/all1401 accepted functions
