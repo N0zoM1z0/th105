@@ -4,8 +4,9 @@ Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
 Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0`, Yukari `0x58C2E0`
 Iku `0x631340`, Komachi `0x5F7AB0`, Aya `0x618660`, Alice `0x4FACD0`
-and Reimu `0x494810` cold-replay exact. The twelve-function cohort adds74216
-code bytes; latest peer adds6952 and matches its first complete source. Complete
+Reimu `0x494810` and Udonge `0x5D2C70` cold-replay exact. The thirteen-function
+cohort adds80900 code bytes; latest peer adds6684 and matches its first complete
+source. Complete
 Marisa7664/full7768 remains
 source-present, nonexact and parked after neutral controls.
 Required commit format:
@@ -53,14 +54,35 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1533 / 1515 |
-| Accepted authored exact | 1393 functions / 309130 bytes |
+| Mapped / source-present | 1534 / 1516 |
+| Accepted authored exact | 1394 functions / 315814 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 557 / 1525 |
+| Match units / configured functions | 558 / 1526 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Udonge input policy 0x5D2C70
+
+[Accepted peer/evidence](UDONGE_INPUT_POLICY_2026_10_24.md) closes1919
+instructions/40 RETs/six tails and all10 table entries. Callable6684 and full
+6724 bytes/135 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-udonge-input-policy --compare --json
+python3 scripts/audit-udonge-input-policy.py
+```
+
+Full canonical SHA256:
+`20fb17b9a6f95c25aff1e7810bbd682c60f140bef07ba14f5d5df1e66eb9d31d`.
+Actual ground201/204 defaults, air200/202/205, tiers, repeated308, float90.0,
+three-float848 spawn packets and post-reset word7A6 clear are independently
+reviewed. Existing66-byte465190 spawn ABI is freshly checked and unchanged.
+Generated-table negative fails at+1A1C. No source correction or compiler controls;
+earlier accepted sources/mappings are unchanged. Continue Patchouli's complete
+slot50 peer; Marisa stays parked at its recorded placement residual.
 
 ## Exact family peer: Reimu input policy 0x494810
 
