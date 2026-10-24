@@ -21470,3 +21470,29 @@ rel32_targets = [
     "__ftol2_sse=0x0068A1A0",
     "__CIsqrt=0x0068A380",
 ]
+
+
+[units.exact-first-patchouli-object-entry]
+kind = "probe"
+source = "src/characters/PatchouliObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_PatchouliObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a PatchouliObject slot3C52D200;10831 callable/full11180 target. Nonexact trig-pointer/register and conversion scheduling residual after two neutral controls. docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-patchouli-object-entry.functions]]
+address = "0x0052D200"
+symbol_base = "?initialize_action_entry@PatchouliObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?set_components@PatchouliEntryMotionView@th105@@QAEXMM@Z=0x00435160",
+    "?stage_height@PatchouliObjectEntryView@th105@@QAEMXZ=0x00435D60",
+    "?replace_auxiliary@PatchouliObjectEntryView@th105@@QAEXF@Z=0x0045CD70",
+    "?replace_secondary@PatchouliObjectEntryView@th105@@QAEXFMHHH@Z=0x00496420",
+    "PatchouliObjectEntryView_spawn_parented=0x004FCA60",
+    "PatchouliObjectEntryView_spawn_unparented=0x0064CCB0",
+    "?continue_action_980@PatchouliObjectEntryView@th105@@QAEXXZ=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]

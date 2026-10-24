@@ -172,9 +172,22 @@ all ten new launcher/environment controls. A present-wrong-target negative
 control errors instead of skipping. Receipts are below
 `build/ci-public-checkout-20261024/`. Locked CPython3.11.14/Capstone4.0.2 full
 cold replay passes514 units/all1402 accepted functions (`locked-cold-all.log`),
-and final Alice/Iku complete-payload audits also pass11072/6551 bytes. Final
-local CI remains mandatory before commit. Patchouli Object52D200 raw inspection
-is private-only and resumes after the remote CI repair is verified.
+and final Alice/Iku complete-payload audits also pass11072/6551 bytes. Commit
+14424e6's remote run40102251773 succeeds. Final local CI remains mandatory
+before every commit; repository Python commands use the locked launcher.
+PatchouliObject slot3C52D200 now has complete10831-byte-target source/full11180.
+Formal and independent cold payloads agree, retain all164 direct/27 virtual calls,
+32 RETs, real980 tail and199 identical remap bytes, but remain nonexact at3127
+unmasked bytes, first+7F. Explicit unsigned/float conversion recovers three FADD
+widths; independently observed signed-WORD secondary key removes the extension.
+Eight native inputs pass:6 real RETs for rounded products/ordered equality and
+2 first-spawn loop fragments for unsigned subtraction. Three complete negative
+sources each fail2 inputs. Fresh-pointer and trig-return controls are byte-neutral;
+park854 pointer/register and conversion scheduling, then select another complete
+peer. See `docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md`. No exact credit is added.
+The two new literal keys leave all existing bindings unchanged; whole-object and
+explicit-binding scans of all514 accepted units find none affected. This is not
+a new aggregate cold replay; the cited locked aggregate predates this addition.
 Commit format:
 `gpt-6.1-sol: ...`.
 
@@ -220,10 +233,10 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1557 / 1539 |
+| Mapped / source-present | 1558 / 1540 |
 | Accepted authored exact | 1402 functions / 349017 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 577 / 1545 |
+| Match units / configured functions | 578 / 1546 |
 
 The latest sequential cold replay uses the locked repository environment:
 `scripts/repo-python scripts/verify-exact-units.py --all` passes514 units/all1402

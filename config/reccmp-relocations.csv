@@ -1463,3 +1463,5 @@ __real@41b00000,0x006C3D58,0000b041,0,Hash-attested MarisaObject entry4C8050 lit
 __real@c010000000000000,0x006C4648,00000000000010c0,0,Hash-attested MarisaObject entry4C8050 literal; docs/MARISA_OBJECT_ENTRY_2026_10_24.md. New key only; no exact claim.,literal
 __real@41c00000,0x006C4A90,0000c041,0,Hash-attested JP1.06a AliceObject50C1C0 loads exact float 24.0; docs/ALICE_OBJECT_ENTRY_2026_10_24.md.,literal
 __real@42080000,0x006C4A78,00000842,0,Hash-attested JP1.06a AliceObject50C1C0 loads exact float 34.0; docs/ALICE_OBJECT_ENTRY_2026_10_24.md.,literal
+__real@3f333333,0x006C3CD8,3333333f,0,Hash-attested JP1.06a PatchouliObject52D200 literal; docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md. New key only; root remains nonexact.,literal
+__real@3fe00000,0x006C4FB8,0000e03f,0,Hash-attested JP1.06a PatchouliObject52D200 literal; docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md. New key only; root remains nonexact.,literal
