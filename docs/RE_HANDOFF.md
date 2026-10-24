@@ -115,6 +115,16 @@ reviewed Object slot3C peers; keep previous residuals parked. A fresh sequential
 `verify-exact-units.py --all` passes513 cold units/all1401 accepted functions;
 full Iku payload audit also passes after that replay. Receipt:
 `build/exact-first-iku-object-entry-20261024/cold-all.log`.
+TenshiObject slot3C657150 now has complete8590-byte-target source/full8902.
+Formal and independent cold objects agree but remain nonexact at3672 unmasked
+bytes, first+6A7. All141 direct/26 virtual calls,24 RETs, real980 tail and198
+remap bytes remain. Consumed heading captures restore801/920 read epochs;
+inclusive50 direction guards are independently confirmed. Ten scoped native
+inputs complete real RETs; old heading source fails2 aliases and <=49 fails2
+actual50 rolls. Two pointer/return-view controls are byte-neutral. Preserve
+the trig-pointer/register and regional-scheduling residual; switch complete
+representative. See `docs/TENSHI_OBJECT_ENTRY_2026_10_24.md`. Exact unchanged;
+the Iku aggregate cold receipt above predates this nonexact source addition.
 Commit format:
 `gpt-6.1-sol: ...`.
 

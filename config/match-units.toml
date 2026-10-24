@@ -21375,3 +21375,28 @@ rel32_targets = [
     "?continue_action_980@IkuObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.exact-first-tenshi-object-entry]
+kind = "probe"
+source = "src/characters/TenshiObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_TenshiObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a TenshiObject slot3C root657150;8590 callable/full8902. Nonexact complete source; heading epoch/inclusive50 guard pass10 scoped native inputs. docs/TENSHI_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-tenshi-object-entry.functions]]
+address = "0x00657150"
+symbol_base = "?initialize_action_entry@TenshiObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?set_components@TenshiEntryMotionView@th105@@QAEXMM@Z=0x00435160",
+    "?stage_height@TenshiObjectEntryView@th105@@QAEMXZ=0x00435D60",
+    "?replace_auxiliary@TenshiObjectEntryView@th105@@QAEXF@Z=0x0045CD70",
+    "TenshiObjectEntryView_dispatch_character_wave_handle=0x0045C030",
+    "TenshiObjectEntryView_spawn_parented=0x004FCA60",
+    "TenshiObjectEntryView_spawn_unparented=0x0064CCB0",
+    "?continue_action_980@TenshiObjectEntryView@th105@@QAEXXZ=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]
