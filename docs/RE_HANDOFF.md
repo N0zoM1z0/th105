@@ -54,7 +54,13 @@ minus-one lifetime; final-case early return recovers the shared callback.
 All15 slot5C owners now have complete selected source:9 exact ledger records,
 6 parked nonexact residuals. This cohort audit is not a new aggregate cold
 replay. Next choose a new complete medium/large authored representative;
-reopen parked controls only with new independent evidence. Commit format:
+reopen parked controls only with new independent evidence. The next bounded
+representative is Alice CPU slot58 `4F4B80`: raw traversal closes4174 instructions,
+48 RETs, all nine destination/two remap tables and full17009-byte payload.
+Complete private family-control comparison is already recorded; independently
+reconstruct Alice action/attack/final-policy stages before source selection.
+See `docs/ALICE_CPU_TARGET_2026_10_24.md`; no source or exact credit yet.
+Commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
