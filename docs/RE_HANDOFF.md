@@ -2,9 +2,10 @@
 
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
-Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0` and Yukari `0x58C2E0`
-cold-replay exact. The seven-function cohort adds40943 code bytes; latest peer
-adds6233 and matches its first complete source. Complete Marisa7664/full7768 remains
+Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0`, Yukari `0x58C2E0`
+and Iku `0x631340` cold-replay exact. The eight-function cohort adds47245 code
+bytes; latest peer adds6302 and matches its first complete source. Complete
+Marisa7664/full7768 remains
 source-present, nonexact and parked after neutral controls.
 Required commit format:
 `gpt-6.1-sol: ...`.
@@ -51,14 +52,34 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1528 / 1510 |
-| Accepted authored exact | 1388 functions / 275857 bytes |
+| Mapped / source-present | 1529 / 1511 |
+| Accepted authored exact | 1389 functions / 282159 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 552 / 1520 |
+| Match units / configured functions | 553 / 1521 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Iku input policy 0x631340
+
+[Accepted peer/evidence](IKU_INPUT_POLICY_2026_10_24.md) closes1813
+instructions/36 RETs/nine tails and all11 table entries. Callable6302 and full
+6348 bytes/131 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-iku-input-policy --compare --json
+python3 scripts/audit-iku-input-policy.py
+```
+
+Full canonical SHA256:
+`5628641c925c65b24ce8feae7a7be22d6e680d8ffa83ee05de4dc5029931f7a3`.
+Ground204 default, air200/210/default early return, distinct query/action numbers,
+state300-to321, double120.0 and direction-negative417 are independently reviewed.
+Generated-table negative fails at+18A0. No compiler/source-shape controls;
+previous accepted source/header and mappings are unchanged. Continue the
+remaining complete peers while preserving Marisa's parked residual.
 
 ## Exact family peer: Yukari input policy 0x58C2E0
 
