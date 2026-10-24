@@ -1,22 +1,33 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **park complete CSelect constructor4231A0 with a13-byte
-argument-scheduling residual; select medium Fighter virtual491C40**. CSelect
-now has complete ordinary C++ source and formal/fresh independent whole-source
-comparisons. Main4247/4247, SHA256 `76c04f84...`, differs only at423D13..423D28
-while preparing the seven407160 arguments. All461 remote EH code and188 EH
-metadata bytes agree, including19 natural unwind actions. Class handle values,
-hidden texture results, native helper visibility and actual virtual dispatch
-restore the complete initializer/frame/call behavior. The final handle-parameter
-and real-wrapper controls reproduce the whole payload unchanged; close those
-questions and switch. This is source-present, not exact; original names/TU and
-compiler-phase context remain unknown. See [the complete evidence and commands](SELECT_CONSTRUCTOR_2026_10_25.md).
+Current transition: **retain complete Reimu action initializer491C40 and
+review its actual common-initializer tail477830 as the next representative**.
+Reimu primary slot3C now has complete ordinary C++ source. Raw CFG closes3785
+main bytes/960 reachable instructions/39 RETs/one477830 default tail; the full
+4738-byte payload includes63 destination words/696 index bytes and all alignment.
+Formal and independent fresh source4702, SHA256 `e14c2c80...`, remains nonexact
+at+0x28. Direct-call counts/table dimensions/index bytes agree. A scoped native
+check rejected28 missing-byte750 counterexamples; the corrected five source
+arms pass210 native scalar-state cases through actual RET0/zero-motion helper.
+The byte-direction declaration is supported by actual437C00 provider reads and
+an independently exact52-byte435240 forwarding witness. No root exact credit.
+Original TU/shared-tail/FP scheduling remains unknown. Preserve the complete
+controls, including a neutral facing-expression control and rejected real input/
+product captures; do not repeat them without new evidence. See
+[the full source/evidence/commands](REIMU_ACTION_INITIALIZATION_2026_10_25.md).
 
-A read-only census finds no other source-missing authored candidate between4096
-and17999 bytes. Next select `491C40`, provisional3785 bytes, RTTI-owned Fighter
-primary virtual, for fresh target/CFG/caller/ABI review before implementing.
-Do not treat that provisional size or primary-vtable ownership as a compiler
-boundary. Keep the CSelect residual parked absent new independent evidence.
+Next review `477830`, candidate4849 bytes, rather than assuming its authored
+classification or compiler extent from Reimu's tail. Establish its complete raw
+CFG, incoming/class ownership and ABI before promotion/implementation. It is
+currently unclassified and source-missing; a real common body may provide family
+context. No fake callers, compiler flag grid or fabricated register ABI.
+
+Complete CSelect constructor4231A0 remains parked: main4247/4247, SHA256
+`76c04f84...`,13 differences at423D13..423D28 in407160 argument preparation.
+All461 remote EH code/188 metadata bytes agree, including19 natural unwind
+actions. Both final parameter/wrapper controls are whole-payload neutral.
+This is source-present, not exact; preserve the recorded residual. See
+[the evidence](SELECT_CONSTRUCTOR_2026_10_25.md).
 
 Complete YoumuObject update53CEA0 remains parked. Its retained probe emits26784
 versus26576 target, SHA256 `73359b44...`, nonexact+8 at frame0x40/0x48.
@@ -60,7 +71,7 @@ mapped-section attestation; transaction rollback/readback and all nine primary
 project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
 The first full body has been compiled/compared as described above. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
-Source-present1544/mapped1563; exact remains1403/359740 bytes, units583. Use locked
+Source-present1545/mapped1564; exact remains1403/359740 bytes, units584. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
 mandatory local CI before every commit/push. IDA still has the wrong executable;
 use hash-attested raw bytes. Latest aggregate cold replay is the Udonge checkpoint.

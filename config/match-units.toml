@@ -21655,3 +21655,53 @@ dir32_targets = [
     "__real@4040000000000000=_select_ctor_double_32",
     "__real@4020000000000000=_select_ctor_double_8",
 ]
+
+
+[units.exact-first-reimu-action-initialization]
+kind = "probe"
+source = "src/characters/ReimuActionInitialization.cpp"
+object = "build/match-units/ExactFirst_ReimuActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Reimu primary slot3C491C40;3785 callable/full4738 payload with63 destination words and696 remap bytes. Natural source has complete scalar and declaration-only effect/control policy; nonexact. Whole diagnostic scripts/audit-reimu-action-initialization.py. docs/REIMU_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-reimu-action-initialization.functions]]
+address = "0x00491C40"
+symbol_base = "?initialize_action_entry@ReimuFinalizationView@th105@@UAEXXZ"
+rel32_targets = [
+    "?advance_secondary_event_effect_cycle@ReimuFinalizationView@th105@@QAEXXZ=0x00473F90",
+    "?copy_action_word_176_to_174@ReimuFinalizationView@th105@@QAEXXZ=0x0045B250",
+    "?dispatch_event@ReimuFinalizationView@th105@@QAEXI@Z=0x004359F0",
+    "?dispatch_sequence_window@ReimuFinalizationView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?emit_effect@ReimuFinalizationView@th105@@QAEXHMMEH@Z=0x00435240",
+    "?finalize_sequence_entry@ReimuFinalizationView@th105@@QAEXH@Z=0x0045D110",
+    "?initialize_common_action_entry@ReimuFinalizationView@th105@@QAEXXZ=0x00477830",
+    "?publish_layout_scalar@ReimuFinalizationView@th105@@QAEXM@Z=0x004359D0",
+    "?publish_texture_state@ReimuFinalizationView@th105@@QAEXCF@Z=0x0045F560",
+    "?spawn_owned_object@ReimuFinalizationView@th105@@QAEHHMMHHHH@Z=0x00465190",
+    "?zero_motion@ReimuFinalizationView@th105@@QAEXXZ=0x0045AF40",
+]
+dir32_targets = [
+    "__real@40900000=_reimu_entry_006c3ea8",
+    "__real@c0900000=_reimu_entry_006c3ea4",
+    "__real@3f4ccccd=_reimu_entry_006c3420",
+    "__real@3f000000=_reimu_entry_006cd140",
+    "__real@3fa66666=_reimu_entry_006c3c70",
+    "__real@4059000000000000=_reimu_entry_006cd190",
+    "__real@40c00000=_reimu_entry_006cd1d8",
+    "__real@42aa0000=_reimu_entry_006c4004",
+    "__real@40800000=_reimu_entry_006cd200",
+    "__real@c1200000=_reimu_entry_006c3b20",
+    "__real@41600000=_reimu_entry_006c3c64",
+    "__real@3f19999a=_reimu_entry_006c3e94",
+    "__real@42be0000=_reimu_entry_006c4000",
+    "__real@41200000=_reimu_entry_006d6eec",
+    "__real@41700000=_reimu_entry_006c3ea0",
+    "__real@42d20000=_reimu_entry_006c3ffc",
+    "__real@3fc99999a0000000=_reimu_entry_006c0e80",
+    "__real@3fd0000000000000=_reimu_entry_006c33a8",
+    "__real@41080000=_reimu_entry_006c3ff8",
+    "__real@4062000000000000=_reimu_entry_006c3cf8",
+    "__real@3e800000=_reimu_entry_006c3440",
+    "__real@41400000=_reimu_entry_006c12b0",
+]
