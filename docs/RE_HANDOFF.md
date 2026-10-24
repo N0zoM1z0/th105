@@ -146,6 +146,16 @@ one canonical displacement. Formal/cold payloads agree but retain5019 unmasked
 differences, first+80. Two resource-carrier controls are byte-neutral. Park
 register/constant/table-order/tail placement residuals; select another complete
 representative. See `docs/MARISA_OBJECT_ENTRY_2026_10_24.md`; exact unchanged.
+AliceObject slot3C50C1C0 now accepts10715 callable/all11072 emitted bytes in
+formal and independent cold builds, zero unmasked differences. Whole comparison
+corrects801's second packet item and inclusive float-loop endpoint, retains998's
+explicit no-op metadata and recovers849's negated angular guards. All129 direct/
+34 virtual calls,33 RETs, real980 tail and all357 alignment/table bytes agree.
+Eleven angle/distance regions preserve separate opponent/target pointer sources.
+See `docs/ALICE_OBJECT_ENTRY_2026_10_24.md`. Continue independently reviewed Object
+slot3C peers; keep the recorded nonexact residuals parked. Fresh sequential cold
+replay passes514 units/all1402 accepted functions. The final Alice full-payload
+audit also passes11072/11072 after that rebuild.
 Commit format:
 `gpt-6.1-sol: ...`.
 
@@ -191,15 +201,17 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1556 / 1538 |
-| Accepted authored exact | 1401 functions / 338302 bytes |
+| Mapped / source-present | 1557 / 1539 |
+| Accepted authored exact | 1402 functions / 349017 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 576 / 1544 |
+| Match units / configured functions | 577 / 1545 |
 
-The IkuObject checkpoint includes a fresh sequential cold
-`python3 scripts/verify-exact-units.py --all`:513 units/all1401 accepted functions
-pass. Its final full-payload audit also passes6551/6551. Replay affected accepted
-units after shared changes; future aggregate claims require another cold replay.
+The AliceObject checkpoint includes a fresh sequential cold
+`python3 scripts/verify-exact-units.py --all`:514 units/all1402 accepted functions
+pass. Its final full-payload audit also passes11072/11072. Receipt:
+`build/exact-first-alice-object-entry-20261024/cold-all.log`. Replay affected
+accepted units after shared changes; future aggregate claims require another
+cold replay.
 
 ## Current checkpoint: exact Reimu slot5C control mode 0x491450
 
