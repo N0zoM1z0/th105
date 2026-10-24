@@ -10,7 +10,7 @@ matches its first complete source. All fifteen roster slot50 policies now have
 complete source. Marisa7664/full7768 remains nonexact and parked after neutral
 controls. The next large representative is Marisa CPU slot58 `0x4B4070`: its
 complete source now compiles and passes1056 scoped native-helper inputs; the
-full16419-byte output remains nonexact at+12E. Final movement-policy call/tail
+full16863-byte output remains nonexact at+12E. Final movement-policy call/tail
 structure is the next bounded question.
 Required commit format:
 `gpt-6.1-sol: ...`.
@@ -70,10 +70,9 @@ accepted units after shared changes; aggregate claims require a cold
 
 [Complete source and comparison](MARISA_CPU_TARGET_2026_10_24.md) retains16229
 callable target bytes/4159 instructions/46 RETs/161 direct calls and16907 full
-target bytes. The first complete source emits16403; the selected independent
-sequence-case form emits16419 and all eight destination/four index tables.
-Both are nonexact at+12E. Formal selected full SHA256:
-`ca76b8bb83a1d6ae36d8075693a998c2461d95a05b1416a7df6af803e5045a76`.
+target bytes. Selected full16863-byte payload remains nonexact at+12E:
+`80ad69479bc244484a234feea58aebd3af5e414e8fd3592b0655046d0b0d9d18`.
+All eight destination/four index tables remain; no exact credit.
 
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-marisa-cpu-policy --compare --json
@@ -82,20 +81,24 @@ taskset -c 0 nice -n 10 python3 scripts/audit-marisa-cpu-policy-paths.py
 ```
 
 The canonical commands correctly return1; native-helper diagnostic returns0
-for1056 scoped inputs, not an exact result. Action/attack selector counts agree
-24/57; final movement policy is40 native versus29 source. First302 bytes match;
-register allocation, return structure and policy duration-call merging still
-differ. A single final-policy return-to-shared-exit trial is byte-neutral
-(full hash unchanged/38 RETs); do not repeat it. The public execution audit
-rejects a generated wrong-output constant in145/1056 cases. Investigate actual
-policy-tail evidence before more controls or matrices.
-Public source uses fresh pointer-only views, offsets and numeric states; no
-callee implementation/full-owner layout claim. Target hashes/slot58 cell6C45DC
-and independent read-only Ghidra attestation remain as documented. Original
-TU/compiler phase is unknown. Earlier accepted sources, flags, layouts and
-relocation maps remain unchanged. This CPU root is distinct from parked input
-4B9FA0. Private/generated receipts retain both full source versions and phase
-traversal under `.analysis/exact-first-marisa-cpu-20261024/` / `build/` peer.
+for1056 scoped inputs. Direct published WORD76A range reads restore target signed
+comparisons, initial constant registers and nine physical selector copies.
+Action/attack counts agree24/57; final movement policy is40 native versus38
+source. Source47 RETs versus46 target, not acceptance. The h500/v100 predicate
+in sequence205's5162 tail is now retained from raw instructions, superseding
+incomplete decompiler output. Coordinate comparison order, first-stage shared
+outputs and two merged20/+5 policy17/16 duration tails remain specific questions.
+A return-to-shared-exit trial was neutral in the prior16419-byte source phase;
+no unchanged visibility/FP/profile controls. The public execution audit rejects
+a generated wrong-output constant in145/1056 cases.
+
+Pointer-only views, offsets, numeric policies and helper declarations remain;
+no callee implementation/full-owner layout claim. Raw target/slot58 cell6C45DC
+and read-only Ghidra attestation are documented. Original TU/compiler phase is
+unknown. Earlier accepted sources, flags, layouts and relocation maps remain
+unchanged. This root is distinct from parked input4B9FA0. Source revisions and
+phase/execution/formal receipts remain under `.analysis/exact-first-marisa-cpu-20261024/`
+and its `build/` counterpart.
 
 ## Exact family peer: Patchouli input policy 0x51EF60
 

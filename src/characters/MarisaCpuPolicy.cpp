@@ -145,7 +145,7 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
         else if (RANGE(25,35) && S(0x482)>=400) U(0x728)=2;
         else if (RANGE(95,100) && C(0x55A)>0) {
             switch (FRONT) {
-            case 205: if (h<500.0) { I(0x6D0)=2; break; }
+            case 205: if (h<500.0 && v<100.0) { I(0x6D0)=2; break; }
             case 200: case 208: case 211: I(0x6D0)=2; break;
             }
         }
@@ -173,7 +173,7 @@ void MarisaCpuPolicyView::update_cpu_action_policy()
         else if (RANGE(35,50) && S(0x482)>=800 && v>100.0 && PEER(0xF0)<50.0) U(0x728)=0x20000000;
         else if (RANGE(95,100) && C(0x55A)>0) {
             switch (FRONT) {
-            case 205: if (h<500.0) { I(0x6D0)=2; break; }
+            case 205: if (h<500.0 && v<100.0) { I(0x6D0)=2; break; }
             case 200: case 208: case 211: I(0x6D0)=2; break;
             }
         }
@@ -332,7 +332,8 @@ policy_dispatch:
         if (S(0x768)>0) return;
         int const roll=selector_random_roll(100);
         S(0x76A)=static_cast<short>(roll);
-#define P(a,b) (static_cast<short>(roll)>=(a) && static_cast<short>(roll)<=(b))
+// Read the published WORD: a local range cache changes VC8 signed comparisons.
+#define P(a,b) (S(0x76A)>=(a) && S(0x76A)<=(b))
         if (F(0xF0)==0.0f) {
             if (PEER(0xF0)==0.0f) {
                 if (h<=80.0f) {
