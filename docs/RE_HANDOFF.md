@@ -8,7 +8,9 @@ Reimu `0x494810`, Udonge `0x5D2C70` and Patchouli `0x51EF60` cold-replay exact.
 The fourteen-function cohort adds87251 code bytes; latest peer adds6351 and
 matches its first complete source. All fifteen roster slot50 policies now have
 complete source. Marisa7664/full7768 remains nonexact and parked after neutral
-controls; select another complete medium/large representative next.
+controls. The next large representative is Marisa CPU slot58 `0x4B4070`: its
+complete target packet is identified/mapped; full source and first comparison
+remain pending.
 Required commit format:
 `gpt-6.1-sol: ...`.
 
@@ -54,7 +56,7 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1535 / 1517 |
+| Mapped / source-present | 1536 / 1517 |
 | Accepted authored exact | 1395 functions / 322165 bytes |
 | Provisional authored byte denominator | 2136806 |
 | Match units / configured functions | 559 / 1527 |
@@ -62,6 +64,27 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Current bounded representative: Marisa CPU policy 0x4B4070
+
+[Target packet and next action](MARISA_CPU_TARGET_2026_10_24.md) closes16229
+callable bytes/4159 instructions/46 RETs/161 direct calls, eight destination
+tables and four index tables. Full target payload16907; no implementation or
+canonical object comparison yet. Only identified/mapped progress is recorded.
+
+Root SHA256:
+`20a78101afe95044c22b4f8cefde19f80b5138576d2b998efd7ecf9f9f331edf`.
+Raw slot58 cell6C45DC, all82 destinations/344 index bytes and cdecl/ECX/x87
+helper views are checked. One read-only384 MiB/CPU0 Ghidra run attests all mapped
+sections/root and leaves primary DB files unchanged. Existing CPU source is a
+hypothesis: native policies101/102, distance/probability/resource windows and
+shared-tail differences require independent source review. Do not copy the
+Reimu body or repeat prior visibility/FP/profile controls unchanged. Next write
+the complete numeric/offset body and compare it early; use the full target
+packet to resolve actual differences. Generated/private scope paths are
+`build/exact-first-marisa-cpu-20261024/` and its `.analysis/` counterpart.
+Earlier accepted sources/flags/layouts/relocation maps remain unchanged. This
+root is separate from the parked Marisa input policy4B9FA0 below.
 
 ## Exact family peer: Patchouli input policy 0x51EF60
 
