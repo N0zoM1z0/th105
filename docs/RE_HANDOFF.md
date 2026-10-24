@@ -1,7 +1,23 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **retain complete Reimu action initializer491C40 and
-review its actual common-initializer tail477830 as the next representative**.
+Current transition: **retain complete common Fighter action initializer477830;
+its genuine Reimu caller-visibility control is whole-payload neutral, so choose
+another independently reviewed complete representative**.
+Common477830 now has complete ordinary C++ source. Raw CFG closes4849 main
+bytes/1268 reachable instructions/46 RETs/seven45AF40 tails; full5521 includes
+three destination tables and336 remap bytes. Formal and independent cold source
+emit5305 SHA256 `2b5e6418...`, nonexact+0x14. All physical direct-call/tail counts,
+table dimensions and remaps agree.432 actual-root guard and96 card-phase native
+diagnostics pass; an independent short-action/byte-direction witness matches
+all52 bytes of435240. These are bounded diagnostics, not root exact credit.
+Game policy plus actual Alice/Reimu tails establish authored ownership; no
+particular nominal RTTI class is established. Genuine same-TU common/Reimu
+visibility changes neither complete payload. Regional690 control changes five
+bytes without resolving shared returns. Preserve receipts and do not repeat
+these controls without new evidence. Original TU/shared-tail/FP scheduling is
+unknown, with no LTCG impossibility proved. See
+[the source/evidence/commands](COMMON_ACTION_INITIALIZATION_2026_10_25.md).
+
 Reimu primary slot3C now has complete ordinary C++ source. Raw CFG closes3785
 main bytes/960 reachable instructions/39 RETs/one477830 default tail; the full
 4738-byte payload includes63 destination words/696 index bytes and all alignment.
@@ -16,11 +32,10 @@ controls, including a neutral facing-expression control and rejected real input/
 product captures; do not repeat them without new evidence. See
 [the full source/evidence/commands](REIMU_ACTION_INITIALIZATION_2026_10_25.md).
 
-Next review `477830`, candidate4849 bytes, rather than assuming its authored
-classification or compiler extent from Reimu's tail. Establish its complete raw
-CFG, incoming/class ownership and ABI before promotion/implementation. It is
-currently unclassified and source-missing; a real common body may provide family
-context. No fake callers, compiler flag grid or fabricated register ABI.
+Next select a fresh medium/large authored source-missing representative and
+independently reconcile its complete raw CFG/ABI before implementation. Keep
+the parked common/Reimu residuals closed absent new target evidence. No fake
+callers, compiler flag grid or fabricated register ABI.
 
 Complete CSelect constructor4231A0 remains parked: main4247/4247, SHA256
 `76c04f84...`,13 differences at423D13..423D28 in407160 argument preparation.
@@ -71,7 +86,7 @@ mapped-section attestation; transaction rollback/readback and all nine primary
 project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
 The first full body has been compiled/compared as described above. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
-Source-present1545/mapped1564; exact remains1403/359740 bytes, units584. Use locked
+Source-present1546/mapped1565; exact remains1403/359740 bytes, units585. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
 mandatory local CI before every commit/push. IDA still has the wrong executable;
 use hash-attested raw bytes. Latest aggregate cold replay is the Udonge checkpoint.

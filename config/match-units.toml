@@ -21705,3 +21705,49 @@ dir32_targets = [
     "__real@3e800000=_reimu_entry_006c3440",
     "__real@41400000=_reimu_entry_006c12b0",
 ]
+
+
+[units.exact-first-common-fighter-action-initialization]
+kind = "probe"
+source = "src/battle/CommonFighterActionInitialization.cpp"
+object = "build/match-units/ExactFirst_CommonFighterActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a shared action initializer477830;4849 callable/full5521 payload. Two remapped action tables and one16-way card-level table. Main remains nonexact; no helper or exact credit from declaration-only interfaces. scripts/audit-common-action-initialization.py; docs/COMMON_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-common-fighter-action-initialization.functions]]
+address = "0x00477830"
+symbol_base = "?initialize_common_action_entry@CommonActionEntryView@th105@@QAEXXZ"
+rel32_targets = [
+    "?advance_secondary_event_effect_cycle@CommonActionEntryView@th105@@QAEXXZ=0x00473F90",
+    "?at@CommonEntryCardDeque@th105@@QAEAAUCommonEntryCardSlot@2@I@Z=0x004399C0",
+    "?dispatch_event@CommonActionEntryView@th105@@QAEXI@Z=0x004359F0",
+    "?dispatch_sequence_window@CommonActionEntryView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?emit_effect@CommonActionEntryView@th105@@QAEXFMMEH@Z=0x00435240",
+    "?publish_layout_scalar@CommonActionEntryView@th105@@QAEXM@Z=0x004359D0",
+    "?zero_motion@CommonActionEntryView@th105@@QAEXXZ=0x0045AF40",
+]
+dir32_targets = [
+    "__real@40000000=_common_entry_006c13f0",
+    "__real@41000000=_common_entry_006c2874",
+    "__real@3f4ccccd=_common_entry_006c3420",
+    "__real@c1200000=_common_entry_006c3b20",
+    "__real@41480000=_common_entry_006c3c48",
+    "__real@c1e80000=_common_entry_006c3c4c",
+    "__real@c1d00000=_common_entry_006c3c50",
+    "__real@3f400000=_common_entry_006c3c54",
+    "__real@c1680000=_common_entry_006c3c58",
+    "__real@c1500000=_common_entry_006c3c5c",
+    "__real@c0c00000=_common_entry_006c3c60",
+    "__real@41600000=_common_entry_006c3c64",
+    "__real@c1400000=_common_entry_006c3c68",
+    "__real@c1300000=_common_entry_006c3c6c",
+    "__real@3fa66666=_common_entry_006c3c70",
+    "__real@c1c80000=_common_entry_006c3c74",
+    "__real@c1a00000=_common_entry_006c3c78",
+    "__real@c1700000=_common_entry_006c3c7c",
+    "__real@3f000000=_common_entry_006cd140",
+    "__real@4059000000000000=_common_entry_006cd190",
+    "__real@40800000=_common_entry_006cd200",
+    "__real@c1000000=_common_entry_006cd230",
+]

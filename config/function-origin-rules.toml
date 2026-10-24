@@ -3384,3 +3384,22 @@ required_selected_body_calls = [
   { owner = "0x00411FA0", site = "0x0041243B", target = "0x00412670", target_status = "implemented" },
   { owner = "0x00411FA0", site = "0x0041244E", target = "0x004114C0", target_status = "matching" },
 ]
+
+[[rules]]
+id = "fighter-common-action-entry-authored-106a"
+addresses = ["0x00477830"]
+expected_count = 1
+expected_bytes = 4849
+expected_names = ["sub_477830"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete4849-byte main closes1268 reachable instructions/46 RET0s and seven real zero-motion tails. Game action/input/card-level/effect policy, plus actual Alice4F9850 and Reimu491C40 default tails, establishes authored common Fighter behavior independently of compiler/container helpers. Adjacent5521-byte full payload includes three switch tables, not extra callable credit. Selected complete5305-byte ordinary C++ remains nonexact+14;432 guard and96 card-phase native diagnostics pass. Short action/byte-facing interfaces have an independent exact52-byte forwarder witness. Genuine Reimu/common same-TU visibility leaves both whole payloads unchanged. No aligned477830 vtable entry was found; nominal class, original TU and remaining code-generation context are unknown. docs/COMMON_ACTION_INITIALIZATION_2026_10_25.md."
+required_body_hashes = [
+  { address = "0x00477830", size = 4849, sha256 = "dada4fa5c18e788409cb4ccf88e313b61aff32de4936d602cd8f8c24895a0181" },
+]
+required_direct_edges = [
+  { caller = "0x004F9850", site = "0x004F9E55", target = "0x00477830", kind = "jump", caller_status = "matching" },
+  { caller = "0x00491C40", site = "0x00492B04", target = "0x00477830", kind = "jump", caller_status = "implemented" },
+]

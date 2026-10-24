@@ -1563,3 +1563,4 @@ RemiliaObject_update_action_state,0x00557690,function
 YoumuObject_update_action_state,0x0053CEA0,function
 CSelect_ctor,0x004231A0,function
 Reimu_initialize_action_entry,0x00491C40,function
+CommonFighter_initialize_action_entry,0x00477830,function
