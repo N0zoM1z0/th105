@@ -4,7 +4,8 @@ Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`
 Suika `0x5AED00` and Youmu `0x53B410` cold-replay exact. The five-function cohort
 adds28530 code bytes; latest peer adds6017. Youmu matches its first complete
-compiled source after a private source-composition syntax correction.
+compiled source after a private source-composition syntax correction. Complete
+Marisa7664/full7768 is source-present, nonexact and parked after neutral controls.
 Required commit format:
 `gpt-6.1-sol: ...`.
 
@@ -50,14 +51,35 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1525 / 1507 |
+| Mapped / source-present | 1526 / 1508 |
 | Accepted authored exact | 1386 functions / 263444 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 549 / 1517 |
+| Match units / configured functions | 550 / 1518 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Parked complete peer: Marisa input policy 0x4B9FA0
+
+[Complete source/evidence](MARISA_INPUT_POLICY_2026_10_24.md) closes2151
+instructions/36 RETs/15 tails and both20+6-entry tables. Callable7664/full7768
+source remains nonexact at+1AF5; no matches row or authored exact credit.
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-marisa-input-policy --compare --json
+python3 scripts/audit-marisa-input-policy.py
+```
+
+Both comparisons currently return1. Selected full canonical SHA256:
+`53acd36513eee03fe5ea95775c31ff5827e4ec01d903fb2abef9bbc71983fd1c`.
+All104 metadata bytes match;104 callable bytes differ only within4BBA95..4BBB37.
+The first comparison caught a misread second412 success edge; native4BBB36
+enters the shared mode gate at4BBAD1. Corrected short-circuit OR and explicit
+shared-label sources produce identical whole payloads. Keep the ordinary OR
+source, park this physical-block placement residual and switch to another
+complete peer. Mode reads after the first action in group6F8 remain distinct
+from pre-action mode choices in group6FC. No compiler search/LTCG impossibility.
 
 ## Exact family peer: Youmu input policy 0x53B410
 

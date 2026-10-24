@@ -20775,3 +20775,34 @@ rel32_targets = [
     "YoumuInputPolicyView_gate4942c0=0x004942C0",
     "YoumuInputPolicyView_gate494450=0x00494450",
 ]
+
+[units.exact-first-marisa-input-policy]
+kind = "probe"
+source = "src/characters/MarisaInputPolicy.cpp"
+object = "build/match-units/ExactFirst_MarisaInputPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Marisa primary slot50 input policy4B9FA0;7664 callable bytes/full7768-byte payload. Nonexact full-body checkpoint; reviewed Sakuya-family changes with pointer-only views; no complete owner layout claim. docs/MARISA_INPUT_POLICY_2026_10_24.md."
+
+[[units.exact-first-marisa-input-policy.functions]]
+address = "0x004B9FA0"
+symbol_base = "?dispatch_input@MarisaInputPolicyView@th105@@UAEXXZ"
+rel32_targets = [
+    "is_y_at_or_below_stage_surface=0x00435DC0",
+    "MarisaInputPolicyView_pop_sequence=0x0045DDA0",
+    "MarisaInputPolicyView_pack_input=0x00464200",
+    "MarisaInputPolicyView_reset_input=0x004633A0",
+    "MarisaInputPolicyView_front_ready=0x0045D1B0",
+    "MarisaInputPolicyView_finalize_command=0x00493D00",
+    "MarisaInputPolicyView_command_window=0x00493D40",
+    "MarisaInputSequenceView_at=0x004399C0",
+    "MarisaInputPolicyView_gate493ac0=0x00493AC0",
+    "MarisaInputPolicyView_gate493b40=0x00493B40",
+    "MarisaInputPolicyView_gate493c50=0x00493C50",
+    "MarisaInputPolicyView_gate493d90=0x00493D90",
+    "MarisaInputPolicyView_gate493f90=0x00493F90",
+    "MarisaInputPolicyView_gate4940e0=0x004940E0",
+    "MarisaInputPolicyView_gate4941d0=0x004941D0",
+    "MarisaInputPolicyView_gate4942c0=0x004942C0",
+    "MarisaInputPolicyView_gate494450=0x00494450",
+]
