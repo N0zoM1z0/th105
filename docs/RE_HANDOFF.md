@@ -1,11 +1,11 @@
 # TH10.5 reconstruction handoff
 
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
-`0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`
-Suika `0x5AED00` and Youmu `0x53B410` cold-replay exact. The five-function cohort
-adds28530 code bytes; latest peer adds6017. Youmu matches its first complete
-compiled source after a private source-composition syntax correction. Complete
-Marisa7664/full7768 is source-present, nonexact and parked after neutral controls.
+`0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
+Suika `0x5AED00`, Youmu `0x53B410` and Yuyuko `0x56DEB0` cold-replay exact.
+The six-function cohort adds34710 code bytes; latest peer adds6180 after one
+actual call-argument correction. Complete Marisa7664/full7768 remains
+source-present, nonexact and parked after neutral controls.
 Required commit format:
 `gpt-6.1-sol: ...`.
 
@@ -51,14 +51,34 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1526 / 1508 |
-| Accepted authored exact | 1386 functions / 263444 bytes |
+| Mapped / source-present | 1527 / 1509 |
+| Accepted authored exact | 1387 functions / 269624 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 550 / 1518 |
+| Match units / configured functions | 551 / 1519 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Yuyuko input policy 0x56DEB0
+
+[Accepted peer/evidence](YUYUKO_INPUT_POLICY_2026_10_24.md) closes1773
+instructions/36 RETs/seven tails and all9 table destinations. Callable6180 and
+complete6216 bytes/125 relocations match after formal and independent cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-yuyuko-input-policy --compare --json
+python3 scripts/audit-yuyuko-input-policy.py
+```
+
+Full canonical SHA256:
+`7fd52536151126351f5ec2fd4d7f9464d2316f912e25607c89700a9f8d0efe87`.
+The first full comparison caught only copied4941D0 minimum2 versus native1 at
+56DFE8. Correcting it matches the whole body without code-generation controls.
+Actual4000/2000 masks, signed zero gates, air201/207 records,180.0f and repeated
+normal queries are independently reviewed. Generated-table negative fails at
++1824. Prior accepted sources/mappings remain unchanged. Continue complete
+slot+50 peers while leaving Marisa's neutral placement controls parked.
 
 ## Parked complete peer: Marisa input policy 0x4B9FA0
 
