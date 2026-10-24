@@ -21,7 +21,10 @@ cold builds. Continue independently reviewed slot5C family peers; keep Marisa
 parked. Tenshi649330 now has a complete reviewed2973-byte-target source;
 full3252 versus3268 remains nonexact after two byte-neutral controls. Its EBP
 constant-promotion residual is parked; select another complete same-slot peer.
-Required commit format:
+Alice's next slot5C peer4F8E00 accepts2284 callable/full2560 payload bytes
+in formal and independent cold builds. First whole comparison catches the
+actual state2-to3 continuation; one correction makes the complete unit exact.
+Continue independently reviewed same-slot peers. Required commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -66,16 +69,39 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1539 / 1521 |
-| Accepted authored exact | 1396 functions / 324774 bytes |
+| Mapped / source-present | 1540 / 1522 |
+| Accepted authored exact | 1397 functions / 327058 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 562 / 1530 |
+| Match units / configured functions | 563 / 1531 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: Tenshi slot5C control mode 0x649330
+## Current checkpoint: Alice slot5C control mode 0x4F8E00
+
+[Complete source and evidence](ALICE_CONTROL_MODE_2026_10_24.md) closes2284
+callable bytes/581 instructions/10 RETs/44 calls/one virtual slot58 tail plus
+all276 metadata bytes. Formal and independent cold builds accept2560/2560:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-alice-control-mode --compare --json
+python3 scripts/audit-alice-control-mode.py
+```
+
+Both return0. Full canonical SHA256:
+`717b6ef1923f65dfa21adeac6764c10c9d511c5dce656c4f47f19e97a5678625`.
+First complete source has all44 calls but initially returns state2 motion to1.
+Native EDI=3/shared DI store proves continuation3; that one semantic correction
+makes the whole unit exact, including87 relocations and both destination/index
+tables. A generated table negative fails at+0x8EC. Main RET ends4F96EC with no
+alignment; full payload ends4F9800 before the separately accepted reset root.
+No shared header/flag/relocation changes, runtime matrix or profile search.
+Full owner layout/original TU remain unknown. Origin subset is48/1032047;
+its immutable73-root witness and all dispositions stay unchanged. Continue
+independently reviewed slot5C peers; Tenshi/Marisa remain parked.
+
+## Parked representative: Tenshi slot5C control mode 0x649330
 
 [Complete source and residual](TENSHI_CONTROL_MODE_2026_10_24.md) closes2973
 callable target bytes/713 instructions/20 RETs/25 calls/one virtual slot58 tail

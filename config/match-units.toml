@@ -21144,3 +21144,20 @@ rel32_targets = [
     "TenshiControlModeView_spawn_owned_object_via_manager=0x00465190",
 ]
 dir32_targets = ["__real@41900000=tenshi_control_mode_float18"]
+
+[units.exact-first-alice-control-mode]
+kind = "probe"
+source = "src/characters/AliceControlMode.cpp"
+object = "build/match-units/ExactFirst_AliceControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Alice slot5C root4F8E00;2284 callable/full2560 payload bytes. Pointer-only views; independently reviewed state ownership and peer fallbacks. First full comparison catches state2-to3 continuation. docs/ALICE_CONTROL_MODE_2026_10_24.md."
+
+[[units.exact-first-alice-control-mode.functions]]
+address = "0x004F8E00"
+symbol_base = "?update_control_mode@AliceControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+    "selector_random_roll=0x004067D0",
+    "AliceControlSequenceView_at=0x004399C0",
+    "AliceControlModeView_face_opponent_and_flip_horizontal_velocity=0x00478E60",
+]
