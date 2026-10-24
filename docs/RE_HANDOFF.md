@@ -188,6 +188,20 @@ peer. See `docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md`. No exact credit is added.
 The two new literal keys leave all existing bindings unchanged; whole-object and
 explicit-binding scans of all514 accepted units find none affected. This is not
 a new aggregate cold replay; the cited locked aggregate predates this addition.
+YuyukoObject slot3C578000 now has complete10828-byte-target source/full11139
+against11143. Formal and independent cold payloads agree; all169 direct/26
+virtual calls,29 RETs, real980 tail and199 remap bytes survive. Whole comparison
+corrects816's untouched second packet word,826's post-loop immediate return,
+857's native expression materialization and922's retained x87 F10C100. Eight
+scoped native inputs pass:4 real RETs and4 first-spawn fragments. Four consumed-
+rounding/retained-value/angle/packet negative sources fail2/1/2/2 inputs. Fresh
+pointer and float-trig-return views are byte-neutral; park the three missing
+trig pointer copies and following register/call scheduling. See
+`docs/YUYUKO_OBJECT_ENTRY_2026_10_24.md`. No exact credit is added. The new0.05
+literal key leaves all existing bindings unchanged; whole-object and explicit-
+binding scans of all514 accepted units find none affected. This is not a new
+aggregate replay. Next independently review the remaining UdongeObject slot3C
+root5DF0E0 rather than reopening parked spelling controls without new evidence.
 Commit format:
 `gpt-6.1-sol: ...`.
 

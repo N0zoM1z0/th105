@@ -1465,3 +1465,4 @@ __real@41c00000,0x006C4A90,0000c041,0,Hash-attested JP1.06a AliceObject50C1C0 lo
 __real@42080000,0x006C4A78,00000842,0,Hash-attested JP1.06a AliceObject50C1C0 loads exact float 34.0; docs/ALICE_OBJECT_ENTRY_2026_10_24.md.,literal
 __real@3f333333,0x006C3CD8,3333333f,0,Hash-attested JP1.06a PatchouliObject52D200 literal; docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md. New key only; root remains nonexact.,literal
 __real@3fe00000,0x006C4FB8,0000e03f,0,Hash-attested JP1.06a PatchouliObject52D200 literal; docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md. New key only; root remains nonexact.,literal
+__real@3d4ccccd,0x006C4668,cdcc4c3d,0,Hash-attested JP1.06a YuyukoObject578000 float0.05; docs/YUYUKO_OBJECT_ENTRY_2026_10_24.md. New key only; root remains nonexact.,literal
