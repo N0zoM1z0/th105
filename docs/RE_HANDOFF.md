@@ -48,7 +48,13 @@ exactness after two focused corrections. Aya616800 now has complete reviewed
 vertical RNG sites and all30 calls. Forward conversion/common callback layout
 remains nonexact; unsigned-capture and split-state controls are byte-neutral,
 while explicit exits merge target-retained calls. Park and continue remaining
-peers. Commit format:
+peers. Reimu491450 now accepts1566 callable/all1844 emitted bytes in formal and
+independent cold builds. Correct facingFF/state4-to1 semantics restore the real
+minus-one lifetime; final-case early return recovers the shared callback.
+All15 slot5C owners now have complete selected source:9 exact ledger records,
+6 parked nonexact residuals. This cohort audit is not a new aggregate cold
+replay. Next choose a new complete medium/large authored representative;
+reopen parked controls only with new independent evidence. Commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -93,8 +99,8 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1546 / 1528 |
-| Accepted authored exact | 1399 functions / 330507 bytes |
+| Mapped / source-present | 1547 / 1529 |
+| Accepted authored exact | 1400 functions / 332073 bytes |
 | Provisional authored byte denominator | 2136806 |
 | Match units / configured functions | 567 / 1535 |
 
@@ -102,7 +108,35 @@ These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: Aya slot5C control mode 0x616800
+## Current checkpoint: exact Reimu slot5C control mode 0x491450
+
+[Complete source and evidence](REIMU_CONTROL_MODE_2026_10_24.md) closes1566
+callable bytes/390 instructions/8 RETs/24 calls/one virtual CPU tail and all278
+alignment/table bytes. Formal and independent cold builds accept1844/1844:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-control-mode --compare --json
+python3 scripts/audit-reimu-control-mode.py
+```
+
+Both return0. Full canonical SHA256:
+`26d73763276489c86f7e0ce6498702d7edb940224a09217c0d1074cc3db419e5`.
+Fresh complete target review corrects facingFF before readiness, state4's
+successful continuation to1 and actual double motion/divisor widths. These
+semantics recover the minus-one lifetime without register shaping. First full
+source differs only in shared callback ownership; explicit native final-case
+early return makes all48 relocations and the complete payload exact. Generated
+first-table addend negative fails+0x620. No shared binding/header or compiler
+change and no broad matrix. Full owner/TU remain unknown. Origin subset is
+45/1027032, with immutable73-root witness/dispositions unchanged.
+
+Raw-vtable/source/match-ledger audit now confirms complete source for all15
+slot5C owners,9 exact ledger records and6 parked residuals. Only Reimu receives
+new cold acceptance here. Next choose a complete medium/large representative
+from another authored family; do not reopen parked spelling controls without
+new independent evidence.
+
+## Parked representative: Aya slot5C control mode 0x616800
 
 [Complete source and residual](AYA_CONTROL_MODE_2026_10_24.md) closes1726
 callable target bytes/457 instructions/11 RETs/30 calls/one virtual CPU tail

@@ -17252,12 +17252,12 @@ source = "src/characters/ReimuControlMode.cpp"
 object = "build/match-units/GptWeb_ReimuControlMode.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Natural current-target +0x5C hypothesis retained as a probe. First canonical mismatch is +0x0C: target keeps -1 in EBX before decrementing +0x768, while this source lowers the decrement directly. Do not promote until the scheduler/register lifetime is recovered."
+notes = "Complete JP1.06a Reimu slot5C target491450;1566 callable/full1844 payload bytes. Pointer-only source independently corrects facingFF, state4 continuation and double literal widths. Native final-case early return recovers the shared callback placement. docs/REIMU_CONTROL_MODE_2026_10_24.md."
 [[units.gpt-web-reimu-control-mode.functions]]
 address = "0x00491450"
 symbol_base = "?update_control_mode@ReimuControlModeView@th105@@QAEXXZ"
 rel32_targets = [
-  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+  "ReimuControlSequenceView_at=0x004399C0",
   "?face_opponent_and_flip_horizontal_velocity@ReimuControlModeView@th105@@QAEXXZ=0x00478E60",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
 ]
