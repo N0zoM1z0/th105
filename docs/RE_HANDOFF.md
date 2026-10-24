@@ -3,8 +3,9 @@
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
 Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0`, Yukari `0x58C2E0`
-Iku `0x631340` and Komachi `0x5F7AB0` cold-replay exact. The nine-function cohort
-adds53426 code bytes; latest peer adds6181 and matches its first complete source. Complete
+Iku `0x631340`, Komachi `0x5F7AB0` and Aya `0x618660` cold-replay exact.
+The ten-function cohort adds60587 code bytes; latest peer adds7161 after a
+target-proven inclusive-height correction. Complete
 Marisa7664/full7768 remains
 source-present, nonexact and parked after neutral controls.
 Required commit format:
@@ -52,14 +53,35 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1530 / 1512 |
-| Accepted authored exact | 1390 functions / 288340 bytes |
+| Mapped / source-present | 1531 / 1513 |
+| Accepted authored exact | 1391 functions / 295501 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 554 / 1522 |
+| Match units / configured functions | 555 / 1523 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Aya input policy 0x618660
+
+[Accepted peer/evidence](AYA_INPUT_POLICY_2026_10_24.md) closes2021 instructions/
+39 RETs/seven tails and all13 table entries. Callable7161 and full7216 bytes/
+146 relocations match in formal and independent cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-aya-input-policy --compare --json
+python3 scripts/audit-aya-input-policy.py
+```
+
+Full canonical SHA256:
+`27ca5b6b8e56b4099e251f654b0f53b24ba4100eb13fe96a79df110ba65377da`.
+The first complete comparison differs only at two height-condition bytes.
+Native TEST AH,41 plus JP after FCOMP480.0 admits equal; correcting < to <=
+makes the entire payload exact without compiler/source-shape controls. Sparse
+ground/air records, actual shared action numbers, air2000's distinct override
+flag, one normal-air308, resource skip and repeated416 paths are independently
+reviewed. Generated-table negative fails at+1BFC. Earlier accepted sources and
+mappings are unchanged. Continue complete remaining peers; Marisa stays parked.
 
 ## Exact family peer: Komachi input policy 0x5F7AB0
 

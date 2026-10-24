@@ -2580,7 +2580,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00618560,authored_game,characters,authored,observed,canonical-exact-authored
 0x006185C0,authored_game,characters,authored,observed,canonical-exact-authored
 0x006185E0,authored_game,characters,authored,observed,canonical-exact-authored
-0x00618660,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x00618660,authored_game,characters,authored,observed,canonical-exact-authored
 0x0061A290,authored_game,characters,authored,observed,roster-character-object-vtable-authored-106a
 0x0061F0B0,authored_game,characters,authored,observed,roster-character-object-vtable-authored-106a
 0x006203B0,authored_game,characters,authored,observed,canonical-exact-authored

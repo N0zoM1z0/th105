@@ -20930,3 +20930,34 @@ rel32_targets = [
     "KomachiInputPolicyView_gate4942c0=0x004942C0",
     "KomachiInputPolicyView_gate494450=0x00494450",
 ]
+
+[units.exact-first-aya-input-policy]
+kind = "probe"
+source = "src/characters/AyaInputPolicy.cpp"
+object = "build/match-units/ExactFirst_AyaInputPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Aya primary slot50 input policy618660;7161 callable bytes/full7216-byte payload. Reviewed Sakuya-family changes with pointer-only views; no complete owner layout claim. docs/AYA_INPUT_POLICY_2026_10_24.md."
+
+[[units.exact-first-aya-input-policy.functions]]
+address = "0x00618660"
+symbol_base = "?dispatch_input@AyaInputPolicyView@th105@@UAEXXZ"
+rel32_targets = [
+    "is_y_at_or_below_stage_surface=0x00435DC0",
+    "AyaInputPolicyView_pop_sequence=0x0045DDA0",
+    "AyaInputPolicyView_pack_input=0x00464200",
+    "AyaInputPolicyView_reset_input=0x004633A0",
+    "AyaInputPolicyView_front_ready=0x0045D1B0",
+    "AyaInputPolicyView_finalize_command=0x00493D00",
+    "AyaInputPolicyView_command_window=0x00493D40",
+    "AyaInputSequenceView_at=0x004399C0",
+    "AyaInputPolicyView_gate493ac0=0x00493AC0",
+    "AyaInputPolicyView_gate493b40=0x00493B40",
+    "AyaInputPolicyView_gate493c50=0x00493C50",
+    "AyaInputPolicyView_gate493d90=0x00493D90",
+    "AyaInputPolicyView_gate493f90=0x00493F90",
+    "AyaInputPolicyView_gate4940e0=0x004940E0",
+    "AyaInputPolicyView_gate4941d0=0x004941D0",
+    "AyaInputPolicyView_gate4942c0=0x004942C0",
+    "AyaInputPolicyView_gate494450=0x00494450",
+]
