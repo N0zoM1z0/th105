@@ -21573,3 +21573,37 @@ rel32_targets = [
     "RemiliaObjectUpdateView_stage_surface_height_at_x=0x00435D60",
     "RemiliaObjectUpdateView_update_ping_pong_motion=0x0053CBC0",
 ]
+
+[units.exact-first-youmu-object-update]
+kind = "probe"
+source = "src/characters/YoumuObjectActionState.cpp"
+object = "build/match-units/ExactFirst_YoumuObjectActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a YoumuObject slot28 update53CEA0 compiling hypothesis;25944 callable/full26576 target. Unselected pending further instruction/source-shape review; no implemented or exact credit. docs/YOUMU_OBJECT_UPDATE_2026_10_25.md."
+
+[[units.exact-first-youmu-object-update.functions]]
+address = "0x0053CEA0"
+symbol_base = "?update_action_state@YoumuObjectUpdateView@th105@@UAEXXZ"
+rel32_targets = [
+    "YoumuObjectUpdateView_emit_repeated=0x005575C0",
+    "selector_random_roll=0x004067D0",
+    "YoumuObjectUpdateView_spawn_unparented=0x0064CCB0",
+    "YoumuObjectUpdateView_advance_frame=0x004351C0",
+    "YoumuObjectUpdateView_publish_bounds_descriptor=0x004FC710",
+    "YoumuObjectUpdateView_advance_six=0x004963A0",
+    "YoumuObjectUpdateView_emit_fighter_effect=0x00435240",
+    "YoumuObjectUpdateView_apply_owner_record=0x0053CDF0",
+    "square_float_value=0x00406580",
+    "YoumuObjectUpdateView_advance_phase=0x0064CD00",
+    "YoumuObjectUpdateView_turn_heading=0x004E0BF0",
+    "YoumuUpdateMotionView_set_components=0x00435160",
+    "YoumuObjectUpdateView_position_relative=0x005B0400",
+    "YoumuObjectUpdateView_dispatch_character_wave_handle=0x0045C030",
+    "atan2_degrees=0x00406540",
+    "__ftol2_sse=0x0068A1A0",
+    "lookup_orientation_sine_quantized_abs=0x00406360",
+    "lookup_orientation_cosine_quantized_abs=0x004063D0",
+    "YoumuObjectUpdateView_stage_surface_height_at_x=0x00435D60",
+    "YoumuObjectUpdateView_update_ping_pong_motion=0x0053CBC0",
+]

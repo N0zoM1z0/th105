@@ -1,7 +1,20 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **park complete RemiliaObject update557690 and select the
-next complete representative, YoumuObject update53CEA0**. Remilia remains full
+Current transition: **complete YoumuObject update53CEA0 source hypothesis is
+compiled and whole-compared early; continue its instruction/source-shape review**.
+The retained unselected probe emits26780 versus26576 target, SHA256 `cb35d0d8...`,
+nonexact+8 at frame0x40/0x48. Its200-byte remap and19 of20 direct-callee counts agree;
+advance_frame is13/16, virtual calls30/30, RETs57/49 and destination tables11/12.
+The shared857/902 exit fixes a real return-continuation error. Fourteen scoped930/3
+native prefixes pass, including NaN and axis lookup inputs; a float-square-sum
+negative control fails4. The affected older4963A0 member cold-replays exact66/66.
+An independent period local changes bytes but does not restore the missing
+899 four-entry table; preserve that finite control. Identifier-domain/default
+behavior and the remaining source/stack/control-flow review are open. Keep this
+complete compiling hypothesis out of implemented.csv and matches.csv until
+review/acceptance supports promotion. See [the evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
+
+Complete RemiliaObject update557690 stays parked. Remilia remains full
 18360 versus18388 target, SHA256 `89e5bd2e...`, nonexact+22 with15330 unequal
 byte positions. Its54 native angle/fade/movement prefixes pass; no new exact
 credit.12 table lengths and199 remap bytes agree; spawn28/29 and RETs32/28
@@ -19,17 +32,18 @@ complete. This does not establish a TU/LTCG impossibility.
 
 Read-only roster census identifies the next smallest unselected Object update:
 YoumuObject53CEA0, candidate25944 bytes, primary vtable6C50BC/cell6C50E4.
-Its candidate/origin ledger is authored by the RTTI-backed roster rule; it has
-no selected source or exact claim. Its complete raw CFG now closes6233 reachable
+Its candidate/origin ledger is authored by the RTTI-backed roster rule. The role
+is mapped and one reproducible probe unit exists, but there is no selected source
+or exact claim. Its complete raw CFG now closes6233 reachable
 instructions/49 RET0s/224 direct and30 virtual calls. All632 metadata bytes are
 partitioned:108 DWORD destinations and200 remap bytes; full payload26576 ends
 at543670. Three unreachable alignment LEAs remain in the comparison extent.
 The single384MiB readonly Ghidra hypothesis completed after target/entry/all
 mapped-section attestation; transaction rollback/readback and all nine primary
 project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
-Recover the full body and compare early. The separate Youmu initializer543670
+The first full body has been compiled/compared as described above. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
-Source-present1543/mapped1561; exact remains1403/359740 bytes. Use locked
+Source-present1543/mapped1562; exact remains1403/359740 bytes, units582. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
 mandatory local CI before every commit/push. IDA still has the wrong executable;
 use hash-attested raw bytes. Latest aggregate cold replay is the Udonge checkpoint.

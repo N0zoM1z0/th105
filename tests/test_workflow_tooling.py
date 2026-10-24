@@ -86,10 +86,10 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 581)
+        self.assertEqual(len(manifest["units"]), 582)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1549,
+            1550,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -2723,7 +2723,7 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "match-units.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
-        self.assertEqual(counts["ledger_literals"], 387)
+        self.assertEqual(counts["ledger_literals"], 397)
         self.assertEqual(counts["explicit_mappings"], 781)
         self.assertEqual(counts["target_checks"], 0)
 
@@ -2734,7 +2734,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 1168)
+        self.assertEqual(counts["target_checks"], 1178)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

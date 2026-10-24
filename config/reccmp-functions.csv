@@ -1560,3 +1560,4 @@ PatchouliObject_initialize_action_entry,0x0052D200,function
 YuyukoObject_initialize_action_entry,0x00578000,function
 UdongeObject_initialize_action_entry,0x005DF0E0,function
 RemiliaObject_update_action_state,0x00557690,function
+YoumuObject_update_action_state,0x0053CEA0,function
