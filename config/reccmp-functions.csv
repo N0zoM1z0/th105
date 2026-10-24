@@ -1522,3 +1522,4 @@ RemiliaObject_initialize_action_entry,0x0055BE70,function
 Remilia_dispatch_input_policy,0x00556070,function
 Tenshi_dispatch_input_policy,0x0064B7A0,function
 Sakuya_dispatch_input_policy,0x004DF4B0,function
+Suika_dispatch_input_policy,0x005AED00,function

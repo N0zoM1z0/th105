@@ -1,9 +1,9 @@
 # TH10.5 reconstruction handoff
 
 Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
-`0x556070` and independently reviewed Tenshi `0x64B7A0` / Sakuya `0x4DF4B0`
-peers cold-replay exact. The three-function cohort adds16664 code bytes; the
-latest peer adds5897 and matches in its first complete source.
+`0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`
+and Suika `0x5AED00` cold-replay exact. The four-function cohort adds22513 code
+bytes; latest peer adds5849. Both Sakuya/Suika match their first complete source.
 Required commit format:
 `gpt-6.1-sol: ...`.
 
@@ -49,14 +49,34 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1523 / 1505 |
-| Accepted authored exact | 1384 functions / 251578 bytes |
+| Mapped / source-present | 1524 / 1506 |
+| Accepted authored exact | 1385 functions / 257427 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 547 / 1515 |
+| Match units / configured functions | 548 / 1516 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
+
+## Exact family peer: Suika input policy 0x5AED00
+
+[Accepted peer/evidence](SUIKA_INPUT_POLICY_2026_10_24.md) independently closes
+1667 instructions/31 RETs/six external tails and all9 table destinations. The
+first complete source matches5849 callable/full5888 payload bytes and117
+relocations; formal and independent cold builds pass both commands:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-suika-input-policy --compare --json
+python3 scripts/audit-suika-input-policy.py
+```
+
+Full canonical SHA256:
+`aad5c91e0526eabc05c81285aa78e1723f0adbccb30f92f8745ce47724f4940b`.
+The generated-table negative fails at+16DC. +60D tier531/530, shared545 success,
+air523/522 zero gates and508/507 tiers, record200-to650,160.0f and reordered
+normal-air policy are independently reviewed. No source correction or compiler
+search was needed. Earlier exact input sources remain unchanged. Continue the
+other complete slot+0x50 peers with independent target review.
 
 ## Exact family peer: Sakuya input policy 0x4DF4B0
 
