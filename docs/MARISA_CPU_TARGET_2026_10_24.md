@@ -1,21 +1,73 @@
-# Marisa CPU policy: bounded target packet before implementation
+# Marisa CPU policy: complete source checkpoint, nonexact
 
-## State and next action
+## Current source checkpoint: nonexact
 
 `0x004B4070` is the RTTI-owned Marisa Fighter primary slot+58 CPU action-policy
-root. This checkpoint identifies and maps its complete target extent. **No
-complete source is selected, no object comparison is claimed, and no source or
-exact credit is added.** It is separate from the parked input-policy root
-`0x4B9FA0`.
+root, separate from the parked input-policy root `0x4B9FA0`. Its complete source
+is now selected in `src/characters/MarisaCpuPolicy.cpp/.hpp`, with numeric states,
+typed offset accesses, pointer-only views and declaration-only helpers. Never
+construct/embed either view. No complete nominal layout or original TU is claimed.
 
-Next, write the complete ordinary C++ body with provisional numeric policies and
-offset views, then compare the whole callable and emitted tables immediately.
-Keep first-stage action follow-ups, second-stage attack proposals and final
-movement-policy dispatch distinct. Existing Reimu/default/Aya CPU source is a
-hypothesis corpus; its recorded nonexact floating scheduling, physical calls
-and shared tails are not a reusable exact representative. Do not start another
-flag/spelling or large execution matrix before a concrete whole-body mismatch
-defines the question. The first full Marisa source/comparison remains work to do.
+The first full source emits16403 bytes versus16907 target bytes. Canonical first
+mismatch is `+0x12E / 0x004B419E`, a displacement in the inactive-opponent return
+branch; the preceding302 bytes match. Full canonical SHA256 is
+`d2d1f087416a5a0ac1cf7752f5cabea9a5c3d3429fcb82b582831b247f747579`.
+
+One target-backed trial separates the four grouped sequence-case labels into
+ordinary independent case bodies. The first source range-folded these tables;
+the trial emits all eight destination tables with the native counts
+20/7/7/7/12/3/3/23, retaining all four remap arrays. This source is selected for
+its explicit switch structure, not a byte score. It emits16419 bytes, including
+675 adjacent metadata/alignment bytes; target metadata/alignment is678. Its
+first mismatch remains+12E, target2C / source47. Canonical full SHA256:
+`ca76b8bb83a1d6ae36d8075693a998c2461d95a05b1416a7df6af803e5045a76`.
+The formal manifest build reproduces that payload. **Source-present only; no
+matches.csv row or exact-byte credit is added.**
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py \
+  --unit exact-first-marisa-cpu-policy --compare --json
+python3 scripts/audit-marisa-cpu-policy.py
+taskset -c 0 nice -n 10 python3 scripts/audit-marisa-cpu-policy-paths.py
+```
+
+The first two commands currently return1 with the recorded canonical mismatch.
+The full audit replays every section-tail relocation, checks the target payload
+hash and requires full length/byte equality; no callable/table mismatch is masked.
+The third is a scoped execution diagnostic and returns0. No shared headers,
+compiler flags, accepted objects or global relocation bindings are changed.
+
+## What the complete comparison resolved
+
+Decoded CFG phase traversal, stopping at the common attack/policy joins, finds
+24 selector call sites in both action phases and57 in both attack phases. Their
+other helper counts also agree: actions five conversion/one MT/eight deque/three
+atan2; attacks two conversion/19 deque/two atan2. The physical selector deficit
+is confined to final movement policy: target40 versus source29. Raw source and
+output inspection therefore replace the initial undifferentiated110-versus121
+call-count question with a concrete policy-tail/codegen question. Call counts
+alone never prove semantic equivalence or a missing path.
+
+A small native-helper diagnostic addresses action-window boundaries, sequence
+switch edges, independent attack draws and policy0 duration-call merging. Both
+full source versions pass the same1056 cases:460 action windows,84 sequence
+edges,64 attack-call inputs,404 policy0 inputs and44 terminal-policy inputs.
+Policy0 uses all101 real native selection rolls in four distinct posture/distance
+bands. Native target execution confirms every seed/roll; RNG, deque, atan2 and
+conversion calls all execute original PE code, without substituted results.
+Complete actor fields, RNG state, helper-call trace, stack cleanup and x87 stack
+checks agree. Vector SHA256:
+`c1fb30f56362c0f32e2ef47c4af1e4a5c582490fa57f951de890513211c0f1ee`.
+This sampled execution result is diagnostic only, not exhaustive behavior or
+canonical equality. Policies101/102, all numeric windows and field widths are
+reviewed independently rather than copied unchanged from Reimu.
+
+Next investigate the final movement-policy return/shared-duration structure
+against actual branch/call evidence. Register allocation diverges after the
+matching prefix, and the selected payload is488 bytes shorter overall. Do not
+repeat visibility/FP/profile controls from earlier CPU attempts or expand an
+execution matrix without a specific ambiguity. Retain each trial and switch
+candidates after neutral controls; no register forcing or padding.
 
 ## Observed target and ownership
 
@@ -89,7 +141,8 @@ buttons at the actual distance thresholds220/320/320 respectively. All retain
 the timer-expiry RNG path. These two additional policies are absent from the
 current Reimu representative. Other differences include the first action
 switch, sequence choices, resource gates, probability windows and policy0
-distance partitions. Complete interpretation/source coverage remains pending.
+distance partitions. Complete source covers these paths; original gameplay
+names remain provisional.
 
 **Diagnostic only:** an instruction-token alignment of the two native final
 policy regions pairs1444 instructions from Reimu1637 and Marisa1614. It keeps
@@ -110,9 +163,14 @@ are read back and rolled back; pinned primary DB files remain unchanged.
 Decompiler output is a hypothesis and has not been pasted into source.
 
 Private replay recipes are under `.analysis/exact-first-marisa-cpu-20261024/`:
-`raw.py`, `setup.py`, `facts.py`, the Java script and read-only launcher. Generated
+`raw.py`, `setup.py`, `facts.py`, the Java script and read-only launcher, plus
+first-source `probe00`, independent-case `probe01`, full normalization/difference,
+phase traversal and native execution recipes. Generated
 evidence is under the corresponding `build/` directory: raw disassembly/facts,
 full CFG and12 tables, callee/literal observations, attested call-view and logs,
-DB hashes, scope summary, retained-input hashes and native-tail diagnostic.
+DB hashes, initial scope summary, retained-input hashes, native-tail diagnostic,
+probe00/probe01 payloads/reports, phase call-site partitions and formal-build/
+formal-paths receipts. The initial target-only receipt is historical; the public
+source/unit and current comparison above supersede its source-selected flag.
 No target bytes are patched. Earlier CPU and input sources, compiler flags,
 layouts, object units and relocation ledgers remain unchanged.

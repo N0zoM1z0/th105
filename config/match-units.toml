@@ -21086,3 +21086,22 @@ rel32_targets = [
     "PatchouliInputPolicyView_gate4942c0=0x004942C0",
     "PatchouliInputPolicyView_gate494450=0x00494450",
 ]
+
+[units.exact-first-marisa-cpu-policy]
+kind = "probe"
+source = "src/characters/MarisaCpuPolicy.cpp"
+object = "build/match-units/ExactFirst_MarisaCpuPolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Marisa primary slot58 CPU root4B4070;16229 callable/full16907 target bytes. Complete numeric/offset source, nonexact; all action/attack/policy tables reviewed. Original layout and compiler/TU context unknown. docs/MARISA_CPU_TARGET_2026_10_24.md."
+
+[[units.exact-first-marisa-cpu-policy.functions]]
+address = "0x004B4070"
+symbol_base = "?update_cpu_action_policy@MarisaCpuPolicyView@th105@@QAEXXZ"
+rel32_targets = [
+    "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
+    "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?at@MarisaCpuSequenceView@th105@@QAEPAFI@Z=0x004399C0",
+    "__ftol2_sse=0x0068A1A0",
+]
