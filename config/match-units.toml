@@ -21202,3 +21202,25 @@ rel32_targets = [
     "YukariControlModeView_dispatch_character_wave_handle=0x0045C030",
 ]
 dir32_targets = ["__real@3fd51eb860000000=yukari_control_mode_health_ratio_033f_as_double"]
+
+[units.exact-first-suika-control-mode]
+kind = "probe"
+source = "src/characters/SuikaControlMode.cpp"
+object = "build/match-units/ExactFirst_SuikaControlMode.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Suika slot5C target5AC680;3292 callable/full3568 target bytes. Selected full3564-byte source remains nonexact; native state continuation/unsigned flag/boolean abs/sequence thresholds and both real tails retained. Constant promotion and shared callback layout parked. docs/SUIKA_CONTROL_MODE_2026_10_24.md."
+
+[[units.exact-first-suika-control-mode.functions]]
+address = "0x005AC680"
+symbol_base = "?update_control_mode@SuikaControlModeView@th105@@QAEXXZ"
+rel32_targets = [
+    "selector_random_roll=0x004067D0",
+    "SuikaControlSequenceView_at=0x004399C0",
+    "SuikaControlModeView_face_opponent_and_flip_horizontal_velocity=0x00478E60",
+    "SuikaControlModeView_zero_velocity_acceleration=0x0045AF40",
+]
+dir32_targets = [
+    "__real@c024000000000000=suika_control_mode_double_minus10",
+    "__real@c008000000000000=suika_control_mode_double_minus3",
+]

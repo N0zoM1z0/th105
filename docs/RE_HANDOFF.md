@@ -31,7 +31,11 @@ Keep this local-layout residual parked and select another complete peer.
 Yukari5893C0 now has complete3934-byte-target source; full4244 remains nonexact
 against4260. All63 physical calls agree; addition-order and double-capture
 controls reproduce identical bytes. Preserve its physical-layout residual and
-continue another complete peer. Required commit format:
+continue another complete peer. Suika5AC680 now has complete3292-byte-target
+source/full3564 against3568. Both real tails and the final backward store edge
+are reviewed; byte255 fixes a decrement form but constant promotion/shared
+callback layout remains nonexact. Keep this finite experiment checkpoint and
+select another complete peer. Required commit format:
 `gpt-6.1-sol: ...`.
 
 Current priority remains complete large-function exactness before gameplay
@@ -76,16 +80,40 @@ Ghidra import and use at most one process; preserve primary analysis databases.
 | --- | ---: |
 | Provisional candidates | 4024 |
 | Authored / excluded / origin review | 1595 / 1418 / 1011 |
-| Mapped / source-present | 1542 / 1524 |
+| Mapped / source-present | 1543 / 1525 |
 | Accepted authored exact | 1397 functions / 327058 bytes |
 | Provisional authored byte denominator | 2136806 |
-| Match units / configured functions | 565 / 1533 |
+| Match units / configured functions | 566 / 1534 |
 
 These are ledger totals, without a new aggregate cold replay. Replay affected
 accepted units after shared changes; aggregate claims require a cold
 `python3 scripts/verify-exact-units.py --all`.
 
-## Current checkpoint: Yukari slot5C control mode 0x5893C0
+## Current checkpoint: Suika slot5C control mode 0x5AC680
+
+[Complete source and residual](SUIKA_CONTROL_MODE_2026_10_24.md) closes3292
+callable target bytes/869 instructions/13 RETs/75 calls and both real tails,
+plus276 table bytes. Complete3564-byte source remains nonexact against3568:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-suika-control-mode --compare --json
+python3 scripts/audit-suika-control-mode.py
+```
+
+Both correctly return1, first+2 register/save allocation. Selected full SHA256:
+`5c4dd2b795f337de69cb509126b23997b5cacf985049af5b2d4fe039a0d76aab`.
+All45 selectors/11 facing/one deque CALL and both tails remain. Native edge
+continuation versus central return, abs of boolean comparison, inclusive and
+strict20 thresholds, state1-before740 and final backward store are retained.
+Unsigned byte255 fixes timer-decrement instruction; bool184 is byte-neutral.
+Explicit sequence endpoints alter layout and double RNG conversion changes
+31 correction widths, so both controls are unselected. Constant promotion,
+conditional EDI save and callback-tail sharing need new lifetime/TU evidence;
+park and switch to another independently reviewed peer. Two new literals are
+explicitly scoped here; no previous binding/header/source changes or exact
+credit. No large matrix or compiler search.
+
+## Parked representative: Yukari slot5C control mode 0x5893C0
 
 [Complete source and residual](YUKARI_CONTROL_MODE_2026_10_24.md) closes3934
 callable target bytes/1045 instructions/16 RETs/63 calls and all326 metadata/
