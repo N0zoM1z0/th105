@@ -1,7 +1,22 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **Patchouli Fighter action initializer51D650 now matches3132
-callable/all3868 emitted bytes; continue independently reviewed same-slot peers**.
+Current transition: **retain complete Suika Fighter action initializer5AD4A0;
+two whole-payload neutral controls close its publication questions, so switch
+to a fresh independently reviewed same-slot peer**.
+Suika now has selected complete2577-byte-target source/full3171 target payload.
+All629 main instructions/2577 bytes are reachable;40 RETs/seven45AF40 tails/
+477830 default and both24/32 destination tables/366 remap bytes are reviewed.
+Formal and independent cold source3139 SHA256 `ce5845dc...` remains nonexact+15.
+Correct unsigned-to-float RNG conversion restores the actual dword2^32 reads;
+the rebased197-byte eight-spawn-loop window agrees, rejecting the old double
+view at+13. This window is diagnostic only; root exactness remains false.
+Source has22/23 zero calls and39/40 RETs;401/402 prefix order, pooled525 call
+and740 shared tail remain. Grouped740 clears and independent520 ordering both
+reproduce identical full bytes. Stop those controls absent new evidence; no
+LTCG impossibility or behavior matrix. See
+[complete source/evidence/commands](SUIKA_ACTION_INITIALIZATION_2026_10_25.md).
+
+Patchouli Fighter initializer51D650 remains exact3132 callable/full3868 bytes.
 Formal and independent cold ordinary VC8 source reproduce full target SHA256
 `ec90d466...` with all136 relocations replayed. Raw CFG reaches all732 main
 instructions/3132 bytes and closes41 RETs/seven45AF40 tails/477830 default.
@@ -61,7 +76,7 @@ controls, including a neutral facing-expression control and rejected real input/
 product captures; do not repeat them without new evidence. See
 [the full source/evidence/commands](REIMU_ACTION_INITIALIZATION_2026_10_25.md).
 
-Next review Suika primary slot3C5AD4A0, candidate2577 bytes, currently
+Next review Tenshi primary slot3C64A0A0, candidate2453 bytes, currently
 authored but source-missing. Re-attest its slot and independently reconcile
 its complete raw CFG/ABI before implementation; no blanket pattern transfer.
 Keep parked common/Reimu/Udonge residuals closed absent new target evidence.
@@ -116,7 +131,7 @@ mapped-section attestation; transaction rollback/readback and all nine primary
 project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
 The first full body has been compiled/compared as described above. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
-Source-present1548/mapped1567; exact1405/366327 bytes, units587. Use locked
+Source-present1549/mapped1568; exact ledger unchanged1405/366327 bytes, units588. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
 mandatory local CI before every commit/push. IDA still has the wrong executable;
 use hash-attested raw bytes. Latest aggregate cold replay is the Patchouli checkpoint.

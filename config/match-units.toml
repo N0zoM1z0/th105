@@ -21845,3 +21845,50 @@ dir32_targets = [
     "__real@c0c00000=_patchouli_action_entry_006c3c60",
     "__real@3ecccccd=_patchouli_action_entry_006c4480",
 ]
+
+
+[units.exact-first-suika-action-initialization]
+kind = "probe"
+source = "src/characters/SuikaActionInitialization.cpp"
+object = "build/match-units/ExactFirst_SuikaActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Suika primary slot3C5AD4A0;2577 callable/full3171 target payload. Correct unsigned-to-float RNG transport and complete eight-spawn packet loop. Whole3139 remains nonexact after two neutral controls; preserve residual. scripts/audit-suika-action-initialization.py; docs/SUIKA_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-suika-action-initialization.functions]]
+address = "0x005AD4A0"
+symbol_base = "?initialize_action_entry@SuikaActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?zero_motion@SuikaActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?dispatch_character_wave_handle@SuikaActionEntryView@th105@@QAEXI@Z=0x0045C030",
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?spawn_owned_object@SuikaActionEntryView@th105@@QAEHHMMEHPAMH@Z=0x00465190",
+    "?initialize_common_action_entry@SuikaActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+    "__real@c0b00000=_suika_action_entry_006c4788",
+    "__real@40b00000=_suika_action_entry_006c4798",
+    "__real@3f19999a=_suika_action_entry_006c3e94",
+    "__real@42900000=_suika_action_entry_006c5aa8",
+    "__real@41100000=_suika_action_entry_006c3e5c",
+    "__real@3fc99999a0000000=_suika_action_entry_006c0e80",
+    "__real@41000000=_suika_action_entry_006c2874",
+    "__real@c1000000=_suika_action_entry_006cd230",
+    "__real@3f000000=_suika_action_entry_006cd140",
+    "__real@3fe0000000000000=_suika_action_entry_006cd138",
+    "__real@40c00000=_suika_action_entry_006cd1d8",
+    "__real@41200000=_suika_action_entry_006d6eec",
+    "__real@3eb33333=_suika_action_entry_006c3e90",
+    "__real@418c0000=_suika_action_entry_006c3e60",
+    "__real@40000000=_suika_action_entry_006c13f0",
+    "__real@c0c00000=_suika_action_entry_006c3c60",
+    "__real@43480000=_suika_action_entry_006c1a8c",
+    "__real@40400000=_suika_action_entry_006d6ed8",
+    "__real@3dcccccd=_suika_action_entry_006c3450",
+    "__real@4f800000=_suika_action_entry_006d6ef8",
+    "__real@4046800000000000=_suika_action_entry_006c3d48",
+    "__real@4034000000000000=_suika_action_entry_006c0ef0",
+    "__real@4030000000000000=_suika_action_entry_006c1878",
+    "__real@4059000000000000=_suika_action_entry_006cd190",
+    "__real@3ff0000000000000=_suika_action_entry_006cd160",
+]

@@ -1566,3 +1566,4 @@ Reimu_initialize_action_entry,0x00491C40,function
 CommonFighter_initialize_action_entry,0x00477830,function
 Yukari_initialize_action_entry,0x0058A4F0,function
 Patchouli_initialize_action_entry,0x0051D650,function
+Suika_initialize_action_entry,0x005AD4A0,function
