@@ -21520,3 +21520,26 @@ rel32_targets = [
     "?continue_action_980@YuyukoObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
 ]
+
+
+[units.exact-first-udonge-object-entry]
+kind = "probe"
+source = "src/characters/UdongeObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_UdongeObjectActionEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a UdongeObject slot3C5DF0E0;10723 callable/full11112 target. Reviewed three destination tables and199-byte remap; real shared tails and scalar lifetimes. docs/UDONGE_OBJECT_ENTRY_2026_10_24.md."
+
+[[units.exact-first-udonge-object-entry.functions]]
+address = "0x005DF0E0"
+symbol_base = "?initialize_action_entry@UdongeObjectEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+    "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
+    "?set_components@UdongeEntryMotionView@th105@@QAEXMM@Z=0x00435160",
+    "?dispatch_character_wave_handle@UdongeObjectEntryView@th105@@QAEXI@Z=0x0045C030",
+    "UdongeObjectEntryView_spawn_parented=0x004FCA60",
+    "UdongeObjectEntryView_spawn_unparented=0x0064CCB0",
+    "?continue_action_980@UdongeObjectEntryView@th105@@QAEXXZ=0x00596370",
+    "__ftol2_sse=0x0068A1A0",
+]

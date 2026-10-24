@@ -1,6 +1,6 @@
 # TH10.5 reconstruction handoff
 
-Exact-first reconstruction checkpoint: 2026-10-24. Remilia input policy
+Exact-first reconstruction checkpoint: 2026-10-25. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
 Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0`, Yukari `0x58C2E0`
 Iku `0x631340`, Komachi `0x5F7AB0`, Aya `0x618660`, Alice `0x4FACD0`,
@@ -200,8 +200,24 @@ trig pointer copies and following register/call scheduling. See
 `docs/YUYUKO_OBJECT_ENTRY_2026_10_24.md`. No exact credit is added. The new0.05
 literal key leaves all existing bindings unchanged; whole-object and explicit-
 binding scans of all514 accepted units find none affected. This is not a new
-aggregate replay. Next independently review the remaining UdongeObject slot3C
-root5DF0E0 rather than reopening parked spelling controls without new evidence.
+aggregate replay. That checkpoint selected the remaining UdongeObject slot3C
+root5DF0E0 for independent review.
+UdongeObject5DF0E0 now accepts10723 callable/all11112 emitted bytes in formal
+and independent cold builds, with all500 relocations replayed. Full raw closure
+retains2712 reachable instructions/26 alignment bytes,174 direct/28 virtual
+calls,37 RETs, all three destination tables,199 remap bytes and the real980 tail.
+Observed shared tails, low-WORD selector call view, explicit858 no-op,853 packet
+store order and857 branch stores recover the structure. Sharing the real
+computed scale removes an extra round trip; reusing859's inner float index and
+the common result at their observed shared stack location resolves the last two
+bytes. Four native RET inputs pass; the first complete source fails both alpha-
+alias controls. See `docs/UDONGE_OBJECT_ENTRY_2026_10_24.md`. A fresh sequential
+`verify-exact-units.py --all` passes515 cold units/all1403 accepted functions;
+the final full Udonge audit also passes11112/11112 after that rebuild. New0.71/17
+literal keys leave old bindings unchanged. All15 Object slot3C roots now have
+selected source:3 exact and12 implemented/nonexact; this census adds no credit
+to the12 parked roots. Choose a new complete medium/large authored representative
+and reopen a peer only with new independent evidence.
 Commit format:
 `gpt-6.1-sol: ...`.
 
