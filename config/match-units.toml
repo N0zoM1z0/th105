@@ -21966,3 +21966,36 @@ dir32_targets = [
     "__real@41200000=_marisa_action_entry_006d6eec",
     "__real@41700000=_marisa_action_entry_006c3ea0",
 ]
+
+
+[units.exact-first-sakuya-action-initialization]
+kind = "probe"
+source = "src/characters/SakuyaActionInitialization.cpp"
+object = "build/match-units/ExactFirst_SakuyaActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Sakuya primary slot3C4DE060;2106 callable/full2656 payload. Actual ordered lower clamps and independent publication/product epochs;562 preserves734. scripts/audit-sakuya-action-initialization.py; docs/SAKUYA_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-sakuya-action-initialization.functions]]
+address = "0x004DE060"
+symbol_base = "?initialize_action_entry@SakuyaActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?zero_motion@SakuyaActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?initialize_common_action_entry@SakuyaActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+    "__real@c0c00000=_sakuya_action_entry_006c3c60",
+    "__real@40c00000=_sakuya_action_entry_006cd1d8",
+    "__real@3f19999a=_sakuya_action_entry_006c3e94",
+    "__real@42960000=_sakuya_action_entry_006c3ee8",
+    "__real@41280000=_sakuya_action_entry_006c4830",
+    "__real@4029000000000000=_sakuya_action_entry_006c4828",
+    "__real@41480000=_sakuya_action_entry_006c3c48",
+    "__real@3fc99999a0000000=_sakuya_action_entry_006c0e80",
+    "__real@3f000000=_sakuya_action_entry_006cd140",
+    "__real@3eb33333=_sakuya_action_entry_006c3e90",
+    "__real@3fd0000000000000=_sakuya_action_entry_006c33a8",
+    "__real@41200000=_sakuya_action_entry_006d6eec",
+    "__real@3f0ccccd=_sakuya_action_entry_006c3e9c",
+    "__real@41400000=_sakuya_action_entry_006c12b0",
+]
