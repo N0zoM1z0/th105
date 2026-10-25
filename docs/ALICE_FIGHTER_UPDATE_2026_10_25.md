@@ -573,3 +573,54 @@ Receipts in the existing build scope: `counter-tail-baseline-full-audit.json`,
 The retained public3022-line source differs from its numeric permutation only
 in the one526 expression. These two controls are closed; continue from actual
 field-read/lifetime evidence rather than another ordering or spelling sweep.
+
+
+## Shared request intermediate and bounded checkpoint
+
+A new dataflow check first inspects the currentef85ed75 candidate. In525's
+first loop it computes2n, stores it to float at4F00F2, then reloads the same
+word at4F00FB after stack pushes. In526's second loop the analogous store/load
+is4F05D3/4F05DC. By contrast native4F01B1..4F01DA and4F064B..4F0674 keep2n in
+x87 while forming2+2n and2n+21, with no float store of the intermediate. Dumps
+are decoded from the complete function entry before selecting instructions;
+stack pushes are retained so repeated ESP-relative slots are not mistaken for
+different objects.
+
+One private whole-source control replaces only those two temporary uses of
+packet[1] with a genuine double twice_n=n*2.0, consumed by both final packet
+fields. This removes the observed float store/reload in both loops. The local
+is live and used; no frame padding, volatile tie, ABI declaration, loop bound,
+callback, array extent or compiler option changes. The source spelling of the
+original shared value remains unknown. Since these loops increment float n
+from0 while comparing against signed byte609+1 or+3, body n is a small exact
+integer0..127 or0..129. The old intermediate rounding was not a demonstrated
+numeric behavior bug in that domain.
+
+The complete control was compared immediately and emits44032 bytes, SHA256
+`4d312925be3f754e27ef0f963632f8034ca587c6b09be35dc7a7ff8aefd5bd1d`.
+Formal and independent fresh-object full, publication-order and214-prefix
+reports agree. The full44080-byte target comparison remains nonexact:41054
+unmasked differing positions including48 missing candidate bytes, first+8 and
+frame418/410. Code-to-first-table42684/42724,124/128 RETs,677/674 direct and
+158/163 indirect calls remain. All16 table lengths,685 remap bytes and690
+action call counts agree;48 predicate tests useAL. Publication checks6/6 and
+214 execution-prefix checks6/6 still pass. Other x87 ordering/lifetimes remain
+different: the candidate carries an extra constant2 across spawn, whereas
+the native calculation consumes its2 while forming packet0. Full x87
+call-boundary equivalence is unproved; neither complete request-loop nor
+whole-function execution equivalence is claimed.
+
+Receipts: `fp-live-baseline-full-audit.json`, `fp-live-fragments.asm`,
+`fp-live-shared-double-*`, `fp-live-formal-*`, `fp-live-cold-*` and
+`sharing-fp-live.json` in the existing build scope. Private
+`fp-live-before.cpp` freezesef85ed75; `fp-live-shared-double.cpp` is the single
+control and retained source. No accepted input, exact/source-present ledger
+selection or aggregate cold result changes.
+
+The finite Alice source controls are now checkpointed. Remaining frame/array
+extent and object/linker metadata ownership need independent evidence; no
+standalone/LTCG impossibility claim follows. Keep the current complete source
+unselected, preserve the strict comparison and do not iterate equivalent
+spellings or re-run closed array/width/layout controls. Next work returns to a
+complete medium representative with a distinct untried provenance question,
+AyaObject61F0B0.

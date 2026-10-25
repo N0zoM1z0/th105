@@ -2,10 +2,12 @@
 
 Active reconstruction resumed on2026-10-25 under the user's large-function,
 whole-comparison-first direction. TenshiObject update
-**0x0064CD50** is checkpointed complete source-present/nonexact. Active bounded
-work is **Alice Fighter update0x004E9F50**: raw42721-byte main/full44080-byte
-payload is closed, and the complete manual hypothesis has its first comparison.
-Current44068-byte candidate is nonexact and deliberately unselected.
+**0x0064CD50** is checkpointed complete source-present/nonexact.
+**Alice Fighter update0x004E9F50** is also checkpointed: raw42721-byte main/
+full44080-byte payload is closed. Its complete44032-byte candidate remains
+nonexact and deliberately unselected. The finite source controls are saved;
+next bounded work is **AyaObject initializer0x0061F0B0** (4531 callable bytes),
+refreshing its complete baseline before any new compiler-release investigation.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -52,7 +54,7 @@ receipt remains `build/exact-first-remilia-action-entry-20261025/cold-all.log`:
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
 
-## Current bounded work: Alice Fighter4E9F50
+## Checkpoint: Alice Fighter4E9F50
 
 [Complete target closure and next source scope](ALICE_FIGHTER_UPDATE_2026_10_25.md).
 Public audit: `scripts/audit-alice-fighter-update-target.py`.
@@ -70,7 +72,7 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
 - First complete43428 SHA0d7bfb04 was compared before controls. Native400
   re-reads facing after sequence/effect callbacks;400/401 request continuations,
   sequence4 timer gates and401 state-before-counter order are now restored.
-- Current formal/cold candidate44068 SHAef85ed75,40778 unmasked differences,
+- Current formal/cold candidate44032 SHA4d312925,41054 unmasked differences,
   first4E9F58; frame418/410, RETs124/128, direct677/674, indirect158/163.
   All16 table lengths and all685 remap bytes agree, without masking or rebasing.
 - Native214 inactive states now go directly to landing check; its flight-end
@@ -103,9 +105,15 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
   discrepancy.526's first packet now computes(n+n)+10 before storing, matching
   the observed shared2n x87 flow. One independent complete layout control
   sorts the108 terminating root case groups numerically, preserving their
-  text. The combined candidate has code-to-first-table42720 versus42724 target;
+  text. That layout checkpoint had code-to-first-table42720 versus42724 target;
   source lexical order remains an inferred layout hypothesis, not recovered
   original spelling. All690 call counts and both six-case checks still agree.
+- Native525-first/526-second keep shared2n in x87 until both packet words
+  are formed. Old candidate stores/reloads float2n; one genuine double local
+  now removes those two roundtrips. The original temporary spelling/type is
+  unknown. The candidate still carries an extra constant2 across spawn; native
+  consumes its2 when forming packet0. Full x87 call-boundary equivalence is
+  unproved. This shared-value control is closed.
 - Read-only384MiB Ghidra evidence is already saved; all9 primary DB file hashes
   unchanged. Its decompiler output has warnings and remains a hypothesis.
 - The isolated narrow-facing closed provider also matches46519066/66, but the
@@ -127,22 +135,29 @@ Public comparisons: scripts/build.py --unit exact-first-alice-fighter-update
 Receipts/private recipes remain under build/exact-first-alice-fighter-update-20261025/
 and the corresponding .analysis/ scope. Formal/cold full audits agree.
 
-Next: continue this complete root from actual differences: use the retained
-sharing-layout owner partitions to review real callback order and
-field-read epochs, then real stack/packet lifetimes. Do not infer missing calls
-from physical totals or force a source spelling to reproduce sharing alone.
-The five direct arms have a bounded instruction/count review, not full execution
-acceptance. Close the542/547/548
-source-structure,570/571 extent, predicate-consumption,526 association and root
-case-order controls; do not
-sweep equivalent spellings.197/198 zero and208/220 predicate site sharing need
-no forced source split after the bounded review.
-730's partially defined upper facing bits and570/571's fourth-word provenance
-and original array extent remain unknown;
-preserve uncertainty rather than inventing data initialization or register
-contracts. The source is complete but must stay unselected pending its full
-instruction/ABI/default review. Do not rerun Ghidra merely to reread saved
-output, broaden to another root yet, or use spelling/padding grids.
+Alice is checkpointed until independent frame/array, object/linker ownership,
+callback or FP-environment evidence changes the question. Its code-to-first-
+table distance is42684 versus42724 target. Remaining physical call differences
+are diagnostics, not missing-behavior claims. Do not repeat the closed width,
+array-extent, association, shared-double or numeric-layout controls. Public
+570/571 stays float[4]; fourth-word provenance/original extent and730 upper
+facing bits remain unknown. The8 trailing target INT3 bytes remain fully
+compared and separately unqualified for object/linker ownership.
+
+## Next bounded work: AyaObject initializer61F0B0
+
+[Existing evidence and closed controls](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md).
+This is a complete4531-byte representative with327 emitted metadata bytes;
+its last accepted source selection remains nonexact in two heading-pointer
+register bytes at61FCA7/61FCAF. First refresh the whole current baseline and
+read the selected source. Existing receiver, hierarchy, argument, real-provider,
+RTM and ordinary compiler-flag controls are closed. The separately documented
+later C2 release has not been recovered/compiled; any such trial requires an
+independently attested publisher package and exact version/hash, then an
+immediate unchanged-source whole comparison. Do not execute an unverified DLL,
+change the default compiler profile, or repeat old source-shape controls.
+Only one bounded address/build remains in flight. If no new release evidence
+can be obtained, retain that limit and move to the authored/boundary frontier.
 
 ## Checkpoint: TenshiObject64CD50
 

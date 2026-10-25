@@ -2321,7 +2321,8 @@ void AliceFighterActionStateView::dispatch_action_state()
    if(S(0x140)==8 && C(0x750)==1) { BLOCK(); EFFECT(62,static_cast<float>(F(0xEC)-33*C(0x104)),static_cast<float>(F(0xF0)+112.0),B(0x104),-1); return; }
    if(S(0x140)==10) {
     for(float n=0;n<C(0x609)+1;n+=1.0) {
-     float packet[3]; packet[1]=n*2.0; packet[0]=2.0+packet[1]; packet[1]+=21.0; packet[2]=0;
+     double const twice_n=n*2.0;
+     float packet[3]; packet[0]=2.0+twice_n; packet[1]=twice_n+21.0; packet[2]=0;
      SPAWN(816,static_cast<float>(124*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
     }
     WAVE(3); I(0x180)=1; ADJUST(200,120); SCALE(50);
@@ -2354,7 +2355,8 @@ void AliceFighterActionStateView::dispatch_action_state()
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) { ACTION(0); return; }
   if(S(0x13E)==2 && S(0x142)==0 && S(0x140)==2) {
    for(float n=0;n<C(0x609)+3;n+=1.0) {
-    float packet[3]; packet[1]=n*2.0; packet[0]=2.0+packet[1]; packet[1]+=21.0; packet[2]=0;
+    double const twice_n=n*2.0;
+    float packet[3]; packet[0]=2.0+twice_n; packet[1]=twice_n+21.0; packet[2]=0;
     SPAWN(816,static_cast<float>(124*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
    }
    WAVE(3); I(0x180)=1; ADJUST(200,120); SCALE(50);
