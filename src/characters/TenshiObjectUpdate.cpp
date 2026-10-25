@@ -204,7 +204,7 @@ void TenshiObjectUpdateView::update_action_state()
   case 8:MOVE();FADE(15,15);F(0x120)*=D(0.9f);F(0x11c)+=D(0.1f);STEP();break;
   }break;
  case 825:
-  if(I(0x180)==5)RETIRE();if(S(0x13e)==0){H[1]*=D(0.98f);MOVE();SCALE(F(0x11c)+D(0.005f));FADE(8,8);STEP();return;}advance_frame();return;
+  if(I(0x180)==5)RETIRE();if(S(0x13e)==0){H[1]*=D(0.98f);MOVE();SCALE(F(0x11c)+D(0.005f));FADE(8,8);STEP();return;}break;
  case 848:
   switch(S(0x13e)) {
   case 0:

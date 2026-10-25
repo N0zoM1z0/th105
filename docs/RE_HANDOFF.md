@@ -63,10 +63,15 @@ Audit: `scripts/audit-tenshi-object-update.py`.
 - All28 nondefault actions/default have manual source. First full42068 comparison
   was retained before controls. Native801/820 branch-specific trig sites,
  801 direct doubling and800 float transfers were then restored.
-- Formal and independent fresh builds emit42916 bytes, SHA2391a745...,
+- Formal and independent fresh builds emit42916 bytes, SHAf010343c...,
  40643 unmasked differences, first64CD58. Aligned frame2C0 and83 RETs versus
  2A8/67. Per-action direct/indirect call censuses agree for all28 actions;
   physical frame-call owner groups remain five versus six. This is nonexact.
+- 825 nonzero substates now consume4351C0 AL through the common conditional exit;
+  its zero-substate early return and default ignored return remain separate.
+  Eight real native-helper inputs pass; the old object fails one (lifetime10
+  versus native9). Only four branch-displacement bytes changed, so length and
+  aggregate difference count alone would miss this correction.
 - Selector-zero/default900 burst controls have no native source initialization;
   ordinary uninitialized locals preserve the source hypothesis. Scratch-dependent
   behavior and original intent remain unknown; no equivalence claim is made.
@@ -74,7 +79,9 @@ Audit: `scripts/audit-tenshi-object-update.py`.
 
 Receipts: `build/exact-first-tenshi-object-update-20261025/` (`formal.log`,
 `formal-full-audit.json`, `cold-build.log`, `cold-full-audit.json`,
-`first-complete.json`, `target-audit.json`). Private recipes and first/control
+`first-complete.json`, `target-audit.json`).825 receipts use the
+`frame-return-*` prefix; the public scoped check is
+`scripts/audit-tenshi-object-update-paths.py`. Private recipes and first/control
 sources: `.analysis/exact-first-tenshi-object-update-20261025/`.
 
 Next: one evidence-backed lifetime/float-transfer or shared-exit question, then

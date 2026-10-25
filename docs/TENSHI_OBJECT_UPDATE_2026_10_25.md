@@ -85,7 +85,7 @@ random products and its ordered lower-bound comparison. Other actions' call
 censuses already agreed. These are scoped source/dataflow corrections, not an
 option/spelling grid or a generic codegen recipe.
 
-The formally configured source and an independent fresh build both emit42916
+The initially configured source and an independent fresh build both emit42916
 bytes, SHA-256
 `2391a745177fb117c358ee4560c00d24412cdf4f8f8f2e6322a321b61a657083`.
 Full comparison has40643 unmasked differences, first64CD58; the selected
@@ -102,9 +102,45 @@ The native six physical frame-call sites have these owner groups:
 - 960;
 - default, which ignores AL.
 
-The selected object has five: its main group also owns816/960;825 merges with
-the default;810/820/850,848 and961 remain separate. A call count alone cannot
-substitute for the complete physical-owner audit.
+The initial object has five: its main group also owns816/960;825 merged with
+the default. The825 correction below moves825 to the common conditional exit
+and leaves default alone.810/820/850,848 and961 remain separate. A call count
+alone cannot substitute for the complete physical-owner audit.
+
+## 825 frame-return correction
+
+A subsequent raw-exit review found an actual source error: native65024F sends
+825's nonzero substates to64D23A, where4351C0's AL is tested before decrementing
++330. The first candidate incorrectly ignored AL, merging825 with the default.
+The source now takes the common conditional exit;825's zero-substate early RET
+and the default's ignored return remain distinct.
+
+`scripts/audit-tenshi-object-update-paths.py` executes eight full-root inputs:
+825/default799, ready/nonready frame, modes0/1. It runs the real4351C0,
+45C1A0/45C220, frame-apply and sprite helpers against a readonly one-block
+animation fixture, without injected helper results or transfers. The old object
+fails exactly one:825/mode0/ready retains lifetime10 versus native9. The corrected
+object passes8/8 with the same actor bytes, helper trace, real RET0 stack cleanup
+and x87 control/top. This fixture establishes only the scoped behavior, not
+real-game graph reachability or whole-function equivalence.
+
+The correction changes only the four displacement bytes at candidate65035C..F.
+Full42916 size, frame2C0,83 RETs and40643 differing bytes stay unchanged; the
+canonical SHA becomes
+`f010343c86c5fe1d36512882fe89caaa1524da64cc03548e80a265d045ce8b55`.
+This is a semantic correction despite an unchanged aggregate mismatch count.
+Formal/current and independent fresh comparisons use the complete41984 target.
+No exact credit is added.
+
+```bash
+scripts/repo-python scripts/audit-tenshi-object-update-paths.py
+# Negative control: old complete object fails one native input.
+scripts/repo-python scripts/audit-tenshi-object-update-paths.py --object build/exact-first-tenshi-object-update-20261025/selected.obj
+```
+
+Receipts: `frame-return-build.log`, `frame-return-full-audit.json`,
+`frame-return-cold-build.log`, `frame-return-cold-full-audit.json`,
+`frame-return-native-paths.json`, `frame-return-negative-paths.json`.
 
 ## Specific semantic limits
 

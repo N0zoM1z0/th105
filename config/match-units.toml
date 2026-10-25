@@ -22873,7 +22873,7 @@ source = "src/characters/TenshiObjectUpdate.cpp"
 object = "build/match-units/ExactFirst_TenshiObjectUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete28-action/default manual JP1.06a64CD50 source; first whole comparison retained. Target41984 owns28 tables/one199-byte remap. Selected full42916 SHA2391a745; natural aligned frame2C0 versus2A8. All per-action call censuses agree; physical frame-call sharing differs. Selector-zero/default900 initialization remains an observed ambiguity. scripts/audit-tenshi-object-update.py; docs/TENSHI_OBJECT_UPDATE_2026_10_25.md."
+notes = "Complete28-action/default manual JP1.06a64CD50 source; first whole comparison retained. Target41984 owns28 tables/one199-byte remap. Selected full42916 SHAf010343c; natural aligned frame2C0 versus2A8. Native825 return consumption passes8 scoped inputs; old body fails1. All per-action call censuses agree; physical frame-call sharing differs. Selector-zero/default900 initialization remains an observed ambiguity. scripts/audit-tenshi-object-update.py; docs/TENSHI_OBJECT_UPDATE_2026_10_25.md."
 
 [[units.exact-first-tenshi-object-update.functions]]
 address = "0x0064CD50"
