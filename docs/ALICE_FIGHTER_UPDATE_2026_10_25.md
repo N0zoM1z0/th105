@@ -200,3 +200,78 @@ Current receipts in the existing build scope: `first-complete-*`,
 `literal-impact.json`. First/control source and focused call-ownership recipes
 remain in the matching private analysis scope. The public source/unit/audit
 are the reproducible current state; generated reports/objects stay out of Git.
+
+
+## Narrow-facing control and native214 routing correction
+
+The admitted declaration question is now bounded rather than inferred from
+callee byte loads. A fresh wide-direction FighterOwnedObjectSpawn build retains
+canonical66/66 at465190. A separate genuine closed source changes only its
+three direction declarations (wrapper declaration/definition and manager virtual
+signature) from int to unsigned char. The existing fighter-owned-object-spawn
+unit's object-override comparison is also66/66, canonical SHA256
+`80aab8cb379377dc179c3e1311599ab890885fa92ffd5ecf075ff6c3df15a7fc`.
+Both views are admitted; original nominal width is not uniquely recovered.
+Neither the accepted provider source nor its unit is changed.
+
+A separate complete caller changes only its facing formal to unsigned char;
+layer remains int. It emits43464 bytes/SHA256
+`b046bb878a37b2375bc3b731a6061773e60c03e97ff84e8fdf2edf306595ad19`,
+41894 unequal positions. Frame418,16 table lengths/685 remap bytes and the
+214/542/547/548 callback membership gaps persist. The control is unselected;
+the public caller keeps its admitted int-facing view. Do not sweep width
+combinations or claim the original formal from this result. Receipts are
+`width-provider-baseline.json`, `provider-facing-byte-comparison.json`,
+`width-baseline-full-audit.json`, and `facing-byte-*` in the existing scope.
+The separate source changes and exact compiler commands are retained privately.
+
+The first whole comparison also directed review to214. Exact instructions
+show that the active sequence range1..4 encloses its flight-end condition:
+4EB474/4EB47D send states outside that range directly to4EB8E1's landing check.
+The retained source had placed the flight-end gate outside that range and
+could reset scratch instead of checking landing for0/5/6. The correction keeps
+the gate inside the active motion block. It also restores the timer re-read
+after event31 at4EB38C, live field13E/F4 checks after each virtual sequence call,
+and live heading/peer reads at the actual later uses. In particular the four
+motion sequence checks4EB61B..4EB6B0 reload their conditions between calls;
+the former cached velocity/sequence pair did not express those epochs.
+
+A small native execution check now starts at the real root for sequences0/5/6
+and both values0/1 of input6C8, with counter736=20 and spirit482=1. Native
+4351C0 executes and returns normally: frame counter0->1 stays below duration3,
+and timer1->2. There is no injected helper result, callback or branch. Both
+native and candidate stop before the first5F9310 landing or435110 scratch body.
+All six inputs agree in boundary, receiver, the observed0x800-byte owner prefix,
+helper trace and empty x87 stack/control. Gravity produces -2.5 for5/6 and
+leaves -2 for0. The old8dd4473a object fails precisely the three input6C8=0
+cases by choosing scratch reset instead of landing. This proves these bounded
+prefixes, not active-flight behavior, subsequent landing results or real-game
+reachability of the fixture combinations.
+
+```sh
+scripts/repo-python scripts/audit-alice-fighter-action214-paths.py
+# Negative control (expected exit1;3/6 differences):
+scripts/repo-python scripts/audit-alice-fighter-action214-paths.py --object build/exact-first-alice-fighter-update-20261025/action214-before.obj
+```
+
+The current3018-line source retains only the214 instruction/epoch correction;
+it does not select the narrow-facing caller control. Formal and independent
+fresh-object full comparisons now agree at44012 bytes, SHA256
+`4fa62a2b837aa5a89b3dac35f0b1327db2062d3ad6f6aa5c201be31d672090b0`.
+There are41449 unmasked differing positions including the68-byte size gap.
+Frame418/410, RETs124/128, direct calls672/674 and indirect calls160/163 remain.
+The four physical direct-callee discrepancies are stage height14/16, stage
+predicate6/7, zero motion26/28 and wave dispatch52/49 (candidate/native).
+All16 table lengths and all685 remap bytes agree.214's per-action indirect
+inventory is now14/14; remaining mapped-case callback differences are542,
+547 and548. Counts still ignore predicates and do not replace the full byte
+comparison. The source stays identified/unselected with no new exact or
+source-present credit. No accepted unit input changes and no new aggregate
+cold acceptance is claimed.
+
+Current receipts use `action214-formal-*`, `action214-cold-*`,
+`action214-live-fields-*` and `action214-old-negative-paths.json`.
+The intermediate `action214-live-fields.obj` and formal/cold objects all emit
+4fa62a2b. The frozen `action214-before.obj` is the8dd4473a predecessor. Continue
+from the public complete source and these actual residuals; keep the width
+control separate and avoid unproved packet-size changes.

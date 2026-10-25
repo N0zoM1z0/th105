@@ -5,7 +5,7 @@ whole-comparison-first direction. TenshiObject update
 **0x0064CD50** is checkpointed complete source-present/nonexact. Active bounded
 work is **Alice Fighter update0x004E9F50**: raw42721-byte main/full44080-byte
 payload is closed, and the complete manual hypothesis has its first comparison.
-Current43572-byte candidate is nonexact and deliberately unselected.
+Current44012-byte candidate is nonexact and deliberately unselected.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -70,14 +70,22 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
 - First complete43428 SHA0d7bfb04 was compared before controls. Native400
   re-reads facing after sequence/effect callbacks;400/401 request continuations,
   sequence4 timer gates and401 state-before-counter order are now restored.
-- Current formal/cold candidate43572 SHA8dd4473a,41815 unmasked differences,
-  first4E9F58; frame418/410, RETs121/128, direct665/674, indirect157/163.
+- Current formal/cold candidate44012 SHA4fa62a2b,41449 unmasked differences,
+  first4E9F58; frame418/410, RETs124/128, direct672/674, indirect160/163.
   All16 table lengths and all685 remap bytes agree, without masking or rebasing.
-- Mapped-case call census still differs in214/542/547/548 indirect ownership.
-  Other mapped-case direct/indirect counts agree. The five special direct arms
+- Native214 inactive states now go directly to landing check; its flight-end
+  gate stays within active1..4. Timer/sequence/velocity/heading/peer reads follow
+  actual callback epochs. Six real root prefixes pass; old8dd4473a fails3.
+  Public scripts/audit-alice-fighter-action214-paths.py executes real4351C0 and
+  stops before the first landing/scratch body, without injected returns/edges.
+- Mapped-case call census now differs only in542/547/548 indirect ownership;
+  214 is14/14. Other mapped-case direct/indirect counts agree. The five special direct arms
   require separate review; no behavioral equivalence follows from counts.
 - Read-only384MiB Ghidra evidence is already saved; all9 primary DB file hashes
   unchanged. Its decompiler output has warnings and remains a hypothesis.
+- The isolated narrow-facing closed provider also matches46519066/66, but the
+  full caller control43464 SHAb046bb87 keeps frame418 and prior membership gaps.
+  It is unselected; keep the public int-facing view and close that control.
 - Fifteen new literal aliases are selected only by this new unit; predecessor
   relocation rows and accepted source/header/flags are unchanged. No new cold
   aggregate claim. Full target floating relocation audit passes.
@@ -87,8 +95,8 @@ Public comparisons: scripts/build.py --unit exact-first-alice-fighter-update
 Receipts/private recipes remain under build/exact-first-alice-fighter-update-20261025/
 and the corresponding .analysis/ scope. Formal/cold full audits agree.
 
-Next: continue this complete root from actual differences, especially214/542/
-547/548 callback groups and real stack/packet lifetimes.730's partially defined
+Next: continue this complete root from actual differences, especially542/547/
+548 callback groups and real stack/packet lifetimes.730's partially defined
 upper facing bits and570/571's fourth transmitted word remain unreviewed;
 preserve uncertainty rather than inventing data initialization or register
 contracts. The source is complete but must stay unselected pending its full

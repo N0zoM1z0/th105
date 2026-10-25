@@ -754,196 +754,79 @@ void AliceFighterActionStateView::dispatch_action_state()
 
 
     case 214: {
-        int vertical_input;
-        int horizontal_input;
-        int input_product;
-        int facing;
-        int sequence;
-        short target_angle;
-        short angle_delta;
-        float phase;
-        float magnitude;
-        float velocity_x;
-        float velocity_y;
-        unsigned char *peer;
-
-        if (advance_frame_and_dispatch()) {
-            set_action_and_finalize(9);
-            return;
+        if (FRAME()) { ACTION(9); return; }
+        if (I(0x144)==0) {
+            if (S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) EVENT(31);
+            if (I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==6) { ACTION(9); return; }
         }
-        if (!W(0x144)) {
-            if (!U(0x142)
-                && !U(0x140)
-                && U(0x13e) == 1)
-                dispatch_indexed_event_member(0x1Fu);
-            if (!U(0x142)
-                && !U(0x140)
-                && U(0x13e) == 6) {
-                set_action_and_finalize(9);
+        int const vertical=I(0x6B8);
+        int const horizontal=I(0x6B4);
+        int const input_product=C(0x104)*horizontal;
+        if (vertical>0) {
+            if (input_product>0) S(0x732)=-45;
+            else if (input_product<0) S(0x732)=-135;
+            else S(0x732)=-90;
+        } else if (vertical<0) {
+            if (input_product>0) S(0x732)=45;
+            else if (input_product<0) S(0x732)=135;
+            else S(0x732)=90;
+        } else {
+            if (input_product>0) S(0x732)=0;
+            else if (input_product<0) S(0x732)=180;
+        }
+        if (S(0x13E)==5 || S(0x13E)==6) F(0xF8)-=F(0x100);
+        if (S(0x13E)>0 && S(0x13E)<5) {
+            ++U(0x736);
+            S(0x734)=static_cast<short>(S(0x732)-static_cast<int>(F(0x740)));
+            if (S(0x734)>180) S(0x734)-=360;
+            if (S(0x734)<-180) S(0x734)+=360;
+            if (S(0x734)>0) F(0x740)+=W(0x4B8)?0.5:1.5;
+            if (S(0x734)<0) F(0x740)-=W(0x4B8)?0.5:1.5;
+            F(0xF4)=static_cast<float>(lookup_orientation_cosine_quantized_abs(F(0x740))*F(0x73C));
+            F(0xF8)=static_cast<float>(lookup_orientation_sine_quantized_abs(F(0x740))*F(0x73C));
+            if (F(0xF0)>680.0f && F(0xF8)>0.0f) F(0xF8)=0;
+            F(0x73C)+=D(0.3f); if (F(0x73C)>12.0f) F(0x73C)=12;
+            if (W(0x4B8)) ADJUST(10,1); else ADJUST(5,1);
+            F(0x12C)=-F(0x740);
+            if (F(0xF4)<0.0f) F(0x12C)=static_cast<float>(180.0-F(0x740));
+            if (F(0xF4)<0.0f && S(0x13E)==1) SEQUENCE(3);
+            if (F(0xF4)>=0.0f && S(0x13E)==3) SEQUENCE(1);
+            if (F(0xF4)<0.0f && S(0x13E)==2) SEQUENCE(4);
+            if (F(0xF4)>=0.0f && S(0x13E)==4) SEQUENCE(2);
+            if (I(0x144)%5==1) {
+                int const facing=B(0x104);
+                EFFECT(125,static_cast<float>(lookup_orientation_cosine_quantized_abs(F(0x740))*100.0*C(0x104)+F(0xEC)),
+                    static_cast<float>(lookup_orientation_sine_quantized_abs(F(0x740))*100.0+F(0xF0)+100.0),facing,1);
+            }
+            if (!((W(0x6C8) || S(0x736)<=10) && S(0x482)>0)) {
+                reinterpret_cast<AliceFighterScratchView *>(raw+4)->reset();
+                if (S(0x13E)==1 || S(0x13E)==2) {
+                    signed char const facing=C(0x104);
+                    if (facing==1) {
+                        if (AT(AT(this,void *,0x170),float,0xEC)<F(0xEC)) {
+                            C(0x104)=-1; F(0xF4)=-F(0xF4); SEQUENCE(6);
+                        } else SEQUENCE(5);
+                    } else if (AT(AT(this,void *,0x170),float,0xEC)>F(0xEC)) {
+                        C(0x104)=static_cast<signed char>(-facing); F(0xF4)=-F(0xF4); SEQUENCE(6);
+                    } else SEQUENCE(5);
+                }
+                if (S(0x13E)==3 || S(0x13E)==4) {
+                    signed char const facing=C(0x104);
+                    if (facing==1) {
+                        if (AT(AT(this,void *,0x170),float,0xEC)<F(0xEC)) {
+                            C(0x104)=-1; F(0xF4)=-F(0xF4); SEQUENCE(5);
+                        } else SEQUENCE(6);
+                    } else if (AT(AT(this,void *,0x170),float,0xEC)>F(0xEC)) {
+                        C(0x104)=static_cast<signed char>(-facing); F(0xF4)=-F(0xF4); SEQUENCE(5);
+                    } else SEQUENCE(6);
+                }
                 return;
             }
         }
-
-        vertical_input = I(0x6b8);
-        horizontal_input = I(0x6b4);
-        facing = C(0x104);
-        input_product = facing * horizontal_input;
-        if (vertical_input > 0) {
-            if (input_product > 0)
-                U(0x732) = static_cast<unsigned short>(-45);
-            else if (input_product < 0)
-                U(0x732) = static_cast<unsigned short>(-135);
-            else
-                U(0x732) = static_cast<unsigned short>(-90);
-        } else if (vertical_input < 0) {
-            if (input_product > 0)
-                U(0x732) = 45;
-            else if (input_product < 0)
-                U(0x732) = 135;
-            else
-                U(0x732) = 90;
-        } else {
-            if (input_product > 0)
-                U(0x732) = 0;
-            else if (input_product < 0)
-                U(0x732) = 180;
-        }
-
-        sequence = U(0x13e);
-        if (sequence == 5 || sequence == 6)
-            F(0xf8) =
-                F(0xf8) - F(0x100);
-
-        if (sequence > 0 && sequence < 5) {
-            ++U(0x736);
-            target_angle = *reinterpret_cast<short *>(raw + 1842);
-            phase = F(0x740);
-            angle_delta = static_cast<short>(target_angle - static_cast<int>(phase));
-            U(0x734) = static_cast<unsigned short>(angle_delta);
-            if (angle_delta > 180) {
-                angle_delta = static_cast<short>(angle_delta - 360);
-                U(0x734) = static_cast<unsigned short>(angle_delta);
-            }
-            if (angle_delta < -180) {
-                angle_delta = static_cast<short>(angle_delta + 360);
-                U(0x734) = static_cast<unsigned short>(angle_delta);
-            }
-
-            if (angle_delta > 0) {
-                phase = static_cast<float>(phase + (W(0x4b8) ? 0.5 : 1.5));
-                F(0x740) = phase;
-            }
-            if (angle_delta < 0) {
-                phase = static_cast<float>(phase - (W(0x4b8) ? 0.5 : 1.5));
-                F(0x740) = phase;
-            }
-
-            phase = F(0x740);
-            magnitude = F(0x73c);
-            velocity_x = static_cast<float>(lookup_orientation_cosine_quantized_abs(phase) * magnitude);
-            F(0xf4) = velocity_x;
-            velocity_y = static_cast<float>(lookup_orientation_sine_quantized_abs(phase) * magnitude);
-            F(0xf8) = velocity_y;
-            if (F(0xf0) > 680.0f && velocity_y > 0.0f)
-                F(0xf8) = 0.0f;
-
-            magnitude = static_cast<float>(magnitude + 0.30000001192092896);
-            F(0x73c) = magnitude;
-            if (magnitude > 12.0f)
-                F(0x73c) = 12.0f;
-
-            if (W(0x4b8))
-                adjust_counter_482(10, 1);
-            else
-                adjust_counter_482(5, 1);
-
-            F(0x12c) = -phase;
-            if (F(0xf4) < 0.0f)
-                F(0x12c) = static_cast<float>(180.0 - phase);
-
-            velocity_x = F(0xf4);
-            sequence = U(0x13e);
-            if (velocity_x < 0.0f && sequence == 1)
-                select_sequence(3);
-            if (velocity_x >= 0.0f && sequence == 3)
-                select_sequence(1);
-            if (velocity_x < 0.0f && sequence == 2)
-                select_sequence(4);
-            if (velocity_x >= 0.0f && sequence == 4)
-                select_sequence(2);
-
-            if (I(0x144) % 5 == 1) {
-                facing = B(0x104);
-                emit_fighter_effect_433cc0(
-                    125,
-                    static_cast<float>(lookup_orientation_cosine_quantized_abs(phase)
-                        * 100.0 * static_cast<signed char>(facing)
-                        + F(0xec)),
-                    static_cast<float>(lookup_orientation_sine_quantized_abs(phase)
-                        * 100.0 + F(0xf0) + 100.0),
-                    facing,
-                    1);
-            }
-        }
-
-        if ((W(0x6c8)
-                || *reinterpret_cast<short *>(raw + 1846) <= 10)
-            && *reinterpret_cast<short *>(raw + 1154) > 0) {
-            if (has_crossed_stage_surface_while_descending()) {
-                F(0xf0) = alice_stage_surface_height_at_x(this);
-                F(0x100) = 0.0f;
-                F(0xf8) = 0.0f;
-                if (*reinterpret_cast<short *>(raw + 318) >= 5) {
-                    set_action_and_finalize(10);
-                    zero_velocity_acceleration();
-                } else {
-                    reinterpret_cast<AliceFighterScratchView *>(raw + 4)->reset();
-                    set_action_and_finalize(215);
-                }
-            }
-            return;
-        }
-
-        reinterpret_cast<AliceFighterScratchView *>(raw + 4)->reset();
-        sequence = U(0x13e);
-        peer = reinterpret_cast<unsigned char *>(W(0x170));
-        if (sequence == 1 || sequence == 2) {
-            facing = C(0x104);
-            if (facing == 1) {
-                if (*reinterpret_cast<float *>(peer + 236) < F(0xec)) {
-                    C(0x104) = -1;
-                    F(0xf4) = -F(0xf4);
-                    select_sequence(6);
-                } else {
-                    select_sequence(5);
-                }
-            } else if (*reinterpret_cast<float *>(peer + 236) > F(0xec)) {
-                C(0x104) = static_cast<signed char>(-facing);
-                F(0xf4) = -F(0xf4);
-                select_sequence(6);
-            } else {
-                select_sequence(5);
-            }
-        }
-
-        sequence = U(0x13e);
-        if (sequence == 3 || sequence == 4) {
-            facing = C(0x104);
-            if (facing == 1) {
-                if (*reinterpret_cast<float *>(peer + 236) < F(0xec)) {
-                    C(0x104) = -1;
-                    F(0xf4) = -F(0xf4);
-                    select_sequence(5);
-                } else {
-                    select_sequence(6);
-                }
-            } else if (*reinterpret_cast<float *>(peer + 236) > F(0xec)) {
-                C(0x104) = static_cast<signed char>(-facing);
-                F(0xf4) = -F(0xf4);
-                select_sequence(5);
-            } else {
-                select_sequence(6);
-            }
+        if (CROSSED()) {
+            F(0xF0)=GROUND(); F(0x100)=0; F(0xF8)=0;
+            if (S(0x13E)>=5) { ACTION(10); ZERO(); }
+            else { reinterpret_cast<AliceFighterScratchView *>(raw+4)->reset(); ACTION(215); }
         }
         return;
     }
