@@ -2,8 +2,9 @@
 
 Active reconstruction resumed on2026-10-25 under the user's large-function,
 whole-comparison-first direction. TenshiObject update
-**0x0064CD50** is checkpointed complete source-present/nonexact. The next bounded
-candidate is **Alice Fighter update0x004E9F50**, provisionally42721 bytes.
+**0x0064CD50** is checkpointed complete source-present/nonexact. Active bounded
+work is **Alice Fighter update0x004E9F50**: raw42721-byte main/full44080-byte
+payload is closed; complete source and first whole comparison are pending.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -33,8 +34,8 @@ credentials and generated reports out of Git.
 
 ## Durable state
 
-Current checkpoint adds the complete Tenshi update, its reproducible unit,
-isolated bindings and public full-payload audit. Exact acceptance is unchanged.
+Current checkpoint retains the complete Tenshi source and identifies Alice
+Fighter update from its complete target CFG. Exact acceptance is unchanged.
 
 | Ledger state | Count |
 | --- | ---: |
@@ -49,7 +50,32 @@ receipt remains `build/exact-first-remilia-action-entry-20261025/cold-all.log`:
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
 
-## Current bounded work: TenshiObject64CD50
+## Current bounded work: Alice Fighter4E9F50
+
+[Complete target closure and next source scope](ALICE_FIGHTER_UPDATE_2026_10_25.md).
+Public audit: `scripts/audit-alice-fighter-update-target.py`.
+
+- Main42721 SHA58819477; full44080 SHA2bd6bb53 through4F4B80.
+- 11169/11170 conservatively reached instructions, sole unreachable3-byte
+  alignment4F28ED, no escaping/noninstruction edges;128 RET0s.
+- 674 direct calls/27 entries,163 register-indirect calls; aligned frame410.
+- All16 tables165 DWORDs, three remaps685 bytes,14 pinned metadata alignment
+  bytes account for the complete1359-byte tail.
+- The existing2207-line AliceActionStateScaffold is partial and not this root.
+  Declaration-only Vslot28ActionStateRoots.hpp remains the ledger source path;
+  Alice is identified and unselected in implemented.csv/matches.csv.
+- Read-only384MiB Ghidra attests target/entry/all mapped sections; root/views
+  are rolled back and all9 primary DB file hashes are unchanged. Its saved
+  decompiler output has warnings and remains a hypothesis, not source.
+
+Receipts/private recipes: `build/exact-first-alice-fighter-update-20261025/`
+and the corresponding `.analysis/` directory. Continue from these saved files;
+do not launch another Ghidra merely to reread them. Next write the complete
+manual body and declaration-only ABI view, preserving the pre-dispatch gates,
+all regions/special actions/default and real packet lifetimes. Compile and
+compare the first complete body before control trials.
+
+## Checkpoint: TenshiObject64CD50
 
 [Target/ABI evidence, first comparison and limits](TENSHI_OBJECT_UPDATE_2026_10_25.md).
 Source: `src/characters/TenshiObjectUpdate.cpp/.hpp`.
@@ -97,13 +123,10 @@ The public scoped check is
 `scripts/audit-tenshi-object-update-paths.py`. Private recipes and first/control
 sources: `.analysis/exact-first-tenshi-object-update-20261025/`.
 
-Next: reconstruct the complete Alice Fighter slot28 root4E9F50 (provisional
-42721-byte main). No complete AliceActionState source or match unit currently
-exists. Sakuya4CADB0's smaller report span is misleading for this choice: its
-ownership ledger already pins74941 code bytes including ten remote chunks.
-Re-run bounded preflight, reconcile Alice's full CFG/metadata against the exact
-PE and review callee contracts before writing the complete body and comparing
-it early.
+Alice4E9F50 is now the active root described above. No complete compiling
+AliceActionState source or match unit exists yet. Sakuya4CADB0's smaller report
+span is misleading for selection: its ownership ledger already pins74941 code
+bytes including ten remote chunks.
 Tenshi width/transfer work is saved; keep its comparison-carrier control closed
 without new evidence. Nominal names/layouts/TU ownership remain hypotheses.
 

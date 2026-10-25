@@ -2183,8 +2183,14 @@ class WorkflowToolingTests(unittest.TestCase):
 
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
             row = next(row for row in csv.DictReader(stream) if row["address"].lower() == "0x004e9f50")
-        self.assertEqual(row["status"], "unclassified")
+        self.assertEqual(row["status"], "identified")
         self.assertEqual(row["source_file"], "src/characters/Vslot28ActionStateRoots.hpp")
+        self.assertIn("audit-alice-fighter-update-target.py", row["evidence"])
+        for filename in ("implemented.csv", "matches.csv"):
+            self.assertNotIn(
+                "Alice_dispatch_action_state_vslot28",
+                (ROOT / "config" / filename).read_text(encoding="utf-8"),
+            )
 
 
     def test_xiph_origin_anchor_manifest_is_pinned(self) -> None:
