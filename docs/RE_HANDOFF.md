@@ -1,6 +1,30 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **IkuObject632C30 complete target boundary is reviewed;
+Current transition: **complete IkuObject632C30 first source and early whole
+comparison retained; next investigate target-specific sharing/return epochs**.
+The complete manual29-action/default source is selected in
+src/characters/IkuObjectUpdate.cpp/.hpp with probe exact-first-iku-object-update.
+First full35384 SHA005d3ee9 comparison precedes controls. Native812/852 phase0
+keeps two independent first height calls but shares conditional clamp636B70 and
+advance-six636B80. Expressing this continuation yields selected34748 SHA52ee04c5,
+32281 unmasked differences, first632C55/+37. Formal and independent cold outputs
+agree and replay all1014 relocations. Natural frame0x258, all25 table dimensions/
+176 DWORDs and199 remap bytes agree. All29 action-level static reachable-call
+inventories agree, but that is not execution/path-feasibility proof. Physical
+314 direct/14 virtual calls and67 RETs still differ from316/15/44;21/23 direct
+counts agree. Target801/818 independent requests and810/851 independent virtual
+calls are merged; frame continuations partition differently. An outer-case
+break trial grows34872/71 RETs and loses a relative-position call; unselected.
+No repeated spelling/flag grid. The source uses48 consumed packet views, not
+inert storage; local nearest-LEA witnesses do not prove all shared predecessors.
+Source numeric casts reproduce both native inline color-byte truncations.
+Global-selector0..3 validity/original nominal layout/TU remain unknown. See
+[complete source and comparison evidence](IKU_OBJECT_UPDATE_2026_10_25.md).
+Tracking: mapped1580/source1561;600 units/1568 configured functions. Exact remains
+524 units/1412 functions/381108 bytes; no new aggregate cold replay.108 exclusive
+literal aliases affect only this new probe;1671 target references pass.
+
+Prior transition: **IkuObject632C30 complete target boundary is reviewed;
 next finish the first complete manual C++ body and compare early**.
 The callable closes33617 bytes/7903 reachable instructions plus one exact
 three-byte internal alignment instruction. Full34524 owns25 tables/176 DWORDs,

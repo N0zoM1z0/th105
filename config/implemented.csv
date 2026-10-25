@@ -1558,3 +1558,4 @@ Remilia_initialize_action_entry
 YoumuFighter_initialize_action_entry
 SakuyaObject_update_action_state
 KomachiObject_update_action_state
+IkuObject_update_action_state

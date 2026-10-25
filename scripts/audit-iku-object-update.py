@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Audit the complete JP1.06a IkuObject update and its twenty-five switch tables.
 
-This target-only checkpoint does not establish source matching. No masking
+Target observations and whole-section canonical comparison stay separate. No masking
 or partial-function exact credit is supported.
 """
 from __future__ import annotations
@@ -16,9 +16,12 @@ import struct
 
 import capstone
 from capstone import x86
+from workflow_manifest import load_manifest
 
 ROOT=Path(__file__).resolve().parents[1]
 START,MAIN,FULL=0x632C30,33617,34524
+UNIT="exact-first-iku-object-update"
+SYMBOL="?update_action_state@IkuObjectUpdateView@th105@@UAEXXZ"
 MAIN_SHA="138baaf0eb38d0e9c40e3dbace9bf7c89ca77bcd520f01a01d79d5ba29368ddf"
 FULL_SHA="7c578a068ac0dac2e594bcadcf05671ced799940e8c730f0998c9657bd04525a"
 TABLE_WORDS=(30, 7, 6, 5, 6, 5, 7, 10, 5, 4, 6, 7, 5, 6, 9, 7, 8, 4, 9, 4, 4, 4, 9, 4, 5)
@@ -153,21 +156,41 @@ def target_facts(compare):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--target-only",action="store_true",required=True,
-                        help="attest target facts; source comparison is not configured yet")
-    parser.parse_args()
+    parser.add_argument("--object",type=Path)
+    parser.add_argument("--target-only",action="store_true")
+    args=parser.parse_args()
     try:
         compare=load_compare()
-        identity,_,observations,cfg=target_facts(compare)
-        report=dict(result="observed_target_bytes",target_sha256=identity,
-                    callable_size=MAIN,complete_payload_size=FULL,
+        identity,target,observations,cfg=target_facts(compare)
+        report=dict(target_sha256=identity,callable_size=MAIN,complete_payload_size=FULL,
                     target_payload_sha256=FULL_SHA,target_inventory=observations,target_cfg=cfg,
                     canonical_acceptance=False)
+        if args.target_only:
+            report["result"]="observed_target_bytes"
+        else:
+            unit=load_manifest()["units"][UNIT]
+            function=unit["functions"][0]
+            if int(function["address"],0)!=START or function["symbol_base"]!=SYMBOL:
+                raise ValueError("configured root changed")
+            targets=compare.known_targets()
+            for binding in function["rel32_targets"]:
+                name,address=binding.rsplit("=",1)
+                targets[name]=int(address,0)
+            overrides=dict(binding.split("=",1) for binding in function["dir32_targets"])
+            candidate=compare.coff_symbol_bytes(args.object or ROOT/unit["object"],SYMBOL,
+                        START,0xFFFFFFFF,targets,compare.known_data_targets(),overrides)
+            report.update(result="exact" if candidate==target else "mismatch",
+                          object_section_tail_size=len(candidate),all_section_relocations_replayed=True,
+                          canonical_payload_sha256=hashlib.sha256(candidate).hexdigest(),
+                          first_mismatch=compare.first_mismatch(target,candidate,START),
+                          unmasked_differing_bytes=sum(a!=b for a,b in zip(target,candidate))+abs(len(target)-len(candidate)),
+                          candidate_inventory=inventory(candidate,None)[2])
+            report["canonical_acceptance"]=candidate==target
     except (OSError,ValueError,RuntimeError,KeyError,StopIteration,struct.error) as error:
         print(json.dumps(dict(result="blocked",error=str(error)),indent=2))
         return 1
     print(json.dumps(report,indent=2))
-    return 0
+    return 0 if args.target_only or report["result"]=="exact" else 1
 
 
 if __name__=="__main__":
