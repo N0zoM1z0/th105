@@ -3450,3 +3450,22 @@ evidence = "Pinned VC8 SP1 std::deque<short>::front COMDAT reproduces all71 targ
 required_body_hashes = [
   { address = "0x004321B0", size = 71, sha256 = "0f5106f69182629b19ef308697523efdc90bed3a805f9199138b918c3a5c8b89" },
 ]
+
+
+[[rules]]
+id = "scene-resource-bootstrap-authored-106a"
+addresses = ["0x0043E2E0"]
+expected_count = 1
+expected_bytes = 3722
+expected_names = ["sub_43E2E0"]
+origin = "authored_game"
+subsystem = "engine"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete3722-byte/823-instruction body has821 reachable instructions, two pinned internal alignment operations and one RET0. Exact scene-manager initializer41E070 calls it at41E104. Fifteen decoded character names, stage/BGM/effect policies, keyboard/gamepad binding defaults, profile/score/resource initialization and game volume settings establish authored ownership independently of its STL/CRT providers. Public full canonical probe is3722 bytes with11 stack displacement differences; source remains unselected. Nominal map specialization, original source spelling and TU context remain unknown. docs/SCENE_RESOURCE_BOOTSTRAP_2026_10_26.md."
+required_body_hashes = [
+  { address = "0x0043E2E0", size = 3722, sha256 = "6ed872ce668bf9f01a571e00f18e0879828a40ef79c854fc2f5a5f22efeccb4c" },
+]
+required_direct_edges = [
+  { caller = "0x0041E070", site = "0x0041E104", target = "0x0043E2E0", caller_status = "matching" },
+]

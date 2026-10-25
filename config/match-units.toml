@@ -23250,3 +23250,62 @@ rel32_targets = [
   "@__security_check_cookie@4=0x00689D25",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.exact-first-scene-resource-bootstrap]
+kind = "probe"
+source = "src/engine/SceneResourceBootstrap.cpp"
+object = "build/match-units/ExactFirst_SceneResourceBootstrap.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete3722-byte scene resource bootstrap43E2E0: character names,48 policy mappings, keyboard/gamepad input, profiles/score and config audio. First complete3895-byte source compared early; real deque-provider boundary, scalar52-byte binding view and native input constructor recover3722 bytes with11 stack-home byte differences. Source remains identified/unselected. Native CFG821/823 reaches full RET0; two internal alignment operations pinned. docs/SCENE_RESOURCE_BOOTSTRAP_2026_10_26.md."
+
+[[units.exact-first-scene-resource-bootstrap.functions]]
+address = "0x0043E2E0"
+symbol_base = "?initialize_scene_resources_43e2e0@th105@@YAXXZ"
+rel32_targets = [
+  "??0SceneBootstrapInputBase@th105@@QAE@XZ=0x00409CF0",
+  "??1SceneBootstrapInputBase@th105@@UAE@XZ=0x00409D50",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?_Assign_n@?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@IAEXIABUSceneBootstrapInputEx@th105@@@Z=0x0043DDD0",
+  "?add_tracked_key@SceneBootstrapKeyTable@th105@@QAEXE@Z=0x0040A6C0",
+  "?apply_se_percent@th105@@YAHH@Z=0x0043B1F0",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "?assign_profile@SceneBootstrapInputBase@th105@@QAEXPBUSceneBootstrapBindings@2@@Z=0x00409D60",
+  "?initialize_player_profiles_from_game_config@th105@@YAXXZ=0x0043BA10",
+  "?initialize_profile_ui@th105@@YA_NPAX@Z=0x0043FCA0",
+  "?initialize_scene_auxiliary_6654a0@th105@@YAXXZ=0x006654A0",
+  "?insert@?$_Tree@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHE@2@@Z=0x004606E0",
+  "?insert@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHH@2@@Z=0x004606E0",
+  "?insert@?$_Tree@V?$_Tmap_traits@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$less@H@2@V?$allocator@U?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$less@H@2@V?$allocator@U?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@Z=0x0043DD10",
+  "?load@SceneBootstrapScore@th105@@QAEXXZ=0x0042F6F0",
+  "?push_back@SceneBootstrapInputSourcesView@th105@@QAEXABQAUSceneBootstrapInputBase@2@@Z=0x006183F0",
+  "?reload_common_resources@SceneBootstrapDeckRefresh@th105@@QAEEEEE@Z=0x00434AC0",
+  "?reset@SceneBootstrapKeyTable@th105@@QAEXXZ=0x0040A510",
+  "?set_volume@BgmVolumeService@th105@@QAEHM@Z=0x00403A30",
+  "@__security_check_cookie@4=0x00689D25",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "_memset=0x0068A440",
+]
+dir32_targets = [
+  "??_C@_05LKEOIMOD@sfjnv?$AA@+0x4=??_C@_05LKEOIMOD@sfjnv?$AA@$slice_4",
+  "??_C@_06BCPMPNLJ@nbsjtb?$AA@+0x4=??_C@_06BCPMPNLJ@nbsjtb?$AA@$slice_4",
+  "??_C@_06BCPMPNLJ@nbsjtb?$AA@+0x6=??_C@_06BCPMPNLJ@nbsjtb?$AA@$slice_6",
+  "??_C@_06CDLDPLEH@tblvzb?$AA@+0x4=??_C@_06CDLDPLEH@tblvzb?$AA@$slice_4",
+  "??_C@_06CDLDPLEH@tblvzb?$AA@+0x6=??_C@_06CDLDPLEH@tblvzb?$AA@$slice_6",
+  "??_C@_05ECEBPLEL@bmjdf?$AA@+0x4=??_C@_05ECEBPLEL@bmjdf?$AA@$slice_4",
+  "??_C@_09KLECLNEM@qbudipvmj?$AA@+0x4=??_C@_09KLECLNEM@qbudipvmj?$AA@$slice_4",
+  "??_C@_09KLECLNEM@qbudipvmj?$AA@+0x8=??_C@_09KLECLNEM@qbudipvmj?$AA@$slice_8",
+  "??_C@_07GKNPKGPB@sfnjmjb?$AA@+0x4=??_C@_07GKNPKGPB@sfnjmjb?$AA@$slice_4",
+  "??_C@_05GICOFHCO@zpvnv?$AA@+0x4=??_C@_05GICOFHCO@zpvnv?$AA@$slice_4",
+  "??_C@_06GEDEANKE@zvzvlp?$AA@+0x4=??_C@_06GEDEANKE@zvzvlp?$AA@$slice_4",
+  "??_C@_06GEDEANKE@zvzvlp?$AA@+0x6=??_C@_06GEDEANKE@zvzvlp?$AA@$slice_6",
+  "??_C@_06PDLILBNI@zvlbsj?$AA@+0x4=??_C@_06PDLILBNI@zvlbsj?$AA@$slice_4",
+  "??_C@_06PDLILBNI@zvlbsj?$AA@+0x6=??_C@_06PDLILBNI@zvlbsj?$AA@$slice_6",
+  "??_C@_05OKIBCIOC@tvjlb?$AA@+0x4=??_C@_05OKIBCIOC@tvjlb?$AA@$slice_4",
+  "??_C@_06FKOGAKFK@vepohf?$AA@+0x4=??_C@_06FKOGAKFK@vepohf?$AA@$slice_4",
+  "??_C@_06FKOGAKFK@vepohf?$AA@+0x6=??_C@_06FKOGAKFK@vepohf?$AA@$slice_6",
+  "??_C@_07EMKNBMJI@lpnbdij?$AA@+0x4=??_C@_07EMKNBMJI@lpnbdij?$AA@$slice_4",
+  "??_C@_06CFEFJHJP@ufotij?$AA@+0x4=??_C@_06CFEFJHJP@ufotij?$AA@$slice_4",
+  "??_C@_06CFEFJHJP@ufotij?$AA@+0x6=??_C@_06CFEFJHJP@ufotij?$AA@$slice_6",
+]

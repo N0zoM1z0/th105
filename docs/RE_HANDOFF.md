@@ -22,9 +22,12 @@ back field view preserves every failure callback and bound reload. This is a
 complete medium-sized representative. Its operation has now been independently
 replayed in filtered433B30: four unequal bytes reduce to two, and a genuine
 joint-TU control preserves that residual plus the exact representative. This
-finite peer/visibility lane is closed. Next provisional review candidate is
-**0x0043E2E0**,3722 bytes in the candidate ledger; fresh preflight, complete CFG,
-origin and first whole-source comparison are required before any acceptance.
+finite peer/visibility lane is closed. Scene resource bootstrap **0x0043E2E0** is now closed at3722 bytes: complete
+unselected source, full canonical replay and11 stack displacement differences.
+Two independent index controls are byte-neutral, so that finite lane is parked.
+Next provisional review candidate is **0x00461B70**,3885 bytes in the candidate
+ledger; fresh preflight, complete CFG, origin and first whole-source comparison
+are required before any acceptance.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -65,23 +68,55 @@ The filtered CSV root adds one observed authored identity/mapping and one probe;
 it adds no source-selected or exact credit.
 Resource CSV4343A0 adds one independently verified authored mapping, source
 selection and exact1646-byte function. Filtered433B30 remains unselected.
+Scene resource bootstrap43E2E0 adds one observed authored identity/mapping and
+one probe with complete unselected source; source/exact totals are unchanged.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1599 /1419 /1006 |
-| Mapped / source-present |1587 /1565 |
+| Provisional / authored / excluded / review candidates |4024 /1600 /1419 /1005 |
+| Mapped / source-present |1588 /1565 |
 | Exact functions / authored bytes |1413 /382816 |
-| Configured units / functions |608 /1576 |
+| Configured units / functions |609 /1577 |
 
-The expanded totals have a fresh full cold receipt:
-`build/exact-first-spell-filtered-peer-20261026/cold-all.log` passes525 accepted
-units/all1413 functions,382816 authored bytes, including the new representative.
-Its two independent focused public builds also reproduce all1646 bytes. No
-previous source/header/profile/binding was changed; one new EH data row belongs
-to the added unit. The compiler-proven71-byte deque front remains excluded from
-authored totals. The prior524-unit/1412-function receipt is retained separately.
+The current manifest/global-data inputs have a fresh full cold receipt:
+`build/exact-first-43e2e0-20261026/cold-all.log` passes525 accepted units/all1413
+functions,382816 authored bytes, including exact scene-manager caller41E070
+and resource representative4343A0. The new bootstrap probe has two independent
+3722-byte public builds with the same11 differences and no selected/exact row.
+No previous source/header/profile/binding was changed; new literal/global/EH
+rows belong to the added probe. Its public audit checks all33 actual literal
+read extents independently of relocation slice identity. The preceding
+resource-parser cold receipt is retained under
+`build/exact-first-spell-filtered-peer-20261026/`; the compiler-proven71-byte
+deque front remains excluded from authored totals.
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
+
+## Checkpoint: scene resource bootstrap43E2E0
+
+[Target closure, ABI observations and finite trials](SCENE_RESOURCE_BOOTSTRAP_2026_10_26.md).
+Source: `src/engine/SceneResourceBootstrap.cpp`.
+Unit: `exact-first-scene-resource-bootstrap`.
+Audit: `scripts/audit-scene-resource-bootstrap-target.py` (target-only expected0,
+object expected1/nonexact).
+
+- Full3722 SHA6ed872ce, end43F16A;821/823 instructions reached, two pinned
+  internal alignment operations, RET0 at43F169 and six following INT3 bytes.
+  Exact scene-manager initializer41E070 calls at41E104. Fifteen character names,
+  stage/BGM/effect policy, input defaults, profile/score/resource startup and
+  volume application establish authored ownership independently of providers.
+- First complete3895-byte source was compared immediately. Correct independent
+  deque6183F0 at both sites, same52-byte scalar binding view and observed
+  inputEx initialization recover3722 bytes with11 stack displacement differences.
+  WORD+62 remains uninitialized as observed. All13 encoded string objects and
+  33 actual operand-width reads are validated; ordinary full relocation replay.
+- Final canonical SHA dd302ab4d718d3e410fedf672ea3caa5aadf75ba1daf3bdcf86e363d0ded2486.
+  Signed-index and shared-index controls are byte-neutral. Stop this lane;
+  no flag/spelling/visibility grid without new independent evidence. Original
+  local identity, stack allocator/TU context and nominal types remain unknown.
+- Source remains unselected; no implemented/match rows or helper-origin credit.
+  Shared accepted headers, profiles and prior bindings are unchanged. New
+  unit/data rows conservatively invalidate every accepted-unit input digest.
 
 ## Checkpoint: resource spell CSV parser4343A0
 

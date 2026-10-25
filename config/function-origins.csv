@@ -1321,7 +1321,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043E0A0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0043E0D0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0043E1A0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043E2E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043E2E0,authored_game,engine,authored,observed,scene-resource-bootstrap-authored-106a
 0x0043F1B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043F260,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043F330,authored_game,ui,authored,observed,guide-overlay-runtime-authored-106a
