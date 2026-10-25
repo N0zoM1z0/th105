@@ -81,13 +81,20 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
 - Native542 has separate sequence4/8 terminal guards;547/548 threshold and
   landing outcomes share one next-block exit. Two isolated whole-source controls
   support these retained structures. All mapped-case direct/indirect call counts
-  now agree, including21414/14,5425/5,547/5483/3. Global physical counts still
-  differ; the five special direct arms need review. Counts prove no equivalence.
+  now agree, including21414/14,5425/5,547/5483/3. The five special direct arms
+  300/520/795/797/798 also agree in call counts after separate instruction and
+  constant review; their indirect counts are1/3/2/2/2. Global physical counts
+  still differ. Counts prove no behavioral equivalence.
 - Read-only384MiB Ghidra evidence is already saved; all9 primary DB file hashes
   unchanged. Its decompiler output has warnings and remains a hypothesis.
 - The isolated narrow-facing closed provider also matches46519066/66, but the
   full caller control43464 SHAb046bb87 keeps frame418 and prior membership gaps.
   It is unselected; keep the public int-facing view and close that control.
+- Native570/571 write three packet words, but count4 reaches a real16-byte
+  memcpy in manager4FAAD0. One private three-word-array control naturally gets
+  frame410 but remains43996 SHA08ce1a46,41499 unequal positions, first+17.
+  Original array extent is not proved; retain public four-word arrays and close
+  the size control. No width/padding grid.
 - Fifteen new literal aliases are selected only by this new unit; predecessor
   relocation rows and accepted source/header/flags are unchanged. No new cold
   aggregate claim. Full target floating relocation audit passes.
@@ -98,9 +105,11 @@ Receipts/private recipes remain under build/exact-first-alice-fighter-update-202
 and the corresponding .analysis/ scope. Formal/cold full audits agree.
 
 Next: continue this complete root from actual differences: real stack/packet
-lifetimes, global physical sharing and the five direct-dispatch arms. Close the
-542/547/548 source-structure controls; do not sweep equivalent spellings.730's partially defined
-upper facing bits and570/571's fourth transmitted word remain unreviewed;
+lifetimes and global physical sharing. The five direct arms have a bounded
+instruction/count review, not full execution acceptance. Close the542/547/548
+source-structure and570/571 extent controls; do not sweep equivalent spellings.
+730's partially defined upper facing bits and570/571's fourth-word provenance
+and original array extent remain unknown;
 preserve uncertainty rather than inventing data initialization or register
 contracts. The source is complete but must stay unselected pending its full
 instruction/ABI/default review. Do not rerun Ghidra merely to reread saved

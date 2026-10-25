@@ -327,3 +327,58 @@ are frozen in the corresponding analysis scope. Current public source is3022
 lines. The terminal-structure questions are now closed; next inspect actual
 stack/packet lifetimes and separately review the five special direct arms,
 without repeating guard-spelling trials or shrinking packets to force a frame.
+
+
+## Direct-dispatch coverage and packet extent control
+
+Separate inspection now covers the five action roots omitted from the primary
+remap census. Their native/candidate entries in the retained2655274b object are:
+
+| Action | Target entry | Candidate entry | Indirect sites, target/candidate |
+| --- | --- | --- | --- |
+|300|4EC479|4EC34F|1/1|
+|520|4EF082|4EEF50|3/3|
+|795|4F4439|4F43E7|2/2|
+|797|4F4597|4F4504|2/2|
+|798|4F44B4|4F444B|2/2|
+
+The outer comparisons at4EA134,4EC516,4EF479 and subtraction at4F4496 recover
+these direct entries independently of the remap bytes. Conservative reachable
+counts for every direct callee agree too.300's native directional gate uses0,
+0.5 damping clamps only below zero, and frame2 emits event27.520 preserves the
+two timer6/3 request arms, increment-before/after-scaled10 order, post-request
+sequence reload, landing height->zero->sequence8 order and the later action0
+callback followed by a fresh sequence read.795 uses gravity from double6C2A70,
+event30->sequence1->height->zero on landing, otherwise frame->action700.
+797/798 share event30->sequence3->height->vy0 landing but separately clamp x to
+480/800 and finish with action0/700. The actual float/double constants at
+6C0578/6C0EB0 are480;6C3B38/6C3B30 are800. This closes the census omission
+and a bounded instruction review, not full callback, NaN or execution proof.
+Call counts across all reviewed actions still do not explain global physical
+sharing differences. Receipt: `direct-arms-call-ownership.json`.
+
+Packet evidence is now stronger than decompiler variable adjacency. Let B be
+ESP after the complete native prologue.570's two827 requests use B+78 and store
+only B+78/7C/80;571 uses B+6C with stores B+6C/70/74. Both pass count4, and the
+wrapper465190 forwards it. Manager4FAAD0 reads that count at4FAB27, allocates
+count*4 bytes and calls pinned memcpy68AA30 at4FAB62 with byte count16. Its
+source-pointer copy leaves no basis for treating the transmitted fourth word
+as a hidden count unit or an ignored argument. No fourth-word initialization
+was found in these local request paths; its incoming value remains unknown.
+Mutually exclusive local spans and potential compiler overlap do not prove
+an original array declaration boundary.
+
+After this write/span/consumer review, one private complete-source control
+changes only the two local arrays from four to three floats, retaining the real
+count4 at every call. It naturally emits frame410 and moves the first mismatch
+from+8 to+17. The complete payload remains43996, SHA256
+`08ce1a46c4b6aabf5369587035a29bbf0110acad9860115ad79b6caa4d93972e`,
+with41499 differing positions. All16 table lengths,685 remap bytes and per-action
+call counts remain unchanged. This does not establish a correct three-element
+source object: the real manager would read beyond it, and native stack reuse
+could also explain overlapping extents. The control stays private/unselected;
+public source keeps four floats with an ordinarily uninitialized fourth word.
+The control is closed without a size/lifetime permutation search. Receipts:
+`packet570-571-three-*`; the complete source and exact commands are retained
+privately. No accepted source, header, flags, relocation or ledger selection
+changed in this investigation.
