@@ -38,8 +38,10 @@ complete hypothesis: all23 command IDs/default and the preceding list/text,
 character setup, synchronized/local input, result, wait and termination gates.
 The new pointer-only member view uses a signed byte return hypothesis and the
 existing physical Scenario/container/resource layouts; it is never constructed
-or embedded. No accepted shared header or compiler profile changed. The old
-nominal return declaration remains unmodified pending caller/type evidence.
+or embedded. The initial whole-source comparison changed no accepted shared
+header or compiler profile; the later entry-ownership correction is recorded
+below. The old nominal return declaration remains unmodified pending
+caller/type evidence.
 
 Source is **identified/unselected**, absent from `implemented.csv` and
 `matches.csv`. Semantic coverage still needs instruction review, and no
@@ -63,7 +65,8 @@ identity; it does not accept the caller or add another exact function.
 A full4024-candidate helper scan found nine exact symbol-to-entry bindings
 (including the shared iterator inequality body). Only positive complete
 canonical matches with matching ledger sizes were added to this probe's local
-call aliases. No generated helper origin ledger or exact total was changed.
+call aliases. At that first checkpoint no generated-helper origin or exact
+total changed; the subsequent strict front-accessor correction is recorded below.
 Eight new string literal rows plus private EH/thunk rows are used only by this
 probe; existing relocation bindings are unchanged.
 
@@ -120,6 +123,110 @@ The active runtime codepage is not established here. No locale behavior matrix
 or whole-interpreter runtime equivalence is claimed. Receipts use the
 `mbsrchr-*` prefix, including the corrected complete build/comparison.
 
+## Entry ownership and real-provider control,2026-10-25
+
+The actual case2 provider456EB0 closes598 code bytes through457106, with
+RET80. Its stack owns two28-byte string objects plus six four-byte argument
+slots; the original formal parameter grouping is still a hypothesis. The
+body constructs a real0xDC text entry, copies the text, records the signed slot,
+mirrors positive-side X about640, publishes480+Y and color bytes, inserts the
+entry and finally destroys its temporary at457085 via435F00.
+
+That last call exposed a real gap in the retained shared type:
+`ScenarioTextEntryDC` had an implicit destructor, which omitted the native
+release of resource_handle_000. `src/battle/ScenarioData.hpp` now declares the
+owned destructor and `src/battle/ScenarioTextEntryRelease.cpp` supplies its
+ordinary C++ body. The implicit string and UiSprite94 member cleanup then
+naturally follows the explicit title-resource release, including the IColor
+vptr restoration. The existing0xDC layout and constructor remain unchanged.
+
+The new `gpt-web-scenario-text-entry-release` unit replays the **entire133-byte**
+COFF section at435F00, with zero unequal bytes and all relocations resolved:
+SHA-256 `ccaa3c72da0fb768a6c18c281d06cd340474d9e2292b7574c195576a4105ed3e`.
+Both the private first build and public focused build agree. No padding,
+assembly, masks or exception-state overrides are involved. This authored
+resource ownership operation is separately selected/accepted; it does not
+accept the interpreter.
+
+```bash
+scripts/repo-python scripts/build.py --unit gpt-web-scenario-text-entry-release --compare --json
+```
+
+The source dependency graph identifies eight previously accepted units that
+include ScenarioData.hpp, plus the nonaccepted interpreter. All affected
+accepted functions pass the completed full cold replay:524/524 units and all1412
+authored functions, including this new133-byte entry. All eight affected old
+units/19 functions remain exact. The receipt is
+`build/exact-first-scenario-update-20261025/cold-all.log`.
+
+One genuine456EB0 provider hypothesis was also compiled before joining it to
+the complete caller. Pinned VC8 utility shows that make_pair takes its operands
+by value, whereas native uses a two-reference pair constructor followed by a
+const-key pair conversion and two pair destructors. An explicit ordinary
+`std::pair<std::string,ScenarioTextEntryDC>(name,entry)` therefore replaces that
+first private make_pair spelling. The complete provider emits599 versus598
+native bytes, SHA c1b161af,326 unequal positions when its full emission is
+replayed against the PE; first difference+58 is EH-state scheduling. The extra
+byte is not waived. It remains private/unselected, with original formal
+parameter grouping and EH/TU context unknown.
+A separate read-only EH-header packet finds matching non-address words for
+native/emitted entry, provider and caller: magic19930522, state counts2/5/9,
+and final word1. This supplies no evidence for an exception-model flag trial.
+The packet is `eh-root-provider-summary.json`; action ordering is still a
+separate question from header equality.
+
+A combined real-provider/caller object retains the caller's entire raw5640-byte
+section SHA85deb994 and still fails strict replay at the local37-byte string
+copy constructor. No missing helper receives an invented target address.
+This finite same-TU control is closed; it proves neither all possible source
+contexts nor LTCG impossibility. The interpreter remains unselected and has no
+canonical difference count. Retain these receipts and switch to a fresh root
+unless independent ownership/compiler evidence changes the question.
+
+Private recipes and complete first/pair/joint sources:
+`.analysis/exact-first-scenario-update-20261025/provider/`. Receipts use the
+`install-character-*`, `provider-joint-*`, `joint-section-*` and
+`entry-release-*` prefixes. `shared-header-affected.json` lists dependencies.
+
+## Withdrawn authored credit: deque front4321B0
+
+The helper provenance audit found that the formerly authored `front_checked`
+entry is the complete VC8 `std::deque<short>::front()` operation. The other
+seven distinct positively matched iterator/string helper entries were already
+compiler exclusions;4321B0 was the accounting exception.
+
+`scripts/probes/DequeShortFrontOrigin.cpp` now retains the real standard member
+address. It provides no game facade or custom guards. The pinned SP1 compiler
+and unmodified deque header regenerate **all71 bytes**, including both actual
+invalid-parameter call destinations, SHA-256
+`0f5106f69182629b19ef308697523efdc90bed3a805f9199138b918c3a5c8b89`.
+The full4024-candidate scan has exactly one hit. The new origin anchor repeats
+that uniqueness check and pins the full native body hash, so the origin proof
+also fixes both REL32 destinations. The dedicated unit uses full canonical
+replay without masks.
+
+Compiler/header hashes are retained in `deque-front-provenance.json`:
+cl.exe71c93ca5, c2.dll497d1ffe, deque header2970afda. These are the existing
+SP1 toolchain, not a newly substituted compiler. The compatibility address
+alias `front_checked` remains available to existing callers, now categorized
+as library code. The old handwritten `src/battle/ShortDequeAccess.cpp` facade
+is removed; the probe source remains separate from authored source.
+
+```bash
+scripts/repo-python scripts/build.py --unit cross-v106a-short-deque-front --compare --json
+scripts/repo-python scripts/function-origins.py --check
+```
+
+`implemented.csv` and authored `matches.csv` no longer count4321B0. The new
+entry destructor adds133 authored exact bytes, while this correction removes71:
+net **+62 authored exact bytes**, with no net exact-function/source-present
+count increase. The compiler exclusion adds no reconstruction credit. An
+in-progress cold run against the former census was deliberately stopped at
+242/525 units and retained as `cold-before-front-origin.log`; it is not an
+aggregate result. The corrected `cold-all.log` subsequently passes all524 units/
+1412 functions, verifying381170 authored exact bytes. No compiler operation is
+restored to authored credit by that replay.
+
 ## Evidence limits and continuation
 
 Raw instructions and the public target audit outrank decompiler types. A single
@@ -131,8 +238,8 @@ warnings and remains a hypothesis; it was not mechanically pasted as source.
 IDA preflight again rejected the different GUI target, so no IDA semantics were
 used.
 
-Next work is the concrete source/provider visibility question at case2 and
-remaining generated operations, followed by an unmasked complete replay. Do
+The real-provider control above is closed. Resume the case2 ownership question
+only with independent new facts, then require an unmasked complete replay. Do
 not skip unbound calls, allocate arbitrary replacement addresses, force register
 lifetimes, or infer standalone/LTCG impossibility from this first failure.
 No broad behavior matrix was added. A scoped runtime witness is appropriate

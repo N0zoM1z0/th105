@@ -86,10 +86,10 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 605)
+        self.assertEqual(len(manifest["units"]), 606)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1573,
+            1574,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -1839,7 +1839,7 @@ class WorkflowToolingTests(unittest.TestCase):
             markdown,
         )
         self.assertIn("Canonical exact functions | 1,412", markdown)
-        self.assertIn("Canonical exact authored bytes | 381,108", markdown)
+        self.assertIn("Canonical exact authored bytes | 381,170", markdown)
         self.assertIn("Source-present authored mappings | 1,564", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown

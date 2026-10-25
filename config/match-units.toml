@@ -3001,15 +3001,15 @@ dir32_targets = ["_title_bgm_path=_title_bgm_path"]
 
 [units.cross-v106a-short-deque-front]
 kind = "probe"
-source = "src/battle/ShortDequeAccess.cpp"
+source = "scripts/probes/DequeShortFrontOrigin.cpp"
 object = "build/match-units/CrossV106a_ShortDequeFront.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a checked ShortDeque8 front accessor. Current body preserves the unsigned overflow/live-count guards and block wrap; multiple accepted callers already resolve this exact current address."
+notes = "Compiler-generated VC8 std::deque<short>::front provenance probe, excluded from authored progress. Replaces the hand-written game facade; the entire71-byte COMDAT and both real invalid-parameter relocations replay exactly. Origin manifest also verifies full-inventory uniqueness."
 
 [[units.cross-v106a-short-deque-front.functions]]
 address = "0x004321B0"
-symbol_base = "front_checked"
+symbol_base = "?front@?$deque@FV?$allocator@F@std@@@std@@QAEAAFXZ"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
 [units.cross-v106a-menu-result-update]
@@ -23157,4 +23157,24 @@ dir32_targets = [
   "__ehhandler$?update@ScenarioCommandUpdateView@th105@@QAECXZ=_scenario_update_eh_458440",
   "??_9SystemEffectObjectBase@@$B3AE=_scenario_update_virtual4_thunk",
   "?scenario_slot_state@th105@@3PAUBattleSlotState@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
+]
+
+[units.gpt-web-scenario-text-entry-release]
+kind = "probe"
+source = "src/battle/ScenarioTextEntryRelease.cpp"
+object = "build/match-units/GptWeb_ScenarioTextEntryRelease.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Scenario command interpreter456EB0 actual temporary lifetime proves this entry releases its title-resource handle before implicit VC8 string and sprite cleanup. Complete natural GS destructor; shared header declaration also corrects map value ownership."
+
+[[units.gpt-web-scenario-text-entry-release.functions]]
+address = "0x00435F00"
+symbol_base = "??1ScenarioTextEntryDC@th105@@QAE@XZ"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "__ehhandler$??1ScenarioTextEntryDC@th105@@QAE@XZ=_scenario_text_entry_release_eh",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
 ]

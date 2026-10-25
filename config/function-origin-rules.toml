@@ -3422,3 +3422,17 @@ required_selected_body_calls = [
   { owner = "0x00458440", site = "0x00458D20", target = "0x00455CD0", target_status = "matching" },
   { owner = "0x00458440", site = "0x00459282", target = "0x00454EC0", target_status = "matching" },
 ]
+
+[[rules]]
+id = "vc8-generated-deque-short-front-106a"
+vc8_generated_anchor_file = "config/vc8-generated-deque-short-front-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 71
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 std::deque<short>::front COMDAT reproduces all71 target bytes, including both resolved invalid-parameter calls. Full4024-candidate scan yields only004321B0. A real standard member pointer retains the upstream body without game facade or copied instructions. Former authored front_checked credit is withdrawn; direct callers retain their actual native ABI bindings. docs/SCENARIO_COMMAND_UPDATE_2026_10_25.md."
+required_body_hashes = [
+  { address = "0x004321B0", size = 71, sha256 = "0f5106f69182629b19ef308697523efdc90bed3a805f9199138b918c3a5c8b89" },
+]

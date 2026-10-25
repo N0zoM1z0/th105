@@ -9,10 +9,12 @@ nonexact and deliberately unselected. The finite source controls are saved;
 **AyaObject initializer0x0061F0B0** has now been refreshed unchanged: its full
 4859-byte payload still differs only in two operand bytes. Later C2 release
 tables are corroborated, but no attested executable package was recovered.
-**Scenario command interpreter0x00458440** is now the active bounded root: its
-6121-byte main/full6216-byte target is closed and all23 commands have a complete
-compiling, unselected source hypothesis. Strict replay currently stops at an
-unqualified emitted string copy constructor, before any canonical byte count.
+**Scenario command interpreter0x00458440** is now checkpointed: its6121-byte
+main/full6216-byte target is closed and all23 commands have a complete compiling,
+unselected hypothesis. The real456EB0 provider control remains blocked at the
+same emitted string copy constructor. Its investigation did recover the missing
+owned entry destructor435F00, now independently133/133. Next bounded work is a
+fresh authored/boundary root; the interpreter visibility control is closed.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -45,22 +47,28 @@ credentials and generated reports out of Git.
 Current checkpoint retains complete Tenshi source and the complete unselected
 Alice Fighter hypothesis with a reproducible whole-payload comparison. The new
 Scenario interpreter adds one observed authored identity and one probe, with
-complete unselected source. Exact acceptance/source-present counts are unchanged.
+complete unselected source. The related entry-resource destructor435F00 is now
+selected and accepted independently; the parent interpreter is not accepted.
+The compiler-proven deque front4321B0 is removed from authored/source-present
+credit: the net change is+62 exact authored bytes and no net function count.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1597 /1418 /1009 |
-| Mapped / source-present |1584 /1564 |
-| Exact functions / authored bytes |1412 /381108 |
-| Configured units / functions |605 /1573 |
+| Provisional / authored / excluded / review candidates |4024 /1597 /1419 /1008 |
+| Mapped / source-present |1585 /1564 |
+| Exact functions / authored bytes |1412 /381170 |
+| Configured units / functions |606 /1574 |
 
-These are live ledger counts, not a new aggregate cold claim. The last aggregate
-receipt remains `build/exact-first-remilia-action-entry-20261025/cold-all.log`:
-524 accepted units/all1412 functions. Source-present is not exact acceptance.
+These totals have a fresh complete cold receipt:
+`build/exact-first-scenario-update-20261025/cold-all.log` passes all524 accepted
+units/all1412 functions,381170 authored bytes. It includes all eight previously
+accepted units/19 functions affected by the shared header and the new133-byte
+destructor. The compiler-generated71-byte front probe is independently exact
+but excluded from these authored totals. Source-present is not exact acceptance.
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
 
-## Active: Scenario command interpreter458440
+## Checkpoint: Scenario command interpreter458440
 
 [Target closure, first complete source and admission limits](SCENARIO_COMMAND_UPDATE_2026_10_25.md).
 Sources: `src/battle/ScenarioCommandUpdate.cpp/.hpp`.
@@ -99,10 +107,32 @@ Public target audit: `scripts/audit-scenario-command-update-target.py` (expected
   primary DB hashes unchanged. Decompiler warnings remain hypotheses. Wrong
   GUI IDA was rejected; no target patching or IDA semantics were used.
 
-Next question is actual case2 constructor/provider visibility and remaining
-emitted generated operations, then an unmasked whole replay. Preserve the
-first source/object and finite controls. No register/liveness tricks, inline
-spelling grid or broad behavior matrix. No LTCG impossibility claim follows.
+The real provider456EB0 is now recovered privately as a complete599-byte
+hypothesis versus598 target. Its explicit ordinary pair matches native's
+reference constructor/const-key conversion lifetimes; the original make_pair
+spelling adds by-value copies under pinned VC8 utility. Full599 replay has326
+unequal positions, first+58 in EH-state scheduling; no byte/extent waiver.
+Actual temporary cleanup exposes missing resource ownership in the old shared
+ScenarioTextEntryDC type. Its new ordinary destructor435F00 matches all133
+bytes/SHA ccaa3c72, releases token0 before implicit string98/sprite4 cleanup,
+and is separately selected/accepted. No source-present credit goes to456EB0.
+
+One genuine provider/caller same-TU build retains the entire raw caller5640
+SHA85deb994 and the same unbound37-byte string copy constructor. This finite
+visibility question is closed. Resume it only with independent facts; switch
+to a fresh root. Preserve first source/object and private pair/joint recipes.
+No register/liveness tricks, inline spelling grid or broad behavior matrix.
+Original formal parameter grouping/EH/TU context remains unknown; no LTCG
+impossibility claim follows. The shared header affects eight accepted units,
+all included in the mandatory full cold replay.
+The same provider audit proves4321B0 is a real VC8 std::deque<short>::front
+COMDAT. Its71 bytes and both invalid-parameter calls match the dedicated
+upstream probe; all4024 candidates give one hit. The new compiler-origin
+anchor also pins its complete native hash. Old authored/source-present credit
+is withdrawn, old handwritten facade removed, and compatibility address alias
+kept as library. Other seven distinct positive helpers were already excluded.
+The earlier242/525-unit run was stopped for this census correction; it is not
+an aggregate claim. The corrected cold-all receipt now passes all524 units/all1412 functions.
 The eight following INT3 bytes still need object/linker qualification before
 any future exact acceptance. Receipts/private recipes are under
 `build/exact-first-scenario-update-20261025/` and the matching `.analysis/` scope.

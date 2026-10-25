@@ -140,6 +140,7 @@ struct ScenarioTextEntryDC {
     unsigned char reserved_0da[2];
 
     ScenarioTextEntryDC();
+    ~ScenarioTextEntryDC();
     void render_dynamic();
 };
 

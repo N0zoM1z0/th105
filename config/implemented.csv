@@ -160,7 +160,6 @@ CSelectScenario_apply_scenario
 CTitle_dtor
 CTitle_on_scene_enter
 CLoadingWatch_on_scene_enter
-front_checked
 dispatch_indexed_event
 GuideOverlay_ctor
 CMenuResult_update
@@ -1562,3 +1561,4 @@ IkuObject_update_action_state
 YukariObject_update_action_state
 YuyukoObject_update_action_state
 TenshiObject_update_action_state
+ScenarioTextEntryDC_dtor

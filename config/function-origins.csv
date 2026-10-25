@@ -1013,7 +1013,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00431E80,authored_game,config,authored,observed,character-deck-csv-loader-authored-106a
 0x00432050,authored_game,ui,authored,observed,profile-slot-defaults-authored-106a
 0x004321A0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004321B0,authored_game,battle,authored,observed,canonical-exact-authored
+0x004321B0,compiler_generated,battle,exclude,observed,vc8-generated-deque-short-front-106a
 0x00432200,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00432310,authored_game,battle,authored,observed,canonical-exact-authored
 0x00432360,authored_game,battle,authored,observed,canonical-exact-authored
@@ -1102,7 +1102,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00435E50,authored_game,battle,authored,observed,canonical-exact-authored
 0x00435E70,compiler_generated,runtime,exclude,observed,vc8-generated-map-int-value16-tree-comdats-106a
 0x00435EB0,compiler_generated,runtime,exclude,observed,vc8-generated-list-voidptr-tidy-106a
-0x00435F00,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00435F00,authored_game,battle,authored,observed,canonical-exact-authored
 0x00435F90,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
 0x00435FC0,compiler_generated,render,exclude,observed,vc8-generated-spriteex-vector-comdats-106a
 0x00435FF0,unknown,,review,unknown,ida-1.06a-initial-inventory
