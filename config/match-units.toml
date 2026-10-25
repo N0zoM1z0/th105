@@ -23386,3 +23386,42 @@ rel32_targets = [
   "?draw_line@RectangleLineView@th105@@QAEHMMMMI@Z=0x00401180",
   "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0",
 ]
+
+[units.exact-first-effect-resources]
+kind = "probe"
+source = "src/battle/EffectResourceLoading.cpp"
+object = "build/match-units/ExactFirst_EffectResources.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete2528-byte effect resource437EC0. First complete2544 source immediately compared; native path receiver, actual eight-WORD frame and destructive28-byte default clear recover2528. Full canonical79 unequal positions; direct members and genuine group lifecycle visibility are whole-payload byte-neutral. Unselected/nonexact. docs/EFFECT_RESOURCE_LOADING_2026_10_26.md."
+
+[[units.exact-first-effect-resources.functions]]
+address = "0x00437EC0"
+symbol_base = "?load_effect_resource@EffectResourceManagerView@th105@@QAEXPBD@Z"
+rel32_targets = [
+  "??$_Construct@UEffectResourceGroup@th105@@U12@@std@@YAXPAUEffectResourceGroup@th105@@ABU12@@Z=0x00422E00",
+  "??0EffectResourceGroup@th105@@QAE@XZ=0x00422AE0",
+  "??0PatFileReaderOwner@th105@@QAE@XZ=0x0040CF10",
+  "??1EffectResourceGroup@th105@@UAE@XZ=0x00422660",
+  "??1PatFileReaderOwner@th105@@QAE@XZ=0x0040CF20",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
+  "?_Assign_n@?$vector@VEffectFrameData@th105@@V?$allocator@VEffectFrameData@th105@@@std@@@std@@IAEXIABVEffectFrameData@th105@@@Z=0x004229E0",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@PAU342@0ABH@Z=0x00421F30",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@XZ=0x00435E50",
+  "?_Growmap@?$deque@UEffectResourceGroup@th105@@V?$allocator@UEffectResourceGroup@th105@@@std@@@std@@IAEXI@Z=0x00422770",
+  "?_Incsize@?$list@HV?$allocator@H@std@@@std@@IAEXI@Z=0x00440370",
+  "?_Xran@?$vector@IV?$allocator@I@std@@@std@@KAXXZ=0x0040C350",
+  "?erase@?$_Tree@V?$_Tmap_traits@HPAUEffectResourceGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectResourceGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z=0x0043C660",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUEffectResourceGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectResourceGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?insert@?$_Tree@V?$_Tmap_traits@HPAUEffectResourceGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectResourceGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HPAUEffectResourceGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectResourceGroup@th105@@@std@@@4@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHPAUEffectResourceGroup@th105@@@2@@Z=0x004606E0",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?open@PatFileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "?split_path@EffectPathService@th105@@QAEHPAD00@Z=0x0040D0B0",
+  "@__security_check_cookie@4=0x00689D25",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+  "?g_effect_path_service@th105@@3UEffectPathService@1@A=?g_module_path_text@th105@@3UModulePathTextView@1@A",
+]

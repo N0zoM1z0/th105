@@ -36,10 +36,14 @@ agree. Independent review of the paired rectangle renderer **0x004012A0** is
 now checkpointed: all395 target bytes/128 instructions close; complete394-byte
 source has85 unequal positions. Native Z0.5 is independently confirmed, but
 real common-result and same-receiver controls are whole-payload byte-neutral.
-This finite lane is closed. Resume complete medium/large work at the unreviewed
-**0x00437EC0** frontier (provisional2528 bytes), with fresh preflight and complete
-boundary/ownership review before choosing source. Prior floating-profile grids
-remain closed; neither drawing provider inherits the representative's exactness.
+This finite lane is closed. Effect resource loader **0x00437EC0** is now
+checkpointed: full2528 target bytes/794 instructions and complete2528-byte source
+with79 unequal positions. Actual eight-WORD frames, destructive28-byte default
+clear and global path receiver recover the complete size. Direct member and
+genuine group lifecycle visibility controls are byte-neutral; this finite lane
+is closed. Next medium/large frontier **0x00448F60** has provisional2521 bytes;
+fresh preflight and independent boundary/ownership review come first. Prior
+floating-profile grids remain closed; drawing providers inherit no exactness.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -87,13 +91,15 @@ and one probe with complete unselected source, without source/exact credit.
 Collision debug geometry45E950 adds one observed authored mapping, selected
 complete source and3087 exact bytes. Rectangle4012A0 now has a complete public
 unselected hypothesis and probe, with no source-present or exact credit.
+Effect resource437EC0 adds one independently observed authored candidate/mapping
+and a complete public unselected hypothesis/probe; exact/source totals stay fixed.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1602 /1419 /1003 |
-| Mapped / source-present |1591 /1566 |
+| Provisional / authored / excluded / review candidates |4024 /1603 /1419 /1002 |
+| Mapped / source-present |1592 /1566 |
 | Exact functions / authored bytes |1414 /385903 |
-| Configured units / functions |612 /1580 |
+| Configured units / functions |613 /1581 |
 
 The collision-debug manifest has a fresh full cold receipt:
 `build/exact-first-45e950-20261026/cold-all.log` passes526 accepted units/all1414
@@ -110,6 +116,40 @@ source/header/profile/global-data row changed. The preceding PAT receipt
 remain nonexact and receive no new source/ownership/exact credit.
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
+
+Effect437EC0 adds a new unit and two qualified data rows, so the old accepted
+provenance is conservatively invalidated. Current-manifest verification uses
+`build/effect-resource-437ec0-20261026/origins-check.log` and `cold-all.log`.
+Both pass:4024 origin rows and526 cold units/all1414 exact functions,385903
+authored bytes. The27-reader/25-guard target audit and full nonexact COFF replay
+also pass their respective expected outcomes.
+The earlier rectangle/collision receipts retain their own manifest histories.
+
+## Checkpoint: effect resource loader437EC0
+
+[Full target, physical frame evidence and finite comparisons](EFFECT_RESOURCE_LOADING_2026_10_26.md).
+Source: `src/battle/EffectResourceLoading.cpp` (unselected).
+Unit: `exact-first-effect-resources`.
+Audit: `scripts/audit-effect-resources-target.py` (target0/object1/nonexact).
+
+- Full2528 SHAe0d31abb through4388A0;794/794 instructions reached, RET4 and
+  no escaping direct edges/indirect jumps. GS/EH scalar allocation364. Three
+  exact manager wrappers46F900/4245B0/4389B0 call this receiver at+8 and ignore
+  EAX. Authored format/policy is independently separated from helper ownership.
+- First complete2544 source was compared immediately. Eight actual WORD fields,
+  implicit frame-copy visibility, observed global path receiver and destructive
+  whole28-byte frame clear recover2528 bytes. Native zeroing includes the vptr;
+  retained shared FrameData source was not assumed authoritative or edited.
+- Two public builds/full COFF audit agree on SHA94b3933b and79 unequal positions,
+  first4383B5. First1269 bytes agree. Twenty-seven reader sites,25 guards, owning
+  file/lists/groups, optional32-byte payload and reverse aliases are preserved.
+- Direct typed WORD fields and genuine same-TU group constructor/destructor
+  visibility leave the whole payload unchanged. Stop this lane; no flag/type/
+  spelling grid without new independent evidence. Original source/local/TU
+  context and nominal identities remain unknown; no LTCG-impossibility claim.
+- No implemented/match row or helper-origin credit. Two new data rows pin the
+  native EH prefix and complete5-byte filename format; path receiver uses the
+  existing module-path global. Next448F60 is only a provisional2521-byte frontier.
 
 ## Checkpoint: rectangle primitive4012A0
 

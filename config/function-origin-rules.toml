@@ -3488,3 +3488,23 @@ required_body_hashes = [
 required_direct_edges = [
   { caller = "0x00463070", site = "0x0046308A", target = "0x00461B70", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "effect-resource-loader-authored-106a"
+addresses = ["0x00437EC0"]
+expected_count = 1
+expected_bytes = 2528
+expected_names = ["sub_437EC0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete2528-byte/794-instruction body closes through RET4 with no escaping edges or indirect jumps. Exact Info/CSelect/Weather effect-manager wrappers call the same receiver at46F908/4245B8/4389B8. Texture filename prefixing, effect group/continuation/alias commands and full28-byte frame/optional payload parsing establish authored resource policy independently of STL/CRT providers. Complete2528-byte public source has79 unequal positions after full relocation replay and remains unselected. No helper-origin credit. docs/EFFECT_RESOURCE_LOADING_2026_10_26.md."
+required_body_hashes = [
+  { address = "0x00437EC0", size = 2528, sha256 = "e0d31abb77468f60189ea2e9473f5896f0a08155057d03d81e74bfc40ce94566" },
+]
+required_direct_edges = [
+  { caller = "0x0046F900", site = "0x0046F908", target = "0x00437EC0", caller_status = "matching" },
+  { caller = "0x004245B0", site = "0x004245B8", target = "0x00437EC0", caller_status = "matching" },
+  { caller = "0x004389B0", site = "0x004389B8", target = "0x00437EC0", caller_status = "matching" },
+]

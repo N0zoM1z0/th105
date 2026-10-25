@@ -1151,7 +1151,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00437D00,authored_game,battle,authored,observed,canonical-exact-authored
 0x00437D20,authored_game,battle,authored,observed,canonical-exact-authored
 0x00437DF0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00437EC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00437EC0,authored_game,battle,authored,observed,effect-resource-loader-authored-106a
 0x004388A0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x00438970,authored_game,battle,authored,observed,canonical-exact-authored
 0x00438990,authored_game,battle,authored,observed,canonical-exact-authored
