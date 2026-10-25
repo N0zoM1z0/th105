@@ -1,6 +1,31 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **park complete YukariObject58DB80 after floating-copy and
+Current transition: **complete YuyukoObject56F700 source and early full comparison;
+next investigate native argument/return epochs and physical call sharing**.
+The manually reviewed28-action/default source is selected in
+src/characters/YuyukoObjectUpdate.cpp/.hpp; unit exact-first-yuyuko-object-update.
+First full34772 SHA3b558e64 is compared before controls. Raw main34278 closes8032
+reachable instructions plus15 exact internal alignment instructions/68 bytes;
+62 RET0,329 direct calls/24 entries and15 virtuals, no escaping branches. Full35060
+owns16 destination tables/121 DWORDs, seven bounded remaps/291 bytes and seven
+metadata alignment bytes; primary actions800..998, not999. Default ignores AL.
+Readonly384MiB analysis preserves all nine primary DB hashes. Backward actual
+argument-slot tracing establishes46 consumed packets, including both shared
+request predecessor pairs.815's effect-loop bound12 is corrected from raw bytes;
+900 keeps independent random coordinates. Selected formal/cold full34908
+SHA06a43850 remains nonexact32830/+31, despite natural frame0x238 and complete
+table/remap dimensions/content. Still68 RETs/27 motion/4 frame/53 unparented/
+12 virtual calls versus62/29/7/52/15. All28 per-action direct inventories agree
+except extra900 spawn;815 virtual1 versus2. This is not execution-equivalence
+proof. An explicit-coordinate/shared-request control retains22/24 physical
+direct-callee counts but grows frame23C; keep unselected. Next use raw call-owner
+and scalar lifetime evidence, no forced frame or compiler grid. See
+[complete evidence and receipts](YUYUKO_OBJECT_UPDATE_2026_10_25.md).
+Tracking mapped1582/source1563;602 units/1570 configured functions. Accepted graph
+unchanged; no new aggregate cold claim.95 isolated literal aliases and three
+runtime bounds affect only this new probe. Continue serial CPU0/nice10 builds.
+
+Prior transition: **park complete YukariObject58DB80 after floating-copy and
 frame-owner corrections; next independently review YuyukoObject56F700**.
 Fresh formal and independent cold34628 SHA0330e417 replay975 relocations but
 remain nonexact32402/+31 against full34800. Prior undefined4-based integer

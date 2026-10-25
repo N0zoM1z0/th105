@@ -1580,3 +1580,4 @@ SakuyaObject_update_action_state,0x004E0D30,function
 KomachiObject_update_action_state,0x005F9420,function
 IkuObject_update_action_state,0x00632C30,function
 YukariObject_update_action_state,0x0058DB80,function
+YuyukoObject_update_action_state,0x0056F700,function
