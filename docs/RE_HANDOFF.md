@@ -1,6 +1,26 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **retain complete Youmu Fighter action initializer53A1D0;
+Current transition: **complete SakuyaObject update4E0D30 source now compares;
+continue its concrete precision/publication/sharing residuals**.
+Hash-attested raw CFG closes all6774 instructions/28985 callable bytes,47 RET0s,
+232 direct calls to20 entries,48 virtual calls and all seven tables. Complete
+29476-byte target owns72 destination DWORDs/200 remap bytes/three alignment
+bytes. A single readonly384MiB Ghidra hypothesis attests target/entry/all mapped
+bytes and leaves all nine primary project hashes unchanged. Manual full source
+is compared early: formal and independent cold29408 SHA256 `3e0aa7a9...`,738
+relocations replayed, but27397 unmasked differing bytes, first+37. No exact credit.
+Real double captures restore eight-byte alignment; six independently consumed
+12-byte packets explain the frame0x98-to0xD0 change exactly.21 actual random
+speed-product float boundaries are retained. All200 remap bytes, seven table
+dimensions,48 virtual calls and19/20 direct-call counts agree. Still52 RETs
+versus47 and two secondary-alpha calls versus3. Next inspect803 alpha sharing,
+return/field epochs and the observed800 inclusive comparison. No flag grid or
+runtime matrix. See [complete evidence/source/commands](SAKUYA_OBJECT_UPDATE_2026_10_25.md).
+Tracking and1484 floating target-reference checks pass. Accepted graph remains
+524 units/1412 functions; prior Remilia below is the latest aggregate cold
+receipt. No new aggregate cold replay is claimed.
+
+Prior transition: **retain complete Youmu Fighter action initializer53A1D0;
 park601/604 layout and move to a source-missing large Object update**.
 Formal and independent cold source emit1874 SHA256 `4a86c07d...`, with60
 relocations replayed, but remain nonexact at44 byte positions:42 code bytes in
@@ -228,9 +248,10 @@ controls, including a neutral facing-expression control and rejected real input/
 product captures; do not repeat them without new evidence. See
 [the full source/evidence/commands](REIMU_ACTION_INITIALIZATION_2026_10_25.md).
 
-Next review SakuyaObject slot284E0D30, candidate28985 bytes, currently authored
-but source-missing. Re-attest slot6C48B4, reconcile the complete raw CFG/ABI and
-metadata ownership, then implement/compare the first whole body early.
+Continue SakuyaObject slot284E0D30 from its first complete source/comparison
+above. The boundary and full metadata are now reconciled, and the source is
+present. Preserve target-specific scalar widths, call epochs and real packet
+lifetimes while diagnosing803 alpha sharing and the52/47 RET discrepancy.
 Youmu Fighter53A1D0 is now source-present and parked at the recorded601/604
 layout residual; it is distinct from the parked YoumuObject initializer543670.
 Keep parked common/Reimu/Udonge residuals closed absent new target evidence.
@@ -285,7 +306,7 @@ mapped-section attestation; transaction rollback/readback and all nine primary
 project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
 The first full body has been compiled/compared as described above. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
-Source-present1558/mapped1577; exact ledger1412/381108 bytes, units597. Use locked
+Source-present1559/mapped1578; exact ledger1412/381108 bytes, units598. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
 mandatory local CI before every commit/push. IDA still has the wrong executable;
 use hash-attested raw bytes. Latest aggregate cold replay is the Remilia checkpoint above.
