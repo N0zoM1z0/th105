@@ -120,6 +120,60 @@ Keep04. Both arithmetic-spelling controls are neutral, so park the operand/
 register residual and switch to another complete representative. Do not repeat
 these controls without new independent evidence.
 
+## 2026-10-25: input-publication and complete same-owner context controls
+
+The newly complete KomachiObject update5F9420 provides a real same-owner
+context, without making its nonexact source authoritative. A fresh bounded
+preflight verifies the Japanese1.06a PE and tracking; IDA still rejects the GUI
+executable, so all new instruction reads use the hash-attested PE. Fresh formal
+initializer replay reproduces full6540/732ea433 and exactly the same seven
+unmasked differences. No source/header/profile is changed in the selected unit.
+
+Raw600422 reads the input pointer before the60042A BYTE184 publication, then
+600431 loads input[2] for FTOL and the virtual selector. An isolated truthful
+source control captures that actually consumed pointer before the flag store.
+It emits the complete same6540-byte canonical payload, first+0x93, seven
+differences. The compiler already represents that source epoch without changing
+the EAX/ECX choice; this is not a reason to force a register.
+
+A second control compiles the complete existing update first and initializer
+second, in their target address order, with one pointer-only primary interface.
+Slot28 and slot3C remain fixed by the6C6004/6C6018 witnesses. The common header
+retains reviewed narrow selectors and all actually used update slots. The
+shared spawn call view uses the initializer's existing unsigned-byte formal;
+the update supplies its actual zero-extended BYTE104 value. Earlier native
+provider evidence supports both low-byte/word carriers, without recovering the
+original nominal parameter type. No object is instantiated, helper body copied,
+opaque call replaced or calling convention changed.
+
+The two definitions own distinct COFF text sections: update section5 has29060
+bytes/1004 relocations, and initializer section90 has6540/284. The initializer
+still canonically reproduces732ea433 with the same seven differences. The
+context update is unselected, and neither its bytes nor the whole TU receive
+acceptance. This test supplies actual complete-body context; it does not prove
+that the original methods shared a TU or that all compiler contexts are closed.
+
+| New control | Initializer full bytes | Canonical SHA256 | Differences |
+| --- | ---: | --- | ---: |
+|Input pointer captured before BYTE184|6540|732ea4336323b83634f7669c6c8299ef3576f584dcdcf2970331514778ffa5b9|7|
+|Complete same-owner update/initializer TU|6540|732ea4336323b83634f7669c6c8299ef3576f584dcdcf2970331514778ffa5b9|7|
+
+Private source/header snapshots are under `.analysis/komachi-entry-context-20261025/`;
+canonical reports, COFFs, raw instruction readback and the source/object SHA256
+receipt are under `build/komachi-entry-context-20261025/`. The normal
+`scripts/audit-komachi-object-entry.py --object OBJECT` command replays the
+initializer's complete section for either object. No bytes are masked. Accepted
+units and aggregate counts do not change; no fresh native matrix is claimed.
+The earlier eight-input witness retains its scope.
+
+Both new questions yield identical complete initializer output. Close these
+pointer-publication/common-owner controls unless independent evidence changes
+the question. Keep the selected source unchanged and select another complete
+large representative. IkuObject632C30 is a source-missing provisional33617-byte
+slot28 candidate; its same-owner initializer63B310 already has independently
+accepted complete source. That is a reason to review this family next, not
+permission to inherit its boundaries, fields or exactness.
+
 ## Eight scoped native controls
 
 `scripts/audit-komachi-object-entry-paths.py` uses the original PE vtable,

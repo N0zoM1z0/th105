@@ -1,6 +1,23 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **retain KomachiObject update5F9420 pre-call scalar epochs;
+Current transition: **park KomachiObject initializer600390 after two neutral
+new-context controls; next independently review large IkuObject632C30**.
+Fresh formal initializer replay and both new complete controls retain6540
+SHA732ea433 with exactly seven differences, first600423/+0x93. Capturing the
+real input pointer before BYTE184 publication is neutral. A complete same-owner
+update/initializer TU with the reviewed primary interface is also neutral for
+the initializer; its context update remains unselected. Close these questions
+without forcing the EAX/ECX choice or repeating817 arithmetic spellings. See
+[initializer context receipts](KOMACHI_OBJECT_ENTRY_2026_10_24.md).
+No source, header, compiler setting, literal binding or exact credit changes.
+Next candidate632C30 is source-missing, provisional33617 bytes, with IkuObject
+slot28 cell6C64CC. Its same-owner initializer63B310 is already exact6229 callable/
+full6551, supplying a family lead only. Re-attest and close the new root's own
+complete boundary/ABI before selecting source. Continue large-function-first,
+early complete comparison and single-core serial builds. Accepted graph remains
+524 units/1412 functions; prior Remilia is the latest aggregate cold receipt.
+
+Prior transition: **retain KomachiObject update5F9420 pre-call scalar epochs;
 continue actual frame reuse and physical-sharing residuals**.
 Raw main27874 closes6773 reachable instructions/27852 bytes plus seven exact
 internal padding instructions/22 bytes;37 RET0s,315 direct calls/19 entries and
