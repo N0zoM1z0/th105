@@ -22164,3 +22164,35 @@ dir32_targets = [
     "__real@41400000=_remilia_action_entry_006c12b0",
     "__real@3f000000=_remilia_action_entry_006cd140",
 ]
+
+
+[units.exact-first-youmu-fighter-action-initialization]
+kind = "probe"
+source = "src/characters/YoumuFighterActionInitialization.cpp"
+object = "build/match-units/ExactFirst_YoumuFighterActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Youmu Fighter primary slot3C53A1D0;1424 callable/full1874 target. One-time899 spawn, signed609 virtual selector,7CD writes and601/604 shared phase. Full source1874 SHA4a86c07d remains nonexact44 bytes; no exact credit. scripts/audit-youmu-fighter-action-initialization.py; docs/YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-youmu-fighter-action-initialization.functions]]
+address = "0x0053A1D0"
+symbol_base = "?initialize_action_entry@YoumuFighterActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?spawn_owned_object@YoumuFighterActionEntryView@th105@@QAEHHMMEHPAMH@Z=0x00465190",
+    "?zero_motion@YoumuFighterActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?dispatch_event@YoumuFighterActionEntryView@th105@@QAEXI@Z=0x004359F0",
+    "?initialize_common_action_entry@YoumuFighterActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+    "__real@4059000000000000=_youmu_fighter_action_entry_006cd190",
+    "__real@c0800000=_youmu_fighter_action_entry_006c3e98",
+    "__real@40800000=_youmu_fighter_action_entry_006cd200",
+    "__real@3f19999a=_youmu_fighter_action_entry_006c3e94",
+    "__real@42be0000=_youmu_fighter_action_entry_006c4000",
+    "__real@41680000=_youmu_fighter_action_entry_006c4454",
+    "__real@3f000000=_youmu_fighter_action_entry_006cd140",
+    "__real@41600000=_youmu_fighter_action_entry_006c3c64",
+    "__real@3fc99999a0000000=_youmu_fighter_action_entry_006c0e80",
+    "__real@418c0000=_youmu_fighter_action_entry_006c3e60",
+    "__real@3f99999a=_youmu_fighter_action_entry_006c3424",
+]

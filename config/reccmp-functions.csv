@@ -1575,3 +1575,4 @@ Aya_initialize_action_entry,0x00617000,function
 Komachi_initialize_action_entry,0x005F6700,function
 Iku_initialize_action_entry,0x0062FFF0,function
 Remilia_initialize_action_entry,0x00554D50,function
+YoumuFighter_initialize_action_entry,0x0053A1D0,function

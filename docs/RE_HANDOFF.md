@@ -1,6 +1,24 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **Remilia Fighter action initializer554D50 is exact;
+Current transition: **retain complete Youmu Fighter action initializer53A1D0;
+park601/604 layout and move to a source-missing large Object update**.
+Formal and independent cold source emit1874 SHA256 `4a86c07d...`, with60
+relocations replayed, but remain nonexact at44 byte positions:42 code bytes in
+53A6BC..53A6E5 and two destination-pointer bytes. All353 main instructions/
+1424 bytes are reachable;23 RETs/14 zero calls/one45AF40 tail/477830 default,
+one899 spawn/event31/slot0C selector and both14/12 destination tables/345 remap
+bytes are reviewed. The first complete source already matches the entire
+one-time spawn/16-byte frame and signed609 selector. A consumed601/604 phase
+restores the correct full size/call/RET counts. Reversing case order only swaps
+constants; switch-exit and chained-assignment controls reproduce prior full
+payloads. Close these controls absent new independent evidence. No exact credit
+or original TU/LTCG impossibility claim. See
+[complete source/evidence/commands](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md).
+Tracking and1405 floating target-reference checks pass. Accepted graph remains
+524 units/1412 functions; latest aggregate cold receipt is the prior Remilia
+checkpoint below. No new aggregate cold replay is claimed.
+
+Prior transition: **Remilia Fighter action initializer554D50 is exact;
 continue independently reviewed same-slot family peers**.
 Formal and independent cold builds reproduce1802 callable/full2344 payload
 bytes, SHA256 `38cb9b4a...`, with all92 relocations replayed. Raw CFG reaches
@@ -210,10 +228,11 @@ controls, including a neutral facing-expression control and rejected real input/
 product captures; do not repeat them without new evidence. See
 [the full source/evidence/commands](REIMU_ACTION_INITIALIZATION_2026_10_25.md).
 
-Next review Youmu Fighter primary slot3C53A1D0, candidate1424 bytes, currently
-authored but source-missing. Re-attest its slot and independently reconcile
-its complete raw CFG/ABI before implementation; no blanket pattern transfer.
-This is distinct from the parked YoumuObject initializer543670.
+Next review SakuyaObject slot284E0D30, candidate28985 bytes, currently authored
+but source-missing. Re-attest slot6C48B4, reconcile the complete raw CFG/ABI and
+metadata ownership, then implement/compare the first whole body early.
+Youmu Fighter53A1D0 is now source-present and parked at the recorded601/604
+layout residual; it is distinct from the parked YoumuObject initializer543670.
 Keep parked common/Reimu/Udonge residuals closed absent new target evidence.
 No fake callers, compiler flag grid or fabricated register ABI.
 
@@ -266,7 +285,7 @@ mapped-section attestation; transaction rollback/readback and all nine primary
 project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
 The first full body has been compiled/compared as described above. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
-Source-present1557/mapped1576; exact ledger1412/381108 bytes, units596. Use locked
+Source-present1558/mapped1577; exact ledger1412/381108 bytes, units597. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
 mandatory local CI before every commit/push. IDA still has the wrong executable;
 use hash-attested raw bytes. Latest aggregate cold replay is the Remilia checkpoint above.
