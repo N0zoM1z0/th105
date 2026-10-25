@@ -86,10 +86,10 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 606)
+        self.assertEqual(len(manifest["units"]), 607)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1574,
+            1575,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")

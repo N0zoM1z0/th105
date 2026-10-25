@@ -13,8 +13,11 @@ tables are corroborated, but no attested executable package was recovered.
 main/full6216-byte target is closed and all23 commands have a complete compiling,
 unselected hypothesis. The real456EB0 provider control remains blocked at the
 same emitted string copy constructor. Its investigation did recover the missing
-owned entry destructor435F00, now independently133/133. Next bounded work is a
-fresh authored/boundary root; the interpreter visibility control is closed.
+owned entry destructor435F00, now independently133/133. Filtered spell CSV parser
+**0x00433B30** is now closed at1987 bytes/all478 instructions, with a complete
+unselected source and full canonical comparison differing in four operand bytes.
+Finite operand-order controls are closed; next bounded candidate is the complete
+independent parser4343A0, with fresh preflight and first whole comparison.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -51,22 +54,55 @@ complete unselected source. The related entry-resource destructor435F00 is now
 selected and accepted independently; the parent interpreter is not accepted.
 The compiler-proven deque front4321B0 is removed from authored/source-present
 credit: the net change is+62 exact authored bytes and no net function count.
+The filtered CSV root adds one observed authored identity/mapping and one probe;
+it adds no source-selected or exact credit.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1597 /1419 /1008 |
-| Mapped / source-present |1585 /1564 |
+| Provisional / authored / excluded / review candidates |4024 /1598 /1419 /1007 |
+| Mapped / source-present |1586 /1564 |
 | Exact functions / authored bytes |1412 /381170 |
-| Configured units / functions |606 /1574 |
+| Configured units / functions |607 /1575 |
 
 These totals have a fresh complete cold receipt:
-`build/exact-first-scenario-update-20261025/cold-all.log` passes all524 accepted
+`build/exact-first-spell-filtered-csv-20261025/cold-all.log` passes all524 accepted
 units/all1412 functions,381170 authored bytes. It includes all eight previously
 accepted units/19 functions affected by the shared header and the new133-byte
 destructor. The compiler-generated71-byte front probe is independently exact
 but excluded from these authored totals. Source-present is not exact acceptance.
+Existing accepted source/header/profile/bindings were preserved by the CSV
+checkpoint. Its four new data rows and new method aliases belong to the new
+unselected probe; the full cold replay also refreshes the shared ledger inputs.
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
+
+## Checkpoint: filtered spell CSV parser433B30
+
+[Target closure, source corrections and full comparison](SPELL_FILTERED_CSV_2026_10_25.md).
+Unit: `exact-first-spell-filtered-csv`.
+Audit: `scripts/audit-spell-filtered-csv-target.py` (target-only expected0).
+
+- Full1987 SHA7d09cf25, end4342F3; all478 instructions reached, no escaping
+  edges/indirect jumps. RET20 at4341C6 has a remote else tail after it. Exact
+  wrapper434300 sets ECX=this at434371 and calls the parser at434373.
+- First complete retained source1999 was immediately compared,1890 unequal
+  positions after full replay. Corrected CSV initialization/single RAII clear,
+  real set nil ownership, real Title texture API/hidden return, row constructor,
+  pair conversion and postfix reverse-iterator lifetimes close the root shape.
+- Public complete source is1987 SHA bf34bc86412914882ffc8f3ca3f480a2430f9820c88aa7de7a7888eb4d3c2f36,
+  with all relocations replayed and **four unequal operand bytes** at433C3C,
+  433C3F,433E24,433E27. Two unsigned deque upper-bound sums read head/count
+  in reversed order. No byte/extent waiver, implemented.csv or matches.csv row.
+- RTM, const reads and direct iterator expressions are byte-neutral. Explicit
+  reloaded-bounds negative control regresses to179 unequal positions. Preserve
+  private trial sources/objects/replays and stop this bounded lane; no flag or
+  spelling grid without independent evidence. Original nominal types, TU context,
+  source spelling and exception-path equivalence remain unknown.
+- Formal build/census receipts are below
+  `build/exact-first-spell-filtered-csv-20261025/`; the public audit's `--object`
+  mode derives aliases from the unit and reports all four differences (exit1).
+  Only the new probe consumes the four added data rows. Shared headers and all
+  accepted consumers are unchanged. No new helper-origin/exact credit.
 
 ## Checkpoint: Scenario command interpreter458440
 

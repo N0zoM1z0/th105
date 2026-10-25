@@ -23178,3 +23178,41 @@ dir32_targets = [
   "__ehhandler$??1ScenarioTextEntryDC@th105@@QAE@XZ=_scenario_text_entry_release_eh",
   "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
 ]
+
+[units.exact-first-spell-filtered-csv]
+kind = "probe"
+source = "src/battle/SpellCsvFilteredParser.cpp"
+object = "build/match-units/ExactFirst_SpellCsvFilteredParser.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete1987-byte filtered spell CSV parser433B30; all478 instructions reached and full remote else tail reconciled. Real set/map/deque and owning lifetimes recover frame/branches; full strict replay remains4 unequal operand bytes in two commutative deque upper-bound sums. Identified/unselected; no exact credit. docs/SPELL_FILTERED_CSV_2026_10_25.md."
+
+[[units.exact-first-spell-filtered-csv.functions]]
+address = "0x00433B30"
+symbol_base = "?parse_spell_csv_via_325b0@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@PAX@Z"
+dir32_targets = [
+  "__ehhandler$?parse_spell_csv_via_325b0@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@PAX@Z=_filtered_spell_csv_eh",
+]
+rel32_targets = [
+  "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
+  "??0SpellRecordView@th105@@QAE@ABU01@@Z=0x00432ED0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?_Buynode@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@2@XZ=0x00432B10",
+  "?_Dec@const_iterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ=0x004329B0",
+  "?advance_row@CsvReader@th105@@QAE_NXZ=0x0040F680",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
+  "?assign_bytes@FilteredSpellStringAssignView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0",
+  "?clear_rows@CsvReader@th105@@QAEXXZ=0x0040FDB0",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?erase@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x004335C0",
+  "?find@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAE?AViterator@12@ABF@Z=0x00432CB0",
+  "?insert@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHUSpellRecordView@th105@@@2@@Z=0x00433890",
+  "?insert@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@_N@2@ABF@Z=0x00433450",
+  "?load@CsvReader@th105@@QAE_NPBD@Z=0x0040F150",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?next_int@CsvReader@th105@@QAEHXZ=0x0040F480",
+  "?next_string@CsvReader@th105@@QAEPAXPAX@Z=0x0040F580",
+  "?push_back@?$deque@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x00417240",
+  "@__security_check_cookie@4=0x00689D25",
+  "__invalid_parameter_noinfo=0x0068A143",
+]

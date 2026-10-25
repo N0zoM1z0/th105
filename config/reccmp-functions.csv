@@ -1584,3 +1584,4 @@ YuyukoObject_update_action_state,0x0056F700,function
 TenshiObject_update_action_state,0x0064CD50,function
 CScenarioData_update_commands,0x00458440,function
 ScenarioTextEntryDC_dtor,0x00435F00,function
+SpellDataOwner_parse_filtered_spell_csv,0x00433B30,function
