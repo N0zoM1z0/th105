@@ -1,6 +1,31 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **park IkuObject632C30 after bounded return/width controls;
+Current transition: **complete YukariObject58DB80 first source and early whole
+comparison retained; next inspect native scalar/frame and physical-sharing
+residuals**. Manual32-action/default source is selected in
+src/characters/YukariObjectUpdate.cpp/.hpp; first full34628 SHA90b755ed is compared
+before controls. Native20 tables/157 DWORDs and200 remap bytes are complete;
+main33972/all7985 reachable instructions/88 RET0 closes without padding/tails.
+Following596370 exact323 shared980 helper stays independent. Default596024
+advances once and ignores AL. Readonly384MiB Ghidra hypothesis attests all
+mapped bytes and preserves nine primary database hashes. All48 actual consumed
+packet groups are retained, including six bases missed by nearest-LEA reading.
+Three width temporaries now reproduce native float rounding.812 retains two
+independent trig computations with only the final spawn/event shared; an
+unselected broader ring-sharing control wrongly removes two physical calls.
+Selected formal and independent cold34600 SHA4f166c48 replay970 relocations but
+remain nonexact32568/+2: frame0x264 versus0x260;98 RETs versus88;269 direct/
+44 virtual calls versus272/45.22/24 direct-callee counts and all table dimensions/
+remap bytes agree, without execution-equivalence proof. Static per-action call
+counts differ for800/816/852; investigate actual sharing/return epochs rather
+than forcing frame layout or starting a flag grid. Native bound globals and
+104 isolated float bindings affect only this new probe. No exact credit,
+shared header/profile change or new aggregate cold claim. Tracking mapped1581/
+source1562;601 units/1569 configured functions. Accepted graph stays524 units/
+1412 functions. See [complete evidence](YUKARI_OBJECT_UPDATE_2026_10_25.md).
+
+
+Prior transition: **park IkuObject632C30 after bounded return/width controls;
 next independently review large YukariObject58DB80**. Common-retirement source
 reduces complete output34088 SHA07ab6c22/46 RETs but loses another physical frame
 call14 versus16. Native Iku manager631140 reads/publishes facing as BYTE; existing
