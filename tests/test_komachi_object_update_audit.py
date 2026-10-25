@@ -88,5 +88,37 @@ class KomachiUpdateMetadataTests(unittest.TestCase):
             audit.closed_cfg(list(decoder.disasm(code,audit.START)),{})
 
 
+class KomachiHeightCaptureTests(unittest.TestCase):
+    def decode(self,code):
+        decoder=audit.capstone.Cs(audit.capstone.CS_ARCH_X86,audit.capstone.CS_MODE_32)
+        decoder.detail=True
+        return list(decoder.disasm(code,audit.START))
+
+    def rows(self,store=b"\xdd\x5c\x24\x10",compare=b"\xdc\x5c\x24\x10",callee=0x435D60):
+        # Synthetic x87 stack accesses plus a relocated CALL; no target bytes.
+        code=store+b"\xe8"+struct.pack("<i",callee-audit.START-len(store)-5)+compare
+        return self.decode(code)
+
+    def test_qword_is_captured_before_the_height_call(self):
+        facts=audit.height_call_captures(self.rows())
+        self.assertEqual(len(facts),1)
+        self.assertEqual(facts[0]["width"],8)
+        self.assertEqual(facts[0]["esp_displacement"],16)
+        self.assertEqual(int(facts[0]["store"],16),audit.START)
+
+    def test_float_store_cannot_prove_a_qword_capture(self):
+        self.assertEqual(audit.height_call_captures(self.rows(store=b"\xd9\x5c\x24\x10")),[])
+
+    def test_a_different_stack_slot_is_not_the_captured_value(self):
+        self.assertEqual(audit.height_call_captures(self.rows(compare=b"\xdc\x5c\x24\x14")),[])
+
+    def test_another_callee_is_not_a_height_capture(self):
+        self.assertEqual(audit.height_call_captures(self.rows(callee=0x4351C0)),[])
+
+    def test_post_call_store_does_not_prove_a_pre_call_capture(self):
+        code=b"\xe8"+struct.pack("<i",0x435D60-audit.START-5)+b"\xdd\x5c\x24\x10\xdc\x5c\x24\x10"
+        self.assertEqual(audit.height_call_captures(self.decode(code)),[])
+
+
 if __name__=="__main__":
     unittest.main()

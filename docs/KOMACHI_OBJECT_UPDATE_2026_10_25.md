@@ -2,10 +2,10 @@
 
 `KomachiObject_update_action_state @ 0x005F9420` has a manual complete-body
 source hypothesis and an early whole-function comparison. It is **not exact**.
-Formal and independently compiled cold objects reproduce the complete29040-byte
+Formal and independently compiled cold objects reproduce the complete29072-byte
 canonical payload, SHA256
-`58b2730bdf05defd5db1d6a1a3698b70b125c4c0ba0f4c2230341f14c6d303e4`.
-The target owns28520 bytes. Full unmasked comparison reports27205 differences,
+`4746e929c5a0a34a4b593d44413c76e2128227d844464b90e3783d483dd23728`.
+The target owns28520 bytes. Full unmasked comparison reports27294 differences,
 first+8/5F9428: source frame0x48 versus target0x40. This remains a broad layout,
 precision and physical-sharing residual; it is not a localized eight-byte
 comparison failure or partial exact claim.
@@ -198,6 +198,9 @@ destinations, truncation, external CFG edges and exact unreachable-padding sets.
 
 ## Follow-up: rounded radius, facing epochs and811 lowering
 
+This section records checkpoint `b342a30`; the next follow-up supersedes its
+selected hash while retaining these scalar/table corrections.
+
 Fresh receipts are under `build/komachi-update-sharing-20261025/`; complete
 private controls are under the corresponding `.analysis/` directory. A fresh
 baseline build reproduces the preceding checkpoint. IDA still rejects its
@@ -233,7 +236,7 @@ dimensions28/5/6/5/4/6/5/6/5/5/7/14/4/4/7 and all200 primary-remap bytes.
 |Three rounded radius scales|28956|b1040d19|27000; target scalar boundaries restored|
 |Actual packets scoped separately per action|29528|1d80948b|28060; frame grows0x48 to0x160; unselected|
 |Separate801/852 facing epochs|29020|d8c1e4f4|27199; six virtual calls restored|
-|Independent811 source arms|29040|58b2730b|27205; all15 destination tables restored; selected|
+|Independent811 source arms|29040|58b2730b|27205; all15 destination tables restored; second checkpoint|
 
 The explicit common-tail candidate joins the target's eight-state spawn group
 but also merges821/861 and two physical901 calls. Its near-target size does
@@ -244,7 +247,7 @@ the target frame: VC8 allocates0x160, rather than reusing storage as hoped.
 The selected source keeps the four original consumed arrays. No inert locals,
 padding, forced registers, compiler-profile grid or runtime matrix is involved.
 
-Formal and independent cold comparison now reproduce full29040/58b2730b with
+At that checkpoint formal and independent cold comparison reproduce full29040/58b2730b with
 all1008 section relocations replayed. Source has51 RETs versus37 and64 spawn
 calls versus63; frame0x48 still differs from0x40 at+8. The other18 direct-callee
 counts agree, as do all six virtual calls and all15 table dimensions. Static
@@ -260,6 +263,89 @@ to56, remains parser-valid and fails with27206 differences, first+0, SHA256
 The selected object and canonical PE remain unchanged. Earlier first-checkpoint
 negative hashes above retain their historical scope. Accepted units, literal
 bindings, source-present count and exact ledgers do not change in this follow-up.
+
+## Further follow-up: pre-call Y captures and physical frame reuse
+
+New receipts are under `build/komachi-update-frame-epochs-20261025/`; the
+corresponding private directory retains the stack-depth recipe and full source
+controls. Fresh whole-function baseline replay reproduces29040/58b2730b.
+No new Ghidra process or use of the rejected IDA session is involved.
+
+The raw target captures Y as a qword before three stage-height calls, then
+compares the returned ST0 against that saved value:
+
+| Action/phase | Y qword store | Height call | Qword compare |
+| --- | --- | --- | --- |
+|810/0|5F9F4A|5F9F4E|5F9F53|
+|812/0|5FAC3B|5FAC3F|5FAC44|
+|812/2|5FAEA3|5FAEA7|5FAEAC|
+
+The previous object instead called the helper, reloaded Y from this+F0 and
+used FUCOMPP at each site. Explicit consumed `double y_before_height` captures
+restore the target's before-call read and FSTP-qword/CALL/FCOMP-qword sequence.
+The captures occur only on paths that actually call the height provider. An
+initial bool carrier added SETNE/TEST pairs in812; direct equal-height branches
+remove those materializations while preserving the same decisions.
+
+Raw825 also reads facing before publishing radius378, then stores and pops
+the qword at5FC43B. Moving the real source capture before the378 publication
+restores FSTP rather than the previous FST that retained an extra x87 value.
+It remains a consumed facing value, not a register/liveness forcing local.
+
+The audit now separately reports adjacent qword store/height-call/same-slot
+qword-compare facts. It pins the target's four reviewed triples: these three
+and999's existing next-Y capture at5FFF7D/5FFF81/5FFF86. All four now appear in
+the source object. This report is a narrow instruction observation, not a
+behavioral matrix or a substitute for complete byte comparison. Five new
+synthetic tests reject a float-width store, another stack slot, another callee
+and a post-call store, while accepting the valid qword sequence.
+
+The private depth traversal independently checks incoming stack depths and
+every spawn packet's LEA/push/argument-slot witness. Frame64 versus72 is not
+explained by simply counting source variables. Observed storage, relative to
+the aligned entry ESP, is:
+
+| Kind | Target offsets / physical call sites | Current source offsets / physical call sites |
+| --- | --- | --- |
+|Three-float packets|-64:8; -48:29; -32:16; -12:10|-48:31; -36:16; -24:9; -12:8|
+|Wide group1|-32|-56|
+|Wide group2|-48|-64|
+|Wide group3|-64|-72|
+
+After the field-epoch corrections, group1 in both objects has seven FSTP,
+four FCOMP, one FLD and two FADD qword accesses; group2 has four FSTP/four FSUBR;
+group3 has one FSTP/one FSUBR. These operation/width counts agree, not the byte
+encodings or a proved allocation graph. Source packets occupy dense[-48,0)
+storage with all three wide groups outside it. The target has noncontiguous
+packet regions and reuses their storage for the wide values at different
+epochs. Physical overlap does not prove original union types, declaration
+counts, alias freedom or an LTCG barrier. No union, scratch byte array, fake
+padding or compiler annotation is introduced to force that allocation.
+
+| Complete control | Full bytes | SHA256 prefix | Full differences |
+| --- | ---: | --- | ---: |
+|Capture Y before the three height calls|29072|cc749637|27099|
+|Direct812 height gates|29056|5dd32509|27244|
+|825 facing capture before radius publication|29072|4746e929|27294|
+
+The last is selected for the observed epochs and instruction forms, despite
+its higher full difference count than the preceding checkpoint. Formal and
+independent cold builds agree on full29072/4746e929 and all1008 relocation
+replays. It remains nonexact at+8, frame0x48 versus0x40, with51 RETs versus37
+and64 spawns versus63. All15 table dimensions/200 remap bytes, six virtual calls
+and the other18 direct-callee counts agree. Per-case direct/virtual counts
+remain equal under static overapproximation. The source still shares the
+six-state826 tail at5F9951, while the target additionally shares856/901;
+the separate source861/901 join is now5FE762.
+
+A fresh generated-object first-instruction mutation55 to56 fails at+0, with
+27295 differences, SHA256
+`71ef97f6dac680772d4db0626727e04d56c0d0f884afb969e3ef1653ccb409dd`.
+The selected object and PE remain unchanged. Twelve synthetic audit tests now
+cover metadata, exact internal-padding sets and the height-capture diagnostic.
+No accepted unit, shared header/layout, compiler setting, literal binding,
+origin disposition or aggregate count changes. No new aggregate cold replay
+or runtime equivalence is claimed.
 
 ## Reproduction and continuation
 
@@ -286,7 +372,10 @@ fake return, register forcing or padding was used.
 
 Continue5F9420 from its genuine frame/temporary lifetimes and the current
 physical call/return groups above. Close the tested explicit spawn joins and
-per-action packet-scope forms absent new independent evidence. Each control
+per-action packet-scope forms absent new independent evidence. The three
+height captures and825 facing publication are now explicit; do not repeat their
+old after-call/after-publication controls. Allocation reuse needs new source-
+ownership/visibility or temporary-lifetime evidence. Each control
 must answer one raw-target question and recompare the complete extent. Stop
 repeated neutral controls. Remaining
 unknowns include complete execution equivalence, other scalar precision/

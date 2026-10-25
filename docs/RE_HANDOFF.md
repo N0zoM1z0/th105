@@ -1,7 +1,7 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **retain KomachiObject update5F9420 scalar-epoch corrections
-and complete811 table; continue concrete frame/physical-sharing residuals**.
+Current transition: **retain KomachiObject update5F9420 pre-call scalar epochs;
+continue actual frame reuse and physical-sharing residuals**.
 Raw main27874 closes6773 reachable instructions/27852 bytes plus seven exact
 internal padding instructions/22 bytes;37 RET0s,315 direct calls/19 entries and
 six virtual calls. Complete28520 owns15 tables/111 destination DWORDs and200
@@ -11,16 +11,23 @@ Manual first complete source compares29056 before controls. Raw827 bounds,
 movement/entry exits and ordered x87 guards are corrected; four actual consumed
 packet groups are retained. Follow-up restores three actual float-rounded
 counter-times0.75 radius scales and the distinct801/852 reload versus825 qword
-facing lifetime. Independent811 call arms restore its five-entry table. Formal/
-independent cold selected29040 SHA58b2730b replay1008 relocations but remain
-nonexact27205 bytes, first+8: frame0x48 versus0x40. All15 table dimensions/200
+facing lifetime. Independent811 call arms restore its five-entry table. A new
+depth/width comparison finds three missing pre-height-call Y qword captures;
+they are now explicit.825 facing is captured before378 publication, restoring
+its FSTP. All four target store/height-call/compare qword triples now appear in
+the source, including999. Three wide-access groups have corresponding operation/
+width counts, but source places them outside dense packet storage; target
+reuses noncontiguous packet regions. No union or padding is added to force it.
+Formal/independent cold selected29072 SHA4746e929 replay1008 relocations but
+remain nonexact27294 bytes, first+8: frame0x48 versus0x40. All15 table dimensions/200
 remap bytes, six independent virtual calls and18/19 direct-callee counts agree.
 Still51 RETs versus37 and spawn64 versus63. Per-case direct/virtual call counts
 agree but physical sharing differs: target spawn5F9949 joins801/815/825/827/
 852/855/856/901; source5F9951 excludes the last two and separately joins861/901
-at5FE742. Explicit spawn-join controls over-factor other calls; per-action
+at5FE762. Explicit spawn-join controls over-factor other calls; per-action
 packet scopes grow frame0x160. Keep them unselected and close these controls
-absent new independent evidence. Next inspect actual temporary/return epochs;
+absent new independent evidence. Height/facing field epochs are now explicit;
+next inspect allocation reuse from actual ownership/visibility or return epochs;
 do not force the frame or start a flag grid/runtime matrix. See
 [complete source/evidence/commands](KOMACHI_OBJECT_UPDATE_2026_10_25.md).
 Tracking and1563 floating target-reference checks pass. Accepted graph remains

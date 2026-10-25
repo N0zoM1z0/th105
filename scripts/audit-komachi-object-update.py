@@ -37,6 +37,26 @@ def load_compare():
     return module
 
 
+def height_call_captures(rows):
+    """Report adjacent qword store/call/compare facts, not execution equivalence."""
+    result=[]
+    for store,call,compare in zip(rows,rows[1:],rows[2:]):
+        if (store.mnemonic!="fstp" or call.mnemonic!="call" or compare.mnemonic!="fcomp"
+                or call.operands[0].type!=x86.X86_OP_IMM or call.operands[0].imm!=0x435D60):
+            continue
+        before,after=store.operands[0],compare.operands[0]
+        if (before.type!=x86.X86_OP_MEM or after.type!=x86.X86_OP_MEM
+                or before.size!=8 or after.size!=8
+                or before.mem.base!=x86.X86_REG_ESP or after.mem.base!=x86.X86_REG_ESP
+                or before.mem.index or after.mem.index or before.mem.disp!=after.mem.disp
+                or store.address+store.size!=call.address
+                or call.address+call.size!=compare.address):
+            continue
+        result.append(dict(store=hex(store.address),call=hex(call.address),
+                           compare=hex(compare.address),width=8,esp_displacement=before.mem.disp))
+    return result
+
+
 def inventory(raw, expected_words=TABLE_WORDS):
     decoder=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_32)
     decoder.detail=True
@@ -89,6 +109,7 @@ def inventory(raw, expected_words=TABLE_WORDS):
                 tables=[dict(address=hex(a),dwords=len(ds)) for a,ds in tables.items()],
                 remap_address=hex(remap),remap_bytes=200,
                 remap_sha256=hashlib.sha256(indices).hexdigest(),
+                height_call_captures=height_call_captures(rows),
                 cases={str(n+800):hex(tables[primary][k]) for n,k in enumerate(indices)},
                 stack_allocation=[i.operands[1].imm for i in rows[:12]
                                   if i.mnemonic=="sub" and i.operands[0].reg==x86.X86_REG_ESP])
@@ -149,6 +170,8 @@ def target_facts(compare):
         raise ValueError("reviewed target table/call inventory changed")
     if facts["returns"]!=37 or facts["virtual_calls"]!=6 or facts["stack_allocation"]!=[0x40]:
         raise ValueError("reviewed target return, virtual-call or frame inventory changed")
+    if [int(item["call"],16) for item in facts["height_call_captures"]]!=[0x5F9F4E,0x5FAC3F,0x5FAEA7,0x5FFF81]:
+        raise ValueError("reviewed pre-height-call qword captures changed")
     return identity,raw,facts,closed_cfg(rows,tables)
 
 

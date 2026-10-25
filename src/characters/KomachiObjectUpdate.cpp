@@ -29,7 +29,7 @@ namespace th105 {
 #define RETURN_ON_ENTRY_PHASE(p) (I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==p)
 #define CURVED_FADE_VALUES() {if(S(0x364)<=I(0x144))FADE(10,10);SCALE(F(0x11c)*D(0.995f));F(0x370)+=0.25;H[0]-=D(0.2f);if(H[0]<D(0.2f))H[0]=0.2f;MOVE();F(0xf8)+=F(0x370);}
 #define CURVED_FADE() {CURVED_FADE_VALUES();STEP();}
-#define ORBIT_WAVE(face) {SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);MOVE();F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);double radius_wave=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*4));float radius_scale=I(0x144)*0.75;F(0x378)=radius_wave*radius_scale;double facing=C(0x104);F(0xec)=lookup_orientation_cosine_quantized_abs(static_cast<float>(C(0x104)*(-H[0]-90.0)))*F(0x378)*(face)+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(facing*(-H[0]-90.0)))*F(0x378)+F(0x374);}
+#define ORBIT_WAVE(face) {SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);MOVE();F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);double radius_wave=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*4));float radius_scale=I(0x144)*0.75;double facing=C(0x104);F(0x378)=radius_wave*radius_scale;F(0xec)=lookup_orientation_cosine_quantized_abs(static_cast<float>(C(0x104)*(-H[0]-90.0)))*F(0x378)*(face)+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(facing*(-H[0]-90.0)))*F(0x378)+F(0x374);}
 #define ORBIT_WAVE_UNCAPTURED() {SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);MOVE();F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);double radius_wave=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*4));float radius_scale=I(0x144)*0.75;F(0x378)=radius_wave*radius_scale;F(0xec)=lookup_orientation_cosine_quantized_abs(static_cast<float>(C(0x104)*(-H[0]-90.0)))*F(0x378)+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(C(0x104)*(-H[0]-90.0)))*F(0x378)+F(0x374);}
 void KomachiObjectUpdateView::update_action_state()
 {
@@ -69,15 +69,18 @@ void KomachiObjectUpdateView::update_action_state()
  case 810:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
-  case 0:
+  case 0: {
    if(emit_repeated(0,2,5))RETIRE();if(I(0x144)%3==0)TRAIL(810,2);
    advance_six(0);
    if(I(0x180)!=0){BURST(810,150,15.0,3);RETIRE();}
-   if((fabsf(F(0xec)-AT(A,float,0xec))<60.0 && F(0xf0)<AT(A,float,0xf0)) || stage_surface_height()!=D(F(0xf0))) {
+   bool needs_fan=fabsf(F(0xec)-AT(A,float,0xec))<60.0 && F(0xf0)<AT(A,float,0xf0);
+   if(!needs_fan){double y_before_height=F(0xf0);needs_fan=stage_surface_height()!=y_before_height;}
+   if(needs_fan) {
     if(AT(P,signed char,0x604)<3){request_packet[0]=-90;request_packet[1]=0;request_packet[2]=1;SPAWN(810,1,request_packet);}
     if(AT(P,signed char,0x604)==3){request_packet[0]=-70;request_packet[1]=0;request_packet[2]=4;SPAWN(810,1,request_packet);request_packet[0]=-110;request_packet[2]=4;SPAWN(810,1,request_packet);}
     if(AT(P,signed char,0x604)==4){request_packet[0]=-70;request_packet[1]=0;request_packet[2]=4;SPAWN(810,1,request_packet);request_packet[0]=-110;request_packet[2]=4;SPAWN(810,1,request_packet);request_packet[0]=-50;request_packet[2]=4;SPAWN(810,1,request_packet);request_packet[0]=-130;request_packet[2]=4;SPAWN(810,1,request_packet);}RETIRE();
    }MOVE();break;
+  }
   case 1:
    if(emit_repeated(0,2,5)||emit_owner_gated_pair())RETIRE();advance_six(0);
    if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;float y=F(0xf0)+25.0;y-=RND(50);float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
@@ -105,13 +108,17 @@ void KomachiObjectUpdateView::update_action_state()
  case 812:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
-  case 0:
+  case 0: {
    if(emit_repeated(0,2,5))RETIRE();if(I(0x144)%3==0)TRAIL(810,2);advance_six(0);
-   if(I(0x180)!=0 || stage_surface_height()!=D(F(0xf0))){BURST(812,150,15.0,1);RETIRE();}MOVE();break;
+   if(I(0x180)==0){double y_before_height=F(0xf0);if(stage_surface_height()==y_before_height){MOVE();break;}}
+   BURST(812,150,15.0,1);RETIRE();
+  }
   case 1:H[1]*=D(0.9f);MOVE();if(S(0x364)<=I(0x144)){SCALE(F(0x11c)*D(0.98f));FADE(5,5);}break;
-  case 2:
+  case 2: {
    if(emit_repeated(0,2,5))RETIRE();if(I(0x144)%2==0)TRAIL(812,3);advance_six(0);advance_phase(3);
-   if(I(0x180)!=0 || stage_surface_height()!=D(F(0xf0))){BURST(812,150,15.0,1);RETIRE();}MOVE();break;
+   if(I(0x180)==0){double y_before_height=F(0xf0);if(stage_surface_height()==y_before_height){MOVE();break;}}
+   BURST(812,150,15.0,1);RETIRE();
+  }
   case 3:if(B(0x113)<6)RETIRE();F(0xf8)+=F(0x370);B(0x113)-=6;break;
   }
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();STEP();FRAME_EXIT();
