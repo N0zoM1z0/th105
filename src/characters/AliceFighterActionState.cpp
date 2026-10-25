@@ -1641,7 +1641,59 @@ void AliceFighterActionStateView::dispatch_action_state()
         return;
     }
 
-    case 408: {
+    case 404: {
+  if(S(0x13E)==8) RESOLVE();
+  if(S(0x13E)==3 || S(0x13E)==7) F(0xF8)-=F(0x100);
+  if(CROSSED() && S(0x13E)<8) { SEQUENCE(8); F(0xF0)=GROUND(); ZERO(); return; }
+  if(I(0x6C0)==0) B(0x750)=0;
+  if(FRAME()) ACTION(0);
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
+   if(C(0x750)==1) {
+    SEQUENCE(4); EFFECT(62,static_cast<float>(25*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+148.0),B(0x104),1);
+    float packet[3]={-74,100,0};
+    SPAWN(802,static_cast<float>(F(0xEC)-74*C(0x104)),static_cast<float>(F(0xF0)+104.0),B(0x104),1,packet,3);
+    WAVE(2); ADJUST(200,45); I(0x180)=1; SCALE(30); return;
+   }
+   float packet[3]={-74,100,0};
+   SPAWN(801,static_cast<float>(F(0xEC)-74*C(0x104)),static_cast<float>(F(0xF0)+104.0),B(0x104),1,packet,3);
+   WAVE(2); ADJUST(200,45); I(0x180)=1; SCALE(30);
+  }
+  if(I(0x144)==0) {
+   if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==4) { ACTION(9); return; }
+   if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==8) ACTION(9);
+  }
+  if(S(0x13E)==2 && I(0x144)>=20) BLOCK();
+  if(S(0x13E)==4 && I(0x144)>=25) BLOCK();
+  if(S(0x13E)==6 && I(0x144)>=40) BLOCK();
+  return;
+ }
+ case 406: {
+  if(S(0x13E)==8) RESOLVE();
+  if(S(0x13E)==3 || S(0x13E)==7) F(0xF8)-=F(0x100);
+  if(CROSSED() && S(0x13E)<8) { SEQUENCE(8); F(0xF0)=GROUND(); ZERO(); return; }
+  if(I(0x6C0)==0) B(0x750)=0;
+  if(FRAME()) ACTION(0);
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
+   if(C(0x750)==1) {
+    SEQUENCE(4); EFFECT(62,static_cast<float>(25*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+148.0),B(0x104),1);
+    float packet[3]={-74,100,1};
+    SPAWN(802,static_cast<float>(F(0xEC)-74*C(0x104)),static_cast<float>(F(0xF0)+104.0),B(0x104),1,packet,3);
+    WAVE(2); ADJUST(200,45); I(0x180)=1; SCALE(30); return;
+   }
+   float packet[3]={-74,100,1};
+   SPAWN(801,static_cast<float>(F(0xEC)-74*C(0x104)),static_cast<float>(F(0xF0)+104.0),B(0x104),1,packet,3);
+   WAVE(2); ADJUST(200,45); I(0x180)=1; SCALE(30);
+  }
+  if(I(0x144)==0) {
+   if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==4) { ACTION(9); return; }
+   if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==8) ACTION(9);
+  }
+  if(S(0x13E)==2 && I(0x144)>=20) BLOCK();
+  if(S(0x13E)==4 && I(0x144)>=25) BLOCK();
+  if(S(0x13E)==6 && I(0x144)>=40) BLOCK();
+  return;
+ }
+ case 408: {
         float spawn_payload[3];
         int facing;
 
@@ -1838,6 +1890,93 @@ void AliceFighterActionStateView::dispatch_action_state()
     }
 
 
+    case 414: {
+  if(S(0x13E)==2) RESOLVE();
+  if(I(0x6C4)==0) B(0x750)=0;
+  if(S(0x13E)==1 && S(0x140)>=12) F(0xF8)-=F(0x100);
+  if((S(0x13E)==0 || (S(0x13E)==1 && S(0x140)>=12)) && CROSSED()) {
+   SEQUENCE(2); F(0xF0)=GROUND(); ZERO(); return;
+  }
+  if(FRAME()) ACTION(0);
+  short const sequence=S(0x13E);
+  if(sequence==0 && S(0x142)==0) {
+   if(S(0x140)==6) {
+    float packet[3]={45,40,0};
+    SPAWN(805,static_cast<float>(20*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
+    WAVE(2); ADJUST(200,60); I(0x180)=1; SCALE(30); return;
+   }
+   if(S(0x140)==11 && C(0x750)==1) {
+    EFFECT(62,static_cast<float>(F(0xEC)-47*C(0x104)),static_cast<float>(F(0xF0)+185.0),B(0x104),1); BLOCK(); return;
+   }
+  }
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && (sequence==1 || sequence==2)) ACTION(9);
+  return;
+ }
+ case 415: {
+  if(S(0x13E)==2) RESOLVE();
+  if(I(0x6C4)==0) B(0x750)=0;
+  if(S(0x13E)==1 && S(0x140)>=12) F(0xF8)-=F(0x100);
+  if((S(0x13E)==0 || (S(0x13E)==1 && S(0x140)>=12)) && CROSSED()) {
+   SEQUENCE(2); F(0xF0)=GROUND(); ZERO(); return;
+  }
+  if(FRAME()) ACTION(0);
+  short const sequence=S(0x13E);
+  if(sequence==0 && S(0x142)==0) {
+   if(S(0x140)==6) {
+    float packet[3]={0,40,0};
+    SPAWN(805,static_cast<float>(20*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
+    WAVE(2); I(0x180)=1; ADJUST(200,60); SCALE(30); return;
+   }
+   if(S(0x140)==11 && C(0x750)==1) {
+    EFFECT(62,static_cast<float>(F(0xEC)-47*C(0x104)),static_cast<float>(F(0xF0)+185.0),B(0x104),1); BLOCK(); return;
+   }
+  }
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && (sequence==1 || sequence==2)) ACTION(9);
+  return;
+ }
+ case 416: {
+  if(S(0x13E)==2) RESOLVE();
+  if(I(0x6C4)==0) B(0x750)=0;
+  if(S(0x13E)==1 && S(0x140)>=12) F(0xF8)-=F(0x100);
+  if((S(0x13E)==0 || (S(0x13E)==1 && S(0x140)>=12)) && CROSSED()) {
+   SEQUENCE(2); F(0xF0)=GROUND(); ZERO(); return;
+  }
+  if(FRAME()) ACTION(0);
+  short const sequence=S(0x13E);
+  if(sequence==0 && S(0x142)==0) {
+   if(S(0x140)==5) {
+    float packet[3]={80,40,0};
+    SPAWN(805,static_cast<float>(20*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
+    WAVE(2); I(0x180)=1; ADJUST(200,60); SCALE(30); return;
+   }
+   if(S(0x140)==8 && C(0x750)==1) {
+    EFFECT(62,static_cast<float>(F(0xEC)-47*C(0x104)),static_cast<float>(F(0xF0)+185.0),B(0x104),1); BLOCK(); return;
+   }
+  }
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && (sequence==1 || sequence==2)) ACTION(9);
+  return;
+ }
+ case 418:
+  RESOLVE(); if(GATE(1)) return;
+  F(0xF4)-=D(0.35f); if(F(0xF4)<0.0f) { F(0xF4)=0; B(0x47E)=0; }
+  if(FRAME()) ACTION(0);
+  if(S(0x142)==0 && S(0x140)==2) {
+   float packet[3]={0,0,21};
+   SPAWN(849,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+50.0),B(0x104),255,packet,3); EVENT(29);
+  }
+  if(S(0x142)==0 && S(0x140)==3) {
+   float packet[3]={0,0,23};
+   SPAWN(849,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+50.0),B(0x104),1,packet,3); EVENT(29);
+  }
+  if(S(0x142)==0 && S(0x140)==4) {
+   float packet[3]={0,0,21};
+   SPAWN(849,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+50.0),B(0x104),255,packet,3); EVENT(29);
+  }
+  if(S(0x142)==0 && S(0x140)==5) {
+   float packet[3]={0,0,23};
+   SPAWN(849,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+50.0),B(0x104),1,packet,3); EVENT(29);
+  }
+  return;
     case 500: {
         float spawn_payload[3];
         int facing;
@@ -1987,195 +2126,6 @@ void AliceFighterActionStateView::dispatch_action_state()
         return;
     }
 
-    case 695: {
-        float effect_y0;
-        float effect_y1;
-        float effect_y2;
-        float effect_y3;
-        int facing;
-
-        resolve_stage_surface_landing_transition();
-        if (advance_frame_and_dispatch())
-            set_action_and_finalize(0);
-        if (!U(0x13e)
-            && !U(0x142)
-            && U(0x140) == 7) {
-            dispatch_indexed_event_member(0x37u);
-            facing = B(0x104);
-            effect_y0 = F(0xf0) + 100.0f;
-            emit_fighter_effect_433cc0(140, F(0xec), effect_y0, facing, 1);
-            effect_y1 = F(0xf0) + 100.0f;
-            emit_fighter_effect_433cc0(140, F(0xec), effect_y1, facing, 1);
-            effect_y2 = F(0xf0) + 100.0f;
-            emit_fighter_effect_433cc0(140, F(0xec), effect_y2, facing, 1);
-            effect_y3 = F(0xf0) + 100.0f;
-            emit_fighter_effect_433cc0(141, F(0xec), effect_y3, facing, -1);
-            emit_fighter_effect_433cc0(142,
-                F(0xec),
-                F(0xf0),
-                facing,
-                -1);
-        }
-        return;
-    }
-
-    case 696:
-        resolve_stage_surface_landing_transition();
-        adjusted = static_cast<float>(F(0xf4) - 1.5);
-        F(0xf4) = adjusted;
-        if (adjusted < 0.0f)
-            F(0xf4) = 0.0f;
-        if (advance_frame_and_dispatch())
-            set_action_and_finalize(0);
-        if (U(0x13e))
-            return;
-        if (!U(0x142) && U(0x140) == 8)
-            F(0xf4) = 15.0f;
-        if (!U(0x142) && U(0x140) == 9) {
-            dispatch_indexed_event_member(0x1Du);
-            B(0x47e) = 0;
-        }
-        return;
-
- case 404: {
-  if(S(0x13E)==8) RESOLVE();
-  if(S(0x13E)==3 || S(0x13E)==7) F(0xF8)-=F(0x100);
-  if(CROSSED() && S(0x13E)<8) { SEQUENCE(8); F(0xF0)=GROUND(); ZERO(); return; }
-  if(I(0x6C0)==0) B(0x750)=0;
-  if(FRAME()) ACTION(0);
-  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
-   if(C(0x750)==1) {
-    SEQUENCE(4); EFFECT(62,static_cast<float>(25*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+148.0),B(0x104),1);
-    float packet[3]={-74,100,0};
-    SPAWN(802,static_cast<float>(F(0xEC)-74*C(0x104)),static_cast<float>(F(0xF0)+104.0),B(0x104),1,packet,3);
-    WAVE(2); ADJUST(200,45); I(0x180)=1; SCALE(30); return;
-   }
-   float packet[3]={-74,100,0};
-   SPAWN(801,static_cast<float>(F(0xEC)-74*C(0x104)),static_cast<float>(F(0xF0)+104.0),B(0x104),1,packet,3);
-   WAVE(2); ADJUST(200,45); I(0x180)=1; SCALE(30);
-  }
-  if(I(0x144)==0) {
-   if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==4) { ACTION(9); return; }
-   if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==8) ACTION(9);
-  }
-  if(S(0x13E)==2 && I(0x144)>=20) BLOCK();
-  if(S(0x13E)==4 && I(0x144)>=25) BLOCK();
-  if(S(0x13E)==6 && I(0x144)>=40) BLOCK();
-  return;
- }
- case 406: {
-  if(S(0x13E)==8) RESOLVE();
-  if(S(0x13E)==3 || S(0x13E)==7) F(0xF8)-=F(0x100);
-  if(CROSSED() && S(0x13E)<8) { SEQUENCE(8); F(0xF0)=GROUND(); ZERO(); return; }
-  if(I(0x6C0)==0) B(0x750)=0;
-  if(FRAME()) ACTION(0);
-  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
-   if(C(0x750)==1) {
-    SEQUENCE(4); EFFECT(62,static_cast<float>(25*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+148.0),B(0x104),1);
-    float packet[3]={-74,100,1};
-    SPAWN(802,static_cast<float>(F(0xEC)-74*C(0x104)),static_cast<float>(F(0xF0)+104.0),B(0x104),1,packet,3);
-    WAVE(2); ADJUST(200,45); I(0x180)=1; SCALE(30); return;
-   }
-   float packet[3]={-74,100,1};
-   SPAWN(801,static_cast<float>(F(0xEC)-74*C(0x104)),static_cast<float>(F(0xF0)+104.0),B(0x104),1,packet,3);
-   WAVE(2); ADJUST(200,45); I(0x180)=1; SCALE(30);
-  }
-  if(I(0x144)==0) {
-   if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==4) { ACTION(9); return; }
-   if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==8) ACTION(9);
-  }
-  if(S(0x13E)==2 && I(0x144)>=20) BLOCK();
-  if(S(0x13E)==4 && I(0x144)>=25) BLOCK();
-  if(S(0x13E)==6 && I(0x144)>=40) BLOCK();
-  return;
- }
- case 414: {
-  if(S(0x13E)==2) RESOLVE();
-  if(I(0x6C4)==0) B(0x750)=0;
-  if(S(0x13E)==1 && S(0x140)>=12) F(0xF8)-=F(0x100);
-  if((S(0x13E)==0 || (S(0x13E)==1 && S(0x140)>=12)) && CROSSED()) {
-   SEQUENCE(2); F(0xF0)=GROUND(); ZERO(); return;
-  }
-  if(FRAME()) ACTION(0);
-  short const sequence=S(0x13E);
-  if(sequence==0 && S(0x142)==0) {
-   if(S(0x140)==6) {
-    float packet[3]={45,40,0};
-    SPAWN(805,static_cast<float>(20*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
-    WAVE(2); ADJUST(200,60); I(0x180)=1; SCALE(30); return;
-   }
-   if(S(0x140)==11 && C(0x750)==1) {
-    EFFECT(62,static_cast<float>(F(0xEC)-47*C(0x104)),static_cast<float>(F(0xF0)+185.0),B(0x104),1); BLOCK(); return;
-   }
-  }
-  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && (sequence==1 || sequence==2)) ACTION(9);
-  return;
- }
- case 415: {
-  if(S(0x13E)==2) RESOLVE();
-  if(I(0x6C4)==0) B(0x750)=0;
-  if(S(0x13E)==1 && S(0x140)>=12) F(0xF8)-=F(0x100);
-  if((S(0x13E)==0 || (S(0x13E)==1 && S(0x140)>=12)) && CROSSED()) {
-   SEQUENCE(2); F(0xF0)=GROUND(); ZERO(); return;
-  }
-  if(FRAME()) ACTION(0);
-  short const sequence=S(0x13E);
-  if(sequence==0 && S(0x142)==0) {
-   if(S(0x140)==6) {
-    float packet[3]={0,40,0};
-    SPAWN(805,static_cast<float>(20*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
-    WAVE(2); I(0x180)=1; ADJUST(200,60); SCALE(30); return;
-   }
-   if(S(0x140)==11 && C(0x750)==1) {
-    EFFECT(62,static_cast<float>(F(0xEC)-47*C(0x104)),static_cast<float>(F(0xF0)+185.0),B(0x104),1); BLOCK(); return;
-   }
-  }
-  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && (sequence==1 || sequence==2)) ACTION(9);
-  return;
- }
- case 416: {
-  if(S(0x13E)==2) RESOLVE();
-  if(I(0x6C4)==0) B(0x750)=0;
-  if(S(0x13E)==1 && S(0x140)>=12) F(0xF8)-=F(0x100);
-  if((S(0x13E)==0 || (S(0x13E)==1 && S(0x140)>=12)) && CROSSED()) {
-   SEQUENCE(2); F(0xF0)=GROUND(); ZERO(); return;
-  }
-  if(FRAME()) ACTION(0);
-  short const sequence=S(0x13E);
-  if(sequence==0 && S(0x142)==0) {
-   if(S(0x140)==5) {
-    float packet[3]={80,40,0};
-    SPAWN(805,static_cast<float>(20*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
-    WAVE(2); I(0x180)=1; ADJUST(200,60); SCALE(30); return;
-   }
-   if(S(0x140)==8 && C(0x750)==1) {
-    EFFECT(62,static_cast<float>(F(0xEC)-47*C(0x104)),static_cast<float>(F(0xF0)+185.0),B(0x104),1); BLOCK(); return;
-   }
-  }
-  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && (sequence==1 || sequence==2)) ACTION(9);
-  return;
- }
- case 418:
-  RESOLVE(); if(GATE(1)) return;
-  F(0xF4)-=D(0.35f); if(F(0xF4)<0.0f) { F(0xF4)=0; B(0x47E)=0; }
-  if(FRAME()) ACTION(0);
-  if(S(0x142)==0 && S(0x140)==2) {
-   float packet[3]={0,0,21};
-   SPAWN(849,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+50.0),B(0x104),255,packet,3); EVENT(29);
-  }
-  if(S(0x142)==0 && S(0x140)==3) {
-   float packet[3]={0,0,23};
-   SPAWN(849,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+50.0),B(0x104),1,packet,3); EVENT(29);
-  }
-  if(S(0x142)==0 && S(0x140)==4) {
-   float packet[3]={0,0,21};
-   SPAWN(849,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+50.0),B(0x104),255,packet,3); EVENT(29);
-  }
-  if(S(0x142)==0 && S(0x140)==5) {
-   float packet[3]={0,0,23};
-   SPAWN(849,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+50.0),B(0x104),1,packet,3); EVENT(29);
-  }
-  return;
     case 508: {
         float spawn_payload[3];
         int facing;
@@ -2395,7 +2345,7 @@ void AliceFighterActionStateView::dispatch_action_state()
    if(S(0x140)==8 && C(0x750)==1) { BLOCK(); EFFECT(62,static_cast<float>(F(0xEC)-33*C(0x104)),static_cast<float>(F(0xF0)+112.0),B(0x104),-1); return; }
    if(S(0x140)==10) {
     for(float n=0;n<C(0x609)+1;n+=1.0) {
-     float packet[3]; packet[0]=10.0+n+n; packet[1]=n+n+21.0; packet[2]=0;
+     float packet[3]; packet[0]=(n+n)+10.0; packet[1]=n+n+21.0; packet[2]=0;
      SPAWN(816,static_cast<float>(124*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
     }
     WAVE(3); I(0x180)=1; ADJUST(200,120); SCALE(50);
@@ -2655,21 +2605,6 @@ void AliceFighterActionStateView::dispatch_action_state()
   }
   return;
  }
- case 603: {
-  RESOLVE(); publish_texture_state(3,2);
-  if(S(0x13E)==1 && I(0x144)>=39) { BLOCK(); return; }
-  if(FRAME()) ACTION(0);
-  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
-   S(0x48A)=40; EVENT(23);
-   EFFECT(115,static_cast<float>(F(0xEC)-34*C(0x104)),static_cast<float>(F(0xF0)+114.0),B(0x104),1);
-   dispatch_indexed_sequence_window_45c8b0(0,3,60); advance_secondary_event_effect_cycle();
-  }
-  if(S(0x13E)==2 && S(0x140)==2 && S(0x142)==0) {
-   WAVE(24); float packet[3]={0,0,0};
-   SPAWN(853,static_cast<float>(125*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+120.0),B(0x104),1,packet,3);
-  }
-  return;
- }
  case 601: {
   RESOLVE(); publish_texture_state(3,2);
   if(S(0x13E)==1 && I(0x144)>=39) { BLOCK(); return; }
@@ -2688,6 +2623,38 @@ void AliceFighterActionStateView::dispatch_action_state()
   }
   return;
  }
+ case 602: {
+  RESOLVE(); publish_texture_state(3,2);
+  if(S(0x13E)==1 && I(0x144)>=61) BLOCK();
+  if(S(0x13E)==2 && I(0x144)>=19) BLOCK();
+  if(FRAME()) ACTION(0);
+  if(S(0x13E)!=0) return;
+  if(S(0x142)==0 && S(0x140)==3) {
+   S(0x48A)=40; EVENT(23);
+   EFFECT(115,static_cast<float>(F(0xEC)-60*C(0x104)),static_cast<float>(F(0xF0)+147.0),B(0x104),1);
+   dispatch_indexed_sequence_window_45c8b0(0,2,60); advance_secondary_event_effect_cycle();
+  }
+  if(S(0x142)==0 && S(0x140)==4) {
+   float packet[3]={0,0,0};
+   SPAWN(852,static_cast<float>(F(0xEC)-50*C(0x104)),static_cast<float>(F(0xF0)+184.0),B(0x104),255,packet,3);
+  }
+  return;
+ }
+ case 603: {
+  RESOLVE(); publish_texture_state(3,2);
+  if(S(0x13E)==1 && I(0x144)>=39) { BLOCK(); return; }
+  if(FRAME()) ACTION(0);
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
+   S(0x48A)=40; EVENT(23);
+   EFFECT(115,static_cast<float>(F(0xEC)-34*C(0x104)),static_cast<float>(F(0xF0)+114.0),B(0x104),1);
+   dispatch_indexed_sequence_window_45c8b0(0,3,60); advance_secondary_event_effect_cycle();
+  }
+  if(S(0x13E)==2 && S(0x140)==2 && S(0x142)==0) {
+   WAVE(24); float packet[3]={0,0,0};
+   SPAWN(853,static_cast<float>(125*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+120.0),B(0x104),1,packet,3);
+  }
+  return;
+ }
  case 604: {
   RESOLVE(); publish_texture_state(3,2);
   if(S(0x13E)==1 && I(0x144)>=39) { BLOCK(); return; }
@@ -2703,23 +2670,6 @@ void AliceFighterActionStateView::dispatch_action_state()
     float packet[4]; packet[0]=0; packet[1]=0; packet[2]=0; packet[3]=static_cast<float>(n);
     SPAWN(854,static_cast<float>(32*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+104.0),B(0x104),255,packet,4);
    }
-  }
-  return;
- }
- case 602: {
-  RESOLVE(); publish_texture_state(3,2);
-  if(S(0x13E)==1 && I(0x144)>=61) BLOCK();
-  if(S(0x13E)==2 && I(0x144)>=19) BLOCK();
-  if(FRAME()) ACTION(0);
-  if(S(0x13E)!=0) return;
-  if(S(0x142)==0 && S(0x140)==3) {
-   S(0x48A)=40; EVENT(23);
-   EFFECT(115,static_cast<float>(F(0xEC)-60*C(0x104)),static_cast<float>(F(0xF0)+147.0),B(0x104),1);
-   dispatch_indexed_sequence_window_45c8b0(0,2,60); advance_secondary_event_effect_cycle();
-  }
-  if(S(0x142)==0 && S(0x140)==4) {
-   float packet[3]={0,0,0};
-   SPAWN(852,static_cast<float>(F(0xEC)-50*C(0x104)),static_cast<float>(F(0xF0)+184.0),B(0x104),255,packet,3);
   }
   return;
  }
@@ -2804,6 +2754,56 @@ void AliceFighterActionStateView::dispatch_action_state()
   publish_texture_state(3,2); publish_texture_state(3,2);
   if(S(0x13E)==2 && I(0x144)>=24) BLOCK();
   return;
+ case 695: {
+        float effect_y0;
+        float effect_y1;
+        float effect_y2;
+        float effect_y3;
+        int facing;
+
+        resolve_stage_surface_landing_transition();
+        if (advance_frame_and_dispatch())
+            set_action_and_finalize(0);
+        if (!U(0x13e)
+            && !U(0x142)
+            && U(0x140) == 7) {
+            dispatch_indexed_event_member(0x37u);
+            facing = B(0x104);
+            effect_y0 = F(0xf0) + 100.0f;
+            emit_fighter_effect_433cc0(140, F(0xec), effect_y0, facing, 1);
+            effect_y1 = F(0xf0) + 100.0f;
+            emit_fighter_effect_433cc0(140, F(0xec), effect_y1, facing, 1);
+            effect_y2 = F(0xf0) + 100.0f;
+            emit_fighter_effect_433cc0(140, F(0xec), effect_y2, facing, 1);
+            effect_y3 = F(0xf0) + 100.0f;
+            emit_fighter_effect_433cc0(141, F(0xec), effect_y3, facing, -1);
+            emit_fighter_effect_433cc0(142,
+                F(0xec),
+                F(0xf0),
+                facing,
+                -1);
+        }
+        return;
+    }
+
+    case 696:
+        resolve_stage_surface_landing_transition();
+        adjusted = static_cast<float>(F(0xf4) - 1.5);
+        F(0xf4) = adjusted;
+        if (adjusted < 0.0f)
+            F(0xf4) = 0.0f;
+        if (advance_frame_and_dispatch())
+            set_action_and_finalize(0);
+        if (U(0x13e))
+            return;
+        if (!U(0x142) && U(0x140) == 8)
+            F(0xf4) = 15.0f;
+        if (!U(0x142) && U(0x140) == 9) {
+            dispatch_indexed_event_member(0x1Du);
+            B(0x47e) = 0;
+        }
+        return;
+
  case 710: {
   RESOLVE();
   if(S(0x13E)==0 && S(0x140)==3 && I(0x144)%8==0 && S(0x730)>0) {

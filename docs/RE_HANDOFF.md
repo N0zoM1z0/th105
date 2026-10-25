@@ -5,7 +5,7 @@ whole-comparison-first direction. TenshiObject update
 **0x0064CD50** is checkpointed complete source-present/nonexact. Active bounded
 work is **Alice Fighter update0x004E9F50**: raw42721-byte main/full44080-byte
 payload is closed, and the complete manual hypothesis has its first comparison.
-Current44108-byte candidate is nonexact and deliberately unselected.
+Current44068-byte candidate is nonexact and deliberately unselected.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -70,8 +70,8 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
 - First complete43428 SHA0d7bfb04 was compared before controls. Native400
   re-reads facing after sequence/effect callbacks;400/401 request continuations,
   sequence4 timer gates and401 state-before-counter order are now restored.
-- Current formal/cold candidate44108 SHA1bbd8acb,41308 unmasked differences,
-  first4E9F58; frame418/410, RETs125/128, direct679/674, indirect158/163.
+- Current formal/cold candidate44068 SHAef85ed75,40778 unmasked differences,
+  first4E9F58; frame418/410, RETs124/128, direct677/674, indirect158/163.
   All16 table lengths and all685 remap bytes agree, without masking or rebasing.
 - Native214 inactive states now go directly to landing check; its flight-end
   gate stays within active1..4. Timer/sequence/velocity/heading/peer reads follow
@@ -99,6 +99,13 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
   all testAL versus49 native (208/220 remain physically merged). The width
   control is closed; whole audit now records both target/candidate registers.
   Bounded197/198 and208/220 instruction review found no other discrepancy.
+- Native525/526 request/continuation/counter order is reviewed without a new
+  discrepancy.526's first packet now computes(n+n)+10 before storing, matching
+  the observed shared2n x87 flow. One independent complete layout control
+  sorts the108 terminating root case groups numerically, preserving their
+  text. The combined candidate has code-to-first-table42720 versus42724 target;
+  source lexical order remains an inferred layout hypothesis, not recovered
+  original spelling. All690 call counts and both six-case checks still agree.
 - Read-only384MiB Ghidra evidence is already saved; all9 primary DB file hashes
   unchanged. Its decompiler output has warnings and remains a hypothesis.
 - The isolated narrow-facing closed provider also matches46519066/66, but the
@@ -121,12 +128,13 @@ Receipts/private recipes remain under build/exact-first-alice-fighter-update-202
 and the corresponding .analysis/ scope. Formal/cold full audits agree.
 
 Next: continue this complete root from actual differences: use the retained
-sharing-before/publication owner partitions to review real callback order and
+sharing-layout owner partitions to review real callback order and
 field-read epochs, then real stack/packet lifetimes. Do not infer missing calls
 from physical totals or force a source spelling to reproduce sharing alone.
 The five direct arms have a bounded instruction/count review, not full execution
 acceptance. Close the542/547/548
-source-structure,570/571 extent and predicate-consumption controls; do not
+source-structure,570/571 extent, predicate-consumption,526 association and root
+case-order controls; do not
 sweep equivalent spellings.197/198 zero and208/220 predicate site sharing need
 no forced source split after the bounded review.
 730's partially defined upper facing bits and570/571's fourth-word provenance

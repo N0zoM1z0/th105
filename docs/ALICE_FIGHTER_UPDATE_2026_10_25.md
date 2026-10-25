@@ -506,3 +506,70 @@ comparisons and diagnostic widths. The28-byte-only delta is recorded in
 0a47fcc9; `predicate-low-byte.cpp` is the single29-expression control. This
 consumption question and the two reviewed site-sharing pairs are closed;
 continue with independent lifetime/field-read evidence, not type permutations.
+
+
+## Request-loop arithmetic and root case layout
+
+The525/526 request family now has a separate instruction review. Both native
+entries resolve, clear750 from6C0/6C4, take the sequence1/timer>15 block exit,
+advance, and preserve the sequence0/frame8 block->effect62 early return. Their
+first loops reload signed byte609 after each spawn, then wave3->publish180=1->
+adjust(200,120)->scale50 and continue with fresh timer/frame/sequence checks.
+The sequence1/timer0 action0 branch returns; the sequence2/frame2 second loops
+finish through wave4F0707, publish4F070C and the shared adjust4F1C94/scale4F1C9D
+return tail. The source expresses those continuations and callback epochs;
+site sharing alone supplies no reason to force common labels.
+
+One actual arithmetic association differs in526's first loop. Native4F04E1
+loads n and4F04E5 doubles it with FADD ST0,ST0 before loading double10 at4F04E9.
+4F04F7 adds the shared2n for packet0, then4F0504 adds double21 to the same2n for
+packet1. The prior source's10.0+n+n instead makes two successive additions to
+10 before separately doubling n for packet1. The single private complete-source
+control changes only this expression to(n+n)+10.0. Its output now has that
+shared doubling before the10 addition. For this first loop n starts at0 and
+increments exactly by1 while n<signed609+1<=128; all participating sums are
+small exact integers. This restores observed arithmetic order without claiming
+an input-domain numeric bug. The other loop expressions are unchanged.
+
+An independent whole-source layout question is also tested. The retained
+manual source had400/500 blocks after695/696, whereas the target's root entries
+mostly follow numeric order. A private brace-aware parser extracts108 root
+case/default groups with110 explicit numeric labels, keeps alias groups
+intact, and records each group's original text hash. All group texts are
+preserved by numeric permutation. Direct return/goto terminal depths are
+checked;720/721/730's terminal switches, including every default return, are
+reviewed separately. There is no root-case fallthrough to change. The previous
+source ordering has130 inverted pairs of native entry addresses; numeric order
+has9. This supports a controlled layout hypothesis; compiler tail sharing means
+it does not prove the original lexical order. No register tie, dummy operation,
+new local, padding, flag or header change is used.
+
+Each property was first compared independently from complete1bbd8acb:
+
+| Complete control | Bytes | Canonical SHA256 | Unmasked differences |
+| --- | ---: | --- | ---: |
+|526 association only|44108|d43fa4a177db32e5589b7baaafb3cf61f4a09b3764d7dbf70083d9fba8d870cd|41336|
+|Numeric case groups only|44068|95ad941925fe54aab7b6eef067025d388c1131fca4de56aa9636bd57391291d8|40625|
+|Both retained|44068|ef85ed758ed4f74b556b501db87b407174f3af2028ba1cee383ef013d678feb1|40778|
+
+Formal and independent fresh-object reports for the retained source agree.
+The first destination table starts42720 bytes from entry, versus42724 target;
+the complete strict payload comparison still fails at+8/frame418 versus410.
+It includes all12 missing candidate bytes, without waiving the8 target INT3
+whose COFF/linker ownership remains separately unknown.125 prior RETs become
+124 versus128 target; direct calls677/674 and indirect158/163 still differ.
+Some individual physical counts become farther from target. All16 table
+lengths and685 remap bytes agree, all690 action call counts agree, all48 emitted
+predicate tests useAL, publication ordering6/6 passes and214 execution-prefix
+checks6/6 pass. Neither similar payload size nor the layout hypothesis grants
+implemented/exact credit. No accepted unit input changes or new aggregate cold
+claim is made.
+
+Receipts in the existing build scope: `counter-tail-baseline-full-audit.json`,
+`loop526-association-*`, `case-order-numeric-*`, `case-order-association-*`,
+`case-order-source-facts.json`, `layout-formal-*`, `layout-cold-*` and
+`sharing-layout.json`. Private `case-order.py` is pinned to the frozen
+`counter-tail-before.cpp` source and keeps the block hashes and terminal checks.
+The retained public3022-line source differs from its numeric permutation only
+in the one526 expression. These two controls are closed; continue from actual
+field-read/lifetime evidence rather than another ordering or spelling sweep.
