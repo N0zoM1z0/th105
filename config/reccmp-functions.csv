@@ -1571,3 +1571,4 @@ Tenshi_initialize_action_entry,0x0064A0A0,function
 Marisa_initialize_action_entry,0x004B89C0,function
 Sakuya_initialize_action_entry,0x004DE060,function
 Yuyuko_initialize_action_entry,0x0056C840,function
+Aya_initialize_action_entry,0x00617000,function

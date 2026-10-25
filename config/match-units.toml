@@ -22032,3 +22032,38 @@ dir32_targets = [
     "__real@40c00000=_yuyuko_action_entry_006cd1d8",
     "__real@c0c00000=_yuyuko_action_entry_006c3c60",
 ]
+
+
+[units.exact-first-aya-action-initialization]
+kind = "probe"
+source = "src/characters/AyaActionInitialization.cpp"
+object = "build/match-units/ExactFirst_AyaActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Aya primary slot3C617000;2049 callable/full2579 payload. Actual408 float rounding and frame/virtual/wave path; independent500/502 entries and305/418 publication epochs. scripts/audit-aya-action-initialization.py; docs/AYA_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-aya-action-initialization.functions]]
+address = "0x00617000"
+symbol_base = "?initialize_action_entry@AyaActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?zero_motion@AyaActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?advance_frame_and_dispatch@AyaActionEntryView@th105@@QAEEXZ=0x004351C0",
+    "?dispatch_character_wave_handle@AyaActionEntryView@th105@@QAEXI@Z=0x0045C030",
+    "?initialize_common_action_entry@AyaActionEntryView@th105@@QAEXXZ=0x00477830",
+    "?reset@AyaEntryScratchView@th105@@QAEXXZ=0x00435110",
+]
+dir32_targets = [
+    "__real@c0b00000=_aya_action_entry_006c4788",
+    "__real@40b00000=_aya_action_entry_006c4798",
+    "__real@3f19999a=_aya_action_entry_006c3e94",
+    "__real@42be0000=_aya_action_entry_006c4000",
+    "__real@41400000=_aya_action_entry_006c12b0",
+    "__real@418c0000=_aya_action_entry_006c3e60",
+    "__real@41c80000=_aya_action_entry_006c3b3c",
+    "__real@3f000000=_aya_action_entry_006cd140",
+    "__real@3fd0000000000000=_aya_action_entry_006c33a8",
+    "__real@3fe0000000000000=_aya_action_entry_006cd138",
+    "__real@3eb33333=_aya_action_entry_006c3e90",
+    "__real@40c00000=_aya_action_entry_006cd1d8",
+    "__real@c1f00000=_aya_action_entry_006c3dd0",
+]
