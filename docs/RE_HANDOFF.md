@@ -32,10 +32,14 @@ are byte-neutral in two phases; this finite lane is parked. Collision debug
 geometry **0x0045E950** is now complete canonical3087/3087: the first complete
 source had one CMP operand-order byte different, and observed receiver-first
 identity closes it. Two independent public builds and the full-section audit
-agree. Continue with independent review of the paired rectangle renderer
-**0x004012A0**,395 bytes; fresh preflight and its complete target/source review
-come first. Prior floating-profile grids remain closed; do not propagate this
-representative's exactness to either primitive provider.
+agree. Independent review of the paired rectangle renderer **0x004012A0** is
+now checkpointed: all395 target bytes/128 instructions close; complete394-byte
+source has85 unequal positions. Native Z0.5 is independently confirmed, but
+real common-result and same-receiver controls are whole-payload byte-neutral.
+This finite lane is closed. Resume complete medium/large work at the unreviewed
+**0x00437EC0** frontier (provisional2528 bytes), with fresh preflight and complete
+boundary/ownership review before choosing source. Prior floating-profile grids
+remain closed; neither drawing provider inherits the representative's exactness.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -81,27 +85,59 @@ one probe with complete unselected source; source/exact totals are unchanged.
 Fighter PAT/palette loader461B70 likewise adds one observed authored mapping
 and one probe with complete unselected source, without source/exact credit.
 Collision debug geometry45E950 adds one observed authored mapping, selected
-complete source and3087 exact bytes. Both drawing providers remain unchanged.
+complete source and3087 exact bytes. Rectangle4012A0 now has a complete public
+unselected hypothesis and probe, with no source-present or exact credit.
 
 | Ledger state | Count |
 | --- | ---: |
 | Provisional / authored / excluded / review candidates |4024 /1602 /1419 /1003 |
-| Mapped / source-present |1590 /1566 |
+| Mapped / source-present |1591 /1566 |
 | Exact functions / authored bytes |1414 /385903 |
-| Configured units / functions |611 /1579 |
+| Configured units / functions |612 /1580 |
 
-The current manifest has a fresh full cold receipt:
+The collision-debug manifest has a fresh full cold receipt:
 `build/exact-first-45e950-20261026/cold-all.log` passes526 accepted units/all1414
 functions,385903 authored bytes, including the complete3087-byte collision-debug
 representative as the last cold unit. It also has two independent public builds
 and a complete zero-difference object audit. Fresh `function-origins.py --check`
 agrees with all4024 rows; target-backed floating audit passes all1999 references.
-No prior source/header/profile/global-data row changed. The preceding PAT receipt
+The new rectangle probe conservatively invalidates accepted-unit provenance;
+its current-manifest cold replay passes526 units/all1414 functions, recorded in
+`build/rectangle-4012a0-20261026/cold-all.log`. No prior
+source/header/profile/global-data row changed. The preceding PAT receipt
 `build/exact-first-461b70-20261026/cold-all.log` remains retained separately for
 525 units/all1413 functions under its earlier manifest. Paired drawing providers
 remain nonexact and receive no new source/ownership/exact credit.
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
+
+## Checkpoint: rectangle primitive4012A0
+
+[Complete target, vertex-depth evidence and finite controls](RECTANGLE_PRIMITIVE_2026_10_26.md).
+Source: `src/engine/RectanglePrimitive.cpp` (unselected).
+Unit: `exact-first-rectangle-primitive`.
+Audit: `scripts/audit-rectangle-primitive-target.py` (target0/object1/nonexact).
+
+- Whole395 SHA71aa1862, end40142B;128/128 instructions reached, two RET24s,
+  five following INT3 bytes. Four outline calls; one texture clear and two
+  ordinary COM calls for a four-vertex untextured strip. Existing origin rule
+  and exact callers establish authored ownership independently.
+- First complete400-byte source was compared immediately. Native x87 tracing
+  proves Z0.5 rather than the initial Z0.0. Local fenv control preserves the
+  actual repeated float subtraction/store graph and emits394 bytes. Two public
+  builds/full COFF replay agree on SHAc5f8d5e4 and85 unequal positions, first
+ 4012A9; there is also one absent target byte. Target EDI save timing, argument/
+  color scheduling and stack displacements remain different.
+- Three native/candidate call-observer cases check selectors0/1/255, actual
+  vertices, final result and post-SetFVF device reload. Old Z0 source fails the
+  same audit. This resolves a concrete ambiguity, not general FP equivalence.
+- Common result lifetime and genuine same-receiver method visibility are
+  whole-payload byte-neutral. Stop this lane; no compiler/spelling grid without
+  independent evidence. Original types/TU/FP environment remain open. Shared
+  headers, prior profiles and relocation rows are unchanged.
+- No implemented/match row or helper-origin credit. Next complete medium/large
+  frontier437EC0 requires independent ownership/boundary review; its provisional
+ 2528-byte candidate is not an accepted source boundary.
 
 ## Checkpoint: collision debug geometry45E950
 

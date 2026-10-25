@@ -23370,3 +23370,19 @@ rel32_targets = [
   "?draw_line@CollisionDebugLineView@th105@@QAEHMMMMI@Z=0x00401180",
   "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
 ]
+
+[units.exact-first-rectangle-primitive]
+kind = "probe"
+source = "src/engine/RectanglePrimitive.cpp"
+object = "build/match-units/ExactFirst_RectanglePrimitive.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Independent full395-byte rectangle4012A0 review after exact debug caller45E950. Complete394-byte source is nonexact: target Z is0.5f; local fenv control preserves the repeated single-precision subtraction/store graph. Real common-result lifetime and same-receiver declaration controls are whole-payload byte-neutral. No source selection or exact credit. docs/RECTANGLE_PRIMITIVE_2026_10_26.md."
+
+[[units.exact-first-rectangle-primitive.functions]]
+address = "0x004012A0"
+symbol_base = "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z"
+rel32_targets = [
+  "?draw_line@RectangleLineView@th105@@QAEHMMMMI@Z=0x00401180",
+  "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0",
+]
