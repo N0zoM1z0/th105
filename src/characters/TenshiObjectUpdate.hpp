@@ -13,8 +13,8 @@ public:
  float stage_surface_height();void publish_layout_scalar(float);
  void dispatch_character_wave_handle(unsigned);void turn_heading(float,float,float);
  void *position_relative(int,int);void release_auxiliary();void update_ping_pong_motion();
- void *spawn_unparented(int,float,float,unsigned char,int,const unsigned *,int);
- void *spawn_parented(int,float,float,unsigned char,int,const unsigned *,int);
+ void *spawn_unparented(int,float,float,int,int,const unsigned *,int);
+ void *spawn_parented(int,float,float,int,int,const unsigned *,int);
 };
 class TenshiUpdateMotionView {public:void set_components(float,float);};
 class TenshiSequenceSlotsView {public:void *subscript(unsigned);};

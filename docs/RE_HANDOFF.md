@@ -1,8 +1,10 @@
 # TH10.5 reconstruction handoff
 
 Active reconstruction resumed on2026-10-25 under the user's large-function,
-whole-comparison-first direction. Current bounded root is **TenshiObject update
-0x0064CD50**, now complete source-present/nonexact. One writable session, no
+whole-comparison-first direction. TenshiObject update
+**0x0064CD50** is checkpointed complete source-present/nonexact. The next bounded
+candidate is **YoumuObject update0x0053CEA0**, still source-missing; its candidate
+boundary must be independently reconciled before source work. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
 
 ## Target and environment
@@ -63,8 +65,8 @@ Audit: `scripts/audit-tenshi-object-update.py`.
 - All28 nondefault actions/default have manual source. First full42068 comparison
   was retained before controls. Native801/820 branch-specific trig sites,
  801 direct doubling and800 float transfers were then restored.
-- Formal and independent fresh builds emit42916 bytes, SHAf010343c...,
- 40643 unmasked differences, first64CD58. Aligned frame2C0 and83 RETs versus
+- Formal and independent fresh builds emit42508 bytes, SHA8b9f620a...,
+ 40093 unmasked differences, first64CD58. Aligned frame2B0 and83 RETs versus
  2A8/67. Per-action direct/indirect call censuses agree for all28 actions;
   physical frame-call owner groups remain five versus six. This is nonexact.
 - 825 nonzero substates now consume4351C0 AL through the common conditional exit;
@@ -72,6 +74,15 @@ Audit: `scripts/audit-tenshi-object-update.py`.
   Eight real native-helper inputs pass; the old object fails one (lifetime10
   versus native9). Only four branch-displacement bytes changed, so length and
   aggregate difference count alone would miss this correction.
+- The two local spawn declarations now use the exact provider's admitted int-facing
+  view; factory slot04 remains separate. This removes byte-home/full-DWORD
+  argument artifacts, not proof of original formal width. Native801 cosine
+  doubling now has no artificial local-float transfer. Sixteen854 root prefixes /
+  801 loop fragments agree in full arguments/state; old byte view fails four
+  under A5 stack fill. Public `scripts/audit-tenshi-object-request-paths.py`.
+- The separate eight-comparison-carrier control retains frame2B0 /46 qword
+  accesses at -688/-672/-664. It is unselected; do not repeat it without new
+  evidence.53 packet bases/652 bytes remain complete.
 - Selector-zero/default900 burst controls have no native source initialization;
   ordinary uninitialized locals preserve the source hypothesis. Scratch-dependent
   behavior and original intent remain unknown; no equivalence claim is made.
@@ -80,14 +91,19 @@ Audit: `scripts/audit-tenshi-object-update.py`.
 Receipts: `build/exact-first-tenshi-object-update-20261025/` (`formal.log`,
 `formal-full-audit.json`, `cold-build.log`, `cold-full-audit.json`,
 `first-complete.json`, `target-audit.json`).825 receipts use the
-`frame-return-*` prefix; the public scoped check is
+`frame-return-*` prefix; the latest width/transfer receipts use `int-view-*`.
+The public scoped check is
 `scripts/audit-tenshi-object-update-paths.py`. Private recipes and first/control
 sources: `.analysis/exact-first-tenshi-object-update-20261025/`.
 
-Next: one evidence-backed lifetime/float-transfer or shared-exit question, then
-recompare the whole41984-byte payload. Avoid a frame/flag/spelling grid; preserve
-repeated neutral controls and switch when no new evidence remains. Nominal
-names/layouts/TU ownership are still hypotheses. No exact credit was added.
+Next: independently inspect YoumuObject53CEA0 (provisional25944-byte main
+candidate), the only remaining source-missing Object update in the authored
+source-missing report. Re-run target/IDA/status/tracking preflight, read the
+relevant retained source only as a hypothesis, close all control flow and
+metadata, then write the complete body before comparing. Tenshi width/transfer
+work is saved; do not reopen its comparison-carrier question without new
+evidence. Nominal names/layouts/TU ownership remain hypotheses; no exact credit
+was added.
 
 ## Parked questions
 

@@ -103,6 +103,12 @@ def audit(object_path=None):
     for binding in function["rel32_targets"]:
         name, value = binding.rsplit("=", 1)
         targets[name] = int(value, 0)
+    # Preserve the older825 negative control across the local caller-view change.
+    # Both complete forwarding-provider forms have independent exact witnesses.
+    for name, value in list(targets.items()):
+        if "@TenshiObjectUpdateView@" in name and name.startswith(("?spawn_parented@", "?spawn_unparented@")):
+            targets[name.replace("HMMHHPBIH", "HMMEHPBIH")] = value
+            targets[name.replace("HMMEHPBIH", "HMMHHPBIH")] = value
     overrides = dict(binding.split("=", 1) for binding in function["dir32_targets"])
     candidate = canonical.coff_symbol_bytes(
         object_path or ROOT/unit["object"], whole.SYMBOL, whole.START, 0xFFFFFFFF,

@@ -142,6 +142,78 @@ Receipts: `frame-return-build.log`, `frame-return-full-audit.json`,
 `frame-return-cold-build.log`, `frame-return-cold-full-audit.json`,
 `frame-return-native-paths.json`, `frame-return-negative-paths.json`.
 
+## Caller direction width and801 cosine transfer
+
+The next bounded observation was a concrete stack-dataflow difference, not a
+compiler option search. Old candidate64D665 writes CL into one byte of a home,
+then64D66C loads the whole DWORD before the801 request. Native64D5FE and
+64D66A instead use MOVZX from +104. A similar byte-home transfer occurs before
+854's request. The old frame has53 packet bases/652 bytes with holes at
+-608/-604/-600/-316; qword slots are -704/-680/-608. Target packets have one
+four-byte heading gap, with qword slots -680/-672/-664. Both have46 qword
+accesses, so counting doubles alone does not explain the frame.
+
+The selected local emitter declarations now use the independently exact public
+provider's **int-facing view** for64CCB0/4FCA60. Shared provider source and all
+accepted units remain unchanged. A fresh `cross-v106a-character-object-effects`
+replay corroborates both complete providers77/77 and78/78; the mixed unit
+also contains the already-nonexact5F9350 and therefore exits nonzero overall.
+This is not an aggregate exact-unit claim. Their historical byte-facing
+witnesses also remain valid. This does **not** recover original formal width;
+see [the prior provider witnesses](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md).
+The manager factory slot04 declaration is separate and unchanged.
+
+Changing only these two local declarations emits42524 bytes, SHA670b286a...,
+frame2B0. Its53 packet bases cover652 contiguous bytes; qword slots are
+-688/-672/-664. The remaining eight-byte frame difference is unresolved.
+A second target-backed change keeps801's cosine result as a natural double
+value: the native4063D0 return goes directly to FADD ST0,ST0 and FADD20, with
+no intermediate single-precision store/reload. This removes the old local
+float transfer while preserving the table-float provider and its two real uses.
+
+Formal and independent fresh builds of the selected source emit42508 bytes,
+canonical SHA-256
+`8b9f620a069775b2093f8970d0e6b1fc12a6e8ea799c82b45f1f9f817583e432`.
+Full comparison against41984 has40093 unmasked differences, first64CD58;
+frame2B0,83 RETs and five physical frame calls remain nonexact. All28
+per-action call censuses still agree. The smaller payload is diagnostic
+progress, not byte acceptance or a general compiler recipe.
+
+`scripts/audit-tenshi-object-request-paths.py` supplies16 narrow inputs:
+eight854 prefixes from the actual root and eight801 loop fragments, covering
+both layers, facing1/255 and stack fill00/A5. The latter begin at the actual
+FLD loop counter after the attested motion/zero-crossing prefix; that earlier
+setup is outside fragment scope. Each runs real quantized lookup, floor/FTOL,
+MT and bounded-RNG instructions as applicable, and stops at64CCB0 before any
+opaque provider return. A deterministic3600-float cosine table is a runtime
+fixture; its original initialization is not part of this check.
+
+The selected source agrees on all16 full DWORD argument sets, packet words,
+actor state, helper trace, RNG bounds/index and x87 control/top. The old
+f010343c object fails four801/A5 inputs: it supplies A5A5A501/A5A5A5FF where
+the native full argument is1/255. Zero-filled stacks conceal that difference.
+This diagnoses the caller's full argument transfer; a byte-formal ABI may
+permit unspecified high bytes, so it is not evidence of an in-game behavioral
+failure or proof of original int formals.825's eight real RET checks still pass.
+
+```bash
+scripts/repo-python scripts/audit-tenshi-object-request-paths.py
+# Old byte-view negative: four full-DWORD request mismatches.
+scripts/repo-python scripts/audit-tenshi-object-request-paths.py --object build/exact-first-tenshi-object-update-20261025/old-facing-byte.obj
+```
+
+The separate unselected `comparison-values` control removes eight named
+comparison-value carriers while retaining their expressions. It emits42508,
+SHA63a555b6..., but retains frame2B0 and the same46 qword accesses/three slots;
+its comparison direction changes do not close the stack question. Do not repeat
+this carrier question without independent evidence. No flags, padding, dummy
+locals, forced alignment or acceptance criterion changed.
+
+Receipts use the `int-view-*` prefix: formal/cold build and full audits, request
+and825 paths, plus `int-provider-witness.log`. Private `facing-int`,
+`cosine-value` and unselected `comparison-values` sources/objects and their
+frame/packet traces remain under the same ignored analysis/build directories.
+
 ## Specific semantic limits
 
 **Observed:** 821's native x87 calculation at64FD93..64FDAE adds parent-y and100
@@ -187,8 +259,9 @@ Receipts are in `build/exact-first-tenshi-object-update-20261025/`:
 The private recipes retain the raw facts, attested Ghidra worksheet, first body
 and branch-control source. Reports and private material are not committed.
 
-Next investigate one observed lifetime/transfer difference or one real shared
-exit. Do not reduce the frame with padding, inert locals or forced alignment.
-Do not rerun spelling/carrier grids after byte-neutral controls; retain receipts
-and switch candidates when the scoped question is exhausted. None of these
-standalone differences proves LTCG impossibility.
+This bounded width/transfer question is checkpointed. The comparison-carrier
+question did not close frame2B0; retain it rather than repeating a carrier grid.
+Next inspect the still source-missing YoumuObject53CEA0 independently, starting
+with its provisional boundary. Do not reduce a frame with padding, inert locals
+or forced alignment. None of these standalone differences proves LTCG
+impossibility.
