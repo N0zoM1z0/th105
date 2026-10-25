@@ -1,6 +1,29 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **retain YukariObject58DB80 native argument lifetimes and
+Current transition: **park complete YukariObject58DB80 after floating-copy and
+frame-owner corrections; next independently review YuyukoObject56F700**.
+Fresh formal and independent cold34628 SHA0330e417 replay975 relocations but
+remain nonexact32402/+31 against full34800. Prior undefined4-based integer
+copies were hypotheses: raw m32 FLD/FSTP evidence now corrects52 position/
+heading/velocity source transfers. Public audit records48 direct m32 pairs;
+real scratch/FST chains are separately reviewed. Native852/856 frame join and
+independent920 exit restore all24 physical direct-callee counts/272 calls and
+all45 virtual calls. All32 per-action direct/virtual inventories and frame-call
+action-owner groups agree. Frame0x260, all ten qword relative offsets/widths/
+operations and20 table dimensions/200 remap bytes remain. Still98 RETs versus88
+and different complete instruction layout; no exact or execution-equivalence
+claim. Scoped-retirement controls before/after float corrections both over-
+factor frame calls back to13 versus15; keep them unselected and close this
+question, without claiming byte-neutral hashes or LTCG impossibility. See
+[complete source and latest receipts](YUKARI_OBJECT_UPDATE_2026_10_25.md).
+Next56F700 is source-missing/provisional34278, Object slot28 cell6C55EC. Same-
+owner578000 initializer/cell6C5600 is source-present/nonexact context only.
+Re-attest and close the new root's complete boundary/ABI before source selection.
+Tracking mapped1581/source1562;601 units/1569 configured functions. Accepted
+graph unchanged; no new aggregate cold claim. Continue serial CPU0/nice10 builds.
+
+
+Prior transition: **retain YukariObject58DB80 native argument lifetimes and
 real800/816 joins; next inspect852 and frame/return sharing from actual edges**.
 Current formal and independent cold34652 SHA41c02c6f replay971 relocations but
 remain nonexact32410/+31. Ordinary full request expressions restore native

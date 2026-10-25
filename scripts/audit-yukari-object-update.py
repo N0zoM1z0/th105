@@ -181,6 +181,25 @@ def quantized_return_facts(compare):
     return result
 
 
+def floating_transfer_facts(rows):
+    """Observe m32 x87 copies; decompiler undefined4 is not a bit-copy proof."""
+    fields=(0xE8,0xEC,0xF0,0xF4,0xF8,0x12C,0x7AC,0x7B0,0x7B4,0x7B8)
+    transfers=[]
+    for index,row in enumerate(rows):
+        if row.mnemonic!="fld" or row.operands[0].type!=x86.X86_OP_MEM or row.operands[0].size!=4 or row.operands[0].mem.disp not in fields:
+            continue
+        for after in rows[index+1:index+5]:
+            if after.mnemonic=="fstp" and after.operands[0].type==x86.X86_OP_MEM and after.operands[0].size==4 and after.operands[0].mem.disp in fields:
+                transfers.append(dict(load=hex(row.address),source=row.op_str,
+                                      store=hex(after.address),destination=after.op_str))
+                break
+            if after.mnemonic.startswith("f") or after.mnemonic=="call" or after.group(capstone.CS_GRP_JUMP):
+                break
+    if len(transfers)!=48:
+        raise ValueError("reviewed direct m32 transfer inventory changed")
+    return transfers
+
+
 def target_facts(compare):
     identity=compare.verify_target()
     raw=compare.target_bytes(START,FULL)
@@ -201,6 +220,7 @@ def target_facts(compare):
         raise ValueError("reviewed target return, virtual-call or frame inventory changed")
     facts["default_exit"]=check_default_exit(rows,tables[TARGET_TABLES[0]][-1])
     facts["quantized_return_providers"]=quantized_return_facts(compare)
+    facts["direct_m32_transfers"]=floating_transfer_facts(rows)
     return identity,raw,facts,closed_cfg(rows,tables)
 
 

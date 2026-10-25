@@ -4,12 +4,11 @@
 hypothesis in `src/characters/YukariObjectUpdate.cpp/.hpp`, covering32 nondefault
 actions and the default exit. It is source-present, **not canonical exact**.
 The first complete compile is compared before source-shape controls. Formal
-and independent cold compilations reproduce the current34652-byte complete
-section, replaying971 relocations. It differs from the34800-byte target at32410
-unmasked positions, first58DB9F/+31. Source now naturally reproduces the native
-0x260 frame and all ten qword stack-access widths/relative offsets. Complete
-canonical SHA256:
-`41c02c6f5f7cb10362f64d527bc250e68b5fbde0bfc492390d1eeb0a8568cc3f`.
+and independent cold compilations reproduce the current34628-byte complete
+section, replaying975 relocations. It differs from the34800-byte target at32402
+unmasked positions, first58DB9F/+31. Source retains the native0x260 frame and
+all ten qword stack-access widths/relative offsets. Complete canonical SHA256:
+`0330e417839572f88e0c7a894d4c7ed4ce0083698540676c305f4f0dfdec7211`.
 
 All20 destination-table dimensions/157 DWORDs and200 action-remap bytes agree.
 Those observations establish neither byte nor execution equality. No exact
@@ -191,18 +190,17 @@ continuation. It preserves52 unparented requests,15 events and19/15 cosine/
 sine calls. Sharing more of the ring calculation is rejected from direct
 instruction evidence, regardless of its smaller output.
 
-Current selected source has270 direct calls versus272,44 virtual calls versus45,
-99 RETs versus88 and the native0x260 frame.23/24 direct-callee physical counts
-agree; only advance_frame13 versus15 remains. All32 actions' static reachable
-direct-call inventories agree.852 has one reachable physical virtual call
-versus two; other actions' virtual counts agree. These counts do not establish
-path feasibility, side-effect ordering or behavioral equivalence. They identify
-remaining sharing/return investigations, never acceptance. No compiler flag/
-register grid, large runtime matrix or original-LTCG-impossibility claim is made.
+Current selected source has all272 direct calls/24 direct-callee physical counts
+and45 virtual calls, matching the target inventories. All32 actions' static
+reachable direct/virtual call counts and every advance-frame action-owner group
+agree. Source still has98 RETs versus88 and differs in complete instruction/
+branch layout; these inventories do not establish path feasibility, side-effect
+ordering or exactness. No compiler flag/register grid, large runtime matrix or
+original-LTCG-impossibility claim is made.
 
 ## Follow-up: argument lifetimes, return carriers and real joins
 
-Current follow-up artifacts are in `build/yukari-update-frame-20261025/`;
+The first frame follow-up artifacts are in `build/yukari-update-frame-20261025/`;
 private frozen sources/recipes are in `.analysis/yukari-update-frame-20261025/`.
 The preceding table and older artifact prefix remain the initial checkpoint.
 
@@ -262,11 +260,79 @@ byte-neutral control. All20 table dimensions/200 remap bytes remain unchanged.
 |request-epochs|34644 /93b90226|Full ordinary request expressions/float view; frame0x260, ten wide offsets agree|
 |double-request|34724 /e8c1c127|Same expressions/old double view; frame0x260,20 extra instructions|
 |shared800|34652 /2debccce|Real0/1 motion/fade joins restore21 physical emit calls|
-|shared816, selected|34652 /41c02c6f|Real816 virtual exit join;32410 differences/+31, still nonexact|
+|shared816, prior checkpoint|34652 /41c02c6f|Real816 virtual exit join;32410 differences/+31, still nonexact|
 
 First-body/full-argument controls and both admitted carrier views are retained
 with hashes. Do not repeat these argument spellings, add an inert four-byte
 local, force stack alignment or search compiler flags to obtain the frame.
+
+
+## Follow-up: floating copies and frame exits
+
+Current artifacts: `build/yukari-update-frame-exits-20261025/`; private recipes
+and frozen complete sources: `.analysis/yukari-update-frame-exits-20261025/`.
+Fresh formal replay first confirms the prior41c02c6f checkpoint.
+
+The prior source mistakenly treated52 floating transfer occurrences as integer
+bit copies. Decompiled undefined4 placeholders did not prove MOV semantics.
+Raw instructions instead show ordinary m32 FLD/FSTP value transfers. These are
+now corrected to typed float assignments, without normalizing real integer
+fields, packet-word storage or control state. This is a source-hypothesis
+correction, not a claim that float and integer copies have identical x87
+exception/NaN behavior. No broad execution matrix is needed to establish the
+actual load/store instructions.
+
+Examples include related-object position reads5907B6/5907C7,59190E/59191A and
+592551/59255D; paired-position publications5901EC/5901F8/590270/59027F;
+owner heading590EE7/5943AB/59480F; returned owner position/velocity590F15/
+590F2D/590F3F and their910 counterparts; auxiliary position590F95/594444/
+59445C;981 owner positions595B4F/595B5B/595BE0;999 owner positions595E96/
+595EB2.852 copies heading through591CC1 FLD[heading] and591CC9 FSTP[this+12C].
+826/910 phase11 also preserve real m32 temporary then FST/FSTP publications,
+at591054..59106E and59479F..5947B9. Source reads and writes through float views;
+it does not copy native opcodes or force temporary stack addresses.
+
+The public target audit records48 straight-line m32 transfers between observed
+position/heading fields, permitting intervening integer operations but stopping
+at another FPU operation, call or branch. That inventory is narrower than all
+floating assignments: shared paths, scratch/FST chains and heading+0 loads
+must be reviewed separately. The complete target hash and closed CFG still
+attest the whole body. `target-float-transfers-wide.json` and
+`source-transfer-corrections.json` retain the private scan and exact52 source
+substitutions. Do not infer an original type from undefined4 in another root.
+
+Target852/856 use one frame call591CD1;920 owns594D2D. The prior source folds
+all three into the common frame tail.852 now goes to the actual shared852/856
+continuation;856 defines it;920 keeps its separate complete advance/return.
+Both expressions are ordinary source behavior. Together with the floating
+copy correction, this restores every physical direct-callee count, all45
+virtual calls and all32 per-action direct/virtual inventories. The frame-call
+action-owner groups also agree, including the large common tail, the shared
+852/856 group and independent920. These diagnostics are not execution proof.
+All20 destination dimensions/200 remap bytes, frame0x260 and the ten qword
+operation/offset/width observations remain intact.
+
+| Complete control | Bytes / canonical SHA256 prefix | Result |
+| --- | --- | --- |
+|frame-exits|34956 /2c0fad75|Prior bit-copy source with actual frame exits;24 direct-callee counts agree,44 virtuals|
+|float-heading|34652 /3a034390|Only852's actual heading float copy; still13 frame calls|
+|retire-exits|34708 /74c6691d|Unselected: scoped retirement joins reduce RETs but fold frame calls back to13|
+|float-transfers|34324 /cddf1390|Correct52 source copies; restores45 virtuals, still13 frame calls|
+|float-frame-exits, selected|34628 /0330e417|All24 direct counts/45 virtuals/group owners;32402 differences/+31|
+|float-retire-exits|34380 /57167278|Unselected fresh corrected-source phase: same frame over-factoring13 versus15|
+
+The retirement controls have different complete hashes; they are not described
+as byte-neutral. Both independently reintroduce the same wrong frame sharing.
+Keep their receipts and close this question instead of searching equivalent
+retirement spellings. The selected source still has98 RETs versus88; original
+nominal type/TU/context and remaining branch/return layout are unknown. Matching
+inventories and a near-sized body cannot replace strict full comparison.
+
+Park this root at the verified complete source. Next independently review
+YuyukoObject56F700, provisional34278 bytes, primary slot28 cell6C55EC. Its
+same-owner initializer578000/cell6C5600 is complete source-present but nonexact;
+it supplies context only. Re-attest the new root and close its own full extent
+before adapting source. No new source mapping or exact claim is assigned to it.
 
 Reproduce current formal callable and full-payload results:
 
@@ -282,26 +348,24 @@ Both correctly return1 for the recorded nonexact result. Independent cold:
 TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
   taskset -c 0 nice -n 10 scripts/compile-unit.sh \
   src/characters/YukariObjectUpdate.cpp \
-  build/yukari-update-frame-20261025/cold.obj
+  build/yukari-update-frame-exits-20261025/cold.obj
 scripts/repo-python scripts/compare-unit-object.py \
   exact-first-yukari-object-update \
-  build/yukari-update-frame-20261025/cold.obj --json
+  build/yukari-update-frame-exits-20261025/cold.obj --json
 scripts/repo-python scripts/audit-yukari-object-update.py \
-  --object build/yukari-update-frame-20261025/cold.obj
+  --object build/yukari-update-frame-exits-20261025/cold.obj
 ```
 
 The existing-object comparison honestly reports build provenance unverified;
 the separate compile command/log supplies that provenance. Current formal and
-cold full audits agree on34652/41c02c6f and32410 differences. Follow-up receipts
+cold full audits agree on34628/0330e417 and32402 differences. Current receipts
 are `selected-formal.log`, `selected-formal-full.json`, `cold-build.log`,
-`cold-compare.json`, `cold-full-audit.json`, the two full provider observations
-and `control-receipts.json`. Initial boundary/decompiler receipts remain in the
-older artifact prefix.
+`cold-compare.json`, `cold-full-audit.json`, `selected-frame-facts.json`,
+`frame-sharing-groups.json` and `control-receipts.json`. Earlier boundary,
+decompiler and frame/carrier receipts remain under their original prefixes.
 
-Next inspect852's two native virtual exits and the remaining advance-frame/
-return sharing from actual edges. Existing counts are diagnostic, not permission
-to duplicate calls or fabricate control flow. Do not retry closed argument/
-carrier/frame spellings without new independent evidence. Current tracking is mapped1581/source1562,601 units/
+Do not resume this parked root without new independent evidence for the
+remaining branch/return context. Current tracking is mapped1581/source1562,601 units/
 1569 configured functions. Accepted1412/381108 bytes/524 units stay unchanged;
 the latest aggregate cold receipt remains the prior Remilia checkpoint,
 `build/exact-first-remilia-action-entry-20261025/cold-all.log`.
