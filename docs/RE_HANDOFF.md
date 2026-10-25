@@ -1,6 +1,22 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **park KomachiObject initializer600390 after two neutral
+Current transition: **IkuObject632C30 complete target boundary is reviewed;
+next finish the first complete manual C++ body and compare early**.
+The callable closes33617 bytes/7903 reachable instructions plus one exact
+three-byte internal alignment instruction. Full34524 owns25 tables/176 DWORDs,
+199 remap bytes and four compiler alignment bytes. All316 direct/15 virtual
+call sites and44 RET0s stay within the reviewed root; frame0x258. Raw depth/argument
+inspection finds48 consumed packet bases across62 object requests. Preserve
+actual dataflow without prescribing stack layout. A target-only public audit
+and eight synthetic negative controls now reproduce boundary/metadata facts.
+One readonly384MiB Ghidra run times out at60 seconds; its serial240-second
+retry completes. Both roll back and preserve all nine primary database hashes.
+No source selection, durable name or exact credit is added. The same-owner
+initializer remains family context only. See
+[boundary and ABI evidence](IKU_OBJECT_UPDATE_2026_10_25.md).
+Accepted graph remains524 units/1412 functions; no new aggregate cold claim.
+
+Prior transition: **park KomachiObject initializer600390 after two neutral
 new-context controls; next independently review large IkuObject632C30**.
 Fresh formal initializer replay and both new complete controls retain6540
 SHA732ea433 with exactly seven differences, first600423/+0x93. Capturing the
