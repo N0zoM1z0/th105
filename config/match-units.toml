@@ -23453,3 +23453,48 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = ["__real@4035000000000000=_alice_fighter_update_006c21b8"]
+
+[units.exact-first-score-defaults]
+kind = "probe"
+source = "src/config/ScoreDefaults.cpp"
+object = "build/match-units/ExactFirst_ScoreDefaults.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete2428-byte ScoreData defaults/reset42ED70. Full first source compared immediately. Three20-byte availability clears, native vector clear, real dedup flag and directly constructed path preserve target ownership/EH and reproduce all2428 bytes. No helper-origin credit. docs/SCORE_DEFAULTS_2026_10_26.md."
+
+[[units.exact-first-score-defaults.functions]]
+address = "0x0042ED70"
+symbol_base = "?initialize_defaults_42ed70@ScoreDataDefaultsView@th105@@QAEXXZ"
+rel32_targets = [
+  "??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E880",
+  "??0ProfileMenuBaseDataLifetime@th105@@QAE@XZ=0x0042D260",
+  "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E900",
+  "??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ=0x0042D320",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?_Erase@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@2@@Z=0x0043BC40",
+  "?_Erase@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@2@@Z=0x0042CE20",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ=0x0042CC90",
+  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+  "?advance_row@CsvReader@th105@@QAE_NXZ=0x0040F680",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "?clear_rows@CsvReader@th105@@QAEXXZ=0x0040FDB0",
+  "?clear_spell_entries@SpellDataOwner@th105@@QAEXXZ=0x00433A80",
+  "?erase@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@0@Z=0x0040DF70",
+  "?find@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?initialize_defaults@ProfileMenuBaseDataLifetime@th105@@QAEXXZ=0x00432050",
+  "?insert@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHH@2@@Z=0x004606E0",
+  "?insert@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@_N@2@ABI@Z=0x0042DB20",
+  "?load@CsvReader@th105@@QAE_NPBD@Z=0x0040F150",
+  "?load_character_deck@ProfileMenuBaseDataLifetime@th105@@QAEHPAV?$deque@FV?$allocator@F@std@@@std@@H@Z=0x00431E80",
+  "?load_spell_csv_via_32e20@SpellDataOwner@th105@@QAEEHCE@Z=0x00434A10",
+  "?next_int@CsvReader@th105@@QAEHXZ=0x0040F480",
+  "?next_string@CsvReader@th105@@QAEPAXPAX@Z=0x0040F580",
+  "?push_back@?$vector@UScoreDefaultRecord24@th105@@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@std@@QAEXABUScoreDefaultRecord24@th105@@@Z=0x0042DFC0",
+  "?refresh_story_progress_42e3f0@ScoreDataDefaultsView@th105@@QAEXXZ=0x0042E3F0",
+  "?resolve_scenario_event_name@th105@@YAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0043BFD0",
+  "@__security_check_cookie@4=0x00689D25",
+  "__invalid_parameter_noinfo=0x0068A143",
+]

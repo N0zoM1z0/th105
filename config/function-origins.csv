@@ -978,7 +978,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042E900,authored_game,ui,authored,observed,canonical-exact-authored
 0x0042E980,authored_game,assets,authored,observed,canonical-exact-authored
 0x0042E990,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0042ED70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042ED70,authored_game,config,authored,observed,canonical-exact-authored
 0x0042F6F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042FD80,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042FDC0,compiler_generated,battle,exclude,observed,vc8-generated-secondary-animation-deque-comdats-106a

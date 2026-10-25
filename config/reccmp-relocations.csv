@@ -2423,3 +2423,6 @@ __ehhandler$?load_effect_resource@EffectResourceManagerView@th105@@QAEXPBD@Z,0x0
 __ehhandler$?render@CProfileDeckEdit@th105@@UAEXXZ,0x006B9E0B,8b5424088d821cffffff8b8a18ffffff,0,Hash-attested aligned D4 frame/EH entry of deck renderer448F60. Complete unselected source probe only; docs/PROFILE_DECK_RENDER_2026_10_26.md.,address
 __real@43c00000,0x006C21D8,0000c043,0,Complete canonical float/double operand in deck renderer448F60; emitted literal value and target data agree.,literal
 __real@4073000000000000,0x006C21D0,0000000000007340,0,Complete canonical float/double operand in deck renderer448F60; emitted literal value and target data agree.,literal
+__ehhandler$?initialize_defaults_42ed70@ScoreDataDefaultsView@th105@@QAEXXZ,0x006B8012,8b5424088d829cfbffff8b8a98fbffff,0,Current2428-byte ScoreData defaults42ED70 GS/EH handler immediate is pinned by full native body; docs/SCORE_DEFAULTS_2026_10_26.md.,address
+??_C@_09JJDIOHNM@data?1csv?1?$AA@,0x006C1190,646174612f6373762f00,0,Current42ED70 directly constructed path prefix; complete bytes including terminator are target-backed.,literal
+??_C@_0L@BHIMHHKN@?1story?4csv?$AA@,0x006C1184,2f73746f72792e63737600,0,Current42ED70 appended story CSV suffix; complete bytes including terminator are target-backed.,literal

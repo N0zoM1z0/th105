@@ -46,8 +46,13 @@ target bytes/744 instructions close; complete2521-byte/D4-frame source remains
 nonexact by1622 positions, first449268. A push-relative missing-count inference
 was rejected by native execution; correct zero default matches all32 observer
 events. Final row-multiply and exception-scheduling controls are byte-neutral;
-this finite FP lane is closed. Next medium/large frontier **0x0042ED70** has
-provisional2428 bytes and requires fresh preflight/ownership/boundary review.
+this finite FP lane is closed. Score defaults/reset **0x0042ED70** is now
+complete canonical2428/2428 in two public builds. All664 instructions/661
+reachable operations close through RET0; five native CSV-policy cases agree
+with the candidate. Three real array clears, vector clear, dedup state and
+direct path construction recover its original body without manual stores.
+Next coherent peer **0x0042F6F0** has provisional1672 bytes and requires fresh
+preflight/ownership/boundary review and an early complete source comparison.
 Prior floating-profile grids remain closed; providers inherit no exactness.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
@@ -103,10 +108,10 @@ complete public unselected hypothesis/probe. Exact/source totals stay fixed.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1604 /1419 /1001 |
-| Mapped / source-present |1593 /1566 |
-| Exact functions / authored bytes |1414 /385903 |
-| Configured units / functions |614 /1582 |
+| Provisional / authored / excluded / review candidates |4024 /1605 /1419 /1000 |
+| Mapped / source-present |1594 /1567 |
+| Exact functions / authored bytes |1415 /388331 |
+| Configured units / functions |615 /1583 |
 
 The collision-debug manifest has a fresh full cold receipt:
 `build/exact-first-45e950-20261026/cold-all.log` passes526 accepted units/all1414
@@ -141,6 +146,25 @@ Both current-manifest checks pass:4024 origin rows and526 cold units/all1414
 functions,385903 exact bytes. The native/candidate32-event fixture passes and
 the wrong row-default candidate is independently rejected.
 
+## Checkpoint: Score defaults/reset42ED70
+
+[Complete defaults, finite source trials and native CSV policy](SCORE_DEFAULTS_2026_10_26.md).
+Source: `src/config/ScoreDefaults.cpp` (selected and matching).
+Unit: `exact-first-score-defaults`.
+Audit: `scripts/audit-score-defaults-target.py` (target/object exact).
+Both full public builds reproduce2428/2428 and SHAedf62017. Five observed native
+CSV-region cases pin difficulty, threshold, signed values, key-pair dedup and
+nonpositive counts. Header extraction preserves the existing real33C profile
+and20-byte resource lifetimes; all accepted units require cold verification.
+One newly authored root/mapping/selection/match adds2428 exact bytes; no helper
+credit. Verification receipts for this manifest are under
+`build/frontier-42ed70-20261026/` (`origins-write.log`, `origins-check.log`,
+`cold-all.log`, `local-ci.log`). Both origin checks and the current-manifest
+cold replay pass:527 accepted units/all1415 functions,388331 authored bytes.
+The extracted profile/resource lifecycle units remain2/2 exact each. The local
+CI/whitespace gate is mandatory before commit/push. Next family peer is42F6F0,
+provisional1672 bytes; do not infer ownership from its calls alone.
+
 ## Checkpoint: CProfileDeckEdit renderer448F60
 
 [Complete renderer, scoped source trials and corrected stack interpretation](PROFILE_DECK_RENDER_2026_10_26.md).
@@ -165,8 +189,9 @@ Audit: `scripts/audit-profile-deck-render-target.py` (target0/object1/nonexact).
   Earlier polymorphic-local controls are scoped to their pre-correction phases.
   Original local/TU/backend context and nominal field meanings remain unknown.
 - No implemented/match row. EH prefix, float384 and double304 add data rows;
-  double21 uses an existing value-checked literal. Shared accepted source,
-  headers, profiles and bindings are unchanged. Next42ED70 is only provisional.
+  double21 uses an existing value-checked literal. At that renderer checkpoint,
+  shared accepted source, headers, profiles and bindings were unchanged.
+  The later42ED70 result and lifetime-header extraction are recorded above.
 
 ## Checkpoint: effect resource loader437EC0
 
