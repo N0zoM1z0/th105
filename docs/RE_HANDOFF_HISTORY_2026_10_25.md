@@ -1,0 +1,1589 @@
+# Archived reconstruction handoff, 2026-10-25
+
+This is the complete handoff at `535e1b98e18849556a5ef7bd499c00fdb57615e6`,
+before the user-requested cleanup and session handoff. Its phase descriptions
+and counts are historical; use [the live handoff](RE_HANDOFF.md) for current work.
+No content below was discarded during archiving.
+
+# TH10.5 reconstruction handoff
+
+Current transition: **park YuyukoObject56F700 after815 expression/guard and
+real-join controls; next independently review TenshiObject64CD50**.
+Selected complete34928 SHAc97edd07 follows native815 product association,
+direct sine-result doubling and inclusive integer guards. Both815 virtual exits
+are restored; all28 per-action inventories agree except extra900 request.
+Public audit distinguishes per-action counts from physical site/owner groups.
+Formal and independent cold replay remain nonexact32764/+31 against full35060;
+frame238/all ten qword stack offset/width/operation positions,16 table dimensions
+and seven remaps agree. Still69 RETs/27 motion/4 frame/53 unparented/13 virtuals
+versus62/29/7/52/15. Broad real-join control over-factors motion24; narrow852/858
+frame and820/858 next-block join control retains27 motion but70 RETs. Both keep
+the same wrong four-frame owner partition and are unselected; full hashes differ,
+not byte-neutral. Close these scoped questions; no forced frame/registers, flag
+or spelling grid, execution-equivalence or LTCG-impossibility claim. Private x87
+depth propagation finds consistent joins/RET0-depth and identical900 call depth0;
+no evidence to retune coordinate carriers. See
+[complete source and receipts](YUYUKO_OBJECT_UPDATE_2026_10_25.md).
+Next64CD50 is source-missing/provisional41001, Object slot28 cell6C6734. Same-owner
+657150 initializer/cell6C6748 is source-present/nonexact context only. Re-attest
+and close its complete boundary/ABI before source selection; refresh the raw
+roster shared-callee census before another decompile. Current mapped1582/source1563;
+602 units/1570 configured functions. Accepted graph unchanged, no new aggregate
+cold claim. Continue one core/serial builds with the locked repository Python.
+
+Prior transition: **complete YuyukoObject56F700 source and early full comparison;
+next investigate native argument/return epochs and physical call sharing**.
+The manually reviewed28-action/default source is selected in
+src/characters/YuyukoObjectUpdate.cpp/.hpp; unit exact-first-yuyuko-object-update.
+First full34772 SHA3b558e64 is compared before controls. Raw main34278 closes8032
+reachable instructions plus15 exact internal alignment instructions/68 bytes;
+62 RET0,329 direct calls/24 entries and15 virtuals, no escaping branches. Full35060
+owns16 destination tables/121 DWORDs, seven bounded remaps/291 bytes and seven
+metadata alignment bytes; primary actions800..998, not999. Default ignores AL.
+Readonly384MiB analysis preserves all nine primary DB hashes. Backward actual
+argument-slot tracing establishes46 consumed packets, including both shared
+request predecessor pairs.815's effect-loop bound12 is corrected from raw bytes;
+900 keeps independent random coordinates. Selected formal/cold full34908
+SHA06a43850 remains nonexact32830/+31, despite natural frame0x238 and complete
+table/remap dimensions/content. Still68 RETs/27 motion/4 frame/53 unparented/
+12 virtual calls versus62/29/7/52/15. All28 per-action direct inventories agree
+except extra900 spawn;815 virtual1 versus2. This is not execution-equivalence
+proof. An explicit-coordinate/shared-request control retains22/24 physical
+direct-callee counts but grows frame23C; keep unselected. Next use raw call-owner
+and scalar lifetime evidence, no forced frame or compiler grid. See
+[complete evidence and receipts](YUYUKO_OBJECT_UPDATE_2026_10_25.md).
+Tracking mapped1582/source1563;602 units/1570 configured functions. Accepted graph
+unchanged; no new aggregate cold claim.95 isolated literal aliases and three
+runtime bounds affect only this new probe. Continue serial CPU0/nice10 builds.
+
+Prior transition: **park complete YukariObject58DB80 after floating-copy and
+frame-owner corrections; next independently review YuyukoObject56F700**.
+Fresh formal and independent cold34628 SHA0330e417 replay975 relocations but
+remain nonexact32402/+31 against full34800. Prior undefined4-based integer
+copies were hypotheses: raw m32 FLD/FSTP evidence now corrects52 position/
+heading/velocity source transfers. Public audit records48 direct m32 pairs;
+real scratch/FST chains are separately reviewed. Native852/856 frame join and
+independent920 exit restore all24 physical direct-callee counts/272 calls and
+all45 virtual calls. All32 per-action direct/virtual inventories and frame-call
+action-owner groups agree. Frame0x260, all ten qword relative offsets/widths/
+operations and20 table dimensions/200 remap bytes remain. Still98 RETs versus88
+and different complete instruction layout; no exact or execution-equivalence
+claim. Scoped-retirement controls before/after float corrections both over-
+factor frame calls back to13 versus15; keep them unselected and close this
+question, without claiming byte-neutral hashes or LTCG impossibility. See
+[complete source and latest receipts](YUKARI_OBJECT_UPDATE_2026_10_25.md).
+Next56F700 is source-missing/provisional34278, Object slot28 cell6C55EC. Same-
+owner578000 initializer/cell6C5600 is source-present/nonexact context only.
+Re-attest and close the new root's complete boundary/ABI before source selection.
+Tracking mapped1581/source1562;601 units/1569 configured functions. Accepted
+graph unchanged; no new aggregate cold claim. Continue serial CPU0/nice10 builds.
+
+
+Prior transition: **retain YukariObject58DB80 native argument lifetimes and
+real800/816 joins; next inspect852 and frame/return sharing from actual edges**.
+Current formal and independent cold34652 SHA41c02c6f replay971 relocations but
+remain nonexact32410/+31. Ordinary full request expressions restore native
+frame0x260 and all ten qword stack offset/width/operation positions; the paired
+old-double-view control also has0x260, so this is not a return-type attribution.
+Full raw406360/4063D0 return providers end in m32 table FLD/ST0/RET0 and support
+an isolated local float carrier, removing20 extra consumer instructions/80
+bytes. Original nominal prototypes/provider exactness remain unproved; no
+shared source/header/provider is changed.812 keeps independent trig calculations
+and naturally shares only the final request/event. Native800 phase0/1 motion/
+fade joins restore21 emits;816's actual shared virtual exit restores its one
+reachable call.23/24 physical direct-callee counts and all32 per-action direct
+counts agree;852 still has one versus two reachable virtual calls. Physical
+frame calls13 versus15, virtual44 versus45 and99 RETs versus88 remain. Keep
+strict full34800-byte comparison; no exact credit/count score/forced frame or
+compiler grid. All20 table dimensions/200 remap bytes retained. See
+[follow-up receipts and limits](YUKARI_OBJECT_UPDATE_2026_10_25.md).
+Tracking mapped1581/source1562;601 units/1569 configured functions. Accepted
+graph unchanged; no new aggregate cold claim. Continue one-core serial builds.
+
+
+Prior transition: **complete YukariObject58DB80 first source and early whole
+comparison retained; next inspect native scalar/frame and physical-sharing
+residuals**. Manual32-action/default source is selected in
+src/characters/YukariObjectUpdate.cpp/.hpp; first full34628 SHA90b755ed is compared
+before controls. Native20 tables/157 DWORDs and200 remap bytes are complete;
+main33972/all7985 reachable instructions/88 RET0 closes without padding/tails.
+Following596370 exact323 shared980 helper stays independent. Default596024
+advances once and ignores AL. Readonly384MiB Ghidra hypothesis attests all
+mapped bytes and preserves nine primary database hashes. All48 actual consumed
+packet groups are retained, including six bases missed by nearest-LEA reading.
+Three width temporaries now reproduce native float rounding.812 retains two
+independent trig computations with only the final spawn/event shared; an
+unselected broader ring-sharing control wrongly removes two physical calls.
+Selected formal and independent cold34600 SHA4f166c48 replay970 relocations but
+remain nonexact32568/+2: frame0x264 versus0x260;98 RETs versus88;269 direct/
+44 virtual calls versus272/45.22/24 direct-callee counts and all table dimensions/
+remap bytes agree, without execution-equivalence proof. Static per-action call
+counts differ for800/816/852; investigate actual sharing/return epochs rather
+than forcing frame layout or starting a flag grid. Native bound globals and
+104 isolated float bindings affect only this new probe. No exact credit,
+shared header/profile change or new aggregate cold claim. Tracking mapped1581/
+source1562;601 units/1569 configured functions. Accepted graph stays524 units/
+1412 functions. See [complete evidence](YUKARI_OBJECT_UPDATE_2026_10_25.md).
+
+
+Prior transition: **park IkuObject632C30 after bounded return/width controls;
+next independently review large YukariObject58DB80**. Common-retirement source
+reduces complete output34088 SHA07ab6c22/46 RETs but loses another physical frame
+call14 versus16. Native Iku manager631140 reads/publishes facing as BYTE; existing
+complete Object forwarding witnesses admit narrow carriers. Independent signed/
+unsigned byte caller views both emit34364 SHA193a73db, still56 RETs/13 frame calls/
+55 unparented requests/13 virtuals versus44/16/56/15. Close repeated signedness
+outputs; keep all three complete controls unselected. All retain frame0x258,
+25 table dimensions/199 remap bytes and all29 per-action static call counts;
+these are diagnostics, not execution/equality proof. Selected34748 SHA52ee04c5
+is unchanged in fresh formal/full replay, nonexact32281/+37. See
+[controls and stop condition](IKU_OBJECT_UPDATE_2026_10_25.md).
+Next58DB80 is source-missing, provisional33972 bytes, authored Object slot28 ledger
+cell6C586C; same-owner initializer5964C0 is source-present/nonexact. Separate
+shared980 helper596370 is exact323, outside the new update. Re-attest and close
+its own complete boundary/ABI before selecting source. No exact credit, shared
+header/binding/profile change or new aggregate cold claim. Accepted graph stays
+524 units/1412 functions; one core/serial compilation continues.
+
+Prior transition: **complete IkuObject632C30 first source and early whole
+comparison retained; next investigate target-specific sharing/return epochs**.
+The complete manual29-action/default source is selected in
+src/characters/IkuObjectUpdate.cpp/.hpp with probe exact-first-iku-object-update.
+First full35384 SHA005d3ee9 comparison precedes controls. Native812/852 phase0
+keeps two independent first height calls but shares conditional clamp636B70 and
+advance-six636B80. Expressing this continuation yields selected34748 SHA52ee04c5,
+32281 unmasked differences, first632C55/+37. Formal and independent cold outputs
+agree and replay all1014 relocations. Natural frame0x258, all25 table dimensions/
+176 DWORDs and199 remap bytes agree. All29 action-level static reachable-call
+inventories agree, but that is not execution/path-feasibility proof. Physical
+314 direct/14 virtual calls and67 RETs still differ from316/15/44;21/23 direct
+counts agree. Target801/818 independent requests and810/851 independent virtual
+calls are merged; frame continuations partition differently. An outer-case
+break trial grows34872/71 RETs and loses a relative-position call; unselected.
+No repeated spelling/flag grid. The source uses48 consumed packet views, not
+inert storage; local nearest-LEA witnesses do not prove all shared predecessors.
+Source numeric casts reproduce both native inline color-byte truncations.
+Global-selector0..3 validity/original nominal layout/TU remain unknown. See
+[complete source and comparison evidence](IKU_OBJECT_UPDATE_2026_10_25.md).
+Tracking: mapped1580/source1561;600 units/1568 configured functions. Exact remains
+524 units/1412 functions/381108 bytes; no new aggregate cold replay.108 exclusive
+literal aliases affect only this new probe;1671 target references pass.
+
+Prior transition: **IkuObject632C30 complete target boundary is reviewed;
+next finish the first complete manual C++ body and compare early**.
+The callable closes33617 bytes/7903 reachable instructions plus one exact
+three-byte internal alignment instruction. Full34524 owns25 tables/176 DWORDs,
+199 remap bytes and four compiler alignment bytes. All316 direct/15 virtual
+call sites and44 RET0s stay within the reviewed root; frame0x258. Raw depth/argument
+inspection finds48 consumed packet bases across62 object requests. Preserve
+actual dataflow without prescribing stack layout. A target-only public audit
+and eight synthetic negative controls now reproduce boundary/metadata facts.
+One readonly384MiB Ghidra run times out at60 seconds; its serial240-second
+retry completes. Both roll back and preserve all nine primary database hashes.
+No source selection, durable name or exact credit is added. The same-owner
+initializer remains family context only. See
+[boundary and ABI evidence](IKU_OBJECT_UPDATE_2026_10_25.md).
+Accepted graph remains524 units/1412 functions; no new aggregate cold claim.
+
+Prior transition: **park KomachiObject initializer600390 after two neutral
+new-context controls; next independently review large IkuObject632C30**.
+Fresh formal initializer replay and both new complete controls retain6540
+SHA732ea433 with exactly seven differences, first600423/+0x93. Capturing the
+real input pointer before BYTE184 publication is neutral. A complete same-owner
+update/initializer TU with the reviewed primary interface is also neutral for
+the initializer; its context update remains unselected. Close these questions
+without forcing the EAX/ECX choice or repeating817 arithmetic spellings. See
+[initializer context receipts](KOMACHI_OBJECT_ENTRY_2026_10_24.md).
+No source, header, compiler setting, literal binding or exact credit changes.
+Next candidate632C30 is source-missing, provisional33617 bytes, with IkuObject
+slot28 cell6C64CC. Its same-owner initializer63B310 is already exact6229 callable/
+full6551, supplying a family lead only. Re-attest and close the new root's own
+complete boundary/ABI before selecting source. Continue large-function-first,
+early complete comparison and single-core serial builds. Accepted graph remains
+524 units/1412 functions; prior Remilia is the latest aggregate cold receipt.
+
+Prior transition: **retain KomachiObject update5F9420 pre-call scalar epochs;
+continue actual frame reuse and physical-sharing residuals**.
+Raw main27874 closes6773 reachable instructions/27852 bytes plus seven exact
+internal padding instructions/22 bytes;37 RET0s,315 direct calls/19 entries and
+six virtual calls. Complete28520 owns15 tables/111 destination DWORDs and200
+remap bytes plus2 alignment bytes. One readonly384MiB Ghidra hypothesis attests
+identity/entry/all mapped bytes and leaves nine primary project hashes intact.
+Manual first complete source compares29056 before controls. Raw827 bounds,
+movement/entry exits and ordered x87 guards are corrected; four actual consumed
+packet groups are retained. Follow-up restores three actual float-rounded
+counter-times0.75 radius scales and the distinct801/852 reload versus825 qword
+facing lifetime. Independent811 call arms restore its five-entry table. A new
+depth/width comparison finds three missing pre-height-call Y qword captures;
+they are now explicit.825 facing is captured before378 publication, restoring
+its FSTP. All four target store/height-call/compare qword triples now appear in
+the source, including999. Three wide-access groups have corresponding operation/
+width counts, but source places them outside dense packet storage; target
+reuses noncontiguous packet regions. No union or padding is added to force it.
+Formal/independent cold selected29072 SHA4746e929 replay1008 relocations but
+remain nonexact27294 bytes, first+8: frame0x48 versus0x40. All15 table dimensions/200
+remap bytes, six independent virtual calls and18/19 direct-callee counts agree.
+Still51 RETs versus37 and spawn64 versus63. Per-case direct/virtual call counts
+agree but physical sharing differs: target spawn5F9949 joins801/815/825/827/
+852/855/856/901; source5F9951 excludes the last two and separately joins861/901
+at5FE762. Explicit spawn-join controls over-factor other calls; per-action
+packet scopes grow frame0x160. Keep them unselected and close these controls
+absent new independent evidence. Height/facing field epochs are now explicit;
+next inspect allocation reuse from actual ownership/visibility or return epochs;
+do not force the frame or start a flag grid/runtime matrix. See
+[complete source/evidence/commands](KOMACHI_OBJECT_UPDATE_2026_10_25.md).
+Tracking and1563 floating target-reference checks pass. Accepted graph remains
+524 units/1412 functions; the prior Remilia checkpoint remains the latest
+aggregate cold receipt. No exact credit or new aggregate cold replay is claimed.
+
+Prior transition: **park complete SakuyaObject update4E0D30 after bounded
+sharing controls; next independently review source-missing Object5F9420**.
+Hash-attested raw CFG closes all6774 instructions/28985 callable bytes,47 RET0s,
+232 direct calls to20 entries,48 virtual calls and all seven tables. Complete
+29476-byte target owns72 destination DWORDs/200 remap bytes/three alignment
+bytes. A single readonly384MiB Ghidra hypothesis attests target/entry/all mapped
+bytes and leaves all nine primary project hashes unchanged. Manual full source
+is compared early: formal and independent cold29408 SHA256 `3e0aa7a9...`,738
+relocations replayed, but27397 unmasked differing bytes, first+37. No exact credit.
+Real double captures restore eight-byte alignment; six independently consumed
+12-byte packets explain the frame0x98-to0xD0 change exactly.21 actual random
+speed-product float boundaries are retained. All200 remap bytes, seven table
+dimensions,48 virtual calls and19/20 direct-call counts agree. Still52 RETs
+versus47 and two secondary-alpha calls versus3. Follow-up static case traversal
+shows17 frame calls conceal wrong sharing: target812/815/855 share a call,
+source leaves815 separate; target816 owns a call, source joins the common tail.
+Explicit815 sharing over-factors other tails, producing29040 bytes/16 frame
+calls. Alpha assignment,816 early-return and800 consumed-Y controls repeat
+previous complete payloads. Inclusive800 bounds and a low-byte helper carrier
+do not restore sharing. No implementation/header is promoted; retain29408/
+3e0aa7a9 and stop these questions absent new independent evidence. No flag grid
+or runtime matrix. See [complete evidence/source/commands](SAKUYA_OBJECT_UPDATE_2026_10_25.md).
+Next candidate5F9420 is a provisional27874-byte KomachiObject slot28 entry;
+re-attest target and close its own full boundary/ABI before selecting source.
+Tracking and1484 floating target-reference checks pass. Accepted graph remains
+524 units/1412 functions; prior Remilia below is the latest aggregate cold
+receipt. No new aggregate cold replay is claimed.
+
+Prior transition: **retain complete Youmu Fighter action initializer53A1D0;
+park601/604 layout and move to a source-missing large Object update**.
+Formal and independent cold source emit1874 SHA256 `4a86c07d...`, with60
+relocations replayed, but remain nonexact at44 byte positions:42 code bytes in
+53A6BC..53A6E5 and two destination-pointer bytes. All353 main instructions/
+1424 bytes are reachable;23 RETs/14 zero calls/one45AF40 tail/477830 default,
+one899 spawn/event31/slot0C selector and both14/12 destination tables/345 remap
+bytes are reviewed. The first complete source already matches the entire
+one-time spawn/16-byte frame and signed609 selector. A consumed601/604 phase
+restores the correct full size/call/RET counts. Reversing case order only swaps
+constants; switch-exit and chained-assignment controls reproduce prior full
+payloads. Close these controls absent new independent evidence. No exact credit
+or original TU/LTCG impossibility claim. See
+[complete source/evidence/commands](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md).
+Tracking and1405 floating target-reference checks pass. Accepted graph remains
+524 units/1412 functions; latest aggregate cold receipt is the prior Remilia
+checkpoint below. No new aggregate cold replay is claimed.
+
+Prior transition: **Remilia Fighter action initializer554D50 is exact;
+continue independently reviewed same-slot family peers**.
+Formal and independent cold builds reproduce1802 callable/full2344 payload
+bytes, SHA256 `38cb9b4a...`, with all92 relocations replayed. Raw CFG reaches
+all426 main instructions/1802 bytes and closes33 RETs/five45AF40 tails plus
+477830 default. Both20/26 destination tables and355 remap bytes agree. Actual
+505/506 consume730 through virtual slot0C; the complete45C390 provider supports
+a low-word argument in a four-byte stack slot, without recovering its original
+nominal parameter type. Two scalar publication controls in500/501 and542/547
+remove all12 differences. The valid-index last-remap generated-object negative
+fails exactly+2343. No runtime matrix/compiler-profile change. See
+[complete source/evidence/commands](REMILIA_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance census/readback and1394 floating target-reference checks pass.
+Complete serial cold replay passes524 units/all1412 accepted functions.
+Full2344-byte audit also passes after the complete cold corpus rebuild. Receipt:
+`build/exact-first-remilia-action-entry-20261025/cold-all.log`.
+
+Prior transition: **Iku Fighter action initializer62FFF0 is exact;
+continue independently reviewed same-slot family peers**.
+Formal and independent cold builds reproduce1842 callable/full2380 payload
+bytes, SHA256 `ea5aebaf...`, with all92 relocations replayed. Raw CFG reaches
+all436 main instructions/1842 bytes and closes36 RETs/two45AF40 tails plus
+477830 default. Both21/23 destination tables and359 remap bytes agree. Actual
+416/417 use float0.15 products;567/568 skip415's736 clear while clearing734.
+797/798 only publish velocities/gravity. Shared415-family750 and408-family184
+publication epochs restore all physical copies after two controls. The valid-
+index last-remap generated-object negative fails exactly+2379. No runtime
+matrix/compiler-profile change. See
+[complete source/evidence/commands](IKU_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance census/readback and1382 floating target-reference checks pass.
+Complete serial cold replay passes523 units/all1411 accepted functions.
+Full2380-byte audit also passes after the complete cold corpus rebuild. Receipt:
+`build/exact-first-iku-action-entry-20261025/cold-all.log`.
+
+Prior transition: **retain complete Komachi Fighter action initializer5F6700;
+park its550/551 layout residual and independently review the next peer**.
+Formal and independent cold source emit full2496 SHA256 `c6dac7e0...`, with94
+relocations replayed, but remain nonexact at49 byte positions:47 in550/551
+code placement and two in551's destination pointer. All456 main instructions/
+1971 bytes are reachable;34 RETs/23 zero calls/four45AF40 tails/477830 default
+and both19/25 destination tables/347 remap bytes are reviewed.414/415 publication
+epochs restore their independent full bodies. Actual550/551 values/shared stores
+and zero helper agree in two complete RET0 native cases; changing generated
+FLD1 toFLDZ fails551's73E/73F. Alternate joins reproduce the same full payload;
+source-order reversal only swaps constants. Stop these controls absent new
+independent evidence. No exact credit or original TU/LTCG impossibility claim.
+See [complete source/evidence/commands](KOMACHI_ACTION_INITIALIZATION_2026_10_25.md).
+Accepted graph remains522 units/1410 functions; latest aggregate cold replay
+is still the prior Aya checkpoint. No new aggregate cold replay is claimed.
+
+Prior transition: **Aya Fighter action initializer617000 is exact;
+continue independently reviewed same-slot family peers**.
+Formal and independent cold builds reproduce2049 callable/full2579 payload
+bytes, SHA256 `66057eaf...`, with all92 relocations replayed. Raw CFG reaches
+all500 main instructions/2049 bytes and closes26 RETs/five45AF40 tails plus
+477830 default. Both20/22 destination tables and358 remap bytes agree. Actual
+408 retains its four-byte float-rounding local, ordered decrement/clamp, byte
+frame result, slot8 short-action virtual call and reread phase-gated wave27.
+The first whole source already reproduces408 and all helper/tail counts.
+Independent500/502 entries and305/418 publication phases restore all remaining
+physical copies after three controls. First-source and valid-index last-remap
+generated-object negatives fail. No runtime matrix/compiler-profile change.
+See [complete source/evidence/commands](AYA_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance census/readback and1357 floating target-reference checks pass.
+Complete serial cold replay passes522 units/all1410 accepted functions.
+Full2579-byte audit also passes after the complete cold corpus rebuild. Receipt:
+`build/exact-first-aya-action-entry-20261025/cold-all.log`.
+
+Prior transition: **Yuyuko Fighter action initializer56C840 is exact;
+continue independently reviewed same-slot family peers**.
+Formal and independent cold builds reproduce2083 callable/full2650 payload
+bytes, SHA256 `5f8072d1...`, with all103 relocations replayed. Raw CFG reaches
+all495 main instructions/2083 bytes and closes39 RETs/three45AF40 tails plus
+477830 default. Both19/35 destination tables and349 remap bytes agree. Reviewed
+interior404/415/562 and613/704/709 entries preserve skipped writes. Independent
+725/510 publications and651's vertical-first physical body restore layout;
+547 publication order closes the last6 bytes. Old-publication and valid-index
+last-remap generated-object negatives fail. No runtime matrix or compiler-
+profile change. See
+[complete source/evidence/commands](YUYUKO_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance census/readback and1344 floating target-reference checks pass.
+Complete serial cold replay passes521 units/all1409 accepted functions.
+Full2650-byte audit also passes after the complete cold corpus rebuild. Receipt:
+`build/exact-first-yuyuko-action-entry-20261025/cold-all.log`.
+
+Prior transition: **Sakuya Fighter action initializer4DE060 is exact;
+continue independently reviewed same-slot family peers**.
+Formal and independent cold builds reproduce2106 callable/full2656 payload
+bytes, SHA256 `9a6c54b1...`, with all99 relocations replayed. Raw CFG reaches
+all486 main instructions/2106 bytes and closes32 RETs/two45AF40 tails plus
+477830 default. Both20/27 destination tables and359 remap bytes agree. Source
+preserves ordered double12.5 lower clamps/float publications, no214 scratch
+reset, double0.25 scaling and independent product/publication epochs. Early750
+phases retain physical copies and612's native shared suffix. Final46 differences
+expose the first source's wrong562 clear of734: target entry4DE289 skips it.
+Removing that write restores the entire payload. Old-source and valid-index
+last-remap generated-object negatives fail. No runtime matrix/compiler-profile
+change. See
+[complete source/evidence/commands](SAKUYA_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance census/readback passes; complete serial cold replay passes520 units/
+all1408 accepted functions. Receipt: `build/exact-first-sakuya-action-entry-20261025/cold-all.log`.
+
+Prior transition: **Marisa Fighter action initializer4B89C0 is exact;
+continue independently reviewed same-slot family peers**.
+Formal and independent cold builds reproduce2446 callable/full3034 payload
+bytes, SHA256 `fc233d82...`, with all115 relocations replayed. Raw CFG reaches
+all589 main instructions/2446 bytes and closes38 RETs/four45AF40 tails plus
+478E60/477830. Both23/32 destination tables and363 remap bytes agree, including
+the actual ECX-indexed high range. Complete source preserves asymmetric4/5,
+this+4 scratch reset, independent414/422/432 product epochs and actual integer
+landing predicate's low-byte603 gate/real packet. Common scalar publications
+before products restore physical copies;542/547 publication order closes the
+last12 differences. A valid-index final-remap generated-object negative fails
+exactly at+3033. No runtime matrix or compiler-profile change. See
+[complete source/evidence/commands](MARISA_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance census/readback passes; complete serial cold replay passes519 units/
+all1407 accepted functions. Receipt: `build/exact-first-marisa-action-entry-20261025/cold-all.log`.
+
+Prior transition: **Tenshi Fighter action initializer64A0A0 is exact;
+continue independently reviewed same-slot family peers**.
+Formal and independent cold builds reproduce2453 callable/full3023 payload
+bytes, SHA256 `4ab44016...`, with all108 relocations replayed. Raw CFG reaches
+all585 main instructions/2453 bytes and closes40 RETs,24 zero-motion calls,
+three spawn calls, one face call and one common-initializer CALL. All47
+switch destinations/376 remap bytes and six adjacent alignment bytes agree.
+The used outer404 packet restores the28-byte frame and ordinary CALL/RETs;
+distinct602 and pre-call560 publications recover physical entries.601/605
+publication epochs close the final17 unmasked byte differences. A valid-index
+last-remap generated-object negative fails exactly at+3022. No runtime matrix,
+compiler-profile change or prior-source/header/binding change. See
+[complete source/evidence/commands](TENSHI_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance census passes; complete serial cold replay passes518 units/all1406
+accepted functions. Receipt: `build/exact-first-tenshi-action-entry-20261025/cold-all.log`.
+
+Prior transition: **retain complete Suika Fighter action initializer5AD4A0;
+two whole-payload neutral controls close its publication questions, so switch
+to a fresh independently reviewed same-slot peer**.
+Suika now has selected complete2577-byte-target source/full3171 target payload.
+All629 main instructions/2577 bytes are reachable;40 RETs/seven45AF40 tails/
+477830 default and both24/32 destination tables/366 remap bytes are reviewed.
+Formal and independent cold source3139 SHA256 `ce5845dc...` remains nonexact+15.
+Correct unsigned-to-float RNG conversion restores the actual dword2^32 reads;
+the rebased197-byte eight-spawn-loop window agrees, rejecting the old double
+view at+13. This window is diagnostic only; root exactness remains false.
+Source has22/23 zero calls and39/40 RETs;401/402 prefix order, pooled525 call
+and740 shared tail remain. Grouped740 clears and independent520 ordering both
+reproduce identical full bytes. Stop those controls absent new evidence; no
+LTCG impossibility or behavior matrix. See
+[complete source/evidence/commands](SUIKA_ACTION_INITIALIZATION_2026_10_25.md).
+
+Patchouli Fighter initializer51D650 remains exact3132 callable/full3868 bytes.
+Formal and independent cold ordinary VC8 source reproduce full target SHA256
+`ec90d466...` with all136 relocations replayed. Raw CFG reaches all732 main
+instructions/3132 bytes and closes41 RETs/seven45AF40 tails/477830 default.
+Two remaps and a15-way direct card table retain71 destination words/447 index
+bytes. First complete source3792 versus3868 exposes414's incorrectly shared
+suffix. Actual horizontal/vertical consumption around clears, independent
+797/798 entries and580 publication order restore the complete target. The
+unconditional three-by-five card path and Y-before-height epoch are separately
+reviewed. No new behavior matrix or compiler flags. See
+[complete source/evidence/commands](PATCHOULI_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance check passes; complete serial cold replay passes517 units/all1405
+accepted functions. Receipt: `build/exact-first-patchouli-action-entry-20261025/cold-all.log`.
+
+Yukari Fighter initializer58A4F0 remains exact3455 callable/full4381 bytes.
+Formal and independent cold ordinary VC8 source reproduce full target SHA256
+`e0a7822f...` with all151 relocations replayed. Complete raw CFG closes866
+reachable instructions/36 RETs/four45AF40 tails and477830 default; all57
+destination words and696 remap bytes compare equal. The first complete source
+compared4326 versus4381. Independent constant arms, actual case-local797/798
+spawn packets and explicit scalar publications restore the target's complete
+shape. The final two x87 store/pop differences expose a real214 error:73C=10
+but74C=0, not10. Correcting it gives whole-payload exact; a one-case actual
+scratch-helper witness rejects the old value at74E/74F. No behavior matrix or
+new compiler-profile claim. See
+[the complete source/evidence/commands](YUKARI_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance check passes; a complete serial cold replay passes516 units/all1404
+accepted functions. Receipt: `build/exact-first-yukari-action-entry-20261025/cold-all.log`.
+
+Retain complete common Fighter initializer477830; its genuine Reimu caller-
+visibility control is whole-payload neutral.
+Common477830 now has complete ordinary C++ source. Raw CFG closes4849 main
+bytes/1268 reachable instructions/46 RETs/seven45AF40 tails; full5521 includes
+three destination tables and336 remap bytes. Formal and independent cold source
+emit5305 SHA256 `2b5e6418...`, nonexact+0x14. All physical direct-call/tail counts,
+table dimensions and remaps agree.432 actual-root guard and96 card-phase native
+diagnostics pass; an independent short-action/byte-direction witness matches
+all52 bytes of435240. These are bounded diagnostics, not root exact credit.
+Game policy plus actual Alice/Reimu tails establish authored ownership; no
+particular nominal RTTI class is established. Genuine same-TU common/Reimu
+visibility changes neither complete payload. Regional690 control changes five
+bytes without resolving shared returns. Preserve receipts and do not repeat
+these controls without new evidence. Original TU/shared-tail/FP scheduling is
+unknown, with no LTCG impossibility proved. See
+[the source/evidence/commands](COMMON_ACTION_INITIALIZATION_2026_10_25.md).
+
+Reimu primary slot3C now has complete ordinary C++ source. Raw CFG closes3785
+main bytes/960 reachable instructions/39 RETs/one477830 default tail; the full
+4738-byte payload includes63 destination words/696 index bytes and all alignment.
+Formal and independent fresh source4702, SHA256 `e14c2c80...`, remains nonexact
+at+0x28. Direct-call counts/table dimensions/index bytes agree. A scoped native
+check rejected28 missing-byte750 counterexamples; the corrected five source
+arms pass210 native scalar-state cases through actual RET0/zero-motion helper.
+The byte-direction declaration is supported by actual437C00 provider reads and
+an independently exact52-byte435240 forwarding witness. No root exact credit.
+Original TU/shared-tail/FP scheduling remains unknown. Preserve the complete
+controls, including a neutral facing-expression control and rejected real input/
+product captures; do not repeat them without new evidence. See
+[the full source/evidence/commands](REIMU_ACTION_INITIALIZATION_2026_10_25.md).
+
+Continue SakuyaObject slot284E0D30 from its first complete source/comparison
+above. The boundary and full metadata are now reconciled, and the source is
+present. Preserve target-specific scalar widths, call epochs and real packet
+lifetimes while diagnosing803 alpha sharing and the52/47 RET discrepancy.
+Youmu Fighter53A1D0 is now source-present and parked at the recorded601/604
+layout residual; it is distinct from the parked YoumuObject initializer543670.
+Keep parked common/Reimu/Udonge residuals closed absent new target evidence.
+No fake callers, compiler flag grid or fabricated register ABI.
+
+Complete CSelect constructor4231A0 remains parked: main4247/4247, SHA256
+`76c04f84...`,13 differences at423D13..423D28 in407160 argument preparation.
+All461 remote EH code/188 metadata bytes agree, including19 natural unwind
+actions. Both final parameter/wrapper controls are whole-payload neutral.
+This is source-present, not exact; preserve the recorded residual. See
+[the evidence](SELECT_CONSTRUCTOR_2026_10_25.md).
+
+Complete YoumuObject update53CEA0 remains parked. Its retained probe emits26784
+versus26576 target, SHA256 `73359b44...`, nonexact+8 at frame0x40/0x48.
+Independent899 case assignments restore the twelfth destination table/all632
+metadata bytes. Direct800 cosine consumption and900 product association follow
+target instructions. Its200-byte remap and19 of20 direct-callee counts agree;
+frame calls remain13/16, virtual calls30/30, RETs57/49. Two targeted break/guard
+controls reproduce the old full payload byte-for-byte: close those questions.
+Fourteen scoped930 and four900 native prefixes pass. The earlier float-square-
+sum negative fails4/14; older4963A0 cold-replays exact66/66. Full instruction/
+default-arm review is incomplete, so retain the compiling hypothesis outside
+implemented.csv and matches.csv. No TU/LTCG impossibility is established.
+See [the evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
+
+Complete RemiliaObject update557690 stays parked. Remilia remains full
+18360 versus18388 target, SHA256 `89e5bd2e...`, nonexact+22 with15330 unequal
+byte positions. Its54 native angle/fade/movement prefixes pass; no new exact
+credit.12 table lengths and199 remap bytes agree; spawn28/29 and RETs32/28
+remain different. The full source and all finite controls are preserved in
+[the evidence](REMILIA_OBJECT_UPDATE_2026_10_25.md).
+
+The826 positive-guard control leaves28 spawn calls; independent per-sequence
+frame exits add a target-absent tenth frame call. A real rounded Y scalar with
+two consumers reproduces the selected payload exactly, as did the common four-
+float packet.811 decrement variants remain unselected. Close these storage,
+guard and exit-spelling questions absent new evidence. The private preview
+was corrected to replay every relocation even when a rejected section exceeds
+the target length; the public full comparator and selected source were already
+complete. This does not establish a TU/LTCG impossibility.
+
+Read-only roster census identifies the next smallest unselected Object update:
+YoumuObject53CEA0, candidate25944 bytes, primary vtable6C50BC/cell6C50E4.
+Its candidate/origin ledger is authored by the RTTI-backed roster rule. The role
+is mapped and one reproducible probe unit exists, but there is no selected source
+or exact claim. Its complete raw CFG now closes6233 reachable
+instructions/49 RET0s/224 direct and30 virtual calls. All632 metadata bytes are
+partitioned:108 DWORD destinations and200 remap bytes; full payload26576 ends
+at543670. Three unreachable alignment LEAs remain in the comparison extent.
+The single384MiB readonly Ghidra hypothesis completed after target/entry/all
+mapped-section attestation; transaction rollback/readback and all nine primary
+project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
+The first full body has been compiled/compared as described above. The separate Youmu initializer543670
+remains parked; do not reopen it as part of this new update scope.
+Source-present1559/mapped1578; exact ledger1412/381108 bytes, units598. Use locked
+`scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
+mandatory local CI before every commit/push. IDA still has the wrong executable;
+use hash-attested raw bytes. Latest aggregate cold replay is the Remilia checkpoint above.
+
+Exact-first reconstruction checkpoint: 2026-10-25. Remilia input policy
+`0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
+Suika `0x5AED00`, Youmu `0x53B410`, Yuyuko `0x56DEB0`, Yukari `0x58C2E0`
+Iku `0x631340`, Komachi `0x5F7AB0`, Aya `0x618660`, Alice `0x4FACD0`,
+Reimu `0x494810`, Udonge `0x5D2C70` and Patchouli `0x51EF60` cold-replay exact.
+The fourteen-function cohort adds87251 code bytes; latest peer adds6351 and
+matches its first complete source. All fifteen roster slot50 policies now have
+complete source. Marisa7664/full7768 remains nonexact and parked after neutral
+controls. Marisa CPU4B4070 has complete source and1134 scoped native-helper
+inputs; full16867 remains nonexact at+12E and its physical tail controls are
+parked. The subsequent Marisa slot5C control mode4B8280 now has complete
+reviewed1771-byte source/full1788-byte payload, with only a nine-byte receiver
+schedule residual at+3CD. Its ordered facing predicate fixes four native NaN
+counterexamples;18 bounded prefixes pass. ABI/argument controls are neutral,
+so select another complete representative instead of repeating spelling trials.
+Iku's next complete slot5C representative62F450 now accepts2609 callable and
+all2916 emitted bytes after four focused corrections, formal and independent
+cold builds. Continue independently reviewed slot5C family peers; keep Marisa
+parked. Tenshi649330 now has a complete reviewed2973-byte-target source;
+full3252 versus3268 remains nonexact after two byte-neutral controls. Its EBP
+constant-promotion residual is parked; select another complete same-slot peer.
+Alice's next slot5C peer4F8E00 accepts2284 callable/full2560 payload bytes
+in formal and independent cold builds. First whole comparison catches the
+actual state2-to3 continuation; one correction makes the complete unit exact.
+Patchouli51CB40 now has complete reviewed source2686/full2736, nonexact at41
+frame/stack bytes. Operand-order and consumed-pair storage recover instruction
+forms; the pair-structure control is neutral and grouped storage regresses.
+Keep this local-layout residual parked and select another complete peer.
+Yukari5893C0 now has complete3934-byte-target source; full4244 remains nonexact
+against4260. All63 physical calls agree; addition-order and double-capture
+controls reproduce identical bytes. Preserve its physical-layout residual and
+continue another complete peer. Suika5AC680 now has complete3292-byte-target
+source/full3564 against3568. Both real tails and the final backward store edge
+are reviewed; byte255 fixes a decrement form but constant promotion/shared
+callback layout remains nonexact. Keep this finite experiment checkpoint and
+select another complete peer. Sakuya4DD7E0 subsequently accepts1796 callable/
+all2116 emitted bytes in formal and independent cold builds. Fresh target review
+removes unsupported old stores/widths; descending timer cases and independently
+retained facing arms recover every byte. Continue the remaining same-slot peers;
+keep the recorded layout residuals parked. Yuyuko56C170 now accepts1653 callable/
+all1688 emitted bytes in formal and independent cold builds. Complete raw review
+retains movement continuation/return differences and the signed timer/burst
+packet family. Shared callback order and capacity operand ownership recover
+exactness after two focused corrections. Aya616800 now has complete reviewed
+1726-byte-target source/full2020 against2004. It restores both physical mode2
+vertical RNG sites and all30 calls. Forward conversion/common callback layout
+remains nonexact; unsigned-capture and split-state controls are byte-neutral,
+while explicit exits merge target-retained calls. Park and continue remaining
+peers. Reimu491450 now accepts1566 callable/all1844 emitted bytes in formal and
+independent cold builds. Correct facingFF/state4-to1 semantics restore the real
+minus-one lifetime; final-case early return recovers the shared callback.
+All15 slot5C owners now have complete selected source:9 exact ledger records,
+6 parked nonexact residuals. This cohort audit is not a new aggregate cold
+replay. Next choose a new complete medium/large authored representative;
+reopen parked controls only with new independent evidence. The next bounded
+representative Alice CPU slot58 `4F4B80` now has complete selected16354-byte-target
+source/full16869 against17009. Raw traversal closes4174 instructions/48 RETs,
+all nine destination/two remap tables. The h250..400 correction restores a real
+RNG draw rejected by3 negative controls; all44 scoped native-helper inputs pass.
+Action/attack helper counts agree; policy duration copies remain30 versus37,
+with42/48 RETs and a temporary-slot mismatch+35 despite the restored12-byte
+frame. Formal and independent cold whole comparisons retain the same nonexact
+SHA. See `docs/ALICE_CPU_TARGET_2026_10_24.md`. All15 roster CPU owners now have
+selected complete source through five roots; this is source-only coverage.
+Keep the stack/shared-tail residual parked and select a new complete authored
+representative unless independent evidence opens it; exact totals unchanged.
+The next complete SakuyaObject slot3C initializer4E8060 now has6538 callable/
+full6868-byte source. Formal and independent cold comparisons retain only13
+unmasked differing bytes in803, first+2B3; all330 metadata/alignment bytes,
+all107 direct/25 virtual calls and the real596370 tail agree. Case-scoped
+payload lifetimes restore that tail; direct unsigned/float expressions retain
+native correction widths. A double capture preserves901's actual heading-read
+epoch:2 bounded native prefixes pass and old source fails the alias case.
+Two subsequent word-carrier/return-view controls are byte-neutral. Preserve
+this register/schedule residual and select another complete representative.
+See `docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md`; no exact credit is added.
+Udonge Fighter slot3C5D0E60 now has complete4057-byte-target source/full5118
+against5070. Function-scope real payload restores CALL/RET; byte-facing effect
+arguments recover all30 motion calls. Three28/31/19 tables and all695 remap
+bytes are retained; the remaps compare equal. Three extra visual-reset copies,
+regional placement and x87 scheduling remain nonexact+16. Ten scoped native
+controls pass, including nine real RETs and308's pre-spawn prefix; unsigned
+skill guard fails the -1 negative control. Label and typed-prefix controls
+are byte-neutral; preserve receipts and switch representative. Formal/cold
+payloads agree. See `docs/UDONGE_ACTION_ENTRY_2026_10_24.md`; exact unchanged.
+YukariObject slot3C5964C0 now has complete7588-byte-target source/full7888
+against7920. All92 direct/28 virtual calls and real596370 tail remain;33 table
+entries and all200 remap bytes survive, remap independently equal. VC8 folds
+the target-retained851/854 suffix, leaving28 versus29 RETs and an825 epilogue
+schedule residual. Explicit-return and nested-switch controls are byte-neutral.
+Eleven scoped native inputs pass:8 real RETs and3 selector-entry prefixes.
+Positive-only selection fails negative/NaN; unsigned998 facing failsFF. Formal
+and independent cold canonical payloads agree. Keep this finite residual parked
+and select another complete representative. See `docs/YUKARI_OBJECT_ENTRY_2026_10_24.md`;
+exact unchanged.
+KomachiObject slot3C600390 now has complete6216-byte-target source/full6540.
+Formal and independent cold builds differ at only7 unmasked bytes: entry input
+pointer register and817 x87 addition operand order; all324 metadata bytes,
+115 direct/24 virtual calls and25 RETs agree. First whole comparison exposes
+902 third-payload-word and930 selector/guard omissions, both corrected. Eight
+scoped native inputs pass with original selector/frame/RNG helpers; unguarded930
+fails3 and unrounded810 product fails2 (both x87 precision modes). Two arithmetic
+spelling controls are byte-neutral. Preserve this residual and switch complete
+representative. See `docs/KOMACHI_OBJECT_ENTRY_2026_10_24.md`; exact unchanged.
+IkuObject slot3C63B310 now accepts6229 callable/all6551 emitted bytes on its
+first complete source. Formal and independent cold comparisons reproduce the
+target payload SHA328ac0f1... with all226 relocations replayed. Complete CFG
+closes1630 instructions/29 RETs/84 direct and25 virtual calls plus the real980
+tail. Its signed823 parent-skill guard, ordered-positive899/995 selectors,
+case-local payloads and distinct float-rounding boundaries are independently
+reviewed. See `docs/IKU_OBJECT_ENTRY_2026_10_24.md`. Continue independently
+reviewed Object slot3C peers; keep previous residuals parked. A fresh sequential
+`verify-exact-units.py --all` passes513 cold units/all1401 accepted functions;
+full Iku payload audit also passes after that replay. Receipt:
+`build/exact-first-iku-object-entry-20261024/cold-all.log`.
+TenshiObject slot3C657150 now has complete8590-byte-target source/full8902.
+Formal and independent cold objects agree but remain nonexact at3672 unmasked
+bytes, first+6A7. All141 direct/26 virtual calls,24 RETs, real980 tail and198
+remap bytes remain. Consumed heading captures restore801/920 read epochs;
+inclusive50 direction guards are independently confirmed. Ten scoped native
+inputs complete real RETs; old heading source fails2 aliases and <=49 fails2
+actual50 rolls. Two pointer/return-view controls are byte-neutral. Preserve
+the trig-pointer/register and regional-scheduling residual; switch complete
+representative. See `docs/TENSHI_OBJECT_ENTRY_2026_10_24.md`. Exact unchanged;
+the Iku aggregate cold receipt above predates this nonexact source addition.
+SuikaObject slot3C5BD380 now has complete8956-byte-target source/full9268 against
+9284. All153 direct/29 virtual calls,26 RETs and real980 tail remain;200 remap
+bytes compare equal. Real consumed double products restore four arithmetic
+forms. Twelve scoped native RETs pass:812 ordered vertical-sign/NaN and815/940
+product/input cancellation in both x87 precision modes. Float product captures
+fail8 negative controls; unordered sign fails1. Formal/cold payloads agree but
+retain6664 unmasked differing bytes/length difference, first+80. Two subsequent
+pointer/return-view controls are byte-neutral. Park trig-pointer/register,
+loop-entry and999 scheduling residuals; select another complete representative.
+See `docs/SUIKA_OBJECT_ENTRY_2026_10_24.md`; exact unchanged.
+MarisaObject slot3C4C8050 now has complete10126-byte-target source/full10536
+against10532. All146 direct/43 virtual calls,45 RETs and real980 tail remain;
+200 remap bytes compare equal. Whole comparison corrects822's third payload
+item; that306-byte region now compares equal without partial credit. Real
+producer captures restore input-write conversion forms. Ten native RETs pass
+for821 H[0] selection,902 raw MT modulo and900 match-table range. H[2] selection
+fails3 negative controls; bounded RNG substitution fails1; wrong822 item changes
+one canonical displacement. Formal/cold payloads agree but retain5019 unmasked
+differences, first+80. Two resource-carrier controls are byte-neutral. Park
+register/constant/table-order/tail placement residuals; select another complete
+representative. See `docs/MARISA_OBJECT_ENTRY_2026_10_24.md`; exact unchanged.
+AliceObject slot3C50C1C0 now accepts10715 callable/all11072 emitted bytes in
+formal and independent cold builds, zero unmasked differences. Whole comparison
+corrects801's second packet item and inclusive float-loop endpoint, retains998's
+explicit no-op metadata and recovers849's negated angular guards. All129 direct/
+34 virtual calls,33 RETs, real980 tail and all357 alignment/table bytes agree.
+Eleven angle/distance regions preserve separate opponent/target pointer sources.
+See `docs/ALICE_OBJECT_ENTRY_2026_10_24.md`. Continue independently reviewed Object
+slot3C peers; keep the recorded nonexact residuals parked. Fresh sequential cold
+replay passes514 units/all1402 accepted functions. The final Alice full-payload
+audit also passes11072/11072 after that rebuild.
+Public CI environment repair: failed GitHub run40100514887 exposed missing
+Unicorn and21 unguarded private-target evidence tests. The requirements now pin
+Unicorn1.0.2 and setuptools75.8.0 explicitly; only unavailable target-backed
+tests skip, and a present wrong target still fails identity attestation.
+TH10's `scripts/repo-python` was reviewed read-only at887e0bab2dd6; its decoder
+selection pattern motivates the TH105 entry point. TH105 now selects one
+`.venv` interpreter, pins CPython3.11.14 in `.python-version`, and verifies the
+requirements plus importable native decoder/emulator APIs before each command.
+CI reads the same version file and uses the same launcher. Ambient PYTHONPATH/
+PYTHONHOME are cleared; TH105_PYTHON is an explicit, equally checked override.
+A completely isolated public checkout has no target/compiler/analysis state;
+its locked Python3.11 CI passes476 tests with31 target-dependent skips, including
+all ten new launcher/environment controls. A present-wrong-target negative
+control errors instead of skipping. Receipts are below
+`build/ci-public-checkout-20261024/`. Locked CPython3.11.14/Capstone4.0.2 full
+cold replay passes514 units/all1402 accepted functions (`locked-cold-all.log`),
+and final Alice/Iku complete-payload audits also pass11072/6551 bytes. Commit
+14424e6's remote run40102251773 succeeds. Final local CI remains mandatory
+before every commit; repository Python commands use the locked launcher.
+PatchouliObject slot3C52D200 now has complete10831-byte-target source/full11180.
+Formal and independent cold payloads agree, retain all164 direct/27 virtual calls,
+32 RETs, real980 tail and199 identical remap bytes, but remain nonexact at3127
+unmasked bytes, first+7F. Explicit unsigned/float conversion recovers three FADD
+widths; independently observed signed-WORD secondary key removes the extension.
+Eight native inputs pass:6 real RETs for rounded products/ordered equality and
+2 first-spawn loop fragments for unsigned subtraction. Three complete negative
+sources each fail2 inputs. Fresh-pointer and trig-return controls are byte-neutral;
+park854 pointer/register and conversion scheduling, then select another complete
+peer. See `docs/PATCHOULI_OBJECT_ENTRY_2026_10_24.md`. No exact credit is added.
+The two new literal keys leave all existing bindings unchanged; whole-object and
+explicit-binding scans of all514 accepted units find none affected. This is not
+a new aggregate cold replay; the cited locked aggregate predates this addition.
+YuyukoObject slot3C578000 now has complete10828-byte-target source/full11139
+against11143. Formal and independent cold payloads agree; all169 direct/26
+virtual calls,29 RETs, real980 tail and199 remap bytes survive. Whole comparison
+corrects816's untouched second packet word,826's post-loop immediate return,
+857's native expression materialization and922's retained x87 F10C100. Eight
+scoped native inputs pass:4 real RETs and4 first-spawn fragments. Four consumed-
+rounding/retained-value/angle/packet negative sources fail2/1/2/2 inputs. Fresh
+pointer and float-trig-return views are byte-neutral; park the three missing
+trig pointer copies and following register/call scheduling. See
+`docs/YUYUKO_OBJECT_ENTRY_2026_10_24.md`. No exact credit is added. The new0.05
+literal key leaves all existing bindings unchanged; whole-object and explicit-
+binding scans of all514 accepted units find none affected. This is not a new
+aggregate replay. That checkpoint selected the remaining UdongeObject slot3C
+root5DF0E0 for independent review.
+UdongeObject5DF0E0 now accepts10723 callable/all11112 emitted bytes in formal
+and independent cold builds, with all500 relocations replayed. Full raw closure
+retains2712 reachable instructions/26 alignment bytes,174 direct/28 virtual
+calls,37 RETs, all three destination tables,199 remap bytes and the real980 tail.
+Observed shared tails, low-WORD selector call view, explicit858 no-op,853 packet
+store order and857 branch stores recover the structure. Sharing the real
+computed scale removes an extra round trip; reusing859's inner float index and
+the common result at their observed shared stack location resolves the last two
+bytes. Four native RET inputs pass; the first complete source fails both alpha-
+alias controls. See `docs/UDONGE_OBJECT_ENTRY_2026_10_24.md`. A fresh sequential
+`verify-exact-units.py --all` passes515 cold units/all1403 accepted functions;
+the final full Udonge audit also passes11112/11112 after that rebuild. New0.71/17
+literal keys leave old bindings unchanged. All15 Object slot3C roots now have
+selected source:3 exact and12 implemented/nonexact; this census adds no credit
+to the12 parked roots. Choose a new complete medium/large authored representative
+and reopen a peer only with new independent evidence.
+Commit format:
+`gpt-6.1-sol: ...`.
+
+Current priority remains complete large-function exactness before gameplay
+naming. Keep necessary types, offsets, numeric states, control flow and side
+effects, and compare the entire function early. The read-only TH075 review is
+in [the workflow](RE_WORKFLOW.md#exact-first-priority-from-the-th075-review).
+Its VC7.1 compiler settings do not transfer to this VC8 target.
+
+The renewed user direction is to prioritize complete medium/large functions,
+compare the first complete source early, test one evidence-backed hypothesis
+per trial, and switch candidates after repeated neutral controls. Follow a
+successful representative through independently reviewed family differences.
+Keep large execution matrices scoped to concrete ambiguities and defer naming,
+beautification and abstraction. Compile serially at CPU0/nice10 and monitor
+available memory/swap. Commit and push stable checkpoints only after local CI.
+
+## Start here
+
+Read [AGENTS.md](../AGENTS.md), [architecture](ARCHITECTURE.md),
+[workflow](RE_WORKFLOW.md), relevant source and the scoped evidence before edits.
+Use one writable session, one bounded scope, no subagents/concurrent VC8 builds;
+claims.csv stays header-only. Heavy commands use CPU0/nice10.
+
+Only original Japanese 1.06a SHA256
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
+
+```sh
+git status --short
+scripts/repo-python scripts/verify-target.py
+scripts/repo-python scripts/check-ida-mcp.py
+scripts/repo-python scripts/report-reconstruction-status.py --summary
+scripts/repo-python scripts/validate-tracking.py --require-target
+```
+
+IDA still opens database SHA256
+`10350095bcf95edb59e03bee9849a2dc8a7714b4927ad5909c569c550fce6822`.
+Its failed preflight blocks that session's semantics and writes. Raw inspection
+of the hash-attested target PE remains available. Independently attest any
+Ghidra import and use at most one process; preserve primary analysis databases.
+
+| Ledger layer | Current value |
+| --- | ---: |
+| Provisional candidates | 4024 |
+| Authored / excluded / origin review | 1595 / 1418 / 1011 |
+| Mapped / source-present | 1558 / 1540 |
+| Accepted authored exact | 1402 functions / 349017 bytes |
+| Provisional authored byte denominator | 2136806 |
+| Match units / configured functions | 578 / 1546 |
+
+The latest sequential cold replay uses the locked repository environment:
+`scripts/repo-python scripts/verify-exact-units.py --all` passes514 units/all1402
+accepted functions. Alice/Iku full-payload audits pass11072/6551 bytes after that
+rebuild. Receipt: `build/ci-public-checkout-20261024/locked-cold-all.log`.
+Replay affected accepted units after shared changes; future aggregate claims
+require another cold replay.
+
+## Current checkpoint: exact Reimu slot5C control mode 0x491450
+
+[Complete source and evidence](REIMU_CONTROL_MODE_2026_10_24.md) closes1566
+callable bytes/390 instructions/8 RETs/24 calls/one virtual CPU tail and all278
+alignment/table bytes. Formal and independent cold builds accept1844/1844:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-control-mode --compare --json
+python3 scripts/audit-reimu-control-mode.py
+```
+
+Both return0. Full canonical SHA256:
+`26d73763276489c86f7e0ce6498702d7edb940224a09217c0d1074cc3db419e5`.
+Fresh complete target review corrects facingFF before readiness, state4's
+successful continuation to1 and actual double motion/divisor widths. These
+semantics recover the minus-one lifetime without register shaping. First full
+source differs only in shared callback ownership; explicit native final-case
+early return makes all48 relocations and the complete payload exact. Generated
+first-table addend negative fails+0x620. No shared binding/header or compiler
+change and no broad matrix. Full owner/TU remain unknown. Origin subset is
+45/1027032, with immutable73-root witness/dispositions unchanged.
+
+Raw-vtable/source/match-ledger audit now confirms complete source for all15
+slot5C owners,9 exact ledger records and6 parked residuals. Only Reimu receives
+new cold acceptance here. Next choose a complete medium/large representative
+from another authored family; do not reopen parked spelling controls without
+new independent evidence.
+
+## Parked representative: Aya slot5C control mode 0x616800
+
+[Complete source and residual](AYA_CONTROL_MODE_2026_10_24.md) closes1726
+callable target bytes/457 instructions/11 RETs/30 calls/one virtual CPU tail
+and all278 alignment/table bytes. Complete2020-byte source remains nonexact
+against2004:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-control-mode --compare --json
+python3 scripts/audit-aya-control-mode.py
+```
+
+Both correctly return1, first+0xA1 is a downstream return displacement.
+Selected full SHA256:
+`81bede8d9b0e07a86bcc97ed981e8b5248f60aeaa0bf9ca15c943bdb7f380839`.
+Fresh review replaces the unselected draft: pointer-only ABI, double80/10/8,
+actual callback/state order and two separate mode2 vertical selectors. All14
+selectors/4 facing/1 deque/11 virtual sites agree. Forward-conversion sharing
+and physical action702/703/common-return placement remain. Unsigned result
+captures and a split state gate are byte-neutral. Explicit conversion/callback
+labels merge retained selectors or callbacks and lose the conditional EBP
+lifetime; reject them. Keep the structured complete source and switch peer;
+new lifetime/TU evidence is needed to reopen. No exact credit, shared binding
+change, compiler search or broad matrix. Origin subset46/1028598 is unchanged.
+
+## Exact peer: Yuyuko slot5C control mode 0x56C170
+
+[Complete source and evidence](YUYUKO_CONTROL_MODE_2026_10_24.md) closes1653
+callable bytes/435 instructions/7 RETs/27 calls/one virtual CPU tail and all35
+alignment/table bytes. Formal and independent cold builds accept1688/1688:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-yuyuko-control-mode --compare --json
+python3 scripts/audit-yuyuko-control-mode.py
+```
+
+Both return0. Full canonical SHA256:
+`16a2e95625b1ac1f978f9615242d9e67472885c5e631a7254d0a4046a8f886bf`.
+The complete source independently retains edge motion continuation versus
+central return, state2 peer fallback, position-dependent725/726, signed timer
+modulo30 and identifier-specific capacity. The twelve-spawn loop consumes the
+actual three-float packet and captured RNG x/y; variant1/direction byte/wave13
+are preserved. Initial whole comparison exposes one duplicate callback and
+reversed capacity loads. Native branch order then count-left comparison make
+all62 relocations and the complete payload exact. A generated first-table
+negative fails+0x678. No shared bindings/headers, compiler changes or broad
+matrix. Full owner/TU and invalid-identifier behavior remain unknown. Origin
+subset46/1028598 retains its immutable73-root witness and all dispositions.
+Continue remaining independently reviewed peers; previous residuals stay parked.
+
+## Exact peer: Sakuya slot5C control mode 0x4DD7E0
+
+[Complete source and evidence](SAKUYA_CONTROL_MODE_2026_10_24.md) closes1796
+callable bytes/451 instructions/8 RETs/26 calls/four facing tails/one CPU tail
+and all320 table bytes. Formal and independent cold builds accept2116/2116:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-sakuya-control-mode --compare --json
+python3 scripts/audit-sakuya-control-mode.py
+```
+
+Both return0. Full canonical SHA256:
+`7e064ea6ed9ee825d5e4bd7f2ae47810e9acf3446d8f44d12f43fa0ce865ce9f`.
+The existing unselected probe is replaced after full raw review: no4A8/4AC
+writes, double3/12/60, true callback/state/tail order and pointer-only ABI views.
+First full source narrows differences to timer case ordering and facing-arm
+placement. Descending cases recover native timer blocks; independently retained
+facing arms recover the complete payload without shaping code or profile changes.
+All61 relocations replay; a generated first-table addend negative fails+0x704.
+Only1796 callable bytes earn credit. No shared binding/header changes or broad
+matrix. Full owner layout/TU unknown. Origin subset47/1030251 retains its immutable
+73-root witness and all dispositions. Continue remaining independently reviewed
+slot5C peers; previous recorded residuals stay parked.
+
+## Parked representative: Suika slot5C control mode 0x5AC680
+
+[Complete source and residual](SUIKA_CONTROL_MODE_2026_10_24.md) closes3292
+callable target bytes/869 instructions/13 RETs/75 calls and both real tails,
+plus276 table bytes. Complete3564-byte source remains nonexact against3568:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-suika-control-mode --compare --json
+python3 scripts/audit-suika-control-mode.py
+```
+
+Both correctly return1, first+2 register/save allocation. Selected full SHA256:
+`5c4dd2b795f337de69cb509126b23997b5cacf985049af5b2d4fe039a0d76aab`.
+All45 selectors/11 facing/one deque CALL and both tails remain. Native edge
+continuation versus central return, abs of boolean comparison, inclusive and
+strict20 thresholds, state1-before740 and final backward store are retained.
+Unsigned byte255 fixes timer-decrement instruction; bool184 is byte-neutral.
+Explicit sequence endpoints alter layout and double RNG conversion changes
+31 correction widths, so both controls are unselected. Constant promotion,
+conditional EDI save and callback-tail sharing need new lifetime/TU evidence;
+park and switch to another independently reviewed peer. Two new literals are
+explicitly scoped here; no previous binding/header/source changes or exact
+credit. No large matrix or compiler search.
+
+## Parked representative: Yukari slot5C control mode 0x5893C0
+
+[Complete source and residual](YUKARI_CONTROL_MODE_2026_10_24.md) closes3934
+callable target bytes/1045 instructions/16 RETs/63 calls and all326 metadata/
+alignment bytes. Complete4244-byte source remains nonexact against4260 target,
+first+0xAE due the downstream return displacement:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-yukari-control-mode --compare --json
+python3 scripts/audit-yukari-control-mode.py
+```
+
+Both correctly return1. Selected canonical SHA256:
+`be2a46e3e11ae1500dd25b54d5634fb0d4d6ec631cedf52e5d9c5d8387badf04`.
+All63 physical calls now agree, including27 selectors/six spawns/19 virtual
+calls. Raw signed fields, peer168/170 distinction, zero-then-continue spawn,
+double(float0.33) coefficient, pre/post callback writes and retained ring
+packet are reviewed. One literal mapping is explicitly scoped to this unit;
+existing bindings remain unchanged. Mobility block placement, state store/Y
+load scheduling and radial stack slots remain. Label controls do not solve
+placement. Addition-order and double-capture controls are byte-neutral; park
+and switch peer. No exact credit, compiler search or runtime matrix. Full
+owner layout/TU remains unknown.
+
+## Parked representative: Patchouli slot5C control mode 0x51CB40
+
+[Complete source and residual](PATCHOULI_CONTROL_MODE_2026_10_24.md) closes2686
+callable target bytes/710 instructions/10 RETs/33 calls plus50 alignment/table
+bytes. Complete same-size2736-byte source is nonexact at+8, frame4C versus44:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-patchouli-control-mode --compare --json
+python3 scripts/audit-patchouli-control-mode.py
+```
+
+Both correctly return1. Selected canonical SHA256:
+`1fbbee3ca927710d63d1b3a1ce9fce08fa81c3df67b289c2bce6cb54d8186885`.
+All instruction addresses/sizes/mnemonics and all50 metadata bytes agree.
+The41 byte differences are one frame immediate and40 ESP displacements; this
+classification gives no exact credit. The actual timer/action720 state4 guard,
+independent identifier rings, three-/four-word packets, two-float nested
+placement and sticky probability flag are reviewed. Operand-order and real
+pair storage recover forms. Struct-pair control is byte-neutral; grouped
+storage regresses and is unselected. Park until new lifetime/layout/TU evidence;
+continue another complete peer. No shared changes or runtime matrix. Full
+owner layout and nominal sine/cosine return types remain unknown.
+
+## Exact peer: Alice slot5C control mode 0x4F8E00
+
+[Complete source and evidence](ALICE_CONTROL_MODE_2026_10_24.md) closes2284
+callable bytes/581 instructions/10 RETs/44 calls/one virtual slot58 tail plus
+all276 metadata bytes. Formal and independent cold builds accept2560/2560:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-alice-control-mode --compare --json
+python3 scripts/audit-alice-control-mode.py
+```
+
+Both return0. Full canonical SHA256:
+`717b6ef1923f65dfa21adeac6764c10c9d511c5dce656c4f47f19e97a5678625`.
+First complete source has all44 calls but initially returns state2 motion to1.
+Native EDI=3/shared DI store proves continuation3; that one semantic correction
+makes the whole unit exact, including87 relocations and both destination/index
+tables. A generated table negative fails at+0x8EC. Main RET ends4F96EC with no
+alignment; full payload ends4F9800 before the separately accepted reset root.
+No shared header/flag/relocation changes, runtime matrix or profile search.
+Full owner layout/original TU remain unknown. Origin subset is48/1032047;
+its immutable73-root witness and all dispositions stay unchanged. Continue
+independently reviewed slot5C peers; Tenshi/Marisa remain parked.
+
+## Parked representative: Tenshi slot5C control mode 0x649330
+
+[Complete source and residual](TENSHI_CONTROL_MODE_2026_10_24.md) closes2973
+callable target bytes/713 instructions/20 RETs/25 calls/one virtual slot58 tail
+and all295 metadata/alignment bytes. Complete source full3252 remains nonexact
+against3268 target bytes, first+0xA6 due downstream branch displacement:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-tenshi-control-mode --compare --json
+python3 scripts/audit-tenshi-control-mode.py
+```
+
+Both correctly return1. Selected canonical SHA256:
+`779c8af0d46764e6a8e1f13fee4e8dde6f82fc768fede6ecc0034c04b156f063`.
+Native EBP holds3 across three spawn packets, then240; source uses immediates
+and omits its save/12 restores. All physical helper/callback counts, repeated
+peer checks, inclusive health thresholds and independent phase checks agree.
+Byte-variant and unsigned EQ-state controls reproduce the exact same candidate;
+retain source and receipts, switch representative without more spelling trials.
+The new float18 mapping is explicitly scoped to this unit, leaving all earlier
+relocation bindings unchanged. No runtime matrix or new exact credit. Full
+owner layout/original TU and constant-promotion context remain unknown.
+
+## Exact representative: Iku slot5C control mode 0x62F450
+
+[Complete source and evidence](IKU_CONTROL_MODE_2026_10_24.md) closes2609
+callable bytes/710 instructions/11 RETs/37 calls and all307 metadata/alignment
+bytes. Formal and independent cold builds accept the entire2916-byte payload:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-iku-control-mode --compare --json
+python3 scripts/audit-iku-control-mode.py
+```
+
+Both return0. Full SHA256:
+`fc3ed17f652b11d6aa7f5b053fb32a87ed72f4665e5455820c41afe50682b135`.
+The first complete build already has the full2916-byte extent. Target-backed
+changes recover FADD doubling, native case order, period assignment order and
+counter-first x87 comparison. All98 relocations and four destination/two index
+tables are compared; a generated table negative fails at+0xA34. No shared
+header/flags/relocation change or broad execution matrix. The real unsigned
+RNG-minus3 conversion and uninitialized invalid-identifier defaults remain as
+observed; do not normalize them. Full owner layout/TU and nominal cosine
+return type remain unknown. Continue independently checked same-slot peers.
+The full origin census also repairs the stale nonmatching Fighter subset:
+49 roots/1034331 bytes after14 prior input peers plus Iku leave that selector.
+Immutable73-root pointer evidence and all dispositions remain unchanged.
+The prior14 labels are already canonical-exact-authored; only Iku's label
+changes now. Local CI also checks the actual selector count/sum, preventing
+silent maintenance drift.
+
+## Parked representative: Marisa slot5C control mode 0x4B8280
+
+[Complete source and receipt](MARISA_CONTROL_MODE_2026_10_24.md) closes1771
+callable bytes/442 instructions/eight RETs/26 calls/one slot58 virtual tail and
+all17 switch metadata/alignment bytes. Complete1788-byte source is nonexact
+only at4B864D..4B8655: one MOV ECX,ESI is scheduled around the same argument and
+slot load. Full selected SHA256:
+`0db6d5c7835af8e00bbaaa6edb28851dc75ed6ee9a1699c13a2a670813026849`.
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-marisa-control-mode --compare --json
+python3 scripts/audit-marisa-control-mode.py
+taskset -c 0 nice -n 10 python3 scripts/audit-marisa-control-facing.py
+```
+
+Canonical commands return1; prefix diagnostic returns0 for18 original-helper
+inputs, stopping at genuine45BFE0 callback entry. The old <=640 facing ternary
+fails four NaN controls; actual ordered x>640 leaves NaN facing+1. Native exits,
+direct state reads, peer-positive state ownership and F64 widths are retained.
+Correct method declarations and an argument increment control both reproduce
+the same payload. Keep those receipts; switch representative unless new
+independent source/type/lifetime evidence addresses the receiver schedule.
+Original full owner layout/TU is unknown. No exact credit, shared changes,
+compiler-profile search or synthetic dependency. Private scope is
+`.analysis/exact-first-marisa-slot5c-20261024/` and its `build/` counterpart.
+
+## Parked representative: Marisa CPU policy 0x4B4070
+
+[Complete source and residual](MARISA_CPU_TARGET_2026_10_24.md) retains16229
+callable target bytes/4159 instructions/46 RETs/161 direct calls and16907 full
+target bytes. Selected full16867-byte payload remains nonexact at+12E:
+`b7872facbcbe0e9019026385d84694d52beb3e0d8eeecda5459b3411fda23127`.
+All eight destination/four index tables remain; no exact credit.
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-marisa-cpu-policy --compare --json
+python3 scripts/audit-marisa-cpu-policy.py
+taskset -c 0 nice -n 10 python3 scripts/audit-marisa-cpu-policy-paths.py
+```
+
+Canonical commands correctly return1; scoped execution returns0 on1134 inputs.
+The new h180 cases reject all four pre-fix inputs; actual gate is >=180. Native
+seed54 positively pins grounded/airborne opponent tails to vertical1/0, rejecting
+a mistaken zero-output ownership inference. That failed experiment was never
+selected. Ordered velocity/height checks, angle producer/consumer widths,
+integer thresholds, explicit action exits and policy214 sharing now follow raw
+instructions. First-stage1291 and attack1254 instruction counts agree; this is
+not canonical equality. Current source has119/121 selector sites and45/46 RETs;
+policy0's17/16 duration calls still merge with18. Approach100 placement, one
+shared facing tail and minor output scheduling remain. Original TU/compiler
+context is unknown, with no proof that LTCG is required.
+
+Receipts cover probe00..probe24 changes. Approach-label18 is byte-neutral;
+repeated-assignment23 still does not recover block placement or missing calls;
+independent-posture24 loses three more physical copies and is unselected.
+Park unchanged controls and select another complete representative; reopen only
+with independent source/lifetime evidence. Prior visibility/FP/profile trials
+remain parked. No shared source/header/layout/flag or relocation changes.
+This root is distinct from input4B9FA0. Recipes/reports remain under
+`.analysis/exact-first-marisa-cpu-20261024/` and its `build/` counterpart.
+
+## Exact family peer: Patchouli input policy 0x51EF60
+
+[Accepted peer/evidence](PATCHOULI_INPUT_POLICY_2026_10_24.md) closes1810
+instructions/35 RETs/six tails and all11 table entries. Callable6351 and full
+6396 bytes/128 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-patchouli-input-policy --compare --json
+python3 scripts/audit-patchouli-input-policy.py
+```
+
+Full canonical SHA256:
+`9f517cea7b41772006c05e97ef82af42ef960a44bcc54a27c7ee250160b07e6a`.
+Actual ground208/209 defaults, air201, fifth flag758, signed tier611, backward
+407/409 paths, nested post-query vertical reread and double120.0 are independently
+reviewed. Generated-table negative fails at+18D0. No source correction or compiler
+controls; earlier accepted sources/mappings are unchanged. All15 complete slot50
+policies have source,14 accepted exact. Select a fresh complete representative;
+Marisa's unchanged OR/shared-label placement trials stay parked.
+
+## Exact family peer: Udonge input policy 0x5D2C70
+
+[Accepted peer/evidence](UDONGE_INPUT_POLICY_2026_10_24.md) closes1919
+instructions/40 RETs/six tails and all10 table entries. Callable6684 and full
+6724 bytes/135 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-udonge-input-policy --compare --json
+python3 scripts/audit-udonge-input-policy.py
+```
+
+Full canonical SHA256:
+`20fb17b9a6f95c25aff1e7810bbd682c60f140bef07ba14f5d5df1e66eb9d31d`.
+Actual ground201/204 defaults, air200/202/205, tiers, repeated308, float90.0,
+three-float848 spawn packets and post-reset word7A6 clear are independently
+reviewed. Existing66-byte465190 spawn ABI is freshly checked and unchanged.
+Generated-table negative fails at+1A1C. No source correction or compiler controls;
+earlier accepted sources/mappings are unchanged. Continue Patchouli's complete
+slot50 peer; Marisa stays parked at its recorded placement residual.
+
+## Exact family peer: Reimu input policy 0x494810
+
+[Accepted peer/evidence](REIMU_INPUT_POLICY_2026_10_24.md) closes1992
+instructions/42 RETs/seven tails, nine destinations and all20 remapped edges.
+Callable6952 and full7008 bytes/142 relocations match in the first complete
+source and independent formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-reimu-input-policy --compare --json
+python3 scripts/audit-reimu-input-policy.py
+```
+
+Full canonical SHA256:
+`ab3651e356c3b26be806d10352bd9c5af0ea8c8c8101e4addfba7c262926125a`.
+Actual ground input initialization before the third deque read/default switch,
+sparse records, query500/502 versus action501/503, double120.0 and different
+window/resource order in groups6F8/6FC are independently reviewed. Generated
+destination/remap negatives fail at+1B28/+1B4C. No source correction or compiler
+controls; earlier accepted sources/mappings are unchanged. Continue remaining
+complete peers; Marisa stays parked.
+
+## Exact family peer: Alice input policy 0x4FACD0
+
+[Accepted peer/evidence](ALICE_INPUT_POLICY_2026_10_24.md) closes1912
+instructions/40 RETs/seven tails and all10 table entries. Callable6677 and full
+6720 bytes/132 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-alice-input-policy --compare --json
+python3 scripts/audit-alice-input-policy.py
+```
+
+Full canonical SHA256:
+`3b430021d2cc28d0ce1810de20a55331bcc62ffe584828375424624301cba764`.
+Actual eager input initialization, signed words7A4/7A6 after window calls,
+query546/545 versus action543/542, surface==1, one air308/416 and float140.0
+are independently reviewed. Generated-table negative fails at+1A18. No source
+correction or compiler/source-shape controls. Earlier accepted sources/mappings
+are unchanged. Continue remaining complete peers; Marisa stays parked.
+
+## Exact family peer: Aya input policy 0x618660
+
+[Accepted peer/evidence](AYA_INPUT_POLICY_2026_10_24.md) closes2021 instructions/
+39 RETs/seven tails and all13 table entries. Callable7161 and full7216 bytes/
+146 relocations match in formal and independent cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-aya-input-policy --compare --json
+python3 scripts/audit-aya-input-policy.py
+```
+
+Full canonical SHA256:
+`27ca5b6b8e56b4099e251f654b0f53b24ba4100eb13fe96a79df110ba65377da`.
+The first complete comparison differs only at two height-condition bytes.
+Native TEST AH,41 plus JP after FCOMP480.0 admits equal; correcting < to <=
+makes the entire payload exact without compiler/source-shape controls. Sparse
+ground/air records, actual shared action numbers, air2000's distinct override
+flag, one normal-air308, resource skip and repeated416 paths are independently
+reviewed. Generated-table negative fails at+1BFC. Earlier accepted sources and
+mappings are unchanged. Continue complete remaining peers; Marisa stays parked.
+
+## Exact family peer: Komachi input policy 0x5F7AB0
+
+[Accepted peer/evidence](KOMACHI_INPUT_POLICY_2026_10_24.md) closes1762
+instructions/34 RETs/six tails and all12 table entries. Callable6181 and full
+6232 bytes/124 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-komachi-input-policy --compare --json
+python3 scripts/audit-komachi-input-policy.py
+```
+
+Full canonical SHA256:
+`8d53e8dd92bdea44be96ed4ef0ded1fae0fb68e336f8e07edd721bc735c5c012`.
+Ground207..210 defaults, actual ignored-result air45D1B0 call without air deque
+reads, changed tiers, state303 fallback, float140.0 and air406/405/404 order are
+independently reviewed. Generated-table negative fails at+1828. No compiler or
+source-shape controls; earlier accepted sources/mappings are unchanged. Continue
+remaining complete peers while preserving Marisa's parked residual.
+
+## Exact family peer: Iku input policy 0x631340
+
+[Accepted peer/evidence](IKU_INPUT_POLICY_2026_10_24.md) closes1813
+instructions/36 RETs/nine tails and all11 table entries. Callable6302 and full
+6348 bytes/131 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-iku-input-policy --compare --json
+python3 scripts/audit-iku-input-policy.py
+```
+
+Full canonical SHA256:
+`5628641c925c65b24ce8feae7a7be22d6e680d8ffa83ee05de4dc5029931f7a3`.
+Ground204 default, air200/210/default early return, distinct query/action numbers,
+state300-to321, double120.0 and direction-negative417 are independently reviewed.
+Generated-table negative fails at+18A0. No compiler/source-shape controls;
+previous accepted source/header and mappings are unchanged. Continue the
+remaining complete peers while preserving Marisa's parked residual.
+
+## Exact family peer: Yukari input policy 0x58C2E0
+
+[Accepted peer/evidence](YUKARI_INPUT_POLICY_2026_10_24.md) closes1734
+instructions/26 RETs/seven tails and all16 table entries. Callable6233 and full
+6300 bytes/129 relocations match in the first complete source and independent
+formal/cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-yukari-input-policy --compare --json
+python3 scripts/audit-yukari-input-policy.py
+```
+
+Full canonical SHA256:
+`6ad4c81e95ea54236fdcd3de48e1a8fa897f8f1a1d4deb83173f335138a9ef7d`.
+Existing58C170 gate, sparse215 selector, distinct query/action numbers, actual
+pre-action12C clears, double120.0 and query/resource order are independently
+reviewed. Generated-table negative fails at+185C. No compiler/source-shape
+controls; earlier accepted input and gate sources are unchanged. Continue the
+remaining complete peers while preserving Marisa's parked residual.
+
+## Exact family peer: Yuyuko input policy 0x56DEB0
+
+[Accepted peer/evidence](YUYUKO_INPUT_POLICY_2026_10_24.md) closes1773
+instructions/36 RETs/seven tails and all9 table destinations. Callable6180 and
+complete6216 bytes/125 relocations match after formal and independent cold builds:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-yuyuko-input-policy --compare --json
+python3 scripts/audit-yuyuko-input-policy.py
+```
+
+Full canonical SHA256:
+`7fd52536151126351f5ec2fd4d7f9464d2316f912e25607c89700a9f8d0efe87`.
+The first full comparison caught only copied4941D0 minimum2 versus native1 at
+56DFE8. Correcting it matches the whole body without code-generation controls.
+Actual4000/2000 masks, signed zero gates, air201/207 records,180.0f and repeated
+normal queries are independently reviewed. Generated-table negative fails at
++1824. Prior accepted sources/mappings remain unchanged. Continue complete
+slot+50 peers while leaving Marisa's neutral placement controls parked.
+
+## Parked complete peer: Marisa input policy 0x4B9FA0
+
+[Complete source/evidence](MARISA_INPUT_POLICY_2026_10_24.md) closes2151
+instructions/36 RETs/15 tails and both20+6-entry tables. Callable7664/full7768
+source remains nonexact at+1AF5; no matches row or authored exact credit.
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-marisa-input-policy --compare --json
+python3 scripts/audit-marisa-input-policy.py
+```
+
+Both comparisons currently return1. Selected full canonical SHA256:
+`53acd36513eee03fe5ea95775c31ff5827e4ec01d903fb2abef9bbc71983fd1c`.
+All104 metadata bytes match;104 callable bytes differ only within4BBA95..4BBB37.
+The first comparison caught a misread second412 success edge; native4BBB36
+enters the shared mode gate at4BBAD1. Corrected short-circuit OR and explicit
+shared-label sources produce identical whole payloads. Keep the ordinary OR
+source, park this physical-block placement residual and switch to another
+complete peer. Mode reads after the first action in group6F8 remain distinct
+from pre-action mode choices in group6FC. No compiler search/LTCG impossibility.
+
+## Exact family peer: Youmu input policy 0x53B410
+
+[Accepted peer/evidence](YOUMU_INPUT_POLICY_2026_10_24.md) closes1714
+instructions/28 RETs/nine external tails and all8 table destinations. The first
+complete compiled source matches6017 callable/full6052 payload bytes and121
+relocations; formal and independent cold builds pass:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-youmu-input-policy --compare --json
+python3 scripts/audit-youmu-input-policy.py
+```
+
+Full canonical SHA256:
+`050e801122ba3cee6da69fb3abdcca297922e24d08913ef938c1b4e42a962fa1`.
+Three real slot0C sequence calls,540 continuation, changed command tiers,
+air queued pack-only exit,double100.0/float90.0 and actual query/resource order
+are independently reviewed. The generated table negative fails at+1784. No
+compiler/profile search; previous accepted headers/sources are unchanged. Keep
+the unrelated nonexact YoumuObject initializer parked as documented below.
+
+## Exact family peer: Suika input policy 0x5AED00
+
+[Accepted peer/evidence](SUIKA_INPUT_POLICY_2026_10_24.md) independently closes
+1667 instructions/31 RETs/six external tails and all9 table destinations. The
+first complete source matches5849 callable/full5888 payload bytes and117
+relocations; formal and independent cold builds pass both commands:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-suika-input-policy --compare --json
+python3 scripts/audit-suika-input-policy.py
+```
+
+Full canonical SHA256:
+`aad5c91e0526eabc05c81285aa78e1723f0adbccb30f92f8745ce47724f4940b`.
+The generated-table negative fails at+16DC. +60D tier531/530, shared545 success,
+air523/522 zero gates and508/507 tiers, record200-to650,160.0f and reordered
+normal-air policy are independently reviewed. No source correction or compiler
+search was needed. Earlier exact input sources remain unchanged. Continue the
+other complete slot+0x50 peers with independent target review.
+
+## Exact family peer: Sakuya input policy 0x4DF4B0
+
+[Accepted peer/evidence](SAKUYA_INPUT_POLICY_2026_10_24.md) closes1687
+instructions/33 RETs/six external tails and independently checks all10 table
+entries. The first complete source matches5897 callable bytes and the full
+5940-byte payload/120 relocations. Formal and independent cold builds pass:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-sakuya-input-policy --compare --json
+python3 scripts/audit-sakuya-input-policy.py
+```
+
+Full canonical SHA256:
+`57689f32d9ee39731ad0682f45652b77a0f9c6e26323c9e879fe61a9504812c3`.
+The generated-table negative fails at+170C. Ten queued commands, changed tier
+fields/action pairs, air+608/+60C zero gates, repeated308/400 queries and90.0f
+are target-reviewed. No compiler/profile search or source correction was needed.
+Prior accepted inputs are unchanged. Continue complete slot+0x50 peers under
+independent review and both callable/full-payload comparisons.
+
+## Exact family peer: Tenshi input policy 0x64B7A0
+
+[Accepted peer/evidence](TENSHI_INPUT_POLICY_2026_10_24.md) independently closes
+1515 instructions/26 RETs/seven external tails. The5352-byte callable and full
+5384-byte payload/108 relocations match after separate canonical and cold builds.
+Replay both commands:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-tenshi-input-policy --compare --json
+python3 scripts/audit-tenshi-input-policy.py
+```
+
+Full canonical SHA256:
+`20bb75cd53cebe9b7714eb97bc8fdd4160b2310e2599d38aaef74acbb2b064d5`.
+A table-byte generated-object negative fails. Changed special-command tiers,
+signed+82E gate, record207-to657, normal state200 transitions, absent Remilia
+cleanup/shortcuts and140.0f distance are independently reviewed. Correcting
+one copied541 fallback to the actual540 yields zero differences and the native
+shared block; no flag/profile or register search. Prior exact inputs stay intact.
+
+Next, continue another complete Fighter slot+0x50 peer from the two accepted
+representatives, reviewing its actual changes before comparison. Keep views
+pointer-only and do not normalize query/action-number differences or repeated
+calls. RemiliaObject's initializer below remains nonexact and parked.
+
+## Exact representative: Remilia input policy 0x556070
+
+[Accepted source/evidence](REMILIA_INPUT_POLICY_2026_10_24.md) closes all1470
+instructions/16 RETs/eight external tails. Both the5415-byte callable and the
+complete5448-byte payload/112 relocations match after independent cold builds.
+Replay both commands:
+
+```sh
+taskset -c 0 nice -n 10 python3 scripts/build.py --unit exact-first-remilia-input-policy --compare --json
+python3 scripts/audit-remilia-input-policy.py
+```
+
+The complete canonical SHA256 is
+`aa8fea23fd443bab1f58993e3f8d41f3ee7d262b70f2ea3d5ec74a6e75c3dcec`.
+A generated-object table-byte negative fails the full-payload audit. Source
+retains numeric commands, offset fields and real repeated queries. Two initial
+query/action-number mistakes were corrected from native pushes; removing an
+eager queued-field cache recovers the native range guard. No compiler/profile
+or hierarchy search was needed. Only the representative earns credit; callees
+remain at their previous states. Never instantiate/embed its pointer-only views.
+
+Next, review another complete Fighter primary slot+0x50 peer against this
+representative, independently checking changed gates, command/action pairs,
+offsets, ABI and exits. Preserve RemiliaObject's nonexact checkpoint below;
+do not resume neutral initializer-register trials without new evidence.
+
+## RemiliaObject initializer 0x55BE70
+
+[Complete source/evidence](REMILIA_OBJECT_ENTRY_2026_10_24.md) covers the
+4997-byte callable and full5384-byte payload, including all three destination
+tables and the199-byte remap. Unit `exact-first-remilia-object-entry` freshly
+builds and remains nonexact at+0x80. The selected full canonical SHA256 is
+`d114fd28eaefcbc4fb8f1c8ebe1ceb7512661cdabb05624179ec85bab5be2aac`.
+All21 conversion/virtual calls,42 RNG calls, seven motion calls, two spawns and
+both replacements are present. Explicit used casts retain product rounding;
+a double captures851's input float across its byte write without an extra spill.
+
+Residuals are selector-call registers,901's shared heading-block placement and
+the980 CALL+RET versus target tail JMP. Named-field versus offset access is
+byte-neutral, and terminal/default controls regress the remap range. Do not
+repeat these controls unchanged. The selected receiver is declaration-only;
+never construct/embed it. No exact credit, runtime matrix or LTCG impossibility.
+
+The subsequent input-policy representative above is exact; this initializer's
+source and retained controls remain a separate nonexact checkpoint.
+Read-only Ghidra was independently attested; all pinned primary DB
+files are unchanged. Receipts/recipes are under
+`build/exact-first-remilia-entry-20261024/` and
+`.analysis/exact-first-remilia-entry-20261024/`.
+
+## AyaObject update 0x61A290
+
+The initializer and update now share
+[AyaObjectActionView.hpp](../src/characters/AyaObjectActionView.hpp), removing
+duplicate receiver declarations. Its 15 offset assertions and 0x388 prefix-size
+assertion express a partial call view; never construct or embed it. The actual
+primary vtable `0x6C624C` owns update slot+0x28 and initializer slot+0x3C.
+Slot+0x0C consistently takes short. Aya's vtable `0x6C62D4`, published by the
+constructor at `0x61861C`, and AyaObject both bind that slot to `0x45C390`.
+No original complete allocation or TU identity is claimed.
+
+| Method / unit | Callable / complete payload | Current result |
+| --- | --- | --- |
+| `0x61A290`, `gpt-web-aya-object-vslot28-full-root` | 19522 / 20000 | Nonexact +0x22 |
+| `0x61F0B0`, `gpt-web-aya-object-action-entry` | 4531 / 4859 | Two differences: +0xBF7 / +0xBFF |
+
+Current raw CRLF source SHA256:
+
+- [Update](../src/characters/AyaObjectActionState.cpp): `15a6f13a5ea5a751fa7f6cec6dbffed628bd373e0bb29e984788f8bbefbe0a72`.
+- [Initializer](../src/characters/AyaObjectActionEntry.cpp): `fa06d792237a849bb70c2cc7dc1a38e92bb0b8bcce056bb26c7914e945cd4280`.
+- Shared header: `2ed12ce922918d59726cc45f0fcc8c514a43b3c1cec0b13c1a0f8a64ad8728c5`.
+
+Both complete canonical payloads equal the preceding separate views:
+update `5f2966cb6b34c844d210ac54e52894b5d510c17362c3fe2424c1d2de6b89c4ec`,
+initializer `6f70b6f354fdff459a628bdfbf0a7a3c12fe854a65f95f6cf33731b5d606b066`.
+Only receiver declarations, member qualifications and their unit-local symbol
+aliases changed. Earlier runtime matrices retain their recorded scope; this
+checkpoint proves machine-payload equality and makes no fresh runtime claim.
+
+The selected update still has the partial807/817 frame-tail join, used817/822
+angle captures and local double quantized lookup views. It has12 physical frame
+helper calls versus target11. See the [selected evidence](AYA_OBJECT_PARTIAL_FRAME_TAIL_2026_10_23.md)
+and [epoch index](AYA_OBJECT_EVIDENCE.md) for behavioral contracts and limitations.
+
+A new retained lead defines the real frame/phase methods under the common
+receiver. Both source orders reproduce helper `0x4351C0` 62/62 and `0x64CD00`
+73/73, and reduce update's frame-helper calls12 to11. However, the update grows
+to20032 bytes, SHA256 `23925cd489b690a45c7c49f04f52dacac967c01896200853c4ef95069d5655e6`,
+and stays nonexact at+0x22; the initializer still differs at two bytes. This TU
+is unselected. A matching call count is a diagnostic, not acceptance. Receipts:
+`build/aya-joint-owner-20261024/summary.json` and its archive/restore manifest.
+
+For continuation, compare which frame call disappeared in that TU with the
+target's physical tail/return graph. The initializer's856 pointer register
+lifetime remains unknown. Six common-receiver/ABI controls preserve the selected
+payloads; an int sequence declaration regresses the initializer. Prior source
+order, getter/lifetime, /Zi, FP-profile, hierarchy and linked-context controls are
+recorded in [the initializer evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md).
+Do not repeat those unchanged trials. Later C2 patches remain untested; the
+archived download listings and inspected Vista package did not yield a backend.
+
+## Other open roots
+
+| Root | Retained result | Evidence |
+| --- | --- | --- |
+| ReimuObject `0x496540` | Full45696, nonexact +0x1F; adjacent counter `0x4963A0` 66/66 exact | [Current index](REIMU_OBJECT_EVIDENCE.md), [owner/joint context](REIMU_OBJECT_WORD_OWNER_JOINT_CONTEXT_2026_10_23.md) |
+| Reimu initializer `0x4A1CE0` | 14 differences; genuine joint CIL still nonexact | [Joint context](REIMU_OBJECT_WORD_OWNER_JOINT_CONTEXT_2026_10_23.md) |
+| Youmu initializer `0x543670` | Callable5159/full5492; 21 register/preparation bytes differ; metadata agrees | [Current evidence](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md) |
+| AyaObject initializer `0x61F0B0` | Callable4531/full4859; two register bytes differ | [Current evidence](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md) |
+
+Youmu's retained canonical SHA256 is
+`d00f4fc4ceca80c8fc4510ff03dcf064e3188fa5dc33afc8e25815d880da413a`;
+source SHA256 `66d01e60ca540b11515ebe4a58dc87f913ab340dd4845bcb1e992d9000c9be2d`.
+Its physical copy count, read order and all332 metadata bytes must be retained.
+Sequence selector `0x45C390` uses real checked `std::map::find`; its accepted
+10-function native unit and independent short witness passed at `de8037a`.
+Its 105-byte generated find remains excluded library code. No new replay of
+that unit or the 592-case Youmu matrix is claimed here.
+
+Other pending roots include Reimu Fighter `0x478FA0`, CGage `0x41B3F0`, loader
+`0x40B000` and renderer `0x415050`. Font evidence remains in
+[begin](TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md),
+[glyph](FONT_GLYPH_WINDOW_PROOF_2026_10_22.md),
+[accent](TEXT_FONT_ACCENT_LIFETIMES_2026_10_22.md) and
+[markup](FONT_MARKUP_CONSTRUCTION_CLEANUP_2026_10_22.md).
+Older handoff detail is available at Git `4dd8436` and in the
+[October23 narrative](RE_HANDOFF_HISTORY_2026_10_23.md).
+
+## Artifacts and final gate
+
+Generated artifacts belong under `build/`; private recipes/analysis under
+`.analysis/`. Preserve compiler installs, target resources, primary analysis
+state and the native-provider inputs referenced by retained CIL receipts.
+Completed controls are archived only after every member's length/hash is
+checked; per-scope `retention.json` files provide exact restore commands.
+The cleanup inventory is `build/handoff-cleanup-20261024/retention.json`.
+Legacy `.analysis/gpt-web` exports were archived with a restore command there;
+six historical worktrees with uncommitted source were left untouched.
+Do not use indiscriminate `git clean` or delete unknown analysis state.
+
+Focused commands, run serially; both Aya comparisons currently return1 because
+their recorded mismatches remain:
+
+```sh
+python3 scripts/build.py --unit gpt-web-aya-object-action-entry --compare --json
+python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
+```
+
+Before any commit, push or PR, run in the finished worktree:
+
+```sh
+python3 scripts/ci.py
+git diff --check
+```
+
+The local gate is mandatory and must follow the final tracked edit. Target
+observations, source hypotheses, runtime contracts and canonical acceptance
+remain separate. No assembly, copied target arrays, inert locals, fake returns,
+ABI lies or padding may be used to force a result.

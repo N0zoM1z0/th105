@@ -5,7 +5,52 @@ under `.analysis/`. Neither is included in a fresh clone. Start from the
 [current handoff](RE_HANDOFF.md) and live ledgers: old reports retain their
 source/object/tool epoch and cannot substitute for a fresh comparison.
 
-## Latest handoff refresh
+## October 25 cleanup and handoff
+
+The user requested cleanup and a new-agent handoff. Current state is summarized
+in [RE_HANDOFF.md](RE_HANDOFF.md); its full preceding1582-line chronology is
+preserved in [the dated archive](RE_HANDOFF_HISTORY_2026_10_25.md). The active
+Tenshi partial draft and target observations remain in their original private
+paths. No game source, ABI, compiler profile or acceptance ledger changed.
+
+Four disposable cache/test-environment directories were removed:
+`build/pycache`, `build/ci-public-checkout-20261024/checkout/.venv`, that checkout's
+`build/pycache`, and `.tools/ci-public-python311`. Their157,085,867 logical bytes
+(about149.8MiB) are recorded in per-file hashed inventories. The active `.venv`
+and its external UV CPython3.11.14 installation remain intact. Recreate historical
+test environments with the README's version/dependency pins when needed; normal
+Python commands regenerate bytecode automatically.
+
+Two download caches were also removed after comparison with installed tools:
+Objdiff3.8.0 was byte-identical to `.tools/objdiff/objdiff-cli`; all
+96 regular Maven3.9.16 archive members matched the installed tree. The installed tools
+remain available. These cache byte figures are file-size totals, not a claim
+about uniquely allocated hard-linked disk blocks.
+
+Git was repacked serially with `--keep-unreachable`, without expiring reflogs or
+pruning objects/worktrees. Its directory shrank from roughly76MiB to12MiB;
+all16,988 object IDs, refs, six dirty worktree states and retained files were
+verified afterward; `git fsck --full` passed. Git's automatic abbreviated-index
+format changed after repack: all prior patches reproduce exactly with
+`--abbrev=7`, and canonical full-index patch hashes are now recorded. This was
+an output-format change, not a source mutation.
+
+The manifest is `build/handoff-cleanup-20261025/manifest.json`; the private
+one-use cleanup/finalization recipes are under `.analysis/handoff-cleanup-20261025/`.
+All55,424 protected file hashes were unchanged, including both database locations,
+compiler/analysis installations, accepted receipts, frozen controls and the active
+Python environment. Existing historical reports/objects were retained directly.
+No dirty worktree was removed and no reconstruction process was left running.
+
+The31 active Tenshi files additionally have a verified262512-byte portable copy:
+`build/handoff-cleanup-20261025/tenshi-resume.tar.gz`, SHA-256
+`9e28ae84cac98d8b96a102901b29dbbd0250d0c32fee74119913eab674c3d6ff`.
+`tenshi-resume-members.json` records every repository-relative member and hash.
+List the bundle before restoring needed members with `tar -xzf ... -C .`;
+do not overwrite newer work. This ignored local bundle is not supplied by a Git
+clone and excludes executable, compiler and primary database files.
+
+## October 23 handoff refresh
 
 The [live handoff](RE_HANDOFF.md) now distinguishes current selection from
 completed experiments. [AyaObject evidence](AYA_OBJECT_EVIDENCE.md) collects
