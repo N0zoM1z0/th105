@@ -282,3 +282,30 @@ Identifier values outside0..3 reach target arms without explicit period/count
 assignment; their domain/default behavior is still unknown. Original source,
 complete owner layout and original TU/compiler ownership remain unknown. No
 standalone TU/LTCG impossibility is established. Remilia557690 stays parked.
+
+
+## Independent trig return-width control
+
+After the Tenshi transfer-width review, a fresh build of the retained complete
+Youmu hypothesis reproduces26784 bytes, SHA256
+`73359b445ada254b7454615891c98ab28be4bee943cd53d2668681dcfd3a5ec8`,
+24412 unmasked differences and the first mismatch at53CEA8 (frame40/48).
+The native406360/4063D0 exits load one float table entry into ST0. This does not
+uniquely distinguish a source float return from an exactly promoted double
+return; the existing public AngleLookup implementation is also a hypothesis.
+
+A separate complete source/header control changes only the two local trig
+return declarations from double to float. All26784 canonical bytes, including
+the tail tables, reproduce the retained payload SHA256 exactly. No public
+source or relocation binding changes. This independently closes this width
+question for the current caller and compiler context; do not repeat it without
+new evidence. Baseline and override receipts are
+`return-width-baseline-build.log`, `return-width-baseline-audit.json`, and
+`trig-return-float-full-audit.json` in the existing build scope. The isolated
+source/header/object remain in the corresponding private analysis/build scopes.
+
+The status report's source=0 means no selection in implemented.csv. This root
+already has a complete public compiling hypothesis and a closed raw CFG;
+it must not be treated as an unwritten function. The remaining instruction,
+default-domain, stack and physical-call-group questions stay parked. No new
+source-present or exact credit is recorded.

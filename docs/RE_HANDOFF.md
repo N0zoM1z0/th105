@@ -3,8 +3,9 @@
 Active reconstruction resumed on2026-10-25 under the user's large-function,
 whole-comparison-first direction. TenshiObject update
 **0x0064CD50** is checkpointed complete source-present/nonexact. The next bounded
-candidate is **YoumuObject update0x0053CEA0**, still source-missing; its candidate
-boundary must be independently reconciled before source work. One writable session, no
+candidate is **Alice Fighter update0x004E9F50**, provisionally42721 bytes.
+Youmu53CEA0 already has a complete public unselected hypothesis; its absence
+from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
 
 ## Target and environment
@@ -96,16 +97,30 @@ The public scoped check is
 `scripts/audit-tenshi-object-update-paths.py`. Private recipes and first/control
 sources: `.analysis/exact-first-tenshi-object-update-20261025/`.
 
-Next: independently inspect YoumuObject53CEA0 (provisional25944-byte main
-candidate), the only remaining source-missing Object update in the authored
-source-missing report. Re-run target/IDA/status/tracking preflight, read the
-relevant retained source only as a hypothesis, close all control flow and
-metadata, then write the complete body before comparing. Tenshi width/transfer
-work is saved; do not reopen its comparison-carrier question without new
-evidence. Nominal names/layouts/TU ownership remain hypotheses; no exact credit
-was added.
+Next: reconstruct the complete Alice Fighter slot28 root4E9F50 (provisional
+42721-byte main). No complete AliceActionState source or match unit currently
+exists. Sakuya4CADB0's smaller report span is misleading for this choice: its
+ownership ledger already pins74941 code bytes including ten remote chunks.
+Re-run bounded preflight, reconcile Alice's full CFG/metadata against the exact
+PE and review callee contracts before writing the complete body and comparing
+it early.
+Tenshi width/transfer work is saved; keep its comparison-carrier control closed
+without new evidence. Nominal names/layouts/TU ownership remain hypotheses.
 
 ## Parked questions
+
+Youmu53CEA0 already has a complete public unselected source hypothesis and
+closed25944-byte main/full26576-byte target. A fresh26784-byte build reproduces
+SHA73359b44,24412 differences, first+8 frame40/48. Changing only its two local
+quantized-trig return declarations double->float is whole-payload byte-neutral;
+keep that width question closed. Prior frame guards, break exits and period
+controls remain closed. See [Youmu evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
+No source selection or exact claim follows from this control.
+
+Read-only candidate triage also rebuilt CDesignBase40B000: its existing local
+EH relocation block and gauge private-ABI residual remain. No loader source,
+binding or compiler setting changed; receipts use
+`build/exact-first-design-base-load-20261025/`. This is not the active root.
 
 Yuyuko56F700 is selected source-present/nonexact: full34928 SHAc97edd07 versus
 35060 target,32764 differences, first56F71F.815's x87 association/direct doubling
