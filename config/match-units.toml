@@ -23309,3 +23309,48 @@ dir32_targets = [
   "??_C@_06CFEFJHJP@ufotij?$AA@+0x4=??_C@_06CFEFJHJP@ufotij?$AA@$slice_4",
   "??_C@_06CFEFJHJP@ufotij?$AA@+0x6=??_C@_06CFEFJHJP@ufotij?$AA@$slice_6",
 ]
+
+
+[units.exact-first-fighter-pat-resources]
+kind = "probe"
+source = "src/battle/FighterPatResourceLoading.cpp"
+object = "build/match-units/ExactFirst_FighterPatResources.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete Fighter PAT/palette loader461B70,3885 target bytes/1227 instructions, one reviewed vector range-error exit. First complete3898-byte source immediately compared. Callback member reloads, signed command dispatch, actual path scope, genuine PatGroup visibility and one continuation back recover native3A8 frame/33 guards. Complete3898-byte candidate remains nonexact+13; member-reference controls are byte-neutral in two phases. Source unselected. docs/FIGHTER_PAT_RESOURCE_LOADING_2026_10_26.md."
+
+[[units.exact-first-fighter-pat-resources.functions]]
+address = "0x00461B70"
+symbol_base = "?load_pat_data_and_palette_resources@Fighter@th105@@QAEXXZ"
+rel32_targets = [
+  "??$_Construct@UPatGroup@th105@@U12@@std@@YAXPAUPatGroup@th105@@ABU12@@Z=0x00461940",
+  "??0PatFileReaderOwner@th105@@QAE@XZ=0x0040CF10",
+  "??0PatGroup@th105@@QAE@XZ=0x00461520",
+  "??0PatRecord88@th105@@QAE@XZ=0x00460F90",
+  "??1PatFileReaderOwner@th105@@QAE@XZ=0x0040CF20",
+  "??1PatGroup@th105@@QAE@XZ=0x00461590",
+  "??1PatRecord88@th105@@UAE@XZ=0x0045FFD0",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??3@YAXPAX@Z=0x006898EA",
+  "??4?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAEAAV01@ABV01@@Z=0x00460AD0",
+  "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
+  "?_Assign_n@?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@IAEXIABUPatRaw16@th105@@@Z=0x00460C10",
+  "?_Assign_n@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@IAEXIABVPatRecord88@th105@@@Z=0x00461A30",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@PAU342@0ABH@Z=0x00421F30",
+  "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@XZ=0x00435E50",
+  "?_Growmap@?$deque@UPatGroup@th105@@V?$allocator@UPatGroup@th105@@@std@@@std@@IAEXI@Z=0x00422770",
+  "?_Incsize@?$list@HV?$allocator@H@std@@@std@@IAEXI@Z=0x00440370",
+  "?_Insert_n@?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@IAEXV?$_Vector_iterator@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@2@IABQAUPatRaw16@th105@@@Z=0x00445F10",
+  "?_Xran@?$vector@IV?$allocator@I@std@@@std@@KAXXZ=0x0040C350",
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "?erase@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z=0x0043C660",
+  "?erase@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@2@V32@0@Z=0x00461320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?insert@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHPAUPatGroup@th105@@@2@@Z=0x004606E0",
+  "?load_palette@PatPaletteService@th105@@QAEXPBDPBEH@Z=0x00408F70",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?open@PatFileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
+  "@__security_check_cookie@4=0x00689D25",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "_memmove_s=0x00689EB0",
+]

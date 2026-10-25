@@ -25,9 +25,13 @@ joint-TU control preserves that residual plus the exact representative. This
 finite peer/visibility lane is closed. Scene resource bootstrap **0x0043E2E0** is now closed at3722 bytes: complete
 unselected source, full canonical replay and11 stack displacement differences.
 Two independent index controls are byte-neutral, so that finite lane is parked.
-Next provisional review candidate is **0x00461B70**,3885 bytes in the candidate
-ledger; fresh preflight, complete CFG, origin and first whole-source comparison
-are required before any acceptance.
+Fighter PAT/palette loader **0x00461B70** is now closed at3885 target bytes:
+complete3898-byte unselected source, native3A8 frame/33 guards, full relocation
+replay and a qualified external vector-error exit. Member-reference controls
+are byte-neutral in two phases; this finite lane is parked. Next provisional
+review candidate is **0x0045E950**,3087 bytes in the candidate ledger; fresh
+preflight, complete CFG, origin and first whole-source comparison are required
+before any acceptance.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -70,27 +74,58 @@ Resource CSV4343A0 adds one independently verified authored mapping, source
 selection and exact1646-byte function. Filtered433B30 remains unselected.
 Scene resource bootstrap43E2E0 adds one observed authored identity/mapping and
 one probe with complete unselected source; source/exact totals are unchanged.
+Fighter PAT/palette loader461B70 likewise adds one observed authored mapping
+and one probe with complete unselected source, without source/exact credit.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1600 /1419 /1005 |
-| Mapped / source-present |1588 /1565 |
+| Provisional / authored / excluded / review candidates |4024 /1601 /1419 /1004 |
+| Mapped / source-present |1589 /1565 |
 | Exact functions / authored bytes |1413 /382816 |
-| Configured units / functions |609 /1577 |
+| Configured units / functions |610 /1578 |
 
 The current manifest/global-data inputs have a fresh full cold receipt:
-`build/exact-first-43e2e0-20261026/cold-all.log` passes525 accepted units/all1413
-functions,382816 authored bytes, including exact scene-manager caller41E070
-and resource representative4343A0. The new bootstrap probe has two independent
-3722-byte public builds with the same11 differences and no selected/exact row.
-No previous source/header/profile/binding was changed; new literal/global/EH
-rows belong to the added probe. Its public audit checks all33 actual literal
-read extents independently of relocation slice identity. The preceding
-resource-parser cold receipt is retained under
-`build/exact-first-spell-filtered-peer-20261026/`; the compiler-proven71-byte
-deque front remains excluded from authored totals.
+`build/exact-first-461b70-20261026/cold-all.log` passes525 accepted units/all1413
+functions,382816 authored bytes, including PAT record/group lifetimes and the
+exact Fighter resource caller463070. Two independent public builds of the new
+PAT root reproduce the same3898-byte nonexact section. Its audit independently
+closes all main edges and the qualified vector exception exit. The prior
+`build/exact-first-43e2e0-20261026/cold-all.log` receipt remains retained.
+Shared headers, compiler profiles, accepted providers and prior data rows are
+unchanged; five new data rows belong to the unselected probe. The target-backed
+floating audit also passes all1999 references. Fresh `function-origins.py --check`
+also agrees with all4024 rows; no prior exclusion changed.
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
+
+## Checkpoint: Fighter PAT/palette loader461B70
+
+[Target closure, complete format and finite trials](FIGHTER_PAT_RESOURCE_LOADING_2026_10_26.md).
+Source: `src/battle/FighterPatResourceLoading.cpp`.
+Unit: `exact-first-fighter-pat-resources`.
+Audit: `scripts/audit-fighter-pat-resources-target.py` (target-only expected0,
+object expected1/nonexact).
+
+- Full3885 SHA8705c5b0, end462A9D;1226/1227 instructions reached, one pinned
+  internal alignment operation, RET0 at462A9C and three following INT3 bytes.
+  Exact333-byte Fighter initializer463070 calls at46308A. External E9 at461F30
+  reaches the fully pinned123-byte vector error provider40C350; existing
+  C++ throw/noncontinuable exception contract closes this exit without credit.
+- Complete source covers palette/texture loading, ordinary/continuation/alias
+  commands, full136-byte frame records, optional owned payloads and reverse
+  alias resolution. First complete3898 was compared immediately. Member-pointer
+  reloads, actual texture-path scope, signed command switch, genuine PatGroup
+  definition visibility and one continuation back recover native3A8/33 guards.
+- Final full3898 SHA7ab0c272; canonical ledger-sized first3885 SHAb73d3857.
+  Target main has3130 unequal positions; the full candidate-sized target range
+  has3143 and is diagnostic only. Size remains+13. Do not report near/exact
+  acceptance from frame, guard count or local instruction alignment.
+- Explicit member references are byte-neutral in two independent receiver
+  phases; the WORD-array view is also neutral and named-frame control is
+  rejected. Keep private trials; no flag/spelling/type grid. Stack homes,
+  scheduling, exact nominal types, original source and TU/EH context remain open.
+- Source remains identified/unselected; implemented/matches rows are unchanged.
+  No new helper-origin, library-exclusion or authored exact credit.
 
 ## Checkpoint: scene resource bootstrap43E2E0
 

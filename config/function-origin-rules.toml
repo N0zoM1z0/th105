@@ -3469,3 +3469,22 @@ required_body_hashes = [
 required_direct_edges = [
   { caller = "0x0041E070", site = "0x0041E104", target = "0x0043E2E0", caller_status = "matching" },
 ]
+
+
+[[rules]]
+id = "fighter-pat-resource-loader-authored-106a"
+addresses = ["0x00461B70"]
+expected_count = 1
+expected_bytes = 3885
+expected_names = ["sub_461B70"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete3885-byte/1227-instruction main CFG has1226 reachable instructions, one pinned internal alignment operation, RET0 and a separately reviewed123-byte vector range-error provider. Exact Fighter resource initializer463070 calls at46308A. Character PAT/palette paths, texture registration, signed group commands -1/-2, chain/alias policy, full136-byte frame format and optional owned payloads establish authored ownership independently of STL/CRT providers. Complete3898-byte public source remains nonexact+13 and unselected; native3A8 frame/33 guards recovered. No helper-origin credit. docs/FIGHTER_PAT_RESOURCE_LOADING_2026_10_26.md."
+required_body_hashes = [
+  { address = "0x00461B70", size = 3885, sha256 = "8705c5b085b7e7c1977252b79929296687a251f1e22216c9521d02143f934d42" },
+]
+required_direct_edges = [
+  { caller = "0x00463070", site = "0x0046308A", target = "0x00461B70", caller_status = "matching" },
+]
