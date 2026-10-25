@@ -1,11 +1,9 @@
 # TH10.5 reconstruction handoff
 
-Session stopped for the user's requested cleanup and handoff on 2026-10-25.
-The next agent should resume **TenshiObject update 0x0064CD50**, whose private
-source is still incomplete and uncompiled. No reconstruction process is left
-running. Read `AGENTS.md`, `docs/ARCHITECTURE.md`, `docs/RE_WORKFLOW.md` and this
-handoff before changing state. One writable session, no subagents/concurrent VC8
-or Ghidra processes; `config/claims.csv` stays header-only.
+Active reconstruction resumed on2026-10-25 under the user's large-function,
+whole-comparison-first direction. Current bounded root is **TenshiObject update
+0x0064CD50**, now complete source-present/nonexact. One writable session, no
+subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
 
 ## Target and environment
 
@@ -32,61 +30,57 @@ credentials and generated reports out of Git.
 
 ## Durable state
 
-Last reconstruction checkpoint: `535e1b9`, remote CI40174101247 passed.
-The subsequent maintenance checkpoint changes documentation/artifact storage,
-with no game source, ABI, profile, relocation or acceptance change.
+Current checkpoint adds the complete Tenshi update, its reproducible unit,
+isolated bindings and public full-payload audit. Exact acceptance is unchanged.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates | 4024 /1596 /1418 /1010 |
-| Mapped / source-present | 1582 /1563 |
-| Exact functions / authored bytes | 1412 /381108 |
-| Configured units / functions | 602 /1570 |
+| Provisional / authored / excluded / review candidates |4024 /1596 /1418 /1010 |
+| Mapped / source-present |1583 /1564 |
+| Exact functions / authored bytes |1412 /381108 |
+| Configured units / functions |603 /1571 |
 
 These are live ledger counts, not a new aggregate cold claim. The last aggregate
 receipt remains `build/exact-first-remilia-action-entry-20261025/cold-all.log`:
 524 accepted units/all1412 functions. Source-present is not exact acceptance.
-The latest local suite has604 tests. Python environment repair and public CI
-are complete; do not reopen them without a new failure.
+The local suite now has620 tests. Python environment and public CI were repaired
+previously; do not reopen them without a new failure.
 
 ## Current bounded work: TenshiObject64CD50
 
-[Target/ABI evidence and exact resume notes](TENSHI_OBJECT_UPDATE_2026_10_25.md).
-The function remains unclassified/source-missing in the public ledgers: no
-name, implementation selection, match unit or exact credit has been added.
+[Target/ABI evidence, first comparison and limits](TENSHI_OBJECT_UPDATE_2026_10_25.md).
+Source: `src/characters/TenshiObjectUpdate.cpp/.hpp`.
+Unit: `exact-first-tenshi-object-update`.
+Audit: `scripts/audit-tenshi-object-update.py`.
 
-- Main41001 bytes, full41984 through657150; complete raw CFG closes9797 reached
+- Main41001 bytes/full41984 through657150; complete raw CFG closes9797 reached
   instructions,67 RET0s and eight exact internal alignment bytes, no escaping edges.
-- Full payload owns28 tables/195 destination DWORDs,199 primary remap bytes
-  (800..998, not999) and four metadata alignment bytes. It directly abuts the
-  independent657150 initializer; do not require nonexistent trailing INT3 padding.
-- thiscall/RET0, frame2A8 and `AND ESP,-8`. Preserve observed dataflow; no dummy
-  double, forced stack alignment or register shaping.
-- 427 direct calls/22 entries;22 primary virtual calls plus one factory call.
-  Surface-range filling is **stdcall/RET12**. Factory slot04 uses parent+658
-  as receiver and nine arguments/RET36; it is not a primary Object virtual.
-- Actual argument-slot tracing closes97 requests and53 packet bases/652 bytes.
-  p244 has4 words, p384 has5, p520 has4 and is also passed with count3.
-  Their native calls are654639/65473F/654AF8; never assume every packet has3 words.
-- One readonly384MiB Ghidra run completed, all nine primary database hashes
-  unchanged. Its output warns about stack spacebase; treat it as a hypothesis.
-- `.analysis/exact-first-tenshi-object-update-20261025/probe.cpp/.hpp` contains
-  the declaration view and **only actions800/801**. It is incomplete, uncompiled
-  and unselected; independently review those branches too. Continue at810,
-  then complete all28 nondefault actions/default before the first full comparison.
+- Full payload owns28 tables/195 destination DWORDs and199 primary remap bytes
+  (800..998). It directly abuts the independent657150 initializer.
+- thiscall/RET0, native aligned frame2A8. Surface fill is stdcall/RET12;
+  parent+658 factory slot04 takes nine arguments/RET36. Actual packet tracing
+  closes97 requests/53 bases/652 bytes; p244/p384/p520 have4/5/4 words.
+- All28 nondefault actions/default have manual source. First full42068 comparison
+  was retained before controls. Native801/820 branch-specific trig sites,
+ 801 direct doubling and800 float transfers were then restored.
+- Formal and independent fresh builds emit42916 bytes, SHA2391a745...,
+ 40643 unmasked differences, first64CD58. Aligned frame2C0 and83 RETs versus
+ 2A8/67. Per-action direct/indirect call censuses agree for all28 actions;
+  physical frame-call owner groups remain five versus six. This is nonexact.
+- Selector-zero/default900 burst controls have no native source initialization;
+  ordinary uninitialized locals preserve the source hypothesis. Scratch-dependent
+  behavior and original intent remain unknown; no equivalence claim is made.
+- All literal/global aliases are isolated; no accepted unit inputs changed.
 
-Raw observations and receipts:
-`build/exact-first-tenshi-object-update-20261025/`.
-Private recipes:
-`.analysis/exact-first-tenshi-object-update-20261025/` (`raw.py`, `ghidra.py`,
-`Th105TenshiObjectUpdate.java`, `frame_facts.py`, `packet_predecessors.py`,
-`packet_counts.py`, `review.py`). The roster shared-callee census was refreshed
-before this analysis; refresh again before any new action-family decompile.
+Receipts: `build/exact-first-tenshi-object-update-20261025/` (`formal.log`,
+`formal-full-audit.json`, `cold-build.log`, `cold-full-audit.json`,
+`first-complete.json`, `target-audit.json`). Private recipes and first/control
+sources: `.analysis/exact-first-tenshi-object-update-20261025/`.
 
-Next: check those files, finish manual source, compile the first complete body
-and compare **all41984 bytes** early. Let actual differences drive bounded trials.
-Keep numeric states/offsets and declaration-only providers; defer naming/cleanup.
-Never promote a partial source or use counts/similarity as exact evidence.
+Next: one evidence-backed lifetime/float-transfer or shared-exit question, then
+recompare the whole41984-byte payload. Avoid a frame/flag/spelling grid; preserve
+repeated neutral controls and switch when no new evidence remains. Nominal
+names/layouts/TU ownership are still hypotheses. No exact credit was added.
 
 ## Parked questions
 
@@ -109,11 +103,13 @@ installs, primary Ghidra project and pre-analysis backup. All six old detached
 worktrees contain uncommitted work; do not remove or treat them as parallel
 sessions. [Artifact recovery](ARTIFACTS.md) describes the verified cleanup.
 
-The31 active ignored Tenshi files also have a portable, hash-verified copy:
+The pre-resume31-file Tenshi handoff also has a portable, hash-verified copy:
 `build/handoff-cleanup-20261025/tenshi-resume.tar.gz` (262512 bytes), SHA-256
 `9e28ae84cac98d8b96a102901b29dbbd0250d0c32fee74119913eab674c3d6ff`.
 This bundle is **local, not in Git**; a fresh clone needs it copied separately.
-It includes recipes/draft/observations, not target, compiler or primary DBs.
+It includes the earlier partial draft/observations, not this resumed complete
+source or new receipts; the complete selected source is now in Git. It contains
+no target, compiler or primary DBs.
 Its repository-relative members can be restored after checking
 `tenshi-resume-members.json`; avoid overwriting newer work.
 
@@ -125,4 +121,4 @@ git diff --check
 ```
 
 The no-bytecode setting avoids recreating the removed cache during maintenance.
-No active goal remains from this session; wait for the new agent's instructions.
+The user goal remains active. Continue from the current worktree and receipts.

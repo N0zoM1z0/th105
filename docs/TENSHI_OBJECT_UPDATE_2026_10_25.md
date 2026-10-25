@@ -1,9 +1,10 @@
 # Tenshi Object update boundary and resume point, 2026-10-25
 
-**Observed boundary/ABI and private partial draft only.** Root64CD50 remains
-unclassified/source-missing in the public ledgers. No complete-source build,
-source selection, new match unit or exact claim has been made. The user requested
-session handoff before completion of the first body.
+**Complete source-present/nonexact candidate.** Root64CD50 now has a durable
+mapping, a complete28-action/default source, an isolated VC8 unit and a public
+whole-payload audit. The first complete body was compared before controls.
+No exact row or byte credit was added. Original nominal types and original TU
+ownership remain unknown; pointer-only views must never be instantiated.
 
 ## Target observations
 
@@ -58,32 +59,100 @@ also used with count3. Preserve per-call counts and independently initialized
 words. There are46 qword stack accesses at relative offsets -680/-672/-664;
 the dataflow is not permission to add artificial alignment storage.
 
-## Available material and exact next step
+## Complete source and first comparison
 
-The raw shared-callee census ran first. One readonly/noanalysis Ghidra process
-used384MiB, independently checked import SHA/entry/all mapped bytes, read back
-its temporary call views and rolled back. Sentinel
-`TENSHI_OBJECT_UPDATE_READONLY_ATTESTED`; all nine primary DB hashes unchanged.
-The decompiler reports an inability to track stack spacebase fully. Use it as
-reading assistance only; the raw PE and predecessor/count facts are authoritative.
-For example, its undefined4 heading-pointer cast does not justify integer
-conversion: native64CFF6 reads H[1] using FLD before FADD.
+`src/characters/TenshiObjectUpdate.cpp/.hpp` manually reconstruct all28 actions
+and the default. Numeric states, typed offsets and declaration-only call views
+remain deliberate. The declaration-only providers receive no implementation
+credit. `config/functions.csv` retains41001 callable bytes and inclusive end
+656D78; the full audit compares41984 bytes through657150 separately.
 
-Private recipe/draft directory:
-`.analysis/exact-first-tenshi-object-update-20261025/`.
-Observed JSON/assembly/logs and reading worksheet:
-`build/exact-first-tenshi-object-update-20261025/`.
-`probe.cpp` is71 lines with **only800/801**; `probe.hpp` is32 lines. The switch
-and function are intentionally incomplete. No compiler was invoked. Review
-these two cases, then write810 onward manually; never compile/promote a partial
-body. The worksheet/decompiler must not be mechanically translated into source.
+The first complete private body compiled under the ordinary VC8 SP1 `/O2`
+probe profile with GS disabled, without alignment or register shaping. It
+naturally emitted `AND ESP,-8` and frame2B0. Full42068 bytes, SHA-256
+`278d5bb4a6c1ea1c1361295568e4b8800d600aa286dd136eaf2cde1d4becbc09`,
+compared with39549 unmasked differences; first64CD58, frame allocation2B0
+versus native2A8. Receipt:
+`build/exact-first-tenshi-object-update-20261025/first-complete.json`.
+This is a full mismatch, not a similarity/acceptance claim.
 
-Keep actual short/byte widths, repeated calls and receiver/heading capture epochs.
-The first complete body should be compiled and compared against the entire
-41984-byte payload before shape controls. Create public audit/unit/ledger entries
-only after independent full semantic/boundary review. Full size, table/call counts
-and local windows alone never qualify as exactness.
+That first comparison's per-action call census identified missing **physical**
+trigonometric sites in801/820. The source had chosen a layer before one shared
+spawn expression; the native branches evaluate sine/cosine separately in each
+layer branch. The selected source preserves those branches, native multiplication
+association,801's direct cosine doubling,800's intermediate single-precision
+random products and its ordered lower-bound comparison. Other actions' call
+censuses already agreed. These are scoped source/dataflow corrections, not an
+option/spelling grid or a generic codegen recipe.
 
-The local31-file resume bundle and its SHA/restore notes are in
-[the live handoff](RE_HANDOFF.md). It contains no target executable, compiler
-installation or database. Private observations are not committed artifacts.
+The formally configured source and an independent fresh build both emit42916
+bytes, SHA-256
+`2391a745177fb117c358ee4560c00d24412cdf4f8f8f2e6322a321b61a657083`.
+Full comparison has40643 unmasked differences, first64CD58; the selected
+natural aligned frame is2C0 versus native2A8. It has83 RETs versus67.
+All28 per-action direct/indirect call censuses agree, but this does not prove
+execution equivalence, packet values, source ownership or exactness.
+
+The native six physical frame-call sites have these owner groups:
+
+- the main common exit for21 actions;
+- 810/820/850;
+- 816/961;
+- 848;
+- 960;
+- default, which ignores AL.
+
+The selected object has five: its main group also owns816/960;825 merges with
+the default;810/820/850,848 and961 remain separate. A call count alone cannot
+substitute for the complete physical-owner audit.
+
+## Specific semantic limits
+
+**Observed:** 821's native x87 calculation at64FD93..64FDAE adds parent-y and100
+before adding the sine product. The worksheet's flattened association is not
+source authority. The source retains the observed association. Repeated calls
+and receiver/heading capture epochs remain visible.
+
+**Observed ambiguity:** 900's selector-zero branch653294 only assigns the
+lifetime60. At65329F..6532A3, burst interval and limit reload a scratch home;
+other selectors1/2/3 set interval60, lifetime180/240/300, limit2/4/5 and
+burst-count10/12/16. The out-of-range selector branch also lacks initialization.
+The candidate retains ordinary uninitialized controls rather than inventing
+values. Native executions may observe scratch reuse; deterministic behavior on
+those paths and original source intent are **unknown**. No equivalence proof or
+exact claim covers them.
+
+`g_update_selector` is deliberately temporary: absolute DWORD6FA894 already has
+repository `g_match_identifier` provenance. Its gameplay meaning has not been
+recovered here; calling it difficulty would be an inference. Weather reads are
+DWORD6FA890 and mode reads are BYTE6FA88F. Each new literal/global binding is
+isolated in `_tenshi_object_update_*`; no existing accepted unit, shared header,
+compiler flag or relocation binding was changed.
+
+## Reproduction and next bounded question
+
+```bash
+scripts/repo-python scripts/build.py --unit exact-first-tenshi-object-update --compare --json
+scripts/repo-python scripts/audit-tenshi-object-update.py --target-only
+scripts/repo-python scripts/audit-tenshi-object-update.py
+```
+
+The first and third commands currently return nonzero for the measured mismatch.
+The full audit replays every section relocation, verifies both target hashes,
+closes the complete CFG, verifies all28 tables/199 remap bytes, the aligned
+default exit, adjacent independent initializer and exact unreachable alignment.
+It also records per-action and physical call ownership separately. Synthetic
+negative controls exercise metadata truncation, escaping destinations, default
+restoration and the distinction between per-action counts and physical sharing.
+
+Receipts are in `build/exact-first-tenshi-object-update-20261025/`:
+`formal.log`, `formal-full-audit.json`, `cold-build.log`,
+`cold-full-audit.json`, `target-audit.json`, plus the first complete comparison.
+The private recipes retain the raw facts, attested Ghidra worksheet, first body
+and branch-control source. Reports and private material are not committed.
+
+Next investigate one observed lifetime/transfer difference or one real shared
+exit. Do not reduce the frame with padding, inert locals or forced alignment.
+Do not rerun spelling/carrier grids after byte-neutral controls; retain receipts
+and switch candidates when the scoped question is exhausted. None of these
+standalone differences proves LTCG impossibility.
