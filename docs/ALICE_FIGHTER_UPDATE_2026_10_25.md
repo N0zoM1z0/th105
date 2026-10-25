@@ -382,3 +382,72 @@ The control is closed without a size/lifetime permutation search. Receipts:
 `packet570-571-three-*`; the complete source and exact commands are retained
 privately. No accepted source, header, flags, relocation or ledger selection
 changed in this investigation.
+
+
+## Action-owner partitions expose request-publication order
+
+The next investigation partitions each physical direct/indirect call site by
+its conservatively reachable action entries. It covers all685 primary-remap
+values plus300/520/795/797/798, including shared defaults. All690 per-action
+call-count comparisons agree for both the preceding2655274b and new0a47fcc9
+objects. The only three physical direct calls outside these entries are the
+pre-dispatch object998 requests; no indirect call site is left unowned.
+This checks census coverage rather than predicate feasibility or behavior.
+
+Physical partition differences persist even when aggregate counts agree.
+For example the preceding candidate merges the wave2 sites for410/411, whereas
+the target gives410 its own site and shares411/412/415/416 at4EE6BD. Inspection
+of those actual paths, rather than attempts to force their shared spelling,
+finds three publication-order errors in the retained source:
+
+| Request arm | Exact target order after spawn | Prior source difference |
+| --- | --- | --- |
+|410|wave4EDE67 -> adjust4EDE75 -> scale4EDE7E -> dword180=1 at4EDE83|Wrote180 before adjust/scale|
+|411/412|wave4EE6BD -> dword180=1 at4EE6C9 -> adjust4EE6D1 -> scale4EE6DA|Already correct|
+|414|wave4EE346 -> adjust4EE354 -> dword180=1 at4EE35D -> scale4EE363|Already correct|
+|415/416|Same4EE6BD common continuation as411/412|Wrote180 after adjust|
+
+Only410/415/416 source ordering changes. The historical410 ledger note had
+incorrectly placed its publication before adjust; that note is corrected by
+this exact instruction review. The value is1 in the observed target paths:
+EBP is initialized to1 at4E9F73 and is preserved into these store sites. The
+source also writes the same dword literal1. No new call, flag, header, type,
+initialization, source selection or byte mask is introduced.
+
+A public reproducible static diagnostic now extracts the six action entries
+from each complete payload's actual mid-switch metadata and enumerates local
+request traces to RET. Calls are opaque fallthroughs, branch predicates are
+unconstrained, and the recorded events are spawn/wave/adjust/scale and the
+four-byte180 store. It checks ordering only: it neither executes nor injects
+callback results, and it does not prove callback behavior, store-value dataflow
+or whole-function equivalence. The new complete object passes all six; the
+frozen preceding object fails precisely410/415/416, a negative control for the
+original error rather than a test that mirrors the new source text.
+
+```sh
+scripts/repo-python scripts/audit-alice-fighter-publication-order.py
+# Expected1, old complete2655274b object:
+scripts/repo-python scripts/audit-alice-fighter-publication-order.py --object build/exact-first-alice-fighter-update-20261025/exits-cold.obj
+```
+
+The single private complete-source correction was compared immediately, before
+retention. Formal and independent fresh-object comparisons now agree on44108
+bytes, canonical SHA256
+`0a47fcc9df818389722356ce1abdc02961d28d06aeb3c22d7e1c5eedaf3694bd`.
+The strict whole44080-byte target comparison remains nonexact at+8/frame418
+versus410, with41308 unmasked differences including28 extra candidate bytes.
+Physical totals are125/128 RETs,679/674 direct and158/163 indirect calls. The
+new global direct total is farther from target, although the corrected local
+orders now agree; call totals are not an acceptance metric. All16 table lengths
+and685 primary remap bytes still agree. Both independent objects also pass all
+six bounded214 execution prefixes. No exact/source-present credit is added.
+
+Receipts: `sharing-before.json`, `sharing-publication.json`,
+`publication-order-*`, `publication-formal-*`, `publication-cold-*`, and
+`publication-before-static.json`, all in the existing build scope. Private
+`sharing.py` independently recovers the five direct-dispatch entries as well
+as primary metadata and checks complete call ownership. The frozen predecessor
+source is `publication-before.cpp`; the new private source is
+`publication-order.cpp`. These local ordering questions are closed. Continue
+from the remaining actual partitions and field-read epochs; do not force a
+particular global call count or conflate local site sharing with behavior.

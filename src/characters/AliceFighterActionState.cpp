@@ -1709,9 +1709,9 @@ void AliceFighterActionStateView::dispatch_action_state()
                 static_cast<float>(F(0xf0) + 108.0),
                 facing, 1, spawn_payload, 3);
             dispatch_character_wave_handle(2);
-            W(0x180) = 1;
             adjust_counter_482(200, 60);
             add_phase_scaled_counter_558(30);
+            W(0x180) = 1;
             return;
         }
         if (!W(0x144)
@@ -2124,7 +2124,7 @@ void AliceFighterActionStateView::dispatch_action_state()
    if(S(0x140)==6) {
     float packet[3]={0,40,0};
     SPAWN(805,static_cast<float>(20*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
-    WAVE(2); ADJUST(200,60); I(0x180)=1; SCALE(30); return;
+    WAVE(2); I(0x180)=1; ADJUST(200,60); SCALE(30); return;
    }
    if(S(0x140)==11 && C(0x750)==1) {
     EFFECT(62,static_cast<float>(F(0xEC)-47*C(0x104)),static_cast<float>(F(0xF0)+185.0),B(0x104),1); BLOCK(); return;
@@ -2146,7 +2146,7 @@ void AliceFighterActionStateView::dispatch_action_state()
    if(S(0x140)==5) {
     float packet[3]={80,40,0};
     SPAWN(805,static_cast<float>(20*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+100.0),B(0x104),1,packet,3);
-    WAVE(2); ADJUST(200,60); I(0x180)=1; SCALE(30); return;
+    WAVE(2); I(0x180)=1; ADJUST(200,60); SCALE(30); return;
    }
    if(S(0x140)==8 && C(0x750)==1) {
     EFFECT(62,static_cast<float>(F(0xEC)-47*C(0x104)),static_cast<float>(F(0xF0)+185.0),B(0x104),1); BLOCK(); return;

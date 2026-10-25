@@ -5,7 +5,7 @@ whole-comparison-first direction. TenshiObject update
 **0x0064CD50** is checkpointed complete source-present/nonexact. Active bounded
 work is **Alice Fighter update0x004E9F50**: raw42721-byte main/full44080-byte
 payload is closed, and the complete manual hypothesis has its first comparison.
-Current43996-byte candidate is nonexact and deliberately unselected.
+Current44108-byte candidate is nonexact and deliberately unselected.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -70,8 +70,8 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
 - First complete43428 SHA0d7bfb04 was compared before controls. Native400
   re-reads facing after sequence/effect callbacks;400/401 request continuations,
   sequence4 timer gates and401 state-before-counter order are now restored.
-- Current formal/cold candidate43996 SHA2655274b,41484 unmasked differences,
-  first4E9F58; frame418/410, RETs122/128, direct672/674, indirect158/163.
+- Current formal/cold candidate44108 SHA0a47fcc9,41308 unmasked differences,
+  first4E9F58; frame418/410, RETs125/128, direct679/674, indirect158/163.
   All16 table lengths and all685 remap bytes agree, without masking or rebasing.
 - Native214 inactive states now go directly to landing check; its flight-end
   gate stays within active1..4. Timer/sequence/velocity/heading/peer reads follow
@@ -85,6 +85,13 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
   300/520/795/797/798 also agree in call counts after separate instruction and
   constant review; their indirect counts are1/3/2/2/2. Global physical counts
   still differ. Counts prove no behavioral equivalence.
+- Action-owner partitions now cover all690 mapped/direct action values. Every
+  per-action call count agrees, but physical sharing differs even for callees
+  whose global counts agree. This exposed three actual request-publication
+  ordering errors:410 now writes dword180 after adjust+scale;415/416 before
+  adjust.411/412/414 were already ordered correctly. The new public static
+  audit passes all six; old2655274b fails exactly410/415/416. It executes no
+  callbacks and claims ordering only. Both fresh objects retain214 prefix6/6.
 - Read-only384MiB Ghidra evidence is already saved; all9 primary DB file hashes
   unchanged. Its decompiler output has warnings and remains a hypothesis.
 - The isolated narrow-facing closed provider also matches46519066/66, but the
@@ -99,14 +106,19 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
   relocation rows and accepted source/header/flags are unchanged. No new cold
   aggregate claim. Full target floating relocation audit passes.
 
+Public ordering diagnostic: scripts/audit-alice-fighter-publication-order.py
+(expected0); --object .../exits-cold.obj is the old negative control(expected1).
 Public comparisons: scripts/build.py --unit exact-first-alice-fighter-update
 --compare --json and scripts/audit-alice-fighter-update.py (both expected1).
 Receipts/private recipes remain under build/exact-first-alice-fighter-update-20261025/
 and the corresponding .analysis/ scope. Formal/cold full audits agree.
 
-Next: continue this complete root from actual differences: real stack/packet
-lifetimes and global physical sharing. The five direct arms have a bounded
-instruction/count review, not full execution acceptance. Close the542/547/548
+Next: continue this complete root from actual differences: use the retained
+sharing-before/publication owner partitions to review real callback order and
+field-read epochs, then real stack/packet lifetimes. Do not infer missing calls
+from physical totals or force a source spelling to reproduce sharing alone.
+The five direct arms have a bounded instruction/count review, not full execution
+acceptance. Close the542/547/548
 source-structure and570/571 extent controls; do not sweep equivalent spellings.
 730's partially defined upper facing bits and570/571's fourth-word provenance
 and original array extent remain unknown;
