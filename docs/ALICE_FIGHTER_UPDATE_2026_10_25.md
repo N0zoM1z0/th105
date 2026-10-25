@@ -275,3 +275,55 @@ The intermediate `action214-live-fields.obj` and formal/cold objects all emit
 4fa62a2b. The frozen `action214-before.obj` is the8dd4473a predecessor. Continue
 from the public complete source and these actual residuals; keep the width
 control separate and avoid unproved packet-size changes.
+
+
+## Separate542 terminal guards and common547/548 exit
+
+Exact target instructions distinguish two542 action9 terminal paths.
+4F1019..4F1032 tests the zero timer/frame counters and sequence4, then reaches
+4ED95D's action9 call4ED966 and RET. The subsequent4F1038..4F1061 guards
+sequence8 and reaches its own action9 call4F1070 and RET. The complete source
+now preserves these two guards instead of OR-ing the sequences into one call.
+The neighboring543 legitimately has one shared terminal call and is unchanged.
+
+Native547 threshold4F1860..4F1867 (timer>=30) and548 threshold4F1A9D..4F1AA4
+(timer>=50) both enter4F1B00. Their successful landing tests converge at4F1AEC:
+zero motion45AF40, height435D60, store ownerF0, then common next-block virtual
+call4F1B07. One source exit label now preserves that common continuation for
+these four paths. The label is a reconstruction of observed control flow;
+it is not evidence of the original source spelling. No initialization, helper
+return value, assembly or padding was added.
+
+Each question was first compiled independently from the preceding complete
+44012-byte/4fa62a2b source, followed immediately by a whole-payload comparison:
+
+| Complete-source control | Canonical bytes | SHA256 | Unmasked differences |
+| --- | ---: | --- | ---: |
+| Separate542 guards only |44024|b66f790d40bd3dab413888fb835f7ce5ee325d37b6e4004f09ea49c37c96dbdb|41324|
+| Common547/548 exit only |43976|4af800f87ba6a11a2d9324f8b90480075c43c57ef437671163f3c7785209f0f4|41578|
+| Both retained |43996|2655274b9cd5c98ee3a873aea3fa6e3f36cadd4c21c9e0e86ce44103380eb07c|41484|
+
+The542-only control closes its per-action virtual-call membership gap5/5;
+only547/548 remain3/4. The547/548-only control closes both3/3 gaps; only542
+remains5/4. Combining the supported structures closes all mapped-case direct
+and indirect call-count differences. These are conservative reachable-site
+counts without predicate feasibility, not call execution counts or semantic
+acceptance. The five special direct-dispatch arms remain outside this census.
+
+Formal and independent fresh-object audits agree on the combined payload.
+The full strict44080-byte target comparison still fails at+8, frame418/410,
+with41484 differing positions including the84-byte size gap. Physical totals
+remain122/128 RETs,672/674 direct calls and158/163 indirect calls; some global
+counts are farther from the target than before. All16 table lengths and all685
+primary remap bytes still agree. The changes are retained for observed local
+control-flow structure, not because of an aggregate similarity improvement.
+Both new objects also pass all six previously bounded214 native prefixes.
+No implemented/exact ledger addition or aggregate cold claim is made.
+
+Receipts in the existing build scope: `exit542-split-*`, `exit547-548-common-*`,
+`exits-formal-*`, `exits-cold-*`, and `exits-baseline-full-audit.json`.
+The private controls start from checkpoint589d2468, and their commands/source
+are frozen in the corresponding analysis scope. Current public source is3022
+lines. The terminal-structure questions are now closed; next inspect actual
+stack/packet lifetimes and separately review the five special direct arms,
+without repeating guard-spelling trials or shrinking packets to force a frame.

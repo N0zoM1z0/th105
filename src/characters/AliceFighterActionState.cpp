@@ -2482,7 +2482,8 @@ void AliceFighterActionStateView::dispatch_action_state()
    packet[0]=-8; packet[1]=14; packet[3]=0;
    SPAWN(820,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+120.0),B(0x104),255,packet,4);
   }
-  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && (S(0x13E)==4 || S(0x13E)==8)) ACTION(9);
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==4) { ACTION(9); return; }
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==8) ACTION(9);
   return;
  }
  case 543: {
@@ -2548,9 +2549,9 @@ void AliceFighterActionStateView::dispatch_action_state()
    ++S(0x730);
   }
   short const sequence=S(0x13E);
-  if(sequence==2 && I(0x144)>=30) { BLOCK(); return; }
+  if(sequence==2 && I(0x144)>=30) { goto common_next_block_exit; }
   if(sequence<=2) F(0xF8)-=D(0.1f);
-  if(S(0x13E)==3) { F(0xF8)-=F(0x100); if(CROSSED()) { ZERO(); F(0xF0)=GROUND(); BLOCK(); return; } }
+  if(S(0x13E)==3) { F(0xF8)-=F(0x100); if(CROSSED()) { ZERO(); F(0xF0)=GROUND(); goto common_next_block_exit; } }
   if(FRAME()) ACTION(0);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) { ADJUST(200,120); SCALE(50); }
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==4) ACTION(9);
@@ -2566,9 +2567,9 @@ void AliceFighterActionStateView::dispatch_action_state()
    ++S(0x730);
   }
   short const sequence=S(0x13E);
-  if(sequence==2 && I(0x144)>=50) { BLOCK(); return; }
+  if(sequence==2 && I(0x144)>=50) { goto common_next_block_exit; }
   if(sequence<=2) F(0xF8)-=D(0.1f);
-  if(S(0x13E)==3) { F(0xF8)-=F(0x100); if(CROSSED()) { ZERO(); F(0xF0)=GROUND(); BLOCK(); return; } }
+  if(S(0x13E)==3) { F(0xF8)-=F(0x100); if(CROSSED()) { ZERO(); F(0xF0)=GROUND(); goto common_next_block_exit; } }
   if(FRAME()) ACTION(0);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) { ADJUST(200,120); SCALE(50); }
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==4) ACTION(9);
@@ -2990,6 +2991,9 @@ void AliceFighterActionStateView::dispatch_action_state()
   return;
  default: update_common_action_state(); return;
  }
+common_next_block_exit:
+ BLOCK();
+ return;
 }
 #undef AT
 #undef F
