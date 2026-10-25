@@ -1,7 +1,7 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **complete SakuyaObject update4E0D30 source now compares;
-continue its concrete precision/publication/sharing residuals**.
+Current transition: **park complete SakuyaObject update4E0D30 after bounded
+sharing controls; next independently review source-missing Object5F9420**.
 Hash-attested raw CFG closes all6774 instructions/28985 callable bytes,47 RET0s,
 232 direct calls to20 entries,48 virtual calls and all seven tables. Complete
 29476-byte target owns72 destination DWORDs/200 remap bytes/three alignment
@@ -13,9 +13,17 @@ Real double captures restore eight-byte alignment; six independently consumed
 12-byte packets explain the frame0x98-to0xD0 change exactly.21 actual random
 speed-product float boundaries are retained. All200 remap bytes, seven table
 dimensions,48 virtual calls and19/20 direct-call counts agree. Still52 RETs
-versus47 and two secondary-alpha calls versus3. Next inspect803 alpha sharing,
-return/field epochs and the observed800 inclusive comparison. No flag grid or
-runtime matrix. See [complete evidence/source/commands](SAKUYA_OBJECT_UPDATE_2026_10_25.md).
+versus47 and two secondary-alpha calls versus3. Follow-up static case traversal
+shows17 frame calls conceal wrong sharing: target812/815/855 share a call,
+source leaves815 separate; target816 owns a call, source joins the common tail.
+Explicit815 sharing over-factors other tails, producing29040 bytes/16 frame
+calls. Alpha assignment,816 early-return and800 consumed-Y controls repeat
+previous complete payloads. Inclusive800 bounds and a low-byte helper carrier
+do not restore sharing. No implementation/header is promoted; retain29408/
+3e0aa7a9 and stop these questions absent new independent evidence. No flag grid
+or runtime matrix. See [complete evidence/source/commands](SAKUYA_OBJECT_UPDATE_2026_10_25.md).
+Next candidate5F9420 is a provisional27874-byte KomachiObject slot28 entry;
+re-attest target and close its own full boundary/ABI before selecting source.
 Tracking and1484 floating target-reference checks pass. Accepted graph remains
 524 units/1412 functions; prior Remilia below is the latest aggregate cold
 receipt. No new aggregate cold replay is claimed.

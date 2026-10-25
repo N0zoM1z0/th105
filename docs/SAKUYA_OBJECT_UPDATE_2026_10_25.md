@@ -6,8 +6,8 @@ VC8 builds emit29408 bytes, SHA256
 `3e0aa7a9293563dd879d253047218a3cf9140b6fce7bfb9b8ce30c515c35bc9c`,
 against29476 target bytes. Full unmasked comparison reports27397 differing
 bytes, first+37 in the primary default-branch destination. This is not a small
-localized residual or a partial exact claim. Continue this bounded root from
-the concrete frame, scalar-precision and call-sharing evidence below.
+localized residual or a partial exact claim. The later controls below leave
+this root parked pending new independent sharing/lifetime evidence.
 
 ## Observed target and complete boundary
 
@@ -208,11 +208,66 @@ new aggregate cold replay is claimed. Ledger validation records mapped1578,
 source-present1559 and598 configured units/1566 functions;1484 floating target
 references pass.
 
-Continue4E0D30. Inspect the803 secondary-alpha call sharing and the five excess
-returns before another whole-body trial. The first800 path also has an observed
-inclusive phase comparison against2 and EBX-held5; source currently compares
-against3 and uses an immediate5. Test only evidence-backed source epochs and
-relation forms, without introducing a constant local to force a register.
-Preserve complete comparisons and stop any repeated neutral controls. Remaining
-unknowns include full execution equivalence, precise source expression/return
-sharing, original nominal owner/return type and original TU/compiler context.
+## Follow-up: physical sharing and closed controls
+
+Follow-up receipts live under `build/sakuya-object-update-epochs-20261025/`;
+private source/header snapshots and `case_paths.py` live under the corresponding
+`.analysis/` directory. The baseline formal replay retains the selected full
+29408-byte hash above and27397 differences. These are complete canonical
+comparisons with relocation replay; shorter output or fewer differing byte
+positions does not establish a better reconstruction.
+
+Static traversal from each primary case entry distinguishes physical call
+sites, rather than only their total count. It follows both conditional edges
+and every nested switch destination, so it overapproximates feasible execution.
+It is neither a runtime matrix nor a proof of execution equivalence. Some
+cases share tails; their reachable-return counts must not be summed.
+
+For frame helper4351C0, target812/815/855 reach the same physical call4E319E.
+The selected source shares812/855 at4E31B2 but leaves815 at4E3A07. Conversely,
+target816 owns4E3FC8, while the selected source folds816 into4E1DAD, shared with
+803/811/813/850/852/856/857/858/859/900/901/980/998. The corresponding target
+group uses4E1D99 without816. Thus the matching total17 frame calls compensates
+for two different sharing decisions; it does not establish the target graph.
+
+Target803 owns two alpha-helper calls4E18CD/4E1BD8. Its generated second path
+instead joins the first call at4E18DA through the receiver reload at4E18D8.
+Raw target0/1 loads that receiver before FNSTCW;3/4 loads it after the argument
+push but before FLDCW. These observations identify allocation/sharing epochs,
+without proving the original source expression or nominal helper prototype.
+
+Fresh raw provider496370 is35 bytes, SHA256
+`6f202f689fce83ecace5dbfc88c86b7beb43987372f2320c272cb9f47f9072f1`.
+It reads only the low byte of the four-byte argument slot, composes the alpha
+word and tails42FD80, or returns with RET4 when its renderer is absent. This
+supports a local word-carrier diagnostic with explicit caller byte casts;
+it does not recover an original nominal int parameter or justify changing the
+selected declaration/shared provider.
+
+| Isolated question / receipt basename | Full bytes | SHA256 prefix | Differences / observation |
+| --- | ---: | --- | --- |
+|803 zero on left of comparison: `zero-left803`|29416|cfd9d773|27270;52 RETs, alpha2|
+|803 consume assigned alpha directly: `consumed-alpha803`|29408|f82af9da|27397; identical to prior random-product candidate|
+|803 local low-byte word carrier: `word-carrier803`|29412|60311bf6|27279;52 RETs, alpha2|
+|815 explicitly joins812 frame tail: `shared-frame815`|29040|ffc4bfc5|27562;48 RETs,16 frame calls, alpha2|
+|816 early-return spelling on previous control: `early-return816`|29040|ffc4bfc5|byte-identical to previous control|
+|800 inclusive2/4/6 relation forms: `inclusive-phase800`|29404|7aafbb15|27218;52 RETs,17 frame calls, alpha2|
+|800 consumed next-Y capture: `captured-position800`|29408|3e0aa7a9|byte-identical to selected source|
+
+Each basename has a full JSON hash/comparison, canonical binary, disassembly,
+relocation bindings, object and compiler log. The explicit815 join answers a
+real target edge but triggers broader tail factoring and loses a frame call;
+it is unselected. None of the controls restores three alpha calls or47 returns.
+The consumed-alpha, early-return and next-Y questions have repeated complete
+outputs and are closed absent new independent evidence. Inclusive comparisons
+do not justify adding a constant local to force EBX. No flag grid or runtime
+matrix was run.
+
+No implementation/header, accepted unit, literal binding, exact ledger or
+aggregate total changes in this follow-up. Keep the selected29408/3e0aa7a9
+source and its mandatory nonexact status. Park4E0D30 and independently review
+another source-missing large Object root;5F9420 is a provisional27874-byte
+KomachiObject slot28 candidate, requiring its own fresh attestation and complete
+boundary/ABI review. Remaining Sakuya unknowns include full execution
+equivalence, precise expression/return sharing, original nominal owner/return
+type and original TU/compiler context. No new aggregate cold replay is claimed.
