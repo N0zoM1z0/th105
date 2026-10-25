@@ -15,13 +15,16 @@ unselected hypothesis. The real456EB0 provider control remains blocked at the
 same emitted string copy constructor. Its investigation did recover the missing
 owned entry destructor435F00, now independently133/133. Filtered spell CSV parser
 **0x00433B30** is now closed at1987 bytes/all478 instructions, with a complete
-unselected source and full canonical comparison differing in four operand bytes.
+unselected source and full canonical comparison now differing in two operand bytes.
 The independently reviewed resource parser **0x004343A0** now reproduces its
 complete1646-byte body in two public builds with zero differences. Its checked
 back field view preserves every failure callback and bound reload. This is a
-complete medium-sized representative; the next bounded family task is an
-independent replay of filtered433B30 with this newly proven operation. Its
-short-ID selection loop remains a separate unknown.
+complete medium-sized representative. Its operation has now been independently
+replayed in filtered433B30: four unequal bytes reduce to two, and a genuine
+joint-TU control preserves that residual plus the exact representative. This
+finite peer/visibility lane is closed. Next provisional review candidate is
+**0x0043E2E0**,3722 bytes in the candidate ledger; fresh preflight, complete CFG,
+origin and first whole-source comparison are required before any acceptance.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -71,7 +74,7 @@ selection and exact1646-byte function. Filtered433B30 remains unselected.
 | Configured units / functions |608 /1576 |
 
 The expanded totals have a fresh full cold receipt:
-`build/exact-first-spell-resource-csv-20261025/cold-all.log` passes525 accepted
+`build/exact-first-spell-filtered-peer-20261026/cold-all.log` passes525 accepted
 units/all1413 functions,382816 authored bytes, including the new representative.
 Its two independent focused public builds also reproduce all1646 bytes. No
 previous source/header/profile/binding was changed; one new EH data row belongs
@@ -107,9 +110,9 @@ Audit: `scripts/audit-spell-resource-csv-target.py` (target/object expected0).
 - Source, mapping and exact row are selected together. Original nominal types,
   source spelling and TU boundary remain unknown. No helper-origin credit.
   Shared headers/old bindings are unchanged; the new EH prefix is unit-specific.
-- After the stable checkpoint, independently replay filtered433B30 with this
-  newly proven checked-back operation. Its short-deque selection loop and
-  remaining differences require their own evidence; do not infer peer exactness.
+- The2026-10-26 independent filtered follow-up is complete: its1987-byte body
+  remains nonexact by two bytes. Both complete real parsers in one TU preserve
+  that residual and this exact1646-byte representative. No peer exactness claim.
 
 ## Checkpoint: filtered spell CSV parser433B30
 
@@ -124,20 +127,26 @@ Audit: `scripts/audit-spell-filtered-csv-target.py` (target-only expected0).
   positions after full replay. Corrected CSV initialization/single RAII clear,
   real set nil ownership, real Title texture API/hidden return, row constructor,
   pair conversion and postfix reverse-iterator lifetimes close the root shape.
-- Public complete source is1987 SHA bf34bc86412914882ffc8f3ca3f480a2430f9820c88aa7de7a7888eb4d3c2f36,
-  with all relocations replayed and **four unequal operand bytes** at433C3C,
-  433C3F,433E24,433E27. Two unsigned deque upper-bound sums read head/count
-  in reversed order. No byte/extent waiver, implemented.csv or matches.csv row.
+- Current complete source is1987 SHA b742d1af1789c8fa42305c3f4d69b2a4155d09329c3f43500e38f3b4da9d2060,
+  with all relocations replayed and **two unequal operand bytes** at433E24 and
+  433E27. The exact representative's checked-back field view closes the former
+  short-loop differences433C3C/433C3F rather than the back operands: surrounding
+  expression context affects operand selection. Do not claim a locally matched
+  back operation here. No byte/extent waiver, implemented.csv or matches.csv row.
 - RTM, const reads and direct iterator expressions are byte-neutral. Explicit
   reloaded-bounds negative control regresses to179 unequal positions. Preserve
-  private trial sources/objects/replays and stop this bounded lane; no flag or
+  private trial sources/objects/replays. New independent exact-peer evidence
+  justified one field-view trial and one genuine joint-parser visibility test;
+  joint filtered1987 retains the same two differences, joint resource1646 stays
+  exact. Stop this bounded lane; no flag or
   spelling grid without independent evidence. Original nominal types, TU context,
   source spelling and exception-path equivalence remain unknown.
-- Formal build/census receipts are below
-  `build/exact-first-spell-filtered-csv-20261025/`; the public audit's `--object`
-  mode derives aliases from the unit and reports all four differences (exit1).
-  Only the new probe consumes the four added data rows. Shared headers and all
-  accepted consumers are unchanged. No new helper-origin/exact credit.
+- Current formal build/census and joint-control receipts are below
+  `build/exact-first-spell-filtered-peer-20261026/`; the public audit's `--object`
+  mode derives aliases from the unit and reports both differences (exit1).
+  Original four-byte receipts stay in the20261025 directory. No shared header,
+  profile or existing binding changed. The accepted resource source is unchanged.
+  No new helper-origin/source-selected/exact credit. Fresh root review follows.
 
 ## Checkpoint: Scenario command interpreter458440
 

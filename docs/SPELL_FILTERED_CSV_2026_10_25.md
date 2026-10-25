@@ -1,4 +1,62 @@
-# Filtered spell CSV parser: complete source, four bytes pending
+# Filtered spell CSV parser: complete source, two bytes pending
+
+## 2026-10-26: independent exact-peer follow-up
+
+After resource parser4343A0 independently passed its complete1646-byte
+comparison and cold acceptance, filtered433B30 was re-attested and its public
+baseline independently rebuilt. That full1987-byte baseline still had exactly
+the four differences documented below. Wrong-target GUI IDA was again rejected;
+the public raw-PE audit still reaches all478 instructions through4342F3.
+
+One evidence-backed source trial reuses the representative's actual
+`DwordDeque4::back_checked()` field view, including all callbacks and fresh
+bound reads. It reduces the complete filtered comparison to **two unequal
+bytes**, at433E24 and433E27. The canonical1987-byte candidate SHA is now
+`b742d1af1789c8fa42305c3f4d69b2a4155d09329c3f43500e38f3b4da9d2060`.
+The public unit reproduces that result with full relocation replay and no
+extent/byte waiver. It remains identified/unselected, absent from
+implemented.csv and matches.csv.
+
+The operation-to-instruction relationship is not local: this back-access change
+closes the short-deque operand bytes433C3C/433C3F, while the back operands
+433E24/433E27 stay reversed. The source compiler's operand choice depends on
+the surrounding expression graph. Do not describe this as an independently
+matched back operation in the filtered caller.
+
+One genuine joint-TU control includes both complete real parsers, with their
+identical inline back operation and string-call view defined once. No synthetic
+caller or dead storage is added. Full comparison of both roots produces the
+identical1987-byte/two-byte-residual filtered body and the exact1646-byte
+resource body. This closes the tested shared-visibility question without
+inferring original TU ownership, source spelling, nominal types, exception-path
+equivalence or an LTCG impossibility. The joint control remains private.
+
+| Independent whole-body control | Complete bytes | Unequal bytes |
+| --- | ---: | ---: |
+| Fresh filtered baseline |1987 |4 |
+| Proven checked-back view in filtered caller |1987 |2 |
+| Same filtered caller with both real parsers in one TU |1987 |2 |
+| Resource representative in that same joint TU |1646 |0 |
+
+Receipts are under `build/exact-first-spell-filtered-peer-20261026/`:
+`baseline-build.json`, `baseline-census.json`, `proven-back-census.json`,
+`joint-filtered-census.json`, `joint-resource-census.json`, `formal-final.json`
+and `formal-census.json`. Trial sources and the untouched starting source are
+retained in the corresponding private analysis directory. No shared header,
+existing accepted source, profile or relocation binding changed. The inline
+member definition is identical to the representative's definition.
+
+This finite peer/visibility lane is closed. Preserve the new public two-byte
+checkpoint and switch to a fresh complete medium/large authored candidate.
+Do not repeat operand-order, spelling, constness or flag controls without a new
+independent fact. No exact function or authored exact byte is added here.
+
+After the conservative manifest input changed, a fresh serial cold replay in
+that directory's `cold-all.log` passed all525 accepted units/all1413 functions.
+The accepted resource parser remains1646/1646 exact. Aggregate source-present
+and exact counts are unchanged; this filtered candidate remains unselected.
+
+## Initial 2026-10-25 checkpoint
 
 Target: original Japanese TH10.5 1.06a, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
@@ -6,7 +64,7 @@ Address **0x00433B30**, full callable **1987 bytes**, end exclusive4342F3.
 Source: `src/battle/SpellCsvFilteredParser.cpp`.
 Unit: `exact-first-spell-filtered-csv`.
 
-The complete ordinary C++ candidate has the same1987-byte extent and **four
+The initial complete ordinary C++ candidate has the same1987-byte extent and **four
 unequal bytes** after full canonical relocation replay. It is identified but
 unselected, absent from implemented.csv and matches.csv. No exact credit is
 added. The source file existed before this investigation and was initially an
@@ -102,7 +160,7 @@ replay resolved the actual handler and native operands rather than masking
 them. First canonical SHA:
 `3c0e20668456427c2575f0009a83e0a0b4abd6c26ad7578f0e389d93881debc0`.
 
-Final source canonical SHA:
+Initial checkpoint canonical SHA:
 `bf34bc86412914882ffc8f3ca3f480a2430f9820c88aa7de7a7888eb4d3c2f36`.
 The public formal build and full difference census agree with the private trial.
 
@@ -137,8 +195,9 @@ scripts/repo-python scripts/audit-spell-filtered-csv-target.py \
   --object build/match-units/ExactFirst_SpellCsvFilteredParser.obj
 ```
 
-Expected exits: target audit0; build/compare1 with `result=mismatch` at+10C;
-object census1 with `candidate_nonexact`, section1987, four unequal bytes. The
+Current expected exits: target audit0; build/compare1 with `result=mismatch` at
++2F4; object census1 with `candidate_nonexact`, section1987, two unequal bytes.
+The original checkpoint instead reported first+10C and four unequal bytes. The
 census uses the public unit's exact aliases and replays every relocation across
 the full section; it is a diagnostic, not an alternative acceptance procedure.
 
@@ -154,6 +213,6 @@ compiler processes were used. Available RAM stayed above10GiB, swap use119MiB.
 No broad behavioral matrix is justified by the four known operand differences.
 After these ledger additions, a fresh serial cold replay passed all524 accepted
 units/all1412 functions. Receipt: the same build directory's `cold-all.log`.
-Next bounded candidate is the independent full parser4343A0, starting with fresh
-preflight and its own first whole-function comparison. Nothing about that peer
-is inferred as exact from this root.
+At that checkpoint the next candidate was independent full parser4343A0. Its
+later complete exact result supplies the new evidence described above; it was
+accepted through its own preflight, full closure and whole-function comparison.

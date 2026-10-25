@@ -11,7 +11,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete478-instruction spell CSV parser from exact wrapper434300 at434373. Selected spell IDs gate game card paths, texture ownership, sixteen-row text composites and spell-record map policy; surrounding STL operations do not establish library ownership of this root. Public target audit reaches all1987 bytes including the remote else tail after RET20. Whole ordinary C++ comparison has4 unequal operand bytes in two unsigned deque upper-bound sums; identified/unselected, no exact credit. docs/SPELL_FILTERED_CSV_2026_10_25.md."
+evidence = "Complete478-instruction spell CSV parser from exact wrapper434300 at434373. Selected spell IDs gate game card paths, texture ownership, sixteen-row text composites and spell-record map policy; surrounding STL operations do not establish library ownership of this root. Public target audit reaches all1987 bytes including the remote else tail after RET20. Whole ordinary C++ comparison now has2 unequal operand bytes in one unsigned deque upper-bound sum after independent exact-peer recovery; genuine joint-parser visibility preserves that residual and the exact peer; identified/unselected, no exact credit. docs/SPELL_FILTERED_CSV_2026_10_25.md."
 required_body_hashes = [{ address = "0x00433B30", size = 1987, sha256 = "7d09cf25edce166f13585697b544749512d2c6d8b968c555a97d75d1cdb19cb8" }]
 required_direct_edges = [{ caller = "0x00434300", site = "0x00434373", target = "0x00433B30", caller_status = "matching" }]
 

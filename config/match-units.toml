@@ -23185,7 +23185,7 @@ source = "src/battle/SpellCsvFilteredParser.cpp"
 object = "build/match-units/ExactFirst_SpellCsvFilteredParser.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete1987-byte filtered spell CSV parser433B30; all478 instructions reached and full remote else tail reconciled. Real set/map/deque and owning lifetimes recover frame/branches; full strict replay remains4 unequal operand bytes in two commutative deque upper-bound sums. Identified/unselected; no exact credit. docs/SPELL_FILTERED_CSV_2026_10_25.md."
+notes = "Complete1987-byte filtered spell CSV parser433B30; all478 instructions reached and full remote else tail reconciled. Real set/map/deque and owning lifetimes recover frame/branches. Independently proven checked-back view from exact peer4343A0 reduces full strict replay to2 unequal operand bytes at433E24/433E27; both actual parsers in one TU preserve this1987-byte residual and exact1646-byte peer. Identified/unselected; no exact credit. docs/SPELL_FILTERED_CSV_2026_10_25.md."
 
 [[units.exact-first-spell-filtered-csv.functions]]
 address = "0x00433B30"

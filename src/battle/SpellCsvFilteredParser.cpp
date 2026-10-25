@@ -11,9 +11,28 @@ namespace th105 {
 extern "C" __declspec(dllimport) int __cdecl wsprintfA(
     char *, const char *, ...);
 
+extern "C" void __cdecl _invalid_parameter_noinfo(void);
+
 extern unsigned g_spell_texture_load_state;
 extern unsigned g_spell_texture_upload_state;
 extern CompositeTextureUploadState g_spell_composite_upload_state;
+
+__forceinline unsigned &DwordDeque4::back_checked()
+{
+    const unsigned finish = head_0c + live_count_10;
+    if (head_0c > finish)
+        _invalid_parameter_noinfo();
+    const unsigned position = finish - 1;
+    if (position > head_0c + live_count_10 || position < head_0c)
+        _invalid_parameter_noinfo();
+    unsigned block = position >> 2;
+    const unsigned offset = position & 3;
+    if (position >= head_0c + live_count_10)
+        _invalid_parameter_noinfo();
+    if (block_capacity_08 <= block)
+        block -= block_capacity_08;
+    return blocks_04[block][offset];
+}
 
 // 0x004021C0 is an independently compiled checked-string assign operation.
 struct FilteredSpellStringAssignView {
@@ -89,7 +108,7 @@ void SpellDataOwner::parse_spell_csv_via_325b0(
                         &g_spell_texture_load_state,
                         &g_spell_texture_upload_state));
                 parsed.optional_resource_44 = reinterpret_cast<void *>(
-                    reinterpret_cast<std::deque<unsigned> *>(image_owner)->back());
+                    image_owner->back_checked());
                 composite_paths.append(parsed.name_00 + "<br>");
                 parsed.value_48 = 16 * batch_count++;
 
