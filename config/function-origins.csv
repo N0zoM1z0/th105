@@ -1053,7 +1053,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00433A80,authored_game,battle,authored,observed,canonical-exact-authored
 0x00433B30,authored_game,battle,authored,observed,spell-filtered-csv-authored-106a
 0x00434300,authored_game,battle,authored,observed,canonical-exact-authored
-0x004343A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004343A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00434A10,authored_game,battle,authored,observed,canonical-exact-authored
 0x00434AC0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00434C10,authored_game,battle,authored,observed,canonical-exact-authored

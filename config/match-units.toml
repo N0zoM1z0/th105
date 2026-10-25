@@ -23216,3 +23216,37 @@ rel32_targets = [
   "@__security_check_cookie@4=0x00689D25",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.exact-first-spell-resource-csv]
+kind = "probe"
+source = "src/battle/SpellCardParser.cpp"
+object = "build/match-units/ExactFirst_SpellCardParser.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete1646-byte spell card/resource CSV parser4343A0. Closed373/374 reachable instructions and one six-byte internal alignment operation; RET16 plus remote ownerless tail. Real map pair/reverse lifetimes, row offset, owning CSV and Title texture API recover the whole body. Checked-back view preserves all callbacks and reloads after failure. docs/SPELL_RESOURCE_CSV_2026_10_25.md."
+
+[[units.exact-first-spell-resource-csv.functions]]
+address = "0x004343A0"
+symbol_base = "?parse_spell_csv_and_build_card_resources@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@@Z"
+dir32_targets = [
+  "__ehhandler$?parse_spell_csv_and_build_card_resources@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@@Z=_spell_resource_csv_eh",
+]
+rel32_targets = [
+  "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
+  "??0SpellRecordView@th105@@QAE@ABU01@@Z=0x00432ED0",
+  "??3@YAXPAX@Z=0x006898EA",
+  "?_Dec@const_iterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ=0x004329B0",
+  "?advance_row@CsvReader@th105@@QAE_NXZ=0x0040F680",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
+  "?assign_bytes@FilteredSpellStringAssignView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0",
+  "?clear_rows@CsvReader@th105@@QAEXXZ=0x0040FDB0",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?insert@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHUSpellRecordView@th105@@@2@@Z=0x00433890",
+  "?load@CsvReader@th105@@QAE_NPBD@Z=0x0040F150",
+  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+  "?next_int@CsvReader@th105@@QAEHXZ=0x0040F480",
+  "?next_string@CsvReader@th105@@QAEPAXPAX@Z=0x0040F580",
+  "?push_back@?$deque@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x00417240",
+  "@__security_check_cookie@4=0x00689D25",
+  "__invalid_parameter_noinfo=0x0068A143",
+]

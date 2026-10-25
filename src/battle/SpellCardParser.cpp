@@ -2,6 +2,9 @@
 
 #include "assets/CsvReader.hpp"
 #include "assets/SpellTexturePool.hpp"
+#include "ui/Title.hpp"
+#include <map>
+#include <deque>
 
 namespace th105 {
 
@@ -17,22 +20,24 @@ extern CompositeTextureUploadState g_spell_composite_upload_state;
 
 __forceinline unsigned &DwordDeque4::back_checked()
 {
-    const unsigned begin = head_0c;
-    if (begin > live_count_10 + begin)
+    const unsigned finish = head_0c + live_count_10;
+    if (head_0c > finish)
         _invalid_parameter_noinfo();
-
-    const unsigned finish = live_count_10 + head_0c;
     const unsigned position = finish - 1;
-    if (position > finish || position < begin)
+    if (position > head_0c + live_count_10 || position < head_0c)
         _invalid_parameter_noinfo();
-    if (position >= live_count_10 + head_0c)
-        _invalid_parameter_noinfo();
-
     unsigned block = position >> 2;
+    const unsigned offset = position & 3;
+    if (position >= head_0c + live_count_10)
+        _invalid_parameter_noinfo();
     if (block_capacity_08 <= block)
         block -= block_capacity_08;
-    return blocks_04[block][position & 3];
+    return blocks_04[block][offset];
 }
+
+struct FilteredSpellStringAssignView {
+    String28 &assign_bytes(const char *text, unsigned count);
+};
 
 void SpellDataOwner::parse_spell_csv_and_build_card_resources(
     const char *character_name,
@@ -40,15 +45,38 @@ void SpellDataOwner::parse_spell_csv_and_build_card_resources(
     DwordDeque4 *image_owner,
     SpellTree *destination)
 {
-    CsvReader reader;
+    typedef std::map<int, SpellRecordView> RecordMap;
+    RecordMap *const records = reinterpret_cast<RecordMap *>(destination);
+    typedef char map_size[sizeof(RecordMap) == sizeof(SpellTree) ? 1 : -1];
+    typedef char deque_size[
+        sizeof(std::deque<unsigned>) == sizeof(DwordDeque4) ? 1 : -1];
+    struct OwningCsvReader : CsvReader {
+        OwningCsvReader() {
+            row_map_04 = 0;
+            row_map_capacity_08 = 0;
+            row_start_0c = 0;
+            row_count_10 = 0;
+            outer_iterator_aux_14 = 0;
+            outer_iterator_owner_18 = 0;
+            outer_row_position_1c = 0;
+            inner_iterator_aux_20 = 0;
+            current_row_24 = 0;
+            current_field_position_28 = 0;
+        }
+    } reader;
     reader.load(path);
 
     String28 composite_paths;
-    unsigned batch_count = 0;
+    int batch_count = 0;
     bool has_next_row;
 
     do {
-        SpellRecordView parsed;
+        struct ParsedSpellRow : SpellRecordView {
+            ParsedSpellRow() {
+                batch_resource_40 = 0;
+                optional_resource_44 = 0;
+            }
+        } parsed;
         const int key = reader.next_int();
         reader.next_string(&parsed.name_00);
         parsed.selector_1c = static_cast<signed char>(reader.next_int());
@@ -56,8 +84,6 @@ void SpellDataOwner::parse_spell_csv_and_build_card_resources(
         reader.next_string(&parsed.description_20);
         parsed.value_3c = static_cast<short>(reader.next_int());
         parsed.value_3e = static_cast<short>(reader.next_int());
-        parsed.batch_resource_40 = 0;
-        parsed.optional_resource_44 = 0;
 
         DwordDeque4 *handles = image_owner;
         if (handles != 0) {
@@ -69,8 +95,8 @@ void SpellDataOwner::parse_spell_csv_and_build_card_resources(
                 key);
 
             unsigned card_handle;
-            handles->push_back(
-                g_spell_texture_pool.load_texture(
+            reinterpret_cast<std::deque<unsigned> *>(handles)->push_back(
+                *g_title_resource_manager.load_texture(
                     &card_handle,
                     card_path,
                     &g_spell_texture_load_state,
@@ -78,55 +104,35 @@ void SpellDataOwner::parse_spell_csv_and_build_card_resources(
             parsed.optional_resource_44 = reinterpret_cast<void *>(
                 handles->back_checked());
             composite_paths.append(parsed.name_00 + "<br>");
-            ++batch_count;
+            parsed.value_48 = 16 * batch_count++;
 
-            SpellRecordView record_copy(parsed);
-            SpellTreeValue value(key, record_copy);
-            SpellTreeInsertResult ignored;
-            destination->insert_unique_value(&ignored, &value);
+            records->insert(std::pair<int, SpellRecordView>(key, parsed));
             has_next_row = reader.advance_row();
 
-            if (batch_count != 16 && has_next_row)
-                continue;
+            if (batch_count == 16 || !has_next_row) {
+                TextureHandleResult composite_handle =
+                    g_title_resource_manager.create_text_texture(
+                        composite_paths.c_str(),
+                        &g_spell_composite_upload_state,
+                        0x200, 0x100, 0, 0);
+                reinterpret_cast<std::deque<unsigned> *>(handles)->push_back(
+                    composite_handle.value);
 
-            unsigned composite_handle;
-            handles->push_back(
-                g_spell_texture_pool.create_composite_texture(
-                    &composite_handle,
-                    composite_paths.c_str(),
-                    &g_spell_composite_upload_state,
-                    0x200,
-                    0x100));
+                RecordMap::reverse_iterator current = records->rbegin();
+                for (int index = 0; index < batch_count; ++index)
+                    (current++)->second.batch_resource_40 =
+                        reinterpret_cast<void *>(composite_handle.value);
 
-            SpellTreeIterator current = {
-                destination,
-                destination->end_node_04
-            };
-            for (unsigned remaining = batch_count;
-                 remaining != 0;
-                 --remaining) {
-                current.decrement_checked();
-                SpellTreeIterator record = current;
-                record.decrement_checked();
-                if (record.owner == 0 ||
-                    record.node == record.owner->end_node_04)
-                    _invalid_parameter_noinfo();
-                record.node->value_10.batch_resource_40 =
-                    reinterpret_cast<void *>(composite_handle);
+                reinterpret_cast<FilteredSpellStringAssignView *>(&composite_paths)
+                    ->assign_bytes("", 0);
+                batch_count = 0;
             }
-
-            composite_paths.assign("", static_cast<unsigned>(0));
-            batch_count = 0;
         } else {
-            SpellRecordView record_copy(parsed);
-            SpellTreeValue value(key, record_copy);
-            SpellTreeInsertResult ignored;
-            destination->insert_unique_value(&ignored, &value);
+            records->insert(std::pair<int, SpellRecordView>(key, parsed));
             has_next_row = reader.advance_row();
         }
     } while (has_next_row);
 
-    reader.clear_rows();
 }
 
 } // namespace th105

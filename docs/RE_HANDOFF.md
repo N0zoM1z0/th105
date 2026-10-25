@@ -16,8 +16,12 @@ same emitted string copy constructor. Its investigation did recover the missing
 owned entry destructor435F00, now independently133/133. Filtered spell CSV parser
 **0x00433B30** is now closed at1987 bytes/all478 instructions, with a complete
 unselected source and full canonical comparison differing in four operand bytes.
-Finite operand-order controls are closed; next bounded candidate is the complete
-independent parser4343A0, with fresh preflight and first whole comparison.
+The independently reviewed resource parser **0x004343A0** now reproduces its
+complete1646-byte body in two public builds with zero differences. Its checked
+back field view preserves every failure callback and bound reload. This is a
+complete medium-sized representative; the next bounded family task is an
+independent replay of filtered433B30 with this newly proven operation. Its
+short-ID selection loop remains a separate unknown.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -56,25 +60,56 @@ The compiler-proven deque front4321B0 is removed from authored/source-present
 credit: the net change is+62 exact authored bytes and no net function count.
 The filtered CSV root adds one observed authored identity/mapping and one probe;
 it adds no source-selected or exact credit.
+Resource CSV4343A0 adds one independently verified authored mapping, source
+selection and exact1646-byte function. Filtered433B30 remains unselected.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1598 /1419 /1007 |
-| Mapped / source-present |1586 /1564 |
-| Exact functions / authored bytes |1412 /381170 |
-| Configured units / functions |607 /1575 |
+| Provisional / authored / excluded / review candidates |4024 /1599 /1419 /1006 |
+| Mapped / source-present |1587 /1565 |
+| Exact functions / authored bytes |1413 /382816 |
+| Configured units / functions |608 /1576 |
 
-These totals have a fresh complete cold receipt:
-`build/exact-first-spell-filtered-csv-20261025/cold-all.log` passes all524 accepted
-units/all1412 functions,381170 authored bytes. It includes all eight previously
-accepted units/19 functions affected by the shared header and the new133-byte
-destructor. The compiler-generated71-byte front probe is independently exact
-but excluded from these authored totals. Source-present is not exact acceptance.
-Existing accepted source/header/profile/bindings were preserved by the CSV
-checkpoint. Its four new data rows and new method aliases belong to the new
-unselected probe; the full cold replay also refreshes the shared ledger inputs.
+The expanded totals have a fresh full cold receipt:
+`build/exact-first-spell-resource-csv-20261025/cold-all.log` passes525 accepted
+units/all1413 functions,382816 authored bytes, including the new representative.
+Its two independent focused public builds also reproduce all1646 bytes. No
+previous source/header/profile/binding was changed; one new EH data row belongs
+to the added unit. The compiler-proven71-byte deque front remains excluded from
+authored totals. The prior524-unit/1412-function receipt is retained separately.
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
+
+## Checkpoint: resource spell CSV parser4343A0
+
+[Complete representative, target observations and trial history](SPELL_RESOURCE_CSV_2026_10_25.md).
+Source: `src/battle/SpellCardParser.cpp`.
+Unit: `exact-first-spell-resource-csv`.
+Audit: `scripts/audit-spell-resource-csv-target.py` (target/object expected0).
+
+- Whole callable/COFF1646 SHA9227f8e00a66490d13ffc3ad8f992f0b6c997913acf9beeca2f128eb3a0f14fc;
+  373/374 instructions reached, one pinned six-byte alignment operation at43445A.
+  RET16 at4348F2 has a remote ownerless tail through434A0E; two following INT3
+  separate exact wrapper434A10, whose E8 at434A91 has an explicit this receiver.
+- First complete retained source1986 was immediately compared,1861 unequal
+  positions after full replay. Correct Title texture ABI, owning CSV and row
+  construction, actual map pair/reverse lifetimes, missing16*batch_count offset
+  and common row cleanup recover the complete shape.
+- Genuine deque access left two operand bytes different. Existing checked-back
+  field view now preserves all three callback sites and reads bounds again after
+  each callback; it closes those two bytes without changing any other byte.
+  Root retains all five invalid-parameter calls. No iterator representation,
+  deleted checks, asm, padding, copied bytes or compiler-profile change.
+- Two independent public builds `formal-first.json`/`formal-second.json` report
+  full1646/1646 canonical exact. Public object census replays the entire section
+  with zero differences. Receipts under
+  `build/exact-first-spell-resource-csv-20261025/`.
+- Source, mapping and exact row are selected together. Original nominal types,
+  source spelling and TU boundary remain unknown. No helper-origin credit.
+  Shared headers/old bindings are unchanged; the new EH prefix is unit-specific.
+- After the stable checkpoint, independently replay filtered433B30 with this
+  newly proven checked-back operation. Its short-deque selection loop and
+  remaining differences require their own evidence; do not infer peer exactness.
 
 ## Checkpoint: filtered spell CSV parser433B30
 
