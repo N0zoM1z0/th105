@@ -1,11 +1,11 @@
-# Alice Fighter update: complete target closure
+# Alice Fighter update: complete source and early comparison
 
 Target: original Japanese TH10.5 v1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Bounded root: **0x004E9F50**, Alice primary vtable slot28 at6C4C04.
-This checkpoint identifies the complete raw target; it adds no source-present
-or exact credit. A complete compiling implementation and first whole-function
-comparison remain the next step.
+The complete manual compiling hypothesis now has its first whole-function
+comparison and a bounded callback-epoch correction. It remains identified and
+unselected: no source-present or exact credit is added.
 
 ## Exact observations
 
@@ -101,11 +101,102 @@ Receipts are under `build/exact-first-alice-fighter-update-20261025/`:
 and `primary-db-before.json`/`primary-db-after.json`. Private recipes are in the
 corresponding `.analysis/` directory. All are local and excluded from Git.
 
-Continue by recovering the real pre-dispatch gates, complete low/mid/high and
-special action bodies, default continuation, virtual call contracts and84
-object-request sites. Preserve ordinary consumed arrays/locals and the native
-widths. Compile the first complete body and compare every emitted byte,
-including the switch metadata, before source-shape controls. Keep this root
-identified/unselected until that complete instruction/source review supports
-selection. Original source spelling and full nominal layout need not be solved
-first. No exactness or standalone/LTCG impossibility has been established.
+The following source checkpoint supersedes that target-only planning step.
+Original source spelling and full nominal layout remain unknown. No exactness
+or standalone/LTCG impossibility has been established.
+
+
+## Complete manual hypothesis and first comparison
+
+`src/characters/AliceFighterActionState.cpp/.hpp` now provides the entire
+pre-dispatch prefix, low/mid/high and five special action paths, plus the real
+shared Fighter default. The pointer-only primary view uses the accepted
+AnimationSequenceObjectView virtual prefix; it is never constructed or
+embedded. Numeric states, typed offsets and declaration-only callees remain.
+The existing partial scaffold guided reviewed low/mid hypotheses; it is not
+called, renamed into the root, or substituted for the complete body. Saved
+decompiler output guided investigation only; the new paths were written
+manually against the raw instructions and operand-width literal observations.
+
+The first complete3165-line draft compiled and was compared immediately,
+before source-shape trials:43428 bytes, canonical SHA256
+`0d7bfb04cd363ef3436e53c2156915431bacd6b5674fcb0066b7a446c803c477`.
+The complete target is44080 bytes;41945 unmasked positions differ, including
+size, with the first mismatch4E9F58 (frame408 versus410). All16 table lengths
+and three remap bounds already agree. This is a nonexact baseline, not a
+matching percentage or behavioral equivalence result.
+
+The configured ordinary VC8 O2/GS-off unit is
+`exact-first-alice-fighter-update`. The public complete audit replays every
+section relocation and compares all emitted bytes, including every tail byte;
+it never masks fields, ignores extra emitted bytes or rebases destinations.
+The three primary remap byte arrays also compare directly.
+
+```sh
+scripts/repo-python scripts/build.py --unit exact-first-alice-fighter-update --compare --json
+scripts/repo-python scripts/audit-alice-fighter-update.py
+# Independent already-built object:
+scripts/repo-python scripts/audit-alice-fighter-update.py --object build/exact-first-alice-fighter-update-20261025/cold.obj
+```
+
+All three comparisons intentionally return1 for the nonexact hypothesis.
+The mandatory local CI gate is separate and must pass before commit/push.
+Fifteen new literal names are isolated aliases selected only by this new unit;
+all predecessor relocation rows are unchanged. No accepted unit selects or
+emits these new names and no accepted source/header/flags change. The target
+floating relocation audit passes. This is not an aggregate cold replay claim.
+
+## Callback epochs exposed by the first whole comparison
+
+A per-action static reachable-call census narrowed the first complete source
+to400 plus virtual-call-group differences in214/542/547/548. It ignores branch
+predicates, so these counts alone establish neither path equivalence nor
+missing behavior. Raw instruction review then found unsupported400/401 shapes
+in the retained scaffold:
+
+- Native400 selects sequence4 and emits effect62 before reloading facing for
+  the802 request. For example4ED35B calls the effect and4ED38E reloads byte104.
+  The draft cached facing before the sequence/effect calls. The complete source
+  now reads the live field after each actual callback and keeps the802/801
+  requests separate, including their ordinary parameter arrays.
+- Native400's ordinary801 request continues at4ED47C after the scaled counter;
+  native401 continues at4ED5BF. The draft returned immediately after both
+  request suffixes. The complete source now retains the subsequent action and
+  sequence/timer gates. The802 branch keeps its separate returning suffix.
+- The >=25 timer gate is sequence4, not0:400 writes EBX=4 at4ED484 before the
+  shared4EDBE5 comparison;401 writes EBX=4 at4ED5C7 before4ED605. The register
+  value is checked from actual predecessor paths, not inferred from a shared
+  decompiler label. Native401 also publishes DWORD180=1 at4ED5AB before the
+  counter call4ED5B1; the source now preserves that order.
+
+These are target-backed read/write/edge corrections. They do not prove that
+an ordinary game effect flips facing or that an existing game path exposes
+every possible callback mutation. No fabricated callback or injected helper
+result is used as gameplay evidence.
+
+The final3135-line retained hypothesis emits43572 bytes, canonical SHA256
+`8dd4473aad05d259763114f8ce440b69cd5b6e24a9cd9656699a911a082bd506`.
+Formal and independent fresh-object full audits agree. It remains nonexact+8,
+41815 unmasked differences including the508-byte size gap. Frame418 versus410,
+121 versus128 RETs,665 versus674 physical direct calls and157 versus163
+register-indirect calls remain. All16 table lengths and all685 primary remap
+bytes agree. Other than214/542/547/548 indirect-call memberships, the mapped
+primary action groups now agree in their per-action direct and indirect call
+counts. The five special direct-dispatch cases are outside that mapped-case
+census and need their own instruction review. Inventory agreement is not exact
+acceptance and does not waive any byte difference.
+
+Remaining questions include the physical callback groups and lifetimes,
+case730's partially defined upper facing-argument bits, and the fourth word
+transmitted by570/571 count4 requests. The draft leaves the fourth array
+member ordinarily uninitialized rather than inventing a zero store; complete
+predecessor/write/consumer analysis is still required. The complete source
+must remain unselected until its instruction, ABI and default-domain review
+supports selection. Do not infer LTCG impossibility or try padding the frame.
+
+Current receipts in the existing build scope: `first-complete-*`,
+`callback-epochs-*`, `formal-build.log`, `formal-full-audit.json`,
+`cold-build.log`, `cold-full-audit.json`, `native-inventory.json`, and
+`literal-impact.json`. First/control source and focused call-ownership recipes
+remain in the matching private analysis scope. The public source/unit/audit
+are the reproducible current state; generated reports/objects stay out of Git.

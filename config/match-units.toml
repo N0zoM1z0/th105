@@ -23023,3 +23023,61 @@ dir32_targets = [
     "__real@c38c0000=_tenshi_object_update_006c5d00",
     "__real@c3960000=_tenshi_object_update_006c4204",
 ]
+
+[units.exact-first-alice-fighter-update]
+kind = "probe"
+source = "src/characters/AliceFighterActionState.cpp"
+object = "build/match-units/ExactFirst_AliceFighterActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Alice Fighter4E9F50 manual hypothesis;42721 main/full44080 payload. Identified/unselected pending instruction, callback and width review; no implemented/exact credit. Full first comparison and callback-epoch correction: docs/ALICE_FIGHTER_UPDATE_2026_10_25.md."
+
+[[units.exact-first-alice-fighter-update.functions]]
+address = "0x004E9F50"
+symbol_base = "?dispatch_action_state@AliceFighterActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+    "AliceFighterActionStateView_spawn_owned_object_via_manager=0x00465190",
+    "AliceFighterActionStateView_resolve_stage_surface_landing_transition=0x00473DD0",
+    "AliceFighterActionStateView_zero_velocity_acceleration=0x0045AF40",
+    "AliceFighterActionStateView_advance_frame_and_dispatch=0x004351C0",
+    "AliceFighterActionStateView_has_crossed_stage_surface_while_descending=0x005F9310",
+    "AliceFighterActionStateView_emit_fighter_effect_433cc0=0x00435240",
+    "AliceFighterActionStateView_dispatch_indexed_event_member=0x004359F0",
+    "AliceFighterActionStateView_face_opponent_and_flip_horizontal_velocity=0x00478E60",
+    "AliceFighterActionStateView_adjust_counter_482=0x0046BF30",
+    "AliceFighterActionStateView_try_dispatch_directional_action_208_210=0x00478EE0",
+    "AliceFighterActionStateView_dispatch_character_wave_handle=0x0045C030",
+    "AliceFighterActionStateView_add_phase_scaled_counter_558=0x00478DF0",
+    "AliceFighterActionStateView_publish_texture_state=0x0045F560",
+    "AliceFighterActionStateView_dispatch_indexed_sequence_window_45c8b0=0x0045DEB0",
+    "AliceFighterActionStateView_advance_secondary_event_effect_cycle=0x00473F90",
+    "AliceFighterActionStateView_finalize_sequence_entry=0x0045D110",
+    "AliceFighterActionStateView_copy_action_word_176_to_174=0x0045B250",
+    "AliceFighterActionStateView_update_common_action_state=0x004740C0",
+    "is_y_at_or_below_stage_surface=0x00435DC0",
+    "alice_stage_surface_height_at_x=0x00435D60",
+    "AliceFighterScratchView_reset=0x00435110",
+    "mt19937_next_u32=0x004066B0",
+    "lookup_orientation_sine_quantized_abs=0x00406360",
+    "lookup_orientation_cosine_quantized_abs=0x004063D0",
+    "atan2_degrees=0x00406540",
+    "selector_random_roll=0x004067D0",
+    "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = [
+    "__real@3f266666=_alice_fighter_update_006c3e64",
+    "__real@4027000000000000=_alice_fighter_update_006c4a48",
+    "__real@4035000000000000=_alice_fighter_update_006c21b8",
+    "__real@4052000000000000=_alice_fighter_update_006c3d40",
+    "__real@4057c00000000000=_alice_fighter_update_006c0868",
+    "__real@405a000000000000=_alice_fighter_update_006c4400",
+    "__real@405b000000000000=_alice_fighter_update_006c3e00",
+    "__real@405bc00000000000=_alice_fighter_update_006c4a70",
+    "__real@4062600000000000=_alice_fighter_update_006c4a60",
+    "__real@4062800000000000=_alice_fighter_update_006c4a80",
+    "__real@4067000000000000=_alice_fighter_update_006c4778",
+    "__real@41840000=_alice_fighter_update_006c4a50",
+    "__real@41980000=_alice_fighter_update_006c4650",
+    "__real@c2940000=_alice_fighter_update_006c4a7c",
+    "__real@c2a00000=_alice_fighter_update_006c438c",
+]

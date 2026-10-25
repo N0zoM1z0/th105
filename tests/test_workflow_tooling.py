@@ -86,10 +86,10 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 603)
+        self.assertEqual(len(manifest["units"]), 604)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1571,
+            1572,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -2184,7 +2184,7 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
             row = next(row for row in csv.DictReader(stream) if row["address"].lower() == "0x004e9f50")
         self.assertEqual(row["status"], "identified")
-        self.assertEqual(row["source_file"], "src/characters/Vslot28ActionStateRoots.hpp")
+        self.assertEqual(row["source_file"], "src/characters/AliceFighterActionState.cpp")
         self.assertIn("audit-alice-fighter-update-target.py", row["evidence"])
         for filename in ("implemented.csv", "matches.csv"):
             self.assertNotIn(
@@ -2730,7 +2730,7 @@ class WorkflowToolingTests(unittest.TestCase):
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
         self.assertEqual(counts["ledger_literals"], 397)
-        self.assertEqual(counts["explicit_mappings"], 1587)
+        self.assertEqual(counts["explicit_mappings"], 1602)
         self.assertEqual(counts["target_checks"], 0)
 
     @unittest.skipUnless(
@@ -2740,7 +2740,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 1984)
+        self.assertEqual(counts["target_checks"], 1999)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

@@ -4,7 +4,8 @@ Active reconstruction resumed on2026-10-25 under the user's large-function,
 whole-comparison-first direction. TenshiObject update
 **0x0064CD50** is checkpointed complete source-present/nonexact. Active bounded
 work is **Alice Fighter update0x004E9F50**: raw42721-byte main/full44080-byte
-payload is closed; complete source and first whole comparison are pending.
+payload is closed, and the complete manual hypothesis has its first comparison.
+Current43572-byte candidate is nonexact and deliberately unselected.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -34,15 +35,16 @@ credentials and generated reports out of Git.
 
 ## Durable state
 
-Current checkpoint retains the complete Tenshi source and identifies Alice
-Fighter update from its complete target CFG. Exact acceptance is unchanged.
+Current checkpoint retains complete Tenshi source and the complete unselected
+Alice Fighter hypothesis with a reproducible whole-payload comparison. Exact
+acceptance and source-present counts are unchanged.
 
 | Ledger state | Count |
 | --- | ---: |
 | Provisional / authored / excluded / review candidates |4024 /1596 /1418 /1010 |
 | Mapped / source-present |1583 /1564 |
 | Exact functions / authored bytes |1412 /381108 |
-| Configured units / functions |603 /1571 |
+| Configured units / functions |604 /1572 |
 
 These are live ledger counts, not a new aggregate cold claim. The last aggregate
 receipt remains `build/exact-first-remilia-action-entry-20261025/cold-all.log`:
@@ -61,19 +63,37 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
 - 674 direct calls/27 entries,163 register-indirect calls; aligned frame410.
 - All16 tables165 DWORDs, three remaps685 bytes,14 pinned metadata alignment
   bytes account for the complete1359-byte tail.
-- The existing2207-line AliceActionStateScaffold is partial and not this root.
-  Declaration-only Vslot28ActionStateRoots.hpp remains the ledger source path;
-  Alice is identified and unselected in implemented.csv/matches.csv.
-- Read-only384MiB Ghidra attests target/entry/all mapped sections; root/views
-  are rolled back and all9 primary DB file hashes are unchanged. Its saved
-  decompiler output has warnings and remains a hypothesis, not source.
+- Complete source is now src/characters/AliceFighterActionState.cpp/.hpp,
+  unit exact-first-alice-fighter-update. It is an identified/unselected compiling
+  hypothesis, not an implemented.csv/matches.csv entry. The old partial scaffold
+  remains separate and is not called by this root.
+- First complete43428 SHA0d7bfb04 was compared before controls. Native400
+  re-reads facing after sequence/effect callbacks;400/401 request continuations,
+  sequence4 timer gates and401 state-before-counter order are now restored.
+- Current formal/cold candidate43572 SHA8dd4473a,41815 unmasked differences,
+  first4E9F58; frame418/410, RETs121/128, direct665/674, indirect157/163.
+  All16 table lengths and all685 remap bytes agree, without masking or rebasing.
+- Mapped-case call census still differs in214/542/547/548 indirect ownership.
+  Other mapped-case direct/indirect counts agree. The five special direct arms
+  require separate review; no behavioral equivalence follows from counts.
+- Read-only384MiB Ghidra evidence is already saved; all9 primary DB file hashes
+  unchanged. Its decompiler output has warnings and remains a hypothesis.
+- Fifteen new literal aliases are selected only by this new unit; predecessor
+  relocation rows and accepted source/header/flags are unchanged. No new cold
+  aggregate claim. Full target floating relocation audit passes.
 
-Receipts/private recipes: `build/exact-first-alice-fighter-update-20261025/`
-and the corresponding `.analysis/` directory. Continue from these saved files;
-do not launch another Ghidra merely to reread them. Next write the complete
-manual body and declaration-only ABI view, preserving the pre-dispatch gates,
-all regions/special actions/default and real packet lifetimes. Compile and
-compare the first complete body before control trials.
+Public comparisons: scripts/build.py --unit exact-first-alice-fighter-update
+--compare --json and scripts/audit-alice-fighter-update.py (both expected1).
+Receipts/private recipes remain under build/exact-first-alice-fighter-update-20261025/
+and the corresponding .analysis/ scope. Formal/cold full audits agree.
+
+Next: continue this complete root from actual differences, especially214/542/
+547/548 callback groups and real stack/packet lifetimes.730's partially defined
+upper facing bits and570/571's fourth transmitted word remain unreviewed;
+preserve uncertainty rather than inventing data initialization or register
+contracts. The source is complete but must stay unselected pending its full
+instruction/ABI/default review. Do not rerun Ghidra merely to reread saved
+output, broaden to another root yet, or use spelling/padding grids.
 
 ## Checkpoint: TenshiObject64CD50
 
@@ -123,8 +143,7 @@ The public scoped check is
 `scripts/audit-tenshi-object-update-paths.py`. Private recipes and first/control
 sources: `.analysis/exact-first-tenshi-object-update-20261025/`.
 
-Alice4E9F50 is now the active root described above. No complete compiling
-AliceActionState source or match unit exists yet. Sakuya4CADB0's smaller report
+Alice4E9F50 is now the active complete hypothesis described above. Sakuya4CADB0's smaller report
 span is misleading for selection: its ownership ledger already pins74941 code
 bytes including ten remote chunks.
 Tenshi width/transfer work is saved; keep its comparison-carrier control closed
