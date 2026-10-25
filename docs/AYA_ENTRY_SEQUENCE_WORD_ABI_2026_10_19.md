@@ -355,6 +355,41 @@ and `build/aya-joint-owner-20261024/`. Start with `summary.json`; completed
 controls are compressed after member-hash verification, with restoration in
 `retention.json`. Current selection and continuation steps are in `RE_HANDOFF.md`.
 
+## Whole-payload refresh and release search,2026-10-25
+
+A fresh serial SP1 build of the unchanged selected source reproduces the
+complete **4859-byte** payload:4531 callable bytes, one alignment byte and327
+metadata bytes. Canonical SHA-256 is
+`6f70b6f354fdff459a628bdfbf0a7a3c12fe854a65f95f6cf33731b5d606b066`;
+target payload SHA-256 is
+`e7667d2ccbd8681049553b243f9aac7405419fa4a732136f953ed86549b2ef76`.
+The full replay has only two unequal bytes:61FCA7 native8E/candidate86 and
+61FCAF native41/candidate40. These select ECX versus EAX for the action856
+heading pointer. The alignment byte and all327 metadata bytes agree.
+There are no masks, relocation omissions or new exact claims.
+
+Reproduce the focused build with
+`scripts/repo-python scripts/build.py --unit gpt-web-aya-object-action-entry --compare --json`
+(expected exit1). Private full-section replay and hash-pinned input receipt:
+`.analysis/aya-entry-backend-20261025/baseline.py` and
+`build/aya-entry-backend-20261025/baseline-packet.json`. Selected source/header
+hashes remain fa06d792/2ed12ce9. No source, header, unit, compiler profile or
+relocation ledger changed during this refresh.
+
+Microsoft's retained release tables independently document later C2 versions
+[14.0.50727.3080](https://support.microsoft.com/en-gb/topic/fix-when-you-run-an-application-that-is-built-by-using-the-ot-compiler-option-in-microsoft-visual-studio-2005-service-pack-1-sp1-some-if-statements-may-run-incorrectly-270601b8-04f6-f517-0c20-38e6de2740d7),
+[14.0.50727.4025](https://support.microsoft.com/en-us/servicing/visual-studio/hotfix/2017/01/fix-error-message-when-you-build-a-project-that-has-a-very-large-function-in-visual-studio-2005-serv)
+and [14.0.50727.5587](https://support.microsoft.com/en-us/servicing/visual-studio/hotfix/2017/01/fix-errors-occur-after-an-exception-is-thrown-or-a-declspec-noreturn-function-is-executed-when-you-r).
+Their release existence does not establish which backend built TH105, or that
+the documented defects explain this register choice. No executable compiler
+package was recovered or executed. The final metadata-only Internet Archive
+item searches returned only ordinary SP1/Express items, not a later backend;
+their limited scope is recorded in `build/aya-entry-backend-20261025/archive-items.json`.
+Earlier KB932232 payload inspection already established that package has no
+C2 member; it was not repeated. Archived support/download pages alone do not
+attest a compiler binary. Keep this release question parked until an authentic
+package can be recovered; do not repeat the closed source/flag controls.
+
 ## Rejected controls and analysis limits
 
 The saved pre-change baseline is sourcec9d1abb5, canonical payloadb4f36926.

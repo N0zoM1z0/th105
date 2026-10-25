@@ -6,8 +6,11 @@ whole-comparison-first direction. TenshiObject update
 **Alice Fighter update0x004E9F50** is also checkpointed: raw42721-byte main/
 full44080-byte payload is closed. Its complete44032-byte candidate remains
 nonexact and deliberately unselected. The finite source controls are saved;
-next bounded work is **AyaObject initializer0x0061F0B0** (4531 callable bytes),
-refreshing its complete baseline before any new compiler-release investigation.
+**AyaObject initializer0x0061F0B0** has now been refreshed unchanged: its full
+4859-byte payload still differs only in two operand bytes. Later C2 release
+tables are corroborated, but no attested executable package was recovered.
+Next bounded work is the authored/boundary frontier, selecting a fresh root
+from target evidence rather than repeating the closed controls below.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -144,20 +147,25 @@ array-extent, association, shared-double or numeric-layout controls. Public
 facing bits remain unknown. The8 trailing target INT3 bytes remain fully
 compared and separately unqualified for object/linker ownership.
 
-## Next bounded work: AyaObject initializer61F0B0
+## Checkpoint: AyaObject initializer61F0B0
 
 [Existing evidence and closed controls](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md).
-This is a complete4531-byte representative with327 emitted metadata bytes;
-its last accepted source selection remains nonexact in two heading-pointer
-register bytes at61FCA7/61FCAF. First refresh the whole current baseline and
-read the selected source. Existing receiver, hierarchy, argument, real-provider,
+This is a complete4531-byte representative with one alignment byte and327
+emitted metadata bytes:4859 bytes in total. A fresh unchanged-source full
+replay reproduces canonical SHA6f70b6f3 and only two heading-pointer register
+bytes at61FCA7/61FCAF; alignment and metadata agree. Receipts are under
+`build/aya-entry-backend-20261025/` and the corresponding private scope.
+Existing receiver, hierarchy, argument, real-provider,
 RTM and ordinary compiler-flag controls are closed. The separately documented
-later C2 release has not been recovered/compiled; any such trial requires an
+later C2 release has not been recovered/compiled; primary Microsoft release
+tables corroborate3080/4025/5587, but do not identify the game's backend.
+No new compiler was executed and no default input changed. Any trial requires an
 independently attested publisher package and exact version/hash, then an
 immediate unchanged-source whole comparison. Do not execute an unverified DLL,
 change the default compiler profile, or repeat old source-shape controls.
-Only one bounded address/build remains in flight. If no new release evidence
-can be obtained, retain that limit and move to the authored/boundary frontier.
+The finite package-discovery pass is closed without a recovered backend.
+Resume only with new artifact evidence; move to the authored/boundary frontier.
+Only one bounded address/build may remain in flight.
 
 ## Checkpoint: TenshiObject64CD50
 
