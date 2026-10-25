@@ -1715,3 +1715,15 @@ _iku_action_entry_006c4830,0x006C4830,00002841,0,Hash-attested JP1.06a Iku slot3
 _iku_action_entry_006c6448,0x006C6448,8fc2f5bd,0,Hash-attested JP1.06a Iku slot3C62FFF0 direct floating operand; exclusive alias; docs/IKU_ACTION_INITIALIZATION_2026_10_25.md.,literal
 _iku_action_entry_006c4314,0x006C4314,00005041,0,Hash-attested JP1.06a Iku slot3C62FFF0 direct floating operand; exclusive alias; docs/IKU_ACTION_INITIALIZATION_2026_10_25.md.,literal
 _iku_action_entry_006c1a8c,0x006C1A8C,00004843,0,Hash-attested JP1.06a Iku slot3C62FFF0 direct floating operand; exclusive alias; docs/IKU_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c5024,0x006C5024,0000d0c0,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c3df0,0x006C3DF0,0000d040,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c3e94,0x006C3E94,9a99193f,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c3ee8,0x006C3EE8,00009642,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c3b3c,0x006C3B3C,0000c841,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c3e60,0x006C3E60,00008c41,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c0e80,0x006C0E80,000000a09999c93f,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c3e90,0x006C3E90,3333b33e,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c3764,0x006C3764,00007043,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c13b8,0x006C13B8,0000a043,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006c12b0,0x006C12B0,00004041,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_remilia_action_entry_006cd140,0x006CD140,0000003f,0,Hash-attested JP1.06a Remilia slot3C554D50 direct floating operand; exclusive alias; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md.,literal

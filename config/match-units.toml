@@ -22133,3 +22133,34 @@ dir32_targets = [
     "__real@41500000=_iku_action_entry_006c4314",
     "__real@43480000=_iku_action_entry_006c1a8c",
 ]
+
+
+[units.exact-first-remilia-action-initialization]
+kind = "probe"
+source = "src/characters/RemiliaActionInitialization.cpp"
+object = "build/match-units/ExactFirst_RemiliaActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Remilia primary slot3C554D50;1802 callable/full2344 payload. Actual505/506 post-zero730 capture and slot0C low-word selector; distinct interior entries and500/542 scalar publications. scripts/audit-remilia-action-initialization.py; docs/REMILIA_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-remilia-action-initialization.functions]]
+address = "0x00554D50"
+symbol_base = "?initialize_action_entry@RemiliaActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?zero_motion@RemiliaActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?initialize_common_action_entry@RemiliaActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+    "__real@c0d00000=_remilia_action_entry_006c5024",
+    "__real@40d00000=_remilia_action_entry_006c3df0",
+    "__real@3f19999a=_remilia_action_entry_006c3e94",
+    "__real@42960000=_remilia_action_entry_006c3ee8",
+    "__real@41c80000=_remilia_action_entry_006c3b3c",
+    "__real@418c0000=_remilia_action_entry_006c3e60",
+    "__real@3fc99999a0000000=_remilia_action_entry_006c0e80",
+    "__real@3eb33333=_remilia_action_entry_006c3e90",
+    "__real@43700000=_remilia_action_entry_006c3764",
+    "__real@43a00000=_remilia_action_entry_006c13b8",
+    "__real@41400000=_remilia_action_entry_006c12b0",
+    "__real@3f000000=_remilia_action_entry_006cd140",
+]
