@@ -28,10 +28,14 @@ Two independent index controls are byte-neutral, so that finite lane is parked.
 Fighter PAT/palette loader **0x00461B70** is now closed at3885 target bytes:
 complete3898-byte unselected source, native3A8 frame/33 guards, full relocation
 replay and a qualified external vector-error exit. Member-reference controls
-are byte-neutral in two phases; this finite lane is parked. Next provisional
-review candidate is **0x0045E950**,3087 bytes in the candidate ledger; fresh
-preflight, complete CFG, origin and first whole-source comparison are required
-before any acceptance.
+are byte-neutral in two phases; this finite lane is parked. Collision debug
+geometry **0x0045E950** is now complete canonical3087/3087: the first complete
+source had one CMP operand-order byte different, and observed receiver-first
+identity closes it. Two independent public builds and the full-section audit
+agree. Continue with independent review of the paired rectangle renderer
+**0x004012A0**,395 bytes; fresh preflight and its complete target/source review
+come first. Prior floating-profile grids remain closed; do not propagate this
+representative's exactness to either primitive provider.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -76,27 +80,56 @@ Scene resource bootstrap43E2E0 adds one observed authored identity/mapping and
 one probe with complete unselected source; source/exact totals are unchanged.
 Fighter PAT/palette loader461B70 likewise adds one observed authored mapping
 and one probe with complete unselected source, without source/exact credit.
+Collision debug geometry45E950 adds one observed authored mapping, selected
+complete source and3087 exact bytes. Both drawing providers remain unchanged.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1601 /1419 /1004 |
-| Mapped / source-present |1589 /1565 |
-| Exact functions / authored bytes |1413 /382816 |
-| Configured units / functions |610 /1578 |
+| Provisional / authored / excluded / review candidates |4024 /1602 /1419 /1003 |
+| Mapped / source-present |1590 /1566 |
+| Exact functions / authored bytes |1414 /385903 |
+| Configured units / functions |611 /1579 |
 
-The current manifest/global-data inputs have a fresh full cold receipt:
-`build/exact-first-461b70-20261026/cold-all.log` passes525 accepted units/all1413
-functions,382816 authored bytes, including PAT record/group lifetimes and the
-exact Fighter resource caller463070. Two independent public builds of the new
-PAT root reproduce the same3898-byte nonexact section. Its audit independently
-closes all main edges and the qualified vector exception exit. The prior
-`build/exact-first-43e2e0-20261026/cold-all.log` receipt remains retained.
-Shared headers, compiler profiles, accepted providers and prior data rows are
-unchanged; five new data rows belong to the unselected probe. The target-backed
-floating audit also passes all1999 references. Fresh `function-origins.py --check`
-also agrees with all4024 rows; no prior exclusion changed.
+The current manifest has a fresh full cold receipt:
+`build/exact-first-45e950-20261026/cold-all.log` passes526 accepted units/all1414
+functions,385903 authored bytes, including the complete3087-byte collision-debug
+representative as the last cold unit. It also has two independent public builds
+and a complete zero-difference object audit. Fresh `function-origins.py --check`
+agrees with all4024 rows; target-backed floating audit passes all1999 references.
+No prior source/header/profile/global-data row changed. The preceding PAT receipt
+`build/exact-first-461b70-20261026/cold-all.log` remains retained separately for
+525 units/all1413 functions under its earlier manifest. Paired drawing providers
+remain nonexact and receive no new source/ownership/exact credit.
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
+
+## Checkpoint: collision debug geometry45E950
+
+[Full target closure, geometry policy and one-byte correction](COLLISION_DEBUG_GEOMETRY_2026_10_26.md).
+Source: `src/battle/CollisionDebugGeometry.cpp`.
+Unit: `exact-first-collision-debug-geometry`.
+Audit: `scripts/audit-collision-debug-geometry-target.py` (target/object expected0).
+
+- Whole callable/COFF3087 SHA3aaec51d, end45F55F;891/892 instructions reached,
+  one pinned seven-byte internal alignment operation, RET0 at45F55E and one
+  following INT3. No escaping edges or indirect calls/jumps. Scalar frame1C,
+  no EH/GS prologue; default pinned VC8 O2 profile.
+- Exact manager wrapper53B1A0 materializes this callback with zero adjustor;
+  its E8 at53B1AC reaches exact checked-list dispatcher58BEE0. This and the
+  collision/count/split/owner-marker policy establish authored ownership.
+- First complete source is already3087 bytes, with exactly one canonical byte
+  different at45F497: self equality CMP operands reversed. Writing observed
+  `this == related` closes all3087 bytes. Public formal-first/formal-second
+  and full object replay independently report zero differences. Explicit float
+  narrowing preserves x87 argument rounding without profile or header changes.
+- Twenty static line sites and one filled-rectangle site are covered. Runtime
+  count varies with loops/branches. Both drawing providers have independent
+  full target-body and stack-cleanup pins but receive no new credit. Existing
+  loader-zero camera globals,4.0 literal and all relocation rows are unchanged.
+- Source, mapping, implemented and exact rows are selected together. Nominal
+  owner/return type and original source/TU identity remain unknown; no fake
+  return, assembly, padding, inert locals or floating flag grid. Continue with
+  independently reviewed drawing-chain peers after this stable checkpoint.
 
 ## Checkpoint: Fighter PAT/palette loader461B70
 

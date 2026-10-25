@@ -23354,3 +23354,19 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "_memmove_s=0x00689EB0",
 ]
+
+[units.exact-first-collision-debug-geometry]
+kind = "probe"
+source = "src/battle/CollisionDebugGeometry.cpp"
+object = "build/match-units/ExactFirst_CollisionDebugGeometry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete3087-byte debug collision geometry45E950. First complete3087-byte source compared immediately: one unequal CMP operand byte in self identity comparison. Observed receiver-first equality recovers all3087 bytes without profile/header/data changes. Twenty line sites and one filled-rectangle site; signed counts, optional split geometry, camera transforms and owner marker. Exact manager callback materialization53B1A0. docs/COLLISION_DEBUG_GEOMETRY_2026_10_26.md."
+
+[[units.exact-first-collision-debug-geometry.functions]]
+address = "0x0045E950"
+symbol_base = "?render_debug_geometry_45e950@CollisionDebugObjectView@th105@@QAEXXZ"
+rel32_targets = [
+  "?draw_line@CollisionDebugLineView@th105@@QAEHMMMMI@Z=0x00401180",
+  "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
+]
