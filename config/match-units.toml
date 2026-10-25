@@ -22098,3 +22098,38 @@ dir32_targets = [
     "__real@3eb33333=_komachi_action_entry_006c3e90",
     "__real@3fb99999a0000000=_komachi_action_entry_006cd1e0",
 ]
+
+
+[units.exact-first-iku-action-initialization]
+kind = "probe"
+source = "src/characters/IkuActionInitialization.cpp"
+object = "build/match-units/ExactFirst_IkuActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Iku primary slot3C62FFF0;1842 callable/full2380 payload. Actual416/417 float0.15 products and567/568 skipped736 clear; shared415-family and408-family publication phases. scripts/audit-iku-action-initialization.py; docs/IKU_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-iku-action-initialization.functions]]
+address = "0x0062FFF0"
+symbol_base = "?initialize_action_entry@IkuActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?reset@IkuEntryScratchView@th105@@QAEXXZ=0x00435110",
+    "?zero_motion@IkuActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?initialize_common_action_entry@IkuActionEntryView@th105@@QAEXXZ=0x00477830",
+]
+dir32_targets = [
+    "__real@c0a00000=_iku_action_entry_006c3b58",
+    "__real@40c00000=_iku_action_entry_006cd1d8",
+    "__real@3f19999a=_iku_action_entry_006c3e94",
+    "__real@42be0000=_iku_action_entry_006c4000",
+    "__real@41200000=_iku_action_entry_006d6eec",
+    "__real@41080000=_iku_action_entry_006c3ff8",
+    "__real@3f000000=_iku_action_entry_006cd140",
+    "__real@3fc99999a0000000=_iku_action_entry_006c0e80",
+    "__real@41480000=_iku_action_entry_006c3c48",
+    "__real@3eb33333=_iku_action_entry_006c3e90",
+    "__real@3fc3333340000000=_iku_action_entry_006c42b8",
+    "__real@41280000=_iku_action_entry_006c4830",
+    "__real@bdf5c28f=_iku_action_entry_006c6448",
+    "__real@41500000=_iku_action_entry_006c4314",
+    "__real@43480000=_iku_action_entry_006c1a8c",
+]

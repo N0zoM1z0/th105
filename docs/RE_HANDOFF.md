@@ -1,6 +1,23 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **retain complete Komachi Fighter action initializer5F6700;
+Current transition: **Iku Fighter action initializer62FFF0 is exact;
+continue independently reviewed same-slot family peers**.
+Formal and independent cold builds reproduce1842 callable/full2380 payload
+bytes, SHA256 `ea5aebaf...`, with all92 relocations replayed. Raw CFG reaches
+all436 main instructions/1842 bytes and closes36 RETs/two45AF40 tails plus
+477830 default. Both21/23 destination tables and359 remap bytes agree. Actual
+416/417 use float0.15 products;567/568 skip415's736 clear while clearing734.
+797/798 only publish velocities/gravity. Shared415-family750 and408-family184
+publication epochs restore all physical copies after two controls. The valid-
+index last-remap generated-object negative fails exactly+2379. No runtime
+matrix/compiler-profile change. See
+[complete source/evidence/commands](IKU_ACTION_INITIALIZATION_2026_10_25.md).
+Provenance census/readback and1382 floating target-reference checks pass.
+Complete serial cold replay passes523 units/all1411 accepted functions.
+Full2380-byte audit also passes after the complete cold corpus rebuild. Receipt:
+`build/exact-first-iku-action-entry-20261025/cold-all.log`.
+
+Prior transition: **retain complete Komachi Fighter action initializer5F6700;
 park its550/551 layout residual and independently review the next peer**.
 Formal and independent cold source emit full2496 SHA256 `c6dac7e0...`, with94
 relocations replayed, but remain nonexact at49 byte positions:47 in550/551
@@ -176,7 +193,7 @@ controls, including a neutral facing-expression control and rejected real input/
 product captures; do not repeat them without new evidence. See
 [the full source/evidence/commands](REIMU_ACTION_INITIALIZATION_2026_10_25.md).
 
-Next review Iku primary slot3C62FFF0, candidate1842 bytes, currently
+Next review Remilia primary slot3C554D50, candidate1802 bytes, currently
 authored but source-missing. Re-attest its slot and independently reconcile
 its complete raw CFG/ABI before implementation; no blanket pattern transfer.
 Keep parked common/Reimu/Udonge residuals closed absent new target evidence.
@@ -231,10 +248,10 @@ mapped-section attestation; transaction rollback/readback and all nine primary
 project hashes pass. See [the reproducible raw audit and evidence](YOUMU_OBJECT_UPDATE_2026_10_25.md).
 The first full body has been compiled/compared as described above. The separate Youmu initializer543670
 remains parked; do not reopen it as part of this new update scope.
-Source-present1555/mapped1574; exact ledger1410/377464 bytes, units594. Use locked
+Source-present1556/mapped1575; exact ledger1411/379306 bytes, units595. Use locked
 `scripts/repo-python`, serial CPU0/nice10, one writable address at a time and
 mandatory local CI before every commit/push. IDA still has the wrong executable;
-use hash-attested raw bytes. Latest aggregate cold replay is the Aya checkpoint above.
+use hash-attested raw bytes. Latest aggregate cold replay is the Iku checkpoint above.
 
 Exact-first reconstruction checkpoint: 2026-10-25. Remilia input policy
 `0x556070` and independently reviewed Tenshi `0x64B7A0`, Sakuya `0x4DF4B0`,
