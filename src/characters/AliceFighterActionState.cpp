@@ -177,7 +177,7 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (*reinterpret_cast<__int16 *>(raw + 318) > 0) {
             F(0xf8) =
                 F(0xf8) - F(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10);
                 F(0xf0) = alice_stage_surface_height_at_x(this);
                 zero_velocity_acceleration();
@@ -205,7 +205,7 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (*reinterpret_cast<__int16 *>(raw + 318) > 0) {
             F(0xf8) =
                 F(0xf8) - F(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10);
                 F(0xf0) = alice_stage_surface_height_at_x(this);
                 zero_velocity_acceleration();
@@ -233,7 +233,7 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (*reinterpret_cast<__int16 *>(raw + 318) > 0) {
             F(0xf8) =
                 F(0xf8) - F(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 set_action_and_finalize(10);
                 F(0xf0) = alice_stage_surface_height_at_x(this);
                 zero_velocity_acceleration();
@@ -258,7 +258,7 @@ void AliceFighterActionStateView::dispatch_action_state()
             F(0x100) = 0.6000000238418579f;
         F(0xf8) =
             F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             F(0xf0) = alice_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
@@ -436,7 +436,7 @@ void AliceFighterActionStateView::dispatch_action_state()
             if (adjusted > 0.0f)
                 F(0xf4) = 0.0f;
         }
-        if (!is_y_at_or_below_stage_surface(this) && !(I(0x144) % 5)) {
+        if (!static_cast<unsigned char>(is_y_at_or_below_stage_surface(this)) && !(I(0x144) % 5)) {
             opposite_facing = static_cast<unsigned char>(-C(0x104));
             emit_fighter_effect_433cc0(
                 124,
@@ -450,7 +450,7 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (static_cast<__int16>(U(0x13e)) < 3) {
             F(0xf8) =
                 F(0xf8) - F(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 F(0xf8) = 0.0f;
                 F(0xf0) = alice_stage_surface_height_at_x(this);
                 select_sequence(3);
@@ -491,7 +491,7 @@ void AliceFighterActionStateView::dispatch_action_state()
 
         F(0xf8) =
             F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             zero_velocity_acceleration();
             F(0xf0) = alice_stage_surface_height_at_x(this);
             set_action_and_finalize(10);
@@ -545,7 +545,7 @@ void AliceFighterActionStateView::dispatch_action_state()
 
         F(0xf8) =
             F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             zero_velocity_acceleration();
             F(0xf0) = alice_stage_surface_height_at_x(this);
             U(0x142) = 0;
@@ -612,13 +612,13 @@ void AliceFighterActionStateView::dispatch_action_state()
     case 208:
         if (!U(0x13e))
             resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             F(0xf0) = alice_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
             return;
         }
-        if (is_y_at_or_below_stage_surface(this) || F(0xf8) > 0.0f)
+        if (static_cast<unsigned char>(is_y_at_or_below_stage_surface(this)) || F(0xf8) > 0.0f)
             U(0x4ae) = 2;
         if (static_cast<__int16>(U(0x13e)) > 0) {
             adjusted = F(0xf8) - F(0x100);
@@ -649,13 +649,13 @@ void AliceFighterActionStateView::dispatch_action_state()
     case 221:
         if (!U(0x13e))
             resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             F(0xf0) = alice_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
             return;
         }
-        if (is_y_at_or_below_stage_surface(this) || F(0xf8) > 0.0f)
+        if (static_cast<unsigned char>(is_y_at_or_below_stage_surface(this)) || F(0xf8) > 0.0f)
             U(0x4ae) = 2;
         if (static_cast<__int16>(U(0x13e)) > 0) {
             adjusted = F(0xf8) - F(0x100);
@@ -685,13 +685,13 @@ void AliceFighterActionStateView::dispatch_action_state()
     case 222:
         if (!U(0x13e))
             resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             F(0xf0) = alice_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
             return;
         }
-        if (is_y_at_or_below_stage_surface(this) || F(0xf8) > 0.0f)
+        if (static_cast<unsigned char>(is_y_at_or_below_stage_surface(this)) || F(0xf8) > 0.0f)
             U(0x4ae) = 2;
         if (static_cast<__int16>(U(0x13e)) > 0) {
             adjusted = F(0xf8) - F(0x100);
@@ -720,13 +720,13 @@ void AliceFighterActionStateView::dispatch_action_state()
     case 211:
         if (!U(0x13e))
             resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             F(0xf0) = alice_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
             return;
         }
-        if (is_y_at_or_below_stage_surface(this) || F(0xf8) > 0.0f)
+        if (static_cast<unsigned char>(is_y_at_or_below_stage_surface(this)) || F(0xf8) > 0.0f)
             U(0x4ae) = 2;
         if (static_cast<__int16>(U(0x13e)) > 0) {
             adjusted = F(0xf8) - F(0x100);
@@ -853,13 +853,13 @@ void AliceFighterActionStateView::dispatch_action_state()
     case 220:
         if (!U(0x13e))
             resolve_stage_surface_landing_transition();
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             F(0xf0) = alice_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
             return;
         }
-        if (is_y_at_or_below_stage_surface(this) || F(0xf8) > 0.0f)
+        if (static_cast<unsigned char>(is_y_at_or_below_stage_surface(this)) || F(0xf8) > 0.0f)
             U(0x4ae) = 2;
         if (static_cast<__int16>(U(0x13e)) > 0) {
             adjusted = F(0xf8) - F(0x100);
@@ -948,7 +948,7 @@ void AliceFighterActionStateView::dispatch_action_state()
             if (adjusted > 0.0f)
                 F(0xf4) = 0.0f;
         }
-        if (!is_y_at_or_below_stage_surface(this) && !(I(0x144) % 5)) {
+        if (!static_cast<unsigned char>(is_y_at_or_below_stage_surface(this)) && !(I(0x144) % 5)) {
             opposite_facing = static_cast<unsigned char>(-C(0x104));
             emit_fighter_effect_433cc0(
                 124,
@@ -962,7 +962,7 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (static_cast<short>(U(0x13e)) < 3) {
             F(0xf8) =
                 F(0xf8) - F(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 F(0xf8) = 0.0f;
                 F(0xf0) = alice_stage_surface_height_at_x(this);
                 select_sequence(3);
@@ -1003,7 +1003,7 @@ void AliceFighterActionStateView::dispatch_action_state()
 
         F(0xf8) =
             F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             zero_velocity_acceleration();
             F(0xf0) = alice_stage_surface_height_at_x(this);
             set_action_and_finalize(10);
@@ -1053,7 +1053,7 @@ void AliceFighterActionStateView::dispatch_action_state()
 
         F(0xf8) =
             F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             zero_velocity_acceleration();
             F(0xf0) = alice_stage_surface_height_at_x(this);
             set_action_and_finalize(10);
@@ -1275,7 +1275,7 @@ void AliceFighterActionStateView::dispatch_action_state()
     case 306:
         F(0xf8) =
             F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             F(0xf0) = alice_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
@@ -1295,7 +1295,7 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (*reinterpret_cast<__int16 *>(raw + 320) >= 11)
             F(0xf8) =
                 F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())
             && *reinterpret_cast<__int16 *>(raw + 320) >= 11) {
             set_action_and_finalize(10);
             zero_velocity_acceleration();
@@ -1329,7 +1329,7 @@ void AliceFighterActionStateView::dispatch_action_state()
 
         F(0xf8) =
             F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             F(0xf0) = alice_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
@@ -1377,7 +1377,7 @@ void AliceFighterActionStateView::dispatch_action_state()
 
         F(0xf8) =
             F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             F(0xf0) = alice_stage_surface_height_at_x(this);
             zero_velocity_acceleration();
@@ -1676,7 +1676,7 @@ void AliceFighterActionStateView::dispatch_action_state()
     case 409:
         F(0xf8) =
             F(0xf8) - F(0x100);
-        if (has_crossed_stage_surface_while_descending()) {
+        if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
             set_action_and_finalize(10);
             zero_velocity_acceleration();
             F(0xf0) = alice_stage_surface_height_at_x(this);
@@ -1948,7 +1948,7 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (static_cast<short>(U(0x13e)) < 3) {
             F(0xf8) =
                 F(0xf8) - F(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 zero_velocity_acceleration();
                 F(0xf0) = alice_stage_surface_height_at_x(this);
                 select_sequence(3);
@@ -2184,7 +2184,7 @@ void AliceFighterActionStateView::dispatch_action_state()
         if (static_cast<short>(U(0x13e)) < 3) {
             F(0xf8) =
                 F(0xf8) - F(0x100);
-            if (has_crossed_stage_surface_while_descending()) {
+            if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 zero_velocity_acceleration();
                 F(0xf0) = alice_stage_surface_height_at_x(this);
                 select_sequence(3);

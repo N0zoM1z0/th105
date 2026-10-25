@@ -451,3 +451,58 @@ source is `publication-before.cpp`; the new private source is
 `publication-order.cpp`. These local ordering questions are closed. Continue
 from the remaining actual partitions and field-read epochs; do not force a
 particular global call count or conflate local site sharing with behavior.
+
+
+## Native predicate result-consumption width
+
+The197/198 zero-motion site partition is separately reviewed: both native
+entries resolve->advance, branch through the same action700/status3 or
+action0/optional1 paths, then gate zero motion at framecounter0/frame8 and
+facing comparison at framecounter0/frame13. Native197 zero call4EA700 and198
+call4EA77B remain distinct despite the source compiler sharing one. The local
+field tests and callback order show no discrepancy requiring a source split.
+Likewise208 and220 have separate native predicate calls4EB1D4/4EBA0E and frame
+calls4EB235/4EBA6F. Both perform crossed-surface->action10->height->zero on the
+landing branch, then surface/positive-vy status2, signed sequence>0 damping
+clamped at-20, advance and the sequence1/timer0 initialization. This is bounded
+instruction review, not full execution or a reason to force distinct sites.
+
+One independent operand-width issue is visible throughout the full caller.
+All42 native5F9310 calls and all7 native435DC0 calls immediately TEST AL,AL.
+The preceding0a47fcc9 caller instead has22+6 TEST EAX,EAX sites; another20
+already testAL. Inspection of the actual accepted providers resolves whether
+this is a semantic error:435DC0's42-byte body returns through full EAX=1 at
+435DDB or EAX=0 at435DE4;5F9310's64-byte body returns through full EAX=1 at
+5F933F or EAX=0 at5F9349. Thus both wide and byte tests have the same truth value
+for these real callees. Original nominal return width remains unproved; their
+int declarations and accepted implementations are unchanged.
+
+One complete-source control explicitly projects these results to unsigned char
+at the29 previously wide source expressions (22 crossed calls and7 surface
+calls, with208/220 merged by compilation). Its whole canonical payload differs
+from0a47fcc9 in exactly28 bytes, all opcode85->84, changing TEST EAX,EAX to
+TEST AL,AL. No instruction length, relocation, table, remap, call site, frame
+allocation or other byte changes. The retained source expresses this observed
+caller consumption without inventing a narrow external ABI. All48 emitted
+predicate sites now testAL; native has49 because its208/220 sites are separate.
+The complete audit now reports each predicate call's immediate test register
+for both target and candidate, leaving unrecognized next instructions explicit.
+The diagnostic neither masks these opcodes nor changes the exactness decision.
+
+Formal and independent fresh-object reports agree at44108 bytes, SHA256
+`1bbd8acb28131ca4c416f5a9f22b13a5ab62c6d6ab64c779dddbe809dc04ad66`.
+The whole strict target comparison still fails at+8/frame418 versus410,
+41308 differing positions including28 extra candidate bytes.125/128 RETs,
+679/674 direct calls and158/163 indirect calls are unchanged. All16 table
+lengths and685 remap bytes agree, and all690 primary/direct action call counts
+remain aligned. Both fresh objects retain the six publication-order checks
+and six214 execution-prefix checks. No exact/source-present credit is added.
+
+Receipts: `predicate-provider-target.asm` pins only the complete42/64-byte
+providers; `predicate-low-byte-*`, `predicate-formal-*`, `predicate-cold-*`,
+`predicate-old-full-audit.json` and `sharing-predicate.json` retain the whole
+comparisons and diagnostic widths. The28-byte-only delta is recorded in
+`predicate-low-byte-byte-delta.json`. Private `predicate-before.cpp` freezes
+0a47fcc9; `predicate-low-byte.cpp` is the single29-expression control. This
+consumption question and the two reviewed site-sharing pairs are closed;
+continue with independent lifetime/field-read evidence, not type permutations.

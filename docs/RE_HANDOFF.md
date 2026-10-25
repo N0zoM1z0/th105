@@ -70,7 +70,7 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
 - First complete43428 SHA0d7bfb04 was compared before controls. Native400
   re-reads facing after sequence/effect callbacks;400/401 request continuations,
   sequence4 timer gates and401 state-before-counter order are now restored.
-- Current formal/cold candidate44108 SHA0a47fcc9,41308 unmasked differences,
+- Current formal/cold candidate44108 SHA1bbd8acb,41308 unmasked differences,
   first4E9F58; frame418/410, RETs125/128, direct679/674, indirect158/163.
   All16 table lengths and all685 remap bytes agree, without masking or rebasing.
 - Native214 inactive states now go directly to landing check; its flight-end
@@ -92,6 +92,13 @@ Public audit: `scripts/audit-alice-fighter-update-target.py`.
   adjust.411/412/414 were already ordered correctly. The new public static
   audit passes all six; old2655274b fails exactly410/415/416. It executes no
   callbacks and claims ordering only. Both fresh objects retain214 prefix6/6.
+- Predicate consumption now follows nativeAL at every emitted435DC0/5F9310
+  call. Explicit caller casts change only28 TEST opcodes85->84, retaining
+  provider/header int declarations. Both real providers fully setEAX to0/1, so
+  the former wide tests were not a demonstrated semantic bug. Current48 sites
+  all testAL versus49 native (208/220 remain physically merged). The width
+  control is closed; whole audit now records both target/candidate registers.
+  Bounded197/198 and208/220 instruction review found no other discrepancy.
 - Read-only384MiB Ghidra evidence is already saved; all9 primary DB file hashes
   unchanged. Its decompiler output has warnings and remains a hypothesis.
 - The isolated narrow-facing closed provider also matches46519066/66, but the
@@ -119,7 +126,9 @@ field-read epochs, then real stack/packet lifetimes. Do not infer missing calls
 from physical totals or force a source spelling to reproduce sharing alone.
 The five direct arms have a bounded instruction/count review, not full execution
 acceptance. Close the542/547/548
-source-structure and570/571 extent controls; do not sweep equivalent spellings.
+source-structure,570/571 extent and predicate-consumption controls; do not
+sweep equivalent spellings.197/198 zero and208/220 predicate site sharing need
+no forced source split after the bounded review.
 730's partially defined upper facing bits and570/571's fourth-word provenance
 and original array extent remain unknown;
 preserve uncertainty rather than inventing data initialization or register

@@ -130,6 +130,17 @@ def inventory(raw):
         pending.append(address + row.size)
     calls = Counter(i.operands[0].imm for i in rows
                     if i.mnemonic == "call" and i.operands[0].type == x86.X86_OP_IMM)
+    predicate_tests = []
+    for index, row in enumerate(rows[:-1]):
+        if (row.mnemonic != "call" or row.operands[0].type != x86.X86_OP_IMM
+                or row.operands[0].imm not in (0x435DC0, 0x5F9310)):
+            continue
+        following = rows[index + 1]
+        register = (following.op_str.split(",")[0] if following.mnemonic == "test"
+                    and following.op_str in ("al, al", "eax, eax") else None)
+        predicate_tests.append(dict(call=hex(row.address), target=hex(row.operands[0].imm),
+                                    next_address=hex(following.address), register=register,
+                                    next_instruction=following.mnemonic + " " + following.op_str))
     return dict(diagnostic_only=True, code_to_first_table=primary - ADDRESS,
                 instructions=len(rows), conservatively_reached=len(visited),
                 unreachable=[dict(address=hex(i.address), bytes=bytes(i.bytes).hex())
@@ -137,6 +148,7 @@ def inventory(raw):
                 returns=sum(i.mnemonic == "ret" for i in rows),
                 indirect_calls=sum(i.mnemonic == "call" and i.operands[0].type != x86.X86_OP_IMM for i in rows),
                 direct_calls={hex(a): n for a, n in sorted(calls.items())},
+                predicate_result_tests=predicate_tests,
                 stack_allocation=[i.operands[1].imm for i in rows[:12]
                                   if i.mnemonic == "sub" and i.operands[0].reg == x86.X86_REG_ESP],
                 tables=[dict(address=hex(a), dwords=len(ds)) for a, ds in sorted(tables.items())],
@@ -160,7 +172,8 @@ def main():
                       canonical_payload_sha256=hashlib.sha256(candidate).hexdigest(),
                       first_mismatch=comparator.first_mismatch(target, candidate, ADDRESS),
                       unmasked_differing_bytes=sum(a != b for a, b in zip(target, candidate))
-                      + abs(len(target) - len(candidate)), candidate_inventory=inventory(candidate))
+                      + abs(len(target) - len(candidate)), candidate_inventory=inventory(candidate),
+                      target_predicate_result_tests=inventory(target)["predicate_result_tests"])
     except (OSError, ValueError, RuntimeError, KeyError, StopIteration, struct.error) as error:
         print(json.dumps(dict(result="blocked", error=str(error)), indent=2))
         return 1
