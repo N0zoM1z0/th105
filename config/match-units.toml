@@ -22067,3 +22067,34 @@ dir32_targets = [
     "__real@40c00000=_aya_action_entry_006cd1d8",
     "__real@c1f00000=_aya_action_entry_006c3dd0",
 ]
+
+
+[units.exact-first-komachi-action-initialization]
+kind = "probe"
+source = "src/characters/KomachiActionInitialization.cpp"
+object = "build/match-units/ExactFirst_KomachiActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Komachi primary slot3C5F6700;1971 callable/full2496 target payload. Full2496 source remains nonexact at49 unmasked bytes in550/551 block placement and its destinations. Preserve finite publication/join controls; source-present only. scripts/audit-komachi-action-initialization.py; docs/KOMACHI_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-komachi-action-initialization.functions]]
+address = "0x005F6700"
+symbol_base = "?initialize_action_entry@KomachiActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?reset@KomachiEntryScratchView@th105@@QAEXXZ=0x00435110",
+    "?zero_motion@KomachiActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?initialize_common_action_entry@KomachiActionEntryView@th105@@QAEXXZ=0x00477830",
+    "?dispatch_indexed_event_member@KomachiActionEntryView@th105@@QAEXI@Z=0x004359F0",
+]
+dir32_targets = [
+    "__real@c0a00000=_komachi_action_entry_006c3b58",
+    "__real@40c00000=_komachi_action_entry_006cd1d8",
+    "__real@3f19999a=_komachi_action_entry_006c3e94",
+    "__real@42be0000=_komachi_action_entry_006c4000",
+    "__real@41400000=_komachi_action_entry_006c12b0",
+    "__real@418c0000=_komachi_action_entry_006c3e60",
+    "__real@3f000000=_komachi_action_entry_006cd140",
+    "__real@3fc99999a0000000=_komachi_action_entry_006c0e80",
+    "__real@3eb33333=_komachi_action_entry_006c3e90",
+    "__real@3fb99999a0000000=_komachi_action_entry_006cd1e0",
+]
