@@ -3403,3 +3403,22 @@ required_direct_edges = [
   { caller = "0x004F9850", site = "0x004F9E55", target = "0x00477830", kind = "jump", caller_status = "matching" },
   { caller = "0x00491C40", site = "0x00492B04", target = "0x00477830", kind = "jump", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "scenario-command-update-authored-106a"
+addresses = ["0x00458440"]
+expected_count = 1
+expected_bytes = 6121
+expected_names = ["sub_458440"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Scenario vtable006C2998 owns the complete6121-byte command interpreter. Full CFG/23-command table, input/result waits, character setup and game text/effect/audio policies establish authored ownership independently of surrounding STL/CRT. Public audit-scenario-command-update-target.py pins1690 reachable instructions and6216-byte payload; trailing8 INT3 object/linker ownership remains unknown. Complete compiling source is identified/unselected; early strict comparison stops at unqualified source-emitted helper ownership, without masks or invented bindings. docs/SCENARIO_COMMAND_UPDATE_2026_10_25.md."
+required_body_hashes = [
+  { address = "0x00458440", size = 6121, sha256 = "7062af4006e7ea7f92d8401280bfe123715b729eb1c1bf991e15b6f892de915f" },
+]
+required_selected_body_calls = [
+  { owner = "0x00458440", site = "0x00458D20", target = "0x00455CD0", target_status = "matching" },
+  { owner = "0x00458440", site = "0x00459282", target = "0x00454EC0", target_status = "matching" },
+]

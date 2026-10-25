@@ -9,8 +9,10 @@ nonexact and deliberately unselected. The finite source controls are saved;
 **AyaObject initializer0x0061F0B0** has now been refreshed unchanged: its full
 4859-byte payload still differs only in two operand bytes. Later C2 release
 tables are corroborated, but no attested executable package was recovered.
-Next bounded work is the authored/boundary frontier, selecting a fresh root
-from target evidence rather than repeating the closed controls below.
+**Scenario command interpreter0x00458440** is now the active bounded root: its
+6121-byte main/full6216-byte target is closed and all23 commands have a complete
+compiling, unselected source hypothesis. Strict replay currently stops at an
+unqualified emitted string copy constructor, before any canonical byte count.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -41,21 +43,69 @@ credentials and generated reports out of Git.
 ## Durable state
 
 Current checkpoint retains complete Tenshi source and the complete unselected
-Alice Fighter hypothesis with a reproducible whole-payload comparison. Exact
-acceptance and source-present counts are unchanged.
+Alice Fighter hypothesis with a reproducible whole-payload comparison. The new
+Scenario interpreter adds one observed authored identity and one probe, with
+complete unselected source. Exact acceptance/source-present counts are unchanged.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1596 /1418 /1010 |
-| Mapped / source-present |1583 /1564 |
+| Provisional / authored / excluded / review candidates |4024 /1597 /1418 /1009 |
+| Mapped / source-present |1584 /1564 |
 | Exact functions / authored bytes |1412 /381108 |
-| Configured units / functions |604 /1572 |
+| Configured units / functions |605 /1573 |
 
 These are live ledger counts, not a new aggregate cold claim. The last aggregate
 receipt remains `build/exact-first-remilia-action-entry-20261025/cold-all.log`:
 524 accepted units/all1412 functions. Source-present is not exact acceptance.
 The local suite now has620 tests. Python environment and public CI were repaired
 previously; do not reopen them without a new failure.
+
+## Active: Scenario command interpreter458440
+
+[Target closure, first complete source and admission limits](SCENARIO_COMMAND_UPDATE_2026_10_25.md).
+Sources: `src/battle/ScenarioCommandUpdate.cpp/.hpp`.
+Unit: `exact-first-scenario-command-update`.
+Public target audit: `scripts/audit-scenario-command-update-target.py` (expected0).
+
+- Main6121 SHA7062af40, full6216 SHA0a37b616 through459C88; three metadata
+  alignment bytes plus23 table DWORDs.1690/1693 instructions reached, three
+  exact internal alignment instructions, no escaping edges.216 direct/14
+  indirect calls; one RET0, aligned explicit allocation288.
+- Scenario vtable006C2998 owns slot08. Native exits setAL00/01/FF; upperEAX,
+  original return type and nominal TU remain unknown. The new signed-byte
+  pointer-only view leaves old shared int update declaration untouched.
+- All23 commands/default and input/character/result/wait/termination gates now
+  have a complete compiling hypothesis. It remains identified/unselected,
+  absent from implemented.csv/matches.csv; semantic instruction review remains.
+- First complete source emits5352 bytes and was immediately compared. Strict
+  replay stops at a new queue helper, without invented target addresses.
+  One genuine queue-inlining control emits5640. A real20-byte std::deque<short>
+  view leaves the raw root section identical; its generated front operation
+  independently matches actual4321B0 at71/71. This adds no exact credit.
+- A full4024-candidate generated-helper scan admits nine positive whole-body
+  bindings only; no helper-origin/accepted-unit change. Two EH/thunk and eight
+  literal rows are new-probe inputs; existing bindings/shared inputs unchanged.
+- Current source01a25dc1/raw5640 SHA85deb994. Strict comparison is **blocked**
+  at the emitted37-byte string copy constructor. A separate all-.text-byte
+  scan finds no identical complete provider after actual relocation replay.
+  Native case2 constructs its two by-value strings in the caller. Do not
+  invent a target binding or report a canonical difference count/percentage.
+- Review corrected the first draft's strrchr calls to actual multibyte
+  _mbsrchr68B4EE. Native68B42E consumes lead-byte pairs; the pinned libcmt
+  mbsrchr.obj wrapper independently agrees19/19. Root raw bytes stay identical,
+  but resolved destinations differ. Active codepage remains unknown. This is
+  provider identification only, with no new accepted runtime/authored credit.
+- Read-only384MiB Ghidra verifies identity/entry/all mapped bytes; all nine
+  primary DB hashes unchanged. Decompiler warnings remain hypotheses. Wrong
+  GUI IDA was rejected; no target patching or IDA semantics were used.
+
+Next question is actual case2 constructor/provider visibility and remaining
+emitted generated operations, then an unmasked whole replay. Preserve the
+first source/object and finite controls. No register/liveness tricks, inline
+spelling grid or broad behavior matrix. No LTCG impossibility claim follows.
+The eight following INT3 bytes still need object/linker qualification before
+any future exact acceptance. Receipts/private recipes are under
+`build/exact-first-scenario-update-20261025/` and the matching `.analysis/` scope.
 
 ## Checkpoint: Alice Fighter4E9F50
 
