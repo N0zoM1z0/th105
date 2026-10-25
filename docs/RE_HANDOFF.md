@@ -1,7 +1,7 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **complete KomachiObject update5F9420 source now compares;
-continue concrete packet/frame and physical-sharing residuals**.
+Current transition: **retain KomachiObject update5F9420 scalar-epoch corrections
+and complete811 table; continue concrete frame/physical-sharing residuals**.
 Raw main27874 closes6773 reachable instructions/27852 bytes plus seven exact
 internal padding instructions/22 bytes;37 RET0s,315 direct calls/19 entries and
 six virtual calls. Complete28520 owns15 tables/111 destination DWORDs and200
@@ -9,15 +9,19 @@ remap bytes plus2 alignment bytes. One readonly384MiB Ghidra hypothesis attests
 identity/entry/all mapped bytes and leaves nine primary project hashes intact.
 Manual first complete source compares29056 before controls. Raw827 bounds,
 movement/entry exits and ordered x87 guards are corrected; four actual consumed
-packet groups are retained. Formal/independent cold selected28940 SHAcd3509de
-replay1002 relocations, but remain nonexact27184 bytes, first+8: frame0x48
-versus0x40. All200 remap bytes and18/19 direct-callee counts agree. Still50 RETs
-versus37, spawn64 versus63, virtual5 versus6,14 tables versus15. Static per-case
-direct-callee counts agree but physical sharing differs: target spawn5F9949
-joins801/815/825/827/852/855/856/901; source excludes the last two and separately
-joins861/901. Source also joins800/801 virtual calls; target keeps them apart.
-Next inspect those actual sharing/lifetime epochs and811's collapsed five-entry
-table; do not force the frame or start a flag grid/runtime matrix. See
+packet groups are retained. Follow-up restores three actual float-rounded
+counter-times0.75 radius scales and the distinct801/852 reload versus825 qword
+facing lifetime. Independent811 call arms restore its five-entry table. Formal/
+independent cold selected29040 SHA58b2730b replay1008 relocations but remain
+nonexact27205 bytes, first+8: frame0x48 versus0x40. All15 table dimensions/200
+remap bytes, six independent virtual calls and18/19 direct-callee counts agree.
+Still51 RETs versus37 and spawn64 versus63. Per-case direct/virtual call counts
+agree but physical sharing differs: target spawn5F9949 joins801/815/825/827/
+852/855/856/901; source5F9951 excludes the last two and separately joins861/901
+at5FE742. Explicit spawn-join controls over-factor other calls; per-action
+packet scopes grow frame0x160. Keep them unselected and close these controls
+absent new independent evidence. Next inspect actual temporary/return epochs;
+do not force the frame or start a flag grid/runtime matrix. See
 [complete source/evidence/commands](KOMACHI_OBJECT_UPDATE_2026_10_25.md).
 Tracking and1563 floating target-reference checks pass. Accepted graph remains
 524 units/1412 functions; the prior Remilia checkpoint remains the latest

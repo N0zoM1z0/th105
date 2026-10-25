@@ -22324,7 +22324,7 @@ source = "src/characters/KomachiObjectUpdate.cpp"
 object = "build/match-units/ExactFirst_KomachiObjectUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete manual JP1.06a KomachiObject slot285F9420 source hypothesis. Target27874 main/full28520;15 tables/200-byte remap and22 attested internal padding bytes. Full source28940 SHAcd3509de nonexact+8; four real consumed packets;18/19 direct-call counts agree. scripts/audit-komachi-object-update.py; docs/KOMACHI_OBJECT_UPDATE_2026_10_25.md."
+notes = "Complete manual JP1.06a KomachiObject slot285F9420 source hypothesis. Target27874 main/full28520;15 tables/200-byte remap and22 attested internal padding bytes. Full source29040 SHA58b2730b nonexact+8; three rounded radius scales and target-specific facing epochs retained; all15 table dimensions/200 remap bytes and6 virtual calls agree;18/19 direct-call counts agree. scripts/audit-komachi-object-update.py; docs/KOMACHI_OBJECT_UPDATE_2026_10_25.md."
 
 [[units.exact-first-komachi-object-update.functions]]
 address = "0x005F9420"

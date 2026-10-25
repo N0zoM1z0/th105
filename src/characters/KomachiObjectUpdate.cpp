@@ -29,7 +29,8 @@ namespace th105 {
 #define RETURN_ON_ENTRY_PHASE(p) (I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==p)
 #define CURVED_FADE_VALUES() {if(S(0x364)<=I(0x144))FADE(10,10);SCALE(F(0x11c)*D(0.995f));F(0x370)+=0.25;H[0]-=D(0.2f);if(H[0]<D(0.2f))H[0]=0.2f;MOVE();F(0xf8)+=F(0x370);}
 #define CURVED_FADE() {CURVED_FADE_VALUES();STEP();}
-#define ORBIT_WAVE(face) {SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);MOVE();F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);F(0x378)=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*4))*I(0x144)*0.75;double facing=C(0x104);F(0xec)=lookup_orientation_cosine_quantized_abs(static_cast<float>(C(0x104)*(-H[0]-90.0)))*F(0x378)*(face)+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(facing*(-H[0]-90.0)))*F(0x378)+F(0x374);}
+#define ORBIT_WAVE(face) {SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);MOVE();F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);double radius_wave=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*4));float radius_scale=I(0x144)*0.75;F(0x378)=radius_wave*radius_scale;double facing=C(0x104);F(0xec)=lookup_orientation_cosine_quantized_abs(static_cast<float>(C(0x104)*(-H[0]-90.0)))*F(0x378)*(face)+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(facing*(-H[0]-90.0)))*F(0x378)+F(0x374);}
+#define ORBIT_WAVE_UNCAPTURED() {SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);MOVE();F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);double radius_wave=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*4));float radius_scale=I(0x144)*0.75;F(0x378)=radius_wave*radius_scale;F(0xec)=lookup_orientation_cosine_quantized_abs(static_cast<float>(C(0x104)*(-H[0]-90.0)))*F(0x378)+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(C(0x104)*(-H[0]-90.0)))*F(0x378)+F(0x374);}
 void KomachiObjectUpdateView::update_action_state()
 {
  float burst_packet[3],trail_packet[3],request_packet[3],motion_packet[3];
@@ -51,7 +52,7 @@ void KomachiObjectUpdateView::update_action_state()
   switch(S(0x13e)) {
   case 0:
    if(emit_repeated(0,3,5) || emit_owner_gated_pair())RETIRE();
-   ORBIT_WAVE(1.0);
+   ORBIT_WAVE_UNCAPTURED();
    advance_six(0);
    if(I(0x180)!=0) {BURST(801,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}break;
   case 1: CURVED_FADE();break;
@@ -98,7 +99,7 @@ void KomachiObjectUpdateView::update_action_state()
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();STEP();FRAME_EXIT();
  case 811:
   if(I(0x180)==5)RETIRE();
-  switch(S(0x13e)){case 0:case 1:case 2:case 3:case 4:advance_six(0);}
+  switch(S(0x13e)){case 0:advance_six(0);break;case 1:advance_six(0);break;case 2:advance_six(0);break;case 3:advance_six(0);break;case 4:advance_six(0);break;}
   if(advance_frame())RETIRE();
   if(RETURN_ON_ENTRY_PHASE(1)||RETURN_ON_ENTRY_PHASE(2)||RETURN_ON_ENTRY_PHASE(3)||RETURN_ON_ENTRY_PHASE(4)||RETURN_ON_ENTRY_PHASE(5))RETIRE();return;
  case 812:
@@ -188,7 +189,7 @@ void KomachiObjectUpdateView::update_action_state()
   if(I(0x180)==5)RETIRE();if(S(0x13e)==1){SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>29)FADE(15,15);STEP();}FRAME_EXIT();
  case 852:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==0){if(emit_owner_gated_pair())RETIRE();ORBIT_WAVE(1.0);advance_six(0);advance_phase(2);if(I(0x180)!=0){BURST(852,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}}
+  if(S(0x13e)==0){if(emit_owner_gated_pair())RETIRE();ORBIT_WAVE_UNCAPTURED();advance_six(0);advance_phase(2);if(I(0x180)!=0){BURST(852,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}}
   else if(S(0x13e)==1){CURVED_FADE_VALUES();STEP();}
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();
   if(advance_frame())RETIRE();if(RETURN_ON_ENTRY_PHASE(1))RETIRE();if(RETURN_ON_ENTRY_PHASE(2))RETIRE();return;

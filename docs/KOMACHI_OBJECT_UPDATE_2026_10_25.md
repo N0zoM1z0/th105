@@ -2,10 +2,10 @@
 
 `KomachiObject_update_action_state @ 0x005F9420` has a manual complete-body
 source hypothesis and an early whole-function comparison. It is **not exact**.
-Formal and independently compiled cold objects reproduce the complete28940-byte
+Formal and independently compiled cold objects reproduce the complete29040-byte
 canonical payload, SHA256
-`cd3509de3d926e411f1423f100160834ab0766ac12879573124607f61bc90d9b`.
-The target owns28520 bytes. Full unmasked comparison reports27184 differences,
+`58b2730bdf05defd5db1d6a1a3698b70b125c4c0ba0f4c2230341f14c6d303e4`.
+The target owns28520 bytes. Full unmasked comparison reports27205 differences,
 first+8/5F9428: source frame0x48 versus target0x40. This remains a broad layout,
 precision and physical-sharing residual; it is not a localized eight-byte
 comparison failure or partial exact claim.
@@ -137,6 +137,9 @@ allocation epochs are unproved. Private receipt: `target-packet-locations.json`.
 
 ## Early comparison and target-backed corrections
 
+This section records the first checkpoint `6fdd010`; the follow-up below
+supersedes its selected hash and current residuals.
+
 Receipts below are under `build/exact-first-komachi-object-update-20261025/`;
 private raw/decompiler drivers, complete source snapshots and recipes are under
 the corresponding `.analysis/` directory.
@@ -147,7 +150,7 @@ the corresponding `.analysis/` directory.
 |Review827 bounds/movement/entry exits|28940|13ea4aa1|27192 differences|
 |Restore raw ordered outside guards|28940|bf2204f7|27185 differences;34 component calls restored|
 |Four real consumed packet groups|28956|242042e5|27045 differences; frame0x48|
-|Review801 velocity-packet ownership|28940|cd3509de|selected;27184 differences; frame0x48|
+|Review801 velocity-packet ownership|28940|cd3509de|first checkpoint;27184 differences; frame0x48|
 
 The827 first source incorrectly reused825's bounds and moved after the guard.
 Raw5FCA68..5FCB63 establishes movement before the1680/-400/1360/-400 bounds,
@@ -158,7 +161,7 @@ unordered comparisons continue. Explicit outside comparisons replace the first
 source's ordered-conjunction rejection. These corrections follow instructions,
 not a lower mismatch count.
 
-All1002 selected section relocations replay. Formal and independent cold
+At the first checkpoint all1002 selected section relocations replay. Formal and independent cold
 full-payload hashes agree. The entire200-byte remap agrees, SHA256
 `4263dbd9617462fb289d3fb3be165e8348154fe2ede1c45657d1fd17e3ca5c86`.
 The source emits14 destination tables: the five identical destinations for
@@ -166,7 +169,7 @@ target811's table600268 instead become an ordinary range guard. The full
 comparison includes every table/remap/alignment byte; candidate table dimensions
 are diagnostic and cannot waive target equality.
 
-Selected source has50 RETs versus37, five virtual calls versus six and64 spawn
+At that checkpoint source has50 RETs versus37, five virtual calls versus six and64 spawn
 calls versus63. The other18 direct-callee counts agree. Static per-case traversal
 from all27 primary entries finds matching direct-callee counts for each case,
 but this overapproximates feasible paths and is not execution equivalence.
@@ -177,7 +180,7 @@ Different physical sharing explains why aggregate counts differ:
 - Target800 and801 have separate virtual frame calls; source joins both at
   5F9554. No source virtual operation is removed on the corresponding case path.
 
-Keep these concrete groups for the next trial. Do not infer original source
+These are the concrete groups used by the follow-up. Do not infer original source
 spelling, a compiler-profile solution or standalone/LTCG impossibility from
 matching call counts.
 
@@ -192,6 +195,71 @@ Its difference count remains27184 because this emitted byte is beyond the
 target extent; no extra agreeing-byte failure is claimed for that negative.
 Seven synthetic tests cover all15 tables/200 indices, invalid indices, metadata
 destinations, truncation, external CFG edges and exact unreachable-padding sets.
+
+## Follow-up: rounded radius, facing epochs and811 lowering
+
+Fresh receipts are under `build/komachi-update-sharing-20261025/`; complete
+private controls are under the corresponding `.analysis/` directory. A fresh
+baseline build reproduces the preceding checkpoint. IDA still rejects its
+different executable; all new instruction evidence uses the hash-attested PE.
+
+Raw801/825/852 all have a consumed float rounding boundary before multiplication
+by the returned sine. The target sequences are FILD counter144, FMUL qword0.75,
+FSTP DWORD temporary, FMUL that DWORD into the retained ST0 wave, then store378.
+The three rounding stores are5F97A6,5FC421 and5FCF56; the corresponding wave
+multiplies are5F97AA,5FC425 and5FCF5A. The previous source's association
+`wave * counter * 0.75` did not represent this boundary. Real consumed
+`double radius_wave` and `float radius_scale` locals now do. Each generated
+path contains the observed FILD/FMUL/FSTP-DWORD/FMUL-DWORD/store378 sequence.
+This corrects scalar semantics; the decision is not based on mismatch count.
+
+Raw801 and852 reload signed byte104 after the cosine call before preparing
+the sine argument. Raw825 instead captures that facing value as a qword at
+5FC43B, reloads it after cosine at5FC46B and consumes it in both coordinate
+operations. The source now distinguishes the uncaptured801/852 expression
+from825's actual qword lifetime. This also restores independent800/801 virtual
+frame calls: all six virtual calls are present without a shared call site.
+
+For811, five distinct ordinary source arms each call `advance_six(0)` once.
+VC8 retains a five-entry destination table and then shares its physical call.
+The previous common-label spelling became a range guard. Neither version adds
+an operation on any executed path. The new full object retains all15 table
+dimensions28/5/6/5/4/6/5/6/5/5/7/14/4/4/7 and all200 primary-remap bytes.
+
+| Complete control | Full bytes | SHA256 prefix | Differences / observation |
+| --- | ---: | --- | --- |
+|Explicit common velocity/final spawn tail|28548|54906cfd|26633; desired eight-state call group restored, but spawn60 versus63 and component33 versus34|
+|Only856/901 join the final spawn call|28876|eb5bc04a|27287; spawn61 versus63; unselected|
+|Three rounded radius scales|28956|b1040d19|27000; target scalar boundaries restored|
+|Actual packets scoped separately per action|29528|1d80948b|28060; frame grows0x48 to0x160; unselected|
+|Separate801/852 facing epochs|29020|d8c1e4f4|27199; six virtual calls restored|
+|Independent811 source arms|29040|58b2730b|27205; all15 destination tables restored; selected|
+
+The explicit common-tail candidate joins the target's eight-state spawn group
+but also merges821/861 and two physical901 calls. Its near-target size does
+not establish the target layout. The late-tail alternative also over-factors
+calls. Keep both unselected and do not repeat these unchanged controls. Giving
+each action only its actually consumed packet arrays also fails to recover
+the target frame: VC8 allocates0x160, rather than reusing storage as hoped.
+The selected source keeps the four original consumed arrays. No inert locals,
+padding, forced registers, compiler-profile grid or runtime matrix is involved.
+
+Formal and independent cold comparison now reproduce full29040/58b2730b with
+all1008 section relocations replayed. Source has51 RETs versus37 and64 spawn
+calls versus63; frame0x48 still differs from0x40 at+8. The other18 direct-callee
+counts agree, as do all six virtual calls and all15 table dimensions. Static
+traversal from each of27 case entries finds matching direct-callee counts and
+virtual-call counts, but still overapproximates feasible paths. Source spawn
+5F9951 shares801/815/825/827/852/855; target5F9949 additionally shares856/901.
+Source5FE742 still joins861/901 separately. These are current physical facts,
+not an execution-equivalence or original-TU claim.
+
+A fresh generated-object first-instruction negative changes agreeing+0 byte55
+to56, remains parser-valid and fails with27206 differences, first+0, SHA256
+`550ae3ff23d9e2365a06ba92984e91b4ca17e3f118bf9d32739aa83d570b0056`.
+The selected object and canonical PE remain unchanged. Earlier first-checkpoint
+negative hashes above retain their historical scope. Accepted units, literal
+bindings, source-present count and exact ledgers do not change in this follow-up.
 
 ## Reproduction and continuation
 
@@ -216,9 +284,12 @@ still the latest aggregate cold receipt. No new aggregate cold replay or exact
 credit is claimed. No runtime matrix, assembly, byte-array source, inert local,
 fake return, register forcing or padding was used.
 
-Continue5F9420 from its genuine frame/packet lifetimes and the specific physical
-call/return groups above. Each control must answer one raw-target question and
-recompare the complete extent. Stop repeated neutral controls. Remaining
+Continue5F9420 from its genuine frame/temporary lifetimes and the current
+physical call/return groups above. Close the tested explicit spawn joins and
+per-action packet-scope forms absent new independent evidence. Each control
+must answer one raw-target question and recompare the complete extent. Stop
+repeated neutral controls. Remaining
 unknowns include complete execution equivalence, other scalar precision/
 publication epochs, original expressions and nominal types, lexical scopes,
-original TU/compiler context and faithful811 destination-table lowering.
+and original TU/compiler context. The811 table-lowering question is resolved
+for this selected source/profile; it is not a general compiler recipe.
