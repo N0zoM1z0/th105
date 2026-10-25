@@ -22734,7 +22734,7 @@ source = "src/characters/YuyukoObjectUpdate.cpp"
 object = "build/match-units/ExactFirst_YuyukoObjectUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete28-action/default manual JP1.06a56F700 source; first full comparison retained before controls. Complete target35060 owns16 tables and seven remaps. Nonexact34908 SHA06a43850; natural frame0x238. scripts/audit-yuyuko-object-update.py; docs/YUYUKO_OBJECT_UPDATE_2026_10_25.md."
+notes = "Complete28-action/default manual JP1.06a56F700 source; first full comparison retained before controls. Complete target35060 owns16 tables and seven remaps. Native815 x87 associations and inclusive guards retain two virtual exits. Nonexact34928 SHAc97edd07; natural frame0x238. scripts/audit-yuyuko-object-update.py; docs/YUYUKO_OBJECT_UPDATE_2026_10_25.md."
 
 [[units.exact-first-yuyuko-object-update.functions]]
 address = "0x0056F700"

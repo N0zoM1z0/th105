@@ -1,6 +1,30 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **complete YuyukoObject56F700 source and early full comparison;
+Current transition: **park YuyukoObject56F700 after815 expression/guard and
+real-join controls; next independently review TenshiObject64CD50**.
+Selected complete34928 SHAc97edd07 follows native815 product association,
+direct sine-result doubling and inclusive integer guards. Both815 virtual exits
+are restored; all28 per-action inventories agree except extra900 request.
+Public audit distinguishes per-action counts from physical site/owner groups.
+Formal and independent cold replay remain nonexact32764/+31 against full35060;
+frame238/all ten qword stack offset/width/operation positions,16 table dimensions
+and seven remaps agree. Still69 RETs/27 motion/4 frame/53 unparented/13 virtuals
+versus62/29/7/52/15. Broad real-join control over-factors motion24; narrow852/858
+frame and820/858 next-block join control retains27 motion but70 RETs. Both keep
+the same wrong four-frame owner partition and are unselected; full hashes differ,
+not byte-neutral. Close these scoped questions; no forced frame/registers, flag
+or spelling grid, execution-equivalence or LTCG-impossibility claim. Private x87
+depth propagation finds consistent joins/RET0-depth and identical900 call depth0;
+no evidence to retune coordinate carriers. See
+[complete source and receipts](YUYUKO_OBJECT_UPDATE_2026_10_25.md).
+Next64CD50 is source-missing/provisional41001, Object slot28 cell6C6734. Same-owner
+657150 initializer/cell6C6748 is source-present/nonexact context only. Re-attest
+and close its complete boundary/ABI before source selection; refresh the raw
+roster shared-callee census before another decompile. Current mapped1582/source1563;
+602 units/1570 configured functions. Accepted graph unchanged, no new aggregate
+cold claim. Continue one core/serial builds with the locked repository Python.
+
+Prior transition: **complete YuyukoObject56F700 source and early full comparison;
 next investigate native argument/return epochs and physical call sharing**.
 The manually reviewed28-action/default source is selected in
 src/characters/YuyukoObjectUpdate.cpp/.hpp; unit exact-first-yuyuko-object-update.

@@ -188,6 +188,49 @@ def check_unreachable(by_address,visited,expected=None):
     return {hex(address):value for address,value in sorted(actual.items())}
 
 
+def call_ownership(rows,tables,cases,default):
+    """Static reachable call sites and their action owners, not execution counts."""
+    by_address={row.address:row for row in rows}
+    entries={action:int(entry,16) for action,entry in cases.items()
+             if int(entry,16)!=default}
+    entries["default"]=default
+    sites={}
+    per_action={}
+    for action,entry in entries.items():
+        visited,pending=set(),[entry]
+        counts=Counter()
+        while pending:
+            address=pending.pop()
+            if address in visited:
+                continue
+            if address not in by_address:
+                raise ValueError("action CFG edge escapes instruction boundary")
+            visited.add(address)
+            row=by_address[address]
+            if row.mnemonic=="call":
+                callee=hex(row.operands[0].imm) if row.operands[0].type==x86.X86_OP_IMM else "virtual"
+                counts[callee]+=1
+                if address not in sites:
+                    sites[address]=dict(callee=callee,owners=[])
+                sites[address]["owners"].append(action)
+            if row.mnemonic=="ret":
+                continue
+            if row.mnemonic=="jmp":
+                pending.extend(tables[row.operands[0].mem.disp] if row.operands[0].type==x86.X86_OP_MEM else [row.operands[0].imm])
+            elif row.group(capstone.CS_GRP_JUMP):
+                pending.extend([row.operands[0].imm,row.address+row.size])
+            else:
+                pending.append(row.address+row.size)
+        per_action[action]=dict(sorted(counts.items()))
+    groups={}
+    for address,site in sorted(sites.items()):
+        key=(site["callee"],tuple(sorted(site["owners"])))
+        groups.setdefault(key,[]).append(hex(address))
+    return dict(per_action=per_action,
+                groups=[dict(callee=callee,owners=list(owners),sites=addresses)
+                        for (callee,owners),addresses in sorted(groups.items())])
+
+
 def check_default_exit(rows,entry):
     """The native default advances once and ignores AL before a plain RET0."""
     by_address={row.address:row for row in rows}
@@ -254,6 +297,7 @@ def target_facts(compare):
         raise ValueError("reviewed target return, virtual-call or frame inventory changed")
     facts["default_exit"]=check_default_exit(rows,tables[TARGET_TABLES[0]][-1])
     facts["quantized_return_providers"]=quantized_return_facts(compare)
+    facts["call_ownership"]=call_ownership(rows,tables,facts["cases"],tables[TARGET_TABLES[0]][-1])
     return identity,raw,facts,closed_cfg(rows,tables)
 
 
@@ -288,7 +332,9 @@ def main():
                           first_mismatch=compare.first_mismatch(target,candidate,START),
                           unmasked_differing_bytes=sum(a!=b for a,b in zip(target,candidate))+abs(len(target)-len(candidate)))
             try:
-                report["candidate_inventory"]=inventory(candidate,None)[2]
+                rows,tables,facts=inventory(candidate,None)
+                facts["call_ownership"]=call_ownership(rows,tables,facts["cases"],next(iter(tables.values()))[-1])
+                report["candidate_inventory"]=facts
             except (ValueError,StopIteration,struct.error) as error:
                 report["candidate_inventory_error"]=str(error)
             report["canonical_acceptance"]=candidate==target

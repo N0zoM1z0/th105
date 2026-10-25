@@ -153,5 +153,39 @@ class YuyukoUpdateMetadataTests(unittest.TestCase):
             audit.check_default_exit(self.default_fixture(b"\x83\x86\x30\x03\0\0\xff"),audit.START)
 
 
+class YuyukoCallOwnershipTests(unittest.TestCase):
+    def decode(self,code):
+        decoder=audit.capstone.Cs(audit.capstone.CS_ARCH_X86,audit.capstone.CS_MODE_32)
+        decoder.detail=True
+        return list(decoder.disasm(code,audit.START))
+
+    def call(self,address):
+        return b"\xe8"+struct.pack("<i",0x4351C0-address-5)
+
+    def test_shared_call_has_two_action_owners_and_one_physical_site(self):
+        code=b"\xe9"+struct.pack("<i",5)+b"\xe9"+bytes(4)
+        code+=self.call(audit.START+10)+b"\xc3\xc3"
+        facts=audit.call_ownership(self.decode(code),{},
+                    {"800":hex(audit.START),"801":hex(audit.START+5)},audit.START+16)
+        self.assertEqual(facts["per_action"],
+                         {"800":{"0x4351c0":1},"801":{"0x4351c0":1},"default":{}})
+        self.assertEqual(facts["groups"],
+                         [dict(callee="0x4351c0",owners=["800","801"],sites=[hex(audit.START+10)])])
+
+    def test_same_per_action_counts_do_not_prove_physical_sharing(self):
+        code=self.call(audit.START)+b"\xc3"+self.call(audit.START+6)+b"\xc3\xc3"
+        facts=audit.call_ownership(self.decode(code),{},
+                    {"800":hex(audit.START),"801":hex(audit.START+6)},audit.START+12)
+        self.assertEqual(facts["per_action"]["800"],facts["per_action"]["801"])
+        self.assertEqual([g["owners"]for g in facts["groups"]],[["800"],["801"]])
+        self.assertEqual(sum(len(g["sites"])for g in facts["groups"]),2)
+
+    def test_loop_counts_a_physical_call_once(self):
+        code=self.call(audit.START)+b"\x49\x75\xf8\xc3\xc3"
+        facts=audit.call_ownership(self.decode(code),{},
+                    {"800":hex(audit.START)},audit.START+9)
+        self.assertEqual(facts["per_action"]["800"],{"0x4351c0":1})
+
+
 if __name__=="__main__":
     unittest.main()
