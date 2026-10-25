@@ -1664,3 +1664,16 @@ _sakuya_action_entry_006c33a8,0x006C33A8,000000000000d03f,0,Hash-attested JP1.06
 _sakuya_action_entry_006d6eec,0x006D6EEC,00002041,0,Hash-attested JP1.06a Sakuya slot3C4DE060 direct floating operand; exclusive alias; docs/SAKUYA_ACTION_INITIALIZATION_2026_10_25.md.,literal
 _sakuya_action_entry_006c3e9c,0x006C3E9C,cdcc0c3f,0,Hash-attested JP1.06a Sakuya slot3C4DE060 direct floating operand; exclusive alias; docs/SAKUYA_ACTION_INITIALIZATION_2026_10_25.md.,literal
 _sakuya_action_entry_006c12b0,0x006C12B0,00004041,0,Hash-attested JP1.06a Sakuya slot3C4DE060 direct floating operand; exclusive alias; docs/SAKUYA_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c3e98,0x006C3E98,000080c0,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006cd200,0x006CD200,00008040,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c3e94,0x006C3E94,9a99193f,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c4000,0x006C4000,0000be42,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c3e5c,0x006C3E5C,00001041,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c12b0,0x006C12B0,00004041,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006cd140,0x006CD140,0000003f,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c4454,0x006C4454,00006841,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c3e90,0x006C3E90,3333b33e,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c0e80,0x006C0E80,000000a09999c93f,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c3ea0,0x006C3EA0,00007041,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006cd1d8,0x006CD1D8,0000c040,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal
+_yuyuko_action_entry_006c3c60,0x006C3C60,0000c0c0,0,Hash-attested JP1.06a Yuyuko slot3C56C840 direct floating operand; exclusive alias; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md.,literal

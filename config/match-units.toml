@@ -21999,3 +21999,36 @@ dir32_targets = [
     "__real@3f0ccccd=_sakuya_action_entry_006c3e9c",
     "__real@41400000=_sakuya_action_entry_006c12b0",
 ]
+
+
+[units.exact-first-yuyuko-action-initialization]
+kind = "probe"
+source = "src/characters/YuyukoActionInitialization.cpp"
+object = "build/match-units/ExactFirst_YuyukoActionInitialization.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete JP1.06a Yuyuko primary slot3C56C840;2083 callable/full2650 payload. Independently reviewed interior entries preserve skipped writes;510 independent publication;651 vertical-first product;547 publication order. scripts/audit-yuyuko-action-initialization.py; docs/YUYUKO_ACTION_INITIALIZATION_2026_10_25.md."
+
+[[units.exact-first-yuyuko-action-initialization.functions]]
+address = "0x0056C840"
+symbol_base = "?initialize_action_entry@YuyukoActionEntryView@th105@@UAEXXZ"
+rel32_targets = [
+    "?zero_motion@YuyukoActionEntryView@th105@@QAEXXZ=0x0045AF40",
+    "?initialize_common_action_entry@YuyukoActionEntryView@th105@@QAEXXZ=0x00477830",
+    "?dispatch_character_wave_handle@YuyukoActionEntryView@th105@@QAEXI@Z=0x0045C030",
+]
+dir32_targets = [
+    "__real@c0800000=_yuyuko_action_entry_006c3e98",
+    "__real@40800000=_yuyuko_action_entry_006cd200",
+    "__real@3f19999a=_yuyuko_action_entry_006c3e94",
+    "__real@42be0000=_yuyuko_action_entry_006c4000",
+    "__real@41100000=_yuyuko_action_entry_006c3e5c",
+    "__real@41400000=_yuyuko_action_entry_006c12b0",
+    "__real@3f000000=_yuyuko_action_entry_006cd140",
+    "__real@41680000=_yuyuko_action_entry_006c4454",
+    "__real@3eb33333=_yuyuko_action_entry_006c3e90",
+    "__real@3fc99999a0000000=_yuyuko_action_entry_006c0e80",
+    "__real@41700000=_yuyuko_action_entry_006c3ea0",
+    "__real@40c00000=_yuyuko_action_entry_006cd1d8",
+    "__real@c0c00000=_yuyuko_action_entry_006c3c60",
+]
