@@ -3508,3 +3508,18 @@ required_direct_edges = [
   { caller = "0x004245B0", site = "0x004245B8", target = "0x00437EC0", caller_status = "matching" },
   { caller = "0x004389B0", site = "0x004389B8", target = "0x00437EC0", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "profile-deck-render-authored-106a"
+addresses = ["0x00448F60"]
+expected_count = 1
+expected_bytes = 2521
+expected_names = ["sub_448F60"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete2521-byte/744-instruction RET0 renderer belongs to the CProfileDeckEdit primary RTTI render slot. Target policy renders40 deck thumbnails,15 filtered card rows, selection preview, resource availability/count digits and four guides. Exact deck-availability/menu/guide callees corroborate ownership independently of checked-container helpers. Complete2521-byte public hypothesis remains nonexact1622 positions. Native observer fixture verifies zero missing counts and rejects erroneous push-relative stack inference. No helper-origin or exact credit. docs/PROFILE_DECK_RENDER_2026_10_26.md."
+required_rtti_virtual_bodies = [
+  { address = "0x00448F60", size = 2521, sha256 = "6898ee39c83606abc8cbf1618d91834dfaa9e901fd2adb3f38163101f780fb0c", slot = "0x006C2238", col_slot = "0x006C2228", col = "0x006D8610", type_descriptor = "0x006E6DDC", type_name_contains = "CProfileDeckEdit@@", calls = [{ site = "0x0044904F", target = "0x0043F9D0" }, { site = "0x0044928E", target = "0x00448DF0" }, { site = "0x004495B6", target = "0x00448DF0" }, { site = "0x004498FD", target = "0x0043F970" }, { site = "0x00449912", target = "0x0043F4C0" }] },
+]

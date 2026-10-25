@@ -41,9 +41,14 @@ checkpointed: full2528 target bytes/794 instructions and complete2528-byte sourc
 with79 unequal positions. Actual eight-WORD frames, destructive28-byte default
 clear and global path receiver recover the complete size. Direct member and
 genuine group lifecycle visibility controls are byte-neutral; this finite lane
-is closed. Next medium/large frontier **0x00448F60** has provisional2521 bytes;
-fresh preflight and independent boundary/ownership review come first. Prior
-floating-profile grids remain closed; drawing providers inherit no exactness.
+is closed. CProfileDeckEdit renderer **0x00448F60** is now checkpointed: all2521
+target bytes/744 instructions close; complete2521-byte/D4-frame source remains
+nonexact by1622 positions, first449268. A push-relative missing-count inference
+was rejected by native execution; correct zero default matches all32 observer
+events. Final row-multiply and exception-scheduling controls are byte-neutral;
+this finite FP lane is closed. Next medium/large frontier **0x0042ED70** has
+provisional2428 bytes and requires fresh preflight/ownership/boundary review.
+Prior floating-profile grids remain closed; providers inherit no exactness.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
 subagents or concurrent VC8/Ghidra jobs; `config/claims.csv` stays header-only.
@@ -93,13 +98,15 @@ complete source and3087 exact bytes. Rectangle4012A0 now has a complete public
 unselected hypothesis and probe, with no source-present or exact credit.
 Effect resource437EC0 adds one independently observed authored candidate/mapping
 and a complete public unselected hypothesis/probe; exact/source totals stay fixed.
+Deck renderer448F60 adds one independently RTTI-owned authored mapping and a
+complete public unselected hypothesis/probe. Exact/source totals stay fixed.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1603 /1419 /1002 |
-| Mapped / source-present |1592 /1566 |
+| Provisional / authored / excluded / review candidates |4024 /1604 /1419 /1001 |
+| Mapped / source-present |1593 /1566 |
 | Exact functions / authored bytes |1414 /385903 |
-| Configured units / functions |613 /1581 |
+| Configured units / functions |614 /1582 |
 
 The collision-debug manifest has a fresh full cold receipt:
 `build/exact-first-45e950-20261026/cold-all.log` passes526 accepted units/all1414
@@ -124,6 +131,42 @@ Both pass:4024 origin rows and526 cold units/all1414 exact functions,385903
 authored bytes. The27-reader/25-guard target audit and full nonexact COFF replay
 also pass their respective expected outcomes.
 The earlier rectangle/collision receipts retain their own manifest histories.
+
+Deck renderer448F60 adds a unit and three qualified data rows, conservatively
+invalidating old accepted-unit provenance. Current-manifest verification is
+recorded under `build/frontier-448f60-20261026/` (`origins-check.log`,
+`cold-all.log`). Literal audit now covers399 ledger literals/1603 explicit
+mappings,2002 target references. Earlier receipts retain their own manifests.
+Both current-manifest checks pass:4024 origin rows and526 cold units/all1414
+functions,385903 exact bytes. The native/candidate32-event fixture passes and
+the wrong row-default candidate is independently rejected.
+
+## Checkpoint: CProfileDeckEdit renderer448F60
+
+[Complete renderer, scoped source trials and corrected stack interpretation](PROFILE_DECK_RENDER_2026_10_26.md).
+Source: `src/ui/ProfileDeckRender.cpp` (unselected).
+Unit: `exact-first-profile-deck-render`.
+Audit: `scripts/audit-profile-deck-render-target.py` (target0/object1/nonexact).
+
+- Full2521 SHA6898ee39, RET0 at449938,744/744 instructions reached and seven
+  following INT3 bytes. RTTI primary slot6C2238/COL6D8610/type6E6DDC owns the
+  CProfileDeckEdit render body. Forty guards/five virtual sites. No helper credit.
+- First complete2488-byte source was compared immediately. Native GS/EH with
+  real typed94-byte sprite storage, reused/default-assigned checked iterator,
+  actual highlight lifetime and independent half-scale stores recover2521/D4.
+  Two public builds/full COFF audit agree on SHA73fb53f6 and1622 unequal
+  positions; first449268. First776 bytes agree; source remains nonexact.
+- Native three-row/selected-index0 call-observer case and current candidate
+  match all32 events, callee saves/stack/FS:0. Missing counts are0/0/0. The earlier
+  row-default inference forgot a live argument push; its0/1/2 candidate is
+  rejected and remains a private negative control. No general service/FP proof.
+- Final multiply-operand-order and local exception-scheduling controls are
+  whole-payload byte-neutral. Stop this FP lane without new independent facts.
+  Earlier polymorphic-local controls are scoped to their pre-correction phases.
+  Original local/TU/backend context and nominal field meanings remain unknown.
+- No implemented/match row. EH prefix, float384 and double304 add data rows;
+  double21 uses an existing value-checked literal. Shared accepted source,
+  headers, profiles and bindings are unchanged. Next42ED70 is only provisional.
 
 ## Checkpoint: effect resource loader437EC0
 

@@ -1488,7 +1488,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00448D70,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x00448DE0,compiler_generated,runtime,exclude,observed,network-deque-ushort-lifetime-generated-106a
 0x00448DF0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00448F60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00448F60,authored_game,ui,authored,observed,profile-deck-render-authored-106a
 0x00449940,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x004499C0,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x00449A80,compiler_generated,battle,exclude,observed,vc8-generated-event-effect-state-container-comdats-106a

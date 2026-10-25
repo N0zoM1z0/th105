@@ -23425,3 +23425,31 @@ rel32_targets = [
 dir32_targets = [
   "?g_effect_path_service@th105@@3UEffectPathService@1@A=?g_module_path_text@th105@@3UModulePathTextView@1@A",
 ]
+
+[units.exact-first-profile-deck-render]
+kind = "probe"
+source = "src/ui/ProfileDeckRender.cpp"
+object = "build/match-units/ExactFirst_ProfileDeckRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete2521-byte CProfileDeckEdit render448F60,744 target instructions. First complete source compared immediately. Typed sprite storage, native GS/EH, actual reused/default-assigned count iterator and independent half-scale stores recover2521/D4. Complete source remains nonexact1622 positions; first449268. Missing-count stack-offset inference was rejected by native/candidate 32-event fixture; zero default retained. Finite FP/store/visibility controls recorded. docs/PROFILE_DECK_RENDER_2026_10_26.md."
+
+[[units.exact-first-profile-deck-render.functions]]
+address = "0x00448F60"
+symbol_base = "?render@CProfileDeckEdit@th105@@UAEXXZ"
+rel32_targets = [
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAEXXZ=0x0042CD00",
+  "?at@DeckRenderAtView@th105@@QAEAAViterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@I@Z=0x004300B0",
+  "?available_count_for_index_448df0@CProfileDeckEdit@th105@@QAEHH@Z=0x00448DF0",
+  "?find@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABF@Z=0x00448D70",
+  "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+  "?render@ProfileSpriteView@th105@@QAEXMM@Z=0x00406BE0",
+  "?render@ProfileTileView@th105@@QAEXMMHH@Z=0x004099F0",
+  "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+  "?render_profile_menu_footer@DeckFooterView@th105@@QAEXXZ=0x0043F970",
+  "?render_profile_player_slot@Menu@th105@@IAEXPAUPlayerSlotRecord@2@MM@Z=0x0043FAF0",
+  "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = ["__real@4035000000000000=_alice_fighter_update_006c21b8"]
