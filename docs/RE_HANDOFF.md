@@ -1,6 +1,25 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **complete IkuObject632C30 first source and early whole
+Current transition: **park IkuObject632C30 after bounded return/width controls;
+next independently review large YukariObject58DB80**. Common-retirement source
+reduces complete output34088 SHA07ab6c22/46 RETs but loses another physical frame
+call14 versus16. Native Iku manager631140 reads/publishes facing as BYTE; existing
+complete Object forwarding witnesses admit narrow carriers. Independent signed/
+unsigned byte caller views both emit34364 SHA193a73db, still56 RETs/13 frame calls/
+55 unparented requests/13 virtuals versus44/16/56/15. Close repeated signedness
+outputs; keep all three complete controls unselected. All retain frame0x258,
+25 table dimensions/199 remap bytes and all29 per-action static call counts;
+these are diagnostics, not execution/equality proof. Selected34748 SHA52ee04c5
+is unchanged in fresh formal/full replay, nonexact32281/+37. See
+[controls and stop condition](IKU_OBJECT_UPDATE_2026_10_25.md).
+Next58DB80 is source-missing, provisional33972 bytes, authored Object slot28 ledger
+cell6C586C; same-owner initializer5964C0 is source-present/nonexact. Separate
+shared980 helper596370 is exact323, outside the new update. Re-attest and close
+its own complete boundary/ABI before selecting source. No exact credit, shared
+header/binding/profile change or new aggregate cold claim. Accepted graph stays
+524 units/1412 functions; one core/serial compilation continues.
+
+Prior transition: **complete IkuObject632C30 first source and early whole
 comparison retained; next investigate target-specific sharing/return epochs**.
 The complete manual29-action/default source is selected in
 src/characters/IkuObjectUpdate.cpp/.hpp with probe exact-first-iku-object-update.

@@ -231,3 +231,64 @@ This checkpoint adds one mapping, one complete source selection and one probe
 unit, not an exact function. Claims remain header-only. The accepted graph
 remains524 units/1412 functions/381108 callable bytes; no fresh aggregate cold
 replay is claimed. Continue632C30 from the complete-source comparison.
+
+
+## Return-path and direction-view controls; bounded stop
+
+Fresh target/status/tracking checks retain only JP1.06a. GUI IDA again rejects
+SHA10350095, so these controls use raw PE facts and the pinned local compiler.
+The selected source/header/profile/bindings remain unchanged. No Ghidra launch,
+shared provider edit, accepted-unit change or execution matrix is needed.
+
+Native ordinary retirement632E3B decrements330 and returns; many real edges
+enter it. A complete private candidate changes only the RETIRE source macro to
+a jump to one actual shared decrement/return. It adds no storage, fake return,
+extra behavior or register constraint. Its full34088-byte output SHA
+`07ab6c2297fa8d843d4126f9f6d245c6686ccf3145b3ac31a6565e33e324d2a4`
+remains nonexact32017 bytes, first+37. Returns fall67->46 versus44 target,
+but frame-advance calls fall15->14 versus16 target. Unparented requests55 and
+virtual calls14 still differ from56/15. This globally shared source exit
+therefore over-factors actual contexts; fewer RETs do not establish acceptance.
+Keep the complete candidate unselected. Recovering the target's separate exits
+requires actual publication/value-lifetime evidence, not repeating a goto or
+subtraction spelling.
+
+For the independent direction question, fresh raw Iku manager631140/237 reads
+CL from BYTE[ESP+20] at6311E2 and stores it to BYTE[ESI+104] at631200. DL handles
+the distinct33C byte. Its accepted complete source also uses a signed-char
+facing formal. The [complete shared-provider width witnesses](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md)
+independently admit byte-facing Object wrapper definitions/callbacks with the
+same native bodies77/78 bytes. The new raw Iku consumer check avoids substituting
+Reimu's manager for Iku. Width support does not prove original wrapper formal
+signedness or nominal class/TU identity.
+
+Two complete private callers start separately from the selected source, without
+the global-retirement trial. They refine only parented/unparented direction
+formals to unsigned char and signed char respectively, retaining four-byte
+argument slots, native targets, other parameters, vtable order and real data
+flow. Both canonical whole sections are **34364 bytes with identical SHA**
+`193a73db708bf0513873f86464f4a2f9417eaf70a9834372a8a5a93299c8e157`,
+32241 unmasked differences, first+37. Their56 RETs,13 frame-advance calls,
+55 unparented requests and13 virtual calls still differ from44/16/56/15 target.
+Do not confuse matching instruction counts or a closer section size with byte
+equality. The narrow views remain unselected, and repeating signedness changes
+is closed after the two identical full outputs.
+
+All three controls retain frame0x258, all25 table dimensions/176 DWORDs and the
+same199-byte remap/90 alignment byte. All29 action-level static reachable-call
+counts agree with the target for each candidate; this is not path feasibility
+or complete execution equivalence. Canonical replay covers every1010 root
+relocation for common retirement and1011 for each byte view, without masks.
+Generated full reports/bindings/per-action diagnostics/manager-width packet and
+`control-receipts.json` are under `build/iku-update-returns-20261025/`; private
+complete sources/drivers are in its same-named `.analysis/` directory.
+
+Fresh formal/full selected-source comparison still emits34748 SHA52ee04c5,
+32281 differences/+37. No source, type/header, literal binding, function mapping
+or exact credit changes. Park632C30 rather than repeating the two closed source
+questions. Next independently inspect the source-missing authored YukariObject
+slot28 candidate58DB80, provisional33972 bytes, ledger anchor6C586C. Its same-owner
+initializer5964C0 has complete nonexact source; it is a hypothesis/family lead,
+not an exact representative or proof of the new root's boundary or ABI. The
+separate shared980 continuation596370 is already exact323 bytes and must not
+be absorbed into the adjacent update. No compiler/LTCG impossibility is claimed.
