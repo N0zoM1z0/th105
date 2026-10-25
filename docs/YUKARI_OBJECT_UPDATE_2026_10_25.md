@@ -4,11 +4,12 @@
 hypothesis in `src/characters/YukariObjectUpdate.cpp/.hpp`, covering32 nondefault
 actions and the default exit. It is source-present, **not canonical exact**.
 The first complete compile is compared before source-shape controls. Formal
-and independent cold compilations reproduce the selected34600-byte complete
-section, replaying970 relocations. It differs from the34800-byte target at32568
-unmasked positions, first58DB82/+2: source frame0x264 versus native0x260.
-Complete canonical SHA256:
-`4f166c483d8ec0535feea45eff69999ee49a766a4adfb03fdfb90cb0e13b2c21`.
+and independent cold compilations reproduce the current34652-byte complete
+section, replaying971 relocations. It differs from the34800-byte target at32410
+unmasked positions, first58DB9F/+31. Source now naturally reproduces the native
+0x260 frame and all ten qword stack-access widths/relative offsets. Complete
+canonical SHA256:
+`41c02c6f5f7cb10362f64d527bc250e68b5fbde0bfc492390d1eeb0a8568cc3f`.
 
 All20 destination-table dimensions/157 DWORDs and200 action-remap bytes agree.
 Those observations establish neither byte nor execution equality. No exact
@@ -101,8 +102,8 @@ complete original classes, storage layout, inheritance identity or source names:
 |435D60|10|thiscall float stage_surface_height(), RET0|
 |4359D0|2|thiscall void publish_layout_scalar(float), RET4|
 |45C030|15|thiscall void dispatch_character_wave_handle(unsigned), RET4|
-|4063D0|19|cdecl double lookup_orientation_cosine_quantized_abs(float)|
-|406360|15|cdecl double lookup_orientation_sine_quantized_abs(float)|
+|4063D0|19|cdecl float lookup_orientation_cosine_quantized_abs(float), local value carrier|
+|406360|15|cdecl float lookup_orientation_sine_quantized_abs(float), local value carrier|
 |4E0BF0|1|thiscall void turn_heading(float,float,float), RET12|
 |4FCA60|4|thiscall pointer spawn_parented(same seven arguments), RET28|
 |406540|2|cdecl float atan2_degrees(float,float)|
@@ -182,7 +183,7 @@ there are no masks or separately accepted actions.
 |shared-ring|34412 /38171b2e|Unselected: merging both trig computations loses one physical sine and cosine call|
 |rounded-width|34652 /355b4365|Retains three target-observed float rounding points|
 |shared-call|34532 /9161de55|Independent trig paths, shared final812 spawn/event; remaining epoch review needed|
-|scalar-epochs, selected|34600 /4f166c48|Retains passed-facing/heading epochs and native abs;32568 differences/+2|
+|scalar-epochs, prior checkpoint|34600 /4f166c48|Retains passed-facing/heading epochs and native abs;32568 differences/+2|
 
 Native812 arms have independent trig calculations but share only their final
 spawn58F196 and event58F1A3. The selected source expresses precisely that
@@ -190,17 +191,84 @@ continuation. It preserves52 unparented requests,15 events and19/15 cosine/
 sine calls. Sharing more of the ring calculation is rejected from direct
 instruction evidence, regardless of its smaller output.
 
-Selected source has269 direct calls versus272,44 virtual calls versus45,
-98 RETs versus88 and frame0x264 versus0x260.22/24 direct-callee physical
-counts agree; emit_repeated20 versus21 and advance_frame13 versus15 remain.
-Per-action static reachable-call inventories differ for800 (emit2 versus3),
-816 (virtual2 versus1) and852 (virtual1 versus2). Other actions' counts agree.
-These counts do not establish path feasibility, side-effect ordering or
-behavioral equivalence. They identify physical sharing/return investigations;
-no size/count score is used for acceptance. No compiler flag/register grid,
-large runtime matrix or original-LTCG-impossibility claim is made.
+Current selected source has270 direct calls versus272,44 virtual calls versus45,
+99 RETs versus88 and the native0x260 frame.23/24 direct-callee physical counts
+agree; only advance_frame13 versus15 remains. All32 actions' static reachable
+direct-call inventories agree.852 has one reachable physical virtual call
+versus two; other actions' virtual counts agree. These counts do not establish
+path feasibility, side-effect ordering or behavioral equivalence. They identify
+remaining sharing/return investigations, never acceptance. No compiler flag/
+register grid, large runtime matrix or original-LTCG-impossibility claim is made.
 
-Reproduce formal callable and full-payload results:
+## Follow-up: argument lifetimes, return carriers and real joins
+
+Current follow-up artifacts are in `build/yukari-update-frame-20261025/`;
+private frozen sources/recipes are in `.analysis/yukari-update-frame-20261025/`.
+The preceding table and older artifact prefix remain the initial checkpoint.
+
+Raw stack-depth accounting distinguishes entry-relative local offsets from
+outgoing arguments and saved registers. Native scratch accesses use regions
+-608..-601 and-600..-593. Prior source also needs a four-byte region at-604,
+while its lower wide spill starts-612. Both still retain592 consumed packet
+bytes.940 retains a real radius while Y is live across the cosine call: native
+59580A/595812 writes Y into its outgoing argument slot before595821 computes X;
+prior source holds Y until after X.811 and the ring requests have corresponding
+argument epochs. Ordinary complete call expressions now let the pinned VC8
+compiler prepare those real arguments in native order, without forcing stack
+locations, deleting used packets or fabricating locals. C++ does not promise
+this cross-argument evaluation order; the generated VC8 instructions, including
+independent sine-before-cosine calls, are the evidence.
+
+The change also removes the explicit function-scope812 ring_x/ring_y/packet/
+facing join variables. The two branches now keep their own ordinary request
+expressions. Native812 final-call/event sharing is produced naturally while
+both trig computations remain independent. No broad shared-ring retry is used.
+
+Both full raw providers406360/100 bytes and4063D0/94 bytes have one RET0 and
+end in FLD dword[6FE8B0+EDX*4], restore ESP/EBP, RET. Return loads are4063B9 and
+406423. No subsequent instruction changes ST0. Normal returned values therefore
+come directly from m32 table storage; this does not uniquely identify original
+nominal float versus double prototypes. Complete provider hashes are:
+
+- 406360: `b03e5be2d5e7b36fd141594a76773e2ba1481ecc299f92b7178d41c7a7d2f9e5`.
+- 4063D0: `85296bac92963c839b2258ecbc61b460a8244f84097f18ea18877f6d6c8e68fe`.
+
+The audit now re-attests both complete providers and their m32 ST0 return tails.
+A local float return view in this root is coherent with that actual carrier.
+It removes20 unnecessary store/reload instructions/80 bytes seen with the old
+double view at otherwise corresponding900/940 consumers. Existing AngleLookup
+source/signatures and every accepted unit remain unchanged. Only this new,
+unaccepted probe's two REL32 return-type manglings change. No provider exact
+credit or original-prototype recovery is claimed.
+
+The independently paired double-view/full-argument control also yields0x260,
+so argument lifetimes explain the recovered frame without relying on a return-
+type attribution. In the selected source, all ten wide accesses have precisely
+the target offset/width/operation sequence: three FSTP/FCOMP pairs at-608 and
+the square/sum FSTP/FADD/FSTP/FCOMP quartet at-600. This is a bounded stack fact,
+not proof of all scalar allocation, complete semantics or exactness.
+
+Native800 phases0/1 share motion58DC6B and fade58DC90; phase2 keeps independent
+58DD14/58DD39 paths. Expressing those real joins restores emit_repeated21
+versus21.816's wrong-owner and phase2/frame8 exits share58F86A; its used source
+label restores one reachable virtual call in that action. The complete payload
+changes from2debccce to41c02c6f despite equal size/difference counts; it is not a
+byte-neutral control. All20 table dimensions/200 remap bytes remain unchanged.
+
+| Complete follow-up | Bytes / canonical SHA256 prefix | Evidence/result |
+| --- | --- | --- |
+|request940|34580 /db1ac3d1|Only940 nested arguments, old double view; frame0x264 remains|
+|float-return|34520 /1106ea4b|Only admitted local float view; frame0x264 remains|
+|request-epochs|34644 /93b90226|Full ordinary request expressions/float view; frame0x260, ten wide offsets agree|
+|double-request|34724 /e8c1c127|Same expressions/old double view; frame0x260,20 extra instructions|
+|shared800|34652 /2debccce|Real0/1 motion/fade joins restore21 physical emit calls|
+|shared816, selected|34652 /41c02c6f|Real816 virtual exit join;32410 differences/+31, still nonexact|
+
+First-body/full-argument controls and both admitted carrier views are retained
+with hashes. Do not repeat these argument spellings, add an inert four-byte
+local, force stack alignment or search compiler flags to obtain the frame.
+
+Reproduce current formal callable and full-payload results:
 
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py \
@@ -214,26 +282,26 @@ Both correctly return1 for the recorded nonexact result. Independent cold:
 TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
   taskset -c 0 nice -n 10 scripts/compile-unit.sh \
   src/characters/YukariObjectUpdate.cpp \
-  build/exact-first-yukari-object-update-20261025/cold.obj
+  build/yukari-update-frame-20261025/cold.obj
 scripts/repo-python scripts/compare-unit-object.py \
   exact-first-yukari-object-update \
-  build/exact-first-yukari-object-update-20261025/cold.obj --json
+  build/yukari-update-frame-20261025/cold.obj --json
 scripts/repo-python scripts/audit-yukari-object-update.py \
-  --object build/exact-first-yukari-object-update-20261025/cold.obj
+  --object build/yukari-update-frame-20261025/cold.obj
 ```
 
 The existing-object comparison honestly reports build provenance unverified;
-the separate compile command/log supplies that provenance. Formal and cold
-full audits agree on34600/4f166c48 and32568 differences. Receipts are
-`formal.log`, `formal-full-audit.json`, `cold-build.log`, `cold-compare.json`
-and `cold-full-audit.json`. Target provenance is in `target-audit.json`,
-`raw-facts.json`, `packet-predecessors.json` and the two Ghidra receipts;
-`control-receipts.json` records source/header/object/report hashes.
+the separate compile command/log supplies that provenance. Current formal and
+cold full audits agree on34652/41c02c6f and32410 differences. Follow-up receipts
+are `selected-formal.log`, `selected-formal-full.json`, `cold-build.log`,
+`cold-compare.json`, `cold-full-audit.json`, the two full provider observations
+and `control-receipts.json`. Initial boundary/decompiler receipts remain in the
+older artifact prefix.
 
-Next inspect the actual scalar/frame and physical800/816/852 sharing evidence.
-Do not force the missing four frame bytes or retry a broad shared-ring/flag
-search. A follow-up requires an independently observed question and another
-complete comparison. Current tracking is mapped1581/source1562,601 units/
+Next inspect852's two native virtual exits and the remaining advance-frame/
+return sharing from actual edges. Existing counts are diagnostic, not permission
+to duplicate calls or fabricate control flow. Do not retry closed argument/
+carrier/frame spellings without new independent evidence. Current tracking is mapped1581/source1562,601 units/
 1569 configured functions. Accepted1412/381108 bytes/524 units stay unchanged;
 the latest aggregate cold receipt remains the prior Remilia checkpoint,
 `build/exact-first-remilia-action-entry-20261025/cold-all.log`.

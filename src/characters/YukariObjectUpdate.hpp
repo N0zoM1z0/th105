@@ -24,8 +24,10 @@ public:
 };
 class YukariUpdateMotionView {public:void set_components(float,float);};
 int __cdecl selector_random_roll(int);
-double __cdecl lookup_orientation_sine_quantized_abs(float);
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
+// Current providers406360/4063D0 return FLD dword[6FE8B0+index*4] in ST0.
+// This local float carrier does not recover their original nominal prototypes.
+float __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
 float __cdecl atan2_degrees(float,float);
 float __cdecl square_float_value(float);
 int __cdecl square_int_value(int);

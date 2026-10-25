@@ -1,6 +1,28 @@
 # TH10.5 reconstruction handoff
 
-Current transition: **complete YukariObject58DB80 first source and early whole
+Current transition: **retain YukariObject58DB80 native argument lifetimes and
+real800/816 joins; next inspect852 and frame/return sharing from actual edges**.
+Current formal and independent cold34652 SHA41c02c6f replay971 relocations but
+remain nonexact32410/+31. Ordinary full request expressions restore native
+frame0x260 and all ten qword stack offset/width/operation positions; the paired
+old-double-view control also has0x260, so this is not a return-type attribution.
+Full raw406360/4063D0 return providers end in m32 table FLD/ST0/RET0 and support
+an isolated local float carrier, removing20 extra consumer instructions/80
+bytes. Original nominal prototypes/provider exactness remain unproved; no
+shared source/header/provider is changed.812 keeps independent trig calculations
+and naturally shares only the final request/event. Native800 phase0/1 motion/
+fade joins restore21 emits;816's actual shared virtual exit restores its one
+reachable call.23/24 physical direct-callee counts and all32 per-action direct
+counts agree;852 still has one versus two reachable virtual calls. Physical
+frame calls13 versus15, virtual44 versus45 and99 RETs versus88 remain. Keep
+strict full34800-byte comparison; no exact credit/count score/forced frame or
+compiler grid. All20 table dimensions/200 remap bytes retained. See
+[follow-up receipts and limits](YUKARI_OBJECT_UPDATE_2026_10_25.md).
+Tracking mapped1581/source1562;601 units/1569 configured functions. Accepted
+graph unchanged; no new aggregate cold claim. Continue one-core serial builds.
+
+
+Prior transition: **complete YukariObject58DB80 first source and early whole
 comparison retained; next inspect native scalar/frame and physical-sharing
 residuals**. Manual32-action/default source is selected in
 src/characters/YukariObjectUpdate.cpp/.hpp; first full34628 SHA90b755ed is compared

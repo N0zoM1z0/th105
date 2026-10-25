@@ -156,6 +156,31 @@ def check_default_exit(rows,entry):
     return dict(entry=hex(entry),frame_callee="0x4351c0",ignores_frame_result=True)
 
 
+def quantized_return_facts(compare):
+    # Local call-view admission, not recovery of original nominal prototypes.
+    decoder=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_32)
+    decoder.detail=True
+    result=[]
+    for address,size,digest in (
+            (0x406360,100,"b03e5be2d5e7b36fd141594a76773e2ba1481ecc299f92b7178d41c7a7d2f9e5"),
+            (0x4063D0,94,"85296bac92963c839b2258ecbc61b460a8244f84097f18ea18877f6d6c8e68fe")):
+        raw=compare.target_bytes(address,size)
+        if hashlib.sha256(raw).hexdigest()!=digest:
+            raise ValueError("quantized return provider changed")
+        rows=list(decoder.disasm(raw,address))
+        if sum(row.size for row in rows)!=size or sum(row.mnemonic=="ret" for row in rows)!=1:
+            raise ValueError("quantized return extent changed")
+        tail=rows[-4:]
+        if [row.mnemonic for row in tail]!=["fld","mov","pop","ret"]:
+            raise ValueError("quantized return tail changed")
+        operand=tail[0].operands[0]
+        if operand.type!=x86.X86_OP_MEM or operand.size!=4 or operand.mem.disp!=0x6FE8B0 or operand.mem.index!=x86.X86_REG_EDX or operand.mem.scale!=4 or tail[-1].op_str:
+            raise ValueError("quantized return must load a table float into ST0 and RET0")
+        result.append(dict(address=hex(address),size=size,sha256=digest,
+                           return_load=hex(tail[0].address),return_width=4,table="0x6fe8b0"))
+    return result
+
+
 def target_facts(compare):
     identity=compare.verify_target()
     raw=compare.target_bytes(START,FULL)
@@ -175,6 +200,7 @@ def target_facts(compare):
     if facts["returns"]!=88 or facts["virtual_calls"]!=45 or facts["stack_allocation"]!=[0x260]:
         raise ValueError("reviewed target return, virtual-call or frame inventory changed")
     facts["default_exit"]=check_default_exit(rows,tables[TARGET_TABLES[0]][-1])
+    facts["quantized_return_providers"]=quantized_return_facts(compare)
     return identity,raw,facts,closed_cfg(rows,tables)
 
 

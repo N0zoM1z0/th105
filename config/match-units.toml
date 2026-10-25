@@ -22586,7 +22586,7 @@ source = "src/characters/YukariObjectUpdate.cpp"
 object = "build/match-units/ExactFirst_YukariObjectUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete manual JP1.06a58DB80 source for32 actions/default. First full comparison precedes controls; target34800. Retains actual float width rounding and independent812 trig calculations with shared final spawn. Nonexact34600 SHA4f166c48; frame0x264 versus0x260. scripts/audit-yukari-object-update.py; docs/YUKARI_OBJECT_UPDATE_2026_10_25.md."
+notes = "Complete manual JP1.06a58DB80 source for32 actions/default. First full comparison precedes controls; target34800. Retains actual float width rounding and independent812 trig calculations with shared final spawn. Native argument epochs restore frame0x260 and all ten qword stack widths/relative offsets. Local float return carriers have full provider m32-return evidence. Actual800/816 joins retained. Nonexact34652 SHA41c02c6f; first+31. scripts/audit-yukari-object-update.py; docs/YUKARI_OBJECT_UPDATE_2026_10_25.md."
 
 [[units.exact-first-yukari-object-update.functions]]
 address = "0x0058DB80"
@@ -22598,9 +22598,9 @@ rel32_targets = [
     "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
     "?dispatch_character_wave_handle@YukariObjectUpdateView@th105@@QAEXI@Z=0x0045C030",
     "?emit_repeated@YukariObjectUpdateView@th105@@QAEEHHH@Z=0x005575C0",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
     "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
     "?position_relative@YukariObjectUpdateView@th105@@QAEPAXHH@Z=0x005B0400",
     "?publish_layout_scalar@YukariObjectUpdateView@th105@@QAEXM@Z=0x004359D0",
     "?release_auxiliary@YukariObjectUpdateView@th105@@QAEXXZ=0x00520860",
