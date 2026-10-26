@@ -23525,3 +23525,24 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = ["??_7ScoreLoadPlainFile@th105@@6B@=??_7CFileReader@th105@@6B@"]
+
+[units.exact-first-score-persist]
+kind = "probe"
+source = "src/config/ScorePersist.cpp"
+object = "build/match-units/ExactFirst_ScorePersist.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete1155-byte score persist42D3F0. First full source1155 bytes/80 differences; one real shared15-character count closes all1155 bytes and19 checked-container guards. Native writer/two512KiB owners, full serialization, codec/reverse-XOR and unchecked write result preserved. Four native/candidate observer cases agree. Genuine three-peer TU leaves both exact roots and prior loader residual unchanged. docs/SCORE_PERSIST_2026_10_26.md."
+
+[[units.exact-first-score-persist.functions]]
+address = "0x0042D3F0"
+symbol_base = "?persist_42d3f0@ScoreDataDefaultsView@th105@@QAEXXZ"
+rel32_targets = [
+  "??_U@YAPAXI@Z=0x00665B8A",
+  "??_V@YAXPAX@Z=0x0068AA26",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAEXXZ=0x0043B340",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@QAEXXZ=0x0042CD00",
+  "?encode_score_payload_4067f0@th105@@YAIPBEIPAEI@Z=0x004067F0",
+  "?get_current_replay_header_code@th105@@YAHXZ=0x0043AA40",
+  "__invalid_parameter_noinfo=0x0068A143",
+]

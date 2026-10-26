@@ -2428,3 +2428,4 @@ __ehhandler$?initialize_defaults_42ed70@ScoreDataDefaultsView@th105@@QAEXXZ,0x00
 ??_C@_0L@BHIMHHKN@?1story?4csv?$AA@,0x006C1184,2f73746f72792e63737600,0,Current42ED70 appended story CSV suffix; complete bytes including terminator are target-backed.,literal
 __ehhandler$?load_42f6f0@ScoreDataDefaultsView@th105@@QAE_NXZ,0x006B8058,8b5424088d827cffffff8b8a78ffffff,0,Current1672-byte score loader42F6F0 aligned74-frame/EH prefix; complete nonexact source only. docs/SCORE_LOAD_2026_10_26.md.,address
 ??_C@_09IGBDBFFL@score?4dat?$AA@,0x006C115C,73636f72652e64617400,0,Current42F6F0 CreateFileA path and complete native string including terminator.,literal
+__ehhandler$?persist_42d3f0@ScoreDataDefaultsView@th105@@QAEXXZ,0x006B7EF8,8b5424088d42b48b4ab033c8e81c1efd,0,Current1155-byte score persistence42D3F0 aligned3C-frame EH cookie entry; complete canonical source and native observer cases. docs/SCORE_PERSIST_2026_10_26.md.,address

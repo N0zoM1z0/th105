@@ -5,6 +5,40 @@ under `.analysis/`. Neither is included in a fresh clone. Start from the
 [current handoff](RE_HANDOFF.md) and live ledgers: old reports retain their
 source/object/tool epoch and cannot substitute for a fresh comparison.
 
+## October 26 cleanup and handoff
+
+The user cleared the active reconstruction goal and requested handoff. The
+[current handoff](RE_HANDOFF.md) now contains the current state, score-family
+checkpoints, parked lanes, environment and recovery steps; the complete
+preceding handoff is preserved in
+[the October26 archive](RE_HANDOFF_HISTORY_2026_10_26.md). The already exact
+1155-byte score persistence function is finalized in
+[its evidence record](SCORE_PERSIST_2026_10_26.md); no new frontier was opened.
+
+Current-scope recipes, frozen first/control objects, public source snapshots,
+full comparison/audit receipts and the completed three-peer TU control are
+preserved in `build/handoff-cleanup-20261026/score-family-resume.tar.gz`.
+`score-family-members.json` pins every repository-relative member; `bundle.json`
+pins archive size/SHA256 and verified decompression/readback. The verified
+65-member archive is830523 bytes, SHA-256
+`6d3a7ef6ab780abb2a099228b1ffda9f5fdb2c7ce139a724945fc23e95d567b2`.
+This local ignored
+archive is not part of a Git clone. It excludes target PE, compiler installs,
+analysis databases, environment files and credentials. Copy those separate
+inputs when moving machines. List the archive before restoring selected members
+and avoid overwriting newer source. Final CI/remote receipts remain loose in
+`build/frontier-42d3f0-20261026/`.
+
+The cleanup recipe is `.analysis/handoff-cleanup-20261026/cleanup.py`. Only
+current-interpreter bytecode with an existing source and matching PEP552 source
+hash or timestamp/size is disposable. Unqualified files are retained. Per-file
+cache/source hashes and logical-byte totals are in `cache-cleanup.json`.
+`protected-before.json`/`protected-after.json` verify the canonical target,
+compiler files, active Python environment/binary, primary Ghidra project,
+pre-analysis snapshot and the six other worktrees' HEAD/status/dirty-file hashes.
+Source, frozen controls, accepted receipts and installed tools remain available.
+No worktree, Git object or reflog is pruned by this cleanup.
+
 ## October 25 cleanup and handoff
 
 The user requested cleanup and a new-agent handoff. Current state is summarized

@@ -32,6 +32,7 @@ struct ScoreDataDefaultsView {
     std::vector<ScoreDefaultRecord24> records_198[20];
     void initialize_defaults_42ed70();
     bool load_42f6f0();
+    void persist_42d3f0();
     void refresh_story_progress_42e3f0();
 };
 } // namespace th105
