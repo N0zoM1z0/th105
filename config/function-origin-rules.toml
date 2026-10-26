@@ -3523,3 +3523,18 @@ evidence = "Complete2521-byte/744-instruction RET0 renderer belongs to the CProf
 required_rtti_virtual_bodies = [
   { address = "0x00448F60", size = 2521, sha256 = "6898ee39c83606abc8cbf1618d91834dfaa9e901fd2adb3f38163101f780fb0c", slot = "0x006C2238", col_slot = "0x006C2228", col = "0x006D8610", type_descriptor = "0x006E6DDC", type_name_contains = "CProfileDeckEdit@@", calls = [{ site = "0x0044904F", target = "0x0043F9D0" }, { site = "0x0044928E", target = "0x00448DF0" }, { site = "0x004495B6", target = "0x00448DF0" }, { site = "0x004498FD", target = "0x0043F970" }, { site = "0x00449912", target = "0x0043F4C0" }] },
 ]
+
+[[rules]]
+id = "score-load-authored-106a"
+addresses = ["0x0042F6F0"]
+expected_count = 1
+expected_bytes = 1672
+expected_names = ["sub_42F6F0"]
+origin = "authored_game"
+subsystem = "config"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete1672-byte/521-instruction body closes all521 instructions through three RET0 sites. score.dat path, reverse XOR index*7 policy, two512KiB owners, default-reset fallback, unsigned sets/maps,20-slot layout and full24-byte deduplicated record restore establish authored score policy independently of OS/codec/STL providers. Complete1666-byte source remains nonexact564 positions; four native observer cases agree. No helper-origin credit. docs/SCORE_LOAD_2026_10_26.md."
+required_body_hashes = [
+  { address = "0x0042F6F0", size = 1672, sha256 = "603c5bbb9b498dd93944cab66f78b15ad41887b5fa3ec77b890ba47dd1e54ccf" },
+]

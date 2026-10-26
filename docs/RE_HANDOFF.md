@@ -51,8 +51,13 @@ complete canonical2428/2428 in two public builds. All664 instructions/661
 reachable operations close through RET0; five native CSV-policy cases agree
 with the candidate. Three real array clears, vector clear, dedup state and
 direct path construction recover its original body without manual stores.
-Next coherent peer **0x0042F6F0** has provisional1672 bytes and requires fresh
-preflight/ownership/boundary review and an early complete source comparison.
+Score loading **0x0042F6F0** is now closed at1672 bytes/all521 instructions,
+with complete1666-byte source and564 unequal positions, first42F91B. Four
+native/candidate observer cases agree. Native constructor evidence independently
+proves20 map/vector slots; shared defaults remain2428/2428. Source lanes are
+parked without a new lifetime/TU fact. Next coherent medium peer is persistence
+**0x0042D3F0**, provisional1155 bytes, requiring fresh bounded review and an
+early whole-source comparison.
 Prior floating-profile grids remain closed; providers inherit no exactness.
 Youmu53CEA0 already has a complete public unselected hypothesis; its absence
 from implemented.csv does not mean it is unwritten. One writable session, no
@@ -108,10 +113,10 @@ complete public unselected hypothesis/probe. Exact/source totals stay fixed.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1605 /1419 /1000 |
-| Mapped / source-present |1594 /1567 |
+| Provisional / authored / excluded / review candidates |4024 /1606 /1419 /999 |
+| Mapped / source-present |1595 /1567 |
 | Exact functions / authored bytes |1415 /388331 |
-| Configured units / functions |615 /1583 |
+| Configured units / functions |616 /1584 |
 
 The collision-debug manifest has a fresh full cold receipt:
 `build/exact-first-45e950-20261026/cold-all.log` passes526 accepted units/all1414
@@ -146,6 +151,28 @@ Both current-manifest checks pass:4024 origin rows and526 cold units/all1414
 functions,385903 exact bytes. The native/candidate32-event fixture passes and
 the wrong row-default candidate is independently rejected.
 
+## Checkpoint: Score loading42F6F0
+
+[Whole loader, native policy and corrected slot capacity](SCORE_LOAD_2026_10_26.md).
+Source: `src/config/ScoreLoad.cpp` (complete, unselected).
+Unit: `exact-first-score-load`.
+Audit: `scripts/audit-score-load-target.py` (target0, object1/nonexact).
+Both public builds reproduce1666 bytes/564 shared-extent differences, missing6
+bytes, first42F91B, SHA9979a9c5. Four full native/candidate observer cases agree.
+Shared `ScoreDataDefaults.hpp` now records native20-slot map/vector capacities;
+focused defaults42ED70 replay remains2428/2428. Scene bootstrap's ignored load
+return declaration is corrected to the observed bool, with a focused replay.
+One new authored mapping/probe adds no source-selected or exact coverage.
+Current-manifest receipts are under `build/frontier-42f6f0-20261026/`
+(`origins-write.log`, `origins-check.log`, `cold-all.log`, `local-ci.log`).
+Both origin checks and the current-manifest cold replay pass:527 accepted
+units/all1415 functions,388331 exact authored bytes. Corrected defaults remain
+2428/2428; the caller return-type replay preserves its3722-byte/11-difference
+result. The local CI/whitespace gate is mandatory before commit/push. Original
+nominal types/TU and the vector erase/temporary scheduling residual remain open.
+Next medium family
+peer is42D3F0, provisional1155 bytes; no provider inherits exactness.
+
 ## Checkpoint: Score defaults/reset42ED70
 
 [Complete defaults, finite source trials and native CSV policy](SCORE_DEFAULTS_2026_10_26.md).
@@ -162,8 +189,8 @@ credit. Verification receipts for this manifest are under
 `cold-all.log`, `local-ci.log`). Both origin checks and the current-manifest
 cold replay pass:527 accepted units/all1415 functions,388331 authored bytes.
 The extracted profile/resource lifecycle units remain2/2 exact each. The local
-CI/whitespace gate is mandatory before commit/push. Next family peer is42F6F0,
-provisional1672 bytes; do not infer ownership from its calls alone.
+CI/whitespace gate is mandatory before commit/push. The later42F6F0 checkpoint
+above records the complete peer and independently corrected20-slot layout.
 
 ## Checkpoint: CProfileDeckEdit renderer448F60
 

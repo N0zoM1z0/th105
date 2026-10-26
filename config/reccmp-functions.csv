@@ -1593,3 +1593,4 @@ RenderModeManager_draw_rect,0x004012A0,function
 EffectResourceManager_load_effect_resource_437ec0,0x00437EC0,function
 CProfileDeckEdit_render,0x00448F60,function
 ScoreData_initialize_defaults_42ed70,0x0042ED70,function
+ScoreData_load_42f6f0,0x0042F6F0,function

@@ -72,7 +72,7 @@ struct SceneBootstrapDeckRefresh {
                                            unsigned char blue);
 };
 struct SceneBootstrapScore {
-    void load();
+    bool load();
 };
 struct BgmVolumeService {
     int set_volume(float value);
