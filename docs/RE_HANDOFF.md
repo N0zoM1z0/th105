@@ -1,17 +1,17 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: CBattleManager phase5 transition4724E0 accepts
-991/991 bytes, with its68-byte generated GS/EH code and52-byte metadata also
-strictly replayed without extra credit. Real player cursor and nested label
-search exits preserve native string lifetimes. See
-[BATTLE_TRANSITION_PHASE5_2026_10_27.md](BATTLE_TRANSITION_PHASE5_2026_10_27.md).
-Final local CI is pending at writing under build/frontier-4724e0-20261027/.
+Current bounded checkpoint: general hit resolver46BF80 corrects retained
+practice-gate, action-width and deferred-resource semantics. The complete source
+is1581 bytes versus1579, still unselected/nonexact; no ledger credit is added.
+See [GENERAL_HIT_RESOLVER_2026_10_27.md](GENERAL_HIT_RESOLVER_2026_10_27.md).
+Only the affected source is built. Final local gate receipts are under
+build/frontier-46bf80-20261027/.
 
-InfoEffectObject update65CB40 remains complete/nonexact14779/full15326 versus
-14783/full15330; see [INFO_EFFECT_UPDATE_2026_10_27.md](INFO_EFFECT_UPDATE_2026_10_27.md).
-Weather emission660B30 remains12198/full12348 exact, WeatherEffectObject
-entry664E10 remains1383/full1630 exact. Their complete nonexact update peers are
-retained without matching claims. Only the new phase5 unit is rebuilt.
+The prior CBattleManager phase5 transition4724E0 remains991/991 exact, including
+its separately audited generated GS/EH code and metadata; cd976369 passed the
+final local CI. Weather emission660B30 remains12198/full12348 exact and
+WeatherEffectObject entry664E10 remains1383/full1630 exact. The complete
+InfoEffectObject and WeatherEffectObject update peers remain nonexact.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
