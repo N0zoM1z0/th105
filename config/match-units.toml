@@ -23515,7 +23515,7 @@ source = "src/config/ScoreLoad.cpp"
 object = "build/match-units/ExactFirst_ScoreLoad.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete1672-byte ScoreData load42F6F0,521/521 reached and three RET0 sites. First full source compared immediately. Native EH74/cookie, real file/array lifetimes, reverse XOR, scalar/header/set/map/record restore recovered. Complete1666-byte candidate remains nonexact564 unequal positions, first42F91B; four native/candidate observer cases agree.20 map/vector slots independently pinned by native constructor43E1A0. Source remains unselected. docs/SCORE_LOAD_2026_10_26.md."
+notes = "Complete1672-byte ScoreData load42F6F0,521/521 reached and three RET0 sites. First full source compared immediately. Native EH74/cookie, real file/array lifetimes, reverse XOR, scalar/header/set/map/record restore recovered. October27 natural record-vector clear recovers1672 bytes with7 nonexact SIB-order positions, first42FBC9; four existing native/candidate observer cases agree. Genuine family TU is byte-neutral; no encoding normalization.20 map/vector slots independently pinned by native constructor43E1A0. Source remains unselected. docs/SCORE_LOAD_2026_10_26.md."
 
 [[units.exact-first-score-load.functions]]
 address = "0x0042F6F0"

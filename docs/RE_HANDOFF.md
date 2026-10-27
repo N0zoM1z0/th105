@@ -74,7 +74,7 @@ its absence in implemented.csv. No helper inherits a caller's ownership/match.
 | --- | --- | --- |
 |42D3F0 |1155/1155 exact |`src/config/ScorePersist.cpp`; [persistence](SCORE_PERSIST_2026_10_26.md) |
 |42ED70 |2428/2428 exact |`src/config/ScoreDefaults.cpp`; [defaults](SCORE_DEFAULTS_2026_10_26.md) |
-|42F6F0 |Complete1666-byte source vs1672;564 unequal positions, missing6; unselected |`src/config/ScoreLoad.cpp`; [loader](SCORE_LOAD_2026_10_26.md) |
+|42F6F0 |Complete1672-byte source;7 SIB-order differences; unselected |`src/config/ScoreLoad.cpp`; [loader](SCORE_LOAD_2026_10_26.md) |
 
 Shared definitions: `src/config/ScoreDataDefaults.hpp`. Constructor43E1A0
 independently proves20 map/vector slots. Defaults and persistence use only15
@@ -88,9 +88,11 @@ and candidate cases pin332-byte serialization, duplicate records, values above
 200, ignored open/encode/write failure results, source preservation and cleanup.
 Actual I/O, compression providers and EH unwinding are not executed by fixtures.
 
-A genuine three-source TU preserves both exact roots and leaves the entire
-loader residual/SHA9979a9c5 unchanged. This finite definition-visibility lane is
-closed. Original nominal types/TU and loader stack/iterator scheduling remain
+The October27 native vector.clear recovery improves the loader to1672 bytes
+with7 SIB-order differences (SHA6641fe76). A fresh genuine three-source TU
+preserves both exact peers and leaves this new loader residual unchanged.
+The four existing native/candidate observer cases agree; no new exact credit.
+See the superseding loader note and `build/frontier-42f6f0-clear-20261027/`. Original nominal types/TU and loader stack/iterator scheduling remain
 unknown; no LTCG-impossibility claim follows. The prior bootstrap return-type
 repair retains its complete3722-byte/11-difference nonexact body.
 

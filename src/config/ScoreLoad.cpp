@@ -90,7 +90,7 @@ bool ScoreDataDefaultsView::load_42f6f0()
             int value = static_cast<int>(decoded.read_u32());
             character_counts_a8[character].insert(std::pair<int, int>(key, value));
         }
-        records_198[character].erase(records_198[character].begin(), records_198[character].end());
+        records_198[character].clear();
         count = decoded.read_u32();
         for (unsigned index = 0; index < count; ++index) {
             ScoreDefaultRecord24 record;

@@ -1,5 +1,37 @@
 # Complete ScoreData loader42F6F0
 
+## Superseding focused result, 2026-10-27
+
+The newly exact story refresh42E3F0 supplied independent evidence for testing
+native vector.clear() rather than erase(begin,end). Applying that single natural
+operation to the existing per-character record vector recovers the complete
+**1672-byte length**, with **seven unequal bytes** instead of1666/564. First
+mismatch moves from42F91B to42FBC9. This is **still nonexact and unselected**;
+no matches.csv, implemented.csv or authored exact-byte increment is made.
+
+Canonical candidate SHA256:
+6641fe764731d97cf81c02a03bfaff9bf796c5cc9341aade96bd991d624ddf46.
+The seven residuals are SIB base/index order:42FBC9/42FBCF/42FBD6/42FBDD/
+42FBE4/42FBEB use01 instead of08;42FCE3 uses08 instead of01. The same-register
+address sums are commutative, but their encodings are not equal and are not
+masked or rewritten. All four existing native/candidate observer cases agree.
+That is bounded service/container evidence, not execution of real I/O or EH.
+
+A genuine defaults/persist/load combined TU leaves the new seven-byte residual
+unchanged while preserving2428/2428 defaults and1155/1155 persistence. An isolated
+ordinary fieldwise record assignment control regresses to1698/496 and is not
+selected; the shared public record header is untouched. No spelling/flag grid
+or manual encoding transformation follows these controls.
+
+New receipts are in `build/frontier-42f6f0-clear-20261027/`: baseline.json,
+clear.json, clear-audit.json, family-summary.json, assignment-summary.json,
+formal.json, formal-audit.json and local-ci.log. The final source is the original
+complete loader with only its vector clear operation changed. Final CI is
+pending at writing; use its terminal exit file. This scope rebuilds only the
+changed loader, not the complete accepted corpus. Earlier tables below remain
+historical results, superseded where stated here.
+
+
 The whole1672-byte target has complete source and full relocation replay.
 The public candidate is **nonexact**:1666 bytes,564 unequal shared-extent
 positions, six missing target bytes, first difference42F91B. Candidate SHA-256
