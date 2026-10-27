@@ -1,11 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Prepared for the user's **cleanup/handoff request on2026-10-26**. The user
-cleared the reconstruction goal. Resume reconstruction only on a new user
-instruction; the candidates below are leads, not an active assignment.
-The last in-flight scope42D3F0 was already exact before the request and is saved
-as a reproducible selected checkpoint. Its running family TU control was
-finished and recorded; no new frontier was opened afterward.
+Current bounded checkpoint: score display-name selection **42E990, 990/990**.
+Its complete source and canonical comparison are recorded in
+[SCORE_DISPLAY_NAME_2026_10_27.md](SCORE_DISPLAY_NAME_2026_10_27.md).
+The original accepted 42D3F0/42ED70 family remains unchanged. The already-started
+full replay passed all529 units/1417 functions; its first CI found only stale
+inventory expectations, corrected before final CI. Future iterations use focused
+new/affected-unit builds, not routine full cold rebuilds. Final CI remains
+pending at writing; terminal receipts are under `build/frontier-42e990-20261027/`.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -36,8 +38,9 @@ scripts/repo-python scripts/validate-tracking.py --require-target
 Only original Japanese TH10.5v1.06a is valid: SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`,
 image base400000, entry68B9D2. Do not substitute another patch/localization.
-The GUI IDA still has SHA10350095... and fails attestation. That blocks that
-session's semantic queries/writes; raw hash-attested PE work remains valid.
+The direct IDA launcher currently lacks mcp1.26.0/uv. Factory native IDA was
+freshly attested on October27 to this exact target, entry and mapped entry bytes;
+its inventory, disassembly, decompilation and xref operations succeeded.
 Any Ghidra use requires separate import/entry/mapped-byte attestation. Never
 patch the target or infer ownership from disassembler auto-analysis.
 
@@ -51,16 +54,17 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1607 /1419 /998 |
-| Mapped / source-present |1596 /1568 |
-| Exact functions / authored bytes |1416 /389486 |
-| Configured units / functions |617 /1585 |
-| Accepted units |528 |
+| Provisional / authored / excluded / review candidates |4024 /1608 /1419 /997 |
+| Mapped / source-present |1597 /1569 |
+| Exact functions / authored bytes |1417 /390476 |
+| Configured units / functions |618 /1586 |
+| Accepted units |529 |
 
-Current-manifest origin generation/check and the full cold replay pass all528
-accepted units/all1416 functions,389486 exact authored bytes. The final local
-CI receipt is `build/frontier-42d3f0-20261026/local-ci.log`; remote confirmation
-is recorded separately after push.
+The preceding checkpoint passed all528 accepted units/1416 functions and389486
+bytes. Current ledger adds one unit/function and990 bytes. The completed
+`cold-all.log` passes all529 units/1417 functions; `local-ci-final.log` is the
+post-expectation-correction final gate. Preserve the first failed CI receipt.
+Both live under `build/frontier-42e990-20261027/`.
 
 `implemented.csv` means selected source-present; `matches.csv` requires canonical
 100% equality against this target. Complete unselected source already exists
@@ -118,9 +122,7 @@ request. The full history records commands, source pins and unknowns.
   and Yuyuko56F700 remain saved in their documented selected/unselected states.
   Aya61F0B0's complete4859-byte payload still has two operand differences.
 
-If reconstruction is later resumed,42E990's provisional990-byte candidate is a
-possible score-area lead; ownership and full boundary need fresh review.
-Do not select it from adjacency or size alone. Small providers and constructors
+42E990 is now independently reviewed and exact. Small providers and constructors
 remain independent unknowns unless positively classified and compared.
 
 ## Private recovery and cleanup
@@ -145,8 +147,10 @@ frozen inputs. Their presence does not authorize parallel reconstruction.
 ## Final gate and future commits
 
 Run the focused affected comparisons first. Shared headers/types/flags/TU or
-relocation changes require affected-unit replay; aggregate totals require a
-fresh cold `scripts/repo-python scripts/verify-exact-units.py --all`.
+relocation changes require directly affected-unit replay. Preserve unchanged
+acceptance receipts for incremental totals; do not rebuild the whole corpus
+routinely. Full cold replay requires an explicit request or demonstrated
+repository-wide invalidation that cannot be narrowed.
 Every commit/push/PR requires the finished local gate; remote green is additional.
 
 ```bash

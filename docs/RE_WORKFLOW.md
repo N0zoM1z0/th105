@@ -168,18 +168,21 @@ Candidate-boundary review must also cover indirect/data-driven call surfaces. Ru
 
 ## Shared-change replay
 
-Headers, class layouts, inline functions, compiler flags, translation-unit
-partition, global mappings, and relocation allowlists can invalidate several
-accepted objects. Re-run every affected unit immediately. Before reporting
-aggregate exact totals, run a cold single-job replay:
+The default loop builds and canonically compares the new reconstruction and
+only directly affected accepted units. Headers, layouts, inline functions,
+compiler flags, TU partitions, globals and relocation mappings require an
+explicit consumer/dependency review; replay those consumers, not unrelated
+units. Keep target identity, full-boundary and zero-difference checks intact.
 
-```bash
-python3 scripts/function-origins.py --check
-python3 scripts/verify-exact-units.py --all
-```
+An append-only unit or relocation entry does not invalidate unrelated accepted
+source. Retain its prior receipts and distinguish incremental ledger totals
+from a fresh whole-corpus replay. Regenerate/check origin and progress ledgers
+when their inputs change, without automatically rebuilding the complete corpus.
 
-Reusing prior build products is diagnostic only and cannot support aggregate
-claims.
+Use `scripts/repo-python scripts/verify-exact-units.py --all` only on an explicit
+user request or a demonstrated repository-wide invalidation that cannot be
+narrowed. State the reason first. The existing final local CI remains required;
+it is not an instruction to rebuild all accepted native units.
 
 ## Analysis lifecycle
 

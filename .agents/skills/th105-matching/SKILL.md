@@ -47,12 +47,12 @@ Use together with `$th105-re`. Exact acceptance is defined by
 
 ## Shared-change safety
 
-After a shared header/layout/flag/TU/global/relocation change, replay every
-affected unit. Aggregate results require:
-
-```bash
-python3 scripts/verify-exact-units.py --all
-```
+Build and compare the new unit and directly affected accepted consumers only.
+Review dependency impact after header/layout/flag/TU/global/relocation changes.
+Preserve unchanged prior acceptance receipts; incremental totals do not imply
+fresh whole-corpus replay. Do not run `verify-exact-units.py --all` routinely.
+Reserve it for an explicit user request or demonstrated unbounded repository-wide
+invalidation, with a stated reason. Zero-difference criteria stay unchanged.
 
 Do not add a reusable pattern to this skill until a clean 1.06a unit, command,
 and exact result make it reproducible.

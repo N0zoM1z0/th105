@@ -87,9 +87,16 @@ writes before relying on them.
 - `config/claims.csv` is schema-compatible and must remain header-only.
 - Keep one bounded address or one coherent workflow-maintenance batch in
   flight. Commit stable checkpoints before a browser/session handoff.
-- Re-run all affected accepted units after any shared header, type/layout,
-  compiler-flag, object partition, or relocation-ledger change. Aggregate exact
-  totals require a cold `scripts/repo-python scripts/verify-exact-units.py --all` run.
+- Build and strictly compare only the newly reconstructed unit and directly
+  affected accepted units. After shared header, type/layout, compiler-flag,
+  object-partition or relocation changes, identify and replay their consumers.
+  Do not run the entire cold corpus after every function or merely to update
+  ledger totals. Preserve unchanged prior acceptance receipts and report totals
+  as incremental validation, not a freshly rebuilt whole corpus.
+- Full `scripts/repo-python scripts/verify-exact-units.py --all` is reserved for
+  an explicit user request or a demonstrated repository-wide invalidation whose
+  affected scope cannot be narrowed. Document the reason before launching it.
+  This changes replay scope, never the zero-difference acceptance criterion.
 
 ## Handoff
 

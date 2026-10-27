@@ -23546,3 +23546,32 @@ rel32_targets = [
   "?get_current_replay_header_code@th105@@YAHXZ=0x0043AA40",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.exact-first-score-display-name]
+kind = "probe"
+source = "src/config/ScoreDisplayName.cpp"
+object = "build/match-units/ExactFirst_ScoreDisplayName.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete990-byte score display-name selection42E990, checked native containers, unsigned selected key conversions, shared real iterator lifetimes. No provider credit. docs/SCORE_DISPLAY_NAME_2026_10_27.md."
+
+[[units.exact-first-score-display-name.functions]]
+address = "0x0042E990"
+symbol_base = "?select_story_display_name@ScoreDisplayView@th105@@QAE_NHPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+  "??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E880",
+  "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E900",
+  "??A?$deque@HV?$allocator@H@std@@@std@@QAEAAHI@Z=0x0042D1B0",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ=0x0042CC90",
+  "?_Tidy@?$deque@HV?$allocator@H@std@@@std@@IAEXXZ=0x00420A80",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?clear_spell_entries@SpellDataOwner@th105@@QAEXXZ=0x00433A80",
+  "?find@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20",
+  "?insert@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHH@2@@Z=0x004606E0",
+  "?load_spell_csv_via_32e20@SpellDataOwner@th105@@QAEEHCE@Z=0x00434A10",
+  "?push_back@?$deque@HV?$allocator@H@std@@@std@@QAEXABH@Z=0x006183F0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "__invalid_parameter_noinfo=0x0068A143",
+]
