@@ -87,3 +87,69 @@ int ReplayFilenameView::build_filename_42a560(char *out, const char *first, cons
     return 0;
 }
 } // namespace th105
+
+#include <mbstring.h>
+#include <vector>
+namespace th105 {
+// Read-only slot envelope view: 0x50 stride is independently established by
+// the current fixed-slot selector. No object of this partial record is created.
+struct ReplayPatternRecord80 {
+    signed char character_00[2];
+    unsigned char unknown_02[0x4e];
+};
+#define REPLAY_PATTERN_SLOT0 (*reinterpret_cast<std::vector<ReplayPatternRecord80> *>(reinterpret_cast<unsigned char *>(this) + 0xf4))[0]
+void ReplayFilenameView::expand_pattern_429b70(
+    std::string *out, const char *key, const char *first, const char *second)
+{
+    if (_mbschr(reinterpret_cast<const unsigned char *>(out->c_str()), '/') ||
+        _mbschr(reinterpret_cast<const unsigned char *>(out->c_str()), '\\')) {
+        *out = "";
+        return;
+    }
+    __time64_t now;
+    struct tm local;
+    char buffer[260];
+    _time64(&now);
+    _localtime64_s(&local, &now);
+    g_connect_config_ini.read_string_40f120("replay", key, buffer, 260);
+    *out = buffer;
+    std::string::size_type pos;
+    while ((pos = out->find("%d1", 0, 3)) != std::string::npos) {
+        wsprintfA(buffer, "%02d%02d%02d", local.tm_year % 100, local.tm_mon + 1, local.tm_mday);
+        out->replace(pos, 3, buffer);
+    }
+    while ((pos = out->find("%d2", 0, 3)) != std::string::npos) {
+        wsprintfA(buffer, "%02d%02d", local.tm_mon + 1, local.tm_mday);
+        out->replace(pos, 3, buffer);
+    }
+    while ((pos = out->find("%t1", 0, 3)) != std::string::npos) {
+        wsprintfA(buffer, "%02d%02d%02d", local.tm_hour, local.tm_min, local.tm_sec);
+        out->replace(pos, 3, buffer);
+    }
+    while ((pos = out->find("%t2", 0, 3)) != std::string::npos) {
+        wsprintfA(buffer, "%02d%02d", local.tm_hour, local.tm_min);
+        out->replace(pos, 3, buffer);
+    }
+    if (first) {
+        while ((pos = out->find("%p1", 0, 3)) != std::string::npos)
+            out->replace(pos, 3, first);
+    }
+    if (second && versus_ec) {
+        while ((pos = out->find("%p2", 0, 3)) != std::string::npos)
+            out->replace(pos, 3, second);
+    }
+    while ((pos = out->find("%c1", 0, 3)) != std::string::npos) {
+        if (!versus_ec) {
+            wsprintfA(buffer, "%s_story", character_key_to_name(REPLAY_PATTERN_SLOT0.character_00[0]));
+            out->replace(pos, 3, buffer);
+        } else {
+            out->replace(pos, 3, character_key_to_name(REPLAY_PATTERN_SLOT0.character_00[0]));
+        }
+    }
+    if (versus_ec) {
+        while ((pos = out->find("%c2", 0, 3)) != std::string::npos)
+            out->replace(pos, 3, character_key_to_name(REPLAY_PATTERN_SLOT0.character_00[1]));
+    }
+}
+#undef REPLAY_PATTERN_SLOT0
+} // namespace th105

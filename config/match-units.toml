@@ -23592,7 +23592,7 @@ source = "src/battle/ReplayFilename.cpp"
 object = "build/match-units/ExactFirst_ReplayFilename.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete1322-byte replay filename42A560. Branch-local slot receiver lifetime recovers native code; default/custom naming and unchecked filesystem behavior preserved. docs/REPLAY_FILENAME_2026_10_27.md."
+notes = "Complete1322-byte replay filename42A560 plus independently reviewed1323-byte pattern expansion429B70. Same-unit caller/helper remain canonical exact; native token order and branch-local receiver lifetime preserved. docs/REPLAY_FILENAME_2026_10_27.md and docs/REPLAY_PATTERN_2026_10_27.md."
 
 [[units.exact-first-replay-filename.functions]]
 address = "0x0042A560"
@@ -23613,3 +23613,19 @@ rel32_targets = [
   "__time64=0x0068A981",
 ]
 dir32_targets = ["??_7ReplayFilenameFile@th105@@6B@=??_7CFileReader@th105@@6B@"]
+
+[[units.exact-first-replay-filename.functions]]
+address = "0x00429B70"
+symbol_base = "?expand_pattern_429b70@ReplayFilenameView@th105@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD11@Z"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "?find@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIPBDII@Z=0x004285C0",
+  "?read_string_40f120@ConnectConfigIniView@th105@@QAEKPBD0PADK@Z=0x0040F120",
+  "?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@IIPBDI@Z=0x004294A0",
+  "@__security_check_cookie@4=0x00689D25",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "__localtime64_s=0x0068A6BC",
+  "__mbschr=0x0068A6A9",
+  "__time64=0x0068A981",
+]

@@ -889,7 +889,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004298F0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x00429970,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00429A30,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00429B70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00429B70,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042A0A0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0042A140,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042A150,authored_game,ui,authored,observed,canonical-exact-authored

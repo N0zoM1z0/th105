@@ -43,8 +43,9 @@ identity; no hand-written vptr store or fake object padding is introduced.
 All imported calls are bound from the canonical PE IAT, including register-held
 wsprintfA/CreateFileA calls. All55 COFF relocations replay. New string bindings
 check the complete literal including NUL; EH handler6B7C2D is separately pinned.
-The pattern-expansion and slot-selection callees are declaration-only and gain
-no implementation/ownership credit. The config/file provider shapes are bounded
+The original checkpoint left pattern expansion and slot selection declaration-only.
+Pattern expansion is now independently1323/1323 in [its own review](REPLAY_PATTERN_2026_10_27.md);
+slot selection receives no new implementation/ownership credit here. The config/file provider shapes are bounded
 existing evidence, not claims about original source spelling.
 
 ## Complete first-source comparison

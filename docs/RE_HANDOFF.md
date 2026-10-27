@@ -1,11 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: replay filename generation **42A560, 1322/1322**.
-See [REPLAY_FILENAME_2026_10_27.md](REPLAY_FILENAME_2026_10_27.md).
+Current bounded checkpoint: replay pattern expansion **429B70, 1323/1323**,
+with its directly affected filename caller42A560 still1322/1322. See
+[REPLAY_PATTERN_2026_10_27.md](REPLAY_PATTERN_2026_10_27.md).
 Story refresh42E3F0 remains860/860 and display selection42E990 remains990/990.
-The loader42F6F0 now has correct1672-byte length but seven SIB-order differences;
-it remains unselected/nonexact. This iteration builds only the new unit; final
-CI is pending at writing under `build/frontier-42a560-20261027/`.
+The loader42F6F0 has correct1672-byte length but seven SIB-order differences;
+it remains unselected/nonexact. Only the shared caller/helper unit is rebuilt;
+final CI is pending at writing under `build/frontier-429b70-20261027/`.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -52,14 +53,15 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1610 /1419 /995 |
-| Mapped / source-present |1599 /1571 |
-| Exact functions / authored bytes |1419 /392658 |
-| Configured units / functions |619 /1588 |
+| Provisional / authored / excluded / review candidates |4024 /1611 /1419 /994 |
+| Mapped / source-present |1600 /1572 |
+| Exact functions / authored bytes |1420 /393981 |
+| Configured units / functions |619 /1589 |
 | Accepted units |530 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
-Subsequent focused comparisons add story refresh860 and replay naming1322,
+Subsequent focused comparisons add story refresh860, replay naming1322 and
+pattern expansion1323,
 with unchanged prior receipts retained. Current totals are incremental, not a
 new whole-corpus replay. Final CI is the current frontier's `local-ci.log`.
 

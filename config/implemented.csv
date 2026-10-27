@@ -1569,3 +1569,4 @@ ScoreData_persist_42d3f0
 ScoreData_select_story_display_name
 ScoreData_refresh_story_progress
 ReplayInputStorage_build_filename
+ReplayInputStorage_expand_filename_pattern
