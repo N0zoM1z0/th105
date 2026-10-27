@@ -1,18 +1,17 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: InfoEffectObject update65CB40 now has complete
-14779/full15326 source versus native14783/full15330, still nonexact. All144
-action IDs and72 calls are retained; actual helper cleanup and ordered floating
-growth are corrected. Remaining shared exits/frame-load scheduling are not
-exact. See [INFO_EFFECT_UPDATE_2026_10_27.md](INFO_EFFECT_UPDATE_2026_10_27.md).
-Final local CI is pending at writing under build/frontier-65cb40-20261027/.
+Current bounded checkpoint: CBattleManager phase5 transition4724E0 accepts
+991/991 bytes, with its68-byte generated GS/EH code and52-byte metadata also
+strictly replayed without extra credit. Real player cursor and nested label
+search exits preserve native string lifetimes. See
+[BATTLE_TRANSITION_PHASE5_2026_10_27.md](BATTLE_TRANSITION_PHASE5_2026_10_27.md).
+Final local CI is pending at writing under build/frontier-4724e0-20261027/.
 
-Weather emission660B30 remains12198/12198 and full12348/12348 exact; see
-[WEATHER_EMISSION_2026_10_27.md](WEATHER_EMISSION_2026_10_27.md).
-WeatherEffectObject entry664E10 remains1383/full1630 exact; its update663B70
-remains complete/nonexact4353/full4730 versus4381/full4758. EffectObject update
-659AA0 remains complete/nonexact8899/full9350 versus8895/full9448.
-Only this new InfoEffectObject unit is rebuilt; all earlier receipts are retained.
+InfoEffectObject update65CB40 remains complete/nonexact14779/full15326 versus
+14783/full15330; see [INFO_EFFECT_UPDATE_2026_10_27.md](INFO_EFFECT_UPDATE_2026_10_27.md).
+Weather emission660B30 remains12198/full12348 exact, WeatherEffectObject
+entry664E10 remains1383/full1630 exact. Their complete nonexact update peers are
+retained without matching claims. Only the new phase5 unit is rebuilt.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -59,16 +58,16 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1620 /1419 /985 |
-| Mapped / source-present |1609 /1581 |
-| Exact functions / authored bytes |1426 /412808 |
-| Configured units / functions |628 /1598 |
-| Accepted units |536 |
+| Provisional / authored / excluded / review candidates |4024 /1621 /1419 /984 |
+| Mapped / source-present |1610 /1582 |
+| Exact functions / authored bytes |1427 /413799 |
+| Configured units / functions |629 /1599 |
+| Accepted units |537 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
 Subsequent focused comparisons add story refresh860, replay naming1322 and
 pattern expansion1323, deck update1339, stage selection890, selection flow341
-EffectObject entry2676; WeatherEffectObject entry1383 and weather emission12198,
+EffectObject entry2676; WeatherEffectObject entry1383 and weather emission12198 and battle phase5 transition991,
 with unchanged prior receipts retained. Current totals are incremental, not a
 new whole-corpus replay. Final CI is the current frontier's `local-ci.log`.
 

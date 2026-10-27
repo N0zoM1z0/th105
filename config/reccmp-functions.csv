@@ -1608,3 +1608,4 @@ WeatherEffectObject_initialize_action_entry,0x00664E10,function
 WeatherEffectObject_update_state,0x00663B70,function
 update_weather_emission,0x00660B30,function
 InfoEffectObject_update_state,0x0065CB40,function
+CBattleManager_run_transition_phase_5,0x004724E0,function

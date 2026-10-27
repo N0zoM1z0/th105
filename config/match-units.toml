@@ -23821,3 +23821,25 @@ rel32_targets = [
   "?get_game_mode@th105@@YAHXZ=0x0043AC40",
   "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
 ]
+
+[units.exact-first-battle-transition-phase5]
+kind = "probe"
+source = "src/battle/BattleTransitionPhase5.cpp"
+object = "build/match-units/ExactFirst_BattleTransitionPhase5.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete991-byte battle phase5 scenario setup/weighted label search; native string lifetimes and real search exits. docs/BATTLE_TRANSITION_PHASE5_2026_10_27.md."
+
+[[units.exact-first-battle-transition-phase5.functions]]
+address = "0x004724E0"
+symbol_base = "?run_transition_phase_5_4724e0@CBattleManager@th105@@QAEXXZ"
+rel32_targets = [
+  "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+  "_get_combined_menu_input=0x0043B020",
+  "?load_page@PhaseFiveScenarioView@th105@@QAEHPBD@Z=0x004583E0",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "?install_character@PhaseFiveScenarioView@th105@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0HHHEEE@Z=0x00456EB0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?select_label@PhaseFiveScenarioView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00455490",
+  "@__security_check_cookie@4=0x00689D25",
+]

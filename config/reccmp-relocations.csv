@@ -2472,3 +2472,11 @@ __real@45160000,0x006C6980,00001645,0,Weather emission660B30 absolute operand006
 __real@bd4ccccd,0x006C697C,cdcc4cbd,0,Weather emission660B30 absolute operand006634B7 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
 __real@c3700000,0x006C6978,000070c3,0,Weather emission660B30 absolute operand006634E4 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
 __real@be4ccccd,0x006C5A60,cdcc4cbe,0,Weather emission660B30 absolute operand00663802 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+??_C@_0BJ@EADOIOLG@data?1scenario?1?$CFs?1win?4txt?$AA@,0x006C3A40,646174612f7363656e6172696f2f25732f77696e2e74787400,0,Phase5 transition4724E0 actual native string operand and emitted COFF bytes; docs/BATTLE_TRANSITION_PHASE5_2026_10_27.md,literal
+??_C@_03JECLAOEA@win?$AA@,0x006C3A3C,77696e00,0,Phase5 transition4724E0 actual native string operand and emitted COFF bytes; docs/BATTLE_TRANSITION_PHASE5_2026_10_27.md,literal
+??_C@_04EIGHDMBA@lose?$AA@,0x006C3A34,6c6f736500,0,Phase5 transition4724E0 actual native string operand and emitted COFF bytes; docs/BATTLE_TRANSITION_PHASE5_2026_10_27.md,literal
+??_C@_06JIIIKANK@?$CFsR?$CF?$CFd?$AA@,0x006C3A2C,25735225256400,0,Phase5 transition4724E0 actual native string operand and emitted COFF bytes; docs/BATTLE_TRANSITION_PHASE5_2026_10_27.md,literal
+??_C@_06CKKIHMMK@?$CFsU?$CF?$CFd?$AA@,0x006C3A24,25735525256400,0,Phase5 transition4724E0 actual native string operand and emitted COFF bytes; docs/BATTLE_TRANSITION_PHASE5_2026_10_27.md,literal
+??_C@_05PNFCFGC@?$CFs?$CF?$CFd?$AA@,0x006C3A1C,257325256400,0,Phase5 transition4724E0 actual native string operand and emitted COFF bytes; docs/BATTLE_TRANSITION_PHASE5_2026_10_27.md,literal
+??_C@_09HDKLPPMH@common?$CF?$CFd?$AA@,0x006C3A10,636f6d6d6f6e25256400,0,Phase5 transition4724E0 actual native string operand and emitted COFF bytes; docs/BATTLE_TRANSITION_PHASE5_2026_10_27.md,literal
+__ehhandler$?run_transition_phase_5_4724e0@CBattleManager@th105@@QAEXXZ,0x006BBA06,8b5424088d8284feffff8b8a80feffff33c8e808e3fcff83c0108b4afc33c8e8fbe2fcffb854156e00e9b3dffcff,0,Phase5 transition4724E0 PUSH handler; complete two-funclet GS/EH chain separately replayed; docs/BATTLE_TRANSITION_PHASE5_2026_10_27.md,address
