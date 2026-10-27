@@ -1,12 +1,18 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Tenshi action-state63D3E0 has a complete
-unselected110-action source candidate. Raw callable47784/full48968 is closed;
-source emits49096 full bytes, first mismatch+8. Two low owner pairs merge.
-No implementation or exact credit is added. Current evidence and remaining
-semantic/FP lifetime work:
+Current bounded checkpoint: Patchouli action-state50F200 has a complete
+unselected109-action source candidate. Native callable54452/full55610 closes;
+source emits54342 full bytes, first mismatch+8. One low owner pair merges and
+several shared call sites still fold. No implementation or exact credit.
+[PATCHOULI_ACTION_STATE_2026_10_27.md](PATCHOULI_ACTION_STATE_2026_10_27.md)
+records raw evidence, remaining semantic questions and focused reproduction.
+Receipts: build/frontier-50f200-20261027/.
+
+Preceding Tenshi80a9f71d remains complete but unselected/nonexact:49096/full48968,
+first+8, two low-owner pairs merged. Its47,784-byte native root and110 actions
+are covered; RNG widths, coordinate types, live packets and shared500/501 tail
+were refined. See
 [TENSHI_ACTION_STATE_2026_10_27.md](TENSHI_ACTION_STATE_2026_10_27.md).
-Focused receipts: build/frontier-63d3e0-20261027/.
 
 Preceding b14285d6 Fighter reset460200 remains1247/1247 with25 differences,
 unselected/nonexact. Directly affected fighter-input-phase remains exact; see

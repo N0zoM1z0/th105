@@ -23900,3 +23900,46 @@ rel32_targets = [
     "?shared_second@TenshiActionStateView@th105@@QAECCM@Z=0x00476AD0",
     "?common_update@TenshiActionStateView@th105@@QAEXXZ=0x004740C0",
 ]
+
+[units.exact-first-patchouli-action-state]
+kind = "probe"
+source = "src/characters/PatchouliActionState.cpp"
+object = "build/match-units/ExactFirst_PatchouliActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete unselected50F200 candidate:109 actions; target54452/full55610. Native CFG closed; semantic and physical-owner review remains. No implementation/exact credit; docs/PATCHOULI_ACTION_STATE_2026_10_27.md."
+
+[[units.exact-first-patchouli-action-state.functions]]
+address = "0x0050F200"
+symbol_base = "?dispatch_action_state_vslot28@PatchouliActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+    "?spawn@PatchouliActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?patchouli_random@th105@@YAIH@Z=0x004067D0",
+    "?patchouli_sine@th105@@YANM@Z=0x00406360",
+    "?patchouli_cosine@th105@@YANM@Z=0x004063D0",
+    "?landing@PatchouliActionStateView@th105@@QAEEXZ=0x00473DD0",
+    "?zero_motion@PatchouliActionStateView@th105@@QAEXXZ=0x0045AF40",
+    "?advance@PatchouliActionStateView@th105@@QAEEXZ=0x004351C0",
+    "?crossed@PatchouliActionStateView@th105@@QAEHXZ=0x005F9310",
+    "?patchouli_surface@th105@@YIMPAVPatchouliActionStateView@1@@Z=0x00435D60",
+    "?patchouli_random_u32@th105@@YAIXZ=0x004066B0",
+    "?effect@PatchouliActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?event@PatchouliActionStateView@th105@@QAEXI@Z=0x004359F0",
+    "?patchouli_on_surface@th105@@YIEPAVPatchouliActionStateView@1@@Z=0x00435DC0",
+    "?flip@PatchouliActionStateView@th105@@QAEXXZ=0x00478E60",
+    "__ftol2_sse=0x0068A1A0",
+    "?counter@PatchouliActionStateView@th105@@QAEXFH@Z=0x0046BF30",
+    "?reset@PatchouliActionScratch@th105@@QAEXXZ=0x00435110",
+    "?directional@PatchouliActionStateView@th105@@QAEEH@Z=0x00478EE0",
+    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?phase_counter@PatchouliActionStateView@th105@@QAEHH@Z=0x00478DF0",
+    "?patchouli_atan@th105@@YAMMM@Z=0x00406540",
+    "?layout@PatchouliActionStateView@th105@@QAEXM@Z=0x004359D0",
+    "?texture@PatchouliActionStateView@th105@@QAEXCF@Z=0x0045F560",
+    "?sequence_window@PatchouliActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?secondary_cycle@PatchouliActionStateView@th105@@QAEXXZ=0x00473F90",
+    "?patchouli_square@th105@@YAMM@Z=0x00406580",
+    "?finalize@PatchouliActionStateView@th105@@QAEXH@Z=0x0045D110",
+    "?copy_health@PatchouliActionStateView@th105@@QAEXXZ=0x0045B250",
+    "?common_update@PatchouliActionStateView@th105@@QAEXXZ=0x004740C0",
+]

@@ -663,3 +663,38 @@ destination_table = "0x0064916C"
 destination_count = 37
 index_table = "0x00649200"
 expected_physical_groups = 37
+
+# Patchouli31 low candidate owners are diagnostic only; native has32.
+[[roots]]
+name = "patchouli-vslot28"
+address = "0x0050F200"
+callable_end = "0x0051C6B4"
+metadata_end = "0x0051CB3A"
+expected_direct_call_sites = 807
+expected_direct_call_targets = 29
+expected_ret_opcodes = 133
+[[roots.regions]]
+name = "low"
+candidate_destination_counts = [31, 32]
+case_min = 0
+case_max = 226
+destination_table = "0x0051C6C4"
+destination_count = 32
+index_table = "0x0051C744"
+expected_physical_groups = 32
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 546
+destination_table = "0x0051C828"
+destination_count = 43
+index_table = "0x0051C8D4"
+expected_physical_groups = 43
+[[roots.regions]]
+name = "high"
+case_min = 561
+case_max = 798
+destination_table = "0x0051C9CC"
+destination_count = 32
+index_table = "0x0051CA4C"
+expected_physical_groups = 32

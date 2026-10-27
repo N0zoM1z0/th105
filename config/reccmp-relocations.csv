@@ -2493,3 +2493,20 @@ __real@c2480000,0x006C47D4,000048c2,0,Tenshi action-state63D3E0 actual native op
 __real@4066400000000000,0x006C6668,0000000000406640,0,Tenshi action-state63D3E0 actual native operand and emitted COFF bytes; docs/TENSHI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
 __real@4072200000000000,0x006C54F0,0000000000207240,0,Tenshi action-state63D3E0 actual native operand and emitted COFF bytes; docs/TENSHI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
 ??_C@_0BC@BNDBAAIP@data?1bgm?1st06?4ogg?$AA@,0x006C6654,646174612f62676d2f737430362e6f676700,0,Tenshi action-state63D3E0 actual native operand and emitted COFF bytes; docs/TENSHI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4064a00000000000,0x006C43B0,0000000000a06440,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@404a800000000000,0x006C4398,0000000000804a40,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4047800000000000,0x006C0860,0000000000804740,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@c2aa0000,0x006C43D8,0000aac2,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@405e800000000000,0x006C4D80,0000000000805e40,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4060a00000000000,0x006C4D78,0000000000a06040,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@405bc00000000000,0x006C4A70,0000000000c05b40,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@405d400000000000,0x006C3E20,0000000000405d40,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4059800000000000,0x006C4438,0000000000805940,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@404f800000000000,0x006C4D68,0000000000804f40,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@c01c000000000000,0x006C4D50,0000000000001cc0,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4050c00000000000,0x006C4428,0000000000c05040,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4067800000000000,0x006C4D38,0000000000806740,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4052000000000000,0x006C3D40,0000000000005240,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4055800000000000,0x006C4D30,0000000000805540,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4016000000000000,0x006C4D28,0000000000001640,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@4082200000000000,0x006C4360,0000000000208240,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
