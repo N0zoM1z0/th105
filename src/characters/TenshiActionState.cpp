@@ -10,6 +10,8 @@ namespace th105 {
 #define F(o) at<float>(o)
 void TenshiActionStateView::dispatch_action_state_vslot28()
 {
+    float request500[3],request501[3];
+    float *paired_request;
     S(0x7a0)=0; S(0x7a2)=95; S(0x830)=0;
     if(S(0x82e)>0) --S(0x82e);
     if(I(0x838)>0) {
@@ -496,7 +498,7 @@ case 305:
     return;
 case 306:
     F(0xf8)-=F(0x100);
-    if(crossed()){set_action_and_finalize(10);F(0xf0)=tenshi_surface(this);zero_motion();return;}
+    if(static_cast<unsigned char>(crossed())){set_action_and_finalize(10);F(0xf0)=tenshi_surface(this);zero_motion();return;}
     if(advance())set_action_and_finalize(9);
     if(!frame_timer_142 && frame_index_140==2)event(27);
     return;
@@ -537,7 +539,7 @@ case 308:
     return;
 case 309:
     F(0xf8)-=F(0x100);
-    if(crossed()){set_action_and_finalize(10);F(0xf0)=tenshi_surface(this);zero_motion();return;}
+    if(static_cast<unsigned char>(crossed())){set_action_and_finalize(10);F(0xf0)=tenshi_surface(this);zero_motion();return;}
     if(advance())set_action_and_finalize(9);
     if(sequence_index_13e==0 && !frame_timer_142 && frame_index_140==2) {event(29);F(0xf8)=8.5f;F(0x100)=0.5f;}
     return;
@@ -674,25 +676,23 @@ case 418:
 case 500:
     landing();B(0x17c)=0;if(!I(0x6c0))B(0x750)=0;
     if(advance())set_action_and_finalize(0);
-    if(!sequence_index_13e && !frame_timer_142 && frame_index_140==10) {
-        float p[3]={0.0f,15.0f,0.0f};
-        spawn(810,F(0xec),F(0xf0),B(0x104),1,p,3);
-        spawn(810,F(0xec),F(0xf0),static_cast<unsigned char>(-B(0x104)),1,p,3);
-        effect(127,F(0xec),F(0xf0),B(0x104),-1);
-        effect(127,F(0xec),F(0xf0),static_cast<unsigned char>(-B(0x104)),-1);
-        counter(200,120);phase_counter(50);layout(10.0f);
-    }return;
+    if(sequence_index_13e || frame_timer_142 || frame_index_140!=10)return;
+    request500[0]=0.0f;request500[1]=15.0f;request500[2]=0.0f;
+    spawn(810,F(0xec),F(0xf0),B(0x104),1,request500,3);
+    paired_request=request500;
+    goto paired_810_tail;
 case 501:
     landing();B(0x17c)=0;if(!I(0x6c0))B(0x750)=0;
     if(advance())set_action_and_finalize(0);
-    if(!sequence_index_13e && !frame_timer_142 && frame_index_140==10) {
-        float p[3]={0.0f,30.0f,0.0f};
-        spawn(810,F(0xec),F(0xf0),B(0x104),1,p,3);
-        spawn(810,F(0xec),F(0xf0),static_cast<unsigned char>(-B(0x104)),1,p,3);
-        effect(127,F(0xec),F(0xf0),B(0x104),-1);
-        effect(127,F(0xec),F(0xf0),static_cast<unsigned char>(-B(0x104)),-1);
-        counter(200,120);phase_counter(50);layout(10.0f);
-    }return;
+    if(sequence_index_13e || frame_timer_142 || frame_index_140!=10)return;
+    request501[0]=0.0f;request501[1]=30.0f;request501[2]=0.0f;
+    spawn(810,F(0xec),F(0xf0),B(0x104),1,request501,3);
+    paired_request=request501;
+paired_810_tail:
+    spawn(810,F(0xec),F(0xf0),static_cast<unsigned char>(-B(0x104)),1,paired_request,3);
+    effect(127,F(0xec),F(0xf0),B(0x104),-1);
+    effect(127,F(0xec),F(0xf0),static_cast<unsigned char>(-B(0x104)),-1);
+    counter(200,120);phase_counter(50);layout(10.0f);return;
 
 case 505:
     landing();B(0x17c)=4;if(!I(0x6c0))B(0x750)=0;

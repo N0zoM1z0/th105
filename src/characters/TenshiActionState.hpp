@@ -84,7 +84,7 @@ public:
     }
     __forceinline void jump_cycle(float vx,float vy,float gravity) {
         if(sequence_index_13e==0) landing();
-        if(crossed()) {set_action_and_finalize(10);at<float>(0xf0)=tenshi_surface(this);zero_motion();return;}
+        if(static_cast<unsigned char>(crossed())) {set_action_and_finalize(10);at<float>(0xf0)=tenshi_surface(this);zero_motion();return;}
         if(tenshi_on_surface(this) || at<float>(0xf8)>0.0f) at<short>(0x4ae)=2;
         if(sequence_index_13e>0) {
             at<float>(0xf8)-=at<float>(0x100);

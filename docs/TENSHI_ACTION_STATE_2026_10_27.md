@@ -21,7 +21,7 @@ The following eight alignment bytes are outside this payload.
 
 The pointer-only receiver inherits actual AnimationSequenceObjectView slots.
 Event receiver is embedded at130, including435CE0. RNG4066B0 has no arguments;
-crossed-ground5F9310 is inspected through AL or EAX as each caller requires.
+all46 crossed-ground5F9310 calls inspect AL, while the accepted callee returns int.
 Trig calls consume ST0 results, not decompiler input aliases.
 
 Direction arithmetic uses signed bytes, while effect/spawn carriers retain
@@ -96,3 +96,24 @@ the common body with action2 rather than native0. It was not adopted; more
 source label spelling is not supported as a route to physical ownership.
 Current receipts: ring-packet-build.json, ring-packet-full.json and
 ring-packet-map.json under the same build directory.
+
+
+## Shared request tail and caller width
+
+Raw500/501 converge after their first810 request, carrying the address of
+their distinct live three-float payload. Function-scope request500/request501
+and one typed pointer preserve both lifetimes through the shared second request,
+two effects and counters. This restores native physical call sharing without
+using a pointer after a block-local array lifetime ends. Physical500/501 spans
+are190/351 against187/343; the earlier duplicated500 span was297.
+
+An exhaustive scan of all46 native5F9310 call sites shows immediate TEST AL,AL.
+The early interpretation of decompiler int temporaries as EAX-width caller tests
+was wrong. The accepted int-returning callee declaration is retained; jump-cycle
+and306/309 now explicitly narrow to unsigned char like the other callers.
+
+Current full source49088 versus48968, first+8 (frame330 versus320), SHA-256
+3dca3af1096e28913dd1d3a1615ace1ca5b524f6850856f9b6ee3497bdad1eb2.
+Full positional difference46201. No exact or implementation credit.
+Receipts: caller-width-build.json, caller-width-full.json and
+caller-width-map.json. The earlier49168 packet result remains historical.
