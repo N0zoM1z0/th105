@@ -23663,3 +23663,23 @@ rel32_targets = [
   "?show_spell_record_448b40@DeckUpdateMenuView@th105@@QAEXPAUSpellRecordView@2@@Z=0x00448B40",
   "?select_filter_449e90@DeckUpdateMenuView@th105@@QAEXE@Z=0x00449E90",
 ]
+
+[units.exact-first-select-stage-update]
+kind = "probe"
+source = "src/ui/SelectStageUpdate.cpp"
+object = "build/match-units/ExactFirst_SelectStageUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete890-byte stage-selection confirmation root420560; natural checked vectors and native random/special-stage order. docs/SELECT_STAGE_UPDATE_2026_10_27.md."
+
+[[units.exact-first-select-stage-update.functions]]
+address = "0x00420560"
+symbol_base = "?update_stage_420560@SelectStageUpdateView@th105@@QAEHXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?prepare_select_match_43ac60@th105@@YAIH@Z=0x0043AC60",
+  "?fade_bgm@th105@@YAXHH@Z=0x0043B140",
+]

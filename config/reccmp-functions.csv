@@ -1600,3 +1600,4 @@ ScoreData_refresh_story_progress,0x0042E3F0,function
 ReplayInputStorage_build_filename,0x0042A560,function
 ReplayInputStorage_expand_filename_pattern,0x00429B70,function
 CProfileDeckEdit_update,0x0044A410,function
+CSelect_update_stage_selection,0x00420560,function

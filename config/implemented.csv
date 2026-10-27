@@ -1571,3 +1571,4 @@ ScoreData_refresh_story_progress
 ReplayInputStorage_build_filename
 ReplayInputStorage_expand_filename_pattern
 CProfileDeckEdit_update
+CSelect_update_stage_selection
