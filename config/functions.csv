@@ -896,7 +896,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0042A350,344,0x0042A4A7,sub_42A350,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042A4B0,122,0x0042A529,sub_42A4B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042A530,35,0x0042A552,sub_42A530,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0042A560,1322,0x0042AA89,sub_42A560,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0042A560,1322,0x0042AA89,ReplayInputStorage_build_filename,ReplayInputStorage_build_filename,battle,matching,100.00,__thiscall,"int ReplayFilenameView::build_filename_42a560(char * out, const char * first, const char * second)",false,src/battle/ReplayFilename.cpp,scripts/repo-python scripts/build.py --unit exact-first-replay-filename --compare --json:1322/1322; build/frontier-42a560-20261027/formal-first.json; docs/REPLAY_FILENAME_2026_10_27.md,root,Complete351 instructions/348 reached; RET12 zero EAX; branch-local receiver lifetime matches1322 bytes. All55 relocations; no helper credit.
 0x0042AA90,119,0x0042AB06,sub_42AA90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042AB10,1818,0x0042B229,sub_42AB10,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0042B230,52,0x0042B263,sub_42B230,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

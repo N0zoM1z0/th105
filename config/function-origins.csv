@@ -896,7 +896,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042A350,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x0042A4B0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x0042A530,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0042A560,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042A560,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042AA90,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x0042AB10,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x0042B230,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a

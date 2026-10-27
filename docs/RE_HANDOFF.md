@@ -1,11 +1,11 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: story progress refresh **42E3F0, 860/860**;
-its same-object event publisher42E750 remains95/95. See
-[SCORE_STORY_PROGRESS_2026_10_27.md](SCORE_STORY_PROGRESS_2026_10_27.md).
-The previous score display selection42E990 remains990/990. This iteration
-builds only the new/directly affected unit; final CI is pending at writing under
-`build/frontier-42e3f0-20261027/`. No new full-corpus replay is claimed.
+Current bounded checkpoint: replay filename generation **42A560, 1322/1322**.
+See [REPLAY_FILENAME_2026_10_27.md](REPLAY_FILENAME_2026_10_27.md).
+Story refresh42E3F0 remains860/860 and display selection42E990 remains990/990.
+The loader42F6F0 now has correct1672-byte length but seven SIB-order differences;
+it remains unselected/nonexact. This iteration builds only the new unit; final
+CI is pending at writing under `build/frontier-42a560-20261027/`.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -52,16 +52,16 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1609 /1419 /996 |
-| Mapped / source-present |1598 /1570 |
-| Exact functions / authored bytes |1418 /391336 |
-| Configured units / functions |618 /1587 |
-| Accepted units |529 |
+| Provisional / authored / excluded / review candidates |4024 /1610 /1419 /995 |
+| Mapped / source-present |1599 /1571 |
+| Exact functions / authored bytes |1419 /392658 |
+| Configured units / functions |619 /1588 |
+| Accepted units |530 |
 
-The prior423a2cd checkpoint passed529 cold units/1417 functions and390476
-bytes. Current incremental acceptance adds860 bytes in that existing unit,
-with both affected functions freshly compared. Unchanged receipts are retained.
-Final CI is recorded separately in the current frontier's `local-ci.log`.
+The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
+Subsequent focused comparisons add story refresh860 and replay naming1322,
+with unchanged prior receipts retained. Current totals are incremental, not a
+new whole-corpus replay. Final CI is the current frontier's `local-ci.log`.
 
 `implemented.csv` means selected source-present; `matches.csv` requires canonical
 100% equality against this target. Complete unselected source already exists

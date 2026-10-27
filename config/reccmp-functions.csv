@@ -1597,3 +1597,4 @@ ScoreData_load_42f6f0,0x0042F6F0,function
 ScoreData_persist_42d3f0,0x0042D3F0,function
 ScoreData_select_story_display_name,0x0042E990,function
 ScoreData_refresh_story_progress,0x0042E3F0,function
+ReplayInputStorage_build_filename,0x0042A560,function
