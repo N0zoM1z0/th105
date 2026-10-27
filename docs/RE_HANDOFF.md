@@ -1,12 +1,16 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Fighter battle reset460200 corrects the stale
-default global and SpellData mode-call ABI, uses native checked iterators and
-one-read health publication. The complete1247-byte source has25 differences,
-still unselected/nonexact; no ledger credit is added. Its directly affected
-accepted fighter-input-phase unit remains exact. See
+Current bounded checkpoint: Tenshi action-state63D3E0 has a complete
+unselected110-action source candidate. Raw callable47784/full48968 is closed;
+source emits49404 full bytes, first mismatch+241. Two low owner pairs merge.
+No implementation or exact credit is added. Current evidence and remaining
+semantic/FP lifetime work:
+[TENSHI_ACTION_STATE_2026_10_27.md](TENSHI_ACTION_STATE_2026_10_27.md).
+Focused receipts: build/frontier-63d3e0-20261027/.
+
+Preceding b14285d6 Fighter reset460200 remains1247/1247 with25 differences,
+unselected/nonexact. Directly affected fighter-input-phase remains exact; see
 [FIGHTER_BATTLE_RESET_2026_10_27.md](FIGHTER_BATTLE_RESET_2026_10_27.md).
-Final local gate receipts: build/frontier-460200-20261027/.
 
 The preceding94f0f3b7 checkpoint corrects general hit resolver46BF80 semantics;
 its complete1581/1579 source remains nonexact. See

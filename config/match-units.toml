@@ -23843,3 +23843,60 @@ rel32_targets = [
   "?select_label@PhaseFiveScenarioView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00455490",
   "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.exact-first-tenshi-action-state]
+kind = "probe"
+source = "src/characters/TenshiActionState.cpp"
+object = "build/match-units/ExactFirst_TenshiActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete unselected63D3E0 candidate:110 actions; target47784/full48968. Semantics and compiler ownership remain under review. No implemented/exact ledger credit; docs/TENSHI_ACTION_STATE_2026_10_27.md."
+
+[[units.exact-first-tenshi-action-state.functions]]
+address = "0x0063D3E0"
+symbol_base = "?dispatch_action_state_vslot28@TenshiActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+    "?at@TenshiCardDeque@th105@@QAEPAFI@Z=0x004399C0",
+    "?trigger@TenshiEvent130@th105@@QAEHH@Z=0x00434E90",
+    "?spawn@TenshiActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?tenshi_bgm_volume@th105@@YAXHH@Z=0x0043B170",
+    "?landing@TenshiActionStateView@th105@@QAEEXZ=0x00473DD0",
+    "?zero_motion@TenshiActionStateView@th105@@QAEXXZ=0x0045AF40",
+    "?advance@TenshiActionStateView@th105@@QAEEXZ=0x004351C0",
+    "?crossed@TenshiActionStateView@th105@@QAEHXZ=0x005F9310",
+    "?tenshi_fade_in@th105@@YAXIH@Z=0x0043B280",
+    "?layout@TenshiActionStateView@th105@@QAEXM@Z=0x004359D0",
+    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?music@TenshiEvent130@th105@@QAEXHH@Z=0x00434DE0",
+    "?tenshi_surface@th105@@YIMPAVTenshiActionStateView@1@@Z=0x00435D60",
+    "?copy_health@TenshiActionStateView@th105@@QAEXXZ=0x0045B250",
+    "?tenshi_random_u32@th105@@YAIXZ=0x004066B0",
+    "?effect@TenshiActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?event@TenshiActionStateView@th105@@QAEXI@Z=0x004359F0",
+    "?tenshi_on_surface@th105@@YIEPAVTenshiActionStateView@1@@Z=0x00435DC0",
+    "?flip@TenshiActionStateView@th105@@QAEXXZ=0x00478E60",
+    "__ftol2_sse=0x0068A1A0",
+    "?tenshi_cosine@th105@@YANM@Z=0x004063D0",
+    "?tenshi_sine@th105@@YANM@Z=0x00406360",
+    "?counter@TenshiActionStateView@th105@@QAEXFH@Z=0x0046BF30",
+    "?reset@TenshiActionScratch@th105@@QAEXXZ=0x00435110",
+    "?directional@TenshiActionStateView@th105@@QAEEH@Z=0x00478EE0",
+    "?tenshi_random@th105@@YAIH@Z=0x004067D0",
+    "?tenshi_atan@th105@@YAMMM@Z=0x00406540",
+    "?phase_counter@TenshiActionStateView@th105@@QAEHH@Z=0x00478DF0",
+    "?texture@TenshiActionStateView@th105@@QAEXCF@Z=0x0045F560",
+    "?sequence_window@TenshiActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?secondary_cycle@TenshiActionStateView@th105@@QAEXXZ=0x00473F90",
+    "?forward_hit_quantity@AnimationSequenceObjectView@th105@@QAEXHHFC@Z=0x0045C060",
+    "?tenshi_sine_radians@th105@@YANM@Z=0x0063D3C0",
+    "?tenshi_square@th105@@YAMM@Z=0x00406580",
+    "?pair@TenshiEvent130@th105@@QAEPAXMM@Z=0x00434E10",
+    "?tenshi_fade_out@th105@@YAXIH@Z=0x0043B240",
+    "?tenshi_play_bgm@th105@@YAXPBD@Z=0x0043CF80",
+    "?transition@TenshiActionStateView@th105@@QAEXM@Z=0x0046EB00",
+    "?finalize@TenshiActionStateView@th105@@QAEXH@Z=0x0045D110",
+    "?pair_mode@TenshiEvent130@th105@@QAEXHE@Z=0x00435CE0",
+    "?shared_first@TenshiActionStateView@th105@@QAECCM@Z=0x00476AB0",
+    "?shared_second@TenshiActionStateView@th105@@QAECCM@Z=0x00476AD0",
+    "?common_update@TenshiActionStateView@th105@@QAEXXZ=0x004740C0",
+]
