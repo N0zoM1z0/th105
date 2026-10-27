@@ -1,12 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: replay pattern expansion **429B70, 1323/1323**,
-with its directly affected filename caller42A560 still1322/1322. See
-[REPLAY_PATTERN_2026_10_27.md](REPLAY_PATTERN_2026_10_27.md).
+Current bounded checkpoint: CProfileDeckEdit update **44A410, 1339/1339**.
+See [PROFILE_DECK_UPDATE_2026_10_27.md](PROFILE_DECK_UPDATE_2026_10_27.md).
+Replay pattern429B70 remains1323/1323 and filename42A560 remains1322/1322.
 Story refresh42E3F0 remains860/860 and display selection42E990 remains990/990.
-The loader42F6F0 has correct1672-byte length but seven SIB-order differences;
-it remains unselected/nonexact. Only the shared caller/helper unit is rebuilt;
-final CI is pending at writing under `build/frontier-429b70-20261027/`.
+The loader42F6F0 retains seven SIB differences and remains unselected/nonexact.
+Only the new deck-update unit is rebuilt; final CI is pending at writing under
+`build/frontier-44a410-20261027/`.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -53,15 +53,15 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1611 /1419 /994 |
-| Mapped / source-present |1600 /1572 |
-| Exact functions / authored bytes |1420 /393981 |
-| Configured units / functions |619 /1589 |
-| Accepted units |530 |
+| Provisional / authored / excluded / review candidates |4024 /1612 /1419 /993 |
+| Mapped / source-present |1601 /1573 |
+| Exact functions / authored bytes |1421 /395320 |
+| Configured units / functions |620 /1590 |
+| Accepted units |531 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
 Subsequent focused comparisons add story refresh860, replay naming1322 and
-pattern expansion1323,
+pattern expansion1323 and deck update1339,
 with unchanged prior receipts retained. Current totals are incremental, not a
 new whole-corpus replay. Final CI is the current frontier's `local-ci.log`.
 

@@ -23629,3 +23629,37 @@ rel32_targets = [
   "__mbschr=0x0068A6A9",
   "__time64=0x0068A981",
 ]
+
+[units.exact-first-profile-deck-update]
+kind = "probe"
+source = "src/ui/ProfileDeckUpdate.cpp"
+object = "build/match-units/ExactFirst_ProfileDeckUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete CProfileDeckEdit update1339-byte virtual root; native save-prompt branch ordering and checked iterator lifetimes. docs/PROFILE_DECK_UPDATE_2026_10_27.md."
+
+[[units.exact-first-profile-deck-update.functions]]
+address = "0x0044A410"
+symbol_base = "?update@CProfileDeckEdit@th105@@UAE_NXZ"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "?update_confirmation_43f870@DeckUpdateMenuView@th105@@QAEHXZ=0x0043F870",
+  "?update_message_43f6e0@DeckUpdateMenuView@th105@@QAEHXZ=0x0043F6E0",
+  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
+  "?copy_deck@DeckUpdatePlayerView@th105@@QAEPAV?$deque@GV?$allocator@G@std@@@std@@PAV34@H@Z=0x00431E50",
+  "?export_deck_counts@CProfileDeckEdit@th105@@QAEXPAV?$deque@FV?$allocator@F@std@@@std@@@Z=0x00449DF0",
+  "?save_to_profile@DeckUpdatePlayerView@th105@@QAEXPBD@Z=0x004317A0",
+  "?at@DeckUpdateDequeAt@th105@@QAEAAViterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@I@Z=0x004300B0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?find@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABF@Z=0x00448D70",
+  "?available_count_for_index_448df0@CProfileDeckEdit@th105@@QAEHH@Z=0x00448DF0",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+  "_is_menu_initial_press=0x0043ABD0",
+  "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640",
+  "??Citerator@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QBEPAU?$pair@$$CBFC@2@XZ=0x00448D00",
+  "?insert@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBFC@2@@Z=0x004499C0",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAEXXZ=0x0042CD00",
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "?show_spell_record_448b40@DeckUpdateMenuView@th105@@QAEXPAUSpellRecordView@2@@Z=0x00448B40",
+  "?select_filter_449e90@DeckUpdateMenuView@th105@@QAEXE@Z=0x00449E90",
+]
