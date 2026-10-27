@@ -1,14 +1,17 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: WeatherEffectObject entry664E10 accepts1383/1383
-callable bytes and full1630/1630 on its first complete source and formal build.
-See [WEATHER_EFFECT_ENTRY_2026_10_27.md](WEATHER_EFFECT_ENTRY_2026_10_27.md).
-Only the new unit is rebuilt; all prior receipts remain retained. Final local
-CI is pending at writing under build/frontier-664e10-20261027/.
+Current bounded checkpoint: WeatherEffectObject update663B70 has complete
+4353/full4730 source versus native4381/full4758, still nonexact. Native direct
+category table and all37 physical calls are retained; zero-constant promotion
+and shared layout remain unresolved. No exact credit. See
+[WEATHER_EFFECT_UPDATE_2026_10_27.md](WEATHER_EFFECT_UPDATE_2026_10_27.md).
+Final CI is pending at writing under build/frontier-663b70-20261027/.
 
-EffectObject update659AA0 remains complete but nonexact at8899/full9350 versus
-native8895/full9448, with no exact credit. Its independent origin rule and
-correct motion receiver+4 are retained in
+WeatherEffectObject entry664E10 remains1383/1383 callable and full1630/1630
+exact; see [WEATHER_EFFECT_ENTRY_2026_10_27.md](WEATHER_EFFECT_ENTRY_2026_10_27.md).
+Only the new update unit is rebuilt, retaining all earlier receipts.
+EffectObject update659AA0 remains complete/nonexact8899/full9350 versus
+native8895/full9448; see
 [EFFECT_OBJECT_UPDATE_2026_10_27.md](EFFECT_OBJECT_UPDATE_2026_10_27.md).
 
 The complete preceding handoff is preserved in
@@ -56,10 +59,10 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1617 /1419 /988 |
-| Mapped / source-present |1606 /1578 |
+| Provisional / authored / excluded / review candidates |4024 /1618 /1419 /987 |
+| Mapped / source-present |1607 /1579 |
 | Exact functions / authored bytes |1425 /400610 |
-| Configured units / functions |625 /1595 |
+| Configured units / functions |626 /1596 |
 | Accepted units |535 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.

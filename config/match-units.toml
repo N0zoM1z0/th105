@@ -23761,3 +23761,25 @@ rel32_targets = [
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
 ]
+
+[units.exact-first-weather-effect-update]
+kind = "probe"
+source = "src/battle/WeatherEffectUpdate.cpp"
+object = "build/match-units/ExactFirst_WeatherEffectUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete4353/full4730 source versus4381/full4758 target remains nonexact; all37 physical calls retained. docs/WEATHER_EFFECT_UPDATE_2026_10_27.md."
+
+[[units.exact-first-weather-effect-update.functions]]
+address = "0x00663B70"
+symbol_base = "?update_663b70@WeatherEffectUpdateView@th105@@QAEXXZ"
+rel32_targets = [
+  "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
+  "?advance_frame_and_dispatch@WeatherEffectUpdateView@th105@@QAEEXZ=0x004351C0",
+  "_lookup_orientation_cosine=0x004064B0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?set_sprite_uv_size@WeatherEffectUpdateView@th105@@QAEXMM@Z=0x00435520",
+  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?set_components@WeatherMotionView@th105@@QAEXMM@Z=0x00435160",
+]
