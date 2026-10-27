@@ -23783,3 +23783,20 @@ rel32_targets = [
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?set_components@WeatherMotionView@th105@@QAEXMM@Z=0x00435160",
 ]
+
+[units.exact-first-weather-emission]
+kind = "probe"
+source = "src/battle/WeatherEmission.cpp"
+object = "build/match-units/ExactFirst_WeatherEmission.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete12198-byte weather emission policy and full12348 payload; independent random branches and native argument evaluation. scripts/audit-weather-emission.py; docs/WEATHER_EMISSION_2026_10_27.md."
+
+[[units.exact-first-weather-emission.functions]]
+address = "0x00660B30"
+symbol_base = "?update_weather_emission_660b30@th105@@YAXH@Z"
+rel32_targets = [
+  "?emit_weather_effect_665470@th105@@YAHHMMHH@Z=0x00665470",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+]

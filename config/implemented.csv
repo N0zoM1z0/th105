@@ -1577,3 +1577,4 @@ EffectObject_initialize_action_entry
 EffectObject_update_state
 WeatherEffectObject_initialize_action_entry
 WeatherEffectObject_update_state
+update_weather_emission

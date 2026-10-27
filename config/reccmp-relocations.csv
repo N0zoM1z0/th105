@@ -2462,3 +2462,13 @@ __real@3ff4000000000000,0x006C4660,000000000000f43f,0,Canonical JP1.06a EffectOb
 __real@3feeb851e0000000,0x006C4F70,000000e051b8ee3f,0,Canonical JP1.06a EffectObject update659AA0 absolute FPU operand and exact COFF literal bytes; complete source remains nonexact. docs/EFFECT_OBJECT_UPDATE_2026_10_27.md.,literal
 __real@c008000000000000,0x006C4C90,00000000000008c0,0,WeatherEffectObject entry664E10 native FSUBR6650EA reads double -3; complete first-source payload replay; docs/WEATHER_EFFECT_ENTRY_2026_10_27.md,literal
 __real@4057c00000000000,0x006C0868,0000000000c05740,0,WeatherEffectObject entry664E10 native FSUBR665153 reads double95; complete first-source payload replay; docs/WEATHER_EFFECT_ENTRY_2026_10_27.md,literal
+__real@80000000,0x006C4D58,00000080,0,Weather emission660B30 absolute operand00660BE7 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+__real@44f78000,0x006C6998,0080f744,0,Weather emission660B30 absolute operand00660C44 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+__real@44c30000,0x006C6994,0000c344,0,Weather emission660B30 absolute operand00661224 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+__real@bcf5c28f,0x006C6990,8fc2f5bc,0,Weather emission660B30 absolute operand00661482 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+__real@4098600000000000,0x006C6988,0000000000609840,0,Weather emission660B30 absolute operand00661927 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+__real@44570000,0x006C6984,00005744,0,Weather emission660B30 absolute operand00662573 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+__real@45160000,0x006C6980,00001645,0,Weather emission660B30 absolute operand00662F64 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+__real@bd4ccccd,0x006C697C,cdcc4cbd,0,Weather emission660B30 absolute operand006634B7 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+__real@c3700000,0x006C6978,000070c3,0,Weather emission660B30 absolute operand006634E4 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal
+__real@be4ccccd,0x006C5A60,cdcc4cbe,0,Weather emission660B30 absolute operand00663802 and emitted COFF literal agree; full12348-byte exact replay; docs/WEATHER_EMISSION_2026_10_27.md,literal

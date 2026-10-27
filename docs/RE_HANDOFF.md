@@ -1,15 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: WeatherEffectObject update663B70 has complete
-4353/full4730 source versus native4381/full4758, still nonexact. Native direct
-category table and all37 physical calls are retained; zero-constant promotion
-and shared layout remain unresolved. No exact credit. See
-[WEATHER_EFFECT_UPDATE_2026_10_27.md](WEATHER_EFFECT_UPDATE_2026_10_27.md).
-Final CI is pending at writing under build/frontier-663b70-20261027/.
+Current bounded checkpoint: weather emission660B30 accepts12198/12198 callable
+bytes and complete12348/12348 payload. All3355 instructions and208 calls close;
+native branch-owned RNG and nested argument evaluation recover the whole root.
+See [WEATHER_EMISSION_2026_10_27.md](WEATHER_EMISSION_2026_10_27.md).
+Only this new unit is built; prior receipts remain retained. Final local CI is
+pending at writing under build/frontier-660b30-20261027/.
 
-WeatherEffectObject entry664E10 remains1383/1383 callable and full1630/1630
-exact; see [WEATHER_EFFECT_ENTRY_2026_10_27.md](WEATHER_EFFECT_ENTRY_2026_10_27.md).
-Only the new update unit is rebuilt, retaining all earlier receipts.
+WeatherEffectObject entry664E10 remains1383/1383 and full1630/1630 exact.
+Its update663B70 remains complete/nonexact4353/full4730 versus4381/full4758;
+see [WEATHER_EFFECT_UPDATE_2026_10_27.md](WEATHER_EFFECT_UPDATE_2026_10_27.md).
 EffectObject update659AA0 remains complete/nonexact8899/full9350 versus
 native8895/full9448; see
 [EFFECT_OBJECT_UPDATE_2026_10_27.md](EFFECT_OBJECT_UPDATE_2026_10_27.md).
@@ -59,16 +59,16 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1618 /1419 /987 |
-| Mapped / source-present |1607 /1579 |
-| Exact functions / authored bytes |1425 /400610 |
-| Configured units / functions |626 /1596 |
-| Accepted units |535 |
+| Provisional / authored / excluded / review candidates |4024 /1619 /1419 /986 |
+| Mapped / source-present |1608 /1580 |
+| Exact functions / authored bytes |1426 /412808 |
+| Configured units / functions |627 /1597 |
+| Accepted units |536 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
 Subsequent focused comparisons add story refresh860, replay naming1322 and
 pattern expansion1323, deck update1339, stage selection890, selection flow341
-EffectObject entry2676 and WeatherEffectObject entry1383,
+EffectObject entry2676; WeatherEffectObject entry1383 and weather emission12198,
 with unchanged prior receipts retained. Current totals are incremental, not a
 new whole-corpus replay. Final CI is the current frontier's `local-ci.log`.
 

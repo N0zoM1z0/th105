@@ -1606,3 +1606,4 @@ EffectObject_initialize_action_entry,0x0065BF90,function
 EffectObject_update_state,0x00659AA0,function
 WeatherEffectObject_initialize_action_entry,0x00664E10,function
 WeatherEffectObject_update_state,0x00663B70,function
+update_weather_emission,0x00660B30,function
