@@ -8,12 +8,12 @@
 #include <deque>
 
 namespace th105 {
+extern int g_fighter_state_4b8_default;
 
 void __fastcall initialize_fighter_phase_62380(Fighter *fighter);
 void __fastcall initialize_fighter_phase_631e0(Fighter *fighter);
-void __stdcall set_spell_sequence_mode_430fa0(int value);
-void __fastcall reset_fighter_sequence_controller_45e5f0(
-    FighterSequenceController *controller);
+
+struct FighterSequenceClearView { void clear_45fc80(); };
 extern "C" void __cdecl _invalid_parameter_noinfo(void);
 
 namespace {
@@ -39,21 +39,7 @@ __forceinline void set_fighter_action(Fighter *fighter, int action)
 __forceinline FighterSequenceSlot *checked_front_sequence_slot(
     FighterSequenceController *controller)
 {
-    unsigned index = controller->head_0c;
-    if (controller->live_count_10 + index < index) {
-        _invalid_parameter_noinfo();
-    }
-    if (controller->live_count_10 + controller->head_0c < index ||
-        index < controller->head_0c) {
-        _invalid_parameter_noinfo();
-    }
-    if (controller->live_count_10 + controller->head_0c <= index) {
-        _invalid_parameter_noinfo();
-    }
-    if (controller->slot_capacity_08 <= index) {
-        index -= controller->slot_capacity_08;
-    }
-    return controller->slots_04[index];
+    return &reinterpret_cast<std::deque<FighterSequenceSlot> *>(controller)->begin()[0];
 }
 
 __forceinline void store_word(Fighter *fighter, unsigned offset, short value)
@@ -161,7 +147,7 @@ void Fighter::initialize_fighter_battle_state()
     field_4ae = 0;
     store_word(this, 0x4b0, 0);
     store_word(this, 0x4b2, 0);
-    state_4b8 = *reinterpret_cast<int *>(0x006e4e20);
+    state_4b8 = g_fighter_state_4b8_default;
     maximum_176 = 10000;
     value_174 = 10000;
     value_47c = 10000;
@@ -230,11 +216,11 @@ void Fighter::initialize_fighter_battle_state()
     if (state_72c == 2) {
         SpellDataOwner *lookup =
             reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);
-        set_spell_sequence_mode_430fa0(0);
+        lookup->set_sequence_mode(0);
         state_55b = static_cast<signed char>(
             *reinterpret_cast<unsigned char *>(&spell_nonzero_gate_534));
         state_55a = 0;
-        reset_fighter_sequence_controller_45e5f0(&sequence_controller_55c);
+        reinterpret_cast<FighterSequenceClearView *>(&sequence_controller_55c)->clear_45fc80();
         for (int i = 0; i < state_55b; ++i) {
             prepare_next_spell_sequence_entry();
         }
@@ -243,29 +229,28 @@ void Fighter::initialize_fighter_battle_state()
             checked_front_sequence_slot(&sequence_controller_55c);
         SpellRecordView *record =
             lookup->find_local_then_common_spell_record(front->record_id_00);
-        value_174 = record->value_1e;
-        maximum_176 = record->value_1e;
+        value_174 = maximum_176 = record->value_1e;
         store_byte(this, 0x6a2, 0);
 
         front = checked_front_sequence_slot(&sequence_controller_55c);
-        if (front->record_id_00 >= 200) {
-            post_advance_value_650 = -1;
+        if (front->record_id_00 < 200) {
+            FighterSequenceSlot *selected =
+                sequence_controller_55c.entry_at_checked(0);
+            record = lookup->find_local_then_common_spell_record(
+                selected->record_id_00);
+            post_advance_value_650 = record->value_3c;
             set_fighter_action(this, 700);
             return;
         }
-        FighterSequenceSlot *selected =
-            sequence_controller_55c.entry_at_checked(0);
-        record = lookup->find_local_then_common_spell_record(
-            selected->record_id_00);
-        post_advance_value_650 = record->value_3c;
+        post_advance_value_650 = -1;
         set_fighter_action(this, 700);
         return;
     }
 
-    set_spell_sequence_mode_430fa0(1);
+    reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0)->set_sequence_mode(1);
     state_55b = 5;
     state_55a = 0;
-    reset_fighter_sequence_controller_45e5f0(&sequence_controller_55c);
+    reinterpret_cast<FighterSequenceClearView *>(&sequence_controller_55c)->clear_45fc80();
     store_byte(this, 0x6a2, 0);
     statistic_candidate_64c = -1;
     post_advance_value_650 = -1;

@@ -1,11 +1,16 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: general hit resolver46BF80 corrects retained
-practice-gate, action-width and deferred-resource semantics. The complete source
-is1581 bytes versus1579, still unselected/nonexact; no ledger credit is added.
-See [GENERAL_HIT_RESOLVER_2026_10_27.md](GENERAL_HIT_RESOLVER_2026_10_27.md).
-Only the affected source is built. Final local gate receipts are under
-build/frontier-46bf80-20261027/.
+Current bounded checkpoint: Fighter battle reset460200 corrects the stale
+default global and SpellData mode-call ABI, uses native checked iterators and
+one-read health publication. The complete1247-byte source has25 differences,
+still unselected/nonexact; no ledger credit is added. Its directly affected
+accepted fighter-input-phase unit remains exact. See
+[FIGHTER_BATTLE_RESET_2026_10_27.md](FIGHTER_BATTLE_RESET_2026_10_27.md).
+Final local gate receipts: build/frontier-460200-20261027/.
+
+The preceding94f0f3b7 checkpoint corrects general hit resolver46BF80 semantics;
+its complete1581/1579 source remains nonexact. See
+[GENERAL_HIT_RESOLVER_2026_10_27.md](GENERAL_HIT_RESOLVER_2026_10_27.md).
 
 The prior CBattleManager phase5 transition4724E0 remains991/991 exact, including
 its separately audited generated GS/EH code and metadata; cd976369 passed the
