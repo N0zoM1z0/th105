@@ -23702,3 +23702,23 @@ rel32_targets = [
   "?update_stage_420560@SelectUpdateFlowView@th105@@QAEHXZ=0x00420560",
   "?update_characters_41fc90@SelectUpdateFlowView@th105@@QAEHXZ=0x0041FC90",
 ]
+
+[units.exact-first-effect-object-entry]
+kind = "probe"
+source = "src/battle/EffectObjectActionEntry.cpp"
+object = "build/match-units/ExactFirst_EffectObjectEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete2676-byte EffectObject slot3C with2980-byte full payload; native float RNG widths and independent zero-state cases. scripts/audit-effect-object-entry.py; docs/EFFECT_OBJECT_ENTRY_2026_10_27.md."
+
+[[units.exact-first-effect-object-entry.functions]]
+address = "0x0065BF90"
+symbol_base = "?initialize_action_65bf90@EffectObjectEntryView@th105@@QAEXXZ"
+rel32_targets = [
+  "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?emit_fighter_effect_433cc0@EffectObjectEntryView@th105@@QAEXHMMHH@Z=0x00435240",
+  "?dispatch_indexed_event_member@EffectObjectEntryView@th105@@QAEXI@Z=0x004359F0",
+]

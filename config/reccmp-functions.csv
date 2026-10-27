@@ -1602,3 +1602,4 @@ ReplayInputStorage_expand_filename_pattern,0x00429B70,function
 CProfileDeckEdit_update,0x0044A410,function
 CSelect_update_stage_selection,0x00420560,function
 CSelect_update_selection_flow,0x004208E0,function
+EffectObject_initialize_action_entry,0x0065BF90,function

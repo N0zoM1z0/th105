@@ -1,12 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: CSelect selection flow **4208E0, 341/341**.
-See [SELECT_UPDATE_FLOW_2026_10_27.md](SELECT_UPDATE_FLOW_2026_10_27.md).
-Stage selection420560 remains890/890. Its other child41FC90 has a complete
-619-byte/25-difference unselected candidate, retained privately with bounded
-negative controls. Deck update44A410 remains1339/1339 and prior replay/score
-receipts are retained. Only the new flow unit is rebuilt; final CI is pending
-at writing under `build/frontier-4208e0-20261027/`.
+Current bounded checkpoint: EffectObject entry **65BF90, 2676/2676**,
+including complete2980-byte payload with all switch metadata exact. See
+[EFFECT_OBJECT_ENTRY_2026_10_27.md](EFFECT_OBJECT_ENTRY_2026_10_27.md).
+Selection flow4208E0 remains341/341, stage selection420560 remains890/890,
+and prior deck/replay/score receipts are retained. Complete private candidates
+41FC90,421120,41FF00 and44B540 remain nonexact and uncredited. Only the new
+EffectObject unit is rebuilt; final CI is pending at writing under
+`build/frontier-65bf90-20261027/`.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -53,15 +54,16 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1614 /1419 /991 |
-| Mapped / source-present |1603 /1575 |
-| Exact functions / authored bytes |1423 /396551 |
-| Configured units / functions |622 /1592 |
-| Accepted units |533 |
+| Provisional / authored / excluded / review candidates |4024 /1615 /1419 /990 |
+| Mapped / source-present |1604 /1576 |
+| Exact functions / authored bytes |1424 /399227 |
+| Configured units / functions |623 /1593 |
+| Accepted units |534 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
 Subsequent focused comparisons add story refresh860, replay naming1322 and
-pattern expansion1323, deck update1339, stage selection890 and selection flow341,
+pattern expansion1323, deck update1339, stage selection890, selection flow341
+and EffectObject entry2676,
 with unchanged prior receipts retained. Current totals are incremental, not a
 new whole-corpus replay. Final CI is the current frontier's `local-ci.log`.
 
