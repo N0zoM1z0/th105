@@ -1,12 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: complete EffectObject update659AA0 source, still
-nonexact at8899 callable/full9350 versus native8895/full9448. All114 calls and
-79 handled IDs are retained; actual motion receiver+4 is repaired. See
+Current bounded checkpoint: WeatherEffectObject entry664E10 accepts1383/1383
+callable bytes and full1630/1630 on its first complete source and formal build.
+See [WEATHER_EFFECT_ENTRY_2026_10_27.md](WEATHER_EFFECT_ENTRY_2026_10_27.md).
+Only the new unit is rebuilt; all prior receipts remain retained. Final local
+CI is pending at writing under build/frontier-664e10-20261027/.
+
+EffectObject update659AA0 remains complete but nonexact at8899/full9350 versus
+native8895/full9448, with no exact credit. Its independent origin rule and
+correct motion receiver+4 are retained in
 [EFFECT_OBJECT_UPDATE_2026_10_27.md](EFFECT_OBJECT_UPDATE_2026_10_27.md).
-No exact credit is added. EffectObject entry65BF90 remains2676/2676 and full2980
-exact; all earlier receipts are retained. Only the new update unit is rebuilt;
-final CI is pending at writing under `build/frontier-659aa0-20261027/`.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -53,16 +56,16 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1616 /1419 /989 |
-| Mapped / source-present |1605 /1577 |
-| Exact functions / authored bytes |1424 /399227 |
-| Configured units / functions |624 /1594 |
-| Accepted units |534 |
+| Provisional / authored / excluded / review candidates |4024 /1617 /1419 /988 |
+| Mapped / source-present |1606 /1578 |
+| Exact functions / authored bytes |1425 /400610 |
+| Configured units / functions |625 /1595 |
+| Accepted units |535 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
 Subsequent focused comparisons add story refresh860, replay naming1322 and
 pattern expansion1323, deck update1339, stage selection890, selection flow341
-and EffectObject entry2676,
+EffectObject entry2676 and WeatherEffectObject entry1383,
 with unchanged prior receipts retained. Current totals are incremental, not a
 new whole-corpus replay. Final CI is the current frontier's `local-ci.log`.
 

@@ -23744,3 +23744,20 @@ rel32_targets = [
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?set_components@EffectObjectMotionView@th105@@QAEXMM@Z=0x00435160",
 ]
+
+[units.exact-first-weather-effect-entry]
+kind = "probe"
+source = "src/battle/WeatherEffectActionEntry.cpp"
+object = "build/match-units/ExactFirst_WeatherEffectEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete1383-byte WeatherEffectObject slot3C and full1630-byte payload. scripts/audit-weather-effect-entry.py; docs/WEATHER_EFFECT_ENTRY_2026_10_27.md."
+
+[[units.exact-first-weather-effect-entry.functions]]
+address = "0x00664E10"
+symbol_base = "?initialize_action_664e10@WeatherEffectEntryView@th105@@QAEXXZ"
+rel32_targets = [
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+]

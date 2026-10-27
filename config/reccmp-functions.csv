@@ -1604,3 +1604,4 @@ CSelect_update_stage_selection,0x00420560,function
 CSelect_update_selection_flow,0x004208E0,function
 EffectObject_initialize_action_entry,0x0065BF90,function
 EffectObject_update_state,0x00659AA0,function
+WeatherEffectObject_initialize_action_entry,0x00664E10,function
