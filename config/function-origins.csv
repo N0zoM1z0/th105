@@ -971,7 +971,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042DFC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042E060,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-resource-std-comdats-106a
 0x0042E370,compiler_generated,battle,exclude,observed,vc8-generated-spell-tree-probe-comdats-106a
-0x0042E3F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042E3F0,authored_game,config,authored,observed,canonical-exact-authored
 0x0042E750,authored_game,config,authored,observed,canonical-exact-authored
 0x0042E7B0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0042E880,authored_game,ui,authored,observed,canonical-exact-authored

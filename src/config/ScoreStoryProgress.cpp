@@ -57,10 +57,8 @@ void ScoreDataStoryProgressView::refresh_story_progress_42e3f0()
     if (event_columns_08[14])
         flags_04 |= 0x100u;
 
-    secondary_indices_6c.erase(
-        secondary_indices_6c.begin(), secondary_indices_6c.end());
-    primary_indices_5c.erase(
-        primary_indices_5c.begin(), primary_indices_5c.end());
+    secondary_indices_6c.clear();
+    primary_indices_5c.clear();
 
     for (int i = 0; i < 15; ++i) {
         if (primary_available_1c[i])

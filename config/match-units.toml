@@ -16358,6 +16358,16 @@ rel32_targets = [
   "?persist_story_progress_42d3f0@ScoreDataStoryProgressView@th105@@QAEXXZ=0x0042D3F0",
 ]
 
+
+[[units.gpt-web-score-story-progress.functions]]
+address = "0x0042E3F0"
+symbol_base = "?refresh_story_progress_42e3f0@ScoreDataStoryProgressView@th105@@QAEXXZ"
+rel32_targets = [
+  "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "_memmove_s=0x00689EB0",
+]
+
 [units.gpt-web-network-send-state-check]
 kind = "probe"
 source = "src/network/NetworkSendStateCheck.cpp"

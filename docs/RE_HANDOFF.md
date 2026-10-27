@@ -1,13 +1,11 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: score display-name selection **42E990, 990/990**.
-Its complete source and canonical comparison are recorded in
-[SCORE_DISPLAY_NAME_2026_10_27.md](SCORE_DISPLAY_NAME_2026_10_27.md).
-The original accepted 42D3F0/42ED70 family remains unchanged. The already-started
-full replay passed all529 units/1417 functions; its first CI found only stale
-inventory expectations, corrected before final CI. Future iterations use focused
-new/affected-unit builds, not routine full cold rebuilds. Final CI remains
-pending at writing; terminal receipts are under `build/frontier-42e990-20261027/`.
+Current bounded checkpoint: story progress refresh **42E3F0, 860/860**;
+its same-object event publisher42E750 remains95/95. See
+[SCORE_STORY_PROGRESS_2026_10_27.md](SCORE_STORY_PROGRESS_2026_10_27.md).
+The previous score display selection42E990 remains990/990. This iteration
+builds only the new/directly affected unit; final CI is pending at writing under
+`build/frontier-42e3f0-20261027/`. No new full-corpus replay is claimed.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -54,17 +52,16 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1608 /1419 /997 |
-| Mapped / source-present |1597 /1569 |
-| Exact functions / authored bytes |1417 /390476 |
-| Configured units / functions |618 /1586 |
+| Provisional / authored / excluded / review candidates |4024 /1609 /1419 /996 |
+| Mapped / source-present |1598 /1570 |
+| Exact functions / authored bytes |1418 /391336 |
+| Configured units / functions |618 /1587 |
 | Accepted units |529 |
 
-The preceding checkpoint passed all528 accepted units/1416 functions and389486
-bytes. Current ledger adds one unit/function and990 bytes. The completed
-`cold-all.log` passes all529 units/1417 functions; `local-ci-final.log` is the
-post-expectation-correction final gate. Preserve the first failed CI receipt.
-Both live under `build/frontier-42e990-20261027/`.
+The prior423a2cd checkpoint passed529 cold units/1417 functions and390476
+bytes. Current incremental acceptance adds860 bytes in that existing unit,
+with both affected functions freshly compared. Unchanged receipts are retained.
+Final CI is recorded separately in the current frontier's `local-ci.log`.
 
 `implemented.csv` means selected source-present; `matches.csv` requires canonical
 100% equality against this target. Complete unselected source already exists
