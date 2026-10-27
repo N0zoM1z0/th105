@@ -23722,3 +23722,25 @@ rel32_targets = [
   "?emit_fighter_effect_433cc0@EffectObjectEntryView@th105@@QAEXHMMHH@Z=0x00435240",
   "?dispatch_indexed_event_member@EffectObjectEntryView@th105@@QAEXI@Z=0x004359F0",
 ]
+
+[units.exact-first-effect-object-update]
+kind = "probe"
+source = "src/battle/EffectObjectUpdate.cpp"
+object = "build/match-units/ExactFirst_EffectObjectUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete8895-byte EffectObject slot28 target/full9448; source8899/full9350 remains nonexact at dispatch partition and scheduling. All114 calls and correct motion subobject retained. scripts/audit-effect-object-update.py; docs/EFFECT_OBJECT_UPDATE_2026_10_27.md."
+
+[[units.exact-first-effect-object-update.functions]]
+address = "0x00659AA0"
+symbol_base = "?update_659aa0@EffectObjectUpdateView@th105@@QAEXXZ"
+rel32_targets = [
+  "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
+  "?emit_fighter_effect_433cc0@EffectObjectUpdateView@th105@@QAEXHMMHH@Z=0x00435240",
+  "?dispatch_indexed_event_member@EffectObjectUpdateView@th105@@QAEXI@Z=0x004359F0",
+  "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
+  "?advance_frame_and_dispatch@EffectObjectUpdateView@th105@@QAEEXZ=0x004351C0",
+  "__ftol2_sse=0x0068A1A0",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?set_components@EffectObjectMotionView@th105@@QAEXMM@Z=0x00435160",
+]

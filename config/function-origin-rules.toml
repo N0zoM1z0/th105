@@ -3538,3 +3538,18 @@ evidence = "Complete1672-byte/521-instruction body closes all521 instructions th
 required_body_hashes = [
   { address = "0x0042F6F0", size = 1672, sha256 = "603c5bbb9b498dd93944cab66f78b15ad41887b5fa3ec77b890ba47dd1e54ccf" },
 ]
+
+[[rules]]
+id = "effect-object-update-authored-106a"
+addresses = ["0x00659AA0"]
+expected_count = 1
+expected_bytes = 8895
+expected_names = ["sub_659AA0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "EffectObject RTTI primary slot28 owns the complete8895-byte update with79 handled action IDs. Native burst counts, child effect IDs, action-owned alpha/motion policy and signed event-global updates establish game authorship independently of MT/CRT helpers. Full CFG reaches2122 instructions with48 compared alignment instructions; all114 direct calls and one animation tail are pinned. Complete8899/full9350 source remains nonexact versus8895/full9448. No exact credit. docs/EFFECT_OBJECT_UPDATE_2026_10_27.md."
+required_rtti_virtual_bodies = [
+  { address = "0x00659AA0", size = 8895, sha256 = "2958ec9355ae1eaa8fae2562395c02b6dc7b3c1cbb233382e60b76b3f1122bd5", slot = "0x006C14E4", col_slot = "0x006C14B8", col = "0x006D7E98", type_descriptor = "0x006E6840", type_name_contains = "EffectObject@@", calls = [{ site = "0x00659ADB", target = "0x004066B0" }, { site = "0x00659B34", target = "0x00435240" }, { site = "0x0065B960", target = "0x00435160" }, { site = "0x0065BD2A", target = "0x004351C0" }] },
+]

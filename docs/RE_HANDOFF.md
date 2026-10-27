@@ -1,13 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: EffectObject entry **65BF90, 2676/2676**,
-including complete2980-byte payload with all switch metadata exact. See
-[EFFECT_OBJECT_ENTRY_2026_10_27.md](EFFECT_OBJECT_ENTRY_2026_10_27.md).
-Selection flow4208E0 remains341/341, stage selection420560 remains890/890,
-and prior deck/replay/score receipts are retained. Complete private candidates
-41FC90,421120,41FF00 and44B540 remain nonexact and uncredited. Only the new
-EffectObject unit is rebuilt; final CI is pending at writing under
-`build/frontier-65bf90-20261027/`.
+Current bounded checkpoint: complete EffectObject update659AA0 source, still
+nonexact at8899 callable/full9350 versus native8895/full9448. All114 calls and
+79 handled IDs are retained; actual motion receiver+4 is repaired. See
+[EFFECT_OBJECT_UPDATE_2026_10_27.md](EFFECT_OBJECT_UPDATE_2026_10_27.md).
+No exact credit is added. EffectObject entry65BF90 remains2676/2676 and full2980
+exact; all earlier receipts are retained. Only the new update unit is rebuilt;
+final CI is pending at writing under `build/frontier-659aa0-20261027/`.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -54,10 +53,10 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1615 /1419 /990 |
-| Mapped / source-present |1604 /1576 |
+| Provisional / authored / excluded / review candidates |4024 /1616 /1419 /989 |
+| Mapped / source-present |1605 /1577 |
 | Exact functions / authored bytes |1424 /399227 |
-| Configured units / functions |623 /1593 |
+| Configured units / functions |624 /1594 |
 | Accepted units |534 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.

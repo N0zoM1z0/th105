@@ -67,7 +67,7 @@ class WorkflowToolingTests(unittest.TestCase):
             newline="", encoding="utf-8"
         ) as stream:
             implemented = [row[0] for row in csv.reader(stream) if row]
-        self.assertEqual(len(implemented), 1576)
+        self.assertEqual(len(implemented), 1577)
         root = next(row for row in functions if row["address"] == "0x00496540")
         self.assertEqual(root["status"], "implemented")
         self.assertEqual(root["match_percent"], "0.00")
@@ -86,10 +86,10 @@ class WorkflowToolingTests(unittest.TestCase):
 
     def test_match_unit_graph_covers_current_exact_baseline(self) -> None:
         manifest = self.manifest.load_manifest()
-        self.assertEqual(len(manifest["units"]), 623)
+        self.assertEqual(len(manifest["units"]), 624)
         self.assertEqual(
             sum(len(unit["functions"]) for unit in manifest["units"].values()),
-            1593,
+            1594,
         )
         root = manifest["units"]["gpt-web-reimu-object-action-state"]
         self.assertEqual(root["kind"], "probe")
@@ -1840,7 +1840,7 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertIn("Canonical exact functions | 1,424", markdown)
         self.assertIn("Canonical exact authored bytes | 399,227", markdown)
-        self.assertIn("Source-present authored mappings | 1,576", markdown)
+        self.assertIn("Source-present authored mappings | 1,577", markdown)
         self.assertIn(
             "former 1.06 reconstruction state is intentionally excluded", markdown
         )
@@ -2729,7 +2729,7 @@ class WorkflowToolingTests(unittest.TestCase):
         with (ROOT / "config" / "match-units.toml").open("rb") as stream:
             manifest = tomllib.load(stream)
         counts = self.literals.audit_real_literals(relocations, manifest)
-        self.assertEqual(counts["ledger_literals"], 400)
+        self.assertEqual(counts["ledger_literals"], 402)
         self.assertEqual(counts["explicit_mappings"], 1603)
         self.assertEqual(counts["target_checks"], 0)
 
@@ -2740,7 +2740,7 @@ class WorkflowToolingTests(unittest.TestCase):
         counts = self.validator.validate_real_literal_relocations(
             self.manifest.load_manifest(), require_bytes=True
         )
-        self.assertEqual(counts["target_checks"], 2003)
+        self.assertEqual(counts["target_checks"], 2005)
 
     def test_rel32_accepts_only_supported_instruction_forms(self) -> None:
         self.assertEqual(

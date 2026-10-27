@@ -1574,3 +1574,4 @@ CProfileDeckEdit_update
 CSelect_update_stage_selection
 CSelect_update_selection_flow
 EffectObject_initialize_action_entry
+EffectObject_update_state
