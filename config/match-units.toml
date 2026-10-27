@@ -23683,3 +23683,22 @@ rel32_targets = [
   "?prepare_select_match_43ac60@th105@@YAIH@Z=0x0043AC60",
   "?fade_bgm@th105@@YAXHH@Z=0x0043B140",
 ]
+
+[units.exact-first-select-update-flow]
+kind = "probe"
+source = "src/ui/SelectUpdateFlow.cpp"
+object = "build/match-units/ExactFirst_SelectUpdateFlow.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete341-byte selection flow with108 reachable instructions; native unsigned guide mix and float-before-negation. Character tail callee remains independent/nonexact. docs/SELECT_UPDATE_FLOW_2026_10_27.md."
+
+[[units.exact-first-select-update-flow.functions]]
+address = "0x004208E0"
+symbol_base = "?update_flow_4208e0@SelectUpdateFlowView@th105@@QAEHXZ"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "_lookup_orientation_cosine=0x004064B0",
+  "?set_uv_size@CSpriteEx@@QAEXMM@Z=0x00407340",
+  "?update_stage_420560@SelectUpdateFlowView@th105@@QAEHXZ=0x00420560",
+  "?update_characters_41fc90@SelectUpdateFlowView@th105@@QAEHXZ=0x0041FC90",
+]
