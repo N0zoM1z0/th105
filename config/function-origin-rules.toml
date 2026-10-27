@@ -3568,3 +3568,18 @@ evidence = "WeatherEffectObject primary RTTI slot28; complete1070-instruction st
 required_rtti_virtual_bodies = [
   { address = "0x00663B70", size = 4381, sha256 = "c8c8469690b7bc72a481c4d36d5ec48def02e7b2380e987091ab3aca6ae1f107", slot = "0x006C146C", col_slot = "0x006C1440", col = "0x006D7DBC", type_descriptor = "0x006E67EC", type_name_contains = "WeatherEffectObject@@", calls = [{ site = "0x00663BF9", target = "0x00406480" }, { site = "0x006641C3", target = "0x00435520" }, { site = "0x006647FB", target = "0x00435160" }, { site = "0x00664C76", target = "0x004351C0" }] },
 ]
+
+[[rules]]
+id = "info-effect-update-authored-106a"
+addresses = ["0x0065CB40"]
+expected_count = 1
+expected_bytes = 14783
+expected_names = ["sub_65CB40"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "InfoEffectObject primary RTTI slot28; complete3565-instruction body covers144 action IDs with state-owned UI effect emissions, alpha/scale policy and global-event predicates. All72 physical calls and10 RET0 exits reviewed. Complete14779/full15326 source remains nonexact versus14783/full15330. No exact credit. docs/INFO_EFFECT_UPDATE_2026_10_27.md."
+required_rtti_virtual_bodies = [
+  { address = "0x0065CB40", size = 14783, sha256 = "e204892021b5c8ab702961a46f650c532e05f5ef4f095ba363e37fcc91638367", slot = "0x006C3814", col_slot = "0x006C37E8", col = "0x006D98B4", type_descriptor = "0x006E7C38", type_name_contains = "InfoEffectObject@@", calls = [{ site = "0x0065CBAD", target = "0x004359F0" }, { site = "0x0065CBDC", target = "0x006609C0" }, { site = "0x0065CCBA", target = "0x006609F0" }, { site = "0x0065D0E8", target = "0x004351C0" }] },
+]

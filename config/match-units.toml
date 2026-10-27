@@ -23800,3 +23800,24 @@ rel32_targets = [
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
 ]
+
+[units.exact-first-info-effect-update]
+kind = "probe"
+source = "src/battle/InfoEffectUpdate.cpp"
+object = "build/match-units/ExactFirst_InfoEffectUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete14779/full15326 source versus14783/full15330 target remains nonexact; all144 IDs and72 physical calls retained. docs/INFO_EFFECT_UPDATE_2026_10_27.md."
+
+[[units.exact-first-info-effect-update.functions]]
+address = "0x0065CB40"
+symbol_base = "?update_65cb40@InfoEffectUpdateView@th105@@QAEXXZ"
+rel32_targets = [
+  "?dispatch_indexed_event_member@InfoEffectUpdateView@th105@@QAEXI@Z=0x004359F0",
+  "?emit_info_effect_6609c0@InfoEffectUpdateView@th105@@QAEHHMMHH@Z=0x006609C0",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?dispatch_info_state_6609f0@InfoEffectUpdateView@th105@@QAEHH@Z=0x006609F0",
+  "?advance_frame_and_dispatch@InfoEffectUpdateView@th105@@QAEEXZ=0x004351C0",
+  "?get_game_mode@th105@@YAHXZ=0x0043AC40",
+  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+]

@@ -1,18 +1,18 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: weather emission660B30 accepts12198/12198 callable
-bytes and complete12348/12348 payload. All3355 instructions and208 calls close;
-native branch-owned RNG and nested argument evaluation recover the whole root.
-See [WEATHER_EMISSION_2026_10_27.md](WEATHER_EMISSION_2026_10_27.md).
-Only this new unit is built; prior receipts remain retained. Final local CI is
-pending at writing under build/frontier-660b30-20261027/.
+Current bounded checkpoint: InfoEffectObject update65CB40 now has complete
+14779/full15326 source versus native14783/full15330, still nonexact. All144
+action IDs and72 calls are retained; actual helper cleanup and ordered floating
+growth are corrected. Remaining shared exits/frame-load scheduling are not
+exact. See [INFO_EFFECT_UPDATE_2026_10_27.md](INFO_EFFECT_UPDATE_2026_10_27.md).
+Final local CI is pending at writing under build/frontier-65cb40-20261027/.
 
-WeatherEffectObject entry664E10 remains1383/1383 and full1630/1630 exact.
-Its update663B70 remains complete/nonexact4353/full4730 versus4381/full4758;
-see [WEATHER_EFFECT_UPDATE_2026_10_27.md](WEATHER_EFFECT_UPDATE_2026_10_27.md).
-EffectObject update659AA0 remains complete/nonexact8899/full9350 versus
-native8895/full9448; see
-[EFFECT_OBJECT_UPDATE_2026_10_27.md](EFFECT_OBJECT_UPDATE_2026_10_27.md).
+Weather emission660B30 remains12198/12198 and full12348/12348 exact; see
+[WEATHER_EMISSION_2026_10_27.md](WEATHER_EMISSION_2026_10_27.md).
+WeatherEffectObject entry664E10 remains1383/full1630 exact; its update663B70
+remains complete/nonexact4353/full4730 versus4381/full4758. EffectObject update
+659AA0 remains complete/nonexact8899/full9350 versus8895/full9448.
+Only this new InfoEffectObject unit is rebuilt; all earlier receipts are retained.
 
 The complete preceding handoff is preserved in
 [October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
@@ -59,10 +59,10 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1619 /1419 /986 |
-| Mapped / source-present |1608 /1580 |
+| Provisional / authored / excluded / review candidates |4024 /1620 /1419 /985 |
+| Mapped / source-present |1609 /1581 |
 | Exact functions / authored bytes |1426 /412808 |
-| Configured units / functions |627 /1597 |
+| Configured units / functions |628 /1598 |
 | Accepted units |536 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
