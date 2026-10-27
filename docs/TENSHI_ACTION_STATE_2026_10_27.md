@@ -117,3 +117,32 @@ Current full source49088 versus48968, first+8 (frame330 versus320), SHA-256
 Full positional difference46201. No exact or implementation credit.
 Receipts: caller-width-build.json, caller-width-full.json and
 caller-width-map.json. The earlier49168 packet result remains historical.
+
+## RNG conversion and caller-stack evidence
+
+All68 native unsigned-to-floating bias operands use float2^32 at6D6EF8;
+none uses double2^32 at6D6ED0. Explicit double casts in the first draft produced
+the wrong memory width. Float conversions now reproduce68 float-bias sites
+and zero double-bias sites. Other arithmetic stays at its independently observed
+width; this is not a global float-only mode change.
+
+Ring coordinates and dash-dust coordinates use ordinary VC8 right-to-left
+argument evaluation, retaining the pre-RNG double X base for dust. Native
+argument publication is Y before the X helper/RNG, with direction captured
+before both. No volatile or backend-order barrier is added.
+
+The existing payload dataflow diagnostic was reused privately with the43
+explicit helper cleanup contracts. Four peer vslot8 sites were qualified by
+raw ECX=[ESI+170]/vtable+8 chains, not treated as entry-receiver calls.
+Native125 normal epilogues close;64 distinct request homes have no unknown
+payload site. Native rings have two16-byte live blocks and307 has another.
+Candidate also has64 request homes with the same three16-byte block shapes.
+However its first home is52 versus native36, and frame816 versus800:16 extra
+scratch bytes remain. This does not justify removing locals or adding padding.
+
+Current complete source49096/full48968, first+8, SHA-256
+6c644dfcd3ed742e7f77d4a8e1419a9d4c59afd4cf991434d5f3c055be683628.
+Full positional difference46416. No implementation or exact credit.
+Receipts: rng-float-build.json/rng-float-full.json. The prior49088 comparison
+is historical. Stack diagnostics apply to that earlier snapshot; native facts
+remain unchanged, but candidate addresses must be requalified after a build.

@@ -59,9 +59,10 @@ public:
     __forceinline void dash_dust(bool reverse) {
         double base=at<float>(0xec)+50.0;
         int direction=reverse?static_cast<unsigned char>(-at<unsigned char>(0x104)):at<unsigned char>(0x104);
-        float y=static_cast<float>(static_cast<double>(tenshi_random_u32()%200u)+at<float>(0xf0));
-        float x=static_cast<float>(base-static_cast<double>(tenshi_random_u32()%100u));
-        effect(124,x,y,direction,1);
+        effect(124,
+            static_cast<float>(base-static_cast<float>(tenshi_random_u32()%100u)),
+            static_cast<float>(static_cast<float>(tenshi_random_u32()%200u)+at<float>(0xf0)),
+            direction,1);
     }
     __forceinline void dash_effects(bool reverse,double height,bool ahead) {
         int direction=reverse?static_cast<unsigned char>(-at<unsigned char>(0x104)):at<unsigned char>(0x104);
@@ -134,19 +135,19 @@ public:
         }
     }
     __forceinline void ring_801(double height) {
-        // Fourth live packet slot retains the angle across exposed payload calls.
         float p[4];
         for(float n=0.0f;n<10.0f;n=static_cast<float>(n+1.0)) {
             p[3]=static_cast<float>(n*36.0+18.0);
             p[0]=static_cast<float>(p[3]+90.0);p[1]=15.0f;p[2]=0.0f;
-            int direction=at<unsigned char>(0x104);
-            float y=static_cast<float>(tenshi_sine(-p[3])*80.0+at<float>(0xf0)+height);
-            float x=static_cast<float>(tenshi_cosine(-p[3])*80.0*facing()+at<float>(0xec));
-            spawn(801,x,y,direction,1,p,3);
-            p[2]=2.0f;direction=at<unsigned char>(0x104);
-            y=static_cast<float>(tenshi_sine(-p[3])*80.0+at<float>(0xf0)+height);
-            x=static_cast<float>(tenshi_cosine(-p[3])*80.0*facing()+at<float>(0xec));
-            spawn(801,x,y,direction,1,p,3);
+            spawn(801,
+                static_cast<float>(tenshi_cosine(-p[3])*80.0*facing()+at<float>(0xec)),
+                static_cast<float>(tenshi_sine(-p[3])*80.0+at<float>(0xf0)+height),
+                at<unsigned char>(0x104),1,p,3);
+            p[2]=2.0f;
+            spawn(801,
+                static_cast<float>(tenshi_cosine(-p[3])*80.0*facing()+at<float>(0xec)),
+                static_cast<float>(tenshi_sine(-p[3])*80.0+at<float>(0xf0)+height),
+                at<unsigned char>(0x104),1,p,3);
         }
     }
     __forceinline void air_801() {
@@ -199,7 +200,7 @@ public:
     __forceinline void burst848(int offset,float mode) {
         float p[3];p[1]=20.0f;p[2]=mode;
         for(float n=0.0f;n<8.0f;n=static_cast<float>(n+1.0)) {
-            p[0]=static_cast<float>(static_cast<double>(tenshi_random(30))+n*45.0);
+            p[0]=static_cast<float>(static_cast<float>(tenshi_random(30))+n*45.0);
             if(p[0]<0.0f || p[0]>180.0f) {
                 int direction=at<unsigned char>(0x104);
                 float y=at<float>(0xf0);
@@ -239,7 +240,7 @@ public:
     }
     __forceinline void burst_payload(float *p,float count,double step,int xoff,double yoff,bool surface,int object) {
         for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)) {
-            p[0]=static_cast<float>(static_cast<double>(tenshi_random(30))+n*step);
+            p[0]=static_cast<float>(static_cast<float>(tenshi_random(30))+n*step);
             if(p[0]<0.0f || p[0]>180.0f) {
                 int direction=at<unsigned char>(0x104);
                 float y=surface?tenshi_surface(this):(yoff==0.0?at<float>(0xf0):static_cast<float>(at<float>(0xf0)+yoff));
