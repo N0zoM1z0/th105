@@ -745,7 +745,7 @@ case 520:
     if(advance())set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==6) {
         float p[3]={90.0f,30.0f,0.0f};
-        spawn(815,static_cast<float>(F(0xec)-150.0*facing()),1000.0f,B(0x104),1,p,3);
+        spawn(815,static_cast<float>(F(0xec)-static_cast<double>(150*facing())),1000.0f,B(0x104),1,p,3);
         if(C(0x605)>=4) {
             int direction=B(0x104);
             float x=static_cast<float>(150*static_cast<signed char>(direction)+static_cast<double>(F(0xec)));
@@ -758,10 +758,10 @@ case 521:
     if(advance())set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==6) {
         float p[3]={90.0f,30.0f,0.0f};
-        spawn(815,static_cast<float>(150.0*facing()+F(0xec)),1000.0f,B(0x104),1,p,3);
+        spawn(815,static_cast<float>(static_cast<double>(150*facing())+F(0xec)),1000.0f,B(0x104),1,p,3);
         if(C(0x605)>=4) {
             int direction=B(0x104);
-            float x=static_cast<float>(F(0xec)-150.0*static_cast<signed char>(direction));
+            float x=static_cast<float>(F(0xec)-static_cast<double>(150*static_cast<signed char>(direction)));
             spawn(815,x,1000.0f,direction,1,p,3);
         }
         counter(200,120);phase_counter(50);dispatch_character_wave_handle(11);

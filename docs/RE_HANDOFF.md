@@ -2,7 +2,7 @@
 
 Current bounded checkpoint: Tenshi action-state63D3E0 has a complete
 unselected110-action source candidate. Raw callable47784/full48968 is closed;
-source emits49404 full bytes, first mismatch+241. Two low owner pairs merge.
+source emits49168 full bytes, first mismatch+8. Two low owner pairs merge.
 No implementation or exact credit is added. Current evidence and remaining
 semantic/FP lifetime work:
 [TENSHI_ACTION_STATE_2026_10_27.md](TENSHI_ACTION_STATE_2026_10_27.md).

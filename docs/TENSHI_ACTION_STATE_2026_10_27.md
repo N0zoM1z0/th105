@@ -65,3 +65,34 @@ Ten literals, two width-specific global aliases and one BGM string are added;
 existing bindings/accepted consumers are unchanged. Only this unit is built.
 Artifacts: build/frontier-63d3e0-20261027/. No assembly, copied target arrays,
 fake returns, padding locals or register coercion.
+
+## Coordinate and live packet refinement
+
+The subsequent native arithmetic pass removes artificial Y+0 in burst requests
+whose raw callers forward Y directly. It preserves integer150*direction before
+conversion in520/521, and native subtraction for negative spell-flash offsets
+rather than adding a negated offset. These are operand/operation corrections,
+not padding or instruction spelling controls.
+
+Actions412/416 place the live angle immediately after three request floats.
+Native642072 writes slot3;6420C7/64211D/642154 reload it and independently negate
+it across exposed payload calls. A four-float local packet expresses this live
+storage, still passing count3. Four-slot aggregate ownership is an inference
+from contiguous live storage and call-clobber reloads, not a recovered source
+type. It restores four FCHS sites per action versus one cached negative angle.
+All nondefault action arithmetic-operation counts now agree except214/567,
+where native alternative paths duplicate additions. Counts are not proof of
+operand values, widths or runtime equivalence.
+
+Refined full source49168 versus48968; first+8 is frame allocation330 versus320.
+Source SHA-256:
+918b3d898d902474ce32c5b71bc9c41abbcdd33ef4a0b6728037161b7d03bb8f.
+Full positional difference46592; first table offset48008. The33/36/37 physical
+group counts and two low-owner merges remain. The preceding49404 result is
+historical. No source-selection or exact credit is added.
+
+A separate explicit shared-idle-label trial for0/2 produced49372 but placed
+the common body with action2 rather than native0. It was not adopted; more
+source label spelling is not supported as a route to physical ownership.
+Current receipts: ring-packet-build.json, ring-packet-full.json and
+ring-packet-map.json under the same build directory.
