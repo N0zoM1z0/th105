@@ -246,7 +246,8 @@ public:
         }
         if(!at<int>(0x6c0))at<unsigned char>(0x750)=0;
         if(advance())set_action_and_finalize(0);
-        if(entry(1) || entry(2)){set_action_and_finalize(9);return;}
+        if(entry(1)){set_action_and_finalize(9);return;}
+        if(entry(2)){set_action_and_finalize(9);return;}
         if(!sequence_index_13e && !frame_timer_142 && frame_index_140==3) {
             float ordinary[3],upgraded[3];float *p;
             if(at<signed char>(0x604)<3){ordinary[0]=angle;ordinary[1]=15.0f;ordinary[2]=0.0f;p=ordinary;}
@@ -265,11 +266,11 @@ public:
         for(int angle=0;angle<360;angle+=45) {
             p[0]=static_cast<float>(patchouli_random(30)+angle);
             at<short>(0x730)=(p[0]<0.0f || p[0]<180.0f)?1:-1;
-            double wave=patchouli_sine(-p[0]);
+            double wave=patchouli_sine(-p[0])*75.0*0.25;
             int layer=at<unsigned char>(0x730),direction=at<unsigned char>(0x104);
-            float y=static_cast<float>(patchouli_surface(this)+wave*75.0*0.25);
-            float x=static_cast<float>(patchouli_cosine(-p[0])*75.0+at<float>(0xec));
-            spawn(820,x,y,direction,layer,p,3);
+            spawn(820,
+                static_cast<float>(patchouli_cosine(-p[0])*75.0+at<float>(0xec)),
+                static_cast<float>(patchouli_surface(this)+wave),direction,layer,p,3);
         }
     }
     __forceinline void rising820(unsigned control,double height_limit,float vy,float drift) {

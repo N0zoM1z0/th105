@@ -87,3 +87,40 @@ rechecks native CFG closure. Expected mismatch exits must not become acceptance.
 Seventeen new literal bindings are supported by native operand addresses and
 COFF values; all prior bindings and accepted consumer sources are unchanged.
 Artifacts: build/frontier-50f200-20261027/. Only the new unit is compiled.
+
+## Branch and payload refinement
+
+The next focused replay restores separate entry transitions for actions 409,
+502 and 503. Native 5157AF/512FE7, 517151/51348B and 5174A1/512FE7
+are distinct physical call sites, not one combined condition. Action 214 now
+retains the shared turn-and-restore path at 5114CE and the four independently
+returning sequence-8 restore paths at 5116A6, 5116C6, 511713 and 511735.
+Its reachable virtual-call count is now 27, matching the native diagnostic;
+its FCHS count also agrees. Neither count establishes byte equivalence.
+
+Surface rings in actions 540/541/797/798 now spill the complete sine-derived
+vertical offset (sine * 75 * 0.25) as a double before querying the surface,
+not the unscaled sine result. Native 5180B2..5180D8 establishes this rounding
+boundary. The emission argument order captures layer/direction before the
+surface query and consumes the cosine afterward. The ground-810 initializer
+ordering trial was byte-neutral and was not retained.
+
+Current full candidate: 54466 bytes versus 55610 target bytes, first mismatch
+still +8 (frame 0x468 versus 0x460). SHA-256:
+87055307b1883af792f0bc7cec13481185554ce128ec4728b05ae7f66844d921.
+The strict full comparison reports 52911 unequal/missing/extra positional
+bytes. Source remains unselected and no exact credit is added.
+
+The private payload trace resolves all spawn pointers and finds 91 distinct
+payload homes in both native and candidate code. Their spacing agrees,
+including the one 16-byte step, but all candidate homes are displaced by
+8 bytes (first home 44 versus 36). This isolates the residual frame question
+to scratch/lifetime allocation rather than a missing payload. Native/candidate
+physical virtual-call counts are 172/164 and epilogues 133/126; per-action
+reachable-call differences now remain only at 500/501 (three native spawn
+sites versus two compiled sites). Arithmetic census also differs at 502/503.
+These are diagnostics, not acceptance or a proof of complete semantics.
+
+Latest focused receipts use the surface-ring prefix under the artifact
+folder. No compiler flag, dependency ABI, existing relocation or accepted
+consumer changed. Broader rebuilding is not warranted by this source edit.

@@ -2,8 +2,9 @@
 
 Current bounded checkpoint: Patchouli action-state50F200 has a complete
 unselected109-action source candidate. Native callable54452/full55610 closes;
-source emits54342 full bytes, first mismatch+8. One low owner pair merges and
-several shared call sites still fold. No implementation or exact credit.
+source emits54466 full bytes, first mismatch+8. Flight restoration and separate
+entry branches are refined; all91 payload homes resolve, but their stack
+positions differ by8 bytes. One low owner pair and ground810 call sites merge. No implementation or exact credit.
 [PATCHOULI_ACTION_STATE_2026_10_27.md](PATCHOULI_ACTION_STATE_2026_10_27.md)
 records raw evidence, remaining semantic questions and focused reproduction.
 Receipts: build/frontier-50f200-20261027/.

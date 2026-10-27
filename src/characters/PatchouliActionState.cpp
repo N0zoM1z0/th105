@@ -292,14 +292,42 @@ case 214: {
     }
     if(sequence_index_13e==1 || sequence_index_13e==2)release_flight(9);
     if(sequence_index_13e==3) {
-        S(0x730)=frame_index_140;release_flight(9);
+        S(0x730)=frame_index_140;
+        if(B(0x104)==1) {
+            if(peer()->at<float>(0xec)<F(0xec)) {
+                B(0x104)=255;goto flight_frame_turn;
+            }
+        } else if(peer()->at<float>(0xec)>F(0xec)) {
+            B(0x104)=static_cast<unsigned char>(-B(0x104));goto flight_frame_turn;
+        }
+        select_sequence(9);
+        set_sequence_frame(static_cast<unsigned short>(S(0x730)));
+        goto flight_frame_done;
+flight_frame_turn:
+        F(0xf4)=-F(0xf4);select_sequence(9);
         set_sequence_frame(static_cast<unsigned short>(S(0x730)));
     }
+flight_frame_done:
     if(sequence_index_13e==4 || sequence_index_13e==5)release_flight(10);
     if(sequence_index_13e==6 || sequence_index_13e==7)release_flight(11);
     if(sequence_index_13e==8) {
-        S(0x730)=frame_index_140;release_flight(11);
-        set_sequence_frame(static_cast<unsigned short>(S(0x730)));
+        S(0x730)=frame_index_140;
+        if(B(0x104)==1) {
+            if(peer()->at<float>(0xec)<F(0xec)) {
+                B(0x104)=255;F(0xf4)=-F(0xf4);
+                select_sequence(11);
+                set_sequence_frame(static_cast<unsigned short>(S(0x730)));return;
+            }
+            select_sequence(11);
+            set_sequence_frame(static_cast<unsigned short>(S(0x730)));return;
+        }
+        if(peer()->at<float>(0xec)>F(0xec)) {
+            B(0x104)=static_cast<unsigned char>(-B(0x104));F(0xf4)=-F(0xf4);
+            select_sequence(11);
+            set_sequence_frame(static_cast<unsigned short>(S(0x730)));return;
+        }
+        select_sequence(11);
+        set_sequence_frame(static_cast<unsigned short>(S(0x730)));return;
     }
     return;
 }
@@ -611,7 +639,8 @@ case 408:
 case 409:
     air_fan_motion();burst800(70,115.0);
     if(advance())set_action_and_finalize(0);
-    if(entry(1) || entry(2)){set_action_and_finalize(9);return;}
+    if(entry(1)){set_action_and_finalize(9);return;}
+    if(entry(2)){set_action_and_finalize(9);return;}
     if(!sequence_index_13e && !frame_timer_142) {
         if(frame_index_140==4) {
             if(B(0x750)==1){charge_effect(40,190.0);return;}
