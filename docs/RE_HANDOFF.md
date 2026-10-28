@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: CProfileCharacterSelect render448420 is canonical
+Current bounded candidate: result-menu character refresh447080 now has a
+complete342/native342 focused replay. Real class-valued texture result and
+branch-local input publication replace the retained hidden-result/zero-cast
+source. Remaining mismatch+38 is early selected-character load scheduling;
+no credit. See [RESULT_CHARACTER_REFRESH_2026_10_28.md](RESULT_CHARACTER_REFRESH_2026_10_28.md)
+and build/frontier-447080-20261028/branch-input-binding.json.
+
+Preceding bounded checkpoint: CProfileCharacterSelect render448420 is canonical
 exact205/205. Direct branch-local item expressions recover native count reloads
 and x87 rounding; cached item controls were shorter and are not retained.
 RTTI slot0C and complete56-instruction/tail boundary verified. See

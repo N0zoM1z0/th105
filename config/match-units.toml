@@ -24861,3 +24861,28 @@ dir32_targets = [
  "__real@43800000=__real@43800000",
  "__real@4020000000000000=__real@4020000000000000",
 ]
+
+[units.exact-first-result-character-refresh]
+kind = "probe"
+source = "src/ui/MenuResultRefresh.cpp"
+object = "build/match-units/ExactFirst_ResultCharacterRefresh.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete447080 result-menu selected portrait/list refresh."
+[[units.exact-first-result-character-refresh.functions]]
+address = "0x00447080"
+symbol_base = "?refresh_selected_character@CMenuResult@th105@@AAEXXZ"
+rel32_targets = [
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?load_texture@ResultTextureCall@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90",
+ "_get_scenario_name=0x0043BF80",
+ "?entry_count@ResultListBase@th105@@QBEHXZ=0x004395E0",
+ "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+ "_scenario_stand_path_format=_scenario_stand_path_format",
+ "__imp__wsprintfA=__imp__wsprintfA",
+ "_g_active_menu_input=_g_active_menu_input",
+ "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+ "___security_cookie=___security_cookie",
+]
