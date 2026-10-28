@@ -4,7 +4,8 @@ Current bounded checkpoint: Suika598990 has a complete-label unselected
 115-action candidate. Full replay78976 versus native81136, first+17, frame578
 matches native. Sparse candidate groups32/50/31 versus native33/50/31;
 208/220 merge. Giant605/730 static surface/zero-motion bodies also merge;
-grab608 virtual/arithmetic ownership remains under review. No exact credit.
+grab608 virtual/arithmetic ownership remains under review. Separate501 return
+guards now restore its native virtual-site count. No exact credit.
 See [SUIKA_ACTION_STATE_2026_10_28.md](SUIKA_ACTION_STATE_2026_10_28.md)
 and build/frontier-598990-20261028/formal-{build,full}.json.
 

@@ -18,7 +18,8 @@ case 500:
     }return;
 case 501:
     landing();B(0x17c)=0;if(!I(0x6c4))B(0x750)=0;if(advance())set_action_and_finalize(0);
-    if(entry(3) || entry(4)){set_action_and_finalize(0);return;}
+    if(entry(3)){set_action_and_finalize(0);return;}
+    if(entry(4)){set_action_and_finalize(0);return;}
     if(sequence_index_13e==1){
         if(S(0x730)>13 && (!B(0x750) || S(0x730)>119)){
             if(C(0x604)<2){next_sequence_block();return;}

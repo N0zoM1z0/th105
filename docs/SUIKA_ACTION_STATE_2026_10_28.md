@@ -52,7 +52,7 @@ Remaining uncertainties include:
 - Giant605/730 surface-check bodies still merge at compilation despite explicit
   individual sequence cases. Each has five fewer static surface/zero-motion
   call sites and five fewer addition sites; this is not exact ownership.
-- 501 has one fewer virtual site;608 has four more. Grab608 also has five fewer
+- 608 has four more virtual sites. Grab608 also has five fewer
   additions and two more subtractions in the current per-action diagnostic.
   These differences need source/lifetime review, not padding or forced code.
 - 740 has no established initialized turn/period fallback outside difficulty
@@ -87,3 +87,15 @@ trial-giant-owners-map.json and trial-giant-owners-action-review.json.
 Private raw boundaries, all115 diagnostic slices and IDA/Ghidra attestation
 receipts remain in that bounded build directory. Continue source-level
 ownership/lifetime refinement against this complete baseline.
+
+
+## Separate action501 return owners
+
+Native501 has distinct entry3 and entry4 action-reset calls. Keeping these as
+separate source guards restores both virtual sites rather than combining them
+with a logical OR. The candidate remains78976 bytes, first+17, with77122 full
+unmasked differing bytes and frame578. Its new SHA-256 is
+c950a4e409eb06b07a9463fca62141fe5e9d6442a05e7f5a4442ef3e8e91f741.
+Receipts: trial501.full.json, trial501-map.json, trial501-action-review.json.
+The prior baseline SHA above remains historical. Explicit inlining of the
+giant surface-check helper was byte-identical and was not retained.
