@@ -15,7 +15,8 @@ case 708:
     if(sequence_index_13e==2){F(0xf4)=static_cast<float>(F(0xf4)+2.0);if(F(0xf4)>0.0f)F(0xf4)=0.0f;}
     if(!marisa_on_surface(this)){
         if(time_counter_144%5==0)dash_dust(true);
-        double velocity=F(0xf8)-0.5;F(0xf8)=static_cast<float>(velocity);double predicted=velocity+F(0xf0);
+        // 4B256B narrows velocity before the QWORD prediction at 4B257F.
+        float velocity=static_cast<float>(F(0xf8)-0.5);F(0xf8)=velocity;double predicted=static_cast<double>(velocity)+F(0xf0);
         if(marisa_surface(this)>=predicted && F(0xf8)<0.0f){F(0xf8)=0.0f;F(0xf0)=marisa_surface(this);select_sequence(2);return;}
     }
     if(advance()){set_action_and_finalize(700);return;}

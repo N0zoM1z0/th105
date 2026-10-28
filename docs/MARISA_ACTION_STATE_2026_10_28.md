@@ -86,3 +86,24 @@ All 98 payload homes remain resolved, without unknown payload sites; the
 trial826-full.json, trial826-calls.json, trial826-fp.json and
 trial826-payload-homes.json in the same build directory. Existing accepted
 units and exact ledgers remain unchanged.
+
+## Action708 velocity precision
+
+Raw 4B256B/4B256F explicitly narrows and reloads vertical velocity as float
+before publishing it and adding Y. The sum is then captured as QWORD at
+4B257F across surface435D60. The original candidate accidentally used the
+unrounded double velocity for that sum. The corrected source now emits both
+the float narrowing and QWORD capture; ordered surface>=prediction and the
+post-call live negative-velocity check are unchanged.
+
+Current complete candidate: 68204 bytes, frame4C8, first+14, 64185 unmasked
+differing bytes; SHA-256
+05e8856885e6a33b397c933b39e731874e08d044d3257c32d49163cc975a0882.
+Receipts: trial708-build.json and trial708-full.json. No exact credit.
+
+Two source-expression ownership controls (inline dust X expression and inline
+squared-distance sum) produced the same complete payload hash. Expanding all
+ten dust helper bodies at their callers did not fix frame ownership (still
+4C8) and lacked independent evidence for retention; all three controls were
+reverted. Their private receipts remain trialdust-*, trialsquare-* and
+trialdustowner-*; no compiler padding or register forcing was introduced.
