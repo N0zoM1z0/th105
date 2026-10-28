@@ -16,8 +16,8 @@ Use together with `$th105-re`. Exact acceptance is defined by
 3. Run:
 
    ```bash
-   python3 scripts/build.py --check
-   python3 scripts/build.py --unit UNIT --compare --json
+   scripts/repo-python scripts/build.py --check
+   scripts/repo-python scripts/build.py --unit UNIT --compare --json
    ```
 
 4. Classify the first failure: target/boundary, COFF owner/extent, relocation,
@@ -27,6 +27,10 @@ Use together with `$th105-re`. Exact acceptance is defined by
    relocation or control-flow differences remain unexplained.
 6. Record exactness only at zero differences with complete relocation replay;
    update `matches.csv` and the function ledger together.
+
+Runtime robustness matrices and allocation-failure/null-pointer tests are not
+acceptance gates. Use diagnostics only for a concrete mismatch question; keep
+the routine loop focused on complete-function byte comparison.
 
 ## VC8 rules
 

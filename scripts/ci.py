@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Run target-independent TH105 validation suitable for public CI."""
+"""Run exact-acceptance tooling checks; optional diagnostics use --all-tests."""
 
 from __future__ import annotations
 
+import argparse
 import os
 from pathlib import Path
 import subprocess
@@ -10,6 +11,21 @@ import sys
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+# Reconstruction experiments are optional. The routine gate protects strict
+# comparison, relocation/extent ownership, the environment and exact accounting.
+EXACT_TEST_MODULES = (
+    "test_workflow_tooling",
+    "test_compare_unit_object",
+    "test_owned_extent_comparison",
+    "test_linked_pe",
+    "test_linked_lifecycle",
+    "test_linked_noreturn",
+    "test_linked_switch_replay",
+    "test_select_constructor_audit",
+    "test_repo_python",
+    "test_progress_svg",
+)
 
 
 def tracked(pattern: str) -> list[str]:
@@ -28,14 +44,20 @@ def tracked(pattern: str) -> list[str]:
     ]
 
 
-def run(label: str, command: list[str]) -> None:
+def run(label: str, command: list[str], *, cwd: Path = ROOT) -> None:
     print(f"\n==> {label}", flush=True)
     environment = os.environ.copy()
     environment["PYTHONPYCACHEPREFIX"] = str(ROOT / "build" / "pycache")
-    subprocess.run(command, cwd=ROOT, env=environment, check=True)
+    subprocess.run(command, cwd=cwd, env=environment, check=True)
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--all-tests", action="store_true",
+        help="also run optional analysis/probe tests (no native corpus rebuild)",
+    )
+    args = parser.parse_args()
     try:
         run("Check repository Python environment", [sys.executable, "scripts/repo_python_env.py"])
         python_files = sorted(
@@ -58,11 +80,17 @@ def main() -> int:
             [sys.executable, "scripts/validate-tracking.py", "--skip-target-bytes"],
         )
         run("Validate match-unit graph", [sys.executable, "scripts/build.py", "--check"])
-        run(
-            "Run workflow unit tests",
-            [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
-        )
-        run("Regenerate progress artifacts", [sys.executable, "scripts/progress.py"])
+        if args.all_tests:
+            run(
+                "Run all tooling and analysis tests",
+                [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
+            )
+        else:
+            run(
+                "Run exact-acceptance tooling tests",
+                [sys.executable, "-m", "unittest", "-v", *EXACT_TEST_MODULES],
+                cwd=ROOT / "tests",
+            )
         run("Check generated progress", [sys.executable, "scripts/progress.py", "--check"])
         if os.environ.get("CI"):
             run(

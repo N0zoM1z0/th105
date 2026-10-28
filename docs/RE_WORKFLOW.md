@@ -44,8 +44,9 @@ IDA auto-names do not imply mappings or implementations.
 
 ## Bounded function loop
 
-1. Read the handoff, inspect Git state, verify target, attest IDA, and run the
-   status/ledger checks from `AGENTS.md`.
+1. Read the handoff, inspect Git state, verify target, and run the status/ledger
+   checks from `AGENTS.md`. Attest IDA only if using that session. Documentation
+   and test-workflow maintenance need no target preflight or native build.
 2. Select one bounded address or a tightly coupled group. Keep claims header-only.
    Prioritize complete large authored functions and accepted byte coverage.
 3. Inspect exact disassembly plus callers, callees, xrefs, strings, globals,
@@ -63,15 +64,32 @@ IDA auto-names do not imply mappings or implementations.
    never be instantiated or embedded as a recovered complete owner.
 8. Configure one reproducible unit, compile with the pinned VC8 environment,
    compare the smallest extent first, and audit floating relocations with
-   `python3 scripts/check-match-literals.py --require-target`.
+   `scripts/repo-python scripts/check-match-literals.py --require-target`.
 9. Add `matches.csv` only after strict zero-difference relocation replay against
    `resources/th105.exe`; update the candidate row at the same time.
-10. Update the handoff, then run the mandatory final local `python3 scripts/ci.py`
+10. Update the handoff when the phase/blocker changes, then run the final local
+    `scripts/repo-python scripts/ci.py`
     and `git diff --check` gate. Commit, push, or open a pull request only after
     both commands pass in the finished worktree.
 
-GitHub Actions is a second check, not a substitute for the local gate. Any edit
-after the final pass invalidates that pass and requires another local run.
+GitHub Actions is an additional check. Rerun the local gate after changes to
+source, ledgers, scripts, tests or generated progress.
+
+## Validation scope
+
+Exact acceptance requires the complete canonical byte comparison. Do not make
+allocation-failure, null-pointer, fuzz or broad runtime matrices prerequisites
+for a reconstructed function. Preserve the target's actual guards and EH paths
+in source. Use a bounded execution probe only when it answers a concrete ABI,
+lifetime, floating-point or side-effect question blocking the comparison.
+
+Default CI runs ledger/match-unit validation and exact-comparison tooling tests.
+It does not run every character audit or historical source-shape experiment.
+Run a relevant optional test by filename when changing that tool; use
+`scripts/repo-python scripts/ci.py --all-tests` for broader tooling work when
+needed. Do not add fixed progress totals, checkpoint status or source-string
+snapshots: current ledgers and canonical receipts already record those facts.
+Progress generation is explicit when inputs change; CI checks without writing.
 
 ## Exact-first priority from the TH075 review
 
@@ -150,7 +168,7 @@ official documentation and previous experiment notes as external corroboration,
 not proof of source shape, compiler profile, or exactness; revalidate the
 specific claim against the target and a fresh build.
 
-For roots covered by `config/giant-action-switches.toml`, pair the target and
+When diagnosing ownership for roots in `config/giant-action-switches.toml`, pair the target and
 candidate span mapper with `scripts/audit-giant-action-owners.py ROOT OBJECT
 --unit UNIT`. The latter preserves instruction encodings and compares internal
 edges by physical owner plus intra-owner offset; it also traverses raw target
@@ -162,9 +180,9 @@ and reproducible commands. Public CI dependencies are pinned in
 `scripts/requirements-ci.txt`; install them before `scripts/ci.py` on a fresh
 Python environment.
 
-For roster Object giant roots, run `scripts/rank-roster-object-shared-callees.py` before decompiling another action family. It discovers direct external callees from raw canonical root bytes and only then annotates candidate/origin state, so missing IDA functions or stale classifications remain visible. Use the result as candidate/primitive evidence only; canonical exact acceptance still requires the normal match unit/comparator.
+For roster Object callee discovery, use `scripts/rank-roster-object-shared-callees.py` when needed. It discovers direct external callees from raw canonical root bytes and only then annotates candidate/origin state, so missing IDA functions or stale classifications remain visible. Use the result as candidate/primitive evidence only; canonical exact acceptance still requires the normal match unit/comparator.
 
-Candidate-boundary review must also cover indirect/data-driven call surfaces. Run `scripts/audit-roster-primary-vtable-coverage.py` to close the current Fighter/Object primary vtables against candidate starts, and use `scripts/rank-unledgered-rdata-text-pointers.py` to rank aligned canonical `.rdata` pointers that land outside all tracked main spans and reviewed remote chunks. Neither report assigns authored or exact credit. A raw pointer can name a compiler startup thunk, EH helper, deleting destructor, jump-table byte sequence or a real authored virtual/callback. Promote only after raw boundary isolation plus ownership/RTTI/caller evidence; then require the ordinary canonical comparator before exact acceptance. `CSceneManager::initialize @ 0x0041E070` is the current positive example: IDA had no containing function, but RTTI/vtable ownership plus a separately padded 162-byte body established the candidate and ordinary VC8 source subsequently matched 162/162.
+When discovering candidate boundaries through indirect/data-driven call surfaces, `scripts/audit-roster-primary-vtable-coverage.py` closes the current Fighter/Object primary vtables against candidate starts, and `scripts/rank-unledgered-rdata-text-pointers.py` ranks aligned canonical `.rdata` pointers that land outside all tracked main spans and reviewed remote chunks. These are discovery tools, not per-function acceptance gates. Neither report assigns authored or exact credit. A raw pointer can name a compiler startup thunk, EH helper, deleting destructor, jump-table byte sequence or a real authored virtual/callback. Promote only after raw boundary isolation plus ownership/RTTI/caller evidence; then require the ordinary canonical comparator before exact acceptance. `CSceneManager::initialize @ 0x0041E070` is the current positive example: IDA had no containing function, but RTTI/vtable ownership plus a separately padded 162-byte body established the candidate and ordinary VC8 source subsequently matched 162/162.
 
 ## Shared-change replay
 

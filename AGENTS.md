@@ -1,119 +1,99 @@
 # TH105 reconstruction agent rules
 
-This repository reconstructs one exact binary: the original Japanese TH10.5
-version 1.06a executable whose SHA-256 is
+Reconstruct only the original Japanese TH10.5 v1.06a executable, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Do not analyze or substitute 1.06, a localized executable, or another patch.
+Use `scripts/repo-python` for repository Python commands; README.md describes
+setup, `.python-version` and `scripts/requirements-ci.txt` pin the environment.
 
-## Before changing reconstruction state
+## Work loop
 
-Use `scripts/repo-python` for repository Python commands. Set up the isolated
-environment as described in README.md; `.python-version` and
-`scripts/requirements-ci.txt` fix its interpreter and dependencies. The launcher
-checks the environment before executing, and Python subprocesses inherit the
-same interpreter. Do not substitute an ambient system/Conda decoder.
+Read `docs/RE_HANDOFF.md` and the relevant source. Consult
+`docs/ARCHITECTURE.md` and `docs/RE_WORKFLOW.md` for unfamiliar boundaries/ABI.
+Inspect `git status` before editing; preserve other sessions' changes.
+For reconstruction or ledger changes, run:
 
-1. Read `docs/RE_HANDOFF.md`, `docs/ARCHITECTURE.md`,
-   `docs/RE_WORKFLOW.md`, and the relevant source.
-2. Inspect `git status`, then run:
+```bash
+scripts/repo-python scripts/verify-target.py
+scripts/repo-python scripts/report-reconstruction-status.py --summary
+scripts/repo-python scripts/validate-tracking.py --require-target
+```
 
-   ```bash
-   scripts/repo-python scripts/verify-target.py
-   scripts/repo-python scripts/check-ida-mcp.py
-   scripts/repo-python scripts/report-reconstruction-status.py --summary
-   scripts/repo-python scripts/validate-tracking.py --require-target
-   ```
+Confirm the address in `config/functions.csv`, any durable name in
+`config/reccmp-functions.csv`, and source selection in `config/implemented.csv`.
+Candidate sizes are provisional: reconcile complete control flow before
+accepting a compiler boundary. Compile and strictly compare the complete
+bounded function early, then change one target-backed source property per trial.
+Documentation/test-workflow maintenance needs no target/IDA preflight or native
+build.
 
-3. Confirm the address in `config/functions.csv`. Its candidate size is provisional;
-   reconcile the complete control flow before accepting a compiler boundary.
-4. Confirm any durable name in `config/reccmp-functions.csv` and any source
-   selection in `config/implemented.csv`. Neither is an exact-match claim.
-5. Build and compare the smallest affected object/function before broad edits.
+## Exact-first validation
 
-## Evidence and state
+- Acceptance is zero byte differences against the canonical target, with a
+  reproducible unit in `config/match-units.toml` and command/report evidence.
+- Do not require allocation-failure, null-pointer, fuzz, broad runtime or
+  gameplay matrices. Preserve the target's actual guards/EH paths; do not add
+  defensive behavior absent from the target.
+- Use bounded diagnostics only for a concrete uncertainty blocking comparison.
+  Analysis/probe tests are optional; run relevant tests when their tools change.
+- Do not pin progress totals, historical checkpoint status or source spelling
+  in tests. Ledgers and canonical receipts record those facts.
+- Compare the new unit and directly affected accepted consumers. Review consumers
+  after shared header/layout/flag/TU/global/relocation changes. Preserve unchanged
+  receipts and report totals as incremental validation.
+- Full `scripts/repo-python scripts/verify-exact-units.py --all` requires an
+  explicit user request or demonstrated repository-wide invalidation that cannot
+  be narrowed. State the reason first; zero-difference acceptance stays unchanged.
 
-- Keep exact target observations, inferences, external corroboration, and
-  unknowns distinct. Never mechanically paste decompiler output as source.
-- The source tree predates the corrected target. Treat every retained source
-  file as an unverified hypothesis until 1.06a instructions and ABI support it.
-- `config/functions.csv` is the candidate/boundary ledger.
-  `config/function-origins.csv` separately classifies authored, compiler, or
-  library ownership. Disassembler auto-analysis proves neither.
-- `config/implemented.csv` means source-present only.
-- `config/matches.csv` means a canonical 100% result against the exact target.
-  A mapping, build success, visual similarity, or stale 1.06 report is not
-  matching evidence.
-- Record exact results only with a unit in `config/match-units.toml` and a
-  reproducible command/report reference.
+## Evidence and ABI
 
-## Analysis database safety
+Keep target observations, inferences, external corroboration and unknowns
+separate. Decompiler output and unreviewed retained 1.06 source are hypotheses.
+`functions.csv` records candidates/boundaries; `function-origins.csv` separately
+records authored/compiler/library ownership. Auto-analysis proves neither.
+`implemented.csv` means source-present; only `matches.csv` records exactness.
+Mapping, compilation, similar output or stale 1.06 reports confer no exact credit.
 
-IDA MCP is attached to the file open in the GUI and has no program selector.
-Re-run `scripts/check-ida-mcp.py` at the start of every bounded work unit. It
-must attest target metadata, entry point, mapped bytes, required tools, and a
-function-inventory probe. Never call `patch_address_assembles` or patch target
-bytes.
+Preserve VC8 x86 calling conventions, field widths, class/vtable layout,
+RTTI/EH, static initialization and ownership. The target has 42 C++ LTCG Rich
+records; standalone COFF/TU boundaries may be unrecoverable. TH08's gameplay
+structures, addresses and VC7 compiler behavior do not transfer automatically.
+Never force comparison with assembly, copied bytes, inert locals, fake returns,
+ABI lies or padding.
 
-An IDA preflight failure blocks use of that IDA session, not inspection of the
-hash-attested target PE. Raw target disassembly can establish bounded byte,
-edge, ABI, and boundary facts. A Ghidra database may be used only after its
-imported executable identity, entry point, mapped bytes, and analysis target
-are independently checked against `resources/th105.exe`; record decompiler
-output as a hypothesis. Do not launch multiple Ghidra processes or use a
-factory MCP adapter when direct analysis is available. Analysis databases are
-working state, not the durable record: mirror accepted names, types,
-boundaries, and evidence into the repository ledgers. Read back metadata
-writes before relying on them.
+## Analysis sessions
 
-## TH105 ABI and architecture
+Use one bounded writable reconstruction scope or coherent maintenance batch.
+Do not delegate reconstruction/matching or run concurrent VC8/Ghidra jobs.
+`config/claims.csv` remains header-only. Preserve other worktrees and private
+analysis state; generated files belong under `build/`, private analysis under
+`.analysis/`.
 
-- Preserve the Visual C++ 2005 x86 ABI: calling conventions, field widths,
-  class layout, vtable order, RTTI/EH behavior, static initialization, and
-  object ownership.
-- Rich-header evidence includes 42 VC8 C++ LTCG records. Do not assume every
-  function has a recoverable standalone COFF/TU boundary or that TH08's VC7
-  compiler behavior transfers.
-- TH105 is a networked fighting game with extensive polymorphic C++ and
-  character/object families. Use the TH08 control-plane discipline, not its
-  gameplay architecture, source partition, addresses, or pattern conclusions.
-- Do not use assembly, copied byte arrays, inert locals, fake returns, ABI
-  lies, or padding to force a comparison.
-- Keep generated files below `build/` and private analysis below `.analysis/`.
+Run `scripts/check-ida-mcp.py` before using IDA in each bounded unit. It must
+attest target metadata, entry point, mapped bytes, tools and inventory. A failed
+preflight blocks that session; hash-attested raw PE analysis remains available.
+Ghidra requires independent imported-file, entry-point and mapped-byte checks
+against `resources/th105.exe`. Never patch target bytes or call
+`patch_address_assembles`. Mirror accepted database names/types/boundaries into
+repository evidence and read back metadata writes.
 
-## Single-agent sessions
+## Handoff and commit
 
-- Use one writable reconstruction session at a time. Do not delegate
-  reconstruction/matching to subagents or run concurrent VC8 builds.
-- `config/claims.csv` is schema-compatible and must remain header-only.
-- Keep one bounded address or one coherent workflow-maintenance batch in
-  flight. Commit stable checkpoints before a browser/session handoff.
-- Build and strictly compare only the newly reconstructed unit and directly
-  affected accepted units. After shared header, type/layout, compiler-flag,
-  object-partition or relocation changes, identify and replay their consumers.
-  Do not run the entire cold corpus after every function or merely to update
-  ledger totals. Preserve unchanged prior acceptance receipts and report totals
-  as incremental validation, not a freshly rebuilt whole corpus.
-- Full `scripts/repo-python scripts/verify-exact-units.py --all` is reserved for
-  an explicit user request or a demonstrated repository-wide invalidation whose
-  affected scope cannot be narrowed. Document the reason before launching it.
-  This changes replay scope, never the zero-difference acceptance criterion.
-
-## Handoff
-
-Run the focused build/comparison, then run this final gate in the finished local
-worktree:
+For reconstruction changes, run focused affected comparisons, then:
 
 ```bash
 scripts/repo-python scripts/ci.py
 git diff --check
 ```
 
-This local `scripts/ci.py` pass is mandatory before every commit, push, or pull
-request. A GitHub Actions run does not substitute for it. Do not commit or push
-after a failure, and rerun the gate after any subsequent source, ledger, script,
-test, or generated-progress edit.
+The finished local gate is required before commit/push/PR; rerun after changes
+to source, ledgers, scripts, tests or generated progress. Default CI validates
+ledgers, match units and exact-comparison tooling; it does not rebuild native
+units or run all analysis tests. `scripts/ci.py --all-tests` is optional for
+broader tooling changes. Regenerate progress explicitly when inputs change;
+CI only checks it.
 
-Update `docs/RE_HANDOFF.md` when the phase or blocker changes. Report target
-addresses, evidence class, changed files, exact result, and remaining unknowns.
-Do not commit executables, game data, analysis databases, compiler installs,
-generated reports, credentials, private keys, or `.tools/mcp_for_gptweb/.env`.
+Update `docs/RE_HANDOFF.md` when phase/blocker changes. Report addresses,
+evidence class, changed files, exact result and remaining unknowns. Commit
+stable checkpoints before session handoff. Never commit executables, game data,
+analysis databases, compiler installs, generated reports, credentials/private
+keys or `.tools/mcp_for_gptweb/.env`.

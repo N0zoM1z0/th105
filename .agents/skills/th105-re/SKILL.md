@@ -12,17 +12,9 @@ image base `0x00400000`, entry `0x0068B9D2`, `.text`
 
 ## Preflight
 
-1. Read `AGENTS.md`, `docs/RE_HANDOFF.md`, `docs/ARCHITECTURE.md`,
-   `docs/RE_WORKFLOW.md`, and the relevant source.
-2. Run:
-
-   ```bash
-   python3 scripts/verify-target.py
-   python3 scripts/check-ida-mcp.py
-   python3 scripts/report-reconstruction-status.py --summary
-   python3 scripts/validate-tracking.py --require-target
-   ```
-
+1. Follow `AGENTS.md` and the current handoff; inspect the relevant source.
+2. Use `scripts/repo-python` for the reconstruction preflights in `AGENTS.md`.
+   Attest IDA only when using it; maintenance needs no native build/preflight.
 3. Keep `config/claims.csv` header-only and one bounded writable scope.
 4. Confirm the candidate in `functions.csv` and its origin row. Reconcile
    complete target control flow; database extents and auto-names are provisional.
@@ -35,8 +27,9 @@ image base `0x00400000`, entry `0x0068B9D2`, `.text`
 2. Inspect the full function, callers/callees, xrefs, strings, globals,
    RTTI/vtables, field widths, saved registers, stack cleanup, EH paths, and
    nearby compiler/runtime signatures.
-3. Recover boundary, origin, calling convention, return behavior, class layout,
-   ownership, and side effects before naming or source-shaping.
+3. Recover boundary, origin, calling convention, accessed widths, required
+   layout and lifetimes; compile the complete function early. Full gameplay
+   naming or nominal class recovery is not a comparison prerequisite.
 4. Record a supported mapping in `reccmp-functions.csv`. Add a retained/new
    implementation to `implemented.csv` only after semantic coverage is audited.
 5. Preserve VC8 x86 ABI and natural C++ behavior. TH105 has 42 LTCG C++ Rich
@@ -45,13 +38,15 @@ image base `0x00400000`, entry `0x0068B9D2`, `.text`
 6. Use `$th105-typed-re` for a target-pinned fact packet and `$th105-matching`
    for focused compilation/comparison.
 
+Do not require allocation-failure/null-pointer coverage, broad execution
+matrices or source/checkpoint snapshots. Use a bounded probe only to resolve a
+specific target uncertainty; preserve actual target guards and EH behavior.
+
 Do not transfer TH08 gameplay structures or VC7 code-generation recipes. Do
 not carry old TH105 1.06 addresses, names, matches, or pattern conclusions into
 1.06a without new target evidence.
 
 ## Handoff
 
-Report address/accepted size, observations, inferences, unknowns, origin
-classification, files changed, target inspection calls, focused comparison,
-and remaining ABI/LTCG risk. Run `python3 scripts/validate-tracking.py
---require-target`, `python3 scripts/ci.py`, and `git diff --check`.
+Report the address/size, evidence, changed files, focused comparison and remaining
+unknowns. Follow the lightweight local CI/commit gate in `AGENTS.md`.

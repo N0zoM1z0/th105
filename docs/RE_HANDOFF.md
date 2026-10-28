@@ -73,9 +73,18 @@ Live ledgers and fresh command output take precedence over historical counts.
 
 ## Start here
 
-1. Read `AGENTS.md`, this file, `docs/ARCHITECTURE.md` and `docs/RE_WORKFLOW.md`.
+Workflow maintenance (2026-10-28): routine CI now checks exact-comparison tooling
+and ledgers; analysis/probe suites are optional via `scripts/ci.py --all-tests`.
+Removed 69 historical checkpoint/count/source snapshots. Allocation-failure,
+null-pointer and broad runtime matrices are not reconstruction prerequisites.
+CI checks progress without rewriting it. No source, target address, match ledger
+or acceptance receipt changed; existing reconstruction blockers above remain.
+
+1. Read `AGENTS.md`, this file and the relevant source; consult architecture and
+   workflow notes as needed.
 2. Inspect Git status and the source/evidence document for the intended scope.
-3. Use only `scripts/repo-python`, then run the four bounded preflights below.
+3. Use `scripts/repo-python`; reconstruction/ledger work uses the preflights below.
+   Run the IDA check only when using IDA. Maintenance needs no native preflight.
 4. Keep one writable bounded scope, no subagents or concurrent VC8/Ghidra jobs.
    `config/claims.csv` remains header-only. Builds use CPU0/nice10 serially.
 5. Compare the first complete medium/large source early. Test one supported
@@ -211,7 +220,9 @@ relocation changes require directly affected-unit replay. Preserve unchanged
 acceptance receipts for incremental totals; do not rebuild the whole corpus
 routinely. Full cold replay requires an explicit request or demonstrated
 repository-wide invalidation that cannot be narrowed.
-Every commit/push/PR requires the finished local gate; remote green is additional.
+Every commit/push/PR requires the finished lightweight local gate; remote green
+is additional. Analysis matrices and the complete optional test collection are
+not part of the routine gate.
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 taskset -c 0 nice -n 10 scripts/repo-python scripts/ci.py

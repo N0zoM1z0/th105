@@ -55,14 +55,16 @@ The retained source tree came from the former 1.06 effort. Many functions have
 since been revalidated against 1.06a and accepted into the source and exact
 ledgers. Unselected retained files remain hypotheses, not 1.06a progress.
 
-Start a session with:
+Start reconstruction or ledger work with:
 
 ```bash
 scripts/repo-python scripts/verify-target.py
-scripts/repo-python scripts/check-ida-mcp.py
 scripts/repo-python scripts/report-reconstruction-status.py --summary
 scripts/repo-python scripts/validate-tracking.py --require-target
 ```
+
+Run `scripts/repo-python scripts/check-ida-mcp.py` before using IDA. Documentation
+and test-workflow maintenance need no target/IDA preflight or native build.
 
 ## Documentation
 
@@ -100,11 +102,19 @@ and `.venv/bin/python -m pip install -r scripts/requirements-ci.txt` are equival
 setup steps. GitHub Actions reads the same Python version file, installs those
 dependencies into `.venv`, and uses the same launcher.
 
-Public checks run without game files, IDA, or the proprietary compiler.
-Synthetic execution tests use the pinned Unicorn package. Tests that inspect
-the canonical executable explicitly skip when it is absent; when present,
-its identity and evidence checks still run. Local target and IDA checks remain
-separate.
+Default CI checks the ledgers, match-unit graph and strict comparison tooling;
+it runs without game files, IDA or the proprietary compiler. Target-dependent
+checks skip when the executable is absent. It checks progress artifacts without
+rewriting them; run `scripts/repo-python scripts/progress.py` when ledger inputs
+change.
+
+The reconstruction loop is a focused VC8 build and whole-function exact
+comparison. Allocation-failure/null-pointer coverage, broad execution matrices
+and source/checkpoint snapshot tests are not routine acceptance requirements.
+Optional analysis/probe tests can be run by filename with
+`scripts/repo-python -m unittest discover -s tests -p 'test_NAME.py'`, or together
+with `scripts/repo-python scripts/ci.py --all-tests`. They diagnose specific
+questions and do not establish exactness.
 
 ## License
 
