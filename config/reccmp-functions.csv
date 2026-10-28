@@ -1632,3 +1632,6 @@ CProfileCharacterSelect_render,0x00448420,function
 CMenuConnect_begin_endpoint_edit,0x00442390,function
 InfoEffectObject_transform,0x00660730,function
 InfoEffectObject_initialize_action,0x00660780,function
+InfoEffectObject_emit_global,0x006609C0,function
+InfoEffectObject_set_scene_state,0x006609F0,function
+emit_weather_effect_global,0x00665470,function

@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: InfoEffectObject transform660730 and action
+Current bounded checkpoint: effect global forwarding6609C0/6609F0/665470
+is canonical exact47/16/45. Distinct info/weather globals and scene state08
+policy retain the target member-compatible versus cdecl boundaries. See
+[EFFECT_GLOBAL_FORWARDERS_2026_10_28.md](EFFECT_GLOBAL_FORWARDERS_2026_10_28.md)
+and build/frontier-6609c0-20261028/formal-build.json.
+
+Preceding bounded checkpoint: InfoEffectObject transform660730 and action
 initializer660780 are canonical exact80/266. Complete initializer576-byte
 code/table payload also matches. Real float shift lifetime and native late
 alpha-case family ordering close both; pending update65CB40 stays nonexact. See

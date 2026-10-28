@@ -24971,3 +24971,25 @@ dir32_targets = [
 address = "0x00660780"
 symbol_base = "?initialize_action@InfoEffectVisualView@th105@@QAEXXZ"
 rel32_targets = ["?dispatch_indexed_event_member@InfoEffectVisualView@th105@@QAEXI@Z=0x004359F0"]
+
+[units.exact-first-effect-global-forwarders]
+kind = "probe"
+source = "src/battle/EffectGlobalForwarders.cpp"
+object = "build/match-units/ExactFirst_EffectGlobalForwarders.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current info6609C0/6609F0 member-compatible global policy and weather665470 cdecl forwarding; no incoming receiver read."
+[[units.exact-first-effect-global-forwarders.functions]]
+address = "0x006609C0"
+symbol_base = "?emit@InfoEffectGlobalCalls@th105@@QAEHHMMHH@Z"
+rel32_targets = ["?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0"]
+dir32_targets = ["?g_info_effect_emitter@th105@@3PAUInfoEffectEmitterView@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
+[[units.exact-first-effect-global-forwarders.functions]]
+address = "0x006609F0"
+symbol_base = "?set_scene_state@InfoEffectGlobalCalls@th105@@QAEXH@Z"
+dir32_targets = ["?g_effect_scene_state@th105@@3PAUEffectSceneStateView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A"]
+[[units.exact-first-effect-global-forwarders.functions]]
+address = "0x00665470"
+symbol_base = "?emit_weather_effect_665470@th105@@YAHHMMHH@Z"
+rel32_targets = ["?emit_effect@EventEffectStateView@th105@@QAEHHMMHH@Z=0x004695B0"]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
