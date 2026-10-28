@@ -99,3 +99,22 @@ c950a4e409eb06b07a9463fca62141fe5e9d6442a05e7f5a4442ef3e8e91f741.
 Receipts: trial501.full.json, trial501-map.json, trial501-action-review.json.
 The prior baseline SHA above remains historical. Explicit inlining of the
 giant surface-check helper was byte-identical and was not retained.
+
+
+## Grab608 shared call tails
+
+The sequence3/6 frame0/1 branches now prepare X and a narrowed Y before their
+native common peer-action107 call. Sequence8 frames0/1/4/5 similarly select
+peer action109/103 and converge on one Y-store/action tail; frame2 keeps its
+independent impact path. This follows the native control-flow/data lifetimes,
+rather than duplicating a callback in each pose helper. All608 direct and
+virtual call-site counts now agree with the target. Remaining arithmetic
+counts are target/candidate141/130 additions,13/15 subtractions,37/36
+multiplications; these include integer and reversed/pop x87 forms. They remain
+unresolved ownership/precision evidence, not grounds for exact acceptance.
+
+Current full candidate78912/native81136; first+17,77137 unmasked differing
+bytes. SHA-256:
+d233df12e5ebf011944056b91df85c708c3fbb7b3a18d102d611046a37db7baa.
+Receipts: formal608-build.json, formal608-full.json, trial608-y-map.json and
+trial608-y-action-review.json under the same bounded build directory.
