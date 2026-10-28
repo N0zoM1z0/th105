@@ -1652,3 +1652,5 @@ UdongeObject_update_action_state,0x005D46C0,function
 PatchouliObject_update_action_state,0x00520890,function
 SuikaObject_update_action_state,0x005B0460,function
 AliceObject_update_action_state,0x004FCAB0,function
+BattleBaseEffect_on_lost_device,0x00418070,function
+BattleBaseEffect_on_reset_device,0x00418090,function

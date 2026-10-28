@@ -26404,3 +26404,11 @@ dir32_targets = [
     "__real@c43b8000=_sakuya_action_state_006c4780",
     "?g_sakuya_action_match@th105@@3HA=_sakuya_action_state_match_identifier",
 ]
+
+[[units.gpt-web-battle-base-effect-lifetime.functions]]
+address = "0x00418070"
+symbol_base = "?control_a@BattleBaseEffectLifetimeView@th105@@UAEXXZ"
+
+[[units.gpt-web-battle-base-effect-lifetime.functions]]
+address = "0x00418090"
+symbol_base = "?control_b@BattleBaseEffectLifetimeView@th105@@UAEXXZ"

@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded frontier: Sakuya Fighter4CADB0 has complete113-action/default
+Current bounded checkpoint: BattleBaseEffect device-reset callbacks418070/418090
+are canonical exact21/21 each. The real COM OnLostDevice/OnResetDevice slots114/
+118 and exact owner vtable6D6CD0 close both leaf bodies. Three accepted lifetime
+siblings replay unchanged; initializer417FF0 retains its known private-ABI+17
+residual. See [BATTLE_EFFECT_RESET_2026_10_28.md](BATTLE_EFFECT_RESET_2026_10_28.md)
+and build/frontier-418070-20261028/{formal-build,boundary}.json.
+
+Preceding bounded candidate: Sakuya Fighter4CADB0 has complete113-action/default
 source and focused owned-extent/full76336 replay. Selected77064 remains nonexact
 at+8, frame4A8/native4D8;95 request homes agree in count, declaration extents and
 sharing remain unresolved. Native14/candidate13 tables and several call tails
