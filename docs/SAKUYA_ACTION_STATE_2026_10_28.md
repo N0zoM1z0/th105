@@ -99,3 +99,19 @@ target-audit.json,action-call-comparison.json,action-fp-comparison.json,
 native-payload-homes.json,candidate-payload-homes.json,payload-review.log}.
 Only this new unit was natively compiled; unchanged accepted receipts remain
 incremental. The default repository gate is separate from native exact replay.
+
+## Target-backed shared counter continuation
+
+The native404/405 sequence1 tails join406 at4D0240 to publish730 and call the
+counter once. Expressing that actual shared continuation removes the extra
+reachable counter sites in404/405. The new selected full payload is77064 bytes,
+SHA256 6e219ddc90d401d5c83da2667d60b72f2d518b7d980a4ab1e1c4cba1dd52edb8,
+with73205 unequal positions, first+8 and frame4A8 unchanged. Returns reduce to161;
+virtual sites184, tables13 and all95 request homes remain unchanged. Only567's
+identical-branch spawn-site merge remains in the113-action direct-call census.
+The four floating-operation census residuals remain. No exact credit follows
+from smaller output or matching per-action call counts.
+
+Updated selected receipts are formal-tail-build.json, formal-tail-audit.json
+and tail-payload-review.log in the same build scope. Initial receipts remain
+historical and are not the selected source result.

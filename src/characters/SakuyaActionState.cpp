@@ -3,7 +3,9 @@ namespace th105 {
 #define URAND(n) static_cast<float>(static_cast<unsigned>(sakuya_random(n)))
 #define KNIFE(p,r,yoff,xoff) do {int facing=B(0x104);float y=sakuya_sine(-(p)[0])*(r)+F(0xf0)+(yoff);float x; if((xoff)==0.0)x=sakuya_cosine(-(p)[0])*(r)*C(0x104)+F(0xec);else x=(sakuya_cosine(-(p)[0])*(r)+(xoff))*C(0x104)+F(0xec);spawn(800,x,y,facing,1,p,3);}while(0)
 #define AIM_KNIVES() do {float dx=(PF(0xec)-F(0xec))*C(0x104);float dy=PF(0xf0)-F(0xf0);F(0x744)=-sakuya_atan(dy,dx);if(F(0x744)<-10.0)F(0x744)=-10.0;if(F(0x744)>10.0)F(0x744)=10.0;S(0x730)=1;counter(200,45);}while(0)
+#define AIM_KNIVES_TAIL() do {float dx=(PF(0xec)-F(0xec))*C(0x104);float dy=PF(0xf0)-F(0xf0);F(0x744)=-sakuya_atan(dy,dx);if(F(0x744)<-10.0)F(0x744)=-10.0;if(F(0x744)>10.0)F(0x744)=10.0;goto knife_stream_started;}while(0)
 #define AIM_KNIVES_HIGH() do {float dx=(PF(0xec)-F(0xec))*C(0x104);float dy=PF(0xf0)-F(0xf0);F(0x744)=-sakuya_atan(dy,dx);if(F(0x744)<40.0)F(0x744)=40.0;if(F(0x744)>60.0)F(0x744)=60.0;S(0x730)=1;counter(200,45);}while(0)
+#define AIM_KNIVES_HIGH_TAIL() do {float dx=(PF(0xec)-F(0xec))*C(0x104);float dy=PF(0xf0)-F(0xf0);F(0x744)=-sakuya_atan(dy,dx);if(F(0x744)<40.0)F(0x744)=40.0;if(F(0x744)>60.0)F(0x744)=60.0;goto knife_stream_started;}while(0)
 #define SPELL_FLASH(x,y,cost) do {S(0x48a)=40;S(0x7a4)=0;S(0x7a6)=0;event(23);effect(115,x,y,B(0x104),1);sequence_window(0,cost,60);secondary_cycle();}while(0)
 #define FIELD(T,o) (*reinterpret_cast<T *>(raw+(o)))
 #define F(o) FIELD(float,o)
@@ -386,7 +388,7 @@ case 404:{
  else if(S(0x13e)==1&&!(S(0x732)%3)&&S(0x734)<7){I(0x180)=1;for(int i=0;i<15;i+=5){float request[3];request[0]=F(0x744)+4.0-S(0x734)*2+i-5.0;request[1]=5.0f;request[2]=0.0f;KNIFE(request,80.0,100.0,0.0);}phase_counter(10);dispatch_character_wave_handle(0);++S(0x734);}++S(0x732);}
  ADVANCE_TO(0);if(!I(0x144)&&((!S(0x142)&&!S(0x140)&&S(0x13e)==1)||(!S(0x142)&&!S(0x140)&&S(0x13e)==2))){set_action_and_finalize(9);return;}
  if(!S(0x13e)&&!S(0x142)){if(S(0x140)==4&&B(0x750)){next_sequence_block();effect(62,30*C(0x104)+F(0xec),F(0xf0)+130.0,B(0x104),1);}if(!S(0x142)&&S(0x140)==5){F(0xf4)=-6.0;F(0xf8)=9.0;F(0x100)=0.7f;AIM_KNIVES();}}
- if(FRAME(1,2)){F(0xf4)=-6.0;F(0xf8)=9.0;F(0x100)=0.7f;AIM_KNIVES();}return;
+ if(FRAME(1,2)){F(0xf4)=-6.0;F(0xf8)=9.0;F(0x100)=0.7f;AIM_KNIVES_TAIL();}return;
 }
 
 case 405:{
@@ -395,7 +397,7 @@ case 405:{
  else if(!(S(0x732)%3)&&S(0x734)<5){I(0x180)=1;for(int i=0;i<15;i+=5){float request[3];request[0]=F(0x744)+4.0-S(0x734)*2+i-5.0;request[1]=5.0f;request[2]=0.0f;KNIFE(request,80.0,100.0,0.0);}phase_counter(10);dispatch_character_wave_handle(0);++S(0x734);}++S(0x732);}
  ADVANCE_TO(0);if(!I(0x144)&&((!S(0x142)&&!S(0x140)&&S(0x13e)==1)||(!S(0x142)&&!S(0x140)&&S(0x13e)==2))){set_action_and_finalize(9);return;}
  if(!S(0x13e)&&!S(0x142)){if(S(0x140)==4&&B(0x750)){next_sequence_block();effect(62,30*C(0x104)+F(0xec),F(0xf0)+130.0,B(0x104),1);}if(!S(0x142)&&S(0x140)==5){F(0xf4)=-6.0;F(0xf8)=9.0;F(0x100)=0.7f;AIM_KNIVES();}}
- if(FRAME(1,2)){F(0xf4)=-6.0;F(0xf8)=9.0;F(0x100)=0.7f;AIM_KNIVES();}return;
+ if(FRAME(1,2)){F(0xf4)=-6.0;F(0xf8)=9.0;F(0x100)=0.7f;AIM_KNIVES_TAIL();}return;
 }
 
 case 406:{
@@ -404,7 +406,7 @@ case 406:{
  else if(S(0x13e)==1&&!(S(0x732)%3)&&S(0x734)<7){I(0x180)=1;for(int i=0;i<15;i+=5){float request[3];request[0]=F(0x744)+4.0-S(0x734)*2+i-5.0;request[1]=5.0f;request[2]=0.0f;KNIFE(request,80.0,100.0,0.0);}phase_counter(10);dispatch_character_wave_handle(0);++S(0x734);}++S(0x732);}
  ADVANCE_TO(0);if(!I(0x144)&&((!S(0x142)&&!S(0x140)&&S(0x13e)==1)||(!S(0x142)&&!S(0x140)&&S(0x13e)==2))){set_action_and_finalize(9);return;}
  if(!S(0x13e)&&!S(0x142)){if(S(0x140)==4&&B(0x750)){next_sequence_block();effect(62,30*C(0x104)+F(0xec),F(0xf0)+130.0,B(0x104),1);}if(!S(0x142)&&S(0x140)==5){F(0xf4)=-6.0;F(0xf8)=9.0;F(0x100)=0.7f;AIM_KNIVES_HIGH();}}
- if(FRAME(1,2)){F(0xf4)=-4.0;F(0xf8)=12.0;F(0x100)=0.7f;AIM_KNIVES_HIGH();}return;
+ if(FRAME(1,2)){F(0xf4)=-4.0;F(0xf8)=12.0;F(0x100)=0.7f;AIM_KNIVES_HIGH_TAIL();}return;
 }
 
 case 408:{landing();if(S(0x140)>3)F(0xf4)-=0.5;if(F(0xf4)<0.0)F(0xf4)=0.0;if(I(0x180))S(0x730)=1;ADVANCE_TO(0);if(S(0x13e)||S(0x142))return;if(S(0x140)==2)event(29);if(S(0x142))return;if(S(0x140)==4)I(0x180)=0;if(S(0x142))return;if(S(0x140)==5)I(0x180)=0;if(!S(0x142)&&S(0x140)==6&&S(0x730)==1)I(0x180)=1;return;}
@@ -785,6 +787,7 @@ case 798:{if(S(0x13e)==1&&I(0x144)>=60){next_sequence_block();return;}if(advance
 
 default:common_update();return;
 }
+knife_stream_started:S(0x730)=1;counter(200,45);return;
 idle_drift:
  if(!B(0x47e)){zero_motion();advance();return;}
  if(F(0xf4)>0.0){F(0xf4)-=0.5;if(F(0xf4)<0.0){zero_motion();B(0x47e)=0;}}
