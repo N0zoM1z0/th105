@@ -27,10 +27,10 @@ nominal Fighter layout or confer callee ownership.
 
 Public source: src/characters/YuyukoActionState.cpp and .hpp.
 Unit: exact-first-yuyuko-action-state. Both private and public builds emit
-59264 full bytes versus59672; first mismatch is+8 (frame immediate4F0 versus
+59428 full bytes versus59672; first mismatch is+8 (frame immediate4F0 versus
 native4E8). Canonical candidate SHA256:
-4ab59bce8db52388f2eae3f2eedb7b53fb28d08f85bd23f0d99e5b812835695f.
-The full audit reports56597 unequal/missing positional bytes. This is a strict
+193ab966a599e8084a13d72f40f4084c0bff55fc7e20ad5feb3d224907be4b44.
+The full audit reports56589 unequal/missing positional bytes. This is a strict
 mismatch diagnostic, not a semantic similarity score or accepted byte count.
 
 Reproduce serially:
@@ -42,8 +42,8 @@ scripts/repo-python scripts/compare-giant-action-switches.py yuyuko-vslot28 buil
 ```
 
 Expected comparison exit status is nonzero until exact. Receipts live under
-build/frontier-55d850-20261027/: formal-first.json, formal-audit.json,
-shotbranches-map.json and shotbranches-action-{calls,fp-ops}.json. Source and
+build/frontier-55d850-20261027/: formal-ownerorder.json, formal-ownerorder-audit.json,
+ownerorder-map.json and ownerorder-action-{calls,fp-ops}.json. Source and
 focused intermediate trials remain in .analysis/frontier-55d850-20261027/.
 No whole-corpus cold build is needed: new source/header, append-only unit and
 literal bindings have no existing accepted consumers. Existing receipts remain
@@ -82,3 +82,26 @@ Eleven new float/double literals were bound by emitted bytes and unique native
 operand addresses. No target patches, assembly, fake dependencies or forced
 registers were used. Existing tracking totals remain1427 exact functions and
 413799 authored bytes, incrementally validated rather than freshly rebuilt.
+
+## Physical-owner refinement
+
+The low-case source now follows the observed physical owner order: the truly
+shared209/212/221 and210/222 groups occur after220;224/226 are no longer placed
+next to201/202 simply because their high-level logic is similar. Flight214 is
+between211 and215. This reduces the214 span discrepancy from340 to37 bytes;
+the comparison remains nonexact. Mirrored spell arguments retain the captured
+double X but evaluate the outgoing Y/X expressions at the spawn call, consistent
+with native packet/argument setup. An explicit idle0/2 shared-label trial did
+not recover native physical placement and was not retained.
+
+Raw payload dataflow resolves all100 native and candidate homes. Their size
+pattern agrees (including four-float packets); every candidate home is8 bytes
+higher. Frames are1256/1264 bytes. Native/candidate epilogues124/126 and virtual
+sites180/178 differ. All49 crossed and8 on-surface consumers test AL in both.
+These are whole-root diagnostics, not independent semantic acceptance.
+
+The suspected airborne812 unordered-predicate discrepancy was checked against
+565851..565862 and5659C3..5659D4: both predicates reject unordered values,
+consistent with ordered less-than. No speculative NaN rewrite was made.
+Remaining710 virtual-site discrepancy is physical timeout-tail sharing, not an
+observed extra dynamic call; native difficulties0/1 share the56AC01 tail.

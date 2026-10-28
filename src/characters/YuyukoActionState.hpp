@@ -14,7 +14,6 @@ float __fastcall yuyuko_surface(YuyukoActionStateView *);
 unsigned char __fastcall yuyuko_on_surface(YuyukoActionStateView *);
 struct YuyukoActionScratch { void reset(); };
 // Pointer-only extension; never instantiate as a recovered complete Fighter.
-// Pointer-only extension; never instantiate as a recovered complete Fighter.
 class YuyukoActionStateView : public AnimationSequenceObjectView {
 public:
     void dispatch_action_state_vslot28();
@@ -379,9 +378,8 @@ public:
     __forceinline void orbit_spell(int object,float *p,bool reverse) {
         if(reverse) {
             double base=at<float>(0xec);int direction=static_cast<unsigned char>(-at<unsigned char>(0x104));
-            float y=static_cast<float>(yuyuko_sine(-p[0])*100.0+at<float>(0xf0)+100.0);
-            float x=static_cast<float>(base-yuyuko_cosine(-p[0])*100.0*facing());
-            spawn(object,x,y,direction,1,p,3);
+            spawn(object,static_cast<float>(base-yuyuko_cosine(-p[0])*100.0*facing()),
+                  static_cast<float>(yuyuko_sine(-p[0])*100.0+at<float>(0xf0)+100.0),direction,1,p,3);
         } else {
             spawn(object,static_cast<float>(yuyuko_cosine(-p[0])*100.0*facing()+at<float>(0xec)),
                   static_cast<float>(yuyuko_sine(-p[0])*100.0+at<float>(0xf0)+100.0),at<unsigned char>(0x104),1,p,3);

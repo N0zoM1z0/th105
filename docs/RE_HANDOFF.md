@@ -2,7 +2,7 @@
 
 Current bounded checkpoint: Yuyuko action-state55D850 has a complete
 unselected116-action source candidate. Native callable58619/full59672 closes;
-source emits59264 full bytes, first mismatch+8. Separate release branches,
+source emits59428 full bytes, first mismatch+8. Separate release branches,
 integer offsets, spell FP lifetimes and difficulty emission pairs are refined.
 No implementation or exact credit. See
 [YUYUKO_ACTION_STATE_2026_10_28.md](YUYUKO_ACTION_STATE_2026_10_28.md).
