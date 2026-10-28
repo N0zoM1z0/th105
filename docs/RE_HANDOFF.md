@@ -3,7 +3,8 @@
 Current bounded candidate: connect endpoint digit editor441E10 now restores
 complete IP/port decimal selection and replacement. Native cursor pair and
 branch-owned powers recover a192-byte exact prefix; full888/native891 remains
-nonexact at return scheduling. No credit. See
+nonexact at return scheduling. Port-only sibling441BD0 is now complete
+568/native570, first+106 at the same epilogue scheduling boundary. No credit. See
 [CONNECT_DIGIT_EDITOR_2026_10_28.md](CONNECT_DIGIT_EDITOR_2026_10_28.md)
 and build/frontier-441e10-20261028/cursor-pair.json.
 

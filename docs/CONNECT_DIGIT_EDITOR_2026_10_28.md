@@ -28,3 +28,16 @@ first192 exact bytes. Separate early return spelling is a negative control:
 it remains888 and moves the first difference earlier to+138. The common-return
 source is retained; no stack padding, fake liveness, register coercion or goto
 layout forcing is used. Boundary audit is retained beside the receipts.
+
+## Port-only sibling441BD0
+
+The existing exact state-one consumer identifies the same owner's port-only
+editor. It now has a complete568/native570 candidate with a106-byte exact
+prefix; first mismatch is again early register restoration around the final
+unsigned digit division. Receipt port-sibling.json preserves the combined
+editor's888/891 result unchanged. The port root updates the same cursor pair,
+uses five decimal places, and shares the confirm/cancel policy. Its power-loop
+condition rereads4-selection exactly as observed, rather than caching it.
+Natural fixed-loop reconstruction emits the native multiply/divide digit
+replacement family without hand-written instruction recipes. Complete raw
+boundary is independently audited in port-boundary.json. No exact credit.

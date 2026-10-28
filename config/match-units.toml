@@ -24906,3 +24906,16 @@ rel32_targets = [
 dir32_targets = [
  "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
 ]
+
+[[units.exact-first-connect-digit-editor.functions]]
+address = "0x00441BD0"
+symbol_base = "?update_port@ConnectDigitEditorView@th105@@QAEHXZ"
+rel32_targets = [
+ "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+ "_dispatch_indexed_event=0x0043B1A0",
+ "_endpoint_edit_buttons=0x0043B030",
+ "_is_menu_initial_press=0x0043ABD0",
+]
+dir32_targets = [
+ "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
+]

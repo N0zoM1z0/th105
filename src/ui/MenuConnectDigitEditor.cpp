@@ -13,6 +13,7 @@ struct ConnectDigitEditorView {
     unsigned short address_420[4];
     unsigned port_428;
     int update();
+    int update_port();
 };
 typedef char ConnectDigitEditor_address_offset[
     offsetof(ConnectDigitEditorView,address_420)==0x420?1:-1];
@@ -84,4 +85,45 @@ int ConnectDigitEditorView::update()
     }
     return 0;
 }
+int ConnectDigitEditorView::update_port()
+{
+    MenuCursorState *cursor = cursors_3f8;
+    unsigned char changed = static_cast<unsigned char>(
+        cursor[0].update() | (cursor[1].update() * 2));
+    if (changed & 1) {
+        dispatch_indexed_event(0x27);
+        int power = 1;
+        for (int i=0; i<4-cursors_3f8[0].selection; ++i) power *= 10;
+        cursors_3f8[1].selection = 9 - port_428 / power % 10;
+        return 0;
+    }
+    if (changed & 2) {
+        dispatch_indexed_event(0x27);
+        unsigned value = port_428;
+        int digit = 4-cursors_3f8[0].selection;
+        port_428 = 0;
+        unsigned power = 1;
+        for (int i=0; i<5; ++i) {
+            if (i == digit)
+                port_428 += (9-cursors_3f8[1].selection)*power;
+            else
+                port_428 += (value%10)*power;
+            value /= 10;
+            power *= 10;
+        }
+        return 0;
+    }
+    if (endpoint_edit_buttons()->confirm == 1) {
+        g_profile_message_main->enabled = false;
+        dispatch_indexed_event(0x28);
+        return 1;
+    }
+    if (endpoint_edit_buttons()->cancel == 1 || is_menu_initial_press(1,0,0,0)) {
+        g_profile_message_main->enabled = false;
+        dispatch_indexed_event(0x29);
+        return 2;
+    }
+    return 0;
+}
+
 }
