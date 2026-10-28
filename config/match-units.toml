@@ -24313,3 +24313,15 @@ symbol_base = "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXE@Z"
 rel32_targets = [
     "?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60",
 ]
+
+[units.exact-first-story-info-update]
+kind = "probe"
+source = "src/battle/StoryInfoRecordUpdate.cpp"
+object = "build/match-units/ExactFirst_StoryInfoRecordUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete unselected471930 story health smoothing and timer/alpha update candidate321/native323. Independent stages retain signed /120 and byte wrapping. First67 and trailing201 bytes agree only after suffix displacement; full root remains nonexact. docs/STORY_INFO_UPDATE_2026_10_28.md."
+
+[[units.exact-first-story-info-update.functions]]
+address = "0x00471930"
+symbol_base = "?update_story_471930@BattleInfoRecordF8@th105@@QAEXXZ"

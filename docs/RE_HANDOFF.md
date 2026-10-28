@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: story value binder471A80 now restores both
+Current bounded checkpoint: story InfoManager update471930 now restores
+health/secondary smoothing and timer/alpha callbacks. Complete321/native323
+remains first+67 in the second signed smoothing stage; no exact credit.
+Its first67 and shifted trailing201-byte windows agree, but full ownership
+and positional bytes do not. Rejected clamp/scoping controls remain private.
+See [STORY_INFO_UPDATE_2026_10_28.md](STORY_INFO_UPDATE_2026_10_28.md)
+and build/frontier-471930-20261028/formal-build.json.
+
+Preceding checkpoint: story value binder471A80 now restores both
 integer gauges and both float-number adapters with native release/new and
 span-capture ordering. Complete352/native351 remains first+16 on the initial
 health-address/store schedule; no credit. Same-unit20/27/648 accepted peers
@@ -201,7 +209,7 @@ that a particular standalone mismatch requires LTCG.
 | Provisional / authored / excluded / review candidates |4024 /1623 /1419 /982 |
 | Mapped / source-present |1612 /1584 |
 | Exact functions / authored bytes |1429 /413975 |
-| Configured units / functions |641 /1612 |
+| Configured units / functions |642 /1613 |
 | Accepted units |539 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
