@@ -2510,3 +2510,14 @@ __real@4052000000000000,0x006C3D40,0000000000005240,0,Patchouli50F200 native lit
 __real@4055800000000000,0x006C4D30,0000000000805540,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
 __real@4016000000000000,0x006C4D28,0000000000001640,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
 __real@4082200000000000,0x006C4360,0000000000208240,0,Patchouli50F200 native literal operands and emitted COFF values; docs/PATCHOULI_ACTION_STATE_2026_10_27.md; unselected nonexact candidate.,literal
+__real@c1380000,0x006C5518,000038c1,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4064400000000000,0x006C3D38,0000000000406440,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4066200000000000,0x006C5510,0000000000206640,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@c05b800000000000,0x006C5508,0000000000805bc0,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4022000000000000,0x006C3D68,0000000000002240,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@403a000000000000,0x006C4CA8,0000000000003a40,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@406b200000000000,0x006C5500,0000000000206b40,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@406d400000000000,0x006C54F8,0000000000406d40,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4062400000000000,0x006C54E8,0000000000406240,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4063200000000000,0x006C54E0,0000000000206340,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@c1600000,0x006C3E84,000060c1,0,Yuyuko55D850 native literal operands and emitted COFF values; docs/YUYUKO_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal

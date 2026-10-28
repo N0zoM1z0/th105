@@ -1,13 +1,16 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Patchouli action-state50F200 has a complete
-unselected109-action source candidate. Native callable54452/full55610 closes;
-source emits54466 full bytes, first mismatch+8. Flight restoration and separate
-entry branches are refined; all91 payload homes resolve, but their stack
-positions differ by8 bytes. One low owner pair and ground810 call sites merge. No implementation or exact credit.
-[PATCHOULI_ACTION_STATE_2026_10_27.md](PATCHOULI_ACTION_STATE_2026_10_27.md)
-records raw evidence, remaining semantic questions and focused reproduction.
-Receipts: build/frontier-50f200-20261027/.
+Current bounded checkpoint: Yuyuko action-state55D850 has a complete
+unselected116-action source candidate. Native callable58619/full59672 closes;
+source emits59264 full bytes, first mismatch+8. Separate release branches,
+integer offsets, spell FP lifetimes and difficulty emission pairs are refined.
+No implementation or exact credit. See
+[YUYUKO_ACTION_STATE_2026_10_28.md](YUYUKO_ACTION_STATE_2026_10_28.md).
+Receipts: build/frontier-55d850-20261027/.
+
+Preceding Patchouli203faa8b remains complete but unselected/nonexact:
+54466/full55610, first+8;109 actions and91 payload homes resolved. See
+[PATCHOULI_ACTION_STATE_2026_10_27.md](PATCHOULI_ACTION_STATE_2026_10_27.md).
 
 Preceding Tenshi80a9f71d remains complete but unselected/nonexact:49096/full48968,
 first+8, two low-owner pairs merged. Its47,784-byte native root and110 actions
@@ -77,7 +80,7 @@ that a particular standalone mismatch requires LTCG.
 | Provisional / authored / excluded / review candidates |4024 /1621 /1419 /984 |
 | Mapped / source-present |1610 /1582 |
 | Exact functions / authored bytes |1427 /413799 |
-| Configured units / functions |629 /1599 |
+| Configured units / functions |632 /1602 |
 | Accepted units |537 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.

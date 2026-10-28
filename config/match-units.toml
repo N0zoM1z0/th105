@@ -23943,3 +23943,44 @@ rel32_targets = [
     "?copy_health@PatchouliActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@PatchouliActionStateView@th105@@QAEXXZ=0x004740C0",
 ]
+
+[units.exact-first-yuyuko-action-state]
+kind = "probe"
+source = "src/characters/YuyukoActionState.cpp"
+object = "build/match-units/ExactFirst_YuyukoActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete unselected55D850 candidate:116 actions; target58619/full59672. Native CFG closed; semantic and physical-owner review remains. No implementation/exact credit; docs/YUYUKO_ACTION_STATE_2026_10_28.md."
+
+[[units.exact-first-yuyuko-action-state.functions]]
+address = "0x0055D850"
+symbol_base = "?dispatch_action_state_vslot28@YuyukoActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+    "?spawn@YuyukoActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?landing@YuyukoActionStateView@th105@@QAEEXZ=0x00473DD0",
+    "?zero_motion@YuyukoActionStateView@th105@@QAEXXZ=0x0045AF40",
+    "?advance@YuyukoActionStateView@th105@@QAEEXZ=0x004351C0",
+    "?crossed@YuyukoActionStateView@th105@@QAEHXZ=0x005F9310",
+    "?yuyuko_surface@th105@@YIMPAVYuyukoActionStateView@1@@Z=0x00435D60",
+    "?yuyuko_random_u32@th105@@YAIXZ=0x004066B0",
+    "?effect@YuyukoActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?event@YuyukoActionStateView@th105@@QAEXI@Z=0x004359F0",
+    "?yuyuko_on_surface@th105@@YIEPAVYuyukoActionStateView@1@@Z=0x00435DC0",
+    "?flip@YuyukoActionStateView@th105@@QAEXXZ=0x00478E60",
+    "__ftol2_sse=0x0068A1A0",
+    "?yuyuko_cosine@th105@@YANM@Z=0x004063D0",
+    "?yuyuko_sine@th105@@YANM@Z=0x00406360",
+    "?counter@YuyukoActionStateView@th105@@QAEXFH@Z=0x0046BF30",
+    "?reset@YuyukoActionScratch@th105@@QAEXXZ=0x00435110",
+    "?directional@YuyukoActionStateView@th105@@QAEEH@Z=0x00478EE0",
+    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?phase_counter@YuyukoActionStateView@th105@@QAEHH@Z=0x00478DF0",
+    "?yuyuko_atan@th105@@YAMMM@Z=0x00406540",
+    "?yuyuko_random@th105@@YAIH@Z=0x004067D0",
+    "?texture@YuyukoActionStateView@th105@@QAEXCF@Z=0x0045F560",
+    "?sequence_window@YuyukoActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?secondary_cycle@YuyukoActionStateView@th105@@QAEXXZ=0x00473F90",
+    "?finalize@YuyukoActionStateView@th105@@QAEXH@Z=0x0045D110",
+    "?copy_health@YuyukoActionStateView@th105@@QAEXXZ=0x0045B250",
+    "?common_update@YuyukoActionStateView@th105@@QAEXXZ=0x004740C0",
+]

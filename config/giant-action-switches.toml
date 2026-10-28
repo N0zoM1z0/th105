@@ -698,3 +698,40 @@ destination_table = "0x0051C9CC"
 destination_count = 32
 index_table = "0x0051CA4C"
 expected_physical_groups = 32
+
+# Yuyuko action-owner mapping is diagnostic only; no exact credit.
+[[roots]]
+name = "yuyuko-vslot28"
+address = "0x0055D850"
+callable_end = "0x0056BD4B"
+metadata_end = "0x0056C168"
+expected_direct_call_sites = 885
+expected_direct_call_targets = 27
+expected_ret_opcodes = 124
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x0056BD4C"
+destination_count = 31
+index_table = "0x0056BDC8"
+expected_physical_groups = 31
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 418
+destination_table = "0x0056BEAC"
+destination_count = 28
+index_table = "0x0056BF1C"
+expected_physical_groups = 28
+
+[[roots.regions]]
+name = "high"
+case_min = 501
+case_max = 731
+destination_table = "0x0056BF94"
+destination_count = 51
+index_table = "0x0056C060"
+expected_physical_groups = 51
