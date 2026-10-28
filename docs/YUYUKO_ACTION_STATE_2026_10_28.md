@@ -116,7 +116,7 @@ extra DWORD store/reload before its QWORD capture. The isolated capturex
 trial removes that unsupported round trip, emitting59420 bytes; the frame
 remains4F0. This does not narrow any arithmetic or assume RNG is pure.
 
-The seven aim_fan sites and action561 atan call now retain rounded DX while
+The seven aim_fan sites and action562 atan call now retain rounded DX while
 computing DY in the first argument. Native561858,561919,561CBD,561D7E,
 562553,562ADF,562BBB and5672D9 place DX in outgoing[esp+4] before loading
 peer Y. No intervening helper or object write exists in these calculations.
