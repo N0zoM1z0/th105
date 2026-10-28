@@ -11373,7 +11373,7 @@ rel32_targets = [
   "?release_all_46eeb0@InfoEffectManagerReleaseView@th105@@QAEXXZ=0x0046EEB0",
   "?bind_46a620@InfoShortRecordBindView@th105@@QAEXPAXPAUFighter@2@@Z=0x0046A620",
   "?bind_fighter_46fa90@BattleInfoRecordBindView@th105@@QAEXPAUFighter@2@@Z=0x0046FA90",
-  "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXH@Z=0x00432550",
+  "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXE@Z=0x00432550",
 ]
 dir32_targets = [
   "?g_scene_renderer@th105@@3PAUSceneRendererFighterPairView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
@@ -11400,7 +11400,7 @@ symbol_base = "?refresh_roster_state_471ec0@CInfoManagerStoryBindingView@th105@@
 rel32_targets = [
   "?bind_46a620@InfoShortRecordBindView@th105@@QAEXPAXPAUFighter@2@@Z=0x0046A620",
   "?attach_story_fighter_471be0@BattleInfoStoryRecordView@th105@@QAEXPAUFighter@2@@Z=0x00471BE0",
-  "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXH@Z=0x00432550",
+  "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXE@Z=0x00432550",
 ]
 dir32_targets = [
   "?g_scene_renderer@th105@@3PAUSceneRendererFighterPairView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
@@ -11413,7 +11413,7 @@ rel32_targets = [
   "?release_all_46eeb0@InfoEffectManagerReleaseView@th105@@QAEXXZ=0x0046EEB0",
   "?bind_46a620@InfoShortRecordBindView@th105@@QAEXPAXPAUFighter@2@@Z=0x0046A620",
   "?bind_fighter_46fa90@BattleInfoRecordBindView@th105@@QAEXPAUFighter@2@@Z=0x0046FA90",
-  "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXH@Z=0x00432550",
+  "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXE@Z=0x00432550",
   "?attach_story_fighter_471be0@BattleInfoStoryRecordView@th105@@QAEXPAUFighter@2@@Z=0x00471BE0",
 ]
 dir32_targets = [
@@ -24288,4 +24288,19 @@ rel32_targets = [
     "__invalid_parameter_noinfo=0x0068A143",
     "??0SequenceRotateSprite94@th105@@QAE@ABU01@@Z=0x00455160",
     "?push_back@?$deque@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@@std@@QAEXABUSequenceRotateCard@th105@@@Z=0x0045DBA0",
+]
+
+[units.exact-first-info-long-record-binding]
+kind = "probe"
+source = "src/battle/InfoLongRecordBinding.cpp"
+object = "build/match-units/ExactFirst_InfoLongRecordBinding.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete107-byte432550 resource/sprite/reset binding. Native side parameter is consumed as byte; coherent byte-side declaration also preserves all five functions in the two affected accepted caller units. docs/INFO_LONG_RECORD_BINDING_2026_10_28.md."
+
+[[units.exact-first-info-long-record-binding.functions]]
+address = "0x00432550"
+symbol_base = "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXE@Z"
+rel32_targets = [
+    "?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60",
 ]

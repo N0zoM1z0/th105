@@ -1,6 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Fighter sequence rotation45DDA0 now uses the real
+Current bounded checkpoint: long InfoManager record binder432550 is canonical
+exact107/107. Native byte-side consumption and coherent caller declarations
+recover the actual output homes. All five functions in its two affected
+accepted caller units remain exact. No global flags or data bindings changed.
+See [INFO_LONG_RECORD_BINDING_2026_10_28.md](INFO_LONG_RECORD_BINDING_2026_10_28.md)
+and build/frontier-432550-20261028/formal-*.json. Together with tangent406430,
+the new authored exact increment is176 bytes; generated sprite copy455160
+remains excluded and receives no authored credit.
+
+Preceding checkpoint: Fighter sequence rotation45DDA0 now uses the real
 VC8 deque and a nontrivial polymorphic card temporary. Main265/265 remains
 12 unequal bytes at+123, confined to prefix-load/store scheduling. Generated
 record destructor8 bytes, unwind/handler44 bytes and metadata44 bytes replay
@@ -181,11 +190,11 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1622 /1419 /983 |
-| Mapped / source-present |1611 /1583 |
-| Exact functions / authored bytes |1428 /413868 |
-| Configured units / functions |640 /1610 |
-| Accepted units |538 |
+| Provisional / authored / excluded / review candidates |4024 /1623 /1419 /982 |
+| Mapped / source-present |1612 /1584 |
+| Exact functions / authored bytes |1429 /413975 |
+| Configured units / functions |641 /1611 |
+| Accepted units |539 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
 Subsequent focused comparisons add story refresh860, replay naming1322 and

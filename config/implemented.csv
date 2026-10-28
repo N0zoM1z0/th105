@@ -1581,3 +1581,4 @@ update_weather_emission
 InfoEffectObject_update_state
 CBattleManager_run_transition_phase_5
 lookup_orientation_tangent
+InfoLongRecord_bind_resource_432550
