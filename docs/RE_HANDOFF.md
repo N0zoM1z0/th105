@@ -1,13 +1,17 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Remilia action-state 545090 has a complete
-unselected 107-action candidate. Native callable 61962/full 63316 closes;
-source emits 62976 full bytes, first mismatch +8 (frame 4F8 versus 4F0).
-All sixteen native tables and 101 payload homes are resolved. Packet values
-beyond the written native extents, physical tails and stack ownership remain
-unrecovered. No implementation or exact credit.
-[REMILIA_ACTION_STATE_2026_10_28.md](REMILIA_ACTION_STATE_2026_10_28.md)
-records evidence and focused replay. Receipts: build/frontier-545090-20261028/.
+Current bounded checkpoint: Komachi action-state 5E20E0 has a complete
+unselected 108-action candidate. Native callable 63993/full 65176 closes;
+source emits 65156 full bytes, first +8 (frame 498 versus 490).
+All seven tables and 94 payload homes resolve. Byte-direction call view is
+supported by the actual manager; exact stack/physical ownership remains open.
+No implementation or exact credit.
+[KOMACHI_ACTION_STATE_2026_10_28.md](KOMACHI_ACTION_STATE_2026_10_28.md)
+records evidence and focused replay. Receipts: build/frontier-5e20e0-20261028/.
+
+Preceding Remilia 763f7fb3 remains complete but unselected/nonexact:
+62976/full63316, first +8; 107 actions, sixteen tables and 101 payload homes.
+[REMILIA_ACTION_STATE_2026_10_28.md](REMILIA_ACTION_STATE_2026_10_28.md).
 
 Preceding Yukari b491d153 remains complete but unselected/nonexact:
 57792/full58248, first +8; 124 actions and 101 payload homes resolved. See

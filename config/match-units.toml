@@ -24075,3 +24075,47 @@ rel32_targets = [
     "?copy_health@RemiliaActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@RemiliaActionStateView@th105@@QAEXXZ=0x004740C0",
 ]
+
+[units.exact-first-komachi-action-state]
+kind = "probe"
+source = "src/characters/KomachiActionState.cpp"
+object = "build/match-units/ExactFirst_KomachiActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete unselected 5E20E0 candidate: 108 actions; target 63993/full65176. Native CFG closed; semantic and physical-owner review remains. No implementation/exact credit; docs/KOMACHI_ACTION_STATE_2026_10_28.md."
+
+[[units.exact-first-komachi-action-state.functions]]
+address = "0x005e20e0"
+symbol_base = "?dispatch_action_state_vslot28@KomachiActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+    "?at@KomachiCardDeque@th105@@QAEPAFI@Z=0x004399C0",
+    "?effect@KomachiActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?landing@KomachiActionStateView@th105@@QAEEXZ=0x00473DD0",
+    "?zero_motion@KomachiActionStateView@th105@@QAEXXZ=0x0045AF40",
+    "?advance@KomachiActionStateView@th105@@QAEEXZ=0x004351C0",
+    "?crossed@KomachiActionStateView@th105@@QAEHXZ=0x005F9310",
+    "?komachi_surface@th105@@YIMPAVKomachiActionStateView@1@@Z=0x00435D60",
+    "?komachi_random_u32@th105@@YAIXZ=0x004066B0",
+    "?event@KomachiActionStateView@th105@@QAEXI@Z=0x004359F0",
+    "?komachi_on_surface@th105@@YIEPAVKomachiActionStateView@1@@Z=0x00435DC0",
+    "?flip@KomachiActionStateView@th105@@QAEXXZ=0x00478E60",
+    "__ftol2_sse=0x0068A1A0",
+    "?komachi_cosine@th105@@YANM@Z=0x004063D0",
+    "?komachi_sine@th105@@YANM@Z=0x00406360",
+    "?counter@KomachiActionStateView@th105@@QAEXFH@Z=0x0046BF30",
+    "?reset@KomachiActionScratch@th105@@QAEXXZ=0x00435110",
+    "?directional@KomachiActionStateView@th105@@QAEEH@Z=0x00478EE0",
+    "?komachi_random@th105@@YAIH@Z=0x004067D0",
+    "?spawn@KomachiActionStateView@th105@@QAEHHMMEHPBXH@Z=0x00465190",
+    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?phase_counter@KomachiActionStateView@th105@@QAEHH@Z=0x00478DF0",
+    "?komachi_atan@th105@@YAMMM@Z=0x00406540",
+    "?texture@KomachiActionStateView@th105@@QAEXCF@Z=0x0045F560",
+    "?sequence_window@KomachiActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?secondary_cycle@KomachiActionStateView@th105@@QAEXXZ=0x00473F90",
+    "?forward_hit_quantity@AnimationSequenceObjectView@th105@@QAEXHHFC@Z=0x0045C060",
+    "?layout@KomachiActionStateView@th105@@QAEXM@Z=0x004359D0",
+    "?finalize@KomachiActionStateView@th105@@QAEXH@Z=0x0045D110",
+    "?copy_health@KomachiActionStateView@th105@@QAEXXZ=0x0045B250",
+    "?common_update@KomachiActionStateView@th105@@QAEXXZ=0x004740C0",
+]

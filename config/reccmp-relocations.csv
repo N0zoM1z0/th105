@@ -2555,3 +2555,10 @@ __real@422a0000,0x006C5278,00002a42,0,Remilia545090 native literal operands and 
 __real@4053000000000000,0x006C5268,0000000000005340,0,Remilia545090 native literal operands and emitted COFF values; docs/REMILIA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
 __real@c046800000000000,0x006C3CC8,00000000008046c0,0,Remilia545090 native literal operands and emitted COFF values; docs/REMILIA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
 __real@c060e00000000000,0x006C5260,0000000000e060c0,0,Remilia545090 native literal operands and emitted COFF values; docs/REMILIA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+?komachi_boundary_6fbd24@th105@@3MA,0x006FBD24,00000000,0,Komachi 5E20E0 runtime float boundary operand; loader-zero address binding not a constant; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,address
+?komachi_boundary_6fbd1c@th105@@3MA,0x006FBD1C,00000000,0,Komachi 5E20E0 runtime float boundary operand; loader-zero address binding not a constant; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,address
+__real@c2a00000,0x006C438C,0000a0c2,0,Komachi5e20e0 native literal operands and emitted COFF values; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4067000000000000,0x006C4778,0000000000006740,0,Komachi5e20e0 native literal operands and emitted COFF values; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4064800000000000,0x006C43B8,0000000000806440,0,Komachi5e20e0 native literal operands and emitted COFF values; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4065e00000000000,0x006C5C48,0000000000e06540,0,Komachi5e20e0 native literal operands and emitted COFF values; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@c3160000,0x006C4760,000016c3,0,Komachi5e20e0 native literal operands and emitted COFF values; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal

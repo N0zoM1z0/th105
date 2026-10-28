@@ -817,3 +817,40 @@ destination_table = "0x005545F0"
 destination_count = 30
 index_table = "0x00554668"
 expected_physical_groups = 30
+
+# Komachi action-owner mapping is diagnostic only; no exact credit.
+[[roots]]
+name = "komachi-vslot28"
+address = "0x005E20E0"
+callable_end = "0x005F1AD9"
+metadata_end = "0x005F1F78"
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x005F1AF0"
+destination_count = 34
+candidate_destination_counts = [33, 34]
+index_table = "0x005F1B78"
+expected_physical_groups = 34
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 526
+destination_table = "0x005F1C5C"
+destination_count = 41
+candidate_destination_counts = [40, 41]
+index_table = "0x005F1D00"
+expected_physical_groups = 41
+
+[[roots.regions]]
+name = "high"
+case_min = 541
+case_max = 770
+destination_table = "0x005F1DE4"
+destination_count = 31
+candidate_destination_counts = [30, 31]
+index_table = "0x005F1E60"
+expected_physical_groups = 31
