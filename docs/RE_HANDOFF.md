@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: Fighter cutin resource destructor465420 now has
+Current bounded candidate: sprite rectangle renderer4070C0 is complete
+153/native153 under the independently available strict-FP context. Default
+161 uses a different half-pixel pool; strict recovers x87 work but still moves
+the texture-handle load before geometry stores. No credit. See
+[SPRITE_RECTANGLE_RENDER_2026_10_28.md](SPRITE_RECTANGLE_RENDER_2026_10_28.md)
+and build/frontier-4070c0-20261028/strict-fp.json.
+
+Preceding bounded candidate: Fighter cutin resource destructor465420 now has
 complete natural sprite/resource lifetime source. Candidate95/native96 remains
 nonexact+40 on handle load versus EH-state publication; no credit. See
 [FIGHTER_CUTIN_LIFETIME_2026_10_28.md](FIGHTER_CUTIN_LIFETIME_2026_10_28.md)

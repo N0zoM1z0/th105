@@ -25043,3 +25043,19 @@ dir32_targets = [
  "??_7IColor@@6B@=??_7IColor@@6B@",
  "___security_cookie=___security_cookie",
 ]
+
+[units.exact-first-sprite-rectangle-render]
+kind = "probe"
+source = "src/battle/SpriteRectangleRender.cpp"
+object = "build/match-units/ExactFirst_SpriteRectangleRender.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Complete4070C0 four-edge sprite rectangle render using real vertex storage and existing D3D interfaces."
+[[units.exact-first-sprite-rectangle-render.functions]]
+address = "0x004070C0"
+symbol_base = "?render_rectangle@SpriteRectangleRenderView@th105@@QAEXMMMM@Z"
+rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0"]
+dir32_targets = [
+ "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+ "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base",
+]
