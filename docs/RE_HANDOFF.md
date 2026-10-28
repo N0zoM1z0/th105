@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Yuyuko captured-X width and eight aim-argument
+Current bounded checkpoint: Patchouli request-branch ownership, argument
+lifetimes and flight214 physical placement now follow native evidence.
+The complete unselected candidate is55026/full55610, first+8, frame468.
+All109 actions have matching per-action call/FP-site counts and91 resolved
+payload homes; these diagnostics do not establish exactness. See
+[PATCHOULI_ACTION_STATE_2026_10_27.md](PATCHOULI_ACTION_STATE_2026_10_27.md)
+and build/frontier-50f200-20261027/formal-ownerorder*.json. No exact credit.
+
+Preceding checkpoint: Yuyuko captured-X width and eight aim-argument
 lifetimes now follow raw native storage/evaluation evidence. The complete
 candidate remains unselected/nonexact,59456/full59672, first+8, frame4F0.
 All100 payload homes resolve. See

@@ -105,7 +105,7 @@ boundary. The emission argument order captures layer/direction before the
 surface query and consumes the cosine afterward. The ground-810 initializer
 ordering trial was byte-neutral and was not retained.
 
-Current full candidate: 54466 bytes versus 55610 target bytes, first mismatch
+Prior surface-ring candidate: 54466 bytes versus 55610 target bytes, first mismatch
 still +8 (frame 0x468 versus 0x460). SHA-256:
 87055307b1883af792f0bc7cec13481185554ce128ec4728b05ae7f66844d921.
 The strict full comparison reports 52911 unequal/missing/extra positional
@@ -121,6 +121,51 @@ reachable-call differences now remain only at 500/501 (three native spawn
 sites versus two compiled sites). Arithmetic census also differs at 502/503.
 These are diagnostics, not acceptance or a proof of complete semantics.
 
-Latest focused receipts use the surface-ring prefix under the artifact
+The preceding focused receipts use the surface-ring prefix under the artifact
 folder. No compiler flag, dependency ABI, existing relocation or accepted
 consumer changed. Broader rebuilding is not warranted by this source edit.
+
+
+## Argument lifetimes and native branch ownership, October28
+
+The current complete unselected candidate emits55026/full55610 bytes,
+first+8 (468 frame versus460), SHA256
+0c76d2ef636a0ee3f83ad324a3209398f302deb286552cc56cb67a3114f96b54.
+The unmasked audit reports52741 unequal/missing positions, not a semantic
+percentage. Public replay exactly reproduces the private ownerorder payload.
+Receipts: build/frontier-50f200-20261027/formal-ownerorder.json and
+formal-ownerorder-audit.json. No exact/source-selection ledger changes.
+
+- Nineteen atan sites retain rounded DX and evaluate DY in the outgoing
+  argument. Native513C82 through51BC91 place DX before loading peer Y.
+  All nineteen now have that instruction order; eight preceding32-byte
+  windows match verbatim, while other scratch offsets still differ.
+  These bounded windows are not function acceptance.
+- rising820 captures current Y in QWORD before surface():51800F/518018 and
+  51830E/518317 directly spill/subtract the native binary64 temporary.
+  The double local removes the prior unsupported DWORD round trip.
+- Native502 upgraded path5171CA..51722F and ordinary path517231..51728E
+  each prepare their own complete request arguments before shared call51729C.
+  Source now keeps each packet and request inside its branch, rather than
+  merging packet pointers and computing coordinates only afterward. The
+  separate sequence1 request remains unchanged. The502/503 physical span
+  residuals fall from79/113 to2/2 bytes, with two spawn sites still present.
+- Native500 request516B31 and516BDC each prepares effect128 immediately
+  afterward; the effect-call tail is shared at516C20. A small source emission
+  helper keeps each packet/request/effect group within the corresponding
+  skill-level branch. The501 peer independently has the same shape.
+  Their three spawn sites and arithmetic-site counts are recovered; their
+  physical spans are now one byte longer than native, not accepted exact.
+- Flight214 now appears between211 and215, following native physical owner
+  order rather than after226. Its physical span discrepancy drops from237
+  to31 bytes. This changes placement, not gameplay condition order.
+
+The whole-root per-action direct/virtual-call and arithmetic-operation counts
+now agree (ownerorder-action-calls.json and ownerorder-action-fp-ops.json are
+empty diagnostic deltas). Global physical counts still differ because of
+sharing: native/candidate virtual sites172/165, epilogues133/127, crossed
+consumers40/39 and on-surface8/7. All observed bool consumers test AL.
+Payload dataflow resolves91 homes with no unknown pointers; candidate homes
+remain uniformly+8. The residual frame, physical sharing, register allocation
+and complete semantics remain open. No compiler flags, ABI contracts, forced
+registers, padding, target bytes or unrelated accepted units were changed.

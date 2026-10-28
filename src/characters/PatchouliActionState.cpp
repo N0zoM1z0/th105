@@ -187,56 +187,6 @@ case 212:
 case 221:high_jump(8.5f,15.0f);return;
 case 210:high_jump(-8.5f,15.0f);return;
 case 211:high_jump(2.0f,19.0f);return;
-case 215:
-    landing();
-    if(F(0xf4)>0.0f){F(0xf4)=static_cast<float>(F(0xf4)-0.5);if(F(0xf4)<0.0f)F(0xf4)=0.0f;}
-    if(F(0xf4)<0.0f){F(0xf4)=static_cast<float>(F(0xf4)+0.5);if(F(0xf4)>0.0f)F(0xf4)=0.0f;}
-    if(advance())set_action_and_finalize(0);
-    return;
-case 220:high_jump(0.0f,19.0f);return;
-case 222:high_jump(-8.5f,15.0f);return;
-case 223:
-    landing();B(0x47e)=1;advance();
-    if(sequence_index_13e==1) {
-        if(time_counter_144%5==0)dash_dust(false);
-        short ticks=++S(0x730);
-        if((I(0x6b4)*facing()<=0 && ticks>=15) || ticks>=60){set_action_and_finalize(204);return;}
-    }
-    if(entry(1)){F(0xf4)=6.0f;dash_effects(false,80.0,true);}
-    return;
-case 224:
-    if(sequence_index_13e==2) {
-        landing();
-        if(sequence_index_13e==2){F(0xf4)=static_cast<float>(F(0xf4)+2.0);if(F(0xf4)>0.0f)F(0xf4)=0.0f;}
-    }
-    if(!patchouli_on_surface(this) && time_counter_144%5==0)dash_dust(true);
-    if(sequence_index_13e<2) {
-        F(0xf8)-=F(0x100);
-        if(static_cast<unsigned char>(crossed())){zero_motion();F(0xf0)=patchouli_surface(this);select_sequence(2);return;}
-    }
-    if(advance()){set_action_and_finalize(0);return;}
-    if(!sequence_index_13e && frame_index_140==1 && !frame_timer_142) {
-        F(0xf4)=-10.0f;F(0xf8)=3.0f;F(0x100)=0.3f;dash_effects(true,80.0,false);
-    }return;
-case 225:
-    if(sequence_index_13e>=1) {
-        F(0xf8)-=F(0x100);
-        if(static_cast<unsigned char>(crossed())){zero_motion();F(0xf0)=patchouli_surface(this);set_action_and_finalize(10);return;}
-    }
-    if(sequence_index_13e>=2 && time_counter_144%5==0)dash_dust(true);
-    if(advance())set_action_and_finalize(9);
-    if(entry(1)){F(0xf4)=-11.0f;F(0xf8)=4.0f;F(0x100)=0.5f;dash_effects(true,120.0,false);}
-    return;
-case 226:
-    F(0xf8)-=F(0x100);
-    if(static_cast<unsigned char>(crossed())){zero_motion();F(0xf0)=patchouli_surface(this);set_action_and_finalize(10);return;}
-    if(sequence_index_13e==1 && time_counter_144%5==0)dash_dust(false);
-    advance();
-    if(!time_counter_144) {
-        if(entry(1)){S(0x730)=0;F(0xf4)=8.0f;F(0xf8)=3.0f;F(0x100)=0.4f;dash_effects(false,110.0,true);}
-        if(entry(2))flip();
-    }
-    return;
 case 214: {
     if(advance()){set_action_and_finalize(9);return;}
     if(entry(1)) {
@@ -331,6 +281,57 @@ flight_frame_done:
     }
     return;
 }
+
+case 215:
+    landing();
+    if(F(0xf4)>0.0f){F(0xf4)=static_cast<float>(F(0xf4)-0.5);if(F(0xf4)<0.0f)F(0xf4)=0.0f;}
+    if(F(0xf4)<0.0f){F(0xf4)=static_cast<float>(F(0xf4)+0.5);if(F(0xf4)>0.0f)F(0xf4)=0.0f;}
+    if(advance())set_action_and_finalize(0);
+    return;
+case 220:high_jump(0.0f,19.0f);return;
+case 222:high_jump(-8.5f,15.0f);return;
+case 223:
+    landing();B(0x47e)=1;advance();
+    if(sequence_index_13e==1) {
+        if(time_counter_144%5==0)dash_dust(false);
+        short ticks=++S(0x730);
+        if((I(0x6b4)*facing()<=0 && ticks>=15) || ticks>=60){set_action_and_finalize(204);return;}
+    }
+    if(entry(1)){F(0xf4)=6.0f;dash_effects(false,80.0,true);}
+    return;
+case 224:
+    if(sequence_index_13e==2) {
+        landing();
+        if(sequence_index_13e==2){F(0xf4)=static_cast<float>(F(0xf4)+2.0);if(F(0xf4)>0.0f)F(0xf4)=0.0f;}
+    }
+    if(!patchouli_on_surface(this) && time_counter_144%5==0)dash_dust(true);
+    if(sequence_index_13e<2) {
+        F(0xf8)-=F(0x100);
+        if(static_cast<unsigned char>(crossed())){zero_motion();F(0xf0)=patchouli_surface(this);select_sequence(2);return;}
+    }
+    if(advance()){set_action_and_finalize(0);return;}
+    if(!sequence_index_13e && frame_index_140==1 && !frame_timer_142) {
+        F(0xf4)=-10.0f;F(0xf8)=3.0f;F(0x100)=0.3f;dash_effects(true,80.0,false);
+    }return;
+case 225:
+    if(sequence_index_13e>=1) {
+        F(0xf8)-=F(0x100);
+        if(static_cast<unsigned char>(crossed())){zero_motion();F(0xf0)=patchouli_surface(this);set_action_and_finalize(10);return;}
+    }
+    if(sequence_index_13e>=2 && time_counter_144%5==0)dash_dust(true);
+    if(advance())set_action_and_finalize(9);
+    if(entry(1)){F(0xf4)=-11.0f;F(0xf8)=4.0f;F(0x100)=0.5f;dash_effects(true,120.0,false);}
+    return;
+case 226:
+    F(0xf8)-=F(0x100);
+    if(static_cast<unsigned char>(crossed())){zero_motion();F(0xf0)=patchouli_surface(this);set_action_and_finalize(10);return;}
+    if(sequence_index_13e==1 && time_counter_144%5==0)dash_dust(false);
+    advance();
+    if(!time_counter_144) {
+        if(entry(1)){S(0x730)=0;F(0xf4)=8.0f;F(0xf8)=3.0f;F(0x100)=0.4f;dash_effects(false,110.0,true);}
+        if(entry(2))flip();
+    }
+    return;
 
 case 300:
     landing();
@@ -1274,8 +1275,7 @@ case 710:
     if(entry(1)) {
         dispatch_character_wave_handle(11);F(0x73c)=-90.0f;
         float dx=static_cast<float>((peer()->at<float>(0xec)-F(0xec))*static_cast<double>(facing()));
-        float dy=peer()->at<float>(0xf0)-F(0xf0);
-        F(0x73c)=static_cast<float>(-patchouli_atan(dy,dx)-90.0);
+        F(0x73c)=static_cast<float>(-patchouli_atan(peer()->at<float>(0xf0)-F(0xf0),dx)-90.0);
         F(0x744)=static_cast<float>(F(0x73c)+180.0);
         F(0xf4)=static_cast<float>(3.0-static_cast<float>(patchouli_random(6)));
         F(0xf8)=static_cast<float>(static_cast<float>(patchouli_random(10))*static_cast<double>(0.1f)+5.5);

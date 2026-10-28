@@ -135,8 +135,7 @@ public:
 
     __forceinline void aim(float low,float high) {
         float dx=static_cast<float>((peer()->at<float>(0xec)-at<float>(0xec))*static_cast<double>(facing()));
-        float dy=peer()->at<float>(0xf0)-at<float>(0xf0);
-        at<float>(0x744)=-patchouli_atan(dy,dx);
+        at<float>(0x744)=-patchouli_atan(peer()->at<float>(0xf0)-at<float>(0xf0),dx);
         if(at<float>(0x744)<low)at<float>(0x744)=low;
         if(at<float>(0x744)>high)at<float>(0x744)=high;
     }
@@ -215,6 +214,12 @@ public:
         p[2]=2.0f;spawn_offset(801,100,140.0,p,3);
     }
 
+    __forceinline void ground810_emit(float speed,float mode) {
+        float p[3]={0.0f,speed,mode};spawn_offset(810,60,114.0,p,3);
+        int direction=at<unsigned char>(0x104);
+        effect(128,static_cast<float>(200*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec))),
+               at<float>(0xf0),direction,-1);
+    }
     __forceinline void ground810(unsigned control,float speed) {
         landing();at<unsigned char>(0x17c)=0;
         if(!at<int>(control))at<unsigned char>(0x750)=0;
@@ -222,11 +227,8 @@ public:
         if(advance())set_action_and_finalize(0);
         if(entry(1)){set_action_and_finalize(0);return;}
         if(!sequence_index_13e && !frame_timer_142 && frame_index_140==7) {
-            if(at<signed char>(0x604)<3){float p[3]={0.0f,speed,0.0f};spawn_offset(810,60,114.0,p,3);}
-            else {float p[3]={0.0f,speed,6.0f};spawn_offset(810,60,114.0,p,3);}
-            int direction=at<unsigned char>(0x104);
-            effect(128,static_cast<float>(200*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec))),
-                   at<float>(0xf0),direction,-1);
+            if(at<signed char>(0x604)<3)ground810_emit(speed,0.0f);
+            else ground810_emit(speed,6.0f);
             phase_counter(50);counter(200,60);dispatch_character_wave_handle(3);
         }
         if(sequence_index_13e==1 && !frame_timer_142 && frame_index_140==2) {
@@ -249,10 +251,9 @@ public:
         if(entry(1)){set_action_and_finalize(9);return;}
         if(entry(2)){set_action_and_finalize(9);return;}
         if(!sequence_index_13e && !frame_timer_142 && frame_index_140==3) {
-            float ordinary[3],upgraded[3];float *p;
-            if(at<signed char>(0x604)<3){ordinary[0]=angle;ordinary[1]=15.0f;ordinary[2]=0.0f;p=ordinary;}
-            else {upgraded[0]=angle;upgraded[1]=15.0f;upgraded[2]=6.0f;p=upgraded;}
-            spawn_offset(810,40,45.0,p,3);counter(200,60);phase_counter(50);dispatch_character_wave_handle(3);
+            if(at<signed char>(0x604)<3){float ordinary[3]={angle,15.0f,0.0f};spawn_offset(810,40,45.0,ordinary,3);}
+            else {float upgraded[3]={angle,15.0f,6.0f};spawn_offset(810,40,45.0,upgraded,3);}
+            counter(200,60);phase_counter(50);dispatch_character_wave_handle(3);
             at<float>(0xf4)=-6.0f;at<float>(0xf8)=8.0f;at<float>(0x100)=0.45f;
         }
         if(sequence_index_13e==1 && !frame_timer_142 && frame_index_140==1) {
@@ -285,7 +286,7 @@ public:
         if(sequence_index_13e==1) {
             if(time_counter_144%5==0){float p[3]={0.0f,0.0f,1.0f};spawn_offset(820,0,100.0,p,3);}
             if(time_counter_144%10==0) {
-                float y=at<float>(0xf0);
+                double y=at<float>(0xf0);
                 if(y-patchouli_surface(this)<height_limit) {
                     float p[3];p[2]=0.0f;p[1]=12.0f;ring820_surface(p);
                 }
