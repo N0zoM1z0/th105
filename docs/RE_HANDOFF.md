@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: MarisaObject update4BBE00 has complete manual
+Current bounded candidate: UdongeObject update5D46C0 has complete31-action
+manual source and an early whole canonical replay. Full44125/native43537
+remains nonexact+8, frame2E8/native2F0; all17 table dimensions and216remap
+bytes agree. No exact credit. See
+[UDONGE_OBJECT_UPDATE_2026_10_28.md](UDONGE_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-udonge-object-update.py` and
+build/frontier-5d46c0-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded candidate: MarisaObject update4BBE00 has complete manual
 41-action source and a focused canonical replay. Full50156/native49744 remains
 nonexact+37; native frame0x340 and all18 table dimensions are recovered, but
 call/return sharing and later code remain different. No exact credit. See

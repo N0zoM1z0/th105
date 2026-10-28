@@ -1619,3 +1619,4 @@ CSceneManager_shutdown
 transition_bgm
 BgmService_initialize
 MarisaObject_update_action_state
+UdongeObject_update_action_state
