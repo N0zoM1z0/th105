@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: float-angle tangent406430 is canonical exact69/69.
+Current bounded checkpoint: Fighter sequence rotation45DDA0 now uses the real
+VC8 deque and a nontrivial polymorphic card temporary. Main265/265 remains
+12 unequal bytes at+123, confined to prefix-load/store scheduling. Generated
+record destructor8 bytes, unwind/handler44 bytes and metadata44 bytes replay
+exact independently; no authored credit is added for them or the main body.
+See [FIGHTER_SEQUENCE_ROTATE_2026_10_28.md](FIGHTER_SEQUENCE_ROTATE_2026_10_28.md)
+and build/frontier-45dda0-20261028/formal-{build,auxiliary}.json.
+
+Preceding exact checkpoint: float-angle tangent406430 is canonical exact69/69.
 The existing strict-FP profile plus balanced exception-scheduling-off pragma
 reproduces every byte without changing global build defaults. This adds one
 accepted function/69 bytes. Sine/cosine dependencies and Udonge remain nonexact.
@@ -173,11 +181,11 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1621 /1419 /984 |
-| Mapped / source-present |1610 /1582 |
-| Exact functions / authored bytes |1427 /413799 |
-| Configured units / functions |633 /1603 |
-| Accepted units |537 |
+| Provisional / authored / excluded / review candidates |4024 /1622 /1419 /983 |
+| Mapped / source-present |1611 /1583 |
+| Exact functions / authored bytes |1428 /413868 |
+| Configured units / functions |640 /1610 |
+| Accepted units |538 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
 Subsequent focused comparisons add story refresh860, replay naming1322 and

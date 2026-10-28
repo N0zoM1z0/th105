@@ -1,72 +1,45 @@
-#include "Collision.hpp"
-#include "EffectSprite.hpp"
-#include "SpellRuntime.hpp"
+#include <deque>
+#include "battle/EffectSprite.hpp"
 
 namespace th105 {
 
-extern "C" void __cdecl _invalid_parameter_noinfo(void);
-
-struct FighterSequenceSpriteCopyView {
-    void *copy_fighter_sequence_sprite(
-        const FighterSequenceSpriteCopyView *source);
+// Runtime-layout view of the real polymorphic sprite copied by 455160.
+// Typed scalar members preserve its lifetime and GS classification; this is
+// not a byte buffer pretending to own a constructed sprite.
+struct SequenceRotateSprite94 : CSpriteBase {
+    SequenceRotateSprite94(const SequenceRotateSprite94 &);
+    float pivot_x, pivot_y, scale_x, scale_y, angle;
 };
 
-namespace {
+struct SequenceRotateCard {
+    short record_id;
+    unsigned short field_02;
+    SequenceRotateSprite94 sprite;
+};
 
-void copy_sequence_slot(
-    FighterSequenceSlot *destination,
-    const FighterSequenceSlot *source)
-{
-    destination->record_id_00 = source->record_id_00;
-    destination->field_02 = source->field_02;
-    reinterpret_cast<FighterSequenceSpriteCopyView *>(
-        &destination->sprite_04)
-        ->copy_fighter_sequence_sprite(
-            reinterpret_cast<const FighterSequenceSpriteCopyView *>(
-                &source->sprite_04));
-}
+typedef char sequence_sprite_extent[
+    sizeof(SequenceRotateSprite94) == 0x94 ? 1 : -1];
+typedef char sequence_card_extent[
+    sizeof(SequenceRotateCard) == 0x98 ? 1 : -1];
+typedef char sequence_deque_extent[
+    sizeof(std::deque<SequenceRotateCard>) == 0x14 ? 1 : -1];
 
-} // namespace
-
+// Complete nonexact candidate. The genuine VC8 deque and nontrivial temporary
+// reproduce the native checked-front/pop/push and generated cleanup structure.
 unsigned char Fighter::rotate_front_spell_sequence_entry_to_back()
 {
-    FighterSequenceController *controller = &sequence_controller_55c;
-    if (controller->live_count_10 == 0) {
-        return 0;
+    unsigned count = sequence_controller_55c.live_count_10;
+    if (count > 0) {
+        std::deque<SequenceRotateCard> &cards =
+            *reinterpret_cast<std::deque<SequenceRotateCard> *>(
+                &sequence_controller_55c);
+        SequenceRotateCard card = cards.front();
+        cards.pop_front();
+        cards.push_back(card);
+        count = sequence_controller_55c.live_count_10;
+        state_55a = static_cast<signed char>(count);
     }
-
-    const unsigned head = controller->head_0c;
-    if (head > head + controller->live_count_10) {
-        _invalid_parameter_noinfo();
-    }
-    if (head >= controller->head_0c + controller->live_count_10) {
-        _invalid_parameter_noinfo();
-    }
-
-    unsigned index = head;
-    if (controller->slot_capacity_08 <= index) {
-        index -= controller->slot_capacity_08;
-    }
-
-    FighterSequenceSlot temporary;
-    copy_sequence_slot(&temporary, controller->slots_04[index]);
-
-    if (controller->live_count_10 != 0) {
-        reinterpret_cast<CSprite *>(
-            &controller->slots_04[controller->head_0c]->sprite_04)
-            ->~CSprite();
-        ++controller->head_0c;
-        if (controller->slot_capacity_08 <= controller->head_0c) {
-            controller->head_0c = 0;
-        }
-        if (--controller->live_count_10 == 0) {
-            controller->head_0c = 0;
-        }
-    }
-
-    controller->enqueue_record(&temporary);
-    state_55a = static_cast<signed char>(controller->live_count_10);
-    return static_cast<unsigned char>(controller->live_count_10);
+    return static_cast<unsigned char>(count);
 }
 
 } // namespace th105

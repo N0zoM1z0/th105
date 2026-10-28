@@ -24272,3 +24272,20 @@ rel32_targets = [
     "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
     "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
 ]
+
+[units.exact-first-fighter-sequence-rotate]
+kind = "probe"
+source = "src/battle/FighterSequenceRotate.cpp"
+object = "build/match-units/ExactFirst_FighterSequenceRotate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete unselected265-byte45DDA0 rotate candidate with genuine VC8 deque/card temporary. Main remains12 byte differences. Generated destructor/EH code and metadata independently exact; no authored/exact credit. docs/FIGHTER_SEQUENCE_ROTATE_2026_10_28.md."
+
+[[units.exact-first-fighter-sequence-rotate.functions]]
+address = "0x0045DDA0"
+symbol_base = "?rotate_front_spell_sequence_entry_to_back@Fighter@th105@@QAEEXZ"
+rel32_targets = [
+    "__invalid_parameter_noinfo=0x0068A143",
+    "??0SequenceRotateSprite94@th105@@QAE@ABU01@@Z=0x00455160",
+    "?push_back@?$deque@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@@std@@QAEXABUSequenceRotateCard@th105@@@Z=0x0045DBA0",
+]
