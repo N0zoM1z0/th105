@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: CFade timer policies41E250/41E270 are canonical
+Current bounded checkpoint: scene resource shutdown43D670 and its CSceneManager
+owner41E120 are canonical exact264/25. Existing owner initialization41E070 stays
+exact162. Actual socket/member lifetimes reuse the independently exact network
+cleanup policy; all tails remain explicit. See
+[SCENE_RESOURCE_SHUTDOWN_2026_10_28.md](SCENE_RESOURCE_SHUTDOWN_2026_10_28.md)
+and build/frontier-43d670-20261028/{socket-owner-lifetime,scene-owner,boundary}.json.
+
+Preceding bounded checkpoint: CFade timer policies41E250/41E270 are canonical
 exact30/30 each; all six existing accepted scene-render peers remain exact.
 Current RTTI slots08/0C and the exact renderer pin color04/timer08 semantics.
 See [FADE_TIMER_POLICIES_2026_10_28.md](FADE_TIMER_POLICIES_2026_10_28.md)

@@ -18206,6 +18206,19 @@ dir32_targets = [
   "?g_wave_bootstrap_service@th105@@3UWaveBootstrapServiceView@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A",
 ]
 
+[[units.gpt-web-scene-manager-initialize.functions]]
+address = "0x0041E120"
+symbol_base = "?shutdown@CSceneManager@th105@@UAEXXZ"
+rel32_targets = [
+ "?shutdown_scene_resources@th105@@YAXXZ=0x0043D670",
+ "?release_buffers@WaveBootstrapServiceView@th105@@QAEXXZ=0x00401A80",
+ "?shutdown_4034f0@BgmBootstrapServiceView@th105@@QAEXXZ=0x004034F0",
+]
+dir32_targets = [
+ "?g_bgm_bootstrap_service@th105@@3UBgmBootstrapServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
+ "?g_wave_bootstrap_service@th105@@3UWaveBootstrapServiceView@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A",
+]
+
 [units.gpt-web-ogg-data-source-callbacks]
 kind = "probe"
 source = "src/audio/DirectSound.cpp"
@@ -25108,4 +25121,30 @@ dir32_targets = [
  "__ehhandler$??0YoumuConstructorView@th105@@QAE@H@Z=__ehhandler$??0YoumuConstructorView@th105@@QAE@H@Z",
  "??_7YoumuConstructorView@th105@@6B@=??_7Youmu@th105@@6B@",
  "___security_cookie=___security_cookie",
+]
+
+[units.exact-first-scene-resource-shutdown]
+kind = "probe"
+source = "src/engine/SceneResourceShutdown.cpp"
+object = "build/match-units/ExactFirst_SceneResourceShutdown.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete43D670 scene-owned resource shutdown policy; ordered networking, sound, profile and configuration cleanup."
+[[units.exact-first-scene-resource-shutdown.functions]]
+address = "0x0043D670"
+symbol_base = "?shutdown_scene_resources@th105@@YAXXZ"
+rel32_targets = [
+ "?set_priority@AsyncSceneThreadControl@th105@@QAEHH@Z=0x00414690",
+ "?wait_for_exit@AsyncSceneThreadControl@th105@@QAEXXZ=0x00414640",
+ "?persist@ScoreData@th105@@QAEXXZ=0x0042D3F0",
+ "?shutdown@ShutdownSocketView@th105@@QAEXXZ=0x00412FD0",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?destroy_shared_battle_runtime@th105@@YAXXZ=0x004394E0",
+ "?shutdown_profile_ui@th105@@YAEXZ=0x004402E0",
+ "?clear_common_resources@SceneBootstrapDeckRefresh@th105@@QAEXXZ=0x00433990",
+ "?shutdown_battle_effect_program@th105@@YAXXZ=0x006654C0",
+ "?cleanup@ShutdownProfileView@th105@@QAEXXZ=0x00431390",
+ "?release_handle@ShutdownWaveView@th105@@QAEXI@Z=0x00401BD0",
+ "?save@ShutdownConfigView@th105@@QAEXXZ=0x00427390",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
 ]

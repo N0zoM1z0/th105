@@ -4,21 +4,32 @@ namespace th105 {
 
 struct BgmBootstrapServiceView {
     void initialize_403460();
+    void shutdown_4034f0();
 };
 
 struct WaveBootstrapServiceView {
     void initialize_401990();
+    void release_buffers();
 };
 
 extern BgmBootstrapServiceView g_bgm_bootstrap_service;
 extern WaveBootstrapServiceView g_wave_bootstrap_service;
 
 void __cdecl initialize_scene_resources_43e2e0();
+void __cdecl shutdown_scene_resources();
 unsigned char __cdecl start_async_engine_scene_load(int scene);
 
 struct CSceneManager {
     virtual void initialize();
+    virtual void shutdown();
 };
+
+void CSceneManager::shutdown()
+{
+    shutdown_scene_resources();
+    g_wave_bootstrap_service.release_buffers();
+    g_bgm_bootstrap_service.shutdown_4034f0();
+}
 
 void CSceneManager::initialize()
 {
