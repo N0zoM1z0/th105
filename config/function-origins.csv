@@ -1378,7 +1378,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00442250,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00442280,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x004422F0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00442390,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00442390,authored_game,ui,authored,observed,canonical-exact-authored
 0x00442440,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00442480,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004424B0,authored_game,ui,authored,observed,canonical-exact-authored

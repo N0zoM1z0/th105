@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: connect endpoint digit editor441E10 now restores
+Current bounded checkpoint: endpoint-edit initializer442390 is canonical
+exact165/165. One input receiver, native17/10 cursor counts and signed promoted
+address arithmetic reproduce the whole body. History selector443030 is complete
+153/native157 with retained-tail merging residual, no credit. See
+[CONNECT_ENDPOINT_SELECTION_2026_10_28.md](CONNECT_ENDPOINT_SELECTION_2026_10_28.md)
+and build/frontier-442390-20261028/final-build.json.
+
+Preceding bounded candidate: connect endpoint digit editor441E10 now restores
 complete IP/port decimal selection and replacement. Native cursor pair and
 branch-owned powers recover a192-byte exact prefix; full888/native891 remains
 nonexact at return scheduling. Port-only sibling441BD0 is now complete

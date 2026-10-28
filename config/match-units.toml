@@ -24919,3 +24919,31 @@ rel32_targets = [
 dir32_targets = [
  "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
 ]
+
+[units.exact-first-connect-endpoint-selection]
+kind = "probe"
+source = "src/ui/MenuConnectEndpointSelection.cpp"
+object = "build/match-units/ExactFirst_ConnectEndpointSelection.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Endpoint17-digit initialization442390 and checked history selection443030."
+[[units.exact-first-connect-endpoint-selection.functions]]
+address = "0x00442390"
+symbol_base = "?begin_endpoint_edit@ConnectEndpointSelectionView@th105@@QAEXXZ"
+rel32_targets = [
+ "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
+ "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
+]
+dir32_targets = ["_connect_endpoint_edit_prompt=_connect_endpoint_edit_prompt"]
+[[units.exact-first-connect-endpoint-selection.functions]]
+address = "0x00443030"
+symbol_base = "?update_history_selection@ConnectEndpointSelectionView@th105@@QAEHXZ"
+rel32_targets = [
+ "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+ "_dispatch_indexed_event=0x0043B1A0",
+ "_connect_history_buttons=0x0043B030",
+ "_is_menu_initial_press=0x0043ABD0",
+ "?parse_endpoint@ConnectEndpointSelectionView@th105@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00442E30",
+ "??A?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@I@Z=0x00412980",
+]
+dir32_targets = ["?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A"]
