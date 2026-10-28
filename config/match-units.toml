@@ -24947,3 +24947,27 @@ rel32_targets = [
  "??A?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@I@Z=0x00412980",
 ]
 dir32_targets = ["?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A"]
+
+[units.exact-first-info-effect-visual]
+kind = "probe"
+source = "src/battle/InfoEffectVisual.cpp"
+object = "build/match-units/ExactFirst_InfoEffectVisual.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete660730 transform and660780 action visual initialization; ordinary typed effect sprite ownership."
+[[units.exact-first-info-effect-visual.functions]]
+address = "0x00660730"
+symbol_base = "?transform@InfoEffectVisualView@th105@@QAEXXZ"
+rel32_targets = [
+ "?prepare_render_transform@InfoEffectVisualView@th105@@QAEXXZ=0x00435360",
+ "?lookup_orientation_cosine@th105@@YAMH@Z=0x004064B0",
+ "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+]
+dir32_targets = [
+ "?g_info_visual_manager@th105@@3PAUInfoVisualManagerView@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
+ "__real@4069000000000000=__real@4069000000000000",
+]
+[[units.exact-first-info-effect-visual.functions]]
+address = "0x00660780"
+symbol_base = "?initialize_action@InfoEffectVisualView@th105@@QAEXXZ"
+rel32_targets = ["?dispatch_indexed_event_member@InfoEffectVisualView@th105@@QAEXI@Z=0x004359F0"]

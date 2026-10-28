@@ -2613,3 +2613,4 @@ _replay_storage_ctor_eh,0x006B8FE2,8b5424088d42f48b4af033c8e8320dfd,0,Canonical 
 _direct_sound_lock_error,0x006D6D28,836f83628374834082cc838d8362834e82c98eb8947300,0,Canonical DirectSound wave load4184B0 uses this error string or EH handler; raw PE attested 2026-10-28.,address
 _direct_sound_wave_load_eh,0x006BE0C8,8b5424088d42cc8b4ac833c8e84cbcfc,0,Canonical DirectSound wave load4184B0 uses this error string or EH handler; raw PE attested 2026-10-28.,address
 _connect_endpoint_edit_prompt,0x006C1B98,90da91b190e682cc83418368838c835882f093fc97cd82b582c482ad82be82b382a200,0,Canonical endpoint-edit initialization442390 uses this full Shift-JIS prompt; raw target attested 2026-10-28.,address
+__real@c2040000,0x006C6914,000004c2,0,Canonical InfoEffect action32 initialization660833 loads float -33.0 from this address; raw PE attested 2026-10-28.,literal

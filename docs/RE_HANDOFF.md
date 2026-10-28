@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: endpoint-edit initializer442390 is canonical
+Current bounded checkpoint: InfoEffectObject transform660730 and action
+initializer660780 are canonical exact80/266. Complete initializer576-byte
+code/table payload also matches. Real float shift lifetime and native late
+alpha-case family ordering close both; pending update65CB40 stays nonexact. See
+[INFO_EFFECT_VISUAL_2026_10_28.md](INFO_EFFECT_VISUAL_2026_10_28.md)
+and build/frontier-660730-20261028/late-alpha-group.json.
+
+Preceding bounded checkpoint: endpoint-edit initializer442390 is canonical
 exact165/165. One input receiver, native17/10 cursor counts and signed promoted
 address arithmetic reproduce the whole body. History selector443030 is complete
 153/native157 with retained-tail merging residual, no credit. See

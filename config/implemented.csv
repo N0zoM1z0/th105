@@ -1601,3 +1601,5 @@ DirectSoundResource_load_wave
 DirectSoundResource_ctor
 CProfileCharacterSelect_render
 CMenuConnect_begin_endpoint_edit
+InfoEffectObject_transform
+InfoEffectObject_initialize_action
