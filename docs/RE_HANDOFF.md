@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: effect global forwarding6609C0/6609F0/665470
+Current bounded checkpoint: scene-owned battle effect bootstrap6654A0/6654C0
+is canonical exact21/10. Native scene callers, global owner and embedded
+program extent are attested; no shader bytes or static-init thunk credit. See
+[BATTLE_EFFECT_BOOTSTRAP_2026_10_28.md](BATTLE_EFFECT_BOOTSTRAP_2026_10_28.md)
+and build/frontier-6654a0-20261028/formal-build.json.
+
+Preceding bounded checkpoint: effect global forwarding6609C0/6609F0/665470
 is canonical exact47/16/45. Distinct info/weather globals and scene state08
 policy retain the target member-compatible versus cdecl boundaries. See
 [EFFECT_GLOBAL_FORWARDERS_2026_10_28.md](EFFECT_GLOBAL_FORWARDERS_2026_10_28.md)

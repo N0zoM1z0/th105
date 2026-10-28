@@ -2614,3 +2614,5 @@ _direct_sound_lock_error,0x006D6D28,836f83628374834082cc838d8362834e82c98eb89473
 _direct_sound_wave_load_eh,0x006BE0C8,8b5424088d42cc8b4ac833c8e84cbcfc,0,Canonical DirectSound wave load4184B0 uses this error string or EH handler; raw PE attested 2026-10-28.,address
 _connect_endpoint_edit_prompt,0x006C1B98,90da91b190e682cc83418368838c835882f093fc97cd82b582c482ad82be82b382a200,0,Canonical endpoint-edit initialization442390 uses this full Shift-JIS prompt; raw target attested 2026-10-28.,address
 __real@c2040000,0x006C6914,000004c2,0,Canonical InfoEffect action32 initialization660833 loads float -33.0 from this address; raw PE attested 2026-10-28.,literal
+?g_battle_effect@th105@@3UBattleEffectBootstrapView@1@A,0x006FD394,0000000000000000,0,Canonical battle effect bootstrap6654A0/6654C0 fixes global owner and embedded0xAC8 program. Raw target/loader-mapped bytes attested 2026-10-28.,address
+?battle_effect_program@th105@@3QBEB,0x006C69C0,0109fffef80200000000000005000000,0,Canonical battle effect bootstrap6654A0/6654C0 fixes global owner and embedded0xAC8 program. Raw target/loader-mapped bytes attested 2026-10-28.,address

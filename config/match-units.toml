@@ -24993,3 +24993,24 @@ address = "0x00665470"
 symbol_base = "?emit_weather_effect_665470@th105@@YAHHMMHH@Z"
 rel32_targets = ["?emit_effect@EventEffectStateView@th105@@QAEHHMMHH@Z=0x004695B0"]
 dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
+
+[units.exact-first-battle-effect-bootstrap]
+kind = "probe"
+source = "src/battle/BattleEffectBootstrap.cpp"
+object = "build/match-units/ExactFirst_BattleEffectBootstrap.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Scene-owned global BattleBaseEffect initialization6654A0 and shutdown6654C0."
+[[units.exact-first-battle-effect-bootstrap.functions]]
+address = "0x006654A0"
+symbol_base = "?initialize_scene_auxiliary_6654a0@th105@@YAXXZ"
+rel32_targets = ["?initialize@BattleEffectBootstrapView@th105@@QAE_NPBXI@Z=0x00417FF0"]
+dir32_targets = [
+ "?g_battle_effect@th105@@3UBattleEffectBootstrapView@1@A=?g_battle_effect@th105@@3UBattleEffectBootstrapView@1@A",
+ "?battle_effect_program@th105@@3QBEB=?battle_effect_program@th105@@3QBEB",
+]
+[[units.exact-first-battle-effect-bootstrap.functions]]
+address = "0x006654C0"
+symbol_base = "?shutdown_scene_auxiliary_6654c0@th105@@YAXXZ"
+rel32_targets = ["?shutdown@BattleEffectBootstrapView@th105@@QAEXXZ=0x00418040"]
+dir32_targets = ["?g_battle_effect@th105@@3UBattleEffectBootstrapView@1@A=?g_battle_effect@th105@@3UBattleEffectBootstrapView@1@A"]
