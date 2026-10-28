@@ -1,6 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: normal InfoManager initializer46EB90 is
+Current bounded checkpoint: story value binder471A80 is now canonical
+exact351/351. A mode-specific typed owner recovers native integer health and
+UI-receiver lifetimes; same-unit20/27/648 accepted peers remain exact.
+The old352-byte normal-mode alias candidate is superseded, not silently
+recredited. No shared header or compiler setting changed. New authored exact
+increment across the recent four accepted helpers is755 bytes.
+See [STORY_INFO_VALUE_BINDING_2026_10_28.md](STORY_INFO_VALUE_BINDING_2026_10_28.md)
+and build/frontier-471a80-20261028/formal-typed-owner.json.
+
+Preceding exact checkpoint: normal InfoManager initializer46EB90 is
 canonical exact228/228. Typed embedded resources and the actual number-pointer
 array remove the prior loop-cursor spill naturally. Same-unit119/171/30
 lifetime peers remain exact; no shared header/global profile/data binding
@@ -215,9 +224,9 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1624 /1419 /981 |
-| Mapped / source-present |1613 /1585 |
-| Exact functions / authored bytes |1430 /414203 |
+| Provisional / authored / excluded / review candidates |4024 /1625 /1419 /980 |
+| Mapped / source-present |1614 /1586 |
+| Exact functions / authored bytes |1431 /414554 |
 | Configured units / functions |642 /1614 |
 | Accepted units |539 |
 

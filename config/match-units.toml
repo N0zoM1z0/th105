@@ -18706,7 +18706,7 @@ source = "src/battle/BattleInfoGaugeRuntime.cpp"
 object = "build/match-units/GptWeb_BattleInfoGaugeRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Game TGageValue int*/short* virtuals20/27 and complete BattleInfoRecordF8 bind648 are canonical exact. Binding reads signed16-bit fighter inputs, releases each old gauge with scalar delete before scalar new, captures the real per-stage pointer/span lifetimes and uses the observed UI binding receiver+18/gauge+A0 layout. Double loop endpoints retain the target float rounding. The class identity behind that bounded UI view remains unknown. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
+notes = "Game TGageValue int*/short* virtuals20/27 and complete BattleInfoRecordF8 bind648 are canonical exact. Binding reads signed16-bit fighter inputs, releases each old gauge with scalar delete before scalar new, captures the real per-stage pointer/span lifetimes and uses the observed UI binding receiver+18/gauge+A0 layout. Double loop endpoints retain the target float rounding. The class identity behind that bounded UI view remains unknown. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md. Story binder 0x00471A80 is also canonical exact at 351 bytes using its typed integer-health owner view; see docs/STORY_INFO_VALUE_BINDING_2026_10_28.md."
 
 [[units.gpt-web-battle-info-gauge-runtime.functions]]
 address = "0x0046FA50"
