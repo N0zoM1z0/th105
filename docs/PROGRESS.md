@@ -8,7 +8,7 @@ until each boundary is reconciled with target control flow.
 | Tracked 1.06a function candidates | 4,024 |
 | Origin/boundary review pending | 946 |
 | Confirmed authored functions | 1,659 |
-| Confirmed authored code bytes | 2,230,055 |
+| Confirmed authored code bytes | 2,230,051 |
 | Classified exclusions | 1,419 |
 | Source-present authored mappings | 1,627 |
 | Canonical exact functions | 1,465 |

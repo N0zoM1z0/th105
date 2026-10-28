@@ -9,12 +9,12 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 address = "0x004CADB0"
 main_size = 41511
 main_end = "0x004D4FD6"
-main_excluded_bytes = 21
+main_excluded_bytes = 25
 extent_end = "0x004DD2D1"
 remote_bytes = 33451
-owned_bytes = 74941
+owned_bytes = 74937
 remote_exact = false
-evidence = "Current attested IDA disassembly for Sakuya primary-vtable +0x28 continues from the 41,511-byte entry span through ten remote code chunks ending at RET 0x004DD2D1. IDA-owned instruction ranges also exclude three seven-byte alignment NOPs inside that provisional main span; all remote chunk entries have current code xrefs from sub_4CADB0-owned blocks."
+evidence = "Current attested IDA disassembly for Sakuya primary-vtable +0x28 continues from the 41,511-byte entry span through ten remote code chunks ending at RET 0x004DD2D1. The 2026-10-28 complete raw CFG additionally excludes the two unreachable short alignment JMPs at4D2C77/4D2E17, giving25 main alignment bytes; all remote chunk entries have current code xrefs from sub_4CADB0-owned blocks."
 
 [[functions.main_exclusions]]
 start = "0x004D2839"
@@ -23,16 +23,16 @@ size = 7
 sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
 
 [[functions.main_exclusions]]
-start = "0x004D2C79"
+start = "0x004D2C77"
 end = "0x004D2C7F"
-size = 7
-sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+size = 9
+sha256 = "681e7cf11c09c63074d5fc418dc111dfbe0e3a98fdbebbaacca2d35866424a80"
 
 [[functions.main_exclusions]]
-start = "0x004D2E19"
+start = "0x004D2E17"
 end = "0x004D2E1F"
-size = 7
-sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+size = 9
+sha256 = "681e7cf11c09c63074d5fc418dc111dfbe0e3a98fdbebbaacca2d35866424a80"
 
 [[functions.chunks]]
 start = "0x004D4FE0"
