@@ -121,4 +121,17 @@ int SelectNetworkSceneView::update_client()
     }
     return 9;
 }
+struct LoadingClientStateView {
+    int base_update_41f3f0();
+    int update_426490();
+};
+int LoadingClientStateView::update_426490()
+{
+    switch(base_update_41f3f0()) {
+    case 5:return 14;
+    case 6:return 11;
+    default:return 14;
+    }
+}
+
 }

@@ -24569,6 +24569,11 @@ rel32_targets = [
  "_is_menu_initial_press=0x0043ABD0",
 ]
 
+[[units.exact-first-select-network-runtime.functions]]
+address = "0x00426490"
+symbol_base = "?update_426490@LoadingClientStateView@th105@@QAEHXZ"
+rel32_targets = ["?base_update_41f3f0@LoadingClientStateView@th105@@QAEHXZ=0x0041F3F0"]
+
 [units.exact-first-battle-network-update]
 kind = "probe"
 source = "src/battle/BattleNetworkUpdate.cpp"

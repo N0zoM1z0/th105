@@ -48,3 +48,12 @@ server policy is a client policy.
 Fresh receipt build/frontier-4264b0-20261028/server-update.json preserves the
 previous205/313 exact peers. This adds217 authored bytes,735 for this Select
 entry/update cluster overall. No shared headers or global flags changed.
+
+## Client loading-state mapping
+
+CLoadingCL vtable6C0524 slot04 (cell6C0528) owns426490. Its complete26-byte
+body maps the existing base loading update's5/6 states to14/11, with14 as
+default. Ordinary switch source is canonical exact26/26; this is authored
+scene policy, not a generated adjustor thunk. Origin rules contain no exclusion.
+Receipt loading-client.json preserves the205/313/217 exact peers and adds26
+authored bytes,761 across this four-function unit. No shared headers changed.

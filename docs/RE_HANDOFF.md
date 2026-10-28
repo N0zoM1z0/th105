@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: CSelect frame update421430 now has complete
+Current bounded checkpoint: CLoadingCL scene-state mapper426490 is canonical
+exact26/26, with205/313/217 Select network peers still exact. Current RTTI
+vtable6C0524 fixes the authored slot04 policy; no generated thunk credit.
+See [SELECT_NETWORK_RUNTIME_2026_10_28.md](SELECT_NETWORK_RUNTIME_2026_10_28.md)
+and build/frontier-4264b0-20261028/loading-client.json.
+
+
+Preceding bounded candidate: CSelect frame update421430 now has complete
 menu/input reassignment, cursor publications and native input-deque ownership.
 Candidate685/native697 remains first+337 on cdecl cleanup/publication ordering;
 no exact/source-selection credit. All231 native instructions are reachable.

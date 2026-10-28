@@ -824,7 +824,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00426280,authored_game,engine,authored,observed,canonical-exact-authored
 0x004262A0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00426380,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00426490,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00426490,authored_game,ui,authored,observed,canonical-exact-authored
 0x004264B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00426580,authored_game,ui,authored,observed,canonical-exact-authored
 0x004266C0,authored_game,battle,authored,observed,canonical-exact-authored
