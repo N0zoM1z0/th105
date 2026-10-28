@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: PatchouliObject update520890 has complete30-action
+Current bounded candidate: SuikaObject update5B0460 has complete31-action manual
+source and whole canonical replay. Full53204/native53012 remains nonexact+17.
+Frame4B0, all23 direct-callee counts,18 table dimensions and200 remap bytes agree;
+initial owner scheduling and shared tails differ. No exact credit. See
+[SUIKA_OBJECT_UPDATE_2026_10_28.md](SUIKA_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-suika-object-update.py` and
+build/frontier-5b0460-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded candidate: PatchouliObject update520890 has complete30-action
 manual source and whole canonical replay. Full51428/native51564 remains
 nonexact+37. Actual shared packet lifetimes restore frame3E0; all28 direct-call
 counts,24 virtual calls,21 table dimensions and219 remap bytes agree. No exact

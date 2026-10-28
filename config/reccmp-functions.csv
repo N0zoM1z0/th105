@@ -1650,3 +1650,4 @@ BgmService_initialize,0x00403460,function
 MarisaObject_update_action_state,0x004BBE00,function
 UdongeObject_update_action_state,0x005D46C0,function
 PatchouliObject_update_action_state,0x00520890,function
+SuikaObject_update_action_state,0x005B0460,function
