@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: presentation phase46B160 and Story reset471580
+Current bounded candidate: input policy428260 now has complete Practice and
+non-Practice restoration, guard, mode and player-input source. Raw CFG closes
+the553-byte callable plus five-entry table; candidate callable554/full576
+is nonexact at+9. No source-selection/exact credit. Pair-capture control was
+byte-neutral; no register/liveness workaround is retained.
+See [PRACTICE_BATTLE_POLICY_2026_10_28.md](PRACTICE_BATTLE_POLICY_2026_10_28.md).
+
+
+Preceding bounded checkpoint: presentation phase46B160 and Story reset471580
 are canonical exact105/14, adding119 authored bytes. All five previously
 accepted Story core peers remain exact in the fresh caller-unit replay.
 See [BATTLE_PRESENTATION_PHASE_2026_10_28.md](BATTLE_PRESENTATION_PHASE_2026_10_28.md)

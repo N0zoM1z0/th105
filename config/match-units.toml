@@ -24389,3 +24389,33 @@ dir32_targets = [
   "?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
   "?g_pair_state@th105@@3HA=?g_pair_state@th105@@3HA",
 ]
+
+[units.exact-first-practice-battle-policy]
+kind = "probe"
+source = "src/input/PracticeBattlePolicy.cpp"
+object = "build/match-units/ExactFirst_PracticeBattlePolicy.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete current428260 practice restoration/input policy candidate; raw five-entry guard switch and both return families. No exact credit without strict full replay."
+
+[[units.exact-first-practice-battle-policy.functions]]
+address = "0x00428260"
+symbol_base = "?update_428260@PracticeBattlePolicyView@th105@@QAEXXZ"
+rel32_targets = [
+ "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+ "?is_state_13c_below_32@th105@@YI_NPAX@Z=0x0045E0D0",
+ "?is_state_13c_in_32_95@th105@@YI_NPAUFighter@1@@Z=0x0045E0E0",
+ "?is_state_13c_in_96_c7@th105@@YIHPAUFighter@1@@Z=0x0045E100",
+ "?select_pair_mode_434780@PairEmbeddedModeView@th105@@QAEXHE@Z=0x00435CE0",
+ "?rebind_selected_input_43b640@th105@@YAXHC@Z=0x0043B640",
+ "?get_selected_input@th105@@YAPAUPlayerInput@1@I@Z=0x0043B010",
+ "?get_selected_input_source@th105@@YACI@Z=0x0043B040",
+ "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+ "?select_deck@PracticePlayerSlotView@th105@@QAEXE@Z=0x004313B0",
+]
+dir32_targets = [
+ "?g_scene_renderer@th105@@3PAUPracticeSceneView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+ "?g_battle_input_gate@th105@@3PAUPracticeBattlePolicyView@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
+ "?g_info_mode_value_6fa88c@th105@@3FA=?g_info_mode_value_6fa88c@th105@@3FA",
+ "?g_fighter_state_4b8_default@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
+]
