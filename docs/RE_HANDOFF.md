@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: CSelect portrait binding41FB80 is canonical
+Current bounded candidate: CSelect frame update421430 now has complete
+menu/input reassignment, cursor publications and native input-deque ownership.
+Candidate685/native697 remains first+337 on cdecl cleanup/publication ordering;
+no exact/source-selection credit. All231 native instructions are reachable.
+See [SELECT_SCENE_UPDATE_2026_10_28.md](SELECT_SCENE_UPDATE_2026_10_28.md)
+and build/frontier-421430-20261028/formal-build.json.
+
+
+Preceding bounded checkpoint: CSelect portrait binding41FB80 is canonical
 exact258/258. Ordinary scalar conversion of the real class-valued texture
 result recovers native handle/buffer lifetime. Related object transform41FAD0
 is complete154/154 but nonexact+25 on receiver/x87 scheduling, with no credit.

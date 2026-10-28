@@ -24673,3 +24673,34 @@ rel32_targets = [
  "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
  "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
 ]
+
+[units.exact-first-select-scene-update]
+kind = "probe"
+source = "src/ui/SelectSceneUpdate.cpp"
+object = "build/match-units/ExactFirst_SelectSceneUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete421430 CSelect frame update: actual CMenuSelect allocation, input reassignment, cursor pointer publications and native input deque."
+
+[[units.exact-first-select-scene-update.functions]]
+address = "0x00421430"
+symbol_base = "?update@CSelect@th105@@UAEHXZ"
+rel32_targets = [
+ "?_Tidy@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@IAEXXZ=0x00420A80",
+ "_has_ui_selection_state_changed=0x0043B6E0",
+ "_is_menu_initial_press=0x0043ABD0",
+ "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "??0CMenuSelect@th105@@QAE@XZ=0x004482E0",
+ "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+ "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+ "?get_selected_input@th105@@YAPAUCInputManager@1@I@Z=0x0043B010",
+ "?get_selected_input_source@th105@@YACI@Z=0x0043B040",
+ "?rebind_selected_input_43b640@th105@@YAXHC@Z=0x0043B640",
+ "?push_back@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@QAEXABQAUCInputManager@th105@@@Z=0x006183F0",
+]
+dir32_targets = [
+ "___security_cookie=___security_cookie",
+ "__ehhandler$?update@CSelect@th105@@UAEHXZ=__ehhandler$?update_primary@CMenuMusic@th105@@AAE_NXZ",
+ "_g_scene_mode=_g_scene_mode",
+]
