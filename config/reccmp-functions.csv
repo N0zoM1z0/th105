@@ -1626,3 +1626,4 @@ CSelect_bind_character_portrait,0x0041FB80,function
 CLoadingCL_update_scene_mapping,0x00426490,function
 ReplayStorage_ctor,0x0043F1B0,function
 CInputManagerEx_ctor,0x0042C930,function
+DirectSoundResource_load_wave,0x004184B0,function

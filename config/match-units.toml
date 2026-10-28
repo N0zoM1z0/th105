@@ -2901,7 +2901,7 @@ address = "0x00418920"
 symbol_base = "create_secondary_buffer8"
 dir32_targets = [
   "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A",
-  "_direct_sound_error_title=_direct_sound_error_title",
+  "?sound_error_title@th105@@3QBDB=?sound_error_title@th105@@3QBDB",
   "_create_sound_buffer_error=_create_sound_buffer_error",
   "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
   "_iid_direct_sound_buffer8=_iid_direct_sound_buffer8",
@@ -24812,3 +24812,26 @@ address = "0x0042C930"
 symbol_base = "??0ProfileInputManagerExLifetime@th105@@QAE@XZ"
 rel32_targets = ["??0ProfileInputManagerLifetime@th105@@QAE@XZ=0x00409CF0"]
 dir32_targets = ["??_7ProfileInputManagerExLifetime@th105@@6B@=??_7CInputManagerEx@th105@@6B@"]
+
+[units.exact-first-direct-sound-wave-load]
+kind = "probe"
+source = "src/audio/DirectSoundWaveLoad.cpp"
+object = "build/match-units/ExactFirst_DirectSoundWaveLoad.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete4184B0 DirectSound wave resource load with actual owned wave lifetime and COM lock/unlock."
+[[units.exact-first-direct-sound-wave-load.functions]]
+address = "0x004184B0"
+symbol_base = "?load@DirectSoundWaveResource@th105@@QAE_NPBD@Z"
+rel32_targets = [
+ "@dispatch_wave_resource@8=0x00408ED0",
+ "_free=0x0068AA26",
+ "_memcpy=0x0068AA30",
+]
+dir32_targets = [
+ "__ehhandler$?load@DirectSoundWaveResource@th105@@QAE_NPBD@Z=_direct_sound_wave_load_eh",
+ "___security_cookie=___security_cookie",
+ "_direct_sound_lock_error=_direct_sound_lock_error",
+ "?sound_error_title@th105@@3QBDB=?sound_error_title@th105@@3QBDB",
+ "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+]

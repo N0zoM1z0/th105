@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: global replay storage constructor43F1B0 is
+Current bounded checkpoint: DirectSound wave load4184B0 is canonical
+exact304/304. Natural owned-wave lifetime and real COM lock/copy/unlock close
+all114 native instructions. Source uses the observed ordinary fastcall
+dispatcher408ED0 without fabricating its private decoder child ABI. See
+[DIRECT_SOUND_WAVE_LOAD_2026_10_28.md](DIRECT_SOUND_WAVE_LOAD_2026_10_28.md)
+and build/frontier-4184b0-20261028/formal-build.json.
+
+Preceding bounded checkpoint: global replay storage constructor43F1B0 is
 canonical exact161/161, now with shared injected-input ctor42C930 exact27/27.
 RTTI corrects its inherited update override; profile192/205 and score defaults
 remain exact on focused replays. Real two-input ownership plus vector/string/critical

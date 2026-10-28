@@ -550,7 +550,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004182E0,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418310,authored_game,audio,authored,observed,canonical-exact-authored
 0x004183B0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004184B0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004184B0,authored_game,audio,authored,observed,canonical-exact-authored
 0x004185E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00418610,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00418670,authored_game,platform,authored,observed,application-bootstrap-island-authored-106a

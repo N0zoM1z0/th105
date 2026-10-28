@@ -2610,3 +2610,5 @@ _select_destructor_eh,0x006B76B6,8b5424088d42ec8b4ae833c8e85e26fd,0,Canonical424
 _replay_storage_ctor_eh,0x006B8FE2,8b5424088d42f48b4af033c8e8320dfd,0,Canonical 43F1B0 global replay storage constructor and EH array lifetime callbacks; raw target attested 2026-10-28.,address
 ??0ReplayInjectedInput@th105@@QAE@XZ,0x0042C930,568bf1e8b8d3fdff33c0884664668946,0,Canonical 43F1B0 global replay storage constructor and EH array lifetime callbacks; raw target attested 2026-10-28.,address
 ??1ReplayInjectedInput@th105@@UAE@XZ,0x0042C950,e9fbd3fdff,0,Canonical 43F1B0 global replay storage constructor and EH array lifetime callbacks; raw target attested 2026-10-28.,address
+_direct_sound_lock_error,0x006D6D28,836f83628374834082cc838d8362834e82c98eb8947300,0,Canonical DirectSound wave load4184B0 uses this error string or EH handler; raw PE attested 2026-10-28.,address
+_direct_sound_wave_load_eh,0x006BE0C8,8b5424088d42cc8b4ac833c8e84cbcfc,0,Canonical DirectSound wave load4184B0 uses this error string or EH handler; raw PE attested 2026-10-28.,address
