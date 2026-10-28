@@ -37,8 +37,8 @@ scripts/repo-python scripts/compare-giant-action-switches.py yukari-vslot28 buil
 
 Public replay emits57792 full bytes versus58248. First difference+8 is the
 frame immediate4E8 versus native4E0. Candidate SHA256:
-afdae08cafc20caa6b9fcb50c8abbdffe338c3e34aaf097a557b749887c1a092.
-Full audit reports54488 unequal/missing positional bytes, not a semantic
+12d9549c7a1da78ef8e507fb170ddd006203e0ead7926d0fd9e4ad11e94a2360.
+Full audit reports54483 unequal/missing positional bytes, not a semantic
 percentage. Comparison exit1 is expected. Final receipts:
 build/frontier-57b030-20261028/formal-first.json, formal-audit.json,
 final-map.json and final-action-{calls,fp-ops}.json. Private first/zero-offset/
@@ -122,3 +122,30 @@ whole calls in if/else, instead of a ternary direction temporary, reduces the
 710 physical span discrepancy from224 to9 bytes. This is a source-shape result,
 not exact credit. Packet, call and arithmetic semantics remain the scope;
 no assembly, target modifications or dummy dependencies were introduced.
+
+
+## Aim argument lifetime refinement
+
+The current source keeps the binary32 DX local and evaluates the binary32 DY
+expression directly in the atan argument. Raw native sites 57FFC8, 5800AA,
+58044C, 58052E, 580844, 580C84 and 580D6A first place rounded DX in outgoing
+[esp+4], then load peer Y and prepare outgoing DY. The previous two-local
+source captured DY before placing DX and kept a separate DY stack home.
+No helper call or field write intervenes in either coordinate calculation;
+all arithmetic widths and the ordered DX capture remain unchanged.
+
+The isolated change affects 140 bytes in seven same-sized instruction ranges.
+At all seven sites the 32 bytes immediately before the atan call now match
+native verbatim; none did before. These are local diagnostic windows, not
+function acceptance. Function size, action-owner map, metadata and 4E8 frame
+remain unchanged. The complete unmasked canonical audit still mismatches at+8.
+Receipts: build/frontier-57b030-20261028/formal-aimargs.json,
+formal-aimargs-audit.json and aimargs-call-evidence.json.
+
+The frame investigation also rejected narrowing the action730 Y capture:
+588639..58864A explicitly stores and compares a QWORD across surface().
+Native burst910 likewise captures its X+100 base as QWORD before RNG at
+587E0C, 587EEC and 587FCB. The extra frame space therefore does not justify
+changing these scalar widths. The compiler listing still places their shared
+QWORD group above the initial one-float packet; the cause remains unresolved.
+This checkpoint changes neither selected-source nor exact ledgers.

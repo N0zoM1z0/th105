@@ -156,8 +156,7 @@ public:
     }
     __forceinline void aim800(float cap) {
         float dx=static_cast<float>((peer()->at<float>(0xec)-at<float>(0xec))*static_cast<double>(facing()));
-        float dy=peer()->at<float>(0xf0)-at<float>(0xf0);
-        at<float>(0x744)=-yukari_atan(dy,dx);
+        at<float>(0x744)=-yukari_atan(peer()->at<float>(0xf0)-at<float>(0xf0),dx);
         if(at<float>(0x744)<-cap)at<float>(0x744)=-cap;
         if(at<float>(0x744)>cap)at<float>(0x744)=cap;
     }
@@ -185,7 +184,7 @@ public:
         landing();if(!at<int>(0x6c0))at<unsigned char>(0x750)=0;fan800(135.0,false);
         if(advance())set_action_and_finalize(0);if(entry(1)){set_action_and_finalize(0);return;}
         if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==2 && at<unsigned char>(0x750)){charge800();return;}if(frame_index_140==3){at<short>(0x730)=1;
-            float dx=static_cast<float>((peer()->at<float>(0xec)-at<float>(0xec))*static_cast<double>(facing()));float dy=peer()->at<float>(0xf0)-at<float>(0xf0);at<float>(0x744)=-yukari_atan(dy,dx);counter(200,45);
+            float dx=static_cast<float>((peer()->at<float>(0xec)-at<float>(0xec))*static_cast<double>(facing()));at<float>(0x744)=-yukari_atan(peer()->at<float>(0xf0)-at<float>(0xf0),dx);counter(200,45);
             if(at<float>(0x744)<-30.0f)at<float>(0x744)=-30.0f;if(at<float>(0x744)>30.0f)at<float>(0x744)=30.0f;}}
         if(sequence_index_13e==1 && !frame_timer_142 && frame_index_140==2){at<short>(0x730)=1;counter(200,45);aim800(30.0f);}
     }

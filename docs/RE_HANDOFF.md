@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Remilia circular request preparation now recovers
+Current bounded checkpoint: Yukari aim argument lifetimes now follow the native
+DX-outgoing-before-DY sequence at seven atan sites. Their local 32-byte windows
+match; the complete candidate remains 57792/full58248, first+8, frame4E8.
+See [YUKARI_ACTION_STATE_2026_10_28.md](YUKARI_ACTION_STATE_2026_10_28.md)
+and build/frontier-57b030-20261028/formal-aimargs*.json. No exact credit.
+
+Preceding checkpoint: Remilia circular request preparation now recovers
 the native 4F0 frame. Its complete unselected 107-action candidate emits
 62912/full63316, first +18; all sixteen tables and 101 payload homes resolve.
 [KOMACHI_ACTION_STATE_2026_10_28.md](KOMACHI_ACTION_STATE_2026_10_28.md)
