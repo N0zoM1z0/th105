@@ -1,6 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Select network entry4264B0 and client update426580
+Current bounded checkpoint: CSelectSV update4262A0 is canonical exact217/217;
+same-unit205/313 peers remain exact. The neighboring CBattleSV/CL update
+roots426180/426380 are now complete candidates252/247 and259/267, with only
+the inspected return/tail-merge region left after switch dispatch recovery.
+No credit for those two candidates.
+See [SELECT_NETWORK_RUNTIME_2026_10_28.md](SELECT_NETWORK_RUNTIME_2026_10_28.md)
+and [BATTLE_NETWORK_UPDATE_2026_10_28.md](BATTLE_NETWORK_UPDATE_2026_10_28.md).
+
+
+Preceding bounded checkpoint: Select network entry4264B0 and client update426580
 are canonical exact205/313, adding518 authored bytes. Current RTTI fixes
 SV/CL ownership; natural event RAII and virtual session/input callbacks close
 both complete bodies. No shared-header changes.

@@ -61,6 +61,34 @@ void SelectNetworkSceneView::on_enter(int previous_scene)
     pending_2ed8=0;
 }
 
+struct SelectServerSceneView : SelectNetworkSceneView {
+    virtual int update_client();
+};
+int SelectServerSceneView::update_client()
+{
+    SelectNetworkSessionView *session=reinterpret_cast<SelectNetworkSessionView *>(get_network_session());
+    if(session->disconnected() || is_menu_initial_press(1,false,false,false))
+        return 2;
+    if(pending_2ed8) {
+        if(session->ready()) {
+            session->process_ready();
+            if(session->accept_setup(setup_00c))return 10;
+        }
+    } else {
+        session->advance();
+        while(session->continue_transition()) {
+            first_010->update();
+            second_014->update();
+            if(update_selection()==6) {
+                session->publish_setup(setup_00c);
+                pending_2ed8=1;
+                break;
+            }
+        }
+    }
+    return 8;
+}
+
 int SelectNetworkSceneView::update_client()
 {
     SelectNetworkSessionView *session=reinterpret_cast<SelectNetworkSessionView *>(get_network_session());

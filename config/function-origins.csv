@@ -822,7 +822,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00426160,authored_game,network,authored,observed,canonical-exact-authored
 0x00426180,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00426280,authored_game,engine,authored,observed,canonical-exact-authored
-0x004262A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004262A0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00426380,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00426490,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004264B0,authored_game,ui,authored,observed,canonical-exact-authored

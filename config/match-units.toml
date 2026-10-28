@@ -24560,3 +24560,49 @@ rel32_targets = [
 dir32_targets = [
  "?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=?g_direct_input_backend@th105@@3UDirectInputBackend@1@A",
 ]
+
+[[units.exact-first-select-network-runtime.functions]]
+address = "0x004262A0"
+symbol_base = "?update_client@SelectServerSceneView@th105@@UAEHXZ"
+rel32_targets = [
+ "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+ "_is_menu_initial_press=0x0043ABD0",
+]
+
+[units.exact-first-battle-network-update]
+kind = "probe"
+source = "src/battle/BattleNetworkUpdate.cpp"
+object = "build/match-units/ExactFirst_BattleNetworkUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "RTTI-owned CBattleSV/CL update roots, current mode3 and UI-selection branches; native copy and replay flush contracts."
+
+[[units.exact-first-battle-network-update.functions]]
+address = "0x00426180"
+symbol_base = "?update@CBattleSV@th105@@UAEHXZ"
+rel32_targets = [
+ "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+ "_has_ui_selection_state_changed=0x0043B6E0",
+ "?copy_session_field_6c8_if_unset@NetworkSessionState@th105@@QAEXXZ=0x00426160",
+ "?flush_replay_values_44d800@BattleNetworkUpdateSessionView@th105@@QAEXXZ=0x0044D800",
+
+]
+dir32_targets = [
+ "?g_scene_renderer@th105@@3PAUBattleNetworkUpdateRenderer@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+]
+
+[[units.exact-first-battle-network-update.functions]]
+address = "0x00426380"
+symbol_base = "?update@CBattleCL@th105@@UAEHXZ"
+rel32_targets = [
+ "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+ "_has_ui_selection_state_changed=0x0043B6E0",
+ "?copy_session_field_6c8_if_unset@NetworkSessionState@th105@@QAEXXZ=0x00426160",
+ "?flush_replay_values_44d800@BattleNetworkUpdateSessionView@th105@@QAEXXZ=0x0044D800",
+ "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
+ "?reset_counters@CInputManager@th105@@QAEXXZ=0x00409F40",
+
+]
+dir32_targets = [
+ "?g_scene_renderer@th105@@3PAUBattleNetworkUpdateRenderer@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
+]

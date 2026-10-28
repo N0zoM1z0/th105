@@ -35,3 +35,16 @@ EH code earns authored credit.
 Target/object SHA-256:
 - 205:4d5910512fe0b87e7deedaa9c1c977d4d9238f78aeb2e197dfb172969bfe7b11
 - 313:10e92c433cb4422b8eff92ae77904c2d474544b30ebddceca8b490af98cd7d4e
+
+## Server selection update
+
+The CSelectSV override at4262A0 is now independently canonical exact217/217.
+Its pointer is6C04B0 (the current SV table slot04). It shares the pending,
+readiness, setup and two-peer input protocol but has no client mode5/keyboard
+index gate and uses results8/10/2. The local source overrides the existing
+view's update_client slot; that inherited method name is not a claim that the
+server policy is a client policy.
+
+Fresh receipt build/frontier-4264b0-20261028/server-update.json preserves the
+previous205/313 exact peers. This adds217 authored bytes,735 for this Select
+entry/update cluster overall. No shared headers or global flags changed.
