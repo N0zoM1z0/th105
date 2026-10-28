@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: scenario BGM transition43D030 is canonical
+Current bounded checkpoint: BGM service initialize403460 is canonical exact133.
+Actual paired thread owners and events plus existing visible start/priority
+bodies recover the complete native initializer on its first focused build.
+See [BGM_SERVICE_INITIALIZE_2026_10_28.md](BGM_SERVICE_INITIALIZE_2026_10_28.md)
+and build/frontier-403460-20261028/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: scenario BGM transition43D030 is canonical
 exact208/208, with all three accepted BGM siblings unchanged. The interpreter
 caller4594A2 pins path/duration/linked arguments and late global handle publish.
 See [BGM_TRANSITION_POLICY_2026_10_28.md](BGM_TRANSITION_POLICY_2026_10_28.md)

@@ -1646,3 +1646,4 @@ CFade_advance_to_midpoint,0x0041E270,function
 shutdown_scene_resources,0x0043D670,function
 CSceneManager_shutdown,0x0041E120,function
 transition_bgm,0x0043D030,function
+BgmService_initialize,0x00403460,function

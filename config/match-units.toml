@@ -25166,3 +25166,15 @@ rel32_targets = [
  "?save@ShutdownConfigView@th105@@QAEXXZ=0x00427390",
  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
 ]
+
+[units.exact-first-bgm-service-initialize]
+kind = "probe"
+source = "src/audio/BgmServiceInitialize.cpp"
+object = "build/match-units/ExactFirst_BgmServiceInitialize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "BGM403460 service initialization with two actual thread handles, events and gain fields; visible exact-backed thread start/priority bodies."
+[[units.exact-first-bgm-service-initialize.functions]]
+address = "0x00403460"
+symbol_base = "?initialize@BgmServiceInitializeView@th105@@QAEXXZ"
+rel32_targets = ["?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640"]
