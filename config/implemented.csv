@@ -1612,3 +1612,5 @@ WaveService_release_buffers
 Ending_on_scene_enter
 CMenuConnect_reset_overlay_state
 Youmu_construct
+CFade_update_fade
+CFade_advance_to_midpoint

@@ -50,8 +50,8 @@ bool SharedSceneRenderDelegate::render()
 struct CFade {
     virtual void fade_slot_0();
     virtual void fade_slot_1();
-    virtual void fade_slot_2();
-    virtual void fade_slot_3();
+    virtual bool update_fade();
+    virtual bool advance_to_midpoint();
     virtual bool render();
 
     unsigned color_04;
@@ -60,6 +60,27 @@ struct CFade {
 
 typedef char CFade_color_offset[offsetof(CFade, color_04) == 0x04 ? 1 : -1];
 typedef char CFade_timer_offset[offsetof(CFade, timer_08) == 0x08 ? 1 : -1];
+
+bool CFade::update_fade()
+{
+    if (timer_08 == 120) {
+        timer_08 = 0;
+        color_04 = 0;
+    }
+    if (timer_08 != 0)
+        ++timer_08;
+    return true;
+}
+
+bool CFade::advance_to_midpoint()
+{
+    if (timer_08 == 60)
+        return true;
+    if (timer_08 > 60)
+        timer_08 = 120 - timer_08;
+    ++timer_08;
+    return false;
+}
 
 bool CFade::render()
 {

@@ -6949,6 +6949,14 @@ enable_gs = false
 notes = "TH105 1.06a scene/UI frame consumers. Current RTTI identifies CFade, Ending, CLogo, Opening and CLoadingSV owners; a shared scene-render virtual body appears in several scene vtables. The source keeps target branch/fallthrough order and the already exact UiSprite94 vtable-cache pattern."
 
 [[units.cross-v106a-render-scene-consumers.functions]]
+address = "0x0041E250"
+symbol_base = "?update_fade@CFade@th105@@UAE_NXZ"
+
+[[units.cross-v106a-render-scene-consumers.functions]]
+address = "0x0041E270"
+symbol_base = "?advance_to_midpoint@CFade@th105@@UAE_NXZ"
+
+[[units.cross-v106a-render-scene-consumers.functions]]
 address = "0x0041E040"
 symbol_base = "?render@SharedSceneRenderDelegate@th105@@UAE_NXZ"
 rel32_targets = [

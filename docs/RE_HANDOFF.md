@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Youmu constructor53B330 is canonical exact159/159.
+Current bounded checkpoint: CFade timer policies41E250/41E270 are canonical
+exact30/30 each; all six existing accepted scene-render peers remain exact.
+Current RTTI slots08/0C and the exact renderer pin color04/timer08 semantics.
+See [FADE_TIMER_POLICIES_2026_10_28.md](FADE_TIMER_POLICIES_2026_10_28.md)
+and build/frontier-41e250-20261028/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: Youmu constructor53B330 is canonical exact159/159.
 The existing history override independently fixes the deque<YoumuObjectRecord>
 at7D0, closing the previously unresolved member lifetime. Native boundary closes
 46 instructions; only the authored constructor receives credit. See
