@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: spell preparation45DC90 now uses the real typed
+Current bounded checkpoint: CBattleManager pre-reset virtual472230 is
+canonical exact314/314. The existing fully described CMenuPractice0x288 layout
+supersedes the historical allocation blocker; ordinary menu/input/EH source
+now matches the complete body. No shared header or global profile changed.
+See [BATTLE_MANAGER_PRE_RESET_2026_10_28.md](BATTLE_MANAGER_PRE_RESET_2026_10_28.md)
+and build/frontier-472230-20261028/formal-build.json.
+
+
+Preceding bounded candidate: spell preparation45DC90 now uses the real typed
 sprite record and deque ownership. Its old GS-buffer blocker and stale
 addresses/dataflow are corrected; current257/native259 remains nonexact.
 Initial entry/size loads now agree; optional-resource load/reuse is residual.

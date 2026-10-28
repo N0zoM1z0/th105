@@ -2140,7 +2140,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00472080,authored_game,battle,authored,observed,canonical-exact-authored
 0x004720F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472110,authored_game,battle,authored,observed,canonical-exact-authored
-0x00472230,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00472230,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472370,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472490,authored_game,battle,authored,observed,canonical-exact-authored
 0x004724B0,authored_game,battle,authored,observed,canonical-exact-authored

@@ -24444,3 +24444,35 @@ dir32_targets = [
  "?g_spell_texture_load_state@th105@@3IA=?g_spell_texture_load_state@th105@@3IA",
  "?g_spell_texture_upload_state@th105@@3IA=?g_spell_texture_upload_state@th105@@3IA",
 ]
+
+[units.exact-first-battle-manager-pre-reset]
+kind = "probe"
+source = "src/battle/BattleManagerPreReset.cpp"
+object = "build/match-units/ExactFirst_BattleManagerPreReset.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Current472230 pre-reset virtual; real shared CMenuPractice0x288 layout resolves the historical opaque-member blocker."
+
+[[units.exact-first-battle-manager-pre-reset.functions]]
+address = "0x00472230"
+symbol_base = "?pre_reset_slot_40@CBattleManager@th105@@UAEXXZ"
+rel32_targets = [
+ "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+ "?get_player2_input@th105@@YAPAUBattleInputGate@1@XZ=0x0043B060",
+ "?publish_synchronized_control_bits_427ac0@BattleInputGate@th105@@QAEXXZ=0x004289A0",
+ "?update_scripted_input_state_462e20@Fighter@th105@@QAEXXZ=0x00463E40",
+ "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+ "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+ "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "??0CMenuPractice@th105@@QAE@PAUPracticeOwnerView@1@@Z=0x00446170",
+ "??0SceneExitTransition@th105@@QAE@PAUBattleController@1@@Z=0x00440B50",
+ "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+ "?update_local_practice_battle_controls_427190@BattleInputGate@th105@@QAEXXZ=0x00428070",
+ "?collect_battle_control_bits_42a560@BattleInputGate@th105@@QAEXXZ=0x0042B460",
+]
+dir32_targets = [
+ "__ehhandler$?pre_reset_slot_40@CBattleManager@th105@@UAEXXZ=_battle_manager_pre_reset_eh",
+ "___security_cookie=___security_cookie",
+ "?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
+]
