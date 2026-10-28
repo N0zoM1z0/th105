@@ -2,7 +2,8 @@
 
 Current bounded frontier: Sakuya Fighter4CADB0 has independently closed raw CFG
 through4DD2D2, including all ten remote chunks; full payload76336 through4DD7E0.
-Source recovery covers113 action labels and is not yet published. Two previously
+Target dispatch contains113 action labels; complete source has not yet been written.
+Two previously
 counted short alignment JMPs correct owned bytes74941 to74937 without exact credit.
 Attested Ghidra navigation completed after the known IDA decompile failure. See
 [SAKUYA_ACTION_STATE_2026_10_28.md](SAKUYA_ACTION_STATE_2026_10_28.md) and
