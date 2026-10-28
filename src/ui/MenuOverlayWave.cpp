@@ -146,6 +146,14 @@ private:
     bool update_state_six();
 };
 
+extern UiDesignObject *g_profile_message_main;
+void CMenuConnect::unknown_menu_method()
+{
+    field<unsigned char>(8)=0;
+    g_profile_message_main->enabled=false;
+    g_scene_mode=22;
+}
+
 bool CMenuConnect::update()
 {
     GuideOverlay *guide = &field<GuideOverlay>(0xc4c);

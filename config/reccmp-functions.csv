@@ -1638,3 +1638,5 @@ emit_weather_effect_global,0x00665470,function
 initialize_scene_auxiliary,0x006654A0,function
 shutdown_scene_auxiliary,0x006654C0,function
 WaveService_release_buffers,0x00401A80,function
+Ending_on_scene_enter,0x0041E790,function
+CMenuConnect_reset_overlay_state,0x00442190,function

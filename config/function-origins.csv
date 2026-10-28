@@ -663,7 +663,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041E320,authored_game,engine,authored,observed,canonical-exact-authored
 0x0041E750,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x0041E770,authored_game,battle,authored,observed,canonical-exact-authored
-0x0041E790,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041E790,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041E7C0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041E920,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041E9B0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
@@ -1371,7 +1371,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004418D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00441BD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00441E10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00442190,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00442190,authored_game,ui,authored,observed,canonical-exact-authored
 0x004421B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004421D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00442210,unknown,,review,unknown,ida-1.06a-initial-inventory

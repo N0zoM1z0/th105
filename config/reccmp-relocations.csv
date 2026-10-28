@@ -2616,3 +2616,4 @@ _connect_endpoint_edit_prompt,0x006C1B98,90da91b190e682cc83418368838c835882f093f
 __real@c2040000,0x006C6914,000004c2,0,Canonical InfoEffect action32 initialization660833 loads float -33.0 from this address; raw PE attested 2026-10-28.,literal
 ?g_battle_effect@th105@@3UBattleEffectBootstrapView@1@A,0x006FD394,0000000000000000,0,Canonical battle effect bootstrap6654A0/6654C0 fixes global owner and embedded0xAC8 program. Raw target/loader-mapped bytes attested 2026-10-28.,address
 ?battle_effect_program@th105@@3QBEB,0x006C69C0,0109fffef80200000000000005000000,0,Canonical battle effect bootstrap6654A0/6654C0 fixes global owner and embedded0xAC8 program. Raw target/loader-mapped bytes attested 2026-10-28.,address
+_ending_staffroll_path,0x006C05A8,646174612f7363656e652f7374616666726f6c6c2f7374616666726f6c6c2e74787400,0,Canonical Ending entry41E790 loads this staffroll script after Story ending page initialization; raw target attested 2026-10-28.,address

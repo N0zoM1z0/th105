@@ -7698,6 +7698,14 @@ rel32_targets = [
   "?update_state_middle@CMenuConnect@th105@@AAE_NXZ=0x00444490",
   "?update_state_six@CMenuConnect@th105@@AAE_NXZ=0x004428E0",
 ]
+[[units.cross-v106a-menu-overlay-wave.functions]]
+address = "0x00442190"
+symbol_base = "?unknown_menu_method@CMenuConnect@th105@@UAEXXZ"
+dir32_targets = [
+ "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
+ "_g_scene_mode=_g_scene_mode",
+]
+
 [units.cross-v106a-profile-deck-counts]
 kind = "probe"
 source = "src/ui/ProfileDeckCounts.cpp"
@@ -14196,6 +14204,19 @@ dir32_targets = [
   "__ehhandler$??0CLoadingWatchConstructorView@th105@@QAE@XZ=__ehhandler$??0CLoadingWatch@th105@@QAE@XZ",
   "??_7CLoadingWatchConstructorView@th105@@6B@=??_7CLoadingWatch@@6B@",
   "??_7SceneSprite94@th105@@6B@=_select_sprite_vtable_anchor",
+]
+
+[[units.gpt-web-scene-constructor-runtime.functions]]
+address = "0x0041E790"
+symbol_base = "?on_scene_enter@EndingConstructorView@th105@@UAEXH@Z"
+rel32_targets = [
+ "?load_story_ending_page@EndingPageCall@th105@@QAEXXZ=0x0045A3A0",
+ "?initialize@SceneRenderClusterOwner93@th105@@QAEXXZ=0x00453BC0",
+ "?load_script@SceneRenderClusterOwner93@th105@@QAEXPBD@Z=0x004540F0",
+]
+dir32_targets = [
+ "?g_ending_phase@th105@@3PAUEndingPageCall@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A",
+ "_ending_staffroll_path=_ending_staffroll_path",
 ]
 
 [units.gpt-web-scene-factory-runtime]

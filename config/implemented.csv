@@ -1609,3 +1609,5 @@ emit_weather_effect_global
 initialize_scene_auxiliary
 shutdown_scene_auxiliary
 WaveService_release_buffers
+Ending_on_scene_enter
+CMenuConnect_reset_overlay_state

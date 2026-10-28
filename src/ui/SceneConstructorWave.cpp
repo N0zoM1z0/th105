@@ -72,10 +72,21 @@ class EndingConstructorView : public IScene {
 public:
     EndingConstructorView();
     virtual ~EndingConstructorView();
+    virtual void on_scene_enter(int previous_scene);
 
     SceneRenderClusterOwner93 cluster_04;
     unsigned char alpha_97;
 };
+
+struct EndingPageCall { void load_story_ending_page(); };
+extern EndingPageCall *g_ending_phase;
+extern "C" const char ending_staffroll_path[];
+void EndingConstructorView::on_scene_enter(int)
+{
+    g_ending_phase->load_story_ending_page();
+    cluster_04.initialize();
+    cluster_04.load_script(ending_staffroll_path);
+}
 
 class CLoadingConstructorView : public IScene {
 public:

@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: sprite rectangle renderer4070C0 is complete
+Current bounded checkpoint: Ending entry41E790 and Connect reset442190
+are canonical exact40/25. Current RTTI slots own both; all16 existing accepted
+peers in the two affected TUs remain exact. See
+[SCENE_MENU_ENTRY_LEAVES_2026_10_28.md](SCENE_MENU_ENTRY_LEAVES_2026_10_28.md)
+and build/frontier-41e790-20261028/{formal-build,connect-reset}.json.
+
+Preceding bounded candidate: sprite rectangle renderer4070C0 is complete
 153/native153 under the independently available strict-FP context. Default
 161 uses a different half-pixel pool; strict recovers x87 work but still moves
 the texture-handle load before geometry stores. No credit. See
