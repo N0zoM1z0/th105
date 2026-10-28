@@ -1,7 +1,7 @@
 # TH10.5 reconstruction handoff
 
 Current bounded candidate: MarisaObject update4BBE00 has complete manual
-41-action source and a focused canonical replay. Full50480/native49744 remains
+41-action source and a focused canonical replay. Full50156/native49744 remains
 nonexact+37; native frame0x340 and all18 table dimensions are recovered, but
 call/return sharing and later code remain different. No exact credit. See
 [MARISA_OBJECT_UPDATE_2026_10_28.md](MARISA_OBJECT_UPDATE_2026_10_28.md),

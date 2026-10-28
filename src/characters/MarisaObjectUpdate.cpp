@@ -472,9 +472,9 @@ case 812: {
         short owner_action=FIELD(OWNER,short,0x13c);
         if(owner_action!=510 && owner_action!=511 && owner_action!=512 && owner_action!=513) RETIRE();
         double cosine=lookup_orientation_cosine_quantized_abs(static_cast<float>(-FIELD(OWNER,float,0x12c)-30.0));
-        F(0xec)=static_cast<float>(cosine*(58*C(0x104))+FIELD(OWNER,float,0xec));
-        double sine=lookup_orientation_sine_quantized_abs(static_cast<float>(-FIELD(OWNER,float,0x12c)-30.0));
-        F(0xf0)=static_cast<float>(sine*58.0+(FIELD(OWNER,float,0xf0)+100.0));
+        F(0xec)=static_cast<float>(cosine*static_cast<float>(58*C(0x104))+FIELD(OWNER,float,0xec));
+        double y_offset=lookup_orientation_sine_quantized_abs(static_cast<float>(-FIELD(OWNER,float,0x12c)-30.0))*58.0;
+        F(0xf0)=static_cast<float>(y_offset+(FIELD(OWNER,float,0xf0)+100.0));
         F(0x12c)=FIELD(OWNER,float,0x12c);
         if(FIELD(OWNER,short,0x13e)!=1) RETIRE();
         break;
@@ -483,9 +483,9 @@ case 812: {
         short owner_action=FIELD(OWNER,short,0x13c);
         if(owner_action!=510 && owner_action!=511 && owner_action!=512 && owner_action!=513) RETIRE();
         double cosine=lookup_orientation_cosine_quantized_abs(static_cast<float>(-FIELD(OWNER,float,0x12c)-30.0));
-        F(0xec)=static_cast<float>(cosine*(58*C(0x104))+FIELD(OWNER,float,0xec));
-        double sine=lookup_orientation_sine_quantized_abs(static_cast<float>(-FIELD(OWNER,float,0x12c)-30.0));
-        F(0xf0)=static_cast<float>(sine*58.0+(FIELD(OWNER,float,0xf0)+100.0));
+        F(0xec)=static_cast<float>(cosine*static_cast<float>(58*C(0x104))+FIELD(OWNER,float,0xec));
+        double y_offset=lookup_orientation_sine_quantized_abs(static_cast<float>(-FIELD(OWNER,float,0x12c)-30.0))*58.0;
+        F(0xf0)=static_cast<float>(y_offset+(FIELD(OWNER,float,0xf0)+100.0));
         F(0x12c)=FIELD(OWNER,float,0x12c);
         float packet[3];
         packet[0]=static_cast<float>(static_cast<float>(mt19937_next_u32()%60u)+static_cast<double>(F(0x12c))-30.0);
@@ -502,8 +502,7 @@ case 812: {
         break;
     }
     }
-    if(FIELD(OWNER,short,0x186)==0) {FINISH();}
-    return;
+    goto owner_hitstop_finish;
 
 
 }
@@ -1018,12 +1017,12 @@ case 825: {
         if(FIELD(owner,short,0x13c)==560 || FIELD(owner,short,0x13c)==561) {
             if(FIELD(owner,short,0x13e)>=4) RETIRE();
             if(FIELD(owner,short,0x13e)==1) {
-                F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-static_cast<double>(24*C(0x104)));
+                F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-24*C(0x104));
                 F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+95.0);
             }
             if(FIELD(owner,short,0x13e)==2) {
                 if(FIELD(owner,short,0x140)==0) {
-                    F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-static_cast<double>(12*C(0x104)));
+                    F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-12*C(0x104));
                     F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+80.0);
                 }
                 if(FIELD(owner,short,0x140)==1) {
@@ -1047,12 +1046,12 @@ case 825: {
         if(FIELD(owner,short,0x13c)==562 || FIELD(owner,short,0x13c)==563) {
             if(FIELD(owner,short,0x13e)>=4) RETIRE();
             if(FIELD(owner,short,0x13e)==1) {
-                F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-static_cast<double>(23*C(0x104)));
+                F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-23*C(0x104));
                 F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+107.0);
             }
             if(FIELD(owner,short,0x13e)==2) {
                 if(FIELD(owner,short,0x140)==0) {
-                    F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-static_cast<double>(21*C(0x104)));
+                    F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-21*C(0x104));
                     F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+96.0);
                 }
                 if(FIELD(owner,short,0x140)==1) {
@@ -1078,20 +1077,13 @@ case 825: {
         FINISH();
     }
     case 5:
-        if(RELATED) {F(0xec)=FIELD(RELATED,float,0xec);F(0xf0)=FIELD(RELATED,float,0xf0);}
-        F(0x11c)+=0.4f;F(0x120)=F(0x11c);
-        if(B(0x113)<30) RETIRE();
-        B(0x113)-=30;
-        FINISH();
+        goto attached_expand_fade;
     case 6:
         F(0x11c)*=0.8f;F(0x120)=F(0x11c);
         if(I(0x144)>=30) RETIRE();
         FINISH();
     case 7:
-        F(0x11c)+=0.4f;F(0x120)=F(0x11c);
-        if(B(0x113)<30) RETIRE();
-        B(0x113)-=30;
-        FINISH();
+        goto expand_fade;
     default:FINISH();
     }
 
@@ -1144,12 +1136,12 @@ case 826: {
         if(FIELD(owner,short,0x13c)==565 || FIELD(owner,short,0x13c)==566) {
             if(FIELD(owner,short,0x13e)>=4) RETIRE();
             if(FIELD(owner,short,0x13e)==1) {
-                F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-static_cast<double>(24*C(0x104)));
+                F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-24*C(0x104));
                 F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+95.0);
             }
             if(FIELD(owner,short,0x13e)==2) {
                 if(FIELD(owner,short,0x140)==0) {
-                    F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-static_cast<double>(12*C(0x104)));
+                    F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-12*C(0x104));
                     F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+80.0);
                 }
                 if(FIELD(owner,short,0x140)==1) {
@@ -1173,12 +1165,12 @@ case 826: {
         if(FIELD(owner,short,0x13c)==567 || FIELD(owner,short,0x13c)==568) {
             if(FIELD(owner,short,0x13e)>=4) RETIRE();
             if(FIELD(owner,short,0x13e)==1) {
-                F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-static_cast<double>(23*C(0x104)));
+                F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-23*C(0x104));
                 F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+107.0);
             }
             if(FIELD(owner,short,0x13e)==2) {
                 if(FIELD(owner,short,0x140)==0) {
-                    F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-static_cast<double>(21*C(0x104)));
+                    F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-21*C(0x104));
                     F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+96.0);
                 }
                 if(FIELD(owner,short,0x140)==1) {
@@ -1203,7 +1195,9 @@ case 826: {
         F(0x11c)=scale;F(0x120)=scale;
     }
     if(S(0x13e)==5) {
+attached_expand_fade:
         if(RELATED) {F(0xec)=FIELD(RELATED,float,0xec);F(0xf0)=FIELD(RELATED,float,0xf0);}
+expand_fade:
         F(0x11c)+=0.4f;F(0x120)=F(0x11c);
         if(B(0x113)<30) RETIRE();B(0x113)-=30;
     }
@@ -1403,6 +1397,7 @@ case 849: {
         short action=FIELD(owner,short,0x13c);
         if((action!=525 || FIELD(owner,short,0x13e)!=1) && (action!=526 || FIELD(owner,short,0x13e)!=1)) RETIRE();
     }
+owner_hitstop_finish:
     if(FIELD(OWNER,short,0x186)==0) {FINISH();}
     return;
 
@@ -1974,9 +1969,8 @@ case 865: {
         if(FIELD(owner,short,0x7a4)==S(0x13e)+2) {
             FIELD(owner,short,0x7a4)=1;WAVE(0);
             owner=OWNER;void *target=TARGET;
-            float x=static_cast<float>((FIELD(target,float,0xec)-FIELD(owner,float,0xec))*static_cast<double>(FIELD(owner,signed char,0x104)));
-            float y=FIELD(target,float,0xf0)-FIELD(owner,float,0xf0);
-            float packet[3];packet[0]=-atan2_degrees(y,x);
+            float packet[3];
+            packet[0]=-atan2_degrees(FIELD(target,float,0xf0)-FIELD(owner,float,0xf0),static_cast<float>((FIELD(target,float,0xec)-FIELD(owner,float,0xec))*static_cast<double>(FIELD(owner,signed char,0x104))));
             if(packet[0]>30.0) packet[0]=30.0f;if(packet[0]<-30.0) packet[0]=-30.0f;
             packet[1]=15.0f;packet[2]=8.0f;
             spawn_unparented(865,F(0xec),F(0xf0),FIELD(OWNER,unsigned char,0x104),1,packet,3);
@@ -2001,9 +1995,11 @@ case 865: {
         FINISH();
     }
     case 6:case 9:
+shrink_rgb_fade:
         F(0x11c)*=0.9f;F(0x120)=F(0x11c);
         if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x112)-=10;B(0x111)-=10;FINISH();
     case 7:case 10:
+expand_rgb_fade:
         F(0x11c)+=0.2f;F(0x120)=F(0x11c);
         if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x112)-=10;B(0x111)-=10;FINISH();
     case 8: {
@@ -2142,7 +2138,7 @@ case 900: {
     case 0:case 1:case 2:case 3: {
         if(FIELD(OWNER,short,0x174)<=0) RETIRE();
         if(I(0x144)%5==0) {
-            float packet[3];packet[0]=static_cast<float>(static_cast<double>(RF(60))+PARAM[0]+150.0);
+            float packet[3];packet[0]=static_cast<float>(static_cast<double>(RF(60))+(PARAM[0]+150.0));
             packet[1]=static_cast<float>(RF(9)+6.0);packet[2]=static_cast<float>(S(0x13e)+14.0);
             spawn_parented(900,F(0xec),F(0xf0),B(0x104),1,packet,3);
         }
@@ -2218,13 +2214,11 @@ case 901: {
             packet[2]=7.0f;spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);RETIRE();
         }
         if(FIELD(owner,short,0x13c)==720) {
-            unsigned short sequence=FIELD(owner,unsigned short,0x13e);if(sequence>=2 && sequence<=4) S(0x364)=0;
+            short sequence=FIELD(owner,short,0x13e);if(sequence>=2 && sequence<=4) S(0x364)=0;
             owner=OWNER;
             if(FIELD(owner,short,0x13e)==5 && FIELD(owner,short,0x738)==1 && FIELD(owner,short,0x736)==S(0x13e)+1) {
                 FIELD(owner,short,0x736)=0;WAVE(0);void *target=TARGET;owner=OWNER;
-                float x=static_cast<float>((FIELD(target,float,0xec)-FIELD(owner,float,0xec))*static_cast<double>(C(0x104)));
-                float y=FIELD(target,float,0xf0)-FIELD(owner,float,0xf0);
-                float packet[3]={-atan2_degrees(y,x),7.0f,8.0f};
+                float packet[3]={-atan2_degrees(FIELD(target,float,0xf0)-FIELD(owner,float,0xf0),static_cast<float>((FIELD(target,float,0xec)-FIELD(owner,float,0xec))*static_cast<double>(C(0x104)))),7.0f,8.0f};
                 spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=9.0f;
                 spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=10.0f;
                 spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);
@@ -2249,10 +2243,8 @@ case 901: {
         double sine=lookup_orientation_sine_quantized_abs(-PARAM[0]-FIELD(owner,float,0x73c));
         F(0xf0)=static_cast<float>(sine*FIELD(OWNER,float,0x740)+(FIELD(OWNER,float,0xf0)+100.0));FINISH();
     }
-    case 6:case 9:
-        F(0x11c)*=0.9f;F(0x120)=F(0x11c);if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x112)-=10;B(0x111)-=10;FINISH();
-    case 7:case 10:
-        F(0x11c)+=0.2f;F(0x120)=F(0x11c);if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x112)-=10;B(0x111)-=10;FINISH();
+    case 6:case 9:goto shrink_rgb_fade;
+    case 7:case 10:goto expand_rgb_fade;
     case 8: {
         advance_six(5);
         if(FIELD(OWNER,short,0x174)>0 && C(0x184)>0) {

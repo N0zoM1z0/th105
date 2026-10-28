@@ -68,13 +68,13 @@ scripts/repo-python scripts/audit-marisa-object-update.py
 ```
 
 Receipts: `build/frontier-4bbe00-20261028/formal-build.json` and
-`full-audit.json`. The selected canonical full candidate is50480 bytes,
-SHA256`d538800404d423f609bc60d6391ff5e2cf5e21fb9bd2aa308979e19a9595aae0`.
-Full comparison has40064 unmasked differing bytes, first+37/4BBE25 in the
+`full-audit.json`. The selected canonical full candidate is50156 bytes,
+SHA256`7378dbdae931e6b638b8b04269c50711cf02447b6cd2c75fc35d65a746d53c14`.
+Full comparison has41591 unmasked differing bytes, first+37/4BBE25 in the
 initial default-branch displacement. This is not merely a displacement fix:
 code order, precision, call/return sharing and later control flow remain
 nonexact. Candidate frame0x340, all18 table dimensions and four remap lengths
-agree;37 virtual calls versus36 and94 RETs versus71 remain. All22 direct
+agree;37 virtual calls versus36 and92 RETs versus71 remain. All22 direct
 callee counts agree except advance_frame11 versus10. These structural facts
 are diagnostics, not execution-equivalence or byte-exact acceptance.
 
@@ -83,3 +83,21 @@ match identifier. The callable/source/mapping inventory changes, but
 `matches.csv` and confirmed exact totals remain unchanged. Original class
 names, full class layout, original expression lifetimes, control-sharing and
 translation-unit context remain hypotheses until independently established.
+
+## Target-backed continuation refinement
+
+The selected source now shares the observed825/826 parented expansion fade,
+812/849 owner-hitstop exit and865/901 RGB fade continuations. These are ordinary
+source labels for identical authored behavior, not copied instruction blocks.
+The812 orbital offset expressions preserve native integer-multiply conversion
+and compute the sine radius before loading the owner Y. The825/826 subtractive
+integer offsets retain the native FISUB operation. Direct aim-call arguments
+restore X-then-Y evaluation without keeping both rounded arguments live across
+the call;900 RNG-plus-offset grouping follows its raw x87 additions.
+
+A separate whole-root shared-finish control compiled50124 bytes but moved
+previously aligned early control flow and changed advance_frame sharing to9
+versus native10. It is not selected. Smaller size is not the acceptance rule.
+The selected50156 bytes remain wholly nonexact, with all18 destination-table
+counts and all263 remap bytes equal, native0x340 frame, and the remaining
+call/return/control-sharing differences stated above.
