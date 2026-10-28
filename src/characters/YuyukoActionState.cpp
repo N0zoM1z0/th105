@@ -671,7 +671,7 @@ case 720: {
 difficulty901_done:
     if(sequence_index_13e==2 || sequence_index_13e==3){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){select_sequence(4);zero_motion();F(0xf0)=yuyuko_surface(this);return;}}
     if(advance())set_action_and_finalize(700);
-    if(!time_counter_144){if(entry(1))zero_motion();if(entry(3)){float y=F(0xf0);if(yuyuko_surface(this)<y)F(0x100)=0.2f;else set_action_and_finalize(700);}}
+    if(!time_counter_144){if(entry(1))zero_motion();if(entry(3)){double y=F(0xf0);if(yuyuko_surface(this)>=y)set_action_and_finalize(700);else F(0x100)=0.2f;}}
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==2){F(0xf8)=static_cast<float>(static_cast<float>(yuyuko_random(13))+2.0);F(0x100)=0.25f;}return;
 }
 case 725:

@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Tenshi raw-backed scalar captures reduce the
+Current bounded checkpoint: Yuyuko720 now preserves the native QWORD Y
+capture and unordered surface predicate: action700 only for ordered surface>=Y,
+gravity otherwise. Complete unselected source59456/full59672 remains first+8.
+See [YUYUKO_ACTION_STATE_2026_10_28.md](YUYUKO_ACTION_STATE_2026_10_28.md)
+and build/frontier-55d850-20261027/formal-surface720*.json. No exact credit.
+
+Preceding checkpoint: Tenshi raw-backed scalar captures reduce the
 extra frame from16 to8 bytes; request and atan argument lifetimes are refined.
 The complete unselected candidate is49032/full48968, first+8, frame328 versus320.
 All35/36/37 action-table groups and64 payload homes resolve. See

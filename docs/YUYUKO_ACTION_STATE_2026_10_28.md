@@ -29,8 +29,8 @@ Public source: src/characters/YuyukoActionState.cpp and .hpp.
 Unit: exact-first-yuyuko-action-state. Both private and public builds emit
 59456 full bytes versus59672; first mismatch is+8 (frame immediate4F0 versus
 native4E8). Canonical candidate SHA256:
-fae3443cfa58a7c2a829bfbab59e723ecfa12172e8a23914e37a7b610749988f.
-The full audit reports56560 unequal/missing positional bytes. This is a strict
+893e55b4e6e1976682b96b24c1b5245becea1c35b6f0c40b5299741ddaff5323.
+The full audit reports56540 unequal/missing positional bytes. This is a strict
 mismatch diagnostic, not a semantic similarity score or accepted byte count.
 
 Reproduce serially:
@@ -134,3 +134,20 @@ still resolves100 homes, all+8, with no unknown payload pointers. One skipped
 six-byte LEA EBX,[EBX] at candidate56A7EA is compiler alignment, not executable
 source or a masked acceptance range. All bytes remain in the canonical audit.
 The extra scalar group and ring-operation scheduling remain unresolved.
+
+
+## Action720 surface predicate
+
+Native56B3B9..56B3CA captures Y directly in QWORD across surface(). The local
+is now double, replacing the earlier DWORD comparison home. More importantly,
+56B3D0 tests AH bit0 alone: the gravity path at56B3E5 is taken when surface is
+less than Y **or unordered**. Action700 is selected only for ordered surface>=Y.
+The former source `if(surface<y) gravity; else action700;` incorrectly selected
+700 on unordered input. The source now states the ordered >= branch first,
+which reproduces TEST AH,1/JNE and both native continuation bodies. No finite-
+only domain assumption, invented NaN handling, or defensive behavior is added.
+
+The public full payload remains59456/full59672, frame4F0 and first+8, SHA256
+893e55b4e6e1976682b96b24c1b5245becea1c35b6f0c40b5299741ddaff5323.
+Receipt: build/frontier-55d850-20261027/formal-surface720-audit.json. The strict
+positional difference count is56540; there is still no exact acceptance.
