@@ -515,8 +515,7 @@ case 562: {
         if(S(0x730)%4==1) {
             phase_counter(10);I(0x180)=1;
             float dx=static_cast<float>((peer()->at<float>(0xec)-F(0xec))*static_cast<double>(facing()));
-            float dy=peer()->at<float>(0xf0)-F(0xf0);
-            S(0x734)=static_cast<short>(-static_cast<short>(static_cast<int>(yuyuko_atan(dy,dx))));
+            S(0x734)=static_cast<short>(-static_cast<short>(static_cast<int>(yuyuko_atan(peer()->at<float>(0xf0)-F(0xf0),dx))));
             if(S(0x734)<-10)S(0x734)=-10;if(S(0x734)>10)S(0x734)=10;
             dispatch_character_wave_handle(9);
             if(S(0x738)==1){double base=S(0x734)+30.0;float first[3];first[0]=static_cast<float>(base-static_cast<float>(yuyuko_random_u32()%60u));first[1]=15.0f;first[2]=static_cast<float>(yuyuko_random(4));spawn_offset(808,44,85.0,first,3);}
@@ -681,7 +680,7 @@ case 725:
     // Native 56B556..56B574 falls through to 726 except entry 4.
 case 726:
     fade_alpha();if(advance())set_action_and_finalize(700);
-    if(!time_counter_144){if(entry(1))dispatch_character_wave_handle(55);if(entry(3)){float x=F(0xec);F(0xec)=static_cast<float>(x-(static_cast<float>(yuyuko_random(300))+250.0));dispatch_character_wave_handle(55);}}return;
+    if(!time_counter_144){if(entry(1))dispatch_character_wave_handle(55);if(entry(3)){double x=F(0xec);F(0xec)=static_cast<float>(x-(static_cast<float>(yuyuko_random(300))+250.0));dispatch_character_wave_handle(55);}}return;
 case 730:
     if(sequence_index_13e>=1){F(0xf8)-=F(0x100);if(++S(0x730)>=60){zero_motion();set_action_and_finalize(731);return;}}
     if(advance())set_action_and_finalize(700);

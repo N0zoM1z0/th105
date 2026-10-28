@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Yukari aim argument lifetimes now follow the native
+Current bounded checkpoint: Yuyuko captured-X width and eight aim-argument
+lifetimes now follow raw native storage/evaluation evidence. The complete
+candidate remains unselected/nonexact,59456/full59672, first+8, frame4F0.
+All100 payload homes resolve. See
+[YUYUKO_ACTION_STATE_2026_10_28.md](YUYUKO_ACTION_STATE_2026_10_28.md)
+and build/frontier-55d850-20261027/formal-lifetimes*.json. No exact credit.
+
+Preceding checkpoint: Yukari aim argument lifetimes now follow the native
 DX-outgoing-before-DY sequence at seven atan sites. Their local 32-byte windows
 match; the complete candidate remains 57792/full58248, first+8, frame4E8.
 See [YUKARI_ACTION_STATE_2026_10_28.md](YUKARI_ACTION_STATE_2026_10_28.md)

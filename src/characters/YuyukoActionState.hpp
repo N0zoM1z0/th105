@@ -152,8 +152,7 @@ public:
     }
     __forceinline void aim_fan() {
         float dx=static_cast<float>((peer()->at<float>(0xec)-at<float>(0xec))*static_cast<double>(facing()));
-        float dy=peer()->at<float>(0xf0)-at<float>(0xf0);
-        at<short>(0x734)=static_cast<short>(-static_cast<short>(static_cast<int>(yuyuko_atan(dy,dx))));
+        at<short>(0x734)=static_cast<short>(-static_cast<short>(static_cast<int>(yuyuko_atan(peer()->at<float>(0xf0)-at<float>(0xf0),dx))));
         if(at<short>(0x734)<-20)at<short>(0x734)=-20;
         if(at<short>(0x734)>20)at<short>(0x734)=20;
         at<short>(0x730)=1;counter(200,45);

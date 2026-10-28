@@ -27,10 +27,10 @@ nominal Fighter layout or confer callee ownership.
 
 Public source: src/characters/YuyukoActionState.cpp and .hpp.
 Unit: exact-first-yuyuko-action-state. Both private and public builds emit
-59428 full bytes versus59672; first mismatch is+8 (frame immediate4F0 versus
+59456 full bytes versus59672; first mismatch is+8 (frame immediate4F0 versus
 native4E8). Canonical candidate SHA256:
-193ab966a599e8084a13d72f40f4084c0bff55fc7e20ad5feb3d224907be4b44.
-The full audit reports56589 unequal/missing positional bytes. This is a strict
+fae3443cfa58a7c2a829bfbab59e723ecfa12172e8a23914e37a7b610749988f.
+The full audit reports56560 unequal/missing positional bytes. This is a strict
 mismatch diagnostic, not a semantic similarity score or accepted byte count.
 
 Reproduce serially:
@@ -105,3 +105,32 @@ The suspected airborne812 unordered-predicate discrepancy was checked against
 consistent with ordered less-than. No speculative NaN rewrite was made.
 Remaining710 virtual-site discrepancy is physical timeout-tail sharing, not an
 observed extra dynamic call; native difficulties0/1 share the56AC01 tail.
+
+
+## Captured coordinate and aim-argument refinement
+
+Action726 captures the pre-RNG X field in a double local. Native56B648 loads
+the binary32 field and56B653 directly stores QWORD across RNG, then56B67B
+uses that QWORD in the subtraction. The former float local generated an
+extra DWORD store/reload before its QWORD capture. The isolated capturex
+trial removes that unsupported round trip, emitting59420 bytes; the frame
+remains4F0. This does not narrow any arithmetic or assume RNG is pure.
+
+The seven aim_fan sites and action561 atan call now retain rounded DX while
+computing DY in the first argument. Native561858,561919,561CBD,561D7E,
+562553,562ADF,562BBB and5672D9 place DX in outgoing[esp+4] before loading
+peer Y. No intervening helper or object write exists in these calculations.
+All seven aim_fan call-preparation windows (32 bytes before call) match native
+verbatim after this change. The eighth has the recovered instruction order
+but still differs in scratch offsets. These bounded windows are diagnostics,
+not whole-function acceptance or additional exact-byte credit.
+
+The combined public replay is59456/full59672, first+8, frame4F0 versus4E8,
+SHA256fae3443cfa58a7c2a829bfbab59e723ecfa12172e8a23914e37a7b610749988f.
+Receipts: build/frontier-55d850-20261027/formal-lifetimes.json and
+formal-lifetimes-audit.json. allaimargs-action-{calls,fp-ops}.json retain the
+710 virtual-site and600/603 FCHS differences noted above. Payload dataflow
+still resolves100 homes, all+8, with no unknown payload pointers. One skipped
+six-byte LEA EBX,[EBX] at candidate56A7EA is compiler alignment, not executable
+source or a masked acceptance range. All bytes remain in the canonical audit.
+The extra scalar group and ring-operation scheduling remain unresolved.
