@@ -26412,3 +26412,17 @@ symbol_base = "?control_a@BattleBaseEffectLifetimeView@th105@@UAEXXZ"
 [[units.gpt-web-battle-base-effect-lifetime.functions]]
 address = "0x00418090"
 symbol_base = "?control_b@BattleBaseEffectLifetimeView@th105@@UAEXXZ"
+
+[[units.gpt-web-scene-manager-initialize.functions]]
+address = "0x0041E140"
+symbol_base = "?update@CSceneManager@th105@@UAEXXZ"
+rel32_targets = ["?update_scene_runtime@th105@@YAXXZ=0x0043B4A0"]
+
+[[units.gpt-web-scene-manager-initialize.functions]]
+address = "0x0041E150"
+symbol_base = "?render@CSceneManager@th105@@UAEEXZ"
+rel32_targets = ["?render_scene_fade_overlay@th105@@YAEXZ=0x0043AAD0"]
+
+[[units.cross-v106a-render-scene-consumers.functions]]
+address = "0x0041E240"
+symbol_base = "?initialize@CFade@th105@@UAE_NXZ"

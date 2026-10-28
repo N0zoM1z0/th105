@@ -1628,3 +1628,6 @@ Aya_dispatch_action_state_vslot28
 Sakuya_dispatch_action_state_vslot28
 BattleBaseEffect_on_lost_device
 BattleBaseEffect_on_reset_device
+CSceneManager_update
+CSceneManager_render
+CFade_initialize

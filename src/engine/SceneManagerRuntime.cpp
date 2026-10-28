@@ -17,12 +17,26 @@ extern WaveBootstrapServiceView g_wave_bootstrap_service;
 
 void __cdecl initialize_scene_resources_43e2e0();
 void __cdecl shutdown_scene_resources();
+void __cdecl update_scene_runtime();
+unsigned char __cdecl render_scene_fade_overlay();
 unsigned char __cdecl start_async_engine_scene_load(int scene);
 
 struct CSceneManager {
     virtual void initialize();
     virtual void shutdown();
+    virtual void update();
+    virtual unsigned char render();
 };
+
+void CSceneManager::update()
+{
+    update_scene_runtime();
+}
+
+unsigned char CSceneManager::render()
+{
+    return render_scene_fade_overlay();
+}
 
 void CSceneManager::shutdown()
 {

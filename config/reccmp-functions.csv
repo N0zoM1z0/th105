@@ -1654,3 +1654,6 @@ SuikaObject_update_action_state,0x005B0460,function
 AliceObject_update_action_state,0x004FCAB0,function
 BattleBaseEffect_on_lost_device,0x00418070,function
 BattleBaseEffect_on_reset_device,0x00418090,function
+CSceneManager_update,0x0041E140,function
+CSceneManager_render,0x0041E150,function
+CFade_initialize,0x0041E240,function

@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: BattleBaseEffect device-reset callbacks418070/418090
+Current bounded checkpoint: CSceneManager update41E140/render41E150 and CFade
+initialize41E240 are canonical exact5/5/11. Fresh RTTI vtable cells and complete
+raw boundaries close all three. Both affected units replay13 functions exact,
+including ten unchanged accepted siblings. See
+[SCENE_MANAGER_VIRTUAL_LEAVES_2026_10_28.md](SCENE_MANAGER_VIRTUAL_LEAVES_2026_10_28.md)
+and build/frontier-41e140-20261028/{manager-build,fade-build,boundary}.json.
+
+Preceding bounded checkpoint: BattleBaseEffect device-reset callbacks418070/418090
 are canonical exact21/21 each. The real COM OnLostDevice/OnResetDevice slots114/
 118 and exact owner vtable6D6CD0 close both leaf bodies. Three accepted lifetime
 siblings replay unchanged; initializer417FF0 retains its known private-ABI+17
