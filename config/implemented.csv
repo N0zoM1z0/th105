@@ -1618,3 +1618,4 @@ shutdown_scene_resources
 CSceneManager_shutdown
 transition_bgm
 BgmService_initialize
+MarisaObject_update_action_state

@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: BGM service initialize403460 is canonical exact133.
+Current bounded candidate: MarisaObject update4BBE00 has complete manual
+41-action source and a focused canonical replay. Full50480/native49744 remains
+nonexact+37; native frame0x340 and all18 table dimensions are recovered, but
+call/return sharing and later code remain different. No exact credit. See
+[MARISA_OBJECT_UPDATE_2026_10_28.md](MARISA_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-marisa-object-update.py` and
+build/frontier-4bbe00-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded checkpoint: BGM service initialize403460 is canonical exact133.
 Actual paired thread owners and events plus existing visible start/priority
 bodies recover the complete native initializer on its first focused build.
 See [BGM_SERVICE_INITIALIZE_2026_10_28.md](BGM_SERVICE_INITIALIZE_2026_10_28.md)
