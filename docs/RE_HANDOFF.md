@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: combo resource load46A8C0 was independently
+Current bounded checkpoint: Select network entry4264B0 and client update426580
+are canonical exact205/313, adding518 authored bytes. Current RTTI fixes
+SV/CL ownership; natural event RAII and virtual session/input callbacks close
+both complete bodies. No shared-header changes.
+See [SELECT_NETWORK_RUNTIME_2026_10_28.md](SELECT_NETWORK_RUNTIME_2026_10_28.md)
+and build/frontier-4264b0-20261028/formal-build.json.
+
+
+Preceding bounded candidate: combo resource load46A8C0 was independently
 rechecked using current typed CDesignBase/CNumber owners. Complete427/native413
 remains first+2 on extra receiver/member-address lifetime. Outer-owner and
 typed-output controls did not solve it; shared-type source is retained.

@@ -24524,3 +24524,39 @@ dir32_targets = [
  "??_7?$TNumberValue@PAH@th105@@6B@=??_7?$TNumberValue@PAH@th105@@6B@",
  "??_7?$TNumberValue@PAM@th105@@6B@=??_7?$TNumberValue@PAM@th105@@6B@",
 ]
+
+[units.exact-first-select-network-runtime]
+kind = "probe"
+source = "src/ui/SelectNetworkRuntime.cpp"
+object = "build/match-units/ExactFirst_SelectNetworkRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Canonical RTTI-owned CSelectSV/CL shared entry4264B0 and CL update426580; real event lifetime and virtual network/input interfaces."
+
+[[units.exact-first-select-network-runtime.functions]]
+address = "0x004264B0"
+symbol_base = "?on_enter@SelectNetworkSceneView@th105@@UAEXH@Z"
+rel32_targets = [
+ "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+ "?enter_base_421120@SelectNetworkSceneView@th105@@QAEXH@Z=0x00421120",
+]
+dir32_targets = [
+ "__ehhandler$?on_enter@SelectNetworkSceneView@th105@@UAEXH@Z=_select_network_enter_eh",
+ "___security_cookie=___security_cookie",
+ "__imp__CreateEventA@16=__imp__CreateEventA@16",
+ "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
+ "__imp__CloseHandle@4=__imp__CloseHandle@4",
+]
+
+[[units.exact-first-select-network-runtime.functions]]
+address = "0x00426580"
+symbol_base = "?update_client@SelectNetworkSceneView@th105@@UAEHXZ"
+rel32_targets = [
+ "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
+ "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+ "_is_menu_initial_press=0x0043ABD0",
+ "?is_raw_key_down@DirectInputBackend@th105@@QBE_NE@Z=0x0040D930",
+]
+dir32_targets = [
+ "?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=?g_direct_input_backend@th105@@3UDirectInputBackend@1@A",
+]
