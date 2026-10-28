@@ -711,7 +711,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041FAB0,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x0041FAD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041FB70,authored_game,ui,authored,observed,canonical-exact-authored
-0x0041FB80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041FB80,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041FC90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041FF00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004204E0,authored_game,ui,authored,observed,canonical-exact-authored

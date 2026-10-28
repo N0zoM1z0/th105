@@ -24633,3 +24633,43 @@ dir32_targets = [
  "_select_entry_character_ids=_select_entry_character_ids",
  "_select_ids_6288=_select_ids_6288",
 ]
+
+[units.exact-first-select-character-binding]
+kind = "probe"
+source = "src/ui/SelectCharacterBinding.cpp"
+object = "build/match-units/ExactFirst_SelectCharacterBinding.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "41FB80 portrait texture and effect bank binding, complete258-byte target; actual path buffer, scalar handle result and polymorphic sprite receiver."
+
+[[units.exact-first-select-character-binding.functions]]
+address = "0x0041FB80"
+symbol_base = "?bind_character_41fb80@SelectCharacterBindingView@th105@@QAEXHH@Z"
+rel32_targets = [
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "_character_key_to_name=0x0043BF80",
+ "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
+ "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+ "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+ "_select_character_portrait_format=_select_character_portrait_format",
+ "__imp__wsprintfA=__imp__wsprintfA",
+ "___security_cookie=___security_cookie",
+]
+
+[units.exact-first-select-object-transform]
+kind = "probe"
+source = "src/ui/SelectObjectTransform.cpp"
+object = "build/match-units/ExactFirst_SelectObjectTransform.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Current41FAD0 SelectObject transform: rounded signed frame pivots, reset and two translations through existing sprite interface."
+
+[[units.exact-first-select-object-transform.functions]]
+address = "0x0041FAD0"
+symbol_base = "?prepare_transform_41fad0@SelectObjectTransformView@th105@@QAEXXZ"
+rel32_targets = [
+ "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+ "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+]

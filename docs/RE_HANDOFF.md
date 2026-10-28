@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: CSelect entry421120 now restores the complete
+Current bounded checkpoint: CSelect portrait binding41FB80 is canonical
+exact258/258. Ordinary scalar conversion of the real class-valued texture
+result recovers native handle/buffer lifetime. Related object transform41FAD0
+is complete154/154 but nonexact+25 on receiver/x87 scheduling, with no credit.
+See [SELECT_CHARACTER_BINDING_2026_10_28.md](SELECT_CHARACTER_BINDING_2026_10_28.md)
+and build/frontier-41fb80-20261028/scalar-handle-local.json.
+
+
+Preceding bounded candidate: CSelect entry421120 now restores the complete
 783-byte input/cursor/character/stage setup path. Candidate783/native783
 remains first+225 after target-backed input-value, cursor and UI-receiver
 lifetime recovery. Residual begins at zero-register scheduling; no exact credit.
