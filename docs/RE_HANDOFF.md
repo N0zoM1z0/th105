@@ -1,6 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: SuikaObject update5B0460 has complete31-action manual
+Current bounded candidate: AliceObject update4FCAB0 has complete38-action manual
+source and whole canonical replay. Full62960/native63248 remains nonexact+37.
+Frame348, all28 direct-callee counts,18 table dimensions and260 remap bytes agree.
+Shared817 impact continuation restores the direct-call census, but stack homes,
+floating lifetimes and tail sharing remain different. No exact credit. See
+[ALICE_OBJECT_UPDATE_2026_10_28.md](ALICE_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-alice-object-update.py` and
+build/frontier-4fcab0-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded candidate: SuikaObject update5B0460 has complete31-action manual
 source and whole canonical replay. Full53204/native53012 remains nonexact+17.
 Frame4B0, all23 direct-callee counts,18 table dimensions and200 remap bytes agree;
 initial owner scheduling and shared tails differ. No exact credit. See
