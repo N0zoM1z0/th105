@@ -73,16 +73,36 @@ scripts/repo-python scripts/audit-udonge-object-update.py
 ```
 
 Receipts: `build/frontier-5d46c0-20261028/formal-build.json` and
-`full-audit.json`. Full selected candidate44125 bytes, SHA256
-`7d946bce30027f90a34cab7e74b05917cd6645c4b729ea21a63b93cce0f490ef`.
-Unmasked comparison reports38957 differing bytes, first+8/5D46C8:
-candidate frame0x2E8 versus native0x2F0. This is a whole-layout/precision/
-physical-sharing residual, not merely an eight-byte frame correction.
-All17 table dimensions and all216 remap bytes agree. Candidate has76 RETs
-versus64 and25 virtual calls versus25. Twenty of22 direct-callee counts agree;
-sine20 versus19 and advance_frame18 versus15 remain different.
+`full-audit.json`. Full selected candidate43873 bytes, SHA256
+`86d85bf7ca358e9a9f2b1a8bb021c234c56c2269a2daf8b1063a84ce465fc97c`.
+Unmasked comparison reports38087 differing bytes, first+37/5D46E5 in the
+initial default-branch displacement. The actual812 floating count lifetime
+recovers the native0x2F0 frame; this is still a whole-layout/precision/
+physical-sharing residual, not merely a displacement correction.
+All17 table dimensions and all216 remap bytes agree. Candidate has74 RETs
+versus64 and25 virtual calls versus25. All22 direct-callee counts now agree,
+including19 sine calls and15 advance calls. These are diagnostics only.
 
 Source and mapping inventory now include this root; exact matches do not.
 Original class layout, translation-unit visibility, expression lifetimes,
 control sharing and full execution equivalence remain unproved. Continue
 from whole-byte evidence; never pad the frame or force register allocation.
+
+## Native lifetime and continuation refinement
+
+The first44125-byte whole body exposed a real width omission in812: the
+float-rounded owner60C+8 count is widened into a qword at5D781C and stays
+live through the radial loop. A real double count initialized from that float
+recovers frame2F0 naturally; no filler local or forced stack size is used.
+801's randomized X and Y centers are also both qwords at5D5D92/5D5D9C,
+not the decompiler's apparent float X. Spawn argument expressions preserve
+right-to-left evaluation and keep computed Y on the outgoing argument stack
+while X's trig/RNG call runs.
+
+The selected source shares the actual816/912 owner-angle-wave continuation
+and the generic817 advance exit, while849 retains its independent advance
+call. This restores all direct/virtual call counts and all17 table dimensions
+without merging semantically different entry-retirement paths. The early
+800/910/920 empty-alpha guard uses the native nonpositive spelling. Local
+frame offsets, remaining physical tail sharing and instruction scheduling
+still differ; matching counts and size reductions are not exactness claims.

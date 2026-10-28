@@ -18,7 +18,7 @@ namespace th105 {
 #define RF(n) static_cast<float>(R(n))
 #define RETIRE() do { --I(0x330); return; } while(0)
 #define MOVE() do {F(0xec)=C(0x104)*F(0xf4)+F(0xec);F(0xf0)=F(0xf8)+F(0xf0);}while(0)
-#define FINISH() do {if(advance_frame())--I(0x330);return;}while(0)
+#define FINISH() do {goto finish_action;}while(0)
 void UdongeObjectUpdateView::update_action_state() {
 switch(S(0x13c)) {
 case 800: {
@@ -45,7 +45,7 @@ case 800: {
     case 2: {
         F(0x11c)-=0.01f;F(0x120)-=0.01f;
         if(F(0x11c)<0.5 || I(0x144)>10) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}
-        if(F(0x11c)<=0.0 || B(0x113)==0) RETIRE();
+        if(F(0x11c)<=0.0 || B(0x113)<=0) RETIRE();
         float *parameters=PARAM;parameters[1]-=1.25;if(parameters[1]<1.0f) parameters[1]=1.0f;
         MOTION->set_components(parameters[0],parameters[1]);
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();MOVE();break;
@@ -255,10 +255,8 @@ case 801: {
         if(age==5 || age==10) {
             float packet[3]={0.0f,0.0f,12.0f};
             unsigned char facing=B(0x104);double center_y=F(0xf0)+80.0;
-            float center_x=static_cast<float>(F(0xec)+80.0);
-            float y=static_cast<float>(center_y-RF(160));
-            float x=static_cast<float>(center_x-RF(160));
-            spawn_unparented(801,x,y,facing,1,packet,3);
+            double center_x=F(0xec)+80.0;
+            spawn_unparented(801,static_cast<float>(center_x-RF(160)),static_cast<float>(center_y-RF(160)),facing,1,packet,3);
         }
         if(I(0x144)==10) RETIRE();
     }
@@ -320,9 +318,7 @@ case 810: {
         if(I(0x144)%2==0) {
             float packet[3];packet[0]=static_cast<float>(RF(14)+(PARAM[0]+180.0)-7.0);packet[1]=10.0f;packet[2]=3.0f;
             double center_y=F(0xf0);unsigned char facing=B(0x104);double center_x=F(0xec);
-            float y=static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0);
-            float x=static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104)));
-            spawn_unparented(810,x,y,facing,1,packet,3);
+            spawn_unparented(810,static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104))),static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0),facing,1,packet,3);
         }
         parameters=PARAM;parameters[1]+=0.5;MOTION->set_components(parameters[0],parameters[1]);
         F(0xec)=F(0xf4)*C(0x104)+F(0xec);F(0xf0)=F(0xf8)+F(0xf0);advance_six(0);
@@ -410,9 +406,7 @@ case 811: {
         if(I(0x144)%2==0) {
             float packet[3];packet[0]=static_cast<float>(RF(14)+(PARAM[0]+180.0)-7.0);packet[1]=10.0f;packet[2]=5.0f;
             double center_y=F(0xf0);unsigned char facing=B(0x104);double center_x=F(0xec);
-            float y=static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0);
-            float x=static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104)));
-            spawn_unparented(811,x,y,facing,1,packet,3);
+            spawn_unparented(811,static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104))),static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0),facing,1,packet,3);
         }
         if(I(0x144)>=30) {
             float packet[4];packet[0]=0.0f;packet[1]=0.0f;packet[2]=2.0f;
@@ -500,9 +494,7 @@ case 812: {
         if(I(0x144)%2==0) {
             float packet[3];packet[0]=static_cast<float>(RF(14)+(F(0x12c)+180.0)-7.0);packet[1]=10.0f;packet[2]=7.0f;
             double center_y=F(0xf0);unsigned char facing=B(0x104);double center_x=F(0xec);
-            float y=static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0);
-            float x=static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104)));
-            spawn_unparented(812,x,y,facing,1,packet,3);
+            spawn_unparented(812,static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104))),static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0),facing,1,packet,3);
         }
         F(0x12c)=-atan2_degrees(F(0xf8),F(0xf4));
         float *parameters=PARAM;parameters[1]*=0.95f;MOTION->set_components(parameters[0],parameters[1]);
@@ -512,7 +504,7 @@ case 812: {
         }else {
             WAVE(2);float packet[3]={0.0f,0.0f,2.0f};spawn_unparented(812,F(0xec),F(0xf0),B(0x104),1,packet,3);
             packet[2]=6.0f;spawn_unparented(812,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=1.0f;
-            float count=static_cast<float>(FIELD(OWNER,signed char,0x60c)+8.0);float index=0.0f;
+            double count=static_cast<float>(FIELD(OWNER,signed char,0x60c)+8.0);float index=0.0f;
             if(count>0.0f) do {
                 packet[0]=static_cast<float>(RF(40)+index*360.0/count);
                 packet[1]=static_cast<float>(RF(20)*static_cast<double>(0.1f)+8.0);
@@ -636,6 +628,7 @@ case 816: {
         F(0xec)=static_cast<float>(50*C(0x104)+FIELD(owner,float,0xec));F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+140.0);FINISH();
     }
     case 4: {
+        {
         void *owner=OWNER;short action=FIELD(owner,short,0x13c);
         if((action==525 || action==526) && FIELD(owner,short,0x13e)<=1) {
             F(0xec)=static_cast<float>(50*C(0x104)+FIELD(owner,float,0xec));F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+110.0);
@@ -644,6 +637,8 @@ case 816: {
         if((action==527 || action==528) && FIELD(owner,short,0x13e)<=1) {
             F(0xec)=static_cast<float>(50*C(0x104)+FIELD(owner,float,0xec));F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+140.0);
         }
+        }
+owner_angle_wave_fade:
         double sine=lookup_orientation_sine_quantized_abs(static_cast<float>(3*I(0x144)));
         F(0x12c)=static_cast<float>(sine*(PARAM[1]*FIELD(OWNER,float,0x7b0)));
         if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;FINISH();
@@ -721,7 +716,10 @@ case 817: {
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();
         MOTION->set_components(PARAM[0],PARAM[1]);
     }
-    MOVE();FINISH();
+    MOVE();
+finish_action:
+    if(advance_frame()) --I(0x330);
+    return;
 
 
 }
@@ -1045,7 +1043,8 @@ case 849: {
         if(S(0x13e)>=2) {if(B(0x113)>=12) {B(0x113)-=12;B(0x111)-=12;B(0x110)-=12;}F(0x11c)*=0.98f;F(0x120)=F(0x11c);}
         break;
     }
-    FINISH();
+    if(advance_frame()) --I(0x330);
+    return;
 
 
 }
@@ -1093,9 +1092,7 @@ case 852: {
         if(I(0x144)%2==0) {
             float packet[3];packet[0]=static_cast<float>(RF(14)+(PARAM[0]+180.0)-7.0);packet[1]=10.0f;packet[2]=3.0f;
             double center_y=F(0xf0);unsigned char facing=B(0x104);double center_x=F(0xec);
-            float y=static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0);
-            float x=static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104)));
-            spawn_unparented(852,x,y,facing,1,packet,3);
+            spawn_unparented(852,static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104))),static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0),facing,1,packet,3);
         }
         float *parameters=PARAM;parameters[1]*=0.95f;MOTION->set_components(parameters[0],parameters[1]);
         F(0xec)=F(0xf4)*C(0x104)+F(0xec);F(0xf0)=F(0xf8)+F(0xf0);advance_six(0);
@@ -1398,9 +1395,7 @@ case 900: {
         if(I(0x144)%4==0) {
             float packet[3];packet[0]=static_cast<float>(RF(14)+(PARAM[0]+180.0)-7.0);packet[1]=10.0f;packet[2]=3.0f;
             double center_y=F(0xf0);unsigned char facing=B(0x104);double center_x=F(0xec);
-            float y=static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0);
-            float x=static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104)));
-            spawn_unparented(900,x,y,facing,1,packet,3);
+            spawn_unparented(900,static_cast<float>(center_x-lookup_orientation_cosine_quantized_abs(-PARAM[0])*static_cast<float>(35*C(0x104))),static_cast<float>(center_y-lookup_orientation_sine_quantized_abs(-PARAM[0])*35.0),facing,1,packet,3);
         }
         float *parameters=PARAM;parameters[1]-=1.0;if(parameters[1]<=4.0f) parameters[1]=4.0f;
         turn_heading(0.0f,1.0f,100.0f);parameters=PARAM;F(0x12c)=parameters[0];MOTION->set_components(parameters[0],parameters[1]);
@@ -1483,7 +1478,7 @@ case 910: {
     case 2: {
         F(0x11c)-=0.01f;F(0x120)-=0.01f;
         if(F(0x11c)<0.5 || I(0x144)>10) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}
-        if(F(0x11c)<=0.0 || B(0x113)==0) RETIRE();
+        if(F(0x11c)<=0.0 || B(0x113)<=0) RETIRE();
         float *parameters=PARAM;parameters[1]-=1.25;if(parameters[1]<1.0f) parameters[1]=1.0f;
         MOTION->set_components(parameters[0],parameters[1]);
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();MOVE();break;
@@ -1595,9 +1590,7 @@ case 912: {
         if(FIELD(owner,short,0x13c)==726 && FIELD(owner,short,0x13e)<=1) {
             F(0xec)=static_cast<float>(50*C(0x104)+FIELD(owner,float,0xec));F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+110.0);
         }
-        double sine=lookup_orientation_sine_quantized_abs(static_cast<float>(3*I(0x144)));
-        F(0x12c)=static_cast<float>(sine*(PARAM[1]*FIELD(OWNER,float,0x7b0)));
-        if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;FINISH();
+        goto owner_angle_wave_fade;
     }
     default:FINISH();
     }
@@ -1663,7 +1656,7 @@ case 920: {
     case 16: {
         F(0x11c)-=0.01f;F(0x120)-=0.01f;
         if(F(0x11c)<0.5 || I(0x144)>10) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}
-        if(F(0x11c)<=0.0 || B(0x113)==0) RETIRE();float *parameters=PARAM;parameters[1]-=1.25;if(parameters[1]<1.0f) parameters[1]=1.0f;
+        if(F(0x11c)<=0.0 || B(0x113)<=0) RETIRE();float *parameters=PARAM;parameters[1]-=1.25;if(parameters[1]<1.0f) parameters[1]=1.0f;
         MOTION->set_components(parameters[0],parameters[1]);
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();MOVE();break;
     }

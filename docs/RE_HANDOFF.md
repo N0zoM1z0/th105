@@ -1,9 +1,9 @@
 # TH10.5 reconstruction handoff
 
 Current bounded candidate: UdongeObject update5D46C0 has complete31-action
-manual source and an early whole canonical replay. Full44125/native43537
-remains nonexact+8, frame2E8/native2F0; all17 table dimensions and216remap
-bytes agree. No exact credit. See
+manual source and an early whole canonical replay. Full43873/native43537
+remains nonexact+37; the real812 widened count restores frame2F0. All22
+direct-call counts,25 virtual calls,17 table dimensions and216remap bytes agree. No exact credit. See
 [UDONGE_OBJECT_UPDATE_2026_10_28.md](UDONGE_OBJECT_UPDATE_2026_10_28.md),
 `scripts/audit-udonge-object-update.py` and
 build/frontier-5d46c0-20261028/{formal-build,full-audit}.json.
