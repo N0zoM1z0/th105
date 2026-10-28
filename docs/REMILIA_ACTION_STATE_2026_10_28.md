@@ -9,8 +9,8 @@ matches.csv, function status, or accepted byte total is changed.
 The first complete candidate emitted 63,444 bytes. Reviewed packet ownership,
 difficulty fallthrough, zero-offset coordinates, packet extents, native low-owner
 ordering, and captured prelude direction produce
-62,976 bytes versus the target's full 63,316 bytes. First mismatch is +8:
-the emitted stack allocation is 0x4F8, target 0x4F0. Size proximity is not
+62,912 bytes versus the target's full 63,316 bytes. First mismatch is now +18:
+the emitted stack allocation equals target 0x4F0, while zero-register choice differs. Size proximity is not
 an exactness percentage.
 
 ## Target and boundary evidence
@@ -80,8 +80,8 @@ Other independently reviewed details include:
 Physical call-site diagnostics differ for action 710 (native/candidate
 spawn sites 8/5 and virtual sites 2/3). Shared tails are not dynamic call
 counts; trace the exact call arguments and incoming edges before changing
-behavior. Native/candidate stack frames are 1264/1272 bytes, return sites
-146/144, virtual call sites 179/180. Stack coloring and physical ownership
+behavior. Native/candidate stack frames both equal 1264 bytes, return sites
+146/145, virtual call sites 179/181. Stack coloring and physical ownership
 remain open, not solved by the count agreement.
 
 ## Focused replay
@@ -99,12 +99,12 @@ rechecks target hash, all table destinations, complete reachability, exact
 unmasked bytes and payload length.
 
 Final candidate SHA-256:
-85fb97f485db3e0a7ef7873507c2b35497f4d8dec3d3b0d77c8bd300eeee3e6f
+629b1dfc49d0a7a2afcec1090b6715cbb892bbe76bb74cca44e8b20a3955e70b
 
-Full positional differences including absent trailing bytes: 60,019.
+Full positional differences including absent trailing bytes: 59,877.
 That count is diagnostic, not a semantic similarity or completion metric.
 
-Receipts: build/frontier-545090-20261028/formal-ownerorder.json and formal-ownerorder-audit.json.
+Receipts: build/frontier-545090-20261028/formal-frame.json and formal-frame-audit.json.
 Private raw and source diagnostics are in the same frontier build directory;
 draft recovery is under .analysis/frontier-545090-20261028/. The checked-in
 source is authoritative. Existing exact receipts remain incremental.
@@ -116,4 +116,26 @@ order brings its physical owner span from 1010 to 810 bytes (native 811),
 without changing action semantics or adding a padding/return workaround.
 The native prelude captures unsigned direction once and then sign-extends
 that captured byte for X. The candidate now expresses that flow explicitly.
-Neither change solves the first +8 mismatch; no exact credit is awarded.
+Neither of those two changes solved the then-first +8 mismatch; no exact credit was awarded.
+
+
+### Native-size frame from circular request preparation
+
+The 730/731 circular 902 requests prepare count, pointer, layer and direction
+before calling sine (for example 0x551DF2..0x551E22), then put the rounded Y
+value on the outgoing stack before cosine. The former source instead named
+both Y and X before preparing the request.
+
+Only ring902 now expresses X/Y directly in the ordinary call arguments. It
+preserves the same casts, packet writes, float loop, lookup order and field
+loads. This restores the native call-preparation lifetime and reduces frame
+0x4F8 to 0x4F0. The first strict mismatch advances from +8 to +18, at the
+choice of EBX versus EBP for zero, not a newly accepted function.
+
+All 101 payload homes still resolve; their native/candidate sorted offset
+sets now coincide, including the unusual adjacent extents noted above.
+Fresh mapped-action arithmetic counts still agree, and the same action710
+physical-call residual remains. Final full payload is 62,912 versus 63,316.
+This is an independent native instruction witness, not an automatic transfer
+of Komachi's different scalar-angle cause. No packet padding, dummy locals,
+register forcing, or compiler-flag change is used.

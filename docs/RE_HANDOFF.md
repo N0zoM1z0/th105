@@ -1,18 +1,17 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Komachi action-state 5E20E0 has a complete
-unselected 108-action candidate. Native callable 63993/full 65176 closes;
-source emits 64884 full bytes, first +42; frame 490 now equals native.
-All seven tables and 94 payload homes resolve. Byte-direction call view is
-supported by the actual manager; scalar trajectory removes a proved extra
-qword temporary. Constant/physical ownership remains open.
-No implementation or exact credit.
+Current bounded checkpoint: Remilia circular request preparation now recovers
+the native 4F0 frame. Its complete unselected 107-action candidate emits
+62912/full63316, first +18; all sixteen tables and 101 payload homes resolve.
 [KOMACHI_ACTION_STATE_2026_10_28.md](KOMACHI_ACTION_STATE_2026_10_28.md)
-records evidence and focused replay. Receipts: build/frontier-5e20e0-20261028/.
+and [REMILIA_ACTION_STATE_2026_10_28.md](REMILIA_ACTION_STATE_2026_10_28.md)
+record the separate scalar-angle and call-preparation causes. No exact credit.
+Latest Remilia receipts: build/frontier-545090-20261028/formal-frame*.json.
 
-Preceding Remilia 763f7fb3 remains complete but unselected/nonexact:
-62976/full63316, first +8; 107 actions, sixteen tables and 101 payload homes.
-[REMILIA_ACTION_STATE_2026_10_28.md](REMILIA_ACTION_STATE_2026_10_28.md).
+Preceding Komachi f1df72c2 remains complete but unselected/nonexact:
+64884/full65176, first +42, native 490 frame; 108 actions, seven tables and
+94 payload homes. Byte-direction view is supported by its actual manager.
+Receipts: build/frontier-5e20e0-20261028/formal-frame*.json.
 
 Preceding Yukari b491d153 remains complete but unselected/nonexact:
 57792/full58248, first +8; 124 actions and 101 payload homes resolved. See

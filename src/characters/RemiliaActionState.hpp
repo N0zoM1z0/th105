@@ -279,13 +279,13 @@ public:
         dispatch_character_wave_handle(58);
         float p[3];p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(range))*static_cast<double>(0.1f)+4.0);p[2]=0.0f;spawn_offset(902,30,90.0,p,3);
     }
+
     __forceinline void ring902(float *p,int count) {
         for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){
             p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(12))+18.0);p[2]=1.0f;
-            int direction=at<unsigned char>(0x104);
-            float y=static_cast<float>(remilia_sine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)+at<float>(0xf0)+100.0);
-            float x=static_cast<float>(remilia_cosine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)*facing()+at<float>(0xec));
-            spawn(902,x,y,direction,1,p,3);
+            spawn(902,static_cast<float>(remilia_cosine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)*facing()+at<float>(0xec)),
+                static_cast<float>(remilia_sine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)+at<float>(0xf0)+100.0),
+                at<unsigned char>(0x104),1,p,3);
         }
     }
     __forceinline void burst902(float *p,int count,double bias) {
