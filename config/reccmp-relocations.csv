@@ -2603,3 +2603,4 @@ _sequence_prepare_eh,0x006BAD3B,8b5424088d8260ffffff8b8a5cffffff,0,Raw canonical
 _battle_manager_pre_reset_eh,0x006BB9C6,8b5424088d42f08b4aec33c8e84ee3fc,0,Canonical472230 prologue EH operand and mapped handler prefix; menu pre-reset reconstruction2026-10-28.,address
 ??_C@_0BG@ICHOCCOI@data?1battle?1combo?4dat?$AA@,0x006C35E0,646174612f626174746c652f636f6d626f2e64617400,0,Canonical46A8C0 load path operand and complete NUL-terminated combo.dat literal; 2026-10-28.,literal
 _select_network_enter_eh,0x006B7978,8b5424088d42e88b4ae433c8e89c23fd,0,"Canonical4264B0 prologue handler operand; shared CSelectSV/CL enter virtual, observed2026-10-28.",address
+_select_entry_character_ids,0x006E61C8,0000000002000000050000000100000003000000060000000700000004000000080000000a0000000b000000090000000c0000000d0000000e000000,0,CSelect entry421120 compares15 character IDs using indexed target operand6E61C8; complete60-byte table read2026-10-28.,address

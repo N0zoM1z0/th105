@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: CSelectSV update4262A0 is canonical exact217/217;
+Current bounded candidate: CSelect entry421120 now restores the complete
+783-byte input/cursor/character/stage setup path. Candidate783/native783
+remains first+225 after target-backed input-value, cursor and UI-receiver
+lifetime recovery. Residual begins at zero-register scheduling; no exact credit.
+See [SELECT_SCENE_ENTRY_2026_10_28.md](SELECT_SCENE_ENTRY_2026_10_28.md)
+and build/frontier-421120-20261028/byte-ui-enabled.json.
+
+
+Preceding bounded checkpoint: CSelectSV update4262A0 is canonical exact217/217;
 same-unit205/313 peers remain exact. The neighboring CBattleSV/CL update
 roots426180/426380 are now complete candidates252/247 and259/267, with only
 the inspected return/tail-merge region left after switch dispatch recovery.

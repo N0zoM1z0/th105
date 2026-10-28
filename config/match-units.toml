@@ -24606,3 +24606,30 @@ rel32_targets = [
 dir32_targets = [
  "?g_scene_renderer@th105@@3PAUBattleNetworkUpdateRenderer@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A",
 ]
+
+[units.exact-first-select-scene-entry]
+kind = "probe"
+source = "src/ui/SelectSceneEntry.cpp"
+object = "build/match-units/ExactFirst_SelectSceneEntry.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete421120 CSelect entry candidate using current shared CSelect layout, checked vectors/deque and typed cursors."
+
+[[units.exact-first-select-scene-entry.functions]]
+address = "0x00421120"
+symbol_base = "?on_scene_enter@CSelect@th105@@UAEXH@Z"
+rel32_targets = [
+ "?push_back@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@QAEXABQAUCInputManager@th105@@@Z=0x006183F0",
+ "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50",
+ "_play_bgm=0x0043CF80",
+ "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+ "?get_selected_input@th105@@YAPAUCInputManager@1@I@Z=0x0043B010",
+ "?get_game_config@th105@@YAPAUSelectEntryConfigView@1@XZ=0x0043AF10",
+ "?bind_character_41fb80@SelectEntryCallView@th105@@QAEXHH@Z=0x0041FB80",
+ "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+ "_title_bgm_path=_title_bgm_path",
+ "_select_entry_character_ids=_select_entry_character_ids",
+ "_select_ids_6288=_select_ids_6288",
+]
