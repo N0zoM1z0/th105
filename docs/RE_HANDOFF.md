@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: CLoadingCL scene-state mapper426490 is canonical
+Current bounded candidate: Scenario label selection455490 now restores the
+owned-string search and real12-byte checked script iterator. Candidate275/
+native276 remains nonexact+36 on owner lifetime; named-script control251
+eliminates a target-retained range check and is not retained. No credit.
+See [SCENARIO_LABEL_SELECTION_2026_10_28.md](SCENARIO_LABEL_SELECTION_2026_10_28.md)
+and build/frontier-455490-20261028/formal-build.json.
+
+
+Preceding bounded checkpoint: CLoadingCL scene-state mapper426490 is canonical
 exact26/26, with205/313/217 Select network peers still exact. Current RTTI
 vtable6C0524 fixes the authored slot04 policy; no generated thunk credit.
 See [SELECT_NETWORK_RUNTIME_2026_10_28.md](SELECT_NETWORK_RUNTIME_2026_10_28.md)

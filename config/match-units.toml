@@ -24709,3 +24709,25 @@ dir32_targets = [
  "__ehhandler$?update@CSelect@th105@@UAEHXZ=__ehhandler$?update_primary@CMenuMusic@th105@@AAE_NXZ",
  "_g_scene_mode=_g_scene_mode",
 ]
+
+[units.exact-first-scenario-label-selection]
+kind = "probe"
+source = "src/battle/ScenarioLabelSelection.cpp"
+object = "build/match-units/ExactFirst_ScenarioLabelSelection.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete455490 owned-string label search; real checked pointer deque iterator, command id0 and string comparison."
+
+[[units.exact-first-scenario-label-selection.functions]]
+address = "0x00455490"
+symbol_base = "?select_label@ScenarioLabelOwnerView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+ "?next_command@ScenarioLabelScriptView@th105@@QAEPAVCCommandBase@@XZ=0x00405AC0",
+ "?compare@?$char_traits@D@std@@SAHPBD0I@Z=0x00405560",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+ "___security_cookie=___security_cookie",
+ "__ehhandler$?select_label@ScenarioLabelOwnerView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_scenario_label_selection_eh",
+]
