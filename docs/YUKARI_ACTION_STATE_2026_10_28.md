@@ -35,10 +35,10 @@ scripts/repo-python scripts/audit-yukari-action-state.py
 scripts/repo-python scripts/compare-giant-action-switches.py yukari-vslot28 build/match-units/ExactFirst_YukariActionState.obj --json
 ```
 
-Public replay emits57760 full bytes versus58248. First difference+8 is the
+Public replay emits57792 full bytes versus58248. First difference+8 is the
 frame immediate4E8 versus native4E0. Candidate SHA256:
-e44be96ebde4b16c2a0c178395efda0ba2178be0a24ba7d4575a327ded6537ca.
-Full audit reports54746 unequal/missing positional bytes, not a semantic
+afdae08cafc20caa6b9fcb50c8abbdffe338c3e34aaf097a557b749887c1a092.
+Full audit reports54488 unequal/missing positional bytes, not a semantic
 percentage. Comparison exit1 is expected. Final receipts:
 build/frontier-57b030-20261028/formal-first.json, formal-audit.json,
 final-map.json and final-action-{calls,fp-ops}.json. Private first/zero-offset/
@@ -107,3 +107,18 @@ Seventeen new literals have unique native operand witnesses and matching COFF
 values; no arbitrary unresolved literal binding was allowed. No target patches,
 assembly, forced registers, inert locals or fake returns were introduced.
 Exact tracking remains1427 functions/413799 authored bytes.
+
+## Direction/argument refinement
+
+The latest focused replay is formal-directionbranches.json and
+formal-directionbranches-audit.json. Explicitly capture the zero-extended
+byte direction before deriving signed coordinate offsets, as the native998
+prelude demonstrates. Its first packet call now has the native length; exact
+register allocation and the4E8/4E0 frame remain different.
+
+Native710 has separate same-facing/reversed-facing argument-setup arms that
+converge on each spawn instruction (e.g.587262..5872B3). Expressing those as
+whole calls in if/else, instead of a ternary direction temporary, reduces the
+710 physical span discrepancy from224 to9 bytes. This is a source-shape result,
+not exact credit. Packet, call and arithmetic semantics remain the scope;
+no assembly, target modifications or dummy dependencies were introduced.

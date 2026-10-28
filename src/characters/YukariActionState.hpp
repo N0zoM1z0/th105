@@ -15,7 +15,6 @@ unsigned char __fastcall yukari_on_surface(YukariActionStateView *);
 struct YukariCardDeque { short *at(unsigned); };
 struct YukariActionScratch { void reset(); };
 // Pointer-only extension, not a complete owner layout.
-// Pointer-only extension; never instantiate as a recovered complete Fighter.
 class YukariActionStateView : public AnimationSequenceObjectView {
 public:
     void dispatch_action_state_vslot28();
@@ -112,8 +111,10 @@ public:
         if(entry(1)){at<float>(0xf4)=vx;at<float>(0xf8)=12.5f;at<float>(0x100)=0.55f;at<unsigned char>(0x47e)=0;}
     }
     __forceinline void spawn_offset(int object,int xoff,double height,float *p,int count) {
-        spawn(object,xoff==0?at<float>(0xec):static_cast<float>(xoff*facing()+static_cast<double>(at<float>(0xec))),
-              static_cast<float>(at<float>(0xf0)+height),at<unsigned char>(0x104),1,p,count);
+        int direction=at<unsigned char>(0x104);
+        float y=static_cast<float>(at<float>(0xf0)+height);
+        float x=xoff==0?at<float>(0xec):static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec)));
+        spawn(object,x,y,direction,1,p,count);
     }
     __forceinline void ensure_recovery_object() {
         if(!at<short>(0x7a4)){at<short>(0x7a4)=1;spawn(999,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),-1,0,0);}
@@ -319,8 +320,8 @@ public:
     }
     __forceinline void difficulty900(int period,int extra_modulus) {
         if(at<short>(0x732)%period)return;dispatch_character_wave_handle(2);float p[3];p[1]=0.0f;p[2]=0.0f;
-        for(float n=0.0f;n<12.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(n*30.0);int direction=at<short>(0x734)%2==0?at<unsigned char>(0x104):static_cast<unsigned char>(-at<unsigned char>(0x104));spawn(900,at<float>(0xec),static_cast<float>(100.0+at<float>(0xf0)),direction,1,p,3);}
-        if(extra_modulus && at<short>(0x734)%extra_modulus==0){p[2]=1.0f;for(float n=0.0f;n<12.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(n*30.0);int direction=at<short>(0x734)%4==0?at<unsigned char>(0x104):static_cast<unsigned char>(-at<unsigned char>(0x104));spawn(900,at<float>(0xec),static_cast<float>(at<float>(0xf0)+100.0),direction,1,p,3);}}
+        for(float n=0.0f;n<12.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(n*30.0);if(at<short>(0x734)%2==0)spawn(900,at<float>(0xec),static_cast<float>(100.0+at<float>(0xf0)),at<unsigned char>(0x104),1,p,3);else spawn(900,at<float>(0xec),static_cast<float>(100.0+at<float>(0xf0)),static_cast<unsigned char>(-at<unsigned char>(0x104)),1,p,3);}
+        if(extra_modulus && at<short>(0x734)%extra_modulus==0){p[2]=1.0f;for(float n=0.0f;n<12.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(n*30.0);if(at<short>(0x734)%4==0)spawn(900,at<float>(0xec),static_cast<float>(at<float>(0xf0)+100.0),at<unsigned char>(0x104),1,p,3);else spawn(900,at<float>(0xec),static_cast<float>(at<float>(0xf0)+100.0),static_cast<unsigned char>(-at<unsigned char>(0x104)),1,p,3);}}
         ++at<short>(0x734);
     }
     __forceinline void opening910() {

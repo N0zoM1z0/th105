@@ -2,7 +2,7 @@
 
 Current bounded checkpoint: Yukari action-state57B030 has a complete
 unselected124-action source candidate. Native callable57042/full58248 closes;
-source emits57760 full bytes, first mismatch+8. Four action tables and five
+source emits57792 full bytes, first mismatch+8. Four action tables and five
 nested difficulty tables are closed; all101 packet homes resolve, but stack
 and physical-tail ownership remain nonexact. No implementation or exact credit.
 [YUKARI_ACTION_STATE_2026_10_28.md](YUKARI_ACTION_STATE_2026_10_28.md)
