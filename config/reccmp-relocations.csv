@@ -2606,3 +2606,4 @@ _select_network_enter_eh,0x006B7978,8b5424088d42e88b4ae433c8e89c23fd,0,"Canonica
 _select_entry_character_ids,0x006E61C8,0000000002000000050000000100000003000000060000000700000004000000080000000a0000000b000000090000000c0000000d0000000e000000,0,CSelect entry421120 compares15 character IDs using indexed target operand6E61C8; complete60-byte table read2026-10-28.,address
 _select_character_portrait_format,0x006C0818,646174612f7363656e652f73656c6563742f6368617261637465722f6368615f25732e626d7000,0,Canonical41FB80 wsprintfA format operand and full NUL path; 2026-10-28.,address
 _scenario_label_selection_eh,0x006BA908,8b5424088d42f08b4aec33c8e80cf4fc,0,Canonical455490 by-value string/EH prologue handler operand and mapped prefix;2026-10-28.,address
+_select_destructor_eh,0x006B76B6,8b5424088d42ec8b4ae833c8e85e26fd,0,Canonical424260 full CSelect destruction handler operand and prefix;2026-10-28.,address

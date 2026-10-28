@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: Scenario label selection455490 now restores the
+Current bounded candidate: CSelect destructor424260 restores complete authored
+release policy and natural member destruction. Direct token values recover
+845/native845 and the first605 bytes; remaining mismatch is generated cleanup
+scheduling at4244BD. A typed sprite member trial was worse and fully reverted.
+No exact credit. See [SELECT_DESTRUCTOR_2026_10_28.md](SELECT_DESTRUCTOR_2026_10_28.md)
+and build/frontier-424260-20261028/restored-final.json.
+
+Preceding bounded candidate: Scenario label selection455490 now restores the
 owned-string search and real12-byte checked script iterator. Candidate275/
 native276 remains nonexact+36 on owner lifetime; named-script control251
 eliminates a target-retained range check and is not retained. No credit.
