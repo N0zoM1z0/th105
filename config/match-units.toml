@@ -24119,3 +24119,46 @@ rel32_targets = [
     "?copy_health@KomachiActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@KomachiActionStateView@th105@@QAEXXZ=0x004740C0",
 ]
+
+[units.exact-first-marisa-action-state]
+kind = "probe"
+source = "src/characters/MarisaActionState.cpp"
+object = "build/match-units/ExactFirst_MarisaActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete unselected4A3710 candidate:130 actions; target66695/full67936. Semantics and compiler ownership remain under review. No implemented/exact ledger credit; docs/MARISA_ACTION_STATE_2026_10_28.md."
+
+[[units.exact-first-marisa-action-state.functions]]
+address = "0x004A3710"
+symbol_base = "?dispatch_action_state_vslot28@MarisaActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+    "?marisa_random@th105@@YAIH@Z=0x004067D0",
+    "?spawn@MarisaActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?landing@MarisaActionStateView@th105@@QAEEXZ=0x00473DD0",
+    "?zero_motion@MarisaActionStateView@th105@@QAEXXZ=0x0045AF40",
+    "?advance@MarisaActionStateView@th105@@QAEEXZ=0x004351C0",
+    "?crossed@MarisaActionStateView@th105@@QAEHXZ=0x005F9310",
+    "?marisa_surface@th105@@YIMPAVMarisaActionStateView@1@@Z=0x00435D60",
+    "?marisa_random_u32@th105@@YAIXZ=0x004066B0",
+    "?effect@MarisaActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?event@MarisaActionStateView@th105@@QAEXI@Z=0x004359F0",
+    "?marisa_on_surface@th105@@YIEPAVMarisaActionStateView@1@@Z=0x00435DC0",
+    "?flip@MarisaActionStateView@th105@@QAEXXZ=0x00478E60",
+    "__ftol2_sse=0x0068A1A0",
+    "?marisa_cosine@th105@@YANM@Z=0x004063D0",
+    "?marisa_sine@th105@@YANM@Z=0x00406360",
+    "?counter@MarisaActionStateView@th105@@QAEXFH@Z=0x0046BF30",
+    "?reset@MarisaActionScratch@th105@@QAEXXZ=0x00435110",
+    "?directional@MarisaActionStateView@th105@@QAEEH@Z=0x00478EE0",
+    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?phase_counter@MarisaActionStateView@th105@@QAEHH@Z=0x00478DF0",
+    "?marisa_atan@th105@@YAMMM@Z=0x00406540",
+    "?texture@MarisaActionStateView@th105@@QAEXCF@Z=0x0045F560",
+    "?sequence_window@MarisaActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?secondary_cycle@MarisaActionStateView@th105@@QAEXXZ=0x00473F90",
+    "?classify_fighter_x_boundary@MarisaActionStateView@th105@@QAECXZ=0x00435910",
+    "?marisa_square@th105@@YAMM@Z=0x00406580",
+    "?finalize@MarisaActionStateView@th105@@QAEXH@Z=0x0045D110",
+    "?copy_health@MarisaActionStateView@th105@@QAEXXZ=0x0045B250",
+    "?common_update@MarisaActionStateView@th105@@QAEXXZ=0x004740C0",
+]

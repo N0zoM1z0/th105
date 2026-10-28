@@ -854,3 +854,36 @@ destination_count = 31
 candidate_destination_counts = [30, 31]
 index_table = "0x005F1E60"
 expected_physical_groups = 31
+
+# Marisa complete callable and all three sparse action regions.
+[[roots]]
+name = "marisa-vslot28"
+address = "0x004A3710"
+callable_end = "0x004B3B97"
+metadata_end = "0x004B4070"
+expected_direct_call_sites = 978
+expected_direct_call_targets = 29
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x004B3B98"
+destination_count = 32
+index_table = "0x004B3C18"
+expected_physical_groups = 32
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 531
+destination_table = "0x004B3CFC"
+destination_count = 45
+index_table = "0x004B3DB0"
+expected_physical_groups = 45
+[[roots.regions]]
+name = "high"
+case_min = 541
+case_max = 770
+destination_table = "0x004B3E98"
+destination_count = 48
+index_table = "0x004B3F58"
+expected_physical_groups = 48

@@ -2562,3 +2562,14 @@ __real@4067000000000000,0x006C4778,0000000000006740,0,Komachi5e20e0 native liter
 __real@4064800000000000,0x006C43B8,0000000000806440,0,Komachi5e20e0 native literal operands and emitted COFF values; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
 __real@4065e00000000000,0x006C5C48,0000000000e06540,0,Komachi5e20e0 native literal operands and emitted COFF values; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
 __real@c3160000,0x006C4760,000016c3,0,Komachi5e20e0 native literal operands and emitted COFF values; docs/KOMACHI_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4051000000000000,0x006C4448,0000000000005140,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4058800000000000,0x006C4440,0000000000805840,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4057400000000000,0x006C3CF0,0000000000405740,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4055000000000000,0x006C43F8,0000000000005540,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4049800000000000,0x006C43E0,0000000000804940,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@406d000000000000,0x006C43D0,0000000000006d40,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@3fe19999a0000000,0x006C43C8,000000a09999e13f,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@405f000000000000,0x006C43A0,0000000000005f40,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@4054400000000000,0x006C4390,0000000000405440,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@42020000,0x006C4388,00000242,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@44c80000,0x006C4378,0000c844,0,Marisa action-state4A3710 actual native operand and emitted COFF bytes; docs/MARISA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal

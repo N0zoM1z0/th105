@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Yuyuko720 now preserves the native QWORD Y
+Current bounded checkpoint: Marisa4A3710 now has a complete unselected
+130-action source candidate and shared prelude. First full compile67988 versus
+native67936, first+14, frame4C8 versus4C0. All32/45/48 action-table groups and98
+payload homes resolve, but branch/lifetime differences remain. No exact credit.
+See [MARISA_ACTION_STATE_2026_10_28.md](MARISA_ACTION_STATE_2026_10_28.md)
+and build/frontier-4a3710-20261028/formal-*.json.
+
+Preceding checkpoint: Yuyuko720 now preserves the native QWORD Y
 capture and unordered surface predicate: action700 only for ordered surface>=Y,
 gravity otherwise. Complete unselected source59456/full59672 remains first+8.
 See [YUYUKO_ACTION_STATE_2026_10_28.md](YUYUKO_ACTION_STATE_2026_10_28.md)
