@@ -24162,3 +24162,54 @@ rel32_targets = [
     "?copy_health@MarisaActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@MarisaActionStateView@th105@@QAEXXZ=0x004740C0",
 ]
+
+[units.exact-first-suika-action-state]
+kind = "probe"
+source = "src/characters/SuikaActionState.cpp"
+object = "build/match-units/ExactFirst_SuikaActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete-label unselected598990 candidate:115 actions; target79435/full81136. Semantic, callback lifetime and compiler ownership review remains open. No implemented/exact credit; docs/SUIKA_ACTION_STATE_2026_10_28.md."
+
+[[units.exact-first-suika-action-state.functions]]
+address = "0x00598990"
+symbol_base = "?dispatch_action_state_vslot28@SuikaActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+    "?counter@SuikaActionStateView@th105@@QAEXFH@Z=0x0046BF30",
+    "?landing@SuikaActionStateView@th105@@QAEEXZ=0x00473DD0",
+    "?zero_motion@SuikaActionStateView@th105@@QAEXXZ=0x0045AF40",
+    "?advance@SuikaActionStateView@th105@@QAEEXZ=0x004351C0",
+    "?crossed@SuikaActionStateView@th105@@QAEHXZ=0x005F9310",
+    "?suika_surface@th105@@YIMPAVSuikaActionStateView@1@@Z=0x00435D60",
+    "?suika_random_u32@th105@@YAIXZ=0x004066B0",
+    "?effect@SuikaActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?event@SuikaActionStateView@th105@@QAEXI@Z=0x004359F0",
+    "?flip@SuikaActionStateView@th105@@QAEXXZ=0x00478E60",
+    "?suika_on_surface@th105@@YIEPAVSuikaActionStateView@1@@Z=0x00435DC0",
+    "__ftol2_sse=0x0068A1A0",
+    "?suika_cosine@th105@@YANM@Z=0x004063D0",
+    "?suika_sine@th105@@YANM@Z=0x00406360",
+    "?reset@SuikaActionScratch@th105@@QAEXXZ=0x00435110",
+    "?directional@SuikaActionStateView@th105@@QAEEH@Z=0x00478EE0",
+    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?spawn@SuikaActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?layout@SuikaActionStateView@th105@@QAEXM@Z=0x004359D0",
+    "?phase_counter@SuikaActionStateView@th105@@QAEHH@Z=0x00478DF0",
+    "?suika_atan@th105@@YAMMM@Z=0x00406540",
+    "?suika_random@th105@@YAIH@Z=0x004067D0",
+    "?texture@SuikaActionStateView@th105@@QAEXCF@Z=0x0045F560",
+    "?set_counter_48a@SuikaActionStateView@th105@@QAEXF@Z=0x004776C0",
+    "?sequence_window@SuikaActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?secondary_cycle@SuikaActionStateView@th105@@QAEXXZ=0x00473F90",
+    "?consume_steps@SuikaActionStateView@th105@@QAEXC@Z=0x0045B260",
+    "?shared_first@SuikaActionStateView@th105@@QAECCM@Z=0x00476AB0",
+    "?shared_second@SuikaActionStateView@th105@@QAECCM@Z=0x00476AD0",
+    "?classify_fighter_x_boundary@SuikaActionStateView@th105@@QAECXZ=0x00435910",
+    "?forward_hit_quantity@AnimationSequenceObjectView@th105@@QAEXHHFC@Z=0x0045C060",
+    "?finalize@SuikaActionStateView@th105@@QAEXH@Z=0x0045D110",
+    "?copy_health@SuikaActionStateView@th105@@QAEXXZ=0x0045B250",
+    "?suika_sine_int@th105@@YAMH@Z=0x00406480",
+    "?suika_absolute@th105@@YAMM@Z=0x00406330",
+    "?oriented_components@SuikaActionScratch@th105@@QAEXMM@Z=0x00435160",
+    "?common_update@SuikaActionStateView@th105@@QAEXXZ=0x004740C0",
+]

@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Marisa4A3710 now has a complete unselected
+Current bounded checkpoint: Suika598990 has a complete-label unselected
+115-action candidate. Full replay78976 versus native81136, first+17, frame578
+matches native. Sparse candidate groups32/50/31 versus native33/50/31;
+208/220 merge. Giant605/730 static surface/zero-motion bodies also merge;
+grab608 virtual/arithmetic ownership remains under review. No exact credit.
+See [SUIKA_ACTION_STATE_2026_10_28.md](SUIKA_ACTION_STATE_2026_10_28.md)
+and build/frontier-598990-20261028/formal-{build,full}.json.
+
+Preceding checkpoint: Marisa4A3710 now has a complete unselected
 130-action source candidate and shared prelude. Native-backed 565..568 scalar
 captures now retain both request branches; action708 narrows velocity before
 its QWORD predicted-Y capture. Current full compile68204 versus

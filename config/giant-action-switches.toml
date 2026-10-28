@@ -887,3 +887,35 @@ destination_table = "0x004B3E98"
 destination_count = 48
 index_table = "0x004B3F58"
 expected_physical_groups = 48
+
+# Suika target has33 low owners; current unselected source merges208/220.
+[[roots]]
+name = "suika-vslot28"
+address = "0x00598990"
+callable_end = "0x005ABFDB"
+metadata_end = "0x005AC680"
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x005ABFDC"
+destination_count = 33
+candidate_destination_counts = [32, 33]
+index_table = "0x005AC060"
+expected_physical_groups = 33
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 547
+destination_table = "0x005AC144"
+destination_count = 50
+index_table = "0x005AC20C"
+expected_physical_groups = 50
+[[roots.regions]]
+name = "high"
+case_min = 561
+case_max = 798
+destination_table = "0x005AC304"
+destination_count = 31
+index_table = "0x005AC380"
+expected_physical_groups = 31
