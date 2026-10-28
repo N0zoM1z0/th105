@@ -141,7 +141,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00406330,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00406360,authored_game,engine,authored,observed,orientation-quantized-gameplay-helpers-authored-106a
 0x004063D0,authored_game,engine,authored,observed,orientation-quantized-gameplay-helpers-authored-106a
-0x00406430,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00406430,authored_game,engine,authored,observed,canonical-exact-authored
 0x00406480,authored_game,engine,authored,observed,canonical-exact-authored
 0x004064B0,authored_game,engine,authored,observed,canonical-exact-authored
 0x004064D0,authored_game,engine,authored,observed,canonical-exact-authored

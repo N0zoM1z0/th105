@@ -24256,3 +24256,19 @@ rel32_targets = [
     "?copy_health@UdongeActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@UdongeActionStateView@th105@@QAEXXZ=0x004740C0",
 ]
+
+[units.exact-first-angle-tangent]
+kind = "probe"
+source = "src/engine/AngleTangent.cpp"
+object = "build/match-units/ExactFirst_AngleTangent.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Ordinary float cosine guard and sine/cosine expression reproduce69 bytes at406430. Strict rounding with exception-sensitive scheduling disabled locally; same established configuration as integer-angle ratio. No forced storage/ABI/assembly. docs/ANGLE_TANGENT_2026_10_28.md."
+
+[[units.exact-first-angle-tangent.functions]]
+address = "0x00406430"
+symbol_base = "?lookup_orientation_tangent@th105@@YAMM@Z"
+rel32_targets = [
+    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+]

@@ -55,7 +55,8 @@ it. Root EBP=-1, CX=0 and EDI=30 were independently read from raw dispatch paths
   an extra FST32 while preserving this evaluation order. The tangent ABI remains
   the target-backed cdecl float(float), not a fabricated double-return interface.
   Inlining the second expression prematurely loaded the peer before the call;
-  that trial was rejected. The separate406430 dependency probe remains nonexact.
+  that trial was rejected. The separate406430 dependency is now canonical
+  exact69/69; see ANGLE_TANGENT_2026_10_28.md. This does not credit the root.
 
 ## Diagnostics and remaining uncertainty
 

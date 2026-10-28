@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Udonge5BFD50 has a complete-label unselected
+Current bounded checkpoint: float-angle tangent406430 is canonical exact69/69.
+The existing strict-FP profile plus balanced exception-scheduling-off pragma
+reproduces every byte without changing global build defaults. This adds one
+accepted function/69 bytes. Sine/cosine dependencies and Udonge remain nonexact.
+See [ANGLE_TANGENT_2026_10_28.md](ANGLE_TANGENT_2026_10_28.md)
+and build/frontier-406430-20261028/formal-build.json.
+
+Preceding checkpoint: Udonge5BFD50 has a complete-label unselected
 110-action candidate and shared prelude. Full replay67520/native67968,
 first+8 at5BFD58; frame488/native480. All32/34/39 sparse groups resolve.
 All110 per-action direct-call and FP-site counts agree;406 still merges
