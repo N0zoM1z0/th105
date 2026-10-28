@@ -118,3 +118,33 @@ bytes. SHA-256:
 d233df12e5ebf011944056b91df85c708c3fbb7b3a18d102d611046a37db7baa.
 Receipts: formal608-build.json, formal608-full.json, trial608-y-map.json and
 trial608-y-action-review.json under the same bounded build directory.
+
+
+## Action ordering and packet-home evidence
+
+A bounded stack trace, qualified for the root receiver and established
+related_170 animation peer, resolves all112 native and candidate caller-owned
+packet homes with no unknown spawn sites. Both frame578 offset sets are
+identical. Initially thirteen actions nevertheless used different individual
+homes: late-added562/605/608/730/740/751 source arms were out of native order.
+Restoring their observed action/body order aligns the per-action home sets
+without padding, dummy arrays, ABI edits or new storage. Include placement now
+puts605 before606 and608 before650;730 is with the boss states and all relevant
+high/special arms follow native order. Counts/widths and callbacks are unchanged.
+
+After this refinement all per-action home sets agree. Action740's two middle
+static spawn sites are emitted in reversed physical order (homes356 and1076);
+this is still an open layout issue, not an absent/extra packet. Native/candidate
+epilogue and indirect-call totals remain different. All crossed/on-surface
+result consumers test AL. The receiver/stack diagnostic is not exact acceptance
+and does not validate packet contents, callee readers or every semantic alias.
+
+Full candidate78988/native81136; first+17,77319 unmasked differing bytes.
+Candidate SHA-256:
+9ae51885bae170b746946e50c7b74ce295133f28ed0f7ea3ecc43440b5e6c965.
+Current605 additionally has one fewer virtual site; its surface/zero-motion
+merges and608 arithmetic differences remain. Receipts: formal-order-build.json,
+formal-order-full.json, trial-owner-order2-map.json, payload-order-review.log,
+native-action-payload-review.json, candidate-action-payload-review.json and
+payload-order-differences.json in the bounded build directory. Previous packet
+diagnostics are retained under payload-before-owner-order/.

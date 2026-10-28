@@ -21,8 +21,6 @@ void SuikaActionStateView::dispatch_action_state_vslot28() {
 #include "SuikaMidSkillCases.inc"
 #include "SuikaHighSkillCases.inc"
 #include "SuikaSpellCases.inc"
-#include "SuikaGiantCases.inc"
-#include "SuikaGrabCases.inc"
 #include "SuikaSpecialCases.inc"
     default:common_update();return;
     }

@@ -1,14 +1,16 @@
 # TH10.5 reconstruction handoff
 
 Current bounded checkpoint: Suika598990 has a complete-label unselected
-115-action candidate. Full replay78912 versus native81136, first+17, frame578
+115-action candidate. Full replay78988 versus native81136, first+17, frame578
 matches native. Sparse candidate groups32/50/31 versus native33/50/31;
 208/220 merge. Giant605/730 static surface/zero-motion bodies also merge;
 grab608 shared pose tails now restore its native direct/virtual call counts,
 while arithmetic ownership remains under review. Separate501 return guards
-also restore its virtual-site count. No exact credit.
+also restore its virtual-site count. Native action ordering now aligns all112
+packet-home offsets and per-action home sets;740 retains a physical-site order
+difference. No exact credit.
 See [SUIKA_ACTION_STATE_2026_10_28.md](SUIKA_ACTION_STATE_2026_10_28.md)
-and build/frontier-598990-20261028/formal608-{build,full}.json.
+and build/frontier-598990-20261028/formal-order-{build,full}.json.
 
 Preceding checkpoint: Marisa4A3710 now has a complete unselected
 130-action source candidate and shared prelude. Native-backed 565..568 scalar

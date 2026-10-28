@@ -95,6 +95,7 @@ case 604:
             peer()->set_action_and_finalize(53);peer()->at<unsigned char>(0x104)=B(0x104);
         }
     }return;
+#include "SuikaGiantCases.inc"
 case 606:
     texture(5,2);if(advance())set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142){
@@ -115,6 +116,7 @@ case 607:
             do{p[0]=static_cast<float>(n*36.0+static_cast<float>(suika_random(20)));p[1]=static_cast<float>(static_cast<float>(suika_random(8))+30.0);S(0x730)=(p[0]<0.0f || p[0]>180.0f)?-1:1;spawn_offset(811,100,0.0,p,3,B(0x730));n=static_cast<float>(n+1.0);}while(n<10.0f);
         }
     }return;
+#include "SuikaGrabCases.inc"
 case 650:
     texture(5,2);if(advance())set_action_and_finalize(0);
     if(entry(1)){set_action_and_finalize(600);select_sequence(1);spell_flash(0,100.0,2);float p[3]={0.0f,0.0f,0.0f};spawn_offset(850,0,100.0,p,3);dispatch_character_wave_handle(50);F(0xf8)=10.0f;}return;
