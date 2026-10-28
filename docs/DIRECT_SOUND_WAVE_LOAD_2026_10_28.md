@@ -28,3 +28,20 @@ No manual EH, register forcing, vtable recipe, assembly or copied bytes is used.
 Only the new unit is built; existing shared headers and compile profiles are
 unchanged. Canonical MessageBoxA IAT, error text and EH-prefix witnesses are
 resolved without masking. No generated cleanup or downstream decoder credit.
+
+## Derived resource constructor 4180B0
+
+CDS3DBuffer RTTI COL6DCF1C / type6FA65C owns vtable6D6D20. The existing
+lifetime source emitted20 bytes but initially differed at+6: it cleared both
+base fields before derived-vptr publication. Native clears base state08 first,
+then publishes the derived type and initializes resource04/resource0C.
+The derived destructor already establishes that this class explicitly owns
+both resource releases in addition to inherited base cleanup. Restoring the
+corresponding derived-body resource04 initialization recovers20/20 naturally;
+the optimizer removes the earlier overridden base initialization. No manual
+vptr or register manipulation is involved.
+
+Receipt build/frontier-4180b0-20261028/derived-owned-reset.json preserves all
+six accepted peers17/33/53/30/160/253. The normal destructor4180F0 remains
+139/139 nonexact at+47 and receives no credit. The new constructor's full RET
+boundary is separately audited in the same directory's boundary.json.

@@ -1,7 +1,9 @@
 # TH10.5 reconstruction handoff
 
 Current bounded checkpoint: DirectSound wave load4184B0 is canonical
-exact304/304. Natural owned-wave lifetime and real COM lock/copy/unlock close
+exact304/304, and CDS3DBuffer constructor4180B0 is exact20/20 after
+restoring derived ownership of both resource pointers. Six accepted lifetime
+peers remain exact; normal destructor139 remains nonexact+47. Natural owned-wave lifetime and real COM lock/copy/unlock close
 all114 native instructions. Source uses the observed ordinary fastcall
 dispatcher408ED0 without fabricating its private decoder child ABI. See
 [DIRECT_SOUND_WAVE_LOAD_2026_10_28.md](DIRECT_SOUND_WAVE_LOAD_2026_10_28.md)

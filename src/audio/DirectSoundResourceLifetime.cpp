@@ -122,6 +122,7 @@ DirectSoundResourceBaseLifetime::~DirectSoundResourceBaseLifetime()
 
 DirectSoundResourceLifetime::DirectSoundResourceLifetime()
 {
+    resource_04 = 0;
     resource_0c = 0;
 }
 

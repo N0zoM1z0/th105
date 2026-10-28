@@ -16641,6 +16641,11 @@ dir32_targets = [
   "__real@40400000=__real@40400000",
 ]
 
+[[units.gpt-web-direct-sound-resource-lifetime.functions]]
+address = "0x004180B0"
+symbol_base = "??0DirectSoundResourceLifetime@th105@@QAE@XZ"
+dir32_targets = ["??_7DirectSoundResourceLifetime@th105@@6B@=??_7DirectSoundResourceDerived@th105@@6B@"]
+
 [units.gpt-web-profile-deck-resource-lifetime]
 kind = "probe"
 source = "src/ui/ProfileDeckResourceLifetime.cpp"

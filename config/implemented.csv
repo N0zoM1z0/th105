@@ -1598,3 +1598,4 @@ CLoadingCL_update_scene_mapping
 ReplayStorage_ctor
 CInputManagerEx_ctor
 DirectSoundResource_load_wave
+DirectSoundResource_ctor
