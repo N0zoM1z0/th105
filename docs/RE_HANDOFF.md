@@ -1,12 +1,17 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Yukari action-state57B030 has a complete
-unselected124-action source candidate. Native callable57042/full58248 closes;
-source emits57792 full bytes, first mismatch+8. Four action tables and five
-nested difficulty tables are closed; all101 packet homes resolve, but stack
-and physical-tail ownership remain nonexact. No implementation or exact credit.
-[YUKARI_ACTION_STATE_2026_10_28.md](YUKARI_ACTION_STATE_2026_10_28.md)
-records evidence and focused replay. Receipts: build/frontier-57b030-20261028/.
+Current bounded checkpoint: Remilia action-state 545090 has a complete
+unselected 107-action candidate. Native callable 61962/full 63316 closes;
+source emits 63004 full bytes, first mismatch +8 (frame 4F8 versus 4F0).
+All sixteen native tables and 101 payload homes are resolved. Packet values
+beyond the written native extents, physical tails and stack ownership remain
+unrecovered. No implementation or exact credit.
+[REMILIA_ACTION_STATE_2026_10_28.md](REMILIA_ACTION_STATE_2026_10_28.md)
+records evidence and focused replay. Receipts: build/frontier-545090-20261028/.
+
+Preceding Yukari b491d153 remains complete but unselected/nonexact:
+57792/full58248, first +8; 124 actions and 101 payload homes resolved. See
+[YUKARI_ACTION_STATE_2026_10_28.md](YUKARI_ACTION_STATE_2026_10_28.md).
 
 Preceding Yuyuko97a2575e remains complete but unselected/nonexact:
 59428/full59672, first+8;116 actions and100 payload homes resolved. See

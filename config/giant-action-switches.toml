@@ -782,3 +782,38 @@ destination_table = "0x00589384"
 destination_count = 6
 index_table = "0x0058939C"
 expected_physical_groups = 6
+
+# Remilia action-owner mapping is diagnostic only; no exact credit.
+[[roots]]
+name = "remilia-vslot28"
+address = "0x00545090"
+callable_end = "0x0055429A"
+metadata_end = "0x005547E4"
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x0055429C"
+destination_count = 32
+candidate_destination_counts = [31, 32]
+index_table = "0x0055431C"
+expected_physical_groups = 32
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 547
+destination_table = "0x00554400"
+destination_count = 42
+index_table = "0x005544A8"
+expected_physical_groups = 42
+
+[[roots.regions]]
+name = "high"
+case_min = 564
+case_max = 798
+destination_table = "0x005545F0"
+destination_count = 30
+index_table = "0x00554668"
+expected_physical_groups = 30
