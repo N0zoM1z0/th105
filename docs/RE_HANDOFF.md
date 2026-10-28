@@ -1,13 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded frontier: Sakuya Fighter4CADB0 has independently closed raw CFG
-through4DD2D2, including all ten remote chunks; full payload76336 through4DD7E0.
-Target dispatch contains113 action labels; complete source has not yet been written.
-Two previously
-counted short alignment JMPs correct owned bytes74941 to74937 without exact credit.
-Attested Ghidra navigation completed after the known IDA decompile failure. See
-[SAKUYA_ACTION_STATE_2026_10_28.md](SAKUYA_ACTION_STATE_2026_10_28.md) and
-build/frontier-4cadb0-20261028/target-facts.json.
+Current bounded frontier: Sakuya Fighter4CADB0 has complete113-action/default
+source and focused owned-extent/full76336 replay. Selected77144 remains nonexact
+at+8, frame4A8/native4D8;95 request homes agree in count, declaration extents and
+sharing remain unresolved. Native14/candidate13 tables and several call tails
+differ. Raw CFG closes all ten remote chunks; ownership74937 excludes105 padding
+bytes, all still included in strict full comparison. No exact credit. See
+[SAKUYA_ACTION_STATE_2026_10_28.md](SAKUYA_ACTION_STATE_2026_10_28.md),
+`scripts/audit-sakuya-action-state.py`, and
+build/frontier-4cadb0-20261028/{formal-build,formal-audit,target-audit}.json.
 
 Preceding bounded candidate: Aya Fighter602250 has complete114-action manual source
 and canonical full65720/native66704 replay, nonexact+18. Raw two-word530/532

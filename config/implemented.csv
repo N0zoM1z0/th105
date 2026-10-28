@@ -1625,3 +1625,4 @@ SuikaObject_update_action_state
 AliceObject_update_action_state
 AudioScheduler_thread_main
 Aya_dispatch_action_state_vslot28
+Sakuya_dispatch_action_state_vslot28
