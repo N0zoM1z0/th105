@@ -103,8 +103,7 @@ public:
 
     __forceinline void aim(float low,float high) {
         float dx=static_cast<float>((peer()->at<float>(0xec)-at<float>(0xec))*static_cast<double>(facing()));
-        float dy=peer()->at<float>(0xf0)-at<float>(0xf0);
-        at<float>(0x744)=-tenshi_atan(dy,dx);
+        at<float>(0x744)=-tenshi_atan(peer()->at<float>(0xf0)-at<float>(0xf0),dx);
         if(at<float>(0x744)<low)at<float>(0x744)=low;
         if(at<float>(0x744)>high)at<float>(0x744)=high;
     }

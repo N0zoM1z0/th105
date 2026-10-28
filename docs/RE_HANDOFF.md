@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Patchouli request-branch ownership, argument
+Current bounded checkpoint: Tenshi raw-backed scalar captures reduce the
+extra frame from16 to8 bytes; request and atan argument lifetimes are refined.
+The complete unselected candidate is49032/full48968, first+8, frame328 versus320.
+All35/36/37 action-table groups and64 payload homes resolve. See
+[TENSHI_ACTION_STATE_2026_10_27.md](TENSHI_ACTION_STATE_2026_10_27.md)
+and build/frontier-63d3e0-20261027/formal-lifetimes*.json. No exact credit.
+
+Preceding checkpoint: Patchouli request-branch ownership, argument
 lifetimes and flight214 physical placement now follow native evidence.
 The complete unselected candidate is55026/full55610, first+8, frame468.
 All109 actions have matching per-action call/FP-site counts and91 resolved

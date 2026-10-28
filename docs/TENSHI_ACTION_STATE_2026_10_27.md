@@ -140,9 +140,54 @@ Candidate also has64 request homes with the same three16-byte block shapes.
 However its first home is52 versus native36, and frame816 versus800:16 extra
 scratch bytes remain. This does not justify removing locals or adding padding.
 
-Current complete source49096/full48968, first+8, SHA-256
+Prior RNG-width source49096/full48968, first+8, SHA-256
 6c644dfcd3ed742e7f77d4a8e1419a9d4c59afd4cf991434d5f3c055be683628.
 Full positional difference46416. No implementation or exact credit.
 Receipts: rng-float-build.json/rng-float-full.json. The prior49088 comparison
 is historical. Stack diagnostics apply to that earlier snapshot; native facts
 remain unchanged, but candidate addresses must be requalified after a build.
+
+
+## Scalar captures and request/aim lifetimes, October28
+
+Current complete unselected public replay:49032/full48968, first+8 at63D3E8,
+frame328 versus native320, SHA256
+95ab5a66b10f31e15a0939fac68faf7eb6797bdb31c263339137d531ed1d2985.
+The canonical full audit counts46094 unequal/extra/missing positions. It remains
+nonexact; no selection or exact ledger credit is added. Receipts are
+build/frontier-63d3e0-20261027/formal-lifetimes.json and
+formal-lifetimes-audit.json, with pairedargs private diagnostics.
+
+Native64785C/647863 captures the pre-RNG X field directly in QWORD; the former
+float base_x generated an unsupported DWORD store/reload before that capture.
+A double local now preserves the observed width. An isolated capturex-only
+control reduces frame330 to328, identifying eight of the extra sixteen stack
+bytes without changing payload extents. Action605 similarly stores current Y
+as QWORD at646409 before surface(), then compares that QWORD at646418; its
+capture is now double, without adding or deleting a target arithmetic operation.
+
+Action525 prepares packet/count/layer/direction before sine at6431E8 and
+publishes outgoing Y before cosine at64321A. Coordinate expressions now live
+in the actual spawn arguments instead of separate X/Y locals. The paired920
+requests in730 likewise publish the fixed outgoing Y before RNG and retain the
+observed pre-RNG base only for the mirrored request. The seven atan callers
+retain binary32 DX and prepare it before loading peer Y; all seven32-byte
+pre-call windows now match native verbatim. Local windows are diagnostics,
+not whole-root exact-byte credit. Remaining facing-load scheduling across RNG
+and trig calls is not claimed recovered.
+
+The current sparse tables have35/36/37 groups, matching native cardinalities;
+the prior33-low-owner merge is historical. Per-action call counts agree, and
+FP-operation differences remain only214/567's physically shared additions.
+Payload analysis resolves64 homes with no unknown pointers and retains all
+three16-byte blocks. First home is44 versus native36; the third16-byte block's
+ordering still differs, so this is not a uniform-offset acceptance claim.
+Native/candidate epilogues125/129 and virtual sites172/171 differ. All46
+crossed and10 on-surface consumers inspect AL on both sides. Four candidate
+peer virtual-slot8 calls at63E087,64538A,64568B,6480FC were separately qualified
+by actual ECX=[ESI+170], vptr+8 chains and one pushed argument.
+
+The remaining eight frame bytes, physical tails, scratch allocation and field
+lifetimes remain open. No ABI contract, compiler flag, target bytes, padding or
+accepted consumer changed. The focused public build reproduces the private
+payload exactly; no full native corpus rebuild was run.

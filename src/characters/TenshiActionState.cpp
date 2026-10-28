@@ -773,10 +773,8 @@ case 525:
         float p[3];
         for(float n=0.0f;n<4.0f;n=static_cast<float>(n+1.0)) {
             p[0]=static_cast<float>(-n*90.0);p[1]=100.0f;p[2]=0.0f;
-            int direction=B(0x104);
-            float y=static_cast<float>(tenshi_sine(-p[0])*(p[1]*0.25)+F(0xf0));
-            float x=static_cast<float>(tenshi_cosine(-p[0])*p[1]*facing()+F(0xec));
-            spawn(816,x,y,direction,1,p,3);++I(0x834);
+            spawn(816,static_cast<float>(tenshi_cosine(-p[0])*p[1]*facing()+F(0xec)),
+                  static_cast<float>(tenshi_sine(-p[0])*(p[1]*0.25)+F(0xf0)),B(0x104),1,p,3);++I(0x834);
         }
         S(0x82e)=static_cast<short>(60*(C(0x609)+2));counter(200,45);phase_counter(50);dispatch_character_wave_handle(16);
     }
@@ -926,8 +924,7 @@ case 567:
     if(sequence_index_13e<2 && !I(0x6c4))B(0x750)=0;
     if(sequence_index_13e==2 && frame_index_140==2 && !frame_timer_142) {
         float dx=static_cast<float>((peer()->at<float>(0xec)-F(0xec))*static_cast<double>(facing()));
-        float dy=peer()->at<float>(0xf0)-F(0xf0);
-        S(0x734)=static_cast<short>(-static_cast<short>(static_cast<int>(tenshi_atan(dy,dx))));
+        S(0x734)=static_cast<short>(-static_cast<short>(static_cast<int>(tenshi_atan(peer()->at<float>(0xf0)-F(0xf0),dx))));
         if(S(0x734)<-10)S(0x734)=-10;if(S(0x734)>10)S(0x734)=10;
         dispatch_character_wave_handle(29);I(0x180)=1;counter(200,60);phase_counter(50);
         float p[3]={0.0f,0.0f,0.0f};
@@ -1094,7 +1091,7 @@ case 605:
         float p[3]={0.0f,0.0f,0.0f};spawn(855,F(0xec),F(0xf0),B(0x104),-1,p,3);return;
     }
     if(sequence_index_13e==3) {
-        F(0xf8)-=F(0x100);float y=F(0xf0);
+        F(0xf8)-=F(0x100);double y=F(0xf0);
         if(tenshi_surface(this)+150.0>=y) {
             zero_motion();layout(20.0f);select_sequence(4);F(0xf0)=static_cast<float>(tenshi_surface(this)+150.0);
             float p[3]={0.0f,25.0f,1.0f};burst_payload(p,18.0f,20.0,100,0.0,true,848);
@@ -1261,12 +1258,12 @@ case 730:
     if(sequence_index_13e==1) {
         if(S(0x730)%5==0 && F(0x73c)<=5.0f) {
             float p[3]={F(0x73c),0.0f,0.0f};int direction=B(0x104);
-            float x=static_cast<float>((static_cast<float>(tenshi_random(100))+200.0+200.0*F(0x73c))*facing()+F(0xec));
-            spawn(920,x,-100.0f,direction,1,p,3);
+            spawn(920,static_cast<float>((static_cast<float>(tenshi_random(100))+200.0+200.0*F(0x73c))*facing()+F(0xec)),
+                  -100.0f,direction,1,p,3);
             p[0]=static_cast<float>(F(0x73c)+6.0);p[1]=0.0f;p[2]=0.0f;
-            direction=B(0x104);float base_x=F(0xec);
-            x=static_cast<float>(base_x-(static_cast<float>(tenshi_random(100))+200.0+200.0*F(0x73c))*facing());
-            spawn(920,x,-100.0f,direction,1,p,3);F(0x73c)=static_cast<float>(F(0x73c)+1.0);
+            direction=B(0x104);double base_x=F(0xec);
+            spawn(920,static_cast<float>(base_x-(static_cast<float>(tenshi_random(100))+200.0+200.0*F(0x73c))*facing()),
+                  -100.0f,direction,1,p,3);F(0x73c)=static_cast<float>(F(0x73c)+1.0);
         }
         if(S(0x730)>=120){next_sequence_block();return;}
         ++S(0x730);
