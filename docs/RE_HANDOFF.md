@@ -1,12 +1,16 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Yuyuko action-state55D850 has a complete
-unselected116-action source candidate. Native callable58619/full59672 closes;
-source emits59428 full bytes, first mismatch+8. Separate release branches,
-integer offsets, spell FP lifetimes and difficulty emission pairs are refined.
-No implementation or exact credit. See
+Current bounded checkpoint: Yukari action-state57B030 has a complete
+unselected124-action source candidate. Native callable57042/full58248 closes;
+source emits57760 full bytes, first mismatch+8. Four action tables and five
+nested difficulty tables are closed; all101 packet homes resolve, but stack
+and physical-tail ownership remain nonexact. No implementation or exact credit.
+[YUKARI_ACTION_STATE_2026_10_28.md](YUKARI_ACTION_STATE_2026_10_28.md)
+records evidence and focused replay. Receipts: build/frontier-57b030-20261028/.
+
+Preceding Yuyuko97a2575e remains complete but unselected/nonexact:
+59428/full59672, first+8;116 actions and100 payload homes resolved. See
 [YUYUKO_ACTION_STATE_2026_10_28.md](YUYUKO_ACTION_STATE_2026_10_28.md).
-Receipts: build/frontier-55d850-20261027/.
 
 Preceding Patchouli203faa8b remains complete but unselected/nonexact:
 54466/full55610, first+8;109 actions and91 payload homes resolved. See
@@ -80,7 +84,7 @@ that a particular standalone mismatch requires LTCG.
 | Provisional / authored / excluded / review candidates |4024 /1621 /1419 /984 |
 | Mapped / source-present |1610 /1582 |
 | Exact functions / authored bytes |1427 /413799 |
-| Configured units / functions |632 /1602 |
+| Configured units / functions |633 /1603 |
 | Accepted units |537 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.

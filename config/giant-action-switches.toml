@@ -735,3 +735,50 @@ destination_table = "0x0056BF94"
 destination_count = 51
 index_table = "0x0056C060"
 expected_physical_groups = 51
+
+# Yukari action-owner mapping is diagnostic only; no exact credit.
+[[roots]]
+name = "yukari-vslot28"
+address = "0x0057B030"
+callable_end = "0x00588F02"
+metadata_end = "0x005893B8"
+expected_direct_call_sites = 889
+expected_direct_call_targets = 32
+expected_ret_opcodes = 140
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x00588F04"
+destination_count = 44
+candidate_destination_counts = [43, 44]
+index_table = "0x00588FB4"
+expected_physical_groups = 44
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 418
+destination_table = "0x00589098"
+destination_count = 27
+index_table = "0x00589104"
+expected_physical_groups = 27
+
+[[roots.regions]]
+name = "high"
+case_min = 501
+case_max = 750
+destination_table = "0x0058917C"
+destination_count = 47
+index_table = "0x00589238"
+expected_physical_groups = 47
+
+[[roots.regions]]
+name = "special"
+case_min = 771
+case_max = 798
+destination_table = "0x00589384"
+destination_count = 6
+index_table = "0x0058939C"
+expected_physical_groups = 6

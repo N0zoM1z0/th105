@@ -23984,3 +23984,49 @@ rel32_targets = [
     "?copy_health@YuyukoActionStateView@th105@@QAEXXZ=0x0045B250",
     "?common_update@YuyukoActionStateView@th105@@QAEXXZ=0x004740C0",
 ]
+
+[units.exact-first-yukari-action-state]
+kind = "probe"
+source = "src/characters/YukariActionState.cpp"
+object = "build/match-units/ExactFirst_YukariActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete unselected57B030 candidate:124 actions; target57042/full58248. Native CFG closed; semantic and physical-owner review remains. No implementation/exact credit; docs/YUKARI_ACTION_STATE_2026_10_28.md."
+
+[[units.exact-first-yukari-action-state.functions]]
+address = "0x0057B030"
+symbol_base = "?dispatch_action_state_vslot28@YukariActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+    "?spawn@YukariActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?landing@YukariActionStateView@th105@@QAEEXZ=0x00473DD0",
+    "?zero_motion@YukariActionStateView@th105@@QAEXXZ=0x0045AF40",
+    "?advance@YukariActionStateView@th105@@QAEEXZ=0x004351C0",
+    "?crossed@YukariActionStateView@th105@@QAEHXZ=0x005F9310",
+    "?yukari_surface@th105@@YIMPAVYukariActionStateView@1@@Z=0x00435D60",
+    "__ftol2_sse=0x0068A1A0",
+    "?layout@YukariActionStateView@th105@@QAEXM@Z=0x004359D0",
+    "?event@YukariActionStateView@th105@@QAEXI@Z=0x004359F0",
+    "?classify_fighter_x_boundary@YukariActionStateView@th105@@QAECXZ=0x00435910",
+    "?reset@YukariActionScratch@th105@@QAEXXZ=0x00435110",
+    "?at@YukariCardDeque@th105@@QAEPAFI@Z=0x004399C0",
+    "?effect@YukariActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?yukari_random_u32@th105@@YAIXZ=0x004066B0",
+    "?yukari_on_surface@th105@@YIEPAVYukariActionStateView@1@@Z=0x00435DC0",
+    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?flip@YukariActionStateView@th105@@QAEXXZ=0x00478E60",
+    "?yukari_cosine@th105@@YANM@Z=0x004063D0",
+    "?yukari_sine@th105@@YANM@Z=0x00406360",
+    "?counter@YukariActionStateView@th105@@QAEXFH@Z=0x0046BF30",
+    "?directional@YukariActionStateView@th105@@QAEEH@Z=0x00478EE0",
+    "?phase_counter@YukariActionStateView@th105@@QAEHH@Z=0x00478DF0",
+    "?yukari_atan@th105@@YAMMM@Z=0x00406540",
+    "?sqrt_float_value@th105@@YAMM@Z=0x00478DD0",
+    "?absolute_scalar_float@th105@@YAMM@Z=0x00406330",
+    "?texture@YukariActionStateView@th105@@QAEXCF@Z=0x0045F560",
+    "?sequence_window@YukariActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?secondary_cycle@YukariActionStateView@th105@@QAEXXZ=0x00473F90",
+    "?yukari_random@th105@@YAIH@Z=0x004067D0",
+    "?finalize@YukariActionStateView@th105@@QAEXH@Z=0x0045D110",
+    "?copy_health@YukariActionStateView@th105@@QAEXXZ=0x0045B250",
+    "?common_update@YukariActionStateView@th105@@QAEXXZ=0x004740C0",
+]
