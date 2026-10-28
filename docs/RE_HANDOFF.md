@@ -2,7 +2,7 @@
 
 Current bounded checkpoint: Remilia action-state 545090 has a complete
 unselected 107-action candidate. Native callable 61962/full 63316 closes;
-source emits 63004 full bytes, first mismatch +8 (frame 4F8 versus 4F0).
+source emits 62976 full bytes, first mismatch +8 (frame 4F8 versus 4F0).
 All sixteen native tables and 101 payload homes are resolved. Packet values
 beyond the written native extents, physical tails and stack ownership remain
 unrecovered. No implementation or exact credit.

@@ -7,8 +7,9 @@ VC8 replay unit. It is **unselected and nonexact**. No implemented.csv,
 matches.csv, function status, or accepted byte total is changed.
 
 The first complete candidate emitted 63,444 bytes. Reviewed packet ownership,
-difficulty fallthrough, zero-offset coordinates, and packet extents produce
-63,004 bytes versus the target's full 63,316 bytes. First mismatch is +8:
+difficulty fallthrough, zero-offset coordinates, packet extents, native low-owner
+ordering, and captured prelude direction produce
+62,976 bytes versus the target's full 63,316 bytes. First mismatch is +8:
 the emitted stack allocation is 0x4F8, target 0x4F0. Size proximity is not
 an exactness percentage.
 
@@ -98,12 +99,21 @@ rechecks target hash, all table destinations, complete reachability, exact
 unmasked bytes and payload length.
 
 Final candidate SHA-256:
-de07c135c223e31405fd1e3af39d86fea4602e8005ed87bd0052a1007df73be1
+85fb97f485db3e0a7ef7873507c2b35497f4d8dec3d3b0d77c8bd300eeee3e6f
 
-Full positional differences including absent trailing bytes: 60,051.
+Full positional differences including absent trailing bytes: 60,019.
 That count is diagnostic, not a semantic similarity or completion metric.
 
-Receipts: build/frontier-545090-20261028/formal.json and formal-audit.json.
+Receipts: build/frontier-545090-20261028/formal-ownerorder.json and formal-ownerorder-audit.json.
 Private raw and source diagnostics are in the same frontier build directory;
 draft recovery is under .analysis/frontier-545090-20261028/. The checked-in
 source is authoritative. Existing exact receipts remain incremental.
+
+### Physical-owner refinement
+
+The native low sequence places action 214 before 215. Restoring that source
+order brings its physical owner span from 1010 to 810 bytes (native 811),
+without changing action semantics or adding a padding/return workaround.
+The native prelude captures unsigned direction once and then sign-extends
+that captured byte for X. The candidate now expresses that flow explicitly.
+Neither change solves the first +8 mismatch; no exact credit is awarded.

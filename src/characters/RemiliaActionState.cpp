@@ -11,9 +11,9 @@ void RemiliaActionStateView::dispatch_action_state_vslot28() {
 S(0x7a0)=0;S(0x7a2)=76;
 if(action_id_13c>149 && action_id_13c<159 && !B(0x751)) {
     B(0x751)=1;
-    if(action_id_13c>149 && action_id_13c<154)spawn(998,static_cast<float>(35*facing()+static_cast<double>(F(0xec))),static_cast<float>(F(0xf0)+95.0),B(0x104),1,0,0);
-    if(action_id_13c>153 && action_id_13c<158)spawn(998,static_cast<float>(55*facing()+static_cast<double>(F(0xec))),static_cast<float>(F(0xf0)+55.0),B(0x104),1,0,0);
-    if(action_id_13c==158)spawn(998,static_cast<float>(85*facing()+static_cast<double>(F(0xec))),static_cast<float>(F(0xf0)+90.0),B(0x104),1,0,0);
+    if(action_id_13c>149 && action_id_13c<154)spawn_offset(998,35,95.0,0,0);
+    if(action_id_13c>153 && action_id_13c<158)spawn_offset(998,55,55.0,0,0);
+    if(action_id_13c==158)spawn_offset(998,85,90.0,0,0);
 }
 if(S(0x186) || peer()->at<short>(0x48c))return;
 
@@ -73,6 +73,15 @@ case 222:high_jump(-14.0f,17.5f,0.9f);return;
 case 211:high_jump(3.0f,23.0f,1.0f);return;
 case 212:
 case 221:high_jump(14.0f,17.5f,0.9f);return;
+case 214:
+    if(sequence_index_13e==1 || sequence_index_13e==2){if(F(0xf0)>680.0f && F(0xf8)>0.0f)F(0xf8)=0.0f;if(frame_index_140>=8)F(0xf8)-=F(0x100);}
+    if(sequence_index_13e==3 || sequence_index_13e==4)F(0xf8)-=F(0x100);
+    if(static_cast<unsigned char>(crossed())){F(0xf0)=remilia_surface(this);F(0xf8)=0.0f;if(sequence_index_13e==1 || sequence_index_13e==2){reset_action_scratch();set_action_and_finalize(215);}else{set_action_and_finalize(10);zero_motion();}return;}
+    if(advance()){set_action_and_finalize(9);return;}if(entry(4)){set_action_and_finalize(9);return;}
+    if(entry(1)){if(I(0x4b8))counter(200,45);else counter(100,45);event(31);S(0x734)=static_cast<short>(S(0x732)-static_cast<int>(F(0x740)));F(0xf4)=static_cast<float>(remilia_cosine(F(0x740))*F(0x73c));F(0xf8)=static_cast<float>(remilia_sine(F(0x740))*F(0x73c));F(0x12c)=-F(0x740);if(F(0xf4)<0.0f)F(0x12c)=static_cast<float>(180.0-F(0x740));if(F(0xf4)<0.0f && sequence_index_13e==1)select_sequence(2);return;}
+    if((sequence_index_13e==1 || sequence_index_13e==2) && !frame_timer_142 && frame_index_140==7){reset_action_scratch();F(0xf4)=static_cast<float>(remilia_cosine(F(0x740))*4.0);F(0xf8)=static_cast<float>(remilia_sine(F(0x740))*4.0);flip();}
+    if(entry(2)){reset_action_scratch();select_sequence(3);}else if(entry(3))reset_action_scratch();return;
+
 case 215:
     landing();if(F(0xf4)>0.0f){F(0xf4)=static_cast<float>(F(0xf4)-1.25);if(F(0xf4)<0.0f)F(0xf4)=0.0f;}
     if(F(0xf4)<0.0f){F(0xf4)=static_cast<float>(F(0xf4)+1.25);if(F(0xf4)>0.0f)F(0xf4)=0.0f;}
@@ -100,15 +109,6 @@ case 226:
     if(static_cast<unsigned char>(crossed())){zero_motion();F(0xf0)=remilia_surface(this);set_action_and_finalize(10);return;}
     if(advance())set_action_and_finalize(9);
     if(entry(1)){F(0xf4)=30.0f;F(0xf8)=-4.0f;dash_effects(false,110.0,true);}if(entry(2)){F(0xf4)=10.0f;F(0xf8)=-4.0f;F(0x100)=0.5f;flip();}return;
-
-case 214:
-    if(sequence_index_13e==1 || sequence_index_13e==2){if(F(0xf0)>680.0f && F(0xf8)>0.0f)F(0xf8)=0.0f;if(frame_index_140>=8)F(0xf8)-=F(0x100);}
-    if(sequence_index_13e==3 || sequence_index_13e==4)F(0xf8)-=F(0x100);
-    if(static_cast<unsigned char>(crossed())){F(0xf0)=remilia_surface(this);F(0xf8)=0.0f;if(sequence_index_13e==1 || sequence_index_13e==2){reset_action_scratch();set_action_and_finalize(215);}else{set_action_and_finalize(10);zero_motion();}return;}
-    if(advance()){set_action_and_finalize(9);return;}if(entry(4)){set_action_and_finalize(9);return;}
-    if(entry(1)){if(I(0x4b8))counter(200,45);else counter(100,45);event(31);S(0x734)=static_cast<short>(S(0x732)-static_cast<int>(F(0x740)));F(0xf4)=static_cast<float>(remilia_cosine(F(0x740))*F(0x73c));F(0xf8)=static_cast<float>(remilia_sine(F(0x740))*F(0x73c));F(0x12c)=-F(0x740);if(F(0xf4)<0.0f)F(0x12c)=static_cast<float>(180.0-F(0x740));if(F(0xf4)<0.0f && sequence_index_13e==1)select_sequence(2);return;}
-    if((sequence_index_13e==1 || sequence_index_13e==2) && !frame_timer_142 && frame_index_140==7){reset_action_scratch();F(0xf4)=static_cast<float>(remilia_cosine(F(0x740))*4.0);F(0xf8)=static_cast<float>(remilia_sine(F(0x740))*4.0);flip();}
-    if(entry(2)){reset_action_scratch();select_sequence(3);}else if(entry(3))reset_action_scratch();return;
 
 case 300:
     landing();if(directional(0))return;if(B(0x47e))decelerate(0.5,true);if(advance())set_action_and_finalize(0);if(!frame_timer_142 && frame_index_140==3){event(27);B(0x47e)=0;}return;
