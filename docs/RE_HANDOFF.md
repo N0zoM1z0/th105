@@ -1,6 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: input policy428260 now has complete Practice and
+Current bounded candidate: spell preparation45DC90 now uses the real typed
+sprite record and deque ownership. Its old GS-buffer blocker and stale
+addresses/dataflow are corrected; current257/native259 remains nonexact.
+Initial entry/size loads now agree; optional-resource load/reuse is residual.
+Accepted front-ready118 remains exact; existing198/346 nonexact peers retain
+their residuals. See [SEQUENCE_PREPARATION_2026_10_28.md](SEQUENCE_PREPARATION_2026_10_28.md).
+No new exact credit from this candidate.
+
+
+Preceding bounded candidate: input policy428260 now has complete Practice and
 non-Practice restoration, guard, mode and player-input source. Raw CFG closes
 the553-byte callable plus five-entry table; candidate callable554/full576
 is nonexact at+9. No source-selection/exact credit. Pair-capture control was

@@ -2599,3 +2599,4 @@ __real@c38c0000,0x006C5D00,00008cc3,0,Udonge action-state5BFD50 native operand a
 __real@40019999a0000000,0x006C5CE8,000000a099990140,0,Udonge action-state5BFD50 native operand and emitted COFF bytes; docs/UDONGE_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
 __real@40300000,0x006C5CE4,00003040,0,Udonge action-state5BFD50 native operand and emitted COFF bytes; docs/UDONGE_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
 __ehhandler$?rotate_front_spell_sequence_entry_to_back@Fighter@th105@@QAEEXZ,0x006BAD6B,8b5424088d825cffffff8b8a58ffffff33c8e8a3effcffb860086e00e95becfcff,0,Sequence rotate45DDA0 handler33 bytes; generated destructor8/code44/metadata44 independently replayed; docs/FIGHTER_SEQUENCE_ROTATE_2026_10_28.md. Main remains nonexact.,address
+_sequence_prepare_eh,0x006BAD3B,8b5424088d8260ffffff8b8a5cffffff,0,Raw canonical45DC90 prologue references this EH handler; typed sprite ownership trial2026-10-28.,address

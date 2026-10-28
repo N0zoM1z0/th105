@@ -1,4 +1,5 @@
 #include "Collision.hpp"
+#include <deque>
 #include "EffectSprite.hpp"
 #include "SpellRuntime.hpp"
 
@@ -121,41 +122,38 @@ unsigned char Fighter::consume_spell_sequence_entry()
     return 0;
 }
 
+struct SequencePrepareSprite94 : CSpriteBase {
+    float pivot_x, pivot_y, scale_x, scale_y, angle;
+    void set_texture(unsigned handle,int x,int y,unsigned width,unsigned height);
+};
+struct SequencePrepareRecord98 {
+    short record_id;
+    unsigned short value;
+    SequencePrepareSprite94 sprite;
+};
+typedef char prepare_record_size[sizeof(SequencePrepareRecord98)==0x98?1:-1];
+extern unsigned g_spell_texture_load_state;
+extern unsigned g_spell_texture_upload_state;
+
 void Fighter::prepare_next_spell_sequence_entry()
 {
-    const signed char pending_state = static_cast<signed char>(
-        sequence_controller_55c.live_count_10);
-    if (pending_state >= state_55b || spell_nonzero_gate_534 == 0) {
+    if (static_cast<signed char>(reinterpret_cast<std::deque<SequencePrepareRecord98> *>(&sequence_controller_55c)->size()) >= state_55b ||
+        reinterpret_cast<std::deque<short> *>(&reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0)->selection_ids_34)->size() == 0)
         return;
-    }
-
-    counter_558 = 0;
-    FighterSequenceSlot sequence_record;
-    sequence_record.sprite_04.vtable_00 = reinterpret_cast<void *>(0x006ac668);
-    *reinterpret_cast<int *>(sequence_record.sprite_04.unknown_04) = 0;
-
-    SpellDataOwner *lookup =
-        reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);
-    short record_id = lookup->select_spell_record_id();
-    SpellRecordView *record =
-        lookup->find_local_then_common_spell_record(record_id);
-    if (record == 0) {
-        return;
-    }
-
-    sequence_record.record_id_00 = record_id;
-    sequence_record.field_02 =
-        record->selector_1c == 1 ? 1 : record->value_1e;
-    if (record->optional_resource_44 != 0) {
-        sequence_record.sprite_04.load_optional_spell_resource(
-            record->optional_resource_44,
-            0,
-            0,
-            reinterpret_cast<void *>(0x006e4c64),
-            reinterpret_cast<void *>(0x006e4c60));
-    }
-    sequence_controller_55c.enqueue_record(&sequence_record);
-    state_55a = pending_state;
+    counter_558=0;
+    SequencePrepareRecord98 sequence_record;
+    SpellDataOwner *lookup=reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);
+    sequence_record.record_id=lookup->select_spell_record_id();
+    SpellRecordView *record=lookup->find_local_then_common_spell_record(sequence_record.record_id);
+    if (!record)return;
+    sequence_record.value=record->value_1e.value;
+    if(record->selector_1c==1)sequence_record.value=1;
+    if(record->optional_resource_44)
+        sequence_record.sprite.set_texture(
+            reinterpret_cast<unsigned>(record->optional_resource_44),0,0,
+            g_spell_texture_load_state,g_spell_texture_upload_state);
+    sequence_controller_55c.enqueue_record(reinterpret_cast<const FighterSequenceSlot *>(&sequence_record));
+    state_55a=static_cast<signed char>(reinterpret_cast<std::deque<SequencePrepareRecord98> *>(&sequence_controller_55c)->size());
 }
 
 } // namespace th105

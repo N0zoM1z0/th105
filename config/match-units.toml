@@ -24419,3 +24419,28 @@ dir32_targets = [
  "?g_info_mode_value_6fa88c@th105@@3FA=?g_info_mode_value_6fa88c@th105@@3FA",
  "?g_fighter_state_4b8_default@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
 ]
+
+[units.exact-first-sequence-prepare]
+kind = "probe"
+source = "src/battle/SpellRuntime.cpp"
+object = "build/match-units/ExactFirst_SequencePrepare.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "45DC90 complete native259-byte body; real typed sprite record and ordinary destruction. Candidate until strict replay."
+
+[[units.exact-first-sequence-prepare.functions]]
+address = "0x0045DC90"
+symbol_base = "?prepare_next_spell_sequence_entry@Fighter@th105@@QAEXXZ"
+rel32_targets = [
+ "?select_spell_record_id@SpellDataOwner@th105@@QAEFXZ=0x00432310",
+ "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20",
+ "?set_texture@SequencePrepareSprite94@th105@@QAEXIHHII@Z=0x00406A60",
+ "?enqueue_record@FighterSequenceController@th105@@QAEXPBUFighterSequenceSlot@2@@Z=0x0045DBA0",
+]
+dir32_targets = [
+ "__ehhandler$?prepare_next_spell_sequence_entry@Fighter@th105@@QAEXXZ=_sequence_prepare_eh",
+ "___security_cookie=___security_cookie",
+ "??_7SequencePrepareSprite94@th105@@6B@=_select_sprite_vtable_anchor",
+ "?g_spell_texture_load_state@th105@@3IA=?g_spell_texture_load_state@th105@@3IA",
+ "?g_spell_texture_upload_state@th105@@3IA=?g_spell_texture_upload_state@th105@@3IA",
+]
