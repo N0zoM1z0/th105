@@ -19,8 +19,8 @@ struct CBattleManagerStory {
     virtual void slot_04();
     virtual void slot_08();
     virtual void slot_0c();
-    virtual void slot_10();
-    virtual void slot_14();
+    virtual int run_scenario_gate_471590();
+    virtual int run_countdown_pipeline_4715d0();
     virtual void slot_18();
     virtual int run_threshold_pipeline_471670();
     virtual int run_180_300_pipeline_471740();
@@ -43,6 +43,7 @@ struct CBattleManagerStory {
 
     // Caller-backed member views of independently recovered target bodies.
     void reset_fighter_fields_6b4_728_view();
+    void reset_fighter_fields_6bc_728_view();
     void prepare_match_roster_470060();
     void run_global_action_owned_phase_view();
     void run_intermediate_phase_46dff0();

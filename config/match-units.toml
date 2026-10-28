@@ -9715,6 +9715,29 @@ dir32_targets = [
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]
 
+[[units.cross-v106a-battle-manager-story-core.functions]]
+address = "0x00471590"
+symbol_base = "?run_scenario_gate_471590@CBattleManagerStory@th105@@UAEHXZ"
+rel32_targets = [
+  "?reset_fighter_fields_6b4_728_view@CBattleManagerStory@th105@@QAEXXZ=0x0046B080",
+  "?run_scenario_step@BattlePhaseBlock@th105@@QAE_NXZ=0x0045A290",
+  "?run_global_action_owned_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AF90",
+  "?run_global_position_status_timer_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFB0",
+]
+dir32_targets = ["?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A"]
+
+[[units.cross-v106a-battle-manager-story-core.functions]]
+address = "0x004715D0"
+symbol_base = "?run_countdown_pipeline_4715d0@CBattleManagerStory@th105@@UAEHXZ"
+rel32_targets = [
+  "?reset_fighter_fields_6bc_728_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFF0",
+  "?run_collision_phase_46cca0@CBattleManagerStory@th105@@QAEXXZ=0x0046CCA0",
+  "?run_global_action_owned_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AF90",
+  "?run_global_position_status_timer_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFA0",
+  "?run_post_update_callbacks_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFB0",
+]
+
 [units.cross-v106a-roster-object-tracked-list]
 kind = "probe"
 source = "src/characters/RosterOwnedObjects.cpp"

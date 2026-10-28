@@ -36,6 +36,32 @@ struct BattlePhaseStoryView {
     }
 };
 
+int CBattleManagerStory::run_scenario_gate_471590()
+{
+    reset_fighter_fields_6b4_728_view();
+    if (!g_battle_phase_block->run_scenario_step())
+        transition_slot_34(1);
+    run_global_action_owned_phase_view();
+    run_global_position_status_timer_phase_view();
+    run_post_update_callbacks_view();
+    return 0;
+}
+
+int CBattleManagerStory::run_countdown_pipeline_4715d0()
+{
+    if (info_8c->counter_494 != 0)
+        --info_8c->counter_494;
+    pre_reset_slot_40();
+    reset_fighter_fields_6bc_728_view();
+    run_global_action_owned_phase_view();
+    run_collision_phase_46cca0();
+    run_global_position_status_timer_phase_view();
+    run_post_update_callbacks_view();
+    if (pending_08 != 0)
+        transition_slot_34(2);
+    return 0;
+}
+
 int CBattleManagerStory::run_threshold_pipeline_471670()
 {
     unsigned threshold;

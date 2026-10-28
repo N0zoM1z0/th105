@@ -1,6 +1,16 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: story value binder471A80 is now canonical
+Current bounded checkpoint: Story early phase pipelines471590/4715D0 are
+canonical exact59/88. Existing203/157/309-byte Story peers remain exact.
+RTTI-owned slots10/14, scenario callback/transition policy, signed countdown
+and pending transition are raw-target backed. New authored increment147 bytes.
+See [STORY_EARLY_PIPELINES_2026_10_28.md](STORY_EARLY_PIPELINES_2026_10_28.md)
+and build/frontier-471590-20261028/formal-build.json.
+The typed-owner trial for471930 was byte-neutral321/323 and is retained privately;
+public source was restored, with no exact credit.
+
+
+Preceding bounded checkpoint: story value binder471A80 is now canonical
 exact351/351. A mode-specific typed owner recovers native integer health and
 UI-receiver lifetimes; same-unit20/27/648 accepted peers remain exact.
 The old352-byte normal-mode alias candidate is superseded, not silently
