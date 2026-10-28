@@ -1,7 +1,9 @@
 # TH10.5 reconstruction handoff
 
 Current bounded checkpoint: global replay storage constructor43F1B0 is
-canonical exact161/161. Real two-input ownership plus vector/string/critical
+canonical exact161/161, now with shared injected-input ctor42C930 exact27/27.
+RTTI corrects its inherited update override; profile192/205 and score defaults
+remain exact on focused replays. Real two-input ownership plus vector/string/critical
 section members reproduce the whole constructor naturally. Global thunk and
 implicit cleanup remain uncredited. See
 [REPLAY_STORAGE_CONSTRUCTOR_2026_10_28.md](REPLAY_STORAGE_CONSTRUCTOR_2026_10_28.md)

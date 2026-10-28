@@ -55,7 +55,8 @@ public:
         use_injected_input_064 = false;
         injected_mask_060 = 0;
     }
-    virtual void build_player_logical_input_mask();
+    // RTTI table6C1154 has two entries: deleting dtor and update409F70.
+    virtual void update_player_input_counters_from_raw();
     unsigned short injected_mask_060;
     unsigned short resolved_mask_062;
     bool use_injected_input_064;

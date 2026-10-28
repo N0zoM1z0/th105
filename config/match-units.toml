@@ -24803,4 +24803,12 @@ rel32_targets = [
 dir32_targets = [
  "__ehhandler$??0ReplayStorageLifetime@th105@@QAE@XZ=_replay_storage_ctor_eh",
  "___security_cookie=___security_cookie",
+ "??0ProfileInputManagerExLifetime@th105@@QAE@XZ=??0ReplayInjectedInput@th105@@QAE@XZ",
+ "??1ProfileInputManagerExLifetime@th105@@UAE@XZ=??1ReplayInjectedInput@th105@@UAE@XZ",
 ]
+
+[[units.exact-first-replay-storage-constructor.functions]]
+address = "0x0042C930"
+symbol_base = "??0ProfileInputManagerExLifetime@th105@@QAE@XZ"
+rel32_targets = ["??0ProfileInputManagerLifetime@th105@@QAE@XZ=0x00409CF0"]
+dir32_targets = ["??_7ProfileInputManagerExLifetime@th105@@6B@=??_7CInputManagerEx@th105@@6B@"]

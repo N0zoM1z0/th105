@@ -1596,3 +1596,4 @@ CSelectSV_update_network_selection
 CSelect_bind_character_portrait
 CLoadingCL_update_scene_mapping
 ReplayStorage_ctor
+CInputManagerEx_ctor

@@ -1,16 +1,11 @@
-#include "input/InputManager.hpp"
+#include "ui/ProfileMenuBaseDataLifetime.hpp"
 #include "engine/CriticalSectionWrapper.hpp"
 #include <deque>
 #include <string>
 #include <vector>
 
 namespace th105 {
-// Out-of-line lifetime at 42C930/42C950, independently used by the
-// global replay storage's two-element EH array construction.
-struct ReplayInjectedInput : CInputManagerEx {
-    ReplayInjectedInput();
-    virtual ~ReplayInjectedInput();
-};
+typedef ProfileInputManagerExLifetime ReplayInjectedInput;
 struct ReplayStorageSlot {
     unsigned char side_fields_00[8];
     std::deque<short> side_payloads_08[2];
@@ -19,12 +14,12 @@ struct ReplayStorageSlot {
     std::deque<short> private_payload_3c;
 };
 struct ReplayStorageLifetime {
-    CInputManager *input_00;
-    CInputManager *input_04;
+    ProfileInputManagerLifetime *input_00;
+    ProfileInputManagerLifetime *input_04;
     ReplayInjectedInput injected_08[2];
-    CInputManager *selected_0d8;
+    ProfileInputManagerLifetime *selected_0d8;
     unsigned unknown_0dc;
-    CInputManager *selected_0e0;
+    ProfileInputManagerLifetime *selected_0e0;
     unsigned unknown_0e4;
     unsigned char header_0e8[10];
     std::vector<ReplayStorageSlot> slots_0f4;
