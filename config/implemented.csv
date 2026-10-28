@@ -1599,3 +1599,4 @@ ReplayStorage_ctor
 CInputManagerEx_ctor
 DirectSoundResource_load_wave
 DirectSoundResource_ctor
+CProfileCharacterSelect_render

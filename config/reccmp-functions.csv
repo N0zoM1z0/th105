@@ -1628,3 +1628,4 @@ ReplayStorage_ctor,0x0043F1B0,function
 CInputManagerEx_ctor,0x0042C930,function
 DirectSoundResource_load_wave,0x004184B0,function
 DirectSoundResource_ctor,0x004180B0,function
+CProfileCharacterSelect_render,0x00448420,function

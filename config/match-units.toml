@@ -24840,3 +24840,24 @@ dir32_targets = [
  "?sound_error_title@th105@@3QBDB=?sound_error_title@th105@@3QBDB",
  "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
 ]
+
+[units.exact-first-profile-character-select-render]
+kind = "probe"
+source = "src/ui/ProfileCharacterSelectRender.cpp"
+object = "build/match-units/ExactFirst_ProfileCharacterSelectRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete448420 profile character select rendering using shared menu layout and branch-local cursor item selection."
+[[units.exact-first-profile-character-select-render.functions]]
+address = "0x00448420"
+symbol_base = "?render@CProfileCharacterSelect@th105@@UAEXXZ"
+rel32_targets = [
+ "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+ "?render_profile_player_slot@Menu@th105@@IAEXPAUPlayerSlotRecord@2@MM@Z=0x0043FAF0",
+ "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+]
+dir32_targets = [
+ "__real@c2800000=__real@c2800000",
+ "__real@43800000=__real@43800000",
+ "__real@4020000000000000=__real@4020000000000000",
+]

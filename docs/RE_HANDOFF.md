@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: DirectSound wave load4184B0 is canonical
+Current bounded checkpoint: CProfileCharacterSelect render448420 is canonical
+exact205/205. Direct branch-local item expressions recover native count reloads
+and x87 rounding; cached item controls were shorter and are not retained.
+RTTI slot0C and complete56-instruction/tail boundary verified. See
+[PROFILE_CHARACTER_SELECT_RENDER_2026_10_28.md](PROFILE_CHARACTER_SELECT_RENDER_2026_10_28.md)
+and build/frontier-448420-20261028/direct-item-expressions.json.
+
+Preceding bounded checkpoint: DirectSound wave load4184B0 is canonical
 exact304/304, and CDS3DBuffer constructor4180B0 is exact20/20 after
 restoring derived ownership of both resource pointers. Six accepted lifetime
 peers remain exact; normal destructor139 remains nonexact+47. Natural owned-wave lifetime and real COM lock/copy/unlock close
