@@ -26008,3 +26008,16 @@ dir32_targets = [
     "__real@c3960000=_alice_object_update_006c4204",
     "?g_match_identifier@th105@@3HA=_alice_object_update_match_identifier",
 ]
+
+[units.exact-first-audio-scheduler-thread]
+kind = "probe"
+source = "src/audio/AudioSchedulerThread.cpp"
+object = "build/match-units/ExactFirst_AudioSchedulerThread.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Canonical CreateThread-owned 419100 scheduler; complete cadence, correction, checked listener iteration and event lifetime source. Strict rounding with exception scheduling disabled follows observed single-precision stores; whole replay remains nonexact and grants no byte credit."
+
+[[units.exact-first-audio-scheduler-thread.functions]]
+address = "0x00419100"
+symbol_base = "?AudioScheduler_thread_main@th105@@YGKPAX@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]

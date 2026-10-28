@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: AliceObject update4FCAB0 has complete38-action manual
+Current bounded candidate: audio scheduler thread419100 has complete source for
+cadence correction, externally adjusted waits and checked listener notification.
+Whole576/native591 remains nonexact+0; prologue, float lifetimes and iterator
+checks differ. Raw CFG closes the full callable through41934F. No exact credit.
+See [AUDIO_SCHEDULER_THREAD_2026_10_28.md](AUDIO_SCHEDULER_THREAD_2026_10_28.md)
+and build/frontier-419100-20261028/{formal-build,boundary}.json.
+
+Preceding bounded candidate: AliceObject update4FCAB0 has complete38-action manual
 source and whole canonical replay. Full62960/native63248 remains nonexact+37.
 Frame348, all28 direct-callee counts,18 table dimensions and260 remap bytes agree.
 Shared817 impact continuation restores the direct-call census, but stack homes,
