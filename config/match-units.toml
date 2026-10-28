@@ -24503,3 +24503,24 @@ dir32_targets = [
  "?g_info_mode_value_6fa88c@th105@@3FA=?g_info_mode_value_6fa88c@th105@@3FA",
  "?g_fighter_state_4b8_default@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
 ]
+
+[units.exact-first-info-combo-load]
+kind = "probe"
+source = "src/battle/InfoComboResourceLoad.cpp"
+object = "build/match-units/ExactFirst_InfoComboResourceLoad.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete46A8C0 typed design/number owner candidate; compare full413 bytes."
+
+[[units.exact-first-info-combo-load.functions]]
+address = "0x0046A8C0"
+symbol_base = "?load_combo_46a8c0@InfoComboLoadView@th105@@QAEXXZ"
+rel32_targets = [
+ "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+ "??_7?$TNumberValue@PAH@th105@@6B@=??_7?$TNumberValue@PAH@th105@@6B@",
+ "??_7?$TNumberValue@PAM@th105@@6B@=??_7?$TNumberValue@PAM@th105@@6B@",
+]

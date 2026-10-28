@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: local/practice battle controls428070 are canonical
+Current bounded candidate: combo resource load46A8C0 was independently
+rechecked using current typed CDesignBase/CNumber owners. Complete427/native413
+remains first+2 on extra receiver/member-address lifetime. Outer-owner and
+typed-output controls did not solve it; shared-type source is retained.
+See [INFO_COMBO_LOAD_2026_10_28.md](INFO_COMBO_LOAD_2026_10_28.md).
+No exact/source-selection credit or existing caller changes.
+
+
+Preceding bounded checkpoint: local/practice battle controls428070 are canonical
 exact482/482, including the internal loop-alignment gap and final return.
 Repeated mode queries, signed modulo cycling and fresh scene/fighter reads
 match naturally. Existing callers/contracts remain unchanged.
