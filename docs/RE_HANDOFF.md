@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: long InfoManager record binder432550 is canonical
+Current bounded checkpoint: story value binder471A80 now restores both
+integer gauges and both float-number adapters with native release/new and
+span-capture ordering. Complete352/native351 remains first+16 on the initial
+health-address/store schedule; no credit. Same-unit20/27/648 accepted peers
+remain exact. No shared header or global compiler setting changed.
+See [STORY_INFO_VALUE_BINDING_2026_10_28.md](STORY_INFO_VALUE_BINDING_2026_10_28.md)
+and build/frontier-471a80-20261028/formal-build.json.
+
+Preceding exact checkpoint: long InfoManager record binder432550 is canonical
 exact107/107. Native byte-side consumption and coherent caller declarations
 recover the actual output homes. All five functions in its two affected
 accepted caller units remain exact. No global flags or data bindings changed.
@@ -193,7 +201,7 @@ that a particular standalone mismatch requires LTCG.
 | Provisional / authored / excluded / review candidates |4024 /1623 /1419 /982 |
 | Mapped / source-present |1612 /1584 |
 | Exact functions / authored bytes |1429 /413975 |
-| Configured units / functions |641 /1611 |
+| Configured units / functions |641 /1612 |
 | Accepted units |539 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.

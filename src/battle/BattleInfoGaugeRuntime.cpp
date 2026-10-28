@@ -1,6 +1,7 @@
 #include "InfoManagerResources.hpp"
 
 #include <new>
+#include "../ui/CNumberRuntime.hpp"
 
 namespace th105 {
 
@@ -136,5 +137,31 @@ typedef char FighterSecondaryValueOffset[
 
 typedef char TGageValueIntPtrSize[sizeof(TGageValue<int *>) == 0x10 ? 1 : -1];
 typedef char TGageValueShortPtrSize[sizeof(TGageValue<short *>) == 0x10 ? 1 : -1];
+
+void BattleInfoRecordF8::bind_story_values_471a80()
+{
+    FighterGaugeView *values = reinterpret_cast<FighterGaugeView *>(story_fighter_1c);
+    // In story mode the normal float-ratio cell holds a signed integer health value.
+    int *health = reinterpret_cast<int *>(&height_ratio_08);
+    *health = values->primary_value_174;
+    int *secondary_value = &gauge_0c;
+    *secondary_value = values->secondary_value_47c;
+
+    GaugeBindingView *primary =
+        &reinterpret_cast<GaugeUiObjectView *>(secondary_20)->binding_18;
+    float primary_span = static_cast<float>(values->primary_span_176);
+    release_gauge(primary);
+    primary->gauge_a0 = new TGageValue<int *>(health, 0.0f, primary_span);
+
+    GaugeBindingView *secondary =
+        &reinterpret_cast<GaugeUiObjectView *>(group_24[0])->binding_18;
+    float secondary_span = static_cast<float>(
+        reinterpret_cast<FighterGaugeView *>(story_fighter_1c)->primary_span_176);
+    release_gauge(secondary);
+    secondary->gauge_a0 = new TGageValue<int *>(secondary_value, 0.0f, secondary_span);
+
+    reinterpret_cast<CNumber *>(reinterpret_cast<unsigned char *>(group_60[4])+0x18)->bind_value(&story_progress_10);
+    reinterpret_cast<CNumber *>(reinterpret_cast<unsigned char *>(group_74[0])+0x18)->bind_value(&story_progress_10);
+}
 
 } // namespace th105

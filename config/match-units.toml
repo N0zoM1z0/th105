@@ -18720,6 +18720,15 @@ dir32_targets = [
   "__real@407f400000000000=__real@407f400000000000",
 ]
 
+
+[[units.gpt-web-battle-info-gauge-runtime.functions]]
+address = "0x00471A80"
+symbol_base = "?bind_story_values_471a80@BattleInfoRecordF8@th105@@QAEXXZ"
+rel32_targets = [
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
 [units.gpt-web-csv-reader-lifetime]
 kind = "probe"
 source = "src/assets/CsvReaderLifetime.cpp"
