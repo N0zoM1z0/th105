@@ -1582,3 +1582,4 @@ InfoEffectObject_update_state
 CBattleManager_run_transition_phase_5
 lookup_orientation_tangent
 InfoLongRecord_bind_resource_432550
+CInfoManager_initialize_normal_runtime_46eb90

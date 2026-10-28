@@ -1611,3 +1611,4 @@ InfoEffectObject_update_state,0x0065CB40,function
 CBattleManager_run_transition_phase_5,0x004724E0,function
 lookup_orientation_tangent,0x00406430,function
 InfoLongRecord_bind_resource_432550,0x00432550,function
+CInfoManager_initialize_normal_runtime_46eb90,0x0046EB90,function

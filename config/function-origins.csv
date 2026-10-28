@@ -2069,7 +2069,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046EAD0,compiler_generated,runtime,exclude,inferred,vc8-array-record-default-constructors-106a
 0x0046EAF0,compiler_generated,runtime,exclude,inferred,vc8-array-subobject-dtor-adjustors-106a
 0x0046EB00,authored_game,battle,authored,observed,canonical-exact-authored
-0x0046EB90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046EB90,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046EC80,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046ED90,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046EDB0,authored_game,battle,authored,observed,canonical-exact-authored

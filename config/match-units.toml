@@ -11475,6 +11475,18 @@ rel32_targets = [
 ]
 
 
+
+[[units.cross-v106a-info-manager-normal-lifetime.functions]]
+address = "0x0046EB90"
+symbol_base = "?initialize_normal_runtime_46eb90@CInfoManagerNormalLifecycle@th105@@QAEXXZ"
+rel32_targets = [
+  "?load_combo_resources_46a8c0@InfoComboResourceSubobject@th105@@QAEHXZ=0x0046A8C0",
+  "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z=0x0046FD20",
+  "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "??2@YAPAXI@Z=0x00689DCB",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+
 [units.cross-v106a-info-combo-runtime]
 kind = "probe"
 source = "src/battle/InfoComboRuntime.cpp"

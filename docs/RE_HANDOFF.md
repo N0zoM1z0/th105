@@ -1,6 +1,15 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: story InfoManager update471930 now restores
+Current bounded checkpoint: normal InfoManager initializer46EB90 is
+canonical exact228/228. Typed embedded resources and the actual number-pointer
+array remove the prior loop-cursor spill naturally. Same-unit119/171/30
+lifetime peers remain exact; no shared header/global profile/data binding
+changed. New authored exact increment across tangent406430, binder432550 and
+this initializer is404 bytes, excluding generated sprite-copy code.
+See [INFO_MANAGER_NORMAL_INITIALIZATION_2026_10_28.md](INFO_MANAGER_NORMAL_INITIALIZATION_2026_10_28.md)
+and build/frontier-46eb90-20261028/formal-build.json.
+
+Preceding checkpoint: story InfoManager update471930 now restores
 health/secondary smoothing and timer/alpha callbacks. Complete321/native323
 remains first+67 in the second signed smoothing stage; no exact credit.
 Its first67 and shifted trailing201-byte windows agree, but full ownership
@@ -206,10 +215,10 @@ that a particular standalone mismatch requires LTCG.
 
 | Ledger state | Count |
 | --- | ---: |
-| Provisional / authored / excluded / review candidates |4024 /1623 /1419 /982 |
-| Mapped / source-present |1612 /1584 |
-| Exact functions / authored bytes |1429 /413975 |
-| Configured units / functions |642 /1613 |
+| Provisional / authored / excluded / review candidates |4024 /1624 /1419 /981 |
+| Mapped / source-present |1613 /1585 |
+| Exact functions / authored bytes |1430 /414203 |
+| Configured units / functions |642 /1614 |
 | Accepted units |539 |
 
 The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
