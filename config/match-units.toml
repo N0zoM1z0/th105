@@ -24886,3 +24886,23 @@ dir32_targets = [
  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
  "___security_cookie=___security_cookie",
 ]
+
+[units.exact-first-connect-digit-editor]
+kind = "probe"
+source = "src/ui/MenuConnectDigitEditor.cpp"
+object = "build/match-units/ExactFirst_ConnectDigitEditor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete441E10 endpoint decimal-digit editor with four ushort address parts and unsigned port."
+[[units.exact-first-connect-digit-editor.functions]]
+address = "0x00441E10"
+symbol_base = "?update@ConnectDigitEditorView@th105@@QAEHXZ"
+rel32_targets = [
+ "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+ "_dispatch_indexed_event=0x0043B1A0",
+ "_endpoint_edit_buttons=0x0043B030",
+ "_is_menu_initial_press=0x0043ABD0",
+]
+dir32_targets = [
+ "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
+]

@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: result-menu character refresh447080 now has a
+Current bounded candidate: connect endpoint digit editor441E10 now restores
+complete IP/port decimal selection and replacement. Native cursor pair and
+branch-owned powers recover a192-byte exact prefix; full888/native891 remains
+nonexact at return scheduling. No credit. See
+[CONNECT_DIGIT_EDITOR_2026_10_28.md](CONNECT_DIGIT_EDITOR_2026_10_28.md)
+and build/frontier-441e10-20261028/cursor-pair.json.
+
+Preceding bounded candidate: result-menu character refresh447080 now has a
 complete342/native342 focused replay. Real class-valued texture result and
 branch-local input publication replace the retained hidden-result/zero-cast
 source. Remaining mismatch+38 is early selected-character load scheduling;
