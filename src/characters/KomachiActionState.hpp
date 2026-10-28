@@ -177,10 +177,14 @@ public:
     }
 
     __forceinline void emit801(float *p,double xoff,double yoff) {
-        int direction=at<unsigned char>(0x104);
-        float y=static_cast<float>(komachi_sine(-p[0])*150.0+at<float>(0xf0)+yoff);
-        float x=xoff==0.0?static_cast<float>(komachi_cosine(-p[0])*150.0*facing()+at<float>(0xec)):static_cast<float>((komachi_cosine(-p[0])*150.0+xoff)*facing()+at<float>(0xec));
-        spawn(801,x,y,direction,1,p,3);
+        if(xoff==0.0)
+            spawn(801,static_cast<float>(komachi_cosine(-p[0])*150.0*facing()+at<float>(0xec)),
+                static_cast<float>(komachi_sine(-p[0])*150.0+at<float>(0xf0)+yoff),
+                at<unsigned char>(0x104),1,p,3);
+        else
+            spawn(801,static_cast<float>((komachi_cosine(-p[0])*150.0+xoff)*facing()+at<float>(0xec)),
+                static_cast<float>(komachi_sine(-p[0])*150.0+at<float>(0xf0)+yoff),
+                at<unsigned char>(0x104),1,p,3);
     }
     __forceinline void fan801(double spread,double second,float second_speed,double xoff,double yoff,bool charged,float low,float high) {
         phase_counter(50);dispatch_character_wave_handle(2);at<int>(0x180)=1;counter(200,60);aim(low,high);
@@ -359,12 +363,13 @@ public:
 
     __forceinline void ring902(float *p,float base,float jitter,int count,double step,double offset,bool reversed,float speed) {
         for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){
-            double angle=offset==0.0?n*step+base:n*step+base+offset;
+            float angle=static_cast<float>(offset==0.0?n*step+base:n*step+base+offset);
             float coordinate=static_cast<float>(reversed?angle:angle+180.0);
             p[0]=static_cast<float>(reversed?angle+jitter+180.0:angle+jitter);p[1]=speed;p[2]=0.0f;
-            int direction=at<unsigned char>(0x104);float neg=-coordinate;
-            float y=static_cast<float>(komachi_sine(neg)*500.0+peer()->at<float>(0xf0)+100.0);
-            float x=static_cast<float>(komachi_cosine(neg)*500.0*facing()+peer()->at<float>(0xec));spawn(902,x,y,direction,1,p,3);
+            float neg=-coordinate;
+            spawn(902,static_cast<float>(komachi_cosine(neg)*500.0*facing()+peer()->at<float>(0xec)),
+                static_cast<float>(komachi_sine(neg)*500.0+peer()->at<float>(0xf0)+100.0),
+                at<unsigned char>(0x104),1,p,3);
         }
     }
 

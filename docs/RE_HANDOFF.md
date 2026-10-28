@@ -2,9 +2,10 @@
 
 Current bounded checkpoint: Komachi action-state 5E20E0 has a complete
 unselected 108-action candidate. Native callable 63993/full 65176 closes;
-source emits 65156 full bytes, first +8 (frame 498 versus 490).
+source emits 64884 full bytes, first +42; frame 490 now equals native.
 All seven tables and 94 payload homes resolve. Byte-direction call view is
-supported by the actual manager; exact stack/physical ownership remains open.
+supported by the actual manager; scalar trajectory removes a proved extra
+qword temporary. Constant/physical ownership remains open.
 No implementation or exact credit.
 [KOMACHI_ACTION_STATE_2026_10_28.md](KOMACHI_ACTION_STATE_2026_10_28.md)
 records evidence and focused replay. Receipts: build/frontier-5e20e0-20261028/.

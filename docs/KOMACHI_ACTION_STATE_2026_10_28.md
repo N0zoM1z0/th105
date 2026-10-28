@@ -6,8 +6,9 @@
 It is **unselected and nonexact**. No implemented.csv, matches.csv, function
 status, or accepted byte total changes.
 
-The complete candidate emits 65,156 bytes versus 65,176 target bytes.
-First difference is +8, stack allocation 0x498 versus native 0x490.
+The complete candidate emits 64,884 bytes versus 65,176 target bytes.
+The stack allocation now equals native 0x490. First difference is +42 at
+0x5E210A, constant materialization/save ordering after an identical prefix.
 Near-equal lengths do not imply near-exact instructions.
 
 Only the new unit was built. Shared accepted implementations and their
@@ -50,7 +51,7 @@ which the generic immediate-consumer summary does not recognize.
 The native and candidate each have 94 resolved spawn-payload homes and no
 unknown payload-pointer sites. Their sorted offset sets are identical:
 56..1172, step twelve. This is an offset-set observation, not proof that
-each action owns the same home. Native/candidate frames are 1168/1176.
+each action owns the same home. Native/candidate frames now both equal 1168 bytes.
 Candidate physical return sites are 137 versus 136; virtual call sites
 191 versus 192.
 
@@ -114,7 +115,7 @@ the duplicate physical sites.
 Other physical-call diagnostics: 603 has eight/seven RNG call sites;
 720 has seven/four spawn sites and six/three wave sites. These are reachable
 physical sites, not dynamic execution counts. Shared tails/argument epochs,
-the +8 allocation, and exact instruction ownership remain unresolved.
+constant materialization and exact instruction ownership remain unresolved.
 Low 209/212 merge to one candidate owner, leaving 33 rather than 34 low
 destinations. Source behavior and complete execution equivalence are not
 claimed verified solely by these structural diagnostics.
@@ -133,11 +134,52 @@ no volatile or inert duplicate gate is added.
 Both comparators correctly report mismatch. The complete-payload audit
 rechecks target identity, all seven tables, reachability, length and unmasked
 bytes. Final candidate SHA-256:
-c9269ff44d1517840c5a07d5c6f9d6f095784d24fa900dac6a85a0bd213940e9
+5ac7b06797104542570da85ab2029169a844efbcfa0f6bba55c766af74cd5771
 
-61,146 positional differences including missing tail bytes are diagnostic,
+61,429 positional differences including missing tail bytes are diagnostic,
 not a completion percentage.
 
-Receipts: build/frontier-5e20e0-20261028/formal.json and formal-audit.json.
+Receipts: build/frontier-5e20e0-20261028/formal-frame.json and formal-frame-audit.json.
 Private raw/source diagnostics are in that build directory and
 .analysis/frontier-5e20e0-20261028/. Checked-in source is authoritative.
+
+
+## Scalar frame and request preparation refinement
+
+The private VC8 source listing identifies the extra eight-byte allocation:
+tv26973 is a qword temporary following all 94 arrays, holding jitter+180
+hoisted out of action 730's difficulty-three loop. It is not an extra packet.
+Changing packet sizes or adding padding would not explain it.
+
+Native 0x5F0DEF writes the angle to a DWORD home while retaining the x87
+value, then adds jitter and 180 before writing the packet at 0x5F0DFD.
+A float trajectory source expresses the observed scalar copy and removes the
+extra hoisted qword. Angle-only control emits 65,188 bytes with frame 0x490
+and first difference +42. This isolates the frame change from the separate
+request-preparation edits.
+
+The inference is bounded: actual loop indices are 0..11, base is roll(360),
+steps are 30/45/60 and the optional offset is 22.5. Jitter is roll(20)-10.
+All angle values here are small integer/half-integer values exactly
+representable in binary32. This is not permission to narrow arbitrary x87
+intermediates elsewhere. The compiler's extra store/reload around the angle
+still differs from native's FST-retained-value sequence, so the original
+expression is not claimed recovered byte-for-byte.
+
+801 and 902 circular emissions now calculate X/Y in their ordinary call
+arguments instead of materializing both named coordinates before preparing
+the request. The native pushes count/pointer/layer/direction before sine,
+prepares outgoing Y before cosine, then calls spawn. The selected expression
+restores that lifetime shape. Standalone controls emit 64,932 and 64,852
+bytes respectively while retaining frame 0x498; neither alone explains the
+frame recovery. The combined selected candidate is 64,884 / frame 0x490.
+
+The unrelated dust-base narrowing hypothesis was explicitly rejected:
+0x5E2D08 stores the captured X+50 as QWORD before RNG. Its existing double
+capture is retained. No artificial local, register assignment or byte patch
+was used.
+
+Final stack audit still resolves all 94 payload homes; its offset set remains
+56..1172 step twelve, unchanged from native. Physical call and arithmetic
+residuals remain those described above. The preceding checkpoint is retained
+in Git; none of these structural improvements adds exact byte credit.
