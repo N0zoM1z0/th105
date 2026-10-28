@@ -150,9 +150,7 @@ case 740:
         if(F(0x73c)==0.0f){++S(0x730);if(S(0x730)>9){F(0x73c)=-1.0f;B(0x184)=1;float dx=static_cast<float>((peer()->at<float>(0xec)-F(0xec))*facing());F(0x744)=-suika_atan(peer()->at<float>(0xf0)-F(0xf0),dx);S(0x730)=0;}}
         if(F(0x73c)==-1.0f){
             ++S(0x730);
-            if(S(0x730)>600){B(0x184)=0;F(0x740)=static_cast<float>(F(0x740)-static_cast<double>(0.2f));F(0x748)=static_cast<float>(F(0x748)+static_cast<double>(0.05f));if(F(0x740)<0.0f)F(0x740)=0.0f;
-                if(S(0x730)>689){burst999();B(0x113)=255;F(0xf8)=15.0f;F(0x100)=0.2f;next_sequence_block();return;}
-            }else{
+            if(S(0x730)<=600){
                 if(I(0x180)==6){B(0x184)=1;I(0x180)=0;}
                 if(I(0x180)){++S(0x734);if(S(0x734)>4){S(0x734)=0;B(0x184)=1;I(0x180)=0;}}
                 float dx=static_cast<float>((peer()->at<float>(0xec)-F(0xec))*facing());float desired=-suika_atan(peer()->at<float>(0xf0)-F(0xf0),dx);float delta=desired-F(0x744);
@@ -170,6 +168,8 @@ case 740:
                 if(!(suika_absolute(wrapped)<=turn)){if(wrapped<0.0f)F(0x744)-=turn;else if(wrapped>0.0f)F(0x744)+=turn;}
                 else F(0x744)=desired;
                 if(time_counter_144%period==0){dispatch_character_wave_handle(60);shot_particle930();}
+            }else{B(0x184)=0;F(0x740)=static_cast<float>(F(0x740)-static_cast<double>(0.2f));F(0x748)=static_cast<float>(F(0x748)+static_cast<double>(0.05f));if(F(0x740)<0.0f)F(0x740)=0.0f;
+                if(S(0x730)>689){burst999();B(0x113)=255;F(0xf8)=15.0f;F(0x100)=0.2f;next_sequence_block();return;}
             }
             update_oriented_velocity();F(0xf8)+=F(0x748);
         }

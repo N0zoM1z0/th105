@@ -148,3 +148,16 @@ formal-order-full.json, trial-owner-order2-map.json, payload-order-review.log,
 native-action-payload-review.json, candidate-action-payload-review.json and
 payload-order-differences.json in the bounded build directory. Previous packet
 diagnostics are retained under payload-before-owner-order/.
+
+
+## Tracking740 phase order
+
+The target at5AA6E3 falls through for counter<=600 and branches to the late
+phase otherwise. Expressing that same early/late order restores740's physical
+packet order. All115 incoming action partitions now agree on their ordered
+packet-home lists, including all112 distinct homes and shared-tail unions.
+This is stack-ownership evidence only. Full78988/native81136 remains nonexact,
+first+17,77340 differing bytes, SHA-256
+bd6498bffe09d36b25990faaf71802fb172a15de750f352ee42cc25d85ac2b7b.
+Receipts: formal740-build.json, formal740-full.json, payload740-review.log,
+payload740-differences.json (empty), and trial740-branch-action-review.json.
