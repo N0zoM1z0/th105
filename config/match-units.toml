@@ -24784,3 +24784,23 @@ dir32_targets = [
  "__ehhandler$??1CSelect@th105@@UAE@XZ=_select_destructor_eh",
  "___security_cookie=___security_cookie",
 ]
+
+[units.exact-first-replay-storage-constructor]
+kind = "probe"
+source = "src/input/ReplayStorageConstructor.cpp"
+object = "build/match-units/ExactFirst_ReplayStorageConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Global replay storage 43F1B0: two injected input owners and natural vector/string/critical-section construction."
+
+[[units.exact-first-replay-storage-constructor.functions]]
+address = "0x0043F1B0"
+symbol_base = "??0ReplayStorageLifetime@th105@@QAE@XZ"
+rel32_targets = [
+ "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+ "??0CriticalSectionWrapper@th105@@QAE@XZ=0x0040ABC0",
+]
+dir32_targets = [
+ "__ehhandler$??0ReplayStorageLifetime@th105@@QAE@XZ=_replay_storage_ctor_eh",
+ "___security_cookie=___security_cookie",
+]

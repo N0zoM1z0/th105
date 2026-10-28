@@ -2607,3 +2607,6 @@ _select_entry_character_ids,0x006E61C8,00000000020000000500000001000000030000000
 _select_character_portrait_format,0x006C0818,646174612f7363656e652f73656c6563742f6368617261637465722f6368615f25732e626d7000,0,Canonical41FB80 wsprintfA format operand and full NUL path; 2026-10-28.,address
 _scenario_label_selection_eh,0x006BA908,8b5424088d42f08b4aec33c8e80cf4fc,0,Canonical455490 by-value string/EH prologue handler operand and mapped prefix;2026-10-28.,address
 _select_destructor_eh,0x006B76B6,8b5424088d42ec8b4ae833c8e85e26fd,0,Canonical424260 full CSelect destruction handler operand and prefix;2026-10-28.,address
+_replay_storage_ctor_eh,0x006B8FE2,8b5424088d42f48b4af033c8e8320dfd,0,Canonical 43F1B0 global replay storage constructor and EH array lifetime callbacks; raw target attested 2026-10-28.,address
+??0ReplayInjectedInput@th105@@QAE@XZ,0x0042C930,568bf1e8b8d3fdff33c0884664668946,0,Canonical 43F1B0 global replay storage constructor and EH array lifetime callbacks; raw target attested 2026-10-28.,address
+??1ReplayInjectedInput@th105@@UAE@XZ,0x0042C950,e9fbd3fdff,0,Canonical 43F1B0 global replay storage constructor and EH array lifetime callbacks; raw target attested 2026-10-28.,address

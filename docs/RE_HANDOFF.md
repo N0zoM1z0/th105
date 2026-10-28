@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: CSelect destructor424260 restores complete authored
+Current bounded checkpoint: global replay storage constructor43F1B0 is
+canonical exact161/161. Real two-input ownership plus vector/string/critical
+section members reproduce the whole constructor naturally. Global thunk and
+implicit cleanup remain uncredited. See
+[REPLAY_STORAGE_CONSTRUCTOR_2026_10_28.md](REPLAY_STORAGE_CONSTRUCTOR_2026_10_28.md)
+and build/frontier-43f1b0-20261028/formal-build.json.
+
+Preceding bounded candidate: CSelect destructor424260 restores complete authored
 release policy and natural member destruction. Direct token values recover
 845/native845 and the first605 bytes; remaining mismatch is generated cleanup
 scheduling at4244BD. A typed sprite member trial was worse and fully reverted.

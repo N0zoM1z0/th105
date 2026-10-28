@@ -1624,3 +1624,4 @@ CSelectCL_update_network_selection,0x00426580,function
 CSelectSV_update_network_selection,0x004262A0,function
 CSelect_bind_character_portrait,0x0041FB80,function
 CLoadingCL_update_scene_mapping,0x00426490,function
+ReplayStorage_ctor,0x0043F1B0,function
