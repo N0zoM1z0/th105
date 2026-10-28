@@ -41,10 +41,12 @@ stores despite a count-three request. These extents and downstream readers
 remain under review. All 98 payload homes resolve in both CFGs, without unknown
 spawn payload sites; candidate homes are uniformly eight bytes higher.
 
-Per-action reachable call diagnostics have no direct-call omissions except
-565..568: the compiler merges two equivalent request branches into one static
-spawn site. Virtual-site counts differ for 410/414, 562/563 and 733. FP-site
-counts differ for 214 and the same merged 565..568 branches. These checks are
+The initial candidate merged the equivalent 565..568 request branches. Native
+4AD134/4AD3D7/4AD6F7/4AD9CC captures direction and Y before branching, then
+computes X inside each branch. Restoring those scalar lifetimes preserves both
+static spawn sites and their FP operations. Per-action reachable call
+diagnostics now have no direct-call count differences. Virtual-site counts
+still differ for 410/414, 562/563 and 733; FP-site counts differ only for 214. These checks are
 omission diagnostics, not semantic acceptance or excuses for byte differences.
 Callback-sensitive lifetimes, floating precision, unknown packet slots and
 TU/LTCG ownership still require review. No compiler-control assembly, fake ABI,
@@ -70,3 +72,17 @@ formal-full.json. Eleven absent native-backed literal bindings were added;
 existing bindings and accepted consumers were not changed. Only this new unit
 was compiled. Next work is source-level lifetime/branch ownership refinement
 against this complete baseline, not whole-corpus rebuilding.
+
+## Request-lifetime refinement
+
+The target-backed 565..568 capture refinement is retained despite increasing
+the complete candidate from 67988 to 68196 bytes: matching source ownership and
+restoring the four missing static call sites is stronger evidence than mere
+aggregate size proximity. Native remains 67936; first mismatch remains +14
+and frame remains 4C8 versus 4C0. Full unmasked differences are 64190, SHA-256
+5d74b71f4d842f9cb9d7a5472c11e415ea5471c47176d05fe44714e7ae985806.
+All 98 payload homes remain resolved, without unknown payload sites; the
+32/45/48 groups remain unsplit. Receipts: trial826-build.json,
+trial826-full.json, trial826-calls.json, trial826-fp.json and
+trial826-payload-homes.json in the same build directory. Existing accepted
+units and exact ledgers remain unchanged.

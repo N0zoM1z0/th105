@@ -158,8 +158,13 @@ public:
             if(air){dispatch_character_wave_handle(29);at<int>(0x180)=1;}else dispatch_character_wave_handle(4);
             counter(200,60);if(air)phase_counter(50);
             float p[3]={0.0f,0.0f,0.0f};if(at<signed char>(0x60b)>3)p[2]=6.0f;
-            if(at<short>(0x738)==1)spawn_offset(826,air?48:44,air?104.0:85.0,p,3);
-            else spawn_offset(826,air?48:44,air?104.0:85.0,p,3);
+            // Native 4AD134..4AD1D7 captures direction/Y before either request.
+            int direction=at<unsigned char>(0x104);
+            float y=static_cast<float>(at<float>(0xf0)+(air?104.0:85.0));
+            if(at<short>(0x738)==1)
+                spawn(826,static_cast<float>((air?48:44)*static_cast<signed char>(direction)+at<float>(0xec)),y,direction,1,p,3);
+            else
+                spawn(826,static_cast<float>((air?48:44)*static_cast<signed char>(direction)+at<float>(0xec)),y,direction,1,p,3);
         }
         if(advance())set_action_and_finalize(0);
         if(entry(1)){float p[3]={0.0f,0.0f,4.0f};spawn_offset(826,air?-48:-24,air?104.0:95.0,p,3);}
