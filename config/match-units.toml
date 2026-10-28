@@ -25080,3 +25080,24 @@ dir32_targets = [
  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base",
 ]
+
+[units.exact-first-youmu-constructor]
+kind = "probe"
+source = "src/characters/YoumuConstructor.cpp"
+object = "build/match-units/ExactFirst_YoumuConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Youmu53B330 history deque at7D0 independently recovered by history update and record consumers."
+[[units.exact-first-youmu-constructor.functions]]
+address = "0x0053B330"
+symbol_base = "??0YoumuConstructorView@th105@@QAE@H@Z"
+rel32_targets = [
+ "??0YoumuCharacterBaseView@th105@@QAE@H@Z=0x00462AB0",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "??0YoumuCtorObjectManager@th105@@QAE@PAVYoumuConstructorView@1@@Z=0x0053B0A0",
+]
+dir32_targets = [
+ "__ehhandler$??0YoumuConstructorView@th105@@QAE@H@Z=__ehhandler$??0YoumuConstructorView@th105@@QAE@H@Z",
+ "??_7YoumuConstructorView@th105@@6B@=??_7Youmu@th105@@6B@",
+ "___security_cookie=___security_cookie",
+]

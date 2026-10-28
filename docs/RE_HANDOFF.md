@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Ending entry41E790 and Connect reset442190
+Current bounded checkpoint: Youmu constructor53B330 is canonical exact159/159.
+The existing history override independently fixes the deque<YoumuObjectRecord>
+at7D0, closing the previously unresolved member lifetime. Native boundary closes
+46 instructions; only the authored constructor receives credit. See
+[YOUMU_CONSTRUCTOR_2026_10_28.md](YOUMU_CONSTRUCTOR_2026_10_28.md)
+and build/frontier-53b330-20261028/{mapped-build,boundary}.json.
+
+Preceding bounded checkpoint: Ending entry41E790 and Connect reset442190
 are canonical exact40/25. Current RTTI slots own both; all16 existing accepted
 peers in the two affected TUs remain exact. See
 [SCENE_MENU_ENTRY_LEAVES_2026_10_28.md](SCENE_MENU_ENTRY_LEAVES_2026_10_28.md)
