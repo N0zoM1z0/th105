@@ -23,6 +23,8 @@ struct BgmPlaybackServiceView {
     void play(unsigned handle, const char *path, bool queued, float gain);
     void schedule_or_start(unsigned handle, int delay);
     void fade(unsigned handle, int duration, int target, bool enabled);
+    void link_handles(unsigned next_handle, unsigned previous_handle);
+    void set_level(unsigned handle, int duration, int scale, float gain);
 };
 
 struct ScoreDataBgmView {
@@ -77,6 +79,21 @@ extern "C" void __cdecl play_bgm(const char *path)
         return;
     }
     g_bgm_service.schedule_or_start(g_bgm_handle, 0);
+}
+
+void __cdecl transition_bgm(const char *path, int duration, bool linked)
+{
+    g_bgm_source_path.assign(path, std::strlen(path));
+    g_bgm_service.fade(g_bgm_handle, duration, duration / 2, true);
+    BgmHandleResult next = g_bgm_service.allocate_handle();
+    g_bgm_service.play(next.value, path, true, 0.0f);
+    if (linked)
+        g_bgm_service.link_handles(next.value, g_bgm_handle);
+    else
+        g_bgm_service.schedule_or_start(next.value, 0);
+    g_bgm_service.set_level(next.value, duration, 1000, 1.0f);
+    g_score_data.publish_bgm_path(path);
+    g_bgm_handle = next.value;
 }
 
 } // namespace th105

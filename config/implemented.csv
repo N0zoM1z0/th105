@@ -1616,3 +1616,4 @@ CFade_update_fade
 CFade_advance_to_midpoint
 shutdown_scene_resources
 CSceneManager_shutdown
+transition_bgm

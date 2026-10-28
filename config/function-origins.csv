@@ -1305,7 +1305,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043CE80,authored_game,network,authored,observed,canonical-exact-authored
 0x0043CF00,authored_game,audio,authored,observed,canonical-exact-authored
 0x0043CF80,authored_game,audio,authored,observed,canonical-exact-authored
-0x0043D030,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043D030,authored_game,audio,authored,observed,canonical-exact-authored
 0x0043D100,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0043D1D0,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
 0x0043D270,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a

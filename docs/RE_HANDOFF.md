@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: scene resource shutdown43D670 and its CSceneManager
+Current bounded checkpoint: scenario BGM transition43D030 is canonical
+exact208/208, with all three accepted BGM siblings unchanged. The interpreter
+caller4594A2 pins path/duration/linked arguments and late global handle publish.
+See [BGM_TRANSITION_POLICY_2026_10_28.md](BGM_TRANSITION_POLICY_2026_10_28.md)
+and build/frontier-43d030-20261028/{formal-build,boundary,callers}.json.
+
+Preceding bounded checkpoint: scene resource shutdown43D670 and its CSceneManager
 owner41E120 are canonical exact264/25. Existing owner initialization41E070 stays
 exact162. Actual socket/member lifetimes reuse the independently exact network
 cleanup policy; all tails remain explicit. See

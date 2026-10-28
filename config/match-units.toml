@@ -11911,6 +11911,24 @@ enable_gs = false
 notes = "Current BGM load/play/hash trio at the exact-backed service/global. The load/play pair preserves out-of-line String28 assignment and BGM service calls. A real four-byte BgmHandleResult value return naturally reuses the dead path argument slot as hidden return storage; play_bgm keeps the non-null path as hot fallthrough and the null schedule path at the cold tail. The hash accessor exposes the VC8 String28 +0x04 storage, +0x14 size and +0x18 capacity layout before exact case-insensitive CRC32."
 
 [[units.cross-v106a-bgm-playback.functions]]
+address = "0x0043D030"
+symbol_base = "?transition_bgm@th105@@YAXPBDH_N@Z"
+rel32_targets = [
+  "?assign@String28CallGate@th105@@QAEXPBDI@Z=0x004021C0",
+  "?fade@BgmPlaybackServiceView@th105@@QAEXIHH_N@Z=0x00403940",
+  "?allocate_handle@BgmPlaybackServiceView@th105@@QAE?AUBgmHandleResult@2@XZ=0x004036C0",
+  "?play@BgmPlaybackServiceView@th105@@QAEXIPBD_NM@Z=0x004036E0",
+  "?schedule_or_start@BgmPlaybackServiceView@th105@@QAEXIH@Z=0x00403840",
+  "?link_handles@BgmPlaybackServiceView@th105@@QAEXII@Z=0x004039E0",
+  "?set_level@BgmPlaybackServiceView@th105@@QAEXIHHM@Z=0x00403990",
+  "?publish_bgm_path@ScoreDataBgmView@th105@@QAEXPBD@Z=0x0042DEB0",
+]
+dir32_targets = [
+  "?g_bgm_service@th105@@3UBgmPlaybackServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
+  "?g_score_data@th105@@3UScoreDataBgmView@1@A=?g_score_data@th105@@3UScoreData@1@A",
+]
+
+[[units.cross-v106a-bgm-playback.functions]]
 address = "0x0043CF00"
 symbol_base = "_load_bgm_source"
 rel32_targets = [
