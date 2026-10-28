@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: UdongeObject update5D46C0 has complete31-action
+Current bounded candidate: PatchouliObject update520890 has complete30-action
+manual source and whole canonical replay. Full51428/native51564 remains
+nonexact+37. Actual shared packet lifetimes restore frame3E0; all28 direct-call
+counts,24 virtual calls,21 table dimensions and219 remap bytes agree. No exact
+credit. See [PATCHOULI_OBJECT_UPDATE_2026_10_28.md](PATCHOULI_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-patchouli-object-update.py` and
+build/frontier-520890-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded candidate: UdongeObject update5D46C0 has complete31-action
 manual source and an early whole canonical replay. Full43873/native43537
 remains nonexact+37; the real812 widened count restores frame2F0. All22
 direct-call counts,25 virtual calls,17 table dimensions and216remap bytes agree. No exact credit. See
