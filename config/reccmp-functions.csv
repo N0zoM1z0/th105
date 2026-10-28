@@ -1657,3 +1657,9 @@ BattleBaseEffect_on_reset_device,0x00418090,function
 CSceneManager_update,0x0041E140,function
 CSceneManager_render,0x0041E150,function
 CFade_initialize,0x0041E240,function
+CNetworkServer_set_state_78,0x0043CBA0,function
+CNetworkServer_read_state_78,0x0043CBB0,function
+CNetworkServer_read_byte_80,0x0043CBC0,function
+CNetworkClient_set_state_6c,0x0043CD10,function
+CNetworkClient_read_state_6c,0x0043CD20,function
+CNetworkClient_read_byte_81,0x0043CD30,function

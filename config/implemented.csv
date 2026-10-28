@@ -1631,3 +1631,9 @@ BattleBaseEffect_on_reset_device
 CSceneManager_update
 CSceneManager_render
 CFade_initialize
+CNetworkServer_set_state_78
+CNetworkServer_read_state_78
+CNetworkServer_read_byte_80
+CNetworkClient_set_state_6c
+CNetworkClient_read_state_6c
+CNetworkClient_read_byte_81

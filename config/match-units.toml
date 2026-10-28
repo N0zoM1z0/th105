@@ -26426,3 +26426,35 @@ rel32_targets = ["?render_scene_fade_overlay@th105@@YAEXZ=0x0043AAD0"]
 [[units.cross-v106a-render-scene-consumers.functions]]
 address = "0x0041E240"
 symbol_base = "?initialize@CFade@th105@@UAE_NXZ"
+
+[units.exact-first-network-primary-byte-accessors]
+kind = "probe"
+source = "src/network/NetworkPrimaryByteAccessors.cpp"
+object = "build/match-units/ExactFirst_NetworkPrimaryByteAccessors.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Six RTTI-owned primary Server/Client virtual byte accessors, complete10/5/7-byte bodies. Signed EAX state getters and AL scalar getters retain their observed widths."
+
+[[units.exact-first-network-primary-byte-accessors.functions]]
+address = "0x0043CBA0"
+symbol_base = "?set_state@NetworkServerByteView@th105@@QAEXC@Z"
+
+[[units.exact-first-network-primary-byte-accessors.functions]]
+address = "0x0043CBB0"
+symbol_base = "?state@NetworkServerByteView@th105@@QBEHXZ"
+
+[[units.exact-first-network-primary-byte-accessors.functions]]
+address = "0x0043CBC0"
+symbol_base = "?read_byte_80@NetworkServerByteView@th105@@QBECXZ"
+
+[[units.exact-first-network-primary-byte-accessors.functions]]
+address = "0x0043CD10"
+symbol_base = "?set_state@NetworkClientByteView@th105@@QAEXC@Z"
+
+[[units.exact-first-network-primary-byte-accessors.functions]]
+address = "0x0043CD20"
+symbol_base = "?state@NetworkClientByteView@th105@@QBEHXZ"
+
+[[units.exact-first-network-primary-byte-accessors.functions]]
+address = "0x0043CD30"
+symbol_base = "?read_byte_81@NetworkClientByteView@th105@@QBECXZ"

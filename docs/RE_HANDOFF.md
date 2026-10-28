@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: CSceneManager update41E140/render41E150 and CFade
+Current bounded checkpoint: six primary CNetworkServer/Client byte accessors
+43CBA0/43CBB0/43CBC0 and43CD10/43CD20/43CD30 are canonical exact10/5/7 each,
+adding44 authored bytes. Fresh primary RTTI/vtable ownership supersedes the
+unreviewed label at43CBC0; EAX sign-extension and AL-only return widths remain
+separate. See [NETWORK_PRIMARY_BYTE_ACCESSORS_2026_10_28.md](NETWORK_PRIMARY_BYTE_ACCESSORS_2026_10_28.md)
+and build/frontier-43cba0-20261028/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: CSceneManager update41E140/render41E150 and CFade
 initialize41E240 are canonical exact5/5/11. Fresh RTTI vtable cells and complete
 raw boundaries close all three. Both affected units replay13 functions exact,
 including ten unchanged accepted siblings. See
