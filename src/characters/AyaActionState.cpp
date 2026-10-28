@@ -26,6 +26,10 @@ namespace th105 {
 #define FALL_LAND() do {F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed()))goto landed;}while(0)
 void AyaActionStateView::dispatch_action_state_vslot28(){
  unsigned char *raw=reinterpret_cast<unsigned char *>(this);
+ // Native two-word request homes retain the observed forwarded count of three.
+ // The third-word meaning and original aggregate type remain unknown.
+ float request530[2],request532[2];
+ float *paired_request;
 S(0x7a0)=0;S(0x7a2)=101;
 if(S(0x13c)>149&&S(0x13c)<159&&!B(0x751)){
  B(0x751)=1;
@@ -656,14 +660,14 @@ case 530:{
  if(S(0x13e)==4)landing();B(0x17c)=9;
  if(S(0x13e)==2||S(0x13e)==3){F(0xf4)-=3.0;if(F(0xf4)<3.0)F(0xf4)=3.0;F(0xf8)-=F(0x100);if(S(0x13e)==2&&S(0x140)<12&&F(0xf8)<=-1.0)F(0xf8)=-1.0;if(static_cast<unsigned char>(crossed())){select_sequence(4);F(0xf0)=aya_surface(this);zero_motion();return;}}
  ADVANCE_TO(0);if(ENTRY(2))F(0x100)=0.5f;if(FRAME(0,5)){F(0xf4)=40.0;F(0xf8)=10.0;effect(127,F(0xec),F(0xf0),B(0x104),-1);}
- if(FRAME(2,5)){float packet[3];packet[0]=15.0f;packet[1]=30.0f;spawn(817,F(0xec)-130*C(0x104),F(0xf0)+50.0,static_cast<unsigned char>(-B(0x104)),1,packet,3);MOTION->set_oriented_components(0.0f,25.0f);counter(200,120);phase_counter(50);dispatch_character_wave_handle(19);}return;
+ if(FRAME(2,5)){request530[0]=15.0f;request530[1]=30.0f;paired_request=request530;goto paired_817_request;}return;
 }
 
 case 532:{
  if(S(0x13e)==4)landing();B(0x17c)=9;
  if(S(0x13e)==2||S(0x13e)==3){F(0xf4)-=3.0;if(F(0xf4)<3.0)F(0xf4)=3.0;F(0xf8)-=F(0x100);if(S(0x13e)==2&&S(0x140)<12&&F(0xf8)<=-1.0)F(0xf8)=-1.0;if(static_cast<unsigned char>(crossed())){select_sequence(4);F(0xf0)=aya_surface(this);zero_motion();return;}}
  ADVANCE_TO(0);if(ENTRY(2))F(0x100)=0.5f;if(FRAME(0,5)){F(0xf4)=40.0;F(0xf8)=10.0;effect(127,F(0xec),F(0xf0),B(0x104),-1);}
- if(FRAME(2,5)){float packet[3];packet[0]=15.0f;packet[1]=30.0f;spawn(817,F(0xec)-130*C(0x104),F(0xf0)+50.0,static_cast<unsigned char>(-B(0x104)),1,packet,3);MOTION->set_oriented_components(0.0f,25.0f);counter(200,120);phase_counter(50);dispatch_character_wave_handle(19);}return;
+ if(FRAME(2,5)){request532[0]=15.0f;request532[1]=30.0f;paired_request=request532;goto paired_817_request;}return;
 }
 
 case 540:{
@@ -1066,6 +1070,9 @@ case 798:{
 
 default:common_update();return;
 }
+paired_817_request:
+ spawn(817,F(0xec)-130*C(0x104),F(0xf0)+50.0,static_cast<unsigned char>(-B(0x104)),1,paired_request,3);
+ MOTION->set_oriented_components(0.0f,25.0f);counter(200,120);phase_counter(50);dispatch_character_wave_handle(19);return;
 idle_drift:
  if(!B(0x47e)){zero_motion();advance();return;}
  if(F(0xf4)>0.0){F(0xf4)-=0.5;if(F(0xf4)<0.0){zero_motion();B(0x47e)=0;}}

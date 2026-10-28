@@ -80,7 +80,7 @@ shared ground continuation for528 changes layout but does not close its residual
 No further label spelling or register coercion is justified by these controls.
 The raw508 fan correction is retained independently of its comparison result.
 
-Selected full candidate is65784 bytes, SHA256
+The initial checkpoint full candidate was65784 bytes, SHA256
 `4cf50d1d4991f3505b861e23b3081f2e0bc8a1e948b102e62c57239930a075d6`.
 First difference+8 /602258 is frame3F0 versus3E8.63316 unmasked positions differ,
 including missing/extra bytes. Candidate147 RETs,195 virtual sites and1003 direct
@@ -102,3 +102,43 @@ The formal public build reproduces the selected private payload exactly.145
 isolated aliases are appended; existing aliases, shared ABI, compiler profile and
 accepted sources remain unchanged. Only the affected unit is built. matches.csv
 is unchanged; no new whole-corpus replay or exact percentage is claimed.
+
+## Two-word request homes and shared continuation
+
+The subsequent whole-root caller-stack audit resolves85 request homes on both
+sides, without unknown pointers. Native530/532 use homes636/628; neighbouring
+612/662 requests occupy620/612, and another request begins644. Each530/532
+setup writes exactly two words but still forwards count3. The first draft's
+three-element arrays added eight bytes beyond these observed stack-home intervals.
+
+A two-word representation restores frame3E8 without padding, inert locals or
+ABI changes. The forwarded count remains3. This preserves an apparent caller/
+callee size mismatch, not a recovered nominal C++ type: the third word's meaning,
+original aggregate boundaries and initialization domain remain unknown. No third
+value is synthesized. The native path converges at60AAC6 through one actual817
+request continuation. Two genuinely live function-scope records and a typed
+pointer now express that continuation without a pointer escaping a block lifetime.
+This reduces the complete candidate by64 bytes. It is source/dataflow evidence,
+not a claim that all physical call sharing is recovered.
+
+Current selected full payload is65720 bytes, SHA256
+`032d6be21c2ba353607229f9b9a9b838ce017fd00e00ff817761fbda6accdcc9`.
+Frame3E8 now agrees; first mismatch+18 /602262 is native EBP versus candidate
+EBX zero-carrier allocation.63396 positional differences remain. The old63316
+count is not an improvement score: changed register allocation shifts widespread
+bytes. Candidate147 RETs/196 virtual sites/1003 direct sites remain nonexact.
+All114 per-action direct-call censuses still agree; virtual/FP residuals and low
+owner merges remain as described above.
+
+The updated payload audit still resolves85 homes and every normal stack join;
+530/532/612/662 now have the same636/628/620/612 homes as native. First payload
+home44 also agrees. Some other home ordering remains different. Candidate
+60A1A2 was explicitly qualified as slot0C via EDI=[ESI]+0C preserved across
+435DC0, then EAX=[EDI], ECX=ESI; it was not assigned a purge by guess. Native
+609565's surface result is tested in AL after an intervening FLDZ, so the older
+immediate-next-instruction diagnostic reports false without an ABI mismatch.
+
+Current receipts: build/frontier-602250-20261028/formal-paired-build.json and
+formal-paired-audit.json. Native/candidate-payload-homes.json and
+paired-payload-review.log retain the bounded address/lifetime evidence. The
+formal source reproduces the private payload; no exact ledger changes.

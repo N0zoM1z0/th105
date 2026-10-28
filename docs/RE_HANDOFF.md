@@ -1,13 +1,14 @@
 # TH10.5 reconstruction handoff
 
 Current bounded candidate: Aya Fighter602250 has complete114-action manual source
-and canonical full65784/native66704 replay, nonexact+8 (frame3F0/native3E8).
+and canonical full65720/native66704 replay, nonexact+18. Raw two-word530/532
+request homes restore native frame3E8; register allocation and tails still differ.
 All114 reachable direct-call censuses agree, but low31/native33 owners and physical
 tails differ. No exact credit. Independently attested Ghidra supplied navigation
 after IDA failed; raw instructions corrected508 fan direction and FP/lifetime
 errors. See [AYA_ACTION_STATE_2026_10_28.md](AYA_ACTION_STATE_2026_10_28.md),
 `scripts/audit-aya-action-state.py`, and
-build/frontier-602250-20261028/{formal-build,full-audit}.json.
+build/frontier-602250-20261028/{formal-paired-build,formal-paired-audit}.json.
 
 Preceding bounded candidate: audio scheduler thread419100 has complete source for
 cadence correction, externally adjusted waits and checked listener notification.
