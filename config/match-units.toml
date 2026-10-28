@@ -9738,6 +9738,12 @@ rel32_targets = [
   "?run_post_update_callbacks_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFB0",
 ]
 
+[[units.cross-v106a-battle-manager-story-core.functions]]
+address = "0x00471580"
+symbol_base = "?reset_info_mode_and_present_471580@CBattleManagerStory@th105@@UAEXXZ"
+rel32_targets = ["?update_presentation_46b160_view@CBattleManagerStory@th105@@QAEXXZ=0x0046B160"]
+dir32_targets = ["?g_info_mode_value_6fa88c@th105@@3FA=?g_info_mode_value_6fa88c@th105@@3FA"]
+
 [units.cross-v106a-roster-object-tracked-list]
 kind = "probe"
 source = "src/characters/RosterOwnedObjects.cpp"
@@ -24360,3 +24366,26 @@ notes = "Complete unselected471930 story health smoothing and timer/alpha update
 [[units.exact-first-story-info-update.functions]]
 address = "0x00471930"
 symbol_base = "?update_story_471930@BattleInfoRecordF8@th105@@QAEXXZ"
+
+[units.exact-first-battle-presentation-phase]
+kind = "probe"
+source = "src/battle/BattlePresentationPhase.cpp"
+object = "build/match-units/ExactFirst_BattlePresentationPhase.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Raw canonical 46B160 presentation tail, texture-duration effect delta, repeated network-mode gates, input/effect/background update and pair tick."
+
+[[units.exact-first-battle-presentation-phase.functions]]
+address = "0x0046B160"
+symbol_base = "?update_presentation_46b160@BattlePresentationController@th105@@QAEXXZ"
+rel32_targets = [
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+  "?update_428260@PresentationInputView@th105@@QAEXXZ=0x00428260",
+  "?update_background_runtime_466f40@BattleObjectManager@th105@@QAEXXZ=0x00466F40",
+]
+dir32_targets = [
+  "?g_battle_input_gate@th105@@3PAUPresentationInputView@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
+  "?g_effect_sink@th105@@3PAUEffectSink@1@A=?g_effect_sink@th105@@3PAUEffectSink@1@A",
+  "?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
+  "?g_pair_state@th105@@3HA=?g_pair_state@th105@@3HA",
+]

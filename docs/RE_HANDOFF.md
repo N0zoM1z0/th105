@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Story early phase pipelines471590/4715D0 are
+Current bounded checkpoint: presentation phase46B160 and Story reset471580
+are canonical exact105/14, adding119 authored bytes. All five previously
+accepted Story core peers remain exact in the fresh caller-unit replay.
+See [BATTLE_PRESENTATION_PHASE_2026_10_28.md](BATTLE_PRESENTATION_PHASE_2026_10_28.md)
+and build/frontier-46b160-20261028/{formal-build,story-caller}.json.
+
+
+Preceding bounded checkpoint: Story early phase pipelines471590/4715D0 are
 canonical exact59/88. Existing203/157/309-byte Story peers remain exact.
 RTTI-owned slots10/14, scenario callback/transition policy, signed countdown
 and pending transition are raw-target backed. New authored increment147 bytes.

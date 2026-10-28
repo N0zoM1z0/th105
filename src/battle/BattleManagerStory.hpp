@@ -30,7 +30,7 @@ struct CBattleManagerStory {
     virtual void slot_30();
     virtual void transition_slot_34(int phase);
     virtual void slot_38();
-    virtual void slot_3c();
+    virtual void reset_info_mode_and_present_471580();
     virtual void pre_reset_slot_40();
 
     unsigned frame_counter_04;
@@ -50,6 +50,7 @@ struct CBattleManagerStory {
     void run_collision_phase_46cca0();
     void run_global_position_status_timer_phase_view();
     void run_post_update_callbacks_view();
+    void update_presentation_46b160_view();
 };
 
 typedef char CBattleManagerStory_fighter_offset_must_be_0x0c[

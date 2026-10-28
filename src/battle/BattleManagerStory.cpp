@@ -36,6 +36,14 @@ struct BattlePhaseStoryView {
     }
 };
 
+extern short g_info_mode_value_6fa88c;
+
+void CBattleManagerStory::reset_info_mode_and_present_471580()
+{
+    g_info_mode_value_6fa88c = 0;
+    update_presentation_46b160_view();
+}
+
 int CBattleManagerStory::run_scenario_gate_471590()
 {
     reset_fighter_fields_6b4_728_view();
