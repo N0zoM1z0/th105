@@ -857,7 +857,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00427DB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00428000,authored_game,ui,authored,observed,canonical-exact-authored
 0x00428030,authored_game,battle,authored,observed,canonical-exact-authored
-0x00428070,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00428070,authored_game,input,authored,observed,canonical-exact-authored
 0x00428260,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004284A0,compiler_generated,input,exclude,observed,vc8-generated-direct-input-vectors-106a
 0x004284C0,authored_game,battle,authored,observed,canonical-exact-authored

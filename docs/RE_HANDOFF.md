@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: CBattleManager pre-reset virtual472230 is
+Current bounded checkpoint: local/practice battle controls428070 are canonical
+exact482/482, including the internal loop-alignment gap and final return.
+Repeated mode queries, signed modulo cycling and fresh scene/fighter reads
+match naturally. Existing callers/contracts remain unchanged.
+See [LOCAL_PRACTICE_BATTLE_CONTROLS_2026_10_28.md](LOCAL_PRACTICE_BATTLE_CONTROLS_2026_10_28.md)
+and build/frontier-428070-20261028/formal-build.json.
+
+
+Preceding bounded checkpoint: CBattleManager pre-reset virtual472230 is
 canonical exact314/314. The existing fully described CMenuPractice0x288 layout
 supersedes the historical allocation blocker; ordinary menu/input/EH source
 now matches the complete body. No shared header or global profile changed.
