@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: wave buffer release401A80 is canonical exact97/97.
+Current bounded candidate: Fighter cutin resource destructor465420 now has
+complete natural sprite/resource lifetime source. Candidate95/native96 remains
+nonexact+40 on handle load versus EH-state publication; no credit. See
+[FIGHTER_CUTIN_LIFETIME_2026_10_28.md](FIGHTER_CUTIN_LIFETIME_2026_10_28.md)
+and build/frontier-465420-20261028/formal-build.json.
+
+Preceding bounded checkpoint: wave buffer release401A80 is canonical exact97/97.
 Native constructor independently pins the paired32-element base/spatial arrays;
 ordinary source preserves three COM release guards per slot. See
 [WAVE_BUFFER_RELEASE_2026_10_28.md](WAVE_BUFFER_RELEASE_2026_10_28.md)

@@ -25025,3 +25025,21 @@ notes = "Complete401A80 paired32-slot ordinary/spatial DirectSound buffer releas
 [[units.exact-first-wave-buffer-release.functions]]
 address = "0x00401A80"
 symbol_base = "?release_buffers@WaveBufferReleaseView@th105@@QAEXXZ"
+
+[units.exact-first-fighter-cutin-lifetime]
+kind = "probe"
+source = "src/battle/FighterCutinLifetime.cpp"
+object = "build/match-units/ExactFirst_FighterCutinLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete465420 Fighter cutin resource destruction; actual0x94 sprite lifetime plus guarded release and clear."
+[[units.exact-first-fighter-cutin-lifetime.functions]]
+address = "0x00465420"
+symbol_base = "??1FighterCutinLifetime@th105@@QAE@XZ"
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
+dir32_targets = [
+ "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+ "__ehhandler$??1FighterCutinLifetime@th105@@QAE@XZ=__ehhandler$??1ScenarioRenderEntry9C@th105@@QAE@XZ",
+ "??_7IColor@@6B@=??_7IColor@@6B@",
+ "___security_cookie=___security_cookie",
+]
