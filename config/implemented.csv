@@ -1608,3 +1608,4 @@ InfoEffectObject_set_scene_state
 emit_weather_effect_global
 initialize_scene_auxiliary
 shutdown_scene_auxiliary
+WaveService_release_buffers

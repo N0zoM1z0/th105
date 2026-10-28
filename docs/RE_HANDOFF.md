@@ -1,6 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: scene-owned battle effect bootstrap6654A0/6654C0
+Current bounded checkpoint: wave buffer release401A80 is canonical exact97/97.
+Native constructor independently pins the paired32-element base/spatial arrays;
+ordinary source preserves three COM release guards per slot. See
+[WAVE_BUFFER_RELEASE_2026_10_28.md](WAVE_BUFFER_RELEASE_2026_10_28.md)
+and build/frontier-401a80-20261028/formal-build.json.
+
+Preceding bounded checkpoint: scene-owned battle effect bootstrap6654A0/6654C0
 is canonical exact21/10. Native scene callers, global owner and embedded
 program extent are attested; no shader bytes or static-init thunk credit. See
 [BATTLE_EFFECT_BOOTSTRAP_2026_10_28.md](BATTLE_EFFECT_BOOTSTRAP_2026_10_28.md)

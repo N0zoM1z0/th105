@@ -25014,3 +25014,14 @@ address = "0x006654C0"
 symbol_base = "?shutdown_scene_auxiliary_6654c0@th105@@YAXXZ"
 rel32_targets = ["?shutdown@BattleEffectBootstrapView@th105@@QAEXXZ=0x00418040"]
 dir32_targets = ["?g_battle_effect@th105@@3UBattleEffectBootstrapView@1@A=?g_battle_effect@th105@@3UBattleEffectBootstrapView@1@A"]
+
+[units.exact-first-wave-buffer-release]
+kind = "probe"
+source = "src/audio/WaveBufferRelease.cpp"
+object = "build/match-units/ExactFirst_WaveBufferRelease.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete401A80 paired32-slot ordinary/spatial DirectSound buffer release."
+[[units.exact-first-wave-buffer-release.functions]]
+address = "0x00401A80"
+symbol_base = "?release_buffers@WaveBufferReleaseView@th105@@QAEXXZ"

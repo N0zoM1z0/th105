@@ -1637,3 +1637,4 @@ InfoEffectObject_set_scene_state,0x006609F0,function
 emit_weather_effect_global,0x00665470,function
 initialize_scene_auxiliary,0x006654A0,function
 shutdown_scene_auxiliary,0x006654C0,function
+WaveService_release_buffers,0x00401A80,function
