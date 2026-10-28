@@ -919,3 +919,38 @@ destination_table = "0x005AC304"
 destination_count = 31
 index_table = "0x005AC380"
 expected_physical_groups = 31
+
+# Udonge complete callable and all three sparse action regions.
+[[roots]]
+name = "udonge-vslot28"
+address = "0x005BFD50"
+callable_end = "0x005D0233"
+metadata_end = "0x005D06D0"
+# Decoded direct calls:902/29 targets. Raw E8 scan sees903 and is not a census.
+
+[[roots.regions]]
+name = "low"
+case_min = 0
+case_max = 226
+destination_table = "0x005D0234"
+destination_count = 32
+index_table = "0x005D02B4"
+expected_physical_groups = 32
+
+[[roots.regions]]
+name = "mid"
+case_min = 301
+case_max = 511
+destination_table = "0x005D0398"
+destination_count = 34
+index_table = "0x005D0420"
+expected_physical_groups = 34
+
+[[roots.regions]]
+name = "high"
+case_min = 521
+case_max = 770
+destination_table = "0x005D04F4"
+destination_count = 39
+index_table = "0x005D0590"
+expected_physical_groups = 39

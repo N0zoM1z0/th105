@@ -1,6 +1,16 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Suika598990 has a complete-label unselected
+Current bounded checkpoint: Udonge5BFD50 has a complete-label unselected
+110-action candidate and shared prelude. Full replay67520/native67968,
+first+8 at5BFD58; frame488/native480. All32/34/39 sparse groups resolve.
+All110 per-action direct-call and FP-site counts agree;406 still merges
+one native virtual owner. All92 packet homes resolve, but frame displacement
+and ten per-action ownership differences remain. Cone tangent evaluation
+retains native post-call peer reloads without an extra FST32. No exact credit.
+See [UDONGE_ACTION_STATE_2026_10_28.md](UDONGE_ACTION_STATE_2026_10_28.md)
+and build/frontier-5bfd50-20261028/formal-{build,full,switches}.json.
+
+Preceding checkpoint: Suika598990 has a complete-label unselected
 115-action candidate. Full replay78988 versus native81136, first+17, frame578
 matches native. Sparse candidate groups32/50/31 versus native33/50/31;
 208/220 merge. Giant605/730 static surface/zero-motion bodies also merge;

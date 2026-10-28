@@ -2593,3 +2593,8 @@ __real@c042000000000000,0x006C3D10,00000000000042c0,0,Suika action-state598990 n
 __real@42240000,0x006C5A0C,00002442,0,Suika action-state598990 native operand and emitted COFF bytes; docs/SUIKA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
 __real@42a20000,0x006C5A10,0000a242,0,Suika action-state598990 native operand and emitted COFF bytes; docs/SUIKA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
 __real@42f20000,0x006C5A14,0000f242,0,Suika action-state598990 native operand and emitted COFF bytes; docs/SUIKA_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@3ff0ccccc0000000,0x006C4670,000000c0ccccf03f,0,Udonge action-state5BFD50 native operand and emitted COFF bytes; docs/UDONGE_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@3fef333340000000,0x006C5D08,000000403333ef3f,0,Udonge action-state5BFD50 native operand and emitted COFF bytes; docs/UDONGE_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@c38c0000,0x006C5D00,00008cc3,0,Udonge action-state5BFD50 native operand and emitted COFF bytes; docs/UDONGE_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@40019999a0000000,0x006C5CE8,000000a099990140,0,Udonge action-state5BFD50 native operand and emitted COFF bytes; docs/UDONGE_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal
+__real@40300000,0x006C5CE4,00003040,0,Udonge action-state5BFD50 native operand and emitted COFF bytes; docs/UDONGE_ACTION_STATE_2026_10_28.md; unselected nonexact candidate.,literal

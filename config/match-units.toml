@@ -24213,3 +24213,46 @@ rel32_targets = [
     "?oriented_components@SuikaActionScratch@th105@@QAEXMM@Z=0x00435160",
     "?common_update@SuikaActionStateView@th105@@QAEXXZ=0x004740C0",
 ]
+
+[units.exact-first-udonge-action-state]
+kind = "probe"
+source = "src/characters/UdongeActionState.cpp"
+object = "build/match-units/ExactFirst_UdongeActionState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete-label unselected5BFD50 candidate:110 actions; target66787/full67968. Callback lifetime and compiler ownership remain under review. No implemented/exact credit; docs/UDONGE_ACTION_STATE_2026_10_28.md."
+
+[[units.exact-first-udonge-action-state.functions]]
+address = "0x005BFD50"
+symbol_base = "?dispatch_action_state_vslot28@UdongeActionStateView@th105@@QAEXXZ"
+rel32_targets = [
+    "?spawn@UdongeActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
+    "?udonge_random@th105@@YAIH@Z=0x004067D0",
+    "?landing@UdongeActionStateView@th105@@QAEEXZ=0x00473DD0",
+    "?zero_motion@UdongeActionStateView@th105@@QAEXXZ=0x0045AF40",
+    "?advance@UdongeActionStateView@th105@@QAEEXZ=0x004351C0",
+    "?crossed@UdongeActionStateView@th105@@QAEHXZ=0x005F9310",
+    "?udonge_surface@th105@@YIMPAVUdongeActionStateView@1@@Z=0x00435D60",
+    "?udonge_random_u32@th105@@YAIXZ=0x004066B0",
+    "?effect@UdongeActionStateView@th105@@QAEXHMMHH@Z=0x00435240",
+    "?event@UdongeActionStateView@th105@@QAEXI@Z=0x004359F0",
+    "?udonge_on_surface@th105@@YIEPAVUdongeActionStateView@1@@Z=0x00435DC0",
+    "?flip@UdongeActionStateView@th105@@QAEXXZ=0x00478E60",
+    "__ftol2_sse=0x0068A1A0",
+    "?udonge_cosine@th105@@YANM@Z=0x004063D0",
+    "?udonge_sine@th105@@YANM@Z=0x00406360",
+    "?counter@UdongeActionStateView@th105@@QAEXFH@Z=0x0046BF30",
+    "?reset@UdongeActionScratch@th105@@QAEXXZ=0x00435110",
+    "?directional@UdongeActionStateView@th105@@QAEEH@Z=0x00478EE0",
+    "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
+    "?udonge_atan@th105@@YAMMM@Z=0x00406540",
+    "?phase_counter@UdongeActionStateView@th105@@QAEHH@Z=0x00478DF0",
+    "?udonge_tangent@th105@@YAMM@Z=0x00406430",
+    "?texture@UdongeActionStateView@th105@@QAEXCF@Z=0x0045F560",
+    "?sequence_window@UdongeActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
+    "?secondary_cycle@UdongeActionStateView@th105@@QAEXXZ=0x00473F90",
+    "?layout@UdongeActionStateView@th105@@QAEXM@Z=0x004359D0",
+    "?finalize@UdongeActionStateView@th105@@QAEXH@Z=0x0045D110",
+    "?copy_health@UdongeActionStateView@th105@@QAEXXZ=0x0045B250",
+    "?common_update@UdongeActionStateView@th105@@QAEXXZ=0x004740C0",
+]
