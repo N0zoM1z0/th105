@@ -46,7 +46,8 @@ The initial candidate merged the equivalent 565..568 request branches. Native
 computes X inside each branch. Restoring those scalar lifetimes preserves both
 static spawn sites and their FP operations. Per-action reachable call
 diagnostics now have no direct-call count differences. Virtual-site counts
-still differ for 410/414, 562/563 and 733; FP-site counts differ only for 214. These checks are
+still differ for 410/414, 562/563 and 733. The initial remaining FP-site
+difference for 214 is resolved by the rate-branch refinement below. These checks are
 omission diagnostics, not semantic acceptance or excuses for byte differences.
 Callback-sensitive lifetimes, floating precision, unknown packet slots and
 TU/LTCG ownership still require review. No compiler-control assembly, fake ABI,
@@ -107,3 +108,20 @@ ten dust helper bodies at their callers did not fix frame ownership (still
 4C8) and lacked independent evidence for retention; all three controls were
 reverted. Their private receipts remain trialdust-*, trialsquare-* and
 trialdustowner-*; no compiler padding or register forcing was introduced.
+
+## Flight214 rate-branch refinement
+
+Native 4A55C0..4A560C retains a separate add/subtract for each 1.5/0.5 rate.
+Replacing the conditional rate operand with its native arithmetic branches
+reproduces this region's instruction sequence (at a shifted address). Only
+16 complete-payload bytes change; complete size remains 68204 and frame4C8.
+Full comparison has 64184 unmasked differences, first+14, SHA-256
+502819ce6e9f3ebccbdfeb5879f56836064e00f835d6950f0171e21cf6b0b8cb.
+
+The private diagnostic now also covers direct300/540/795/797/798, qualified
+from the actual dispatch comparisons, equality branches and fallthroughs.
+Across all 130 nondefault action labels, direct-call and arithmetic-site counts
+agree. Virtual-site differences remain at 410/414 (one fewer each), 562/563
+and 733 (one extra each). Counts do not establish semantic equality, operand
+precision, call order, stack ownership or exactness. Receipts: trial214-*.json,
+including trial214-all-action-calls.json and trial214-all-action-fp-ops.json.

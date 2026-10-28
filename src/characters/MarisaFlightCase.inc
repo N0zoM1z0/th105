@@ -1,4 +1,4 @@
-// Private manual recovery from4A540A..4A5A23 and actual incoming EDI=6 at4A3A42.
+// Manual recovery from4A540A..4A5A23 and actual incoming EDI=6 at4A3A42.
 // The diagnostic slice has no original standalone ABI; raw code owns these facts.
 case 214: {
     if(advance()){set_action_and_finalize(9);return;}
@@ -14,8 +14,15 @@ case 214: {
         S(0x734)=static_cast<short>(S(0x732)-static_cast<short>(static_cast<int>(F(0x740))));
         if(S(0x734)>180)S(0x734)=static_cast<short>(S(0x734)-360);
         if(S(0x734)<-180)S(0x734)=static_cast<short>(S(0x734)+360);
-        if(S(0x734)>0)F(0x740)=static_cast<float>(F(0x740)+(I(0x4b8)?0.5:1.5));
-        if(S(0x734)<0)F(0x740)=static_cast<float>(F(0x740)-(I(0x4b8)?0.5:1.5));
+        // 4A55C0..4A560C owns separate additions/subtractions per rate.
+        if(S(0x734)>0){
+            if(!I(0x4b8))F(0x740)=static_cast<float>(F(0x740)+1.5);
+            else F(0x740)=static_cast<float>(F(0x740)+0.5);
+        }
+        if(S(0x734)<0){
+            if(!I(0x4b8))F(0x740)=static_cast<float>(F(0x740)-1.5);
+            else F(0x740)=static_cast<float>(F(0x740)-0.5);
+        }
         F(0xf4)=static_cast<float>(marisa_cosine(F(0x740))*F(0x73c));
         F(0xf8)=static_cast<float>(marisa_sine(F(0x740))*F(0x73c));
         if(F(0xf0)>680.0f && F(0xf8)>0.0f)F(0xf8)=0.0f;
