@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+CScenarioData destruction438A70 is canonical exact411/411 through real implicit
+member lifetimes, including the non-polymorphic font at+68. Existing exact
+manager/phase callers prove ownership. See [SCENARIO_DATA_LIFETIME_2026_10_29.md](SCENARIO_DATA_LIFETIME_2026_10_29.md).
+
 ResultList population4478B0 is canonical exact1133/1133. Real typed containers
 and two separate row-buffer string temporaries replace the old manual deque
 helper and shared temporary. See [RESULT_LIST_POPULATE_2026_10_29.md](RESULT_LIST_POPULATE_2026_10_29.md).

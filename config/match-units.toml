@@ -27214,3 +27214,24 @@ rel32_targets = [
  "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E900",
  "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.exact-first-scenario-data-lifetime]
+kind = "probe"
+source = "src/battle/ScenarioDataLifetime.cpp"
+object = "build/match-units/ExactFirst_ScenarioDataLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete411-byte CScenarioData destruction through genuine implicit member lifetimes. Real font194 at68, three strings, result owner, script, three lists, map and system-effect manager; no manual vptr publication. docs/SCENARIO_DATA_LIFETIME_2026_10_29.md."
+
+[[units.exact-first-scenario-data-lifetime.functions]]
+address = "0x00438A70"
+symbol_base = "??1ScenarioLifetimeView@th105@@QAE@XZ"
+rel32_targets = [
+ "??3@YAXPAX@Z=0x006898EA",
+ "??1ScenarioResultResource@th105@@QAE@XZ=0x00454BF0",
+ "??1CScript@@QAE@XZ=0x00405660",
+ "?clear@?$list@UScenarioRenderEntry9C@th105@@V?$allocator@UScenarioRenderEntry9C@th105@@@std@@@std@@QAEXXZ=0x00435FF0",
+ "?erase@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x00437360",
+ "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0",
+ "??1?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@UAE@XZ=0x00437280",
+]
