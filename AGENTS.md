@@ -78,6 +78,10 @@ repository evidence and read back metadata writes.
 
 ## Handoff and commit
 
+Use `gpt-dots: <summary>` for new commit subjects (user instruction,
+2026-10-29). Older prefixes in archived notes are historical, not current
+submission rules. Do not rewrite existing commits merely to change their prefix.
+
 For reconstruction changes, run focused affected comparisons, then:
 
 ```bash

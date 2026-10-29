@@ -911,6 +911,6 @@ git diff --cached --check
 ```
 
 Any later source, ledger, script, test or generated-progress edit requires the
-local gate again. Commit prefix: `gpt-6.1-sol: ...`. Keep executables, game data,
+local gate again. Commit prefix: `gpt-dots: ...` (user instruction, 2026-10-29). Keep executables, game data,
 analysis databases, compiler installs, generated reports, credentials/private
 keys and `.tools/mcp_for_gptweb/.env` out of Git.
