@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+BGM transition threshold now preserves the native unordered-to-gain-provider
+path; exact fade70/set-level69 replay unchanged. No gain-provider acceptance
+or new bytes. See [BGM_GAIN_THRESHOLD_2026_10_29.md](BGM_GAIN_THRESHOLD_2026_10_29.md).
+
 Weather initializer46A260 now has complete946/native941 source. Its sprites
 are corrected to0xE8 CEffectSprite with assign semantics, and CSV rows remain
 alive through advance_row as native requires. Five accepted consumers and

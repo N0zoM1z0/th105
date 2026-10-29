@@ -56,7 +56,7 @@ extern const float bgm_minimum_gain;
 extern const float bgm_logarithmic_scale;
 extern const float bgm_volume_units;
 // Genuine natural gain provider for this isolated context; not a new exact claim.
-// The separately accepted DirectSound provider and its source remain unchanged.
+// The native418990 gain provider remains independently nonexact.
 int __stdcall bgm_transition_gain(float gain) {
     gain=static_cast<float>(log10(static_cast<double>(gain)));
     int volume=static_cast<int>(bgm_volume_units*bgm_logarithmic_scale*gain);
@@ -69,7 +69,8 @@ void BgmStreamView::transition(int delay, float level, int flag, int duration) {
         gain_1358=level;
         float effective=level*master_gain_1364;
         int volume;
-        if(!(bgm_minimum_gain < effective))volume=-10000;
+        // Native FCOMP tests only CF: unordered values take the gain-provider path.
+        if(effective <= bgm_minimum_gain)volume=-10000;
         else volume=bgm_transition_gain(effective);
         if(buffer_28)buffer_28->set_volume(volume);
     } else {
