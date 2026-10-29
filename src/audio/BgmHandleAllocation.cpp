@@ -1,23 +1,20 @@
+#include "BgmHandleResult.hpp"
+
 namespace th105 {
-
-struct BgmHandleResult {
-    unsigned value;
-};
-
 struct BgmHandleManagerAllocateView {
-    BgmHandleResult allocate_handle();
+    // Native4040D0 returns the stream pointer and writes the explicit token.
+    // Its private EDI receiver is not fabricated as a source calling convention.
+    void *acquire(BgmHandleResult &token);
 };
-
 struct BgmPlaybackServiceView {
-    unsigned char reserved_0000[0x38];
-    BgmHandleManagerAllocateView manager_0038;
-
+    unsigned char prefix[0x38];
+    BgmHandleManagerAllocateView manager;
     BgmHandleResult allocate_handle();
 };
-
 BgmHandleResult BgmPlaybackServiceView::allocate_handle()
 {
-    return manager_0038.allocate_handle();
+    BgmHandleResult result;
+    manager.acquire(result);
+    return result;
 }
-
-} // namespace th105
+}

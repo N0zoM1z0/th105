@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+BGM allocation4036C0 now initializes its actual token result and uses the
+manager pointer-return/token-out contract. Natural26/28 remains nonexact on
+private EDI; all four playback roots remain exact. See
+[BGM_ALLOCATION_CONTRACT_2026_10_29.md](BGM_ALLOCATION_CONTRACT_2026_10_29.md).
+
 Effect layer forwarder4695F0 is canonical exact11/11. Primary table slot18
 independently proves void(signed char), correcting the old int/int contract.
 All nine caller roots and emitter/event siblings replay unchanged; see

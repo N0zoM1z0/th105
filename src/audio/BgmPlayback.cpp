@@ -1,3 +1,4 @@
+#include "BgmHandleResult.hpp"
 #include <cstring>
 
 namespace th105 {
@@ -12,10 +13,6 @@ struct String28CallGate {
     unsigned capacity_18;
 
     void assign(const char *source, unsigned source_size);
-};
-
-struct BgmHandleResult {
-    unsigned value;
 };
 
 struct BgmPlaybackServiceView {

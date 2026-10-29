@@ -18167,13 +18167,13 @@ source = "src/audio/BgmHandleAllocation.cpp"
 object = "build/match-units/GptWeb_BgmHandleAllocation.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current BgmPlaybackServiceView::allocate_handle @ 0x004036C0. Exact load/play callers prove the authored service boundary and exact BgmService_link_handles fixes the +0x38 manager subobject. Normal C++ remains 20/28 because target manager allocator 0x004040D0 uses an original-TU private EDI/hidden-result ABI; keep nonexact without inventing that ABI."
+notes = "Current BgmPlaybackServiceView::allocate_handle @ 0x004036C0. Exact load/play callers prove the authored service boundary and exact BgmService_link_handles fixes the +0x38 manager subobject. Corrected natural token initialization and pointer-return/out-token manager contract give26/28; private EDI receiver remains nonexact. The prior20-byte source also omitted the observed zero initialization. docs/BGM_ALLOCATION_CONTRACT_2026_10_29.md."
 
 [[units.gpt-web-bgm-handle-allocation.functions]]
 address = "0x004036C0"
 symbol_base = "?allocate_handle@BgmPlaybackServiceView@th105@@QAE?AUBgmHandleResult@2@XZ"
 rel32_targets = [
-  "?allocate_handle@BgmHandleManagerAllocateView@th105@@QAE?AUBgmHandleResult@2@XZ=0x004040D0",
+  "?acquire@BgmHandleManagerAllocateView@th105@@QAEPAXAAUBgmHandleResult@2@@Z=0x004040D0",
 ]
 
 [units.gpt-web-score-observations]
