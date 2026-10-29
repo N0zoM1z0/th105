@@ -57,3 +57,14 @@ replays every body relocation; the raw audit separately closes the no-return
 boundary and the real compiler-generated cleanup metadata. Default CI follows
 final ledger/progress changes. Earlier statements that this root had only
 compiler scheduling left are superseded by the observed missing range guard.
+
+## Adjacent reader declaration cleanup
+
+PlayerSlotProfileLoad.cpp's local reader view previously supplied unconditional
+zero-return bodies for seek/size, although this caller never invokes them.
+Those unsupported bodies are now declarations only. The unchanged723-byte
+loader section and all28 relocation fields/names are byte-identical before
+and after, verified by two focused source builds in
+build/frontier-profile-reader-declarations-20261029/body-equality.json.
+This is generated-source equality, not a new canonical or vtable acceptance.
+No reader layout, used virtual method, exact ledger or public header changes.

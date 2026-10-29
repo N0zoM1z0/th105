@@ -36,8 +36,10 @@ struct PlayerSlotProfileFileReaderView {
     }
 
     virtual unsigned long last_read_size() const { return bytes_read; }
-    virtual long seek(long, int) { return 0; }
-    virtual unsigned long size() const { return 0; }
+    // Unused here; declarations preserve the real reader slots without
+    // inventing implementations for the call-site view.
+    virtual long seek(long, int);
+    virtual unsigned long size() const;
 
     void *file;
     unsigned long bytes_read;
