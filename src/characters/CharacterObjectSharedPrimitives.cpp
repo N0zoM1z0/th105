@@ -1,4 +1,4 @@
-#include "battle/AnimationSpriteState.hpp"
+#include "battle/AnimationAuxiliarySprite.hpp"
 
 #include <stddef.h>
 
@@ -25,16 +25,12 @@ public:
     CharacterObjectBoundsDescriptor *bounds_194;
 };
 
-struct CharacterObjectAuxiliaryRendererOwner {
-    AnimationSpriteState sprite_000;
-};
-
 class CharacterObjectAuxiliaryRendererSlotView {
 public:
     void release_auxiliary_renderer();
 
     unsigned char reserved_000[0x154];
-    CharacterObjectAuxiliaryRendererOwner *auxiliary_renderer_154;
+    AuxiliarySpriteRuntimeView *auxiliary_renderer_154;
 };
 
 typedef char CharacterObjectBoundsDescriptor_size[

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AnimationSpriteState.hpp"
+#include "AnimationAuxiliarySprite.hpp"
 
 #include <stddef.h>
 
@@ -17,11 +18,6 @@ public:
 class Environment {};
 
 
-struct AnimationAuxiliaryRendererOwner {
-    AnimationSpriteState sprite_000;
-};
-
-
 class AnimationObject : public AnimationObjectBase, public Environment {
 public:
     AnimationObject()
@@ -33,7 +29,7 @@ public:
     virtual ~AnimationObject() throw()
     {
         if (pointer_154 != 0) {
-            delete static_cast<AnimationAuxiliaryRendererOwner *>(pointer_154);
+            delete pointer_154;
             pointer_154 = 0;
         }
     }
@@ -45,7 +41,8 @@ public:
     unsigned char flag_004;
     unsigned char flag_005;
     unsigned char unknown_006[0x1e];
-    void *pointer_154;
+    // Owned by replace_auxiliary_sprite45CD70:0x108, with CSpriteEx at zero.
+    th105::AuxiliarySpriteRuntimeView *pointer_154;
 };
 
 

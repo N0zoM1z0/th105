@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+The separate auxiliary pointer154 now owns the actual0x108 CSpriteEx wrapper
+allocated by45CD70, not the0x12C animation-state object. Both destruction
+consumers are corrected;168 accepted functions remain exact in the focused
+replay. See the added section in EFFECT_SPRITE_OWNER_2026_10_29.md.
+
 Factory-native th105-ida is available: canonical metadata/entry, all five
 legacy mapped-byte samples and inventory/disassembly/decompiler/call-graph
 probes passed independently. The old bridge still lacks its Python runtime;

@@ -37,8 +37,8 @@ known. Member construction followed by the existing reset call naturally
 reproduces421FF0's vptr-before-EH-state order and all79 bytes. No intermediate
 vptr stores, fake inheritance, synthetic SEH or copied code are introduced.
 
-AnimationObjectBase and auxiliary-owner views retain their0x12C physical
-extent. Consumers now address the actual nested sprite for rendering and the
+AnimationObjectBase retains its0x12C physical extent. The separately allocated
+auxiliary renderer at owner154 is0x108, as corrected below. Consumers now address the actual nested sprite for rendering and the
 outer state for position/action values. The background's two sprite vectors
 are corrected to vector<CEffectSprite>; rendering through CSpriteEx remains a
 normal base reference/pointer conversion. Timeline/event vectors are not
@@ -84,3 +84,25 @@ The older CEffectSprite0x12C attribution and corresponding background
 LTCG-slice speculation in historical notes are superseded by this evidence.
 No prior byte acceptance is withdrawn. Incremental totals are1512 exact
 functions /429223 authored bytes; only591 new authored bytes are credited.
+
+## Separate auxiliary-renderer ownership
+
+A subsequent audit closes a different former0x12C assumption. The pointer at
+AnimationObject+154 is allocated by exact45CD70: PUSH108 at45CD92, real new at
+45CD97, CSpriteEx vptr6C06E8 at45CDAA, then publication at45CDB4. The existing
+AuxiliarySpriteRuntimeView already models that0x108 object, including its
+frame offsets and facing byte104. It is not AnimationSpriteState and does not
+own the latter's action/render tail.
+
+AnimationObject now deletes that actual typed pointer, and the independent
+CharacterObject release helper520860 uses the same type. The two false0x12C
+cleanup-only wrappers are removed. Their former byte matches arose because
+both nested sprite destructors collapse to the same IColor-vptr restore before
+unsized delete; that did not prove a shared complete object type.
+
+All30 header-dependent units and the344-byte allocating producer were freshly
+replayed, preserving168 unique previously accepted functions. No exact count
+changes. In particular replacement45CD70 remains344/344, release520860 remains
+40/40 and normal AttackObject destruction45F8E0 remains78/78. Reports are under
+build/frontier-auxiliary-owner-20261029/. No whole-repository cold build or
+runtime test matrix was used.
