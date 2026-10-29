@@ -1663,3 +1663,6 @@ CNetworkServer_read_byte_80,0x0043CBC0,function
 CNetworkClient_set_state_6c,0x0043CD10,function
 CNetworkClient_read_state_6c,0x0043CD20,function
 CNetworkClient_read_byte_81,0x0043CD30,function
+WaveService_initialize_silent_buffers,0x00401990,function
+DirectSoundBuffer_load_raw,0x004183B0,function
+DirectSoundBuffer_clear_storage,0x00418610,function

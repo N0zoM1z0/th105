@@ -3583,3 +3583,26 @@ evidence = "InfoEffectObject primary RTTI slot28; complete3565-instruction body 
 required_rtti_virtual_bodies = [
   { address = "0x0065CB40", size = 14783, sha256 = "e204892021b5c8ab702961a46f650c532e05f5ef4f095ba363e37fcc91638367", slot = "0x006C3814", col_slot = "0x006C37E8", col = "0x006D98B4", type_descriptor = "0x006E7C38", type_name_contains = "InfoEffectObject@@", calls = [{ site = "0x0065CBAD", target = "0x004359F0" }, { site = "0x0065CBDC", target = "0x006609C0" }, { site = "0x0065CCBA", target = "0x006609F0" }, { site = "0x0065D0E8", target = "0x004351C0" }] },
 ]
+
+[[rules]]
+id = "wave-silent-buffer-initialization-authored-106a"
+addresses = ["0x00401990", "0x004183B0", "0x00418610"]
+expected_count = 3
+expected_bytes = 566
+expected_names = ["sub_401990", "sub_4183B0", "sub_418610"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact CSceneManager41E070 owns the two32-buffer PCM preparation policy, actual resource release/virtual initialize/COM split lock-copy-unlock and clear provider. Complete raw CFGs and current direct edges are independently pinned; normal C++/genuine LTCG remain nonexact, no private ABI invented. docs/WAVE_BUFFER_INITIALIZE_2026_10_28.md."
+required_body_hashes = [
+  { address = "0x00401990", size = 234, sha256 = "759c192fc91f8e0e828886d214f79f04f90613b5e5c7dcbdc89ba284e2591902" },
+  { address = "0x004183B0", size = 247, sha256 = "b44b71d10856f0166d1d30304337946ad7f416d912822b6482647504797ad7e0" },
+  { address = "0x00418610", size = 85, sha256 = "39f177f1a5c3c39377db8de13c18a8840140c005e00ff172a877622c976833bc" },
+ ]
+required_direct_edges = [
+  { caller = "0x0041E070", site = "0x0041E0FF", target = "0x00401990", caller_status = "matching" },
+  { caller = "0x00401990", site = "0x00401A20", target = "0x004183B0" },
+  { caller = "0x00401990", site = "0x00401A31", target = "0x004183B0" },
+  { caller = "0x004183B0", site = "0x00418495", target = "0x00418610" },
+]

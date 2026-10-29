@@ -1637,3 +1637,6 @@ CNetworkServer_read_byte_80
 CNetworkClient_set_state_6c
 CNetworkClient_read_state_6c
 CNetworkClient_read_byte_81
+WaveService_initialize_silent_buffers
+DirectSoundBuffer_load_raw
+DirectSoundBuffer_clear_storage
