@@ -26764,3 +26764,19 @@ rel32_targets = [
  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
 ]
+
+[units.exact-first-wave-resource-release-linked]
+kind = "linked_candidate"
+source = "src/audio/WaveResourceRelease.cpp"
+object = "build/match-units/ExactFirst_WaveResourceRelease.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+linked_coff_sources = ["src/library/UnsignedIntList.cpp"]
+link_data_targets = ["__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0"]
+notes = "Genuine wave resource deletion plus source handle recycler in CIL and real lookup CIL/list COFF. Target401BD0 uses shared private-EAX405200 naturally. Full76-byte root and provider audit; docs/WAVE_RESOURCE_RELEASE_2026_10_29.md."
+
+[[units.exact-first-wave-resource-release-linked.functions]]
+address = "0x00401BD0"
+symbol_base = "?release_handle@WaveResourceReleaseView@th105@@QAEEI@Z"
+rel32_targets = ["?lookup_token_417800@CHandleManagerLookupView@th105@@QAEPAPAXI@Z=0x00417800", "?release@WaveSoundPool64@th105@@QAEXI@Z=0x00405200"]
+

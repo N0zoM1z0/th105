@@ -27,7 +27,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00401990,authored_game,audio,authored,observed,wave-silent-buffer-initialization-authored-106a
 0x00401A80,authored_game,audio,authored,observed,canonical-exact-authored
 0x00401AF0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00401BD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00401BD0,authored_game,audio,authored,observed,canonical-exact-authored
 0x00401C20,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00401CE0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00401D50,authored_game,audio,authored,observed,canonical-exact-authored

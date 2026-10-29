@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Wave resource release401BD0 is canonical exact76/76 in genuine source CIL
+with real lookup and ordinary unsigned-list COFF. Independent provider audit
+retains405200 at167/167 through native401C09; no duplicate provider credit. See
+[WAVE_RESOURCE_RELEASE_2026_10_29.md](WAVE_RESOURCE_RELEASE_2026_10_29.md).
+
 Selected-card display448B40 is now complete source-selected with real sprite
 virtuals and SpellRecordView;440/439 remains nonexact+95, no new exact credit.
 The prior optional-handle CSE stop remains; skip spelling/liveness grids. See
