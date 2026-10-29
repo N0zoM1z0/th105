@@ -16799,6 +16799,11 @@ address = "0x0064A000"
 symbol_base = "?reset_character_state@TenshiRoundResetView@th105@@QAEHXZ"
 rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
 
+[[units.gpt-web-character-round-reset-runtime.functions]]
+address = "0x0058A470"
+symbol_base = "?reset_character_state@YukariRoundResetView@th105@@QAEXXZ"
+rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
+
 [units.gpt-web-character-object-manager-runtime]
 kind = "probe"
 source = "src/characters/CharacterObjectManagerRuntime.cpp"

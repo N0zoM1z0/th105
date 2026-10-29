@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+Yukari slot44 reset58A470 now has complete125-byte selected source. It remains
+nonexact on x87/integer zero-store scheduling; all thirteen accepted same-TU
+reset bodies replay unchanged. See [YUKARI_ROUND_RESET_2026_10_29.md](YUKARI_ROUND_RESET_2026_10_29.md).
+
 CSelectObject422140 and InfoEffectObject46F150 are canonical exact59/59 each.
 A four-byte initializing handle value restores the proper base initialization
 phase; fourteen affected accepted functions replay unchanged. See

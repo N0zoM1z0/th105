@@ -323,4 +323,37 @@ int TenshiRoundResetView::reset_character_state()
     return 0;
 }
 
+
+// Pointer-only Yukari slot44 view. Target zeroes the paired portal coordinates
+// and the accessed tail counters/flags; ordinary source remains nonexact on
+// x87/integer store scheduling. No full allocation-size claim.
+struct YukariRoundResetView : FighterResetBaseView {
+    unsigned short counter_7a4, counter_7a6;
+    unsigned char flag_7a8, flag_7a9;
+    unsigned char unknown_7aa[2];
+    float first_x_7ac, second_x_7b0, first_y_7b4, second_y_7b8;
+    unsigned short counters_7bc[7];
+    void reset_character_state();
+};
+void YukariRoundResetView::reset_character_state()
+{
+    reset_extended_state();
+    gravity_138 = -6.0f;
+    first_x_7ac = 0.0f;
+    first_y_7b4 = 0.0f;
+    second_x_7b0 = 0.0f;
+    second_y_7b8 = 0.0f;
+    counters_7bc[0] = 0;
+    counters_7bc[1] = 0;
+    counters_7bc[2] = 0;
+    counters_7bc[5] = 0;
+    counters_7bc[3] = 0;
+    counters_7bc[4] = 0;
+    counters_7bc[6] = 0;
+    counter_7a4 = 0;
+    counter_7a6 = 0;
+    flag_7a8 = 0;
+    flag_7a9 = 0;
+}
+
 } // namespace th105

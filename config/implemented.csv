@@ -1669,3 +1669,4 @@ update_profile_message
 Fighter_render_sprite_transform
 BgmStream_ctor
 BgmStreamHandleManager_acquire
+Yukari_reset_character_state
