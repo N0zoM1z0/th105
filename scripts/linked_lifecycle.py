@@ -75,9 +75,18 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             continue  # The base contract diagnoses malformed function records.
         if "eh_cleanup" in f:
             eh = f["eh_cleanup"]
-            if (not objects or not isinstance(eh, dict) or set(eh) != {"handler", "info"}
-                    or any(not isinstance(v, str) or not ADDRESS.fullmatch(v) for v in eh.values())):
-                raise ValueError("cleanup EH requires exact handler/FuncInfo fields and a global witness")
+            public_lifetime = (
+                runtime == "static" and runtime_data == ["___security_cookie"]
+                and re.fullmatch(r"\?\?[01][A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@[QU]AE@XZ",
+                                 str(f.get("symbol_base", "")))
+                and not any(k in f for k in
+                            ("export_name", "private_from", "private_global",
+                             "private_static_leaf", "vtable_entry")))
+            if (not isinstance(eh, dict) or set(eh) != {"handler", "info"}
+                    or any(not isinstance(v, str) or not ADDRESS.fullmatch(v) for v in eh.values())
+                    or (not objects and not public_lifetime)):
+                raise ValueError("cleanup EH requires exact handler/FuncInfo fields and either "
+                                 "a global witness or an exported native lifetime with the static CRT cookie")
         if "private_global" not in f:
             continue
         witness = f["private_global"]

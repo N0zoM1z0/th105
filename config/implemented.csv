@@ -1677,3 +1677,4 @@ CollisionContext_test_group_b_against_group_b
 MusicList_populate
 ResultList_populate
 CScenarioData_dtor
+CScript_dtor

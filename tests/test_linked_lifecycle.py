@@ -58,6 +58,26 @@ class LifecycleTests(unittest.TestCase):
                 private_global=dict(object=self.symbol, role="destructor"),
                 eh_cleanup=dict(handler="0x006BE09E", info="0x006E477C"))])
 
+    def test_public_lifetime_cleanup_requires_static_cookie_and_unrenamed_export(self):
+        unit = dict(profile=core.PROFILE, object="build/test.dll", link_runtime="static",
+            source="src/battle/ScriptLifecycle.cpp", link_runtime_data=["___security_cookie"],
+            link_data_targets=[], functions=[dict(address="0x00405660",
+                symbol_base="??1CScript@@QAE@XZ",
+                eh_cleanup=dict(handler="0x006BE423", info="0x006E4C58"))])
+        core.validate_contract(unit, set())
+        changes = [lambda u: u.update(link_runtime="import"),
+            lambda u: u.update(link_runtime_data=[]),
+            lambda u: u["functions"][0].update(symbol_base="?clear_commands@CScript@@QAEXXZ"),
+            lambda u: u["functions"][0].update(export_name="_alias"),
+            lambda u: u["functions"][0].update(private_from=dict(caller="0x00405600", site="0x00405633")),
+            lambda u: u["functions"][0].update(private_static_leaf=True),
+            lambda u: u["functions"][0]["eh_cleanup"].update(ignore_catches=True),
+            lambda u: u["functions"][0]["eh_cleanup"].update(info="0x6E4C58")]
+        for change in changes:
+            bad = copy.deepcopy(unit); change(bad)
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                core.validate_contract(bad, set())
+
     def test_global_contract_rejects_waivers_aliases_and_invented_layout_inputs(self):
         unit = self.contract()
         core.validate_contract(unit, {"global", "external"})

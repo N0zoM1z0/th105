@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+CScript destructor405660 is canonical exact95/95 in genuine CIL, with both
+cleanup funclets, complete handler/FuncInfo/unwind map and static CRT cookie
+verified. Existing ctor65/parser505 and old global lifetimes163/228 replay
+unchanged. See [SCRIPT_LIFECYCLE_2026_10_29.md](SCRIPT_LIFECYCLE_2026_10_29.md).
+
 CScenarioData destruction438A70 is canonical exact411/411 through real implicit
 member lifetimes, including the non-polymorphic font at+68. Existing exact
 manager/phase callers prove ownership. See [SCENARIO_DATA_LIFETIME_2026_10_29.md](SCENARIO_DATA_LIFETIME_2026_10_29.md).

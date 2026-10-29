@@ -27235,3 +27235,35 @@ rel32_targets = [
  "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0",
  "??1?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@UAE@XZ=0x00437280",
 ]
+
+[units.exact-first-script-lifecycle-linked]
+kind = "linked_candidate"
+source = "src/battle/ScriptLifecycle.cpp"
+object = "build/match-units/ExactFirst_ScriptLifecycle.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+preserve_public_members = ["?clear_commands@CScript@@QAEXXZ"]
+notes = "Genuine CScript lifecycle CIL with the native public clear boundary preserved. Destructor95 is selected; complete two-state EH cleanup, real CRT cookie and runtime-only static initialization are independently replayed. No synthetic globals, stubs or private ABI declarations. docs/SCRIPT_LIFECYCLE_2026_10_29.md."
+link_data_targets = [
+ "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+ "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+ "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+ "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+ "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+ ]
+
+[[units.exact-first-script-lifecycle-linked.functions]]
+address = "0x00405660"
+symbol_base = "??1CScript@@QAE@XZ"
+eh_cleanup = { handler = "0x006BE423", info = "0x006E4C58" }
+rel32_targets = [
+ "?_Tidy@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@IAEXXZ=0x00405CD0",
+ "?_Tidy@?$deque@PAVCCommandFactoryBase@CScript@@V?$allocator@PAVCCommandFactoryBase@CScript@@@std@@@std@@IAEXXZ=0x00413E10",
+ "?clear_commands@CScript@@QAEXXZ=0x004056C0",
+ "??1?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@@std@@QAE@XZ=0x00405650",
+ "??1?$deque@PAVCCommandFactoryBase@CScript@@V?$allocator@PAVCCommandFactoryBase@CScript@@@std@@@std@@QAE@XZ=0x00413B00",
+ "@__security_check_cookie@4=0x00689D25",
+ "___CxxFrameHandler3=0x006899E7",
+]

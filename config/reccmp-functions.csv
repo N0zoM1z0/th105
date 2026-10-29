@@ -1704,3 +1704,4 @@ CollisionContext_test_group_b_against_group_b,0x0046BCA0,function
 MusicList_populate,0x00445830,function
 ResultList_populate,0x004478B0,function
 CScenarioData_dtor,0x00438A70,function
+CScript_dtor,0x00405660,function
