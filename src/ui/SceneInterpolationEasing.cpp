@@ -1,9 +1,10 @@
+#include "SceneInterpolationRuntime.hpp"
 extern "C" float __cdecl scene_easing_sine(float value);
 extern "C" float __cdecl scene_easing_cosine(float value);
 
 namespace th105 {
 
-float __stdcall apply_scene_easing_450120(int mode, float value)
+float SceneInterpolationRuntimeView::apply_easing(int mode, float value)
 {
     if (value <= 0.0f)
         return 0.0f;

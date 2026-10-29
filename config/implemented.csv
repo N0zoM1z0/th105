@@ -1687,3 +1687,5 @@ CScenarioData_rebuild_window_text
 RenderTimelineEntry_dtor
 SceneRenderCluster_load_timeline
 SceneRenderCluster_dtor
+SceneRenderCluster_interpolate_byte
+SceneRenderCluster_interpolate_float

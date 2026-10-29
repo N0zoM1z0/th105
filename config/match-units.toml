@@ -15240,7 +15240,7 @@ notes = "Current scene-timeline easing helper. Ordinary float C++ clamps progres
 
 [[units.gpt-web-scene-interpolation-easing.functions]]
 address = "0x00450120"
-symbol_base = "?apply_scene_easing_450120@th105@@YGMHM@Z"
+symbol_base = "?apply_easing@SceneInterpolationRuntimeView@th105@@QAEMHM@Z"
 rel32_targets = [
   "_scene_easing_sine=0x00406360",
   "_scene_easing_cosine=0x004063D0",
@@ -27483,3 +27483,21 @@ rel32_targets = [
  "?erase@?$_Tree@V?$_Tmap_traits@HPAURenderTimelineEntry@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAURenderTimelineEntry@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0043D270",
  "?erase@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0041EFB0",
 ]
+
+[units.exact-first-scene-interpolation]
+kind = "probe"
+source = "src/ui/SceneInterpolationRuntime.cpp"
+object = "build/match-units/ExactFirst_SceneInterpolation.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Actual member easing call preserves the incoming scene receiver in ECX. Direct use of its x87 result avoids extra float narrowing. Float160-byte root closes; byte214/native211 remains nonexact on a current-pointer/start reload. docs/SCENE_INTERPOLATION_RECEIVER_2026_10_29.md."
+
+[[units.exact-first-scene-interpolation.functions]]
+address = "0x004501B0"
+symbol_base = "?interpolate_byte@SceneInterpolationRuntimeView@th105@@QAEXPAE0PBUSceneInterpolationEntry24@2@I@Z"
+rel32_targets = ["?apply_easing@SceneInterpolationRuntimeView@th105@@QAEMHM@Z=0x00450120"]
+
+[[units.exact-first-scene-interpolation.functions]]
+address = "0x00450290"
+symbol_base = "?interpolate_float@SceneInterpolationRuntimeView@th105@@QAEXPAM0PBUSceneInterpolationEntry24@2@I@Z"
+rel32_targets = ["?apply_easing@SceneInterpolationRuntimeView@th105@@QAEMHM@Z=0x00450120"]

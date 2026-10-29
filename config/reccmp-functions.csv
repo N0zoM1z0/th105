@@ -1714,3 +1714,5 @@ CScenarioData_rebuild_window_text,0x00456760,function
 RenderTimelineEntry_dtor,0x0041EC10,function
 SceneRenderCluster_load_timeline,0x004540F0,function
 SceneRenderCluster_dtor,0x0041F1F0,function
+SceneRenderCluster_interpolate_byte,0x004501B0,function
+SceneRenderCluster_interpolate_float,0x00450290,function

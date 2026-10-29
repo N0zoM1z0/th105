@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Scene float interpolation450290 is canonical exact160/160 after recovering
+the real member easing call: incoming ECX is preserved, rather than treating
+450120 as free stdcall. Easing131 stays exact; byte interpolation214/211 remains
+nonexact. See [SCENE_INTERPOLATION_RECEIVER_2026_10_29.md](SCENE_INTERPOLATION_RECEIVER_2026_10_29.md).
+
 Scene render-cluster destruction41F1F0 is canonical exact247/247 on the first
 build with recovered record/multiset/CScript ownership. Implicit member
 destruction closes the old scheduling stop without changing scene tail views.
