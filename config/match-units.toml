@@ -3028,6 +3028,22 @@ rel32_targets = [
   "?update_active@CMenuResult@th105@@AAE_NXZ=0x004472A0",
 ]
 
+[[units.cross-v106a-menu-result-update.functions]]
+address = "0x00447690"
+symbol_base = "??0CMenuResult@th105@@QAE@XZ"
+rel32_targets = [
+ "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+ "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
+ "??0GuideOverlay@th105@@QAE@XZ=0x0043F540",
+ "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?erase@SelectIntVector16@th105@@QAE?AUSelectIntVectorIterator@2@U32@0@Z=0x00424E20",
+ "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
+ "?append@SelectIntVector16@th105@@QAEXABH@Z=0x004251A0",
+ "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
+ "?refresh_selected_character@CMenuResult@th105@@AAEXXZ=0x00447080",
+]
+
 [units.cross-v106a-battle-indexed-event]
 kind = "probe"
 source = "src/battle/BattleEvents.cpp"

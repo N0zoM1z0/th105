@@ -1683,3 +1683,4 @@ WaveResourceManager_release_handle,0x00401BD0,function
 CMenuBattle_ctor,0x00440B50,function
 CMenuBattle_update,0x004407E0,function
 Menu_dtor,0x00440730,function
+CMenuResult_ctor,0x00447690,function

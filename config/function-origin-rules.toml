@@ -3740,3 +3740,17 @@ confidence = "observed"
 evidence = "CMenuBattle RTTI vtable6C1A5C owns update slot08 at6C1A64. Exact render440780 and scalar deleting destructor440F00 occupy the same independently verified table. Complete267-instruction797-byte callable has12 returns and two switch tables. Key-config allocation and replay transition policy establish authored ownership; whole892/880 source remains nonexact. docs/BATTLE_MENU_UPDATE_2026_10_29.md."
 required_body_hashes = [{ address = "0x004407E0", size = 797, sha256 = "97d91340e08278600b314445f693a0f0007562d35631d5f9213dcd0cb7590532" }]
 required_dword_values = [{ address = "0x006C1A64", value = "0x004407E0" }, { address = "0x006C1A5C", value = "0x00440F00" }, { address = "0x006C1A68", value = "0x00440780" }, { address = "0x006C1A58", value = "0x006D8168" }, { address = "0x006D8174", value = "0x006E6BDC" }]
+
+[[rules]]
+id = "result-menu-constructor-authored-106a"
+addresses = ["0x00447690"]
+expected_count = 1
+expected_bytes = 502
+expected_names = ["sub_447690"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact Title update425990 calls447690 at425C75. CMenuResult vtable6C2070,15 ResultList members, score-unlocked character scan, cursor/guide and selected-character refresh establish authored constructor ownership. Native initial texture004 zero was missing from retained source and is restored; full495/502 remains nonexact. docs/RESULT_MENU_INITIALIZATION_2026_10_29.md."
+required_body_hashes = [{ address = "0x00447690", size = 502, sha256 = "1b56434f8d09960a7d90dfccfe7daeadfa0ef4b7e9035e5cd1df39baaa90a65a" }]
+required_direct_edges = [{ caller = "0x00425990", site = "0x00425C75", target = "0x00447690", caller_status = "matching" }]

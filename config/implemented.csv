@@ -1657,3 +1657,4 @@ WaveResourceManager_release_handle
 CMenuBattle_ctor
 CMenuBattle_update
 Menu_dtor
+CMenuResult_ctor

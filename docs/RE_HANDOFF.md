@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Result-menu constructor447690 now restores the missing initial texture004=0
+store proved at4476CF. Whole495/502 remains nonexact+45; four accepted same-TU
+methods replay43/270/256/30 unchanged. See
+[RESULT_MENU_INITIALIZATION_2026_10_29.md](RESULT_MENU_INITIALIZATION_2026_10_29.md).
+
 Menu base destructor440730 independently matches17/17 from the existing real
 Menu.hpp definition emitted by the battle-menu constructor. The800-byte
 constructor remains nonexact; no shared source changed or larger credit added.

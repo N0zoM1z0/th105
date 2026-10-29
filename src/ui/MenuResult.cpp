@@ -11,6 +11,7 @@ extern "C" th105::CInputManager *g_active_menu_input;
 namespace th105 {
 
 CMenuResult::CMenuResult()
+    : texture_004(0)
 {
     g_scene_mode = 22;
     design_1050.load(menu_result_design_path);
