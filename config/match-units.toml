@@ -27392,3 +27392,24 @@ rel32_targets = [
  "__invalid_parameter_noinfo=0x0068A143",
  "?erase@?$list@UScenarioFadeEntryView@th105@@V?$allocator@UScenarioFadeEntryView@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004555B0",
 ]
+
+[units.exact-first-scenario-text-rebuild]
+kind = "probe"
+source = "src/battle/ScenarioTextRebuild.cpp"
+object = "build/match-units/ExactFirst_ScenarioTextRebuild.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete563-byte scenario window-text replacement with genuine sprite/handle lifetimes, checked list ownership and text texture result. Two tail bytes are semantic alpha/delta; remaining entry padding is not copied. docs/SCENARIO_TEXT_REBUILD_2026_10_29.md."
+
+[[units.exact-first-scenario-text-rebuild.functions]]
+address = "0x00456760"
+symbol_base = "?rebuild_text@ScenarioTextRebuildView@th105@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = [
+ "??1RebuildEntryView@th105@@QAE@XZ=0x00434C60",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?_Buynode@?$list@URebuildEntryView@th105@@V?$allocator@URebuildEntryView@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@URebuildEntryView@th105@@V?$allocator@URebuildEntryView@th105@@@std@@@2@PAU342@0ABURebuildEntryView@th105@@@Z=0x00455BE0",
+ "?_Incsize@?$list@URebuildEntryView@th105@@V?$allocator@URebuildEntryView@th105@@@std@@@std@@IAEXI@Z=0x00455E50",
+ "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "__invalid_parameter_noinfo=0x0068A143",
+]

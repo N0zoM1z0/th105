@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Scenario window-text rebuild456760 is canonical exact563/563. Real entry
+alpha/delta initialization, sprite lifetime and checked-list ownership close
+the entire body; native100-byte node copy and85-byte entry cleanup also replay.
+See [SCENARIO_TEXT_REBUILD_2026_10_29.md](SCENARIO_TEXT_REBUILD_2026_10_29.md).
+
 Scenario064 is now correctly typed as its selected CInputManager pointer, not
 a scenario ID. The interpreter reads actual hold buttons0/2; configure90/90
 and all21 affected accepted functions remain exact. Constructor/render residuals
