@@ -3,7 +3,7 @@ namespace th105 {
 #define URAND(n) static_cast<float>(static_cast<unsigned>(aya_random(n)))
 #define JITTER_ANGLE(p,opposite) do {if(opposite)(p)[0]=URAND(40)*static_cast<double>(0.1f)+(F(0x740)+180.0)-2.0;else(p)[0]=URAND(40)*static_cast<double>(0.1f)+F(0x740)-2.0;}while(0)
 #define WIDE_ANGLE(p,opposite) do {if(opposite)(p)[0]=URAND(30)+(F(0x740)+180.0)-15.0;else(p)[0]=URAND(30)+F(0x740)-15.0;}while(0)
-#define ORBIT_SPAWN(p,radius,range,offset) do {double baseY=aya_sine(180.0-(p)[0])*(radius)+(F(0xf0)+100.0);double cosine=aya_cosine(180.0-(p)[0])*(radius);int facing=B(0x104);double baseX=cosine*static_cast<signed char>(facing)+F(0xec);float y=(URAND(range)+baseY)-(offset);float x=(URAND(range)+baseX)-(offset);spawn(903,x,y,facing,1,p,3);}while(0)
+#define ORBIT_SPAWN(p,radius,range,offset) do {double baseY=aya_sine(180.0-(p)[0])*(radius)+(F(0xf0)+100.0);double cosine=aya_cosine(180.0-(p)[0])*(radius);int facing=B(0x104);double baseX=cosine*static_cast<signed char>(facing)+F(0xec);spawn(903,(URAND(range)+baseX)-(offset),(URAND(range)+baseY)-(offset),facing,1,p,3);}while(0)
 #define FIELD(T,o) (*reinterpret_cast<T *>(raw+(o)))
 #define F(o) FIELD(float,o)
 #define I(o) FIELD(int,o)
@@ -203,8 +203,8 @@ case 214:{
   ++S(0x736);S(0x734)=static_cast<short>(S(0x732)-static_cast<int>(F(0x740)));
   if(S(0x734)>180)S(0x734)-=360;
   if(S(0x734)<-180)S(0x734)+=360;
-  if(S(0x734)>0)F(0x740)+=I(0x4b8)?1.0:2.0;
-  if(S(0x734)<0)F(0x740)-=I(0x4b8)?1.0:2.0;
+  if(S(0x734)>0){if(!I(0x4b8))F(0x740)+=2.0;else F(0x740)+=1.0;}
+  if(S(0x734)<0){if(!I(0x4b8))F(0x740)-=2.0;else F(0x740)-=1.0;}
   F(0xf4)=aya_cosine(F(0x740))*F(0x73c);
   F(0xf8)=aya_sine(F(0x740))*F(0x73c);
   if(F(0xf0)>680.0&&F(0xf8)>0.0)F(0xf8)=0.0;
@@ -555,7 +555,7 @@ case 508:{
  }if(FRAME(0,8))F(0x100)=0.5f;return;
 }
 
-case 510:{landing();B(0x17c)=0;ADVANCE_TO(0);if(ENTRY(1)){set_action_and_finalize(0);return;}if(FRAME(0,4)){dispatch_character_wave_handle(16);I(0x180)=1;counter(200,120);phase_counter(50);float packet[3]={0.0f,0.0f,1.0f};spawn(812,175*C(0x104)+F(0xec),F(0xf0)+130.0,B(0x104),1,packet,3);packet[1]=150.0f;packet[2]=0.0f;float n=0.0f;do{packet[0]=n*45.0;spawn(812,175*C(0x104)+F(0xec),F(0xf0)+130.0,B(0x104),1,packet,3);n+=1.0;}while(n<8.0);n=0.0f;do{packet[0]=n*60.0+30.0;packet[1]=15.0f;packet[2]=2.0f;spawn(812,175*C(0x104)+F(0xec),F(0xf0),B(0x104),(packet[0]>=0.0&&packet[0]<=180.0)?1:-1,packet,3);n+=1.0;}while(n<6.0);}return;}
+case 510:{landing();B(0x17c)=0;ADVANCE_TO(0);if(ENTRY(1)){set_action_and_finalize(0);return;}if(FRAME(0,4)){dispatch_character_wave_handle(16);I(0x180)=1;counter(200,120);phase_counter(50);float packet[3]={0.0f,0.0f,1.0f};spawn(812,175*C(0x104)+F(0xec),F(0xf0)+130.0,B(0x104),1,packet,3);packet[1]=150.0f;packet[2]=0.0f;float n=0.0f;do{packet[0]=n*45.0;spawn(812,175*C(0x104)+F(0xec),F(0xf0)+130.0,B(0x104),1,packet,3);n+=1.0;}while(n<8.0);n=0.0f;do{packet[0]=n*60.0+30.0;packet[1]=15.0f;packet[2]=2.0f;if(packet[0]>=0.0&&packet[0]<=180.0)spawn(812,175*C(0x104)+F(0xec),F(0xf0),B(0x104),1,packet,3);else spawn(812,175*C(0x104)+F(0xec),F(0xf0),B(0x104),-1,packet,3);n+=1.0;}while(n<6.0);}return;}
 
 case 520:{
  if(!S(0x13e)||S(0x13e)==4||S(0x13e)==5)landing();B(0x17c)=1;

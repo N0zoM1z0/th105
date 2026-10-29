@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Latest giant-source checkpoint: Aya602250 now preserves native214 arithmetic
+branches,13 action740 orbit/RNG argument preparations and510 layer branches.
+Full65692/native66704 SHA73065d6a remains nonexact+48; frame3E8 and85 payload
+homes retained. All114 direct/FP-family censuses agree, five virtual physical
+count residuals remain. No exact credit. See the Oct29 appendix in
+[AYA_ACTION_STATE_2026_10_28.md](AYA_ACTION_STATE_2026_10_28.md).
+
 Line primitive401180 is now complete source-selected148/148, nonexact+20.
 Native two-vertex Z0/RHW1 and float half-pixel operations are closed; residual
 color-store/zero-argument scheduling remains. No ABI or padding forcing. See

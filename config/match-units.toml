@@ -26031,7 +26031,7 @@ source = "src/characters/AyaActionState.cpp"
 object = "build/match-units/ExactFirst_AyaActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete manual114-action/default source for Aya Fighter602250, target65601/full66704. Independently attested raw CFG and Ghidra navigation; seven tables/three remaps. Whole replay nonexact; no partial credit. docs/AYA_ACTION_STATE_2026_10_28.md."
+notes = "Complete114-action JP1.06a Aya Fighter root; current65692/native66704 remains nonexact+48. Native214 arithmetic branches,13 orbit/RNG argument lifetimes and510 layer branches are recovered. Frame3E8 and85 payload homes retained; full per-action direct/FP census agrees, five virtual physical-count differences remain. docs/AYA_ACTION_STATE_2026_10_28.md."
 
 [[units.exact-first-aya-action-state.functions]]
 address = "0x00602250"
