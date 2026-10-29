@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Corrected a historical owner mix-up:454F10 advances the whole524-byte scenario,
+not its194-byte font member. The font view is now nonpolymorphic and the update/
+advance return is a signed byte. All24 affected accepted functions replay exact.
+See [SCENARIO_FONT_OWNER_CORRECTION_2026_10_29.md](SCENARIO_FONT_OWNER_CORRECTION_2026_10_29.md).
+
 Scenario list fade455850 now has complete selected signed-step/unsigned-alpha
 source, including strict-underflow retirement and both color paths. Root418/431
 remains nonexact; generated erase102/102 independently confirms the provider.

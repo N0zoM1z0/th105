@@ -23,7 +23,9 @@ closes the complete interpreter from the raw PE:
   explicit aligned stack allocation is288, and the sole physical RET is RET0.
   The body has216 direct and14 indirect calls, including three IAT calls.
 - Return exits set **AL** to00/01/FF. Upper EAX is not established. The old
-  `CScenarioData::update` int declaration does not establish this ABI.
+  `CScenarioData::update` int declaration did not establish this ABI. It and the
+  separate advance-loop ownership are corrected to a signed-byte contract in
+  SCENARIO_FONT_OWNER_CORRECTION_2026_10_29.md.
 
 The interpreter's game text, character, input, effect, audio and result policies
 establish authored ownership independently of its surrounding compiler/STL
@@ -40,8 +42,8 @@ The new pointer-only member view uses a signed byte return hypothesis and the
 existing physical Scenario/container/resource layouts; it is never constructed
 or embedded. The initial whole-source comparison changed no accepted shared
 header or compiler profile; the later entry-ownership correction is recorded
-below. The old nominal return declaration remains unmodified pending
-caller/type evidence.
+below. The old nominal return declaration was later corrected with the actual
+story/ending caller evidence; see SCENARIO_FONT_OWNER_CORRECTION_2026_10_29.md.
 
 Source is **identified/unselected**, absent from `implemented.csv` and
 `matches.csv`. Semantic coverage still needs instruction review, and no

@@ -20,7 +20,7 @@ struct StoryEndingSubobjectView {
     virtual void slot_00();
     unsigned char reserved_004[0x520];
     void load_story_page_4583e0(const char *path);
-    int advance_until_ready_454f10();
+    signed char advance_until_ready_454f10();
 };
 
 typedef char StoryEndingSubobjectView_size[

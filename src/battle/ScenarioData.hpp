@@ -34,12 +34,13 @@ struct ScenarioEffectConfig128 {
 typedef char ScenarioEffectConfig128_size_must_be_0x128[
     sizeof(ScenarioEffectConfig128) == 0x128 ? 1 : -1];
 
+// Legacy field-name view of TextFontOwner194, not a polymorphic effect object.
+// Native411430/4114C0 own the font/DC lifetime. The separate454F10 virtual
+// advance loop belongs to the enclosing524-byte CScenarioData, not this member.
 struct ScenarioEffectOwner194 {
-    virtual bool slot_00();
-    virtual bool slot_04();
-    virtual bool advance_08();
-    virtual bool slot_0c();
-
+    ScenarioEffectOwner194();
+    ~ScenarioEffectOwner194();
+    void *dc_000;
     void *field_004;
     void *field_008;
     ScenarioEffectConfig128 config_00c;
@@ -56,7 +57,6 @@ struct ScenarioEffectOwner194 {
     unsigned int field_190;
 
     void configure(const ScenarioEffectConfig128 *config);
-    bool advance_until_ready_454f10();
 };
 
 typedef char ScenarioEffectOwner194_size_must_be_0x194[
@@ -153,7 +153,7 @@ public:
     void set_effect_color_bytes(
         unsigned char c1, unsigned char c3, unsigned char c5);
     virtual void clear_runtime();
-    virtual int update();
+    virtual signed char update();
     virtual void render();
 
     SystemEffectManager< ::SystemEffectObject> system_effects_004;
@@ -184,6 +184,7 @@ public:
     int field_520;
 
     int load_story_page_4583e0(const char *path);
+    signed char advance_until_ready_454f10();
     void reset_runtime_state();
     void trim_render_entries_and_begin_fade_455cd0();
 };

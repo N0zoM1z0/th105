@@ -12060,7 +12060,7 @@ address = "0x0045A2E0"
 symbol_base = "?advance_scenario_script_page_458d10@BattlePhaseBlock@th105@@QAEXXZ"
 rel32_targets = [
   "?load_story_page_4583e0@StoryScriptSubobjectLayout@th105@@QAEXPBD@Z=0x004583E0",
-  "?advance_until_ready_454f10@StoryScriptSubobjectLayout@th105@@QAEHXZ=0x00454F10",
+  "?advance_until_ready_454f10@StoryScriptSubobjectLayout@th105@@QAECXZ=0x00454F10",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
@@ -15768,15 +15768,15 @@ symbol_base = "??0RenderTimelineEntry@th105@@QAE@XZ"
 
 [units.gpt-web-scenario-effect-advance]
 kind = "probe"
-source = "src/battle/ScenarioEffectAdvance.cpp"
+source = "src/battle/ScenarioAdvance.cpp"
 object = "build/match-units/GptWeb_ScenarioEffectAdvance.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Target-pinned exact ScenarioEffectOwner virtual advance loop. The vtable +0x08 call and 0x194 layout are corroborated by neighboring scenario setup code."
+notes = "Corrected ownership: CScenarioData524 virtual update loop, not the nonpolymorphic194-byte font member. Native slot08 returns AL00/01/FF; two story callers pass the whole scenario object. Complete18-byte replay remains required."
 
 [[units.gpt-web-scenario-effect-advance.functions]]
 address = "0x00454F10"
-symbol_base = "?advance_until_ready_454f10@ScenarioEffectOwner194@th105@@QAE_NXZ"
+symbol_base = "?advance_until_ready_454f10@CScenarioData@th105@@QAECXZ"
 
 [units.gpt-web-scenario-text-entry-lifetime]
 kind = "probe"
@@ -16242,7 +16242,7 @@ rel32_targets = [
   "?get_score_data_story_progress@th105@@YAPAUScoreDataStoryProgressView@1@XZ=0x0043AF20",
   "?record_story_event_42e750@ScoreDataStoryProgressView@th105@@QAEXHH@Z=0x0042E750",
   "?load_story_page_4583e0@StoryEndingSubobjectView@th105@@QAEXPBD@Z=0x004583E0",
-  "?advance_until_ready_454f10@StoryEndingSubobjectView@th105@@QAEHXZ=0x00454F10",
+  "?advance_until_ready_454f10@StoryEndingSubobjectView@th105@@QAECXZ=0x00454F10",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [

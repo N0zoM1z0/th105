@@ -2,11 +2,11 @@
 
 namespace th105 {
 
-bool ScenarioEffectOwner194::advance_until_ready_454f10()
+signed char CScenarioData::advance_until_ready_454f10()
 {
-    bool ready;
+    signed char ready;
     do {
-        ready = advance_08();
+        ready = update();
     } while (!ready);
     return ready;
 }
