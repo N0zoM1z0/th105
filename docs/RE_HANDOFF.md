@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Timeline entry destruction41EC10 is canonical exact223/223. Its first deque
+owns texture handles, not sprites; the header is corrected and all three
+existing constructor/render/list consumers stay exact. See
+[RENDER_TIMELINE_ENTRY_OWNERSHIP_2026_10_29.md](RENDER_TIMELINE_ENTRY_OWNERSHIP_2026_10_29.md).
+
 Scenario window-text rebuild456760 is canonical exact563/563. Real entry
 alpha/delta initialization, sprite lifetime and checked-list ownership close
 the entire body; native100-byte node copy and85-byte entry cleanup also replay.

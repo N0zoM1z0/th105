@@ -676,7 +676,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041EB50,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x0041EB90,compiler_generated,ui,exclude,observed,vc8-generated-scene-render-cluster-node-comdats-106a
 0x0041EBD0,compiler_generated,ui,exclude,observed,vc8-generated-scene-render-cluster-cleanup-std-comdats-106a
-0x0041EC10,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041EC10,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041ECF0,compiler_generated,ui,exclude,observed,vc8-generated-scene-render-cluster-node-comdats-106a
 0x0041EFB0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0041F080,compiler_generated,ui,exclude,observed,vc8-generated-scene-render-cluster-cleanup-std-comdats-106a

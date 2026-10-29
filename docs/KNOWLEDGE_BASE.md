@@ -2901,3 +2901,11 @@ receipt, still nonexact by33 bytes. Checked sprite access must precede window
 scale evaluation. The remaining receiver/map allocation and iterator-word
 publication differences are not waived; see
 [SCENARIO_RENDER_2026_10_29.md](SCENARIO_RENDER_2026_10_29.md).
+
+## Timeline entry ownership correction, 2026-10-29
+
+RenderTimelineEntry000 owns deque<unsigned> texture tokens, not a second
+sprite deque. Loader4540F0 and destructor41EC10 independently prove this; the
+new destructor is canonical exact223/223 and all three accepted shared-header
+consumers remain exact. See
+[RENDER_TIMELINE_ENTRY_OWNERSHIP_2026_10_29.md](RENDER_TIMELINE_ENTRY_OWNERSHIP_2026_10_29.md).

@@ -1684,3 +1684,4 @@ ScenarioResultResource_ctor
 SystemEffectObjectManager_acquire_and_link
 CScenarioData_update_render_list_fade
 CScenarioData_rebuild_window_text
+RenderTimelineEntry_dtor

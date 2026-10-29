@@ -27413,3 +27413,21 @@ rel32_targets = [
  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.exact-first-render-timeline-entry-destructor]
+kind = "probe"
+source = "src/ui/RenderTimelineEntryDestructor.cpp"
+object = "build/match-units/ExactFirst_RenderTimelineEntryDestructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete223-byte timeline entry destructor. The first deque owns unsigned texture handles and the second owns CSpriteEx values; release each handle before pop_front, then real member destruction. docs/RENDER_TIMELINE_ENTRY_OWNERSHIP_2026_10_29.md."
+
+[[units.exact-first-render-timeline-entry-destructor.functions]]
+address = "0x0041EC10"
+symbol_base = "??1RenderTimelineEntry@th105@@QAE@XZ"
+rel32_targets = [
+ "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
+ "?_Tidy@?$deque@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@IAEXXZ=0x00420AF0",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "__invalid_parameter_noinfo=0x0068A143",
+]

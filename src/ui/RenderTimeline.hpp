@@ -9,7 +9,8 @@
 namespace th105 {
 
 struct RenderTimelineEntry {
-    std::deque<CSpriteEx> sprites_00;
+    // Native loader pushes four-byte texture tokens; these are not sprites.
+    std::deque<unsigned> texture_handles_00;
     std::deque<CSpriteEx> sprites_14;
     float translate_x_28;
     float translate_y_2c;
@@ -35,6 +36,7 @@ struct RenderTimelineEntry {
     int duration_78;
 
     RenderTimelineEntry();
+    ~RenderTimelineEntry();
     void render();
 };
 
