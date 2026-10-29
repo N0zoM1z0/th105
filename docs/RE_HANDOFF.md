@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Replay consumer44E210 is now canonical exact170/170. Unsigned destination
+words remove the false signed conversion and old register-permutation stop;
+incoming signed packet view remains unchanged. Countdown precedes lock entry.
+See [NETWORK_REPLAY_CONSUMER_2026_10_29.md](NETWORK_REPLAY_CONSUMER_2026_10_29.md).
+
 Character destructor462CE0 is complete905-byte source, including its remote
 texture loop and two range-error tails. Real handle-class vector removes the
 scalar memmove path; just one commutative SIB byte remains nonexact. Constructor

@@ -26918,3 +26918,22 @@ rel32_targets = [
  "??1CharacterSpriteResource98@th105@@QAE@XZ=0x00465420",
  "?_Xran@?$deque@IV?$allocator@I@std@@@std@@KAXXZ=0x00431610",
 ]
+
+[units.exact-first-network-replay-consumer]
+kind = "probe"
+source = "src/network/NetworkReplayConsumer.cpp"
+object = "build/match-units/ExactFirst_NetworkReplayConsumer.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete170-byte replay consumer. Unsigned16-bit queue values and pre-lock countdown restore native promotion/register allocation without forcing. docs/NETWORK_REPLAY_CONSUMER_2026_10_29.md."
+
+[[units.exact-first-network-replay-consumer.functions]]
+address = "0x0044E210"
+symbol_base = "?consume@ReplayConsumerView@th105@@QAEXPAUReplayInputPacketView@2@@Z"
+rel32_targets = [
+ "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+ "?at@ReplayDequeAccessView@th105@@QAEAAFI@Z=0x0042D140",
+ "?push_back@?$deque@GV?$allocator@G@std@@@std@@QAEXABG@Z=0x0042AA90",
+ "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+ "?append@ReplayInputSinkView@th105@@QAEXG@Z=0x0042B270",
+]
