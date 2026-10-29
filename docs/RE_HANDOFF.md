@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+Profile message43F6E0 now has complete choice/accept/cancel source. First217
+bytes match; whole294/298 remains nonexact because VC8 shares a zero-return
+block. See [PROFILE_MESSAGE_UPDATE_2026_10_29.md](PROFILE_MESSAGE_UPDATE_2026_10_29.md).
+
 Profile defaults432050 is canonical exact334/334. Typed InputBindings and
 primary-before-secondary initialization close the old scheduling stop without
 shared-header changes. See [PROFILE_DEFAULTS_2026_10_29.md](PROFILE_DEFAULTS_2026_10_29.md).

@@ -1665,3 +1665,4 @@ Character_dtor
 NetworkClient_consume_replay
 NetworkInputEndpoint_ctor
 ProfileDefaults_initialize
+update_profile_message

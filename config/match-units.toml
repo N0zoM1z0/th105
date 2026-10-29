@@ -26973,3 +26973,20 @@ rel32_targets = [
  "?_Tidy@?$deque@GV?$allocator@G@std@@@std@@IAEXXZ=0x00420A80",
  "_memset=0x0068A440",
 ]
+
+[units.exact-first-profile-message-update]
+kind = "probe"
+source = "src/ui/ProfileMessageUpdate.cpp"
+object = "build/match-units/ExactFirst_ProfileMessageUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete source for298-byte message update: choice visibility, accept and cancel paths. Natural294-byte source remains nonexact due zero-return sharing; no exact credit. docs/PROFILE_MESSAGE_UPDATE_2026_10_29.md."
+
+[[units.exact-first-profile-message-update.functions]]
+address = "0x0043F6E0"
+symbol_base = "_update_profile_message"
+rel32_targets = [
+ "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+ "_dispatch_indexed_event=0x0043B1A0",
+ "_is_menu_initial_press=0x0043ABD0",
+]
