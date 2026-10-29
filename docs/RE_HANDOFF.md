@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Latest source correction: audio listener removal419400 now retains the end
+iterator exactly as native419419/419425/419441 show across the loop backedge.
+Whole198/193 stays nonexact; creation419350 remains169 exact and wait129/184.
+Do not retry std::find here: this native loop performs checked dereferences.
+See the later appendix in AUDIO_SCHEDULER_LISTENERS_LTCG_2026_10_29.md.
+
 Current bounded checkpoint: global reset-listener removal414D50 is now fully
 source-selected and positively authored from exact effect shutdown418040.
 Whole140/140 remains nonexact first+10; native early argument load and private
