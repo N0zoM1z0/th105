@@ -1855,18 +1855,6 @@ confidence = "observed"
 evidence = "Current resource dispatcher 0x00408F70 owns one 8-byte palette object and routes normal BMP paths to 0x00419A60 while extension-rewritten raw palette paths call 0x00419E80. The BMP body reads a canonical 14-byte file header, 40-byte info header and 0x400 palette then converts 8-bit entries to requested 16/24/32-bit storage; the sibling frees old storage, reads a one-byte format and loads 0x200/0x400 bytes. Both are game-side FileReaderOwner consumers. Source is semantically closed; exactness remains blocked only by target-local stack/private-receiver codegen."
 
 [[rules]]
-id = "effect-object-derived-ctors-authored-106a"
-addresses = ["0x00422140", "0x0046F150"]
-expected_count = 2
-expected_bytes = 118
-expected_names = ["sub_422140", "sub_46F150"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Current RTTI COLs 0x006D782C/0x006D98B4 identify CSelectObject and InfoEffectObject. Their base descriptors independently fix EffectObjectBase at +0, non-polymorphic CObjectBase at +0x158, AnimationObject at +0 and AnimationObjectBase at +4. Canonical-exact CHandleManagerEx<CSelectObject/InfoEffectObject>::acquire roots directly instantiate these constructors. Natural inheritance reproduces both 59-byte extents; the only residual is a target LEA/store scheduler at +0x06."
-
-[[rules]]
 id = "wave-data-resource-loaders-authored-106a"
 addresses = ["0x00419590", "0x00419690"]
 expected_count = 2

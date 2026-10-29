@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+CSelectObject422140 and InfoEffectObject46F150 are canonical exact59/59 each.
+A four-byte initializing handle value restores the proper base initialization
+phase; fourteen affected accepted functions replay unchanged. See
+[OBJECT_HANDLE_VALUE_2026_10_29.md](OBJECT_HANDLE_VALUE_2026_10_29.md).
+
 BGM stream constructor402820 is canonical exact89/89 in genuine CIL. Actual
 Ogg source30 ownership restores store ordering; both private constructor edges
 and the complete two-slot CDSBuffer table are validated. Supporting allocator

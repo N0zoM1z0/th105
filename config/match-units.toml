@@ -18546,7 +18546,7 @@ source = "src/battle/EffectHandlePoolAcquire.cpp"
 object = "build/match-units/GptWeb_EffectObjectHierarchyLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI PMDs prove CSelectObject/InfoEffectObject share EffectObjectBase with physical AnimationObject +0 and CObjectBase +0x158. The real handle-pool acquire TU instantiates their inline constructors and therefore emits the AnimationObject scalar lifetime COMDAT. AnimationObject +0x154 owns the same non-polymorphic {CEffectSprite} wrapper independently exact-backed by CharacterObject_release_auxiliary_renderer. Scalar lifetime is canonical 73/73 and CSelectObject-owned update slot +0x28 is a natural 5/5 tail-jump facade to exact advance_frame_and_dispatch; both derived ctors are 59/59 but retain only the target LEA/store scheduler residual at +0x06."
+notes = "Current RTTI PMDs prove CSelectObject/InfoEffectObject share EffectObjectBase with physical AnimationObject +0 and CObjectBase +0x158. The real handle-pool acquire TU instantiates their inline constructors and therefore emits the AnimationObject scalar lifetime COMDAT. AnimationObject +0x154 owns the same non-polymorphic {CEffectSprite} wrapper independently exact-backed by CharacterObject_release_auxiliary_renderer. Scalar lifetime is canonical 73/73 and CSelectObject-owned update slot +0x28 is a natural 5/5 tail-jump facade to exact advance_frame_and_dispatch; both derived ctors are now canonical59/59 with initialization-bearing four-byte handle values. All affected accepted consumers retain their matches; docs/OBJECT_HANDLE_VALUE_2026_10_29.md."
 
 [[units.gpt-web-effect-object-hierarchy-lifetime.functions]]
 address = "0x00422180"

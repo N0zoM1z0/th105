@@ -5,17 +5,34 @@
 #include <stddef.h>
 
 
+// Initialization-bearing four-byte handle view. The ordinary unsigned API is
+// preserved while construction belongs to the value, before the base body.
+class ObjectHandleValue {
+public:
+    ObjectHandleValue() : value(0) {}
+    operator unsigned() const { return value; }
+    ObjectHandleValue &operator=(unsigned token)
+    {
+        value = token;
+        return *this;
+    }
+
+    unsigned value;
+};
+
 class CObjectBase {
 public:
     CObjectBase()
     {
-        handle_token_004 = 0;
         state_000 = 1;
     }
 
     unsigned state_000;
-    unsigned handle_token_004;
+    ObjectHandleValue handle_token_004;
 };
+
+typedef char ObjectHandleValue_size_must_be_4[
+    sizeof(ObjectHandleValue) == 4 ? 1 : -1];
 
 
 class CharacterObject : public CObjectBase, public AttackObject {

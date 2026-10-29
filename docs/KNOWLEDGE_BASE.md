@@ -1,5 +1,7 @@
 # Reconstruction evidence notebook
 
+- **Both59-byte effect-object constructors now match.** CSelectObject422140 and InfoEffectObject46F150 close with a four-byte initialization-bearing handle value inside CObjectBase, rather than raw unsigned body assignment. No layout/ABI/register forcing is used; fourteen affected accepted functions retain exactness. See [the handle initialization evidence](OBJECT_HANDLE_VALUE_2026_10_29.md). The earlier LEA/store impossibility shorthand below applies only to the old scalar model.
+
 - **BGM stream402820 is canonical89/89.** Raw open/PCM callers independently identify OggDataSource at stream+30. Giving that actual subobject its own reader/stream-size initialization restores the constructor's store order; flat initializer-list changes were neutral. Genuine CIL emits the private EAX entry. Both allocator calls and both CDSBuffer virtual slots are checked; allocator4040D0 remains nonexact. See [the constructor evidence](BGM_STREAM_CONSTRUCTOR_2026_10_29.md).
 
 - **BGM allocation4036C0 old20/28 explanation was incomplete.** The target initializes its returned token to zero, passes that token to4040D0, and discards the manager's stream-pointer return. Correct natural source is26/28; only the private EDI boundary remains. Four playback roots are unchanged exact. See [the corrected contract](BGM_ALLOCATION_CONTRACT_2026_10_29.md).
