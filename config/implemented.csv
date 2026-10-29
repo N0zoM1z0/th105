@@ -1652,3 +1652,4 @@ CProfileDeckEdit_ctor
 TNumberValue_charptr_get_integer
 TNumberValue_charptr_get_floating
 CProfileDeckEdit_select_filter
+CProfileDeckEdit_show_record

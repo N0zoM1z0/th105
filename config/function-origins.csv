@@ -1482,7 +1482,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00448AD0,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x00448B20,authored_game,ui,authored,observed,canonical-exact-authored
 0x00448B30,authored_game,ui,authored,observed,canonical-exact-authored
-0x00448B40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00448B40,authored_game,ui,authored,observed,profile-deck-display-authored-106a
 0x00448D00,compiler_generated,battle,exclude,observed,vc8-generated-scenario-event-name-resolver-std-comdats-106a
 0x00448D30,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x00448D70,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a

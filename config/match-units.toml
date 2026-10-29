@@ -26748,3 +26748,19 @@ rel32_targets = [
   "??AFilterDequeSubscript@th105@@QAEAAViterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@I@Z=0x004300B0",
   "?show_record@ProfileDeckFilterView@th105@@QAEXPAUSpellRecordView@2@@Z=0x00448B40",
 ]
+
+[units.exact-first-profile-deck-display]
+kind = "probe"
+source = "src/ui/ProfileDeckDisplay.cpp"
+object = "build/match-units/ExactFirst_ProfileDeckDisplay.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete439-byte selected-card display root; source440 remains nonexact+95 due optional-resource CSE/virtual-call scheduling. Actual typed sprite interface and class-return texture result; no header changes or artificial liveness. docs/PROFILE_DECK_DISPLAY_2026_10_29.md."
+
+[[units.exact-first-profile-deck-display.functions]]
+address = "0x00448B40"
+symbol_base = "?show_record@ProfileDeckDisplayView@th105@@QAEXPAUSpellRecordView@2@@Z"
+rel32_targets = [
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+]

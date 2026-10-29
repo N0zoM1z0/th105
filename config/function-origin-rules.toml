@@ -3697,3 +3697,17 @@ required_dword_values = [
  { address = "0x006C2228", value = "0x006D8610" },
  { address = "0x006D861C", value = "0x006E6DDC" },
 ]
+
+[[rules]]
+id = "profile-deck-display-authored-106a"
+addresses = ["0x00448B40"]
+expected_count = 1
+expected_bytes = 439
+expected_names = ["sub_448B40"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact category selector449E90 calls this439-byte RET4 selected-card display root at44A397. Record texture/description, atlas colors and game-card UI enable policy establish authored ownership. Complete440-byte typed source remains nonexact+95. docs/PROFILE_DECK_DISPLAY_2026_10_29.md."
+required_body_hashes = [{ address = "0x00448B40", size = 439, sha256 = "d3105e9da72389275d687b46368b0c349f479923857b91dc177c295895e24a6c" }]
+required_direct_edges = [{ caller = "0x00449E90", site = "0x0044A397", target = "0x00448B40", caller_status = "matching" }]

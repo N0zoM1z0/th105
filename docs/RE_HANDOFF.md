@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Selected-card display448B40 is now complete source-selected with real sprite
+virtuals and SpellRecordView;440/439 remains nonexact+95, no new exact credit.
+The prior optional-handle CSE stop remains; skip spelling/liveness grids. See
+[PROFILE_DECK_DISPLAY_2026_10_29.md](PROFILE_DECK_DISPLAY_2026_10_29.md).
+
 Deck category selector449E90 is canonical exact1375/1375; full1396-byte owned
 extent including its five-entry table is also equal. Real vertical cursor
 binding, signed category field and cursor-selection availability argument
