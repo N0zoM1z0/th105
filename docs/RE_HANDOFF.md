@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Network input endpoint44D8F0 is canonical exact48/48. Real7C composition and
+two-slot input interface preserve ownership; flag-before-mask initialization
+closes the old store-order stop. See
+[NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md](NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md).
+
 Input parser44E050 is canonical exact78/78. A real byte-indexed forward loop
 recovers native TEST BL/JBE before extension; packet signedness stays unchanged.
 All eleven leaf siblings and the separate GS-off request pump replay exact.

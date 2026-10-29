@@ -1532,7 +1532,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044D840,authored_game,network,authored,observed,canonical-exact-authored
 0x0044D860,authored_game,network,authored,observed,canonical-exact-authored
 0x0044D880,authored_game,network,authored,observed,canonical-exact-authored
-0x0044D8F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044D8F0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044D920,authored_game,network,authored,observed,canonical-exact-authored
 0x0044D990,authored_game,network,authored,observed,canonical-exact-authored
 0x0044DAB0,authored_game,network,authored,observed,canonical-exact-authored

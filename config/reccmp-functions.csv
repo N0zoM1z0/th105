@@ -1689,3 +1689,4 @@ CharacterEx_dtor,0x00491BC0,function
 CharacterEx_scalar_deleting_destructor,0x0064B770,function
 Character_dtor,0x00462CE0,function
 NetworkClient_consume_replay,0x0044E210,function
+NetworkInputEndpoint_ctor,0x0044D8F0,function

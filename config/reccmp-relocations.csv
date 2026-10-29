@@ -3559,3 +3559,4 @@ __ehhandler$??0CharacterConstructorView@th105@@QAE@PBUSide@MatchSetup@1@@Z,0x6BB
 ??_7CharacterExLifetimeView@th105@@6B@,0x006C3F94,70b76400,0,CharacterEx RTTI COL6D9B10 TD6E7D84 names class; own scalar destructor64B770 occupies slot0. docs/CHARACTER_EX_LIFETIME_2026_10_29.md.,address
 __ehhandler$??1CharacterDestructionView@th105@@UAE@XZ,0x6BB1F4,8b5424088d42e48b4ae033c8e820ebfcffb8600d6e00e9d8e7fcff,0,Character462CE0 native abstract vtable and whole27-byte EH address contract. docs/CHARACTER_DESTRUCTOR_2026_10_29.md.,address
 ??_7CharacterDestructionView@th105@@6B@,0x6C2BE4,34996800,0,Character462CE0 native abstract vtable and whole27-byte EH address contract. docs/CHARACTER_DESTRUCTOR_2026_10_29.md.,address
+??_7NetworkInputConstructorView@th105@@6B@,0x006C1154,c0cb4200709f4000,0,CInputManagerEx COL6D7A50 TD6E6588; two slots destructor42CBC0 and logical input409F70; docs/NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md,address

@@ -26937,3 +26937,16 @@ rel32_targets = [
  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
  "?append@ReplayInputSinkView@th105@@QAEXG@Z=0x0042B270",
 ]
+
+[units.exact-first-network-input-constructor]
+kind = "probe"
+source = "src/network/NetworkInputConstructor.cpp"
+object = "build/match-units/ExactFirst_NetworkInputConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete48-byte CInputManagerEx endpoint constructor; two-slot virtual interface and real short deque at68. docs/NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md."
+
+[[units.exact-first-network-input-constructor.functions]]
+address = "0x0044D8F0"
+symbol_base = "??0NetworkInputEndpointConstructorView@th105@@QAE@XZ"
+rel32_targets = ["??0InputCore60View@th105@@QAE@XZ=0x00409CF0", "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
