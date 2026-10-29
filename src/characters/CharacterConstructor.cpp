@@ -1,6 +1,6 @@
-// JP1.06a Character constructor-facing source. Full557 bytes remain nonexact
-// only at the first sprite zero/EH-state store ordering. No original full
-// roster subtype layout or opaque member destructor implementation is claimed.
+// JP1.06a Character constructor-facing source, canonical exact557 bytes.
+// The texture handle is initialized as a member value before the sprite base
+// constructor completes. Full roster subtype/opaque cleanup bodies are not claimed.
 #include "battle/AttackObject.hpp"
 #include "battle/GameMode.hpp"
 #include "battle/SpellData.hpp"
@@ -13,7 +13,24 @@
 #include <map>
 
 namespace th105 {
-class CharacterCtorSprite94 : public IColor {
+// Constructor-facing IColor view: the observed texture token at +4 is a
+// four-byte initializing value. Keep this inference local to the owned sprite
+// lifetimes rather than changing all partial shared IColor declarations.
+class CharacterCtorColorView {
+public:
+    CharacterCtorColorView() {}
+    virtual ~CharacterCtorColorView() {}
+    virtual void set_color(unsigned int color) = 0;
+    virtual void set_vertex_colors(const unsigned int *colors) = 0;
+    virtual void multiply_color(unsigned int color) = 0;
+    DesignTextureHandle value_04;
+};
+
+
+typedef char CharacterCtorColorSize[sizeof(CharacterCtorColorView) == 8 ? 1 : -1];
+typedef char CharacterCtorTextureHandleSize[sizeof(DesignTextureHandle) == 4 ? 1 : -1];
+
+class CharacterCtorSprite94 : public CharacterCtorColorView {
 public:
     CharacterCtorSprite94() {}
     virtual ~CharacterCtorSprite94() {}

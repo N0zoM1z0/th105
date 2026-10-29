@@ -62,7 +62,8 @@ See [NETWORK_REPLAY_CONSUMER_2026_10_29.md](NETWORK_REPLAY_CONSUMER_2026_10_29.m
 Character destructor462CE0 is complete905-byte source, including its remote
 texture loop and two range-error tails. Real handle-class vector removes the
 scalar memmove path; just one commutative SIB byte remains nonexact. Constructor
-557-byte result is unchanged after type reconciliation. See
+462AB0 subsequently reaches557/557 through its initializing sprite texture
+handle; the destructor remains nonexact. See
 [CHARACTER_DESTRUCTOR_2026_10_29.md](CHARACTER_DESTRUCTOR_2026_10_29.md).
 
 CharacterEx normal/scalar destruction491BC0/64B770 is canonical exact11/36
@@ -70,10 +71,9 @@ from its verified RTTI-owned table and real Character base call. Native base
 slot0 purity corrects the constructor view without changing its557-byte result.
 See [CHARACTER_EX_LIFETIME_2026_10_29.md](CHARACTER_EX_LIFETIME_2026_10_29.md).
 
-Character base constructor462AB0 now has complete557-byte source in the normal
-manifest. Typed setup pointer, actual map/spell core and8-slot sprites retain
-only nine unequal EH-state/sprite-zero store-order bytes. No exact credit or
-shared caller/header change. See
+Character base constructor462AB0 is now canonical exact557/557. The local
+IColor view owns an initializing four-byte texture handle, naturally closing
+the nine-byte EH-state/store-order mismatch. No shared caller/header change. See
 [CHARACTER_CONSTRUCTOR_2026_10_29.md](CHARACTER_CONSTRUCTOR_2026_10_29.md).
 
 Result-menu constructor447690 now restores the missing initial texture004=0

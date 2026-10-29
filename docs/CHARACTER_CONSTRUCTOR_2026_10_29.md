@@ -1,4 +1,35 @@
-# Character base constructor source, JP1.06a
+# Character base constructor exact, JP1.06a
+
+## Accepted texture-handle initialization
+
+462AB0 is now canonical exact557/557 with SHA256
+6843409d8f8d40e4f3ebf4d1bd9615a666c72f0abda652943492913297aaa5a5.
+The formal selected-unit replay is recorded in
+build/frontier-texture-handle-value-20261029/formal-character.json.
+
+The constructor-facing IColor view now owns the existing four-byte
+DesignTextureHandle value at+4. Its ordinary zero-initializing constructor runs
+before the color base constructor completes. This naturally puts sprite+340=0
+before EH state0, closing the previous nine-byte store-order mismatch. The
+eight-slot sprite interface,94-byte sprite size,557-byte extent and all
+existing call/relocation contracts stay unchanged.
+
+Texture ownership is independently visible in SpriteTextureSetup.cpp, which
+assigns the incoming texture handle to value_04, and in SpriteRenderFinalizer.cpp
+and SpriteRectangleRender.cpp, which pass that value to bind_texture. The
+existing DesignTextureHandle supplies the same four-byte value semantics
+already recovered for the texture vector. This is an admissible recovered
+initialization context, not proof of the original nominal type spelling.
+There is no new destructor work, storage, alignment, manual vptr operation,
+ABI annotation or inert local.
+
+The inference is confined to CharacterConstructor.cpp. No shared IColor header,
+accepted caller, destructor TU or compiler flag is changed, so the focused
+constructor replay is sufficient for this source edit. The neighboring
+CEffectSprite constructor probe stays nonexact and receives no credit.
+Exact-baseline ownership replaces the former standalone authored-origin rule.
+
+## Earlier source-present checkpoint (superseded)
 
 462AB0 now has a reproducible selected complete557-byte source. It is still
 nonexact: nine differing byte positions at the first sprite/EH-state stores.

@@ -26837,7 +26837,7 @@ source = "src/characters/CharacterConstructor.cpp"
 object = "build/match-units/ExactFirst_CharacterConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete557-byte Character base constructor with typed setup pointer, real map/vector,8-slot sprite and existing spell resource core. Nine unequal bytes are one EH-state/sprite-zero store swap. No forced inline/profile/grid. docs/CHARACTER_CONSTRUCTOR_2026_10_29.md."
+notes = "Canonical exact557-byte Character base constructor with typed setup, real map/vector,8-slot sprite and spell core. Initializing texture-handle value in the local IColor view restores native EH-state/store order. No shared header change. docs/CHARACTER_CONSTRUCTOR_2026_10_29.md."
 
 [[units.exact-first-character-constructor.functions]]
 address = "0x00462AB0"

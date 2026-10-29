@@ -2107,25 +2107,6 @@ required_direct_edges = [
 ]
 
 [[rules]]
-id = "character-base-constructor-authored-106a"
-addresses = ["0x00462AB0"]
-expected_count = 1
-expected_bytes = 557
-expected_names = ["sub_462AB0"]
-origin = "authored_game"
-subsystem = "characters"
-disposition = "authored"
-confidence = "observed"
-evidence = "Raw target CFG reaches the full 557-byte RET 4 constructor body between INT3 pads. It calls exact AttackObject base construction 0x0045FA30, constructs game-specific Fighter/SpellData members, and is called by fourteen independent canonical-exact roster derived constructors with this adjusted to their Character base. RTTI and member layout separate it from a VC8 library helper. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md; natural /GS source remains nonexact."
-required_body_hashes = [
-  { address = "0x00462AB0", size = 557, sha256 = "6843409d8f8d40e4f3ebf4d1bd9615a666c72f0abda652943492913297aaa5a5" },
-]
-required_direct_edges = [
-  { caller = "0x00493A40", site = "0x00493A6D", target = "0x00462AB0", caller_status = "matching" },
-  { caller = "0x004FAC40", site = "0x004FAC6D", target = "0x00462AB0", caller_status = "matching" },
-]
-
-[[rules]]
 id = "generated-container-tail-aliases-106a"
 addresses = ["0x004021B0", "0x00413770", "0x00420B80", "0x00436470", "0x0045FD50", "0x0046B1F0"]
 expected_count = 6
