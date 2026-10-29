@@ -2873,3 +2873,12 @@ A standard std::find result named before end comparison reproduces the actual
 unchecked search and subsequent checked-iterator validation. Direct equality
 on a temporary had156/157 and a larger frame; manual checked loop was162/157.
 No frame or register forcing. [Evidence](D3D_LISTENER_FIND_LTCG_2026_10_29.md).
+
+## 2026-10-29: profile writer semantic correction
+
+The old754/784 writer was not merely a scheduling stop: source operator[]
+missed the target deque.at range gate and throw edge. Native4319BB branches to
+431AAB/431610 before checked iterator access. Corrected source uses .at and
+natural indexed loops; full784-byte callable within785-byte COFF section stays
+nonexact+147. The same-TU writer lifetime/write/normalizer functions remain
+exact. See [new evidence](PROFILE_WRITER_CHECKED_DECK_2026_10_29.md).

@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Latest profile correction: writer4317A0 now uses the native checked deque.at
+operation, restoring the range-exception edge4319BB ->431AAB ->431610 absent
+from the old operator[] hypothesis. Natural indexed loops restore the target
+loop guard/pointer progression. Complete784-byte callable in785-byte COFF
+section remains nonexact+147; four accepted same-TU siblings retain equality.
+See [PROFILE_WRITER_CHECKED_DECK_2026_10_29.md](PROFILE_WRITER_CHECKED_DECK_2026_10_29.md).
+
 Latest giant-source checkpoint: Aya602250 now preserves native214 arithmetic
 branches,13 action740 orbit/RNG argument preparations and510 layer branches.
 Full65692/native66704 SHA73065d6a remains nonexact+48; frame3E8 and85 payload

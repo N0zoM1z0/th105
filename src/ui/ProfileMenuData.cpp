@@ -112,23 +112,12 @@ bool ProfileMenuBaseData::save_to_profile(const char *path)
     writer.write(&flag_13c, 1);
     writer.write(&flag_1a8, 1);
 
-    std::deque<unsigned short> *deck = decks_1ac;
-    int deck_index = 0;
-    do {
-        unsigned char count = static_cast<unsigned char>(deck->size());
+    for (int deck_index = 0; deck_index < 20; ++deck_index) {
+        unsigned char count = static_cast<unsigned char>(decks_1ac[deck_index].size());
         writer.write(&count, 1);
-
-        int item_index = 0;
-        if (count != 0) {
-            do {
-                writer.write(&(*deck)[item_index], sizeof(unsigned short));
-                ++item_index;
-            } while (item_index < count);
-        }
-
-        ++deck;
-        ++deck_index;
-    } while (deck_index < 20);
+        for (int item_index = 0; item_index < count; ++item_index)
+            writer.write(&decks_1ac[deck_index].at(item_index), sizeof(unsigned short));
+    }
 
     return true;
 }

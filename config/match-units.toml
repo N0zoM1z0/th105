@@ -8365,7 +8365,7 @@ source = "src/ui/ProfileMenuData.cpp"
 object = "build/match-units/CrossV106a_ProfileDataWriter.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current ProfileMenuBaseData/CFileWriter serialization island. RTTI/vtable evidence recovers the writer normal/scalar lifetime and WriteFile virtual; ProfileMenuBaseData normalize uses the target-backed 0x33C string/deck layout and the same multibyte helper contract as exact CFileList trimming. Pending initialize/save bodies remain intentionally untracked until their compiler scheduling closes naturally."
+notes = "Current ProfileMenuBaseData/CFileWriter serialization island. RTTI/vtable evidence recovers the writer normal/scalar lifetime and WriteFile virtual; ProfileMenuBaseData normalize uses the target-backed 0x33C string/deck layout and the same multibyte helper contract as exact CFileList trimming. Defaults remain independently pending. Writer4317A0 is now source-selected with target-proved deque.at range exception and indexed loops; complete784-byte callable within785-byte COFF section remains nonexact+147."
 
 [[units.cross-v106a-profile-data-writer.functions]]
 address = "0x00407BF0"
@@ -26635,3 +26635,18 @@ notes = "Complete148-byte line renderer with two20-byte XYZRHW/diffuse vertices.
 address = "0x00401180"
 symbol_base = "?draw_line@LinePrimitiveView@th105@@QAEHMMMMI@Z"
 rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0"]
+
+[[units.cross-v106a-profile-data-writer.functions]]
+address = "0x004317A0"
+symbol_base = "?save_to_profile@ProfileMenuBaseData@th105@@QAE_NPBD@Z"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00",
+  "?normalize_profile_name@ProfileMenuBaseData@th105@@AAEXXZ=0x00431690",
+  "?concatenate_profile_data_path@th105@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDABV23@@Z=0x00429970",
+  "?_Xran@?$deque@GV?$allocator@G@std@@@std@@KAXXZ=0x00431610",
+  "??3@YAXPAX@Z=0x006898EA",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "@__security_check_cookie@4=0x00689D25",
+]

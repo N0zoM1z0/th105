@@ -1672,3 +1672,4 @@ Fighter_set_counter_48a,0x004776C0,function
 ScenarioResultResource_enable,0x004547D0,function
 D3DBackend_remove_reset_listener,0x00414D50,function
 RenderModeManager_draw_line,0x00401180,function
+ProfileMenuBaseData_save_to_profile,0x004317A0,function
