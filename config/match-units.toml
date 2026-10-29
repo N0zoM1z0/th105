@@ -26848,3 +26848,25 @@ rel32_targets = [
  "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
  "?confirmation_result@BattleMenuUpdateView@th105@@QAEHXZ=0x0043F870",
 ]
+
+[units.exact-first-character-constructor]
+kind = "probe"
+source = "src/characters/CharacterConstructor.cpp"
+object = "build/match-units/ExactFirst_CharacterConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete557-byte Character base constructor with typed setup pointer, real map/vector,8-slot sprite and existing spell resource core. Nine unequal bytes are one EH-state/sprite-zero store swap. No forced inline/profile/grid. docs/CHARACTER_CONSTRUCTOR_2026_10_29.md."
+
+[[units.exact-first-character-constructor.functions]]
+address = "0x00462AB0"
+symbol_base = "??0CharacterConstructorView@th105@@QAE@PBUSide@MatchSetup@1@@Z"
+rel32_targets = [
+ "??0AttackObject@@QAE@XZ=0x0045FA30",
+ "??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E880",
+ "??0CharacterPhaseRender14@th105@@QAE@XZ=0x0045AC00",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "?_Buynode@?$_Tree@V?$_Tmap_traits@HPAUAnimationSequenceBlock@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlock@th105@@@std@@@4@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HPAUAnimationSequenceBlock@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlock@th105@@@std@@@4@$0A@@std@@@2@XZ=0x00420A40",
+ "??_U@YAPAXI@Z=0x00665B8A",
+ "??_H@YGXPAXIHP6EPAX0@Z@Z=0x00401220",
+ "?initialize_side_payload_430f70@SpellDataOwner@th105@@QAEXPBUShortDeque8@2@@Z=0x004324F0",
+]

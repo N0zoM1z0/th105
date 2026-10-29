@@ -1684,3 +1684,4 @@ CMenuBattle_ctor,0x00440B50,function
 CMenuBattle_update,0x004407E0,function
 Menu_dtor,0x00440730,function
 CMenuResult_ctor,0x00447690,function
+Character_ctor,0x00462AB0,function

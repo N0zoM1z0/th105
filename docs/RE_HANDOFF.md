@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Character base constructor462AB0 now has complete557-byte source in the normal
+manifest. Typed setup pointer, actual map/spell core and8-slot sprites retain
+only nine unequal EH-state/sprite-zero store-order bytes. No exact credit or
+shared caller/header change. See
+[CHARACTER_CONSTRUCTOR_2026_10_29.md](CHARACTER_CONSTRUCTOR_2026_10_29.md).
+
 Result-menu constructor447690 now restores the missing initial texture004=0
 store proved at4476CF. Whole495/502 remains nonexact+45; four accepted same-TU
 methods replay43/270/256/30 unchanged. See

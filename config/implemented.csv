@@ -1658,3 +1658,4 @@ CMenuBattle_ctor
 CMenuBattle_update
 Menu_dtor
 CMenuResult_ctor
+Character_ctor
