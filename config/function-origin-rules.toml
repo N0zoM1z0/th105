@@ -2873,7 +2873,7 @@ required_body_hashes = [
 ]
 required_direct_edges = [
   { caller = "0x0046CA80", site = "0x0046CA8F", target = "0x0046BCA0", caller_status = "implemented" },
-  { caller = "0x0046BCA0", site = "0x0046BD27", target = "0x0046BA10", caller_status = "identified" },
+  { caller = "0x0046BCA0", site = "0x0046BD27", target = "0x0046BA10", caller_status = "implemented" },
 ]
 required_selected_body_calls = [
   { owner = "0x0046BCA0", site = "0x0046BD41", target = "0x0046B7B0" },

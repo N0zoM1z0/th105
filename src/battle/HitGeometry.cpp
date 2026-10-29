@@ -97,7 +97,7 @@ int CollisionContext::test_descriptor_shapes_overlap(
     broad_phase &= first_descriptor->y0 - second_descriptor->y1 -
         second->top + first->top;
     broad_phase &= first->left - second->right;
-    if (broad_phase >= 0) {
+    if ((static_cast<unsigned>(broad_phase) & 0x80000000u) == 0) {
         return 0;
     }
 

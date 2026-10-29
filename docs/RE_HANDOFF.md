@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Descriptor-pair46BA10 and group-B traversal46BCA0 now have complete selected
+252/398-byte sources. Bit31 tests, typed arrays and per-call descriptor loads
+restore native paths, but both remain nonexact. Four accepted geometry helpers
+replay unchanged. See [DESCRIPTOR_PAIR_COLLISION_2026_10_29.md](DESCRIPTOR_PAIR_COLLISION_2026_10_29.md).
+
 Title/result match setup43B8F0 now has complete286-byte source, including
 ordinary inlining of the existing input-rebind policy and network modes4/5/6.
 Initial global publication scheduling remains nonexact; included accepted
