@@ -1670,3 +1670,4 @@ Fighter_render_sprite_transform
 BgmStream_ctor
 BgmStreamHandleManager_acquire
 Yukari_reset_character_state
+load_default_character_deck

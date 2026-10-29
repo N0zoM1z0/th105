@@ -27074,3 +27074,32 @@ rel32_targets = ["??0BgmStreamAllocationView@th105@@QAE@XZ=0x00402820"]
 address = "0x00402820"
 symbol_base = "??0BgmStreamAllocationView@th105@@QAE@XZ"
 private_from = { caller = "0x004040D0", sites = ["0x00404160", "0x00404231"] }
+
+[units.exact-first-default-deck-csv]
+kind = "probe"
+source = "src/config/DefaultDeckLoader.cpp"
+object = "build/match-units/ExactFirst_DefaultDeckCsv.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete463-byte character-specific default deck CSV loader. Real std::string concatenation, owned CsvReader and deque<unsigned short> values preserve the complete six-state cleanup and twenty-value transfer. Receiver unused; original nominal class unknown. docs/DEFAULT_DECK_CSV_2026_10_29.md."
+
+[[units.exact-first-default-deck-csv.functions]]
+address = "0x00431E80"
+symbol_base = "?load_default_deck@DefaultDeckLoaderView@th105@@QAEPAV?$deque@GV?$allocator@G@std@@@std@@PAV34@H@Z"
+rel32_targets = [
+ "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+ "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@PBDABV10@@Z=0x00429970",
+ "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?load@CsvReader@th105@@QAE_NPBD@Z=0x0040F150",
+ "?_Tidy@?$deque@GV?$allocator@G@std@@@std@@IAEXXZ=0x00420A80",
+ "?next_int@CsvReader@th105@@QAEHXZ=0x0040F480",
+ "?push_back@?$deque@GV?$allocator@G@std@@@std@@QAEXABG@Z=0x0042AA90",
+ "?clear_rows@CsvReader@th105@@QAEXXZ=0x0040FDB0",
+ "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+ "__ehhandler$?load_default_deck@DefaultDeckLoaderView@th105@@QAEPAV?$deque@GV?$allocator@G@std@@@std@@PAV34@H@Z=__ehhandler$?load_default_deck@DefaultDeckLoaderView@th105@@QAEPAV?$deque@GV?$allocator@G@std@@@std@@PAV34@H@Z",
+ "??_C@_09JJDIOHNM@data?1csv?1?$AA@=_scenario_csv_prefix",
+]

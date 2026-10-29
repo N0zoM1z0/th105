@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+Default character deck loader431E80 is canonical exact463/463. Real string
+concatenation, owned CSV reader and unsigned-short deque preserve the full
+twenty-card path and lifetimes. See [DEFAULT_DECK_CSV_2026_10_29.md](DEFAULT_DECK_CSV_2026_10_29.md).
+
 Yukari slot44 reset58A470 now has complete125-byte selected source. It remains
 nonexact on x87/integer zero-store scheduling; all thirteen accepted same-TU
 reset bodies replay unchanged. See [YUKARI_ROUND_RESET_2026_10_29.md](YUKARI_ROUND_RESET_2026_10_29.md).

@@ -1697,3 +1697,4 @@ Fighter_render_sprite_transform,0x0045E6E0,function
 BgmStream_ctor,0x00402820,function
 BgmStreamHandleManager_acquire,0x004040D0,function
 Yukari_reset_character_state,0x0058A470,function
+load_default_character_deck,0x00431E80,function
