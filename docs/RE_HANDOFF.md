@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+Guide constructor43F540 retains20/20 through natural CSprite/IColor lifetime,
+replacing its selected manual-vptr witness. Dtor43F330 remains90/92; no extra
+exact credit. See [GUIDE_OVERLAY_LIFETIME_2026_10_29.md](GUIDE_OVERLAY_LIFETIME_2026_10_29.md).
+
 Guide overlay update43F450 is canonical exact112/112. Typed sprite color
 dispatch and branch-local compound alpha arguments close the old SUB/vtable
 scheduling stop. All three accepted siblings replay unchanged; see

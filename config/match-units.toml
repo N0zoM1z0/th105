@@ -2503,21 +2503,7 @@ dir32_targets = [
   "__real@43e40000=__real@43e40000",
 ]
 
-[[units.cross-v106a-guide-overlay.functions]]
-address = "0x0043F330"
-symbol_base = "??1GuideOverlay@th105@@QAE@XZ"
-rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-]
-dir32_targets = [
-  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
-  "__ehhandler$??1GuideOverlay@th105@@QAE@XZ=__ehhandler$??1GuideOverlay@th105@@QAE@XZ",
-]
 
-[[units.cross-v106a-guide-overlay.functions]]
-address = "0x0043F540"
-symbol_base = "GuideOverlay_ctor"
-dir32_targets = ["_select_sprite_vtable_anchor=_select_sprite_vtable_anchor"]
 
 [units.cross-v106a-menu-select-family]
 kind = "probe"
@@ -27023,3 +27009,22 @@ notes = "Complete112-byte GuideOverlay update. Typed CSprite color virtual with 
 [[units.exact-first-guide-overlay-update.functions]]
 address = "0x0043F450"
 symbol_base = "?update@GuideOverlay@th105@@QAEXXZ"
+
+[units.exact-first-guide-overlay-lifetime]
+kind = "probe"
+source = "src/ui/GuideOverlayLifetime.cpp"
+object = "build/match-units/ExactFirst_GuideOverlayLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Natural polymorphic CSprite/IColor lifetime replaces the selected manual-vptr constructor witness. Constructor20 stays exact; destructor90/92 retains handle-load CSE. No new exact bytes. docs/GUIDE_OVERLAY_LIFETIME_2026_10_29.md."
+
+[[units.exact-first-guide-overlay-lifetime.functions]]
+address = "0x0043F540"
+symbol_base = "??0GuideLifetimeView@th105@@QAE@XZ"
+dir32_targets = ["??_7GuideLifetimeSprite94@th105@@6B@=_select_sprite_vtable_anchor"]
+
+[[units.exact-first-guide-overlay-lifetime.functions]]
+address = "0x0043F330"
+symbol_base = "??1GuideLifetimeView@th105@@QAE@XZ"
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
+dir32_targets = ["__ehhandler$??1GuideLifetimeView@th105@@QAE@XZ=__ehhandler$??1GuideOverlay@th105@@QAE@XZ"]
