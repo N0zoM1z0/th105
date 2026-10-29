@@ -115,3 +115,43 @@ from smaller output or matching per-action call counts.
 Updated selected receipts are formal-tail-build.json, formal-tail-audit.json
 and tail-payload-review.log in the same build scope. Initial receipts remain
 historical and are not the selected source result.
+
+## October29: actual argument lifetimes and arithmetic branches
+
+Raw404 instructions4CF2D9..4CF388 establish real call-argument evaluation:
+count3, request pointer, variant1 and facing are placed before the sine and
+cosine coordinate expressions. The previous KNIFE macro staged facing/y/x in
+named locals, unnecessarily extending their lifetimes. The selected macro now
+passes the actual expressions directly to spawn, preserving the same values
+and observed right-to-left evaluation without invented storage or ABI changes.
+The existing constant-zero x-offset branch remains a source-level constant.
+This changes full output77064 to77000 bytes, without changing frame4A8.
+
+Action214 also has two distinct arithmetic branches. Native4CC6CB..4CC6E0
+selects one of two ADD instructions after loading the current angle, while
+4CC6F0..4CC717 keeps the zero-selector subtraction branch first. Explicit
+ordinary if/else compound assignments now preserve that observed topology;
+the previous ternary RHS merged the two addition sites. No redundant arithmetic,
+forced register or additional request element is introduced.
+
+The earlier404/405/406 floating-operation census was misleading: it counted
+FSUB-family instructions but omitted FISUB integer-memory forms. Including
+FIADD/FISUB/FIMUL/FIDIV shows those three cases already agreed arithmetically.
+After the214 branch correction, all113 per-action arithmetic-family counts
+agree. These are diagnostic counts, not proof of full equivalence. The sole
+direct-call count residual is still567's identical branches merging three
+physical native spawn sites into two. Whole source still has13/native14 tables.
+
+Current selected full payload is77000 bytes, SHA256
+`9ef2c49fca9a7b0d66604e9aabf236cbb98e4cd5b1a7f193c3de839ff86b07fe`,
+with73065 unmasked differing positions including length. First difference+8
+and frame1192/native1240 remain. Current private payload traversal finds95 homes,
+no unknown request pointers,160 returns and183 virtual sites; source declaration
+extents, frame allocation and tail sharing remain unresolved. The native has159
+returns and190 virtual sites. This checkpoint earns **no exact credit**.
+
+Focused public full-extent build and complete payload audit:
+`build/frontier-sakuya-arguments-20261029/{formal-build,formal-audit}.json`.
+Private corrected call/arithmetic census and payload receipts are in that scope;
+recipes are `.analysis/frontier-sakuya-arguments-20261029/`. No shared header,
+relocation binding, compiler profile or accepted consumer changed.

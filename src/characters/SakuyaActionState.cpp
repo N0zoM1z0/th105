@@ -1,7 +1,7 @@
 #include "characters/SakuyaActionState.hpp"
 namespace th105 {
 #define URAND(n) static_cast<float>(static_cast<unsigned>(sakuya_random(n)))
-#define KNIFE(p,r,yoff,xoff) do {int facing=B(0x104);float y=sakuya_sine(-(p)[0])*(r)+F(0xf0)+(yoff);float x; if((xoff)==0.0)x=sakuya_cosine(-(p)[0])*(r)*C(0x104)+F(0xec);else x=(sakuya_cosine(-(p)[0])*(r)+(xoff))*C(0x104)+F(0xec);spawn(800,x,y,facing,1,p,3);}while(0)
+#define KNIFE(p,r,yoff,xoff) do {if((xoff)==0.0)spawn(800,sakuya_cosine(-(p)[0])*(r)*C(0x104)+F(0xec),sakuya_sine(-(p)[0])*(r)+F(0xf0)+(yoff),B(0x104),1,p,3);else spawn(800,(sakuya_cosine(-(p)[0])*(r)+(xoff))*C(0x104)+F(0xec),sakuya_sine(-(p)[0])*(r)+F(0xf0)+(yoff),B(0x104),1,p,3);}while(0)
 #define AIM_KNIVES() do {float dx=(PF(0xec)-F(0xec))*C(0x104);float dy=PF(0xf0)-F(0xf0);F(0x744)=-sakuya_atan(dy,dx);if(F(0x744)<-10.0)F(0x744)=-10.0;if(F(0x744)>10.0)F(0x744)=10.0;S(0x730)=1;counter(200,45);}while(0)
 #define AIM_KNIVES_TAIL() do {float dx=(PF(0xec)-F(0xec))*C(0x104);float dy=PF(0xf0)-F(0xf0);F(0x744)=-sakuya_atan(dy,dx);if(F(0x744)<-10.0)F(0x744)=-10.0;if(F(0x744)>10.0)F(0x744)=10.0;goto knife_stream_started;}while(0)
 #define AIM_KNIVES_HIGH() do {float dx=(PF(0xec)-F(0xec))*C(0x104);float dy=PF(0xf0)-F(0xf0);F(0x744)=-sakuya_atan(dy,dx);if(F(0x744)<40.0)F(0x744)=40.0;if(F(0x744)>60.0)F(0x744)=60.0;S(0x730)=1;counter(200,45);}while(0)
@@ -217,8 +217,8 @@ case 214:{
   ++S(0x736);S(0x734)=static_cast<short>(S(0x732)-static_cast<int>(F(0x740)));
   if(S(0x734)>180)S(0x734)-=360;
   if(S(0x734)<-180)S(0x734)+=360;
-  if(S(0x734)>0)F(0x740)+=I(0x4b8)?0.5:1.0;
-  if(S(0x734)<0)F(0x740)-=I(0x4b8)?0.5:1.0;
+  if(S(0x734)>0){if(I(0x4b8)==0)F(0x740)+=1.0;else F(0x740)+=0.5;}
+  if(S(0x734)<0){if(I(0x4b8)==0)F(0x740)-=1.0;else F(0x740)-=0.5;}
   F(0xf4)=sakuya_cosine(F(0x740))*F(0x73c);
   F(0xf8)=sakuya_sine(F(0x740))*F(0x73c);
   if(F(0xf0)>680.0&&F(0xf8)>0.0)F(0xf8)=0.0;
