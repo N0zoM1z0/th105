@@ -1647,3 +1647,4 @@ ScenarioResultResource_enable
 D3DBackend_remove_reset_listener
 RenderModeManager_draw_line
 ProfileMenuBaseData_save_to_profile
+CollisionContext_resolve_general_attack_hit

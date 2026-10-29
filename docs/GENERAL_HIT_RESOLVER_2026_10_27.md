@@ -2,9 +2,9 @@
 
 ## State and target evidence
 
-The complete retained source in src/battle/GeneralHitResolver.cpp is corrected
-against original Japanese 1.06a, but remains unselected and nonexact. No mapping,
-origin, source-present or exact ledger credit is added in this checkpoint.
+The Oct27 source correction in src/battle/GeneralHitResolver.cpp was
+unselected/nonexact and added no ledger credit at that checkpoint. The Oct29
+typed-dispatch and positive authored/source selection is recorded below.
 The shared header and accepted consumers are unchanged; only this source is built.
 
 The hash-attested PE has 1579 bytes through RET8 at 46C5A8, exclusive end46C5AB.
@@ -71,3 +71,37 @@ CPU0/nice10, and empty DISPLAY/WAYLAND_DISPLAY.
 
 The mandatory final CI log is local-ci.log in this scope. This is a source
 correction checkpoint, not a newly accepted exact function.
+
+
+## 2026-10-29: typed virtual calls and positive source selection
+
+Existing CBattleManager and AnimationSequenceObjectView declarations now supply
+both virtual calls. The context is the manager's primary layout; vtable6C1504
+slot2C points to472490, the real fighter-depletion callback already declared
+by BattleManagerVirtuals.hpp. Native46C529 calls that slot with the victim.
+Native46C577 calls the victim's action slot08; the existing sequence view
+provides its short-action method, with the result ignored. The signed-low-word
+dispatch gate ensures this narrowing preserves the selected action value.
+No function-pointer cast, manually indexed vtable or invented calling convention
+is needed. Shared headers and all other consumers remain unchanged.
+
+The complete resulting1581-byte canonical candidate is byte-identical to the
+Oct27 candidate146c4a5d above. First mismatch remains+449, with571 unequal
+positions in the common prefix plus two extra source bytes,573 total when
+length is included. The formal build's compared-prefix hash is different from
+the full1581-byte section hash because its ledger bound is1579, not a new
+candidate. No exact credit is earned.
+
+A fresh closed native CFG again reaches395 instructions/all1579 bytes through
+RET8, and independently verifies the exact46DA10 caller's E8 at46DB22. Its
+threshold/action/practice/resource/depletion policy establishes authored game
+ownership independently of equality. The function is now mapped/source-present
+with an explicit reproducible exact-first-general-hit-resolver unit and a
+body-hash/caller-backed origin rule. This removes one review row, not an
+exclusion or an exact-byte award. Remaining action-block sharing and x87
+schedule are the same bounded unknowns, not a reason for a new spelling grid.
+
+Receipts: build/frontier-general-hit-virtuals-20261029/{formal-build,boundary,
+compare}.json and ci.log. The private typed-call candidate and former whole
+candidate are retained for direct equality checks. Default CI follows final
+ledger/progress edits; only the affected unit is compiled.

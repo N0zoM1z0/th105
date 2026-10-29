@@ -3664,3 +3664,17 @@ confidence = "observed"
 evidence = "Exact BattleBaseEffect shutdown418040 calls global D3D listener removal at418044 before releasing its COM effect. Complete49-instruction140-byte CFG locks7036A4, searches list70384C/head703850 for this effect, conditionally erases and unlocks. Natural find/erase source140/140 remains nonexact first+10; private erase ABI/argument lifetime unknown. docs/D3D_LISTENER_REMOVAL_2026_10_29.md."
 required_body_hashes = [{ address = "0x00414D50", size = 140, sha256 = "70b69513f402cfbe3ff69959a6b972429b7e2abcb257ff63a3c1aab85fe30d18" }]
 required_direct_edges = [{ caller = "0x00418040", site = "0x00418044", target = "0x00414D50", caller_status = "matching" }]
+
+[[rules]]
+id = "general-hit-resolver-authored-106a"
+addresses = ["0x0046BF80"]
+expected_count = 1
+expected_bytes = 1579
+expected_names = ["sub_46BF80"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact attack-candidate resolver46DA10 calls this complete395-instruction1579-byte RET8 root at46DB22. Threshold/guard-break action selection, practice-mode gate, hit/resource scaling, owner/victim counters, depletion/action virtuals and collision effects establish authored game policy. Typed source1581 remains nonexact+449. docs/GENERAL_HIT_RESOLVER_2026_10_27.md."
+required_body_hashes = [{ address = "0x0046BF80", size = 1579, sha256 = "6b8c8e4f782020e3225e7aba799448ba3a4cc0cc6bffda61da9a9a52345d5f4e" }]
+required_direct_edges = [{ caller = "0x0046DA10", site = "0x0046DB22", target = "0x0046BF80", caller_status = "matching" }]

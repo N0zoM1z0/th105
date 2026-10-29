@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+General-hit resolver46BF80 now uses real existing BattleManager/sequence virtual
+views instead of manually loaded vtables. Whole1581-byte candidate remains
+unchanged/nonexact against1579; exact46DA10 caller and complete395-instruction
+CFG establish authored/source selection, not exactness. See the Oct29 appendix
+in [GENERAL_HIT_RESOLVER_2026_10_27.md](GENERAL_HIT_RESOLVER_2026_10_27.md).
+
 Latest profile correction: writer4317A0 now uses the native checked deque.at
 operation, restoring the range-exception edge4319BB ->431AAB ->431610 absent
 from the old operator[] hypothesis. Natural indexed loops restore the target

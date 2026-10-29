@@ -1673,3 +1673,4 @@ ScenarioResultResource_enable,0x004547D0,function
 D3DBackend_remove_reset_listener,0x00414D50,function
 RenderModeManager_draw_line,0x00401180,function
 ProfileMenuBaseData_save_to_profile,0x004317A0,function
+CollisionContext_resolve_general_attack_hit,0x0046BF80,function

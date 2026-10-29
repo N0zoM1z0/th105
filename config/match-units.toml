@@ -26650,3 +26650,29 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.exact-first-general-hit-resolver]
+kind = "probe"
+source = "src/battle/GeneralHitResolver.cpp"
+object = "build/match-units/ExactFirst_GeneralHitResolver.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete1579-byte authored general-hit resolver with existing typed BattleManager/AnimationSequence virtual dispatch, no manual vtable loads. Source1581/1579 remains nonexact+449; prior target-backed width/resource/practice corrections retained. docs/GENERAL_HIT_RESOLVER_2026_10_27.md."
+
+[[units.exact-first-general-hit-resolver.functions]]
+address = "0x0046BF80"
+symbol_base = "?resolve_general_attack_hit@CollisionContext@th105@@QAEXPAUAttackCandidate@2@PAUFighter@2@@Z"
+rel32_targets = [
+  "?is_state_13c_in_32_95@th105@@YI_NPAUFighter@1@@Z=0x0045E0E0",
+  "?reset_hit_exchange_scratch@CollisionContext@th105@@QAEXPAUFighter@2@0@Z=0x0046B350",
+  "__ftol2_sse=0x0068A1A0",
+  "?reset_fighter_action_scratch@FighterActionScratch@th105@@QAEXXZ=0x00435110",
+  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+  "?is_y_at_or_below_stage_surface@th105@@YIHPAUFighter@1@@Z=0x00435DC0",
+  "?emit_effect_at_collision_center@CollisionContext@th105@@QAEXHH@Z=0x0046B650",
+  "?calculate_descriptor_scaled_quantity_1c@AttackCandidate@th105@@QAEHXZ=0x0045C0B0",
+  "?adjust_capped_counter_558@Fighter@th105@@QAEXF@Z=0x0045CED0",
+  "?update_fighter_facing_from_other_x@th105@@YI_NPAUFighter@1@@Z=0x0045E070",
+  "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
+  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+]

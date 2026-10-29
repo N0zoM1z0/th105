@@ -1,37 +1,13 @@
-#include "Collision.hpp"
-#include "GameMode.hpp"
+#include "battle/Collision.hpp"
+#include "battle/GameMode.hpp"
+#include "battle/BattleManagerVirtuals.hpp"
+#include "characters/AnimationSequenceVirtuals.hpp"
 
 namespace th105 {
-// This file remains an unselected 1.06a hypothesis; see the dated evidence note.
+// Complete source-present JP1.06a hypothesis; canonical comparison remains nonexact.
+// docs/GENERAL_HIT_RESOLVER_2026_10_27.md.
 struct BattleInputGate;
 extern BattleInputGate *g_battle_input_gate;
-
-namespace {
-
-typedef void (__thiscall *ContextDepletionCallback)(
-    CollisionContext *context, Fighter *fighter);
-typedef void (__thiscall *FighterActionCallback)(
-    Fighter *fighter, int action);
-
-void invoke_context_slot_2c(
-    CollisionContext *context,
-    Fighter *fighter)
-{
-    ContextDepletionCallback callback =
-        reinterpret_cast<ContextDepletionCallback>(
-            (*reinterpret_cast<void ***>(context))[11]);
-    callback(context, fighter);
-}
-
-void invoke_fighter_slot_08(Fighter *fighter, int action)
-{
-    FighterActionCallback callback =
-        reinterpret_cast<FighterActionCallback>(
-            (*reinterpret_cast<void ***>(fighter))[2]);
-    callback(fighter, action);
-}
-
-} // namespace
 
 void CollisionContext::resolve_general_attack_hit(
     AttackCandidate *candidate,
@@ -199,7 +175,8 @@ threshold_done:
         fighter->value_174 -= hit_quantity;
         if (fighter->value_174 <= 0) {
             fighter->value_174 = 0;
-            invoke_context_slot_2c(this, fighter);
+            reinterpret_cast<CBattleManager *>(this)
+                ->mark_terminal_pending_if_state_not_3_472490(fighter);
             selected_action = frame->action_code_36 == 0x46 ? 0x47 :
                 frame->action_code_36;
         }
@@ -209,7 +186,8 @@ threshold_done:
         update_fighter_facing_from_other_x(fighter);
     }
     if (static_cast<short>(selected_action) >= 0) {
-        invoke_fighter_slot_08(fighter, selected_action);
+        reinterpret_cast<AnimationSequenceObjectView *>(fighter)
+            ->set_action_and_finalize(static_cast<short>(selected_action));
     }
     emit_effect_at_collision_center(
         frame->effect_46, candidate->facing_104);
