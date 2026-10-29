@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Scene timeline064 is now a start-time-ordered multiset, preserving duplicate
+timestamps, rather than the old layout-compatible object-ID map. Insert107
+independently proves the predicate; constructor196/update801/cleanup104 and
+all10 affected compiler-origin anchors remain valid. See
+[SCENE_TIMELINE_ORDERING_2026_10_29.md](SCENE_TIMELINE_ORDERING_2026_10_29.md).
+
 Timeline entry destruction41EC10 is canonical exact223/223. Its first deque
 owns texture handles, not sprites; the header is corrected and all three
 existing constructor/render/list consumers stay exact. See

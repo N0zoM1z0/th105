@@ -1,3 +1,4 @@
+#include "SceneTimelineEntries.hpp"
 #include "battle/ScriptCommandRegistry.hpp"
 #include <list>
 #include <map>
@@ -6,13 +7,13 @@
 namespace th105 {
 
 struct SceneListRecord124Cleanup { unsigned char bytes[0x7C]; ~SceneListRecord124Cleanup(); };
-struct SceneMapValue20Cleanup { unsigned char bytes[20]; };
+
 
 struct SceneRenderClusterCleanupView {
     SceneTimelineRegistry timeline_00;
     std::map<int, void *> objects_4c;
     std::list<SceneListRecord124Cleanup> records_58;
-    std::map<int, SceneMapValue20Cleanup> values_64;
+    SceneTimelineEntries values_64;
     std::string path_70;
     unsigned char tail_8c[7];
 

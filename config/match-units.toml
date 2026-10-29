@@ -14132,7 +14132,7 @@ source = "src/ui/SceneRenderClusterConstructor.cpp"
 object = "build/match-units/GptWeb_SceneRenderClusterConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current Opening/Ending shared render-cluster constructor. Exact scene owners and current 0x0041F120 EH establish the +0x18 CScript, checked map<int,void*> +0x4C, list<0x7C record> +0x58, map<int,20-byte value> +0x64 and std::string +0x70 layout. Ordinary native containers reproduce 196/196 without codegen forcing."
+notes = "Current Opening/Ending shared render-cluster constructor. Exact scene owners and current 0x0041F120 EH establish the +0x18 CScript, checked map<int,void*> +0x4C, list<0x7C record> +0x58, start-time-ordered multiset<24-byte command> +0x64 and std::string +0x70 layout. Ordinary native containers reproduce 196/196 without codegen forcing."
 
 [[units.gpt-web-scene-render-cluster-constructor.functions]]
 address = "0x0041F120"
@@ -14141,7 +14141,7 @@ rel32_targets = [
   "??0CScript@@QAE@XZ=0x00405600",
   "?_Buynode@?$_Tree@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@2@XZ=0x00420A40",
   "?_Buynode@?$list@USceneListRecord124@th105@@V?$allocator@USceneListRecord124@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@USceneListRecord124@th105@@V?$allocator@USceneListRecord124@th105@@@std@@@2@XZ=0x0041EB30",
-  "?_Buynode@?$_Tree@V?$_Tmap_traits@HUSceneMapValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneMapValue20@th105@@@std@@@4@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneMapValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneMapValue20@th105@@@std@@@4@$0A@@std@@@2@XZ=0x0041EB90",
+  "?_Buynode@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@2@XZ=0x0041EB90",
 ]
 dir32_targets = [
   "__ehhandler$??0SceneRenderClusterConstructorLayout@th105@@QAE@XZ=__ehhandler$??0SceneRenderCluster@th105@@QAE@XZ",
@@ -15253,7 +15253,7 @@ source = "src/ui/SceneRenderClusterRuntime.cpp"
 object = "build/match-units/GptWeb_SceneRenderClusterRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current Opening/Ending shared SceneRenderCluster update. The exact constructor-backed map/list/map/string composition, checked iterator source lifetimes, timeline smoothing, object lookup and target-observed physical switch order reproduce the 801-byte callable; its COMDAT carries the switch table after the reviewed RET boundary."
+notes = "Current Opening/Ending shared SceneRenderCluster update. The exact constructor-backed object-map/list/start-time-multiset/string composition, checked iterator source lifetimes, timeline smoothing, object lookup and target-observed physical switch order reproduce the 801-byte callable; its COMDAT carries the switch table after the reviewed RET boundary."
 
 [[units.gpt-web-scene-render-cluster-runtime.functions]]
 address = "0x00451400"
@@ -15265,8 +15265,8 @@ rel32_targets = [
   "?find@?$_Tree@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "?interpolate_scene_byte_4501b0@SceneRenderClusterUpdateView@th105@@QAEXPAE0PBUSceneInterpolationEntry24@2@I@Z=0x004501B0",
   "?interpolate_scene_float_450290@SceneRenderClusterUpdateView@th105@@QAEXPAM0PBUSceneInterpolationEntry24@2@I@Z=0x00450290",
-  "?erase@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z=0x0041ECF0",
-  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ=0x0041EAC0",
+  "?erase@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@QAE?AViterator@12@V312@@Z=0x0041ECF0",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@QAEXXZ=0x0041EAC0",
 ]
 dir32_targets = ["__imp__timeGetTime@0=__imp__timeGetTime@0"]
 
@@ -15276,13 +15276,13 @@ source = "src/ui/SceneRenderClusterCleanup.cpp"
 object = "build/match-units/GptWeb_SceneRenderClusterCleanup.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current SceneRenderCluster explicit cleanup owned by exact Ending/Opening destructors. Native values-map, nontrivial 0x7C-record list and objects-map clear operations followed by CScript::clear_commands naturally reproduce 104/104; the nontrivial list element lifetime is byte-significant and prevents the list clear from inlining into the authored root."
+notes = "Current SceneRenderCluster explicit cleanup owned by exact Ending/Opening destructors. Native start-time multiset, nontrivial 0x7C-record list and objects-map clear operations followed by CScript::clear_commands naturally reproduce 104/104; the nontrivial list element lifetime is byte-significant and prevents the list clear from inlining into the authored root."
 
 [[units.gpt-web-scene-render-cluster-cleanup.functions]]
 address = "0x00452E60"
 symbol_base = "?cleanup_452e60@SceneRenderClusterCleanupView@th105@@QAEXXZ"
 rel32_targets = [
-  "?_Erase@?$_Tree@V?$_Tmap_traits@HUSceneMapValue20Cleanup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneMapValue20Cleanup@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneMapValue20Cleanup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneMapValue20Cleanup@th105@@@std@@@4@$0A@@std@@@2@@Z=0x0041EBD0",
+  "?_Erase@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@2@@Z=0x0041EBD0",
   "?clear@?$list@USceneListRecord124Cleanup@th105@@V?$allocator@USceneListRecord124Cleanup@th105@@@std@@@std@@QAEXXZ=0x0041F080",
   "?_Erase@?$_Tree@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HPAXU?$less@H@std@@V?$allocator@U?$pair@$$CBHPAX@std@@@2@$0A@@std@@@2@@Z=0x0043BC40",
   "?clear_commands@CScript@@QAEXXZ=0x004056C0",

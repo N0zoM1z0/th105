@@ -1433,7 +1433,7 @@ origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Canonical-exact SceneRenderCluster constructor instantiates checked list<0x7C scene record> and map<int,20-byte scene value> node allocators plus map erase(iterator). SHA-pinned VC8 SP1 rebuild plus full-inventory relocation-masked replay requires all three classified COMDAT fingerprints to remain inventory-unique; the map<int,void*> allocator at 0x00420A40 is already independently excluded by the effect-manager exact-TU manifest."
+evidence = "Canonical-exact SceneRenderCluster constructor instantiates checked list<0x7C scene record> and start-time-ordered multiset<24-byte scene command> node allocators plus tree erase(iterator). SHA-pinned VC8 SP1 rebuild plus full-inventory relocation-masked replay requires all three classified COMDAT fingerprints to remain inventory-unique; the map<int,void*> allocator at 0x00420A40 is already independently excluded by the effect-manager exact-TU manifest."
 
 [[rules]]
 id = "vc8-generated-profile-deck-resource-std-comdats-106a"
@@ -1499,7 +1499,7 @@ origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact SceneRenderClusterRuntime.cpp regenerates five checked map<int,SceneTimelineValue20> iterator/rotation/Min/Max COMDATs; every relocation-masked fingerprint must remain inventory-unique across the full current inventory."
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact SceneRenderClusterRuntime.cpp regenerates five checked start-time multiset<SceneInterpolationEntry24> iterator/rotation/Min/Max COMDATs; every relocation-masked fingerprint must remain inventory-unique across the full current inventory."
 
 [[rules]]
 id = "vc8-generated-input-merge-std-comdat-106a"
@@ -1521,7 +1521,7 @@ origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact SceneRenderClusterCleanup.cpp regenerates list<SceneListRecord124>::clear and map<int,SceneMapValue20>::_Erase; both relocation-masked fingerprints must remain inventory-unique across the complete current candidate inventory."
+evidence = "SHA-pinned VC8 SP1 rebuild of canonical-exact SceneRenderClusterCleanup.cpp regenerates list<SceneListRecord124>::clear and start-time multiset<SceneInterpolationEntry24>::_Erase; both relocation-masked fingerprints must remain inventory-unique across the complete current candidate inventory."
 
 [[rules]]
 id = "vc8-generated-network-base-array-constructor-helper-106a"

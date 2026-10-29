@@ -1,3 +1,4 @@
+#include "SceneTimelineEntries.hpp"
 #include "battle/ScriptCommandRegistry.hpp"
 
 #include <list>
@@ -10,15 +11,13 @@ struct SceneListRecord124 {
     unsigned char bytes[0x7C];
 };
 
-struct SceneMapValue20 {
-    unsigned char bytes[20];
-};
+
 
 struct SceneRenderClusterConstructorLayout {
     SceneTimelineRegistry timeline_00;
     std::map<int, void *> objects_4c;
     std::list<SceneListRecord124> records_58;
-    std::map<int, SceneMapValue20> values_64;
+    SceneTimelineEntries values_64;
     std::string path_70;
     unsigned char tail_8c[7];
 

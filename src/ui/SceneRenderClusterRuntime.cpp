@@ -1,5 +1,7 @@
+#include "SceneTimelineEntries.hpp"
 #include <list>
 #include <map>
+#include <set>
 #include <string>
 #include <stddef.h>
 
@@ -16,18 +18,6 @@ struct SceneTimeline40Update {
     unsigned char reserved_0c[0x34];
 };
 typedef char SceneTimeline40Update_size[sizeof(SceneTimeline40Update)==0x40?1:-1];
-
-struct SceneTimelineValue20 {
-    unsigned int start_00;
-    unsigned int end_04;
-    union {
-        unsigned int uint_08;
-        float float_08;
-        unsigned char byte_08;
-    } target;
-    int easing_0c;
-    int type_10;
-};
 
 struct SceneListRecord124Update {
     unsigned char reserved_00[0x74];
@@ -63,19 +53,6 @@ struct SceneAnimatedObjectUpdateView {
     unsigned char active_8c;
 };
 
-struct SceneInterpolationEntry24 {
-    int object_id_00;
-    unsigned int start_04;
-    unsigned int end_08;
-    union {
-        unsigned int uint_0c;
-        float float_0c;
-        unsigned char byte_0c;
-    } target;
-    int easing_10;
-    int type_14;
-};
-
 class SceneRenderClusterUpdateView {
 public:
     bool update_451400();
@@ -96,7 +73,7 @@ public:
     unsigned char reserved_45[7];
     std::map<int, void *> objects_4c;
     std::list<SceneListRecord124Update> records_58;
-    std::map<int, SceneTimelineValue20> values_64;
+    SceneTimelineEntries values_64;
     std::string path_70;
     unsigned int field_8c;
     unsigned char flag_90;
@@ -105,8 +82,8 @@ public:
     unsigned char flag_93;
 };
 
-typedef char SceneTimelineValue20_size[
-    sizeof(SceneTimelineValue20) == 0x14 ? 1 : -1];
+typedef char SceneInterpolationEntry24_size[
+    sizeof(SceneInterpolationEntry24) == 0x18 ? 1 : -1];
 typedef char SceneListRecord124Update_size[
     sizeof(SceneListRecord124Update) == 0x7c ? 1 : -1];
 typedef char SceneRenderClusterUpdateView_size[
@@ -129,83 +106,83 @@ bool SceneRenderClusterUpdateView::update_451400()
             return false;
     }
 
-    for (std::map<int, SceneTimelineValue20>::iterator it = values_64.begin();
+    for (SceneTimelineEntries::iterator it = values_64.begin();
          it != values_64.end();) {
-        if (timeline_00.elapsed_08 < it->second.start_00)
+        if (timeline_00.elapsed_08 < it->start_04)
             break;
 
-        if (it->second.type_10 == 16) {
+        if (it->type_14 == 16) {
             field_8c = 1;
         } else {
             SceneAnimatedObjectUpdateView *object =
                 reinterpret_cast<SceneAnimatedObjectUpdateView *>(
-                    objects_4c.find(it->first)->second);
+                    objects_4c.find(it->object_id_00)->second);
 
-            switch (it->second.type_10) {
+            switch (it->type_14) {
             case 3:
                 interpolate_scene_float_450290(
                     &object->current_28, &object->output_44,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 4:
                 interpolate_scene_float_450290(
                     &object->current_2c, &object->output_48,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 7:
                 interpolate_scene_byte_4501b0(
                     &object->output_byte_56, &object->current_byte_57,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 8:
                 interpolate_scene_byte_4501b0(
                     &object->output_byte_58, &object->current_byte_59,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 9:
                 interpolate_scene_byte_4501b0(
                     &object->output_byte_5a, &object->current_byte_5b,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 5:
                 interpolate_scene_float_450290(
                     &object->current_30, &object->output_4c,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 6:
                 interpolate_scene_float_450290(
                     &object->current_34, &object->output_50,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 10:
                 interpolate_scene_byte_4501b0(
                     &object->output_byte_54, &object->current_byte_55,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 11:
                 interpolate_scene_float_450290(
                     &object->current_38, &object->output_5c,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 12:
                 interpolate_scene_float_450290(
                     &object->current_3c, &object->output_60,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             case 13:
                 interpolate_scene_float_450290(
                     &object->current_40, &object->output_64,
-                    reinterpret_cast<const SceneInterpolationEntry24 *>(&it->first),
+                    &*it,
                     timeline_00.elapsed_08);
                 break;
             default:
@@ -213,7 +190,7 @@ bool SceneRenderClusterUpdateView::update_451400()
             }
         }
 
-        if (timeline_00.elapsed_08 >= it->second.end_04)
+        if (timeline_00.elapsed_08 >= it->end_08)
             it = values_64.erase(it);
         else
             ++it;

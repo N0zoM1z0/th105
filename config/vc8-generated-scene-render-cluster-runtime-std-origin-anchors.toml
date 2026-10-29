@@ -11,24 +11,24 @@ alignment_tail_hex = ""
 [[anchors]]
 address = "0x0041EAC0"
 size = 99
-symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ"
+symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@QAEXXZ"
 
 [[anchors]]
 address = "0x0041EA60"
 size = 82
-symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@2@@Z"
+symbol = "?_Rrotate@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@2@@Z"
 
 [[anchors]]
 address = "0x0041E9D0"
 size = 78
-symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@2@@Z"
+symbol = "?_Lrotate@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@2@@Z"
 
 [[anchors]]
 address = "0x0041EA20"
 size = 28
-symbol = "?_Max@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@2@PAU342@@Z"
+symbol = "?_Max@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@2@PAU342@@Z"
 
 [[anchors]]
 address = "0x0041EA40"
 size = 27
-symbol = "?_Min@?$_Tree@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSceneTimelineValue20@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSceneTimelineValue20@th105@@@std@@@4@$0A@@std@@@2@PAU342@@Z"
+symbol = "?_Min@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@2@PAU342@@Z"
