@@ -1,11 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: Sakuya4CADB0 now preserves native knife-call
-argument lifetimes directly and action214 arithmetic branch ownership. Whole
-77000/native76336 remains nonexact+8/frame4A8 versus4D8. All113 arithmetic
-family censuses agree;95 payload homes remain, no exact credit. See
+Current bounded candidate: Sakuya4CADB0 now restores native direct argument
+lifetimes for the knife macro plus96 independently checked staged spawn sites,
+and action214 arithmetic branch ownership. Whole76484/native76336 remains
+nonexact+8/frame4A8 versus4D8. All113 arithmetic-family censuses agree;95 payload
+homes remain, no exact credit. See
 [SAKUYA_ACTION_STATE_2026_10_28.md](SAKUYA_ACTION_STATE_2026_10_28.md) Oct29 appendix
-and build/frontier-sakuya-arguments-20261029/{formal-build,formal-audit}.json.
+and build/frontier-sakuya-arguments-20261029/formal-allargs-{build,audit}.json.
 
 Preceding bounded candidate: scene-owned BGM shutdown4034F0 has complete449-byte
 source and raw CFG/caller ownership. Worker/event shutdown and three real

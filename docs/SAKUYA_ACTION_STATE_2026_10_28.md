@@ -155,3 +155,32 @@ Focused public full-extent build and complete payload audit:
 Private corrected call/arithmetic census and payload receipts are in that scope;
 recipes are `.analysis/frontier-sakuya-arguments-20261029/`. No shared header,
 relocation binding, compiler profile or accepted consumer changed.
+
+### Completed argument-lifetime pass
+
+The same independent argument-stack review now covers96 additional staged
+spawn expressions:64 sine/cosine pairs across19 primary actions, and32 action545/
+546/547/548 sites using sine or ordered RNG coordinate expressions. Every reviewed
+native site pushes its request count before the first coordinate helper. Ordinary
+direct arguments reproduce that lifetime without named facing/y/x temporaries;
+request declarations, element counts, value expressions and RNG order are
+unchanged. Native proof packets are `trig-argument-facts.json` and
+`817-argument-facts.json` in the current build scope. Primary action ownership
+uses actual outer switch nesting, not the nearest nested case label.
+
+This pass supersedes the77000-byte selection above. Current full payload is
+**76484/native76336, nonexact+8**, SHA256
+`f9caf8283a24673e47ea3f9e4182861adc842edab8b90be22fd2f7193c22f885`.
+There are72568 unmasked differing positions including length,158 source returns
+and184 virtual sites. All113 arithmetic-family censuses still agree, and only
+567 retains the physical three-versus-two spawn-site difference. Raw567 readback
+again verifies identical argument values in the two native branches; register
+spelling differs, which is not permission to invent a source-level distinction.
+
+The payload audit still closes95 homes with no unknown pointers, frame1192 versus
+native1240 and unchanged AL-width predicates. This is a closer source expression
+of the observed calls, **not byte-exact acceptance or a percentage inferred from
+length**. The current focused receipts are `formal-allargs-build.json`,
+`formal-allargs-audit.json` and `allargs-payload-review.log` in
+`build/frontier-sakuya-arguments-20261029/`. All section bytes and metadata remain
+unmasked; exact totals are unchanged.
