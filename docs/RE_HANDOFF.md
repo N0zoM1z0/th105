@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+ResultList population4478B0 is canonical exact1133/1133. Real typed containers
+and two separate row-buffer string temporaries replace the old manual deque
+helper and shared temporary. See [RESULT_LIST_POPULATE_2026_10_29.md](RESULT_LIST_POPULATE_2026_10_29.md).
+
 MusicList population445830 is canonical exact867/867. The actual locked-label
 C-string constructor restores the native assign boundary and full stack
 lifetimes. See [MUSIC_LIST_POPULATE_2026_10_29.md](MUSIC_LIST_POPULATE_2026_10_29.md).

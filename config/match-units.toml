@@ -27181,3 +27181,36 @@ rel32_targets = [
 dir32_targets = [
  "??_C@_0CH@FHBNAFPJ@?$DMcolor?5808080?$DO?$IBH?$IBH?$IBH?$IBH?$IBH?$IBH?$IBH?$IBH?$DM?1@=_music_locked_label",
 ]
+
+[units.exact-first-result-list-populate]
+kind = "probe"
+source = "src/ui/ResultListPopulate.cpp"
+object = "build/match-units/ExactFirst_ResultListPopulate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete1133-byte ResultList population. Native score-record vector and four typed deque tails, actual32-byte spell resource owner, separate row-buffer string temporaries and virtual finalize. docs/RESULT_LIST_POPULATE_2026_10_29.md."
+
+[[units.exact-first-result-list-populate.functions]]
+address = "0x004478B0"
+symbol_base = "?populate@ResultListPopulateView@th105@@UAEXXZ"
+rel32_targets = [
+ "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
+ "?_Tidy@?$deque@HV?$allocator@H@std@@@std@@IAEXXZ=0x00420A80",
+ "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+ "??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E880",
+ "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?load_spell_csv_via_32e20@SpellDataOwner@th105@@QAEEHCE@Z=0x00434A10",
+ "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20",
+ "__sprintf_s=0x0068B35B",
+ "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+ "?_Growmap@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXI@Z=0x0040FE30",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?push_back@?$deque@HV?$allocator@H@std@@@std@@QAEXABH@Z=0x006183F0",
+ "?clear_spell_entries@SpellDataOwner@th105@@QAEXXZ=0x00433A80",
+ "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E900",
+ "@__security_check_cookie@4=0x00689D25",
+]
