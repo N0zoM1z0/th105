@@ -27464,3 +27464,22 @@ rel32_targets = [
  "?set_texture_options@TimelineSpriteOptionsView@th105@@QAEXIHHHHHH@Z=0x00407160",
  "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.exact-first-scene-render-cluster-lifetime]
+kind = "probe"
+source = "src/ui/SceneRenderClusterLifetime.cpp"
+object = "build/match-units/ExactFirst_SceneRenderClusterLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete247-byte implicit scene cluster destructor with actual timeline record and start-time multiset ownership. The unmapped delete helper only emits the destructor; it has no native credit. docs/SCENE_CLUSTER_LIFETIME_2026_10_29.md."
+
+[[units.exact-first-scene-render-cluster-lifetime.functions]]
+address = "0x0041F1F0"
+symbol_base = "??1SceneClusterLifetimeView@th105@@QAE@XZ"
+rel32_targets = [
+ "??1CScript@@QAE@XZ=0x00405660",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?clear@?$list@URenderTimelineEntry@th105@@V?$allocator@URenderTimelineEntry@th105@@@std@@@std@@QAEXXZ=0x0041F080",
+ "?erase@?$_Tree@V?$_Tmap_traits@HPAURenderTimelineEntry@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAURenderTimelineEntry@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0043D270",
+ "?erase@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0041EFB0",
+]

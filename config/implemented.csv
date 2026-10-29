@@ -1686,3 +1686,4 @@ CScenarioData_update_render_list_fade
 CScenarioData_rebuild_window_text
 RenderTimelineEntry_dtor
 SceneRenderCluster_load_timeline
+SceneRenderCluster_dtor

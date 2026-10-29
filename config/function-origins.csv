@@ -682,7 +682,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041F080,compiler_generated,ui,exclude,observed,vc8-generated-scene-render-cluster-cleanup-std-comdats-106a
 0x0041F0C0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0041F120,authored_game,ui,authored,observed,canonical-exact-authored
-0x0041F1F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041F1F0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041F2F0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041F360,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041F3D0,authored_game,ui,authored,observed,canonical-exact-authored

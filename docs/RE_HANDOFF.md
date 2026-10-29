@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Scene render-cluster destruction41F1F0 is canonical exact247/247 on the first
+build with recovered record/multiset/CScript ownership. Implicit member
+destruction closes the old scheduling stop without changing scene tail views.
+See [SCENE_CLUSTER_LIFETIME_2026_10_29.md](SCENE_CLUSTER_LIFETIME_2026_10_29.md).
+
 Opening/Ending timeline loader4540F0 is canonical exact1584/1584, including a
 separate provenance-checked exact1676-byte payload replay for all three switch
 tables. Direct command-ID reloads and expression-local float conversions close
