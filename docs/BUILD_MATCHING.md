@@ -1644,3 +1644,13 @@ This does not waive source-global constructor/destructor/EH evidence for units
 that do own globals. See BGM_SERVICE_LTCG_2026_10_29.md for the actual source
 context, complete70/69-byte acceptance and focused regression replays. Never
 insert a fake global merely to obtain a runtime profile or suppress LNK4210.
+
+### Named D3DX import metadata
+
+The linked profile accepts the narrowly enumerated link_named_import_targets
+contract for D3DXCreateEffect. Pinned VC8 LIB produces only import metadata;
+its standard short-import name policy is selected as IMPORT_NAME_UNDECORATE.
+The comparator validates the original/generated archives, actual source and
+target PE import identities and map owner. This does not permit synthetic
+code providers or arbitrary import mappings. See
+[BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md](BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md).

@@ -16598,7 +16598,7 @@ source = "src/battle/BattleBaseEffectLifetime.cpp"
 object = "build/match-units/GptWeb_BattleBaseEffectLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current BattleBaseEffect +0x40 member lifetime from exact BattleObjectManager ctor/dtor. Constructor/dtor/shutdown remain canonical exact. initialize is now formally included at 71/71 with first mismatch +0x11: target forms g_d3d_backend in EAX for private listener-registration entry 0x00414CB0, while ordinary source correctly uses normal thiscall ECX before the same call. D3DXCreateEffect/device/effect+0x04 semantics are source-closed; no private ABI is fabricated."
+notes = "Current BattleBaseEffect +0x40 member lifetime from exact BattleObjectManager ctor/dtor. Constructor/dtor/shutdown remain canonical exact. initialize is separately selected in the genuine linked effect/listener/lock context. Shared class layout is unchanged."
 
 [[units.gpt-web-battle-base-effect-lifetime.functions]]
 address = "0x00417FB0"
@@ -18754,14 +18754,6 @@ rel32_targets = [
   "?_Incsize@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEXI@Z=0x0040C6D0",
 ]
 
-[[units.gpt-web-battle-base-effect-lifetime.functions]]
-address = "0x00417FF0"
-symbol_base = "?initialize@BattleBaseEffectLifetimeView@th105@@QAE_NPBXI@Z"
-rel32_targets = [
-  "?register_reset_listener@D3DBackendListenerRuntimeView@th105@@QAEXPAUDeviceResetListener@2@@Z=0x00414CB0",
-  "_D3DXCreateEffect@36=0x006898A2",
-]
-dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
 
 [units.gpt-web-profile-render-list-color-runtime]
 kind = "linked_candidate"
@@ -26580,3 +26572,32 @@ symbol_base = "?set_counter@FighterActionCounterLeafView@th105@@QAEXF@Z"
 [[units.exact-first-action-state-leaf-setters.functions]]
 address = "0x004547D0"
 symbol_base = "?start@ScenarioResultEnableLeafView@th105@@QAEXXZ"
+
+[units.exact-first-battle-base-effect-initialize-linked]
+kind = "linked_candidate"
+source = "src/battle/BattleBaseEffectInitializeLinked.cpp"
+object = "build/match-units/ExactFirst_BattleBaseEffectInitialize.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+link_named_import_targets = ["_D3DXCreateEffect@36=0x006898A2"]
+link_data_targets = [
+  "?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A",
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+  "__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4",
+  "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4",
+  "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+  "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+  "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+  "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+  "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+]
+notes = "Actual initializer/listener/critical-section CIL context; real named D3DX import metadata. Only the complete initializer is selected; provider bodies receive no credit."
+
+[[units.exact-first-battle-base-effect-initialize-linked.functions]]
+address = "0x00417FF0"
+symbol_base = "?initialize@BattleBaseEffectLifetimeView@th105@@QAE_NPBXI@Z"
+rel32_targets = [
+  "?register_reset_listener@D3DBackendListenerRuntimeView@th105@@QAEXPAUDeviceResetListener@2@@Z=0x00414CB0",
+  "_D3DXCreateEffect@36=0x006898A2",
+]

@@ -1963,18 +1963,6 @@ confidence = "observed"
 evidence = "Exact-backed g_d3d_backend layout fixes CriticalSection +0 and std::list<DeviceResetListener*> +0x1AC. BattleBaseEffect initialize passes itself here before D3DXCreateEffect. Natural member source deduplicates and appends listeners, formally 134/157; target uniquely consumes the backend receiver in EAX and uses LTCG list helper variants."
 
 [[rules]]
-id = "battle-base-effect-initialize-authored-106a"
-addresses = ["0x00417FF0"]
-expected_count = 1
-expected_bytes = 71
-expected_names = ["sub_417FF0"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Canonical-exact BattleObjectManager constructor passes target effect blob 0x006C2DB8 with size 0x4D0 to this 8-byte BattleBaseEffect member. Natural source checks effect+0x04, registers with g_d3d_backend, then calls D3DXCreateEffect through device+0x20 and is exact-sized 71/71; first mismatch +0x11 is solely target EAX versus ordinary ECX receiver formation for 0x00414CB0."
-
-[[rules]]
 id = "battle-info-record-effect-authored-106a"
 addresses = ["0x0046F9F0"]
 expected_count = 1

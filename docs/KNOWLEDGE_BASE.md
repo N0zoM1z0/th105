@@ -2858,3 +2858,10 @@ The slot1 switch also exposes a byte-boundary rule. The authored main body retur
   is not withdrawn. The obsolete unselected manager assembly file is removed.
   See [Title correction](TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md). Historical
   opcode transcription is not a valid shortcut back to exact restoration.
+
+## 2026-10-29: effect initializer genuine linked context
+
+417FF0 is now complete71/71 exact. Real listener and lock providers naturally
+select the formerly missing EAX receiver; a standard named-import archive is
+strictly validated against the actual D3DX PE import. Provider exactness is
+not inferred. See [evidence](BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md).

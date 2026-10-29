@@ -537,7 +537,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00417EF0,compiler_generated,characters,exclude,observed,vc8-generated-character-object-ex-deque-comdats-106a
 0x00417FB0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00417FC0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00417FF0,authored_game,battle,authored,observed,battle-base-effect-initialize-authored-106a
+0x00417FF0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00418040,authored_game,battle,authored,observed,canonical-exact-authored
 0x00418070,authored_game,battle,authored,observed,canonical-exact-authored
 0x00418090,authored_game,battle,authored,observed,canonical-exact-authored

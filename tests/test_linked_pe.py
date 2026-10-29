@@ -592,6 +592,54 @@ class LinkedPeTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             linked.resolve_linked_call(destination, pe, {}, {slot: ("msvcr80.dll", 20)}, targets)
 
+    def test_named_import_call_requires_real_name_and_library_owner(self):
+        from linked_named_imports import CONTRACTS, validate_contract
+        symbol = "_D3DXCreateEffect@36"
+        unit = {"link_named_import_targets": [symbol + "=0x006898A2"]}
+        validate_contract(unit)
+        with self.assertRaises(ValueError): validate_contract(unit, {symbol})
+        with self.assertRaises(ValueError):
+            validate_contract({"link_named_import_targets": [symbol + "=0x006898A3"]})
+        slot, destination = linked.IMAGE_BASE + 0x3000, self.start + 0x800
+        pe = SimpleNamespace(OPTIONAL_HEADER=SimpleNamespace(SizeOfImage=0x5000),
+                             get_data=lambda rva, size: b"\xff\x25" + struct.pack("<I", slot))
+        contract = dict(CONTRACTS[symbol], symbol=symbol, map_owner="d3dx9_33_named:d3dx9_33.dll")
+        funcs = {destination: [(symbol, contract["map_owner"])]}
+        def resolve(identity, functions=funcs):
+            return linked.resolve_linked_call(destination, pe, functions, {slot: identity},
+                                              {symbol: contract["target"]}, [contract])
+        self.assertEqual(resolve(("d3dx9_33.dll", "D3DXCreateEffect")), (symbol, 0x6898a2))
+        for identity in [("d3dx9_33.dll", 1), ("d3dx9_33.dll", "D3DXCreateEffect@36"),
+                         ("other.dll", "D3DXCreateEffect"), (None, None)]:
+            with self.subTest(identity=identity), self.assertRaises(ValueError): resolve(identity)
+        with self.assertRaises(ValueError):
+            resolve(("d3dx9_33.dll", "D3DXCreateEffect"), {destination: [(symbol, "game.obj")]})
+
+    def test_named_import_metadata_changes_only_standard_name_policy(self):
+        from linked_named_imports import converted_archive
+        symbol, dll = "_D3DXCreateEffect@36", "d3dx9_33.dll"
+        def member(body):
+            header = ("d3dx9_33.dll/".ljust(16) + "0".ljust(12) + "0".ljust(6)
+                      + "0".ljust(6) + "0".ljust(8) + str(len(body)).ljust(10) + "`\n")
+            return header.encode() + body + (b"\n" if len(body) & 1 else b"")
+        def descriptor(names, executable=False):
+            head = struct.pack("<HHIIIHH", 0x14c, len(names), 0, 20 + 40 * len(names), 0, 0, 0)
+            return head + b"".join(struct.pack("<8sIIIIIIHHI", n, 0, 0, 0, 0, 0, 0, 0, 0,
+                                             0x20000000 if executable else 0x40000040) for n in names)
+        def archive(name=symbol, policy=8, executable=False):
+            strings = name.encode() + b"\0" + dll.encode() + b"\0"
+            short = struct.pack("<HHHHIIHH", 0, 0xffff, 0, 0x14c, 0, len(strings), 0, policy) + strings
+            return b"!<arch>\n" + b"".join(member(descriptor(names, executable)) for names in [
+                [b".debug$S", b".idata$2", b".idata$6"], [b".debug$S", b".idata$3"],
+                [b".debug$S", b".idata$5", b".idata$4"]]) + member(short)
+        original = archive()
+        result = converted_archive(original, symbol, dll)
+        self.assertEqual(len(original), len(result))
+        self.assertEqual([(a, b) for a, b in zip(original, result) if a != b], [(8, 12)])
+        for bad in [archive(name="_Wrong@36"), archive(policy=12), archive(executable=True), original[:-2]]:
+            with self.subTest(length=len(bad)), self.assertRaises(ValueError):
+                converted_archive(bad, symbol, dll)
+
     def test_sdk_target_attests_archive_abi_thunk_iat_and_excluded_origin(self):
         with tempfile.TemporaryDirectory() as folder:
             root, address, iat = Path(folder), 0x6898cc, 0x6c0274

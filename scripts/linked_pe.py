@@ -96,6 +96,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                 or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", address)):
             raise ValueError("invalid/duplicate pinned SDK import mapping")
         import_names.add(symbol)
+    from linked_named_imports import validate_contract as validate_named_imports
+    validate_named_imports(unit, names | import_names)
     coff_sources = unit.get("linked_coff_sources", [])
     if (not isinstance(coff_sources, list)
             or any(not isinstance(p, str) or not p.startswith("src/library/")
@@ -242,10 +244,12 @@ def import_identity(entry):
     return entry.ordinal if entry.import_by_ordinal else entry.name.decode("ascii")
 
 
-def target_imports(unit: dict, tools: Path) -> list[dict]:
+def target_imports(unit: dict, tools: Path, *, generate: bool = False) -> list[dict]:
+    from linked_named_imports import contracts as named_contracts
+    named = named_contracts(unit, tools, generate=generate)
     mappings = unit.get("link_import_targets", [])
     if not mappings:
-        return []
+        return named
     c = comparator()
     c.verify_target()
     game = pefile.PE(str(c.TARGET))
@@ -286,7 +290,7 @@ def target_imports(unit: dict, tools: Path) -> list[dict]:
                 or c.target_bytes(address, 6) != b"\xff\x25" + struct.pack("<I", iat)):
             raise ValueError("SDK target is not its attested six-byte import thunk and IAT")
         result.append({"symbol": symbol, "target": address, "target_iat": iat, **contract})
-    return result
+    return result + named
 
 
 def absolute_data_object(bindings: list[dict]) -> bytes:
@@ -445,7 +449,7 @@ def build_linked(name: str, unit: dict) -> dict:
     tools, hashes = pinned_tools(static)
     parsers = parser_versions()
     bindings = target_bindings(unit)
-    sdk_imports = target_imports(unit, tools)
+    sdk_imports = target_imports(unit, tools, generate=True)
     vtables = target_vtables(unit)
     source = repository_path(unit["source"])
     output = repository_path(unit["object"], output=True)
@@ -683,12 +687,12 @@ def resolve_linked_call(destination: int, pe, functions: dict, imports: dict, ta
         dll, imported = imports.get(struct.unpack_from("<I", thunk, 2)[0], (None, None))
         if dll not in RUNTIME_DLLS:
             contracts = [contract for contract in sdk_imports or []
-                         if (dll, imported) == (contract["dll"], contract["ordinal"])
+                         if (dll, imported) == (contract["dll"], contract.get("name", contract.get("ordinal")))
                          and targets.get(contract["symbol"]) == contract["target"]]
             if len(contracts) != 1:
                 raise ValueError("external linked call has no attested pinned SDK import contract")
             contract = contracts[0]
-            if functions.get(destination) != [(contract["symbol"], "WS2_32:WS2_32.dll")]:
+            if functions.get(destination) != [(contract["symbol"], contract.get("map_owner", "WS2_32:WS2_32.dll"))]:
                 raise ValueError("SDK thunk map symbol/library identity disagrees")
             return contract["symbol"], contract["target"]
         if not isinstance(imported, str) or not imported:

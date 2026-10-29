@@ -31,3 +31,7 @@ linker_version = "8.00.50727.762"
 "lib/libcpmt.lib" = "e1b17cb213bfcf77e3c0988f8cb33ec8be143872d1c52de62c5da07ea1eb8031"
 "lib/oldnames.lib" = "321bcc7062455d96193333fe291e77e10d5c96616c40dec1784161c6a2bdbe82"
 "PlatformSDK/Lib/Kernel32.Lib" = "42a96eb7aac53303254d4a5e061e94429d436dab353ff37774314c31dee4e6f2"
+
+# VC8 librarian for standard named-import metadata (no executable DLL input).
+[msvc8_named_imports]
+"bin/lib.exe" = "5053e465028f01a5ab36709d702dd6e31233e451a4a71a59ea9efd7a7a304090"

@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded correction: Title404C90/404D70 inline-assembly transcriptions
+Current bounded checkpoint: effect initialize417FF0 is canonical exact71/71
+in genuine initializer/listener/lock CIL context. The private EAX receiver
+emerges naturally; a strictly attested standard named D3DX import supplies the
+external link. Existing five lifetime callbacks and ordinal SDK lane replay
+independently. Provider414CB0 remains nonexact and uncredited. See
+[BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md](BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md)
+and build/frontier-effect-listener-context-20261029/.
+
+Preceding bounded correction: Title404C90/404D70 inline-assembly transcriptions
 are replaced by natural C++, and their99/115 exact credits withdrawn. Whole
 93/99 and119/115 remain nonexact. Obsolete unselected manager assembly removed;
 the independent genuine shared helper405200 freshly retains167/167. See
