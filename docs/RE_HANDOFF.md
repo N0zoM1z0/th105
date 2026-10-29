@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+SystemEffect tracked acquisition457110 is canonical exact91/91 through the
+real CObjectBase handle and typed checked-list ownership. Neighbor pool498/499
+and release119/119 remain nonexact. See
+[SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md](SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md).
+
 ScenarioResult constructor454C70 is canonical exact298/298. A real initializing
 tile texture-handle value closes the old EH/vptr scheduling gap; both generated
 cleanup funclets and the normal tile destructor also match their native bodies.

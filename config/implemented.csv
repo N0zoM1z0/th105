@@ -1681,3 +1681,4 @@ CScript_dtor
 CScenarioData_ctor
 CScenarioData_render
 ScenarioResultResource_ctor
+SystemEffectObjectManager_acquire_and_link

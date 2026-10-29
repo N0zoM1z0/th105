@@ -27359,3 +27359,20 @@ rel32_targets = [
  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
  "?set_texture_full@ScenarioTileSetupView@th105@@QAEXIHHIIHH@Z=0x004098E0",
 ]
+
+[units.exact-first-system-effect-tracked-acquire]
+kind = "probe"
+source = "src/battle/SystemEffectTrackedAcquire.cpp"
+object = "build/match-units/ExactFirst_SystemEffectTrackedAcquire.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "SystemEffect TObjectManagerBase acquisition publishes the actual CObjectBase handle value and appends its base pointer through checked std::list. Complete91-byte root; no manual nodes or register forcing. docs/SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md."
+
+[[units.exact-first-system-effect-tracked-acquire.functions]]
+address = "0x00457110"
+symbol_base = "?acquire_and_link_object@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEPAVSystemEffectObject@@XZ"
+rel32_targets = [
+ "?_Buynode@?$list@PAVSystemEffectObjectBase@@V?$allocator@PAVSystemEffectObjectBase@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAVSystemEffectObjectBase@@V?$allocator@PAVSystemEffectObjectBase@@@std@@@2@PAU342@0ABQAVSystemEffectObjectBase@@@Z=0x00421F30",
+ "?_Incsize@?$list@PAVSystemEffectObjectBase@@V?$allocator@PAVSystemEffectObjectBase@@@std@@@std@@IAEXI@Z=0x00440370",
+ "?acquire@?$CHandleManagerEx@VSystemEffectObject@@@@QAEPAVSystemEffectObject@@PAI@Z=0x00456B70",
+]

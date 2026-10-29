@@ -1708,3 +1708,4 @@ CScript_dtor,0x00405660,function
 CScenarioData_ctor,0x00459C90,function
 CScenarioData_render,0x00457F90,function
 ScenarioResultResource_ctor,0x00454C70,function
+SystemEffectObjectManager_acquire_and_link,0x00457110,function
