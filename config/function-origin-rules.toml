@@ -576,7 +576,7 @@ origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
 confidence = "observed"
-evidence = "Raw current PE contains eleven direct calls to the checked handle lookup, including canonical-exact TitleResourceManager_release_title_resource_handle 0x00404D70 at call site 0x00404DB7. Source-present scoped-lock/generation/slot-vector semantics are game resource-manager behavior; the remaining exact-sized mismatch is scheduling only."
+evidence = "Raw current PE contains eleven direct calls to the checked handle lookup, including the raw/source-reviewed TitleResourceManager_release_title_resource_handle 0x00404D70 at call site 0x00404DB7. Source-present scoped-lock/generation/slot-vector semantics are game resource-manager behavior; the remaining exact-sized mismatch is scheduling only."
 
 [[rules]]
 id = "fighter-command-matcher-authored-106a"
@@ -1613,7 +1613,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Canonical-exact CProfileMenu_dtor 0x0044D340 directly calls this cleanup on its embedded ProfileMenuBaseData. Current ProfileMenu lifetime source independently proves the texture handle at +0 and exact TitleResourceManager_release_title_resource_handle @ 0x00404D70. Natural source is formally 28/29 nonexact; the edge/layout evidence proves authored ownership independently of codegen acceptance."
+evidence = "Canonical-exact CProfileMenu_dtor 0x0044D340 directly calls this cleanup on its embedded ProfileMenuBaseData. Current ProfileMenu lifetime source independently proves the texture handle at +0 and the raw/source-reviewed TitleResourceManager_release_title_resource_handle @ 0x00404D70. Natural source is formally 28/29 nonexact; the edge/layout evidence proves authored ownership independently of codegen acceptance."
 
 [[rules]]
 id = "std-string-c-str-generated-106a"
@@ -3654,3 +3654,23 @@ confidence = "observed"
 evidence = "Native game-side logarithmic DirectSound conversion scales log10 by33.22f/100.0f and clamps to[-10000,0]. Raw transition402B70 calls at402BB1 and passes its result to buffer SetVolume slot3C. The transition is reached by canonical-exact BGM level/fade members. Whole103-byte body/hash and actual caller edge are independent of reconstruction acceptance. Prior aligned volatile scratch byte shaping was removed; natural73/native103 remains nonexact. docs/DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md."
 required_body_hashes = [{ address = "0x00418990", size = 103, sha256 = "a27d362dcc7f3516132c59d2ead2e4d70816b9c02f88cfb7c2750bfbc35082b4" }]
 required_direct_edges = [{ caller = "0x00402B70", site = "0x00402BB1", target = "0x00418990", caller_status = "unclassified" }]
+
+[[rules]]
+id = "title-resource-ownership-authored-106a"
+addresses = ["0x00404C90", "0x00404D70"]
+expected_count = 2
+expected_bytes = 214
+expected_names = ["sub_404C90", "sub_404D70"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Canonical-exact CSelectScenario_apply_scenario4245D0 calls release404D70 at4245F3 and load404C90 at424641. Raw complete99/115 bodies implement texture-token loading/failure recycle, eight cache-slot unbinds and COM release/recycle; current global/device/manager identities support game ownership independently of source exactness. Previous naked inline-assembly transcription is withdrawn. Natural C++93/99 and119/115 are nonexact; docs/TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md."
+required_body_hashes = [
+ { address = "0x00404C90", size = 99, sha256 = "e1e7a44481f2af11e1217f3b250c9170f0855b87c9063a8b643f510ed5fe7917" },
+ { address = "0x00404D70", size = 115, sha256 = "84ceca2dfdde55fc4ff7e0e10ee9071de7ba4ac9aa34367baf0f090e1ba76e03" },
+]
+required_direct_edges = [
+ { caller = "0x004245D0", site = "0x00424641", target = "0x00404C90", caller_status = "matching" },
+ { caller = "0x004245D0", site = "0x004245F3", target = "0x00404D70", caller_status = "matching" },
+]

@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded correction: volume conversion418990 no longer receives103
+Current bounded correction: Title404C90/404D70 inline-assembly transcriptions
+are replaced by natural C++, and their99/115 exact credits withdrawn. Whole
+93/99 and119/115 remain nonexact. Obsolete unselected manager assembly removed;
+the independent genuine shared helper405200 freshly retains167/167. See
+[TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md](TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md)
+and build/frontier-title-source-integrity-20261029/.
+
+Preceding bounded correction: volume conversion418990 no longer receives103
 exact bytes. The old aligned volatile scratch/self-stores lacked source evidence
 and were removed. Natural73/103 remains nonexact; DirectSound siblings82/110
 replay unchanged. BGM fade/level use a separate natural provider and retain

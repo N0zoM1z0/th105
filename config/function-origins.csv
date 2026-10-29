@@ -101,9 +101,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00404A10,authored_game,engine,authored,observed,canonical-exact-authored
 0x00404A40,authored_game,engine,authored,observed,canonical-exact-authored
 0x00404A90,authored_game,engine,authored,observed,canonical-exact-authored
-0x00404C90,authored_game,ui,authored,observed,canonical-exact-authored
+0x00404C90,authored_game,ui,authored,observed,title-resource-ownership-authored-106a
 0x00404D00,authored_game,ui,authored,observed,text-texture-resource-wrapper-authored-106a
-0x00404D70,authored_game,ui,authored,observed,canonical-exact-authored
+0x00404D70,authored_game,ui,authored,observed,title-resource-ownership-authored-106a
 0x00404DF0,authored_game,assets,authored,observed,render-texture-slot-binding-authored-106a
 0x00404E60,authored_game,assets,authored,observed,canonical-exact-authored
 0x00404F00,unknown,,review,unknown,ida-1.06a-initial-inventory

@@ -2158,15 +2158,15 @@ source = "src/ui/TitleResourceLoad.cpp"
 object = "build/match-units/CrossV106a_TitleResourceLoad.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Whole-corpus retained-source recovery of the title texture loader with current handle-manager and bitmap-loader callees decoded from target REL32 fields."
+notes = "Natural C++ texture load/failure recycle. Former99-byte inline-assembly transcription is withdrawn; current93/99 is nonexact. Ordinary acquire/release member declarations retain the source boundary without fake private register ABI. docs/TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md."
 
 [[units.cross-v106a-title-resource-load.functions]]
 address = "0x00404C90"
 symbol_base = "TitleResourceManager_load_texture"
 rel32_targets = [
-  "_CHandleManager_acquire_4byte_slot_edi=0x00405090",
-  "_TextureLoader_load_bitmap_to_resource_cell=0x00409080",
-  "_CHandleManager_release_token_eax@4=0x00405200",
+  "?acquire@TitleResourceAcquireView@th105@@QAEPAPAXPAI@Z=0x00405090",
+  "@TextureLoader_load_bitmap_to_resource_cell@16=0x00409080",
+  "?release@NetworkUdpPacketHandleManager64@th105@@QAEXI@Z=0x00405200",
 ]
 
 [units.cross-v106a-character-runtime-oriented]
@@ -2460,14 +2460,14 @@ source = "src/ui/TitleResourceRelease.cpp"
 object = "build/match-units/CrossV106a_TitleResourceRelease.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Whole-corpus retained-source recovery of title resource release; current texture-cache host and handle-manager lookup/release helpers are target-backed."
+notes = "Natural C++ eight-cache-slot unbind, COM release and token recycle. Former115-byte inline-assembly transcription is withdrawn; current119/115 remains nonexact. Actual D3D/COM interfaces and existing real handle helper declarations are used. docs/TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md."
 
 [[units.cross-v106a-title-resource-release.functions]]
 address = "0x00404D70"
 symbol_base = "TitleResourceManager_release_title_resource_handle"
 rel32_targets = [
-  "_CHandleManager_lookup_token=0x00417800",
-  "_CHandleManager_release_token_eax@4=0x00405200",
+  "?lookup_token_417800@CHandleManagerLookupView@th105@@QAEPAPAXI@Z=0x00417800",
+  "?release@NetworkUdpPacketHandleManager64@th105@@QAEXI@Z=0x00405200",
 ]
 dir32_targets = ["?g_title_texture_cache_host@th105@@3PAXA=?g_title_texture_cache_host@th105@@3PAXA"]
 

@@ -118,7 +118,6 @@ address,name,size,status,match_percent,unit,evidence
 0x005575C0,CharacterObjectEffectEmitter_emit_repeated_effects_for_owner_state,200,matching,100.00,cross-v106a-character-effect-repeat,python3 scripts/build.py --unit cross-v106a-character-effect-repeat --compare --json reports exact 200/200 against TH105 1.06a
 0x0045B420,run_common_character_update,119,matching,100.00,cross-v106a-fighter-common-update,python3 scripts/build.py --unit cross-v106a-fighter-common-update --compare --json reports exact 119/119 against TH105 1.06a
 0x0045D1B0,Fighter_is_front_sequence_entry_ready_55a,118,matching,100.00,cross-v106a-front-sequence-ready,python3 scripts/build.py --unit cross-v106a-front-sequence-ready --compare --json reports exact 118/118 against TH105 1.06a
-0x00404C90,TitleResourceManager_load_texture,99,matching,100.00,cross-v106a-title-resource-load,python3 scripts/build.py --unit cross-v106a-title-resource-load --compare --json reports exact 99/99 against TH105 1.06a
 0x00435160,CharacterObjectRuntime_set_oriented_components_f0_f4,57,matching,100.00,cross-v106a-character-runtime-oriented,python3 scripts/build.py --unit cross-v106a-character-runtime-oriented --compare --json reports exact 57/57 against TH105 1.06a
 0x0040A510,reset_input_state_table,54,matching,100.00,cross-v106a-input-state-reset,python3 scripts/build.py --unit cross-v106a-input-state-reset --compare --json reports exact 54/54 against TH105 1.06a
 0x00448200,CMenuSelect_update,76,matching,100.00,cross-v106a-menu-select-update,python3 scripts/build.py --unit cross-v106a-menu-select-update --compare --json reports exact 76/76 against TH105 1.06a
@@ -132,7 +131,6 @@ address,name,size,status,match_percent,unit,evidence
 0x0044BE10,CProfileMenu_render,223,matching,100.00,cross-v106a-profile-menu-render,python3 scripts/build.py --unit cross-v106a-profile-menu-render --compare --json reports exact 223/223 against TH105 1.06a
 0x0045D510,apply_deferred_counter_558,150,matching,100.00,cross-v106a-deferred-counter,python3 scripts/build.py --unit cross-v106a-deferred-counter --compare --json reports exact 150/150 against TH105 1.06a
 0x0046B350,reset_hit_exchange_scratch,93,matching,100.00,cross-v106a-hit-exchange-reset,python3 scripts/build.py --unit cross-v106a-hit-exchange-reset --compare --json reports exact 93/93 against TH105 1.06a
-0x00404D70,TitleResourceManager_release_title_resource_handle,115,matching,100.00,cross-v106a-title-resource-release,python3 scripts/build.py --unit cross-v106a-title-resource-release --compare --json reports exact 115/115 against TH105 1.06a
 0x0043F390,GuideOverlay_load,179,matching,100.00,cross-v106a-guide-overlay,python3 scripts/build.py --unit cross-v106a-guide-overlay --compare --json reports exact 179/179 against TH105 1.06a
 0x0043F4C0,GuideOverlay_render,124,matching,100.00,cross-v106a-guide-overlay,python3 scripts/build.py --unit cross-v106a-guide-overlay --compare --json reports exact 124/124 against TH105 1.06a
 0x004471E0,ResultList_ctor,128,matching,100.00,cross-v106a-result-list-ctor,python3 scripts/build.py --unit cross-v106a-result-list-ctor --compare --json reports exact 128/128 against TH105 1.06a

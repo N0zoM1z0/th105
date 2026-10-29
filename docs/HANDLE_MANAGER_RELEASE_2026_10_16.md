@@ -1,5 +1,10 @@
 # Shared handle-token release: full private-entry match
 
+October29 source-integrity correction: Title404C90/404D70's historical assembly
+acceptance is withdrawn. Their raw call edges remain valid, and the independent
+genuine sender/helper source still freshly replays167/167. See
+[TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md](TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md).
+
 The later [server-sender checkpoint](NETWORK_WINSOCK_SEND_SERVER_2026_10_16.md)
 adds the second real sender/export to this same source unit. Shared release
 still replays167/167 through its original client caller witness. Both senders

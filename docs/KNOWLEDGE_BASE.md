@@ -2851,3 +2851,10 @@ The slot1 switch also exposes a byte-boundary rule. The authored main body retur
   nonexact; the82/110 DirectSound siblings still replay exact. Do not restore
   the103 bytes from historical receipts alone. See
   [source-integrity correction](DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md).
+- The subsequent bounded source-integrity review withdrew Title404C90/404D70's
+  naked inline-assembly99/115-byte acceptance. Natural C++ now emits93/99 and
+  119/115 nonexact. Their game ownership remains raw/caller-backed; the genuine
+  NetworkWinsockSendClient-owned shared release405200 still replays167/167 and
+  is not withdrawn. The obsolete unselected manager assembly file is removed.
+  See [Title correction](TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md). Historical
+  opcode transcription is not a valid shortcut back to exact restoration.
