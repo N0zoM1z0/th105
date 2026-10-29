@@ -1,5 +1,7 @@
 # Reconstruction evidence notebook
 
+- **GuideOverlay update43F450 old scheduling stop is superseded.** The Oct29 typed CSprite color virtual plus branch-local compound alpha assignment reproduces complete112/112, including SUB AL15 and vtable-before-store ordering. Three accepted load/render/ctor siblings replay unchanged; the90/92 destructor remains nonexact. See [the current evidence](GUIDE_OVERLAY_UPDATE_2026_10_29.md). Older negative paragraphs below describe the manual-dispatch/local-alpha source context, not an impossibility result.
+
 This is a historical collection of target observations, source-shape
 experiments, and dated diagnostic checkpoints. It is not a current work queue
 or a ledger of exact matches. Numbers described below as "current" or "now"

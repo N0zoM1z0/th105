@@ -39,28 +39,6 @@ void GuideOverlay::load(int guide_id)
     visible = false;
 }
 
-void GuideOverlay::update()
-{
-    scroll_9c += 0.5;
-    if (scroll_9c > wrap_width_a0)
-        scroll_9c -= wrap_width_a0;
-
-    unsigned char alpha = alpha_a4;
-    if (visible) {
-        if (alpha >= 255)
-            return;
-        alpha += 15;
-    } else {
-        if (alpha == 0)
-            return;
-        alpha -= 15;
-    }
-    reinterpret_cast<UiSprite94::SetColor>(sprite_08.vtable[1])(
-        &sprite_08,
-        (static_cast<unsigned int>(alpha_a4 = alpha) << 24) |
-            0xFFFFFF);
-}
-
 void GuideOverlay::render()
 {
     if (alpha_a4 == 0)

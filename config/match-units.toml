@@ -2515,10 +2515,6 @@ dir32_targets = [
 ]
 
 [[units.cross-v106a-guide-overlay.functions]]
-address = "0x0043F450"
-symbol_base = "?update@GuideOverlay@th105@@QAEXXZ"
-
-[[units.cross-v106a-guide-overlay.functions]]
 address = "0x0043F540"
 symbol_base = "GuideOverlay_ctor"
 dir32_targets = ["_select_sprite_vtable_anchor=_select_sprite_vtable_anchor"]
@@ -27015,3 +27011,15 @@ rel32_targets = [
  "?transform_sprite@BattleBackgroundLayoutRenderView@th105@@QAEXPAVCSpriteEx@@@Z=0x004271B0",
  ]
 dir32_targets = ["?g_battle_background_layout@th105@@3UBattleBackgroundLayoutRenderView@1@A=?g_global_battle_setup_state@th105@@3PAEA"]
+
+[units.exact-first-guide-overlay-update]
+kind = "probe"
+source = "src/ui/GuideOverlayUpdate.cpp"
+object = "build/match-units/ExactFirst_GuideOverlayUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete112-byte GuideOverlay update. Typed CSprite color virtual with branch-local compound alpha assignment restores native SUB AL and dispatch/store ordering. docs/GUIDE_OVERLAY_UPDATE_2026_10_29.md."
+
+[[units.exact-first-guide-overlay-update.functions]]
+address = "0x0043F450"
+symbol_base = "?update@GuideOverlay@th105@@QAEXXZ"

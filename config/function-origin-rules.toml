@@ -1677,15 +1677,15 @@ evidence = "Canonical-exact CScenarioData::clear_runtime 0x00457DF0 and load_sto
 
 [[rules]]
 id = "guide-overlay-runtime-authored-106a"
-addresses = ["0x0043F330", "0x0043F450"]
-expected_count = 2
-expected_bytes = 204
-expected_names = ["sub_43F330", "sub_43F450"]
+addresses = ["0x0043F330"]
+expected_count = 1
+expected_bytes = 92
+expected_names = ["sub_43F330"]
 origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Canonical-exact Menu/Profile/Replay constructors and updates carry the current decorated GuideOverlay destructor/update identities to 0x0043F330/0x0043F450; the same typed GuideOverlay TU already reproduces exact load/render/ctor members and fixes the 0xA8 layout. Fresh ordinary C++ keeps the dtor at 90/92 on one texture-handle CSE and update at 112/112 on AL subtraction/vtable-load scheduling, so both are source-present nonexact without volatile/register/manual-vtable coercion."
+evidence = "Canonical-exact Menu/Profile/Replay constructors carry GuideOverlay destructor identity to43F330; exact load/render/ctor siblings fix A8 layout. Fresh dtor90/92 retains texture-handle CSE. Update43F450 is now canonical112/112 under its exact baseline after typed color virtual and compound alpha recovery; see docs/GUIDE_OVERLAY_UPDATE_2026_10_29.md."
 
 [[rules]]
 id = "menu-cursor-update-authored-106a"

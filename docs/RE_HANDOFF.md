@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Guide overlay update43F450 is canonical exact112/112. Typed sprite color
+dispatch and branch-local compound alpha arguments close the old SUB/vtable
+scheduling stop. All three accepted siblings replay unchanged; see
+[GUIDE_OVERLAY_UPDATE_2026_10_29.md](GUIDE_OVERLAY_UPDATE_2026_10_29.md).
+
 Shared Fighter render45E6E0 now has complete selected570-byte source using
 real sprite/history types. Only five FILD/PUSH scheduling bytes differ; no
 exact credit. See [FIGHTER_RENDER_2026_10_29.md](FIGHTER_RENDER_2026_10_29.md).
