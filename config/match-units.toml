@@ -26779,4 +26779,3 @@ notes = "Genuine wave resource deletion plus source handle recycler in CIL and r
 address = "0x00401BD0"
 symbol_base = "?release_handle@WaveResourceReleaseView@th105@@QAEEI@Z"
 rel32_targets = ["?lookup_token_417800@CHandleManagerLookupView@th105@@QAEPAPAXI@Z=0x00417800", "?release@WaveSoundPool64@th105@@QAEXI@Z=0x00405200"]
-
