@@ -1,7 +1,9 @@
-# BG04 and BG02 constructors after the sprite-owner correction
+# Background constructors after the sprite-owner correction
 
 BG04 constructor468570 is canonical exact335/335:
 7e8e894512a29ffb68aa59284c75ffc38db49b31516f10e808462da6ed1a6b73.
+BG16 constructor469100 is canonical exact868/868:
+2dedeaf8c704f2e918c5c0afd0f30a2bd52f99d417bfe149cea13ed1925c595b.
 BG02 constructor467F90 has complete selected924-byte source but remains
 nonexact; its77 differing byte positions receive no exact credit.
 
@@ -17,13 +19,21 @@ were decoded; the full lengths are924 and335, not selected prefixes.
 BG04 initializes common stage4 tiles, assigns one secondary handle/sprite,
 loads data/background/BG04/cloud2.bmp, installs a640x192 region with320/80
 pivot, and clears state64. The fill's lifetime ends before texture loading.
-The same real handle output is used for the initial zero fill and loader.
-The scoped dimensions contain two actual loader outputs, height then width;
-no unused pad member or forced alignment is added. Their original source
-aggregate spelling remains unknown. Ordinary separate scalar locals produce
-another stack coloring; the paired output object preserves the native offsets.
+Direct reading of the returned DesignTextureHandle.value preserves the native
+checked-address evaluation and actual hidden-return lifetime. Ordinary width
+and height locals now reproduce the native frame without the earlier paired
+output aggregate or manually reused output token. The preceding exact aggregate
+control was useful evidence, but is no longer selected source.
 The old vptr mismatch disappears through the real class type, not an alias.
 The shared SpriteTextureSetupView ABI is used unchanged.
+
+BG16 initializes common stage16 tiles and four secondary textures0001..0004.
+It uses each loaded width/height, with pivots128/128,128/128,0/64 and32/32,
+then clears state64. A manually reused output-token API produced868 bytes but
+aFC frame instead ofF8. Returning the actual handle value and reading.value
+closes every byte with two ordinary dimension locals. The fill remains a
+proper CEffectSprite lifetime. BG04 independently stays335/335 with that same
+handle-return model, removing the prior aggregate-only workaround.
 
 BG02 initializes common stage2 tiles, assigns48 secondary slots, and loads16
 frames of left/a, center/b, and right/c textures. It preserves each checked
@@ -49,10 +59,11 @@ No register annotation, padding, copied bytes or fake barrier is introduced.
 ## Focused receipts
 
 scripts/repo-python scripts/build.py --unit exact-first-bg04-constructor --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-bg16-constructor --compare --json
 scripts/repo-python scripts/build.py --unit exact-first-bg02-constructor --compare --json
 scripts/repo-python scripts/build.py --unit cross-v106a-battle-object-dispatch --compare --json
 
-Reports are under build/frontier-background-constructors-20261029/. BG04 and
-its existing986-byte factory pass; BG02 is explicitly a mismatch. Shared
+Reports are under build/frontier-background-constructors-20261029/. BG04, BG16 and
+the existing986-byte factory pass; BG02 is explicitly a mismatch. Shared
 headers are unchanged in this batch, so the preceding321-function affected
-replay remains the incremental baseline. Only335 authored bytes are added.
+replay remains the incremental baseline. BG04 adds335 and BG16 adds868 authored bytes in their separate checkpoints.

@@ -1692,3 +1692,4 @@ SceneRenderCluster_interpolate_float
 BackgroundBase_initialize_common
 BG02_ctor
 BG04_ctor
+BG16_ctor

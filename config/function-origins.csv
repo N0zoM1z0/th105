@@ -1975,7 +1975,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00468710,authored_game,battle,authored,observed,canonical-exact-authored
 0x00468780,authored_game,battle,authored,observed,canonical-exact-authored
 0x00468D80,authored_game,battle,authored,observed,canonical-exact-authored
-0x00469100,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00469100,authored_game,battle,authored,observed,canonical-exact-authored
 0x00469470,authored_game,battle,authored,observed,canonical-exact-authored
 0x004694A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00469510,authored_game,battle,authored,observed,canonical-exact-authored

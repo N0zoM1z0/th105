@@ -1719,3 +1719,4 @@ SceneRenderCluster_interpolate_float,0x00450290,function
 BackgroundBase_initialize_common,0x004664A0,function
 BG02_ctor,0x00467F90,function
 BG04_ctor,0x00468570,function
+BG16_ctor,0x00469100,function

@@ -27563,5 +27563,27 @@ rel32_targets = [
  "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
  "__invalid_parameter_noinfo=0x0068A143",
  "@__security_check_cookie@4=0x00689D25",
- "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+ "?load_texture@BG04TextureLoadView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
+]
+
+[units.exact-first-bg16-constructor]
+kind = "probe"
+source = "src/battle/BG16Constructor.cpp"
+object = "build/match-units/ExactFirst_BG16Constructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete868-byte BG16 constructor. True0xE8 CEffectSprite assign plus direct texture-handle return value and two ordinary dimension outputs recover all four texture setup lanes and frame lifetimes. docs/BACKGROUND_CONSTRUCTORS_2026_10_29.md."
+
+[[units.exact-first-bg16-constructor.functions]]
+address = "0x00469100"
+symbol_base = "??0BG16@th105@@QAE@XZ"
+rel32_targets = [
+ "??0BackgroundBase@th105@@QAE@XZ=0x00466020",
+ "?initialize_common_4664a0@BackgroundBase@th105@@QAEXHH@Z=0x004664A0",
+ "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
+ "?_Assign_n@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXIABVCEffectSprite@@@Z=0x004663E0",
+ "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "?load_texture@BG16TextureLoadView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "@__security_check_cookie@4=0x00689D25",
 ]

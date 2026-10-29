@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+BG16 constructor469100 is now canonical exact868/868. Direct handle.value
+return and ordinary dimension locals close its frame; BG04 remains335/335
+with the same simpler model, replacing the earlier aggregate control. See
+[BACKGROUND_CONSTRUCTORS_2026_10_29.md](BACKGROUND_CONSTRUCTORS_2026_10_29.md).
+
 BG04 constructor468570 is now canonical exact335/335 using the corrected0xE8
 CEffectSprite type and real vector assign. BG02 has complete924-byte selected
 source but remains77 bytes nonexact; no prefix credit. Factory986 stays exact.
