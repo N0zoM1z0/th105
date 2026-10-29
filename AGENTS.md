@@ -68,9 +68,19 @@ Do not delegate reconstruction/matching or run concurrent VC8/Ghidra jobs.
 analysis state; generated files belong under `build/`, private analysis under
 `.analysis/`.
 
-Run `scripts/check-ida-mcp.py` before using IDA in each bounded unit. It must
-attest target metadata, entry point, mapped bytes, tools and inventory. A failed
-preflight blocks that session; hash-attested raw PE analysis remains available.
+Prefer the registered Factory-native IDA provider. Before using its semantics
+in a bounded scope, discover its allowlisted operations and verify the active
+metadata hash/size/base, entry point, the five mapped-byte samples defined in
+`scripts/check-ida-mcp.py`, and a function inventory/disassembly/decompiler/
+callers/callees probe. Compare sampled bytes with the pinned raw PE and retain
+the Factory responses privately. Factory's metadata-only attestation alone is
+not a mapped-byte check. See `docs/FACTORY_IDA_2026_10_29.md`.
+
+`scripts/check-ida-mcp.py` remains the preflight for the legacy repository
+bridge. Its failed session is blocked; it is not a requirement to install that
+bridge's Python runtime when the independent Factory-native session passes the
+same checks. A failed active-target/byte check blocks the affected analysis
+session; hash-attested raw PE analysis remains available.
 Ghidra requires independent imported-file, entry-point and mapped-byte checks
 against `resources/th105.exe`. Never patch target bytes or call
 `patch_address_assembles`. Mirror accepted database names/types/boundaries into

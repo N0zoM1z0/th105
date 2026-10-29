@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Factory-native th105-ida is available: canonical metadata/entry, all five
+legacy mapped-byte samples and inventory/disassembly/decompiler/call-graph
+probes passed independently. The old bridge still lacks its Python runtime;
+use the native workflow in [FACTORY_IDA_2026_10_29.md](FACTORY_IDA_2026_10_29.md).
+
 BGM transition threshold now preserves the native unordered-to-gain-provider
 path; exact fade70/set-level69 replay unchanged. No gain-provider acceptance
 or new bytes. See [BGM_GAIN_THRESHOLD_2026_10_29.md](BGM_GAIN_THRESHOLD_2026_10_29.md).
