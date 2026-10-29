@@ -1693,3 +1693,4 @@ NetworkInputEndpoint_ctor,0x0044D8F0,function
 NetworkInputEndpoint_dtor,0x0043BEA0,function
 ProfileDefaults_initialize,0x00432050,function
 update_profile_message,0x0043F6E0,function
+Fighter_render_sprite_transform,0x0045E6E0,function

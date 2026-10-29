@@ -26990,3 +26990,28 @@ rel32_targets = [
  "_dispatch_indexed_event=0x0043B1A0",
  "_is_menu_initial_press=0x0043ABD0",
 ]
+
+[units.exact-first-fighter-render]
+kind = "probe"
+source = "src/battle/FighterRender.cpp"
+object = "build/match-units/ExactFirst_FighterRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete570-byte shared roster render transform/history virtual. Real CEffectSprite and14-byte history layout; five unequal bytes only from first FILD/PUSH EDI scheduling. No exact credit. docs/FIGHTER_RENDER_2026_10_29.md."
+
+[[units.exact-first-fighter-render.functions]]
+address = "0x0045E6E0"
+symbol_base = "?render@FighterRenderView@th105@@QAEXXZ"
+rel32_targets = [
+ "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
+ "?scale_x@CSpriteEx@@QAEXM@Z=0x004074A0",
+ "?scale_x@CSpriteEx@@QAEXMM@Z=0x004074E0",
+ "?scale_y@CSpriteEx@@QAEXMM@Z=0x00407580",
+ "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+ "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
+ "?is_state_13c_in_32_95@th105@@YI_NPAUFighter@1@@Z=0x0045E0E0",
+ "?enqueue@FighterRenderHistory@th105@@QAEXPBVCSpriteEx@@C@Z=0x0045AD40",
+ "?pop_front_if_any@FighterRenderHistory@th105@@QAEXXZ=0x0045AC30",
+ "?transform_sprite@BattleBackgroundLayoutRenderView@th105@@QAEXPAVCSpriteEx@@@Z=0x004271B0",
+ ]
+dir32_targets = ["?g_battle_background_layout@th105@@3UBattleBackgroundLayoutRenderView@1@A=?g_global_battle_setup_state@th105@@3PAEA"]

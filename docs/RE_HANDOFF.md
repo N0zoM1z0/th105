@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+Shared Fighter render45E6E0 now has complete selected570-byte source using
+real sprite/history types. Only five FILD/PUSH scheduling bytes differ; no
+exact credit. See [FIGHTER_RENDER_2026_10_29.md](FIGHTER_RENDER_2026_10_29.md).
+
 Profile message43F6E0 now has complete choice/accept/cancel source. First217
 bytes match; whole294/298 remains nonexact because VC8 shares a zero-return
 block. See [PROFILE_MESSAGE_UPDATE_2026_10_29.md](PROFILE_MESSAGE_UPDATE_2026_10_29.md).
