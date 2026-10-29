@@ -80,6 +80,41 @@ class LifecycleTests(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(ValueError):
                 core.validate_contract(bad, {"global", "external"})
 
+    def test_static_without_source_globals_retains_contract_guards(self):
+        unit = dict(profile=core.PROFILE, object="build/test.dll", source="src/test.cpp",
+                    link_runtime="static", link_data_targets=[],
+                    functions=[dict(address="0x00401000", symbol_base="_root")])
+        core.validate_contract(unit, set())
+        bad = copy.deepcopy(unit)
+        bad["functions"][0]["eh_cleanup"] = dict(handler="0x006B0000", info="0x006E0000")
+        with self.assertRaises(ValueError):
+            core.validate_contract(bad, set())
+        bad = copy.deepcopy(unit); bad.update(link_runtime="import", link_runtime_data=["___security_cookie"])
+        with self.assertRaises(ValueError):
+            core.validate_contract(bad, set())
+
+    def test_static_runtime_tables_reject_source_callbacks_and_missing_relocations(self):
+        pe = MemoryPE(); base = core.IMAGE_BASE
+        symbols = {name: [(base + offset, "libcmt:crt0init.obj")]
+                   for name, offset in [("___xi_a", 0x2000), ("___xi_z", 0x2008),
+                                        ("___xc_a", 0x2020), ("___xc_z", 0x2028)]}
+        pe.put(0x2004, struct.pack("<I", base + 0x1000)); pe.relocations(0x2004)
+        functions = {base + 0x1000: [("___sse2_available_init", "libcmt:cpu_disp.obj")]}
+        self.assertEqual(len(life.validate_static_runtime_initializers(pe, functions, symbols)), 1)
+        for owner in ["unit.ltcg.obj", "CIL library: CIL module", "untrusted:cpu_disp.obj"]:
+            with self.subTest(owner=owner), self.assertRaises(ValueError):
+                life.validate_static_runtime_initializers(pe,
+                    {base + 0x1000: [("___sse2_available_init", owner)]}, symbols)
+        with self.assertRaises(ValueError):
+            life.validate_static_runtime_initializers(pe,
+                {base + 0x1000: [("_unlisted_init", "libcmt:cpu_disp.obj")]}, symbols)
+        pe.relocations()
+        with self.assertRaises(ValueError):
+            life.validate_static_runtime_initializers(pe, functions, symbols)
+        pe.put(0x2024, struct.pack("<I", base + 0x1000)); pe.relocations(0x2004, 0x2024)
+        with self.assertRaises(ValueError):
+            life.validate_static_runtime_initializers(pe, functions, symbols)
+
     def native_coff(self):
         strings = self.symbol.encode() + b"\0"
         header = struct.pack("<HHIIIHH", 0x14c, 1, 0, 60, 1, 0, 0)

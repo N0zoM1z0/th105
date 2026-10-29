@@ -72,8 +72,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004036E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00403840,authored_game,audio,authored,observed,bgm-service-members-authored-106a
 0x004038D0,authored_game,audio,authored,observed,bgm-service-members-authored-106a
-0x00403940,authored_game,audio,authored,observed,bgm-service-members-authored-106a
-0x00403990,authored_game,audio,authored,observed,bgm-service-members-authored-106a
+0x00403940,authored_game,audio,authored,observed,canonical-exact-authored
+0x00403990,authored_game,audio,authored,observed,canonical-exact-authored
 0x004039E0,authored_game,audio,authored,observed,canonical-exact-authored
 0x00403A30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00403B50,authored_game,audio,authored,observed,canonical-exact-authored

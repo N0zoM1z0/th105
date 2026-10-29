@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: Fighter counter setter4776C0 and Scenario result
+Current bounded checkpoint: BGM fade403940 and set-level403990 are canonical
+exact70/69 in genuine source/CRT context. Native raw-flag forwarding replaces
+unobserved Boolean normalization; the real transition ABI emerges from CIL.
+Runtime-only static CRT tables are strictly validated, without fake globals.
+Three affected facades and existing static-global/import-runtime examples pass.
+See [BGM_SERVICE_LTCG_2026_10_29.md](BGM_SERVICE_LTCG_2026_10_29.md) and
+build/frontier-bgm-transition-context-20261029/formal-final-build.json.
+
+Preceding bounded checkpoint: Fighter counter setter4776C0 and Scenario result
 enable4547D0 are canonical exact15/4. Fresh Reimu/Suika RTTI-root callers and
 Scenario+390 result-member pointer establish authored ownership. No shared
 header changed. See

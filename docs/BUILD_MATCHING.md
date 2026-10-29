@@ -1631,3 +1631,16 @@ For giant MSVC8 switches, a Hex-Rays local that merely stores a virtual function
 A decompiler label can likewise represent false sharing. Youmu C8 and DF were both routed through `LABEL_173`, but target bytes contain separate action204 return blocks; restoring two ordinary early-return paths recovers the duplicate physical bodies. The inverse rule is equally important: moving a genuinely shared label lexically does not control VC8 block placement, and several such moves were byte-neutral. Change shared-label ownership only when target xrefs prove separate or shared source exits, never to move a branch by a desired number of bytes.
 
 Always fresh-compile before consuming giant-owner diagnostics. Mapper/audit JSON is downstream of an object file and can look internally consistent even when a later source edit no longer compiles. The Youmu checkpoint caught exactly this after a temporary unmatched C8 brace: the old object still reported 24 owners until a direct VC8 compile exposed the syntax failure. Treat compiler provenance/mtime plus the formal unit build as a prerequisite for owner or metadata claims.
+
+## Static CRT without source-owned globals
+
+A linked_candidate can use link_runtime="static" without link_objects when its
+real source needs CRT math initialization but owns no global lifecycle. The
+pinned DLL CRT entry remains mandatory. linked_lifecycle additionally verifies
+real read-only initializer sentinels, every table HIGHLOW, an empty C++ callback
+table and unique allowlisted C runtime symbol/owner pairs. Source callbacks,
+unlisted CRT callbacks, duplicate entries and missing relocations are rejected.
+This does not waive source-global constructor/destructor/EH evidence for units
+that do own globals. See BGM_SERVICE_LTCG_2026_10_29.md for the actual source
+context, complete70/69-byte acceptance and focused regression replays. Never
+insert a fake global merely to obtain a runtime profile or suppress LNK4210.

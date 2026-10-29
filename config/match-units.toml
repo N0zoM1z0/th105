@@ -5465,7 +5465,7 @@ dir32_targets = [
 [[units.cross-v106a-bgm-transition.functions]]
 address = "0x0043B140"
 symbol_base = "fade_bgm"
-rel32_targets = ["?fade@BgmServiceView@th105@@QAEXHHH_N@Z=0x00403940"]
+rel32_targets = ["?fade@BgmServiceView@th105@@QAEXHHHH@Z=0x00403940"]
 dir32_targets = [
   "?g_bgm_handle@th105@@3HA=?g_bgm_handle@th105@@3HA",
   "?g_bgm_service@th105@@3UBgmServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A",
@@ -18671,12 +18671,27 @@ dir32_targets = [
 ]
 
 [units.gpt-web-bgm-service-runtime]
-kind = "probe"
+kind = "linked_candidate"
 source = "src/audio/BgmServiceRuntime.cpp"
-object = "build/match-units/GptWeb_BgmServiceRuntime.obj"
-profile = "vc8-sp1-probe-o2"
+object = "build/match-units/GptWeb_BgmServiceRuntime.dll"
+profile = "vc8-sp1-ltcg-o2"
 enable_gs = false
-notes = "Current exact BGM facades own the service stop/fade/set-level member boundaries. Natural C++ uses the target +0x20 CriticalSection, +0x38 handle manager, COM DirectSoundBuffer status/stop, and a normal stream transition method. The shipped transition callee 0x00402B70 is LTCG-private (EAX=stream, EDI=one service argument), so no custom ABI is fabricated."
+notes = "Genuine BGM service, checked handle lookup, transition and natural gain provider in one CIL context. Real static CRT math initializers are validated; no source globals. Fade403940 and set-level403990 exact70/69; scheduling and stop remain nonexact. Fade forwards the native flag without Boolean normalization. Native private transition ABI emerges without custom register declarations."
+link_runtime = "static"
+link_data_targets = [
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+  "__imp__timeGetTime@0=__imp__timeGetTime@0",
+  "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+  "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+  "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+  "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+  "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+  "?bgm_minimum_gain@th105@@3MB=_bgm_transition_minimum_gain",
+  "?bgm_logarithmic_scale@th105@@3MB=_logarithmic_volume_scale",
+  "?bgm_volume_units@th105@@3MB=_direct_sound_volume_units",
+]
+preserve_public_members = ["?lookup@BgmHandleManagerView@th105@@QAEPAUBgmStreamView@2@H@Z"]
 
 [[units.gpt-web-bgm-service-runtime.functions]]
 address = "0x00403840"
@@ -18694,7 +18709,7 @@ rel32_targets = [
 
 [[units.gpt-web-bgm-service-runtime.functions]]
 address = "0x00403940"
-symbol_base = "?fade@BgmServiceView@th105@@QAEXHHH_N@Z"
+symbol_base = "?fade@BgmServiceView@th105@@QAEXHHHH@Z"
 rel32_targets = [
   "?lookup@BgmHandleManagerView@th105@@QAEPAUBgmStreamView@2@H@Z=0x00404330",
   "?transition@BgmStreamView@th105@@QAEXHMHH@Z=0x00402B70",

@@ -1928,15 +1928,15 @@ evidence = "Fresh pinned-VC8 NetworkAckInfoPacket40 construction names the two E
 
 [[rules]]
 id = "bgm-service-members-authored-106a"
-addresses = ["0x00403840", "0x004038D0", "0x00403940", "0x00403990"]
-expected_count = 4
-expected_bytes = 380
-expected_names = ["sub_403840", "sub_4038D0", "sub_403940", "sub_403990"]
+addresses = ["0x00403840", "0x004038D0"]
+expected_count = 2
+expected_bytes = 241
+expected_names = ["sub_403840", "sub_4038D0"]
 origin = "authored_game"
 subsystem = "audio"
 disposition = "authored"
 confidence = "observed"
-evidence = "Canonical-exact play_bgm/stop_bgm/fade_bgm/set_bgm_volume and load/play BGM facades directly call these four service members. Raw target code fixes CriticalSection +0x20, handle manager +0x38 and DirectSound stream state/buffer fields. schedule_or_start uses the target-proved WINMM timeGetTime IAT and replays 142/143; stop/fade/set-level replay 96/98, 76/70 and 70/69. Fade/set-level stop only on target-private transition worker 0x00402B70 (EAX stream, EDI one service argument), which is not encoded into source."
+evidence = "Canonical-exact BGM facades establish the remaining scheduling and stop members. Raw CriticalSection20, manager38 and DirectSound state/buffer fields independently prove game audio policy. Genuine linked context emits142/143 and96/98, nonexact. Sibling fade403940 and set-level403990 are now canonical exact through real CIL transition visibility and raw flag forwarding; they use the exact-origin baseline. docs/BGM_SERVICE_LTCG_2026_10_29.md."
 
 [[rules]]
 id = "cscript-clear-commands-authored-106a"

@@ -945,7 +945,8 @@ def preserved_member_witnesses(unit: dict, pe, functions: dict, exports: dict, c
 
 
 def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | None = None) -> list[dict]:
-    from linked_lifecycle import layout_inputs, validate_static_entry, object_witnesses, cleanup_eh
+    from linked_lifecycle import (layout_inputs, validate_static_entry, object_witnesses, cleanup_eh,
+                                  validate_static_runtime_initializers)
     from linked_noreturn import witness as error_tail_witness
     from workflow_manifest import repository_path, unit_input_digest
     c = comparator()
@@ -976,8 +977,12 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         raise ValueError("linked artifact is not the pinned x86 PE32 image")
     map_text = image.with_suffix(".map").read_text(errors="strict")
     functions = parse_map(map_text)
+    runtime_initializers = []
     if static:
         validate_static_entry(pe, functions)
+        if not unit.get("link_objects"):
+            runtime_initializers = validate_static_runtime_initializers(
+                pe, functions, parse_map_symbols(map_text))
     vtables = source_vtables(pe, parse_map_symbols(map_text), functions,
                              vtable_contracts, image.with_suffix(".ltcg.obj").name)
     exports = {}
@@ -1046,6 +1051,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             "validated_data_references": data_refs, "validated_vtables": vtables,
             "global_lifecycle_witness": globals_witnesses.get(function.get("private_global", {}).get("object")),
             "validated_cleanup_eh": eh_reports,
+            "validated_static_runtime_initializers": runtime_initializers,
             "validated_error_tails": error_reports,
             "preserved_public_members": preserved_members,
             "private_caller_witness": witness})

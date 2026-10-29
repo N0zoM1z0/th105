@@ -4,7 +4,7 @@ namespace th105 {
 
 struct BgmServiceView {
     void stop(int handle);
-    void fade(int handle, int duration, int target, bool enabled);
+    void fade(int handle, int duration, int target, int enabled);
     void set_level(int handle, int first, int unused, float value);
 };
 
@@ -18,7 +18,7 @@ void stop_bgm()
 
 void fade_bgm(int duration, int target)
 {
-    g_bgm_service.fade(g_bgm_handle, duration, target, true);
+    g_bgm_service.fade(g_bgm_handle, duration, target, 1);
     g_bgm_handle = 0;
 }
 

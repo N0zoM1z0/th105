@@ -27,7 +27,7 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         raise ValueError("unsupported linked runtime/global contract")
     if runtime_data not in ([], ["___security_cookie"]):
         raise ValueError("only the native static CRT security cookie has a runtime-data contract")
-    if (runtime == "static" and not objects) or (runtime != "static" and (objects or runtime_data)):
+    if runtime != "static" and (objects or runtime_data):
         raise ValueError("source-owned global lifecycles require the real static CRT")
     functions = unit.get("functions", [])
     if not isinstance(functions, list):
@@ -197,6 +197,48 @@ def validate_static_entry(pe, functions: dict) -> None:
     start = pe.OPTIONAL_HEADER.ImageBase + pe.OPTIONAL_HEADER.AddressOfEntryPoint
     if functions.get(start) != [("__DllMainCRTStartup@12", "libcmt:dllcrt0.obj")]:
         raise ValueError("static lifecycle image needs the real pinned DLL CRT entry")
+
+
+def validate_static_runtime_initializers(pe, functions: dict, symbols: dict) -> list[dict]:
+    """No source globals: require real CRT tables and only pinned CRT C callbacks.
+
+    C++ initialization remains unsupported in this mode. Source-owned lifecycle
+    units retain their separate complete constructor/destructor witnesses.
+    """
+    allowed = {
+        "___onexitinit": "libcmt:onexit.obj",
+        "__sse2_mathfcns_init": "libcmt:mathfcns.obj",
+        "___sse2_available_init": "libcmt:cpu_disp.obj",
+        "___initmbctable": "libcmt:mbctype.obj",
+    }
+    reports, seen = [], set()
+    for family, lower, upper in (("C", "___xi_a", "___xi_z"),
+                                 ("C++", "___xc_a", "___xc_z")):
+        lo = unique_symbol(symbols, lower, "libcmt:crt0init.obj")
+        hi = unique_symbol(symbols, upper, "libcmt:crt0init.obj")
+        if lo % 4 or hi <= lo or (hi - lo) % 4 or hi - lo > 4096:
+            raise ValueError("invalid real CRT runtime initializer table bounds")
+        raw = core.readonly_data(pe, lo, hi - lo + 4)
+        if raw[:4] != bytes(4) or raw[-4:] != bytes(4):
+            raise ValueError("CRT runtime initializer sentinels are not zero")
+        fields = []
+        for offset in range(4, len(raw) - 4, 4):
+            entry, = struct.unpack_from("<I", raw, offset)
+            if not entry:
+                continue
+            aliases = functions.get(entry, [])
+            section = pe.get_section_by_rva(entry - pe.OPTIONAL_HEADER.ImageBase)
+            if (family == "C++" or len(aliases) != 1
+                    or allowed.get(aliases[0][0]) != aliases[0][1]
+                    or aliases[0][0] in seen
+                    or section is None or not section.Characteristics & 0x20000000):
+                raise ValueError("runtime-only static image has an unqualified source initializer")
+            seen.add(aliases[0][0])
+            fields.append({"field_offset": offset})
+            reports.append({"table": family, "slot": lo + offset, "entry": entry,
+                            "symbol": aliases[0][0], "owner": aliases[0][1]})
+        core.validate_body_relocations(pe, lo, len(raw), fields)
+    return reports
 
 
 def object_witnesses(unit: dict, pe, target, functions: dict, symbols: dict, exports: dict,
