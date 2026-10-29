@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+Profile defaults432050 is canonical exact334/334. Typed InputBindings and
+primary-before-secondary initialization close the old scheduling stop without
+shared-header changes. See [PROFILE_DEFAULTS_2026_10_29.md](PROFILE_DEFAULTS_2026_10_29.md).
+
 Network input endpoint44D8F0 is authored canonical exact48/48. Paired
 43BEA0 cleanup reproduces19/19 as a compiler-owned witness, excluded from
 authored progress. Real7C composition and

@@ -1691,3 +1691,4 @@ Character_dtor,0x00462CE0,function
 NetworkClient_consume_replay,0x0044E210,function
 NetworkInputEndpoint_ctor,0x0044D8F0,function
 NetworkInputEndpoint_dtor,0x0043BEA0,function
+ProfileDefaults_initialize,0x00432050,function

@@ -26955,3 +26955,21 @@ rel32_targets = ["??0InputCore60View@th105@@QAE@XZ=0x00409CF0", "?_Tidy@?$deque@
 address = "0x0043BEA0"
 symbol_base = "??1NetworkInputEndpointConstructorView@th105@@QAE@XZ"
 rel32_targets = ["??1NetworkInputConstructorView@th105@@UAE@XZ=0x00409D50", "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
+
+[units.exact-first-profile-defaults]
+kind = "probe"
+source = "src/ui/ProfileDefaults.cpp"
+object = "build/match-units/ExactFirst_ProfileDefaults.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete334-byte default profile initializer. Real InputBindings types and primary-before-secondary initialization recover native scheduling; no shared headers change. docs/PROFILE_DEFAULTS_2026_10_29.md."
+
+[[units.exact-first-profile-defaults.functions]]
+address = "0x00432050"
+symbol_base = "?initialize_defaults@ProfileDefaultsView@th105@@QAEXXZ"
+rel32_targets = [
+ "?assign_bytes@StringAssignBytesView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0",
+ "?initialize_default_deck@ProfileDefaultsView@th105@@QAEXPAV?$deque@GV?$allocator@G@std@@@std@@H@Z=0x00431E80",
+ "?_Tidy@?$deque@GV?$allocator@G@std@@@std@@IAEXXZ=0x00420A80",
+ "_memset=0x0068A440",
+]
