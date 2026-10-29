@@ -1,6 +1,6 @@
 #pragma once
 
-#include "EffectSprite.hpp"
+#include "AnimationSpriteState.hpp"
 
 #include <stddef.h>
 #include <vector>
@@ -38,7 +38,7 @@ struct AnimationSpriteFrameView {
     void apply_current_frame();
 
     void *primary_vptr_000;
-    CEffectSprite sprite_004;
+    AnimationSpriteState sprite_004;
     std::vector<unsigned> *texture_handles_130;
     unsigned char unknown_134[0x1c];
     AnimationSpriteFrame *frame_150;

@@ -1688,18 +1688,6 @@ confidence = "observed"
 evidence = "Seven canonical-exact Profile/Replay/MenuConfig owners carry the current decorated MenuCursorState::update identity to 0x0041FA20; exact page-forward/backward siblings in the same tracked MenuCursor.cpp fix the five-dword layout. Natural source remains 131/117 because standalone VC8 strength-reduces signed %6 while target retains idiv 6; no arithmetic/register forcing is allowed."
 
 [[rules]]
-id = "effect-sprite-constructor-authored-106a"
-addresses = ["0x00421FF0"]
-expected_count = 1
-expected_bytes = 79
-expected_names = ["sub_421FF0"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Canonical-exact AttackObject/AnimationObject constructors call the decorated CEffectSprite constructor at 0x00421FF0; current CEffectSprite RTTI/vtable and exact scalar lifetime fix the 0x12C object, while exact reset_fighter_action_scratch fixes the constructor body call. The tracked ordinary constructor is 67/79 and diverges only in shipped-TU EH/base visibility; keep source-present nonexact rather than forcing SEH/vptr scheduling."
-
-[[rules]]
 id = "vc8-vector-uint-at-caller-identity-106a"
 addresses = ["0x0040C100"]
 expected_count = 1
@@ -3775,3 +3763,14 @@ required_direct_edges = [
  { caller = "0x00451400", site = "0x00451594", target = "0x004501B0", caller_status = "matching" },
  { caller = "0x00451400", site = "0x00451635", target = "0x004501B0", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "vc8-generated-effect-sprite-vector-assign-106a"
+vc8_generated_anchor_file = "config/vc8-generated-effect-sprite-assign-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 186
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 rebuild of BackgroundInitializeCommon.cpp emits vector<CEffectSprite>::_Assign_n. Its complete186-byte native body independently proves the0xE8 element and assign-not-resize semantics. The relocation-masked fingerprint must remain unique across the complete candidate inventory. docs/EFFECT_SPRITE_OWNER_2026_10_29.md."

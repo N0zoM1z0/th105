@@ -1312,7 +1312,7 @@ push_ui_selection_menu
 BgmPlaybackServiceView_allocate_handle
 EventEffectState_dispatch_emitter_state
 MenuCursorState_update
-CEffectSprite_ctor
+AnimationSpriteState_ctor
 GuideOverlay_dtor
 GuideOverlay_update
 DirectSoundResource_dtor
@@ -1689,3 +1689,4 @@ SceneRenderCluster_load_timeline
 SceneRenderCluster_dtor
 SceneRenderCluster_interpolate_byte
 SceneRenderCluster_interpolate_float
+BackgroundBase_initialize_common

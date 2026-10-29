@@ -1,6 +1,6 @@
 #pragma once
 
-#include "battle/EffectSprite.hpp"
+#include "battle/AnimationSpriteState.hpp"
 
 #include <stddef.h>
 
@@ -52,7 +52,7 @@ struct AnimationRenderObjectView {
     void set_sprite_uv_size(float width, float height);
     void render_group_callback(signed char group);
 
-    CEffectSprite sprite_004;
+    AnimationSpriteState sprite_004;
     unsigned char unknown_130[0x20];
     AnimationRenderFrameView *frame_150;
     AuxiliarySpriteRenderView *aux_renderer_154;

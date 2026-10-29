@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+CEffectSprite is now correctly0xE8 inside a nonpolymorphic0x12C animation-state
+owner. Constructor421FF0 is canonical79/79 and background initializer4664A0
+is512/512 with actual vector assign semantics. All321 affected accepted
+functions remain exact across113 focused units; generated assign186 is
+independently proven/excluded, not authored credit. See
+[EFFECT_SPRITE_OWNER_2026_10_29.md](EFFECT_SPRITE_OWNER_2026_10_29.md).
+
 Scene float interpolation450290 is canonical exact160/160 after recovering
 the real member easing call: incoming ECX is preserved, rather than treating
 450120 as free stdcall. Easing131 stays exact; byte interpolation214/211 remains

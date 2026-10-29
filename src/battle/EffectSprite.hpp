@@ -78,25 +78,11 @@ public:
     float extra_e4;
 };
 
+// Native background vector assignment4663E0 copies0xE8 elements and publishes
+// this RTTI vtable. Animation position/action state belongs to its outer owner.
 class CEffectSprite : public CSpriteEx {
 public:
-    CEffectSprite();
     virtual ~CEffectSprite() {}
-    float object_x_0e8;
-    float object_y_0ec;
-    unsigned char unknown_0f0[0x10];
-    signed char object_facing_100;
-    unsigned char unknown_101[0x03];
-    float reset_zero_104;
-    float reset_zero_108;
-    unsigned int color_10c;
-    int reset_zero_110;
-    unsigned char unknown_114[0x04];
-    float reset_one_118;
-    float reset_one_11c;
-    float reset_zero_120;
-    float reset_zero_124;
-    float reset_zero_128;
 };
 
 typedef char IColor_size_must_be_0x08[sizeof(IColor) == 0x08 ? 1 : -1];
@@ -108,6 +94,4 @@ typedef char SpritePoint3_size_must_be_0x0c[sizeof(SpritePoint3) == 0x0c ? 1 : -
 typedef char CSpriteEx_size_must_be_0xe8[sizeof(CSpriteEx) == 0xe8 ? 1 : -1];
 typedef char CSpriteEx_source_quad_offset_must_be_0x80[offsetof(CSpriteEx, source_quad_080) == 0x80 ? 1 : -1];
 typedef char CSpriteEx_working_quad_offset_must_be_0xb0[offsetof(CSpriteEx, working_quad_0b0) == 0xb0 ? 1 : -1];
-typedef char CEffectSprite_observed_size_must_be_0x12c[sizeof(CEffectSprite) == 0x12c ? 1 : -1];
-typedef char CEffectSprite_object_x_offset_must_be_0x0e8[offsetof(CEffectSprite, object_x_0e8) == 0x0e8 ? 1 : -1];
-typedef char CEffectSprite_object_facing_offset_must_be_0x100[offsetof(CEffectSprite, object_facing_100) == 0x100 ? 1 : -1];
+typedef char CEffectSprite_size_must_be_0xe8[sizeof(CEffectSprite) == 0xe8 ? 1 : -1];

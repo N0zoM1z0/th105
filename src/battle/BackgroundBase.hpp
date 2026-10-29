@@ -19,9 +19,9 @@ struct BackgroundBase {
     virtual void render_sprite(CSpriteEx *sprite) = 0;
 
     std::vector<unsigned> handles_a_04;
-    std::vector<CSpriteEx> sprites_a_14;
+    std::vector<CEffectSprite> sprites_a_14;
     std::vector<unsigned> handles_b_24;
-    std::vector<CSpriteEx> sprites_b_34;
+    std::vector<CEffectSprite> sprites_b_34;
     float value_44;
     float value_48;
     float value_4c;

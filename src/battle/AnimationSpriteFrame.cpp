@@ -11,7 +11,7 @@ void AnimationSpriteFrameView::apply_current_frame()
     int texture_x = frame_150->texture_x_0c;
     unsigned texture = texture_handles_130->at(frame_150->texture_index_0a);
     SpriteTextureSetupView *sprite =
-        reinterpret_cast<SpriteTextureSetupView *>(&sprite_004);
+        reinterpret_cast<SpriteTextureSetupView *>(&sprite_004.sprite_000);
     sprite->set_texture_options(
         texture, texture_x, texture_y, texture_width, texture_height, 0, 0);
     sprite->reset_transform();

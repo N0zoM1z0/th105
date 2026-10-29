@@ -1,4 +1,4 @@
-#include "battle/EffectSprite.hpp"
+#include "battle/AnimationSpriteState.hpp"
 #include <stddef.h>
 namespace th105 {
 struct InfoVisualManagerView {
@@ -9,7 +9,7 @@ extern InfoVisualManagerView *g_info_visual_manager;
 float __cdecl lookup_orientation_cosine(int);
 struct InfoEffectVisualView {
     unsigned primary_000;
-    CEffectSprite sprite_004;
+    AnimationSpriteState sprite_004;
     unsigned owner_130;
     unsigned char absolute_134;
     unsigned char unknown_135[7];
@@ -29,7 +29,7 @@ void InfoEffectVisualView::transform()
 {
     prepare_render_transform();
     float shift = static_cast<float>((1.0-lookup_orientation_cosine(3*g_info_visual_manager->transition_494))*200.0*transition_factor_170);
-    sprite_004.translate(0.0f, shift, 0.0f);
+    sprite_004.sprite_000.translate(0.0f, shift, 0.0f);
 }
 void InfoEffectVisualView::initialize_action()
 {

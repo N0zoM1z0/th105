@@ -1,4 +1,4 @@
-#include "battle/EffectSprite.hpp"
+#include "battle/AnimationSpriteState.hpp"
 
 #include <stddef.h>
 
@@ -26,7 +26,7 @@ public:
 };
 
 struct CharacterObjectAuxiliaryRendererOwner {
-    CEffectSprite sprite_000;
+    AnimationSpriteState sprite_000;
 };
 
 class CharacterObjectAuxiliaryRendererSlotView {

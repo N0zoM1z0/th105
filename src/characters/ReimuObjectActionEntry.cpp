@@ -1,6 +1,6 @@
 // Original Japanese 1.06a ReimuObject vslot+3C, 0x004A1CE0.
 // Complete source candidate; no exact claim. See docs/REIMU_OBJECT_ENTRY_2026_10_19.md.
-#include "battle/EffectSprite.hpp"
+#include "battle/AnimationSpriteState.hpp"
 #include "engine/AngleAtan2.hpp"
 #include "characters/AnimationSequenceVirtuals.hpp"
 #include "characters/CharacterObjectEffects.hpp"
@@ -38,7 +38,7 @@ public:
 
     void continue_action_980_596370();
 
-    CEffectSprite sprite_004;
+    AnimationSpriteState sprite_004;
     unsigned int state_130;
     unsigned char layout_absolute_134;
     unsigned char render_to_battle_135;

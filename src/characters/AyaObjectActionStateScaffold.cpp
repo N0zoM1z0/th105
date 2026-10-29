@@ -1,4 +1,4 @@
-#include "battle/EffectSprite.hpp"
+#include "battle/AnimationSpriteState.hpp"
 #include "characters/AnimationSequenceVirtuals.hpp"
 #include "characters/CharacterObjectEffects.hpp"
 #include "characters/CharacterObjectRuntime.hpp"
@@ -54,7 +54,7 @@ public:
     bool try_dispatch_verified_update_action(int action);
     int has_crossed_stage_surface_while_descending();
 
-    CEffectSprite sprite_004;
+    AnimationSpriteState sprite_004;
     unsigned int state_130;
     unsigned char layout_absolute_134;
     unsigned char render_to_battle_135;

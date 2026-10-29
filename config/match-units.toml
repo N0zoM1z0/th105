@@ -752,12 +752,12 @@ notes = "TH105 1.06a structural-remap exact AttackObject constructor; vtable DIR
 [[units.cross-v106a-attack-object-ctor.functions]]
 address = "0x0045FA30"
 symbol_base = "AttackObject_ctor"
-rel32_targets = ["??0CEffectSprite@@QAE@XZ=0x00421FF0"]
+rel32_targets = ["??0AnimationSpriteState@@QAE@XZ=0x00421FF0"]
 
 [[units.cross-v106a-attack-object-ctor.functions]]
 address = "0x00422040"
 symbol_base = "??0AnimationObject@@QAE@XZ"
-rel32_targets = ["??0CEffectSprite@@QAE@XZ=0x00421FF0"]
+rel32_targets = ["??0AnimationSpriteState@@QAE@XZ=0x00421FF0"]
 dir32_targets = ["??_7AnimationObject@@6B@=??_7AnimationObject@@6B@"]
 
 [units.cross-v106a-character-object-ctor]
@@ -3492,17 +3492,17 @@ kind = "probe"
 source = "src/battle/EffectSprite.cpp"
 object = "build/match-units/CrossV106a_EffectSpriteScalarDtor.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "TH105 1.06a IColor/CEffectSprite trivial lifetime unit. Current IColor/CSpriteBase vtables own the 7-byte IColor normal dtor and 31-byte IColor scalar wrapper; current CEffectSprite vtable 0x006C072C owns its separate 31-byte scalar wrapper. TU-visible empty IColor/CEffectSprite destructors are also required by exact SystemEffectObjectBase cleanup, and the shared header refactor replays all prior exact units."
+enable_gs = true
+notes = "Native CEffectSprite is0xE8, owned by nonpolymorphic AnimationSpriteState0x12C. Member-before-owner reset recovers constructor79/79 without artificial vptr/EH stores; existing scalar and IColor lifetimes stay exact. docs/EFFECT_SPRITE_OWNER_2026_10_29.md."
 
 [[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
 address = "0x00421FF0"
-symbol_base = "??0CEffectSprite@@QAE@XZ"
+symbol_base = "??0AnimationSpriteState@@QAE@XZ"
 rel32_targets = [
   "?reset_fighter_action_scratch@FighterActionScratch@th105@@QAEXXZ=0x00435110",
 ]
 dir32_targets = [
-  "__ehhandler$??0CEffectSprite@@QAE@XZ=__ehhandler$??0CEffectSprite@@QAE@XZ",
+  "__ehhandler$??0AnimationSpriteState@@QAE@XZ=__ehhandler$??0AnimationSpriteState@@QAE@XZ",
   "??_7CEffectSprite@@6B@=??_7CEffectSprite@@6B@",
 ]
 
@@ -18578,13 +18578,13 @@ dir32_targets = [
 [[units.gpt-web-effect-object-hierarchy-lifetime.functions]]
 address = "0x00422140"
 symbol_base = "??0CSelectObject@@QAE@XZ"
-rel32_targets = ["??0CEffectSprite@@QAE@XZ=0x00421FF0"]
+rel32_targets = ["??0AnimationSpriteState@@QAE@XZ=0x00421FF0"]
 dir32_targets = ["??_7CSelectObject@@6B@=??_7CSelectObject@@6B@"]
 
 [[units.gpt-web-effect-object-hierarchy-lifetime.functions]]
 address = "0x0046F150"
 symbol_base = "??0InfoEffectObject@@QAE@XZ"
-rel32_targets = ["??0CEffectSprite@@QAE@XZ=0x00421FF0"]
+rel32_targets = ["??0AnimationSpriteState@@QAE@XZ=0x00421FF0"]
 dir32_targets = ["??_7InfoEffectObject@@6B@=??_7InfoEffectObject@@6B@"]
 
 [units.gpt-web-palette-data-runtime]
@@ -27501,3 +27501,23 @@ rel32_targets = ["?apply_easing@SceneInterpolationRuntimeView@th105@@QAEMHM@Z=0x
 address = "0x00450290"
 symbol_base = "?interpolate_float@SceneInterpolationRuntimeView@th105@@QAEXPAM0PBUSceneInterpolationEntry24@2@I@Z"
 rel32_targets = ["?apply_easing@SceneInterpolationRuntimeView@th105@@QAEMHM@Z=0x00450120"]
+
+[units.exact-first-background-initialize]
+kind = "probe"
+source = "src/battle/BackgroundInitializeCommon.cpp"
+object = "build/match-units/ExactFirst_BackgroundInitialize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Both vectors use assign, not resize. Native186-byte _Assign_n independently proves the0xE8 CEffectSprite element type. Complete512-byte initializer closes with column-before-row grid expressions and expression-scoped fill lifetime. docs/EFFECT_SPRITE_OWNER_2026_10_29.md."
+
+[[units.exact-first-background-initialize.functions]]
+address = "0x004664A0"
+symbol_base = "?initialize_common_4664a0@BackgroundBase@th105@@QAEXHH@Z"
+rel32_targets = [
+ "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
+ "?_Assign_n@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXIABVCEffectSprite@@@Z=0x004663E0",
+ "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+ "?set_texture_region_407160@BackgroundSpriteTextureView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "@__security_check_cookie@4=0x00689D25",
+]

@@ -14,16 +14,16 @@ void AnimationRenderObjectView::render_main()
     switch (frame->render_mode_14) {
     case 0:
         g_render_mode_manager.set_blend_mode(1);
-        sprite_004.set_color(sprite_004.color_10c);
+        sprite_004.sprite_000.set_color(sprite_004.color_10c);
         break;
     case 1:
         g_render_mode_manager.set_blend_mode(1);
-        sprite_004.set_color(sprite_004.color_10c);
+        sprite_004.sprite_000.set_color(sprite_004.color_10c);
         break;
     case 2:
         g_render_mode_manager.set_blend_mode(frame->mode_values_18[0]);
-        sprite_004.set_color(frame->mode_values_18[1]);
-        sprite_004.multiply_color(sprite_004.color_10c);
+        sprite_004.sprite_000.set_color(frame->mode_values_18[1]);
+        sprite_004.sprite_000.multiply_color(sprite_004.color_10c);
         break;
     default:
         break;

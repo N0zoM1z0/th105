@@ -1,3 +1,4 @@
+#include "battle/AnimationSpriteState.hpp"
 #include "battle/AnimationAuxiliarySprite.hpp"
 #include "engine/AngleAtan2.hpp"
 #include "characters/AnimationSequenceVirtuals.hpp"
@@ -38,7 +39,7 @@ public:
     // Shared action980 continuation, independently matched at596370.
     void continue_action_980_596370();
 
-    CEffectSprite sprite_004;
+    AnimationSpriteState sprite_004;
     unsigned int state_130;
     unsigned char layout_absolute_134;
     unsigned char render_to_battle_135;

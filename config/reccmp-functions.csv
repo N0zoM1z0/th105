@@ -1332,7 +1332,7 @@ push_ui_selection_menu,0x004406F0,function
 BgmPlaybackServiceView_allocate_handle,0x004036C0,function
 EventEffectState_dispatch_emitter_state,0x004695F0,function
 MenuCursorState_update,0x0041FA20,function
-CEffectSprite_ctor,0x00421FF0,function
+AnimationSpriteState_ctor,0x00421FF0,function
 GuideOverlay_dtor,0x0043F330,function
 GuideOverlay_update,0x0043F450,function
 DirectSoundResource_dtor,0x004180F0,function
@@ -1716,3 +1716,4 @@ SceneRenderCluster_load_timeline,0x004540F0,function
 SceneRenderCluster_dtor,0x0041F1F0,function
 SceneRenderCluster_interpolate_byte,0x004501B0,function
 SceneRenderCluster_interpolate_float,0x00450290,function
+BackgroundBase_initialize_common,0x004664A0,function

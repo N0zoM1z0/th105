@@ -1,6 +1,6 @@
 #pragma once
 
-#include "battle/EffectSprite.hpp"
+#include "battle/AnimationSpriteState.hpp"
 #include "characters/AnimationSequenceVirtuals.hpp"
 #include "characters/CharacterObjectEffects.hpp"
 #include "characters/CharacterObjectRuntime.hpp"
@@ -41,7 +41,7 @@ public:
     unsigned char advance_state_six_counter_conditional(int limit);
     unsigned char advance_phase_counter_conditional(int limit);
 
-    CEffectSprite sprite_004;
+    AnimationSpriteState sprite_004;
     unsigned int state_130;
     unsigned char layout_absolute_134;
     unsigned char render_to_battle_135;

@@ -1,5 +1,12 @@
 # Reconstruction evidence notebook
 
+Current correction,2026-10-29: CEffectSprite is0xE8, not0x12C. The latter is
+its nonpolymorphic animation-state owner. Native vector assignment4663E0
+proves the element type and assign operation; owner constructor421FF0 and
+background initialization4664A0 are now canonical79/79 and512/512. The older
+CEffectSprite0x12C/background dead-tail and ctor-EH hypotheses below are
+historical and superseded. See EFFECT_SPRITE_OWNER_2026_10_29.md.
+
 - **Both59-byte effect-object constructors now match.** CSelectObject422140 and InfoEffectObject46F150 close with a four-byte initialization-bearing handle value inside CObjectBase, rather than raw unsigned body assignment. No layout/ABI/register forcing is used; fourteen affected accepted functions retain exactness. See [the handle initialization evidence](OBJECT_HANDLE_VALUE_2026_10_29.md). The earlier LEA/store impossibility shorthand below applies only to the old scalar model.
 
 - **BGM stream402820 is canonical89/89.** Raw open/PCM callers independently identify OggDataSource at stream+30. Giving that actual subobject its own reader/stream-size initialization restores the constructor's store order; flat initializer-list changes were neutral. Genuine CIL emits the private EAX entry. Both allocator calls and both CDSBuffer virtual slots are checked; allocator4040D0 remains nonexact. See [the constructor evidence](BGM_STREAM_CONSTRUCTOR_2026_10_29.md).

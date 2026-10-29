@@ -1,13 +1,13 @@
 #pragma once
 
-#include "EffectSprite.hpp"
+#include "AnimationSpriteState.hpp"
 
 #include <stddef.h>
 
 
 class AnimationObjectBase {
 public:
-    CEffectSprite effect_000;
+    AnimationSpriteState effect_000;
 };
 
 
@@ -18,7 +18,7 @@ class Environment {};
 
 
 struct AnimationAuxiliaryRendererOwner {
-    CEffectSprite sprite_000;
+    AnimationSpriteState sprite_000;
 };
 
 

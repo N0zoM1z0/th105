@@ -757,7 +757,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00421EB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00421F30,compiler_generated,runtime,exclude,observed,vc8-generated-list-voidptr-buynode-106a
 0x00421F70,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00421FF0,authored_game,battle,authored,observed,effect-sprite-constructor-authored-106a
+0x00421FF0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422040,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422070,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x004220A0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1944,8 +1944,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00465FF0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x00466020,authored_game,battle,authored,observed,canonical-exact-authored
 0x004660A0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004663E0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004664A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004663E0,compiler_generated,battle,exclude,observed,vc8-generated-effect-sprite-vector-assign-106a
+0x004664A0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004666A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00466940,compiler_generated,battle,exclude,observed,vc8-generated-battle-render-request-list-comdat-106a
 0x00466980,authored_game,battle,authored,observed,canonical-exact-authored

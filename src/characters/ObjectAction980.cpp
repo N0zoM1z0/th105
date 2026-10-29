@@ -1,4 +1,4 @@
-#include "battle/EffectSprite.hpp"
+#include "battle/AnimationSpriteState.hpp"
 #include "characters/AnimationSequenceVirtuals.hpp"
 #include "characters/CharacterObjectRuntime.hpp"
 
@@ -37,7 +37,7 @@ public:
 
     void continue_action_980();
 
-    CEffectSprite sprite_004;
+    AnimationSpriteState sprite_004;
     unsigned char unknown_130[0x0c];
     short action_id_13c;
     short sequence_index_13e;
