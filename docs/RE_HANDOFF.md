@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+CMenuBattle constructor440B50 is complete800-byte source, nonexact in only
+six saved-this/clear-iterator stack-home bytes. All mode branches, typed design
+lifetime and vertical cursor agree. No dummy lifetimes or stack coloring; see
+[BATTLE_MENU_CONSTRUCTOR_2026_10_29.md](BATTLE_MENU_CONSTRUCTOR_2026_10_29.md).
+
 Wave resource release401BD0 is canonical exact76/76 in genuine source CIL
 with real lookup and ordinary unsigned-list COFF. Independent provider audit
 retains405200 at167/167 through native401C09; no duplicate provider credit. See

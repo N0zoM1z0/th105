@@ -3711,3 +3711,18 @@ confidence = "observed"
 evidence = "Canonical-exact category selector449E90 calls this439-byte RET4 selected-card display root at44A397. Record texture/description, atlas colors and game-card UI enable policy establish authored ownership. Complete440-byte typed source remains nonexact+95. docs/PROFILE_DECK_DISPLAY_2026_10_29.md."
 required_body_hashes = [{ address = "0x00448B40", size = 439, sha256 = "d3105e9da72389275d687b46368b0c349f479923857b91dc177c295895e24a6c" }]
 required_direct_edges = [{ caller = "0x00449E90", site = "0x0044A397", target = "0x00448B40", caller_status = "matching" }]
+
+[[rules]]
+id = "battle-menu-constructor-authored-106a"
+addresses = ["0x00440B50"]
+expected_count = 1
+expected_bytes = 800
+expected_names = ["sub_440B50"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Four exact BattleManager callers allocate78-byte CMenuBattle; exact pre-reset472230 calls constructor at472310. RTTI CMenuBattle owns vtable6C1A5C. Game modes select story/practice/normal pause layouts, action lists and vertical cursor. Complete800-byte source has six stack-home differences only. docs/BATTLE_MENU_CONSTRUCTOR_2026_10_29.md."
+required_body_hashes = [{ address = "0x00440B50", size = 800, sha256 = "bfad683902476e8223dda0facf17873bb1a3817ac23971f6ffbb2b0de1004e3c" }]
+required_direct_edges = [{ caller = "0x00472230", site = "0x00472310", target = "0x00440B50", caller_status = "matching" }]
+required_dword_values = [{ address = "0x00440B94", value = "0x006C1A5C" }, { address = "0x006C1A58", value = "0x006D8168" }, { address = "0x006D8174", value = "0x006E6BDC" }]

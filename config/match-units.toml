@@ -26779,3 +26779,23 @@ notes = "Genuine wave resource deletion plus source handle recycler in CIL and r
 address = "0x00401BD0"
 symbol_base = "?release_handle@WaveResourceReleaseView@th105@@QAEEI@Z"
 rel32_targets = ["?lookup_token_417800@CHandleManagerLookupView@th105@@QAEPAPAXI@Z=0x00417800", "?release@WaveSoundPool64@th105@@QAEXI@Z=0x00405200"]
+
+[units.exact-first-battle-menu-constructor]
+kind = "probe"
+source = "src/ui/BattleMenuConstructor.cpp"
+object = "build/match-units/ExactFirst_BattleMenuConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete800-byte CMenuBattle constructor, six unequal saved-this/clear-iterator stack-home bytes. Real Menu/CDesignBase/vector and vertical cursor; three mode-specific layouts. docs/BATTLE_MENU_CONSTRUCTOR_2026_10_29.md."
+
+[[units.exact-first-battle-menu-constructor.functions]]
+address = "0x00440B50"
+symbol_base = "??0BattleMenuConstructorView@th105@@QAE@PAUBattleController@1@@Z"
+rel32_targets = [
+ "??0CDesignBase@th105@@QAE@XZ=0x004217F0",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?erase@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@0@Z=0x0040DF70",
+ "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+ "?push_back@?$vector@HV?$allocator@H@std@@@std@@QAEXABH@Z=0x0040DCF0",
+ "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+]

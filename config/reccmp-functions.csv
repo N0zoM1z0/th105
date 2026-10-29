@@ -1680,3 +1680,4 @@ TNumberValue_charptr_get_floating,0x00448B30,function
 CProfileDeckEdit_select_filter,0x00449E90,function
 CProfileDeckEdit_show_record,0x00448B40,function
 WaveResourceManager_release_handle,0x00401BD0,function
+CMenuBattle_ctor,0x00440B50,function
