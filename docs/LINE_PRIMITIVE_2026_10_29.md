@@ -29,7 +29,7 @@ bytes. Whole-TU strict floating mode gives149/148, first+20, unselected.
 The remaining prefix schedules color stores and the two zero texture-call
 arguments differently: target consumes color then uses XOR EAX/two pushes,
 while this compiler output pushes immediate zeros. The complete suffix from
-4011B3 onward is byte-identical, including all subsequent calls and RET.
+4011B5 onward is byte-identical, including all subsequent calls and RET.
 Do not insert zero temporaries, volatile storage or assembly to force that
 prefix. Full148 comparison remains required; matching suffix is not credit.
 
