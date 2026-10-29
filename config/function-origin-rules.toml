@@ -1904,15 +1904,15 @@ evidence = "Current resource wrappers 0x00408DB0/0x00408E40 rewrite encoded path
 
 [[rules]]
 id = "network-packet-ctor-parse-authored-106a"
-addresses = ["0x0044DAC0", "0x0044E050"]
-expected_count = 2
-expected_bytes = 119
-expected_names = ["sub_44DAC0", "sub_44E050"]
+addresses = ["0x0044DAC0"]
+expected_count = 1
+expected_bytes = 41
+expected_names = ["sub_44DAC0"]
 origin = "authored_game"
 subsystem = "network"
 disposition = "authored"
 confidence = "observed"
-evidence = "Canonical-exact client/server secondary packet dispatchers call both entries. Existing typed NetworkAckInfoPacket40 source emits the complete two-deque constructor at 43/41; existing InputPacket24 source reproduces its sequential parser at 78/78 with only the zero-gate branch opcode different. Both remain source-present nonexact."
+evidence = "Canonical-exact client/server secondary packet dispatchers own this ACK_INFO constructor. Existing typed NetworkAckInfoPacket40 source emits the complete two-deque constructor at43/41, still nonexact. Input parser44E050 moved to the canonical exact baseline after the Oct29 byte-indexed loop recovery."
 
 [[rules]]
 id = "network-deque-ushort-lifetime-generated-106a"

@@ -1540,7 +1540,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044DB10,authored_game,network,authored,observed,canonical-exact-authored
 0x0044DCB0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044DF20,authored_game,network,authored,observed,canonical-exact-authored
-0x0044E050,authored_game,network,authored,observed,network-packet-ctor-parse-authored-106a
+0x0044E050,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E0A0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E160,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E210,authored_game,network,authored,observed,canonical-exact-authored

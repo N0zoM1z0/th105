@@ -215,14 +215,10 @@ void InputPacket24::parse(const unsigned char *input)
     values_010.clear();
     if (count >= 100)
         return;
-    if (count == 0)
-        return;
-
-    int remaining = count;
-    do {
+    for (unsigned char index = 0; index < count; ++index) {
         values_010.push_back(*reinterpret_cast<const short *>(input));
         input += 2;
-    } while (--remaining != 0);
+    }
 }
 
 unsigned int InputPacket24::serialize(void *buffer)

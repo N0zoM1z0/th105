@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Input parser44E050 is canonical exact78/78. A real byte-indexed forward loop
+recovers native TEST BL/JBE before extension; packet signedness stays unchanged.
+All eleven leaf siblings and the separate GS-off request pump replay exact.
+See [INPUT_PACKET_BYTE_LOOP_2026_10_29.md](INPUT_PACKET_BYTE_LOOP_2026_10_29.md).
+
 Replay consumer44E210 is now canonical exact170/170. Unsigned destination
 words remove the false signed conversion and old register-permutation stop;
 incoming signed packet view remains unchanged. Countdown precedes lock entry.
