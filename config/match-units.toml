@@ -18735,25 +18735,6 @@ notes = "Two canonical-exact CInfoManager/CInfoManagerStory wrappers own BattleI
 address = "0x0046F9F0"
 symbol_base = "?emit_group_effect_46f9f0@BattleInfoRecordEffectRuntimeView@th105@@QAEXHH@Z"
 
-[units.gpt-web-d3d-backend-listener-runtime]
-kind = "probe"
-source = "src/engine/D3DBackendListenerRuntime.cpp"
-object = "build/match-units/GptWeb_D3DBackendListenerRuntime.obj"
-profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Current D3D backend +0x1AC reset-listener list is independently exact-backed by the g_d3d_backend aggregate. Natural member source locks the embedded CriticalSection, deduplicates the checked std::list<DeviceResetListener*> and appends when absent. Target 0x00414CB0 consumes the backend receiver privately in EAX; source keeps ordinary thiscall and does not fabricate that ABI."
-
-[[units.gpt-web-d3d-backend-listener-runtime.functions]]
-address = "0x00414CB0"
-symbol_base = "?register_reset_listener@D3DBackendListenerRuntimeView@th105@@QAEXPAUDeviceResetListener@2@@Z"
-rel32_targets = [
-  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
-  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
-  "__invalid_parameter_noinfo=0x0068A143",
-  "?_Buynode@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@2@PAU342@0ABQAUDeviceResetListener@th105@@@Z=0x004129E0",
-  "?_Incsize@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEXI@Z=0x0040C6D0",
-]
-
 
 [units.gpt-web-profile-render-list-color-runtime]
 kind = "linked_candidate"
@@ -26592,7 +26573,7 @@ link_data_targets = [
   "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
   "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
 ]
-notes = "Actual initializer/listener/critical-section CIL context; real named D3DX import metadata. Only the complete initializer is selected; provider bodies receive no credit."
+notes = "Actual initializer/listener/critical-section CIL context; real named D3DX import metadata. Complete initializer and private listener registration are selected; both are fully bounded and compared. Other providers receive no credit."
 
 [[units.exact-first-battle-base-effect-initialize-linked.functions]]
 address = "0x00417FF0"
@@ -26600,4 +26581,16 @@ symbol_base = "?initialize@BattleBaseEffectLifetimeView@th105@@QAE_NPBXI@Z"
 rel32_targets = [
   "?register_reset_listener@D3DBackendListenerRuntimeView@th105@@QAEXPAUDeviceResetListener@2@@Z=0x00414CB0",
   "_D3DXCreateEffect@36=0x006898A2",
+]
+
+[[units.exact-first-battle-base-effect-initialize-linked.functions]]
+address = "0x00414CB0"
+symbol_base = "?register_reset_listener@D3DBackendListenerRuntimeView@th105@@QAEXPAUDeviceResetListener@2@@Z"
+private_from = { caller = "0x00417FF0", site = "0x00418006" }
+rel32_targets = [
+  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?_Buynode@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@2@PAU342@0ABQAUDeviceResetListener@th105@@@Z=0x004129E0",
+  "?_Incsize@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEXI@Z=0x0040C6D0",
 ]

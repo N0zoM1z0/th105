@@ -21,7 +21,7 @@ with the real D3DBackendListenerRuntime.cpp and CriticalSectionWrapper.cpp.
 This genuine one-CIL context naturally places the backend receiver in EAX.
 There is no private calling-convention declaration or instruction transcription.
 
-Only417FF0 is accepted. The real414CB0 provider remains independently nonexact
+At this initial checkpoint only417FF0 was accepted. The real414CB0 provider was independently nonexact
 (private focused comparison162/native157, first+6); it is not exported or
 credited merely because its caller matches. The previous ordinary initializer
 71/71 first+17 was a register-context mismatch, not a source-behavior gap.
@@ -69,3 +69,8 @@ Receipts: build/frontier-effect-listener-context-20261029/formal-build.json,
 boundary.json, lifetime-build.json, sdk-import-replay.json and ci.log.
 Only71 new exact authored bytes are added. Counts remain incremental; no cold
 corpus build is needed for this isolated source/context/import extension.
+
+Later same-day update: [D3D_LISTENER_FIND_LTCG_2026_10_29.md](D3D_LISTENER_FIND_LTCG_2026_10_29.md)
+recovers standard find/result lifetime and accepts414CB0 independently157/157.
+The initializer remains exact; source selection now records the linked wrapper
+so the actual private caller is available to the existing witness contract.

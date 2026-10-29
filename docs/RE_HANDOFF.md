@@ -1,10 +1,18 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: effect initialize417FF0 is canonical exact71/71
+Current bounded checkpoint: reset-listener registration414CB0 now also matches
+157/157 in the same genuine effect/listener/lock TU. Native unchecked search
+followed by checked result/end comparison is recovered as standard std::find
+with a named iterator result. Actual exact initializer417FF0 witnesses its
+private entry and remains71/71. See
+[D3D_LISTENER_FIND_LTCG_2026_10_29.md](D3D_LISTENER_FIND_LTCG_2026_10_29.md)
+and build/frontier-d3d-listener-find-20261029/formal-build.json.
+
+Preceding bounded checkpoint: effect initialize417FF0 is canonical exact71/71
 in genuine initializer/listener/lock CIL context. The private EAX receiver
 emerges naturally; a strictly attested standard named D3DX import supplies the
 external link. Existing five lifetime callbacks and ordinal SDK lane replay
-independently. Provider414CB0 remains nonexact and uncredited. See
+independently. Provider414CB0 was nonexact at that checkpoint; the later result above supersedes it. See
 [BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md](BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md)
 and build/frontier-effect-listener-context-20261029/.
 

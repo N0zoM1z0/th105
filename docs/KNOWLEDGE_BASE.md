@@ -2865,3 +2865,11 @@ The slot1 switch also exposes a byte-boundary rule. The authored main body retur
 select the formerly missing EAX receiver; a standard named-import archive is
 strictly validated against the actual D3DX PE import. Provider exactness is
 not inferred. See [evidence](BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md).
+
+## 2026-10-29: reset-listener search and iterator lifetime
+
+The same genuine effect context now independently proves414CB0 exact157/157.
+A standard std::find result named before end comparison reproduces the actual
+unchecked search and subsequent checked-iterator validation. Direct equality
+on a temporary had156/157 and a larger frame; manual checked loop was162/157.
+No frame or register forcing. [Evidence](D3D_LISTENER_FIND_LTCG_2026_10_29.md).

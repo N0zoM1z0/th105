@@ -1951,18 +1951,6 @@ confidence = "observed"
 evidence = "Canonical-exact SceneRenderCluster_cleanup and CScenarioData_clear_runtime tail-call this method on their embedded CScript subobjects; existing ScriptCommandLifetime.cpp defines the complete pending-factory/map/default-factory clear semantics. Formal standalone VC8 is 296/170 because the target extracts private ESI deque/map helper phases rather than because source behavior is missing."
 
 [[rules]]
-id = "d3d-backend-reset-listener-authored-106a"
-addresses = ["0x00414CB0"]
-expected_count = 1
-expected_bytes = 157
-expected_names = ["sub_414CB0"]
-origin = "authored_game"
-subsystem = "rendering"
-disposition = "authored"
-confidence = "observed"
-evidence = "Exact-backed g_d3d_backend layout fixes CriticalSection +0 and std::list<DeviceResetListener*> +0x1AC. BattleBaseEffect initialize passes itself here before D3DXCreateEffect. Natural member source deduplicates and appends listeners, formally 134/157; target uniquely consumes the backend receiver in EAX and uses LTCG list helper variants."
-
-[[rules]]
 id = "battle-info-record-effect-authored-106a"
 addresses = ["0x0046F9F0"]
 expected_count = 1
