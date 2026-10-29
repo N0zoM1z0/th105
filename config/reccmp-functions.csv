@@ -1707,3 +1707,4 @@ CScenarioData_dtor,0x00438A70,function
 CScript_dtor,0x00405660,function
 CScenarioData_ctor,0x00459C90,function
 CScenarioData_render,0x00457F90,function
+ScenarioResultResource_ctor,0x00454C70,function

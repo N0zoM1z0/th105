@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+ScenarioResult constructor454C70 is canonical exact298/298. A real initializing
+tile texture-handle value closes the old EH/vptr scheduling gap; both generated
+cleanup funclets and the normal tile destructor also match their native bodies.
+See [SCENARIO_RESULT_CONSTRUCTOR_2026_10_29.md](SCENARIO_RESULT_CONSTRUCTOR_2026_10_29.md).
+
 Scenario render457F90 now has complete930-byte selected source with real owned
 layouts and MI member pointer. Checked sprite access now precedes window-scale
 evaluation as native requires. It remains33 bytes nonexact on EBX/EBP allocation

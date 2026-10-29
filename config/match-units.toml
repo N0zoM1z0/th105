@@ -27340,3 +27340,22 @@ rel32_targets = [
  "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
  "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.exact-first-scenario-result-constructor]
+kind = "probe"
+source = "src/battle/ScenarioResultConstructor.cpp"
+object = "build/match-units/ExactFirst_ScenarioResultConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete298-byte result resource constructor. Real CDesignBase and four-slot polymorphic tile own the initializing texture handle. No manual vptr stores or forced EH scheduling. docs/SCENARIO_RESULT_CONSTRUCTOR_2026_10_29.md."
+
+[[units.exact-first-scenario-result-constructor.functions]]
+address = "0x00454C70"
+symbol_base = "??0ScenarioResultResourceOwner128@th105@@QAE@XZ"
+rel32_targets = [
+ "??0CDesignBase@th105@@QAE@XZ=0x004217F0",
+ "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+ "?bind_secondary@ScenarioSecondaryDesignView@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50",
+ "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+ "?set_texture_full@ScenarioTileSetupView@th105@@QAEXIHHIIHH@Z=0x004098E0",
+]

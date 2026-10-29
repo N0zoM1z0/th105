@@ -1662,7 +1662,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004549E0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00454A50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00454BF0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00454C70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00454C70,authored_game,battle,authored,observed,canonical-exact-authored
 0x00454DA0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00454E50,authored_game,battle,authored,observed,canonical-exact-authored
 0x00454EC0,authored_game,battle,authored,observed,canonical-exact-authored
