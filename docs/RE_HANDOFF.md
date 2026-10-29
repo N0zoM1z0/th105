@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+ScenarioData constructor459C90 now has complete selected source for all24
+command registrations and owned members. Source1528/native1527 remains
+nonexact in receiver/config allocation; destructor411 replays unchanged.
+The local Environment empty-base view also restores native RTTI+4 placement.
+See [SCENARIO_DATA_CONSTRUCTOR_2026_10_29.md](SCENARIO_DATA_CONSTRUCTOR_2026_10_29.md).
+
 Pending-command cleanup now deletes the command before popping its queue slot,
 as native405770 requires. CScript destructor405660 remains canonical exact95/95
 in genuine CIL, with both

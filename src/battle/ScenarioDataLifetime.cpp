@@ -2,9 +2,16 @@
 // implicit: no redundant vptr publication or hand-authored cleanup sequence.
 #include "battle/ScenarioData.hpp"
 #include "assets/TextFontOwner.hpp"
+#include <string.h>
+extern "C" const char profile_ui_effect_label[];
 namespace th105 {
-class ScenarioLifetimeView {
+// Native Environment is at+4. An empty-base view reproduces the observed
+// first-member overlap and RTTI position without claiming the unrelated
+// fields assigned to older partial Environment views.
+class ScenarioEnvironmentBase {};
+class ScenarioLifetimeView : public ScenarioEnvironmentBase {
 public:
+ ScenarioLifetimeView();
  virtual void configure(int);
  virtual void clear_runtime();
  virtual int update();
@@ -31,4 +38,50 @@ typedef char ScenarioResultOffset[offsetof(ScenarioLifetimeView, result_390) == 
 // Unmapped emission helper only. It instantiates the implicit C++ destructor;
 // no target address, authored bytes or runtime call is assigned to this helper.
 void destroy_scenario_lifetime_probe(ScenarioLifetimeView *value) { delete value; }
+
+// Full authored constructor; source1528/native1527 remains nonexact on
+// persistent receiver/config register allocation. The config reference is
+// actively used after the command registrations, matching its native lifetime.
+ScenarioLifetimeView::ScenarioLifetimeView()
+{
+ TextFontConfig128 &config = config_1fc;
+ script_35c.register_command<TCommand1<std::string> >(1, "");
+ script_35c.register_command<TCommand1<std::string> >(0, "Label");
+ script_35c.register_command<CComCharacter >(2, "Character");
+ script_35c.register_command<TCommand2<std::string, std::string> >(3, "Face");
+ script_35c.register_command<TCommand2<std::string, int> >(4, "Action");
+ script_35c.register_command<TCommand4<std::string, int, float, float> >(5, "Object");
+ script_35c.register_command<TCommand2<int, int> >(6, "Stage");
+ script_35c.register_command<TCommand1<std::string> >(9, "Bgm");
+ script_35c.register_command<TCommand1<std::string> >(9, "PlayBgm");
+ script_35c.register_command<CCommand0 >(10, "StopBgm");
+ script_35c.register_command<TCommand2<int, int> >(11, "FadeBgm");
+ script_35c.register_command<TCommand3<std::string, int, bool> >(13, "CrossFadeBgm");
+ script_35c.register_command<TCommand2<std::string, int> >(12, "PlaySE");
+ script_35c.register_command<TCommand1<std::string> >(7, "Background");
+ script_35c.register_command<TCommand3<std::string, int, int> >(8, "CG");
+ script_35c.register_command<TCommand1<int> >(14, "Sleep");
+ script_35c.register_command<TCommand1<int> >(15, "Next");
+ script_35c.register_command<TCommand4<std::string, int, int, int> >(16, "Font");
+ script_35c.register_command<TCommand1<std::string> >(17, "Color");
+ script_35c.register_command<TCommand4<unsigned char, unsigned char, unsigned char, unsigned char> >(18, "Window");
+ script_35c.register_command<TCommand1<int> >(19, "Hide");
+ script_35c.register_command<CCommand0 >(20, "Result");
+ script_35c.register_command<CCommand0 >(21, "StaffRoll");
+ script_35c.register_command<CCommand0 >(22, "End");
+ strcpy_s(config.face_000,256,profile_ui_effect_label);
+ config.height_108=24;
+ config.colors_100[0]=255;
+ config.colors_100[2]=255;
+ config.colors_100[4]=255;
+ config.colors_100[1]=0;
+ config.colors_100[3]=0;
+ config.colors_100[5]=0;
+ config.origin_x_118=0;
+ config.origin_y_11c=8;
+ config.spacing_x_120=0;
+ config.spacing_y_124=8;
+ config.outline_111=1;
+ font_068.configure(&config);
+}
 }

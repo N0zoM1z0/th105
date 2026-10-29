@@ -3710,3 +3710,21 @@ required_direct_edges = [
  { caller = "0x004040D0", site = "0x00404160", target = "0x00402820", caller_status = "implemented" },
  { caller = "0x004040D0", site = "0x00404231", target = "0x00402820", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "scenario-data-constructor-authored-106a"
+addresses = ["0x00459C90"]
+expected_count = 1
+expected_bytes = 1527
+expected_names = ["sub_459C90"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete1527-byte normal constructor owns the RTTI CScenarioData/Environment layout, SystemEffectManager member, font/config, map/lists/script/result/strings,24 game-command registrations and font configuration. Two canonical-exact manager/phase constructors call it directly. Full selected source is1528/native1527 nonexact; no matching-prefix credit. docs/SCENARIO_DATA_CONSTRUCTOR_2026_10_29.md."
+required_target_strings = ["CrossFadeBgm", "StaffRoll"]
+required_body_hashes = [{ address = "0x00459C90", size = 1527, sha256 = "959d1263fab6f0a63a75cd27bb45748ab8f43dae63d0fef659686f2a0417192f" }]
+required_direct_edges = [
+ { caller = "0x00438CC0", site = "0x00438D01", target = "0x00459C90", caller_status = "matching" },
+ { caller = "0x00439200", site = "0x0043926D", target = "0x00459C90", caller_status = "matching" },
+]

@@ -51,3 +51,10 @@ One full native EH-handler binding is added. Accepted callers, shared classes,
 font/script/member providers and their receipts remain unchanged; this isolated
 new unit needs no whole-corpus rebuild. All411 bytes are credited only after
 its complete canonical comparison reports zero differences.
+
+The later constructor addition is recorded in SCENARIO_DATA_CONSTRUCTOR_2026_10_29.md.
+The unit now also reports that1528/1527 nonexact constructor; its newest full
+report is build/frontier-scenario-constructor-20261029/formal-environment.json.
+Destructor411 remains exact in the same changed-source replay. The local
+empty Environment base restores the observed RTTI+4 overlap without changing
+any destructor byte.
