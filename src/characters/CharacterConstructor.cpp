@@ -110,7 +110,7 @@ struct Element4 {
 class CharacterConstructorView : public ::AttackObject {
 public:
     CharacterConstructorView(const MatchSetup::Side *setup);
-    virtual ~CharacterConstructorView();
+    virtual ~CharacterConstructorView() = 0;
 
 public:
     int character_key_330;

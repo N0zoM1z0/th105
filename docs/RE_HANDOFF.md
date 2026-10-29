@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+CharacterEx normal/scalar destruction491BC0/64B770 is canonical exact11/36
+from its verified RTTI-owned table and real Character base call. Native base
+slot0 purity corrects the constructor view without changing its557-byte result.
+See [CHARACTER_EX_LIFETIME_2026_10_29.md](CHARACTER_EX_LIFETIME_2026_10_29.md).
+
 Character base constructor462AB0 now has complete557-byte source in the normal
 manifest. Typed setup pointer, actual map/spell core and8-slot sprites retain
 only nine unequal EH-state/sprite-zero store-order bytes. No exact credit or

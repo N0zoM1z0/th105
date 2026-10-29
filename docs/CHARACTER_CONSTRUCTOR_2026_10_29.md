@@ -62,3 +62,7 @@ Formal comparison and target/source disassembly are under
 build/frontier-character-constructor-20261029/. Existing shared headers and
 accepted consumers remain unchanged. Default CI and diff checks cover final
 source selection, aliases and progress.
+
+Later CharacterEx lifetime review establishes native Character slot0 as
+purecall689934. The constructor-facing destructor is corrected to pure virtual;
+fresh formal-pure-base.json retains the identical557-byte55da99cc candidate.

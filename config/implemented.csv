@@ -1659,3 +1659,5 @@ CMenuBattle_update
 Menu_dtor
 CMenuResult_ctor
 Character_ctor
+CharacterEx_dtor
+CharacterEx_scalar_deleting_destructor

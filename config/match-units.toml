@@ -26870,3 +26870,21 @@ rel32_targets = [
  "??_H@YGXPAXIHP6EPAX0@Z@Z=0x00401220",
  "?initialize_side_payload_430f70@SpellDataOwner@th105@@QAEXPBUShortDeque8@2@@Z=0x004324F0",
 ]
+
+[units.exact-first-character-ex-lifetime]
+kind = "probe"
+source = "src/characters/CharacterExLifetime.cpp"
+object = "build/match-units/ExactFirst_CharacterExLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "RTTI-owned CharacterEx normal11 and scalar36 destructor pair; actual Character base dtor462CE0 remains declaration-only here. No complete object allocation/layout claim. docs/CHARACTER_EX_LIFETIME_2026_10_29.md."
+
+[[units.exact-first-character-ex-lifetime.functions]]
+address = "0x00491BC0"
+symbol_base = "??1CharacterExLifetimeView@th105@@UAE@XZ"
+rel32_targets = ["??1CharacterLifetimeBaseView@th105@@UAE@XZ=0x00462CE0"]
+
+[[units.exact-first-character-ex-lifetime.functions]]
+address = "0x0064B770"
+symbol_base = "??_GCharacterExLifetimeView@th105@@UAEPAXI@Z"
+rel32_targets = ["??1CharacterLifetimeBaseView@th105@@UAE@XZ=0x00462CE0", "??3@YAXPAX@Z=0x006898EA"]
