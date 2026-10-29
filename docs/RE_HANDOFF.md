@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: Sakuya4CADB0 now restores native direct argument
+Current bounded checkpoint: Fighter counter setter4776C0 and Scenario result
+enable4547D0 are canonical exact15/4. Fresh Reimu/Suika RTTI-root callers and
+Scenario+390 result-member pointer establish authored ownership. No shared
+header changed. See
+[ACTION_STATE_LEAF_SETTERS_2026_10_29.md](ACTION_STATE_LEAF_SETTERS_2026_10_29.md)
+and build/frontier-4776c0-20261029/{formal-build,boundary}.json.
+
+Preceding bounded candidate: Sakuya4CADB0 now restores native direct argument
 lifetimes for the knife macro plus96 independently checked staged spawn sites,
 and action214 arithmetic branch ownership. Whole76484/native76336 remains
 nonexact+8/frame4A8 versus4D8. All113 arithmetic-family censuses agree;95 payload

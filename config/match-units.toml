@@ -26551,3 +26551,17 @@ rel32_targets = [
  "??3@YAXPAX@Z=0x006898EA",
  "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.exact-first-action-state-leaf-setters]
+kind = "probe"
+source = "src/battle/ActionStateLeafSetters.cpp"
+object = "build/match-units/ExactFirst_ActionStateLeafSetters.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete native field setters4776C0/4547D0 with Reimu/Suika action-root and Scenario result-member caller ownership. Pointer-only views, no shared layout changes or whole-class claim."
+[[units.exact-first-action-state-leaf-setters.functions]]
+address = "0x004776C0"
+symbol_base = "?set_counter@FighterActionCounterLeafView@th105@@QAEXF@Z"
+[[units.exact-first-action-state-leaf-setters.functions]]
+address = "0x004547D0"
+symbol_base = "?start@ScenarioResultEnableLeafView@th105@@QAEXXZ"

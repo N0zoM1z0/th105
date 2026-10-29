@@ -1642,3 +1642,5 @@ DirectSoundBuffer_load_raw
 DirectSoundBuffer_clear_storage
 CollisionContext_test_group_a_against_primary_box
 BgmService_shutdown
+Fighter_set_counter_48a
+ScenarioResultResource_enable
