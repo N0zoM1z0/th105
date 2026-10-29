@@ -81,3 +81,8 @@ The same changed-TU replay retains destructor438A70 at411/411 with its existing
 selection. All command literals, both native vtable roles and the complete
 handler receive independently checked bindings; no shared code or accepted
 caller is changed. No broad test expansion or whole-corpus replay is required.
+
+The shared Environment reconciliation subsequently replaces the local empty
+proxy with the common native tag and moves the animation-state fields to their
+actual owner. All physical offsets and both lifecycle bodies stay unchanged;
+see ENVIRONMENT_EMPTY_BASE_2026_10_29.md.

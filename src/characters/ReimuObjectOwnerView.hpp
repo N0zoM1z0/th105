@@ -58,6 +58,10 @@ public:
     virtual void render_to_battle_scene();
     virtual void prepare_render_transform();
     virtual void render_color_mode();
+    unsigned owner_field_000;
+    unsigned char flag_004;
+    unsigned char flag_005;
+    unsigned char unknown_006[0x1e];
     void *pointer_154;
 };
 

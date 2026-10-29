@@ -58,3 +58,8 @@ report is build/frontier-scenario-constructor-20261029/formal-environment.json.
 Destructor411 remains exact in the same changed-source replay. The local
 empty Environment base restores the observed RTTI+4 overlap without changing
 any destructor byte.
+
+The shared Environment reconciliation subsequently replaces the local empty
+proxy with the common native tag and moves the animation-state fields to their
+actual owner. All physical offsets and both lifecycle bodies stay unchanged;
+see ENVIRONMENT_EMPTY_BASE_2026_10_29.md.

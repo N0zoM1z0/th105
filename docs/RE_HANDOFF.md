@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Environment is now the shared empty RTTI base; its former24-byte state belongs
+to AnimationObject. All offsets stay unchanged. Thirty-four accepted functions
+replay exact, and every Reimu COFF section/relocation is unchanged. See
+[ENVIRONMENT_EMPTY_BASE_2026_10_29.md](ENVIRONMENT_EMPTY_BASE_2026_10_29.md).
+
 ScenarioData constructor459C90 now has complete selected source for all24
 command registrations and owned members. Source1528/native1527 remains
 nonexact in receiver/config allocation; destructor411 replays unchanged.

@@ -11,13 +11,10 @@ public:
 };
 
 
-class Environment {
-public:
-    unsigned owner_field_000;
-    unsigned char flag_004;
-    unsigned char flag_005;
-    unsigned char unknown_006[0x1e];
-};
+// Shared native RTTI tag. ScenarioData places it at+4 over its first member,
+// while AnimationObject places it at+130 over its own state. It carries no
+// instance storage; the former24-byte field group belongs to AnimationObject.
+class Environment {};
 
 
 struct AnimationAuxiliaryRendererOwner {
@@ -44,6 +41,10 @@ public:
     virtual void set_action(int action_id);
     virtual void unknown_vslot_0c();
 
+    unsigned owner_field_000;
+    unsigned char flag_004;
+    unsigned char flag_005;
+    unsigned char unknown_006[0x1e];
     void *pointer_154;
 };
 
@@ -125,8 +126,9 @@ public:
 
 typedef char AnimationObjectBase_size_must_be_0x12c[
     sizeof(AnimationObjectBase) == 0x12c ? 1 : -1];
-typedef char Environment_size_must_be_0x24[
-    sizeof(Environment) == 0x24 ? 1 : -1];
+typedef char Environment_empty_base_size[sizeof(Environment) == 1 ? 1 : -1];
+typedef char AnimationObject_owned_state_offset[
+    offsetof(AnimationObject, owner_field_000) == 0x130 ? 1 : -1];
 typedef char AnimationObject_effect_offset_must_be_0x04[
     offsetof(AnimationObject, effect_000) == 0x04 ? 1 : -1];
 typedef char AnimationObject_environment_flag_offset_must_be_0x134[

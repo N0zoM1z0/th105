@@ -5,11 +5,8 @@
 #include <string.h>
 extern "C" const char profile_ui_effect_label[];
 namespace th105 {
-// Native Environment is at+4. An empty-base view reproduces the observed
-// first-member overlap and RTTI position without claiming the unrelated
-// fields assigned to older partial Environment views.
-class ScenarioEnvironmentBase {};
-class ScenarioLifetimeView : public ScenarioEnvironmentBase {
+// The common empty Environment base has its native+4 RTTI position.
+class ScenarioLifetimeView : public ::Environment {
 public:
  ScenarioLifetimeView();
  virtual void configure(int);
