@@ -1,6 +1,8 @@
 # TH10.5 reconstruction handoff
 
-CScript destructor405660 is canonical exact95/95 in genuine CIL, with both
+Pending-command cleanup now deletes the command before popping its queue slot,
+as native405770 requires. CScript destructor405660 remains canonical exact95/95
+in genuine CIL, with both
 cleanup funclets, complete handler/FuncInfo/unwind map and static CRT cookie
 verified. Existing ctor65/parser505 and old global lifetimes163/228 replay
 unchanged. See [SCRIPT_LIFECYCLE_2026_10_29.md](SCRIPT_LIFECYCLE_2026_10_29.md).

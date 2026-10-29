@@ -58,3 +58,19 @@ coff-regression.json and global-regression.json. The old global-lifecycle
 contract retains both163/228-byte exact roots after a fresh build. One small
 admission-contract test is added; all13 lifecycle tests pass. No broad runtime
 matrix or full native corpus replay is introduced.
+
+## Subsequent pending-command order correction
+
+Raw405770 proves that the command's scalar deleting destructor is invoked at
+4057E1 before the queue count is reloaded/decremented at4057E3 onward. The
+retained clear_commands source had popped first. ScriptLifecycle.cpp now
+performs delete command before pending_14.pop_back(), preserving the native
+callback-visible lifetime without adding a guard or changing the container.
+This is a semantic restoration, not a claim that clear_commands is exact.
+
+Fresh delete-before-pop-linked.json retains destructor95 and all five EH
+witnesses unchanged. delete-before-pop-coff.json retains constructor65 and
+parser505 exact; clear_commands remains296/native170, now with canonical
+candidate3fe7ae6034cd441f1afca5a276db458d24f5cc4df2d77adae6ab634aca98150d.
+The linked clear provider remains309/native170. formal.json is refreshed from
+the actual latest linked replay, with the earlier receipt retained separately.

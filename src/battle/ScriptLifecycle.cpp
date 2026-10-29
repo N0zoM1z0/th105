@@ -16,8 +16,9 @@ void CScript::clear_commands()
 {
     while (!pending_14.empty()) {
         CCommandFactoryBase *command = pending_14.back();
-        pending_14.pop_back();
+        // Native405770 destroys the live command before removing its queue slot.
         delete command;
+        pending_14.pop_back();
     }
 
     for (CommandMap::iterator it = commands_00.begin();
