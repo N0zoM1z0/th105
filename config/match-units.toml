@@ -26799,3 +26799,32 @@ rel32_targets = [
  "?push_back@?$vector@HV?$allocator@H@std@@@std@@QAEXABH@Z=0x0040DCF0",
  "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
 ]
+
+[units.exact-first-battle-menu-update]
+kind = "probe"
+source = "src/ui/BattleMenuUpdate.cpp"
+object = "build/match-units/ExactFirst_BattleMenuUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete797-byte callable and880-byte owned target with both switch tables/remap. Source892 owned bytes remains nonexact+48; native message result4 falls through result2 state reset. docs/BATTLE_MENU_UPDATE_2026_10_29.md."
+
+[[units.exact-first-battle-menu-update.functions]]
+address = "0x004407E0"
+symbol_base = "?update@BattleMenuUpdateView@th105@@UAE_NXZ"
+rel32_targets = [
+ "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+ "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+ "??ABattlePauseEntries@th105@@QAEAAHI@Z=0x0040DCC0",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+ "??0CProfileKeyConfig@th105@@QAE@PAUPlayerSlotRecord@1@H@Z=0x0044BA90",
+ "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+ "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
+ "?get_game_config@th105@@YAPAUGameConfig@1@XZ=0x0043AF10",
+ "?refresh_continue_network_state@th105@@YAXXZ=0x0043BAF0",
+ "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640",
+ "?is_menu_initial_press@th105@@YA_NE_N00@Z=0x0043ABD0",
+ "?message_result@BattleMenuUpdateView@th105@@QAEHXZ=0x0043F6E0",
+ "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810",
+ "?confirmation_result@BattleMenuUpdateView@th105@@QAEHXZ=0x0043F870",
+]

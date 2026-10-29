@@ -3726,3 +3726,17 @@ evidence = "Four exact BattleManager callers allocate78-byte CMenuBattle; exact 
 required_body_hashes = [{ address = "0x00440B50", size = 800, sha256 = "bfad683902476e8223dda0facf17873bb1a3817ac23971f6ffbb2b0de1004e3c" }]
 required_direct_edges = [{ caller = "0x00472230", site = "0x00472310", target = "0x00440B50", caller_status = "matching" }]
 required_dword_values = [{ address = "0x00440B94", value = "0x006C1A5C" }, { address = "0x006C1A58", value = "0x006D8168" }, { address = "0x006D8174", value = "0x006E6BDC" }]
+
+[[rules]]
+id = "battle-menu-update-authored-106a"
+addresses = ["0x004407E0"]
+expected_count = 1
+expected_bytes = 797
+expected_names = ["sub_4407E0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "CMenuBattle RTTI vtable6C1A5C owns update slot08 at6C1A64. Exact render440780 and scalar deleting destructor440F00 occupy the same independently verified table. Complete267-instruction797-byte callable has12 returns and two switch tables. Key-config allocation and replay transition policy establish authored ownership; whole892/880 source remains nonexact. docs/BATTLE_MENU_UPDATE_2026_10_29.md."
+required_body_hashes = [{ address = "0x004407E0", size = 797, sha256 = "97d91340e08278600b314445f693a0f0007562d35631d5f9213dcd0cb7590532" }]
+required_dword_values = [{ address = "0x006C1A64", value = "0x004407E0" }, { address = "0x006C1A5C", value = "0x00440F00" }, { address = "0x006C1A68", value = "0x00440780" }, { address = "0x006C1A58", value = "0x006D8168" }, { address = "0x006D8174", value = "0x006E6BDC" }]

@@ -1655,3 +1655,4 @@ CProfileDeckEdit_select_filter
 CProfileDeckEdit_show_record
 WaveResourceManager_release_handle
 CMenuBattle_ctor
+CMenuBattle_update

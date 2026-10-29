@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+CMenuBattle update4407E0 now has complete797-byte callable/880-byte owned
+source coverage, including both switches and replay-save transitions. Whole
+892-byte source stays nonexact+48 on early guard/return sharing, no exact credit.
+See [BATTLE_MENU_UPDATE_2026_10_29.md](BATTLE_MENU_UPDATE_2026_10_29.md).
+
 CMenuBattle constructor440B50 is complete800-byte source, nonexact in only
 six saved-this/clear-iterator stack-home bytes. All mode branches, typed design
 lifetime and vertical cursor agree. No dummy lifetimes or stack coloring; see

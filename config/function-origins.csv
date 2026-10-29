@@ -1357,7 +1357,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00440730,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00440750,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440780,authored_game,ui,authored,observed,canonical-exact-authored
-0x004407E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004407E0,authored_game,ui,authored,observed,battle-menu-update-authored-106a
 0x00440B50,authored_game,ui,authored,observed,battle-menu-constructor-authored-106a
 0x00440E70,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440F00,authored_game,ui,authored,observed,canonical-exact-authored
