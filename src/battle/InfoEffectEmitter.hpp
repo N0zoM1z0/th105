@@ -17,7 +17,8 @@ struct EffectEmitterSubobject {
         int trailing_zero);
     virtual void slot_10();
     virtual void slot_14();
-    virtual int dispatch_state(int state);
+    // Primary slot18 is the signed-byte render-layer callback (46F350).
+    virtual void dispatch_state(signed char layer);
 };
 
 struct InfoEffectEmitterView {

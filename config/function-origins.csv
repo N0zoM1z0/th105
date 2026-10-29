@@ -1981,7 +1981,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00469510,authored_game,battle,authored,observed,canonical-exact-authored
 0x00469540,authored_game,battle,authored,observed,canonical-exact-authored
 0x004695B0,authored_game,battle,authored,observed,canonical-exact-authored
-0x004695F0,authored_game,battle,authored,observed,event-effect-emitter-dispatch-authored-106a
+0x004695F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00469600,compiler_generated,runtime,exclude,observed,vc8-generated-map-int-value16-tree-comdats-106a
 0x00469690,compiler_generated,input,exclude,observed,vc8-generated-input-cluster-std-comdats-106a
 0x004696B0,compiler_generated,input,exclude,observed,vc8-generated-input-cluster-std-comdats-106a

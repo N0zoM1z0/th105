@@ -1640,18 +1640,6 @@ confidence = "observed"
 evidence = "Canonical-exact load_bgm_source 0x0043CF00 and play_bgm 0x0043CF80 both carry the current decorated BgmPlaybackServiceView::allocate_handle REL32 identity to 0x004036C0. Canonical-exact BgmService_link_handles 0x004039E0 independently fixes the service lock at +0x20 and handle-manager subobject at +0x38. Ordinary source is formally 20/28 because target 0x004040D0 retains an original-TU private EDI/hidden-result ABI; that codegen residual does not weaken authored ownership."
 
 [[rules]]
-id = "event-effect-emitter-dispatch-authored-106a"
-addresses = ["0x004695F0"]
-expected_count = 1
-expected_bytes = 11
-expected_names = ["sub_4695F0"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Three canonical-exact BattleObjectManager phase methods 0x00466980/0x004669F0/0x00466A50 call current 0x004695F0 on g_event_effect_state. Canonical-exact EventEffectState emit/render methods independently fix the polymorphic emitter subobject at +0x48. Ordinary member forwarding is 10/11; the sole residual is target vptr-load-before-ECX-adjust scheduling, so no register or manual-vtable forcing is used."
-
-[[rules]]
 id = "event-background-deque-push-generated-106a"
 addresses = ["0x004306D0"]
 expected_count = 1

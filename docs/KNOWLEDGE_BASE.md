@@ -1,5 +1,7 @@
 # Reconstruction evidence notebook
 
+- **Effect-layer forwarder4695F0 is canonical11/11.** Independent CEffectManager<WeatherEffectObject> primary slot18 identifies exact46F350 as void(signed char), not the old int-returning state dispatcher. Correcting the wrapper and slot declarations resolves the receiver-order residual; actual layer callers and all affected accepted siblings replay exact. See [the ABI evidence](EFFECT_LAYER_FORWARDER_2026_10_29.md).
+
 - **GuideOverlay update43F450 old scheduling stop is superseded.** The Oct29 typed CSprite color virtual plus branch-local compound alpha assignment reproduces complete112/112, including SUB AL15 and vtable-before-store ordering. Three accepted load/render/ctor siblings replay unchanged; the90/92 destructor remains nonexact. See [the current evidence](GUIDE_OVERLAY_UPDATE_2026_10_29.md). Older negative paragraphs below describe the manual-dispatch/local-alpha source context, not an impossibility result.
 
 This is a historical collection of target observations, source-shape

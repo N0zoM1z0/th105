@@ -5181,7 +5181,7 @@ source = "src/battle/EventEffectState.cpp"
 object = "build/match-units/CrossV106a_EventEffectState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a shared event/background state at receiver 0x006FBCAC. Exact trigger/stage-music callers establish id +0; current battle phases additionally prove checked deque<BackgroundRenderEntry> +0x28 and polymorphic effect emitter +0x48. The id setter, +0x48 emit facade, and 511-byte typed background render are canonical exact. The adjacent +0x48 dispatch-state facade remains deliberately untracked at target 11 vs fresh 10 because only vptr/receiver scheduling differs."
+notes = "TH105 1.06a shared event/background state at receiver 0x006FBCAC. Exact trigger/stage-music callers establish id +0; current battle phases additionally prove checked deque<BackgroundRenderEntry> +0x28 and polymorphic effect emitter +0x48. The id setter, +0x48 emit facade, and 511-byte typed background render are canonical exact. The adjacent +0x48 facade is now canonical11/11 after independently identifying primary slot18 as void render-layer(signed char); docs/EFFECT_LAYER_FORWARDER_2026_10_29.md."
 
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x00469DF0"
@@ -5195,7 +5195,7 @@ symbol_base = "?emit_effect@EventEffectStateView@th105@@QAEHHMMHH@Z"
 
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x004695F0"
-symbol_base = "?dispatch_emitter_state@EventEffectStateView@th105@@QAEHH@Z"
+symbol_base = "?dispatch_emitter_state@EventEffectStateView@th105@@QAEXC@Z"
 
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x004696E0"

@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Effect layer forwarder4695F0 is canonical exact11/11. Primary table slot18
+independently proves void(signed char), correcting the old int/int contract.
+All nine caller roots and emitter/event siblings replay unchanged; see
+[EFFECT_LAYER_FORWARDER_2026_10_29.md](EFFECT_LAYER_FORWARDER_2026_10_29.md).
+
 Guide constructor43F540 retains20/20 through natural CSprite/IColor lifetime,
 replacing its selected manual-vptr witness. Dtor43F330 remains90/92; no extra
 exact credit. See [GUIDE_OVERLAY_LIFETIME_2026_10_29.md](GUIDE_OVERLAY_LIFETIME_2026_10_29.md).

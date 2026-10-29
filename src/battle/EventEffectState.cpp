@@ -19,9 +19,9 @@ int EventEffectStateView::emit_effect(
     return emitter_48.emit(effect_id, x, y, flag_a, flag_b, 0);
 }
 
-int EventEffectStateView::dispatch_emitter_state(int state)
+void EventEffectStateView::dispatch_emitter_state(signed char layer)
 {
-    return emitter_48.dispatch_state(state);
+    emitter_48.dispatch_state(layer);
 }
 
 

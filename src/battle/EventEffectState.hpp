@@ -26,7 +26,7 @@ struct EventEffectStateView {
     int publish_stage_state(int state);
     int set_event_id(int event_id);
     int emit_effect(int effect_id, float x, float y, int flag_a, int flag_b);
-    int dispatch_emitter_state(int state);
+    void dispatch_emitter_state(signed char layer);
     void render_background_effects();
     void update_background_entries_469b70();
 
