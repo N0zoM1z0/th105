@@ -6,6 +6,10 @@ binding, signed category field and cursor-selection availability argument
 restore natural source dataflow. No shared headers changed. See
 [PROFILE_DECK_FILTER_2026_10_29.md](PROFILE_DECK_FILTER_2026_10_29.md).
 
+Constructor cursor correction: native44B277 input+38 is horizontal, not
+vertical. Source corrected; full2151 bytes SHA d15195f1 remains nonexact+391,
+and both accepted value getters replay unchanged.
+
 Latest deck-editor checkpoint:44AAC0 has complete2136-byte native ownership and
 a2151-byte constructor source, nonexact+391. Native RTTI corrects CTile to four
 slots and numeric bindings to signed char. Its independent448B20/448B30 value

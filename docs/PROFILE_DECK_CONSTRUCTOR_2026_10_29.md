@@ -44,7 +44,7 @@ the source contracts. No primary analysis project or target bytes changed.
   uses operator delete, as the actual INumberValue interface has no destructor
   slot. Constructor common-resource colors are96,96,255; do not copy the
   destructor's different255,96,96 order.
-- The spell filter, current deck import, first-record display, vertical-input
+- The spell filter, current deck import, first-record display, horizontal-input
   cursor and guide IDs13/14/2/10 retain their actual ordering and guards.
 
 RTTI corrected two initial declaration hypotheses before selection: CTile has
@@ -71,8 +71,9 @@ The larger constructor and other providers inherit no equality from them.
 
 ## Complete comparisons and limits
 
-Selected full2151-byte canonical constructor SHA:
+Initial full2151-byte canonical constructor SHA:
 41b1494cc09e6af1a3fed1c035d18ddac7e220fdb9d9f2e3445d17d98bb3c60e.
+The later input-axis correction below supersedes that candidate.
 There are1125 unequal positions including length;15 extra bytes does not mean
 only15 byte differences. All62 direct-call destinations/order agree. The first
 391 bytes agree, including the member construction prefix. Remaining width/
@@ -97,3 +98,15 @@ The read-only Ghidra logs and negative controls are in the same scope. Private
 manual source and replay scripts are retained under its .analysis counterpart.
 Default CI and diff checks run after final tracking/progress changes; no cold
 corpus replay is needed for this new isolated unit.
+
+## Input-axis correction after filter recovery
+
+Native44B277 adds38 to the InputManager pointer. The actual shared layout
+places horizontal at38, vertical at3C and button0 at40. The earlier constructor
+used vertical, a semantic error now corrected to horizontal. This category
+cursor differs from the card-list vertical cursor recovered in449E90.
+
+Whole source remains2151/native2136, first+391, SHA
+d15195f10de8db59e60b9cc23d1e050536225e099374a90ff74a58bd16b60774.
+Both selected signed-char getters replay7/7 and15/15 unchanged. No exact
+credit is added. Evidence:build/frontier-profile-deck-cursor-20261029/.

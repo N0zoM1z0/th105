@@ -192,7 +192,7 @@ ProfileDeckConstructorView::ProfileDeckConstructorView(
         reinterpret_cast<DeckPlayerView *>(player_04)->copy_deck(0, character_08)));
     show_record(&filtered_3cc[0]->second);
     CInputManager *input = g_active_menu_input;
-    cursor_3f8.input_counter = input ? &input->hold.vertical : 0;
+    cursor_3f8.input_counter = input ? &input->hold.horizontal : 0;
     cursor_3f8.selection = 0;
     cursor_3f8.window_start = 0;
     cursor_3f8.item_count = 5;
