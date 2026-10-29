@@ -173,7 +173,11 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             if "export_name" in function or not isinstance(witness, dict):
                 raise ValueError("private linked function needs only an explicit caller/site witness")
             if not path:
-                private_direct_sites(witness)
+                if "caller_eh" in witness:
+                    from linked_caller_eh import validate as validate_caller_eh
+                    validate_caller_eh(witness, unit)
+                else:
+                    private_direct_sites(witness)
             callers = [f for f in functions if f.get("address") == witness["caller"]]
             if (len(callers) != 1 or callers[0] is function
                     or "private_from" in callers[0] or "private_global" in callers[0]
@@ -939,7 +943,8 @@ def private_direct_sites(contract: dict) -> list[str]:
 
 def private_caller_witness(function: dict, unit: dict, pe, functions: dict, exports: dict,
                            cil_owner: str, ledger: dict, read_target, *, map_text: str = "",
-                           bindings: list[dict] = (), game_range: tuple[int, int] = (0, 0)) -> dict:
+                           bindings: list[dict] = (), game_range: tuple[int, int] = (0, 0),
+                           internal_refs: list[dict] = ()) -> dict:
     contract = function["private_from"]
     if "via" in contract:
         return private_path_witness(function, unit, pe, functions, exports, cil_owner,
@@ -955,10 +960,14 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
     parent = source_function_start(caller, functions, exports, cil_owner)
     source = linked_body(pe, functions, parent)
     source_instructions = decode_closed_body(source, parent)
-    sites = private_direct_sites(contract)
+    eh_caller = "caller_eh" in contract
+    if eh_caller:
+        from linked_caller_eh import validate as validate_caller_eh
+        validate_caller_eh(contract, unit)
+    sites = [contract["site"]] if eh_caller else private_direct_sites(contract)
     data = (caller_data_witness(pe, source_instructions, functions, bindings, game_range)
             if "sites" in contract else [])
-    if "sites" not in contract:
+    if "sites" not in contract and not eh_caller:
         validate_body_relocations(pe, parent, len(source), [])
     source_calls = [i.address for i in source_instructions
                     if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == start]
@@ -975,6 +984,11 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
     edge = ({"target_sites": sites, "source_sites": [f"0x{site:08X}" for site in source_calls],
              "source_only_address_fields": data} if "sites" in contract else
             {"target_site": sites[0], "source_site": f"0x{source_calls[0]:08X}"})
+    if eh_caller:
+        from linked_caller_eh import observe as observe_caller_eh
+        edge.update(observe_caller_eh(contract, unit, caller, pe, functions, exports,
+                    cil_owner, source_instructions, decode_closed_body(target, target_parent),
+                    read_target, bindings, game_range, internal_refs))
     return {"caller": caller["address"], **edge,
             "source_caller_symbol": caller["symbol_base"], "source_caller_va": f"0x{parent:08X}",
             "source_caller_sha256": hashlib.sha256(source).hexdigest(),
@@ -1060,7 +1074,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         cil_owner = image.with_suffix(".ltcg.obj").name
         witness = (private_caller_witness(function, unit, pe, functions, exports,
                                         cil_owner, ledger, c.target_bytes, map_text=map_text,
-                                        bindings=bindings, game_range=game_range)
+                                        bindings=bindings, game_range=game_range, internal_refs=internal_refs)
                    if "private_from" in function else None)
         if function.get("private_static_leaf") is True:
             if not witness or not witness.get("static_leaf"):

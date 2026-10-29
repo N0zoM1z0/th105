@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+CSV file dispatch408E40 and iterator reset40F730 are canonical exact140/151
+in their real file/reader/package/CSV CIL graph. Source-only caller EH roles
+are explicit; caller176/170 and parser remain unaccepted. The old reset
+compiler-origin inference is corrected. See CSV_FILE_LOADING_2026_10_29.md.
+
 CScript pending-command cleanup405770 is canonical exact147/147 in genuine
 CIL after recovering its real shared method boundary. All79 affected accepted
 functions and full timeline payload remain exact; outer clear182/170 stays

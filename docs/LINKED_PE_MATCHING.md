@@ -214,3 +214,15 @@ ownership, unreviewed parents, exported aliases and internal relocations.
 SDK tests independently reject archive/member ABI changes, wrong thunk/IAT,
 ordinal/name confusion, unpinned symbols, map owners and nonexcluded targets.
 Actual compiler/linker comparisons remain target-dependent.
+
+## Single private edge from a cleanup-only caller
+
+An explicit `private_from.caller_eh = { handler, info }` may accompany `caller`
+and `site` for one-state cleanup-only callers using the real static CRT cookie.
+Only the caller's unique compiler handler and cookie address fields are
+role-attested. The bounded handler, FuncInfo, unwind map, private compiler
+ownership and exact HIGHLOW coverage are checked; extra mapped fields fail.
+The source/native caller still must close and have exactly the declared E8 to
+the unique unexported source callee. This does not compare or accept caller/EH
+bytes, and grants no field waiver in the accepted callee. Legacy `site` and
+two-`sites` behavior is unchanged. See CSV_FILE_LOADING_2026_10_29.md.

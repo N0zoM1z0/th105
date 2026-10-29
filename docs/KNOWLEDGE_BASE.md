@@ -1,5 +1,7 @@
 # Reconstruction evidence notebook
 
+2026-10-29: CSV wrapper408E40 and reader-owned iterator reset40F730 are canonical140/151 in real CIL. Private register allocation is not itself compiler-origin evidence; old reset exclusion is superseded. Caller/EH roles are attested without accepting caller bytes. See CSV_FILE_LOADING_2026_10_29.md.
+
 2026-10-29: pending-command cleanup405770 is now canonical147/147 in real CScript lifecycle CIL. Its shared method boundary is independently called by clear4056C0 and load405810; no private ABI declaration. Outer clear182/170 remains nonexact. See SCRIPT_PENDING_LIFETIME_2026_10_29.md.
 
 Current correction,2026-10-29: CEffectSprite is0xE8, not0x12C. The latter is

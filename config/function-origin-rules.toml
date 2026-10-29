@@ -2015,15 +2015,15 @@ evidence = "Current Story/deck/event CSV callers and the canonical-exact next_in
 
 [[rules]]
 id = "csv-reader-private-load-helpers-generated-106a"
-addresses = ["0x0040F730", "0x0040F7D0", "0x0040F840", "0x0040F8E0"]
-expected_count = 4
-expected_bytes = 407
-expected_names = ["sub_40F730", "sub_40F7D0", "sub_40F840", "sub_40F8E0"]
+addresses = ["0x0040F7D0", "0x0040F840", "0x0040F8E0"]
+expected_count = 3
+expected_bytes = 256
+expected_names = ["sub_40F7D0", "sub_40F840", "sub_40F8E0"]
 origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "These entries are target-private checked-container phases, not independent source callables. 0x0040F730 consumes CsvReader in live ESI and is called only by load; 0x0040F7D0/0x0040F840 are ESI/usercall helpers reachable only from the load helper chain; 0x0040F8E0 is an EH-only five-byte thunk to inner deque _Tidy 0x0040FF90. Do not count extracted LTCG/container phases as authored functions."
+evidence = "40F7D0 is checked string erase(begin,end);40F840 is nested-row deque push_back;40F8E0 is the EH-only inner-deque tidy thunk. The former40F730 classification is superseded: it resets two different iterator members owned by the game CSV reader, and ordinary member CIL reproduces all151 bytes. Private receiver allocation alone does not imply compiler ownership. docs/CSV_FILE_LOADING_2026_10_29.md."
 
 [[rules]]
 id = "sprite-primary-render-vslots-authored-106a"
@@ -3802,3 +3802,17 @@ confidence = "observed"
 evidence = "Exact shared battle bootstrap438F50 calls this941-byte weather-resource policy at439091. It loads weather PAT,17 textures and sky CSV stage rows, then resets/publishes event state. Native4663E0 call proves actual0xE8 CEffectSprite vector assign. Complete946-byte source remains nonexact. docs/EVENT_EFFECT_INITIALIZE_2026_10_29.md."
 required_body_hashes = [{ address = "0x0046A260", size = 941, sha256 = "52388b4f6d985f8d10764657c0bf16d88b6ecf70855acdd53cfb10997de5fbd1" }]
 required_direct_edges = [{ caller = "0x00438F50", site = "0x00439091", target = "0x0046A260", caller_status = "matching" }]
+
+[[rules]]
+id = "csv-file-load-authored-106a"
+addresses = ["0x0040F150"]
+expected_count = 1
+expected_bytes = 170
+expected_names = ["sub_40F150"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact default-character-deck loader431E80 calls this at431FCC. It owns an8-byte file buffer, loads the cv1/plain path, parses content and resets reader iterators only on success. Full raw170-byte body and actual complete CIL source establish authored policy; caller/frame/parser remain nonexact. docs/CSV_FILE_LOADING_2026_10_29.md."
+required_body_hashes = [{ address = "0x0040F150", size = 170, sha256 = "373562ea4bc5fb6c90fc56e0bdb9d5c27256d8559b576dfff8363902508ddf31" }]
+required_direct_edges = [{ caller = "0x00431E80", site = "0x00431FCC", target = "0x0040F150", caller_status = "matching" }]

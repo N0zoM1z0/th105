@@ -245,6 +245,88 @@ class LinkedPeTests(unittest.TestCase):
         bad = copy.deepcopy(f); bad["pe"].data[0x1005:0x100a] = b"\x90" * 5
         with self.assertRaises(ValueError): linked.private_caller_witness(**bad)
 
+    def eh_private_fixture(self):
+        f = self.private_fixture()
+        root, child, handler = self.start, self.start + 0x100, self.start + 0x120
+        cookie, info = linked.IMAGE_BASE + 0x3000, linked.IMAGE_BASE + 0x2100
+        check, unwind = self.start + 0x150, self.start + 0x160
+        def body(at, h, ck, call):
+            return (b'\x68' + struct.pack('<I', h) + b'\xa1' + struct.pack('<I', ck)
+                    + b'\xe8' + struct.pack('<i', call - at - 15) + b'\x83\xc4\x04\xc3')
+        def eh(at, ci, ch, uw):
+            return (bytes.fromhex('8b5424088d42e48b4ae033c8e8')
+                    + struct.pack('<i', ch-at-17) + b'\xb8' + struct.pack('<I', ci)
+                    + b'\xe9' + struct.pack('<i', uw-at-27))
+        raw = body(root, handler, cookie, child)
+        f['pe'].data[0x1000:0x1140] = b'\xcc' * 0x140
+        f['pe'].data[0x1000:0x1000+len(raw)] = raw
+        f['pe'].data[0x1100:0x1101] = b'\xc3'
+        f['pe'].data[0x1120:0x113b] = eh(handler, info, check, unwind)
+        info_data = struct.pack('<9I', 0x19930522, 1, linked.IMAGE_BASE+0x2140, 0, 0, 0, 0, 0, 1)
+        f['pe'].data[0x2100:0x2124] = info_data
+        f['pe'].data[0x2140:0x2148] = struct.pack('<iI', -1, self.start+0x180)
+        f['pe'].DIRECTORY_ENTRY_BASERELOC = [SimpleNamespace(entries=[
+            SimpleNamespace(type=3, rva=0x1001), SimpleNamespace(type=3, rva=0x1006),
+            SimpleNamespace(type=3, rva=0x1132), SimpleNamespace(type=3, rva=0x2108),
+            SimpleNamespace(type=3, rva=0x2144)])]
+        f['functions'] = {root: [('_root@4', 'root.ltcg.obj')],
+            child: [('_child@4', 'root.ltcg.obj')],
+            handler: [('__ehhandler$_root@4', 'CIL library: CIL module')],
+            handler+27: [('_next', 'root.ltcg.obj')],
+            check: [('@__security_check_cookie@4', 'libcmt:secchk.obj')],
+            unwind: [('___CxxFrameHandler3', 'libcmt:ehhandler.obj')],
+            self.start+0x180: [('__unwindfunclet$_root@4$0', 'CIL library: CIL module')]}
+        native = body(0x401000, 0x403000, 0x6f7a88, 0x402000)
+        native_eh = eh(0x403000, 0x404000, 0x689d25, 0x6899e7)
+        f['ledger']['0x00401000']['size'] = str(len(native))
+        def read(a, n):
+            data = {0x401000: native, 0x403000: native_eh + b'\xcc'*101,
+                    0x404000: struct.pack('<9I', 0x19930522, 1, 0x404040, 0, 0, 0, 0, 0, 1),
+                    0x404040: struct.pack('<iI', -1, 0x403100)}
+            return data.get(a, b'')[:n]
+        f['read_target'] = read
+        f['unit'].update(link_runtime='static', link_runtime_data=['___security_cookie'])
+        f['function']['private_from'] = {'caller': '0x00401000', 'site': '0x0040100A',
+            'caller_eh': {'handler': '0x00403000', 'info': '0x00404000'}}
+        f['internal_refs'] = [{'kind': 'runtime', 'symbol': '___security_cookie', 'size': 4,
+                               'source_address': cookie, 'address': 0x6f7a88}]
+        f['game_range'] = self.game
+        return f
+
+    def test_private_eh_caller_records_roles_without_accepting_caller_bytes(self):
+        f = self.eh_private_fixture()
+        r = linked.private_caller_witness(**f)
+        self.assertEqual(len(r['source_only_address_fields']), 2)
+        self.assertFalse(r['caller_eh_identity']['caller_or_eh_exactness_claimed'])
+        self.assertEqual(r['target_site'], '0x0040100A')
+
+    def test_private_eh_caller_rejects_unqualified_cookie_handler_info_and_fields(self):
+        changes = [lambda f: f.update(internal_refs=[]),
+            lambda f: f['function']['private_from']['caller_eh'].update(handler='0x00403001'),
+            lambda f: f['function']['private_from']['caller_eh'].update(info='0x00404001'),
+            lambda f: f['pe'].data.__setitem__(slice(0x1006,0x100a),struct.pack('<I',linked.IMAGE_BASE+0x3004)),
+            lambda f: f['pe'].DIRECTORY_ENTRY_BASERELOC.clear(),
+            lambda f: f['pe'].data.__setitem__(0x2104,2),
+            lambda f: f['functions'][self.start+0x120].append(('_alias','root.ltcg.obj')),
+            lambda f: f['unit'].update(link_runtime='import')]
+        for change in changes:
+            f = self.eh_private_fixture(); change(f)
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                linked.private_caller_witness(**f)
+
+    def test_private_eh_contract_does_not_relax_legacy_single_or_two_edge_forms(self):
+        f = self.eh_private_fixture()
+        unit = {**f['unit'], 'profile': linked.PROFILE, 'object': 'build/test.dll',
+                'link_data_targets': []}
+        linked.validate_contract(unit, set())
+        for mutate in [lambda u: u['functions'][1]['private_from']['caller_eh'].update(extra='waive'),
+                       lambda u: u.update(link_runtime_data=[]),
+                       lambda u: u['functions'][1]['private_from'].update(sites=['0x0040100A'])]:
+            bad = copy.deepcopy(unit); mutate(bad)
+            with self.assertRaises(ValueError): linked.validate_contract(bad, set())
+        del f['function']['private_from']['caller_eh']
+        with self.assertRaises(ValueError): linked.private_caller_witness(**f)
+
     def path_fixture(self):
         root, middle, child = self.start, self.start + 0x20, self.start + 0x40
         pe = VTablePe()

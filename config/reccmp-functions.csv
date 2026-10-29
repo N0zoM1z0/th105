@@ -1722,3 +1722,6 @@ BG04_ctor,0x00468570,function
 BG16_ctor,0x00469100,function
 EventEffectState_initialize_resources,0x0046A260,function
 CScript_clear_pending_commands,0x00405770,function
+CsvReader_load,0x0040F150,function
+FileBuffer_load_csv,0x00408E40,function
+CsvReader_reset_iterators,0x0040F730,function
