@@ -1651,3 +1651,4 @@ CollisionContext_resolve_general_attack_hit
 CProfileDeckEdit_ctor
 TNumberValue_charptr_get_integer
 TNumberValue_charptr_get_floating
+CProfileDeckEdit_select_filter

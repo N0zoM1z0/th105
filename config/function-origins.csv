@@ -1495,7 +1495,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00449BE0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00449D70,compiler_generated,battle,exclude,observed,vc8-generated-event-effect-state-container-comdats-106a
 0x00449DF0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00449E90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00449E90,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044A410,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044A950,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044AAC0,authored_game,ui,authored,observed,profile-deck-constructor-authored-106a

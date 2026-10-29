@@ -26723,3 +26723,28 @@ symbol_base = "?get_integer@?$TNumberValue@PAD@th105@@UAEHXZ"
 [[units.exact-first-profile-deck-constructor.functions]]
 address = "0x00448B30"
 symbol_base = "?get_floating@?$TNumberValue@PAD@th105@@UAEMXZ"
+
+[units.exact-first-profile-deck-filter]
+kind = "probe"
+source = "src/ui/ProfileDeckFilter.cpp"
+object = "build/match-units/ExactFirst_ProfileDeckFilter.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete1375-byte callable plus independently equal1396-byte owned extent with five-way table. Real vertical MenuCursor binding; no forced frame/registers. docs/PROFILE_DECK_FILTER_2026_10_29.md."
+
+[[units.exact-first-profile-deck-filter.functions]]
+address = "0x00449E90"
+symbol_base = "?select_filter@ProfileDeckFilterView@th105@@QAEXC@Z"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z=0x0043C3A0",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAEXXZ=0x0042CD00",
+  "?_Tidy@?$deque@Viterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@V?$allocator@Viterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@@3@@std@@IAEXXZ=0x00420A80",
+  "?push_back@?$deque@Viterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@V?$allocator@Viterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@@3@@std@@QAEXABViterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@2@@Z=0x00449D70",
+  "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAEXXZ=0x0042CC90",
+  "?select_filter@ProfileDeckFilterView@th105@@QAEXC@Z=0x00449E90",
+  "?find@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABF@Z=0x00448D70",
+  "?available_count@ProfileDeckFilterView@th105@@QAEHH@Z=0x00448DF0",
+  "??AFilterDequeSubscript@th105@@QAEAAViterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@I@Z=0x004300B0",
+  "?show_record@ProfileDeckFilterView@th105@@QAEXPAUSpellRecordView@2@@Z=0x00448B40",
+]
