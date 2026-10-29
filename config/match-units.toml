@@ -13393,7 +13393,7 @@ source = "src/battle/EventEffectStateLifetime.cpp"
 object = "build/match-units/GptWeb_EventEffectStateLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current 0xE8 EventEffectState lifetime. Exact current consumers close vector<unsigned> +0x08, vector<CSpriteEx> +0x18, deque<BackgroundRenderEntry> +0x28, map<signed char,vector<unsigned char>> +0x3C, and CEffectManager<WeatherEffectObject> +0x48. The final 0x0C runtime tail is intentionally left uninitialized by the ctor and is initialized later by the runtime setup path."
+notes = "Current 0xE8 EventEffectState lifetime. Exact current consumers close vector<unsigned> +0x08, vector<CEffectSprite> +0x18, deque<BackgroundRenderEntry> +0x28, map<signed char,vector<unsigned char>> +0x3C, and CEffectManager<WeatherEffectObject> +0x48. The final 0x0C runtime tail is intentionally left uninitialized by the ctor and is initialized later by the runtime setup path."
 
 [[units.gpt-web-event-effect-state-lifetime.functions]]
 address = "0x00438DF0"
@@ -13416,7 +13416,7 @@ rel32_targets = [
   "?erase@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x004388A0",
   "??3@YAXPAX@Z=0x006898EA",
   "?_Tidy@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@IAEXXZ=0x00420A80",
-  "?_Tidy@?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@IAEXXZ=0x00436420",
+  "?_Tidy@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXXZ=0x00436420",
 ]
 dir32_targets = [
   "__ehhandler$??1EventEffectStateLifetime@th105@@QAE@XZ=__ehhandler$??1EventEffectStateLifetime@th105@@QAE@XZ",
@@ -13498,7 +13498,7 @@ symbol_base = "?publish_stage_state_469d50@EventEffectStateRuntimeView@th105@@QA
 rel32_targets = [
   "?find@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABC@Z=0x004698E0",
   "__invalid_parameter_noinfo=0x0068A143",
-  "??A?$vector@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAEAAVCSpriteEx@@I@Z=0x004654B0",
+  "??A?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@QAEAAVCEffectSprite@@I@Z=0x004654B0",
   "?push_back@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@QAEXABUBackgroundRenderEntry@th105@@@Z=0x004306D0",
 ]
 
@@ -27586,4 +27586,36 @@ rel32_targets = [
  "?load_texture@BG16TextureLoadView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
  "__invalid_parameter_noinfo=0x0068A143",
  "@__security_check_cookie@4=0x00689D25",
+]
+
+[units.exact-first-event-effect-initialize]
+kind = "probe"
+source = "src/battle/EventEffectRuntimeInitialize.cpp"
+object = "build/match-units/ExactFirst_EventEffectRuntimeInitialize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete weather resource/stage CSV policy with actual0xE8 CEffectSprite assign and row lifetime across advance_row. Source946/native941 remains nonexact on frame-slot allocation; no prefix credit. docs/EVENT_EFFECT_INITIALIZE_2026_10_29.md."
+
+[[units.exact-first-event-effect-initialize.functions]]
+address = "0x0046A260"
+symbol_base = "?initialize_effect_runtime@EventEffectRuntimeInitializerView@th105@@QAEXXZ"
+rel32_targets = [
+ "??0?$vector@EV?$allocator@E@std@@@std@@QAE@ABV01@@Z=0x00469CC0",
+ "??3@YAXPAX0@Z=0x006898EA",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
+ "?_Assign_n@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXIABVCEffectSprite@@@Z=0x004663E0",
+ "?_Insert_n@?$vector@EV?$allocator@E@std@@@std@@IAEXV?$_Vector_iterator@EV?$allocator@E@std@@@2@IABE@Z=0x004699C0",
+ "?_Tidy@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@IAEXXZ=0x00420A80",
+ "?advance_row@CsvReaderRuntimeInit@th105@@QAE_NXZ=0x0040F680",
+ "?clear_rows@CsvReaderRuntimeInit@th105@@QAEXXZ=0x0040FDB0",
+ "?insert@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@2@@Z=0x0046A1A0",
+ "?load@CsvReaderRuntimeInit@th105@@QAE_NPBD@Z=0x0040F150",
+ "?load_texture@EventTextureLoadView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
+ "?next_int@CsvReaderRuntimeInit@th105@@QAEHXZ=0x0040F480",
+ "?publish_stage_state@EventEffectRuntimeInitializerView@th105@@QAEXC@Z=0x00469D50",
+ "?release_all_tracked_objects@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
+ "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "@__security_check_cookie@4=0x00689D25",
+ "__invalid_parameter_noinfo=0x0068A143",
 ]

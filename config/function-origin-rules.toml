@@ -3788,3 +3788,17 @@ confidence = "observed"
 evidence = "Exact BattleObjectManager dispatch467380 creates the RTTI-backed0x68 BG02 owner. Constructor initializes BG2 common tiles and48 left/center/right animated textures, then state64. Actual vector<CEffectSprite> assign and path-scoped lifetime recover the complete924-byte source with77 remaining schedule bytes. docs/BACKGROUND_CONSTRUCTORS_2026_10_29.md."
 required_body_hashes = [{ address = "0x00467F90", size = 924, sha256 = "b2d2eb2748fc07c5f07ad07d36d95e7924eb8270cbc8a4f4d65268297e275ce8" }]
 required_direct_edges = [{ caller = "0x00467380", site = "0x00467423", target = "0x00467F90", caller_status = "matching" }]
+
+[[rules]]
+id = "event-effect-initialize-authored-106a"
+addresses = ["0x0046A260"]
+expected_count = 1
+expected_bytes = 941
+expected_names = ["sub_46A260"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact shared battle bootstrap438F50 calls this941-byte weather-resource policy at439091. It loads weather PAT,17 textures and sky CSV stage rows, then resets/publishes event state. Native4663E0 call proves actual0xE8 CEffectSprite vector assign. Complete946-byte source remains nonexact. docs/EVENT_EFFECT_INITIALIZE_2026_10_29.md."
+required_body_hashes = [{ address = "0x0046A260", size = 941, sha256 = "52388b4f6d985f8d10764657c0bf16d88b6ecf70855acdd53cfb10997de5fbd1" }]
+required_direct_edges = [{ caller = "0x00438F50", site = "0x00439091", target = "0x0046A260", caller_status = "matching" }]

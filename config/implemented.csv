@@ -1693,3 +1693,4 @@ BackgroundBase_initialize_common
 BG02_ctor
 BG04_ctor
 BG16_ctor
+EventEffectState_initialize_resources

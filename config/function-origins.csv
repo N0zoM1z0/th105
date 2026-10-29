@@ -1999,7 +1999,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00469F40,authored_game,battle,authored,observed,canonical-exact-authored
 0x00469FA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0046A1A0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0046A260,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046A260,authored_game,battle,authored,observed,event-effect-initialize-authored-106a
 0x0046A610,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046A620,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046A640,unknown,,review,unknown,ida-1.06a-initial-inventory

@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Weather initializer46A260 now has complete946/native941 source. Its sprites
+are corrected to0xE8 CEffectSprite with assign semantics, and CSV rows remain
+alive through advance_row as native requires. Five accepted consumers and
+five generated anchors stay valid; stack-slot residual receives no exact credit.
+See [EVENT_EFFECT_INITIALIZE_2026_10_29.md](EVENT_EFFECT_INITIALIZE_2026_10_29.md).
+
 BG16 constructor469100 is now canonical exact868/868. Direct handle.value
 return and ordinary dimension locals close its frame; BG04 remains335/335
 with the same simpler model, replacing the earlier aggregate control. See

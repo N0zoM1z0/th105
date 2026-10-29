@@ -14,7 +14,7 @@ struct EventEffectStateRuntimeView {
     signed char current_stage_04;
     unsigned char reserved_05[3];
     std::vector<unsigned> resources_08;
-    std::vector<CSpriteEx> sprites_18;
+    std::vector<CEffectSprite> sprites_18;
     std::deque<BackgroundRenderEntry> background_entries_28;
     std::map<signed char, std::vector<unsigned char> > stage_rows_3c;
     CEffectManager<WeatherEffectObject> emitter_48;
