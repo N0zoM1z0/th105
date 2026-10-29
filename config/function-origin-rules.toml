@@ -3604,3 +3604,21 @@ required_direct_edges = [
   { caller = "0x00401990", site = "0x00401A20", target = "0x004183B0" },
   { caller = "0x00401990", site = "0x00401A31", target = "0x004183B0" },
 ]
+
+[[rules]]
+id = "group-a-primary-collision-authored-106a"
+addresses = ["0x0046B940"]
+expected_count = 1
+expected_bytes = 197
+expected_names = ["sub_46B940"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact attack-candidate resolver46DA10 calls46B940 at46DACC. This complete group-A versus primary geometry traversal dispatches descriptor or integer-AABB tests, accumulates collision extents and ORs every result. Signed-byte index/count and callback-visible primary-pointer reloads are raw-proved. Full197 includes three internal alignment bytes. Source197/197 remains nonexact; docs/GROUP_A_PRIMARY_COLLISION_2026_10_29.md."
+required_body_hashes = [{ address = "0x0046B940", size = 197, sha256 = "85ed2b3aae25817a15189dd4b28b698617c2566fd9b433ccecec6af1cb545d9b" }]
+required_direct_edges = [{ caller = "0x0046DA10", site = "0x0046DACC", target = "0x0046B940", caller_status = "matching" }]
+required_selected_body_calls = [
+ { owner = "0x0046B940", site = "0x0046B9A3", target = "0x0046B7B0", target_status = "matching" },
+ { owner = "0x0046B940", site = "0x0046B9D4", target = "0x0046B3B0", target_status = "matching" },
+]

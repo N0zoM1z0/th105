@@ -37,12 +37,11 @@ int CollisionContext::test_group_a_against_primary_box(
     CollisionObject *first,
     CollisionObject *second)
 {
-    CollisionAabb *primary = primary_box(second);
-    if (primary == 0) {
+    int result = 0;
+    if (primary_box(second) == 0) {
         return 0;
     }
 
-    int result = 0;
     for (signed char index = 0;
          index < prepared_count(first, 0x1af);
          ++index) {
@@ -52,14 +51,14 @@ int CollisionContext::test_group_a_against_primary_box(
 
         if (descriptor != 0) {
             hit = test_aabb_against_descriptor_shape(
-                aabb, descriptor, primary);
+                aabb, descriptor, primary_box(second));
         } else {
-            int overlap = primary->top - aabb->bottom;
-            overlap &= aabb->top - primary->bottom;
-            overlap &= aabb->left - primary->right;
-            overlap &= primary->left - aabb->right;
-            if (overlap < 0) {
-                accumulate_collision_extents(&aabb->left, &primary->left);
+            int overlap = primary_box(second)->top - aabb->bottom;
+            overlap &= aabb->top - primary_box(second)->bottom;
+            overlap &= aabb->left - primary_box(second)->right;
+            overlap &= primary_box(second)->left - aabb->right;
+            if ((static_cast<unsigned>(overlap) & 0x80000000u) != 0) {
+                accumulate_collision_extents(&aabb->left, &primary_box(second)->left);
                 hit = 1;
             } else {
                 hit = 0;

@@ -1666,3 +1666,4 @@ CNetworkClient_read_byte_81,0x0043CD30,function
 WaveService_initialize_silent_buffers,0x00401990,function
 DirectSoundBuffer_load_raw,0x004183B0,function
 DirectSoundBuffer_clear_storage,0x00418610,function
+CollisionContext_test_group_a_against_primary_box,0x0046B940,function

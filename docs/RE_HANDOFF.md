@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: audio listener creation419350 is canonical exact169
+Current bounded candidate: group-A primary collision46B940 is fully reviewed
+and source-selected,197 bytes. Target-backed per-iteration primary-pointer
+reload corrects the retained cached view across callbacks. Whole197/197 is
+nonexact+0; register/stack lifetimes remain unresolved, no exact credit. See
+[GROUP_A_PRIMARY_COLLISION_2026_10_29.md](GROUP_A_PRIMARY_COLLISION_2026_10_29.md)
+and build/frontier-46b940-20261029/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: audio listener creation419350 is canonical exact169
 from unchanged source in genuine one-CIL VC8 LTCG context. Actual checked STL
 visibility naturally recovers the constant-one helper specialization. Remove
 178/193 and wait129/184 remain nonexact. See
