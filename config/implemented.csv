@@ -1694,3 +1694,4 @@ BG02_ctor
 BG04_ctor
 BG16_ctor
 EventEffectState_initialize_resources
+CScript_clear_pending_commands

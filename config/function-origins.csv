@@ -120,7 +120,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00405650,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405660,authored_game,battle,authored,observed,canonical-exact-authored
 0x004056C0,authored_game,battle,authored,observed,cscript-clear-commands-authored-106a
-0x00405770,compiler_generated,runtime,exclude,observed,cscript-private-container-helpers-generated-106a
+0x00405770,authored_game,battle,authored,observed,canonical-exact-authored
 0x00405810,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405930,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405AC0,unknown,,review,unknown,ida-1.06a-initial-inventory

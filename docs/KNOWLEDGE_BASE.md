@@ -1,5 +1,7 @@
 # Reconstruction evidence notebook
 
+2026-10-29: pending-command cleanup405770 is now canonical147/147 in real CScript lifecycle CIL. Its shared method boundary is independently called by clear4056C0 and load405810; no private ABI declaration. Outer clear182/170 remains nonexact. See SCRIPT_PENDING_LIFETIME_2026_10_29.md.
+
 Current correction,2026-10-29: CEffectSprite is0xE8, not0x12C. The latter is
 its nonpolymorphic animation-state owner. Native vector assignment4663E0
 proves the element type and assign operation; owner constructor421FF0 and

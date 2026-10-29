@@ -40,6 +40,7 @@ public:
     CScript();
     ~CScript();
     void clear_commands();
+    void clear_pending_commands();
 
     template <class Command>
     void register_command(int command_id, std::string name);

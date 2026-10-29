@@ -14,12 +14,7 @@ CScript::~CScript()
 
 void CScript::clear_commands()
 {
-    while (!pending_14.empty()) {
-        CCommandBase *command = pending_14.back();
-        // Native405770 destroys the live command before removing its queue slot.
-        delete command;
-        pending_14.pop_back();
-    }
+    clear_pending_commands();
 
     for (CommandMap::iterator it = commands_00.begin();
          it != commands_00.end(); ++it)
@@ -31,4 +26,15 @@ void CScript::clear_commands()
         delete default_factory_0c;
         default_factory_0c = 0;
     }
+}
+
+void CScript::clear_pending_commands()
+{
+    while (!pending_14.empty()) {
+        CCommandBase *command = pending_14.back();
+        // Native405770 destroys the live command before removing its queue slot.
+        delete command;
+        pending_14.pop_back();
+    }
+
 }

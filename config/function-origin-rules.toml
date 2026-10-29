@@ -1928,15 +1928,15 @@ evidence = "Canonical-exact CInfoManager and CInfoManagerStory emit wrappers cal
 
 [[rules]]
 id = "cscript-private-container-helpers-generated-106a"
-addresses = ["0x00405770", "0x004061F0"]
-expected_count = 2
-expected_bytes = 244
-expected_names = ["sub_405770", "sub_4061F0"]
+addresses = ["0x004061F0"]
+expected_count = 1
+expected_bytes = 97
+expected_names = ["sub_4061F0"]
 origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Both entries are compiler-extracted implementation phases inside authored CScript::clear_commands. Target 0x00405770 consumes live ESI=CScript and implements the pending deque delete/pop loop; 0x004061F0 consumes live ESI=map iterator and implements checked tree-iterator increment. Neither has an independent source-level call boundary; the authored root remains 0x004056C0."
+evidence = "Target4061F0 is the checked std::map iterator increment with private ESI receiver. Former inclusion of405770 as a compiler-extracted phase was unsupported: independent load405810 also calls its game-owned command-deletion policy, now reproduced by an ordinary CScript member with canonical147-byte CIL replay. See SCRIPT_PENDING_LIFETIME_2026_10_29.md."
 
 [[rules]]
 id = "checked-vector-range-erase-clones-generated-106a"

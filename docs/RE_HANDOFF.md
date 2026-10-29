@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+CScript pending-command cleanup405770 is canonical exact147/147 in genuine
+CIL after recovering its real shared method boundary. All79 affected accepted
+functions and full timeline payload remain exact; outer clear182/170 stays
+nonexact. See SCRIPT_PENDING_LIFETIME_2026_10_29.md.
+
 Encoded file-buffer419950 now preserves the native advancing payload cursor
 and owner-size rereads. Full source272/native267 remains nonexact; no new
 bytes. Wrapper exactness wording was corrected to raw-call evidence. See
