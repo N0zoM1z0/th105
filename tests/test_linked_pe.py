@@ -223,6 +223,28 @@ class LinkedPeTests(unittest.TestCase):
             with self.subTest(target=raw.hex()), self.assertRaises(ValueError):
                 linked.private_caller_witness(**bad)
 
+    def test_private_constructor_pair_requires_both_complete_edges(self):
+        f = self.private_fixture()
+        root, child = self.start, self.start + 0x20
+        raw = (b"\xe8" + struct.pack("<i", child-root-5)
+               + b"\xe8" + struct.pack("<i", child-root-10) + b"\xc3")
+        f["pe"].data[0x1000:0x1020] = raw + b"\xcc" * (0x20-len(raw))
+        target = (b"\xe8" + struct.pack("<i", 0x402000-0x401000-5)
+                  + b"\xe8" + struct.pack("<i", 0x402000-0x401000-10) + b"\xc3")
+        f["ledger"]["0x00401000"]["size"] = str(len(target))
+        f["read_target"] = lambda address, size: target
+        f["function"]["private_from"] = {"caller": "0x00401000", "sites": ["0x00401000", "0x00401005"]}
+        witness = linked.private_caller_witness(**f)
+        self.assertEqual(witness["target_sites"], ["0x00401000", "0x00401005"])
+        self.assertEqual(witness["source_sites"], [f"0x{root:08X}", f"0x{root+5:08X}"])
+        for sites in [["0x00401000"], ["0x00401005", "0x00401000"],
+                      ["0x00401000", "0x00401000"], ["0x00401000", "0x00401006"]]:
+            bad = copy.deepcopy(f); bad["function"]["private_from"]["sites"] = sites
+            with self.subTest(sites=sites), self.assertRaises(ValueError):
+                linked.private_caller_witness(**bad)
+        bad = copy.deepcopy(f); bad["pe"].data[0x1005:0x100a] = b"\x90" * 5
+        with self.assertRaises(ValueError): linked.private_caller_witness(**bad)
+
     def path_fixture(self):
         root, middle, child = self.start, self.start + 0x20, self.start + 0x40
         pe = VTablePe()
@@ -525,6 +547,52 @@ class LinkedPeTests(unittest.TestCase):
             known["pool"] = (base + 0x2010, struct.pack("<II", 0x4138b0, 0), frozenset({0}), "address")
             with self.assertRaises(ValueError):
                 linked.target_vtables({"link_vtables": [table]})
+
+    def test_two_slot_resource_vtable_checks_both_source_methods(self):
+        pe = VTablePe()
+        vt, col, descriptor = [linked.IMAGE_BASE + v for v in (0x2010, 0x2040, 0x3020)]
+        init, delete = self.start + 0x10, self.start + 0x20
+        symbol = "??_7Pool@game@@6B@"
+        initializer = "?initialize@Pool@game@@UAE_NPBXI@Z"
+        destructor = "??_GPool@game@@UAEPAXI@Z"
+        struct.pack_into("<IIII", pe.data, 0x200c, col, init, delete, 0)
+        struct.pack_into("<5I", pe.data, 0x2040, 0, 0, 0, descriptor, col+20)
+        name = b".?AVPool@game@@\0"; pe.data[0x3028:0x3028+len(name)] = name
+        table = {"symbol": symbol, "entry_symbol": destructor, "initializer_symbol": initializer}
+        symbols = {symbol: [(vt, "Pool.ltcg.obj")]}
+        functions = {init: [(initializer, "Pool.ltcg.obj")], delete: [(destructor, "Pool.ltcg.obj")]}
+        got = linked.source_vtables(pe, symbols, functions, [table], "Pool.ltcg.obj")[0]
+        self.assertEqual((got["source_initializer"], got["source_entry"]), (init, delete))
+        for entries in [(delete, init, 0), (init, delete, init)]:
+            bad = copy.deepcopy(pe); struct.pack_into("<III", bad.data, 0x2010, *entries)
+            with self.subTest(entries=entries), self.assertRaises(ValueError):
+                linked.source_vtables(bad, symbols, functions, [table], "Pool.ltcg.obj")
+        bad_functions = {**functions, init: [(initializer, "Other.obj")]}
+        with self.assertRaises(ValueError):
+            linked.source_vtables(pe, symbols, bad_functions, [table], "Pool.ltcg.obj")
+
+    def test_two_slot_target_resource_contract_keeps_rtti_and_slot_order(self):
+        pe = VTablePe(0x400000); pe.sections[0].VirtualAddress = 0x18000
+        struct.pack_into("<IIII", pe.data, 0x200c, 0x402040, 0x418310, 0x4182a0, 0)
+        struct.pack_into("<5I", pe.data, 0x2040, 0, 0, 0, 0x403020, 0x402054)
+        name = b".?AVOriginalBuffer@@\0"; pe.data[0x3028:0x3028+len(name)] = name
+        table = {"symbol": "??_7Pool@game@@6B@", "target": "buffer",
+                 "initializer": "?initialize@Pool@game@@UAE_NPBXI@Z=0x00418310",
+                 "entry": "??_GPool@game@@UAEPAXI@Z=0x004182A0",
+                 "target_type_name": ".?AVOriginalBuffer@@"}
+        unit = {"profile": linked.PROFILE, "object": "build/test.dll", "link_data_targets": [],
+                "link_vtables": [table], "functions": [{"address": "0x00402820", "symbol_base": "_root"}]}
+        linked.validate_contract(unit, {"buffer"})
+        bad = copy.deepcopy(unit); bad["link_vtables"][0]["initializer"] = "?initialize@Other@@UAE_NPBXI@Z=0x00418310"
+        with self.assertRaises(ValueError): linked.validate_contract(bad, {"buffer"})
+        known = {"buffer": (0x402010, struct.pack("<II", 0x418310, 0x4182a0), frozenset({0}), "address")}
+        fake = SimpleNamespace(verify_target=lambda: "target", TARGET=Path("unused"), known_data_targets=lambda: known)
+        with patch.object(linked, "comparator", return_value=fake), patch.object(linked.pefile, "PE", return_value=pe):
+            got = linked.target_vtables(unit)[0]
+            self.assertEqual((got["initializer_target"], got["entry_target"]), (0x418310, 0x4182a0))
+            for entries in [(0x4182a0, 0x418310, 0), (0x418310, 0x418280, 0), (0x418310, 0x4182a0, 0x418280)]:
+                struct.pack_into("<III", pe.data, 0x2010, *entries)
+                with self.subTest(entries=entries), self.assertRaises(ValueError): linked.target_vtables(unit)
 
     def test_complete_cfg_rejects_partial_or_unowned_tails(self):
         for code in [b"\xeb\x7f\xc3", b"\xeb\xff\xc3", b"\xe2\x7f\xc3", b"\xff\xe0\xc3",

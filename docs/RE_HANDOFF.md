@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+BGM stream constructor402820 is canonical exact89/89 in genuine CIL. Actual
+Ogg source30 ownership restores store ordering; both private constructor edges
+and the complete two-slot CDSBuffer table are validated. Supporting allocator
+4040D0 remains571/401 nonexact. See
+[BGM_STREAM_CONSTRUCTOR_2026_10_29.md](BGM_STREAM_CONSTRUCTOR_2026_10_29.md).
+
 BGM allocation4036C0 now initializes its actual token result and uses the
 manager pointer-return/token-out contract. Natural26/28 remains nonexact on
 private EDI; all four playback roots remain exact. See

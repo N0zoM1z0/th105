@@ -3753,3 +3753,25 @@ required_body_hashes = [
  { address = "0x0043BEA0", size = 19, sha256 = "c1652a926d37f8857611bb27cdfa6f3fb4b5f0d7f6e3427c99d50a59c2531837" },
  { address = "0x0044DBB5", size = 31, sha256 = "0a20774db95ad4695182334e7b1d1d57eb1a3e0a8d1860d2d664dbb253514025" },
 ]
+
+[[rules]]
+id = "bgm-stream-lifetime-authored-106a"
+addresses = ["0x00402820", "0x004040D0"]
+skip_matching = true
+expected_count = 1
+expected_bytes = 401
+expected_names = ["sub_4040D0"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Reviewed authored BGM service4036C0 calls the custom token pool4040D0; both fresh/reused pool paths call402820. Allocation size1378, std::string at0, CDSBuffer at24 and independent decoder-open402A1E this=stream+30 establish game stream ownership. Constructor publishes state3/gain1 and timing/link fields; generic STL callees are separate. docs/BGM_STREAM_CONSTRUCTOR_2026_10_29.md."
+required_body_hashes = [
+ { address = "0x00402820", size = 89, sha256 = "124de7ed11ac64ee0b724656f9ceda7d2c77920d2324cc8a6a82c62de04d49f8" },
+ { address = "0x004040D0", size = 401, sha256 = "35b7522da80909e94d1f24c74e0cc4a8ecd87b323eaaae4b1a0eb924eae2a7c4" },
+ ]
+required_direct_edges = [
+ { caller = "0x004036C0", site = "0x004036D0", target = "0x004040D0", caller_status = "implemented" },
+ { caller = "0x004040D0", site = "0x00404160", target = "0x00402820", caller_status = "implemented" },
+ { caller = "0x004040D0", site = "0x00404231", target = "0x00402820", caller_status = "implemented" },
+]

@@ -57,7 +57,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x004027B0,47,0x004027DE,sub_4027B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004027E0,40,0x00402807,sub_4027E0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00402810,1,0x00402810,nullsub_2,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00402820,89,0x00402878,sub_402820,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00402820,89,0x00402878,sub_402820,BgmStream_ctor,audio,matching,100.00,private; EAX receiver,BgmStreamAllocationView::BgmStreamAllocationView(),false,src/audio/BgmStreamAllocation.cpp,scripts/repo-python scripts/build.py --unit exact-first-bgm-stream-constructor --json then scripts/repo-python scripts/compare-linked-unit.py exact-first-bgm-stream-constructor --address 0x00402820 --json; full canonical89/89; build/frontier-bgm-allocation-context-20261029/formal-constructor.json,root,docs/BGM_STREAM_CONSTRUCTOR_2026_10_29.md; Actual Ogg source30 initialization restores native ordering; genuine CIL selects EAX receiver. Both allocator constructor calls and complete CDSBuffer two-slot table independently validated.
 0x00402880,220,0x0040295B,sub_402880,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00402960,159,0x004029FE,sub_402960,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00402A00,358,0x00402B65,sub_402A00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -86,7 +86,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00404080,5,0x00404084,sub_404080,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404090,30,0x004040AD,sub_404090,,,identified,0.00,__thiscall,,false,,Complete thirty-byte VC8 scalar deleting destructor with primary RTTI vtable slot; conditional call to excluded free alias and class destructor E8 are target-pinned in origin rule,,Compiler-generated wrapper; underlying class destructor origin reviewed separately
 0x004040B0,26,0x004040C9,sub_4040B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004040D0,401,0x00404260,sub_4040D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x004040D0,401,0x00404260,sub_4040D0,BgmStreamHandleManager_acquire,audio,implemented,0.00,private; EDI receiver; token reference on stack,BgmStreamAllocationView * BgmStreamHandleManager_acquire(BgmHandleResult & token),false,src/audio/BgmStreamAllocation.cpp,Complete native401-byte custom pool; ordinary CIL supporting caller571 bytes remains nonexact; both new/reused constructor edges qualify independent89-byte402820 acceptance,root,"docs/BGM_STREAM_CONSTRUCTOR_2026_10_29.md; Full source caller is an ABI/ownership witness only, not a canonical manager match. Use address-selected constructor comparison; manager EH/private EDI/STL lowering remains open."
 0x00404270,184,0x00404327,sub_404270,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404330,196,0x004043F3,sub_404330,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00404400,100,0x00404463,sub_404400,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

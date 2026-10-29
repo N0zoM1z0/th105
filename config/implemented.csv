@@ -1667,3 +1667,5 @@ NetworkInputEndpoint_ctor
 ProfileDefaults_initialize
 update_profile_message
 Fighter_render_sprite_transform
+BgmStream_ctor
+BgmStreamHandleManager_acquire

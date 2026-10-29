@@ -27028,3 +27028,44 @@ address = "0x0043F330"
 symbol_base = "??1GuideLifetimeView@th105@@QAE@XZ"
 rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
 dir32_targets = ["__ehhandler$??1GuideLifetimeView@th105@@QAE@XZ=__ehhandler$??1GuideOverlay@th105@@QAE@XZ"]
+
+[units.exact-first-bgm-stream-constructor]
+kind = "linked_candidate"
+source = "src/audio/BgmStreamAllocation.cpp"
+object = "build/match-units/ExactFirst_BgmStreamConstructor.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+notes = "Genuine stream allocation/placement-reconstruction context. Private89-byte constructor402820 is canonical exact; supporting571/native401 manager remains nonexact. Select address402820 for acceptance; manager is a caller witness only. Actual Ogg member and two constructor call sites; docs/BGM_STREAM_CONSTRUCTOR_2026_10_29.md."
+link_data_targets = [
+ "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+ "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+ "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+ "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+ "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+ "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+ "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+ "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+ "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error",
+ "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error",
+ "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B",
+ "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A",
+ "_create_sound_buffer_error=_create_sound_buffer_error",
+ "_direct_sound_error_title=_direct_sound_error_title",
+ ]
+
+[[units.exact-first-bgm-stream-constructor.link_vtables]]
+symbol = "??_7DirectSoundResourceBaseLifetime@th105@@6B@"
+target = "??_7DirectSoundResourceBase@th105@@6B@"
+initializer = "?initialize@DirectSoundResourceBaseLifetime@th105@@UAE_NPBXI@Z=0x00418310"
+entry = "??_GDirectSoundResourceBaseLifetime@th105@@UAEPAXI@Z=0x004182A0"
+target_type_name = ".?AVCDSBuffer@@"
+
+[[units.exact-first-bgm-stream-constructor.functions]]
+address = "0x004040D0"
+symbol_base = "?acquire@BgmAllocationManager50@th105@@QAEPAUBgmStreamAllocationView@2@AAUBgmHandleResult@2@@Z"
+rel32_targets = ["??0BgmStreamAllocationView@th105@@QAE@XZ=0x00402820"]
+
+[[units.exact-first-bgm-stream-constructor.functions]]
+address = "0x00402820"
+symbol_base = "??0BgmStreamAllocationView@th105@@QAE@XZ"
+private_from = { caller = "0x004040D0", sites = ["0x00404160", "0x00404231"] }

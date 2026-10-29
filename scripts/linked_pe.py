@@ -113,7 +113,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     if not isinstance(vtables, list):
         raise ValueError("linked vtable contracts must be a list")
     for table in vtables:
-        if not isinstance(table, dict) or set(table) != {"symbol", "target", "entry", "target_type_name"}:
+        base_keys = {"symbol", "target", "entry", "target_type_name"}
+        if not isinstance(table, dict) or set(table) not in (base_keys, base_keys | {"initializer"}):
             raise ValueError("linked vtable requires exact symbol/target/entry/RTTI fields")
         symbol, key, entry = table["symbol"], table["target"], table["entry"]
         if (not isinstance(symbol, str) or not re.fullmatch(r"\?\?_7[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@6B@", symbol)
@@ -127,6 +128,11 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                 or not table["target_type_name"].startswith(".?AV")
                 or not table["target_type_name"].endswith("@@")):
             raise ValueError("linked vtable must identify its own scalar deleting destructor and RTTI")
+        if "initializer" in table:
+            initializer, separator, init_address = str(table["initializer"]).partition("=")
+            if (not separator or initializer != "?initialize@" + owner + "@@UAE_NPBXI@Z"
+                    or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", init_address)):
+                raise ValueError("two-slot resource vtable needs its own bool(const void *, unsigned) initializer")
         names.add(symbol)
     exports, symbols = set(), set()
     functions = unit.get("functions")
@@ -164,11 +170,10 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                 validate_private_path_contract(witness, function)
                 if unit.get("link_runtime", "import") != "import" or unit.get("link_objects"):
                     raise ValueError("private static paths require one import-runtime CIL input")
-            if ("export_name" in function or not isinstance(witness, dict)
-                    or (not path and (set(witness) != {"caller", "site"}
-                        or any(not isinstance(value, str) or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", value)
-                               for value in witness.values())))):
+            if "export_name" in function or not isinstance(witness, dict):
                 raise ValueError("private linked function needs only an explicit caller/site witness")
+            if not path:
+                private_direct_sites(witness)
             callers = [f for f in functions if f.get("address") == witness["caller"]]
             if (len(callers) != 1 or callers[0] is function
                     or "private_from" in callers[0] or "private_global" in callers[0]
@@ -365,18 +370,32 @@ def target_vtables(unit: dict) -> list[dict]:
     result = []
     for table in contracts:
         address, raw, addends, validation = known[table["target"]]
-        entry_symbol, entry = table["entry"].split("=")
-        entry = int(entry, 0)
-        entry_section = pe.get_section_by_rva(entry - pe.OPTIONAL_HEADER.ImageBase)
-        if (len(raw) != 4 or addends != frozenset({0}) or validation != "address"
-                or readonly_data(pe, address, 4) != raw or entry not in candidates
-                or entry_section is None or not entry_section.Characteristics & 0x20000000
-                or struct.unpack("<I", raw)[0] != entry
-                or primary_type_name(pe, address) != table["target_type_name"]):
-            raise ValueError("target single-destructor vtable/entry/RTTI is not attested")
+        entry_symbol, entry_text = table["entry"].split("=")
+        entry = int(entry_text, 0)
+        entries = [entry]
+        extra = {}
+        if "initializer" in table:
+            init_symbol, init_text = table["initializer"].split("=")
+            initializer = int(init_text, 0)
+            entries.insert(0, initializer)
+            extra = {"initializer_symbol": init_symbol, "initializer_target": initializer}
+        if (len(raw) != 4 * len(entries) or addends != frozenset({0}) or validation != "address"
+                or readonly_data(pe, address, len(raw)) != raw
+                or primary_type_name(pe, address) != table["target_type_name"]
+                or list(struct.unpack("<" + "I" * len(entries), readonly_data(pe, address, 4 * len(entries)))) != entries):
+            raise ValueError("target resource vtable/entries/RTTI are not attested")
+        for target in entries:
+            section = pe.get_section_by_rva(target - pe.OPTIONAL_HEADER.ImageBase)
+            if target not in candidates or section is None or not section.Characteristics & 0x20000000:
+                raise ValueError("target vtable entry lacks an executable candidate")
+        if extra:
+            following, = struct.unpack("<I", readonly_data(pe, address + 8, 4))
+            section = pe.get_section_by_rva(following - pe.OPTIONAL_HEADER.ImageBase)
+            if section is not None and section.Characteristics & 0x20000000:
+                raise ValueError("target resource vtable has an unsupported third function slot")
         result.append({"symbol": table["symbol"], "target_key": table["target"],
                        "target_address": address, "target_type_name": table["target_type_name"],
-                       "entry_symbol": entry_symbol, "entry_target": entry})
+                       "entry_symbol": entry_symbol, "entry_target": entry, **extra})
     return result
 
 
@@ -398,22 +417,29 @@ def source_vtables(pe, symbols: dict, functions: dict, contracts: list[dict], ci
         address = found[0][0]
         if address % 4:
             raise ValueError("native vtable is not dword-aligned")
-        entry, = struct.unpack("<I", readonly_data(pe, address, 4))
         expected_types = {prefix + table["symbol"][4:-5] + "@@" for prefix in (".?AV", ".?AU")}
-        owners = [owner for symbol, owner in functions.get(entry, []) if symbol == table["entry_symbol"]]
-        if (len(owners) != 1 or owners[0].split()[-1:] != [cil_owner]
-                or primary_type_name(pe, address) not in expected_types):
-            raise ValueError("native vtable entry/RTTI disagrees with its source class")
-        entry_section = pe.get_section_by_rva(entry - pe.OPTIONAL_HEADER.ImageBase)
-        if entry_section is None or not entry_section.Characteristics & 0x20000000:
-            raise ValueError("native deleting destructor is outside executable code")
+        if primary_type_name(pe, address) not in expected_types:
+            raise ValueError("native vtable RTTI disagrees with its source class")
+        names = [table["entry_symbol"]]
+        if "initializer_symbol" in table:
+            names.insert(0, table["initializer_symbol"])
+        entries = list(struct.unpack("<" + "I" * len(names), readonly_data(pe, address, 4 * len(names))))
+        for name, entry in zip(names, entries):
+            owners = [owner for symbol, owner in functions.get(entry, []) if symbol == name]
+            if len(owners) != 1 or owners[0].split()[-1:] != [cil_owner]:
+                raise ValueError("native vtable entry disagrees with its source class")
+            section = pe.get_section_by_rva(entry - pe.OPTIONAL_HEADER.ImageBase)
+            if section is None or not section.Characteristics & 0x20000000:
+                raise ValueError("native vtable entry is outside executable code")
         section = pe.get_section_by_rva(address - pe.OPTIONAL_HEADER.ImageBase)
-        if address + 8 <= pe.OPTIONAL_HEADER.ImageBase + section.VirtualAddress + section.Misc_VirtualSize:
-            following, = struct.unpack("<I", pe_data(pe, address + 4, 4))
+        following_address = address + 4 * len(entries)
+        if following_address + 4 <= pe.OPTIONAL_HEADER.ImageBase + section.VirtualAddress + section.Misc_VirtualSize:
+            following, = struct.unpack("<I", pe_data(pe, following_address, 4))
             next_section = pe.get_section_by_rva(following - pe.OPTIONAL_HEADER.ImageBase)
             if next_section is not None and next_section.Characteristics & 0x20000000:
                 raise ValueError("native vtable has an unsupported extra function slot")
-        result.append({**table, "source_address": address, "source_entry": entry})
+        extra = {"source_initializer": entries[0]} if len(entries) == 2 else {}
+        result.append({**table, "source_address": address, "source_entry": entries[-1], **extra})
     if len({table["source_address"] for table in result}) != len(result):
         raise ValueError("native vtable mappings alias one source address")
     return result
@@ -896,6 +922,21 @@ def private_path_witness(function: dict, unit: dict, pe, functions: dict, export
             "scope": "complete normal caller CFG and source address-role/relocation witnesses only; no caller byte or EH equality"}
 
 
+def private_direct_sites(contract: dict) -> list[str]:
+    """Keep the legacy single edge or explicitly attest both constructor edges."""
+    address = lambda value: isinstance(value, str) and re.fullmatch(r"0x[0-9A-Fa-f]{8}", value)
+    if not isinstance(contract, dict) or not address(contract.get("caller")):
+        raise ValueError("private caller address is malformed")
+    if set(contract) == {"caller", "site"} and address(contract["site"]):
+        return [contract["site"]]
+    sites = contract.get("sites")
+    if (set(contract) != {"caller", "sites"} or not isinstance(sites, list)
+            or len(sites) != 2 or any(not address(site) for site in sites)
+            or [int(site, 0) for site in sites] != sorted({int(site, 0) for site in sites})):
+        raise ValueError("private constructor witness needs exactly two distinct ordered call sites")
+    return sites
+
+
 def private_caller_witness(function: dict, unit: dict, pe, functions: dict, exports: dict,
                            cil_owner: str, ledger: dict, read_target, *, map_text: str = "",
                            bindings: list[dict] = (), game_range: tuple[int, int] = (0, 0)) -> dict:
@@ -914,22 +955,28 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
     parent = source_function_start(caller, functions, exports, cil_owner)
     source = linked_body(pe, functions, parent)
     source_instructions = decode_closed_body(source, parent)
-    validate_body_relocations(pe, parent, len(source), [])
+    sites = private_direct_sites(contract)
+    data = (caller_data_witness(pe, source_instructions, functions, bindings, game_range)
+            if "sites" in contract else [])
+    if "sites" not in contract:
+        validate_body_relocations(pe, parent, len(source), [])
     source_calls = [i.address for i in source_instructions
                     if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == start]
     target_parent, target_start = int(caller["address"], 0), int(function["address"], 0)
     target = read_target(target_parent, int(caller_row["size"], 0))
     target_calls = [i.address for i in decode_closed_body(target, target_parent)
                     if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == target_start]
-    if len(source_calls) != 1 or target_calls != [int(contract["site"], 0)]:
-        raise ValueError("private linked function needs one exact direct call in both closed caller bodies")
+    if len(source_calls) != len(sites) or target_calls != [int(site, 0) for site in sites]:
+        raise ValueError("private linked function needs all declared direct calls in both closed caller bodies")
     mappings = [mapping for mapping in caller.get("rel32_targets", [])
                 if mapping.split("=", 1)[0] == function["symbol_base"]]
     if len(mappings) != 1 or int(mappings[0].split("=", 1)[1], 0) != target_start:
         raise ValueError("private linked caller must map its actual source callee to the target entry")
-    return {"caller": caller["address"], "target_site": contract["site"],
+    edge = ({"target_sites": sites, "source_sites": [f"0x{site:08X}" for site in source_calls],
+             "source_only_address_fields": data} if "sites" in contract else
+            {"target_site": sites[0], "source_site": f"0x{source_calls[0]:08X}"})
+    return {"caller": caller["address"], **edge,
             "source_caller_symbol": caller["symbol_base"], "source_caller_va": f"0x{parent:08X}",
-            "source_site": f"0x{source_calls[0]:08X}",
             "source_caller_sha256": hashlib.sha256(source).hexdigest(),
             "target_caller_sha256": hashlib.sha256(target).hexdigest()}
 
