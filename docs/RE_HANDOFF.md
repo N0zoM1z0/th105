@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+BG04 constructor468570 is now canonical exact335/335 using the corrected0xE8
+CEffectSprite type and real vector assign. BG02 has complete924-byte selected
+source but remains77 bytes nonexact; no prefix credit. Factory986 stays exact.
+See [BACKGROUND_CONSTRUCTORS_2026_10_29.md](BACKGROUND_CONSTRUCTORS_2026_10_29.md).
+
 CEffectSprite is now correctly0xE8 inside a nonpolymorphic0x12C animation-state
 owner. Constructor421FF0 is canonical79/79 and background initializer4664A0
 is512/512 with actual vector assign semantics. All321 affected accepted

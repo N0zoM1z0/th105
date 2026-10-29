@@ -27521,3 +27521,47 @@ rel32_targets = [
  "__invalid_parameter_noinfo=0x0068A143",
  "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.exact-first-bg02-constructor]
+kind = "probe"
+source = "src/battle/BG02Constructor.cpp"
+object = "build/match-units/ExactFirst_BG02Constructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Actual0xE8 CEffectSprite vector assignment and scoped texture setup. BG04 is335/335 exact; BG02 is924/924 nonexact with77 register/schedule byte differences. docs/BACKGROUND_CONSTRUCTORS_2026_10_29.md."
+
+[[units.exact-first-bg02-constructor.functions]]
+address = "0x00467F90"
+symbol_base = "??0BG02@th105@@QAE@XZ"
+rel32_targets = [
+ "??0BackgroundBase@th105@@QAE@XZ=0x00466020",
+ "?initialize_common_4664a0@BackgroundBase@th105@@QAEXHH@Z=0x004664A0",
+ "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
+ "?_Assign_n@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXIABVCEffectSprite@@@Z=0x004663E0",
+ "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "@__security_check_cookie@4=0x00689D25",
+ "?load_texture@BG02TextureLoadView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
+]
+
+[units.exact-first-bg04-constructor]
+kind = "probe"
+source = "src/battle/BG04Constructor.cpp"
+object = "build/match-units/ExactFirst_BG04Constructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Actual0xE8 CEffectSprite vector assignment and scoped texture setup. BG04 is335/335 exact; BG02 is924/924 nonexact with77 register/schedule byte differences. docs/BACKGROUND_CONSTRUCTORS_2026_10_29.md."
+
+[[units.exact-first-bg04-constructor.functions]]
+address = "0x00468570"
+symbol_base = "??0BG04@th105@@QAE@XZ"
+rel32_targets = [
+ "??0BackgroundBase@th105@@QAE@XZ=0x00466020",
+ "?initialize_common_4664a0@BackgroundBase@th105@@QAEXHH@Z=0x004664A0",
+ "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
+ "?_Assign_n@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXIABVCEffectSprite@@@Z=0x004663E0",
+ "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "@__security_check_cookie@4=0x00689D25",
+ "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+]

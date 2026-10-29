@@ -3774,3 +3774,17 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Pinned VC8 SP1 rebuild of BackgroundInitializeCommon.cpp emits vector<CEffectSprite>::_Assign_n. Its complete186-byte native body independently proves the0xE8 element and assign-not-resize semantics. The relocation-masked fingerprint must remain unique across the complete candidate inventory. docs/EFFECT_SPRITE_OWNER_2026_10_29.md."
+
+[[rules]]
+id = "bg02-constructor-authored-106a"
+addresses = ["0x00467F90"]
+expected_count = 1
+expected_bytes = 924
+expected_names = ["sub_467F90"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact BattleObjectManager dispatch467380 creates the RTTI-backed0x68 BG02 owner. Constructor initializes BG2 common tiles and48 left/center/right animated textures, then state64. Actual vector<CEffectSprite> assign and path-scoped lifetime recover the complete924-byte source with77 remaining schedule bytes. docs/BACKGROUND_CONSTRUCTORS_2026_10_29.md."
+required_body_hashes = [{ address = "0x00467F90", size = 924, sha256 = "b2d2eb2748fc07c5f07ad07d36d95e7924eb8270cbc8a4f4d65268297e275ce8" }]
+required_direct_edges = [{ caller = "0x00467380", site = "0x00467423", target = "0x00467F90", caller_status = "matching" }]
