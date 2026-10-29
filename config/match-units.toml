@@ -27260,10 +27260,10 @@ symbol_base = "??1CScript@@QAE@XZ"
 eh_cleanup = { handler = "0x006BE423", info = "0x006E4C58" }
 rel32_targets = [
  "?_Tidy@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@$0A@@std@@@std@@IAEXXZ=0x00405CD0",
- "?_Tidy@?$deque@PAVCCommandFactoryBase@CScript@@V?$allocator@PAVCCommandFactoryBase@CScript@@@std@@@std@@IAEXXZ=0x00413E10",
+ "?_Tidy@?$deque@PAVCCommandBase@@V?$allocator@PAVCCommandBase@@@std@@@std@@IAEXXZ=0x00413E10",
  "?clear_commands@CScript@@QAEXXZ=0x004056C0",
  "??1?$map@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAVCCommandFactoryBase@CScript@@@std@@@2@@std@@QAE@XZ=0x00405650",
- "??1?$deque@PAVCCommandFactoryBase@CScript@@V?$allocator@PAVCCommandFactoryBase@CScript@@@std@@@std@@QAE@XZ=0x00413B00",
+ "??1?$deque@PAVCCommandBase@@V?$allocator@PAVCCommandBase@@@std@@@std@@QAE@XZ=0x00413B00",
  "@__security_check_cookie@4=0x00689D25",
  "___CxxFrameHandler3=0x006899E7",
 ]

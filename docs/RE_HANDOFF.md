@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+CScript now owns CCommandBase pointers in its pending deque and one real12-byte
+checked iterator at028, replacing the old factory-pointer/three-cell hypothesis.
+All77 affected accepted functions remain exact, including full linked destructor
+EH. See [SCRIPT_COMMAND_CURSOR_2026_10_29.md](SCRIPT_COMMAND_CURSOR_2026_10_29.md).
+
 Scene timeline064 is now a start-time-ordered multiset, preserving duplicate
 timestamps, rather than the old layout-compatible object-ID map. Insert107
 independently proves the predicate; constructor196/update801/cleanup104 and

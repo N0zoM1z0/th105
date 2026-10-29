@@ -8,8 +8,10 @@
 // Current CScenarioData construction embeds this script registry at +0x35C and
 // registers the command family below through one shared VC8 template body.
 // Current CScript lifetime now closes the complete 0x34 layout: the command
-// map, default factory, one checked pending-factory deque and three runtime
-// cells.  The +0x10 cell remains deliberately unnamed/uninitialized.
+// map, default factory, an owned command deque and its12-byte checked iterator.
+// The +0x10 cell remains deliberately unnamed/uninitialized. Factory creation
+// and command parsing are distinct native virtual calls; pending values are
+// CCommandBase objects, not factories.
 #include "ScriptCommandRuntime.hpp"
 
 class CScript {
@@ -45,14 +47,17 @@ public:
     CommandMap commands_00;
     CCommandFactoryBase *default_factory_0c;
     void *runtime_10;
-    std::deque<CCommandFactoryBase *> pending_14;
-    void *runtime_28;
-    void *runtime_2c;
-    void *runtime_30;
+    typedef std::deque<CCommandBase *> PendingCommands;
+    PendingCommands pending_14;
+    PendingCommands::iterator current_28;
 };
 
 typedef char CScriptCommandMap_size_must_be_0x0c[
     sizeof(CScript::CommandMap) == 0x0c ? 1 : -1];
+typedef char CScript_iterator_size_must_be_0x0c[
+    sizeof(CScript::PendingCommands::iterator) == 0x0c ? 1 : -1];
+typedef char CScript_iterator_offset_must_be_0x28[
+    offsetof(CScript, current_28) == 0x28 ? 1 : -1];
 typedef char CScript_size_must_be_0x34[
     sizeof(CScript) == 0x34 ? 1 : -1];
 

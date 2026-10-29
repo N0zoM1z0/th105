@@ -3,7 +3,7 @@
 405660 is canonical exact95/95, SHA256
 1ed5c1a7fe28f8796a191563a9d5b6abcc2bdf7a1f047e570dd1c516b7a90e58.
 The newly exact ScenarioData destructor calls it at438B3F. It invokes the
-existing game-owned clear_commands policy, then destroys the pending-factory
+existing game-owned clear_commands policy, then destroys the pending-command
 deque+14 and command map+0. This is the actual34-byte CScript lifecycle, not a
 new source wrapper around an unexplained private ABI.
 
@@ -74,3 +74,7 @@ parser505 exact; clear_commands remains296/native170, now with canonical
 candidate3fe7ae6034cd441f1afca5a276db458d24f5cc4df2d77adae6ab634aca98150d.
 The linked clear provider remains309/native170. formal.json is refreshed from
 the actual latest linked replay, with the earlier receipt retained separately.
+
+The later parser/cursor review corrects the deque value type to CCommandBase*
+and the028 tail to one12-byte checked iterator. Constructor65, destructor95 and
+its full EH packet remain unchanged; see SCRIPT_COMMAND_CURSOR_2026_10_29.md.
