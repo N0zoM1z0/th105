@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="560" height="204" viewBox="0 0 560 204" role="img" aria-label="TH105 reconstruction progress: 18.97% of confirmed authored bytes exact; authored denominator provisional, origin review 77.73%">
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="204" viewBox="0 0 560 204" role="img" aria-label="TH105 reconstruction progress: 19.04% of confirmed authored bytes exact; authored denominator provisional, origin review 77.73%">
   <rect width="560" height="204" rx="8" fill="#1f2335"/>
   <text x="24" y="28" fill="#f4f4f5" font-family="sans-serif" font-size="16" font-weight="600">TH105 reconstruction progress</text>
 
   <text x="24" y="54" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Exact / confirmed authored bytes</text>
-  <text x="536" y="54" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="13">18.97%</text>
+  <text x="536" y="54" fill="#f4f4f5" text-anchor="end" font-family="monospace" font-size="13">19.04%</text>
   <rect id="exact-track" x="24" y="62" width="512" height="12" rx="6" fill="#3b4058"/>
-  <rect id="exact-fill" x="24" y="62" width="97.12" height="12" rx="6" fill="#9b6de3"/>
-  <text x="24" y="91" fill="#c8cad2" font-family="sans-serif" font-size="12">426,641 / 2,249,085 bytes · 1,507 exact functions</text>
+  <rect id="exact-fill" x="24" y="62" width="97.48" height="12" rx="6" fill="#9b6de3"/>
+  <text x="24" y="91" fill="#c8cad2" font-family="sans-serif" font-size="12">428,225 / 2,249,085 bytes · 1,508 exact functions</text>
   <text x="24" y="109" fill="#c8cad2" font-family="sans-serif" font-size="11">Authored denominator provisional · pending review: 896</text>
 
   <text x="24" y="144" fill="#f4f4f5" font-family="sans-serif" font-size="13" font-weight="600">Origin/boundary reviewed</text>

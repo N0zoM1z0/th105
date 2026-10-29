@@ -1,4 +1,4 @@
-// JP1.06a 0x004540F0. Complete timeline command loader; remains nonexact.
+// JP1.06a 0x004540F0. Complete timeline command loader; full code and switch payload replay.
 // See docs/SCENE_TIMELINE_LOADER_2026_10_29.md.
 #include "battle/ScriptCommandRegistry.hpp"
 #include "ui/RenderTimeline.hpp"
@@ -45,8 +45,7 @@ bool SceneTimelineLoaderView::load_script(const char *path)
     SceneInterpolationEntry24 event;
     CCommandBase *command=script->next_command();
     while(command!=0) {
-        int kind=reinterpret_cast<TimelineCommandHeader *>(command)->id_04;
-        switch(kind) {
+        switch(reinterpret_cast<TimelineCommandHeader *>(command)->id_04) {
         case 0: {
             TCommand2<int,int> *c=static_cast<TCommand2<int,int> *>(command);
             accumulated_time_14+=(static_cast<unsigned>(c->arg0_08)-previous_tick_10)*60000u/static_cast<unsigned>(bpm_00);
@@ -96,13 +95,14 @@ bool SceneTimelineLoaderView::load_script(const char *path)
             typedef TCommand5<int,float,float,float,int> Float;
             Float *c=static_cast<Float *>(command);
             if(objects_4c.find(c->arg0_08)==objects_4c.end()) break;
-            event.type_14=kind;
+            event.type_14=reinterpret_cast<TimelineCommandHeader *>(command)->id_04;
             event.object_id_00=c->arg0_08;
-            float previous=static_cast<float>(previous_tick_10);
-            float tempo=static_cast<float>(bpm_00);
-            float accumulated=static_cast<float>(accumulated_time_14);
-            event.start_04=static_cast<unsigned>((c->arg1-previous)*60000.0/tempo+accumulated);
-            event.end_08=static_cast<unsigned>((c->arg1+c->arg2-previous)*60000.0/tempo+accumulated);
+            event.start_04=static_cast<unsigned>(
+                (c->arg1-static_cast<float>(previous_tick_10))*60000.0/
+                static_cast<float>(bpm_00)+static_cast<float>(accumulated_time_14));
+            event.end_08=static_cast<unsigned>(
+                (c->arg1+c->arg2-static_cast<float>(previous_tick_10))*60000.0/
+                static_cast<float>(bpm_00)+static_cast<float>(accumulated_time_14));
             event.target.float_0c=c->arg3;
             event.easing_10=c->arg4;
             events_64.insert(event);
@@ -112,13 +112,14 @@ bool SceneTimelineLoaderView::load_script(const char *path)
             typedef TCommand5<int,float,float,int,int> Color;
             Color *c=static_cast<Color *>(command);
             if(objects_4c.find(c->arg0_08)==objects_4c.end()) break;
-            event.type_14=kind;
+            event.type_14=reinterpret_cast<TimelineCommandHeader *>(command)->id_04;
             event.object_id_00=c->arg0_08;
-            float previous=static_cast<float>(previous_tick_10);
-            float tempo=static_cast<float>(bpm_00);
-            float accumulated=static_cast<float>(accumulated_time_14);
-            event.start_04=static_cast<unsigned>((c->arg1-previous)*60000.0/tempo+accumulated);
-            event.end_08=static_cast<unsigned>((c->arg1+c->arg2-previous)*60000.0/tempo+accumulated);
+            event.start_04=static_cast<unsigned>(
+                (c->arg1-static_cast<float>(previous_tick_10))*60000.0/
+                static_cast<float>(bpm_00)+static_cast<float>(accumulated_time_14));
+            event.end_08=static_cast<unsigned>(
+                (c->arg1+c->arg2-static_cast<float>(previous_tick_10))*60000.0/
+                static_cast<float>(bpm_00)+static_cast<float>(accumulated_time_14));
             event.target.uint_0c=c->arg3;
             event.easing_10=c->arg4;
             events_64.insert(event);

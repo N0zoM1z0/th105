@@ -3758,20 +3758,3 @@ disposition = "authored"
 confidence = "observed"
 evidence = "Complete431-byte Scenario render-list alpha policy, invoked at4584A6/4584B4/4585AD by the independently owned game-command interpreter. Signed fade step, unsigned alpha saturation, strict-underflow retirement and resource-dependent sprite color establish authored behavior distinct from the separately excluded list erase helper. Source418/native431 remains nonexact. docs/SCENARIO_LIST_FADE_2026_10_29.md."
 required_body_hashes = [{ address = "0x00455850", size = 431, sha256 = "30d7262a2d4f9024b9f6854de92d0c5aef9f5b440182cb91ae57a9462bb67026" }]
-
-[[rules]]
-id = "scene-timeline-loader-authored-106a"
-addresses = ["0x004540F0"]
-expected_count = 1
-expected_bytes = 1584
-expected_names = ["sub_4540F0"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete482-instruction/1584-byte callable and three native switch tables establish the18-command Opening/Ending timeline loader. BPM timing, picture ownership, transforms/colors, interval and notify/end policies are game-authored. Payload1676 includes92 table/alignment bytes without adding those to callable credit. Source1590/1684 remains nonexact. docs/SCENE_TIMELINE_LOADER_2026_10_29.md."
-required_body_hashes = [{ address = "0x004540F0", size = 1584, sha256 = "efccda2b957a6bdc376a7dfad705583f8363e1a5b1b413a2ccbafce4eff6a00b" }]
-required_direct_edges = [
- { caller = "0x0041E790", site = "0x0041E7AF", target = "0x004540F0", caller_status = "matching" },
- { caller = "0x0041F970", site = "0x0041F9D2", target = "0x004540F0", caller_status = "matching" },
-]

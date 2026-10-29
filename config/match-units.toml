@@ -27438,7 +27438,7 @@ source = "src/ui/SceneTimelineLoader.cpp"
 object = "build/match-units/ExactFirst_SceneTimelineLoader.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete18-command timeline loader with actual handle/sprite ownership and unsigned-start multiset. Native1584 code plus92 table/alignment bytes; source1590 code plus94 table/alignment bytes remains nonexact. Full payload is independently compared, never waived. docs/SCENE_TIMELINE_LOADER_2026_10_29.md."
+notes = "Complete18-command timeline loader with actual handle/sprite ownership and unsigned-start multiset. Native1584 code plus92 table/alignment bytes must agree. Run scripts/verify-scene-timeline-loader-payload.py after this focused build to verify the entire1676-byte COFF payload and fresh provenance. docs/SCENE_TIMELINE_LOADER_2026_10_29.md."
 
 [[units.exact-first-scene-timeline-loader.functions]]
 address = "0x004540F0"

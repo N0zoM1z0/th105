@@ -1,9 +1,29 @@
 # Complete Opening/Ending timeline loader
 
-4540F0 now has complete selected source for the18 registered command IDs,
-including all three native switches. It remains nonexact and adds no exact
-bytes. Source ownership is independently established by exact Ending entry
-41E790 calling at41E7AF and exact Opening construction41F970 at41F9D2.
+4540F0 is canonical exact1584/1584 callable bytes, with the complete1676-byte
+code/table payload independently verified as exact. Only1584 authored code
+bytes enter the ledger. Source ownership is independently established by exact
+Ending entry41E790 calling at41E7AF and exact Opening construction41F970 at41F9D2.
+
+## Accepted source lifetime
+
+Native reloads command ID from command+004 after the checked object lookup.
+Removing the cached kind local restores that real memory access, removes its
+stack spill, and closes the receiver-register permutation: the complete payload
+then has the correct1676-byte size with47 remaining unequal positions.
+
+Using float conversions directly in the start/end expressions, rather than
+keeping three named float locals across both expressions, restores their native
+spill/control-word lifetimes. All1584 code bytes and all92 table/alignment bytes
+then agree. These are ordinary C++ value lifetimes; no fake liveness, register
+annotation, instruction patch, padding or skipped comparison is used.
+
+The focused build receipt is formal-exact.json. The small bounded verifier
+scripts/verify-scene-timeline-loader-payload.py requires matching fresh build
+inputs/object/compiler/profile before replaying every relocation in the full
+1676-byte COFF section. It rejects any payload-length or byte difference.
+Its successful receipt is payload-exact.json. Both are under
+build/frontier-scene-timeline-loader-20261029/.
 
 ## Complete target boundary
 
@@ -50,7 +70,7 @@ constructed. Real command subclasses, records, checked containers and sprite
 lifetimes are reused. There are no manual vptrs/nodes, defensive input guards,
 register annotations or synthetic runtime calls.
 
-## First comparison and residual
+## Earlier source-present checkpoint (superseded)
 
 The first complete source compiles before any spelling controls. It emits1590
 callable bytes plus two alignment bytes and92 table bytes:1684 total. Native
@@ -65,15 +85,17 @@ The ordinary unit report hashes the first1584 compared source bytes as:
 Neither hash is an exact result. The separate FormalPayload.json comparison
 replays every relocation across all1684 emitted bytes, including all switch
 entries. Observed sampler-store order is retained; that single control is
-byte-neutral. Receiver allocation, temporary homes and scheduling remain open.
+byte-neutral. Those allocation/temporary differences are closed by the accepted source above.
 
 ## Reproduction
 
 scripts/repo-python scripts/build.py --unit exact-first-scene-timeline-loader --compare --json
+scripts/repo-python scripts/verify-scene-timeline-loader-payload.py
 
 Source:src/ui/SceneTimelineLoader.cpp.
-Receipts:build/frontier-scene-timeline-loader-20261029/formal.json,
-FormalPayload.json and native-boundary.json. Two new relocation keys bind the
+Current receipts:build/frontier-scene-timeline-loader-20261029/formal-exact.json
+and payload-exact.json. Historical first comparison is formal.json /
+FormalPayload.json; native-boundary.json records the complete target CFG. Two new relocation keys bind the
 full native handler and double60000 literal. Existing headers, accepted caller
 sources and their receipts are unchanged. Default CI validates selection,
 tracking and progress; no cold-corpus or runtime-equivalence claim is made.
