@@ -26622,3 +26622,16 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "?erase@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x00414DE0",
 ]
+
+[units.exact-first-line-primitive]
+kind = "probe"
+source = "src/engine/LinePrimitive.cpp"
+object = "build/match-units/ExactFirst_LinePrimitive.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete148-byte line renderer with two20-byte XYZRHW/diffuse vertices. Native Z0, RHW1, single-precision half-pixel subtractions; real D3D9 calls. Whole148/148 remains nonexact+20 scheduling/zero-argument formation. No exact credit or register forcing."
+
+[[units.exact-first-line-primitive.functions]]
+address = "0x00401180"
+symbol_base = "?draw_line@LinePrimitiveView@th105@@QAEHMMMMI@Z"
+rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0"]

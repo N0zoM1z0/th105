@@ -1645,3 +1645,4 @@ BgmService_shutdown
 Fighter_set_counter_48a
 ScenarioResultResource_enable
 D3DBackend_remove_reset_listener
+RenderModeManager_draw_line

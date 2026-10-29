@@ -2750,7 +2750,7 @@ origin = "authored_game"
 subsystem = "engine"
 disposition = "authored"
 confidence = "inferred"
-evidence = "Complete 148-byte RET 0x14 body constructs two color vertices at stride 0x14, clears texture slot zero through 0x00404DF0, then calls D3D9 SetFVF and DrawPrimitiveUP for one line-list primitive through receiver +0x04. The reviewed rectangle renderer 0x004012A0 calls it four times for outline mode; all four E8 sites plus the binder E8 and full body are replayed. Original class/TU and exact source remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Complete 148-byte RET 0x14 body constructs two color vertices at stride 0x14, clears texture slot zero through 0x00404DF0, then calls D3D9 SetFVF and DrawPrimitiveUP for one line-list primitive through receiver +0x04. The reviewed rectangle renderer 0x004012A0 calls it four times for outline mode; all four E8 sites plus the binder E8 and full body are replayed. Natural prefix-view source now closes148/148 nonexact+20; original nominal class/TU and scheduling remain unresolved. See docs/LINE_PRIMITIVE_2026_10_29.md and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
   { address = "0x00401180", size = 148, sha256 = "8fab1b24e1ad32aa03203b28ed4c80a795f9d83f6f21e9890e154bb531b3f28d" },
 ]

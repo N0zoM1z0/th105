@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Line primitive401180 is now complete source-selected148/148, nonexact+20.
+Native two-vertex Z0/RHW1 and float half-pixel operations are closed; residual
+color-store/zero-argument scheduling remains. No ABI or padding forcing. See
+[LINE_PRIMITIVE_2026_10_29.md](LINE_PRIMITIVE_2026_10_29.md).
+
 Latest source correction: audio listener removal419400 now retains the end
 iterator exactly as native419419/419425/419441 show across the loop backedge.
 Whole198/193 stays nonexact; creation419350 remains169 exact and wait129/184.
