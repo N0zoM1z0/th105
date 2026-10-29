@@ -27431,3 +27431,36 @@ rel32_targets = [
  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "__invalid_parameter_noinfo=0x0068A143",
 ]
+
+[units.exact-first-scene-timeline-loader]
+kind = "probe"
+source = "src/ui/SceneTimelineLoader.cpp"
+object = "build/match-units/ExactFirst_SceneTimelineLoader.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete18-command timeline loader with actual handle/sprite ownership and unsigned-start multiset. Native1584 code plus92 table/alignment bytes; source1590 code plus94 table/alignment bytes remains nonexact. Full payload is independently compared, never waived. docs/SCENE_TIMELINE_LOADER_2026_10_29.md."
+
+[[units.exact-first-scene-timeline-loader.functions]]
+address = "0x004540F0"
+symbol_base = "?load_script@SceneTimelineLoaderView@th105@@QAE_NPBD@Z"
+rel32_targets = [
+ "??0RenderTimelineEntry@th105@@QAE@XZ=0x00450E30",
+ "??1RenderTimelineEntry@th105@@QAE@XZ=0x0041EC10",
+ "??Citerator@?$_Tree@V?$_Tmap_traits@HPAURenderTimelineEntry@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAURenderTimelineEntry@th105@@@std@@@4@$0A@@std@@@std@@QBEPAU?$pair@$$CBHPAURenderTimelineEntry@th105@@@2@XZ=0x00448D00",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+ "?back@?$deque@IV?$allocator@I@std@@@std@@QAEAAIXZ=0x00432BE0",
+ "?back@?$deque@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAEAAVCSpriteEx@@XZ=0x00450B90",
+ "?back@?$list@URenderTimelineEntry@th105@@V?$allocator@URenderTimelineEntry@th105@@@std@@@std@@QAEAAURenderTimelineEntry@th105@@XZ=0x004509A0",
+ "?find@?$_Tree@V?$_Tmap_traits@HPAURenderTimelineEntry@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAURenderTimelineEntry@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+ "?insert@?$_Tree@V?$_Tmap_traits@HPAURenderTimelineEntry@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAURenderTimelineEntry@th105@@@std@@@4@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HPAURenderTimelineEntry@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAURenderTimelineEntry@th105@@@std@@@4@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHPAURenderTimelineEntry@th105@@@2@@Z=0x004606E0",
+ "?insert@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@_N@2@ABUSceneInterpolationEntry24@th105@@@Z=0x004519E0",
+ "?load@TimelineScriptReaderView@th105@@QAE_NPBDH@Z=0x00405810",
+ "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+ "?next_command@TimelineScriptReaderView@th105@@QAEPAVCCommandBase@@XZ=0x00405AC0",
+ "?push_back@?$deque@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x00417240",
+ "?push_back@?$deque@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAEXABVCSpriteEx@@@Z=0x00451BD0",
+ "?push_back@?$list@URenderTimelineEntry@th105@@V?$allocator@URenderTimelineEntry@th105@@@std@@@std@@QAEXABURenderTimelineEntry@th105@@@Z=0x004540B0",
+ "?set_texture@CSpriteEx@@QAEXIHHHH@Z=0x0041F640",
+ "?set_texture_options@TimelineSpriteOptionsView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "__invalid_parameter_noinfo=0x0068A143",
+]

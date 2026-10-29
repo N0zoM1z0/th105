@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Opening/Ending timeline loader4540F0 now has complete selected source for all18
+command IDs and all three switches. Native1584-byte code/1676-byte payload is
+fully bounded; source1590/1684 remains nonexact, with no table or prefix waiver.
+See [SCENE_TIMELINE_LOADER_2026_10_29.md](SCENE_TIMELINE_LOADER_2026_10_29.md).
+
 CScript now owns CCommandBase pointers in its pending deque and one real12-byte
 checked iterator at028, replacing the old factory-pointer/three-cell hypothesis.
 All77 affected accepted functions remain exact, including full linked destructor
