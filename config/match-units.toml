@@ -27103,3 +27103,26 @@ dir32_targets = [
  "__ehhandler$?load_default_deck@DefaultDeckLoaderView@th105@@QAEPAV?$deque@GV?$allocator@G@std@@@std@@PAV34@H@Z=__ehhandler$?load_default_deck@DefaultDeckLoaderView@th105@@QAEPAV?$deque@GV?$allocator@G@std@@@std@@PAV34@H@Z",
  "??_C@_09JJDIOHNM@data?1csv?1?$AA@=_scenario_csv_prefix",
 ]
+
+[units.exact-first-match-mode-preparation]
+kind = "probe"
+source = "src/ui/MatchModePreparation.cpp"
+object = "build/match-units/ExactFirst_MatchModePreparation.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete286-byte title/result match-mode setup. Existing selected-input policy is visible for ordinary inlining; typed runtime/network fields preserve all paths. Remains nonexact on initial global publication scheduling; no volatile/register forcing. docs/MATCH_MODE_PREPARATION_2026_10_29.md."
+
+[[units.exact-first-match-mode-preparation.functions]]
+address = "0x0043B8F0"
+symbol_base = "?prepare_title_match_mode@th105@@YAXHH@Z"
+rel32_targets = [
+ "?get_active_source@CInputManagerCluster@th105@@QBECXZ=0x0040A4E0",
+ "?at@ResultInputRecordTableView@th105@@QAEPAUResultInputRecord68@2@I@Z=0x0043B300",
+ "?bind_result_input@NetworkMatchPreparationView@th105@@QAEXPAX0@Z=0x0043B410",
+ "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840",
+]
+dir32_targets = [
+ "?g_combined_menu_input@th105@@3UCInputManagerCluster@1@A=?g_combined_menu_input_storage@th105@@3PAEA",
+ "?g_session_setup_option@th105@@3IA=?g_session_setup_option@th105@@3IC",
+ "?g_game_mode@th105@@3W4GameMode@1@A=?g_game_mode@th105@@3W4GameMode@1@C",
+]

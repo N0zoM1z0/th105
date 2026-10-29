@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Title/result match setup43B8F0 now has complete286-byte source, including
+ordinary inlining of the existing input-rebind policy and network modes4/5/6.
+Initial global publication scheduling remains nonexact; included accepted
+rebind/scenario bodies replay unchanged. See [MATCH_MODE_PREPARATION_2026_10_29.md](MATCH_MODE_PREPARATION_2026_10_29.md).
+
 Default character deck loader431E80 is canonical exact463/463. Real string
 concatenation, owned CSV reader and unsigned-short deque preserve the full
 twenty-card path and lifetimes. See [DEFAULT_DECK_CSV_2026_10_29.md](DEFAULT_DECK_CSV_2026_10_29.md).
