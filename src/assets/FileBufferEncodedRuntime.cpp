@@ -32,8 +32,9 @@ bool FileBufferEncodedView::load_encoded(const char *path)
 
         unsigned char key = 0x8b;
         unsigned char delta = 0x71;
-        for (unsigned int index = 0; index < size_04; ++index) {
-            data_00[index] ^= key;
+        unsigned char *cursor = data_00;
+        for (unsigned int index = 0; index < size_04; ++index, ++cursor) {
+            *cursor ^= key;
             key = static_cast<unsigned char>(key + delta);
             delta = static_cast<unsigned char>(delta - 107);
         }

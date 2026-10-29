@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Encoded file-buffer419950 now preserves the native advancing payload cursor
+and owner-size rereads. Full source272/native267 remains nonexact; no new
+bytes. Wrapper exactness wording was corrected to raw-call evidence. See
+FILE_BUFFER_CURSOR_2026_10_29.md.
+
 The separate auxiliary pointer154 now owns the actual0x108 CSpriteEx wrapper
 allocated by45CD70, not the0x12C animation-state object. Both destruction
 consumers are corrected;168 accepted functions remain exact in the focused

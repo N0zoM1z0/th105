@@ -18665,7 +18665,7 @@ source = "src/assets/FileBufferEncodedRuntime.cpp"
 object = "build/match-units/GptWeb_FileBufferEncodedRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current .cv0/.cv1 decoded 8-byte file-buffer loader @ 0x00419950. Exact wrappers rewrite the extension and enter a target-private ESI receiver; source preserves the normal member API and exact XOR key schedule, with private ABI retained as a formal nonexact blocker. Real <new> declarations now select array-new symbol665B8A for the retained array expressions; complete comparison payloads remain unchanged. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
+notes = "Current .cv0/.cv1 decoded 8-byte file-buffer loader @ 0x00419950. Raw wrappers408DB0/408E40 rewrite the extension and enter a target-private ESI receiver; those wrappers are not accepted exact units. Source preserves the native cached payload cursor and owner-size rereads, with private ABI/EH lifetime retained as a formal nonexact blocker. Complete272/native267; docs/FILE_BUFFER_CURSOR_2026_10_29.md. Real <new> declarations now select array-new symbol665B8A for the retained array expressions; complete comparison payloads remain unchanged. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
 
 [[units.gpt-web-file-buffer-encoded-runtime.functions]]
 address = "0x00419950"
