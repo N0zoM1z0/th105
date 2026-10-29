@@ -18329,12 +18329,27 @@ dir32_targets = [
 ]
 
 [units.gpt-web-audio-scheduler-listeners]
-kind = "probe"
+kind = "linked_candidate"
 source = "src/audio/AudioSchedulerListeners.cpp"
-object = "build/match-units/GptWeb_AudioSchedulerListeners.obj"
-profile = "vc8-sp1-probe-o2"
+object = "build/match-units/GptWeb_AudioSchedulerListeners.dll"
+profile = "vc8-sp1-ltcg-o2"
 enable_gs = false
-notes = "Current game audio scheduler listener API over global state 0x00703864. Raw main-loop ownership proves create/remove/wait handle contracts and checked std::list<void*> +0x2C. Natural VC8 source is retained; exactness is gated per function. Target 0x40C6D0 is the LTCG constant-1 specialization of list::_Incsize and 0x414DE0 is the checked erase helper, so standalone helper ABI differences are not papered over."
+notes = "Genuine one-CIL VC8 LTCG of the existing listener API and checked STL bodies recovers create419350 exact169. Remove178/193 and wait129/184 remain nonexact. No source, private ABI or optimizer forcing; only existing attested global/IAT bindings."
+link_data_targets = [
+  "?g_audio_scheduler_state@th105@@3UAudioSchedulerState@1@A=?g_audio_scheduler_state@th105@@3UAudioSchedulerState@1@A",
+  "__imp__CreateEventA@16=__imp__CreateEventA@16",
+  "__imp__SetEvent@4=__imp__SetEvent@4",
+  "__imp__CloseHandle@4=__imp__CloseHandle@4",
+  "__imp__TryEnterCriticalSection@4=__imp__TryEnterCriticalSection@4",
+  "__imp__WaitForSingleObject@8=__imp__WaitForSingleObject@8",
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+  "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+  "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+  "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+  "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+  "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+]
 
 [[units.gpt-web-audio-scheduler-listeners.functions]]
 address = "0x00419350"

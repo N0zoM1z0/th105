@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: DirectSound buffer clear418610 is canonical exact85
+Current bounded checkpoint: audio listener creation419350 is canonical exact169
+from unchanged source in genuine one-CIL VC8 LTCG context. Actual checked STL
+visibility naturally recovers the constant-one helper specialization. Remove
+178/193 and wait129/184 remain nonexact. See
+[AUDIO_SCHEDULER_LISTENERS_LTCG_2026_10_29.md](AUDIO_SCHEDULER_LISTENERS_LTCG_2026_10_29.md)
+and build/frontier-419350-20261029/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: DirectSound buffer clear418610 is canonical exact85
 in genuine one-CIL context with its real ordinary load caller4183B0. The existing
 private-caller witness closes native edge418495; VC8 naturally recovers ESI with
 no ABI/register invention. Caller245/247 and silent initializer227/234 remain

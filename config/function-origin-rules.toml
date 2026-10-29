@@ -369,7 +369,7 @@ required_selected_body_calls = [
   { owner = "0x004081E0", site = "0x004082D4", target = "0x0040D6D0", target_status = "matching" },
   { owner = "0x004081E0", site = "0x0040839D", target = "0x00414640", target_status = "matching" },
   { owner = "0x004081E0", site = "0x00408452", target = "0x00401060", target_status = "matching" },
-  { owner = "0x004081E0", site = "0x0040821C", target = "0x00419350", target_status = "implemented" },
+  { owner = "0x004081E0", site = "0x0040821C", target = "0x00419350", target_status = "matching" },
   { owner = "0x004081E0", site = "0x00408466", target = "0x004194D0", target_status = "implemented" },
   { owner = "0x004081E0", site = "0x004084C2", target = "0x00419400", target_status = "implemented" },
 ]
@@ -1821,9 +1821,9 @@ evidence = "Current raw audio ownership closes this game-side Ogg/scheduler isla
 
 [[rules]]
 id = "audio-scheduler-runtime-authored-106a"
-addresses = ["0x00419000", "0x00419350", "0x00419400", "0x004194D0"]
-expected_count = 4
-expected_bytes = 787
+addresses = ["0x00419000", "0x00419400", "0x004194D0"]
+expected_count = 3
+expected_bytes = 618
 origin = "authored_game"
 subsystem = "audio"
 disposition = "authored"
