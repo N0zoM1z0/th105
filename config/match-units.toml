@@ -2887,7 +2887,7 @@ source = "src/audio/DirectSound.cpp"
 object = "build/match-units/CrossV106a_DirectSoundCore.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a DirectSound shutdown/create-buffer/volume recovery. The same target-proved DirectSoundGlobals object is used at addends +0/+4/+8 for primary/device/listener; Japanese source-owned error data remains literal-validated."
+notes = "DirectSound shutdown82 and create-buffer110 remain canonical exact. Volume418990 now uses natural float/log/clamp source; old aligned volatile scratch staging was unsupported and its103-byte acceptance withdrawn. Native frame/rounding stores remain unresolved. docs/DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md."
 
 [[units.cross-v106a-direct-sound-core.functions]]
 address = "0x004188C0"
@@ -2915,8 +2915,8 @@ rel32_targets = [
   "__ftol2_sse=0x0068A1A0",
 ]
 dir32_targets = [
-  "_logarithmic_volume_scale=_logarithmic_volume_scale",
-  "_direct_sound_volume_units=_direct_sound_volume_units",
+  "?logarithmic_volume_scale@th105@@3MB=_direct_sound_gain_scale_address",
+  "?direct_sound_volume_units@th105@@3MB=_direct_sound_gain_units_address",
 ]
 
 [units.cross-v106a-select-scenario-apply]

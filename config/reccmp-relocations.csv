@@ -3529,3 +3529,5 @@ _sakuya_action_state_006c41e0,0x006C41E0,000034c3,0,JP1.06a4cadb0 raw absolute o
 _sakuya_action_state_006c4780,0x006C4780,00803bc4,0,JP1.06a4cadb0 raw absolute operand and exact IEEE width/bytes; isolated complete Sakuya action-state candidate. No byte credit.,literal
 _sakuya_action_state_match_identifier,0x006FA894,00000000,0,JP1.06a4DA8BC/4DAEA1/4DB4FB raw DWORD operands identify the game match selector; no global layout expansion.,address
 _bgm_transition_minimum_gain,0x006D6EF4,6f12033b,0,JP1.06a402B95 reads this float0.0020000000949949026 threshold; raw native transition gain comparison and exact IEEE bytes.,literal
+_direct_sound_gain_scale_address,0x006D6EE8,48e10442,0,JP1.06a4189BE reads this readonly float data address; four bytes verified. Declaration-only natural gain provider; original TU visibility not claimed.,address
+_direct_sound_gain_units_address,0x006D6EE4,0000c842,0,JP1.06a4189C4 reads this readonly float data address; four bytes verified. Isolated declaration-only binding; existing literal aliases unchanged.,address

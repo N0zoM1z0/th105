@@ -159,7 +159,6 @@ address,name,size,status,match_percent,unit,evidence
 0x0046BF00,run_battle_phase_and_info_callback,34,matching,100.00,cross-v106a-shared-battle-phase,python3 scripts/build.py --unit cross-v106a-shared-battle-phase --compare --json reports exact 34/34 against TH105 1.06a
 0x0058C170,Yukari_try_dispatch_mirrored_gate_actions_200_201,367,matching,100.00,cross-v106a-yukari-command-gates,python3 scripts/build.py --unit cross-v106a-yukari-command-gates --compare --json reports exact 367/367 against TH105 1.06a
 0x00418920,create_secondary_buffer8,110,matching,100.00,cross-v106a-direct-sound-core,python3 scripts/build.py --unit cross-v106a-direct-sound-core --compare --json reports exact 110/110 against TH105 1.06a
-0x00418990,linear_gain_to_ds_volume,103,matching,100.00,cross-v106a-direct-sound-core,python3 scripts/build.py --unit cross-v106a-direct-sound-core --compare --json reports exact 103/103 against TH105 1.06a
 0x004245D0,CSelectScenario_apply_scenario,186,matching,100.00,cross-v106a-select-scenario-apply,python3 scripts/build.py --unit cross-v106a-select-scenario-apply --compare --json reports exact 186/186 against TH105 1.06a
 0x00425D40,CTitle_dtor,161,matching,100.00,cross-v106a-title-dtor,python3 scripts/build.py --unit cross-v106a-title-dtor --compare --json reports exact 161/161 against TH105 1.06a
 0x004256D0,CTitle_on_scene_enter,68,matching,100.00,cross-v106a-title-scene-enter,python3 scripts/build.py --unit cross-v106a-title-scene-enter --compare --json reports exact 68/68 against TH105 1.06a

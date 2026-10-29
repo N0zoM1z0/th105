@@ -556,7 +556,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00418670,authored_game,platform,authored,observed,application-bootstrap-island-authored-106a
 0x004188C0,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418920,authored_game,audio,authored,observed,canonical-exact-authored
-0x00418990,authored_game,audio,authored,observed,canonical-exact-authored
+0x00418990,authored_game,audio,authored,observed,direct-sound-volume-authored-106a
 0x00418A10,authored_game,audio,authored,observed,ogg-game-audio-runtime-authored-106a
 0x00418B40,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418B70,authored_game,audio,authored,observed,ogg-game-audio-runtime-authored-106a

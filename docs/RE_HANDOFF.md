@@ -1,6 +1,14 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: BGM fade403940 and set-level403990 are canonical
+Current bounded correction: volume conversion418990 no longer receives103
+exact bytes. The old aligned volatile scratch/self-stores lacked source evidence
+and were removed. Natural73/103 remains nonexact; DirectSound siblings82/110
+replay unchanged. BGM fade/level use a separate natural provider and retain
+their independent70/69 acceptance. See
+[DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md](DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md)
+and build/frontier-volume-source-integrity-20261029/formal-build.json.
+
+Preceding bounded checkpoint: BGM fade403940 and set-level403990 are canonical
 exact70/69 in genuine source/CRT context. Native raw-flag forwarding replaces
 unobserved Boolean normalization; the real transition ABI emerges from CIL.
 Runtime-only static CRT tables are strictly validated, without fake globals.

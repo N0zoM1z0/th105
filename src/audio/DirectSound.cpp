@@ -27,8 +27,8 @@ static const char create_sound_buffer_error[] =
     "\x83\x65\x83\x93\x83\x7c\x83\x89\x83\x8a\x83\x6f\x83\x62\x83\x74"
     "\x83\x40\x82\xcc\x90\xb6\x90\xac\x82\xc9\x8e\xb8\x94\x73";
 
-static volatile const float logarithmic_volume_scale = 33.220001220703125f;
-static volatile const float direct_sound_volume_units = 100.0f;
+extern const float logarithmic_volume_scale;
+extern const float direct_sound_volume_units;
 
 typedef unsigned long (__cdecl *OggReadCallback)(
     void *buffer,
@@ -111,14 +111,11 @@ HResult __stdcall create_secondary_buffer8(
 
 int __stdcall linear_gain_to_ds_volume(float gain)
 {
-    __declspec(align(64)) volatile unsigned char scratch[64];
-    volatile float *logarithmic_gain =
-        reinterpret_cast<volatile float *>(scratch + 60);
-    *logarithmic_gain = static_cast<float>(log10(static_cast<double>(gain)));
-    *logarithmic_gain = static_cast<float>(*logarithmic_gain);
-    *logarithmic_gain = static_cast<float>(*logarithmic_gain);
+    // The native result is rounded to float before scaling. Its unusual frame
+    // and repeated stores do not justify invented aligned/volatile storage.
+    float logarithmic_gain = static_cast<float>(log10(static_cast<double>(gain)));
     int volume = static_cast<int>(
-        direct_sound_volume_units * logarithmic_volume_scale * *logarithmic_gain);
+        direct_sound_volume_units * logarithmic_volume_scale * logarithmic_gain);
     if (volume < -10000) {
         return -10000;
     }

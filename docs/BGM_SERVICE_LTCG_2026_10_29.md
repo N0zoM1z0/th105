@@ -23,8 +23,9 @@ The real transition body updates immediate gain/DirectSound volume or records
 a delayed gain transition. Its native threshold at6D6EF4 is float0.002,
 bytes6F12033B, now an isolated validated data alias. The natural gain provider
 uses actual log10 and clamp logic; it does not copy the retained provider's
-volatile staging or claim a new exact gain-helper result. The separately
-accepted DirectSound unit is unchanged. All calls resolve to genuine source
+volatile staging or claim a new exact gain-helper result. This context does not reuse the old
+DirectSound gain provider; its subsequent source-integrity correction is recorded
+in DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md. All calls resolve to genuine source
 or pinned CRT/SDK libraries; there are no manufactured code-address providers.
 
 Whole-CIL optimization naturally chooses EAX for stream and EDI for duration,

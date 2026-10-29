@@ -3640,3 +3640,17 @@ required_selected_body_calls = [
  { owner = "0x004034F0", site = "0x00403515", target = "0x00414640", target_status = "matching" },
  { owner = "0x004034F0", site = "0x0040351D", target = "0x00414640", target_status = "matching" },
 ]
+
+[[rules]]
+id = "direct-sound-volume-authored-106a"
+addresses = ["0x00418990"]
+expected_count = 1
+expected_bytes = 103
+expected_names = ["sub_418990"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Native game-side logarithmic DirectSound conversion scales log10 by33.22f/100.0f and clamps to[-10000,0]. Raw transition402B70 calls at402BB1 and passes its result to buffer SetVolume slot3C. The transition is reached by canonical-exact BGM level/fade members. Whole103-byte body/hash and actual caller edge are independent of reconstruction acceptance. Prior aligned volatile scratch byte shaping was removed; natural73/native103 remains nonexact. docs/DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md."
+required_body_hashes = [{ address = "0x00418990", size = 103, sha256 = "a27d362dcc7f3516132c59d2ead2e4d70816b9c02f88cfb7c2750bfbc35082b4" }]
+required_direct_edges = [{ caller = "0x00402B70", site = "0x00402BB1", target = "0x00418990", caller_status = "unclassified" }]
