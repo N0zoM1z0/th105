@@ -1706,3 +1706,4 @@ ResultList_populate,0x004478B0,function
 CScenarioData_dtor,0x00438A70,function
 CScript_dtor,0x00405660,function
 CScenarioData_ctor,0x00459C90,function
+CScenarioData_render,0x00457F90,function

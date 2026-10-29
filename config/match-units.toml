@@ -27319,3 +27319,24 @@ dir32_targets = [
  "??_C@_09GAIAGALH@StaffRoll?$AA@=_scenario_ctor_name_22",
  "??_C@_03DBKJMAGF@End?$AA@=_scenario_ctor_name_23",
 ]
+
+[units.exact-first-scenario-render]
+kind = "probe"
+source = "src/battle/ScenarioRender.cpp"
+object = "build/match-units/ExactFirst_ScenarioRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete930-byte CScenarioData rendering policy, real checked containers and MI member pointer. Source remains nonexact on receiver/map register allocation and iterator publication; no exact credit. docs/SCENARIO_RENDER_2026_10_29.md."
+
+[[units.exact-first-scenario-render.functions]]
+address = "0x00457F90"
+symbol_base = "?render@CScenarioDataRenderView@th105@@UAEXXZ"
+rel32_targets = [
+ "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextDrawEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextDrawEntryDC@th105@@@std@@@2@$0A@@std@@@std@@QAEXXZ=0x00435C00",
+ "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
+ "?render_dynamic@ScenarioTextDrawEntryDC@th105@@QAEXXZ=0x00454DA0",
+ "?render_each@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEXP8SystemEffectObjectBase@@AEXXZ@Z=0x0058BEE0",
+ "?render_result@ScenarioRenderResult128@th105@@QAEXXZ=0x00454890",
+ "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
+ "__invalid_parameter_noinfo=0x0068A143",
+]

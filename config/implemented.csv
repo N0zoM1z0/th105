@@ -1679,3 +1679,4 @@ ResultList_populate
 CScenarioData_dtor
 CScript_dtor
 CScenarioData_ctor
+CScenarioData_render

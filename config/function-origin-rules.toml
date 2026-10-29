@@ -3728,3 +3728,20 @@ required_direct_edges = [
  { caller = "0x00438CC0", site = "0x00438D01", target = "0x00459C90", caller_status = "matching" },
  { caller = "0x00439200", site = "0x0043926D", target = "0x00459C90", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "scenario-render-authored-106a"
+addresses = ["0x00457F90"]
+expected_count = 1
+expected_bytes = 930
+expected_names = ["sub_457F90"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "CScenarioData RTTI vtable6C2990 slot0C owns this complete930-byte rendering policy. Two ordered text passes, system-effect member-pointer invocation, window geometry/scaling and result rendering establish authored ownership. Selected930-byte source remains33 bytes nonexact; no prefix credit. docs/SCENARIO_RENDER_2026_10_29.md."
+required_body_hashes = [{ address = "0x00457F90", size = 930, sha256 = "4a83363d0de8a6689f8e0e5200af816aec5118290412f001c64a9186aca3a848" }]
+required_selected_body_calls = [
+ { owner = "0x00457F90", site = "0x004580D3", target = "0x00454DA0", target_status = "matching" },
+ { owner = "0x00457F90", site = "0x00458325", target = "0x00454890", target_status = "matching" },
+]

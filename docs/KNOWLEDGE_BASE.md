@@ -2893,3 +2893,11 @@ missed the target deque.at range gate and throw edge. Native4319BB branches to
 natural indexed loops; full784-byte callable within785-byte COFF section stays
 nonexact+147. The same-TU writer lifetime/write/normalizer functions remain
 exact. See [new evidence](PROFILE_WRITER_CHECKED_DECK_2026_10_29.md).
+
+## Scenario rendering source selection, 2026-10-29
+
+457F90 now has complete typed selected source and a focused canonical930/930
+receipt, still nonexact by33 bytes. Checked sprite access must precede window
+scale evaluation. The remaining receiver/map allocation and iterator-word
+publication differences are not waived; see
+[SCENARIO_RENDER_2026_10_29.md](SCENARIO_RENDER_2026_10_29.md).

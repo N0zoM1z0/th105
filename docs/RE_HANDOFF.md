@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Scenario render457F90 now has complete930-byte selected source with real owned
+layouts and MI member pointer. Checked sprite access now precedes window-scale
+evaluation as native requires. It remains33 bytes nonexact on EBX/EBP allocation
+and map-iterator publication; no exact credit. See
+[SCENARIO_RENDER_2026_10_29.md](SCENARIO_RENDER_2026_10_29.md).
+
 Environment is now the shared empty RTTI base; its former24-byte state belongs
 to AnimationObject. All offsets stay unchanged. Thirty-four accepted functions
 replay exact, and every Reimu COFF section/relocation is unchanged. See
