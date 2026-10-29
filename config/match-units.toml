@@ -15149,7 +15149,7 @@ source = "src/network/NetworkAckInfoSendersRuntime.cpp"
 object = "build/match-units/GptWeb_NetworkAckInfoSendersRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current Client/Server primary ACK_INFO senders. Inline 0x40 ACK_INFO packet construction owns two checked deque<short> members and one EH state. The local packet is viewed through a slot-0 serialize-only polymorphic ABI at the call site so VC8 preserves the target indirect serializer call instead of devirtualizing the concrete local."
+notes = "Current Client/Server primary ACK_INFO senders. Inline 0x40 ACK_INFO packet construction owns a polymorphic8-byte IPacket-facing base, two checked deque<short> members and one EH state. Native RTTI at6D8858/6D870C establishes the base; constructor remains43/41 nonexact. The local packet is viewed through a slot-0 serialize-only polymorphic ABI at the call site so VC8 preserves the target indirect serializer call instead of devirtualizing the concrete local."
 
 [[units.gpt-web-network-ack-info-senders-runtime.functions]]
 address = "0x0044DAC0"

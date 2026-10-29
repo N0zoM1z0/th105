@@ -5,17 +5,23 @@
 
 namespace th105 {
 
-struct AckPacketResultBase4 {
-    AckPacketResultBase4() : result_004(0) {}
+// Native CDPP_ACK_INFO RTTI derives from IPacket at offset0. The base owns
+// the serializer vptr and result word; it is not a separate nonvirtual4-byte
+// base with a newly introduced derived vptr. Original method spelling unknown.
+struct AckPacketResultBase8 {
+    AckPacketResultBase8() : result_004(0) {}
+    virtual unsigned int serialize(void *buffer);
     unsigned int result_004;
 };
+
+typedef char AckPacketResultBaseSize[sizeof(AckPacketResultBase8) == 8 ? 1 : -1];
 
 class NetworkPacketSerializeOnlyView {
 public:
     virtual unsigned int serialize(void *buffer);
 };
 
-class NetworkAckInfoPacket40 : public AckPacketResultBase4 {
+class NetworkAckInfoPacket40 : public AckPacketResultBase8 {
 public:
     NetworkAckInfoPacket40() {}
     virtual unsigned int serialize(void *buffer);

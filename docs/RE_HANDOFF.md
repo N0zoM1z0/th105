@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+ACK_INFO construction now models RTTI-proved IPacket at offset0 as an8-byte
+polymorphic base. Constructor44DAC0 remains43/41 nonexact; both269/341-byte
+senders replay exact. See [ACK_PACKET_BASE_2026_10_29.md](ACK_PACKET_BASE_2026_10_29.md).
+
 Descriptor-pair46BA10 and group-B traversal46BCA0 now have complete selected
 252/398-byte sources. Bit31 tests, typed arrays and per-call descriptor loads
 restore native paths, but both remain nonexact. Four accepted geometry helpers
