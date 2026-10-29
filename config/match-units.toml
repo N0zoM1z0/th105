@@ -27151,3 +27151,33 @@ rel32_targets = [
  "?test_aabb_against_descriptor_shape@CollisionContext@th105@@QAEHPBUCollisionAabb@2@PBUShapeWords@2@0@Z=0x0046B7B0",
  "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBH0@Z=0x0046B3B0",
 ]
+
+[units.exact-first-music-list-populate]
+kind = "probe"
+source = "src/ui/MusicListPopulate.cpp"
+object = "build/match-units/ExactFirst_MusicListPopulate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete867-byte MusicList population. Real owned CSV reader, branch-local strings, checked string deques, score-path lookup and the literal C-string locked label reproduce all native lifetimes. docs/MUSIC_LIST_POPULATE_2026_10_29.md."
+
+[[units.exact-first-music-list-populate.functions]]
+address = "0x00445830"
+symbol_base = "?populate@MusicList@th105@@UAEXXZ"
+rel32_targets = [
+ "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
+ "?load@CsvReader@th105@@QAE_NPBD@Z=0x0040F150",
+ "?next_string@CsvReader@th105@@QAEPAXPAX@Z=0x0040F580",
+ "?_Growmap@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXI@Z=0x0040FE30",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+ "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
+ "?contains_bgm_path@ScoreMusicLookupView@th105@@QAE_NPBD@Z=0x0042D880",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?advance_row@CsvReader@th105@@QAE_NXZ=0x0040F680",
+ "?clear_rows@CsvReader@th105@@QAEXXZ=0x0040FDB0",
+ "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+ "??_C@_0CH@FHBNAFPJ@?$DMcolor?5808080?$DO?$IBH?$IBH?$IBH?$IBH?$IBH?$IBH?$IBH?$IBH?$DM?1@=_music_locked_label",
+]

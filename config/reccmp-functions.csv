@@ -1701,3 +1701,4 @@ load_default_character_deck,0x00431E80,function
 prepare_title_match_mode,0x0043B8F0,function
 CollisionContext_test_descriptor_shapes_overlap,0x0046BA10,function
 CollisionContext_test_group_b_against_group_b,0x0046BCA0,function
+MusicList_populate,0x00445830,function

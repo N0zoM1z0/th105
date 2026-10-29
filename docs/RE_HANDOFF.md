@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+MusicList population445830 is canonical exact867/867. The actual locked-label
+C-string constructor restores the native assign boundary and full stack
+lifetimes. See [MUSIC_LIST_POPULATE_2026_10_29.md](MUSIC_LIST_POPULATE_2026_10_29.md).
+
 ACK_INFO construction now models RTTI-proved IPacket at offset0 as an8-byte
 polymorphic base. Constructor44DAC0 remains43/41 nonexact; both269/341-byte
 senders replay exact. See [ACK_PACKET_BASE_2026_10_29.md](ACK_PACKET_BASE_2026_10_29.md).
