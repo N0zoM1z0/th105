@@ -3531,3 +3531,4 @@ _sakuya_action_state_match_identifier,0x006FA894,00000000,0,JP1.06a4DA8BC/4DAEA1
 _bgm_transition_minimum_gain,0x006D6EF4,6f12033b,0,JP1.06a402B95 reads this float0.0020000000949949026 threshold; raw native transition gain comparison and exact IEEE bytes.,literal
 _direct_sound_gain_scale_address,0x006D6EE8,48e10442,0,JP1.06a4189BE reads this readonly float data address; four bytes verified. Declaration-only natural gain provider; original TU visibility not claimed.,address
 _direct_sound_gain_units_address,0x006D6EE4,0000c842,0,JP1.06a4189C4 reads this readonly float data address; four bytes verified. Isolated declaration-only binding; existing literal aliases unchanged.,address
+d3d_backend_listener_runtime_address,0x007036A0,00000000,0;4;428;432,"Isolated reset-listener removal binding: canonical414D50 locks aggregate+4 and searches/erases list+0x1AC with head+0x1B0; all four loader-zero DWORDs independently checked. No broad aggregate range.",address

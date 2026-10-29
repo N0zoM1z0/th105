@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded checkpoint: reset-listener registration414CB0 now also matches
+Current bounded checkpoint: global reset-listener removal414D50 is now fully
+source-selected and positively authored from exact effect shutdown418040.
+Whole140/140 remains nonexact first+10; native early argument load and private
+erase receiver ABI remain unknown. Genuine mixed COFF context does not close
+them. No exact credit; do not force registers or stack shape. See
+[D3D_LISTENER_REMOVAL_2026_10_29.md](D3D_LISTENER_REMOVAL_2026_10_29.md).
+
+Preceding bounded checkpoint: reset-listener registration414CB0 now also matches
 157/157 in the same genuine effect/listener/lock TU. Native unchecked search
 followed by checked result/end comparison is recovered as standard std::find
 with a named iterator result. Actual exact initializer417FF0 witnesses its

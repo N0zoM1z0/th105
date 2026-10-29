@@ -3650,3 +3650,17 @@ required_direct_edges = [
  { caller = "0x004245D0", site = "0x00424641", target = "0x00404C90", caller_status = "matching" },
  { caller = "0x004245D0", site = "0x004245F3", target = "0x00404D70", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "d3d-reset-listener-removal-authored-106a"
+addresses = ["0x00414D50"]
+expected_count = 1
+expected_bytes = 140
+expected_names = ["sub_414D50"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact BattleBaseEffect shutdown418040 calls global D3D listener removal at418044 before releasing its COM effect. Complete49-instruction140-byte CFG locks7036A4, searches list70384C/head703850 for this effect, conditionally erases and unlocks. Natural find/erase source140/140 remains nonexact first+10; private erase ABI/argument lifetime unknown. docs/D3D_LISTENER_REMOVAL_2026_10_29.md."
+required_body_hashes = [{ address = "0x00414D50", size = 140, sha256 = "70b69513f402cfbe3ff69959a6b972429b7e2abcb257ff63a3c1aab85fe30d18" }]
+required_direct_edges = [{ caller = "0x00418040", site = "0x00418044", target = "0x00414D50", caller_status = "matching" }]

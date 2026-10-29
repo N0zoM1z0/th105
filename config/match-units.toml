@@ -26594,3 +26594,31 @@ rel32_targets = [
   "?_Buynode@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@2@PAU342@0ABQAUDeviceResetListener@th105@@@Z=0x004129E0",
   "?_Incsize@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEXI@Z=0x0040C6D0",
 ]
+
+[units.exact-first-d3d-listener-removal-linked]
+kind = "linked_candidate"
+source = "src/engine/D3DBackendListenerRemovalLinked.cpp"
+object = "build/match-units/ExactFirst_D3DBackendListenerRemoval.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+link_data_targets = [
+  "?g_d3d_backend@th105@@3UD3DBackend@1@A=d3d_backend_listener_runtime_address",
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+  "__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4",
+  "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4",
+  "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+  "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+  "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+  "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+  "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+]
+notes = "Complete global reset-listener removal source; real find/erase and critical-section providers. Whole140/140 remains nonexact from+10 argument lifetime and erase call ABI. No forced private helper ABI or exact credit."
+
+[[units.exact-first-d3d-listener-removal-linked.functions]]
+address = "0x00414D50"
+symbol_base = "_remove_battle_base_effect@4"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?erase@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x00414DE0",
+]

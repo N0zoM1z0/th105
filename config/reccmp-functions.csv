@@ -1670,3 +1670,4 @@ CollisionContext_test_group_a_against_primary_box,0x0046B940,function
 BgmService_shutdown,0x004034F0,function
 Fighter_set_counter_48a,0x004776C0,function
 ScenarioResultResource_enable,0x004547D0,function
+D3DBackend_remove_reset_listener,0x00414D50,function
