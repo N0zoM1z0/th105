@@ -34,4 +34,18 @@ Source:src/network/NetworkInputConstructor.cpp.
 Receipt:build/frontier-network-input-constructor-20261029/formal-build.json.
 Full private section comparison and formal section-tail size both cover48 bytes.
 No shared source or compiler profile changed; validation is focused, not a cold
-corpus rebuild. Only48 new exact bytes are counted.
+corpus rebuild. The initial constructor checkpoint adds48 exact bytes.
+
+## Paired endpoint destruction
+
+43BEA0 is independently canonical19/19, SHA256
+c1652a926d37f8857611bb27cdfa6f3fb4b5f0d7f6e3427c99d50a59c2531837.
+The caller44DBB5 passes this address as the paired array destructor. Its whole
+body clears the real short deque at68 and tail-enters input destruction409D50.
+That same folded input destructor is used by the RTTI scalar entry42CBC0.
+An ordinary endpoint destructor with an empty body generates this member
+cleanup naturally. Input destruction remains an external declaration here;
+no additional bytes are credited for that callee.
+
+The focused formal-lifetime.json receipt replays both48-byte construction and
+19-byte destruction exactly from the same source. This adds19 more exact bytes.

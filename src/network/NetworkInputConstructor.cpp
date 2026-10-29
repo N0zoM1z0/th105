@@ -22,6 +22,7 @@ public:
 };
 struct NetworkInputEndpointConstructorView {
     NetworkInputEndpointConstructorView();
+    ~NetworkInputEndpointConstructorView();
     NetworkInputConstructorView input;
     std::deque<short> queue_68;
 };
@@ -34,5 +35,9 @@ NetworkInputEndpointConstructorView::NetworkInputEndpointConstructorView()
     input.use_injected_64 = true;
     input.injected_60 = 0;
     queue_68.clear();
+}
+
+NetworkInputEndpointConstructorView::~NetworkInputEndpointConstructorView()
+{
 }
 }

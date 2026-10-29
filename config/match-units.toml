@@ -26950,3 +26950,8 @@ notes = "Complete48-byte CInputManagerEx endpoint constructor; two-slot virtual 
 address = "0x0044D8F0"
 symbol_base = "??0NetworkInputEndpointConstructorView@th105@@QAE@XZ"
 rel32_targets = ["??0InputCore60View@th105@@QAE@XZ=0x00409CF0", "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
+
+[[units.exact-first-network-input-constructor.functions]]
+address = "0x0043BEA0"
+symbol_base = "??1NetworkInputEndpointConstructorView@th105@@QAE@XZ"
+rel32_targets = ["??1NetworkInputConstructorView@th105@@UAE@XZ=0x00409D50", "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]

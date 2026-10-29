@@ -1267,7 +1267,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0043BDC0,85,0x0043BE14,sub_43BDC0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043BE20,106,0x0043BE89,sub_43BE20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043BE90,8,0x0043BE97,sub_43BE90,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0043BEA0,19,0x0043BEB2,sub_43BEA0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0043BEA0,19,0x0043BEB2,sub_43BEA0,NetworkInputEndpoint_dtor,network,matching,100.00,__thiscall,NetworkInputEndpoint::~NetworkInputEndpoint(),false,src/network/NetworkInputConstructor.cpp,scripts/repo-python scripts/build.py --unit exact-first-network-input-constructor --compare --json; complete canonical19/19; build/frontier-network-input-constructor-20261029/formal-lifetime.json,root,docs/NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md; Paired array destructor at44DBB5; queue cleanup precedes input prefix lifetime tail.
 0x0043BEF0,38,0x0043BF15,sub_43BEF0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043BF20,43,0x0043BF4A,sub_43BF20,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0043BF50,8,0x0043BF57,sub_43BF50,,,identified,0.00,__thiscall,,true,,Target PE 8-byte ECX+8 tail and two exact CNetworkBase VC8 array-helper callback uses; see vc8-array-subobject-dtor-adjustors-106a,,Compiler-generated subobject destructor callback into excluded checked-container cleanup; no exact credit.
