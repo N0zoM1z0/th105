@@ -1,12 +1,12 @@
 # TH10.5 reconstruction handoff
 
-Current bounded frontier: wave silent-buffer initialization401990 and providers
-4183B0/418610 have complete ordinary source and full focused comparisons,
-nonexact227/234,247/247,90/85. Genuine one-CIL visibility naturally recovers
-private receivers but specializes constant size; internal root224/234 has103
-exact prefix bytes, not whole exact credit. Original TU visibility remains open.
-See [WAVE_BUFFER_INITIALIZE_2026_10_28.md](WAVE_BUFFER_INITIALIZE_2026_10_28.md)
-and build/frontier-401990-20261028/{formal-build,boundary}.json.
+Current bounded checkpoint: DirectSound buffer clear418610 is canonical exact85
+in genuine one-CIL context with its real ordinary load caller4183B0. The existing
+private-caller witness closes native edge418495; VC8 naturally recovers ESI with
+no ABI/register invention. Caller245/247 and silent initializer227/234 remain
+nonexact. Public linked profile unchanged; no private cookie extension is used
+for acceptance. See [WAVE_BUFFER_INITIALIZE_2026_10_28.md](WAVE_BUFFER_INITIALIZE_2026_10_28.md)
+and build/frontier-401990-20261028/formal-linked-clear.json.
 
 Preceding bounded checkpoint: six primary CNetworkServer/Client byte accessors
 43CBA0/43CBB0/43CBC0 and43CD10/43CD20/43CD30 are canonical exact10/5/7 each,

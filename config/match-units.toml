@@ -26465,20 +26465,42 @@ source = "src/audio/WaveBufferInitialize.cpp"
 object = "build/match-units/ExactFirst_WaveBufferInitialize.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete silent-buffer initializer401990 and actual load/clear providers4183B0/418610. Normal C++ contracts; private native live-ins remain nonexact."
+notes = "Complete silent-buffer initializer401990. Normal C++ contracts; private native load live-ins remain nonexact. Providers are selected in the genuine linked clear unit."
 
 [[units.exact-first-wave-buffer-initialize.functions]]
 address = "0x00401990"
 symbol_base = "?initialize@WaveServiceInitializeView@th105@@QAE_NXZ"
 rel32_targets = ["_chkstk=0x0068D880", "memset=0x0068A440", "__security_check_cookie=0x00689D25", "?load_raw@WaveBufferView@th105@@QAE_NPBXIPBUWaveFormat18@2@@Z=0x004183B0"]
 
-[[units.exact-first-wave-buffer-initialize.functions]]
+[units.exact-first-wave-buffer-clear-linked]
+kind = "linked_candidate"
+source = "src/audio/WaveBufferInitialize.cpp"
+object = "build/match-units/ExactFirst_WaveBufferClearLinked.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+notes = "Genuine normal public load_raw caller retains its private ESI clear provider. Both full bodies compared; caller remains nonexact. No synthetic caller or private calling convention."
+link_data_targets = [
+ "?wave_lock_error@th105@@3QBDB=_direct_sound_lock_error",
+ "?wave_error_title@th105@@3QBDB=?sound_error_title@th105@@3QBDB",
+ "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+ "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+ "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+ "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+ "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+ "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+
+]
+
+[[units.exact-first-wave-buffer-clear-linked.functions]]
 address = "0x004183B0"
 symbol_base = "?load_raw@WaveBufferView@th105@@QAE_NPBXIPBUWaveFormat18@2@@Z"
-rel32_targets = ["memcpy=0x0068AA30", "?clear@WaveBufferView@th105@@QAEXXZ=0x00418610"]
-dir32_targets = ["?wave_lock_error@th105@@3QBDB=_direct_sound_lock_error", "?wave_error_title@th105@@3QBDB=?sound_error_title@th105@@3QBDB"]
+rel32_targets = [
+ "_memcpy=0x0068AA30",
+ "?clear@WaveBufferView@th105@@QAEXXZ=0x00418610",
+]
 
-[[units.exact-first-wave-buffer-initialize.functions]]
+[[units.exact-first-wave-buffer-clear-linked.functions]]
 address = "0x00418610"
 symbol_base = "?clear@WaveBufferView@th105@@QAEXXZ"
-rel32_targets = ["memset=0x0068A440"]
+private_from = { caller = "0x004183B0", site = "0x00418495" }
+rel32_targets = ["_memset=0x0068A440"]

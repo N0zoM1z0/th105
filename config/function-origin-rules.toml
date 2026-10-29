@@ -3586,10 +3586,10 @@ required_rtti_virtual_bodies = [
 
 [[rules]]
 id = "wave-silent-buffer-initialization-authored-106a"
-addresses = ["0x00401990", "0x004183B0", "0x00418610"]
-expected_count = 3
-expected_bytes = 566
-expected_names = ["sub_401990", "sub_4183B0", "sub_418610"]
+addresses = ["0x00401990", "0x004183B0"]
+expected_count = 2
+expected_bytes = 481
+expected_names = ["sub_401990", "sub_4183B0"]
 origin = "authored_game"
 subsystem = "audio"
 disposition = "authored"
@@ -3598,11 +3598,9 @@ evidence = "Exact CSceneManager41E070 owns the two32-buffer PCM preparation poli
 required_body_hashes = [
   { address = "0x00401990", size = 234, sha256 = "759c192fc91f8e0e828886d214f79f04f90613b5e5c7dcbdc89ba284e2591902" },
   { address = "0x004183B0", size = 247, sha256 = "b44b71d10856f0166d1d30304337946ad7f416d912822b6482647504797ad7e0" },
-  { address = "0x00418610", size = 85, sha256 = "39f177f1a5c3c39377db8de13c18a8840140c005e00ff172a877622c976833bc" },
  ]
 required_direct_edges = [
   { caller = "0x0041E070", site = "0x0041E0FF", target = "0x00401990", caller_status = "matching" },
   { caller = "0x00401990", site = "0x00401A20", target = "0x004183B0" },
   { caller = "0x00401990", site = "0x00401A31", target = "0x004183B0" },
-  { caller = "0x004183B0", site = "0x00418495", target = "0x00418610" },
 ]
