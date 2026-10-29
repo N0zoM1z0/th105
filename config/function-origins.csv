@@ -1480,8 +1480,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00448A20,authored_game,ui,authored,observed,canonical-exact-authored
 0x00448A40,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x00448AD0,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
-0x00448B20,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00448B30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00448B20,authored_game,ui,authored,observed,canonical-exact-authored
+0x00448B30,authored_game,ui,authored,observed,canonical-exact-authored
 0x00448B40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00448D00,compiler_generated,battle,exclude,observed,vc8-generated-scenario-event-name-resolver-std-comdats-106a
 0x00448D30,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
@@ -1498,7 +1498,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00449E90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044A410,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044A950,authored_game,ui,authored,observed,canonical-exact-authored
-0x0044AAC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044AAC0,authored_game,ui,authored,observed,profile-deck-constructor-authored-106a
 0x0044B320,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044B340,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044B540,unknown,,review,unknown,ida-1.06a-initial-inventory

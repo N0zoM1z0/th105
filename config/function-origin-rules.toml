@@ -3678,3 +3678,22 @@ confidence = "observed"
 evidence = "Canonical-exact attack-candidate resolver46DA10 calls this complete395-instruction1579-byte RET8 root at46DB22. Threshold/guard-break action selection, practice-mode gate, hit/resource scaling, owner/victim counters, depletion/action virtuals and collision effects establish authored game policy. Typed source1581 remains nonexact+449. docs/GENERAL_HIT_RESOLVER_2026_10_27.md."
 required_body_hashes = [{ address = "0x0046BF80", size = 1579, sha256 = "6b8c8e4f782020e3225e7aba799448ba3a4cc0cc6bffda61da9a9a52345d5f4e" }]
 required_direct_edges = [{ caller = "0x0046DA10", site = "0x0046DB22", target = "0x0046BF80", caller_status = "matching" }]
+
+[[rules]]
+id = "profile-deck-constructor-authored-106a"
+addresses = ["0x0044AAC0"]
+expected_count = 1
+expected_bytes = 2136
+expected_names = ["sub_44AAC0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact character-select update4485B0 allocates the6B0-byte deck editor and calls its constructor44863D. Root publishes RTTI-owned CProfileDeckEdit vtable6C222C; complete2136-byte body includes2133 reachable bytes and3 strict alignment bytes. Resource paths, font/digit atlas, design controls, signed-char number bindings, filtered spell/deck setup and four guides are application policy. Whole2151 source remains nonexact. docs/PROFILE_DECK_CONSTRUCTOR_2026_10_29.md."
+required_body_hashes = [{ address = "0x0044AAC0", size = 2136, sha256 = "676347f8efb9b309b9813cad58a5acad51732fc7573a85f3dfe8a3ffb2a14012" }]
+required_direct_edges = [{ caller = "0x004485B0", site = "0x0044863D", target = "0x0044AAC0", caller_status = "matching" }]
+required_dword_values = [
+ { address = "0x0044AB19", value = "0x006C222C" },
+ { address = "0x006C2228", value = "0x006D8610" },
+ { address = "0x006D861C", value = "0x006E6DDC" },
+]

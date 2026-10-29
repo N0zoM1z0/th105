@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Latest deck-editor checkpoint:44AAC0 has complete2136-byte native ownership and
+a2151-byte constructor source, nonexact+391. Native RTTI corrects CTile to four
+slots and numeric bindings to signed char. Its independent448B20/448B30 value
+getters are exact7/15, adding22 bytes only. Read-only attested Ghidra navigation
+and raw CFG/type checks are complete; existing consumers remain unchanged. See
+[PROFILE_DECK_CONSTRUCTOR_2026_10_29.md](PROFILE_DECK_CONSTRUCTOR_2026_10_29.md).
+
 General-hit resolver46BF80 now uses real existing BattleManager/sequence virtual
 views instead of manually loaded vtables. Whole1581-byte candidate remains
 unchanged/nonexact against1579; exact46DA10 caller and complete395-instruction
