@@ -26800,6 +26800,10 @@ rel32_targets = [
  "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
 ]
 
+[[units.exact-first-battle-menu-constructor.functions]]
+address = "0x00440730"
+symbol_base = "??1Menu@th105@@UAE@XZ"
+
 [units.exact-first-battle-menu-update]
 kind = "probe"
 source = "src/ui/BattleMenuUpdate.cpp"

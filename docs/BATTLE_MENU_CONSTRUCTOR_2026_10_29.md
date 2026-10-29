@@ -54,3 +54,17 @@ scripts/repo-python scripts/build.py --unit exact-first-battle-menu-constructor 
 
 Receipts and raw facts are under build/frontier-battle-menu-constructor-20261029/.
 Default CI and whitespace checks cover final tracking/progress changes.
+
+## Independently exact Menu base destructor
+
+The real Menu.hpp destructor emitted by this constructor matches440730 at
+17/17, SHA041143495bbeacdd9c97700dd1b4986e311b93024ef1cfa92b904e0659c9ccbc.
+It republishes RTTI-owned Menu vtable6C196C and sets authored scene mode22.
+Native constructor cleanup6B90C0 tail-calls440730; the existing exact scalar
+deleting destructor440750 independently contains the same destruction policy.
+This is an authored base-class lifecycle action, not an empty generated thunk.
+
+The complete17-byte symbol has no suffix and grants17 new bytes only.
+The800-byte constructor remains unchanged with six differences. Receipt:
+formal-with-menu-base.json in the same evidence directory. No source or
+shared header edit was required to emit this already-defined method.

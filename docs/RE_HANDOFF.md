@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+Menu base destructor440730 independently matches17/17 from the existing real
+Menu.hpp definition emitted by the battle-menu constructor. The800-byte
+constructor remains nonexact; no shared source changed or larger credit added.
+
 CMenuBattle update4407E0 now has complete797-byte callable/880-byte owned
 source coverage, including both switches and replay-save transitions. Whole
 892-byte source stays nonexact+48 on early guard/return sharing, no exact credit.
