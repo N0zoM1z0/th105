@@ -5,6 +5,7 @@
 #include "battle/GameMode.hpp"
 #include "battle/SpellData.hpp"
 #include "ui/ProfileDeckResourceLifetime.hpp"
+#include "ui/DesignBaseLifetime.hpp"
 
 #include <new>
 #include <stddef.h>
@@ -183,8 +184,8 @@ CharacterConstructorView::CharacterConstructorView(const MatchSetup::Side *setup
     ActionTree0c *tree = new ActionTree0c;
     *reinterpret_cast<ActionTree0c **>(reinterpret_cast<unsigned char *>(this) + 0x160) = tree;
 
-    std::vector<int> *triplet = new std::vector<int>;
-    *reinterpret_cast<std::vector<int> **>(reinterpret_cast<unsigned char *>(this) + 0x130) = triplet;
+    std::vector<DesignTextureHandle> *triplet = new std::vector<DesignTextureHandle>;
+    *reinterpret_cast<std::vector<DesignTextureHandle> **>(reinterpret_cast<unsigned char *>(this) + 0x130) = triplet;
 
     Element4 *elements = new Element4[64];
     *reinterpret_cast<Element4 **>(reinterpret_cast<unsigned char *>(this) + 0x164) = elements;

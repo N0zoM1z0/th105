@@ -22,7 +22,7 @@ rather than an integer-carried address. Its ordinary stack/RET4 ABI is unchanged
 existing derived caller declarations are not edited.
 
 The source uses the actual AttackObject base, genuine std::map<int,
-AnimationSequenceBlock*> and std::vector<int>, and a64-element array of real
+AnimationSequenceBlock*> and std::vector<DesignTextureHandle>, and a64-element array of real
 four-byte zero-constructed handles. The same9-byte handle constructor is folded
 with an already accepted body at40CF10; it is not credited again.
 
@@ -66,3 +66,8 @@ source selection, aliases and progress.
 Later CharacterEx lifetime review establishes native Character slot0 as
 purecall689934. The constructor-facing destructor is corrected to pure virtual;
 fresh formal-pure-base.json retains the identical557-byte55da99cc candidate.
+
+The subsequent905-byte destructor recovery identifies the+130 vector element
+as the existing four-byte handle value class rather than a scalar. The
+constructor-facing type is reconciled; constructor-handle-class.json retains
+the complete557-byte55da99cc body unchanged.

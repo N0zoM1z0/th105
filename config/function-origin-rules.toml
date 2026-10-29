@@ -3754,3 +3754,17 @@ confidence = "observed"
 evidence = "Exact Title update425990 calls447690 at425C75. CMenuResult vtable6C2070,15 ResultList members, score-unlocked character scan, cursor/guide and selected-character refresh establish authored constructor ownership. Native initial texture004 zero was missing from retained source and is restored; full495/502 remains nonexact. docs/RESULT_MENU_INITIALIZATION_2026_10_29.md."
 required_body_hashes = [{ address = "0x00447690", size = 502, sha256 = "1b56434f8d09960a7d90dfccfe7daeadfa0ef4b7e9035e5cd1df39baaa90a65a" }]
 required_direct_edges = [{ caller = "0x00425990", site = "0x00425C75", target = "0x00447690", caller_status = "matching" }]
+
+[[rules]]
+id = "character-base-destructor-authored-106a"
+addresses = ["0x00462CE0"]
+expected_count = 1
+expected_bytes = 905
+expected_names = ["sub_462CE0"]
+origin = "authored_game"
+subsystem = "characters"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact RTTI-owned CharacterEx scalar destructor64B770 calls462CE0 at64B779; the normal11-byte CharacterEx destructor also tail-enters it. Full905-byte Character cleanup releases texture/vector/deque/wave/manager/tree ownership and real base/member lifetimes. Cold range-error exits and remote second loop are included. Only one SIB operand byte differs. docs/CHARACTER_DESTRUCTOR_2026_10_29.md."
+required_body_hashes = [{ address = "0x00462CE0", size = 905, sha256 = "da514c9794ee2bc53351b4f4f246b76e45ebdce219411e81f603ff77014b7f35" }]
+required_direct_edges = [{ caller = "0x0064B770", site = "0x0064B779", target = "0x00462CE0", caller_status = "matching" }]

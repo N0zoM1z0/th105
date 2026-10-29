@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Character destructor462CE0 is complete905-byte source, including its remote
+texture loop and two range-error tails. Real handle-class vector removes the
+scalar memmove path; just one commutative SIB byte remains nonexact. Constructor
+557-byte result is unchanged after type reconciliation. See
+[CHARACTER_DESTRUCTOR_2026_10_29.md](CHARACTER_DESTRUCTOR_2026_10_29.md).
+
 CharacterEx normal/scalar destruction491BC0/64B770 is canonical exact11/36
 from its verified RTTI-owned table and real Character base call. Native base
 slot0 purity corrects the constructor view without changing its557-byte result.

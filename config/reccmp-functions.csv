@@ -1687,3 +1687,4 @@ CMenuResult_ctor,0x00447690,function
 Character_ctor,0x00462AB0,function
 CharacterEx_dtor,0x00491BC0,function
 CharacterEx_scalar_deleting_destructor,0x0064B770,function
+Character_dtor,0x00462CE0,function

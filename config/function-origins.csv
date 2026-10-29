@@ -1883,7 +1883,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00461B70,authored_game,battle,authored,observed,fighter-pat-resource-loader-authored-106a
 0x00462AA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00462AB0,authored_game,characters,authored,observed,character-base-constructor-authored-106a
-0x00462CE0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00462CE0,authored_game,characters,authored,observed,character-base-destructor-authored-106a
 0x00463070,authored_game,battle,authored,observed,canonical-exact-authored
 0x004631C0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004633A0,authored_game,battle,authored,observed,canonical-exact-authored

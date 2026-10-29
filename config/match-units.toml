@@ -26888,3 +26888,33 @@ rel32_targets = ["??1CharacterLifetimeBaseView@th105@@UAE@XZ=0x00462CE0"]
 address = "0x0064B770"
 symbol_base = "??_GCharacterExLifetimeView@th105@@UAEPAXI@Z"
 rel32_targets = ["??1CharacterLifetimeBaseView@th105@@UAE@XZ=0x00462CE0", "??3@YAXPAX@Z=0x006898EA"]
+
+[units.exact-first-character-destructor]
+kind = "probe"
+source = "src/characters/CharacterDestructor.cpp"
+object = "build/match-units/ExactFirst_CharacterDestructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete905-byte Character destruction including remote checked-deque loop and both cold range-error tails. Real four-byte handle-class vector restores native erase boundary; only one commutative SIB byte remains nonexact. docs/CHARACTER_DESTRUCTOR_2026_10_29.md."
+
+[[units.exact-first-character-destructor.functions]]
+address = "0x00462CE0"
+symbol_base = "??1CharacterDestructionView@th105@@UAE@XZ"
+rel32_targets = [
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?_Xran@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@KAXXZ=0x0040C350",
+ "?erase@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@2@V32@0@Z=0x0040C270",
+ "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
+ "?release_handle@OpaqueWaveHandleService@th105@@QAEEI@Z=0x00401BD0",
+ "??_V@YAXPAX@Z=0x0068AA26",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?erase@?$_Tree@V?$_Tmap_traits@HPAUAnimationSequenceBlock@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlock@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0043D270",
+ "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+ "?_Tidy@?$deque@UPatGroup@th105@@V?$allocator@UPatGroup@th105@@@std@@@std@@IAEXXZ=0x00461AF0",
+ "?_Tidy@?$deque@UCharacterSequenceRecord98@th105@@V?$allocator@UCharacterSequenceRecord98@th105@@@std@@@std@@IAEXXZ=0x0045FC80",
+ "?clear_resources@CharacterDtorSpell68@th105@@QAEXXZ=0x004321A0",
+ "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E900",
+ "??1CharacterSpriteResource98@th105@@QAE@XZ=0x00465420",
+ "?_Xran@?$deque@IV?$allocator@I@std@@@std@@KAXXZ=0x00431610",
+]
