@@ -27376,3 +27376,19 @@ rel32_targets = [
  "?_Incsize@?$list@PAVSystemEffectObjectBase@@V?$allocator@PAVSystemEffectObjectBase@@@std@@@std@@IAEXI@Z=0x00440370",
  "?acquire@?$CHandleManagerEx@VSystemEffectObject@@@@QAEPAVSystemEffectObject@@PAI@Z=0x00456B70",
 ]
+
+[units.exact-first-scenario-list-fade]
+kind = "probe"
+source = "src/battle/ScenarioListFadeUpdate.cpp"
+object = "build/match-units/ExactFirst_ScenarioListFade.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete signed fade-step/unsigned alpha policy on Scenario 9C entries. Real checked iterator and virtual color calls; emitted list erase independently matches102 bytes. Root418/native431 remains nonexact. docs/SCENARIO_LIST_FADE_2026_10_29.md."
+
+[[units.exact-first-scenario-list-fade.functions]]
+address = "0x00455850"
+symbol_base = "?update_list@ScenarioListUpdateView@th105@@QAEXPAV?$list@UScenarioFadeEntryView@th105@@V?$allocator@UScenarioFadeEntryView@th105@@@std@@@std@@@Z"
+rel32_targets = [
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?erase@?$list@UScenarioFadeEntryView@th105@@V?$allocator@UScenarioFadeEntryView@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004555B0",
+]

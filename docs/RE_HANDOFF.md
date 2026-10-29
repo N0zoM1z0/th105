@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Scenario list fade455850 now has complete selected signed-step/unsigned-alpha
+source, including strict-underflow retirement and both color paths. Root418/431
+remains nonexact; generated erase102/102 independently confirms the provider.
+See [SCENARIO_LIST_FADE_2026_10_29.md](SCENARIO_LIST_FADE_2026_10_29.md).
+
 SystemEffect tracked acquisition457110 is canonical exact91/91 through the
 real CObjectBase handle and typed checked-list ownership. Neighbor pool498/499
 and release119/119 remain nonexact. See
