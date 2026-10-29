@@ -1,7 +1,8 @@
 # TH10.5 reconstruction handoff
 
-Network input endpoint44D8F0/43BEA0 construction/destruction is canonical
-exact48/19. Real7C composition and
+Network input endpoint44D8F0 is authored canonical exact48/48. Paired
+43BEA0 cleanup reproduces19/19 as a compiler-owned witness, excluded from
+authored progress. Real7C composition and
 two-slot input interface preserve ownership; flag-before-mask initialization
 closes the old store-order stop. See
 [NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md](NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md).

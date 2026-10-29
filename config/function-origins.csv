@@ -1267,7 +1267,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043BDC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043BE20,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043BE90,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0043BEA0,authored_game,network,authored,observed,canonical-exact-authored
+0x0043BEA0,compiler_generated,runtime,exclude,inferred,network-input-endpoint-generated-destruction-106a
 0x0043BEF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043BF20,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x0043BF50,compiler_generated,runtime,exclude,inferred,vc8-array-subobject-dtor-adjustors-106a

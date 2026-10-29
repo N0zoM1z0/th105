@@ -48,4 +48,7 @@ cleanup naturally. Input destruction remains an external declaration here;
 no additional bytes are credited for that callee.
 
 The focused formal-lifetime.json receipt replays both48-byte construction and
-19-byte destruction exactly from the same source. This adds19 more exact bytes.
+19-byte destruction exactly from the same source. This is compiler-generated member cleanup, not authored progress. The temporary
+authored ledger credit is withdrawn; the configured exact witness is retained.
+The authored increase remains48 bytes from the constructor, whose flag/mask/clear
+body has independently observed application policy.

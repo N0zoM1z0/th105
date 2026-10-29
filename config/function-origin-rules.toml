@@ -3768,3 +3768,19 @@ confidence = "observed"
 evidence = "Exact RTTI-owned CharacterEx scalar destructor64B770 calls462CE0 at64B779; the normal11-byte CharacterEx destructor also tail-enters it. Full905-byte Character cleanup releases texture/vector/deque/wave/manager/tree ownership and real base/member lifetimes. Cold range-error exits and remote second loop are included. Only one SIB operand byte differs. docs/CHARACTER_DESTRUCTOR_2026_10_29.md."
 required_body_hashes = [{ address = "0x00462CE0", size = 905, sha256 = "da514c9794ee2bc53351b4f4f246b76e45ebdce219411e81f603ff77014b7f35" }]
 required_direct_edges = [{ caller = "0x0064B770", site = "0x0064B779", target = "0x00462CE0", caller_status = "matching" }]
+
+[[rules]]
+id = "network-input-endpoint-generated-destruction-106a"
+addresses = ["0x0043BEA0"]
+expected_count = 1
+expected_bytes = 19
+expected_names = ["sub_43BEA0"]
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "inferred"
+evidence = "Complete19-byte composed endpoint cleanup only destroys deque68 then input prefix. Exact CNetworkBase constructor44DB10 passes it as the paired array destructor at44DBB5. Natural empty C++ destructor reproduces all19 bytes, corroborating automatic member cleanup rather than authored body logic. docs/NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md."
+required_body_hashes = [
+ { address = "0x0043BEA0", size = 19, sha256 = "c1652a926d37f8857611bb27cdfa6f3fb4b5f0d7f6e3427c99d50a59c2531837" },
+ { address = "0x0044DBB5", size = 31, sha256 = "0a20774db95ad4695182334e7b1d1d57eb1a3e0a8d1860d2d664dbb253514025" },
+]
