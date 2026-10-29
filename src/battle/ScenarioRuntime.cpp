@@ -17,9 +17,9 @@ struct ScenarioTextMapIteratorIncrementView {
     void increment();
 };
 
-void CScenarioData::configure(int scenario_id)
+void CScenarioData::configure(CInputManager *input)
 {
-    scenario_id_064 = scenario_id;
+    input_064 = input;
     ScenarioEffectConfig128 *config = &effect_config_1fc;
     field_328 = static_cast<int>(0x80000000u);
 

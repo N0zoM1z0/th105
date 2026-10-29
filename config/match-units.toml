@@ -10500,7 +10500,7 @@ rel32_targets = [
 
 [[units.cross-v106a-scenario-runtime.functions]]
 address = "0x00454FE0"
-symbol_base = "?configure@CScenarioData@th105@@UAEXH@Z"
+symbol_base = "?configure@CScenarioData@th105@@UAEXPAUCInputManager@2@@Z"
 rel32_targets = [
   "?configure@ScenarioEffectOwner194@th105@@QAEXPBUScenarioEffectConfig128@2@@Z=0x004115A0",
   "?reset@ScenarioResultResource@th105@@QAEXXZ=0x004549E0",

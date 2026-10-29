@@ -3,6 +3,7 @@
 #include "BattleController.hpp"
 #include "BattleSetup.hpp"
 #include "ui/Title.hpp"
+#include "input/InputManager.hpp"
 
 #include <string.h>
 #include <mbstring.h>
@@ -21,13 +22,6 @@ void __cdecl play_bgm(const char *);
 void __cdecl stop_bgm();
 void __cdecl set_bgm_volume(int, int);
 void __cdecl scenario_play_sound(const char *, int, unsigned char);
-
-struct ScenarioInputView {
-    unsigned char prefix_00[0x40];
-    int pressed_40;
-    unsigned char gap_44[4];
-    int held_48;
-};
 
 class ScenarioCharacterView {
 public:
@@ -211,9 +205,8 @@ signed char ScenarioCommandUpdateView::update()
             scenario_pop_inline();
             s.result_resources_390.enter_phase_three();
         } else {
-            ScenarioInputView *input =
-                reinterpret_cast<ScenarioInputView *>(s.scenario_id_064);
-            if (input->pressed_40 == 1 || input->held_48 != 0) {
+            CInputManager *input = s.input_064;
+            if (input->hold.buttons[0] == 1 || input->hold.buttons[2] != 0) {
                 if (get_session_setup_option() == 1)
                     get_player2_input()->queue_control_word(
                         static_cast<unsigned short>(g_pair_state));
@@ -255,9 +248,8 @@ signed char ScenarioCommandUpdateView::update()
             input->input_104->pop_control_word(&word);
             input->lock_124.leave();
         } else {
-            ScenarioInputView *input =
-                reinterpret_cast<ScenarioInputView *>(s.scenario_id_064);
-            if (input->pressed_40 != 1 && input->held_48 == 0)
+            CInputManager *input = s.input_064;
+            if (input->hold.buttons[0] != 1 && input->hold.buttons[2] == 0)
                 return 1;
             if (get_session_setup_option() == 1)
                 get_player2_input()->queue_control_word(

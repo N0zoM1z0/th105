@@ -9,12 +9,12 @@ namespace th105 {
 class ScenarioLifetimeView : public ::Environment {
 public:
  ScenarioLifetimeView();
- virtual void configure(int);
+ virtual void configure(CInputManager *);
  virtual void clear_runtime();
- virtual int update();
+ virtual signed char update();
  virtual void render();
  SystemEffectManager< ::SystemEffectObject> system_effects_004;
- int scenario_id_064;
+ CInputManager *input_064;
  TextFontOwner194 font_068;
  TextFontConfig128 config_1fc;
  int field_324,field_328;

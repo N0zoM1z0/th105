@@ -12,6 +12,7 @@
 #include <stddef.h>
 
 namespace th105 {
+struct CInputManager;
 
 struct ScenarioRenderSprite94 {
     virtual void slot_00();
@@ -60,13 +61,13 @@ struct ScenarioRenderResult128 {
 
 class CScenarioDataRenderView : public ::Environment {
 public:
-    virtual void configure(int scenario_id);
+    virtual void configure(CInputManager *input);
     virtual void clear_runtime();
     virtual signed char update();
     virtual void render();
 
     SystemEffectManager< ::SystemEffectObject> system_effects_004;
-    int scenario_id_064;
+    CInputManager *input_064;
     ScenarioRenderFont194 effect_owner_068;
     ScenarioRenderConfig128 effect_config_1fc;
     int field_324;

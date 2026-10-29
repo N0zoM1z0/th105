@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Scenario064 is now correctly typed as its selected CInputManager pointer, not
+a scenario ID. The interpreter reads actual hold buttons0/2; configure90/90
+and all21 affected accepted functions remain exact. Constructor/render residuals
+are unchanged. See [SCENARIO_INPUT_OWNER_2026_10_29.md](SCENARIO_INPUT_OWNER_2026_10_29.md).
+
 Corrected a historical owner mix-up:454F10 advances the whole524-byte scenario,
 not its194-byte font member. The font view is now nonpolymorphic and the update/
 advance return is a signed byte. All24 affected accepted functions replay exact.

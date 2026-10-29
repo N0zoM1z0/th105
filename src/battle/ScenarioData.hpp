@@ -14,6 +14,8 @@ class SystemEffectObject;
 
 namespace th105 {
 
+struct CInputManager;
+
 struct ScenarioEffectConfig128 {
     char text_000[0x100];
     unsigned char color_100[6];
@@ -149,7 +151,7 @@ typedef char ScenarioTextEntryDC_size_must_be_0xdc[
 
 class CScenarioData {
 public:
-    virtual void configure(int scenario_id);
+    virtual void configure(CInputManager *input);
     void set_effect_color_bytes(
         unsigned char c1, unsigned char c3, unsigned char c5);
     virtual void clear_runtime();
@@ -157,7 +159,7 @@ public:
     virtual void render();
 
     SystemEffectManager< ::SystemEffectObject> system_effects_004;
-    int scenario_id_064;
+    CInputManager *input_064;
     ScenarioEffectOwner194 effect_owner_068;
     ScenarioEffectConfig128 effect_config_1fc;
     int field_324;
