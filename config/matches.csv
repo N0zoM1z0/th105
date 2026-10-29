@@ -10,7 +10,7 @@ address,name,size,status,match_percent,unit,evidence
 0x0040A4F0,InputStateTableStorage_ctor,23,matching,100.00,cross-v106a-input-cluster,python3 scripts/build.py --unit cross-v106a-input-cluster --compare --json reports exact 23/23 against TH105 1.06a
 0x0040A660,is_initial_press,69,matching,100.00,cross-v106a-input-cluster,python3 scripts/build.py --unit cross-v106a-input-cluster --compare --json reports exact 69/69 against TH105 1.06a
 0x0040A6B0,set_input_state_table_entry,16,matching,100.00,cross-v106a-input-manager,python3 scripts/build.py --unit cross-v106a-input-manager --compare --json reports exact 16/16 against TH105 1.06a
-0x0040CF20,FileReaderOwner_dtor,15,matching,100.00,cross-v106a-file-reader,python3 scripts/build.py --unit cross-v106a-file-reader --compare --json reports exact 15/15 against TH105 1.06a
+0x0040CF20,FileReaderOwner_dtor,15,matching,100.00,exact-first-csv-file-loading,python3 scripts/build.py --unit cross-v106a-file-reader --compare --json reports exact 15/15 against TH105 1.06a
 0x0040D930,is_raw_key_down,16,matching,100.00,cross-v106a-input-manager,python3 scripts/build.py --unit cross-v106a-input-manager --compare --json reports exact 16/16 against TH105 1.06a
 0x00412A20,string28_equals_c_string,53,matching,100.00,cross-v106a-string28-equals,python3 scripts/build.py --unit cross-v106a-string28-equals --compare --json reports exact 53/53 against TH105 1.06a
 0x0041B880,CPackageFileReader_size,4,matching,100.00,cross-v106a-file-reader,python3 scripts/build.py --unit cross-v106a-file-reader --compare --json reports exact 4/4 against TH105 1.06a
@@ -1516,3 +1516,5 @@ address,name,size,status,match_percent,unit,evidence
 0x00405770,CScript_clear_pending_commands,147,matching,100.00,exact-first-script-lifecycle-linked,scripts/repo-python scripts/build.py --unit exact-first-script-lifecycle-linked --compare --json reports canonical exact147/147 with closed caller witness; docs/SCRIPT_PENDING_LIFETIME_2026_10_29.md.
 0x00408E40,FileBuffer_load_csv,140,matching,100.00,exact-first-csv-file-loading,Address-selected canonical whole linked-body comparison reports exact140/140; docs/CSV_FILE_LOADING_2026_10_29.md.
 0x0040F730,CsvReader_reset_iterators,151,matching,100.00,exact-first-csv-file-loading,Address-selected canonical whole linked-body comparison reports exact151/151; docs/CSV_FILE_LOADING_2026_10_29.md.
+0x00419860,FileBufferView_load_plain,234,matching,100.00,exact-first-csv-file-loading,Complete234/234 normal body and full typed cleanup EH canonical replay; docs/FILE_BUFFER_LOADING_EXACT_2026_10_29.md.
+0x00419950,FileBufferEncodedView_load_encoded,267,matching,100.00,exact-first-csv-file-loading,Complete267/267 normal body and full typed cleanup EH canonical replay; docs/FILE_BUFFER_LOADING_EXACT_2026_10_29.md.

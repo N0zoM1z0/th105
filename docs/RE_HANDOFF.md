@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Plain419860 and encoded419950 file loaders are canonical exact234/267,
+including complete cleanup EH. The actual public reader destructor restores
+the frame; ordinary read forwarding closes argument scheduling. The CSV
+wrapper140/reset151 and moved owner destructor15 stay exact. See
+FILE_BUFFER_LOADING_EXACT_2026_10_29.md.
+
 CSV file dispatch408E40 and iterator reset40F730 are canonical exact140/151
 in their real file/reader/package/CSV CIL graph. Source-only caller EH roles
 are explicit; caller176/170 and parser remain unaccepted. The old reset

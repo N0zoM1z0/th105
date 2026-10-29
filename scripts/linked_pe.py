@@ -179,10 +179,16 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                 else:
                     private_direct_sites(witness)
             callers = [f for f in functions if f.get("address") == witness["caller"]]
+            through_exact = witness.get("through_exact_caller") is True
             if (len(callers) != 1 or callers[0] is function
-                    or "private_from" in callers[0] or "private_global" in callers[0]
-                    or "vtable_entry" in callers[0]):
+                    or ("private_from" in callers[0] and not through_exact)
+                    or "private_global" in callers[0] or "vtable_entry" in callers[0]):
                 raise ValueError("private linked function needs a distinct configured exported caller")
+            if through_exact:
+                parent = callers[0].get("private_from", {})
+                if (not parent or "via" in parent or "through_exact_caller" in parent
+                        or "caller_eh" in witness):
+                    raise ValueError("exact caller extension needs one directly witnessed private parent")
         elif "vtable_entry" in function:
             continue
         else:
@@ -931,6 +937,9 @@ def private_direct_sites(contract: dict) -> list[str]:
     address = lambda value: isinstance(value, str) and re.fullmatch(r"0x[0-9A-Fa-f]{8}", value)
     if not isinstance(contract, dict) or not address(contract.get("caller")):
         raise ValueError("private caller address is malformed")
+    if (set(contract) == {"caller", "site", "through_exact_caller"}
+            and contract["through_exact_caller"] is True and address(contract["site"])):
+        return [contract["site"]]
     if set(contract) == {"caller", "site"} and address(contract["site"]):
         return [contract["site"]]
     sites = contract.get("sites")
@@ -944,13 +953,14 @@ def private_direct_sites(contract: dict) -> list[str]:
 def private_caller_witness(function: dict, unit: dict, pe, functions: dict, exports: dict,
                            cil_owner: str, ledger: dict, read_target, *, map_text: str = "",
                            bindings: list[dict] = (), game_range: tuple[int, int] = (0, 0),
-                           internal_refs: list[dict] = ()) -> dict:
+                           internal_refs: list[dict] = (), exact_caller_replay: dict | None = None) -> dict:
     contract = function["private_from"]
     if "via" in contract:
         return private_path_witness(function, unit, pe, functions, exports, cil_owner,
                                     ledger, read_target, map_text, bindings, game_range)
     callers = [f for f in unit["functions"] if f["address"] == contract["caller"]]
-    if len(callers) != 1 or "private_from" in callers[0]:
+    through_exact = contract.get("through_exact_caller") is True
+    if len(callers) != 1 or ("private_from" in callers[0] and not through_exact):
         raise ValueError("private linked witness has no configured exported caller")
     caller = callers[0]
     caller_row = ledger[contract["caller"]]
@@ -967,12 +977,23 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
     sites = [contract["site"]] if eh_caller else private_direct_sites(contract)
     data = (caller_data_witness(pe, source_instructions, functions, bindings, game_range)
             if "sites" in contract else [])
-    if "sites" not in contract and not eh_caller:
+    if "sites" not in contract and not eh_caller and not through_exact:
         validate_body_relocations(pe, parent, len(source), [])
     source_calls = [i.address for i in source_instructions
                     if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == start]
     target_parent, target_start = int(caller["address"], 0), int(function["address"], 0)
     target = read_target(target_parent, int(caller_row["size"], 0))
+    if through_exact:
+        report = exact_caller_replay or {}
+        if (caller_row["status"] != "matching" or "private_from" not in caller
+                or report.get("result") != "exact" or report.get("address") != caller["address"]
+                or report.get("linked_function_va") != f"0x{parent:08X}"
+                or report.get("source_body_sha256") != hashlib.sha256(source).hexdigest()
+                or report.get("target_sha256") != hashlib.sha256(target).hexdigest()
+                or report.get("object_compared_sha256") != report.get("target_sha256")
+                or not report.get("private_caller_witness")):
+            raise ValueError("private child requires a fresh complete exact replay of its private caller")
+        validate_body_relocations(pe, parent, len(source), report["validated_data_references"])
     target_calls = [i.address for i in decode_closed_body(target, target_parent)
                     if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == target_start]
     if len(source_calls) != len(sites) or target_calls != [int(site, 0) for site in sites]:
@@ -984,6 +1005,10 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
     edge = ({"target_sites": sites, "source_sites": [f"0x{site:08X}" for site in source_calls],
              "source_only_address_fields": data} if "sites" in contract else
             {"target_site": sites[0], "source_site": f"0x{source_calls[0]:08X}"})
+    if through_exact:
+        edge["exact_private_caller"] = {key: exact_caller_replay[key] for key in
+            ("address", "source_body_sha256", "object_compared_sha256", "target_sha256",
+             "validated_data_references", "private_caller_witness")}
     if eh_caller:
         from linked_caller_eh import observe as observe_caller_eh
         edge.update(observe_caller_eh(contract, unit, caller, pe, functions, exports,
@@ -1072,9 +1097,21 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         if addresses and function["address"] not in addresses:
             continue
         cil_owner = image.with_suffix(".ltcg.obj").name
+        exact_parent = None
+        contract = function.get("private_from", {})
+        if contract.get("through_exact_caller") is True:
+            parents = [f for f in unit["functions"] if f["address"] == contract["caller"]]
+            if (len(parents) != 1 or not parents[0].get("private_from")
+                    or any(k in parents[0]["private_from"] for k in ("through_exact_caller", "via"))):
+                raise ValueError("exact private caller replay cannot recurse or use an implicit path")
+            parent_reports = compare_linked(name, unit, {contract["caller"]}, image)
+            if len(parent_reports) != 1 or parent_reports[0].get("result") != "exact":
+                raise ValueError("private caller does not replay exact in the current image")
+            exact_parent = parent_reports[0]
         witness = (private_caller_witness(function, unit, pe, functions, exports,
                                         cil_owner, ledger, c.target_bytes, map_text=map_text,
-                                        bindings=bindings, game_range=game_range, internal_refs=internal_refs)
+                                        bindings=bindings, game_range=game_range, internal_refs=internal_refs,
+                                        exact_caller_replay=exact_parent)
                    if "private_from" in function else None)
         if function.get("private_static_leaf") is True:
             if not witness or not witness.get("static_leaf"):
@@ -1110,7 +1147,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             "address": function["address"], "object": str(image), "symbol_base": function["symbol_base"],
             "comparison": {"boundary": "linked_symbol_and_cfg", "size": size},
             "target_size": size, "object_section_tail_size": len(code), "object_size_kind": "linked_symbol_body",
-            "linked_function_va": f"0x{start:08X}", "first_mismatch": mismatch, "failure": None,
+            "linked_function_va": f"0x{start:08X}", "source_body_sha256": hashlib.sha256(raw).hexdigest(),
+            "first_mismatch": mismatch, "failure": None,
             "target_executable_sha256": target_hash, "target_sha256": hashlib.sha256(target).hexdigest(),
             "object_compared_sha256": hashlib.sha256(code).hexdigest(), "replayed_rel32": calls,
             "validated_data_references": data_refs, "validated_vtables": vtables,

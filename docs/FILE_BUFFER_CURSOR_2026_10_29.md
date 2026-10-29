@@ -1,5 +1,9 @@
 # Encoded file-buffer cursor
 
+Later same-day result: both file loaders are now exact234/267 with full cleanup
+EH; see FILE_BUFFER_LOADING_EXACT_2026_10_29.md. The initial checkpoint and
+controls below remain historical evidence.
+
 Raw hash-attested Japanese1.06a code at419950 has a complete267-byte body,
 through RET4 at419A58. Its decoder loads data_00 once at419A12, walks that
 pointer at419A2A, and rereads size_04 for the loop bound at419A2D. The byte key

@@ -226,3 +226,18 @@ The source/native caller still must close and have exactly the declared E8 to
 the unique unexported source callee. This does not compare or accept caller/EH
 bytes, and grants no field waiver in the accepted callee. Legacy `site` and
 two-`sites` behavior is unchanged. See CSV_FILE_LOADING_2026_10_29.md.
+
+## Private member below an exact private caller
+
+`private_from = { caller, site, through_exact_caller = true }` permits one
+explicit additional edge below an already directly witnessed private caller.
+The caller must be marked matching and freshly replay **exact in the same
+image** on every child comparison. Its source raw hash, canonical hash,
+target hash, map identity, complete CFG and HIGHLOW coverage are bound to that
+replay. Recursion, longer implicit chains and nonexact parents fail. The
+child's own complete comparison is unchanged. See FILE_BUFFER_LOADING_EXACT_2026_10_29.md.
+
+Full `eh_cleanup` comparison also supports ordinary unrenamed public members
+and this exact-parent private member case, using the real static CRT cookie.
+It still compares the entire handler, every cleanup funclet, FuncInfo and
+unwind map; this is not the source-only caller-role contract above.

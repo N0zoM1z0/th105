@@ -1,5 +1,9 @@
 # CSV file dispatch and iterator reset
 
+Later same-day result: both file loaders are now exact234/267 with full cleanup
+EH; see FILE_BUFFER_LOADING_EXACT_2026_10_29.md. The initial checkpoint and
+controls below remain historical evidence.
+
 Two complete authored functions are now canonical exact in the real CIL context:
 
 -408E40, FileBuffer_load_csv,140 bytes:

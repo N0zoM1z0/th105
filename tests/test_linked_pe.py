@@ -245,6 +245,43 @@ class LinkedPeTests(unittest.TestCase):
         bad = copy.deepcopy(f); bad["pe"].data[0x1005:0x100a] = b"\x90" * 5
         with self.assertRaises(ValueError): linked.private_caller_witness(**bad)
 
+    def test_exact_private_parent_contract_requires_an_explicit_direct_ancestor(self):
+        f = self.private_fixture()
+        f['unit']['functions'].append({'address':'0x00403000','symbol_base':'_leaf@4',
+            'private_from':{'caller':'0x00402000','site':'0x00402000','through_exact_caller':True}})
+        u = {**f['unit'], 'profile':linked.PROFILE, 'object':'build/test.dll', 'link_data_targets':[]}
+        linked.validate_contract(u,set())
+        changes = [lambda u:u['functions'][2]['private_from'].update(through_exact_caller=False),
+            lambda u:u['functions'][1].pop('private_from'),
+            lambda u:u['functions'][1]['private_from'].update(through_exact_caller=True),
+            lambda u:u['functions'][2]['private_from'].update(caller_eh={'handler':'0x00404000','info':'0x00405000'})]
+        for change in changes:
+            v=copy.deepcopy(u);change(v)
+            with self.assertRaises(ValueError):linked.validate_contract(v,set())
+
+    def test_exact_private_parent_witness_rejects_missing_or_stale_full_replay(self):
+        import hashlib
+        f=self.private_fixture();f['ledger']['0x00401000']['status']='matching'
+        parent=f['unit']['functions'][0]
+        parent['private_from']={'caller':'0x00400000','site':'0x00400000'}
+        f['exports']={}
+        f['function']['private_from']['through_exact_caller']=True
+        raw=linked.linked_body(f['pe'],f['functions'],self.start)
+        target=f['read_target'](0x401000,6);h=hashlib.sha256(target).hexdigest()
+        report={'result':'exact','address':'0x00401000','linked_function_va':f'0x{self.start:08X}',
+            'source_body_sha256':hashlib.sha256(raw).hexdigest(),'target_sha256':h,
+            'object_compared_sha256':h,'validated_data_references':[],
+            'private_caller_witness':{'caller':'0x00400000'}}
+        f['exact_caller_replay']=report
+        self.assertIn('exact_private_caller',linked.private_caller_witness(**f))
+        for key,value in [('result','mismatch'),('address','0x00403000'),
+                          ('source_body_sha256','bad'),('object_compared_sha256','bad'),
+                          ('private_caller_witness',None)]:
+            bad=copy.deepcopy(f);bad['exact_caller_replay'][key]=value
+            with self.subTest(key=key),self.assertRaises(ValueError):linked.private_caller_witness(**bad)
+        f.pop('exact_caller_replay')
+        with self.assertRaises(ValueError):linked.private_caller_witness(**f)
+
     def eh_private_fixture(self):
         f = self.private_fixture()
         root, child, handler = self.start, self.start + 0x100, self.start + 0x120

@@ -65,9 +65,12 @@ class LifecycleTests(unittest.TestCase):
                 symbol_base="??1CScript@@QAE@XZ",
                 eh_cleanup=dict(handler="0x006BE423", info="0x006E4C58"))])
         core.validate_contract(unit, set())
+        member = copy.deepcopy(unit)
+        member["functions"][0]["symbol_base"] = "?load@FileBuffer@@QAE_NPBD@Z"
+        core.validate_contract(member, set())
         changes = [lambda u: u.update(link_runtime="import"),
             lambda u: u.update(link_runtime_data=[]),
-            lambda u: u["functions"][0].update(symbol_base="?clear_commands@CScript@@QAEXXZ"),
+            lambda u: u["functions"][0].update(symbol_base="_free_function"),
             lambda u: u["functions"][0].update(export_name="_alias"),
             lambda u: u["functions"][0].update(private_from=dict(caller="0x00405600", site="0x00405633")),
             lambda u: u["functions"][0].update(private_static_leaf=True),

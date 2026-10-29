@@ -21,6 +21,12 @@ public:
  bool load_text(const char *);
  bool load_csv(const char *);
 };
+// Capture the real destination/length arguments before virtual reader dispatch.
+// This ordinary forwarding helper is inlined naturally, without a forced ABI.
+inline bool read_file_buffer(CFileReader *file, void *destination, FileSize size)
+{
+ return file->read(destination,size);
+}
 bool FileBufferContext::load_plain(const char *path)
 {
  FileReaderOwner file;
@@ -31,7 +37,7 @@ bool FileBufferContext::load_plain(const char *path)
   if(data_00!=0)free(data_00);
   data_00=new unsigned char[size_04+1];
   data_00[size_04]=0;
-  reader->read(data_00,size_04);
+  read_file_buffer(reader,data_00,size_04);
  }
  return true;
 }
@@ -45,7 +51,7 @@ bool FileBufferContext::load_encoded(const char *path)
   if(data_00!=0)free(data_00);
   data_00=new unsigned char[size_04+1];
   data_00[size_04]=0;
-  reader->read(data_00,size_04);
+  read_file_buffer(reader,data_00,size_04);
   unsigned char key=0x8b,delta=0x71;
   unsigned char *cursor=data_00;
   for(unsigned i=0;i<size_04;++i,++cursor){
