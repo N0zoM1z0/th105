@@ -1641,3 +1641,4 @@ WaveService_initialize_silent_buffers
 DirectSoundBuffer_load_raw
 DirectSoundBuffer_clear_storage
 CollisionContext_test_group_a_against_primary_box
+BgmService_shutdown

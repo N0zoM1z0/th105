@@ -1,6 +1,13 @@
 # TH10.5 reconstruction handoff
 
-Current bounded candidate: group-A primary collision46B940 is fully reviewed
+Current bounded candidate: scene-owned BGM shutdown4034F0 has complete449-byte
+source and raw CFG/caller ownership. Worker/event shutdown and three real
+checked handle-list release/clear passes are preserved. Whole449/449 remains
+nonexact+0 on frame/private helper ABI; no exact credit. See
+[BGM_SERVICE_SHUTDOWN_2026_10_29.md](BGM_SERVICE_SHUTDOWN_2026_10_29.md)
+and build/frontier-4034f0-20261029/{formal-build,boundary}.json.
+
+Preceding bounded candidate: group-A primary collision46B940 is fully reviewed
 and source-selected,197 bytes. Target-backed per-iteration primary-pointer
 reload corrects the retained cached view across callbacks. Whole197/197 is
 nonexact+0; register/stack lifetimes remain unresolved, no exact credit. See

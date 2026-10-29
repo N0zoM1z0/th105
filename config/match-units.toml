@@ -26534,3 +26534,20 @@ rel32_targets = [
  "?test_aabb_against_descriptor_shape@CollisionContext@th105@@QAEHPBUCollisionAabb@2@PBUShapeWords@2@0@Z=0x0046B7B0",
  "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBH0@Z=0x0046B3B0",
 ]
+
+[units.exact-first-bgm-service-shutdown]
+kind = "probe"
+source = "src/audio/BgmServiceShutdown.cpp"
+object = "build/match-units/ExactFirst_BgmServiceShutdown.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete449-byte scene-owned BGM shutdown4034F0. Real worker/event lifetimes and three checked unsigned-handle lists at88/94/A0. Ordinary449/native449 remains nonexact on aligned frame and private EAX manager-release boundary; no invented ABI or padding."
+[[units.exact-first-bgm-service-shutdown.functions]]
+address = "0x004034F0"
+symbol_base = "?shutdown@BgmShutdownView@th105@@QAEXXZ"
+rel32_targets = [
+ "?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640",
+ "?release@BgmShutdownHandleManager50@th105@@QAEXI@Z=0x00404270",
+ "??3@YAXPAX@Z=0x006898EA",
+ "__invalid_parameter_noinfo=0x0068A143",
+]

@@ -3622,3 +3622,21 @@ required_selected_body_calls = [
  { owner = "0x0046B940", site = "0x0046B9A3", target = "0x0046B7B0", target_status = "matching" },
  { owner = "0x0046B940", site = "0x0046B9D4", target = "0x0046B3B0", target_status = "matching" },
 ]
+
+[[rules]]
+id = "bgm-service-shutdown-authored-106a"
+addresses = ["0x004034F0"]
+expected_count = 1
+expected_bytes = 449
+expected_names = ["sub_4034F0"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact scene shutdown41E120 tail-jumps to4034F0 at41E134. Complete raw449-byte member controls two BGM workers/events and releases/clears three game handle lists88/94/A0 through the manager38. Full raw CFG, caller and thread-join edges independently establish authored lifecycle policy. Ordinary449/native449 source remains nonexact; docs/BGM_SERVICE_SHUTDOWN_2026_10_29.md."
+required_body_hashes = [{ address = "0x004034F0", size = 449, sha256 = "9ba5a1e02fb81ffaf9c0d5b6844e04c8b4d39af9994eafebe19830d60a2f3fef" }]
+required_direct_edges = [{ caller = "0x0041E120", site = "0x0041E134", target = "0x004034F0", caller_status = "matching", kind = "jump" }]
+required_selected_body_calls = [
+ { owner = "0x004034F0", site = "0x00403515", target = "0x00414640", target_status = "matching" },
+ { owner = "0x004034F0", site = "0x0040351D", target = "0x00414640", target_status = "matching" },
+]
