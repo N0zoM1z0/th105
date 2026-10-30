@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+UDP rejection415B90 and endpoint-list415C10 now have explicit authored/source
+records. Native iterator-range deletion replaces the old clear() hypothesis.
+Rejection has a 122-byte matching linked main-body diagnostic, not complete
+EH/private-caller acceptance; no new exact bytes. See
+NETWORK_UDP_RECEIVE_HELPERS_2026_10_30.md.
+
 UDP packet-pool constructor413780 is exact145 with all3 cleanup states in the
 real CNetworkUDP owner CIL. The existing98-byte pool destructor remains exact.
 Ordinary unsigned-vector library context recovers the native EH receiver;

@@ -497,8 +497,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00415340,authored_game,network,authored,observed,network-udp-connection-authored-106a
 0x00415560,authored_game,network,authored,observed,network-udp-request-authored-106a
 0x00415AB0,authored_game,network,authored,observed,network-udp-accept-authored-106a
-0x00415B90,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00415C10,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00415B90,authored_game,network,authored,observed,network-udp-receive-rejection-authored-106a
+0x00415C10,authored_game,network,authored,observed,network-udp-receive-endpoint-list-authored-106a
 0x00415D50,authored_game,network,authored,observed,canonical-exact-authored
 0x00415D60,authored_game,network,authored,observed,network-udp-connection-worker-authored-106a
 0x00416160,unknown,,review,unknown,ida-1.06a-initial-inventory

@@ -1710,3 +1710,5 @@ BgmStreamHandleManager_release
 BgmStreamHandleManager_lookup
 BgmOggDataSource_dtor
 run_bgm_loading_worker
+NetworkWinsock_receive_rejection
+NetworkWinsock_receive_endpoint_list

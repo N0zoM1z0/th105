@@ -3823,3 +3823,31 @@ disposition = "exclude"
 confidence = "observed"
 evidence = "Complete native vector destructor reached by packet-pool unwind state1; real std::vector<packet *> destructor reproduces the ESI lifetime body. No authored credit. docs/NETWORK_UDP_LIFETIME_EXACT_2026_10_30.md."
 required_body_hashes = [{ address = "0x00405060", size = 38, sha256 = "9f58761ca9ee927fa18ce171ed6ee63151ce7c630085adfd6a895794de177eb0" }]
+
+[[rules]]
+id = "network-udp-receive-rejection-authored-106a"
+addresses = ["0x00415B90"]
+expected_count = 1
+expected_bytes = 122
+expected_names = ["sub_415B90"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Actual receive-loop opcode and payload-length gate, game connection state transitions, endpoint policy and callback ownership establish authored provenance. Complete source/helper boundaries reviewed; no accepted exact bytes. docs/NETWORK_UDP_RECEIVE_HELPERS_2026_10_30.md."
+required_body_hashes = [{ address = "0x00415B90", size = 122, sha256 = "ae62a5f7d4885b130e65630893135dd3df77835c188955e3f3c1c52bea30e9ca" }]
+required_direct_edges = [{ caller = "0x0041D7C0", site = "0x0041DAEA", target = "0x00415B90" }]
+
+[[rules]]
+id = "network-udp-receive-endpoint-list-authored-106a"
+addresses = ["0x00415C10"]
+expected_count = 1
+expected_bytes = 315
+expected_names = ["sub_415C10"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Actual receive-loop opcode and payload-length gate, game connection state transitions, endpoint policy and callback ownership establish authored provenance. Complete source/helper boundaries reviewed; no accepted exact bytes. docs/NETWORK_UDP_RECEIVE_HELPERS_2026_10_30.md."
+required_body_hashes = [{ address = "0x00415C10", size = 315, sha256 = "232bf915cc0c440bbc53b8d9f606e3fc93456875053a427e324062edec2e2e6d" }]
+required_direct_edges = [{ caller = "0x0041D7C0", site = "0x0041DB02", target = "0x00415C10" }]

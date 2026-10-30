@@ -524,7 +524,8 @@ static void __stdcall receive_endpoint_list(NetworkWinsockReceiveView *owner,
     owner->previous_endpoint_04c = owner->published_endpoint_03c;
     owner->published_endpoint_03c = packet->endpoints_04[0];
     owner->marker_148 = 0xffffffffU;
-    owner->endpoints_14c.clear();
+    // Native 415D06 uses the iterator-range erase, including iterator checks.
+    owner->endpoints_14c.erase(owner->endpoints_14c.begin(), owner->endpoints_14c.end());
     for (int index = 0; index < count; ++index)
         owner->endpoints_14c.push_back(packet->endpoints_04[index]);
     owner->state_144 = 2;

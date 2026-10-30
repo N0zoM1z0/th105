@@ -1737,3 +1737,5 @@ BgmStreamHandleManager_release,0x00404270,function
 BgmStreamHandleManager_lookup,0x00404330,function
 BgmOggDataSource_dtor,0x00418A00,function
 run_bgm_loading_worker,0x00403CE0,function
+NetworkWinsock_receive_rejection,0x00415B90,function
+NetworkWinsock_receive_endpoint_list,0x00415C10,function

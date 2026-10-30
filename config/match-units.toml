@@ -19059,6 +19059,17 @@ rel32_targets = [
   "?at@?$vector@PAUNetworkUdpPacketBuffer41C@th105@@V?$allocator@PAUNetworkUdpPacketBuffer41C@th105@@@std@@@std@@QAEAAPAUNetworkUdpPacketBuffer41C@th105@@I@Z=0x00417A90",
 ]
 
+[[units.cross-v106a-network-winsock-receive-thread.functions]]
+address = "0x00415B90"
+symbol_base = "?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z"
+dir32_targets = ["__ehhandler$?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z=__ehhandler$?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z"]
+
+[[units.cross-v106a-network-winsock-receive-thread.functions]]
+address = "0x00415C10"
+symbol_base = "?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z"
+dir32_targets = ["__ehhandler$?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z=__ehhandler$?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z"]
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?push_back@?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@QAEXABUNetworkReceiveAddress16@th105@@@Z=0x00416160"]
+
 [units.cross-v106a-network-winsock-send-client]
 kind = "linked_candidate"
 source = "src/network/NetworkWinsockSendClient.cpp"
