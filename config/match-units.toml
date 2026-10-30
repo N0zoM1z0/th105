@@ -26825,7 +26825,7 @@ enable_gs = true
 link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
 link_xiph_sdk = true
-notes = "Genuine stream allocation/placement-reconstruction context. Private89-byte constructor402820 is canonical exact; supporting571/native401 manager remains nonexact. Select address402820 for acceptance; manager is a caller witness only. Actual Ogg member and two constructor call sites; docs/BGM_STREAM_CONSTRUCTOR_2026_10_29.md."
+notes = "Genuine stream allocation/placement-reconstruction context. Private89-byte constructor402820 is canonical exact; supporting552/native401 manager remains nonexact. Select address402820 for acceptance; manager is a caller witness only. Actual Ogg member and two constructor call sites; docs/BGM_STREAM_CONSTRUCTOR_2026_10_29.md."
 link_data_targets = [
  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
@@ -27627,3 +27627,17 @@ symbol_base = "??1BgmStreamAllocationView@th105@@QAE@XZ"
 private_from = { caller = "0x00404270", site = "0x004042E1" }
 eh_cleanup = { handler = "0x006BD8DE", info = "0x006E3ED4" }
 rel32_targets = ["_ov_clear=0x0067A890", "??3@YAXPAX@Z=0x006898EA", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "??1DirectSoundResourceBaseLifetime@th105@@UAE@XZ=0x004182E0", "??1BgmOggDataSource@th105@@QAE@XZ=0x00418A00", "??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ=0x00401E00"]
+
+[units.exact-first-bgm-loading-worker]
+kind = "probe"
+source = "src/audio/BgmLoadingWorker.cpp"
+object = "build/match-units/ExactFirst_BgmLoadingWorker.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete461-byte native BGM loading worker source. Real pending/active/retired list policy and event waits; standard source declarations do not invent native private start/release entries. Full CIL diagnostic461 remains nonexact. docs/BGM_LOADING_WORKER_2026_10_30.md."
+
+[[units.exact-first-bgm-loading-worker.functions]]
+address = "0x00403CE0"
+symbol_base = "?run_bgm_loading_worker@th105@@YAXXZ"
+rel32_targets = ["?lookup@BgmLoadingManagerView@th105@@QAEPAUBgmStreamLoadingView@2@I@Z=0x00404330", "?release@BgmLoadingManagerView@th105@@QAEXI@Z=0x00404270", "?start@BgmStreamLoadingView@th105@@QAE_NXZ=0x00402A00", "??3@YAXPAX@Z=0x006898EA", "__invalid_parameter_noinfo=0x0068A143"]
+dir32_targets = ["?g_bgm_service@th105@@3UBgmLoadingServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A"]

@@ -1736,3 +1736,4 @@ BgmStream_dtor,0x00402880,function
 BgmStreamHandleManager_release,0x00404270,function
 BgmStreamHandleManager_lookup,0x00404330,function
 BgmOggDataSource_dtor,0x00418A00,function
+run_bgm_loading_worker,0x00403CE0,function

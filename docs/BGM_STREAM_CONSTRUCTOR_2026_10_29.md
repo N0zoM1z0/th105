@@ -80,3 +80,7 @@ context remains571 bytes, while the larger lifetime context outlines additional
 STL consumers and gives509. Neither allocator is accepted. The reader-prefix
 ownership adapter now covers destruction as well as initialization. See
 BGM_STREAM_LIFETIME_2026_10_30.md.
+
+The later token/erase follow-up changes the supporting allocator to552 in this
+constructor-only context and492 in the larger lifetime context, without exact
+credit. Constructor89 remains exact. See BGM_LOADING_WORKER_2026_10_30.md.

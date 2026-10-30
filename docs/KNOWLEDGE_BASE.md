@@ -2969,3 +2969,12 @@ persists through codec close; moving that operation into the Ogg member
 destructor changes exception ordering and does not match. The ordinary stream
 body close plus reader-owning member destructor restores the complete graph.
 See [BGM stream lifetime](BGM_STREAM_LIFETIME_2026_10_30.md).
+
+## BGM loading-worker and token context, 2026-10-30
+
+The second thread's403CE0 worker drains pending and retired handle queues with
+the observed event waits and narrow locking. Full CIL derives the native start
+receiver and worker frame but remains nonexact. Scalar token arguments plus
+the existing two-WORD view preserve native caller pushes; a value-class input
+control adds unwanted construction. See
+[BGM loading worker](BGM_LOADING_WORKER_2026_10_30.md).

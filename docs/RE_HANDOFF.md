@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Loading worker403CE0 is now source-present with its complete pending/active/
+retired queue and wait policy. Packed-token word views and native free-list
+erase context preserve both accepted stream lifetimes. Worker and supporting
+pool bodies remain nonexact; see BGM_LOADING_WORKER_2026_10_30.md.
+
 Stream destructor402880 is canonical exact220/220 with all three cleanup
 states. Codec close is part of the stream destructor body, before member
 reader/buffer/string destruction. The full pool lookup/release context is now

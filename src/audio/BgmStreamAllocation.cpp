@@ -118,7 +118,7 @@ BgmStreamAllocationView *BgmAllocationManager50::acquire(BgmHandleResult &result
   if(++generation_30>0xffff)generation_30=1;
   token.slot_00=static_cast<unsigned short>(slot);
   token.generation_02=static_cast<unsigned short>(generation_30);
-  free_24.pop_back();
+  free_24.erase(--free_24.end());
   generations_14[slot]=token.generation_02;
   BgmStreamAllocationView *stream=streams_04.at(slot);
   if(stream)new (stream) BgmStreamAllocationView;
@@ -144,8 +144,9 @@ BgmHandleResult BgmAllocationServiceView::allocate_handle()
 namespace th105 {
 BgmStreamAllocationView *BgmAllocationManager50::lookup(int handle) {
  BgmAllocationLock guard(&lock_34);
- unsigned short slot=static_cast<unsigned short>(handle);
- if(generations_14.size()<=slot || generations_14[slot]!=(static_cast<unsigned>(handle)>>16))return 0;
+ const ResourceHandleToken &token=*reinterpret_cast<const ResourceHandleToken *>(&handle);
+ unsigned short slot=token.slot_00;
+ if(generations_14.size()<=slot || generations_14[slot]!=token.generation_02)return 0;
  return streams_04.at(slot);
 }
 }
@@ -154,8 +155,9 @@ namespace th105 {
 void BgmAllocationManager50::release(unsigned handle)
 {
  EnterCriticalSection(&lock_34.critical_section_04);
- unsigned slot=static_cast<unsigned short>(handle);
- if(generations_14[slot]==(handle>>16)){
+ const ResourceHandleToken &token=*reinterpret_cast<const ResourceHandleToken *>(&handle);
+ unsigned short slot=token.slot_00;
+ if(generations_14[slot]==token.generation_02){
   generations_14[slot]=0;
   streams_04.at(slot)->~BgmStreamAllocationView();
   free_24.push_back(slot);

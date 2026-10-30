@@ -38,8 +38,8 @@ observed guarded lock and checked slot lookup. Existing caller receipts and the
 full raw bodies independently establish these authored relationships.
 
 The real release caller naturally selects the destructor's stack receiver and
-RET4. Its own180/native184 body remains nonexact. Lookup178/native196, allocator
-509/native401 and allocation wrapper26/native28 are also supporting source,
+RET4. Its current179/native184 body remains nonexact. Lookup195/native196, allocator
+492/native401 and allocation wrapper26/native28 are also supporting source,
 not accepted functions. Adding real lookup/release consumers exposes the actual
 vector specialization but does not yet recover all native STL boundaries.
 The old standalone allocation probe is replaced by this shared source graph.
@@ -78,3 +78,6 @@ DirectSound resource roots, the existing89-byte stream constructor and the new
 directory above. The constructor unit now links the same actual pinned static
 CRT/Xiph providers required by the expanded source. Target-independent CI
 passes142 tests and whitespace checks; no cold all-unit build was performed.
+
+The token/erase follow-up is detailed in BGM_LOADING_WORKER_2026_10_30.md;
+new focused replay retains both accepted stream lifetime bodies.

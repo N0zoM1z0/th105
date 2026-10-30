@@ -3834,3 +3834,14 @@ subsystem = "audio"
 disposition = "authored"
 confidence = "observed"
 evidence = "Raw stream destructor unlinks its next stream and explicitly closes DirectSound/codec resources before member cleanup. Packed-token release and lookup operate on the independently recovered BGM pool and lock. The separately padded15-byte reader-owning destructor418A00 is reached by the stream cleanup funclet6BD8D3. These authored ownership bodies are separate from their generated STL members and cleanup handlers. See BGM_STREAM_LIFETIME_2026_10_30.md."
+
+[[rules]]
+id = "bgm-loading-worker-authored-106a"
+addresses = ["0x00403CE0"]
+expected_count = 1
+expected_bytes = 461
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact second BGM thread wrapper403B70 calls403CE0 at403B7C. Complete raw body owns the service running flag, event14 waits, pending94 to active88/retiredA0 transitions and packed-token release. It calls the independently source-recovered stream start and manager lookup/release. All direct branches close within461 bytes; no compiler/library origin or exactness inferred from body size. See BGM_LOADING_WORKER_2026_10_30.md."

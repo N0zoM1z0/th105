@@ -1709,3 +1709,4 @@ BgmStream_dtor
 BgmStreamHandleManager_release
 BgmStreamHandleManager_lookup
 BgmOggDataSource_dtor
+run_bgm_loading_worker

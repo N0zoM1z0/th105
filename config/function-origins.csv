@@ -79,7 +79,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00403B50,authored_game,audio,authored,observed,canonical-exact-authored
 0x00403B70,authored_game,audio,authored,observed,canonical-exact-authored
 0x00403B90,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00403CE0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00403CE0,authored_game,audio,authored,observed,bgm-loading-worker-authored-106a
 0x00403EB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00403ED0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00403F60,unknown,,review,unknown,ida-1.06a-initial-inventory
