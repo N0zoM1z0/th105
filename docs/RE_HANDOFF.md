@@ -1,9 +1,15 @@
 # TH10.5 reconstruction handoff
 
+SFL metadata418D10 is canonical exact484/484, including the complete
+cleanup EH. Exception-sensitive FP evaluation restores the native118h frame
+without added storage. Source-owned IEEE literals and the real normal reader
+destructor boundary are verified; the Ogg parent is freshly exact in the same
+image. See SFL_LOOP_METADATA_EXACT_2026_10_30.md.
+
 Ogg open418A10 is canonical exact291/291 in the real BGM stream caller and
 original pinned Xiph SDK context. Its private ESI receiver is compiler-derived;
 all four emitted callback slots are verified. New source closes stream
-start/update/handoff paths, but349/358,925/943,761/806 and PCM/SFL/gain remain
+start/update/handoff paths, but349/358,925/943,761/806 and PCM/gain remain
 nonexact. No extra frame storage or caller/library credit is added.
 See BGM_OGG_RUNTIME_2026_10_30.md.
 

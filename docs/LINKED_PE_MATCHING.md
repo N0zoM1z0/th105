@@ -286,3 +286,18 @@ against the existing native slot anchors. Only dword MOV register reads are
 admitted, and source table/code ownership and HIGHLOW coverage stay mandatory.
 There is no arbitrary callback table, data alias, import or code stub contract.
 See BGM_OGG_RUNTIME_2026_10_30.md.
+
+## Source-owned IEEE numeric literals
+
+link_numeric_literals explicitly pairs identical existing VC8 __real@ names.
+The complete4/8-byte IEEE spelling, unique real CIL ownership, readonly source
+and target bytes, native literal kind and sole zero addend must agree. Only
+single-memory-operand, full-width x87 reads are canonicalized. Writes, narrow
+or interior reads and address escapes are rejected. No target anchors expand.
+The default contract remains empty.
+
+preserve_public_members also accepts ordinary public nonvirtual normal
+thiscall destructors under their real decorated names. Constructors, virtual
+destructors and deleting wrappers are not included. The existing unique source
+export/ownership witness remains mandatory. See
+SFL_LOOP_METADATA_EXACT_2026_10_30.md for the complete cleanup EH example.

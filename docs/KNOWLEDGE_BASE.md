@@ -2953,3 +2953,11 @@ sprite deque. Loader4540F0 and destructor41EC10 independently prove this; the
 new destructor is canonical exact223/223 and all three accepted shared-header
 consumers remain exact. See
 [RENDER_TIMELINE_ENTRY_OWNERSHIP_2026_10_29.md](RENDER_TIMELINE_ENTRY_OWNERSHIP_2026_10_29.md).
+
+## SFL exception-sensitive conversion lifetime, 2026-10-30
+
+SFL418D10 now matches484/484 plus complete cleanup EH in the actual Ogg caller
+context. Scoped FP exception sensitivity closes the native118h frame without
+extra storage; the public normal reader destructor closes its ECX cleanup
+boundary. Complete compiler-owned IEEE literals are verified before typed
+relocation. See [SFL loop metadata](SFL_LOOP_METADATA_EXACT_2026_10_30.md).

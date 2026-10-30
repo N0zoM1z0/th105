@@ -302,7 +302,7 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     if unit["kind"] == "linked_candidate":
         paths.update(repository_path(path) for path in unit.get("linked_coff_sources", []))
         paths.update(ROOT / path for path in (
-            "scripts/linked_pe.py", "scripts/linked_caller_eh.py", "scripts/linked_literals.py", "scripts/linked_reader_vtables.py", "scripts/linked_xiph_sdk.py", "scripts/linked_ogg_callbacks.py", "scripts/linked_named_imports.py", "scripts/linked_lifecycle.py", "scripts/linked_noreturn.py", "scripts/build-linked-unit.py",
+            "scripts/linked_pe.py", "scripts/linked_caller_eh.py", "scripts/linked_literals.py", "scripts/linked_reader_vtables.py", "scripts/linked_xiph_sdk.py", "scripts/linked_ogg_callbacks.py", "scripts/linked_numeric_literals.py", "scripts/linked_named_imports.py", "scripts/linked_lifecycle.py", "scripts/linked_noreturn.py", "scripts/build-linked-unit.py",
             "scripts/compare-linked-unit.py", "config/tools.lock.toml",
             "scripts/requirements-ci.txt",
         ))

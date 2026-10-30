@@ -73,8 +73,10 @@ new defensive policies.
 PCM fill remains251/native252 with the genuine qword time lifetime. SFL metadata
 now derives its private path-in-ECX/source-on-stack/RET4 interface naturally
 from an ordinary owner method. Its positive ownership guard and scoped floating
-environment recover the observed conversions and484-byte body, but the frame
-remains110h versus118h. No speculative path-buffer capacity or scratch storage
+environment recovered the observed conversions and484-byte body. The initial
+110h/native118h frame difference is now closed by scoped exception-sensitive
+FP evaluation; full484-byte and cleanup EH replay is exact. See
+SFL_LOOP_METADATA_EXACT_2026_10_30.md. No path-buffer padding or scratch storage
 is added. The original source method-versus-free-function spelling is unknown.
 The natural gain provider remains87/native103 in this CIL context.
 

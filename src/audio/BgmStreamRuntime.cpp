@@ -376,6 +376,7 @@ bool OggStreamSource::open(const char *path)
 // SFL loop metadata candidate.
 #pragma float_control(precise,on,push)
 #pragma fenv_access(on)
+#pragma float_control(except,on)
 #include "assets/FileReader.hpp"
 
 #include <new>

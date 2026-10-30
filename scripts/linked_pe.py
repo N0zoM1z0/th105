@@ -81,6 +81,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     from linked_ogg_callbacks import validate as validate_ogg_callbacks
     validate_xiph(unit)
     validate_ogg_callbacks(unit, data_keys)
+    from linked_numeric_literals import validate as validate_numbers
+    validate_numbers(unit, data_keys)
     if unit.get("profile") != PROFILE or not str(unit.get("object", "")).endswith(".dll"):
         raise ValueError("linked_candidate requires its LTCG profile and a .dll output")
     mappings = unit.get("link_data_targets")
@@ -206,7 +208,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     preserved = unit.get("preserve_public_members", [])
     if (not isinstance(preserved, list)
             or any(not isinstance(symbol, str) or not SYMBOL.fullmatch(symbol)
-                   or not re.fullmatch(r"\?[A-Za-z_]\w*@[^?]+@@Q[AB]E.+", symbol)
+                   or not (re.fullmatch(r"\?[A-Za-z_]\w*@[^?]+@@Q[AB]E.+", symbol)
+                    or re.fullmatch(r"\?\?1[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol))
                    for symbol in preserved)):
         raise ValueError("preserved exports must be normal public thiscall members")
     if len(preserved) != len(set(preserved)) or set(preserved) & (symbols | exports):
@@ -714,6 +717,10 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                                    and len(instruction.operands) == 2
                                    and instruction.operands[0].type == capstone.x86.X86_OP_REG
                                    and instruction.operands[1].type == capstone.x86.X86_OP_MEM)
+                    if ref["kind"] == "number":
+                        from linked_numeric_literals import READS
+                        allowed = (operand.size == ref["size"] and instruction.mnemonic in READS
+                                   and len(instruction.operands) == 1)
                     field, width = instruction.disp_offset, instruction.disp_size
                 else:
                     allowed = ((ref["kind"] == "object" and instruction.mnemonic in {"mov", "push"})
@@ -1124,6 +1131,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     from linked_ogg_callbacks import witnesses as callback_witnesses
     internal_refs += callback_witnesses(unit, pe, game, parse_map_symbols(map_text), functions,
                                        image.with_suffix(".ltcg.obj").name, c.known_data_targets())
+    from linked_numeric_literals import witnesses as number_witnesses
+    internal_refs += number_witnesses(unit, pe, game, parse_map_symbols(map_text), c.known_data_targets())
     reports = []
     for function in unit["functions"]:
         if addresses and function["address"] not in addresses:

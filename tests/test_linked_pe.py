@@ -121,7 +121,8 @@ class LinkedPeTests(unittest.TestCase):
                 "functions": [{"address": "0x00401000", "symbol_base": "?root@Pool@game@@QAEXXZ"}],
                 "preserve_public_members": [symbol]}
         linked.validate_contract(unit, set())
-        for preserved in [[symbol, symbol], ["_cdecl"], ["??_GPool@@UAEPAXI@Z"],
+        linked.validate_contract({**unit, "preserve_public_members": ["??1Owner@game@@QAE@XZ"]}, set())
+        for preserved in [["??0Owner@game@@QAE@XZ"], ["??1Owner@game@@UAE@XZ"], [symbol, symbol], ["_cdecl"], ["??_GPool@@UAEPAXI@Z"],
                           ["?private@Pool@@AAEXXZ"], [{}], {}, [unit["functions"][0]["symbol_base"]]]:
             with self.subTest(preserved=preserved), self.assertRaises(ValueError):
                 linked.validate_contract({**unit, "preserve_public_members": preserved}, set())
@@ -670,6 +671,37 @@ class LinkedPeTests(unittest.TestCase):
                 linked.validate_body_relocations(pe, self.start, 8, refs)
         relocations([])
         linked.validate_body_relocations(pe, self.start, 8, [])
+
+    def test_numeric_literals_require_ieee_identity_and_full_x87_reads(self):
+        import linked_numeric_literals as numbers
+        symbol = "__real@41f0000000000000"
+        raw = bytes.fromhex("000000000000f041")
+        source, target = VTablePe(), VTablePe(0x400000)
+        start, dst = linked.IMAGE_BASE + 0x2010, 0x402010
+        source.data[0x2010:0x2018] = raw; target.data[0x2010:0x2018] = raw
+        unit = {"link_numeric_literals": [{"symbol": symbol, "target": symbol}]}
+        symbols = {symbol: [(start, "CIL library: CIL module")]}
+        known = {symbol: (dst, raw, frozenset({0}), "literal")}
+        refs = numbers.witnesses(unit, source, target, symbols, known)
+        self.assertEqual(refs[0]["size"], 8)
+        code = b"\xd9\xee\xdc\x05" + struct.pack("<I", start) + b"\xc3"
+        canonical, _, _ = linked.canonicalize(code, self.start, self.target, [], None,
+            self.image, self.game, internal_refs=refs)
+        self.assertEqual(canonical[4:8], struct.pack("<I", dst))
+        for bad in [b"\xdd\x1d" + struct.pack("<I", start) + b"\xc3",
+                    b"\xd9\x05" + struct.pack("<I", start) + b"\xc3",
+                    b"\x68" + struct.pack("<I", start) + b"\xc3"]:
+            with self.assertRaises(ValueError):
+                linked.canonicalize(bad, self.start, self.target, [], None,
+                    self.image, self.game, internal_refs=refs)
+        with self.assertRaises(ValueError):
+            numbers.witnesses(unit, source, target,
+                {symbol: [(start, "Other.obj")]}, known)
+        source.data[0x2010] = 1
+        with self.assertRaises(ValueError):
+            numbers.witnesses(unit, source, target, symbols, known)
+        with self.assertRaises(ValueError):
+            numbers.encoded_bytes("__real@not_a_number")
 
     def test_xiph_sdk_requires_exact_archive_members_and_static_crt(self):
         import hashlib

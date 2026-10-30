@@ -564,7 +564,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00418C70,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418CD0,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418CF0,authored_game,audio,authored,observed,canonical-exact-authored
-0x00418D10,authored_game,audio,authored,observed,ogg-game-audio-runtime-authored-106a
+0x00418D10,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418F00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00419000,authored_game,audio,authored,observed,audio-scheduler-runtime-authored-106a
 0x00419100,authored_game,audio,authored,observed,ogg-game-audio-runtime-authored-106a
