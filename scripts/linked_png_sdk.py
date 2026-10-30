@@ -20,6 +20,9 @@ def validate(unit):
     flag = unit.get('link_png_sdk', False)
     if type(flag) is not bool or flag and unit.get('link_runtime') != 'static':
         raise ValueError('PNG providers require an explicit boolean and static CRT')
+    callback = unit.get('link_png_read_callback', False)
+    if type(callback) is not bool or callback and flag is not True:
+        raise ValueError('PNG callback proof requires the pinned PNG provider graph')
 
 
 def verified_sources(root, manifest):
@@ -123,3 +126,39 @@ def inputs(unit, image, *, generate=False):
                         'objects': [{'path': str(p.relative_to(root)), 'sha256': core.sha(p)} for p in objects],
                         'commands': commands, 'librarian_sha256': pin})
     return results
+
+
+def callback_witness(unit, pe, functions, symbols, cil_owner, imports, known, read_target):
+    """The actual game PNG read callback, with full code equality before pointer replay."""
+    import linked_pe as core
+    validate(unit)
+    if not unit.get('link_png_read_callback'):
+        return []
+    symbol = '?CBitmapData_png_read@th105@@YAXPAUPngStruct@1@PAEK@Z'
+    target, size = 0x0041A8E0, 33
+    entries = symbols.get(symbol, [])
+    if (len(entries) != 1 or entries[0][1].split()[-1:] != [cil_owner]
+            or functions.get(entries[0][0]) != [(symbol, cil_owner)]):
+        raise ValueError('PNG callback lacks unique source CIL code ownership')
+    start = entries[0][0]
+    anchor = known.get(symbol)
+    if (anchor is None or anchor[0] != target or anchor[2] != frozenset({0})
+            or anchor[3] != 'address' or read_target(target, len(anchor[1])) != anchor[1]):
+        raise ValueError('PNG callback target anchor differs')
+    section = pe.get_section_by_rva(start - core.IMAGE_BASE)
+    if section is None or not section.Characteristics & 0x20000000:
+        raise ValueError('PNG callback source is not executable code')
+    raw = core.linked_body(pe, functions, start)
+    def resolve(address):
+        return core.resolve_linked_call(address, pe, functions, imports, {'_png_get_io_ptr': 0x0066BEF0})
+    code, calls, refs = core.canonicalize(raw, start, target, [], resolve,
+        (core.IMAGE_BASE, core.IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage), (0x400000, 0x710000))
+    core.validate_body_relocations(pe, start, len(raw), refs)
+    expected = read_target(target, size)
+    if len(raw) != size or code != expected:
+        raise ValueError('complete PNG read callback code is not canonical exact')
+    digest = hashlib.sha256(code).hexdigest()
+    return [{'kind': 'png_read_callback', 'source_address': start, 'address': target,
+             'symbol': symbol, 'size': size, 'callback_exact': True,
+             'canonical_sha256': digest, 'target_sha256': hashlib.sha256(expected).hexdigest(),
+             'source_sha256': hashlib.sha256(raw).hexdigest(), 'calls': calls}]

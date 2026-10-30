@@ -18334,30 +18334,6 @@ address = "0x0041A8E0"
 symbol_base = "?CBitmapData_png_read@th105@@YAXPAUPngStruct@1@PAEK@Z"
 rel32_targets = ["_png_get_io_ptr=0x0066BEF0"]
 
-[[units.gpt-web-cbitmap-data-runtime.functions]]
-address = "0x0041A910"
-symbol_base = "?load_png@CBitmapData@th105@@UAE_NPBD@Z"
-rel32_targets = [
-  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
-  "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20",
-  "_png_sig_cmp=0x0066B870",
-  "_png_create_read_struct=0x0066FD60",
-  "_png_create_info_struct=0x0066CC20",
-  "_png_destroy_read_struct=0x0066FD90",
-  "_png_set_read_fn=0x00670280",
-  "_png_set_sig_bytes=0x0066B840",
-  "_png_read_info=0x0066D130",
-  "_png_set_bgr=0x0066FE60",
-  "??_U@YAPAXI@Z=0x00665B8A",
-  "_png_read_row=0x0066E400",
-  "_png_read_end=0x0066E940",
-]
-dir32_targets = [
-  "__ehhandler$?load_png@CBitmapData@th105@@UAE_NPBD@Z=__ehhandler$?load_png@CBitmapData@th105@@UAE_NPBD@Z",
-  "___security_cookie=___security_cookie",
-  "??_C@_05OHLMCMDJ@1?45?42?$AA@=??_C@_05OHLMCMDJ@1?45?42?$AA@",
-  "?CBitmapData_png_read@th105@@YAXPAUPngStruct@1@PAEK@Z=?CBitmapData_png_read@th105@@YAXPAUPngStruct@1@PAEK@Z",
-]
 
 [units.gpt-web-package-file-index-runtime]
 kind = "probe"
@@ -27346,9 +27322,10 @@ profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 link_runtime = "static"
 link_png_sdk = true
+link_png_read_callback = true
 link_named_import_targets = ["_D3DXCreateTexture@32=0x0068989C"]
 link_runtime_data = ["___security_cookie"]
-notes = "Real reader/package/CRC/file/CSV/script/bitmap CIL context with pinned libpng1.2.5/zlib1.2.3 C providers. DDS696 and complete cleanup EH are exact through its real bitmap caller; bitmap1126 and pixel upload remain unaccepted. CSV wrapper140, reset151, public reader destructor15, plain234, encoded267, script load282, text wrapper140, reader open213, raw bitmap load448, palette dispatch163 and raw palette243 are exact. Full cleanup EH and bounded source-owned CRLF literal reads are replayed. CSV caller, command-line parser, package opener and BMP palette loader remain unaccepted. Real reader constructors and the provider normal stdcall boundary recover open213. docs/FILE_READER_OPEN_EXACT_2026_10_30.md."
+notes = "Real reader/package/CRC/file/CSV/script/bitmap CIL context with pinned libpng1.2.5/zlib1.2.3 C providers. DDS696 and complete cleanup EH are exact through its real bitmap caller; PNG703 has full exact cleanup but one SIB byte differs, so remains unaccepted with bitmap1126 and pixel upload. CSV wrapper140, reset151, public reader destructor15, plain234, encoded267, script load282, text wrapper140, reader open213, raw bitmap load448, palette dispatch163 and raw palette243 are exact. Full cleanup EH and bounded source-owned CRLF literal reads are replayed. CSV caller, command-line parser, package opener and BMP palette loader remain unaccepted. Real reader constructors and the provider normal stdcall boundary recover open213. docs/FILE_READER_OPEN_EXACT_2026_10_30.md."
 link_data_targets = [
   "?g_d3d_backend@th105@@3UD3DBackend@1@A=dds_texture_backend_object",
   "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
@@ -27362,6 +27339,7 @@ link_data_targets = [
 preserve_public_members = ["?clear_commands@CScript@@QAEXXZ"]
 
 link_literals = [
+  { symbol = "??_C@_05OHLMCMDJ@1?45?42?$AA@", target = "??_C@_05OHLMCMDJ@1?45?42?$AA@", read_offsets = [0], allow_pointer_push = true },
   { symbol = "??_C@_07GLGIIGGC@failed?6?$AA@", target = "??_C@_07GLGIIGGC@failed?6?$AA@", read_offsets = [0], allow_pointer_push = true },{ symbol = "??_C@_02PCIJFNDE@?$AN?6?$AA@", target = "??_C@_02PCIJFNDE@?$AN?6?$AA@", read_offsets = [0, 2] }]
 
 [[units.exact-first-csv-file-loading.functions]]
@@ -27777,3 +27755,9 @@ symbol_base = "?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z"
 private_from = { caller = "0x00409080", site = "0x004090D8", source_only_caller = true }
 eh_cleanup = { handler = "0x006BD98B", info = "0x006E3FE4" }
 rel32_targets = ["?create_file_texture@th105@@YGJIIIIPAPAUDdsTexture9@1@@Z=0x00409020", "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "_printf=0x0068BD23", "___CxxFrameHandler3=0x006899E7", "@__security_check_cookie@4=0x00689D25", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20"]
+
+[[units.exact-first-csv-file-loading.functions]]
+address = "0x0041A910"
+symbol_base = "?load_png@CBitmapData@th105@@UAE_NPBD@Z"
+eh_cleanup = { handler = "0x006BDC08", info = "0x006E4288" }
+rel32_targets = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20", "_png_sig_cmp=0x0066B870", "_png_create_read_struct=0x0066FD60", "_png_create_info_struct=0x0066CC20", "_png_destroy_read_struct=0x0066FD90", "_png_set_read_fn=0x00670280", "_png_set_sig_bytes=0x0066B840", "_png_read_info=0x0066D130", "_png_set_bgr=0x0066FE60", "??_U@YAPAXI@Z=0x00665B8A", "_png_read_row=0x0066E400", "_png_read_end=0x0066E940", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]

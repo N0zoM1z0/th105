@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+PNG41A910 now has complete703-byte CIL and exact cleanup EH, with one unequal
+SIB byte at41AAAD still preventing exact acceptance. Its actual callback33 is
+fully rechecked before pointer replay. All17 prior affected matches remain
+exact; no new byte credit. See PNG_LOADER_CONTEXT_2026_10_30.md.
+
 DDS4094E0 is now canonical exact696/696 with complete cleanup EH in the real
 bitmap/reader/PNG/zlib CIL. Original pinned library sources are verified before
 compile; no replacement implementation or library-byte credit. All22 prior

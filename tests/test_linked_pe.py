@@ -955,6 +955,38 @@ class LinkedPeTests(unittest.TestCase):
         self.assertEqual(len(linked.decode_closed_body(b"\x74\x01\xc3\xc3", self.start)), 3)
         self.assertEqual(len(linked.decode_closed_body(b"\xe2\xfe\xc3", self.start)), 2)
 
+    def test_png_callback_pointer_requires_exact_code_and_push_role(self):
+        import linked_png_sdk
+        pe = VTablePe(); pe.OPTIONAL_HEADER.SizeOfImage = 0x4000
+        symbol = '?CBitmapData_png_read@th105@@YAXPAUPngStruct@1@PAEK@Z'
+        code = b'\x90' * 32 + b'\xc3'
+        pe.data[0x1000:0x1030] = code + b'\xcc' * 15
+        functions = {self.start: [(symbol, 'Ctx.ltcg.obj')], self.start + 0x30: [('_next', 'Ctx.ltcg.obj')]}
+        symbols = {symbol: [(self.start, 'Ctx.ltcg.obj')]}
+        known = {symbol: (0x41a8e0, code[:16], frozenset({0}), 'address')}
+        unit = {'link_png_sdk': True, 'link_runtime': 'static', 'link_png_read_callback': True}
+        def witness():
+            return linked_png_sdk.callback_witness(unit, pe, functions, symbols,
+                'Ctx.ltcg.obj', {}, known, lambda a, n: code[:n])
+        refs = witness()
+        body = b'\x68' + struct.pack('<I', self.start) + b'\xc3'
+        result = linked.canonicalize(body, self.start + 0x100, self.target, [], lambda a: None,
+                                   self.image, self.game, internal_refs=refs)
+        self.assertEqual(result[0], b'\x68' + struct.pack('<I', 0x41a8e0) + b'\xc3')
+        with self.assertRaises(ValueError):
+            linked.canonicalize(b'\xb8' + struct.pack('<I', self.start) + b'\xc3',
+                self.start + 0x100, self.target, [], lambda a: None, self.image, self.game, internal_refs=refs)
+        pe.data[0x1005] = 0x40
+        with self.assertRaises(ValueError): witness()
+        pe.data[0x1005] = 0x90
+        symbols[symbol] = [(self.start, 'foreign.obj')]
+        with self.assertRaises(ValueError): witness()
+        symbols[symbol] = [(self.start, 'Ctx.ltcg.obj')]
+        functions[self.start].append(('_alias', 'Ctx.ltcg.obj'))
+        with self.assertRaises(ValueError): witness()
+        for bad in ({'link_png_read_callback': True}, {'link_png_read_callback': 1}):
+            with self.assertRaises(ValueError): linked_png_sdk.validate(bad)
+
     def test_literal_pointer_push_requires_whole_attested_string(self):
         src, dst = self.start + 0x1000, 0x006D6A08
         code = b"\x68" + struct.pack("<I", src) + b"\xc3"

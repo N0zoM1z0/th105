@@ -755,6 +755,11 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                                    and ref.get("read_offset") == 0
                                    and ref.get("size") == ref.get("literal_size")
                                    and type(ref.get("literal_size")) is int and ref["literal_size"] > 0)
+                               or (ref["kind"] == "png_read_callback" and instruction.mnemonic == "push"
+                                   and ref.get("callback_exact") is True
+                                   and ref.get("address") == 0x0041A8E0 and ref.get("size") == 33
+                                   and re.fullmatch(r"[0-9a-f]{64}", str(ref.get("canonical_sha256", "")))
+                                   and ref.get("canonical_sha256") == ref.get("target_sha256"))
                                or (ref["kind"] == "eh_handler" and instruction.mnemonic == "push")
                                or (ref["kind"] == "eh_info" and instruction.mnemonic == "mov"
                                    and instruction.operands[0].type == capstone.x86.X86_OP_REG
@@ -1179,6 +1184,10 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
                                        image.with_suffix(".ltcg.obj").name, c.known_data_targets())
     from linked_numeric_literals import witnesses as number_witnesses
     internal_refs += number_witnesses(unit, pe, game, parse_map_symbols(map_text), c.known_data_targets())
+    from linked_png_sdk import callback_witness as png_callback_witness
+    internal_refs += png_callback_witness(unit, pe, functions, parse_map_symbols(map_text),
+                                         image.with_suffix(".ltcg.obj").name, imports,
+                                         c.known_data_targets(), c.target_bytes)
     reports = []
     for function in unit["functions"]:
         if addresses and function["address"] not in addresses:

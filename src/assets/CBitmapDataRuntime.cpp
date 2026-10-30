@@ -288,11 +288,10 @@ bool CBitmapData::load_png(const char *path)
     png_read_info(png, info);
     png_set_bgr(png);
 
-    field_10 = info->width_00;
-    field_08 = info->width_00;
+    field_08 = field_10 = info->width_00;
     field_0c = info->height_04;
     format_04 = info->pixel_depth_1e;
-    unsigned char row_scale = 4 * (info->bit_depth_18 >> 3);
+    int row_scale = static_cast<unsigned char>(4 * (info->bit_depth_18 >> 3));
 
     if (info->interlace_type_1c != 0) {
         png_destroy_read_struct(&png, &info, 0);
@@ -300,13 +299,14 @@ bool CBitmapData::load_png(const char *path)
     }
 
     unsigned int row_index = 0;
-    if (format_04 == 24) {
+    switch (format_04) {
+    case 24: {
         unsigned char *row =
             new unsigned char[row_scale * field_08 * info->channels_1d];
         unsigned char *destination =
             new unsigned char[4 * field_0c * field_10];
         buffer_1c = destination;
-        if (info->height_04 != 0) {
+        if (info->height_04 > 0) {
             do {
                 png_read_row(png, row, 0);
                 int x = 0;
@@ -327,11 +327,12 @@ bool CBitmapData::load_png(const char *path)
                 ++row_index;
             } while (row_index < info->height_04);
         }
-    } else if (format_04 == 32) {
+    } break;
+    case 32: {
         unsigned char *pixels = new unsigned char[
             row_scale * field_0c * field_08 * info->channels_1d];
         unsigned int offset = 0;
-        if (info->height_04 != 0) {
+        if (info->height_04 > 0) {
             do {
                 png_read_row(png, pixels + offset, 0);
                 offset += row_scale * field_08;
@@ -339,6 +340,9 @@ bool CBitmapData::load_png(const char *path)
             } while (row_index < info->height_04);
         }
         buffer_1c = pixels;
+    }
+
+    break;
     }
 
     png_read_end(png, 0);
