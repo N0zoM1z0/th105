@@ -1668,3 +1668,22 @@ with the same+3F branch-merge register difference. Its full old source TU needs
 real effect/sequence providers, so no stub was supplied. The isolated diagnostic
 receives no credit or public source change. Evidence:
 build/frontier-counter-merge-cil-20261030/.
+
+Further2026-10-30 closed controls:
+- A standard div(input,6).rem menu-cursor expression emits a real external div
+  call, absent from the target. It is not selected or mapped to a fabricated body.
+- Real effect-pool release plus critical-section bodies and the existing unsigned
+  list library give effect release-all129/native122 with an additional aligned
+  frame. Preserving normal public boundaries and an Ob1 control remain129;
+  no authored COFF provider or artificial register facade is introduced.
+- Adding actual Wave initialization to the complete private BGM graph gives
+  initializer233/native234 and raw-load238/native247. Source promotes the byte
+  count to EBX, spilling the initializer receiver; native keeps that count on
+  the stack. Neither size proximity nor matching private receiver alone is exact.
+- ACK packet constructor plus its real serializer remains43/native41 in CIL.
+  The unimplemented normal base serializer prevents linking; an explicitly
+  qualified abstract-interface control links but is still43. That private view
+  does not establish original base purity and is not selected as public source.
+Evidence remains in frontier-menu-cursor-size, frontier-effect-pool-release-cil,
+frontier-bgm-complete-graph and frontier-ack-constructor-cil build directories,
+all suffixed20261030. No exact accounting or shared source changes follow.

@@ -149,3 +149,56 @@ checks are also serial CPU0/nice10. Two newly witnessed literal bindings are
 bytes6666663f. No existing binding, shared header, compiler flag, accepted
 source, exact unit or authored-origin denominator changes. No aggregate cold
 exact claim is made.
+
+## Real all-CIL and bounded source controls, 2026-10-30
+
+The selected ordinary root still has the full6868-byte payload99097f1b and
+only the same13 mismatching bytes in803. No partial acceptance is added.
+
+A new closed provider graph contains the actual root, parented/unparented
+spawns, oriented motion, shared980 continuation, quantized lookups, atan2,
+selector RNG and MT implementation. All eight translation units are /GL CIL;
+there is no native authored-COFF companion, code-address binding, symbol alias,
+fake callee or target execution. The real spawn methods use a typed slot1
+polymorphic manager view and the caller's byte-facing ABI. Independent complete
+COFF replays match their77/78-byte native bodies. The corresponding normal
+motion and continuation definitions independently match57/323 bytes too.
+These are alternative witnesses for existing accepted helpers, not new credit.
+
+With normal source exports and Ob1 on the CIL units, the link resolves through
+pinned CRT libraries. Actual atan2 retains its separate strict-FP producer
+setting. The resulting root has an aligned EBP frame and18h local allocation,
+unlike native's14h allocation without that frame. Its last pretable RET is
+10002981; the main32-DWORD table begins10002984 and the200-byte remap ends
+10002ACC. That emitted6860-byte envelope is not the native6868-byte payload.
+The next MAP symbol's6864-byte span is deliberately not treated as ownership.
+The source atan2 also derives a different aligned frame in CIL. These are
+observations, not proof that one specific provider caused the root difference.
+No old private Aya script using authored COFF providers or /alternatename is
+reused as an acceptance route.
+
+Raw RTTI confirms Sakuya's eight-base hierarchy at COL6DA0F4/CHD6DA108:
+SakuyaObject, CharacterObjectEx<Sakuya,SakuyaObject>, CharacterObject,
+CObjectBase(+330), AttackObject, AnimationObject, AnimationObjectBase(+4)
+and Environment(+130); the other PMD member offsets are0 and every vbptr
+field is-1. A narrow inherited selector-prefix view preserves this zero-offset
+method relationship without claiming the full object layout. It is byte-neutral.
+
+Three ordinary payload lifetime controls are also completely byte-neutral:
+803's actual three-word payload extent; minimum written/transmitted extents in
+all13 three-word cases while preserving both four-word cases; and placing803's
+payload inside its actual post-selector guarded use. Every complete audit keeps
+payload99097f1b and the same13 differences. No new padding or local is inserted.
+
+A separately pinned cached VC8 RTM14.0.50727.42 compiler/front end/back end,
+with unchanged SP1 include inputs and selected root source, also emits exactly
+the same full payload99097f1b. The three binary hashes, version fields, command,
+source and object hashes are recorded. This is a compiler-release control, not
+a new public build profile or evidence of the target's original patch release.
+
+Reproduction inputs: .analysis/frontier-sakuya-entry-cil-20261030/.
+Receipts and full audit results: build/frontier-sakuya-entry-cil-20261030/,
+including parented.json, unparented.json, motion.json, continuation.json,
+link-ob1/receipt.json, payload3-audit.json, payload-extents-audit.json,
+payload-scope-audit.json, inherited-audit.json and rtm-audit.json.
+Public source/header, compiler profile and exact ledger remain unchanged.
