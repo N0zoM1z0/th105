@@ -74,7 +74,8 @@ static bool __stdcall process_ime_window_message(void *window,unsigned message,u
             return true;
         case 46: delete_profile_input_character(); return true;
         default:
-            unsigned short output[10] = {0};
+            unsigned short output[10];
+            memset(output,0,sizeof(output));
             return ToAscii(wparam,lparam >> 16,0,output,1) <= 0;
         }
     case 0x10e: commit_profile_ime_composition(); return true;

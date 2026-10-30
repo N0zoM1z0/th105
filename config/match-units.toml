@@ -27699,7 +27699,7 @@ source = "src/platform/ApplicationWindowMessages.cpp"
 object = "build/match-units/ExactFirst_ApplicationWindowMessages.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Window callback33 and private mode helper126 canonical exact with actual dispatcher source. Dispatcher242/native240 remains nonexact. Full IME composition375/native383 and message source731-byte envelope/native715 remain nonexact; cursor helper157 is canonical exact. Actual HWND input is present; compiler derives private helper registers. docs/APPLICATION_WINDOW_MESSAGES_2026_10_30.md"
+notes = "Window dispatcher240, callback33, private mode helper126 and cursor157 are canonical exact in the actual IME/window TU. Full IME composition375/native383 and message715-byte envelope/native715 remain nonexact. Explicit20-byte memset recovers the native private IME registers; system-command switch closes the dispatcher. docs/APPLICATION_WINDOW_MESSAGES_2026_10_30.md"
 
 [[units.exact-first-application-window-messages.functions]]
 address = "0x00408690"

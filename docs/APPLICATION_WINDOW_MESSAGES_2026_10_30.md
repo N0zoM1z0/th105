@@ -1,9 +1,9 @@
 # Application window-message source
 
-The real callback 6657E0 is canonical exact 33/33 and private mode helper
-408780 is exact 126/126. Their full dispatcher 408690 is now explicitly
-source-present, but remains 242 versus native 240. New exact credit is 159
-bytes; incremental total is 1535 functions / 434990 bytes.
+Dispatcher408690 is now canonical exact240/240 in the real IME/window TU.
+Callback6657E0 remains33/33, mode helper408780 remains126/126, and cursor40EBC0
+remains157/157. This checkpoint adds240 authored exact bytes, bringing the
+incremental total to1537 functions /435387 bytes.
 
 ## Actual callback and helper
 
@@ -29,7 +29,7 @@ fails. This unusual native return policy is preserved, not normalized into an
 invented success flag. Original source-level meaning of the option name is
 not established by this reconstruction.
 
-## Dispatcher source and remaining uncertainty
+## Dispatcher source and IME boundary
 
 The complete 240-byte native root is stdcall with five arguments. Option +2B
 first permits the IME provider to consume a message. Otherwise it handles
@@ -48,10 +48,16 @@ No ESI facade or false standard-ABI compatibility is claimed. See
 PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md for its source and switch proof.
 
 The selected dispatcher preserves all native cases and external dependencies.
-Its 242-byte ordinary output remains nonexact on argument/register allocation
-and block layout. Earlier three-argument controls emitted246 bytes;
-the complete helper and callback stay exact. No partial dispatcher match,
-forced register convention or padding is accepted.
+An explicit memset of the real20-byte ToAscii output buffer allows the compiler
+to derive the observed private IME interface, including HWND in ESI. The final
+remaining dispatcher difference was the system-command if/OR expression;
+the native two-case switch produces its subtract sequence and complete240-byte
+match. Neither parameter order nor calling convention was forced. The IME
+body remains nonexact even though its caller is now exact.
+
+Earlier242/246-byte dispatcher outputs and the singleton-member CIL control
+are diagnostic history, not accepted alternatives. No padding or partial
+function credit is used.
 
 ## Evidence and validation
 
@@ -63,12 +69,14 @@ view only binds base and running +4C. Existing backend field bindings and
 accepted reset/toggle code are unchanged.
 
 The sole changed source unit is exact-first-application-window-messages;
-its three whole-function comparisons resolve all relocations. New exact
-functions use unchanged compiler flags. The new dispatcher ownership rule
-attests its complete body and the real exact callback edge; unaffected origin
-rules are retained. No full-corpus replay or new test infrastructure was added.
+its six whole-function comparisons resolve all relocations, with four exact
+and two explicitly nonexact IME bodies. New exact
+functions use unchanged compiler flags. The dispatcher now uses the exact-origin baseline; its superseded explicit
+authored rule was removed. Unaffected origin rules are retained. No full-corpus replay or new test infrastructure was added.
 
 Evidence: build/frontier-application-window-20261030/boundaries.json and
-formal.json; source controls remain in the matching private .analysis folder.
+formal.json; final checkpoint uses
+build/frontier-profile-ime-zero-20261030/formal-window.json. Source controls
+remain in the matching private .analysis folders.
 
 `scripts/repo-python scripts/build.py --unit exact-first-application-window-messages --compare --json`

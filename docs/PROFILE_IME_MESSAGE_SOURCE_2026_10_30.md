@@ -3,8 +3,8 @@
 move_profile_input_cursor at 40EBC0 is canonical exact 157/157 bytes in its
 real message/window caller TU. Its EAX direction parameter is compiler-derived
 from an ordinary file-local stdcall source function. No external EAX declaration
-or copied assembly is used. Incremental progress is 1536 exact functions /
-435147 bytes. Composition 40E8B0 and message processing 40EDE0 receive no exact
+or copied assembly is used. Incremental progress is 1537 exact functions /
+435387 bytes. Composition 40E8B0 and message processing 40EDE0 receive no exact
 credit.
 
 ## Source completion
@@ -13,9 +13,9 @@ ProfileImeRuntime.cpp includes the existing profile text runtime and defines
 three previously missing bodies. The application window source includes this
 real graph, replacing the unresolved four-argument IME declaration. Native
 HWND in ESI is now supplied semantically by the actual window caller; the
-compiler is free to derive its private register/stack interface. Current
-source still selects a different interface, so the message root and window
-dispatcher remain nonexact.
+compiler is free to derive its private register/stack interface. Explicit memset of the real20-byte ToAscii buffer now recovers the native
+private interface. The window dispatcher is240/240 exact; the message body
+still differs in branch/return layout.
 
 Cursor movement preserves the native asymmetric policy. Negative direction
 uses a two-byte lookbehind to select one or two bytes, with cursor below two
@@ -58,19 +58,27 @@ retains this input instead of an incorrect three-argument fastcall facade.
 Notifications1 through5 return true; the original inactive/default/other
 return policies are unchanged.
 
-The ordinary source envelope is731 bytes versus native715, including both
-switch pairs. Its callable/register allocation and switch layout are nonexact.
+The current ordinary source envelope is715 bytes versus native715, including
+both switch pairs. Replacing aggregate WORD-array initialization with explicit
+memset recovers the five native DWORD zero stores and private parameter
+interface. Equal size is not equality: branch/return layout remains nonexact.
+The previous aggregate-initialized source was731 bytes.
 The ordinary registered comparison covers the native616-byte callable and is
 already nonexact; the separate target switch proof does not claim source table
 equality. A genuine resolved CIL control with actual SDK Imm32.Lib and the real
-D3D reset/toggle source preserves the same residual. No synthetic import stub
+D3D reset/toggle source also emits715 bytes with the memset source. A
+singleton-member control of the older source still emitted731. Explicit
+notification/ToAscii return and switch-order controls changed block layouts
+but did not close full equality; these remain private diagnostics. No synthetic import stub
 or substituted function body is used.
 
 ## Validation and reproduction
 
 The expanded actual window TU preserves its accepted126-byte mode helper and
-33-byte WNDPROC. Its dispatcher is242/native240. The three new whole-body
-comparisons resolve all relocations; only the157-byte cursor passes. The prior
+33-byte WNDPROC. Its dispatcher is240/240 exact after recovering the native system-command
+switch. The three new whole-body
+comparisons resolve all relocations; the157-byte cursor passes, while composition and message processing remain
+nonexact. The prior
 profile runtime source/unit is unchanged. Origin validation is limited to the
 two newly authored rules, the changed dispatcher evidence and the new exact
 cursor baseline; all other origin evidence is retained.
@@ -79,3 +87,6 @@ Private evidence: build/frontier-profile-ime-20261030/formal.json,
 target-switch-proof.json, linked.log and matching .analysis controls.
 
 `scripts/repo-python scripts/build.py --unit exact-first-application-window-messages --compare --json`
+
+Latest focused receipt: build/frontier-profile-ime-zero-20261030/formal-window.json.
+No new origin rule or denominator change was required for the exact dispatcher.

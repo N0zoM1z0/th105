@@ -57,8 +57,10 @@ long __stdcall dispatch_application_window_message(ApplicationWindowView *owner,
             return 0;
         }
     case 0x112:
-        if (wparam == 0xf140 || wparam == 0xf170) return 1;
-        return DefWindowProcA(window,message,wparam,lparam);
+        switch (wparam) {
+        case 0xf140: case 0xf170: return 1;
+        default: return DefWindowProcA(window,message,wparam,lparam);
+        }
     default:
         return DefWindowProcA(window,message,wparam,lparam);
     }

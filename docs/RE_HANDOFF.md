@@ -5,10 +5,12 @@ Full composition and four-input IME source now close the missing HWND semantic
 dependency; both larger bodies remain nonexact, with no prefix/table credit.
 See PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md.
 
-Application window callback6657E0 and mode helper408780 are canonical exact
-33/126 in the actual dispatcher TU. The dispatcher is source-present242/native
-240; no partial credit. Cursor and failed-toggle return policy are preserved.
-See APPLICATION_WINDOW_MESSAGES_2026_10_30.md.
+Application dispatcher408690 is now canonical exact240/240 after recovering
+explicit20-byte IME output-buffer memset and the native system-command switch.
+Callback33, mode helper126 and cursor157 remain exact. The IME message envelope
+is715/native715 but branch/return layout is still nonexact; equal size is no
+credit. Incremental total1537 functions /435387 bytes. See
+APPLICATION_WINDOW_MESSAGES_2026_10_30.md and PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md.
 
 D3D reset414A10 and window-mode toggle414B30 are canonical exact281/286 in
 genuine CIL. Native failure rollback, listener/COM lifecycle and all metric

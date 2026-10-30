@@ -3867,20 +3867,6 @@ required_body_hashes = [{ address = "0x00414770", size = 103, sha256 = "7815d845
 required_dword_values = [{ address = "0x006BE876", value = "0x006BEEB0" }, { address = "0x006C0388", value = "0x006BE870" }]
 
 [[rules]]
-id = "application-window-message-dispatch-authored-106a"
-addresses = ["0x00408690"]
-expected_count = 1
-expected_bytes = 240
-expected_names = ["sub_408690"]
-origin = "authored_game"
-subsystem = "platform"
-disposition = "authored"
-confidence = "observed"
-evidence = "Exact registered WNDPROC callback6657E0 supplies the application singleton and four message arguments. Complete native game policy handles IME option, running state, Alt-Enter, cursor/window toggling and native system commands; full source242/native240 with the genuine complete IME graph remains nonexact. docs/APPLICATION_WINDOW_MESSAGES_2026_10_30.md."
-required_body_hashes = [{ address = "0x00408690", size = 240, sha256 = "e85c1de6ca6859bd7525606e60a9a6c20afb6bb4c37791ea3369fad50085c0fc" }]
-required_direct_edges = [{ caller = "0x006657E0", site = "0x006657F9", target = "0x00408690", caller_status = "matching" }]
-
-[[rules]]
 id = "profile-ime-commit-profile-ime-composition-authored-106a"
 addresses = ["0x0040E8B0"]
 expected_count = 1
