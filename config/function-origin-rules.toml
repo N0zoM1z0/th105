@@ -1822,14 +1822,15 @@ evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E1
 [[rules]]
 id = "palette-data-runtime-authored-106a"
 addresses = ["0x00419A60", "0x00419E80"]
-expected_count = 2
-expected_bytes = 1290
+skip_matching = true
+expected_count = 1
+expected_bytes = 1047
 expected_names = ["sub_419A60", "sub_419E80"]
 origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current resource dispatcher 0x00408F70 owns one 8-byte palette object and routes normal BMP paths to 0x00419A60 while extension-rewritten raw palette paths call 0x00419E80. The BMP body reads a canonical 14-byte file header, 40-byte info header and 0x400 palette then converts 8-bit entries to requested 16/24/32-bit storage; the sibling frees old storage, reads a one-byte format and loads 0x200/0x400 bytes. Both are game-side FileReaderOwner consumers. Source is semantically closed; exactness remains blocked only by target-local stack/private-receiver codegen."
+evidence = "Current resource dispatcher 0x00408F70 owns one 8-byte palette object and routes normal BMP paths to 0x00419A60 while extension-rewritten raw palette paths call 0x00419E80. The BMP body reads a canonical 14-byte file header, 40-byte info header and 0x400 palette then converts 8-bit entries to requested 16/24/32-bit storage; the sibling frees old storage, reads a one-byte format and loads 0x200/0x400 bytes. Both are game-side FileReaderOwner consumers. Raw palette419E80 is now exact243/full EH and skipped by this rule. BMP source now1047 with the native frame but retains entry scheduling differences; no exclusive-cause claim. docs/PALETTE_FILE_LOADING_EXACT_2026_10_30.md."
 
 [[rules]]
 id = "wave-data-resource-loaders-authored-106a"

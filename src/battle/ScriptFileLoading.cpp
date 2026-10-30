@@ -46,3 +46,5 @@ bool CScript::load(const char *path, int option)
 }
 
 #include "assets/CBitmapFileLoad.cpp"
+
+#include "assets/PaletteFileDispatch.cpp"

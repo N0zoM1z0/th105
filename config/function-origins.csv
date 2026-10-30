@@ -203,7 +203,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00408DB0,authored_game,assets,authored,observed,canonical-exact-authored
 0x00408E40,authored_game,assets,authored,observed,canonical-exact-authored
 0x00408ED0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00408F70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00408F70,authored_game,assets,authored,observed,canonical-exact-authored
 0x00409020,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00409080,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004094E0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -576,7 +576,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00419860,authored_game,assets,authored,observed,canonical-exact-authored
 0x00419950,authored_game,assets,authored,observed,canonical-exact-authored
 0x00419A60,authored_game,assets,authored,observed,palette-data-runtime-authored-106a
-0x00419E80,authored_game,assets,authored,observed,palette-data-runtime-authored-106a
+0x00419E80,authored_game,assets,authored,observed,canonical-exact-authored
 0x00419F80,authored_game,assets,authored,observed,canonical-exact-authored
 0x00419FA0,authored_game,assets,authored,observed,canonical-exact-authored
 0x00419FD0,authored_game,assets,authored,observed,canonical-exact-authored

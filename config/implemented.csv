@@ -1701,3 +1701,4 @@ CsvReader_reset_iterators
 FileBuffer_dtor
 CScript_load
 FileBuffer_load_text
+PaletteDecodeMode_load_palette

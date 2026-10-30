@@ -1,5 +1,12 @@
 # Reconstruction evidence notebook
 
+Palette dispatch408F70 and raw palette419E80 are canonical exact163/243,
+with full raw-loader EH and a freshly exact caller witness. Native scalar
+operator-delete ownership and typed read branches are restored. Nine prior
+accepted roots remain exact. BMP palette1047 is still nonexact at its entry
+load ordering; no alignment bytes are waived. See
+PALETTE_FILE_LOADING_EXACT_2026_10_30.md.
+
 Raw bitmap load41ACA0 is canonical exact448/448 with complete cleanup EH
 in the genuine reader/package CIL graph. Existing loader semantics and class
 layout are unchanged;13 prior accepted roots in2 affected units stay exact.
