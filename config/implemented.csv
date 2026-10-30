@@ -1726,3 +1726,4 @@ create_file_texture
 load_dds_texture
 TextureFileLoading_load
 TextureFileLoading_upload
+BattleInputRecording_load

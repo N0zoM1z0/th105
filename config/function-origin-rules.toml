@@ -1169,7 +1169,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 /GS rebuild of src/battle/BattleInputRecording.cpp regenerates the checked vector<FixedSlotEnvelope>::_Assign_n COMDAT; its 166 non-relocation bytes select exactly 0x0042C3F0 across the complete current candidate inventory"
+evidence = "SHA-pinned VC8 SP1 /GS rebuild of scripts/probes/replay_slot_assign.cpp regenerates the checked vector<FixedSlotEnvelope>::_Assign_n COMDAT; its 166 non-relocation bytes select exactly 0x0042C3F0 across the complete current candidate inventory"
 
 [[rules]]
 id = "vc8-generated-script-command-lifetime-std-comdats-106a"

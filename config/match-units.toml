@@ -27761,3 +27761,30 @@ address = "0x0041A910"
 symbol_base = "?load_png@CBitmapData@th105@@UAE_NPBD@Z"
 eh_cleanup = { handler = "0x006BDC08", info = "0x006E4288" }
 rel32_targets = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20", "_png_sig_cmp=0x0066B870", "_png_create_read_struct=0x0066FD60", "_png_create_info_struct=0x0066CC20", "_png_destroy_read_struct=0x0066FD90", "_png_set_read_fn=0x00670280", "_png_set_sig_bytes=0x0066B840", "_png_read_info=0x0066D130", "_png_set_bgr=0x0066FE60", "??_U@YAPAXI@Z=0x00665B8A", "_png_read_row=0x0066E400", "_png_read_end=0x0066E940", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
+
+[units.exact-first-battle-input-recording]
+kind = "probe"
+source = "src/battle/BattleInputRecording.cpp"
+object = "build/match-units/ExactFirst_BattleInputRecording.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "JP1.06a848-byte replay loader; genuine reader RAII/access1, scoped uninitialized slot aggregate and existing paired scalar fields recover the native frame and complete return paths."
+
+[[units.exact-first-battle-input-recording.functions]]
+address = "0x0042C5C0"
+symbol_base = "?load_battle_input_recording@BattleInputRecordingView@th105@@QAE_NPBD@Z"
+rel32_targets = [
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+ "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
+ "?assign@String28CallGate@th105@@QAEXPBDI@Z=0x004021C0",
+ "?battle_input_recording_format_marker@th105@@YAIXZ=0x0043AA40",
+ "?deserialize_fixed_slot_envelope@FixedSlotEnvelope@th105@@QAE_NPAUFileReader@2@@Z=0x0042B2F0",
+ "?clear@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@QAEXXZ=0x0042C020",
+ "?_Assign_n@?$vector@UFixedSlotEnvelope@th105@@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@IAEXIABUFixedSlotEnvelope@th105@@@Z=0x0042C3F0",
+ "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+ "??3@YAXPAX@Z=0x006898EA",
+ "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+ "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "@__security_check_cookie@4=0x00689D25",
+]

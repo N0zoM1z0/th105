@@ -1753,3 +1753,4 @@ create_file_texture,0x00409020,function
 load_dds_texture,0x004094E0,function
 TextureFileLoading_load,0x00409080,function
 TextureFileLoading_upload,0x0041AE60,function
+BattleInputRecording_load,0x0042C5C0,function

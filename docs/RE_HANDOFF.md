@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Replay loading42C5C0 is canonical exact848/848 in real CFileReader source
+context. Normal reader ownership, scoped default-slot lifetime and paired scalar
+slot fields recover the frame; six cleanup-EH records also match. The one
+affected library-origin fingerprint was revalidated through its minimal probe.
+Incremental1540 functions /437019 bytes. See REPLAY_LOADING_EXACT_2026_10_30.md.
+
 PNG41A910 now has complete703-byte CIL and exact cleanup EH, with one unequal
 SIB byte at41AAAD still preventing exact acceptance. Its actual callback33 is
 fully rechecked before pointer replay. All17 prior affected matches remain
