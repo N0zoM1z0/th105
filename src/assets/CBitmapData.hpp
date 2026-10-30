@@ -23,6 +23,7 @@ public:
     virtual void copy_from(const CBitmapSourceView *source);
 
 private:
+    friend struct TextureFileLoading;
     unsigned char format_04;
     unsigned char reserved_05[3];
     int field_08;

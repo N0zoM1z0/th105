@@ -27755,3 +27755,21 @@ address = "0x004094E0"
 symbol_base = "?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z"
 rel32_targets = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "?create_file_texture@th105@@YGJIIIIPAPAUDdsTexture9@1@@Z=0x00409020", "_printf=0x0068BD23"]
 dir32_targets = ["__ehhandler$?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z=dds_texture_loader_eh"]
+
+[units.exact-first-bitmap-texture-loading]
+kind = "probe"
+source = "src/assets/BitmapTextureLoading.cpp"
+object = "build/match-units/ExactFirst_BitmapTextureLoading.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete bitmap/mipmap1106 and pixel upload954 source, including DDS/creation dependencies. Root1161 and upload1037-byte envelope remain nonexact; no partial or switch metadata credit. docs/BITMAP_TEXTURE_LOADING_2026_10_30.md"
+
+[[units.exact-first-bitmap-texture-loading.functions]]
+address = "0x00409080"
+symbol_base = "?load@TextureFileLoading@th105@@SIJPAIPBDPAPAUDdsTexture9@2@0@Z"
+rel32_targets = ["?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z=0x004094E0", "?upload@TextureFileLoading@th105@@SIXIEPAVCBitmapData@2@PAX@Z=0x0041AE60", "_strcpy_s=0x0068AD95", "_D3DXCreateTexture@32=0x0068989C", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?load_from_file@CBitmapData@th105@@UAE_NPBD@Z=0x0041ACA0", "?load_bitmap@CBitmapData@th105@@UAE_NPBD@Z=0x00419FF0", "@__security_check_cookie@4=0x00689D25"]
+dir32_targets = ["__ehhandler$?load@TextureFileLoading@th105@@SIJPAIPBDPAPAUDdsTexture9@2@0@Z=bitmap_texture_loader_eh", "?g_d3d_backend@th105@@3UD3DBackend@1@A=dds_texture_backend_object"]
+
+[[units.exact-first-bitmap-texture-loading.functions]]
+address = "0x0041AE60"
+symbol_base = "?upload@TextureFileLoading@th105@@SIXIEPAVCBitmapData@2@PAX@Z"

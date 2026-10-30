@@ -3907,3 +3907,31 @@ confidence = "observed"
 evidence = "Game texture fallback calls this complete DDS loader; DXT filtering, mipmap size/read policy and backend ownership identify authored code. Nonexact source receives no byte credit. docs/DDS_TEXTURE_LOADING_2026_10_30.md"
 required_body_hashes = [{ address = "0x004094E0", size = 696, sha256 = "7b8061af662891779ed3deeb55c77c23b8ee127a161e6a77d253b6ff28ce58e9" }]
 required_direct_edges = [{ caller = "0x00409080", site = "0x004090D8", target = "0x004094E0" }]
+
+[[rules]]
+id = "bitmap-texture-load-authored-106a"
+addresses = ["0x00409080"]
+expected_count = 1
+expected_bytes = 1106
+expected_names = ["sub_409080"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Actual game resource texture caller, file/mipmap policy and bitmap pixel ownership identify complete authored code. Current full source remains nonexact. docs/BITMAP_TEXTURE_LOADING_2026_10_30.md"
+required_body_hashes = [{ address = "0x00409080", size = 1106, sha256 = "aacd183d301e3c72ec0e0f093208671eb998e88ba00d92c5118ac67e70220be4" }]
+required_direct_edges = [{ caller = "0x00404C90", site = "0x00404CBC", target = "0x00409080" }]
+
+[[rules]]
+id = "bitmap-texture-upload-authored-106a"
+addresses = ["0x0041AE60"]
+expected_count = 1
+expected_bytes = 954
+expected_names = ["sub_41AE60"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Actual game resource texture caller, file/mipmap policy and bitmap pixel ownership identify complete authored code. Current full source remains nonexact. docs/BITMAP_TEXTURE_LOADING_2026_10_30.md"
+required_body_hashes = [{ address = "0x0041AE60", size = 954, sha256 = "57b42ebf2c5b5b7aafdf1dcd82c94bd65dc5c5829b3b98fc9bcc7772f8499a24" }]
+required_direct_edges = [{ caller = "0x00409080", site = "0x0040946D", target = "0x0041AE60" }]

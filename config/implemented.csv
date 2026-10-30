@@ -1724,3 +1724,5 @@ move_profile_input_cursor
 process_profile_ime_window_message
 create_file_texture
 load_dds_texture
+TextureFileLoading_load
+TextureFileLoading_upload

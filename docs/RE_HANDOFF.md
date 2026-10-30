@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Bitmap/mipmap fallback409080 and raw/RLE pixel upload41AE60 are now fully
+source-present in the actual DDS/creation graph. Both remain nonexact;16 prior
+accepted bitmap/file functions remain exact after friend-only header access.
+See BITMAP_TEXTURE_LOADING_2026_10_30.md.
+
 Texture creation409020 is canonical exact88/88 in the real DDS loader TU.
 Complete DDS4094E0 source retains native format/mipmap/failure ownership policy
 but remains701/native696 nonexact, without EH or partial credit.

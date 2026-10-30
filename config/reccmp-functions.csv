@@ -1751,3 +1751,5 @@ move_profile_input_cursor,0x0040EBC0,function
 process_profile_ime_window_message,0x0040EDE0,function
 create_file_texture,0x00409020,function
 load_dds_texture,0x004094E0,function
+TextureFileLoading_load,0x00409080,function
+TextureFileLoading_upload,0x0041AE60,function
