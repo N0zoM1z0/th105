@@ -1749,3 +1749,5 @@ Application_window_proc,0x006657E0,function
 commit_profile_ime_composition,0x0040E8B0,function
 move_profile_input_cursor,0x0040EBC0,function
 process_profile_ime_window_message,0x0040EDE0,function
+create_file_texture,0x00409020,function
+load_dds_texture,0x004094E0,function

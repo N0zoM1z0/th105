@@ -1722,3 +1722,5 @@ Application_window_proc
 commit_profile_ime_composition
 move_profile_input_cursor
 process_profile_ime_window_message
+create_file_texture
+load_dds_texture

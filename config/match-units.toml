@@ -27735,3 +27735,23 @@ address = "0x0040EDE0"
 symbol_base = "?process_ime_window_message@th105@@YG_NPAXIIJ@Z"
 rel32_targets = ["_ImmGetCompositionStringA@16=0x0066B830", "_strcpy_s=0x0068AD95", "_strncpy_s=0x0068B2A8", "_memset=0x0068A440", "@__security_check_cookie@4=0x00689D25", "?refresh_profile_ime_composition@th105@@YAJXZ=0x0040E840", "?commit_profile_ime_composition@th105@@YAXXZ=0x0040E8B0", "?insert_profile_input_character@th105@@YGXD@Z=0x0040EA30", "?move_profile_input_cursor@th105@@YGXH@Z=0x0040EBC0", "?delete_profile_input_character@th105@@YAXXZ=0x0040EC60", "?request_profile_input_reset@th105@@YAXXZ=0x0040ED90"]
 dir32_targets = ["_g_profile_menu_controller=profile_ime_runtime_address"]
+
+[units.exact-first-dds-texture-loading]
+kind = "probe"
+source = "src/assets/DdsTextureLoading.cpp"
+object = "build/match-units/ExactFirst_DdsTextureLoading.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete88-byte texture creation helper exact in real DDS loader TU. DDS696 source701 remains nonexact on frame/owner scheduling, with no EH or partial credit. docs/DDS_TEXTURE_LOADING_2026_10_30.md"
+
+[[units.exact-first-dds-texture-loading.functions]]
+address = "0x00409020"
+symbol_base = "?create_file_texture@th105@@YGJIIIIPAPAUDdsTexture9@1@@Z"
+rel32_targets = ["_D3DXCreateTexture@32=0x0068989C"]
+dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=dds_texture_backend_object"]
+
+[[units.exact-first-dds-texture-loading.functions]]
+address = "0x004094E0"
+symbol_base = "?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z"
+rel32_targets = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "?create_file_texture@th105@@YGJIIIIPAPAUDdsTexture9@1@@Z=0x00409020", "_printf=0x0068BD23"]
+dir32_targets = ["__ehhandler$?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z=dds_texture_loader_eh"]

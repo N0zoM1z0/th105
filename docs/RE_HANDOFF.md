@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Texture creation409020 is canonical exact88/88 in the real DDS loader TU.
+Complete DDS4094E0 source retains native format/mipmap/failure ownership policy
+but remains701/native696 nonexact, without EH or partial credit.
+See DDS_TEXTURE_LOADING_2026_10_30.md.
+
 Profile cursor40EBC0 is canonical exact157/157 in the real IME/window TU.
 Full composition and four-input IME source now close the missing HWND semantic
 dependency; both larger bodies remain nonexact, with no prefix/table credit.
