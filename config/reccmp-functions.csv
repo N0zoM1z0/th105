@@ -1762,3 +1762,4 @@ configure_gamepad_axis,0x0040DB40,function
 initialize_gamepad_devices,0x0040D620,function
 enumerate_gamepad_device,0x0040D9F0,function
 InputStateTableStorage_update_input_state_table,0x0040A550,function
+initialize_mouse_device,0x0040D810,function

@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Mouse bootstrap40D810 now has complete current-target source, restoring the
+omitted property-error notification. Real CIL296/native282 remains nonexact
+because the native private EAX error helper is inlined; no ABI/noinline coercion.
+All five affected platform/input exact roots remain exact. Totals unchanged
+1544 functions /437755 bytes. See DIRECTINPUT_MOUSE_SOURCE_2026_10_30.md.
+
+
 Input-state update40A550 is canonical exact266/266 through real CIL and the
 ordinary byte-key sibling. Current DirectInputBackend keyboard field20 replaces
 the old unselected wrong address. The independently pinned byte-vector117

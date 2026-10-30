@@ -1735,3 +1735,4 @@ configure_gamepad_axis
 initialize_gamepad_devices
 enumerate_gamepad_device
 InputStateTableStorage_update_input_state_table
+initialize_mouse_device
