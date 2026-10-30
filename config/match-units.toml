@@ -16615,16 +16615,6 @@ rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = ["??_7DirectSoundResourceBaseLifetime@th105@@6B@=??_7DirectSoundResourceBase@th105@@6B@"]
 
 [[units.gpt-web-direct-sound-resource-lifetime.functions]]
-address = "0x004180F0"
-symbol_base = "??1DirectSoundResourceLifetime@th105@@UAE@XZ"
-dir32_targets = [
-  "__ehhandler$??1DirectSoundResourceLifetime@th105@@UAE@XZ=__ehhandler$??1DirectSoundResourceLifetime@th105@@UAE@XZ",
-  "___security_cookie=___security_cookie",
-  "??_7DirectSoundResourceLifetime@th105@@6B@=??_7DirectSoundResourceDerived@th105@@6B@",
-  "??_7DirectSoundResourceBaseLifetime@th105@@6B@=??_7DirectSoundResourceBase@th105@@6B@",
-]
-
-[[units.gpt-web-direct-sound-resource-lifetime.functions]]
 address = "0x004180D0"
 symbol_base = "??_GDirectSoundResourceLifetime@th105@@UAEPAXI@Z"
 rel32_targets = [
@@ -27583,7 +27573,7 @@ link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
 link_xiph_sdk = true
 linked_coff_sources = ["src/library/UnsignedIntList.cpp"]
-notes = "Real BGM allocation, token lookup/release and stream lifetime graph. Complete private stream destructor220 and all cleanup states are the comparison focus; other roots remain unaccepted. docs/BGM_STREAM_LIFETIME_2026_10_30.md."
+notes = "Real BGM allocation, token lookup/release and stream lifetime graph. Private stream destructor220 and normal spatial-buffer destructor139 are exact with all cleanup states; other roots remain unaccepted. docs/BGM_STREAM_LIFETIME_2026_10_30.md."
 link_data_targets = [
  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
@@ -27642,3 +27632,16 @@ address = "0x00403CE0"
 symbol_base = "?run_bgm_loading_worker@th105@@YAXXZ"
 rel32_targets = ["?lookup@BgmLoadingManagerView@th105@@QAEPAUBgmStreamLoadingView@2@I@Z=0x00404330", "?release@BgmLoadingManagerView@th105@@QAEXI@Z=0x00404270", "?start@BgmStreamLoadingView@th105@@QAE_NXZ=0x00402A00", "??3@YAXPAX@Z=0x006898EA", "__invalid_parameter_noinfo=0x0068A143"]
 dir32_targets = ["?g_bgm_service@th105@@3UBgmLoadingServiceView@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A"]
+
+[[units.exact-first-bgm-stream-lifetime.link_vtables]]
+symbol = "??_7DirectSoundResourceLifetime@th105@@6B@"
+target = "??_7DirectSoundResourceDerived@th105@@6B@"
+initializer = "?initialize@DirectSoundResourceLifetime@th105@@UAE_NPBXI@Z=0x00418180"
+entry = "??_GDirectSoundResourceLifetime@th105@@UAEPAXI@Z=0x004180D0"
+target_type_name = ".?AVCDS3DBuffer@@"
+
+[[units.exact-first-bgm-stream-lifetime.functions]]
+address = "0x004180F0"
+symbol_base = "??1DirectSoundResourceLifetime@th105@@UAE@XZ"
+eh_cleanup = { handler = "0x006BD658", info = "0x006E3C30" }
+rel32_targets = ["??1DirectSoundResourceBaseLifetime@th105@@UAE@XZ=0x004182E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]

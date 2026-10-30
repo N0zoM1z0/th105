@@ -2978,3 +2978,11 @@ receiver and worker frame but remains nonexact. Scalar token arguments plus
 the existing two-WORD view preserve native caller pushes; a value-class input
 control adds unwanted construction. See
 [BGM loading worker](BGM_LOADING_WORKER_2026_10_30.md).
+
+## Spatial DirectSound destructor CIL closure, 2026-10-30
+
+4180F0 now matches139/139 plus complete cleanup EH. Its ordinary source is
+unchanged; real buffer/allocation CIL resolves the old zero-register scheduling
+difference. Both source-owned vtables and native CDS3DBuffer RTTI are checked.
+Stream destructor220 remains exact. See
+[spatial buffer lifetime](DIRECT_SOUND_SPATIAL_LIFETIME_EXACT_2026_10_30.md).

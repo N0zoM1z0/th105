@@ -1724,18 +1724,6 @@ confidence = "observed"
 evidence = "Canonical-exact target callers carry the current decorated game-method identities for all five entries, and the existing tracked VC8 probe objects independently emit same-name same-size bodies from BattleSetupSlots.cpp, HitCounters.cpp, SpellRuntime.cpp and ObjectResponses.cpp. Canonical comparisons remain nonexact only on previously documented checked-container visibility/register allocation or 16-bit load-width scheduling; same-size emission is discovery evidence, not exact credit."
 
 [[rules]]
-id = "direct-sound-resource-normal-dtor-authored-106a"
-addresses = ["0x004180F0"]
-expected_count = 1
-expected_bytes = 139
-expected_names = ["sub_4180F0"]
-origin = "authored_game"
-subsystem = "audio"
-disposition = "authored"
-confidence = "observed"
-evidence = "Canonical-exact DirectSoundResource scalar deleting destructor 0x004180D0 calls this normal destructor, while exact base lifetime and initialize methods plus current derived/base vtables fix the 0x10 object layout. Fresh tracked DirectSoundResourceLifetime.cpp emits a 139-byte normal dtor; canonical comparison closes SEH/vtable relocations and first differs at +0x2F on zero-register/load scheduling only."
-
-[[rules]]
 id = "profile-key-config-normal-dtor-authored-106a"
 addresses = ["0x0044B9D0"]
 expected_count = 1

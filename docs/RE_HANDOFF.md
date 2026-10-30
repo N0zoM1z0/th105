@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Spatial buffer destructor4180F0 is canonical exact139/139 with full cleanup
+EH and both complete native buffer vtables. The unchanged ordinary source
+closes its old scheduling difference in real CIL; stream destructor220 stays
+exact in the same image. See DIRECT_SOUND_SPATIAL_LIFETIME_EXACT_2026_10_30.md.
+
 Loading worker403CE0 is now source-present with its complete pending/active/
 retired queue and wait policy. Packed-token word views and native free-list
 erase context preserve both accepted stream lifetimes. Worker and supporting

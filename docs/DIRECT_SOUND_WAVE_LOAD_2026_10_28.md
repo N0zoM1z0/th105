@@ -45,3 +45,7 @@ Receipt build/frontier-4180b0-20261028/derived-owned-reset.json preserves all
 six accepted peers17/33/53/30/160/253. The normal destructor4180F0 remains
 139/139 nonexact at+47 and receives no credit. The new constructor's full RET
 boundary is separately audited in the same directory's boundary.json.
+
+The old normal-destructor4180F0 stop is superseded by canonical139/139 plus
+full cleanup EH in the actual shared CIL graph. Its source body is unchanged;
+see DIRECT_SOUND_SPATIAL_LIFETIME_EXACT_2026_10_30.md.

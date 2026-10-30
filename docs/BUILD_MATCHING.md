@@ -1654,3 +1654,17 @@ The comparator validates the original/generated archives, actual source and
 target PE import identities and map owner. This does not permit synthetic
 code providers or arbitrary import mappings. See
 [BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md](BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md).
+
+### Bounded compiler controls, 2026-10-30
+
+MenuCursor update41FA20 remains131/native117 with unchanged source in LTCG.
+A size-optimization control recovers IDIV6 but emits114 bytes and changes
+constant/scheduling choices; disabling global optimization gives239. Neither
+is selected, and no fake divisor or local is added. Evidence:
+build/frontier-menu-cursor-size-20261030/.
+
+Unchanged capped-counter45CED0 isolated in ordinary CIL remains126/native126
+with the same+3F branch-merge register difference. Its full old source TU needs
+real effect/sequence providers, so no stub was supplied. The isolated diagnostic
+receives no credit or public source change. Evidence:
+build/frontier-counter-merge-cil-20261030/.
