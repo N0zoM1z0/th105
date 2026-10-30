@@ -12,6 +12,8 @@ import subprocess
 import tomllib
 
 CONTRACTS = {
+    '_D3DXCreateTexture@32': dict(dll='d3dx9_33.dll', name='D3DXCreateTexture',
+                               target=0x68989C, target_iat=0x6C02B0),
     '_D3DXCreateEffect@36': dict(dll='d3dx9_33.dll', name='D3DXCreateEffect',
                               target=0x6898A2, target_iat=0x6C02B4),
 }
@@ -128,7 +130,7 @@ def contracts(unit, tools, *, generate=False):
                 or identities.get(iat) != (contract['dll'], contract['name'])
                 or c.target_bytes(address, 6) != b'\xff\x25' + struct.pack('<I', iat)):
             raise ValueError('named target is not its canonical import thunk and IAT')
-        stem = Path(contract['dll']).stem
+        stem = Path(contract['dll']).stem + '_' + contract['name']
         definition = folder / (stem + '.def')
         original = folder / (stem + '_lib.lib')
         output = folder / (stem + '_named.lib')

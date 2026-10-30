@@ -27345,12 +27345,24 @@ object = "build/match-units/ExactFirst_CsvFileLoading.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 link_runtime = "static"
+link_png_sdk = true
+link_named_import_targets = ["_D3DXCreateTexture@32=0x0068989C"]
 link_runtime_data = ["___security_cookie"]
-notes = "Real reader/package/CRC/file/CSV/script CIL context. CSV wrapper140, reset151, public reader destructor15, plain234, encoded267, script load282, text wrapper140, reader open213, raw bitmap load448, palette dispatch163 and raw palette243 are exact. Full cleanup EH and bounded source-owned CRLF literal reads are replayed. CSV caller, command-line parser, package opener and BMP palette loader remain unaccepted. Real reader constructors and the provider normal stdcall boundary recover open213. docs/FILE_READER_OPEN_EXACT_2026_10_30.md."
-link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A"]
+notes = "Real reader/package/CRC/file/CSV/script/bitmap CIL context with pinned libpng1.2.5/zlib1.2.3 C providers. DDS696 and complete cleanup EH are exact through its real bitmap caller; bitmap1126 and pixel upload remain unaccepted. CSV wrapper140, reset151, public reader destructor15, plain234, encoded267, script load282, text wrapper140, reader open213, raw bitmap load448, palette dispatch163 and raw palette243 are exact. Full cleanup EH and bounded source-owned CRLF literal reads are replayed. CSV caller, command-line parser, package opener and BMP palette loader remain unaccepted. Real reader constructors and the provider normal stdcall boundary recover open213. docs/FILE_READER_OPEN_EXACT_2026_10_30.md."
+link_data_targets = [
+  "?g_d3d_backend@th105@@3UD3DBackend@1@A=dds_texture_backend_object",
+  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+  "__imp__wsprintfA=__imp__wsprintfA",
+  "?g_bitmap_texture_levels@th105@@3HA=?g_bitmap_texture_levels@th105@@3HA",
+  "?g_bitmap_texture_base_level@th105@@3HA=?g_bitmap_texture_base_level@th105@@3HA",
+  "?g_bitmap_texture_palette@th105@@3IA=?g_bitmap_texture_palette@th105@@3IA",
+  "?g_bitmap_texture_encoded@th105@@3_NA=?g_bitmap_texture_encoded@th105@@3_NA",
+"__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A"]
 preserve_public_members = ["?clear_commands@CScript@@QAEXXZ"]
 
-link_literals = [{ symbol = "??_C@_02PCIJFNDE@?$AN?6?$AA@", target = "??_C@_02PCIJFNDE@?$AN?6?$AA@", read_offsets = [0, 2] }]
+link_literals = [
+  { symbol = "??_C@_07GLGIIGGC@failed?6?$AA@", target = "??_C@_07GLGIIGGC@failed?6?$AA@", read_offsets = [0], allow_pointer_push = true },{ symbol = "??_C@_02PCIJFNDE@?$AN?6?$AA@", target = "??_C@_02PCIJFNDE@?$AN?6?$AA@", read_offsets = [0, 2] }]
 
 [[units.exact-first-csv-file-loading.functions]]
 address = "0x0040F150"
@@ -27742,7 +27754,7 @@ source = "src/assets/DdsTextureLoading.cpp"
 object = "build/match-units/ExactFirst_DdsTextureLoading.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete88-byte texture creation helper exact in real DDS loader TU. DDS696 source701 remains nonexact on frame/owner scheduling, with no EH or partial credit. docs/DDS_TEXTURE_LOADING_2026_10_30.md"
+notes = "Complete88-byte texture creation helper exact in real DDS loader TU. DDS696 descriptor moved to exact-first-csv-file-loading where full body/EH are exact; this probe retains only the88-byte helper. docs/DDS_TEXTURE_LOADING_2026_10_30.md"
 
 [[units.exact-first-dds-texture-loading.functions]]
 address = "0x00409020"
@@ -27750,26 +27762,18 @@ symbol_base = "?create_file_texture@th105@@YGJIIIIPAPAUDdsTexture9@1@@Z"
 rel32_targets = ["_D3DXCreateTexture@32=0x0068989C"]
 dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=dds_texture_backend_object"]
 
-[[units.exact-first-dds-texture-loading.functions]]
-address = "0x004094E0"
-symbol_base = "?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z"
-rel32_targets = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "?create_file_texture@th105@@YGJIIIIPAPAUDdsTexture9@1@@Z=0x00409020", "_printf=0x0068BD23"]
-dir32_targets = ["__ehhandler$?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z=dds_texture_loader_eh"]
-
-[units.exact-first-bitmap-texture-loading]
-kind = "probe"
-source = "src/assets/BitmapTextureLoading.cpp"
-object = "build/match-units/ExactFirst_BitmapTextureLoading.obj"
-profile = "vc8-sp1-probe-o2"
-enable_gs = true
-notes = "Complete bitmap/mipmap1106 and pixel upload954 source, including DDS/creation dependencies. Root1161 and upload1037-byte envelope remain nonexact; no partial or switch metadata credit. docs/BITMAP_TEXTURE_LOADING_2026_10_30.md"
-
-[[units.exact-first-bitmap-texture-loading.functions]]
+[[units.exact-first-csv-file-loading.functions]]
 address = "0x00409080"
 symbol_base = "?load@TextureFileLoading@th105@@SIJPAIPBDPAPAUDdsTexture9@2@0@Z"
-rel32_targets = ["?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z=0x004094E0", "?upload@TextureFileLoading@th105@@SIXIEPAVCBitmapData@2@PAX@Z=0x0041AE60", "_strcpy_s=0x0068AD95", "_D3DXCreateTexture@32=0x0068989C", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?load_from_file@CBitmapData@th105@@UAE_NPBD@Z=0x0041ACA0", "?load_bitmap@CBitmapData@th105@@UAE_NPBD@Z=0x00419FF0", "@__security_check_cookie@4=0x00689D25"]
-dir32_targets = ["__ehhandler$?load@TextureFileLoading@th105@@SIJPAIPBDPAPAUDdsTexture9@2@0@Z=bitmap_texture_loader_eh", "?g_d3d_backend@th105@@3UD3DBackend@1@A=dds_texture_backend_object"]
+rel32_targets = ["?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z=0x004094E0", "?upload@TextureFileLoading@th105@@SIXIEPAVCBitmapData@2@PAX@Z=0x0041AE60", "_strcpy_s=0x0068AD95", "_D3DXCreateTexture@32=0x0068989C"]
 
-[[units.exact-first-bitmap-texture-loading.functions]]
+[[units.exact-first-csv-file-loading.functions]]
 address = "0x0041AE60"
 symbol_base = "?upload@TextureFileLoading@th105@@SIXIEPAVCBitmapData@2@PAX@Z"
+
+[[units.exact-first-csv-file-loading.functions]]
+address = "0x004094E0"
+symbol_base = "?load_dds_texture@th105@@YGJPAPAUDdsTexture9@1@PBDPAI2@Z"
+private_from = { caller = "0x00409080", site = "0x004090D8", source_only_caller = true }
+eh_cleanup = { handler = "0x006BD98B", info = "0x006E3FE4" }
+rel32_targets = ["?create_file_texture@th105@@YGJIIIIPAPAUDdsTexture9@1@@Z=0x00409020", "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "_printf=0x0068BD23", "___CxxFrameHandler3=0x006899E7", "@__security_check_cookie@4=0x00689D25", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20"]

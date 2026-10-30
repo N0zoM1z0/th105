@@ -33,7 +33,7 @@ CBitmapData::~CBitmapData()
 }
 
 #pragma pack(push, 2)
-struct BitmapFileHeader14 {
+struct BitmapImageFileHeader14 {
     unsigned short type_00;
     unsigned int file_size_02;
     unsigned short reserved_06;
@@ -42,7 +42,7 @@ struct BitmapFileHeader14 {
 };
 #pragma pack(pop)
 
-struct BitmapInfoHeader40 {
+struct BitmapImageInfoHeader40 {
     unsigned int size_00;
     int width_04;
     int height_08;
@@ -92,10 +92,10 @@ bool CBitmapData::load_bitmap(const char *path)
     unsigned char *file_data = new unsigned char[file_size];
     reader->read(file_data, file_size);
 
-    BitmapFileHeader14 *file_header =
-        reinterpret_cast<BitmapFileHeader14 *>(file_data);
-    BitmapInfoHeader40 *info = reinterpret_cast<BitmapInfoHeader40 *>(
-        file_data + sizeof(BitmapFileHeader14));
+    BitmapImageFileHeader14 *file_header =
+        reinterpret_cast<BitmapImageFileHeader14 *>(file_data);
+    BitmapImageInfoHeader40 *info = reinterpret_cast<BitmapImageInfoHeader40 *>(
+        file_data + sizeof(BitmapImageFileHeader14));
     unsigned char *source = file_data + file_header->bits_offset_0a;
     unsigned char source_bpp = static_cast<unsigned char>(info->bit_count_0e);
 

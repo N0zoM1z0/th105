@@ -1,5 +1,9 @@
 # DDS texture loading and creation
 
+Current update: DDS4094E0 is now canonical696/696 with complete cleanup EH in
+the real bitmap/library CIL. See DDS_TEXTURE_LINKED_EXACT_2026_10_30.md.
+The standalone results below describe the earlier source checkpoint.
+
 Texture creation helper409020 is canonical exact88/88 in the actual DDS loader
 TU. The complete696-byte DDS loader4094E0 is source-present but remains nonexact:
 ordinary source701 bytes, with frame and owner-pointer scheduling differences.
@@ -71,7 +75,7 @@ sources, including boundaries.json, ida-source-evidence.json and linked-command
 provenance. Full preflight is in build/frontier-medium-native-20261030.
 
 Reproduce with scripts/repo-python scripts/build.py --unit
-exact-first-dds-texture-loading --compare --json. Expected overall nonzero exit
-reflects the DDS mismatch; the88-byte helper must remain exact with no unresolved
-relocations. Continue with bitmap/mipmap fallback409080 and its pixel-upload
+exact-first-dds-texture-loading --compare --json. This probe now contains only the88-byte helper and must pass. The DDS
+descriptor moved to exact-first-csv-file-loading; its current full linked body
+and EH comparison must pass. Continue with bitmap/mipmap fallback409080 and its pixel-upload
 provider41AE60, without inventing register declarations for private entries.

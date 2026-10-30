@@ -78,15 +78,18 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             symbol = str(f.get("symbol_base", ""))
             source_method = (re.fullmatch(r"\?\?[01][A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@[QU]AE@XZ", symbol)
                              or re.fullmatch(r"\?[A-Za-z_]\w*@[^?]+@@[QU][AB]E.+", symbol))
+            source_stdcall = re.fullmatch(r"\?[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@YG[A-Z].+@Z", symbol)
             private = f.get("private_from")
+            ctor = re.fullmatch(r"\?\?0[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol)
+            dtor = re.fullmatch(r"\?\?1[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol)
+            source_only = isinstance(private, dict) and private.get("source_only_caller") is True
+            private_ok = (private is None and source_method
+                          or isinstance(private, dict) and
+                          (private.get("through_exact_caller") is True or dtor
+                           or source_only and (ctor or source_stdcall)))
             public_lifetime = (
                 runtime == "static" and runtime_data == ["___security_cookie"]
-                and source_method
-                and (private is None or isinstance(private, dict)
-                     and (private.get("through_exact_caller") is True
-                          or (private.get("source_only_caller") is True
-                              and re.fullmatch(r"\?\?0[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol))
-                          or re.fullmatch(r"\?\?1[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol)))
+                and (source_method or source_stdcall and source_only) and private_ok
                 and not any(k in f for k in
                             ("export_name", "private_global", "private_static_leaf", "vtable_entry")))
             if (not isinstance(eh, dict) or set(eh) != {"handler", "info"}

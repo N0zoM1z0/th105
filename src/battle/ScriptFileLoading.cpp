@@ -1,3 +1,4 @@
+#define TH105_USE_SOURCE_PNG_LIBRARIES
 #include "assets/CsvFileLoading.cpp"
 #include "battle/ScriptLifecycle.cpp"
 #include <cstring>
@@ -45,6 +46,8 @@ bool CScript::load(const char *path, int option)
  return true;
 }
 
-#include "assets/CBitmapFileLoad.cpp"
+#include "assets/CBitmapDataRuntime.cpp"
 
 #include "assets/PaletteFileDispatch.cpp"
+
+#include "assets/BitmapTextureLoading.cpp"

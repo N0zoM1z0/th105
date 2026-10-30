@@ -169,11 +169,11 @@ long __fastcall TextureFileLoading::load(unsigned *height_out,const char *path,D
         if(width<height) width=height;
         else height=width;
     }
-    switch(bitmap->format_04) {
-    case 8: case 16: status=create_file_texture(width,height,levels,25,output);break;
-    case 24: case 32: status=create_file_texture(width,height,levels,21,output);break;
-    default:return status;
-    }
+    if(bitmap->format_04==32 || bitmap->format_04==24)
+        status=create_file_texture(width,height,levels,21,output);
+    else if(bitmap->format_04==8 || bitmap->format_04==16)
+        status=create_file_texture(width,height,levels,25,output);
+    else return status;
     if(status>=0) {
         for(int i=0;i<levels;++i) {
             DdsLockedRect locked;

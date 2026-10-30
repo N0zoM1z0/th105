@@ -1,14 +1,11 @@
 # TH10.5 reconstruction handoff
 
-Bitmap/mipmap fallback409080 and raw/RLE pixel upload41AE60 are now fully
-source-present in the actual DDS/creation graph. Both remain nonexact;16 prior
-accepted bitmap/file functions remain exact after friend-only header access.
-See BITMAP_TEXTURE_LOADING_2026_10_30.md.
-
-Texture creation409020 is canonical exact88/88 in the real DDS loader TU.
-Complete DDS4094E0 source retains native format/mipmap/failure ownership policy
-but remains701/native696 nonexact, without EH or partial credit.
-See DDS_TEXTURE_LOADING_2026_10_30.md.
+DDS4094E0 is now canonical exact696/696 with complete cleanup EH in the real
+bitmap/reader/PNG/zlib CIL. Original pinned library sources are verified before
+compile; no replacement implementation or library-byte credit. All22 prior
+focused matches remain exact. Incremental1539 functions /436171 bytes.
+Bitmap1126/native1106 and upload remain nonexact. See
+DDS_TEXTURE_LINKED_EXACT_2026_10_30.md.
 
 Profile cursor40EBC0 is canonical exact157/157 in the real IME/window TU.
 Full composition and four-input IME source now close the missing HWND semantic

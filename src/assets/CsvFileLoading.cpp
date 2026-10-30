@@ -1,4 +1,6 @@
+#ifndef TH105_USE_SOURCE_PNG_LIBRARIES
 #include "library/ZlibCrcTable.cpp"
+#endif
 // Real file-buffer/reader/package/CRC source context. Original TU unknown;
 // no code stubs or source-level private register declarations.
 #include "assets/PackageFileIndexNode.cpp"

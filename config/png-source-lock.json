@@ -1,0 +1,274 @@
+{
+  "libpng": {
+    "repository": "https://github.com/pnggroup/libpng",
+    "commit": "0cc2f95a9d87ae903a9842f1121384e3b2e5bbdc",
+    "tag": "v1.2.5",
+    "files": [
+      {
+        "path": "LICENSE",
+        "git_blob_sha1": "28b3b6620d9afc71c2d26b34f86dcd4d328503f4",
+        "size": 3834,
+        "sha256": "a0ae98603a515dbc805b203dd996c366b778875a62c3f3326fcb627afb5b310c"
+      },
+      {
+        "path": "png.c",
+        "git_blob_sha1": "2a55ccb7980b546aa9c3d71925161635856a32a3",
+        "size": 22837,
+        "sha256": "1c0a063feade5505e43aa02c9d3287ea6903f5549997481404a6c30fb9fb2328"
+      },
+      {
+        "path": "png.h",
+        "git_blob_sha1": "f059910e623510b17def0164e0fadc7e166d2cb8",
+        "size": 136663,
+        "sha256": "c68b2372b741b6aa2f5245f29ba3a2a21ac50fc6e49458dd5e71d2ec339e5705"
+      },
+      {
+        "path": "pngasmrd.h",
+        "git_blob_sha1": "d086d8c4ddd3adee18f333ebe8a15388ab7eec5d",
+        "size": 336,
+        "sha256": "9cb75d1fc5b9297f1b73792f878996db8885f6bff21a5a2d38d5705aa4730216"
+      },
+      {
+        "path": "pngconf.h",
+        "git_blob_sha1": "4a425dd1aaf803732db76384067765164ecc0c8e",
+        "size": 40750,
+        "sha256": "0b6376ec27ff077e454f25c1695232f566c14383beda67b4af5fde5435657cb0"
+      },
+      {
+        "path": "pngerror.c",
+        "git_blob_sha1": "fc3c304779cc240a3c0c2183d1dac06c37919c63",
+        "size": 8503,
+        "sha256": "c75c4b53810490fc41aad575b50be0dced1a5e78684a10f6b94e23d79db82d94"
+      },
+      {
+        "path": "pngget.c",
+        "git_blob_sha1": "f7f5c6702b381787f5a4095c4787da697b560462",
+        "size": 25739,
+        "sha256": "163136b33908e709bd9ba61e47420bd467580df7dc368d9946cdccc5fae7e06b"
+      },
+      {
+        "path": "pngmem.c",
+        "git_blob_sha1": "66eec0b09f3bb3fe184f231497c774e09dfd1326",
+        "size": 16009,
+        "sha256": "d12a55fdc12e4eb1296caa0c8885ef7a425df51aad618c540e7664039b659797"
+      },
+      {
+        "path": "pngpread.c",
+        "git_blob_sha1": "9f924c34cc4425dabdcf43d0afb35152c2f5bdcd",
+        "size": 44827,
+        "sha256": "6e193314e50ff1a67ab57a49b5a0dc485da8ebd20b6c0790b51be48366711984"
+      },
+      {
+        "path": "pngread.c",
+        "git_blob_sha1": "e91d3e89caf492b145fa0be47644288b0570d64a",
+        "size": 45428,
+        "sha256": "068ce62778dd5cb09483138d29a567313155d8b596237eeac920b62f902a6826"
+      },
+      {
+        "path": "pngrio.c",
+        "git_blob_sha1": "c33b1cdce3a7281cb5235e73cab68eed9f01374c",
+        "size": 5353,
+        "sha256": "7e5c2b4ca9456683460162e8df82f81e9b67082f60a1b067ba3289d519496df9"
+      },
+      {
+        "path": "pngrtran.c",
+        "git_blob_sha1": "3de91202c1d17e42b0beeb90b304eba391bd6fe6",
+        "size": 142253,
+        "sha256": "9bf7277879223783bec7beccd021deab884a4e324dc941f79a1c02a6eb008394"
+      },
+      {
+        "path": "pngrutil.c",
+        "git_blob_sha1": "9cbfed65f0502d0b2c658dc3c4570cb6592f31e3",
+        "size": 90025,
+        "sha256": "29056f86ce72f30878762a09cb7f59a57b60a5d1d9b2035a2331717103e98ace"
+      },
+      {
+        "path": "pngset.c",
+        "git_blob_sha1": "8e4e6197c95dd84009135e5b0a3e95c8c31b6152",
+        "size": 36432,
+        "sha256": "63ad16c3c4617e56ddfd8639665904cc897cbe3dc1245c82d4ba7037b6e81894"
+      },
+      {
+        "path": "pngtrans.c",
+        "git_blob_sha1": "f08fb4ecfe9a14ca0ec7c9f5335d8d3365572a66",
+        "size": 20026,
+        "sha256": "2b87a2ecf02a225ff9f972a9f9558ef3048971b7bdb24223aded1fa3263522f8"
+      },
+      {
+        "path": "pngvcrd.c",
+        "git_blob_sha1": "4f513eb4d984039ba2dfe612854d1c7eb7e4d0ca",
+        "size": 142414,
+        "sha256": "d5e9445e10af9322bd9820fc7b5e11727fa1874198e361027ea7dfd0a5939912"
+      },
+      {
+        "path": "pngwio.c",
+        "git_blob_sha1": "b39b4145f0fd99ae08d775e22a188c7c1e5588d1",
+        "size": 7438,
+        "sha256": "0fb44aa14589bad5fdbef9e4b19615cf0cbc96715d4603efa31e0448dcfb5d6f"
+      },
+      {
+        "path": "pngwrite.c",
+        "git_blob_sha1": "10c9ea40685532ec1ea8969b650223085514e7c3",
+        "size": 47407,
+        "sha256": "667f920d406dbc96d90f555740cec8094ded3a792dfbe668253ca4adb4fedf3e"
+      },
+      {
+        "path": "pngwtran.c",
+        "git_blob_sha1": "c28da116b730c67dee4283baf73f4cfa6f26f4df",
+        "size": 16956,
+        "sha256": "b02e2a8a53fab33de3d857f03a105baab9ff390f1c7c1c745f1cba5e9ae826b0"
+      },
+      {
+        "path": "pngwutil.c",
+        "git_blob_sha1": "4b5ab6c87ec089e4369b656980d438792b4d94b4",
+        "size": 81681,
+        "sha256": "1e49fc17c6846a15d5af43821019624b5c908b96611d4602a1ac552168c273e3"
+      }
+    ]
+  },
+  "zlib": {
+    "repository": "https://github.com/madler/zlib",
+    "commit": "abf180a067223611620dd97dd5681df7c7fa7c9b",
+    "tag": "v1.2.3",
+    "files": [
+      {
+        "path": "README",
+        "git_blob_sha1": "758cc50020dfefc53d518fd56072849cd5cbc9c7",
+        "size": 5696,
+        "sha256": "365db9b693fda6c66ddd97d81ae3eb17be32c890909553973a77439d85900494"
+      },
+      {
+        "path": "adler32.c",
+        "git_blob_sha1": "007ba26277c8470d897faa87b7b9fb4b5d15e606",
+        "size": 4559,
+        "sha256": "00c99977ac0c230d4a4e7a8e6ceea805a177d2c152f96d65b9120606ba568e59"
+      },
+      {
+        "path": "compress.c",
+        "git_blob_sha1": "df04f0148e6d6a22ce0f5bc4e3eeeb7bb54ca605",
+        "size": 2489,
+        "sha256": "d1b6b94695a515f7dbc242ec3899110f443e6d61ad331a7731022acb2922269b"
+      },
+      {
+        "path": "crc32.c",
+        "git_blob_sha1": "f658a9ef55ee89e930df72907790d11f5504e3ce",
+        "size": 13193,
+        "sha256": "72fed7e11dbcbc2523a643f40dfb076360128f819455378d65492cc2f31855c9"
+      },
+      {
+        "path": "crc32.h",
+        "git_blob_sha1": "8053b6117c023f64554ea783b23fa06985acff7b",
+        "size": 30568,
+        "sha256": "b8252ca25db989e06910c09b031a328a18ab9c32fb3ab6e6f5c98c0e2b0089cb"
+      },
+      {
+        "path": "deflate.c",
+        "git_blob_sha1": "29ce1f64a57a18f3c939f879d301ece10ac6da1b",
+        "size": 64163,
+        "sha256": "9a7b00ada17c00871dddfd5607e17de22ca22bf57fe16b4e3baae042669a44d6"
+      },
+      {
+        "path": "deflate.h",
+        "git_blob_sha1": "05a5ab3a2c1251aa0b90aee68dfbd3ddc5d17838",
+        "size": 12114,
+        "sha256": "21b874a8ed5c2e0157e65d2290f5dd99398583c556466d693f38b2a18dd85194"
+      },
+      {
+        "path": "gzio.c",
+        "git_blob_sha1": "7e90f4928fc0b67a4a4a5c76ab289394c41c7e55",
+        "size": 31103,
+        "sha256": "67cbd32574628657a7a57c848cf070179630ccdaad938c5bd8119ead782ca11d"
+      },
+      {
+        "path": "infback.c",
+        "git_blob_sha1": "455dbc9ee8432fcb01ecf425b9df81d22471e17c",
+        "size": 22164,
+        "sha256": "fb5cf761491c70b0ce31c335e39d20d442c8586c527d9f75bb3f54b2adddef33"
+      },
+      {
+        "path": "inffast.c",
+        "git_blob_sha1": "bbee92ed1e6bd3683d4d497bdf639dd1b05e98bc",
+        "size": 12568,
+        "sha256": "42466c76b7c4c330167c7e7e5758b1444140c7adcb4f41d6c6b9f082a8f0f617"
+      },
+      {
+        "path": "inffast.h",
+        "git_blob_sha1": "1e88d2d97b568d37c44800c5aa7e54cfa33d46d3",
+        "size": 407,
+        "sha256": "b338cc7381a11473014404298bc89c5c3d6d4f3f5bd4e5c7ca3a8c1c1216ad6a"
+      },
+      {
+        "path": "inffixed.h",
+        "git_blob_sha1": "75ed4b5978de4be3c44ad48a060b75500f17a0a2",
+        "size": 6343,
+        "sha256": "88a340c8e628d56682a99c3a9a38e44fafeb8b4c609e0df85ea17c66011e0f42"
+      },
+      {
+        "path": "inflate.c",
+        "git_blob_sha1": "792fdee8e9c72bf3a62ead549577ba5cdd473e61",
+        "size": 48977,
+        "sha256": "ea0f06889e0e479379b4e7b14df5771825f3d95355c31487076d1d9955c37b33"
+      },
+      {
+        "path": "inflate.h",
+        "git_blob_sha1": "07bd3e78a7c7e763f2dbb939320b01a9897df019",
+        "size": 5916,
+        "sha256": "664cd98c729e0201f801aa4534f7797bde53190867a33b5336e23025e4271c5d"
+      },
+      {
+        "path": "inftrees.c",
+        "git_blob_sha1": "8a9c13ff03d874f03d0ad132c5ab19cfe3a53add",
+        "size": 13756,
+        "sha256": "f256499c66a70ca0f63fa575112efaf313d44f69447bea544e4d85a54f289dde"
+      },
+      {
+        "path": "inftrees.h",
+        "git_blob_sha1": "b1104c87e76907a2105183fa8a904f01de8356c6",
+        "size": 2373,
+        "sha256": "f29ebb99a776d4500446d6926155df48dcac9fa7d396ac7fabe31e5bd60cebbe"
+      },
+      {
+        "path": "trees.c",
+        "git_blob_sha1": "395e4e16814e5e1d863fdbd38790e1508a8e5dcf",
+        "size": 44027,
+        "sha256": "1d42f8cb2cf319854d3acbb8e45c821107682fe065ab22c61432a849ecde8133"
+      },
+      {
+        "path": "trees.h",
+        "git_blob_sha1": "72facf900f7787e26fe05781e08ecf26b42fbd3a",
+        "size": 8444,
+        "sha256": "81579041310716219bbbf7c98849d91f5aeabdd7eadb1f8e9d7e2aa57724b58b"
+      },
+      {
+        "path": "uncompr.c",
+        "git_blob_sha1": "b59e3d0defb24b22c83167609f2cc5eb7620b96b",
+        "size": 2087,
+        "sha256": "2eb29295ca49201b0b0a6448dfca8706d81a78b9dbdf8fa006f3f636e29a65fc"
+      },
+      {
+        "path": "zconf.h",
+        "git_blob_sha1": "03a9431c8be2b44f2b1159308454a0f9c628597c",
+        "size": 9544,
+        "sha256": "dd6fc06ec36207bd5af7aa31557553665cc5d294e881a80052a108cff5dd303e"
+      },
+      {
+        "path": "zlib.h",
+        "git_blob_sha1": "022817927ce3d6b1abe5ac57bff70e7de5291ae0",
+        "size": 66188,
+        "sha256": "ebceab9efa0d906fcc28dabb864ae63d99da8e5efe56e030cb9cb96578622245"
+      },
+      {
+        "path": "zutil.c",
+        "git_blob_sha1": "d55f5948a37f181c003dd4572b660727132eaba1",
+        "size": 7136,
+        "sha256": "e779dcf163308a4565e53d6d462ae19e4896b6f1c759312105bce758404ae075"
+      },
+      {
+        "path": "zutil.h",
+        "git_blob_sha1": "b7d5eff81b69a3c23daec86c42dff4ba4746b1dd",
+        "size": 6859,
+        "sha256": "5b3ffa91e57686861114a1da30a5ef8327acf2926535241f18de050249af9ac3"
+      }
+    ]
+  }
+}

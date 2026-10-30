@@ -26,7 +26,8 @@ def validate(unit, data_keys):
         raise ValueError('linked literals must be an explicit list')
     seen = set()
     for e in entries:
-        if (not isinstance(e, dict) or set(e) != {'symbol', 'target', 'read_offsets'}
+        if (not isinstance(e, dict) or set(e) not in ({'symbol', 'target', 'read_offsets'},
+                        {'symbol', 'target', 'read_offsets', 'allow_pointer_push'})
                 or not isinstance(e['symbol'], str) or not isinstance(e['target'], str)
                 or e['symbol'] in seen or e['target'] != e['symbol'] or e['target'] not in data_keys):
             raise ValueError('linked literal requires its unique exact symbol/target identity')
@@ -36,6 +37,8 @@ def validate(unit, data_keys):
                 or any(type(x) is not int or not 0 <= x < size for x in offsets)
                 or offsets != sorted(set(offsets))):
             raise ValueError('linked literal needs explicit distinct in-bounds read offsets')
+        if 'allow_pointer_push' in e and (e['allow_pointer_push'] is not True or offsets != [0]):
+            raise ValueError('literal pointer push needs explicit whole-string offset zero')
         seen.add(e['symbol'])
 
 
@@ -58,5 +61,6 @@ def witnesses(unit, source, target, symbols, cil_owner, known):
             refs.append({'kind':'literal', 'symbol':e['symbol'],
                 'source_address':start+offset, 'address':address+offset,
                 'size':size-offset, 'literal_size':size, 'read_offset':offset,
-                'literal_sha256':hashlib.sha256(raw).hexdigest()})
+                'literal_sha256':hashlib.sha256(raw).hexdigest(),
+                **({'allow_pointer_push': True} if e.get('allow_pointer_push') is True else {})})
     return refs

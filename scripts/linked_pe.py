@@ -80,6 +80,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     from linked_xiph_sdk import validate as validate_xiph
     from linked_ogg_callbacks import validate as validate_ogg_callbacks
     validate_xiph(unit)
+    from linked_png_sdk import validate as validate_png
+    validate_png(unit)
     validate_ogg_callbacks(unit, data_keys)
     from linked_numeric_literals import validate as validate_numbers
     validate_numbers(unit, data_keys)
@@ -195,9 +197,10 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                     or "private_global" in callers[0] or "vtable_entry" in callers[0]):
                 raise ValueError("private linked function needs a distinct configured exported caller")
             if witness.get("source_only_caller") is True:
-                if (not re.fullmatch(r"\?\?0[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol)
-                        or "eh_cleanup" not in function):
-                    raise ValueError("source-only single caller requires a normal constructor with complete cleanup EH")
+                normal_ctor = re.fullmatch(r"\?\?0[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol)
+                normal_stdcall = re.fullmatch(r"\?[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@YG[A-Z].+@Z", symbol)
+                if (not (normal_ctor or normal_stdcall) or "eh_cleanup" not in function):
+                    raise ValueError("source-only caller requires a normal constructor/stdcall function and complete cleanup EH")
             if through_exact:
                 parent = callers[0].get("private_from", {})
                 if ("via" in parent or "through_exact_caller" in parent or "caller_eh" in witness):
@@ -515,6 +518,8 @@ def build_linked(name: str, unit: dict) -> dict:
     output.parent.mkdir(parents=True, exist_ok=True)
     from linked_xiph_sdk import inputs as xiph_inputs
     xiph_archives = xiph_inputs(unit, output, generate=True)
+    from linked_png_sdk import inputs as png_inputs
+    png_archives = png_inputs(unit, output, generate=True)
     obj = output.with_suffix(".ltcg.obj")
     data_obj = output.with_suffix(".bindings.obj")
     map_path = output.with_suffix(".map")
@@ -555,7 +560,7 @@ def build_linked(name: str, unit: dict) -> dict:
     libraries = sorted({contract["library"] for contract in sdk_imports})
     libraries.extend(STATIC_LIBS if static else ("lib/msvcrt.lib", "lib/msvcprt.lib"))
     link_command.extend(win(p) for p in [*coff_objects, obj, data_obj,
-                                        *(ROOT / a["path"] for a in xiph_archives),
+                                        *(ROOT / a["path"] for a in xiph_archives + png_archives),
                                         *(tools / p for p in libraries),
                                         ])
     # Each invocation is serial. /FORCE and unresolved references are forbidden.
@@ -579,6 +584,8 @@ def build_linked(name: str, unit: dict) -> dict:
                 "link_command": link_command}
     if xiph_archives:
         metadata["xiph_archives"] = xiph_archives
+    if png_archives:
+        metadata["png_archives"] = png_archives
     output.with_suffix(".link.json").write_text(json.dumps(metadata, indent=2) + "\n")
     return metadata
 
@@ -610,7 +617,13 @@ def decode_closed_body(code: bytes, start: int, *, tail: bool = False,
     tail_end = (tail and terminal is not None and terminal.size == 5 and terminal.bytes[0] == 0xe9
                 and terminal.operands[0].type == capstone.x86.X86_OP_IMM
                 and not start <= terminal.operands[0].imm < start + len(code))
-    if not instructions or sum(i.size for i in instructions) != len(code) or (terminal.mnemonic != "ret" and not tail_end):
+    internal_join = (terminal is not None and terminal.id == capstone.x86.X86_INS_JMP
+                     and len(terminal.operands) == 1
+                     and terminal.operands[0].type == capstone.x86.X86_OP_IMM
+                     and start <= terminal.operands[0].imm < start + len(code)
+                     and any(i.mnemonic == "ret" for i in instructions))
+    if (not instructions or sum(i.size for i in instructions) != len(code)
+            or (terminal.mnemonic != "ret" and not tail_end and not internal_join)):
         raise ValueError("linked body does not close through a complete RET boundary")
     by_address = {i.address: i for i in instructions}
     external_exits = external_exits or {}
@@ -737,6 +750,11 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                     field, width = instruction.disp_offset, instruction.disp_size
                 else:
                     allowed = ((ref["kind"] == "object" and instruction.mnemonic in {"mov", "push"})
+                               or (ref["kind"] == "literal" and ref.get("allow_pointer_push") is True
+                                   and instruction.mnemonic == "push"
+                                   and ref.get("read_offset") == 0
+                                   and ref.get("size") == ref.get("literal_size")
+                                   and type(ref.get("literal_size")) is int and ref["literal_size"] > 0)
                                or (ref["kind"] == "eh_handler" and instruction.mnemonic == "push")
                                or (ref["kind"] == "eh_info" and instruction.mnemonic == "mov"
                                    and instruction.operands[0].type == capstone.x86.X86_OP_REG
@@ -1006,7 +1024,11 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
         raise ValueError("private linked witness has no configured exported caller")
     caller = callers[0]
     caller_row = ledger[contract["caller"]]
-    if caller_row["status"] not in {"implemented", "matching"} or caller_row["source_file"] != unit["source"]:
+    caller_in_source = caller_row["source_file"] == unit["source"]
+    if not caller_in_source and contract.get("source_only_caller") is True:
+        from workflow_manifest import repository_path, source_dependencies
+        caller_in_source = repository_path(caller_row["source_file"]) in source_dependencies(unit)
+    if caller_row["status"] not in {"implemented", "matching"} or not caller_in_source:
         raise ValueError("private linked witness caller must have reviewed source in this TU")
     start = source_function_start(function, functions, exports, cil_owner)
     parent = source_function_start(caller, functions, exports, cil_owner)
@@ -1105,6 +1127,9 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
                 "sdk_imports": sdk_imports}
     if unit.get("link_xiph_sdk"):
         expected["xiph_archives"] = xiph_inputs(unit, image)
+    if unit.get("link_png_sdk"):
+        from linked_png_sdk import inputs as png_inputs
+        expected["png_archives"] = png_inputs(unit, image)
     if any(metadata.get(key) != value for key, value in expected.items()):
         raise ValueError("stale or modified linked build provenance; rebuild the configured unit")
     pe = pefile.PE(str(image))
@@ -1121,7 +1146,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         if not unit.get("link_objects"):
             runtime_initializers = validate_static_runtime_initializers(
                 pe, functions, parse_map_symbols(map_text),
-                allow_pinned_stdio=unit.get("link_xiph_sdk") is True)
+                allow_pinned_stdio=(unit.get("link_xiph_sdk") is True or unit.get("link_png_sdk") is True))
     vtables = source_vtables(pe, parse_map_symbols(map_text), functions,
                              vtable_contracts, image.with_suffix(".ltcg.obj").name)
     from linked_reader_vtables import witnesses as reader_vtable_witnesses

@@ -234,6 +234,16 @@ class LinkedPeTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             linked.private_caller_witness(**f)
 
+    def test_source_only_caller_requires_actual_included_source(self):
+        f = self.private_fixture()
+        f['function']['private_from']['source_only_caller'] = True
+        f['ledger']['0x00401000']['source_file'] = 'src/assets/Included.cpp'
+        path = linked.ROOT / 'src/assets/Included.cpp'
+        with patch('workflow_manifest.source_dependencies', return_value={path}):
+            self.assertIn('no caller byte or EH equality', linked.private_caller_witness(**f)['scope'])
+        with patch('workflow_manifest.source_dependencies', return_value=set()), self.assertRaises(ValueError):
+            linked.private_caller_witness(**f)
+
     def test_private_constructor_pair_requires_both_complete_edges(self):
         f = self.private_fixture()
         root, child = self.start, self.start + 0x20
@@ -400,6 +410,16 @@ class LinkedPeTests(unittest.TestCase):
         for change in changes:
             bad=self.literal_fixture();change(bad)
             with self.subTest(change=change),self.assertRaises(ValueError):linked_literals.witnesses(**bad)
+
+    def test_cil_literal_pointer_requires_explicit_base_only_contract(self):
+        import linked_literals
+        f = self.literal_fixture()
+        entry = f['unit']['link_literals'][0]
+        entry.update(read_offsets=[0], allow_pointer_push=True)
+        self.assertTrue(linked_literals.witnesses(**f)[0]['allow_pointer_push'])
+        for value, offsets in ((False, [0]), (1, [0]), (True, [0, 2]), (True, [2])):
+            entry.update(read_offsets=offsets, allow_pointer_push=value)
+            with self.assertRaises(ValueError): linked_literals.witnesses(**f)
 
     def test_cil_literal_replays_only_declared_in_bounds_register_reads(self):
         import linked_literals
@@ -934,6 +954,30 @@ class LinkedPeTests(unittest.TestCase):
         # Both return paths must be decoded and owned, not just the first RET.
         self.assertEqual(len(linked.decode_closed_body(b"\x74\x01\xc3\xc3", self.start)), 3)
         self.assertEqual(len(linked.decode_closed_body(b"\xe2\xfe\xc3", self.start)), 2)
+
+    def test_literal_pointer_push_requires_whole_attested_string(self):
+        src, dst = self.start + 0x1000, 0x006D6A08
+        code = b"\x68" + struct.pack("<I", src) + b"\xc3"
+        ref = {"kind": "literal", "source_address": src, "address": dst,
+               "symbol": "text", "size": 8, "literal_size": 8, "read_offset": 0,
+               "allow_pointer_push": True}
+        def replay(reference, body=code):
+            return linked.canonicalize(body, self.start, self.target, [], lambda a: None,
+                                       self.image, self.game, internal_refs=[reference])
+        self.assertEqual(replay(ref)[0], b"\x68" + struct.pack("<I", dst) + b"\xc3")
+        for bad in ({**ref, "read_offset": 1}, {**ref, "size": 7}, {**ref, "allow_pointer_push": False},
+                    {k: v for k, v in ref.items() if k != "literal_size"}):
+            with self.assertRaises(ValueError): replay(bad)
+        with self.assertRaises(ValueError): replay(ref, b"\xb8" + struct.pack("<I", src) + b"\xc3")
+
+    def test_internal_terminal_jump_requires_complete_owned_return_graph(self):
+        # DDS4094E0 has a remote failure block after RET, jumping to its epilogue.
+        code = b"\x74\x01\xc3\xeb\xfd"
+        self.assertEqual(len(linked.decode_closed_body(code, self.start)), 3)
+        for bad in (b"\xeb\xfe", b"\xc3\xeb\xfd", b"\x74\x01\xc3\xeb\xfc",
+                    b"\x74\x01\xc3\xeb\x7f", b"\x74\x01\xc3\xff\xe0"):
+            with self.subTest(code=bad.hex()), self.assertRaises(ValueError):
+                linked.decode_closed_body(bad, self.start)
 
     def test_runtime_identity_requires_named_pinned_dll_and_mapping(self):
         slot = linked.IMAGE_BASE + 0x3000

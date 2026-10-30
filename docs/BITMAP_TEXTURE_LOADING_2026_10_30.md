@@ -1,5 +1,10 @@
 # Bitmap texture fallback and pixel upload source
 
+Current update: the real library-backed graph now makes DDS696 exact. Bitmap
+parent1126/native1106 and upload remain nonexact. The old standalone probe was
+consolidated into exact-first-csv-file-loading; see
+DDS_TEXTURE_LINKED_EXACT_2026_10_30.md. The initial reports below are historical.
+
 Complete source now covers bitmap/mipmap loader409080 and pixel upload41AE60.
 Both remain nonexact: loader1161/native1106, upload1037-byte emitted envelope
 versus native954 callable bytes plus87 bytes of table/alignment metadata.

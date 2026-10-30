@@ -58,6 +58,25 @@ class LifecycleTests(unittest.TestCase):
                 private_global=dict(object=self.symbol, role="destructor"),
                 eh_cleanup=dict(handler="0x006BE09E", info="0x006E477C"))])
 
+    def test_source_only_stdcall_cleanup_needs_explicit_caller_and_static_cookie(self):
+        import linked_pe
+        sym = "?load_dds_texture@th105@@YGJPAXPBDPAI2@Z"
+        f = {"address": "0x004094E0", "symbol_base": sym,
+             "private_from": {"caller": "0x00409080", "site": "0x004090D8", "source_only_caller": True},
+             "eh_cleanup": {"handler": "0x006BD98B", "info": "0x006E3FE4"}}
+        unit = {"kind": "linked_candidate", "profile": linked_pe.PROFILE, "object": "build/test.dll",
+                "link_data_targets": [], "link_runtime": "static", "link_runtime_data": ["___security_cookie"],
+                "functions": [{"address": "0x00409080", "symbol_base": "_parent@16",
+                               "rel32_targets": [sym+"=0x004094E0"]}, f]}
+        linked_pe.validate_contract(unit, set())
+        import copy
+        for change in ('proof', 'cleanup', 'runtime'):
+            bad = copy.deepcopy(unit)
+            if change == 'proof': del bad['functions'][1]['private_from']['source_only_caller']
+            elif change == 'cleanup': del bad['functions'][1]['eh_cleanup']
+            else: bad['link_runtime'] = 'import'
+            with self.assertRaises(ValueError): linked_pe.validate_contract(bad, set())
+
     def test_public_lifetime_cleanup_requires_static_cookie_and_unrenamed_export(self):
         unit = dict(profile=core.PROFILE, object="build/test.dll", link_runtime="static",
             source="src/battle/ScriptLifecycle.cpp", link_runtime_data=["___security_cookie"],
