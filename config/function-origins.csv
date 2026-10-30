@@ -317,13 +317,13 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040D3F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040D540,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040D560,authored_game,input,authored,observed,canonical-exact-authored
-0x0040D620,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040D620,authored_game,input,authored,observed,direct-input-initialize-gamepad-devices-authored-106a
 0x0040D6D0,authored_game,input,authored,observed,canonical-exact-authored
 0x0040D810,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040D930,authored_game,input,authored,observed,canonical-exact-authored
 0x0040D940,authored_game,input,authored,observed,canonical-exact-authored
 0x0040D990,authored_game,input,authored,observed,canonical-exact-authored
-0x0040D9F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040D9F0,authored_game,input,authored,observed,direct-input-enumerate-gamepad-device-authored-106a
 0x0040DB40,authored_game,input,authored,observed,canonical-exact-authored
 0x0040DBF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040DC40,unknown,,review,unknown,ida-1.06a-initial-inventory

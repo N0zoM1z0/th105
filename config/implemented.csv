@@ -1732,3 +1732,5 @@ ConnectMenu_load_history_list
 encode_score_payload_4067f0
 decode_score_payload_406890
 configure_gamepad_axis
+initialize_gamepad_devices
+enumerate_gamepad_device

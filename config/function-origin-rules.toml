@@ -3949,3 +3949,31 @@ confidence = "observed"
 evidence = "Connect menu state444830 directly invokes game-specific address/history list construction, texture ownership and cursor policy. Complete source remains nonexact; docs/CONNECT_LIST_LOADING_2026_10_30.md."
 required_body_hashes = [{ address = "0x004434B0", size = 714, sha256 = "cc98bc64af2d5848e83b4b2ab459aebb0e668b44f1be445fda4d28a2b89d7c98" }]
 required_direct_edges = [{ caller = "0x00444830", site = "0x0044497D", target = "0x004434B0" }]
+
+[[rules]]
+id = "direct-input-initialize-gamepad-devices-authored-106a"
+addresses = ["0x0040D620"]
+expected_count = 1
+expected_bytes = 176
+expected_names = ["sub_40D620"]
+origin = "authored_game"
+subsystem = "input"
+disposition = "authored"
+confidence = "observed"
+evidence = "Actual application startup and EnumDevices callback binding prove game-specific device/state ownership. Complete source remains nonexact; docs/DIRECTINPUT_GAMEPAD_BOOTSTRAP_2026_10_30.md."
+required_body_hashes = [{ address = "0x0040D620", size = 176, sha256 = "5bee847afc9938f25eda9a7863960f1ea0fc726088ff781a29a7cb4b61027aaa" }]
+required_direct_edges = [{ caller = "0x00407DA0", site = "0x00407EA0", target = "0x0040D620" }]
+
+[[rules]]
+id = "direct-input-enumerate-gamepad-device-authored-106a"
+addresses = ["0x0040D9F0"]
+expected_count = 1
+expected_bytes = 334
+expected_names = ["sub_40D9F0"]
+origin = "authored_game"
+subsystem = "input"
+disposition = "authored"
+confidence = "observed"
+evidence = "Actual application startup and EnumDevices callback binding prove game-specific device/state ownership. Complete source remains nonexact; docs/DIRECTINPUT_GAMEPAD_BOOTSTRAP_2026_10_30.md."
+required_body_hashes = [{ address = "0x0040D9F0", size = 334, sha256 = "5045fa91a987a8ccc7b264779f51168094e2eea11749e0ca97444d46b08155f6" }]
+required_dword_values = [{ address = "0x0040D646", value = "0x0040D9F0" }, { address = "0x0040DB2A", value = "0x0040DB40" }]

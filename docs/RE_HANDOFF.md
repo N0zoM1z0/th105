@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+DirectInput gamepad initialization40D620 and device callback40D9F0 now have
+complete caller-backed source. Ordinary176/176 and327/334 remain nonexact;
+genuine parent/axis/CRT CIL182/573 does not close shared-template inlining.
+No byte gain; see DIRECTINPUT_GAMEPAD_BOOTSTRAP_2026_10_30.md.
+
 DirectInput axis callback40DB40 is canonical exact166/166 from unchanged
 source in real CIL/static-CRT context. The compiler now naturally recovers the
 native8-byte-aligned frame without changing property alignment or ABI.

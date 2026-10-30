@@ -27883,3 +27883,39 @@ notes = "Unchanged real checked-vector back()/SetProperty source now closes the 
 address = "0x0040DB40"
 symbol_base = "?configure_gamepad_axis@th105@@YGHPBUDirectInputObjectInstanceView@1@PAX@Z"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[units.exact-first-directinput-gamepad-bootstrap]
+kind = "probe"
+source = "src/input/DirectInputGamepadBootstrap.cpp"
+object = "build/match-units/ExactFirst_DirectInputGamepadBootstrap.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete current gamepad enumeration334/bootstrap176 source. Ordinary helper ABIs and linked inlining remain nonexact; no register facade or callback-body credit. Existing exact axis callback is retained in its separate true-CIL unit."
+
+[[units.exact-first-directinput-gamepad-bootstrap.functions]]
+address = "0x0040D9F0"
+symbol_base = "?enumerate_gamepad_device@th105@@YGHPBUEnumDeviceInstance@1@PAX@Z"
+rel32_targets = [
+ "?push_back@?$vector@PAXV?$allocator@PAX@std@@@std@@QAEXABQAX@Z=0x00404400",
+ "?back@?$vector@PAXV?$allocator@PAX@std@@@std@@QAEAAPAXXZ=0x0040DBF0",
+ "?push_back@?$vector@HV?$allocator@H@std@@@std@@QAEXABH@Z=0x0040DCF0",
+ "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+ "?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=direct_input_gamepad_bootstrap_runtime",
+ "?gamepad_data_format@th105@@3QBEB=direct_input_gamepad_format",
+]
+
+[[units.exact-first-directinput-gamepad-bootstrap.functions]]
+address = "0x0040D620"
+symbol_base = "?initialize_gamepad_devices@th105@@YAEXZ"
+rel32_targets = [
+ "_memset=0x0068A440",
+ "?_Assign_n@?$vector@URawGamepadState@th105@@V?$allocator@URawGamepadState@th105@@@std@@@std@@IAEXIABURawGamepadState@th105@@@Z=0x0040DE50",
+ "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+ "?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=direct_input_gamepad_bootstrap_runtime",
+ "?direct_input_enum_gamepads_error@th105@@3QBDB=direct_input_enum_gamepads_error",
+ "?direct_input_error_title@th105@@3QBDB=_direct_input_error_title",
+]
