@@ -624,13 +624,13 @@ bool BgmStreamRuntime::update()
     buffer_24.resource_04->get_current_position(&play,&write);
     if(eof_cursor_1348!=~0u) {
         if(play>eof_cursor_1348 &&
-           play<cursor_1340+(cursor_1340<previous_cursor_1344?0x100000u:0u)) {
+           play<cursor_1340+(static_cast<unsigned>(cursor_1340<previous_cursor_1344)<<20)) {
             buffer_24.stop_if_playing();
             return previous_1370==0;
         }
     } else {
         if(write>=previous_cursor_1344 &&
-           write<cursor_1340+(previous_cursor_1344>=cursor_1340?0x100000u:0u)) {
+           write<cursor_1340+(static_cast<unsigned>(previous_cursor_1344>=cursor_1340)<<20)) {
             unsigned bytes=fill_ogg_pcm_block(&source_30,samples);
             if(bytes<0x8000) eof_cursor_1348=(bytes+previous_cursor_1344)&0xfffff;
             void *first,*second;

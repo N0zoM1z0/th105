@@ -66,7 +66,7 @@ value to the original ov_open_callbacks provider.
 The three newly implemented game paths are402A00 start358,402C10 update943
 and402FC0 handoff806. They own the100000h ring,8000h decode blocks, EOF cursor,
 delayed playback, fade state and linked-stream synchronization. Their compiled
-candidates are349,925 and761 bytes and are not exact. The source preserves the
+candidates are349,918 and761 bytes and are not exact. The source preserves the
 observed unchecked API paths and unsigned wrap behavior, rather than adding
 new defensive policies.
 
@@ -109,3 +109,21 @@ Private receipts are under build/frontier-bgm-stream-runtime-20261030:
 ida-preflight.json, ida-stream-functions.json, formal-build.json,
 formal-open.json, the focused regression receipts and ci.log.
 SDK archives, generated libraries and analysis artifacts are not committed.
+
+## Ring-wrap expression follow-up
+
+Raw402C71..402C78 and402CC1..402CC9 form a boolean and shift it20 bits.
+The source now spells both wrap offsets as unsigned boolean shifts rather
+than ternary constants. Fresh CIL recovers both native SBB/NEG-or-ADD/SHL
+sequences. The complete update is918/native943 and remains unaccepted; its
+frame, private receiver and volume helper boundaries remain open.
+Both accepted Ogg291 and SFL484 roots freshly retain canonical equality.
+Evidence: build/frontier-stream-update-fp-20261030/shift-update.asm and
+accepted-replay.json. No exact ledger or byte credit changes.
+
+Scoped exception-sensitive update FP was also checked independently. It
+materializes transition values but gives931 bytes and leaves the frame and
+other scheduling differences. It is not selected. Applying the successful
+SFL exception setting to PCM yields243/native252 with the same unwanted
+64-byte frame, so the selected PCM251 source is retained. Neither control
+justifies extra storage, forced alignment or weakening full-byte comparison.
