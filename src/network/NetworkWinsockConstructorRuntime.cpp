@@ -27,17 +27,7 @@ struct NetworkThreadHandleCtorView {
     unsigned long thread_id_04;
 };
 
-class NetworkCriticalSectionCtorView {
-public:
-    NetworkCriticalSectionCtorView()
-    {
-        InitializeCriticalSection(&critical_section_04);
-    }
-    virtual ~NetworkCriticalSectionCtorView();
-
-public:
-    Win32CriticalSection24 critical_section_04;
-};
+typedef NetworkUdpPacketCriticalSectionView NetworkCriticalSectionCtorView;
 
 NetworkWinsockPolymorphicBase::~NetworkWinsockPolymorphicBase()
 {
@@ -48,48 +38,12 @@ NetworkThreadHandleCtorView::~NetworkThreadHandleCtorView()
     wait_for_exit();
 }
 
-NetworkCriticalSectionCtorView::~NetworkCriticalSectionCtorView()
-{
-    DeleteCriticalSection(&critical_section_04);
-}
-
-struct NetworkListValue8 {
-    unsigned int first_00;
-    unsigned int second_04;
-};
-
-struct NetworkCheckedListNode18 {
-    NetworkCheckedListNode18 *next_00;
-    NetworkCheckedListNode18 *previous_04;
-    void *owner_08;
-    NetworkListValue8 value_0c;
-    unsigned char constructed_14;
-    unsigned char is_head_15;
-    unsigned char reserved_16[2];
-};
-
-NetworkCheckedListNode18 *__cdecl allocate_network_checked_list_node_18();
-
 // Endpoint lookup412A60 independently proves the +FC IP-key multimap.
 struct NetworkPeerRecord20;
 typedef std::multimap<unsigned int, NetworkPeerRecord20 *> NetworkPeerIndex0C;
 
-struct NetworkCheckedListB0C {
-    NetworkCheckedListB0C()
-    {
-        head_04 = allocate_network_checked_list_node_18();
-        head_04->is_head_15 = 1;
-        head_04->previous_04 = head_04;
-        head_04->next_00 = head_04;
-        head_04->owner_08 = head_04;
-        size_08 = 0;
-    }
-    ~NetworkCheckedListB0C();
-
-    unsigned int allocator_00;
-    NetworkCheckedListNode18 *head_04;
-    unsigned int size_08;
-};
+// Lifetime-only two-trivial-word tree view; key/mapped semantics remain unknown.
+typedef std::map<unsigned,unsigned> NetworkPendingTree0C;
 
 struct NetworkSendRecord20CtorView {
     unsigned char reserved_00[0x20];
@@ -120,7 +74,7 @@ public:
     NetworkThreadHandleCtorView worker_13c;
     unsigned char reserved_144[8];
     std::vector<unsigned int> indices_14c;
-    NetworkCheckedListB0C pending_15c;
+    NetworkPendingTree0C pending_15c;
     std::deque<unsigned int> pending_tokens_168;
     NetworkUdpPacketHandleManager64 send_pool_17c;
     void *event_1e0;
@@ -149,14 +103,9 @@ typedef char NetworkWinsockPolymorphicBase_size[
     sizeof(NetworkWinsockPolymorphicBase) == 0x5c ? 1 : -1];
 typedef char NetworkCriticalSectionCtorView_size[
     sizeof(NetworkCriticalSectionCtorView) == 0x1c ? 1 : -1];
-typedef char NetworkListValue8_size[
-    sizeof(NetworkListValue8) == 0x08 ? 1 : -1];
-typedef char NetworkCheckedListNode18_size[
-    sizeof(NetworkCheckedListNode18) == 0x18 ? 1 : -1];
 typedef char NetworkPeerIndex0C_size[
     sizeof(NetworkPeerIndex0C) == 0x0c ? 1 : -1];
-typedef char NetworkCheckedListB0C_size[
-    sizeof(NetworkCheckedListB0C) == 0x0c ? 1 : -1];
+typedef char NetworkPendingTreeSize[sizeof(NetworkPendingTree0C)==0x0c?1:-1];
 typedef char NetworkWinsockState314CtorView_size[
     sizeof(NetworkWinsockState314CtorView) == 0x314 ? 1 : -1];
 typedef char NetworkWinsockState314CtorView_heap_offset[
@@ -171,3 +120,20 @@ typedef char NetworkWinsockState314CtorView_final_critical_offset[
     offsetof(NetworkWinsockState314CtorView, critical_1e4) == 0x1e4 ? 1 : -1];
 
 } // namespace th105
+
+namespace th105 {
+extern "C" __declspec(dllimport) int __stdcall SetThreadPriority(void *,int);
+extern "C" __declspec(dllimport) int __stdcall GetExitCodeThread(void *,unsigned long *);
+extern "C" __declspec(dllimport) int __stdcall CloseHandle(void *);
+void NetworkThreadHandleCtorView::wait_for_exit(){
+ if(handle_00){
+  SetThreadPriority(handle_00,15);
+  unsigned long exit_code=259;
+  while(exit_code==259)GetExitCodeThread(handle_00,&exit_code);
+  CloseHandle(handle_00);handle_00=0;
+ }
+}
+}
+
+// Real member definitions share this owner CIL context.
+#include "NetworkUdpPacketPool.cpp"

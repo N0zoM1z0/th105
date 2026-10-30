@@ -194,6 +194,10 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                     or ("private_from" in callers[0] and not through_exact)
                     or "private_global" in callers[0] or "vtable_entry" in callers[0]):
                 raise ValueError("private linked function needs a distinct configured exported caller")
+            if witness.get("source_only_caller") is True:
+                if (not re.fullmatch(r"\?\?0[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol)
+                        or "eh_cleanup" not in function):
+                    raise ValueError("source-only single caller requires a normal constructor with complete cleanup EH")
             if through_exact:
                 parent = callers[0].get("private_from", {})
                 if ("via" in parent or "through_exact_caller" in parent or "caller_eh" in witness):
@@ -968,6 +972,9 @@ def private_direct_sites(contract: dict) -> list[str]:
         return [contract["site"]]
     if set(contract) == {"caller", "site"} and address(contract["site"]):
         return [contract["site"]]
+    if (set(contract) == {"caller", "site", "source_only_caller"}
+            and contract["source_only_caller"] is True and address(contract["site"])):
+        return [contract["site"]]
     sites = contract.get("sites")
     if (set(contract) != {"caller", "sites"} or not isinstance(sites, list)
             or len(sites) != 2 or any(not address(site) for site in sites)
@@ -1002,8 +1009,8 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
         validate_caller_eh(contract, unit)
     sites = [contract["site"]] if eh_caller else private_direct_sites(contract)
     data = (caller_data_witness(pe, source_instructions, functions, bindings, game_range)
-            if "sites" in contract else [])
-    if "sites" not in contract and not eh_caller and not through_exact:
+            if "sites" in contract or contract.get("source_only_caller") is True else [])
+    if "sites" not in contract and not eh_caller and not through_exact and not contract.get("source_only_caller"):
         validate_body_relocations(pe, parent, len(source), [])
     source_calls = [i.address for i in source_instructions
                     if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == start]
@@ -1031,6 +1038,9 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
     edge = ({"target_sites": sites, "source_sites": [f"0x{site:08X}" for site in source_calls],
              "source_only_address_fields": data} if "sites" in contract else
             {"target_site": sites[0], "source_site": f"0x{source_calls[0]:08X}"})
+    if contract.get("source_only_caller") is True:
+        edge["source_only_address_fields"] = data
+        edge["scope"] = "complete caller CFG and source address roles only; no caller byte or EH equality"
     if through_exact:
         edge["exact_caller"] = {key: exact_caller_replay[key] for key in
             ("address", "source_body_sha256", "object_compared_sha256", "target_sha256",

@@ -19036,82 +19036,6 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 
-[units.cross-v106a-network-udp-packet-pool]
-kind = "linked_candidate"
-source = "src/network/NetworkUdpPacketPool.cpp"
-object = "build/match-units/CrossV106a_NetworkUdpPacketPool.dll"
-profile = "vc8-sp1-ltcg-o2"
-enable_gs = true
-linked_coff_sources = ["src/library/UnsignedIntList.cpp"]
-notes = "Real0x64 CHandleManager<NET_PACKET_UDP_BUFFER> with deque<0x41C POD>, two vectors, free-index list, generation and critical section. Ordinary COFF list instantiation constrains its shared ECX ABI while packet deque cleanup acquires the target private ESI ABI. Dtor413820 is compared independently through98-byte export/map/CFG ownership, two RTTI-backed native vptr HIGHLOW fields and four named REL32 calls. Ctor413780 is retained/exported for real class construction context but remains source-present/nonexact with unsupported linked EH surfaces; use address selection for accepted replay. Compiler scalar wrapper4138B0 remains excluded and earns no authored credit. Original TU partition remains unknown."
-link_data_targets = [
-  "__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4",
-  "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4",
-  "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
-  "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
-  "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
-  "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
-  "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
-]
-
-[[units.cross-v106a-network-udp-packet-pool.link_vtables]]
-symbol = "??_7NetworkUdpPacketHandleManager64@th105@@6B@"
-target = "??_7NetworkUdpPacketHandleManager64@th105@@6B@"
-entry = "??_GNetworkUdpPacketHandleManager64@th105@@UAEPAXI@Z=0x004138B0"
-target_type_name = ".?AV?$CHandleManager@UNET_PACKET_UDP_BUFFER@@@@"
-
-[[units.cross-v106a-network-udp-packet-pool.link_vtables]]
-symbol = "??_7NetworkUdpPacketCriticalSectionView@th105@@6B@"
-target = "??_7CriticalSectionWrapper@th105@@6B@"
-entry = "??_GNetworkUdpPacketCriticalSectionView@th105@@UAEPAXI@Z=0x0040ABE0"
-target_type_name = ".?AVCCriticalSection@@"
-
-[[units.cross-v106a-network-udp-packet-pool.functions]]
-address = "0x00413780"
-symbol_base = "??0NetworkUdpPacketHandleManager64@th105@@QAE@XZ"
-
-[[units.cross-v106a-network-udp-packet-pool.functions]]
-address = "0x00413820"
-symbol_base = "??1NetworkUdpPacketHandleManager64@th105@@UAE@XZ"
-rel32_targets = [
-  "?_Tidy@?$list@IV?$allocator@I@std@@@std@@IAEXXZ=0x004023E0",
-  "?_Tidy@?$deque@UNetworkUdpPacketBuffer41C@th105@@V?$allocator@UNetworkUdpPacketBuffer41C@th105@@@std@@@std@@IAEXXZ=0x00413E10",
-  "??3@YAXPAX@Z=0x006898EA",
-]
-
-[[units.cross-v106a-network-udp-packet-pool.functions]]
-address = "0x004138B0"
-symbol_base = "??_GNetworkUdpPacketHandleManager64@th105@@UAEPAXI@Z"
-vtable_entry = "??_7NetworkUdpPacketHandleManager64@th105@@6B@"
-rel32_targets = [
-  "??1NetworkUdpPacketHandleManager64@th105@@UAE@XZ=0x00413820",
-  "??3@YAXPAX@Z=0x006898EA",
-]
-
-[[units.gpt-web-network-winsock-scalar-dtor.functions]]
-address = "0x00412CC0"
-symbol_base = "??1NetworkWinsockState314CtorView@th105@@UAE@XZ"
-dir32_targets = ["??_7NetworkCriticalSectionCtorView@th105@@6B@=??_7CriticalSectionWrapper@th105@@6B@"]
-rel32_targets = [
-  "??1NetworkCheckedListB0C@th105@@QAE@XZ=0x00413A50",
-  "??1NetworkUdpPacketHandleManager64@th105@@UAE@XZ=0x00413820",
-  "??3@YAXPAX@Z=0x006898EA",
-  "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
-  "?erase@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@QAE?AViterator@12@V312@0@Z=0x00413B10",
-  "?wait_for_exit@NetworkThreadHandleCtorView@th105@@QAEXXZ=0x00414640",
-  "_free=0x0068AA26",
-]
-
-[[units.gpt-web-network-winsock-scalar-dtor.functions]]
-address = "0x00412B10"
-symbol_base = "??0NetworkWinsockState314CtorView@th105@@QAE@XZ"
-dir32_targets = ["??_7NetworkCriticalSectionCtorView@th105@@6B@=??_7CriticalSectionWrapper@th105@@6B@"]
-rel32_targets = [
-  "??0NetworkUdpPacketHandleManager64@th105@@QAE@XZ=0x00413780",
-  "?_Buynode@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@2@XZ=0x00413E80",
-  "?allocate_network_checked_list_node_18@th105@@YAPAUNetworkCheckedListNode18@1@XZ=0x00413E80",
-]
-
 [units.cross-v106a-network-udp-packet-acquire]
 kind = "probe"
 source = "src/network/NetworkWinsockSendClient.cpp"
@@ -27645,3 +27569,55 @@ address = "0x004180F0"
 symbol_base = "??1DirectSoundResourceLifetime@th105@@UAE@XZ"
 eh_cleanup = { handler = "0x006BD658", info = "0x006E3C30" }
 rel32_targets = ["??1DirectSoundResourceBaseLifetime@th105@@UAE@XZ=0x004182E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
+
+[units.exact-first-network-udp-lifetime]
+kind = "linked_candidate"
+source = "src/network/NetworkWinsockConstructorRuntime.cpp"
+object = "build/match-units/ExactFirst_NetworkUdpLifetime.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+linked_coff_sources = ["src/library/UnsignedIntList.cpp", "src/library/UnsignedIntVector.cpp"]
+notes = "Real CNetworkUDP owner and packet manager CIL. Packet constructor413780 exact145 with complete3-state cleanup EH, real single owner call and ordinary unsigned-vector/list library ABI; owner ctor357 main body alone agrees but its EH remains nonexact. No owner or compiler helper credit. docs/NETWORK_UDP_LIFETIME_EXACT_2026_10_30.md."
+link_data_targets = ["__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "__imp__SetThreadPriority@8=__imp__SetThreadPriority@8", "__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8", "__imp__CloseHandle@4=__imp__CloseHandle@4"]
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+preserve_public_members = ["?wait_for_exit@NetworkThreadHandleCtorView@th105@@QAEXXZ"]
+
+[[units.exact-first-network-udp-lifetime.link_vtables]]
+symbol = "??_7NetworkUdpPacketHandleManager64@th105@@6B@"
+target = "??_7NetworkUdpPacketHandleManager64@th105@@6B@"
+entry = "??_GNetworkUdpPacketHandleManager64@th105@@UAEPAXI@Z=0x004138B0"
+target_type_name = ".?AV?$CHandleManager@UNET_PACKET_UDP_BUFFER@@@@"
+
+[[units.exact-first-network-udp-lifetime.link_vtables]]
+symbol = "??_7NetworkUdpPacketCriticalSectionView@th105@@6B@"
+target = "??_7CriticalSectionWrapper@th105@@6B@"
+entry = "??_GNetworkUdpPacketCriticalSectionView@th105@@UAEPAXI@Z=0x0040ABE0"
+target_type_name = ".?AVCCriticalSection@@"
+
+[[units.exact-first-network-udp-lifetime.functions]]
+address = "0x00413820"
+symbol_base = "??1NetworkUdpPacketHandleManager64@th105@@UAE@XZ"
+rel32_targets = ["?_Tidy@?$list@IV?$allocator@I@std@@@std@@IAEXXZ=0x004023E0", "?_Tidy@?$deque@UNetworkUdpPacketBuffer41C@th105@@V?$allocator@UNetworkUdpPacketBuffer41C@th105@@@std@@@std@@IAEXXZ=0x00413E10", "??3@YAXPAX@Z=0x006898EA"]
+
+[[units.exact-first-network-udp-lifetime.functions]]
+address = "0x004138B0"
+symbol_base = "??_GNetworkUdpPacketHandleManager64@th105@@UAEPAXI@Z"
+vtable_entry = "??_7NetworkUdpPacketHandleManager64@th105@@6B@"
+rel32_targets = ["??1NetworkUdpPacketHandleManager64@th105@@UAE@XZ=0x00413820", "??3@YAXPAX@Z=0x006898EA"]
+
+[[units.exact-first-network-udp-lifetime.functions]]
+address = "0x00412B10"
+symbol_base = "??0NetworkWinsockState314CtorView@th105@@QAE@XZ"
+rel32_targets = ["??0NetworkUdpPacketHandleManager64@th105@@QAE@XZ=0x00413780"]
+
+[[units.exact-first-network-udp-lifetime.functions]]
+address = "0x00412CC0"
+symbol_base = "??1NetworkWinsockState314CtorView@th105@@UAE@XZ"
+
+[[units.exact-first-network-udp-lifetime.functions]]
+address = "0x00413780"
+symbol_base = "??0NetworkUdpPacketHandleManager64@th105@@QAE@XZ"
+private_from = { caller = "0x00412B10", site = "0x00412C3E", source_only_caller = true }
+eh_cleanup = { handler = "0x006BDFF1", info = "0x006E4680" }
+rel32_targets = ["?_Buynode@?$list@IV?$allocator@I@std@@@std@@IAEPAU_Node@?$_List_nod@IV?$allocator@I@std@@@2@XZ=0x004040B0", "??1?$deque@UNetworkUdpPacketBuffer41C@th105@@V?$allocator@UNetworkUdpPacketBuffer41C@th105@@@std@@@std@@QAE@XZ=0x00413B00", "??1?$vector@PAUNetworkUdpPacketBuffer41C@th105@@V?$allocator@PAUNetworkUdpPacketBuffer41C@th105@@@std@@@std@@QAE@XZ=0x00405060", "??1?$vector@IV?$allocator@I@std@@@std@@QAE@XZ=0x0040C240", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]

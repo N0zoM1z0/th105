@@ -224,6 +224,16 @@ class LinkedPeTests(unittest.TestCase):
             with self.subTest(target=raw.hex()), self.assertRaises(ValueError):
                 linked.private_caller_witness(**bad)
 
+    def test_source_only_single_caller_keeps_exact_edge_checks(self):
+        f = self.private_fixture()
+        f["function"]["private_from"]["source_only_caller"] = True
+        witness = linked.private_caller_witness(**f)
+        self.assertEqual(witness["source_only_address_fields"], [])
+        self.assertIn("no caller byte or EH equality", witness["scope"])
+        f["function"]["private_from"]["site"] = "0x00401001"
+        with self.assertRaises(ValueError):
+            linked.private_caller_witness(**f)
+
     def test_private_constructor_pair_requires_both_complete_edges(self):
         f = self.private_fixture()
         root, child = self.start, self.start + 0x20

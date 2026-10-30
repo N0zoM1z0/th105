@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+UDP packet-pool constructor413780 is exact145 with all3 cleanup states in the
+real CNetworkUDP owner CIL. The existing98-byte pool destructor remains exact.
+Ordinary unsigned-vector library context recovers the native EH receiver;
+owner ctor/dtor remain nonexact. See NETWORK_UDP_LIFETIME_EXACT_2026_10_30.md.
+
 Spatial buffer destructor4180F0 is canonical exact139/139 with full cleanup
 EH and both complete native buffer vtables. The unchanged ordinary source
 closes its old scheduling difference in real CIL; stream destructor220 stays

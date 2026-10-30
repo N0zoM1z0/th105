@@ -109,6 +109,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00404F00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404FD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405040,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
+0x00405060,compiler_generated,runtime,exclude,observed,udp-pointer-vector-cleanup-106a
 0x00405090,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405200,authored_game,engine,authored,observed,canonical-exact-authored
 0x004052B0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -444,7 +445,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004136E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413740,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413770,compiler_generated,runtime,exclude,observed,generated-container-tail-aliases-106a
-0x00413780,authored_game,network,authored,observed,network-udp-packet-handle-manager-authored-106a
+0x00413780,authored_game,network,authored,observed,canonical-exact-authored
 0x00413820,authored_game,network,authored,observed,canonical-exact-authored
 0x00413890,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004138B0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a

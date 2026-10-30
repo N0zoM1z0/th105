@@ -74,6 +74,18 @@ class LifecycleTests(unittest.TestCase):
         private["functions"][0]["private_from"] = dict(caller="0x00405600", site="0x00405633")
         private["functions"].append(dict(address="0x00405600", symbol_base="?release@Owner@@QAEXI@Z"))
         core.validate_contract(private, set())
+        constructor = copy.deepcopy(private)
+        constructor["functions"][0]["symbol_base"] = "??0CScript@@QAE@XZ"
+        constructor["functions"][0]["private_from"]["source_only_caller"] = True
+        core.validate_contract(constructor, set())
+        for key in ["eh_cleanup", "private_from"]:
+            bad_ctor = copy.deepcopy(constructor)
+            if key == "private_from":
+                bad_ctor["functions"][0][key]["source_only_caller"] = False
+            else:
+                bad_ctor["functions"][0].pop(key)
+            with self.assertRaises(ValueError):
+                core.validate_contract(bad_ctor, set())
         bad_private = copy.deepcopy(private)
         bad_private["functions"][0]["symbol_base"] = "?load@FileBuffer@@QAE_NPBD@Z"
         with self.assertRaises(ValueError):

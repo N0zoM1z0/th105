@@ -248,28 +248,6 @@ required_rtti_deleting_dtors = [
 ]
 
 [[rules]]
-id = "network-udp-packet-handle-manager-authored-106a"
-addresses = ["0x00413780"]
-expected_count = 1
-expected_bytes = 145
-expected_names = ["sub_413780"]
-origin = "authored_game"
-subsystem = "network"
-disposition = "authored"
-confidence = "observed"
-evidence = "RTTI identifies game-defined CHandleManager<NET_PACKET_UDP_BUFFER>. Source-present CNetworkUDP ctor/dtor directly construct/destroy the +17C member at412C3E/412D2E. Full145/98 byte hashes close46/34 instructions; real native deque, pointer/generation vectors, free-index list and critical section prove0x64 lifetime composition. Original owner event+1E0 is separate. Authored normal destructor is canonical98/98 through pinned resolved mixed COFF/LTCG and typed vptr replay; constructor remains nonexact. Both scalar deleting wrappers are compiler-owned and excluded. docs/NETWORK_UDP_PACKET_POOL_2026_10_16.md."
-required_body_hashes = [
-  { address = "0x00413780", size = 145, sha256 = "ea62578de7107a6b99e73dde7424b1cde8bac39308ddeadac2f61507edbf914a" },
-]
-required_direct_edges = [
-  { caller = "0x00412B10", site = "0x00412C3E", target = "0x00413780", caller_status = "implemented" },
-]
-required_dword_values = [
-  { address = "0x004137AB", value = "0x006D6C64" },
-  { address = "0x00413829", value = "0x006D6C64" },
-]
-
-[[rules]]
 id = "network-winsock-peer-removal-authored-106a"
 addresses = ["0x00412A60", "0x00413170"]
 expected_count = 2
@@ -3833,3 +3811,15 @@ subsystem = "audio"
 disposition = "authored"
 confidence = "observed"
 evidence = "Exact second BGM thread wrapper403B70 calls403CE0 at403B7C. Complete raw body owns the service running flag, event14 waits, pending94 to active88/retiredA0 transitions and packed-token release. It calls the independently source-recovered stream start and manager lookup/release. All direct branches close within461 bytes; no compiler/library origin or exactness inferred from body size. See BGM_LOADING_WORKER_2026_10_30.md."
+
+[[rules]]
+id = "udp-pointer-vector-cleanup-106a"
+addresses = ["0x00405060"]
+expected_count = 1
+expected_bytes = 38
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Complete native vector destructor reached by packet-pool unwind state1; real std::vector<packet *> destructor reproduces the ESI lifetime body. No authored credit. docs/NETWORK_UDP_LIFETIME_EXACT_2026_10_30.md."
+required_body_hashes = [{ address = "0x00405060", size = 38, sha256 = "9f58761ca9ee927fa18ce171ed6ee63151ce7c630085adfd6a895794de177eb0" }]

@@ -84,6 +84,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                 and source_method
                 and (private is None or isinstance(private, dict)
                      and (private.get("through_exact_caller") is True
+                          or (private.get("source_only_caller") is True
+                              and re.fullmatch(r"\?\?0[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol))
                           or re.fullmatch(r"\?\?1[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol)))
                 and not any(k in f for k in
                             ("export_name", "private_global", "private_static_leaf", "vtable_entry")))
