@@ -103,38 +103,27 @@ FileReaderOwner::~FileReaderOwner()
         delete reader;
 }
 
+inline CFileReader::CFileReader(const char *path)
+{
+    file = CreateFileA(path, 1, 1, 0, 3, 0x80, 0);
+    if (file == reinterpret_cast<FileHandle>(-1))
+        file = 0;
+}
+inline CPackageFileReader::CPackageFileReader(const char *path)
+{
+    file = open_package_file_entry(path, &entry_size, &entry_offset);
+    position = entry_offset;
+    if (file != 0)
+        xor_key = static_cast<unsigned char>((entry_offset >> 1) | 0x23);
+}
 bool FileReaderOwner::open(const char *path)
 {
     if (reader != 0)
         delete reader;
-
-    if (g_package_archive_store.count_38 != 0) {
-        CPackageFileReader *package_reader = new CPackageFileReader;
-        package_reader->file = 0;
-        package_reader->file = open_package_file_entry(
-            path,
-            &package_reader->entry_size,
-            &package_reader->entry_offset);
-        package_reader->position = package_reader->entry_offset;
-        if (package_reader->file != 0)
-            package_reader->xor_key = static_cast<unsigned char>(
-                (package_reader->entry_offset >> 1) | 0x23);
-        reader = package_reader;
-    } else {
-        CFileReader *plain_reader = new CFileReader;
-        plain_reader->file = CreateFileA(
-            path,
-            1,
-            1,
-            0,
-            3,
-            0x80,
-            0);
-        if (plain_reader->file == reinterpret_cast<FileHandle>(-1))
-            plain_reader->file = 0;
-        reader = plain_reader;
-    }
-
+    if (g_package_archive_store.count_38 != 0)
+        reader = new CPackageFileReader(path);
+    else
+        reader = new CFileReader(path);
     if (reader->file == 0) {
         delete reader;
         reader = 0;
@@ -142,5 +131,4 @@ bool FileReaderOwner::open(const char *path)
     }
     return true;
 }
-
 } // namespace th105

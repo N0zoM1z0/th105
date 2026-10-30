@@ -18,6 +18,8 @@ typedef unsigned long FileSize;
 
 class CFileReader {
 public:
+    CFileReader() : file(0) {}
+    explicit CFileReader(const char *path);
     virtual ~CFileReader();
     virtual bool read(void *destination, FileSize size);
     virtual FileSize last_read_size() const;
@@ -67,6 +69,7 @@ protected:
 
 class CPackageFileReader : public CFileReader {
 public:
+    explicit CPackageFileReader(const char *path);
     virtual bool read(void *destination, FileSize size);
     virtual long seek(long offset, int origin);
     virtual FileSize size() const;

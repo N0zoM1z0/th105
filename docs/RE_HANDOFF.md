@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Reader open40CF40 is canonical exact213/213 in real constructor/package CIL.
+The native normal stdcall provider boundary and both five-slot reader vtables
+are verified;31 previous accepted functions in12 affected units stay exact.
+No forced ABI/inlining/EH changes. See FILE_READER_OPEN_EXACT_2026_10_30.md.
+
 CSV parser40F200 now captures the native current-character lifetime before
 iterator calls. Seven affected accepted roots stay exact; parser remains
 nonexact (777 callable /839 with switch data, versus native575 /635).

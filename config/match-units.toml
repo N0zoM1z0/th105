@@ -73,7 +73,7 @@ source = "src/assets/FileReader.cpp"
 object = "build/match-units/CrossV106a_FileReader.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Two original accessor anchors remain canonical exact; the actual owner destructor is now selected in the genuine CSV/file-buffer CIL unit. Reviewed FileReaderOwner_open@40CF40 has a closed213-byte target and retained212-byte source, nonexact at+0; its allocator, package-entry, mode-word, two vtable and IAT bindings are explicit. The66-case normal/exception-call-boundary model agrees and covers83/84 target instructions under nonnull-or-throw allocation. Constructor/inlining/EH provenance remains unknown. See docs/FILEREADER_OWNER_OPEN_2026_10_19.md."
+notes = "Two accessor anchors remain exact. Owner open213 and destructor15 are selected in the genuine file/CSV/script CIL unit; path constructors and real package-provider visibility recover native construction. See docs/FILE_READER_OPEN_EXACT_2026_10_30.md."
 
 [[units.cross-v106a-file-reader.functions]]
 address = "0x00407C40"
@@ -82,12 +82,6 @@ symbol_base = "CFileReader_last_read_size"
 [[units.cross-v106a-file-reader.functions]]
 address = "0x0041B880"
 symbol_base = "CPackageFileReader_size"
-
-[[units.cross-v106a-file-reader.functions]]
-address = "0x0040CF40"
-symbol_base = "?open@FileReaderOwner@th105@@QAE_NPBD@Z"
-rel32_targets = ["??2@YAPAXI@Z=0x00689DCB", "?open_package_file_entry@th105@@YGPAXPBDPAK1@Z=0x0041BFA0"]
-dir32_targets = ["?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "??_7CPackageFileReader@th105@@6B@=??_7CPackageFileReader@th105@@6B@", "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@", "__imp__CreateFileA@28=__imp__CreateFileA@28"]
 
 [units.cross-v106a-battle-setup]
 kind = "probe"
@@ -19697,24 +19691,6 @@ dir32_targets = [
   "__real@3fc00000=__real@3fc00000",
 ]
 
-[units.gpt-web-package-file-entry]
-kind = "probe"
-source = "src/assets/PackageFileEntry.cpp"
-object = "build/match-units/GptWeb_PackageFileEntry.obj"
-profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Behavior-reviewed356-byte stdcall archive opener. Ordinary source283 bytes has public ECX/sret-stack map find and an out-of-line vector operator[]; target41C450 uses private ESI/EAX/key-stack4 and target vector indexing is inlined. Intentionally leave those two call targets unresolved rather than replay a false ABI or invent a callable. Real-source GL controls align the stack and inline vector but remain333 bytes with a different private find boundary. No exact credit. docs/PACKAGE_FILE_ENTRY_2026_10_19.md."
-
-[[units.gpt-web-package-file-entry.functions]]
-address = "0x0041BFA0"
-symbol_base = "?open_package_file_entry@th105@@YGPAXPBDPAK1@Z"
-rel32_targets = ["?case_insensitive_crc32@th105@@YAIPBEH@Z=0x00406930", "__invalid_parameter_noinfo=0x0068A143", "__stricmp=0x0068B038"]
-dir32_targets = [
-  "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A",
-  "__imp__CreateFileA@28=__imp__CreateFileA@28",
-  "__imp__SetFilePointer@16=__imp__SetFilePointer@16",
-]
-
 [units.gpt-web-package-archive-loader]
 kind = "probe"
 source = "src/assets/PackageArchiveLoader.cpp"
@@ -27586,9 +27562,9 @@ profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
-notes = "Real reader/package/CRC/file/CSV/script CIL context. CSV wrapper140, reset151, public reader destructor15, plain234, encoded267, script load282 and text wrapper140 are exact. Full cleanup EH and bounded source-owned CRLF literal reads are replayed. CSV caller and command-line parser remain unaccepted. docs/SCRIPT_FILE_LOADING_2026_10_29.md."
-link_data_targets = ["__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A"]
-preserve_public_members = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z", "?clear_commands@CScript@@QAEXXZ"]
+notes = "Real reader/package/CRC/file/CSV/script CIL context. CSV wrapper140, reset151, public reader destructor15, plain234, encoded267, script load282, text wrapper140 and reader open213 are exact. Full cleanup EH and bounded source-owned CRLF literal reads are replayed. CSV caller, command-line parser and package opener remain unaccepted. Real reader constructors and the provider normal stdcall boundary recover open213. docs/FILE_READER_OPEN_EXACT_2026_10_30.md."
+link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A"]
+preserve_public_members = ["?clear_commands@CScript@@QAEXXZ"]
 
 link_literals = [{ symbol = "??_C@_02PCIJFNDE@?$AN?6?$AA@", target = "??_C@_02PCIJFNDE@?$AN?6?$AA@", read_offsets = [0, 2] }]
 
@@ -27641,3 +27617,23 @@ address = "0x00408DB0"
 symbol_base = "?load_text@FileBufferContext@th105@@QAE_NPBD@Z"
 private_from = { caller = "0x00405810", site = "0x00405853", through_exact_caller = true }
 rel32_targets = ["?load_plain@FileBufferContext@th105@@QAE_NPBD@Z=0x00419860", "?load_encoded@FileBufferContext@th105@@QAE_NPBD@Z=0x00419950", "_strcpy_s=0x0068AD95", "@__security_check_cookie@4=0x00689D25"]
+
+[[units.exact-first-csv-file-loading.functions]]
+address = "0x0040CF40"
+symbol_base = "?open@FileReaderOwner@th105@@QAE_NPBD@Z"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB", "?open_package_file_entry@th105@@YGPAXPBDPAK1@Z=0x0041BFA0"]
+
+[[units.exact-first-csv-file-loading.link_reader_vtables]]
+family = "CFileReader"
+target = "??_7CFileReader@th105@@6B@"
+entries = ["0x0041B890", "0x0040CED0", "0x00407C40", "0x00407C50", "0x0040CF00"]
+
+[[units.exact-first-csv-file-loading.link_reader_vtables]]
+family = "CPackageFileReader"
+target = "??_7CPackageFileReader@th105@@6B@"
+entries = ["0x0041B890", "0x0041C110", "0x00407C40", "0x0041C180", "0x0041B880"]
+
+[[units.exact-first-csv-file-loading.functions]]
+address = "0x0041BFA0"
+symbol_base = "?open_package_file_entry@th105@@YGPAXPBDPAK1@Z"
+rel32_targets = ["?case_insensitive_crc32@th105@@YAIPBEH@Z=0x00406930", "__invalid_parameter_noinfo=0x0068A143", "__stricmp=0x0068B038"]

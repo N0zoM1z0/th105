@@ -258,3 +258,13 @@ parent is eligible only with the same fresh same-image full exact replay,
 ledger evidence, hashes, map ownership, CFG and relocation checks as the
 private-parent case. Recursion and implicit longer chains remain forbidden.
 See SCRIPT_FILE_LOADING_2026_10_29.md.
+
+## Five-slot reader families
+
+link_reader_vtables explicitly admits only the real CFileReader and
+CPackageFileReader families. Full five-slot tables, primary RTTI, unique
+source CIL method ownership, native executable candidate identities and
+source HIGHLOW coverage are mandatory. Extra executable slots fail. The
+fixed-base target table is compared in full; its relocation section is
+stripped. Existing single-/two-slot and vptr-store gates are unchanged.
+See FILE_READER_OPEN_EXACT_2026_10_30.md.

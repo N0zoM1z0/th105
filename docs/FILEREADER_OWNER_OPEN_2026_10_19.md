@@ -1,5 +1,9 @@
 # Reader-opening dependency at0x0040CF40
 
+Historical checkpoint: the genuine complete provider/constructor CIL now
+closes213/213. See FILE_READER_OPEN_EXACT_2026_10_30.md. Earlier controls
+below remain evidence of their then-incomplete source context.
+
 Scope: the shared reader-opening helper used by the2230-byte BMP loader and
 other game asset/audio loaders. Original Japanese1.06a SHA256:
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.

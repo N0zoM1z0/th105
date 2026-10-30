@@ -2852,7 +2852,7 @@ required_selected_body_calls = [
 ]
 
 # Accepted provenance witnesses do not assign origin dispositions.
-[[rules]]
+[[accepted_evidence]]
 id = "file-reader-owner-open-authored-106a"
 addresses = ["0x0040CF40"]
 expected_count = 1

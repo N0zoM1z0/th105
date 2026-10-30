@@ -75,6 +75,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     validate_lifecycle(unit, data_keys)
     from linked_literals import validate as validate_literals
     validate_literals(unit, data_keys)
+    from linked_reader_vtables import validate as validate_reader_vtables
+    validate_reader_vtables(unit, data_keys)
     if unit.get("profile") != PROFILE or not str(unit.get("object", "")).endswith(".dll"):
         raise ValueError("linked_candidate requires its LTCG profile and a .dll output")
     mappings = unit.get("link_data_targets")
@@ -1081,6 +1083,9 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
                 pe, functions, parse_map_symbols(map_text))
     vtables = source_vtables(pe, parse_map_symbols(map_text), functions,
                              vtable_contracts, image.with_suffix(".ltcg.obj").name)
+    from linked_reader_vtables import witnesses as reader_vtable_witnesses
+    vtables += reader_vtable_witnesses(unit, pe, parse_map_symbols(map_text), functions,
+                                       image.with_suffix(".ltcg.obj").name)
     exports = {}
     if not hasattr(pe, "DIRECTORY_ENTRY_EXPORT") and not unit.get("link_objects"):
         raise ValueError("linked image has no export directory")

@@ -1,5 +1,10 @@
 # Reconstruction evidence notebook
 
+Reader open40CF40 is canonical exact213/213 in real constructor/package CIL.
+The native normal stdcall provider boundary and both five-slot reader vtables
+are verified;31 previous accepted functions in12 affected units stay exact.
+No forced ABI/inlining/EH changes. See FILE_READER_OPEN_EXACT_2026_10_30.md.
+
 Script loader405810 and text dispatch408DB0 are canonical exact282/140,
 with complete loader cleanup EH and source-owned CR/LF literal verification.
 All85 previous accepted functions in19 affected units and the full timeline
