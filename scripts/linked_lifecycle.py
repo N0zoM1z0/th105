@@ -77,7 +77,7 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             eh = f["eh_cleanup"]
             symbol = str(f.get("symbol_base", ""))
             source_method = (re.fullmatch(r"\?\?[01][A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@[QU]AE@XZ", symbol)
-                             or re.fullmatch(r"\?[A-Za-z_]\w*@[^?]+@@Q[AB]E.+", symbol))
+                             or re.fullmatch(r"\?[A-Za-z_]\w*@[^?]+@@[QU][AB]E.+", symbol))
             private = f.get("private_from")
             public_lifetime = (
                 runtime == "static" and runtime_data == ["___security_cookie"]

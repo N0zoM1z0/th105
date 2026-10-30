@@ -268,3 +268,8 @@ source HIGHLOW coverage are mandatory. Extra executable slots fail. The
 fixed-base target table is compared in full; its relocation section is
 stripped. Existing single-/two-slot and vptr-store gates are unchanged.
 See FILE_READER_OPEN_EXACT_2026_10_30.md.
+
+Public virtual thiscall source members are also eligible for full cleanup EH
+comparison when exported under their actual unrenamed symbol. The static
+cookie, complete handler/funclet/FuncInfo/unwind and relocation checks remain
+identical. See BITMAP_FILE_LOAD_EXACT_2026_10_30.md.

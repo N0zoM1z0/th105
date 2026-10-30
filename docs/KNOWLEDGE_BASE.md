@@ -1,5 +1,10 @@
 # Reconstruction evidence notebook
 
+Raw bitmap load41ACA0 is canonical exact448/448 with complete cleanup EH
+in the genuine reader/package CIL graph. Existing loader semantics and class
+layout are unchanged;13 prior accepted roots in2 affected units stay exact.
+BMP/PNG remain nonexact. See BITMAP_FILE_LOAD_EXACT_2026_10_30.md.
+
 Reader open40CF40 is canonical exact213/213 in real constructor/package CIL.
 The native normal stdcall provider boundary and both five-slot reader vtables
 are verified;31 previous accepted functions in12 affected units stay exact.

@@ -584,7 +584,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041A8E0,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041A910,authored_game,assets,authored,observed,cbitmap-data-loaders-authored-106a
 0x0041ABD0,authored_game,assets,authored,observed,canonical-exact-authored
-0x0041ACA0,authored_game,assets,authored,observed,cbitmap-data-loaders-authored-106a
+0x0041ACA0,authored_game,assets,authored,observed,canonical-exact-authored
 0x0041AE60,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041B280,authored_game,ui,authored,observed,design-gage-texture-initializer-authored-106a
 0x0041B3F0,authored_game,ui,authored,observed,gage-render-vslot-authored-106a

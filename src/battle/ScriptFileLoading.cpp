@@ -44,3 +44,5 @@ bool CScript::load(const char *path, int option)
  current_28=pending_14.begin();
  return true;
 }
+
+#include "assets/CBitmapFileLoad.cpp"

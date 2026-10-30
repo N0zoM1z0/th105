@@ -68,6 +68,8 @@ class LifecycleTests(unittest.TestCase):
         member = copy.deepcopy(unit)
         member["functions"][0]["symbol_base"] = "?load@FileBuffer@@QAE_NPBD@Z"
         core.validate_contract(member, set())
+        member["functions"][0]["symbol_base"] = "?load_from_file@CBitmapData@th105@@UAE_NPBD@Z"
+        core.validate_contract(member, set())
         changes = [lambda u: u.update(link_runtime="import"),
             lambda u: u.update(link_runtime_data=[]),
             lambda u: u["functions"][0].update(symbol_base="_free_function"),

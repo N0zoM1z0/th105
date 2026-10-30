@@ -1,4 +1,5 @@
 #include "FileReader.hpp"
+#include "CBitmapData.hpp"
 #include "Png125Runtime.hpp"
 
 #include <new>
@@ -6,37 +7,6 @@
 #include <string.h>
 
 namespace th105 {
-
-struct CBitmapSourceView {
-    int field_00;
-    int field_04;
-    int field_08;
-    unsigned char format_0c;
-    unsigned char reserved_0d[3];
-    unsigned int explicit_size_10;
-    const unsigned char *data_14;
-};
-
-class CBitmapData {
-public:
-    CBitmapData();
-    virtual ~CBitmapData();
-
-    virtual bool load_bitmap(const char *path);
-    virtual bool load_png(const char *path);
-    virtual bool load_from_file(const char *path);
-    virtual void copy_from(const CBitmapSourceView *source);
-
-private:
-    unsigned char format_04;
-    unsigned char reserved_05[3];
-    int field_08;
-    int field_0c;
-    int field_10;
-    unsigned int explicit_size_14;
-    unsigned int field_18;
-    unsigned char *buffer_1c;
-};
 
 void __cdecl CBitmapData_png_read(
     PngStruct *png_ptr,
@@ -376,49 +346,7 @@ bool CBitmapData::load_png(const char *path)
     return true;
 }
 
-bool CBitmapData::load_from_file(const char *path)
-{
-    FileReaderOwner file;
-    if (!file.open(path))
-        return false;
 
-    CFileReader *reader = file.reader;
-    reader->read(&format_04, 1);
-    reader->read(&field_08, 4);
-    reader->read(&field_0c, 4);
-    reader->read(&field_10, 4);
-    reader->read(&explicit_size_14, 4);
-
-    unsigned char *old_buffer = buffer_1c;
-    int byte_count;
-    if (explicit_size_14 > 0) {
-        if (old_buffer != 0) {
-            free(old_buffer);
-            buffer_1c = 0;
-        }
-        buffer_1c = new unsigned char[explicit_size_14];
-        byte_count = explicit_size_14;
-        reader->read(buffer_1c, byte_count);
-    } else if (format_04 >= 24) {
-        if (old_buffer != 0) {
-            free(old_buffer);
-            buffer_1c = 0;
-        }
-        buffer_1c = new unsigned char[field_10 * field_0c * 4];
-        byte_count = field_10 * field_0c * 4;
-        reader->read(buffer_1c, byte_count);
-    } else {
-        if (old_buffer != 0) {
-            free(old_buffer);
-            buffer_1c = 0;
-        }
-        buffer_1c = new unsigned char[format_04 * field_10 * field_0c / 8];
-        byte_count = format_04 * field_10 * field_0c / 8;
-        reader->read(buffer_1c, byte_count);
-    }
-
-    return true;
-}
 
 void CBitmapData::copy_from(const CBitmapSourceView *source)
 {
@@ -449,3 +377,5 @@ typedef char CBitmapSourceViewSize[
     sizeof(CBitmapSourceView) == 0x18 ? 1 : -1];
 
 } // namespace th105
+
+#include "CBitmapFileLoad.cpp"

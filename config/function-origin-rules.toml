@@ -1809,14 +1809,15 @@ evidence = "Current audio scheduler ownership is closed independently of IDA bou
 [[rules]]
 id = "cbitmap-data-loaders-authored-106a"
 addresses = ["0x00419FF0", "0x0041A910", "0x0041ACA0"]
-expected_count = 3
-expected_bytes = 3381
-expected_names = ["sub_419FF0", "sub_41A910", "sub_41ACA0"]
+skip_matching = true
+expected_count = 2
+expected_bytes = 2933
+expected_names = ["sub_419FF0", "sub_41A910"]
 origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E10 own authored loader slots1/2/3 at 0x00419FF0/0x0041A910/0x0041ACA0. Slot1 is the 2230-byte BMP loader with PNG fallback and target-proved palette/pixel topology; slot2 passes canonical-exact game callback 0x0041A8E0 into embedded libpng; slot3 is the native FileReaderOwner bitmap loader. Source covers all three loader protocols, but whole-function comparisons remain nonexact. The old claim that only stack coloring remained was unproved; the BMP section-size report also included adjacent switch metadata. EH, allocator-interface and reader-provider evidence is separated in docs/CBITMAP_BMP_EH_2026_10_19.md and docs/FILEREADER_OWNER_OPEN_2026_10_19.md."
+evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E10 own authored loader slots1/2/3 at 0x00419FF0/0x0041A910/0x0041ACA0. Slot1 is the 2230-byte BMP loader with PNG fallback and target-proved palette/pixel topology; slot2 passes canonical-exact game callback 0x0041A8E0 into embedded libpng; slot3 is the native FileReaderOwner bitmap loader. Source covers all three loader protocols. Raw file loader41ACA0 is now canonical exact448/full EH and skipped by this rule; BMP and PNG remain nonexact. See docs/BITMAP_FILE_LOAD_EXACT_2026_10_30.md. The old claim that only stack coloring remained was unproved; the BMP section-size report also included adjacent switch metadata. EH, allocator-interface and reader-provider evidence is separated in docs/CBITMAP_BMP_EH_2026_10_19.md and docs/FILEREADER_OWNER_OPEN_2026_10_19.md."
 
 [[rules]]
 id = "palette-data-runtime-authored-106a"
