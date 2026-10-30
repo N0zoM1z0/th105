@@ -27919,3 +27919,25 @@ dir32_targets = [
  "?direct_input_enum_gamepads_error@th105@@3QBDB=direct_input_enum_gamepads_error",
  "?direct_input_error_title@th105@@3QBDB=_direct_input_error_title",
 ]
+
+[units.exact-first-input-state-update]
+kind = "linked_candidate"
+source = "src/input/InputStateTableUpdate.cpp"
+object = "build/match-units/ExactFirst_InputStateUpdate.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+link_runtime = "import"
+preserve_public_members = ["?add_tracked_key@InputStateTableStorage@th105@@QAEXE@Z"]
+link_data_targets = ["?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=input_state_keyboard_runtime", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0"]
+notes = "Real VC8 CIL and CRT recover the native aligned frame; keyboard reads use the current DirectInputBackend field20. Complete checked-vector Xran error exit is independently witnessed through pinned native helper117, genuine source CRT throw import and full three-type metadata. No helper/EH/origin credit."
+
+[[units.exact-first-input-state-update.functions]]
+address = "0x0040A550"
+symbol_base = "?update_input_state_table@InputStateTableStorage@th105@@QAEXXZ"
+alignment_sites = ["0x0040A56D"]
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?_Xran@?$vector@EV?$allocator@E@std@@@std@@KAXXZ=0x0040A8A0"]
+
+[[units.exact-first-input-state-update.functions.error_tails]]
+kind = "vc8-byte-vector-out-of-range"
+symbol = "?_Xran@?$vector@EV?$allocator@E@std@@@std@@KAXXZ"
+site = "0x0040A5DE"

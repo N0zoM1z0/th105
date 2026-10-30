@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Input-state update40A550 is canonical exact266/266 through real CIL and the
+ordinary byte-key sibling. Current DirectInputBackend keyboard field20 replaces
+the old unselected wrong address. The independently pinned byte-vector117
+throw helper qualifies the error exit; the native3-byte unreachable loop LEA
+remains fully byte-compared. Incremental1544 functions /437755 bytes.
+See INPUT_STATE_UPDATE_EXACT_2026_10_30.md. Add-key40A6C0 remains269/native202.
+
+
 DirectInput gamepad initialization40D620 and device callback40D9F0 now have
 complete caller-backed source. Ordinary176/176 and327/334 remain nonexact;
 genuine parent/axis/CRT CIL182/573 does not close shared-template inlining.

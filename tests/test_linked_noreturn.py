@@ -35,6 +35,36 @@ class LinkedNoreturnTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             core.decode_closed_body(b"\xeb\x10\xc3", start, external_exits={start: start + 18})
 
+    def test_explicit_loop_alignment_is_still_byte_compared(self):
+        start = core.IMAGE_BASE + 0x1000
+        code = b"\x90" * 11 + b"\xeb\x03\x8d\x49\x00\xc3"
+        site = start + 13
+        with self.assertRaises(ValueError):
+            core.decode_closed_body(code, start)
+        rows = core.decode_closed_body(code, start, alignment_sites={site})
+        self.assertEqual(sum(row.size for row in rows), len(code))
+        canonical, _, _ = core.canonicalize(code, start, 0x401000, [],
+            lambda _: ("unused", 0), (start, start + 0x1000), (0x400000, 0x706000),
+            alignment_sites={site})
+        self.assertEqual(canonical, code)
+        # Another neutral register spelling is not normalized away.
+        changed = code[:13] + b"\x8d\x40\x00" + code[16:]
+        other, _, _ = core.canonicalize(changed, start, 0x401000, [],
+            lambda _: ("unused", 0), (start, start + 0x1000), (0x400000, 0x706000),
+            alignment_sites={site})
+        self.assertNotEqual(canonical, other)
+        for bad, sites in [
+            (code, {start}), (code, {site + 1}), (code, {site, start}),
+            (code[:13] + b"\x8d\x41\x00" + code[16:], {site}),
+            (code[:13] + b"\x8d\x49\x01" + code[16:], {site}),
+            (code[:13] + b"\x90\x90\x90" + code[16:], {site}),
+            (code[:11] + b"\xeb\x00" + code[13:], {site})
+        ]:
+            with self.subTest(bad=bad, sites=sites), self.assertRaises(ValueError):
+                core.decode_closed_body(bad, start, alignment_sites=sites)
+        with self.assertRaises(ValueError):
+            core.decode_closed_body(code, start + 1, alignment_sites={site + 1})
+
     def fixture(self):
         pe = VTablePe(); pe.OPTIONAL_HEADER.SizeOfImage = 0x4000
         start, helper, thunk = core.IMAGE_BASE + 0x1000, core.IMAGE_BASE + 0x1100, core.IMAGE_BASE + 0x1200
@@ -132,6 +162,36 @@ class LinkedNoreturnTests(unittest.TestCase):
                 lambda f: f["function"]["error_tails"][0].update(site="0x00401003")]:
             f = self.fixture(); change(f)
             with self.subTest(change=change), self.assertRaises(ValueError): self.run_witness(f)
+
+    def byte_fixture(self):
+        f = self.fixture()
+        f["function"]["error_tails"][0].update(kind=error.BYTE_KIND, symbol=error.BYTE_SYMBOL)
+        f["function"]["rel32_targets"] = [error.BYTE_SYMBOL + "=0x0040A8A0"]
+        f["functions"][f["helper"]] = [(error.BYTE_SYMBOL, "i Ctx.ltcg.obj")]
+        body = b"\xe8" + struct.pack("<i", error.THROW - error.BYTE_HELPER - 5)
+        f["put"](error.BYTE_HELPER, body)
+        f["target"] = b"\x74\x05\xe9" + struct.pack("<i", error.BYTE_HELPER - 0x401007) + b"\xc3"
+        f["anchors"].update(BYTE_HELPER_SIZE=len(body), BYTE_HELPER_SHA=hashlib.sha256(body).hexdigest())
+        return f
+
+    def test_byte_vector_keeps_full_throw_and_cfg_witness(self):
+        f = self.byte_fixture()
+        source, target, reports = self.run_witness(f)
+        self.assertEqual(target, {0x401002: error.BYTE_HELPER})
+        self.assertEqual(reports[0]["kind"], error.BYTE_KIND)
+        self.assertEqual(reports[0]["target_helper"], hex(error.BYTE_HELPER))
+
+    def test_byte_vector_rejects_other_specialization_or_helper(self):
+        for change in [
+            lambda f: f["function"]["error_tails"][0].update(symbol="?_Xran@?$vector@H@std@@KAXXZ"),
+            lambda f: f["function"].update(rel32_targets=[error.BYTE_SYMBOL + "=0x0040C350"]),
+            lambda f: f["put"](error.BYTE_HELPER, b"\xc3"),
+            lambda f: f["pe"].data.__setitem__(0x2100, ord("X")),
+            lambda f: setattr(f["pe"].DIRECTORY_ENTRY_IMPORT[0].imports[0], "name", b"_FakeThrow")
+        ]:
+            f = self.byte_fixture(); change(f)
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                self.run_witness(f)
 
     def test_error_helper_cannot_return_or_escape_before_throw(self):
         start, destination = 0x1000, 0x2000

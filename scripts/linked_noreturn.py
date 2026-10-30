@@ -1,4 +1,4 @@
-"""One target-pinned VC8 vector range-error exit; no auxiliary exact credit."""
+"""Target-pinned VC8 vector range-error exits; no auxiliary exact credit."""
 from __future__ import annotations
 
 import hashlib
@@ -17,6 +17,19 @@ RECORD = 0x6CD268
 RECORD_SHA = "47319cfc7d36ae39541424fbeb90ab2cff937bd3bd6e1576c7351210075e0420"
 MESSAGE = b"invalid vector<T> subscript\0"
 KIND = "vc8-vector-out-of-range"
+BYTE_KIND = "vc8-byte-vector-out-of-range"
+BYTE_SYMBOL = "?_Xran@?$vector@EV?$allocator@E@std@@@std@@KAXXZ"
+BYTE_HELPER = 0x40A8A0
+BYTE_HELPER_SIZE = 117
+BYTE_HELPER_SHA = "0c8d4d002e27c42d0d079456e7e5dd8e2f42e1122df4581fa5609b9cd257adf7"
+
+
+def helper_anchor(contract):
+    if contract["kind"] == BYTE_KIND:
+        if contract["symbol"] != BYTE_SYMBOL:
+            raise ValueError("byte-vector error requires its exact VC8 specialization")
+        return BYTE_HELPER, BYTE_HELPER_SIZE, BYTE_HELPER_SHA
+    return HELPER, HELPER_SIZE, HELPER_SHA
 
 
 def validate_contract(function):
@@ -26,14 +39,14 @@ def validate_contract(function):
     for contract in contracts:
         symbol = contract.get("symbol", "") if isinstance(contract, dict) else ""
         if (not isinstance(contract, dict) or set(contract) != {"kind", "symbol", "site"}
-                or contract["kind"] != KIND or not isinstance(symbol, str)
+                or contract["kind"] not in {KIND, BYTE_KIND} or not isinstance(symbol, str)
                 or not symbol.startswith("?_Xran@?$vector@") or not symbol.endswith("@@KAXXZ")
                 or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", str(contract["site"]))
                 or any(key in function for key in ("private_from", "private_global", "vtable_entry", "eh_cleanup"))):
             raise ValueError("unsupported linked vector error-tail contract")
         mappings = [value for value in function.get("rel32_targets", [])
                     if value.partition("=")[0] == symbol]
-        if len(mappings) != 1 or int(mappings[0].partition("=")[2], 0) != HELPER:
+        if len(mappings) != 1 or int(mappings[0].partition("=")[2], 0) != helper_anchor(contract)[0]:
             raise ValueError("vector error tail must map its exact static helper")
 
 
@@ -91,8 +104,9 @@ def witness(core, function, pe, game, functions, exports, cil_owner, start, raw,
     contracts = function.get("error_tails", [])
     if not contracts:
         return {}, {}, []
-    target_helper = read_target(HELPER, HELPER_SIZE)
-    if (hashlib.sha256(target_helper).hexdigest() != HELPER_SHA
+    helper_target, helper_size, helper_sha = helper_anchor(contracts[0])
+    target_helper = read_target(helper_target, helper_size)
+    if (hashlib.sha256(target_helper).hexdigest() != helper_sha
             or hashlib.sha256(read_target(THROW, THROW_SIZE)).hexdigest() != THROW_SHA
             or hashlib.sha256(read_target(RECORD, 32)).hexdigest() != RECORD_SHA
             or struct.unpack("<I", read_target(RECORD + 4, 4))[0] != 1):
@@ -104,7 +118,7 @@ def witness(core, function, pe, game, functions, exports, cil_owner, start, raw,
                      if entry.address == 0x6C015C]
     if raise_imports != [("kernel32.dll", b"RaiseException")]:
         raise ValueError("target C++ throw RaiseException identity changed")
-    straight_throw(target_helper, HELPER, THROW)
+    straight_throw(target_helper, helper_target, THROW)
     types = throw_types(read_target, 0x6E3BA4)
     if read_target(0x6D694C, len(MESSAGE)) != MESSAGE:
         raise ValueError("target vector range-error message changed")
@@ -173,18 +187,21 @@ def witness(core, function, pe, game, functions, exports, cil_owner, start, raw,
         site = int(contract["site"], 0)
         address = int(function["address"], 0)
         offset = site - address
-        expected = b"\xe9" + struct.pack("<i", HELPER - site - 5)
+        expected = b"\xe9" + struct.pack("<i", helper_target - site - 5)
         if len(jumps) != 1 or not 0 <= offset <= len(target) - 5 or target[offset:offset + 5] != expected:
             raise ValueError("vector error needs its sole source jump and exact target E9 site")
         source_exits[jumps[0].address] = helper
-        target_exits[site] = HELPER
-        reports.append(dict(kind=KIND, source_site=hex(jumps[0].address), target_site=contract["site"],
-            symbol=symbol, source_helper=hex(helper), target_helper=hex(HELPER),
-            source_helper_sha256=hashlib.sha256(body).hexdigest(), target_helper_sha256=HELPER_SHA,
+        target_exits[site] = helper_target
+        reports.append(dict(kind=contract["kind"], source_site=hex(jumps[0].address), target_site=contract["site"],
+            symbol=symbol, source_helper=hex(helper), target_helper=hex(helper_target),
+            source_helper_sha256=hashlib.sha256(body).hexdigest(), target_helper_sha256=helper_sha,
             source_throw_import=hex(destination), target_throw=hex(THROW),
             target_throw_sha256=THROW_SHA, target_record_sha256=RECORD_SHA,
             catchable_types=types, source_message=hex(messages[0]), source_throw_info=hex(infos[0]),
             scope="noreturn/error-role witness only; no helper/EH exact or origin credit"))
-    core.decode_closed_body(target, int(function["address"], 0), external_exits=target_exits)
-    core.decode_closed_body(raw, start, external_exits=source_exits)
+    core.decode_closed_body(target, int(function["address"], 0), external_exits=target_exits,
+        alignment_sites={int(site, 0) for site in function.get("alignment_sites", [])})
+    core.decode_closed_body(raw, start, external_exits=source_exits,
+        alignment_sites={start + int(site, 0) - int(function["address"], 0)
+                         for site in function.get("alignment_sites", [])})
     return source_exits, target_exits, reports

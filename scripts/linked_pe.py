@@ -152,6 +152,12 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         raise ValueError("linked unit needs function contracts")
     for function in functions:
         validate_error_tails(function)
+        alignment = function.get("alignment_sites", [])
+        if (not isinstance(alignment, list) or len(alignment) > 8
+                or len(set(alignment)) != len(alignment)
+                or any(not isinstance(site, str) or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", site)
+                       for site in alignment)):
+            raise ValueError("linked alignment sites must be distinct explicit target addresses")
         if not isinstance(function, dict):
             raise ValueError("invalid linked function contract")
         if "private_static_leaf" in function and (
@@ -609,7 +615,8 @@ def is_branch(instruction) -> bool:
 
 
 def decode_closed_body(code: bytes, start: int, *, tail: bool = False,
-                       external_exits: dict[int, int] | None = None) -> list:
+                       external_exits: dict[int, int] | None = None,
+                       alignment_sites: set[int] | None = None) -> list:
     decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
     decoder.detail = True
     instructions = list(decoder.disasm(code, start))
@@ -658,16 +665,33 @@ def decode_closed_body(code: bytes, start: int, *, tail: bool = False,
         if instruction.group(capstone.CS_GRP_INT) or instruction.mnemonic in {"int3", "hlt", "ud2"}:
             raise ValueError("linked trap/noreturn boundaries are unsupported")
         pending.append(address + instruction.size)
-    if len(reached) != len(instructions):
+    alignment_sites = alignment_sites or set()
+    if set(by_address) - reached != alignment_sites:
         raise ValueError("linked body has unaccounted unreachable bytes")
+    for site in alignment_sites:
+        instruction = by_address[site]
+        # VC8's three-byte LEA reg,[same-reg+0] before a 16-byte loop entry.
+        # These bytes remain in the canonical stream and are never masked.
+        operands = instruction.operands
+        if (instruction.id != capstone.x86.X86_INS_LEA or instruction.size != 3
+                or instruction.bytes[0] != 0x8d or instruction.bytes[-1] != 0
+                or len(operands) != 2 or operands[0].type != capstone.x86.X86_OP_REG
+                or operands[1].type != capstone.x86.X86_OP_MEM
+                or operands[0].reg != operands[1].mem.base
+                or operands[1].mem.index or operands[1].mem.disp
+                or operands[1].mem.segment or (site + instruction.size) % 16
+                or site + instruction.size not in reached):
+            raise ValueError("declared alignment is not an unreachable neutral VC8 loop LEA")
     return instructions
 
 
 def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], resolve_call,
                  image_range: tuple[int, int], game_range: tuple[int, int],
                  vtables: list[dict] = (), *, internal_refs: list[dict] = (), tail: bool = False,
-                 external_exits: dict[int, int] | None = None) -> tuple[bytes, list, list]:
-    instructions = decode_closed_body(code, start, tail=tail, external_exits=external_exits)
+                 external_exits: dict[int, int] | None = None,
+                 alignment_sites: set[int] | None = None) -> tuple[bytes, list, list]:
+    instructions = decode_closed_body(code, start, tail=tail, external_exits=external_exits,
+                                      alignment_sites=alignment_sites)
     native_vtables = {table["source_address"]: table for table in vtables}
     typed = {ref["source_address"]: ref for ref in internal_refs}
     if len(typed) != len(internal_refs) or set(typed) & set(native_vtables):
@@ -1236,8 +1260,14 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
                 start, raw, target, internal_refs, bindings, vtables, resolve, game_range, c.target_bytes)
         code, calls, data_refs = canonicalize(raw, start, address, bindings, resolve,
             (IMAGE_BASE, IMAGE_BASE + pe.OPTIONAL_HEADER.SizeOfImage), game_range, vtables,
-            internal_refs=refs, external_exits=error_exits)
+            internal_refs=refs, external_exits=error_exits,
+            alignment_sites={start + int(site, 0) - address for site in function.get("alignment_sites", [])})
         validate_body_relocations(pe, start, len(raw), data_refs)
+        if function.get("alignment_sites"):
+            decode_closed_body(target, address,
+                external_exits={int(report["target_site"], 0): int(report["target_helper"], 0)
+                                for report in error_reports},
+                alignment_sites={int(site, 0) for site in function["alignment_sites"]})
         mismatch = c.first_mismatch(target, code, address)
         reports.append({"schema_version": 1, "result": "mismatch" if mismatch else "exact",
             "address": function["address"], "object": str(image), "symbol_base": function["symbol_base"],
@@ -1252,6 +1282,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             "validated_cleanup_eh": eh_reports,
             "validated_static_runtime_initializers": runtime_initializers,
             "validated_error_tails": error_reports,
+            "compared_alignment_sites": function.get("alignment_sites", []),
             "preserved_public_members": preserved_members,
             "private_caller_witness": witness})
     return reports
