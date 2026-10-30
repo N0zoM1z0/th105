@@ -188,8 +188,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00408120,authored_game,platform,authored,observed,canonical-exact-authored
 0x004081E0,authored_game,platform,authored,observed,application-control-worker-authored-106a
 0x004084F0,authored_game,platform,authored,observed,application-graphics-worker-authored-106a
-0x00408690,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00408780,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00408690,authored_game,platform,authored,observed,application-window-message-dispatch-authored-106a
+0x00408780,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408800,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408820,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408840,authored_game,platform,authored,observed,canonical-exact-authored
@@ -2665,7 +2665,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006655A0,authored_game,render,authored,observed,canonical-exact-authored
 0x00665650,authored_game,render,authored,observed,canonical-exact-authored
 0x006656E0,authored_game,render,authored,observed,canonical-exact-authored
-0x006657E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006657E0,authored_game,platform,authored,observed,canonical-exact-authored
 0x00665810,authored_game,platform,authored,observed,winmain-application-entry-authored-106a
 0x00665AC7,compiler_generated,runtime,exclude,inferred,boost-invalid-argument-eh-cleanup-tail-106a
 0x00665AF4,vc8_runtime,runtime,exclude,observed,vc8-string-range-errors-106a

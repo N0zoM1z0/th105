@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Application window callback6657E0 and mode helper408780 are canonical exact
+33/126 in the actual dispatcher TU. The dispatcher is source-present246/native
+240; no partial credit. Cursor and failed-toggle return policy are preserved.
+See APPLICATION_WINDOW_MESSAGES_2026_10_30.md.
+
 D3D reset414A10 and window-mode toggle414B30 are canonical exact281/286 in
 genuine CIL. Native failure rollback, listener/COM lifecycle and all metric
 API calls are retained. The application pump remains177 exact after correcting

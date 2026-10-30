@@ -1716,3 +1716,6 @@ D3DBackend_ctor
 D3DBackend_dtor
 D3DBackend_reset_device
 D3DBackend_toggle_window_mode
+Application_dispatch_window_message
+Application_change_window_mode
+Application_window_proc
