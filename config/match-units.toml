@@ -18143,21 +18143,6 @@ dir32_targets = [
   "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
 ]
 
-[units.gpt-web-bgm-handle-allocation]
-kind = "probe"
-source = "src/audio/BgmHandleAllocation.cpp"
-object = "build/match-units/GptWeb_BgmHandleAllocation.obj"
-profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Current BgmPlaybackServiceView::allocate_handle @ 0x004036C0. Exact load/play callers prove the authored service boundary and exact BgmService_link_handles fixes the +0x38 manager subobject. Corrected natural token initialization and pointer-return/out-token manager contract give26/28; private EDI receiver remains nonexact. The prior20-byte source also omitted the observed zero initialization. docs/BGM_ALLOCATION_CONTRACT_2026_10_29.md."
-
-[[units.gpt-web-bgm-handle-allocation.functions]]
-address = "0x004036C0"
-symbol_base = "?allocate_handle@BgmPlaybackServiceView@th105@@QAE?AUBgmHandleResult@2@XZ"
-rel32_targets = [
-  "?acquire@BgmHandleManagerAllocateView@th105@@QAEPAXAAUBgmHandleResult@2@@Z=0x004040D0",
-]
-
 [units.gpt-web-score-observations]
 kind = "probe"
 source = "src/config/ScoreObservations.cpp"
@@ -26837,6 +26822,9 @@ source = "src/audio/BgmStreamAllocation.cpp"
 object = "build/match-units/ExactFirst_BgmStreamConstructor.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+link_xiph_sdk = true
 notes = "Genuine stream allocation/placement-reconstruction context. Private89-byte constructor402820 is canonical exact; supporting571/native401 manager remains nonexact. Select address402820 for acceptance; manager is a caller witness only. Actual Ogg member and two constructor call sites; docs/BGM_STREAM_CONSTRUCTOR_2026_10_29.md."
 link_data_targets = [
  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
@@ -27584,3 +27572,58 @@ symbol_base = "?load_sfl_metadata@OggStreamSource@th105@@QAEXPBD@Z"
 private_from = { caller = "0x00418A10", site = "0x00418B25", through_exact_caller = true }
 eh_cleanup = { handler = "0x006BDD5B", info = "0x006E43BC" }
 rel32_targets = ["_strcpy_s=0x0068AD95", "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "??_U@YAPAXI@Z=0x00665B8A", "_free=0x0068AA26", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
+
+[units.exact-first-bgm-stream-lifetime]
+kind = "linked_candidate"
+source = "src/audio/BgmStreamAllocation.cpp"
+object = "build/match-units/ExactFirst_BgmStreamLifetime.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+link_xiph_sdk = true
+notes = "Real BGM allocation, token lookup/release and stream lifetime graph. Complete private stream destructor220 and all cleanup states are the comparison focus; other roots remain unaccepted. docs/BGM_STREAM_LIFETIME_2026_10_30.md."
+link_data_targets = [
+ "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
+ "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
+ "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+ "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
+ "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
+ "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4",
+ "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4",
+ "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0",
+ "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error",
+ "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error",
+ "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B",
+ "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A",
+ "_create_sound_buffer_error=_create_sound_buffer_error",
+ "_direct_sound_error_title=_direct_sound_error_title",
+ ]
+
+[[units.exact-first-bgm-stream-lifetime.link_vtables]]
+symbol = "??_7DirectSoundResourceBaseLifetime@th105@@6B@"
+target = "??_7DirectSoundResourceBase@th105@@6B@"
+initializer = "?initialize@DirectSoundResourceBaseLifetime@th105@@UAE_NPBXI@Z=0x00418310"
+entry = "??_GDirectSoundResourceBaseLifetime@th105@@UAEPAXI@Z=0x004182A0"
+target_type_name = ".?AVCDSBuffer@@"
+
+[[units.exact-first-bgm-stream-lifetime.functions]]
+address = "0x004036C0"
+symbol_base = "?allocate_handle@BgmAllocationServiceView@th105@@QAE?AUBgmHandleResult@2@XZ"
+rel32_targets = ["?acquire@BgmAllocationManager50@th105@@QAEPAUBgmStreamAllocationView@2@AAUBgmHandleResult@2@@Z=0x004040D0"]
+
+[[units.exact-first-bgm-stream-lifetime.functions]]
+address = "0x00404330"
+symbol_base = "?lookup@BgmAllocationManager50@th105@@QAEPAUBgmStreamAllocationView@2@H@Z"
+
+[[units.exact-first-bgm-stream-lifetime.functions]]
+address = "0x00404270"
+symbol_base = "?release@BgmAllocationManager50@th105@@QAEXI@Z"
+rel32_targets = ["??1BgmStreamAllocationView@th105@@QAE@XZ=0x00402880"]
+
+[[units.exact-first-bgm-stream-lifetime.functions]]
+address = "0x00402880"
+symbol_base = "??1BgmStreamAllocationView@th105@@QAE@XZ"
+private_from = { caller = "0x00404270", site = "0x004042E1" }
+eh_cleanup = { handler = "0x006BD8DE", info = "0x006E3ED4" }
+rel32_targets = ["_ov_clear=0x0067A890", "??3@YAXPAX@Z=0x006898EA", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "??1DirectSoundResourceBaseLifetime@th105@@UAE@XZ=0x004182E0", "??1BgmOggDataSource@th105@@QAE@XZ=0x00418A00", "??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ=0x00401E00"]

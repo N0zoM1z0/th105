@@ -70,6 +70,14 @@ class LifecycleTests(unittest.TestCase):
         core.validate_contract(member, set())
         member["functions"][0]["symbol_base"] = "?load_from_file@CBitmapData@th105@@UAE_NPBD@Z"
         core.validate_contract(member, set())
+        private = copy.deepcopy(unit)
+        private["functions"][0]["private_from"] = dict(caller="0x00405600", site="0x00405633")
+        private["functions"].append(dict(address="0x00405600", symbol_base="?release@Owner@@QAEXI@Z"))
+        core.validate_contract(private, set())
+        bad_private = copy.deepcopy(private)
+        bad_private["functions"][0]["symbol_base"] = "?load@FileBuffer@@QAE_NPBD@Z"
+        with self.assertRaises(ValueError):
+            core.validate_contract(bad_private, set())
         changes = [lambda u: u.update(link_runtime="import"),
             lambda u: u.update(link_runtime_data=[]),
             lambda u: u["functions"][0].update(symbol_base="_free_function"),

@@ -42,6 +42,9 @@ extern const Guid iid_direct_sound_3d_buffer;
 class DirectSoundResourceBaseLifetime {
 public:
     DirectSoundResourceBaseLifetime();
+    void release_buffer() {
+        if (resource_04) { resource_04->release(); resource_04 = 0; }
+    }
     virtual bool initialize(const void *source, unsigned size);
     virtual ~DirectSoundResourceBaseLifetime();
 

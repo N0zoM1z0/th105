@@ -1732,3 +1732,7 @@ PaletteDecodeMode_load_palette,0x00408F70,function
 BgmStreamRuntime_start,0x00402A00,function
 BgmStreamRuntime_update,0x00402C10,function
 BgmStreamRuntime_handoff,0x00402FC0,function
+BgmStream_dtor,0x00402880,function
+BgmStreamHandleManager_release,0x00404270,function
+BgmStreamHandleManager_lookup,0x00404330,function
+BgmOggDataSource_dtor,0x00418A00,function

@@ -1705,3 +1705,7 @@ PaletteDecodeMode_load_palette
 BgmStreamRuntime_start
 BgmStreamRuntime_update
 BgmStreamRuntime_handoff
+BgmStream_dtor
+BgmStreamHandleManager_release
+BgmStreamHandleManager_lookup
+BgmOggDataSource_dtor

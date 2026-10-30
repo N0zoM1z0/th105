@@ -58,7 +58,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004027E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402810,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402820,authored_game,audio,authored,observed,canonical-exact-authored
-0x00402880,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00402880,authored_game,audio,authored,observed,canonical-exact-authored
 0x00402960,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402A00,authored_game,audio,authored,observed,bgm-stream-runtime-authored-106a
 0x00402B70,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -87,8 +87,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00404090,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x004040B0,compiler_generated,runtime,exclude,observed,handle-manager-list-uint-sentinel-generated-106a
 0x004040D0,authored_game,audio,authored,observed,bgm-stream-lifetime-authored-106a
-0x00404270,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00404330,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00404270,authored_game,audio,authored,observed,bgm-stream-lifetime-authored-106a
+0x00404330,authored_game,audio,authored,observed,bgm-stream-lifetime-authored-106a
 0x00404400,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404470,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404500,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -558,6 +558,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004188C0,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418920,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418990,authored_game,audio,authored,observed,direct-sound-volume-authored-106a
+0x00418A00,authored_game,audio,authored,observed,bgm-stream-lifetime-authored-106a
 0x00418A10,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418B40,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418B70,authored_game,audio,authored,observed,ogg-game-audio-runtime-authored-106a

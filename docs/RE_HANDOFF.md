@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Stream destructor402880 is canonical exact220/220 with all three cleanup
+states. Codec close is part of the stream destructor body, before member
+reader/buffer/string destruction. The full pool lookup/release context is now
+source-present, including the independently bounded reader destructor418A00.
+Eight prior affected exact roots remain exact. See
+BGM_STREAM_LIFETIME_2026_10_30.md.
+
 SFL metadata418D10 is canonical exact484/484, including the complete
 cleanup EH. Exception-sensitive FP evaluation restores the native118h frame
 without added storage. Source-owned IEEE literals and the real normal reader

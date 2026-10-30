@@ -71,3 +71,12 @@ Receipts:build/frontier-bgm-allocation-context-20261029/formal-build.json and
 formal-constructor.json. Focused legacy replay preserves package lifetime
 163/228 and effect/listener71/157, covering old one-slot and one-call contracts.
 No all-unit cold rebuild or target execution is claimed.
+
+The2026-10-30 lifetime follow-up extends the same source with real stream
+destruction and pool lookup/release. The constructor-only unit now uses the
+pinned static CRT and original Xiph archive because the full source contains
+codec close; its89-byte constructor remains exact. Its exported allocator
+context remains571 bytes, while the larger lifetime context outlines additional
+STL consumers and gives509. Neither allocator is accepted. The reader-prefix
+ownership adapter now covers destruction as well as initialization. See
+BGM_STREAM_LIFETIME_2026_10_30.md.

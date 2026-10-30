@@ -83,14 +83,15 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                 runtime == "static" and runtime_data == ["___security_cookie"]
                 and source_method
                 and (private is None or isinstance(private, dict)
-                     and private.get("through_exact_caller") is True)
+                     and (private.get("through_exact_caller") is True
+                          or re.fullmatch(r"\?\?1[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol)))
                 and not any(k in f for k in
                             ("export_name", "private_global", "private_static_leaf", "vtable_entry")))
             if (not isinstance(eh, dict) or set(eh) != {"handler", "info"}
                     or any(not isinstance(v, str) or not ADDRESS.fullmatch(v) for v in eh.values())
                     or (not objects and not public_lifetime)):
                 raise ValueError("cleanup EH requires exact handler/FuncInfo fields and either "
-                                 "a global witness or a source member with static CRT cookie and export/exact-parent proof")
+                                 "a global witness or a source member with static CRT cookie and export/private-lifetime-caller proof")
         if "private_global" not in f:
             continue
         witness = f["private_global"]

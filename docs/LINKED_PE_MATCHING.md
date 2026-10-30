@@ -301,3 +301,10 @@ thiscall destructors under their real decorated names. Constructors, virtual
 destructors and deleting wrappers are not included. The existing unique source
 export/ownership witness remains mandatory. See
 SFL_LOOP_METADATA_EXACT_2026_10_30.md for the complete cleanup EH example.
+
+A normal nonvirtual private destructor can also carry full cleanup EH through
+its real exported caller. Existing private-entry qualification still requires
+complete caller CFGs, exact edge multiplicity and unique source ownership.
+Only the child receives byte credit; every child instruction, handler, funclet
+and metadata byte still compares in full. Other private methods retain the
+exact-parent requirement. See BGM_STREAM_LIFETIME_2026_10_30.md.

@@ -37,3 +37,7 @@ register convention or stub provider was introduced.
 Sources:src/audio/BgmHandleAllocation.cpp, BgmHandleResult.hpp and BgmPlayback.cpp.
 Receipts:build/frontier-bgm-allocation-contract-20261029/formal-allocation.json
 and formal-playback.json. Manager4040D0 is not promoted by this contract review.
+
+Current source selection is the complete BgmStreamAllocation.cpp graph and
+exact-first-bgm-stream-lifetime unit; the standalone probe above is historical.
+Its wrapper remains26/native28. See BGM_STREAM_LIFETIME_2026_10_30.md.

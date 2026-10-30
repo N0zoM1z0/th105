@@ -2961,3 +2961,11 @@ context. Scoped FP exception sensitivity closes the native118h frame without
 extra storage; the public normal reader destructor closes its ECX cleanup
 boundary. Complete compiler-owned IEEE literals are verified before typed
 relocation. See [SFL loop metadata](SFL_LOOP_METADATA_EXACT_2026_10_30.md).
+
+## Stream-body close versus member destruction, 2026-10-30
+
+BGM stream402880 is exact220/220 plus all three cleanup states. Native state2
+persists through codec close; moving that operation into the Ogg member
+destructor changes exception ordering and does not match. The ordinary stream
+body close plus reader-owning member destructor restores the complete graph.
+See [BGM stream lifetime](BGM_STREAM_LIFETIME_2026_10_30.md).
