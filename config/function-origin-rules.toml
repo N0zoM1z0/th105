@@ -3876,6 +3876,34 @@ origin = "authored_game"
 subsystem = "platform"
 disposition = "authored"
 confidence = "observed"
-evidence = "Exact registered WNDPROC callback6657E0 supplies the application singleton and four message arguments. Complete native game policy handles IME option, running state, Alt-Enter, cursor/window toggling and native system commands; full source241/native240 with all four semantic IME inputs remains nonexact. docs/APPLICATION_WINDOW_MESSAGES_2026_10_30.md."
+evidence = "Exact registered WNDPROC callback6657E0 supplies the application singleton and four message arguments. Complete native game policy handles IME option, running state, Alt-Enter, cursor/window toggling and native system commands; full source242/native240 with the genuine complete IME graph remains nonexact. docs/APPLICATION_WINDOW_MESSAGES_2026_10_30.md."
 required_body_hashes = [{ address = "0x00408690", size = 240, sha256 = "e85c1de6ca6859bd7525606e60a9a6c20afb6bb4c37791ea3369fad50085c0fc" }]
 required_direct_edges = [{ caller = "0x006657E0", site = "0x006657F9", target = "0x00408690", caller_status = "matching" }]
+
+[[rules]]
+id = "profile-ime-commit-profile-ime-composition-authored-106a"
+addresses = ["0x0040E8B0"]
+expected_count = 1
+expected_bytes = 383
+expected_names = ["sub_40E8B0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Real application input/composition caller, singleton text/cursor/pending-state ownership and complete Shift-JIS/Win32 message policy establish authored source. Exact cursor157 is separately accepted; this root remains nonexact. docs/PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md."
+required_body_hashes = [{ address = "0x0040E8B0", size = 383, sha256 = "4009bf105c2af4d1107196606c3a4ea45549f5629c14bfe918997f780a9199d5" }]
+required_direct_edges = [{ caller = "0x0040E840", site = "0x0040E858", target = "0x0040E8B0" }]
+
+[[rules]]
+id = "profile-ime-process-profile-ime-window-message-authored-106a"
+addresses = ["0x0040EDE0"]
+expected_count = 1
+expected_bytes = 616
+expected_names = ["sub_40EDE0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Real application input/composition caller, singleton text/cursor/pending-state ownership and complete Shift-JIS/Win32 message policy establish authored source. Exact cursor157 is separately accepted; this root remains nonexact. docs/PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md."
+required_body_hashes = [{ address = "0x0040EDE0", size = 616, sha256 = "d591d71582ca4622b165b25f870e93e3381dde6f47b67b212a23a816effe3f34" }]
+required_direct_edges = [{ caller = "0x00408690", site = "0x004086B3", target = "0x0040EDE0" }]

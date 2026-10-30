@@ -1719,3 +1719,6 @@ D3DBackend_toggle_window_mode
 Application_dispatch_window_message
 Application_change_window_mode
 Application_window_proc
+commit_profile_ime_composition
+move_profile_input_cursor
+process_profile_ime_window_message

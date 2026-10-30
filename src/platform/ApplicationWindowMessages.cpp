@@ -1,14 +1,11 @@
 #include "platform/ApplicationStartupOptions.hpp"
 #include "engine/D3DBackend.hpp"
+#include "ui/ProfileImeRuntime.cpp"
 namespace th105 {
 extern "C" __declspec(dllimport) long __stdcall DefWindowProcA(void *,unsigned,unsigned,long);
 extern "C" __declspec(dllimport) void __stdcall PostQuitMessage(int);
 extern "C" __declspec(dllimport) int __stdcall ShowCursor(int);
 void toggle_application_window_mode();
-// Full semantic input includes HWND. Native40EDE0 also consumes ESI for it,
-// so its private ABI is not ordinary fastcall. This normal source declaration
-// awaits the complete provider/caller compilation context, without a register facade.
-bool __stdcall process_ime_window_message(void *window,unsigned message,unsigned wparam,long lparam);
 struct ApplicationWindowView {
     void *window_00, *instance_04;
     ApplicationStartupOptions options_08;

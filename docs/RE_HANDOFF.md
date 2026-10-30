@@ -1,7 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Profile cursor40EBC0 is canonical exact157/157 in the real IME/window TU.
+Full composition and four-input IME source now close the missing HWND semantic
+dependency; both larger bodies remain nonexact, with no prefix/table credit.
+See PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md.
+
 Application window callback6657E0 and mode helper408780 are canonical exact
-33/126 in the actual dispatcher TU. The dispatcher is source-present241/native
+33/126 in the actual dispatcher TU. The dispatcher is source-present242/native
 240; no partial credit. Cursor and failed-toggle return policy are preserved.
 See APPLICATION_WINDOW_MESSAGES_2026_10_30.md.
 

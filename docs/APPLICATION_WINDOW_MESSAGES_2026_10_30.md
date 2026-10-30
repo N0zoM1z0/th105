@@ -2,7 +2,7 @@
 
 The real callback 6657E0 is canonical exact 33/33 and private mode helper
 408780 is exact 126/126. Their full dispatcher 408690 is now explicitly
-source-present, but remains 241 versus native 240. New exact credit is 159
+source-present, but remains 242 versus native 240. New exact credit is 159
 bytes; incremental total is 1535 functions / 434990 bytes.
 
 ## Actual callback and helper
@@ -42,13 +42,13 @@ The provider at 40EDE0 consumes HWND in ESI as well as LPARAM in ECX,
 WPARAM in EDX and message on the stack. Its WM_IME_SETCONTEXT tail at40F02E
 pushes ESI into DefWindowProcA. This full-body observation corrects the earlier
 three-argument fastcall inference, which missed the hidden window input.
-Source now passes all four semantic arguments with a normal stdcall declaration;
-its private physical ABI awaits the complete provider/caller compilation graph.
-No ESI facade or false standard-ABI compatibility is claimed. The provider's
-616-byte implementation remains unrecovered and receives no source/byte credit.
+Source now includes the complete four-input provider/cursor/composition graph.
+The compiler derives its private ABI, but the616-byte root remains nonexact.
+No ESI facade or false standard-ABI compatibility is claimed. See
+PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md for its source and switch proof.
 
 The selected dispatcher preserves all native cases and external dependencies.
-Its 241-byte ordinary output remains nonexact on argument/register allocation
+Its 242-byte ordinary output remains nonexact on argument/register allocation
 and block layout. Earlier three-argument controls emitted246 bytes;
 the complete helper and callback stay exact. No partial dispatcher match,
 forced register convention or padding is accepted.
