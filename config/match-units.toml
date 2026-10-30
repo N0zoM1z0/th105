@@ -27699,12 +27699,12 @@ source = "src/platform/ApplicationWindowMessages.cpp"
 object = "build/match-units/ExactFirst_ApplicationWindowMessages.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Window callback33 and private mode helper126 canonical exact with actual dispatcher source. Dispatcher246/native240 remains nonexact; normal physical fastcall IME dependency remains source-unreconstructed. docs/APPLICATION_WINDOW_MESSAGES_2026_10_30.md"
+notes = "Window callback33 and private mode helper126 canonical exact with actual dispatcher source. Dispatcher241/native240 remains nonexact; IME dependency includes HWND in native ESI and has a normal four-argument source declaration pending real private-ABI context. docs/APPLICATION_WINDOW_MESSAGES_2026_10_30.md"
 
 [[units.exact-first-application-window-messages.functions]]
 address = "0x00408690"
 symbol_base = "?dispatch_application_window_message@th105@@YGJPAUApplicationWindowView@1@PAXIIJ@Z"
-rel32_targets = ["?change_application_window_mode@th105@@YG_NPAUApplicationWindowView@1@_N@Z=0x00408780", "?process_ime_window_message@th105@@YI_NJII@Z=0x0040EDE0"]
+rel32_targets = ["?change_application_window_mode@th105@@YG_NPAUApplicationWindowView@1@_N@Z=0x00408780", "?process_ime_window_message@th105@@YG_NPAXIIJ@Z=0x0040EDE0"]
 dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=d3d_backend_reset_object"]
 
 [[units.exact-first-application-window-messages.functions]]

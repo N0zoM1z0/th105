@@ -5,9 +5,10 @@ extern "C" __declspec(dllimport) long __stdcall DefWindowProcA(void *,unsigned,u
 extern "C" __declspec(dllimport) void __stdcall PostQuitMessage(int);
 extern "C" __declspec(dllimport) int __stdcall ShowCursor(int);
 void toggle_application_window_mode();
-// Physical native interface is compatible with ordinary x86 fastcall.
-// The IME provider's implementation and original source spelling remain open.
-bool __fastcall process_ime_window_message(long lparam,unsigned wparam,unsigned message);
+// Full semantic input includes HWND. Native40EDE0 also consumes ESI for it,
+// so its private ABI is not ordinary fastcall. This normal source declaration
+// awaits the complete provider/caller compilation context, without a register facade.
+bool __stdcall process_ime_window_message(void *window,unsigned message,unsigned wparam,long lparam);
 struct ApplicationWindowView {
     void *window_00, *instance_04;
     ApplicationStartupOptions options_08;
@@ -40,7 +41,7 @@ static bool __stdcall change_application_window_mode(ApplicationWindowView *owne
 long __stdcall dispatch_application_window_message(ApplicationWindowView *owner,
     void *window,unsigned message,unsigned wparam,long lparam)
 {
-    if (owner->options_08.ime_enabled_23 && process_ime_window_message(lparam,wparam,message))
+    if (owner->options_08.ime_enabled_23 && process_ime_window_message(window,message,wparam,lparam))
         return 0;
     switch(message) {
     case 1: case 0x12: case 0x105: case 0x282: return 0;

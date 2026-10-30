@@ -2,7 +2,7 @@
 
 The real callback 6657E0 is canonical exact 33/33 and private mode helper
 408780 is exact 126/126. Their full dispatcher 408690 is now explicitly
-source-present, but remains 246 versus native 240. New exact credit is 159
+source-present, but remains 241 versus native 240. New exact credit is 159
 bytes; incremental total is 1535 functions / 434990 bytes.
 
 ## Actual callback and helper
@@ -38,15 +38,18 @@ Destroy clears the singleton's running byte +4C and posts quit. Alt-Enter uses
 the mode helper. Alt-F4 and unhandled messages go to DefWindowProcA. Exact
 screensaver/monitor-power command values return one without masking WPARAM.
 
-The provider at 40EDE0 physically accepts LPARAM in ECX, WPARAM in EDX and
-message on the stack, returning AL and popping four bytes. The source uses an
-ordinary x86 fastcall-compatible declaration, not a custom-register wrapper.
-Its original declaration and full 616-byte implementation remain unrecovered;
-this checkpoint grants no provider source or byte credit.
+The provider at 40EDE0 consumes HWND in ESI as well as LPARAM in ECX,
+WPARAM in EDX and message on the stack. Its WM_IME_SETCONTEXT tail at40F02E
+pushes ESI into DefWindowProcA. This full-body observation corrects the earlier
+three-argument fastcall inference, which missed the hidden window input.
+Source now passes all four semantic arguments with a normal stdcall declaration;
+its private physical ABI awaits the complete provider/caller compilation graph.
+No ESI facade or false standard-ABI compatibility is claimed. The provider's
+616-byte implementation remains unrecovered and receives no source/byte credit.
 
 The selected dispatcher preserves all native cases and external dependencies.
-Its 246-byte ordinary output remains nonexact on register allocation and block
-layout. Both if-chain and nested-switch source controls preserve that residual;
+Its 241-byte ordinary output remains nonexact on argument/register allocation
+and block layout. Earlier three-argument controls emitted246 bytes;
 the complete helper and callback stay exact. No partial dispatcher match,
 forced register convention or padding is accepted.
 

@@ -1,7 +1,7 @@
 # TH10.5 reconstruction handoff
 
 Application window callback6657E0 and mode helper408780 are canonical exact
-33/126 in the actual dispatcher TU. The dispatcher is source-present246/native
+33/126 in the actual dispatcher TU. The dispatcher is source-present241/native
 240; no partial credit. Cursor and failed-toggle return policy are preserved.
 See APPLICATION_WINDOW_MESSAGES_2026_10_30.md.
 
