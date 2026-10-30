@@ -27868,3 +27868,18 @@ rel32_targets = ["_deflateInit_=0x00667590", "_deflate=0x00665C10", "_deflateEnd
 address = "0x00406890"
 symbol_base = "?decode_score_payload_406890@th105@@YAIPBEIPAEI@Z"
 rel32_targets = ["_inflateInit_=0x006679C0", "_inflate=0x00667AD0", "_inflateEnd=0x006690D0"]
+
+[units.exact-first-directinput-axis]
+kind = "linked_candidate"
+source = "src/input/InputManager.cpp"
+object = "build/match-units/ExactFirst_DirectInputAxis.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+link_runtime = "static"
+link_data_targets = ["?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=direct_input_axis_runtime"]
+notes = "Unchanged real checked-vector back()/SetProperty source now closes the native166-byte callback through actual GL/LTCG; native8-byte stack alignment is compiler-derived, with no source padding or ABI changes."
+
+[[units.exact-first-directinput-axis.functions]]
+address = "0x0040DB40"
+symbol_base = "?configure_gamepad_axis@th105@@YGHPBUDirectInputObjectInstanceView@1@PAX@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]

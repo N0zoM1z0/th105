@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+DirectInput axis callback40DB40 is canonical exact166/166 from unchanged
+source in real CIL/static-CRT context. The compiler now naturally recovers the
+native8-byte-aligned frame without changing property alignment or ABI.
+Incremental1543 functions /437489 bytes. See DIRECTINPUT_AXIS_EXACT_2026_10_30.md.
+
 Shared score/replay codecs4067F0/406890 are now canonical exact153/151 using
 real pinned zlib1.2.3 providers. Ordinary CIL naturally emits8-byte stack
 alignment from a4-aligned56-byte stream, closing the old alignment stop without
