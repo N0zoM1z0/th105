@@ -66,3 +66,10 @@ Focused scope: `build/frontier-title-source-integrity-20261029/` contains
 `joint-compare.json`, `genuine-helper-build.json`, `genuine-helper-compare.json`
 and `ci.log`. Private source/control snapshots are in the corresponding
 `.analysis/` scope. No whole-corpus cold rebuild or runtime matrix was added.
+
+A2026-10-30 control adds the actual ProfileMenuBaseData cleanup caller to the
+real sender/resource-lookup/title-release CIL graph. Cleanup431390 remains
+28/native29 at+3, with the same hoisted handle load. Callee visibility alone
+does not close the memory-compare/reload difference. Source stays unchanged;
+no volatile reload or exact credit is added. Evidence:
+build/frontier-profile-cleanup-cil-20261030/compare.json.

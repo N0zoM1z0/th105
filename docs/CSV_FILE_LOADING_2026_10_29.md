@@ -130,3 +130,15 @@ also remain private; neither improved the accepted source boundary.
 Evidence: build/frontier-script-file-load-20261029/csv-character-public-build.json
 and csv-character-accepted.json. The source dependency scan identifies only
 exact-first-csv-file-loading; unrelated native units were not rebuilt.
+
+## Additional native-container controls, 2026-10-30
+
+The unchanged clear operation was exported in the full real script/file CIL
+graph. It is a10-byte wrapper, with the genuine nested-deque _Tidy125 emitted
+separately; this does not close native clear125 and does not justify copying
+STL internals into the authored method. Adding the real advance-row consumer
+gives207/native167 because its row iterator helper is inlined. Adding actual
+next-int and next-string consumers remains207; an Ob1 compiler control is also
+neutral. All controls stay private and receive no credit. Evidence directories:
+build/frontier-csv-clear-cil-20261030/ and
+build/frontier-csv-advance-cil-20261030/.

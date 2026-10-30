@@ -43,3 +43,7 @@ scripts/repo-python scripts/build.py --unit cross-v106a-info-effect-emitter --co
 Receipts are in build/frontier-effect-emitter-abi-20261029. Only11 new authored
 exact bytes are counted. Other wider legacy emitter/spawn contracts are not
 silently changed by this bounded signed-layer correction.
+
+A2026-10-30 full exception-sensitive FP control on the existing narrow group
+emitter candidate gives63/native85. It does not recover the native x/y local
+frame and is not selected. Evidence: build/frontier-effect-fp-exceptions-20261030/.

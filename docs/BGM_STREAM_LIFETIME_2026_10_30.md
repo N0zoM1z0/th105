@@ -38,8 +38,8 @@ observed guarded lock and checked slot lookup. Existing caller receipts and the
 full raw bodies independently establish these authored relationships.
 
 The real release caller naturally selects the destructor's stack receiver and
-RET4. Its current179/native184 body remains nonexact. Lookup195/native196, allocator
-492/native401 and allocation wrapper26/native28 are also supporting source,
+RET4. Its current183/native184 body remains nonexact. Lookup195/native196, allocator
+494/native401 and allocation wrapper26/native28 are also supporting source,
 not accepted functions. Adding real lookup/release consumers exposes the actual
 vector specialization but does not yet recover all native STL boundaries.
 The old standalone allocation probe is replaced by this shared source graph.
@@ -81,3 +81,7 @@ passes142 tests and whitespace checks; no cold all-unit build was performed.
 
 The token/erase follow-up is detailed in BGM_LOADING_WORKER_2026_10_30.md;
 new focused replay retains both accepted stream lifetime bodies.
+
+The shared unsigned-list library follow-up now derives the native release
+frame naturally. It retains full destructor equality but gives no additional
+exact credit; see BGM_LOADING_WORKER_2026_10_30.md.

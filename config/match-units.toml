@@ -27582,6 +27582,7 @@ enable_gs = true
 link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
 link_xiph_sdk = true
+linked_coff_sources = ["src/library/UnsignedIntList.cpp"]
 notes = "Real BGM allocation, token lookup/release and stream lifetime graph. Complete private stream destructor220 and all cleanup states are the comparison focus; other roots remain unaccepted. docs/BGM_STREAM_LIFETIME_2026_10_30.md."
 link_data_targets = [
  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
