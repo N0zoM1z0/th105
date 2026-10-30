@@ -144,9 +144,10 @@ def native_zero_layout(data: bytes, symbol: str, size: int) -> dict:
     flags, = struct.unpack_from("<I", data, at + 36)
     peers = [s for s in symbols if s[2] == section and s[0] not in {symbol, ".bss"}]
     if (data[at:at + 8].rstrip(b"\0") != b".bss" or raw_size != size or raw_pointer
-            or reloc_pointer or reloc_count or flags != 0xc0300080 or peers):
-        raise ValueError("global native witness must be its sole four-aligned zero .bss object")
-    return {"symbol": symbol, "size": size, "alignment": 4, "section": ".bss", "flags": flags}
+            or reloc_pointer or reloc_count or flags not in (0xc0300080, 0xc0400080)
+            or size % (4 if flags == 0xc0300080 else 8) or peers):
+        raise ValueError("global native witness must be its sole compiler-aligned zero .bss object")
+    return {"symbol": symbol, "size": size, "alignment": 4 if flags == 0xc0300080 else 8, "section": ".bss", "flags": flags}
 
 
 def layout_inputs(unit: dict, image: Path) -> list[dict]:
@@ -261,7 +262,7 @@ def validate_static_runtime_initializers(pe, functions: dict, symbols: dict, *,
 
 
 def object_witnesses(unit: dict, pe, target, functions: dict, symbols: dict, exports: dict,
-                     cil_owner: str, known: dict, read_target) -> tuple[list[dict], dict]:
+                     cil_owner: str, known: dict, read_target, *, layout_alignments: dict | None = None) -> tuple[list[dict], dict]:
     """Attest complete source storage and real initializer/table/atexit reachability."""
     refs, witnesses = [], {}
     with (core.ROOT / "config/functions.csv").open(newline="") as f:
@@ -275,6 +276,9 @@ def object_witnesses(unit: dict, pe, target, functions: dict, symbols: dict, exp
         dst, raw, addends, validation = known[obj["target"]]
         if validation != "address" or raw != bytes(4) or any(a < 0 or a % 4 or a + 4 > size for a in addends):
             raise ValueError("global object field ledger exceeds its native zero layout")
+        alignment = 4 if layout_alignments is None else layout_alignments.get(symbol)
+        if alignment not in (4, 8) or base % alignment or dst % alignment:
+            raise ValueError("source/target global storage violates its native COFF alignment")
         writable_zero(pe, base, size)
         writable_zero(target, dst, size)
         for start, end, target_start, target_end in occupied:

@@ -830,6 +830,20 @@ class LinkedPeTests(unittest.TestCase):
         tables = [{"symbol": symbol, "entry_symbol": destructor,
                    "target_address": 0x6d6c64, "target_key": "pool"}]
         self.assertEqual(linked.source_vtables(pe, symbols, functions, tables, "Pool.ltcg.obj")[0]["source_address"], vt)
+        adjacent_pe = copy.deepcopy(pe)
+        crt_entry = entry + 0x20
+        struct.pack_into("<I", adjacent_pe.data, 0x2014, crt_entry)
+        adjacent_pe.DIRECTORY_ENTRY_BASERELOC = [SimpleNamespace(entries=[SimpleNamespace(type=3, rva=0x2014)])]
+        adjacent_symbols = {**symbols, "__pDestructExceptionObject": [(vt + 4, "libcmt:frame.obj")]}
+        adjacent_functions = {**functions, crt_entry: [("___DestructExceptionObject", "libcmt:frame.obj")]}
+        linked.source_vtables(adjacent_pe, adjacent_symbols, adjacent_functions, tables, "Pool.ltcg.obj")
+        for wrong in ("Other.obj", "libcmt:fake.obj"):
+            bad_symbols = {**adjacent_symbols, "__pDestructExceptionObject": [(vt + 4, wrong)]}
+            with self.assertRaises(ValueError):
+                linked.source_vtables(adjacent_pe, bad_symbols, adjacent_functions, tables, "Pool.ltcg.obj")
+        adjacent_pe.DIRECTORY_ENTRY_BASERELOC = []
+        with self.assertRaises(ValueError):
+            linked.source_vtables(adjacent_pe, adjacent_symbols, adjacent_functions, tables, "Pool.ltcg.obj")
         bad_models = []
         bad = copy.deepcopy(pe); bad.sections[1].Characteristics |= 0x80000000; bad_models.append(bad)
         bad = copy.deepcopy(pe); struct.pack_into("<I", bad.data, 0x2044, 4); bad_models.append(bad)

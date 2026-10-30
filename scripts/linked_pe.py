@@ -461,7 +461,16 @@ def source_vtables(pe, symbols: dict, functions: dict, contracts: list[dict], ci
             following, = struct.unpack("<I", pe_data(pe, following_address, 4))
             next_section = pe.get_section_by_rva(following - pe.OPTIONAL_HEADER.ImageBase)
             if next_section is not None and next_section.Characteristics & 0x20000000:
-                raise ValueError("native vtable has an unsupported extra function slot")
+                # VC8 frame.obj can immediately follow a one-slot table with
+                # its independently named exception-destruction function pointer.
+                # This is a separate pinned CRT datum, never an extra class slot.
+                adjacent = [(name, owner) for name, locations in symbols.items()
+                            for at, owner in locations if at == following_address]
+                if (adjacent != [("__pDestructExceptionObject", "libcmt:frame.obj")]
+                        or functions.get(following) != [("___DestructExceptionObject", "libcmt:frame.obj")]):
+                    raise ValueError("native vtable has an unsupported extra function slot")
+                readonly_data(pe, following_address, 4)
+                validate_body_relocations(pe, following_address, 4, [{"field_offset": 0}])
         extra = {"source_initializer": entries[0]} if len(entries) == 2 else {}
         result.append({**table, "source_address": address, "source_entry": entries[-1], **extra})
     if len({table["source_address"] for table in result}) != len(result):
@@ -1134,7 +1143,9 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     game = pefile.PE(str(c.TARGET), fast_load=True)
     game_range = (game.OPTIONAL_HEADER.ImageBase, game.OPTIONAL_HEADER.ImageBase + game.OPTIONAL_HEADER.SizeOfImage)
     internal_refs, globals_witnesses = object_witnesses(unit, pe, game, functions, parse_map_symbols(map_text), exports,
-        image.with_suffix(".ltcg.obj").name, c.known_data_targets(), c.target_bytes) if static else ([], {})
+        image.with_suffix(".ltcg.obj").name, c.known_data_targets(), c.target_bytes,
+        layout_alignments={item["layout"]["symbol"]: item["layout"]["alignment"]
+                           for item in expected["layout_inputs"]}) if static else ([], {})
     from linked_literals import witnesses as literal_witnesses
     internal_refs += literal_witnesses(unit, pe, game, parse_map_symbols(map_text),
                                       image.with_suffix(".ltcg.obj").name, c.known_data_targets())

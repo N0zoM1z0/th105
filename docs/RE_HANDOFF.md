@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+D3D backend global constructor4146E0 is canonical exact131/131, including
+complete cleanup EH and actual startup/atexit/global-layout witnesses.
+All106 prior exact functions in41 affected units remain exact; destructor
+remains nonexact. See D3D_BACKEND_GLOBAL_LIFETIME_2026_10_30.md.
+
 UDP rejection415B90 and endpoint-list415C10 now have explicit authored/source
 records. Native iterator-range deletion replaces the old clear() hypothesis.
 Rejection has a 122-byte matching linked main-body diagnostic, not complete

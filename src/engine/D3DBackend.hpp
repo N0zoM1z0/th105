@@ -167,6 +167,9 @@ struct D3DCaps130 {
 struct DeviceResetListener;
 
 struct D3DBackend {
+    D3DBackend();
+    ~D3DBackend();
+
     CriticalSectionWrapper critical_section_000;
     D3DUnknown *direct3d_01c;
     D3DDevice9 *device_020;

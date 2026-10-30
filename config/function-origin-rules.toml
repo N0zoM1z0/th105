@@ -3851,3 +3851,17 @@ confidence = "observed"
 evidence = "Actual receive-loop opcode and payload-length gate, game connection state transitions, endpoint policy and callback ownership establish authored provenance. Complete source/helper boundaries reviewed; no accepted exact bytes. docs/NETWORK_UDP_RECEIVE_HELPERS_2026_10_30.md."
 required_body_hashes = [{ address = "0x00415C10", size = 315, sha256 = "232bf915cc0c440bbc53b8d9f606e3fc93456875053a427e324062edec2e2e6d" }]
 required_direct_edges = [{ caller = "0x0041D7C0", site = "0x0041DB02", target = "0x00415C10" }]
+
+[[rules]]
+id = "d3d-backend-global-destructor-authored-106a"
+addresses = ["0x00414770"]
+expected_count = 1
+expected_bytes = 103
+expected_names = ["sub_414770"]
+origin = "authored_game"
+subsystem = "engine"
+disposition = "authored"
+confidence = "observed"
+evidence = "Native global D3D backend destructor owns COM shutdown, listener-list and critical-section lifetimes; real atexit tail6BEEB0 and source global constructor identify ownership. Current169/native103 source remains nonexact. docs/D3D_BACKEND_GLOBAL_LIFETIME_2026_10_30.md."
+required_body_hashes = [{ address = "0x00414770", size = 103, sha256 = "7815d8456cb33537eed3b18d6ad43f304e8991141b111abb6325847ab845573f" }]
+required_dword_values = [{ address = "0x006BE876", value = "0x006BEEB0" }, { address = "0x006C0388", value = "0x006BE870" }]

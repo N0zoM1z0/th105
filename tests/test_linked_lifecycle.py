@@ -189,6 +189,16 @@ class LifecycleTests(unittest.TestCase):
         for truncated in [raw[:10], raw[:61], raw[:-1]]:
             with self.assertRaises(ValueError): life.native_zero_layout(truncated, self.symbol, 60)
 
+    def test_eight_aligned_native_zero_layout_keeps_exact_extent(self):
+        raw = bytearray(self.native_coff())
+        struct.pack_into("<I", raw, 36, 64)
+        struct.pack_into("<I", raw, 56, 0xc0400080)
+        self.assertEqual(life.native_zero_layout(bytes(raw), self.symbol, 64)["alignment"], 8)
+        for flags in (0xc0200080, 0xc0500080, 0xc0400040):
+            struct.pack_into("<I", raw, 56, flags)
+            with self.assertRaises(ValueError):
+                life.native_zero_layout(bytes(raw), self.symbol, 64)
+
     def test_local_cpp_dependencies_are_transitive_and_hashed(self):
         with tempfile.TemporaryDirectory(dir=workflow.ROOT / "build") as folder:
             root = Path(folder)

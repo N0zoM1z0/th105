@@ -1712,3 +1712,5 @@ BgmOggDataSource_dtor
 run_bgm_loading_worker
 NetworkWinsock_receive_rejection
 NetworkWinsock_receive_endpoint_list
+D3DBackend_ctor
+D3DBackend_dtor
