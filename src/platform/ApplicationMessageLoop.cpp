@@ -16,7 +16,7 @@ extern "C" __declspec(dllimport) int __stdcall PeekMessageA(ApplicationMessage28
 extern "C" __declspec(dllimport) int __stdcall GetMessageA(ApplicationMessage28 *, void *, unsigned, unsigned);
 extern "C" __declspec(dllimport) int __stdcall TranslateMessage(const ApplicationMessage28 *);
 extern "C" __declspec(dllimport) long __stdcall DispatchMessageA(const ApplicationMessage28 *);
-void __cdecl reset_application_d3d_device();
+bool __cdecl reset_application_d3d_device();
 struct ApplicationMessageLoopView {
     unsigned char unreviewed_000[0x4c];
     bool running_04c;

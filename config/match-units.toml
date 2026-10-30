@@ -18712,7 +18712,7 @@ notes = "Complete application message pump called by source-present WinMain665A7
 [[units.cross-v106a-application-message-loop.functions]]
 address = "0x00408120"
 symbol_base = "?run@ApplicationMessageLoopView@th105@@QAEXXZ"
-rel32_targets = ["?reset_application_d3d_device@th105@@YAXXZ=0x00414A10"]
+rel32_targets = ["?reset_application_d3d_device@th105@@YA_NXZ=0x00414A10"]
 dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A+0x1A4=application_cooperative_result_base"]
 
 [units.cross-v106a-application-bootstrap]
@@ -27673,3 +27673,22 @@ symbol_base = "??1D3DBackend@th105@@QAE@XZ"
 private_global = { object = "?g_d3d_backend@th105@@3UD3DBackend@1@A", role = "destructor" }
 eh_cleanup = { handler = "0x006BD6F6", info = "0x006E3CC4" }
 rel32_targets = ["??1?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@QAE@XZ=0x00404080", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "?_Buynode@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@2@XZ=0x004040B0", "?_Tidy@?$list@PAUDeviceResetListener@th105@@V?$allocator@PAUDeviceResetListener@th105@@@std@@@std@@IAEXXZ=0x00408A00", "??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10", "?shutdown_d3d_backend@th105@@YAXXZ=0x00414C50", "??3@YAXPAX@Z=0x006898EA"]
+
+[units.exact-first-d3d-reset-window-mode]
+kind = "linked_candidate"
+source = "src/engine/D3DBackendReset.cpp"
+object = "build/match-units/ExactFirst_D3DResetWindowMode.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+notes = "Full reset281 and window-mode toggle286 canonical exact in genuine CIL context. Native frame, checked listener iteration, failure flag rollback, metrics call ordering and discarded API results are retained without padding or custom ABI. docs/D3D_RESET_WINDOW_MODE_2026_10_30.md."
+link_data_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=d3d_backend_reset_object", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__GetSystemMetrics@4=__imp__GetSystemMetrics@4", "__imp__SetWindowPos@28=__imp__SetWindowPos@28"]
+
+[[units.exact-first-d3d-reset-window-mode.functions]]
+address = "0x00414A10"
+symbol_base = "?reset_application_d3d_device@th105@@YA_NXZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.exact-first-d3d-reset-window-mode.functions]]
+address = "0x00414B30"
+symbol_base = "?toggle_application_window_mode@th105@@YAXXZ"
+rel32_targets = ["?reset_application_d3d_device@th105@@YA_NXZ=0x00414A10"]

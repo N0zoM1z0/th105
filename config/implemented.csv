@@ -1714,3 +1714,5 @@ NetworkWinsock_receive_rejection
 NetworkWinsock_receive_endpoint_list
 D3DBackend_ctor
 D3DBackend_dtor
+D3DBackend_reset_device
+D3DBackend_toggle_window_mode

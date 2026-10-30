@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+D3D reset414A10 and window-mode toggle414B30 are canonical exact281/286 in
+genuine CIL. Native failure rollback, listener/COM lifecycle and all metric
+API calls are retained. The application pump remains177 exact after correcting
+its reset return declaration. See D3D_RESET_WINDOW_MODE_2026_10_30.md.
+
 D3D backend global constructor4146E0 is canonical exact131/131, including
 complete cleanup EH and actual startup/atexit/global-layout witnesses.
 All106 prior exact functions in41 affected units remain exact; destructor
