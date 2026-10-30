@@ -60,10 +60,10 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00402820,authored_game,audio,authored,observed,canonical-exact-authored
 0x00402880,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402960,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00402A00,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00402A00,authored_game,audio,authored,observed,bgm-stream-runtime-authored-106a
 0x00402B70,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00402C10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00402FC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00402C10,authored_game,audio,authored,observed,bgm-stream-runtime-authored-106a
+0x00402FC0,authored_game,audio,authored,observed,bgm-stream-runtime-authored-106a
 0x004032F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004033C0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00403460,authored_game,audio,authored,observed,canonical-exact-authored
@@ -558,7 +558,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004188C0,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418920,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418990,authored_game,audio,authored,observed,direct-sound-volume-authored-106a
-0x00418A10,authored_game,audio,authored,observed,ogg-game-audio-runtime-authored-106a
+0x00418A10,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418B40,authored_game,audio,authored,observed,canonical-exact-authored
 0x00418B70,authored_game,audio,authored,observed,ogg-game-audio-runtime-authored-106a
 0x00418C70,authored_game,audio,authored,observed,canonical-exact-authored

@@ -273,3 +273,16 @@ Public virtual thiscall source members are also eligible for full cleanup EH
 comparison when exported under their actual unrenamed symbol. The static
 cookie, complete handler/funclet/FuncInfo/unwind and relocation checks remain
 identical. See BITMAP_FILE_LOAD_EXACT_2026_10_30.md.
+
+## Original static Xiph providers and Ogg callback slots
+
+link_xiph_sdk=true selects only the hash-pinned original1.0.1 archive and its
+three static libraries. Their extracted bytes are part of build provenance.
+The option requires the pinned static CRT; only its actual libcmt:_file.obj
+stdio initializer is added to the fixed C-initializer set for this mode.
+
+link_ogg_callbacks=true verifies the complete source-owned four-function table
+against the existing native slot anchors. Only dword MOV register reads are
+admitted, and source table/code ownership and HIGHLOW coverage stay mandatory.
+There is no arbitrary callback table, data alias, import or code stub contract.
+See BGM_OGG_RUNTIME_2026_10_30.md.

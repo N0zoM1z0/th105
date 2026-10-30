@@ -671,6 +671,68 @@ class LinkedPeTests(unittest.TestCase):
         relocations([])
         linked.validate_body_relocations(pe, self.start, 8, [])
 
+    def test_xiph_sdk_requires_exact_archive_members_and_static_crt(self):
+        import hashlib
+        import io
+        import zipfile
+        import linked_xiph_sdk as xiph
+        members = {name: b"!<arch>\n" + name.encode() for name in xiph.MEMBERS}
+        stream = io.BytesIO()
+        with zipfile.ZipFile(stream, "w") as archive:
+            for name, data in members.items():
+                archive.writestr("oggvorbis-win32sdk-1.0.1/lib/" + name + "_static.lib", data)
+        raw = stream.getvalue()
+        pins = {name: hashlib.sha256(data).hexdigest() for name, data in members.items()}
+        with patch.object(xiph, "ARCHIVE_SHA256", hashlib.sha256(raw).hexdigest()), patch.object(xiph, "MEMBERS", pins):
+            self.assertEqual(xiph.verified_members(raw), members)
+            with self.assertRaises(ValueError): xiph.verified_members(raw + b"x")
+            with patch.dict(pins, {"ogg": "0" * 64}):
+                with self.assertRaises(ValueError): xiph.verified_members(raw)
+        xiph.validate({"link_xiph_sdk": True, "link_runtime": "static"})
+        for unit in [{"link_xiph_sdk": True, "link_runtime": "import"},
+                     {"link_xiph_sdk": "yes", "link_runtime": "static"}]:
+            with self.assertRaises(ValueError): xiph.validate(unit)
+
+    def test_ogg_callback_slots_require_actual_functions_and_bounded_reads(self):
+        import linked_ogg_callbacks as callbacks
+        source, target = VTablePe(), VTablePe(0x400000)
+        target.data = bytearray(0x300000)
+        target.sections[0].VirtualAddress = 0x18000
+        target.sections[2].VirtualAddress = 0x2fa000
+        start, dst, owner = linked.IMAGE_BASE + 0x3010, 0x6fa194, "Bgm.ltcg.obj"
+        source_entries = [linked.IMAGE_BASE + 0x1010 + 16 * i for i in range(4)]
+        target_entries = [address for _, address in callbacks.SLOTS]
+        struct.pack_into("<4I", source.data, 0x3010, *source_entries)
+        struct.pack_into("<4I", target.data, dst - 0x400000, *target_entries)
+        source.DIRECTORY_ENTRY_BASERELOC = [SimpleNamespace(entries=[
+            SimpleNamespace(rva=0x3010 + 4 * i, type=3) for i in range(4)])]
+        symbols = {callbacks.SYMBOL: [(start, owner)]}
+        functions = {}
+        known = {}
+        for i, ((name, address), key, entry) in enumerate(zip(callbacks.SLOTS, callbacks.KEYS, source_entries)):
+            symbols[name] = [(entry, owner)]; functions[entry] = [(name, owner)]
+            known[key] = (dst, struct.pack("<I", address), frozenset({4 * i}), "address")
+        unit = {"link_ogg_callbacks": True, "link_xiph_sdk": True}
+        refs = callbacks.witnesses(unit, source, target, symbols, functions, owner, known)
+        self.assertEqual([r["slot"] for r in refs], [0, 1, 2, 3])
+        bad = copy.deepcopy(source); struct.pack_into("<I", bad.data, 0x3014, source_entries[0])
+        with self.assertRaises(ValueError):
+            callbacks.witnesses(unit, bad, target, symbols, functions, owner, known)
+        bad = copy.deepcopy(source); bad.DIRECTORY_ENTRY_BASERELOC[0].entries.pop()
+        with self.assertRaises(ValueError):
+            callbacks.witnesses(unit, bad, target, symbols, functions, owner, known)
+        with self.assertRaises(ValueError):
+            callbacks.witnesses(unit, source, target, symbols, functions, "Other.obj", known)
+        code = b"\xa1" + struct.pack("<I", start) + b"\xc3"
+        canonical, _, _ = linked.canonicalize(code, self.start, self.target, [], None,
+            self.image, self.game, internal_refs=refs)
+        self.assertEqual(canonical[1:5], struct.pack("<I", dst))
+        for code in [b"\xa3" + struct.pack("<I", start) + b"\xc3",
+                     b"\x68" + struct.pack("<I", start) + b"\xc3"]:
+            with self.assertRaises(ValueError):
+                linked.canonicalize(code, self.start, self.target, [], None,
+                    self.image, self.game, internal_refs=refs)
+
     def test_reader_vtables_require_exact_family_and_five_slots(self):
         import linked_reader_vtables as reader
         key = "??_7CFileReader@th105@@6B@"

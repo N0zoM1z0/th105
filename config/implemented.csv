@@ -1702,3 +1702,6 @@ FileBuffer_dtor
 CScript_load
 FileBuffer_load_text
 PaletteDecodeMode_load_palette
+BgmStreamRuntime_start
+BgmStreamRuntime_update
+BgmStreamRuntime_handoff

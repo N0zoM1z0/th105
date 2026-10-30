@@ -1,5 +1,9 @@
 # Ogg PCM count and value lifetimes
 
+Current selection: the same PCM value lifetime is now carried by the genuine
+BGM/Xiph CIL context;251/252 remains nonexact. The former standalone unit
+is historical. See BGM_OGG_RUNTIME_2026_10_30.md.
+
 `fill_ogg_pcm_block @418B70` has corrected source facts and remains nonexact:
 the complete selected body is **251/252**, first difference **418B70/+0**.
 No exact, origin or aggregate progress is added. The older255-byte/default-FP

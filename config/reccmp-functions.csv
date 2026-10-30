@@ -1729,3 +1729,6 @@ FileBuffer_dtor,0x004055F0,function
 CScript_load,0x00405810,function
 FileBuffer_load_text,0x00408DB0,function
 PaletteDecodeMode_load_palette,0x00408F70,function
+BgmStreamRuntime_start,0x00402A00,function
+BgmStreamRuntime_update,0x00402C10,function
+BgmStreamRuntime_handoff,0x00402FC0,function

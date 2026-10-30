@@ -1786,9 +1786,10 @@ evidence = "Canonical-exact CFileList owners carry the complete current VC8 std:
 [[rules]]
 id = "ogg-game-audio-runtime-authored-106a"
 addresses = ["0x00418A10", "0x00418B70", "0x00418D10", "0x00419100"]
-expected_count = 4
-expected_bytes = 1618
-expected_names = ["sub_418A10", "sub_418B70", "sub_418D10", "sub_419100"]
+skip_matching = true
+expected_count = 3
+expected_bytes = 1327
+expected_names = ["sub_418B70", "sub_418D10", "sub_419100"]
 origin = "authored_game"
 subsystem = "audio"
 disposition = "authored"
@@ -3807,3 +3808,17 @@ disposition = "authored"
 confidence = "observed"
 evidence = "Independently padded14-byte body omitted from initial inventory. Native CScript load cleanup6BDF70 jumps here at6BDF73. Actual FileBufferContext destructor owns optional CRT free of data_00, and genuine CIL generates its private EAX interface. No standalone exact credit. docs/SCRIPT_FILE_LOADING_2026_10_29.md."
 required_body_hashes = [{ address = "0x004055F0", size = 14, sha256 = "22cce6900ead54873cbd1da9e0bd9d27451617d54e823bdf3bb761c35fd9ae63" }]
+
+[[rules]]
+id = "bgm-stream-runtime-authored-106a"
+addresses = ["0x00402A00", "0x00402C10", "0x00402FC0"]
+expected_count = 3
+expected_bytes = 2107
+expected_names = ["sub_402A00", "sub_402C10", "sub_402FC0"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Three complete game stream paths use the independently proved1378-byte stream, decoder+30 and CDSBuffer+24 ownership. Start calls exact Ogg open, then the ring-update and linked-stream handoff bodies; they manage the100000h ring,8000h decode chunks,scheduling,gain fades and stream links. Raw canonical bodies and incoming start edges are pinned. Source candidates remain nonexact. docs/BGM_OGG_RUNTIME_2026_10_30.md."
+required_body_hashes = [{ address = "0x00402A00", size = 358, sha256 = "73f7ccb4f53ae4cfd1a71d3dcd4ca8f76bd5f215370a0ff11904425c21919ac2" }, { address = "0x00402C10", size = 943, sha256 = "6cb0f82e49c6b4b2b1222b1f4c5f4a7270b4d43e2914fbd16f376fc8a4b2f854" }, { address = "0x00402FC0", size = 806, sha256 = "61c4852c20e1cd9fa035c956a7f17e949faeac24117323389cca962e3da404e9" }]
+required_direct_edges = [{ caller = "0x00402A00", site = "0x00402A1E", target = "0x00418A10", caller_status = "implemented" }, { caller = "0x00402A00", site = "0x00402B33", target = "0x00402C10", caller_status = "implemented" }, { caller = "0x00402A00", site = "0x00402B25", target = "0x00402FC0", caller_status = "implemented" }]

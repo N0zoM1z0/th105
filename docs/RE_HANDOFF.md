@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Ogg open418A10 is canonical exact291/291 in the real BGM stream caller and
+original pinned Xiph SDK context. Its private ESI receiver is compiler-derived;
+all four emitted callback slots are verified. New source closes stream
+start/update/handoff paths, but349/358,925/943,761/806 and PCM/SFL/gain remain
+nonexact. No extra frame storage or caller/library credit is added.
+See BGM_OGG_RUNTIME_2026_10_30.md.
+
 Palette dispatch408F70 and raw palette419E80 are canonical exact163/243,
 with full raw-loader EH and a freshly exact caller witness. Native scalar
 operator-delete ownership and typed read branches are restored. Nine prior

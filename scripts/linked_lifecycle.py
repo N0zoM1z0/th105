@@ -212,7 +212,8 @@ def validate_static_entry(pe, functions: dict) -> None:
         raise ValueError("static lifecycle image needs the real pinned DLL CRT entry")
 
 
-def validate_static_runtime_initializers(pe, functions: dict, symbols: dict) -> list[dict]:
+def validate_static_runtime_initializers(pe, functions: dict, symbols: dict, *,
+                                         allow_pinned_stdio: bool = False) -> list[dict]:
     """No source globals: require real CRT tables and only pinned CRT C callbacks.
 
     C++ initialization remains unsupported in this mode. Source-owned lifecycle
@@ -224,6 +225,8 @@ def validate_static_runtime_initializers(pe, functions: dict, symbols: dict) -> 
         "___sse2_available_init": "libcmt:cpu_disp.obj",
         "___initmbctable": "libcmt:mbctype.obj",
     }
+    if allow_pinned_stdio:
+        allowed["___initstdio"] = "libcmt:_file.obj"
     reports, seen = [], set()
     for family, lower, upper in (("C", "___xi_a", "___xi_z"),
                                  ("C++", "___xc_a", "___xc_z")):

@@ -77,6 +77,10 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     validate_literals(unit, data_keys)
     from linked_reader_vtables import validate as validate_reader_vtables
     validate_reader_vtables(unit, data_keys)
+    from linked_xiph_sdk import validate as validate_xiph
+    from linked_ogg_callbacks import validate as validate_ogg_callbacks
+    validate_xiph(unit)
+    validate_ogg_callbacks(unit, data_keys)
     if unit.get("profile") != PROFILE or not str(unit.get("object", "")).endswith(".dll"):
         raise ValueError("linked_candidate requires its LTCG profile and a .dll output")
     mappings = unit.get("link_data_targets")
@@ -493,6 +497,8 @@ def build_linked(name: str, unit: dict) -> dict:
     source = repository_path(unit["source"])
     output = repository_path(unit["object"], output=True)
     output.parent.mkdir(parents=True, exist_ok=True)
+    from linked_xiph_sdk import inputs as xiph_inputs
+    xiph_archives = xiph_inputs(unit, output, generate=True)
     obj = output.with_suffix(".ltcg.obj")
     data_obj = output.with_suffix(".bindings.obj")
     map_path = output.with_suffix(".map")
@@ -532,7 +538,9 @@ def build_linked(name: str, unit: dict) -> dict:
     link_command.extend("/EXPORT:" + symbol for symbol in unit.get("preserve_public_members", []))
     libraries = sorted({contract["library"] for contract in sdk_imports})
     libraries.extend(STATIC_LIBS if static else ("lib/msvcrt.lib", "lib/msvcprt.lib"))
-    link_command.extend(win(p) for p in [*coff_objects, obj, data_obj, *(tools / p for p in libraries),
+    link_command.extend(win(p) for p in [*coff_objects, obj, data_obj,
+                                        *(ROOT / a["path"] for a in xiph_archives),
+                                        *(tools / p for p in libraries),
                                         ])
     # Each invocation is serial. /FORCE and unresolved references are forbidden.
     phases = [(f"coff{index}.compile", command) for index, command in enumerate(coff_commands)]
@@ -553,6 +561,8 @@ def build_linked(name: str, unit: dict) -> dict:
                 "sdk_imports": sdk_imports,
                 "tools": hashes, "parsers": parsers, "bindings": bindings, "compile_command": compile_command,
                 "link_command": link_command}
+    if xiph_archives:
+        metadata["xiph_archives"] = xiph_archives
     output.with_suffix(".link.json").write_text(json.dumps(metadata, indent=2) + "\n")
     return metadata
 
@@ -698,8 +708,9 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                 memory = operand.type == capstone.x86.X86_OP_MEM
                 if memory:
                     allowed = ref["kind"] in {"object", "runtime"} and operand.size <= ref["size"]
-                    if ref["kind"] == "literal":
+                    if ref["kind"] in {"literal", "callback_slot"}:
                         allowed = (operand.size <= ref["size"] and instruction.mnemonic in {"mov", "movzx", "movsx"}
+                                   and (ref["kind"] != "callback_slot" or operand.size == 4 and instruction.mnemonic == "mov")
                                    and len(instruction.operands) == 2
                                    and instruction.operands[0].type == capstone.x86.X86_OP_REG
                                    and instruction.operands[1].type == capstone.x86.X86_OP_MEM)
@@ -1056,6 +1067,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     bindings = target_bindings(unit)
     sdk_imports = target_imports(unit, tool_root)
     vtable_contracts = target_vtables(unit)
+    from linked_xiph_sdk import inputs as xiph_inputs
     expected = {"schema": "th105-linked-pe-v1", "unit": name, "profile": PROFILE,
                 "target_sha256": target_hash, "input_digest": unit_input_digest(name, unit)[0],
                 "source_sha256": sha(repository_path(unit["source"])), "image_sha256": sha(image),
@@ -1065,6 +1077,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
                 "coff_inputs": coff_inputs(unit, image), "vtable_contracts": vtable_contracts,
                 "layout_inputs": layout_inputs(unit, image),
                 "sdk_imports": sdk_imports}
+    if unit.get("link_xiph_sdk"):
+        expected["xiph_archives"] = xiph_inputs(unit, image)
     if any(metadata.get(key) != value for key, value in expected.items()):
         raise ValueError("stale or modified linked build provenance; rebuild the configured unit")
     pe = pefile.PE(str(image))
@@ -1080,7 +1094,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         validate_static_entry(pe, functions)
         if not unit.get("link_objects"):
             runtime_initializers = validate_static_runtime_initializers(
-                pe, functions, parse_map_symbols(map_text))
+                pe, functions, parse_map_symbols(map_text),
+                allow_pinned_stdio=unit.get("link_xiph_sdk") is True)
     vtables = source_vtables(pe, parse_map_symbols(map_text), functions,
                              vtable_contracts, image.with_suffix(".ltcg.obj").name)
     from linked_reader_vtables import witnesses as reader_vtable_witnesses
@@ -1106,6 +1121,9 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     from linked_literals import witnesses as literal_witnesses
     internal_refs += literal_witnesses(unit, pe, game, parse_map_symbols(map_text),
                                       image.with_suffix(".ltcg.obj").name, c.known_data_targets())
+    from linked_ogg_callbacks import witnesses as callback_witnesses
+    internal_refs += callback_witnesses(unit, pe, game, parse_map_symbols(map_text), functions,
+                                       image.with_suffix(".ltcg.obj").name, c.known_data_targets())
     reports = []
     for function in unit["functions"]:
         if addresses and function["address"] not in addresses:

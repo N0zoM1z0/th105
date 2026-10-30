@@ -126,6 +126,16 @@ class LifecycleTests(unittest.TestCase):
         pe.put(0x2004, struct.pack("<I", base + 0x1000)); pe.relocations(0x2004)
         functions = {base + 0x1000: [("___sse2_available_init", "libcmt:cpu_disp.obj")]}
         self.assertEqual(len(life.validate_static_runtime_initializers(pe, functions, symbols)), 1)
+        stdio = {base + 0x1000: [("___initstdio", "libcmt:_file.obj")]}
+        with self.assertRaises(ValueError):
+            life.validate_static_runtime_initializers(pe, stdio, symbols)
+        self.assertEqual(len(life.validate_static_runtime_initializers(
+            pe, stdio, symbols, allow_pinned_stdio=True)), 1)
+        with self.assertRaises(ValueError):
+            life.validate_static_runtime_initializers(pe,
+                {base + 0x1000: [("___initstdio", "unit.ltcg.obj")]},
+                symbols, allow_pinned_stdio=True)
+
         for owner in ["unit.ltcg.obj", "CIL library: CIL module", "untrusted:cpu_disp.obj"]:
             with self.subTest(owner=owner), self.assertRaises(ValueError):
                 life.validate_static_runtime_initializers(pe,
