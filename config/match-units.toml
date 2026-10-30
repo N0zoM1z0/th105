@@ -27845,3 +27845,26 @@ rel32_targets = [
  "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
  "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.exact-first-replay-codec]
+kind = "linked_candidate"
+source = "src/assets/ReplayCodec.cpp"
+object = "build/match-units/ExactFirst_ReplayCodec.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+link_runtime = "static"
+link_png_sdk = true
+include_dirs = [".tools/upstream/zlib-1.2.3"]
+link_data_targets = []
+link_literals = [{ symbol = "??_C@_05GDHACFMB@1?42?43?$AA@", target = "??_C@_05GDHACFMB@1?42?43?$AA@", read_offsets = [0], allow_pointer_push = true }]
+notes = "Real pinned zlib1.2.3 source/header graph and ordinary GL/LTCG recover native aligned stack without source alignment or padding. Authored memory-codec wrappers only; no provider/library byte credit."
+
+[[units.exact-first-replay-codec.functions]]
+address = "0x004067F0"
+symbol_base = "?encode_score_payload_4067f0@th105@@YAIPBEIPAEI@Z"
+rel32_targets = ["_deflateInit_=0x00667590", "_deflate=0x00665C10", "_deflateEnd=0x006663F0"]
+
+[[units.exact-first-replay-codec.functions]]
+address = "0x00406890"
+symbol_base = "?decode_score_payload_406890@th105@@YAIPBEIPAEI@Z"
+rel32_targets = ["_inflateInit_=0x006679C0", "_inflate=0x00667AD0", "_inflateEnd=0x006690D0"]

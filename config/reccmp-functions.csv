@@ -1756,3 +1756,5 @@ TextureFileLoading_upload,0x0041AE60,function
 BattleInputRecording_load,0x0042C5C0,function
 ConnectMenu_load_address_list,0x00443130,function
 ConnectMenu_load_history_list,0x004434B0,function
+encode_score_payload_4067f0,0x004067F0,function
+decode_score_payload_406890,0x00406890,function
