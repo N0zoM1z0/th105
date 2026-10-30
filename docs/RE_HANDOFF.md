@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+CSV parser40F200 now captures the native current-character lifetime before
+iterator calls. Seven affected accepted roots stay exact; parser remains
+nonexact (777 callable /839 with switch data, versus native575 /635).
+See CSV_FILE_LOADING_2026_10_29.md for boundary details and closed controls.
+
 Script loader405810 and text dispatch408DB0 are canonical exact282/140,
 with complete loader cleanup EH and source-owned CR/LF literal verification.
 All85 previous accepted functions in19 affected units and the full timeline

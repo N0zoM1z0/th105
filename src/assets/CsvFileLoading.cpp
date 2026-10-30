@@ -117,25 +117,27 @@ void CsvContext::parse(const char *text)
  Row pending;
  std::string value;
  for(const char *cursor=text;*cursor;++cursor){
-  switch(*cursor){
+  // Native40F284 captures this byte before checked-iterator/helper calls.
+  char character=*cursor;
+  switch(character){
   case '#':comment=true;break;
   case ',':
    if(!comment){pending.push_back(value);value.erase(value.begin(),value.end());}
    break;
   case '"':quote=!quote;break;
   case '\r':
-   if(quote && !comment)value.insert(value.end(),*cursor);
+   if(quote && !comment)value.insert(value.end(),character);
    break;
   case '\n':
    if(quote){
-    if(!comment)value.insert(value.end(),*cursor);
+    if(!comment)value.insert(value.end(),character);
    }else{
     if(!comment){pending.push_back(value);value.erase(value.begin(),value.end());rows.push_back(pending);pending.clear();}
     comment=false;
    }
    break;
   default:
-   if(!comment)value.insert(value.end(),*cursor);
+   if(!comment)value.insert(value.end(),character);
    break;
   }
  }

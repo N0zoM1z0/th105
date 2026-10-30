@@ -105,3 +105,28 @@ private single-edge script destructor95/pending cleanup147 and the genuine
 two-edge BGM constructor89 also replay exact. Three small checker tests cover
 this role contract and rejection cases; existing linked checks remain passing.
 No cold corpus rebuild or broad runtime matrix was performed.
+
+## Character lifetime follow-up, 2026-10-30
+
+Native 40F284 reads the current character into AL before switch dispatch.
+The CR, quoted LF and default insertion paths preserve that byte before
+checked-iterator/helper calls (40F2FB, 40F330 and 40F390), rather than reading
+the input again after those calls. CsvFileLoading.cpp now captures that real
+character lifetime explicitly.
+
+The selected parser is still nonexact: its linked symbol span is 839 bytes,
+including its switch data. Its callable extent through RET 4 is 777 bytes;
+the native callable extent is 575 bytes through RET, followed by alignment
+and 59 bytes of jump-table/selector data (635-byte combined native span).
+The older 843-byte source span included switch data too, so it must not be
+read as a like-for-like callable-size comparison against native 575.
+
+Seven accepted functions in the sole source-dependent unit replay exact.
+No new exact bytes are claimed. The private clear-field boundary and iterator
+evaluation-order controls did not establish a canonical match and were not
+selected. Script-line common-tail and genuine token-acquire context controls
+also remain private; neither improved the accepted source boundary.
+
+Evidence: build/frontier-script-file-load-20261029/csv-character-public-build.json
+and csv-character-accepted.json. The source dependency scan identifies only
+exact-first-csv-file-loading; unrelated native units were not rebuilt.
