@@ -27788,3 +27788,60 @@ rel32_targets = [
  "__invalid_parameter_noinfo=0x0068A143",
  "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.exact-first-connect-address-list]
+kind = "probe"
+source = "src/ui/MenuConnectAddressList.cpp"
+object = "build/match-units/ExactFirst_ConnectAddressList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete JP1.06a connect list policy; source present, nonexact. No byte credit."
+
+[[units.exact-first-connect-address-list.functions]]
+address = "0x00443130"
+symbol_base = "?load_address_list_443130@CMenuConnectAddressListView@th105@@QAE_NXZ"
+rel32_targets = [
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
+ "??_U@YAPAXI@Z=0x00665B8A",
+ "_strtok_s=0x0068B1BC",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
+ "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z=0x00401DC0",
+ "?push_back@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z=0x0040F8F0",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+ "??_V@YAXPAX@Z=0x0068AA26",
+ "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+ "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+ "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
+ "?bind_vertical@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z=0x00420520",
+ "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = ["??_C@_02PCIJFNDE@?$AN?6?$AA@+0x2=connect_crlf_nul_tail"]
+
+[units.exact-first-connect-history-list]
+kind = "probe"
+source = "src/ui/MenuConnectHistoryList.cpp"
+object = "build/match-units/ExactFirst_ConnectHistoryList.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete JP1.06a connect list policy; source present, nonexact. No byte credit."
+
+[[units.exact-first-connect-history-list.functions]]
+address = "0x004434B0"
+symbol_base = "?load_history_list_4434b0@CMenuConnectHistoryListView@th105@@QAE_NXZ"
+rel32_targets = [
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?_Growmap@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXI@Z=0x0040FE30",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+ "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
+ "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+ "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+ "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
+ "@__security_check_cookie@4=0x00689D25",
+]

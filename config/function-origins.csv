@@ -1402,8 +1402,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00443020,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00443030,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004430D0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00443130,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004434B0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00443130,authored_game,ui,authored,observed,connect-address-list-load-authored-106a
+0x004434B0,authored_game,ui,authored,observed,connect-history-list-load-authored-106a
 0x00443780,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004437B0,compiler_generated,ui,exclude,observed,vc8-generated-menu-connect-history-std-comdats-106a
 0x00443A00,unknown,,review,unknown,ida-1.06a-initial-inventory

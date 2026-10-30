@@ -1727,3 +1727,5 @@ load_dds_texture
 TextureFileLoading_load
 TextureFileLoading_upload
 BattleInputRecording_load
+ConnectMenu_load_address_list
+ConnectMenu_load_history_list

@@ -1402,8 +1402,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00443020,8,0x00443027,sub_443020,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00443030,157,0x004430CC,sub_443030,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004430D0,85,0x00443124,sub_4430D0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00443130,881,0x004434A0,sub_443130,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x004434B0,714,0x00443779,sub_4434B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00443130,881,0x004434A0,sub_443130,ConnectMenu_load_address_list,ui,implemented,0.00,__thiscall,bool CMenuConnectAddressListView::load_address_list(),false,src/ui/MenuConnectAddressList.cpp,"Current raw caller444830, complete body CFG, real reader/checked-string/deque and menu ownership; fresh canonical comparison remains nonexact. docs/CONNECT_LIST_LOADING_2026_10_30.md",root,Complete authored source; native file16-line cap versus full history list retained; no exact credit.
+0x004434B0,714,0x00443779,sub_4434B0,ConnectMenu_load_history_list,ui,implemented,0.00,__thiscall,bool CMenuConnectHistoryListView::load_history_list(),false,src/ui/MenuConnectHistoryList.cpp,"Current raw caller444830, complete body CFG, real reader/checked-string/deque and menu ownership; fresh canonical comparison remains nonexact. docs/CONNECT_LIST_LOADING_2026_10_30.md",root,Complete authored source; native file16-line cap versus full history list retained; no exact credit.
 0x00443780,46,0x004437AD,sub_443780,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x004437B0,548,0x004439D3,sub_4437B0,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00443A00,44,0x00443A2B,sub_443A00,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

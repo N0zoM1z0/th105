@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Connect address/history loaders443130/4434B0 now have complete current-target
+source and caller-backed authored records. They remain870/881 and715/714
+nonexact; no byte gain. Preserve the typed layout and native failure ownership;
+see CONNECT_LIST_LOADING_2026_10_30.md for bounded negative controls.
+
 Replay loading42C5C0 is canonical exact848/848 in real CFileReader source
 context. Normal reader ownership, scoped default-slot lifetime and paired scalar
 slot fields recover the frame; six cleanup-EH records also match. The one

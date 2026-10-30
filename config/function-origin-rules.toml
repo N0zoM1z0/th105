@@ -3921,3 +3921,31 @@ confidence = "observed"
 evidence = "Actual game resource texture caller, file/mipmap policy and bitmap pixel ownership identify complete authored code. Current full source remains nonexact. docs/BITMAP_TEXTURE_LOADING_2026_10_30.md"
 required_body_hashes = [{ address = "0x0041AE60", size = 954, sha256 = "57b42ebf2c5b5b7aafdf1dcd82c94bd65dc5c5829b3b98fc9bcc7772f8499a24" }]
 required_direct_edges = [{ caller = "0x00409080", site = "0x0040946D", target = "0x0041AE60" }]
+
+[[rules]]
+id = "connect-address-list-load-authored-106a"
+addresses = ["0x00443130"]
+expected_count = 1
+expected_bytes = 881
+expected_names = ["sub_443130"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Connect menu state444830 directly invokes game-specific address/history list construction, texture ownership and cursor policy. Complete source remains nonexact; docs/CONNECT_LIST_LOADING_2026_10_30.md."
+required_body_hashes = [{ address = "0x00443130", size = 881, sha256 = "74397f677a99e5eb3fe7b3ae1ac2a86918b4ece7903a126481bf4070b68d9040" }]
+required_direct_edges = [{ caller = "0x00444830", site = "0x00444959", target = "0x00443130" }]
+
+[[rules]]
+id = "connect-history-list-load-authored-106a"
+addresses = ["0x004434B0"]
+expected_count = 1
+expected_bytes = 714
+expected_names = ["sub_4434B0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Connect menu state444830 directly invokes game-specific address/history list construction, texture ownership and cursor policy. Complete source remains nonexact; docs/CONNECT_LIST_LOADING_2026_10_30.md."
+required_body_hashes = [{ address = "0x004434B0", size = 714, sha256 = "cc98bc64af2d5848e83b4b2ab459aebb0e668b44f1be445fda4d28a2b89d7c98" }]
+required_direct_edges = [{ caller = "0x00444830", site = "0x0044497D", target = "0x004434B0" }]
