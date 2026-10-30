@@ -3792,3 +3792,16 @@ confidence = "observed"
 evidence = "Exact default-character-deck loader431E80 calls this at431FCC. It owns an8-byte file buffer, loads the cv1/plain path, parses content and resets reader iterators only on success. Full raw170-byte body and actual complete CIL source establish authored policy; caller/frame/parser remain nonexact. docs/CSV_FILE_LOADING_2026_10_29.md."
 required_body_hashes = [{ address = "0x0040F150", size = 170, sha256 = "373562ea4bc5fb6c90fc56e0bdb9d5c27256d8559b576dfff8363902508ddf31" }]
 required_direct_edges = [{ caller = "0x00431E80", site = "0x00431FCC", target = "0x0040F150", caller_status = "matching" }]
+
+[[rules]]
+id = "file-buffer-owner-dtor-authored-106a"
+addresses = ["0x004055F0"]
+expected_count = 1
+expected_bytes = 14
+expected_names = ["sub_4055F0"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Independently padded14-byte body omitted from initial inventory. Native CScript load cleanup6BDF70 jumps here at6BDF73. Actual FileBufferContext destructor owns optional CRT free of data_00, and genuine CIL generates its private EAX interface. No standalone exact credit. docs/SCRIPT_FILE_LOADING_2026_10_29.md."
+required_body_hashes = [{ address = "0x004055F0", size = 14, sha256 = "22cce6900ead54873cbd1da9e0bd9d27451617d54e823bdf3bb761c35fd9ae63" }]

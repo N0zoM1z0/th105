@@ -27580,15 +27580,17 @@ rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
 [units.exact-first-csv-file-loading]
 kind = "linked_candidate"
-source = "src/assets/CsvFileLoading.cpp"
+source = "src/battle/ScriptFileLoading.cpp"
 object = "build/match-units/ExactFirst_CsvFileLoading.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
-notes = "Real reader/package/CRC and file-buffer/CSV CIL context. CSV wrapper140, reset151, public owner destructor15, plain loader234 and encoded loader267 are exact. Both file loaders include full cleanup EH; encoded is witnessed through a freshly replayed exact wrapper. CSV caller176/170 and parser remain unaccepted. docs/FILE_BUFFER_LOADING_EXACT_2026_10_29.md."
+notes = "Real reader/package/CRC/file/CSV/script CIL context. CSV wrapper140, reset151, public reader destructor15, plain234, encoded267, script load282 and text wrapper140 are exact. Full cleanup EH and bounded source-owned CRLF literal reads are replayed. CSV caller and command-line parser remain unaccepted. docs/SCRIPT_FILE_LOADING_2026_10_29.md."
 link_data_targets = ["__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A"]
-preserve_public_members = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z"]
+preserve_public_members = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z", "?clear_commands@CScript@@QAEXXZ"]
+
+link_literals = [{ symbol = "??_C@_02PCIJFNDE@?$AN?6?$AA@", target = "??_C@_02PCIJFNDE@?$AN?6?$AA@", read_offsets = [0, 2] }]
 
 [[units.exact-first-csv-file-loading.functions]]
 address = "0x0040F150"
@@ -27623,3 +27625,19 @@ symbol_base = "?load_encoded@FileBufferContext@th105@@QAE_NPBD@Z"
 private_from = { caller = "0x00408E40", site = "0x00408E93", through_exact_caller = true }
 eh_cleanup = { handler = "0x006BDCC8", info = "0x006E4338" }
 rel32_targets = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20", "??_U@YAPAXI@Z=0x00665B8A", "_free=0x0068AA26", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
+
+[[units.exact-first-csv-file-loading.functions]]
+address = "0x00405810"
+symbol_base = "?load@CScript@@QAE_NPBDH@Z"
+rel32_targets = ["?load_text@FileBufferContext@th105@@QAE_NPBD@Z=0x00408DB0", "?clear_pending_commands@CScript@@QAEXXZ=0x00405770", "?parse_script_line@th105@@YGXPAVCScript@@PAD@Z=0x00405930", "_strtok_s=0x0068B1BC", "_free=0x0068AA26", "__invalid_parameter_noinfo=0x0068A143", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "??1FileBufferContext@th105@@QAE@XZ=0x004055F0"]
+eh_cleanup = { handler = "0x006BDF78", info = "0x006E4618" }
+
+[[units.exact-first-csv-file-loading.functions]]
+address = "0x00405930"
+symbol_base = "?parse_script_line@th105@@YGXPAVCScript@@PAD@Z"
+
+[[units.exact-first-csv-file-loading.functions]]
+address = "0x00408DB0"
+symbol_base = "?load_text@FileBufferContext@th105@@QAE_NPBD@Z"
+private_from = { caller = "0x00405810", site = "0x00405853", through_exact_caller = true }
+rel32_targets = ["?load_plain@FileBufferContext@th105@@QAE_NPBD@Z=0x00419860", "?load_encoded@FileBufferContext@th105@@QAE_NPBD@Z=0x00419950", "_strcpy_s=0x0068AD95", "@__security_check_cookie@4=0x00689D25"]

@@ -1698,3 +1698,6 @@ CScript_clear_pending_commands
 CsvReader_load
 FileBuffer_load_csv
 CsvReader_reset_iterators
+FileBuffer_dtor
+CScript_load
+FileBuffer_load_text

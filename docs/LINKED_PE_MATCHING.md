@@ -227,10 +227,11 @@ the unique unexported source callee. This does not compare or accept caller/EH
 bytes, and grants no field waiver in the accepted callee. Legacy `site` and
 two-`sites` behavior is unchanged. See CSV_FILE_LOADING_2026_10_29.md.
 
-## Private member below an exact private caller
+## Private member below an exact caller
 
 `private_from = { caller, site, through_exact_caller = true }` permits one
-explicit additional edge below an already directly witnessed private caller.
+explicit additional edge below an already directly witnessed private caller
+or an ordinary public caller.
 The caller must be marked matching and freshly replay **exact in the same
 image** on every child comparison. Its source raw hash, canonical hash,
 target hash, map identity, complete CFG and HIGHLOW coverage are bound to that
@@ -241,3 +242,19 @@ Full `eh_cleanup` comparison also supports ordinary unrenamed public members
 and this exact-parent private member case, using the real static CRT cookie.
 It still compares the entire handler, every cleanup funclet, FuncInfo and
 unwind map; this is not the source-only caller-role contract above.
+
+## Source-owned byte-string reads
+
+An explicit link_literals entry identifies a genuine compiler byte-string
+symbol, the same target data key and bounded read_offsets. The compiler
+name's encoded extent, unique CIL map owner, full source/native bytes,
+read-only non-executable sections and existing target-ledger addends must
+all agree. Only MOV/MOVZX/MOVSX register reads within those bounds qualify.
+Writes, escaping addresses, unlisted offsets and overruns fail. HIGHLOW
+coverage is still exact; this is not a general data relocation waiver.
+
+The exact-parent report now uses the generic exact_caller key. A public
+parent is eligible only with the same fresh same-image full exact replay,
+ledger evidence, hashes, map ownership, CFG and relocation checks as the
+private-parent case. Recursion and implicit longer chains remain forbidden.
+See SCRIPT_FILE_LOADING_2026_10_29.md.

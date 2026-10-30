@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Script loader405810 and text dispatch408DB0 are canonical exact282/140,
+with complete loader cleanup EH and source-owned CR/LF literal verification.
+All85 previous accepted functions in19 affected units and the full timeline
+payload remain exact. The omitted14-byte FileBuffer destructor4055F0 is
+authored/source-present, not separately exact. Parser405/399 remains
+unaccepted. See SCRIPT_FILE_LOADING_2026_10_29.md.
+
 Plain419860 and encoded419950 file loaders are canonical exact234/267,
 including complete cleanup EH. The actual public reader destructor restores
 the frame; ordinary read forwarding closes argument scheduling. The CSV

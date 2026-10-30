@@ -251,8 +251,10 @@ class LinkedPeTests(unittest.TestCase):
             'private_from':{'caller':'0x00402000','site':'0x00402000','through_exact_caller':True}})
         u = {**f['unit'], 'profile':linked.PROFILE, 'object':'build/test.dll', 'link_data_targets':[]}
         linked.validate_contract(u,set())
+        public_parent=copy.deepcopy(u);public_parent['functions'][1].pop('private_from')
+        linked.validate_contract(public_parent,set())
         changes = [lambda u:u['functions'][2]['private_from'].update(through_exact_caller=False),
-            lambda u:u['functions'][1].pop('private_from'),
+            lambda u:u['functions'][1].update(private_global={'object':'missing','role':'constructor'}),
             lambda u:u['functions'][1]['private_from'].update(through_exact_caller=True),
             lambda u:u['functions'][2]['private_from'].update(caller_eh={'handler':'0x00404000','info':'0x00405000'})]
         for change in changes:
@@ -273,7 +275,7 @@ class LinkedPeTests(unittest.TestCase):
             'object_compared_sha256':h,'validated_data_references':[],
             'private_caller_witness':{'caller':'0x00400000'}}
         f['exact_caller_replay']=report
-        self.assertIn('exact_private_caller',linked.private_caller_witness(**f))
+        self.assertIn('exact_caller',linked.private_caller_witness(**f))
         for key,value in [('result','mismatch'),('address','0x00403000'),
                           ('source_body_sha256','bad'),('object_compared_sha256','bad'),
                           ('private_caller_witness',None)]:
@@ -363,6 +365,57 @@ class LinkedPeTests(unittest.TestCase):
             with self.assertRaises(ValueError): linked.validate_contract(bad, set())
         del f['function']['private_from']['caller_eh']
         with self.assertRaises(ValueError): linked.private_caller_witness(**f)
+
+    def literal_fixture(self):
+        import linked_literals
+        symbol='??_C@_02PCIJFNDE@?$AN?6?$AA@'
+        source=VTablePe();target=VTablePe(base=0x400000)
+        source.data[0x2000:0x2003]=target.data[0x2000:0x2003]=b'\r\n\0'
+        return dict(unit={'link_literals':[{'symbol':symbol,'target':symbol,'read_offsets':[0,2]}]},
+            source=source,target=target,symbols={symbol:[(linked.IMAGE_BASE+0x2000,'root.ltcg.obj')]},
+            cil_owner='root.ltcg.obj',known={symbol:(0x402000,b'\r\n\0',frozenset({0,2}),'literal')})
+
+    def test_cil_literal_requires_named_complete_readonly_objects_and_existing_offsets(self):
+        import linked_literals
+        f=self.literal_fixture();refs=linked_literals.witnesses(**f)
+        self.assertEqual([(r['read_offset'],r['size']) for r in refs],[(0,3),(2,1)])
+        symbol=f['unit']['link_literals'][0]['symbol']
+        changes=[lambda f:f['source'].data.__setitem__(0x2000,0),
+            lambda f:f['target'].data.__setitem__(0x2001,0),
+            lambda f:setattr(f['source'].sections[1],'Characteristics',0xc0000040),
+            lambda f:f['symbols'].update({symbol:[(linked.IMAGE_BASE+0x2000,'foreign.obj')]}),
+            lambda f:f['unit']['link_literals'][0].update(read_offsets=[1]),
+            lambda f:f['known'].update({symbol:(0x402000,b'\r\n',frozenset({0,2}),'literal')})]
+        for change in changes:
+            bad=self.literal_fixture();change(bad)
+            with self.subTest(change=change),self.assertRaises(ValueError):linked_literals.witnesses(**bad)
+
+    def test_cil_literal_replays_only_declared_in_bounds_register_reads(self):
+        import linked_literals
+        f=self.literal_fixture();refs=linked_literals.witnesses(**f);base=linked.IMAGE_BASE+0x2000
+        raw=b'\x66\xa1'+struct.pack('<I',base)+b'\x8a\x0d'+struct.pack('<I',base+2)+b'\xc3'
+        canonical,_,data=linked.canonicalize(raw,self.start,self.target,[],lambda a:None,
+            self.image,self.game,internal_refs=refs)
+        self.assertEqual(canonical,b'\x66\xa1'+struct.pack('<I',0x402000)+b'\x8a\x0d'+struct.pack('<I',0x402002)+b'\xc3')
+        self.assertEqual(len(data),2)
+        for raw in [b'\xa1'+struct.pack('<I',base)+b'\xc3',
+                    b'\x8a\x0d'+struct.pack('<I',base+1)+b'\xc3',
+                    b'\x66\xa3'+struct.pack('<I',base)+b'\xc3',
+                    b'\x68'+struct.pack('<I',base)+b'\xc3']:
+            with self.subTest(raw=raw.hex()),self.assertRaises(ValueError):
+                linked.canonicalize(raw,self.start,self.target,[],lambda a:None,
+                                   self.image,self.game,internal_refs=refs)
+
+    def test_cil_literal_contract_rejects_arbitrary_aliases_and_extent_waivers(self):
+        import linked_literals
+        f=self.literal_fixture();keys=set(f['known']);linked_literals.validate(f['unit'],keys)
+        for change in [lambda u:u['link_literals'][0].update(symbol='_alias'),
+                       lambda u:u['link_literals'][0].update(read_offsets=[0,3]),
+                       lambda u:u['link_literals'][0].update(read_offsets=[2,0]),
+                       lambda u:u['link_literals'][0].update(ignore_bytes=True),
+                       lambda u:u['link_literals'].append(copy.deepcopy(u['link_literals'][0]))]:
+            u=copy.deepcopy(f['unit']);change(u)
+            with self.assertRaises(ValueError):linked_literals.validate(u,keys)
 
     def path_fixture(self):
         root, middle, child = self.start, self.start + 0x20, self.start + 0x40

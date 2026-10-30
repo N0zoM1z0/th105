@@ -1,5 +1,12 @@
 # Reconstruction evidence notebook
 
+Script loader405810 and text dispatch408DB0 are canonical exact282/140,
+with complete loader cleanup EH and source-owned CR/LF literal verification.
+All85 previous accepted functions in19 affected units and the full timeline
+payload remain exact. The omitted14-byte FileBuffer destructor4055F0 is
+authored/source-present, not separately exact. Parser405/399 remains
+unaccepted. See SCRIPT_FILE_LOADING_2026_10_29.md.
+
 2026-10-29: file loaders419860/419950 are now canonical234/267 with complete cleanup EH. Real public FileReaderOwner destruction closes the old frame stop; ordinary read argument forwarding closes the remaining schedule. No fake locals/private ABI. See FILE_BUFFER_LOADING_EXACT_2026_10_29.md.
 
 2026-10-29: CSV wrapper408E40 and reader-owned iterator reset40F730 are canonical140/151 in real CIL. Private register allocation is not itself compiler-origin evidence; old reset exclusion is superseded. Caller/EH roles are attested without accepting caller bytes. See CSV_FILE_LOADING_2026_10_29.md.

@@ -116,12 +116,13 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00405380,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004054E0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x00405560,compiler_generated,assets,exclude,observed,vc8-generated-string28-equals-std-comdats-106a
+0x004055F0,authored_game,assets,authored,observed,file-buffer-owner-dtor-authored-106a
 0x00405600,authored_game,battle,authored,observed,canonical-exact-authored
 0x00405650,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405660,authored_game,battle,authored,observed,canonical-exact-authored
 0x004056C0,authored_game,battle,authored,observed,cscript-clear-commands-authored-106a
 0x00405770,authored_game,battle,authored,observed,canonical-exact-authored
-0x00405810,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00405810,authored_game,battle,authored,observed,canonical-exact-authored
 0x00405930,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405AC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405B30,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -199,7 +200,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00408B40,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00408C40,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00408D00,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
-0x00408DB0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00408DB0,authored_game,assets,authored,observed,canonical-exact-authored
 0x00408E40,authored_game,assets,authored,observed,canonical-exact-authored
 0x00408ED0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00408F70,unknown,,review,unknown,ida-1.06a-initial-inventory

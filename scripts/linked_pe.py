@@ -73,6 +73,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     from linked_lifecycle import validate_contract as validate_lifecycle
     from linked_noreturn import validate_contract as validate_error_tails
     validate_lifecycle(unit, data_keys)
+    from linked_literals import validate as validate_literals
+    validate_literals(unit, data_keys)
     if unit.get("profile") != PROFILE or not str(unit.get("object", "")).endswith(".dll"):
         raise ValueError("linked_candidate requires its LTCG profile and a .dll output")
     mappings = unit.get("link_data_targets")
@@ -186,9 +188,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                 raise ValueError("private linked function needs a distinct configured exported caller")
             if through_exact:
                 parent = callers[0].get("private_from", {})
-                if (not parent or "via" in parent or "through_exact_caller" in parent
-                        or "caller_eh" in witness):
-                    raise ValueError("exact caller extension needs one directly witnessed private parent")
+                if ("via" in parent or "through_exact_caller" in parent or "caller_eh" in witness):
+                    raise ValueError("exact caller extension needs a public or directly witnessed private parent")
         elif "vtable_entry" in function:
             continue
         else:
@@ -695,6 +696,11 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                 memory = operand.type == capstone.x86.X86_OP_MEM
                 if memory:
                     allowed = ref["kind"] in {"object", "runtime"} and operand.size <= ref["size"]
+                    if ref["kind"] == "literal":
+                        allowed = (operand.size <= ref["size"] and instruction.mnemonic in {"mov", "movzx", "movsx"}
+                                   and len(instruction.operands) == 2
+                                   and instruction.operands[0].type == capstone.x86.X86_OP_REG
+                                   and instruction.operands[1].type == capstone.x86.X86_OP_MEM)
                     field, width = instruction.disp_offset, instruction.disp_size
                 else:
                     allowed = ((ref["kind"] == "object" and instruction.mnemonic in {"mov", "push"})
@@ -985,13 +991,13 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
     target = read_target(target_parent, int(caller_row["size"], 0))
     if through_exact:
         report = exact_caller_replay or {}
-        if (caller_row["status"] != "matching" or "private_from" not in caller
+        if (caller_row["status"] != "matching"
                 or report.get("result") != "exact" or report.get("address") != caller["address"]
                 or report.get("linked_function_va") != f"0x{parent:08X}"
                 or report.get("source_body_sha256") != hashlib.sha256(source).hexdigest()
                 or report.get("target_sha256") != hashlib.sha256(target).hexdigest()
                 or report.get("object_compared_sha256") != report.get("target_sha256")
-                or not report.get("private_caller_witness")):
+                or ("private_from" in caller and not report.get("private_caller_witness"))):
             raise ValueError("private child requires a fresh complete exact replay of its private caller")
         validate_body_relocations(pe, parent, len(source), report["validated_data_references"])
     target_calls = [i.address for i in decode_closed_body(target, target_parent)
@@ -1006,7 +1012,7 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
              "source_only_address_fields": data} if "sites" in contract else
             {"target_site": sites[0], "source_site": f"0x{source_calls[0]:08X}"})
     if through_exact:
-        edge["exact_private_caller"] = {key: exact_caller_replay[key] for key in
+        edge["exact_caller"] = {key: exact_caller_replay[key] for key in
             ("address", "source_body_sha256", "object_compared_sha256", "target_sha256",
              "validated_data_references", "private_caller_witness")}
     if eh_caller:
@@ -1092,6 +1098,9 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     game_range = (game.OPTIONAL_HEADER.ImageBase, game.OPTIONAL_HEADER.ImageBase + game.OPTIONAL_HEADER.SizeOfImage)
     internal_refs, globals_witnesses = object_witnesses(unit, pe, game, functions, parse_map_symbols(map_text), exports,
         image.with_suffix(".ltcg.obj").name, c.known_data_targets(), c.target_bytes) if static else ([], {})
+    from linked_literals import witnesses as literal_witnesses
+    internal_refs += literal_witnesses(unit, pe, game, parse_map_symbols(map_text),
+                                      image.with_suffix(".ltcg.obj").name, c.known_data_targets())
     reports = []
     for function in unit["functions"]:
         if addresses and function["address"] not in addresses:
@@ -1101,8 +1110,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         contract = function.get("private_from", {})
         if contract.get("through_exact_caller") is True:
             parents = [f for f in unit["functions"] if f["address"] == contract["caller"]]
-            if (len(parents) != 1 or not parents[0].get("private_from")
-                    or any(k in parents[0]["private_from"] for k in ("through_exact_caller", "via"))):
+            if (len(parents) != 1
+                    or any(k in parents[0].get("private_from", {}) for k in ("through_exact_caller", "via"))):
                 raise ValueError("exact private caller replay cannot recurse or use an implicit path")
             parent_reports = compare_linked(name, unit, {contract["caller"]}, image)
             if len(parent_reports) != 1 or parent_reports[0].get("result") != "exact":

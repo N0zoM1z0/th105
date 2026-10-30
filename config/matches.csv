@@ -1518,3 +1518,5 @@ address,name,size,status,match_percent,unit,evidence
 0x0040F730,CsvReader_reset_iterators,151,matching,100.00,exact-first-csv-file-loading,Address-selected canonical whole linked-body comparison reports exact151/151; docs/CSV_FILE_LOADING_2026_10_29.md.
 0x00419860,FileBufferView_load_plain,234,matching,100.00,exact-first-csv-file-loading,Complete234/234 normal body and full typed cleanup EH canonical replay; docs/FILE_BUFFER_LOADING_EXACT_2026_10_29.md.
 0x00419950,FileBufferEncodedView_load_encoded,267,matching,100.00,exact-first-csv-file-loading,Complete267/267 normal body and full typed cleanup EH canonical replay; docs/FILE_BUFFER_LOADING_EXACT_2026_10_29.md.
+0x00405810,CScript_load,282,matching,100.00,exact-first-csv-file-loading,Canonical whole282/282 in real file/script CIL context; full typed literal and cleanup evidence. docs/SCRIPT_FILE_LOADING_2026_10_29.md.
+0x00408DB0,FileBuffer_load_text,140,matching,100.00,exact-first-csv-file-loading,Canonical whole140/140 in real file/script CIL context; full typed literal and cleanup evidence. docs/SCRIPT_FILE_LOADING_2026_10_29.md.
