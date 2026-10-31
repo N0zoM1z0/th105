@@ -1,0 +1,127 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/BoostRegexInstancesOrigin.cpp"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_instances = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+# Each group pins the complete full-inventory hit set, not a chosen representative.
+
+[[anchors]]
+address = "0x006A4CA0"
+size = 87
+symbol = "??1?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@UAE@XZ"
+equivalence_group = "original-boost-87-complete-group"
+
+[[anchors]]
+address = "0x006A4EE0"
+size = 87
+symbol = "??1?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@UAE@XZ"
+equivalence_group = "original-boost-87-complete-group"
+
+[[anchors]]
+address = "0x006A5380"
+size = 142
+symbol = "??$?0V?$w32_regex_traits_implementation@D@re_detail@boost@@@shared_count@detail@boost@@QAE@PAV?$w32_regex_traits_implementation@D@re_detail@2@@Z"
+equivalence_group = "original-boost-142-complete-group"
+
+[[anchors]]
+address = "0x006A66F0"
+size = 177
+symbol = "??0?$clone_impl@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABU?$error_info_injector@Vruntime_error@std@@@12@@Z"
+equivalence_group = "original-boost-177-complete-group"
+
+[[anchors]]
+address = "0x006A73E0"
+size = 67
+symbol = "??$enable_error_info@Vruntime_error@std@@@boost@@YA?AU?$error_info_injector@Vruntime_error@std@@@exception_detail@0@ABVruntime_error@std@@@Z"
+equivalence_group = "original-boost-67-complete-group"
+
+[[anchors]]
+address = "0x006A79C0"
+size = 177
+symbol = "??0?$clone_impl@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABU?$error_info_injector@Vruntime_error@std@@@12@@Z"
+equivalence_group = "original-boost-177-complete-group"
+
+[[anchors]]
+address = "0x006A8720"
+size = 67
+symbol = "??$enable_error_info@Vruntime_error@std@@@boost@@YA?AU?$error_info_injector@Vruntime_error@std@@@exception_detail@0@ABVruntime_error@std@@@Z"
+equivalence_group = "original-boost-67-complete-group"
+
+[[anchors]]
+address = "0x006A8770"
+size = 31
+symbol = "??$enable_current_exception@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@boost@@YA?AV?$clone_impl@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@exception_detail@0@ABU?$error_info_injector@Vruntime_error@std@@@20@@Z"
+equivalence_group = "original-boost-31-complete-group"
+
+[[anchors]]
+address = "0x006A96F0"
+size = 31
+symbol = "??$enable_current_exception@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@boost@@YA?AV?$clone_impl@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@exception_detail@0@ABU?$error_info_injector@Vruntime_error@std@@@20@@Z"
+equivalence_group = "original-boost-31-complete-group"
+
+[[anchors]]
+address = "0x006A9710"
+size = 96
+symbol = "??$throw_exception@Vruntime_error@std@@@boost@@YAXABVruntime_error@std@@@Z"
+equivalence_group = "original-boost-96-complete-group"
+
+[[anchors]]
+address = "0x006ACCD0"
+size = 96
+symbol = "??$throw_exception@Vruntime_error@std@@@boost@@YAXABVruntime_error@std@@@Z"
+equivalence_group = "original-boost-96-complete-group"
+
+[[anchors]]
+address = "0x006B1B00"
+size = 142
+symbol = "??$?0V?$w32_regex_traits_implementation@D@re_detail@boost@@@shared_count@detail@boost@@QAE@PAV?$w32_regex_traits_implementation@D@re_detail@2@@Z"
+equivalence_group = "original-boost-142-complete-group"
+
+[[anchors]]
+address = "0x006B3CF0"
+size = 142
+symbol = "??$?0V?$w32_regex_traits_implementation@D@re_detail@boost@@@shared_count@detail@boost@@QAE@PAV?$w32_regex_traits_implementation@D@re_detail@2@@Z"
+equivalence_group = "original-boost-142-complete-group"
+
+[[anchors]]
+address = "0x006B4C90"
+size = 87
+symbol = "??1?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@UAE@XZ"
+equivalence_group = "original-boost-87-complete-group"
+
+[[anchors]]
+address = "0x006B4F00"
+size = 177
+symbol = "??0?$clone_impl@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABU?$error_info_injector@Vruntime_error@std@@@12@@Z"
+equivalence_group = "original-boost-177-complete-group"
+
+[[anchors]]
+address = "0x006B51B0"
+size = 67
+symbol = "??$enable_error_info@Vruntime_error@std@@@boost@@YA?AU?$error_info_injector@Vruntime_error@std@@@exception_detail@0@ABVruntime_error@std@@@Z"
+equivalence_group = "original-boost-67-complete-group"
+
+[[anchors]]
+address = "0x006B5200"
+size = 31
+symbol = "??$enable_current_exception@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@boost@@YA?AV?$clone_impl@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@exception_detail@0@ABU?$error_info_injector@Vruntime_error@std@@@20@@Z"
+equivalence_group = "original-boost-31-complete-group"
+
+[[anchors]]
+address = "0x006B52E0"
+size = 96
+symbol = "??$throw_exception@Vruntime_error@std@@@boost@@YAXABVruntime_error@std@@@Z"
+equivalence_group = "original-boost-96-complete-group"
+
+[[anchors]]
+address = "0x006B5440"
+size = 31
+symbol = "??$enable_current_exception@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@boost@@YA?AV?$clone_impl@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@exception_detail@0@ABU?$error_info_injector@Vruntime_error@std@@@20@@Z"
+equivalence_group = "original-boost-31-complete-group"

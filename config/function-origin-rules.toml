@@ -4294,3 +4294,59 @@ required_body_hashes = [
  { address = "0x006B1280", size = 444, sha256 = "24baaa1d3cb96ff7d90a8e5439126700672ce024faa0b485f1401164a84cc6bb" },
  { address = "0x006B1440", size = 508, sha256 = "223ed3009af239fafa0b45efe3504c11e8413d81ec0f41830990cc0240eb888a" },
 ]
+
+[[rules]]
+id = "boost-narrow-std-equivalence-106a"
+addresses = ["0x0043D980", "0x0043DD10", "0x00455A00", "0x006A5630", "0x006A58B0", "0x006A88E0", "0x006AE090"]
+expected_count = 7
+expected_bytes = 2216
+expected_names = ["sub_43D980", "sub_43DD10", "sub_455A00", "sub_6A5630", "sub_6A58B0", "sub_6A88E0", "sub_6AE090"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original pinned Boost narrow instances produce complete library fingerprints. Each explicit equivalence group must equal the entire4027-candidate inventory hit set; no single-address uniqueness or exact template specialization claim. Full native hashes pinned; no authored credit. docs/BOOST_REGEX_LIBRARY_ORIGINS_2026_10_31.md."
+vc8_generated_anchor_file = "config/boost-narrow-std-equivalence-anchors.toml"
+required_body_hashes = [
+ { address = "0x0043D980", size = 740, sha256 = "1a66b20b11ccbac28b6b4ccde3aacea59d609632f460578509bfe7d448064334" },
+ { address = "0x0043DD10", size = 185, sha256 = "f94816d1cf9b8449ed5901b3870ba9b72efdc7865e841e52b066ed3c35e025cc" },
+ { address = "0x00455A00", size = 122, sha256 = "4ae9b31296fda506225843edebd053bf1dfe8ce166b5ad4706144bb490671a04" },
+ { address = "0x006A5630", size = 122, sha256 = "c5176187d31fbaa72223d0211e3fa610b269eaab91653edaa21ad662142a3442" },
+ { address = "0x006A58B0", size = 122, sha256 = "30bb65240a5bb3c3a235de8be56e00f0614a6e07b528da4a972805f04ac4c97c" },
+ { address = "0x006A88E0", size = 740, sha256 = "69a9e6b7624d6c79b7bb1ed7191a4e2cc1573be3a83be30263d3ec09e81babb2" },
+ { address = "0x006AE090", size = 185, sha256 = "e104dcf06330546e6739108cea3246d9e06ff2c0fb9b0734c61ff1b4205983c1" },
+]
+
+[[rules]]
+id = "boost-narrow-boost-equivalence-106a"
+addresses = ["0x006A4CA0", "0x006A4EE0", "0x006A5380", "0x006A66F0", "0x006A73E0", "0x006A79C0", "0x006A8720", "0x006A8770", "0x006A96F0", "0x006A9710", "0x006ACCD0", "0x006B1B00", "0x006B3CF0", "0x006B4C90", "0x006B4F00", "0x006B51B0", "0x006B5200", "0x006B52E0", "0x006B5440"]
+expected_count = 19
+expected_bytes = 1831
+expected_names = ["sub_6A4CA0", "sub_6A4EE0", "sub_6A5380", "sub_6A66F0", "sub_6A73E0", "sub_6A79C0", "sub_6A8720", "sub_6A8770", "sub_6A96F0", "sub_6A9710", "sub_6ACCD0", "sub_6B1B00", "sub_6B3CF0", "sub_6B4C90", "sub_6B4F00", "sub_6B51B0", "sub_6B5200", "sub_6B52E0", "sub_6B5440"]
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original pinned Boost narrow instances produce complete library fingerprints. Each explicit equivalence group must equal the entire4027-candidate inventory hit set; no single-address uniqueness or exact template specialization claim. Full native hashes pinned; no authored credit. docs/BOOST_REGEX_LIBRARY_ORIGINS_2026_10_31.md."
+vc8_generated_anchor_file = "config/boost-narrow-boost-equivalence-anchors.toml"
+required_body_hashes = [
+ { address = "0x006A4CA0", size = 87, sha256 = "cf4d8b82fcafbca2f5b2731485af75d4e2e5809967b96fd006636f10556b9efa" },
+ { address = "0x006A4EE0", size = 87, sha256 = "044220c21e498ddd498eb8297a7ebb5ab689da06586e789841820b45b2ba3f8e" },
+ { address = "0x006A5380", size = 142, sha256 = "9462be6e093466df55a0d044890b15f67412728e35f23232cb944b21921701cf" },
+ { address = "0x006A66F0", size = 177, sha256 = "8f029e9da38ff3be2b15efc5f7bf1cca52ae085efa021b917820d0f73398a4d9" },
+ { address = "0x006A73E0", size = 67, sha256 = "d570a26ff15fc2407c00d8fdcfbf9ceb7b86d1966c4b34746dfa75d596759d9a" },
+ { address = "0x006A79C0", size = 177, sha256 = "53b46e9a0b2ce6408d381738adb6a8a78353399103e4aa2cb7a38402279e1284" },
+ { address = "0x006A8720", size = 67, sha256 = "3e26c612f4381e5547110410712264b70eadfa4ab66f92f047eeb6b4f1ca871a" },
+ { address = "0x006A8770", size = 31, sha256 = "4ac415eb70ad2fc254f4c1ee256a29a58f8dcfd36e7624b7e73209c72001ab96" },
+ { address = "0x006A96F0", size = 31, sha256 = "4ba6262e3391b3d02f4776359d23c28f7ed7eaa9517254c90517cc7bc61f7017" },
+ { address = "0x006A9710", size = 96, sha256 = "bcc014bf9c72da15961bc5f8e75271187f52df9597a96a9903d74ba4fea65ad8" },
+ { address = "0x006ACCD0", size = 96, sha256 = "3fbb679911bedea12d2435623d8c746c1c542083e5bf097a5decb53ac9723fc0" },
+ { address = "0x006B1B00", size = 142, sha256 = "1ff6241b38379879a29a0459dc7072804ca12fc930f76897d0e00cda51e5307a" },
+ { address = "0x006B3CF0", size = 142, sha256 = "4afc526c4e0104f71badff00356da9d2b45cb419687ce6c6c8896d2c212bb6d1" },
+ { address = "0x006B4C90", size = 87, sha256 = "f19cf2ff0c6a24e265905c818d4ded46ff070e8c8af1e3a032536d7f47c5b0eb" },
+ { address = "0x006B4F00", size = 177, sha256 = "f92fbb349112ed631cd5e14cbc2d77279624b582bede8e428f5cfb0cdc44b071" },
+ { address = "0x006B51B0", size = 67, sha256 = "8cbd85bbcff1f6f9164d6bfa8e8a97ea4fce6df6ed3d0b5ee5fafe597cc206b2" },
+ { address = "0x006B5200", size = 31, sha256 = "fc3906c261c222709ef7c2d493fe4dd4a2576dde32f4971336d076b89ee6da66" },
+ { address = "0x006B52E0", size = 96, sha256 = "f72e7416933505bc575cd6fba40a6cc1c40a7da3ea49b6baa7e8114e34cab64f" },
+ { address = "0x006B5440", size = 31, sha256 = "14aa96206031cd4bb5da36166f7025ce57a2a83895ec093fa9371464237d9968" },
+]

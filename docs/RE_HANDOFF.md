@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Original Boost instance ambiguity is now resolved at library-family scope
+through nine complete full-inventory equivalence groups, not guessed unique
+addresses: 26 bodies/4047 bytes, std7/2216 and Boost19/1831. Existing group,
+coverage, native-hash and maximum-one-CC gates pass. No concrete template
+identity or authored exact claim. Excluded1614/review643; exact1553/441679,
+source1750/authored1770/units744 unchanged. See the follow-up section in
+BOOST_REGEX_LIBRARY_ORIGINS_2026_10_31.md.
+
 Original pinned Boost narrow instances now provide 148 unique full-body
 library-origin fingerprints (87 Boost / 12756 bytes; 61 VC8 std/stdext / 11474).
 Three canonical library witnesses pass 25/26/69 bytes; ambiguous shapes and
