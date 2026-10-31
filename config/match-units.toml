@@ -28005,3 +28005,16 @@ address = "0x00441520"
 symbol_base = "??0CMenuConfig@th105@@QAE@XZ"
 rel32_targets = ["??0GuideOverlay@th105@@QAE@XZ=0x0043F540", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "?get_game_config@th105@@YAPAUGameConfig@1@XZ=0x0043AF10", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "__invalid_parameter_noinfo=0x0068A143", "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390"]
 dir32_targets = ["__ehhandler$??0CMenuConfig@th105@@QAE@XZ=__ehhandler$??0CMenuConfig@th105@@QAE@XZ", "___security_cookie=___security_cookie", "_g_scene_mode=_g_scene_mode", "??_7CMenuConfig@th105@@6B@=??_7CMenuConfig@th105@@6B@", "??1UiSprite94@th105@@QAE@XZ=_ui_sprite_icf_dtor_callback", "??0UiSprite94@th105@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ", "??_C@_0BM@NMNIHFEF@data?1menu?1config?1config?4dat?$AA@=_menu_config_design_path", "_g_active_menu_input=_g_active_menu_input", "??_C@_0BL@OCLANECO@data?1menu?1config?1mater?4bmp?$AA@=_menu_config_meter_path", "?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+
+[units.exact-first-connect-join-state]
+kind = "probe"
+source = "src/ui/MenuConnectJoinState.cpp"
+object = "build/match-units/ExactFirst_ConnectJoinState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete699-byte middle-state policy and60-byte switch tables. Full source remains nonexact on branch sharing and receiver preparation; no prefix or helper credit. docs/CONNECT_JOIN_STATE_2026_10_31.md."
+
+[[units.exact-first-connect-join-state.functions]]
+address = "0x00444490"
+symbol_base = "?update_join_state@ConnectJoinStateView@th105@@QAE_NXZ"
+rel32_targets = ["?update_endpoint_digits@ConnectJoinStateView@th105@@QAEXXZ=0x00442CE0", "?update_endpoint_history@ConnectJoinStateView@th105@@QAEXXZ=0x004430D0", "?update_endpoint_clipboard@ConnectJoinStateView@th105@@QAEXXZ=0x004424D0", "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640", "_update_profile_message=0x0043F6E0", "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810", "?finalize_message_4425d0@CMenuConnectStateRuntimeView@th105@@QAEDXZ=0x004425D0", "?status@JoinStatusView@th105@@QAEHXZ=0x00415D50", "_is_menu_initial_press=0x0043ABD0", "_dispatch_indexed_event=0x0043B1A0", "?hide_profile_message_43f8d0@ConnectJoinStateView@th105@@QAEXXZ=0x0043F8D0", "_clear_network_session=0x0043B0A0", "?finish_transition@ConnectJoinStateView@th105@@QAEXXZ=0x00443D70", "_update_profile_confirmation=0x0043F870"]

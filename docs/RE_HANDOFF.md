@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Connect middle-state444490 now has complete699-byte/205-instruction source
+and both switch tables reviewed. Full772/native760 payload remains nonexact
+on branch sharing/receiver preparation; no exact credit. Source1743,
+authored1763, review844; exact1547/439428 unchanged. See
+CONNECT_JOIN_STATE_2026_10_31.md.
+
 Deck constructor44AAC0 now uses the actual shared design lookup and natural
 returned texture-handle temporary. Earlier frame/lookup differences close;
 complete2132/native2136 remains nonexact at44AF27 on loop register allocation.

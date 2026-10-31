@@ -4001,3 +4001,18 @@ evidence = "RTTI CMenuConfig, vtable publication and exact Title caller own this
 required_body_hashes = [{ address = "0x00441520", size = 868, sha256 = "c0c5a6d883abb20351c78aa60a5c7774d24e4f67eee8f5d6a5d63b773645da80" }]
 required_direct_edges = [{ caller = "0x00425990", site = "0x00425CCF", target = "0x00441520", caller_status = "matching" }]
 required_dword_values = [{ address = "0x00441562", value = "0x006C1A94" }]
+
+[[rules]]
+id = "connect-middle-state-authored-106a"
+addresses = ["0x00444490"]
+expected_count = 1
+expected_bytes = 699
+expected_names = ["sub_444490"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact CMenuConnect virtual update444B90 tail-jumps444490 for outer states2..5. Complete confirmed input/connection/profile state policy owns all699 bytes and both jump tables. Source remains nonexact; no prefix credit. docs/CONNECT_JOIN_STATE_2026_10_31.md."
+required_body_hashes = [{ address = "0x00444490", size = 699, sha256 = "bb6159fbe53c1882c8797a1c1ae19f527bb3d2bed4e67463a394eec6d0c7949d" }]
+required_direct_edges = [{ caller = "0x00444B90", site = "0x00444C35", target = "0x00444490", kind = "jump", caller_status = "matching" }]
+required_selected_body_calls = [{ owner = "0x00444490", site = "0x00444537", target = "0x004425D0", target_status = "matching" }, { owner = "0x00444490", site = "0x00444612", target = "0x00443D70", target_status = "matching" }]

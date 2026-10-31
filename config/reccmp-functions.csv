@@ -1767,3 +1767,4 @@ ConnectDigitEditor_update_port,0x00441BD0,function
 ConnectDigitEditor_update_address_and_port,0x00441E10,function
 CMenuPractice_ctor,0x00446170,function
 CMenuConfig_ctor,0x00441520,function
+CMenuConnect_update_state_middle,0x00444490,function
