@@ -1771,3 +1771,4 @@ BgmStream_prepare
 RenderModeManager_initialize
 RenderModeManager_on_device_lost
 DirectInputBackend_shutdown
+Fighter_rotate_front_spell_sequence_entry_to_back

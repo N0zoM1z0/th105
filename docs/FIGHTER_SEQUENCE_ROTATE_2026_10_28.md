@@ -1,5 +1,7 @@
 # Fighter sequence rotation 0x0045DDA0
 
+Historical control; superseded by FIGHTER_SEQUENCE_ROTATE_EXACT_2026_10_31.md.
+
 Complete265-byte candidate remains unselected/nonexact:12 differing byte
 positions, first+123/45DE1B. No implemented.csv, matches.csv or authored-exact
 credit is added. The hash-pinned Japanese1.06a image is the oracle.

@@ -1,13 +1,32 @@
 #include <deque>
 #include "battle/EffectSprite.hpp"
+#include "ui/CNumberLifetime.hpp"
 
 namespace th105 {
 
 // Runtime-layout view of the real polymorphic sprite copied by 455160.
 // Typed scalar members preserve its lifetime and GS classification; this is
 // not a byte buffer pretending to own a constructed sprite.
-struct SequenceRotateSprite94 : CSpriteBase {
-    SequenceRotateSprite94(const SequenceRotateSprite94 &);
+// IColor is the four-byte interface base. The texture belongs to CSpriteBase,
+// so its copy occurs after that derived base's ordinary vptr publication.
+struct SequenceRotateSpriteBase80 : CNumberColorLifetime {
+    SequenceRotateSpriteBase80() : texture_04(0) {}
+    virtual ~SequenceRotateSpriteBase80() {}
+    virtual void set_color(unsigned);
+    virtual void set_vertex_colors(const unsigned *);
+    virtual void multiply_color(unsigned);
+    unsigned texture_04;
+    SpriteVertex28 vertices_08[4];
+    float width_78, height_7c;
+};
+struct SequenceRotateSprite94 : SequenceRotateSpriteBase80 {
+    // The original116-byte copy is an ordinary implicit copy of the actual
+    // polymorphic base, vertex array and five scalar extension fields.
+    virtual void set_texture_options(unsigned, int, int, unsigned, unsigned, int, int);
+    virtual void set_texture(unsigned, int, int, int, int);
+    virtual void render_rectangle(float, float, float, float);
+    virtual void render(float, float);
+    virtual void render_plain(float, float);
     float pivot_x, pivot_y, scale_x, scale_y, angle;
 };
 
@@ -24,7 +43,7 @@ typedef char sequence_card_extent[
 typedef char sequence_deque_extent[
     sizeof(std::deque<SequenceRotateCard>) == 0x14 ? 1 : -1];
 
-// Complete nonexact candidate. The genuine VC8 deque and nontrivial temporary
+// Complete canonical-exact rotation. The genuine VC8 deque and nontrivial temporary
 // reproduce the native checked-front/pop/push and generated cleanup structure.
 unsigned char Fighter::rotate_front_spell_sequence_entry_to_back()
 {
@@ -36,8 +55,10 @@ unsigned char Fighter::rotate_front_spell_sequence_entry_to_back()
         SequenceRotateCard card = cards.front();
         cards.pop_front();
         cards.push_back(card);
-        count = sequence_controller_55c.live_count_10;
-        state_55a = static_cast<signed char>(count);
+        unsigned char updated_count = static_cast<unsigned char>(
+            sequence_controller_55c.live_count_10);
+        state_55a = static_cast<signed char>(updated_count);
+        return updated_count;
     }
     return static_cast<unsigned char>(count);
 }

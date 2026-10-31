@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Fighter sequence rotation 45DDA0 now passes all 265 authored bytes through
+real deque lifetime, visible implicit sprite copy and byte count publication.
+Implicit copy 455160/116 and all 96 auxiliary bytes also pass; existing enqueue
+114 freshly passes. Copy ownership was already excluded, not a new count; its
+source-origin full-inventory anchor now passes. No shared header, fake register,
+manual vptr/copy recipe or verifier change. Exact 1577/448878, source 1774,
+authored 1794, mapped 1801, excluded 1714, review 519, units 759.
+See FIGHTER_SEQUENCE_ROTATE_EXACT_2026_10_31.md.
+
 Four more original Boost compact switches fully pass the unchanged gate:
 6A0DC0 code118/payload154,6A0EE0 84/126,6A2C40 196/255,6A7C90 546/583.
 All944 code and174 metadata bytes compare, with guarded local tables/closed

@@ -23968,6 +23968,7 @@ notes = "Complete unselected265-byte45DDA0 rotate candidate with genuine VC8 deq
 [[units.exact-first-fighter-sequence-rotate.functions]]
 address = "0x0045DDA0"
 symbol_base = "?rotate_front_spell_sequence_entry_to_back@Fighter@th105@@QAEEXZ"
+dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
 rel32_targets = [
     "__invalid_parameter_noinfo=0x0068A143",
     "??0SequenceRotateSprite94@th105@@QAE@ABU01@@Z=0x00455160",
@@ -28431,3 +28432,11 @@ address = "0x006A7C90"
 symbol_base = "?parse_repeat@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NII@Z"
 rel32_targets = ["?append_state@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEPAUre_syntax_base@23@W4syntax_element_type@23@I@Z=0x006A3A10", "?fail@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEXW4error_type@regex_constants@3@H@Z=0x006A7430", "?insert_state@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEPAUre_syntax_base@23@HW4syntax_element_type@23@I@Z=0x006A2BC0"]
 switch_payload = { size = 583, sha256 = "c3602e59ffd86be47c4c5e6592f9bd7eca91ffc07e3ae6fedf5fdf57849355ff", alignment_hex = "8bff", table_offset = 548, table_entries = 2, map_offset = 556, map_size = 27, load_offset = 507, jump_offset = 514 }
+
+[[units.exact-first-fighter-sequence-rotate.functions]]
+address = "0x00455160"
+symbol_base = "??0SequenceRotateSprite94@th105@@QAE@ABU01@@Z"
+dir32_targets = [
+ "??_7SequenceRotateSpriteBase80@th105@@6B@=??_7CSpriteBase@@6B@",
+ "??_7SequenceRotateSprite94@th105@@6B@=??_7DeckCtorSprite94@th105@@6B@",
+]

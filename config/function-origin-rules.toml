@@ -1898,6 +1898,7 @@ evidence = "Canonical-exact reset_input_state_table calls this entry only to cle
 
 [[rules]]
 id = "csprite-implicit-copy-ctor-generated-106a"
+vc8_generated_anchor_file = "config/vc8-generated-sequence-sprite-copy-origin-anchors.toml"
 addresses = ["0x00455160"]
 expected_count = 1
 expected_bytes = 116
@@ -1906,7 +1907,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Canonical-exact FighterSequenceController enqueue calls this body to copy its embedded sprite record. Target first publishes canonical CSpriteBase vtable 0x006C0654, copies the base/POD/float fields, then publishes canonical CSprite vtable 0x006C0668: the standard implicit derived copy-constructor pattern rather than an authored gameplay function."
+evidence = "Canonical-exact FighterSequenceController enqueue calls this body to copy its embedded sprite record. Target first publishes canonical CSpriteBase vtable 0x006C0654, copies the base/POD/float fields, then publishes canonical CSprite vtable 0x006C0668: the standard implicit derived copy-constructor pattern rather than an authored gameplay function. Fresh genuine implicit-copy rebuild is canonical exact116 with independently bound vtables and a full-inventory source fingerprint. Existing exclusion is strengthened, not recounted. docs/FIGHTER_SEQUENCE_ROTATE_EXACT_2026_10_31.md."
 
 [[rules]]
 id = "checked-tree-lower-bound-clone-generated-106a"

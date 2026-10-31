@@ -1811,7 +1811,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045DBA0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045DC20,compiler_generated,battle,exclude,observed,vc8-generated-deque-short-erase
 0x0045DC90,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0045DDA0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0045DDA0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045DEB0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045E070,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045E0D0,authored_game,battle,authored,observed,canonical-exact-authored
