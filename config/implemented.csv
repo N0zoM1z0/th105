@@ -1765,3 +1765,4 @@ WaveBufferHandleManager_ctor
 DirectSoundHandleManager_ctor
 BgmService_ctor
 BgmService_dtor
+BgmAllocationManager_ctor

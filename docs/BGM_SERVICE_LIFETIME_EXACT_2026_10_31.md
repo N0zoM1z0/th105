@@ -1,5 +1,9 @@
 # BGM service: complete global lifetime
 
+This checkpoint records the original all-unsigned model. The later real token
+queue distinction also closes manager403ED0/133 without changing these two
+exact roots; see BGM_TOKEN_MANAGER_CONSTRUCTOR_EXACT_2026_10_31.md.
+
 Original Japanese TH105 v1.06a SHA-256:
 56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e.
 

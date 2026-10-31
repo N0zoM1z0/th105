@@ -1793,3 +1793,4 @@ WaveBufferHandleManager_ctor,0x00401E40,function
 DirectSoundHandleManager_ctor,0x00401F80,function
 BgmService_ctor,0x004032F0,function
 BgmService_dtor,0x004033C0,function
+BgmAllocationManager_ctor,0x00403ED0,function

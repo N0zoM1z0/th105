@@ -12,9 +12,10 @@ struct BgmServiceLifetime {
     bool running_18;
     CriticalSectionWrapper critical_1c;
     BgmAllocationManager50 manager_38;
-    std::list<unsigned> active_88;
-    std::list<unsigned> pending_94;
-    std::list<unsigned> retired_a0;
+    // Queues contain allocated slot/generation tokens, unlike free index slots.
+    std::list<BgmHandleResult> active_88;
+    std::list<BgmHandleResult> pending_94;
+    std::list<BgmHandleResult> retired_a0;
     float gain_ac;
     float gain_b0;
     BgmServiceLifetime();
@@ -28,6 +29,7 @@ BgmServiceLifetime::BgmServiceLifetime()
 }
 BgmServiceLifetime::~BgmServiceLifetime() {}
 BgmServiceLifetime g_bgm_service_lifetime;
+typedef char BgmServiceTokenSize[sizeof(BgmHandleResult)==4?1:-1];
 typedef char BgmServiceSize[sizeof(BgmServiceLifetime)==0xb4?1:-1];
 typedef char BgmServiceLock[offsetof(BgmServiceLifetime,critical_1c)==0x1c?1:-1];
 typedef char BgmServiceManager[offsetof(BgmServiceLifetime,manager_38)==0x38?1:-1];

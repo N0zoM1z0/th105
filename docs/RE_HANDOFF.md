@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+BGM manager constructor403ED0/133 is now exact plus all101 cleanup/EH bytes.
+Real existing BgmHandleResult outer queues distinguish packed allocated tokens
+from unsigned free indices; genuine unsigned-list/vector COFF plus token CIL
+now matches all three service/member lifetimes199/148/133. Fresh exact global
+parent199+180 EH and real startup witness bind unique40334B entry. No ABI
+annotation, fake type or verifier change. Exact1572/447512; source1768/authored1788/
+mapped1795, excluded1658/review581/units755. CI210.
+See BGM_TOKEN_MANAGER_CONSTRUCTOR_EXACT_2026_10_31.md.
+
 Global BGM constructor4032F0/199 and destructor4033C0/148 are fully exact,
 including180/117 cleanup/EH bytes and B4-byte storage7026E0 with real CRT
 initializer17, slot and exit5. Natural list CIL/vector COFF reproduces the
