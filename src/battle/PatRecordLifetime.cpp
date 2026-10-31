@@ -6,7 +6,9 @@ namespace th105 {
 
 FrameData::FrameData()
 {
-    std::memset(&raw_04, 0, 0x14);
+    // The real temporary clears the complete object. In the derived PAT
+    // construction context VC8 removes overwritten base/vptr stores.
+    std::memset(this, 0, sizeof(*this));
     tag_14 = 0;
     optional_mode_payload_18 = 0;
 }

@@ -1687,3 +1687,14 @@ Further2026-10-30 closed controls:
 Evidence remains in frontier-menu-cursor-size, frontier-effect-pool-release-cil,
 frontier-bgm-complete-graph and frontier-ack-constructor-cil build directories,
 all suffixed20261030. No exact accounting or shared source changes follow.
+
+
+### 2026-10-31 FrameData construction clarification
+
+The earlier20-byte base-field memset was a sufficient source model, not proof
+of a unique original expression. With the actual eight-WORD/tag/pointer layout,
+ordinary whole-object28-byte construction reproduces the same300-byte derived
+PAT constructor and the unchanged complete2528-byte effect-loader candidate.
+The duplicate effect frame class is removed without any accepted regression.
+See FRAME_CONSTRUCTION_CONTEXT_2026_10_31.md; do not treat the old partial-range
+experiment as a requirement to keep incompatible constructor views.

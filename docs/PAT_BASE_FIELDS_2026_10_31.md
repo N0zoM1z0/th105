@@ -20,8 +20,8 @@ these raw fields assert storage width, not gameplay names. Size remains1Ch,
 and offset assertions cover the first/last WORD, tag and payload pointer.
 No layout size, vtable, vector stride or allocation extent changes.
 
-The constructor retains its independently observed20-byte memset at+04,
-explicit tag14 publication and pointer18 initialization. All five exact record/
+The optimized derived construction retains its independently observed20-byte
+base-field clear at+04, explicit tag14 publication and pointer18 initialization. All five exact record/
 base lifetime roots still match. The declared out-of-line base copy constructor
 is unchanged; the existing311-byte generated record-copy proof also still passes.
 
@@ -92,3 +92,9 @@ Receipts and natural source control:
 build/frontier-pat-base-copy-20261031/ and its corresponding private analysis
 scope. Exclusions become1,642, review613 and match units747. Authored exact,
 source and ownership totals remain unchanged.
+
+
+The subsequent shared-construction model uses ordinary whole-object28-byte
+zeroing and naturally reproduces those optimized derived stores while preserving
+the complete effect-loader payload. See FRAME_CONSTRUCTION_CONTEXT_2026_10_31.md.
+The earlier20-byte source expression was not unique original-source evidence.

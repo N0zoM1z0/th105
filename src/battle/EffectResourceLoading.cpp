@@ -1,3 +1,4 @@
+#include "battle/PatRecordLifetime.cpp"
 #include "battle/PatResourceContracts.hpp"
 #include "assets/FileReader.hpp"
 #include "ui/Title.hpp"
@@ -9,28 +10,11 @@
 
 extern "C" __declspec(dllimport) int __cdecl wsprintfA(char *, const char *, ...);
 namespace th105 {
-class EffectFrameData {
-public:
-    EffectFrameData() {
-        // Native temporary clears all 28 bytes, including its just-published vptr.
-        std::memset(this, 0, sizeof(*this));
-        tag_14 = 0;
-        optional_mode_payload_18 = 0;
-    }
-    virtual ~EffectFrameData() {
-        if (optional_mode_payload_18 != 0)
-            delete optional_mode_payload_18;
-    }
-    short field_04, field_06, field_08, field_0a;
-    short field_0c, field_0e, field_10, field_12;
-    unsigned char tag_14;
-    PatOptionalModePayload20 *optional_mode_payload_18;
-};
-typedef char effect_frame_size[sizeof(EffectFrameData) == 0x1c ? 1 : -1];
+typedef char effect_frame_size[sizeof(FrameData) == 0x1c ? 1 : -1];
 struct EffectResourceGroup {
     EffectResourceGroup();
     virtual ~EffectResourceGroup();
-    std::vector<EffectFrameData> frames_04;
+    std::vector<FrameData> frames_04;
     unsigned char flag_14;
     EffectResourceGroup *previous_18;
     EffectResourceGroup *next_1c;
@@ -115,19 +99,19 @@ void EffectResourceManagerView::load_effect_resource(const char *path)
         file.reader->read(&current->flag_14, 1);
         int frame_count;
         file.reader->read(&frame_count, 4);
-        current->frames_04.assign(frame_count, EffectFrameData());
+        current->frames_04.assign(frame_count, FrameData());
         for (int frame_index = 0; frame_index < frame_count; ++frame_index) {
-            EffectFrameData &frame = current->frames_04[frame_index];
+            FrameData &frame = current->frames_04[frame_index];
             int texture_index;
             file.reader->read(&texture_index, 4);
-            frame.field_0a = static_cast<short>(texture_index);
-            file.reader->read(&frame.field_0c, 2);
-            file.reader->read(&frame.field_0e, 2);
-            file.reader->read(&frame.field_10, 2);
-            file.reader->read(&frame.field_12, 2);
-            file.reader->read(&frame.field_04, 2);
-            file.reader->read(&frame.field_06, 2);
-            file.reader->read(&frame.field_08, 2);
+            frame.raw_0a = static_cast<short>(texture_index);
+            file.reader->read(&frame.raw_0c, 2);
+            file.reader->read(&frame.raw_0e, 2);
+            file.reader->read(&frame.raw_10, 2);
+            file.reader->read(&frame.raw_12, 2);
+            file.reader->read(&frame.raw_04, 2);
+            file.reader->read(&frame.raw_06, 2);
+            file.reader->read(&frame.raw_08, 2);
             file.reader->read(&frame.tag_14, 1);
             if (frame.tag_14 == 2) {
                 frame.optional_mode_payload_18 = new PatOptionalModePayload20;

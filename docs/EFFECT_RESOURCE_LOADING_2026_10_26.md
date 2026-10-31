@@ -121,3 +121,12 @@ Fresh `origins-check.log` passes all4024 rows with1603 authored/1419 excluded/
 functions under the current manifest; exact authored bytes remain385903.
 Target-backed floating audit still passes all1999 references. This root adds
 no exact or source-selected credit.
+
+
+## 2026-10-31 shared FrameData lifetime
+
+The effect-only class is now replaced by the actual typed FrameData and its
+whole-object construction definition. All prior effect-loader bytes, including
+the79-byte residual and SHA94b3933b..., are unchanged. The same constructor
+naturally preserves the five accepted PAT/base lifetimes. This is source
+coherence, not a new exact result; see FRAME_CONSTRUCTION_CONTEXT_2026_10_31.md.

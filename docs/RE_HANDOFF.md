@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+PAT and effect frames now share the actual FrameData lifetime/type instead
+of a duplicate effect-only class. Ordinary whole-object28-byte construction
+naturally reproduces the same optimized PAT base stores; all five accepted
+lifetime roots remain exact. The full effect-loader2528 candidate is byte-for-
+byte unchanged (SHA94b3933b...), still nonexact+1269. No store/register forcing
+or count change. See FRAME_CONSTRUCTION_CONTEXT_2026_10_31.md.
+
 Correct PAT fields now naturally generate FrameData copy421B30 at91/91 and
 preserve derivedcopy460C90/311 with its real base call. Removed the provisional
 out-of-line copy declaration; no inline directive or hand-written copy added.
