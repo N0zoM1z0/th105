@@ -166,7 +166,7 @@ struct ShortDeque8 {
     unsigned head_0c;
     unsigned live_count_10;
 
-    __declspec(noinline) short *front_checked();
+    short *front_checked();
     short *push_back(const short *value);
     void clear_storage();
 };

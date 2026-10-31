@@ -1,9 +1,11 @@
 # TH10.5 reconstruction handoff
 
-Removed two legacy noinline declarations from Collision.hpp. All452 accepted
-functions in its164 actually affected units were freshly rebuilt and remain
-canonical exact. No count change or unrelated cold replay. See
-COLLISION_INLINE_DECLARATION_AUDIT_2026_10_31.md.
+Removed two legacy noinline declarations from Collision.hpp and the
+declaration-only ShortDeque8::front_checked attribute from SpellData.hpp.
+All 452 accepted functions in 164 Collision consumers and all 103 accepted
+functions in 61 SpellData consumers were freshly rebuilt and remain exact.
+The sets overlap; do not sum them as distinct coverage. No count change or
+unrelated cold replay. See COLLISION_INLINE_DECLARATION_AUDIT_2026_10_31.md.
 
 Audio scheduler finalizer419000 now retains the native cached end iterator,
 restoring the initial checked dereference. Ordinary273/native241 and actual

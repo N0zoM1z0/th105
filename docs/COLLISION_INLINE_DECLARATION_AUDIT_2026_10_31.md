@@ -31,3 +31,22 @@ The final target-independent CI passes155 tests and the whitespace gate passes.
 Exact totals remain1545 functions /438021 bytes. Source1740, authored1760 and
 review847 are unchanged. This closes the two observed annotations only; it is
 not a claim that every compiler attribute in the repository was audited.
+
+## Follow-on SpellData declaration
+
+Removed the declaration-only noinline attribute from
+ShortDeque8::front_checked in src/battle/SpellData.hpp. Its normal separately
+defined implementation and all layouts, signatures and bodies are unchanged.
+No replacement optimizer constraint was introduced.
+
+All 103 accepted functions in the 61 actual affected units were freshly
+compiled and remain canonical exact. The explicit affected selection and
+complete per-unit reports are retained under
+build/spell-inline-declaration-audit-20261031/, with the reproducible recipe
+under .analysis/spell-inline-declaration-audit-20261031/check.py.
+This set overlaps the earlier 452-function Collision replay; these counts
+must not be summed as distinct coverage.
+
+A literal tracked-source search finds no remaining __declspec(noinline)
+outside src/library. This is not a general compiler-directive audit.
+There is no new exact, source-present or origin credit.
