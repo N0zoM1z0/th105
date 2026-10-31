@@ -3610,13 +3610,15 @@ disposition = "authored"
 confidence = "observed"
 evidence = "Reviewed authored BGM service4036C0 calls the custom token pool4040D0; both fresh/reused pool paths call402820. Allocation size1378, std::string at0, CDSBuffer at24 and independent decoder-open402A1E this=stream+30 establish game stream ownership. Constructor publishes state3/gain1 and timing/link fields; generic STL callees are separate. docs/BGM_STREAM_CONSTRUCTOR_2026_10_29.md."
 required_body_hashes = [
- { address = "0x00402820", size = 89, sha256 = "124de7ed11ac64ee0b724656f9ceda7d2c77920d2324cc8a6a82c62de04d49f8" },
  { address = "0x004040D0", size = 401, sha256 = "35b7522da80909e94d1f24c74e0cc4a8ecd87b323eaaae4b1a0eb924eae2a7c4" },
  ]
 required_direct_edges = [
  { caller = "0x004036C0", site = "0x004036D0", target = "0x004040D0", caller_status = "implemented" },
- { caller = "0x004040D0", site = "0x00404160", target = "0x00402820", caller_status = "implemented" },
- { caller = "0x004040D0", site = "0x00404231", target = "0x00402820", caller_status = "implemented" },
+]
+
+required_selected_body_calls = [
+ { owner = "0x004040D0", site = "0x00404160", target = "0x00402820", target_status = "matching" },
+ { owner = "0x004040D0", site = "0x00404231", target = "0x00402820", target_status = "matching" },
 ]
 
 [[rules]]
@@ -3752,16 +3754,16 @@ required_body_hashes = [{ address = "0x00402A00", size = 358, sha256 = "73f7ccb4
 required_direct_edges = [{ caller = "0x00402A00", site = "0x00402A1E", target = "0x00418A10", caller_status = "implemented" }, { caller = "0x00402A00", site = "0x00402B33", target = "0x00402C10", caller_status = "implemented" }, { caller = "0x00402A00", site = "0x00402B25", target = "0x00402FC0", caller_status = "implemented" }]
 
 [[rules]]
-id = "bgm-stream-lifetime-authored-106a"
+id = "bgm-stream-member-lifetime-authored-106a"
 addresses = ["0x00402880", "0x00404270", "0x00404330", "0x00418A00"]
 skip_matching = true
-expected_count = 3
-expected_bytes = 395
+expected_count = 2
+expected_bytes = 380
 origin = "authored_game"
 subsystem = "audio"
 disposition = "authored"
 confidence = "observed"
-evidence = "Raw stream destructor unlinks its next stream and explicitly closes DirectSound/codec resources before member cleanup. Packed-token release and lookup operate on the independently recovered BGM pool and lock. The separately padded15-byte reader-owning destructor418A00 is reached by the stream cleanup funclet6BD8D3. These authored ownership bodies are separate from their generated STL members and cleanup handlers. See BGM_STREAM_LIFETIME_2026_10_30.md."
+evidence = "Raw stream destructor unlinks its next stream and explicitly closes DirectSound/codec resources before member cleanup. Packed-token release and lookup operate on the independently recovered BGM pool and lock. The separately padded15-byte reader-owner418A00 and stream destructor are now canonical exact and skipped; this distinct member-lifetime rule retains only the nonexact release/lookup ownership. These authored ownership bodies are separate from their generated STL members and cleanup handlers. See BGM_STREAM_LIFETIME_2026_10_30.md."
 
 [[rules]]
 id = "bgm-loading-worker-authored-106a"

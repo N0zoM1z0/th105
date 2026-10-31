@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Ogg reader-owner destructor418A00 is now canonical exact15/15 through the
+freshly exact private stream destructor220 and complete third11-byte cleanup.
+Its real private-parent entry witness is retained; same-register member+30
+preparation and both tail destinations match. No ABI/source body changes or
+cleanup-helper credit. Old220/139 destructors, CSV13 and constructor89 freshly
+pass. Totals1555/441708; all source/ownership/unit counts unchanged.
+See OGG_READER_DESTRUCTOR_EXACT_2026_10_31.md.
+
 FileBuffer destructor4055F0 is canonical exact14/14, reached through the
 freshly exact CScript loader282 and its complete one-state cleanup EH.
 Genuine CIL supplies EAX naturally; a strict indexed cleanup-tail witness

@@ -51,6 +51,11 @@ class WorkflowToolingTests(unittest.TestCase):
         )
         self.assertEqual(manifest["pe"]["entry_point"], "0x0068B9D2")
 
+    def test_origin_rule_ids_are_unique(self) -> None:
+        rules = tomllib.loads((ROOT / "config" / "function-origin-rules.toml").read_text())
+        identifiers = [rule["id"] for rule in rules["rules"]]
+        self.assertEqual(len(identifiers), len(set(identifiers)))
+
     def test_exact_functions_use_the_exact_origin_baseline(self) -> None:
         with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
             matching = {

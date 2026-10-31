@@ -28205,3 +28205,8 @@ address = "0x004055F0"
 symbol_base = "??1FileBufferContext@th105@@QAE@XZ"
 private_from = { caller = "0x00405810", site = "0x006BDF73", cleanup = 0, through_exact_caller = true }
 rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26"]
+
+[[units.exact-first-bgm-stream-lifetime.functions]]
+address = "0x00418A00"
+symbol_base = "??1BgmOggDataSource@th105@@QAE@XZ"
+private_from = { caller = "0x00402880", site = "0x006BD8D9", cleanup = 2, through_exact_caller = true }

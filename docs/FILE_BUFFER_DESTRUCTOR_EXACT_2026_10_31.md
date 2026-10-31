@@ -22,7 +22,7 @@ FuncInfo6E4618/36, unwind map6E4610/8 and cleanup funclet6BDF70/8 all replay
 completely. At6BDF73 the actual funclet tail-calls4055F0.
 
 The new optional private-from-cleanup witness admits only an ordinary
-nonvirtual source destructor behind an exported caller with full static CRT
+nonvirtual source destructor behind a freshly exact caller with full static CRT
 cleanup evidence. Every comparison freshly replays the entire caller and its
 complete EH packets before considering the child. It then requires:
 
@@ -60,3 +60,9 @@ Source1,752, authored ownership1,772, exclusions1,640, review615, mapped1,779 an
 match units745 are unchanged.
 
 Default target-independent CI passes188 tests; generated progress and whitespace checks pass.
+
+
+The subsequent Ogg reader-owner scope also supports a directly witnessed
+private exact parent and the complete11-byte same-register member-offset
+cleanup. See OGG_READER_DESTRUCTOR_EXACT_2026_10_31.md; the original8-byte
+FileBuffer path and full-parent requirement remain unchanged.

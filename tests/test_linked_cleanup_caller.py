@@ -81,7 +81,7 @@ class CleanupCallerTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 core.validate_contract(args['unit'], set())
 
-    def test_parent_must_have_complete_public_cleanup_contract(self):
+    def test_parent_requires_full_cleanup_and_configured_ancestry(self):
         for change in [lambda p: p.pop('eh_cleanup'),
                        lambda p: p.update(private_from=dict(caller='0x00400000', site='0x00400000'))]:
             args, _ = self.fixture()
@@ -136,6 +136,62 @@ class CleanupCallerTests(unittest.TestCase):
         args['unit']['functions'][0]['rel32_targets'] = []
         with self.assertRaises(ValueError):
             core.private_caller_witness(**args)
+
+
+    def offset_fixture(self, wrong_register=False):
+        args, target = self.fixture()
+        action, child, native_action, native_child = 0x10001200, 0x10001100, 0x403000, 0x402000
+        prefix = b'\x8b\x45\x04\x83' + bytes([0xc1 if wrong_register else 0xc0]) + b'\x30\xe9'
+        source = prefix + struct.pack('<i', child - action - 11)
+        native = prefix + struct.pack('<i', native_child - native_action - 11)
+        args['pe'].data[0x1200:0x120b] = source
+        args['functions'][action + 11] = args['functions'].pop(action + 8)
+        target[native_action] = native
+        packet = args['exact_caller_replay']['validated_cleanup_eh'][0]
+        packet.update(size=11, canonical_sha256=hashlib.sha256(native).hexdigest(),
+                      target_sha256=hashlib.sha256(native).hexdigest())
+        packet['replayed_rel32'][0]['offset'] = 7
+        args['function']['private_from']['site'] = '0x00403006'
+        return args, target
+
+    def test_complete_member_offset_cleanup_is_accepted(self):
+        args, _ = self.offset_fixture()
+        result = core.private_caller_witness(**args)
+        self.assertEqual(result['cleanup_size'], 11)
+        self.assertEqual(result['target_site'], '0x00403006')
+
+    def test_matching_but_wrong_offset_register_is_rejected(self):
+        args, _ = self.offset_fixture(wrong_register=True)
+        with self.assertRaises(ValueError):
+            core.private_caller_witness(**args)
+
+    def test_private_exact_parent_retains_its_independent_entry_proof(self):
+        args, _ = self.fixture()
+        parent = args['unit']['functions'][0]
+        old = parent['symbol_base']
+        name = '??1Owner@@QAE@XZ'
+        parent['symbol_base'] = name
+        parent['private_from'] = dict(caller='0x00400000', site='0x00400000')
+        args['functions'][0x10001000] = [(name, 'root.ltcg.obj')]
+        args['functions'][0x10001200] = [
+            ('__unwindfunclet$' + name + '$0', 'CIL library: CIL module')]
+        args['exports'].pop(old)
+        # A real direct caller is configured; the fresh exact parent report
+        # must retain its separately established source/native entry witness.
+        root = dict(address='0x00400000', symbol_base='_release@4',
+                    rel32_targets=[name + '=0x00401000'])
+        args['unit']['functions'].insert(0, root)
+        core.validate_contract(args['unit'], set())
+        with self.assertRaises(ValueError):
+            core.private_caller_witness(**args)
+        witness = dict(caller=root['address'], target_site='0x00400000',
+                       source_site='0x10001300')
+        args['exact_caller_replay']['private_caller_witness'] = witness
+        result = core.private_caller_witness(**args)
+        self.assertEqual(result['exact_caller']['private_caller_witness'], witness)
+        parent['private_from']['through_exact_caller'] = True
+        with self.assertRaises(ValueError):
+            cleanup.validate(args['function']['private_from'], args['function'], args['unit'])
 
 
 if __name__ == '__main__':

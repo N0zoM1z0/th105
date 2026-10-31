@@ -22,6 +22,11 @@ and the complete cleanup graph. No inline directive or private register
 annotation is used. The layout adapter is an observed ownership view, not a
 claim about original C++ class names or inheritance spelling.
 
+Update2026-10-31: this15-byte body is now independently canonical exact via
+its freshly exact private parent and full cleanup; see
+[reader destructor acceptance](OGG_READER_DESTRUCTOR_EXACT_2026_10_31.md).
+The following records the earlier source-only checkpoint.
+
 The15-byte independently padded418A00 body is the reader-owning destructor,
 reached by the actual third stream cleanup funclet. It was missing from the
 candidate inventory and is now authored/source-present, not separately exact.
