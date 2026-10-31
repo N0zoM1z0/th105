@@ -13059,7 +13059,7 @@ source = "src/ui/ReplayMenuUpdate.cpp"
 object = "build/match-units/GptWeb_ReplayMenuUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current 132-byte CMenuReplay dispatcher. Two GuideOverlay updates publish the active guide, initial-press cancel exits early, and byte-sized state dispatch forwards to the already exact mode/browse/delete roots through call-site bool ABI views."
+notes = "Current 132-byte CMenuReplay dispatcher. Two GuideOverlay updates publish the active guide, initial-press cancel exits early, and byte-sized state dispatch forwards to exact mode/delete and the separately reconstructed nonexact browse root through call-site bool ABI views."
 
 [[units.gpt-web-replay-menu-update.functions]]
 address = "0x00446C90"
@@ -28081,3 +28081,16 @@ address = "0x00444830"
 symbol_base = "?update_main_state@ConnectMainStateView@th105@@QAE_NXZ"
 rel32_targets = ["?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?reset_host_editor@ConnectMainStateView@th105@@QAEIXZ=0x004422F0", "?is_menu_initial_press@th105@@YA_NE_N00@Z=0x0043ABD0", "?begin_endpoint_edit@ConnectMainStateView@th105@@QAEXXZ=0x00442390", "?load_address_list@ConnectMainStateView@th105@@QAE_NXZ=0x00443130", "?load_history_list@ConnectMainStateView@th105@@QAE_NXZ=0x004434B0", "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810", "?read_clipboard@ClipboardModulePathView@th105@@QAEXPADI@Z=0x0040D160", "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z=0x00401DC0", "??0EndpointRegex@th105@@QAE@PBDI@Z=0x00442710", "??0EndpointMatches@th105@@QAE@ABV?$allocator@URegexSubMatch@th105@@@std@@@Z=0x00443780", "?search_endpoint@th105@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAVEndpointMatches@1@ABVEndpointRegex@1@I@Z=0x00444790", "?str@EndpointMatches@th105@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z=0x00442C00", "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40", "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0", "??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ=0x00401E00", "?parse_endpoint@ConnectMainStateView@th105@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00442E30", "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640", "??1EndpointMatches@th105@@QAE@XZ=0x00442F40", "??1EndpointRegex@th105@@QAE@XZ=0x00442440", "@__security_check_cookie@4=0x00689D25"]
 dir32_targets = ["_connect_main_select_prompt=_connect_main_select_prompt", "_connect_main_join_suffix=_connect_main_join_suffix", "_connect_main_regex=_connect_main_regex", "__ehhandler$?update_main_state@ConnectMainStateView@th105@@QAE_NXZ=__ehhandler$?update_main_state@ConnectMainStateView@th105@@QAE_NXZ"]
+
+[units.exact-first-replay-menu-browse]
+kind = "probe"
+source = "src/ui/ReplayMenuBrowse.cpp"
+object = "build/match-units/ExactFirst_ReplayMenuBrowse.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete511-byte native browse policy; natural source559 remains nonexact on duplicated GS epilogues. Direct owner-member accesses restore native frame and input/file/list/string sequence. No fake common-tail barriers. docs/REPLAY_MENU_BROWSE_2026_10_31.md."
+
+[[units.exact-first-replay-menu-browse.functions]]
+address = "0x00446860"
+symbol_base = "?update_browse_state@ReplayBrowseRuntimeView@th105@@QAEEXZ"
+rel32_targets = ["?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?move_page_forward@MenuCursorState@th105@@QAEXXZ=0x0043F5D0", "?move_page_backward@MenuCursorState@th105@@QAEXXZ=0x0043F560", "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "?row_is_directory@CFileList@th105@@QAEEI@Z=0x00439A60", "?enter_directory@CFileList@th105@@QAEXI@Z=0x00439A80", "?refresh_file_list@ReplayBrowseRuntimeView@th105@@QAEXXZ=0x00446770", "?row_at@CFileList@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I@Z=0x004399A0", "?current_directory@CFileList@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ=0x00439570", "?get_replay_header_service@th105@@YAPAUReplayHeaderServiceView@1@XZ=0x0043B060", "?load_recording@ReplayHeaderServiceView@th105@@QAE_NPBD@Z=0x0042C5C0", "?go_parent_directory@CFileList@th105@@QAEEXZ=0x004398B0", "__invalid_parameter_noinfo=0x0068A143", "@__security_check_cookie@4=0x00689D25", "?push_back@?$list@HV?$allocator@H@std@@@std@@QAEXABH@Z=0x004229A0", "?back@?$list@HV?$allocator@H@std@@@std@@QAEAAHXZ=0x004509A0", "?pop_back@?$list@HV?$allocator@H@std@@@std@@QAEXXZ=0x004220D0", "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@PAU342@0ABH@Z=0x00421F30", "?_Incsize@?$list@HV?$allocator@H@std@@@std@@IAEXI@Z=0x00440370", "?pop_back@?$list@HV?$allocator@H@std@@@std@@QAEXXZ=0x004220D0"]

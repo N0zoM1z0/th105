@@ -1775,3 +1775,4 @@ VC8_swprintf_counted_header,0x004418B0,function
 WeatherEffectObjectPool_acquire,0x00437520,function
 EffectObjectPool_acquire,0x004379D0,function
 CMenuConnect_update_main_state,0x00444830,function
+CMenuReplay_update_browse_state,0x00446860,function

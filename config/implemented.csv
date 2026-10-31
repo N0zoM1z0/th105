@@ -1747,3 +1747,4 @@ CMenuConnect_update_endpoint_digits
 WeatherEffectObjectPool_acquire
 EffectObjectPool_acquire
 CMenuConnect_update_main_state
+CMenuReplay_update_browse_state

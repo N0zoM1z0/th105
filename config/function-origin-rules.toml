@@ -4030,3 +4030,18 @@ confidence = "observed"
 evidence = "Actual pinned VC8 swprintf.inl counted variadic wrapper emits complete27-byte canonical fingerprint in the three exact endpoint callers. Header SHA d92946b2263736a620b151ae80a1e7f4963112f72b1e6257b021e7c33d0dbf3f. Source uses va_start, _vswprintf_c_l with null locale and va_end; private EDX count is compiler-selected. Standard header implementation, no authored credit. docs/CONNECT_ENDPOINT_ACTIONS_EXACT_2026_10_31.md."
 required_body_hashes = [{ address = "0x004418B0", size = 27, sha256 = "72d421962b54962fb5747badaabb4e2dcb808ae0232bbbe52d10bfb67af3fbc6" }]
 required_direct_edges = [{ caller = "0x004424D0", site = "0x00442516", target = "0x004418B0", caller_status = "matching" }, { caller = "0x004430D0", site = "0x00443117", target = "0x004418B0", caller_status = "matching" }, { caller = "0x00442CE0", site = "0x00442D5B", target = "0x004418B0", caller_status = "matching" }]
+
+[[rules]]
+id = "replay-menu-browse-authored-106a"
+addresses = ["0x00446860"]
+expected_count = 1
+expected_bytes = 511
+expected_names = ["sub_446860"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact replay menu dispatcher446C90 tail at446D05 owns complete511-byte navigation/recording policy. Checked directory-selection history and exact replay loader42C5C0 establish authored game behavior. Source559 remains nonexact on common GS-return sharing; no byte credit. docs/REPLAY_MENU_BROWSE_2026_10_31.md."
+required_body_hashes = [{address="0x00446860",size=511,sha256="28cfe1f2393ce046a13f4e40a105c281d3209f30023e037026ebc6ba43e9d74f"}]
+required_direct_edges = [{caller="0x00446C90",site="0x00446D05",target="0x00446860",kind="jump",caller_status="matching"}]
+required_selected_body_calls = [{owner="0x00446860",site="0x004469B4",target="0x0042C5C0",target_status="matching"}]

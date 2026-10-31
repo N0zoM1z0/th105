@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Replay browser446860 now has durable complete511-byte/156-instruction source
+and caller-backed authored ownership. Natural559 remains the historical common
+GS-epilogue stop; no exact credit or coercion. Exact dispatcher132 freshly passes
+and its stale browse-exact note is corrected. Source1750/authored1770/review836;
+exact1553/441679 unchanged. See REPLAY_MENU_BROWSE_2026_10_31.md.
+
 Connect main-state444830 now matches all827 callable and29 alignment/table
 bytes. All seven cleanup actions77, double-cookie handler46 and metadata92
 are independently exact. Native signed4-WORD loop and real path/text-service
