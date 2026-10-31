@@ -48,3 +48,22 @@ Default CI210 and whitespace checks pass. One previously source-present
 function adds449 authored bytes:1573 exact /447961 bytes. Source1768,
 authored1788, mapped1795, excluded1658/review581 remain unchanged; units754.
 No whole-corpus cold replay or independent manager-release acceptance is claimed.
+
+## Bounded allocation/provider follow-up
+
+A subsequent private control added the already-known actual value-returning
+allocate_handle policy to this real service class. The caller stayed26/native28,
+acquire547/native401 and release257/native184. Preserving the independently
+observed ordinary public lookup entry exposed its genuine provider and made
+vector::at outline naturally: lookup195/native196, acquire485/native401,
+release183/native184 and vector::at88/native95. This is not equality.
+
+The outlined source vector::at naturally consumes its index in EBX, while
+native417A90 receives it from the stack. That difference shifts release's
+register allocation and removes its index push. No private ABI declaration,
+forced spill, dummy caller or additional spelling grid was used. All four
+accepted service roots stayed exact in both private controls. The unsuccessful
+allocation additions were restored out of selected source; public manifests,
+receipts and counts remain unchanged. The existing incomplete allocation and
+provider units are not replaced by these probes. Evidence is retained in
+build/frontier-bgm-allocation-context-20261031/.
