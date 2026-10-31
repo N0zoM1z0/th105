@@ -46,6 +46,21 @@ class UpstreamBoostTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 boost.validate(dict(unit, **changes))
 
+    def test_release_wrapper_retains_original_instance_verification(self):
+        unit = dict(kind='probe', boost_regex_headers=True, boost_regex_instances=True,
+                    source=boost.RELEASE_INSTANCE_PROBE, include_dirs=[boost.FOLDER])
+        boost.validate(unit)
+        with self.assertRaises(ValueError):
+            boost.validate(dict(unit, boost_regex_headers=False))
+        root = Path('/original-source-fixture')
+        original = root / boost.INSTANCE_PATH
+        with mock.patch.object(boost, 'load_lock', return_value={}), \
+                mock.patch.object(boost, 'verified_sources', return_value=[]), \
+                mock.patch.object(boost, 'verified_instance', return_value=original) as verify:
+            paths = boost.inputs(unit, root)
+        verify.assert_called_once_with(root)
+        self.assertIn(original, paths)
+
     def test_instance_bytes_are_checked_without_a_compiler(self):
         raw = b'original source fixture\n'
         entry = dict(path='instances.cpp', size=len(raw),

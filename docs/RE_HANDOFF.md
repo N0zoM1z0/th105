@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Original Boost narrow instances with standard NDEBUG now prove50 additional
+library bodies/20912 bytes. Two genuine shared_ptr assertion paths explain
+old do_assign466/native412; no source body or guard is hand-edited. Four full
+canonical witnesses412/133/224/146 pass915 bytes. Full-inventory50-body rule
+and complete39-byte equivalence pair pass; old12 canonical roots and six old
+origin rules191 bodies freshly pass. New explicit release wrapper retains all
+original source/hash/header checks, with one test; CI211. No authored credit.
+Exact1576/448613, source1773/authored1793/mapped1800 unchanged; excluded1708/
+review526/units759. See BOOST_RELEASE_LIBRARY_ORIGINS_2026_10_31.md.
+
 DirectInput shutdown40D3F0/331 now has complete source and exact-application-
 caller/full-body ownership evidence. Actual COM virtual dispatch and existing
 backend vectors preserve mouse/keyboard/pad release order, three clear() calls,

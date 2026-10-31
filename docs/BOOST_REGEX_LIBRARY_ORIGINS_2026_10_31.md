@@ -57,9 +57,11 @@ witnesses, not authored progress.
 
 ## Boundaries and validation
 
-The now-defined basic_regex::do_assign at 6B4430 is 466 source bytes versus
-412 native bytes. It remains nonexact and unselected. A compatible historical
-reference does not uniquely identify the shipped Boost release.
+The assertion-enabled basic_regex::do_assign at 6B4430 is466 source bytes versus
+412 native bytes and remains unselected in this probe. The later isolated
+standard release-assertion configuration closes all412 bytes; see
+BOOST_RELEASE_LIBRARY_ORIGINS_2026_10_31.md. A compatible historical reference
+does not uniquely identify the shipped Boost release.
 
 Only the two new rules were natively revalidated for this increment; unchanged
 census evidence was retained. No cold global origin rebuild or all-unit exact

@@ -1,0 +1,264 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/BoostRegexReleaseInstancesOrigin.cpp"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_instances = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+
+[[anchors]]
+address = "0x00443B30"
+size = 243
+symbol = "??0?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0AAV?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@2@ABV?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@2@W4_match_flags@regex_constants@2@0@Z"
+
+[[anchors]]
+address = "0x006A0B30"
+size = 133
+symbol = "?isctype@?$w32_regex_traits@D@boost@@QBE_NDK@Z"
+
+[[anchors]]
+address = "0x006A1560"
+size = 328
+symbol = "?set_second@?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAIXV?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+
+[[anchors]]
+address = "0x006A16B0"
+size = 254
+symbol = "?set_second@?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAIXV?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I_N1@Z"
+
+[[anchors]]
+address = "0x006A1990"
+size = 325
+symbol = "?set_first@?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAIXV?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@I_N@Z"
+
+[[anchors]]
+address = "0x006A1AE0"
+size = 224
+symbol = "?match_literal@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006A1DF0"
+size = 370
+symbol = "?match_word_boundary@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006A1F70"
+size = 364
+symbol = "?match_within_word@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006A20E0"
+size = 240
+symbol = "?match_word_start@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006A22D0"
+size = 514
+symbol = "?match_backref@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006A24E0"
+size = 146
+symbol = "?match_set@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006A2580"
+size = 186
+symbol = "?match_combining@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006A2640"
+size = 225
+symbol = "?match_soft_buffer_end@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006A2730"
+size = 154
+symbol = "?match_assert_backref@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006A2F10"
+size = 315
+symbol = "?unwind_greedy_single_repeat@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_N_N@Z"
+
+[[anchors]]
+address = "0x006A3050"
+size = 429
+symbol = "?unwind_slow_dot_repeat@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_N_N@Z"
+
+[[anchors]]
+address = "0x006A3200"
+size = 455
+symbol = "?unwind_fast_dot_repeat@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_N_N@Z"
+
+[[anchors]]
+address = "0x006A33D0"
+size = 599
+symbol = "?unwind_char_repeat@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_N_N@Z"
+
+[[anchors]]
+address = "0x006A3630"
+size = 596
+symbol = "?unwind_short_set_repeat@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_N_N@Z"
+
+[[anchors]]
+address = "0x006A3B00"
+size = 194
+symbol = "?append_literal@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEPAUre_literal@23@D@Z"
+
+[[anchors]]
+address = "0x006A4310"
+size = 42
+symbol = "?transform@?$w32_regex_traits@D@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD0@Z"
+
+[[anchors]]
+address = "0x006A73B0"
+size = 34
+symbol = "?error_string@?$w32_regex_traits@D@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4error_type@regex_constants@2@@Z"
+
+[[anchors]]
+address = "0x006A7430"
+size = 200
+symbol = "?fail@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEXW4error_type@regex_constants@3@H@Z"
+
+[[anchors]]
+address = "0x006A7500"
+size = 345
+symbol = "?unwind_alts@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NH@Z"
+
+[[anchors]]
+address = "0x006A7EE0"
+size = 497
+symbol = "?parse_repeat_range@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_N_N@Z"
+
+[[anchors]]
+address = "0x006A80E0"
+size = 557
+symbol = "?fixup_recursions@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAEXPAUre_syntax_base@23@@Z"
+
+[[anchors]]
+address = "0x006A8680"
+size = 151
+symbol = "?parse_QE@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NXZ"
+
+[[anchors]]
+address = "0x006A8790"
+size = 39
+symbol = "?lookup_collatename@?$w32_regex_traits@D@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD0@Z"
+equivalence_group = "boost-release-traits-forwarding"
+
+[[anchors]]
+address = "0x006A9600"
+size = 39
+symbol = "?lookup_collatename@?$w32_regex_traits@D@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBD0@Z"
+equivalence_group = "boost-release-traits-forwarding"
+
+[[anchors]]
+address = "0x006A9BC0"
+size = 1299
+symbol = "??$re_is_set_member@PADDU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@K@re_detail@boost@@YIPADPAD0PBU?$re_set_long@K@01@ABU?$regex_data@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@01@_N@Z"
+
+[[anchors]]
+address = "0x006AC2F0"
+size = 1166
+symbol = "?maybe_assign@?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAIXABV12@@Z"
+
+[[anchors]]
+address = "0x006ACD40"
+size = 1926
+symbol = "??$re_is_set_member@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@K@re_detail@boost@@YI?AV?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V23@0PBU?$re_set_long@K@01@ABU?$regex_data@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@01@_N@Z"
+
+[[anchors]]
+address = "0x006ADAF0"
+size = 171
+symbol = "?parse_backref@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NXZ"
+
+[[anchors]]
+address = "0x006ADBA0"
+size = 300
+symbol = "?parse_set_literal@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEXAAV?$basic_char_set@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@23@@Z"
+
+[[anchors]]
+address = "0x006AE420"
+size = 473
+symbol = "?construct_init@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAEXABV?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@3@W4_match_flags@regex_constants@3@@Z"
+
+[[anchors]]
+address = "0x006AE820"
+size = 146
+symbol = "?match_long_set@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006AEBC0"
+size = 577
+symbol = "?match_long_set_repeat@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006AEE10"
+size = 601
+symbol = "?match_set_repeat@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006AF070"
+size = 594
+symbol = "?match_char_repeat@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006AF400"
+size = 176
+symbol = "?match_recursion@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006AF4B0"
+size = 627
+symbol = "?unwind_long_set_repeat@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_N_N@Z"
+
+[[anchors]]
+address = "0x006B17F0"
+size = 309
+symbol = "?match_match@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006B1CE0"
+size = 526
+symbol = "?parse_open_paren@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NXZ"
+
+[[anchors]]
+address = "0x006B2B90"
+size = 137
+symbol = "?match_prefix@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006B2C20"
+size = 308
+symbol = "?find_restart_any@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006B2D60"
+size = 605
+symbol = "?find_restart_word@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006B2FC0"
+size = 480
+symbol = "?find_restart_line@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006B3420"
+size = 694
+symbol = "?find_imp@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[anchors]]
+address = "0x006B3DA0"
+size = 1187
+symbol = "?do_get@?$object_cache@KV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@CA?AV?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@2@ABKI@Z"
+
+[[anchors]]
+address = "0x006B4430"
+size = 412
+symbol = "?do_assign@?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@AAEAAV12@PBD0I@Z"

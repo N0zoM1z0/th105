@@ -20,6 +20,7 @@ LOCK_SHA256 = '847c4101e4d3e4b91a1130f2ffc8d49e1c904457bd5910e5045f05d4d29b881a'
 SUPERPROJECT = '644e2135159e0b3ca535aab1a67938c27caf6ec9'
 INSTANCE_PATH = '.tools/upstream/boost-regex-1.40.0-src/instances.cpp'
 INSTANCE_PROBE = 'scripts/probes/BoostRegexInstancesOrigin.cpp'
+RELEASE_INSTANCE_PROBE = 'scripts/probes/BoostRegexReleaseInstancesOrigin.cpp'
 INSTANCE = dict(path='instances.cpp', repository='https://github.com/boostorg/regex',
                 commit='fa1ef1dfd4136803625e49853289ade7c2ddff0a', source_path='src/instances.cpp',
                 git_blob_sha1='69d72ad6e15e823c1a6f1d434c69e8f437513f01', size=697,
@@ -29,7 +30,7 @@ INSTANCE = dict(path='instances.cpp', repository='https://github.com/boostorg/re
 def validate(unit: dict) -> None:
     flag = unit.get('boost_regex_headers', False)
     instance = unit.get('boost_regex_instances', False)
-    if type(instance) is not bool or instance and (flag is not True or unit.get('source') != INSTANCE_PROBE):
+    if type(instance) is not bool or instance and (flag is not True or unit.get('source') not in (INSTANCE_PROBE, RELEASE_INSTANCE_PROBE)):
         raise ValueError('Boost instance source requires its verified header package and original-source probe')
     if type(flag) is not bool:
         raise ValueError('Boost header selection must be an explicit boolean')

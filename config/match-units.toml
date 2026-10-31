@@ -28364,3 +28364,34 @@ rel32_targets = [
  "?clear@?$vector@HV?$allocator@H@std@@@std@@QAEXXZ=0x0040DD60",
 ]
 dir32_targets = ["?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=direct_input_shutdown_fields"]
+
+[units.boost-regex-release-library-origin]
+kind = "probe"
+source = "scripts/probes/BoostRegexReleaseInstancesOrigin.cpp"
+object = "build/match-units/BoostRegexReleaseInstancesOrigin.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_instances = true
+include_dirs = [".tools/upstream/boost-1.40.0-vc8"]
+notes = "Unchanged original narrow instances with standard NDEBUG release assertions. Fifty complete library-origin fingerprints; four whole canonical witnesses915 bytes. No authored credit and no checked-STL guard removal."
+
+[[units.boost-regex-release-library-origin.functions]]
+address = "0x006B4430"
+symbol_base = "?do_assign@?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@AAEAAV12@PBD0I@Z"
+rel32_targets = ["??$?0V?$basic_regex_implementation@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@@shared_count@detail@boost@@QAE@PAV?$basic_regex_implementation@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@2@@Z=0x006B1B00", "??0?$regex_data@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE@ABV?$shared_ptr@U?$regex_traits_wrapper@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@@2@@Z=0x006AF7C0", "??0?$regex_data@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE@XZ=0x006B4360", "??2@YAPAXI@Z=0x00689DCB", "??4?$shared_ptr@V?$basic_regex_implementation@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@@boost@@QAEAAV01@ABV01@@Z=0x006A2EB0", "?assign@?$basic_regex_implementation@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEXPBD0I@Z=0x006B36E0", "?sp_enable_shared_from_this@detail@boost@@YAXZZ=0x0041F890"]
+
+[[units.boost-regex-release-library-origin.functions]]
+address = "0x006A0B30"
+symbol_base = "?isctype@?$w32_regex_traits@D@boost@@QBE_NDK@Z"
+rel32_targets = ["?isctype@?$w32_regex_traits@D@boost@@QBE_NDK@Z=0x006A0B30"]
+
+[[units.boost-regex-release-library-origin.functions]]
+address = "0x006A1AE0"
+symbol_base = "?match_literal@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[[units.boost-regex-release-library-origin.functions]]
+address = "0x006A24E0"
+symbol_base = "?match_set@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+rel32_targets = ["??E?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@XZ=0x00442210", "__invalid_parameter_noinfo=0x0068A143"]
