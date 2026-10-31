@@ -1698,3 +1698,20 @@ PAT constructor and the unchanged complete2528-byte effect-loader candidate.
 The duplicate effect frame class is removed without any accepted regression.
 See FRAME_CONSTRUCTION_CONTEXT_2026_10_31.md; do not treat the old partial-range
 experiment as a requirement to keep incompatible constructor views.
+
+
+### CsvReader clear: real reader CIL control, 2026-10-31
+
+The fresh existing-COFF census finds the exact125-byte nested-deque `_Tidy`
+shape at40FDB0, but that does not prove the authored clear_rows entry. A private
+linked control exports the existing actual CsvContext::clear_rows body from
+CsvFileLoading.cpp, with ordinary `rows.clear()` and its real provider source.
+It emits10 bytes, retaining an out-of-line `_Tidy` call, not the native125-byte
+expanded method. The broad copied reader contract also stops on an unused PNG
+callback witness after dead stripping, so no canonical root receipt is claimed.
+The emitted10-byte boundary itself is already insufficient. No source or public
+manifest changed; no helper body is substituted into the authored entry.
+Receipts: build/frontier-csv-clear-context-20261031/build.log and Clear.map.
+The old103-byte gain hit in the same stale-object census is from the removed
+aligned/volatile volume transcription, not the current natural source, and is
+not reused. Existing negative source-integrity guidance remains in force.
