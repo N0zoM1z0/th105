@@ -4045,3 +4045,18 @@ evidence = "Exact replay menu dispatcher446C90 tail at446D05 owns complete511-by
 required_body_hashes = [{address="0x00446860",size=511,sha256="28cfe1f2393ce046a13f4e40a105c281d3209f30023e037026ebc6ba43e9d74f"}]
 required_direct_edges = [{caller="0x00446C90",site="0x00446D05",target="0x00446860",kind="jump",caller_status="matching"}]
 required_selected_body_calls = [{owner="0x00446860",site="0x004469B4",target="0x0042C5C0",target_status="matching"}]
+
+[[rules]]
+id = "vc8-string-count-append-generated-106a"
+addresses = ["0x00442A00", "0x00410270"]
+expected_count = 2
+expected_bytes = 254
+expected_names = ["sub_410270", "sub_442A00"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual pinned VC8 xstring member-address instantiation reproduces append(count,char)166 and _Chassign88, with inventory-unique full-length masks and an independent full canonical replay of every REL32 operand. No authored/source/exact credit. xstring SHA c1a068968165290d000d554340d9c4e7e123c47ea619ad05d1c8f4e719c05922. docs/STRING_COUNT_APPEND_ORIGIN_2026_10_31.md."
+vc8_generated_anchor_file = "config/vc8-generated-string-count-append-origin-anchors.toml"
+required_body_hashes = [{address="0x00442A00",size=166,sha256="43a79358d92314332171087f5963641968d862d5f6ae4ba816aba3259e2ec12e"}, {address="0x00410270",size=88,sha256="80347ce19e21c97552f26b48717daaeaaf1b3f1c58834214e12d62fd8602aec5"}]
+required_direct_edges = [{caller="0x00442AB0",site="0x00442BAA",target="0x00442A00"}, {caller="0x00442A00",site="0x00442A52",target="0x00410270"}]

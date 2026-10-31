@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Actual pinned VC8 string append(count,char)442A00/166 and _Chassign410270/88
+are now compiler-origin exclusions, not game progress. Genuine member-address
+probe reproduces every byte; full4027-row fingerprint searches are unique.
+Excluded1423/review834; source1750/authored1770/exact1553/441679 unchanged.
+See STRING_COUNT_APPEND_ORIGIN_2026_10_31.md.
+
 Replay browser446860 now has durable complete511-byte/156-instruction source
 and caller-backed authored ownership. Natural559 remains the historical common
 GS-epilogue stop; no exact credit or coercion. Exact dispatcher132 freshly passes

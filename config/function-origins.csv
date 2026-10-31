@@ -389,7 +389,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00410130,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00410190,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x004101F0,compiler_generated,runtime,exclude,observed,vc8-deque-string-growmap-xlen-caller-identity-106a
-0x00410270,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00410270,compiler_generated,std,exclude,observed,vc8-string-count-append-generated-106a
 0x004102D0,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00410300,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00410360,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1392,7 +1392,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00442710,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00442790,authored_game,ui,authored,observed,canonical-exact-authored
 0x004428E0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00442A00,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00442A00,compiler_generated,std,exclude,observed,vc8-string-count-append-generated-106a
 0x00442AB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00442C00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00442CE0,authored_game,ui,authored,observed,canonical-exact-authored
