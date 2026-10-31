@@ -1,5 +1,8 @@
 # BGM service shutdown, 004034F0
 
+Historical standalone probe. The actual service/token/manager CIL context now
+matches449/449; see BGM_SERVICE_SHUTDOWN_EXACT_2026_10_31.md.
+
 The canonical Japanese1.06a [4034F0,4036B1) callable is449 bytes, SHA256
 `9ba5a1e02fb81ffaf9c0d5b6844e04c8b4d39af9994eafebe19830d60a2f3fef`.
 Raw instruction/CFG traversal closes the full function and RET0; fifteen

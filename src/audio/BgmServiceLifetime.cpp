@@ -20,6 +20,7 @@ struct BgmServiceLifetime {
     float gain_b0;
     BgmServiceLifetime();
     ~BgmServiceLifetime();
+    void shutdown();
 };
 BgmServiceLifetime::BgmServiceLifetime()
 {
@@ -37,4 +38,26 @@ typedef char BgmServiceActive[offsetof(BgmServiceLifetime,active_88)==0x88?1:-1]
 typedef char BgmServicePending[offsetof(BgmServiceLifetime,pending_94)==0x94?1:-1];
 typedef char BgmServiceRetired[offsetof(BgmServiceLifetime,retired_a0)==0xa0?1:-1];
 typedef char BgmServiceGain[offsetof(BgmServiceLifetime,gain_ac)==0xac?1:-1];
+}
+
+namespace th105 {
+extern "C" __declspec(dllimport) int __stdcall SetEvent(void *);
+void BgmServiceLifetime::shutdown()
+{
+    running_18 = false;
+    if (loading_event_14) SetEvent(loading_event_14);
+    playback_thread_00.wait_for_exit();
+    loading_thread_08.wait_for_exit();
+    if (playback_event_10) { CloseHandle(playback_event_10); playback_event_10 = 0; }
+    if (loading_event_14) { CloseHandle(loading_event_14); loading_event_14 = 0; }
+    for (std::list<BgmHandleResult>::iterator it = active_88.begin(); it != active_88.end(); ++it)
+        manager_38.release(it->value);
+    for (std::list<BgmHandleResult>::iterator it = pending_94.begin(); it != pending_94.end(); ++it)
+        manager_38.release(it->value);
+    for (std::list<BgmHandleResult>::iterator it = retired_a0.begin(); it != retired_a0.end(); ++it)
+        manager_38.release(it->value);
+    active_88.clear();
+    pending_94.clear();
+    retired_a0.clear();
+}
 }

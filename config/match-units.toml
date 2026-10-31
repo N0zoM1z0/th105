@@ -26050,23 +26050,6 @@ rel32_targets = [
  "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBH0@Z=0x0046B3B0",
 ]
 
-[units.exact-first-bgm-service-shutdown]
-kind = "probe"
-source = "src/audio/BgmServiceShutdown.cpp"
-object = "build/match-units/ExactFirst_BgmServiceShutdown.obj"
-profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Complete449-byte scene-owned BGM shutdown4034F0. Real worker/event lifetimes and three checked unsigned-handle lists at88/94/A0. Ordinary449/native449 remains nonexact on aligned frame and private EAX manager-release boundary; no invented ABI or padding."
-[[units.exact-first-bgm-service-shutdown.functions]]
-address = "0x004034F0"
-symbol_base = "?shutdown@BgmShutdownView@th105@@QAEXXZ"
-rel32_targets = [
- "?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640",
- "?release@BgmShutdownHandleManager50@th105@@QAEXI@Z=0x00404270",
- "??3@YAXPAX@Z=0x006898EA",
- "__invalid_parameter_noinfo=0x0068A143",
-]
-
 [units.exact-first-action-state-leaf-setters]
 kind = "probe"
 source = "src/battle/ActionStateLeafSetters.cpp"
@@ -28267,8 +28250,8 @@ link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
 link_xiph_sdk = true
 linked_coff_sources = ["src/library/UnsignedIntList.cpp", "src/library/UnsignedIntVector.cpp"]
-notes = "Actual B4-byte BGM global and member manager lifetimes199/148/133, complete cleanup EH and CRT startup. Real returned BgmHandleResult values populate outer queues; unsigned free indices use original VC8 list/vector COFF. Parent199 plus180 EH binds member133 through actual single40334B call. No artificial ABI or helper credit."
-link_data_targets = ["__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__SetThreadPriority@8=__imp__SetThreadPriority@8", "__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8", "__imp__CloseHandle@4=__imp__CloseHandle@4", "__imp__CreateThread@24=__imp__CreateThread@24"]
+notes = "Actual BGM service lifetimes199/148/member133 and complete shutdown449. Real allocated-token queues, manager implementation and thread owners share CIL; natural private manager-release call and aligned shutdown frame. Complete lifetime EH/startup witnesses retained; manager release itself remains unaccepted."
+link_data_targets = ["__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__SetThreadPriority@8=__imp__SetThreadPriority@8", "__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8", "__imp__CloseHandle@4=__imp__CloseHandle@4", "__imp__CreateThread@24=__imp__CreateThread@24", "__imp__SetEvent@4=__imp__SetEvent@4"]
 link_vtables = [{ symbol = "??_7BgmAllocationManager50@th105@@6B@", target = "??_7BgmAllocationManager50@th105@@6B@", entry = "??_GBgmAllocationManager50@th105@@UAEPAXI@Z=0x00404090", target_type_name = ".?AV?$CHandleManagerEx@VBgmBuffer@@@@" }, { symbol = "??_7CriticalSectionWrapper@th105@@6B@", target = "??_7CriticalSectionWrapper@th105@@6B@", entry = "??_GCriticalSectionWrapper@th105@@UAEPAXI@Z=0x0040ABE0", target_type_name = ".?AVCCriticalSection@@" }]
 preserve_public_members = ["?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ"]
 link_objects = [{ symbol = "?g_bgm_service_lifetime@th105@@3UBgmServiceLifetime@1@A", target = "bgm_service_lifetime_object", size = 180, layout_source = "src/audio/BgmServiceLifetime.cpp", initializer = "0x006BE710", initializer_table = "0x006C0360", atexit = "0x0068AF1E", destructor_callback = "0x006BEDD0" }]
@@ -28293,3 +28276,8 @@ symbol_base = "??0BgmAllocationManager50@th105@@QAE@XZ"
 eh_cleanup = { handler = "0x006BE496", info = "0x006E4CC8" }
 rel32_targets = ["@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "??1?$vector@PAUBgmStreamAllocationView@th105@@V?$allocator@PAUBgmStreamAllocationView@th105@@@std@@@std@@QAE@XZ=0x00405060", "??1?$vector@IV?$allocator@I@std@@@std@@QAE@XZ=0x0040C240", "?_Buynode@?$list@IV?$allocator@I@std@@@std@@IAEPAU_Node@?$_List_nod@IV?$allocator@I@std@@@2@XZ=0x004040B0"]
 private_from = { caller = "0x004032F0", site = "0x0040334B", through_exact_caller = true }
+
+[[units.exact-first-bgm-service-lifetime.functions]]
+address = "0x004034F0"
+symbol_base = "?shutdown@BgmServiceLifetime@th105@@QAEXXZ"
+rel32_targets = ["?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640", "?release@BgmAllocationManager50@th105@@QAEXI@Z=0x00404270", "??3@YAXPAX@Z=0x006898EA", "__invalid_parameter_noinfo=0x0068A143"]

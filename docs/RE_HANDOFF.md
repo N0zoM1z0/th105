@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+BGM shutdown4034F0/449 is now canonical exact in the real service/token queue/
+manager/thread CIL context. Native aligned frame and private EAX release calls
+emerge naturally; no source ABI or padding. All four roots199/148/133/449 and
+prior lifecycle EH/startup witnesses freshly pass. Release itself257/native184
+remains unaccepted. Old standalone shutdown unit and source-only rule retired.
+Exact1573/447961; source1768/authored1788/mapped1795, excluded1658/review581,
+units754; CI210. See BGM_SERVICE_SHUTDOWN_EXACT_2026_10_31.md.
+
 BGM manager constructor403ED0/133 is now exact plus all101 cleanup/EH bytes.
 Real existing BgmHandleResult outer queues distinguish packed allocated tokens
 from unsigned free indices; genuine unsigned-list/vector COFF plus token CIL
