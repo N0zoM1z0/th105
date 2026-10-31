@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+SpellDataOwner destructor4619C0 is canonical101/101 plus all117 generated
+EH bytes, using the already emitted ordinary CharacterDtorSpell68 lifetime.
+Explicit spell cleanup precedes two short deques and resource-core destruction.
+No source/profile changes; direct cleanup171 and core126/118 freshly pass.
+Character parent905 retains its one SIB mismatch and receives no credit.
+Exact1578/448979, source1776/authored1796/mapped1803, excluded1721/review510,
+units760. See SPELL_OWNER_DESTRUCTOR_EXACT_2026_10_31.md.
+
 Seven original VC8 container/string helpers (1068 bytes) now have freshly
 rebuilt full-inventory-unique source fingerprints under unchanged origin gates.
 Five source-specific rules pass; all six existing authored roots and full1676

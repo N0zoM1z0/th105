@@ -1880,7 +1880,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00461610,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x00461640,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00461940,compiler_generated,battle,exclude,observed,vc8-generated-pat-copy-anchors-106a
-0x004619C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004619C0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00461A30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00461AF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00461B70,authored_game,battle,authored,observed,fighter-pat-resource-loader-authored-106a

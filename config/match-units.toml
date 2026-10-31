@@ -26392,7 +26392,7 @@ source = "src/characters/CharacterDestructor.cpp"
 object = "build/match-units/ExactFirst_CharacterDestructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete905-byte Character destruction including remote checked-deque loop and both cold range-error tails. Real four-byte handle-class vector restores native erase boundary; only one commutative SIB byte remains nonexact. docs/CHARACTER_DESTRUCTOR_2026_10_29.md."
+notes = "Complete905-byte Character destruction including remote checked-deque loop and both cold range-error tails. Real four-byte handle-class vector restores native erase boundary; parent remains one SIB byte nonexact. Spell owner4619C0 is independently canonical101 with all117 EH bytes. docs/CHARACTER_DESTRUCTOR_2026_10_29.md and docs/SPELL_OWNER_DESTRUCTOR_EXACT_2026_10_31.md."
 
 [[units.exact-first-character-destructor.functions]]
 address = "0x00462CE0"
@@ -28458,3 +28458,12 @@ link_vtables = [{ symbol = "??_7BgmBufferRuntime@th105@@6B@", target = "??_7Dire
 address = "0x00401AF0"
 symbol_base = "?load_wave@WaveLoadService@th105@@QAE?AUBgmHandleResult@2@PBD@Z"
 rel32_targets = ["?linear_gain_to_ds_volume@th105@@YGHM@Z=0x00418990", "?acquire@WaveLoadManager64@th105@@QAEPAPAVBgmBufferRuntime@2@AAUResourceHandleToken@2@@Z=0x00405090", "?release@WaveLoadManager64@th105@@QAEXI@Z=0x00405200", "?load_wave_file@BgmBufferRuntime@th105@@QAE_NPBD@Z=0x004184B0", "??2@YAPAXI@Z=0x00689DCB"]
+
+[[units.exact-first-character-destructor.functions]]
+address = "0x004619C0"
+symbol_base = "??1CharacterDtorSpell68@th105@@QAE@XZ"
+rel32_targets = [
+ "?clear_resources@CharacterDtorSpell68@th105@@QAEXXZ=0x004321A0",
+ "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+ "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E900",
+]

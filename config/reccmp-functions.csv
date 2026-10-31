@@ -1801,3 +1801,4 @@ RenderModeManager_on_device_lost,0x00401610,function
 DirectInputBackend_shutdown,0x0040D3F0,function
 Fighter_rotate_front_spell_sequence_entry_to_back,0x0045DDA0,function
 WaveService_load_wave,0x00401AF0,function
+SpellDataOwner_dtor,0x004619C0,function
