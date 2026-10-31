@@ -28018,3 +28018,34 @@ notes = "Complete699-byte middle-state policy and60-byte switch tables. Full sou
 address = "0x00444490"
 symbol_base = "?update_join_state@ConnectJoinStateView@th105@@QAE_NXZ"
 rel32_targets = ["?update_endpoint_digits@ConnectJoinStateView@th105@@QAEXXZ=0x00442CE0", "?update_endpoint_history@ConnectJoinStateView@th105@@QAEXXZ=0x004430D0", "?update_endpoint_clipboard@ConnectJoinStateView@th105@@QAEXXZ=0x004424D0", "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640", "_update_profile_message=0x0043F6E0", "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810", "?finalize_message_4425d0@CMenuConnectStateRuntimeView@th105@@QAEDXZ=0x004425D0", "?status@JoinStatusView@th105@@QAEHXZ=0x00415D50", "_is_menu_initial_press=0x0043ABD0", "_dispatch_indexed_event=0x0043B1A0", "?hide_profile_message_43f8d0@ConnectJoinStateView@th105@@QAEXXZ=0x0043F8D0", "_clear_network_session=0x0043B0A0", "?finish_transition@ConnectJoinStateView@th105@@QAEXXZ=0x00443D70", "_update_profile_confirmation=0x0043F870"]
+
+[units.exact-first-connect-endpoint-actions]
+kind = "probe"
+source = "src/ui/MenuConnectEndpointActions.cpp"
+object = "build/match-units/ExactFirst_ConnectEndpointActions.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete84/85/329 endpoint action roots exact. Genuine pinned swprintf.inl emits the actual27-byte count-in-EDX header helper, excluded from authored credit. Four-WORD configuration copy is a real array loop. docs/CONNECT_ENDPOINT_ACTIONS_EXACT_2026_10_31.md."
+
+[[units.exact-first-connect-endpoint-actions.functions]]
+address = "0x004424D0"
+symbol_base = "?update_clipboard_action@ConnectEndpointActionView@th105@@QAEXXZ"
+rel32_targets = ["_update_profile_message=0x0043F6E0", "_swprintf=0x004418B0"]
+dir32_targets = ["??_C@_15MAOEGKJF@?$AA?$CF?$AAS?$AA?$AA@=_connect_endpoint_wide_string_format"]
+
+[[units.exact-first-connect-endpoint-actions.functions]]
+address = "0x004430D0"
+symbol_base = "?update_history_action@ConnectEndpointActionView@th105@@QAEXXZ"
+rel32_targets = ["?select_history@ConnectEndpointActionView@th105@@QAEHXZ=0x00443030", "_swprintf=0x004418B0"]
+dir32_targets = ["??_C@_15MAOEGKJF@?$AA?$CF?$AAS?$AA?$AA@=_connect_endpoint_wide_string_format"]
+
+[[units.exact-first-connect-endpoint-actions.functions]]
+address = "0x00442CE0"
+symbol_base = "?update_digits_action@ConnectEndpointActionView@th105@@QAEXXZ"
+rel32_targets = ["?edit_combined_digits@ConnectEndpointActionView@th105@@QAEHXZ=0x00441E10", "@__security_check_cookie@4=0x00689D25", "_swprintf=0x004418B0", "?assign_bytes@EndpointAssignView@th105@@QAEXPBDI@Z=0x004021C0"]
+dir32_targets = ["??_C@_1BI@FCMLLAGN@?$AA?$CF?$AAd?$AA?4?$AA?$CF?$AAd?$AA?4?$AA?$CF?$AAd?$AA?4?$AA?$CF?$AAd?$AA?$AA@=_connect_endpoint_wide_address_format", "??_C@_0M@PCENNPGA@?$CFd?4?$CFd?4?$CFd?4?$CFd?$AA@=_connect_endpoint_narrow_address_format"]
+
+[[units.exact-first-connect-endpoint-actions.functions]]
+address = "0x004418B0"
+symbol_base = "_swprintf"
+rel32_targets = ["__vswprintf_c_l=0x0068B17E"]

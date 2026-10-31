@@ -4016,3 +4016,17 @@ evidence = "Exact CMenuConnect virtual update444B90 tail-jumps444490 for outer s
 required_body_hashes = [{ address = "0x00444490", size = 699, sha256 = "bb6159fbe53c1882c8797a1c1ae19f527bb3d2bed4e67463a394eec6d0c7949d" }]
 required_direct_edges = [{ caller = "0x00444B90", site = "0x00444C35", target = "0x00444490", kind = "jump", caller_status = "matching" }]
 required_selected_body_calls = [{ owner = "0x00444490", site = "0x00444537", target = "0x004425D0", target_status = "matching" }, { owner = "0x00444490", site = "0x00444612", target = "0x00443D70", target_status = "matching" }]
+
+[[rules]]
+id = "vc8-counted-swprintf-header-106a"
+addresses = ["0x004418B0"]
+expected_count = 1
+expected_bytes = 27
+expected_names = ["sub_4418B0"]
+origin = "vc8_runtime"
+subsystem = "crt_header"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual pinned VC8 swprintf.inl counted variadic wrapper emits complete27-byte canonical fingerprint in the three exact endpoint callers. Header SHA d92946b2263736a620b151ae80a1e7f4963112f72b1e6257b021e7c33d0dbf3f. Source uses va_start, _vswprintf_c_l with null locale and va_end; private EDX count is compiler-selected. Standard header implementation, no authored credit. docs/CONNECT_ENDPOINT_ACTIONS_EXACT_2026_10_31.md."
+required_body_hashes = [{ address = "0x004418B0", size = 27, sha256 = "72d421962b54962fb5747badaabb4e2dcb808ae0232bbbe52d10bfb67af3fbc6" }]
+required_direct_edges = [{ caller = "0x004424D0", site = "0x00442516", target = "0x004418B0", caller_status = "matching" }, { caller = "0x004430D0", site = "0x00443117", target = "0x004418B0", caller_status = "matching" }, { caller = "0x00442CE0", site = "0x00442D5B", target = "0x004418B0", caller_status = "matching" }]

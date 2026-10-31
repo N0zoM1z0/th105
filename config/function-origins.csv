@@ -1370,7 +1370,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00441460,authored_game,ui,authored,observed,canonical-exact-authored
 0x00441520,authored_game,ui,authored,observed,config-menu-constructor-authored-106a
 0x00441890,authored_game,ui,authored,observed,canonical-exact-authored
-0x004418B0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004418B0,vc8_runtime,crt_header,exclude,observed,vc8-counted-swprintf-header-106a
 0x004418D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00441BD0,authored_game,ui,authored,observed,connect-endpoint-digit-editors-authored-106a
 0x00441E10,authored_game,ui,authored,observed,connect-endpoint-digit-editors-authored-106a
@@ -1386,7 +1386,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00442480,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004424B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x004424C0,authored_game,ui,authored,observed,canonical-exact-authored
-0x004424D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004424D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00442530,authored_game,ui,authored,observed,canonical-exact-authored
 0x004425D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00442710,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1395,13 +1395,13 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00442A00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00442AB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00442C00,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00442CE0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00442CE0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00442E30,authored_game,ui,authored,observed,canonical-exact-authored
 0x00442F40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00442FD0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00443020,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00443030,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004430D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004430D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00443130,authored_game,ui,authored,observed,connect-address-list-load-authored-106a
 0x004434B0,authored_game,ui,authored,observed,connect-history-list-load-authored-106a
 0x00443780,unknown,,review,unknown,ida-1.06a-initial-inventory

@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Connect endpoint actions4424D0/4430D0/442CE0 are canonical exact84/85/329,
+adding498 bytes. The genuine VC8 swprintf header naturally supplies the private
+EDX count and matches27 bytes, classified runtime/excluded rather than authored.
+Four-WORD array copying closes the final source scheduling difference. Totals
+1550/439926; source1746, authored1766, excluded1421, review840. See
+CONNECT_ENDPOINT_ACTIONS_EXACT_2026_10_31.md.
+
 Connect middle-state444490 now has complete699-byte/205-instruction source
 and both switch tables reviewed. Full772/native760 payload remains nonexact
 on branch sharing/receiver preparation; no exact credit. Source1743,
