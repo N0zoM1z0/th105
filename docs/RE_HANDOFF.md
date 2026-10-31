@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+PatternData effect-group constructor422AE0/131 and destructor422660/135
+are now complete canonical exact through ordinary vector<FrameData>::clear.
+Actual32-byte group declaration is shared; old loader2528 freshly stays exact.
+No generated helper credit. Exact1558/444502, source1755/authored1775/mapped1782,
+excluded1655/review597/units750. See EFFECT_GROUP_LIFETIME_EXACT_2026_10_31.md.
+
 Wave dispatcher408ED0 now has complete151-byte authored source and an exact
 304-byte DirectSound caller edge. Actual reader/loader CIL remains145/151;
 CV3 normal stdcall248/247 is EH-blocked, no waiver or exact credit. Shared

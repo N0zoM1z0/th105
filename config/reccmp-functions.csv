@@ -1779,3 +1779,5 @@ CMenuReplay_update_browse_state,0x00446860,function
 run_bgm_playback_worker,0x00403B90,function
 parse_script_line,0x00405930,function
 dispatch_wave_resource,0x00408ED0,function
+EffectResourceGroup_ctor,0x00422AE0,function
+EffectResourceGroup_dtor,0x00422660,function

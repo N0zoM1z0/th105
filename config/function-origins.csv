@@ -774,14 +774,14 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004222B0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x004222E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004222F0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00422660,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00422660,authored_game,battle,authored,observed,canonical-exact-authored
 0x004226F0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x00422710,compiler_generated,std,exclude,observed,vc8-generated-frame-vector-106a
 0x00422770,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004228D0,compiler_generated,std,exclude,observed,vc8-generated-frame-vector-106a
 0x004229A0,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
 0x004229E0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00422AE0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00422AE0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422B70,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422D30,authored_game,battle,authored,observed,effect-object-manager-shared-helpers-authored-106a
 0x00422E00,unknown,,review,unknown,ida-1.06a-initial-inventory

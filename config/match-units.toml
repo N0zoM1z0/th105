@@ -28276,3 +28276,21 @@ rel32_targets = ["?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z=0x00419590"
 address = "0x00419590"
 symbol_base = "?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z"
 rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26", "??_U@YAPAXI@Z=0x00665B8A"]
+
+[units.exact-first-effect-group-lifetime]
+kind = "probe"
+source = "src/battle/EffectResourceGroupLifetime.cpp"
+object = "build/match-units/ExactFirst_EffectGroupLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Actual32-byte PatternData group owns vector<FrameData> at+4; explicit clear in constructor and destructor. Complete131/135 canonical comparisons. No generated helper credit."
+
+[[units.exact-first-effect-group-lifetime.functions]]
+address = "0x00422AE0"
+symbol_base = "??0EffectResourceGroup@th105@@QAE@XZ"
+rel32_targets = ["?erase@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@2@V32@0@Z=0x004221E0", "?_Tidy@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@IAEXXZ=0x00422260", "__invalid_parameter_noinfo=0x0068A143", "@__security_check_cookie@4=0x00689D25"]
+
+[[units.exact-first-effect-group-lifetime.functions]]
+address = "0x00422660"
+symbol_base = "??1EffectResourceGroup@th105@@UAE@XZ"
+rel32_targets = ["?erase@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@2@V32@0@Z=0x004221E0", "?_Tidy@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@IAEXXZ=0x00422260", "__invalid_parameter_noinfo=0x0068A143", "@__security_check_cookie@4=0x00689D25"]

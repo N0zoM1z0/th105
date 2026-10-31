@@ -1,3 +1,4 @@
+#include "battle/EffectResourceGroup.hpp"
 #include "battle/PatRecordLifetime.cpp"
 #include "battle/PatResourceContracts.hpp"
 #include "assets/FileReaderOperations.hpp"
@@ -11,15 +12,6 @@
 extern "C" __declspec(dllimport) int __cdecl wsprintfA(char *, const char *, ...);
 namespace th105 {
 typedef char effect_frame_size[sizeof(FrameData) == 0x1c ? 1 : -1];
-struct EffectResourceGroup {
-    EffectResourceGroup();
-    virtual ~EffectResourceGroup();
-    std::vector<FrameData> frames_04;
-    unsigned char flag_14;
-    EffectResourceGroup *previous_18;
-    EffectResourceGroup *next_1c;
-};
-typedef char effect_group_size[sizeof(EffectResourceGroup) == 0x20 ? 1 : -1];
 struct PatFileReaderOwner {
     PatFileReaderOwner();
     ~PatFileReaderOwner();

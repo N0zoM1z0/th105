@@ -1751,3 +1751,5 @@ CMenuReplay_update_browse_state
 run_bgm_playback_worker
 parse_script_line
 dispatch_wave_resource
+EffectResourceGroup_ctor
+EffectResourceGroup_dtor
