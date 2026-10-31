@@ -1,0 +1,74 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/engine/SceneResourceBootstrap.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x0043B2E0"
+size = 31
+symbol = "?size@?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@QBEIXZ"
+
+[[anchors]]
+address = "0x0043B760"
+size = 101
+symbol = "??$_Copy_opt@PAUSceneBootstrapInputEx@th105@@PAU12@Uforward_iterator_tag@std@@@std@@YAPAUSceneBootstrapInputEx@th105@@PAU12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0043B7D0"
+size = 101
+symbol = "??$_Copy_backward_opt@PAUSceneBootstrapInputEx@th105@@PAU12@Uforward_iterator_tag@std@@@std@@YAPAUSceneBootstrapInputEx@th105@@PAU12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0043BDC0"
+size = 85
+symbol = "??$_Copy_opt@PAUSceneBootstrapInputEx@th105@@PAU12@@std@@YAPAUSceneBootstrapInputEx@th105@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0043BC80"
+size = 95
+symbol = "??$_Fill@PAUSceneBootstrapInputEx@th105@@U12@@std@@YAXPAUSceneBootstrapInputEx@th105@@0ABU12@@Z"
+
+[[anchors]]
+address = "0x0043BCE0"
+size = 89
+symbol = "??$_Copy_backward_opt@PAUSceneBootstrapInputEx@th105@@PAU12@@std@@YAPAUSceneBootstrapInputEx@th105@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0043BD40"
+size = 118
+symbol = "??$_Uninit_copy@PAUSceneBootstrapInputEx@th105@@PAU12@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@YAPAUSceneBootstrapInputEx@th105@@PAU12@00AAV?$allocator@USceneBootstrapInputEx@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0043BE20"
+size = 106
+symbol = "??$_Uninit_fill_n@PAUSceneBootstrapInputEx@th105@@IU12@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@YAXPAUSceneBootstrapInputEx@th105@@IABU12@AAV?$allocator@USceneBootstrapInputEx@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0043BEF0"
+size = 38
+symbol = "?_Destroy@?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@IAEXPAUSceneBootstrapInputEx@th105@@0@Z"
+
+[[anchors]]
+address = "0x0043C2D0"
+size = 108
+symbol = "?erase@?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@2@V32@0@Z"
+
+[[anchors]]
+address = "0x0043C340"
+size = 55
+symbol = "?_Ufill@?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@IAEPAUSceneBootstrapInputEx@th105@@PAU34@IABU34@@Z"
+
+[[anchors]]
+address = "0x0043D340"
+size = 812
+symbol = "?_Insert_n@?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@IAEXV?$_Vector_iterator@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@2@IABUSceneBootstrapInputEx@th105@@@Z"
+
+[[anchors]]
+address = "0x0043DDD0"
+size = 243
+symbol = "?_Assign_n@?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@IAEXIABUSceneBootstrapInputEx@th105@@@Z"

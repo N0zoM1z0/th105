@@ -1,0 +1,49 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/ui/SceneTimelineLoader.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x004505E0"
+size = 87
+symbol = "?_Buynode@?$_Tree@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tset_traits@USceneInterpolationEntry24@th105@@USceneTimelineStartLess@2@V?$allocator@USceneInterpolationEntry24@th105@@@std@@$00@std@@@2@PAU342@00ABUSceneInterpolationEntry24@th105@@D@Z"
+
+[[anchors]]
+address = "0x00450A30"
+size = 163
+symbol = "??$_Copy_opt@V?$_Deque_const_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@$0A@@std@@V?$_Deque_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@$0A@@2@Uforward_iterator_tag@2@@std@@YA?AV?$_Deque_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@$0A@@0@V?$_Deque_const_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@$0A@@0@0V10@Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00450AE0"
+size = 164
+symbol = "??$_Copy_backward_opt@V?$_Deque_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@$0A@@std@@V12@Uforward_iterator_tag@2@@std@@YA?AV?$_Deque_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@$0A@@0@V10@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00451160"
+size = 160
+symbol = "?_Incsize@?$list@URenderTimelineEntry@th105@@V?$allocator@URenderTimelineEntry@th105@@@std@@@std@@IAEXI@Z"
+
+[[anchors]]
+address = "0x00451880"
+size = 341
+symbol = "?_Growmap@?$deque@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@IAEXI@Z"
+
+[[anchors]]
+address = "0x00451B70"
+size = 95
+symbol = "?push_front@?$deque@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAEXABVCSpriteEx@@@Z"
+
+[[anchors]]
+address = "0x00451E30"
+size = 1818
+symbol = "??$_Insert@V?$_Deque_const_iterator@IV?$allocator@I@std@@$00@std@@@?$deque@IV?$allocator@I@std@@@std@@QAEXV?$_Deque_iterator@IV?$allocator@I@std@@$00@1@V?$_Deque_const_iterator@IV?$allocator@I@std@@$00@1@1Ubidirectional_iterator_tag@1@@Z"
+
+[[anchors]]
+address = "0x00452550"
+size = 1819
+symbol = "??$_Insert@V?$_Deque_const_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@$00@std@@@?$deque@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAEXV?$_Deque_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@$00@1@V?$_Deque_const_iterator@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@$00@1@1Ubidirectional_iterator_tag@1@@Z"

@@ -1,0 +1,59 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/config/ScoreDefaults.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x0042C960"
+size = 31
+symbol = "?size@?$vector@UScoreDefaultRecord24@th105@@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@std@@QBEIXZ"
+
+[[anchors]]
+address = "0x0042CB30"
+size = 60
+symbol = "??$_Fill@PAUScoreDefaultRecord24@th105@@U12@@std@@YAXPAUScoreDefaultRecord24@th105@@0ABU12@@Z"
+
+[[anchors]]
+address = "0x0042CB70"
+size = 65
+symbol = "??$_Copy_backward_opt@PAUScoreDefaultRecord24@th105@@PAU12@Uforward_iterator_tag@std@@@std@@YAPAUScoreDefaultRecord24@th105@@PAU12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0042CD70"
+size = 95
+symbol = "??$_Copy_backward_opt@PAUScoreDefaultRecord24@th105@@PAU12@@std@@YAPAUScoreDefaultRecord24@th105@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0042CDD0"
+size = 67
+symbol = "??$_Uninit_copy@PAUScoreDefaultRecord24@th105@@PAU12@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@std@@YAPAUScoreDefaultRecord24@th105@@PAU12@00AAV?$allocator@UScoreDefaultRecord24@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0042CEA0"
+size = 67
+symbol = "??$_Uninit_fill_n@PAUScoreDefaultRecord24@th105@@IU12@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@std@@YAXPAUScoreDefaultRecord24@th105@@IABU12@AAV?$allocator@UScoreDefaultRecord24@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0042D220"
+size = 54
+symbol = "?_Ufill@?$vector@UScoreDefaultRecord24@th105@@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@std@@IAEPAUScoreDefaultRecord24@th105@@PAU34@IABU34@@Z"
+
+[[anchors]]
+address = "0x0042D920"
+size = 509
+symbol = "?_Insert@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@IAE?AViterator@12@_NPAU_Node@?$_Tree_nod@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@2@ABI@Z"
+
+[[anchors]]
+address = "0x0042DBE0"
+size = 713
+symbol = "?_Insert_n@?$vector@UScoreDefaultRecord24@th105@@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@std@@IAEXV?$_Vector_iterator@UScoreDefaultRecord24@th105@@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@2@IABUScoreDefaultRecord24@th105@@@Z"
+
+[[anchors]]
+address = "0x0042DF10"
+size = 170
+symbol = "?insert@?$vector@UScoreDefaultRecord24@th105@@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@UScoreDefaultRecord24@th105@@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@2@V32@ABUScoreDefaultRecord24@th105@@@Z"

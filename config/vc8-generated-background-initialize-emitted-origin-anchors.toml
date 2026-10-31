@@ -1,0 +1,24 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/BackgroundInitializeCommon.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x00465C90"
+size = 66
+symbol = "??$_Uninit_copy@PAVCEffectSprite@@PAV1@V?$allocator@VCEffectSprite@@@std@@@std@@YAPAVCEffectSprite@@PAV1@00AAV?$allocator@VCEffectSprite@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00465D10"
+size = 54
+symbol = "??$_Uninit_fill_n@PAVCEffectSprite@@IV1@V?$allocator@VCEffectSprite@@@std@@@std@@YAXPAVCEffectSprite@@IABV1@AAV?$allocator@VCEffectSprite@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x004660A0"
+size = 824
+symbol = "?_Insert_n@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXV?$_Vector_iterator@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@2@IABVCEffectSprite@@@Z"

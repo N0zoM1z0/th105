@@ -1,0 +1,62 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/ui/DesignBaseLoad.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x0040CD00"
+size = 53
+symbol = "??$_Copy_backward_opt@PAUDesignTextureHandle@th105@@PAU12@@std@@YAPAUDesignTextureHandle@th105@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "design-base-load-0"
+
+[[anchors]]
+address = "0x00424DA0"
+size = 53
+symbol = "??$_Copy_backward_opt@PAUDesignTextureHandle@th105@@PAU12@@std@@YAPAUDesignTextureHandle@th105@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "design-base-load-0"
+
+[[anchors]]
+address = "0x0040CE80"
+size = 37
+symbol = "??$_Uninit_copy@PAUDesignTextureHandle@th105@@PAU12@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@YAPAUDesignTextureHandle@th105@@PAU12@00AAV?$allocator@UDesignTextureHandle@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "design-base-load-1"
+
+[[anchors]]
+address = "0x00424D40"
+size = 37
+symbol = "??$_Uninit_copy@PAUDesignTextureHandle@th105@@PAU12@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@YAPAUDesignTextureHandle@th105@@PAU12@00AAV?$allocator@UDesignTextureHandle@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "design-base-load-1"
+
+[[anchors]]
+address = "0x0040CE50"
+size = 37
+symbol = "??$_Uninit_fill_n@PAUDesignTextureHandle@th105@@IU12@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@YAXPAUDesignTextureHandle@th105@@IABU12@AAV?$allocator@UDesignTextureHandle@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "design-base-load-2"
+
+[[anchors]]
+address = "0x00424D70"
+size = 37
+symbol = "??$_Uninit_fill_n@PAUDesignTextureHandle@th105@@IU12@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@YAXPAUDesignTextureHandle@th105@@IABU12@AAV?$allocator@UDesignTextureHandle@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+equivalence_group = "design-base-load-2"
+
+[[anchors]]
+address = "0x0040CBF0"
+size = 51
+symbol = "?_Ufill@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@IAEPAUDesignTextureHandle@th105@@PAU34@IABU34@@Z"
+equivalence_group = "design-base-load-3"
+
+[[anchors]]
+address = "0x00424DE0"
+size = 51
+symbol = "?_Ufill@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@IAEPAUDesignTextureHandle@th105@@PAU34@IABU34@@Z"
+equivalence_group = "design-base-load-3"
+
+[[anchors]]
+address = "0x00424EC0"
+size = 592
+symbol = "?_Insert_n@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@IAEXV?$_Vector_iterator@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@2@IABUDesignTextureHandle@th105@@@Z"

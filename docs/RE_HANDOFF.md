@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+A broader existing-COFF discovery now proves59 further original compiler/STL
+bodies (14055 bytes) through14 fresh source-specific origin rebuilds. All55
+complete full-inventory hit sets pass unchanged gates, including four explicit
+two-member design-vector groups. No source/profile/tool changes or authored
+credit. Stale sequence-control objects and overlapping hit sets are not used.
+Exact1578/448979, source1776/authored1796/mapped1803/units760 unchanged;
+excluded1780/review451. See EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up.
+
 SpellDataOwner destructor4619C0 is canonical101/101 plus all117 generated
 EH bytes, using the already emitted ordinary CharacterDtorSpell68 lifetime.
 Explicit spell cleanup precedes two short deques and resource-core destruction.

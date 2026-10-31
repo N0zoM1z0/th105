@@ -4680,3 +4680,244 @@ evidence = "Original VC8 checked container/string COMDATs regenerated from src/b
 required_body_hashes = [
  { address = "0x004229E0", size = 256, sha256 = "66ab382bcab2bc89c43c64c840804ef6131be8c0880c351b176cf440c4eebd91" },
 ]
+
+[[rules]]
+id = "vc8-generated-package-file-index-runtime-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-package-file-index-runtime-emitted-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 509
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/assets/PackageFileIndexRuntime.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x00451200", size = 509, sha256 = "17b358f0e39a0b8c1798e61159bcd161556b9cf061015c78b162726cb5146b41" },
+]
+
+[[rules]]
+id = "vc8-generated-network-winsock-receive-thread-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-network-winsock-receive-thread-emitted-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 231
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/network/NetworkWinsockReceiveThread.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x0045FA00", size = 48, sha256 = "b52ec6f6f7210980d4596c3451faf90f9ea31306d802cd203eeb5c0f68176016" },
+ { address = "0x0045F890", size = 73, sha256 = "c0e48ce202415a6576d848a10555b88bca22748e270f90abc0abb293fbeac233" },
+ { address = "0x0040CE10", size = 55, sha256 = "626b3b44f5e5600431fcf2a5579f8d5ee0f675026961155ae86230c06b86b2c1" },
+ { address = "0x0040C8B0", size = 55, sha256 = "dc9db9e12788106877d0a76a8f2bd64824fcd22925a8305140942185fb30b8bc" },
+]
+
+[[rules]]
+id = "vc8-generated-design-base-load-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-design-base-load-emitted-origin-anchors.toml"
+expected_count = 9
+expected_bytes = 948
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/ui/DesignBaseLoad.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x0040CD00", size = 53, sha256 = "f4f066678d7c88e6d00da09e85117b927f19c68c70fde72608361392ac68dc22" },
+ { address = "0x00424DA0", size = 53, sha256 = "f4f066678d7c88e6d00da09e85117b927f19c68c70fde72608361392ac68dc22" },
+ { address = "0x0040CE80", size = 37, sha256 = "def4c21a1d6130d21df9ffc08f48358a9d4a85de3467fffa26457649a37bdc65" },
+ { address = "0x00424D40", size = 37, sha256 = "def4c21a1d6130d21df9ffc08f48358a9d4a85de3467fffa26457649a37bdc65" },
+ { address = "0x0040CE50", size = 37, sha256 = "122acfdaa779e0dcda79191a0f6c15d5543717bb789ce2814d0e28d2ca103fbf" },
+ { address = "0x00424D70", size = 37, sha256 = "122acfdaa779e0dcda79191a0f6c15d5543717bb789ce2814d0e28d2ca103fbf" },
+ { address = "0x0040CBF0", size = 51, sha256 = "3987f5c2cd1a2fcb996ce68c80f6fa571042bea1d469a109ac3ffa33e397f645" },
+ { address = "0x00424DE0", size = 51, sha256 = "eb208549a1e67b4ac18a5caad380f16123dc5cb4b441b9677faeaf6d0138bedc" },
+ { address = "0x00424EC0", size = 592, sha256 = "47106da202dcc0492574bf1757c46b7b3cda807768d6f78ae68dd5f1ee22c4ed" },
+]
+
+[[rules]]
+id = "vc8-generated-select-constructor-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-select-constructor-emitted-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 40
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/ui/SelectConstructor.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x00420C30", size = 40, sha256 = "8fe09e844f9648ad8a062ad6202c1165c7daa6f5d1b746b978096f5671801fea" },
+]
+
+[[rules]]
+id = "vc8-generated-spell-filtered-csv-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-spell-filtered-csv-emitted-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 164
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/battle/SpellCsvFilteredParser.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x00432B10", size = 55, sha256 = "fa0c674475450430c99759ffa81c77a51e20ca2f039d752ae190411efb525220" },
+ { address = "0x00432CB0", size = 109, sha256 = "4d9794f757be3a9055ce6de407395bc3b661ad8e84233e89c77c3ebf36c4dc87" },
+]
+
+[[rules]]
+id = "vc8-generated-scene-resource-bootstrap-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scene-resource-bootstrap-emitted-origin-anchors.toml"
+expected_count = 13
+expected_bytes = 1982
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/engine/SceneResourceBootstrap.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x0043B2E0", size = 31, sha256 = "4aefd387ee8b5db2f319b5977af40d7f95e8c62621f68472d1ec9e8f34642671" },
+ { address = "0x0043B760", size = 101, sha256 = "2baeff13a14fae0c7724edc4f70fc2deaefbda2c0c9e978d4f60105009367c06" },
+ { address = "0x0043B7D0", size = 101, sha256 = "fd03ea3201147b54b0de80261b07033735c29ceb4814ddaafb4ce38ca7071720" },
+ { address = "0x0043BDC0", size = 85, sha256 = "4c6e2d84de2ca91586052378f3c1e5b4bab334f72d767be6cf89aea3c455e5b1" },
+ { address = "0x0043BC80", size = 95, sha256 = "8ef4ed699038a52aa1e023ef3b1a5d565658d48e06055106677a1849216ca4a4" },
+ { address = "0x0043BCE0", size = 89, sha256 = "0c89e491238955022a9b448c700cfc164760c6768e28adebfe41e9191e877b5c" },
+ { address = "0x0043BD40", size = 118, sha256 = "d428c6aa506fff58620ee2bb21805e47ef5cdcdce09d6c0f7c8841bcabc20796" },
+ { address = "0x0043BE20", size = 106, sha256 = "70f4637fd6dff24e626fea5f620563ad4c05b477dcf1f6304face8a2ce2d00b8" },
+ { address = "0x0043BEF0", size = 38, sha256 = "0be2b83b2723954cc010c4563a16430bb5496cb598f0cf51e8c6dd84b9ebf1bd" },
+ { address = "0x0043C2D0", size = 108, sha256 = "cec26a6db126a44fc6e6fb504220e80bc6026ce46971805434d8af086700faac" },
+ { address = "0x0043C340", size = 55, sha256 = "e98cf44bb58de02dce065817fee765cd997b9edee9b4e962f2be53ec2f2ac519" },
+ { address = "0x0043D340", size = 812, sha256 = "fc40e20e9d7c2340a0155ea64794ee90bfe47c1e8eadb7b9be28077f005a4a02" },
+ { address = "0x0043DDD0", size = 243, sha256 = "3c9471a31310b23be12bf24118b7b1324c5c9b3148f7c0731c56fd16b4e88e8d" },
+]
+
+[[rules]]
+id = "vc8-generated-effect-resources-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-effect-resources-emitted-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 880
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/battle/EffectResourceLoading.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x004222F0", size = 880, sha256 = "4f5aaa45316e22f03b945a3d107c80dafe8802588c18008738a64c520c8b412f" },
+]
+
+[[rules]]
+id = "vc8-generated-score-defaults-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-score-defaults-emitted-origin-anchors.toml"
+expected_count = 10
+expected_bytes = 1831
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/config/ScoreDefaults.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x0042C960", size = 31, sha256 = "a7527ac09e8bd0418808b3f8f4e3bfae58ac462e794cc0037f2dbef31ba6f47c" },
+ { address = "0x0042CB30", size = 60, sha256 = "86ea6acdddd9433cf77fdd28beb1c55a9bbf5b01e7162bd16945efb184a0c072" },
+ { address = "0x0042CB70", size = 65, sha256 = "d052bdb4eb44b5c28f7dc2c5ade4fef614d9110a341f42916dffa04e9b8f0f95" },
+ { address = "0x0042CD70", size = 95, sha256 = "25bd79a9d9881ea58ed5e4eb1cc3f7f6089f44e37155a000d8ff4caae5e2d08c" },
+ { address = "0x0042CDD0", size = 67, sha256 = "969d389522a67b14ca5886806b5efd5566bd801fa3d488b3e52b6dd45c343e18" },
+ { address = "0x0042CEA0", size = 67, sha256 = "a83a8d637bbbea47603a91d488a458ad655063bab32057450e2d380184e3235b" },
+ { address = "0x0042D220", size = 54, sha256 = "c9a82f70689f327442654ddb9b8ff0f053ad93d114a66c193e0e126f9601e26f" },
+ { address = "0x0042D920", size = 509, sha256 = "db249dfdb4e12ff506d4eb347275da1a0fea4acfa1cf366c6e16291008683f5e" },
+ { address = "0x0042DBE0", size = 713, sha256 = "0d142b73563164b9c398fc13c5abe44b5c363fce5b353b383637485b90a0027b" },
+ { address = "0x0042DF10", size = 170, sha256 = "84de178109fff444f2f48d67fc5fcef653d5f2456e94d51ff1079a686911d8a8" },
+]
+
+[[rules]]
+id = "vc8-generated-profile-deck-constructor-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-profile-deck-constructor-emitted-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 55
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/ui/ProfileDeckConstructor.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x0043BBC0", size = 55, sha256 = "286806572a56b80568c8be211776a8372dc211b1b40682d7c7e5d4226552d99a" },
+]
+
+[[rules]]
+id = "vc8-generated-character-destructor-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-character-destructor-emitted-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 135
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/characters/CharacterDestructor.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x0045FC80", size = 135, sha256 = "474e0c1a3cc69670e6300e033ca675176676598ff7a2ef5dfd3b0d435ca1d2ba" },
+]
+
+[[rules]]
+id = "vc8-generated-scenario-data-lifetime-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scenario-data-lifetime-emitted-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 995
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/battle/ScenarioDataLifetime.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x004551E0", size = 29, sha256 = "10d6ce1c6b874392838049f99e7b5acb660c3a262b950124986455d0074bedd7" },
+ { address = "0x00455420", size = 109, sha256 = "bb15a613d855e92d6e31b711366baed74fc8cfca61988aadccc1dfb874a57a17" },
+ { address = "0x004369D0", size = 857, sha256 = "a563dbf5086d51dfc23a3e61f92a82dedc5fa19b65915d2374a7e8ed88ed5e21" },
+]
+
+[[rules]]
+id = "vc8-generated-scene-timeline-loader-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scene-timeline-loader-emitted-origin-anchors.toml"
+expected_count = 8
+expected_bytes = 4647
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/ui/SceneTimelineLoader.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x004505E0", size = 87, sha256 = "e3342765cbb7118bae83084cf8dd75750157f8177a1e5639eb649075f13f5d1e" },
+ { address = "0x00450A30", size = 163, sha256 = "28d5cb7bc45193de38792b5c847bec0f32ed696a2fa54eb9c7c38c40d19a8a29" },
+ { address = "0x00450AE0", size = 164, sha256 = "7ece682aaa34f2a64651ef21d69efe0b3af06e67d0d2da3d76a10aec31797116" },
+ { address = "0x00451160", size = 160, sha256 = "83432f0ba0432d538b7bb505efd630660eb96c0057ee8d7cbc07d8304538ae37" },
+ { address = "0x00451880", size = 341, sha256 = "85f70d653359e98d195c29632a0c752efc8c482d545e7af6a9a70d9eead93b2f" },
+ { address = "0x00451B70", size = 95, sha256 = "38d00e37ce6a88f6152146125150a9404d08a3d011f7e8ac70dd149118dd89f9" },
+ { address = "0x00451E30", size = 1818, sha256 = "7351992e9b755f2c726a50a063fd83b4e83b98af34b449ee1dc96c92285b52f8" },
+ { address = "0x00452550", size = 1819, sha256 = "25df8b1fb82881895c59efbb6f46a2d617eb5a96b34cb249c86f841f23e2ef8d" },
+]
+
+[[rules]]
+id = "vc8-generated-background-initialize-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-background-initialize-emitted-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 944
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/battle/BackgroundInitializeCommon.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x00465C90", size = 66, sha256 = "660167f8864db8b930931adc293e5579ec1fd72da65de7286a4914369d07a3c3" },
+ { address = "0x00465D10", size = 54, sha256 = "092d2dd2383af2ad84f9bc0af0e05e5dfa2710b35c8d32ef338278482902390a" },
+ { address = "0x004660A0", size = 824, sha256 = "229d14be42e1043c552739cee00cb72f683b348c71f67a5d310ca77a223686a1" },
+]
+
+[[rules]]
+id = "vc8-generated-event-effect-initialize-emitted-106a"
+vc8_generated_anchor_file = "config/vc8-generated-event-effect-initialize-emitted-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 694
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 SP1 regenerates original checked STL or compiler lifetime COMDATs from src/battle/EventEffectRuntimeInitialize.cpp. Full-inventory complete hit sets, exact non-relocation bytes, strict section extent and unchanged0.70/24 coverage gates prove compiler origin; original nominal template type is not uniquely inferred for equivalent shapes. No authored exact credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up."
+required_body_hashes = [
+ { address = "0x00469FA0", size = 509, sha256 = "6ae23798063bff38427ad9b088e73186ab5900a3fe54f1ee60758841ef71d11f" },
+ { address = "0x0046A1A0", size = 185, sha256 = "bfdbd56b9cccef6ab127da1ba59a2a1f12e20612d44beb79dd8d588647e59afc" },
+]

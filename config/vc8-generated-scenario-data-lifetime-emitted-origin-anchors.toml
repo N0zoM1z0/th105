@@ -1,0 +1,24 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/ScenarioDataLifetime.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x004551E0"
+size = 29
+symbol = "?_Buynode@?$list@UScenarioRenderEntry9C@th105@@V?$allocator@UScenarioRenderEntry9C@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UScenarioRenderEntry9C@th105@@V?$allocator@UScenarioRenderEntry9C@th105@@@std@@@2@XZ"
+
+[[anchors]]
+address = "0x00455420"
+size = 109
+symbol = "??1?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@QAE@XZ"
+
+[[anchors]]
+address = "0x004369D0"
+size = 857
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z"
