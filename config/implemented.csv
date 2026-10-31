@@ -1739,3 +1739,4 @@ initialize_mouse_device
 ConnectDigitEditor_update_port
 ConnectDigitEditor_update_address_and_port
 CMenuPractice_ctor
+CMenuConfig_ctor

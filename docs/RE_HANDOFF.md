@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Config menu constructor441520 now has complete caller/RTTI-backed source.
+Actual lookup/cursor providers and returned-handle lifetime recover the first
+821 bytes, but complete863/native868 remains nonexact on a repeated final
+clamp comparison. No byte credit. Source1742, authored1762, review845; exact
+1547/439428 unchanged. See CONFIG_MENU_CONSTRUCTOR_2026_10_31.md.
+
 Practice menu constructor446170 is canonical exact826/826. Actual cursor and
 shared design lookup bodies plus the natural texture-handle return temporary
 recover the complete frame. All five cleanup actions/handler98 and FuncInfo76

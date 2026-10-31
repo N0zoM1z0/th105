@@ -3986,3 +3986,18 @@ required_direct_edges = [
  {caller="0x00442790",site="0x00442899",target="0x00441BD0",caller_status="matching"},
  {caller="0x00442CE0",site="0x00442CFE",target="0x00441E10"},
 ]
+
+[[rules]]
+id = "config-menu-constructor-authored-106a"
+addresses = ["0x00441520"]
+expected_count = 1
+expected_bytes = 868
+expected_names = ["sub_441520"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "RTTI CMenuConfig, vtable publication and exact Title caller own this full configuration-menu constructor. It loads config.dat/mater.bmp, binds options and initializes volume/option UI. Full source863/native868 remains nonexact at+335; no prefix credit. docs/CONFIG_MENU_CONSTRUCTOR_2026_10_31.md."
+required_body_hashes = [{ address = "0x00441520", size = 868, sha256 = "c0c5a6d883abb20351c78aa60a5c7774d24e4f67eee8f5d6a5d63b773645da80" }]
+required_direct_edges = [{ caller = "0x00425990", site = "0x00425CCF", target = "0x00441520", caller_status = "matching" }]
+required_dword_values = [{ address = "0x00441562", value = "0x006C1A94" }]
