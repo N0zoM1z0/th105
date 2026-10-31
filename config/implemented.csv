@@ -1768,3 +1768,4 @@ BgmService_dtor
 BgmAllocationManager_ctor
 BgmService_play
 BgmStream_prepare
+RenderModeManager_initialize

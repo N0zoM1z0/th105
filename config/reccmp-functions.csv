@@ -1796,3 +1796,4 @@ BgmService_dtor,0x004033C0,function
 BgmAllocationManager_ctor,0x00403ED0,function
 BgmService_play,0x004036E0,function
 BgmStream_prepare,0x00402960,function
+RenderModeManager_initialize,0x00401430,function

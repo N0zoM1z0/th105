@@ -28314,3 +28314,19 @@ rel32_targets = [
   "@__security_check_cookie@4=0x00689D25",
   "___CxxFrameHandler3=0x006899E7",
 ]
+
+[units.exact-first-render-mode-initialize]
+preserve_public_members = ["?initialize@BattleBaseEffectLifetimeView@th105@@QAE_NPBXI@Z"]
+kind = "linked_candidate"
+source = "src/engine/RenderModeInitialize.cpp"
+object = "build/match-units/ExactFirst_RenderModeInitialize.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = false
+link_named_import_targets = ["_D3DXCreateEffect@36=0x006898A2"]
+link_data_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A", "render_mode_initialize_fields=render_mode_initialize_fields"]
+notes = "Complete142-byte renderer initialization through the actual RenderModeManager global, existing listener registration/critical source and real second effect-initializer caller. Separate attested initialized listener-base and zero-tail data bindings; no new storage or source vptr writes. Existing effect initializer is replayed with no new credit."
+
+[[units.exact-first-render-mode-initialize.functions]]
+address = "0x00401430"
+symbol_base = "?initialize_render_mode_manager@th105@@YA_NXZ"
+rel32_targets = ["?register_reset_listener@D3DBackendListenerRuntimeView@th105@@QAEXPAUDeviceResetListener@2@@Z=0x00414CB0"]

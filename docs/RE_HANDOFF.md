@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Renderer initialization401430/142 is canonical exact using the actual existing
+RenderModeManager type and real listener/critical/effect-initializer CIL graph.
+Independent initialized listener-base and zero field-tail data witnesses keep
+all absolute references checked without adding storage or widening old aliases.
+The real second effect caller retains native listener argument; both real
+initializer roots pass a strict context replay, and old effect/listener selected
+unit freshly passes. No dummy caller, source vptr store or verifier change.
+Exact1576/448613; source1771/authored1791/mapped1798, excluded1658/review578/
+units756; CI210. See RENDER_MODE_INITIALIZE_EXACT_2026_10_31.md.
+
 BGM play4036E0/351 and stream prepare402960/159 are newly canonical exact.
 Real stream/Ogg/DirectSound graph and allocated-token queues reproduce pending
 push_front, active/retired push_back and always-true return policy. By-value
