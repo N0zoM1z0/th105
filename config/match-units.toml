@@ -28294,3 +28294,25 @@ rel32_targets = ["?erase@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th10
 address = "0x00422660"
 symbol_base = "??1EffectResourceGroup@th105@@UAE@XZ"
 rel32_targets = ["?erase@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@2@V32@0@Z=0x004221E0", "?_Tidy@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@IAEXXZ=0x00422260", "__invalid_parameter_noinfo=0x0068A143", "@__security_check_cookie@4=0x00689D25"]
+
+[units.vc8-effect-group-deque-origin]
+kind = "probe"
+source = "scripts/probes/EffectGroupDequeOrigin.cpp"
+object = "build/match-units/VC8_EffectGroupDequeOrigin.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Three complete original VC8 deque/placement-copy library bodies518 bytes; no authored credit. Generic deque implementation identity does not prove unique template argument identity."
+
+[[units.vc8-effect-group-deque-origin.functions]]
+address = "0x00422770"
+symbol_base = "?_Growmap@?$deque@UEffectResourceGroup@th105@@V?$allocator@UEffectResourceGroup@th105@@@std@@@std@@IAEXI@Z"
+rel32_targets = ["??$_Allocate@PAUEffectResourceGroup@th105@@@std@@YAPAPAUEffectResourceGroup@th105@@IPAPAU12@@Z=0x00439580", "??3@YAXPAX@Z=0x006898EA", "?_Xlen@?$deque@UEffectResourceGroup@th105@@V?$allocator@UEffectResourceGroup@th105@@@std@@@std@@KAXXZ=0x00449940", "_memmove_s=0x00689EB0"]
+
+[[units.vc8-effect-group-deque-origin.functions]]
+address = "0x00422E00"
+symbol_base = "??$_Construct@UEffectResourceGroup@th105@@U12@@std@@YAXPAUEffectResourceGroup@th105@@ABU12@@Z"
+rel32_targets = ["??0?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@QAE@ABV01@@Z=0x004228D0"]
+
+[[units.vc8-effect-group-deque-origin.functions]]
+address = "0x004505A0"
+symbol_base = "?pop_front@?$deque@UEffectResourceGroup@th105@@V?$allocator@UEffectResourceGroup@th105@@@std@@@std@@QAEXXZ"

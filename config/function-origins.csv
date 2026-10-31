@@ -777,14 +777,14 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00422660,authored_game,battle,authored,observed,canonical-exact-authored
 0x004226F0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x00422710,compiler_generated,std,exclude,observed,vc8-generated-frame-vector-106a
-0x00422770,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00422770,compiler_generated,std,exclude,observed,vc8-generated-effect-group-deque-106a
 0x004228D0,compiler_generated,std,exclude,observed,vc8-generated-frame-vector-106a
 0x004229A0,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
 0x004229E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00422AE0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422B70,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422D30,authored_game,battle,authored,observed,effect-object-manager-shared-helpers-authored-106a
-0x00422E00,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00422E00,compiler_generated,std,exclude,observed,vc8-generated-effect-group-deque-106a
 0x00422E80,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422EA0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422F00,authored_game,battle,authored,observed,canonical-exact-authored
@@ -1598,7 +1598,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004504C0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004504F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00450510,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
-0x004505A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004505A0,compiler_generated,std,exclude,observed,vc8-generated-effect-group-deque-106a
 0x004505E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00450640,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004506C0,authored_game,battle,authored,observed,canonical-exact-authored

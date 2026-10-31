@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Original effect-group deque/placement-copy source now verifies three complete
+library bodies422770/341,422E00/117,4505A0/60, all518 canonical bytes.
+Full-inventory/hash/coverage provenance passes; generic templates do not imply
+unique original element identity. Excluded1658/review594/units751; authored
+exact1558/444502 unchanged. See EFFECT_GROUP_LIBRARY_ORIGINS_2026_10_31.md.
+
 PatternData effect-group constructor422AE0/131 and destructor422660/135
 are now complete canonical exact through ordinary vector<FrameData>::clear.
 Actual32-byte group declaration is shared; old loader2528 freshly stays exact.

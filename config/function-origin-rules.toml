@@ -4549,3 +4549,21 @@ required_body_hashes = [
 required_direct_edges = [
  { caller = "0x004184B0", site = "0x004184FF", target = "0x00408ED0", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "vc8-generated-effect-group-deque-106a"
+addresses = ["0x00422770", "0x00422E00", "0x004505A0"]
+expected_count = 3
+expected_bytes = 518
+expected_names = ["sub_422770", "sub_422E00", "sub_4505A0"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original unmodified VC8 deque<EffectResourceGroup> gives three unique complete full-inventory patterns and full canonical518-byte witnesses. Shared grow-map and pop-front implementations establish library family, not exclusive original element identity. No authored credit. docs/EFFECT_GROUP_LIBRARY_ORIGINS_2026_10_31.md."
+vc8_generated_anchor_file = "config/vc8-effect-group-deque-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00422770", size = 341, sha256 = "443b8a0e48554b2e9dd84603d9f09ad1faf6dc7db410ed2c263497b143700756" },
+ { address = "0x00422E00", size = 117, sha256 = "42ef1ee46bf66a1995ab50ce9689da75c8c0feca27913952dbceac3fb0285545" },
+ { address = "0x004505A0", size = 60, sha256 = "7fd60eb1b42b4d9bb01c5bd1cd7ffe39265604e7fb5df3cd14382d5728b02003" },
+]
