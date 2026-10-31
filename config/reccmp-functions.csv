@@ -1776,3 +1776,4 @@ WeatherEffectObjectPool_acquire,0x00437520,function
 EffectObjectPool_acquire,0x004379D0,function
 CMenuConnect_update_main_state,0x00444830,function
 CMenuReplay_update_browse_state,0x00446860,function
+run_bgm_playback_worker,0x00403B90,function

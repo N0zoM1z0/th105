@@ -28185,3 +28185,16 @@ symbol_base = "?parse_all@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_tr
 address = "0x006A10F0"
 symbol_base = "?is_bad_repeat@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NPAUre_syntax_base@23@@Z"
 rel32_targets = ["__allshl=0x006B6D00"]
+
+[units.exact-first-bgm-playback-worker]
+kind = "probe"
+source = "src/audio/BgmPlaybackWorker.cpp"
+object = "build/match-units/ExactFirst_BgmPlaybackWorker.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete326-byte native BGM playback worker policy; standalone331 and genuine single-CIL326 remain nonexact. Native stream-update EDI receiver is not fabricated. Separate observed global-offset alias leaves existing base-only BGM contract unchanged. docs/BGM_PLAYBACK_WORKER_2026_10_31.md."
+
+[[units.exact-first-bgm-playback-worker.functions]]
+address = "0x00403B90"
+symbol_base = "?run_bgm_playback_worker@th105@@YAXXZ"
+rel32_targets = ["?lookup@BgmPlaybackManagerView@th105@@QAEPAUBgmPlaybackStreamView@2@I@Z=0x00404330", "?update@BgmPlaybackStreamView@th105@@QAE_NXZ=0x00402C10", "__invalid_parameter_noinfo=0x0068A143", "??3@YAXPAX@Z=0x006898EA", "?_Buynode@?$list@IV?$allocator@I@std@@@std@@IAEPAU_Node@?$_List_nod@IV?$allocator@I@std@@@2@PAU342@0ABI@Z=0x004129E0", "?_Incsize@?$list@IV?$allocator@I@std@@@std@@IAEXI@Z=0x0040C6D0"]

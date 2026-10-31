@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+First BGM playback worker403B90 now has complete326-byte/98-instruction source
+and exact-wrapper ownership. It polls16ms, updates active handles under the real
+lock, retires completed streams and wakes the loader. Standalone331 is nonexact;
+genuine single-CIL326 recovers the aligned frame but retains list register
+ownership and the native private EDI update boundary. No ABI/register forcing.
+Fresh caller leaves73/28/28 remain exact. Source1751/authored1771/review616,
+excluded1640/units745; exact1553/441679 unchanged.
+See BGM_PLAYBACK_WORKER_2026_10_31.md.
+
 Original acos start_9 at69BD0E is now library-owned: original COFF start label,
 fixed wrapper CALL, complete1364-byte containing code and6176-byte polynomial
 data all reproduce native evidence. Its existing1334-byte inventory row alone

@@ -4472,3 +4472,21 @@ required_body_hashes = [
 required_direct_edges = [
  { caller = "0x0069BCF0", site = "0x0069BD01", target = "0x0069BD0E", caller_status = "unclassified" },
 ]
+
+[[rules]]
+id = "bgm-playback-worker-authored-106a"
+addresses = ["0x00403B90"]
+expected_count = 1
+expected_bytes = 326
+expected_names = ["sub_403B90"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact COM thread wrapper403B50 calls complete playback worker403B90 at403B5C. Native16ms event wait, service lock, checked active-list iteration, actual stream update, retirement/erase and loader-event signal are all covered by normal source. Private EDI callee boundary remains nonexact; no arbitrary source ABI or exact credit. docs/BGM_PLAYBACK_WORKER_2026_10_31.md."
+required_body_hashes = [{ address = "0x00403B90", size = 326, sha256 = "8b33f92a9dbc11c1a586018f99162f8a49cd950c46fa90e45b4299f386340ae1" }]
+required_direct_edges = [{ caller = "0x00403B50", site = "0x00403B5C", target = "0x00403B90", caller_status = "matching" }]
+required_selected_body_calls = [
+ { owner = "0x00403B90", site = "0x00403C11", target = "0x00404330", target_status = "implemented" },
+ { owner = "0x00403B90", site = "0x00403C20", target = "0x00402C10", target_status = "implemented" },
+]
