@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+BGM play4036E0/351 and stream prepare402960/159 are newly canonical exact.
+Real stream/Ogg/DirectSound graph and allocated-token queues reproduce pending
+push_front, active/retired push_back and always-true return policy. By-value
+std::string preparation retains all79 EH bytes, through freshly exact351-byte
+parent at40375E. No ABI/frame forcing or verifier change. Old Ogg291/SFL484
+freshly pass. Stream start339/native358 in this context remains unaccepted.
+Exact1575/448471; source1770/authored1790/mapped1797, excluded1658/review579/
+units755; CI210. See BGM_LOAD_SERVICE_EXACT_2026_10_31.md.
+
 BGM shutdown4034F0/449 is now canonical exact in the real service/token queue/
 manager/thread CIL context. Native aligned frame and private EAX release calls
 emerge naturally; no source ABI or padding. All four roots199/148/133/449 and

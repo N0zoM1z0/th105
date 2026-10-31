@@ -28281,3 +28281,36 @@ private_from = { caller = "0x004032F0", site = "0x0040334B", through_exact_calle
 address = "0x004034F0"
 symbol_base = "?shutdown@BgmServiceLifetime@th105@@QAEXXZ"
 rel32_targets = ["?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640", "?release@BgmAllocationManager50@th105@@QAEXI@Z=0x00404270", "??3@YAXPAX@Z=0x006898EA", "__invalid_parameter_noinfo=0x0068A143"]
+
+[units.exact-first-bgm-load-service]
+kind = "linked_candidate"
+source = "src/audio/BgmServiceLoad.cpp"
+object = "build/match-units/ExactFirst_BgmLoadService.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+link_xiph_sdk = true
+link_ogg_callbacks = true
+link_numeric_literals = [{ symbol = "__real@41f0000000000000", target = "__real@41f0000000000000" }]
+preserve_public_members = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z", "??1FileReaderOwner@th105@@QAE@XZ", "?lookup@BgmLoadManagerView@th105@@QAEPAUBgmStreamRuntime@2@I@Z"]
+link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__timeGetTime@0=__imp__timeGetTime@0", "?bgm_minimum_gain@th105@@3MB=_bgm_transition_minimum_gain", "?logarithmic_volume_scale@th105@@3MB=_logarithmic_volume_scale", "?direct_sound_volume_units@th105@@3MB=_direct_sound_volume_units", "_wave_lock_error=_direct_sound_lock_error", "_wave_error_title=?sound_error_title@th105@@3QBDB", "__imp__SetEvent@4=__imp__SetEvent@4"]
+notes = "Complete BGM play351 through actual stream/Ogg/DirectSound providers and real BgmHandleResult queues. Queued loads push_front; immediate success pushes active_back under the service lock; failure retires and signals. Native true return preserved. Whole private prepare159 has independent caller/EH follow-up."
+
+[[units.exact-first-bgm-load-service.functions]]
+address = "0x004036E0"
+symbol_base = "?play@BgmLoadServiceView@th105@@QAE_NUBgmHandleResult@2@PBD_NM@Z"
+rel32_targets = ["?lookup@BgmLoadManagerView@th105@@QAEPAUBgmStreamRuntime@2@I@Z=0x00404330", "?prepare@BgmStreamRuntime@th105@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MM@Z=0x00402960", "?start@BgmStreamRuntime@th105@@QAE_NXZ=0x00402A00", "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0", "?_Buynode@?$list@UBgmHandleResult@th105@@V?$allocator@UBgmHandleResult@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UBgmHandleResult@th105@@V?$allocator@UBgmHandleResult@th105@@@std@@@2@PAU342@0ABUBgmHandleResult@th105@@@Z=0x004129E0", "?_Incsize@?$list@UBgmHandleResult@th105@@V?$allocator@UBgmHandleResult@th105@@@std@@@std@@IAEXI@Z=0x0040C6D0"]
+
+[[units.exact-first-bgm-load-service.functions]]
+address = "0x00402960"
+symbol_base = "?prepare@BgmStreamRuntime@th105@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@MM@Z"
+private_from = { caller = "0x004036E0", site = "0x0040375E", through_exact_caller = true }
+eh_cleanup = { handler = "0x006BDA98", info = "0x006E40BC" }
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+  "??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ=0x00401E00",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+  "___CxxFrameHandler3=0x006899E7",
+]

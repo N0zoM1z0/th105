@@ -586,6 +586,7 @@ struct BgmStreamRuntime {
     bool start();
     bool update();
     void handoff(BgmStreamRuntime *other);
+    void prepare(std::string path, float master, float gain);
 };
 typedef char StreamSize[sizeof(BgmStreamRuntime)==0x1378?1:-1];
 typedef char StreamSource[offsetof(BgmStreamRuntime,source_30)==0x30?1:-1];

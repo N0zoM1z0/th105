@@ -59,7 +59,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00402810,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402820,authored_game,audio,authored,observed,canonical-exact-authored
 0x00402880,authored_game,audio,authored,observed,canonical-exact-authored
-0x00402960,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00402960,authored_game,audio,authored,observed,canonical-exact-authored
 0x00402A00,authored_game,audio,authored,observed,bgm-stream-runtime-authored-106a
 0x00402B70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402C10,authored_game,audio,authored,observed,bgm-stream-runtime-authored-106a
@@ -69,7 +69,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00403460,authored_game,audio,authored,observed,canonical-exact-authored
 0x004034F0,authored_game,audio,authored,observed,canonical-exact-authored
 0x004036C0,authored_game,audio,authored,observed,bgm-handle-allocation-authored-106a
-0x004036E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004036E0,authored_game,audio,authored,observed,canonical-exact-authored
 0x00403840,authored_game,audio,authored,observed,bgm-service-members-authored-106a
 0x004038D0,authored_game,audio,authored,observed,bgm-service-members-authored-106a
 0x00403940,authored_game,audio,authored,observed,canonical-exact-authored
