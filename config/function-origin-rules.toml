@@ -4582,14 +4582,14 @@ required_body_hashes = [{ address = "0x00443B30", size = 243, sha256 = "83499778
 
 [[rules]]
 id = "boost-release-switch-library-106a"
-addresses = ["0x006AF880", "0x006B04E0"]
-expected_count = 2
-expected_bytes = 3885
-expected_names = ["sub_6AF880", "sub_6B04E0"]
+addresses = ["0x006A0DC0", "0x006A0EE0", "0x006A2C40", "0x006A7C90", "0x006AF880", "0x006B04E0"]
+expected_count = 6
+expected_bytes = 4829
+expected_names = ["sub_6A0DC0", "sub_6A0EE0", "sub_6A2C40", "sub_6A7C90", "sub_6AF880", "sub_6B04E0"]
 origin = "third_party"
 subsystem = "boost_regex"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Unchanged verified Boost release parser methods reproduce complete1407/2478 code bytes plus all128/107 compact-switch metadata bytes. Entire canonical COMDAT tail, fixed-base target hash, one bounded index-map/dispatch, every local jump relocation and complete reachable code are mandatory before the existing full-inventory source fingerprint check. No truncated table or authored credit. docs/BOOST_COMPACT_SWITCH_PAYLOAD_2026_10_31.md."
+evidence = "Six unchanged original Boost release methods reproduce all4829 code bytes and409 compact-switch metadata bytes. Every complete canonical COMDAT, guarded map/table, local relocation and all reachable code is checked before unchanged full-inventory provenance checks. No table truncation or authored credit. docs/BOOST_COMPACT_SWITCH_PAYLOAD_2026_10_31.md."
 vc8_generated_anchor_file = "config/boost-release-switch-origin-anchors.toml"
-required_body_hashes = [{ address = "0x006B04E0", size = 2478, sha256 = "60401780dceb783eb76e438006d0b3be9936e1036feb08450b5d2b819373233c" }, { address = "0x006AF880", size = 1407, sha256 = "94dda5a8ec5951f6f8f7bb2eec6a1b422c2318a63e6fc58083ac3d9bdc3f3f7e" }]
+required_body_hashes = [{ address = "0x006B04E0", size = 2478, sha256 = "60401780dceb783eb76e438006d0b3be9936e1036feb08450b5d2b819373233c" }, { address = "0x006AF880", size = 1407, sha256 = "94dda5a8ec5951f6f8f7bb2eec6a1b422c2318a63e6fc58083ac3d9bdc3f3f7e" }, { address = "0x006A0DC0", size = 118, sha256 = "e269b00ccc41bf61e04cadf905358ee3803746a424fe3b1528803c231ea02f7a" }, { address = "0x006A0EE0", size = 84, sha256 = "5e65c64250caa58306b6f11baa2eb861452e7d6e5d146adb1afb28f82f491784" }, { address = "0x006A2C40", size = 196, sha256 = "5afb596740a7c770e407f387d1f12d5224269a7c934b2b59f7ab88cadd5f0e3a" }, { address = "0x006A7C90", size = 546, sha256 = "a28b6cab392ce743aaf53950c85676df654242c0a8a9d79513afe0253d363daa" }]

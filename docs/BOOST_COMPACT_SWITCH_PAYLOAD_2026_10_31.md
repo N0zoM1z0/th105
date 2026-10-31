@@ -89,3 +89,36 @@ validation under build/frontier-boost-library-20261031/.
 Two library exclusions add3885 code bytes only: excluded1710, review524.
 Authored exact1576 /448613 bytes, source1773, authored1793, mapped1800 and
 units759 stay unchanged. No authored or helper-byte inflation.
+
+## Four more envelopes through the unchanged gate
+
+A bounded discovery pass over both already-verified original instance objects
+found four more complete compact-switch candidates. Discovery was explicitly
+non-acceptance: their actual source objects subsequently passed full canonical
+replay and the same closed-code/table/index-map verification:
+
+- fixup_pointers6A0DC0:118 code /154 payload,5 jump entries/14 indices.
+  SHA-2563b20771b36e09d652b866d77c022f954e39efa0d9e20c56f449d276d99061fc4.
+- probe_leading_repeat6A0EE0:84 code /126 payload,4 entries/26 indices.
+  SHA-256c8cac4ec2f944f3f63d7c3a6d7854bf523a951731f093a4e66b4225b8e6698b2.
+- calculate_backstep6A2C40:196 code /255 payload,8 entries/27 indices.
+  SHA-256b7c69efa4a770cc96bc756ef49eea4b2900c683f86c00f7caeb782d4e7092a72.
+- parse_repeat6A7C90:546 code /583 payload,2 entries/27 indices.
+  SHA-256c3602e59ffd86be47c4c5e6592f9bd7eca91ffc07e3ae6fedf5fdf57849355ff.
+
+All944 code bytes and174 metadata bytes pass. The first two reproduce under
+both reference assertion configurations, so their equality does not distinguish
+the original assertion macro. Public reproduction retains the same dedicated
+release wrapper. No source, compiler flags, verifier or tests change here.
+The two remaining append_set reference sections remain genuinely nonmatching
+in both configurations; section-size similarity is not accepted as equality.
+
+The expanded full-inventory switch rule passes all six physical bodies/4829
+code bytes, each with its entire canonical payload. Only the four newly
+reviewed rows change classification; the previous two are not counted again.
+The public release unit now passes ten canonical roots:5744 code bytes plus409
+metadata bytes. Default CI223 and whitespace checks pass. Receipts:
+build/frontier-boost-more-switches-20261031/.
+
+Excluded1714/review520; exact1576 /448613, source1773/authored1793/mapped1800
+and units759 remain unchanged. No authored credit or table truncation.

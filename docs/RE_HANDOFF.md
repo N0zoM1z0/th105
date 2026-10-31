@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Four more original Boost compact switches fully pass the unchanged gate:
+6A0DC0 code118/payload154,6A0EE0 84/126,6A2C40 196/255,6A7C90 546/583.
+All944 code and174 metadata bytes compare, with guarded local tables/closed
+all-reachable CFG. Expanded six-body origin rule passes4829 code bytes; only
+four new rows are excluded, no recount. Public release unit ten roots5744 code
+plus409 metadata passes; CI223. Source/compiler/verifier unchanged. Excluded1714/
+review520; exact1576/448613, source1773/authored1793/mapped1800/units759 unchanged.
+See BOOST_COMPACT_SWITCH_PAYLOAD_2026_10_31.md follow-up.
+
 Two original Boost release parsers now fully match including compact switches:
 6B04E0 code2478/payload2585 and6AF880 code1407/payload1535. Entire canonical
 COMDATs, alignment, local table relocations/maps, unsigned guards and closed

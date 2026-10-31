@@ -3581,9 +3581,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A0D50,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006A0D70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A0D80,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a
-0x006A0DC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A0DC0,third_party,boost_regex,exclude,observed,boost-release-switch-library-106a
 0x006A0E60,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006A0EE0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A0EE0,third_party,boost_regex,exclude,observed,boost-release-switch-library-106a
 0x006A0F60,compiler_generated,runtime,exclude,observed,vc8-generated-uint-value8-tree-family-106a
 0x006A0F80,compiler_generated,runtime,exclude,observed,vc8-generated-uint-value8-tree-family-106a
 0x006A0FA0,compiler_generated,runtime,exclude,observed,vc8-generated-uint-value8-tree-family-106a
@@ -3636,7 +3636,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A2B10,compiler_generated,runtime,exclude,observed,vc8-generated-uint-value8-tree-family-106a
 0x006A2B60,compiler_generated,runtime,exclude,observed,vc8-generated-uint-value8-tree-family-106a
 0x006A2BC0,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
-0x006A2C40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A2C40,third_party,boost_regex,exclude,observed,boost-release-switch-library-106a
 0x006A2D40,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
 0x006A2D90,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
 0x006A2DF0,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a
@@ -3759,7 +3759,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A7660,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A79C0,third_party,boost_regex,exclude,observed,boost-narrow-boost-equivalence-106a
 0x006A7A80,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
-0x006A7C90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A7C90,third_party,boost_regex,exclude,observed,boost-release-switch-library-106a
 0x006A7EE0,third_party,boost_regex,exclude,observed,boost-release-library-106a
 0x006A80E0,third_party,boost_regex,exclude,observed,boost-release-library-106a
 0x006A8310,third_party,boost_regex,exclude,observed,boost-narrow-library-106a

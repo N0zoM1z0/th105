@@ -23,3 +23,31 @@ size = 1407
 symbol = "?parse_extended_escape@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NXZ"
 switch_payload = { size = 1535, sha256 = "16946d68fb558c1a76a9902c29f863b1f9d6a4b59f3ddd18f129954a6f937326", alignment_hex = "90", table_offset = 1408, table_entries = 21, map_offset = 1492, map_size = 43, load_offset = 80, jump_offset = 87 }
 payload_rel32_targets = ["??$global_toi@DV?$w32_regex_traits@D@boost@@@re_detail@boost@@YAHAAPBDPBDHABV?$w32_regex_traits@D@1@@Z=0x006A3CC0", "??0?$basic_char_set@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE@XZ=0x006ADA90", "??1?$basic_char_set@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE@XZ=0x006A8310", "?append_literal@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEPAUre_literal@23@D@Z=0x006A3B00", "?append_set@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEPAUre_syntax_base@23@ABV?$basic_char_set@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@23@@Z=0x006ADFE0", "?append_state@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEPAUre_syntax_base@23@W4syntax_element_type@23@I@Z=0x006A3A10", "?fail@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEXW4error_type@regex_constants@3@H@Z=0x006A7430", "?lookup_classname@?$w32_regex_traits_implementation@D@re_detail@boost@@QBEKPBD0@Z=0x006A7A80", "?parse_QE@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NXZ=0x006A8680", "?parse_all@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NXZ=0x006A0D50", "?parse_backref@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NXZ=0x006ADAF0", "?parse_match_any@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NXZ=0x006A3AB0", "?unescape_character@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEDXZ=0x006A9860"]
+
+[[anchors]]
+address = "0x006A0DC0"
+size = 118
+symbol = "?fixup_pointers@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAEXPAUre_syntax_base@23@@Z"
+switch_payload = { size = 154, sha256 = "3b20771b36e09d652b866d77c022f954e39efa0d9e20c56f449d276d99061fc4", alignment_hex = "8bff", table_offset = 120, table_entries = 5, map_offset = 140, map_size = 14, load_offset = 29, jump_offset = 36 }
+payload_rel32_targets = ["_memset=0x0068A440"]
+
+[[anchors]]
+address = "0x006A0EE0"
+size = 84
+symbol = "?probe_leading_repeat@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAEXPAUre_syntax_base@23@@Z"
+switch_payload = { size = 126, sha256 = "c8cac4ec2f944f3f63d7c3a6d7854bf523a951731f093a4e66b4225b8e6698b2", alignment_hex = "", table_offset = 84, table_entries = 4, map_offset = 100, map_size = 26, load_offset = 11, jump_offset = 18 }
+payload_rel32_targets = []
+
+[[anchors]]
+address = "0x006A2C40"
+size = 196
+symbol = "?calculate_backstep@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAEHPAUre_syntax_base@23@@Z"
+switch_payload = { size = 255, sha256 = "b7c69efa4a770cc96bc756ef49eea4b2900c683f86c00f7caeb782d4e7092a72", alignment_hex = "", table_offset = 196, table_entries = 8, map_offset = 228, map_size = 27, load_offset = 30, jump_offset = 37 }
+payload_rel32_targets = ["?get_repeat_type@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE?AW4syntax_element_type@23@PAUre_syntax_base@23@@Z=0x006A1180"]
+
+[[anchors]]
+address = "0x006A7C90"
+size = 546
+symbol = "?parse_repeat@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NII@Z"
+switch_payload = { size = 583, sha256 = "c3602e59ffd86be47c4c5e6592f9bd7eca91ffc07e3ae6fedf5fdf57849355ff", alignment_hex = "8bff", table_offset = 548, table_entries = 2, map_offset = 556, map_size = 27, load_offset = 507, jump_offset = 514 }
+payload_rel32_targets = ["?append_state@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEPAUre_syntax_base@23@W4syntax_element_type@23@I@Z=0x006A3A10", "?fail@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEXW4error_type@regex_constants@3@H@Z=0x006A7430", "?insert_state@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEPAUre_syntax_base@23@HW4syntax_element_type@23@I@Z=0x006A2BC0"]
