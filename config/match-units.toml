@@ -18270,7 +18270,7 @@ source = "src/audio/AudioSchedulerFinalizer.cpp"
 object = "build/match-units/GptWeb_AudioSchedulerFinalizer.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "IDA-missed 241-byte atexit finalizer body @ 0x00419000. Raw dynamic initializer 0x006BE8A0 registers wrapper 0x006BEED0, which tail-jumps here. Natural no-arg global finalizer reproduces scheduler stop/listener cleanup/member destruction semantics. Standalone VC8 keeps ordinary list::_Tidy and cross-TU member destructor boundaries while target LTCG specializes/inlines them; no private ESI ABI is fabricated."
+notes = "IDA-missed 241-byte atexit finalizer body @ 0x00419000. Raw dynamic initializer 0x006BE8A0 registers wrapper 0x006BEED0, which tail-jumps here. Natural no-arg global finalizer reproduces scheduler stop/listener cleanup/member destruction semantics. The native cached end iterator is now retained. Ordinary273/native241 and actual thread/critical-section provider CIL304/native241 remain nonexact; the private ESI list destructor is not fabricated. docs/AUDIO_SCHEDULER_FINALIZER_2026_10_31.md."
 
 [[units.gpt-web-audio-scheduler-finalizer.functions]]
 address = "0x00419000"

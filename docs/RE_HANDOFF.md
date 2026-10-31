@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Audio scheduler finalizer419000 now retains the native cached end iterator,
+restoring the initial checked dereference. Ordinary273/native241 and actual
+provider CIL304/native241 remain nonexact; no byte gain. See
+AUDIO_SCHEDULER_FINALIZER_2026_10_31.md.
+
 Connect digit editors441BD0/441E10 are now complete source-present and
 caller-backed authored. Normal unsigned-char/bool key-test types are corrected.
 Ordinary and actual-provider CIL remain568/570 and888/891 nonexact. Source1740,

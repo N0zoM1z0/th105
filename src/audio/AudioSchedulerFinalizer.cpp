@@ -12,8 +12,9 @@ void __cdecl finalize_audio_scheduler_state()
     EnterCriticalSection(
         &g_audio_scheduler_state.critical_section_00.critical_section_04);
 
-    for (std::list<void *>::iterator it = g_audio_scheduler_state.listeners_2c.begin();
-         it != g_audio_scheduler_state.listeners_2c.end();
+    for (std::list<void *>::iterator it = g_audio_scheduler_state.listeners_2c.begin(),
+         end = g_audio_scheduler_state.listeners_2c.end();
+         it != end;
          ++it) {
         SetEvent(*it);
         CloseHandle(*it);
