@@ -1794,7 +1794,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045CED0,authored_game,battle,authored,observed,existing-object-battle-source-stops-authored-106a
 0x0045CF50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045CF60,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
-0x0045CFB0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0045CFB0,compiler_generated,battle,exclude,observed,vc8-generated-sequence-card-lifetime-106a
 0x0045D040,authored_game,battle,authored,observed,existing-object-battle-source-stops-authored-106a
 0x0045D110,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045D1B0,authored_game,battle,authored,observed,canonical-exact-authored
@@ -1806,7 +1806,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045D670,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x0045D730,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x0045D7B0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
-0x0045D830,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0045D830,compiler_generated,battle,exclude,observed,vc8-generated-sequence-card-lifetime-106a
 0x0045DA40,compiler_generated,battle,exclude,observed,vc8-generated-fighter-sequence-deque-comdats-106a
 0x0045DBA0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0045DC20,compiler_generated,battle,exclude,observed,vc8-generated-deque-short-erase

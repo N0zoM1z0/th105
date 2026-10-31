@@ -28467,3 +28467,21 @@ rel32_targets = [
  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
  "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E900",
 ]
+
+[units.vc8-sequence-card-library-origin]
+kind = "probe"
+source = "scripts/probes/SequenceCardLifetimeOrigin.cpp"
+object = "build/match-units/SequenceCardLifetimeOrigin.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Genuine checked deque range erase and implicit sprite assignment from the actual recovered card layout. Compiler-origin canonical witnesses only, not authored credit. docs/SEQUENCE_CARD_GENERATED_ORIGINS_2026_10_31.md."
+
+[[units.vc8-sequence-card-library-origin.functions]]
+address = "0x0045CFB0"
+symbol_base = "??4SequenceRotateSprite94@th105@@QAEAAU01@ABU01@@Z"
+
+[[units.vc8-sequence-card-library-origin.functions]]
+address = "0x0045D830"
+symbol_base = "?erase@?$deque@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@2@V32@0@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "??$copy_backward@V?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@0@V10@00@Z=0x0045D730", "??$copy@V?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@0@V10@00@Z=0x0045D7B0"]
+dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]

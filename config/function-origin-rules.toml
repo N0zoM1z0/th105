@@ -4921,3 +4921,14 @@ required_body_hashes = [
  { address = "0x00469FA0", size = 509, sha256 = "6ae23798063bff38427ad9b088e73186ab5900a3fe54f1ee60758841ef71d11f" },
  { address = "0x0046A1A0", size = 185, sha256 = "bfdbd56b9cccef6ab127da1ba59a2a1f12e20612d44beb79dd8d588647e59afc" },
 ]
+
+[[rules]]
+id = "vc8-generated-sequence-card-lifetime-106a"
+vc8_generated_anchor_file = "config/vc8-generated-sequence-card-lifetime-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 658
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Genuine VC8 deque range erase and implicit sprite assignment reuse the independently exact recovered card/sprite layout. Both full143/515 canonical bodies and full-inventory source fingerprints pass. The probe is compiler-origin evidence, not an invented gameplay caller or authored credit. docs/SEQUENCE_CARD_GENERATED_ORIGINS_2026_10_31.md."

@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+A reproducible explicit compiler probe now closes the two stale-object leads:
+implicit sprite assignment45CFB0/143 and genuine deque range erase45D830/515
+are full canonical exact and full-inventory unique. The probe reuses actual
+accepted rotation/card declarations; it is not a gameplay caller or advance
+workaround. Fresh rotation265/copy116 plus96 support bytes pass. Compiler
+exclusions only:1782/review449, units761; exact1578/448979 and source1776/
+authored1796/mapped1803 unchanged. See SEQUENCE_CARD_GENERATED_ORIGINS_2026_10_31.md.
+
 A broader existing-COFF discovery now proves59 further original compiler/STL
 bodies (14055 bytes) through14 fresh source-specific origin rebuilds. All55
 complete full-inventory hit sets pass unchanged gates, including four explicit
