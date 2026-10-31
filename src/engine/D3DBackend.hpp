@@ -101,7 +101,8 @@ struct D3DDevice9 : D3DUnknown {
     virtual D3DHResult __stdcall SetTexture(unsigned, void *) = 0; // 65
 #define TH105_D3D_SLOT(N) virtual void __stdcall d3d_slot_##N() = 0;
     TH105_D3D_SLOT(66)
-    TH105_D3D_SLOT(67)
+    virtual D3DHResult __stdcall SetTextureStageState(
+        unsigned stage, unsigned type, unsigned value) = 0; // 67
     TH105_D3D_SLOT(68)
 #undef TH105_D3D_SLOT
     virtual D3DHResult __stdcall SetSamplerState(

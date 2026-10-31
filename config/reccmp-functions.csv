@@ -1805,3 +1805,4 @@ SpellDataOwner_dtor,0x004619C0,function
 TNumberValue_floatptr_get_integer,0x0046A640,function
 TNumberValue_floatptr_get_floating,0x0046A650,function
 Fighter_try_dispatch_front_word_actions_690_696,0x00494450,function
+RenderModeManager_set_pair_state,0x00404940,function

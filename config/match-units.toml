@@ -6874,7 +6874,7 @@ dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3
 address = "0x004014C0"
 symbol_base = "?on_device_reset@RenderModeManager@th105@@UAEXXZ"
 rel32_targets = [
-  "?set_pair_state@RenderModeManager@th105@@QAEEEE@Z=0x00404940",
+  "?set_pair_state@RenderModeManager@th105@@QAEXEE@Z=0x00404940",
   "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
   "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
 ]
@@ -18123,7 +18123,7 @@ rel32_targets = [
   "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
   "?set_state_22@RenderModeManager@th105@@QAEXH@Z=0x00404A40",
   "?set_gate_states@RenderModeManager@th105@@QAEHEE@Z=0x004049C0",
-  "?set_pair_state@RenderModeManager@th105@@QAEEEE@Z=0x00404940",
+  "?set_pair_state@RenderModeManager@th105@@QAEXEE@Z=0x00404940",
   "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
   "?set_sampler_state@RenderModeManager@th105@@QAEJIII@Z=0x00404730",
   "?initialize_403460@BgmBootstrapServiceView@th105@@QAEXXZ=0x00403460",
@@ -28518,3 +28518,15 @@ rel32_targets = [
  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
  "?lookup_command_gate_value@Fighter@th105@@QAEFF@Z=0x00493D40",
 ]
+
+[units.exact-first-render-pair-state]
+kind = "probe"
+source = "src/engine/RenderPairState.cpp"
+object = "build/match-units/ExactFirst_RenderPairState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete121-byte renderer pair-state publication canonical exact through actual device calls and cached byte state. Void return follows both real callers, avoiding invented result retention. docs/RENDER_PAIR_STATE_EXACT_2026_10_31.md."
+
+[[units.exact-first-render-pair-state.functions]]
+address = "0x00404940"
+symbol_base = "?set_pair_state@RenderModeManager@th105@@QAEXEE@Z"

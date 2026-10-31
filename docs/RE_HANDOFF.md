@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Renderer pair-state404940 is canonical121 through actual COM calls and cached
+byte publication. Both real callers ignore the result; correcting the old
+char return to ordinary void removes artificial result retention and matches
+all bytes. Existing unused device slot67 is typed without changing layout.
+Renderer six roots and scene four roots freshly pass. Exact1581/449116,
+source1780/authored1800/mapped1807/excluded1783/review444/units763. See
+RENDER_PAIR_STATE_EXACT_2026_10_31.md.
+
 Shared front-card gate494450 is now authored/source-present, with complete
 950-byte/305-instruction/eight-RET4 closure and14 pinned exact roster caller
 edges. Existing source stays950/nonexact+72; no old range/lifetime retry.
