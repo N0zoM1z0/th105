@@ -30,6 +30,17 @@ private:
     unsigned char payload_04[0xA0];
 };
 
+// Shared ordinary lifetime for the actual94-byte UI sprite.
+class UiSpriteLifetime94 : public CNumberColorLifetime {
+public:
+    virtual ~UiSpriteLifetime94() {}
+    virtual void set_color(unsigned);
+    virtual void set_vertex_colors(const unsigned *);
+    virtual void multiply_color(unsigned);
+    unsigned char storage_04[0x90];
+};
+typedef char UiSpriteLifetimeExtent[sizeof(UiSpriteLifetime94) == 0x94 ? 1 : -1];
+
 class CNumberLifetime : public CNumberColorLifetime {
 public:
     CNumberLifetime();

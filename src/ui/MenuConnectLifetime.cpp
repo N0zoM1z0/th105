@@ -7,14 +7,7 @@
 #include <deque>
 #include <string>
 namespace th105 {
-class ConnectSpriteLifetime94 : public CNumberColorLifetime {
-public:
-    virtual ~ConnectSpriteLifetime94() {}
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-    unsigned char storage_04[0x90];
-};
+
 // Pointer-only view of the existing global; no storage is constructed here.
 struct ConnectProfileListView { void shutdown(); };
 extern ConnectProfileListView g_connect_profile_list;
@@ -47,8 +40,8 @@ private:
     ConnectTextureHandle texture_060;
     CNumberTileLifetime tile_064;
     CNumberLifetime number_108;
-    ConnectSpriteLifetime94 sprite_1d4;
-    ConnectSpriteLifetime94 sprite_268;
+    UiSpriteLifetime94 sprite_1d4;
+    UiSpriteLifetime94 sprite_268;
     ConnectTextureHandle texture_2fc;
     CNumberTileLifetime tile_300;
     std::deque<std::string> rows_3a4;

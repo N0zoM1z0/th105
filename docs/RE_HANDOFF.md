@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Profile key destructor44B9D0 is canonical exact188 through actual polymorphic
+tile lifetime. Shared UiSpriteLifetime94 removes duplicate lifetime declarations;
+all eleven old affected functions freshly remain exact (twelve comparisons).
+Constructor/runtime views are unchanged; no manual vptr stores or fake aliases.
+Exact1565/446423; source1761/authored1781/mapped1788, excluded1658/review588/
+units753 unchanged. See PROFILE_KEY_DESTRUCTOR_EXACT_2026_10_31.md.
+
 CSelect normal destructor424260 is canonical exact845. Actual polymorphic
 sprite/tile lifetimes resolve the former+605 scheduling difference, with no
 manual vptr writes. Shared CNumberLifetime.hpp preserves declarations; old

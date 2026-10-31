@@ -1,14 +1,14 @@
-#include "ProfileSubmenus.hpp"
+#include "ui/ProfileSubmenuLifetime.hpp"
 
 namespace th105 {
 
-CProfileCharacterSelect::~CProfileCharacterSelect()
+CProfileCharacterSelectLifetime::~CProfileCharacterSelectLifetime()
 {
     g_title_resource_manager.release_title_resource_handle(texture_04);
     design_13c.virtual_cleanup();
 }
 
-CProfileKeyConfig::~CProfileKeyConfig()
+CProfileKeyConfigLifetime::~CProfileKeyConfigLifetime()
 {
     g_title_resource_manager.release_title_resource_handle(texture_3c);
     g_title_resource_manager.release_title_resource_handle(texture_e4);

@@ -46,14 +46,7 @@ extern "C" void *get_network_session();
 extern "C" void *get_player_slot_record(int);
 extern "C" void *get_score_data();
 extern "C" const char *character_key_to_name(unsigned);
-class SelectSpriteLifetime94 : public CNumberColorLifetime {
-public:
- virtual ~SelectSpriteLifetime94() {}
- virtual void set_color(unsigned);
- virtual void set_vertex_colors(const unsigned *);
- virtual void multiply_color(unsigned);
- unsigned char storage_04[0x90];
-};
+
 class CSelectLifetime : public CSceneBase {
 public:
  CSelectLifetime(); virtual ~CSelectLifetime();
@@ -69,11 +62,11 @@ public:
  std::string strings_0c8[2];
  unsigned char fields_100[0x50];
  CDesignBase character_design_150;
- DesignTextureHandle cursor_textures_184[2];SelectSpriteLifetime94 cursor_images_18c[2];
- DesignTextureHandle background_2b4;SelectSpriteLifetime94 background_2b8;
+ DesignTextureHandle cursor_textures_184[2];UiSpriteLifetime94 cursor_images_18c[2];
+ DesignTextureHandle background_2b4;UiSpriteLifetime94 background_2b8;
  DesignTextureHandle names_34c;CNumberTileLifetime names_350;
- DesignTextureHandle random_names_3f4;SelectSpriteLifetime94 random_names_3f8;
- DesignTextureHandle extra_textures_48c[2];SelectSpriteLifetime94 extra_images_494[2];
+ DesignTextureHandle random_names_3f4;UiSpriteLifetime94 random_names_3f8;
+ DesignTextureHandle extra_textures_48c[2];UiSpriteLifetime94 extra_images_494[2];
  UiDesignObject *slots_5bc[16];
  UiDesignObject *slots_5fc[2];UiDesignObject *slots_604[2];
  int field_60c;void *slots_610[2];UiDesignObject *anchor_618;
@@ -83,7 +76,7 @@ public:
  unsigned char fields_1954[0x30];
  CDesignBase background_design_1984;
  DesignTextureHandle pictures_19b8[16],names_19f8[16];
- SelectSpriteLifetime94 picture_images_1a38[16],name_images_2378[16];
+ UiSpriteLifetime94 picture_images_1a38[16],name_images_2378[16];
  UiDesignObject *slots_2cb8[3];UiDesignObject *background_anchor_2cc4,*background_anchor_2cc8;
  DesignTextureHandle music_2ccc;CNumberTileLifetime music_2cd0;
  UiDesignObject *music_anchor_2d74;bool field_2d78;

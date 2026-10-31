@@ -1703,18 +1703,6 @@ confidence = "observed"
 evidence = "Canonical-exact target callers carry the current decorated game-method identities for all five entries, and the existing tracked VC8 probe objects independently emit same-name same-size bodies from BattleSetupSlots.cpp, HitCounters.cpp, SpellRuntime.cpp and ObjectResponses.cpp. Canonical comparisons remain nonexact only on previously documented checked-container visibility/register allocation or 16-bit load-width scheduling; same-size emission is discovery evidence, not exact credit."
 
 [[rules]]
-id = "profile-key-config-normal-dtor-authored-106a"
-addresses = ["0x0044B9D0"]
-expected_count = 1
-expected_bytes = 188
-expected_names = ["sub_44B9D0"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Canonical-exact CProfileKeyConfig scalar deleting destructor 0x0044BCD0 directly calls this normal destructor; current vtable/ctor and the exact Profile submenu lifetime family fix the 0x330 natural layout. The same tracked ProfileSubmenuLifetime.cpp emits 188 bytes, with the sole known residual a scheduler-only store/load swap; keep source-present nonexact."
-
-[[rules]]
 id = "character-object-manager-update-prune-authored-106a"
 addresses = ["0x0058BE10"]
 expected_count = 1
