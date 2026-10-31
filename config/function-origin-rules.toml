@@ -4608,3 +4608,75 @@ confidence = "observed"
 evidence = "Fresh exact fighter wave loader132 calls this complete224-byte service policy. Both RET8 exits and every native instruction close; allocation/load/failure recycle and effective DirectSound gain are application policy. Full genuine CIL source221 remains nonexact; no exact or helper credit. docs/WAVE_SERVICE_LOAD_SOURCE_2026_10_31.md."
 required_body_hashes = [{ address = "0x00401AF0", size = 224, sha256 = "4656d7b85447306152dcaac9d06591a317ba024485e32c0d6b1443540ec4ffa2" }]
 required_direct_edges = [{ caller = "0x0045F680", site = "0x0045F6D3", target = "0x00401AF0", caller_status = "matching" }]
+
+[[rules]]
+id = "vc8-generated-scene-timeline-loader-extra-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scene-timeline-loader-extra-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 201
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original VC8 checked container/string COMDATs regenerated from src/ui/SceneTimelineLoader.cpp. Full-inventory unique relocation-masked fingerprints with unchanged coverage and complete section boundaries establish compiler ownership only. No canonical authored-byte credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md."
+required_body_hashes = [
+ { address = "0x00451BD0", size = 94, sha256 = "90ba52e050f409890e59e20d3d0b72c07b517b858124331a78e9cb6e6dc43a81" },
+ { address = "0x004519E0", size = 107, sha256 = "d625bc71356fc291075b935a3f1e67ec1efdd119d8f952cde5587d433f2c7b13" },
+]
+
+[[rules]]
+id = "vc8-generated-scenario-text-rebuild-extra-106a"
+vc8_generated_anchor_file = "config/vc8-generated-scenario-text-rebuild-extra-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 260
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original VC8 checked container/string COMDATs regenerated from src/battle/ScenarioTextRebuild.cpp. Full-inventory unique relocation-masked fingerprints with unchanged coverage and complete section boundaries establish compiler ownership only. No canonical authored-byte credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md."
+required_body_hashes = [
+ { address = "0x00455BE0", size = 100, sha256 = "8813d50b258b3114d96c1e7e278c024300ded4a162f0937055965a44db96b494" },
+ { address = "0x00455E50", size = 160, sha256 = "0f3db2d26cc76660492b729590ce734bebfad6c07b510d6ac9e65a8e5adb2187" },
+]
+
+[[rules]]
+id = "vc8-generated-score-defaults-extra-106a"
+vc8_generated_anchor_file = "config/vc8-generated-score-defaults-extra-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 160
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original VC8 checked container/string COMDATs regenerated from src/config/ScoreDefaults.cpp. Full-inventory unique relocation-masked fingerprints with unchanged coverage and complete section boundaries establish compiler ownership only. No canonical authored-byte credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md."
+required_body_hashes = [
+ { address = "0x0042DFC0", size = 160, sha256 = "236cef65068572b5900ba40fb35762956ce08edce7f22a8abba210a2bc877875" },
+]
+
+[[rules]]
+id = "vc8-generated-replay-filename-extra-106a"
+vc8_generated_anchor_file = "config/vc8-generated-replay-filename-extra-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 191
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original VC8 checked container/string COMDATs regenerated from src/battle/ReplayFilename.cpp. Full-inventory unique relocation-masked fingerprints with unchanged coverage and complete section boundaries establish compiler ownership only. No canonical authored-byte credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md."
+required_body_hashes = [
+ { address = "0x004285C0", size = 191, sha256 = "b76ad16cffce97f2431d768f334c93c9fd9c7b1f5e41c88882aea08ce65f7af3" },
+]
+
+[[rules]]
+id = "vc8-generated-effect-resources-extra-106a"
+vc8_generated_anchor_file = "config/vc8-generated-effect-resources-extra-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 256
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original VC8 checked container/string COMDATs regenerated from src/battle/EffectResourceLoading.cpp. Full-inventory unique relocation-masked fingerprints with unchanged coverage and complete section boundaries establish compiler ownership only. No canonical authored-byte credit. docs/EMITTED_CONTAINER_ORIGINS_2026_10_31.md."
+required_body_hashes = [
+ { address = "0x004229E0", size = 256, sha256 = "66ab382bcab2bc89c43c64c840804ef6131be8c0880c351b176cf440c4eebd91" },
+]

@@ -780,7 +780,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00422770,compiler_generated,std,exclude,observed,vc8-generated-effect-group-deque-106a
 0x004228D0,compiler_generated,std,exclude,observed,vc8-generated-frame-vector-106a
 0x004229A0,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
-0x004229E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004229E0,compiler_generated,runtime,exclude,observed,vc8-generated-effect-resources-extra-106a
 0x00422AE0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422B70,authored_game,battle,authored,observed,canonical-exact-authored
 0x00422D30,authored_game,battle,authored,observed,effect-object-manager-shared-helpers-authored-106a
@@ -867,7 +867,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00428500,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x00428560,authored_game,battle,authored,observed,canonical-exact-authored
 0x00428570,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
-0x004285C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004285C0,compiler_generated,runtime,exclude,observed,vc8-generated-replay-filename-extra-106a
 0x00428680,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004286A0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004286D0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
@@ -971,7 +971,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042DBE0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0042DEB0,authored_game,config,authored,observed,canonical-exact-authored
 0x0042DF10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0042DFC0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042DFC0,compiler_generated,runtime,exclude,observed,vc8-generated-score-defaults-extra-106a
 0x0042E060,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-resource-std-comdats-106a
 0x0042E370,compiler_generated,battle,exclude,observed,vc8-generated-spell-tree-probe-comdats-106a
 0x0042E3F0,authored_game,config,authored,observed,canonical-exact-authored
@@ -1629,11 +1629,11 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00451750,authored_game,battle,authored,observed,canonical-exact-authored
 0x004517B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00451880,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x004519E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004519E0,compiler_generated,runtime,exclude,observed,vc8-generated-scene-timeline-loader-extra-106a
 0x00451A50,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
 0x00451AF0,compiler_generated,runtime,exclude,observed,vc8-generated-deque-u32-comdats-106a
 0x00451B70,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00451BD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00451BD0,compiler_generated,runtime,exclude,observed,vc8-generated-scene-timeline-loader-extra-106a
 0x00451C30,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
 0x00451E30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00452550,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -1700,11 +1700,11 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00455850,authored_game,battle,authored,observed,scenario-render-list-fade-authored-106a
 0x00455A00,compiler_generated,std,exclude,observed,boost-narrow-std-equivalence-106a
 0x00455A80,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00455BE0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00455BE0,compiler_generated,runtime,exclude,observed,vc8-generated-scenario-text-rebuild-extra-106a
 0x00455C50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00455CD0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00455DD0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00455E50,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00455E50,compiler_generated,runtime,exclude,observed,vc8-generated-scenario-text-rebuild-extra-106a
 0x00455EF0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004560F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00456190,authored_game,battle,authored,observed,canonical-exact-authored

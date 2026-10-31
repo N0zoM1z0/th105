@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Seven original VC8 container/string helpers (1068 bytes) now have freshly
+rebuilt full-inventory-unique source fingerprints under unchanged origin gates.
+Five source-specific rules pass; all six existing authored roots and full1676
+byte timeline payload freshly pass. No source/tool/profile changes or authored
+credit. Excluded1721/review511; exact1577/448878, source1775/authored1795/
+mapped1802/units760 unchanged. Same-sized package allocator41D160 is rejected.
+See EMITTED_CONTAINER_ORIGINS_2026_10_31.md.
+
 Wave service load401AF0 now has complete source/ownership: stable token cell,
 CDSBuffer creation/load, failure delete/recycle and effective gain publication.
 All85 target instructions/two RET8 exits close; fresh exact caller45F680 binds
