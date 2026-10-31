@@ -1,0 +1,60 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+archive_set = "vc8-kb971090"
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 31
+
+[[anchors]]
+address = "0x0069BD0E"
+size = 1334
+library = "libcmt"
+object = "../build/intel/mt_obj/acos_pentium4.obj"
+symbol = "__CIacos_pentium4"
+inventory_hits = ["0x0069BD0E"]
+relocation_targets = [
+ { offset = 4, type = 6, symbol = "ABSVALMASK", target = "0x006D4C40" },
+ { offset = 12, type = 6, symbol = "ONEMASK", target = "0x006D4C50" },
+ { offset = 24, type = 6, symbol = "TMASK", target = "0x006D4C48" },
+ { offset = 118, type = 6, symbol = "T_table", target = "0x006D4380" },
+ { offset = 131, type = 6, symbol = "Tbl_addr", target = "0x006D3480" },
+ { offset = 175, type = 6, symbol = "cv", target = "0x006D4BF8" },
+ { offset = 183, type = 6, symbol = "cv", target = "0x006D4BE8" },
+ { offset = 218, type = 6, symbol = "cv", target = "0x006D4BF0" },
+ { offset = 245, type = 6, symbol = "PI_BY_2", target = "0x006D4B80" },
+ { offset = 422, type = 6, symbol = "T_table", target = "0x006D4380" },
+ { offset = 446, type = 6, symbol = "NEG_PI", target = "0x006D4B90" },
+ { offset = 466, type = 6, symbol = "cv", target = "0x006D4BE8" },
+ { offset = 482, type = 6, symbol = "cv", target = "0x006D4BF8" },
+ { offset = 494, type = 6, symbol = "cv", target = "0x006D4BF0" },
+ { offset = 503, type = 6, symbol = "Tbl_addr", target = "0x006D3480" },
+ { offset = 635, type = 6, symbol = "cv2", target = "0x006D4C00" },
+ { offset = 647, type = 6, symbol = "cv2", target = "0x006D4C10" },
+ { offset = 655, type = 6, symbol = "cv2", target = "0x006D4C20" },
+ { offset = 667, type = 6, symbol = "PI_BY_2", target = "0x006D4B80" },
+ { offset = 793, type = 6, symbol = "ABSVALMASK", target = "0x006D4C40" },
+ { offset = 801, type = 6, symbol = "ONE_BY_2", target = "0x006D4C58" },
+ { offset = 809, type = 6, symbol = "cv2", target = "0x006D4C00" },
+ { offset = 821, type = 6, symbol = "cv2", target = "0x006D4C10" },
+ { offset = 833, type = 6, symbol = "cv2", target = "0x006D4C20" },
+ { offset = 872, type = 6, symbol = "HALFMASK", target = "0x006D4BC0" },
+ { offset = 906, type = 6, symbol = "NEG_PI", target = "0x006D4B90" },
+ { offset = 1185, type = 20, symbol = "___libm_error_support", target = "0x00694A92" },
+ { offset = 1238, type = 6, symbol = "PI", target = "0x006D4BA0" },
+ { offset = 1246, type = 6, symbol = "PI", target = "0x006D4BA8" },
+ { offset = 1283, type = 6, symbol = "PI_BY_2", target = "0x006D4B80" },
+ { offset = 1291, type = 6, symbol = "PI_BY_2", target = "0x006D4B88" },
+]
+
+[anchors.assembly_entry]
+symbol = "start"
+offset = 30
+container_address = "0x0069BCF0"
+container_size = 1364
+container_sha256 = "2c338c566e6766298da94c86c1123a73caaf09ad03f4a146e396ad3e2d81655b"
+call_offset = 17
+
+[[anchors.assembly_entry.readonly_sections]]
+section = 3
+address = "0x006D3470"
+size = 6176
+sha256 = "e2c9761aa9bffcc1ac7156654fc4b663fc26dccbafa9082272bc0bf4fde060f7"

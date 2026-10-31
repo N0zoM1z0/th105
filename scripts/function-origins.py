@@ -781,6 +781,33 @@ def validate_msvc_runtime_anchor_evidence(
                 errors.append(f"{rule['id']}: {address}: {exc}")
                 continue
         body, relocations = fingerprint_cache[key]
+        assembly = anchor.get("assembly_entry")
+        if assembly is not None:
+            try:
+                from msvc_runtime_assembly import verify_container, verify_readonly_sections, verify_internal_data_relocations
+                if not isinstance(assembly, dict) or set(assembly) != {
+                    "symbol", "offset", "container_address", "container_size",
+                    "container_sha256", "call_offset", "readonly_sections"
+                }:
+                    raise ValueError("invalid original assembly entry evidence fields")
+                base = int(str(assembly["container_address"]), 0)
+                offset = int(assembly["offset"])
+                if int(address, 0) != base + offset or len(body) != int(assembly["container_size"]):
+                    raise ValueError("original assembly container does not locate selected entry")
+                native = read_pe(base, len(body))
+                if hashlib.sha256(native).hexdigest() != assembly["container_sha256"]:
+                    raise ValueError("complete original assembly container target hash differs")
+                verify_readonly_sections(members[library][object_name], assembly["readonly_sections"], read_pe)
+                verify_internal_data_relocations(
+                    members[library][object_name], body, relocations, native, assembly["readonly_sections"]
+                )
+                body, relocations = verify_container(
+                    members[library][object_name], symbol, str(assembly["symbol"]),
+                    body, relocations, native, offset, int(assembly["call_offset"])
+                )
+            except (KeyError, TypeError, ValueError, struct.error) as exc:
+                errors.append(f"{rule['id']}: {address}: {exc}")
+                continue
         if len(body) != size:
             errors.append(
                 f"{rule['id']}: {address} VC8 archive function extent changed: {len(body)} != {size}"

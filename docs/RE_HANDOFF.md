@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original acos start_9 at69BD0E is now library-owned: original COFF start label,
+fixed wrapper CALL, complete1364-byte containing code and6176-byte polynomial
+data all reproduce native evidence. Its existing1334-byte inventory row alone
+is excluded. The six-byte external entry69BD08 is executable, not alignment;
+no row/byte credit is invented. Strict optional named-entry checks reject
+guessed offsets/partial data; previous patched25 and default-SP1 two-body rules
+freshly pass. Excluded1640/review617; exact1553/441679 and all source counts
+unchanged. See VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md.
+
 The isolated original runtime follow-up adds11 complete short/data-heavy
 bodies/655 bytes with all relocation operands pinned. Actual exception RTTI/
 fallback text and MessageBoxA API strings disambiguate nominal ownership;

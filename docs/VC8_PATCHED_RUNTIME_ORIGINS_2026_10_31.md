@@ -139,3 +139,51 @@ and other ambiguous shapes; those are deliberately not selected.
 The new rule passed the existing native validator. Only new-rule evidence is
 materialized; unchanged proofs are retained. Final exclusions 1,639, review 618;
 authored/source/exact counts and all match units remain unchanged.
+
+## Original acos internal-entry boundary
+
+The provisional start_9 at 69BD0E / 1,334 bytes is an original internal assembly
+entry, not an authored game function. The archive's acos_pentium4.obj declares
+the enclosing external function __CIacos_pentium4 at section offset 0 and the
+actual local label start at offset 30. Its original fixed CALL at offset 17
+enters that label. Native 69BD01 independently calls 69BD0E.
+
+The complete original enclosing code is 1,364 bytes, corresponding to
+[69BCF0,69C244), with native SHA-256
+2c338c566e6766298da94c86c1123a73caaf09ad03f4a146e396ad3e2d81655b.
+All invariant bytes match, the prefix is relocation-free, and every relocation
+in the entire 1,334-byte internal entry is pinned. The entire original
+relocation-free .rdata section is also reproduced at 6D3470: 6,176 bytes,
+SHA-256 e2c9761aa9bffcc1ac7156654fc4b663fc26dccbafa9082272bc0bf4fde060f7.
+This covers the original polynomial tables, masks and constants, not just
+one function prefix or a guessed subset.
+
+The six bytes [69BD08,69BD0E) are executable MOVLPD XMM0,[ESP+4], the original
+external __acos_pentium4 entry at offset 24. They are not padding. Native _acos
+jumps to 69BD08 at 68E4CA; its CI wrapper branch at 68E506 enters 69BCF0.
+The existing inventory separately lists the 24-byte CI wrapper and the
+1,334-byte internal callable. No row is moved, split, added or credited for
+the six-byte external entry, and no IDA metadata or target bytes are changed.
+
+The new optional assembly-entry evidence requires a distinct, unique original
+COFF label in the same section as its external enclosing function. It checks
+the complete container fingerprint/hash, exact original label offset, a fixed
+preceding source CALL to that label, a relocation-free prefix, all entry bytes
+through the end of the original function, and complete original read-only data
+sections. Arbitrary offsets, partial sections, guessed labels, relocated entry
+calls and writable data are rejected. Existing normal runtime extraction stays
+unchanged. This validates vendor library provenance; no assembly source or
+game implementation was written from native bytes.
+
+The new rule passed natively. After changing the validator, the previous
+14-body and 11-body patched rules plus the default-SP1 two-body locale/shift
+rule all passed fresh focused validation. Nine regressions cover the new
+entry and data boundaries. Final exclusions 1,640 / review 617; all authored,
+source, exact and unit counts remain unchanged.
+
+
+All 30 absolute code references additionally resolve through the original COFF
+symbol values and original addends into that verified read-only section. A
+native address matching a stored operand alone is insufficient; unknown/external
+data symbols or changed addend destinations fail. The remaining REL32 is the
+pinned libm_error_support destination. Final default CI passes 180 tests.

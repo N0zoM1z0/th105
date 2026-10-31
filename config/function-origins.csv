@@ -3490,7 +3490,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0069BC19,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069BC29,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069BCF0,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0069BD0E,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0069BD0E,vc8_runtime,runtime,exclude,observed,vc8-kb971090-acos-internal-entry-106a
 0x0069C244,vc8_runtime,runtime,exclude,observed,vc8-kb971090-short-and-data-runtime-106a
 0x0069C401,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069C447,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

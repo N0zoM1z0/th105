@@ -27,6 +27,7 @@ EXACT_TEST_MODULES = (
     "test_repo_python",
     "test_upstream_boost",
     "test_upstream_vc8_runtime",
+    "test_msvc_runtime_assembly",
     "test_progress_svg",
 )
 

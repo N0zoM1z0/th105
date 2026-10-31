@@ -4453,3 +4453,22 @@ required_dword_values = [
  { address = "0x006FA320", value = "0x7473406E" },
  { address = "0x006FA324", value = "0x00404064" },
 ]
+
+[[rules]]
+id = "vc8-kb971090-acos-internal-entry-106a"
+addresses = ["0x0069BD0E"]
+expected_count = 1
+expected_bytes = 1334
+expected_names = ["start_9"]
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original COFF start label at parent+30 is called by the original relocation-free CIacos wrapper at+17. Complete1364-byte enclosing source fingerprint and native hash, all1334 entry bytes/relocations, and complete6176-byte original rdata section are independently verified. Native six-byte external acos entry at parent+24 is executable, not alignment, and earns no added inventory credit. No game source or assembly written. docs/VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md."
+msvc_runtime_anchor_file = "config/vc8-kb971090-acos-entry-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x0069BD0E", size = 1334, sha256 = "ddeb813e812f0393c1e80f399f5c285c70e0a1f161b1e5af37afab7c220667a1" },
+]
+required_direct_edges = [
+ { caller = "0x0069BCF0", site = "0x0069BD01", target = "0x0069BD0E", caller_status = "unclassified" },
+]
