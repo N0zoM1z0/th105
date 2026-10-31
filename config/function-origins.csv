@@ -3850,13 +3850,13 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006AF730,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006AF7C0,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006AF860,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006AF880,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006AF880,third_party,boost_regex,exclude,observed,boost-release-switch-library-106a
 0x006AFE80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B0090,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B0310,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006B0390,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006B0420,compiler_generated,runtime,exclude,observed,vc8-generated-list-u32-comdats-106a
-0x006B04E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B04E0,third_party,boost_regex,exclude,observed,boost-release-switch-library-106a
 0x006B0F00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B1280,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a
 0x006B1440,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a

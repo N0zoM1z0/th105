@@ -179,30 +179,38 @@ def compare_unit(unit: dict[str, object], json_mode: bool) -> tuple[int, list[ob
             command.extend(["--rel32-target", str(mapping)])
         for mapping in function.get("dir32_targets", []):
             command.extend(["--dir32-target", str(mapping)])
-        if json_mode:
+        has_payload = "switch_payload" in function
+        capture = json_mode or has_payload
+        if capture:
             command.append("--json")
         command.extend([str(function["address"]), str(output)])
-        completed = subprocess.run(
-            command,
-            cwd=ROOT,
-            capture_output=json_mode,
-            text=json_mode,
-        )
+        completed = subprocess.run(command, cwd=ROOT, capture_output=capture, text=True)
         return_code = max(return_code, completed.returncode)
-        if json_mode:
+        if capture:
             try:
-                reports.append(json.loads(completed.stdout))
-            except json.JSONDecodeError:
-                reports.append(
-                    {
-                        "result": "error",
-                        "failure": {
-                            "category": "comparison.output_invalid",
-                            "message": completed.stderr or completed.stdout,
-                        },
-                    }
-                )
+                report = json.loads(completed.stdout)
+                if not isinstance(report, dict):
+                    raise ValueError("comparison output is not an object")
+            except (json.JSONDecodeError, ValueError):
+                report = {"result": "error", "failure": {
+                    "category": "comparison.output_invalid",
+                    "message": completed.stderr or completed.stdout}}
                 return_code = 1
+            if has_payload:
+                if report.get("result") == "exact" and completed.returncode == 0:
+                    try:
+                        from coff_switch_payload import verify as verify_switch_payload
+                        report["validated_switch_payload"] = verify_switch_payload(output, function)
+                    except (OSError, ValueError, RuntimeError, KeyError) as error:
+                        report["result"] = "blocked"
+                        report["failure"] = {"category": "comparison.switch_payload", "message": str(error)}
+                        return_code = 1
+                else:
+                    return_code = 1
+            if json_mode:
+                reports.append(report)
+            else:
+                print(json.dumps(report, indent=2))
     return return_code, reports
 
 

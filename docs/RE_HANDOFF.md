@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Two original Boost release parsers now fully match including compact switches:
+6B04E0 code2478/payload2585 and6AF880 code1407/payload1535. Entire canonical
+COMDATs, alignment, local table relocations/maps, unsigned guards and closed
+all-reachable code pass; no prefix/table masking. New narrow switch_payload
+contract is mandatory in unit comparison and source-origin validation, retaining
+all old gates;12 new tests. Old15 canonical roots/eight origin rules244 bodies
+freshly pass; CI223. Two library exclusions only: excluded1710/review524;
+exact1576/448613, source1773/authored1793/mapped1800/units759 unchanged.
+See BOOST_COMPACT_SWITCH_PAYLOAD_2026_10_31.md.
+
 Original Boost narrow instances with standard NDEBUG now prove50 additional
 library bodies/20912 bytes. Two genuine shared_ptr assertion paths explain
 old do_assign466/native412; no source body or guard is hand-edited. Four full

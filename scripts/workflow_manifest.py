@@ -194,6 +194,11 @@ def load_manifest() -> dict[str, Any]:
                     raise ValueError(
                         f"match unit {name!r} function {address} needs one reviewed owned extent"
                     )
+            if "switch_payload" in function:
+                if unit["kind"] != "probe" or function.get("owned_extent") or function.get("contiguous_span"):
+                    raise ValueError("compact-switch payload requires one ordinary COFF candidate extent")
+                from coff_switch_payload import validate_contract as validate_switch_payload
+                validate_switch_payload(function["switch_payload"], int(ledger[address]["size"]))
             for mapping in function.get("rel32_targets", []):
                 if not isinstance(mapping, str) or not REL32_TARGET.fullmatch(mapping):
                     raise ValueError(
@@ -305,6 +310,11 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
         paths.update(ROOT / path for path in (
             "config/functions.csv", "config/function-byte-ownership.toml",
             "scripts/function_byte_ownership.py",
+        ))
+    if any("switch_payload" in function for function in unit.get("functions", [])):
+        paths.update(ROOT / path for path in (
+            "scripts/coff_switch_payload.py", "scripts/rank_retained_exact.py",
+            "config/functions.csv", "scripts/requirements-ci.txt",
         ))
     # Vendored library translation units include headers beside the source.
     # Hash them too, so an upstream-header change cannot reuse stale evidence.

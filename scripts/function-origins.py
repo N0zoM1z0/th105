@@ -1010,29 +1010,37 @@ def validate_vc8_generated_anchor_evidence(
             _name, body, wild, relocations = rank.read_coff_function(
                 object_path, symbol, size
             )
-            max_tail = int(anchors_doc.get("max_alignment_tail", 0))
-            allowed_tail = set(bytes.fromhex(str(anchors_doc.get("alignment_tail_hex", ""))))
             final_tail = b""
-            saw_end = False
-            for extra in range(1, max_tail + 2):
-                try:
-                    _extended_name, extended, _extended_wild, extended_relocations = (
-                        rank.read_coff_function(object_path, symbol, size + extra)
+            if "switch_payload" in anchor_row:
+                from coff_switch_payload import verify as verify_switch_payload
+                payload_function = dict(address=address, symbol_base=symbol,
+                    switch_payload=anchor_row["switch_payload"],
+                    rel32_targets=anchor_row.get("payload_rel32_targets", []),
+                    dir32_targets=anchor_row.get("payload_dir32_targets", []))
+                verify_switch_payload(object_path, payload_function, rows, read_pe)
+            else:
+                max_tail = int(anchors_doc.get("max_alignment_tail", 0))
+                allowed_tail = set(bytes.fromhex(str(anchors_doc.get("alignment_tail_hex", ""))))
+                saw_end = False
+                for extra in range(1, max_tail + 2):
+                    try:
+                        _extended_name, extended, _extended_wild, extended_relocations = (
+                            rank.read_coff_function(object_path, symbol, size + extra)
+                        )
+                    except ValueError as exc:
+                        if "exceeds section tail" not in str(exc):
+                            raise
+                        saw_end = True
+                        break
+                    final_tail = extended[size:]
+                    if any(offset >= size for offset, _kind, _symbol in extended_relocations):
+                        raise ValueError("generated COMDAT alignment tail contains a relocation")
+                if not saw_end:
+                    raise ValueError("generated COMDAT exceeds permitted alignment tail")
+                if final_tail and (not allowed_tail or any(byte not in allowed_tail for byte in final_tail)):
+                    raise ValueError(
+                        f"generated COMDAT has non-allowlisted alignment tail {final_tail.hex()}"
                     )
-                except ValueError as exc:
-                    if "exceeds section tail" not in str(exc):
-                        raise
-                    saw_end = True
-                    break
-                final_tail = extended[size:]
-                if any(offset >= size for offset, _kind, _symbol in extended_relocations):
-                    raise ValueError("generated COMDAT alignment tail contains a relocation")
-            if not saw_end:
-                raise ValueError("generated COMDAT exceeds permitted alignment tail")
-            if final_tail and (not allowed_tail or any(byte not in allowed_tail for byte in final_tail)):
-                raise ValueError(
-                    f"generated COMDAT has non-allowlisted alignment tail {final_tail.hex()}"
-                )
         except ValueError as exc:
             errors.append(f"{rule['id']}: {address}: {exc}")
             continue

@@ -84,3 +84,7 @@ also retained under build/frontier-boost-library-20261031/.
 Excluded rises1658 to1708 and review576 to526. Authored exact1576 /448613 bytes,
 source1773, authored1793 and mapped1800 stay unchanged. Units759. No authored
 matches, partial native prefixes or duplicate source instantiations are counted.
+
+The subsequent compact-switch follow-up also fully matches the two larger
+parser envelopes, including all metadata rather than treating section length
+as callable length; see BOOST_COMPACT_SWITCH_PAYLOAD_2026_10_31.md.

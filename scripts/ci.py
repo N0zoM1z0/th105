@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXACT_TEST_MODULES = (
     "test_workflow_tooling",
     "test_compare_unit_object",
+    "test_coff_switch_payload",
     "test_owned_extent_comparison",
     "test_linked_pe",
     "test_linked_cleanup_caller",
