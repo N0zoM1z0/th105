@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Script prefix and FileBufferContext now correctly pair new[] with delete[]
+at four source sites; four scoped callee bindings follow actual emitted symbols.
+All14 accepted functions in the two actual dependent units freshly remain exact.
+The already-present complete399-byte parser405930 is now authored/source-tracked;
+linked405 remains nonexact and its ordinary-free-function EH contract stays
+unsupported, not bypassed. Source1752/authored1772/mapped1779/review615,
+excluded1640/units745; exact1553/441679 unchanged.
+See SCRIPT_ARRAY_LIFETIMES_2026_10_31.md.
+
 First BGM playback worker403B90 now has complete326-byte/98-instruction source
 and exact-wrapper ownership. It polls16ms, updates active handles under the real
 lock, retires completed streams and wakes the loader. Standalone331 is nonexact;

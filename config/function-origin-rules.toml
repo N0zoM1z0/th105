@@ -4490,3 +4490,17 @@ required_selected_body_calls = [
  { owner = "0x00403B90", site = "0x00403C11", target = "0x00404330", target_status = "implemented" },
  { owner = "0x00403B90", site = "0x00403C20", target = "0x00402C10", target_status = "implemented" },
 ]
+
+[[rules]]
+id = "script-line-parser-authored-106a"
+addresses = ["0x00405930"]
+expected_count = 1
+expected_bytes = 399
+expected_names = ["sub_405930"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact CScript load405810 calls this complete line parser at4058C7. Source retains prefix/colon factory lookup, temporary string lifetime, virtual command creation/parse, fallback and owned command-deque append. Array new/delete pairing follows actual native VC8 wrappers. Whole405-byte source remains nonexact; no EH contract waiver or byte credit. docs/SCRIPT_ARRAY_LIFETIMES_2026_10_31.md."
+required_direct_edges = [{ caller = "0x00405810", site = "0x004058C7", target = "0x00405930", caller_status = "matching" }]
+required_body_hashes = [{ address = "0x00405930", size = 399, sha256 = "dd534e8474d97ae97348bdcc0189d47ed643b55c98635446df715eec4ad4ecc9" }]

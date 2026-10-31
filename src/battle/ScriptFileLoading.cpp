@@ -14,7 +14,7 @@ void __stdcall parse_script_line(CScript *script,char *line)
         char *prefix=new char[length+1];
         strncpy_s(prefix,length+1,line,length);
         CScript::CommandMap::iterator found=script->commands_00.find(std::string(prefix));
-        free(prefix);
+        delete[] prefix;
         if(found!=script->commands_00.end()) {
             CCommandBase *command=found->second->create();
             command->parse(colon+1);

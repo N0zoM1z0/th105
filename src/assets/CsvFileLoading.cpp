@@ -17,7 +17,7 @@ public:
  unsigned char *data_00;
  unsigned size_04;
  FileBufferContext():data_00(0),size_04(0){}
- ~FileBufferContext(){if(data_00)free(data_00);}
+ ~FileBufferContext(){if(data_00)delete[] data_00;}
  bool load_plain(const char *);
  bool load_encoded(const char *);
  bool load_text(const char *);
@@ -36,7 +36,7 @@ bool FileBufferContext::load_plain(const char *path)
  CFileReader *reader=file.reader;
  size_04=reader->size();
  if(size_04!=0){
-  if(data_00!=0)free(data_00);
+  if(data_00!=0)delete[] data_00;
   data_00=new unsigned char[size_04+1];
   data_00[size_04]=0;
   read_file_buffer(reader,data_00,size_04);
@@ -50,7 +50,7 @@ bool FileBufferContext::load_encoded(const char *path)
  CFileReader *reader=file.reader;
  size_04=reader->size();
  if(size_04!=0){
-  if(data_00!=0)free(data_00);
+  if(data_00!=0)delete[] data_00;
   data_00=new unsigned char[size_04+1];
   data_00[size_04]=0;
   read_file_buffer(reader,data_00,size_04);
