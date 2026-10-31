@@ -3269,7 +3269,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete3885-byte/1227-instruction main CFG has1226 reachable instructions, one pinned internal alignment operation, RET0 and a separately reviewed123-byte vector range-error provider. Exact Fighter resource initializer463070 calls at46308A. Character PAT/palette paths, texture registration, signed group commands -1/-2, chain/alias policy, full136-byte frame format and optional owned payloads establish authored ownership independently of STL/CRT providers. Complete3898-byte public source remains nonexact+13 and unselected; native3A8 frame/33 guards recovered. No helper-origin credit. docs/FIGHTER_PAT_RESOURCE_LOADING_2026_10_26.md."
+evidence = "Complete3885-byte/1227-instruction main CFG has1226 reachable instructions, one pinned internal alignment operation, RET0 and a separately reviewed123-byte vector range-error provider. Exact Fighter resource initializer463070 calls at46308A. Character PAT/palette paths, texture registration, signed group commands -1/-2, chain/alias policy, full136-byte frame format and optional owned payloads establish authored ownership independently of STL/CRT providers. Complete3885-byte public source remains nonexact at four byte positions in two STL range-check load orders; first+866. Native3A8 frame/33 guards recovered. No helper-origin credit. docs/FIGHTER_PAT_RESOURCE_LOADING_2026_10_26.md."
 required_body_hashes = [
   { address = "0x00461B70", size = 3885, sha256 = "8705c5b085b7e7c1977252b79929296687a251f1e22216c9521d02143f934d42" },
 ]

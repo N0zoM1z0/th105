@@ -1,5 +1,11 @@
 # Fighter PAT and palette resource loading 0x00461B70
 
+Update 2026-10-31: actual shared reader operations now reduce the complete
+public candidate to3885 bytes. Only four relocated byte positions differ,
+the operand order of two deque iterator range-check loads. Still nonexact;
+no exact credit. See EFFECT_READER_FORWARDING_EXACT_2026_10_31.md.
+The3898-byte reports below describe the earlier source.
+
 The complete source in `src/battle/FighterPatResourceLoading.cpp` compiles as
 `exact-first-fighter-pat-resources`. Its complete3898-byte COFF section remains
 **nonexact+13** against the3885-byte target. It is identified/unselected;

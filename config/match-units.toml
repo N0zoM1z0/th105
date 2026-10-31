@@ -23124,7 +23124,7 @@ source = "src/battle/FighterPatResourceLoading.cpp"
 object = "build/match-units/ExactFirst_FighterPatResources.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete Fighter PAT/palette loader461B70,3885 target bytes/1227 instructions, one reviewed vector range-error exit. First complete3898-byte source immediately compared. Callback member reloads, signed command dispatch, actual path scope, genuine PatGroup visibility and one continuation back recover native3A8 frame/33 guards. Complete3898-byte candidate remains nonexact+13; member-reference controls are byte-neutral in two phases. Source unselected. docs/FIGHTER_PAT_RESOURCE_LOADING_2026_10_26.md."
+notes = "Complete Fighter PAT/palette loader461B70 now3885/native3885 through real shared reader operations. Four canonical differing bytes remain in two deque-iterator range-check load orders, first+866. No exact credit. docs/EFFECT_READER_FORWARDING_EXACT_2026_10_31.md."
 
 [[units.exact-first-fighter-pat-resources.functions]]
 address = "0x00461B70"
