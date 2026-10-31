@@ -1417,7 +1417,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00444470,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x00444490,authored_game,ui,authored,observed,connect-middle-state-authored-106a
 0x00444790,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00444830,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00444830,authored_game,ui,authored,observed,canonical-exact-authored
 0x00444B90,authored_game,ui,authored,observed,canonical-exact-authored
 0x00444C70,authored_game,ui,authored,observed,canonical-exact-authored
 0x00444E60,authored_game,ui,authored,observed,canonical-exact-authored

@@ -28067,3 +28067,17 @@ rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "??2@
 address = "0x004379D0"
 symbol_base = "?acquire@?$CHandleManagerEx@VEffectObject@@@@QAEPAVEffectObject@@PAI@Z"
 rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "??2@YAPAXI@Z=0x00689DCB", "?push_back@?$vector@PAVEffectObject@@V?$allocator@PAVEffectObject@@@std@@@std@@QAEXABQAVEffectObject@@@Z=0x0064AF70", "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0", "__invalid_parameter_noinfo=0x0068A143", "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0", "?at@?$vector@PAVEffectObject@@V?$allocator@PAVEffectObject@@@std@@@std@@QAEAAPAVEffectObject@@I@Z=0x0056D450", "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40", "??0AnimationObject@@QAE@XZ=0x00422040"]
+
+[units.exact-first-connect-main-state]
+kind = "probe"
+source = "src/ui/MenuConnectMainState.cpp"
+object = "build/match-units/ExactFirst_ConnectMainState.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete827 callable plus29 alignment/table bytes canonical exact. Seven real owning cleanup states and typed8/56-byte regex boundary layouts. Actual path/text service thiscall clipboard provider separately97 exact; signed four-WORD loop follows nativeJL. docs/CONNECT_MAIN_STATE_EXACT_2026_10_31.md."
+
+[[units.exact-first-connect-main-state.functions]]
+address = "0x00444830"
+symbol_base = "?update_main_state@ConnectMainStateView@th105@@QAE_NXZ"
+rel32_targets = ["?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?reset_host_editor@ConnectMainStateView@th105@@QAEIXZ=0x004422F0", "?is_menu_initial_press@th105@@YA_NE_N00@Z=0x0043ABD0", "?begin_endpoint_edit@ConnectMainStateView@th105@@QAEXXZ=0x00442390", "?load_address_list@ConnectMainStateView@th105@@QAE_NXZ=0x00443130", "?load_history_list@ConnectMainStateView@th105@@QAE_NXZ=0x004434B0", "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810", "?read_clipboard@ClipboardModulePathView@th105@@QAEXPADI@Z=0x0040D160", "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z=0x00401DC0", "??0EndpointRegex@th105@@QAE@PBDI@Z=0x00442710", "??0EndpointMatches@th105@@QAE@ABV?$allocator@URegexSubMatch@th105@@@std@@@Z=0x00443780", "?search_endpoint@th105@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAVEndpointMatches@1@ABVEndpointRegex@1@I@Z=0x00444790", "?str@EndpointMatches@th105@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z=0x00442C00", "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40", "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0", "??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ=0x00401E00", "?parse_endpoint@ConnectMainStateView@th105@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00442E30", "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640", "??1EndpointMatches@th105@@QAE@XZ=0x00442F40", "??1EndpointRegex@th105@@QAE@XZ=0x00442440", "@__security_check_cookie@4=0x00689D25"]
+dir32_targets = ["_connect_main_select_prompt=_connect_main_select_prompt", "_connect_main_join_suffix=_connect_main_join_suffix", "_connect_main_regex=_connect_main_regex", "__ehhandler$?update_main_state@ConnectMainStateView@th105@@QAE_NXZ=__ehhandler$?update_main_state@ConnectMainStateView@th105@@QAE_NXZ"]

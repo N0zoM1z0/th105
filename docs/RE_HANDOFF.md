@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Connect main-state444830 now matches all827 callable and29 alignment/table
+bytes. All seven cleanup actions77, double-cookie handler46 and metadata92
+are independently exact. Native signed4-WORD loop and real path/text-service
+clipboard member receiver close the initial852/856 gap; actual clipboard97
+provider separately exact. Regex8/56 ownership remains typed external library
+boundaries, not invented provider implementations. Totals1553/441679, source1749,
+authored1769, excluded1421, review837. See CONNECT_MAIN_STATE_EXACT_2026_10_31.md.
+
 Weather/effect pool acquire437520/4379D0 are each463 canonical exact, adding926
 bytes. Actual handle value and sprite/scratch constructors resolve prior ordering
 without guessed throw() or inlining barriers. Shared cleanup35 and metadata44
