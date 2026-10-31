@@ -1181,7 +1181,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00439570,authored_game,ui,authored,observed,canonical-exact-authored
 0x00439580,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004395E0,authored_game,ui,authored,observed,canonical-exact-authored
-0x004395F0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004395F0,compiler_generated,runtime,exclude,observed,vc8-generated-string-rfind-106a
 0x004396A0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00439750,authored_game,ui,authored,observed,canonical-exact-authored
 0x00439810,authored_game,ui,authored,observed,canonical-exact-authored

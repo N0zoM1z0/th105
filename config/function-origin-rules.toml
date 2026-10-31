@@ -4932,3 +4932,15 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Genuine VC8 deque range erase and implicit sprite assignment reuse the independently exact recovered card/sprite layout. Both full143/515 canonical bodies and full-inventory source fingerprints pass. The probe is compiler-origin evidence, not an invented gameplay caller or authored credit. docs/SEQUENCE_CARD_GENERATED_ORIGINS_2026_10_31.md."
+
+[[rules]]
+id = "vc8-generated-string-rfind-106a"
+vc8_generated_anchor_file = "config/vc8-generated-string-rfind-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 165
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Unmodified original VC8 basic_string explicit instantiation reproduces complete165-byte rfind, both canonical call identities and all boundary/loop bytes. Full-inventory uniqueness and unchanged coverage gates independently pass. This is standard-library provenance only, not authored matching credit. docs/VC8_STRING_RFIND_ORIGIN_2026_10_31.md."
+required_body_hashes = [{ address = "0x004395F0", size = 165, sha256 = "aec7a62afed63afae4eab520a050f7e83055532c49890b30a13f591e29ec30f2" }]

@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Original VC8 basic_string<char> explicit instantiation fully matches
+rfind4395F0/165 with both canonical calls and full-inventory unique provenance.
+Compiler exclusion only; no game-source or tool changes. Excluded1783/review448,
+units762; exact1578/448979 and source1776/authored1796/mapped1803 unchanged.
+See VC8_STRING_RFIND_ORIGIN_2026_10_31.md.
+
 A reproducible explicit compiler probe now closes the two stale-object leads:
 implicit sprite assignment45CFB0/143 and genuine deque range erase45D830/515
 are full canonical exact and full-inventory unique. The probe reuses actual

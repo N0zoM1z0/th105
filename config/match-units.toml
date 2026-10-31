@@ -28485,3 +28485,16 @@ address = "0x0045D830"
 symbol_base = "?erase@?$deque@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@2@V32@0@Z"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "??$copy_backward@V?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@0@V10@00@Z=0x0045D730", "??$copy@V?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@std@@V12@@std@@YA?AV?$_Deque_iterator@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@$00@0@V10@00@Z=0x0045D7B0"]
 dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
+
+[units.vc8-string-library-origin]
+kind = "probe"
+source = "scripts/probes/Vc8StringOrigin.cpp"
+object = "build/match-units/Vc8StringOrigin.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Unmodified original VC8 std::basic_string explicit instantiation; complete rfind4395F0/165 canonical witness and compiler-origin exclusion only. docs/VC8_STRING_RFIND_ORIGIN_2026_10_31.md."
+
+[[units.vc8-string-library-origin.functions]]
+address = "0x004395F0"
+symbol_base = "?rfind@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIPBDII@Z"
+rel32_targets = ["?compare@?$char_traits@D@std@@SAHPBD0I@Z=0x00405560", "?_Myptr@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IBEPBDXZ=0x00401E30"]
