@@ -11,7 +11,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004012A0,authored_game,engine,authored,observed,render-mode-rectangle-authored-106a
 0x00401430,authored_game,engine,authored,observed,canonical-exact-authored
 0x004014C0,authored_game,engine,authored,observed,canonical-exact-authored
-0x00401610,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00401610,authored_game,rendering,authored,observed,renderer-device-lost-authored-106a
 0x00401630,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00401640,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00401670,unknown,,review,unknown,ida-1.06a-initial-inventory

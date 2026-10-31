@@ -28330,3 +28330,17 @@ notes = "Complete142-byte renderer initialization through the actual RenderModeM
 address = "0x00401430"
 symbol_base = "?initialize_render_mode_manager@th105@@YA_NXZ"
 rel32_targets = ["?register_reset_listener@D3DBackendListenerRuntimeView@th105@@QAEXPAUDeviceResetListener@2@@Z=0x00414CB0"]
+
+[units.exact-first-render-mode-lost]
+kind = "probe"
+source = "src/engine/RenderModeLost.cpp"
+object = "build/match-units/ExactFirst_RenderModeLost.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete CRenderer reset-listener lost callback401610. Actual existing four-byte texture value default-construction, then bind zero handle at stage0. Native renderer RTTI/vtable slot pins ownership. Whole15/native22 remains nonexact; no manual stack temporary or synthetic ABI."
+
+[[units.exact-first-render-mode-lost.functions]]
+address = "0x00401610"
+symbol_base = "?on_device_lost@RenderModeManager@th105@@UAEXXZ"
+rel32_targets = ["?bind_texture@RenderTextureBindingView@th105@@QAEXUTextureHandleResult@2@H@Z=0x00404DF0"]
+dir32_targets = ["?g_render_texture_binding@th105@@3URenderTextureBindingView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]

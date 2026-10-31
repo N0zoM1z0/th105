@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Renderer device-loss callback401610 now has complete source and independently
+checked CRenderer RTTI/slot/full-body/binder-call ownership. Both genuine existing
+texture value types emit15/native22; native outgoing argument materialization
+remains unresolved. No stack recipe/type grid or exact credit. Source1772/
+authored1792/mapped1799, excluded1658/review577/units757; exact1576/448613
+unchanged. CI210. See RENDER_MODE_LOST_SOURCE_2026_10_31.md.
+
 Renderer initialization401430/142 is canonical exact using the actual existing
 RenderModeManager type and real listener/critical/effect-initializer CIL graph.
 Independent initialized listener-base and zero field-tail data witnesses keep

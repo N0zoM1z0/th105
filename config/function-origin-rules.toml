@@ -4537,3 +4537,17 @@ required_body_hashes = [
  { address = "0x00422E00", size = 117, sha256 = "42ef1ee46bf66a1995ab50ce9689da75c8c0feca27913952dbceac3fb0285545" },
  { address = "0x004505A0", size = 60, sha256 = "7fd60eb1b42b4d9bb01c5bd1cd7ffe39265604e7fb5df3cd14382d5728b02003" },
 ]
+
+[[rules]]
+id = "renderer-device-lost-authored-106a"
+addresses = ["0x00401610"]
+expected_count = 1
+expected_bytes = 22
+expected_names = ["sub_401610"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete22-byte CRenderer device-lost callback clears texture stage0 through game binder404DF0. Actual primary RTTI table6D6930 owns this callback and independently exact reset4014C0 in the next slot. Full body, COL/type, slot and direct binder call are checked; source15/native22 remains nonexact. docs/RENDER_MODE_LOST_SOURCE_2026_10_31.md."
+required_rtti_virtual_bodies = [{ address = "0x00401610", size = 22, slot = "0x006D6930", col_slot = "0x006D692C", col = "0x006DC6CC", type_descriptor = "0x006FA27C", type_name_contains = ".?AVCRenderer@@", sha256 = "9dbce8e125d60a54ca8be7d26d6ba4aeab6c5a8fe32a0e153683b93242838e75", calls = [{ site = "0x00401620", target = "0x00404DF0" }] }]
+required_dword_values = [{ address = "0x006D6934", value = "0x004014C0" }]
