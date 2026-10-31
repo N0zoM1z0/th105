@@ -91,6 +91,7 @@ struct BgmAllocationLock {
  ~BgmAllocationLock(){LeaveCriticalSection(&lock->critical_section_04);}
 };
 struct BgmAllocationManager50 {
+ BgmAllocationManager50();
  virtual ~BgmAllocationManager50();
  std::vector<BgmStreamAllocationView *> streams_04;
  std::vector<unsigned> generations_14;
@@ -172,5 +173,12 @@ BgmAllocationManager50::~BgmAllocationManager50()
 {
     for (unsigned index = 0; index < streams_04.size(); ++index)
         delete streams_04[index];
+}
+}
+
+namespace th105 {
+BgmAllocationManager50::BgmAllocationManager50()
+{
+ generation_30 = 0;
 }
 }

@@ -200,7 +200,7 @@ class LifecycleTests(unittest.TestCase):
         raw = self.native_coff()
         self.assertEqual(life.native_zero_layout(raw, self.symbol, 60)["size"], 60)
         for offset, fmt, value in [(0, "H", 0x8664), (16, "H", 1), (36, "I", 64),
-                (40, "I", 20), (44, "I", 60), (52, "H", 1), (56, "I", 0xc0400080),
+                (40, "I", 20), (44, "I", 60), (52, "H", 1), (56, "I", 0xc0500080),
                 (68, "I", 4), (72, "h", -1), (76, "B", 105), (77, "B", 2)]:
             bad = bytearray(raw); struct.pack_into("<" + fmt, bad, offset, value)
             with self.subTest(offset=offset), self.assertRaises(ValueError):
@@ -217,6 +217,19 @@ class LifecycleTests(unittest.TestCase):
             struct.pack_into("<I", raw, 56, flags)
             with self.assertRaises(ValueError):
                 life.native_zero_layout(bytes(raw), self.symbol, 64)
+
+    def test_section_start_alignment_does_not_round_object_extent(self):
+        raw = bytearray(self.native_coff())
+        struct.pack_into("<I", raw, 36, 180)
+        struct.pack_into("<I", raw, 56, 0xc0400080)
+        result = life.native_zero_layout(bytes(raw), self.symbol, 180)
+        self.assertEqual((result["size"], result["alignment"]), (180, 8))
+        for claimed in (176, 184):
+            with self.assertRaises(ValueError):
+                life.native_zero_layout(bytes(raw), self.symbol, claimed)
+        struct.pack_into("<I", raw, 36, 179)
+        with self.assertRaises(ValueError):
+            life.native_zero_layout(bytes(raw), self.symbol, 179)
 
     def test_local_cpp_dependencies_are_transitive_and_hashed(self):
         with tempfile.TemporaryDirectory(dir=workflow.ROOT / "build") as folder:

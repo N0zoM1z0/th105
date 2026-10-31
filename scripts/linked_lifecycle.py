@@ -145,10 +145,13 @@ def native_zero_layout(data: bytes, symbol: str, size: int) -> dict:
     raw_size, raw_pointer, reloc_pointer = struct.unpack_from("<III", data, at + 16)
     reloc_count, = struct.unpack_from("<H", data, at + 32)
     flags, = struct.unpack_from("<I", data, at + 36)
+    # COFF section alignment constrains its start, not its exact byte extent.
+    # VC8 emits the natural B4-byte BGM object in an eight-aligned BSS section.
+    # Never round this size up: the trailing inter-object gap is not owned.
     peers = [s for s in symbols if s[2] == section and s[0] not in {symbol, ".bss"}]
     if (data[at:at + 8].rstrip(b"\0") != b".bss" or raw_size != size or raw_pointer
             or reloc_pointer or reloc_count or flags not in (0xc0300080, 0xc0400080)
-            or size % (4 if flags == 0xc0300080 else 8) or peers):
+            or size % 4 or peers):
         raise ValueError("global native witness must be its sole compiler-aligned zero .bss object")
     return {"symbol": symbol, "size": size, "alignment": 4 if flags == 0xc0300080 else 8, "section": ".bss", "flags": flags}
 

@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Global BGM constructor4032F0/199 and destructor4033C0/148 are fully exact,
+including180/117 cleanup/EH bytes and B4-byte storage7026E0 with real CRT
+initializer17, slot and exit5. Natural list CIL/vector COFF reproduces the
+native ABI; no padding or fake declarations. COFF section start alignment
+is now correctly independent of exact object extent; strict ownership stays.
+Old BGM six roots, wave four roots and package global pair freshly pass.
+Exact1571/447379; source1767/authored1787/mapped1794, excluded1658/review582/
+units755. Member ctor403ED0 remains126/native133, no credit.
+See BGM_SERVICE_LIFETIME_EXACT_2026_10_31.md.
+
 Wave member constructors401E40/193 and401F80/145 are now independently exact,
 each with all120 cleanup/EH bytes. Actual single calls4018A9/4018BB require the
 fresh exact143-byte global parent, full130 parent EH and same current startup/
