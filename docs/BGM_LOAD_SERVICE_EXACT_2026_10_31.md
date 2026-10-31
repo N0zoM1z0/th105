@@ -74,3 +74,16 @@ checks pass. No cold whole-repository comparison is claimed.
 Two authored functions add510 bytes:1575 exact /448471 bytes;
 source1770, authored1790, mapped1797, excluded1658, review579, units755.
 Receipts: build/frontier-bgm-load-context-20261031/.
+
+## Separate master-gain control remains private
+
+A bounded follow-up reconstructed master-gain403A30/284 in the same actual
+service/stream context. Straightforward parameter clamping plus ordinary gain
+conversion initially emitted357 bytes with inlined math. Preserving the actual
+public stdcall gain provider and using a direct value clamp emitted300 bytes;
+a standard min/max clamp also emitted300. The native clamp's x87 value flow,
+loop/register scheduling and full alignment remain different. No extra stores,
+forced alignment, synthetic helper or permissive alignment matching was added.
+Both accepted play/prepare roots still replayed exact in the private control.
+The experimental method is not selected and the accepted source was restored.
+Evidence: build/frontier-bgm-master-gain-20261031/. No new counts or credit.
