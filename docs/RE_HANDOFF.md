@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Global wave-service constructor401880/143 and destructor401910/128 are
+fully exact, including130 cleanup/EH bytes each and real17-byte initializer/
+CRT slot/5-byte exit tail for458-byte storage702288. Four prior buffer callbacks
+209 bytes plus required EH replay before strictly typed code-pointer PUSH.
+Old resource-manager98x3/30x3 and package globals freshly pass. Member193/145
+constructors remain unselected. Exact1567/446694, source1763/authored1783/
+mapped1790, excluded1658/review586/units754.
+See WAVE_SERVICE_LIFETIME_EXACT_2026_10_31.md.
+
 UDP request buffer+78 now has consistent unsigned-byte array ownership in
 start/replacement, initialize, shutdown and owner destruction. Four source
 sites use actual delete[]; all eight old affected authored matches and the

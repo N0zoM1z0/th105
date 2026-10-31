@@ -1787,3 +1787,5 @@ TextureHandleManager_dtor,0x00404FD0,function
 BgmStreamHandleManager_dtor,0x00403F60,function
 CMenuConnect_dtor,0x00443C30,function
 CSelect_dtor,0x00424260,function
+WaveService_ctor,0x00401880,function
+WaveService_dtor,0x00401910,function

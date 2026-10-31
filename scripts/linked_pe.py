@@ -89,6 +89,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     from linked_lifecycle import validate_contract as validate_lifecycle
     from linked_noreturn import validate_contract as validate_error_tails
     validate_lifecycle(unit, data_keys)
+    from linked_wave_callbacks import validate as validate_wave_callbacks
+    validate_wave_callbacks(unit)
     from linked_literals import validate as validate_literals
     validate_literals(unit, data_keys)
     from linked_reader_vtables import validate as validate_reader_vtables
@@ -712,6 +714,7 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
     instructions = decode_closed_body(code, start, tail=tail, external_exits=external_exits,
                                       alignment_sites=alignment_sites)
     native_vtables = {table["source_address"]: table for table in vtables}
+    from linked_wave_callbacks import typed_push_allowed as wave_callback_push_allowed
     typed = {ref["source_address"]: ref for ref in internal_refs}
     if len(typed) != len(internal_refs) or set(typed) & set(native_vtables):
         raise ValueError("typed internal address roles overlap")
@@ -803,6 +806,9 @@ def canonicalize(code: bytes, start: int, target: int, bindings: list[dict], res
                                    and ref.get("address") == 0x0041A8E0 and ref.get("size") == 33
                                    and re.fullmatch(r"[0-9a-f]{64}", str(ref.get("canonical_sha256", "")))
                                    and ref.get("canonical_sha256") == ref.get("target_sha256"))
+                               or (ref["kind"] == "wave_lifetime_callback"
+                                   and instruction.mnemonic == "push"
+                                   and wave_callback_push_allowed(ref))
                                or (ref["kind"] == "eh_handler" and instruction.mnemonic == "push")
                                or (ref["kind"] == "eh_info" and instruction.mnemonic == "mov"
                                    and instruction.operands[0].type == capstone.x86.X86_OP_REG
@@ -1247,6 +1253,10 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     internal_refs += png_callback_witness(unit, pe, functions, parse_map_symbols(map_text),
                                          image.with_suffix(".ltcg.obj").name, imports,
                                          c.known_data_targets(), c.target_bytes)
+    from linked_wave_callbacks import witnesses as wave_callback_witnesses
+    internal_refs += wave_callback_witnesses(unit, pe, game, functions, exports,
+        image.with_suffix(".ltcg.obj").name, imports, bindings, vtables, internal_refs,
+        sdk_imports, ledger, c.target_bytes, globals_witnesses)
     reports = []
     for function in unit["functions"]:
         if addresses and function["address"] not in addresses:

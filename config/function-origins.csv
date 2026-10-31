@@ -22,8 +22,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004017A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00401830,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00401850,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00401880,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00401910,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00401880,authored_game,audio,authored,observed,canonical-exact-authored
+0x00401910,authored_game,audio,authored,observed,canonical-exact-authored
 0x00401990,authored_game,audio,authored,observed,wave-silent-buffer-initialization-authored-106a
 0x00401A80,authored_game,audio,authored,observed,canonical-exact-authored
 0x00401AF0,unknown,,review,unknown,ida-1.06a-initial-inventory
