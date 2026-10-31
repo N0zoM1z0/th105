@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Correct PAT fields now naturally generate FrameData copy421B30 at91/91 and
+preserve derivedcopy460C90/311 with its real base call. Removed the provisional
+out-of-line copy declaration; no inline directive or hand-written copy added.
+All11 authored roots,33 old generated-origin bodies and assignment305 freshly
+pass again. This91-byte body is compiler-generated only. Excluded1642/review613/
+units747; authored exact1555/441708 and source counts unchanged.
+See PAT_BASE_FIELDS_2026_10_31.md follow-up.
+
 PAT FrameData base is now eight raw WORDs plus byte14 and natural15..17
 padding, independently established by the complete implicit assignment460DD0.
 Old neutral DWORD/union view gave295; actual typed layout gives305/305 including

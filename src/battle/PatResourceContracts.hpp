@@ -36,7 +36,6 @@ struct PatRaw16 {
 class FrameData {
 public:
     FrameData();
-    FrameData(FrameData const &other);
     virtual ~FrameData();
 
     unsigned short raw_04, raw_06;

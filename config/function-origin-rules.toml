@@ -4507,3 +4507,19 @@ confidence = "observed"
 evidence = "Actual PatRecord88 layout generates its implicit memberwise assignment305/305, including all3 canonical vector-assignment calls. Base fields are eight WORDs and byte14 with natural15..17 padding; no copied assignment implementation. Full inventory fingerprint uniqueness and native hash are pinned. All11 affected authored roots and32 dependent generated-origin bodies freshly retain their proofs. No authored credit. docs/PAT_BASE_FIELDS_2026_10_31.md."
 vc8_generated_anchor_file = "config/vc8-pat-record-assignment-origin-anchors.toml"
 required_body_hashes = [{ address = "0x00460DD0", size = 305, sha256 = "887079406c65a5624d4dbcf05cfb5bc56230624d17888f9ebdf51133850adb1d" }]
+
+[[rules]]
+id = "vc8-generated-pat-base-copy-106a"
+addresses = ["0x00421B30"]
+expected_count = 1
+expected_bytes = 91
+expected_names = ["sub_421B30"]
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Correct eight-WORD/byte/pointer FrameData fields naturally generate the complete implicit91-byte copy constructor and retain the actual derived311-byte out-of-line call without a user-declared copy boundary. Canonical91/91 including the existing FrameData vtable binding, complete inventory uniqueness and native hash; no authored credit. docs/PAT_BASE_FIELDS_2026_10_31.md."
+vc8_generated_anchor_file = "config/vc8-pat-base-copy-origin-anchors.toml"
+required_body_hashes = [{ address = "0x00421B30", size = 91, sha256 = "10efb600913c42cb24cd2fa09f5def3b73b42a044faf3f2888eb9f96ea80286b" }]
+required_dword_values = [{ address = "0x006C0908", value = "0x00421A90" }]
+required_direct_edges = [{ caller = "0x00460C90", site = "0x00460CBE", target = "0x00421B30", caller_status = "unclassified" }]

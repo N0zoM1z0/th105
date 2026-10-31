@@ -62,3 +62,33 @@ Authored exact remains1,555 /441,708 bytes; source1,752, authored ownership1,772
 and mapped1,779 are unchanged.
 
 Default CI passes192 tests; generated progress and whitespace checks pass.
+
+## Natural base-copy boundary after the field correction
+
+A follow-up removes the provisional user-declared FrameData copy constructor.
+With the corrected fields, VC8 now naturally emits the implicit base copy at
+421B30, exactly91/91, and naturally keeps the existing derived copy constructor
+460C90 at311 bytes with its real out-of-line base call at460CBE. The earlier
+explicit declaration had compensated for the old coarse field view; it is no
+longer needed to obtain the observed source partition. No inline/noinline
+directive, out-of-line hand-written implementation or alternate ABI is added.
+
+Base copy native/canonical SHA-256:
+10efb600913c42cb24cd2fa09f5def3b73b42a044faf3f2888eb9f96ea80286b.
+The entire body, including the independently known FrameData vtable6C0908,
+matches. The new origin rule checks full-inventory uniqueness, native hash,
+the real derived-constructor call and the vtable's native destructor entry.
+Its87 non-relocation bytes and complete91-byte canonical replay are separate
+proofs; no prefix-only result is promoted.
+
+The existing pat_record_copy_generated.cpp probe supplies the real derived
+copy context. All33 prior header-dependent generated-origin bodies again pass.
+All11 affected authored roots again remain exact, and the three candidate-only
+units still compile. The305-byte assignment also freshly replays exact.
+The new91-byte copy is compiler-generated, not authored game progress.
+
+New public unit: vc8-pat-base-copy-origin.
+Receipts and natural source control:
+build/frontier-pat-base-copy-20261031/ and its corresponding private analysis
+scope. Exclusions become1,642, review613 and match units747. Authored exact,
+source and ownership totals remain unchanged.

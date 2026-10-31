@@ -745,7 +745,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00421AC0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00421AE0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00421B00,compiler_generated,battle,exclude,observed,vc8-generated-effect-animation-sequence-std-comdats-106a
-0x00421B30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00421B30,compiler_generated,battle,exclude,observed,vc8-generated-pat-base-copy-106a
 0x00421B90,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
 0x00421BC0,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00421C30,unknown,,review,unknown,ida-1.06a-initial-inventory

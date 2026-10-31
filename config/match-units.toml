@@ -28223,3 +28223,16 @@ notes = "Compiler-generated PatRecord88 assignment305/305; actual base is eight 
 address = "0x00460DD0"
 symbol_base = "??4PatRecord88@th105@@QAEAAV01@ABV01@@Z"
 rel32_targets = ["??4?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAEAAV01@ABV01@@Z=0x00460AD0", "??4?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAEAAV01@ABV01@@Z=0x00460980"]
+
+[units.vc8-pat-base-copy-origin]
+kind = "probe"
+source = "scripts/probes/pat_record_copy_generated.cpp"
+object = "build/match-units/PatBaseCopyOrigin.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Actual typed FrameData now naturally emits its implicit91-byte base copy constructor and preserves the existing derived311-byte constructor without an artificial out-of-line copy declaration. Compiler-generated provenance only; docs/PAT_BASE_FIELDS_2026_10_31.md."
+
+[[units.vc8-pat-base-copy-origin.functions]]
+address = "0x00421B30"
+symbol_base = "??0FrameData@th105@@QAE@ABV01@@Z"
+dir32_targets = ["??_7FrameData@th105@@6B@=??_7FrameData@th105@@6B@"]
