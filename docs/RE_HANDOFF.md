@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+PAT FrameData base is now eight raw WORDs plus byte14 and natural15..17
+padding, independently established by the complete implicit assignment460DD0.
+Old neutral DWORD/union view gave295; actual typed layout gives305/305 including
+all three vector calls. This compiler-generated body is excluded, not authored
+credit. All11 affected authored roots and32 dependent old origin bodies freshly
+pass. Excluded1641/review614/units746; exact1555/441708 and source counts unchanged.
+See PAT_BASE_FIELDS_2026_10_31.md.
+
 Ogg reader-owner destructor418A00 is now canonical exact15/15 through the
 freshly exact private stream destructor220 and complete third11-byte cleanup.
 Its real private-parent entry witness is retained; same-register member+30

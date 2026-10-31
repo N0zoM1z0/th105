@@ -4493,3 +4493,17 @@ confidence = "observed"
 evidence = "Exact CScript load405810 calls this complete line parser at4058C7. Source retains prefix/colon factory lookup, temporary string lifetime, virtual command creation/parse, fallback and owned command-deque append. Array new/delete pairing follows actual native VC8 wrappers. Whole405-byte source remains nonexact; no EH contract waiver or byte credit. docs/SCRIPT_ARRAY_LIFETIMES_2026_10_31.md."
 required_direct_edges = [{ caller = "0x00405810", site = "0x004058C7", target = "0x00405930", caller_status = "matching" }]
 required_body_hashes = [{ address = "0x00405930", size = 399, sha256 = "dd534e8474d97ae97348bdcc0189d47ed643b55c98635446df715eec4ad4ecc9" }]
+
+[[rules]]
+id = "vc8-generated-pat-record-assignment-106a"
+addresses = ["0x00460DD0"]
+expected_count = 1
+expected_bytes = 305
+expected_names = ["sub_460DD0"]
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual PatRecord88 layout generates its implicit memberwise assignment305/305, including all3 canonical vector-assignment calls. Base fields are eight WORDs and byte14 with natural15..17 padding; no copied assignment implementation. Full inventory fingerprint uniqueness and native hash are pinned. All11 affected authored roots and32 dependent generated-origin bodies freshly retain their proofs. No authored credit. docs/PAT_BASE_FIELDS_2026_10_31.md."
+vc8_generated_anchor_file = "config/vc8-pat-record-assignment-origin-anchors.toml"
+required_body_hashes = [{ address = "0x00460DD0", size = 305, sha256 = "887079406c65a5624d4dbcf05cfb5bc56230624d17888f9ebdf51133850adb1d" }]

@@ -39,19 +39,20 @@ public:
     FrameData(FrameData const &other);
     virtual ~FrameData();
 
-    unsigned raw_04;
-    unsigned raw_08;
-    unsigned raw_0c;
-    unsigned raw_10;
-    union {
-        unsigned raw_14;
-        struct {
-            unsigned char tag_14;
-            unsigned char padding_15[3];
-        };
-    };
+    unsigned short raw_04, raw_06;
+    unsigned short raw_08, raw_0a;
+    unsigned short raw_0c, raw_0e;
+    unsigned short raw_10, raw_12;
+    unsigned char tag_14;
+    // +15..+17 are natural alignment padding, not assignment members.
     PatOptionalModePayload20 *optional_mode_payload_18;
 };
+
+typedef char FrameData_base_size[sizeof(FrameData) == 0x1c ? 1 : -1];
+typedef char FrameData_first_word_offset[offsetof(FrameData, raw_04) == 4 ? 1 : -1];
+typedef char FrameData_last_word_offset[offsetof(FrameData, raw_12) == 0x12 ? 1 : -1];
+typedef char FrameData_tag_offset[offsetof(FrameData, tag_14) == 0x14 ? 1 : -1];
+typedef char FrameData_payload_offset[offsetof(FrameData, optional_mode_payload_18) == 0x18 ? 1 : -1];
 
 class PatRecord88 : public FrameData {
 public:

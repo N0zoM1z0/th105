@@ -1862,7 +1862,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00460AD0,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
 0x00460C10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00460C90,compiler_generated,battle,exclude,observed,vc8-generated-pat-record-copy-106a
-0x00460DD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00460DD0,compiler_generated,battle,exclude,observed,vc8-generated-pat-record-assignment-106a
 0x00460F10,compiler_generated,battle,exclude,observed,vc8-generated-pat-group-lifetime-std-comdats-106a
 0x00460F50,compiler_generated,battle,exclude,observed,vc8-generated-pat-copy-anchors-106a
 0x00460F90,authored_game,battle,authored,observed,canonical-exact-authored

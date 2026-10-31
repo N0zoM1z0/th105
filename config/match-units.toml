@@ -28210,3 +28210,16 @@ rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26"]
 address = "0x00418A00"
 symbol_base = "??1BgmOggDataSource@th105@@QAE@XZ"
 private_from = { caller = "0x00402880", site = "0x006BD8D9", cleanup = 2, through_exact_caller = true }
+
+[units.vc8-pat-record-assignment-origin]
+kind = "probe"
+source = "scripts/probes/PatRecordAssignmentOrigin.cpp"
+object = "build/match-units/PatRecordAssignmentOrigin.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Compiler-generated PatRecord88 assignment305/305; actual base is eight WORD fields plus byte14 and natural padding15..17. No authored credit. docs/PAT_BASE_FIELDS_2026_10_31.md."
+
+[[units.vc8-pat-record-assignment-origin.functions]]
+address = "0x00460DD0"
+symbol_base = "??4PatRecord88@th105@@QAEAAV01@ABV01@@Z"
+rel32_targets = ["??4?$vector@UPatRaw16@th105@@V?$allocator@UPatRaw16@th105@@@std@@@std@@QAEAAV01@ABV01@@Z=0x00460AD0", "??4?$vector@PAUPatRaw16@th105@@V?$allocator@PAUPatRaw16@th105@@@std@@@std@@QAEAAV01@ABV01@@Z=0x00460980"]
