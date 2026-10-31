@@ -87,6 +87,41 @@ class LinkedPeTests(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(ValueError):
                 linked.validate_contract(bad, {"pool"})
 
+    def test_pointer_template_vtable_keeps_its_own_scalar_entry(self):
+        stem = "?$Owner@PAUPayload@game@@@game@@"
+        symbol = "??_7" + stem + "6B@"
+        scalar = "??_G" + stem + "UAEPAXI@Z"
+        f = self.private_fixture()
+        child = f["unit"]["functions"][1]
+        child.pop("private_from")
+        child.update(symbol_base=scalar, vtable_entry=symbol)
+        unit = {**f["unit"], "profile": linked.PROFILE, "object": "build/test.dll",
+                "link_data_targets": [], "link_vtables": [{"symbol": symbol,
+                    "target": "pool", "entry": scalar + "=0x00402000",
+                    "target_type_name": ".?AV?$OriginalOwner@PAUPayload@@@@"}]}
+        linked.validate_contract(unit, {"pool"})
+        bad = copy.deepcopy(unit)
+        bad["link_vtables"][0]["entry"] = scalar.replace("Payload", "Other") + "=0x00402000"
+        with self.assertRaises(ValueError):
+            linked.validate_contract(bad, {"pool"})
+
+    def test_pointer_template_vtable_rejects_other_argument_shapes(self):
+        good = "??_7?$Owner@PAUPayload@game@@@game@@6B@"
+        self.assertIsNotNone(linked.single_destructor_vtable_owner(good))
+        for bad in [good.replace("PAU", "AAU"), good.replace("PAUPayload@game@@", "H"),
+                    good.replace("PAUPayload", "PAU?$Nested"),
+                    good.replace("@@@game@@6B@", "@@H@game@@6B@"),
+                    good + "junk", None, 42]:
+            with self.subTest(symbol=bad):
+                self.assertIsNone(linked.single_destructor_vtable_owner(bad))
+
+    def test_named_vtable_owner_contract_is_unchanged(self):
+        self.assertEqual(linked.single_destructor_vtable_owner("??_7Owner@game@@6B@"),
+                         "Owner@game")
+        self.assertEqual(linked.single_destructor_vtable_owner("??_7Owner@@6B@"), "Owner")
+        for value in ["??_GOwner@game@@6B@", "??_7Owner@game@@7B@", "??_7Owner@@6B@extra"]:
+            self.assertIsNone(linked.single_destructor_vtable_owner(value))
+
     def test_vtable_entry_requires_the_attested_pointer_and_only_its_compiler_alias(self):
         symbol = "??_GPool@game@@UAEPAXI@Z"
         vector_alias = symbol.replace("??_G", "??_E", 1)

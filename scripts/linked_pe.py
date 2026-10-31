@@ -69,6 +69,22 @@ def comparator():
     return module
 
 
+def single_destructor_vtable_owner(symbol: object) -> str | None:
+    """Accept named classes and one ordinary pointer-to-class template argument."""
+    if not isinstance(symbol, str):
+        return None
+    named = r"\?\?_7[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@6B@"
+    # Observed VC8 encoding: namespace-qualified owner<T*>, with T a named
+    # class/struct. No nested/value/multiple arguments or arbitrary suffix.
+    pointer_template = (
+        r"\?\?_7\?\$[A-Za-z_]\w*@PA[UV][A-Za-z_]\w*"
+        r"(?:@[A-Za-z_]\w*)*@@@[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@6B@"
+    )
+    if not (re.fullmatch(named, symbol) or re.fullmatch(pointer_template, symbol)):
+        return None
+    return symbol[4:-5]
+
+
 def validate_contract(unit: dict, data_keys: set[str]) -> None:
     from linked_lifecycle import validate_contract as validate_lifecycle
     from linked_noreturn import validate_contract as validate_error_tails
@@ -129,10 +145,10 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         if not isinstance(table, dict) or set(table) not in (base_keys, base_keys | {"initializer"}):
             raise ValueError("linked vtable requires exact symbol/target/entry/RTTI fields")
         symbol, key, entry = table["symbol"], table["target"], table["entry"]
-        if (not isinstance(symbol, str) or not re.fullmatch(r"\?\?_7[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@6B@", symbol)
-                or symbol in names or not isinstance(key, str) or key not in data_keys or not isinstance(entry, str)):
+        owner = single_destructor_vtable_owner(symbol)
+        if (owner is None or symbol in names or not isinstance(key, str)
+                or key not in data_keys or not isinstance(entry, str)):
             raise ValueError("invalid/duplicate linked single-destructor vtable")
-        owner = symbol[4:-5]
         entry_name, separator, address = entry.partition("=")
         if (not separator or entry_name != "??_G" + owner + "@@UAEPAXI@Z"
                 or not re.fullmatch(r"0x[0-9A-Fa-f]{8}", address)

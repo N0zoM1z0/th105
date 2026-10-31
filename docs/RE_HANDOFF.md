@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Three concrete pointer-resource manager destructors401F10/402020/404FD0
+are canonical exact98 each. Their three30-byte scalar wrappers also pass but
+remain excluded. Real CIL plus unchanged unsigned-list/vector COFF naturally
+preserves ESI deque cleanup. Narrow one-pointer-template vtable naming support
+keeps all RTTI/owner/relocation checks; old UDP98/30/145+full EH freshly pass.
+Exact1561/444796; source1758/authored1778/mapped1785, excluded1658/review591/
+units752. See RESOURCE_MANAGER_LIFETIMES_EXACT_2026_10_31.md.
+
 Original effect-group deque/placement-copy source now verifies three complete
 library bodies422770/341,422E00/117,4505A0/60, all518 canonical bytes.
 Full-inventory/hash/coverage provenance passes; generic templates do not imply

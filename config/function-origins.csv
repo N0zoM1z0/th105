@@ -35,9 +35,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00401E00,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00401E30,compiler_generated,runtime,exclude,observed,std-string-c-str-generated-106a
 0x00401E40,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00401F10,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00401F10,authored_game,audio,authored,observed,canonical-exact-authored
 0x00401F80,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00402020,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00402020,authored_game,audio,authored,observed,canonical-exact-authored
 0x00402090,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x004020B0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x004020D0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
@@ -107,7 +107,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00404DF0,authored_game,assets,authored,observed,render-texture-slot-binding-authored-106a
 0x00404E60,authored_game,assets,authored,observed,canonical-exact-authored
 0x00404F00,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00404FD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00404FD0,authored_game,assets,authored,observed,canonical-exact-authored
 0x00405040,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x00405060,compiler_generated,runtime,exclude,observed,udp-pointer-vector-cleanup-106a
 0x00405090,unknown,,review,unknown,ida-1.06a-initial-inventory

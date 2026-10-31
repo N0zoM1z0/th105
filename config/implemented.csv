@@ -1753,3 +1753,6 @@ parse_script_line
 dispatch_wave_resource
 EffectResourceGroup_ctor
 EffectResourceGroup_dtor
+WaveBufferHandleManager_dtor
+DirectSoundHandleManager_dtor
+TextureHandleManager_dtor
