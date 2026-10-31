@@ -18299,13 +18299,13 @@ dir32_targets = ["??_7CBitmapData@th105@@6B@=??_7CBitmapData@th105@@6B@"]
 [[units.gpt-web-cbitmap-data-runtime.functions]]
 address = "0x00419FA0"
 symbol_base = "??_GCBitmapData@th105@@UAEPAXI@Z"
-rel32_targets = ["_free=0x0068AA26", "??3@YAXPAX@Z=0x006898EA"]
+rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26", "??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = ["??_7CBitmapData@th105@@6B@=??_7CBitmapData@th105@@6B@"]
 
 [[units.gpt-web-cbitmap-data-runtime.functions]]
 address = "0x00419FD0"
 symbol_base = "??1CBitmapData@th105@@UAE@XZ"
-rel32_targets = ["_free=0x0068AA26"]
+rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26"]
 dir32_targets = ["??_7CBitmapData@th105@@6B@=??_7CBitmapData@th105@@6B@"]
 
 [[units.gpt-web-cbitmap-data-runtime.functions]]
@@ -18315,7 +18315,7 @@ rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
   "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20",
   "??_U@YAPAXI@Z=0x00665B8A",
-  "_free=0x0068AA26",
+  "??_V@YAXPAX@Z=0x0068AA26",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
@@ -27412,7 +27412,7 @@ rel32_targets = ["?case_insensitive_crc32@th105@@YAIPBEH@Z=0x00406930", "__inval
 address = "0x0041ACA0"
 symbol_base = "?load_from_file@CBitmapData@th105@@UAE_NPBD@Z"
 eh_cleanup = { handler = "0x006BDBD8", info = "0x006E425C" }
-rel32_targets = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20", "??_U@YAPAXI@Z=0x00665B8A", "_free=0x0068AA26", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
+rel32_targets = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20", "??_U@YAPAXI@Z=0x00665B8A", "??_V@YAXPAX@Z=0x0068AA26", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
 
 [[units.exact-first-csv-file-loading.functions]]
 address = "0x00408F70"
@@ -27482,7 +27482,7 @@ address = "0x00418D10"
 symbol_base = "?load_sfl_metadata@OggStreamSource@th105@@QAEXPBD@Z"
 private_from = { caller = "0x00418A10", site = "0x00418B25", through_exact_caller = true }
 eh_cleanup = { handler = "0x006BDD5B", info = "0x006E43BC" }
-rel32_targets = ["_strcpy_s=0x0068AD95", "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "??_U@YAPAXI@Z=0x00665B8A", "_free=0x0068AA26", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
+rel32_targets = ["_strcpy_s=0x0068AD95", "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40", "??_U@YAPAXI@Z=0x00665B8A", "??_V@YAXPAX@Z=0x0068AA26", "??1FileReaderOwner@th105@@QAE@XZ=0x0040CF20", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
 
 [units.exact-first-bgm-stream-lifetime]
 kind = "linked_candidate"

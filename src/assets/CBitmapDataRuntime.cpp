@@ -28,8 +28,11 @@ CBitmapData::CBitmapData()
 
 CBitmapData::~CBitmapData()
 {
+    // The owner erases the element type of trivial byte/word/dword arrays.
+    // Native writers retain the allocation base; release that array storage
+    // without pretending every producer allocated unsigned char elements.
     if (buffer_1c != 0)
-        free(buffer_1c);
+        ::operator delete[](buffer_1c);
 }
 
 #pragma pack(push, 2)
@@ -255,10 +258,10 @@ bool CBitmapData::load_bitmap(const char *path)
     }
 
     if (palette16 != 0)
-        free(palette16);
+        delete[] palette16;
     else if (palette32 != 0)
-        free(palette32);
-    free(file_data);
+        delete[] palette32;
+    delete[] file_data;
     return true;
 }
 

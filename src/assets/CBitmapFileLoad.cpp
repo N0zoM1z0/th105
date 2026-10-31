@@ -18,11 +18,12 @@ bool CBitmapData::load_from_file(const char *path)
     reader->read(&field_10, 4);
     reader->read(&explicit_size_14, 4);
 
+    // As in the destructor, old storage may hold any trivial pixel-array type.
     unsigned char *old_buffer = buffer_1c;
     int byte_count;
     if (explicit_size_14 > 0) {
         if (old_buffer != 0) {
-            free(old_buffer);
+            ::operator delete[](old_buffer);
             buffer_1c = 0;
         }
         buffer_1c = new unsigned char[explicit_size_14];
@@ -30,7 +31,7 @@ bool CBitmapData::load_from_file(const char *path)
         reader->read(buffer_1c, byte_count);
     } else if (format_04 >= 24) {
         if (old_buffer != 0) {
-            free(old_buffer);
+            ::operator delete[](old_buffer);
             buffer_1c = 0;
         }
         buffer_1c = new unsigned char[field_10 * field_0c * 4];
@@ -38,7 +39,7 @@ bool CBitmapData::load_from_file(const char *path)
         reader->read(buffer_1c, byte_count);
     } else {
         if (old_buffer != 0) {
-            free(old_buffer);
+            ::operator delete[](old_buffer);
             buffer_1c = 0;
         }
         buffer_1c = new unsigned char[format_04 * field_10 * field_0c / 8];

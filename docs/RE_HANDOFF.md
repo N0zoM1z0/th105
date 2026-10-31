@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+SFL/BMP typed local arrays now use matching delete[]; type-erased primitive
+pixel storage uses the actual ::operator delete[] storage API, not an assumed
+char-array destructor. Native producers retain allocation bases and the scalar
+bitmap dtor independently separates buffer-array delete from owner-scalar delete.
+All19 accepted functions in the three actual dependent units freshly remain
+exact, including linked EH. No counts change; BMP2181/native2230 remains
+nonexact at frame438h/430h. See PIXEL_AND_SFL_ARRAY_LIFETIMES_2026_10_31.md.
+
 Script prefix and FileBufferContext now correctly pair new[] with delete[]
 at four source sites; four scoped callee bindings follow actual emitted symbols.
 All14 accepted functions in the two actual dependent units freshly remain exact.

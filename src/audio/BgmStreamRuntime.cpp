@@ -427,7 +427,7 @@ void OggStreamSource::load_sfl_metadata(const char *audio_path)
                            static_cast<double>(sample_rate);
     }
 
-    std::free(data);
+    delete[] data;
     }
 }
 
