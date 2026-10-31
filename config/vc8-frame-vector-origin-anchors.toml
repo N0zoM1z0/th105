@@ -1,0 +1,74 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/FrameDataVectorOrigin.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+[[anchors]]
+address = "0x00421C30"
+size = 105
+symbol = "??$_Copy_opt@PAVFrameData@th105@@PAV12@Uforward_iterator_tag@std@@@std@@YAPAVFrameData@th105@@PAV12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00421CA0"
+size = 105
+symbol = "??$_Copy_backward_opt@PAVFrameData@th105@@PAV12@Uforward_iterator_tag@std@@@std@@YAPAVFrameData@th105@@PAV12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00421D70"
+size = 94
+symbol = "??$_Copy_opt@PAVFrameData@th105@@PAV12@@std@@YAPAVFrameData@th105@@PAV12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00421DD0"
+size = 102
+symbol = "??$_Fill@PAVFrameData@th105@@V12@@std@@YAXPAVFrameData@th105@@0ABV12@@Z"
+
+[[anchors]]
+address = "0x00421E40"
+size = 99
+symbol = "??$_Copy_backward_opt@PAVFrameData@th105@@PAV12@@std@@YAPAVFrameData@th105@@PAV12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00421EB0"
+size = 115
+symbol = "??$_Uninit_copy@PBVFrameData@th105@@PAV12@V?$allocator@VFrameData@th105@@@std@@@std@@YAPAVFrameData@th105@@PBV12@0PAV12@AAV?$allocator@VFrameData@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x00421F70"
+size = 115
+symbol = "??$_Uninit_fill_n@PAVFrameData@th105@@IV12@V?$allocator@VFrameData@th105@@@std@@@std@@YAXPAVFrameData@th105@@IABV12@AAV?$allocator@VFrameData@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x004220A0"
+size = 38
+symbol = "?_Destroy@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@IAEXPAVFrameData@th105@@0@Z"
+
+[[anchors]]
+address = "0x00422100"
+size = 60
+symbol = "?_Ufill@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@IAEPAVFrameData@th105@@PAV34@IABV34@@Z"
+
+[[anchors]]
+address = "0x004221E0"
+size = 126
+symbol = "?erase@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@2@V32@0@Z"
+
+[[anchors]]
+address = "0x00422260"
+size = 73
+symbol = "?_Tidy@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@IAEXXZ"
+
+[[anchors]]
+address = "0x00422710"
+size = 81
+symbol = "?_Buy@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@IAE_NI@Z"
+
+[[anchors]]
+address = "0x004228D0"
+size = 202
+symbol = "??0?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@QAE@ABV01@@Z"

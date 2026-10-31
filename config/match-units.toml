@@ -28236,3 +28236,35 @@ notes = "Actual typed FrameData now naturally emits its implicit91-byte base cop
 address = "0x00421B30"
 symbol_base = "??0FrameData@th105@@QAE@ABV01@@Z"
 dir32_targets = ["??_7FrameData@th105@@6B@=??_7FrameData@th105@@6B@"]
+
+[units.vc8-frame-vector-origin]
+kind = "probe"
+source = "scripts/probes/FrameDataVectorOrigin.cpp"
+object = "build/match-units/FrameDataVectorOrigin.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Actual shared FrameData with unchanged original VC8 vector implementation: six complete canonical witnesses and13 unique original template bodies, no authored credit. docs/FRAME_VECTOR_ORIGINS_2026_10_31.md."
+
+[[units.vc8-frame-vector-origin.functions]]
+address = "0x00421C30"
+symbol_base = "??$_Copy_opt@PAVFrameData@th105@@PAV12@Uforward_iterator_tag@std@@@std@@YAPAVFrameData@th105@@PAV12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[units.vc8-frame-vector-origin.functions]]
+address = "0x00421CA0"
+symbol_base = "??$_Copy_backward_opt@PAVFrameData@th105@@PAV12@Uforward_iterator_tag@std@@@std@@YAPAVFrameData@th105@@PAV12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[units.vc8-frame-vector-origin.functions]]
+address = "0x00421DD0"
+symbol_base = "??$_Fill@PAVFrameData@th105@@V12@@std@@YAXPAVFrameData@th105@@0ABV12@@Z"
+
+[[units.vc8-frame-vector-origin.functions]]
+address = "0x004220A0"
+symbol_base = "?_Destroy@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@IAEXPAVFrameData@th105@@0@Z"
+
+[[units.vc8-frame-vector-origin.functions]]
+address = "0x00421EB0"
+symbol_base = "??$_Uninit_copy@PBVFrameData@th105@@PAV12@V?$allocator@VFrameData@th105@@@std@@@std@@YAPAVFrameData@th105@@PBV12@0PAV12@AAV?$allocator@VFrameData@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[units.vc8-frame-vector-origin.functions]]
+address = "0x00421F70"
+symbol_base = "??$_Uninit_fill_n@PAVFrameData@th105@@IV12@V?$allocator@VFrameData@th105@@@std@@@std@@YAXPAVFrameData@th105@@IABV12@AAV?$allocator@VFrameData@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"

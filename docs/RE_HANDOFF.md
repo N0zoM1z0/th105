@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Original VC8 vector<FrameData> now proves13 unique library bodies/1315 bytes.
+Six complete copy/fill/destroy witnesses pass580 canonical bytes; all13 pass
+full-inventory/hash/coverage validation. Duplicate source instantiations count
+once; one original CC tail is checked. Compiler-generated exclusions only:
+excluded1655/review600/units748; authored1555/441708 and source counts unchanged.
+See FRAME_VECTOR_ORIGINS_2026_10_31.md.
+
 PAT and effect frames now share the actual FrameData lifetime/type instead
 of a duplicate effect-only class. Ordinary whole-object28-byte construction
 naturally reproduces the same optimized PAT base stores; all five accepted

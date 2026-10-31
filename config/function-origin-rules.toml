@@ -4523,3 +4523,31 @@ vc8_generated_anchor_file = "config/vc8-pat-base-copy-origin-anchors.toml"
 required_body_hashes = [{ address = "0x00421B30", size = 91, sha256 = "10efb600913c42cb24cd2fa09f5def3b73b42a044faf3f2888eb9f96ea80286b" }]
 required_dword_values = [{ address = "0x006C0908", value = "0x00421A90" }]
 required_direct_edges = [{ caller = "0x00460C90", site = "0x00460CBE", target = "0x00421B30", caller_status = "unclassified" }]
+
+[[rules]]
+id = "vc8-generated-frame-vector-106a"
+addresses = ["0x00421C30", "0x00421CA0", "0x00421D70", "0x00421DD0", "0x00421E40", "0x00421EB0", "0x00421F70", "0x004220A0", "0x00422100", "0x004221E0", "0x00422260", "0x00422710", "0x004228D0"]
+expected_count = 13
+expected_bytes = 1315
+expected_names = ["sub_421C30", "sub_421CA0", "sub_421D70", "sub_421DD0", "sub_421E40", "sub_421EB0", "sub_421F70", "sub_4220A0", "sub_422100", "sub_4221E0", "sub_422260", "sub_422710", "sub_4228D0"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original VC8 std::vector<FrameData> instantiated over the independently recovered actual frame type reproduces13 complete unique bodies. Six witnesses separately pass full canonical580-byte comparison. Duplicate const/nonconst source instantiations receive one physical row; one original CC tail is verified. No authored credit. docs/FRAME_VECTOR_ORIGINS_2026_10_31.md."
+vc8_generated_anchor_file = "config/vc8-frame-vector-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00421C30", size = 105, sha256 = "2318035e8fb397cf0fd26f1ad9e187e86e0d358c690d0ac1a78dc793e2f30e87" },
+ { address = "0x00421CA0", size = 105, sha256 = "6aecfbb477b6b6de02dc858030b9445d5ebb293a0821b602054aaeda307e5d9f" },
+ { address = "0x00421D70", size = 94, sha256 = "156230b247f5a6d84bfcf308162c9bdc3501a9acce2479223a26b250afcbac93" },
+ { address = "0x00421DD0", size = 102, sha256 = "434f6197fbd1f6cda16b86f5b4131276de1bdd98e3843ab23b0a6a8a524ea16a" },
+ { address = "0x00421E40", size = 99, sha256 = "7b62ec81476d5dd5a14746d6bda8b146eef7d253daa2a298106f3dbf4daa3d1d" },
+ { address = "0x00421EB0", size = 115, sha256 = "7d21d095cf998e1de5b121f397d1de64d64da98dfeabbca2c407f374d6633397" },
+ { address = "0x00421F70", size = 115, sha256 = "34d5d8eb9313c8084ce9e9da57bf7b4fcd880f846fe2b6200462058832493851" },
+ { address = "0x004220A0", size = 38, sha256 = "3e093a0281e9d2348b58451a07d84804610415f7447f8d8356ebd1074a8dce40" },
+ { address = "0x00422100", size = 60, sha256 = "ca31b20520a88f10ada5fa2bbcf4f0e11729fba0b0de86128dda4eb3976ed2f3" },
+ { address = "0x004221E0", size = 126, sha256 = "c2ad3418f12fdd33893645b35f80ae6d9353d412c3bcc5496a0a3fbeb76ae7b3" },
+ { address = "0x00422260", size = 73, sha256 = "e77c42b107f1428d0d59c503c72eba2485cdbd6445961cf0bfba2762c9ef32f5" },
+ { address = "0x00422710", size = 81, sha256 = "a7b77449e0c7907b40e5065279a11f6e0d0bd739e99e0914b0db8db49a9964a4" },
+ { address = "0x004228D0", size = 202, sha256 = "d253763daa7abf363e63a988a18377318cec720fe3d9e39af66331936c12289f" },
+]
