@@ -61,3 +61,24 @@ Fresh receipts are `build/frontier-udp-owner-tree-20261030/registered-ctor.json`
 and `registered-dtor.json`. Private controls and owner/target disassembly are
 under `.analysis/frontier-udp-owner-tree-20261030/` and the matching build scope.
 The old pool-only unit is replaced; prior unaffected receipts remain valid.
+
+## Bounded owner cleanup controls,2026-10-31
+
+After correcting actual UDP request-array ownership, the owner still emits
+357-byte construction and341/native333 destruction. Raw private-call inspection
+identifies a concrete remaining boundary: native tree cleanup413990/413A50
+receives EAX and calls range erase413B10/413D20 with five stack words; the current
+CIL retains ESI and a sixth implicit receiver argument. This prevents the
+owner from retaining the native critical-section vtable register lifetime.
+
+One genuine original unsigned-deque COFF control restores the pending-deque
+cleanup's actual ECX interface but leaves the owner341. One real combined
+owner/peer-removal source graph, with that library context and the original
+WS2_32 import, also leaves357/341; peer lookup/removal227/446 remain nonexact.
+Both preserve the old packet-manager98/30/145 with complete constructor EH.
+
+These are rejected private controls, not new provider bindings or authored
+credit. The temporary library source was removed from the public tree. No
+private EAX interface, instruction/register forcing or equivalent-spelling
+grid is authorized by this result. Evidence is retained under
+build/frontier-udp-owner-cleanup-20261031.
