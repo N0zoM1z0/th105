@@ -6,6 +6,7 @@
 #include "ui/GuideOverlay.hpp"
 #include "ui/CNumberRuntime.hpp"
 #include "ui/DesignBaseLifetime.hpp"
+#include "ui/DesignObjectLookup.cpp"
 #include "ui/ProfileDeckResourceLifetime.hpp"
 #include "battle/EffectSprite.hpp"
 #include "assets/TextFontOwner.hpp"
@@ -22,6 +23,9 @@ extern "C" const char profile_ui_effect_label[];
 extern "C" const char deck_disabled_text[39];
 
 namespace th105 {
+struct TitleResourceManagerValueView { TextureHandleResult load_texture_value(const char *,unsigned *,unsigned *); };
+extern TitleResourceManagerValueView g_title_resource_manager_value;
+
 const char *__cdecl character_key_to_name(int);
 extern TextFontOwner194 g_profile_deck_font;
 
@@ -52,9 +56,6 @@ public:
     void set_texture(unsigned, int, int, unsigned, unsigned);
     SpriteVertex28 vertices_08[4];
     float width_78, height_7c, extension_80[9];
-};
-struct DeckDesignFindView {
-    DeckDesignMap::iterator find(const unsigned &key);
 };
 struct DeckPlayerView {
     std::deque<unsigned short> *copy_deck(std::deque<unsigned short> *output, int character);
@@ -106,11 +107,7 @@ typedef char OwnerSize[sizeof(ProfileDeckConstructorView)==0x6b0?1:-1];
 typedef char ResourceOffset[offsetof(ProfileDeckConstructorView,resources_398)==0x398?1:-1];
 typedef char GuideOffset[offsetof(ProfileDeckConstructorView,guides_410)==0x410?1:-1];
 
-#define FIND_DECK_DESIGN(index,id) do { \
-    unsigned key = (id); \
-    DeckDesignMap::iterator found = reinterpret_cast<DeckDesignFindView *>(&design_10.object_tree_20)->find(key); \
-    objects_44[index] = found == design_10.object_tree_20.end() ? 0 : found->second; \
-} while (0)
+#define FIND_DECK_DESIGN(index,id) design_10.find_object(&objects_44[index],id)
 #define NUMBER_VIEW(index) reinterpret_cast<CNumber *>(reinterpret_cast<unsigned char *>(objects_44[index])+0x18)
 
 ProfileDeckConstructorView::ProfileDeckConstructorView(
@@ -123,8 +120,8 @@ ProfileDeckConstructorView::ProfileDeckConstructorView(
 
     char path[260];
     wsprintfA(path, deck_name_path_format, character_key_to_name(character));
-    unsigned width, height, handle;
-    texture_300 = *g_title_resource_manager.load_texture(&handle, path, &width, &height);
+    unsigned width, height;
+    texture_300 = g_title_resource_manager_value.load_texture_value(path, &width, &height).value;
     sprite_304.set_texture(texture_300, 0, 0, width, height);
 
     TextFontConfig128 config;

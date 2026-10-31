@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Deck constructor44AAC0 now uses the actual shared design lookup and natural
+returned texture-handle temporary. Earlier frame/lookup differences close;
+complete2132/native2136 remains nonexact at44AF27 on loop register allocation.
+Both7/15 signed adapter methods remain exact. No count change. See the latest
+PROFILE_DECK_CONSTRUCTOR_2026_10_29.md section.
+
 Config menu constructor441520 now has complete caller/RTTI-backed source.
 Actual lookup/cursor providers and returned-handle lifetime recover the first
 821 bytes, but complete863/native868 remains nonexact on a repeated final

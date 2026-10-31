@@ -26362,12 +26362,15 @@ source = "src/ui/ProfileDeckConstructor.cpp"
 object = "build/match-units/ExactFirst_ProfileDeckConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete2136-byte CProfileDeckEdit constructor; natural2151-byte source remains nonexact+391, with native66C frame and all62 direct calls. RTTI-backed signed-char number getters448B20/448B30 independently match7/15. No constructor or provider credit inferred from the leaves. docs/PROFILE_DECK_CONSTRUCTOR_2026_10_29.md."
+notes = "Complete2136-byte CProfileDeckEdit constructor; real design lookup and texture-return temporary now give2132 bytes, nonexact at+1127 on loop register allocation. RTTI-backed signed-char number getters448B20/448B30 independently match7/15. No constructor or provider credit inferred from the leaves. docs/PROFILE_DECK_CONSTRUCTOR_2026_10_29.md."
 
 [[units.exact-first-profile-deck-constructor.functions]]
 address = "0x0044AAC0"
 symbol_base = "??0ProfileDeckConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@HPAUUiSprite94@1@@Z"
+dir32_targets = ["?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
 rel32_targets = [
+  "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90",
+  "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0",
   "??0CDesignBase@th105@@QAE@XZ=0x004217F0",
   "??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E880",
   "?_Buynode@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@2@XZ=0x0043BBC0",
@@ -26380,7 +26383,6 @@ rel32_targets = [
   "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@DeckCtorTileA4@th105@@QAEXIHHII@Z=0x004098B0",
   "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
-  "?find@DeckDesignFindView@th105@@QAE?AViterator@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@ABI@Z=0x0040CDA0",
   "__invalid_parameter_noinfo=0x0068A143",
   "??3@YAXPAX@Z=0x006898EA",
   "??2@YAPAXI@Z=0x00689DCB",

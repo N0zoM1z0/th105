@@ -1,7 +1,8 @@
 # Profile deck editor constructor44AAC0
 
 Complete constructor source is now present in ProfileDeckConstructor.cpp.
-The full root remains nonexact2151/native2136, first+391/44AC47. Two separately
+The latest full root remains nonexact2132/native2136, first+1127/44AF27.
+See the October31 real-provider follow-up below; earlier control sizes are historical. Two separately
 bounded number-adapter virtuals are canonical exact7/15; only those22 bytes
 enter matches.csv. Unit: exact-first-profile-deck-constructor.
 
@@ -110,3 +111,27 @@ Whole source remains2151/native2136, first+391, SHA
 d15195f10de8db59e60b9cc23d1e050536225e099374a90ff74a58bd16b60774.
 Both selected signed-char getters replay7/7 and15/15 unchanged. No exact
 credit is added. Evidence:build/frontier-profile-deck-cursor-20261029/.
+
+## Real lookup and returned-handle context, 2026-10-31
+
+The successful practice-menu constructor supplied independent evidence for the
+actual design lookup body and the ordinary TextureHandleResult temporary.
+Applying both to this complete constructor closes its earlier frame/texture
+homes and lookup differences: the new full candidate is2132/native2136, with
+first difference at44AF27 (+1127). No prefix or byte credit is awarded.
+
+DesignObjectLookup.cpp replaces the declaration-only tree-query facade and
+handwritten per-site lookup expansion. The existing return-by-value texture
+interface supplies the real hidden temporary instead of the named raw handle.
+No shared headers or helper implementations change. The old nominal source
+partition is not claimed.
+
+The first residual is now EDI/EBP assignment across the two five-item binding
+loops; a real pointer-walk control leaves2132 bytes and merely moves the first
+difference to44AF26, so the simpler indexed loops remain selected. Do not add
+dummy lifetimes, register constraints or padding.
+
+The exact signed-byte adapter methods448B20/448B30 still replay7/15. This is the
+only consumer of the changed constructor source, and unrelated exact receipts
+are preserved. Formal receipts and the bounded control are retained under
+build/frontier-deck-constructor-providers-20261031/ and its .analysis counterpart.
