@@ -23,7 +23,7 @@ struct HitExchangeIndexedEntry {
     unsigned char unknown_1d[0x03];
     unsigned char owned_tail_20[0x14];
 
-    __declspec(noinline) void reset_info_manager_indexed_entry();
+    void reset_info_manager_indexed_entry();
 };
 
 struct InfoManager {
@@ -46,7 +46,7 @@ struct FighterActionScratch {
     float reset_zero_124;
     float reset_zero_128;
 
-    __declspec(noinline) void reset_fighter_action_scratch();
+    void reset_fighter_action_scratch();
 };
 
 struct AttackCandidateFrame {

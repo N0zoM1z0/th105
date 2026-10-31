@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Removed two legacy noinline declarations from Collision.hpp. All452 accepted
+functions in its164 actually affected units were freshly rebuilt and remain
+canonical exact. No count change or unrelated cold replay. See
+COLLISION_INLINE_DECLARATION_AUDIT_2026_10_31.md.
+
 Audio scheduler finalizer419000 now retains the native cached end iterator,
 restoring the initial checked dereference. Ordinary273/native241 and actual
 provider CIL304/native241 remain nonexact; no byte gain. See
