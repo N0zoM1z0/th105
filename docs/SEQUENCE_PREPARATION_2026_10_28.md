@@ -42,3 +42,17 @@ The new EH relocation is independently read from the canonical prologue and
 handler prefix at6BAD3B. It is an address witness, not acceptance of the
 remaining body or its generated auxiliaries. Original nominal sprite type/TU
 visibility and optional-resource scheduling remain unresolved.
+
+## 2026-10-31 implicit-copy layout control
+
+After the rotation/copy checkpoint, a bounded local control gave texture04 to
+an actual four-byte color-interface-derived sprite base, as independently proved
+by the whole116-byte implicit copy. Fresh baseline and this control emit the
+same257-byte preparation body and canonical compared hash
+637bbd266bc8cbf15594bb7c0b13653ccbe5e68773722d282f8fba991d02234c.
+The native259-byte body still compares optional resource in memory and reloads
+it for the texture call, while both source variants load once into EAX and test
+that value. Base ownership does not explain this scheduling difference. The
+source control is restored out; no repeat of this base-only trial is needed.
+Receipts: build/frontier-sequence-prepare-copy-20261031/baseline.json and
+base-owner.json. No ledger, match or count changes.
