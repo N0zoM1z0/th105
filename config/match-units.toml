@@ -1981,7 +1981,7 @@ source = "src/characters/CommandGates.cpp"
 object = "build/match-units/CrossV106a_CommandGatesFamily.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a command-gate family recovered by whole-corpus retained-source ranking; all non-relocation bytes are exact and current fighter-phase/counter/lookup callees are IDA-backed."
+notes = "Eight original command-gate family roots remain canonical exact. Additional complete front-card gate494450 emits950/native950 but is nonexact+72 and source-present only. Current fighter-phase/counter/lookup callees are independently bound. docs/FRONT_CARD_ACTION_GATE_SOURCE_2026_10_31.md."
 
 [[units.cross-v106a-command-gates-family.functions]]
 address = "0x00493AC0"
@@ -28507,3 +28507,14 @@ rel32_targets = ["__ftol2_sse=0x0068A1A0"]
 [[units.gpt-web-battle-info-gauge-runtime.functions]]
 address = "0x0046A650"
 symbol_base = "?get_floating@?$TNumberValue@PAM@th105@@UAEMXZ"
+
+[[units.cross-v106a-command-gates-family.functions]]
+address = "0x00494450"
+symbol_base = "?try_dispatch_front_word_actions_690_696@Fighter@th105@@QAEEH@Z"
+rel32_targets = [
+ "?lower_bound@CommandGateTree@th105@@QAEPAUCommandGateIterator@2@PAU32@PBH@Z=0x0045C320",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
+ "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
+ "?lookup_command_gate_value@Fighter@th105@@QAEFF@Z=0x00493D40",
+]

@@ -4944,3 +4944,32 @@ disposition = "exclude"
 confidence = "observed"
 evidence = "Unmodified original VC8 basic_string explicit instantiation reproduces complete165-byte rfind, both canonical call identities and all boundary/loop bytes. Full-inventory uniqueness and unchanged coverage gates independently pass. This is standard-library provenance only, not authored matching credit. docs/VC8_STRING_RFIND_ORIGIN_2026_10_31.md."
 required_body_hashes = [{ address = "0x004395F0", size = 165, sha256 = "aec7a62afed63afae4eab520a050f7e83055532c49890b30a13f591e29ec30f2" }]
+
+[[rules]]
+id = "front-card-action-gate-authored-106a"
+addresses = ["0x00494450"]
+expected_count = 1
+expected_bytes = 950
+expected_names = ["sub_494450"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete950-byte card action policy closes305 instructions/eight RET4 exits. Fourteen canonical-exact roster input methods call this root; Reimu6952 and full7008 payload freshly pass. Existing complete source950 remains nonexact at+72; eight family peers stay exact. No helper or partial exact credit. docs/FRONT_CARD_ACTION_GATE_SOURCE_2026_10_31.md."
+required_body_hashes = [{ address = "0x00494450", size = 950, sha256 = "48bf68351997deff88cd0dced8ffd5884cb99b38a056d59eba3ea4a273f4e140" }]
+required_direct_edges = [
+ { caller = "0x00494810", site = "0x004949CB", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x004DF4B0", site = "0x004DF66B", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x004FACD0", site = "0x004FAE89", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x0051EF60", site = "0x0051F11B", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x0053B410", site = "0x0053B5C9", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x00556070", site = "0x0055622B", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x0056DEB0", site = "0x0056E06B", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x0058C2E0", site = "0x0058C49B", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x005AED00", site = "0x005AEEBB", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x005D2C70", site = "0x005D2E2B", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x005F7AB0", site = "0x005F7C69", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x00618660", site = "0x0061881B", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x00631340", site = "0x006314FB", target = "0x00494450", caller_status = "matching" },
+ { caller = "0x0064B7A0", site = "0x0064B95B", target = "0x00494450", caller_status = "matching" },
+]

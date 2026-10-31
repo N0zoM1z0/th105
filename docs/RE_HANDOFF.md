@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Shared front-card gate494450 is now authored/source-present, with complete
+950-byte/305-instruction/eight-RET4 closure and14 pinned exact roster caller
+edges. Existing source stays950/nonexact+72; no old range/lifetime retry.
+Eight family peers and Reimu6952/full7008 freshly pass. Exact1580/448995 stays;
+source1779/authored1799/mapped1806/excluded1783/review445/units762. See
+FRONT_CARD_ACTION_GATE_SOURCE_2026_10_31.md.
+
 Game TNumberValue<float*> getters46A640/10 and46A650/6 are canonical exact
 from unchanged existing source and actual story binding. Raw RTTI/vtable6C35C8
 plus INumberValue hierarchy prove authored identity, not tiny-pattern guessing.
