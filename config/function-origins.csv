@@ -210,7 +210,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004094E0,authored_game,assets,authored,observed,canonical-exact-authored
 0x004097A0,authored_game,rendering,authored,observed,text-texture-population-backend-authored-106a
 0x004098B0,authored_game,ui,authored,observed,canonical-exact-authored
-0x004098E0,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
+0x004098E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x004099F0,authored_game,ui,authored,observed,shared-ui-design-binding-and-tile-render-authored-106a
 0x00409CF0,authored_game,input,authored,observed,canonical-exact-authored
 0x00409D30,authored_game,input,authored,observed,canonical-exact-authored

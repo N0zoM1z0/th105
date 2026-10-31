@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+CTile texture options4098E0 is canonical exact266/266 in actual texture-size/lookup
+CIL with scoped FP-environment semantics. Four native unsigned denominator
+conversions remain independent. Affected CNumber render414F10 remains312 exact;
+initializer414E40 remains102/104 nonexact. Incremental1545 functions /438021 bytes.
+See TILE_TEXTURE_OPTIONS_EXACT_2026_10_31.md.
+
 Mouse bootstrap40D810 now has complete current-target source, restoring the
 omitted property-error notification. Real CIL296/native282 remains nonexact
 because the native private EAX error helper is inlined; no ABI/noinline coercion.

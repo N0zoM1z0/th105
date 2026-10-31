@@ -523,9 +523,10 @@ evidence = "Current SHA-pinned raw gameplay call graph proves 0x00406360/0x00406
 [[rules]]
 id = "ui-source-present-exact-caller-helpers-authored-106a"
 addresses = ["0x004098E0", "0x00414E40", "0x00431AC0"]
-expected_count = 3
-expected_bytes = 1098
-expected_names = ["sub_4098E0", "sub_414E40", "sub_431AC0"]
+skip_matching = true
+expected_count = 2
+expected_bytes = 832
+expected_names = ["sub_414E40", "sub_431AC0"]
 origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
