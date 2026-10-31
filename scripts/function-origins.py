@@ -894,6 +894,17 @@ def validate_vc8_generated_anchor_evidence(
     env = os.environ.copy()
     env["TH105_ENABLE_GS"] = "1" if bool(anchors_doc.get("enable_gs")) else "0"
     env["TH105_INLINE_MODE"] = "default"
+    boost_headers = anchors_doc.get("boost_regex_headers", False)
+    if type(boost_headers) is not bool:
+        return [f"{rule['id']}: Boost header anchor flag must be boolean"]
+    if boost_headers:
+        from upstream_boost import FOLDER, inputs as boost_header_inputs
+        try:
+            boost_header_inputs({"kind": "probe", "boost_regex_headers": True,
+                                 "include_dirs": [FOLDER]}, ROOT)
+        except (OSError, ValueError) as exc:
+            return [f"{rule['id']}: original Boost header verification failed: {exc}"]
+        env["TH105_EXTRA_INCLUDE_DIRS"] = str(ROOT / FOLDER)
     proc = subprocess.run(
         [str(ROOT / "scripts" / "compile-unit.sh"), str(source), str(object_path)],
         cwd=ROOT,

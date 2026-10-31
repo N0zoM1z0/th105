@@ -62,6 +62,14 @@ def canonical_address(raw: str) -> str:
     return address
 
 
+def deferred_upstream_include(unit: dict[str, Any], path: str) -> bool:
+    """Metadata-only graph checks need no downloaded, independently pinned SDK."""
+    from upstream_boost import FOLDER
+    return (unit.get("boost_regex_headers") is True and path == FOLDER
+            or unit.get("kind") == "linked_candidate" and unit.get("link_png_sdk") is True
+            and path == ".tools/upstream/zlib-1.2.3")
+
+
 def load_manifest() -> dict[str, Any]:
     with MANIFEST.open("rb") as stream:
         manifest = tomllib.load(stream)
@@ -142,11 +150,13 @@ def load_manifest() -> dict[str, Any]:
             raise ValueError(f"match unit {name!r} include_dirs must be a string list")
         for raw_include_dir in include_dirs:
             include_dir = repository_path(raw_include_dir)
-            if not include_dir.is_dir():
+            if not include_dir.is_dir() and not deferred_upstream_include(unit, raw_include_dir):
                 raise ValueError(
                     f"match unit {name!r} include directory does not exist: "
                     f"{raw_include_dir!r}"
                 )
+        from upstream_boost import validate as validate_boost_headers
+        validate_boost_headers(unit)
         source = repository_path(str(unit.get("source", "")))
         if not source.is_file():
             raise ValueError(f"match unit {name!r} source does not exist")
@@ -309,6 +319,9 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     for raw_include_dir in unit.get("include_dirs", []):
         include_dir = repository_path(str(raw_include_dir))
         paths.update(include_dir.rglob("*.h"))
+        paths.update(include_dir.rglob("*.hpp"))
+    from upstream_boost import inputs as boost_header_inputs
+    paths.update(boost_header_inputs(unit, ROOT))
     digest = hashlib.sha256()
     digest.update(name.encode("utf-8"))
     digest.update(str(unit["profile"]).encode("utf-8"))

@@ -1,0 +1,1665 @@
+{
+  "schema_version": 1,
+  "release": "boost-1.40.0",
+  "superproject": "https://github.com/boostorg/boost",
+  "superproject_commit": "644e2135159e0b3ca535aab1a67938c27caf6ec9",
+  "scope": "Original header closure actually selected by pinned VC8 SP1 for the connect main-state caller; compatible reference source, not exclusive original release identification.",
+  "files": [
+    {
+      "path": "LICENSE_1_0.txt",
+      "repository": "https://github.com/boostorg/boost",
+      "commit": "644e2135159e0b3ca535aab1a67938c27caf6ec9",
+      "source_path": "LICENSE_1_0.txt",
+      "git_blob_sha1": "36b7cd93cdfbac762f5be4c6ce276df2ea6305c2",
+      "size": 1338,
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+    },
+    {
+      "path": "boost/assert.hpp",
+      "repository": "https://github.com/boostorg/utility",
+      "commit": "fb96202f6a6c234090fab06adb840054dbb30f54",
+      "source_path": "include/boost/assert.hpp",
+      "git_blob_sha1": "c227f17b9e9b985048bee5400436fe43872c7606",
+      "size": 1274,
+      "sha256": "3f55d4878021be779c89140efabae9364bd34345f4400eb7676491966e2510a5"
+    },
+    {
+      "path": "boost/checked_delete.hpp",
+      "repository": "https://github.com/boostorg/utility",
+      "commit": "fb96202f6a6c234090fab06adb840054dbb30f54",
+      "source_path": "include/boost/checked_delete.hpp",
+      "git_blob_sha1": "9bb84e8e1ba9f1aa8c349a34618877c7c2e3ccdf",
+      "size": 1589,
+      "sha256": "22f46f260c03b242a7e687f528d921f3384dedb974e220f05848c25d33f7d2fd"
+    },
+    {
+      "path": "boost/config.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config.hpp",
+      "git_blob_sha1": "055a27855b128e7614c3d99758bd899a8cd043b0",
+      "size": 2050,
+      "sha256": "43f064be144ddb6a17e7142745a05349c39f102e54afeeef3b9f44110f63aabf"
+    },
+    {
+      "path": "boost/config/abi/msvc_prefix.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/abi/msvc_prefix.hpp",
+      "git_blob_sha1": "97f06cdc0c2eb000fefa1aa35a2d087b1a868c0a",
+      "size": 819,
+      "sha256": "0846f71a84d25120bd54ae29095b33af1e9691f162a3a81d518b044a76037613"
+    },
+    {
+      "path": "boost/config/abi/msvc_suffix.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/abi/msvc_suffix.hpp",
+      "git_blob_sha1": "a64d783eb0f0f62fa8dc3927e9ceffc733dd9726",
+      "size": 252,
+      "sha256": "e401a3cc760fde65b6ff0681094eaab365a5716632d8526d4847e98f842927ac"
+    },
+    {
+      "path": "boost/config/auto_link.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/auto_link.hpp",
+      "git_blob_sha1": "f2eb583f0435111a2ede8d47119448ee63311c27",
+      "size": 10369,
+      "sha256": "760b3d7d71cfd3d5e7a8430e22ac39b567fb770c0014ce5fe4c3b80df7d02092"
+    },
+    {
+      "path": "boost/config/compiler/visualc.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/compiler/visualc.hpp",
+      "git_blob_sha1": "2c3a2adf00b2489973b768db89298d6d7ddd050d",
+      "size": 7693,
+      "sha256": "7d075e20e0fe90e06a1c09db22ee591c5f6a854c954dc607cdbdbbceccf18d66"
+    },
+    {
+      "path": "boost/config/no_tr1/cmath.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/no_tr1/cmath.hpp",
+      "git_blob_sha1": "d8268d842a78c04513614dea908446b0649755e3",
+      "size": 838,
+      "sha256": "88333f68b514da159a18b2aac33be864f279ce4efc215c3f8425baf2c9ea1fa4"
+    },
+    {
+      "path": "boost/config/no_tr1/memory.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/no_tr1/memory.hpp",
+      "git_blob_sha1": "2b5d2080272cfb3f7bd5c29789906343cb4638ca",
+      "size": 846,
+      "sha256": "a0be3cb94459966b29df1a4c36d4bf7bc18d57d2a06a433c12e1ed60ec29851c"
+    },
+    {
+      "path": "boost/config/no_tr1/utility.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/no_tr1/utility.hpp",
+      "git_blob_sha1": "dea8f115bce50e06559587ecfcdf9d8a5acd283b",
+      "size": 854,
+      "sha256": "f2f768cf5c0a2800fb8bee3bd521e1e77feb1ca8dc7120d3fed4c7b2a70cacde"
+    },
+    {
+      "path": "boost/config/platform/win32.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/platform/win32.hpp",
+      "git_blob_sha1": "9344818f87a4feebaa0c52408a48a5d08a77887e",
+      "size": 1651,
+      "sha256": "0adc97be17b26e9ce8731ea54650ffcef35710f646ae4c310739cb70a8557381"
+    },
+    {
+      "path": "boost/config/select_compiler_config.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/select_compiler_config.hpp",
+      "git_blob_sha1": "9141cd6376ac10b1de03dfa391393276a3fe1cc6",
+      "size": 3738,
+      "sha256": "ec44960d9d01b8e917666bbf93403ab19950ec544aaad846c37a46776c6bad21"
+    },
+    {
+      "path": "boost/config/select_platform_config.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/select_platform_config.hpp",
+      "git_blob_sha1": "615bb064ff8c3baad511f095764d85aed9d05e56",
+      "size": 2896,
+      "sha256": "085fb3d60f36d9ae93b28e87a3435b696fd382ea955cdeedc2d6f78c345afe59"
+    },
+    {
+      "path": "boost/config/select_stdlib_config.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/select_stdlib_config.hpp",
+      "git_blob_sha1": "2a1430aef4b0749c26b006110e39deee58c184df",
+      "size": 2823,
+      "sha256": "2cecdbf75afed3d4c3b9d58f033425a1bb0068f42f54de347331f916d64bffcd"
+    },
+    {
+      "path": "boost/config/stdlib/dinkumware.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/stdlib/dinkumware.hpp",
+      "git_blob_sha1": "addf3357c8cc049f4d035126a4507067617b9c3c",
+      "size": 4621,
+      "sha256": "3fdf94f2c08aed80b0782650addb96fb30de71113d668972799a08c07360b0df"
+    },
+    {
+      "path": "boost/config/suffix.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/suffix.hpp",
+      "git_blob_sha1": "fa44986946cb70aa3fc589ea6d829da072ad8a9b",
+      "size": 18992,
+      "sha256": "c34a12a9801947e52d2befc998e92692c0056e3de147ea0a19bee5421c2c2e16"
+    },
+    {
+      "path": "boost/config/user.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/config/user.hpp",
+      "git_blob_sha1": "5a4a9d47762010f993b8d48a8eeaa25b9391fd52",
+      "size": 5157,
+      "sha256": "3c46154e91c0955238d9626185691f560378fdf8928d72a33cb8d67ffc889fb8"
+    },
+    {
+      "path": "boost/cstdint.hpp",
+      "repository": "https://github.com/boostorg/integer",
+      "commit": "0fa7344d2bd2225a73be83e90d93fccd279de170",
+      "source_path": "include/boost/cstdint.hpp",
+      "git_blob_sha1": "d55a4840b955ff7e3b4a3d13fe4765bbdd7ff2a3",
+      "size": 14537,
+      "sha256": "91371fcd7eeb81d01b77546a7d2c9af7b80a7d373587e262ac55399152f1bdc1"
+    },
+    {
+      "path": "boost/current_function.hpp",
+      "repository": "https://github.com/boostorg/utility",
+      "commit": "fb96202f6a6c234090fab06adb840054dbb30f54",
+      "source_path": "include/boost/current_function.hpp",
+      "git_blob_sha1": "aa5756e0a5b83f77da042af5189c3947686f815b",
+      "size": 1490,
+      "sha256": "726e0d338960b19a94d874f0e5e3178db4f4a0fb6c651d2dcc489e42c52a4b96"
+    },
+    {
+      "path": "boost/detail/container_fwd.hpp",
+      "repository": "https://github.com/boostorg/detail",
+      "commit": "3eab2ec9c76089e7cd84d841e3fa9acc64508a2b",
+      "source_path": "include/boost/detail/container_fwd.hpp",
+      "git_blob_sha1": "bc7f780b060965c5e96ed47b5ce4ec1613c9d522",
+      "size": 2478,
+      "sha256": "b1ebc2cede81967107e7bce37be99c260a30c7c0fd743f53b759ad9c4b75dfe3"
+    },
+    {
+      "path": "boost/detail/interlocked.hpp",
+      "repository": "https://github.com/boostorg/detail",
+      "commit": "3eab2ec9c76089e7cd84d841e3fa9acc64508a2b",
+      "source_path": "include/boost/detail/interlocked.hpp",
+      "git_blob_sha1": "b6c8d750018823af63f94a5892718db1d62a40a8",
+      "size": 5299,
+      "sha256": "ee7b44a148fb7b0277f2b04457e13fe68eeb46afc363b51a6e29a51962cb94c6"
+    },
+    {
+      "path": "boost/detail/sp_typeinfo.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/detail/sp_typeinfo.hpp",
+      "git_blob_sha1": "e78c94316a1b0556fdffdc25c8ffc1d8e8f95c2b",
+      "size": 1333,
+      "sha256": "f01e5e84e32454dfd3c654261c00bf0302db78b800c905a7a2c8c6a113ec74d8"
+    },
+    {
+      "path": "boost/detail/workaround.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/detail/workaround.hpp",
+      "git_blob_sha1": "b6b64125c6a8165ac7e033f6d872cfd5be5edfcb",
+      "size": 7150,
+      "sha256": "3f4f9844618c5cc6e80bbae664f35cef6ec1709d68de394ecd462ba1e9f11992"
+    },
+    {
+      "path": "boost/exception/detail/attribute_noreturn.hpp",
+      "repository": "https://github.com/boostorg/exception",
+      "commit": "f2699fb4b11c0796ee2ff50f1ef58146800963a3",
+      "source_path": "include/boost/exception/detail/attribute_noreturn.hpp",
+      "git_blob_sha1": "1cb0763efdc97e362b91d813bf4c74d03eedb088",
+      "size": 553,
+      "sha256": "6ef2e783d0e1604b9e4fc53e5614b246d4c212c7911981662926e7f48b538d08"
+    },
+    {
+      "path": "boost/exception/exception.hpp",
+      "repository": "https://github.com/boostorg/exception",
+      "commit": "f2699fb4b11c0796ee2ff50f1ef58146800963a3",
+      "source_path": "include/boost/exception/exception.hpp",
+      "git_blob_sha1": "6233f19b3abddb3d808be1c9f55a2dd283306e0b",
+      "size": 9110,
+      "sha256": "ebc7204d3c6589ac7704a6ff3a564dc4fc169d246988b8204dccacf6c571b642"
+    },
+    {
+      "path": "boost/functional/hash.hpp",
+      "repository": "https://github.com/boostorg/functional",
+      "commit": "445c970a41598f4452696cf292ef06f80c41e204",
+      "source_path": "include/boost/functional/hash.hpp",
+      "git_blob_sha1": "44983f19b2670e932f8ad94b4a27386b5a567e4f",
+      "size": 235,
+      "sha256": "559b2e7717c8b7ba312ccb413ec24cf22c3d80f67533488e4537c208b7d9398f"
+    },
+    {
+      "path": "boost/functional/hash/detail/float_functions.hpp",
+      "repository": "https://github.com/boostorg/functional",
+      "commit": "445c970a41598f4452696cf292ef06f80c41e204",
+      "source_path": "include/boost/functional/hash/detail/float_functions.hpp",
+      "git_blob_sha1": "01cac097224c4cab9d7b9bae64ed2760d734927a",
+      "size": 10909,
+      "sha256": "822d40b78c8900996fbaa2627e65fc9f601fd2a8576080fdafd8e9b3e1b4e30f"
+    },
+    {
+      "path": "boost/functional/hash/detail/hash_float.hpp",
+      "repository": "https://github.com/boostorg/functional",
+      "commit": "445c970a41598f4452696cf292ef06f80c41e204",
+      "source_path": "include/boost/functional/hash/detail/hash_float.hpp",
+      "git_blob_sha1": "ea1bc25f483a1a8aacc0de0fa75f4af61d12cc34",
+      "size": 2509,
+      "sha256": "d654c84a501170b6d4ddd112fbe2f9821780e263e3c3524ce711cf07c0fac034"
+    },
+    {
+      "path": "boost/functional/hash/detail/hash_float_generic.hpp",
+      "repository": "https://github.com/boostorg/functional",
+      "commit": "445c970a41598f4452696cf292ef06f80c41e204",
+      "source_path": "include/boost/functional/hash/detail/hash_float_generic.hpp",
+      "git_blob_sha1": "f9acee9cd1ecb34ced8fe5cdca5fb3d7d066162a",
+      "size": 2839,
+      "sha256": "dc1e6550d28e221475d8403fb406bba2e489259c6f42f00d18f5a1641393f896"
+    },
+    {
+      "path": "boost/functional/hash/detail/limits.hpp",
+      "repository": "https://github.com/boostorg/functional",
+      "commit": "445c970a41598f4452696cf292ef06f80c41e204",
+      "source_path": "include/boost/functional/hash/detail/limits.hpp",
+      "git_blob_sha1": "f5b520ea9d7355b25ebdb18bc93b1af27cc5050f",
+      "size": 1673,
+      "sha256": "29145fb5ec4f9ea55c6e015e038b209f5a9fb5cc088030abbb378c45f703344b"
+    },
+    {
+      "path": "boost/functional/hash/extensions.hpp",
+      "repository": "https://github.com/boostorg/functional",
+      "commit": "445c970a41598f4452696cf292ef06f80c41e204",
+      "source_path": "include/boost/functional/hash/extensions.hpp",
+      "git_blob_sha1": "3c587a3bf5de05c8e61bb95b75009480c3e2ea46",
+      "size": 7817,
+      "sha256": "02ee86cca1fbb134e316c8212043733f814ed5d2d0b0c0ded7726deafef0b211"
+    },
+    {
+      "path": "boost/functional/hash/hash.hpp",
+      "repository": "https://github.com/boostorg/functional",
+      "commit": "445c970a41598f4452696cf292ef06f80c41e204",
+      "source_path": "include/boost/functional/hash/hash.hpp",
+      "git_blob_sha1": "6784f3ef6b040ff5e1845330ecd3b5abe5d8f847",
+      "size": 12883,
+      "sha256": "b0d917aef47fda20eaed16931025de5711dbc7ab0e438886b06863e177d51aba"
+    },
+    {
+      "path": "boost/functional/hash/hash_fwd.hpp",
+      "repository": "https://github.com/boostorg/functional",
+      "commit": "445c970a41598f4452696cf292ef06f80c41e204",
+      "source_path": "include/boost/functional/hash/hash_fwd.hpp",
+      "git_blob_sha1": "1d51b07f2de4488e7cdeb522d12676e52d4c3b3a",
+      "size": 1129,
+      "sha256": "f4604850d7cf0c78581074d8591bb2cd0469148993718ce25c5ad1280d8d2c20"
+    },
+    {
+      "path": "boost/integer/static_log2.hpp",
+      "repository": "https://github.com/boostorg/integer",
+      "commit": "0fa7344d2bd2225a73be83e90d93fccd279de170",
+      "source_path": "include/boost/integer/static_log2.hpp",
+      "git_blob_sha1": "219a48e34116ef5b61027afafc634c5ef239630f",
+      "size": 3658,
+      "sha256": "3f258a7071f62b1dbce651c5140fef9d6998c0f161dd49ba34225ddd4b4e2adb"
+    },
+    {
+      "path": "boost/limits.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/limits.hpp",
+      "git_blob_sha1": "d3747a1ad135cc6d5d0b69448851ae9ddc97835e",
+      "size": 6119,
+      "sha256": "57da5c2aff53482fe1bcbdf6965253424dc1397c558f5f1fff8e9eea1d2d0ab6"
+    },
+    {
+      "path": "boost/memory_order.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/memory_order.hpp",
+      "git_blob_sha1": "2524e8aa43c4cfeb4965e96aa01335df4580e045",
+      "size": 793,
+      "sha256": "f6d1a402d3387bc80fbd6e920387b99cc0c14a85ded7049c19362392d0295b69"
+    },
+    {
+      "path": "boost/mpl/aux_/adl_barrier.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/adl_barrier.hpp",
+      "git_blob_sha1": "3968c242adb30e0b73ac66fa62c899de7d547948",
+      "size": 1559,
+      "sha256": "28814ccd677294dfb0fd2d9a89153206e40dead79a96319fdf9bf951d402bf9c"
+    },
+    {
+      "path": "boost/mpl/aux_/config/adl.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/adl.hpp",
+      "git_blob_sha1": "e9bdf1156b0eb240447a9a838040959f4e608e00",
+      "size": 1416,
+      "sha256": "9925bac775bb4f047a9bffe62ad78cb3e758f96a36944154b5908878c807b08c"
+    },
+    {
+      "path": "boost/mpl/aux_/config/arrays.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/arrays.hpp",
+      "git_blob_sha1": "a9ea68ad678900fcaf490c14f282e4ca7593e356",
+      "size": 829,
+      "sha256": "e5606f2db867c019059c174a8fba732ebb380e3e03c35bf48eb1d2cf3f0366cb"
+    },
+    {
+      "path": "boost/mpl/aux_/config/ctps.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/ctps.hpp",
+      "git_blob_sha1": "af78f47ffda509ca4da8245f270826710e25a918",
+      "size": 823,
+      "sha256": "647db56e21aebe52eff988315453aff1bdc55c441b27f94e183636bf7c7dbe96"
+    },
+    {
+      "path": "boost/mpl/aux_/config/gcc.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/gcc.hpp",
+      "git_blob_sha1": "080495de17d213ac9dfd8e6637a0f12a91463d5a",
+      "size": 591,
+      "sha256": "78f78e3e42144452a092c06969eed8723b081a9faf0c1860013d774c63f83179"
+    },
+    {
+      "path": "boost/mpl/aux_/config/has_xxx.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/has_xxx.hpp",
+      "git_blob_sha1": "b5ab90cda821b1ed33e624f679082c1bf1139ba2",
+      "size": 928,
+      "sha256": "3f80c2fb468234a01de95b545bed2ee677d860ead7345f821975a5419d521ebc"
+    },
+    {
+      "path": "boost/mpl/aux_/config/intel.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/intel.hpp",
+      "git_blob_sha1": "5bd915917396c331985d5e66a3f4acf043938747",
+      "size": 511,
+      "sha256": "5ce4ace676be390de349b31f000af18d49c953e12ffc91c882ee632f1bb4cc2a"
+    },
+    {
+      "path": "boost/mpl/aux_/config/lambda.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/lambda.hpp",
+      "git_blob_sha1": "93fbafe0713b84a84f2a555fd4fb0e1cdd1c2de1",
+      "size": 910,
+      "sha256": "ec9f4e943fb91987e5156a11ce26184d9fbaa426f79e5ad3b6aac148486a114e"
+    },
+    {
+      "path": "boost/mpl/aux_/config/msvc.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/msvc.hpp",
+      "git_blob_sha1": "8a6b9246277a5c8e7d0ee0bf2fa539cb7947a18a",
+      "size": 500,
+      "sha256": "62eef1e28b4ce6ca35d07ece37b8bb455289f6ac4c774ef193a4e5741b0d06e5"
+    },
+    {
+      "path": "boost/mpl/aux_/config/msvc_typename.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/msvc_typename.hpp",
+      "git_blob_sha1": "feedc16db8778ee558add5cfe3c152b786f79136",
+      "size": 684,
+      "sha256": "1b5029e579609be6e766019d5d306e72bd1db06bcc616c3abc661f6bc8b737a5"
+    },
+    {
+      "path": "boost/mpl/aux_/config/nttp.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/nttp.hpp",
+      "git_blob_sha1": "11125a9bffc3f8173004b36776aed1b4f674b47c",
+      "size": 1009,
+      "sha256": "9073ecf730c3a0993cee681ad5a2cef4669cb13e0afd640de26861d38852715f"
+    },
+    {
+      "path": "boost/mpl/aux_/config/overload_resolution.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/overload_resolution.hpp",
+      "git_blob_sha1": "61e4486e9bc836e35be3d9f67442a204fdb86b3d",
+      "size": 818,
+      "sha256": "b4494fcb883f35349c2fd58cc04feb2d6fd354ec8368b8a4d84e5449253f231f"
+    },
+    {
+      "path": "boost/mpl/aux_/config/preprocessor.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/preprocessor.hpp",
+      "git_blob_sha1": "82ebc68fe0c5fd9439ca1a1e2b357781c02f7421",
+      "size": 1109,
+      "sha256": "8050169b5c3d262396d537c4462d0cb4a7071a98309f121efc9a63e5c16caa4a"
+    },
+    {
+      "path": "boost/mpl/aux_/config/static_constant.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/static_constant.hpp",
+      "git_blob_sha1": "ece38fb0e99eb45a7893b03e2b02711c77fae0d9",
+      "size": 680,
+      "sha256": "aca83823971e4b9e0db4deb81dd96e79b2851e00ded38e7a306bbf8f5d268ac2"
+    },
+    {
+      "path": "boost/mpl/aux_/config/ttp.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/ttp.hpp",
+      "git_blob_sha1": "3aff3f84df05dc058fee26a158e5ac2ca8b483d4",
+      "size": 1168,
+      "sha256": "7b023d0b51d1ae092e5b5226f6558211ffc5258b5f55954a88f3ff3263d90240"
+    },
+    {
+      "path": "boost/mpl/aux_/config/workaround.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/config/workaround.hpp",
+      "git_blob_sha1": "82c632982dfcd8146076efcf4fb6c2083cfef6cd",
+      "size": 497,
+      "sha256": "57b4a97e529b168efdeb908260c55002e2569c58c98ea23eff68448dca92a4fc"
+    },
+    {
+      "path": "boost/mpl/aux_/integral_wrapper.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/integral_wrapper.hpp",
+      "git_blob_sha1": "6b5962e12dbe398fd1a85a99190d1a98442e6db5",
+      "size": 3503,
+      "sha256": "4754895f42dec489b958a9a220d62b73c433a96009c58be20ae503f94ff0bea6"
+    },
+    {
+      "path": "boost/mpl/aux_/lambda_support.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/lambda_support.hpp",
+      "git_blob_sha1": "5b2af5858355bd5b3380dc8a83762bea0a308cc4",
+      "size": 5360,
+      "sha256": "c3344a92747cc59a328ea5540dda6b3c438463450699973156ebd0e01b209d78"
+    },
+    {
+      "path": "boost/mpl/aux_/nttp_decl.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/nttp_decl.hpp",
+      "git_blob_sha1": "8c344d874d721e7ee9664ce0cf4a056a115cf1f0",
+      "size": 844,
+      "sha256": "809fb409f57a2a5f679758b8ceb5f31ab1c15789217c36c427a7e944cbf133e5"
+    },
+    {
+      "path": "boost/mpl/aux_/preprocessor/params.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/preprocessor/params.hpp",
+      "git_blob_sha1": "acad321903f41f8c86fdbbd79e909456a129e3d2",
+      "size": 1926,
+      "sha256": "49ad39c4d3b81363d8c01cdf9a90e299a830a76c6a9c0f915e867591d770efd7"
+    },
+    {
+      "path": "boost/mpl/aux_/static_cast.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/static_cast.hpp",
+      "git_blob_sha1": "f72d1c7c9b3f41a17e53b4c476f6a6c7957f99f5",
+      "size": 768,
+      "sha256": "2c47fb69b45b1ab486e2921caeb899019f874764df12c1937119741c2c590072"
+    },
+    {
+      "path": "boost/mpl/aux_/template_arity_fwd.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/template_arity_fwd.hpp",
+      "git_blob_sha1": "19d63a39616c0727d02d3c0f05379591a15fa843",
+      "size": 563,
+      "sha256": "cf95228a7010cfaf32d7c214b20000e09c26afdf4739d698d29238098147c80f"
+    },
+    {
+      "path": "boost/mpl/aux_/type_wrapper.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/type_wrapper.hpp",
+      "git_blob_sha1": "f3ac3079a9a3524ed6b3fb53bc322e66cd87a11c",
+      "size": 1181,
+      "sha256": "5699ac051ca130e263ed8889deea522e9e7ca167a8c1f99f4c01cc4da210c15d"
+    },
+    {
+      "path": "boost/mpl/aux_/yes_no.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/aux_/yes_no.hpp",
+      "git_blob_sha1": "21a18a21c2873c3198b411dc6dc3ed5a672aa8a3",
+      "size": 1180,
+      "sha256": "980dbf5b1bd243891caeeaec32a63b7819c18cdac6db0b0413a813bad36ac873"
+    },
+    {
+      "path": "boost/mpl/bool.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/bool.hpp",
+      "git_blob_sha1": "f4bb485cad9ab610bce06c5604273396841bfaf7",
+      "size": 948,
+      "sha256": "ffb9b7793786dc0013140b22d3e73a0fdd9fc1349ad2d8df9e3c1ece01afa2de"
+    },
+    {
+      "path": "boost/mpl/bool_fwd.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/bool_fwd.hpp",
+      "git_blob_sha1": "e6292528487e3049239d1c14d762ab6913cff6cf",
+      "size": 766,
+      "sha256": "e2bda031dcee52f1bea6015e5ad2af309e0a0ecce882de63b4d39c9f2c04ed4f"
+    },
+    {
+      "path": "boost/mpl/has_xxx.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/has_xxx.hpp",
+      "git_blob_sha1": "bd082790afda8de68277bbd2b1910441b618fda3",
+      "size": 8526,
+      "sha256": "5b3297bc5635aaf60a7faa40a475698bb49420b9c1d6119ba538e75eaac9737a"
+    },
+    {
+      "path": "boost/mpl/int.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/int.hpp",
+      "git_blob_sha1": "b7fa0a765f52eae9790214cbf3317ca213dcdf26",
+      "size": 520,
+      "sha256": "688205b1725a34a4df16cceef3509db8a786731f3b45d6fa1f908ff550654292"
+    },
+    {
+      "path": "boost/mpl/int_fwd.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/int_fwd.hpp",
+      "git_blob_sha1": "03d20c1cd6f2989c5039f0a515fae37e606304d2",
+      "size": 678,
+      "sha256": "8a609ceed046808f5d3b26893d45d2f55eb5ce6d15243ea770837e4ebfa4c31e"
+    },
+    {
+      "path": "boost/mpl/integral_c.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/integral_c.hpp",
+      "git_blob_sha1": "7a692dcab6401d7968dbb12b5b46ce2a54809060",
+      "size": 1507,
+      "sha256": "d60b28ac065c4ac0ed4cf4c0ee5366de6c273a22602830980068de7e4f1ca1cb"
+    },
+    {
+      "path": "boost/mpl/integral_c_fwd.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/integral_c_fwd.hpp",
+      "git_blob_sha1": "05e311daa181e2fba51de59dfa18f9232e30475c",
+      "size": 887,
+      "sha256": "b5e1a0e49eeb4e6b3f0d6f026981cf89408093dd52000a39340213da85cb5177"
+    },
+    {
+      "path": "boost/mpl/integral_c_tag.hpp",
+      "repository": "https://github.com/boostorg/mpl",
+      "commit": "658119b8b0ec357d55cb859480e399f8cdd95761",
+      "source_path": "include/boost/mpl/integral_c_tag.hpp",
+      "git_blob_sha1": "b6046920f8f12be494edc276d81f98f7a734fd27",
+      "size": 725,
+      "sha256": "f6fb4fbb74c0630652c670677c672c577a0a6e1b6902cc45181c9e00b51b3145"
+    },
+    {
+      "path": "boost/preprocessor/arithmetic/inc.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/arithmetic/inc.hpp",
+      "git_blob_sha1": "1597ab85c3383f84b0336507e1c5c3b1f26d588c",
+      "size": 8297,
+      "sha256": "3f46fafb970e6a2c535ff4179e13b234e1f05b78eefc695d4a4357aeb4f31c3c"
+    },
+    {
+      "path": "boost/preprocessor/cat.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/cat.hpp",
+      "git_blob_sha1": "b2a82c0691258efdd1b1dddd1ef0f006845d4961",
+      "size": 951,
+      "sha256": "e90929ca92325571fceeac9aac745ca6fc2d92fc660b5b5be6082cf8d5735bb8"
+    },
+    {
+      "path": "boost/preprocessor/comma_if.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/comma_if.hpp",
+      "git_blob_sha1": "9ceb0795558fa6a1b05400f336699cc5ca66eab9",
+      "size": 752,
+      "sha256": "e6183a66ed499fc42fa63c51b6d8e80fb38ed7ec988ae2663826beedf4a497ba"
+    },
+    {
+      "path": "boost/preprocessor/config/config.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/config/config.hpp",
+      "git_blob_sha1": "dd0f7138d03473d846fe70e78c14959da5973d51",
+      "size": 2668,
+      "sha256": "4c27721467d7346ed12a91451451c2076744efdc8524d73151e2a6afaf0f439f"
+    },
+    {
+      "path": "boost/preprocessor/control/if.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/control/if.hpp",
+      "git_blob_sha1": "52cfc3dabb1525eac8289bd3a6000ddec519a74f",
+      "size": 906,
+      "sha256": "ddb9af759ba3695b91dff747ce2fe18d768cdadf93ddd956884eff8333e4ee40"
+    },
+    {
+      "path": "boost/preprocessor/control/iif.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/control/iif.hpp",
+      "git_blob_sha1": "fd0781793fa340b14f1d6ead756bf33d0d9c3985",
+      "size": 1325,
+      "sha256": "ccffe0f0bbc7ae9e4993a43d77fa0fd23b143d533148e462f1248e809208da04"
+    },
+    {
+      "path": "boost/preprocessor/debug/error.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/debug/error.hpp",
+      "git_blob_sha1": "c8ae5e750566fa13862aecd4b6372835aa32283e",
+      "size": 1574,
+      "sha256": "3cee86e4c00fb6e8572acf2efcf121f1b02dec3c89c4ab59d41f584920c79885"
+    },
+    {
+      "path": "boost/preprocessor/detail/auto_rec.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/detail/auto_rec.hpp",
+      "git_blob_sha1": "39de1d00285f458628d4dc9416c09538d049e464",
+      "size": 26136,
+      "sha256": "32579802ad68f74fa08d059e2410633a164b83d0a51f50eab162cb6569ebb634"
+    },
+    {
+      "path": "boost/preprocessor/facilities/empty.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/facilities/empty.hpp",
+      "git_blob_sha1": "46db19026a9f4c5948cb6ed93afca94bd1977a9b",
+      "size": 516,
+      "sha256": "34a2ed67f1b453cff3193ead854f18f6c0b1e980fc86d9748beb4fb43c5ffdf8"
+    },
+    {
+      "path": "boost/preprocessor/inc.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/inc.hpp",
+      "git_blob_sha1": "b98d3a67c5e2cbf7b747943c3faed4cce9eb1988",
+      "size": 736,
+      "sha256": "bfa9aea1844754bab45515c322a44d5dc8553f67db6358f01ba345dc9793bd18"
+    },
+    {
+      "path": "boost/preprocessor/logical/bool.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/logical/bool.hpp",
+      "git_blob_sha1": "fc01b5ba50de5515a7774d55f40ec91283688260",
+      "size": 8153,
+      "sha256": "a7a4f260bc74e6f6c465bf556bffbb884ae971082b8288641997bc0622a5f511"
+    },
+    {
+      "path": "boost/preprocessor/punctuation/comma.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/punctuation/comma.hpp",
+      "git_blob_sha1": "38c2e0e7e7af5ce4cdce9e30080b335e2c01b3af",
+      "size": 520,
+      "sha256": "76c39ab0338e79709faa68d8c5097317e93317ee8d9b71e27d3b4a4735f6d66f"
+    },
+    {
+      "path": "boost/preprocessor/punctuation/comma_if.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/punctuation/comma_if.hpp",
+      "git_blob_sha1": "c711f366a4319a3485f7cf7f0301148ae982fd05",
+      "size": 1012,
+      "sha256": "33e2573e29b20c6026f156ea2ace78c311724eb6df949c1ce21e94f28d26ea4c"
+    },
+    {
+      "path": "boost/preprocessor/repeat.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/repeat.hpp",
+      "git_blob_sha1": "7c47ee8b01e4a4f68f939b4496c0ded7953ead62",
+      "size": 745,
+      "sha256": "4afc30370c1de2b7bd9d2a9670f901d4c5fadb26a5b5d6dd647bf78644df8e3d"
+    },
+    {
+      "path": "boost/preprocessor/repetition/repeat.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/repetition/repeat.hpp",
+      "git_blob_sha1": "0172738e0c67742b01a19ba6fb0ae8f981d19ac6",
+      "size": 60818,
+      "sha256": "fcc3aa0eb4ef33ea9566de54e8b754f43ba0133b97070e4fb67278e54a214c7a"
+    },
+    {
+      "path": "boost/preprocessor/tuple/eat.hpp",
+      "repository": "https://github.com/boostorg/preprocessor",
+      "commit": "3d12c6152635a63ade4244a40fbf0484505f8b9f",
+      "source_path": "include/boost/preprocessor/tuple/eat.hpp",
+      "git_blob_sha1": "82e8ffcb24d5b20bab65ef3df700b6d3691b622f",
+      "size": 2640,
+      "sha256": "9e16036f609844d6ce954d250596b1554e0d6ce66d6bcf290c27ceeda4ccf54b"
+    },
+    {
+      "path": "boost/regex.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex.hpp",
+      "git_blob_sha1": "6dc3dfbd427ec293747b98509264ab70eff8b490",
+      "size": 823,
+      "sha256": "75b7a8d127f5f78426eed6902dd980fc37decf3ae958460c87baf82de11fdc7d"
+    },
+    {
+      "path": "boost/regex/config.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/config.hpp",
+      "git_blob_sha1": "8306f3ff9ab4d0c2c29510b022aac7aef4b309a0",
+      "size": 12416,
+      "sha256": "8f5f92883964fa210cb1ff726eaa3472728f725268adedcf86c455f99402f727"
+    },
+    {
+      "path": "boost/regex/config/cwchar.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/config/cwchar.hpp",
+      "git_blob_sha1": "a55089d0ab45b582a6f155352e8c1fc46748042c",
+      "size": 4082,
+      "sha256": "5ad615c3e4aeab471e0a9c9bc3e649f0d1962fdc73459bd19b46b54a7614ed83"
+    },
+    {
+      "path": "boost/regex/pattern_except.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/pattern_except.hpp",
+      "git_blob_sha1": "57ea14c2565c01ef573d726842d95283c429d749",
+      "size": 2198,
+      "sha256": "d03fdd18aa228ff363563aa9586299000a910ec3483256809c5a10bc4ab9b127"
+    },
+    {
+      "path": "boost/regex/pending/object_cache.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/pending/object_cache.hpp",
+      "git_blob_sha1": "2a7e00bc0a29a54d7444702fdb8972c410b3e998",
+      "size": 5146,
+      "sha256": "f6321f141c7f63febfd477f448fc767e64391fefebe7604e7a37b40ce0ab0cd8"
+    },
+    {
+      "path": "boost/regex/pending/static_mutex.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/pending/static_mutex.hpp",
+      "git_blob_sha1": "218169c3c88ede8b3971f6cf3b33c18f41ca2908",
+      "size": 4267,
+      "sha256": "f98da3b3ee7dcd4f4309a1dc7001748d7fe8fe3c57b2455c155ef15853580d0d"
+    },
+    {
+      "path": "boost/regex/regex_traits.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/regex_traits.hpp",
+      "git_blob_sha1": "730ba6e0d84714afa0201702ebdd327bd3f767bc",
+      "size": 733,
+      "sha256": "6474019a283f6212760c67f580c2e07c428dd9bcf5f64564bb99e371d01cb60c"
+    },
+    {
+      "path": "boost/regex/user.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/user.hpp",
+      "git_blob_sha1": "95908173d73b26283a93873eb80cf047903dfd28",
+      "size": 3102,
+      "sha256": "66cbedf9f1b7dae7bfd11ec36990086b6fa46a35fbdfdf837c61157c4269b953"
+    },
+    {
+      "path": "boost/regex/v4/basic_regex.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/basic_regex.hpp",
+      "git_blob_sha1": "09b0467b4022ffe65434dea4a8f07c6080dcc0c8",
+      "size": 24424,
+      "sha256": "2d97de5880005dfcaf36b2057cf98952d1b76d849548cee73288aad3ad1e34f2"
+    },
+    {
+      "path": "boost/regex/v4/basic_regex_creator.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/basic_regex_creator.hpp",
+      "git_blob_sha1": "6f0050542dccb7c9bad5b9f69c1d53ae02e01989",
+      "size": 47488,
+      "sha256": "ec8060426c8240ec2e6d6cc8de41533e72a67f5c474599b8dbf7e84f044b560c"
+    },
+    {
+      "path": "boost/regex/v4/basic_regex_parser.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/basic_regex_parser.hpp",
+      "git_blob_sha1": "7d2f5543e2943c8e16e6c6140144ddddf7fab64c",
+      "size": 82928,
+      "sha256": "1d4c833ac798f2bb2252e942413230c6666271ae2f5bf3718aa6053de561d8a8"
+    },
+    {
+      "path": "boost/regex/v4/c_regex_traits.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/c_regex_traits.hpp",
+      "git_blob_sha1": "d99b0f341b87a6ad355b57e153a463280cb53aa7",
+      "size": 5497,
+      "sha256": "05ff2ac8375947f29b7ddb6020e23a7127885a70b27061ca8454bb98bb7f9bf0"
+    },
+    {
+      "path": "boost/regex/v4/char_regex_traits.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/char_regex_traits.hpp",
+      "git_blob_sha1": "e8a501ca0064edb0ee15415afc5dc4884df47875",
+      "size": 1726,
+      "sha256": "fa323f02d1fccf04bb99fc365156b981e06be55a735136e631668ddc92fd3ae2"
+    },
+    {
+      "path": "boost/regex/v4/cpp_regex_traits.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/cpp_regex_traits.hpp",
+      "git_blob_sha1": "7ce3ed300eba55bf0104719f48f679fdaf8ea323",
+      "size": 34617,
+      "sha256": "718b6c5daf4acd0917f0ee3bd711b7ec144bdd63061552d7b6382fc0fe1f0354"
+    },
+    {
+      "path": "boost/regex/v4/error_type.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/error_type.hpp",
+      "git_blob_sha1": "b6633a0092f282209d16efca600dc7b3cfd278ce",
+      "size": 1213,
+      "sha256": "2af1ac08e16801a6c26abeaa4198a0f9b1f08b322177949fa3186e9fb1764c71"
+    },
+    {
+      "path": "boost/regex/v4/instances.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/instances.hpp",
+      "git_blob_sha1": "d12dc6b270971a4d3677b8950ca6759d09d229d4",
+      "size": 8417,
+      "sha256": "b812292488d6d7b7cff70dd310bb35981b31942fba523a490983bebc40caca0e"
+    },
+    {
+      "path": "boost/regex/v4/iterator_category.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/iterator_category.hpp",
+      "git_blob_sha1": "9e4014237804b676cdb8d796d694cfd9c3cebf0e",
+      "size": 1960,
+      "sha256": "48bda4c4b31d0d7a272d17bb2cdb2dc4cdf3d17275cb6fa552f619e0fe9327fc"
+    },
+    {
+      "path": "boost/regex/v4/iterator_traits.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/iterator_traits.hpp",
+      "git_blob_sha1": "f7afacb17b2a7b8377c4918ea03183a6cc637d0d",
+      "size": 3831,
+      "sha256": "d1ce3c005af74bb196afe156e8874c0622e39995792086859b0ef266d132917d"
+    },
+    {
+      "path": "boost/regex/v4/match_flags.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/match_flags.hpp",
+      "git_blob_sha1": "9585aca8b23bdb641ef9b32c915c983c90071b5a",
+      "size": 6024,
+      "sha256": "ae39a6a9a44c4626575d5c31bd288df0de17fa611018d125bc3a7b9397d130ce"
+    },
+    {
+      "path": "boost/regex/v4/match_results.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/match_results.hpp",
+      "git_blob_sha1": "09dd31f009ccb286055a1712748d34793d49cb4a",
+      "size": 17816,
+      "sha256": "8066b14bd149390c0e25abc1d543392002c3dd438d18ab312b3c693734c17cc5"
+    },
+    {
+      "path": "boost/regex/v4/perl_matcher.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/perl_matcher.hpp",
+      "git_blob_sha1": "726c2881e5b17f705910c0ee805ab317ff12858a",
+      "size": 17140,
+      "sha256": "c068a4abea7f3eab77af8b5f28ee361fff26881487d7c9003233bcbab4cf3d91"
+    },
+    {
+      "path": "boost/regex/v4/perl_matcher_common.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/perl_matcher_common.hpp",
+      "git_blob_sha1": "fd439f84b62bbb71b93e7c27142834046c8263b2",
+      "size": 28046,
+      "sha256": "599e9314b2553d820d9aa2e375ee0ce021b5e33515390fb1914f41efeddb5eae"
+    },
+    {
+      "path": "boost/regex/v4/perl_matcher_non_recursive.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/perl_matcher_non_recursive.hpp",
+      "git_blob_sha1": "2ce7ebe03439846767988a46551ed5431c879e9a",
+      "size": 52780,
+      "sha256": "b0d453aed7935661435418473d264887192b9218f5f3e8d28c17fcd6cb04f955"
+    },
+    {
+      "path": "boost/regex/v4/primary_transform.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/primary_transform.hpp",
+      "git_blob_sha1": "989f500c1d57600bc2f41aa63229bc877a4df2ba",
+      "size": 3323,
+      "sha256": "0abebe207587e9eaddddf335d19118c7c0c196dfd8ddf26f814ce3b3a92f281d"
+    },
+    {
+      "path": "boost/regex/v4/protected_call.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/protected_call.hpp",
+      "git_blob_sha1": "ebf15ba37009d8f89ef120825f7031efca943f54",
+      "size": 1676,
+      "sha256": "6644eeb964d6f7db685af974e3e9e55bd4da9fe32525658b2957a89472de6469"
+    },
+    {
+      "path": "boost/regex/v4/regbase.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regbase.hpp",
+      "git_blob_sha1": "2b737d5aba7aadb1e9c5e3c77339cb4d85654dc5",
+      "size": 5972,
+      "sha256": "253bc5cc3d5eef86b67784619668163fc9b9d26efaf44a35a8b6e0d62aaae3c7"
+    },
+    {
+      "path": "boost/regex/v4/regex.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex.hpp",
+      "git_blob_sha1": "7cc260a3ac9b94f53b127f8bc89ba7b114f64b36",
+      "size": 4590,
+      "sha256": "153f995f1fbc1525fdb8134ed98a525873c95d4e37d88d91b6bcf7056f76a5ae"
+    },
+    {
+      "path": "boost/regex/v4/regex_format.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_format.hpp",
+      "git_blob_sha1": "4e95112f908b97747ed8b359d12b56d2850da3df",
+      "size": 22972,
+      "sha256": "dafb22483872046091adbbd83785949e2eabac93319f8cddc3b4f715ac3b1e70"
+    },
+    {
+      "path": "boost/regex/v4/regex_fwd.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_fwd.hpp",
+      "git_blob_sha1": "3076b069ace968e82450c71b1f82e8a19e375a21",
+      "size": 1646,
+      "sha256": "7bf794daf8924de2694a3c764a2fe87689d2c6f51d267fa0f254a93874338532"
+    },
+    {
+      "path": "boost/regex/v4/regex_grep.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_grep.hpp",
+      "git_blob_sha1": "3a3d906ecb8116c1e32a2be472534ddcdd139742",
+      "size": 4867,
+      "sha256": "583923084072d80d1563b1db17c92ca1d353c5760624d658231a35b0a4fbb53b"
+    },
+    {
+      "path": "boost/regex/v4/regex_iterator.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_iterator.hpp",
+      "git_blob_sha1": "c2f2c49f2e7e4aaf4dbe58e469607b7ea5e5fd41",
+      "size": 6599,
+      "sha256": "c528745ebcc40644a19fb044fddcbf9ddc7e37d2443d0a61b636b059cfec8d3a"
+    },
+    {
+      "path": "boost/regex/v4/regex_match.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_match.hpp",
+      "git_blob_sha1": "e947a152255bd64734cee8d662d89afcc16ec6e6",
+      "size": 14463,
+      "sha256": "0d9a4acbf87ce63cc9f2e5cdfa3bf4b3a4a269ed6f3cecae27ea587c84f930d2"
+    },
+    {
+      "path": "boost/regex/v4/regex_merge.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_merge.hpp",
+      "git_blob_sha1": "404ca7750193cc0cf96ee011afc989e7744a801d",
+      "size": 2765,
+      "sha256": "1e02e13b47459a1092c530d399ea047f4ae7bb1fe78e7f1beb3800dbaa9a6cd1"
+    },
+    {
+      "path": "boost/regex/v4/regex_raw_buffer.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_raw_buffer.hpp",
+      "git_blob_sha1": "52d45a250bf23b9e78d3e832c9cfc1d7fd35a053",
+      "size": 3638,
+      "sha256": "95a2f7202a233e84080984dc16bd6310ffe3a8ac4d4e84c585e09cf43c0454f8"
+    },
+    {
+      "path": "boost/regex/v4/regex_replace.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_replace.hpp",
+      "git_blob_sha1": "c4544c05b9d6e61f30bf3612609484f815d90089",
+      "size": 3816,
+      "sha256": "53279b5c7db436b1c7429e5583a350de089f1ff3fb48e20fb6ef94e3e828c086"
+    },
+    {
+      "path": "boost/regex/v4/regex_search.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_search.hpp",
+      "git_blob_sha1": "cf5579d2c722f12937dc07d359f5ea3aa17b2366",
+      "size": 7073,
+      "sha256": "9fb324d9d9bfdad2a30646f29e3325ea3413174914278e99dc3a23c009f4cf18"
+    },
+    {
+      "path": "boost/regex/v4/regex_split.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_split.hpp",
+      "git_blob_sha1": "a7ae350f4af4fa846b5ef1affc9299549fe6554e",
+      "size": 4880,
+      "sha256": "f3174a0bfbdcb0b1e504f55efb49b7217b5d4aa7c1ba913167156c233a1cff58"
+    },
+    {
+      "path": "boost/regex/v4/regex_token_iterator.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_token_iterator.hpp",
+      "git_blob_sha1": "4e8bc36fef11b1252093055ee17f4e8a81fa57cb",
+      "size": 13194,
+      "sha256": "d8fc31b0caa031ec758d5e9d751fa3c018e93862514cb655fce239ce1a6f7fe7"
+    },
+    {
+      "path": "boost/regex/v4/regex_traits.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_traits.hpp",
+      "git_blob_sha1": "f5f0402cab58a14e5e20b94b1d3cda37cde23e8d",
+      "size": 4963,
+      "sha256": "e203d5791fed0cf7b71b1bd76c244d4d4e961284a9fb3947090030343ec6d473"
+    },
+    {
+      "path": "boost/regex/v4/regex_traits_defaults.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_traits_defaults.hpp",
+      "git_blob_sha1": "5b2c6bc338c4a516c4bc87d681d1ccbbe8585b26",
+      "size": 10884,
+      "sha256": "83a18cb3bcadbd5559e1f63862327219e6b6abd7a374746356362d6dab0cb689"
+    },
+    {
+      "path": "boost/regex/v4/regex_workaround.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/regex_workaround.hpp",
+      "git_blob_sha1": "06527f1a1f9675ae7da9ed9070427ec659631998",
+      "size": 4863,
+      "sha256": "b0e679fa1bd64fcbd77dbdfed109755b940f942365943c92d413e5deaf26091e"
+    },
+    {
+      "path": "boost/regex/v4/states.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/states.hpp",
+      "git_blob_sha1": "efdebbe59f7dc8e54aee436f3af5e5e8e1d724a7",
+      "size": 10930,
+      "sha256": "e547a6b0079b5b68462daa3a3a286857ed4d71243252e360dec72164237b46de"
+    },
+    {
+      "path": "boost/regex/v4/sub_match.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/sub_match.hpp",
+      "git_blob_sha1": "1c79e39a9a30871d5f2abfdaf41f1f465f3e03aa",
+      "size": 22133,
+      "sha256": "941c780022a4423a2a4e17909be276f1f9ff38ea515b056c6677d3912a29bd08"
+    },
+    {
+      "path": "boost/regex/v4/syntax_type.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/syntax_type.hpp",
+      "git_blob_sha1": "3efdf0b0f9327f375ec9db5691dfd80f7657ed3b",
+      "size": 4374,
+      "sha256": "77b480dc539e79d0f77f2eea7ac5846650fe3b1d6670480fb2eb9c7e15d66c73"
+    },
+    {
+      "path": "boost/regex/v4/w32_regex_traits.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/w32_regex_traits.hpp",
+      "git_blob_sha1": "d55620726d11c74898432a37f3c857a1ec4f90e1",
+      "size": 23980,
+      "sha256": "d278f2b39f9ec9007e51c3d2c20b44b7b1b97d0ffa82e47f9710ebc8d93fc8f9"
+    },
+    {
+      "path": "boost/regex_fwd.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex_fwd.hpp",
+      "git_blob_sha1": "2ee4a2495fef1c8ffb6b88a55f00fb7d184e878a",
+      "size": 693,
+      "sha256": "e2a974f83614a8e48e04f2c468807467fc61fbe5b6a1470dbf0e99b4a433ba54"
+    },
+    {
+      "path": "boost/scoped_array.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/scoped_array.hpp",
+      "git_blob_sha1": "c02fa316bcda85787356f7ac3439fdc3bb288715",
+      "size": 502,
+      "sha256": "7e17354ad735972d39c675e0c02957b8f3879fa78c1ac321a7350fd4e9e0d7e9"
+    },
+    {
+      "path": "boost/scoped_ptr.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/scoped_ptr.hpp",
+      "git_blob_sha1": "cb916dac1d1c476d03d7fed8d2ac8edf43afedd0",
+      "size": 491,
+      "sha256": "0067c0395eeeb5fd99e2a29edf5bf52106e901897c357fd8c1b012143bba87bc"
+    },
+    {
+      "path": "boost/shared_ptr.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/shared_ptr.hpp",
+      "git_blob_sha1": "d31978c9250e55f97b1be8c6abb6938382f28845",
+      "size": 539,
+      "sha256": "4bb6e012bd2c074be11bc4162f408dbe3996e07384b0afe84150cb0dab727ddf"
+    },
+    {
+      "path": "boost/smart_ptr/bad_weak_ptr.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/bad_weak_ptr.hpp",
+      "git_blob_sha1": "3e0a1b728677d0da025967f735db4e54c9f4fb83",
+      "size": 1432,
+      "sha256": "0399cce2e057aeeff2ee120f9cc6428c1f132fa9a23b747f2dcca47d0af5499e"
+    },
+    {
+      "path": "boost/smart_ptr/detail/operator_bool.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/operator_bool.hpp",
+      "git_blob_sha1": "842a05d02bc20b1d1a616c9b283d0e3ef368061f",
+      "size": 1408,
+      "sha256": "174ae86bee654792c8d5bc04334ae985fd8aa02c318124eceae07f96ac470440"
+    },
+    {
+      "path": "boost/smart_ptr/detail/shared_count.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/shared_count.hpp",
+      "git_blob_sha1": "4943e37643fc5ed7399128f27303774eca2a22e0",
+      "size": 9464,
+      "sha256": "94701475e413e0b1124c51a8759d401f0c0f693353670791847529cd13a42aed"
+    },
+    {
+      "path": "boost/smart_ptr/detail/sp_convertible.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/sp_convertible.hpp",
+      "git_blob_sha1": "66e5ec7338aeb326f1fb0b24a0e6d7257bafae91",
+      "size": 1756,
+      "sha256": "076e4794fad1330aeab7adddb9b655d2b5d2a447bfc69b465116d2792a93f079"
+    },
+    {
+      "path": "boost/smart_ptr/detail/sp_counted_base.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/sp_counted_base.hpp",
+      "git_blob_sha1": "cab45cce30dc41e4ee45cd1c151ce6e4fa9410bd",
+      "size": 2514,
+      "sha256": "bfc547235a72a762c471596e0764ccad2aeab54c013c986fb9996ed3dadd86fa"
+    },
+    {
+      "path": "boost/smart_ptr/detail/sp_counted_base_w32.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/sp_counted_base_w32.hpp",
+      "git_blob_sha1": "06aa4565712e240a220c2440298cb6d032f5b6d1",
+      "size": 2908,
+      "sha256": "28a12f05d08a93cfea865fadef57d62c9fdfdbcfddcf532cbc90fa63c8cd42e4"
+    },
+    {
+      "path": "boost/smart_ptr/detail/sp_counted_impl.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/sp_counted_impl.hpp",
+      "git_blob_sha1": "397421ae9fae05e5efa6d081333a86ed5f6e1dcf",
+      "size": 5150,
+      "sha256": "abeb58ef831dc4c4a4f1b12c83bcd0d955b1c8ee0bf2ddc573d20d4c5936d28e"
+    },
+    {
+      "path": "boost/smart_ptr/detail/sp_has_sync.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/sp_has_sync.hpp",
+      "git_blob_sha1": "cb0282dbad7bb528a4c991980229aba9d2e5eff9",
+      "size": 1147,
+      "sha256": "3c026f71766f65816a7a7c390594fa75d0ddbf08b6372e7609aac28741315536"
+    },
+    {
+      "path": "boost/smart_ptr/detail/spinlock.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/spinlock.hpp",
+      "git_blob_sha1": "1640a38d4944a72f5b65252a4d3341917b642553",
+      "size": 1376,
+      "sha256": "0e4b15992c834a5ae516fb5b53237f5ae22a1aa07baac6ee58f18f1f99926f21"
+    },
+    {
+      "path": "boost/smart_ptr/detail/spinlock_pool.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/spinlock_pool.hpp",
+      "git_blob_sha1": "0e2e08ac80a8cc985bcf49a7a01d5cabf616ac2a",
+      "size": 2809,
+      "sha256": "3fff50ebd81fbeaf8a6326fc3f36a5c81eeda444f70edb892f4dc517aa063d53"
+    },
+    {
+      "path": "boost/smart_ptr/detail/spinlock_w32.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/spinlock_w32.hpp",
+      "git_blob_sha1": "fb97629c7cdb811fbe0f2997a9b8118c87113cfd",
+      "size": 1946,
+      "sha256": "eed37837ac955fe44c1acda25663a0c7cc6914dabaf154cf0150b2e68b664606"
+    },
+    {
+      "path": "boost/smart_ptr/detail/yield_k.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/detail/yield_k.hpp",
+      "git_blob_sha1": "a956cc0c974168883d99badc46961e076b983493",
+      "size": 2427,
+      "sha256": "ee30996fe55170f3387930935e34ca83c42ce50358eaf99c7d5420157efc4763"
+    },
+    {
+      "path": "boost/smart_ptr/scoped_array.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/scoped_array.hpp",
+      "git_blob_sha1": "483460fa06bb372a7a1edf7040f2c23fef60fb5b",
+      "size": 2556,
+      "sha256": "3da7928aaf15df9b45efb6123a62bb1f3bf8e05d2f4c642bc068c2975d56a69a"
+    },
+    {
+      "path": "boost/smart_ptr/scoped_ptr.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/scoped_ptr.hpp",
+      "git_blob_sha1": "df479e57279bdbccc55970aa41d616737c1f5b32",
+      "size": 2969,
+      "sha256": "3493776fac69d1e0aa882c7a220585f2e4f4f2d827d3470a27a1902861c1145f"
+    },
+    {
+      "path": "boost/smart_ptr/shared_ptr.hpp",
+      "repository": "https://github.com/boostorg/smart_ptr",
+      "commit": "6236784bc015588743dea16d97b3d9c3dc618206",
+      "source_path": "include/boost/smart_ptr/shared_ptr.hpp",
+      "git_blob_sha1": "1b367f0f4da8da05719b8df75b52cea3f1299db8",
+      "size": 17482,
+      "sha256": "a4711cb21356fa6851e98942566216ded6ff94d144f6e682450f4d4240f27d5a"
+    },
+    {
+      "path": "boost/static_assert.hpp",
+      "repository": "https://github.com/boostorg/static_assert",
+      "commit": "a4767c9c5c07d6aa5302c31f3fe7e53b5331506b",
+      "source_path": "include/boost/static_assert.hpp",
+      "git_blob_sha1": "5bded5ea28452ca527c4c2bbe6dab36bac8fb90f",
+      "size": 5061,
+      "sha256": "3922ec3701c5dee0dfddc8d59cdce95af6c59fce5cf51b7fe9b86144bc3fe270"
+    },
+    {
+      "path": "boost/throw_exception.hpp",
+      "repository": "https://github.com/boostorg/exception",
+      "commit": "f2699fb4b11c0796ee2ff50f1ef58146800963a3",
+      "source_path": "include/boost/throw_exception.hpp",
+      "git_blob_sha1": "2250befb9072e8c877ad8ee95ecb70c7384d9297",
+      "size": 2109,
+      "sha256": "a2602fd1127478bc046918477e1fd848ae3c7adfe2717e5e1671741f470289b9"
+    },
+    {
+      "path": "boost/type_traits/add_reference.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/add_reference.hpp",
+      "git_blob_sha1": "7dfb4bed89e7dea8414775593595b68fc13e2379",
+      "size": 2371,
+      "sha256": "f554ea0fd5f8889d02d166485aa3a3065c504f45d49079f52c579ec523cf9ff9"
+    },
+    {
+      "path": "boost/type_traits/broken_compiler_spec.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/broken_compiler_spec.hpp",
+      "git_blob_sha1": "fb51769d9d4e70223a533968b4be14efdab262c7",
+      "size": 5553,
+      "sha256": "6a18e94eb18a6defc3838467b15aa47255b828d68ccbf85cb9634177f9a49683"
+    },
+    {
+      "path": "boost/type_traits/config.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/config.hpp",
+      "git_blob_sha1": "94f13769a4ca7dc546cff1cedff51a9a07b0d98f",
+      "size": 2570,
+      "sha256": "3ad9949829dda008dd852102d8c59eb0d08715ec2230485dad3bbeb975324f33"
+    },
+    {
+      "path": "boost/type_traits/detail/bool_trait_def.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/bool_trait_def.hpp",
+      "git_blob_sha1": "a54c910126c335f9c58196eaf6735dd8a4f69a55",
+      "size": 4972,
+      "sha256": "414afcdc02370b1eb3d928a2cd90cf24223f3977e398e7f06e08924b5f30525b"
+    },
+    {
+      "path": "boost/type_traits/detail/bool_trait_undef.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/bool_trait_undef.hpp",
+      "git_blob_sha1": "cbdd4aa96ba69d51c5b69f3451142abcb263ac37",
+      "size": 893,
+      "sha256": "aab1e3370ab5b5b299da806df21acf81820232551ed3a2b7f6827a7360b348fd"
+    },
+    {
+      "path": "boost/type_traits/detail/cv_traits_impl.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/cv_traits_impl.hpp",
+      "git_blob_sha1": "b3fa59505e5925312ca734fc79cb6a5ad3518479",
+      "size": 2701,
+      "sha256": "524dd8944cb62a9bf77f8629b1ca91e107d1655a2d98abccff1744f1d56769ae"
+    },
+    {
+      "path": "boost/type_traits/detail/false_result.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/false_result.hpp",
+      "git_blob_sha1": "e65e8bc257c3ddbc7fba2a9446938db45e5a2c9d",
+      "size": 767,
+      "sha256": "483c2e427aa0b1b8cd4c121789608d344806a6e4b8b3f1d6bd99d60d11b938ba"
+    },
+    {
+      "path": "boost/type_traits/detail/ice_and.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/ice_and.hpp",
+      "git_blob_sha1": "8b461b9fffb8f0f6e929e5c46d8bf98131625352",
+      "size": 996,
+      "sha256": "a11f3a18dbb80f81d1482e35422be5ef5ee289298d3769bc34f9a1b47611238d"
+    },
+    {
+      "path": "boost/type_traits/detail/ice_eq.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/ice_eq.hpp",
+      "git_blob_sha1": "ea42a60b66f258cf8a66aa8149bfae2014404589",
+      "size": 972,
+      "sha256": "f787c4d9354605e6e0a7ab7b254aaf70e1e111d36393966e66ef511cd8627bc5"
+    },
+    {
+      "path": "boost/type_traits/detail/ice_not.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/ice_not.hpp",
+      "git_blob_sha1": "ee1dca0ecd5405ffbcbeddb50168730083f95b52",
+      "size": 777,
+      "sha256": "aee83e8ddb30aca546c8970d17099458ed35cb8aab9b9ed73d983a230d30937e"
+    },
+    {
+      "path": "boost/type_traits/detail/ice_or.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/ice_or.hpp",
+      "git_blob_sha1": "f88d9f6aec0661aa9ff978e98e566e867995b055",
+      "size": 999,
+      "sha256": "ad5eb66d9215a01e5cae788dc388d4d0cf56224e143ac1898c74088def9baf89"
+    },
+    {
+      "path": "boost/type_traits/detail/is_mem_fun_pointer_tester.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/is_mem_fun_pointer_tester.hpp",
+      "git_blob_sha1": "e6532d39db9fb32179ae4714a5b299965cccf3a3",
+      "size": 276041,
+      "sha256": "90d9edb53bca074d2ebae87495bef9816239f2983efbac44fda14eab9fb52efa"
+    },
+    {
+      "path": "boost/type_traits/detail/template_arity_spec.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/template_arity_spec.hpp",
+      "git_blob_sha1": "fe9b422e830bffc4259fccbbb113d09b02f6d0ba",
+      "size": 938,
+      "sha256": "974e4e3e21c202d6420860c13e8021aa6c8bd6f8f5c03597fb42a70e1ca9bf3f"
+    },
+    {
+      "path": "boost/type_traits/detail/type_trait_def.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/type_trait_def.hpp",
+      "git_blob_sha1": "743826701017f643c08feacf835449429d1ffbb5",
+      "size": 1469,
+      "sha256": "ad7d8b8a99e4a1f3a0f6a9f7df780e72e91899e5cb53be5c22a27973e099425c"
+    },
+    {
+      "path": "boost/type_traits/detail/type_trait_undef.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/type_trait_undef.hpp",
+      "git_blob_sha1": "d8edf662753b1a3531b9c9942a0d974b6e5c62c6",
+      "size": 570,
+      "sha256": "39c5c54e587fe7106859c3010dbaf0d7d20bd49440a7261ccbbe355e54551035"
+    },
+    {
+      "path": "boost/type_traits/detail/yes_no_type.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/detail/yes_no_type.hpp",
+      "git_blob_sha1": "f583730220ee024b8933d5131079ac80fb2ccfe2",
+      "size": 726,
+      "sha256": "8918499722cabda0f0b27436fda75b240674c610b4338fbfd32bca073b83f655"
+    },
+    {
+      "path": "boost/type_traits/ice.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/ice.hpp",
+      "git_blob_sha1": "134bc4bb76423514c20eb5d09d9742893245d5f0",
+      "size": 768,
+      "sha256": "f8ec35f2c11fa849e9ce04164ecafe9108b32399fa9009f7c48586bed8d4d79b"
+    },
+    {
+      "path": "boost/type_traits/integral_constant.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/integral_constant.hpp",
+      "git_blob_sha1": "4ed1bb058fc80f3acf83d2d3bbff1b730fb44a6d",
+      "size": 1411,
+      "sha256": "519399fd2d7d79de56945e9b3bed3eaf00214a136c7bfa5a42fcb20911abd25c"
+    },
+    {
+      "path": "boost/type_traits/intrinsics.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/intrinsics.hpp",
+      "git_blob_sha1": "91ee88bf79dca586385912f10652054d2e643c97",
+      "size": 11015,
+      "sha256": "25ec627148af25c1d70845818a0b070f359103dddb28c2a10975774d01619a7a"
+    },
+    {
+      "path": "boost/type_traits/is_abstract.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_abstract.hpp",
+      "git_blob_sha1": "a11718dd9183fad81af60bd40c7db59aedec0833",
+      "size": 4557,
+      "sha256": "5e776e6f913d956e8fd3810c4189a3ba58079b26f7fcc486204f778796229559"
+    },
+    {
+      "path": "boost/type_traits/is_arithmetic.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_arithmetic.hpp",
+      "git_blob_sha1": "a1d8c46d5f0b4816b221754b50229034e4391ac0",
+      "size": 1483,
+      "sha256": "043f882517c76367637167ed4cd5622d067c2e38b7d0c5f61dc9c69ae71ff53f"
+    },
+    {
+      "path": "boost/type_traits/is_array.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_array.hpp",
+      "git_blob_sha1": "e9e820a3d62d913fcd28f93f6aedeb4b8b1bcd65",
+      "size": 3200,
+      "sha256": "e59a92394d2a3dc495c8e013bd842f5ee9e6fa919ecb3980b74e1ef60f7c2bbe"
+    },
+    {
+      "path": "boost/type_traits/is_convertible.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_convertible.hpp",
+      "git_blob_sha1": "ce522a08429fa6fec1faa2819048061a8e8eadd5",
+      "size": 13591,
+      "sha256": "a7201cb1797ff59720a94b2ba3c96ab478ef3250f6ddc9d4448bfcf5ef93a22e"
+    },
+    {
+      "path": "boost/type_traits/is_float.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_float.hpp",
+      "git_blob_sha1": "25d16f180030f676980146689da5029125b51134",
+      "size": 997,
+      "sha256": "7c01dfbadcee361d960501826c0e85b8d425f3cef8db0ab3e201368021cb7e40"
+    },
+    {
+      "path": "boost/type_traits/is_integral.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_integral.hpp",
+      "git_blob_sha1": "99420a9912002bc35a3b27c499e97f1a292ecb88",
+      "size": 3286,
+      "sha256": "19c90402ce7e6e864d94167dc2bca48ada2428d6ba706aeb93b284e1c616b8ca"
+    },
+    {
+      "path": "boost/type_traits/is_member_function_pointer.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_member_function_pointer.hpp",
+      "git_blob_sha1": "3fff063326b26a57ea6b51a9e55da1a1613b3171",
+      "size": 4087,
+      "sha256": "cdeb3fe2f39dc918075ace16617e88f5cd5cf42be17eda9675a47efd96d35acc"
+    },
+    {
+      "path": "boost/type_traits/is_member_pointer.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_member_pointer.hpp",
+      "git_blob_sha1": "cdf3d6ab93f9421b247eab937fc43687a7331351",
+      "size": 4309,
+      "sha256": "757b1fc8b21bfc34deaea65ad0c71313df0b5800030578cd87e419817b9699c3"
+    },
+    {
+      "path": "boost/type_traits/is_pointer.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_pointer.hpp",
+      "git_blob_sha1": "f6ecf336f0205c73b19c3409c7f0d2d0bd7f9481",
+      "size": 5105,
+      "sha256": "399805f8d8062d8547196c39311fec961c4053e823f9ee271b1390426a0e25f7"
+    },
+    {
+      "path": "boost/type_traits/is_reference.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_reference.hpp",
+      "git_blob_sha1": "dcf84db70936dc7cd5a88588595468f267498a3d",
+      "size": 4457,
+      "sha256": "002ceb7ee43cfdfc8368c2fb42547a97f6ca74c7ddf6409fc25b17aa494f4ee5"
+    },
+    {
+      "path": "boost/type_traits/is_same.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_same.hpp",
+      "git_blob_sha1": "e0d1808b4d1def169ed354091b095c9bf7a40cd8",
+      "size": 3215,
+      "sha256": "7f6f3095ee1d00a420f4388b8c9e9cf5cef667c0aa0b75ee42f10d5fa8e00f10"
+    },
+    {
+      "path": "boost/type_traits/is_void.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/is_void.hpp",
+      "git_blob_sha1": "6f6fbff6d995ed4d37841485703cd74d62497788",
+      "size": 1189,
+      "sha256": "8ce406531186245ffd5cf6509934af4f104f7a1bb8b6a572cb0102ac849c1377"
+    },
+    {
+      "path": "boost/type_traits/remove_cv.hpp",
+      "repository": "https://github.com/boostorg/type_traits",
+      "commit": "9313ba43d247dcffaa7f3ad63a0b2f4c14b16387",
+      "source_path": "include/boost/type_traits/remove_cv.hpp",
+      "git_blob_sha1": "09f8ff103cec90b87c9158b9fb429638fbb5f291",
+      "size": 2011,
+      "sha256": "4cd14710fde6db4a7066859c5fb2a4f432eb9e12ea48f4e126c2998f93ba4d6f"
+    },
+    {
+      "path": "boost/version.hpp",
+      "repository": "https://github.com/boostorg/config",
+      "commit": "47a367716b4c02e5a293e07b5d8a79131741acea",
+      "source_path": "include/boost/version.hpp",
+      "git_blob_sha1": "49cfe766fbd79a13f455d0268545f75752828db7",
+      "size": 1124,
+      "sha256": "f6e1d71de17313aedc8a8c64b0bff66f7839ecff1503aa25564ada66c07a7ed8"
+    }
+  ]
+}

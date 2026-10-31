@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Connect main-state444830 now uses original pinned Boost1.40 regex/smatch/search
+headers rather than local ABI-only classes. Full827/856 and root EH215 remain
+exact; eight actual library helpers also match1116 complete bytes. A verified
+184-file original-source package and explicit bootstrap/checker make this
+reproducible; source/lock tamper and external.hpp inputs are checked. Seventeen
+unique Boost/VC8 library fingerprints remove1682 bytes from review, not authored
+progress. Totals1553/441679 unchanged, source1750/authored1770/excluded1440/
+review817. Compatible reference, not unique shipped release identification.
+See BOOST_REGEX_REFERENCE_2026_10_31.md.
+
 Actual pinned VC8 string append(count,char)442A00/166 and _Chassign410270/88
 are now compiler-origin exclusions, not game progress. Genuine member-address
 probe reproduces every byte; full4027-row fingerprint searches are unique.

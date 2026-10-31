@@ -4060,3 +4060,59 @@ evidence = "Actual pinned VC8 xstring member-address instantiation reproduces ap
 vc8_generated_anchor_file = "config/vc8-generated-string-count-append-origin-anchors.toml"
 required_body_hashes = [{address="0x00442A00",size=166,sha256="43a79358d92314332171087f5963641968d862d5f6ae4ba816aba3259e2ec12e"}, {address="0x00410270",size=88,sha256="80347ce19e21c97552f26b48717daaeaaf1b3f1c58834214e12d62fd8602aec5"}]
 required_direct_edges = [{caller="0x00442AB0",site="0x00442BAA",target="0x00442A00"}, {caller="0x00442A00",site="0x00442A52",target="0x00410270"}]
+
+[[rules]]
+id = "boost-regex-reference-106a"
+addresses = ["0x00442440", "0x00442710", "0x00442AB0", "0x00442C00", "0x00442F40", "0x00443780", "0x00443A00", "0x00443AA0", "0x00444790"]
+expected_count = 9
+expected_bytes = 1229
+expected_names = ["sub_442440", "sub_442710", "sub_442AB0", "sub_442C00", "sub_442F40", "sub_443780", "sub_443A00", "sub_443AA0", "sub_444790"]
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Unmodified original Boost1.40 headers from184 SHA/Git-blob-pinned official files reproduce these complete inventory-unique COMDAT fingerprints in the exact connect444830 caller. Eight direct providers separately pass full1116-byte canonical replay. Compatible reference implementation, not exclusive shipped release identification; no authored/source/exact credit. docs/BOOST_REGEX_REFERENCE_2026_10_31.md."
+vc8_generated_anchor_file = "config/vc8-boost-regex-reference-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00442440", size = 53, sha256 = "37ff70f75c761f0cbfb83ef31a5795a0d9e2ae9590fa2b9b92d0ea352b258321" },
+ { address = "0x00442710", size = 120, sha256 = "29d690f39d3fe41f80ff6864faac255e7127d24fb97b3fcbae2f676c618a7f7f" },
+ { address = "0x00442AB0", size = 326, sha256 = "51df27c7cb236f9f5280dc033f17b16bb6c8c2a3d0c71fc8609429c761bf8f0f" },
+ { address = "0x00442C00", size = 210, sha256 = "9872566f9b03523bf3511dea5b60c93b107ae1f09db9733272fef9578e314fbb" },
+ { address = "0x00442F40", size = 141, sha256 = "cacf24775b2b704ea41a7cf3ef6806b7e528e5739b39c883762ee6260f931834" },
+ { address = "0x00443780", size = 46, sha256 = "fbb2d8ff9b65c985bc68d275e9305b4f60d98ec8164ace5d4d5af7000323481e" },
+ { address = "0x00443A00", size = 44, sha256 = "8c3fe3065d65bc36fe7bd407e83d7ccea64d26c0e62f9fa8248d940df5dbb8a9" },
+ { address = "0x00443AA0", size = 129, sha256 = "783d3bf305a7fc51ebcfd91c87f59e876395bf09680d0eeecda8552cba009ec6" },
+ { address = "0x00444790", size = 160, sha256 = "5e515ab5cde3f881e9563bfe609de8831a756826ba41894e8e6451abc25faf4e" },
+]
+required_direct_edges = [
+ { caller="0x00444830", site="0x004449DD", target="0x00442710", caller_status="matching" },
+ { caller="0x00444830", site="0x004449F3", target="0x00443780", caller_status="matching" },
+ { caller="0x00444830", site="0x00444A13", target="0x00444790", caller_status="matching" },
+ { caller="0x00444830", site="0x00444A56", target="0x00442C00", caller_status="matching" },
+ { caller="0x00444830", site="0x00444AB5", target="0x00442C00", caller_status="matching" },
+ { caller="0x00444830", site="0x00444B15", target="0x00442F40", caller_status="matching" },
+ { caller="0x00444830", site="0x00444B26", target="0x00442440", caller_status="matching" },
+]
+
+[[rules]]
+id = "boost-regex-vc8-std-106a"
+addresses = ["0x00410300", "0x004421B0", "0x004421D0", "0x00442210", "0x00442250", "0x00442480", "0x00442FD0", "0x006A0910"]
+expected_count = 8
+expected_bytes = 453
+expected_names = ["sub_410300", "sub_4421B0", "??D?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEABDXZ", "sub_442210", "sub_442250", "sub_442480", "sub_442FD0", "sub_6A0910"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Unmodified original Boost1.40 headers from184 SHA/Git-blob-pinned official files reproduce these complete inventory-unique COMDAT fingerprints in the exact connect444830 caller. Eight direct providers separately pass full1116-byte canonical replay. Compatible reference implementation, not exclusive shipped release identification; no authored/source/exact credit. docs/BOOST_REGEX_REFERENCE_2026_10_31.md."
+vc8_generated_anchor_file = "config/vc8-boost-regex-vc8-std-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00410300", size = 82, sha256 = "d911ba0873ad435e423c719876c7adc56da26df5d99b8ded482076308cb9aa75" },
+ { address = "0x004421B0", size = 31, sha256 = "4d892f44097cbafb6251d32babfc99ecfc83badabed84de8aa80a092ca5380b0" },
+ { address = "0x004421D0", size = 55, sha256 = "3a928e5d9ff6f0357e242aa2d9f9d3af3ea010f141cf4aaf30e29cb84fd3ed58" },
+ { address = "0x00442210", size = 58, sha256 = "3d8f52e6dc24bca780c9c43383328300f54ce8f37884f0db6d6cdcee5acebd97" },
+ { address = "0x00442250", size = 46, sha256 = "0e213da378acbfb322d99fa831cc015aca99bff7cdf8f4005f58c5bc0f6a1401" },
+ { address = "0x00442480", size = 46, sha256 = "12f8d1e1585454db99bb07d66efbc99c353a717dea9f64abdb3163d540d6a41f" },
+ { address = "0x00442FD0", size = 75, sha256 = "b105d0ce66237d1bdd629dfce6bf6b9c302fa07e31b044494960b1d684509dca" },
+ { address = "0x006A0910", size = 60, sha256 = "66d8f1b5e8bd9bb9464fdc50b8c6d7d93a81006bdea7671a5af28a5b1eed2bb5" },
+]

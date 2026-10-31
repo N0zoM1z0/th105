@@ -35,6 +35,8 @@ def build_unit(
     include_dirs = [
         str(repository_path(str(path))) for path in unit.get("include_dirs", [])
     ]
+    from upstream_boost import inputs as boost_header_inputs
+    boost_header_inputs(unit, ROOT)  # Fail before invoking the compiler on altered headers.
     environment = os.environ.copy()
     if unit["kind"] == "upstream_prebuilt":
         command = [

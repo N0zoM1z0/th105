@@ -1,5 +1,6 @@
+#include <boost/regex.hpp>
 // JP1.06a444830: complete connect main-state policy and owning regex lifetimes.
-// See docs/CONNECT_MAIN_STATE_EXACT_2026_10_31.md.
+// See docs/CONNECT_MAIN_STATE_EXACT_2026_10_31.md and BOOST_REGEX_REFERENCE_2026_10_31.md.
 #include "ui/Menu.hpp"
 #include "ui/MenuCursor.hpp"
 #include "input/InputManager.hpp"
@@ -16,36 +17,12 @@ namespace th105 {
 struct ClipboardModulePathView {void read_clipboard(char *,unsigned);};
 void dispatch_indexed_event(unsigned);
 bool is_menu_initial_press(unsigned char,bool,bool,bool);
-// Ordinary external library contracts. The observed owning subobjects retain
-// their true lifetime and layout; no library implementation is claimed here.
-struct RegexSharedOwner { void *object; void *control; };
-struct RegexSubMatch {
-    std::string::const_iterator first, last;
-    bool matched;
-};
-class EndpointRegex {
-public:
-    EndpointRegex(const char *, unsigned);
-    ~EndpointRegex();
-private:
-    RegexSharedOwner expression;
-};
-class EndpointMatches {
-public:
-    explicit EndpointMatches(const std::allocator<RegexSubMatch> &);
-    ~EndpointMatches();
-    std::string str(int) const;
-private:
-    std::vector<RegexSubMatch> matches;
-    std::string::const_iterator base;
-    RegexSubMatch unmatched;
-    RegexSharedOwner named_subexpressions;
-    int last_closed_paren;
-};
+typedef boost::regex EndpointRegex;
+typedef boost::smatch EndpointMatches;
+typedef boost::sub_match<std::string::const_iterator> RegexSubMatch;
 typedef char CheckRegexSize[sizeof(EndpointRegex)==8?1:-1];
 typedef char CheckSubMatchSize[sizeof(RegexSubMatch)==20?1:-1];
 typedef char CheckMatchesSize[sizeof(EndpointMatches)==56?1:-1];
-bool search_endpoint(const std::string &, EndpointMatches &, const EndpointRegex &, unsigned);
 struct ConnectMainConfig {
     unsigned char unknown_00[0x38];
     unsigned server_port_38;
@@ -99,9 +76,9 @@ bool ConnectMainStateView::update_main_state()
             reinterpret_cast<ClipboardModulePathView *>(&g_module_path_text)
                 ->read_clipboard(clipboard,sizeof(clipboard));
             std::string text(clipboard);
-            EndpointRegex pattern(connect_main_regex,0);
+            EndpointRegex pattern(connect_main_regex,boost::regex::normal);
             EndpointMatches matches((std::allocator<RegexSubMatch>()));
-            if(search_endpoint(text,matches,pattern,0)) {
+            if(boost::regex_search(text,matches,pattern,boost::match_default)) {
                 field<signed char>(8)=5;
                 std::string message;
                 message=matches.str(0)+connect_main_join_suffix;

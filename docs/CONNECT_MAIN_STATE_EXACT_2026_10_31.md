@@ -10,6 +10,10 @@ Callable SHA-256:
 Full856-byte SHA-256:
 5b9d706f7093d328f80d974cf1e872cc9389650cfb1689189bfe428e724dd95c.
 
+The subsequent original-header integration replaces the initial regex ABI
+declarations with genuine unmodified Boost definitions while preserving all
+856 bytes and EH215. See BOOST_REGEX_REFERENCE_2026_10_31.md.
+
 ## Full behavior and boundary
 
 Raw decoding covers all196 instructions, a single RET at444910, all direct
@@ -35,10 +39,10 @@ Cancel and the shared initial-key predicate emit41 and return false. Other
 paths preserve the native final key check and return true. No stricter IPv4
 validation, new guard or resource behavior has been invented.
 
-## Typed library boundaries and lifetimes
+## Initial typed library boundaries and lifetimes (superseded)
 
-The caller uses actual VC8 std::string, const_iterator, allocator and vector
-layouts. The external8-byte regex owner and56-byte match-results object are
+The first checkpoint used actual VC8 std::string, const_iterator, allocator and
+vector layouts. Its external8-byte regex owner and56-byte match-results object were
 ordinary declared constructor/destructor boundaries, not implementations of
 Boost internals. Their source names are local descriptive names, not a claim
 about original release, symbol spelling or an independently reconstructed regex
@@ -84,7 +88,7 @@ build/frontier-connect-main-state-20261031 and its .analysis counterpart.
 Fresh Factory-native metadata, entry, five16-byte mapped/raw samples and
 function/disassembly/decompiler/xref/callee probes are retained there.
 
-Incremental authored gain is one function /827 bytes:1553 /441679. Source1749,
+At first acceptance, the authored gain was one function /827 bytes:1553 /441679. Source1749,
 authored1769, excluded1421, review837, mapped1776 and units741. The three literal
 bindings and handler identity are additive. Existing exact receipts remain
 valid. Only the new canonical origin baseline is updated; no unchanged origin

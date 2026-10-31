@@ -116,6 +116,22 @@ Optional analysis/probe tests can be run by filename with
 with `scripts/repo-python scripts/ci.py --all-tests`. They diagnose specific
 questions and do not establish exactness.
 
+## Pinned Boost reference headers
+
+The native connect-menu comparison uses an unmodified Boost 1.40 header closure
+as a compatible historical reference. On a network-enabled development machine:
+
+```bash
+scripts/repo-python scripts/upstream_boost.py --fetch
+scripts/repo-python scripts/upstream_boost.py
+```
+
+The source lock pins immutable official commits and every original byte. Fetch
+is explicit; native builds only verify and fail on missing/altered source.
+Metadata-only CI does not download or require this SDK. The headers keep their
+original Boost Software License 1.0. See
+[reference identity and comparison evidence](docs/BOOST_REGEX_REFERENCE_2026_10_31.md).
+
 ## License
 
 Repository-authored code and documentation are provided under the MIT License.

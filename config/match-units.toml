@@ -28074,13 +28074,62 @@ source = "src/ui/MenuConnectMainState.cpp"
 object = "build/match-units/ExactFirst_ConnectMainState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete827 callable plus29 alignment/table bytes canonical exact. Seven real owning cleanup states and typed8/56-byte regex boundary layouts. Actual path/text service thiscall clipboard provider separately97 exact; signed four-WORD loop follows nativeJL. docs/CONNECT_MAIN_STATE_EXACT_2026_10_31.md."
+notes = "Complete827 callable/full856 using original pinned Boost1.40 regex/smatch/search definitions, not local ABI class declarations. Compatible reference headers, not exclusive original release identification. Eight library helper bodies separately canonical1116; no authored credit. docs/BOOST_REGEX_REFERENCE_2026_10_31.md."
+include_dirs = [".tools/upstream/boost-1.40.0-vc8"]
+boost_regex_headers = true
 
 [[units.exact-first-connect-main-state.functions]]
 address = "0x00444830"
 symbol_base = "?update_main_state@ConnectMainStateView@th105@@QAE_NXZ"
-rel32_targets = ["?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?reset_host_editor@ConnectMainStateView@th105@@QAEIXZ=0x004422F0", "?is_menu_initial_press@th105@@YA_NE_N00@Z=0x0043ABD0", "?begin_endpoint_edit@ConnectMainStateView@th105@@QAEXXZ=0x00442390", "?load_address_list@ConnectMainStateView@th105@@QAE_NXZ=0x00443130", "?load_history_list@ConnectMainStateView@th105@@QAE_NXZ=0x004434B0", "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810", "?read_clipboard@ClipboardModulePathView@th105@@QAEXPADI@Z=0x0040D160", "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z=0x00401DC0", "??0EndpointRegex@th105@@QAE@PBDI@Z=0x00442710", "??0EndpointMatches@th105@@QAE@ABV?$allocator@URegexSubMatch@th105@@@std@@@Z=0x00443780", "?search_endpoint@th105@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAVEndpointMatches@1@ABVEndpointRegex@1@I@Z=0x00444790", "?str@EndpointMatches@th105@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z=0x00442C00", "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40", "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0", "??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ=0x00401E00", "?parse_endpoint@ConnectMainStateView@th105@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00442E30", "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640", "??1EndpointMatches@th105@@QAE@XZ=0x00442F40", "??1EndpointRegex@th105@@QAE@XZ=0x00442440", "@__security_check_cookie@4=0x00689D25"]
+rel32_targets = ["?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?reset_host_editor@ConnectMainStateView@th105@@QAEIXZ=0x004422F0", "?is_menu_initial_press@th105@@YA_NE_N00@Z=0x0043ABD0", "?begin_endpoint_edit@ConnectMainStateView@th105@@QAEXXZ=0x00442390", "?load_address_list@ConnectMainStateView@th105@@QAE_NXZ=0x00443130", "?load_history_list@ConnectMainStateView@th105@@QAE_NXZ=0x004434B0", "?show_profile_result@Menu@th105@@IAEXPBD@Z=0x0043F810", "?read_clipboard@ClipboardModulePathView@th105@@QAEXPADI@Z=0x0040D160", "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z=0x00401DC0", "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40", "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0", "??1?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ=0x00401E00", "?parse_endpoint@ConnectMainStateView@th105@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00442E30", "?show_profile_message@Menu@th105@@IAEXPBD_N@Z=0x0043F640", "@__security_check_cookie@4=0x00689D25", "??0?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@QAE@PBDI@Z=0x00442710", "??0?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAE@ABV?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@Z=0x00443780", "??$regex_search@U?$char_traits@D@std@@V?$allocator@D@2@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAV?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@0@ABV?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@0@W4_match_flags@regex_constants@0@@Z=0x00444790", "?str@?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z=0x00442C00", "??1?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAE@XZ=0x00442F40", "??1?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@QAE@XZ=0x00442440"]
 dir32_targets = ["_connect_main_select_prompt=_connect_main_select_prompt", "_connect_main_join_suffix=_connect_main_join_suffix", "_connect_main_regex=_connect_main_regex", "__ehhandler$?update_main_state@ConnectMainStateView@th105@@QAE_NXZ=__ehhandler$?update_main_state@ConnectMainStateView@th105@@QAE_NXZ"]
+
+[[units.exact-first-connect-main-state.functions]]
+address = "0x00442710"
+symbol_base = "??0?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@QAE@PBDI@Z"
+rel32_targets = ["?do_assign@?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@AAEAAV12@PBD0I@Z=0x006B4430"]
+dir32_targets = ["__ehhandler$??0?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@QAE@PBDI@Z=__ehhandler$??0?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@QAE@PBDI@Z"]
+
+[[units.exact-first-connect-main-state.functions]]
+address = "0x00443780"
+symbol_base = "??0?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAE@ABV?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@Z"
+rel32_targets = []
+dir32_targets = []
+
+[[units.exact-first-connect-main-state.functions]]
+address = "0x00444790"
+symbol_base = "??$regex_search@U?$char_traits@D@std@@V?$allocator@D@2@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@YA_NABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAV?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@0@ABV?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@0@W4_match_flags@regex_constants@0@@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "??$regex_search@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@YA_NV?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0AAV?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@0@ABV?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@0@W4_match_flags@regex_constants@0@0@Z=0x004440A0"]
+dir32_targets = []
+
+[[units.exact-first-connect-main-state.functions]]
+address = "0x00442C00"
+symbol_base = "?str@?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z"
+rel32_targets = ["??A?$vector@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@std@@QBEABU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@I@Z=0x006A0910", "?str@?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ=0x00442AB0", "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0", "??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["__ehhandler$?str@?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z=__ehhandler$?str@?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z"]
+
+[[units.exact-first-connect-main-state.functions]]
+address = "0x00442F40"
+symbol_base = "??1?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAE@XZ"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+dir32_targets = ["__ehhandler$??1?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAE@XZ=__ehhandler$??1?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAE@XZ"]
+
+[[units.exact-first-connect-main-state.functions]]
+address = "0x00442440"
+symbol_base = "??1?$basic_regex@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@boost@@QAE@XZ"
+rel32_targets = []
+dir32_targets = []
+
+[[units.exact-first-connect-main-state.functions]]
+address = "0x00442AB0"
+symbol_base = "?str@?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?_Grow@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IAE_NI_N@Z=0x00402320", "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ID@Z=0x00442A00"]
+dir32_targets = ["__ehhandler$?str@?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ=__ehhandler$?str@?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ"]
+
+[[units.exact-first-connect-main-state.functions]]
+address = "0x006A0910"
+symbol_base = "??A?$vector@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@std@@QBEABU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@I@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
 [units.exact-first-replay-menu-browse]
 kind = "probe"

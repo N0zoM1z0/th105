@@ -25,6 +25,7 @@ EXACT_TEST_MODULES = (
     "test_linked_switch_replay",
     "test_select_constructor_audit",
     "test_repo_python",
+    "test_upstream_boost",
     "test_progress_svg",
 )
 
