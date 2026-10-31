@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+DirectInput shutdown40D3F0/331 now has complete source and exact-application-
+caller/full-body ownership evidence. Actual COM virtual dispatch and existing
+backend vectors preserve mouse/keyboard/pad release order, three clear() calls,
+and final interface release. COFF581/CIL585 remain nonexact: native keeps vector
+clear helpers out of line. Real bootstrap context is neutral and restored out;
+no manual containers, fake registers or forced barriers. Exact1576/448613 stays;
+source1773/authored1793/mapped1800, excluded1658/review576/units758; CI210.
+See DIRECT_INPUT_SHUTDOWN_SOURCE_2026_10_31.md.
+
 Renderer device-loss callback401610 now has complete source and independently
 checked CRenderer RTTI/slot/full-body/binder-call ownership. Both genuine existing
 texture value types emit15/native22; native outgoing argument materialization

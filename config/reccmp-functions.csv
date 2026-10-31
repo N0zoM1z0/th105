@@ -1798,3 +1798,4 @@ BgmService_play,0x004036E0,function
 BgmStream_prepare,0x00402960,function
 RenderModeManager_initialize,0x00401430,function
 RenderModeManager_on_device_lost,0x00401610,function
+DirectInputBackend_shutdown,0x0040D3F0,function

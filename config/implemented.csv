@@ -1770,3 +1770,4 @@ BgmService_play
 BgmStream_prepare
 RenderModeManager_initialize
 RenderModeManager_on_device_lost
+DirectInputBackend_shutdown

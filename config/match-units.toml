@@ -28344,3 +28344,23 @@ address = "0x00401610"
 symbol_base = "?on_device_lost@RenderModeManager@th105@@UAEXXZ"
 rel32_targets = ["?bind_texture@RenderTextureBindingView@th105@@QAEXUTextureHandleResult@2@H@Z=0x00404DF0"]
 dir32_targets = ["?g_render_texture_binding@th105@@3URenderTextureBindingView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+
+[units.exact-first-directinput-shutdown]
+kind = "probe"
+source = "src/input/DirectInputShutdown.cpp"
+object = "build/match-units/ExactFirst_DirectInputShutdown.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete331-byte DirectInput shutdown policy through actual COM virtual dispatch and existing backend vectors. Whole COFF581/native331 remains nonexact on vector-clear context. No extra device cache, manual container teardown, private ABI or global state reset."
+
+[[units.exact-first-directinput-shutdown.functions]]
+address = "0x0040D3F0"
+symbol_base = "?shutdown_direct_input@th105@@YAXXZ"
+rel32_targets = [
+ "__invalid_parameter_noinfo=0x0068A143",
+ "_memmove_s=0x00689EB0",
+ "?clear@?$vector@PAXV?$allocator@PAX@std@@@std@@QAEXXZ=0x0040DC40",
+ "?clear@?$vector@URawGamepadState@th105@@V?$allocator@URawGamepadState@th105@@@std@@@std@@QAEXXZ=0x0040DC80",
+ "?clear@?$vector@HV?$allocator@H@std@@@std@@QAEXXZ=0x0040DD60",
+]
+dir32_targets = ["?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=direct_input_shutdown_fields"]

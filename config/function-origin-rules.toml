@@ -4551,3 +4551,17 @@ confidence = "observed"
 evidence = "Complete22-byte CRenderer device-lost callback clears texture stage0 through game binder404DF0. Actual primary RTTI table6D6930 owns this callback and independently exact reset4014C0 in the next slot. Full body, COL/type, slot and direct binder call are checked; source15/native22 remains nonexact. docs/RENDER_MODE_LOST_SOURCE_2026_10_31.md."
 required_rtti_virtual_bodies = [{ address = "0x00401610", size = 22, slot = "0x006D6930", col_slot = "0x006D692C", col = "0x006DC6CC", type_descriptor = "0x006FA27C", type_name_contains = ".?AVCRenderer@@", sha256 = "9dbce8e125d60a54ca8be7d26d6ba4aeab6c5a8fe32a0e153683b93242838e75", calls = [{ site = "0x00401620", target = "0x00404DF0" }] }]
 required_dword_values = [{ address = "0x006D6934", value = "0x004014C0" }]
+
+[[rules]]
+id = "direct-input-shutdown-authored-106a"
+addresses = ["0x0040D3F0"]
+expected_count = 1
+expected_bytes = 331
+expected_names = ["sub_40D3F0"]
+origin = "authored_game"
+subsystem = "input"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact application shutdown407F80 calls this complete331-byte input-owned teardown at40805B. Native mouse/keyboard/pad COM ownership, checked device loop, actual vector clears and final input-interface release establish application policy. Source581/CIL585 remain nonexact; no helper or partial byte credit. docs/DIRECT_INPUT_SHUTDOWN_SOURCE_2026_10_31.md."
+required_body_hashes = [{ address = "0x0040D3F0", size = 331, sha256 = "ef5bbfadd0d7b228892bf466d79becdf80dd00b82d25b7f820c4440c44c00f23" }]
+required_direct_edges = [{ caller = "0x00407F80", site = "0x0040805B", target = "0x0040D3F0", caller_status = "matching" }]
