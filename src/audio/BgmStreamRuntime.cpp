@@ -121,6 +121,7 @@ public:
     virtual ~BgmBufferRuntime();
 
 public:
+    bool load_wave_file(const char *path);
     void clear();
     HResult stop_if_playing();
     void set_volume(long volume);

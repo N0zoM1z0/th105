@@ -4594,3 +4594,17 @@ confidence = "observed"
 evidence = "Six unchanged original Boost release methods reproduce all4829 code bytes and409 compact-switch metadata bytes. Every complete canonical COMDAT, guarded map/table, local relocation and all reachable code is checked before unchanged full-inventory provenance checks. No table truncation or authored credit. docs/BOOST_COMPACT_SWITCH_PAYLOAD_2026_10_31.md."
 vc8_generated_anchor_file = "config/boost-release-switch-origin-anchors.toml"
 required_body_hashes = [{ address = "0x006B04E0", size = 2478, sha256 = "60401780dceb783eb76e438006d0b3be9936e1036feb08450b5d2b819373233c" }, { address = "0x006AF880", size = 1407, sha256 = "94dda5a8ec5951f6f8f7bb2eec6a1b422c2318a63e6fc58083ac3d9bdc3f3f7e" }, { address = "0x006A0DC0", size = 118, sha256 = "e269b00ccc41bf61e04cadf905358ee3803746a424fe3b1528803c231ea02f7a" }, { address = "0x006A0EE0", size = 84, sha256 = "5e65c64250caa58306b6f11baa2eb861452e7d6e5d146adb1afb28f82f491784" }, { address = "0x006A2C40", size = 196, sha256 = "5afb596740a7c770e407f387d1f12d5224269a7c934b2b59f7ab88cadd5f0e3a" }, { address = "0x006A7C90", size = 546, sha256 = "a28b6cab392ce743aaf53950c85676df654242c0a8a9d79513afe0253d363daa" }]
+
+[[rules]]
+id = "wave-service-load-authored-106a"
+addresses = ["0x00401AF0"]
+expected_count = 1
+expected_bytes = 224
+expected_names = ["sub_401AF0"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Fresh exact fighter wave loader132 calls this complete224-byte service policy. Both RET8 exits and every native instruction close; allocation/load/failure recycle and effective DirectSound gain are application policy. Full genuine CIL source221 remains nonexact; no exact or helper credit. docs/WAVE_SERVICE_LOAD_SOURCE_2026_10_31.md."
+required_body_hashes = [{ address = "0x00401AF0", size = 224, sha256 = "4656d7b85447306152dcaac9d06591a317ba024485e32c0d6b1443540ec4ffa2" }]
+required_direct_edges = [{ caller = "0x0045F680", site = "0x0045F6D3", target = "0x00401AF0", caller_status = "matching" }]

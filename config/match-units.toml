@@ -28440,3 +28440,21 @@ dir32_targets = [
  "??_7SequenceRotateSpriteBase80@th105@@6B@=??_7CSpriteBase@@6B@",
  "??_7SequenceRotateSprite94@th105@@6B@=??_7DeckCtorSprite94@th105@@6B@",
 ]
+
+[units.exact-first-wave-service-load]
+kind = "linked_candidate"
+source = "src/audio/WaveServiceLoad.cpp"
+object = "build/match-units/ExactFirst_WaveServiceLoad.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+link_xiph_sdk = true
+link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__timeGetTime@0=__imp__timeGetTime@0", "?bgm_minimum_gain@th105@@3MB=_bgm_transition_minimum_gain", "?logarithmic_volume_scale@th105@@3MB=_logarithmic_volume_scale", "?direct_sound_volume_units@th105@@3MB=_direct_sound_volume_units", "_wave_lock_error=_direct_sound_lock_error", "_wave_error_title=?sound_error_title@th105@@3QBDB"]
+notes = "Complete224-byte wave handle load policy; genuine manager/DirectSound/reader context emits221 and remains nonexact at entry/frame/private allocation. No forced ABI or helper credit. docs/WAVE_SERVICE_LOAD_SOURCE_2026_10_31.md."
+link_vtables = [{ symbol = "??_7BgmBufferRuntime@th105@@6B@", target = "??_7DirectSoundResourceBase@th105@@6B@", initializer = "?initialize@BgmBufferRuntime@th105@@UAE_NPBXI@Z=0x00418310", entry = "??_GBgmBufferRuntime@th105@@UAEPAXI@Z=0x004182A0", target_type_name = ".?AVCDSBuffer@@" }]
+
+[[units.exact-first-wave-service-load.functions]]
+address = "0x00401AF0"
+symbol_base = "?load_wave@WaveLoadService@th105@@QAE?AUBgmHandleResult@2@PBD@Z"
+rel32_targets = ["?linear_gain_to_ds_volume@th105@@YGHM@Z=0x00418990", "?acquire@WaveLoadManager64@th105@@QAEPAPAVBgmBufferRuntime@2@AAUResourceHandleToken@2@@Z=0x00405090", "?release@WaveLoadManager64@th105@@QAEXI@Z=0x00405200", "?load_wave_file@BgmBufferRuntime@th105@@QAE_NPBD@Z=0x004184B0", "??2@YAPAXI@Z=0x00689DCB"]

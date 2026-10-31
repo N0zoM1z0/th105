@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Wave service load401AF0 now has complete source/ownership: stable token cell,
+CDSBuffer creation/load, failure delete/recycle and effective gain publication.
+All85 target instructions/two RET8 exits close; fresh exact caller45F680 binds
+45F6D3. Actual reader/DirectSound/manager CIL emits221/native224, nonexact at
+frame/private acquire ABI; no forcing. Fresh BGM Ogg291/SFL484, play351/
+prepare159+79EH and fighter resources132/333/199 pass. Exact1577/448878 stays;
+source1775/authored1795/mapped1802/excluded1714/review518/units760.
+See WAVE_SERVICE_LOAD_SOURCE_2026_10_31.md. Sequence preparation base control
+and genuine advance deque controls were negative and restored out.
+
 Fighter sequence rotation 45DDA0 now passes all 265 authored bytes through
 real deque lifetime, visible implicit sprite copy and byte count publication.
 Implicit copy 455160/116 and all 96 auxiliary bytes also pass; existing enqueue
