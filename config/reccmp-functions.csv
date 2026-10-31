@@ -1778,3 +1778,4 @@ CMenuConnect_update_main_state,0x00444830,function
 CMenuReplay_update_browse_state,0x00446860,function
 run_bgm_playback_worker,0x00403B90,function
 parse_script_line,0x00405930,function
+dispatch_wave_resource,0x00408ED0,function

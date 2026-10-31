@@ -1750,3 +1750,4 @@ CMenuConnect_update_main_state
 CMenuReplay_update_browse_state
 run_bgm_playback_worker
 parse_script_line
+dispatch_wave_resource

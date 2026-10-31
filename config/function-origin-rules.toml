@@ -4531,3 +4531,21 @@ required_body_hashes = [
  { address = "0x00422710", size = 81, sha256 = "a7b77449e0c7907b40e5065279a11f6e0d0bd739e99e0914b0db8db49a9964a4" },
  { address = "0x004228D0", size = 202, sha256 = "d253763daa7abf363e63a988a18377318cec720fe3d9e39af66331936c12289f" },
 ]
+
+[[rules]]
+id = "wave-resource-dispatch-authored-106a"
+addresses = ["0x00408ED0"]
+expected_count = 1
+expected_bytes = 151
+expected_names = ["sub_408ED0"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete151-byte wave dispatcher with two RET0 exits, exact DirectSound resource-load caller and resource-mode global7028D8. Encoded path preserves strlen/260-byte secure copy/four-byte .cv3 suffix policy; plain branch passes real WaveData output fields to the RIFF reader. Complete145-byte genuine reader/loader CIL source remains nonexact; no helper or exact credit. docs/WAVE_RESOURCE_DISPATCH_2026_10_31.md."
+required_body_hashes = [
+ { address = "0x00408ED0", size = 151, sha256 = "f9f8f0ad2194ff0883e1f670e505df2337605b2ecd80a6440067d16a6e646e2c" },
+]
+required_direct_edges = [
+ { caller = "0x004184B0", site = "0x004184FF", target = "0x00408ED0", caller_status = "matching" },
+]

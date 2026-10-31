@@ -203,7 +203,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00408D00,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00408DB0,authored_game,assets,authored,observed,canonical-exact-authored
 0x00408E40,authored_game,assets,authored,observed,canonical-exact-authored
-0x00408ED0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00408ED0,authored_game,audio,authored,observed,wave-resource-dispatch-authored-106a
 0x00408F70,authored_game,assets,authored,observed,canonical-exact-authored
 0x00409020,authored_game,assets,authored,observed,canonical-exact-authored
 0x00409080,authored_game,assets,authored,observed,bitmap-texture-load-authored-106a

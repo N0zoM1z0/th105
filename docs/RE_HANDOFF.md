@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Wave dispatcher408ED0 now has complete151-byte authored source and an exact
+304-byte DirectSound caller edge. Actual reader/loader CIL remains145/151;
+CV3 normal stdcall248/247 is EH-blocked, no waiver or exact credit. Shared
+WaveData and real delete[] ownership retain the304-byte caller exact.
+Source1753/authored1773/mapped1780, excluded1655/review599/units749;
+exact1556/444236 unchanged. See WAVE_RESOURCE_DISPATCH_2026_10_31.md.
+
 Effect loader437EC0 is now fully canonical exact2528 via the existing ordinary
 read_file_buffer helper, shared in FileReaderOperations.hpp. All15 old accepted
 functions in the two other affected consumers freshly remain exact, including

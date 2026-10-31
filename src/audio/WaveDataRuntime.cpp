@@ -1,3 +1,4 @@
+#include "audio/WaveData.hpp"
 #define TH105_FILE_READER_OWNER_DTOR_VISIBLE
 #include "assets/FileReader.hpp"
 
@@ -6,23 +7,6 @@
 #include <stdlib.h>
 
 namespace th105 {
-
-struct WaveFormatExStorage20 {
-    unsigned short format_tag_00;
-    unsigned short channels_02;
-    unsigned int samples_per_second_04;
-    unsigned int average_bytes_per_second_08;
-    unsigned short block_align_0c;
-    unsigned short bits_per_sample_0e;
-    unsigned short extra_size_10;
-    unsigned short padding_12;
-};
-
-struct WaveData {
-    WaveFormatExStorage20 format_00;
-    unsigned char *data_14;
-    unsigned int data_size_18;
-};
 
 bool __stdcall load_cv3_wave_data(WaveData *output, const char *path)
 {
@@ -35,7 +19,7 @@ bool __stdcall load_cv3_wave_data(WaveData *output, const char *path)
     reader->read(&output->data_size_18, 4);
     if (output->data_size_18 != 0) {
         if (output->data_14 != 0) {
-            free(output->data_14);
+            delete[] output->data_14;
             output->data_14 = 0;
         }
         output->data_14 = new unsigned char[output->data_size_18];
@@ -79,7 +63,7 @@ bool __stdcall load_wave_data(WaveData *output, const char *path)
         return false;
 
     if (output->data_14 != 0)
-        free(output->data_14);
+        delete[] output->data_14;
     output->data_14 = new unsigned char[output->data_size_18];
     reader->read(output->data_14, output->data_size_18);
     return true;

@@ -18412,26 +18412,12 @@ enable_gs = true
 notes = "Current game-side WaveData loaders owned by DirectSound resource dispatch. .cv3 uses ordinary stdcall WaveData/path ABI; RIFF/WAVE target is LTCG scalar-replaced across ECX/stack fields, so tracked source preserves the natural 0x1C WaveData API and accepts a formal nonexact ABI residual rather than inventing registers. Real <new> declarations now select array-new symbol665B8A for the retained array expressions; complete comparison payloads remain unchanged. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
 
 [[units.gpt-web-wave-data-runtime.functions]]
-address = "0x00419590"
-symbol_base = "?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z"
-rel32_targets = [
-  "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
-  "??_U@YAPAXI@Z=0x00665B8A",
-  "_free=0x0068AA26",
-  "@__security_check_cookie@4=0x00689D25",
-]
-dir32_targets = [
-  "__ehhandler$?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z=__ehhandler$?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z",
-  "___security_cookie=___security_cookie",
-]
-
-[[units.gpt-web-wave-data-runtime.functions]]
 address = "0x00419690"
 symbol_base = "?load_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z"
 rel32_targets = [
   "?open@FileReaderOwner@th105@@QAE_NPBD@Z=0x0040CF40",
   "??_U@YAPAXI@Z=0x00665B8A",
-  "_free=0x0068AA26",
+  "??_V@YAXPAX@Z=0x0068AA26",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
@@ -24572,7 +24558,7 @@ address = "0x004184B0"
 symbol_base = "?load@DirectSoundWaveResource@th105@@QAE_NPBD@Z"
 rel32_targets = [
  "@dispatch_wave_resource@8=0x00408ED0",
- "_free=0x0068AA26",
+ "??_V@YAXPAX@Z=0x0068AA26",
  "_memcpy=0x0068AA30",
 ]
 dir32_targets = [
@@ -28268,3 +28254,25 @@ symbol_base = "??$_Uninit_copy@PBVFrameData@th105@@PAV12@V?$allocator@VFrameData
 [[units.vc8-frame-vector-origin.functions]]
 address = "0x00421F70"
 symbol_base = "??$_Uninit_fill_n@PAVFrameData@th105@@IV12@V?$allocator@VFrameData@th105@@@std@@@std@@YAXPAVFrameData@th105@@IABV12@AAV?$allocator@VFrameData@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[units.exact-first-wave-resource-dispatch]
+kind = "linked_candidate"
+source = "src/audio/WaveResourceDispatch.cpp"
+object = "build/match-units/ExactFirst_WaveResourceDispatch.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+notes = "Complete151-byte wave format dispatch408ED0 source; actual reader/loader CIL graph remains145/151. CV3 normal stdcall remains248/247; RIFF aggregate/private ABI remains unresolved. No exact credit."
+link_data_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=dds_texture_backend_object", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__wsprintfA=__imp__wsprintfA", "?g_bitmap_texture_levels@th105@@3HA=?g_bitmap_texture_levels@th105@@3HA", "?g_bitmap_texture_base_level@th105@@3HA=?g_bitmap_texture_base_level@th105@@3HA", "?g_bitmap_texture_palette@th105@@3IA=?g_bitmap_texture_palette@th105@@3IA", "?g_bitmap_texture_encoded@th105@@3_NA=?g_bitmap_texture_encoded@th105@@3_NA", "__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A"]
+link_reader_vtables = [{family = "CFileReader", target = "??_7CFileReader@th105@@6B@", entries = ["0x0041B890", "0x0040CED0", "0x00407C40", "0x00407C50", "0x0040CF00"]}, {family = "CPackageFileReader", target = "??_7CPackageFileReader@th105@@6B@", entries = ["0x0041B890", "0x0041C110", "0x00407C40", "0x0041C180", "0x0041B880"]}]
+
+[[units.exact-first-wave-resource-dispatch.functions]]
+address = "0x00408ED0"
+symbol_base = "@dispatch_wave_resource@8"
+rel32_targets = ["?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z=0x00419590", "?load_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z=0x00419690", "_strcpy_s=0x0068AD95", "@__security_check_cookie@4=0x00689D25"]
+
+[[units.exact-first-wave-resource-dispatch.functions]]
+address = "0x00419590"
+symbol_base = "?load_cv3_wave_data@th105@@YG_NPAUWaveData@1@PBD@Z"
+rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26", "??_U@YAPAXI@Z=0x00665B8A"]

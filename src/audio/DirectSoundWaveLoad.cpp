@@ -1,23 +1,11 @@
+#include "audio/WaveData.hpp"
 #include "audio/DirectSound.hpp"
 #include <stdlib.h>
 #include <string.h>
 
 namespace th105 {
-struct OwnedWaveFormat {
-    unsigned short format_tag, channels;
-    unsigned samples_per_second, average_bytes_per_second;
-    unsigned short block_align, bits_per_sample, extra_size;
-};
-struct OwnedWaveData {
-    OwnedWaveFormat format;
-    unsigned char *data;
-    unsigned size;
-    OwnedWaveData() : data(0), size(0) {}
-    ~OwnedWaveData() { if (data != 0) free(data); }
-};
-typedef char OwnedWaveData_size[sizeof(OwnedWaveData)==0x1c?1:-1];
 // Current dispatcher takes output in ECX, path in EDX and no stack args.
-extern "C" bool __fastcall dispatch_wave_resource(OwnedWaveData *, const char *);
+extern "C" bool __fastcall dispatch_wave_resource(WaveData *, const char *);
 extern "C" __declspec(dllimport) int __stdcall MessageBoxA(
     void *, const char *, const char *, unsigned);
 extern "C" const char direct_sound_lock_error[];
@@ -36,11 +24,11 @@ bool DirectSoundWaveResource::load(const char *path)
         buffer_04->release();
         buffer_04 = 0;
     }
-    OwnedWaveData wave;
+    WaveData wave;
     if (!dispatch_wave_resource(&wave, path))
         return false;
-    size_08 = wave.size;
-    if (!initialize(&wave.format, wave.size))
+    size_08 = wave.data_size_18;
+    if (!initialize(&wave.format_00, wave.data_size_18))
         return false;
     void *audio1, *audio2;
     ULong bytes1, bytes2;
@@ -48,7 +36,7 @@ bool DirectSoundWaveResource::load(const char *path)
         MessageBoxA(0, direct_sound_lock_error, sound_error_title, 0);
         return false;
     }
-    memcpy(audio1, wave.data, size_08);
+    memcpy(audio1, wave.data_14, size_08);
     buffer_04->unlock(audio1, bytes1, audio2, bytes2);
     return true;
 }
