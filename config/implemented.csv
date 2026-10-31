@@ -1757,3 +1757,4 @@ WaveBufferHandleManager_dtor
 DirectSoundHandleManager_dtor
 TextureHandleManager_dtor
 BgmStreamHandleManager_dtor
+CMenuConnect_dtor

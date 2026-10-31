@@ -1410,7 +1410,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00443A30,compiler_generated,battle,exclude,observed,vc8-generated-deque-short-erase
 0x00443AA0,third_party,boost_regex,exclude,observed,boost-regex-reference-106a
 0x00443B30,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00443C30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00443C30,authored_game,ui,authored,observed,canonical-exact-authored
 0x00443D70,authored_game,ui,authored,observed,canonical-exact-authored
 0x004440A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00444190,authored_game,ui,authored,observed,canonical-exact-authored

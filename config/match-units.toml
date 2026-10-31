@@ -28346,3 +28346,17 @@ address = "0x00405040"
 symbol_base = "??_G?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAEPAXI@Z"
 vtable_entry = "??_7?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@6B@"
 rel32_targets = ["??1?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAE@XZ=0x00404FD0", "??3@YAXPAX@Z=0x006898EA"]
+
+[units.exact-first-connect-menu-lifetime]
+kind = "probe"
+source = "src/ui/MenuConnectLifetime.cpp"
+object = "build/match-units/ExactFirst_ConnectMenuLifetime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete CMenuConnect normal destructor443C30/315 canonical exact with actual polymorphic sprite/tile/number lifetimes. No hand-written vptr stores or helper credit. docs/CONNECT_MENU_DESTRUCTOR_EXACT_2026_10_31.md."
+
+[[units.exact-first-connect-menu-lifetime.functions]]
+address = "0x00443C30"
+symbol_base = "??1CMenuConnectLifetime@th105@@UAE@XZ"
+rel32_targets = ["?shutdown@ConnectProfileListView@th105@@QAEXXZ=0x0043A0A0", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??1TitleDesignResource@th105@@QAE@XZ=0x00421890", "??3@YAXPAX@Z=0x006898EA", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90"]
+dir32_targets = ["??_7CMenuConnectLifetime@th105@@6B@=??_7CMenuConnect@th105@@6B@", "??_7CNumberLifetime@th105@@6B@=??_7CNumber@th105@@6B@", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@", "?g_connect_profile_list@th105@@3UConnectProfileListView@1@A=_g_profile_name_list"]

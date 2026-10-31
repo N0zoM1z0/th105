@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Connect menu destructor443C30 is canonical exact315. Actual profile-list/
+texture/design cleanup plus ordinary guide/string/deque and polymorphic
+CNumber/tile/sprite/base lifetimes reproduce all bytes without manual vptr
+stores. Existing shared UI source is unchanged; wrapper444470 stays excluded.
+Exact1563/445390; source1760/authored1780/mapped1787, excluded1658/review589/
+units753. See CONNECT_MENU_DESTRUCTOR_EXACT_2026_10_31.md.
+
 Owning BGM manager403F60 is exact279 plus all139 bytes of four-state
 cleanup/EH. Actual RTTI is CHandleManagerEx<BgmBuffer>, distinct from the
 pointer-resource family. Ordinary delete loop and genuine unsigned-vector COFF
