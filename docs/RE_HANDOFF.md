@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+CSelect normal destructor424260 is canonical exact845. Actual polymorphic
+sprite/tile lifetimes resolve the former+605 scheduling difference, with no
+manual vptr writes. Shared CNumberLifetime.hpp preserves declarations; old
+connect315 and all six number/design-number roots freshly remain exact.
+Constructor-facing Select header is unchanged. Exact1564/446235,
+source1761/authored1781/mapped1788, excluded1658/review588/units753.
+See SELECT_DESTRUCTOR_EXACT_2026_10_31.md.
+
 Connect menu destructor443C30 is canonical exact315. Actual profile-list/
 texture/design cleanup plus ordinary guide/string/deque and polymorphic
 CNumber/tile/sprite/base lifetimes reproduce all bytes without manual vptr

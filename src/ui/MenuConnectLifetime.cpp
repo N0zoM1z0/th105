@@ -1,5 +1,5 @@
 // Actual member destruction uses the independently exact-backed IColor/CNumber lifetimes.
-#include "ui/CNumberLifetime.cpp"
+#include "ui/CNumberLifetime.hpp"
 #include "ui/MenuConnectStateRuntime.hpp"
 #include "ui/Title.hpp"
 #include "config/GameConfig.hpp"

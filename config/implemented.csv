@@ -1758,3 +1758,4 @@ DirectSoundHandleManager_dtor
 TextureHandleManager_dtor
 BgmStreamHandleManager_dtor
 CMenuConnect_dtor
+CSelect_dtor

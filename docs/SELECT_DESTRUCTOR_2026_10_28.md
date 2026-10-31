@@ -1,5 +1,10 @@
 # CSelect destructor 424260
 
+Update2026-10-31: the complete845-byte destructor is now canonical exact
+through actual polymorphic sprite/tile lifetimes and the independently
+exact-backed IColor interface. See SELECT_DESTRUCTOR_EXACT_2026_10_31.md.
+The following records the earlier nonexact checkpoint and rejected control.
+
 The complete normal destructor now has an 845-byte source candidate against
 845 native bytes. It remains nonexact at +605 (4244BD), and receives no exact
 or source-selection credit. The canonical target SHA is

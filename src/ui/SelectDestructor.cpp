@@ -1,7 +1,7 @@
-#include "ui/SelectConstructor.hpp"
+#include "ui/SelectLifetime.hpp"
 
 namespace th105 {
-CSelect::~CSelect()
+CSelectLifetime::~CSelectLifetime()
 {
     for(int i=0;i<15;++i) {
         effects_7fc[i][0].clear_effects_and_resources();
