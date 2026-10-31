@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+UDP request buffer+78 now has consistent unsigned-byte array ownership in
+start/replacement, initialize, shutdown and owner destruction. Four source
+sites use actual delete[]; all eight old affected authored matches and the
+packet scalar wrapper freshly pass. Owner341/native333 remains nonexact.
+No count changes. See NETWORK_REQUEST_ARRAY_LIFETIME_2026_10_31.md.
+
 Profile key destructor44B9D0 is canonical exact188 through actual polymorphic
 tile lifetime. Shared UiSpriteLifetime94 removes duplicate lifetime declarations;
 all eleven old affected functions freshly remain exact (twelve comparisons).

@@ -1,3 +1,4 @@
+#include <new>
 #include <winsock2.h>
 #include <windows.h>
 
@@ -100,7 +101,7 @@ public:
     NetworkInitializeThread8 service_worker_06c;
     unsigned char running_074;
     unsigned char unreviewed_075[3];
-    void *heap_buffer_078;
+    unsigned char *heap_buffer_078;
     unsigned char unreviewed_07c[0x8c];
     std::vector<NetworkInitializePeer20> peers_108;
     unsigned int active_peer_count_118;
@@ -136,7 +137,7 @@ bool NetworkUdpInitializeView::initialize(const NetworkInitializeKey16 *key, int
         return false;
     }
     if (heap_buffer_078 != 0) {
-        free(heap_buffer_078);
+        delete[] heap_buffer_078;
         heap_buffer_078 = 0;
     }
     running_074 = 1;

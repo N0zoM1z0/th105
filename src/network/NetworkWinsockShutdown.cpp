@@ -1,3 +1,4 @@
+#include <new>
 #include <winsock2.h>
 #include <windows.h>
 #include <cstdlib>
@@ -28,7 +29,7 @@ struct NetworkWinsockShutdownView {
     BattleThreadHandleShutdownView worker_06c;
     unsigned char running_074;
     unsigned char reserved_075[3];
-    void *heap_buffer_078;
+    unsigned char *heap_buffer_078;
     unsigned char reserved_07c[0x44];
     unsigned char endpoint_0c0[16];
     unsigned char unreviewed_0d0[0x14];
@@ -88,7 +89,7 @@ void NetworkWinsockShutdownView::shutdown_412fd0()
     LeaveCriticalSection(&g_winsock_ref_lock);
 
     if (heap_buffer_078 != 0) {
-        std::free(heap_buffer_078);
+        delete[] heap_buffer_078;
         heap_buffer_078 = 0;
     }
 }

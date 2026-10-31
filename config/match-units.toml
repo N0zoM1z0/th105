@@ -14677,10 +14677,7 @@ notes = "RTTI-backed CNetworkUDP owner with native peer multimap and0x64 packet 
 [[units.gpt-web-network-winsock-scalar-dtor.functions]]
 address = "0x00412C80"
 symbol_base = "??_GNetworkWinsockState314CtorView@th105@@UAEPAXI@Z"
-rel32_targets = [
-  "??1NetworkWinsockState314CtorView@th105@@UAE@XZ=0x00412CC0",
-  "??3@YAXPAX@Z=0x006898EA",
-]
+rel32_targets = ["??1NetworkWinsockState314CtorView@th105@@UAE@XZ=0x00412CC0", "??3@YAXPAX@Z=0x006898EA"]
 
 [units.gpt-web-network-base-runtime]
 kind = "probe"
@@ -16491,21 +16488,8 @@ notes = "Complete shutdown/preparation source over the reviewed CNetworkUDP pref
 [[units.gpt-web-network-winsock-shutdown.functions]]
 address = "0x00412FD0"
 symbol_base = "?shutdown_412fd0@NetworkWinsockShutdownView@th105@@QAEXXZ"
-rel32_targets = [
-  "?prepare_udp_shutdown@th105@@YGXPAUNetworkWinsockShutdownView@1@@Z=0x004130D0",
-  "?wait_for_exit@BattleThreadHandleShutdownView@th105@@QAEXXZ=0x00414640",
-  "_free=0x0068AA26",
-]
-dir32_targets = [
-  "__imp__SetEvent@4=__imp__SetEvent@4",
-  "__imp__shutdown@8=__imp__shutdown@8",
-  "__imp__closesocket@4=__imp__closesocket@4",
-  "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
-  "__imp__WSACleanup@0=__imp__WSACleanup@0",
-  "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4",
-  "_g_winsock_ref_lock=_g_winsock_ref_lock",
-  "_g_winsock_refcount=_g_winsock_refcount",
-]
+rel32_targets = ["?prepare_udp_shutdown@th105@@YGXPAUNetworkWinsockShutdownView@1@@Z=0x004130D0", "?wait_for_exit@BattleThreadHandleShutdownView@th105@@QAEXXZ=0x00414640", "??_V@YAXPAX@Z=0x0068AA26"]
+dir32_targets = ["__imp__SetEvent@4=__imp__SetEvent@4", "__imp__shutdown@8=__imp__shutdown@8", "__imp__closesocket@4=__imp__closesocket@4", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__WSACleanup@0=__imp__WSACleanup@0", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "_g_winsock_ref_lock=_g_winsock_ref_lock", "_g_winsock_refcount=_g_winsock_refcount"]
 
 [[units.gpt-web-network-winsock-shutdown.functions]]
 address = "0x004130D0"
@@ -18867,84 +18851,47 @@ rel32_targets = ["?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ=0x0041D7
 [[units.cross-v106a-network-winsock-receive-thread.functions]]
 address = "0x0041D7C0"
 symbol_base = "?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ"
-rel32_targets = [
-  "_memset=0x0068A440",
-  "_recvfrom@24=0x006898BA",
-  "_sendto@24=0x006898CC",
-  "_ntohs@4=0x006898D2",
-  "_htons@4=0x006898D8",
-  "?find_receive_peer@th105@@YG?AViterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@PAVNetworkWinsockReceiveView@1@ABUNetworkReceiveAddress16@1@@Z=0x00412A60",
-  "__invalid_parameter_noinfo=0x0068A143",
-  "??Citerator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@QBEPAU?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@2@XZ=0x00413890",
-  "?network_udp_receive_request@th105@@YIXPBUNetworkReceiveAddress16@1@PBUNetworkReceiveRequest18@1@PAVNetworkWinsockReceiveView@1@@Z=0x00415560",
-  "?network_udp_accept@th105@@YIXPBUNetworkAcceptAddress16@1@PAUNetworkUdpAcceptView@1@PBUNetworkAcceptPacketHeader0C@1@@Z=0x00415AB0",
-  "?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z=0x00415B90",
-  "?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z=0x00415C10",
-  "?remove_peer@NetworkWinsockReceiveView@th105@@QAEXI@Z=0x00413170",
-  "?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z=0x00415340",
-  "@__security_check_cookie@4=0x00689D25",
-]
+rel32_targets = ["_memset=0x0068A440", "_recvfrom@24=0x006898BA", "_sendto@24=0x006898CC", "_ntohs@4=0x006898D2", "_htons@4=0x006898D8", "?find_receive_peer@th105@@YG?AViterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@PAVNetworkWinsockReceiveView@1@ABUNetworkReceiveAddress16@1@@Z=0x00412A60", "__invalid_parameter_noinfo=0x0068A143", "??Citerator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@QBEPAU?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@2@XZ=0x00413890", "?network_udp_receive_request@th105@@YIXPBUNetworkReceiveAddress16@1@PBUNetworkReceiveRequest18@1@PAVNetworkWinsockReceiveView@1@@Z=0x00415560", "?network_udp_accept@th105@@YIXPBUNetworkAcceptAddress16@1@PAUNetworkUdpAcceptView@1@PBUNetworkAcceptPacketHeader0C@1@@Z=0x00415AB0", "?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z=0x00415B90", "?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z=0x00415C10", "?remove_peer@NetworkWinsockReceiveView@th105@@QAEXI@Z=0x00413170", "?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z=0x00415340", "@__security_check_cookie@4=0x00689D25"]
 dir32_targets = ["__ehhandler$?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ=__ehhandler$?receive_loop@NetworkWinsockReceiveView@th105@@QAEXXZ"]
 
 [[units.cross-v106a-network-winsock-receive-thread.functions]]
 address = "0x00415560"
 symbol_base = "?network_udp_receive_request@th105@@YIXPBUNetworkReceiveAddress16@1@PBUNetworkReceiveRequest18@1@PAVNetworkWinsockReceiveView@1@@Z"
-rel32_targets = [
-  "?request_key_matches@th105@@YGHPBX0@Z=0x004152A0",
-  "?find_receive_peer@th105@@YG?AViterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@PAVNetworkWinsockReceiveView@1@ABUNetworkReceiveAddress16@1@@Z=0x00412A60",
-  "__invalid_parameter_noinfo=0x0068A143",
-  "?request_peer@th105@@YGAAUNetworkReceivePeer20@1@AAV?$vector@UNetworkReceivePeer20@th105@@V?$allocator@UNetworkReceivePeer20@th105@@@std@@@std@@I@Z=0x00413740",
-  "_sendto@24=0x006898CC",
-  "?insert@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@_N@2@ABU?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@2@@Z=0x00416220",
-  "_memcpy=0x0068AA30",
-  "@__security_check_cookie@4=0x00689D25",
-]
+rel32_targets = ["?request_key_matches@th105@@YGHPBX0@Z=0x004152A0", "?find_receive_peer@th105@@YG?AViterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@PAVNetworkWinsockReceiveView@1@ABUNetworkReceiveAddress16@1@@Z=0x00412A60", "__invalid_parameter_noinfo=0x0068A143", "?request_peer@th105@@YGAAUNetworkReceivePeer20@1@AAV?$vector@UNetworkReceivePeer20@th105@@V?$allocator@UNetworkReceivePeer20@th105@@@std@@@std@@I@Z=0x00413740", "_sendto@24=0x006898CC", "?insert@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkReceivePeer20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@std@@@4@$00@std@@@std@@_N@2@ABU?$pair@$$CBIPAUNetworkReceivePeer20@th105@@@2@@Z=0x00416220", "_memcpy=0x0068AA30", "@__security_check_cookie@4=0x00689D25"]
 dir32_targets = ["__ehhandler$?network_udp_receive_request@th105@@YIXPBUNetworkReceiveAddress16@1@PBUNetworkReceiveRequest18@1@PAVNetworkWinsockReceiveView@1@@Z=__ehhandler$?network_udp_receive_request@th105@@YIXPBUNetworkReceiveAddress16@1@PBUNetworkReceiveRequest18@1@PAVNetworkWinsockReceiveView@1@@Z"]
 
 [[units.cross-v106a-network-winsock-receive-thread.functions]]
 address = "0x004152A0"
 symbol_base = "?request_key_matches@th105@@YGHPBX0@Z"
+rel32_targets = []
 
 [[units.cross-v106a-network-winsock-receive-thread.functions]]
 address = "0x00413740"
 symbol_base = "?request_peer@th105@@YGAAUNetworkReceivePeer20@1@AAV?$vector@UNetworkReceivePeer20@th105@@V?$allocator@UNetworkReceivePeer20@th105@@@std@@@std@@I@Z"
-rel32_targets = [
-  "__invalid_parameter_noinfo=0x0068A143",
-]
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
 [[units.cross-v106a-network-winsock-receive-thread.functions]]
 address = "0x00415340"
 symbol_base = "?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z"
-rel32_targets = [
-  "_free=0x0068AA26",
-  "??_U@YAPAXI@Z=0x00665B8A",
-  "_memcpy=0x0068AA30",
-  "_htons@4=0x006898D8",
-  "_inet_addr@4=0x006898AE",
-  "_gethostbyname@4=0x006898E4",
-  "?clear_connection_endpoints@th105@@YGXAAV?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@@Z=0x004161E0",
-  "?push_back@?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@QAEXABUNetworkReceiveAddress16@th105@@@Z=0x00416160",
-  "?start@NetworkReceiveWorker8@th105@@QAE_NP6GKPAX@Z0@Z=0x00414600",
-]
-dir32_targets = [
-  "__ehhandler$?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z=__ehhandler$?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z",
-]
+rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26", "??_U@YAPAXI@Z=0x00665B8A", "_memcpy=0x0068AA30", "_htons@4=0x006898D8", "_inet_addr@4=0x006898AE", "_gethostbyname@4=0x006898E4", "?clear_connection_endpoints@th105@@YGXAAV?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@@Z=0x004161E0", "?push_back@?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@QAEXABUNetworkReceiveAddress16@th105@@@Z=0x00416160", "?start@NetworkReceiveWorker8@th105@@QAE_NP6GKPAX@Z0@Z=0x00414600"]
+dir32_targets = ["__ehhandler$?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z=__ehhandler$?start_connection@NetworkWinsockReceiveView@th105@@QAEDPBDGPBXG@Z"]
 
 [[units.cross-v106a-network-winsock-receive-thread.functions]]
 address = "0x00415D60"
 symbol_base = "_network_winsock_connection_thread@4"
-rel32_targets = [
-  "_memcpy=0x0068AA30",
-  "_htonl@4=0x006898DE",
-  "_htons@4=0x006898D8",
-  "_socket@12=0x006898B4",
-  "_bind@12=0x006898C0",
-  "_closesocket@4=0x006898C6",
-  "_ntohs@4=0x006898D2",
-  "_sendto@24=0x006898CC",
-  "__invalid_parameter_noinfo=0x0068A143",
-  "@__security_check_cookie@4=0x00689D25",
-]
+rel32_targets = ["_memcpy=0x0068AA30", "_htonl@4=0x006898DE", "_htons@4=0x006898D8", "_socket@12=0x006898B4", "_bind@12=0x006898C0", "_closesocket@4=0x006898C6", "_ntohs@4=0x006898D2", "_sendto@24=0x006898CC", "__invalid_parameter_noinfo=0x0068A143", "@__security_check_cookie@4=0x00689D25"]
+
+[[units.cross-v106a-network-winsock-receive-thread.functions]]
+address = "0x00415B90"
+symbol_base = "?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z"
+dir32_targets = ["__ehhandler$?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z=__ehhandler$?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z"]
+rel32_targets = []
+
+[[units.cross-v106a-network-winsock-receive-thread.functions]]
+address = "0x00415C10"
+symbol_base = "?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z"
+dir32_targets = ["__ehhandler$?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z=__ehhandler$?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z"]
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?push_back@?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@QAEXABUNetworkReceiveAddress16@th105@@@Z=0x00416160"]
 
 [units.cross-v106a-network-winsock-peer-removal]
 kind = "probe"
@@ -18994,17 +18941,6 @@ rel32_targets = [
   "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
   "?at@?$vector@PAUNetworkUdpPacketBuffer41C@th105@@V?$allocator@PAUNetworkUdpPacketBuffer41C@th105@@@std@@@std@@QAEAAPAUNetworkUdpPacketBuffer41C@th105@@I@Z=0x00417A90",
 ]
-
-[[units.cross-v106a-network-winsock-receive-thread.functions]]
-address = "0x00415B90"
-symbol_base = "?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z"
-dir32_targets = ["__ehhandler$?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z=__ehhandler$?receive_rejection@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveReject4@1@@Z"]
-
-[[units.cross-v106a-network-winsock-receive-thread.functions]]
-address = "0x00415C10"
-symbol_base = "?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z"
-dir32_targets = ["__ehhandler$?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z=__ehhandler$?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z"]
-rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?push_back@?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@QAEXABUNetworkReceiveAddress16@th105@@@Z=0x00416160"]
 
 [units.cross-v106a-network-winsock-send-client]
 kind = "linked_candidate"
@@ -19100,6 +19036,7 @@ rel32_targets = ["?show_winsock_error@th105@@YGXPBD@Z=0x0041DEF0"]
 [[units.cross-v106a-network-winsock-runtime.functions]]
 address = "0x0041DEC0"
 symbol_base = "_network_winsock_release"
+rel32_targets = []
 
 [[units.cross-v106a-network-winsock-runtime.functions]]
 address = "0x0041DEF0"
@@ -19109,17 +19046,7 @@ rel32_targets = ["__security_check_cookie=0x00689D25"]
 [[units.cross-v106a-network-winsock-runtime.functions]]
 address = "0x00412E10"
 symbol_base = "?initialize@NetworkUdpInitializeView@th105@@QAE_NPBUNetworkInitializeKey16@2@H@Z"
-rel32_targets = [
-  "?_Assign_n@?$vector@UNetworkInitializePeer20@th105@@V?$allocator@UNetworkInitializePeer20@th105@@@std@@@std@@IAEXIABUNetworkInitializePeer20@th105@@@Z=0x004139D0",
-  "_network_winsock_acquire=0x0041DDC0",
-  "?show_winsock_error@th105@@YGXPBD@Z=0x0041DEF0",
-  "?bind_udp_socket@th105@@YG_NPAVNetworkUdpInitializeView@1@H@Z=0x00413080",
-  "_network_winsock_release=0x0041DEC0",
-  "_free=0x0068AA26",
-  "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
-  "?wait_for_exit@NetworkInitializeThread8@th105@@QAEXXZ=0x00414640",
-  "__security_check_cookie=0x00689D25",
-]
+rel32_targets = ["?_Assign_n@?$vector@UNetworkInitializePeer20@th105@@V?$allocator@UNetworkInitializePeer20@th105@@@std@@@std@@IAEXIABUNetworkInitializePeer20@th105@@@Z=0x004139D0", "_network_winsock_acquire=0x0041DDC0", "?show_winsock_error@th105@@YGXPBD@Z=0x0041DEF0", "?bind_udp_socket@th105@@YG_NPAVNetworkUdpInitializeView@1@H@Z=0x00413080", "_network_winsock_release=0x0041DEC0", "??_V@YAXPAX@Z=0x0068AA26", "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90", "?wait_for_exit@NetworkInitializeThread8@th105@@QAEXXZ=0x00414640", "__security_check_cookie=0x00689D25"]
 
 [[units.cross-v106a-network-winsock-runtime.functions]]
 address = "0x00413080"
@@ -27489,18 +27416,7 @@ link_data_targets = ["__imp__InitializeCriticalSection@4=__imp__InitializeCritic
 link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
 preserve_public_members = ["?wait_for_exit@NetworkThreadHandleCtorView@th105@@QAEXXZ"]
-
-[[units.exact-first-network-udp-lifetime.link_vtables]]
-symbol = "??_7NetworkUdpPacketHandleManager64@th105@@6B@"
-target = "??_7NetworkUdpPacketHandleManager64@th105@@6B@"
-entry = "??_GNetworkUdpPacketHandleManager64@th105@@UAEPAXI@Z=0x004138B0"
-target_type_name = ".?AV?$CHandleManager@UNET_PACKET_UDP_BUFFER@@@@"
-
-[[units.exact-first-network-udp-lifetime.link_vtables]]
-symbol = "??_7NetworkUdpPacketCriticalSectionView@th105@@6B@"
-target = "??_7CriticalSectionWrapper@th105@@6B@"
-entry = "??_GNetworkUdpPacketCriticalSectionView@th105@@UAEPAXI@Z=0x0040ABE0"
-target_type_name = ".?AVCCriticalSection@@"
+link_vtables = [{ symbol = "??_7NetworkUdpPacketHandleManager64@th105@@6B@", target = "??_7NetworkUdpPacketHandleManager64@th105@@6B@", entry = "??_GNetworkUdpPacketHandleManager64@th105@@UAEPAXI@Z=0x004138B0", target_type_name = ".?AV?$CHandleManager@UNET_PACKET_UDP_BUFFER@@@@" }, { symbol = "??_7NetworkUdpPacketCriticalSectionView@th105@@6B@", target = "??_7CriticalSectionWrapper@th105@@6B@", entry = "??_GNetworkUdpPacketCriticalSectionView@th105@@UAEPAXI@Z=0x0040ABE0", target_type_name = ".?AVCCriticalSection@@" }]
 
 [[units.exact-first-network-udp-lifetime.functions]]
 address = "0x00413820"
@@ -27521,6 +27437,7 @@ rel32_targets = ["??0NetworkUdpPacketHandleManager64@th105@@QAE@XZ=0x00413780"]
 [[units.exact-first-network-udp-lifetime.functions]]
 address = "0x00412CC0"
 symbol_base = "??1NetworkWinsockState314CtorView@th105@@UAE@XZ"
+rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26"]
 
 [[units.exact-first-network-udp-lifetime.functions]]
 address = "0x00413780"

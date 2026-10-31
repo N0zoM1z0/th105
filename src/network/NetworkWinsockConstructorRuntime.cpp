@@ -1,3 +1,4 @@
+#include <new>
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkUdpPacketPool.hpp"
 
@@ -60,7 +61,7 @@ public:
     NetworkThreadHandleCtorView worker_06c;
     unsigned char running_074;
     unsigned char reserved_075[3];
-    void *heap_buffer_078;
+    unsigned char *heap_buffer_078;
     unsigned short port_07c;
     unsigned char reserved_07e[2];
     void *callback_080;
@@ -92,7 +93,7 @@ NetworkWinsockState314CtorView::NetworkWinsockState314CtorView()
 NetworkWinsockState314CtorView::~NetworkWinsockState314CtorView()
 {
     if (heap_buffer_078 != 0) {
-        free(heap_buffer_078);
+        delete[] heap_buffer_078;
         heap_buffer_078 = 0;
     }
 }

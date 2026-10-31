@@ -125,7 +125,7 @@ public:
     unsigned char unreviewed_05c[0x18];
     unsigned char running_074;
     unsigned char unreviewed_075[3];
-    void *request_data_078;
+    unsigned char *request_data_078;
     unsigned short request_size_07c;
     unsigned char unreviewed_07e[2];
     NetworkReceiveCallbackView *callback_080;
@@ -198,7 +198,7 @@ char NetworkWinsockReceiveView::start_connection(const char *endpoint,
         return 0;
     if (size < 0xffff) {
         if (request_data_078)
-            free(request_data_078);
+            delete[] request_data_078;
         request_size_07c = size;
         if (size) {
             request_data_078 = new unsigned char[size];
