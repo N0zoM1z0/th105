@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Effect loader437EC0 is now fully canonical exact2528 via the existing ordinary
+read_file_buffer helper, shared in FileReaderOperations.hpp. All15 old accepted
+functions in the two other affected consumers freshly remain exact, including
+linked EH. Authored totals1556/444236; no helper credit. The private PAT control
+now has native3885 length but remains nonexact+866, not published or counted.
+See EFFECT_READER_FORWARDING_EXACT_2026_10_31.md.
+
 Original VC8 vector<FrameData> now proves13 unique library bodies/1315 bytes.
 Six complete copy/fill/destroy witnesses pass580 canonical bytes; all13 pass
 full-inventory/hash/coverage validation. Duplicate source instantiations count

@@ -1,3 +1,4 @@
+#include "assets/FileReaderOperations.hpp"
 #ifndef TH105_USE_SOURCE_PNG_LIBRARIES
 #include "library/ZlibCrcTable.cpp"
 #endif
@@ -23,12 +24,6 @@ public:
  bool load_text(const char *);
  bool load_csv(const char *);
 };
-// Capture the real destination/length arguments before virtual reader dispatch.
-// This ordinary forwarding helper is inlined naturally, without a forced ABI.
-inline bool read_file_buffer(CFileReader *file, void *destination, FileSize size)
-{
- return file->read(destination,size);
-}
 bool FileBufferContext::load_plain(const char *path)
 {
  FileReaderOwner file;

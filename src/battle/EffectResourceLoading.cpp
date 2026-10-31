@@ -1,6 +1,6 @@
 #include "battle/PatRecordLifetime.cpp"
 #include "battle/PatResourceContracts.hpp"
-#include "assets/FileReader.hpp"
+#include "assets/FileReaderOperations.hpp"
 #include "ui/Title.hpp"
 #include "platform/SystemUtilities.hpp"
 #include <deque>
@@ -43,13 +43,13 @@ void EffectResourceManagerView::load_effect_resource(const char *path)
     g_effect_path_service.split_path(const_cast<char *>(path), directory, 0);
     unsigned char version;
     short texture_count;
-    file.reader->read(&version, 1);
-    file.reader->read(&texture_count, 2);
+    read_file_buffer(file.reader, &version, 1);
+    read_file_buffer(file.reader, &texture_count, 2);
     effect_member<std::vector<unsigned> >(this, 0x64).assign(texture_count, 0u);
     for (int index = 0; index < texture_count; ++index) {
         char filename[128];
         char resource_path[260];
-        file.reader->read(filename, 128);
+        read_file_buffer(file.reader, filename, 128);
         wsprintfA(resource_path, "%s%s", directory, filename);
         unsigned handle;
         effect_member<std::vector<unsigned> >(this, 0x64).at(index) =
@@ -58,12 +58,12 @@ void EffectResourceManagerView::load_effect_resource(const char *path)
     std::list<int> alias_keys;
     std::list<int> alias_targets;
     int entry_count;
-    file.reader->read(&entry_count, 4);
+    read_file_buffer(file.reader, &entry_count, 4);
     EffectResourceGroup *chain_root;
     EffectResourceGroup *current;
     for (int entry = 0; entry < entry_count; ++entry) {
         int key;
-        file.reader->read(&key, 4);
+        read_file_buffer(file.reader, &key, 4);
         switch (key) {
         case -2: {
             EffectResourceGroup *previous = &effect_member<std::deque<EffectResourceGroup> >(this, 0x74).back();
@@ -77,8 +77,8 @@ void EffectResourceManagerView::load_effect_resource(const char *path)
         case -1: {
             int alias_key;
             int target_key;
-            file.reader->read(&alias_key, 4);
-            file.reader->read(&target_key, 4);
+            read_file_buffer(file.reader, &alias_key, 4);
+            read_file_buffer(file.reader, &target_key, 4);
             alias_keys.push_back(alias_key);
             alias_targets.push_back(target_key);
             continue;
@@ -96,47 +96,47 @@ void EffectResourceManagerView::load_effect_resource(const char *path)
             break;
         }
         }
-        file.reader->read(&current->flag_14, 1);
+        read_file_buffer(file.reader, &current->flag_14, 1);
         int frame_count;
-        file.reader->read(&frame_count, 4);
+        read_file_buffer(file.reader, &frame_count, 4);
         current->frames_04.assign(frame_count, FrameData());
         for (int frame_index = 0; frame_index < frame_count; ++frame_index) {
             FrameData &frame = current->frames_04[frame_index];
             int texture_index;
-            file.reader->read(&texture_index, 4);
+            read_file_buffer(file.reader, &texture_index, 4);
             frame.raw_0a = static_cast<short>(texture_index);
-            file.reader->read(&frame.raw_0c, 2);
-            file.reader->read(&frame.raw_0e, 2);
-            file.reader->read(&frame.raw_10, 2);
-            file.reader->read(&frame.raw_12, 2);
-            file.reader->read(&frame.raw_04, 2);
-            file.reader->read(&frame.raw_06, 2);
-            file.reader->read(&frame.raw_08, 2);
-            file.reader->read(&frame.tag_14, 1);
+            read_file_buffer(file.reader, &frame.raw_0c, 2);
+            read_file_buffer(file.reader, &frame.raw_0e, 2);
+            read_file_buffer(file.reader, &frame.raw_10, 2);
+            read_file_buffer(file.reader, &frame.raw_12, 2);
+            read_file_buffer(file.reader, &frame.raw_04, 2);
+            read_file_buffer(file.reader, &frame.raw_06, 2);
+            read_file_buffer(file.reader, &frame.raw_08, 2);
+            read_file_buffer(file.reader, &frame.tag_14, 1);
             if (frame.tag_14 == 2) {
                 frame.optional_mode_payload_18 = new PatOptionalModePayload20;
                 short mode;
-                file.reader->read(&mode, 2);
+                read_file_buffer(file.reader, &mode, 2);
                 switch (mode) {
                 case 0: frame.optional_mode_payload_18->mode_00 = 1; break;
                 case 1: frame.optional_mode_payload_18->mode_00 = 2; break;
                 case 2: frame.optional_mode_payload_18->mode_00 = 3; break;
                 }
-                file.reader->read(&frame.optional_mode_payload_18->bytes_04[3], 1);
-                file.reader->read(&frame.optional_mode_payload_18->bytes_04[2], 1);
-                file.reader->read(&frame.optional_mode_payload_18->bytes_04[1], 1);
-                file.reader->read(&frame.optional_mode_payload_18->bytes_04[0], 1);
+                read_file_buffer(file.reader, &frame.optional_mode_payload_18->bytes_04[3], 1);
+                read_file_buffer(file.reader, &frame.optional_mode_payload_18->bytes_04[2], 1);
+                read_file_buffer(file.reader, &frame.optional_mode_payload_18->bytes_04[1], 1);
+                read_file_buffer(file.reader, &frame.optional_mode_payload_18->bytes_04[0], 1);
                 short value;
-                file.reader->read(&value, 2);
+                read_file_buffer(file.reader, &value, 2);
                 const float shared_scale = static_cast<float>(static_cast<double>(value) / 100.0);
                 frame.optional_mode_payload_18->shared_scale_08 = shared_scale;
                 frame.optional_mode_payload_18->shared_scale_0c = frame.optional_mode_payload_18->shared_scale_08;
                 frame.optional_mode_payload_18->shared_scale_10 = frame.optional_mode_payload_18->shared_scale_0c;
-                file.reader->read(&value, 2);
+                read_file_buffer(file.reader, &value, 2);
                 frame.optional_mode_payload_18->scale_14 = static_cast<float>(value);
-                file.reader->read(&value, 2);
+                read_file_buffer(file.reader, &value, 2);
                 frame.optional_mode_payload_18->scale_18 = static_cast<float>(value);
-                file.reader->read(&value, 2);
+                read_file_buffer(file.reader, &value, 2);
                 frame.optional_mode_payload_18->scale_1c = static_cast<float>(value);
             }
         }

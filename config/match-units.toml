@@ -23200,7 +23200,7 @@ source = "src/battle/EffectResourceLoading.cpp"
 object = "build/match-units/ExactFirst_EffectResources.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete2528-byte effect resource437EC0. First complete2544 source immediately compared; native path receiver, actual eight-WORD frame and destructive28-byte default clear recover2528. Full canonical79 unequal positions; direct members and genuine group lifecycle visibility are whole-payload byte-neutral. Unselected/nonexact. docs/EFFECT_RESOURCE_LOADING_2026_10_26.md."
+notes = "Complete authored effect loader437EC0 canonical exact2528. Shared actual FrameData lifetime and ordinary existing read_file_buffer forwarding naturally match all bytes; no helper credit. docs/EFFECT_READER_FORWARDING_EXACT_2026_10_31.md."
 
 [[units.exact-first-effect-resources.functions]]
 address = "0x00437EC0"
