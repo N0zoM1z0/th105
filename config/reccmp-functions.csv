@@ -1772,3 +1772,5 @@ CMenuConnect_update_endpoint_clipboard,0x004424D0,function
 CMenuConnect_update_endpoint_history,0x004430D0,function
 CMenuConnect_update_endpoint_digits,0x00442CE0,function
 VC8_swprintf_counted_header,0x004418B0,function
+WeatherEffectObjectPool_acquire,0x00437520,function
+EffectObjectPool_acquire,0x004379D0,function

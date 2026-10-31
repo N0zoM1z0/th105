@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Weather/effect pool acquire437520/4379D0 are each463 canonical exact, adding926
+bytes. Actual handle value and sprite/scratch constructors resolve prior ordering
+without guessed throw() or inlining barriers. Shared cleanup35 and metadata44
+match; guard provider13 separately exact in real lock-visible context, not a
+claim that the root TU guard7 matches. Totals1552/440852, source1748, authored1768,
+excluded1421, review838. See WEATHER_EFFECT_POOL_ACQUIRE_2026_10_31.md.
+
 Connect endpoint actions4424D0/4430D0/442CE0 are canonical exact84/85/329,
 adding498 bytes. The genuine VC8 swprintf header naturally supplies the private
 EDX count and matches27 bytes, classified runtime/excluded rather than authored.

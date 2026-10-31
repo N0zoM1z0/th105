@@ -28049,3 +28049,21 @@ dir32_targets = ["??_C@_1BI@FCMLLAGN@?$AA?$CF?$AAd?$AA?4?$AA?$CF?$AAd?$AA?4?$AA?
 address = "0x004418B0"
 symbol_base = "_swprintf"
 rel32_targets = ["__vswprintf_c_l=0x0068B17E"]
+
+[units.exact-first-weather-effect-pool-acquire]
+kind = "probe"
+source = "src/battle/WeatherEffectPoolAcquire.cpp"
+object = "build/match-units/ExactFirst_WeatherEffectPoolAcquire.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Two complete463-byte weather/effect acquire roots. Actual ObjectHandleValue initialization and visible sprite/scratch bodies recover constructor sequencing without invented nothrow or optimizer barriers. Shared cleanup35 and metadata44 independently replayed; guard provider13 verified separately with actual critical-section definitions. docs/WEATHER_EFFECT_POOL_ACQUIRE_2026_10_31.md."
+
+[[units.exact-first-weather-effect-pool-acquire.functions]]
+address = "0x00437520"
+symbol_base = "?acquire@?$CHandleManagerEx@VWeatherEffectObject@@@@QAEPAVWeatherEffectObject@@PAI@Z"
+rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "??2@YAPAXI@Z=0x00689DCB", "?push_back@?$vector@PAVWeatherEffectObject@@V?$allocator@PAVWeatherEffectObject@@@std@@@std@@QAEXABQAVWeatherEffectObject@@@Z=0x0064AF70", "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0", "__invalid_parameter_noinfo=0x0068A143", "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0", "?at@?$vector@PAVWeatherEffectObject@@V?$allocator@PAVWeatherEffectObject@@@std@@@std@@QAEAAPAVWeatherEffectObject@@I@Z=0x0056D450", "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40", "??0AnimationObject@@QAE@XZ=0x00422040"]
+
+[[units.exact-first-weather-effect-pool-acquire.functions]]
+address = "0x004379D0"
+symbol_base = "?acquire@?$CHandleManagerEx@VEffectObject@@@@QAEPAVEffectObject@@PAI@Z"
+rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "??2@YAPAXI@Z=0x00689DCB", "?push_back@?$vector@PAVEffectObject@@V?$allocator@PAVEffectObject@@@std@@@std@@QAEXABQAVEffectObject@@@Z=0x0064AF70", "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0", "__invalid_parameter_noinfo=0x0068A143", "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0", "?at@?$vector@PAVEffectObject@@V?$allocator@PAVEffectObject@@@std@@@std@@QAEAAPAVEffectObject@@I@Z=0x0056D450", "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40", "??0AnimationObject@@QAE@XZ=0x00422040"]
