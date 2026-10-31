@@ -132,6 +132,11 @@ Metadata-only CI does not download or require this SDK. The headers keep their
 original Boost Software License 1.0. See
 [reference identity and comparison evidence](docs/BOOST_REGEX_REFERENCE_2026_10_31.md).
 
+The separate original narrow-instance library probe additionally requires
+`scripts/repo-python scripts/upstream_boost.py --fetch --instances`; use
+`--instances` without `--fetch` for offline verification. See
+[library origin evidence](docs/BOOST_REGEX_LIBRARY_ORIGINS_2026_10_31.md).
+
 ## License
 
 Repository-authored code and documentation are provided under the MIT License.

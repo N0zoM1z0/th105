@@ -37,6 +37,30 @@ class UpstreamBoostTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 boost.validate(unit)
 
+    def test_instance_source_requires_the_original_wrapper_and_headers(self):
+        unit = dict(kind='probe', boost_regex_headers=True, boost_regex_instances=True,
+                    source=boost.INSTANCE_PROBE, include_dirs=[boost.FOLDER])
+        boost.validate(unit)
+        for changes in [dict(boost_regex_headers=False), dict(source='arbitrary.cpp'),
+                        dict(boost_regex_instances='true')]:
+            with self.assertRaises(ValueError):
+                boost.validate(dict(unit, **changes))
+
+    def test_instance_bytes_are_checked_without_a_compiler(self):
+        raw = b'original source fixture\n'
+        entry = dict(path='instances.cpp', size=len(raw),
+                     git_blob_sha1=hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest(),
+                     sha256=hashlib.sha256(raw).hexdigest())
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(boost, 'INSTANCE', entry):
+            root = Path(tmp)
+            path = root / boost.INSTANCE_PATH
+            path.parent.mkdir(parents=True)
+            path.write_bytes(raw)
+            self.assertEqual(boost.verified_instance(root), path)
+            path.write_bytes(raw + b'changed')
+            with self.assertRaises(ValueError):
+                boost.verified_instance(root)
+
     def test_original_files_and_tamper_are_checked(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

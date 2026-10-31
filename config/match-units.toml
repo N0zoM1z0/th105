@@ -28161,3 +28161,27 @@ rel32_targets = ["?_Xlen@_String_base@std@@SAXXZ=0x00665AF4", "?_Copy@?$basic_st
 address = "0x00410270"
 symbol_base = "?_Chassign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IAEXIID@Z"
 rel32_targets = ["_memset=0x0068A440"]
+
+[units.boost-regex-narrow-library-origin]
+kind = "probe"
+source = "scripts/probes/BoostRegexInstancesOrigin.cpp"
+object = "build/match-units/BoostRegexInstancesOrigin.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_instances = true
+include_dirs = [".tools/upstream/boost-1.40.0-vc8"]
+notes = "Unmodified original Boost1.40 instances.cpp with its genuine narrow-instantiation macros. Origin proof only: full148-unique-body fingerprint census, no authored credit. The separately nonmatching do_assign466/native412 is not selected. docs/BOOST_REGEX_LIBRARY_ORIGINS_2026_10_31.md."
+
+[[units.boost-regex-narrow-library-origin.functions]]
+address = "0x006A0CC0"
+symbol_base = "?flags@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAEXI@Z"
+
+[[units.boost-regex-narrow-library-origin.functions]]
+address = "0x006A0D50"
+symbol_base = "?parse_all@?$basic_regex_parser@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE_NXZ"
+
+[[units.boost-regex-narrow-library-origin.functions]]
+address = "0x006A10F0"
+symbol_base = "?is_bad_repeat@?$basic_regex_creator@DU?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NPAUre_syntax_base@23@@Z"
+rel32_targets = ["__allshl=0x006B6D00"]

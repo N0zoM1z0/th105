@@ -901,7 +901,8 @@ def validate_vc8_generated_anchor_evidence(
         from upstream_boost import FOLDER, inputs as boost_header_inputs
         try:
             boost_header_inputs({"kind": "probe", "boost_regex_headers": True,
-                                 "include_dirs": [FOLDER]}, ROOT)
+                                 "boost_regex_instances": anchors_doc.get("boost_regex_instances", False),
+                                 "source": str(anchors_doc["source"]), "include_dirs": [FOLDER]}, ROOT)
         except (OSError, ValueError) as exc:
             return [f"{rule['id']}: original Boost header verification failed: {exc}"]
         env["TH105_EXTRA_INCLUDE_DIRS"] = str(ROOT / FOLDER)

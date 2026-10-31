@@ -1,0 +1,316 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "scripts/probes/BoostRegexInstancesOrigin.cpp"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_instances = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 1
+alignment_tail_hex = "cc"
+
+[[anchors]]
+address = "0x00410030"
+size = 253
+symbol = "?insert@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@IID@Z"
+
+[[anchors]]
+address = "0x00410360"
+size = 89
+symbol = "??Y?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@H@Z"
+
+[[anchors]]
+address = "0x00428F90"
+size = 935
+symbol = "?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@IIABV12@II@Z"
+
+[[anchors]]
+address = "0x004294A0"
+size = 486
+symbol = "?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@IIPBDI@Z"
+
+[[anchors]]
+address = "0x006A07D0"
+size = 162
+symbol = "?_Equal@std@@YA_NPBD00Urandom_access_iterator_tag@1@U_Range_checked_iterator_tag@1@@Z"
+
+[[anchors]]
+address = "0x006A0BC0"
+size = 53
+symbol = "??F?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@XZ"
+
+[[anchors]]
+address = "0x006A0D10"
+size = 57
+symbol = "??$_Copy_opt@PAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@Uforward_iterator_tag@std@@@std@@YAPAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x006A0D80"
+size = 58
+symbol = "??$_Copy_backward_opt@PAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@Uforward_iterator_tag@std@@@std@@YAPAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@00Uforward_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x006A12A0"
+size = 78
+symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x006A12F0"
+size = 28
+symbol = "?_Max@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@2@PAU342@@Z"
+
+[[anchors]]
+address = "0x006A1310"
+size = 27
+symbol = "?_Min@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@std@@KAPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@2@PAU342@@Z"
+
+[[anchors]]
+address = "0x006A1330"
+size = 82
+symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x006A1400"
+size = 99
+symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x006A14C0"
+size = 84
+symbol = "??$_Lexicographical_compare@PBDPBD@std@@YA_NPBD000@Z"
+
+[[anchors]]
+address = "0x006A29F0"
+size = 54
+symbol = "??$_Fill@PAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@U12@@std@@YAXPAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@0ABU12@@Z"
+
+[[anchors]]
+address = "0x006A2A70"
+size = 61
+symbol = "??$_Uninit_copy@PAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@std@@YAPAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@00AAV?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x006A2AB0"
+size = 93
+symbol = "??$_Copy_backward_opt@PAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@@std@@YAPAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x006A2DF0"
+size = 43
+symbol = "??$_Uninit_copy@PAU?$pair@II@std@@PAU12@V?$allocator@U?$pair@II@std@@@2@@std@@YAPAU?$pair@II@0@PAU10@00AAV?$allocator@U?$pair@II@std@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x006A2E20"
+size = 45
+symbol = "??$_Uninit_copy@PAU?$digraph@D@re_detail@boost@@PAU123@V?$allocator@U?$digraph@D@re_detail@boost@@@std@@@std@@YAPAU?$digraph@D@re_detail@boost@@PAU123@00AAV?$allocator@U?$digraph@D@re_detail@boost@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x006A3890"
+size = 86
+symbol = "??$unchecked_copy@PAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@@stdext@@YAPAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU12@00@Z"
+
+[[anchors]]
+address = "0x006A3930"
+size = 61
+symbol = "??$_Uninit_fill_n@PAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@IU12@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@std@@YAXPAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@IABU12@AAV?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x006A3C80"
+size = 55
+symbol = "?_Buynode@?$_Tree@V?$_Tmap_traits@KV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@U?$less@K@3@V?$allocator@U?$pair@$$CBKV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@@std@@@3@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@KV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@U?$less@K@3@V?$allocator@U?$pair@$$CBKV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@@std@@@3@$0A@@std@@@2@XZ"
+
+[[anchors]]
+address = "0x006A3D80"
+size = 55
+symbol = "?_Buynode@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@2@XZ"
+
+[[anchors]]
+address = "0x006A3E00"
+size = 43
+symbol = "??$_Uninit_fill_n@PAU?$pair@II@std@@IU12@V?$allocator@U?$pair@II@std@@@2@@std@@YAXPAU?$pair@II@0@IABU10@AAV?$allocator@U?$pair@II@std@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x006A3E30"
+size = 32
+symbol = "??$fill@PAU?$digraph@D@re_detail@boost@@U123@@std@@YAXPAU?$digraph@D@re_detail@boost@@0ABU123@@Z"
+
+[[anchors]]
+address = "0x006A3E50"
+size = 36
+symbol = "??$fill@PAU?$pair@II@std@@U12@@std@@YAXPAU?$pair@II@0@0ABU10@@Z"
+
+[[anchors]]
+address = "0x006A3E80"
+size = 45
+symbol = "??$_Uninit_fill_n@PAU?$digraph@D@re_detail@boost@@IU123@V?$allocator@U?$digraph@D@re_detail@boost@@@std@@@std@@YAXPAU?$digraph@D@re_detail@boost@@IABU123@AAV?$allocator@U?$digraph@D@re_detail@boost@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x006A4280"
+size = 143
+symbol = "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ID@Z"
+
+[[anchors]]
+address = "0x006A4440"
+size = 140
+symbol = "?_Lbound@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@KU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@K@std@@@2@$0A@@std@@@std@@IBEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@KU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@K@std@@@2@$0A@@std@@@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z"
+
+[[anchors]]
+address = "0x006A4940"
+size = 52
+symbol = "??$_Unchecked_move_backward@PAU?$digraph@D@re_detail@boost@@PAU123@@stdext@@YAPAU?$digraph@D@re_detail@boost@@PAU123@00@Z"
+
+[[anchors]]
+address = "0x006A4980"
+size = 62
+symbol = "??$_Unchecked_move_backward@PAU?$pair@II@std@@PAU12@@stdext@@YAPAU?$pair@II@std@@PAU12@00@Z"
+
+[[anchors]]
+address = "0x006A4A40"
+size = 140
+symbol = "?_Lbound@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@std@@IBEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@@2@$0A@@std@@@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z"
+
+[[anchors]]
+address = "0x006A4AD0"
+size = 96
+symbol = "??$_Lower_bound@PBU?$character_pointer_range@D@re_detail@boost@@U123@H@std@@YAPBU?$character_pointer_range@D@re_detail@boost@@PBU123@0ABU123@PAH@Z"
+
+[[anchors]]
+address = "0x006A4C30"
+size = 54
+symbol = "?_Ufill@?$vector@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@std@@IAEPAU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@PAU34@IABU34@@Z"
+
+[[anchors]]
+address = "0x006A4F90"
+size = 51
+symbol = "?_Ufill@?$vector@U?$pair@II@std@@V?$allocator@U?$pair@II@std@@@2@@std@@IAEPAU?$pair@II@2@PAU32@IABU32@@Z"
+
+[[anchors]]
+address = "0x006A4FD0"
+size = 104
+symbol = "?clear@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x006A5040"
+size = 83
+symbol = "?_Buynode@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@IAEPAU_Node@?$_List_nod@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@2@PAU342@0ABU?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@2@@Z"
+
+[[anchors]]
+address = "0x006A50A0"
+size = 51
+symbol = "?_Ufill@?$vector@U?$digraph@D@re_detail@boost@@V?$allocator@U?$digraph@D@re_detail@boost@@@std@@@std@@IAEPAU?$digraph@D@re_detail@boost@@PAU345@IABU345@@Z"
+
+[[anchors]]
+address = "0x006A5150"
+size = 338
+symbol = "??$_Construct@V?$_String_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEXV?$_String_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@1@0Uforward_iterator_tag@1@@Z"
+
+[[anchors]]
+address = "0x006A52B0"
+size = 56
+symbol = "?clear@?$vector@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@std@@QAEXXZ"
+
+[[anchors]]
+address = "0x006A5460"
+size = 364
+symbol = "?replace@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@V?$_String_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@2@0PBD1@Z"
+
+[[anchors]]
+address = "0x006A56B0"
+size = 151
+symbol = "?erase@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z"
+
+[[anchors]]
+address = "0x006A5C80"
+size = 152
+symbol = "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBD0@Z"
+
+[[anchors]]
+address = "0x006A5EE0"
+size = 90
+symbol = "?at@?$vector@U?$pair@II@std@@V?$allocator@U?$pair@II@std@@@2@@std@@QBEABU?$pair@II@2@I@Z"
+
+[[anchors]]
+address = "0x006A5F60"
+size = 509
+symbol = "?_Insert@?$_Tree@V?$_Tmap_traits@KV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@U?$less@K@3@V?$allocator@U?$pair@$$CBKV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@@std@@@3@$0A@@std@@@std@@IAE?AViterator@12@_NPAU_Node@?$_Tree_nod@V?$_Tmap_traits@KV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@U?$less@K@3@V?$allocator@U?$pair@$$CBKV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@@std@@@3@$0A@@std@@@2@ABU?$pair@$$CBKV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x006A6390"
+size = 160
+symbol = "?_Incsize@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@IAEXI@Z"
+
+[[anchors]]
+address = "0x006A6430"
+size = 695
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@KV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@U?$less@K@3@V?$allocator@U?$pair@$$CBKV?$_Iterator@$00@?$list@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@V?$allocator@U?$pair@V?$shared_ptr@$$CBV?$w32_regex_traits_implementation@D@re_detail@boost@@@boost@@PBK@std@@@2@@std@@@std@@@3@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z"
+
+[[anchors]]
+address = "0x006A67B0"
+size = 582
+symbol = "?_Insert_n@?$vector@U?$digraph@D@re_detail@boost@@V?$allocator@U?$digraph@D@re_detail@boost@@@std@@@std@@IAEXV?$_Vector_iterator@U?$digraph@D@re_detail@boost@@V?$allocator@U?$digraph@D@re_detail@boost@@@std@@@2@IABU?$digraph@D@re_detail@boost@@@Z"
+
+[[anchors]]
+address = "0x006A6A00"
+size = 598
+symbol = "?_Insert_n@?$vector@U?$pair@II@std@@V?$allocator@U?$pair@II@std@@@2@@std@@IAEXV?$_Vector_iterator@U?$pair@II@std@@V?$allocator@U?$pair@II@std@@@2@@2@IABU?$pair@II@2@@Z"
+
+[[anchors]]
+address = "0x006A6C60"
+size = 83
+symbol = "??0_Node@?$_Tree_nod@V?$_Tmap_traits@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$less@H@2@V?$allocator@U?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$0A@@std@@@std@@QAE@PAU012@00ABU?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@D@Z"
+
+[[anchors]]
+address = "0x006A7020"
+size = 703
+symbol = "?_Insert_n@?$vector@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@std@@IAEXV?$_Vector_iterator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@2@IABU?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@Z"
+
+[[anchors]]
+address = "0x006A87C0"
+size = 135
+symbol = "?insert@?$vector@U?$digraph@D@re_detail@boost@@V?$allocator@U?$digraph@D@re_detail@boost@@@std@@@std@@QAE?AV?$_Vector_iterator@U?$digraph@D@re_detail@boost@@V?$allocator@U?$digraph@D@re_detail@boost@@@std@@@2@V32@ABU?$digraph@D@re_detail@boost@@@Z"
+
+[[anchors]]
+address = "0x006A8850"
+size = 137
+symbol = "?insert@?$vector@U?$pair@II@std@@V?$allocator@U?$pair@II@std@@@2@@std@@QAE?AV?$_Vector_iterator@U?$pair@II@std@@V?$allocator@U?$pair@II@std@@@2@@2@V32@ABU?$pair@II@2@@Z"
+
+[[anchors]]
+address = "0x006A8C70"
+size = 740
+symbol = "?erase@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@KU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@K@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@@Z"
+
+[[anchors]]
+address = "0x006A9000"
+size = 86
+symbol = "?_Erase@?$_Tree@V?$_Tmap_traits@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$less@H@2@V?$allocator@U?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$less@H@2@V?$allocator@U?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$0A@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x006A91D0"
+size = 247
+symbol = "??0?$vector@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@std@@QAE@ABV01@@Z"
+
+[[anchors]]
+address = "0x006A92D0"
+size = 321
+symbol = "??4?$vector@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@std@@@std@@QAEAAV01@ABV01@@Z"
+
+[[anchors]]
+address = "0x006AA260"
+size = 130
+symbol = "?push_back@?$vector@U?$pair@II@std@@V?$allocator@U?$pair@II@std@@@2@@std@@QAEXABU?$pair@II@2@@Z"
+
+[[anchors]]
+address = "0x006ACAF0"
+size = 69
+symbol = "??$_Lower_bound@PBUname@?$named_subexpressions@D@re_detail@boost@@U1234@H@std@@YAPBUname@?$named_subexpressions@D@re_detail@boost@@PBU1234@0ABU1234@PAH@Z"
+
+[[anchors]]
+address = "0x006B1280"
+size = 444
+symbol = "?insert@?$_Tree@V?$_Tmap_traits@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@U?$less@H@2@V?$allocator@U?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@ABU?$pair@$$CBHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@Z"
+
+[[anchors]]
+address = "0x006B1440"
+size = 508
+symbol = "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@KU?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@K@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@K@2@@Z"

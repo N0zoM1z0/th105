@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original pinned Boost narrow instances now provide 148 unique full-body
+library-origin fingerprints (87 Boost / 12756 bytes; 61 VC8 std/stdext / 11474).
+Three canonical library witnesses pass 25/26/69 bytes; ambiguous shapes and
+nonexact do_assign466/412 remain unselected. The optional --instances bootstrap
+verifies the original697-byte CPP as well as headers. Incremental new-rule
+validation only; no all-unit or cold full-census replay. Authored1553/441679 and
+source1750/authored1770 unchanged; excluded1588/review669, units744.
+See BOOST_REGEX_LIBRARY_ORIGINS_2026_10_31.md.
+
 Connect main-state444830 now uses original pinned Boost1.40 regex/smatch/search
 headers rather than local ABI-only classes. Full827/856 and root EH215 remain
 exact; eight actual library helpers also match1116 complete bytes. A verified

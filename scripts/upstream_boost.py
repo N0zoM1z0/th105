@@ -18,10 +18,19 @@ FOLDER = '.tools/upstream/boost-1.40.0-vc8'
 LOCK = 'config/boost-regex-source-lock.json'
 LOCK_SHA256 = '847c4101e4d3e4b91a1130f2ffc8d49e1c904457bd5910e5045f05d4d29b881a'
 SUPERPROJECT = '644e2135159e0b3ca535aab1a67938c27caf6ec9'
+INSTANCE_PATH = '.tools/upstream/boost-regex-1.40.0-src/instances.cpp'
+INSTANCE_PROBE = 'scripts/probes/BoostRegexInstancesOrigin.cpp'
+INSTANCE = dict(path='instances.cpp', repository='https://github.com/boostorg/regex',
+                commit='fa1ef1dfd4136803625e49853289ade7c2ddff0a', source_path='src/instances.cpp',
+                git_blob_sha1='69d72ad6e15e823c1a6f1d434c69e8f437513f01', size=697,
+                sha256='44e69a60e7643db548f2c7c1fdae2807d2b8409f206cd1fe80620ae6b42d5371')
 
 
 def validate(unit: dict) -> None:
     flag = unit.get('boost_regex_headers', False)
+    instance = unit.get('boost_regex_instances', False)
+    if type(instance) is not bool or instance and (flag is not True or unit.get('source') != INSTANCE_PROBE):
+        raise ValueError('Boost instance source requires its verified header package and original-source probe')
     if type(flag) is not bool:
         raise ValueError('Boost header selection must be an explicit boolean')
     if flag and (unit.get('kind') != 'probe'
@@ -94,39 +103,62 @@ def verified_sources(root: Path, manifest: dict) -> list[Path]:
     return result
 
 
+def instance_path(root: Path) -> Path:
+    path = (root / INSTANCE_PATH).resolve()
+    path.relative_to(root.resolve())
+    return path
+
+
+def verified_instance(root: Path) -> Path:
+    path = instance_path(root)
+    verify_bytes(path.read_bytes(), INSTANCE)
+    return path
+
+
 def inputs(unit: dict, root: Path = ROOT) -> list[Path]:
     validate(unit)
     if not unit.get('boost_regex_headers'):
         return []
-    return [root / LOCK, root / 'scripts/upstream_boost.py',
-            *verified_sources(root, load_lock(root))]
+    result = [root / LOCK, root / 'scripts/upstream_boost.py',
+              *verified_sources(root, load_lock(root))]
+    if unit.get('boost_regex_instances'):
+        result.append(verified_instance(root))
+    return result
+
+
+def fetch_entry(path: Path, entry: dict) -> None:
+    if path.exists():
+        verify_bytes(path.read_bytes(), entry)
+        return
+    repository = entry['repository'].removeprefix('https://github.com/')
+    url = f"https://raw.githubusercontent.com/{repository}/{entry['commit']}/{entry['source_path']}"
+    with urllib.request.urlopen(url, timeout=60) as response:
+        data = response.read(entry['size'] + 1)
+    verify_bytes(data, entry)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_bytes(data)
 
 
 def fetch_missing(root: Path, manifest: dict) -> None:
     for entry in records(manifest):
-        path = source_path(root, entry['path'])
-        if path.exists():
-            verify_bytes(path.read_bytes(), entry)
-            continue
-        repository = entry['repository'].removeprefix('https://github.com/')
-        url = f"https://raw.githubusercontent.com/{repository}/{entry['commit']}/{entry['source_path']}"
-        with urllib.request.urlopen(url, timeout=60) as response:
-            data = response.read(entry['size'] + 1)
-        verify_bytes(data, entry)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(data)
+        fetch_entry(source_path(root, entry['path']), entry)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--fetch', action='store_true', help='fetch missing pinned official source files')
+    parser.add_argument('--instances', action='store_true', help='also verify/fetch the original narrow instance source')
     args = parser.parse_args()
     try:
         manifest = load_lock(ROOT)
         if args.fetch:
             fetch_missing(ROOT, manifest)
+            if args.instances:
+                fetch_entry(instance_path(ROOT), INSTANCE)
         sources = verified_sources(ROOT, manifest)
-        print(f'Original Boost 1.40 reference headers verified: {len(sources)} files')
+        if args.instances:
+            sources.append(verified_instance(ROOT))
+        print(f'Original Boost 1.40 reference package verified: {len(sources)} files')
         return 0
     except (OSError, ValueError) as exc:
         parser.exit(1, str(exc) + '\n')
