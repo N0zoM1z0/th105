@@ -1444,7 +1444,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00445F10,compiler_generated,input,exclude,observed,vc8-generated-direct-input-vectors-106a
 0x004460D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004460E0,compiler_generated,input,exclude,observed,vc8-generated-direct-input-vectors-106a
-0x00446170,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00446170,authored_game,ui,authored,observed,canonical-exact-authored
 0x004464B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00446570,authored_game,ui,authored,observed,canonical-exact-authored
 0x00446590,authored_game,ui,authored,observed,canonical-exact-authored

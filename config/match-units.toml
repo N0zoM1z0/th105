@@ -27975,3 +27975,17 @@ link_numeric_literals = [
 address = "0x004098E0"
 symbol_base = "?set_texture_options@CNumberTileA4@th105@@QAEXIHHHHHH@Z"
 rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60"]
+
+[units.exact-first-practice-menu-constructor]
+kind = "probe"
+source = "src/ui/MenuPracticeConstructor.cpp"
+object = "build/match-units/ExactFirst_PracticeMenuConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete826-byte CMenuPractice constructor with shared real cursor/lookup definitions, checked vector groups and natural texture-handle result temporary. Five unwind actions plus handler98 bytes and complete76-byte FuncInfo/table independently exact. docs/PRACTICE_MENU_CONSTRUCTOR_2026_10_31.md."
+
+[[units.exact-first-practice-menu-constructor.functions]]
+address = "0x00446170"
+symbol_base = "??0CMenuPractice@th105@@QAE@PAUPracticeOwnerView@1@@Z"
+dir32_targets = ["__ehhandler$??0CMenuPractice@th105@@QAE@PAUPracticeOwnerView@1@@Z=__ehhandler$??0CMenuPractice@th105@@QAE@PAUPracticeOwnerView@1@@Z", "___security_cookie=___security_cookie", "_g_scene_mode=_g_scene_mode", "??_7CMenuPractice@th105@@6B@=??_7CMenuPractice@th105@@6B@", "_select_tile_vtable_anchor=_select_tile_vtable_anchor", "??1?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ=??1?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ", "??0?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ=??0?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ", "?g_practice_settings@th105@@3PAUPracticeBattleSettingsView@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A", "_g_active_menu_input=_g_active_menu_input", "??_C@_0CA@GGKAPHAB@data?1menu?1practice?1practice?4dat?$AA@=??_C@_0CA@GGKAPHAB@data?1menu?1practice?1practice?4dat?$AA@", "??_C@_0CE@DEKBADMH@data?1menu?1practice?1Weather_list?4@=??_C@_0CE@DEKBADMH@data?1menu?1practice?1Weather_list?4@", "?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+rel32_targets = ["??0GuideOverlay@th105@@QAE@XZ=0x0043F540", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "__invalid_parameter_noinfo=0x0068A143", "?insert@?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@2@V32@ABQAUUiDesignObject@th105@@@Z=0x004460E0", "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90", "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?configure_subcursor@CMenuPractice@th105@@QAEXH@Z=0x00445C80"]

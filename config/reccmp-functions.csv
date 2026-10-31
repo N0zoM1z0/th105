@@ -1765,3 +1765,4 @@ InputStateTableStorage_update_input_state_table,0x0040A550,function
 initialize_mouse_device,0x0040D810,function
 ConnectDigitEditor_update_port,0x00441BD0,function
 ConnectDigitEditor_update_address_and_port,0x00441E10,function
+CMenuPractice_ctor,0x00446170,function

@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Practice menu constructor446170 is canonical exact826/826. Actual cursor and
+shared design lookup bodies plus the natural texture-handle return temporary
+recover the complete frame. All five cleanup actions/handler98 and FuncInfo76
+also match; seven affected design-render roots stay exact. Totals1547/439428,
+source1741, authored1761, review846. See PRACTICE_MENU_CONSTRUCTOR_2026_10_31.md.
+
 Floating number renderer415050 is now canonical exact 581/581 in real
 number/tile/angle/texture CIL with the pinned static CRT. Its 64-byte-aligned
 frame is compiler-generated, without forced alignment or extra storage.

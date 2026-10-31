@@ -1738,3 +1738,4 @@ InputStateTableStorage_update_input_state_table
 initialize_mouse_device
 ConnectDigitEditor_update_port
 ConnectDigitEditor_update_address_and_port
+CMenuPractice_ctor
