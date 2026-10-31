@@ -1372,8 +1372,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00441890,authored_game,ui,authored,observed,canonical-exact-authored
 0x004418B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004418D0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00441BD0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00441E10,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00441BD0,authored_game,ui,authored,observed,connect-endpoint-digit-editors-authored-106a
+0x00441E10,authored_game,ui,authored,observed,connect-endpoint-digit-editors-authored-106a
 0x00442190,authored_game,ui,authored,observed,canonical-exact-authored
 0x004421B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004421D0,unknown,,review,unknown,ida-1.06a-initial-inventory

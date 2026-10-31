@@ -5,7 +5,7 @@ namespace th105 {
 struct EndpointEditButtons { int horizontal, vertical, confirm, cancel; };
 extern "C" EndpointEditButtons *__cdecl endpoint_edit_buttons();
 extern "C" void __cdecl dispatch_indexed_event(unsigned);
-extern "C" bool __cdecl is_menu_initial_press(int,int,int,int);
+extern "C" bool __cdecl is_menu_initial_press(unsigned char,bool,bool,bool);
 extern UiDesignObject *g_profile_message_main;
 struct ConnectDigitEditorView {
     unsigned char prefix_000[0x3f8];

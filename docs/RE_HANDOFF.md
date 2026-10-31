@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Connect digit editors441BD0/441E10 are now complete source-present and
+caller-backed authored. Normal unsigned-char/bool key-test types are corrected.
+Ordinary and actual-provider CIL remain568/570 and888/891 nonexact. Source1740,
+review847; exact unchanged1545/438021. See CONNECT_DIGIT_EDITOR_2026_10_28.md.
+
 CTile texture options4098E0 is canonical exact266/266 in actual texture-size/lookup
 CIL with scoped FP-environment semantics. Four native unsigned denominator
 conversions remain independent. Affected CNumber render414F10 remains312 exact;

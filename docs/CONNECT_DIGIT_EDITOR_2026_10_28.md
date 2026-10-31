@@ -1,5 +1,38 @@
 # Connect endpoint digit editor441E10
 
+## 2026-10-31 source-selection checkpoint
+
+Both editors are now source-present and caller-backed authored functions,
+not exact matches. This supersedes the historical no-source-selection statement
+below. The native key-test signature is corrected to unsigned char plus three
+bools, matching its independently recovered facade/member contract. The four
+constant call arguments and generated comparison results remain unchanged.
+
+Fresh Factory IDA inventory/disassembly/decompilation/callers/callees and raw
+PE CFG audits confirm all570 bytes/187 reachable instructions for441BD0 and
+all891 bytes/299 instructions for441E10, with six and nine ordinary returns.
+Neither has EH, skipped bytes, indirect jumps or escaping direct edges.
+The same session's metadata/entry/five mapped samples are saved with the
+rectangle scope and were raw-PE checked. The exact state-one442790 calls the
+port editor at442899. The combined editor's wrapper442CE0 calls at442CFE;
+raw444490 dispatches that wrapper at4444BF. Authorship additionally follows
+the shared constructor-backed cursor/endpoint layout and game-specific UI
+confirmation/event behavior, not merely decompiler names.
+
+Real cursor CIL plus actual ordinary input predicate/getter and sound dispatch/
+handle-lookup providers yields the same888/891 and568/570 mismatches. The
+compiler still delays EDI restoration before unsigned digit division: first
++192 for combined and+106 for port-only. Do not reopen the old spelling controls
+or fabricate liveness. The private provider closure earns no helper credit.
+
+The reproducible public unit remains exact-first-connect-digit-editor.
+Source dependency traversal finds no accepted consumer of this source; existing
+caller receipts remain unchanged. Narrow origin-rule validation pins both
+complete hashes and incoming call sites. Fresh receipts are under
+build/frontier-connect-digit-cil-20261031/. Totals:1740 source-present,
+1766 mapped,1760 authored,847 review; exact remains1545 /438021 bytes.
+
+
 Complete candidate888/native891 remains nonexact, first difference+192 at a
 port-selection return's register restoration. No exact or source-selection credit.
 Receipt: build/frontier-441e10-20261028/cursor-pair.json.

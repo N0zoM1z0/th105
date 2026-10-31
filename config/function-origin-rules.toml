@@ -3992,3 +3992,23 @@ confidence = "observed"
 evidence = "Application startup407EAD and current raw COM/property/error flow establish authored mouse ownership, independently of pending compiler scheduling. docs/DIRECTINPUT_MOUSE_SOURCE_2026_10_30.md."
 required_body_hashes = [{ address = "0x0040D810", size = 282, sha256 = "0223e073478cfe69b4f29c92a1ad494fdb94912fba34442064cc79766fe7b1a5" }]
 required_direct_edges = [{ caller = "0x00407DA0", site = "0x00407EAD", target = "0x0040D810" }]
+
+[[rules]]
+id = "connect-endpoint-digit-editors-authored-106a"
+addresses = ["0x00441BD0", "0x00441E10"]
+expected_count = 2
+expected_bytes = 1461
+expected_names = ["sub_441BD0", "sub_441E10"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact CMenuConnect state-one442790 calls port editor at442899; combined endpoint wrapper442CE0 calls digit editor at442CFE. Both manipulate the same independently constructor-backed CMenuConnect cursors3F8/40C, address420 and port428 and game-specific confirmation UI/events. Complete current-target CFGs are pinned; no exact credit. docs/CONNECT_DIGIT_EDITOR_2026_10_28.md."
+required_body_hashes = [
+ {address="0x00441BD0",size=570,sha256="bd523913cd1a18914eff8689b69d92c41e626fc652546143b544fb94c8b7b819"},
+ {address="0x00441E10",size=891,sha256="f96c0b43c0c97fcb965a04a603505f71926c95456816cccd2ae2d7c07d5f32ee"},
+]
+required_direct_edges = [
+ {caller="0x00442790",site="0x00442899",target="0x00441BD0",caller_status="matching"},
+ {caller="0x00442CE0",site="0x00442CFE",target="0x00441E10"},
+]
