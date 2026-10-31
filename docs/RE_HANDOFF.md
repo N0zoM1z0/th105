@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Floating number renderer415050 is now canonical exact 581/581 in real
+number/tile/angle/texture CIL with the pinned static CRT. Its 64-byte-aligned
+frame is compiler-generated, without forced alignment or extra storage.
+Native quotient-before-count updates close both remaining loop schedules.
+The three affected accepted callers remain 55/63/95 exact.
+Incremental totals: 1546 functions /438602 bytes.
+See DESIGN_NUMBER_FLOAT_EXACT_2026_10_31.md.
+
 Removed two legacy noinline declarations from Collision.hpp and the
 declaration-only ShortDeque8::front_checked attribute from SpellData.hpp.
 All 452 accepted functions in 164 Collision consumers and all 103 accepted

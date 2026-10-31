@@ -492,7 +492,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00414E40,authored_game,ui,authored,observed,ui-source-present-exact-caller-helpers-authored-106a
 0x00414EB0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00414F10,authored_game,ui,authored,observed,canonical-exact-authored
-0x00415050,authored_game,ui,authored,observed,design-number-floating-render-authored-106a
+0x00415050,authored_game,ui,authored,observed,canonical-exact-authored
 0x004152A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00415340,authored_game,network,authored,observed,network-udp-connection-authored-106a
 0x00415560,authored_game,network,authored,observed,network-udp-request-authored-106a

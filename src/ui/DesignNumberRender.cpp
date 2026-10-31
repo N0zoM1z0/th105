@@ -1,7 +1,11 @@
+#include "engine/RenderModeManager.hpp"
+#include "ui/TextureHandleRuntime.cpp"
+#pragma float_control(precise, on)
+#pragma fenv_access(on)
 // JP1.06a CDesignNumber render callers and CNumber value dispatch.
 // Complete source visibility is needed for the private EAX/ESI entries.
-// Three complete exact bodies; floating renderer remains nonexact.
-// See docs/DESIGN_NUMBER_RENDER_2026_10_21.md.
+// Four complete exact bodies in the genuine linked provider context.
+// See docs/DESIGN_NUMBER_FLOAT_EXACT_2026_10_31.md.
 #include "CNumberRuntime.hpp"
 #include <math.h>
 #include <stddef.h>
@@ -46,10 +50,10 @@ public:
     NumberRenderView number_18;
 };
 
-// Ordinary file-local definitions let VC8 choose the private calling protocol.
-static void __stdcall render_floating(NumberRenderView *number, float value,
+// Ordinary unexported definitions let VC8 choose the private calling protocol.
+void __stdcall render_floating(NumberRenderView *number, float value,
     float x, float y, int integer_digits, int fractional_digits, char sign_mode);
-static void __stdcall render_bound(NumberRenderView *number, float x, float y);
+void __stdcall render_bound(NumberRenderView *number, float x, float y);
 
 void CDesignNumberRenderView::render()
 {
@@ -62,7 +66,7 @@ void CDesignNumberRenderView::render_offset(float x, float y)
         render_bound(&number_18, x_0c + base_x_04 + x, y_10 + base_y_08 + y);
 }
 
-static void __stdcall render_bound(NumberRenderView *number, float x, float y)
+void __stdcall render_bound(NumberRenderView *number, float x, float y)
 {
     if (number->fractional_digits_1c != 0)
         render_floating(number, number->number_value_24->get_floating(), x, y,
@@ -75,9 +79,9 @@ static void __stdcall render_bound(NumberRenderView *number, float x, float y)
 
 // The target retains EBP. Keeping a real frame here also keeps both digit
 // counts on the stack, matching the independently observed caller ABI.
-// This does not reproduce the target's unexplained 64-byte stack alignment.
+// The real linked provider/CRT context naturally supplies its 64-byte alignment.
 #pragma optimize("y", off)
-static void __stdcall render_floating(NumberRenderView *number, float value,
+void __stdcall render_floating(NumberRenderView *number, float value,
     float x, float y, int integer_digits, int fractional_digits, char sign_mode)
 {
     char suffix;
@@ -98,8 +102,8 @@ static void __stdcall render_floating(NumberRenderView *number, float value,
             int glyph = fraction % 10;
             number->tile_28.render(current_x, y,
                 glyph % number->columns_14, glyph / number->columns_14);
-            --fractional_digits;
             fraction /= 10;
+            --fractional_digits;
             current_x -= (number->glyph_width_04 + number->spacing_08) * number->scale_0c;
         } while (fractional_digits > 0);
         current_x += (1.0f - 0.33f) *
@@ -113,8 +117,8 @@ static void __stdcall render_floating(NumberRenderView *number, float value,
             int glyph = integer_part % 10;
             number->tile_28.render(current_x, y,
                 glyph % number->columns_14, glyph / number->columns_14);
-            --integer_digits;
             integer_part /= 10;
+            --integer_digits;
             current_x -= (number->glyph_width_04 + number->spacing_08) * number->scale_0c;
         } while (integer_digits > 0);
     } else {
@@ -147,3 +151,7 @@ typedef char NumberMemberOffset[offsetof(CDesignNumberRenderView, number_18) == 
 } // namespace th105
 
 #pragma float_control(pop)
+
+#include "DesignNumberRenderProviders.cpp"
+
+#include "engine/AngleLookup.cpp"

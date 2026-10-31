@@ -3029,32 +3029,6 @@ required_selected_body_calls = [
 ]
 
 [[rules]]
-id = "design-number-floating-render-authored-106a"
-addresses = ["0x00415050"]
-expected_count = 1
-expected_bytes = 581
-expected_names = ["sub_415050"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "RTTI-owned CDesignNumber renderers40AF80/40AFC0 call exact95-byte CNumber dispatch414EB0, whose414EE4 edge reaches this complete207-instruction/581-byte floating renderer. ESI receiver, six stack arguments, RET24, Number prefix fields, tile+28, decimal/sign glyph policy and five game tile4099F0 calls establish authored UI ownership. Full natural source547/581 remains nonexact at+3; target64-byte stack alignment remains unexplained. No library/exact credit from size resemblance. docs/DESIGN_NUMBER_RENDER_2026_10_21.md."
-required_body_hashes = [{ address = "0x00415050", size = 581, sha256 = "11ddf568e6f2fd9607a1f317b4d11db4f8ec16756e76b59f1cb540003221d40a" }]
-required_direct_edges = [{ caller = "0x00414EB0", site = "0x00414EE4", target = "0x00415050", caller_status = "matching" }]
-required_dword_values = [
-  { address = "0x006D6AD0", value = "0x0040AFC0" },
-  { address = "0x006D6AD4", value = "0x0040AF80" },
-  { address = "0x006D6EFC", value = "0x3EA8F5C3" },
-]
-required_selected_body_calls = [
-  { owner = "0x00415050", site = "0x00415118", target = "0x004099F0", target_status = "implemented" },
-  { owner = "0x00415050", site = "0x0041517B", target = "0x004099F0", target_status = "implemented" },
-  { owner = "0x00415050", site = "0x004151D3", target = "0x004099F0", target_status = "implemented" },
-  { owner = "0x00415050", site = "0x00415236", target = "0x004099F0", target_status = "implemented" },
-  { owner = "0x00415050", site = "0x00415288", target = "0x004099F0", target_status = "implemented" },
-]
-
-[[rules]]
 id = "design-base-binary-loader-authored-106a"
 addresses = ["0x0040B000"]
 expected_count = 1
