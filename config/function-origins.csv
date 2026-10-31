@@ -117,7 +117,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00405380,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004054E0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x00405560,compiler_generated,assets,exclude,observed,vc8-generated-string28-equals-std-comdats-106a
-0x004055F0,authored_game,assets,authored,observed,file-buffer-owner-dtor-authored-106a
+0x004055F0,authored_game,assets,authored,observed,canonical-exact-authored
 0x00405600,authored_game,battle,authored,observed,canonical-exact-authored
 0x00405650,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405660,authored_game,battle,authored,observed,canonical-exact-authored

@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+FileBuffer destructor4055F0 is canonical exact14/14, reached through the
+freshly exact CScript loader282 and its complete one-state cleanup EH.
+Genuine CIL supplies EAX naturally; a strict indexed cleanup-tail witness
+validates all source/native receiver bytes and both actual destinations before
+whole-child comparison. No cleanup-helper credit or private ABI declaration.
+All12 old unit functions and two Ogg/SFL nested private/EH roots freshly remain
+exact. Totals1554/441693; source1752/authored1772/excluded1640/review615,
+mapped1779/units745 unchanged. See FILE_BUFFER_DESTRUCTOR_EXACT_2026_10_31.md.
+
 SFL/BMP typed local arrays now use matching delete[]; type-erased primitive
 pixel storage uses the actual ::operator delete[] storage API, not an assumed
 char-array destructor. Native producers retain allocation bases and the scalar

@@ -48,6 +48,11 @@ source literal rather than splitting it into artificial globals.
 
 ## Omitted FileBuffer destructor
 
+Superseded on2026-10-31: the complete14-byte body is now canonical exact
+through the freshly exact caller cleanup path. See
+[FileBuffer destructor acceptance](FILE_BUFFER_DESTRUCTOR_EXACT_2026_10_31.md).
+The following paragraph records the earlier source-only checkpoint.
+
 The 14-byte function at 4055F0 ends at 4055FD, bounded by INT3 padding and
 without overlap with adjacent functions. Its data-pointer delete lifetime
 is called by the loader cleanup funclet at 6BDF73. Its full native hash is

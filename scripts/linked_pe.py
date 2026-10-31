@@ -191,7 +191,10 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             if "export_name" in function or not isinstance(witness, dict):
                 raise ValueError("private linked function needs only an explicit caller/site witness")
             if not path:
-                if "caller_eh" in witness:
+                if "cleanup" in witness:
+                    from linked_cleanup_caller import validate as validate_cleanup_caller
+                    validate_cleanup_caller(witness, function, unit)
+                elif "caller_eh" in witness:
                     from linked_caller_eh import validate as validate_caller_eh
                     validate_caller_eh(witness, unit)
                 else:
@@ -1023,6 +1026,10 @@ def private_direct_sites(contract: dict) -> list[str]:
     address = lambda value: isinstance(value, str) and re.fullmatch(r"0x[0-9A-Fa-f]{8}", value)
     if not isinstance(contract, dict) or not address(contract.get("caller")):
         raise ValueError("private caller address is malformed")
+    if (set(contract) == {"caller", "site", "cleanup", "through_exact_caller"}
+            and contract["through_exact_caller"] is True and address(contract["site"])
+            and type(contract["cleanup"]) is int and 0 <= contract["cleanup"] < 64):
+        return [contract["site"]]
     if (set(contract) == {"caller", "site", "through_exact_caller"}
             and contract["through_exact_caller"] is True and address(contract["site"])):
         return [contract["site"]]
@@ -1044,6 +1051,9 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
                            bindings: list[dict] = (), game_range: tuple[int, int] = (0, 0),
                            internal_refs: list[dict] = (), exact_caller_replay: dict | None = None) -> dict:
     contract = function["private_from"]
+    if "cleanup" in contract:
+        from linked_cleanup_caller import validate as validate_cleanup_caller
+        validate_cleanup_caller(contract, function, unit)
     if "via" in contract:
         return private_path_witness(function, unit, pe, functions, exports, cil_owner,
                                     ledger, read_target, map_text, bindings, game_range)
@@ -1087,6 +1097,15 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
                 or ("private_from" in caller and not report.get("private_caller_witness"))):
             raise ValueError("private child requires a fresh complete exact replay of its private caller")
         validate_body_relocations(pe, parent, len(source), report["validated_data_references"])
+    if "cleanup" in contract:
+        from linked_cleanup_caller import observe as observe_cleanup_caller
+        edge = observe_cleanup_caller(
+            sys.modules[__name__], function, caller, pe, functions, exports,
+            cil_owner, start, read_target, exact_caller_replay)
+        return {"caller": caller["address"], **edge,
+                "source_caller_symbol": caller["symbol_base"], "source_caller_va": f"0x{parent:08X}",
+                "source_caller_sha256": hashlib.sha256(source).hexdigest(),
+                "target_caller_sha256": hashlib.sha256(target).hexdigest()}
     target_calls = [i.address for i in decode_closed_body(target, target_parent)
                     if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == target_start]
     if len(source_calls) != len(sites) or target_calls != [int(site, 0) for site in sites]:

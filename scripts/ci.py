@@ -19,6 +19,7 @@ EXACT_TEST_MODULES = (
     "test_compare_unit_object",
     "test_owned_extent_comparison",
     "test_linked_pe",
+    "test_linked_cleanup_caller",
     "test_linked_png_sdk",
     "test_linked_lifecycle",
     "test_linked_noreturn",
