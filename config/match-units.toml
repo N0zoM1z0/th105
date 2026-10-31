@@ -23963,7 +23963,7 @@ source = "src/battle/FighterSequenceRotate.cpp"
 object = "build/match-units/ExactFirst_FighterSequenceRotate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete unselected265-byte45DDA0 rotate candidate with genuine VC8 deque/card temporary. Main remains12 byte differences. Generated destructor/EH code and metadata independently exact; no authored/exact credit. docs/FIGHTER_SEQUENCE_ROTATE_2026_10_28.md."
+notes = "Complete canonical-exact265-byte rotation with genuine VC8 deque/card lifetime and116-byte implicit sprite copy. All96 generated support bytes independently exact; copy remains an existing compiler exclusion. docs/FIGHTER_SEQUENCE_ROTATE_EXACT_2026_10_31.md."
 
 [[units.exact-first-fighter-sequence-rotate.functions]]
 address = "0x0045DDA0"
