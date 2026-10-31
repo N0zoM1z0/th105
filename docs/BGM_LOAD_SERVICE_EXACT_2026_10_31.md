@@ -87,3 +87,13 @@ forced alignment, synthetic helper or permissive alignment matching was added.
 Both accepted play/prepare roots still replayed exact in the private control.
 The experimental method is not selected and the accepted source was restored.
 Evidence: build/frontier-bgm-master-gain-20261031/. No new counts or credit.
+
+A separate wave per-handle gain401CE0/109 control reused the real gain and
+resource-handle lookup definitions, preserving their independently observed
+public entries. Its source body is101/native109 and lacks the aligned EBP
+frame; no native caller byte is waived. Real Xiph dependencies were linked
+rather than faking their providers. This unsuccessful private source is not
+selected. Evidence: build/frontier-wave-handle-gain-20261031/. The earlier
+float-overload/frame investigation in DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md
+already bounds that shared math-provider uncertainty; no overload/spill grid
+was repeated.

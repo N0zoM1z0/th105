@@ -71,3 +71,15 @@ Source functions increase to 1,751; authored ownership to 1,771; review becomes
 616, exclusions remain 1,640. Match units become 745. Exact authored remains
 1,553 functions / 441,679 bytes. No game/audio execution or global all-unit
 rebuild was performed.
+
+## Real token queue context follow-up
+
+After the service lifetime/load recovery, the same worker policy was tested
+with the actual BgmHandleResult queues and complete BgmStreamRuntime provider
+context. Its326-byte size still agrees, but the first mismatch remains at65:
+native retains the list owner in EBX and source selects EDI. Stream update is
+918/native943 and also unaccepted. Both accepted play351 and prepare159 roots
+remain exact in this private context. The token type alone therefore does not
+close the worker. No ABI or register declarations were added, and the control
+was restored out of selected source. Evidence:
+build/frontier-bgm-token-worker-20261031/.
