@@ -31,3 +31,19 @@ The full target CFG closes all decoded instructions and the final RET:
 build/frontier-455490-20261028/boundary.json. The added EH address witness
 6BA908 is read from the canonical prologue and mapped prefix; no generated
 cleanup exactness is claimed. Only this new unit was built.
+
+
+## Actual owner and registry control, 2026-10-31
+
+The current shared CScript now has the genuine pointer deque and checked
+iterator, superseding the historical opaque/element-type limitation above.
+A bounded control puts the same method on the actual complete CScenarioData
+layout and accesses CScript.pending_14/current_28 directly, with an ordinary
+next_command member declaration. It still emits275/native276, first+36.
+The canonical compared body hash is identical to a fresh restored baseline:
+3eea55109cff650d5f922a2d9fad6ebdd64592846bb7569b67f87bedd5b09790.
+
+Thus the recovered full owner/registry layout does not resolve the receiver
+lifetime residual. Both temporary nonvirtual declarations, source and manifest
+are fully restored. No source/ledger/exact increment or ABI forcing is retained.
+Receipts: build/frontier-scenario-label-owner-20261031/formal.json and restored.json.
