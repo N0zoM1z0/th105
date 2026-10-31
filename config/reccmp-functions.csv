@@ -1784,3 +1784,4 @@ EffectResourceGroup_dtor,0x00422660,function
 WaveBufferHandleManager_dtor,0x00401F10,function
 DirectSoundHandleManager_dtor,0x00402020,function
 TextureHandleManager_dtor,0x00404FD0,function
+BgmStreamHandleManager_dtor,0x00403F60,function

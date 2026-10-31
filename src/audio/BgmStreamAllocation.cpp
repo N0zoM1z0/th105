@@ -1,3 +1,4 @@
+#include "engine/CriticalSectionWrapper.cpp"
 #include "DirectSoundResourceLifetime.cpp"
 #include "audio/BgmHandleResult.hpp"
 #include "assets/ResourceHandleManager.hpp"
@@ -163,5 +164,13 @@ void BgmAllocationManager50::release(unsigned handle)
   free_24.push_back(slot);
  }
  LeaveCriticalSection(&lock_34.critical_section_04);
+}
+}
+
+namespace th105 {
+BgmAllocationManager50::~BgmAllocationManager50()
+{
+    for (unsigned index = 0; index < streams_04.size(); ++index)
+        delete streams_04[index];
 }
 }

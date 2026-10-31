@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Owning BGM manager403F60 is exact279 plus all139 bytes of four-state
+cleanup/EH. Actual RTTI is CHandleManagerEx<BgmBuffer>, distinct from the
+pointer-resource family. Ordinary delete loop and genuine unsigned-vector COFF
+recover ECX cleanup1 without waivers; old220/139/15+constructor89 remain exact.
+Scalar404090 stays excluded. Exact1562/445075, source1759/authored1779/mapped1786,
+excluded1658/review590/units752. See BGM_MANAGER_DESTRUCTOR_EXACT_2026_10_31.md.
+
 Three concrete pointer-resource manager destructors401F10/402020/404FD0
 are canonical exact98 each. Their three30-byte scalar wrappers also pass but
 remain excluded. Real CIL plus unchanged unsigned-list/vector COFF naturally
