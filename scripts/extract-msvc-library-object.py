@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extract one i386 COFF object from the pinned VC8 SP1 runtime libraries."""
+"""Extract one i386 COFF object from an explicitly selected pinned VC8 runtime set."""
 
 from __future__ import annotations
 
@@ -20,6 +20,15 @@ LIBRARIES = {
         "e1b17cb213bfcf77e3c0988f8cb33ec8be143872d1c52de62c5da07ea1eb8031",
     ),
 }
+
+
+def archive_configuration(archive_set: str = "vc8-sp1", root: Path = ROOT):
+    if archive_set == "vc8-sp1":
+        return root / ".tools/msvc80-sp1/lib", LIBRARIES
+    if archive_set == "vc8-kb971090":
+        from upstream_vc8_runtime import FOLDER, LIBRARIES as patched_libraries, within
+        return within(root, FOLDER), patched_libraries
+    raise ValueError(f"unknown pinned runtime archive set: {archive_set}")
 
 
 def sha256(data: bytes) -> str:
@@ -78,15 +87,16 @@ def main() -> int:
     )
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--toolchain-root", type=Path)
+    parser.add_argument("--archive-set", choices=("vc8-sp1", "vc8-kb971090"), default="vc8-sp1")
     args = parser.parse_args()
 
-    filename, expected_hash = LIBRARIES[args.library]
-    toolchain = (
-        args.toolchain_root.resolve()
-        if args.toolchain_root
-        else (ROOT / ".tools" / "msvc80-sp1").resolve()
-    )
-    archive_path = toolchain / "lib" / filename
+    archive_root, libraries = archive_configuration(args.archive_set)
+    if args.toolchain_root:
+        if args.archive_set != "vc8-sp1":
+            raise ValueError("a toolchain-root override cannot replace the isolated pinned runtime set")
+        archive_root = args.toolchain_root.resolve() / "lib"
+    filename, expected_hash = libraries[args.library]
+    archive_path = archive_root / filename
     library = archive_path.read_bytes()
     actual_hash = sha256(library)
     if actual_hash != expected_hash:
@@ -116,7 +126,7 @@ def main() -> int:
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_bytes(obj)
     print(
-        f"VC8 SP1 {args.library}/{member_name}: {len(obj)} bytes, "
+        f"{args.archive_set} {args.library}/{member_name}: {len(obj)} bytes, "
         f"sha256={sha256(obj)}"
     )
     return 0

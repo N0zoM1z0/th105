@@ -727,8 +727,12 @@ def validate_msvc_runtime_anchor_evidence(
 
     module = load_msvc_archive_module()
     members: dict[str, dict[str, bytes]] = {}
-    for library, (filename, expected_hash) in module.LIBRARIES.items():
-        archive_path = ROOT / ".tools/msvc80-sp1/lib" / filename
+    try:
+        archive_root, libraries = module.archive_configuration(str(anchors_doc.get("archive_set", "vc8-sp1")), ROOT)
+    except ValueError as exc:
+        return [f"{rule['id']}: {exc}"]
+    for library, (filename, expected_hash) in libraries.items():
+        archive_path = archive_root / filename
         if not archive_path.is_file():
             return [f"{rule['id']}: pinned VC8 archive is missing: {archive_path}"]
         archive = archive_path.read_bytes()

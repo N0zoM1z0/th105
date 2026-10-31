@@ -1,0 +1,354 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+archive_set = "vc8-kb971090"
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 31
+
+[[anchors]]
+address = "0x0068CF0A"
+size = 335
+library = "libcmt"
+object = "build/intel/mt_obj/fprintf.obj"
+symbol = "_fprintf"
+inventory_hits = ["0x0068CF0A"]
+relocation_targets = [
+ { offset = 3, type = 6, symbol = "__sehtable$_fprintf", target = "0x006E21F0" },
+ { offset = 8, type = 20, symbol = "__SEH_prolog4", target = "0x006909A4" },
+ { offset = 32, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 48, type = 20, symbol = "__invalid_parameter", target = "0x0068A11F" },
+ { offset = 80, type = 20, symbol = "__lock_file", target = "0x0068D130" },
+ { offset = 100, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 112, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 124, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 134, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 140, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 157, type = 6, symbol = "___badioinfo", target = "0x006F8818" },
+ { offset = 169, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 181, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 193, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 203, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 209, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 226, type = 6, symbol = "___badioinfo", target = "0x006F8818" },
+ { offset = 237, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 253, type = 20, symbol = "__invalid_parameter", target = "0x0068A11F" },
+ { offset = 271, type = 20, symbol = "__stbuf", target = "0x00696D8D" },
+ { offset = 287, type = 20, symbol = "__output_l", target = "0x00693793" },
+ { offset = 297, type = 20, symbol = "__ftbuf", target = "0x00696E23" },
+ { offset = 320, type = 20, symbol = "__SEH_epilog4", target = "0x006909E9" },
+ { offset = 329, type = 20, symbol = "__unlock_file", target = "0x0068D19A" },
+]
+
+[[anchors]]
+address = "0x0068D05F"
+size = 177
+library = "libcmt"
+object = "build/intel/mt_obj/_file.obj"
+symbol = "___initstdio"
+inventory_hits = ["0x0068D05F"]
+relocation_targets = [
+ { offset = 1, type = 6, symbol = "__nstream", target = "0x00704A00" },
+ { offset = 27, type = 6, symbol = "__nstream", target = "0x00704A00" },
+ { offset = 35, type = 20, symbol = "__calloc_crt", target = "0x00692772" },
+ { offset = 44, type = 6, symbol = "___piob", target = "0x007039E4" },
+ { offset = 55, type = 6, symbol = "__nstream", target = "0x00704A00" },
+ { offset = 60, type = 20, symbol = "__calloc_crt", target = "0x00692772" },
+ { offset = 69, type = 6, symbol = "___piob", target = "0x007039E4" },
+ { offset = 83, type = 6, symbol = "__iob", target = "0x006F7B50" },
+ { offset = 90, type = 6, symbol = "___piob", target = "0x007039E4" },
+ { offset = 105, type = 6, symbol = "__iob", target = "0x006F7DD0" },
+ { offset = 117, type = 6, symbol = "__iob", target = "0x006F7B60" },
+ { offset = 130, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 166, type = 6, symbol = "__iob", target = "0x006F7BC0" },
+]
+
+[[anchors]]
+address = "0x00691F43"
+size = 470
+library = "libcmt"
+object = "build/intel/mt_obj/tzset.obj"
+symbol = "__isindst_nolock"
+inventory_hits = ["0x00691F43"]
+relocation_targets = [
+ { offset = 17, type = 20, symbol = "__get_daylight", target = "0x006923E5" },
+ { offset = 32, type = 20, symbol = "__invoke_watson", target = "0x0068A023" },
+ { offset = 60, type = 6, symbol = "_dststart", target = "0x006F86C8" },
+ { offset = 68, type = 6, symbol = "_dstend", target = "0x006F86D4" },
+ { offset = 80, type = 6, symbol = "_tzapiused", target = "0x006FDB74" },
+ { offset = 93, type = 6, symbol = "_tzinfo", target = "0x006FDB60" },
+ { offset = 100, type = 6, symbol = "_tzinfo", target = "0x006FDB6E" },
+ { offset = 107, type = 6, symbol = "_tzinfo", target = "0x006FDB68" },
+ { offset = 115, type = 6, symbol = "_tzinfo", target = "0x006FDB6C" },
+ { offset = 123, type = 6, symbol = "_tzinfo", target = "0x006FDB6A" },
+ { offset = 133, type = 6, symbol = "_tzinfo", target = "0x006FDB64" },
+ { offset = 142, type = 6, symbol = "_tzinfo", target = "0x006FDB66" },
+ { offset = 154, type = 6, symbol = "_tzinfo", target = "0x006FDB66" },
+ { offset = 166, type = 6, symbol = "_tzinfo", target = "0x006FDB62" },
+ { offset = 172, type = 20, symbol = "_cvtdate", target = "0x00691D4E" },
+ { offset = 179, type = 6, symbol = "_tzinfo", target = "0x006FDB1A" },
+ { offset = 186, type = 6, symbol = "_tzinfo", target = "0x006FDB14" },
+ { offset = 196, type = 6, symbol = "_tzinfo", target = "0x006FDB0C" },
+ { offset = 204, type = 6, symbol = "_tzinfo", target = "0x006FDB18" },
+ { offset = 212, type = 6, symbol = "_tzinfo", target = "0x006FDB16" },
+ { offset = 222, type = 6, symbol = "_tzinfo", target = "0x006FDB10" },
+ { offset = 231, type = 6, symbol = "_tzinfo", target = "0x006FDB12" },
+ { offset = 245, type = 6, symbol = "_tzinfo", target = "0x006FDB12" },
+ { offset = 259, type = 6, symbol = "_tzinfo", target = "0x006FDB0E" },
+ { offset = 265, type = 20, symbol = "_cvtdate", target = "0x00691D4E" },
+ { offset = 327, type = 20, symbol = "_cvtdate", target = "0x00691D4E" },
+ { offset = 351, type = 20, symbol = "_cvtdate", target = "0x00691D4E" },
+ { offset = 360, type = 6, symbol = "_dststart", target = "0x006F86CC" },
+ { offset = 365, type = 6, symbol = "_dstend", target = "0x006F86D8" },
+ { offset = 446, type = 6, symbol = "_dststart", target = "0x006F86D0" },
+ { offset = 459, type = 6, symbol = "_dstend", target = "0x006F86DC" },
+]
+
+[[anchors]]
+address = "0x00692A36"
+size = 352
+library = "libcmt"
+object = "build/intel/mt_obj/_flsbuf.obj"
+symbol = "__flsbuf"
+inventory_hits = ["0x00692A36"]
+relocation_targets = [
+ { offset = 10, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 26, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 53, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 119, type = 20, symbol = "___iob_func", target = "0x0068D059" },
+ { offset = 131, type = 20, symbol = "___iob_func", target = "0x0068D059" },
+ { offset = 146, type = 20, symbol = "__isatty", target = "0x0069D251" },
+ { offset = 157, type = 20, symbol = "__getbuf", target = "0x0069D20D" },
+ { offset = 204, type = 20, symbol = "__write", target = "0x0069B5D1" },
+ { offset = 256, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 263, type = 6, symbol = "___badioinfo", target = "0x006F8818" },
+ { offset = 279, type = 20, symbol = "__lseeki64", target = "0x0069D0F4" },
+ { offset = 315, type = 20, symbol = "__write", target = "0x0069B5D1" },
+]
+
+[[anchors]]
+address = "0x00699DF6"
+size = 288
+library = "libcmt"
+object = "build/intel/mt_obj/_filbuf.obj"
+symbol = "__filbuf"
+inventory_hits = ["0x00699DF6"]
+relocation_targets = [
+ { offset = 13, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 29, type = 20, symbol = "__invalid_parameter", target = "0x0068A11F" },
+ { offset = 89, type = 20, symbol = "__getbuf", target = "0x0069D20D" },
+ { offset = 109, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 116, type = 20, symbol = "__read", target = "0x0069A4D7" },
+ { offset = 147, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 159, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 171, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 182, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 187, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 204, type = 6, symbol = "___badioinfo", target = "0x006F8818" },
+]
+
+[[anchors]]
+address = "0x0069A827"
+size = 151
+library = "libcmt"
+object = "build/intel/mt_obj/close.obj"
+symbol = "__close_nolock"
+inventory_hits = ["0x0069A827"]
+relocation_targets = [
+ { offset = 8, type = 20, symbol = "__get_osfhandle", target = "0x0069AE7C" },
+ { offset = 22, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 51, type = 20, symbol = "__get_osfhandle", target = "0x0069AE7C" },
+ { offset = 60, type = 20, symbol = "__get_osfhandle", target = "0x0069AE7C" },
+ { offset = 72, type = 20, symbol = "__get_osfhandle", target = "0x0069AE7C" },
+ { offset = 80, type = 6, symbol = "__imp__CloseHandle@4", target = "0x006C00A0" },
+ { offset = 90, type = 6, symbol = "__imp__GetLastError@0", target = "0x006C0034" },
+ { offset = 102, type = 20, symbol = "__free_osfhnd", target = "0x0069ADFB" },
+ { offset = 114, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 136, type = 20, symbol = "__dosmaperr", target = "0x0068D3B8" },
+]
+
+[[anchors]]
+address = "0x0069ADFB"
+size = 129
+library = "libcmt"
+object = "build/intel/mt_obj/osfinfo.obj"
+symbol = "__free_osfhnd"
+inventory_hits = ["0x0069ADFB"]
+relocation_targets = [
+ { offset = 15, type = 6, symbol = "__nhandle", target = "0x007038BC" },
+ { offset = 31, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 58, type = 6, symbol = "___app_type", target = "0x006F7AC0" },
+ { offset = 90, type = 6, symbol = "__imp__SetStdHandle@8", target = "0x006C00C8" },
+ { offset = 105, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 116, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+]
+
+[[anchors]]
+address = "0x0069AE7C"
+size = 113
+library = "libcmt"
+object = "build/intel/mt_obj/osfinfo.obj"
+symbol = "__get_osfhandle"
+inventory_hits = ["0x0069AE7C"]
+relocation_targets = [
+ { offset = 10, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+ { offset = 18, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 41, type = 6, symbol = "__nhandle", target = "0x007038BC" },
+ { offset = 58, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 74, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+ { offset = 81, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 97, type = 20, symbol = "__invalid_parameter", target = "0x0068A11F" },
+]
+
+[[anchors]]
+address = "0x0069AFAF"
+size = 1570
+library = "libcmt"
+object = "build/intel/mt_obj/write.obj"
+symbol = "__write_nolock"
+inventory_hits = ["0x0069AFAF"]
+relocation_targets = [
+ { offset = 15, type = 6, symbol = "___security_cookie", target = "0x006F7A88" },
+ { offset = 65, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+ { offset = 72, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 88, type = 20, symbol = "__invalid_parameter", target = "0x0068A11F" },
+ { offset = 119, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 170, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+ { offset = 179, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 195, type = 20, symbol = "__invalid_parameter", target = "0x0068A11F" },
+ { offset = 226, type = 20, symbol = "__lseeki64_nolock", target = "0x0069D071" },
+ { offset = 240, type = 20, symbol = "__isatty", target = "0x0069D251" },
+ { offset = 267, type = 20, symbol = "__getptd", target = "0x0068ECC1" },
+ { offset = 296, type = 6, symbol = "__imp__GetConsoleMode@8", target = "0x006C00C0" },
+ { offset = 325, type = 6, symbol = "__imp__GetConsoleCP@0", target = "0x006C00C4" },
+ { offset = 427, type = 20, symbol = "_isleadbyte", target = "0x0069ADED" },
+ { offset = 466, type = 20, symbol = "_mbtowc", target = "0x0069D5A0" },
+ { offset = 496, type = 20, symbol = "_mbtowc", target = "0x0069D5A0" },
+ { offset = 541, type = 6, symbol = "__imp__WideCharToMultiByte@32", target = "0x006C01B8" },
+ { offset = 579, type = 6, symbol = "__imp__WriteFile@20", target = "0x006C006C" },
+ { offset = 653, type = 6, symbol = "__imp__WriteFile@20", target = "0x006C006C" },
+ { offset = 727, type = 20, symbol = "__putwch_nolock", target = "0x0069F18C" },
+ { offset = 759, type = 20, symbol = "__putwch_nolock", target = "0x0069F18C" },
+ { offset = 957, type = 6, symbol = "__imp__WriteFile@20", target = "0x006C006C" },
+ { offset = 1128, type = 6, symbol = "__imp__WriteFile@20", target = "0x006C006C" },
+ { offset = 1301, type = 6, symbol = "__imp__WideCharToMultiByte@32", target = "0x006C01B8" },
+ { offset = 1340, type = 6, symbol = "__imp__WriteFile@20", target = "0x006C006C" },
+ { offset = 1359, type = 6, symbol = "__imp__GetLastError@0", target = "0x006C0034" },
+ { offset = 1412, type = 6, symbol = "__imp__WriteFile@20", target = "0x006C006C" },
+ { offset = 1434, type = 6, symbol = "__imp__GetLastError@0", target = "0x006C0034" },
+ { offset = 1462, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 1473, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+ { offset = 1485, type = 20, symbol = "__dosmaperr", target = "0x0068D3B8" },
+ { offset = 1517, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 1528, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+ { offset = 1558, type = 20, symbol = "@__security_check_cookie@4", target = "0x00689D25" },
+]
+
+[[anchors]]
+address = "0x0069B5D1"
+size = 220
+library = "libcmt"
+object = "build/intel/mt_obj/write.obj"
+symbol = "__write"
+inventory_hits = ["0x0069B5D1"]
+relocation_targets = [
+ { offset = 3, type = 6, symbol = "__sehtable$__write", target = "0x006E2680" },
+ { offset = 8, type = 20, symbol = "__SEH_prolog4", target = "0x006909A4" },
+ { offset = 21, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+ { offset = 29, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 55, type = 6, symbol = "__nhandle", target = "0x007038BC" },
+ { offset = 62, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+ { offset = 69, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 85, type = 20, symbol = "__invalid_parameter", target = "0x0068A11F" },
+ { offset = 102, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 128, type = 20, symbol = "___lock_fhandle", target = "0x0069AEED" },
+ { offset = 155, type = 20, symbol = "__write_nolock", target = "0x0069AFAF" },
+ { offset = 168, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 179, type = 20, symbol = "___doserrno", target = "0x0068D3A5" },
+ { offset = 205, type = 20, symbol = "__SEH_epilog4", target = "0x006909E9" },
+ { offset = 214, type = 20, symbol = "__unlock_fhandle", target = "0x0069AF8D" },
+]
+
+[[anchors]]
+address = "0x0069D071"
+size = 131
+library = "libcmt"
+object = "build/intel/mt_obj/lseeki64.obj"
+symbol = "__lseeki64_nolock"
+inventory_hits = ["0x0069D071"]
+relocation_targets = [
+ { offset = 24, type = 20, symbol = "__get_osfhandle", target = "0x0069AE7C" },
+ { offset = 37, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 66, type = 6, symbol = "__imp__SetFilePointer@16", target = "0x006C0090" },
+ { offset = 79, type = 6, symbol = "__imp__GetLastError@0", target = "0x006C0034" },
+ { offset = 89, type = 20, symbol = "__dosmaperr", target = "0x0068D3B8" },
+ { offset = 104, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+]
+
+[[anchors]]
+address = "0x0069D251"
+size = 94
+library = "libcmt"
+object = "build/intel/mt_obj/isatty.obj"
+symbol = "__isatty"
+inventory_hits = ["0x0069D251"]
+relocation_targets = [
+ { offset = 10, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 32, type = 6, symbol = "__nhandle", target = "0x007038BC" },
+ { offset = 39, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 55, type = 20, symbol = "__invalid_parameter", target = "0x0068A11F" },
+ { offset = 77, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+]
+
+[[anchors]]
+address = "0x0069D2AF"
+size = 478
+library = "libcmt"
+object = "build/intel/mt_obj/fputwc.obj"
+symbol = "__fputwc_nolock"
+inventory_hits = ["0x0069D2AF"]
+relocation_targets = [
+ { offset = 7, type = 6, symbol = "___security_cookie", target = "0x006F7A88" },
+ { offset = 34, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 43, type = 6, symbol = "___badioinfo", target = "0x006F8818" },
+ { offset = 51, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 63, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 74, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 79, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 112, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 124, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 136, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 147, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 152, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 207, type = 20, symbol = "__flsbuf", target = "0x00692A36" },
+ { offset = 252, type = 20, symbol = "__flsbuf", target = "0x00692A36" },
+ { offset = 273, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 285, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 297, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 308, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 313, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 351, type = 20, symbol = "_wctomb_s", target = "0x0069E205" },
+ { offset = 404, type = 20, symbol = "__flsbuf", target = "0x00692A36" },
+ { offset = 457, type = 20, symbol = "__flswbuf", target = "0x0069FD9C" },
+ { offset = 472, type = 20, symbol = "@__security_check_cookie@4", target = "0x00689D25" },
+]
+
+[[anchors]]
+address = "0x0069FD9C"
+size = 368
+library = "libcmt"
+object = "build/intel/mt_obj/_flswbuf.obj"
+symbol = "__flswbuf"
+inventory_hits = ["0x0069FD9C"]
+relocation_targets = [
+ { offset = 10, type = 20, symbol = "__fileno", target = "0x0069A5D4" },
+ { offset = 26, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 55, type = 20, symbol = "__errno", target = "0x0068D392" },
+ { offset = 124, type = 20, symbol = "___iob_func", target = "0x0068D059" },
+ { offset = 136, type = 20, symbol = "___iob_func", target = "0x0068D059" },
+ { offset = 151, type = 20, symbol = "__isatty", target = "0x0069D251" },
+ { offset = 162, type = 20, symbol = "__getbuf", target = "0x0069D20D" },
+ { offset = 210, type = 20, symbol = "__write", target = "0x0069B5D1" },
+ { offset = 262, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 269, type = 6, symbol = "___badioinfo", target = "0x006F8818" },
+ { offset = 286, type = 20, symbol = "__lseeki64", target = "0x0069D0F4" },
+ { offset = 330, type = 20, symbol = "__write", target = "0x0069B5D1" },
+]

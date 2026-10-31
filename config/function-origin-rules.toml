@@ -4350,3 +4350,32 @@ required_body_hashes = [
  { address = "0x006B52E0", size = 96, sha256 = "f72e7416933505bc575cd6fba40a6cc1c40a7da3ea49b6baa7e8114e34cab64f" },
  { address = "0x006B5440", size = 31, sha256 = "14aa96206031cd4bb5da36166f7025ce57a2a83895ec093fa9371464237d9968" },
 ]
+
+[[rules]]
+id = "vc8-kb971090-runtime-106a"
+addresses = ["0x0068CF0A", "0x0068D05F", "0x00691F43", "0x00692A36", "0x00699DF6", "0x0069A827", "0x0069ADFB", "0x0069AE7C", "0x0069AFAF", "0x0069B5D1", "0x0069D071", "0x0069D251", "0x0069D2AF", "0x0069FD9C"]
+expected_count = 14
+expected_bytes = 4876
+expected_names = ["sub_68CF0A", "sub_68D05F", "sub_691F43", "sub_692A36", "sub_699DF6", "sub_69A827", "sub_69ADFB", "sub_69AE7C", "sub_69AFAF", "sub_69B5D1", "sub_69D071", "sub_69D251", "sub_69D2AF", "sub_69FD9C"]
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original official Microsoft KB971090 package yields SHA-pinned isolated VC8 runtime archives. Full original function extents, complete inventory fingerprints and every relocation operand target are verified. The220-byte write wrapper is disambiguated by its call to the independently matching1570-byte write_nolock; similar locking/lseek shapes do not establish their identities. No game authored credit and no active compiler/library replacement. docs/VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md."
+msvc_runtime_anchor_file = "config/vc8-kb971090-runtime-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x0068CF0A", size = 335, sha256 = "7fa8c3686243b8473aeefb47fdf726fd242a4547ca7c312210c1277e9ffb374c" },
+ { address = "0x0068D05F", size = 177, sha256 = "58a76cf30e0004f42d292975fc45154ae64ffdc196018cceb50dcd9234cf4c16" },
+ { address = "0x00691F43", size = 470, sha256 = "d85cfa7cb7415e9f5e004cd4cb58bae6e32c2b5001d4bd3228a47e528ca7d7dd" },
+ { address = "0x00692A36", size = 352, sha256 = "0879f1bd74921066e78058c50f4e282e2e72f9581fb356b2fc9bbc77a50c400e" },
+ { address = "0x00699DF6", size = 288, sha256 = "06a32f12481e83368b1e82823f14b196317a418918b184450f2741644a7a6661" },
+ { address = "0x0069A827", size = 151, sha256 = "8ce5134d3721e46b7132b41961b720f804c178adfc2a221e34393c2f1e80e83f" },
+ { address = "0x0069ADFB", size = 129, sha256 = "37ae8211ea9b4c73cd5e60e903625c427ce43a0d27fb4acd5cc17771ac2fa4ec" },
+ { address = "0x0069AE7C", size = 113, sha256 = "5d2cab3d5f90da740f23d85adef93d5597a3a72be2c74b18a8344c8cc125acde" },
+ { address = "0x0069AFAF", size = 1570, sha256 = "ebf16398b7759b92f870a1e0e4f9afc094a761b19346c65e5ff3be7b034e8dbd" },
+ { address = "0x0069B5D1", size = 220, sha256 = "be30a445412ccacc7f58d8140a12bc11ef5f43c1578236c837f8e6f5bad54496" },
+ { address = "0x0069D071", size = 131, sha256 = "4c1a168d6aa6077ff207b219e268ff87876e00005f7ebef928e3c8201f2c6885" },
+ { address = "0x0069D251", size = 94, sha256 = "fdd76dead11fc5f8a42774fd9459966e5f4d3e1d40eb46e053b9136df806421a" },
+ { address = "0x0069D2AF", size = 478, sha256 = "4cc77c8f369eb324881f23664727b274ea028d62cdb2a10529fbf0b65bc4870d" },
+ { address = "0x0069FD9C", size = 368, sha256 = "95d9b6a0fcf21154dd33d9f3e9bb82bc1365c42ea4770d7e9cb54f181b6b0434" },
+]

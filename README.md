@@ -137,6 +137,15 @@ The separate original narrow-instance library probe additionally requires
 `--instances` without `--fetch` for offline verification. See
 [library origin evidence](docs/BOOST_REGEX_LIBRARY_ORIGINS_2026_10_31.md).
 
+## Isolated patched VC8 runtime reference
+
+Some original-runtime provenance probes explicitly select Microsoft's KB971090
+archive set. This never changes the active compiler or default link libraries.
+Use `scripts/repo-python scripts/upstream_vc8_runtime.py` to verify it;
+`--fetch` explicitly downloads/extracts the official package without running
+the installer. Optional extraction dependencies and pinned source hashes are
+documented in [runtime provenance](docs/VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md).
+
 ## License
 
 Repository-authored code and documentation are provided under the MIT License.

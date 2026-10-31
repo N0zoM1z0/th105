@@ -26,6 +26,7 @@ EXACT_TEST_MODULES = (
     "test_select_constructor_audit",
     "test_repo_python",
     "test_upstream_boost",
+    "test_upstream_vc8_runtime",
     "test_progress_svg",
 )
 

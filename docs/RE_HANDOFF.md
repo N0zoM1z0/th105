@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original official KB971090 runtime archives resolve14 reviewed complete bodies/
+4876 bytes, including write_nolock1570 and the220-byte write wrapper's true
+64-byte ioinfo stride (old SP1 uses56). Every native hash/relocation operand and
+full-inventory fingerprint is checked. The isolated archive selector defaults
+to unchanged SP1; no compiler/profile replacement or installer execution.
+Exact1553/441679, source1750/authored1770/units744 unchanged; excluded1628/
+review629. Public missing-only bootstrap independently replayed original hashes.
+See VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md.
+
 Original Boost instance ambiguity is now resolved at library-family scope
 through nine complete full-inventory equivalence groups, not guessed unique
 addresses: 26 bodies/4047 bytes, std7/2216 and Boost19/1831. Existing group,
