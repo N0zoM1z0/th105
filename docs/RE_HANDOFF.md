@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Game TNumberValue<float*> getters46A640/10 and46A650/6 are canonical exact
+from unchanged existing source and actual story binding. Raw RTTI/vtable6C35C8
+plus INumberValue hierarchy prove authored identity, not tiny-pattern guessing.
+All existing gauge roots20/27/648/351 freshly pass. Exact1580/448995, source1778/
+authored1798/mapped1805, excluded1783/review446/units762. See
+NUMBER_FLOAT_VALUE_ADAPTERS_2026_10_31.md.
+
 Original VC8 basic_string<char> explicit instantiation fully matches
 rfind4395F0/165 with both canonical calls and full-inventory unique provenance.
 Compiler exclusion only; no game-source or tool changes. Excluded1783/review448,

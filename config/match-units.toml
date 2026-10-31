@@ -28498,3 +28498,12 @@ notes = "Unmodified original VC8 std::basic_string explicit instantiation; compl
 address = "0x004395F0"
 symbol_base = "?rfind@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIPBDII@Z"
 rel32_targets = ["?compare@?$char_traits@D@std@@SAHPBD0I@Z=0x00405560", "?_Myptr@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IBEPBDXZ=0x00401E30"]
+
+[[units.gpt-web-battle-info-gauge-runtime.functions]]
+address = "0x0046A640"
+symbol_base = "?get_integer@?$TNumberValue@PAM@th105@@UAEHXZ"
+rel32_targets = ["__ftol2_sse=0x0068A1A0"]
+
+[[units.gpt-web-battle-info-gauge-runtime.functions]]
+address = "0x0046A650"
+symbol_base = "?get_floating@?$TNumberValue@PAM@th105@@UAEMXZ"

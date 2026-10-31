@@ -1774,3 +1774,5 @@ DirectInputBackend_shutdown
 Fighter_rotate_front_spell_sequence_entry_to_back
 WaveService_load_wave
 SpellDataOwner_dtor
+TNumberValue_floatptr_get_integer
+TNumberValue_floatptr_get_floating
