@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Wave member constructors401E40/193 and401F80/145 are now independently exact,
+each with all120 cleanup/EH bytes. Actual single calls4018A9/4018BB require the
+fresh exact143-byte global parent, full130 parent EH and same current startup/
+storage witness. No source ABI forcing or weakened comparisons. Old BGM220/15
+and UDP145/98/30 paths freshly pass. Exact1569/447032; source1765/authored1785/
+mapped1792, excluded1658/review584/units754.
+See WAVE_MANAGER_CONSTRUCTORS_EXACT_2026_10_31.md.
+
 Global wave-service constructor401880/143 and destructor401910/128 are
 fully exact, including130 cleanup/EH bytes each and real17-byte initializer/
 CRT slot/5-byte exit tail for458-byte storage702288. Four prior buffer callbacks

@@ -1761,3 +1761,5 @@ CMenuConnect_dtor
 CSelect_dtor
 WaveService_ctor
 WaveService_dtor
+WaveBufferHandleManager_ctor
+DirectSoundHandleManager_ctor

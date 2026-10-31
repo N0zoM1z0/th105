@@ -70,8 +70,9 @@ constructor/destructor pair. Eight new tests exercise negative and positive
 contract boundaries. No existing byte or relocation comparison is relaxed.
 
 The four callback functions were already accepted and earn no new credit.
-The two member constructors emitted193/145-byte bodies, but remain unselected;
-length alone is not acceptance.
+The initial checkpoint left the193/145-byte member constructors unselected.
+They are now independently accepted with complete exact-global-parent proofs;
+see WAVE_MANAGER_CONSTRUCTORS_EXACT_2026_10_31.md. Length alone was not acceptance.
 
 ## Focused verification and accounting
 

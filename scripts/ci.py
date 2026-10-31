@@ -22,6 +22,7 @@ EXACT_TEST_MODULES = (
     "test_linked_cleanup_caller",
     "test_linked_png_sdk",
     "test_linked_wave_callbacks",
+    "test_linked_global_caller",
     "test_linked_lifecycle",
     "test_linked_noreturn",
     "test_linked_switch_replay",

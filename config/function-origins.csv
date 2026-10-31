@@ -34,9 +34,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00401DC0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00401E00,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00401E30,compiler_generated,runtime,exclude,observed,std-string-c-str-generated-106a
-0x00401E40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00401E40,authored_game,audio,authored,observed,canonical-exact-authored
 0x00401F10,authored_game,audio,authored,observed,canonical-exact-authored
-0x00401F80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00401F80,authored_game,audio,authored,observed,canonical-exact-authored
 0x00402020,authored_game,audio,authored,observed,canonical-exact-authored
 0x00402090,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
 0x004020B0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a

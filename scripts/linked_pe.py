@@ -219,9 +219,13 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                     private_direct_sites(witness)
             callers = [f for f in functions if f.get("address") == witness["caller"]]
             through_exact = witness.get("through_exact_caller") is True
+            if len(callers) == 1 and "private_global" in callers[0]:
+                from linked_global_caller import validate as validate_global_caller
+                validate_global_caller(function, callers[0], unit)
             if (len(callers) != 1 or callers[0] is function
                     or ("private_from" in callers[0] and not through_exact)
-                    or "private_global" in callers[0] or "vtable_entry" in callers[0]):
+                    or ("private_global" in callers[0] and not through_exact)
+                    or "vtable_entry" in callers[0]):
                 raise ValueError("private linked function needs a distinct configured exported caller")
             if witness.get("source_only_caller") is True:
                 normal_ctor = re.fullmatch(r"\?\?0[A-Za-z_]\w*(?:@[A-Za-z_]\w*)*@@QAE@XZ", symbol)
@@ -1071,7 +1075,8 @@ def private_direct_sites(contract: dict) -> list[str]:
 def private_caller_witness(function: dict, unit: dict, pe, functions: dict, exports: dict,
                            cil_owner: str, ledger: dict, read_target, *, map_text: str = "",
                            bindings: list[dict] = (), game_range: tuple[int, int] = (0, 0),
-                           internal_refs: list[dict] = (), exact_caller_replay: dict | None = None) -> dict:
+                           internal_refs: list[dict] = (), exact_caller_replay: dict | None = None,
+                           global_lifecycle_witnesses: dict | None = None) -> dict:
     contract = function["private_from"]
     if "cleanup" in contract:
         from linked_cleanup_caller import validate as validate_cleanup_caller
@@ -1084,6 +1089,10 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
     if len(callers) != 1 or ("private_from" in callers[0] and not through_exact):
         raise ValueError("private linked witness has no configured exported caller")
     caller = callers[0]
+    global_parent = "private_global" in caller
+    if global_parent:
+        from linked_global_caller import validate as validate_global_caller
+        validate_global_caller(function, caller, unit)
     caller_row = ledger[contract["caller"]]
     caller_in_source = caller_row["source_file"] == unit["source"]
     if not caller_in_source and contract.get("source_only_caller") is True:
@@ -1108,6 +1117,7 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
                     if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == start]
     target_parent, target_start = int(caller["address"], 0), int(function["address"], 0)
     target = read_target(target_parent, int(caller_row["size"], 0))
+    global_evidence = None
     if through_exact:
         report = exact_caller_replay or {}
         if (caller_row["status"] != "matching"
@@ -1119,6 +1129,10 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
                 or ("private_from" in caller and not report.get("private_caller_witness"))):
             raise ValueError("private child requires a fresh complete exact replay of its private caller")
         validate_body_relocations(pe, parent, len(source), report["validated_data_references"])
+        if global_parent:
+            from linked_global_caller import observe as observe_global_caller
+            global_evidence = observe_global_caller(
+                function, caller, unit, report, global_lifecycle_witnesses)
     if "cleanup" in contract:
         from linked_cleanup_caller import observe as observe_cleanup_caller
         edge = observe_cleanup_caller(
@@ -1146,6 +1160,8 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
         edge["exact_caller"] = {key: exact_caller_replay[key] for key in
             ("address", "source_body_sha256", "object_compared_sha256", "target_sha256",
              "validated_data_references", "private_caller_witness")}
+        if global_evidence is not None:
+            edge["exact_caller"].update(global_evidence)
     if eh_caller:
         from linked_caller_eh import observe as observe_caller_eh
         edge.update(observe_caller_eh(contract, unit, caller, pe, functions, exports,
@@ -1276,7 +1292,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         witness = (private_caller_witness(function, unit, pe, functions, exports,
                                         cil_owner, ledger, c.target_bytes, map_text=map_text,
                                         bindings=bindings, game_range=game_range, internal_refs=internal_refs,
-                                        exact_caller_replay=exact_parent)
+                                        exact_caller_replay=exact_parent,
+                                        global_lifecycle_witnesses=globals_witnesses)
                    if "private_from" in function else None)
         if function.get("private_static_leaf") is True:
             if not witness or not witness.get("static_leaf"):
