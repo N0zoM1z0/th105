@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+The isolated original runtime follow-up adds11 complete short/data-heavy
+bodies/655 bytes with all relocation operands pinned. Actual exception RTTI/
+fallback text and MessageBoxA API strings disambiguate nominal ownership;
+four x87 helpers have full byte equality with no relocations. Generic destructor/
+copy shapes remain unselected. Excluded1639/review618; authored1553/441679,
+source1750/ownership1770/units744 unchanged. See the follow-up section in
+VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md.
+
 Original official KB971090 runtime archives resolve14 reviewed complete bodies/
 4876 bytes, including write_nolock1570 and the220-byte write wrapper's true
 64-byte ioinfo stride (old SP1 uses56). Every native hash/relocation operand and

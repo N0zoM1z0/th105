@@ -4379,3 +4379,77 @@ required_body_hashes = [
  { address = "0x0069D2AF", size = 478, sha256 = "4cc77c8f369eb324881f23664727b274ea028d62cdb2a10529fbf0b65bc4870d" },
  { address = "0x0069FD9C", size = 368, sha256 = "95d9b6a0fcf21154dd33d9f3e9bb82bc1365c42ea4770d7e9cb54f181b6b0434" },
 ]
+
+[[rules]]
+id = "vc8-kb971090-short-and-data-runtime-106a"
+addresses = ["0x00689919", "0x00689F0B", "0x00689FDA", "0x00689FF0", "0x0068E3F5", "0x00697476", "0x00697489", "0x0069769C", "0x006976B1", "0x0069AF8D", "0x0069C244"]
+expected_count = 11
+expected_bytes = 655
+expected_names = ["unknown_libname_4", "sub_689F0B", "sub_689FDA", "?what@exception@@UBEPBDXZ", "_exit_1", "unknown_libname_7", "unknown_libname_8", "unknown_libname_17", "unknown_libname_18", "sub_69AF8D", "sub_69C244"]
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Separate original-library short/data-heavy evidence: complete function extents and full-inventory uniqueness, every relocation operand pinned, exception RTTI and destination string bytes checked by DWORD readback. Four x87 runtime bodies have no relocations and match all bytes. No generic deleting-constructor shape promotion, no authored credit. docs/VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md."
+msvc_runtime_anchor_file = "config/vc8-kb971090-runtime-short-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00689919", size = 27, sha256 = "9804080454b6838334ac916dc2d81d05a18283aee0a869d25950e563bf040314" },
+ { address = "0x00689F0B", size = 17, sha256 = "bc236142c8681477afeeb62886b07f6d877c22c3b76959e99183158841d3e753" },
+ { address = "0x00689FDA", size = 22, sha256 = "8491bb5e0b5a8ee6c03e4de5acdaab046d9333c67504e30e7fa52f472a6ecf97" },
+ { address = "0x00689FF0", size = 13, sha256 = "84046205b7893101e979b0a28ee7077fa3ab84fbd817f19d0ac10ece73e40468" },
+ { address = "0x0068E3F5", size = 17, sha256 = "49ebfbe77de3ae9e338ad638d6198c8df5c649b344c0b9d8ab4abad653f567ae" },
+ { address = "0x00697476", size = 19, sha256 = "4d7b6db9e1753f93166703fd9e44b5a232a5c63ffaacf49e509c38fa1e2e58af" },
+ { address = "0x00697489", size = 19, sha256 = "3df0f6d0712ccdbe6a0cf87326cdc643a5d39ae50f0a367c09a900104f621358" },
+ { address = "0x0069769C", size = 21, sha256 = "45f779a594c2eedb14c937d7ece2fa9b980bbced7ce6fa5d7d94bdfdbed21cdd" },
+ { address = "0x006976B1", size = 21, sha256 = "acb142e9d122adef4a48fdcaa0ca8e61bf19ad44ad57bd83ea5ae4ff21d0df9f" },
+ { address = "0x0069AF8D", size = 34, sha256 = "c96e151edbe2e2a41888c5292d444295d40afc55dbd5242330d3210eda8a8f30" },
+ { address = "0x0069C244", size = 445, sha256 = "52306c1db33481bd41a056d1492f2df2da10ecc441e69f679de2ca7cc4fabaf7" },
+]
+required_dword_values = [
+ { address = "0x006CD248", value = "0x006DBE88" },
+ { address = "0x006CD24C", value = "0x00689FFD" },
+ { address = "0x006CD250", value = "0x00689FF0" },
+ { address = "0x006CD254", value = "0x6E6B6E55" },
+ { address = "0x006CD258", value = "0x206E776F" },
+ { address = "0x006CD25C", value = "0x65637865" },
+ { address = "0x006CD260", value = "0x6F697470" },
+ { address = "0x006CD264", value = "0x0000006E" },
+ { address = "0x006D53A0", value = "0x50746547" },
+ { address = "0x006D53A4", value = "0x65636F72" },
+ { address = "0x006D53A8", value = "0x69577373" },
+ { address = "0x006D53AC", value = "0x776F646E" },
+ { address = "0x006D53B0", value = "0x74617453" },
+ { address = "0x006D53B4", value = "0x006E6F69" },
+ { address = "0x006D53B8", value = "0x55746547" },
+ { address = "0x006D53BC", value = "0x4F726573" },
+ { address = "0x006D53C0", value = "0x63656A62" },
+ { address = "0x006D53C4", value = "0x666E4974" },
+ { address = "0x006D53C8", value = "0x616D726F" },
+ { address = "0x006D53CC", value = "0x6E6F6974" },
+ { address = "0x006D53D0", value = "0x00000041" },
+ { address = "0x006D53D4", value = "0x4C746547" },
+ { address = "0x006D53D8", value = "0x41747361" },
+ { address = "0x006D53DC", value = "0x76697463" },
+ { address = "0x006D53E0", value = "0x706F5065" },
+ { address = "0x006D53E4", value = "0x00007075" },
+ { address = "0x006D53E8", value = "0x41746547" },
+ { address = "0x006D53EC", value = "0x76697463" },
+ { address = "0x006D53F0", value = "0x6E695765" },
+ { address = "0x006D53F4", value = "0x00776F64" },
+ { address = "0x006D53F8", value = "0x7373654D" },
+ { address = "0x006D53FC", value = "0x42656761" },
+ { address = "0x006D5400", value = "0x0041786F" },
+ { address = "0x006D5404", value = "0x52455355" },
+ { address = "0x006D5408", value = "0x442E3233" },
+ { address = "0x006D540C", value = "0x00004C4C" },
+ { address = "0x006DBE88", value = "0x00000000" },
+ { address = "0x006DBE8C", value = "0x00000000" },
+ { address = "0x006DBE90", value = "0x00000000" },
+ { address = "0x006DBE94", value = "0x006FA30C" },
+ { address = "0x006DBE98", value = "0x006DC914" },
+ { address = "0x006FA314", value = "0x56413F2E" },
+ { address = "0x006FA318", value = "0x65637865" },
+ { address = "0x006FA31C", value = "0x6F697470" },
+ { address = "0x006FA320", value = "0x7473406E" },
+ { address = "0x006FA324", value = "0x00404064" },
+]

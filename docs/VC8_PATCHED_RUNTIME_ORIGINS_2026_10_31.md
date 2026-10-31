@@ -106,3 +106,36 @@ Default target-independent CI passes 171 tests. New regression cases cover the
 unchanged default and explicit selection, source bytes before publication,
 same-length hash tampering, incomplete/excess downloads, and escaped paths.
 Generated progress and git diff --check pass.
+
+## Follow-up: relocation-resolved short and data-heavy bodies
+
+A separate scope classifies 11 further complete library bodies / 655 bytes:
+
+- type_info equality 689919 / 27, calling the existing strcmp at 68E650.
+- std::exception constructor 689F0B / 17, destructor 689FDA / 22,
+  and what 689FF0 / 13. The actual vtable 6CD24C, locator 6DBE88,
+  its type descriptor and .?AVexception@std@@ name are pinned by DWORD readback.
+  The fallback string at 6CD254 is verified as Unknown exception plus NUL;
+  the destructor calls the existing free at 68C686.
+- exit 68E3F5 / 17, with its doexit destination 68E313 pinned.
+- fdivp_sti_st 697476 / 19, fdivrp_sti_st 697489 / 19,
+  safe_fdiv 69769C / 21 and safe_fdivr 6976B1 / 21. These original complete
+  archive functions have no relocations: every body byte is identical.
+- unlock_fhandle 69AF8D / 34. Its pioinfo base 7038C0 agrees with the independently
+  matched write paths; its LeaveCriticalSection IAT cell is 6C0104.
+- crtMessageBoxA 69C244 / 445. Full original shape has 305 invariant bytes;
+  every relocation is pinned, and destination contents include USER32.DLL,
+  MessageBoxA and GetUserObjectInformationA, plus the three other named APIs.
+  Thus the byte-similar W implementation is not selected by an arbitrary name.
+
+The separate manifest uses coverage 0.60 / minimum 9 invariant bytes, with all
+relocation operands and the additional actual RTTI/string contents above fixed.
+This is the established short-runtime evidence mechanism (the existing security
+cookie rule uses 0.45 / 7), not a relaxation of the 14-body 0.70 / 31 rule.
+Each selected fingerprint remains unique across the complete inventory.
+The broad diagnostic also found generic deleting destructors, copy constructors
+and other ambiguous shapes; those are deliberately not selected.
+
+The new rule passed the existing native validator. Only new-rule evidence is
+materialized; unchanged proofs are retained. Final exclusions 1,639, review 618;
+authored/source/exact counts and all match units remain unchanged.

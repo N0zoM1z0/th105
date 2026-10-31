@@ -1,0 +1,160 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+archive_set = "vc8-kb971090"
+# Separate short/data-heavy proof scope. Every relocation is pinned; RTTI and
+# literal destination contents are additionally fixed in the associated rule.
+min_nonreloc_coverage = 0.60
+min_nonreloc_bytes = 9
+
+[[anchors]]
+address = "0x00689919"
+size = 27
+library = "libcmt"
+object = "../build/intel/mt_obj/typinfo.obj"
+symbol = "??8type_info@@QBE_NABV0@@Z"
+inventory_hits = ["0x00689919"]
+relocation_targets = [
+ { offset = 13, type = 20, symbol = "_strcmp", target = "0x0068E650" },
+]
+
+[[anchors]]
+address = "0x00689F0B"
+size = 17
+library = "libcmt"
+object = "../build/intel/mt_obj/stdexcpt.obj"
+symbol = "??0exception@std@@QAE@XZ"
+inventory_hits = ["0x00689F0B"]
+relocation_targets = [
+ { offset = 12, type = 6, symbol = "??_7exception@std@@6B@", target = "0x006CD24C" },
+]
+
+[[anchors]]
+address = "0x00689FDA"
+size = 22
+library = "libcmt"
+object = "../build/intel/mt_obj/stdexcpt.obj"
+symbol = "??1exception@std@@UAE@XZ"
+inventory_hits = ["0x00689FDA"]
+relocation_targets = [
+ { offset = 6, type = 6, symbol = "??_7exception@std@@6B@", target = "0x006CD24C" },
+ { offset = 16, type = 20, symbol = "_free", target = "0x0068C686" },
+]
+
+[[anchors]]
+address = "0x00689FF0"
+size = 13
+library = "libcmt"
+object = "../build/intel/mt_obj/stdexcpt.obj"
+symbol = "?what@exception@std@@UBEPBDXZ"
+inventory_hits = ["0x00689FF0"]
+relocation_targets = [
+ { offset = 8, type = 6, symbol = "??_C@_0BC@EOODALEL@Unknown?5exception?$AA@", target = "0x006CD254" },
+]
+
+[[anchors]]
+address = "0x0068E3F5"
+size = 17
+library = "libcmt"
+object = "build/intel/mt_obj/crt0dat.obj"
+symbol = "_exit"
+inventory_hits = ["0x0068E3F5"]
+relocation_targets = [
+ { offset = 9, type = 20, symbol = "_doexit", target = "0x0068E313" },
+]
+
+[[anchors]]
+address = "0x00697476"
+size = 19
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "__fdivp_sti_st"
+inventory_hits = ["0x00697476"]
+relocation_targets = [
+]
+
+[[anchors]]
+address = "0x00697489"
+size = 19
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "__fdivrp_sti_st"
+inventory_hits = ["0x00697489"]
+relocation_targets = [
+]
+
+[[anchors]]
+address = "0x0069769C"
+size = 21
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "__safe_fdiv"
+inventory_hits = ["0x0069769C"]
+relocation_targets = [
+]
+
+[[anchors]]
+address = "0x006976B1"
+size = 21
+library = "libcmt"
+object = "../build/intel/mt_obj/adj_fdiv.obj"
+symbol = "__safe_fdivr"
+inventory_hits = ["0x006976B1"]
+relocation_targets = [
+]
+
+[[anchors]]
+address = "0x0069AF8D"
+size = 34
+library = "libcmt"
+object = "build/intel/mt_obj/osfinfo.obj"
+symbol = "__unlock_fhandle"
+inventory_hits = ["0x0069AF8D"]
+relocation_targets = [
+ { offset = 15, type = 6, symbol = "___pioinfo", target = "0x007038C0" },
+ { offset = 29, type = 6, symbol = "__imp__LeaveCriticalSection@4", target = "0x006C0104" },
+]
+
+[[anchors]]
+address = "0x0069C244"
+size = 445
+library = "libcmt"
+object = "build/intel/mt_obj/crtmbox.obj"
+symbol = "___crtMessageBoxA"
+inventory_hits = ["0x0069C244"]
+relocation_targets = [
+ { offset = 10, type = 20, symbol = "__encoded_null", target = "0x0068EA9C" },
+ { offset = 18, type = 6, symbol = "?pfnMessageBox@?1??__crtMessageBoxA@@9@9", target = "0x006FDE54" },
+ { offset = 41, type = 6, symbol = "??_C@_0L@NDEGIDAG@USER32?4DLL?$AA@", target = "0x006D5404" },
+ { offset = 47, type = 6, symbol = "__imp__LoadLibraryA@4", target = "0x006C00B4" },
+ { offset = 63, type = 6, symbol = "__imp__GetProcAddress@8", target = "0x006C017C" },
+ { offset = 68, type = 6, symbol = "??_C@_0M@CHKKJDAI@MessageBoxA?$AA@", target = "0x006D53F8" },
+ { offset = 85, type = 20, symbol = "__encode_pointer", target = "0x0068EA2E" },
+ { offset = 92, type = 6, symbol = "??_C@_0BA@HNOPNCHB@GetActiveWindow?$AA@", target = "0x006D53E8" },
+ { offset = 98, type = 6, symbol = "?pfnMessageBox@?1??__crtMessageBoxA@@9@9", target = "0x006FDE54" },
+ { offset = 106, type = 20, symbol = "__encode_pointer", target = "0x0068EA2E" },
+ { offset = 113, type = 6, symbol = "??_C@_0BD@HHGDFDBJ@GetLastActivePopup?$AA@", target = "0x006D53D4" },
+ { offset = 119, type = 6, symbol = "?pfnGetActiveWindow@?1??__crtMessageBoxA@@9@9", target = "0x006FDE58" },
+ { offset = 127, type = 20, symbol = "__encode_pointer", target = "0x0068EA2E" },
+ { offset = 132, type = 6, symbol = "?pfnGetLastActivePopup@?1??__crtMessageBoxA@@9@9", target = "0x006FDE5C" },
+ { offset = 141, type = 20, symbol = "__get_osplatform", target = "0x0068E20E" },
+ { offset = 157, type = 20, symbol = "__invoke_watson", target = "0x0068A023" },
+ { offset = 171, type = 6, symbol = "??_C@_0BK@CIDNPOGP@GetUserObjectInformationA?$AA@", target = "0x006D53B8" },
+ { offset = 180, type = 20, symbol = "__encode_pointer", target = "0x0068EA2E" },
+ { offset = 188, type = 6, symbol = "?pfnGetUserObjectInformation@?1??__crtMessageBoxA@@9@9", target = "0x006FDE64" },
+ { offset = 195, type = 6, symbol = "??_C@_0BI@DFKBFLJE@GetProcessWindowStation?$AA@", target = "0x006D53A0" },
+ { offset = 204, type = 20, symbol = "__encode_pointer", target = "0x0068EA2E" },
+ { offset = 210, type = 6, symbol = "?pfnGetProcessWindowStation@?1??__crtMessageBoxA@@9@9", target = "0x006FDE60" },
+ { offset = 215, type = 6, symbol = "?pfnGetProcessWindowStation@?1??__crtMessageBoxA@@9@9", target = "0x006FDE60" },
+ { offset = 228, type = 6, symbol = "?pfnGetUserObjectInformation@?1??__crtMessageBoxA@@9@9", target = "0x006FDE64" },
+ { offset = 236, type = 20, symbol = "__decode_pointer", target = "0x0068EAA5" },
+ { offset = 242, type = 6, symbol = "?pfnGetUserObjectInformation@?1??__crtMessageBoxA@@9@9", target = "0x006FDE64" },
+ { offset = 249, type = 20, symbol = "__decode_pointer", target = "0x0068EAA5" },
+ { offset = 301, type = 20, symbol = "__get_winmajor", target = "0x0068E245" },
+ { offset = 316, type = 20, symbol = "__invoke_watson", target = "0x0068A023" },
+ { offset = 348, type = 6, symbol = "?pfnGetActiveWindow@?1??__crtMessageBoxA@@9@9", target = "0x006FDE58" },
+ { offset = 359, type = 20, symbol = "__decode_pointer", target = "0x0068EAA5" },
+ { offset = 378, type = 6, symbol = "?pfnGetLastActivePopup@?1??__crtMessageBoxA@@9@9", target = "0x006FDE5C" },
+ { offset = 389, type = 20, symbol = "__decode_pointer", target = "0x0068EAA5" },
+ { offset = 408, type = 6, symbol = "?pfnMessageBox@?1??__crtMessageBoxA@@9@9", target = "0x006FDE54" },
+ { offset = 413, type = 20, symbol = "__decode_pointer", target = "0x0068EAA5" },
+]
