@@ -29499,3 +29499,26 @@ notes = "One physical13-byte original validation body, all three original aliase
 [[units.vc8-original-validation-leaf.functions]]
 address = "0x0069C4BF"
 symbol_base = "?_ValidateRead@@YAHPBXI@Z"
+
+[units.vc8-original-atan2-entries]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-atan2-entries.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "87ctriga.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Two whole original atan2 entry thunks with complete actual dispatch table and original owner replay. docs/CRT_ATAN2_ENTRIES_2026_11_01.md."
+
+[[units.vc8-original-atan2-entries.functions]]
+address = "0x0068BB70"
+symbol_base = "_atan2"
+rel32_targets = ["__ctrandisp2=0x006965AB"]
+dir32_targets = ["__OP_ATAN2jmptab=vc8_atan2_dispatch_table"]
+
+[[units.vc8-original-atan2-entries.functions]]
+address = "0x0068BB7A"
+symbol_base = "__CIatan2"
+rel32_targets = ["__cintrindisp2=0x00696530"]
+dir32_targets = ["__OP_ATAN2jmptab=vc8_atan2_dispatch_table"]

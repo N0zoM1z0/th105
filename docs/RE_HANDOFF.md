@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Original atan2/CIatan2 entries68BB70/7A are now whole10-byte runtime bodies.
+Complete owner20 plus support168/640/458 and data80/44/48 replay; all16 actual
+dispatch slots target original instruction entries. matherr_flag is initialized
+94260000, not BSS; fastflag is genuine zero-fill.13 tests/1462 mutations pass.
+Only20 runtime bytes: excluded2061/review311, units804; authored unchanged.
+See CRT_ATAN2_ENTRIES_2026_11_01.md. No whole-support reachability claim.
+
 Actual CSpriteEx now owns the seven-argument texture member; empty call views
 and nonconstructed derived receiver are removed. Provider193/helper261/wrapper37
 and all99 affected accepted units/242 roots freshly remain exact. Sprite

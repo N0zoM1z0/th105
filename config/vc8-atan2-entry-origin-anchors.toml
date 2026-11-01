@@ -1,0 +1,15 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "vc8-original-atan2-entries"
+
+[[anchors]]
+address = "0x0068BB70"
+size = 10
+symbol = "_atan2"
+sha256 = "ac12a83c5dc5ad413f179d30638a4b5172f964a67bb44ac791a7abbce0a53f0d"
+
+[[anchors]]
+address = "0x0068BB7A"
+size = 10
+symbol = "__CIatan2"
+sha256 = "8e3ad2dfe96572d4fcc35d71cd2ee4e501253fd652023dfdcc5787d0c77f991e"

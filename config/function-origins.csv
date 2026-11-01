@@ -3135,8 +3135,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0068B9D2,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068B9F0,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068BAAE,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0068BB70,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0068BB7A,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068BB70,vc8_runtime,runtime,exclude,observed,vc8-original-atan2-entries-106a
+0x0068BB7A,vc8_runtime,runtime,exclude,observed,vc8-original-atan2-entries-106a
 0x0068BB90,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068BCB9,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068BD23,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

@@ -3135,8 +3135,8 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0068B9D2,10,0x0068B9DB,start,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068B9F0,190,0x0068BAAD,_strchr,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068BAAE,182,0x0068BB63,_fabs,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0068BB70,10,0x0068BB79,sub_68BB70,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0068BB7A,10,0x0068BB83,sub_68BB7A,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0068BB70,10,0x0068BB79,sub_68BB70,,,identified,0.00,__cdecl,,false,,"Pinned original87ctriga.obj full20-byte owner, two complete10-byte entries, full dispatch table and source owners; vc8-original-atan2-entries-106a",,Original symbol _atan2; complete MOV EDX table/tail dispatch body. Runtime-only ownership; docs/CRT_ATAN2_ENTRIES_2026_11_01.md.
+0x0068BB7A,10,0x0068BB83,sub_68BB7A,,,identified,0.00,compiler intrinsic x87 arguments,,false,,"Pinned original87ctriga.obj full20-byte owner, two complete10-byte entries, full dispatch table and source owners; vc8-original-atan2-entries-106a",,Original symbol __CIatan2; complete MOV EDX table/tail dispatch body. Runtime-only ownership; docs/CRT_ATAN2_ENTRIES_2026_11_01.md.
 0x0068BB90,297,0x0068BCB8,_cos,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068BCB9,106,0x0068BD22,__controlfp_s,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0068BD23,175,0x0068BDD1,_printf,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

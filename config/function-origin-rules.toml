@@ -5894,3 +5894,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "One physical13-byte body matches all original ValidateRead/Write/Execute aliases. Whole catch owner383 and SEH4 scope28 resolve nine actual alias calls and exact filter/handler symbol indices; only the original handler termination E9 is permitted. Full memmove869 payload and six original pointer tables replay independently. No alias/parent/provider/EH/data/authored recount or generic CFG waiver. docs/CRT_VALIDATION_ALIAS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-atan2-entries-106a"
+vc8_atan2_entry_anchor_file = "config/vc8-atan2-entry-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 20
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Two complete original atan2/CIatan2 entries with actual EDX table and named dispatch tails. Complete original code20/168/640/458 and data80/44/48 plus initialized matherr4 and actual fastflag BSS are checked. Sixteen dispatch slots resolve original instruction entries. No support/data/authored credit or whole-support CFG reachability claim. docs/CRT_ATAN2_ENTRIES_2026_11_01.md."
