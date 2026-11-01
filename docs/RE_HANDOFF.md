@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Actual endpoint allocator413CC0/81 now whole canonical/unique from current
+receive/peer/accept/thread all-CIL context. Real16-byte endpoint record, natural
+ECX count, no helper export/COFF barrier. Explicit actual peer/thread view
+connections are confined to origin-only build; ordinary unit/source unchanged.
+Full CFG/imports/bad_alloc metadata/copy/dtor pass; entry41D7B0/14 fresh exact.
+Linked connection558/native542 remains nonexact. Eleven tests/ten actual
+corruption controls; prior gamepad84, byte78/input266 and static five-body gates
+freshly pass. Excluded2010/review362, other totals stay. See
+LINKED_ENDPOINT_ALLOCATOR_2026_11_01.md. Remaining413C60/81(size32) is unaccepted.
+
+
 Actual gamepad-state allocator40E000/84 now whole canonical/unique from unchanged
 real80-byte RawGamepadState source in an origin-only import CIL context. Original
 ordinary unit stays unchanged; parent182/native176 remains nonexact. Complete

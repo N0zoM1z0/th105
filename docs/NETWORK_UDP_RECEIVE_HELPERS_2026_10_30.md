@@ -71,3 +71,11 @@ pool destructor remains 98-byte exact. A fresh known-packet shutdown control
 still emits 150 versus 149 and lacks the target's aligned EBP frame; the
 native minimum opcode source remains selected. These are bounded negatives,
 not exclusions from future target-backed reconstruction.
+
+## 2026-11-01 endpoint allocator ownership
+
+A fresh all-CIL origin-only graph of current receive/peer/accept/thread source
+proves original endpoint allocator413CC0/81, whole canonical with complete
+exception metadata. The larger connection558/native542 remains nonexact.
+Ordinary source/unit are unchanged; entry14 freshly passes in both contexts.
+See LINKED_ENDPOINT_ALLOCATOR_2026_11_01.md. No helper148/33 or parent promotion.

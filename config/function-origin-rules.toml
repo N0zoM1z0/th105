@@ -5542,3 +5542,14 @@ subsystem = "input"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual unchanged DirectInput gamepad source emits original allocator<RawGamepadState>84 with natural ECX count and real80-byte element. Whole canonical/inventory-unique, full normal/noreturn CFG, genuine named MSVCR80 imports, complete bad_alloc metadata/copy/destructor and native noncontinuable throw. No fabricated stride, private ABI, forced helper export, mask or parent/authored credit. Ordinary source unit unchanged. docs/LINKED_GAMEPAD_ALLOCATOR_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-endpoint-allocator-106a"
+linked_endpoint_allocator_anchor_file = "config/linked-endpoint-allocator-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 81
+origin = "compiler_generated"
+subsystem = "network"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original allocator<NetworkReceiveAddress16> naturally emitted in actual all-CIL receive/peer/accept/thread graph. Whole81 canonical/inventory-unique with natural ECX count, full CFG, named MSVCR80 imports and complete bad_alloc metadata/copy/destructor/noncontinuable throw. Existing receive entry14 freshly canonical; larger connection remains nonexact. No synthetic stride, private helper export, COFF barrier, mask, authored or parent credit. docs/LINKED_ENDPOINT_ALLOCATOR_2026_11_01.md."

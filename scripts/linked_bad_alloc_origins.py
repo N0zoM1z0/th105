@@ -82,7 +82,7 @@ def throw_witness(pe,game,functions,symbols,read):
 
 def allocator_cfg(raw,start,throw,call_offsets,*,body_size=85):
     """Close all paths without treating an ordinary terminal CALL as a return."""
-    require(type(body_size)is int and body_size in (78,84,85),'unreviewed allocator CFG contract')
+    require(type(body_size)is int and body_size in (78,81,84,85),'unreviewed allocator CFG contract')
     require(len(raw)==body_size,f'allocator must include the full{body_size}-byte body')
     d=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_32);d.detail=True
     instructions=list(d.disasm(raw,start));by={i.address:i for i in instructions}
