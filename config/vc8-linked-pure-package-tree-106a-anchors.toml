@@ -1,0 +1,16 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "gpt-web-package-archive-store"
+proof_roots = ["0x0041B8C0", "0x0041B980"]
+
+[[anchors]]
+address = "0x0041CD10"
+size = 76
+symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@2@@Z"
+sha256 = "b91c380c3aa616a2f057cf0f0e1c55c039a96557633aa99df0d78f109a298a68"
+
+[[anchors]]
+address = "0x0041CD60"
+size = 80
+symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@2@@Z"
+sha256 = "de6d8e3f4c39ec1e2891efba703c5af85501ca12ee061e83e3e4e2750900a8b2"

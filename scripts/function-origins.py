@@ -1160,6 +1160,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         rule.get("xiph_anchor_file")
         or rule.get("xiph_relocated_anchor_file")
         or rule.get("vc8_generated_anchor_file")
+        or rule.get("vc8_linked_generated_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2346,6 +2347,10 @@ def validate_rule_evidence(
         errors.extend(
             validate_vc8_generated_anchor_evidence(rule, selected, rows, read_pe)
         )
+    if rule.get("vc8_linked_generated_anchor_file"):
+        from linked_generated_origins import validate as validate_linked_generated
+        errors.extend(validate_linked_generated(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
     if rule.get("msvc_runtime_anchor_file"):
         errors.extend(
             validate_msvc_runtime_anchor_evidence(rule, selected, rows, read_pe)

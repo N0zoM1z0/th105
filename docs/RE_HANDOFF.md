@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Six pure original STL bodies now reproduce384 complete unmasked bytes in
+fresh real LTCG contexts: vector fills404500/40A870 and package/network tree
+rotations41CD10/41CD60/4138D0/413940. A separate strict compiler-origin path
+requires existing exact roots, unique CIL ownership, no relocations/calls/data
+references and whole-inventory uniqueness. Excluded1798/review426; authored
+exact1583/449354 and all other source/unit counts stay. No private ABI source
+or game-code changes. See LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md.
+
 DirectSound stop4185E0 is canonical45/45 through unchanged ordinary C++ and
 actual LTCG private ESI lowering. A separate strict relocation-free-member
 proof checks whole raw bytes/CFG/RET0 and both real subobject LEAs; old

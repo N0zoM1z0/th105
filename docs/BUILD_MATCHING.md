@@ -1727,3 +1727,14 @@ actual callers. Existing fresh CIL provenance, source identity, actual call
 mapping and caller address-role checks remain mandatory. It neither changes
 source calling conventions nor accepts the nonexact caller. See
 DIRECT_SOUND_STOP_EXACT_2026_11_01.md and tests/test_linked_member_leaf.py.
+
+### Pure linked standard-container origins
+
+`scripts/linked_generated_origins.py RULE_ID` replays one configured compiler
+origin without rewriting the global census. The separate linked-anchor schema
+requires a fresh pinned CIL unit and fresh exact roots, unique source MAP
+ownership, complete unmasked relocation-free bytes/CFG and unique identity in
+the full target inventory. Only reviewed pure vector-fill/tree-rotation
+families are supported, with at least24 bytes and no calls or address bindings.
+The ordinary COFF0.70/24/no-tail validator is unchanged. See
+LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md and its negative tests.

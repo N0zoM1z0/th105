@@ -1,0 +1,16 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "exact-first-network-udp-lifetime"
+proof_roots = ["0x00413820", "0x00413780"]
+
+[[anchors]]
+address = "0x004138D0"
+size = 76
+symbol = "?_Lrotate@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@2@@Z"
+sha256 = "3bce6414063fdf786c714dd8acb433b84988d41f59baa2e0c96e1bbd5b1fbca7"
+
+[[anchors]]
+address = "0x00413940"
+size = 80
+symbol = "?_Rrotate@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@2@@Z"
+sha256 = "51978efaa17105301764fca02ecc2bc64b9562cb8501e54b640a54f59109b61b"

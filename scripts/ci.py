@@ -22,6 +22,7 @@ EXACT_TEST_MODULES = (
     "test_linked_pe",
     "test_linked_cleanup_caller",
     "test_linked_member_leaf",
+    "test_linked_generated_origins",
     "test_linked_png_sdk",
     "test_linked_wave_callbacks",
     "test_linked_global_caller",

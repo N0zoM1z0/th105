@@ -1,0 +1,10 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "exact-first-input-state-update"
+proof_roots = ["0x0040A550"]
+
+[[anchors]]
+address = "0x0040A870"
+size = 37
+symbol = "?_Ufill@?$vector@EV?$allocator@E@std@@@std@@IAEPAEPAEIABE@Z"
+sha256 = "8bbbef0be2e23ce24bd7e6338853bb0bda4b5a5cf97b31259c0543bff0d145f8"

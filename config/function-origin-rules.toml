@@ -5039,3 +5039,47 @@ subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Natural implicit constructor for the actual0x154 Info record with two polymorphic sprite members and initializing texture handles. Complete28 canonical bytes and unique full-inventory fingerprint under unchanged0.70/24/no-tail gates; all three exact owner lifetime bodies preserved. No authored credit. docs/INFO_RECORD_LIFETIME_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-pure-pointer-fill-106a"
+vc8_linked_generated_anchor_file = "config/vc8-linked-pure-pointer-fill-106a-anchors.toml"
+expected_count = 1
+expected_bytes = 35
+origin = "compiler_generated"
+subsystem = "network"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Fresh genuine pinned VC8 LTCG unit and existing exact roots establish source provenance for original pure STL template bodies. Full unmasked bytes, no calls/absolute references/relocations, closed CFG and whole-inventory uniqueness are mandatory. No authored credit or private ABI declarations. docs/LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-pure-byte-fill-106a"
+vc8_linked_generated_anchor_file = "config/vc8-linked-pure-byte-fill-106a-anchors.toml"
+expected_count = 1
+expected_bytes = 37
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Fresh genuine pinned VC8 LTCG unit and existing exact roots establish source provenance for original pure STL template bodies. Full unmasked bytes, no calls/absolute references/relocations, closed CFG and whole-inventory uniqueness are mandatory. No authored credit or private ABI declarations. docs/LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-pure-package-tree-106a"
+vc8_linked_generated_anchor_file = "config/vc8-linked-pure-package-tree-106a-anchors.toml"
+expected_count = 2
+expected_bytes = 156
+origin = "compiler_generated"
+subsystem = "assets"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Fresh genuine pinned VC8 LTCG unit and existing exact roots establish source provenance for original pure STL template bodies. Full unmasked bytes, no calls/absolute references/relocations, closed CFG and whole-inventory uniqueness are mandatory. No authored credit or private ABI declarations. docs/LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-pure-network-tree-106a"
+vc8_linked_generated_anchor_file = "config/vc8-linked-pure-network-tree-106a-anchors.toml"
+expected_count = 2
+expected_bytes = 156
+origin = "compiler_generated"
+subsystem = "network"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Fresh genuine pinned VC8 LTCG unit and existing exact roots establish source provenance for original pure STL template bodies. Full unmasked bytes, no calls/absolute references/relocations, closed CFG and whole-inventory uniqueness are mandatory. No authored credit or private ABI declarations. docs/LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md."

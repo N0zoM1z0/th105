@@ -91,7 +91,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00404330,authored_game,audio,authored,observed,bgm-stream-member-lifetime-authored-106a
 0x00404400,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404470,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00404500,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00404500,compiler_generated,network,exclude,observed,vc8-linked-pure-pointer-fill-106a
 0x00404530,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00404730,authored_game,engine,authored,observed,canonical-exact-authored
 0x00404750,authored_game,engine,authored,observed,canonical-exact-authored
@@ -229,7 +229,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040A6C0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040A790,compiler_generated,runtime,exclude,observed,input-tracked-key-vector-clear-generated-106a
 0x0040A7F0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040A870,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040A870,compiler_generated,input,exclude,observed,vc8-linked-pure-byte-fill-106a
 0x0040A8A0,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x0040A920,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040AAF0,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -449,9 +449,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00413820,authored_game,network,authored,observed,canonical-exact-authored
 0x00413890,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004138B0,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
-0x004138D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004138D0,compiler_generated,network,exclude,observed,vc8-linked-pure-network-tree-106a
 0x00413920,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00413940,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00413940,compiler_generated,network,exclude,observed,vc8-linked-pure-network-tree-106a
 0x00413990,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004139D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413A50,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -616,8 +616,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041C8D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041C910,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041CC40,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041CD10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041CD60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041CD10,compiler_generated,assets,exclude,observed,vc8-linked-pure-package-tree-106a
+0x0041CD60,compiler_generated,assets,exclude,observed,vc8-linked-pure-package-tree-106a
 0x0041CDB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041CE40,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041D160,unknown,,review,unknown,ida-1.06a-initial-inventory

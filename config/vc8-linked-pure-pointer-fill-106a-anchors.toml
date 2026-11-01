@@ -1,0 +1,10 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "cross-v106a-network-winsock-send-client"
+proof_roots = ["0x00405200"]
+
+[[anchors]]
+address = "0x00404500"
+size = 35
+symbol = "?_Ufill@?$vector@PAUNetworkUdpPacketBuffer41C@th105@@V?$allocator@PAUNetworkUdpPacketBuffer41C@th105@@@std@@@std@@IAEPAPAUNetworkUdpPacketBuffer41C@th105@@PAPAU34@IABQAU34@@Z"
+sha256 = "ce31e978f6bdd7d54f0dd8a2f7484892950cb2403a2c7f8d25c24d7729752fda"
