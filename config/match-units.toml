@@ -27277,7 +27277,7 @@ link_ogg_callbacks = true
 link_numeric_literals = [{ symbol = "__real@41f0000000000000", target = "__real@41f0000000000000" }, { symbol = "__real@40e0000000000000", target = "__real@40e0000000000000" }, { symbol = "__real@4f800000", target = "__real@4f800000" }]
 preserve_public_members = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z", "??1FileReaderOwner@th105@@QAE@XZ"]
 link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__timeGetTime@0=__imp__timeGetTime@0", "?bgm_minimum_gain@th105@@3MB=_bgm_transition_minimum_gain", "?logarithmic_volume_scale@th105@@3MB=_logarithmic_volume_scale", "?direct_sound_volume_units@th105@@3MB=_direct_sound_volume_units", "_wave_lock_error=_direct_sound_lock_error", "_wave_error_title=?sound_error_title@th105@@3QBDB"]
-notes = "Private Ogg open291 is exact in the real stream-start/reader/Xiph CIL graph. SFL484 is exact with native118h frame and complete EH. Three stream bodies349/358,918/943,761/806 and PCM251/252,gain87/103 remain nonexact. Private stop4185E0 is also canonical45 under the separate complete relocation-free-member proof. Update is an ordinary exported comparison root,969/943 nonexact; no native export or caller equivalence is claimed. No private register declaration, padding or caller-byte waiver. docs/BGM_OGG_RUNTIME_2026_10_30.md; docs/DIRECT_SOUND_STOP_EXACT_2026_11_01.md."
+notes = "Private Ogg open291 is exact in the real stream-start/reader/Xiph CIL graph. SFL484 is exact with native118h frame and complete EH. Three stream bodies and gain87/103 remain nonexact; PCM418B70 is now compared in the actual service caller graph rather than exported here. Private stop4185E0 is also canonical45 under the separate complete relocation-free-member proof. Update is an ordinary exported comparison root,969/943 nonexact; no native export or caller equivalence is claimed. No private register declaration, padding or caller-byte waiver. docs/BGM_OGG_RUNTIME_2026_10_30.md; docs/DIRECT_SOUND_STOP_EXACT_2026_11_01.md."
 
 [[units.exact-first-bgm-stream-runtime.functions]]
 address = "0x00402A00"
@@ -27288,11 +27288,6 @@ rel32_targets = ["?open@OggStreamSource@th105@@QAE_NPBD@Z=0x00418A10", "?update@
 address = "0x00402FC0"
 symbol_base = "?handoff@BgmStreamRuntime@th105@@QAEXPAU12@@Z"
 rel32_targets = ["?clear@BgmBufferRuntime@th105@@QAEXXZ=0x00418610", "__chkstk=0x0068D880", "_ov_time_tell=0x0067C6C0", "_ov_time_seek=0x0067C5C0", "_memcpy=0x0068AA30", "@__security_check_cookie@4=0x00689D25", "?fill_ogg_pcm_block@th105@@YGIPAUOggStreamSource@1@PAX@Z=0x00418B70"]
-
-[[units.exact-first-bgm-stream-runtime.functions]]
-address = "0x00418B70"
-symbol_base = "?fill_ogg_pcm_block@th105@@YGIPAUOggStreamSource@1@PAX@Z"
-rel32_targets = ["_ov_read=0x0067C7F0", "_ov_time_tell=0x0067C6C0", "_ov_time_seek=0x0067C5C0", "_memset=0x0068A440"]
 
 [[units.exact-first-bgm-stream-runtime.functions]]
 address = "0x00418990"
@@ -28288,7 +28283,7 @@ link_ogg_callbacks = true
 link_numeric_literals = [{ symbol = "__real@41f0000000000000", target = "__real@41f0000000000000" }]
 preserve_public_members = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z", "??1FileReaderOwner@th105@@QAE@XZ", "?lookup@BgmLoadManagerView@th105@@QAEPAUBgmStreamRuntime@2@I@Z"]
 link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__timeGetTime@0=__imp__timeGetTime@0", "?bgm_minimum_gain@th105@@3MB=_bgm_transition_minimum_gain", "?logarithmic_volume_scale@th105@@3MB=_logarithmic_volume_scale", "?direct_sound_volume_units@th105@@3MB=_direct_sound_volume_units", "_wave_lock_error=_direct_sound_lock_error", "_wave_error_title=?sound_error_title@th105@@3QBDB", "__imp__SetEvent@4=__imp__SetEvent@4"]
-notes = "Complete BGM play351 through actual stream/Ogg/DirectSound providers and real BgmHandleResult queues. Queued loads push_front; immediate success pushes active_back under the service lock; failure retires and signals. Native true return preserved. Whole private prepare159 has independent caller/EH follow-up."
+notes = "Complete BGM play351 through actual stream/Ogg/DirectSound providers and real BgmHandleResult queues. Queued loads push_front; immediate success pushes active_back under the service lock; failure retires and signals. Native true return preserved. Whole private prepare159 has independent caller/EH follow-up. PCM418B70 is now canonical252 as an unexported ordinary stdcall through the bounded exact-rooted real caller graph; no intermediate stream exactness or new source/FP change. docs/OGG_PCM_EXACT_2026_11_01.md."
 
 [[units.exact-first-bgm-load-service.functions]]
 address = "0x004036E0"
@@ -28605,3 +28600,26 @@ dir32_targets = ["??_7InfoRecordSprite94@th105@@6B@=??_7ProfileCSpriteLifetime@t
 address = "0x004185E0"
 symbol_base = "?stop_if_playing@BgmBufferRuntime@th105@@QAEJXZ"
 private_from = { caller = "0x00402C10", site = "0x00402C85", relocation_free_member = true }
+
+[[units.exact-first-bgm-load-service.functions]]
+address = "0x00418B70"
+symbol_base = "?fill_ogg_pcm_block@th105@@YGIPAUOggStreamSource@1@PAX@Z"
+rel32_targets = ["_ov_read=0x0067C7F0", "_ov_time_tell=0x0067C6C0", "_ov_time_seek=0x0067C5C0", "_memset=0x0068A440"]
+
+[units.exact-first-bgm-load-service.functions.private_from]
+caller = "0x004036E0"
+through_exact_caller = true
+[units.exact-first-bgm-load-service.functions.private_from.stdcall_graph]
+stack_bytes = 8
+nodes = [
+ { address = "0x00402A00", symbol_base = "?start@BgmStreamRuntime@th105@@QAE_NXZ" },
+ { address = "0x00402C10", symbol_base = "?update@BgmStreamRuntime@th105@@QAE_NXZ" },
+ { address = "0x00402FC0", symbol_base = "?handoff@BgmStreamRuntime@th105@@QAEXPAU12@@Z" },
+]
+edges = [
+ { caller = "0x004036E0", callee = "0x00402A00", sites = ["0x004037AB"] },
+ { caller = "0x00402A00", callee = "0x00402C10", sites = ["0x00402B33", "0x00402B58"] },
+ { caller = "0x00402A00", callee = "0x00402FC0", sites = ["0x00402B25"] },
+ { caller = "0x00402C10", callee = "0x00418B70", sites = ["0x00402CDC"] },
+ { caller = "0x00402FC0", callee = "0x00418B70", sites = ["0x0040319A"] },
+]

@@ -1738,3 +1738,15 @@ the full target inventory. Only reviewed pure vector-fill/tree-rotation
 families are supported, with at least24 bytes and no calls or address bindings.
 The ordinary COFF0.70/24/no-tail validator is unchanged. See
 LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md and its negative tests.
+
+### Exact-rooted ordinary stdcall graph
+
+A `stdcall_graph` private contract may retain a normal unsigned-return stdcall
+leaf in its actual CIL context without exporting it. It requires a fresh exact
+exported root, bounded acyclic reviewed-source nodes, unique private MAP
+ownership, all actual direct edge/site sets, complete caller CFG/address-role
+checks and observed leaf stack cleanup on every return. Only named call
+relocations and no leaf address/EH state are allowed; the entire canonical leaf
+must still match. Intermediate bodies are not accepted or declared equivalent.
+The original source_only_caller rules remain unchanged. See
+OGG_PCM_EXACT_2026_11_01.md and tests/test_linked_stdcall_graph.py.

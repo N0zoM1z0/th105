@@ -211,7 +211,10 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             if "export_name" in function or not isinstance(witness, dict):
                 raise ValueError("private linked function needs only an explicit caller/site witness")
             if not path:
-                if "relocation_free_member" in witness:
+                if "stdcall_graph" in witness:
+                    from linked_stdcall_graph import validate as validate_stdcall_graph
+                    validate_stdcall_graph(witness, function, unit)
+                elif "relocation_free_member" in witness:
                     from linked_member_leaf import validate as validate_member_leaf
                     validate_member_leaf(witness, function, unit)
                 elif "cleanup" in witness:
@@ -1086,6 +1089,11 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
                            internal_refs: list[dict] = (), exact_caller_replay: dict | None = None,
                            global_lifecycle_witnesses: dict | None = None) -> dict:
     contract = function["private_from"]
+    if "stdcall_graph" in contract:
+        from linked_stdcall_graph import observe as observe_stdcall_graph
+        return observe_stdcall_graph(sys.modules[__name__], function, unit, pe,
+            functions, exports, cil_owner, ledger, read_target, exact_caller_replay,
+            bindings, game_range)
     member_leaf = contract.get("relocation_free_member") is True
     if "relocation_free_member" in contract:
         from linked_member_leaf import validate as validate_member_leaf
@@ -1352,6 +1360,9 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         if function.get("private_from", {}).get("relocation_free_member") is True:
             from linked_member_leaf import validate_canonical_identity
             validate_canonical_identity(raw, code, calls, data_refs)
+        if "stdcall_graph" in function.get("private_from", {}):
+            from linked_stdcall_graph import validate_leaf_replay
+            validate_leaf_replay(calls, data_refs)
         if function.get("alignment_sites"):
             decode_closed_body(target, address,
                 external_exits={int(report["target_site"], 0): int(report["target_helper"], 0)

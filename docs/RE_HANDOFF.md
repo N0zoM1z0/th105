@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+PCM418B70 is now canonical252 through unchanged source in the actual service
+CIL graph. Fresh exact play351 roots five nodes/six real call sites; the three
+intermediate stream bodies remain nonexact. A separate bounded stdcall graph
+proof retains ordinary source/RET8 and all named relocations, without exporting
+the leaf or weakening old source_only rules. Service play351/prepare159 and
+old stream Ogg291/SFL484/stop45 all freshly pass. Exact1584/449606; source1783,
+authored1803,mapped1810,excluded1798,review426,units765 stay.
+See OGG_PCM_EXACT_2026_11_01.md.
+
 Six pure original STL bodies now reproduce384 complete unmasked bytes in
 fresh real LTCG contexts: vector fills404500/40A870 and package/network tree
 rotations41CD10/41CD60/4138D0/413940. A separate strict compiler-origin path
