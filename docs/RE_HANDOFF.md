@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Info record46EA40 now has a natural implicit28-byte constructor through its
+actual two sprite members and initializing texture handles. All three accepted
+InfoManagerBase owners195/185/30 stay exact; paired dtor15 also compares but
+remains review. Full-inventory24-byte/70%-minimum source proof excludes only
+the28-byte compiler body, no authored gain. Excluded1792/review433; other
+counts unchanged. See INFO_RECORD_LIFETIME_2026_11_01.md.
+
 After the Tenshi fix, twelve other complete public Fighter candidates received
 fresh bounded QWORD-capture checks. No additional missing-wide-capture truncation
 was established; Aya606 and Suika605/730 deficits are physical sharing residuals,

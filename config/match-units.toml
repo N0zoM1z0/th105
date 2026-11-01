@@ -28594,3 +28594,8 @@ notes = "Complete original std::map subtree cleanup from the actual package-stor
 address = "0x0041C630"
 symbol_base = "?_Erase@?$_Tree@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@2@@Z"
 rel32_targets = ["?_Erase@?$_Tree@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@2@@Z=0x0041C630", "_free=0x0068AA26", "??1PackageFileIndexNode@th105@@QAE@XZ=0x0041B850", "??3@YAXPAX@Z=0x006898EA"]
+
+[[units.cross-v106a-info-manager-base-lifetime.functions]]
+address = "0x0046EA40"
+symbol_base = "??0InfoRecord154Lifecycle@th105@@QAE@XZ"
+dir32_targets = ["??_7InfoRecordSprite94@th105@@6B@=??_7ProfileCSpriteLifetime@th105@@6B@"]
