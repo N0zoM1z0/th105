@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+INetworkUDPEventProc default notification/route policy43AA10/20/30 now
+canonical3/3/8 bytes through ordinary virtual methods. Original6C1630 RTTI
+six-slot table proves ownership; folded bodies counted once, existing44E8E0
+gets no duplicate credit. Client93/server289 routes freshly remain exact.
+Exact1431/443916; source1634/authored1654/mapped1819/review404/excluded1969/
+units771. See NETWORK_EVENT_DEFAULTS_2026_11_01.md. No output zeroing added.
+
 CFileList finalize43A590 now has complete source and native RTTI/vslot8
 ownership for1106 bytes/283 instructions. Current implicit-owner source1155
 remains nonexact+16 (frame3A0/native398). Correct Color4 layout gives canonical
