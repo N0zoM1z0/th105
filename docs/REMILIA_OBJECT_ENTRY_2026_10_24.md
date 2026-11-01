@@ -138,3 +138,52 @@ Preserve this selected body and all negative controls. Do not repeat the
 neutral named-field or terminal/default controls without new independent
 instruction/compiler evidence. Switch to another bounded roster initializer
 when the next hypothesis would merely repeat these scheduler experiments.
+
+
+## November1: request-local lifetimes recover the real 980 tail
+
+The two actual parented requests belong only to800/sequence0 and854/sequence2.
+The previous source unnecessarily kept one payload array alive for the entire
+initializer. Each request now owns an ordinary three-float array in its actual
+branch, with the existing three writes and pointer/count arguments unchanged.
+No unused local, padding, forced inline boundary or ABI change is introduced.
+
+The lifetime is supported by the complete synchronous consumer chain. Exact
+4FCA60/77 obtains owner348, manager658 and calls manager vslot4, forwarding
+pointer and count with RET28. Remilia manager constructor555DF0 installs vptr
+6C5394, whose slot4 is555E80/237. In that complete manager the count controls
+new unsigned[count], and555F08..555F12 copies count*4 bytes to the newly owned
+object340 buffer. The original request pointer is not retained. The source
+lifetime therefore need not extend through unrelated later action branches.
+Fresh roster-manager comparisons from the immediately preceding scope include
+Remilia237; the current effect-provider replay freshly matches4FCA60/77.
+That mixed effect unit also reports its pre-existing5F9350 nonexact peer; it is
+not reported as an aggregate pass. Shared980 provider596370/323 freshly passes.
+
+Native spawn sites55BF9D and55C938 and their complete75/83-byte argument windows
+are byte-identical in the newly compiled candidate. Both requests still use
+three words and retain their original initialization and conversion order.
+The compiler now emits the actual980 tail JMP at55D1DE naturally, replacing
+the former CALL/RET. The native32RET count,1339 decoded/reachable instructions,
+4997-byte callable and three-byte post-RET LEA are all recovered. A complete
+entry/table traversal reaches all1339 instructions on each side, closes all
+three switch tables, and permits only the independently exact596370 tail.
+The199-byte selector remap and its zero alignment byte are unchanged/equal.
+
+The whole5384-byte canonical result remains **nonexact** at+440/55C028.
+Selected SHA256:
+38fd7441435512a41e9d0ea886fa4bbc39fa2869b150cbc195753fe10b1cdd36.
+There are426 callable and11 table-byte differences,437 over the full payload.
+The target full-payload SHA256 is
+6d40a4fe209f5cb0306cb213898728fb5d1e9b0421868fbad511d777d363cfc9.
+The remaining locations are850/851 and902/903 virtual-call/heading-register
+scheduling plus901's shared heading-store/return placement. Local equality and
+recovered physical extents are diagnostics, not partial exact-byte credit.
+No further old sequence-view or switch-placement spelling controls were run.
+
+The public build reproduces the isolated lifetime control exactly. Receipts:
+build/frontier-remilia-request-lifetime-20261101/{baseline,selected,
+selected-full,request-lifetime-evidence,complete-cfg,effects,tail-provider}.json,
+Scoped.canonical.bin, scoped-differences.txt and ci.log. Private Scoped.cpp is
+retained under the corresponding .analysis directory. Only this source, its
+tracking evidence and documentation change; shared headers/providers stay intact.

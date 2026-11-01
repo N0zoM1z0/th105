@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+RemiliaObject initializer55BE70 now gives its two actual spawn requests local
+branch lifetimes. Verified synchronous manager copy permits this; compiler
+naturally recovers native980 tail JMP55D1DE and full4997 callable/32RET/1339
+reachable instructions. Full5384 remains nonexact+440,437 positional differences;
+no exact credit. Remaining selector registers and901 shared tail are open.
+See REMILIA_OBJECT_ENTRY_2026_10_24.md November1 appendix. Exact1582/449309 stays.
+
+
 Aya's complete65601-byte action root received fresh real-manager-backed
 spawn-width controls. Original and both byte-view forwarding wrappers are
 canonical66; actual roster managers pass. Both narrowed roots remain

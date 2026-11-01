@@ -28,7 +28,6 @@ void RemiliaObjectEntryView::initialize_action_entry()
     S(0x368) = 0;
     S(0x36A) = 0;
     S(0x36C) = 0;
-    float payload[3];
     switch (S(0x13C)) {
     case 800:
         select_sequence(static_cast<int>(H[2]));
@@ -36,6 +35,7 @@ void RemiliaObjectEntryView::initialize_action_entry()
             B(0x184) = 1;
             MOTION->set_components(H[0], H[1]);
             F(0x12C) = H[0];
+            float payload[3];
             payload[0] = H[0]; payload[1] = 0.0f; payload[2] = 1.0f;
             spawn_parented(800, F(0xEC), F(0xF0), FIELD(signed char, 0x104), -1,
                            reinterpret_cast<const unsigned *>(payload), 3);
@@ -200,6 +200,7 @@ void RemiliaObjectEntryView::initialize_action_entry()
         if (S(0x13E) == 0 || S(0x13E) == 1) S(0x344) = 1;
         if (S(0x13E) == 2) {
             F(0x12C) = H[0]; B(0x184) = 5;
+            float payload[3];
             payload[0] = H[0]; payload[1] = 0.0f; payload[2] = 6.0f;
             spawn_parented(854, F(0xEC), F(0xF0), FIELD(signed char, 0x104), 1,
                            reinterpret_cast<const unsigned *>(payload), 3);
