@@ -115,3 +115,27 @@ recompiled/materialized; no blanket origin regeneration or exactness relaxation.
 Evidence is retained under build/frontier-boost-regex-20261031 and its .analysis
 counterpart. Final totals: source1750, authored1770, exact1553 /441679 bytes,
 excluded1440, review817, mapped1777 and units743. Local checkpoint only; no push.
+
+
+## November1: bounded1.41 parser source check
+
+The official boostorg/regex comparison from the pinned1.40 module revision to
+boost-1.41.0 reports one compiled-header change, basic_regex_parser.hpp; the
+other listed changes remove CMake files. Fetching that complete original1.41
+header and verifying Git blob ebec35b60d98c17bb3ab40655e431a5f8d72e099 shows
+one source-line difference from the selected header: added parentheses around
+`(*m_position != '>') && (*m_position != '\'')` before the existing `||` term.
+The same grouping already follows C++ operator precedence. No operation,
+short-circuit order, state mutation, constant or template declaration changes.
+This does not provide a new parser-codegen hypothesis or identify the shipped
+release. No reference header, source lock, compiler flag or unit is changed;
+no alternative-header build or canonical improvement is claimed.
+
+Verified source:
+https://github.com/boostorg/regex/blob/boost-1.41.0/include/boost/regex/v4/basic_regex_parser.hpp
+
+The complete fetched header remains private under
+.analysis/frontier-boost-141-parser-20261101, with its Git-blob-verified diff
+in build/frontier-boost-141-parser-20261101/parser.diff. The installed selected
+184-file package remains unchanged. Do not repeat1.40/1.41 parser version trials
+based solely on the existing match_results compatibility observation.
