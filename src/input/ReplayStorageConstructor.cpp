@@ -39,3 +39,9 @@ ReplayStorageLifetime::ReplayStorageLifetime()
     selected_0d8 = &injected_08[0];
 }
 }
+
+namespace th105 {
+// Native static storage6FBDD0 has this lifetime. Its implicit teardown is
+// separately compiler-owned; no authored destructor is supplied.
+ReplayStorageLifetime g_replay_storage_lifetime;
+}

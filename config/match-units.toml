@@ -28713,3 +28713,9 @@ rel32_targets = ["?erase@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U
 address = "0x00435F90"
 symbol_base = "??1?$vector@UScoreDefaultRecord24@th105@@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@std@@QAE@XZ"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+
+[[units.exact-first-replay-storage-constructor.functions]]
+address = "0x0043F260"
+symbol_base = "??1ReplayStorageLifetime@th105@@QAE@XZ"
+rel32_targets = ["??1CriticalSectionWrapper@th105@@UAE@XZ=0x0040AC10", "??3@YAXPAX@Z=0x006898EA", "??$_Destroy_range@UReplayStorageSlot@th105@@V?$allocator@UReplayStorageSlot@th105@@@std@@@std@@YAXPAUReplayStorageSlot@th105@@0AAV?$allocator@UReplayStorageSlot@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@@Z=0x0042B230", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9"]
+dir32_targets = ["__ehhandler$??1ReplayStorageLifetime@th105@@QAE@XZ=_replay_storage_dtor_eh", "___security_cookie=___security_cookie", "??1ProfileInputManagerExLifetime@th105@@UAE@XZ=??1ReplayInjectedInput@th105@@UAE@XZ"]

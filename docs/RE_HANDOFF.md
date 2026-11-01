@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Replay storage43F260 now has canonical implicit208-byte teardown from its
+actual static lifetime, no authored destructor body. Constructor161/input27
+remain exact. Range52 and two5-byte callbacks independently replay; input
+callback5 remains review. Full static initializer22/callback10 are witnessed.
+Excluded1806/review413; exact1586/450027 and source/units unchanged. CI312.
+See REPLAY_STORAGE_LIFETIME_2026_11_01.md.
+
 ScoreData constructor43E1A0 is canonical306 through actual member/array
 lifetimes then initialized-byte reset. The real static lifetime emits implicit
 dtor43DF10 canonical393 without a handwritten destructor; it is compiler-only.

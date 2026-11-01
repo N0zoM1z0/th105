@@ -5223,3 +5223,17 @@ confidence = "observed"
 evidence = "Actual ScoreData static lifetime emits the implicit destructor with no authored destructor declaration/body. Whole393 canonical bytes and independently exact array callbacks support generated member cleanup; complete329-byte nonrelocation fingerprint and every repeated call target are unique over the full inventory. Existing static callback6BF170 owns this destructor. No authored credit. docs/SCORE_OWNER_LIFETIME_2026_11_01.md."
 required_body_hashes = [{ address = "0x0043DF10", size = 393, sha256 = "3ace549e00663599e8e143969780c8a6806b4b3ebada3123e36e4facca547c1b" }]
 required_direct_edges = [{ caller = "0x006BF170", site = "0x006BF175", target = "0x0043DF10", kind = "jump", caller_status = "identified" }]
+
+[[rules]]
+id = "vc8-generated-replay-storage-destructor-106a"
+vc8_generated_anchor_file = "config/vc8-generated-replay-storage-dtor-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 208
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual static ReplayStorage lifetime emits implicit208-byte destructor with no authored destructor declaration/body. Full canonical byte proof, exact callback/range witnesses, complete176-byte nonrelocation fingerprint and all named call sites establish compiler ownership. Existing callback6BF180 owns its E9 edge; old constructor/input callback remain exact. docs/REPLAY_STORAGE_LIFETIME_2026_11_01.md."
+required_body_hashes = [{ address = "0x0043F260", size = 208, sha256 = "ceddb2c1fc924702f1dc4c1c005ac27e65c8715ddb35cd2c3b39371ba996f19d" }]
+required_direct_edges = [{ caller = "0x006BF180", site = "0x006BF185", target = "0x0043F260", kind = "jump", caller_status = "identified" }]
+required_selected_body_calls = [{ owner = "0x0043F260", site = "0x0043F298", target = "0x0040AC10", target_status = "matching" }]
