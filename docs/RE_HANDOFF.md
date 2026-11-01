@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Authored receive-lock constructor401850 now compares whole25/25 from the
+unchanged real NetworkWinsockReceiveThread.cpp TU. Actual caller41D8F9 passes
+a stack guard and endpoint CCriticalSection+E0; native import6C0108 is
+EnterCriticalSection. No synthetic emission or source/flag change. Existing
+thread callback14 stays exact; parent/worker/EH remain nonexact. New authored
+exact1432/443941, source1637, authored1656, review307, excluded2064, units807.
+See NETWORK_RECEIVE_LOCK_CONSTRUCTOR_2026_11_01.md.
+
 Original SIGABRT getter69BA48/13, rand_s initializer69BC05/10 and winxfltr
 initializer695033/1 now have complete source/caller/storage proofs. Full
 init_pointers76, winsig25 and abort243 replay. Abort retains its original

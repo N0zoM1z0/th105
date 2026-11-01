@@ -18892,6 +18892,10 @@ symbol_base = "?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@P
 dir32_targets = ["__ehhandler$?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z=__ehhandler$?receive_endpoint_list@th105@@YGXPAVNetworkWinsockReceiveView@1@PBUNetworkReceiveEndpointList44@1@@Z"]
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?push_back@?$vector@UNetworkReceiveAddress16@th105@@V?$allocator@UNetworkReceiveAddress16@th105@@@std@@@std@@QAEXABUNetworkReceiveAddress16@th105@@@Z=0x00416160"]
 
+[[units.cross-v106a-network-winsock-receive-thread.functions]]
+address = "0x00401850"
+symbol_base = "??0NetworkReceiveLock@th105@@QAE@PAUCriticalSectionWrapper@1@@Z"
+
 [units.cross-v106a-network-winsock-peer-removal]
 kind = "probe"
 source = "src/network/NetworkWinsockPeerRemoval.cpp"
