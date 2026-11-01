@@ -29018,3 +29018,11 @@ address = "0x006B5350"
 symbol_base = "??0?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABV012@@Z"
 rel32_targets = ["??0?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@QAE@ABU012@@Z=0x006B4FC0"]
 dir32_targets = ["??_7clone_base@exception_detail@boost@@6B@=??_7clone_base@exception_detail@boost@@6B@", "??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6Bregex_error@2@@=??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6Bregex_error@2@@", "??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@=??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@", "??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6B@=??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6B@"]
+
+[[units.boost-regex-release-library-origin.functions]]
+address = "0x006A0AA0"
+symbol_base = "?match_jump@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[units.boost-regex-release-library-origin.functions]]
+address = "0x006A0AF0"
+symbol_base = "?match_toggle_case@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"

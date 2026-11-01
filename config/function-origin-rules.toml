@@ -5608,3 +5608,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original public Boost throw_exception<regex_error> instantiation, retaining the original noreturn declaration. Whole clone46 canonical/unique, complete RTTI graph with48/68 subobjects, whole injector154 and runtime copy113 plus complete EH35+44 each. Actual original regex.cpp supplies exact destructor50 and all8 selected source-body regressions pass. This new ordinary source context closes the earlier CIL mismatch without weakening its gate. No masks, fake implementation, private export or extra support credit. docs/BOOST_PUBLIC_REGEX_EXCEPTION_2026_11_01.md."
+
+[[rules]]
+id = "boost-original-checked-matcher-leaves-106a"
+boost_matcher_leaf_anchor_file = "config/boost-matcher-leaf-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 30
+origin = "third_party"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Unchanged original release instances.cpp emits checked-string perl_matcher match_jump12 and match_toggle_case18. Complete relocation-free bodies, closed CFG and inventory uniqueness; actual source dispatch slots16/28, independently exact literal/set slots2/15 and uniquely located native readonly dispatch table establish specialization. Existing release and public-search contexts freshly replayed. No mask, tiny-stub generalization, table-wide exactness or authored credit. docs/BOOST_MATCHER_LEAVES_2026_11_01.md."

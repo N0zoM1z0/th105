@@ -3566,9 +3566,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A0950,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006A0A20,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006A0A60,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
-0x006A0AA0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A0AA0,third_party,runtime,exclude,observed,boost-original-checked-matcher-leaves-106a
 0x006A0AB0,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
-0x006A0AF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A0AF0,third_party,runtime,exclude,observed,boost-original-checked-matcher-leaves-106a
 0x006A0B10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A0B20,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A0B30,third_party,boost_regex,exclude,observed,boost-release-library-106a

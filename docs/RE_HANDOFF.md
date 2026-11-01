@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Original checked-string matcher leaves6A0AA0/12 and6A0AF0/18 now whole exact
+and inventory-unique in unchanged original release instances.cpp. Actual
+30-slot symbolic table and independently exact literal/set slots2/15 uniquely
+identify native readonly table6D60C0; selected slots16/28 close ownership.
+No full-table/other-method credit. All12 release and5 public-search comparisons
+pass; eight tests/36 real mutations. Excluded2021/review351; authored/source/
+unit totals unchanged. See BOOST_MATCHER_LEAVES_2026_11_01.md. Tiny universal
+false-return stubs and earlier CIL public-search mismatch remain unaccepted.
+
+
 Original clone_base destructor6A0880/7 now whole canonical/unique through its
 actual original-0.obj symbol and clone_base RTTI/vptr field+2. Existing typed
 small-Boost gate extends from4/47 to5/54 and freshly replays all old members.
