@@ -2343,6 +2343,11 @@ def validate_rule_evidence(
         errors.extend(
             validate_xiph_relocated_anchor_evidence(rule, selected, rows, read_pe)
         )
+    if rule.get("xiph_owned_switch"):
+        from types import SimpleNamespace
+        from xiph_owned_switch_origins import validate as validate_xiph_owned_switch
+        errors.extend(validate_xiph_owned_switch(rule, selected, rows, read_pe,
+                                                SimpleNamespace(**globals())))
     if rule.get("vc8_generated_anchor_file"):
         errors.extend(
             validate_vc8_generated_anchor_evidence(rule, selected, rows, read_pe)

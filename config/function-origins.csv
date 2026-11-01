@@ -2956,7 +2956,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00681900,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00681940,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00681A70,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
-0x00681C70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00681C70,third_party,audio,exclude,observed,xiph-sdk-owned-switch-106a
 0x00682000,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00682180,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00682340,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a

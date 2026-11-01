@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Original Xiph681C70 now has complete canonical912-byte SDK provenance:880 code
+plus32 owned switch bytes, no masks. Independent helper anchors freshly replay;
+bounded guard/CFG and inventory uniqueness pass. Separate validator preserves
+the old no-suffix gate. Excluded1799/review422; authored/source/exact unchanged
+(1806/1786/1585 with449721 exact bytes). No authored credit.
+See XIPH_OWNED_SWITCH_ORIGIN_2026_11_01.md.
+
 Arcade round473110 is formally authored/source-present: complete270 code plus
 separate36-byte switch table, unchanged264-byte source nonexact at entry.
 Fresh setup842 and transition231 remain exact; actual473300 call owns it.

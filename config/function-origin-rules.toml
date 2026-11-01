@@ -5126,3 +5126,15 @@ confidence = "observed"
 evidence = "Complete89-instruction Arcade round policy and separately bounded nine-entry switch table. Fresh exact transition231 owns call473300. Unchanged existing source covers checked opponent front, alternate costume, ScoreData stage/BGM policy, PlayerSlot configuration and scene load. Source264 versus native270 remains nonexact. docs/ARCADE_ROUND_FINALIZE_SOURCE_2026_11_01.md."
 required_body_hashes = [{ address = "0x00473110", size = 270, sha256 = "495bd0881bdb435fe31e51bbba69266cdbbeee050b655f2ac7e63e2a17e858d1" }]
 required_direct_edges = [{ caller = "0x00473250", site = "0x00473300", target = "0x00473110", caller_status = "matching" }]
+
+[[rules]]
+id = "xiph-sdk-owned-switch-106a"
+addresses = ["0x00681C70"]
+expected_count = 1
+expected_bytes = 880
+origin = "third_party"
+subsystem = "audio"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Official pinned codebook.obj _vorbis_book_decodev_add reproduces the entire 880-byte code plus owned32-byte switch table canonically, no masks or prefix credit. Three callees have freshly replayed independent SDK origin anchors; full-inventory uniqueness and bounded switch CFG are checked. Old no-suffix relocated-origin gate remains unchanged."
+xiph_owned_switch = { component = "vorbis", object = "codebook.obj", symbol = "_vorbis_book_decodev_add", address = "0x00681C70", size = 880, payload_sha256 = "ebefcd8712dfe0c21deada5ce4f13aca08e4872168fef3fb1abcdb4c58f057f5" }
