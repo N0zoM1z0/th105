@@ -96,11 +96,11 @@ def source_context(pe,symbols,origins,read):
     require(sr(cookie,4)==read(0x6f7a88,4),'logic_error initial security cookie differs')
     return calls,sv,cookie
 
-def qualify(pe,functions,symbols,anchor,rows,read,context):
+def qualify(pe,functions,symbols,anchor,rows,read,context,*,owner="original-0.obj"):
     calls_map,sv,cookie=context
     size,symbol,nh,ni,nu,na,call_offsets,data_offsets=CONTRACT[anchor['address']]
-    start=named(symbols,symbol,'i original-0.obj')
-    require(functions.get(start)==[(symbol,'i original-0.obj')],'logic_error root alias differs')
+    start=named(symbols,symbol,'i '+owner)
+    require(functions.get(start)==[(symbol,'i '+owner)],'logic_error root alias differs')
     handler=named(symbols,'__ehhandler$'+symbol,'CIL library: CIL module')
     sr=lambda a,n:pe.get_data(a-core.IMAGE_BASE,n)
     source_range=(core.IMAGE_BASE,core.IMAGE_BASE+pe.OPTIONAL_HEADER.SizeOfImage)

@@ -1193,6 +1193,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("linked_gamepad_allocator_anchor_file")
         or rule.get("linked_endpoint_allocator_anchor_file")
         or rule.get("linked_peer_allocator_anchor_file")
+        or rule.get("linked_network_tree_erase_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2455,6 +2456,10 @@ def validate_rule_evidence(
     if rule.get("linked_peer_allocator_anchor_file"):
         from linked_peer_allocator_origins import validate as validate_peer_allocator
         errors.extend(validate_peer_allocator(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("linked_network_tree_erase_anchor_file"):
+        from linked_network_tree_erase_origins import validate as validate_network_tree_erase
+        errors.extend(validate_network_tree_erase(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("msvc_runtime_anchor_file"):
         errors.extend(

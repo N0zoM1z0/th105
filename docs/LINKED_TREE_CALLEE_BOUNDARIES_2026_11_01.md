@@ -62,3 +62,12 @@ evidence, or a new genuine source-owner graph. Do not repeat this same original
 graph or force arbitrary Boost payload mappings. Counts and authored exact
 progress are unchanged. Target identity is the pinned Japanese1.06a PE;
 no new IDA semantics or generated executable execution was used.
+
+## Later actual network single-position result
+
+The unchanged real UDP lifetime/static context now supplies a complete714-byte
+single-position erase414110 with correct nil+15 payload, ordinary string/error
+interfaces and full exception proof. This is not one of the unclosed199-byte
+range bodies above. Import network contexts still have wrong private error-path
+ABIs despite the same714 length. See LINKED_NETWORK_TREE_ERASE_2026_11_01.md;
+no range-byte waiver, original Boost payload remapping or parent promotion.

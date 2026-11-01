@@ -466,7 +466,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00413E10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413E80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413EC0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00414110,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00414110,compiler_generated,network,exclude,observed,vc8-linked-network-tree-erase-106a
 0x004143E0,compiler_generated,network,exclude,observed,vc8-linked-checked-network-iterator-106a
 0x00414450,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x00414490,unknown,,review,unknown,ida-1.06a-initial-inventory

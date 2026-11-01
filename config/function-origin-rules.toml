@@ -5564,3 +5564,14 @@ subsystem = "network"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original allocator<NetworkInitializePeer20> from actual seven-TU all-CIL UDP initialization/worker graph. Whole81 canonical/inventory-unique with real32-byte peer, natural ECX count, complete CFG/imports/bad_alloc metadata/RTTI/copy/destructor and noncontinuable throw. Sole actual initialization export; no fabricated stride, function implementation, helper export, COFF barrier or mask. Existing receiveentry14 and ordinary runtime148/47/84/68 replay. Linked initialization470/native441 remains nonexact. docs/LINKED_PEER_ALLOCATOR_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-network-tree-erase-106a"
+linked_network_tree_erase_anchor_file = "config/linked-network-tree-erase-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 714
+origin = "compiler_generated"
+subsystem = "network"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Whole original peer multimap single-position erase714 from the unchanged actual UDP lifetime/static-CIL unit after fresh exact145/98 owners. Complete closed CFG, eleven named calls, all five HIGHLOW roles, full literal, out_of_range three-type throw metadata/RTTI, complete root EH27/8/36/8, logic constructors107/113 with EH, dtor/copy/string cleanup and actual rotation/iterator children replay. Full inventory unique, no masks or boundary waiver. Range199, owner and authored credit remain unaccepted. docs/LINKED_NETWORK_TREE_ERASE_2026_11_01.md."

@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Actual peer-tree single erase414110/714 now whole canonical/unique in unchanged
+existing UDP lifetime/static context after fresh145/98 owner proofs. Complete
+normal/exception CFG, all11 REL32/5 HIGHLOW, root EH27/8/36/8, three-type
+out_of_range metadata, logic107/113 with full EH, actual rotators76/80/iterator97
+and dtor/copy/string cleanup pass. Import7TU same-length714 remains nonexact:
+its error-path string/logic helper ABIs differ. No new COFF barrier/source/unit
+changes; range199 and owner remain unaccepted. Twelve tests/23 actual mutations;
+old Boost logic gate freshly passes with preserved default owner. Excluded2012/
+review360, other totals stay. See LINKED_NETWORK_TREE_ERASE_2026_11_01.md.
+
+
 Rejection415B90/122 is NOT exact despite main-only equality in both new all-CIL
 network graphs. Full handler27/FuncInfo36/unwind8 replay, but cleanup8 uses EAX
 instead of native ECX at+1; source/native real destructor13 differs+1/+3/+5.
