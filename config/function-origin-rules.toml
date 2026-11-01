@@ -5298,3 +5298,14 @@ confidence = "observed"
 evidence = "Real IColor four-byte interface and CSpriteBase-owned texture04 recover whole implicit CSpriteEx118 from unchanged background owner policy. Full canonical RTTI-owned vtable bindings,110 nonrelocation bytes and full-inventory uniqueness; no authored copy declaration/body. docs/SPRITE_COLOR_BASE_OWNERSHIP_2026_11_01.md."
 required_body_hashes = [{ address = "0x00450640", size = 118, sha256 = "abec55c15f83a440aa3b3f65dd5220b72208abd7ab43b1871ab233fba31e8f0a" }]
 required_direct_edges = [{ caller = "0x004663E0", site = "0x0046641A", target = "0x00450640", kind = "call" }]
+
+[[rules]]
+id = "vc8-implicit-lifetime-accounting-106a"
+implicit_lifetime_anchor_file = "config/vc8-implicit-lifetime-origin-anchors.toml"
+expected_count = 17
+expected_bytes = 1434
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Reviewed source has no declaration/body for these15 manager normal destructors, ResultList normal destructor and CTile copy constructor. Pinned source/header declarations, original owner units and complete fresh canonical emitted symbols preserve all1434 bytes but exclude authored accounting. No masked threshold relaxation. docs/IMPLICIT_LIFETIME_ACCOUNTING_2026_11_01.md."

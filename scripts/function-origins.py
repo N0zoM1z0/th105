@@ -1173,6 +1173,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("vc8_linked_checked_iterator_anchor_file")
         or rule.get("vc8_linked_string_range_anchor_file")
         or rule.get("scalar_wrapper_anchor_file")
+        or rule.get("implicit_lifetime_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2379,6 +2380,10 @@ def validate_rule_evidence(
     if rule.get("scalar_wrapper_anchor_file"):
         from scalar_wrapper_origins import validate as validate_scalar_wrappers
         errors.extend(validate_scalar_wrappers(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("implicit_lifetime_anchor_file"):
+        from implicit_lifetime_origins import validate as validate_implicit_lifetimes
+        errors.extend(validate_implicit_lifetimes(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("msvc_runtime_anchor_file"):
         errors.extend(

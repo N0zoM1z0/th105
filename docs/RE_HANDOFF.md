@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Implicit lifetime accounting corrected separately:15 manager normal dtors81,
+ResultList dtor55 and CTile copy164 have no authored declaration/body in their
+selected sources. Full fresh canonical proofs remain;17/1434 authored credit
+removed. Exact1428/443902, source1630/authored1650/excluded1969/review408,
+mapped1815/units769. Historical totals below superseded, no byte regression.
+New full-byte origin gate pins reviewed source/header declarations; it does not
+lower .70 fingerprint coverage for ResultList55. Seven synthetic tests added.
+See IMPLICIT_LIFETIME_ACCOUNTING_2026_11_01.md. Explicit authored empty7 stays.
+
 Shared IColor now owns only its4-byte interface; texture04/default initialization
 belongs to CSpriteBase. Native CSpriteEx implicit copy450640 closes118/118,
 compiler-only, while actual background512 and all277 selected authored roots

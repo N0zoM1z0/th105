@@ -358,21 +358,6 @@ EffectObject_EffectManager_dtor
 InfoEffectObject_EffectManager_ctor
 InfoEffectObject_EffectManager_dtor
 ICharacterObjectManager_dtor
-ReimuObjectManager_dtor
-MarisaObjectManager_dtor
-SakuyaObjectManager_dtor
-AliceObjectManager_dtor
-PatchouliObjectManager_dtor
-YoumuObjectManager_dtor
-RemiliaObjectManager_dtor
-YuyukoObjectManager_dtor
-YukariObjectManager_dtor
-SuikaObjectManager_dtor
-UdongeObjectManager_dtor
-KomachiObjectManager_dtor
-AyaObjectManager_dtor
-IkuObjectManager_dtor
-TenshiObjectManager_dtor
 YuyukoObjectManagerBase_dtor
 IColor_dtor
 CSpriteBase_set_color
@@ -460,7 +445,6 @@ CFileList_render_item
 CFileList_ctor
 CFileList_dtor
 CFileList_shutdown
-ResultList_dtor
 CReplayList_ctor
 CFileList_find_row
 CFileList_row_at
@@ -1052,7 +1036,6 @@ NetworkSendState_check
 CMenuEnd_initialize_runtime
 CollisionContext_dispatch_outcome_path
 CNetworkWinsock_shutdown
-CTile_copy_constructor
 CSprite_ctor
 BattleBaseEffect_ctor
 BattleBaseEffect_dtor

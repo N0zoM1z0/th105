@@ -1,0 +1,176 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+
+[[sources]]
+path = "src/battle/CTileCopyLifetime.cpp"
+sha256 = "9723a632ee29fd2c61b9316952a32bdc0d6a1decf61e534e3dc7972d08f1e608"
+
+[[sources]]
+path = "src/characters/CharacterObjectManagerCtors.cpp"
+sha256 = "5af5285783ccf05a8af0a0471df2c72ebdedb91b3302ef8e9af96e518ebabbe7"
+
+[[sources]]
+path = "src/characters/TObjectManagerBase.hpp"
+sha256 = "fa842b74a8cd4fb70d3b813a63ecdb0e10c3178afe3e7f44f2c19e4a3c25277c"
+
+[[sources]]
+path = "src/ui/ResultList.cpp"
+sha256 = "2b3618e0a36d90b58dc22c25982d74b5e31d6de489d2083e49dd1a37f17cc986"
+
+[[sources]]
+path = "src/ui/ResultMenu.hpp"
+sha256 = "fb07a76476c74fbc05a81717966b95d0ca409c038fe31a7217ad769693396787"
+
+[[anchors]]
+address = "0x004939C0"
+size = 81
+sha256 = "53a4e2d8bcda6d7bff997e2cb220277d9a9d1e9198fda85a7bf676867d30d04b"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VReimu@@VReimuObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VReimu@@VReimuObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x004B9EA0"
+size = 81
+sha256 = "ffec5a59534840712b3c589724d54dfeebf2b7f1b7150cd11c937c836cebceec"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x004DF3B0"
+size = 81
+sha256 = "e737bdfe5c2b4e476f7455748e83154c11ee205f345737f0270090d72ecca552"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x004FABC0"
+size = 81
+sha256 = "e737bdfe5c2b4e476f7455748e83154c11ee205f345737f0270090d72ecca552"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VAlice@@VAliceObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VAlice@@VAliceObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x0051EE60"
+size = 81
+sha256 = "e737bdfe5c2b4e476f7455748e83154c11ee205f345737f0270090d72ecca552"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x0053B2B0"
+size = 81
+sha256 = "bc001ba41f5966c38c1a06b331adff69117f81c2d407b7e6fa094db00c0af517"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x00555F70"
+size = 81
+sha256 = "e737bdfe5c2b4e476f7455748e83154c11ee205f345737f0270090d72ecca552"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x0056DDB0"
+size = 81
+sha256 = "ffec5a59534840712b3c589724d54dfeebf2b7f1b7150cd11c937c836cebceec"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x0058C070"
+size = 81
+sha256 = "af2fefd82f853d6418b641ba3bb3ed6e11dcffbca6d834082b230349aa32a6b4"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VYukari@@VYukariObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VYukari@@VYukariObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x005AEC00"
+size = 81
+sha256 = "e737bdfe5c2b4e476f7455748e83154c11ee205f345737f0270090d72ecca552"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VSuika@@VSuikaObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VSuika@@VSuikaObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x005D2B70"
+size = 81
+sha256 = "fba82f06d9ff0d4099461b91edf478af7efb319cb6f4ff40bd5435631bb4d0e1"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x005F79B0"
+size = 81
+sha256 = "e737bdfe5c2b4e476f7455748e83154c11ee205f345737f0270090d72ecca552"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x00618560"
+size = 81
+sha256 = "e93dae40c82428c6ff9ce837379df52b4c5838f2e43bcbc9e55c0eab5e65599b"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VAya@@VAyaObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VAya@@VAyaObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x00631230"
+size = 81
+sha256 = "e737bdfe5c2b4e476f7455748e83154c11ee205f345737f0270090d72ecca552"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VIku@@VIkuObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VIku@@VIkuObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x0064B670"
+size = 81
+sha256 = "6daf53ec84429d2f086581e528ca43e4056d1ce363f47615ab3678e1905c6c38"
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??1?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAE@XZ"
+emitted_symbol = "??1?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x00447260"
+size = 55
+sha256 = "f03e9b1b3d34364f9529c572ba8ae49b558a6cb7a2579523248ba25781c5d520"
+unit = "cross-v106a-result-list-ctor"
+symbol_base = "ResultList_dtor"
+emitted_symbol = "??1ResultList@th105@@UAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x004396A0"
+size = 164
+sha256 = "6268fa650b0889102e2b98655a7ab27b9f228bee117669a2e1e8e61123cd1c66"
+unit = "gpt-web-ctile-copy-lifetime"
+symbol_base = "??0CTileCopyProbe@th105@@QAE@ABV01@@Z"
+emitted_symbol = "??0CTileCopyProbe@th105@@QAE@ABV01@@Z"
+kind = "copy_constructor"

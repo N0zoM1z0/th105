@@ -27,6 +27,7 @@ EXACT_TEST_MODULES = (
     "test_linked_checked_iterator_origins",
     "test_linked_string_range_origins",
     "test_scalar_wrapper_origins",
+    "test_implicit_lifetime_origins",
     "test_xiph_owned_switch_origins",
     "test_linked_png_sdk",
     "test_linked_wave_callbacks",
