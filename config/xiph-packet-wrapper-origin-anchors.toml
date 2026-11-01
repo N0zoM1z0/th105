@@ -1,0 +1,15 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "xiph-original-ogg-packet-wrappers"
+
+[[anchors]]
+address = "0x006B6800"
+size = 21
+symbol = "_ogg_stream_packetout"
+sha256 = "1d89112015ad4cd4f87a93e47c8891321b5760a073e6674309e2e017b81b3cc0"
+
+[[anchors]]
+address = "0x006B6950"
+size = 21
+symbol = "_ogg_stream_packetpeek"
+sha256 = "f3f79ef04fea06df2b984712499b3ae5a9ab014491725a20d4e1dd5eb1cdbc6d"

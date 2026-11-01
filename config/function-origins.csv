@@ -3976,9 +3976,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B6770,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x006B6790,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x006B67E0,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
-0x006B6800,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B6800,third_party,audio,exclude,observed,xiph-original-packet-wrappers-106a
 0x006B6820,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
-0x006B6950,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B6950,third_party,audio,exclude,observed,xiph-original-packet-wrappers-106a
 0x006B6970,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x006B69B0,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x006B6AB0,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a

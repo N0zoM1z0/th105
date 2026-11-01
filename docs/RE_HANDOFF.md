@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Official SDK framing.obj packetout6B6800/21 and packetpeek6B6950/21 now whole
+canonical/unique, with actual advance1/0 and complete named provider6B6820/302.
+All32/32/304 source/native section bytes including24 total NOP padding pass;
+only42 new library code bytes count. Seven tests/368 real mutations cover every
+byte of all3 sections. New original SDK unit3 comparisons pass. Excluded2027/
+review345, units781; authored/source/mapped totals unchanged. See
+XIPH_PACKET_WRAPPERS_2026_11_01.md. Generic24-byte minimum remains unchanged.
+
+
 Original get_default_syntax6B45D0/548 now whole canonical/unique from unchanged
 regex_traits_defaults.cpp. All50 actual source DIR32 literal roles and complete
 strings/terminators pass; genuine60-pointer local array explains240-byte frame,

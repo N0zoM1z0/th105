@@ -5652,3 +5652,14 @@ subsystem = "boost_regex"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Unchanged original regex_traits_defaults.cpp get_default_syntax548: full canonical body, all50 DIR32 literal roles, complete source strings/terminators, closed CFG and inventory uniqueness. Actual60-pointer local message array explains240-byte frame; no inert scratch, padding, replacement body, mask or authored/data-byte credit. Separate typed literal aliases avoid changing other contexts. docs/BOOST_DEFAULT_SYNTAX_2026_11_01.md."
+
+[[rules]]
+id = "xiph-original-packet-wrappers-106a"
+xiph_packet_wrapper_anchor_file = "config/xiph-packet-wrapper-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 42
+origin = "third_party"
+subsystem = "audio"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Official SHA-pinned SDK framing.obj ogg_stream_packetout21 and packetpeek21, with their actual advance1/0 arguments and named packetout302 provider. Complete32/32/304 source sections including all native NOP padding verified, closed callable CFG and inventory uniqueness. Narrow typed proof leaves generic relocation thresholds unchanged; no masks, copied implementation, extra provider/padding or authored credit. docs/XIPH_PACKET_WRAPPERS_2026_11_01.md."
