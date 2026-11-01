@@ -119,3 +119,13 @@ complete223-byte body, void result and physical ECX/EDX/stack parameter
 storage are saved and independently checked in a fresh read-only invocation.
 Decompiler output is retained as a hypothesis. Logs are
 `build/network-udp-accept-ghidra-{save,readback}.log`.
+
+## November 1: actual seven-TU caller context is also nonexact
+
+The retained genuine seven-TU UDP initializer graph emits acceptance at
+10001D50/223. Its prologue saves incoming ECX to ESI and EDX to EDI, whereas
+native415AB0/223 saves ECX to EDI and EDX to ESI. The following owner access
+uses ESI in both. The whole-program source has chosen a different private
+incoming-register assignment; equal extent is not full equivalence. This
+observation does not authorize an ABI facade or a forced private export. No
+source or ledger changes result, and full EH is not newly claimed.

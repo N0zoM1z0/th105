@@ -131,3 +131,13 @@ storage are saved and checked in a separate read-only invocation. Logs are
 saved analysis remain below `.analysis/`. Ghidra's project-name restriction
 requires a disposable visible build path during invocation. One process uses
 768MiB heap and two CPUs; the temporary database copy is removed afterward.
+
+## November 1: genuine seven-TU initializer context remains negative
+
+The retained real peer/accept/thread/receive/initialize/send/service graph has
+unchanged source hashes and still emits send entry10004800/16 versus native
+416D90/18. Its entry still lacks the native reserve/restore DWORD. The same
+graph emits worker10004650/423 versus395, now with an aligned frame. This is
+not a fresh exactness claim or reason to add inert storage. No source, ABI,
+export or compiler flag was changed. Record:
+build/frontier-send-entry-seven-tu-20261101/negative.json.

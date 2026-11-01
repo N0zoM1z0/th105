@@ -2221,6 +2221,16 @@ The new selected root adds1155 exact authored bytes; no provider receives credit
 
 ## Parked work
 
+November1 retained-source checks also close two immediate leads without credit:
+the genuine7-TU send entry remains16/native18 and worker423/native395; its
+acceptance223 uses a different private incoming-register assignment. See the
+late appendices in NETWORK_UDP_SEND_WORKER_2026_10_16.md and
+NETWORK_UDP_ACCEPT_2026_10_16.md. Original W32 transform ordinary539/native539
+has88 nonrelocation differences, retained CIL533; verified1.34.1 active ANSI
+char function text equals1.40 and supplies no version hypothesis. See
+BOOST_W32_TRANSFORM_NEGATIVE_2026_11_01.md. No source or ledger changes.
+
+
 Do not reopen these lanes without the independent evidence their dated notes
 request. The full history records commands, source pins and unknowns.
 
