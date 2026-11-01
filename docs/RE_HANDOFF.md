@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Original SDK staticbook destroy681190/29 now whole canonical/unique, with
+actual clear6810C0/193 and all ten provider free calls. Full32/208 sections
+including18 total NOPs pass; only29 new library code bytes count. Seven tests/
+240 every-byte mutations. Excluded2034/review338, units787; authored/source
+counts unchanged. See XIPH_STATICBOOK_DESTROY_2026_11_01.md. The remaining
+review entries in665000..689890 are only five ambiguous tiny/null bodies.
+
+
 Original SDK inverse-square-root interpolation6897D0/77 now whole exact/unique,
 including3 NOPs, full1176-byte data, table element0/+4 and three real constants.
 Existing addend-specific mappings solve different table bytes without changing

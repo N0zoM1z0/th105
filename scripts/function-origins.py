@@ -1207,6 +1207,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("vc8_member_call_bridge_anchor_file")
         or rule.get("xiph_table_getter_anchor_file")
         or rule.get("xiph_invsq_anchor_file")
+        or rule.get("xiph_staticbook_destroy_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2481,6 +2482,10 @@ def validate_rule_evidence(
     if rule.get("boost_public_exception_copy_anchor_file"):
         from boost_public_exception_copies import validate as validate_public_exception_copies
         errors.extend(validate_public_exception_copies(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("xiph_staticbook_destroy_anchor_file"):
+        from xiph_staticbook_destroy_origins import validate as validate_staticbook_destroy
+        errors.extend(validate_staticbook_destroy(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("xiph_invsq_anchor_file"):
         from xiph_invsq_origins import validate as validate_invsq

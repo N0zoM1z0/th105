@@ -51,6 +51,7 @@ EXACT_TEST_MODULES = (
     "test_vc8_member_call_bridge_origins",
     "test_xiph_table_getter_origins",
     "test_xiph_invsq_origins",
+    "test_xiph_staticbook_destroy_origins",
     "test_legacy_real_literals",
     "test_linked_string_range_origins",
     "test_scalar_wrapper_origins",

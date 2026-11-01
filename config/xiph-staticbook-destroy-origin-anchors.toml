@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "xiph-original-staticbook-destroy"
+
+[[anchors]]
+address = "0x00681190"
+size = 29
+symbol = "_vorbis_staticbook_destroy"
+sha256 = "abb1eb8b9b5bda0c9746eff82004812883a030388e2c98b5c70b17f34f621731"
