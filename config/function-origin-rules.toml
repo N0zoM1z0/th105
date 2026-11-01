@@ -5685,3 +5685,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual original libcmt:typinfo.obj type_info destructor14, full canonical/unique with complete original RTTI. Whole typname cleanup112 and complete SEH28 bind the actual local finally103+9 and BSS root8; all named CRT calls checked. No unreachable-byte waiver, mask, generic threshold change or extra provider/metadata/authored credit. docs/VC8_TYPEINFO_DTOR_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-member-call-bridge-106a"
+vc8_member_call_bridge_anchor_file = "config/vc8-member-call-bridge-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 7
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual original libcmt:trnsctrl.obj CallMemberFunction0/1/2 complete7-byte COMDATs all match one unique native physical body. Exact four-instruction linear stack/this/indirect-tail contract checked; no arbitrary indirect-jump waiver, copied implementation, alias triple-count, mask or generic threshold change. Representative formal symbol does not imply exclusive0 identity. docs/VC8_MEMBER_CALL_BRIDGE_2026_11_01.md."

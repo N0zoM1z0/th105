@@ -29115,3 +29115,18 @@ address = "0x006898EF"
 symbol_base = "??1type_info@@UAE@XZ"
 rel32_targets = ["?_Type_info_dtor@type_info@@CAXPAV1@@Z=0x0068E5D6"]
 dir32_targets = ["??_7type_info@@6B@=??_7type_info@@6B@"]
+
+[units.vc8-original-member-call-bridge]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalTransferControl.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "trnsctrl.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Original7-byte member-call bridge shared by CallMemberFunction0/1/2. All three complete original COMDATs agree; selected formal spelling is representative, not exclusive alias identity. One physical runtime body counted."
+
+[[units.vc8-original-member-call-bridge.functions]]
+address = "0x0068998E"
+symbol_base = "?_CallMemberFunction0@@YGXPAX0@Z"

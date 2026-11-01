@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "vc8-original-member-call-bridge"
+
+[[anchors]]
+address = "0x0068998E"
+size = 7
+symbol = "?_CallMemberFunction0@@YGXPAX0@Z"
+sha256 = "ccbf196d9aacc84670c54b300822f455a21100f68e6b748f305d03175df37b65"

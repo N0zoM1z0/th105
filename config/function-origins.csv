@@ -3058,7 +3058,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00689919,vc8_runtime,runtime,exclude,observed,vc8-kb971090-short-and-data-runtime-106a
 0x00689934,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068995E,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0068998E,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068998E,vc8_runtime,runtime,exclude,observed,vc8-original-member-call-bridge-106a
 0x00689995,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x006899E7,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x00689A1D,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original libcmt:trnsctrl.obj member-call bridge68998E/7 now whole exact and
+inventory-unique. All three actual CallMemberFunction0/1/2 seven-byte COMDATs
+agree; formal0 is representative, not exclusive identity or proof all aliases
+were retained. One physical body counts once. Narrow four-instruction stack/
+this/indirect-tail CFG, ten tests/seven actual byte mutations; generic indirect
+jump rejection stays unchanged. Excluded2030/review342, units784; authored/
+source totals unchanged. See VC8_MEMBER_CALL_BRIDGE_2026_11_01.md.
+
+
 Actual original libcmt:typinfo.obj destructor6898EF/14 now whole canonical/
 unique with complete type_info RTTI7 records/6 regions. Original typname cleanup
 68E5D6/112 fully closes main103/finally9, scope28 and real BSS root8. The local
