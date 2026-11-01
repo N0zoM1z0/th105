@@ -185,6 +185,10 @@ def read_implemented(reccmp: dict[int, dict[str, str]]) -> set[str]:
     return values
 
 
+def is_compiler_deallocation_selector(symbol: str) -> bool:
+    return symbol.startswith(("??_G", "??_E")) or symbol.endswith("_scalar_deleting_destructor")
+
+
 def validate_matches(
     functions: dict[int, dict[str, str]], reccmp: dict[int, dict[str, str]], units: dict[str, object]
 ) -> int:
@@ -200,6 +204,14 @@ def validate_matches(
             raise ValueError(f"matches.csv:{line}: size differs from inventory")
         if row["unit"] not in units or not row["evidence"]:
             raise ValueError(f"matches.csv:{line}: unit and evidence are required")
+        configured = [
+            function for function in units[row["unit"]]["functions"]
+            if int(str(function["address"]), 0) == address
+        ]
+        if len(configured) != 1:
+            raise ValueError(f"matches.csv:{line}: exact function is not uniquely configured")
+        if is_compiler_deallocation_selector(str(configured[0].get("symbol_base", ""))):
+            raise ValueError(f"matches.csv:{line}: compiler-generated deleting wrapper cannot count as authored exact")
         mapped = reccmp.get(address)
         if mapped is None or mapped["name"] != row["name"] or mapped["type"] != "function":
             raise ValueError(f"matches.csv:{line}: exact row lacks matching authored mapping")

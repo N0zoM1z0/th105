@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Compiler-wrapper accounting corrected: 141 complete canonical scalar deleting
+bodies / 4,691 bytes are compiler-generated, not authored game code. All 50
+actual owner units freshly replay with emitted ??_G symbols and native primary
+RTTI owners. Proofs, source and mappings remain; only authored credit changes.
+Corrected exact1445/445336, source1647/authored1667/excluded1949/review411,
+mapped1815/units768. Historical totals below are superseded by this correction.
+See SCALAR_WRAPPER_ACCOUNTING_2026_11_01.md. Next source lead: Youmu's native
+RTTI proves an intermediate CharacterEx base missing from its current view;
+no constructor/destructor experiment has yet been accepted for that lead.
+
 Original string-range cleanup41D5A0 is canonical57 in the real package CIL
 context, with only its scalar-delete call rebound and the complete original
 delete/free tail wrapper verified. Fresh exact roots163/228, full CFG and

@@ -1,0 +1,2516 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+
+[[anchors]]
+address = "0x00492F70"
+size = 30
+unit = "cross-v106a-character-object-ctor"
+symbol_base = "??_GCharacterObject@@UAEPAXI@Z"
+sha256 = "affbc7a8a95be12b5bdda9d16d2af7afb82cac152d386ec23f7a94a955bb9201"
+
+[[anchors.owners]]
+vtable = "0x006C400C"
+slot = "0x006C400C"
+col = "0x006D9B6C"
+type_descriptor = "0x006E7DA0"
+type_name = ".?AVCharacterObject@@"
+
+[[anchors]]
+address = "0x00448400"
+size = 30
+unit = "cross-v106a-menu-select-family"
+symbol_base = "??_GCMenuSelect@th105@@UAEPAXI@Z"
+sha256 = "5b9b2d9961736257634e160f78b34f8c8ca6dddf419df24530b7a72745716a59"
+
+[[anchors.owners]]
+vtable = "0x006C2100"
+slot = "0x006C2100"
+col = "0x006D852C"
+type_descriptor = "0x006E6D6C"
+type_name = ".?AVCMenuSelect@@"
+
+[[anchors]]
+address = "0x00440750"
+size = 41
+unit = "cross-v106a-menu-select-family"
+symbol_base = "??_GMenu@th105@@UAEPAXI@Z"
+sha256 = "a87ae1d54ffd206032f874724130898875bdc8d7d9099c896e2d7b3ec461539a"
+
+[[anchors.owners]]
+vtable = "0x006C196C"
+slot = "0x006C196C"
+col = "0x006D8120"
+type_descriptor = "0x006E6BC8"
+type_name = ".?AVMenu@@"
+
+[[anchors]]
+address = "0x00447510"
+size = 76
+unit = "cross-v106a-result-list-ctor"
+symbol_base = "??_GResultList@th105@@UAEPAXI@Z"
+sha256 = "f6ca388bb24b11a3f081ae6119bf6e907e428ed5f444f3056d69abb8e5d0d586"
+
+[[anchors.owners]]
+vtable = "0x006C2058"
+slot = "0x006C2058"
+col = "0x006D8494"
+type_descriptor = "0x006E6D30"
+type_name = ".?AVResultList@@"
+
+[[anchors]]
+address = "0x00426060"
+size = 30
+unit = "cross-v106a-title-dtor"
+symbol_base = "??_GCTitle@th105@@UAEPAXI@Z"
+sha256 = "26e2f98d45423576ace03ae7a0549adddfe50b3a305a07abd1bf7e4ea6fd7823"
+
+[[anchors.owners]]
+vtable = "0x006C0CEC"
+slot = "0x006C0CEC"
+col = "0x006D7934"
+type_descriptor = "0x006E64E8"
+type_name = ".?AVCTitle@@"
+
+[[anchors]]
+address = "0x0040ABE0"
+size = 41
+unit = "cross-v106a-critical-section-wrapper"
+symbol_base = "??_GCriticalSectionWrapper@th105@@UAEPAXI@Z"
+sha256 = "ec3dd84cdf9f54f7dd7e4842d3d6d4ce612658b8ec15654626f83e5c80fcd7dc"
+
+[[anchors.owners]]
+vtable = "0x006D6A14"
+slot = "0x006D6A14"
+col = "0x006DCA68"
+type_descriptor = "0x006FA458"
+type_name = ".?AVCCriticalSection@@"
+
+[[anchors]]
+address = "0x004256B0"
+size = 30
+unit = "cross-v106a-select-scenario-dtor"
+symbol_base = "??_GCSelectScenario@th105@@UAEPAXI@Z"
+sha256 = "aad7f6594737b27017fb06868393c92cb9a8f5c205682c1840ee563085b189d1"
+
+[[anchors.owners]]
+vtable = "0x006C0C18"
+slot = "0x006C0C18"
+col = "0x006D78E4"
+type_descriptor = "0x006E64C4"
+type_name = ".?AVCSelectScenario@@"
+
+[[anchors]]
+address = "0x0041B890"
+size = 45
+unit = "cross-v106a-plain-file-reader-virtuals"
+symbol_base = "CFileReader_scalar_deleting_destructor"
+sha256 = "538f5d6343f362d1518038eaebcb8c8ea5784711b5278d1c683078cf341bf59b"
+
+[[anchors.owners]]
+vtable = "0x006C0F34"
+slot = "0x006C0F34"
+col = "0x006DCDC0"
+type_descriptor = "0x006FA578"
+type_name = ".?AVCFileReader@@"
+
+[[anchors.owners]]
+vtable = "0x006D6E28"
+slot = "0x006D6E28"
+col = "0x006DCFF8"
+type_descriptor = "0x006FA694"
+type_name = ".?AVCPackageFileReader@@"
+
+[[anchors]]
+address = "0x00447890"
+size = 30
+unit = "cross-v106a-ui-scalar-deleting-dtors"
+symbol_base = "CMenuResult_scalar_deleting_destructor"
+sha256 = "2f280eb3d38cba70a157b1d23016d325f264b33693177fc98165a5e1b36758aa"
+
+[[anchors.owners]]
+vtable = "0x006C2070"
+slot = "0x006C2070"
+col = "0x006D84E0"
+type_descriptor = "0x006E6D4C"
+type_name = ".?AVCMenuResult@@"
+
+[[anchors]]
+address = "0x0044D6E0"
+size = 30
+unit = "cross-v106a-profile-menu-scalar-dtor"
+symbol_base = "CProfileMenu_scalar_deleting_destructor"
+sha256 = "13dcc31e42665916932c85fbf342011fcbbdc087cd2238e5a1e9d97e3ddd4f69"
+
+[[anchors.owners]]
+vtable = "0x006C2484"
+slot = "0x006C2484"
+col = "0x006D86A8"
+type_descriptor = "0x006E6E24"
+type_name = ".?AVCProfileMenu@@"
+
+[[anchors]]
+address = "0x0041F6F0"
+size = 31
+unit = "cross-v106a-effect-sprite-scalar-dtor"
+symbol_base = "CEffectSprite_scalar_deleting_destructor"
+sha256 = "b8387f78a9ec13a3af31076f9697c3c60edeb712d8273750e395ee845740287d"
+
+[[anchors.owners]]
+vtable = "0x006C06E8"
+slot = "0x006C06E8"
+col = "0x006D731C"
+type_descriptor = "0x006E615C"
+type_name = ".?AVCSpriteEx@@"
+
+[[anchors.owners]]
+vtable = "0x006C072C"
+slot = "0x006C072C"
+col = "0x006D73B8"
+type_descriptor = "0x006E6188"
+type_name = ".?AVCEffectSprite@@"
+
+[[anchors]]
+address = "0x0040AE80"
+size = 31
+unit = "cross-v106a-effect-sprite-scalar-dtor"
+symbol_base = "??_GIColor@@UAEPAXI@Z"
+sha256 = "109b170e5c36ca532b47f0ca0930295f5fc094324a886aa56907454308a0e081"
+
+[[anchors.owners]]
+vtable = "0x006C0624"
+slot = "0x006C0624"
+col = "0x006DCD78"
+type_descriptor = "0x006FA560"
+type_name = ".?AUIColor@@"
+
+[[anchors.owners]]
+vtable = "0x006C0654"
+slot = "0x006C0654"
+col = "0x006DCD2C"
+type_descriptor = "0x006FA544"
+type_name = ".?AVCSpriteBase@@"
+
+[[anchors.owners]]
+vtable = "0x006C0668"
+slot = "0x006C0668"
+col = "0x006DCCDC"
+type_descriptor = "0x006FA52C"
+type_name = ".?AVCSprite@@"
+
+[[anchors.owners]]
+vtable = "0x006C0718"
+slot = "0x006C0718"
+col = "0x006DCC38"
+type_descriptor = "0x006FA504"
+type_name = ".?AVCTile@@"
+
+[[anchors.owners]]
+vtable = "0x006D6A60"
+slot = "0x006D6A60"
+col = "0x006DCBA0"
+type_descriptor = "0x006FA4CC"
+type_name = ".?AVCDesignObjectBase@@"
+
+[[anchors]]
+address = "0x00493A20"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VReimu@@VReimuObject@@@@UAEPAXI@Z"
+sha256 = "e9050c40d079bf4690396fecc920bb64decc5e9e2c65186a4dc117942bbd6bc0"
+
+[[anchors.owners]]
+vtable = "0x006C40FC"
+slot = "0x006C40FC"
+col = "0x006D9D38"
+type_descriptor = "0x006E7E8C"
+type_name = ".?AV?$CharacterObjectManager@VReimu@@VReimuObject@@@@"
+
+[[anchors]]
+address = "0x004B9F00"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@UAEPAXI@Z"
+sha256 = "2dd608e828125c158e4550d102754092a3be2e1f806f9099be3efa41008b614e"
+
+[[anchors.owners]]
+vtable = "0x006C4554"
+slot = "0x006C4554"
+col = "0x006D9F6C"
+type_descriptor = "0x006E7FD0"
+type_name = ".?AV?$CharacterObjectManager@VMarisa@@VMarisaObject@@@@"
+
+[[anchors]]
+address = "0x004DF410"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@UAEPAXI@Z"
+sha256 = "a382b1a28817f61e86d593ed00e7a396acc2ffe5dc6b19544c2a429c94673166"
+
+[[anchors.owners]]
+vtable = "0x006C48E4"
+slot = "0x006C48E4"
+col = "0x006DA1A0"
+type_descriptor = "0x006E8118"
+type_name = ".?AV?$CharacterObjectManager@VSakuya@@VSakuyaObject@@@@"
+
+[[anchors]]
+address = "0x004FAC20"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VAlice@@VAliceObject@@@@UAEPAXI@Z"
+sha256 = "c896ae72cc259457028c95c84634305a00be938ab9efd6e5d2d5cb0543434801"
+
+[[anchors.owners]]
+vtable = "0x006C4BAC"
+slot = "0x006C4BAC"
+col = "0x006DA3D4"
+type_descriptor = "0x006E825C"
+type_name = ".?AV?$CharacterObjectManager@VAlice@@VAliceObject@@@@"
+
+[[anchors]]
+address = "0x0051EEC0"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@UAEPAXI@Z"
+sha256 = "2fbc70ecbf270e9cc69df6b161ba00da245998e65f39af39aa7b1cc99f787aa8"
+
+[[anchors.owners]]
+vtable = "0x006C4E7C"
+slot = "0x006C4E7C"
+col = "0x006DA608"
+type_descriptor = "0x006E83B0"
+type_name = ".?AV?$CharacterObjectManager@VPatchouli@@VPatchouliObject@@@@"
+
+[[anchors]]
+address = "0x0053B310"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@UAEPAXI@Z"
+sha256 = "e936bba9bb49edba82c40754ed4f5155011b8fd2bfb26e7713a2467dbede91b3"
+
+[[anchors.owners]]
+vtable = "0x006C5114"
+slot = "0x006C5114"
+col = "0x006DA83C"
+type_descriptor = "0x006E84FC"
+type_name = ".?AV?$CharacterObjectManager@VYoumu@@VYoumuObject@@@@"
+
+[[anchors]]
+address = "0x00555FD0"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@UAEPAXI@Z"
+sha256 = "c1bd9b45d2168d04803ffdf44385c7d0b21cf8605ecdf2969d391a0b8655bbfb"
+
+[[anchors.owners]]
+vtable = "0x006C5394"
+slot = "0x006C5394"
+col = "0x006DAA70"
+type_descriptor = "0x006E8648"
+type_name = ".?AV?$CharacterObjectManager@VRemilia@@VRemiliaObject@@@@"
+
+[[anchors]]
+address = "0x0056DE10"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@UAEPAXI@Z"
+sha256 = "ecdf8796ba74807debe1b6d75fb28c6932b65697c35b8f4786233b847a102118"
+
+[[anchors.owners]]
+vtable = "0x006C561C"
+slot = "0x006C561C"
+col = "0x006DACA4"
+type_descriptor = "0x006E8798"
+type_name = ".?AV?$CharacterObjectManager@VYuyuko@@VYuyukoObject@@@@"
+
+[[anchors]]
+address = "0x0058C0D0"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VYukari@@VYukariObject@@@@UAEPAXI@Z"
+sha256 = "16a82fc026e89e9114ad03e82f2edbed878d5e6da39167d8f648bf25980e7e89"
+
+[[anchors.owners]]
+vtable = "0x006C589C"
+slot = "0x006C589C"
+col = "0x006DAED8"
+type_descriptor = "0x006E88E0"
+type_name = ".?AV?$CharacterObjectManager@VYukari@@VYukariObject@@@@"
+
+[[anchors]]
+address = "0x005AEC60"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VSuika@@VSuikaObject@@@@UAEPAXI@Z"
+sha256 = "c104f75ae76e3ead032a92daed79cb845714157b5c633b4bf8cff93d98f09721"
+
+[[anchors.owners]]
+vtable = "0x006C5B5C"
+slot = "0x006C5B5C"
+col = "0x006DB10C"
+type_descriptor = "0x006E8A24"
+type_name = ".?AV?$CharacterObjectManager@VSuika@@VSuikaObject@@@@"
+
+[[anchors]]
+address = "0x005D2BD0"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@UAEPAXI@Z"
+sha256 = "6566bc0bee2557e1c3665167a69aaf6848e47a2aacca2f64aba98f1a1bfefdc1"
+
+[[anchors.owners]]
+vtable = "0x006C5DFC"
+slot = "0x006C5DFC"
+col = "0x006DB340"
+type_descriptor = "0x006E8B68"
+type_name = ".?AV?$CharacterObjectManager@VUdonge@@VUdongeObject@@@@"
+
+[[anchors]]
+address = "0x005F7A10"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@UAEPAXI@Z"
+sha256 = "cbbce45d18c4af9d62ed62605098ae9a80571db18ff94222a8eee33b92d62a5c"
+
+[[anchors.owners]]
+vtable = "0x006C6034"
+slot = "0x006C6034"
+col = "0x006DB574"
+type_descriptor = "0x006E8CB8"
+type_name = ".?AV?$CharacterObjectManager@VKomachi@@VKomachiObject@@@@"
+
+[[anchors]]
+address = "0x006185C0"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VAya@@VAyaObject@@@@UAEPAXI@Z"
+sha256 = "8281feb3ff22b5432f0029eae6d5fa59459e83d4c777fcba0f8d03009491aff5"
+
+[[anchors.owners]]
+vtable = "0x006C62A4"
+slot = "0x006C62A4"
+col = "0x006DB7A8"
+type_descriptor = "0x006E8DF4"
+type_name = ".?AV?$CharacterObjectManager@VAya@@VAyaObject@@@@"
+
+[[anchors]]
+address = "0x00631290"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VIku@@VIkuObject@@@@UAEPAXI@Z"
+sha256 = "f3e8760e36290f3cb96a0f69a35db4e85afc3ac7bb8351d0f3dabff53da3e76e"
+
+[[anchors.owners]]
+vtable = "0x006C64FC"
+slot = "0x006C64FC"
+col = "0x006DB9DC"
+type_descriptor = "0x006E8F24"
+type_name = ".?AV?$CharacterObjectManager@VIku@@VIkuObject@@@@"
+
+[[anchors]]
+address = "0x0064B6D0"
+size = 30
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_G?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@UAEPAXI@Z"
+sha256 = "2fc9867a9b953907f6659a39783ebb0399a2bd878b56bd80e14ed84d04c8e75f"
+
+[[anchors.owners]]
+vtable = "0x006C6764"
+slot = "0x006C6764"
+col = "0x006DBC10"
+type_descriptor = "0x006E9068"
+type_name = ".?AV?$CharacterObjectManager@VTenshi@@VTenshiObject@@@@"
+
+[[anchors]]
+address = "0x00491BA0"
+size = 31
+unit = "cross-v106a-character-object-manager-ctors"
+symbol_base = "??_GICharacterObjectManager@@UAEPAXI@Z"
+sha256 = "6315252097354a21e830040ce788ebed5717a3ee662dc96a67a693b82b5af7b1"
+
+[[anchors.owners]]
+vtable = "0x006C3F64"
+slot = "0x006C3F64"
+col = "0x006D9AC8"
+type_descriptor = "0x006E7D5C"
+type_name = ".?AVICharacterObjectManager@@"
+
+[[anchors]]
+address = "0x004936B0"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "41a5c62de7c702088d171676b1304276023d1e5d0bff4c5ac85b0dee0c3c1881"
+
+[[anchors.owners]]
+vtable = "0x006C40EC"
+slot = "0x006C40EC"
+col = "0x006D9CF0"
+type_descriptor = "0x006E7E48"
+type_name = ".?AV?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x004B9C70"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "47448444d277bbb5bcf14abca700918c92d82b81d5aac9d47311c94c8f59cdd6"
+
+[[anchors.owners]]
+vtable = "0x006C4544"
+slot = "0x006C4544"
+col = "0x006D9F24"
+type_descriptor = "0x006E7F88"
+type_name = ".?AV?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x004DF190"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "5b95f6a82d3e6bd3cab1b89d5506a2a767665d745ded74c0e4edbb906b71d914"
+
+[[anchors.owners]]
+vtable = "0x006C48D4"
+slot = "0x006C48D4"
+col = "0x006DA158"
+type_descriptor = "0x006E80D0"
+type_name = ".?AV?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x004FA9A0"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "a14481dc2a53f6423cc183a76a8d10221f7bb6ce17fad789341e54b2d5a1b62c"
+
+[[anchors.owners]]
+vtable = "0x006C4B9C"
+slot = "0x006C4B9C"
+col = "0x006DA38C"
+type_descriptor = "0x006E8218"
+type_name = ".?AV?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x0051EC40"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "ea5c7ea5caf56511192095dd206c4b4046400aa525c479ea1403405548a3cf52"
+
+[[anchors.owners]]
+vtable = "0x006C4E6C"
+slot = "0x006C4E6C"
+col = "0x006DA5C0"
+type_descriptor = "0x006E8368"
+type_name = ".?AV?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x0053B000"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "ce77b653fc8617f8e19b39544ab8e7ca2b144501ebafdf19fbb833e9fe5cfc50"
+
+[[anchors.owners]]
+vtable = "0x006C5104"
+slot = "0x006C5104"
+col = "0x006DA7F4"
+type_descriptor = "0x006E84B8"
+type_name = ".?AV?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x00555D50"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "3dfae81e1813dd26b5ca82fd4a4b45421ad3b95cccafd046b2e24592756a43a2"
+
+[[anchors.owners]]
+vtable = "0x006C5384"
+slot = "0x006C5384"
+col = "0x006DAA28"
+type_descriptor = "0x006E8600"
+type_name = ".?AV?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x0056DB80"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "6fcf3e84964a58b140e461f9db73b4c017abaa4365ef549341f40e8e6ddb49be"
+
+[[anchors.owners]]
+vtable = "0x006C560C"
+slot = "0x006C560C"
+col = "0x006DAC5C"
+type_descriptor = "0x006E8750"
+type_name = ".?AV?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x0058BCE0"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "b0a6e97db76c21b58c1163a9cfb07fcc803009e5daa34267c7ce007ffd93d741"
+
+[[anchors.owners]]
+vtable = "0x006C588C"
+slot = "0x006C588C"
+col = "0x006DAE90"
+type_descriptor = "0x006E8898"
+type_name = ".?AV?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x005AE9E0"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "9944906292eefcadaf653dadeae54c7a4421af752b29ef7c7c81bcc6448ae607"
+
+[[anchors.owners]]
+vtable = "0x006C5B4C"
+slot = "0x006C5B4C"
+col = "0x006DB0C4"
+type_descriptor = "0x006E89E0"
+type_name = ".?AV?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x005D2930"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "d66efa7fcf6fa93497662462b2660108d18c977517d98526d417ae2a42882183"
+
+[[anchors.owners]]
+vtable = "0x006C5DEC"
+slot = "0x006C5DEC"
+col = "0x006DB2F8"
+type_descriptor = "0x006E8B20"
+type_name = ".?AV?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x005F7790"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "1cdc996160dd6c8f9aeaf1904500be28003302e4caf84c1100b5b8c1814e97f1"
+
+[[anchors.owners]]
+vtable = "0x006C6024"
+slot = "0x006C6024"
+col = "0x006DB52C"
+type_descriptor = "0x006E8C70"
+type_name = ".?AV?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x00618160"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "825344ac714c24d2690b2a029c8ca34a2cbbb674d2c1679e9b562b8ab3a82873"
+
+[[anchors.owners]]
+vtable = "0x006C6294"
+slot = "0x006C6294"
+col = "0x006DB760"
+type_descriptor = "0x006E8DB0"
+type_name = ".?AV?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x00631010"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "87097f4f50ddb702e6124069eeb00732a666a302639cdd7bf32c047ccb5a56e3"
+
+[[anchors.owners]]
+vtable = "0x006C64EC"
+slot = "0x006C64EC"
+col = "0x006DB994"
+type_descriptor = "0x006E8EE0"
+type_name = ".?AV?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x0064B3E0"
+size = 30
+unit = "cross-v106a-roster-manager-base-dtors"
+symbol_base = "??_G?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@UAEPAXI@Z"
+sha256 = "438858b6238d348ffc405ef3640b6e11bf1c4f3df311c6e919f39d0aba7fba75"
+
+[[anchors.owners]]
+vtable = "0x006C6754"
+slot = "0x006C6754"
+col = "0x006DBBC8"
+type_descriptor = "0x006E9020"
+type_name = ".?AV?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@"
+
+[[anchors]]
+address = "0x004601E0"
+size = 30
+unit = "cross-v106a-pat-record-lifetime"
+symbol_base = "??_GPatRecord88@th105@@UAEPAXI@Z"
+sha256 = "2fec60c4419144bfcadd457da688d48260a51ce6088759ae4ba8b19801cc552c"
+
+[[anchors.owners]]
+vtable = "0x006C2B84"
+slot = "0x006C2B84"
+col = "0x006D9514"
+type_descriptor = "0x006E7A00"
+type_name = ".?AVCharacterFrameData@@"
+
+[[anchors]]
+address = "0x00421A90"
+size = 47
+unit = "cross-v106a-pat-record-lifetime"
+symbol_base = "??_GFrameData@th105@@UAEPAXI@Z"
+sha256 = "bcb7ebb5d4db6edf76a2cce77c1fbd61806eac198871277ea600df1aa4c2775e"
+
+[[anchors.owners]]
+vtable = "0x006C0908"
+slot = "0x006C0908"
+col = "0x006D7660"
+type_descriptor = "0x006E63D4"
+type_name = ".?AVFrameData@@"
+
+[[anchors]]
+address = "0x0046F4E0"
+size = 30
+unit = "cross-v106a-info-effect-object-manager-base"
+symbol_base = "??_G?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@UAEPAXI@Z"
+sha256 = "9bb7a22783205116857fcb91fa432abcd99307db420531023ca465c5c0dc7580"
+
+[[anchors.owners]]
+vtable = "0x006C37B0"
+slot = "0x006C37B0"
+col = "0x006D97EC"
+type_descriptor = "0x006E7BB8"
+type_name = ".?AV?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@"
+
+[[anchors]]
+address = "0x00555790"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VRemiliaObject@@@@UAEPAXI@Z"
+sha256 = "35b6d78856ee898429107e38cb5325e99b15273a0475a1a96b93a37fb50d7e77"
+
+[[anchors.owners]]
+vtable = "0x006C5334"
+slot = "0x006C5334"
+col = "0x006DA97C"
+type_descriptor = "0x006E85AC"
+type_name = ".?AV?$CHandleManagerEx@VRemiliaObject@@@@"
+
+[[anchors]]
+address = "0x00436400"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VEffectObject@@@@UAEPAXI@Z"
+sha256 = "aa4b90e350214e4f23a152708fcb8b26be80ba5143f5f25820f7bb959b271dec"
+
+[[anchors.owners]]
+vtable = "0x006C13EC"
+slot = "0x006C13EC"
+col = "0x006D7C1C"
+type_descriptor = "0x006E6690"
+type_name = ".?AV?$CHandleManagerEx@VEffectObject@@@@"
+
+[[anchors]]
+address = "0x00424240"
+size = 30
+unit = "cross-v106a-effect-manager-lifetimes"
+symbol_base = "??_G?$CEffectManager@VCSelectObject@@@@UAEPAXI@Z"
+sha256 = "04cf713453eb965c7413746f36f5f4ede7690f1efbd28a04a64f43cfba245472"
+
+[[anchors.owners]]
+vtable = "0x006C08E0"
+slot = "0x006C08E0"
+col = "0x006D75E0"
+type_descriptor = "0x006E63A4"
+type_name = ".?AV?$CEffectManager@VCSelectObject@@@@"
+
+[[anchors]]
+address = "0x00438970"
+size = 30
+unit = "cross-v106a-effect-manager-lifetimes"
+symbol_base = "??_G?$CEffectManager@VWeatherEffectObject@@@@UAEPAXI@Z"
+sha256 = "1b98835cd2a25a2b01bae74214f79fc8527864e132be39a2b4abcb4e4a08a0eb"
+
+[[anchors.owners]]
+vtable = "0x006C1418"
+slot = "0x006C1418"
+col = "0x006D7D3C"
+type_descriptor = "0x006E67B4"
+type_name = ".?AV?$CEffectManager@VWeatherEffectObject@@@@"
+
+[[anchors]]
+address = "0x00438990"
+size = 30
+unit = "cross-v106a-effect-manager-lifetimes"
+symbol_base = "??_G?$CEffectManager@VEffectObject@@@@UAEPAXI@Z"
+sha256 = "f35889e26f25b104908e6df399666a02f4b013640609d3134ae61e4c920dd31e"
+
+[[anchors.owners]]
+vtable = "0x006C1490"
+slot = "0x006C1490"
+col = "0x006D7E18"
+type_descriptor = "0x006E6810"
+type_name = ".?AV?$CEffectManager@VEffectObject@@@@"
+
+[[anchors]]
+address = "0x00454FC0"
+size = 30
+unit = "cross-v106a-system-effect-object"
+symbol_base = "??_GSystemEffectObjectBase@@UAEPAXI@Z"
+sha256 = "0b8cb18bc9a568c4148526a24cb7ab22c9582da809392910a41b5a0d4c3aed69"
+
+[[anchors.owners]]
+vtable = "0x006C278C"
+slot = "0x006C278C"
+col = "0x006D8E8C"
+type_descriptor = "0x006E7338"
+type_name = ".?AVSystemEffectObjectBase@@"
+
+[[anchors.owners]]
+vtable = "0x006C2860"
+slot = "0x006C2860"
+col = "0x006D93D4"
+type_descriptor = "0x006E7944"
+type_name = ".?AVSystemEffectObject@@"
+
+[[anchors]]
+address = "0x0041E770"
+size = 30
+unit = "cross-v106a-battle-scene-lifetime"
+symbol_base = "??_GCBattle@th105@@UAEPAXI@Z"
+sha256 = "b10d841a00e5239a5ed5275973fa63cbc50d2bf9a24efe75511d7653c2345ab1"
+
+[[anchors.owners]]
+vtable = "0x006C0470"
+slot = "0x006C0470"
+col = "0x006D6F8C"
+type_descriptor = "0x006E601C"
+type_name = ".?AVCBattle@@"
+
+[[anchors.owners]]
+vtable = "0x006C04E8"
+slot = "0x006C04E8"
+col = "0x006D7128"
+type_descriptor = "0x006E60B8"
+type_name = ".?AVCBattleSV@@"
+
+[[anchors.owners]]
+vtable = "0x006C0540"
+slot = "0x006C0540"
+col = "0x006D721C"
+type_descriptor = "0x006E6104"
+type_name = ".?AVCBattleCL@@"
+
+[[anchors.owners]]
+vtable = "0x006C055C"
+slot = "0x006C055C"
+col = "0x006D726C"
+type_descriptor = "0x006E611C"
+type_name = ".?AVCBattleWatch@@"
+
+[[anchors]]
+address = "0x00440F00"
+size = 30
+unit = "cross-v106a-menu-overlay-wave"
+symbol_base = "CMenuBattle_scalar_deleting_destructor"
+sha256 = "51064bd641140459f88fb192dff8ffabb5d08fd83dd947ed4565abeed522cfcc"
+
+[[anchors.owners]]
+vtable = "0x006C1A5C"
+slot = "0x006C1A5C"
+col = "0x006D8168"
+type_descriptor = "0x006E6BDC"
+type_name = ".?AVCMenuBattle@@"
+
+[[anchors]]
+address = "0x00441890"
+size = 30
+unit = "cross-v106a-menu-overlay-wave"
+symbol_base = "CMenuConfig_scalar_deleting_destructor"
+sha256 = "54cada65a2d0940e3acaa01ba09012a6eae8dd9369585cc06eba5b4a059e49ea"
+
+[[anchors.owners]]
+vtable = "0x006C1A94"
+slot = "0x006C1A94"
+col = "0x006D81B4"
+type_descriptor = "0x006E6BFC"
+type_name = ".?AVCMenuConfig@@"
+
+[[anchors]]
+address = "0x0044B320"
+size = 30
+unit = "cross-v106a-profile-deck-lifetime"
+symbol_base = "??_GCProfileDeckEdit@th105@@UAEPAXI@Z"
+sha256 = "312fee2437c8c05290723ffb5ed418c7525ec752ea69d99e651582b2a6d5bcd2"
+
+[[anchors.owners]]
+vtable = "0x006C222C"
+slot = "0x006C222C"
+col = "0x006D8610"
+type_descriptor = "0x006E6DDC"
+type_name = ".?AVCProfileDeckEdit@@"
+
+[[anchors]]
+address = "0x00448A20"
+size = 30
+unit = "cross-v106a-profile-submenu-lifetimes"
+symbol_base = "??_GCProfileCharacterSelectLifetime@th105@@UAEPAXI@Z"
+sha256 = "569b79d79fc7e986f3b4c276a8dacef9dc9cba51a255ced0c80c43f24d69cc6d"
+
+[[anchors.owners]]
+vtable = "0x006C2150"
+slot = "0x006C2150"
+col = "0x006D8578"
+type_descriptor = "0x006E6D8C"
+type_name = ".?AVCProfileCharacterSelect@@"
+
+[[anchors]]
+address = "0x0044BCD0"
+size = 30
+unit = "cross-v106a-profile-submenu-lifetimes"
+symbol_base = "??_GCProfileKeyConfigLifetime@th105@@UAEPAXI@Z"
+sha256 = "4976883acd141e5fb081bf34950d778996ccb0d4af8003fcb91f01f6d6b94272"
+
+[[anchors.owners]]
+vtable = "0x006C22EC"
+slot = "0x006C22EC"
+col = "0x006D865C"
+type_descriptor = "0x006E6E00"
+type_name = ".?AVCProfileKeyConfig@@"
+
+[[anchors]]
+address = "0x00421930"
+size = 30
+unit = "cross-v106a-design-base-lifetime"
+symbol_base = "CDesignBase_scalar_deleting_destructor"
+sha256 = "544eb06ac72099d36c8f16ad444a8df5f16f1d38e88288605aab53cf792c0f13"
+
+[[anchors.owners]]
+vtable = "0x006C08AC"
+slot = "0x006C08AC"
+col = "0x006D7594"
+type_descriptor = "0x006E6388"
+type_name = ".?AVCDesignBase@@"
+
+[[anchors]]
+address = "0x00444FA0"
+size = 30
+unit = "cross-v106a-menu-continue-end-lifetimes"
+symbol_base = "CMenuContinue_scalar_deleting_destructor"
+sha256 = "b74b904cff8179422affb3518227e601438a61c990c901b8bae25b36131dcbf8"
+
+[[anchors.owners]]
+vtable = "0x006C1E14"
+slot = "0x006C1E14"
+col = "0x006D82CC"
+type_descriptor = "0x006E6C7C"
+type_name = ".?AVCMenuContinue@@"
+
+[[anchors]]
+address = "0x00445220"
+size = 30
+unit = "cross-v106a-menu-continue-end-lifetimes"
+symbol_base = "CMenuEnd_scalar_deleting_destructor"
+sha256 = "f3858b2076afc9f625b4c6446c4e73f5f4398b35cbb1e10b3aaf7381911b9374"
+
+[[anchors.owners]]
+vtable = "0x006C1E64"
+slot = "0x006C1E64"
+col = "0x006D8318"
+type_descriptor = "0x006E6C9C"
+type_name = ".?AVCMenuEnd@@"
+
+[[anchors]]
+address = "0x0043A9F0"
+size = 30
+unit = "cross-v106a-cfile-list"
+symbol_base = "??_GCFileList@th105@@UAEPAXI@Z"
+sha256 = "e0c0d742d6efc392f075c2ffbc099bdb367abd3d92dc972dd6b919f86ef1aceb"
+
+[[anchors.owners]]
+vtable = "0x006C104C"
+slot = "0x006C104C"
+col = "0x006D79D0"
+type_descriptor = "0x006E6550"
+type_name = ".?AVCReplayList@@"
+
+[[anchors.owners]]
+vtable = "0x006C120C"
+slot = "0x006C120C"
+col = "0x006D7A9C"
+type_descriptor = "0x006E65B0"
+type_name = ".?AVCProfileList@@"
+
+[[anchors.owners]]
+vtable = "0x006C15E0"
+slot = "0x006C15E0"
+col = "0x006D7F98"
+type_descriptor = "0x006E656C"
+type_name = ".?AVCFileList@@"
+
+[[anchors]]
+address = "0x00446F40"
+size = 30
+unit = "cross-v106a-replay-menu-lifetime"
+symbol_base = "CMenuReplay_scalar_deleting_destructor"
+sha256 = "098c1f57760bca70a8338b8b3b0d19fb40c735af4379bc44c5e5b492f68ebfe4"
+
+[[anchors.owners]]
+vtable = "0x006C2004"
+slot = "0x006C2004"
+col = "0x006D8448"
+type_descriptor = "0x006E6D10"
+type_name = ".?AVCMenuReplay@@"
+
+[[anchors]]
+address = "0x00407C70"
+size = 45
+unit = "cross-v106a-profile-data-writer"
+symbol_base = "CFileWriter_scalar_deleting_destructor"
+sha256 = "9b2688f7e065fef0c9cf020bf70596a5921b776018150a133bf16f197629b332"
+
+[[anchors.owners]]
+vtable = "0x006C0F4C"
+slot = "0x006C0F4C"
+col = "0x006DC9D8"
+type_descriptor = "0x006FA420"
+type_name = ".?AVCFileWriter@@"
+
+[[anchors]]
+address = "0x00493550"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VReimu@@VReimuObject@@@@UAEPAXI@Z"
+sha256 = "d505fa88ba73968e835081da98e246a65fb032a40dfcd7f8e401a97bdee4ac21"
+
+[[anchors.owners]]
+vtable = "0x006C4054"
+slot = "0x006C4054"
+col = "0x006D9BE4"
+type_descriptor = "0x006E7DC0"
+type_name = ".?AV?$CharacterObjectEx@VReimu@@VReimuObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C40A4"
+slot = "0x006C40A4"
+col = "0x006D9C8C"
+type_descriptor = "0x006E7E2C"
+type_name = ".?AVReimuObject@@"
+
+[[anchors]]
+address = "0x004B9870"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VMarisa@@VMarisaObject@@@@UAEPAXI@Z"
+sha256 = "230db791486ff7db9c0b06b5ab74d75381088c41592032862aac9ad699eae5ed"
+
+[[anchors.owners]]
+vtable = "0x006C44AC"
+slot = "0x006C44AC"
+col = "0x006D9E18"
+type_descriptor = "0x006E7EFC"
+type_name = ".?AV?$CharacterObjectEx@VMarisa@@VMarisaObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C44FC"
+slot = "0x006C44FC"
+col = "0x006D9EC0"
+type_descriptor = "0x006E7F6C"
+type_name = ".?AVMarisaObject@@"
+
+[[anchors]]
+address = "0x004DED90"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VSakuya@@VSakuyaObject@@@@UAEPAXI@Z"
+sha256 = "5aab6c3045885a2db5c0d6820bf329b907fc9f835e1adac4a42e79a732eb1c16"
+
+[[anchors.owners]]
+vtable = "0x006C483C"
+slot = "0x006C483C"
+col = "0x006DA04C"
+type_descriptor = "0x006E8044"
+type_name = ".?AV?$CharacterObjectEx@VSakuya@@VSakuyaObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C488C"
+slot = "0x006C488C"
+col = "0x006DA0F4"
+type_descriptor = "0x006E80B4"
+type_name = ".?AVSakuyaObject@@"
+
+[[anchors]]
+address = "0x004FA840"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VAlice@@VAliceObject@@@@UAEPAXI@Z"
+sha256 = "6ca784732a6b7c48ad58bf080eeb7de2d9deeb6d0676fd0e8f93ebdd9ed03b0d"
+
+[[anchors.owners]]
+vtable = "0x006C4B04"
+slot = "0x006C4B04"
+col = "0x006DA280"
+type_descriptor = "0x006E818C"
+type_name = ".?AV?$CharacterObjectEx@VAlice@@VAliceObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C4B54"
+slot = "0x006C4B54"
+col = "0x006DA328"
+type_descriptor = "0x006E81F8"
+type_name = ".?AVAliceObject@@"
+
+[[anchors]]
+address = "0x0051E840"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VPatchouli@@VPatchouliObject@@@@UAEPAXI@Z"
+sha256 = "3e5bea3faa515ca0334b1a7f8f32a5be784a1a023f65fa536901baccc37b63d8"
+
+[[anchors.owners]]
+vtable = "0x006C4DD4"
+slot = "0x006C4DD4"
+col = "0x006DA4B4"
+type_descriptor = "0x006E82D0"
+type_name = ".?AV?$CharacterObjectEx@VPatchouli@@VPatchouliObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C4E24"
+slot = "0x006C4E24"
+col = "0x006DA55C"
+type_descriptor = "0x006E8348"
+type_name = ".?AVPatchouliObject@@"
+
+[[anchors]]
+address = "0x0053AC00"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VYoumu@@VYoumuObject@@@@UAEPAXI@Z"
+sha256 = "93ca0379c441d5582f3534bbc55c2a6ecadf9031a7b0a8ade84b8a7b872531f6"
+
+[[anchors.owners]]
+vtable = "0x006C506C"
+slot = "0x006C506C"
+col = "0x006DA6E8"
+type_descriptor = "0x006E842C"
+type_name = ".?AV?$CharacterObjectEx@VYoumu@@VYoumuObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C50BC"
+slot = "0x006C50BC"
+col = "0x006DA790"
+type_descriptor = "0x006E8498"
+type_name = ".?AVYoumuObject@@"
+
+[[anchors]]
+address = "0x00555950"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VRemilia@@VRemiliaObject@@@@UAEPAXI@Z"
+sha256 = "59fb05263b34e5bc8e55c7f50940501fe9a0b28e0687ed7b291c04521394b8db"
+
+[[anchors.owners]]
+vtable = "0x006C52EC"
+slot = "0x006C52EC"
+col = "0x006DA91C"
+type_descriptor = "0x006E856C"
+type_name = ".?AV?$CharacterObjectEx@VRemilia@@VRemiliaObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C533C"
+slot = "0x006C533C"
+col = "0x006DA9C4"
+type_descriptor = "0x006E85E0"
+type_name = ".?AVRemiliaObject@@"
+
+[[anchors]]
+address = "0x0056D9A0"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VYuyuko@@VYuyukoObject@@@@UAEPAXI@Z"
+sha256 = "5632101bc9890ce08c1f9ce4f388270e7792fc519709f70135d39af9883ed639"
+
+[[anchors.owners]]
+vtable = "0x006C5574"
+slot = "0x006C5574"
+col = "0x006DAB50"
+type_descriptor = "0x006E86C0"
+type_name = ".?AV?$CharacterObjectEx@VYuyuko@@VYuyukoObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C55C4"
+slot = "0x006C55C4"
+col = "0x006DABF8"
+type_descriptor = "0x006E8730"
+type_name = ".?AVYuyukoObject@@"
+
+[[anchors]]
+address = "0x0058B8E0"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VYukari@@VYukariObject@@@@UAEPAXI@Z"
+sha256 = "b9b8e446cc824c2e25471d4a0655f1f57ee7a39ed764d0a6969842b4c32c30ef"
+
+[[anchors.owners]]
+vtable = "0x006C57F4"
+slot = "0x006C57F4"
+col = "0x006DAD84"
+type_descriptor = "0x006E880C"
+type_name = ".?AV?$CharacterObjectEx@VYukari@@VYukariObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C5844"
+slot = "0x006C5844"
+col = "0x006DAE2C"
+type_descriptor = "0x006E887C"
+type_name = ".?AVYukariObject@@"
+
+[[anchors]]
+address = "0x005AE880"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VSuika@@VSuikaObject@@@@UAEPAXI@Z"
+sha256 = "0eb8a4eaf760a57b2164aa16f2d3a8d0bc0fefdcf05e73df780c4ee01a300d1e"
+
+[[anchors.owners]]
+vtable = "0x006C5AB4"
+slot = "0x006C5AB4"
+col = "0x006DAFB8"
+type_descriptor = "0x006E8954"
+type_name = ".?AV?$CharacterObjectEx@VSuika@@VSuikaObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C5B04"
+slot = "0x006C5B04"
+col = "0x006DB060"
+type_descriptor = "0x006E89C0"
+type_name = ".?AVSuikaObject@@"
+
+[[anchors]]
+address = "0x005D27D0"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VUdonge@@VUdongeObject@@@@UAEPAXI@Z"
+sha256 = "5403ac93f9a81af20e18c6a0e849e3a8c1ec5c25c2e47ae37110372263174dac"
+
+[[anchors.owners]]
+vtable = "0x006C5D54"
+slot = "0x006C5D54"
+col = "0x006DB1EC"
+type_descriptor = "0x006E8A94"
+type_name = ".?AV?$CharacterObjectEx@VUdonge@@VUdongeObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C5DA4"
+slot = "0x006C5DA4"
+col = "0x006DB294"
+type_descriptor = "0x006E8B04"
+type_name = ".?AVUdongeObject@@"
+
+[[anchors]]
+address = "0x005F7390"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VKomachi@@VKomachiObject@@@@UAEPAXI@Z"
+sha256 = "06d6cf9eb553711b0c7097da6116b7236854759e1cbf8b4bc4f027b9b4ef3c2a"
+
+[[anchors.owners]]
+vtable = "0x006C5F8C"
+slot = "0x006C5F8C"
+col = "0x006DB420"
+type_descriptor = "0x006E8BDC"
+type_name = ".?AV?$CharacterObjectEx@VKomachi@@VKomachiObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C5FDC"
+slot = "0x006C5FDC"
+col = "0x006DB4C8"
+type_descriptor = "0x006E8C50"
+type_name = ".?AVKomachiObject@@"
+
+[[anchors]]
+address = "0x00618000"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VAya@@VAyaObject@@@@UAEPAXI@Z"
+sha256 = "f50142a9a31f64b654face11247a371aff56dca9c1399f601c6e3503505db870"
+
+[[anchors.owners]]
+vtable = "0x006C61FC"
+slot = "0x006C61FC"
+col = "0x006DB654"
+type_descriptor = "0x006E8D30"
+type_name = ".?AV?$CharacterObjectEx@VAya@@VAyaObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C624C"
+slot = "0x006C624C"
+col = "0x006DB6FC"
+type_descriptor = "0x006E8D98"
+type_name = ".?AVAyaObject@@"
+
+[[anchors]]
+address = "0x00630EB0"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VIku@@VIkuObject@@@@UAEPAXI@Z"
+sha256 = "61d3a528aa26da4c0268c13faa418e0ce4617309eaf90031b609e5e15c3bc5d5"
+
+[[anchors.owners]]
+vtable = "0x006C6454"
+slot = "0x006C6454"
+col = "0x006DB888"
+type_descriptor = "0x006E8E60"
+type_name = ".?AV?$CharacterObjectEx@VIku@@VIkuObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C64A4"
+slot = "0x006C64A4"
+col = "0x006DB930"
+type_descriptor = "0x006E8EC8"
+type_name = ".?AVIkuObject@@"
+
+[[anchors]]
+address = "0x0064B280"
+size = 30
+unit = "cross-v106a-character-object-ex-lifetimes"
+symbol_base = "??_G?$CharacterObjectEx@VTenshi@@VTenshiObject@@@@UAEPAXI@Z"
+sha256 = "e4a99d7e5aa115fc1d1b0beb2c666a44b27fcbb13b3fe667b74d9e865363ca7b"
+
+[[anchors.owners]]
+vtable = "0x006C66BC"
+slot = "0x006C66BC"
+col = "0x006DBABC"
+type_descriptor = "0x006E8F90"
+type_name = ".?AV?$CharacterObjectEx@VTenshi@@VTenshiObject@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C670C"
+slot = "0x006C670C"
+col = "0x006DBB64"
+type_descriptor = "0x006E9000"
+type_name = ".?AVTenshiObject@@"
+
+[[anchors]]
+address = "0x00450100"
+size = 31
+unit = "cross-v106a-script-command-runtime"
+symbol_base = "??_GCCommandFactoryBase@CScript@@UAEPAXI@Z"
+sha256 = "ef7fb051ab74e256159e23536250044b77b8bd666adc751416ebd07552f2d8ce"
+
+[[anchors.owners]]
+vtable = "0x006C25C0"
+slot = "0x006C25C0"
+col = "0x006D89D4"
+type_descriptor = "0x006E6F70"
+type_name = ".?AUICommandFactory@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C25D4"
+slot = "0x006C25D4"
+col = "0x006D8A1C"
+type_descriptor = "0x006E6F98"
+type_name = ".?AV?$CCommandFactory@V?$TCommand2@HH@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C25EC"
+slot = "0x006C25EC"
+col = "0x006D8AB0"
+type_descriptor = "0x006E6FF0"
+type_name = ".?AV?$CCommandFactory@V?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C25F8"
+slot = "0x006C25F8"
+col = "0x006D8AFC"
+type_descriptor = "0x006E7068"
+type_name = ".?AV?$CCommandFactory@V?$TCommand5@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C2604"
+slot = "0x006C2604"
+col = "0x006D8B48"
+type_descriptor = "0x006E70E4"
+type_name = ".?AV?$CCommandFactory@V?$TCommand5@HMMMH@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C2610"
+slot = "0x006C2610"
+col = "0x006D8B94"
+type_descriptor = "0x006E7124"
+type_name = ".?AV?$CCommandFactory@V?$TCommand5@HMMHH@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C261C"
+slot = "0x006C261C"
+col = "0x006D8BE0"
+type_descriptor = "0x006E7164"
+type_name = ".?AV?$CCommandFactory@VCCommand0@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C2628"
+slot = "0x006C2628"
+col = "0x006D8C2C"
+type_descriptor = "0x006E719C"
+type_name = ".?AV?$CCommandFactory@V?$TCommand1@H@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C27A0"
+slot = "0x006C27A0"
+col = "0x006D8F14"
+type_descriptor = "0x006E7360"
+type_name = ".?AV?$CCommandFactory@VCComCharacter@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C27AC"
+slot = "0x006C27AC"
+col = "0x006D8F60"
+type_descriptor = "0x006E73A0"
+type_name = ".?AV?$CCommandFactory@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C27B8"
+slot = "0x006C27B8"
+col = "0x006D8FAC"
+type_descriptor = "0x006E7420"
+type_name = ".?AV?$CCommandFactory@V?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C27C4"
+slot = "0x006C27C4"
+col = "0x006D8FF8"
+type_descriptor = "0x006E7498"
+type_name = ".?AV?$CCommandFactory@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C27D0"
+slot = "0x006C27D0"
+col = "0x006D9044"
+type_descriptor = "0x006E7518"
+type_name = ".?AV?$CCommandFactory@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C27DC"
+slot = "0x006C27DC"
+col = "0x006D9090"
+type_descriptor = "0x006E7598"
+type_name = ".?AV?$CCommandFactory@V?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C27E8"
+slot = "0x006C27E8"
+col = "0x006D90DC"
+type_descriptor = "0x006E7610"
+type_name = ".?AV?$CCommandFactory@V?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@@CScript@@"
+
+[[anchors.owners]]
+vtable = "0x006C27F4"
+slot = "0x006C27F4"
+col = "0x006D9128"
+type_descriptor = "0x006E768C"
+type_name = ".?AV?$CCommandFactory@V?$TCommand4@EEEE@@@CScript@@"
+
+[[anchors]]
+address = "0x004504F0"
+size = 31
+unit = "cross-v106a-script-command-runtime"
+symbol_base = "??_GCCommandBase@@UAEPAXI@Z"
+sha256 = "eacb4df330ab9304bb4824f45cc639ca265027cbfe509698cd933f38d79eaa7a"
+
+[[anchors.owners]]
+vtable = "0x006C25E0"
+slot = "0x006C25E0"
+col = "0x006D8A68"
+type_descriptor = "0x006E6FD4"
+type_name = ".?AVCCommandBase@@"
+
+[[anchors.owners]]
+vtable = "0x006C2634"
+slot = "0x006C2634"
+col = "0x006D8C78"
+type_descriptor = "0x006E71D8"
+type_name = ".?AV?$TCommand2@HH@@"
+
+[[anchors.owners]]
+vtable = "0x006C2640"
+slot = "0x006C2640"
+col = "0x006D8CC4"
+type_descriptor = "0x006E71F8"
+type_name = ".?AV?$TCommand5@HMMMH@@"
+
+[[anchors.owners]]
+vtable = "0x006C264C"
+slot = "0x006C264C"
+col = "0x006D8D10"
+type_descriptor = "0x006E7218"
+type_name = ".?AV?$TCommand5@HMMHH@@"
+
+[[anchors.owners]]
+vtable = "0x006C2658"
+slot = "0x006C2658"
+col = "0x006D8D5C"
+type_descriptor = "0x006E7238"
+type_name = ".?AVCCommand0@@"
+
+[[anchors.owners]]
+vtable = "0x006C2664"
+slot = "0x006C2664"
+col = "0x006D8DA8"
+type_descriptor = "0x006E7250"
+type_name = ".?AV?$TCommand1@H@@"
+
+[[anchors.owners]]
+vtable = "0x006C2800"
+slot = "0x006C2800"
+col = "0x006D9174"
+type_descriptor = "0x006E76C8"
+type_name = ".?AV?$TCommand4@EEEE@@"
+
+[[anchors]]
+address = "0x00450C70"
+size = 64
+unit = "cross-v106a-script-command-runtime"
+symbol_base = "??_G?$TCommand5@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@UAEPAXI@Z"
+sha256 = "636819f3fde9d72bc583169b6857077b17a78209b677b9111b53347d16989fa4"
+
+[[anchors.owners]]
+vtable = "0x006C267C"
+slot = "0x006C267C"
+col = "0x006D8E40"
+type_descriptor = "0x006E72D0"
+type_name = ".?AV?$TCommand5@HV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@"
+
+[[anchors]]
+address = "0x004557F0"
+size = 64
+unit = "cross-v106a-script-command-runtime"
+symbol_base = "??_G?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@UAEPAXI@Z"
+sha256 = "036bac2ff9bc7b4142c2e7a9f7b87fce6003480bffea7d01dc0f8a1eb0b31a61"
+
+[[anchors.owners]]
+vtable = "0x006C2670"
+slot = "0x006C2670"
+col = "0x006D8DF4"
+type_descriptor = "0x006E7270"
+type_name = ".?AV?$TCommand1@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C280C"
+slot = "0x006C280C"
+col = "0x006D91C0"
+type_descriptor = "0x006E76E8"
+type_name = ".?AVCComCharacter@@"
+
+[[anchors.owners]]
+vtable = "0x006C2824"
+slot = "0x006C2824"
+col = "0x006D9258"
+type_descriptor = "0x006E7768"
+type_name = ".?AV?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@@"
+
+[[anchors.owners]]
+vtable = "0x006C2830"
+slot = "0x006C2830"
+col = "0x006D92A4"
+type_descriptor = "0x006E77C8"
+type_name = ".?AV?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HMM@@"
+
+[[anchors.owners]]
+vtable = "0x006C283C"
+slot = "0x006C283C"
+col = "0x006D92F0"
+type_descriptor = "0x006E7828"
+type_name = ".?AV?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H_N@@"
+
+[[anchors.owners]]
+vtable = "0x006C2848"
+slot = "0x006C2848"
+col = "0x006D933C"
+type_descriptor = "0x006E7888"
+type_name = ".?AV?$TCommand3@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HH@@"
+
+[[anchors.owners]]
+vtable = "0x006C2854"
+slot = "0x006C2854"
+col = "0x006D9388"
+type_descriptor = "0x006E78E8"
+type_name = ".?AV?$TCommand4@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@HHH@@"
+
+[[anchors]]
+address = "0x00455830"
+size = 30
+unit = "cross-v106a-script-command-runtime"
+symbol_base = "??_G?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@UAEPAXI@Z"
+sha256 = "ddca201bd5c7b41b295f1d2f96bb9048fd9c358675bfaa70a41026aab420f389"
+
+[[anchors.owners]]
+vtable = "0x006C2818"
+slot = "0x006C2818"
+col = "0x006D920C"
+type_descriptor = "0x006E7708"
+type_name = ".?AV?$TCommand2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@@"
+
+[[anchors]]
+address = "0x0046B330"
+size = 30
+unit = "cross-v106a-battle-manager-base-lifetime"
+symbol_base = "??_GCBattleManagerBaseLifecycle@th105@@UAEPAXI@Z"
+sha256 = "975f771843e70348deb1b7bf835e6e9a6dba535b51bcbdfa26d02761b2962635"
+
+[[anchors.owners]]
+vtable = "0x006C1374"
+slot = "0x006C1374"
+col = "0x006D7AE8"
+type_descriptor = "0x006E65D8"
+type_name = ".?AVCBattleManagerStory@@"
+
+[[anchors.owners]]
+vtable = "0x006C3624"
+slot = "0x006C3624"
+col = "0x006D9790"
+type_descriptor = "0x006E65FC"
+type_name = ".?AVCBattleManagerBase@@"
+
+[[anchors]]
+address = "0x0046F760"
+size = 30
+unit = "cross-v106a-info-manager-base-lifetime"
+symbol_base = "??_GCInfoManagerBaseLifecycle@th105@@UAEPAXI@Z"
+sha256 = "0ce6a7b323c659ec258fdac1360905e85e27e0bc5382c861cb13599305105a31"
+
+[[anchors.owners]]
+vtable = "0x006C3830"
+slot = "0x006C3830"
+col = "0x006D9910"
+type_descriptor = "0x006E7C58"
+type_name = ".?AVCInfoManagerBase@@"
+
+[[anchors]]
+address = "0x004720F0"
+size = 30
+unit = "cross-v106a-info-manager-story-lifetime"
+symbol_base = "??_GCInfoManagerStoryLifecycle@th105@@UAEPAXI@Z"
+sha256 = "95c8b611eb1b2f7ae5a22934a933aa7f5e6a82239e44a8eef7771f43e7035d4f"
+
+[[anchors.owners]]
+vtable = "0x006C39D4"
+slot = "0x006C39D4"
+col = "0x006D9A78"
+type_descriptor = "0x006E7D0C"
+type_name = ".?AVCInfoManagerStory@@"
+
+[[anchors]]
+address = "0x0046F920"
+size = 30
+unit = "cross-v106a-info-manager-normal-lifetime"
+symbol_base = "??_GCInfoManagerNormalLifecycle@th105@@UAEPAXI@Z"
+sha256 = "ff864c5b99606eaf04ee0a3eea6f7933d59263bcaacd2b6df1b32fc0317f5277"
+
+[[anchors.owners]]
+vtable = "0x006C3850"
+slot = "0x006C3850"
+col = "0x006D995C"
+type_descriptor = "0x006E7C78"
+type_name = ".?AVCInfoManager@@"
+
+[[anchors]]
+address = "0x00465FD0"
+size = 30
+unit = "cross-v106a-background-base-lifetime"
+symbol_base = "??_GBackgroundBase@th105@@UAEPAXI@Z"
+sha256 = "69407ac2ea6817159c114127ea6cf1144009b43cb837f13109db47227537fe57"
+
+[[anchors.owners]]
+vtable = "0x006C2D58"
+slot = "0x006C2D58"
+col = "0x006D95B8"
+type_descriptor = "0x006E7AA8"
+type_name = ".?AVBackgroundBase@@"
+
+[[anchors]]
+address = "0x00468330"
+size = 36
+unit = "cross-v106a-background-derived-runtime"
+symbol_base = "??_GBG02@th105@@UAEPAXI@Z"
+sha256 = "62d3876b50adf12642695fda2b3d59a58074ff50a3c4d2bec45dde4e8456c2c8"
+
+[[anchors.owners]]
+vtable = "0x006C3360"
+slot = "0x006C3360"
+col = "0x006D9604"
+type_descriptor = "0x006E7AD0"
+type_name = ".?AVBG02@@"
+
+[[anchors]]
+address = "0x004686C0"
+size = 36
+unit = "cross-v106a-background-derived-runtime"
+symbol_base = "??_GBG04@th105@@UAEPAXI@Z"
+sha256 = "c6cb9df6fae63a7973c2dcd1ed07e87eec8a47895b11ac6ef269e923469696d9"
+
+[[anchors.owners]]
+vtable = "0x006C33D4"
+slot = "0x006C33D4"
+col = "0x006D9654"
+type_descriptor = "0x006E7AE8"
+type_name = ".?AVBG04@@"
+
+[[anchors]]
+address = "0x00469470"
+size = 36
+unit = "cross-v106a-background-derived-runtime"
+symbol_base = "??_GBG16@th105@@UAEPAXI@Z"
+sha256 = "e2b42536b5d22bc5bbc385d6da82a8a18826f7936e347608d9d4eecd72fea295"
+
+[[anchors.owners]]
+vtable = "0x006C34D8"
+slot = "0x006C34D8"
+col = "0x006D96A4"
+type_descriptor = "0x006E7B00"
+type_name = ".?AVBG16@@"
+
+[[anchors]]
+address = "0x00469510"
+size = 36
+unit = "cross-v106a-background-derived-runtime"
+symbol_base = "??_GBGCommon@th105@@UAEPAXI@Z"
+sha256 = "17d063abcd68d1802953babadd28f867cda785a732867286a2feb9f9575d6658"
+
+[[anchors.owners]]
+vtable = "0x006C3514"
+slot = "0x006C3514"
+col = "0x006D96F4"
+type_descriptor = "0x006E7B18"
+type_name = ".?AVBGCommon@@"
+
+[[anchors]]
+address = "0x004455D0"
+size = 54
+unit = "gpt-web-music-list-lifetime"
+symbol_base = "??_GMusicList@th105@@UAEPAXI@Z"
+sha256 = "47d2ec6422034761c633cbfed9249a9d147ed3c8586cb0099fd07ea381c530d4"
+
+[[anchors.owners]]
+vtable = "0x006C1E98"
+slot = "0x006C1E98"
+col = "0x006D8364"
+type_descriptor = "0x006E6CB8"
+type_name = ".?AVMusicList@@"
+
+[[anchors]]
+address = "0x00445810"
+size = 30
+unit = "gpt-web-menu-music-runtime"
+symbol_base = "??_GCMenuMusic@th105@@UAEPAXI@Z"
+sha256 = "4d7a9ae1b920b29ee2e191e654487facdf95d176371e4eb1c08ca7855f3b8cc9"
+
+[[anchors.owners]]
+vtable = "0x006C1EB0"
+slot = "0x006C1EB0"
+col = "0x006D83B0"
+type_descriptor = "0x006E6CD0"
+type_name = ".?AVCMenuMusic@@"
+
+[[anchors]]
+address = "0x00446570"
+size = 30
+unit = "gpt-web-menu-practice-runtime"
+symbol_base = "??_GCMenuPractice@th105@@UAEPAXI@Z"
+sha256 = "0299cbc11b71093d84dda8ddcf2153f009262aec66484e25e369a51504db52e8"
+
+[[anchors.owners]]
+vtable = "0x006C1F98"
+slot = "0x006C1F98"
+col = "0x006D83FC"
+type_descriptor = "0x006E6CF0"
+type_name = ".?AVCMenuPractice@@"
+
+[[anchors]]
+address = "0x004391E0"
+size = 30
+unit = "gpt-web-battle-manager-scene-lifetime"
+symbol_base = "??_GNormalSceneManagerLifetime@th105@@UAEPAXI@Z"
+sha256 = "409ea50e967c5aec2d0a342a3395d0360ff2ac086eaae259df12de7ac3d15d56"
+
+[[anchors.owners]]
+vtable = "0x006C1504"
+slot = "0x006C1504"
+col = "0x006D7EF4"
+type_descriptor = "0x006E685C"
+type_name = ".?AVCBattleManager@@"
+
+[[anchors]]
+address = "0x00439370"
+size = 43
+unit = "gpt-web-battle-manager-scene-lifetime"
+symbol_base = "??_GArcadeSceneManagerLifetime@th105@@UAEPAXI@Z"
+sha256 = "d0aab97232f311db33a7c733a05d0b18f8294294b2206cb12544af5551fc5fe1"
+
+[[anchors.owners]]
+vtable = "0x006C154C"
+slot = "0x006C154C"
+col = "0x006D7F44"
+type_descriptor = "0x006E687C"
+type_name = ".?AVCBattleManagerArcade@@"
+
+[[anchors]]
+address = "0x0041F8E0"
+size = 31
+unit = "gpt-web-scene-lifetime-wave"
+symbol_base = "??_GIScene@th105@@UAEPAXI@Z"
+sha256 = "452d285e1ac42c632c7aaaefb5374b544200e59bfd7dca97a795b1d89adb68b6"
+
+[[anchors.owners]]
+vtable = "0x006C0454"
+slot = "0x006C0454"
+col = "0x006D6F44"
+type_descriptor = "0x006E6004"
+type_name = ".?AUIScene@@"
+
+[[anchors.owners]]
+vtable = "0x006C077C"
+slot = "0x006C077C"
+col = "0x006D740C"
+type_descriptor = "0x006E6068"
+type_name = ".?AVCSceneBase@@"
+
+[[anchors]]
+address = "0x0041F3D0"
+size = 30
+unit = "gpt-web-scene-lifetime-wave"
+symbol_base = "??_GEndingLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "1be11016501dd482df2afd9619de677ea65141c55876448bddfe74df9c289767"
+
+[[anchors.owners]]
+vtable = "0x006C05E8"
+slot = "0x006C05E8"
+col = "0x006D72BC"
+type_descriptor = "0x006E613C"
+type_name = ".?AVEnding@@"
+
+[[anchors]]
+address = "0x0041F620"
+size = 30
+unit = "gpt-web-scene-lifetime-wave"
+symbol_base = "??_GCLoadingLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "a5ddd70a73f5b4a2a1b536564d17aa5cb2411510f325cde88f6a7444d30fbb9a"
+
+[[anchors.owners]]
+vtable = "0x006C04CC"
+slot = "0x006C04CC"
+col = "0x006D70A0"
+type_descriptor = "0x006E6084"
+type_name = ".?AVCLoadingSV@@"
+
+[[anchors.owners]]
+vtable = "0x006C0524"
+slot = "0x006C0524"
+col = "0x006D71CC"
+type_descriptor = "0x006E60E8"
+type_name = ".?AVCLoadingCL@@"
+
+[[anchors.owners]]
+vtable = "0x006C06AC"
+slot = "0x006C06AC"
+col = "0x006D7308"
+type_descriptor = "0x006E60A0"
+type_name = ".?AVCLoading@@"
+
+[[anchors]]
+address = "0x0041F830"
+size = 30
+unit = "gpt-web-scene-lifetime-wave"
+symbol_base = "??_GCLogoLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "973c6f9e23e30474bba826b731c59af1c6328e379216aca655f9d4b8a107f15a"
+
+[[anchors.owners]]
+vtable = "0x006C06FC"
+slot = "0x006C06FC"
+col = "0x006D736C"
+type_descriptor = "0x006E6174"
+type_name = ".?AVCLogo@@"
+
+[[anchors]]
+address = "0x0041FA00"
+size = 30
+unit = "gpt-web-scene-lifetime-wave"
+symbol_base = "??_GOpeningLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "3dd581c2e89523d7fc0423c4a10ef50e9e3cb56d93cba44661270d2f7debdd87"
+
+[[anchors.owners]]
+vtable = "0x006C0798"
+slot = "0x006C0798"
+col = "0x006D7420"
+type_descriptor = "0x006E61A8"
+type_name = ".?AVOpening@@"
+
+[[anchors]]
+address = "0x00426B60"
+size = 30
+unit = "gpt-web-scene-lifetime-wave"
+symbol_base = "??_GCLoadingWatchLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "6b137bfa21c647cc47d3b302914ee13d2cc7b713293a6f4dbd77e522350902f9"
+
+[[anchors.owners]]
+vtable = "0x006C0E60"
+slot = "0x006C0E60"
+col = "0x006D7984"
+type_descriptor = "0x006E6520"
+type_name = ".?AVCLoadingWatch@@"
+
+[[anchors]]
+address = "0x0043CC80"
+size = 30
+unit = "gpt-web-network-derived-lifetime"
+symbol_base = "??_GCNetworkServerLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "6bf8cb2563d7c8319340620a4352300537fe9be26270a313d8f9b964bdc396e0"
+
+[[anchors.owners]]
+vtable = "0x006C16EC"
+slot = "0x006C16EC"
+col = "0x006D803C"
+type_descriptor = "0x006E6904"
+type_name = ".?AVCNetworkServer@@"
+
+[[anchors]]
+address = "0x0043CDB0"
+size = 30
+unit = "gpt-web-network-derived-lifetime"
+symbol_base = "??_GCNetworkClientLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "2d4459c99689c279b2ba2f3c0bb9fbf3e2891e759f03cc21af4cc20272e30736"
+
+[[anchors.owners]]
+vtable = "0x006C1754"
+slot = "0x006C1754"
+col = "0x006D80BC"
+type_descriptor = "0x006E6924"
+type_name = ".?AVCNetworkClient@@"
+
+[[anchors]]
+address = "0x00409D30"
+size = 31
+unit = "gpt-web-input-manager-lifetime"
+symbol_base = "??_GCInputManagerLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "26276b2568cff6a1e2e53d231c110aa000f977af7fb664129b74a2537f3bd0ff"
+
+[[anchors.owners]]
+vtable = "0x006C1674"
+slot = "0x006C1674"
+col = "0x006DCA20"
+type_descriptor = "0x006FA43C"
+type_name = ".?AVCInputManager@@"
+
+[[anchors]]
+address = "0x0040AE10"
+size = 60
+unit = "gpt-web-cnumber-lifetime"
+symbol_base = "??_GCNumberLifetime@th105@@UAEPAXI@Z"
+sha256 = "778cb8774685a6977529384329fe9092b6778a76ccfaa59999f0c5d619e007dd"
+
+[[anchors.owners]]
+vtable = "0x006C1B60"
+slot = "0x006C1B60"
+col = "0x006DCBEC"
+type_descriptor = "0x006FA4EC"
+type_name = ".?AVCNumber@@"
+
+[[anchors]]
+address = "0x0040BB00"
+size = 61
+unit = "gpt-web-cnumber-lifetime"
+symbol_base = "??_GCDesignNumberLifetime@th105@@UAEPAXI@Z"
+sha256 = "57f8ee280707b10beb3dc422a404275ad1aa281b69078f8c2bbd5dec7c733336"
+
+[[anchors.owners]]
+vtable = "0x006D6AC0"
+slot = "0x006D6AC0"
+col = "0x006DCAB0"
+type_descriptor = "0x006FA478"
+type_name = ".?AVCDesignNumber@@"
+
+[[anchors]]
+address = "0x0043CB10"
+size = 30
+unit = "gpt-web-network-base-runtime"
+symbol_base = "??_GCNetworkBaseLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "cd4dbcd3b598bde46507f94b63c5d80f9ac0dd0fba452014b0eb776d8d34cb68"
+
+[[anchors.owners]]
+vtable = "0x006C1684"
+slot = "0x006C1684"
+col = "0x006D7FF4"
+type_descriptor = "0x006E68E8"
+type_name = ".?AVCNetworkBase@@"
+
+[[anchors]]
+address = "0x004182A0"
+size = 53
+unit = "gpt-web-direct-sound-resource-lifetime"
+symbol_base = "??_GDirectSoundResourceBaseLifetime@th105@@UAEPAXI@Z"
+sha256 = "17963ff6a1971613843c863060ca43173752808cd40632d699283a157b43bfc6"
+
+[[anchors.owners]]
+vtable = "0x006D6D44"
+slot = "0x006D6D48"
+col = "0x006DCF9C"
+type_descriptor = "0x006FA644"
+type_name = ".?AVCDSBuffer@@"
+
+[[anchors]]
+address = "0x004180D0"
+size = 30
+unit = "gpt-web-direct-sound-resource-lifetime"
+symbol_base = "??_GDirectSoundResourceLifetime@th105@@UAEPAXI@Z"
+sha256 = "dcc39ef00950197be9694e47942de529b997514f5c345a1971d97755f41986f7"
+
+[[anchors.owners]]
+vtable = "0x006D6D20"
+slot = "0x006D6D24"
+col = "0x006DCF1C"
+type_descriptor = "0x006FA65C"
+type_name = ".?AVCDS3DBuffer@@"
+
+[[anchors]]
+address = "0x00419FA0"
+size = 47
+unit = "gpt-web-cbitmap-data-runtime"
+symbol_base = "??_GCBitmapData@th105@@UAEPAXI@Z"
+sha256 = "8a406d08359aea4decd1f3b16a71ba9d8a2a695e72dba95ee58230469aa9fdb1"
+
+[[anchors.owners]]
+vtable = "0x006D6E10"
+slot = "0x006D6E10"
+col = "0x006DCFB0"
+type_descriptor = "0x006FA678"
+type_name = ".?AVCBitmapData@@"
+
+[[anchors]]
+address = "0x00422190"
+size = 73
+unit = "gpt-web-effect-object-hierarchy-lifetime"
+symbol_base = "??_GAnimationObject@@UAEPAXI@Z"
+sha256 = "d8ffb3e98dde5191f64c70f632ed8de25758b2b19b6af9cc8e85f18a20e92ca4"
+
+[[anchors.owners]]
+vtable = "0x006C0914"
+slot = "0x006C0914"
+col = "0x006D76A8"
+type_descriptor = "0x006E63EC"
+type_name = ".?AVAnimationObject@@"
+
+[[anchors.owners]]
+vtable = "0x006C0954"
+slot = "0x006C0954"
+col = "0x006D782C"
+type_descriptor = "0x006E6488"
+type_name = ".?AVCSelectObject@@"
+
+[[anchors.owners]]
+vtable = "0x006C1444"
+slot = "0x006C1444"
+col = "0x006D7DBC"
+type_descriptor = "0x006E67EC"
+type_name = ".?AVWeatherEffectObject@@"
+
+[[anchors.owners]]
+vtable = "0x006C14BC"
+slot = "0x006C14BC"
+col = "0x006D7E98"
+type_descriptor = "0x006E6840"
+type_name = ".?AVEffectObject@@"
+
+[[anchors.owners]]
+vtable = "0x006C37EC"
+slot = "0x006C37EC"
+col = "0x006D98B4"
+type_descriptor = "0x006E7C38"
+type_name = ".?AVInfoEffectObject@@"
+
+[[anchors]]
+address = "0x0045F930"
+size = 30
+unit = "gpt-web-attack-object-lifetime"
+symbol_base = "??_GAttackObject@@UAEPAXI@Z"
+sha256 = "2eae9cb2c152d772b9e0f1ee1a0716668ff086f83bba52a598b6283de8f112c7"
+
+[[anchors.owners]]
+vtable = "0x006C2B3C"
+slot = "0x006C2B3C"
+col = "0x006D94C0"
+type_descriptor = "0x006E79E4"
+type_name = ".?AVAttackObject@@"
+
+[[anchors]]
+address = "0x0040AD60"
+size = 56
+unit = "gpt-web-gage-lifetime"
+symbol_base = "??_GCGageLifetime@th105@@UAEPAXI@Z"
+sha256 = "6ebe585feb0b2ace8b7d707e99c4c5ebe719c07d8af667d68d599b609d303bbe"
+
+[[anchors.owners]]
+vtable = "0x006D6A38"
+slot = "0x006D6A38"
+col = "0x006DCC88"
+type_descriptor = "0x006FA518"
+type_name = ".?AVCGage@@"
+
+[[anchors]]
+address = "0x0040BAC0"
+size = 64
+unit = "gpt-web-gage-lifetime"
+symbol_base = "??_GCDesignGageLifetime@th105@@UAEPAXI@Z"
+sha256 = "b987927af932e1382784f9a2444fdde91e8ff0ae9e51362faec9837f1a47fb86"
+
+[[anchors.owners]]
+vtable = "0x006D6AA0"
+slot = "0x006D6AA0"
+col = "0x006DCB00"
+type_descriptor = "0x006FA494"
+type_name = ".?AVCDesignGage@@"
+
+[[anchors]]
+address = "0x0064B770"
+size = 36
+unit = "exact-first-character-ex-lifetime"
+symbol_base = "??_GCharacterExLifetimeView@th105@@UAEPAXI@Z"
+sha256 = "da85bd1331540f98efa1a89c4567591ef6a47008e7a7f40b3b552d731ce4a2d8"
+
+[[anchors.owners]]
+vtable = "0x006C3F94"
+slot = "0x006C3F94"
+col = "0x006D9B10"
+type_descriptor = "0x006E7D84"
+type_name = ".?AVCharacterEx@@"
+
+[[anchors.owners]]
+vtable = "0x006C412C"
+slot = "0x006C412C"
+col = "0x006D9DB8"
+type_descriptor = "0x006E7ECC"
+type_name = ".?AVReimu@@"
+
+[[anchors.owners]]
+vtable = "0x006C4584"
+slot = "0x006C4584"
+col = "0x006D9FEC"
+type_descriptor = "0x006E8010"
+type_name = ".?AVMarisa@@"
+
+[[anchors.owners]]
+vtable = "0x006C4914"
+slot = "0x006C4914"
+col = "0x006DA220"
+type_descriptor = "0x006E8158"
+type_name = ".?AVSakuya@@"
+
+[[anchors.owners]]
+vtable = "0x006C4BDC"
+slot = "0x006C4BDC"
+col = "0x006DA454"
+type_descriptor = "0x006E829C"
+type_name = ".?AVAlice@@"
+
+[[anchors.owners]]
+vtable = "0x006C4EAC"
+slot = "0x006C4EAC"
+col = "0x006DA688"
+type_descriptor = "0x006E83F8"
+type_name = ".?AVPatchouli@@"
+
+[[anchors.owners]]
+vtable = "0x006C53C4"
+slot = "0x006C53C4"
+col = "0x006DAAF0"
+type_descriptor = "0x006E868C"
+type_name = ".?AVRemilia@@"
+
+[[anchors.owners]]
+vtable = "0x006C564C"
+slot = "0x006C564C"
+col = "0x006DAD24"
+type_descriptor = "0x006E87D8"
+type_name = ".?AVYuyuko@@"
+
+[[anchors.owners]]
+vtable = "0x006C58CC"
+slot = "0x006C58CC"
+col = "0x006DAF58"
+type_descriptor = "0x006E8920"
+type_name = ".?AVYukari@@"
+
+[[anchors.owners]]
+vtable = "0x006C5B8C"
+slot = "0x006C5B8C"
+col = "0x006DB18C"
+type_descriptor = "0x006E8A64"
+type_name = ".?AVSuika@@"
+
+[[anchors.owners]]
+vtable = "0x006C5E2C"
+slot = "0x006C5E2C"
+col = "0x006DB3C0"
+type_descriptor = "0x006E8BA8"
+type_name = ".?AVUdonge@@"
+
+[[anchors.owners]]
+vtable = "0x006C6064"
+slot = "0x006C6064"
+col = "0x006DB5F4"
+type_descriptor = "0x006E8CFC"
+type_name = ".?AVKomachi@@"
+
+[[anchors.owners]]
+vtable = "0x006C62D4"
+slot = "0x006C62D4"
+col = "0x006DB828"
+type_descriptor = "0x006E8E30"
+type_name = ".?AVAya@@"
+
+[[anchors.owners]]
+vtable = "0x006C652C"
+slot = "0x006C652C"
+col = "0x006DBA5C"
+type_descriptor = "0x006E8F60"
+type_name = ".?AVIku@@"
+
+[[anchors.owners]]
+vtable = "0x006C6794"
+slot = "0x006C6794"
+col = "0x006DBC90"
+type_descriptor = "0x006E90A8"
+type_name = ".?AVTenshi@@"
+
+[[anchors]]
+address = "0x0046ED90"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VInfoEffectObject@@@@UAEPAXI@Z"
+sha256 = "41fef5a57fcc5bbb7bf024d2851b4d5b0036e6c9562c205180dee3b1efa34fe2"
+
+[[anchors.owners]]
+vtable = "0x006C37A8"
+slot = "0x006C37A8"
+col = "0x006D97A4"
+type_descriptor = "0x006E7B7C"
+type_name = ".?AV?$CHandleManagerEx@VInfoEffectObject@@@@"
+
+[[anchors]]
+address = "0x004930F0"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VReimuObject@@@@UAEPAXI@Z"
+sha256 = "2729a53d52869a4125407b0c10522ee494c7f1a1d1d7cf124ecb52455a20fa10"
+
+[[anchors.owners]]
+vtable = "0x006C409C"
+slot = "0x006C409C"
+col = "0x006D9C44"
+type_descriptor = "0x006E7DFC"
+type_name = ".?AV?$CHandleManagerEx@VReimuObject@@@@"
+
+[[anchors]]
+address = "0x004B96B0"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VMarisaObject@@@@UAEPAXI@Z"
+sha256 = "91a1d18145e445533733c91e944a6c2fa6959c4a5785ebd5a2381b3a4f13ec8c"
+
+[[anchors.owners]]
+vtable = "0x006C44F4"
+slot = "0x006C44F4"
+col = "0x006D9E78"
+type_descriptor = "0x006E7F38"
+type_name = ".?AV?$CHandleManagerEx@VMarisaObject@@@@"
+
+[[anchors]]
+address = "0x004DEBD0"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VSakuyaObject@@@@UAEPAXI@Z"
+sha256 = "09024b8e6c036a844ffa1ceb5fee4f98e696d62c99027de47403578114fbd43a"
+
+[[anchors.owners]]
+vtable = "0x006C4884"
+slot = "0x006C4884"
+col = "0x006DA0AC"
+type_descriptor = "0x006E8080"
+type_name = ".?AV?$CHandleManagerEx@VSakuyaObject@@@@"
+
+[[anchors]]
+address = "0x004FA360"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VAliceObject@@@@UAEPAXI@Z"
+sha256 = "042495c96d406ab2103b5372a395348cce8826a40070e84aa666766e19bad194"
+
+[[anchors.owners]]
+vtable = "0x006C4B4C"
+slot = "0x006C4B4C"
+col = "0x006DA2E0"
+type_descriptor = "0x006E81C8"
+type_name = ".?AV?$CHandleManagerEx@VAliceObject@@@@"
+
+[[anchors]]
+address = "0x0051E680"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VPatchouliObject@@@@UAEPAXI@Z"
+sha256 = "03c946656bd038916f6f9edb9d6c8d39f059d1d9a6bb811a3292fee4b320bc11"
+
+[[anchors.owners]]
+vtable = "0x006C4E1C"
+slot = "0x006C4E1C"
+col = "0x006DA514"
+type_descriptor = "0x006E8314"
+type_name = ".?AV?$CHandleManagerEx@VPatchouliObject@@@@"
+
+[[anchors]]
+address = "0x0053AA40"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VYoumuObject@@@@UAEPAXI@Z"
+sha256 = "6c86f468c92e79a93117ba7e8ae04e0b9571c6c3440976a2ffce6ae82d5282cd"
+
+[[anchors.owners]]
+vtable = "0x006C50B4"
+slot = "0x006C50B4"
+col = "0x006DA748"
+type_descriptor = "0x006E8468"
+type_name = ".?AV?$CHandleManagerEx@VYoumuObject@@@@"
+
+[[anchors]]
+address = "0x0056D3B0"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VYuyukoObject@@@@UAEPAXI@Z"
+sha256 = "9e561e769a488ff8f23db69d6d713ed39372ac099048850fb31834817839fa56"
+
+[[anchors.owners]]
+vtable = "0x006C55BC"
+slot = "0x006C55BC"
+col = "0x006DABB0"
+type_descriptor = "0x006E86FC"
+type_name = ".?AV?$CHandleManagerEx@VYuyukoObject@@@@"
+
+[[anchors]]
+address = "0x0058B720"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VYukariObject@@@@UAEPAXI@Z"
+sha256 = "fb1bcbe39a32a17e02c38548d02dc7b65f5b749f34210599825655eecb8fb68e"
+
+[[anchors.owners]]
+vtable = "0x006C583C"
+slot = "0x006C583C"
+col = "0x006DADE4"
+type_descriptor = "0x006E8848"
+type_name = ".?AV?$CHandleManagerEx@VYukariObject@@@@"
+
+[[anchors]]
+address = "0x005AE3A0"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VSuikaObject@@@@UAEPAXI@Z"
+sha256 = "511c6c9f2c18ef49f20be3449d2190860a3e50d757f8cf87bdf423f60d609665"
+
+[[anchors.owners]]
+vtable = "0x006C5AFC"
+slot = "0x006C5AFC"
+col = "0x006DB018"
+type_descriptor = "0x006E8990"
+type_name = ".?AV?$CHandleManagerEx@VSuikaObject@@@@"
+
+[[anchors]]
+address = "0x005D2370"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VUdongeObject@@@@UAEPAXI@Z"
+sha256 = "5d9376dea7dc3bc775e3f92c398ac8a37e192eb79568999dc99d74c9498967f9"
+
+[[anchors.owners]]
+vtable = "0x006C5D9C"
+slot = "0x006C5D9C"
+col = "0x006DB24C"
+type_descriptor = "0x006E8AD0"
+type_name = ".?AV?$CHandleManagerEx@VUdongeObject@@@@"
+
+[[anchors]]
+address = "0x005F71D0"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VKomachiObject@@@@UAEPAXI@Z"
+sha256 = "1171517a29b09a253a5c4238f052f09368017594f6b84af342873e941ef728c4"
+
+[[anchors.owners]]
+vtable = "0x006C5FD4"
+slot = "0x006C5FD4"
+col = "0x006DB480"
+type_descriptor = "0x006E8C1C"
+type_name = ".?AV?$CHandleManagerEx@VKomachiObject@@@@"
+
+[[anchors]]
+address = "0x00617B30"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VAyaObject@@@@UAEPAXI@Z"
+sha256 = "29152462b57c15bc17b1f667d2307cad685db6f9c69d4a75d0173144fc0111ab"
+
+[[anchors.owners]]
+vtable = "0x006C6244"
+slot = "0x006C6244"
+col = "0x006DB6B4"
+type_descriptor = "0x006E8D68"
+type_name = ".?AV?$CHandleManagerEx@VAyaObject@@@@"
+
+[[anchors]]
+address = "0x00630A50"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VIkuObject@@@@UAEPAXI@Z"
+sha256 = "76a36c619633c346aedf380de7c41cc4311e5dbdea6a706b702b133ee256b4d2"
+
+[[anchors.owners]]
+vtable = "0x006C649C"
+slot = "0x006C649C"
+col = "0x006DB8E8"
+type_descriptor = "0x006E8E98"
+type_name = ".?AV?$CHandleManagerEx@VIkuObject@@@@"
+
+[[anchors]]
+address = "0x0064AD80"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VTenshiObject@@@@UAEPAXI@Z"
+sha256 = "bd6a3135780d3a218e964a77a8cb83fc73913b288320b7b1eebced90f55eea2f"
+
+[[anchors.owners]]
+vtable = "0x006C6704"
+slot = "0x006C6704"
+col = "0x006DBB1C"
+type_descriptor = "0x006E8FCC"
+type_name = ".?AV?$CHandleManagerEx@VTenshiObject@@@@"
+
+[[anchors]]
+address = "0x00420D70"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VCSelectObject@@@@UAEPAXI@Z"
+sha256 = "844ae03892de09282a93efd73bb1d17d2a89b1de0c096dea20f0c46067c90808"
+
+[[anchors.owners]]
+vtable = "0x006C0880"
+slot = "0x006C0880"
+col = "0x006D7504"
+type_descriptor = "0x006E630C"
+type_name = ".?AV?$CHandleManagerEx@VCSelectObject@@@@"
+
+[[anchors]]
+address = "0x004363C0"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VWeatherEffectObject@@@@UAEPAXI@Z"
+sha256 = "ebf824f0b8eebf3ec552dc69f835ee92406268b6f327add32dfed55f116bb5ae"
+
+[[anchors.owners]]
+vtable = "0x006C13DC"
+slot = "0x006C13DC"
+col = "0x006D7B8C"
+type_descriptor = "0x006E6620"
+type_name = ".?AV?$CHandleManagerEx@VWeatherEffectObject@@@@"
+
+[[anchors]]
+address = "0x004363E0"
+size = 30
+unit = "cross-v106a-chandle-manager-ex-lifetime"
+symbol_base = "??_G?$CHandleManagerEx@VSystemEffectObject@@@@UAEPAXI@Z"
+sha256 = "5f928ece2f1ec3897598df8d399b7521f0f25e66246f1adaa6332c594ff5bde9"
+
+[[anchors.owners]]
+vtable = "0x006C13E4"
+slot = "0x006C13E4"
+col = "0x006D7BD4"
+type_descriptor = "0x006E6658"
+type_name = ".?AV?$CHandleManagerEx@VSystemEffectObject@@@@"
+
+[[anchors]]
+address = "0x004230B0"
+size = 30
+unit = "cross-v106a-effect-object-manager-base-lifetimes"
+symbol_base = "??_G?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@UAEPAXI@Z"
+sha256 = "27301db0b6f709ca41b2778aad409575885bec4bb096d4d3f4a1453259f2d5a0"
+
+[[anchors.owners]]
+vtable = "0x006C08A4"
+slot = "0x006C08A4"
+col = "0x006D754C"
+type_descriptor = "0x006E6340"
+type_name = ".?AV?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@"
+
+[[anchors]]
+address = "0x004378C0"
+size = 30
+unit = "cross-v106a-effect-object-manager-base-lifetimes"
+symbol_base = "??_G?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@UAEPAXI@Z"
+sha256 = "37ddcfa3f0e1670ccedc147dc9dd2ef0b7ea3eff631d6eeae70facd9c8e51569"
+
+[[anchors.owners]]
+vtable = "0x006C13F8"
+slot = "0x006C13F8"
+col = "0x006D7C64"
+type_descriptor = "0x006E66C8"
+type_name = ".?AV?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@"
+
+[[anchors]]
+address = "0x00437D00"
+size = 30
+unit = "cross-v106a-effect-object-manager-base-lifetimes"
+symbol_base = "??_G?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@UAEPAXI@Z"
+sha256 = "df8a498fa2e6799ee8df82674e9f72c7dc2a8dfc0cffda73e602bf6ac22a1bbe"
+
+[[anchors.owners]]
+vtable = "0x006C1400"
+slot = "0x006C1400"
+col = "0x006D7CAC"
+type_descriptor = "0x006E6718"
+type_name = ".?AV?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@"
+
+[[anchors]]
+address = "0x004583C0"
+size = 30
+unit = "cross-v106a-effect-object-manager-base-lifetimes"
+symbol_base = "??_G?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@UAEPAXI@Z"
+sha256 = "cf2a962d6cbd6ce28297bb6ec893aa9817650ebe4aa090985344eb2d9ab3b67c"
+
+[[anchors.owners]]
+vtable = "0x006C1408"
+slot = "0x006C1408"
+col = "0x006D7CF4"
+type_descriptor = "0x006E6760"
+type_name = ".?AV?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@"
+
+[[anchors.owners]]
+vtable = "0x006C288C"
+slot = "0x006C288C"
+col = "0x006D9428"
+type_descriptor = "0x006E7968"
+type_name = ".?AV?$SystemEffectManager@VSystemEffectObject@@@@"
+
+[[anchors]]
+address = "0x0046F780"
+size = 30
+unit = "cross-v106a-effect-manager-lifetimes"
+symbol_base = "??_G?$CEffectManager@VInfoEffectObject@@@@UAEPAXI@Z"
+sha256 = "ccdb477ee6e5192a3a7f27f0d5f10589e5027cd2297c5fc149acd3849d9751a8"
+
+[[anchors.owners]]
+vtable = "0x006C37C0"
+slot = "0x006C37C0"
+col = "0x006D9834"
+type_descriptor = "0x006E7C04"
+type_name = ".?AV?$CEffectManager@VInfoEffectObject@@@@"
