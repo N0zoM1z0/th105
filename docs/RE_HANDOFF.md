@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Linked tree shape leads remain CLOSED under current graph: CScript family has
+whole original recursiveErase86/increment97 matches (both already excluded),
+but singleErase783/native756 is unproved; actual CScript CIL emits270/806 versus
+range199/single756. Network original nil+19 differs from native+15. Both
+source/native range199 have unreachable JMP+123/LEA+125 rejected by strict
+decoder; no masking or boundary waiver. No code/ledger changes. See
+LINKED_TREE_CALLEE_BOUNDARIES_2026_11_01.md; reopen only for new actual callee/
+payload/owner evidence, not the same graph or arbitrary address mappings.
+
+
 Original cache-list node allocator6A3BD0/26 now whole-canonical/unique:20-byte
 allocation and self-linked prefix, original named new, no data/HIGHLOW refs.
 Actual original cache-data ctor and native6B0310 call6B0339 publish returned
