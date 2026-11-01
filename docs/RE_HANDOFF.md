@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Battle request-list growth466D10 is canonical160 from unchanged actual stage
+publisher with native-required GS. Complete push50/node59 witnesses also pass;
+those were already compiler-excluded. Original publisher120 freshly stays exact.
+Full length_error metadata identities and all named calls are bound; handler
+prefix is address ownership only. Excluded1951/review409/units769; authored
+exact1445/445336 and source1647 stay. See BATTLE_REQUEST_LIST_ORIGINS_2026_11_01.md.
+Cutin real-release CIL control closes negative at95/96; no gate relaxation.
+
 Youmu now includes its RTTI-proven intermediate CharacterEx base and abstract
 Character destructor interface. Constructor159 remains exact; implicit scalar
 teardown53B3D0 is canonical49, compiler-only, with actual deque7D0 cleanup.

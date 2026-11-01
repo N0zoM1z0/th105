@@ -28742,3 +28742,26 @@ notes = "Actual global input-table lifetime emits complete checked vector<SceneB
 address = "0x0043C280"
 symbol_base = "?_Tidy@?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@IAEXXZ"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
+
+[units.exact-first-battle-request-list-runtime]
+kind = "probe"
+source = "src/battle/BattleObjectStage.cpp"
+object = "build/match-units/ExactFirst_BattleRequestListRuntime.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Actual stage publisher source with native-cookie-required GS for emitted list growth160; compiler-only push50 and existing node59. No source changes or authored credit. docs/BATTLE_REQUEST_LIST_ORIGINS_2026_11_01.md."
+
+[[units.exact-first-battle-request-list-runtime.functions]]
+address = "0x00466D10"
+symbol_base = "?_Incsize@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEXI@Z"
+rel32_targets = ["?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0", "??0logic_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z=0x00401670", "__CxxThrowException@8=0x0068A153", "?_Incsize@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEXI@Z=0x00466D10", "?_Buynode@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@2@PAU342@0ABUBattleRenderRequest@th105@@@Z=0x00466940", "??2@YAPAXI@Z=0x00689DCB"]
+
+[[units.exact-first-battle-request-list-runtime.functions]]
+address = "0x00466DB0"
+symbol_base = "?push_back@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@QAEXABUBattleRenderRequest@th105@@@Z"
+rel32_targets = ["?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0", "??0logic_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z=0x00401670", "__CxxThrowException@8=0x0068A153", "?_Incsize@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEXI@Z=0x00466D10", "?_Buynode@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@2@PAU342@0ABUBattleRenderRequest@th105@@@Z=0x00466940", "??2@YAPAXI@Z=0x00689DCB"]
+
+[[units.exact-first-battle-request-list-runtime.functions]]
+address = "0x00466940"
+symbol_base = "?_Buynode@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@2@PAU342@0ABUBattleRenderRequest@th105@@@Z"
+rel32_targets = ["?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0", "??0logic_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z=0x00401670", "__CxxThrowException@8=0x0068A153", "?_Incsize@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEXI@Z=0x00466D10", "?_Buynode@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@2@PAU342@0ABUBattleRenderRequest@th105@@@Z=0x00466940", "??2@YAPAXI@Z=0x00689DCB"]

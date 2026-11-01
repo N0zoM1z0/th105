@@ -5272,3 +5272,16 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Fresh actual owner units emit compiler ??_G symbols with complete canonical bodies, exact native RET4 and primary RTTI/vtable owners. All selected wrappers retain proofs but no authored source/exact credit. Legacy selector aliases resolve to actual compiler symbols. docs/SCALAR_WRAPPER_ACCOUNTING_2026_11_01.md; Youmu extension in docs/YOUMU_BASE_LIFETIME_2026_11_01.md."
+
+[[rules]]
+id = "vc8-generated-battle-request-growth-106a"
+vc8_generated_anchor_file = "config/vc8-generated-battle-request-growth-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 160
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual unchanged stage publisher source emits full canonical list growth160 and push50, with native GS exception lifetime, complete node59 witness, all named calls and original length_error metadata. Full-inventory unique fingerprints at unchanged .70/24/no-tail thresholds. docs/BATTLE_REQUEST_LIST_ORIGINS_2026_11_01.md."
+required_body_hashes = [{ address = "0x00466D10", size = 160, sha256 = "2a0576a09d944559a7836dbcace49c147a32b1c255241d50e6316aaf11437226" }]
+required_direct_edges = [{ caller = "0x00466DB0", site = "0x00466DCF", target = "0x00466D10", kind = "call" }]
