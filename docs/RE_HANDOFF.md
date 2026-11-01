@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Source-presence bookkeeping correction: already-exact effect loader437EC0/2528
+was missing from implemented.csv. Fresh unchanged-source whole replay passes;
+the one name is restored and exact rows now require source-present membership.
+Three new invariant tests; source count1636 (was1635), exact1431/443916 unchanged.
+The stale parked79-difference note is corrected, not treated as new byte progress.
+See SOURCE_LEDGER_CONSISTENCY_2026_11_01.md.
+
+
 Official SDK framing.obj packetout6B6800/21 and packetpeek6B6950/21 now whole
 canonical/unique, with actual advance1/0 and complete named provider6B6820/302.
 All32/32/304 source/native section bytes including24 total NOP padding pass;
@@ -2238,8 +2246,10 @@ request. The full history records commands, source pins and unknowns.
   operand differences. The genuine family-TU lane is closed.
 - Collision debug45E950 is exact3087. Rectangle4012A0 remains394 versus395,
   85 unequal positions; native Z0.5 and finite lifetime controls are retained.
-- Scene bootstrap43E2E0 remains3722/11 stack-home differences; effect loader
-  437EC0 remains2528/79 differences; Fighter PAT461B70 remains3898 versus3885.
+- Scene bootstrap43E2E0 remains3722/11 stack-home differences. Effect loader
+  437EC0 is exact2528; its old79-difference stop was superseded by ordinary reader
+  forwarding. Fighter PAT461B70 reached3885 with four deque load-order differences;
+  see EFFECT_READER_FORWARDING_EXACT_2026_10_31.md.
 - Profile deck render448F60 is2521/1622 differences. Native execution rejected
   a push-relative missing-count misread; correct zero counts agree in32 events.
 - Complete giant sources/hypotheses for Tenshi64CD50, Alice4E9F50, Youmu53CEA0

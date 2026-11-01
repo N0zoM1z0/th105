@@ -190,7 +190,8 @@ def is_compiler_deallocation_selector(symbol: str) -> bool:
 
 
 def validate_matches(
-    functions: dict[int, dict[str, str]], reccmp: dict[int, dict[str, str]], units: dict[str, object]
+    functions: dict[int, dict[str, str]], reccmp: dict[int, dict[str, str]], units: dict[str, object],
+    implemented: set[str],
 ) -> int:
     entries = require_header(CONFIG / "matches.csv", MATCH_FIELDS)
     matched: set[int] = set()
@@ -215,6 +216,8 @@ def validate_matches(
         mapped = reccmp.get(address)
         if mapped is None or mapped["name"] != row["name"] or mapped["type"] != "function":
             raise ValueError(f"matches.csv:{line}: exact row lacks matching authored mapping")
+        if row["name"] not in implemented:
+            raise ValueError(f"matches.csv:{line}: exact row lacks selected source-present entry")
         matched.add(address)
     ledger_matching = {
         address for address, row in functions.items() if row["status"] == "matching"
@@ -259,7 +262,7 @@ def main() -> int:
             match_manifest,
             require_bytes=args.require_target and not args.skip_target_bytes,
         )
-        matching = validate_matches(functions, reccmp, match_manifest["units"])
+        matching = validate_matches(functions, reccmp, match_manifest["units"], implemented)
     except (OSError, KeyError, TypeError, ValueError, tomllib.TOMLDecodeError) as exc:
         print(f"error: tracking validation failed: {exc}")
         return 1

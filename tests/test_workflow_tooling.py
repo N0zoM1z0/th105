@@ -42,6 +42,31 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.origins = load_script("function-origins.py")
         cls.boundaries = load_script("audit-candidate-boundaries.py")
 
+    def exact_source_fixture(self):
+        address=0x401000
+        row=dict(address="0x00401000",name="Example",size="8",status="matching",match_percent="100.00",unit="example",evidence="whole canonical proof")
+        functions={address:dict(size="8",status="matching")}
+        mapped={address:dict(name="Example",type="function")}
+        units={"example":dict(functions=[dict(address="0x00401000",symbol_base="?Example@@YAXXZ")])}
+        return row,functions,mapped,units
+
+    def test_exact_match_requires_selected_source(self):
+        row,functions,mapped,units=self.exact_source_fixture()
+        with mock.patch.object(self.validator,"require_header",return_value=[row]):
+            with self.assertRaisesRegex(ValueError,"source-present"):
+                self.validator.validate_matches(functions,mapped,units,set())
+
+    def test_exact_match_accepts_selected_source(self):
+        row,functions,mapped,units=self.exact_source_fixture()
+        with mock.patch.object(self.validator,"require_header",return_value=[row]):
+            self.assertEqual(self.validator.validate_matches(functions,mapped,units,{"Example"}),1)
+
+    def test_unrelated_selected_source_does_not_cover_exact_match(self):
+        row,functions,mapped,units=self.exact_source_fixture()
+        with mock.patch.object(self.validator,"require_header",return_value=[row]):
+            with self.assertRaisesRegex(ValueError,"source-present"):
+                self.validator.validate_matches(functions,mapped,units,{"Other"})
+
     def generated_call_fixture(self):
         base = 0x1000
         body = bytearray(b"\xe8" + b"\0"*4 + b"\xe8" + b"\0"*4 + b"\xe8" + b"\0"*4 + b"\xc3")
