@@ -3801,3 +3801,5 @@ boost_default_syntax_literal_48,0x006D6360,4b00,0,Complete original get_default_
 boost_default_syntax_literal_49,0x006D6348,5200,0,Complete original get_default_syntax548 literal dependency; full source string and terminator checked. docs/BOOST_DEFAULT_SYNTAX_2026_11_01.md.,address
 ??_7invalid_argument@std@@6B@,0x006C7548,d25a6600,0,"Actual original VC8 libcpmt:string.obj invalid_argument copy24, complete primary RTTI graph proves this table. docs/VC8_INVALID_ARGUMENT_COPY_2026_11_01.md.",address
 ??_7type_info@@6B@,0x006CD238,fd986800,0,Actual original libcmt:typinfo.obj type_info destructor14 and complete RTTI; typed cleanup112/SEH28/zero-root8 independently checked. docs/VC8_TYPEINFO_DTOR_2026_11_01.md.,address
+_vwin,0x006F70FC,7cf16e00,0,Actual original SDK table getter; entire original data section and all pointer roles verified. docs/XIPH_TABLE_GETTERS_2026_11_01.md.,address
+_INVSQ2EXP_LOOKUP,0x006F785C,0000803f,128,Actual original SDK table getter; entire original data section and all pointer roles verified. docs/XIPH_TABLE_GETTERS_2026_11_01.md.,address

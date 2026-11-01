@@ -1,0 +1,16 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+[[anchors]]
+address = "0x00684CF0"
+size = 12
+symbol = "__vorbis_window_get"
+unit = "xiph-original-window-get"
+sha256 = "9acc8cf8c0d59ff0b15b54fa372d1f72e371583c484d25a1982a3e7b568ba521"
+
+[[anchors]]
+address = "0x00689820"
+size = 12
+symbol = "_vorbis_invsq2explook"
+unit = "xiph-original-invsq2exp-lookup"
+sha256 = "6c5f2cf8f4194e1f907c75958fe19a4a0fedb8f7a5286b61c9ac750f994feab4"

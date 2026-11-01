@@ -5696,3 +5696,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual original libcmt:trnsctrl.obj CallMemberFunction0/1/2 complete7-byte COMDATs all match one unique native physical body. Exact four-instruction linear stack/this/indirect-tail contract checked; no arbitrary indirect-jump waiver, copied implementation, alias triple-count, mask or generic threshold change. Representative formal symbol does not imply exclusive0 identity. docs/VC8_MEMBER_CALL_BRIDGE_2026_11_01.md."
+
+[[rules]]
+id = "xiph-original-table-getters-106a"
+xiph_table_getter_anchor_file = "config/xiph-table-getter-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 24
+origin = "third_party"
+subsystem = "audio"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual official SDK window.obj window_get12 and lsp.obj invsq2exp lookup12: whole16-byte sections include4 original NOPs each. Complete initialized data sections32672/1176 bytes, all8 window-pointer roles and actual float-table+128 addend checked. Whole CFG/inventory uniqueness, no approximate floats, partial arrays, generic threshold change or metadata/authored credit. docs/XIPH_TABLE_GETTERS_2026_11_01.md."

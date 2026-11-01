@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original SDK window getter684CF0/12 and inverse-square-root-exponent lookup
+689820/12 now whole canonical/unique, including4 NOPs each. Whole original
+.data sections32672/1176 bytes match, with all8 window pointers and the actual
+float-table+128 addend. Data stays initialized/writable, not incorrectly called
+readonly; no data/padding credit. Ten tests/94 real mutations. Excluded2032/
+review340, units786; authored/source totals unchanged. Duplicate vorbisfile
+members hash-identical/count once. See XIPH_TABLE_GETTERS_2026_11_01.md.
+
+
 Original libcmt:trnsctrl.obj member-call bridge68998E/7 now whole exact and
 inventory-unique. All three actual CallMemberFunction0/1/2 seven-byte COMDATs
 agree; formal0 is representative, not exclusive identity or proof all aliases

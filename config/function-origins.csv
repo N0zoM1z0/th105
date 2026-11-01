@@ -2978,7 +2978,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006846C0,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x00684750,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x00684870,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
-0x00684CF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00684CF0,third_party,audio,exclude,observed,xiph-original-table-getters-106a
 0x00684D00,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00684E30,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00684E50,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
@@ -3035,7 +3035,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00689600,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00689780,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x006897D0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00689820,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00689820,third_party,audio,exclude,observed,xiph-original-table-getters-106a
 0x00689830,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00689890,import_thunk,platform,exclude,observed,late-external-import-thunks-106a
 0x00689896,import_thunk,platform,exclude,observed,late-external-import-thunks-106a

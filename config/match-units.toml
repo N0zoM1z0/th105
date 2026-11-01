@@ -29130,3 +29130,35 @@ notes = "Original7-byte member-call bridge shared by CallMemberFunction0/1/2. Al
 [[units.vc8-original-member-call-bridge.functions]]
 address = "0x0068998E"
 symbol_base = "?_CallMemberFunction0@@YGXPAX0@Z"
+
+[units.xiph-original-window-get]
+kind = "upstream_prebuilt"
+source = "scripts/fetch-xiph-sdk-object.py"
+object = "build/match-units/XiphOriginalWindow.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "window.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Original official SDK complete12-byte table getter and4 NOP bytes, with whole initialized data section proof; no authored or metadata credit."
+
+[[units.xiph-original-window-get.functions]]
+address = "0x00684CF0"
+symbol_base = "__vorbis_window_get"
+dir32_targets = ["_vwin=_vwin"]
+
+[units.xiph-original-invsq2exp-lookup]
+kind = "upstream_prebuilt"
+source = "scripts/fetch-xiph-sdk-object.py"
+object = "build/match-units/XiphOriginalLsp.obj"
+profile = "xiph-win32sdk-1.0.1"
+enable_gs = false
+sdk_component = "vorbis"
+sdk_object = "lsp.obj"
+sdk_archive_sha256 = "fead50bbdf6a17e695b8b628f4ebe2c64a8f589ca6b983909484f4f361afbfcc"
+notes = "Original official SDK complete12-byte table getter and4 NOP bytes, with whole initialized data section proof; no authored or metadata credit."
+
+[[units.xiph-original-invsq2exp-lookup.functions]]
+address = "0x00689820"
+symbol_base = "_vorbis_invsq2explook"
+dir32_targets = ["_INVSQ2EXP_LOOKUP=_INVSQ2EXP_LOOKUP"]
