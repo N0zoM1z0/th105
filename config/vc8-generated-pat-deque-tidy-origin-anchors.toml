@@ -1,0 +1,19 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/characters/CharacterDestructor.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x00461AF0"
+size = 125
+symbol = "?_Tidy@?$deque@UPatGroup@th105@@V?$allocator@UPatGroup@th105@@@std@@@std@@IAEXXZ"
+rel32_targets = [
+ "??1PatGroup@th105@@QAE@XZ=0x00461590",
+ "??3@YAXPAX@Z=0x006898EA",
+]
+rel32_site_counts = { "??3@YAXPAX@Z" = 2 }

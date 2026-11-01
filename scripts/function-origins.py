@@ -887,6 +887,34 @@ def load_retained_rank_module():
     return module
 
 
+def generated_rel32_expectations(body, address, expected, offsets, counts):
+    """Resolve every declared generated call site; omitted counts still mean one."""
+    if not isinstance(counts, dict) or set(counts) - set(expected):
+        raise ValueError("generated REL32 counts have unknown symbols")
+    if any(type(n) is not int or n < 1 for n in counts.values()):
+        raise ValueError("generated REL32 counts must be positive integers")
+    if not expected:
+        return []
+    if set(offsets) != set(expected):
+        raise ValueError("generated REL32 symbols differ from complete target mapping")
+    result = []
+    used = set()
+    for name, target in expected.items():
+        sites = offsets[name]
+        if len(sites) != counts.get(name, 1):
+            raise ValueError(f"generated REL32 {name!r} site count differs")
+        for at in sites:
+            if (type(at) is not int or at < 0 or at + 4 > len(body)
+                    or used.intersection(range(at, at + 4))
+                    or xiph_rel32_operand_kind(body, at) is None):
+                raise ValueError("generated REL32 site is invalid or overlapping")
+            used.update(range(at, at + 4))
+            if address + at + 4 + struct.unpack_from("<i", body, at)[0] != target:
+                raise ValueError(f"generated REL32 {name!r} target differs at +{at:#x}")
+            result.append((at, target, name))
+    return result
+
+
 def validate_vc8_generated_anchor_evidence(
     rule: dict[str, object],
     selected: list[dict[str, str]],
@@ -1074,18 +1102,6 @@ def validate_vc8_generated_anchor_evidence(
                     errors.append(
                         f"{rule['id']}: {address} REL32 at +{field_offset:#x} is not CALL/JMP/Jcc"
                     )
-        if expected_rel32:
-            if set(rel32_offsets) != set(expected_rel32):
-                errors.append(
-                    f"{rule['id']}: {address} generated REL32 symbols differ: "
-                    f"got {sorted(rel32_offsets)}, expected {sorted(expected_rel32)}"
-                )
-            for relocation_name, offsets in rel32_offsets.items():
-                if len(offsets) != 1:
-                    errors.append(
-                        f"{rule['id']}: {address} generated REL32 symbol {relocation_name!r} "
-                        f"occurs {len(offsets)} times, expected exactly once"
-                    )
         nonreloc = size - len(wild)
         if nonreloc < min_nonreloc or nonreloc / size < min_coverage:
             errors.append(f"{rule['id']}: {address} generated fingerprint coverage is too weak")
@@ -1099,20 +1115,13 @@ def validate_vc8_generated_anchor_evidence(
             errors.append(f"{rule['id']}: {address} no longer matches generated VC8 fingerprint")
             continue
 
-        rel32_expectations: list[tuple[int, int, str]] = []
-        for relocation_name, expected_target in expected_rel32.items():
-            offsets = rel32_offsets.get(relocation_name, [])
-            if len(offsets) != 1:
-                continue
-            field_offset = offsets[0]
-            displacement = struct.unpack_from("<i", actual, field_offset)[0]
-            actual_target = int(address, 0) + field_offset + 4 + displacement
-            if actual_target != expected_target:
-                errors.append(
-                    f"{rule['id']}: {address} REL32 {relocation_name!r} targets "
-                    f"0x{actual_target:08X}, expected 0x{expected_target:08X}"
-                )
-            rel32_expectations.append((field_offset, expected_target, relocation_name))
+        try:
+            rel32_expectations = generated_rel32_expectations(
+                actual, int(address, 0), expected_rel32, rel32_offsets,
+                anchor_row.get("rel32_site_counts", {}))
+        except ValueError as exc:
+            errors.append(f"{rule['id']}: {address}: {exc}")
+            continue
 
         candidates = []
         for other in rows:

@@ -5176,3 +5176,15 @@ confidence = "observed"
 evidence = "Complete398-byte/112-instruction group-A/B collision traversal, signed counts/indices, all pair contributions and per-call first-descriptor reloads. Fresh exact resolver285 owns46DAD7; exact preparation2156 independently fixes five-box and descriptor arrays. New whole source398 is nonexact+20/44 differing positions; no prefix credit. docs/GROUP_A_PAIR_COLLISION_2026_11_01.md."
 required_body_hashes = [{ address = "0x0046BB10", size = 398, sha256 = "d588b612c1745b00bfaed71261f0175426f2219bb9dd26558a796ad94da9fefc" }]
 required_direct_edges = [{ caller = "0x0046DA10", site = "0x0046DAD7", target = "0x0046BB10", caller_status = "matching" }]
+
+[[rules]]
+id = "vc8-generated-pat-deque-tidy-106a"
+vc8_generated_anchor_file = "config/vc8-generated-pat-deque-tidy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 125
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Fresh actual CharacterDestructor source emits complete checked deque<PatGroup>::_Tidy125. All three call operands are resolved: real exact PatGroup destructor461590 once, original operator delete twice. Full-inventory uniqueness includes those explicit targets, separating authored CsvReader clear125. No inherited family-only classification, source edits or authored credit."
+required_body_hashes = [{ address = "0x00461AF0", size = 125, sha256 = "05e84d6855ac248ecc7923c20036a167b525cbfe6ed2906cacbad672ac7896d4" }]

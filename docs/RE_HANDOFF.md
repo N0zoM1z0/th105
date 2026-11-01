@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+PatGroup deque cleanup461AF0 now has full canonical125-byte compiler proof
+in unchanged CharacterDestructor source. All three calls are resolved; explicit
+operator-delete count2 separates it from authored CsvReader clear40FDB0.
+Existing singleton-site rules retain their defaults and all three replay.
+Character905 remains one-byte nonexact; spell101 and PatGroup peers pass.
+Excluded1802/review418; other counts stay. CI300.
+See PAT_DEQUE_TIDY_ORIGIN_2026_11_01.md.
+
 Group-A/B collision46BB10 now restores real per-call first-descriptor reloads
 and exact-producer-backed typed arrays. Old321 becomes complete398, still
 nonexact+20/44 positions; five explicitly substituted-helper observers confirm

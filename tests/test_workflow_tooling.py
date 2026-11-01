@@ -42,6 +42,44 @@ class WorkflowToolingTests(unittest.TestCase):
         cls.origins = load_script("function-origins.py")
         cls.boundaries = load_script("audit-candidate-boundaries.py")
 
+    def generated_call_fixture(self):
+        base = 0x1000
+        body = bytearray(b"\xe8" + b"\0"*4 + b"\xe8" + b"\0"*4 + b"\xe8" + b"\0"*4 + b"\xc3")
+        for offset, target in [(1,0x2000),(6,0x3000),(11,0x3000)]:
+            struct.pack_into("<i",body,offset,target-base-offset-4)
+        return bytes(body),base,{"destroy":0x2000,"delete":0x3000},{"destroy":[1],"delete":[6,11]}
+
+    def test_generated_rel32_explicit_repeated_sites(self):
+        args=self.generated_call_fixture()
+        result=self.origins.generated_rel32_expectations(*args,{"delete":2})
+        self.assertEqual([x[0]for x in result],[1,6,11])
+
+    def test_generated_rel32_default_count_stays_one(self):
+        with self.assertRaisesRegex(ValueError,"site count"):
+            self.origins.generated_rel32_expectations(*self.generated_call_fixture(),{})
+
+    def test_generated_rel32_unknown_and_nonpositive_counts_rejected(self):
+        for counts in [{"other":1},{"delete":0},{"delete":True},{"delete":-1},None]:
+            with self.assertRaises(ValueError):
+                self.origins.generated_rel32_expectations(*self.generated_call_fixture(),counts)
+
+    def test_generated_rel32_all_repeated_targets_checked(self):
+        body,base,targets,offsets=self.generated_call_fixture()
+        changed=bytearray(body);struct.pack_into("<i",changed,11,0x4000-base-15)
+        with self.assertRaisesRegex(ValueError,"target differs"):
+            self.origins.generated_rel32_expectations(bytes(changed),base,targets,offsets,{"delete":2})
+
+    def test_generated_rel32_no_missing_or_duplicate_sites(self):
+        body,base,targets,offsets=self.generated_call_fixture()
+        for bad in [{"destroy":[1],"delete":[6]},{"destroy":[1],"delete":[6,6]},
+                    {"destroy":[1],"delete":[6,11],"unknown":[1]}]:
+            with self.assertRaises(ValueError):
+                self.origins.generated_rel32_expectations(body,base,targets,bad,{"delete":2})
+
+    def test_generated_rel32_count_without_binding_rejected(self):
+        with self.assertRaises(ValueError):
+            self.origins.generated_rel32_expectations(b"\xc3",0x1000,{}, {}, {"delete":2})
+
     def test_corrected_target_identity(self) -> None:
         manifest = self.validator.validate_target(require_bytes=False)
         self.assertEqual(manifest["target"]["size"], 3_129_344)
