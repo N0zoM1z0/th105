@@ -27035,6 +27035,10 @@ rel32_targets = [
  "@__security_check_cookie@4=0x00689D25",
 ]
 
+[[units.exact-first-background-initialize.functions]]
+address = "0x00450640"
+symbol_base = "??0CSpriteEx@@QAE@ABV0@@Z"
+
 [units.exact-first-bg02-constructor]
 kind = "probe"
 source = "src/battle/BG02Constructor.cpp"

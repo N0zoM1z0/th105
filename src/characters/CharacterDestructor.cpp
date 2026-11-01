@@ -13,6 +13,8 @@
 namespace th105 {
 class CharacterDtorSprite94 : public IColor {
 public:
+ CharacterDtorSprite94() : value_04(0) {}
+    unsigned int value_04;
  virtual ~CharacterDtorSprite94() {}
  virtual void set_color(unsigned);
  virtual void set_vertex_colors(const unsigned *);

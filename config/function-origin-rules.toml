@@ -5285,3 +5285,16 @@ confidence = "observed"
 evidence = "Actual unchanged stage publisher source emits full canonical list growth160 and push50, with native GS exception lifetime, complete node59 witness, all named calls and original length_error metadata. Full-inventory unique fingerprints at unchanged .70/24/no-tail thresholds. docs/BATTLE_REQUEST_LIST_ORIGINS_2026_11_01.md."
 required_body_hashes = [{ address = "0x00466D10", size = 160, sha256 = "2a0576a09d944559a7836dbcace49c147a32b1c255241d50e6316aaf11437226" }]
 required_direct_edges = [{ caller = "0x00466DB0", site = "0x00466DCF", target = "0x00466D10", kind = "call" }]
+
+[[rules]]
+id = "vc8-generated-spriteex-copy-lifetime-106a"
+vc8_generated_anchor_file = "config/vc8-generated-spriteex-copy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 118
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Real IColor four-byte interface and CSpriteBase-owned texture04 recover whole implicit CSpriteEx118 from unchanged background owner policy. Full canonical RTTI-owned vtable bindings,110 nonrelocation bytes and full-inventory uniqueness; no authored copy declaration/body. docs/SPRITE_COLOR_BASE_OWNERSHIP_2026_11_01.md."
+required_body_hashes = [{ address = "0x00450640", size = 118, sha256 = "abec55c15f83a440aa3b3f65dd5220b72208abd7ab43b1871ab233fba31e8f0a" }]
+required_direct_edges = [{ caller = "0x004663E0", site = "0x0046641A", target = "0x00450640", kind = "call" }]

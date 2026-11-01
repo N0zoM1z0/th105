@@ -34,7 +34,8 @@ typedef std::map<unsigned, UiDesignObject *> DeckDesignMap;
 
 class DeckCtorSprite94 : public IColor {
 public:
-    DeckCtorSprite94() {}
+    unsigned int value_04;
+    DeckCtorSprite94() : value_04(0) {}
     virtual ~DeckCtorSprite94() {}
     virtual void set_color(unsigned);
     virtual void set_vertex_colors(const unsigned *);
@@ -48,7 +49,8 @@ public:
 };
 class DeckCtorTileA4 : public IColor {
 public:
-    DeckCtorTileA4() {}
+    unsigned int value_04;
+    DeckCtorTileA4() : value_04(0) {}
     virtual ~DeckCtorTileA4() {}
     virtual void set_color(unsigned);
     virtual void set_vertex_colors(const unsigned *);

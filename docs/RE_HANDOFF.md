@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Shared IColor now owns only its4-byte interface; texture04/default initialization
+belongs to CSpriteBase. Native CSpriteEx implicit copy450640 closes118/118,
+compiler-only, while actual background512 and all277 selected authored roots
+across121 affected units retain exactness. Guide keeps its genuine sprite-base
+lifetime; no flattened constructor regression remains. All28 affected generated
+origin rules and142 scalar wrappers/51 units freshly pass. Excluded1952/review408;
+exact1445/445336/source1647/authored1667/mapped1815/units769 unchanged.
+See SPRITE_COLOR_BASE_OWNERSHIP_2026_11_01.md. Older IColor8 claims superseded.
+
 Battle request-list growth466D10 is canonical160 from unchanged actual stage
 publisher with native-required GS. Complete push50/node59 witnesses also pass;
 those were already compiler-excluded. Original publisher120 freshly stays exact.

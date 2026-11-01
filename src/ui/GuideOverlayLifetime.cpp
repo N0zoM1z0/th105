@@ -1,7 +1,7 @@
 #include "../battle/EffectSprite.hpp"
 #include "Title.hpp"
 namespace th105 {
-class GuideLifetimeSprite94 : public IColor {
+class GuideLifetimeSprite94 : public CSpriteBase {
 public:
  GuideLifetimeSprite94() {}
  virtual ~GuideLifetimeSprite94() {}
@@ -12,8 +12,7 @@ public:
  virtual void set_texture(unsigned,int,int,int,int);
  virtual void slot_18();
  virtual void render(float,float);
- SpriteVertex28 vertices_08[4];
- float width_78,height_7c,extension_80[5];
+ float extension_80[5];
 };
 
 struct GuideLifetimeView {

@@ -11,7 +11,8 @@ extern unsigned g_spell_texture_load_state;
 extern unsigned g_spell_texture_upload_state;
 class DeckDisplaySprite94 : public IColor {
 public:
-    DeckDisplaySprite94() {}
+    unsigned int value_04;
+    DeckDisplaySprite94() : value_04(0) {}
     virtual ~DeckDisplaySprite94() {}
     virtual void set_color(unsigned);
     virtual void set_vertex_colors(const unsigned *);

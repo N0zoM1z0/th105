@@ -4,14 +4,14 @@
 
 #include <stddef.h>
 
+// Native IColor is the four-byte interface. The texture handle at +4 belongs
+// to CSpriteBase, as its constructor and implicit copy lifetimes establish.
 class IColor {
 public:
-    IColor() : value_04(0) {}
     virtual ~IColor() {}
     virtual void set_color(unsigned int color) = 0;
     virtual void set_vertex_colors(const unsigned int *colors) = 0;
     virtual void multiply_color(unsigned int color) = 0;
-    unsigned int value_04;
 };
 
 struct SpriteVertex28 {
@@ -26,6 +26,8 @@ struct SpriteVertex28 {
 
 class CSpriteBase : public IColor {
 public:
+    CSpriteBase() : value_04(0) {}
+    unsigned int value_04;
     virtual ~CSpriteBase() {}
     virtual void set_color(unsigned int color);
     virtual void set_vertex_colors(const unsigned int *colors);
@@ -85,7 +87,7 @@ public:
     virtual ~CEffectSprite() {}
 };
 
-typedef char IColor_size_must_be_0x08[sizeof(IColor) == 0x08 ? 1 : -1];
+typedef char IColor_size_must_be_0x04[sizeof(IColor) == 0x04 ? 1 : -1];
 typedef char SpriteVertex28_size_must_be_0x1c[sizeof(SpriteVertex28) == 0x1c ? 1 : -1];
 typedef char CSpriteBase_size_must_be_0x80[sizeof(CSpriteBase) == 0x80 ? 1 : -1];
 typedef char CSpriteBase_first_color_offset_must_be_0x18[offsetof(CSpriteBase, vertices_08) + offsetof(SpriteVertex28, color) == 0x18 ? 1 : -1];

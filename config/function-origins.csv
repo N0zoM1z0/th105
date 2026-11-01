@@ -1600,7 +1600,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00450510,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
 0x004505A0,compiler_generated,std,exclude,observed,vc8-generated-effect-group-deque-106a
 0x004505E0,compiler_generated,runtime,exclude,observed,vc8-generated-scene-timeline-loader-emitted-106a
-0x00450640,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00450640,compiler_generated,battle,exclude,observed,vc8-generated-spriteex-copy-lifetime-106a
 0x004506C0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004506F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00450720,authored_game,battle,authored,observed,canonical-exact-authored

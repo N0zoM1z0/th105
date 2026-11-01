@@ -4,6 +4,8 @@ namespace th105 {
 // Typed color virtual of the existing CSprite object, without vptr writes.
 class GuideSprite94 : public IColor {
 public:
+    GuideSprite94() : value_04(0) {}
+    unsigned int value_04;
  virtual ~GuideSprite94();
  virtual void set_color(unsigned);
  virtual void set_vertex_colors(const unsigned *);

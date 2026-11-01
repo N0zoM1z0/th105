@@ -41,7 +41,8 @@ CGageLifetime::CGageLifetime() : value_a0(0) {}
 
 class DesignObjectBaseLifetime : public IColor {
 public:
-    DesignObjectBaseLifetime() : value_08(0.0f), enabled_14(true) {}
+    unsigned int value_04;
+    DesignObjectBaseLifetime() : value_04(0), value_08(0.0f), enabled_14(true) {}
     virtual ~DesignObjectBaseLifetime() {}
     virtual void set_color(unsigned int color);
     virtual void set_vertex_colors(const unsigned int *colors);
