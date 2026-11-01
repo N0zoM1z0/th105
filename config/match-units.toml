@@ -28799,3 +28799,15 @@ symbol_base = "?on_accepted@NetworkEventDefaultsView@th105@@UAEXIPBXI@Z"
 [[units.exact-first-network-event-defaults.functions]]
 address = "0x0043AA30"
 symbol_base = "?route_payload@NetworkEventDefaultsView@th105@@UAEHIPAHPBEHPAPAXPAG@Z"
+
+[units.exact-first-file-list-parent]
+kind = "probe"
+source = "src/ui/FileListParent.cpp"
+object = "build/match-units/ExactFirst_FileListParent.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete91-byte CFileList parent-navigation policy; ordinary91 still uses high-byte slash local versus native low byte. Real-library LTCG123 is closed negative; no char array/union or forced helper boundary. docs/FILE_LIST_PARENT_SOURCE_2026_11_01.md."
+[[units.exact-first-file-list-parent.functions]]
+address = "0x004398B0"
+symbol_base = "?go_parent_directory@CFileList@th105@@QAEEXZ"
+rel32_targets = ["?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00", "?find_last_of@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIPBDII@Z=0x004395F0", "?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@II@Z=0x00402290"]

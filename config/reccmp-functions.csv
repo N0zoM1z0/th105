@@ -1818,3 +1818,4 @@ CFileList_finalize,0x0043A590,function
 NetworkUdpEvent_default_primary_data,0x0043AA10,function
 NetworkUdpEvent_default_three_word_notification,0x0043AA20,function
 NetworkUdpEvent_default_route,0x0043AA30,function
+CFileList_go_parent_directory,0x004398B0,function

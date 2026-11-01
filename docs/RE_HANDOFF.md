@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+CFileList parent4398B0 now has complete source and exact replay-delete555
+caller ownership at446C21. Ordinary91 differs only in two slash-home bytes,
+first+64; genuine standard-library LTCG123 is a closed negative (private
+char_traits call not force-mapped). Source1635/authored1655/mapped1820/review403/
+excluded1969/units772; exact1431/443916 stays. No char-array/union shaping.
+See FILE_LIST_PARENT_SOURCE_2026_11_01.md.
+
 INetworkUDPEventProc default notification/route policy43AA10/20/30 now
 canonical3/3/8 bytes through ordinary virtual methods. Original6C1630 RTTI
 six-slot table proves ownership; folded bodies counted once, existing44E8E0
