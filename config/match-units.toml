@@ -29026,3 +29026,12 @@ symbol_base = "?match_jump@?$perl_matcher@V?$_String_const_iterator@DU?$char_tra
 [[units.boost-regex-release-library-origin.functions]]
 address = "0x006A0AF0"
 symbol_base = "?match_toggle_case@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+
+[[units.boost-regex-release-library-origin.functions]]
+address = "0x006A2830"
+symbol_base = "?unwind_recursion_stopper@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_N_N@Z"
+
+[[units.boost-regex-release-library-origin.functions]]
+address = "0x006B25B0"
+symbol_base = "?match_dot_repeat_dispatch@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+rel32_targets = ["?match_dot_repeat_fast@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ=0x006B1930"]

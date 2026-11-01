@@ -3621,7 +3621,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A2640,third_party,boost_regex,exclude,observed,boost-release-library-106a
 0x006A2730,third_party,boost_regex,exclude,observed,boost-release-library-106a
 0x006A27D0,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
-0x006A2830,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A2830,third_party,boost_regex,exclude,observed,boost-original-matcher-stack-dispatch-106a
 0x006A2850,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006A28B0,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006A28E0,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
@@ -3872,7 +3872,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B1EF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B2380,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B24B0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006B25B0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B25B0,third_party,boost_regex,exclude,observed,boost-original-matcher-stack-dispatch-106a
 0x006B25C0,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006B2760,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B28F0,unknown,,review,unknown,ida-1.06a-initial-inventory

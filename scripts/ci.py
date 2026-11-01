@@ -42,6 +42,7 @@ EXACT_TEST_MODULES = (
     "test_boost_public_exception_copies",
     "test_boost_public_regex_exception",
     "test_boost_matcher_leaf_origins",
+    "test_boost_matcher_stack_origins",
     "test_linked_string_range_origins",
     "test_scalar_wrapper_origins",
     "test_implicit_lifetime_origins",

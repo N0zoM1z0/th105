@@ -1,0 +1,15 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "boost-regex-release-library-origin"
+
+[[anchors]]
+address = "0x006A2830"
+size = 19
+symbol = "?unwind_recursion_stopper@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_N_N@Z"
+sha256 = "e60e7d4b0bd4766260b794239eecb59f72026b582489ac33ed18453c1baf56df"
+
+[[anchors]]
+address = "0x006B25B0"
+size = 5
+symbol = "?match_dot_repeat_dispatch@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
+sha256 = "041821bc1f5034aa4d1d45bf495460becc0b354daf32d728e2fa2fe0c06fca0b"

@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Original matcher recursion stopper6A2830/19 and dot-repeat dispatch6B25B0/5
+now whole canonical/unique. Actual unwind table72 includes16 source members
+and2 null slots; full dispatcher58 and independent46/34 witnesses close its
+selected roles. Repeat dispatch uses actual matcher slot22 and whole target397,
+including two explicit slow-repeat tail exits and all8 named REL32 fields.
+All14 release comparisons and prior leaf ownership proof pass. Eight tests/
+47 actual mutations; excluded2023/review349. Other totals unchanged; no generic
+tiny-stub or whole-table credit. See BOOST_MATCHER_STACK_2026_11_01.md.
+
+
 Original checked-string matcher leaves6A0AA0/12 and6A0AF0/18 now whole exact
 and inventory-unique in unchanged original release instances.cpp. Actual
 30-slot symbolic table and independently exact literal/set slots2/15 uniquely
