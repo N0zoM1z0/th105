@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Actual FileListFinalize source now proves complete tile-deque Growmap439D70
+canonical341, including allfour CRT memmove sites and original length/allocation
+helpers.313 nonrelocation bytes remain inventory-unique at unchanged gates.
+Parent1155/1106 remains nonexact. Excluded1970/review402; other totals stay.
+See FILE_LIST_GROWMAP_ORIGIN_2026_11_01.md. New-three-object census had one hit.
+
 CFileList parent4398B0 now has complete source and exact replay-delete555
 caller ownership at446C21. Ordinary91 differs only in two slash-home bytes,
 first+64; genuine standard-library LTCG123 is a closed negative (private

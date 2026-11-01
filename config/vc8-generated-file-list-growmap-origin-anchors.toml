@@ -1,0 +1,15 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/ui/FileListFinalize.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+[[anchors]]
+address = "0x00439D70"
+size = 341
+symbol = "?_Growmap@?$deque@VFileListRenderTile@th105@@V?$allocator@VFileListRenderTile@th105@@@std@@@std@@IAEXI@Z"
+rel32_targets = ["?_Xlen@?$deque@VFileListRenderTile@th105@@V?$allocator@VFileListRenderTile@th105@@@std@@@std@@KAXXZ=0x00449940", "??$_Allocate@PAVFileListRenderTile@th105@@@std@@YAPAPAVFileListRenderTile@th105@@IPAPAV12@@Z=0x00439580", "_memmove_s=0x00689EB0", "??3@YAXPAX@Z=0x006898EA"]
+rel32_site_counts = { "_memmove_s" = 4 }

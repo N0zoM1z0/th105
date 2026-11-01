@@ -5336,3 +5336,16 @@ confidence = "observed"
 evidence = "Exact replay-delete555 caller and physical CFileList directory/filter members own complete91-byte policy. Native compares root, finds last slash with one real char, erases suffix, returns root flag. Source91 remains nonexact on char home; full linked123 also negative. docs/FILE_LIST_PARENT_SOURCE_2026_11_01.md."
 required_body_hashes = [{ address = "0x004398B0", size = 91, sha256 = "1a90e978feab9b833d8a8698b30694c28c476a2c82c74bf267eab64317cdfc39" }]
 required_direct_edges = [{ caller = "0x00446A60", site = "0x00446C21", target = "0x004398B0", kind = "call", caller_status = "matching" }]
+
+[[rules]]
+id = "vc8-generated-file-list-growmap-106a"
+vc8_generated_anchor_file = "config/vc8-generated-file-list-growmap-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 341
+origin = "compiler_generated"
+subsystem = "ui"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual FileListFinalize source emits complete CTile deque Growmap341; full canonical bytes, original named length-error/allocation and allfour memmove_s sites resolved.313 nonrelocation bytes unique across inventory with unchanged .70/24/no-tail gate. Parent remains1155/1106 nonexact. docs/FILE_LIST_GROWMAP_ORIGIN_2026_11_01.md."
+required_body_hashes = [{ address = "0x00439D70", size = 341, sha256 = "34552e1f32b437f333d899571905e8ebea659521d75f47c848d81c817823d455" }]
+required_direct_edges = [{ caller = "0x0043A590", site = "0x0043A8D6", target = "0x00439D70", kind = "call", caller_status = "implemented" }]
