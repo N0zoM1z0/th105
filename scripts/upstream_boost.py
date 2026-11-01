@@ -34,8 +34,13 @@ def validate(unit: dict) -> None:
         raise ValueError('Boost instance source requires its verified header package and original-source probe')
     if type(flag) is not bool:
         raise ValueError('Boost header selection must be an explicit boolean')
+    expected_includes = [FOLDER]
+    if 'boost_regex_source_tu' in unit:
+        from upstream_boost_sources import validate_selection, INCLUDE
+        validate_selection(unit)
+        expected_includes.append(INCLUDE)
     if flag and (unit.get('kind') != 'probe'
-                 or unit.get('include_dirs') != [FOLDER]):
+                 or unit.get('include_dirs') != expected_includes):
         raise ValueError('Boost header selection requires its sole pinned include directory')
 
 
@@ -124,6 +129,9 @@ def inputs(unit: dict, root: Path = ROOT) -> list[Path]:
               *verified_sources(root, load_lock(root))]
     if unit.get('boost_regex_instances'):
         result.append(verified_instance(root))
+    if 'boost_regex_source_tu' in unit:
+        from upstream_boost_sources import inputs as source_inputs
+        result.extend(source_inputs(unit, root))
     return result
 
 

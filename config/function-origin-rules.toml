@@ -5349,3 +5349,51 @@ confidence = "observed"
 evidence = "Actual FileListFinalize source emits complete CTile deque Growmap341; full canonical bytes, original named length-error/allocation and allfour memmove_s sites resolved.313 nonrelocation bytes unique across inventory with unchanged .70/24/no-tail gate. Parent remains1155/1106 nonexact. docs/FILE_LIST_GROWMAP_ORIGIN_2026_11_01.md."
 required_body_hashes = [{ address = "0x00439D70", size = 341, sha256 = "34552e1f32b437f333d899571905e8ebea659521d75f47c848d81c817823d455" }]
 required_direct_edges = [{ caller = "0x0043A590", site = "0x0043A8D6", target = "0x00439D70", kind = "call", caller_status = "implemented" }]
+
+[[rules]]
+id = "boost-regex-source-core-106a"
+vc8_generated_anchor_file = "config/boost-source-regex-origin-anchors.toml"
+expected_count = 8
+expected_bytes = 872
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original immutable Boost non-instance source TU, unchanged release wrapper/header packages; complete canonical bodies and native RTTI/import/literal identities, all named calls and full-inventory uniqueness. No authored credit. docs/BOOST_SOURCE_TUS_2026_11_01.md."
+required_body_hashes = [{ address = "0x006B4AB0", size = 163, sha256 = "4515c25ce373d6a19a3174d24a741c3f1658c36ee2af304967f21543a0a103bb" }, { address = "0x006B4B60", size = 86, sha256 = "f43f1333059344346c53dc1cf8f9f040d80482bf3a518c30056c046fc7528b75" }, { address = "0x006B4BE0", size = 87, sha256 = "60a3c2f029c8cbda49b372dcdea39fde26646f50fe0396f8dccf1a4cd79d2274" }, { address = "0x006B4E00", size = 39, sha256 = "5ccffcc6fe458b679b057c822a80345c3811acb429909c7b1e9cf4295ceab813" }, { address = "0x006B4E30", size = 39, sha256 = "b30b28881acfdaca52bdfa67d9d5c2186490bcf85f9984027a2e6904c3359716" }, { address = "0x006B5150", size = 87, sha256 = "ae6f79c57c528c677f709395490d708eb61c5f927e96cf1ed131f82c5d78c8d2" }, { address = "0x006B5220", size = 177, sha256 = "798efc2ad0e93f8eecebe5881dd38eda01f76359bb28cf2e71c5251c1f6dfd38" }, { address = "0x006B5470", size = 194, sha256 = "1635e15e196d27243955c997d26d1d464dbefdebca73db7d2491a84c7cb1d740" }]
+
+[[rules]]
+id = "boost-regex-source-raw-buffer-106a"
+vc8_generated_anchor_file = "config/boost-source-regex-raw-buffer-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 170
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original immutable Boost non-instance source TU, unchanged release wrapper/header packages; complete canonical bodies and native RTTI/import/literal identities, all named calls and full-inventory uniqueness. No authored credit. docs/BOOST_SOURCE_TUS_2026_11_01.md."
+required_body_hashes = [{ address = "0x006B49F0", size = 98, sha256 = "ce1e889f0552365d6382622b2ab9afdf70093bd359145248919a7b6ab7af8df0" }, { address = "0x006B4A60", size = 72, sha256 = "d387464808cdc22f5b3a99e29f81a77c5cf60c21317490012a54755ac0f4ccb7" }]
+
+[[rules]]
+id = "boost-regex-source-static-mutex-106a"
+vc8_generated_anchor_file = "config/boost-source-static-mutex-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 92
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original immutable Boost non-instance source TU, unchanged release wrapper/header packages; complete canonical bodies and native RTTI/import/literal identities, all named calls and full-inventory uniqueness. No authored credit. docs/BOOST_SOURCE_TUS_2026_11_01.md."
+required_body_hashes = [{ address = "0x006B5E50", size = 61, sha256 = "763cd0f0e0f90fba88933ebc5e514c6735d0276b9fa6b0650345965c82951410" }, { address = "0x006B5E90", size = 31, sha256 = "e24eefcc0b0d99268a004f80831fcc51790d965a4d935bc48477527e16a92c0a" }]
+
+[[rules]]
+id = "boost-regex-source-w32-traits-106a"
+vc8_generated_anchor_file = "config/boost-source-w32-regex-traits-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 257
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original immutable Boost non-instance source TU, unchanged release wrapper/header packages; complete canonical bodies and native RTTI/import/literal identities, all named calls and full-inventory uniqueness. No authored credit. docs/BOOST_SOURCE_TUS_2026_11_01.md."
+required_body_hashes = [{ address = "0x006B55F0", size = 34, sha256 = "0bf5eab5c5af7bff5a86b26b1c36e1d40e34f7461ba9b0d5bb2aa587218dced6" }, { address = "0x006B56C0", size = 69, sha256 = "c959b0e57431b5e1d660efab3fcf98fbe6ea12301ac089d7182545388088a18e" }, { address = "0x006B5710", size = 154, sha256 = "095953c8d2bbf65d1b1b793be62a18e18a32b66dd248ad1a8d0627999cd902dd" }]

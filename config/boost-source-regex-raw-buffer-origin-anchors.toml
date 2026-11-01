@@ -1,0 +1,23 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+enable_gs = true
+boost_regex_headers = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+source = "scripts/probes/BoostRegexSourceRawBuffer.cpp"
+boost_regex_source_tu = "regex_raw_buffer.cpp"
+
+[[anchors]]
+address = "0x006B49F0"
+size = 98
+symbol = "?resize@raw_storage@re_detail@boost@@QAIXI@Z"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB", "_memcpy=0x0068AA30", "??3@YAXPAX@Z=0x006898EA"]
+
+[[anchors]]
+address = "0x006B4A60"
+size = 72
+symbol = "?insert@raw_storage@re_detail@boost@@QAIPAXII@Z"
+rel32_targets = ["?resize@raw_storage@re_detail@boost@@QAIXI@Z=0x006B49F0", "_memmove=0x0068D8B0"]

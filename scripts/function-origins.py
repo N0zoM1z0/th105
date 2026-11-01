@@ -959,12 +959,18 @@ def validate_vc8_generated_anchor_evidence(
     if boost_headers:
         from upstream_boost import FOLDER, inputs as boost_header_inputs
         try:
-            boost_header_inputs({"kind": "probe", "boost_regex_headers": True,
-                                 "boost_regex_instances": anchors_doc.get("boost_regex_instances", False),
-                                 "source": str(anchors_doc["source"]), "include_dirs": [FOLDER]}, ROOT)
+            include_dirs = [FOLDER]
+            boost_unit = {"kind": "probe", "boost_regex_headers": True,
+                          "boost_regex_instances": anchors_doc.get("boost_regex_instances", False),
+                          "source": str(anchors_doc["source"]), "include_dirs": include_dirs}
+            if "boost_regex_source_tu" in anchors_doc:
+                from upstream_boost_sources import INCLUDE
+                include_dirs.append(INCLUDE)
+                boost_unit["boost_regex_source_tu"] = anchors_doc["boost_regex_source_tu"]
+            boost_header_inputs(boost_unit, ROOT)
         except (OSError, ValueError) as exc:
             return [f"{rule['id']}: original Boost header verification failed: {exc}"]
-        env["TH105_EXTRA_INCLUDE_DIRS"] = str(ROOT / FOLDER)
+        env["TH105_EXTRA_INCLUDE_DIRS"] = os.pathsep.join(str(ROOT / p) for p in include_dirs)
     proc = subprocess.run(
         [str(ROOT / "scripts" / "compile-unit.sh"), str(source), str(object_path)],
         cwd=ROOT,

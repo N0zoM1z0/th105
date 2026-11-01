@@ -1,0 +1,29 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+enable_gs = true
+boost_regex_headers = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+source = "scripts/probes/BoostRegexSourceW32Traits.cpp"
+boost_regex_source_tu = "w32_regex_traits.cpp"
+
+[[anchors]]
+address = "0x006B55F0"
+size = 34
+symbol = "?get_deleter@?$sp_counted_impl_pd@PAUHINSTANCE__@@P6AXPAX@Z@detail@boost@@UAEPAXABVtype_info@@@Z"
+rel32_targets = ["??8type_info@@QBE_NABV0@@Z=0x00689919"]
+
+[[anchors]]
+address = "0x006B56C0"
+size = 69
+symbol = "?w32_cat_open@re_detail@boost@@YI?AV?$shared_ptr@X@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = ["??$?0PAUHINSTANCE__@@P6AXPAX@Z@shared_count@detail@boost@@QAE@PAUHINSTANCE__@@P6AXPAX@Z@Z=0x006B5620", "?sp_enable_shared_from_this@detail@boost@@YAXZZ=0x0041F890"]
+
+[[anchors]]
+address = "0x006B5710"
+size = 154
+symbol = "?w32_cat_get@re_detail@boost@@YI?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV?$shared_ptr@X@2@KHABV34@@Z"
+rel32_targets = ["?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0", "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0", "@__security_check_cookie@4=0x00689D25"]

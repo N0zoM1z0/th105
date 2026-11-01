@@ -1,0 +1,61 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+enable_gs = true
+boost_regex_headers = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+source = "scripts/probes/BoostRegexSourceRegex.cpp"
+boost_regex_source_tu = "regex.cpp"
+
+[[anchors]]
+address = "0x006B4AB0"
+size = 163
+symbol = "?get@mem_block_cache@re_detail@boost@@QAEPAXXZ"
+rel32_targets = ["??0scoped_static_mutex_lock@boost@@QAE@AAVstatic_mutex@1@_N@Z=0x006B5E90", "??1scoped_static_mutex_lock@boost@@QAE@XZ=0x006B5EB0", "??2@YAPAXI@Z=0x00689DCB"]
+rel32_site_counts = { "??1scoped_static_mutex_lock@boost@@QAE@XZ" = 2 }
+
+[[anchors]]
+address = "0x006B4B60"
+size = 86
+symbol = "?put@mem_block_cache@re_detail@boost@@QAEXPAX@Z"
+rel32_targets = ["??0scoped_static_mutex_lock@boost@@QAE@AAVstatic_mutex@1@_N@Z=0x006B5E90", "??3@YAXPAX@Z=0x006898EA", "??1scoped_static_mutex_lock@boost@@QAE@XZ=0x006B5EB0"]
+rel32_site_counts = { "??1scoped_static_mutex_lock@boost@@QAE@XZ" = 2 }
+
+[[anchors]]
+address = "0x006B4BE0"
+size = 87
+symbol = "??1?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@UAE@XZ"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA", "??1exception@std@@UAE@XZ=0x00689FDA"]
+
+[[anchors]]
+address = "0x006B4E00"
+size = 39
+symbol = "??0regex_error@boost@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4error_type@regex_constants@1@H@Z"
+rel32_targets = ["??0runtime_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z=0x006A5930"]
+
+[[anchors]]
+address = "0x006B4E30"
+size = 39
+symbol = "??0regex_error@boost@@QAE@ABV01@@Z"
+rel32_targets = ["??0runtime_error@std@@QAE@ABV01@@Z=0x006A59A0"]
+
+[[anchors]]
+address = "0x006B5150"
+size = 87
+symbol = "??$enable_error_info@Vregex_error@boost@@@boost@@YA?AU?$error_info_injector@Vregex_error@boost@@@exception_detail@0@ABVregex_error@0@@Z"
+rel32_targets = ["??0runtime_error@std@@QAE@ABV01@@Z=0x006A59A0"]
+
+[[anchors]]
+address = "0x006B5220"
+size = 177
+symbol = "??0?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABU?$error_info_injector@Vregex_error@boost@@@12@@Z"
+rel32_targets = ["??0?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@QAE@ABU012@@Z=0x006B4FC0"]
+
+[[anchors]]
+address = "0x006B5470"
+size = 194
+symbol = "?verify_options@re_detail@boost@@YIXIW4_match_flags@regex_constants@2@@Z"
+rel32_targets = ["?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0", "??0logic_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z=0x00401670", "??3@YAXPAX@Z=0x006898EA", "??$throw_exception@Vlogic_error@std@@@boost@@YAXABVlogic_error@std@@@Z=0x006B52E0", "@__security_check_cookie@4=0x00689D25"]

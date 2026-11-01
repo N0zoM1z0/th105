@@ -1,0 +1,23 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+enable_gs = true
+boost_regex_headers = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+source = "scripts/probes/BoostRegexSourceMutex.cpp"
+boost_regex_source_tu = "static_mutex.cpp"
+
+[[anchors]]
+address = "0x006B5E50"
+size = 61
+symbol = "?lock@scoped_static_mutex_lock@boost@@QAEXXZ"
+rel32_targets = []
+
+[[anchors]]
+address = "0x006B5E90"
+size = 31
+symbol = "??0scoped_static_mutex_lock@boost@@QAE@AAVstatic_mutex@1@_N@Z"
+rel32_targets = ["?lock@scoped_static_mutex_lock@boost@@QAEXXZ=0x006B5E50"]

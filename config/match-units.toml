@@ -28816,3 +28816,122 @@ rel32_targets = ["?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@
 address = "0x00439D70"
 symbol_base = "?_Growmap@?$deque@VFileListRenderTile@th105@@V?$allocator@VFileListRenderTile@th105@@@std@@@std@@IAEXI@Z"
 rel32_targets = ["?_Xlen@?$deque@VFileListRenderTile@th105@@V?$allocator@VFileListRenderTile@th105@@@std@@@std@@KAXXZ=0x00449940", "??$_Allocate@PAVFileListRenderTile@th105@@@std@@YAPAPAVFileListRenderTile@th105@@IPAPAV12@@Z=0x00439580", "_memmove_s=0x00689EB0", "??3@YAXPAX@Z=0x006898EA"]
+
+[units.boost-regex-source-core]
+kind = "probe"
+source = "scripts/probes/BoostRegexSourceRegex.cpp"
+object = "build/match-units/boost-regex-source-core.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_source_tu = "regex.cpp"
+include_dirs = [".tools/upstream/boost-1.40.0-vc8", ".tools/upstream/boost-regex-1.40.0-extra/include"]
+notes = "Original unmodified hash-pinned Boost release TU. All selected whole bodies canonical; library-only attribution. docs/BOOST_SOURCE_TUS_2026_11_01.md."
+
+[[units.boost-regex-source-core.functions]]
+address = "0x006B4AB0"
+symbol_base = "?get@mem_block_cache@re_detail@boost@@QAEPAXXZ"
+rel32_targets = ["??0scoped_static_mutex_lock@boost@@QAE@AAVstatic_mutex@1@_N@Z=0x006B5E90", "??1scoped_static_mutex_lock@boost@@QAE@XZ=0x006B5EB0", "??2@YAPAXI@Z=0x00689DCB"]
+
+[[units.boost-regex-source-core.functions]]
+address = "0x006B4B60"
+symbol_base = "?put@mem_block_cache@re_detail@boost@@QAEXPAX@Z"
+rel32_targets = ["??0scoped_static_mutex_lock@boost@@QAE@AAVstatic_mutex@1@_N@Z=0x006B5E90", "??3@YAXPAX@Z=0x006898EA", "??1scoped_static_mutex_lock@boost@@QAE@XZ=0x006B5EB0"]
+
+[[units.boost-regex-source-core.functions]]
+address = "0x006B4BE0"
+symbol_base = "??1?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@UAE@XZ"
+rel32_targets = ["??3@YAXPAX@Z=0x006898EA", "??1exception@std@@UAE@XZ=0x00689FDA"]
+
+[[units.boost-regex-source-core.functions]]
+address = "0x006B4E00"
+symbol_base = "??0regex_error@boost@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@W4error_type@regex_constants@1@H@Z"
+rel32_targets = ["??0runtime_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z=0x006A5930"]
+
+[[units.boost-regex-source-core.functions]]
+address = "0x006B4E30"
+symbol_base = "??0regex_error@boost@@QAE@ABV01@@Z"
+rel32_targets = ["??0runtime_error@std@@QAE@ABV01@@Z=0x006A59A0"]
+
+[[units.boost-regex-source-core.functions]]
+address = "0x006B5150"
+symbol_base = "??$enable_error_info@Vregex_error@boost@@@boost@@YA?AU?$error_info_injector@Vregex_error@boost@@@exception_detail@0@ABVregex_error@0@@Z"
+rel32_targets = ["??0runtime_error@std@@QAE@ABV01@@Z=0x006A59A0"]
+
+[[units.boost-regex-source-core.functions]]
+address = "0x006B5220"
+symbol_base = "??0?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABU?$error_info_injector@Vregex_error@boost@@@12@@Z"
+rel32_targets = ["??0?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@QAE@ABU012@@Z=0x006B4FC0"]
+
+[[units.boost-regex-source-core.functions]]
+address = "0x006B5470"
+symbol_base = "?verify_options@re_detail@boost@@YIXIW4_match_flags@regex_constants@2@@Z"
+rel32_targets = ["?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0", "??0logic_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z=0x00401670", "??3@YAXPAX@Z=0x006898EA", "??$throw_exception@Vlogic_error@std@@@boost@@YAXABVlogic_error@std@@@Z=0x006B52E0", "@__security_check_cookie@4=0x00689D25"]
+
+[units.boost-regex-source-raw-buffer]
+kind = "probe"
+source = "scripts/probes/BoostRegexSourceRawBuffer.cpp"
+object = "build/match-units/boost-regex-source-raw-buffer.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_source_tu = "regex_raw_buffer.cpp"
+include_dirs = [".tools/upstream/boost-1.40.0-vc8", ".tools/upstream/boost-regex-1.40.0-extra/include"]
+notes = "Original unmodified hash-pinned Boost release TU. All selected whole bodies canonical; library-only attribution. docs/BOOST_SOURCE_TUS_2026_11_01.md."
+
+[[units.boost-regex-source-raw-buffer.functions]]
+address = "0x006B49F0"
+symbol_base = "?resize@raw_storage@re_detail@boost@@QAIXI@Z"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB", "_memcpy=0x0068AA30", "??3@YAXPAX@Z=0x006898EA"]
+
+[[units.boost-regex-source-raw-buffer.functions]]
+address = "0x006B4A60"
+symbol_base = "?insert@raw_storage@re_detail@boost@@QAIPAXII@Z"
+rel32_targets = ["?resize@raw_storage@re_detail@boost@@QAIXI@Z=0x006B49F0", "_memmove=0x0068D8B0"]
+
+[units.boost-regex-source-static-mutex]
+kind = "probe"
+source = "scripts/probes/BoostRegexSourceMutex.cpp"
+object = "build/match-units/boost-regex-source-static-mutex.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_source_tu = "static_mutex.cpp"
+include_dirs = [".tools/upstream/boost-1.40.0-vc8", ".tools/upstream/boost-regex-1.40.0-extra/include"]
+notes = "Original unmodified hash-pinned Boost release TU. All selected whole bodies canonical; library-only attribution. docs/BOOST_SOURCE_TUS_2026_11_01.md."
+
+[[units.boost-regex-source-static-mutex.functions]]
+address = "0x006B5E50"
+symbol_base = "?lock@scoped_static_mutex_lock@boost@@QAEXXZ"
+rel32_targets = []
+
+[[units.boost-regex-source-static-mutex.functions]]
+address = "0x006B5E90"
+symbol_base = "??0scoped_static_mutex_lock@boost@@QAE@AAVstatic_mutex@1@_N@Z"
+rel32_targets = ["?lock@scoped_static_mutex_lock@boost@@QAEXXZ=0x006B5E50"]
+
+[units.boost-regex-source-w32-traits]
+kind = "probe"
+source = "scripts/probes/BoostRegexSourceW32Traits.cpp"
+object = "build/match-units/boost-regex-source-w32-traits.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_source_tu = "w32_regex_traits.cpp"
+include_dirs = [".tools/upstream/boost-1.40.0-vc8", ".tools/upstream/boost-regex-1.40.0-extra/include"]
+notes = "Original unmodified hash-pinned Boost release TU. All selected whole bodies canonical; library-only attribution. docs/BOOST_SOURCE_TUS_2026_11_01.md."
+
+[[units.boost-regex-source-w32-traits.functions]]
+address = "0x006B55F0"
+symbol_base = "?get_deleter@?$sp_counted_impl_pd@PAUHINSTANCE__@@P6AXPAX@Z@detail@boost@@UAEPAXABVtype_info@@@Z"
+rel32_targets = ["??8type_info@@QBE_NABV0@@Z=0x00689919"]
+
+[[units.boost-regex-source-w32-traits.functions]]
+address = "0x006B56C0"
+symbol_base = "?w32_cat_open@re_detail@boost@@YI?AV?$shared_ptr@X@2@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+rel32_targets = ["??$?0PAUHINSTANCE__@@P6AXPAX@Z@shared_count@detail@boost@@QAE@PAUHINSTANCE__@@P6AXPAX@Z@Z=0x006B5620", "?sp_enable_shared_from_this@detail@boost@@YAXZZ=0x0041F890"]
+
+[[units.boost-regex-source-w32-traits.functions]]
+address = "0x006B5710"
+symbol_base = "?w32_cat_get@re_detail@boost@@YI?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV?$shared_ptr@X@2@KHABV34@@Z"
+rel32_targets = ["?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0", "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0", "@__security_check_cookie@4=0x00689D25"]

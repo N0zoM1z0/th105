@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "release": "boost-1.40.0",
+  "regex_commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+  "files": [
+    {
+      "path": "LICENSE_1_0.txt",
+      "repository": "https://github.com/boostorg/boost",
+      "commit": "644e2135159e0b3ca535aab1a67938c27caf6ec9",
+      "source_path": "LICENSE_1_0.txt",
+      "git_blob_sha1": "36b7cd93cdfbac762f5be4c6ce276df2ea6305c2",
+      "size": 1338,
+      "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+    },
+    {
+      "path": "include/boost/regex/v4/mem_block_cache.hpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "include/boost/regex/v4/mem_block_cache.hpp",
+      "git_blob_sha1": "222142dd69cc7bd1b24d95634caaf1de54565dbc",
+      "size": 1990,
+      "sha256": "d3b44af3918819bbc28e610fe2094ee154866f6e0fd0ecc36f7c44528ce8be92"
+    },
+    {
+      "path": "src/cpp_regex_traits.cpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "src/cpp_regex_traits.cpp",
+      "git_blob_sha1": "9ed66be646763f8f5e70034a1947f91c10392106",
+      "size": 3092,
+      "sha256": "daeb996775a66ff86766e45e0fd39bdb7f82a13374160161f5b65dab022ca1e9"
+    },
+    {
+      "path": "src/regex.cpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "src/regex.cpp",
+      "git_blob_sha1": "0a503820cbf37b3dacaa76d8aed84f8c3c928dd0",
+      "size": 5445,
+      "sha256": "9d4ddfd084d455ec4f8f747de16b8a3463cb6d486066f0a7a84419d3661e6ca5"
+    },
+    {
+      "path": "src/regex_raw_buffer.cpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "src/regex_raw_buffer.cpp",
+      "git_blob_sha1": "7a8de8033d74064524818b92836b57d6353aec7c",
+      "size": 1732,
+      "sha256": "261f70db1aea81198ceeeb0d8000c9bae7b0017a0e792fe515b95b0ebe8c3df5"
+    },
+    {
+      "path": "src/regex_traits_defaults.cpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "src/regex_traits_defaults.cpp",
+      "git_blob_sha1": "c9596a3daf62f770677c1f8b4f07574b034501c0",
+      "size": 28559,
+      "sha256": "078545468077047bf8e42f63055307036eec24f2d3653a8c93a48229b07620f7"
+    },
+    {
+      "path": "src/static_mutex.cpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "src/static_mutex.cpp",
+      "git_blob_sha1": "cef76783bfffefdbf5b90f06bcc36a88f2ffd452",
+      "size": 3651,
+      "sha256": "64d486f6662fb372024b03d5f58c2903485c6db05589245c300873df321498e1"
+    },
+    {
+      "path": "src/w32_regex_traits.cpp",
+      "repository": "https://github.com/boostorg/regex",
+      "commit": "fa1ef1dfd4136803625e49853289ade7c2ddff0a",
+      "source_path": "src/w32_regex_traits.cpp",
+      "git_blob_sha1": "365fccc00274690d16fa31b64d0fc29cbd31307f",
+      "size": 19704,
+      "sha256": "63862ab73c8f92e4880c3b2e059341473124daf3861b0a1bac9fb25532ff509a"
+    }
+  ]
+}

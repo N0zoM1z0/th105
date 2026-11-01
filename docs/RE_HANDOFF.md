@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Original Boost non-instance CPP context closes15 complete library bodies/1391
+bytes across core/raw-buffer/static-mutex/Windows traits. Separate immutable
+8-file source package leaves old184-header lock and reject-extra gate intact.
+All code/data fields canonically resolve; actual COFF/native RTTI, imports and
+literals are verified. Runtime-error ctor107/113, mutex dtor26 and module deleter12
+are auxiliary only. Old connect nine comparisons pass. Excluded1985/review387/
+units776; authored exact1431/443916/source1635/authored1655/mapped1820 stay.
+Collation lookup455 remains pending a complete nonuniform pointer-array contract;
+ordinary DIR32 mapping was not weakened. See BOOST_SOURCE_TUS_2026_11_01.md.
+
 Actual FileListFinalize source now proves complete tile-deque Growmap439D70
 canonical341, including allfour CRT memmove sites and original length/allocation
 helpers.313 nonrelocation bytes remain inventory-unique at unchanged gates.

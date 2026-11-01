@@ -65,7 +65,9 @@ def canonical_address(raw: str) -> str:
 def deferred_upstream_include(unit: dict[str, Any], path: str) -> bool:
     """Metadata-only graph checks need no downloaded, independently pinned SDK."""
     from upstream_boost import FOLDER
-    return (unit.get("boost_regex_headers") is True and path == FOLDER
+    from upstream_boost_sources import INCLUDE
+    return (unit.get("boost_regex_headers") is True and (path == FOLDER
+            or bool(unit.get("boost_regex_source_tu")) and path == INCLUDE)
             or unit.get("kind") == "linked_candidate" and unit.get("link_png_sdk") is True
             and path == ".tools/upstream/zlib-1.2.3")
 
