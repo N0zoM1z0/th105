@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Actual slot construction views now use a flat0x50 record and one-byte tail34
+with natural padding. Both authored owners238/848 and old38 origin bodies
+remain exact/proven. Implicit copy116 plus standard copy/fill74/76/38 fully
+compare; six unique compiler origins total628, including two162-byte helpers
+with provenance only. Byte-array alternative breaks owner238->271 and is not
+selected; existing authored assignment162 is unchanged. Exact1582/449309,
+source1781/authored1801/mapped1808/units764 unchanged; excluded1789/review437.
+See FIXED_SLOT_COPY_LIFETIME_2026_11_01.md.
+
 Texture manager404F00 is canonical193 plus all120 EH bytes through the real
 0x84-byte manager/cache aggregate. New narrow texture lifecycle proof compares
 full59-byte CRT initializer,10-byte ECX callback, storage/table and fresh98/30

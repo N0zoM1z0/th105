@@ -1,0 +1,39 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/battle/BattleInputSlotConfig.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x0042BCD0"
+size = 116
+symbol = "??0FixedSlotEnvelope@th105@@QAE@ABU01@@Z"
+
+[[anchors]]
+address = "0x0042BD50"
+size = 74
+symbol = "??$_Copy_opt@PAUFixedSlotEnvelope@th105@@PAU12@@std@@YAPAUFixedSlotEnvelope@th105@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0042BDF0"
+size = 38
+symbol = "??$_Fill@PAUFixedSlotEnvelope@th105@@U12@@std@@YAXPAUFixedSlotEnvelope@th105@@0ABU12@@Z"
+
+[[anchors]]
+address = "0x0042BDA0"
+size = 76
+symbol = "??$_Copy_backward_opt@PAUFixedSlotEnvelope@th105@@PAU12@@std@@YAPAUFixedSlotEnvelope@th105@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0042BE20"
+size = 162
+symbol = "??$_Uninit_copy@PAUFixedSlotEnvelope@th105@@PAU12@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@YAPAUFixedSlotEnvelope@th105@@PAU12@00AAV?$allocator@UFixedSlotEnvelope@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
+
+[[anchors]]
+address = "0x0042BF70"
+size = 162
+symbol = "??$_Uninit_fill_n@PAUFixedSlotEnvelope@th105@@IU12@V?$allocator@UFixedSlotEnvelope@th105@@@std@@@std@@YAXPAUFixedSlotEnvelope@th105@@IABU12@AAV?$allocator@UFixedSlotEnvelope@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"

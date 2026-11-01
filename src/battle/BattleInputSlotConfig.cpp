@@ -5,7 +5,8 @@ namespace th105 {
 
 typedef std::deque<short> SidePayload;
 
-struct FixedBattleSetupSlot {
+// Native42BCD0 copies direct members; tail34 is one byte, followed by natural alignment.
+struct FixedSlotEnvelope {
     unsigned short side_value_lo_00;
     unsigned short side_byte_05_02;
     unsigned short side_byte_06_04;
@@ -14,14 +15,13 @@ struct FixedBattleSetupSlot {
     unsigned short token_tag_30;
     unsigned char tail_32;
     unsigned char tail_33;
-    unsigned tail_34_and_padding;
+    unsigned char tail_34;
     unsigned tail_dword_38;
-};
-
-struct FixedSlotEnvelope {
-    FixedBattleSetupSlot setup_00;
     SidePayload private_payload_3c;
 };
+
+typedef char FixedSlotTailOffset[offsetof(FixedSlotEnvelope, tail_34) == 0x34 ? 1 : -1];
+typedef char FixedSlotPrivatePayloadOffset[offsetof(FixedSlotEnvelope, private_payload_3c) == 0x3c ? 1 : -1];
 
 struct BattleInputSlotConfigView {
     unsigned char unknown_000[0xec];

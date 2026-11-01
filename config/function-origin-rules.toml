@@ -4973,3 +4973,22 @@ required_direct_edges = [
  { caller = "0x00631340", site = "0x006314FB", target = "0x00494450", caller_status = "matching" },
  { caller = "0x0064B7A0", site = "0x0064B95B", target = "0x00494450", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "vc8-generated-flat-fixed-slot-copy-106a"
+vc8_generated_anchor_file = "config/vc8-generated-flat-fixed-slot-copy-origin-anchors.toml"
+expected_count = 6
+expected_bytes = 628
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "The genuine flat0x50 slot record, two real deque array members, one-byte tail34 and natural padding produce complete116-byte implicit copy plus five original STL copy/fill helpers. Six full-inventory unique fingerprints cover628 bytes; four canonical main bodies cover304 bytes. No user-written copy or EH suppression. Accepted configuration238/replay848 and old38-source-origin family stay unchanged. docs/FIXED_SLOT_COPY_LIFETIME_2026_11_01.md."
+required_body_hashes = [
+ { address = "0x0042BCD0", size = 116, sha256 = "3aea4da79105ba7bd2617a6a479d051f63d93dd68b9dcf34970525ef829953d0" },
+ { address = "0x0042BD50", size = 74, sha256 = "d3e9200d1747f527e37b1c34011526dec128c56a5d09c40a3fb1043edc1ca73f" },
+ { address = "0x0042BDF0", size = 38, sha256 = "4cd04a646dbbd788150f9846ddcca3457500d5968e27b607b1bbed6fa6c74ec6" },
+ { address = "0x0042BDA0", size = 76, sha256 = "742894a23297696778b3a6a99eb0a3366303a44c8910c2a2425b8ba1bc4e76e8" },
+ { address = "0x0042BE20", size = 162, sha256 = "1d409e6a49cd5b9ada1c2073023ee1a557791a7185445966460d0e8c82fb804e" },
+ { address = "0x0042BF70", size = 162, sha256 = "b0625ccb3c56d0296393cbaf843c7f1253873638b2a144fba1f619529833d894" },
+]

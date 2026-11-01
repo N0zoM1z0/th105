@@ -27,8 +27,9 @@ static String28CallGate *string_gate(String28 *value)
 }
 
 // Paired scalar words agree with BattleInputSlotConfig and slot-copy stores.
-// The deserializer reads their component bytes; these are not C byte arrays.
-struct FixedBattleSetupSlot {
+// This construction view retains paired words; byte-oriented I/O views stay separate.
+// Native42BCD0 copies direct members; tail34 is one byte, followed by natural alignment.
+struct FixedSlotEnvelope {
     unsigned short side_value_lo_00;
     unsigned short side_byte_05_02;
     unsigned short side_byte_06_04;
@@ -37,16 +38,14 @@ struct FixedBattleSetupSlot {
     unsigned short token_tag_30;
     unsigned char tail_32;
     unsigned char tail_33;
-    unsigned tail_34_and_padding;
+    unsigned char tail_34;
     unsigned tail_dword_38;
-};
-
-struct FixedSlotEnvelope {
-    FixedBattleSetupSlot setup_00;
     SidePayload private_payload_3c;
-
     bool deserialize_fixed_slot_envelope(FileReader *reader);
 };
+
+typedef char FixedSlotTailOffset[offsetof(FixedSlotEnvelope, tail_34) == 0x34 ? 1 : -1];
+typedef char FixedSlotPrivatePayloadOffset[offsetof(FixedSlotEnvelope, private_payload_3c) == 0x3c ? 1 : -1];
 
 // This value is deliberately a call rather than an inlined literal.  The
 // target obtains the recording-format marker through a constant-return helper
