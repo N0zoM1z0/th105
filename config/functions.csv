@@ -3351,7 +3351,7 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x00694E3E,425,0x00694FE6,start_6,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00694FE8,61,0x00695024,?__CxxUnhandledExceptionFilter@@YGJPAU_EXCEPTION_POINTERS@@@Z,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00695025,14,0x00695032,sub_695025,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x00695033,1,0x00695033,nullsub_1,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x00695033,1,0x00695033,nullsub_1,,,identified,0.00,,,false,,Whole pinned original winxfltr.obj and actual named runtime callers/storage; vc8-original-pointer-policy-106a,,"Original symbol __initp_misc_winxfltr. Complete body with actual init/abort ownership, no authored credit; docs/CRT_POINTER_POLICY_2026_11_01.md."
 0x00695034,350,0x00695191,__XcptFilter,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x00695192,93,0x006951EE,__wincmdln,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x006951EF,219,0x006952C9,__setenvp,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
@@ -3483,10 +3483,10 @@ address,size,span_end,current_name,proposed_name,module,status,match_percent,cal
 0x0069B940,187,0x0069B9FA,__IsNonwritableInCurrentImage,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069B9FB,25,0x0069BA13,__initp_misc_winsig,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069BA14,52,0x0069BA47,_siglookup,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0069BA48,13,0x0069BA54,sub_69BA48,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
+0x0069BA48,13,0x0069BA54,sub_69BA48,,,identified,0.00,,,false,,Whole pinned original winsig.obj and actual named runtime callers/storage; vc8-original-pointer-policy-106a,,"Original symbol ___get_sigabrt. Complete body with actual init/abort ownership, no authored credit; docs/CRT_POINTER_POLICY_2026_11_01.md."
 0x0069BA55,432,0x0069BC04,_raise,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0069BC05,10,0x0069BC0E,sub_69BC05,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
-0x0069BC0F,10,0x0069BC18,sub_69BC0F,,,identified,0.00,__cdecl,,false,,Target PE full CFG plus SHA-pinned VC8 SP1 initcrit.obj COFF/DIR32 replay and critical-section consumer; see vc8-short-runtime-global-setters-106a,,Archive symbol __initp_misc_initcrit; writes callback at 0x006FDE14; same-shape 0x0069BC05 stays unresolved.
+0x0069BC05,10,0x0069BC0E,sub_69BC05,,,identified,0.00,,,false,,Whole pinned original rand_s.obj and actual named runtime callers/storage; vc8-original-pointer-policy-106a,,"Original symbol __initp_misc_rand_s. Complete body with actual init/abort ownership, no authored credit; docs/CRT_POINTER_POLICY_2026_11_01.md."
+0x0069BC0F,10,0x0069BC18,sub_69BC0F,,,identified,0.00,__cdecl,,false,,Target PE full CFG plus SHA-pinned VC8 SP1 initcrit.obj COFF/DIR32 replay and critical-section consumer; see vc8-short-runtime-global-setters-106a,,Archive symbol __initp_misc_initcrit; writes callback at 0x006FDE14; same-shape 0x0069BC05 is separately resolved through actual init_pointers ownership; see CRT_POINTER_POLICY_2026_11_01.md.
 0x0069BC19,16,0x0069BC28,___crtInitCritSecNoSpinCount@8,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069BC29,197,0x0069BCED,___crtInitCritSecAndSpinCount,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,
 0x0069BCF0,24,0x0069BD07,__CIacos_pentium4,,,unclassified,0.00,,,false,,IDA 1.06a auto-analysis candidate; boundary unreviewed,,

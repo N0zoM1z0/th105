@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Original SIGABRT getter69BA48/13, rand_s initializer69BC05/10 and winxfltr
+initializer695033/1 now have complete source/caller/storage proofs. Full
+init_pointers76, winsig25 and abort243 replay. Abort retains its original
+terminal INT3 beyond provisional242; no callable/CFG waiver. Actual BSS20/4
+and initialized cells verified.14 tests/380 mutations; excluded2064/review308,
+units807. No authored credit or RET uniqueness/ICF claim. See
+CRT_POINTER_POLICY_2026_11_01.md.
+
 Original atan2/CIatan2 entries68BB70/7A are now whole10-byte runtime bodies.
 Complete owner20 plus support168/640/458 and data80/44/48 replay; all16 actual
 dispatch slots target original instruction entries. matherr_flag is initialized

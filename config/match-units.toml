@@ -29522,3 +29522,51 @@ address = "0x0068BB7A"
 symbol_base = "__CIatan2"
 rel32_targets = ["__cintrindisp2=0x00696530"]
 dir32_targets = ["__OP_ATAN2jmptab=vc8_atan2_dispatch_table"]
+
+[units.vc8-original-sigabrt-getter]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-sigabrt-getter.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "winsig.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Whole original pointer-policy root, actual original callers and full BSS layout. docs/CRT_POINTER_POLICY_2026_11_01.md."
+
+[[units.vc8-original-sigabrt-getter.functions]]
+address = "0x0069BA48"
+symbol_base = "___get_sigabrt"
+rel32_targets = ["__decode_pointer=0x0068EAA5"]
+dir32_targets = ["_abort_action=vc8_signal_abort_action"]
+
+[units.vc8-original-rand-pointer-initializer]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-rand-pointer-initializer.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "rand_s.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Whole original pointer-policy root, actual original callers and full BSS layout. docs/CRT_POINTER_POLICY_2026_11_01.md."
+
+[[units.vc8-original-rand-pointer-initializer.functions]]
+address = "0x0069BC05"
+symbol_base = "__initp_misc_rand_s"
+dir32_targets = ["_g_pfnRtlGenRandom=vc8_rand_s_callback"]
+
+[units.vc8-original-winxfltr-initializer]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-winxfltr-initializer.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "winxfltr.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Whole original pointer-policy root, actual original callers and full BSS layout. docs/CRT_POINTER_POLICY_2026_11_01.md."
+
+[[units.vc8-original-winxfltr-initializer.functions]]
+address = "0x00695033"
+symbol_base = "__initp_misc_winxfltr"

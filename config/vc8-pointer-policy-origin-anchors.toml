@@ -1,0 +1,23 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+[[anchors]]
+address = "0x0069BA48"
+size = 13
+symbol = "___get_sigabrt"
+unit = "vc8-original-sigabrt-getter"
+sha256 = "139f5c3c807222d9a0e94d933d461c3d3658e3b6c84a5a568680b350ea31bc62"
+
+[[anchors]]
+address = "0x0069BC05"
+size = 10
+symbol = "__initp_misc_rand_s"
+unit = "vc8-original-rand-pointer-initializer"
+sha256 = "eca3fb6bfb4ec0598268caf926b06cb67b073b8457cc87cc481e1e13543daf41"
+
+[[anchors]]
+address = "0x00695033"
+size = 1
+symbol = "__initp_misc_winxfltr"
+unit = "vc8-original-winxfltr-initializer"
+sha256 = "ae3f4619b0413d70d3004b9131c3752153074e45725be13b9a148978895e359e"

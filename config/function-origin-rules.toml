@@ -785,7 +785,7 @@ origin = "vc8_runtime"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Four full 10-byte target bodies reproduce named functions in SHA-pinned VC8 SP1 libcmt objects after exactly one DIR32 relocation at +5. Each relocated global is independently read by a full-body-pinned runtime consumer: __invalid_parameter, __purecall, __callnewh, or ___crtInitCritSecAndSpinCount. The fifth identical-shape setter 0x0069BC05 has no confirmed object/global identity and remains in review. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Four full 10-byte target bodies reproduce named functions in SHA-pinned VC8 SP1 libcmt objects after exactly one DIR32 relocation at +5. Each relocated global is independently read by a full-body-pinned runtime consumer: __invalid_parameter, __purecall, __callnewh, or ___crtInitCritSecAndSpinCount. The fifth identical-shape setter 0x0069BC05 was unresolved by this consumer-only proof; it is now separately qualified through actual original init_pointers ownership in vc8-original-pointer-policy-106a. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_msvc_short_setters = [
   { address = "0x0068A019", sha256 = "5fa3c57fbbd3d135d00c6ec8c72d9e40bcdccb19d4e3e22b1ef1ff490b0c65c8", object = "build/intel/mt_obj/cpp_obj/invarg.obj", object_sha256 = "e1397d77abfe2cccea14d4330c23cc9066e989b35da5a6ded641f9e7691d4512", symbol = "__initp_misc_invarg", relocation_symbol = "___pInvalidArgHandler", global = "0x006FD3BC", consumer = "0x0068A11F", consumer_site = "0x0068A124", consumer_sha256 = "2e6ed341b02592683a956e7d33e17b82c1d58d25be7877466350e0de976957ec" },
   { address = "0x0068EF7E", sha256 = "dcbc320cc1a6b007ec22e42f580acb7d8d443789aee2d54bf81e8d841f089ab3", object = "build/intel/mt_obj/inithelp.obj", object_sha256 = "91e70aed31d9e8a26c75827552b2b436f457bbfd366b1471b154681158e15314", symbol = "__initp_misc_purevirt", relocation_symbol = "___pPurecall", global = "0x006FD754", consumer = "0x00689934", consumer_site = "0x00689936", consumer_sha256 = "6144b254eee7fe8bfad7952833fe765fe4624faa08f778534ac1cee818c75812" },
@@ -5905,3 +5905,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Two complete original atan2/CIatan2 entries with actual EDX table and named dispatch tails. Complete original code20/168/640/458 and data80/44/48 plus initialized matherr4 and actual fastflag BSS are checked. Sixteen dispatch slots resolve original instruction entries. No support/data/authored credit or whole-support CFG reachability claim. docs/CRT_ATAN2_ENTRIES_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-pointer-policy-106a"
+vc8_pointer_policy_anchor_file = "config/vc8-pointer-policy-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 24
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Whole original SIGABRT getter13, rand_s pointer initializer10 and winxfltr no-op initializer1. Full original init_pointers76, abort243 and winsig initializer25 pin actual named callers; real BSS20/4, initialized behavior/exit cells and named Windows imports checked. Abort retains original INT3 with no fake RET/CFG waiver. No support/data/authored credit or one-byte RET uniqueness/ICF claim. docs/CRT_POINTER_POLICY_2026_11_01.md."
