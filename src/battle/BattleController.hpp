@@ -63,6 +63,7 @@ struct BattleInputGate {
     void update_local_practice_battle_controls_427190();
     void publish_synchronized_control_bits_427ac0();
     void save_battle_setup_slot(signed char slot, MatchSetup *setup);
+    void configure_watch_player_42bc40(signed char slot, MatchSetup *setup);
     void load_battle_setup_slot(signed char slot, MatchSetup *setup);
     void configure_session_input(signed char character_key, int game_mode);
     void queue_control_word(unsigned short packed_control_bits);

@@ -75,7 +75,15 @@ struct SavedTokenMetadata {
 
 struct BattleInputGateSetupView {
     unsigned retained_token_values_00[2];
-    unsigned char padding_08[0xd0];
+    unsigned char padding_08[0x60];
+    unsigned short sequence_68;
+    unsigned char padding_6a[2];
+    unsigned char sequence_ready_6c;
+    unsigned char padding_6d[0x63];
+    unsigned short frame_d0;
+    unsigned char padding_d2[2];
+    unsigned char frame_ready_d4;
+    unsigned char padding_d5[3];
     SavedTokenMetadata saved_tokens_d8[2];
     unsigned char padding_e8[8];
     signed char saved_token_mask_f0;
@@ -91,6 +99,15 @@ typedef char MatchSetupSideView_size_must_be_0x20[
     sizeof(MatchSetupSideView) == 0x20 ? 1 : -1];
 typedef char MatchSetupView_size_must_be_0x4c[
     sizeof(MatchSetupView) == 0x4c ? 1 : -1];
+typedef char WatchSequenceReadyOffset[
+    offsetof(BattleInputGateSetupView, sequence_ready_6c) == 0x6c ? 1 : -1];
+typedef char WatchFrameOffset[
+    offsetof(BattleInputGateSetupView, frame_d0) == 0xd0 ? 1 : -1];
+typedef char WatchFrameReadyOffset[
+    offsetof(BattleInputGateSetupView, frame_ready_d4) == 0xd4 ? 1 : -1];
+typedef char WatchMetadataOffset[
+    offsetof(BattleInputGateSetupView, saved_tokens_d8) == 0xd8 ? 1 : -1];
+
 typedef char BattleInputGateSetupView_loaded_slot_offset_must_be_0x141[
     offsetof(BattleInputGateSetupView, loaded_slot_141) == 0x141 ? 1 : -1];
 
@@ -234,6 +251,37 @@ void BattleInputGate::load_battle_setup_slot(
     *reinterpret_cast<unsigned *>(
         reinterpret_cast<unsigned char *>(setup) + 0x48) =
         owner->selected_slot_104->tail_dword_38;
+}
+
+void BattleInputGate::configure_watch_player_42bc40(
+    signed char slot, MatchSetup *setup)
+{
+    BattleInputGateSetupView *owner =
+        reinterpret_cast<BattleInputGateSetupView *>(this);
+    MatchSetupView *config = reinterpret_cast<MatchSetupView *>(setup);
+    owner->saved_token_mask_f0 = static_cast<signed char>(
+        2 * (config->sides_08[1].token_1c != 0) +
+        (config->sides_08[0].token_1c != 0));
+    save_battle_setup_slot(slot, setup);
+    owner->sequence_ready_6c = 1;
+    owner->sequence_68 = 0;
+    if (config->sides_08[0].token_1c != 0) {
+        owner->saved_tokens_d8[0].tag_04 = config->sides_08[0].token_1c->tag_04;
+        config->sides_08[0].token_1c =
+            reinterpret_cast<SetupTokenInput *>(&owner->saved_tokens_d8[0]);
+    } else {
+        config->sides_08[0].token_1c = 0;
+    }
+    owner->frame_ready_d4 = 1;
+    owner->frame_d0 = 0;
+    if (config->sides_08[1].token_1c != 0) {
+        // Native42BCAB reads the already rebound first-side token here.
+        owner->saved_tokens_d8[1].tag_04 = config->sides_08[0].token_1c->tag_04;
+        config->sides_08[1].token_1c =
+            reinterpret_cast<SetupTokenInput *>(&owner->saved_tokens_d8[1]);
+    } else {
+        config->sides_08[1].token_1c = 0;
+    }
 }
 
 } // namespace th105

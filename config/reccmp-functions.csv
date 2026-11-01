@@ -1807,3 +1807,4 @@ TNumberValue_floatptr_get_floating,0x0046A650,function
 Fighter_try_dispatch_front_word_actions_690_696,0x00494450,function
 RenderModeManager_set_pair_state,0x00404940,function
 TextureHandleManager_ctor,0x00404F00,function
+BattleInputGate_configure_watch_player,0x0042BC40,function

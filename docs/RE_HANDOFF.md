@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Watch-input42BC40 now has complete140-byte ownership/source, with all48
+instructions/two RET8 exits and fresh exact LoadingWatch209 edge42697C.
+Source139 remains nonexact+46 in COFF and genuine save-provider CIL; no forced
+barrier. Native second-side tag reads through the rebound first-side descriptor
+and is preserved. Selected selector60/save305 remain exact; load332 unchanged.
+Exact1582/449309 stays; source1782/authored1802/mapped1809/excluded1789/review436/
+units764. See WATCH_INPUT_CONFIGURATION_SOURCE_2026_11_01.md.
+
 Actual slot construction views now use a flat0x50 record and one-byte tail34
 with natural padding. Both authored owners238/848 and old38 origin bodies
 remain exact/proven. Implicit copy116 plus standard copy/fill74/76/38 fully

@@ -4992,3 +4992,17 @@ required_body_hashes = [
  { address = "0x0042BE20", size = 162, sha256 = "1d409e6a49cd5b9ada1c2073023ee1a557791a7185445966460d0e8c82fb804e" },
  { address = "0x0042BF70", size = 162, sha256 = "b0625ccb3c56d0296393cbaf843c7f1253873638b2a144fba1f619529833d894" },
 ]
+
+[[rules]]
+id = "watch-input-configuration-authored-106a"
+addresses = ["0x0042BC40"]
+expected_count = 1
+expected_bytes = 140
+expected_names = ["sub_42BC40"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Fresh exact LoadingWatch209 calls the full140-byte watch-input rebinding policy. Every instruction/two RET8 exits close; source139 remains nonexact+46 in COFF and genuine save-provider CIL. Existing selector60/save305 remain exact in selected COFF; no exact/helper credit. docs/WATCH_INPUT_CONFIGURATION_SOURCE_2026_11_01.md."
+required_body_hashes = [{ address = "0x0042BC40", size = 140, sha256 = "327ec78bdfd5cb6898887235d0ef68037400996666d03fc379a0d86385b68687" }]
+required_direct_edges = [{ caller = "0x004268F0", site = "0x0042697C", target = "0x0042BC40", caller_status = "matching" }]

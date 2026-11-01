@@ -626,7 +626,7 @@ source = "src/battle/BattleSetupSlots.cpp"
 object = "build/match-units/CrossV106a_BattleSetupSlots.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a battle setup slot lane. Exact checked selector 0x004284C0 remains 60/60. Recovered checked-vector size provenance plus the always-store maximum-slot lifetime makes save_battle_setup_slot 0x0042B9B0 canonical exact 305/305; load_battle_setup_slot remains 332/332 with first mismatch +0x92 after the same vector-view and selector-publication recovery."
+notes = "TH105 1.06a battle setup slot lane. Exact checked selector 0x004284C0 remains 60/60. Recovered checked-vector size provenance plus the always-store maximum-slot lifetime makes save_battle_setup_slot 0x0042B9B0 canonical exact 305/305; load_battle_setup_slot remains332/332 nonexact+0x92. Complete watch-input configuration42BC40 is source-present139/native140, nonexact+46; no extra exact credit. docs/WATCH_INPUT_CONFIGURATION_SOURCE_2026_11_01.md."
 
 [[units.cross-v106a-fixed-slot-select.functions]]
 address = "0x004284C0"
@@ -28576,3 +28576,8 @@ rel32_targets = ["??4FixedSlotEnvelope@th105@@QAEAAU01@ABU01@@Z=0x0042B900"]
 address = "0x0042BDA0"
 symbol_base = "??$_Copy_backward_opt@PAUFixedSlotEnvelope@th105@@PAU12@@std@@YAPAUFixedSlotEnvelope@th105@@PAU12@00Urandom_access_iterator_tag@0@U_Nonscalar_ptr_iterator_tag@0@U_Range_checked_iterator_tag@0@@Z"
 rel32_targets = ["??4FixedSlotEnvelope@th105@@QAEAAU01@ABU01@@Z=0x0042B900"]
+
+[[units.cross-v106a-fixed-slot-select.functions]]
+address = "0x0042BC40"
+symbol_base = "?configure_watch_player_42bc40@BattleInputGate@th105@@QAEXCPAUMatchSetup@2@@Z"
+rel32_targets = ["?save_battle_setup_slot@BattleInputGate@th105@@QAEXCPAUMatchSetup@2@@Z=0x0042B9B0"]

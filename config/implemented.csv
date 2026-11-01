@@ -1779,3 +1779,4 @@ TNumberValue_floatptr_get_floating
 Fighter_try_dispatch_front_word_actions_690_696
 RenderModeManager_set_pair_state
 TextureHandleManager_ctor
+BattleInputGate_configure_watch_player
