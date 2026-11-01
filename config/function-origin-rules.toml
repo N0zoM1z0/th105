@@ -5850,3 +5850,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Whole original VC8 vector constructor4460D0/14 in the actual ScoreData array owner. Pinned vendor headers, complete relocation-free member, inventory uniqueness and full31-byte caller/count20/stride16/member198/paired destructor roles verified. All six owner-unit bodies freshly exact; no parent/EH/static or authored credit and no generic threshold relaxation. docs/SCORE_VECTOR_DEFAULT_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-public-wrappers-106a"
+vc8_public_wrapper_anchor_file = "config/vc8-public-wrapper-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 50
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original atof14, fread27 and flushall9 forwarding bodies from pinned libcmt members. Complete source extent, sole zero-addend REL32/provider identity, unmasked canonical bytes, full RET CFG and whole-inventory uniqueness checked. No library provider/EH or authored recount; generic thresholds unchanged. docs/CRT_PUBLIC_WRAPPERS_2026_11_01.md."

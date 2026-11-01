@@ -29340,3 +29340,51 @@ dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
 address = "0x0046E950"
 symbol_base = "??1InfoRecord154Lifecycle@th105@@QAE@XZ"
 dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
+
+[units.vc8-original-atof-wrapper]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-atof-wrapper.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "atof.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete original CRT public forwarding body; no provider/EH/authored credit. docs/CRT_PUBLIC_WRAPPERS_2026_11_01.md."
+
+[[units.vc8-original-atof-wrapper.functions]]
+address = "0x0068B420"
+symbol_base = "_atof"
+rel32_targets = ["__atof_l=0x0068B377"]
+
+[units.vc8-original-fread-wrapper]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-fread-wrapper.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "fread.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete original CRT public forwarding body; no provider/EH/authored credit. docs/CRT_PUBLIC_WRAPPERS_2026_11_01.md."
+
+[[units.vc8-original-fread-wrapper.functions]]
+address = "0x0068CEEF"
+symbol_base = "_fread"
+rel32_targets = ["_fread_s=0x0068CE59"]
+
+[units.vc8-original-flushall-wrapper]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-flushall-wrapper.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "fflush.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete original CRT public forwarding body; no provider/EH/authored credit. docs/CRT_PUBLIC_WRAPPERS_2026_11_01.md."
+
+[[units.vc8-original-flushall-wrapper.functions]]
+address = "0x0069A81E"
+symbol_base = "__flushall"
+rel32_targets = ["_flsall=0x0069A744"]

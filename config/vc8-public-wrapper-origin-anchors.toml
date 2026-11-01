@@ -1,0 +1,24 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+[[anchors]]
+address = "0x0068B420"
+size = 14
+symbol = "_atof"
+unit = "vc8-original-atof-wrapper"
+sha256 = "56a7d6dec2eb34a7aa29d92f7551a19e3d2649be89d15e8645a7f9d34c833279"
+
+[[anchors]]
+address = "0x0068CEEF"
+size = 27
+symbol = "_fread"
+unit = "vc8-original-fread-wrapper"
+sha256 = "299811e2342647c8a244c989aa8b683bd4af30b33a420b98c6ca794427c6997c"
+
+[[anchors]]
+address = "0x0069A81E"
+size = 9
+symbol = "__flushall"
+unit = "vc8-original-flushall-wrapper"
+sha256 = "8098904dd0e150e977de0b526d450c62062de81776f616bbfde3b03b6a9c807c"
+

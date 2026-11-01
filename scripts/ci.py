@@ -58,6 +58,7 @@ EXACT_TEST_MODULES = (
     "test_sprite_default_origins",
     "test_sprite_callback_origins",
     "test_score_vector_default_origins",
+    "test_vc8_public_wrapper_origins",
     "test_vc8_member_call_bridge_origins",
     "test_xiph_table_getter_origins",
     "test_xiph_invsq_origins",

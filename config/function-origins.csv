@@ -3121,7 +3121,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0068B2A8,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068B35B,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-relocated-clones-106a
 0x0068B377,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0068B420,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068B420,vc8_runtime,runtime,exclude,observed,vc8-original-public-wrappers-106a
 0x0068B42E,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068B4EE,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068B510,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
@@ -3164,7 +3164,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0068CBD8,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068CC53,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068CE59,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0068CEEF,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068CEEF,vc8_runtime,runtime,exclude,observed,vc8-original-public-wrappers-106a
 0x0068CF0A,vc8_runtime,runtime,exclude,observed,vc8-kb971090-runtime-106a
 0x0068D059,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0068D05F,vc8_runtime,runtime,exclude,observed,vc8-kb971090-runtime-106a
@@ -3456,7 +3456,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0069A6A0,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069A702,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069A744,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0069A81E,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0069A81E,vc8_runtime,runtime,exclude,observed,vc8-original-public-wrappers-106a
 0x0069A827,vc8_runtime,runtime,exclude,observed,vc8-kb971090-runtime-106a
 0x0069A8BE,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069A98B,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

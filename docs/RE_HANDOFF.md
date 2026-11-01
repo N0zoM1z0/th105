@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Original CRT atof68B420/14, fread68CEEF/27 and flushall69A81E/9 are whole
+canonical/unique from actual pinned archive objects. Sole original REL32 fields,
+provider identities/extents and complete RET CFGs verified; no masks/tails or
+new provider/EH credit. Eight tests/50 actual byte mutations pass. Only50
+runtime bytes: excluded2050/review322, units797; authored exact/source unchanged.
+See CRT_PUBLIC_WRAPPERS_2026_11_01.md. No whole-runtime patch-version claim.
+
 Original VC8 vector constructor4460D0/14 now has a narrow complete-body
 proof from the real ScoreData array owner: pinned original vendor headers,
 inventory uniqueness, full31-byte caller and count20/stride16/member198 roles.
