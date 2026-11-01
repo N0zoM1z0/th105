@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original get_default_syntax6B45D0/548 now whole canonical/unique from unchanged
+regex_traits_defaults.cpp. All50 actual source DIR32 literal roles and complete
+strings/terminators pass; genuine60-pointer local array explains240-byte frame,
+not scratch. Isolated literal keys preserve other contexts. Nine added tests/
+647 actual mutations; existing error18/full-table gate freshly passes after
+allowing the second independently checked formal root in its same unit.
+Excluded2025/review347; other totals unchanged. See BOOST_DEFAULT_SYNTAX_2026_11_01.md.
+
+
 Original regex_traits_defaults.cpp error getter6B4800/18 now whole canonical/
 unique with its actual fastcall declaration. Full96-byte/24-pointer table and
 all22 unique whole strings/NUL terminators/aliases close both DIR32 roles.

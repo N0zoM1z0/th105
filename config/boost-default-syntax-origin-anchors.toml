@@ -1,0 +1,409 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "boost-regex-source-default-errors"
+
+[[anchors]]
+address = "0x006B45D0"
+size = 548
+symbol = "?get_default_syntax@re_detail@boost@@YIPBDE@Z"
+sha256 = "52850724f9f0078118008232f21908d83cd68d5308a1653724965c69d3a54bba"
+
+[[literals]]
+field = 10
+symbol = "??_C@_00CNPNBAHC@?$AA@"
+key = "boost_default_syntax_literal_00"
+address = "0x006D69D6"
+size = 1
+sha256 = "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"
+
+[[literals]]
+field = 21
+symbol = "??_C@_01ODHLEDKK@?$CI?$AA@"
+key = "boost_default_syntax_literal_01"
+address = "0x006D65E0"
+size = 2
+sha256 = "e4ab5012eff32a5171b3672b59d29950fe8b3dcb4d2dadf971ebbcbc2fbb0d41"
+
+[[literals]]
+field = 29
+symbol = "??_C@_01PKGAHCOL@?$CJ?$AA@"
+key = "boost_default_syntax_literal_02"
+address = "0x006D65DC"
+size = 2
+sha256 = "7c186033295a11388eb388a21e6e25ad05e9b6c45cd3c403dc3fae8a2d19516e"
+
+[[literals]]
+field = 37
+symbol = "??_C@_01EPMOAMKG@$?$AA@"
+key = "boost_default_syntax_literal_03"
+address = "0x006D65D8"
+size = 2
+sha256 = "33b67cb5385ceddad93d0ee960679041613bed34b8b4a5e6362fe7539ba2d3ce"
+
+[[literals]]
+field = 45
+symbol = "??_C@_01JKBOJNNK@?$FO?$AA@"
+key = "boost_default_syntax_literal_04"
+address = "0x006D513C"
+size = 2
+sha256 = "0e4ef663c8c8daf7dc149f66512fcf89005f543a73c542b1947ed2712a671d05"
+
+[[literals]]
+field = 53
+symbol = "??_C@_01LFCBOECM@?4?$AA@"
+key = "boost_default_syntax_literal_05"
+address = "0x006D6BE4"
+size = 2
+sha256 = "075d3ddf5a3a826e13a92288e853bc4b2cb17fb05367ae865f401a4bb11f05ce"
+
+[[literals]]
+field = 61
+symbol = "??_C@_01NBENCBCI@?$CK?$AA@"
+key = "boost_default_syntax_literal_06"
+address = "0x006D5174"
+size = 2
+sha256 = "17d5f5a33ab5f6aed0395d2bc0a4e5df61d92441ea8d77b0952c01bc8aa8bde0"
+
+[[literals]]
+field = 69
+symbol = "??_C@_01MIFGBAGJ@?$CL?$AA@"
+key = "boost_default_syntax_literal_07"
+address = "0x006D5164"
+size = 2
+sha256 = "206014a4266c2082b9433011fb2991059f972d570a8b3c976e5b2b8dfcfbfc8d"
+
+[[literals]]
+field = 77
+symbol = "??_C@_01OGPIMHDM@?$DP?$AA@"
+key = "boost_default_syntax_literal_08"
+address = "0x006D65D4"
+size = 2
+sha256 = "b813d21bdb2ae744a65ad78d0695cbf15a7750ca8a4828b4518913a26849bd05"
+
+[[literals]]
+field = 85
+symbol = "??_C@_01OHGJGJJP@?$FL?$AA@"
+key = "boost_default_syntax_literal_09"
+address = "0x006D65D0"
+size = 2
+sha256 = "d851a0155b6a2716e0da40a1336c5ff311fcf12ce16e53cf06b5a6cbd9cd32df"
+
+[[literals]]
+field = 93
+symbol = "??_C@_01LBDDMOBJ@?$FN?$AA@"
+key = "boost_default_syntax_literal_10"
+address = "0x006D65CC"
+size = 2
+sha256 = "b230ec74895e4131aecd468afe2723678730e6f7471bd48c3f239320587faeb7"
+
+[[literals]]
+field = 101
+symbol = "??_C@_01DNKMNLPK@?$HM?$AA@"
+key = "boost_default_syntax_literal_11"
+address = "0x006D5138"
+size = 2
+sha256 = "d34e9cd20975de76f07459cd78e5f80eea529cccfc79996b3a9361478ad544f2"
+
+[[literals]]
+field = 109
+symbol = "??_C@_01KICIPPFI@?2?$AA@"
+key = "boost_default_syntax_literal_12"
+address = "0x006D65C8"
+size = 2
+sha256 = "1472d0645f552820b5472b91341c2d9a118c8a96f4a72758d6aeeb14c10a1107"
+
+[[literals]]
+field = 117
+symbol = "??_C@_01IPJKGB@?$CD?$AA@"
+key = "boost_default_syntax_literal_13"
+address = "0x006D65C4"
+size = 2
+sha256 = "9def996cb1ea87e596b6cadccca3839a352e99d9ce07e635cdb239f38ca294f8"
+
+[[literals]]
+field = 125
+symbol = "??_C@_01JOAMLHOP@?9?$AA@"
+key = "boost_default_syntax_literal_14"
+address = "0x006D5168"
+size = 2
+sha256 = "24ea1ebd0bafd39482db46ec2d8959e61353a90efc072719e1308f86c3a106ba"
+
+[[literals]]
+field = 133
+symbol = "??_C@_01HCONENDN@?$HL?$AA@"
+key = "boost_default_syntax_literal_15"
+address = "0x006D65C0"
+size = 2
+sha256 = "4d74440c32c4fad5c28ebb6cf407a7d3433fbd7ae90cff66354d9353b200b5b7"
+
+[[literals]]
+field = 141
+symbol = "??_C@_01CELHOKLL@?$HN?$AA@"
+key = "boost_default_syntax_literal_16"
+address = "0x006D65BC"
+size = 2
+sha256 = "40f6916b78ce91e89f740a14cdc77ab0e69292daefb8e06abe4b67637ccc30c5"
+
+[[literals]]
+field = 149
+symbol = "??_C@_0L@FPFMPDDA@0123456789?$AA@"
+key = "boost_default_syntax_literal_17"
+address = "0x006D65B0"
+size = 11
+sha256 = "beb0dbd1c6fac1140dd817514f2fbdf501e246bf16c8e877e71187e9eb008189"
+
+[[literals]]
+field = 157
+symbol = "??_C@_01OJONOECF@b?$AA@"
+key = "boost_default_syntax_literal_18"
+address = "0x006C26BC"
+size = 2
+sha256 = "1e57b933b0a78203e21d41cc4b16d731b255b04058d48a4ac2731f0089312129"
+
+[[literals]]
+field = 165
+symbol = "??_C@_01HMGJMAIH@B?$AA@"
+key = "boost_default_syntax_literal_19"
+address = "0x006C0420"
+size = 2
+sha256 = "f6c6e57cc3dac1d6a2349701056ff5a3e48134efe4496a8c0f5cb9fc9e6dfc12"
+
+[[literals]]
+field = 173
+symbol = "??_C@_01MNNFJEPP@?$DM?$AA@"
+key = "boost_default_syntax_literal_20"
+address = "0x006D5154"
+size = 2
+sha256 = "4a2a7b898f79e4e459b8bb00c50430a11d5936ad43ee9c14660a267789f7be23"
+
+[[literals]]
+field = 181
+symbol = "??_C@_01PPODPGHN@?$DO?$AA@"
+key = "boost_default_syntax_literal_21"
+address = "0x006C2890"
+size = 2
+sha256 = "0d549a9e1389098a9e7c5d1e01e30a361da49f46c8f166e55d8a7f18e063b3c3"
+
+[[literals]]
+field = 197
+symbol = "??_C@_02BEBLKKLN@A?$GA?$AA@"
+key = "boost_default_syntax_literal_22"
+address = "0x006D65AC"
+size = 3
+sha256 = "b09fabb38d9fefc8986d927c6fd68c4350fd7fa15acf1c02ff1da56ec8981875"
+
+[[literals]]
+field = 205
+symbol = "??_C@_02IDBNHJAO@z?8?$AA@"
+key = "boost_default_syntax_literal_23"
+address = "0x006D65A8"
+size = 3
+sha256 = "c1f1a4a77ed4f9b4024aceb0a696cdaf08d0dac8dc0fab52caafc7c458a54d32"
+
+[[literals]]
+field = 213
+symbol = "??_C@_01EEMJAFIK@?6?$AA@"
+key = "boost_default_syntax_literal_24"
+address = "0x006CB56C"
+size = 2
+sha256 = "102b51b9765a56a3e899f7cf0ee38e5251f9c503b357b330a49183eb7b155604"
+
+[[literals]]
+field = 221
+symbol = "??_C@_01IHBHIGKO@?0?$AA@"
+key = "boost_default_syntax_literal_25"
+address = "0x006D5148"
+size = 2
+sha256 = "d8fa32dd40b181d8250a4ecde2f2f17bd7bfdf2793278d06ea5afc647f3d5762"
+
+[[literals]]
+field = 229
+symbol = "??_C@_01MCMALHOG@a?$AA@"
+key = "boost_default_syntax_literal_26"
+address = "0x006D62C8"
+size = 2
+sha256 = "ffe9aaeaa2a2d5048174df0b80599ef0197ec024c4b051bc9860cff58ef7f9f3"
+
+[[literals]]
+field = 237
+symbol = "??_C@_01INIBCBCB@f?$AA@"
+key = "boost_default_syntax_literal_27"
+address = "0x006D62B8"
+size = 2
+sha256 = "887a0529fd9d76eb33c0ec808c05daaf32fa9f5e21e4c32224fb4bfaaa0af385"
+
+[[literals]]
+field = 245
+symbol = "??_C@_01EFFIKLCJ@n?$AA@"
+key = "boost_default_syntax_literal_28"
+address = "0x006D629C"
+size = 2
+sha256 = "481daf8515fdae90077119892b048315b0360444bdf88df302520322541847aa"
+
+[[literals]]
+field = 253
+symbol = "??_C@_01KDCPPGHE@r?$AA@"
+key = "boost_default_syntax_literal_29"
+address = "0x006C26C4"
+size = 2
+sha256 = "96229c0a1dcb79d7d50913f882e3144961b5616140ded9ab844bd685e08e3a30"
+
+[[literals]]
+field = 264
+symbol = "??_C@_01PFHFFBPC@t?$AA@"
+key = "boost_default_syntax_literal_30"
+address = "0x006D6288"
+size = 2
+sha256 = "3776096e9733584bd622e7e6417b65ba6640f8a8b809f475cd15ed5923cce3f6"
+
+[[literals]]
+field = 275
+symbol = "??_C@_01MHEDDDHA@v?$AA@"
+key = "boost_default_syntax_literal_31"
+address = "0x006C26C8"
+size = 2
+sha256 = "924310d6e64a28d18d5eb0933cd24dcaea16af5a2674f1f11bc0805d80c12069"
+
+[[literals]]
+field = 286
+symbol = "??_C@_01FJMABOPO@x?$AA@"
+key = "boost_default_syntax_literal_32"
+address = "0x006C26D4"
+size = 2
+sha256 = "14f825b2bbc32dd8d196367fa8776873069c12a8954d8da7513aa7704ddd09eb"
+
+[[literals]]
+field = 297
+symbol = "??_C@_01PAPGNFGE@c?$AA@"
+key = "boost_default_syntax_literal_33"
+address = "0x006D62C4"
+size = 2
+sha256 = "ec49f17f2c205644d3a0d242eb5a82ec222ed01fbd8fd6b55d0f2f6ef651e484"
+
+[[literals]]
+field = 308
+symbol = "??_C@_01JLIPDDHJ@?3?$AA@"
+key = "boost_default_syntax_literal_34"
+address = "0x006D65A4"
+size = 2
+sha256 = "7648eb81c4e9fef7b51879c6fcd6fb4b8863eea0cb2a978c508711dc52c80041"
+
+[[literals]]
+field = 319
+symbol = "??_C@_01NEMOKFLO@?$DN?$AA@"
+key = "boost_default_syntax_literal_35"
+address = "0x006CDAE8"
+size = 2
+sha256 = "e7dac261e841e53eb65ac8c2a0e56544df49c46d71e8002d7764f92c66c4c868"
+
+[[literals]]
+field = 330
+symbol = "??_C@_01KGKMHCOC@e?$AA@"
+key = "boost_default_syntax_literal_36"
+address = "0x006D62BC"
+size = 2
+sha256 = "6b672b9a7e4feb4fd38386f90405bc0ae261413a758dd8eb2786be61df8dc27d"
+
+[[literals]]
+field = 397
+symbol = "??_C@_01DDCIFGEA@E?$AA@"
+key = "boost_default_syntax_literal_37"
+address = "0x006D6378"
+size = 2
+sha256 = "e6691dfe4d55fb0af0da179453a9f94c71a5fcad27ff9623ce5f1bf748459135"
+
+[[literals]]
+field = 408
+symbol = "??_C@_01BNIGIBBF@Q?$AA@"
+key = "boost_default_syntax_literal_38"
+address = "0x006D634C"
+size = 2
+sha256 = "94e706dc7b0e756b561c8c4ad4d31b476077dbf9486f9787d8530fb67f91cff8"
+
+[[literals]]
+field = 419
+symbol = "??_C@_01MMEEDKFM@X?$AA@"
+key = "boost_default_syntax_literal_39"
+address = "0x006D6334"
+size = 2
+sha256 = "a6083775b471cc24c0a1fd922bf996fcffad2259b6796da72a38837b4a530027"
+
+[[literals]]
+field = 430
+symbol = "??_C@_01GFHCPBMG@C?$AA@"
+key = "boost_default_syntax_literal_40"
+address = "0x006CDAEC"
+size = 2
+sha256 = "7e46dde720f00e74467c313a1142b572a18a5f03561bc08d6633de9a09d9eaa6"
+
+[[literals]]
+field = 441
+symbol = "??_C@_01POHCFINO@Z?$AA@"
+key = "boost_default_syntax_literal_41"
+address = "0x006D632C"
+size = 2
+sha256 = "89389ee14c6495d62c5c4d1ab627f415099e5101e21cc66af492011f88adf1c4"
+
+[[literals]]
+field = 452
+symbol = "??_C@_01BBODEMC@G?$AA@"
+key = "boost_default_syntax_literal_42"
+address = "0x006D6370"
+size = 2
+sha256 = "319344f14be7a294f789ce6b2d4f50c4cf2a20fda4733255efbe4e6ec48728f0"
+
+[[literals]]
+field = 463
+symbol = "??_C@_01DCLJPIOD@?$CB?$AA@"
+key = "boost_default_syntax_literal_43"
+address = "0x006D5194"
+size = 2
+sha256 = "8f67d6297ed1da42e485a7330c18cac5f4bf223d85ddccb1dded039a40571849"
+
+[[literals]]
+field = 474
+symbol = "??_C@_01JBBJJEPG@p?$AA@"
+key = "boost_default_syntax_literal_44"
+address = "0x006D6294"
+size = 2
+sha256 = "882a20e6379eb83aecb916f4b9ea79c1e6c08a0d80f6ad1dc9a9421758246001"
+
+[[literals]]
+field = 485
+symbol = "??_C@_01EJNLAFE@P?$AA@"
+key = "boost_default_syntax_literal_45"
+address = "0x006D6350"
+size = 2
+sha256 = "6fd27b6685dd017d06230f819aafdbd609480ce22aa2590ed1ed2f46c6af6716"
+
+[[literals]]
+field = 496
+symbol = "??_C@_01NANMIPIL@N?$AA@"
+key = "boost_default_syntax_literal_46"
+address = "0x006D6358"
+size = 2
+sha256 = "e9f86cefcfd61558fe75da7d4ea48a6c82d93191c6d49579aab49f99e543dcad"
+
+[[literals]]
+field = 507
+symbol = "??_C@_01JEJKBAGA@g?$AA@"
+key = "boost_default_syntax_literal_47"
+address = "0x006C26C0"
+size = 2
+sha256 = "78f993c3392521c9db0e0819b09f95c5c4141ef1cad923ade3bee913bc6bdfd2"
+
+[[literals]]
+field = 518
+symbol = "??_C@_01KNKLHLMO@K?$AA@"
+key = "boost_default_syntax_literal_48"
+address = "0x006D6360"
+size = 2
+sha256 = "ab3fae4e024f63b2d32d0a6c381835d845f54bc721a16727fda4bf3ab5f1f706"
+
+[[literals]]
+field = 529
+symbol = "??_C@_01DGKLNCNG@R?$AA@"
+key = "boost_default_syntax_literal_49"
+address = "0x006D6348"
+size = 2
+sha256 = "4f82d2d4702d95b60ed4e752df221c56b0fb2de94af5889d016578e6db8afb7a"

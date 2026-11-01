@@ -38,7 +38,7 @@ def validate_spec(spec,selected,units,target_sha):
         and u.get('enable_gs')is True and u.get('boost_regex_headers')is True
         and u.get('boost_regex_source_tu')=='regex_traits_defaults.cpp'and u.get('include_dirs')==[upstream.FOLDER,sources.INCLUDE],
         'default errors must use original verified source/profile')
-    require(u['functions']==[dict(address='0x006B4800',symbol_base=SYMBOL,dir32_targets=[UNKNOWN+'='+UNKNOWN,TABLE+'='+TABLE])],
+    require([f for f in u['functions']if f['address']=='0x006B4800']==[dict(address='0x006B4800',symbol_base=SYMBOL,dir32_targets=[UNKNOWN+'='+UNKNOWN,TABLE+'='+TABLE])],
         'default errors formal binding/whole extent differs')
     return a,u
 
@@ -85,7 +85,7 @@ def validate(rule,selected,rows,read,target_sha):
         require(digest((ROOT/PROBE).read_bytes().replace(b'\r\n',b'\n'))==PROBE_SHA,'original defaults probe changed')
         tools,pins=core.pinned_tools(False);record=build.build_unit(UNIT,u,True,target_sha)
         c=core.comparator();c.verify_target();game=pefile.PE(str(c.TARGET));proof=qualify(u,a,rows,read,c,game)
-        code,results=build.compare_unit(u,True);require(code==0 and len(results)==1 and results[0]['result']=='exact','default errors formal root failed')
+        code,results=build.compare_unit(u,True);require(code==0 and results and all(x['result']=='exact'for x in results),'default errors formal root failed')
         proof.update(build=record,comparisons=results,tool_pins=pins,validator_sha256=core.sha(Path(__file__)),anchor_sha256=core.sha(ANCHORS))
         (ROOT/'build/origin-anchors/boost-default-errors.json').write_text(json.dumps(proof,indent=2)+'\n');return []
     except (OSError,ValueError,KeyError,TypeError,RuntimeError,struct.error,pefile.PEFormatError)as exc:return [str(rule['id'])+': '+str(exc)]
