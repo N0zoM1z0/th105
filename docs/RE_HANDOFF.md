@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Original string-range cleanup41D5A0 is canonical57 in the real package CIL
+context, with only its scalar-delete call rebound and the complete original
+delete/free tail wrapper verified. Fresh exact roots163/228, full CFG and
+inventory uniqueness pass; no source/ABI/export changes or old gate loosening.
+Excluded1808/review411; authored/source/exact counts stay. CI324.
+See LINKED_STRING_RANGE_ORIGIN_2026_11_01.md.
+
 Global input-table43C280 is canonical73-byte original vector cleanup from
 the actual6FCA2C static lifetime and unchanged bootstrap type. Virtual flag0
 record destruction, stride68, free and pointer reset all match; init12/callback10

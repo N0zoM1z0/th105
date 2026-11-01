@@ -1,0 +1,10 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "gpt-web-package-archive-store"
+proof_roots = ["0x0041B8C0", "0x0041B980"]
+
+[[anchors]]
+address = "0x0041D5A0"
+size = 57
+symbol = "??$_Destroy_range@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@YAXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@0AAV?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@0@U_Nonscalar_ptr_iterator_tag@0@@Z"
+sha256 = "c6e86e33d78222831ed46f5af7c1feab77e04a788e7f99d575ed916d27736202"

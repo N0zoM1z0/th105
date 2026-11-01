@@ -632,7 +632,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041D440,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041D4A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041D4F0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041D5A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041D5A0,compiler_generated,assets,exclude,observed,vc8-linked-string-range-cleanup-106a
 0x0041D5E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041D720,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041D7B0,authored_game,network,authored,observed,canonical-exact-authored

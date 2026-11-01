@@ -1171,6 +1171,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("vc8_generated_anchor_file")
         or rule.get("vc8_linked_generated_anchor_file")
         or rule.get("vc8_linked_checked_iterator_anchor_file")
+        or rule.get("vc8_linked_string_range_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2369,6 +2370,10 @@ def validate_rule_evidence(
     if rule.get("vc8_linked_checked_iterator_anchor_file"):
         from linked_checked_iterator_origins import validate as validate_linked_iterator
         errors.extend(validate_linked_iterator(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("vc8_linked_string_range_anchor_file"):
+        from linked_string_range_origins import validate as validate_linked_string_range
+        errors.extend(validate_linked_string_range(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("msvc_runtime_anchor_file"):
         errors.extend(

@@ -5250,3 +5250,14 @@ confidence = "observed"
 evidence = "Actual static input-vector lifetime emits original std::_Tidy73: virtual non-deleting destruction of0x68 records, one allocation release and pointer reset. Full73 canonical bytes, all29 instructions, full-inventory unique69-byte nonrelocation fingerprint and actual atexit callback prove compiler provenance. No new authored credit. docs/INPUT_TABLE_LIFETIME_2026_11_01.md."
 required_body_hashes = [{ address = "0x0043C280", size = 73, sha256 = "b129687a4a93da507520d706ac8f03e49b47f879242f8a208ceffeb6fdd86b4c" }]
 required_direct_edges = [{ caller = "0x006BF090", site = "0x006BF095", target = "0x0043C280", kind = "jump", caller_status = "identified" }]
+
+[[rules]]
+id = "vc8-linked-string-range-cleanup-106a"
+vc8_linked_string_range_anchor_file = "config/vc8-linked-string-range-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 57
+origin = "compiler_generated"
+subsystem = "assets"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Fresh actual package-store CIL emits complete original std::string range destruction57. Only the real scalar-delete call is canonicalized, with original named delete/free MAP ownership and full canonical delete wrapper. Exact owner roots, no forced exports/ABI/data refs, complete CFG and full-inventory uniqueness; no authored credit. docs/LINKED_STRING_RANGE_ORIGIN_2026_11_01.md."
