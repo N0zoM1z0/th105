@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Original VC8 std::deque<short> explicit instantiation proves1404-byte4638C0
+_Insert_n by the unchanged full-inventory unique compiler-origin gate. All
+1220 nonrelocation bytes agree (86.89%); no tail waiver or game transcription.
+Remote EH and callee428680 are not inferred exact. One compiler exclusion only:
+excluded1790/review435, exact1582/449309 and other source/unit counts unchanged.
+See VC8_SHORT_DEQUE_INSERT_ORIGIN_2026_11_01.md.
+
+
 RemiliaObject initializer55BE70 now gives its two actual spawn requests local
 branch lifetimes. Verified synchronous manager copy permits this; compiler
 naturally recovers native980 tail JMP55D1DE and full4997 callable/32RET/1339

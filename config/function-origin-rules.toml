@@ -5006,3 +5006,14 @@ confidence = "observed"
 evidence = "Fresh exact LoadingWatch209 calls the full140-byte watch-input rebinding policy. Every instruction/two RET8 exits close; source139 remains nonexact+46 in COFF and genuine save-provider CIL. Existing selector60/save305 remain exact in selected COFF; no exact/helper credit. docs/WATCH_INPUT_CONFIGURATION_SOURCE_2026_11_01.md."
 required_body_hashes = [{ address = "0x0042BC40", size = 140, sha256 = "327ec78bdfd5cb6898887235d0ef68037400996666d03fc379a0d86385b68687" }]
 required_direct_edges = [{ caller = "0x004268F0", site = "0x0042697C", target = "0x0042BC40", caller_status = "matching" }]
+
+[[rules]]
+id = "vc8-generated-short-deque-insert-106a"
+vc8_generated_anchor_file = "config/vc8-generated-short-deque-insert-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 1404
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Unmodified original VC8 std::deque<short> explicit instantiation emits complete_Insert_n1404 with a unique whole-inventory relocation-aware source fingerprint under unchanged0.70/24/no-tail rules. This is compiler provenance, not canonical EH or authored credit. docs/VC8_SHORT_DEQUE_INSERT_ORIGIN_2026_11_01.md."
