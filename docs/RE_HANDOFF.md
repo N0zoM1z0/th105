@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original pow shared 68C28D/453 now whole canonical/unique with complete
+x87 owner650 and P4 owner2912, all14656 P4 coefficient bytes, small data12,
+independently owned infinity10 and five whole common helpers287. Two actual
+public roots reach all939 instructions/3833 code bytes, with no external-tail
+or conditional-exit waiver. NOP1/P4 alignment15 and integer helper40 are
+checked but not new credit. Ten tests/3919 actual mutations pass. Excluded
+2042/review330, units794; authored/source unchanged. See
+VC8_POW_SHARED_OWNER_2026_11_01.md. CI704 passes.
+
 Original log10 P4 shared 697C6E/614 now whole canonical/unique within the
 actual 656-byte owner, with all 2336 coefficient bytes and exact source addends.
 Two actual public roots reach all 145 instructions/644 code bytes. Trailing

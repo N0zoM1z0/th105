@@ -3859,3 +3859,6 @@ vc8_log10_p4_Zero_0,0x006CEEF0,00000000000000000000000000000000,0,Whole original
 vc8_log10_p4_Infs_8,0x006CEF10,000000000000f07f,8,Whole original log10 coefficient section and source addend verified; docs/VC8_LOG10_SHARED_OWNER_2026_11_01.md.,literal
 vc8_log10_p4_Infs_0,0x006CEF10,000000000000f0ff000000000000f07f,0,Whole original log10 coefficient section and source addend verified; docs/VC8_LOG10_SHARED_OWNER_2026_11_01.md.,literal
 vc8_log10_p4_Two52_0,0x006CEF00,00000000000030430000000000003043,0,Whole original log10 coefficient section and source addend verified; docs/VC8_LOG10_SHARED_OWNER_2026_11_01.md.,literal
+vc8_pow_half,0x006F7B40,000000000000e03f,0,Complete original pow owner and independently pinned source data; docs/VC8_POW_SHARED_OWNER_2026_11_01.md.,literal
+vc8_pow_operation_name,0x006F7B48,706f7700,0,Complete original pow owner and independently pinned source data; docs/VC8_POW_SHARED_OWNER_2026_11_01.md.,literal
+vc8_pow_infinity,0x006F8B40,0000000000000080ff7f,0,Complete original pow owner and independently pinned source data; docs/VC8_POW_SHARED_OWNER_2026_11_01.md.,address

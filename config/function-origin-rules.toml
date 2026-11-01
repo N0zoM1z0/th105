@@ -5795,3 +5795,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original log10_pentium4.obj shared614 within whole656-byte owner, complete2336-byte coefficients and all source addends. Two actual public roots close all145 instructions/644 code bytes. Original trailing12 bytes are matched but not callable or semantically neutral credit; ADD writes flags. No generic reachability waiver or public-prefix/provider/data/authored credit. docs/VC8_LOG10_SHARED_OWNER_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-pow-shared-owner-106a"
+vc8_pow_shared_anchor_file = "config/vc8-pow-shared-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 453
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original pow shared453 inside full x87 owner650, full P4 owner2912 and all14656 coefficient bytes. Actual public/default/integer entries and five whole common helpers287 close939 instructions/3833 code bytes. Independently owned infinity10 and half/name12 verified. Exact NOP1 and P4 alignment15 outside callable credit, no generic branch waiver or prefix/P4/helper/data/authored credit. docs/VC8_POW_SHARED_OWNER_2026_11_01.md."

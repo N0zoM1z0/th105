@@ -29305,3 +29305,20 @@ address = "0x00697C6E"
 symbol_base = "start"
 rel32_targets = ["___libm_error_support=0x00694A92"]
 dir32_targets = ["emask+0x0=vc8_log10_p4_emask_0", "CC+0x0=vc8_log10_p4_CC_0", "One+0x0=vc8_log10_p4_One_0", "Magic+0x0=vc8_log10_p4_Magic_0", "hi_mask+0x0=vc8_log10_p4_hi_mask_0", "CB_Tbl+0x0=vc8_log10_p4_CB_Tbl_0", "T_Tbl+0x0=vc8_log10_p4_T_Tbl_0", "coeff+0x0=vc8_log10_p4_coeff_0", "coeff+0x10=vc8_log10_p4_coeff_16", "coeff+0x20=vc8_log10_p4_coeff_32", "LOG10_2+0x0=vc8_log10_p4_LOG10_2_0", "place_L+0x0=vc8_log10_p4_place_L_0", "coeff+0x30=vc8_log10_p4_coeff_48", "Zero+0x0=vc8_log10_p4_Zero_0", "Infs+0x8=vc8_log10_p4_Infs_8", "Infs+0x0=vc8_log10_p4_Infs_0", "Two52+0x0=vc8_log10_p4_Two52_0"]
+
+[units.vc8-original-pow-shared-body]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalPow.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "pow.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Original shared453 within full x87 owner650 plus whole P4 owner2912, all14656 P4 coefficients and common exit helpers. Existing integer helper40 and alignment receive no new credit."
+
+[[units.vc8-original-pow-shared-body.functions]]
+address = "0x0068C28D"
+symbol_base = "start"
+rel32_targets = ["__load_CW=0x00690DE5", "__fload_withFB=0x00690E15", "__twoToTOS=0x00690DD0", "__fast_exit=0x00690E6E", "__check_range_exit=0x00690EB9", "__startTwoArgErrorHandling=0x00690D70", "__powhlp=0x00698CB4"]
+dir32_targets = ["___fastflag=vc8_sqrt_fastflag", "POW_name=vc8_pow_operation_name", "__infinity=vc8_pow_infinity", "__indefinite=vc8_sqrt_indefinite"]

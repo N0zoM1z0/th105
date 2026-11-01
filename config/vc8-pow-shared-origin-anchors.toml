@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "vc8-original-pow-shared-body"
+
+[[anchors]]
+address = "0x0068C28D"
+size = 453
+symbol = "start"
+sha256 = "5f7abd6697d71db9c41b77624a4882d6102183e1bef994df65d9c6733363e824"
