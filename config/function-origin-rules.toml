@@ -5419,3 +5419,14 @@ subsystem = "input"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Unchanged original Boost/VC8 source graph naturally emits private-EAX four-byte-vector back67. Whole canonical code, three original CRT invalid-parameter calls, full16-byte helper/archive ownership and four native input-vector receiver sites verified. Data-independent four-byte family, not a claim that gamepads are long values. Public constructor context112/native111 remains unaccepted. docs/ORIGINAL_LINKED_VECTOR_BACK_2026_11_01.md."
+
+[[rules]]
+id = "linked-original-logic-error-106a"
+linked_logic_error_anchor_file = "config/linked-logic-error-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 220
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Unchanged original seven-TU Boost/VC8 CIL graph emits actual std::logic_error string/copy constructors107/113. Complete canonical bodies, actual class RTTI and all named independent CRT/string callees; complete27-byte handlers,8-byte cleanup actions,36-byte FuncInfo and8-byte unwind tables, exact HIGHLOW coverage and full inventory uniqueness. No masked or authored credit. docs/LINKED_LOGIC_ERROR_2026_11_01.md."

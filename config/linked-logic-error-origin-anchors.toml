@@ -1,0 +1,16 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+[[anchors]]
+address = "0x00401670"
+size = 107
+symbol = "??0logic_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z"
+sha256 = "11df2a916174a00a5ce4e984ed5c3f2ed7aca35a695e83ec9fc92fb9f8c05068"
+handler_sha256 = "cad37895a57599fe8ab98310d0196876d57689a087895b6e1025ac2617d0fa97"
+action_sha256 = "b54b4abfdc47cc9b86d7114bf177a5b4d6ea2add156b2125f5b286e47a211f7c"
+[[anchors]]
+address = "0x004017A0"
+size = 113
+symbol = "??0logic_error@std@@QAE@ABV01@@Z"
+sha256 = "355d02b61e1891ee592bed3645994c314923e9e9e0f050f9168869487c61eb7b"
+handler_sha256 = "01074ff6d7773b26565ccdec8269448f114f45e70b8d25611f539922361d12f7"
+action_sha256 = "b00c781540f4dd880d7a7bc51e4145031ed15c5fe2141ff64a8cf7ecd54a374d"

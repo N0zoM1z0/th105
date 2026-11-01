@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Original linked std::logic_error constructors401670/107 and4017A0/113 now
+fully canonical with actual class RTTI, independently proved named callees and
+complete EH support per root (handler27/action8/FuncInfo36/unwind8). All source
+HIGHLOW fields and complete inventory uniqueness pass; no masked/prefix credit.
+Unchanged seven-TU vendor graph, public ctor112/111 remains nonexact. Existing
+vector back67/four native receivers freshly pass. Excluded1989/review383; all
+authored/source/unit totals stay. Twelve synthetic tests.
+See LINKED_LOGIC_ERROR_2026_11_01.md. Allocator/tree leads remain unaccepted.
+
+
 Original seven-TU Boost/VC8 CIL graph naturally reproduces private-EAX
 four-byte-vector back40DBF0/67. All27 instructions and3 named CRT calls match;
 original invarg16/archive ownership, no data/HIGHLOW refs, full uniqueness and
