@@ -29322,3 +29322,7 @@ address = "0x0068C28D"
 symbol_base = "start"
 rel32_targets = ["__load_CW=0x00690DE5", "__fload_withFB=0x00690E15", "__twoToTOS=0x00690DD0", "__fast_exit=0x00690E6E", "__check_range_exit=0x00690EB9", "__startTwoArgErrorHandling=0x00690D70", "__powhlp=0x00698CB4"]
 dir32_targets = ["___fastflag=vc8_sqrt_fastflag", "POW_name=vc8_pow_operation_name", "__infinity=vc8_pow_infinity", "__indefinite=vc8_sqrt_indefinite"]
+
+[[units.exact-first-select-constructor.functions]]
+address = "0x0041F6E0"
+symbol_base = "??0CSpriteEx@@QAE@XZ"

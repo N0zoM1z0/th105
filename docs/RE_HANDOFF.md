@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+IColor now uses the native struct RTTI tag (.?AUIColor@@ at6FA560), rather
+than the prior class tag. Layout/access/slots unchanged. All99 affected units
+with242 accepted roots freshly replay exact; CSelect's221 emitted text sections
+are byte-identical before/after and its whole-main scheduling mismatch remains.
+Implicit CSpriteEx constructor41F6E0/16 is complete canonical/unique, supported
+by24 full RTTI records, the real29-byte array caller and destructor7. Eight
+tests/327 actual byte mutations pass. Only compiler16 credit: excluded2043,
+review329, units794; authored/source unchanged. See
+SPRITE_COLOR_TYPE_AND_DEFAULT_2026_11_01.md.
+
 Original pow shared 68C28D/453 now whole canonical/unique with complete
 x87 owner650 and P4 owner2912, all14656 P4 coefficient bytes, small data12,
 independently owned infinity10 and five whole common helpers287. Two actual

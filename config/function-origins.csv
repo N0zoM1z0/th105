@@ -697,7 +697,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041F640,authored_game,render,authored,observed,canonical-exact-authored
 0x0041F670,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041F6A0,authored_game,ui,authored,observed,canonical-exact-authored
-0x0041F6E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041F6E0,compiler_generated,runtime,exclude,observed,implicit-sprite-default-constructor-106a
 0x0041F6F0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x0041F710,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041F780,authored_game,ui,authored,observed,canonical-exact-authored
