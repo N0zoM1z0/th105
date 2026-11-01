@@ -15,12 +15,14 @@ ANCHORS=ROOT/'config/linked-boost-small-origin-anchors.toml'
 OUTPUT=ROOT/'build/origin-anchors/linked-boost-small'
 DESTROY='?destroy@sp_counted_base@detail@boost@@UAEXXZ'
 COPY='??0clone_base@exception_detail@boost@@QAE@ABV012@@Z'
+DTOR='??1clone_base@exception_detail@boost@@UAE@XZ'
 FREE='?free_module@re_detail@boost@@YAXPAX@Z'
 DISPOSE='?dispose@?$sp_counted_impl_pd@PAUHINSTANCE__@@P6AXPAX@Z@detail@boost@@UAEXXZ'
 BASE='sp_counted_base@detail@boost@@'
 CLONE='clone_base@exception_detail@boost@@'
 IMPL='?$sp_counted_impl_pd@PAUHINSTANCE__@@P6AXPAX@Z@detail@boost@@'
 CONTRACT={
+ '0x006A0880':(7,DTOR,'i original-0.obj',CLONE,0x6d5dd0,None),
  '0x006A08B0':(13,DESTROY,'i original-0.obj',BASE,0x6d5de0,8),
  '0x006A4D30':(11,COPY,'i original-0.obj',CLONE,0x6d5dd0,None),
  '0x006B55D0':(12,FREE,'original-1.obj',None,None,None),
@@ -31,7 +33,7 @@ def validate_spec(spec,selected,target_sha):
     require(set(spec)=={'schema_version','target_sha256','anchors'}and type(spec['schema_version'])is int
             and spec['schema_version']==1 and spec['target_sha256']==target_sha,'Boost small schema/target differs')
     anchors=spec['anchors']
-    require(len(anchors)==len(selected)==4 and {a['address']for a in anchors}==set(CONTRACT)
+    require(len(anchors)==len(selected)==len(CONTRACT) and {a['address']for a in anchors}==set(CONTRACT)
             and {r['address']for r in selected}==set(CONTRACT),'Boost small selection differs')
     by={r['address']:r for r in selected}
     for a in anchors:
@@ -80,7 +82,7 @@ def qualify(pe,game,functions,symbols,anchor,rows,read):
         return core.canonicalize(raw,start,a,[],no_call,(core.IMAGE_BASE,core.IMAGE_BASE+pe.OPTIONAL_HEADER.SizeOfImage),
                                 (0x400000,0x706000),vtables=vtables,internal_refs=refs)
     canonical,calls,datarefs=rebound(target)
-    fields=[4]if symbol==COPY else[7]if symbol==FREE else[]
+    fields=[2]if symbol==DTOR else[4]if symbol==COPY else[7]if symbol==FREE else[]
     require(canonical==read(target,size)and digest(canonical)==anchor['sha256']and not calls
             and [r['field_offset']for r in datarefs]==fields,'Boost small full canonical body differs')
     core.validate_body_relocations(pe,start,size,datarefs)

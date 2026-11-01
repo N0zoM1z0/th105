@@ -11,7 +11,7 @@ class LinkedBoostSmallTests(unittest.TestCase):
         s=tomllib.loads(linked.ANCHORS.read_text())
         return s,[dict(address=a['address'],size=str(a['size']))for a in s['anchors']]
     def test_complete_typed_selection(self):
-        s,rows=self.spec();self.assertEqual(len(linked.validate_spec(s,rows,s['target_sha256'])),4)
+        s,rows=self.spec();self.assertEqual(len(linked.validate_spec(s,rows,s['target_sha256'])),len(linked.CONTRACT))
         with self.assertRaises(ValueError):linked.validate_spec(s,rows[:-1],s['target_sha256'])
     def test_no_partial_or_masked_body_contract(self):
         for key,value in [('size',10),('mask',[4]),('symbol','fake')]:
@@ -39,5 +39,13 @@ class LinkedBoostSmallTests(unittest.TestCase):
     def test_ambiguous_source_vtable_rejected(self):
         klass=linked.CLONE;symbols={'??_7'+klass+'6B@':[(0x10002000,'original-0.obj'),(0x10003000,'original-0.obj')]}
         with self.assertRaises(ValueError):linked.table_identity(None,None,symbols,klass,0x6d5dd0)
+
+    def test_destructor_uses_its_real_clone_base_identity(self):
+        size,symbol,owner,klass,table,slot=linked.CONTRACT['0x006A0880']
+        self.assertEqual((size,symbol,klass,table,slot),(7,linked.DTOR,linked.CLONE,0x6d5dd0,None))
+        self.assertEqual(owner,'i original-0.obj')
+    def test_copy_cannot_be_substituted_for_destructor(self):
+        s,rows=self.spec();a=next(a for a in s['anchors']if a['address']=='0x006A0880');a['symbol']=linked.COPY
+        with self.assertRaises(ValueError):linked.validate_spec(s,rows,s['target_sha256'])
 
 if __name__=='__main__':unittest.main()

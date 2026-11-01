@@ -20,3 +20,9 @@ address = "0x006B55E0"
 size = 11
 symbol = "?dispose@?$sp_counted_impl_pd@PAUHINSTANCE__@@P6AXPAX@Z@detail@boost@@UAEXXZ"
 sha256 = "03c03fd6fd6497d3aa701d235c17c18a3e2d5662d65d42eb12bd5570a4bd6898"
+
+[[anchors]]
+address = "0x006A0880"
+size = 7
+symbol = "??1clone_base@exception_detail@boost@@UAE@XZ"
+sha256 = "a30a834d2b4ab65ba68901d80520ba370e5ed38d13e9f105842306017cc6530f"

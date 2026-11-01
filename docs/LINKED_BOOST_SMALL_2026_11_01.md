@@ -69,3 +69,21 @@ actual original libcmt:frame.obj bad_exception, not by relabeling bad_alloc.
 Whole11/34/24 methods and complete primary/base RTTI graph pass; see
 LINKED_BAD_EXCEPTION_2026_11_01.md. This is separate CRT ownership, no Boost
 root/callee or authored credit.
+
+## 2026-11-01 original clone_base destructor
+
+The actual original seven-TU graph also emits clone_base::~clone_base at
+6A0880/7, with unique i original-0.obj ownership. Its complete MOV-vptr/RET
+body matches after the sole actual clone_base vtable DIR32 field+2 is replayed.
+The source/native primary RTTI identity is the same real clone_base already
+proved for copy11; no other class is substituted. All seven bytes, closed CFG,
+source HIGHLOW inventory and whole-candidate uniqueness pass. No caller or
+provider byte is inferred from this short body.
+
+The existing typed small-body contract now contains five roots/54 bytes. Its
+four previous members are freshly rebuilt and replayed unchanged. Two added
+scope/type tests and all seven actual body-byte mutation controls pass.
+No generic threshold, source, flags, exports or unit changes are made.
+Evidence: build/origin-anchors/linked-boost-small/proof.json and
+build/frontier-clone-base-dtor-20261101/mutations.json. Only7 new library bytes;
+excluded2019/review353, all authored/source/unit totals unchanged.

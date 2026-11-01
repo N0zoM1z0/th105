@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Original clone_base destructor6A0880/7 now whole canonical/unique through its
+actual original-0.obj symbol and clone_base RTTI/vptr field+2. Existing typed
+small-Boost gate extends from4/47 to5/54 and freshly replays all old members.
+Two added tests/seven actual byte mutations; no generic threshold/source/flags/
+export change. Excluded2019/review353; authored/source/unit totals unchanged.
+See LINKED_BOOST_SMALL_2026_11_01.md late appendix.
+
+
 Regex clone6B5350/46 now whole canonical/unique in a genuine original public
 throw_exception<regex_error> ordinary instantiation. New context fully closes
 injector154 and runtime copy113, including both complete EH35+44 sections;

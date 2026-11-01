@@ -3558,7 +3558,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A052C,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x006A0778,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x006A07D0,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a
-0x006A0880,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A0880,third_party,boost_regex,exclude,observed,linked-original-boost-small-106a
 0x006A0890,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x006A08B0,third_party,boost_regex,exclude,observed,linked-original-boost-small-106a
 0x006A08C0,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
