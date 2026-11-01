@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original cos P4 shared6967CE/395 now whole canonical/unique with complete
+P4 owner428 and existing x87 cos owner297, full2224-byte coefficients and
+actual fallback/public entries. The trailing8D4900 is neutral LEA ECX,[ECX],
+not three NOPs; full source/native bytes compare and stay outside callable credit.
+Rooted graph235 instructions/890 code bytes; nine tests/765 actual mutations,
+prior sin/sqrt protocol freshly passes. Excluded2040/review332, units792;
+authored/source unchanged. See VC8_COS_SHARED_OWNER_2026_11_01.md.
+
+
 Coupled original sin x87 shared68B6C8/145 and P4 shared694E3E/425 now whole
 canonical/unique inside complete297/456-byte owners. Actual public prefixes,
 cross-module fallback and two exact NOP bytes are owned, not counted. All2208

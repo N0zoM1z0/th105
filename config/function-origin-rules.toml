@@ -5773,3 +5773,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Complete original sin.obj297 and sin_pentium4.obj456 owners prove shared145/425 bodies together, with actual cross-module fallback/public prefixes and exact two NOPs. Full coefficient2208/common data, common flag allocation and actual initializer20 checked. Rooted multi-region CFG has no unaccounted bytes; no standalone ABI, generic branch waiver or prefix/helper/data/authored credit. docs/VC8_SIN_SHARED_OWNERS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-cos-shared-owner-106a"
+vc8_cos_shared_anchor_file = "config/vc8-cos-shared-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 395
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original cos P4 shared395 within complete428-byte owner and x87 cos297 owner, actual public/fallback entries, whole2224-byte coefficient data and common selector/initializer/exit protocol. Exact NOP1 and neutral trailing LEA3 separately owned, not credited; full rooted graph235 instructions, no generic unreachable-byte waiver or prefix/helper/data/authored credit. docs/VC8_COS_SHARED_OWNER_2026_11_01.md."

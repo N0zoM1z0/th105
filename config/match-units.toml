@@ -29271,3 +29271,20 @@ address = "0x00694E3E"
 symbol_base = "start"
 rel32_targets = ["__sin_default=0x0068B6BF"]
 dir32_targets = ["PI32INV=vc8_sin_p4_PI32INV", "SHIFTER=vc8_sin_p4_SHIFTER", "P_1=vc8_sin_p4_P_1", "P_2=vc8_sin_p4_P_2", "SC_4=vc8_sin_p4_SC_4", "Ctable=vc8_sin_p4_Ctable", "P_3=vc8_sin_p4_P_3", "SC_2=vc8_sin_p4_SC_2", "SC_3=vc8_sin_p4_SC_3", "SC_1=vc8_sin_p4_SC_1", "ALL_ONES=vc8_sin_p4_ALL_ONES", "TWO_POW_55=vc8_sin_p4_TWO_POW_55", "TWO_POW_M55=vc8_sin_p4_TWO_POW_M55"]
+
+[units.vc8-original-cos-p4-shared-body]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalCosP4.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "cos_pentium4.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Original cos P4 shared395, whole428-byte owner plus entire x87 cos297 fallback owner and all data/control roles. Actual trailing neutral LEA3 is compared but not callable credit."
+
+[[units.vc8-original-cos-p4-shared-body.functions]]
+address = "0x006967CE"
+symbol_base = "start"
+rel32_targets = ["__cos_default=0x0068BC1F"]
+dir32_targets = ["PI32INV=vc8_cos_p4_PI32INV", "SHIFTER=vc8_cos_p4_SHIFTER", "P_1=vc8_cos_p4_P_1", "P_2=vc8_cos_p4_P_2", "SC_4=vc8_cos_p4_SC_4", "Ctable=vc8_cos_p4_Ctable", "P_3=vc8_cos_p4_P_3", "SC_2=vc8_cos_p4_SC_2", "SC_3=vc8_cos_p4_SC_3", "SC_1=vc8_cos_p4_SC_1", "ONE=vc8_cos_p4_ONE"]
