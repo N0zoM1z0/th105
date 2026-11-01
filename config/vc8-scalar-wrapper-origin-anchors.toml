@@ -2514,3 +2514,16 @@ slot = "0x006C37C0"
 col = "0x006D9834"
 type_descriptor = "0x006E7C04"
 type_name = ".?AV?$CEffectManager@VInfoEffectObject@@@@"
+
+[[anchors]]
+address = "0x0053B3D0"
+size = 49
+unit = "exact-first-youmu-constructor"
+symbol_base = "??_GYoumuConstructorView@th105@@UAEPAXI@Z"
+sha256 = "85f6a61bf7d6dd2e0681416059d3132c14ffc497a6006231aa36350ba0b05d88"
+[[anchors.owners]]
+vtable = "0x006C5144"
+slot = "0x006C5144"
+col = "0x006DA8BC"
+type_descriptor = "0x006E853C"
+type_name = ".?AVYoumu@@"

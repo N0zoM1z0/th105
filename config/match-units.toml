@@ -24671,6 +24671,16 @@ dir32_targets = [
  "___security_cookie=___security_cookie",
 ]
 
+[[units.exact-first-youmu-constructor.functions]]
+address = "0x0053B3D0"
+symbol_base = "??_GYoumuConstructorView@th105@@UAEPAXI@Z"
+rel32_targets = [
+ "?_Tidy@?$deque@UYoumuObjectRecord@th105@@V?$allocator@UYoumuObjectRecord@th105@@@std@@@std@@IAEXXZ=0x00420A80",
+ "??1YoumuCharacterBaseView@th105@@UAE@XZ=0x00462CE0",
+ "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = ["??_7YoumuCharacterExView@th105@@6B@=??_7CharacterExLifetimeView@th105@@6B@"]
+
 [units.exact-first-scene-resource-shutdown]
 kind = "probe"
 source = "src/engine/SceneResourceShutdown.cpp"

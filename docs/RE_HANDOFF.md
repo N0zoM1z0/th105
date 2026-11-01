@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Youmu now includes its RTTI-proven intermediate CharacterEx base and abstract
+Character destructor interface. Constructor159 remains exact; implicit scalar
+teardown53B3D0 is canonical49, compiler-only, with actual deque7D0 cleanup.
+All51 selected scalar-wrapper owner units freshly replay under final inputs.
+Exact1445/445336 and authored/source unchanged; excluded1950/review410.
+See YOUMU_BASE_LIFETIME_2026_11_01.md. No authored destructor/vptr recipe.
+
 Compiler-wrapper accounting corrected: 141 complete canonical scalar deleting
 bodies / 4,691 bytes are compiler-generated, not authored game code. All 50
 actual owner units freshly replay with emitted ??_G symbols and native primary

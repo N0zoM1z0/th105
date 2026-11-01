@@ -5265,10 +5265,10 @@ evidence = "Fresh actual package-store CIL emits complete original std::string r
 [[rules]]
 id = "vc8-scalar-deleting-wrappers-106a"
 scalar_wrapper_anchor_file = "config/vc8-scalar-wrapper-origin-anchors.toml"
-expected_count = 141
-expected_bytes = 4691
+expected_count = 142
+expected_bytes = 4740
 origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Fresh actual owner units emit compiler ??_G symbols with complete canonical bodies, exact native RET4 and primary RTTI/vtable owners. All 141 wrappers retain proofs but no authored source/exact credit. Legacy selector aliases resolve to actual compiler symbols. docs/SCALAR_WRAPPER_ACCOUNTING_2026_11_01.md."
+evidence = "Fresh actual owner units emit compiler ??_G symbols with complete canonical bodies, exact native RET4 and primary RTTI/vtable owners. All selected wrappers retain proofs but no authored source/exact credit. Legacy selector aliases resolve to actual compiler symbols. docs/SCALAR_WRAPPER_ACCOUNTING_2026_11_01.md; Youmu extension in docs/YOUMU_BASE_LIFETIME_2026_11_01.md."
