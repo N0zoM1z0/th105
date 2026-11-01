@@ -125,3 +125,44 @@ agree. Virtual-site differences remain at 410/414 (one fewer each), 562/563
 and 733 (one extra each). Counts do not establish semantic equality, operand
 precision, call order, stack ownership or exactness. Receipts: trial214-*.json,
 including trial214-all-action-calls.json and trial214-all-action-fp-ops.json.
+
+## Five virtual-site count differences, 2026-11-01
+
+A fresh serial compile reproduces the current68204-byte payload and canonical
+SHA502819ce6e9f3ebccbdfeb5879f56836064e00f835d6950f0171e21cf6b0b8cb.
+Native remains67936, source/native frames1224/1216 and first difference+14.
+No source, ABI, flag, ledger or acceptance gate changed in this review.
+
+The five old indirect-call count differences were traced through their actual
+complete reachable action CFGs. Every differing site is the same this/ESI
+receiver's next-sequence vslot14. The set-action vslot8 and select-sequence
+vslotC counts agree in each action. Receiver/vptr/slot loads are qualified,
+rather than labeling every indirect call merely "virtual".
+
+Action410 has native/source vslot14 counts2/1;414 likewise2/1.
+Native early-window exits reach4B369B while the later sequence3/time>20 exit
+reaches4A9B55. Both are ordinary next-sequence calls followed by return. The
+source routes both to its shared4B2BF5 tail. There is no missing vslot8/C call.
+
+Actions562/563 have native/source vslot14 counts2/3. Native early charge-window
+and late sequence1 exits share4A9B55; source uses4A9B52 and4B2BF5. The
+sequence3 transition remains a distinct call followed by the real sequence4
+check in both versions (native4ADBA2/4ADBAB, source4AD014/4AD01D for562).
+The post-callback field reread must not be removed to force a return tail.
+
+Action733 has counts3/4. Native sequence2/time>=60 jumps to4B369B, sharing
+the existing difficulty-zero return tail. Source uses its separate4B2BF5 tail.
+The three difficulty clamp paths and their actual thresholds remain present.
+
+These are physical tail-sharing differences, not evidence of omitted virtual
+operations. This resolves the interpretation of the count diagnostic only:
+it does not establish full path/FP/callback equivalence or exactness. No
+equivalent-bound rewrite, manual vtable call, forced register, duplicated work
+or artificial branch is introduced to make static call counts agree.
+
+Private receipts: build/frontier-marisa-shot-lifetimes-20261101 contains the
+fresh baseline build/full comparison, switch mapping, full canonical binary,
+five paired reachable-action disassemblies and qualified-virtual-sites.json.
+The private scripts retain raw-PE/source provenance. The target's16999
+instructions and all six switch boundaries were rechecked by the existing
+whole-root auditor. Authored/source/exact totals remain unchanged.

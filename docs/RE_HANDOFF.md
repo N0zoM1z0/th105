@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Marisa410/414/562/563/733 virtual-count residuals are now qualified as physical
+next-sequence-vslot14 tail sharing, not missing vslot8/C operations. Both562/563
+retain the real post-next-sequence sequence4 reread. Fresh whole payload stays
+68204/native67936, frame1224/1216, first+14; no source/gate/ledger changes.
+See MARISA_ACTION_STATE_2026_10_28.md, five-site2026-11-01 appendix.
+Do not duplicate calls or force tail layout merely to match those counts.
+
+
 Original bad_alloc normal/scalar/copy lifetimes401630/11,401640/36,402680/25
 and one-/four-byte allocators402590/85,410130/85 are now fully canonical.
 Dedicated terminal-call CFG uses complete original CRT throw74, noncontinuable
