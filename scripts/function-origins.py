@@ -1203,6 +1203,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("boost_default_syntax_anchor_file")
         or rule.get("xiph_packet_wrapper_anchor_file")
         or rule.get("vc8_invalid_copy_anchor_file")
+        or rule.get("vc8_typeinfo_dtor_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2477,6 +2478,10 @@ def validate_rule_evidence(
     if rule.get("boost_public_exception_copy_anchor_file"):
         from boost_public_exception_copies import validate as validate_public_exception_copies
         errors.extend(validate_public_exception_copies(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("vc8_typeinfo_dtor_anchor_file"):
+        from vc8_typeinfo_dtor_origins import validate as validate_typeinfo_dtor
+        errors.extend(validate_typeinfo_dtor(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("vc8_invalid_copy_anchor_file"):
         from vc8_invalid_copy_origins import validate as validate_invalid_copy

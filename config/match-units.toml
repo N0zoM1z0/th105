@@ -29098,3 +29098,20 @@ address = "0x00665B72"
 symbol_base = "??0invalid_argument@std@@QAE@ABV01@@Z"
 rel32_targets = ["??0logic_error@std@@QAE@ABV01@@Z=0x004017A0"]
 dir32_targets = ["??_7invalid_argument@std@@6B@=??_7invalid_argument@std@@6B@"]
+
+[units.vc8-original-typeinfo-destructor]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalTypeInfo.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "typinfo.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Original libcmt typinfo.obj destructor14, full RTTI and independent typname.obj cleanup112/SEH28/zero-root8; no helper or authored credit."
+
+[[units.vc8-original-typeinfo-destructor.functions]]
+address = "0x006898EF"
+symbol_base = "??1type_info@@UAE@XZ"
+rel32_targets = ["?_Type_info_dtor@type_info@@CAXPAV1@@Z=0x0068E5D6"]
+dir32_targets = ["??_7type_info@@6B@=??_7type_info@@6B@"]

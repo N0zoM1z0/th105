@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Actual original libcmt:typinfo.obj destructor6898EF/14 now whole canonical/
+unique with complete type_info RTTI7 records/6 regions. Original typname cleanup
+68E5D6/112 fully closes main103/finally9, scope28 and real BSS root8. The local
+$LN10 is bound by its COFF symbol index/section, not ambiguous name lookup.
+BSS uses PE zero-fill proof, never raw-file-byte reads. Nine tests/166 actual
+initialized-byte mutations; prior invalid-copy/base113 gate freshly passes.
+Excluded2029/review343, units783; authored/source totals unchanged. See
+VC8_TYPEINFO_DTOR_2026_11_01.md. Only14 new runtime bytes count.
+
+
 Actual original libcpmt:string.obj invalid_argument copy665B72/24 now whole
 canonical/unique with complete original RTTI21 records/14 unique regions.
 Named native logic_error copy4017A0/113 and full EH freshly pass its unchanged

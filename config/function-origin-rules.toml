@@ -5674,3 +5674,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual original libcpmt:string.obj invalid_argument copy24, whole canonical/unique with actual base-copy REL32 and vptr DIR32. Complete original COFF primary RTTI graph and independently fresh whole logic_error copy113 plus EH support establish ownership/interface. Archive base58 is not claimed equal to native113; no replacement body, masks, generic threshold change or authored credit. docs/VC8_INVALID_ARGUMENT_COPY_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-typeinfo-destructor-106a"
+vc8_typeinfo_dtor_anchor_file = "config/vc8-typeinfo-dtor-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 14
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual original libcmt:typinfo.obj type_info destructor14, full canonical/unique with complete original RTTI. Whole typname cleanup112 and complete SEH28 bind the actual local finally103+9 and BSS root8; all named CRT calls checked. No unreachable-byte waiver, mask, generic threshold change or extra provider/metadata/authored credit. docs/VC8_TYPEINFO_DTOR_2026_11_01.md."

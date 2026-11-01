@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "vc8-original-typeinfo-destructor"
+
+[[anchors]]
+address = "0x006898EF"
+size = 14
+symbol = "??1type_info@@UAE@XZ"
+sha256 = "f01f97cdd68031d97afe49ae2a5fcf7e0c67f5065eb868d2179f5ffde3a48ec4"
