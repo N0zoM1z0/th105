@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Tenshi63D3E0 scratch tracing found two genuine missing QWORD captures:505 peerY
+and542 updatedY+velocity across the real surface helper. Corrected double locals
+recover all13 wide stores; one bounded native542 nearest-rounding counterexample
+rejects the prior extrafloat truncation. Full49032 f45557a8 still nonexact+8,
+frame328/native320; all64 payload homes resolve. No source/exact credit; no fake
+scratch or ABI. See TENSHI_ACTION_STATE_2026_10_27.md November1 appendix.
+
+
 Actual package-store/node source now reproduces original map subtree cleanup
 41C630/94 canonically; its43-byte node destructor also freshly passes. Unique
 full-inventory compiler-origin proof moves only this94-byte helper to excluded,

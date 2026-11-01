@@ -191,3 +191,74 @@ The remaining eight frame bytes, physical tails, scratch allocation and field
 lifetimes remain open. No ABI contract, compiler flag, target bytes, padding or
 accepted consumer changed. The focused public build reproduces the private
 payload exactly; no full native corpus rebuild was run.
+
+
+## November1: complete scratch census finds two missing wide captures
+
+A new caller-stack diagnostic records the actual SP at every reached instruction
+using the established43 direct cleanup contracts and four independently qualified
+peer virtual sites. It then inventories all eight-byte stack memory operands,
+without modifying the public comparator or accepting normalized code. The prior
+95ab5a66 full candidate had22 such operands/11 stores, versus native26/13.
+The two missing captures are concrete source discrepancies:
+
+- Action505:642A56 loads peer170,642A5C reads its F0 field,642A62 stores QWORD,
+  then642A66 calls the real surface helper.642A6B compares its result to that
+  QWORD. The old float peer_y generated a DWORD spill/reload; double peer_y now
+  preserves the observed capture width and epoch.
+- Action542:64369A first rounds updated F8 to DWORD,6436A2 writes F8, and6436A8
+  adds the current F0.6436AE stores the resulting sum as QWORD across surface
+  call6436B2;6436B7 compares the QWORD. The old float next_y incorrectly rounded
+  the sum again to binary32. It is now an actual double sum/capture. The prior
+  velocity rounding, call ordering, negative-velocity guard and field reloads
+  are unchanged. Ordered >= is retained, with no new unordered/NaN policy.
+
+Independent peer-only and next-y-only controls retain49032 bytes/frame328,
+SHA38bfdf24 and76088338. The corrected complete candidate is49032 bytes, SHA256
+f45557a8ef640a4ff915465940152e78bfabc3f28c9fd393bf6309c0eb9cf8c6.
+The formal public build reproduces it. It remains nonexact at+8, frame328 versus
+native320,46112 unmasked positional differences across the entire48968 target
+payload. Difference counts are not improvement scores. No source-presence or
+exact ledger credit is added for this still-unselected complete candidate.
+
+The corrected stack audit now finds all26 QWORD operands/13 stores. Native
+wide homes16/24 versus source24/32 still differ. All64 payload homes remain
+resolved with zero unknown pointers, and the previously qualified four peer
+call sites remain unchanged. Both single controls and the joint control show
+that these corrected capture widths do not themselves explain the extra8 frame
+bytes. That allocation/lifetime issue stays open; no padding or scratch coercion
+is justified.
+
+### Specific precision witness, not a broad gameplay claim
+
+A bounded native fragment starts at action542's real velocity update, executes
+original89-byte surface435D60, and stops at either the genuine zero_motion entry
+or the real continuation before unrelated work. Four inputs run under53-bit
+nearest (027F) and53-bit upward (0A7F) control words for native, old source and
+corrected source:24 fragments. Source code is ordinarily relocated to a separate
+30000000 image; original target text is never overlaid. No helper result, return,
+vtable or branch is substituted.
+
+With Y16777216, velocity-0.75, gravity0, X0 and actual surface-table entry
+16777215, native captures16777215.25. Old source captures16777215 under nearest
+rounding and incorrectly enters the landing path; corrected source captures
+16777215.25 and follows the same continuation as native. Under upward rounding,
+old source captures16777216 and the branch agrees, but its stored precision still
+differs. Ordinary equal/above/ascending controls also agree after correction.
+This establishes the precise storage/rounding discrepancy for the bounded
+fragment, not reachability of that synthetic large-height fixture in gameplay,
+whole-root behavior, arbitrary callback aliasing or other floating environments.
+
+Receipts: build/frontier-tenshi-stack-lifetimes-20261101/{capture-controls,
+formal,formal-full,both-map,corrected-payload-homes,precision-fragments}.json,
+corrected-audit.log and ci.log. Private audit.py/audit-low-scratch.py expose only
+diagnostic stack states from the unchanged analysis engine; complete source
+controls and precision_fragment.py are retained alongside them.
+
+A separate manager-backed byte-direction control was also closed before this
+capture work:48920 bytes/ad977b24, stillframe328 and nonexact+8. It changes only
+the ordinary spawn direction view supported by the complete existing66-byte
+forwarder and actual byte-consuming manager, not a private ABI. No header or
+parameter-width change is selected; receipts are under
+build/frontier-tenshi-spawn-width-20261101. Do not retry that width hypothesis
+as a frame-size workaround.

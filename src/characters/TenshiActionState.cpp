@@ -700,7 +700,7 @@ case 505:
     if(sequence_index_13e || frame_timer_142 || frame_index_140!=10)return;
     {
         float p[3];
-        float peer_y=peer()->at<float>(0xf0);
+        double peer_y=peer()->at<float>(0xf0);
         if(tenshi_surface(peer())>=peer_y) {
             p[0]=0.0f;p[1]=0.0f;p[2]=6.0f;
             spawn(811,peer()->at<float>(0xec),peer()->at<float>(0xf0),B(0x104),1,p,3);
@@ -821,7 +821,7 @@ case 542:
     B(0x17c)=2;
     if(sequence_index_13e<2) {
         F(0xf8)-=F(0x100);
-        float next_y=F(0xf8)+F(0xf0);
+        double next_y=static_cast<double>(F(0xf8))+F(0xf0);
         if(tenshi_surface(this)>=next_y && F(0xf8)<0.0f) {
             zero_motion();select_sequence(2);F(0xf0)=tenshi_surface(this);return;
         }
