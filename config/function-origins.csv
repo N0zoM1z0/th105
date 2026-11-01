@@ -3009,7 +3009,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00687380,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x006873A0,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00687560,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
-0x00687790,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00687790,third_party,audio,exclude,observed,xiph-sdk-floor-look-owned-switch-106a
 0x006879B0,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x006879D0,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00687E90,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
@@ -3019,7 +3019,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00688310,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00688540,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x00688570,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
-0x00688620,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00688620,third_party,audio,exclude,observed,xiph-sdk-floor-encode-owned-switch-106a
 0x00688C10,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x00688C20,third_party,audio,exclude,observed,xiph-sdk-relocation-free-anchors-106a
 0x00688CB0,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a

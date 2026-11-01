@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Two original floor1 SDK bodies now have canonical whole-payload proofs:
+687790 code514/payload544 and688620 code1497/payload1520. Real four-entry
+switches, exact alignment, qsort callback and static counter roles are owned.
+The original681C70 proof also freshly passes; old masked/no-suffix gates stay.
+Excluded1801/review420; authored1806/source1786/exact1585/449721 unchanged.
+DefaultCI294. See XIPH_FLOOR_OWNED_SWITCH_ORIGINS_2026_11_01.md.
+
 Original Xiph681C70 now has complete canonical912-byte SDK provenance:880 code
 plus32 owned switch bytes, no masks. Independent helper anchors freshly replay;
 bounded guard/CFG and inventory uniqueness pass. Separate validator preserves

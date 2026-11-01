@@ -45,7 +45,7 @@ bytes; the owned 32-byte table is verified evidence, not additional credit.
 
     taskset -c 0 nice -n 10 scripts/repo-python scripts/xiph_owned_switch_origins.py
 
-The receipt is build/origin-anchors/xiph-owned-switch/proof.json, including
+The receipt is build/origin-anchors/xiph-owned-switch/vorbis_book_decodev_add/proof.json, including
 target, SDK, object and validator hashes, helper targets, complete extents,
 table entries and inventory uniqueness. Private discovery is retained under
 frontier-xiph-owned-switch-20261101. Twelve tests cover the full payload,
@@ -53,9 +53,10 @@ truncated/mutated suffixes, wrong/signed guards, bypass edges, wrong targets,
 extra/missing relocations, unaccounted calls, non-link mutations and schema
 waivers. This path has no adjustable masking or coverage controls.
 
-The nearby 687790/514 and 688620/1497 candidates still have no complete
-original-SDK witness and remain review. Short/sub-threshold SDK leads also
-remain review; proximity or a plausible symbol is not provenance.
+The nearby 687790/514 and 688620/1497 candidates subsequently gained complete
+original-SDK witnesses; see XIPH_FLOOR_OWNED_SWITCH_ORIGINS_2026_11_01.md.
+Short/sub-threshold SDK leads remain review; proximity or a plausible symbol
+is not provenance.
 
 Excluded1799/review422; authored1806, source1786, mapped1813, units765 and
 exact1585/449721 authored bytes are unchanged.

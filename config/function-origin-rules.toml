@@ -5138,3 +5138,27 @@ disposition = "exclude"
 confidence = "observed"
 evidence = "Official pinned codebook.obj _vorbis_book_decodev_add reproduces the entire 880-byte code plus owned32-byte switch table canonically, no masks or prefix credit. Three callees have freshly replayed independent SDK origin anchors; full-inventory uniqueness and bounded switch CFG are checked. Old no-suffix relocated-origin gate remains unchanged."
 xiph_owned_switch = { component = "vorbis", object = "codebook.obj", symbol = "_vorbis_book_decodev_add", address = "0x00681C70", size = 880, payload_sha256 = "ebefcd8712dfe0c21deada5ce4f13aca08e4872168fef3fb1abcdb4c58f057f5" }
+
+[[rules]]
+id = "xiph-sdk-floor-look-owned-switch-106a"
+addresses = ["0x00687790"]
+expected_count = 1
+expected_bytes = 514
+origin = "third_party"
+subsystem = "audio"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Entire544-byte official floor1.obj payload:514 code,2 alignment,16 owned switch and12 alignment. Canonical zero differences, independently pinned CRT callees and complete21-byte SDK qsort callback; no masked suffix or authored credit."
+xiph_owned_switch = { component = "vorbis", object = "floor1.obj", symbol = "_floor1_look", address = "0x00687790", size = 514, payload_sha256 = "39893aecd6a4ccaf2ac80cb110f0daa3dc1379048ecd8f9870ec05c8018af210" }
+
+[[rules]]
+id = "xiph-sdk-floor-encode-owned-switch-106a"
+addresses = ["0x00688620"]
+expected_count = 1
+expected_bytes = 1497
+origin = "third_party"
+subsystem = "audio"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Entire1520-byte official floor1.obj payload:1497 code,3 alignment,16 owned switch and4 alignment. Canonical zero differences, freshly replayed five SDK callees and original zero-initialized static counter at four consistent DWORD load/store roles; no masks or authored credit."
+xiph_owned_switch = { component = "vorbis", object = "floor1.obj", symbol = "_floor1_encode", address = "0x00688620", size = 1497, payload_sha256 = "a7c28e35115a6296b79c13df87a8d52c4d1fba75912fbff6f6c882d408a60121" }

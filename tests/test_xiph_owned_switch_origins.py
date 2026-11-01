@@ -95,6 +95,66 @@ class XiphOwnedSwitchTests(unittest.TestCase):
             self.assertTrue(errors)
             self.assertIn("identity or extent",errors[0])
 
+    def four_fixture(self):
+        base,size,table=0x1000,26,28
+        code=b"\x83\xf8\x03\x77\x14\xff\x24\x85"+struct.pack("<I",base+table)
+        body=code+b"\x90"*13+b"\xc3"+b"\x8b\xff"
+        body+=struct.pack("<4I",*([base+25]*4))+b"\x90"*12
+        raw=bytearray(body);struct.pack_into("<I",raw,8,table)
+        for at in range(table,table+16,4):struct.pack_into("<I",raw,at,25)
+        return dict(raw=bytes(raw),canonical=body,native=body,base=base,code_size=size,
+                    relocations=[(8,6)]+[(a,6)for a in range(table,table+16,4)],
+                    targets={},layout=dict(table_offset=table,table_count=4,
+                        prefix=b"\x8b\xff",suffix=b"\x90"*12,absolute_fields={}))
+
+    def add_absolute(self,a,offset,opcode,target,kind):
+        self.mutate_code(a,offset,opcode+struct.pack("<I",target))
+        b=bytearray(a["raw"]);struct.pack_into("<I",b,offset+1,0);a["raw"]=bytes(b)
+        a["relocations"].append((offset+1,6))
+        a["layout"]["absolute_fields"][offset+1]=(target,kind)
+
+    def test_four_entries_with_exact_alignment(self):
+        p=x.qualify(**self.four_fixture())
+        self.assertEqual(p["alignment_bytes"],14)
+        self.assertEqual(len(p["table_entries"]),4)
+
+    def test_alignment_not_masked(self):
+        a=self.four_fixture();self.mutate_code(a,26,b"\x90")
+        with self.assertRaisesRegex(ValueError,"exact alignment"):x.qualify(**a)
+
+    def test_owned_callback_pointer(self):
+        a=self.four_fixture();self.add_absolute(a,12,b"\x68",0x2000,"callback")
+        self.assertEqual(x.qualify(**a)["unequal_bytes"],0)
+
+    def test_callback_must_be_pointer_argument(self):
+        a=self.four_fixture();self.add_absolute(a,12,b"\xb8",0x2000,"callback")
+        with self.assertRaisesRegex(ValueError,"callback"):x.qualify(**a)
+
+    def test_counter_load_store(self):
+        a=self.four_fixture();self.add_absolute(a,12,b"\xa1",0x2000,"counter")
+        self.add_absolute(a,17,b"\xa3",0x2000,"counter")
+        self.assertEqual(x.qualify(**a)["unequal_bytes"],0)
+
+    def test_counter_cannot_be_arbitrary_reference(self):
+        a=self.four_fixture();self.add_absolute(a,12,b"\x68",0x2000,"counter")
+        with self.assertRaisesRegex(ValueError,"counter"):x.qualify(**a)
+
+    def test_absolute_target_must_match(self):
+        a=self.four_fixture();self.add_absolute(a,12,b"\x68",0x2000,"callback")
+        a["layout"]["absolute_fields"][13]=(0x3000,"callback")
+        with self.assertRaisesRegex(ValueError,"declared target"):x.qualify(**a)
+
+    def test_bss_counter_is_proved_zero_fill(self):
+        sec=SimpleNamespace(VirtualAddress=0x1000,SizeOfRawData=0x100,
+                            Misc_VirtualSize=0x200,Characteristics=0xC0000080)
+        pe=SimpleNamespace(OPTIONAL_HEADER=SimpleNamespace(ImageBase=0x400000),sections=[sec])
+        self.assertEqual(x.zero_initialized_counter(pe,0x401100,4),b"\0"*4)
+        for address,size,flags in [(0x4010fc,4,0xC0000080),(0x4011ff,4,0xC0000080),
+                                   (0x401100,8,0xC0000080),(0x401100,4,0x40000080),
+                                   (0x401100,4,0xE0000080)]:
+            sec.Characteristics=flags
+            with self.assertRaises(ValueError):x.zero_initialized_counter(pe,address,size)
+
 
 if __name__ == "__main__":
     unittest.main()
