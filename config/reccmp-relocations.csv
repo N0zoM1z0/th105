@@ -3867,3 +3867,6 @@ vc8_timezone_cell,0x006F86E0,80700000,0,Complete original initialized owner and 
 vc8_daylight_cell,0x006F86E4,01000000,0,Complete original initialized owner and pointer/common roles verified; docs/CRT_DATA_ACCESSORS_2026_11_01.md.,literal
 vc8_dstbias_cell,0x006F86E8,f0f1ffff,0,Complete original initialized owner and pointer/common roles verified; docs/CRT_DATA_ACCESSORS_2026_11_01.md.,literal
 vc8_tzname_array,0x006F8770,f0866f0030876f00,0,Complete original initialized owner and pointer/common roles verified; docs/CRT_DATA_ACCESSORS_2026_11_01.md.,address
+vc8_debugger_hook_dummy,0x007039CC,00000000,0,Original control-entry typed common/callback role and whole support verified; docs/CRT_CONTROL_ENTRIES_2026_11_01.md.,address
+vc8_sse2_available,0x007039C8,00000000,0,Original control-entry typed common/callback role and whole support verified; docs/CRT_CONTROL_ENTRIES_2026_11_01.md.,address
+vc8_cxx_unhandled_filter,0x00694FE8,8b4424048b00813863736de0752a8378100375248b40143d2005931974153d21059319740e3d2205931974073d004099017505e8f2abffff33c0c20400,0,Original control-entry typed common/callback role and whole support verified; docs/CRT_CONTROL_ENTRIES_2026_11_01.md.,address

@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+CRT debugger hook690987/8, Cxx filter registration695025/14 and SSE2 init
+69C9D8/13 now whole canonical/unique. Complete filter61/query96/walker32,
+actual C-table caller15/range32, XIC/XIY registration records, named import and
+two real common words pass.13 tests/275 initialized-byte mutations, no fake BSS
+reads. Only35 runtime bytes: excluded2058/review314, units802; authored/source
+unchanged. See CRT_CONTROL_ENTRIES_2026_11_01.md. The8-byte hook is dbghook.obj,
+not handler.obj's different10-byte heap initializer; no uniform patch-version
+or exclusive startup-object claim is made.
+
 Five original CRT address accessors68D059 and692481/87/8D/93 (6 bytes each)
 are whole canonical/unique. Full IOB640 and timezone152 data, all four original
 pointer relocations and the actual4096-byte __bufin common/PE-zero-fill extent

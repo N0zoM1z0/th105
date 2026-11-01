@@ -1,0 +1,24 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+[[anchors]]
+address = "0x00690987"
+size = 8
+symbol = "__crt_debugger_hook"
+unit = "vc8-original-debugger-hook"
+sha256 = "d886ef4f5b9cd0cf5976fe12f2d2ab194facbdf956c8acee03cc850bbcdffa62"
+
+[[anchors]]
+address = "0x00695025"
+size = 14
+symbol = "___CxxSetUnhandledExceptionFilter"
+unit = "vc8-original-cxx-filter-registration"
+sha256 = "a6e72e6ed729b045565c8a9cedb669f8a0bf4b0521c5360fdfad7dcf1bdaed30"
+
+[[anchors]]
+address = "0x0069C9D8"
+size = 13
+symbol = "___sse2_available_init"
+unit = "vc8-original-sse2-initializer"
+sha256 = "352d557abc3e8d2a7f97771cf80f7e7d3b67d3e2ff0f250319ab236dcdf1b94f"
+

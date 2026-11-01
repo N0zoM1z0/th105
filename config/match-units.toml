@@ -29435,3 +29435,52 @@ dir32_targets = ["__timezone=vc8_timezone_cell"]
 address = "0x00692493"
 symbol_base = "___tzname"
 dir32_targets = ["__tzname=vc8_tzname_array"]
+
+[units.vc8-original-debugger-hook]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-debugger-hook.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "dbghook.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete original CRT control entry with actual common storage, callback/import or C-initialization protocol. docs/CRT_CONTROL_ENTRIES_2026_11_01.md."
+
+[[units.vc8-original-debugger-hook.functions]]
+address = "0x00690987"
+symbol_base = "__crt_debugger_hook"
+dir32_targets = ["__debugger_hook_dummy=vc8_debugger_hook_dummy"]
+
+[units.vc8-original-cxx-filter-registration]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-cxx-filter-registration.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "unhandld.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete original CRT control entry with actual common storage, callback/import or C-initialization protocol. docs/CRT_CONTROL_ENTRIES_2026_11_01.md."
+
+[[units.vc8-original-cxx-filter-registration.functions]]
+address = "0x00695025"
+symbol_base = "___CxxSetUnhandledExceptionFilter"
+dir32_targets = ["?__CxxUnhandledExceptionFilter@@YGJPAU_EXCEPTION_POINTERS@@@Z=vc8_cxx_unhandled_filter", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4"]
+
+[units.vc8-original-sse2-initializer]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-sse2-initializer.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "cpu_disp.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete original CRT control entry with actual common storage, callback/import or C-initialization protocol. docs/CRT_CONTROL_ENTRIES_2026_11_01.md."
+
+[[units.vc8-original-sse2-initializer.functions]]
+address = "0x0069C9D8"
+symbol_base = "___sse2_available_init"
+dir32_targets = ["___sse2_available=vc8_sse2_available"]
+rel32_targets = ["__get_sse2_info=0x0069C978"]

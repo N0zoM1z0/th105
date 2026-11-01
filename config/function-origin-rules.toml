@@ -5872,3 +5872,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Five whole original6-byte CRT address accessors. Complete IOB640 and timezone152 initialized sections, all four pointer relocations, actual4096-byte COFF common stdin buffer and entire native zero-fill extent independently proved. Whole canonical/unique members and RET CFGs; no fabricated raw BSS reads, data/initializer/authored credit or generic threshold relaxation. docs/CRT_DATA_ACCESSORS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-control-entries-106a"
+vc8_control_entry_anchor_file = "config/vc8-control-entry-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 35
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Whole original debugger hook8, Cxx filter registration14 and SSE2 initializer13. Real common words, complete callback61/query96/walker32, actual Windows import, source XIC/XIY registrations and native C-table caller15/range32 all checked. No guessed heap-handler identity, generic mask/exit waiver or support/EH/data/authored recount. docs/CRT_CONTROL_ENTRIES_2026_11_01.md."

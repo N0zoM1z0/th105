@@ -3274,7 +3274,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00690932,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069095B,vc8_runtime,runtime,exclude,observed,vc8-short-runtime-global-setters-106a
 0x00690965,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x00690987,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00690987,vc8_runtime,runtime,exclude,observed,vc8-original-control-entries-106a
 0x0069098F,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x006909A4,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x006909E9,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
@@ -3350,7 +3350,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00694E20,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x00694E3E,vc8_runtime,runtime,exclude,observed,vc8-original-sin-shared-owners-106a
 0x00694FE8,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x00695025,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00695025,vc8_runtime,runtime,exclude,observed,vc8-original-control-entries-106a
 0x00695033,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00695034,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x00695192,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
@@ -3506,7 +3506,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0069C91F,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069C928,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069C978,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0069C9D8,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0069C9D8,vc8_runtime,runtime,exclude,observed,vc8-original-control-entries-106a
 0x0069C9E5,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069CAE1,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069CC99,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
