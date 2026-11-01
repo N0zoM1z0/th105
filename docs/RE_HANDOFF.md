@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+CMenuConfig441520 remains863/native868, first+821 in a fresh unchanged
+replay. New ordinary by-value SDK-clamp capture gives869/+820; a real cursor
+item_count-derived bound gives880/+815 and adds a target-absent count reload.
+Both hypotheses are closed, private and unselected; no source/ledger changes.
+See CONFIG_MENU_CONSTRUCTOR_2026_10_31.md, Nov1 appendix. Do not force the
+extra native upper comparison with redundant branches or repeat these controls.
+
 Actual implicit record cleanups45CF50/8 and46E950/15 now use the existing
 strict implicit-lifetime source/owner gate. No reconstruction source or
 validator changes. Both whole bodies are inventory-unique; all eight formal

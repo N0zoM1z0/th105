@@ -52,3 +52,31 @@ The new narrow authored rule revalidates the whole body, actual exact-caller
 edge and vtable publication. Its single origin row is updated incrementally;
 all prior origin evidence is retained. Totals become source1742, authored1762,
 review845, while exact remains1547 functions /439428 bytes.
+
+## Ordinary operand-capture and cursor-bound controls, 2026-11-01
+
+A fresh unchanged public replay still emits863/native868, first mismatch+821.
+The earlier821-byte prefix observation remains current, not a whole match.
+Two new bounded source-context hypotheses were tested without changing the
+selected source, flags, shared headers or target bindings:
+
+- An ordinary static helper captures value/lower/upper by value and evaluates
+  the original Windows SDK max/min macros. It emits869 bytes, first mismatch
+  +820: JGE replaces native JG and the lower-clamp selection sequence differs.
+  Ordinary call-argument capture does not recover the native clamp topology.
+- A normal helper receives the actual MenuCursorState and requested index and
+  bounds it by the real item_count-1 field, instead of hard-coding3. It emits880
+  bytes, first mismatch+815. The compiler reloads item_count at+278 where the
+  native body retains the known constant3. This real-member ownership hypothesis
+  does not match either; no fake dependency or inert storage is introduced.
+
+Both were complete canonical868-byte target comparisons, not prefix scoring.
+The helpers use normal compiler inlining decisions; no forced inlining or
+out-of-line barrier is added. The target's extra upper comparison remains an
+unresolved compiler/source-context boundary. Do not insert a redundant manual
+branch or repeat value-capture/SDK equality/member-bound variants without new
+independent evidence.
+
+Receipts: build/frontier-config-clamp-capture-20261101/{baseline,capture,cursor-bound}.json.
+Full private source and build inputs are under the corresponding .analysis
+scope. The selected constructor and all ledgers remain unchanged.
