@@ -42,7 +42,7 @@ def validate_spec(spec,selected,units,target_sha):
     require(u.get('kind')=='msvc_prebuilt'and u.get('source')=='scripts/extract-msvc-library-object.py'
         and u.get('profile')=='vc8-sp1-libcmt'and u.get('enable_gs')is False and u.get('toolchain_library')=='libcmt'
         and u.get('toolchain_object')=='typinfo.obj'and u.get('toolchain_archive_sha256')==ARCHIVE_SHA,'typeinfo original archive unit differs')
-    require(u['functions']==[dict(address='0x006898EF',symbol_base=SYMBOL,rel32_targets=[PROVIDER+'=0x0068E5D6'],dir32_targets=[VTABLE+'='+VTABLE])],
+    require([f for f in u['functions']if f['address']=='0x006898EF']==[dict(address='0x006898EF',symbol_base=SYMBOL,rel32_targets=[PROVIDER+'=0x0068E5D6'],dir32_targets=[VTABLE+'='+VTABLE])],
         'typeinfo formal whole body/provider/table differs')
     return a,u
 
@@ -107,7 +107,7 @@ def validate(rule,selected,rows,read,target_sha):
         objects=[b for name,b in m.archive_members(archive)if Path(name).name=='typname.obj'];require(len(objects)==1 and digest(objects[0])==PROVIDER_SHA,'typeinfo provider archive identity differs')
         PROVIDER_PATH.parent.mkdir(parents=True,exist_ok=True);PROVIDER_PATH.write_bytes(objects[0])
         record=build.build_unit(UNIT,u,True,target_sha);c=core.comparator();c.verify_target();game=pefile.PE(str(c.TARGET));proof=qualify(u,a,rows,read,c,game)
-        code,results=build.compare_unit(u,True);require(code==0 and len(results)==1 and results[0]['result']=='exact','typeinfo formal root failed')
+        code,results=build.compare_unit(u,True);require(code==0 and results and all(x['result']=='exact'for x in results),'typeinfo formal root failed')
         proof.update(build=record,comparisons=results,archive_sha256=ARCHIVE_SHA,object_sha256=OBJECT_SHA,provider_object_sha256=PROVIDER_SHA,
             validator_sha256=core.sha(Path(__file__)),anchor_sha256=core.sha(ANCHORS))
         (PROVIDER_PATH.parent/'proof.json').write_text(json.dumps(proof,indent=2)+'\n');return []

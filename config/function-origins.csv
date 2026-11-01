@@ -3054,7 +3054,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006898E4,import_thunk,platform,exclude,observed,late-external-import-thunks-106a
 0x006898EA,compiler_generated,runtime,exclude,observed,vc8-runtime-tail-aliases-106a
 0x006898EF,vc8_runtime,runtime,exclude,observed,vc8-original-typeinfo-destructor-106a
-0x006898FD,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006898FD,vc8_runtime,runtime,exclude,observed,vc8-original-typeinfo-delete-106a
 0x00689919,vc8_runtime,runtime,exclude,observed,vc8-kb971090-short-and-data-runtime-106a
 0x00689934,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068995E,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

@@ -29188,3 +29188,8 @@ rel32_targets = ["_vorbis_staticbook_clear=0x006810C0", "_free=0x0068C686"]
 address = "0x006810C0"
 symbol_base = "_vorbis_staticbook_clear"
 rel32_targets = ["_free=0x0068C686"]
+
+[[units.vc8-original-typeinfo-destructor.functions]]
+address = "0x006898FD"
+symbol_base = "??_Gtype_info@@UAEPAXI@Z"
+rel32_targets = ["??1type_info@@UAE@XZ=0x006898EF", "??3@YAXPAX@Z=0x006898EA"]

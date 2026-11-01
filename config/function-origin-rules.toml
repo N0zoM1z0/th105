@@ -5729,3 +5729,14 @@ subsystem = "audio"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original SDK sharedbook.obj staticbook destroy29, full32-byte source/native section and named complete clear193/208 support. Both exact REL32 roles, ten actual provider free calls, complete CFG and whole-inventory uniqueness checked. Generic24-byte nonrelocation minimum unchanged; no partial body, padding/helper/authored credit. docs/XIPH_STATICBOOK_DESTROY_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-typeinfo-delete-106a"
+vc8_typeinfo_delete_anchor_file = "config/vc8-typeinfo-delete-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 28
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original libcmt:typinfo.obj deleting destructor28, complete canonical/unique with existing normal14 and cleanup112/SEH/RTTI proof. Fresh original seven-TU graph resolves its weak vector/scalar names to one actual vtable slot/body, independently canonical too. No source facade, alias double-count, generic threshold change or authored credit. docs/VC8_TYPEINFO_DELETE_2026_11_01.md."

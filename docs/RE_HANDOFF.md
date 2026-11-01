@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original type_info deleting destructor6898FD/28 now whole exact/unique from
+both pinned typinfo.obj and a fresh unchanged original7-TU link. Original weak
+vector symbol has search-library fallback, not unconditional alias semantics;
+actual linked G/E resolution and source/native vslot are explicitly checked.
+Normal14/cleanup112/SEH/RTTI and whole operator-delete5 tail freshly pass.
+Seven tests/45 real mutations; excluded2035/review337, other totals unchanged.
+See VC8_TYPEINFO_DELETE_2026_11_01.md. One physical deleting body, no authored credit.
+
+
 Original SDK staticbook destroy681190/29 now whole canonical/unique, with
 actual clear6810C0/193 and all ten provider free calls. Full32/208 sections
 including18 total NOPs pass; only29 new library code bytes count. Seven tests/
