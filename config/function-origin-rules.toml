@@ -5861,3 +5861,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original atof14, fread27 and flushall9 forwarding bodies from pinned libcmt members. Complete source extent, sole zero-addend REL32/provider identity, unmasked canonical bytes, full RET CFG and whole-inventory uniqueness checked. No library provider/EH or authored recount; generic thresholds unchanged. docs/CRT_PUBLIC_WRAPPERS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-data-accessors-106a"
+vc8_data_accessor_anchor_file = "config/vc8-data-accessor-origin-anchors.toml"
+expected_count = 5
+expected_bytes = 30
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Five whole original6-byte CRT address accessors. Complete IOB640 and timezone152 initialized sections, all four pointer relocations, actual4096-byte COFF common stdin buffer and entire native zero-fill extent independently proved. Whole canonical/unique members and RET CFGs; no fabricated raw BSS reads, data/initializer/authored credit or generic threshold relaxation. docs/CRT_DATA_ACCESSORS_2026_11_01.md."

@@ -3862,3 +3862,8 @@ vc8_log10_p4_Two52_0,0x006CEF00,00000000000030430000000000003043,0,Whole origina
 vc8_pow_half,0x006F7B40,000000000000e03f,0,Complete original pow owner and independently pinned source data; docs/VC8_POW_SHARED_OWNER_2026_11_01.md.,literal
 vc8_pow_operation_name,0x006F7B48,706f7700,0,Complete original pow owner and independently pinned source data; docs/VC8_POW_SHARED_OWNER_2026_11_01.md.,literal
 vc8_pow_infinity,0x006F8B40,0000000000000080ff7f,0,Complete original pow owner and independently pinned source data; docs/VC8_POW_SHARED_OWNER_2026_11_01.md.,address
+vc8_iob_array,0x006F7B50,003a7000,0,Complete original initialized owner and pointer/common roles verified; docs/CRT_DATA_ACCESSORS_2026_11_01.md.,address
+vc8_timezone_cell,0x006F86E0,80700000,0,Complete original initialized owner and pointer/common roles verified; docs/CRT_DATA_ACCESSORS_2026_11_01.md.,literal
+vc8_daylight_cell,0x006F86E4,01000000,0,Complete original initialized owner and pointer/common roles verified; docs/CRT_DATA_ACCESSORS_2026_11_01.md.,literal
+vc8_dstbias_cell,0x006F86E8,f0f1ffff,0,Complete original initialized owner and pointer/common roles verified; docs/CRT_DATA_ACCESSORS_2026_11_01.md.,literal
+vc8_tzname_array,0x006F8770,f0866f0030876f00,0,Complete original initialized owner and pointer/common roles verified; docs/CRT_DATA_ACCESSORS_2026_11_01.md.,address

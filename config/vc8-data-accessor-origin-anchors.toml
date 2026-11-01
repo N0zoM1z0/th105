@@ -1,0 +1,38 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+[[anchors]]
+address = "0x0068D059"
+size = 6
+symbol = "___iob_func"
+unit = "vc8-original-iob-accessor"
+sha256 = "fb2f41036657e73957c7f8f25361aa44045c9cdef00b17464d2370f3677424dd"
+
+[[anchors]]
+address = "0x00692481"
+size = 6
+symbol = "___daylight"
+unit = "vc8-original-time-data-accessors"
+sha256 = "4d5375591f6aacb20594501d7cdb875be580ec83ac1c34d375127771a1776365"
+
+[[anchors]]
+address = "0x00692487"
+size = 6
+symbol = "___dstbias"
+unit = "vc8-original-time-data-accessors"
+sha256 = "a8c319a42aa2f51780f1d120289cb5d18c5f9d562477168876ca19ba50ff9d04"
+
+[[anchors]]
+address = "0x0069248D"
+size = 6
+symbol = "___timezone"
+unit = "vc8-original-time-data-accessors"
+sha256 = "af1308f28b8c27d24cfca69ce02f14651755187a4e0934e4572b9a440c8c1795"
+
+[[anchors]]
+address = "0x00692493"
+size = 6
+symbol = "___tzname"
+unit = "vc8-original-time-data-accessors"
+sha256 = "c018f69490365a0257a1d6c2834d5728c1190894b51120dd2c45dee8e2e889c9"
+

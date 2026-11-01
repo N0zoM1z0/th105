@@ -3166,7 +3166,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0068CE59,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068CEEF,vc8_runtime,runtime,exclude,observed,vc8-original-public-wrappers-106a
 0x0068CF0A,vc8_runtime,runtime,exclude,observed,vc8-kb971090-runtime-106a
-0x0068D059,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068D059,vc8_runtime,runtime,exclude,observed,vc8-original-data-accessors-106a
 0x0068D05F,vc8_runtime,runtime,exclude,observed,vc8-kb971090-runtime-106a
 0x0068D130,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068D16C,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
@@ -3317,10 +3317,10 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006923E5,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-relocated-clones-106a
 0x00692419,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-relocated-clones-106a
 0x0069244D,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-relocated-clones-106a
-0x00692481,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00692487,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0069248D,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00692493,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00692481,vc8_runtime,runtime,exclude,observed,vc8-original-data-accessors-106a
+0x00692487,vc8_runtime,runtime,exclude,observed,vc8-original-data-accessors-106a
+0x0069248D,vc8_runtime,runtime,exclude,observed,vc8-original-data-accessors-106a
+0x00692493,vc8_runtime,runtime,exclude,observed,vc8-original-data-accessors-106a
 0x006924A0,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x00692560,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x006925C8,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

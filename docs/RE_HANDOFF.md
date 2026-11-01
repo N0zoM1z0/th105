@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Five original CRT address accessors68D059 and692481/87/8D/93 (6 bytes each)
+are whole canonical/unique. Full IOB640 and timezone152 data, all four original
+pointer relocations and the actual4096-byte __bufin common/PE-zero-fill extent
+pass. No raw BSS reads or fabricated BSS mutation controls. Twelve tests/822
+initialized-byte mutations pass. Only30 runtime bytes: excluded2055/review317,
+units799; authored exact/source unchanged. See CRT_DATA_ACCESSORS_2026_11_01.md.
+The four later getters are timezone/daylight/dstbias/tzname, not locale getters.
+
 Original CRT atof68B420/14, fread68CEEF/27 and flushall69A81E/9 are whole
 canonical/unique from actual pinned archive objects. Sole original REL32 fields,
 provider identities/extents and complete RET CFGs verified; no masks/tails or

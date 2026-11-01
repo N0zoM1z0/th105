@@ -29388,3 +29388,50 @@ notes = "Complete original CRT public forwarding body; no provider/EH/authored c
 address = "0x0069A81E"
 symbol_base = "__flushall"
 rel32_targets = ["_flsall=0x0069A744"]
+
+[units.vc8-original-iob-accessor]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-iob-accessor.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "_file.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete original data-address accessors with full initialized data and actual common stdin buffer proof. docs/CRT_DATA_ACCESSORS_2026_11_01.md."
+
+[[units.vc8-original-iob-accessor.functions]]
+address = "0x0068D059"
+symbol_base = "___iob_func"
+dir32_targets = ["__iob=vc8_iob_array"]
+
+[units.vc8-original-time-data-accessors]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/vc8-original-time-data-accessors.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "timeset.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete original data-address accessors with full initialized data and actual common stdin buffer proof. docs/CRT_DATA_ACCESSORS_2026_11_01.md."
+
+[[units.vc8-original-time-data-accessors.functions]]
+address = "0x00692481"
+symbol_base = "___daylight"
+dir32_targets = ["__daylight=vc8_daylight_cell"]
+
+[[units.vc8-original-time-data-accessors.functions]]
+address = "0x00692487"
+symbol_base = "___dstbias"
+dir32_targets = ["__dstbias=vc8_dstbias_cell"]
+
+[[units.vc8-original-time-data-accessors.functions]]
+address = "0x0069248D"
+symbol_base = "___timezone"
+dir32_targets = ["__timezone=vc8_timezone_cell"]
+
+[[units.vc8-original-time-data-accessors.functions]]
+address = "0x00692493"
+symbol_base = "___tzname"
+dir32_targets = ["__tzname=vc8_tzname_array"]
