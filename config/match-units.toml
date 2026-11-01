@@ -11650,6 +11650,21 @@ dir32_targets = [
   "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
 ]
 
+[[units.cross-v106a-battle-manager-arcade-setup-override.functions]]
+address = "0x00473110"
+symbol_base = "?finalize_arcade_round_473110@CBattleManagerArcade@th105@@QAEXXZ"
+rel32_targets = [
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50",
+  "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
+  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+  "?get_stage_for_character@th105@@YAEH@Z=0x0043C0B0",
+  "?get_bgm_for_character@th105@@YAEH@Z=0x0043C100",
+  "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+  "?configure_character_payload_431e80@PlayerSlotRecordArcadeSetupView@th105@@QAEXPAEH@Z=0x00431E80",
+  "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840",
+]
+
 [units.cross-v106a-battle-manager-arcade-transition-override]
 kind = "probe"
 source = "src/battle/BattleManagerArcadeTransition.cpp"

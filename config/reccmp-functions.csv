@@ -1811,3 +1811,4 @@ BattleInputGate_configure_watch_player,0x0042BC40,function
 DirectSoundBuffer_stop_if_playing,0x004185E0,function
 BattleObjectManager_update_background_runtime,0x00466F40,function
 GameConfig_save,0x00427390,function
+CBattleManagerArcade_finalize_arcade_round,0x00473110,function

@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Arcade round473110 is formally authored/source-present: complete270 code plus
+separate36-byte switch table, unchanged264-byte source nonexact at entry.
+Fresh setup842 and transition231 remain exact; actual473300 call owns it.
+No closed cleanup/register experiments reopened. Exact1585/449721 unchanged;
+source1786/authored1806/mapped1813/excluded1798/review423/units765.
+See ARCADE_ROUND_FINALIZE_SOURCE_2026_11_01.md.
+
 GameConfig save427390 is now complete authored/source-present, still nonexact:
 877/877 with only operand-order bytes +579/+582 unequal. Actual std::string,
 deque and CFileWriter source retains natural GS/EH; const-method control is

@@ -1783,3 +1783,4 @@ BattleInputGate_configure_watch_player
 DirectSoundBuffer_stop_if_playing
 BattleObjectManager_update_background_runtime
 GameConfig_save
+CBattleManagerArcade_finalize_arcade_round

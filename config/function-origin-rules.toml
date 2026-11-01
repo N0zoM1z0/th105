@@ -5112,3 +5112,17 @@ required_direct_edges = [
  { caller = "0x0043CDD0", site = "0x0043CDFB", target = "0x00427390", kind = "jump", caller_status = "matching" },
  { caller = "0x0043D670", site = "0x0043D773", target = "0x00427390", kind = "jump", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "arcade-round-finalize-authored-106a"
+addresses = ["0x00473110"]
+expected_count = 1
+expected_bytes = 270
+expected_names = ["sub_473110"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete89-instruction Arcade round policy and separately bounded nine-entry switch table. Fresh exact transition231 owns call473300. Unchanged existing source covers checked opponent front, alternate costume, ScoreData stage/BGM policy, PlayerSlot configuration and scene load. Source264 versus native270 remains nonexact. docs/ARCADE_ROUND_FINALIZE_SOURCE_2026_11_01.md."
+required_body_hashes = [{ address = "0x00473110", size = 270, sha256 = "495bd0881bdb435fe31e51bbba69266cdbbeee050b655f2ac7e63e2a17e858d1" }]
+required_direct_edges = [{ caller = "0x00473250", site = "0x00473300", target = "0x00473110", caller_status = "matching" }]
