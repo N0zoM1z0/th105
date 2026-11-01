@@ -99,3 +99,13 @@ directories. Earlier manual 310-byte diagnostics motivated the new contract;
 only the strict configured result supports matches.csv. Synthetic regression
 tests reject returning/branching helpers, forged anchors/imports/throw
 arguments/types, writable metadata, aliases and missing/nonnative exports.
+
+
+## November1 independent release acceptance
+
+The current genuine TextureHandleRuntime.cpp release provider is freshly
+canonical115/115 in this real context. It is now selected beside cleanup310,
+with no source-statement, flag, ABI or export-set change. This new proof is
+independent of the October29 withdrawal of the old naked-assembly selection;
+see TITLE_RESOURCE_RELEASE_EXACT_2026_11_01.md. Lookup and the token helper
+receive no inferred credit. The owner cleanup remains310/310.

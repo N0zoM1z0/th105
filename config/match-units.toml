@@ -2452,22 +2452,6 @@ symbol_base = "reset_hit_exchange_scratch"
 rel32_targets = ["?reset_info_manager_indexed_entry@HitExchangeIndexedEntry@th105@@QAEXXZ=0x0046A8A0"]
 dir32_targets = ["?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
 
-[units.cross-v106a-title-resource-release]
-kind = "probe"
-source = "src/ui/TitleResourceRelease.cpp"
-object = "build/match-units/CrossV106a_TitleResourceRelease.obj"
-profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Natural C++ eight-cache-slot unbind, COM release and token recycle. Former115-byte inline-assembly transcription is withdrawn; current119/115 remains nonexact. Actual D3D/COM interfaces and existing real handle helper declarations are used. docs/TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md."
-
-[[units.cross-v106a-title-resource-release.functions]]
-address = "0x00404D70"
-symbol_base = "TitleResourceManager_release_title_resource_handle"
-rel32_targets = [
-  "?lookup_token_417800@CHandleManagerLookupView@th105@@QAEPAPAXI@Z=0x00417800",
-  "?release@NetworkUdpPacketHandleManager64@th105@@QAEXI@Z=0x00405200",
-]
-dir32_targets = ["?g_title_texture_cache_host@th105@@3PAXA=?g_title_texture_cache_host@th105@@3PAXA"]
 
 [units.cross-v106a-guide-overlay]
 kind = "probe"
@@ -19914,8 +19898,8 @@ profile = "vc8-sp1-ltcg-o2"
 enable_gs = false
 linked_coff_sources = ["src/library/UnsignedIntList.cpp"]
 link_data_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_title_texture_cache_host@th105@@3PAXA=?g_title_texture_cache_host@th105@@3PAXA", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0"]
-preserve_public_members = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z", "?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z"]
-notes = "Complete310-byte CDesignBase vslot14 cleanup. Native four-byte handle values and clear(), in the real release/lookup CIL context, recover the aligned frame and assignment loop. A typed vector-Xran contract independently proves the sole E9 error exit through original throw metadata and the genuine CRT throw import. Only cleanup has exact credit here; provider exports preserve normal ABIs. docs/DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md."
+preserve_public_members = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z"]
+notes = "Complete310-byte CDesignBase vslot14 cleanup. Native four-byte handle values and clear(), in the real release/lookup CIL context, recover the aligned frame and assignment loop. A typed vector-Xran contract independently proves the sole E9 error exit through original throw metadata and the genuine CRT throw import. Cleanup310 and ordinary C++ release404D70/115 are both exact. Release was already a preserved public provider, so selection keeps its normal ABI and the same real export set; lookup remains an unaccepted preserved provider. docs/DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md; docs/TITLE_RESOURCE_RELEASE_EXACT_2026_11_01.md."
 
 [[units.gpt-web-design-base-cleanup.functions]]
 address = "0x0040BB40"
@@ -28622,4 +28606,12 @@ edges = [
  { caller = "0x00402A00", callee = "0x00402FC0", sites = ["0x00402B25"] },
  { caller = "0x00402C10", callee = "0x00418B70", sites = ["0x00402CDC"] },
  { caller = "0x00402FC0", callee = "0x00418B70", sites = ["0x0040319A"] },
+]
+
+[[units.gpt-web-design-base-cleanup.functions]]
+address = "0x00404D70"
+symbol_base = "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z"
+rel32_targets = [
+ "?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800",
+ "?release@TextureTokenManager@th105@@QAEXI@Z=0x00405200",
 ]

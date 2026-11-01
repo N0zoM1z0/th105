@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Title release404D70 is restored as genuine ordinary C++115/115 in the actual
+DesignBaseCleanupLinked context; cleanup310 stays exact. No source statements,
+ABI/flags or real export set changed, and no withdrawn assembly was reused.
+Load404C90 remains nonexact. Release moves from the former standalone probe
+into the existing cleanup unit, avoiding duplicate credit. Exact1585/449721;
+source1783/authored1803/mapped1810/excluded1798/review426; units764.
+See TITLE_RESOURCE_RELEASE_EXACT_2026_11_01.md.
+
 PCM418B70 is now canonical252 through unchanged source in the actual service
 CIL graph. Fresh exact play351 roots five nodes/six real call sites; the three
 intermediate stream bodies remain nonexact. A separate bounded stdcall graph
