@@ -5531,3 +5531,14 @@ subsystem = "input"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual unchanged input-update CIL owner266 freshly exact before unexported original unsigned-byte allocator78. Whole canonical/inventory-unique code, natural private ECX count, three genuine named MSVCR80 imports, complete native noncontinuable throw, complete typed bad_alloc metadata and ctor/dtor support. Original source closure/header pins; existing85-byte gate default remains85. No private ABI declaration, mask, sibling or authored credit. docs/LINKED_INPUT_BYTE_ALLOCATOR_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-gamepad-allocator-106a"
+linked_gamepad_allocator_anchor_file = "config/linked-gamepad-allocator-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 84
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual unchanged DirectInput gamepad source emits original allocator<RawGamepadState>84 with natural ECX count and real80-byte element. Whole canonical/inventory-unique, full normal/noreturn CFG, genuine named MSVCR80 imports, complete bad_alloc metadata/copy/destructor and native noncontinuable throw. No fabricated stride, private ABI, forced helper export, mask or parent/authored credit. Ordinary source unit unchanged. docs/LINKED_GAMEPAD_ALLOCATOR_2026_11_01.md."

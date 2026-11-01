@@ -337,7 +337,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040DEE0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040DF70,compiler_generated,battle,exclude,observed,vc8-generated-pat-nested-value-erase-106a
 0x0040DFD0,compiler_generated,input,exclude,observed,vc8-generated-direct-input-vectors-106a
-0x0040E000,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040E000,compiler_generated,input,exclude,observed,vc8-linked-gamepad-allocator-106a
 0x0040E060,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040E240,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040E510,unknown,,review,unknown,ida-1.06a-initial-inventory

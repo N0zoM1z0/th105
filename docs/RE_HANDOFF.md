@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Actual gamepad-state allocator40E000/84 now whole canonical/unique from unchanged
+real80-byte RawGamepadState source in an origin-only import CIL context. Original
+ordinary unit stays unchanged; parent182/native176 remains nonexact. Complete
+CFG/three named calls/two HIGHLOW fields, native throw and full bad_alloc metadata/
+copy/dtor pass. Eight tests/nine actual corruption controls; old byte78/input266,
+static bad_alloc five-body and axis166 regressions pass. Excluded2009/review363,
+all authored/source/mapped/unit totals unchanged. See LINKED_GAMEPAD_ALLOCATOR_2026_11_01.md.
+Remaining16/32-byte-element allocator leads are unaccepted.
+
+
 Actual input-state CIL byte allocator40AB70/78 now whole canonical/unique after
 fresh exact owner40A550/266. Unexported original unsigned-byte allocator,
 natural ECX count, genuine MSVCR80 import identities, complete bad_alloc metadata/

@@ -66,3 +66,11 @@ Evidence: build/frontier-gamepad-enumeration-20261030/formal.json,
 semantic.json, boundaries.json and the genuine linked private unit/logs.
 Fresh Factory session/sample attestation is shared with the immediately
 preceding axis scope. No hardware or user-system settings were accessed.
+
+## 2026-11-01 original allocator ownership
+
+A separate origin-only import-runtime replay of this unchanged real source
+now proves40E000/84, original allocator<RawGamepadState>, whole canonical.
+The ordinary unit and source are unchanged; linked initialization182/native176
+is still nonexact. Full exception metadata/CFG/import evidence and regressions
+are recorded in LINKED_GAMEPAD_ALLOCATOR_2026_11_01.md. No authored credit.

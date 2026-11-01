@@ -1,0 +1,13 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "exact-first-directinput-gamepad-bootstrap"
+[source_pins]
+"src/input/DirectInputGamepadBootstrap.cpp" = "510f9271a5307a9d620336cd44bdcb9ba8266640963c5c4324a39b81968bf831"
+"src/input/InputManager.cpp" = "1dc804c6a04696badde1d692b89a9775fd7d93d088f1d5791e47cdf2faaadd5b"
+"src/input/InputManager.hpp" = "8ef1625a4716361f2c50f6e3a0413501817a6ca55e4dd0af3f9b8587e57c714b"
+
+[[anchors]]
+address = "0x0040E000"
+size = 84
+symbol = "?allocate@?$allocator@URawGamepadState@th105@@@std@@QAEPAURawGamepadState@th105@@I@Z"
+sha256 = "36502b5f91e3706b5b840d9820c39f62ccba19dc0ba021e32a51a46b21339225"
