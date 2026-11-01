@@ -3763,7 +3763,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A7EE0,third_party,boost_regex,exclude,observed,boost-release-library-106a
 0x006A80E0,third_party,boost_regex,exclude,observed,boost-release-library-106a
 0x006A8310,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
-0x006A8370,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A8370,third_party,boost_regex,exclude,observed,linked-original-runtime-clone-copy-106a
 0x006A83A0,compiler_generated,runtime,exclude,observed,vc8-generated-uint-value8-tree-family-106a
 0x006A8460,third_party,runtime,exclude,inferred,boost-exception-clone-allocate-virtuals-106a
 0x006A84E0,third_party,runtime,exclude,inferred,boost-exception-clone-throw-virtuals-106a

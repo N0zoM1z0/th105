@@ -1,0 +1,7 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+[[anchors]]
+address = "0x006A8370"
+size = 46
+symbol = "??0?$clone_impl@U?$error_info_injector@Vruntime_error@std@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABV012@@Z"
+sha256 = "f467d41117e8c58e4d0e8ac830fc40022e49a3d7d5ab74eacc5f245c4a7283dc"

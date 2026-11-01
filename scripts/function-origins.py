@@ -1186,6 +1186,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("linked_bad_alloc_anchor_file")
         or rule.get("linked_exception_members_anchor_file")
         or rule.get("linked_boost_small_anchor_file")
+        or rule.get("linked_clone_copy_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2420,6 +2421,10 @@ def validate_rule_evidence(
     if rule.get("linked_boost_small_anchor_file"):
         from linked_boost_small_origins import validate as validate_boost_small
         errors.extend(validate_boost_small(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("linked_clone_copy_anchor_file"):
+        from linked_clone_copy_origins import validate as validate_clone_copy
+        errors.extend(validate_clone_copy(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("msvc_runtime_anchor_file"):
         errors.extend(

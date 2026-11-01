@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Original runtime_error clone copy6A8370/46 now fully canonical/unique with
+complete injector6A5E40/147, destructor6A4B30/50 and full EH27/8/36/8 support.
+Eight actual primary/secondary RTTI roles checked. Underlying runtime_error
+copy6A59A0/113 is explicitly NONEXACT in this CIL graph (EH-state scheduling);
+its named identity is not an exact support claim. Regex clone/base154 and other
+nominal specializations stay unaccepted. Excluded2003/review369; other totals
+unchanged. Eight synthetic tests plus seven actual corruption controls.
+See LINKED_RUNTIME_CLONE_COPY_2026_11_01.md.
+
+
 Original Boost small members destroy6A08B0/13, clone_base copy6A4D30/11,
 free_module6B55D0/12 and HINSTANCE-deleter dispose6B55E0/11 now fully canonical.
 Actual source/native class RTTI/vslots and FreeLibrary import, full CFG/HIGHLOW

@@ -5463,3 +5463,14 @@ subsystem = "boost_regex"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Complete original linked Boost sp_counted_base::destroy13, clone_base copy11, Windows free_module12 and HINSTANCE custom-deleter dispose11. Exact original source/map owners; actual nominal RTTI/vtable slots, inherited destroy identity and source/native FreeLibrary import. Every code/data field canonically equal, full CFG and source HIGHLOW coverage, whole inventory unique. No masks, generic threshold waiver or authored credit. docs/LINKED_BOOST_SMALL_2026_11_01.md."
+
+[[rules]]
+id = "linked-original-runtime-clone-copy-106a"
+linked_clone_copy_anchor_file = "config/linked-clone-copy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 46
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original Boost runtime_error clone copy46 full canonical/unique. Complete original injector147 and runtime destructor50 plus handler27/action8/FuncInfo36/unwind8 replay; eight actual primary/secondary RTTI roles and named independently classified callees. Current underlying runtime_error copy113 is explicitly nonexact in this CIL context, not silently accepted. Only clone46 receives new library classification. docs/LINKED_RUNTIME_CLONE_COPY_2026_11_01.md."
