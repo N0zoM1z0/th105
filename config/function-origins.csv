@@ -1281,7 +1281,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043C100,authored_game,battle,authored,observed,canonical-exact-authored
 0x0043C150,authored_game,battle,authored,observed,canonical-exact-authored
 0x0043C1A0,authored_game,ui,authored,observed,canonical-exact-authored
-0x0043C280,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043C280,compiler_generated,input,exclude,observed,vc8-generated-input-table-lifetime-106a
 0x0043C2D0,compiler_generated,runtime,exclude,observed,vc8-generated-scene-resource-bootstrap-emitted-106a
 0x0043C340,compiler_generated,runtime,exclude,observed,vc8-generated-scene-resource-bootstrap-emitted-106a
 0x0043C3A0,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-lifetime-std-comdats-106a

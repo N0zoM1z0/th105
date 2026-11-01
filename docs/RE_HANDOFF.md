@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Global input-table43C280 is canonical73-byte original vector cleanup from
+the actual6FCA2C static lifetime and unchanged bootstrap type. Virtual flag0
+record destruction, stride68, free and pointer reset all match; init12/callback10
+also replay. Compiler-only: excluded1807/review412/units768; exact1586/450027
+and source counts stay. CI312. GameConfig string/EH lane remains unresolved.
+See INPUT_TABLE_LIFETIME_2026_11_01.md.
+
 Replay storage43F260 now has canonical implicit208-byte teardown from its
 actual static lifetime, no authored destructor body. Constructor161/input27
 remain exact. Range52 and two5-byte callbacks independently replay; input

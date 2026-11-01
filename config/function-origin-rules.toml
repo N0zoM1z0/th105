@@ -5237,3 +5237,16 @@ evidence = "Actual static ReplayStorage lifetime emits implicit208-byte destruct
 required_body_hashes = [{ address = "0x0043F260", size = 208, sha256 = "ceddb2c1fc924702f1dc4c1c005ac27e65c8715ddb35cd2c3b39371ba996f19d" }]
 required_direct_edges = [{ caller = "0x006BF180", site = "0x006BF185", target = "0x0043F260", kind = "jump", caller_status = "identified" }]
 required_selected_body_calls = [{ owner = "0x0043F260", site = "0x0043F298", target = "0x0040AC10", target_status = "matching" }]
+
+[[rules]]
+id = "vc8-generated-input-table-lifetime-106a"
+vc8_generated_anchor_file = "config/vc8-generated-input-table-lifetime-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 73
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual static input-vector lifetime emits original std::_Tidy73: virtual non-deleting destruction of0x68 records, one allocation release and pointer reset. Full73 canonical bytes, all29 instructions, full-inventory unique69-byte nonrelocation fingerprint and actual atexit callback prove compiler provenance. No new authored credit. docs/INPUT_TABLE_LIFETIME_2026_11_01.md."
+required_body_hashes = [{ address = "0x0043C280", size = 73, sha256 = "b129687a4a93da507520d706ac8f03e49b47f879242f8a208ceffeb6fdd86b4c" }]
+required_direct_edges = [{ caller = "0x006BF090", site = "0x006BF095", target = "0x0043C280", kind = "jump", caller_status = "identified" }]
