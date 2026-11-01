@@ -5740,3 +5740,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original libcmt:typinfo.obj deleting destructor28, complete canonical/unique with existing normal14 and cleanup112/SEH/RTTI proof. Fresh original seven-TU graph resolves its weak vector/scalar names to one actual vtable slot/body, independently canonical too. No source facade, alias double-count, generic threshold change or authored credit. docs/VC8_TYPEINFO_DELETE_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-exception-delete-106a"
+vc8_exception_delete_anchor_file = "config/vc8-exception-delete-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 28
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual original libcmt:stdexcpt.obj deleting28 plus complete normal22, what13, RTTI and18-byte literal. Fresh unchanged original graph resolves weak vector/scalar symbols and both actual vtable slots; whole operator-delete5 tail checked. One physical body counted once, no generic threshold change or provider/metadata/authored credit. docs/VC8_EXCEPTION_DELETE_2026_11_01.md."

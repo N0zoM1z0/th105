@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original std::exception deleting destructor689FFD/28 now whole canonical/unique
+from actual stdexcpt.obj and fresh original7-TU graph. Full normal22/what13,
+18-byte literal, RTTI and two actual vtable slots pass; weak G/E fallback is
+verified by final link resolution, not assumed. Delete5→free also exact.
+Seven tests/106 real mutations; invalid-copy/base gate freshly passes.
+Excluded2036/review336, units788; authored/source totals unchanged. See
+VC8_EXCEPTION_DELETE_2026_11_01.md. Existing normal/what provider credit unchanged.
+
+
 Original type_info deleting destructor6898FD/28 now whole exact/unique from
 both pinned typinfo.obj and a fresh unchanged original7-TU link. Original weak
 vector symbol has search-library fallback, not unconditional alias semantics;

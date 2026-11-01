@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "vc8-original-exception-delete"
+
+[[anchors]]
+address = "0x00689FFD"
+size = 28
+symbol = "??_Gexception@std@@UAEPAXI@Z"
+sha256 = "8524e3d361a51c56e64f4b18d85ea2cdc922441ec7fbe169eb7a2f8017a2d594"

@@ -29193,3 +29193,30 @@ rel32_targets = ["_free=0x0068C686"]
 address = "0x006898FD"
 symbol_base = "??_Gtype_info@@UAEPAXI@Z"
 rel32_targets = ["??1type_info@@UAE@XZ=0x006898EF", "??3@YAXPAX@Z=0x006898EA"]
+
+[units.vc8-original-exception-delete]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalStdException.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "stdexcpt.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Original stdexcpt.obj deleting28 with full normal22/what13/RTTI/literal support; fresh original link resolves actual weak vector/scalar vtable slot. Only deleting28 new library credit."
+
+[[units.vc8-original-exception-delete.functions]]
+address = "0x00689FFD"
+symbol_base = "??_Gexception@std@@UAEPAXI@Z"
+rel32_targets = ["??1exception@std@@UAE@XZ=0x00689FDA", "??3@YAXPAX@Z=0x006898EA"]
+
+[[units.vc8-original-exception-delete.functions]]
+address = "0x00689FDA"
+symbol_base = "??1exception@std@@UAE@XZ"
+rel32_targets = ["_free=0x0068C686"]
+dir32_targets = ["??_7exception@std@@6B@=??_7exception@std@@6B@"]
+
+[[units.vc8-original-exception-delete.functions]]
+address = "0x00689FF0"
+symbol_base = "?what@exception@std@@UBEPBDXZ"
+dir32_targets = ["??_C@_0BC@EOODALEL@Unknown?5exception?$AA@=??_C@_0BC@EOODALEL@Unknown?5exception?$AA@"]
