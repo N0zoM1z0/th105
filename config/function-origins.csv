@@ -868,7 +868,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00428560,authored_game,battle,authored,observed,canonical-exact-authored
 0x00428570,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004285C0,compiler_generated,runtime,exclude,observed,vc8-generated-replay-filename-extra-106a
-0x00428680,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00428680,compiler_generated,stl,exclude,observed,original-deque-pop-back-106a
 0x004286A0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004286D0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00428700,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a

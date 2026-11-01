@@ -1,0 +1,11 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+unit = "vc8-original-short-deque-pop-back"
+source_sha256 = "c0603c011712c3ed8370ca70bf8b569279d212c6c33cf5b09416925068ba4d08"
+
+[[anchors]]
+address = "0x00428680"
+size = 23
+symbol = "?pop_back@?$deque@FV?$allocator@F@std@@@std@@QAEXXZ"
+sha256 = "21924039fbdaaf103927f49b955eda72e2f29a04f9708d6423e4dc6d96c502cf"

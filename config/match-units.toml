@@ -29574,3 +29574,15 @@ notes = "Whole original pointer-policy root, actual original callers and full BS
 [[units.vc8-original-winxfltr-initializer.functions]]
 address = "0x00695033"
 symbol_base = "__initp_misc_winxfltr"
+
+[units.vc8-original-short-deque-pop-back]
+kind = "probe"
+source = "scripts/probes/deque_short.cpp"
+object = "build/match-units/DequePopBack.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Whole original deque pop_back23, actual insertion caller and unchanged strict parent provenance. No authored credit. docs/DEQUE_POP_BACK_2026_11_01.md."
+
+[[units.vc8-original-short-deque-pop-back.functions]]
+address = "0x00428680"
+symbol_base = "?pop_back@?$deque@FV?$allocator@F@std@@@std@@QAEXXZ"

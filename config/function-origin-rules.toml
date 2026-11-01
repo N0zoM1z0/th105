@@ -5916,3 +5916,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Whole original SIGABRT getter13, rand_s pointer initializer10 and winxfltr no-op initializer1. Full original init_pointers76, abort243 and winsig initializer25 pin actual named callers; real BSS20/4, initialized behavior/exit cells and named Windows imports checked. Abort retains original INT3 with no fake RET/CFG waiver. No support/data/authored credit or one-byte RET uniqueness/ICF claim. docs/CRT_POINTER_POLICY_2026_11_01.md."
+
+[[rules]]
+id = "original-deque-pop-back-106a"
+deque_popback_anchor_file = "config/deque-popback-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 23
+origin = "compiler_generated"
+subsystem = "stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Entire relocation-free23-byte original deque<short>::pop_back matches413DF0/428680; only428680 is selected by the same real vendor instantiation's actual _Insert_n call at463D05; its independently accepted1404-byte provider is freshly revalidated under unchanged0.70/24-byte/no-tail provenance rules. No copied game source, threshold relaxation, parent/EH or authored credit. docs/DEQUE_POP_BACK_2026_11_01.md."

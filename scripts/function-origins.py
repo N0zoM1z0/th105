@@ -1218,6 +1218,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("sprite_default_anchor_file")
         or rule.get("sprite_callback_anchor_file")
         or rule.get("score_vector_default_anchor_file")
+        or rule.get("deque_popback_anchor_file")
         or rule.get("vc8_public_wrapper_anchor_file")
         or rule.get("vc8_data_accessor_anchor_file")
         or rule.get("vc8_control_entry_anchor_file")
@@ -2522,6 +2523,10 @@ def validate_rule_evidence(
     if rule.get("vc8_public_wrapper_anchor_file"):
         from vc8_public_wrapper_origins import validate as validate_crt_public_wrappers
         errors.extend(validate_crt_public_wrappers(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("deque_popback_anchor_file"):
+        from deque_popback_origins import validate as validate_deque_popback
+        errors.extend(validate_deque_popback(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("score_vector_default_anchor_file"):
         from score_vector_default_origins import validate as validate_score_vector_default

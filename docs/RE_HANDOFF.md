@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Original short-deque pop_back428680 is now whole23/23 compiler-owned through
+actual _Insert_n call463D05/sourcefield1094. Identical413DF0 stays review;
+no byte-uniqueness claim. Existing1404-byte insertion provenance freshly passes
+unchanged strict thresholds.10 tests/1450 mutations; excluded2065/review306,
+units808; authored1432/443941 unchanged. See DEQUE_POP_BACK_2026_11_01.md.
+
 Authored receive-lock constructor401850 now compares whole25/25 from the
 unchanged real NetworkWinsockReceiveThread.cpp TU. Actual caller41D8F9 passes
 a stack guard and endpoint CCriticalSection+E0; native import6C0108 is
