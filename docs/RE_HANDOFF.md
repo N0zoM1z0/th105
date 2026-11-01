@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original seven-TU Boost/VC8 CIL graph naturally reproduces private-EAX
+four-byte-vector back40DBF0/67. All27 instructions and3 named CRT calls match;
+original invarg16/archive ownership, no data/HIGHLOW refs, full uniqueness and
+four native gamepad-vector receiver sites pass. Long is a four-byte reference
+witness, not the game's device-pointer nominal type. Public context ctor112/111
+and enumeration334 stay nonexact. Excluded1987/review385; authored/source/units
+unchanged. Ten synthetic tests. See ORIGINAL_LINKED_VECTOR_BACK_2026_11_01.md.
+Other linked exception/allocator/tree shape leads remain unaccepted.
+
 Original Boost collation6B4820 now canonical455 with complete129/22 pointer
 tables and all151 source/native strings. Separate narrow whole-source gate
 resolves allnine fields, closes168 instructions/three RET0s and proves full

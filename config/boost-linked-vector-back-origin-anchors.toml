@@ -1,0 +1,27 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+[[anchors]]
+address = "0x0040DBF0"
+size = 67
+symbol = "?back@?$vector@JV?$allocator@J@std@@@std@@QAEAAJXZ"
+sha256 = "64cb9a58d53a910898122f8b428cfa8bb69c775eb1bc86340cc4abdd13b9bcb5"
+[[receiver_witnesses]]
+caller = "0x0040D9F0"
+load = "0x0040DAA6"
+site = "0x0040DAAB"
+gap_hex = ""
+[[receiver_witnesses]]
+caller = "0x0040D9F0"
+load = "0x0040DABF"
+site = "0x0040DAC4"
+gap_hex = ""
+[[receiver_witnesses]]
+caller = "0x0040D9F0"
+load = "0x0040DADC"
+site = "0x0040DAE9"
+gap_hex = "c74424142c000000"
+[[receiver_witnesses]]
+caller = "0x0040D9F0"
+load = "0x0040DB14"
+site = "0x0040DB19"
+gap_hex = ""

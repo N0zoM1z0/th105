@@ -1181,6 +1181,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("scalar_wrapper_anchor_file")
         or rule.get("implicit_lifetime_anchor_file")
         or rule.get("boost_collation_anchor_file")
+        or rule.get("original_boost_link_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2395,6 +2396,10 @@ def validate_rule_evidence(
     if rule.get("boost_collation_anchor_file"):
         from boost_collation_origins import validate as validate_boost_collation
         errors.extend(validate_boost_collation(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("original_boost_link_anchor_file"):
+        from linked_original_boost_origins import validate as validate_original_boost_link
+        errors.extend(validate_original_boost_link(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("msvc_runtime_anchor_file"):
         errors.extend(

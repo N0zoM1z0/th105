@@ -5408,3 +5408,14 @@ subsystem = "boost_regex"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Whole455-byte original Boost collation lookup with all168 instructions/three RET0 paths, allnine relocation fields and complete129/22 string-pointer tables. Actual original source initializers, every COFF pointer/literal and every native pointer/string agree. Full canonical inventory uniqueness; ordinary DIR32 gate unchanged. docs/BOOST_COLLATION_ORIGIN_2026_11_01.md."
+
+[[rules]]
+id = "original-boost-linked-vector-back-106a"
+original_boost_link_anchor_file = "config/boost-linked-vector-back-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 67
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Unchanged original Boost/VC8 source graph naturally emits private-EAX four-byte-vector back67. Whole canonical code, three original CRT invalid-parameter calls, full16-byte helper/archive ownership and four native input-vector receiver sites verified. Data-independent four-byte family, not a claim that gamepads are long values. Public constructor context112/native111 remains unaccepted. docs/ORIGINAL_LINKED_VECTOR_BACK_2026_11_01.md."
