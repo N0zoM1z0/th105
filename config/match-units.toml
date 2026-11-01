@@ -28615,3 +28615,17 @@ rel32_targets = [
  "?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800",
  "?release@TextureTokenManager@th105@@QAEXI@Z=0x00405200",
 ]
+
+[[units.cross-v106a-battle-object-manager-runtime.functions]]
+address = "0x00466F40"
+symbol_base = "?update_background_runtime_466f40@BattleObjectManager@th105@@QAEXXZ"
+rel32_targets = [
+ "?update_background_pattern_660b30@th105@@YAXH@Z=0x00660B30",
+ "?update_background_entries_469b70@EventEffectStateView@th105@@QAEXXZ=0x00469B70",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?step_transition_4656a0@BackgroundBase@th105@@QAEXXZ=0x004656A0",
+ "?_Buynode@?$list@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@2@PAU342@0ABQAUBackgroundBase@th105@@@Z=0x00421F30",
+ "?_Incsize@?$list@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@std@@IAEXI@Z=0x00440370",
+ "?erase@?$list@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x0043FC40",
+]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A", "__imp__SetEvent@4=__imp__SetEvent@4"]

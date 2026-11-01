@@ -5081,3 +5081,17 @@ subsystem = "network"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Fresh genuine pinned VC8 LTCG unit and existing exact roots establish source provenance for original pure STL template bodies. Full unmasked bytes, no calls/absolute references/relocations, closed CFG and whole-inventory uniqueness are mandatory. No authored credit or private ABI declarations. docs/LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md."
+
+[[rules]]
+id = "battle-background-runtime-authored-106a"
+addresses = ["0x00466F40"]
+expected_count = 1
+expected_bytes = 1074
+expected_names = ["sub_466F40"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete308-instruction/1074-byte background runtime policy, all reachable through twoRET0 exits. Fresh exact presentation105 owns its direct call. Existing complete typed source covers light clamp/weather, drift/interpolation, ordered list callbacks/retirement and its own runtime tick. Source1064 remains nonexact; no prefix credit or closed control retry. docs/BATTLE_BACKGROUND_RUNTIME_SOURCE_2026_11_01.md."
+required_body_hashes = [{ address = "0x00466F40", size = 1074, sha256 = "f9067cb5f6b20c5732e0bd18222d9c0211ec8a1fc41b61f484ba80f7e2c9fa6a" }]
+required_direct_edges = [{ caller = "0x0046B160", site = "0x0046B1BC", target = "0x00466F40", caller_status = "matching" }]

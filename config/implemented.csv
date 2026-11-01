@@ -1781,3 +1781,4 @@ RenderModeManager_set_pair_state
 TextureHandleManager_ctor
 BattleInputGate_configure_watch_player
 DirectSoundBuffer_stop_if_playing
+BattleObjectManager_update_background_runtime

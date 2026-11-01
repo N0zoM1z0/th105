@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Existing complete background runtime466F40 is now formally authored/source-
+present, not exact: full1074 target/308 instructions, unchanged1064 source+12.
+Fresh exact presentation105 owns46B1BC; all nine old same-TU accepted functions
+remain exact. No closed clamp/TU controls reopened. Exact1585/449721 stays;
+source1784/authored1804/mapped1811/excluded1798/review425/units764.
+See BATTLE_BACKGROUND_RUNTIME_SOURCE_2026_11_01.md.
+
 Title release404D70 is restored as genuine ordinary C++115/115 in the actual
 DesignBaseCleanupLinked context; cleanup310 stays exact. No source statements,
 ABI/flags or real export set changed, and no withdrawn assembly was reused.
