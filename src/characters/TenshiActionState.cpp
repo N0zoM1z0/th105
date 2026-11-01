@@ -1,3 +1,4 @@
+#include <cmath>
 #include "characters/TenshiActionState.hpp"
 // JP1.06a 63D3E0 complete candidate, not selected or exact.
 // Remaining semantic and compiler-ownership limits are in the evidence document.
@@ -1122,7 +1123,7 @@ case 606:
         float p[3];
         for(float n=0.0f;n<12.0f;n=static_cast<float>(n+1.0)) {
             p[0]=static_cast<float>(n*30.0);p[1]=30.0f;p[2]=1.0f;
-            int layer=tenshi_sine_radians(p[0])<=0.0?1:-1;
+            int layer=std::sin(p[0])<=0.0?1:-1;
             spawn(856,F(0xec),F(0xf0),B(0x104),layer,p,3);
         }
         p[0]=0.0f;p[1]=0.0f;p[2]=0.0f;spawn(856,F(0xec),F(0xf0),B(0x104),1,p,3);

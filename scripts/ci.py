@@ -32,6 +32,7 @@ EXACT_TEST_MODULES = (
     "test_linked_boost_small_origins",
     "test_linked_clone_copy_origins",
     "test_linked_list_node_origins",
+    "test_vc8_float_sine_origins",
     "test_linked_string_range_origins",
     "test_scalar_wrapper_origins",
     "test_implicit_lifetime_origins",

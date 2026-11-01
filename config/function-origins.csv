@@ -2613,7 +2613,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00632C30,authored_game,characters,authored,observed,roster-character-object-vtable-authored-106a
 0x0063B310,authored_game,characters,authored,observed,canonical-exact-authored
 0x0063CCB0,authored_game,characters,authored,observed,canonical-exact-authored
-0x0063D3C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0063D3C0,compiler_generated,runtime,exclude,observed,vc8-original-float-sine-106a
 0x0063D3E0,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x00649330,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x0064A000,authored_game,characters,authored,observed,canonical-exact-authored

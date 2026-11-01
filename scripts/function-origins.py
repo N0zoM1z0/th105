@@ -1188,6 +1188,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("linked_boost_small_anchor_file")
         or rule.get("linked_clone_copy_anchor_file")
         or rule.get("linked_list_node_anchor_file")
+        or rule.get("vc8_float_sine_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2430,6 +2431,10 @@ def validate_rule_evidence(
     if rule.get("linked_list_node_anchor_file"):
         from linked_list_node_origins import validate as validate_list_node
         errors.extend(validate_list_node(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("vc8_float_sine_anchor_file"):
+        from vc8_float_sine_origins import validate as validate_float_sine
+        errors.extend(validate_float_sine(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("msvc_runtime_anchor_file"):
         errors.extend(

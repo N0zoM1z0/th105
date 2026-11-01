@@ -19,7 +19,6 @@ extern int g_match_identifier;
 extern int g_fighter_state_4b8_default;
 extern short g_tenshi_weather_counter;
 extern unsigned char g_tenshi_weather_selector;
-double __cdecl tenshi_sine_radians(float);
 struct TenshiCardDeque { short *at(unsigned); };
 struct TenshiEvent130 {
     int trigger(int);

@@ -5497,3 +5497,14 @@ disposition = "exclude"
 confidence = "observed"
 evidence = "Unchanged original public regex_search iterator/base overload explicitly instantiated in verified release headers. Complete235-byte canonical body with all five original relocations, 215 unmasked bytes, unchanged0.70/24/no-tail full-inventory origin gate. Matcher ctor243/dtor129 and implicit array callbacks8/44 also fully canonical as support only. Actual connect caller remains exact. docs/BOOST_PUBLIC_SEARCH_2026_11_01.md."
 required_body_hashes = [{ address = "0x004440A0", size = 235, sha256 = "b869b67dce984990da13b4d36ed6cc48614f0830ee59f8a3974eea81376d503f" }]
+
+[[rules]]
+id = "vc8-original-float-sine-106a"
+vc8_float_sine_anchor_file = "config/vc8-float-sine-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 18
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original raw-hash-pinned VC8 math.h/cmath float sine adapter and C++ overload emitted naturally from actual Tenshi source. Whole18 canonical/unique with sole named CRT CIsin call, actual caller float stack argument/dword-zero comparison/cleanup and full native parent identity. Old custom double facade removed. Root49032/native48968 remains nonexact; no authored or partial credit. docs/TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md."

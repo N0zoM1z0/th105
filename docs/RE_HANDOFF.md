@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Tenshi606 now uses original VC8 std::sin(float), removing the custom double
+facade. Actual emitted63D3C0/18 is whole canonical/unique; original raw math.h/
+cmath pins, real float stack argument, DWORD-zero comparison at646935 and
+caller cleanup prove the boundary. Only four bytes change in giant49032,
+which stays nonexact versus48968/frame328 versus320/first+8. No angle conversion.
+Excluded2006/review366; all other totals stay. Eight tests/three real mutation
+controls. See TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md; mixed unit is not a pass.
+
+
 Original public iterator/base regex_search4440A0/235 now whole canonical through
 a source-hash-pinned release explicit template instantiation, unchanged original
 headers and ordinary/O2/GS. Five public unit comparisons235/8/44/243/129 pass;

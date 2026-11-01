@@ -23571,7 +23571,7 @@ rel32_targets = [
     "?sequence_window@TenshiActionStateView@th105@@QAEXCHH@Z=0x0045DEB0",
     "?secondary_cycle@TenshiActionStateView@th105@@QAEXXZ=0x00473F90",
     "?forward_hit_quantity@AnimationSequenceObjectView@th105@@QAEXHHFC@Z=0x0045C060",
-    "?tenshi_sine_radians@th105@@YANM@Z=0x0063D3C0",
+    "?sin@@YAMM@Z=0x0063D3C0",
     "?tenshi_square@th105@@YAMM@Z=0x00406580",
     "?pair@TenshiEvent130@th105@@QAEPAXMM@Z=0x00434E10",
     "?tenshi_fade_out@th105@@YAXIH@Z=0x0043B240",
@@ -28975,3 +28975,8 @@ address = "0x00443AA0"
 symbol_base = "??1?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE@XZ"
 rel32_targets = ["??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "??1?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@QAE@XZ=0x00442F40", "??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = ["__ehhandler$??1?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE@XZ=__ehhandler$??1?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@QAE@XZ", "??1?$recursion_info@V?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@@re_detail@boost@@QAE@XZ=??1?$recursion_info@V?$match_results@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@@boost@@@re_detail@boost@@QAE@XZ"]
+
+[[units.exact-first-tenshi-action-state.functions]]
+address = "0x0063D3C0"
+symbol_base = "?sin@@YAMM@Z"
+rel32_targets = ["__CIsin=0x0068B670"]

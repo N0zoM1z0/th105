@@ -262,3 +262,13 @@ forwarder and actual byte-consuming manager, not a private ABI. No header or
 parameter-width change is selected; receipts are under
 build/frontier-tenshi-spawn-width-20261101. Do not retry that width hypothesis
 as a frame-size workaround.
+
+## Original float sine boundary, 2026-11-01
+
+Action606 now calls the actual original VC8 std::sin(float) overload rather
+than a descriptive double-return facade. Its naturally emitted63D3C0/18 wrapper
+is whole canonical, and the caller now uses the actual native DWORD-zero
+comparison. Only four bytes of the full49032 candidate change; native48968,
+frame328/320 and first+8 remain nonexact. No new authored credit or angle-unit
+conversion. See TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md for complete header,
+caller, intrinsic and byte proof.
