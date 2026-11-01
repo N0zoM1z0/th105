@@ -53,6 +53,7 @@ EXACT_TEST_MODULES = (
     "test_vc8_sqrt_shared_origins",
     "test_vc8_sin_shared_origins",
     "test_vc8_cos_shared_origins",
+    "test_vc8_log10_shared_origins",
     "test_vc8_member_call_bridge_origins",
     "test_xiph_table_getter_origins",
     "test_xiph_invsq_origins",

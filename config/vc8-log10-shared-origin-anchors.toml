@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "vc8-original-log10-p4-shared-body"
+
+[[anchors]]
+address = "0x00697C6E"
+size = 614
+symbol = "start"
+sha256 = "1e0a0007f24e0ab3a7a17f9deedc2996888315d65d3ef04e3c6fdcf8b38309e0"

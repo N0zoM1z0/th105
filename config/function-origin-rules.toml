@@ -5784,3 +5784,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original cos P4 shared395 within complete428-byte owner and x87 cos297 owner, actual public/fallback entries, whole2224-byte coefficient data and common selector/initializer/exit protocol. Exact NOP1 and neutral trailing LEA3 separately owned, not credited; full rooted graph235 instructions, no generic unreachable-byte waiver or prefix/helper/data/authored credit. docs/VC8_COS_SHARED_OWNER_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-log10-shared-owner-106a"
+vc8_log10_shared_anchor_file = "config/vc8-log10-shared-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 614
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original log10_pentium4.obj shared614 within whole656-byte owner, complete2336-byte coefficients and all source addends. Two actual public roots close all145 instructions/644 code bytes. Original trailing12 bytes are matched but not callable or semantically neutral credit; ADD writes flags. No generic reachability waiver or public-prefix/provider/data/authored credit. docs/VC8_LOG10_SHARED_OWNER_2026_11_01.md."

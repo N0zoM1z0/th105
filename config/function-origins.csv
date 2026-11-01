@@ -3413,7 +3413,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0069797E,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-relocated-clones-106a
 0x00697B84,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-relocated-clones-106a
 0x00697C50,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x00697C6E,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00697C6E,vc8_runtime,runtime,exclude,observed,vc8-original-log10-shared-owner-106a
 0x00697FC7,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x00698012,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069803E,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

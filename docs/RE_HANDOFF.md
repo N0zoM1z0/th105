@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original log10 P4 shared 697C6E/614 now whole canonical/unique within the
+actual 656-byte owner, with all 2336 coefficient bytes and exact source addends.
+Two actual public roots reach all 145 instructions/644 code bytes. Trailing
+12 bytes are original LEA ESP,[ESP]; ADD EAX,0 storage, not neutral or callable
+credit (ADD writes flags). Ten tests and 690 actual mutations pass. Excluded
+2041/review331, units793; authored/source unchanged. See
+VC8_LOG10_SHARED_OWNER_2026_11_01.md. Earlier log.obj comparisons were the
+wrong function family, not patch-mismatch evidence for this log10 owner.
+
 Original cos P4 shared6967CE/395 now whole canonical/unique with complete
 P4 owner428 and existing x87 cos owner297, full2224-byte coefficients and
 actual fallback/public entries. The trailing8D4900 is neutral LEA ECX,[ECX],
