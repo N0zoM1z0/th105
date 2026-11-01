@@ -206,3 +206,15 @@ image now links with all actual peer-removal, acceptance and platform-thread
 inputs and zero missing implementations. Earlier missing-input statements above
 are historical. Native EH/GS replay and original packet storage remain open;
 this link success adds no authored exact credit.
+
+## 2026-11-01 complete real worker link and allocator ownership
+
+The current receive/send/service bodies and actual thread wait now close a
+seven-TU all-CIL initialization graph. Four explicit opaque-view connections
+in origin-only generated contexts select real implementations; source files
+and the ordinary comparison unit stay unchanged. Sole public initialization
+export retains actual callback uses, no fake providers or COFF barriers.
+Original peer allocator413C60/81 is whole canonical with complete exception
+proof. Linked initialization470/native441 remains nonexact; ordinary439/native441
+and accepted148/47/84/68 helpers freshly retain their results. See
+LINKED_PEER_ALLOCATOR_2026_11_01.md. The old unresolved-link observation is historical.

@@ -5553,3 +5553,14 @@ subsystem = "network"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original allocator<NetworkReceiveAddress16> naturally emitted in actual all-CIL receive/peer/accept/thread graph. Whole81 canonical/inventory-unique with natural ECX count, full CFG, named MSVCR80 imports and complete bad_alloc metadata/copy/destructor/noncontinuable throw. Existing receive entry14 freshly canonical; larger connection remains nonexact. No synthetic stride, private helper export, COFF barrier, mask, authored or parent credit. docs/LINKED_ENDPOINT_ALLOCATOR_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-peer-allocator-106a"
+linked_peer_allocator_anchor_file = "config/linked-peer-allocator-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 81
+origin = "compiler_generated"
+subsystem = "network"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original allocator<NetworkInitializePeer20> from actual seven-TU all-CIL UDP initialization/worker graph. Whole81 canonical/inventory-unique with real32-byte peer, natural ECX count, complete CFG/imports/bad_alloc metadata/RTTI/copy/destructor and noncontinuable throw. Sole actual initialization export; no fabricated stride, function implementation, helper export, COFF barrier or mask. Existing receiveentry14 and ordinary runtime148/47/84/68 replay. Linked initialization470/native441 remains nonexact. docs/LINKED_PEER_ALLOCATOR_2026_11_01.md."

@@ -459,7 +459,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00413B00,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413B10,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413BE0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00413C60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00413C60,compiler_generated,network,exclude,observed,vc8-linked-peer-allocator-106a
 0x00413CC0,compiler_generated,network,exclude,observed,vc8-linked-endpoint-allocator-106a
 0x00413D20,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413DF0,unknown,,review,unknown,ida-1.06a-initial-inventory

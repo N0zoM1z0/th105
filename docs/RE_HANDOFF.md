@@ -1,5 +1,17 @@
 # TH10.5 reconstruction handoff
 
+Actual peer allocator413C60/81 now whole canonical/unique from real32-byte peer
+initialization and all seven actual worker TUs. Only public initialization is
+exported; real callbacks/wait implementations close the old link blocker. No
+source/public unit edits, fake stride/helper export/COFF barrier. Full CFG,
+imports, exception metadata/support and receiveentry14 pass. Linked initializer
+470/native441, Assign113/native120 and insert383/native590 remain nonexact.
+Ordinary148/47/84/68 and prior endpoint81 freshly pass; fifteen tests/ten actual
+corruption controls. Excluded2011/review361, all other totals unchanged. See
+LINKED_PEER_ALLOCATOR_2026_11_01.md. All four private-ECX allocator leads now closed;
+overall98% authored goal remains active and incomplete.
+
+
 Actual endpoint allocator413CC0/81 now whole canonical/unique from current
 receive/peer/accept/thread all-CIL context. Real16-byte endpoint record, natural
 ECX count, no helper export/COFF barrier. Explicit actual peer/thread view
