@@ -54,7 +54,7 @@ CSelect::CSelect()
  back_textures_61c[0]=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(select_ctor_back1,&width,&height);
  back_textures_61c[1]=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(select_ctor_back2,&width,&height);
  for(int i=0;i<2;++i) {
-  reinterpret_cast<SelectSpriteTextureCall *>(&back_images_624[i])->set_texture_options(back_textures_61c[i],0,0,width,height,0,0);
+  back_images_624[i].set_texture_options(back_textures_61c[i],0,0,width,height,0,0);
   back_images_624[i].reset_transform();back_images_624[i].translate(anchor_618->x,anchor_618->y,0);
  }
  reinterpret_cast<SelectDesignCall *>(&background_design_1984)->load_10(select_ctor_bg_design);

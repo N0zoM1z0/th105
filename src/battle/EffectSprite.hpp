@@ -54,6 +54,8 @@ struct SpritePoint3 {
 class CSpriteEx : public CSpriteBase {
 public:
     virtual ~CSpriteEx() {}
+    void set_texture_options(unsigned handle, int x, int y,
+        int width, int height, int pivot_x, int pivot_y);
     void reset_transform();
     void commit_transform();
     void translate(float x, float y, float z);

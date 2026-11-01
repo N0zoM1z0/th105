@@ -16,8 +16,7 @@ BG04::BG04() : BackgroundBase()
     unsigned width,height;
     handles_b_24[0]=reinterpret_cast<BG04TextureLoadView *>(&g_title_resource_manager)
         ->load_texture(bg04_cloud2_path,&width,&height).value;
-    reinterpret_cast<SpriteTextureSetupView *>(&sprites_b_34[0])
-        ->set_texture_options(handles_b_24[0],0,0,640,192,320,80);
+    sprites_b_34[0].set_texture_options(handles_b_24[0],0,0,640,192,320,80);
     state_64=0;
 }
 }

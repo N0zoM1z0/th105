@@ -45,8 +45,7 @@ void AnimationAuxiliarySpriteOwnerView::replace_auxiliary_sprite(short resource_
     int const y = frame.source_y_0e;
     int const x = frame.source_x_0c;
     unsigned const texture = texture_handles_130->at(frame.texture_index_0a);
-    reinterpret_cast<SpriteTextureSetupView *>(
-        &aux_renderer_154->sprite_000)->set_texture_options(
+    aux_renderer_154->sprite_000.set_texture_options(
             texture, x, y, width, height, 0, 0);
     aux_renderer_154->frame_x_f0 = frame.frame_x_04;
     aux_renderer_154->frame_y_f4 = frame.frame_y_06;

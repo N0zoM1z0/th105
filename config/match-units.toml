@@ -17026,7 +17026,7 @@ notes = "Current CSpriteEx five-argument texture wrapper. Exact SceneRenderClust
 address = "0x0041F640"
 symbol_base = "?set_texture@CSpriteEx@@QAEXIHHHH@Z"
 rel32_targets = [
-  "?set_texture_options@CSpriteTextureOptionsView@th105@@QAEXIHHHHHH@Z=0x00407160",
+  "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
 ]
 
 [units.cross-v106a-sprite-texture-setup]
@@ -17039,15 +17039,15 @@ notes = "Complete 193-byte public texture setup plus 261-byte file-local rectang
 
 [[units.cross-v106a-sprite-texture-setup.functions]]
 address = "0x00407160"
-symbol_base = "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z"
+symbol_base = "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z"
 rel32_targets = [
   "?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60",
-  "?initialize_texture_rectangle@th105@@YGXPAVSpriteTextureSetupView@1@MMMMMM@Z=0x00407230",
+  "?initialize_texture_rectangle@th105@@YGXPAVCSpriteEx@@MMMMMM@Z=0x00407230",
 ]
 
 [[units.cross-v106a-sprite-texture-setup.functions]]
 address = "0x00407230"
-symbol_base = "?initialize_texture_rectangle@th105@@YGXPAVSpriteTextureSetupView@1@MMMMMM@Z"
+symbol_base = "?initialize_texture_rectangle@th105@@YGXPAVCSpriteEx@@MMMMMM@Z"
 
 [units.gpt-web-youmu-history-virtual]
 kind = "probe"
@@ -19455,7 +19455,7 @@ rel32_targets = [
   "??3@YAXPAX@Z=0x006898EA",
   "??2@YAPAXI@Z=0x00689DCB",
   "__invalid_parameter_noinfo=0x0068A143",
-  "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+  "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
   "?at@?$vector@IV?$allocator@I@std@@@std@@QAEAAII@Z=0x0040C100",
   "?find@?$_Tree@V?$_Tmap_traits@HPAUAuxiliarySpriteSequenceBlockView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAuxiliarySpriteSequenceBlockView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
 ]
@@ -20233,7 +20233,7 @@ address = "0x00436760"
 symbol_base = "?apply_current_frame@AnimationSpriteFrameView@th105@@QAEXXZ"
 rel32_targets = [
   "?at@?$vector@IV?$allocator@I@std@@@std@@QAEAAII@Z=0x0040C100",
-  "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+  "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
   "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
   "?scale_xyz_pivots@CSpriteEx@@QAEXMMMMMM@Z=0x00434C10",
   "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
@@ -21334,7 +21334,7 @@ rel32_targets = [
     "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
     "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
     "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
-    "?set_texture_options@SelectSpriteTextureCall@th105@@QAEXIHHIIHH@Z=0x00407160",
+    "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
     "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
     "@__security_check_cookie@4=0x00689D25",
     "___CxxFrameHandler3=0x006899E7",
@@ -24377,7 +24377,7 @@ notes = "Full845-byte CSelect normal destructor canonical exact through actual p
 [[units.exact-first-select-destructor.functions]]
 address = "0x00424260"
 symbol_base = "??1CSelectLifetime@th105@@UAE@XZ"
-rel32_targets = ["?_Tidy@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@IAEXXZ=0x00420A80", "??1CInputManager@th105@@UAE@XZ=0x00409D50", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@th105@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@th105@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1UiSprite94@th105@@QAE@XZ=0x0040AD50", "??1UiTileA4@th105@@QAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0", "?set_texture_options@SelectSpriteTextureCall@th105@@QAEXIHHIIHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??3@YAXPAX@Z=0x006898EA", "??1UiSpriteLifetime94@th105@@UAE@XZ=0x0040AD50", "??1CNumberTileLifetime@th105@@UAE@XZ=0x0040AD50"]
+rel32_targets = ["?_Tidy@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@IAEXXZ=0x00420A80", "??1CInputManager@th105@@UAE@XZ=0x00409D50", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@th105@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@th105@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1UiSprite94@th105@@QAE@XZ=0x0040AD50", "??1UiTileA4@th105@@QAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??3@YAXPAX@Z=0x006898EA", "??1UiSpriteLifetime94@th105@@UAE@XZ=0x0040AD50", "??1CNumberTileLifetime@th105@@UAE@XZ=0x0040AD50"]
 dir32_targets = ["_title_color_vtable_anchor=_title_color_vtable_anchor_external", "__ehhandler$??1CSelectLifetime@th105@@UAE@XZ=_select_destructor_eh", "___security_cookie=___security_cookie", "??_7CSelectLifetime@th105@@6B@=??_7CSelect@th105@@6B@", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@", "??1UiSpriteLifetime94@th105@@UAE@XZ=_ui_sprite_icf_dtor_callback"]
 
 [units.exact-first-replay-storage-constructor]
@@ -27055,7 +27055,7 @@ rel32_targets = [
  "?initialize_common_4664a0@BackgroundBase@th105@@QAEXHH@Z=0x004664A0",
  "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
  "?_Assign_n@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXIABVCEffectSprite@@@Z=0x004663E0",
- "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
  "__invalid_parameter_noinfo=0x0068A143",
  "@__security_check_cookie@4=0x00689D25",
  "?load_texture@BG02TextureLoadView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
@@ -27077,7 +27077,7 @@ rel32_targets = [
  "?initialize_common_4664a0@BackgroundBase@th105@@QAEXHH@Z=0x004664A0",
  "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
  "?_Assign_n@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXIABVCEffectSprite@@@Z=0x004663E0",
- "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
  "__invalid_parameter_noinfo=0x0068A143",
  "@__security_check_cookie@4=0x00689D25",
  "?load_texture@BG04TextureLoadView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
@@ -27099,7 +27099,7 @@ rel32_targets = [
  "?initialize_common_4664a0@BackgroundBase@th105@@QAEXHH@Z=0x004664A0",
  "?_Assign_n@?$vector@IV?$allocator@I@std@@@std@@IAEXIABI@Z=0x0040C2E0",
  "?_Assign_n@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXIABVCEffectSprite@@@Z=0x004663E0",
- "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
  "?load_texture@BG16TextureLoadView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
  "__invalid_parameter_noinfo=0x0068A143",
  "@__security_check_cookie@4=0x00689D25",
@@ -27132,7 +27132,7 @@ rel32_targets = [
  "?next_int@CsvReaderRuntimeInit@th105@@QAEHXZ=0x0040F480",
  "?publish_stage_state@EventEffectRuntimeInitializerView@th105@@QAEXC@Z=0x00469D50",
  "?release_all_tracked_objects@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
- "?set_texture_options@SpriteTextureSetupView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
  "@__security_check_cookie@4=0x00689D25",
  "__invalid_parameter_noinfo=0x0068A143",
 ]

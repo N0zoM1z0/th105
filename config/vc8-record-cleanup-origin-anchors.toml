@@ -20,7 +20,7 @@ sha256 = "907aeabfbb76a32dae23f3a20ee940fba5fdcf21f3023413720ae47ecfe69a71"
 
 [[sources]]
 path = "src/battle/EffectSprite.hpp"
-sha256 = "9247cba9ffd8532e41d27c4686fa36ead5790ad8035d7d7b07bcf627fd044f00"
+sha256 = "81187391923f8b5e7aea46f4f841ca56cc4566f7d279f43dd6d804a6287d83d1"
 
 [[anchors]]
 address = "0x0045CF50"

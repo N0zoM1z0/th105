@@ -27,7 +27,7 @@ struct CInputManagerCluster : CInputManager {
 // Pointer-only call views, never embedded or instantiated.
 struct SelectDesignCall { virtual void slot00();virtual void slot04();virtual void slot08();virtual void slot0c();virtual void load_10(const char *); };
 struct SelectSpriteCall { virtual void slot00();virtual void slot04();virtual void slot08();virtual void slot0c();virtual void slot10();virtual void set_texture_14(unsigned,int,int,int,int); };
-struct SelectSpriteTextureCall { public:void set_texture_options(unsigned,int,int,unsigned,unsigned,int,int); };
+
 struct SelectEffectCall {
  virtual void slot00();virtual void load_04(const char *,unsigned);
  virtual void slot08();virtual void *spawn_0c(int,float,float,unsigned char,unsigned char,int);

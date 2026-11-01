@@ -17,13 +17,13 @@ BG02::BG02() : BackgroundBase()
         char path[260];
         wsprintfA(path,"data/background/BG02/left/a%02d.bmp",i);
         handles_b_24[i*3]=reinterpret_cast<BG02TextureLoadView *>(&g_title_resource_manager)->load_texture(path,&width,&height).value;
-        reinterpret_cast<SpriteTextureSetupView *>(&sprites_b_34[i*3])->set_texture_options(handles_b_24[i*3],0,0,width,height,0,0);
+        sprites_b_34[i*3].set_texture_options(handles_b_24[i*3],0,0,width,height,0,0);
         wsprintfA(path,"data/background/BG02/center/b%02d.bmp",i);
         handles_b_24[i*3+1]=reinterpret_cast<BG02TextureLoadView *>(&g_title_resource_manager)->load_texture(path,&width,&height).value;
-        reinterpret_cast<SpriteTextureSetupView *>(&sprites_b_34[i*3+1])->set_texture_options(handles_b_24[i*3+1],0,0,width,height,0,0);
+        sprites_b_34[i*3+1].set_texture_options(handles_b_24[i*3+1],0,0,width,height,0,0);
         wsprintfA(path,"data/background/BG02/right/c%02d.bmp",i);
         handles_b_24[i*3+2]=reinterpret_cast<BG02TextureLoadView *>(&g_title_resource_manager)->load_texture(path,&width,&height).value;
-        reinterpret_cast<SpriteTextureSetupView *>(&sprites_b_34[i*3+2])->set_texture_options(handles_b_24[i*3+2],0,0,width,height,0,0);
+        sprites_b_34[i*3+2].set_texture_options(handles_b_24[i*3+2],0,0,width,height,0,0);
     }
     state_64=0;
 }

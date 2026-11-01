@@ -88,8 +88,7 @@ void EventEffectRuntimeInitializerView::initialize_effect_runtime()
         unsigned width;
         unsigned height;
         resources_08[i] = reinterpret_cast<EventTextureLoadView *>(&g_title_resource_manager)->load_texture(path, &width, &height).value;
-        reinterpret_cast<SpriteTextureSetupView *>(&sprites_18[i])
-            ->set_texture_options(
+        sprites_18[i].set_texture_options(
                 resources_08[i], 0, 0, width, height, width >> 1, height);
     }
 

@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Actual CSpriteEx now owns the seven-argument texture member; empty call views
+and nonconstructed derived receiver are removed. Provider193/helper261/wrapper37
+and all99 affected accepted units/242 roots freshly remain exact. Sprite
+constructor/callback/RTTI/array-site and record cleanup reviews were renewed.
+CSelect still differs by13/4247 bytes; full EH461/metadata188 remain exact.
+No new authored credit; see SPRITE_TEXTURE_RECEIVER_2026_11_01.md. Signedness
+and receiver-only controls are byte-identical and closed as matching leads.
+
 Original ValidateRead/Write/Execute aliases share one canonical13-byte native
 body69C4BF. Complete catch owner383/SEH4 scope28 prove all nine alias roles,
 using exact local-symbol indices for filter+363 and handler+367. All146
