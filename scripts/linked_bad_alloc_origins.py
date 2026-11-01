@@ -80,14 +80,15 @@ def throw_witness(pe,game,functions,symbols,read):
     return dict(source_va=hex(start),target='0x0068A153',size=74,sha256=digest(target),
                 record_sha256=digest(native_record),record_size=32,noncontinuable=True,import_name='kernel32.dll!RaiseException')
 
-def allocator_cfg(raw,start,throw,call_offsets):
+def allocator_cfg(raw,start,throw,call_offsets,*,body_size=85):
     """Close all paths without treating an ordinary terminal CALL as a return."""
-    require(len(raw)==85,'allocator must include the full85-byte body')
+    require(type(body_size)is int and body_size in (78,85),'unreviewed allocator CFG contract')
+    require(len(raw)==body_size,f'allocator must include the full{body_size}-byte body')
     d=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_32);d.detail=True
     instructions=list(d.disasm(raw,start));by={i.address:i for i in instructions}
-    require(sum(i.size for i in instructions)==85,'allocator incomplete instruction decode')
+    require(sum(i.size for i in instructions)==body_size,'allocator incomplete instruction decode')
     last=instructions[-1]
-    require(last.address==start+80 and last.size==5 and last.bytes[0]==0xe8
+    require(last.address==start+body_size-5 and last.size==5 and last.bytes[0]==0xe8
             and last.operands[0].type==X86_OP_IMM and last.operands[0].imm==throw,
             'allocator terminal call is not the proved CRT throw')
     calls=[i for i in instructions if i.group(capstone.CS_GRP_CALL)]
@@ -148,17 +149,18 @@ def allocator_canonical(raw,start,target,symbol,callmap,source_info,source_vtabl
     allocator_cfg(bytes(b),target,noreturn.THROW,offsets)
     return bytes(b),calls,[dict(field_offset=63,kind='throw_info'),dict(field_offset=76,kind='stack_vptr')]
 
-def throw_metadata(pe,game,symbols,read):
+def throw_metadata(pe,game,symbols,read,*,source_owner='original-0.obj',
+                   exception_copy_owner='libcmt:stdexcpt.obj',type_info_owner='libcmt:typinfo.obj'):
     sr=lambda a,n:core.pe_data(pe,a,n)
     words=lambda rd,a,n:list(struct.unpack('<'+'I'*n,rd(a,4*n)))
-    source=named(symbols,INFO,'original-0.obj');target=0x6e3c18
+    source=named(symbols,INFO,source_owner);target=0x6e3c18
     si=words(sr,source,4);ti=words(read,target,4)
-    dtor=named(symbols,DTOR,'i original-0.obj');copy=named(symbols,COPY,'i original-0.obj')
-    excopy=named(symbols,'??0exception@std@@QAE@ABV01@@Z','libcmt:stdexcpt.obj')
+    dtor=named(symbols,DTOR,'i '+source_owner);copy=named(symbols,COPY,'i '+source_owner)
+    excopy=named(symbols,'??0exception@std@@QAE@ABV01@@Z',exception_copy_owner)
     require(si[:3]==[0,dtor,0]and ti[:3]==[0,0x401630,0],'bad_alloc ThrowInfo destructor/flags differs')
     sa=words(sr,si[3],3);ta=words(read,ti[3],3)
     require(sa[0]==ta[0]==2,'bad_alloc needs exactly two catchable types')
-    typeinfo=named(symbols,'??_7type_info@@6B@','libcmt:typinfo.obj')
+    typeinfo=named(symbols,'??_7type_info@@6B@',type_info_owner)
     types=[];metadata=[]
     for idx,(name,scopy,tcopy)in enumerate([('.?AVbad_alloc@std@@',copy,0x402680),('.?AVexception@std@@',excopy,0x689f82)]):
         at=sa[idx+1];bt=ta[idx+1];sw=words(sr,at,7);tw=words(read,bt,7)

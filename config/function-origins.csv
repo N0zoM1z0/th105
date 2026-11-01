@@ -233,7 +233,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040A8A0,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x0040A920,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040AAF0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040AB70,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040AB70,compiler_generated,input,exclude,observed,vc8-linked-input-byte-allocator-106a
 0x0040ABC0,authored_game,engine,authored,observed,canonical-exact-authored
 0x0040ABE0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x0040AC10,authored_game,engine,authored,observed,canonical-exact-authored

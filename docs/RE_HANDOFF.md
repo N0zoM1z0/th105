@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Actual input-state CIL byte allocator40AB70/78 now whole canonical/unique after
+fresh exact owner40A550/266. Unexported original unsigned-byte allocator,
+natural ECX count, genuine MSVCR80 import identities, complete bad_alloc metadata/
+TypeDescriptors and copy25/dtor11 support pass. Public add-key269/native202 stays
+nonexact. Prior static bad_alloc five-body gate freshly passes; default85-byte
+contract is unchanged,78 explicit only. Excluded2008/review364; other totals
+stay. Nine tests/seven real mutation controls. See
+LINKED_INPUT_BYTE_ALLOCATOR_2026_11_01.md; other16/32/80 allocation leads unaccepted.
+
+
 Actual input-record std::_Allocate43B3B0/86 is now whole canonical from unchanged
 ResultInputTableLifetime/bootstrap source. Entire87-byte source section including
 one INT3 matches native; only86 candidate bytes classified. Full26-instruction

@@ -5520,3 +5520,14 @@ disposition = "exclude"
 confidence = "observed"
 evidence = "Original std::_Allocate<SceneBootstrapInputEx> from unchanged actual input-table/bootstrap source. All86 canonical callable bytes plus emitted INT3 tail agree with native87-byte window; full26-instruction normal/noreturn CFG and typed bad_alloc ThrowInfo/catchables/type descriptors/copy/destructor checked. No payload/code rewrite. Existing0.70/24 gate and explicit oneCC compiler-tail policy; whole callable inventory unique. docs/INPUT_RECORD_ALLOCATION_2026_11_01.md."
 required_body_hashes = [{ address = "0x0043B3B0", size = 86, sha256 = "941f3e0a3cd572df7ea47cdb8c4d4f8555a116d2312d3aca15a413134d8f1460" }]
+
+[[rules]]
+id = "vc8-linked-input-byte-allocator-106a"
+linked_byte_allocator_anchor_file = "config/linked-byte-allocator-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 78
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual unchanged input-update CIL owner266 freshly exact before unexported original unsigned-byte allocator78. Whole canonical/inventory-unique code, natural private ECX count, three genuine named MSVCR80 imports, complete native noncontinuable throw, complete typed bad_alloc metadata and ctor/dtor support. Original source closure/header pins; existing85-byte gate default remains85. No private ABI declaration, mask, sibling or authored credit. docs/LINKED_INPUT_BYTE_ALLOCATOR_2026_11_01.md."

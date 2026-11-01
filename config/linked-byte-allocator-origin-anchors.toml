@@ -1,0 +1,13 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "exact-first-input-state-update"
+[source_pins]
+"src/input/InputCluster.hpp" = "32f7443dd17f898616965ec4412521a248caf451584fa30c7f906936c82bcda1"
+"src/input/InputManager.hpp" = "8ef1625a4716361f2c50f6e3a0413501817a6ca55e4dd0af3f9b8587e57c714b"
+"src/input/InputStateTableUpdate.cpp" = "d763776b6c063f634360fe4e26b4a76716acfbcd276c128e0c52dad16e676e9f"
+
+[[anchors]]
+address = "0x0040AB70"
+size = 78
+symbol = "?allocate@?$allocator@E@std@@QAEPAEI@Z"
+sha256 = "d8b1233897d73a6aaaf2cf02ae38a8e71252e3d86470174becab6d5ae5fe9eee"
