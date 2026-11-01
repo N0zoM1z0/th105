@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+After the Tenshi fix, twelve other complete public Fighter candidates received
+fresh bounded QWORD-capture checks. No additional missing-wide-capture truncation
+was established; Aya606 and Suika605/730 deficits are physical sharing residuals,
+not permission to force stores. All roots remain nonexact and counts unchanged.
+See WIDE_CAPTURE_CROSSCHECK_2026_11_01.md. Next bounded priority: complete Alice
+4E9F50's currently partial scaffold, not more closed register-spelling controls.
+
+
 Tenshi63D3E0 scratch tracing found two genuine missing QWORD captures:505 peerY
 and542 updatedY+velocity across the real surface helper. Corrected double locals
 recover all13 wide stores; one bounded native542 nearest-rounding counterexample
