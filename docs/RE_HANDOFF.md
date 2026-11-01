@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+RemiliaObject55BE70 follow-up naturally recovers901's physical shared tails by
+spelling its real2/8/9 assignments separately, without gotos or float snapshots.
+Full5384 b35e53a2 now differs in only10 bytes, two850/851 selector-call schedules;
+all387 suffix bytes and complete1339-instruction CFG/32RET/tail agree. Still
+nonexact; exact1582/449309 stays. Global selector-view/conversion controls close
+without improvement. See REMILIA_OBJECT_ENTRY_2026_10_24.md final appendix.
+
+
 Original VC8 std::deque<short> explicit instantiation proves1404-byte4638C0
 _Insert_n by the unchanged full-inventory unique compiler-origin gate. All
 1220 nonrelocation bytes agree (86.89%); no tail waiver or game transcription.

@@ -254,7 +254,6 @@ void RemiliaObjectEntryView::initialize_action_entry()
             F(0x374) = random_float(20) * 0.1f - 1.0f;
             return;
         case 2:
-        case 9:
             F(0x12C) = H[0];
             return;
         case 3:
@@ -278,6 +277,9 @@ void RemiliaObjectEntryView::initialize_action_entry()
             MOTION->set_components(H[0], H[1]);
             return;
         case 8:
+            F(0x12C) = H[0];
+            return;
+        case 9:
             F(0x12C) = H[0];
             return;
         case 10:

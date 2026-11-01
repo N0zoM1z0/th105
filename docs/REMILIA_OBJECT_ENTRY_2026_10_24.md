@@ -187,3 +187,43 @@ selected-full,request-lifetime-evidence,complete-cfg,effects,tail-provider}.json
 Scoped.canonical.bin, scoped-differences.txt and ci.log. Private Scoped.cpp is
 retained under the corresponding .analysis directory. Only this source, its
 tracking evidence and documentation change; shared headers/providers stay intact.
+
+
+## November1 follow-up:901's distinct source arms and full metadata
+
+Native901's sequence table places2/9 at55CE02 but8 at55C3A8, a different
+shared heading-store tail. The prior source grouped2/9 before3 and separately
+spelled8. Keeping the three real heading assignments in their own ascending
+sequence arms, rather than pre-grouping2/9, lets VC8 perform the observed tail
+merging itself. This adds no operation, goto, scratch, branch condition or fake
+liveness: only the existing case9 assignment is independently spelled after8.
+The old07 experiment coupled grouping with a float snapshot; this control does
+not repeat that snapshot or change any float epoch/type.
+
+The complete selected5384-byte payload is now
+b35e53a2e1d34d1622a7adbb3f2b120bde3f69acc35702f6a9b7059bcee27dea.
+All387 suffix bytes (alignment plus three tables/map) match, and only10 callable
+bytes differ, first+2036/55C664. They are confined to850/851's two virtual-call
+preparations at55C664..55C66A and55C68E..55C694. All902/903 pointer registers
+and901's physical tail/table destinations now agree without targeted register
+edits. Whole1339-instruction reachability,32RET, actual55D1DE tail and4997-byte
+callable remain closed. This is still **nonexact**, with no partial credit.
+
+Finite controls, not selected:
+- Grouping2/8/9 together produces83a141f6/full5384, nonexact+1318, and changes
+  the earlier shared tail. The distinct native8 target rules out treating all
+  three physical destinations as one recovered owner.
+- The established normal int-return/int-argument selector view across the root
+  givesa86f51a7/full5384, nonexact+169. It does not establish the original nominal
+  declaration or improve the original source choice.
+- On the selected separate901 source, direct short conversion at all23 source
+  float-selector expressions and an int return with the existing short argument
+  are each completely byte-neutral: fullb35e53a2/10 differences. Native primary
+  vtable6C533C slot0C really selects45C390; its ordinary int facade and actual
+  WORD consumption are independently known. No per-case ABI selection is made.
+
+The public build reproduces the selected isolated source. Receipts in the same
+scope: selected901.json,selected901-full.json,selected901-cfg.json and source
+control COFF/canonical reports. Complete-CFG recipe is retained privately as
+complete_cfg.py. Stop this selector/grouping lane absent new ownership or
+compiler evidence; do not force the remaining two register/stack schedules.
