@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Coupled original sin x87 shared68B6C8/145 and P4 shared694E3E/425 now whole
+canonical/unique inside complete297/456-byte owners. Actual public prefixes,
+cross-module fallback and two exact NOP bytes are owned, not counted. All2208
+coefficient bytes/common data and actual SSE common-symbol flag/init20 pass.
+Two original public roots reach all242 instructions over920 code bytes; no
+unreachable/conditional-exit waiver. Nine tests/811 real mutations and prior
+float-sine18 gate freshly pass. Excluded2039/review333, units791; authored/
+source unchanged. See VC8_SIN_SHARED_OWNERS_2026_11_01.md.
+
+
 CRT sqrt shared body68A39D/157 now whole canonical/unique inside the actual
 complete sqrt.obj owner186, including CI/ordinary entry prefixes20/9. Six
 complete common helper/exit regions192 bytes and whole data8/44/68 plus true

@@ -29237,3 +29237,37 @@ address = "0x0068A39D"
 symbol_base = "start"
 rel32_targets = ["__load_CW=0x00690DE5", "__fast_exit=0x00690E6E", "__math_exit=0x00690E7B", "__convertTOStoQNaN=0x00690DFC", "__startOneArgErrorHandling=0x00690D87"]
 dir32_targets = ["___fastflag=vc8_sqrt_fastflag", "_NAME_=vc8_sqrt_operation_name", "__indefinite=vc8_sqrt_indefinite"]
+
+[units.vc8-original-sin-shared-body]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalSin.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "sin.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete shared runtime body within both actual original sin/x87/P4 owners; public entries, exact padding and all data/exit roles proved together. No standalone ABI or prefix/helper/data credit."
+
+[[units.vc8-original-sin-shared-body.functions]]
+address = "0x0068B6C8"
+symbol_base = "start"
+rel32_targets = ["__fast_exit=0x00690E6E", "__math_exit=0x00690E7B", "__convertTOStoQNaN=0x00690DFC", "__startOneArgErrorHandling=0x00690D87"]
+dir32_targets = ["__DEFAULT_CW_in_mem=vc8_common_default_cw", "___fastflag=vc8_sqrt_fastflag", "_NAME_=vc8_sin_operation_name", "__pi_by_2_to_61=vc8_common_pi_by_2_to_61", "__indefinite=vc8_sqrt_indefinite"]
+
+[units.vc8-original-sin-p4-shared-body]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalSinP4.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "sin_pentium4.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Complete shared runtime body within both actual original sin/x87/P4 owners; public entries, exact padding and all data/exit roles proved together. No standalone ABI or prefix/helper/data credit."
+
+[[units.vc8-original-sin-p4-shared-body.functions]]
+address = "0x00694E3E"
+symbol_base = "start"
+rel32_targets = ["__sin_default=0x0068B6BF"]
+dir32_targets = ["PI32INV=vc8_sin_p4_PI32INV", "SHIFTER=vc8_sin_p4_SHIFTER", "P_1=vc8_sin_p4_P_1", "P_2=vc8_sin_p4_P_2", "SC_4=vc8_sin_p4_SC_4", "Ctable=vc8_sin_p4_Ctable", "P_3=vc8_sin_p4_P_3", "SC_2=vc8_sin_p4_SC_2", "SC_3=vc8_sin_p4_SC_3", "SC_1=vc8_sin_p4_SC_1", "ALL_ONES=vc8_sin_p4_ALL_ONES", "TWO_POW_55=vc8_sin_p4_TWO_POW_55", "TWO_POW_M55=vc8_sin_p4_TWO_POW_M55"]

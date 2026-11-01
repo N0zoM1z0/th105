@@ -1,0 +1,16 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+[[anchors]]
+address = "0x0068B6C8"
+size = 145
+symbol = "start"
+unit = "vc8-original-sin-shared-body"
+sha256 = "7a4edc40559fa6b2016f044271c78e5f3c64f4aeba7a5510d5429e7e6d251535"
+
+[[anchors]]
+address = "0x00694E3E"
+size = 425
+symbol = "start"
+unit = "vc8-original-sin-p4-shared-body"
+sha256 = "bbd54abcd7597e9d58527a1cfb003ea152e30cf0626c9641296a85a6d76212d5"

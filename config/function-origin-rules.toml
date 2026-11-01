@@ -5762,3 +5762,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Complete original sqrt.obj186-byte owner proves its157-byte shared start body and both CI/ordinary entry prefixes. Entire six helper/exit regions192 bytes, actual data8/44/68 and BSS flag4, every relocation and multi-entry CFG111 instructions close without unreachable-byte or conditional-exit waiver. Not a standalone public ABI, no prefix/helper/data/authored credit. docs/VC8_SQRT_SHARED_OWNER_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-sin-shared-owners-106a"
+vc8_sin_shared_anchor_file = "config/vc8-sin-shared-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 570
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Complete original sin.obj297 and sin_pentium4.obj456 owners prove shared145/425 bodies together, with actual cross-module fallback/public prefixes and exact two NOPs. Full coefficient2208/common data, common flag allocation and actual initializer20 checked. Rooted multi-region CFG has no unaccounted bytes; no standalone ABI, generic branch waiver or prefix/helper/data/authored credit. docs/VC8_SIN_SHARED_OWNERS_2026_11_01.md."
