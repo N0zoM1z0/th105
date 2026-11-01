@@ -1,0 +1,16 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+source = "src/config/ScoreDataLifetime.cpp"
+enable_gs = true
+min_nonreloc_coverage = 0.70
+min_nonreloc_bytes = 24
+max_alignment_tail = 0
+alignment_tail_hex = ""
+
+[[anchors]]
+address = "0x0043DF10"
+size = 393
+symbol = "??1ScoreDataLifetimeView@th105@@QAE@XZ"
+rel32_targets = ["??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?erase@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0043D270", "??3@YAXPAX@Z=0x006898EA", "?erase@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x0043D100"]
+rel32_site_counts = { "??_M@YGXPAXIHP6EX0@Z@Z" = 2, "??3@YAXPAX@Z" = 7, "?erase@?$_Tree@V?$_Tset_traits@IU?$less@I@std@@V?$allocator@I@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z" = 2 }

@@ -1785,3 +1785,4 @@ BattleObjectManager_update_background_runtime
 GameConfig_save
 CBattleManagerArcade_finalize_arcade_round
 CollisionContext_test_group_a_against_group_b
+ScoreData_construct

@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+ScoreData constructor43E1A0 is canonical306 through actual member/array
+lifetimes then initialized-byte reset. The real static lifetime emits implicit
+dtor43DF10 canonical393 without a handwritten destructor; it is compiler-only.
+All four array callbacks match fully (14-byte ctor remains review), and actual
+static initializer22/atexit callback10 are independently witnessed. Existing
+defaults2428/persist1155 pass. Exact1586/450027; source1788/authored1808/mapped1815/
+excluded1805/review414/units767. CI312. See SCORE_OWNER_LIFETIME_2026_11_01.md.
+
 Package/network checked tree increments41D2B0/4143E0 each now have full
 canonical97-byte original-template CIL proofs. Separate strict call/tail gate
 requires the exact16-byte named CRT wrapper, actual private source ownership,

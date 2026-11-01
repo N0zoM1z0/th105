@@ -5210,3 +5210,16 @@ subsystem = "network"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Fresh actual CIL context and exact owners prove complete private checked-tree iterator97, including original invalid-parameter E8/E9 exits. No forced ABI/export, masks, partial credit or unrelated callee binding. docs/LINKED_CHECKED_ITERATOR_ORIGINS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-generated-score-owner-destructor-106a"
+vc8_generated_anchor_file = "config/vc8-generated-score-owner-dtor-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 393
+origin = "compiler_generated"
+subsystem = "config"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual ScoreData static lifetime emits the implicit destructor with no authored destructor declaration/body. Whole393 canonical bytes and independently exact array callbacks support generated member cleanup; complete329-byte nonrelocation fingerprint and every repeated call target are unique over the full inventory. Existing static callback6BF170 owns this destructor. No authored credit. docs/SCORE_OWNER_LIFETIME_2026_11_01.md."
+required_body_hashes = [{ address = "0x0043DF10", size = 393, sha256 = "3ace549e00663599e8e143969780c8a6806b4b3ebada3123e36e4facca547c1b" }]
+required_direct_edges = [{ caller = "0x006BF170", site = "0x006BF175", target = "0x0043DF10", kind = "jump", caller_status = "identified" }]
