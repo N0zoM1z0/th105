@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original cache-list node allocator6A3BD0/26 now whole-canonical/unique:20-byte
+allocation and self-linked prefix, original named new, no data/HIGHLOW refs.
+Actual original cache-data ctor and native6B0310 call6B0339 publish returned
+head+4/count0+8; complete native owner hash/origin and both caller CFGs checked.
+Parent117/native125 is not exact. Excluded2004/review368; all other totals stay.
+Eight synthetic and five real corruption controls. See
+LINKED_CACHE_LIST_NODE_2026_11_01.md. Tree payload mappings still unaccepted.
+
+
 Original runtime_error clone copy6A8370/46 now fully canonical/unique with
 complete injector6A5E40/147, destructor6A4B30/50 and full EH27/8/36/8 support.
 Eight actual primary/secondary RTTI roles checked. Underlying runtime_error

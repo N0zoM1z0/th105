@@ -3656,7 +3656,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A3A10,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006A3AB0,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006A3B00,third_party,boost_regex,exclude,observed,boost-release-library-106a
-0x006A3BD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A3BD0,compiler_generated,boost_regex,exclude,observed,linked-original-cache-list-node-106a
 0x006A3BF0,compiler_generated,runtime,exclude,observed,vc8-generated-uint-value8-tree-family-106a
 0x006A3C40,compiler_generated,runtime,exclude,observed,vc8-generated-uint-value8-tree-family-106a
 0x006A3C80,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a

@@ -5474,3 +5474,14 @@ subsystem = "boost_regex"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original Boost runtime_error clone copy46 full canonical/unique. Complete original injector147 and runtime destructor50 plus handler27/action8/FuncInfo36/unwind8 replay; eight actual primary/secondary RTTI roles and named independently classified callees. Current underlying runtime_error copy113 is explicitly nonexact in this CIL context, not silently accepted. Only clone46 receives new library classification. docs/LINKED_RUNTIME_CLONE_COPY_2026_11_01.md."
+
+[[rules]]
+id = "linked-original-cache-list-node-106a"
+linked_list_node_anchor_file = "config/linked-list-node-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 26
+origin = "compiler_generated"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Whole original20-byte cache-list sentinel allocator26 from unchanged Boost/VC8 CIL graph. Actual cache-data constructor named source ownership and independently classified native125-byte owner call6B0339 publish returned head+4 and zero size+8. Complete canonical leaf, named original new, no data/HIGHLOW refs, full inventory uniqueness; owner117/native125 remains nonexact. No payload or authored credit. docs/LINKED_CACHE_LIST_NODE_2026_11_01.md."
