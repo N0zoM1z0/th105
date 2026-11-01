@@ -3034,7 +3034,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006894A0,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00689600,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00689780,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
-0x006897D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006897D0,third_party,audio,exclude,observed,xiph-original-inverse-square-lookup-106a
 0x00689820,third_party,audio,exclude,observed,xiph-original-table-getters-106a
 0x00689830,third_party,audio,exclude,observed,xiph-sdk-relocated-anchors-106a
 0x00689890,import_thunk,platform,exclude,observed,late-external-import-thunks-106a

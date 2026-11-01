@@ -5707,3 +5707,14 @@ subsystem = "audio"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual official SDK window.obj window_get12 and lsp.obj invsq2exp lookup12: whole16-byte sections include4 original NOPs each. Complete initialized data sections32672/1176 bytes, all8 window-pointer roles and actual float-table+128 addend checked. Whole CFG/inventory uniqueness, no approximate floats, partial arrays, generic threshold change or metadata/authored credit. docs/XIPH_TABLE_GETTERS_2026_11_01.md."
+
+[[rules]]
+id = "xiph-original-inverse-square-lookup-106a"
+xiph_invsq_anchor_file = "config/xiph-invsq-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 77
+origin = "third_party"
+subsystem = "audio"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual original SDK lsp.obj inverse-square-root lookup77, whole80-byte section including3 NOPs; full1176-byte data section, exact table element0/+4 mappings and all3 original floating constants. Explicit-width legacy80 symbols decode exactly with integer arithmetic, never rounding; native/source literal bytes and full body agree. Generic70% relocation threshold unchanged; no data/padding/authored credit. docs/XIPH_INVSQ_LOOKUP_2026_11_01.md."

@@ -1,4 +1,4 @@
-"""Shared validation for target-attested VC8 floating-point relocations."""
+"""Shared exact validation for VC8 and original SDK floating-point relocations."""
 
 from __future__ import annotations
 
@@ -9,8 +9,9 @@ from typing import Any
 
 
 REAL_LITERAL_SYMBOL = re.compile(r"^__real@([0-9A-Fa-f]{8}|[0-9A-Fa-f]{16})$")
+LEGACY_REAL_LITERAL_SYMBOL = re.compile(r"^__real@([48])@([0-9A-Fa-f]{20})$")
 REAL_LITERAL_REFERENCE = re.compile(
-    r"^(__real@[0-9A-Fa-f]{8}|__real@[0-9A-Fa-f]{16})(?:\+0x([0-9A-Fa-f]+))?$"
+    r"^(__real@(?:[0-9A-Fa-f]{8}|[0-9A-Fa-f]{16}|[48]@[0-9A-Fa-f]{20}))(?:\+0x([0-9A-Fa-f]+))?$"
 )
 
 
@@ -28,15 +29,53 @@ def canonical_data_bytes(data_hex: str, context: str) -> bytes:
     return value
 
 
+def legacy_real_literal_bytes(width: int, encoded: str) -> bytes:
+    """Decode an original SDK explicit-width extended value without rounding.
+
+    Only finite values exactly representable at the declared IEEE width are
+    accepted. Integer arithmetic preserves signed zero and exact subnormals;
+    precision loss, pseudo-denormals, NaN/Inf, overflow and underflow fail shut.
+    """
+    if width not in (4, 8) or not re.fullmatch(r"[0-9A-Fa-f]{20}", encoded):
+        raise ValueError("malformed legacy __real width or extended payload")
+    sign_exponent = int(encoded[:4], 16)
+    significand = int(encoded[4:], 16)
+    sign, exponent = sign_exponent >> 15, sign_exponent & 0x7FFF
+    sign_bits = sign << (width * 8 - 1)
+    if exponent == 0 and significand == 0:
+        return sign_bits.to_bytes(width, "little")
+    if exponent in (0, 0x7FFF) or not significand & (1 << 63):
+        raise ValueError("legacy __real requires a finite normalized extended value or signed zero")
+    precision, bias = (24, 127) if width == 4 else (53, 1023)
+    unbiased = exponent - 16383
+    if unbiased > bias:
+        raise ValueError("legacy __real overflows its declared IEEE width")
+    minimum = 1 - bias
+    shift = 64 - precision + max(0, minimum - unbiased)
+    if shift >= 64 or significand & ((1 << shift) - 1):
+        raise ValueError("legacy __real is not exactly representable at its declared IEEE width")
+    value = significand >> shift
+    if unbiased < minimum:
+        encoded_exponent, fraction = 0, value
+        if not 0 < fraction < (1 << (precision - 1)):
+            raise ValueError("legacy __real subnormal extent differs")
+    else:
+        encoded_exponent = unbiased + bias
+        fraction = value - (1 << (precision - 1))
+    bits = sign_bits | (encoded_exponent << (precision - 1)) | fraction
+    return bits.to_bytes(width, "little")
+
+
 def real_literal_bytes(relocation: Mapping[str, object]) -> bytes | None:
     """Decode and validate a VC8 ``__real`` relocation's literal bytes."""
 
     symbol = str(relocation.get("symbol", ""))
     match = REAL_LITERAL_SYMBOL.fullmatch(symbol)
-    if match is None:
+    legacy = LEGACY_REAL_LITERAL_SYMBOL.fullmatch(symbol)
+    if match is None and legacy is None:
         if symbol.startswith("__real@"):
             raise ValueError(
-                "malformed __real symbol; expected exactly 8 or 16 hexadecimal digits"
+                "malformed __real symbol; expected IEEE hex or an explicit-width legacy extended value"
             )
         if "data_hex" in relocation:
             raise ValueError("data_hex requires a 32-bit or 64-bit __real@... symbol")
@@ -46,7 +85,8 @@ def real_literal_bytes(relocation: Mapping[str, object]) -> bytes | None:
     if int(relocation.get("addend", 0)) != 0:
         raise ValueError("real literals must use a zero addend")
 
-    symbol_bytes = bytes.fromhex(match.group(1))[::-1]
+    symbol_bytes = (bytes.fromhex(match.group(1))[::-1] if match is not None
+                    else legacy_real_literal_bytes(int(legacy.group(1)), legacy.group(2)))
     if "data_hex" not in relocation:
         return symbol_bytes
 
@@ -66,7 +106,7 @@ def real_literal_reference_bytes(reference: str) -> bytes | None:
     match = REAL_LITERAL_REFERENCE.fullmatch(reference)
     if match is None:
         raise ValueError(
-            "malformed __real reference; expected 8 or 16 hexadecimal digits"
+            "malformed __real reference; expected IEEE hex or an explicit-width legacy extended value"
         )
     addend = int(match.group(2), 16) if match.group(2) is not None else 0
     return real_literal_bytes(

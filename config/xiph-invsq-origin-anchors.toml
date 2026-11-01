@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "xiph-original-invsq2exp-lookup"
+
+[[anchors]]
+address = "0x006897D0"
+size = 77
+symbol = "_vorbis_invsqlook"
+sha256 = "ba211fa2ff66e55b420b47ffe469028d9910ac15deab20a152ace03d5d58cc0d"

@@ -39,7 +39,7 @@ def validate_spec(spec,selected,units,target_sha):
         require(u.get('kind')=='upstream_prebuilt'and u.get('source')=='scripts/fetch-xiph-sdk-object.py'
             and u.get('profile')=='xiph-win32sdk-1.0.1'and u.get('enable_gs')is False and u.get('sdk_component')=='vorbis'
             and u.get('sdk_object')==k['member']and u.get('sdk_archive_sha256')==ARCHIVE_SHA,'SDK getter original member/profile differs')
-        require(u['functions']==[dict(address=a['address'],symbol_base=k['symbol'],dir32_targets=[k['table']+'='+k['table']])],
+        require([f for f in u['functions']if f['address']==a['address']]==[dict(address=a['address'],symbol_base=k['symbol'],dir32_targets=[k['table']+'='+k['table']])],
             'SDK getter formal whole-body/table contract differs')
     return aa
 
@@ -98,7 +98,7 @@ def validate(rule,selected,rows,read,target_sha):
             k=CONTRACT[a['address']];require(digest(m.extract_object(sdk,'vorbis',k['member']))==digest(m.extract_object(sdk,'vorbisfile',k['member']))==k['object_sha'],
                 'SDK getter duplicate archive members must be identical, not extra credit')
             u=units[k['unit']];builds.append(build.build_unit(k['unit'],u,True,target_sha));facts.append(qualify(u,a,rows,read,c,game))
-            code,results=build.compare_unit(u,True);require(code==0 and len(results)==1 and results[0]['result']=='exact','SDK getter formal comparison failed');comparisons.extend(results)
+            code,results=build.compare_unit(u,True);require(code==0 and results and all(x['result']=='exact'for x in results),'SDK getter formal comparison failed');comparisons.extend(results)
         proof=dict(anchors=facts,builds=builds,comparisons=comparisons,archive_sha256=ARCHIVE_SHA,validator_sha256=core.sha(Path(__file__)),anchor_sha256=core.sha(ANCHORS))
         (ROOT/'build/origin-anchors/xiph-table-getters.json').write_text(json.dumps(proof,indent=2)+'\n');return []
     except (OSError,ValueError,KeyError,TypeError,RuntimeError,struct.error,pefile.PEFormatError)as exc:return [str(rule['id'])+': '+str(exc)]

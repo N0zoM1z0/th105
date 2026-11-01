@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Original SDK inverse-square-root interpolation6897D0/77 now whole exact/unique,
+including3 NOPs, full1176-byte data, table element0/+4 and three real constants.
+Existing addend-specific mappings solve different table bytes without changing
+the data model. Legacy explicit-width80 symbols now decode with exact integer
+arithmetic; precision loss/specials/overflow/underflow rejected, no rounding.
+Sixteen literal tests/seven root tests/106 real mutations; prior getter pair and
+modern VC8 Alice flight roots4FC7C0/4FC900 freshly exact. Excluded2033/review339;
+other totals unchanged. See XIPH_INVSQ_LOOKUP_2026_11_01.md. Generic70% floor stays.
+
+
 Original SDK window getter684CF0/12 and inverse-square-root-exponent lookup
 689820/12 now whole canonical/unique, including4 NOPs each. Whole original
 .data sections32672/1176 bytes match, with all8 window pointers and the actual
