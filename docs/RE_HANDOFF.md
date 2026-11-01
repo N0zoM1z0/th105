@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Actual input-record std::_Allocate43B3B0/86 is now whole canonical from unchanged
+ResultInputTableLifetime/bootstrap source. Entire87-byte source section including
+one INT3 matches native; only86 candidate bytes classified. Full26-instruction
+normal/throw CFG, noncontinuable CRT proof and complete bad_alloc typed metadata/
+copy/dtor pass. Existing input cleanup73 freshly exact. Generic.70/24 threshold
+unchanged with explicit oneCC tail. Excluded2007/review365, other totals stay.
+See INPUT_RECORD_ALLOCATION_2026_11_01.md; no source/flag/ABI or parent promotion.
+
+
 Tenshi606 now uses original VC8 std::sin(float), removing the custom double
 facade. Actual emitted63D3C0/18 is whole canonical/unique; original raw math.h/
 cmath pins, real float stack argument, DWORD-zero comparison at646935 and

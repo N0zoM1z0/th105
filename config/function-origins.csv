@@ -1247,7 +1247,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043B2E0,compiler_generated,runtime,exclude,observed,vc8-generated-scene-resource-bootstrap-emitted-106a
 0x0043B300,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043B340,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
-0x0043B3B0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043B3B0,compiler_generated,input,exclude,observed,vc8-generated-input-record-allocation-106a
 0x0043B410,authored_game,network,authored,observed,canonical-exact-authored
 0x0043B4A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0043B580,authored_game,ui,authored,observed,canonical-exact-authored

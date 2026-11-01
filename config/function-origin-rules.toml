@@ -5508,3 +5508,15 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original raw-hash-pinned VC8 math.h/cmath float sine adapter and C++ overload emitted naturally from actual Tenshi source. Whole18 canonical/unique with sole named CRT CIsin call, actual caller float stack argument/dword-zero comparison/cleanup and full native parent identity. Old custom double facade removed. Root49032/native48968 remains nonexact; no authored or partial credit. docs/TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md."
+
+[[rules]]
+id = "vc8-generated-input-record-allocation-106a"
+vc8_generated_anchor_file = "config/vc8-input-record-allocation-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 86
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original std::_Allocate<SceneBootstrapInputEx> from unchanged actual input-table/bootstrap source. All86 canonical callable bytes plus emitted INT3 tail agree with native87-byte window; full26-instruction normal/noreturn CFG and typed bad_alloc ThrowInfo/catchables/type descriptors/copy/destructor checked. No payload/code rewrite. Existing0.70/24 gate and explicit oneCC compiler-tail policy; whole callable inventory unique. docs/INPUT_RECORD_ALLOCATION_2026_11_01.md."
+required_body_hashes = [{ address = "0x0043B3B0", size = 86, sha256 = "941f3e0a3cd572df7ea47cdb8c4d4f8555a116d2312d3aca15a413134d8f1460" }]
