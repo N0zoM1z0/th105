@@ -29484,3 +29484,18 @@ address = "0x0069C9D8"
 symbol_base = "___sse2_available_init"
 dir32_targets = ["___sse2_available=vc8_sse2_available"]
 rel32_targets = ["__get_sse2_info=0x0069C978"]
+
+[units.vc8-original-validation-leaf]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalValidation.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "validate.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "One physical13-byte original validation body, all three original aliases and actual catch383/SEH28 ownership verified. No alias/parent/provider/authored recount. docs/CRT_VALIDATION_ALIAS_2026_11_01.md."
+
+[[units.vc8-original-validation-leaf.functions]]
+address = "0x0069C4BF"
+symbol_base = "?_ValidateRead@@YAHPBXI@Z"

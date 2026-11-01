@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original ValidateRead/Write/Execute aliases share one canonical13-byte native
+body69C4BF. Complete catch owner383/SEH4 scope28 prove all nine alias roles,
+using exact local-symbol indices for filter+363 and handler+367. All146
+instructions reached; only the original handler E9 to terminate is accepted.
+Full memmove payload869 and all six tables/biased addends replay independently.
+15 tests/1293 byte mutations pass. Only13 runtime bytes: excluded2059/review313,
+units803; authored exact/source unchanged. See CRT_VALIDATION_ALIAS_2026_11_01.md.
+No exclusive alias/ICF claim, extra provider credit or generic CFG relaxation.
+
 CRT debugger hook690987/8, Cxx filter registration695025/14 and SSE2 init
 69C9D8/13 now whole canonical/unique. Complete filter61/query96/walker32,
 actual C-table caller15/range32, XIC/XIY registration records, named import and

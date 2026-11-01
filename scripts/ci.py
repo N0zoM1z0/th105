@@ -61,6 +61,7 @@ EXACT_TEST_MODULES = (
     "test_vc8_public_wrapper_origins",
     "test_vc8_data_accessor_origins",
     "test_vc8_control_entry_origins",
+    "test_vc8_validation_leaf_origins",
     "test_vc8_member_call_bridge_origins",
     "test_xiph_table_getter_origins",
     "test_xiph_invsq_origins",

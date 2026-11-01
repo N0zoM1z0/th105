@@ -3495,7 +3495,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0069C401,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069C447,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0069C496,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0069C4BF,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0069C4BF,vc8_runtime,runtime,exclude,observed,vc8-original-validation-leaf-106a
 0x0069C4CC,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-relocated-clones-106a
 0x0069C572,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-relocated-clones-106a
 0x0069C618,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
