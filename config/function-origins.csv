@@ -3934,7 +3934,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B5200,third_party,boost_regex,exclude,observed,boost-narrow-boost-equivalence-106a
 0x006B5220,third_party,boost_regex,exclude,observed,boost-regex-source-core-106a
 0x006B52E0,third_party,boost_regex,exclude,observed,boost-narrow-boost-equivalence-106a
-0x006B5350,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B5350,third_party,runtime,exclude,observed,boost-original-public-regex-exception-copy-106a
 0x006B5380,third_party,runtime,exclude,inferred,boost-exception-clone-allocate-virtuals-106a
 0x006B5400,third_party,runtime,exclude,inferred,boost-exception-clone-throw-virtuals-106a
 0x006B5440,third_party,boost_regex,exclude,observed,boost-narrow-boost-equivalence-106a

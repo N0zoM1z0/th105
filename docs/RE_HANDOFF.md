@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Regex clone6B5350/46 now whole canonical/unique in a genuine original public
+throw_exception<regex_error> ordinary instantiation. New context fully closes
+injector154 and runtime copy113, including both complete EH35+44 sections;
+actual original regex.cpp destructor50 and its8 selected bodies pass. Previous
+CIL154 mismatch remains true, not waived. Complete9-role RTTI uses48/68 offsets.
+Eight tests/26 actual mutations; prior two public exception copies freshly pass.
+Excluded2018/review354, units779; authored/source/mapped totals unchanged.
+See BOOST_PUBLIC_REGEX_EXCEPTION_2026_11_01.md. No private export or fake body.
+
+
 Original public Boost throw_exception instantiations now prove clone copies
 6B5060/46 (logic_error) and6A95D0/46 (invalid_argument), whole/unique. Preserve
 original BOOST_ATTRIBUTE_NORETURN on explicit declarations: VC8 rejects its

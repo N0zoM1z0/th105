@@ -25,6 +25,8 @@ SEARCH_PROBE = 'scripts/probes/BoostRegexSearchOrigin.cpp'
 SEARCH_PROBE_SHA256 = '2be40c77d9f1846bd39e2ca93c670d11749ed174a8ac01dde0ff430230a3ddce'
 EXCEPTION_PROBE = 'scripts/probes/BoostExceptionCopiesOrigin.cpp'
 EXCEPTION_PROBE_SHA256 = '577bfc89b5a49e4717488097dc7acd49650d643d10d679f7ab8bc777c34e0ad5'
+REGEX_EXCEPTION_PROBE = 'scripts/probes/BoostRegexExceptionOrigin.cpp'
+REGEX_EXCEPTION_PROBE_SHA256 = '3d934f7ff04e08305553aba07518b816612e0bf661b10106043c45b3c2514335'
 INSTANCE = dict(path='instances.cpp', repository='https://github.com/boostorg/regex',
                 commit='fa1ef1dfd4136803625e49853289ade7c2ddff0a', source_path='src/instances.cpp',
                 git_blob_sha1='69d72ad6e15e823c1a6f1d434c69e8f437513f01', size=697,
@@ -34,6 +36,8 @@ INSTANCE = dict(path='instances.cpp', repository='https://github.com/boostorg/re
 def validate(unit: dict) -> None:
     flag = unit.get('boost_regex_headers', False)
     instance = unit.get('boost_regex_instances', False)
+    if unit.get('source') == REGEX_EXCEPTION_PROBE and flag is not True:
+        raise ValueError('Original public regex exception instantiation requires verified Boost headers')
     if unit.get('source') == EXCEPTION_PROBE and flag is not True:
         raise ValueError('Original public exception instantiations require verified Boost headers')
     if unit.get('source') == SEARCH_PROBE and flag is not True:
@@ -148,6 +152,14 @@ def verified_exception_instantiations(root: Path = ROOT) -> Path:
     return path
 
 
+def verified_regex_exception_instantiation(root: Path = ROOT) -> Path:
+    path = (root / REGEX_EXCEPTION_PROBE).resolve()
+    path.relative_to(root.resolve())
+    if hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).hexdigest() != REGEX_EXCEPTION_PROBE_SHA256:
+        raise ValueError('Original public regex exception instantiation source differs')
+    return path
+
+
 def inputs(unit: dict, root: Path = ROOT) -> list[Path]:
     validate(unit)
     if not unit.get('boost_regex_headers'):
@@ -160,6 +172,8 @@ def inputs(unit: dict, root: Path = ROOT) -> list[Path]:
         result.append(verified_search_instantiation(root))
     if unit.get('source') == EXCEPTION_PROBE:
         result.append(verified_exception_instantiations(root))
+    if unit.get('source') == REGEX_EXCEPTION_PROBE:
+        result.append(verified_regex_exception_instantiation(root))
     if 'boost_regex_source_tu' in unit:
         from upstream_boost_sources import inputs as source_inputs
         result.extend(source_inputs(unit, root))

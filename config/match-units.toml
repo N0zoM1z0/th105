@@ -29002,3 +29002,19 @@ address = "0x006A95D0"
 symbol_base = "??0?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABV012@@Z"
 rel32_targets = ["??0?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@QAE@ABU012@@Z=0x006A7310"]
 dir32_targets = ["??_7clone_base@exception_detail@boost@@6B@=??_7clone_base@exception_detail@boost@@6B@", "??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6Binvalid_argument@std@@@=??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6Binvalid_argument@std@@@", "??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@=??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@", "??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6B@=??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6B@"]
+
+[units.boost-public-regex-exception-copy]
+kind = "probe"
+source = "scripts/probes/BoostRegexExceptionOrigin.cpp"
+object = "build/match-units/BoostPublicRegexException.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+boost_regex_headers = true
+include_dirs = [".tools/upstream/boost-1.40.0-vc8"]
+notes = "Original public regex_error throw_exception instantiation, with original noreturn declaration. Whole clone46 and full COFF injector/base-copy/EH/provider evidence; no private export or replacement body."
+
+[[units.boost-public-regex-exception-copy.functions]]
+address = "0x006B5350"
+symbol_base = "??0?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABV012@@Z"
+rel32_targets = ["??0?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@QAE@ABU012@@Z=0x006B4FC0"]
+dir32_targets = ["??_7clone_base@exception_detail@boost@@6B@=??_7clone_base@exception_detail@boost@@6B@", "??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6Bregex_error@2@@=??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6Bregex_error@2@@", "??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@=??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@", "??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6B@=??_7?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@6B@"]

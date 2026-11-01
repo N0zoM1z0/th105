@@ -92,3 +92,11 @@ accepted; full type/EH validation precedes the final narrow origin replay.
 Excluded2017/review355; authored exact1431/443916 bytes, authored1655,
 source1635 and mapped1820 remain unchanged. The new library unit brings the
 configured unit count to778. No push.
+
+## Later regex-family source context
+
+A separate original public regex_error instantiation now closes6B5350/46 with
+whole154/113 support, both complete EH sections and actual original regex.cpp
+destructor50. Its earlier seven-TU CIL negative remains unchanged. See
+BOOST_PUBLIC_REGEX_EXCEPTION_2026_11_01.md; no prior gate or provider limit was
+weakened to accept this distinct ordinary context.

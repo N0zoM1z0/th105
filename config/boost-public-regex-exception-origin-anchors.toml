@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "boost-public-regex-exception-copy"
+
+[[anchors]]
+address = "0x006B5350"
+size = 46
+symbol = "??0?$clone_impl@U?$error_info_injector@Vregex_error@boost@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABV012@@Z"
+sha256 = "59a30c0c61199b5fed9d8aca563cc54b0a8bbd020a71b4318b45615e77e94d98"
