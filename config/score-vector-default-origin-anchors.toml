@@ -1,0 +1,18 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+unit = "exact-first-score-data-lifetime"
+
+[[sources]]
+path = "src/config/ScoreDataLifetime.cpp"
+normalized_sha256 = "a100f6ab148286abe0ed60a64d99ecc366617ae6445f5593db8be434758e1e5d"
+
+[[sources]]
+path = "src/config/ScoreDataDefaults.hpp"
+normalized_sha256 = "9341ae925e2a91c49263a3817fb5fd77981271d4e431686d43433ba15709c0c0"
+
+[[anchors]]
+address = "0x004460D0"
+size = 14
+symbol = "??0?$vector@UScoreDefaultRecord24@th105@@V?$allocator@UScoreDefaultRecord24@th105@@@std@@@std@@QAE@XZ"
+sha256 = "4a1d018163bfff9ec6fd6634cd8743d9501ae9e10e0583e0d522a82fed53424e"

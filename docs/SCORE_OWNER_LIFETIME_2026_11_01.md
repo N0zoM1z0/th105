@@ -91,3 +91,8 @@ Source:src/config/ScoreDataLifetime.cpp. Default CI312 passes.
 Exact1586/450027 authored bytes; source1788/authored1808/mapped1815,
 excluded1805/review414/units767. No destructor, callback, template or metadata
 bytes enter the authored exact numerator.
+
+The subsequent SCORE_VECTOR_DEFAULT_2026_11_01.md proof separately classifies
+4460D0/14 through its complete original member and actual array caller. The
+generic minimum-byte policy is unchanged; there is no additional authored or
+parent/EH credit.

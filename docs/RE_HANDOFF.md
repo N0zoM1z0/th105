@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Original VC8 vector constructor4460D0/14 now has a narrow complete-body
+proof from the real ScoreData array owner: pinned original vendor headers,
+inventory uniqueness, full31-byte caller and count20/stride16/member198 roles.
+All six owner-unit functions freshly remain exact. Eight tests/45 actual byte
+mutations pass. No source/header/flags changed, no parent/EH/authored recount.
+Excluded2047/review325, units794; authored exact/source unchanged. See
+SCORE_VECTOR_DEFAULT_2026_11_01.md.
+
 CMenuConfig441520 remains863/native868, first+821 in a fresh unchanged
 replay. New ordinary by-value SDK-clamp capture gives869/+820; a real cursor
 item_count-derived bound gives880/+815 and adds a target-absent count reload.

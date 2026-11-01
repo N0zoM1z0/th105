@@ -5839,3 +5839,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Two actual implicit record destructors: SequenceRotateCard45CF50/8 and InfoRecord154Lifecycle46E950/15. Reviewed records declare no destructor; exact original parent/EH and paired array ownership establish their roles. Whole emitted bodies, all IColor relocations and native inventory identities verified; parent/copy/constructor/metadata not recounted. docs/IMPLICIT_RECORD_CLEANUPS_2026_11_01.md."
+
+[[rules]]
+id = "score-vector-default-constructor-106a"
+score_vector_default_anchor_file = "config/score-vector-default-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 14
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Whole original VC8 vector constructor4460D0/14 in the actual ScoreData array owner. Pinned vendor headers, complete relocation-free member, inventory uniqueness and full31-byte caller/count20/stride16/member198/paired destructor roles verified. All six owner-unit bodies freshly exact; no parent/EH/static or authored credit and no generic threshold relaxation. docs/SCORE_VECTOR_DEFAULT_2026_11_01.md."
