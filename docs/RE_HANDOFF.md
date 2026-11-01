@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Original public iterator/base regex_search4440A0/235 now whole canonical through
+a source-hash-pinned release explicit template instantiation, unchanged original
+headers and ordinary/O2/GS. Five public unit comparisons235/8/44/243/129 pass;
+main EH11+33+8+36 and original find forwarding5 fully replayed as support only.
+Actual Connect9 comparisons/full856 payload pass. Existing application-TU238
+and genuine8-TU public-CIL203 remain nonexact, no forcing. Generic.70/24/no-tail
+origin gate unchanged. Excluded2005/review367/units777; authored/source/mapped
+totals unchanged. Four new source-integrity tests.
+See BOOST_PUBLIC_SEARCH_2026_11_01.md.
+
+
 Linked tree shape leads remain CLOSED under current graph: CScript family has
 whole original recursiveErase86/increment97 matches (both already excluded),
 but singleErase783/native756 is unproved; actual CScript CIL emits270/806 versus

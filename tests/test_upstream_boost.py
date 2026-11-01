@@ -179,3 +179,22 @@ class UpstreamBoostTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class PublicSearchInstantiationTests(unittest.TestCase):
+    def test_exact_original_public_instantiation_is_pinned(self):
+        self.assertEqual(boost.verified_search_instantiation(boost.ROOT), (boost.ROOT/boost.SEARCH_PROBE).resolve())
+
+    def test_extra_source_or_compiler_control_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);p=root/boost.SEARCH_PROBE;p.parent.mkdir(parents=True)
+            p.write_bytes((boost.ROOT/boost.SEARCH_PROBE).read_bytes()+b'\n#pragma optimize("", off)\n')
+            with self.assertRaises(ValueError):boost.verified_search_instantiation(root)
+
+    def test_source_cannot_skip_original_header_verification(self):
+        with self.assertRaises(ValueError):boost.validate(dict(kind='probe',source=boost.SEARCH_PROBE))
+
+    def test_changed_release_configuration_is_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);p=root/boost.SEARCH_PROBE;p.parent.mkdir(parents=True)
+            p.write_bytes((boost.ROOT/boost.SEARCH_PROBE).read_bytes().replace(b'#define NDEBUG',b'// removed release macro'))
+            with self.assertRaises(ValueError):boost.verified_search_instantiation(root)

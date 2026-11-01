@@ -21,6 +21,8 @@ SUPERPROJECT = '644e2135159e0b3ca535aab1a67938c27caf6ec9'
 INSTANCE_PATH = '.tools/upstream/boost-regex-1.40.0-src/instances.cpp'
 INSTANCE_PROBE = 'scripts/probes/BoostRegexInstancesOrigin.cpp'
 RELEASE_INSTANCE_PROBE = 'scripts/probes/BoostRegexReleaseInstancesOrigin.cpp'
+SEARCH_PROBE = 'scripts/probes/BoostRegexSearchOrigin.cpp'
+SEARCH_PROBE_SHA256 = '2be40c77d9f1846bd39e2ca93c670d11749ed174a8ac01dde0ff430230a3ddce'
 INSTANCE = dict(path='instances.cpp', repository='https://github.com/boostorg/regex',
                 commit='fa1ef1dfd4136803625e49853289ade7c2ddff0a', source_path='src/instances.cpp',
                 git_blob_sha1='69d72ad6e15e823c1a6f1d434c69e8f437513f01', size=697,
@@ -30,6 +32,8 @@ INSTANCE = dict(path='instances.cpp', repository='https://github.com/boostorg/re
 def validate(unit: dict) -> None:
     flag = unit.get('boost_regex_headers', False)
     instance = unit.get('boost_regex_instances', False)
+    if unit.get('source') == SEARCH_PROBE and flag is not True:
+        raise ValueError('Original public search instantiation requires verified Boost headers')
     if type(instance) is not bool or instance and (flag is not True or unit.get('source') not in (INSTANCE_PROBE, RELEASE_INSTANCE_PROBE)):
         raise ValueError('Boost instance source requires its verified header package and original-source probe')
     if type(flag) is not bool:
@@ -121,6 +125,14 @@ def verified_instance(root: Path) -> Path:
     return path
 
 
+def verified_search_instantiation(root: Path) -> Path:
+    path = (root / SEARCH_PROBE).resolve()
+    path.relative_to(root.resolve())
+    if hashlib.sha256(path.read_bytes()).hexdigest() != SEARCH_PROBE_SHA256:
+        raise ValueError('Original public search instantiation contains changed source or flags')
+    return path
+
+
 def inputs(unit: dict, root: Path = ROOT) -> list[Path]:
     validate(unit)
     if not unit.get('boost_regex_headers'):
@@ -129,6 +141,8 @@ def inputs(unit: dict, root: Path = ROOT) -> list[Path]:
               *verified_sources(root, load_lock(root))]
     if unit.get('boost_regex_instances'):
         result.append(verified_instance(root))
+    if unit.get('source') == SEARCH_PROBE:
+        result.append(verified_search_instantiation(root))
     if 'boost_regex_source_tu' in unit:
         from upstream_boost_sources import inputs as source_inputs
         result.extend(source_inputs(unit, root))
