@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Group-A/B collision46BB10 now restores real per-call first-descriptor reloads
+and exact-producer-backed typed arrays. Old321 becomes complete398, still
+nonexact+20/44 positions; five explicitly substituted-helper observers confirm
+read lifetime only. Exact owner285/preparation2156 stay exact. No closed
+allocation controls reopened. Source1787/authored1807/mapped1814/excluded1801/
+review419/units766; exact1585/449721 stays. See GROUP_A_PAIR_COLLISION_2026_11_01.md.
+
 Two original floor1 SDK bodies now have canonical whole-payload proofs:
 687790 code514/payload544 and688620 code1497/payload1520. Real four-entry
 switches, exact alignment, qsort callback and static counter roles are owned.

@@ -5162,3 +5162,17 @@ disposition = "exclude"
 confidence = "observed"
 evidence = "Entire1520-byte official floor1.obj payload:1497 code,3 alignment,16 owned switch and4 alignment. Canonical zero differences, freshly replayed five SDK callees and original zero-initialized static counter at four consistent DWORD load/store roles; no masks or authored credit."
 xiph_owned_switch = { component = "vorbis", object = "floor1.obj", symbol = "_floor1_encode", address = "0x00688620", size = 1497, payload_sha256 = "a7c28e35115a6296b79c13df87a8d52c4d1fba75912fbff6f6c882d408a60121" }
+
+[[rules]]
+id = "group-a-pair-collision-authored-106a"
+addresses = ["0x0046BB10"]
+expected_count = 1
+expected_bytes = 398
+expected_names = ["sub_46BB10"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete398-byte/112-instruction group-A/B collision traversal, signed counts/indices, all pair contributions and per-call first-descriptor reloads. Fresh exact resolver285 owns46DAD7; exact preparation2156 independently fixes five-box and descriptor arrays. New whole source398 is nonexact+20/44 differing positions; no prefix credit. docs/GROUP_A_PAIR_COLLISION_2026_11_01.md."
+required_body_hashes = [{ address = "0x0046BB10", size = 398, sha256 = "d588b612c1745b00bfaed71261f0175426f2219bb9dd26558a796ad94da9fefc" }]
+required_direct_edges = [{ caller = "0x0046DA10", site = "0x0046DAD7", target = "0x0046BB10", caller_status = "matching" }]

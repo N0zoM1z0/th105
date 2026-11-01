@@ -28657,3 +28657,20 @@ address = "0x00427390"
 symbol_base = "?save_427390@GameConfigSaveView@th105@@QAEXXZ"
 rel32_targets = ["?get_current_replay_header_code@th105@@YAHXZ=0x0043AA40", "__invalid_parameter_noinfo=0x0068A143"]
 dir32_targets = ["__ehhandler$?save_427390@GameConfigSaveView@th105@@QAEXXZ=__ehhandler$?save_427390@GameConfigSaveView@th105@@QAEXXZ"]
+
+[units.exact-first-group-a-pair-collision]
+kind = "probe"
+source = "src/battle/GroupAPairCollision.cpp"
+object = "build/match-units/ExactFirst_GroupAPairCollision.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete398-byte group-A/B traversal with exact-producer-backed typed arrays and native per-call first-descriptor reloads. Old cached321-byte hypothesis is unselected. New398 remains nonexact+20/44 positions; no allocation-control grid or prefix credit."
+
+[[units.exact-first-group-a-pair-collision.functions]]
+address = "0x0046BB10"
+symbol_base = "?test_group_a_against_group_b@CollisionContext@th105@@QAEHPAUCollisionObject@2@0@Z"
+rel32_targets = [
+ "?test_descriptor_shapes_overlap@CollisionContext@th105@@QAEHPBUCollisionAabb@2@PBUShapeWords@2@01@Z=0x0046BA10",
+ "?test_aabb_against_descriptor_shape@CollisionContext@th105@@QAEHPBUCollisionAabb@2@PBUShapeWords@2@0@Z=0x0046B7B0",
+ "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBH0@Z=0x0046B3B0",
+]
