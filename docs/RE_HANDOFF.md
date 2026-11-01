@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Rejection415B90/122 is NOT exact despite main-only equality in both new all-CIL
+network graphs. Full handler27/FuncInfo36/unwind8 replay, but cleanup8 uses EAX
+instead of native ECX at+1; source/native real destructor13 differs+1/+3/+5.
+One shared genuine guard-type control retains this mismatch. No fake COFF/ABI
+barrier or source change retained. Caller switch qualification also remains.
+See NETWORK_REJECTION_FULL_EH_2026_11_01.md; totals unchanged, no promotion.
+
+
 Actual peer allocator413C60/81 now whole canonical/unique from real32-byte peer
 initialization and all seven actual worker TUs. Only public initialization is
 exported; real callbacks/wait implementations close the old link blocker. No

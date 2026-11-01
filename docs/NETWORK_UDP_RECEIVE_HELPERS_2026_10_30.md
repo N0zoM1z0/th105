@@ -79,3 +79,11 @@ proves original endpoint allocator413CC0/81, whole canonical with complete
 exception metadata. The larger connection558/native542 remains nonexact.
 Ordinary source/unit are unchanged; entry14 freshly passes in both contexts.
 See LINKED_ENDPOINT_ALLOCATOR_2026_11_01.md. No helper148/33 or parent promotion.
+
+## 2026-11-01 full rejection EH result
+
+The new all-CIL graphs close handler27/FuncInfo36/unwind8, but actual cleanup8
+uses EAX where native uses ECX, and the real13-byte guard destructor differs
+in three register fields. Main-only122 equality is therefore insufficient.
+A shared guard-type control does not fix it. No promotion or forcing; see
+NETWORK_REJECTION_FULL_EH_2026_11_01.md.
