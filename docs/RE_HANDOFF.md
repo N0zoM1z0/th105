@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+The actual CSpriteEx array cleanup421D30/7 is now separately proved by the
+unchanged29-byte CSelect caller and paired unique constructor41F6E0, with full
+RTTI. Its bytes also match40AD50; only the actual callback target is selected,
+not a byte-uniqueness or exclusive-symbol claim. Seven new tests and334 unique
+byte mutation controls pass; old constructor gate freshly passes. No source
+change or new authored credit. Excluded2044/review328, units794 unchanged.
+See SPRITE_ARRAY_CALLBACK_2026_11_01.md. IEffectManager normal destructor is
+not emitted by this real owner; do not force its materialization.
+
 IColor now uses the native struct RTTI tag (.?AUIColor@@ at6FA560), rather
 than the prior class tag. Layout/access/slots unchanged. All99 affected units
 with242 accepted roots freshly replay exact; CSelect's221 emitted text sections

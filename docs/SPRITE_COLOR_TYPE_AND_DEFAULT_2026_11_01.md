@@ -61,3 +61,8 @@ Evidence:
 - build/frontier-sprite-default-20261101/affected.json and replays/
 - build/frontier-sprite-default-20261101/{positive,mutations,select-audit}.json
 - .analysis/frontier-sprite-default-20261101/ holds the private probes/replay.
+
+Subsequent narrow callback proof: SPRITE_ARRAY_CALLBACK_2026_11_01.md separately
+classifies the seven-byte421D30 destructor using its actual paired array role.
+It does not double-count this constructor or claim byte uniqueness for the
+destructor; the otherwise identical40AD50 body is not selected.

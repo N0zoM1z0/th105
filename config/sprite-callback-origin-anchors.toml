@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "exact-first-select-constructor"
+
+[[anchors]]
+address = "0x00421D30"
+size = 7
+symbol = "??1CSpriteEx@@UAE@XZ"
+sha256 = "d4fc9f884a86f5cbdf778b5d0b16126a7858e8cd0384741ed39f66a4122600b3"

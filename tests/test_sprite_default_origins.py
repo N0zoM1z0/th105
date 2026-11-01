@@ -24,7 +24,7 @@ class SpriteDefaultTests(unittest.TestCase):
         s,r,u=self.fixture();u=copy.deepcopy(u);u[g.UNIT]['source']='src/battle/SpriteRenderFinalizer.cpp'
         with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])
     def test_correct_constructor_selector_required(self):
-        s,r,u=self.fixture();u=copy.deepcopy(u);u[g.UNIT]['functions'][-1]['symbol_base']=g.DTOR
+        s,r,u=self.fixture();u=copy.deepcopy(u);next(x for x in u[g.UNIT]['functions']if x['address']=='0x0041F6E0')['symbol_base']=g.DTOR
         with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])
     def test_parent_array_owner_cannot_disappear(self):
         s,r,u=self.fixture();u=copy.deepcopy(u);u[g.UNIT]['functions']=[x for x in u[g.UNIT]['functions']if x['address']!='0x004231A0']

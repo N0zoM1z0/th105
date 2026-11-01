@@ -29326,3 +29326,7 @@ dir32_targets = ["___fastflag=vc8_sqrt_fastflag", "POW_name=vc8_pow_operation_na
 [[units.exact-first-select-constructor.functions]]
 address = "0x0041F6E0"
 symbol_base = "??0CSpriteEx@@QAE@XZ"
+
+[[units.exact-first-select-constructor.functions]]
+address = "0x00421D30"
+symbol_base = "??1CSpriteEx@@UAE@XZ"

@@ -752,7 +752,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00421CA0,compiler_generated,std,exclude,observed,vc8-generated-frame-vector-106a
 0x00421D10,compiler_generated,battle,exclude,observed,vc8-effect-manager-adjustor-thunks-106a
 0x00421D20,compiler_generated,battle,exclude,observed,vc8-effect-object-member-pointer-thunk-106a
-0x00421D30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00421D30,compiler_generated,runtime,exclude,observed,implicit-sprite-array-callback-106a
 0x00421D40,compiler_generated,ui,exclude,observed,vc8-generated-ui-selection-state-std-comdats-106a
 0x00421D70,compiler_generated,std,exclude,observed,vc8-generated-frame-vector-106a
 0x00421DD0,compiler_generated,std,exclude,observed,vc8-generated-frame-vector-106a

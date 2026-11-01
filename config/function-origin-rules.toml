@@ -5817,3 +5817,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual implicit CSpriteEx constructor16 from unchanged CSelect owner source, complete canonical and unique. Full original class hierarchy/RTTI and real array construction29 for two E8 objects at624, paired destructor7, exact role fields verified. IColor struct tag restored from native descriptor. No parent/destructor/RTTI or authored credit; generic thresholds unchanged. docs/SPRITE_COLOR_TYPE_AND_DEFAULT_2026_11_01.md."
+
+[[rules]]
+id = "implicit-sprite-array-callback-106a"
+sprite_callback_anchor_file = "config/sprite-callback-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 7
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Whole CSpriteEx cleanup7 selected by the actual original array caller423348 and paired constructor41F6E0, with complete class RTTI and source-member provenance. Two physical inventory bodies have identical bytes; only the actual named callback target421D30 is selected. No exclusive original symbol, second-body, parent or authored credit. docs/SPRITE_ARRAY_CALLBACK_2026_11_01.md."
