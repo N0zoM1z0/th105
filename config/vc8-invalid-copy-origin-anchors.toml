@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "vc8-original-invalid-argument-copy"
+
+[[anchors]]
+address = "0x00665B72"
+size = 24
+symbol = "??0invalid_argument@std@@QAE@ABV01@@Z"
+sha256 = "265977480482d4cfcbd92f791ba96651623b1be4bfd914cb668316056194d7b6"

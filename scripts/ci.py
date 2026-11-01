@@ -46,6 +46,7 @@ EXACT_TEST_MODULES = (
     "test_boost_default_error_origins",
     "test_boost_default_syntax_origins",
     "test_xiph_packet_wrapper_origins",
+    "test_vc8_invalid_copy_origins",
     "test_linked_string_range_origins",
     "test_scalar_wrapper_origins",
     "test_implicit_lifetime_origins",

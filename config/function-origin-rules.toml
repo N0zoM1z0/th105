@@ -5663,3 +5663,14 @@ subsystem = "audio"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Official SHA-pinned SDK framing.obj ogg_stream_packetout21 and packetpeek21, with their actual advance1/0 arguments and named packetout302 provider. Complete32/32/304 source sections including all native NOP padding verified, closed callable CFG and inventory uniqueness. Narrow typed proof leaves generic relocation thresholds unchanged; no masks, copied implementation, extra provider/padding or authored credit. docs/XIPH_PACKET_WRAPPERS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-invalid-argument-copy-106a"
+vc8_invalid_copy_anchor_file = "config/vc8-invalid-copy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 24
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual original libcpmt:string.obj invalid_argument copy24, whole canonical/unique with actual base-copy REL32 and vptr DIR32. Complete original COFF primary RTTI graph and independently fresh whole logic_error copy113 plus EH support establish ownership/interface. Archive base58 is not claimed equal to native113; no replacement body, masks, generic threshold change or authored credit. docs/VC8_INVALID_ARGUMENT_COPY_2026_11_01.md."

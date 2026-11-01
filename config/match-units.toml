@@ -29081,3 +29081,20 @@ rel32_targets = ["__packetout=0x006B6820"]
 [[units.xiph-original-ogg-packet-wrappers.functions]]
 address = "0x006B6820"
 symbol_base = "__packetout"
+
+[units.vc8-original-invalid-argument-copy]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalStringInvalidCopy.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcpmt"
+toolchain_object = "string.obj"
+toolchain_archive_sha256 = "e1b17cb213bfcf77e3c0988f8cb33ec8be143872d1c52de62c5da07ea1eb8031"
+notes = "Actual original libcpmt:string.obj invalid_argument copy24; full RTTI and independently exact logic_error copy113/EH. No current-source 25-byte or archive-base58-byte equivalence claim."
+
+[[units.vc8-original-invalid-argument-copy.functions]]
+address = "0x00665B72"
+symbol_base = "??0invalid_argument@std@@QAE@ABV01@@Z"
+rel32_targets = ["??0logic_error@std@@QAE@ABV01@@Z=0x004017A0"]
+dir32_targets = ["??_7invalid_argument@std@@6B@=??_7invalid_argument@std@@6B@"]

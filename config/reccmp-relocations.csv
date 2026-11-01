@@ -3799,3 +3799,4 @@ boost_default_syntax_literal_46,0x006D6358,4e00,0,Complete original get_default_
 boost_default_syntax_literal_47,0x006C26C0,6700,0,Complete original get_default_syntax548 literal dependency; full source string and terminator checked. docs/BOOST_DEFAULT_SYNTAX_2026_11_01.md.,address
 boost_default_syntax_literal_48,0x006D6360,4b00,0,Complete original get_default_syntax548 literal dependency; full source string and terminator checked. docs/BOOST_DEFAULT_SYNTAX_2026_11_01.md.,address
 boost_default_syntax_literal_49,0x006D6348,5200,0,Complete original get_default_syntax548 literal dependency; full source string and terminator checked. docs/BOOST_DEFAULT_SYNTAX_2026_11_01.md.,address
+??_7invalid_argument@std@@6B@,0x006C7548,d25a6600,0,"Actual original VC8 libcpmt:string.obj invalid_argument copy24, complete primary RTTI graph proves this table. docs/VC8_INVALID_ARGUMENT_COPY_2026_11_01.md.",address

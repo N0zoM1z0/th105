@@ -2670,7 +2670,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00665AC7,compiler_generated,runtime,exclude,inferred,boost-invalid-argument-eh-cleanup-tail-106a
 0x00665AF4,vc8_runtime,runtime,exclude,observed,vc8-string-range-errors-106a
 0x00665B33,vc8_runtime,runtime,exclude,observed,vc8-string-range-errors-106a
-0x00665B72,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00665B72,vc8_runtime,runtime,exclude,observed,vc8-original-invalid-argument-copy-106a
 0x00665B8A,compiler_generated,runtime,exclude,observed,vc8-runtime-tail-aliases-106a
 0x00665B90,third_party,assets,exclude,observed,zlib-1.2.3-106a
 0x00665BC0,third_party,assets,exclude,observed,zlib-1.2.3-106a

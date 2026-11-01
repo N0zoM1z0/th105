@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Actual original libcpmt:string.obj invalid_argument copy665B72/24 now whole
+canonical/unique with complete original RTTI21 records/14 unique regions.
+Named native logic_error copy4017A0/113 and full EH freshly pass its unchanged
+seven-TU original gate; archive alternative58 is explicitly not equal/credited.
+Seven tests/52 actual copy/RTTI mutations; prior public exception copies gate
+freshly passes. Excluded2028/review344, units782; authored/source totals unchanged.
+See VC8_INVALID_ARGUMENT_COPY_2026_11_01.md. Native destructor665AC7 remains
+separately classified; no new destructor or provider credit is added.
+
+
 Source-presence bookkeeping correction: already-exact effect loader437EC0/2528
 was missing from implemented.csv. Fresh unchanged-source whole replay passes;
 the one name is restored and exact rows now require source-present membership.
