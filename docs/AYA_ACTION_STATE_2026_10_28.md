@@ -201,3 +201,49 @@ orbit-call-facts,candidate-payload-homes}.json, layer-census.log,
 payload-review.log and ci.log. Private Baseline.cpp, Branch214.cpp and
 OrbitArgs.cpp retain intermediate whole-root candidates. Do not rerun the old
 Oct28 assembly/writer scripts over this source: they predate these changes.
+
+
+## November1: complete manager-backed spawn-width controls
+
+Fresh raw PE review closes the real465190/66 forwarding wrapper and actual
+Aya manager618470/237, selected by vtable6C62A4 slot4. COL6DB7A8 points to
+TD6E8DF4, `CharacterObjectManager<Aya,AyaObject>`. Wrapper SHA256 remains
+80aab8cb379377dc179c3e1311599ab890885fa92ffd5ecf075ff6c3df15a7fc;
+manager SHA256 remains
+e29f767ab7c746db971de525ba7b1f694668b8e3b20e5bba09bc2c35e046e45b.
+The wrapper copies the complete direction/variant argument words. Manager
+618512/618516 reads their low bytes, then618530/618548 stores them at104/33C.
+The complete manager contains no other reads of those two argument slots.
+
+Two ordinary source controls change both forwarding-wrapper declarations
+consistently: unsigned-byte direction only, and unsigned-byte direction plus
+variant. Both independently reproduce all66 canonical wrapper bytes, including
+RET28. The original int-view wrapper also freshly passes. Thus neither narrower
+view proves the original source declaration; none is an alternate register ABI.
+The accepted roster-spawn unit freshly passes, including Aya237.
+
+For the complete Aya action root, direction-only yields65536 bytes, SHA256
+8e28536cde5296baf84df6ec6157ac5bdef0d59b53fe6a018d3af8760e821090.
+Both bytes also yield65536, SHA256
+63d36eb03ef1153ea8f7b0c1cb5fb0a272fb07c2d032054d5cc04bab3645c5ba.
+Both remain nonexact at+48 against the entire native66704-byte payload; the
+complete source baseline is freshly reproduced65692, first+48. Neither width
+control closes the first register allocation difference or the low-table31/33
+owner difference. Both retain all114 per-action direct-call and FP-operation
+censuses. Virtual physical-count residuals are414(5/4),416(5/4),525(6/5),
+529(11/12). Fewer residuals are not proof of semantic or canonical equivalence.
+No public source/header/manifest change is selected, and no exact credit added.
+Do not repeat these width controls or force byte carriers/registers in the root.
+
+The manager also independently confirms a real count-sized copy:6184C7 reads
+count,6184CF..6184E2 allocates four times that count, and6184F8..618502 passes
+four times count to memcpy when the pointer is non-null. Consequently the
+530/532 count3 cannot be dismissed as a harmless ignored argument. The earlier
+observed two-word homes remain an unresolved original extent/lifetime issue;
+this scope does not synthesize a third word or enlarge the arrays to hide it.
+
+Receipts: build/frontier-aya-spawn-contract-20261101/baseline.json,
+wrapper.json, bytes-wrapper.json, wrapper-original.json, managers.json,
+native-chain.json, compare.json, bytes-compare.json, actions.log and
+bytes-actions.log. Private complete source/header controls and replay scripts
+are under the corresponding .analysis directory. All native work was serial.

@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Aya's complete65601-byte action root received fresh real-manager-backed
+spawn-width controls. Original and both byte-view forwarding wrappers are
+canonical66; actual roster managers pass. Both narrowed roots remain
+65536/full66704 nonexact+48, so neither is selected. Count3 is truly copied
+as12 bytes by the manager;530/532's observed two-word homes remain an explicit
+extent/lifetime unknown, not an ignored third argument. No code/ledger changes.
+See AYA_ACTION_STATE_2026_10_28.md November1 appendix. Exact1582/449309 stays.
+
+
 Watch-input42BC40 now has complete140-byte ownership/source, with all48
 instructions/two RET8 exits and fresh exact LoadingWatch209 edge42697C.
 Source139 remains nonexact+46 in COFF and genuine save-provider CIL; no forced
