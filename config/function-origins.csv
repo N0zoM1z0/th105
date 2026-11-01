@@ -3900,7 +3900,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B4430,third_party,boost_regex,exclude,observed,boost-release-library-106a
 0x006B45D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B4800,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006B4820,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B4820,third_party,boost_regex,exclude,observed,boost-original-collation-lookup-106a
 0x006B49F0,third_party,boost_regex,exclude,observed,boost-regex-source-raw-buffer-106a
 0x006B4A60,third_party,boost_regex,exclude,observed,boost-regex-source-raw-buffer-106a
 0x006B4AB0,third_party,boost_regex,exclude,observed,boost-regex-source-core-106a

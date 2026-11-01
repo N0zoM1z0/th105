@@ -1,0 +1,86 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+[[anchors]]
+address = "0x006B4820"
+size = 455
+symbol = "?lookup_default_collate_name@re_detail@boost@@YI?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV34@@Z"
+sha256 = "ff6e7325d2a0a13ba20376201248fe6ce3ff0556a3dfcf5539fd966d5f9c889e"
+
+[[tables]]
+symbol = "?def_coll_names@re_detail@boost@@3PAPBDA"
+address = "0x006F9840"
+entries = 129
+sha256 = "1a12db2ba1c1df5534fcd06073702633091b0776a5c8afb45bb6d4017c878300"
+
+[[tables]]
+symbol = "?def_multi_coll@re_detail@boost@@3PAPBDA"
+address = "0x006F9A48"
+entries = 22
+sha256 = "0d6773ede394a65488f2d08f2bcb49cf06626cd1f8edf639b95f8fe6f97c5613"
+
+[[calls]]
+symbol = "?compare@?$char_traits@D@std@@SAHPBD0I@Z"
+address = "0x00405560"
+
+[[calls]]
+symbol = "?_Copy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IAEXII@Z"
+address = "0x00402430"
+
+[[calls]]
+symbol = "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z"
+address = "0x00401DC0"
+
+[[relocations]]
+offset = 4
+kind = 6
+symbol = "?def_coll_names@re_detail@boost@@3PAPBDA"
+addend = 0
+
+[[relocations]]
+offset = 102
+kind = 20
+symbol = "?compare@?$char_traits@D@std@@SAHPBD0I@Z"
+addend = 0
+
+[[relocations]]
+offset = 133
+kind = 6
+symbol = "?def_coll_names@re_detail@boost@@3PAPBDA"
+addend = 4
+
+[[relocations]]
+offset = 161
+kind = 6
+symbol = "?def_multi_coll@re_detail@boost@@3PAPBDA"
+addend = 0
+
+[[relocations]]
+offset = 284
+kind = 20
+symbol = "?_Copy@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@IAEXII@Z"
+addend = 0
+
+[[relocations]]
+offset = 341
+kind = 20
+symbol = "?compare@?$char_traits@D@std@@SAHPBD0I@Z"
+addend = 0
+
+[[relocations]]
+offset = 372
+kind = 6
+symbol = "?def_multi_coll@re_detail@boost@@3PAPBDA"
+addend = 4
+
+[[relocations]]
+offset = 429
+kind = 6
+symbol = "?def_multi_coll@re_detail@boost@@3PAPBDA"
+addend = 0
+
+[[relocations]]
+offset = 441
+kind = 20
+symbol = "??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@PBD@Z"
+addend = 0

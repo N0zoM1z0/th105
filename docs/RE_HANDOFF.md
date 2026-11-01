@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Original Boost collation6B4820 now canonical455 with complete129/22 pointer
+tables and all151 source/native strings. Separate narrow whole-source gate
+resolves allnine fields, closes168 instructions/three RET0s and proves full
+canonical inventory uniqueness. Ordinary DIR32 semantics unchanged;604 table
+bytes are support only. Excluded1986/review386; all authored/source/unit totals
+stay. Eight synthetic tests added. See BOOST_COLLATION_ORIGIN_2026_11_01.md.
+
 Original Boost non-instance CPP context closes15 complete library bodies/1391
 bytes across core/raw-buffer/static-mutex/Windows traits. Separate immutable
 8-file source package leaves old184-header lock and reject-extra gate intact.

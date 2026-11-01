@@ -5397,3 +5397,14 @@ disposition = "exclude"
 confidence = "observed"
 evidence = "Original immutable Boost non-instance source TU, unchanged release wrapper/header packages; complete canonical bodies and native RTTI/import/literal identities, all named calls and full-inventory uniqueness. No authored credit. docs/BOOST_SOURCE_TUS_2026_11_01.md."
 required_body_hashes = [{ address = "0x006B55F0", size = 34, sha256 = "0bf5eab5c5af7bff5a86b26b1c36e1d40e34f7461ba9b0d5bb2aa587218dced6" }, { address = "0x006B56C0", size = 69, sha256 = "c959b0e57431b5e1d660efab3fcf98fbe6ea12301ac089d7182545388088a18e" }, { address = "0x006B5710", size = 154, sha256 = "095953c8d2bbf65d1b1b793be62a18e18a32b66dd248ad1a8d0627999cd902dd" }]
+
+[[rules]]
+id = "boost-original-collation-lookup-106a"
+boost_collation_anchor_file = "config/boost-collation-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 455
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Whole455-byte original Boost collation lookup with all168 instructions/three RET0 paths, allnine relocation fields and complete129/22 string-pointer tables. Actual original source initializers, every COFF pointer/literal and every native pointer/string agree. Full canonical inventory uniqueness; ordinary DIR32 gate unchanged. docs/BOOST_COLLATION_ORIGIN_2026_11_01.md."
