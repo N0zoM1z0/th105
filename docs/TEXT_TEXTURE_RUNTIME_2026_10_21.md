@@ -135,3 +135,47 @@ leaves the complete wrapper/backend canonical candidates50731d79/15555b85
 unchanged; current receipts are in `build/font-render-20261021/`. The earlier
 typed-pointer source SHA above describes the frozen preceding checkpoint.
 Real provider/TU closure remains open, with no new exact acceptance.
+
+
+## November1: real font provider and shared texture callers
+
+The earlier missing-provider prerequisite is now resolved for a bounded genuine
+CIL control. Actual TextFontLinked.cpp and TextTextureRuntime.cpp compile together
+with the existing GDI, D3D, runtime and source-owned data contracts. No function
+stub, guessed nothrow, fabricated private ABI or source-body change is supplied.
+The actual unexported population provider is reached from404D00 through its
+recorded404D3A call; the unchanged static-leaf gate verifies this path.
+
+Complete wrapper404D00 remains110/native111, first+7; canonical hash
+cfb6e605a3603ca38bf63cfaf19a0166e1fe322003a1f9fceaa2b207743b9532.
+Population4097A0 now emits269/native270, first+17, canonical hash
+4b3fa6951917aa914a0b7f0b28303db349c5bfebc87e6108809c32a61e4e5b0e.
+It naturally gains the native aligned EBP frame/16-byte allocation but still
+passes width privately in ECX and returns16 rather than the native20. Thus the
+real font context changes the former264-byte candidate without closing the
+source/private-argument residual. All bytes and source address fields remain
+subject to the ordinary canonical comparison; neither result is accepted.
+The existing color352, finish168 and reset162 all freshly pass through their
+actual complete font caller paths in this same private image.
+
+One further genuine caller control combines the actual reader/PNG/DDS/bitmap
+provider graph with font/text creation and the real bitmap-load wrapper. Private
+source copies unify the existing COM texture view with the actual DDS texture
+interface and make both wrappers use the same real token acquire/release class.
+No extra helper implementation is invented. The text wrapper remains identical
+110/cfb6e605, bitmap wrapper93/native99 remains nonexact+0, acquire454 and
+release163 remain nonexact. The population body is269 but this second control
+is NOT an accepted private-leaf proof: the verifier rejects its .analysis source
+path, as designed. No verifier/source-path relaxation or extra acceptance follows.
+The two public wrapper comparisons run independently without bypassing that gate.
+
+Nothing is selected from either control: public source, headers, manifests,
+existing accepted receipts and exact totals are unchanged. Do not repeat the
+missing-font-provider or shared bitmap/text caller hypothesis without new
+independent evidence. Original nominal APIs, physical argument allocation and
+original TU boundaries remain unresolved.
+
+Receipts: build/frontier-text-texture-font-context-20261101/compare.json,
+font-controls.json,0x00404D00-both.json,0x00404C90-both.json and both-build.log.
+The corresponding private directory retains the complete source/units/recipes.
+Native work was serial CPU0/nice10; images were never executed.
