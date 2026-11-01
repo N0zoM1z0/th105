@@ -1,0 +1,10 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "exact-first-network-udp-lifetime"
+proof_roots = ["0x00413820", "0x00413780"]
+
+[[anchors]]
+address = "0x004143E0"
+size = 97
+symbol = "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@$00@std@@@std@@QAEXXZ"
+sha256 = "8b0ef744e805d51e25015455559a4d8b48d1dcb3651567a13d859666609f91b8"

@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Package/network checked tree increments41D2B0/4143E0 each now have full
+canonical97-byte original-template CIL proofs. Separate strict call/tail gate
+requires the exact16-byte named CRT wrapper, actual private source ownership,
+no forced export/data refs and full-inventory uniqueness. Old pure gate stays.
+Four exact owner roots and prior rotations freshly pass. Excluded1804/review416;
+authored/source/exact unchanged. CI312.
+See LINKED_CHECKED_ITERATOR_ORIGINS_2026_11_01.md.
+
 PatGroup deque cleanup461AF0 now has full canonical125-byte compiler proof
 in unchanged CharacterDestructor source. All three calls are resolved; explicit
 operator-delete count2 separates it from authored CsvReader clear40FDB0.

@@ -5188,3 +5188,25 @@ disposition = "exclude"
 confidence = "observed"
 evidence = "Fresh actual CharacterDestructor source emits complete checked deque<PatGroup>::_Tidy125. All three call operands are resolved: real exact PatGroup destructor461590 once, original operator delete twice. Full-inventory uniqueness includes those explicit targets, separating authored CsvReader clear125. No inherited family-only classification, source edits or authored credit."
 required_body_hashes = [{ address = "0x00461AF0", size = 125, sha256 = "05e84d6855ac248ecc7923c20036a167b525cbfe6ed2906cacbad672ac7896d4" }]
+
+[[rules]]
+id = "vc8-linked-checked-package-iterator-106a"
+vc8_linked_checked_iterator_anchor_file = "config/vc8-linked-checked-package-iterator-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 97
+origin = "compiler_generated"
+subsystem = "assets"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Fresh actual CIL context and exact owners prove complete private checked-tree iterator97, including original invalid-parameter E8/E9 exits. No forced ABI/export, masks, partial credit or unrelated callee binding. docs/LINKED_CHECKED_ITERATOR_ORIGINS_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-checked-network-iterator-106a"
+vc8_linked_checked_iterator_anchor_file = "config/vc8-linked-checked-network-iterator-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 97
+origin = "compiler_generated"
+subsystem = "network"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Fresh actual CIL context and exact owners prove complete private checked-tree iterator97, including original invalid-parameter E8/E9 exits. No forced ABI/export, masks, partial credit or unrelated callee binding. docs/LINKED_CHECKED_ITERATOR_ORIGINS_2026_11_01.md."
