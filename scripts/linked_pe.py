@@ -197,6 +197,8 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             if (len(tables) != 1 or any(key in function
                     for key in ("export_name", "private_from", "private_global"))):
                 raise ValueError("linked vtable entry needs its exact destructor contract without an export")
+        if "private_texture_global" in function:
+            continue  # Validated by the separate complete texture lifecycle contract.
         if "private_global" in function:
             continue  # Validated as a paired, startup-reachable lifecycle above.
         if "private_from" in function:
@@ -536,7 +538,7 @@ def check_build_phase(phase: str, returncode: int, log: Path) -> None:
 
 
 def build_linked(name: str, unit: dict) -> dict:
-    from linked_lifecycle import layout_inputs
+    from linked_lifecycle import layout_inputs, layout_specs
     from workflow_manifest import repository_path, unit_input_digest
     static = unit.get("link_runtime", "import") == "static"
     tools, hashes = pinned_tools(static)
@@ -579,14 +581,14 @@ def build_linked(name: str, unit: dict) -> dict:
                              + ["/Fo" + win(native_obj), win(repository_path(path))])
     layout_commands = [[p for p in compile_flags if p != "/GL"]
                        + ["/Fo" + win(output.with_suffix(f".layout{i}.obj")), win(repository_path(o["layout_source"]))]
-                       for i, o in enumerate(unit.get("link_objects", []))]
+                       for i, o in enumerate(layout_specs(unit))]
     link_command = ["wine", str(tools / "bin/link.exe"), "/nologo", "/DLL", "/LTCG",
                     "/NODEFAULTLIB", "/OPT:NOICF", f"/BASE:0x{IMAGE_BASE:X}",
                     "/MAP:" + win(map_path), "/OUT:" + win(output)]
     link_command.append("/OPT:REF" if static else "/NOENTRY")
     link_command.extend("/EXPORT:" + f.get("export_name", f["symbol_base"])
                         for f in unit["functions"] if "private_from" not in f
-                        and "private_global" not in f and "vtable_entry" not in f)
+                        and "private_global" not in f and "private_texture_global" not in f and "vtable_entry" not in f)
     link_command.extend("/EXPORT:" + symbol for symbol in unit.get("preserve_public_members", []))
     libraries = sorted({contract["library"] for contract in sdk_imports})
     libraries.extend(STATIC_LIBS if static else ("lib/msvcrt.lib", "lib/msvcprt.lib"))
@@ -886,7 +888,7 @@ def source_function_start(function: dict, functions: dict, exports: dict, cil_ow
             if (owner.split()[-1:] != [cil_owner]
                     and owner.split()[-4:] != ["CIL", "library:", "CIL", "module"]):
                 raise ValueError("linked vtable destructor alias is outside its CIL context")
-    elif "private_from" in function or "private_global" in function:
+    elif "private_from" in function or "private_global" in function or "private_texture_global" in function:
         if len(functions[start]) != 1 or start in exports.values():
             raise ValueError("private linked function has an aliased or exported entry")
     elif exports.get(function.get("export_name", symbol)) != start:
@@ -1229,7 +1231,7 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     runtime_initializers = []
     if static:
         validate_static_entry(pe, functions)
-        if not unit.get("link_objects"):
+        if not unit.get("link_objects") and not unit.get("link_texture_manager_lifetime"):
             runtime_initializers = validate_static_runtime_initializers(
                 pe, functions, parse_map_symbols(map_text),
                 allow_pinned_stdio=(unit.get("link_xiph_sdk") is True or unit.get("link_png_sdk") is True))
@@ -1257,6 +1259,12 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
         image.with_suffix(".ltcg.obj").name, c.known_data_targets(), c.target_bytes,
         layout_alignments={item["layout"]["symbol"]: item["layout"]["alignment"]
                            for item in expected["layout_inputs"]}) if static else ([], {})
+    from linked_texture_lifecycle import witnesses as texture_witnesses
+    texture_refs, texture_witness = texture_witnesses(unit, pe, game, functions,
+        parse_map_symbols(map_text), exports, image.with_suffix(".ltcg.obj").name,
+        imports, bindings, vtables, internal_refs, sdk_imports, c.known_data_targets(),
+        c.target_bytes, expected["layout_inputs"])
+    internal_refs += texture_refs
     from linked_literals import witnesses as literal_witnesses
     internal_refs += literal_witnesses(unit, pe, game, parse_map_symbols(map_text),
                                       image.with_suffix(".ltcg.obj").name, c.known_data_targets())
@@ -1340,7 +1348,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             "target_executable_sha256": target_hash, "target_sha256": hashlib.sha256(target).hexdigest(),
             "object_compared_sha256": hashlib.sha256(code).hexdigest(), "replayed_rel32": calls,
             "validated_data_references": data_refs, "validated_vtables": vtables,
-            "global_lifecycle_witness": globals_witnesses.get(function.get("private_global", {}).get("object")),
+            "global_lifecycle_witness": (texture_witness if function.get("private_texture_global")
+                else globals_witnesses.get(function.get("private_global", {}).get("object"))),
             "validated_cleanup_eh": eh_reports,
             "validated_static_runtime_initializers": runtime_initializers,
             "validated_error_tails": error_reports,

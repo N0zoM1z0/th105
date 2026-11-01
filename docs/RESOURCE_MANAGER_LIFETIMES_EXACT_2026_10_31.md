@@ -74,3 +74,12 @@ Three normal physical owner functions add294 authored exact bytes:
 1561 functions /444796 bytes. Source1758, authored1778, mapped1785,
 excluded1658, review591, units752. The three30-byte wrappers remain in their
 existing compiler-origin rule. No helper inflation.
+
+
+## Selected texture context update
+
+The already accepted texture normal destructor404FD0/98 and scalar405040/30
+now select exact-first-texture-service-lifetime, which freshly proves the real
+global aggregate and new private constructor404F00/193. They are not recounted.
+The old resource-manager unit retains the wave/sound pairs. See
+TEXTURE_SERVICE_LIFETIME_EXACT_2026_10_31.md for the complete startup/exit gate.

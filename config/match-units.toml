@@ -28144,11 +28144,11 @@ object = "build/match-units/ExactFirst_ResourceManagerLifetime.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 linked_coff_sources = ["src/library/UnsignedIntList.cpp", "src/library/UnsignedIntVector.cpp"]
-notes = "Three concrete pointer-resource manager normal destructors98 each and three compiler scalar wrappers30 each are complete canonical exact. Genuine CIL plus original unsigned-list/vector COFF context naturally preserves actual ESI deque cleanup. Only three normal game-owner lifetimes receive authored credit."
+notes = "Wave and sound pointer-resource manager destructors98/scalars30 remain canonical exact. Texture98/scalar30 move to the actual texture-global unit with no recount. Original unsigned-list/vector COFF context is unchanged."
 link_data_targets = ["__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "__imp__SetThreadPriority@8=__imp__SetThreadPriority@8", "__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8", "__imp__CloseHandle@4=__imp__CloseHandle@4"]
 link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
-link_vtables = [{ symbol = "??_7NetworkUdpPacketCriticalSectionView@th105@@6B@", target = "??_7CriticalSectionWrapper@th105@@6B@", entry = "??_GNetworkUdpPacketCriticalSectionView@th105@@UAEPAXI@Z=0x0040ABE0", target_type_name = ".?AVCCriticalSection@@" }, { symbol = "??_7?$ResourceHandleManagerLifetime64@PAUWaveBufferResource@th105@@@th105@@6B@", target = "??_7WaveBufferResourceHandleManager64@th105@@6B@", entry = "??_G?$ResourceHandleManagerLifetime64@PAUWaveBufferResource@th105@@@th105@@UAEPAXI@Z=0x00402090", target_type_name = ".?AV?$CHandleManager@PAVCWaveBuffer@@@@" }, { symbol = "??_7?$ResourceHandleManagerLifetime64@PAUSoundBufferResource@th105@@@th105@@6B@", target = "??_7SoundBufferResourceHandleManager64@th105@@6B@", entry = "??_G?$ResourceHandleManagerLifetime64@PAUSoundBufferResource@th105@@@th105@@UAEPAXI@Z=0x004020B0", target_type_name = ".?AV?$CHandleManager@PAVCDSBuffer@@@@" }, { symbol = "??_7?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@6B@", target = "??_7TextureResourceHandleManager64@th105@@6B@", entry = "??_G?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAEPAXI@Z=0x00405040", target_type_name = ".?AV?$CHandleManager@PAUIDirect3DTexture9@@@@" }]
+link_vtables = [{ symbol = "??_7NetworkUdpPacketCriticalSectionView@th105@@6B@", target = "??_7CriticalSectionWrapper@th105@@6B@", entry = "??_GNetworkUdpPacketCriticalSectionView@th105@@UAEPAXI@Z=0x0040ABE0", target_type_name = ".?AVCCriticalSection@@" }, { symbol = "??_7?$ResourceHandleManagerLifetime64@PAUWaveBufferResource@th105@@@th105@@6B@", target = "??_7WaveBufferResourceHandleManager64@th105@@6B@", entry = "??_G?$ResourceHandleManagerLifetime64@PAUWaveBufferResource@th105@@@th105@@UAEPAXI@Z=0x00402090", target_type_name = ".?AV?$CHandleManager@PAVCWaveBuffer@@@@" }, { symbol = "??_7?$ResourceHandleManagerLifetime64@PAUSoundBufferResource@th105@@@th105@@6B@", target = "??_7SoundBufferResourceHandleManager64@th105@@6B@", entry = "??_G?$ResourceHandleManagerLifetime64@PAUSoundBufferResource@th105@@@th105@@UAEPAXI@Z=0x004020B0", target_type_name = ".?AV?$CHandleManager@PAVCDSBuffer@@@@" }]
 
 [[units.exact-first-resource-manager-lifetime.functions]]
 address = "0x00401F10"
@@ -28172,16 +28172,7 @@ symbol_base = "??_G?$ResourceHandleManagerLifetime64@PAUSoundBufferResource@th10
 vtable_entry = "??_7?$ResourceHandleManagerLifetime64@PAUSoundBufferResource@th105@@@th105@@6B@"
 rel32_targets = ["??1?$ResourceHandleManagerLifetime64@PAUSoundBufferResource@th105@@@th105@@UAE@XZ=0x00402020", "??3@YAXPAX@Z=0x006898EA"]
 
-[[units.exact-first-resource-manager-lifetime.functions]]
-address = "0x00404FD0"
-symbol_base = "??1?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAE@XZ"
-rel32_targets = ["?_Tidy@?$list@IV?$allocator@I@std@@@std@@IAEXXZ=0x004023E0", "??3@YAXPAX@Z=0x006898EA", "?_Tidy@?$deque@PAUWaveBufferResource@th105@@V?$allocator@PAUWaveBufferResource@th105@@@std@@@std@@IAEXXZ=0x00413E10", "?_Tidy@?$deque@PAUSoundBufferResource@th105@@V?$allocator@PAUSoundBufferResource@th105@@@std@@@std@@IAEXXZ=0x00413E10", "?_Tidy@?$deque@PAUTextureResource@th105@@V?$allocator@PAUTextureResource@th105@@@std@@@std@@IAEXXZ=0x00413E10"]
 
-[[units.exact-first-resource-manager-lifetime.functions]]
-address = "0x00405040"
-symbol_base = "??_G?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAEPAXI@Z"
-vtable_entry = "??_7?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@6B@"
-rel32_targets = ["??1?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAE@XZ=0x00404FD0", "??3@YAXPAX@Z=0x006898EA"]
 
 [units.exact-first-connect-menu-lifetime]
 kind = "probe"
@@ -28530,3 +28521,35 @@ notes = "Complete121-byte renderer pair-state publication canonical exact throug
 [[units.exact-first-render-pair-state.functions]]
 address = "0x00404940"
 symbol_base = "?set_pair_state@RenderModeManager@th105@@QAEXEE@Z"
+
+[units.exact-first-texture-service-lifetime]
+kind = "linked_candidate"
+source = "src/assets/TextureServiceLifetime.cpp"
+object = "build/match-units/ExactFirst_TextureServiceLifetime.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+linked_coff_sources = ["src/library/UnsignedIntList.cpp", "src/library/UnsignedIntVector.cpp"]
+notes = "Actual0x84-byte texture manager/cache aggregate. Private193-byte manager constructor requires complete59-byte CRT initializer,10-byte ECX callback, storage/table and fresh98/30 cleanup proofs; no authored helper credit. docs/TEXTURE_SERVICE_LIFETIME_EXACT_2026_10_31.md."
+link_data_targets = ["__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "__imp__SetThreadPriority@8=__imp__SetThreadPriority@8", "__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8", "__imp__CloseHandle@4=__imp__CloseHandle@4"]
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+link_vtables = [{ symbol = "??_7NetworkUdpPacketCriticalSectionView@th105@@6B@", target = "??_7CriticalSectionWrapper@th105@@6B@", entry = "??_GNetworkUdpPacketCriticalSectionView@th105@@UAEPAXI@Z=0x0040ABE0", target_type_name = ".?AVCCriticalSection@@" }, { symbol = "??_7?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@6B@", target = "??_7TextureResourceHandleManager64@th105@@6B@", entry = "??_G?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAEPAXI@Z=0x00405040", target_type_name = ".?AV?$CHandleManager@PAUIDirect3DTexture9@@@@" }]
+link_texture_manager_lifetime = true
+
+[[units.exact-first-texture-service-lifetime.functions]]
+address = "0x00404F00"
+symbol_base = "??0?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@QAE@XZ"
+eh_cleanup = { handler = "0x006BE461", info = "0x006E4C94" }
+rel32_targets = ["??1?$deque@PAUTextureResource@th105@@V?$allocator@PAUTextureResource@th105@@@std@@@std@@QAE@XZ=0x00413B00", "??1?$vector@PAPAUTextureResource@th105@@V?$allocator@PAPAUTextureResource@th105@@@std@@@std@@QAE@XZ=0x00405060", "??1?$vector@IV?$allocator@I@std@@@std@@QAE@XZ=0x0040C240", "?_Buynode@?$list@IV?$allocator@I@std@@@std@@IAEPAU_Node@?$_List_nod@IV?$allocator@I@std@@@2@XZ=0x004040B0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
+private_texture_global = true
+
+[[units.exact-first-texture-service-lifetime.functions]]
+address = "0x00404FD0"
+symbol_base = "??1?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAE@XZ"
+rel32_targets = ["?_Tidy@?$list@IV?$allocator@I@std@@@std@@IAEXXZ=0x004023E0", "??3@YAXPAX@Z=0x006898EA", "?_Tidy@?$deque@PAUWaveBufferResource@th105@@V?$allocator@PAUWaveBufferResource@th105@@@std@@@std@@IAEXXZ=0x00413E10", "?_Tidy@?$deque@PAUSoundBufferResource@th105@@V?$allocator@PAUSoundBufferResource@th105@@@std@@@std@@IAEXXZ=0x00413E10", "?_Tidy@?$deque@PAUTextureResource@th105@@V?$allocator@PAUTextureResource@th105@@@std@@@std@@IAEXXZ=0x00413E10"]
+
+[[units.exact-first-texture-service-lifetime.functions]]
+address = "0x00405040"
+symbol_base = "??_G?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAEPAXI@Z"
+vtable_entry = "??_7?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@6B@"
+rel32_targets = ["??1?$ResourceHandleManagerLifetime64@PAUTextureResource@th105@@@th105@@UAE@XZ=0x00404FD0", "??3@YAXPAX@Z=0x006898EA"]

@@ -21,6 +21,8 @@ OBJECT_FIELDS = {"symbol", "target", "size", "layout_source", "initializer", "in
 
 def validate_contract(unit: dict, data_keys: set[str]) -> None:
     from workflow_manifest import repository_path, source_dependencies
+    from linked_texture_lifecycle import validate as validate_texture
+    validate_texture(unit, data_keys)
     runtime = unit.get("link_runtime", "import")
     objects, runtime_data = unit.get("link_objects", []), unit.get("link_runtime_data", [])
     if not isinstance(runtime, str) or runtime not in {"import", "static"} or not isinstance(objects, list):
@@ -94,7 +96,7 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
                             ("export_name", "private_global", "private_static_leaf", "vtable_entry")))
             if (not isinstance(eh, dict) or set(eh) != {"handler", "info"}
                     or any(not isinstance(v, str) or not ADDRESS.fullmatch(v) for v in eh.values())
-                    or (not objects and not public_lifetime)):
+                    or (not objects and not public_lifetime and not f.get("private_texture_global"))):
                 raise ValueError("cleanup EH requires exact handler/FuncInfo fields and either "
                                  "a global witness or a source member with static CRT cookie and export/private-lifetime-caller proof")
         if "private_global" not in f:
@@ -156,10 +158,15 @@ def native_zero_layout(data: bytes, symbol: str, size: int) -> dict:
     return {"symbol": symbol, "size": size, "alignment": 4 if flags == 0xc0300080 else 8, "section": ".bss", "flags": flags}
 
 
+def layout_specs(unit: dict) -> list[dict]:
+    from linked_texture_lifecycle import layout_specs as texture_layout_specs
+    return list(unit.get("link_objects", [])) + texture_layout_specs(unit)
+
+
 def layout_inputs(unit: dict, image: Path) -> list[dict]:
     from workflow_manifest import repository_path
     result = []
-    for i, obj in enumerate(unit.get("link_objects", [])):
+    for i, obj in enumerate(layout_specs(unit)):
         path = image.with_suffix(f".layout{i}.obj")
         result.append({"source": obj["layout_source"], "source_sha256": core.sha(repository_path(obj["layout_source"])),
                        "object": path.name, "object_sha256": core.sha(path),

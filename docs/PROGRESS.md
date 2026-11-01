@@ -6,13 +6,13 @@ until each boundary is reconciled with target control flow.
 | Measure | Count |
 | --- | ---: |
 | Tracked 1.06a function candidates | 4,027 |
-| Origin/boundary review pending | 444 |
-| Confirmed authored functions | 1,800 |
-| Confirmed authored code bytes | 2,280,543 |
+| Origin/boundary review pending | 443 |
+| Confirmed authored functions | 1,801 |
+| Confirmed authored code bytes | 2,280,736 |
 | Classified exclusions | 1,783 |
-| Source-present authored mappings | 1,780 |
-| Canonical exact functions | 1,581 |
-| Canonical exact authored bytes | 449,116 |
+| Source-present authored mappings | 1,781 |
+| Canonical exact functions | 1,582 |
+| Canonical exact authored bytes | 449,309 |
 
 The former 1.06 reconstruction state is intentionally excluded. Exact totals
 count only 1.06a functions whose configured VC8 unit passes the canonical

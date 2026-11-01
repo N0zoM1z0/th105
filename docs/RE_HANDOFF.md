@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Texture manager404F00 is canonical193 plus all120 EH bytes through the real
+0x84-byte manager/cache aggregate. New narrow texture lifecycle proof compares
+full59-byte CRT initializer,10-byte ECX callback, storage/table and fresh98/30
+cleanup support, without changing the old17/5 generic global contract. Actual
+7-cache negative is rejected; restored source and old resource/wave/package
+families pass. Twelve new tests; CI235. Existing texture dtor/scalar move units
+without recount. Exact1582/449309, source1781/authored1801/mapped1808,
+excluded1783/review443/units764. See TEXTURE_SERVICE_LIFETIME_EXACT_2026_10_31.md.
+
 Renderer pair-state404940 is canonical121 through actual COM calls and cached
 byte publication. Both real callers ignore the result; correcting the old
 char return to ordinary void removes artificial result retention and matches

@@ -1778,3 +1778,4 @@ TNumberValue_floatptr_get_integer
 TNumberValue_floatptr_get_floating
 Fighter_try_dispatch_front_word_actions_690_696
 RenderModeManager_set_pair_state
+TextureHandleManager_ctor
