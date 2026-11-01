@@ -1,0 +1,27 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+[[anchors]]
+address = "0x00401630"
+size = 11
+symbol = "??1bad_alloc@std@@UAE@XZ"
+sha256 = "8c53cbb5d4bdbb5de49aa046a89698d3c41f9cb187008379d963e295d2814541"
+[[anchors]]
+address = "0x00401640"
+size = 36
+symbol = "??_Gbad_alloc@std@@UAEPAXI@Z"
+sha256 = "64de8106fa3f7ea14398f7c07cf72b52ede7a8ff9eb61803eee86de17a2e565c"
+[[anchors]]
+address = "0x00402680"
+size = 25
+symbol = "??0bad_alloc@std@@QAE@ABV01@@Z"
+sha256 = "c3096fabf1cb8ed03fb0c34f5c98b3f11fb154ed33f39a9a2d22b8c4fe4f3330"
+[[anchors]]
+address = "0x00402590"
+size = 85
+symbol = "?allocate@?$allocator@D@std@@QAEPADI@Z"
+sha256 = "505a98dbdcc890611622ffff23fe19b802ff5333cf7acd90d886b72559f00dbb"
+[[anchors]]
+address = "0x00410130"
+size = 85
+symbol = "?allocate@?$allocator@J@std@@QAEPAJI@Z"
+sha256 = "de3cb09909e6527d57e56e1877e5127bf796967619e9fdb69964a3a25b669827"

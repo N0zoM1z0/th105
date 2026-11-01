@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Original bad_alloc normal/scalar/copy lifetimes401630/11,401640/36,402680/25
+and one-/four-byte allocators402590/85,410130/85 are now fully canonical.
+Dedicated terminal-call CFG uses complete original CRT throw74, noncontinuable
+record32, actual RaiseException import and complete typed ThrowInfo/catchables/
+TypeDescriptors; generic closed-body gate unchanged. Full uniqueness, no masks.
+401780 is NOT bad_alloc and stays review. Excluded1994/review378; authored/source/
+unit totals unchanged. Prior logic_error full EH replay passes. Eleven new
+synthetic tests plus eleven real-byte rejection controls. See
+LINKED_BAD_ALLOC_2026_11_01.md. Payload-dependent tree leads remain unaccepted.
+
+
 Original linked std::logic_error constructors401670/107 and4017A0/113 now
 fully canonical with actual class RTTI, independently proved named callees and
 complete EH support per root (handler27/action8/FuncInfo36/unwind8). All source

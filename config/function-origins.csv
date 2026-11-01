@@ -12,8 +12,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00401430,authored_game,engine,authored,observed,canonical-exact-authored
 0x004014C0,authored_game,engine,authored,observed,canonical-exact-authored
 0x00401610,authored_game,rendering,authored,observed,renderer-device-lost-authored-106a
-0x00401630,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00401640,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00401630,compiler_generated,runtime,exclude,observed,linked-original-bad-alloc-106a
+0x00401640,compiler_generated,runtime,exclude,observed,linked-original-bad-alloc-106a
 0x00401670,compiler_generated,runtime,exclude,observed,linked-original-logic-error-106a
 0x004016E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004016F0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
@@ -48,10 +48,10 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004023E0,compiler_generated,runtime,exclude,observed,vc8-generated-list-voidptr-tidy-106a
 0x00402430,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402570,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00402590,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00402590,compiler_generated,runtime,exclude,observed,linked-original-bad-alloc-106a
 0x004025F0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00402620,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
-0x00402680,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00402680,compiler_generated,runtime,exclude,observed,linked-original-bad-alloc-106a
 0x004026A0,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
 0x00402700,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004027B0,compiler_generated,characters,exclude,observed,vc8-generated-roster-object-pools-std-comdats-106a
@@ -386,7 +386,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040FE30,compiler_generated,runtime,exclude,observed,vc8-deque-string-growmap-xlen-caller-identity-106a
 0x0040FF90,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00410030,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a
-0x00410130,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00410130,compiler_generated,runtime,exclude,observed,linked-original-bad-alloc-106a
 0x00410190,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x004101F0,compiler_generated,runtime,exclude,observed,vc8-deque-string-growmap-xlen-caller-identity-106a
 0x00410270,compiler_generated,std,exclude,observed,vc8-string-count-append-generated-106a

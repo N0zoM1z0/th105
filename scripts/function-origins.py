@@ -1183,6 +1183,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("boost_collation_anchor_file")
         or rule.get("original_boost_link_anchor_file")
         or rule.get("linked_logic_error_anchor_file")
+        or rule.get("linked_bad_alloc_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2405,6 +2406,10 @@ def validate_rule_evidence(
     if rule.get("linked_logic_error_anchor_file"):
         from linked_logic_error_origins import validate as validate_logic_error
         errors.extend(validate_logic_error(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("linked_bad_alloc_anchor_file"):
+        from linked_bad_alloc_origins import validate as validate_bad_alloc
+        errors.extend(validate_bad_alloc(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("msvc_runtime_anchor_file"):
         errors.extend(

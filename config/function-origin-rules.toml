@@ -5430,3 +5430,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Unchanged original seven-TU Boost/VC8 CIL graph emits actual std::logic_error string/copy constructors107/113. Complete canonical bodies, actual class RTTI and all named independent CRT/string callees; complete27-byte handlers,8-byte cleanup actions,36-byte FuncInfo and8-byte unwind tables, exact HIGHLOW coverage and full inventory uniqueness. No masked or authored credit. docs/LINKED_LOGIC_ERROR_2026_11_01.md."
+
+[[rules]]
+id = "linked-original-bad-alloc-106a"
+linked_bad_alloc_anchor_file = "config/linked-bad-alloc-origin-anchors.toml"
+expected_count = 5
+expected_bytes = 242
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original immutable Boost/VC8 CIL graph: complete bad_alloc normal/scalar/copy lifetimes11/36/25 and one-/four-byte allocator overflow bodies85/85. Full canonical bytes, actual RTTI, complete typed ThrowInfo/catchable descriptors and copy/dtor identities. Complete CRT throw74, noncontinuable record32 and RaiseException import justify terminal-call CFG; generic strict boundary gate unchanged. Full inventory uniqueness; no masks or authored credit. docs/LINKED_BAD_ALLOC_2026_11_01.md."

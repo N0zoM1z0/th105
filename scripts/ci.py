@@ -27,6 +27,7 @@ EXACT_TEST_MODULES = (
     "test_linked_checked_iterator_origins",
     "test_linked_original_boost_origins",
     "test_linked_logic_error_origins",
+    "test_linked_bad_alloc_origins",
     "test_linked_string_range_origins",
     "test_scalar_wrapper_origins",
     "test_implicit_lifetime_origins",
