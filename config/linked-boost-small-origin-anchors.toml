@@ -1,0 +1,22 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+[[anchors]]
+address = "0x006A08B0"
+size = 13
+symbol = "?destroy@sp_counted_base@detail@boost@@UAEXXZ"
+sha256 = "e05407482fb2cfa446ef461e18c81b95321488f14caee466be9a43f4aa6b9b7b"
+[[anchors]]
+address = "0x006A4D30"
+size = 11
+symbol = "??0clone_base@exception_detail@boost@@QAE@ABV012@@Z"
+sha256 = "a9f559f0b014c2abf3d074713795b9b1cb1117529efd2f1d56cef2985b6ce3e8"
+[[anchors]]
+address = "0x006B55D0"
+size = 12
+symbol = "?free_module@re_detail@boost@@YAXPAX@Z"
+sha256 = "b86275b8cb248209ae5fa4e31c6e9563d58bac8cd1d1321382d0de2443c6075c"
+[[anchors]]
+address = "0x006B55E0"
+size = 11
+symbol = "?dispose@?$sp_counted_impl_pd@PAUHINSTANCE__@@P6AXPAX@Z@detail@boost@@UAEXXZ"
+sha256 = "03c03fd6fd6497d3aa701d235c17c18a3e2d5662d65d42eb12bd5570a4bd6898"

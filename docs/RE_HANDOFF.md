@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original Boost small members destroy6A08B0/13, clone_base copy6A4D30/11,
+free_module6B55D0/12 and HINSTANCE-deleter dispose6B55E0/11 now fully canonical.
+Actual source/native class RTTI/vslots and FreeLibrary import, full CFG/HIGHLOW
+coverage and inventory uniqueness pass. Excluded2002/review370; other totals
+unchanged. Prior four exception members freshly pass. Seven new synthetic
+tests. See LINKED_BOOST_SMALL_2026_11_01.md. Clone46/allocator/tree shape leads
+remain unaccepted; wrong nominal specializations are explicitly rejected.
+
+
 Original exception members now typed/whole-canonical: logic_error what4016E0/14,
 runtime_error what6A4B70/14, out_of_range copy401780/25 and length_error copy402570/25.
 The two what byte strings are identical: exact two-hit inventory is explicit,

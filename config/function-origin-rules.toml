@@ -5452,3 +5452,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original linked std out_of_range/length_error copy25/25 and logic_error/runtime_error what14/14. Whole canonical code, actual nominal RTTI and original named class/slot identities; both base logic_error constructors and complete EH freshly replayed first. Copy bodies canonical-inventory unique; two byte-identical what bodies explicitly retained/disambiguated by own typed vtables, not falsely claimed byte-unique. No masks, generic threshold waiver or authored credit. docs/LINKED_EXCEPTION_MEMBERS_2026_11_01.md."
+
+[[rules]]
+id = "linked-original-boost-small-106a"
+linked_boost_small_anchor_file = "config/linked-boost-small-origin-anchors.toml"
+expected_count = 4
+expected_bytes = 47
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Complete original linked Boost sp_counted_base::destroy13, clone_base copy11, Windows free_module12 and HINSTANCE custom-deleter dispose11. Exact original source/map owners; actual nominal RTTI/vtable slots, inherited destroy identity and source/native FreeLibrary import. Every code/data field canonically equal, full CFG and source HIGHLOW coverage, whole inventory unique. No masks, generic threshold waiver or authored credit. docs/LINKED_BOOST_SMALL_2026_11_01.md."

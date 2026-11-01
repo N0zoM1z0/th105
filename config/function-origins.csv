@@ -3560,7 +3560,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A07D0,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a
 0x006A0880,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006A0890,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
-0x006A08B0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A08B0,third_party,boost_regex,exclude,observed,linked-original-boost-small-106a
 0x006A08C0,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
 0x006A0910,compiler_generated,std,exclude,observed,boost-regex-vc8-std-106a
 0x006A0950,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
@@ -3698,7 +3698,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A4CA0,third_party,boost_regex,exclude,observed,boost-narrow-boost-equivalence-106a
 0x006A4D00,compiler_generated,runtime,exclude,inferred,boost-exception-rtti-adjustor-thunks-106a
 0x006A4D10,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006A4D30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A4D30,third_party,boost_regex,exclude,observed,linked-original-boost-small-106a
 0x006A4D40,compiler_generated,runtime,exclude,inferred,boost-exception-rtti-adjustor-thunks-106a
 0x006A4D50,compiler_generated,runtime,exclude,inferred,boost-exception-rtti-adjustor-thunks-106a
 0x006A4D60,compiler_generated,battle,exclude,observed,vc8-generated-scenario-event-map-find-106a
@@ -3943,8 +3943,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B5540,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B55B0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B55C0,import_thunk,platform,exclude,observed,kernel32-late-import-thunks-106a
-0x006B55D0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006B55E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B55D0,third_party,boost_regex,exclude,observed,linked-original-boost-small-106a
+0x006B55E0,third_party,boost_regex,exclude,observed,linked-original-boost-small-106a
 0x006B55F0,third_party,boost_regex,exclude,observed,boost-regex-source-w32-traits-106a
 0x006B5620,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x006B56C0,third_party,boost_regex,exclude,observed,boost-regex-source-w32-traits-106a
