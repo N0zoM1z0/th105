@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Actual package-store/node source now reproduces original map subtree cleanup
+41C630/94 canonically; its43-byte node destructor also freshly passes. Unique
+full-inventory compiler-origin proof moves only this94-byte helper to excluded,
+not authored exact. Excluded1791/review434/units765; exact1582/449309 and source
+counts unchanged. See PACKAGE_MAP_ERASE_ORIGIN_2026_11_01.md.
+
+
 RemiliaObject55BE70 follow-up naturally recovers901's physical shared tails by
 spelling its real2/8/9 assignments separately, without gotos or float snapshots.
 Full5384 b35e53a2 now differs in only10 bytes, two850/851 selector-call schedules;

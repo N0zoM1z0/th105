@@ -611,7 +611,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041C4D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041C590,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041C600,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041C630,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041C630,compiler_generated,assets,exclude,observed,vc8-generated-package-map-erase-106a
 0x0041C690,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041C8D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041C910,unknown,,review,unknown,ida-1.06a-initial-inventory
