@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+DirectSound stop4185E0 is canonical45/45 through unchanged ordinary C++ and
+actual LTCG private ESI lowering. A separate strict relocation-free-member
+proof checks whole raw bytes/CFG/RET0 and both real subobject LEAs; old
+source_only_caller restrictions stay. Ogg291/SFL484 freshly remain exact;
+exported update969/943 and four other unit peers stay nonexact. Exact1583/449354,
+source1783/authored1803/mapped1810/excluded1792/review432/units765.
+See DIRECT_SOUND_STOP_EXACT_2026_11_01.md. Linked-library census leads remain
+private discovery only until fresh full provenance and canonical comparisons.
+
 Info record46EA40 now has a natural implicit28-byte constructor through its
 actual two sprite members and initializing texture handles. All three accepted
 InfoManagerBase owners195/185/30 stay exact; paired dtor15 also compares but

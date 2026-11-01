@@ -211,7 +211,10 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             if "export_name" in function or not isinstance(witness, dict):
                 raise ValueError("private linked function needs only an explicit caller/site witness")
             if not path:
-                if "cleanup" in witness:
+                if "relocation_free_member" in witness:
+                    from linked_member_leaf import validate as validate_member_leaf
+                    validate_member_leaf(witness, function, unit)
+                elif "cleanup" in witness:
                     from linked_cleanup_caller import validate as validate_cleanup_caller
                     validate_cleanup_caller(witness, function, unit)
                 elif "caller_eh" in witness:
@@ -1063,6 +1066,9 @@ def private_direct_sites(contract: dict) -> list[str]:
         return [contract["site"]]
     if set(contract) == {"caller", "site"} and address(contract["site"]):
         return [contract["site"]]
+    if (set(contract) == {"caller", "site", "relocation_free_member"}
+            and contract["relocation_free_member"] is True and address(contract["site"])):
+        return [contract["site"]]
     if (set(contract) == {"caller", "site", "source_only_caller"}
             and contract["source_only_caller"] is True and address(contract["site"])):
         return [contract["site"]]
@@ -1080,6 +1086,10 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
                            internal_refs: list[dict] = (), exact_caller_replay: dict | None = None,
                            global_lifecycle_witnesses: dict | None = None) -> dict:
     contract = function["private_from"]
+    member_leaf = contract.get("relocation_free_member") is True
+    if "relocation_free_member" in contract:
+        from linked_member_leaf import validate as validate_member_leaf
+        validate_member_leaf(contract, function, unit)
     if "cleanup" in contract:
         from linked_cleanup_caller import validate as validate_cleanup_caller
         validate_cleanup_caller(contract, function, unit)
@@ -1112,8 +1122,8 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
         validate_caller_eh(contract, unit)
     sites = [contract["site"]] if eh_caller else private_direct_sites(contract)
     data = (caller_data_witness(pe, source_instructions, functions, bindings, game_range)
-            if "sites" in contract or contract.get("source_only_caller") is True else [])
-    if "sites" not in contract and not eh_caller and not through_exact and not contract.get("source_only_caller"):
+            if "sites" in contract or contract.get("source_only_caller") is True or member_leaf else [])
+    if "sites" not in contract and not eh_caller and not through_exact and not contract.get("source_only_caller") and not member_leaf:
         validate_body_relocations(pe, parent, len(source), [])
     source_calls = [i.address for i in source_instructions
                     if i.size == 5 and i.bytes[0] == 0xe8 and i.operands[0].imm == start]
@@ -1155,6 +1165,12 @@ def private_caller_witness(function: dict, unit: dict, pe, functions: dict, expo
     edge = ({"target_sites": sites, "source_sites": [f"0x{site:08X}" for site in source_calls],
              "source_only_address_fields": data} if "sites" in contract else
             {"target_site": sites[0], "source_site": f"0x{source_calls[0]:08X}"})
+    if member_leaf:
+        from linked_member_leaf import observe as observe_member_leaf
+        edge["relocation_free_member"] = observe_member_leaf(
+            sys.modules[__name__], function, pe, functions, start, ledger, read_target,
+            source_instructions, decode_closed_body(target, target_parent), source_calls[0])
+        edge["source_only_address_fields"] = data
     if contract.get("source_only_caller") is True:
         edge["source_only_address_fields"] = data
         edge["scope"] = "complete caller CFG and source address roles only; no caller byte or EH equality"
@@ -1333,6 +1349,9 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
             internal_refs=refs, external_exits=error_exits,
             alignment_sites={start + int(site, 0) - address for site in function.get("alignment_sites", [])})
         validate_body_relocations(pe, start, len(raw), data_refs)
+        if function.get("private_from", {}).get("relocation_free_member") is True:
+            from linked_member_leaf import validate_canonical_identity
+            validate_canonical_identity(raw, code, calls, data_refs)
         if function.get("alignment_sites"):
             decode_closed_body(target, address,
                 external_exits={int(report["target_site"], 0): int(report["target_helper"], 0)

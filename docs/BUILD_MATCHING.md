@@ -1715,3 +1715,15 @@ Receipts: build/frontier-csv-clear-context-20261031/build.log and Clear.map.
 The old103-byte gain hit in the same stale-object census is from the removed
 aligned/volatile volume transcription, not the current natural source, and is
 not reused. Existing negative source-integrity guidance remains in force.
+
+### Relocation-free private member leaf
+
+A configured `relocation_free_member = true` caller witness is separate from
+`source_only_caller` and exact-parent paths. It is limited to an ordinary
+nonvirtual no-argument HRESULT member, full raw child equality before any
+relocation, complete RET0 CFGs, no child absolute references/PE relocations or
+external direct calls/tails, and identical adjacent subobject LEAs in both
+actual callers. Existing fresh CIL provenance, source identity, actual call
+mapping and caller address-role checks remain mandatory. It neither changes
+source calling conventions nor accepts the nonexact caller. See
+DIRECT_SOUND_STOP_EXACT_2026_11_01.md and tests/test_linked_member_leaf.py.
