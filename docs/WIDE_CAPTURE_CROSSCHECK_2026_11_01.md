@@ -111,3 +111,22 @@ map.json, native/candidate-wide.json, payload and peer-facts reports,
 wide-capture-windows.asm and summary.json. The existing complete candidate
 remains unselected and nonexact. The stale scaffold-only planning statement
 is corrected here and in RE_HANDOFF.md, without promoting historical metadata.
+
+## Reimu research candidate, same bounded check
+
+The existing generator emits the complete void/default candidate from current
+Reimu fragments, rather than treating the bool staging adapter as the root.
+Fresh serial CPU0/nice10 generation gives82808 bytes, object
+94297b98e5b7b9a9514988aad6631403fc1629396ec69fe3d85aad8200dcc8cf,
+and canonical replay fbc0293d5e7ab9b39aca3d83c4d044ce7603d2e28d7961d2ff7736ef3f360177.
+The existing relocation audit qualifies all2473 relocations:1185 calls,
+1104 literals,14 metadata addresses,163 code pointers and7 globals. None is
+unresolved. Whole payload remains nonexact against82924 target bytes.
+
+Both graphs expose40 QWORD operands,20 stores,112 resolved payload homes and
+1392-byte frames. Per-action store counts agree, including all three616
+captures and one each for565,566,612 and730. No additional missing-wide
+capture is demonstrated. This does not prove all request extents or whole-root
+execution equivalence. No source is modified or selected; no exact credit.
+Receipts are build/frontier-reimu-wide-captures-20261101, with fresh generator,
+existing relocation audit and separate native/candidate graph/stack reports.

@@ -9,6 +9,9 @@ priority was stale: AliceFighterActionState.cpp is already a complete unselected
 candidate. Fresh Alice checks now recover all nine native wide captures and79
 payload homes, with no unknown payloads. Full44032/44080 remains nonexact+8;
 no source or exact credit and no closed spelling controls are reopened.
+Reimu also retains all20 native wide stores and112 payload homes, frame1392
+both; its full82808/82924 payload remains nonexact. The fifteen-roster
+bounded width check is complete, not a whole-semantic proof.
 
 
 Tenshi63D3E0 scratch tracing found two genuine missing QWORD captures:505 peerY
