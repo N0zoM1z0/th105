@@ -28980,3 +28980,25 @@ dir32_targets = ["__ehhandler$??1?$perl_matcher@V?$_String_const_iterator@DU?$ch
 address = "0x0063D3C0"
 symbol_base = "?sin@@YAMM@Z"
 rel32_targets = ["__CIsin=0x0068B670"]
+
+[units.boost-public-exception-copies]
+kind = "probe"
+source = "scripts/probes/BoostExceptionCopiesOrigin.cpp"
+object = "build/match-units/BoostPublicExceptionCopies.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+boost_regex_headers = true
+include_dirs = [".tools/upstream/boost-1.40.0-vc8"]
+notes = "Original public throw_exception instantiations, retaining its original noreturn declaration. Whole clone copies46/46; complete typed RTTI/injector/EH proof is separate. No replacement implementation or private export."
+
+[[units.boost-public-exception-copies.functions]]
+address = "0x006B5060"
+symbol_base = "??0?$clone_impl@U?$error_info_injector@Vlogic_error@std@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABV012@@Z"
+rel32_targets = ["??0?$error_info_injector@Vlogic_error@std@@@exception_detail@boost@@QAE@ABU012@@Z=0x006B4E60"]
+dir32_targets = ["??_7clone_base@exception_detail@boost@@6B@=??_7clone_base@exception_detail@boost@@6B@", "??_7?$clone_impl@U?$error_info_injector@Vlogic_error@std@@@exception_detail@boost@@@exception_detail@boost@@6Blogic_error@std@@@=??_7?$clone_impl@U?$error_info_injector@Vlogic_error@std@@@exception_detail@boost@@@exception_detail@boost@@6Blogic_error@std@@@", "??_7?$clone_impl@U?$error_info_injector@Vlogic_error@std@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@=??_7?$clone_impl@U?$error_info_injector@Vlogic_error@std@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@", "??_7?$clone_impl@U?$error_info_injector@Vlogic_error@std@@@exception_detail@boost@@@exception_detail@boost@@6B@=??_7?$clone_impl@U?$error_info_injector@Vlogic_error@std@@@exception_detail@boost@@@exception_detail@boost@@6B@"]
+
+[[units.boost-public-exception-copies.functions]]
+address = "0x006A95D0"
+symbol_base = "??0?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABV012@@Z"
+rel32_targets = ["??0?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@QAE@ABU012@@Z=0x006A7310"]
+dir32_targets = ["??_7clone_base@exception_detail@boost@@6B@=??_7clone_base@exception_detail@boost@@6B@", "??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6Binvalid_argument@std@@@=??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6Binvalid_argument@std@@@", "??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@=??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6Bexception@2@@", "??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6B@=??_7?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@6B@"]

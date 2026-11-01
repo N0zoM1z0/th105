@@ -23,6 +23,8 @@ INSTANCE_PROBE = 'scripts/probes/BoostRegexInstancesOrigin.cpp'
 RELEASE_INSTANCE_PROBE = 'scripts/probes/BoostRegexReleaseInstancesOrigin.cpp'
 SEARCH_PROBE = 'scripts/probes/BoostRegexSearchOrigin.cpp'
 SEARCH_PROBE_SHA256 = '2be40c77d9f1846bd39e2ca93c670d11749ed174a8ac01dde0ff430230a3ddce'
+EXCEPTION_PROBE = 'scripts/probes/BoostExceptionCopiesOrigin.cpp'
+EXCEPTION_PROBE_SHA256 = '577bfc89b5a49e4717488097dc7acd49650d643d10d679f7ab8bc777c34e0ad5'
 INSTANCE = dict(path='instances.cpp', repository='https://github.com/boostorg/regex',
                 commit='fa1ef1dfd4136803625e49853289ade7c2ddff0a', source_path='src/instances.cpp',
                 git_blob_sha1='69d72ad6e15e823c1a6f1d434c69e8f437513f01', size=697,
@@ -32,6 +34,8 @@ INSTANCE = dict(path='instances.cpp', repository='https://github.com/boostorg/re
 def validate(unit: dict) -> None:
     flag = unit.get('boost_regex_headers', False)
     instance = unit.get('boost_regex_instances', False)
+    if unit.get('source') == EXCEPTION_PROBE and flag is not True:
+        raise ValueError('Original public exception instantiations require verified Boost headers')
     if unit.get('source') == SEARCH_PROBE and flag is not True:
         raise ValueError('Original public search instantiation requires verified Boost headers')
     if type(instance) is not bool or instance and (flag is not True or unit.get('source') not in (INSTANCE_PROBE, RELEASE_INSTANCE_PROBE)):
@@ -135,6 +139,15 @@ def verified_search_instantiation(root: Path) -> Path:
     return path
 
 
+def verified_exception_instantiations(root: Path = ROOT) -> Path:
+    path = (root / EXCEPTION_PROBE).resolve()
+    path.relative_to(root.resolve())
+    contents = path.read_bytes().replace(b'\r\n', b'\n')
+    if hashlib.sha256(contents).hexdigest() != EXCEPTION_PROBE_SHA256:
+        raise ValueError('Original public exception instantiation source differs')
+    return path
+
+
 def inputs(unit: dict, root: Path = ROOT) -> list[Path]:
     validate(unit)
     if not unit.get('boost_regex_headers'):
@@ -145,6 +158,8 @@ def inputs(unit: dict, root: Path = ROOT) -> list[Path]:
         result.append(verified_instance(root))
     if unit.get('source') == SEARCH_PROBE:
         result.append(verified_search_instantiation(root))
+    if unit.get('source') == EXCEPTION_PROBE:
+        result.append(verified_exception_instantiations(root))
     if 'boost_regex_source_tu' in unit:
         from upstream_boost_sources import inputs as source_inputs
         result.extend(source_inputs(unit, root))

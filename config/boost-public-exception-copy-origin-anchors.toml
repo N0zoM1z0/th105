@@ -1,0 +1,17 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "boost-public-exception-copies"
+
+[[anchors]]
+address = "0x006B5060"
+size = 46
+klass = "logic_error"
+symbol = "??0?$clone_impl@U?$error_info_injector@Vlogic_error@std@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABV012@@Z"
+sha256 = "a60cc4fcea123c21653237c32569c7382e8f7d4057a1dce289ea82fbcb6eff1a"
+
+[[anchors]]
+address = "0x006A95D0"
+size = 46
+klass = "invalid_argument"
+symbol = "??0?$clone_impl@U?$error_info_injector@Vinvalid_argument@std@@@exception_detail@boost@@@exception_detail@boost@@QAE@ABV012@@Z"
+sha256 = "c22f40c4dd7919e7153caeaaff0c10765d6d0d8c8ec3d02c3c716b33b7a3b548"

@@ -1,5 +1,17 @@
 # TH10.5 reconstruction handoff
 
+Original public Boost throw_exception instantiations now prove clone copies
+6B5060/46 (logic_error) and6A95D0/46 (invalid_argument), whole/unique. Preserve
+original BOOST_ATTRIBUTE_NORETURN on explicit declarations: VC8 rejects its
+omission. No fake implementation/private export. Full COFF RTTI graph14 roles,
+injectors147/153 and both EH35+44 pass. Current logic copy113 remains29-byte
+nonexact; invalid destructor source50 is only base-body equivalent, NOT equal
+to actual native665AC7/11 typed vptr-store/tail provider. No provider credit.
+Thirteen tests/29 actual mutations; old runtime clone46 gate freshly passes.
+Excluded2017/review355, units778; authored/source/mapped totals stay unchanged.
+See BOOST_PUBLIC_EXCEPTION_COPIES_2026_11_01.md. Regex clone remains unaccepted.
+
+
 Actual original CRT bad_exception lifetimes68EF88/11,68EF93/34,68FB16/24 now
 whole canonical/unique; scalar/vector aliases counted once. Correct vtable
 6CD9B8 plus complete primary COL/TypeDescriptors/base descriptors/hierarchy

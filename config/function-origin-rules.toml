@@ -5586,3 +5586,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual original libcmt:frame.obj bad_exception destructor11, scalar/vector deleting destructor34 folded once, and copy24. Whole canonical/inventory-unique with named original exception/delete callees and every HIGHLOW field. Complete primary vtable/COL/TypeDescriptors/base descriptors/hierarchy arrays including checked cycles establish bad_exception, not bad_alloc. Unchanged genuine original library graph, no helper export, mask or authored credit. docs/LINKED_BAD_EXCEPTION_2026_11_01.md."
+
+[[rules]]
+id = "boost-original-public-exception-copies-106a"
+boost_public_exception_copy_anchor_file = "config/boost-public-exception-copy-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 92
+origin = "third_party"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original public Boost throw_exception instantiations for actual logic_error/invalid_argument types, preserving the original noreturn declaration required by VC8. Whole clone copies46/46 canonical/inventory-unique; full source RTTI graph, injector147/153 and complete EH35+44 each verified. No private helper export, invented implementation, mask or generic threshold change. Current logic copy113 and invalid destructor50/native11 remain explicitly nonexact named providers; no extra support/parent credit. docs/BOOST_PUBLIC_EXCEPTION_COPIES_2026_11_01.md."

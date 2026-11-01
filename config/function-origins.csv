@@ -3786,7 +3786,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A92D0,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a
 0x006A9420,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006A94F0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x006A95D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006A95D0,third_party,runtime,exclude,observed,boost-original-public-exception-copies-106a
 0x006A9600,third_party,boost_regex,exclude,observed,boost-release-library-106a
 0x006A9630,third_party,runtime,exclude,inferred,boost-exception-clone-allocate-virtuals-106a
 0x006A96B0,third_party,runtime,exclude,inferred,boost-exception-clone-throw-virtuals-106a
@@ -3926,7 +3926,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006B4E60,third_party,runtime,exclude,inferred,boost-error-injector-copy-logic-error-106a
 0x006B4F00,third_party,boost_regex,exclude,observed,boost-narrow-boost-equivalence-106a
 0x006B4FC0,third_party,runtime,exclude,inferred,boost-error-injector-copy-runtime-regex-106a
-0x006B5060,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x006B5060,third_party,runtime,exclude,observed,boost-original-public-exception-copies-106a
 0x006B5090,third_party,runtime,exclude,inferred,boost-exception-clone-allocate-virtuals-106a
 0x006B5110,third_party,runtime,exclude,inferred,boost-exception-clone-throw-virtuals-106a
 0x006B5150,third_party,boost_regex,exclude,observed,boost-regex-source-core-106a
