@@ -28769,3 +28769,16 @@ rel32_targets = ["?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2
 address = "0x00466940"
 symbol_base = "?_Buynode@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@2@PAU342@0ABUBattleRenderRequest@th105@@@Z"
 rel32_targets = ["?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0", "??0logic_error@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@@Z=0x00401670", "__CxxThrowException@8=0x0068A153", "?_Incsize@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEXI@Z=0x00466D10", "?_Buynode@?$list@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@UBattleRenderRequest@th105@@V?$allocator@UBattleRenderRequest@th105@@@std@@@2@PAU342@0ABUBattleRenderRequest@th105@@@Z=0x00466940", "??2@YAPAXI@Z=0x00689DCB"]
+
+[units.exact-first-file-list-finalize]
+kind = "probe"
+source = "src/ui/FileListFinalize.cpp"
+object = "build/match-units/ExactFirst_FileListFinalize.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete native1106-byte CFileList page pipeline. Correct Color4/CSpriteBase-owned texture makes implicit CTile copy164 canonical; whole root1155 remains nonexact on frame/iterator/EH lowering. No authored or partial exact credit. docs/FILE_LIST_FINALIZE_SOURCE_2026_11_01.md."
+[[units.exact-first-file-list-finalize.functions]]
+address = "0x0043A590"
+symbol_base = "?finalize@CFileList@th105@@UAEXXZ"
+rel32_targets = ["??0TextFontOwner194@th105@@QAE@XZ=0x00411430", "_strcpy_s=0x0068AD95", "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0", "__invalid_parameter_noinfo=0x0068A143", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90", "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ=0x00420AF0", "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50", "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00", "?push_back_value@FileListUnsignedDequePushView@th105@@QAEXABI@Z=0x00417240", "?set_texture@FileListRenderTile@th105@@QAEXIHHII@Z=0x004098B0", "?_Growmap@?$deque@VFileListRenderTile@th105@@V?$allocator@VFileListRenderTile@th105@@@std@@@std@@IAEXI@Z=0x00439D70", "??2@YAPAXI@Z=0x00689DCB", "??0FileListRenderTile@th105@@QAE@ABV01@@Z=0x004396A0", "?assign_bytes@FileListStringAssignBytesView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0", "??3@YAXPAX@Z=0x006898EA", "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0", "@__security_check_cookie@4=0x00689D25"]
+dir32_targets = ["??_7FileListRenderTile@th105@@6B@=??_7CTile@@6B@"]

@@ -1628,3 +1628,4 @@ GameConfig_save
 CBattleManagerArcade_finalize_arcade_round
 CollisionContext_test_group_a_against_group_b
 ScoreData_construct
+CFileList_finalize

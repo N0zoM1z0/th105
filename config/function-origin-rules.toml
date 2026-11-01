@@ -5309,3 +5309,16 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Reviewed source has no declaration/body for these15 manager normal destructors, ResultList normal destructor and CTile copy constructor. Pinned source/header declarations, original owner units and complete fresh canonical emitted symbols preserve all1434 bytes but exclude authored accounting. No masked threshold relaxation. docs/IMPLICIT_LIFETIME_ACCOUNTING_2026_11_01.md."
+
+[[rules]]
+id = "file-list-finalize-authored-106a"
+addresses = ["0x0043A590"]
+expected_count = 1
+expected_bytes = 1106
+expected_names = ["sub_43A590"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Native CFileList vslot8 and full1106-byte/283-instruction page policy; exact class consumers and font/string/texture lifetimes. Whole source1155 remains nonexact+16, implicit CTilecopy164 fully canonical in real owner context. No exact or prefix credit. docs/FILE_LIST_FINALIZE_SOURCE_2026_11_01.md."
+required_rtti_virtual_bodies = [{ address = "0x0043A590", size = 1106, sha256 = "42c261d42ffb94ac18d1674da6993f8078f3555c4a12bec872c015b8ab9c8342", slot = "0x006C15E8", col_slot = "0x006C15DC", col = "0x006D7F98", type_descriptor = "0x006E656C", type_name_contains = ".?AVCFileList@@", calls = [{ site = "0x0043A5D4", target = "0x00411430" }, { site = "0x0043A75B", target = "0x00404D70" }, { site = "0x0043A914", target = "0x004396A0" }, { site = "0x0043A9B5", target = "0x004114C0" }] }]

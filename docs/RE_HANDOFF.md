@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+CFileList finalize43A590 now has complete source and native RTTI/vslot8
+ownership for1106 bytes/283 instructions. Current implicit-owner source1155
+remains nonexact+16 (frame3A0/native398). Correct Color4 layout gives canonical
+CTile copy164 within the real owner, compiler-only, no new copy credit.
+All14 existing FileList configured bodies freshly exact. Source1631/authored1651/
+mapped1816/review407/excluded1969/units770; exact1428/443902 unchanged.
+See FILE_LIST_FINALIZE_SOURCE_2026_11_01.md. No closed source grid reopened.
+
 Implicit lifetime accounting corrected separately:15 manager normal dtors81,
 ResultList dtor55 and CTile copy164 have no authored declaration/body in their
 selected sources. Full fresh canonical proofs remain;17/1434 authored credit
