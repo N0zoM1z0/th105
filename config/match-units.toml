@@ -28629,3 +28629,16 @@ rel32_targets = [
  "?erase@?$list@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x0043FC40",
 ]
 dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A", "__imp__SetEvent@4=__imp__SetEvent@4"]
+
+[units.exact-first-game-config-save]
+kind = "probe"
+source = "src/config/GameConfigSave.cpp"
+object = "build/match-units/ExactFirst_GameConfigSave.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete877-byte GameConfig save candidate using actual std::string/deque and real CFileWriter lifetime. Native GS/EH and both exact tail owners are independently pinned; source remains nonexact in checked-deque bound operand order. No constructor/global-lifetime or exact credit. docs/GAME_CONFIG_SAVE_SOURCE_2026_11_01.md."
+[[units.exact-first-game-config-save.functions]]
+address = "0x00427390"
+symbol_base = "?save_427390@GameConfigSaveView@th105@@QAEXXZ"
+rel32_targets = ["?get_current_replay_header_code@th105@@YAHXZ=0x0043AA40", "__invalid_parameter_noinfo=0x0068A143"]
+dir32_targets = ["__ehhandler$?save_427390@GameConfigSaveView@th105@@QAEXXZ=__ehhandler$?save_427390@GameConfigSaveView@th105@@QAEXXZ"]

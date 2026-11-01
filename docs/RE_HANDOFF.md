@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+GameConfig save427390 is now complete authored/source-present, still nonexact:
+877/877 with only operand-order bytes +579/+582 unequal. Actual std::string,
+deque and CFileWriter source retains natural GS/EH; const-method control is
+byte-neutral and closed. Exact close48/shutdown264 tail owners freshly pass.
+No prefix or remote-EH credit; global config ctor topology remains unresolved.
+Exact1585/449721 unchanged; source1785/authored1805/mapped1812/excluded1798/
+review424/units765. See GAME_CONFIG_SAVE_SOURCE_2026_11_01.md.
+
 Existing complete background runtime466F40 is now formally authored/source-
 present, not exact: full1074 target/308 instructions, unchanged1064 source+12.
 Fresh exact presentation105 owns46B1BC; all nine old same-TU accepted functions

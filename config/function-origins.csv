@@ -850,7 +850,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004272D0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004272F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00427320,authored_game,battle,authored,observed,canonical-exact-authored
-0x00427390,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00427390,authored_game,config,authored,observed,game-config-save-authored-106a
 0x00427700,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00427800,authored_game,config,authored,observed,canonical-exact-authored
 0x00427BC0,authored_game,ui,authored,observed,canonical-exact-authored

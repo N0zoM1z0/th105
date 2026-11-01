@@ -5095,3 +5095,20 @@ confidence = "observed"
 evidence = "Complete308-instruction/1074-byte background runtime policy, all reachable through twoRET0 exits. Fresh exact presentation105 owns its direct call. Existing complete typed source covers light clamp/weather, drift/interpolation, ordered list callbacks/retirement and its own runtime tick. Source1064 remains nonexact; no prefix credit or closed control retry. docs/BATTLE_BACKGROUND_RUNTIME_SOURCE_2026_11_01.md."
 required_body_hashes = [{ address = "0x00466F40", size = 1074, sha256 = "f9067cb5f6b20c5732e0bd18222d9c0211ec8a1fc41b61f484ba80f7e2c9fa6a" }]
 required_direct_edges = [{ caller = "0x0046B160", site = "0x0046B1BC", target = "0x00466F40", caller_status = "matching" }]
+
+[[rules]]
+id = "game-config-save-authored-106a"
+addresses = ["0x00427390"]
+expected_count = 1
+expected_bytes = 877
+expected_names = ["sub_427390"]
+origin = "authored_game"
+subsystem = "config"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete877-byte/334-instruction config.dat serializer with real CFileWriter lifetime and checked string/deque reads. Independently exact menu-close and scene-shutdown tails own the target. Whole source remains877 with two checked-deque sum operand-order bytes different; no prefix credit. docs/GAME_CONFIG_SAVE_SOURCE_2026_11_01.md."
+required_body_hashes = [{ address = "0x00427390", size = 877, sha256 = "ad633c071c15bf198ec6c453d794d3f513e30d8aa7ceae7d3d95d522e6ee0880" }]
+required_direct_edges = [
+ { caller = "0x0043CDD0", site = "0x0043CDFB", target = "0x00427390", kind = "jump", caller_status = "matching" },
+ { caller = "0x0043D670", site = "0x0043D773", target = "0x00427390", kind = "jump", caller_status = "matching" },
+]
