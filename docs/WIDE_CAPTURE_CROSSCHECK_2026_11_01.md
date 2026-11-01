@@ -44,8 +44,11 @@ The neighboring captures therefore supply no additional demonstrated instance
 of Tenshi542's binary32 truncation. Existing register/home/physical-tail and
 semantic uncertainties remain open. No scalar is narrowed to force a frame
 size, and no new runtime matrix is required for this negative width check.
-Alice's partial scaffold and Reimu's separate research-provider graph are not
-included in this claim. Next prioritize Alice's incomplete complete-root source.
+Alice and Reimu's separate research-provider graph were not included in the
+initial twelve-root claim. The initial description of Alice as only a partial
+scaffold was incorrect: the old giant-switch scaffold metadata coexists with
+the complete AliceFighterActionState.cpp candidate and its configured unit.
+The follow-up below uses that current source, not a redundant reconstruction.
 
 ## Boundary and provenance details
 
@@ -75,3 +78,36 @@ contracts. No process ran in parallel and no generated source image executed.
 All neighboring whole comparisons remain nonexact. Exact1582/449309 bytes,
 source1782, authored1802, mapped1809, excluded1791/review434 and units765 stay.
 Default CI235 and whitespace pass for this documentation checkpoint.
+
+
+## Alice correction and fresh wide-capture check
+
+The existing complete3024-line Alice candidate and
+exact-first-alice-fighter-update unit were checked before any source edits.
+Its earlier bounded controls remain closed as documented in
+ALICE_FIGHTER_UPDATE_2026_10_25.md. Factory-native IDA metadata, entry point,
+five raw-PE mapped samples and inventory/disassembly/decompiler/caller/callee
+preflight passed independently; the retained5211-line decompilation remains
+provisional semantic evidence, not code to copy or exactness proof.
+
+A fresh serial CPU0/nice10 compile reproduces complete44032-byte canonical
+SHA2564d312925be3f754e27ef0f963632f8034ca587c6b09be35dc7a7ff8aefd5bd1d.
+The strict44080-byte target comparison remains nonexact. The unchanged frame
+residual is1048/1040 bytes and first mismatch+8. No source, header, unit, ABI,
+profile or ledger is changed.
+
+Both graphs expose18 QWORD operands, nine wide stores, and79 distinct payload
+homes with no unknown payload pointers. Store ownership agrees for200,201,
+202,203,223,224,225,226 and310. The eight dash captures retain the horizontal
+base across both real RNG calls;310 retains updated vertical position across
+the real435D60 surface call. Native310 store4ECF56/compare4ECF5F and source
+4ECE59/4ECE62 both use QWORD at normalized home32. The eight dash captures use
+home24 in both graphs. There is no further missing-wide-capture correction
+supported by this check. Counts and stack-pointer closure alone do not prove
+all request extents, callback epochs or whole-root execution equivalence.
+
+Receipts are build/frontier-alice-action-state-20261101/alice/: formal.json,
+map.json, native/candidate-wide.json, payload and peer-facts reports,
+wide-capture-windows.asm and summary.json. The existing complete candidate
+remains unselected and nonexact. The stale scaffold-only planning statement
+is corrected here and in RE_HANDOFF.md, without promoting historical metadata.

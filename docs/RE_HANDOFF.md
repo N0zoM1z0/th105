@@ -4,8 +4,11 @@ After the Tenshi fix, twelve other complete public Fighter candidates received
 fresh bounded QWORD-capture checks. No additional missing-wide-capture truncation
 was established; Aya606 and Suika605/730 deficits are physical sharing residuals,
 not permission to force stores. All roots remain nonexact and counts unchanged.
-See WIDE_CAPTURE_CROSSCHECK_2026_11_01.md. Next bounded priority: complete Alice
-4E9F50's currently partial scaffold, not more closed register-spelling controls.
+See WIDE_CAPTURE_CROSSCHECK_2026_11_01.md. The initially stated Alice scaffold-only
+priority was stale: AliceFighterActionState.cpp is already a complete unselected
+candidate. Fresh Alice checks now recover all nine native wide captures and79
+payload homes, with no unknown payloads. Full44032/44080 remains nonexact+8;
+no source or exact credit and no closed spelling controls are reopened.
 
 
 Tenshi63D3E0 scratch tracing found two genuine missing QWORD captures:505 peerY
