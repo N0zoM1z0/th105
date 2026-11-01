@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+CRT sqrt shared body68A39D/157 now whole canonical/unique inside the actual
+complete sqrt.obj owner186, including CI/ordinary entry prefixes20/9. Six
+complete common helper/exit regions192 bytes and whole data8/44/68 plus true
+BSS flag4 close the protocol. Two actual public roots reach all111 instructions;
+conditional exits enter proved helper regions, not generic branch waivers.
+Twelve tests/498 every-initialized-byte mutations. Excluded2037/review335,
+units789; authored/source totals unchanged. See VC8_SQRT_SHARED_OWNER_2026_11_01.md.
+It is a shared physical runtime tail, not an invented standalone public ABI.
+
+
 Original std::exception deleting destructor689FFD/28 now whole canonical/unique
 from actual stdexcpt.obj and fresh original7-TU graph. Full normal22/what13,
 18-byte literal, RTTI and two actual vtable slots pass; weak G/E fallback is

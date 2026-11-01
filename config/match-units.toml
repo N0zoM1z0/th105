@@ -29220,3 +29220,20 @@ dir32_targets = ["??_7exception@std@@6B@=??_7exception@std@@6B@"]
 address = "0x00689FF0"
 symbol_base = "?what@exception@std@@UBEPBDXZ"
 dir32_targets = ["??_C@_0BC@EOODALEL@Unknown?5exception?$AA@=??_C@_0BC@EOODALEL@Unknown?5exception?$AA@"]
+
+[units.vc8-original-sqrt-shared-body]
+kind = "msvc_prebuilt"
+source = "scripts/extract-msvc-library-object.py"
+object = "build/match-units/Vc8OriginalSqrt.obj"
+profile = "vc8-sp1-libcmt"
+enable_gs = false
+toolchain_library = "libcmt"
+toolchain_object = "sqrt.obj"
+toolchain_archive_sha256 = "3bc6c5b90f8507964839fd0264d8565c3b766d01f9efcad336532a11e8f06ac3"
+notes = "Original sqrt.obj shared start tail157, not a standalone public ABI. Whole186-byte owner includes both actual CI/ordinary entry prefixes, with complete owned helper/exit regions and data proof. No prefix/authored credit."
+
+[[units.vc8-original-sqrt-shared-body.functions]]
+address = "0x0068A39D"
+symbol_base = "start"
+rel32_targets = ["__load_CW=0x00690DE5", "__fast_exit=0x00690E6E", "__math_exit=0x00690E7B", "__convertTOStoQNaN=0x00690DFC", "__startOneArgErrorHandling=0x00690D87"]
+dir32_targets = ["___fastflag=vc8_sqrt_fastflag", "_NAME_=vc8_sqrt_operation_name", "__indefinite=vc8_sqrt_indefinite"]

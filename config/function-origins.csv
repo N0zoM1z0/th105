@@ -3094,7 +3094,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0068A30C,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068A380,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068A394,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0068A39D,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068A39D,vc8_runtime,runtime,exclude,observed,vc8-original-sqrt-shared-owner-106a
 0x0068A440,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068A4C0,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068A56D,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

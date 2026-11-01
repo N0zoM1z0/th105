@@ -3810,3 +3810,6 @@ _INVSQ_LOOKUP,0x006F77D8,f304b53f,0,Original SDK inverse-square-root table exact
 xiph_invsq_lookup_next,0x006F77D8,6a41b23f,4,Original SDK inverse-square-root table exact resolved element; complete1176-byte data section proved separately. docs/XIPH_INVSQ_LOOKUP_2026_11_01.md.,literal
 ??_7exception@std@@6B@,0x006CD24C,fd9f6800,0,Actual original stdexcpt.obj full RTTI and resolved vtable methods; docs/VC8_EXCEPTION_DELETE_2026_11_01.md.,address
 ??_C@_0BC@EOODALEL@Unknown?5exception?$AA@,0x006CD254,556e6b6e6f776e20657863657074696f6e00,0,"Whole original Unknown exception literal including NUL, source/native exact; docs/VC8_EXCEPTION_DELETE_2026_11_01.md.",literal
+vc8_sqrt_fastflag,0x006FD3A4,00000000,0,Original CRT sqrt complete owner/exit protocol and actual source data/BSS proven; docs/VC8_SQRT_SHARED_OWNER_2026_11_01.md.,address
+vc8_sqrt_operation_name,0x006F7AA0,7371727400000000,0,Original CRT sqrt complete owner/exit protocol and actual source data/BSS proven; docs/VC8_SQRT_SHARED_OWNER_2026_11_01.md.,literal
+vc8_sqrt_indefinite,0x006F8080,00000000000000c0ffff,0,Original CRT sqrt complete owner/exit protocol and actual source data/BSS proven; docs/VC8_SQRT_SHARED_OWNER_2026_11_01.md.,address

@@ -5751,3 +5751,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual original libcmt:stdexcpt.obj deleting28 plus complete normal22, what13, RTTI and18-byte literal. Fresh unchanged original graph resolves weak vector/scalar symbols and both actual vtable slots; whole operator-delete5 tail checked. One physical body counted once, no generic threshold change or provider/metadata/authored credit. docs/VC8_EXCEPTION_DELETE_2026_11_01.md."
+
+[[rules]]
+id = "vc8-original-sqrt-shared-owner-106a"
+vc8_sqrt_shared_anchor_file = "config/vc8-sqrt-shared-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 157
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Complete original sqrt.obj186-byte owner proves its157-byte shared start body and both CI/ordinary entry prefixes. Entire six helper/exit regions192 bytes, actual data8/44/68 and BSS flag4, every relocation and multi-entry CFG111 instructions close without unreachable-byte or conditional-exit waiver. Not a standalone public ABI, no prefix/helper/data/authored credit. docs/VC8_SQRT_SHARED_OWNER_2026_11_01.md."
