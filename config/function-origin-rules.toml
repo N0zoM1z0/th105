@@ -5630,3 +5630,14 @@ subsystem = "boost_regex"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original checked-string unwind_recursion_stopper19 and dot-repeat dispatch5: full canonical bodies and unique inventory hits. Actual source/native dispatch roles, full unwind dispatcher58 and direct target397, independently exact unwind witnesses46/34, all named call identities and complete source table layout checked. Generic thresholds unchanged; no whole-table/other-method or authored credit. docs/BOOST_MATCHER_STACK_2026_11_01.md."
+
+[[rules]]
+id = "boost-original-default-errors-106a"
+boost_default_error_anchor_file = "config/boost-default-error-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 18
+origin = "third_party"
+subsystem = "boost_regex"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Original regex_traits_defaults.cpp get_default_error_string18: full canonical body, all source DIR32 fields, closed CFG and inventory uniqueness. Complete96-byte table/24 source pointers plus all22 unique whole strings, null terminators and pointer aliases verified in readonly native storage. Genuine original fastcall declaration; no replacement implementation, masks, generic threshold change or authored/data-byte credit. docs/BOOST_DEFAULT_ERRORS_2026_11_01.md."

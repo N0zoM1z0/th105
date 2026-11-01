@@ -1,0 +1,9 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "boost-regex-source-default-errors"
+
+[[anchors]]
+address = "0x006B4800"
+size = 18
+symbol = "?get_default_error_string@re_detail@boost@@YIPBDW4error_type@regex_constants@2@@Z"
+sha256 = "6b9a7fb0e73621a6770af1d0e78d644f70768b0a347ffaac7f2121b75d4825ad"

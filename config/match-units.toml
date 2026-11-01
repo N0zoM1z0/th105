@@ -29035,3 +29035,19 @@ symbol_base = "?unwind_recursion_stopper@?$perl_matcher@V?$_String_const_iterato
 address = "0x006B25B0"
 symbol_base = "?match_dot_repeat_dispatch@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ"
 rel32_targets = ["?match_dot_repeat_fast@?$perl_matcher@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@U?$sub_match@V?$_String_const_iterator@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@boost@@@2@U?$regex_traits@DV?$w32_regex_traits@D@boost@@@boost@@@re_detail@boost@@AAE_NXZ=0x006B1930"]
+
+[units.boost-regex-source-default-errors]
+kind = "probe"
+source = "scripts/probes/BoostRegexSourceDefaults.cpp"
+object = "build/match-units/BoostRegexSourceDefaults.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+boost_regex_headers = true
+boost_regex_source_tu = "regex_traits_defaults.cpp"
+include_dirs = [".tools/upstream/boost-1.40.0-vc8", ".tools/upstream/boost-regex-1.40.0-extra/include"]
+notes = "Unchanged original regex_traits_defaults.cpp. Complete error getter18 with full24-pointer table and whole strings; no authored or data-byte credit."
+
+[[units.boost-regex-source-default-errors.functions]]
+address = "0x006B4800"
+symbol_base = "?get_default_error_string@re_detail@boost@@YIPBDW4error_type@regex_constants@2@@Z"
+dir32_targets = ["??_C@_0O@NIPGCINC@Unknown?5error?$AA@=??_C@_0O@NIPGCINC@Unknown?5error?$AA@", "?s_default_error_messages@?1??get_default_error_string@re_detail@boost@@YIPBDW4error_type@regex_constants@3@@Z@4QBQBDB=?s_default_error_messages@?1??get_default_error_string@re_detail@boost@@YIPBDW4error_type@regex_constants@3@@Z@4QBQBDB"]

@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original regex_traits_defaults.cpp error getter6B4800/18 now whole canonical/
+unique with its actual fastcall declaration. Full96-byte/24-pointer table and
+all22 unique whole strings/NUL terminators/aliases close both DIR32 roles.
+No source replacement or generic threshold change. Seven tests/85 actual
+mutations; original regex.cpp8 and release matcher14 regressions pass.
+Excluded2024/review348, units780; authored/source/mapped totals unchanged.
+Only18 third-party code bytes count, not metadata. See BOOST_DEFAULT_ERRORS_2026_11_01.md.
+
+
 Original matcher recursion stopper6A2830/19 and dot-repeat dispatch6B25B0/5
 now whole canonical/unique. Actual unwind table72 includes16 source members
 and2 null slots; full dispatcher58 and independent46/34 witnesses close its

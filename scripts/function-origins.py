@@ -1199,6 +1199,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("boost_public_regex_exception_anchor_file")
         or rule.get("boost_matcher_leaf_anchor_file")
         or rule.get("boost_matcher_stack_anchor_file")
+        or rule.get("boost_default_error_anchor_file")
         or rule.get("msvc_runtime_anchor_file")
         or rule.get("pointer_anchor_file")
     )
@@ -2473,6 +2474,10 @@ def validate_rule_evidence(
     if rule.get("boost_public_exception_copy_anchor_file"):
         from boost_public_exception_copies import validate as validate_public_exception_copies
         errors.extend(validate_public_exception_copies(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("boost_default_error_anchor_file"):
+        from boost_default_error_origins import validate as validate_default_error
+        errors.extend(validate_default_error(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("boost_matcher_stack_anchor_file"):
         from boost_matcher_stack_origins import validate as validate_matcher_stack
