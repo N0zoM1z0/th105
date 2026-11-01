@@ -3228,8 +3228,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0068ECD9,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068EDFA,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068EF7E,vc8_runtime,runtime,exclude,observed,vc8-short-runtime-global-setters-106a
-0x0068EF88,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0068EF93,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068EF88,vc8_runtime,runtime,exclude,observed,vc8-linked-bad-exception-106a
+0x0068EF93,vc8_runtime,runtime,exclude,observed,vc8-linked-bad-exception-106a
 0x0068EFB5,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068F011,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068F055,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
@@ -3244,7 +3244,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0068F662,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068F6CE,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068F7C0,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
-0x0068FB16,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0068FB16,vc8_runtime,runtime,exclude,observed,vc8-linked-bad-exception-106a
 0x0068FB2E,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068FC12,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a
 0x0068FC4B,vc8_runtime,runtime,exclude,observed,vc8-pinned-archive-symbols-106a

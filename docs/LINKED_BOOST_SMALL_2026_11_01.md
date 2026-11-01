@@ -61,3 +61,11 @@ error-shaped clone46 leads at6A95D0/6B5060 are actually invalid_argument/
 logic_error specializations and remain unaccepted. The truthful runtime_error
 6A8370 and regex_error6B5350 leads need their own whole base/callee/secondary-RTTI
 proofs. Payload-dependent tree Tidy candidates remain unaccepted.
+
+## Later typed CRT bad_exception proof
+
+The initially rejected wrong-class68EF88 lead is now resolved through the
+actual original libcmt:frame.obj bad_exception, not by relabeling bad_alloc.
+Whole11/34/24 methods and complete primary/base RTTI graph pass; see
+LINKED_BAD_EXCEPTION_2026_11_01.md. This is separate CRT ownership, no Boost
+root/callee or authored credit.

@@ -38,6 +38,7 @@ EXACT_TEST_MODULES = (
     "test_linked_endpoint_allocator_origins",
     "test_linked_peer_allocator_origins",
     "test_linked_network_tree_erase_origins",
+    "test_linked_bad_exception_origins",
     "test_linked_string_range_origins",
     "test_scalar_wrapper_origins",
     "test_implicit_lifetime_origins",

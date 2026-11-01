@@ -5575,3 +5575,14 @@ subsystem = "network"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Whole original peer multimap single-position erase714 from the unchanged actual UDP lifetime/static-CIL unit after fresh exact145/98 owners. Complete closed CFG, eleven named calls, all five HIGHLOW roles, full literal, out_of_range three-type throw metadata/RTTI, complete root EH27/8/36/8, logic constructors107/113 with EH, dtor/copy/string cleanup and actual rotation/iterator children replay. Full inventory unique, no masks or boundary waiver. Range199, owner and authored credit remain unaccepted. docs/LINKED_NETWORK_TREE_ERASE_2026_11_01.md."
+
+[[rules]]
+id = "vc8-linked-bad-exception-106a"
+linked_bad_exception_anchor_file = "config/linked-bad-exception-origin-anchors.toml"
+expected_count = 3
+expected_bytes = 69
+origin = "vc8_runtime"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual original libcmt:frame.obj bad_exception destructor11, scalar/vector deleting destructor34 folded once, and copy24. Whole canonical/inventory-unique with named original exception/delete callees and every HIGHLOW field. Complete primary vtable/COL/TypeDescriptors/base descriptors/hierarchy arrays including checked cycles establish bad_exception, not bad_alloc. Unchanged genuine original library graph, no helper export, mask or authored credit. docs/LINKED_BAD_EXCEPTION_2026_11_01.md."

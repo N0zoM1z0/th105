@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Actual original CRT bad_exception lifetimes68EF88/11,68EF93/34,68FB16/24 now
+whole canonical/unique; scalar/vector aliases counted once. Correct vtable
+6CD9B8 plus complete primary COL/TypeDescriptors/base descriptors/hierarchy
+arrays/cycles establish bad_exception, not old bad_alloc lookalike. Named CRT
+callees and every relocation checked. No new source/context/export or generic
+threshold change. Fourteen tests/20 real method/RTTI mutation controls.
+Excluded2015/review357; all authored/source/unit totals unchanged. See
+LINKED_BAD_EXCEPTION_2026_11_01.md.
+
+
 Actual peer-tree single erase414110/714 now whole canonical/unique in unchanged
 existing UDP lifetime/static context after fresh145/98 owner proofs. Complete
 normal/exception CFG, all11 REL32/5 HIGHLOW, root EH27/8/36/8, three-type

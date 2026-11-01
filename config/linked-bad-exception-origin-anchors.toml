@@ -1,0 +1,20 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+[[anchors]]
+address = "0x0068EF88"
+size = 11
+symbol = "??1bad_exception@std@@UAE@XZ"
+sha256 = "665c4fab9ef4bb91707e5fb30e8c2a483d626c41f4138949742c83deaef70a8a"
+
+[[anchors]]
+address = "0x0068EF93"
+size = 34
+symbol = "??_Gbad_exception@std@@UAEPAXI@Z"
+sha256 = "6886db75333b418aa4eddf8a0170a333cc50ddd19848d2bf6ea572b180fb5d88"
+
+[[anchors]]
+address = "0x0068FB16"
+size = 24
+symbol = "??0bad_exception@std@@QAE@ABV01@@Z"
+sha256 = "ad75ad13497c2ac597341c4922577604b4f3570243b219c5f87d77af823eab19"
