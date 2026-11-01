@@ -1,0 +1,42 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+
+[[sources]]
+path = "src/battle/FighterSequenceRotate.cpp"
+sha256 = "1ee4517114963ae1e3f9d7eb33100fad7e8bd1e5feeed14a878f66c40ddc77c2"
+
+[[sources]]
+path = "src/battle/InfoManagerBaseLifetime.cpp"
+sha256 = "097bb4aa8a02f52edc98e0434b8eb5293861bd0af2e1111aaf46df41c41d5bd1"
+
+[[sources]]
+path = "src/ui/CNumberLifetime.hpp"
+sha256 = "75e77c295d7067c257287e3dbb9f9169881d687c5d5fd3a91a0874a3a5b163a6"
+
+[[sources]]
+path = "src/ui/DesignBaseLifetime.hpp"
+sha256 = "907aeabfbb76a32dae23f3a20ee940fba5fdcf21f3023413720ae47ecfe69a71"
+
+[[sources]]
+path = "src/battle/EffectSprite.hpp"
+sha256 = "9247cba9ffd8532e41d27c4686fa36ead5790ad8035d7d7b07bcf627fd044f00"
+
+[[anchors]]
+address = "0x0045CF50"
+size = 8
+sha256 = "51d7355ce2c8a297ef113328b2d6405d45a652055a0453c724c6d930cf512109"
+unit = "exact-first-fighter-sequence-rotate"
+symbol_base = "??1SequenceRotateCard@th105@@QAE@XZ"
+emitted_symbol = "??1SequenceRotateCard@th105@@QAE@XZ"
+kind = "destructor"
+
+[[anchors]]
+address = "0x0046E950"
+size = 15
+sha256 = "13c246d3bcc6065db09caa3462cda670cb28700f35ea08b13ad1be865e9506e7"
+unit = "cross-v106a-info-manager-base-lifetime"
+symbol_base = "??1InfoRecord154Lifecycle@th105@@QAE@XZ"
+emitted_symbol = "??1InfoRecord154Lifecycle@th105@@QAE@XZ"
+kind = "destructor"
+

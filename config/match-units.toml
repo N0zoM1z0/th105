@@ -29330,3 +29330,13 @@ symbol_base = "??0CSpriteEx@@QAE@XZ"
 [[units.exact-first-select-constructor.functions]]
 address = "0x00421D30"
 symbol_base = "??1CSpriteEx@@UAE@XZ"
+
+[[units.exact-first-fighter-sequence-rotate.functions]]
+address = "0x0045CF50"
+symbol_base = "??1SequenceRotateCard@th105@@QAE@XZ"
+dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
+
+[[units.cross-v106a-info-manager-base-lifetime.functions]]
+address = "0x0046E950"
+symbol_base = "??1InfoRecord154Lifecycle@th105@@QAE@XZ"
+dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]

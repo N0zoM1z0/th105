@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Actual implicit record cleanups45CF50/8 and46E950/15 now use the existing
+strict implicit-lifetime source/owner gate. No reconstruction source or
+validator changes. Both whole bodies are inventory-unique; all eight formal
+bodies in the two real owner units freshly compare exact, including prior
+rotation/copy and info owner/record lifetimes. Only23 compiler bytes added,
+no parent/support/authored recount. Excluded2046/review326, units794;
+authored exact/source unchanged. See IMPLICIT_RECORD_CLEANUPS_2026_11_01.md.
+
 The actual CSpriteEx array cleanup421D30/7 is now separately proved by the
 unchanged29-byte CSelect caller and paired unique constructor41F6E0, with full
 RTTI. Its bytes also match40AD50; only the actual callback target is selected,

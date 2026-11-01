@@ -5828,3 +5828,14 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Whole CSpriteEx cleanup7 selected by the actual original array caller423348 and paired constructor41F6E0, with complete class RTTI and source-member provenance. Two physical inventory bodies have identical bytes; only the actual named callback target421D30 is selected. No exclusive original symbol, second-body, parent or authored credit. docs/SPRITE_ARRAY_CALLBACK_2026_11_01.md."
+
+[[rules]]
+id = "implicit-record-cleanups-106a"
+implicit_lifetime_anchor_file = "config/vc8-record-cleanup-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 23
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Two actual implicit record destructors: SequenceRotateCard45CF50/8 and InfoRecord154Lifecycle46E950/15. Reviewed records declare no destructor; exact original parent/EH and paired array ownership establish their roles. Whole emitted bodies, all IColor relocations and native inventory identities verified; parent/copy/constructor/metadata not recounted. docs/IMPLICIT_RECORD_CLEANUPS_2026_11_01.md."
