@@ -128,7 +128,9 @@ def verified_instance(root: Path) -> Path:
 def verified_search_instantiation(root: Path) -> Path:
     path = (root / SEARCH_PROBE).resolve()
     path.relative_to(root.resolve())
-    if hashlib.sha256(path.read_bytes()).hexdigest() != SEARCH_PROBE_SHA256:
+    # Repository C++ checkout uses CRLF; pin Git-normalized source contents.
+    contents = path.read_bytes().replace(b'\r\n', b'\n')
+    if hashlib.sha256(contents).hexdigest() != SEARCH_PROBE_SHA256:
         raise ValueError('Original public search instantiation contains changed source or flags')
     return path
 

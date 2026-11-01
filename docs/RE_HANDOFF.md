@@ -7,7 +7,8 @@ main EH11+33+8+36 and original find forwarding5 fully replayed as support only.
 Actual Connect9 comparisons/full856 payload pass. Existing application-TU238
 and genuine8-TU public-CIL203 remain nonexact, no forcing. Generic.70/24/no-tail
 origin gate unchanged. Excluded2005/review367/units777; authored/source/mapped
-totals unchanged. Four new source-integrity tests.
+totals unchanged. Five source-integrity tests include LF/CRLF Git checkout
+normalization; immutable vendor source hashes remain raw.
 See BOOST_PUBLIC_SEARCH_2026_11_01.md.
 
 

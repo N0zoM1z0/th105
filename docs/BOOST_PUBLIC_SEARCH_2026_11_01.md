@@ -10,7 +10,7 @@ The new probe contains only the normal release macro, original public includes,
 two type aliases and an explicit template instantiation. There is no replacement
 implementation, synthetic caller, private export, noinline/register annotation,
 frame scratch or copied game code. The original184-file header closure is
-unchanged. The probe's exact bytes, including its release configuration, are
+unchanged. The probe's Git-normalized contents, including its release configuration, are
 pinned by the original-source input verifier; changed source/flags or skipping
 header verification fails before compilation.
 
@@ -78,7 +78,8 @@ One reusable vendor comparison unit is added, for777 units total.
 - scripts/repo-python scripts/build.py --unit exact-first-connect-main-state --compare --json
   All nine existing comparisons pass, plus independent whole856-byte aligned
   application payload replay. No authored source or shared header changed.
-- Four source-integrity tests protect original instantiation/configuration.
+- Five source-integrity tests protect original instantiation/configuration,
+  including identical LF/CRLF checkout handling. Vendor source hashes remain raw.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
 Private receipts: build/frontier-regex-search-link-20261101 contains

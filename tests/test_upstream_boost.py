@@ -177,8 +177,6 @@ class UpstreamBoostTests(unittest.TestCase):
             self.assertNotEqual(before, after)
 
 
-if __name__ == '__main__':
-    unittest.main()
 
 class PublicSearchInstantiationTests(unittest.TestCase):
     def test_exact_original_public_instantiation_is_pinned(self):
@@ -198,3 +196,15 @@ class PublicSearchInstantiationTests(unittest.TestCase):
             root=Path(tmp);p=root/boost.SEARCH_PROBE;p.parent.mkdir(parents=True)
             p.write_bytes((boost.ROOT/boost.SEARCH_PROBE).read_bytes().replace(b'#define NDEBUG',b'// removed release macro'))
             with self.assertRaises(ValueError):boost.verified_search_instantiation(root)
+
+
+    def test_repository_crlf_checkout_preserves_source_pin(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);p=root/boost.SEARCH_PROBE;p.parent.mkdir(parents=True)
+            raw=(boost.ROOT/boost.SEARCH_PROBE).read_bytes().replace(b'\r\n',b'\n')
+            for content in (raw,raw.replace(b'\n',b'\r\n')):
+                p.write_bytes(content)
+                self.assertEqual(boost.verified_search_instantiation(root),p.resolve())
+
+if __name__ == '__main__':
+    unittest.main()
