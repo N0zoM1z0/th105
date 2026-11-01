@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original exception members now typed/whole-canonical: logic_error what4016E0/14,
+runtime_error what6A4B70/14, out_of_range copy401780/25 and length_error copy402570/25.
+The two what byte strings are identical: exact two-hit inventory is explicit,
+with actual named RTTI/vtable slot+4 disambiguation, not byte-unique claims.
+Derived copies are canonical-unique; both complete base logic_error/EH graphs
+freshly pass first. Excluded1998/review374, other totals unchanged. Nine new
+synthetic tests. See LINKED_EXCEPTION_MEMBERS_2026_11_01.md.
+
+
 Marisa410/414/562/563/733 virtual-count residuals are now qualified as physical
 next-sequence-vslot14 tail sharing, not missing vslot8/C operations. Both562/563
 retain the real post-next-sequence sequence4 reread. Fresh whole payload stays
