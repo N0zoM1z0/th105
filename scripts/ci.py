@@ -66,6 +66,7 @@ EXACT_TEST_MODULES = (
     "test_select_character_audit",
     "test_select_eh_aliases",
     "test_score_observations_audit",
+    "test_ctile_real_owner",
     "test_sprite_callback_origins",
     "test_input_base_cleanup_origins",
     "test_replay_member_cleanup_origins",

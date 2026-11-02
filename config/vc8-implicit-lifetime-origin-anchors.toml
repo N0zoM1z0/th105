@@ -3,8 +3,21 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
 
 [[sources]]
-path = "src/battle/CTileCopyLifetime.cpp"
-sha256 = "9723a632ee29fd2c61b9316952a32bdc0d6a1decf61e534e3dc7972d08f1e608"
+path = "src/ui/FileListFinalize.cpp"
+sha256 = "a9cb65de4fdfa9418b96b8092c74ea0f1115deca2db96ab9ee0a238f695346ac"
+
+[[sources]]
+path = "src/ui/Tile.hpp"
+sha256 = "f90f3224d4afdb483c1dbf92b24d334d2cba9f75f9694314e19d5c2b6f3f984f"
+
+[[sources]]
+path = "src/battle/EffectSprite.hpp"
+sha256 = "bb60054a7e07a5dd35865eb959e7e847f51f105108d4169b58445095f3fb28f2"
+
+[[sources]]
+path = "src/engine/ColorInterface.hpp"
+sha256 = "71db76e78b423b322a52fe5d0b64559238fdb1fc33170b1f2954d7efd051b093"
+
 
 [[sources]]
 path = "src/characters/CharacterObjectManagerCtors.cpp"
@@ -171,6 +184,6 @@ address = "0x004396A0"
 size = 164
 sha256 = "6268fa650b0889102e2b98655a7ab27b9f228bee117669a2e1e8e61123cd1c66"
 unit = "gpt-web-ctile-copy-lifetime"
-symbol_base = "??0CTileCopyProbe@th105@@QAE@ABV01@@Z"
-emitted_symbol = "??0CTileCopyProbe@th105@@QAE@ABV01@@Z"
+symbol_base = "??0CTile@@QAE@ABV0@@Z"
+emitted_symbol = "??0CTile@@QAE@ABV0@@Z"
 kind = "copy_constructor"

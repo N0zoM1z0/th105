@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Actual global CTile now owns FileList page copy, texture wrapper and renderer.
+Native RTTI247 and four-slot table16 agree; direct CSpriteBase/IColor ancestry,
+not CSprite. Wrapper37, implicit copy164 and Growmap341 freshly exact; scalar31
+and actual copy call43A914 verified. Old copy-only CTileCopyLifetime removed;
+existing copy unit uses real FileListFinalize/GS profile. Generic implicit17
+roots/1434 and Growmap341 origin gates freshly pass with actual-owner symbols.
+Strict render756 hash unchanged; page1155/native1106 and renderer remain
+nonexact. No fake frame or new exact/source/census credit; units812. Other
+CNumber/UiTile/FileList tile views remain separate. See CTILE_REAL_OWNER_2026_11_02.md.
+
 ScoreData42D010 existing source is correctly signed MAXIMUM, not minimum:
 native CMP register,memory/JLE and source CMP memory,register/JGE are
 equivalent. Temporary inverted comparison/field names fully restored; no

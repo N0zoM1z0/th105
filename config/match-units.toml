@@ -15845,14 +15845,13 @@ source = "src/ui/UiTileTexture.cpp"
 object = "build/match-units/GptWeb_UiTileTexture.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current UiTileA4 five-argument texture wrapper. Fourteen exact or target-reviewed callers establish the receiver and parameters; it naturally forwards two zero options to the current seven-argument body."
+notes = "Actual CTile five-argument member forwards two zero pivots to the independently exact signed seven-argument body; whole37 remains exact."
 
 [[units.gpt-web-ui-tile-texture.functions]]
 address = "0x004098B0"
-symbol_base = "?set_texture@UiTileA4@th105@@QAEXIHHII@Z"
-rel32_targets = [
-  "?set_texture_options@UiTileTextureRuntime@th105@@QAEXIHHIIHH@Z=0x004098E0",
-]
+symbol_base = "?set_texture@CTile@@QAEXIHHHH@Z"
+rel32_targets = ["?set_texture_options@CTile@@QAEXIHHHHHH@Z=0x004098E0"]
+
 
 [units.gpt-web-select-scenario-ctor]
 kind = "probe"
@@ -16492,19 +16491,16 @@ rel32_targets = ["?remove_peer@NetworkWinsockShutdownView@th105@@QAEXI@Z=0x00413
 
 [units.gpt-web-ctile-copy-lifetime]
 kind = "probe"
-source = "src/battle/CTileCopyLifetime.cpp"
+source = "src/ui/FileListFinalize.cpp"
 object = "build/match-units/GptWeb_CTileCopyLifetime.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "Current CTile implicit copy constructor. Constructor-facing polymorphic CSpriteBase owns value +0x04, four 0x1C vertices and texture dimensions through +0x7C; CTile adds nine named float extension fields +0x80..+0xA0. Ordinary implicit copy construction reproduces target base rep-movsd plus nine x87 scalar copies."
+enable_gs = true
+notes = "Actual implicit CTile copy emitted by real FileListFinalize page construction, not an artificial copy-only probe. Whole164 compiler-only bytes; four-slot RTTI graph independently verified."
 
 [[units.gpt-web-ctile-copy-lifetime.functions]]
 address = "0x004396A0"
-symbol_base = "??0CTileCopyProbe@th105@@QAE@ABV01@@Z"
-dir32_targets = [
-  "??_7TileSpriteBaseCopy@th105@@6B@=??_7CSpriteBase@@6B@",
-  "??_7CTileCopyProbe@th105@@6B@=??_7CTile@@6B@",
-]
+symbol_base = "??0CTile@@QAE@ABV0@@Z"
+
 
 [units.gpt-web-ui-sprite-lifetime]
 kind = "probe"
@@ -28778,12 +28774,18 @@ source = "src/ui/FileListFinalize.cpp"
 object = "build/match-units/ExactFirst_FileListFinalize.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete native1106-byte CFileList page pipeline. Correct Color4/CSpriteBase-owned texture makes implicit CTile copy164 canonical; whole root1155 remains nonexact on frame/iterator/EH lowering. No authored or partial exact credit. docs/FILE_LIST_FINALIZE_SOURCE_2026_11_01.md."
+notes = "Actual global CTile member/copy ownership; complete page1155/native1106 remains nonexact; real deque growth341 and implicit copy164 remain canonical."
+
 [[units.exact-first-file-list-finalize.functions]]
 address = "0x0043A590"
 symbol_base = "?finalize@CFileList@th105@@UAEXXZ"
-rel32_targets = ["??0TextFontOwner194@th105@@QAE@XZ=0x00411430", "_strcpy_s=0x0068AD95", "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0", "__invalid_parameter_noinfo=0x0068A143", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90", "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ=0x00420AF0", "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50", "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00", "?push_back_value@FileListUnsignedDequePushView@th105@@QAEXABI@Z=0x00417240", "?set_texture@FileListRenderTile@th105@@QAEXIHHII@Z=0x004098B0", "?_Growmap@?$deque@VFileListRenderTile@th105@@V?$allocator@VFileListRenderTile@th105@@@std@@@std@@IAEXI@Z=0x00439D70", "??2@YAPAXI@Z=0x00689DCB", "??0FileListRenderTile@th105@@QAE@ABV01@@Z=0x004396A0", "?assign_bytes@FileListStringAssignBytesView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0", "??3@YAXPAX@Z=0x006898EA", "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0", "@__security_check_cookie@4=0x00689D25"]
-dir32_targets = ["??_7FileListRenderTile@th105@@6B@=??_7CTile@@6B@"]
+rel32_targets = ["??0TextFontOwner194@th105@@QAE@XZ=0x00411430", "_strcpy_s=0x0068AD95", "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0", "__invalid_parameter_noinfo=0x0068A143", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90", "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ=0x00420AF0", "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50", "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00", "?push_back_value@FileListUnsignedDequePushView@th105@@QAEXABI@Z=0x00417240", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?_Growmap@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXI@Z=0x00439D70", "??2@YAPAXI@Z=0x00689DCB", "??0CTile@@QAE@ABV0@@Z=0x004396A0", "?assign_bytes@FileListStringAssignBytesView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0", "??3@YAXPAX@Z=0x006898EA", "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0", "@__security_check_cookie@4=0x00689D25"]
+
+[[units.exact-first-file-list-finalize.functions]]
+address = "0x00439D70"
+symbol_base = "?_Growmap@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXI@Z"
+rel32_targets = ["?_Xlen@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@KAXXZ=0x00449940", "??$_Allocate@PAVCTile@@@std@@YAPAPAVCTile@@IPAPAV1@@Z=0x00439580", "_memmove_s=0x00689EB0", "??3@YAXPAX@Z=0x006898EA"]
+
 
 [units.exact-first-network-event-defaults]
 kind = "probe"
@@ -28814,10 +28816,6 @@ address = "0x004398B0"
 symbol_base = "?go_parent_directory@CFileList@th105@@QAEEXZ"
 rel32_targets = ["?compare@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEHIIPBDI@Z=0x00405C00", "?find_last_of@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIPBDII@Z=0x004395F0", "?erase@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@II@Z=0x00402290"]
 
-[[units.exact-first-file-list-finalize.functions]]
-address = "0x00439D70"
-symbol_base = "?_Growmap@?$deque@VFileListRenderTile@th105@@V?$allocator@VFileListRenderTile@th105@@@std@@@std@@IAEXI@Z"
-rel32_targets = ["?_Xlen@?$deque@VFileListRenderTile@th105@@V?$allocator@VFileListRenderTile@th105@@@std@@@std@@KAXXZ=0x00449940", "??$_Allocate@PAVFileListRenderTile@th105@@@std@@YAPAPAVFileListRenderTile@th105@@IPAPAV12@@Z=0x00439580", "_memmove_s=0x00689EB0", "??3@YAXPAX@Z=0x006898EA"]
 
 [units.boost-regex-source-core]
 kind = "probe"
@@ -29653,3 +29651,17 @@ notes = "Complete619-byte character-selection policy, ordinary partial-owner sou
 address = "0x0041FC90"
 symbol_base = "?update_characters_41fc90@SelectCharacterUpdateView@th105@@QAEHXZ"
 rel32_targets = ["?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "?refresh_character_41fb80@SelectCharacterUpdateView@th105@@QAEXHH@Z=0x0041FB80", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?prepare_scenario_match@th105@@YAXH@Z=0x0043AE90", "?fade_bgm@th105@@YAXHH@Z=0x0043B140", "?selector_random_roll@th105@@YAHH@Z=0x004067D0", "?prepare_select_match_43ac60@th105@@YAIH@Z=0x0043AC60"]
+
+[units.exact-first-ctile-render]
+kind = "probe"
+source = "src/ui/UiTileRender.cpp"
+object = "build/match-units/ExactFirst_CTileRender.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Actual CTile render member with existing complete strict-FP source. Whole756 remains nonexact (native12/source8 frame and COM scheduling); no fake padding or class-spelling matching claim."
+
+[[units.exact-first-ctile-render.functions]]
+address = "0x004099F0"
+symbol_base = "?render@CTile@@QAEXMMHH@Z"
+rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360"]
+dir32_targets = ["?g_ui_tile_texture_manager@th105@@3UCHandleManager4@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_ui_tile_texture_device@th105@@3PAUD3DDevice9@1@A=?g_title_texture_cache_host@th105@@3PAXA", "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base"]

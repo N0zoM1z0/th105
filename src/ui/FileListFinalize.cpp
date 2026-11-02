@@ -3,17 +3,10 @@
 #include "ui/FileList.hpp"
 #include "ui/Title.hpp"
 #include "assets/TextFontOwner.hpp"
-#include "battle/EffectSprite.hpp"
+#include "ui/Tile.hpp"
 #include <string.h>
 extern "C" const char profile_ui_effect_label[];
 namespace th105 {
-class FileListRenderTile : public CSpriteBase {
-public:
- FileListRenderTile() {}
- void set_texture(unsigned,int,int,unsigned,unsigned);
- float e80,e84,e88,e8c,e90,e94,e98,e9c,ea0;
-};
-typedef char FinalizeTileSize[sizeof(FileListRenderTile)==0xa4?1:-1];
 // Narrow declarations for the native out-of-line deque push and string assign.
 // Their receiver/argument ABIs are unchanged; no replacement STL body is authored.
 struct FileListUnsignedDequePushView { void push_back_value(const unsigned &); };
@@ -55,9 +48,9 @@ void CFileList::finalize()
    int width=static_cast<int>(max_width*7+4);
    unsigned handle=g_title_resource_manager.create_text_texture(text.c_str(),&owner,width,256,0,0).value;
    reinterpret_cast<FileListUnsignedDequePushView *>(&handles_02c)->push_back_value(handle);
-   FileListRenderTile tile;
+   CTile tile;
    tile.set_texture(handle,0,0,width,16);
-   reinterpret_cast<std::deque<FileListRenderTile> *>(&render_items_040)->push_back(tile);
+   reinterpret_cast<std::deque<CTile> *>(&render_items_040)->push_back(tile);
    reinterpret_cast<FileListStringAssignBytesView *>(&text)->assign_bytes("",0);
   } while(current!=rows_004.end());
  }
