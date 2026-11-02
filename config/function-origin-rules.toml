@@ -6000,3 +6000,18 @@ required_rtti_virtual_bodies = [
 required_branch_skipped_padding = [
  { owner = "0x0041FF00", jump_site = "0x00420066", padding_site = "0x00420068", padding_hex = "8da4240000000090" },
 ]
+
+[[rules]]
+id = "select-character-update-authored-106a"
+addresses = ["0x0041FC90"]
+expected_count = 1
+expected_bytes = 619
+expected_names = ["sub_41FC90"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact CSelect update-flow4208E0/341 tail-jumps to this complete character-selection policy at420A30. Whole619-byte body has192 instructions,191 reachable and one six-byte compared alignment LEA; four RET0 paths. Actual refresh41FB80 ABI is independently exact258. Public ordinary source covers cursor movement, locked slots, confirm/cancel, shared-input cancellation, independent mode queries and random-character preparation. Twelve isolated native/source state/call cases agree and wrong cursor-base control rejects through guarded callbacks; whole25-byte residual remains, no exact credit. docs/SELECT_CHARACTER_UPDATE_SOURCE_2026_11_02.md."
+required_body_hashes = [{ address = "0x0041FC90", size = 619, sha256 = "a4bb43c20a44efc5f92ec5b027f9c52aa72fb633c1854f39090c8d62202d4e0c" }]
+required_direct_edges = [{ caller = "0x004208E0", site = "0x00420A30", target = "0x0041FC90", kind = "jump", caller_status = "matching" }]
+required_branch_skipped_padding = [{ owner = "0x0041FC90", jump_site = "0x0041FCB8", padding_site = "0x0041FCBA", padding_hex = "8d9b00000000" }]

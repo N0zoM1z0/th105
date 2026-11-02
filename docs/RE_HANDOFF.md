@@ -1,5 +1,18 @@
 # TH10.5 reconstruction handoff
 
+Character-selection41FC90 now has complete public619-byte source, still25
+unequal bytes first+36. New evidence closes the old refresh-ABI blocker:
+41FB80/258 and actual caller4208E0/341 freshly exact, with E9 at420A30.
+Native/source CFG192 instructions/191 reachable, six compared alignment bytes,
+four RET0 paths. Twelve guarded state/call cases match, including noisy upper
+bool EAX, opaque void returns, volatile registers/flags, random bounds and
+shared-input cancellation. Bad initial cursor-base patch is rejected before
+helper execution. Twelve target-independent tests added; no universal behavior
+or exactness claim. Source1636/authored1655/mapped1823/review300/units811;
+excluded2072 and exact1429/443911 stay. See
+SELECT_CHARACTER_UPDATE_SOURCE_2026_11_02.md. Keep the old cursor representation
+and source-spelling grids closed; selected source remains619/25.
+
 Observer guard correction: Unicorn ctypes can suppress exceptions raised
 inside hooks. Use existing native_callbacks.guarded_callback and reject its
 error list immediately after emu_start, before accepting any observation.

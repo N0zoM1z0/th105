@@ -63,6 +63,7 @@ EXACT_TEST_MODULES = (
     "test_boost_matcher_lifetimes",
     "test_select_render_audit",
     "test_native_callbacks",
+    "test_select_character_audit",
     "test_sprite_callback_origins",
     "test_input_base_cleanup_origins",
     "test_replay_member_cleanup_origins",

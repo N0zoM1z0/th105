@@ -29637,3 +29637,16 @@ notes = "Complete CSelect render1497 with typed cursor/mix storage. Whole candid
 address = "0x0041FF00"
 symbol_base = "?render@CSelect@th105@@UAE_NXZ"
 rel32_targets = ["?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000", "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750", "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0", "?render@SelectRenderTileView@th105@@QAEXMMHH@Z=0x004099F0", "?draw_profile_overlay@th105@@YAXE@Z=0x0043F900", "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0", "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040"]
+
+[units.exact-first-select-character-update]
+kind = "probe"
+source = "src/ui/SelectCharacterUpdate.cpp"
+object = "build/match-units/ExactFirst_SelectCharacterUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete619-byte character-selection policy, ordinary partial-owner source. Native/source bounded state/call observations agree;25 cursor induction-base bytes still differ, no exact credit."
+
+[[units.exact-first-select-character-update.functions]]
+address = "0x0041FC90"
+symbol_base = "?update_characters_41fc90@SelectCharacterUpdateView@th105@@QAEHXZ"
+rel32_targets = ["?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "?refresh_character_41fb80@SelectCharacterUpdateView@th105@@QAEXHH@Z=0x0041FB80", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?prepare_scenario_match@th105@@YAXH@Z=0x0043AE90", "?fade_bgm@th105@@YAXHH@Z=0x0043B140", "?selector_random_roll@th105@@YAHH@Z=0x004067D0", "?prepare_select_match_43ac60@th105@@YAIH@Z=0x0043AC60"]
