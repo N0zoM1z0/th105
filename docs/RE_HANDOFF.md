@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Design loading now uses actual CSprite / CTile; the local gauge view inherits
+the real sprite and keeps its nine-slot override surface. Gauge/number/object
+views remain local. Three accepted public methods stay exact; gauge init 360
+keeps its hash. Main loader retains its EH block and identical raw source2580,
+with only actual-type relocation names and one same-offset local label renamed.
+This is not a native loader match. Member RTTI / tables and origin 9 / 948 pass.
+CI passed all 962 tests in 113.522 seconds. No ledger or count change.
+See DESIGN_LOADER_REAL_SPRITES_2026_11_02.md.
+
 Indexed spell display now uses actual CSprite at +0x98 instead of a partial
 virtual interface plus storage tail. The 234-byte callback remains exact.
 All 21 accepted roots in 14 units pass (closure 18); eight other roots retain

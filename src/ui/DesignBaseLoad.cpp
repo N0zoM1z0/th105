@@ -5,6 +5,7 @@
 #include "DesignBaseLifetime.hpp"
 #include "assets/FileReader.hpp"
 #include "ui/Title.hpp"
+#include "ui/Tile.hpp"
 #include <stdlib.h>
 #include <string.h>
 
@@ -14,38 +15,7 @@ extern "C" __declspec(dllimport) int __cdecl wsprintfA(char *, const char *, ...
 
 namespace th105 {
 
-struct DesignLoaderVertex {
-    float x, y, z, rhw;
-    unsigned int color;
-    float u, v;
-};
-
-class DesignLoaderSpriteStorage : public DesignColorLifetimeView {
-public:
-    DesignLoaderSpriteStorage() : texture_04(0) {}
-    virtual ~DesignLoaderSpriteStorage() {}
-    virtual void set_color(unsigned int);
-    virtual void set_vertex_colors(const unsigned int *);
-    virtual void multiply_color(unsigned int);
-    unsigned int texture_04;
-    DesignLoaderVertex vertices_08[4];
-    float width_78, height_7c;
-};
-
-class DesignLoaderSprite : public DesignLoaderSpriteStorage {
-public:
-    virtual ~DesignLoaderSprite() {}
-    virtual void set_texture_options(unsigned int, int, int, unsigned int,
-                                     unsigned int, int, int);
-    virtual void set_texture(unsigned int, int, int, unsigned int, unsigned int);
-    virtual void render_rectangle(float, float, float, float);
-    virtual void render(float, float);
-    virtual void render_plain(float, float);
-    float pivot_x_80, pivot_y_84;
-    float scale_x_88, scale_y_8c, angle_90;
-};
-
-class DesignLoaderGage : public DesignLoaderSprite {
+class DesignLoaderGage : public CSprite {
 public:
     DesignLoaderGage() : value_a0(0) {}
     virtual ~DesignLoaderGage()
@@ -54,18 +24,10 @@ public:
             ::operator delete(value_a0);
     }
     virtual void render(float, float);
-    virtual void render_plain(float, float);
+    virtual void render_fvf4142(float, float);
     float u_span_94, v_span_98;
     int mode_9c;
     void *value_a0;
-};
-
-class DesignLoaderTile : public DesignLoaderSpriteStorage {
-public:
-    virtual ~DesignLoaderTile() {}
-    void set_texture_options(unsigned int, int, int, int, int, int, int);
-    float pivot_x_80, pivot_y_84, scale_x_88, scale_y_8c, angle_90;
-    float texture_u_94, texture_v_98, texture_width_9c, texture_height_a0;
 };
 
 class DesignLoaderNumber : public DesignColorLifetimeView {
@@ -83,7 +45,7 @@ public:
     int columns_14, integer_digits_18, fractional_digits_1c;
     unsigned char mode_20;
     void *value_24;
-    DesignLoaderTile tile_28;
+    CTile tile_28;
 };
 
 class DesignLoaderObjectBase : public DesignColorLifetimeView {
@@ -108,7 +70,7 @@ public:
     virtual void render_offset(float, float);
     virtual void render();
     virtual void set_render_parameters(unsigned int, unsigned int, float);
-    DesignLoaderSprite sprite_18;
+    CSprite sprite_18;
 };
 
 class DesignLoaderGageObject : public DesignLoaderObjectBase {
@@ -138,12 +100,12 @@ struct DesignTextureRectangle {
 static void __stdcall initialize_design_gage(DesignLoaderGage *gage,
     int mode, unsigned int handle, int width, int height)
 {
-    gage->width_78 = static_cast<float>(width);
+    gage->texture_width_78 = static_cast<float>(width);
     gage->mode_9c = mode;
-    gage->height_7c = static_cast<float>(height);
+    gage->texture_height_7c = static_cast<float>(height);
     gage->pivot_x_80 = 0;
     gage->pivot_y_84 = 0;
-    gage->texture_04 = handle;
+    gage->value_04.value = handle;
     unsigned int texture_height;
     g_title_resource_manager.get_texture_size(handle, &handle, &texture_height);
     gage->u_span_94 = static_cast<float>(width) / handle;
@@ -318,9 +280,9 @@ void CDesignBase::load(const char *path)
 }
 
 typedef char LoaderObjectSize[sizeof(DesignLoaderObjectBase) == 0x18 ? 1 : -1];
-typedef char LoaderSpriteSize[sizeof(DesignLoaderSprite) == 0x94 ? 1 : -1];
+typedef char LoaderSpriteSize[sizeof(CSprite) == 0x94 ? 1 : -1];
 typedef char LoaderGageSize[sizeof(DesignLoaderGage) == 0xa4 ? 1 : -1];
-typedef char LoaderTileSize[sizeof(DesignLoaderTile) == 0xa4 ? 1 : -1];
+typedef char LoaderTileSize[sizeof(CTile) == 0xa4 ? 1 : -1];
 typedef char LoaderNumberSize[sizeof(DesignLoaderNumber) == 0xcc ? 1 : -1];
 typedef char LoaderSpriteObjectSize[sizeof(DesignLoaderSpriteObject) == 0xac ? 1 : -1];
 typedef char LoaderGageObjectSize[sizeof(DesignLoaderGageObject) == 0xbc ? 1 : -1];
