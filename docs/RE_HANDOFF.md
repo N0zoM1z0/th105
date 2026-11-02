@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Client/server publishers now read input208->resolved_mask through the existing
+CInputManagerEx source layout instead of raw+62 casts; both TUs assert offset62.
+Only two CPPs changed, no shared header/layout change. All7 complete bodies
+byte-neutral: accepted48/162/166/152/175, pendingACK78/8 andserver404/409.
+Producer378, selected-input initializer153 and binder136 freshly corroborate
+field/handoff; no full dynamic-type/RTTI/constructor claim. Remaining server
+sender declaration in the state TU corrected to void; exact175 unchanged.
+Critical helpers, serverCFG and6 guardedACK cases/negative pass. No counts or
+exact credit changed. See NETWORK_TYPED_INPUT_2026_11_02.md.
+
 Server input publication44F9A0 now formally registered from existing source:
 CNetworkServer slot1C, complete409-byte/128-instruction CFG, both leave tails,
 call inventory and16-bit mask/current versus32-bit sequence stores verified.

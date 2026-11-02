@@ -1,4 +1,5 @@
 #include "../engine/CriticalSectionWrapper.hpp"
+#include "../input/InputManager.hpp"
 
 #include <deque>
 #include <stddef.h>
@@ -144,7 +145,7 @@ public:
     unsigned char reserved_174[0x68];
     std::deque<short> output_b_1dc;
     unsigned char reserved_1f0[0x18];
-    unsigned char *input_208;
+    CInputManagerEx *input_208;
     unsigned char reserved_20c[0x1a8];
     NetworkServerSend5View sender_3b4;
     unsigned char reserved_3b5[0x1ff];
@@ -202,7 +203,7 @@ void CNetworkServerInputPublishView::publish_input_frame_44f9a0()
     }
 
     const unsigned short current =
-        *reinterpret_cast<unsigned short *>(input_208 + 0x62) & 0x3ff;
+        input_208->resolved_mask & 0x3ff;
     current_07c = current;
     ++sequence_098;
     unsigned int current_value = current;
@@ -269,3 +270,5 @@ typedef char CNetworkServerInputPublishView_high_water_offset[
         ? 1 : -1];
 
 } // namespace th105
+
+typedef char NetworkResolvedInputMaskOffset[offsetof(th105::CInputManagerEx,resolved_mask)==0x62?1:-1];

@@ -1,4 +1,5 @@
 #include "../engine/CriticalSectionWrapper.hpp"
+#include "../input/InputManager.hpp"
 
 #include <deque>
 
@@ -24,7 +25,8 @@ struct NetworkClientSend4View {
 };
 
 struct NetworkServerSend5View {
-    int send_server(
+    // The caller discards the real sender result; the inactive path has none.
+    void send_server(
         unsigned int channel,
         const void *buffer,
         unsigned int size,
@@ -78,7 +80,7 @@ public:
     unsigned char reserved_174[0x8c];
     NetworkPeerByte5 *peer_200;
     unsigned char reserved_204[4];
-    unsigned char *input_208;
+    CInputManagerEx *input_208;
     unsigned char reserved_20c[0x0e];
     unsigned char byte_21a;
     unsigned char reserved_21b[0x15];
@@ -137,10 +139,10 @@ void CNetworkClientPrimaryStateView::publish_input_value()
     CriticalSectionWrapper *lock = &critical_048;
     lock->enter();
     if (queue_0a0.size() != 0) {
-        unsigned short value = *reinterpret_cast<unsigned short *>(input_208 + 0x62);
+        unsigned short value = input_208->resolved_mask;
         queue_0a0.at(0) = static_cast<short>(value & 0x3ff);
     } else {
-        unsigned short value = *reinterpret_cast<unsigned short *>(input_208 + 0x62);
+        unsigned short value = input_208->resolved_mask;
         queue_0a0.push_back(static_cast<short>(value & 0x3ff));
     }
 
@@ -226,3 +228,5 @@ unsigned char CNetworkServerPrimaryStateView::sync_peer_state(
 }
 
 } // namespace th105
+
+typedef char NetworkResolvedInputMaskOffset[offsetof(th105::CInputManagerEx,resolved_mask)==0x62?1:-1];
