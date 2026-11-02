@@ -38,9 +38,9 @@ bool CSelectScenario::render()
                 scenario_ids_2c.end - scenario_ids_2c.begin) <= scenario_index)
             _invalid_parameter_noinfo();
         color_174.render(
-            scenario_ids_2c.begin[scenario_index], 0,
             static_cast<UiDesignObject *>(selection_data_2b0)->x,
-            static_cast<UiDesignObject *>(selection_data_2b0)->y + offset);
+            static_cast<UiDesignObject *>(selection_data_2b0)->y + offset,
+            0, scenario_ids_2c.begin[scenario_index]);
 
         if (scenario_ids_2c.begin == 0 ||
             static_cast<unsigned int>(

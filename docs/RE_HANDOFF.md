@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+CSelectScenario now uses actual CSprite / CTile members and direct typed
+texture calls. All 13 accepted roots in 10 units remain exact (closure 12),
+including ctor 862, dtor 277 and preview 186. Seven other roots retain hashes.
+Both scalar origins pass; full EH 492 and member RTTI / tables pass. The retained
+unselected renderer now uses native render(x, y, 0, scenario) argument order;
+it remains nonexact at 757 / 756 bytes, first +125. No ledger or count gain.
+CI passed all 962 tests in 110.932 seconds.
+See SELECT_SCENARIO_REAL_SPRITES_2026_11_02.md.
+
 Long battle info records now use actual CSprite for both members. The partial
 eight-slot sprite interface and resource-binding receiver cast are removed.
 The actual include closure has two units; all three roots remain exact:

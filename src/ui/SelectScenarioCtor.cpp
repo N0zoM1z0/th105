@@ -12,16 +12,6 @@ namespace th105 {
 
 namespace {
 
-struct SelectSpriteVirtualCallView {
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void set_texture_14(
-        unsigned int handle, int x, int y, int width, int height);
-};
-
 struct SelectDesignVirtualCallView {
     virtual void slot_00();
     virtual void slot_04();
@@ -43,13 +33,11 @@ CSelectScenario::CSelectScenario()
 
         texture_40 = *g_title_resource_manager.load_texture(
             &handle, select_background_path, &width, &height);
-        reinterpret_cast<SelectSpriteVirtualCallView *>(&color_44)
-            ->set_texture_14(texture_40, 0, 0, width, height);
+        color_44.set_texture(texture_40, 0, 0, width, height);
 
         texture_d8 = *g_title_resource_manager.load_texture(
             &handle, select_clear_path, &width, &height);
-        reinterpret_cast<SelectSpriteVirtualCallView *>(&color_dc)
-            ->set_texture_14(texture_d8, 0, 0, width, height);
+        color_dc.set_texture(texture_d8, 0, 0, width, height);
 
         texture_170 = *g_title_resource_manager.load_texture(
             &handle, select_character_name_path, &width, &height);

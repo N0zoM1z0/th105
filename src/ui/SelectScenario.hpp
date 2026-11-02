@@ -4,6 +4,7 @@
 #include "MenuCursor.hpp"
 #include "Title.hpp"
 #include "UiPrimitives.hpp"
+#include "Tile.hpp"
 #include "../input/InputManager.hpp"
 
 #include <new>
@@ -115,13 +116,13 @@ private:
     SelectIntVector16 scenario_ids_2c;
     int scenario_count_3c;
     unsigned int texture_40;
-    UiSprite94 color_44;
+    CSprite color_44;
     unsigned int texture_d8;
-    UiSprite94 color_dc;
+    CSprite color_dc;
     unsigned int texture_170;
-    UiTileA4 color_174;
+    CTile color_174;
     unsigned int texture_218;
-    UiSprite94 color_21c;
+    CSprite color_21c;
     UiDesignObject *selection_data_2b0;
     UiDesignObject *scenario_data_2b4;
     void *preview_data_2b8;

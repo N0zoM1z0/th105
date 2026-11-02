@@ -23,10 +23,9 @@ void CSelectScenario::apply_scenario(int scenario_id)
         path, scenario_stand_path_format, get_scenario_name(scenario_id));
     unsigned int loaded = *g_title_resource_manager.load_texture(
         &handle, path, &width, &height);
-    const unsigned int *methods = color_21c.vtable;
     texture_218 = loaded;
-    reinterpret_cast<UiSprite94::SetTextureOptions>(methods[4])(
-        &color_21c, loaded, 0, 0, width, height, 64, 0);
+    color_21c.set_texture_options(
+        loaded, 0, 0, width, height, 64, 0);
 }
 
 } // namespace th105
