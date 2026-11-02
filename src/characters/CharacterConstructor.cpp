@@ -1,6 +1,6 @@
 // JP1.06a Character constructor-facing source, canonical exact557 bytes.
-// The texture handle is initialized as a member value before the sprite base
-// constructor completes. Full roster subtype/opaque cleanup bodies are not claimed.
+// Actual CSprite owns its initializing handle through CSpriteBase.
+// Full roster subtype/opaque cleanup bodies are not claimed.
 #include "battle/AttackObject.hpp"
 #include "battle/GameMode.hpp"
 #include "battle/SpellData.hpp"
@@ -13,37 +13,6 @@
 #include <map>
 
 namespace th105 {
-// Constructor-facing IColor view: the observed texture token at +4 is a
-// four-byte initializing value. Keep this inference local to the owned sprite
-// lifetimes rather than changing all partial shared IColor declarations.
-class CharacterCtorColorView {
-public:
-    CharacterCtorColorView() {}
-    virtual ~CharacterCtorColorView() {}
-    virtual void set_color(unsigned int color) = 0;
-    virtual void set_vertex_colors(const unsigned int *colors) = 0;
-    virtual void multiply_color(unsigned int color) = 0;
-    DesignTextureHandle value_04;
-};
-
-
-typedef char CharacterCtorColorSize[sizeof(CharacterCtorColorView) == 8 ? 1 : -1];
-typedef char CharacterCtorTextureHandleSize[sizeof(DesignTextureHandle) == 4 ? 1 : -1];
-
-class CharacterCtorSprite94 : public CharacterCtorColorView {
-public:
-    CharacterCtorSprite94() {}
-    virtual ~CharacterCtorSprite94() {}
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-    virtual void set_texture_options(unsigned, int, int, unsigned, unsigned, int, int);
-    virtual void set_texture(unsigned, int, int, int, int);
-    virtual void slot_18();
-    virtual void render(float, float);
-    SpriteVertex28 vertices_08[4];
-    float width_78, height_7c, extension_80[5];
-};
 
 struct Header14 {
     unsigned allocator_00;
@@ -111,7 +80,7 @@ struct ShortDeque710 {
 
 struct SpriteHandleResource98 {
     unsigned handle_00;
-    CharacterCtorSprite94 sprite_04;
+    CSprite sprite_04;
     SpriteHandleResource98() : handle_00(0), sprite_04() {}
     ~SpriteHandleResource98();
 };
@@ -136,7 +105,7 @@ public:
     unsigned char option_335;
     unsigned char reserved_336[2];
     unsigned word_338;
-    CharacterCtorSprite94 sprite_33c;
+    CSprite sprite_33c;
     SpriteHandleResource98 resource_3d0;
     unsigned char reserved_468[0x88];
     CharacterSpellData68 spell_data_4f0;
@@ -144,7 +113,7 @@ public:
     signed char state_55a;
     signed char state_55b;
     SequenceController14 sequence_55c;
-    CharacterCtorSprite94 sprite_570;
+    CSprite sprite_570;
     unsigned char scalar_table_604[0x20];
     unsigned char reserved_624[0x28];
     int statistic_candidate_64c;

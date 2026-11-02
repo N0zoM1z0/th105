@@ -4,7 +4,7 @@ compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e86036213
 
 [[sources]]
 path = "src/battle/EffectSprite.hpp"
-sha256 = "bb60054a7e07a5dd35865eb959e7e847f51f105108d4169b58445095f3fb28f2"
+sha256 = "a301e29b94bd888c28e2df5dbf0b97c3c31bde0165219963a0c3e973c8ebe869"
 
 [[sources]]
 path = "src/network/NetworkBaseConstructorRuntime.cpp"
@@ -29,6 +29,10 @@ sha256 = "f459eb2422e4f7f85a3ec0c5c559161226763c92310fde6062d9adaeb2afb940"
 [[sources]]
 path = "src/engine/ColorInterface.hpp"
 sha256 = "71db76e78b423b322a52fe5d0b64559238fdb1fc33170b1f2954d7efd051b093"
+
+[[sources]]
+path = "src/engine/TextureHandleValue.hpp"
+sha256 = "c8ab0afa18da3d0b27d099345ad34e57849aa5a39d6ef757549304fb26f0be84"
 
 [[anchors]]
 address = "0x0043BE90"

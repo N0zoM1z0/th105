@@ -4,7 +4,7 @@ compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e86036213
 
 [[sources]]
 path = "src/ui/DesignBaseLifetime.hpp"
-sha256 = "333ca52b318321d92c9884a5a3753893212b8d3503b81e6dd3c8005c9ec8d97c"
+sha256 = "8a57eb4b442de77381aa5631cc4171437b447f2219bdffee15cd84a4febc2a43"
 
 [[sources]]
 path = "src/engine/ColorInterface.hpp"
@@ -25,6 +25,10 @@ sha256 = "7035a226c07ef08fc11342c4dee85aea4ef547b3ee4f00a6869921463053ae6b"
 [[sources]]
 path = "src/ui/Tile.hpp"
 sha256 = "f90f3224d4afdb483c1dbf92b24d334d2cba9f75f9694314e19d5c2b6f3f984f"
+
+[[sources]]
+path = "src/engine/TextureHandleValue.hpp"
+sha256 = "c8ab0afa18da3d0b27d099345ad34e57849aa5a39d6ef757549304fb26f0be84"
 
 [[anchors]]
 address = "0x004217F0"

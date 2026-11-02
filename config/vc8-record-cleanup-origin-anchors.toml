@@ -16,15 +16,19 @@ sha256 = "6e405dcc74f9c1da27ed451ae424d3fb368c719eb16e71e597434c22105a8daa"
 
 [[sources]]
 path = "src/ui/DesignBaseLifetime.hpp"
-sha256 = "333ca52b318321d92c9884a5a3753893212b8d3503b81e6dd3c8005c9ec8d97c"
+sha256 = "8a57eb4b442de77381aa5631cc4171437b447f2219bdffee15cd84a4febc2a43"
 
 [[sources]]
 path = "src/battle/EffectSprite.hpp"
-sha256 = "bb60054a7e07a5dd35865eb959e7e847f51f105108d4169b58445095f3fb28f2"
+sha256 = "a301e29b94bd888c28e2df5dbf0b97c3c31bde0165219963a0c3e973c8ebe869"
 
 [[sources]]
 path = "src/engine/ColorInterface.hpp"
 sha256 = "71db76e78b423b322a52fe5d0b64559238fdb1fc33170b1f2954d7efd051b093"
+
+[[sources]]
+path = "src/engine/TextureHandleValue.hpp"
+sha256 = "c8ab0afa18da3d0b27d099345ad34e57849aa5a39d6ef757549304fb26f0be84"
 
 [[anchors]]
 address = "0x0045CF50"

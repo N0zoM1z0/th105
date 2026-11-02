@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Character462AB0 now uses actual global CSprite for members33C/3D4/570.
+Existing DesignTextureHandle moved unchanged to a minimal engine header and
+used by CSpriteBase+4; IColor stays4, removing the local8-byte color/sprite
+surrogates. Whole557 remains exact; actual sprite RTTI273/table36/publications
+pass. Include closure148: all316 accepted roots in116 units freshly exact
+(numerically reconciled address casing);124 other configured roots in63 units
+retain before/after hashes or known old blockers. Six lifetime-origin families
+and full Select EH461/meta188 pass; render4/character12 observers unchanged.
+No exact/count gain, no nominal handle API or full Character unwind claim.
+See CHARACTER_REAL_SPRITE_2026_11_02.md.
+
 Three network snapshot views now share NetworkStateRecord.hpp: real deque
 members10/30 and tail bytes0E/2E, not MatchSetup or the separate ACK_INFO packet
 object. No new lifetime/storage behavior. RTTI slots also correct44F390's old

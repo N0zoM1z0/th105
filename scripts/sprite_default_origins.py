@@ -18,7 +18,7 @@ CTOR='??0CSpriteEx@@QAE@XZ'
 DTOR='??1CSpriteEx@@UAE@XZ'
 OWNER='??0CSelect@th105@@QAE@XZ'
 ARRAY='??_L@YGXPAXIHP6EX0@Z1@Z'
-SOURCES=['src/battle/EffectSprite.hpp','src/ui/SelectConstructor.hpp','src/ui/SelectConstructor.cpp','src/engine/ColorInterface.hpp','src/ui/SelectSetupState.hpp','src/ui/Tile.hpp']
+SOURCES=['src/battle/EffectSprite.hpp','src/ui/SelectConstructor.hpp','src/ui/SelectConstructor.cpp','src/engine/ColorInterface.hpp','src/ui/SelectSetupState.hpp','src/ui/Tile.hpp','src/engine/TextureHandleValue.hpp']
 COMPILER='71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c'
 def source_digest(path):return digest(path.read_text().encode('utf-8'))
 def validate_spec(spec,selected,units,target_sha):

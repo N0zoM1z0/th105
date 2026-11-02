@@ -1,5 +1,9 @@
 # Character base constructor exact, JP1.06a
 
+The local color/sprite inference below is superseded by actual global CSprite
+and the shared CSpriteBase handle value, retaining557 exact. See
+CHARACTER_REAL_SPRITE_2026_11_02.md. The older sections retain historical evidence.
+
 ## Accepted texture-handle initialization
 
 462AB0 is now canonical exact557/557 with SHA256

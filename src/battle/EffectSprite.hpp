@@ -5,6 +5,7 @@
 #include <stddef.h>
 
 #include "engine/ColorInterface.hpp"
+#include "engine/TextureHandleValue.hpp"
 
 struct SpriteVertex28 {
     float x;
@@ -19,7 +20,7 @@ struct SpriteVertex28 {
 class CSpriteBase : public IColor {
 public:
     CSpriteBase() : value_04(0) {}
-    unsigned int value_04;
+    th105::DesignTextureHandle value_04;
     virtual ~CSpriteBase() {}
     virtual void set_color(unsigned int color);
     virtual void set_vertex_colors(const unsigned int *colors);

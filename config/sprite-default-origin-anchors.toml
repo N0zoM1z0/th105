@@ -5,7 +5,7 @@ unit = "exact-first-select-constructor"
 
 [[sources]]
 path = "src/battle/EffectSprite.hpp"
-normalized_sha256 = "bb354c1224af92092ef88b0f7475669dacafe7891f8aa5697fcb3e7a16bbdadd"
+normalized_sha256 = "689deffa674a229a7b1f33c90bc2ce56bc0743afa2054dc2a2cb292c2fcac092"
 
 [[sources]]
 path = "src/ui/SelectConstructor.hpp"
@@ -26,6 +26,10 @@ normalized_sha256 = "f2ea05f30cc7182752a5f2439af391b959200c0df7bb7d5dccf7b6999e9
 [[sources]]
 path = "src/ui/Tile.hpp"
 normalized_sha256 = "75eca0c2848497b1cfca4b2aa7e0cc744bd1a4fd85d07d82fa558af3d092f1a6"
+
+[[sources]]
+path = "src/engine/TextureHandleValue.hpp"
+normalized_sha256 = "77d42bef24d5658f458828a0c9d740484b6d3627ae66f13319711719822eb808"
 
 [[anchors]]
 address = "0x0041F6E0"
