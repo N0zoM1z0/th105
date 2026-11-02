@@ -11,24 +11,10 @@
 #include <vector>
 #include <stddef.h>
 namespace th105 {
-class CharacterDtorSprite94 : public IColor {
-public:
- CharacterDtorSprite94() : value_04(0) {}
-    unsigned int value_04;
- virtual ~CharacterDtorSprite94() {}
- virtual void set_color(unsigned);
- virtual void set_vertex_colors(const unsigned *);
- virtual void multiply_color(unsigned);
- virtual void set_texture_options(unsigned,int,int,unsigned,unsigned,int,int);
- virtual void set_texture(unsigned,int,int,int,int);
- virtual void slot18();
- virtual void render(float,float);
- SpriteVertex28 vertices_08[4];
- float width_78,height_7c,extension_80[5];
-};
+
 struct CharacterSpriteResource98 {
  unsigned handle;
- CharacterDtorSprite94 sprite;
+ CSprite sprite;
  ~CharacterSpriteResource98();
 };
 struct CharacterDtorSpell68 {
@@ -41,7 +27,7 @@ struct CharacterDtorSpell68 {
 struct CharacterSequenceRecord98 {
  short id;
  unsigned short flags;
- CharacterDtorSprite94 sprite;
+ CSprite sprite;
 };
 struct CharacterPhaseRecordEC {
  CSpriteEx sprite;
@@ -81,13 +67,13 @@ public:
  int character_key_330;
  unsigned char options_334[4];
  unsigned texture_338;
- CharacterDtorSprite94 sprite_33c;
+ CSprite sprite_33c;
  CharacterSpriteResource98 resource_3d0;
  unsigned char gap_468[0x88];
  CharacterDtorSpell68 spells_4f0;
  unsigned char counters_558[4];
  std::deque<CharacterSequenceRecord98> sequence_55c;
- CharacterDtorSprite94 sprite_570;
+ CSprite sprite_570;
  unsigned char gap_604[0x54];
  CharacterOwnedManager *manager_658;
  std::deque<PatGroup> groups_65c;

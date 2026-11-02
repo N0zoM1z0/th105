@@ -69,7 +69,7 @@ typedef char CheckFighterSequenceControllerSize[
 typedef char CheckFighterCutinResourceContractSize[
     sizeof(FighterCutinResource) == 0xa0 ? 1 : -1];
 typedef char CheckFighterCutinSpriteContractSize[
-    sizeof(FighterCutinSpriteWork) == 0x94 ? 1 : -1];
+    sizeof(CSprite) == 0x94 ? 1 : -1];
 typedef char CheckFighterSequenceSlotSize[
     sizeof(FighterSequenceSlot) == 0x98 ? 1 : -1];
 typedef char CheckObservedRecordSize[

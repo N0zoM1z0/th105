@@ -55,7 +55,7 @@ void FighterCutinResource::load_for_character(
         path,
         "data/stand/cutin/%s.bmp",
         character_key_to_name(character_key));
-    sprite_04.configure_texture(
+    sprite_04.set_texture(
         handle_00 = *g_title_resource_manager.load_texture(
             &loaded_handle,
             path,
@@ -66,10 +66,10 @@ void FighterCutinResource::load_for_character(
         first_loader_extent - 1,
         second_loader_extent);
 
-    FighterCutinSpriteWork *const sprite = &sprite_04;
+    CSprite *const sprite = &sprite_04;
     if (selector_98 == 1) {
-        sprite->field_88 = -1.0f;
-        sprite->field_8c = 1.0f;
+        sprite->scale_x_88 = -1.0f;
+        sprite->scale_y_8c = 1.0f;
     }
     state_9c = -1;
 }
@@ -100,7 +100,7 @@ void Fighter::initialize_fighter_spell_resources()
     FighterFaceResource *const face =
         reinterpret_cast<FighterFaceResource *>(
             reinterpret_cast<unsigned char *>(this) + 0x338);
-    face->sprite_04.configure_texture(
+    face->sprite_04.set_texture(
         face->handle_00 = *g_title_resource_manager.load_texture(
             &loaded_handle,
             path,
@@ -111,10 +111,10 @@ void Fighter::initialize_fighter_spell_resources()
         first_loader_extent,
         second_loader_extent);
 
-    FighterCutinSpriteWork *const sprite = &face->sprite_04;
+    CSprite *const sprite = &face->sprite_04;
     if (player_index_334 == 1) {
-        sprite->field_88 = -1.0f;
-        sprite->field_8c = 1.0f;
+        sprite->scale_x_88 = -1.0f;
+        sprite->scale_y_8c = 1.0f;
     }
 
     DwordDeque4 *const back_resources =

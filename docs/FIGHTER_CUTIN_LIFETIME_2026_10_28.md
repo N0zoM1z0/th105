@@ -1,5 +1,9 @@
 # Fighter cutin resource lifetime465420
 
+The local sprite view below has been replaced by actual global CSprite with
+the same95-byte candidate. See CHARACTER_RESOURCE_SPRITES_2026_11_02.md; the
+folded handle/sprite prefix does not uniquely prove an A0 cutin owner.
+
 Complete candidate95/native96 remains nonexact at+40; no exact/source-selection
 credit. Receipt build/frontier-465420-20261028/formal-build.json.
 Target SHA:c585cf40128cc4f0c32264c9d6948718f2f5f2aaf6982c56cdc59111164b0572.

@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Character destruction and fighter face/cutin resources now use actual CSprite,
+removing three partial sprite views. Exact resource132/333/199 and spell-owner101
+remain unchanged; spell EH117 and emitted sequence/Pat deque135/125 gates pass.
+Character905/one SIB byte and cutin95/native96 retain full candidate hashes.
+Only3 native units affected. CoreContracts' sprite check updated, but standalone
+validator still has old undefined SequenceRecord4 (fresh HEAD control reproduces).
+No counts gained; cutin cleanup nominal/ICF identity remains non-unique.
+See CHARACTER_RESOURCE_SPRITES_2026_11_02.md.
+
 Character462AB0 now uses actual global CSprite for members33C/3D4/570.
 Existing DesignTextureHandle moved unchanged to a minimal engine header and
 used by CSpriteBase+4; IColor stays4, removing the local8-byte color/sprite

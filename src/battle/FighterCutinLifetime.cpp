@@ -2,12 +2,10 @@
 #include "ui/Title.hpp"
 #include <stddef.h>
 namespace th105 {
-struct CutinSpriteLifetime94 : CSpriteBase {
-    float pivot_x_80,pivot_y_84,scale_x_88,scale_y_8c,angle_90;
-};
+
 struct FighterCutinLifetime {
     unsigned handle_00;
-    CutinSpriteLifetime94 sprite_04;
+    CSprite sprite_04;
     int selector_98;
     int state_9c;
     ~FighterCutinLifetime();
