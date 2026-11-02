@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Sequence rotation now owns actual CSprite instead of duplicate sprite classes.
+Rotation 265, implicit copy 116, card cleanup 8, assignment 143 and deque erase
+515 bytes remain exact; related enqueue 114 is freshly exact. Source pins and
+copy/assignment selectors now use the actual type. Three scoped origin gates,
+full EH 88 and sprite RTTI 273 / nine slots pass. No new credit.
+CI passed all 962 tests in 127.255 seconds.
+See SEQUENCE_REAL_SPRITE_2026_11_02.md.
+
 Profile rendering and MenuEnd initialization now share one actual CTile global
 declaration at 0x6E6A88; the two old views are removed. All 21 accepted roots
 in six units remain exact (closure seven), including renderer 142 and initializer

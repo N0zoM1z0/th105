@@ -11,4 +11,4 @@ alignment_tail_hex = ""
 [[anchors]]
 address = "0x00455160"
 size = 116
-symbol = "??0SequenceRotateSprite94@th105@@QAE@ABU01@@Z"
+symbol = "??0CSprite@@QAE@ABV0@@Z"

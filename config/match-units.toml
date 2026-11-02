@@ -23965,7 +23965,7 @@ symbol_base = "?rotate_front_spell_sequence_entry_to_back@Fighter@th105@@QAEEXZ"
 dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
 rel32_targets = [
     "__invalid_parameter_noinfo=0x0068A143",
-    "??0SequenceRotateSprite94@th105@@QAE@ABU01@@Z=0x00455160",
+    "??0CSprite@@QAE@ABV0@@Z=0x00455160",
     "?push_back@?$deque@USequenceRotateCard@th105@@V?$allocator@USequenceRotateCard@th105@@@std@@@std@@QAEXABUSequenceRotateCard@th105@@@Z=0x0045DBA0",
 ]
 
@@ -28436,10 +28436,10 @@ switch_payload = { size = 583, sha256 = "c3602e59ffd86be47c4c5e6592f9bd7eca91ffc
 
 [[units.exact-first-fighter-sequence-rotate.functions]]
 address = "0x00455160"
-symbol_base = "??0SequenceRotateSprite94@th105@@QAE@ABU01@@Z"
+symbol_base = "??0CSprite@@QAE@ABV0@@Z"
 dir32_targets = [
- "??_7SequenceRotateSpriteBase80@th105@@6B@=??_7CSpriteBase@@6B@",
- "??_7SequenceRotateSprite94@th105@@6B@=??_7DeckCtorSprite94@th105@@6B@",
+ "??_7CSpriteBase@@6B@=??_7CSpriteBase@@6B@",
+ "??_7CSprite@@6B@=_select_sprite_vtable_anchor",
 ]
 
 [units.exact-first-wave-service-load]
@@ -28479,7 +28479,7 @@ notes = "Genuine checked deque range erase and implicit sprite assignment from t
 
 [[units.vc8-sequence-card-library-origin.functions]]
 address = "0x0045CFB0"
-symbol_base = "??4SequenceRotateSprite94@th105@@QAEAAU01@ABU01@@Z"
+symbol_base = "??4CSprite@@QAEAAV0@ABV0@@Z"
 
 [[units.vc8-sequence-card-library-origin.functions]]
 address = "0x0045D830"

@@ -4,7 +4,7 @@ compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e86036213
 
 [[sources]]
 path = "src/battle/FighterSequenceRotate.cpp"
-sha256 = "1ee4517114963ae1e3f9d7eb33100fad7e8bd1e5feeed14a878f66c40ddc77c2"
+sha256 = "f6fcffe670515df447a4780d6f13aaa5f3cf6ffabed198719f21d10f9991e07a"
 
 [[sources]]
 path = "src/battle/InfoManagerBaseLifetime.cpp"
