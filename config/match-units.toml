@@ -15999,7 +15999,7 @@ rel32_targets = [
 dir32_targets = [
   "??0?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??0?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
   "??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
-  "??_7ProfileCSpriteLifetime@th105@@6B@=??_7ProfileCSpriteLifetime@th105@@6B@",
+  "??_7CSprite@@6B@=??_7ProfileCSpriteLifetime@th105@@6B@",
   "??_7ProfileInputManagerExLifetime@th105@@6B@=??_7CInputManagerEx@th105@@6B@",
   "__ehhandler$??0ProfileMenuBaseDataLifetime@th105@@QAE@XZ=__ehhandler$??0ProfileMenuBaseDataLifetime@th105@@QAE@XZ",
   "___security_cookie=___security_cookie",
@@ -16016,7 +16016,7 @@ rel32_targets = [
 ]
 dir32_targets = [
   "??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
-  "??_7ProfileIColorLifetime@th105@@6B@=??_7IColor@@6B@",
+  "??_7IColor@@6B@=??_7IColor@@6B@",
   "__ehhandler$??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ=__ehhandler$??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ",
   "___security_cookie=___security_cookie",
 ]

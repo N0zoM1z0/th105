@@ -1,3 +1,4 @@
+#include "engine/Sprite.hpp"
 #include "battle/Collision.hpp"
 #include "battle/InfoManagerResources.hpp"
 #include "engine/RenderModeManager.hpp"
@@ -35,22 +36,13 @@ struct NormalSceneRendererProfileView {
     Fighter *fighter_0c;
     Fighter *fighter_10;
 };
-struct ProfileRenderSprite94 {
-    virtual void slot_00(); virtual void slot_04(); virtual void slot_08();
-    virtual void slot_0c(); virtual void slot_10(); virtual void slot_14();
-    virtual void slot_18(); virtual void render(float x, float y);
-    unsigned char reserved_004[0x90];
-};
-typedef char ProfileRenderSprite94_size_must_be_0x94[
-    sizeof(ProfileRenderSprite94) == 0x94 ? 1 : -1];
-
 struct NetworkProfileRenderView {
     unsigned char reserved_000[0x24];
     char profile_name_024[1];
 };
 struct PlayerSlotNormalRenderView {
     unsigned texture_000;
-    ProfileRenderSprite94 sprite_004;
+    CSprite sprite_004;
     std::string string_098;
     std::string string_0b4;
 };
@@ -60,10 +52,10 @@ static __forceinline bool hide_profile(Fighter *fighter)
 {
     return reinterpret_cast<unsigned char *>(fighter)[0x72c] != 0;
 }
-static __forceinline ProfileRenderSprite94 *network_profile_sprite(
+static __forceinline CSprite *network_profile_sprite(
     NetworkProfileRenderView *session, unsigned offset)
 {
-    return reinterpret_cast<ProfileRenderSprite94 *>(
+    return reinterpret_cast<CSprite *>(
         reinterpret_cast<unsigned char *>(session) + offset);
 }
 static __forceinline PlayerSlotNormalRenderView *player_slot(unsigned slot)

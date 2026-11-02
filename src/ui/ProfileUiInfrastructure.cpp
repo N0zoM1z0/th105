@@ -1,3 +1,4 @@
+#include "engine/Sprite.hpp"
 #include "ProfileMenu.hpp"
 #include "UiPrimitives.hpp"
 #include "ProfileUiInfrastructure.hpp"
@@ -134,7 +135,7 @@ void Menu::render_profile_player_slot(
 {
     g_profile_player_list.render_offset(x, y);
     UiDesignObject *anchor = g_profile_player_anchor;
-    reinterpret_cast<UiSprite94 *>(
+    reinterpret_cast<CSprite *>(
         reinterpret_cast<unsigned char *>(player) + 4)->render(
             static_cast<float>(anchor->x + 88.0 + x),
             static_cast<float>(anchor->y + 10.0 + y));

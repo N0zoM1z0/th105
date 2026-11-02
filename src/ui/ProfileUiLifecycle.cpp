@@ -1,3 +1,4 @@
+#include "engine/Sprite.hpp"
 #include "ProfileUiInfrastructure.hpp"
 #include "ProfileMenu.hpp"
 #include "Title.hpp"
@@ -43,15 +44,15 @@ extern unsigned int g_profile_cursor_texture;
 extern unsigned int g_profile_list_seat_texture;
 extern unsigned int g_profile_message_texture;
 
-static UiSprite94 *network_profile_sprite(CNetworkBase *session, unsigned offset)
+static CSprite *network_profile_sprite(CNetworkBase *session, unsigned offset)
 {
-    return reinterpret_cast<UiSprite94 *>(
+    return reinterpret_cast<CSprite *>(
         reinterpret_cast<unsigned char *>(session) + offset);
 }
 
-static UiSprite94 *player_profile_sprite(PlayerSlotRecord *player)
+static CSprite *player_profile_sprite(PlayerSlotRecord *player)
 {
-    return reinterpret_cast<UiSprite94 *>(
+    return reinterpret_cast<CSprite *>(
         reinterpret_cast<unsigned char *>(player) + 4);
 }
 
@@ -72,7 +73,7 @@ bool __cdecl render_profile_ui_frame()
         g_profile_menu_background.set_color(color);
         g_profile_menu_background.render();
 
-        UiSprite94 *players[2];
+        CSprite *players[2];
         if (get_network_session() && g_profile_network_pair) {
             players[0] = network_profile_sprite(get_network_session(), 636);
             players[1] = network_profile_sprite(get_network_session(), 784);
@@ -83,7 +84,7 @@ bool __cdecl render_profile_ui_frame()
 
         int index = 0;
         do {
-            UiSprite94 *player = players[index];
+            CSprite *player = players[index];
             player->set_color(color);
             UiDesignObject *anchor = g_profile_player_buttons[index];
             player->render(

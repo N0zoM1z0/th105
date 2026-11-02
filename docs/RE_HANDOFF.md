@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Profile portrait ownership/consumers now use actual CSprite: the profile data
+lifetime, player color, network result finalizer, battle profile renderer and
+profile UI helpers no longer have separate sprite/color interfaces. The false
+8-byte color-base model is removed. All 18 accepted roots in eight affected units
+remain exact; three Replay support roots retain hashes. Actual sprite RTTI273,
+profile ctor/dtor EH148 each, Replay cleanup origin2/32 and 12 focused tests pass.
+No count gain. Next bounded accounting check: empty profile destructor42D320/205
+may have a natural implicit witness in real ScoreDefaults; no classification
+change is justified until whole emission/ownership is proved.
+See PROFILE_PORTRAIT_SPRITES_2026_11_02.md.
+
 CMenuResult now owns actual CSprite at +0x08. Four accepted roots in three
 units remain exact; closure five units. Constructor remains 495/native502 at
 +45, but its handle initialization now precedes the EH state store as in the

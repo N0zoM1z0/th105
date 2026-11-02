@@ -1,3 +1,4 @@
+#include "engine/Sprite.hpp"
 #include "MenuSelect.hpp"
 #include "Title.hpp"
 
@@ -9,24 +10,9 @@ extern "C" const char profile_ui_effect_label[];
 
 namespace th105 {
 
-struct PlayerSlotSprite94 {
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void set_texture(
-        unsigned int handle, int x, int y, int width, int height);
-
-    unsigned char reserved_004[0x90];
-};
-
-typedef char PlayerSlotSprite94_size_must_be_0x94[
-    sizeof(PlayerSlotSprite94) == 0x94 ? 1 : -1];
-
 struct PlayerSlotColorLayout {
     unsigned int texture_000;
-    PlayerSlotSprite94 sprite_004;
+    CSprite sprite_004;
     std::string string_098;
     std::string string_0b4;
 };

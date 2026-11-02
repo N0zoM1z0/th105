@@ -3,42 +3,9 @@
 #include <deque>
 #include <string>
 #include <stddef.h>
+#include "engine/Sprite.hpp"
 
 namespace th105 {
-
-class ProfileIColorLifetime {
-public:
-    ProfileIColorLifetime() : value_04(0) {}
-    virtual ~ProfileIColorLifetime() {}
-    virtual void set_color(unsigned int) = 0;
-    virtual void set_vertex_colors(const unsigned int *) = 0;
-    virtual void multiply_color(unsigned int) = 0;
-    unsigned int value_04;
-};
-
-struct ProfileSpriteVertexLifetime {
-    float x, y, z, rhw;
-    unsigned int color;
-    float u, v;
-};
-
-class ProfileCSpriteBaseLifetime : public ProfileIColorLifetime {
-public:
-    virtual ~ProfileCSpriteBaseLifetime() {}
-    virtual void set_color(unsigned int);
-    virtual void set_vertex_colors(const unsigned int *);
-    virtual void multiply_color(unsigned int);
-    ProfileSpriteVertexLifetime vertices_08[4];
-    float texture_width_78;
-    float texture_height_7c;
-};
-
-class ProfileCSpriteLifetime : public ProfileCSpriteBaseLifetime {
-public:
-    ProfileCSpriteLifetime() {}
-    virtual ~ProfileCSpriteLifetime() {}
-    unsigned char copied_extension_080[0x14];
-};
 
 class ProfileInputManagerLifetime {
 public:
@@ -65,7 +32,7 @@ public:
 
 struct ProfileMenuBaseDataLifetime {
     unsigned int texture_000;
-    ProfileCSpriteLifetime sprite_004;
+    CSprite sprite_004;
     std::string string_098;
     std::string string_0b4;
     ProfileInputManagerExLifetime input_0d0;

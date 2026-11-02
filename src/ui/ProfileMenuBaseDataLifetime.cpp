@@ -2,7 +2,7 @@
 
 namespace th105 {
 
-typedef char ProfileSprite_size_94[sizeof(ProfileCSpriteLifetime) == 0x94 ? 1 : -1];
+typedef char ProfileSprite_size_94[sizeof(CSprite) == 0x94 ? 1 : -1];
 typedef char ProfileInput_size_68[sizeof(ProfileInputManagerExLifetime) == 0x68 ? 1 : -1];
 typedef char ProfileBase_input_off[offsetof(ProfileMenuBaseDataLifetime, input_0d0) == 0xd0 ? 1 : -1];
 typedef char ProfileBase_decks_off[offsetof(ProfileMenuBaseDataLifetime, decks_1ac) == 0x1ac ? 1 : -1];

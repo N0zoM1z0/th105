@@ -1,3 +1,4 @@
+#include "engine/Sprite.hpp"
 #include "ui/Title.hpp"
 #include <list>
 #include <string>
@@ -6,16 +7,6 @@
 extern "C" const char profile_ui_effect_label[];
 
 namespace th105 {
-
-struct ResultSprite94 {
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void set_texture(unsigned int handle, int x, int y, int width, int height);
-    unsigned char reserved_004[0x90];
-};
 
 struct ResultEffectConfig128 {
     char text_000[256];
@@ -61,8 +52,8 @@ struct NetworkResultFinalizeLayout {
     char primary_text_004[0x20];
     char secondary_text_024[0x254];
     unsigned int texture_278;
-    ResultSprite94 sprite_27c;
-    ResultSprite94 sprite_310;
+    CSprite sprite_27c;
+    CSprite sprite_310;
 };
 
 class NetworkSessionResultView {
