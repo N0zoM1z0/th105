@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+CMenuPractice now owns an actual CTile weather member at +0xB8. Rendering calls
+that named member directly, removing the offset-only CTileRenderView cast.
+Constructor 826 and render 211 remain exact; all 11 accepted roots in the
+four-unit include closure pass. Three emitted scalar roots are unchanged.
+Full constructor EH 98+76 and actual tile RTTI 247/four-slot table pass.
+No count gain. See PRACTICE_REAL_TILE_2026_11_02.md.
+
 ProfileEditor168 now has one shared declaration with actual global CTile members
 at +0x0C/+0xB0. The constructor-only eight-slot tile surrogate is removed; the
 native table has four slots. Constructor 33, destructor 15, initialize 108,

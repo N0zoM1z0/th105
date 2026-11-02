@@ -6,6 +6,7 @@
 #include "MenuCursor.hpp"
 #include "Title.hpp"
 #include "UiPrimitives.hpp"
+#include "Tile.hpp"
 
 #include <vector>
 
@@ -45,7 +46,7 @@ public:
     unsigned char field_0b0;
     unsigned char reserved_0b1[3];
     unsigned int texture_0b4;
-    UiTileA4 weather_tile_0b8;
+    CTile weather_tile_0b8;
     unsigned int unknown_15c;
     CDesignBase design_160;
     UiDesignObject *category_items_194[10];

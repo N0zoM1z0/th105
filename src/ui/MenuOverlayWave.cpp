@@ -100,10 +100,6 @@ void CMenuConfig::render()
     guide_08.render();
 }
 
-struct CTileRenderView {
-    void render(float x, float y, int column, int row);
-};
-
 void CMenuPractice::render()
 {
     MenuCursorState &cursor = field<MenuCursorState>(0x25c);
@@ -120,7 +116,7 @@ void CMenuPractice::render()
     void *owner = field<void *>(0x04);
     int row = *reinterpret_cast<int *>(
         reinterpret_cast<unsigned char *>(owner) + 0x10);
-    reinterpret_cast<CTileRenderView *>(&field<UiTileA4>(0xb8))->render(
+    weather_tile_0b8.render(
         x_source->x + 18.0f, y_source->y, 0, row);
 
     field<GuideOverlay>(0x08).render();
