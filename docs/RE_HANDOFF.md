@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Shared Title.hpp now owns actual CSprite / CTile members instead of manual
+vptr-cleanup facades. Title destructor 161 and scalar 30 remain exact; full
+EH 88 + 76 and emitted IColor RTTI 93 pass. Actual include closure 147 units:
+all 222 accepted roots in 113 units pass; 73 other roots in 61 units retain
+71 candidate hashes and two existing relocation blocks. No count changes.
+Outer constructor/destructor Title/resource declarations are still separate.
+CI passed all 962 tests in 105.814 seconds.
+See TITLE_LIFETIME_REAL_MEMBERS_2026_11_02.md.
+
 Title construction now uses actual CSprite / CTile, replacing the local color
 base and incomplete sprite/tile classes. The one affected constructor remains
 577-byte exact; its full 616-byte section, including alignment and nine-entry

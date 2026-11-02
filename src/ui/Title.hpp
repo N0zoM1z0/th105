@@ -3,6 +3,7 @@
 #include "assets/ResourceHandleManager.hpp"
 #include "../engine/SceneBase.hpp"
 #include "MenuCursor.hpp"
+#include "Tile.hpp"
 
 extern "C" const unsigned int title_color_vtable_anchor[];
 extern "C" void __cdecl _invalid_parameter_noinfo();
@@ -70,26 +71,6 @@ struct TitleResourceManager : CHandleManager4 {
 };
 
 extern TitleResourceManager g_title_resource_manager;
-
-struct TitleColor94 {
-    const unsigned int *vtable;
-    unsigned char reserved[0x90];
-
-    ~TitleColor94()
-    {
-        vtable = title_color_vtable_anchor;
-    }
-};
-
-struct TitleColorA4 {
-    const unsigned int *vtable;
-    unsigned char reserved[0xA0];
-
-    ~TitleColorA4()
-    {
-        vtable = title_color_vtable_anchor;
-    }
-};
 
 struct TitleDesignResource {
     typedef void (__thiscall *VirtualCleanup)(TitleDesignResource *self);
@@ -181,10 +162,10 @@ public:
 
 private:
     unsigned int texture_08;
-    TitleColor94 color_0c;
+    CSprite color_0c;
     unsigned int texture_a0;
-    TitleColor94 color_a4;
-    TitleColorA4 color_138;
+    CSprite color_a4;
+    CTile color_138;
     TitleDesignResource design_1dc;
     MenuCursorState cursor_210;
     UiDesignObject *menu_items_224[12];
