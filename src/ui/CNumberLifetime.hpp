@@ -1,6 +1,6 @@
 #pragma once
 
-#include "engine/ColorInterface.hpp"
+#include "Tile.hpp"
 #include <new>
 #include <stddef.h>
 
@@ -10,30 +10,6 @@ namespace th105 {
 // Native CNumber, CTile and CSprite share the actual IColor interface.
 // Keep the legacy alias spelling, not a second source interface identity.
 typedef ::IColor CNumberColorLifetime;
-
-class CNumberTileLifetime : public CNumberColorLifetime {
-public:
-    // Model the member's own lifetime explicitly. VC8 then preserves the
-    // target's member-before-base cleanup in the complete CNumber destructor.
-    virtual ~CNumberTileLifetime() {}
-    virtual void set_color(unsigned int color);
-    virtual void set_vertex_colors(const unsigned int *colors);
-    virtual void multiply_color(unsigned int color);
-
-private:
-    unsigned char payload_04[0xA0];
-};
-
-// Shared ordinary lifetime for the actual94-byte UI sprite.
-class UiSpriteLifetime94 : public CNumberColorLifetime {
-public:
-    virtual ~UiSpriteLifetime94() {}
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-    unsigned char storage_04[0x90];
-};
-typedef char UiSpriteLifetimeExtent[sizeof(UiSpriteLifetime94) == 0x94 ? 1 : -1];
 
 class CNumberLifetime : public CNumberColorLifetime {
 public:
@@ -60,13 +36,13 @@ public:
     unsigned char mode_20;
     unsigned char reserved_21[3];
     void *number_value_24;
-    CNumberTileLifetime tile_28;
+    CTile tile_28;
 };
 
 typedef char CNumberColorLifetime_size_must_be_0x04[
     sizeof(CNumberColorLifetime) == 0x04 ? 1 : -1];
-typedef char CNumberTileLifetime_size_must_be_0xa4[
-    sizeof(CNumberTileLifetime) == 0xA4 ? 1 : -1];
+typedef char CNumber_tile_size_must_be_0xa4[
+    sizeof(CTile) == 0xA4 ? 1 : -1];
 typedef char CNumberLifetime_size_must_be_0xcc[
     sizeof(CNumberLifetime) == 0xCC ? 1 : -1];
 typedef char CNumberLifetime_value_offset_must_be_0x24[

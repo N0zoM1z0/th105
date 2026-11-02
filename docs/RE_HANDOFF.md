@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+CNumberLifetime now owns actual CTile, and MenuConnectLifetime owns actual CTile
+and CSprite members. Two payload-only cleanup surrogates are removed. Number
+40/11/11/11 and Connect 315 stay exact; scalar 60/61 support stays exact. Closure
+five units: eight accepted roots in four units pass; nine other roots in four
+units retain fresh HEAD hashes. Full Connect EH 168+116 is now checked, including
+whole deque 5/string 38 cleanup providers; tile RTTI 247/four slots pass. Record
+cleanup origins 2/23 and scalar origins 2/121 pass after source-pin refresh.
+CNumberLifetime still remains a separate owner view, not full runtime unification.
+No count gain. See NUMBER_SHARED_CLEANUP_2026_11_02.md.
+
 CMenuPractice now owns an actual CTile weather member at +0xB8. Rendering calls
 that named member directly, removing the offset-only CTileRenderView cast.
 Constructor 826 and render 211 remain exact; all 11 accepted roots in the

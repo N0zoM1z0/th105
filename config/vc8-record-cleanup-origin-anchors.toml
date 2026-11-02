@@ -12,7 +12,7 @@ sha256 = "097bb4aa8a02f52edc98e0434b8eb5293861bd0af2e1111aaf46df41c41d5bd1"
 
 [[sources]]
 path = "src/ui/CNumberLifetime.hpp"
-sha256 = "6e405dcc74f9c1da27ed451ae424d3fb368c719eb16e71e597434c22105a8daa"
+sha256 = "08815a4f52b62148b9068fb47aba60d305993ff4dda94e0a30327047b862a3d7"
 
 [[sources]]
 path = "src/ui/DesignBaseLifetime.hpp"
@@ -52,3 +52,7 @@ symbol_base = "??1InfoRecord154Lifecycle@th105@@QAE@XZ"
 emitted_symbol = "??1InfoRecord154Lifecycle@th105@@QAE@XZ"
 kind = "destructor"
 
+
+[[sources]]
+path = "src/ui/Tile.hpp"
+sha256 = "8539250fb22377018429cbd006dec8f66259ab78b74e9819634a76115fce560f"
