@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Original Boost search/matcher family now has all four complete remote EH
+scopes verified, closing the prior matcher-prefix-only limit: search235,
+matcher ctor243/dtor129, match_results dtor141, plus actual recursion8/44,
+scoped_ptr25/repeater12/vector42. Four EH code/metadata pairs44/44,73/60,
+49/52,35/44 exact. Real paired arrays31/29 have count50/stride68/member136.
+All1280 distinct bytes reject individual corruption; eight structural tests.
+Original source/header closure unchanged. No origin/count/credit changes.
+See BOOST_MATCHER_COMPLETE_LIFETIMES_2026_11_02.md and public audit.
+
 Timeline loader's remaining fake texture receiver is removed. Four pivot
 branches call actual CSpriteEx::set_texture_options; compiler retains one
 shared REL32 field755 to407160, plus five-argument member atfield607.
