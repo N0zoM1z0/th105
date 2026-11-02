@@ -15,7 +15,6 @@ extern "C" ProfileNameList g_profile_name_list;
 extern MenuCursorState g_profile_global_cursor;
 extern MenuCursorState g_profile_message_cursor;
 extern unsigned int g_profile_message_texture;
-extern ProfileSpriteView g_profile_message_sprite;
 extern UiDesignObject *g_profile_message_main;
 extern UiDesignObject *g_profile_message_choice_a;
 extern UiDesignObject *g_profile_message_choice_b;

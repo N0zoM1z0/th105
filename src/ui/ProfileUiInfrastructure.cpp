@@ -12,18 +12,6 @@ extern "C" CInputManager *g_active_menu_input;
 extern "C" ProfileNameList g_profile_name_list;
 extern unsigned char g_round_counter;
 
-static float &menu_cursor_scale_x(MenuCursorSpriteView &sprite)
-{
-    return *reinterpret_cast<float *>(
-        reinterpret_cast<unsigned char *>(&sprite) + 0x88);
-}
-
-static float &menu_cursor_scale_y(MenuCursorSpriteView &sprite)
-{
-    return *reinterpret_cast<float *>(
-        reinterpret_cast<unsigned char *>(&sprite) + 0x8c);
-}
-
 extern UiDesignObject *g_profile_message_main;
 extern UiDesignObject *g_profile_message_choice_a;
 extern UiDesignObject *g_profile_message_choice_b;
@@ -33,25 +21,7 @@ extern MenuCursorState g_profile_global_cursor;
 extern ProfileRenderListView g_profile_overlay_list;
 extern ProfileRenderListView g_profile_footer_background;
 extern ProfileRenderListView g_profile_player_list;
-extern ProfileSpriteView g_profile_message_sprite;
-extern ProfileSpriteView g_profile_character_background;
 extern UiDesignObject *g_profile_player_anchor;
-extern MenuCursorSpriteView g_menu_cursor_sprite;
-
-namespace {
-struct ProfileSpriteTextureVirtualView {
-    virtual void slot_00() = 0;
-    virtual void slot_04() = 0;
-    virtual void slot_08() = 0;
-    virtual void slot_0c() = 0;
-    virtual int set_texture_raw(unsigned int handle, int x, int y, unsigned int width, unsigned int height, int extra_a, int extra_b) = 0;
-};
-}
-
-void ProfileSpriteView::set_texture(unsigned int handle, int x, int y, unsigned int width, unsigned int height)
-{
-    reinterpret_cast<ProfileSpriteTextureVirtualView *>(this)->set_texture_raw(handle, x, y, width, height, 0, 0);
-}
 
 void hide_profile_message()
 {
@@ -105,8 +75,8 @@ extern "C" void __stdcall render_menu_list(bool alternate)
 {
     g_profile_character_background.render(352.0f, 88.0f);
     if (alternate) {
-        menu_cursor_scale_x(g_menu_cursor_sprite) = 0.5f;
-        menu_cursor_scale_y(g_menu_cursor_sprite) = 1.0f;
+        g_menu_cursor_sprite.scale_x_88 = 0.5f;
+        g_menu_cursor_sprite.scale_y_8c = 1.0f;
         float y = static_cast<float>(
             static_cast<double>(
                 g_profile_global_cursor.selection -
@@ -160,3 +130,8 @@ void Menu::render_profile_tiles()
 }
 
 } // namespace th105
+
+void CSprite::set_texture(unsigned handle, int x, int y, int width, int height)
+{
+    set_texture_options(handle, x, y, width, height, 0, 0);
+}

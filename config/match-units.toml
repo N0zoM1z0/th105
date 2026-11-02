@@ -5097,11 +5097,11 @@ notes = "TH105 1.06a shared Menu cursor renderer. Current IDA has twelve callers
 [[units.cross-v106a-menu-render-cursor.functions]]
 address = "0x0043F9D0"
 symbol_base = "Menu_render_cursor"
-rel32_targets = ["?render@MenuCursorSpriteView@th105@@QAEXMM@Z=0x00406BE0"]
+rel32_targets = ["?render@CSprite@@UAEXMM@Z=0x00406BE0"]
 dir32_targets = [
-  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
-  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A+0x88=g_menu_cursor_sprite_scale_fields",
-  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A+0x8C=g_menu_cursor_sprite_scale_fields",
+  "?g_menu_cursor_sprite@th105@@3VCSprite@@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
+  "?g_menu_cursor_sprite@th105@@3VCSprite@@A+0x88=g_menu_cursor_sprite_scale_fields",
+  "?g_menu_cursor_sprite@th105@@3VCSprite@@A+0x8C=g_menu_cursor_sprite_scale_fields",
   "__real@3f60000000000000=__real@3f60000000000000",
 ]
 
@@ -7347,7 +7347,7 @@ notes = "Current Profile UI infrastructure recovered as one ordinary VC8 TU: mes
 
 [[units.cross-v106a-profile-ui-infrastructure.functions]]
 address = "0x00406A60"
-symbol_base = "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z"
+symbol_base = "?set_texture@CSprite@@UAEXIHHHH@Z"
 
 [[units.cross-v106a-profile-ui-infrastructure.functions]]
 address = "0x0043F8D0"
@@ -7393,13 +7393,13 @@ address = "0x0043F970"
 symbol_base = "CProfileMenu_render_profile_menu_footer"
 rel32_targets = [
   "?render@ProfileRenderListView@th105@@QAEXXZ=0x0040BC80",
-  "?render@ProfileSpriteView@th105@@QAEXMM@Z=0x00406BE0",
+  "?render@CSprite@@UAEXMM@Z=0x00406BE0",
 ]
 dir32_targets = [
   "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
   "?g_profile_footer_background@th105@@3UProfileRenderListView@1@A=?g_profile_footer_background@th105@@3UProfileRenderListView@1@A",
   "__real@4024000000000000=__real@4024000000000000",
-  "?g_profile_message_sprite@th105@@3UProfileSpriteView@1@A=?g_profile_message_sprite@th105@@3UProfileSpriteView@1@A",
+  "?g_profile_message_sprite@th105@@3VCSprite@@A=?g_profile_message_sprite@th105@@3UProfileSpriteView@1@A",
   "__real@4010000000000000=__real@4010000000000000",
 ]
 
@@ -7407,19 +7407,18 @@ dir32_targets = [
 address = "0x0043FA10"
 symbol_base = "_render_menu_list@4"
 rel32_targets = [
-  "?render@ProfileSpriteView@th105@@QAEXMM@Z=0x00406BE0",
-  "?render@MenuCursorSpriteView@th105@@QAEXMM@Z=0x00406BE0",
+  "?render@CSprite@@UAEXMM@Z=0x00406BE0",
   "?render_item@ProfileNameList@th105@@QAEXMMI@Z=0x00439A20",
 ]
 dir32_targets = [
   "__real@42b00000=__real@42b00000",
-  "?g_profile_character_background@th105@@3UProfileSpriteView@1@A=?g_profile_character_background@th105@@3UProfileSpriteView@1@A",
+  "?g_profile_character_background@th105@@3VCSprite@@A=?g_profile_character_background@th105@@3UProfileSpriteView@1@A",
   "__real@43b00000=__real@43b00000",
   "?g_profile_global_cursor@th105@@3UMenuCursorState@1@A=?g_profile_global_cursor@th105@@3UMenuCursorState@1@A",
   "__real@3f000000=__real@3f000000",
-  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A+0x88=g_menu_cursor_sprite_scale_fields",
-  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A+0x8C=g_menu_cursor_sprite_scale_fields",
-  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
+  "?g_menu_cursor_sprite@th105@@3VCSprite@@A+0x88=g_menu_cursor_sprite_scale_fields",
+  "?g_menu_cursor_sprite@th105@@3VCSprite@@A+0x8C=g_menu_cursor_sprite_scale_fields",
+  "?g_menu_cursor_sprite@th105@@3VCSprite@@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
   "__real@4030000000000000=__real@4030000000000000",
   "__real@4060000000000000=__real@4060000000000000",
   "__real@43c20000=__real@43c20000",
@@ -7473,8 +7472,7 @@ rel32_targets = [
   "?load@ProfileRenderListView@th105@@QAEXPBD@Z=0x0040B000",
   "?bind_object_alt@ProfileRenderListView@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
   "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
-  "?set_texture@MenuCursorSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
-  "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
+  "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
@@ -7499,11 +7497,11 @@ dir32_targets = [
   "?g_profile_player_anchor@th105@@3PAUUiDesignObject@1@A=?g_profile_player_anchor@th105@@3PAUUiDesignObject@1@A",
   "_profile_cursor_path=_profile_cursor_path",
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
-  "?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
+  "?g_menu_cursor_sprite@th105@@3VCSprite@@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
   "?g_profile_cursor_texture@th105@@3IA=?g_profile_cursor_texture@th105@@3IA",
   "?g_profile_message_cursor@th105@@3UMenuCursorState@1@A=?g_profile_message_cursor@th105@@3UMenuCursorState@1@A",
   "_profile_list_seat_path=_profile_list_seat_path",
-  "?g_profile_character_background@th105@@3UProfileSpriteView@1@A=?g_profile_character_background@th105@@3UProfileSpriteView@1@A",
+  "?g_profile_character_background@th105@@3VCSprite@@A=?g_profile_character_background@th105@@3UProfileSpriteView@1@A",
   "?g_profile_list_seat_texture@th105@@3IA=?g_profile_list_seat_texture@th105@@3IA",
 ]
 
@@ -8659,8 +8657,10 @@ symbol_base = "?show_profile_result@Menu@th105@@IAEXPBD@Z"
 rel32_targets = [
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
-  "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
+  "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
 ]
+
+dir32_targets = ["?g_profile_message_sprite@th105@@3VCSprite@@A=?g_profile_message_sprite@th105@@3UProfileSpriteView@1@A"]
 
 [[units.cross-v106a-profile-menu-shared.functions]]
 address = "0x0043F640"
@@ -8668,8 +8668,10 @@ symbol_base = "?show_profile_message@Menu@th105@@IAEXPBD_N@Z"
 rel32_targets = [
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
-  "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
+  "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
 ]
+
+dir32_targets = ["?g_profile_message_sprite@th105@@3VCSprite@@A=?g_profile_message_sprite@th105@@3UProfileSpriteView@1@A"]
 
 [[units.cross-v106a-profile-menu-shared.functions]]
 address = "0x00440410"

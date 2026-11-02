@@ -18,26 +18,9 @@ struct ProfileRenderListView {
     void render_offset(float x, float y);
 };
 
-struct ProfileSpriteView {
-    void set_texture(
-        unsigned int handle,
-        int x,
-        int y,
-        unsigned int width,
-        unsigned int height);
-    void render(float x, float y);
-};
-
+extern CSprite g_profile_message_sprite;
+extern CSprite g_profile_character_background;
+extern CSprite g_menu_cursor_sprite;
 extern CTile g_profile_tile;
-
-struct MenuCursorSpriteView {
-    void set_texture(
-        unsigned int handle,
-        int x,
-        int y,
-        unsigned int width,
-        unsigned int height);
-    void render(float x, float y);
-};
 
 } // namespace th105

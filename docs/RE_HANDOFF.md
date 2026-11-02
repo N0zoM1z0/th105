@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Shared profile message/background/cursor globals now use actual CSprite, with
+named cursor scale fields. Duplicate sprite interfaces and texture-call view
+are removed; the existing exact 39-byte texture wrapper is CSprite::set_texture.
+All 22 accepted roots in seven units remain exact (closure eight); the pending
+deck renderer keeps its 2521-byte hash. Three native global vptrs and cursor
+scale storage are checked. No count gain or new global allocation.
+CI passed all 962 tests in 109.603 seconds.
+See PROFILE_GLOBAL_SPRITES_2026_11_02.md.
+
 Sequence rotation now owns actual CSprite instead of duplicate sprite classes.
 Rotation 265, implicit copy 116, card cleanup 8, assignment 143 and deque erase
 515 bytes remain exact; related enqueue 114 is freshly exact. Source pins and

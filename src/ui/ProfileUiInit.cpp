@@ -48,8 +48,6 @@ extern UiDesignObject *g_profile_message_choice_c;
 extern UiDesignObject *g_profile_message_choice_d;
 extern UiDesignObject *g_profile_player_anchor;
 extern MenuCursorState g_profile_message_cursor;
-extern MenuCursorSpriteView g_menu_cursor_sprite;
-extern ProfileSpriteView g_profile_character_background;
 extern unsigned int g_profile_cursor_texture;
 extern unsigned int g_profile_list_seat_texture;
 
