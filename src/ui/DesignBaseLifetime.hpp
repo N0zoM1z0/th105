@@ -1,5 +1,6 @@
 #pragma once
 
+#include "engine/ColorInterface.hpp"
 #include <list>
 #include <map>
 #include <new>
@@ -23,19 +24,11 @@ struct DesignTextureHandle {
 // contains an allocator subobject before its three pointers at +8/+C/+10.
 // The loader passes this+4 to vector operations; all three lifetime bodies
 // retain complete canonical matches with the native container.
-class DesignColorLifetimeView {
-public:
-    DesignColorLifetimeView() {}
-    virtual ~DesignColorLifetimeView() {}
-    virtual void set_color(unsigned int) = 0;
-    virtual void set_vertex_colors(const unsigned int *) = 0;
-    virtual void multiply_color(unsigned int) = 0;
-
-};
+typedef ::IColor DesignColorLifetimeView;
 
 class CDesignBase : public DesignColorLifetimeView {
 public:
-    CDesignBase();
+    // Default construction and virtual destruction are both implicit.
     // Deliberately implicit virtual destructor.  The current target does not
     // republish the derived vptr at normal-destruction entry; VC8's implicit
     // special member reproduces that lifetime exactly.

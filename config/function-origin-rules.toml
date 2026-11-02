@@ -6015,3 +6015,14 @@ evidence = "Exact CSelect update-flow4208E0/341 tail-jumps to this complete char
 required_body_hashes = [{ address = "0x0041FC90", size = 619, sha256 = "a4bb43c20a44efc5f92ec5b027f9c52aa72fb633c1854f39090c8d62202d4e0c" }]
 required_direct_edges = [{ caller = "0x004208E0", site = "0x00420A30", target = "0x0041FC90", kind = "jump", caller_status = "matching" }]
 required_branch_skipped_padding = [{ owner = "0x0041FC90", jump_site = "0x0041FCB8", padding_site = "0x0041FCBA", padding_hex = "8d9b00000000" }]
+
+[[rules]]
+id = "implicit-design-base-lifetimes-106a"
+implicit_lifetime_anchor_file = "config/implicit-design-base-lifetime-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 307
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual CSelect constructor naturally emits CDesignBase implicit default construction153 and destruction154 with no source constructor/destructor declaration or body. Complete canonical comparisons, reviewed source/header pins and native IColor/table/member ownership; no artificial lifetime caller. Withdraw307 pure member-lifetime bytes from authored accounting without changing exact byte comparison. docs/DESIGN_COLOR_IMPLICIT_LIFETIMES_2026_11_02.md."

@@ -27,7 +27,6 @@ struct CInputManagerCluster : CInputManager {
  signed char active_source_74;
 };
 // Pointer-only call views, never embedded or instantiated.
-struct SelectDesignCall { virtual void slot00();virtual void slot04();virtual void slot08();virtual void slot0c();virtual void load_10(const char *); };
 
 struct SelectEffectCall {
  virtual void slot00();virtual void load_04(const char *,unsigned);

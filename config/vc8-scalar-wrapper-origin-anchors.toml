@@ -888,7 +888,7 @@ type_name = ".?AVCProfileKeyConfig@@"
 address = "0x00421930"
 size = 30
 unit = "cross-v106a-design-base-lifetime"
-symbol_base = "CDesignBase_scalar_deleting_destructor"
+symbol_base = "??_GCDesignBase@th105@@UAEPAXI@Z"
 sha256 = "544eb06ac72099d36c8f16ad444a8df5f16f1d38e88288605aab53cf792c0f13"
 
 [[anchors.owners]]

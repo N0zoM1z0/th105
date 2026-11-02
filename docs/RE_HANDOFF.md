@@ -1,5 +1,19 @@
 # TH10.5 reconstruction handoff
 
+CDesignBase now shares actual global IColor; constructor/destructor both
+implicit and naturally emitted by real SelectConstructor.cpp. Old lifetime
+probe source/helper removed; Select calls real design.load without its view.
+Whole153/154/scalar30 remain exact.307 compiler-only normal-lifetime bytes
+withdrawn from authored credit: exact1427/443604,source1634,authored1653,
+excluded2074; mapped1823/review300/units812 unchanged. New source-pinned rule
+uses strict parameterless default_constructor support in unchanged whole-byte
+gate. Actual design table40/baseIColor93/two native parent calls verified.
+Affected44 units:34/70 pre-withdrawal roots replayed, retaining33/68 authored;
+source-only old loaderEH/string-constructor blockers reproduced before change.
+Record2/23, scalar30, implicitSprite/fullSelectEH and4+12 observers pass.
+No full derived namespaceRTTI/linkage claim. See
+DESIGN_COLOR_IMPLICIT_LIFETIMES_2026_11_02.md.
+
 CSelect's two tiles350/2CD0 now use actual global CTile in both layouts;
 render calls actual CTile::render and removes its tile-view macro. Full ctor
 4247/13, EH461/meta188 and dtor845 unchanged; all8 owner candidate hashes

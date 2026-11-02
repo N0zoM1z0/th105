@@ -22,7 +22,7 @@ CSelect::CSelect()
  names_350.set_texture(names_34c,0,0,256,64);
  random_names_3f4=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(select_ctor_rnd_names,&width,&height);
  random_names_3f8.set_texture(random_names_3f4,0,0,256,64);
- reinterpret_cast<SelectDesignCall *>(&character_design_150)->load_10(select_ctor_character_design);
+ character_design_150.load(select_ctor_character_design);
  int flags;
  unsigned char *network=static_cast<unsigned char *>(get_network_session());
  if(network) {
@@ -57,7 +57,7 @@ CSelect::CSelect()
   back_images_624[i].set_texture_options(back_textures_61c[i],0,0,width,height,0,0);
   back_images_624[i].reset_transform();back_images_624[i].translate(anchor_618->x,anchor_618->y,0);
  }
- reinterpret_cast<SelectDesignCall *>(&background_design_1984)->load_10(select_ctor_bg_design);
+ background_design_1984.load(select_ctor_bg_design);
  for(int i=0;i<choice_count_094;++i) {
   wsprintfA(path,select_ctor_bg_picture_format,choices_098[i]);
   pictures_19b8[i]=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(path,&width,&height);

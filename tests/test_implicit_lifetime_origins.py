@@ -41,3 +41,10 @@ class ImplicitLifetimeTests(unittest.TestCase):
     def test_duplicate_review_sources(self):
         s,r,u,b=self.fixture();s['sources'].append(copy.deepcopy(s['sources'][0]))
         with self.assertRaises(ValueError):self.check(s,r,u,b)
+
+    def test_parameterless_default_constructor(self):
+        s,r,u,b=self.fixture();s['anchors'][0].update(kind='default_constructor',emitted_symbol='??0Fixture@@QAE@XZ');self.assertTrue(self.check(s,r,u,b))
+    def test_default_constructor_cannot_select_copy_or_argument_constructor(self):
+        for symbol in ['??0Fixture@@QAE@ABV0@@Z','??0Fixture@@QAE@H@Z','??0Fixture@@AAE@XZ']:
+            s,r,u,b=self.fixture();s['anchors'][0].update(kind='default_constructor',emitted_symbol=symbol)
+            with self.assertRaisesRegex(ValueError,'parameterless ordinary thiscall'):self.check(s,r,u,b)

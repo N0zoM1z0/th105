@@ -35,9 +35,11 @@ def validate_spec(spec, selected, rows, units, target_sha):
                 or type(a['size'])is not int or a['size']<=0
                 or a['address']not in by or int(by[a['address']]['size'],0)!=a['size']):
             raise ValueError('implicit lifetime extent/schema mismatch')
-        prefix={'destructor':'??1','copy_constructor':'??0'}.get(a['kind'])
+        prefix={'destructor':'??1','copy_constructor':'??0','default_constructor':'??0'}.get(a['kind'])
         if prefix is None or not a['emitted_symbol'].startswith(prefix):
             raise ValueError('implicit lifetime emitted member kind differs')
+        if a['kind']=='default_constructor' and not a['emitted_symbol'].endswith('@@QAE@XZ'):
+            raise ValueError('implicit default constructor must be parameterless ordinary thiscall')
         u=units.get(a['unit'],{})
         if (u.get('kind')!='probe' or u.get('profile')!='vc8-sp1-probe-o2'
                 or u.get('source')not in {s['path']for s in sources}):

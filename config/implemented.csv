@@ -429,8 +429,6 @@ CProfileDeckEdit_dtor
 CProfileCharacterSelect_dtor
 try_dispatch_action_202
 try_dispatch_action_203
-CDesignBase_ctor
-CDesignBase_dtor
 CMenuContinue_ctor
 CMenuContinue_dtor
 CMenuEnd_ctor

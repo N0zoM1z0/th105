@@ -9,11 +9,11 @@ normalized_sha256 = "bb354c1224af92092ef88b0f7475669dacafe7891f8aa5697fcb3e7a16b
 
 [[sources]]
 path = "src/ui/SelectConstructor.hpp"
-normalized_sha256 = "a5cd67805e45d280e176c7815db18e7c30d039ffb478067c46258a0f0950a1f3"
+normalized_sha256 = "4952b4681f623b09241546c3ca2efad70641ffb5a40330312ef045f4115f987c"
 
 [[sources]]
 path = "src/ui/SelectConstructor.cpp"
-normalized_sha256 = "017521e70808db5d4e1186a0a2be9c946ff16a902480b4198404e13424bebc4b"
+normalized_sha256 = "55c158224feb862f8ffbf6e353e5376faa836422aef7f4cfec9b92964b8ffa2d"
 
 [[sources]]
 path = "src/engine/ColorInterface.hpp"

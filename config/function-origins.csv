@@ -735,8 +735,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00421430,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004216F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00421780,authored_game,battle,authored,observed,canonical-exact-authored
-0x004217F0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00421890,authored_game,ui,authored,observed,canonical-exact-authored
+0x004217F0,compiler_generated,runtime,exclude,observed,implicit-design-base-lifetimes-106a
+0x00421890,compiler_generated,runtime,exclude,observed,implicit-design-base-lifetimes-106a
 0x00421930,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x00421950,authored_game,battle,authored,observed,canonical-exact-authored
 0x004219C0,authored_game,battle,authored,observed,canonical-exact-authored

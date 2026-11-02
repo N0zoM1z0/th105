@@ -16,7 +16,7 @@ sha256 = "6e405dcc74f9c1da27ed451ae424d3fb368c719eb16e71e597434c22105a8daa"
 
 [[sources]]
 path = "src/ui/DesignBaseLifetime.hpp"
-sha256 = "907aeabfbb76a32dae23f3a20ee940fba5fdcf21f3023413720ae47ecfe69a71"
+sha256 = "333ca52b318321d92c9884a5a3753893212b8d3503b81e6dd3c8005c9ec8d97c"
 
 [[sources]]
 path = "src/battle/EffectSprite.hpp"

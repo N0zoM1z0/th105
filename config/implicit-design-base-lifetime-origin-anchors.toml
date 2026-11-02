@@ -1,0 +1,45 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+
+[[sources]]
+path = "src/ui/DesignBaseLifetime.hpp"
+sha256 = "333ca52b318321d92c9884a5a3753893212b8d3503b81e6dd3c8005c9ec8d97c"
+
+[[sources]]
+path = "src/engine/ColorInterface.hpp"
+sha256 = "71db76e78b423b322a52fe5d0b64559238fdb1fc33170b1f2954d7efd051b093"
+
+[[sources]]
+path = "src/ui/SelectConstructor.cpp"
+sha256 = "3ec88b2a6b1b7f60eb2615d1b02728f71f0f289da82694dd5bcea9c6d725e8e9"
+
+[[sources]]
+path = "src/ui/SelectConstructor.hpp"
+sha256 = "653c9f340eb66177e14610846f329caca5ee495f4336d7275741dad89476696f"
+
+[[sources]]
+path = "src/ui/SelectSetupState.hpp"
+sha256 = "7035a226c07ef08fc11342c4dee85aea4ef547b3ee4f00a6869921463053ae6b"
+
+[[sources]]
+path = "src/ui/Tile.hpp"
+sha256 = "f90f3224d4afdb483c1dbf92b24d334d2cba9f75f9694314e19d5c2b6f3f984f"
+
+[[anchors]]
+address = "0x004217F0"
+size = 153
+sha256 = "d4aab242f4bb7480f5dd4be64e5c9e758983cb484a034497af5e659c4eda8b54"
+unit = "cross-v106a-design-base-lifetime"
+symbol_base = "??0CDesignBase@th105@@QAE@XZ"
+emitted_symbol = "??0CDesignBase@th105@@QAE@XZ"
+kind = "default_constructor"
+
+[[anchors]]
+address = "0x00421890"
+size = 154
+sha256 = "6e049b6b301522e2ab32a3c72e6ebdc6c6c7047bf0c26759e196aeac01ff31c9"
+unit = "cross-v106a-design-base-lifetime"
+symbol_base = "??1CDesignBase@th105@@UAE@XZ"
+emitted_symbol = "??1CDesignBase@th105@@UAE@XZ"
+kind = "destructor"
