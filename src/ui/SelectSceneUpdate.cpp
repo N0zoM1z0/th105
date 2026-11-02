@@ -75,7 +75,7 @@ int CSelect::update()
         prefix->inputs_10[1]=get_selected_input(1);
         if(!prefix->inputs_10[1])fields_090[2]=1;
     }
-    MenuCursorState (*cursors)[2]=reinterpret_cast<MenuCursorState (*)[2]>(fields_100);
+    MenuCursorState (*cursors)[2]=character_cursors_100;
     bind_input(&cursors[0][0],&cursors[0][1],prefix->inputs_10[0]);
     bind_input(&cursors[1][0],&cursors[1][1],prefix->inputs_10[1]);
     input_018.sources_60.clear();

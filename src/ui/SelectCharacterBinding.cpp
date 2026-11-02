@@ -14,7 +14,7 @@ void SelectCharacterBindingView::bind_character_41fb80(int side,int character)
 {
     g_title_resource_manager.release_title_resource_handle(extra_textures_48c[side]);
     extra_textures_48c[side]=0;
-    void **selected_effects=reinterpret_cast<void **>(fields_1954);
+    void **selected_effects=selected_effects_1954;
     selected_effects[side]=0;
     if(character!=15) {
         char path[260];

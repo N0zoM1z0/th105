@@ -73,7 +73,7 @@ CSelect::CSelect()
  background_design_1984.find_object(&music_anchor_2d74,300);
  for(int i=0;i<3;++i) background_design_1984.bind_object_alt(&slots_2cb8[i],i+500);
  slots_2cb8[0]->enabled=true;slots_2cb8[1]->enabled=true;
- field_2d84=0;field_2d80=0;field_2d7c=0;field_2d78=false;field_7f4=0;
+ field_2d84=0;field_2d80=0;field_2d7c=0;guide_mix_2d78=0;field_7f4=0;
  if(static_cast<int>(get_game_mode())==4 || static_cast<int>(get_game_mode())==5) { guides_2d88[0].load(3);guides_2d88[1].load(4); }
  else { guides_2d88[0].load(90);guides_2d88[1].load(91); }
  for(int i=0;i<15;++i) {

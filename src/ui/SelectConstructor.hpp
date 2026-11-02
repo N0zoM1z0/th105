@@ -1,6 +1,7 @@
 #pragma once
 #include "engine/SceneBase.hpp"
 #include "ui/Title.hpp"
+#include "ui/MenuCursor.hpp"
 #include "ui/UiPrimitives.hpp"
 #include "ui/GuideOverlay.hpp"
 #include "ui/DesignBaseLifetime.hpp"
@@ -57,7 +58,8 @@ public:
  int choice_count_094;
  std::vector<int> choices_098,variants_0a8,extras_0b8;
  std::string strings_0c8[2];
- unsigned char fields_100[0x50];
+ // Four actual trivial cursor records, two axes per player.
+ MenuCursorState character_cursors_100[2][2];
  CDesignBase character_design_150;
  DesignTextureHandle cursor_textures_184[2];UiSprite94 cursor_images_18c[2];
  DesignTextureHandle background_2b4;UiSprite94 background_2b8;
@@ -70,18 +72,22 @@ public:
  DesignTextureHandle back_textures_61c[2];CSpriteEx back_images_624[2];
  int field_7f4;unsigned char fields_7f8[4];
  CEffectManager<CSelectObject> effects_7fc[15][2];
- unsigned char fields_1954[0x30];
+ void *selected_effects_1954[2];
+ MenuCursorState stage_cursor_195c,variant_cursor_1970;
  CDesignBase background_design_1984;
  DesignTextureHandle pictures_19b8[16],names_19f8[16];
  UiSprite94 picture_images_1a38[16],name_images_2378[16];
  UiDesignObject *slots_2cb8[3];UiDesignObject *background_anchor_2cc4,*background_anchor_2cc8;
  DesignTextureHandle music_2ccc;UiTileA4 music_2cd0;
- UiDesignObject *music_anchor_2d74;bool field_2d78;
+ UiDesignObject *music_anchor_2d74;unsigned char guide_mix_2d78;
  int field_2d7c;float field_2d80,field_2d84;
  GuideOverlay guides_2d88[2];
 };
 #define CHECK_FIELD(n,o) typedef char SelectLayout_##n[(offsetof(CSelect,n)==o)?1:-1]
 CHECK_FIELD(input_018,0x18);CHECK_FIELD(choices_098,0x98);
+CHECK_FIELD(character_cursors_100,0x100);CHECK_FIELD(selected_effects_1954,0x1954);
+CHECK_FIELD(stage_cursor_195c,0x195c);CHECK_FIELD(variant_cursor_1970,0x1970);
+CHECK_FIELD(guide_mix_2d78,0x2d78);
 CHECK_FIELD(strings_0c8,0xc8);CHECK_FIELD(character_design_150,0x150);
 CHECK_FIELD(cursor_images_18c,0x18c);CHECK_FIELD(background_2b8,0x2b8);
 CHECK_FIELD(names_350,0x350);CHECK_FIELD(random_names_3f8,0x3f8);

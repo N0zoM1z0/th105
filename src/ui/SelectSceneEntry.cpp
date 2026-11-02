@@ -47,7 +47,7 @@ void CSelect::on_scene_enter(int previous_scene)
     if(previous_scene!=2)play_bgm(title_bgm_path);
     fields_090[0]=1;
     fields_090[1]=(get_game_mode()!=0 && get_game_mode()!=GAME_MODE_VS_COM) ? 1 : 0;
-    MenuCursorState (*cursors)[2]=reinterpret_cast<MenuCursorState (*)[2]>(fields_100);
+    MenuCursorState (*cursors)[2]=character_cursors_100;
     for(int side=0;side<2;++side) {
         prefix->inputs_10[side]=get_selected_input(side);
         if(prefix->inputs_10[side]) {
@@ -63,9 +63,8 @@ void CSelect::on_scene_enter(int previous_scene)
     primary->enabled=fields_090[0];
     reinterpret_cast<SelectEntryUiEnabledView *>(slots_604[1])->enabled=fields_090[1] &
         (get_game_mode()!=GAME_MODE_VS_PLAYER && get_game_mode()!=GAME_MODE_PRACTICE);
-    MenuCursorState *stage_cursors=reinterpret_cast<MenuCursorState *>(fields_1954+8);
-    bind_cursor(&stage_cursors[0],&input_018,choice_count_094,true);
-    bind_cursor(&stage_cursors[1],&input_018,2,false);
+    bind_cursor(&stage_cursor_195c,&input_018,choice_count_094,true);
+    bind_cursor(&variant_cursor_1970,&input_018,2,false);
     fields_7f8[0]=0;
     fields_7f8[1]=0;
     prefix->state_08=0;
@@ -88,15 +87,15 @@ void CSelect::on_scene_enter(int previous_scene)
     if(!prefix->setup_0c->random_4c[2]) {
         for(int i=0;i<choice_count_094;++i) {
             if(choices_098[i]==prefix->setup_0c->stage_04) {
-                stage_cursors[0].selection=i;
+                stage_cursor_195c.selection=i;
                 break;
             }
         }
-        if(variants_0a8[stage_cursors[0].selection]!=prefix->setup_0c->bgm_05 &&
-           select_ids_6288[stage_cursors[0].selection]>=0)
-            stage_cursors[1].selection=1;
+        if(variants_0a8[stage_cursor_195c.selection]!=prefix->setup_0c->bgm_05 &&
+           select_ids_6288[stage_cursor_195c.selection]>=0)
+            variant_cursor_1970.selection=1;
     }
-    reinterpret_cast<SelectEntryUiEnabledView *>(slots_2cb8[2])->enabled=extras_0b8[stage_cursors[0].selection]>=0;
+    reinterpret_cast<SelectEntryUiEnabledView *>(slots_2cb8[2])->enabled=extras_0b8[stage_cursor_195c.selection]>=0;
     prefix->setup_0c->identifier_00=get_game_config()->identifier_64;
     reinterpret_cast<SelectEntryCallView *>(this)->bind_character_41fb80(0,prefix->setup_0c->sides_08[0].character_key_00);
     reinterpret_cast<SelectEntryCallView *>(this)->bind_character_41fb80(1,prefix->setup_0c->sides_08[1].character_key_00);

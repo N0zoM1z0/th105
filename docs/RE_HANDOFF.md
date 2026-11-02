@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+CSelect shared state is now typed: four actual MenuCursorState records at100,
+two selected-effect pointers1954 and stage/variant cursors195C/1970. Guide mix
+2D78 corrected from bool to unsigned byte, independently proved by exact341
+update-flow's +/-15 and0/255 behavior. Existing entry/frame/binding consumers
+use real members instead of raw buffers. Full before/after candidate hashes
+unchanged: ctor4247/nonexact13, entry783, update685/native697; binding258 and
+dtor845 exact. Constructor EH461/meta188 and implicit16/7 pass; default-sprite
+source guards renewed after proof. Stage890/flow341 also freshly exact.
+No count change. See SELECT_TYPED_STATE_2026_11_02.md.
+
 Actual global CSprite now has nine RTTI-backed virtual slots and typed float
 pivot/scale/angle tail. Existing610/610 primary renders and153 rectangle now
 belong to it directly; prior candidate bytes and scheduling gaps are unchanged.
