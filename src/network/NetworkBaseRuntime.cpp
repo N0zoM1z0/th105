@@ -1,30 +1,12 @@
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "../input/InputManager.hpp"
-#include "../ui/UiPrimitives.hpp"
+#include "../battle/EffectSprite.hpp"
+#include "NetworkBaseMembers.hpp"
 
 #include <deque>
 #include <stddef.h>
 
 namespace th105 {
-
-// Current CNetworkBase owns two 0x7c input endpoints.  CInputManager is a
-// member at +0, not a base class: the distinction is byte-significant because
-// inheritance would publish an extra derived vptr during destruction.
-struct NetworkInputEndpoint7C {
-    CInputManager input_000;
-    unsigned char reserved_060[0x08];
-    std::deque<short> queue_068;
-
-    ~NetworkInputEndpoint7C() {}
-};
-
-struct NetworkQueueSlot20 {
-    unsigned char reserved_000[0x08];
-    std::deque<short> queue_008;
-    unsigned char reserved_01c[0x04];
-
-    ~NetworkQueueSlot20() {}
-};
 
 // The current +0x3b4 member has its own independently observed polymorphic
 // lifetime at 0x00412cc0.  Only its physical extent is needed by this TU.
@@ -46,17 +28,17 @@ public:
 private:
     unsigned char reserved_004[0x44];
     CriticalSectionWrapper critical_048;
-    unsigned char reserved_064[0x3c];
-    std::deque<short> queue_0a0;
+    unsigned char reserved_064[0x2c];
+    InputPacket24ConstructorView input_packet_090;
     std::deque<short> queues_0b4[2];
     CriticalSectionWrapper critical_0dc;
     NetworkInputEndpoint7C inputs_0f8[2];
-    unsigned char reserved_1f0[0x24];
-    NetworkQueueSlot20 slots_214[2];
+    unsigned char reserved_1f0[0x1c];
+    NetworkQueuePair48 queue_pair_20c;
     unsigned char reserved_254[0x08];
     CriticalSectionWrapper critical_25c;
     unsigned char reserved_278[0x04];
-    UiSprite94 sprites_27c[2];
+    ::CSprite sprites_27c[2];
     unsigned char reserved_3a4[0x10];
     NetworkWinsockState314 winsock_3b4;
     std::deque<short> queue_6c8;

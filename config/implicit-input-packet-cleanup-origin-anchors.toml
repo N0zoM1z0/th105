@@ -12,7 +12,7 @@ sha256 = "81187391923f8b5e7aea46f4f841ca56cc4566f7d279f43dd6d804a6287d83d1"
 
 [[sources]]
 path = "src/network/NetworkBaseConstructorRuntime.cpp"
-sha256 = "8b615a67edd3a9a9f57dc3d3189df4598885c339e55eff81a27166b5164e5eac"
+sha256 = "ac5d3ea4c7c09b6c42c446f83120a8da7ca23d6047901ead074febd861bde29e"
 
 [[sources]]
 path = "src/input/InputManager.hpp"
@@ -25,6 +25,10 @@ sha256 = "dd4fbc4d5afcbf3d4762e19023a25b4a98197e4bdcb0c4a6f568ffaa42954132"
 [[sources]]
 path = "src/engine/CriticalSectionWrapper.hpp"
 sha256 = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
+
+[[sources]]
+path = "src/network/NetworkBaseMembers.hpp"
+sha256 = "f459eb2422e4f7f85a3ec0c5c559161226763c92310fde6062d9adaeb2afb940"
 
 [[anchors]]
 address = "0x0043BE90"

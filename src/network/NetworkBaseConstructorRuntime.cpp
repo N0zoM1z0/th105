@@ -1,55 +1,12 @@
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "../input/InputManager.hpp"
 #include "../battle/EffectSprite.hpp"
+#include "NetworkBaseMembers.hpp"
 
 #include <deque>
 #include <stddef.h>
 
 namespace th105 {
-
-struct PacketResultBase4 {
-    PacketResultBase4() : result_004() {}
-    unsigned int result_004;
-};
-
-class ScenePacket0C : public PacketResultBase4 {
-public:
-    ScenePacket0C() {}
-    virtual unsigned int serialize(void *buffer);
-
-    unsigned char payload_008[4];
-};
-
-class InputPacket24ConstructorView : public PacketResultBase4 {
-public:
-    InputPacket24ConstructorView() {}
-    virtual unsigned int serialize(void *buffer);
-
-    unsigned int sequence_008;
-    unsigned char tag_00c;
-    unsigned char reserved_00d[3];
-    std::deque<short> values_010;
-};
-
-struct NetworkInputEndpoint7C {
-    CInputManagerEx input_000;
-    std::deque<short> queue_068;
-};
-
-struct NetworkQueueSlot20 {
-    unsigned int sequence_000;
-    unsigned char side_004;
-    unsigned char reserved_005[3];
-    std::deque<short> queue_008;
-    void *input_01c;
-};
-
-// The native EH action receives owner+20C and destroys two slots at+8.
-// Keep this real nested lifetime; the following eight parent bytes remain opaque.
-struct NetworkQueuePair48 {
-    unsigned char prefix_00[8];
-    NetworkQueueSlot20 slots_08[2];
-};
 
 class NetworkWinsockState314 {
 public:

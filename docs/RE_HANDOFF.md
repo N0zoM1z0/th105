@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+NetworkBase destructor now shares genuine packet/endpoint/queue definitions
+with the constructor in NetworkBaseMembers.hpp and uses actual CSprite.
+Main259/scalar30/reset175 remain exact. Full remote EH169 at6B8C60 and
+metadata100 at6DEC98 now match; eight cleanup actions and handler6B8CEE
+verified. Constructor411/EH197/meta116 and natural sprite16/7 still exact.
+Eight structural tests and610 unique corruption controls pass. Both lifetime
+source guards renewed with shared-header hash after full proofs; scalar30
+receipt refreshed. No authored/count change or OS-exception execution claim.
+See NETWORK_BASE_DESTRUCTOR_EH_2026_11_02.md. Continue root-only, serial CPU0,
+nice10, repo-python, local commits only; do not cold rebuild the entire corpus.
+
 NetworkBase constructor now has genuine nested queue lifetime at+20C and
 natural global CSprite members. Main411 remains exact; formerly207-byte source
 EH is now native197 with complete116-byte metadata exact. Group19 at43C380
