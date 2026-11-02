@@ -148,7 +148,7 @@ private:
     bool update_active();
 
     unsigned int texture_004;
-    UiSprite94 character_sprite_008;
+    CSprite character_sprite_008;
     SelectIntVector16 available_characters_09c;
     int character_count_0ac;
     MenuCursorState character_cursor_0b0;

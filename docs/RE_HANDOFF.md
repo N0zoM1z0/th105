@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+CMenuResult now owns actual CSprite at +0x08. Four accepted roots in three
+units remain exact; closure five units. Constructor remains 495/native502 at
++45, but its handle initialization now precedes the EH state store as in the
+native sequence. Only those adjacent stores changed, with no byte credit.
+Other four support/pending roots retain fresh HEAD hashes. Sprite RTTI273/nine
+slots and full ctor/dtor EH115+84 each (398 total) pass; vector cleanup42 is
+whole-checked. Generic implicit origins17/1434 pass after the header pin update.
+See RESULT_REAL_SPRITE_2026_11_02.md.
+
 Scene construction/lifetime now uses actual CSprite, CEffectSprite and CTile.
 Logo lifetime is corrected from two CSpriteEx members to CEffectSprite +0x08,
 CTile +0xF0 and state +0x194, total 0x198. Loading lifetime adds its observed
