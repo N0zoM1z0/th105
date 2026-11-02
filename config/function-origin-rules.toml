@@ -5938,3 +5938,14 @@ subsystem = "stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Entire original deque<unsigned>::pop_back23 in actual SceneTimelineLoader TU. Actual _Insert sourcefield1491/nativecall452402 selects413DF0, independently of identical short-deque428680. Existing1818-byte insertion provenance freshly passes unchanged strict gate; timeline full1676 payload freshly exact. No generic threshold relaxation, alias doublecount, parent/EH or authored credit. docs/UNSIGNED_DEQUE_POP_BACK_2026_11_02.md."
+
+[[rules]]
+id = "input-base-vptr-cleanup-106a"
+input_base_cleanup_anchor_file = "config/input-base-cleanup-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 7
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Empty CInputManager destructor contains only compiler vptr restoration. Full7-byte body, actual named global type RTTI100 unique bytes, complete two-slot table, original weak vector-deleting fallback to full31-byte scalar body and actual static cleanup edge all verify. Source class naming corrected to real RTTI type without byte changes. Prior7 authored bytes are withdrawn; no scalar/RTTI/static or exclusive dynamic-type/ICF credit. docs/INPUT_BASE_CLEANUP_ACCOUNTING_2026_11_02.md."

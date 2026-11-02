@@ -214,7 +214,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004099F0,authored_game,ui,authored,observed,shared-ui-design-binding-and-tile-render-authored-106a
 0x00409CF0,authored_game,input,authored,observed,canonical-exact-authored
 0x00409D30,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
-0x00409D50,authored_game,input,authored,observed,canonical-exact-authored
+0x00409D50,compiler_generated,input,exclude,observed,input-base-vptr-cleanup-106a
 0x00409D60,authored_game,input,authored,observed,canonical-exact-authored
 0x00409DA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00409F40,authored_game,input,authored,observed,canonical-exact-authored

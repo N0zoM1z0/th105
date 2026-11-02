@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+409D50 remains exact7 but is now compiler-only vptr restoration, withdrawing
+old authored credit from its empty destructor. Isolated source type renamed
+to actual global CInputManager; normal7/scalar31 unchanged. Full RTTI100 unique
+bytes, two-slot table, actual weak ??_E->??_G fallback and static cleanup edge
+pass.10 tests/156 mutations. Authored1431/443934, source1636, authored1655,
+excluded2067/review305, mapped1821/units808. See
+INPUT_BASE_CLEANUP_ACCOUNTING_2026_11_02.md. Static receiver6FBD60 is not inferred
+to have base dynamic type; registration6BEB4C is not a22-byte function.
+
 Unsigned-deque pop_back413DF0 is now independently qualified by actual
 Timeline range-insert caller452402/sourcefield1491 in whole1818-byte owner.
 The short-deque428680 identity remains separate. All8 old owner anchors,

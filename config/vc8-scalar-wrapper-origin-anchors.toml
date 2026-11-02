@@ -1896,7 +1896,7 @@ type_name = ".?AVCNetworkClient@@"
 address = "0x00409D30"
 size = 31
 unit = "gpt-web-input-manager-lifetime"
-symbol_base = "??_GCInputManagerLifetimeView@th105@@UAEPAXI@Z"
+symbol_base = "??_GCInputManager@@UAEPAXI@Z"
 sha256 = "26276b2568cff6a1e2e53d231c110aa000f977af7fb664129b74a2537f3bd0ff"
 
 [[anchors.owners]]

@@ -14059,14 +14059,14 @@ notes = "Current RTTI-owned CInputManager base lifetime. The existing input layo
 
 [[units.gpt-web-input-manager-lifetime.functions]]
 address = "0x00409D50"
-symbol_base = "??1CInputManagerLifetimeView@th105@@UAE@XZ"
-dir32_targets = ["??_7CInputManagerLifetimeView@th105@@6B@=??_7CInputManager@@6B@"]
+symbol_base = "??1CInputManager@@UAE@XZ"
+dir32_targets = ["??_7CInputManager@@6B@=??_7CInputManager@@6B@"]
 
 [[units.gpt-web-input-manager-lifetime.functions]]
 address = "0x00409D30"
-symbol_base = "??_GCInputManagerLifetimeView@th105@@UAEPAXI@Z"
+symbol_base = "??_GCInputManager@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
-dir32_targets = ["??_7CInputManagerLifetimeView@th105@@6B@=??_7CInputManager@@6B@"]
+dir32_targets = ["??_7CInputManager@@6B@=??_7CInputManager@@6B@"]
 
 [units.gpt-web-scene-render-cluster-constructor]
 kind = "probe"

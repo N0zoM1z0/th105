@@ -57,6 +57,7 @@ EXACT_TEST_MODULES = (
     "test_vc8_pow_shared_origins",
     "test_sprite_default_origins",
     "test_sprite_callback_origins",
+    "test_input_base_cleanup_origins",
     "test_score_vector_default_origins",
     "test_deque_popback_origins",
     "test_unsigned_deque_popback_origins",

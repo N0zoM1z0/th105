@@ -1,5 +1,5 @@
-namespace th105 {
-
+// RTTI identifies the global CInputManager base type; its empty destructor
+// contains only compiler-managed virtual-table restoration.
 struct InputBindingsLifetime {
     signed char source_id;
     unsigned char reserved_01[3];
@@ -10,20 +10,18 @@ struct HoldCountersLifetime {
     int values[10];
 };
 
-class CInputManagerLifetimeView {
+class CInputManager {
 public:
-    virtual ~CInputManagerLifetimeView();
+    virtual ~CInputManager();
     virtual void update_player_input_counters_from_raw();
 
     InputBindingsLifetime bindings;
     HoldCountersLifetime hold;
 };
 
-CInputManagerLifetimeView::~CInputManagerLifetimeView()
+CInputManager::~CInputManager()
 {
 }
 
-typedef char CInputManagerLifetimeView_size_must_be_0x60[
-    sizeof(CInputManagerLifetimeView) == 0x60 ? 1 : -1];
-
-} // namespace th105
+typedef char CInputManager_size_must_be_0x60[
+    sizeof(CInputManager) == 0x60 ? 1 : -1];
