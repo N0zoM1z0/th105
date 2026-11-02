@@ -48,7 +48,7 @@ struct DeckResourceLoadView {
 
 class ProfileDeckConstructorView : public Menu {
 public:
-    ProfileDeckConstructorView(PlayerSlotRecord *player, int character, UiSprite94 *stand);
+    ProfileDeckConstructorView(PlayerSlotRecord *player, int character, CSprite *stand);
     virtual ~ProfileDeckConstructorView();
     virtual bool update();
     virtual void render();
@@ -58,7 +58,7 @@ public:
 
     PlayerSlotRecord *player_04;
     int character_08;
-    UiSprite94 *stand_0c;
+    CSprite *stand_0c;
     CDesignBase design_10;
     UiDesignObject *objects_44[20];
     unsigned texture_94;
@@ -89,7 +89,7 @@ typedef char GuideOffset[offsetof(ProfileDeckConstructorView,guides_410)==0x410?
 #define NUMBER_VIEW(index) reinterpret_cast<CNumber *>(reinterpret_cast<unsigned char *>(objects_44[index])+0x18)
 
 ProfileDeckConstructorView::ProfileDeckConstructorView(
-    PlayerSlotRecord *player, int character, UiSprite94 *stand)
+    PlayerSlotRecord *player, int character, CSprite *stand)
     : texture_94(0), field_12c(0), texture_258(0), texture_300(0)
 {
     player_04 = player;

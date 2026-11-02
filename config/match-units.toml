@@ -7750,31 +7750,65 @@ source = "src/ui/ProfileSubmenuLifetime.cpp"
 object = "build/match-units/CrossV106a_ProfileSubmenuLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete real profile submenu destruction. Actual polymorphic tile lifetime resolves KeyConfig188/188; character164 and both30-byte scalar wrappers remain exact. Shared IColor/sprite/tile declarations; no manual vptr stores."
+notes = "Complete real profile submenu destruction. Actual polymorphic tile lifetime resolves KeyConfig188/188; character164 and both30-byte scalar wrappers remain exact. Shared IColor/sprite/tile declarations; no manual vptr stores. Shared actual CProfileCharacterSelect and real CSprite/CDesignBase members; docs/PROFILE_CHARACTER_REAL_OWNER_2026_11_02.md."
 
 [[units.cross-v106a-profile-submenu-lifetimes.functions]]
 address = "0x00448730"
-symbol_base = "CProfileCharacterSelectLifetime_dtor"
-rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??1GuideOverlay@th105@@QAE@XZ=0x0043F330", "??1TitleDesignResource@th105@@QAE@XZ=0x00421890"]
-dir32_targets = ["__ehhandler$??1CProfileCharacterSelectLifetime@th105@@UAE@XZ=__ehhandler$??1CProfileCharacterSelect@th105@@UAE@XZ", "??_7CProfileCharacterSelectLifetime@th105@@6B@=??_7CProfileCharacterSelect@th105@@6B@", "_title_color_vtable_anchor=_title_color_vtable_anchor_external", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
+symbol_base = "CProfileCharacterSelect_dtor"
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
+  "??1CDesignBase@th105@@UAE@XZ=0x00421890",
+]
+dir32_targets = [
+  "__ehhandler$??1CProfileCharacterSelect@th105@@UAE@XZ=__ehhandler$??1CProfileCharacterSelect@th105@@UAE@XZ",
+  "??_7CProfileCharacterSelect@th105@@6B@=??_7CProfileCharacterSelect@th105@@6B@",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+  "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
+]
 
 [[units.cross-v106a-profile-submenu-lifetimes.functions]]
 address = "0x00448A20"
-symbol_base = "??_GCProfileCharacterSelectLifetime@th105@@UAEPAXI@Z"
-rel32_targets = ["??1CProfileCharacterSelectLifetime@th105@@UAE@XZ=0x00448730", "??3@YAXPAX@Z=0x006898EA"]
-dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
+symbol_base = "??_GCProfileCharacterSelect@th105@@UAEPAXI@Z"
+rel32_targets = [
+  "??1CProfileCharacterSelect@th105@@UAE@XZ=0x00448730",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
+]
 
 [[units.cross-v106a-profile-submenu-lifetimes.functions]]
 address = "0x0044B9D0"
 symbol_base = "??1CProfileKeyConfigLifetime@th105@@UAE@XZ"
-rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "??1TitleDesignResource@th105@@QAE@XZ=0x00421890"]
-dir32_targets = ["__ehhandler$??1CProfileKeyConfigLifetime@th105@@UAE@XZ=__ehhandler$??1CProfileKeyConfig@th105@@UAE@XZ", "___security_cookie=___security_cookie", "??_7CProfileKeyConfigLifetime@th105@@6B@=??_7CProfileKeyConfig@th105@@6B@", "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "??1GuideOverlay@th105@@QAE@XZ=??1GuideOverlay@th105@@QAE@XZ", "_title_color_vtable_anchor=_title_color_vtable_anchor_external", "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@", "_g_scene_mode=_g_scene_mode", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
+rel32_targets = [
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
+]
+dir32_targets = [
+  "__ehhandler$??1CProfileKeyConfigLifetime@th105@@UAE@XZ=__ehhandler$??1CProfileKeyConfig@th105@@UAE@XZ",
+  "___security_cookie=___security_cookie",
+  "??_7CProfileKeyConfigLifetime@th105@@6B@=??_7CProfileKeyConfig@th105@@6B@",
+  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "??1GuideOverlay@th105@@QAE@XZ=??1GuideOverlay@th105@@QAE@XZ",
+  "_title_color_vtable_anchor=_title_color_vtable_anchor_external",
+  "??_7Menu@th105@@6B@=??_7Menu@th105@@6B@",
+  "_g_scene_mode=_g_scene_mode",
+  "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
+]
 
 [[units.cross-v106a-profile-submenu-lifetimes.functions]]
 address = "0x0044BCD0"
 symbol_base = "??_GCProfileKeyConfigLifetime@th105@@UAEPAXI@Z"
-rel32_targets = ["??1CProfileKeyConfigLifetime@th105@@UAE@XZ=0x0044B9D0", "??3@YAXPAX@Z=0x006898EA"]
-dir32_targets = ["??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@"]
+rel32_targets = [
+  "??1CProfileKeyConfigLifetime@th105@@UAE@XZ=0x0044B9D0",
+  "??3@YAXPAX@Z=0x006898EA",
+]
+dir32_targets = [
+  "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
+]
+
 
 [units.cross-v106a-design-base-lifetime]
 kind = "probe"
@@ -16088,29 +16122,27 @@ source = "src/ui/ProfileCharacterSelectConstructor.cpp"
 object = "build/match-units/GptWeb_ProfileCharacterSelectConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI-owned CProfileCharacterSelect constructor on the exact-backed 0x288 layout. Genuine polymorphic design-resource visibility keeps load at vslot +0x10 and preserves target vfptr/argument scheduling; ordinary member construction/binding/cursor publication is canonical exact."
+notes = "Current RTTI-owned CProfileCharacterSelect constructor on the exact-backed 0x288 layout. Genuine polymorphic design-resource visibility keeps load at vslot +0x10 and preserves target vfptr/argument scheduling; ordinary member construction/binding/cursor publication is canonical exact. Shared actual CProfileCharacterSelect and real CSprite/CDesignBase members; docs/PROFILE_CHARACTER_REAL_OWNER_2026_11_02.md."
 
 [[units.gpt-web-profile-character-select-constructor.functions]]
 address = "0x004487E0"
-symbol_base = "??0CProfileCharacterSelectConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@@Z"
+symbol_base = "CProfileCharacterSelect_ctor"
 rel32_targets = [
-  "??0ProfileCharacterDesignResource@th105@@QAE@XZ=0x004217F0",
-  "??1ProfileCharacterDesignResource@th105@@QAE@XZ=0x00421890",
+  "??0CDesignBase@th105@@QAE@XZ=0x004217F0",
+  "??1CDesignBase@th105@@UAE@XZ=0x00421890",
   "??0GuideOverlay@th105@@QAE@XZ=0x0043F540",
   "?get_score_data_for_character_select@th105@@YAPAUScoreDataCharacterSelectView@1@XZ=0x0043AF20",
-  "?bind_object_alt@ProfileCharacterDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
+  "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
   "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
-  "?refresh_character_preview_4484f0@CProfileCharacterSelectConstructorView@th105@@QAEXXZ=0x004484F0",
+  "?refresh_character_preview@CProfileCharacterSelect@th105@@AAEXXZ=0x004484F0",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
-  "??_7CProfileCharacterSelectConstructorView@th105@@6B@=??_7CProfileCharacterSelect@th105@@6B@",
-  "??_7ProfileCharacterSprite94@th105@@6B@=_select_sprite_vtable_anchor",
-  "__ehhandler$??0CProfileCharacterSelectConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@@Z=__ehhandler$??0CProfileCharacterSelectConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@@Z",
   "___security_cookie=___security_cookie",
   "?g_active_menu_input@3PAUCInputManager@th105@@A=_g_active_menu_input",
   "_profile_character_select_design_path=_profile_character_select_design_path",
 ]
+
 
 [units.gpt-web-profile-character-select-update]
 kind = "probe"
@@ -16118,28 +16150,28 @@ source = "src/ui/ProfileCharacterSelectUpdate.cpp"
 object = "build/match-units/GptWeb_ProfileCharacterSelectUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current CProfileCharacterSelect update on the exact-backed 0x288 layout. Guide/cursor ownership, ordinary A/B early exits and typed 0x6B0 CProfileDeckEdit launch reproduce the target body."
+notes = "Current CProfileCharacterSelect update on the exact-backed 0x288 layout. Guide/cursor ownership, ordinary A/B early exits and typed 0x6B0 CProfileDeckEdit launch reproduce the target body. Shared actual CProfileCharacterSelect and real CSprite/CDesignBase members; docs/PROFILE_CHARACTER_REAL_OWNER_2026_11_02.md."
 
 [[units.gpt-web-profile-character-select-update.functions]]
 address = "0x004485B0"
-symbol_base = "?update_4485b0@CProfileCharacterSelectUpdateView@th105@@QAE_NXZ"
+symbol_base = "?update@CProfileCharacterSelect@th105@@UAE_NXZ"
 rel32_targets = [
   "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
   "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
   "??2@YAPAXI@Z=0x00689DCB",
-  "??0ProfileDeckEditLaunchView@th105@@QAE@PAUPlayerSlotRecord@1@HPAUUiSprite94@1@@Z=0x0044AAC0",
+  "??0ProfileDeckEditLaunchView@th105@@QAE@PAUPlayerSlotRecord@1@HPAVCSprite@@@Z=0x0044AAC0",
   "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
   "?is_menu_initial_press@th105@@YA_NE_N00@Z=0x0043ABD0",
   "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
-  "?refresh_character_preview_4484f0@CProfileCharacterSelectUpdateView@th105@@QAEXXZ=0x004484F0",
+  "?refresh_character_preview@CProfileCharacterSelect@th105@@AAEXXZ=0x004484F0",
   "@__security_check_cookie@4=0x00689D25",
   "??3@YAXPAX@Z=0x006898EA",
 ]
 dir32_targets = [
-  "__ehhandler$?update_4485b0@CProfileCharacterSelectUpdateView@th105@@QAE_NXZ=__ehhandler$?update_4485b0@CProfileCharacterSelectUpdateView@th105@@QAE_NXZ",
   "___security_cookie=___security_cookie",
   "_g_active_menu_input=_g_active_menu_input",
 ]
+
 
 [units.gpt-web-scenario-transition-consume]
 kind = "probe"
@@ -26163,12 +26195,15 @@ source = "src/ui/ProfileDeckConstructor.cpp"
 object = "build/match-units/ExactFirst_ProfileDeckConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete2136-byte CProfileDeckEdit constructor; actual CSprite/CTile handle initializations with real design lookup and texture-return temporary give2132 bytes, nonexact at+1127 on loop register allocation. docs/PROFILE_DECK_REAL_SPRITES_2026_11_02.md. RTTI-backed signed-char number getters448B20/448B30 independently match7/15. No constructor or provider credit inferred from the leaves. docs/PROFILE_DECK_CONSTRUCTOR_2026_10_29.md."
+notes = "Complete2136-byte CProfileDeckEdit constructor; actual CSprite/CTile handle initializations with real design lookup and texture-return temporary give2132 bytes, nonexact at+1127 on loop register allocation. docs/PROFILE_DECK_REAL_SPRITES_2026_11_02.md. RTTI-backed signed-char number getters448B20/448B30 independently match7/15. No constructor or provider credit inferred from the leaves. docs/PROFILE_DECK_CONSTRUCTOR_2026_10_29.md. Shared actual CProfileCharacterSelect and real CSprite/CDesignBase members; docs/PROFILE_CHARACTER_REAL_OWNER_2026_11_02.md."
 
 [[units.exact-first-profile-deck-constructor.functions]]
 address = "0x0044AAC0"
-symbol_base = "??0ProfileDeckConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@HPAUUiSprite94@1@@Z"
-dir32_targets = ["?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+symbol_base = "ProfileDeckConstructorView_ctor"
+dir32_targets = [
+  "?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
+  "__ehhandler$??0ProfileDeckConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@HPAVCSprite@@@Z=__ehhandler$??0ProfileDeckConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@HPAUUiSprite94@1@@Z",
+]
 rel32_targets = [
   "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90",
   "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0",
@@ -26201,10 +26236,15 @@ rel32_targets = [
 [[units.exact-first-profile-deck-constructor.functions]]
 address = "0x00448B20"
 symbol_base = "?get_integer@?$TNumberValue@PAD@th105@@UAEHXZ"
+rel32_targets = [
+]
 
 [[units.exact-first-profile-deck-constructor.functions]]
 address = "0x00448B30"
 symbol_base = "?get_floating@?$TNumberValue@PAD@th105@@UAEMXZ"
+rel32_targets = [
+]
+
 
 [units.exact-first-profile-deck-filter]
 kind = "probe"

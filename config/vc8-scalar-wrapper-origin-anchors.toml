@@ -860,7 +860,7 @@ type_name = ".?AVCProfileDeckEdit@@"
 address = "0x00448A20"
 size = 30
 unit = "cross-v106a-profile-submenu-lifetimes"
-symbol_base = "??_GCProfileCharacterSelectLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCProfileCharacterSelect@th105@@UAEPAXI@Z"
 sha256 = "569b79d79fc7e986f3b4c276a8dacef9dc9cba51a255ced0c80c43f24d69cc6d"
 
 [[anchors.owners]]

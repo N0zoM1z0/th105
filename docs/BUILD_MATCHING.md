@@ -54,6 +54,9 @@ slots before `load` makes the ordinary `design.load(path)` call use vslot +0x10
 and naturally preserves the shipped vptr-load/member-publication order.  A
 semantically equivalent facade moved the player store across the vptr load even
 though argument values were identical.
+The reference now uses the shared actual CProfileCharacterSelect and CDesignBase
+classes rather than local constructor/update/lifetime views; see
+`PROFILE_CHARACTER_REAL_OWNER_2026_11_02.md` for complete method and EH replay.
 
 Likewise, preserve source expression boundaries when VC8 argument evaluation is
 visible.  `BattlePhaseBlock::load_story_ending_page` is exact only when

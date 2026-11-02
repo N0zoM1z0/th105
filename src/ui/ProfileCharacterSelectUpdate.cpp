@@ -1,3 +1,4 @@
+#include "ProfileSubmenus.hpp"
 #include "GuideOverlay.hpp"
 #include "MenuCursor.hpp"
 #include "Title.hpp"
@@ -20,31 +21,12 @@ void __cdecl install_menu_object(void *object);
 class ProfileDeckEditLaunchView {
 public:
     ProfileDeckEditLaunchView(
-        PlayerSlotRecord *player, int character, UiSprite94 *stand);
+        PlayerSlotRecord *player, int character, CSprite *stand);
 private:
     unsigned char storage_000[0x6b0];
 };
 
-struct CProfileCharacterSelectUpdateView {
-    bool update_4485b0();
-    void refresh_character_preview_4484f0();
-
-    void *vfptr_000;
-    unsigned texture_004;
-    UiSprite94 stand_008;
-    PlayerSlotRecord *player_09c;
-    int character_0a0;
-    unsigned field_0a4;
-    UiSprite94 portrait_0a8;
-    TitleDesignResource design_13c;
-    UiDesignObject *items_170[17];
-    MenuCursorState column_1b4;
-    MenuCursorState row_1c8;
-    GuideOverlay guide_1dc;
-    int item_count_284;
-};
-
-bool CProfileCharacterSelectUpdateView::update_4485b0()
+bool CProfileCharacterSelect::update()
 {
     guide_1dc.update();
 
@@ -54,7 +36,7 @@ bool CProfileCharacterSelectUpdateView::update_4485b0()
         if (row_1c8.selection < item_count_284) {
             ProfileDeckEditLaunchView *menu =
                 new ProfileDeckEditLaunchView(
-                    player_09c, character_0a0, &stand_008);
+                    player_9c, character_a0, &stand_08);
             install_menu_object(menu);
             return true;
         }
@@ -75,10 +57,10 @@ bool CProfileCharacterSelectUpdateView::update_4485b0()
         int const row = row_1c8.selection;
         if (row >= count - 1)
             column_1b4.selection = 0;
-        character_0a0 = column_1b4.selection + 2 * row;
+        character_a0 = column_1b4.selection + 2 * row;
         if (row == count)
-            character_0a0 = -1;
-        refresh_character_preview_4484f0();
+            character_a0 = -1;
+        refresh_character_preview();
     }
 
     return true;
@@ -86,13 +68,5 @@ bool CProfileCharacterSelectUpdateView::update_4485b0()
 
 typedef char ProfileDeckEditLaunchView_size[
     sizeof(ProfileDeckEditLaunchView) == 0x6b0 ? 1 : -1];
-typedef char CProfileCharacterSelectUpdateView_size[
-    sizeof(CProfileCharacterSelectUpdateView) == 0x288 ? 1 : -1];
-typedef char CProfileCharacterSelectUpdateView_column[
-    offsetof(CProfileCharacterSelectUpdateView, column_1b4) == 0x1b4 ? 1 : -1];
-typedef char CProfileCharacterSelectUpdateView_row[
-    offsetof(CProfileCharacterSelectUpdateView, row_1c8) == 0x1c8 ? 1 : -1];
-typedef char CProfileCharacterSelectUpdateView_guide[
-    offsetof(CProfileCharacterSelectUpdateView, guide_1dc) == 0x1dc ? 1 : -1];
 
 } // namespace th105

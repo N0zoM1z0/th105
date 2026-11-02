@@ -2,7 +2,7 @@
 
 namespace th105 {
 
-CProfileCharacterSelectLifetime::~CProfileCharacterSelectLifetime()
+CProfileCharacterSelect::~CProfileCharacterSelect()
 {
     g_title_resource_manager.release_title_resource_handle(texture_04);
     design_13c.virtual_cleanup();

@@ -4,6 +4,7 @@
 #include "MenuCursor.hpp"
 #include "GuideOverlay.hpp"
 #include "Title.hpp"
+#include "DesignBaseLifetime.hpp"
 #include "UiPrimitives.hpp"
 
 namespace th105 {
@@ -16,13 +17,14 @@ public:
     virtual void render();
 
 private:
+    void refresh_character_preview();
     unsigned texture_04;
-    UiSprite94 stand_08;
+    CSprite stand_08;
     PlayerSlotRecord *player_9c;
     int character_a0;
     unsigned field_a4;
-    UiSprite94 portrait_a8;
-    TitleDesignResource design_13c;
+    CSprite portrait_a8;
+    CDesignBase design_13c;
     UiDesignObject *items_170[17];
     MenuCursorState column_1b4;
     MenuCursorState row_1c8;

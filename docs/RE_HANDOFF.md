@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+CProfileCharacterSelect now shares one actual source declaration for ctor571,
+update372, render205 and dtor164; local constructor/update/lifetime views removed.
+ActualCSprite/CDesignBase members and private offset checks preserve all bytes;
+deck launch/constructor pointer now CSprite*. Full EH support410 bytes exact:
+ctor88+76, dtor88+76, update38+44. Actual four-slot table and member roles checked;
+outer namespace RTTI/full linkage not claimed. Handler anchors now27 bytes,
+owner table16. Closure8 units:12 accepted roots/7 units pass; scalar2/60 gate
+passes; deck2132 and battle-menu892 unchanged/nonexact. No counts gained.
+See PROFILE_CHARACTER_REAL_OWNER_2026_11_02.md.
+
 GuideOverlay now owns actual global CSprite: load179/render124/update112/ctor20
 all exact and unchanged, dtor90/native92 unchanged. Manual vtable load and update
 casts removed; duplicate GuideOverlayLifetime.cpp removed and lifetime unit now
