@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Server input publication44F9A0 now formally registered from existing source:
+CNetworkServer slot1C, complete409-byte/128-instruction CFG, both leave tails,
+call inventory and16-bit mask/current versus32-bit sequence stores verified.
+Source404/127 remains nonexact first+117; no scheduling grid. Sender declaration
+corrected int->void from actual inactive-path result evidence, whole caller
+byte-neutral. Static audit only, no server runtime/concurrency claim. Existing
+48/162 siblings exact and ACK78/8 plus6 guarded cases/negative preserved.
+Source1636/authored1655/mapped1825/review298; excluded2074,exact1427/443604 and
+units812 unchanged. See SERVER_INPUT_PUBLICATION_SOURCE_2026_11_02.md.
+
 Existing client ACK-tail source44E6D0 is now formally registered: full78-byte
 CNetworkClient slot8/21 instructions/RET4, native RTTI and both exact critical
 wrapper edges prove authored ownership. Source unchanged78/8 mismatches at+53

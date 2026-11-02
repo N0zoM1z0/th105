@@ -1582,7 +1582,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044F830,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F8E0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F930,authored_game,network,authored,observed,canonical-exact-authored
-0x0044F9A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044F9A0,authored_game,network,authored,observed,server-input-publication-authored-106a
 0x0044FB40,authored_game,network,authored,observed,canonical-exact-authored
 0x0044FD80,authored_game,network,authored,observed,canonical-exact-authored
 0x0044FE30,authored_game,network,authored,observed,canonical-exact-authored

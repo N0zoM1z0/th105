@@ -6039,3 +6039,18 @@ disposition = "authored"
 confidence = "observed"
 evidence = "Whole78-byte CNetworkClient slot8 callback imports two packet bytes, publishes local peer byte to remote peer and marks pending under the actual critical section. Complete21-instruction RET4 body, RTTI/table and exact enter/leave helper edges are pinned. Existing natural78-byte source remains8 differing bytes; six finite guarded lock-boundary observations and wrong-field negative pass. docs/CLIENT_ACK_TAIL_SOURCE_2026_11_02.md."
 required_rtti_virtual_bodies = [{ address = "0x0044E6D0", size = 78, sha256 = "d0c302e135a6cab0a56a6b33b09a5f53b6d0544dd69d77e4db6697a17aee9cc0", slot = "0x006C175C", col_slot = "0x006C1750", col = "0x006D80BC", type_descriptor = "0x006E6924", type_name_contains = ".?AVCNetworkClient@@", calls = [{ site = "0x0044E6DC", target = "0x0040AC30" }, { site = "0x0044E714", target = "0x0040AC40" }] }]
+
+[[rules]]
+id = "server-input-publication-authored-106a"
+addresses = ["0x0044F9A0"]
+expected_count = 1
+expected_bytes = 409
+expected_names = ["sub_44F9A0"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete server input publication owns backpressure, ten-bit current input, sequence/history trimming, send/adaptive dispatch and paired output queues. Native CNetworkServer slot1C, whole409-byte CFG and both outer-lock tail exits are attested; ordinary404-byte source remains nonexact. docs/SERVER_INPUT_PUBLICATION_SOURCE_2026_11_02.md."
+required_rtti_virtual_bodies = [{ address = "0x0044F9A0", size = 409, sha256 = "058dc706f51602a4bf33490d47d37a5efc93a394c31b303a8f058481571b3ca5", slot = "0x006C1708", col_slot = "0x006C16E8", col = "0x006D803C", type_descriptor = "0x006E6904", type_name_contains = ".?AVCNetworkServer@@", calls = [{ site = "0x0044F9B1", target = "0x0040AC30" }, { site = "0x0044F9F9", target = "0x00416B60" }, { site = "0x0044FA43", target = "0x0042A4B0" }, { site = "0x0044FA4F", target = "0x0042A4B0" }, { site = "0x0044FAD4", target = "0x00416B60" }, { site = "0x0044FAEB", target = "0x0040AC30" }, { site = "0x0044FB02", target = "0x0042AA90" }, { site = "0x0044FB1B", target = "0x0042AA90" }, { site = "0x0044FB22", target = "0x0040AC40" }] }]
+required_dword_values = [{ address = "0x006C1720", value = "0x0044F550" }]
+# Outgoing tail edges are covered by the full body hash and the complete CFG audit.

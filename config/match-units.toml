@@ -29632,3 +29632,8 @@ dir32_targets = ["?g_ui_tile_texture_manager@th105@@3UCHandleManager4@1@A=?g_tit
 address = "0x0044E6D0"
 symbol_base = "?import_ack_info_tail_44e6d0@CNetworkClientPacketContinuationView@th105@@QAEXPBUNetworkStateRecord4CView@2@@Z"
 rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40"]
+
+[[units.gpt-web-network-primary-packet-continuation.functions]]
+address = "0x0044F9A0"
+symbol_base = "?publish_input_frame_44f9a0@CNetworkServerInputPublishView@th105@@QAEXXZ"
+rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40", "?send_server@NetworkServerSend5View@th105@@QAEXIPBXIHPAI@Z=0x00416B60", "?push_front@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042A4B0", "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90"]

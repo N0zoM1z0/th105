@@ -112,7 +112,9 @@ public:
 };
 
 struct NetworkServerSend5View {
-    int send_server(
+    // The real sender has no meaningful result on its inactive path; this
+    // publisher discards results and preserves the five-word RET20 interface.
+    void send_server(
         unsigned int channel,
         const void *buffer,
         unsigned int size,
