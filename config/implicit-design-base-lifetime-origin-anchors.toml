@@ -30,6 +30,14 @@ sha256 = "f90f3224d4afdb483c1dbf92b24d334d2cba9f75f9694314e19d5c2b6f3f984f"
 path = "src/engine/TextureHandleValue.hpp"
 sha256 = "c8ab0afa18da3d0b27d099345ad34e57849aa5a39d6ef757549304fb26f0be84"
 
+[[sources]]
+path = "src/engine/Sprite.hpp"
+sha256 = "8dc8c7c6f5baae0f3dd537c3b2c52c808a4a89e389bb1b4f6800650663b3694d"
+
+[[sources]]
+path = "src/ui/GuideOverlay.hpp"
+sha256 = "d76e44b8d9852f1978c53a7c36cae9d08636b6974a577d7785feee1ecc24e89b"
+
 [[anchors]]
 address = "0x004217F0"
 size = 153

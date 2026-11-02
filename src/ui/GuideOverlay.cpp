@@ -29,10 +29,7 @@ void GuideOverlay::load(int guide_id)
     unsigned int height;
     unsigned int loaded = *g_title_resource_manager.load_texture(
         &handle, path, &width, &height);
-    const unsigned int *methods = sprite_08.vtable;
-    texture_04 = loaded;
-    reinterpret_cast<UiSprite94::SetTexture>(methods[5])(
-        &sprite_08, texture_04, 0, 0, width, height);
+    sprite_08.set_texture(texture_04 = loaded, 0, 0, width, height);
     wrap_width_a0 = static_cast<float>(width);
     scroll_9c = 0.0f;
     alpha_a4 = 0;

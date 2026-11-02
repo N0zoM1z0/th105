@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+GuideOverlay now owns actual global CSprite: load179/render124/update112/ctor20
+all exact and unchanged, dtor90/native92 unchanged. Manual vtable load and update
+casts removed; duplicate GuideOverlayLifetime.cpp removed and lifetime unit now
+selects actual GuideOverlay.cpp. Sprite definitions moved unchanged into minimal
+engine/Sprite.hpp; EffectSprite.hpp retains Collision compatibility. Separate
+legacy MatchSetup declarations are NOT merged. Actual Guide sprite RTTI273 and
+table36 pass. Closure200 units:388 accepted roots/163 units fresh exact;140 other
+roots/77 units retain fresh before/after hashes or old458440 string binding block.
+Six source-pinned lifetime families, full Network/Select EH and4+12 Select cases
+pass. No count gain. See GUIDE_REAL_OWNER_2026_11_02.md.
+
 ProfileDeck constructor/display now use actual global CSprite and CTile,
 removing three partial views. Fresh before2132 first+110 becomes2132 first+1127:
 28 initialization byte positions now canonical, all bytes after200 unchanged.

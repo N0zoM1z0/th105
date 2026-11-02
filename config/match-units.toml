@@ -26496,22 +26496,20 @@ symbol_base = "?update@GuideOverlay@th105@@QAEXXZ"
 
 [units.exact-first-guide-overlay-lifetime]
 kind = "probe"
-source = "src/ui/GuideOverlayLifetime.cpp"
+source = "src/ui/GuideOverlay.cpp"
 object = "build/match-units/ExactFirst_GuideOverlayLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Natural polymorphic CSprite/IColor lifetime replaces the selected manual-vptr constructor witness. Constructor20 stays exact; destructor90/92 retains handle-load CSE. No new exact bytes. docs/GUIDE_OVERLAY_LIFETIME_2026_10_29.md."
+notes = "Actual GuideOverlay source with global CSprite now owns all ordinary lifetimes. Constructor20 stays exact; destructor90/92 retains handle-load CSE. No new exact bytes. docs/GUIDE_OVERLAY_LIFETIME_2026_10_29.md."
 
 [[units.exact-first-guide-overlay-lifetime.functions]]
 address = "0x0043F540"
-symbol_base = "??0GuideLifetimeView@th105@@QAE@XZ"
-dir32_targets = ["??_7GuideLifetimeSprite94@th105@@6B@=_select_sprite_vtable_anchor"]
+symbol_base = "??0GuideOverlay@th105@@QAE@XZ"
 
 [[units.exact-first-guide-overlay-lifetime.functions]]
 address = "0x0043F330"
-symbol_base = "??1GuideLifetimeView@th105@@QAE@XZ"
+symbol_base = "??1GuideOverlay@th105@@QAE@XZ"
 rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
-dir32_targets = ["__ehhandler$??1GuideLifetimeView@th105@@QAE@XZ=__ehhandler$??1GuideOverlay@th105@@QAE@XZ"]
 
 [units.exact-first-bgm-stream-constructor]
 kind = "linked_candidate"

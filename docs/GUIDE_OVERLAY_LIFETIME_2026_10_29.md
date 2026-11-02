@@ -1,5 +1,9 @@
 # Guide overlay natural lifetime, JP1.06a
 
+The local lifetime source and eight-slot inference below are superseded by
+actual GuideOverlay.cpp and the global nine-slot CSprite. Constructor20 and
+nonexact destructor90 remain unchanged. See GUIDE_REAL_OWNER_2026_11_02.md.
+
 The selected GuideOverlay constructor43F540 remains20/20 canonical exact,
 now from ordinary polymorphic member construction rather than the legacy
 UiSprite94 manual-vptr representation. No new exact bytes are counted.
