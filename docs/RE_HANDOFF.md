@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+The real CGage CIL context was rechecked after actual owner unification and
+numeric-literal support. The prior literal block is resolved: complete linked
+CFG/body comparison now succeeds as a comparison, but yields nonexact 1012
+versus1010, first difference at entry (aligned EBP frame). Canonical hash
+5a9a6d3c620abd2a41a6ebb9e7b7cb5542b247b89f922bead9c4eb01b346ff2f.
+Actual texture binder/handle runtime/trig providers and qualified static runtime
+were used. No source/flags were shaped, no public unit changed, no count gain.
+This closes the old unqualified-literal CIL stop; do not repeat the same context.
+See GAGE_ACTUAL_CIL_2026_11_02.md.
+
 ProfileDeckEdit shared owner now has actual CSprite/CTile members. Its renderer
 uses an actual local CSprite, named scale fields and normal typed calls instead
 of the manual-vptr local, dispatch macro and member casts. Seven accepted roots
