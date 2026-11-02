@@ -13,28 +13,7 @@
 #pragma float_control(except, off, push)
 
 namespace th105 {
-class NumberColorView {
-public:
-    virtual ~NumberColorView();
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-};
-class NumberRenderView : public NumberColorView {
-public:
-    void render(int value, float x, float y, int digits, char sign_mode);
-    float glyph_width_04;
-    float spacing_08;
-    float scale_0c;
-    float secondary_scale_10;
-    int columns_14;
-    int integer_digits_18;
-    int fractional_digits_1c;
-    unsigned char mode_20;
-    INumberValue *number_value_24;
-    CTile tile_28;
-};
-class NumberDesignObjectBaseView : public NumberColorView {
+class NumberDesignObjectBaseView : public ::IColor {
 public:
     virtual void render_offset(float, float);
     virtual void render();
@@ -47,13 +26,13 @@ class CDesignNumberRenderView : public NumberDesignObjectBaseView {
 public:
     virtual void render_offset(float, float);
     virtual void render();
-    NumberRenderView number_18;
+    CNumber number_18;
 };
 
 // Ordinary unexported definitions let VC8 choose the private calling protocol.
-void __stdcall render_floating(NumberRenderView *number, float value,
+void __stdcall render_floating(CNumber *number, float value,
     float x, float y, int integer_digits, int fractional_digits, char sign_mode);
-void __stdcall render_bound(NumberRenderView *number, float x, float y);
+void __stdcall render_bound(CNumber *number, float x, float y);
 
 void CDesignNumberRenderView::render()
 {
@@ -66,22 +45,22 @@ void CDesignNumberRenderView::render_offset(float x, float y)
         render_bound(&number_18, x_0c + base_x_04 + x, y_10 + base_y_08 + y);
 }
 
-void __stdcall render_bound(NumberRenderView *number, float x, float y)
+void __stdcall render_bound(CNumber *number, float x, float y)
 {
-    if (number->fractional_digits_1c != 0)
+    if (number->reserved_1c != 0)
         render_floating(number, number->number_value_24->get_floating(), x, y,
-            number->integer_digits_18, number->fractional_digits_1c,
+            number->reserved_18, number->reserved_1c,
             number->mode_20);
     else
         number->render(number->number_value_24->get_integer(), x, y,
-            number->integer_digits_18, number->mode_20);
+            number->reserved_18, number->mode_20);
 }
 
 // The target retains EBP. Keeping a real frame here also keeps both digit
 // counts on the stack, matching the independently observed caller ABI.
 // The real linked provider/CRT context naturally supplies its 64-byte alignment.
 #pragma optimize("y", off)
-void __stdcall render_floating(NumberRenderView *number, float value,
+void __stdcall render_floating(CNumber *number, float value,
     float x, float y, int integer_digits, int fractional_digits, char sign_mode)
 {
     char suffix;
@@ -142,9 +121,7 @@ void __stdcall render_floating(NumberRenderView *number, float value,
 
 #pragma optimize("y", on)
 
-typedef char NumberViewSize[sizeof(NumberRenderView) == 0xcc ? 1 : -1];
-typedef char NumberAdapterOffset[offsetof(NumberRenderView, number_value_24) == 0x24 ? 1 : -1];
-typedef char NumberTileOffset[offsetof(NumberRenderView, tile_28) == 0x28 ? 1 : -1];
+typedef char NumberViewSize[sizeof(CNumber) == 0xcc ? 1 : -1];
 typedef char NumberDesignBaseSize[sizeof(NumberDesignObjectBaseView) == 0x18 ? 1 : -1];
 typedef char NumberDesignSize[sizeof(CDesignNumberRenderView) == 0xe4 ? 1 : -1];
 typedef char NumberMemberOffset[offsetof(CDesignNumberRenderView, number_18) == 0x18 ? 1 : -1];

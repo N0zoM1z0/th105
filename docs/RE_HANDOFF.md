@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Design-number rendering now shares CNumber / IColor instead of duplicate
+number/color classes. Existing unexported helpers receive friend access without
+layout or calling-convention changes. Integer rendering is one verbatim shared
+definition, not duplicated provider code. Linked 55 / 63 / 95 / 581 roots remain
+exact with the same private edges and natural frame. All 25 accepted roots in
+nine units pass (closure 10); six other roots retain hashes. Implicit origin
+3 / 28 and scalar gates 1 / 30 plus 2 / 121 pass. No count gain.
+CI passed all 962 tests in 115.052 seconds.
+See DESIGN_NUMBER_REAL_OWNER_2026_11_02.md.
+
 Design loading now uses actual CSprite / CTile; the local gauge view inherits
 the real sprite and keeps its nine-slot override surface. Gauge/number/object
 views remain local. Three accepted public methods stay exact; gauge init 360

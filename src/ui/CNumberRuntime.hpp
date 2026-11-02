@@ -39,6 +39,10 @@ public:
     void bind_value(T value);
 
 private:
+    friend void __stdcall render_bound(CNumber *number, float x, float y);
+    friend void __stdcall render_floating(CNumber *number, float value,
+        float x, float y, int integer_digits, int fractional_digits,
+        char sign_mode);
     float glyph_width_04;
     float spacing_08;
     float scale_0c;

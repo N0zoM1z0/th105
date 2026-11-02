@@ -59,7 +59,7 @@ sha256 = "8539250fb22377018429cbd006dec8f66259ab78b74e9819634a76115fce560f"
 
 [[sources]]
 path = "src/ui/CNumberRuntime.hpp"
-sha256 = "6f15b1cbbe18753cf114a8d4d53cd7dcebb711c43bb643aa46b7cf26f51f51d2"
+sha256 = "2f6a679f26f44b7f8a2dbf78f8bca88c7252e20c8eb5944ab7f3e2f4e8a5c569"
 
 [[anchors]]
 address = "0x0046EF30"
