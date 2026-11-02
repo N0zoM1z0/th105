@@ -2050,7 +2050,7 @@ type_name = ".?AVAttackObject@@"
 address = "0x0040AD60"
 size = 56
 unit = "gpt-web-gage-lifetime"
-symbol_base = "??_GCGageLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCGage@@UAEPAXI@Z"
 sha256 = "6ebe585feb0b2ace8b7d707e99c4c5ebe719c07d8af667d68d599b609d303bbe"
 
 [[anchors.owners]]

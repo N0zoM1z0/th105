@@ -3,31 +3,18 @@
 #include "engine/RenderModeManager.hpp"
 #include "ui/Title.hpp"
 #include <stddef.h>
+#include "Gage.hpp"
 
 namespace th105 {
-struct GageScreenVertex28 { float x, y, z, rhw; unsigned color; float u, v; };
-// The caller rounds the actual getter result to float. This view agrees with
-// the independently exact TGageValue providers; original API spelling is open.
-struct GageValueView { virtual float value() = 0; };
-struct CGageRenderView {
-    const void *vtable_00;
-    unsigned texture_handle_04;
-    GageScreenVertex28 vertices_08[4];
-    float width_78, height_7c;
-    float pivot_x_80, pivot_y_84;
-    float scale_x_88, scale_y_8c;
-    float angle_90;
-    float u_span_94, v_span_98;
-    int fill_mode_9c;
-    GageValueView *value_a0;
-    void render(float x, float y);
-};
 double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 double __cdecl lookup_orientation_sine_quantized_abs(float phase);
 
+} // namespace th105
+using namespace th105;
+
 // Target float assignment homes require the selected strict-FP profile.
 #pragma float_control(except, off, push)
-void CGageRenderView::render(float x, float y)
+void CGage::render(float x, float y)
 {
     if (value_a0 == 0)
         return;
@@ -38,15 +25,15 @@ void CGageRenderView::render(float x, float y)
         fraction = 1.0f;
     switch (fill_mode_9c) {
     case 0: {
-        float right = x - pivot_x_80 * scale_x_88 + width_78 * scale_x_88 - 0.5f;
+        float right = x - pivot_x_80 * scale_x_88 + texture_width_78 * scale_x_88 - 0.5f;
         vertices_08[1].x = right;
         float top = y - pivot_y_84 * scale_y_8c - 0.5f;
         vertices_08[1].y = top;
-        float left = right - width_78 * fraction * scale_x_88;
+        float left = right - texture_width_78 * fraction * scale_x_88;
         vertices_08[0].x = left;
         vertices_08[2].x = left;
         vertices_08[0].y = top;
-        float bottom = height_7c * scale_y_8c + top;
+        float bottom = texture_height_7c * scale_y_8c + top;
         vertices_08[2].y = bottom;
         vertices_08[3].y = bottom;
         vertices_08[3].x = right;
@@ -57,12 +44,12 @@ void CGageRenderView::render(float x, float y)
     }
     case 1: {
         // Live field binding; docs/GAGE_RENDER_CONTEXT_2026_10_21.md.
-        const float &height = height_7c;
+        const float &height = texture_height_7c;
         float left = x - pivot_x_80 * scale_x_88 - 0.5f;
         vertices_08[2].x = left;
         float bottom = y - pivot_y_84 * scale_y_8c - 0.5f + scale_y_8c * height;
         vertices_08[2].y = bottom;
-        float right = width_78 * scale_x_88 + left;
+        float right = texture_width_78 * scale_x_88 + left;
         vertices_08[3].x = right;
         vertices_08[3].y = bottom;
         vertices_08[0].x = left;
@@ -80,11 +67,11 @@ void CGageRenderView::render(float x, float y)
         vertices_08[0].x = left;
         float top = y - pivot_y_84 * scale_y_8c - 0.5f;
         vertices_08[0].y = top;
-        float right = width_78 * fraction * scale_x_88 + left;
+        float right = texture_width_78 * fraction * scale_x_88 + left;
         vertices_08[1].x = right;
         vertices_08[1].y = top;
         vertices_08[2].x = left;
-        float bottom = height_7c * scale_y_8c + top;
+        float bottom = texture_height_7c * scale_y_8c + top;
         vertices_08[2].y = bottom;
         vertices_08[3].y = bottom;
         vertices_08[3].x = right;
@@ -120,17 +107,16 @@ void CGageRenderView::render(float x, float y)
         vertices_08[3].y = y + (old_x - x) * sine + cosine * (old_y - y);
     }
 
-    g_title_resource_manager.bind_texture(texture_handle_04, 0);
+    g_title_resource_manager.bind_texture(value_04, 0);
     g_render_mode_manager.device_04->SetFVF(0x144);
     g_render_mode_manager.device_04->DrawPrimitiveUP(
-        5, 2, vertices_08, sizeof(GageScreenVertex28));
+        5, 2, vertices_08, sizeof(SpriteVertex28));
 }
 #pragma float_control(pop)
 
-typedef char GageVertexSize[sizeof(GageScreenVertex28) == 0x1c ? 1 : -1];
-typedef char GageRenderSize[sizeof(CGageRenderView) == 0xa4 ? 1 : -1];
-typedef char GageVerticesOffset[offsetof(CGageRenderView, vertices_08) == 0x08 ? 1 : -1];
-typedef char GageUVSpanOffset[offsetof(CGageRenderView, u_span_94) == 0x94 ? 1 : -1];
-typedef char GageModeOffset[offsetof(CGageRenderView, fill_mode_9c) == 0x9c ? 1 : -1];
-typedef char GageValueOffset[offsetof(CGageRenderView, value_a0) == 0xa0 ? 1 : -1];
-} // namespace th105
+typedef char GageVertexSize[sizeof(SpriteVertex28) == 0x1c ? 1 : -1];
+typedef char GageRenderSize[sizeof(CGage) == 0xa4 ? 1 : -1];
+typedef char GageVerticesOffset[offsetof(CGage, vertices_08) == 0x08 ? 1 : -1];
+typedef char GageUVSpanOffset[offsetof(CGage, u_span_94) == 0x94 ? 1 : -1];
+typedef char GageModeOffset[offsetof(CGage, fill_mode_9c) == 0x9c ? 1 : -1];
+typedef char GageValueOffset[offsetof(CGage, value_a0) == 0xa0 ? 1 : -1];

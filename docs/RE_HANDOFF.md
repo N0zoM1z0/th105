@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+CGage now has one actual global declaration in ui/Gage.hpp, derived from the
+shared CSprite -> CSpriteBase -> IColor hierarchy. Lifetime, render and design
+member users share it; duplicate sprite/color/payload views are removed.
+Full native RTTI graph 329 bytes and all nine slots pass. Six accepted roots
+in two units stay exact; scalar support 56/64 passes its 2/120 origin gate.
+Render 41B3F0 remains 1010 bytes with unchanged hash and its old multiplication
+load-order mismatch at +0x190. No shaping retry or new exact credit. The slot8
+native body is shared with CSprite render; its override remains declaration-only.
+See GAGE_REAL_OWNER_2026_11_02.md.
+
 Connect construction now uses actual CSprite members at +0x1D4/+0x268, matching
 its cleanup view. Address/history loaders now use actual CTile at +0x300. All
 three accepted constructor/getter roots remain exact; address 870 and history

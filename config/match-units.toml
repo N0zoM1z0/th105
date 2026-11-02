@@ -19729,15 +19729,15 @@ notes = "Target-pinned CGage/CDesignGage lifetime and color views: RTTI6DCC88/6D
 
 [[units.gpt-web-gage-lifetime.functions]]
 address = "0x0040AD60"
-symbol_base = "??_GCGageLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCGage@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
-dir32_targets = ["??_7CGageLifetime@th105@@6B@=??_7CGage@@6B@"]
+dir32_targets = ["??_7CGage@@6B@=??_7CGage@@6B@"]
 
 [[units.gpt-web-gage-lifetime.functions]]
 address = "0x0040BAC0"
 symbol_base = "??_GCDesignGageLifetime@th105@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
-dir32_targets = ["??_7CGageLifetime@th105@@6B@=??_7CGage@@6B@"]
+dir32_targets = ["??_7CGage@@6B@=??_7CGage@@6B@"]
 
 [[units.gpt-web-gage-lifetime.functions]]
 address = "0x0040AF00"
@@ -19762,7 +19762,7 @@ notes = "Complete CGage vslot1C41B3F0 source; all1010 bytes/323 reachable instru
 
 [[units.gpt-web-gage-render.functions]]
 address = "0x0041B3F0"
-symbol_base = "?render@CGageRenderView@th105@@QAEXMM@Z"
+symbol_base = "?render@CGage@@UAEXMM@Z"
 rel32_targets = [
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",

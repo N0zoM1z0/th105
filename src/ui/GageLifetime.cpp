@@ -1,43 +1,11 @@
 // JP1.06a lifetime/color view of CGage and its CDesignGage owner.
 // Runtime virtuals outside the compared slots remain declarations only.
-#include "battle/EffectSprite.hpp"
+#include "Gage.hpp"
 #include <new>
 
+CGage::CGage() : value_a0(0) {}
+
 namespace th105 {
-
-// Retain all nine observed sprite/gauge slots without expanding the shared
-// sprite header's narrower interface. Original declaration ownership is open.
-class GageSpriteLifetime : public CSpriteBase {
-public:
-    virtual ~GageSpriteLifetime() {}
-    virtual void set_texture_options(unsigned int, int, int, unsigned int,
-                                    unsigned int, int, int);
-    virtual void set_texture(unsigned int, int, int, unsigned int, unsigned int);
-    // Observed +18 rectangle entry4070C0 consumes four float edges (RET16).
-    virtual void render_rectangle(float left, float top, float right, float bottom);
-    virtual void render(float x, float y);
-    virtual void render_plain(float x, float y);
-    unsigned char unmodeled_080[0x14];
-};
-
-class CGageLifetime : public GageSpriteLifetime {
-public:
-    CGageLifetime();
-    virtual ~CGageLifetime()
-    {
-        if (value_a0 != 0)
-            ::operator delete(value_a0);
-    }
-    virtual void render(float x, float y);
-    virtual void render_plain(float x, float y);
-    // Renderer41B3F0 reads these as two float UV spans and a 32-bit mode.
-    float u_span_94;
-    float v_span_98;
-    int fill_mode_9c;
-    void *value_a0;
-};
-
-CGageLifetime::CGageLifetime() : value_a0(0) {}
 
 class DesignObjectBaseLifetime : public IColor {
 public:
@@ -68,7 +36,7 @@ public:
     virtual void multiply_color(unsigned int color);
     virtual void render_offset(float x, float y);
     virtual void render();
-    CGageLifetime gage_18;
+    CGage gage_18;
 };
 
 CDesignGageLifetime::CDesignGageLifetime() {}
@@ -88,13 +56,13 @@ void CDesignGageLifetime::multiply_color(unsigned int color)
     gage_18.multiply_color(color);
 }
 
-typedef char GageSpriteSize[sizeof(GageSpriteLifetime) == 0x94 ? 1 : -1];
-typedef char GageUSpanOffset[offsetof(CGageLifetime, u_span_94) == 0x94 ? 1 : -1];
-typedef char GageVSpanOffset[offsetof(CGageLifetime, v_span_98) == 0x98 ? 1 : -1];
-typedef char GageFillModeOffset[offsetof(CGageLifetime, fill_mode_9c) == 0x9c ? 1 : -1];
+typedef char GageSpriteSize[sizeof(CSprite) == 0x94 ? 1 : -1];
+typedef char GageUSpanOffset[offsetof(CGage, u_span_94) == 0x94 ? 1 : -1];
+typedef char GageVSpanOffset[offsetof(CGage, v_span_98) == 0x98 ? 1 : -1];
+typedef char GageFillModeOffset[offsetof(CGage, fill_mode_9c) == 0x9c ? 1 : -1];
 typedef char GagePointerOffset[
-    offsetof(CGageLifetime, value_a0) == 0xa0 ? 1 : -1];
-typedef char GageSize[sizeof(CGageLifetime) == 0xa4 ? 1 : -1];
+    offsetof(CGage, value_a0) == 0xa0 ? 1 : -1];
+typedef char GageSize[sizeof(CGage) == 0xa4 ? 1 : -1];
 typedef char DesignObjectBaseSize[
     sizeof(DesignObjectBaseLifetime) == 0x18 ? 1 : -1];
 typedef char DesignGageOffset[
