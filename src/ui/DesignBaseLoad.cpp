@@ -8,6 +8,9 @@
 #include "ui/Tile.hpp"
 #include "ui/CNumberRuntime.hpp"
 #include "ui/GageConstructor.cpp"
+#include "ui/DesignObjects.hpp"
+#include "ui/DesignGageConstructor.cpp"
+#include "ui/DesignNumberConstructor.cpp"
 #include <stdlib.h>
 #include <string.h>
 
@@ -16,51 +19,6 @@ extern "C" __declspec(dllimport) int __cdecl wsprintfA(char *, const char *, ...
 #pragma float_control(except, off, push)
 
 namespace th105 {
-
-class DesignLoaderObjectBase : public DesignColorLifetimeView {
-public:
-    DesignLoaderObjectBase() : base_x_04(0), base_y_08(0), enabled_14(true) {}
-    virtual ~DesignLoaderObjectBase() {}
-    virtual void set_color(unsigned int) {}
-    virtual void set_vertex_colors(const unsigned int *) {}
-    virtual void multiply_color(unsigned int) {}
-    virtual void render_offset(float, float) {}
-    virtual void render() {}
-    virtual void set_render_parameters(unsigned int, unsigned int, float) {}
-    float base_x_04, base_y_08, x_0c, y_10;
-    bool enabled_14;
-};
-
-class DesignLoaderSpriteObject : public DesignLoaderObjectBase {
-public:
-    virtual void set_color(unsigned int);
-    virtual void set_vertex_colors(const unsigned int *);
-    virtual void multiply_color(unsigned int);
-    virtual void render_offset(float, float);
-    virtual void render();
-    virtual void set_render_parameters(unsigned int, unsigned int, float);
-    CSprite sprite_18;
-};
-
-class DesignLoaderGageObject : public DesignLoaderObjectBase {
-public:
-    virtual void set_color(unsigned int);
-    virtual void set_vertex_colors(const unsigned int *);
-    virtual void multiply_color(unsigned int);
-    virtual void render_offset(float, float);
-    virtual void render();
-    CGage gage_18;
-};
-
-class DesignLoaderNumberObject : public DesignLoaderObjectBase {
-public:
-    virtual void set_color(unsigned int);
-    virtual void set_vertex_colors(const unsigned int *);
-    virtual void multiply_color(unsigned int);
-    virtual void render_offset(float, float);
-    virtual void render();
-    CNumber number_18;
-};
 
 struct DesignTextureRectangle {
     int x, y, width, height;
@@ -137,7 +95,7 @@ void CDesignBase::load(const char *path)
         reader->read(&kind, 1);
         switch (kind) {
         case 0: {
-            DesignLoaderSpriteObject *object = new DesignLoaderSpriteObject;
+            CDesignSprite *object = new CDesignSprite;
             unsigned int texture;
             reader->read(&texture, 4);
             const DesignTextureRectangle &rectangle = rectangles[texture];
@@ -164,7 +122,7 @@ void CDesignBase::load(const char *path)
             break;
         }
         case 1: {
-            DesignLoaderObjectBase *object = new DesignLoaderObjectBase;
+            CDesignObjectBase *object = new CDesignObjectBase;
             int coordinate;
             reader->read(&coordinate, 4);
             object->x_0c = static_cast<float>(coordinate);
@@ -179,7 +137,7 @@ void CDesignBase::load(const char *path)
             break;
         }
         case 2: case 3: case 4: case 5: {
-            DesignLoaderGageObject *object = new DesignLoaderGageObject;
+            CDesignGage *object = new CDesignGage;
             unsigned int texture;
             reader->read(&texture, 4);
             const DesignTextureRectangle &rectangle = rectangles[texture];
@@ -205,7 +163,7 @@ void CDesignBase::load(const char *path)
             break;
         }
         case 6: {
-            DesignLoaderNumberObject *object = new DesignLoaderNumberObject;
+            CDesignNumber *object = new CDesignNumber;
             unsigned int texture;
             reader->read(&texture, 4);
             // The original validates this index even though number dimensions
@@ -248,15 +206,15 @@ void CDesignBase::load(const char *path)
     current_2c = objects_14.begin();
 }
 
-typedef char LoaderObjectSize[sizeof(DesignLoaderObjectBase) == 0x18 ? 1 : -1];
+typedef char LoaderObjectSize[sizeof(CDesignObjectBase) == 0x18 ? 1 : -1];
 typedef char LoaderSpriteSize[sizeof(CSprite) == 0x94 ? 1 : -1];
 typedef char LoaderGageSize[sizeof(CGage) == 0xa4 ? 1 : -1];
 typedef char LoaderTileSize[sizeof(CTile) == 0xa4 ? 1 : -1];
 typedef char LoaderNumberSize[sizeof(CNumber) == 0xcc ? 1 : -1];
-typedef char LoaderSpriteObjectSize[sizeof(DesignLoaderSpriteObject) == 0xac ? 1 : -1];
-typedef char LoaderGageObjectSize[sizeof(DesignLoaderGageObject) == 0xbc ? 1 : -1];
-typedef char LoaderNumberObjectSize[sizeof(DesignLoaderNumberObject) == 0xe4 ? 1 : -1];
-typedef char LoaderNumberOffset[offsetof(DesignLoaderNumberObject, number_18) == 0x18 ? 1 : -1];
+typedef char LoaderSpriteObjectSize[sizeof(CDesignSprite) == 0xac ? 1 : -1];
+typedef char LoaderGageObjectSize[sizeof(CDesignGage) == 0xbc ? 1 : -1];
+typedef char LoaderNumberObjectSize[sizeof(CDesignNumber) == 0xe4 ? 1 : -1];
+typedef char LoaderNumberOffset[offsetof(CDesignNumber, number_18) == 0x18 ? 1 : -1];
 
 } // namespace th105
 

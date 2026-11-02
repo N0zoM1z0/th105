@@ -1924,7 +1924,7 @@ type_name = ".?AVCNumber@@"
 address = "0x0040BB00"
 size = 61
 unit = "gpt-web-cnumber-lifetime"
-symbol_base = "??_GCDesignNumberLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCDesignNumber@@UAEPAXI@Z"
 sha256 = "57f8ee280707b10beb3dc422a404275ad1aa281b69078f8c2bbd5dec7c733336"
 
 [[anchors.owners]]
@@ -2064,7 +2064,7 @@ type_name = ".?AVCGage@@"
 address = "0x0040BAC0"
 size = 64
 unit = "gpt-web-gage-lifetime"
-symbol_base = "??_GCDesignGageLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCDesignGage@@UAEPAXI@Z"
 sha256 = "b987927af932e1382784f9a2444fdde91e8ff0ae9e51362faec9837f1a47fb86"
 
 [[anchors.owners]]

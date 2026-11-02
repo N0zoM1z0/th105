@@ -6,44 +6,32 @@
 // Complete source visibility is needed for the private EAX/ESI entries.
 // Four complete exact bodies in the genuine linked provider context.
 // See docs/DESIGN_NUMBER_FLOAT_EXACT_2026_10_31.md.
-#include "CNumberRuntime.hpp"
+#include "DesignObjects.hpp"
 #include <math.h>
 #include <stddef.h>
 
 #pragma float_control(except, off, push)
 
 namespace th105 {
-class NumberDesignObjectBaseView : public ::IColor {
-public:
-    virtual void render_offset(float, float);
-    virtual void render();
-    virtual void slot_18(unsigned, unsigned, unsigned);
-    float base_x_04, base_y_08;
-    float x_0c, y_10;
-    bool enabled_14;
-};
-class CDesignNumberRenderView : public NumberDesignObjectBaseView {
-public:
-    virtual void render_offset(float, float);
-    virtual void render();
-    CNumber number_18;
-};
-
 // Ordinary unexported definitions let VC8 choose the private calling protocol.
 void __stdcall render_floating(CNumber *number, float value,
     float x, float y, int integer_digits, int fractional_digits, char sign_mode);
 void __stdcall render_bound(CNumber *number, float x, float y);
 
-void CDesignNumberRenderView::render()
+} // namespace th105
+
+void CDesignNumber::render()
 {
     if (enabled_14)
-        render_bound(&number_18, x_0c + base_x_04, y_10 + base_y_08);
+        th105::render_bound(&number_18, x_0c + base_x_04, y_10 + base_y_08);
 }
-void CDesignNumberRenderView::render_offset(float x, float y)
+void CDesignNumber::render_offset(float x, float y)
 {
     if (enabled_14)
-        render_bound(&number_18, x_0c + base_x_04 + x, y_10 + base_y_08 + y);
+        th105::render_bound(&number_18, x_0c + base_x_04 + x, y_10 + base_y_08 + y);
 }
+
+namespace th105 {
 
 void __stdcall render_bound(CNumber *number, float x, float y)
 {
@@ -122,9 +110,9 @@ void __stdcall render_floating(CNumber *number, float value,
 #pragma optimize("y", on)
 
 typedef char NumberViewSize[sizeof(CNumber) == 0xcc ? 1 : -1];
-typedef char NumberDesignBaseSize[sizeof(NumberDesignObjectBaseView) == 0x18 ? 1 : -1];
-typedef char NumberDesignSize[sizeof(CDesignNumberRenderView) == 0xe4 ? 1 : -1];
-typedef char NumberMemberOffset[offsetof(CDesignNumberRenderView, number_18) == 0x18 ? 1 : -1];
+typedef char NumberDesignBaseSize[sizeof(CDesignObjectBase) == 0x18 ? 1 : -1];
+typedef char NumberDesignSize[sizeof(CDesignNumber) == 0xe4 ? 1 : -1];
+typedef char NumberMemberOffset[offsetof(CDesignNumber, number_18) == 0x18 ? 1 : -1];
 } // namespace th105
 
 #pragma float_control(pop)

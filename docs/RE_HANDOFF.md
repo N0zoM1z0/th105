@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+DesignObjects.hpp now shares the four real outer design classes across loader,
+lifetime and rendering code. All four RTTI graphs (499 unique bytes) and all
+28 slots pass. All 17 accepted authored roots in five affected units remain
+exact, including numeric 55 / 63 / 95 / 581. Scalar gates 2 / 120 and 2 / 121,
+loader origin 9 / 948, and 16 complete alias/support body checks pass. Aliases,
+scalars and the unselected one-byte base render receive no extra credit. Loader
+raw2576 remains EH-blocked; gauge360 stays nonexact. No count changes.
+CI passed all 962 tests in 119.765 seconds.
+See DESIGN_SHARED_OWNERS_2026_11_02.md.
+
 Design loading now uses actual CGage and one shared real constructor definition.
 All six accepted roots in the two affected units remain exact; scalar origin
 2 / 120 and loader-generated origin 9 / 948 pass. Loader CGage scalar56, full

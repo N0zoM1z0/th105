@@ -14578,7 +14578,7 @@ dir32_targets = [
 
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040BB00"
-symbol_base = "??_GCDesignNumberLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCDesignNumber@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = [
   "??_7CNumber@th105@@6B@=??_7CNumber@th105@@6B@",
@@ -19722,21 +19722,21 @@ dir32_targets = ["??_7CGage@@6B@=??_7CGage@@6B@"]
 
 [[units.gpt-web-gage-lifetime.functions]]
 address = "0x0040BAC0"
-symbol_base = "??_GCDesignGageLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCDesignGage@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = ["??_7CGage@@6B@=??_7CGage@@6B@"]
 
 [[units.gpt-web-gage-lifetime.functions]]
 address = "0x0040AF00"
-symbol_base = "?set_color@CDesignGageLifetime@th105@@UAEXI@Z"
+symbol_base = "?set_color@CDesignGage@@UAEXI@Z"
 
 [[units.gpt-web-gage-lifetime.functions]]
 address = "0x0040AF10"
-symbol_base = "?set_vertex_colors@CDesignGageLifetime@th105@@UAEXPBI@Z"
+symbol_base = "?set_vertex_colors@CDesignGage@@UAEXPBI@Z"
 
 [[units.gpt-web-gage-lifetime.functions]]
 address = "0x0040AF20"
-symbol_base = "?multiply_color@CDesignGageLifetime@th105@@UAEXI@Z"
+symbol_base = "?multiply_color@CDesignGage@@UAEXI@Z"
 
 
 [units.gpt-web-gage-render]
@@ -19769,15 +19769,15 @@ notes = "Complete CDesignGage vslots14/10 at40AEA0/40AF30 and CDesignSprite vslo
 
 [[units.gpt-web-gage-design-render.functions]]
 address = "0x0040AEA0"
-symbol_base = "?render@CDesignGageRenderView@th105@@UAEXXZ"
+symbol_base = "?render@CDesignGage@@UAEXXZ"
 
 [[units.gpt-web-gage-design-render.functions]]
 address = "0x0040AF30"
-symbol_base = "?render_offset@CDesignGageRenderView@th105@@UAEXMM@Z"
+symbol_base = "?render_offset@CDesignGage@@UAEXMM@Z"
 
 [[units.gpt-web-gage-design-render.functions]]
 address = "0x0040AEE0"
-symbol_base = "?set_render_parameters@CDesignSpriteRenderView@th105@@UAEXIIM@Z"
+symbol_base = "?set_render_parameters@CDesignSprite@@UAEXIIM@Z"
 
 [units.gpt-web-texture-slot-binding]
 kind = "probe"
@@ -19807,12 +19807,12 @@ preserve_public_members = ["?render@CNumber@th105@@QAEXHMMHD@Z", "?render@CTile@
 
 [[units.gpt-web-design-number-render.functions]]
 address = "0x0040AF80"
-symbol_base = "?render@CDesignNumberRenderView@th105@@UAEXXZ"
+symbol_base = "?render@CDesignNumber@@UAEXXZ"
 rel32_targets = ["?render_bound@th105@@YGXPAVCNumber@1@MM@Z=0x00414EB0"]
 
 [[units.gpt-web-design-number-render.functions]]
 address = "0x0040AFC0"
-symbol_base = "?render_offset@CDesignNumberRenderView@th105@@UAEXMM@Z"
+symbol_base = "?render_offset@CDesignNumber@@UAEXMM@Z"
 rel32_targets = ["?render_bound@th105@@YGXPAVCNumber@1@MM@Z=0x00414EB0"]
 
 [[units.gpt-web-design-number-render.functions]]
@@ -19910,15 +19910,15 @@ rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00
 
 [[units.gpt-web-design-base-load.functions]]
 address = "0x0040AE50"
-symbol_base = "?render_offset@DesignLoaderObjectBase@th105@@UAEXMM@Z"
+symbol_base = "?render_offset@CDesignObjectBase@@UAEXMM@Z"
 
 [[units.gpt-web-design-base-load.functions]]
 address = "0x0040AE60"
-symbol_base = "?set_render_parameters@DesignLoaderObjectBase@th105@@UAEXIIM@Z"
+symbol_base = "?set_render_parameters@CDesignObjectBase@@UAEXIIM@Z"
 
 [[units.gpt-web-design-base-load.functions]]
 address = "0x0040AE70"
-symbol_base = "?set_color@DesignLoaderObjectBase@th105@@UAEXI@Z"
+symbol_base = "?set_color@CDesignObjectBase@@UAEXI@Z"
 
 [units.gpt-web-design-base-cleanup]
 kind = "linked_candidate"
