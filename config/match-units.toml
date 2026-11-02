@@ -16362,12 +16362,11 @@ source = "src/ui/ProfileEditorConstructor.cpp"
 object = "build/match-units/GptWeb_ProfileEditorConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Constructor-facing physical view for current CProfileMenu editor_3b0. Exact caller 0x0044D4F0 constructs the 0x168 subobject at +0x3B0; two real polymorphic CTile members at +0x0C/+0xB0 make VC8 clear each IColor/color-base +4 before publishing the CTile vptr. This avoids forcing the runtime UiTileA4 facade to model constructor-only vptr scheduling."
+notes = "Shared ProfileEditor168 owner with actual global CTile members at +0x0C/+0xB0. Constructor 0x428000 remains complete exact33; the constructor-only eight-slot tile view is removed. Exact CProfileMenu caller 0x44D4F0 constructs this 0x168 subobject at +0x3B0. See docs/PROFILE_EDITOR_REAL_TILES_2026_11_02.md."
 
 [[units.gpt-web-profile-editor-constructor.functions]]
 address = "0x00428000"
 symbol_base = "??0ProfileEditor168@th105@@QAE@XZ"
-dir32_targets = ["??_7CTile@th105@@6B@=??_7CTile@@6B@"]
 
 [units.gpt-web-profile-editor-leaves]
 kind = "probe"

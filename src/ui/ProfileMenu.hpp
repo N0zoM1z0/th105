@@ -4,6 +4,7 @@
 #include <string>
 
 #include "GuideOverlay.hpp"
+#include "Tile.hpp"
 #include "Menu.hpp"
 #include "MenuCursor.hpp"
 #include "MenuSelect.hpp"
@@ -51,8 +52,8 @@ struct ProfileEditor168 {
     unsigned texture_primary_000;
     unsigned texture_secondary_004;
     void *source_008;
-    UiTileA4 primary_tile_00c;
-    UiTileA4 secondary_tile_0b0;
+    CTile primary_tile_00c;
+    CTile secondary_tile_0b0;
     int width_154;
     int x_158;
     int y_15c;

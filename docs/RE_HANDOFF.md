@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+ProfileEditor168 now has one shared declaration with actual global CTile members
+at +0x0C/+0xB0. The constructor-only eight-slot tile surrogate is removed; the
+native table has four slots. Constructor 33, destructor 15, initialize 108,
+shutdown 32 and read-name 42 remain exact. The 21-unit include closure preserves
+all 42 accepted roots in 19 units; six other roots in five units retain their
+fresh HEAD hashes. Actual tile RTTI 247 and four-slot table pass. No count gain.
+See PROFILE_EDITOR_REAL_TILES_2026_11_02.md.
+
 Numeric rendering now uses actual global CTile, removing its manual-vptr tile
 view and duplicate tile render implementation. CNumber has its target-backed
 IColor base and named color slots. MenuConnect's tiles at 0x64, 0x130 and 0x300
