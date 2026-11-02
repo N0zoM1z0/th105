@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Observer guard correction: Unicorn ctypes can suppress exceptions raised
+inside hooks. Use existing native_callbacks.guarded_callback and reject its
+error list immediately after emu_start, before accepting any observation.
+Select-render and adjacent profile-deck observers are hardened. Actual bridge
+test proves a rejected hook stops before a guest write; Select's new redirected
+unknown-helper control rejects, all four positives/random-table control pass.
+Deck32-event/three-zero fixture remains valid. Private character-update12
+cases plus bad-cursor control pass only after this correction. No count change.
+See OBSERVER_CALLBACK_GUARD_2026_11_02.md. Do not assume every legacy observer
+has this property; check before reuse. Source/byte comparisons are independent.
+
 CSelect render41FF00 now has complete public typed source and a reproducible
 candidate unit. Whole1497 bytes still differ at163 positions, first+835; no
 exact credit. Native/source CFG421 instructions each,419 reachable; only exact

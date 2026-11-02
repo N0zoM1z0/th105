@@ -76,3 +76,12 @@ Exact authored remains 1429 / 443911 bytes. Source-present rises 1634 to 1635,
 authored 1653 to 1654, mapped 1821 to 1822, review 302 to 301, and units 809 to
 810. Excluded stays 2072. No matches.csv row is added. Existing game render,
 constructor and helper implementations gain no inherited exact credit.
+
+## Callback-boundary hardening
+
+The subsequent callback review found that raising directly inside a ctypes
+hook can be suppressed by Unicorn. This audit now uses the existing guarded
+callback helper, stops within the hook and rejects captured errors after the
+engine returns. An additional unknown-helper negative control verifies this
+path. The four positive cases and random-entry control were rerun unchanged.
+See OBSERVER_CALLBACK_GUARD_2026_11_02.md; no matching credit changes.

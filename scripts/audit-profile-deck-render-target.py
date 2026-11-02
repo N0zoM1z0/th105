@@ -15,6 +15,7 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_32, UC_HOOK_CODE
 from unicorn.x86_const import (UC_X86_REG_EAX, UC_X86_REG_EBX, UC_X86_REG_ECX,
     UC_X86_REG_EDX, UC_X86_REG_EBP, UC_X86_REG_ESI, UC_X86_REG_EDI,
     UC_X86_REG_ESP, UC_X86_REG_EIP, UC_X86_REG_FPCW, UC_X86_REG_FPTAG)
+from native_callbacks import guarded_callback
 from workflow_manifest import load_manifest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -67,7 +68,9 @@ def observe_missing_counts(image, code):
      receiver = u.reg_read(UC_X86_REG_ECX)
      events.append(dict(kind=name,receiver='temporary_sprite' if 0x1000000 <= receiver < 0x1020000 else hex(receiver),args=args))
      u.reg_write(UC_X86_REG_EAX,res);u.reg_write(UC_X86_REG_ECX,0xbad0c0de);u.reg_write(UC_X86_REG_EDX,0xbad0dada);u.reg_write(UC_X86_REG_ESP,ss+4+n);u.reg_write(UC_X86_REG_EIP,r(ss))
-    m.hook_add(UC_HOOK_CODE,hook);m.emu_start(a,0,count=15000);assert m.reg_read(UC_X86_REG_EIP)==0xf00000;assert m.reg_read(UC_X86_REG_ESP)==stack+4
+    hook_errors=[];m.hook_add(UC_HOOK_CODE,guarded_callback(hook,hook_errors));m.emu_start(a,0,count=15000)
+    require(not hook_errors,"deck observer hook failed: "+repr(hook_errors))
+    assert m.reg_read(UC_X86_REG_EIP)==0xf00000;assert m.reg_read(UC_X86_REG_ESP)==stack+4
     for rg,v in [(UC_X86_REG_EBP,0x12345678),(UC_X86_REG_EBX,0x22334455),(UC_X86_REG_ESI,0x33445566),(UC_X86_REG_EDI,0x44556677)]:assert m.reg_read(rg)==v
     assert r(0)==0
     tiles = [event['args'][3] for event in events if event['kind'] == 'tile']

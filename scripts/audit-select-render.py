@@ -11,6 +11,7 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_32, UC_HOOK_CODE
 from unicorn.x86_const import *
 import linked_pe as core
 from linked_logic_error_origins import require, digest
+from native_callbacks import guarded_callback
 from workflow_manifest import ROOT, load_manifest, unit_input_digest, compiler_sha256
 ADDRESS, SIZE = 0x41ff00, 1497
 SHA = 'd1bb636ab500206ab3ddf487b45ebd2a9dec4a1b8f3e16f479df1966ee8279ae'
@@ -79,9 +80,10 @@ def observe(image,code,begin=True,mix=127,transition=.25,mutate_table=False):
   if at not in stubs:
    require(ADDRESS<=at<ADDRESS+SIZE,'unobserved helper execution');return
   name,pop,value=stubs[at];ss=u.reg_read(UC_X86_REG_ESP);argbytes=4 if name=='overlay'else pop;args=list(struct.unpack('<'+str(argbytes//4)+'I',u.mem_read(ss+4,argbytes)))if argbytes else[];receiver=u.reg_read(UC_X86_REG_ECX)if name!='overlay'else None;events.append(dict(kind=name,receiver=receiver,args=args));u.reg_write(UC_X86_REG_EAX,int(value));u.reg_write(UC_X86_REG_ECX,0xbad0c0de);u.reg_write(UC_X86_REG_EDX,0xbad0dada);u.reg_write(UC_X86_REG_ESP,ss+4+pop);u.reg_write(UC_X86_REG_EIP,r(ss))
- m.hook_add(UC_HOOK_CODE,hook)
+ hook_errors=[];m.hook_add(UC_HOOK_CODE,guarded_callback(hook,hook_errors))
  try:m.emu_start(0x41ff00,0,count=20000)
  except Exception as e:raise RuntimeError((str(e),hex(m.reg_read(UC_X86_REG_EIP)),events[-4:]))
+ if hook_errors:raise ValueError("observer hook failed: "+repr(hook_errors))
  assert m.reg_read(UC_X86_REG_EIP)==0xf00000;assert m.reg_read(UC_X86_REG_ESP)==stack+4
  assert all(m.reg_read(rg)==v for rg,v in saved.items());assert m.reg_read(UC_X86_REG_EAX)&255==int(begin)
  return events
@@ -99,7 +101,15 @@ def audit():
     for begin,mix,transition in [(False,127,.25),(True,0,.25),(True,127,.25),(True,255,-.5)]:
         target=observe(image,native,begin,mix,transition);source=observe(image,candidate,begin,mix,transition);check_events(target,begin,mix,transition);check_events(source,begin,mix,transition);require(target==source,'select bounded source/native observations differ');cases.append(dict(begin=begin,mix=mix,transition=transition,event_count=len(target),events=target))
     require(observe(image,candidate,True,127,.25,True)!=observe(image,native,True,127,.25),'select random-entry negative control was not detected')
-    return dict(result='exact'if candidate==native else'mismatch',diagnostic_only=True,target_sha256=sha,unit=UNIT,cfg=shape,source_cfg=source_shape,source_size=len(candidate),candidate_sha256=digest(candidate),native_sha256=digest(native),unequal_bytes=sum(a!=b for a,b in zip(candidate,native)),first_mismatch=c.first_mismatch(native,candidate,ADDRESS),isolated_observer_cases=cases,random_entry_negative_rejected=True,scope='complete1497-byte comparison including alignment; bounded argument/control-flow observers, no rendering/helper/OS execution or universal semantic-equivalence claim; no exact credit for differing bytes')
+    bad=bytearray(candidate);require(bad[11]==0xe8,'select first call role differs');struct.pack_into('<i',bad,12,0x40ac50-(ADDRESS+16))
+    try:
+        observe(image,bytes(bad),False,127,.25)
+    except ValueError as error:
+        require('unobserved helper execution' in str(error),'unexpected observer failure in guard control')
+    else:
+        raise ValueError('unknown-helper negative control was accepted')
+
+    return dict(result='exact'if candidate==native else'mismatch',diagnostic_only=True,target_sha256=sha,unit=UNIT,cfg=shape,source_cfg=source_shape,source_size=len(candidate),candidate_sha256=digest(candidate),native_sha256=digest(native),unequal_bytes=sum(a!=b for a,b in zip(candidate,native)),first_mismatch=c.first_mismatch(native,candidate,ADDRESS),isolated_observer_cases=cases,random_entry_negative_rejected=True,unknown_helper_negative_rejected=True,scope='complete1497-byte comparison including alignment; bounded argument/control-flow observers, no rendering/helper/OS execution or universal semantic-equivalence claim; no exact credit for differing bytes')
 
 if __name__=='__main__':
     try:
