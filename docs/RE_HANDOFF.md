@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Standalone CoreContracts.cpp is repaired: obsolete SequenceRecord4 assertion
+replaced by real FighterSequenceSlot prefix offsets0/2/4 plus existing size98,
+and enqueue's const-pointer member signature is now compile-checked. VC8 compile
+passes; wrong offset and mutable argument negative controls reject. Exactenqueue114
+freshly preserved. No native TU or counts changed. This resolves the standalone
+validator blocker recorded below. See CORE_CONTRACTS_REPAIR_2026_11_02.md.
+
 Character destruction and fighter face/cutin resources now use actual CSprite,
 removing three partial sprite views. Exact resource132/333/199 and spell-owner101
 remain unchanged; spell EH117 and emitted sequence/Pat deque135/125 gates pass.

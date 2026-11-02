@@ -28,6 +28,8 @@ typedef void (CollisionContext::*ForwardedQuantityFunction)(
 typedef unsigned char (Fighter::*ConsumeSpellEntryFunction)();
 typedef void (Fighter::*PrepareSpellEntryFunction)();
 typedef void (Fighter::*InitializeFighterFunction)();
+typedef void (FighterSequenceController::*EnqueueSequenceFunction)(
+    const FighterSequenceSlot *);
 typedef void (SpellDataOwner::*ParseSpellResourcesFunction)(
     const char *,
     const char *,
@@ -55,7 +57,7 @@ enum CoreFunctionAddress {
 };
 
 // VC8-compatible compile-time layout checks for complete views. Partial views
-// are tracked in config/core-types.csv and intentionally have no sizeof claim.
+// intentionally have no sizeof claim.
 typedef char CheckAttackCandidateFrameSize[
     sizeof(AttackCandidateFrame) == 0x54 ? 1 : -1];
 typedef char CheckCollisionAabbSize[
@@ -76,8 +78,14 @@ typedef char CheckObservedRecordSize[
     sizeof(ObservedRecord24) == 0x18 ? 1 : -1];
 typedef char CheckObservedRangeSize[
     sizeof(ObservedRecordRange16) == 0x10 ? 1 : -1];
-typedef char CheckSequenceRecordSize[
-    sizeof(SequenceRecord4) == 0x04 ? 1 : -1];
+// The enqueued record is the complete98-byte slot, not the obsolete4-byte
+// id/flags prefix. Keep the real prefix offsets checked as well as its size.
+typedef char CheckSequenceRecordIdOffset[
+    offsetof(FighterSequenceSlot, record_id_00) == 0 ? 1 : -1];
+typedef char CheckSequenceRecordFlagsOffset[
+    offsetof(FighterSequenceSlot, field_02) == 2 ? 1 : -1];
+typedef char CheckSequenceRecordSpriteOffset[
+    offsetof(FighterSequenceSlot, sprite_04) == 4 ? 1 : -1];
 typedef char CheckShortDequeSize[
     sizeof(ShortDeque8) == 0x14 ? 1 : -1];
 typedef char CheckShapeWordsSize[

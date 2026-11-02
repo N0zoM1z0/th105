@@ -18,6 +18,8 @@ ConsumeSpellEntryFunction const check_consume_spell_entry =
     &Fighter::consume_spell_sequence_entry;
 PrepareSpellEntryFunction const check_prepare_spell_entry =
     &Fighter::prepare_next_spell_sequence_entry;
+EnqueueSequenceFunction const check_enqueue_sequence =
+    &FighterSequenceController::enqueue_record;
 InitializeFighterFunction const check_initialize_fighter =
     &Fighter::initialize_fighter_battle_state;
 InitializeFighterFunction const check_initialize_fighter_resources =

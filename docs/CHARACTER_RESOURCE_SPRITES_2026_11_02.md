@@ -1,5 +1,8 @@
 # Actual sprites in Character cleanup and fighter resources
 
+The standalone validator blocker recorded below is subsequently resolved by
+CORE_CONTRACTS_REPAIR_2026_11_02.md; the native evidence here is unchanged.
+
 Following the constructor's actual CSprite recovery, CharacterDestructor.cpp
 uses the same global CSprite in its two direct sprites, handle/sprite resource
 and sequence record. FighterCutinLifetime.cpp also uses CSprite instead of a
