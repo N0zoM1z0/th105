@@ -7445,13 +7445,13 @@ dir32_targets = [
 address = "0x0043FB60"
 symbol_base = "Menu_render_profile_tiles"
 rel32_targets = [
-  "?render@ProfileTileView@th105@@QAEXMMHH@Z=0x004099F0",
+  "?render@CTile@@QAEXMMHH@Z=0x004099F0",
 ]
 dir32_targets = [
   "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
   "__real@4030000000000000=__real@4030000000000000",
   "__real@405f400000000000=__real@405f400000000000",
-  "?g_profile_tile@th105@@3UProfileTileView@1@A=?g_profile_tile@th105@@3UProfileTileView@1@A",
+  "?g_profile_tile@th105@@3VCTile@@A=?g_profile_tile@th105@@3UProfileTileView@1@A",
   "__real@4070400000000000=__real@4070400000000000",
   "__real@404e000000000000=__real@404e000000000000",
 ]
@@ -16473,7 +16473,7 @@ rel32_targets = [
   "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
   "??3@YAXPAX@Z=0x006898EA",
   "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
-  "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+  "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
   "?persist_story_progress_42d3f0@ScoreDataEndView@th105@@QAEXXZ=0x0042D3F0",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -16483,7 +16483,7 @@ dir32_targets = [
   "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
   "?g_profile_back_texture@th105@@3IA=?g_profile_back_texture@th105@@3IA",
   "?g_profile_text_config@th105@@3PAEA=_profile_editor_records",
-  "?g_profile_tile_end_view@th105@@3UUiTileA4@1@A=?g_profile_tile@th105@@3UProfileTileView@1@A",
+  "?g_profile_tile@th105@@3VCTile@@A=?g_profile_tile@th105@@3UProfileTileView@1@A",
   "??_C@_04NKJDMFKO@?$DMbr?$DO?$AA@=_connect_break_markup",
 ]
 

@@ -35,7 +35,6 @@ extern ProfileRenderListView g_profile_footer_background;
 extern ProfileRenderListView g_profile_player_list;
 extern ProfileSpriteView g_profile_message_sprite;
 extern ProfileSpriteView g_profile_character_background;
-extern ProfileTileView g_profile_tile;
 extern UiDesignObject *g_profile_player_anchor;
 extern MenuCursorSpriteView g_menu_cursor_sprite;
 

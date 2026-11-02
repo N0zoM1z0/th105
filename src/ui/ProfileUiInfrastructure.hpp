@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Tile.hpp"
+
 namespace th105 {
 
 struct UiDesignObject;
@@ -26,9 +28,7 @@ struct ProfileSpriteView {
     void render(float x, float y);
 };
 
-struct ProfileTileView {
-    void render(float x, float y, int column, int row);
-};
+extern CTile g_profile_tile;
 
 struct MenuCursorSpriteView {
     void set_texture(

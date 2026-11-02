@@ -1,6 +1,6 @@
 #include "battle/GameMode.hpp"
 #include "ui/Title.hpp"
-#include "ui/UiPrimitives.hpp"
+#include "ui/ProfileUiInfrastructure.hpp"
 
 #include <string>
 
@@ -22,7 +22,6 @@ int __cdecl selector_random_roll(int limit);
 extern unsigned char g_round_counter;
 extern unsigned int g_profile_back_texture;
 extern unsigned char g_profile_text_config[];
-extern UiTileA4 g_profile_tile_end_view;
 
 void CMenuEnd::initialize_runtime_4404f0()
 {
@@ -68,7 +67,7 @@ void CMenuEnd::initialize_runtime_4404f0()
     unsigned int handle = g_title_resource_manager.create_text_texture(
         text.c_str(), g_profile_text_config, 512, 512, 0, 0).value;
     g_profile_back_texture = handle;
-    g_profile_tile_end_view.set_texture(handle, 0, 0, 512, 16);
+    g_profile_tile.set_texture(handle, 0, 0, 512, 16);
     get_score_data_end_view()->persist_story_progress_42d3f0();
 }
 

@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Profile rendering and MenuEnd initialization now share one actual CTile global
+declaration at 0x6E6A88; the two old views are removed. All 21 accepted roots
+in six units remain exact (closure seven), including renderer 142 and initializer
+512 bytes. The pending deck renderer retains its 2521-byte hash. Native initial
+vptr is the established CTile table. No count or lifetime changes.
+CI passed all 962 tests in 111.630 seconds.
+See PROFILE_SHARED_TILE_2026_11_02.md.
+
 CSelectScenario now uses actual CSprite / CTile members and direct typed
 texture calls. All 13 accepted roots in 10 units remain exact (closure 12),
 including ctor 862, dtor 277 and preview 186. Seven other roots retain hashes.
