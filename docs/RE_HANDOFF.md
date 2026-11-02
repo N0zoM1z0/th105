@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Title construction now uses actual CSprite / CTile, replacing the local color
+base and incomplete sprite/tile classes. The one affected constructor remains
+577-byte exact; its full 616-byte section, including alignment and nine-entry
+switch table, also matches. Member RTTI / all slots and full EH 88 + 76 pass.
+Outer Title/resource views remain separate. No ledger or count changes.
+CI passed all 962 tests in 139.882 seconds.
+See TITLE_REAL_SPRITES_2026_11_02.md.
+
 Info manager lifetime records now use actual CSprite. Owner 195 / 185 and
 support 30 / 28 / 15 remain exact; sprite RTTI 273 and shared physical EH
 104 + 76 pass. The real implicit ComboResource34Lifecycle cleanup at 0x46EF30

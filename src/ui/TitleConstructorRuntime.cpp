@@ -1,57 +1,17 @@
 #include "engine/SceneBase.hpp"
+#include "ui/Tile.hpp"
 
 namespace th105 {
 
 // Constructor-facing physical view of the RTTI-owned 0x28C CTitle object.
 // The shared Title.hpp intentionally keeps destructor-facing sprite facades;
-// this TU needs the original polymorphic member visibility so VC8 emits the
+// this TU uses actual CSprite / CTile members so VC8 emits the
 // target member construction and EH cleanup naturally.
 struct UiDesignObject;
 
 struct SceneTextureHandle {
     unsigned int value;
     SceneTextureHandle() : value(0) {}
-};
-
-struct SceneSpriteColorBase {
-    unsigned int reserved_04;
-    SceneSpriteColorBase() : reserved_04(0) {}
-};
-
-class CSprite : public SceneSpriteColorBase {
-public:
-    CSprite() {}
-    virtual ~CSprite();
-    virtual void set_color(unsigned int color);
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void set_texture_options(
-        unsigned int handle, int x, int y, unsigned int width,
-        unsigned int height, int option, int flags);
-    virtual void set_texture(
-        unsigned int handle, int x, int y, int width, int height);
-    virtual void slot_18();
-    virtual void render(float x, float y);
-private:
-    unsigned char reserved_08[0x8C];
-};
-
-class CTile : public SceneSpriteColorBase {
-public:
-    CTile() {}
-    virtual ~CTile();
-    virtual void set_color(unsigned int color);
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void slot_14();
-    virtual void slot_18();
-    virtual void render(float x, float y);
-    void set_texture_options(
-        unsigned int handle, int x, int y, unsigned int width,
-        unsigned int height, int option, int flags);
-private:
-    unsigned char reserved_08[0x9C];
 };
 
 class TitleDesignResource {
