@@ -7,6 +7,7 @@
 #include "MenuCursor.hpp"
 #include "GuideOverlay.hpp"
 #include "Title.hpp"
+#include "Tile.hpp"
 #include "../battle/EffectSprite.hpp"
 #include "../battle/SpellData.hpp"
 
@@ -15,19 +16,6 @@ namespace th105 {
 typedef std::map<short, signed char> ProfileDeckCountMap;
 typedef std::deque<short> ProfileDeckKeyDeque;
 typedef std::deque<SpellTreeIterator> ProfileDeckIteratorDeque;
-
-// Current CProfileDeckEdit ctor/dtor and the CSprite copy families establish
-// five real 32-bit extension values after the 0x80-byte CSpriteBase prefix.
-// Keep them typed as float data without assigning speculative field names.
-struct ProfileDeckSprite94 : CSpriteBase {
-    float extension_80[5];
-};
-
-// CTile copy construction at 0x004396A0 independently copies nine float
-// values at +0x80..+0xA0 after the same CSpriteBase prefix.
-struct ProfileDeckTileA4 : CSpriteBase {
-    float extension_80[9];
-};
 
 // Only the first 0x20 bytes of the current resource-owner teardown at
 // 0x00433A80 are touched by CProfileDeckEdit. They are the observed
@@ -66,14 +54,14 @@ private:
     TitleDesignResource design_10;
     UiDesignObject *objects_44[20];
     unsigned texture_94;
-    ProfileDeckSprite94 sprite_98;
+    CSprite sprite_98;
     unsigned field_12c;
-    ProfileDeckSprite94 sprite_130;
-    ProfileDeckSprite94 sprite_1c4;
+    CSprite sprite_130;
+    CSprite sprite_1c4;
     unsigned texture_258;
-    ProfileDeckTileA4 tile_25c;
+    CTile tile_25c;
     unsigned texture_300;
-    ProfileDeckSprite94 sprite_304;
+    CSprite sprite_304;
     ProfileDeckResourceGroup20 resources_398;
     SpellTree *local_tree_3b8;
     SpellTree *common_tree_3bc;
@@ -87,10 +75,10 @@ private:
     GuideOverlay guides_410[4];
 };
 
-typedef char ProfileDeckSprite94_size_must_be_0x94[
-    sizeof(ProfileDeckSprite94) == 0x94 ? 1 : -1];
-typedef char ProfileDeckTileA4_size_must_be_0xa4[
-    sizeof(ProfileDeckTileA4) == 0xA4 ? 1 : -1];
+typedef char CSprite_size_must_be_0x94[
+    sizeof(CSprite) == 0x94 ? 1 : -1];
+typedef char CTile_size_must_be_0xa4[
+    sizeof(CTile) == 0xA4 ? 1 : -1];
 typedef char ProfileDeckResourceGroup20_size_must_be_0x20[
     sizeof(ProfileDeckResourceGroup20) == 0x20 ? 1 : -1];
 typedef char CProfileDeckEdit_size_must_be_0x6b0[

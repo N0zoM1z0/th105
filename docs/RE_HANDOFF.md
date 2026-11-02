@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+ProfileDeckEdit shared owner now has actual CSprite/CTile members. Its renderer
+uses an actual local CSprite, named scale fields and normal typed calls instead
+of the manual-vptr local, dispatch macro and member casts. Seven accepted roots
+in five units remain exact; closure six units. Destructor353/scalar30 and
+nonexact renderer2521 retain their fresh HEAD hashes. Full destructor EH185+124
+passes with complete map52/deque5 cleanup providers; local sprite RTTI273 passes.
+No renderer shaping or new exact credit. See DECK_RENDER_REAL_SPRITES_2026_11_02.md.
+
 Config menu construction, update and render/lifetime views now share actual
 CSprite array members at +0xB8. Eight accepted roots in two units stay exact;
 two scalar support roots and nonexact constructor 863 retain fresh HEAD hashes.

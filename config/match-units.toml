@@ -23131,12 +23131,12 @@ rel32_targets = [
   "?find@?$_Tree@V?$_Tmap_traits@FCU?$less@F@std@@V?$allocator@U?$pair@$$CBFC@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABF@Z=0x00448D70",
   "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20",
   "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
-  "?render@ProfileSpriteView@th105@@QAEXMM@Z=0x00406BE0",
-  "?render@ProfileTileView@th105@@QAEXMMHH@Z=0x004099F0",
+  "?render@CSprite@@UAEXMM@Z=0x00406BE0",
+  "?render@CTile@@QAEXMMHH@Z=0x004099F0",
   "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
   "?render_profile_menu_footer@DeckFooterView@th105@@QAEXXZ=0x0043F970",
   "?render_profile_player_slot@Menu@th105@@IAEXPAUPlayerSlotRecord@2@MM@Z=0x0043FAF0",
-  "?set_texture@ProfileSpriteView@th105@@QAEXIHHII@Z=0x00406A60",
+  "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = ["__real@4035000000000000=_alice_fighter_update_006c21b8"]
