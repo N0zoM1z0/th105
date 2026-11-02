@@ -1,5 +1,5 @@
 #include "engine/SceneBase.hpp"
-#include "ui/UiPrimitives.hpp"
+#include "ui/Tile.hpp"
 #include "battle/EffectSprite.hpp"
 #include <deque>
 
@@ -36,24 +36,26 @@ class CLoadingLifetimeView : public IScene {
 public:
     virtual ~CLoadingLifetimeView();
     unsigned texture_04;
-    UiSprite94 sprite_08;
+    CSprite sprite_08;
     unsigned char reserved_9c[8];
     std::deque<unsigned char> queue_a4;
+    unsigned short timer_b8;
 };
 
 class CLogoLifetimeView : public IScene {
 public:
     virtual ~CLogoLifetimeView();
     unsigned texture_04;
-    CSpriteEx sprite_08;
-    CSpriteEx sprite_f0;
+    CEffectSprite sprite_08;
+    CTile tile_f0;
+    int state_194;
 };
 
 class CLoadingWatchLifetimeView : public IScene {
 public:
     virtual ~CLoadingWatchLifetimeView();
     unsigned texture_04;
-    UiSprite94 sprite_08;
+    CSprite sprite_08;
     unsigned short timer_9c;
     unsigned char reserved_9e[2];
     int state_a0;
@@ -67,8 +69,11 @@ CLoadingWatchLifetimeView::~CLoadingWatchLifetimeView() { g_title_resource_manag
 
 typedef char Ending_alpha_off[offsetof(EndingLifetimeView,alpha_97)==0x97?1:-1];
 typedef char Loading_queue_off[offsetof(CLoadingLifetimeView,queue_a4)==0xa4?1:-1];
-typedef char Loading_size[sizeof(CLoadingLifetimeView)==0xb8?1:-1];
-typedef char Logo_second_off[offsetof(CLogoLifetimeView,sprite_f0)==0xf0?1:-1];
+typedef char Loading_size[sizeof(CLoadingLifetimeView)==0xbc?1:-1];
+typedef char Logo_second_off[offsetof(CLogoLifetimeView,tile_f0)==0xf0?1:-1];
+typedef char Logo_size[sizeof(CLogoLifetimeView)==0x198?1:-1];
+typedef char Logo_state_off[offsetof(CLogoLifetimeView,state_194)==0x194?1:-1];
+typedef char Loading_timer_off[offsetof(CLoadingLifetimeView,timer_b8)==0xb8?1:-1];
 typedef char Watch_timer_off[offsetof(CLoadingWatchLifetimeView,timer_9c)==0x9c?1:-1];
 
 } // namespace th105

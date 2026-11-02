@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Scene construction/lifetime now uses actual CSprite, CEffectSprite and CTile.
+Logo lifetime is corrected from two CSpriteEx members to CEffectSprite +0x08,
+CTile +0xF0 and state +0x194, total 0x198. Loading lifetime adds its observed
+word timer +0xB8, total 0xBC. Both agree with fresh exact factory allocation.
+All 15 accepted roots in two affected units remain exact; factory observer also
+passes. Six scalar roots / 181 bytes retain their origin proof. Complete member
+RTTI graphs and six ctor/dtor EH regions (676 bytes) pass. Logo effect cleanup
+uses native 0x421D30, not the byte-identical 0x40AD50 location; no exclusive ICF
+claim. Loading render conversions were rejected at 218/native217 and restored.
+No count gain. See SCENE_REAL_MEMBERS_2026_11_02.md.
+
 The real CGage CIL context was rechecked after actual owner unification and
 numeric-literal support. The prior literal block is resolved: complete linked
 CFG/body comparison now succeeds as a comparison, but yields nonexact 1012

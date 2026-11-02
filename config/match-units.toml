@@ -13930,7 +13930,7 @@ source = "src/ui/SceneLifetimeWave.cpp"
 object = "build/match-units/GptWeb_SceneLifetimeWave.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI-owned scene lifetime island. Ending/Opening own one 0x93 render cluster whose explicit cleanup precedes automatic member destruction; CLoading owns a UiSprite94 plus checked deque<unsigned char> at +0xA4; CLogo owns consecutive CSpriteEx members at +0x08/+0xF0; CLoadingWatch owns the same handle/UiSprite94 prefix. Ordinary virtual C++ reproduces all normal/scalar dtors and the IScene base lifetime."
+notes = "Current RTTI-owned scene lifetime island. Ending/Opening own one 0x93 render cluster whose explicit cleanup precedes automatic member destruction; CLoading owns actual CSprite, checked deque<unsigned char> at +0xA4 and timer+B8 (extentBC); CLogo owns CEffectSprite+08 and CTile+F0 with state194 (extent198); CLoadingWatch owns the handle/CSprite prefix. Ordinary virtual C++ reproduces all normal/scalar dtors and the IScene base lifetime."
 
 [[units.gpt-web-scene-lifetime-wave.functions]]
 address = "0x0041DF50"
@@ -14152,7 +14152,7 @@ rel32_targets = [
 dir32_targets = [
   "__ehhandler$??0CLoadingConstructorView@th105@@QAE@XZ=__ehhandler$??0CLoading@th105@@QAE@XZ",
   "??_7CLoadingConstructorView@th105@@6B@=??_7CLoading@@6B@",
-  "??_7SceneSprite94@th105@@6B@=_select_sprite_vtable_anchor",
+  "??_7CSprite@@6B@=_select_sprite_vtable_anchor",
 ]
 
 [[units.gpt-web-scene-constructor-runtime.functions]]
@@ -14168,13 +14168,13 @@ address = "0x0041F780"
 symbol_base = "??0CLogoConstructorView@th105@@QAE@XZ"
 rel32_targets = [
   "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
-  "?set_texture_options@LogoSpriteE8@th105@@QAEXIHHHHHH@Z=0x00407160",
+  "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
 ]
 dir32_targets = [
   "__ehhandler$??0CLogoConstructorView@th105@@QAE@XZ=__ehhandler$??0CLogo@th105@@QAE@XZ",
   "??_7CLogoConstructorView@th105@@6B@=??_7CLogo@@6B@",
-  "??_7LogoSpriteE8@th105@@6B@=??_7CEffectSprite@@6B@",
-  "??_7LogoTileA4@th105@@6B@=??_7CTile@@6B@",
+  "??_7CEffectSprite@@6B@=??_7CEffectSprite@@6B@",
+  "??_7CTile@@6B@=??_7CTile@@6B@",
 ]
 
 [[units.gpt-web-scene-constructor-runtime.functions]]
@@ -14208,7 +14208,7 @@ rel32_targets = [
 dir32_targets = [
   "__ehhandler$??0CLoadingWatchConstructorView@th105@@QAE@XZ=__ehhandler$??0CLoadingWatch@th105@@QAE@XZ",
   "??_7CLoadingWatchConstructorView@th105@@6B@=??_7CLoadingWatch@@6B@",
-  "??_7SceneSprite94@th105@@6B@=_select_sprite_vtable_anchor",
+  "??_7CSprite@@6B@=_select_sprite_vtable_anchor",
 ]
 
 [[units.gpt-web-scene-constructor-runtime.functions]]

@@ -1,5 +1,6 @@
 #include "engine/SceneBase.hpp"
 #include "ui/Title.hpp"
+#include "ui/Tile.hpp"
 
 #include <deque>
 
@@ -12,47 +13,6 @@ char *__cdecl get_combined_menu_input_counters();
 struct SceneTextureHandle {
     unsigned value;
     SceneTextureHandle() : value(0) {}
-};
-
-struct SceneSpriteColorBase {
-    unsigned reserved_04;
-    SceneSpriteColorBase() : reserved_04(0) {}
-};
-
-class SceneSprite94 : public SceneSpriteColorBase {
-public:
-    SceneSprite94() {}
-    virtual ~SceneSprite94();
-    virtual void set_color(unsigned int);
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void set_texture_options(
-        unsigned int, int, int, unsigned int, unsigned int, int, int);
-    virtual void set_texture(unsigned int, int, int, int, int);
-    virtual void slot_18();
-    virtual void render(float, float);
-    unsigned char reserved_08[0x8C];
-};
-
-class LogoSpriteE8 : public SceneSpriteColorBase {
-public:
-    LogoSpriteE8() {}
-    virtual ~LogoSpriteE8();
-    virtual void set_color(unsigned int);
-    virtual void slot_08();
-    virtual void slot_0c();
-    void set_texture_options(unsigned int, int, int, int, int, int, int);
-    unsigned char reserved_08[0xE0];
-};
-
-class LogoTileA4 : public SceneSpriteColorBase {
-public:
-    LogoTileA4() {}
-    virtual ~LogoTileA4();
-    virtual void set_color(unsigned int);
-    virtual void slot_08();
-    virtual void slot_0c();
-    unsigned char reserved_08[0x9C];
 };
 
 struct SceneRenderClusterOwner93 {
@@ -95,7 +55,7 @@ public:
     virtual int update();
 
     SceneTextureHandle texture_04;
-    SceneSprite94 sprite_08;
+    CSprite sprite_08;
     unsigned char reserved_9c[8];
     std::deque<unsigned char> queue_a4;
     unsigned short timer_b8;
@@ -108,8 +68,8 @@ public:
     virtual int update();
 
     SceneTextureHandle texture_04;
-    LogoSpriteE8 sprite_08;
-    LogoTileA4 tile_f0;
+    CEffectSprite sprite_08;
+    CTile tile_f0;
     int state_194;
 };
 
@@ -148,7 +108,7 @@ public:
     virtual ~CLoadingWatchConstructorView();
 
     SceneTextureHandle texture_04;
-    SceneSprite94 sprite_08;
+    CSprite sprite_08;
     unsigned short timer_9c;
     unsigned char reserved_9e[2];
     int state_a0;
@@ -224,9 +184,9 @@ CLoadingWatchConstructorView::CLoadingWatchConstructorView()
 }
 
 typedef char SceneTextureHandle_size[sizeof(SceneTextureHandle) == 4 ? 1 : -1];
-typedef char SceneSprite94_size[sizeof(SceneSprite94) == 0x94 ? 1 : -1];
-typedef char LogoSpriteE8_size[sizeof(LogoSpriteE8) == 0xE8 ? 1 : -1];
-typedef char LogoTileA4_size[sizeof(LogoTileA4) == 0xA4 ? 1 : -1];
+typedef char CSprite_size[sizeof(CSprite) == 0x94 ? 1 : -1];
+typedef char CEffectSprite_size[sizeof(CEffectSprite) == 0xE8 ? 1 : -1];
+typedef char CTile_size[sizeof(CTile) == 0xA4 ? 1 : -1];
 typedef char SceneRenderClusterOwner93_size[
     sizeof(SceneRenderClusterOwner93) == 0x93 ? 1 : -1];
 typedef char Ending_alpha_offset[
