@@ -2,6 +2,7 @@
 #include "engine/SceneBase.hpp"
 #include "ui/Title.hpp"
 #include "ui/MenuCursor.hpp"
+#include "ui/SelectSetupState.hpp"
 #include "ui/UiPrimitives.hpp"
 #include "ui/GuideOverlay.hpp"
 #include "ui/DesignBaseLifetime.hpp"
@@ -44,7 +45,6 @@ extern "C" void *get_network_session();
 extern "C" void *get_player_slot_record(int);
 extern "C" void *get_score_data();
 extern "C" const char *character_key_to_name(unsigned);
-struct SelectSetupEntryView;
 class CSelect : public CSceneBase {
 public:
  CSelect(); virtual ~CSelect();
@@ -52,6 +52,8 @@ public:
  virtual int update();virtual bool render();virtual void unknown_scene_method();
  virtual void on_scene_enter(int);virtual void on_scene_exit(int);
  virtual int update_selection();
+ int update_characters_41fc90();
+ int update_stage_420560();
  // Full2ED8 allocation is separately observed in the accepted scene factory.
  // Unknown uninitialized byte ranges are layout evidence, not shaping locals.
  int state_008;

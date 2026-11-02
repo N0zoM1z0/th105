@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Selection flow341, stage890 and character619 now implement actual declared
+CSelect methods; three partial-owner views removed. Shared pointer-only setup
+view moved to SelectSetupState.hpp for entry/character/stage. Actual flow slot18
+now has source implementation; calls to children/bind_character use CSelect.
+Stage890/flow341/bind258/dtor845 exact; all five nonexact candidate hashes
+unchanged. Final closure9 units/4 accepted roots replayed, ctorEH461/meta188
+exact, implicit CSpriteEx gate includes new header and passes. Guarded character12
+and render4 cases/negative controls rerun. No ABI/algorithm/count changes;
+namespace RTTI, destructor-facing owner and full linkage remain separate.
+See SELECT_REAL_POLICY_METHODS_2026_11_02.md.
+
 CSelect now declares its native seventh virtual role (selection flow4208E0
 at6C0BDC) and frame update dispatches it directly. Typed state08/setup0C/input10
 members replace raw prefix views in entry/frame and both full layouts.

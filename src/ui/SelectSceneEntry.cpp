@@ -3,14 +3,7 @@
 #include "battle/GameMode.hpp"
 
 namespace th105 {
-struct SelectSetupEntryView {
-    int identifier_00;
-    signed char stage_04,bgm_05;
-    unsigned char unknown_06[2];
-    MatchSetup::Side sides_08[2];
-    unsigned seed_48;
-    unsigned char random_4c[3];
-};
+
 
 struct SelectEntryUiEnabledView { unsigned char unknown_00[0x14]; unsigned char enabled; };
 struct SelectEntryConfigView {

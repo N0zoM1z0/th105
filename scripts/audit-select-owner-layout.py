@@ -36,7 +36,7 @@ def audit():
     table = '??_7CSelect@th105@@6B@'
     check_table(r.section(table).raw_size, r.symbol(table).value, r.refs(table, 28), r.raw(table, 28), c.target_bytes(0x6c0bc4, 28))
     bodies = []
-    for name, size, expected in [('exact-first-select-scene-entry', 783, False), ('exact-first-select-scene-update', 685, False), ('exact-first-select-update-flow', 341, True), ('exact-first-select-destructor', 845, True), ('exact-first-select-character-binding', 258, True), ('exact-first-select-render', 1497, False)]:
+    for name, size, expected in [('exact-first-select-scene-entry', 783, False), ('exact-first-select-scene-update', 685, False), ('exact-first-select-update-flow', 341, True), ('exact-first-select-stage-update', 890, True), ('exact-first-select-character-update', 619, False), ('exact-first-select-destructor', 845, True), ('exact-first-select-character-binding', 258, True), ('exact-first-select-render', 1497, False)]:
         unit, path = helpers.fresh(name)
         f = unit['functions'][0]
         body = helpers.canonical(c, unit, path, f)
@@ -47,7 +47,7 @@ def audit():
             dispatch = bytes.fromhex('8b168b42188bceffd0')
             require(body[0x290:0x299] == dispatch and c.target_bytes(0x4216cc, 9) == dispatch, 'CSelect actual slot18 dispatch differs')
         bodies.append(dict(unit=name, address=f['address'], size=size, sha256=digest(body), exact=exact))
-    return dict(target_sha256=sha, table_address='0x006C0BC4', table_size=28, slots=SLOTS, bodies=bodies, scope='seven virtual roles and actual frame slot18 dispatch; typed state8/setupC/inputs10 replace raw prefix views; flow341 implementation retains its independently exact view; namespace RTTI and full-class linkage are not claimed recovered')
+    return dict(target_sha256=sha, table_address='0x006C0BC4', table_size=28, slots=SLOTS, bodies=bodies, scope='seven virtual roles and actual frame slot18 dispatch; typed state8/setupC/inputs10 replace raw prefix views; flow341 now uses the actual declared CSelect virtual method, stage890 and character619 share that owner; namespace RTTI and full-program linkage are not claimed recovered')
 
 
 if __name__ == '__main__':

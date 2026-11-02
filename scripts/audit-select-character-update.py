@@ -115,7 +115,7 @@ def audit():
         u,p=fresh(name,c);fs=[f for f in u['functions']if int(f['address'],0)==at];require(len(fs)==1,'character actual caller/refresh selection missing');body=canonical(c,u,p,fs[0],size);require(body==c.target_bytes(at,size),'character actual caller/refresh regression');support.append(dict(unit=name,address=hex(at),size=size,sha256=digest(body)))
     edge=c.target_bytes(0x420a30,5);require(edge[0]==0xe9 and 0x420a35+struct.unpack_from('<i',edge,1)[0]==ADDRESS,'character exact parent tail edge differs')
     edge=c.target_bytes(0x41fd7b,5);require(edge[0]==0xe8 and 0x41fd80+struct.unpack_from('<i',edge,1)[0]==0x41fb80,'character actual refresh edge differs')
-    u,p=fresh(UNIT,c);f=u['functions'][0];require(f['address']=='0x0041FC90' and f['symbol_base']=='?update_characters_41fc90@SelectCharacterUpdateView@th105@@QAEHXZ','character actual ordinary source differs');candidate=canonical(c,u,p,f,SIZE);source_shape=cfg(candidate)
+    u,p=fresh(UNIT,c);f=u['functions'][0];require(f['address']=='0x0041FC90' and f['symbol_base']=='?update_characters_41fc90@CSelect@th105@@QAEHXZ','character actual ordinary source differs');candidate=canonical(c,u,p,f,SIZE);source_shape=cfg(candidate)
     image=pefile.PE(str(c.TARGET)).get_memory_mapped_image();cases=[]
     for case in CASES:
         target=observe(image,native,case);source=observe(image,candidate,case);check_observation(case,target);check_observation(case,source);require(target==source,'character bounded source/native state or call trace differs: '+case['name']);cases.append(dict(case=case,observation=target))

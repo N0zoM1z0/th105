@@ -4,6 +4,7 @@
 #include "engine/SceneBase.hpp"
 #include "ui/Title.hpp"
 #include "ui/MenuCursor.hpp"
+#include "ui/SelectSetupState.hpp"
 #include "ui/UiPrimitives.hpp"
 #include "ui/GuideOverlay.hpp"
 #include "ui/DesignBaseLifetime.hpp"
@@ -47,7 +48,6 @@ extern "C" void *get_player_slot_record(int);
 extern "C" void *get_score_data();
 extern "C" const char *character_key_to_name(unsigned);
 
-struct SelectSetupEntryView;
 class CSelectLifetime : public CSceneBase {
 public:
  CSelectLifetime(); virtual ~CSelectLifetime();

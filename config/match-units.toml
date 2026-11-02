@@ -23355,7 +23355,7 @@ notes = "Complete890-byte stage-selection confirmation root420560; natural check
 
 [[units.exact-first-select-stage-update.functions]]
 address = "0x00420560"
-symbol_base = "?update_stage_420560@SelectStageUpdateView@th105@@QAEHXZ"
+symbol_base = "?update_stage_420560@CSelect@th105@@QAEHXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
@@ -23375,13 +23375,13 @@ notes = "Complete341-byte selection flow with108 reachable instructions; native 
 
 [[units.exact-first-select-update-flow.functions]]
 address = "0x004208E0"
-symbol_base = "?update_flow_4208e0@SelectUpdateFlowView@th105@@QAEHXZ"
+symbol_base = "?update_selection@CSelect@th105@@UAEHXZ"
 rel32_targets = [
   "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
   "_lookup_orientation_cosine=0x004064B0",
   "?set_uv_size@CSpriteEx@@QAEXMM@Z=0x00407340",
-  "?update_stage_420560@SelectUpdateFlowView@th105@@QAEHXZ=0x00420560",
-  "?update_characters_41fc90@SelectUpdateFlowView@th105@@QAEHXZ=0x0041FC90",
+  "?update_stage_420560@CSelect@th105@@QAEHXZ=0x00420560",
+  "?update_characters_41fc90@CSelect@th105@@QAEHXZ=0x0041FC90",
 ]
 
 [units.exact-first-effect-object-entry]
@@ -29649,8 +29649,8 @@ notes = "Complete619-byte character-selection policy, ordinary partial-owner sou
 
 [[units.exact-first-select-character-update.functions]]
 address = "0x0041FC90"
-symbol_base = "?update_characters_41fc90@SelectCharacterUpdateView@th105@@QAEHXZ"
-rel32_targets = ["?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "?refresh_character_41fb80@SelectCharacterUpdateView@th105@@QAEXHH@Z=0x0041FB80", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?prepare_scenario_match@th105@@YAXH@Z=0x0043AE90", "?fade_bgm@th105@@YAXHH@Z=0x0043B140", "?selector_random_roll@th105@@YAHH@Z=0x004067D0", "?prepare_select_match_43ac60@th105@@YAIH@Z=0x0043AC60"]
+symbol_base = "?update_characters_41fc90@CSelect@th105@@QAEHXZ"
+rel32_targets = ["?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "?bind_character@CSelect@th105@@QAEXHH@Z=0x0041FB80", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?prepare_scenario_match@th105@@YAXH@Z=0x0043AE90", "?fade_bgm@th105@@YAXHH@Z=0x0043B140", "?selector_random_roll@th105@@YAHH@Z=0x004067D0", "?prepare_select_match_43ac60@th105@@YAIH@Z=0x0043AC60"]
 
 [units.exact-first-ctile-render]
 kind = "probe"
