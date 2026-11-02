@@ -1,5 +1,18 @@
 # TH10.5 reconstruction handoff
 
+CSelect render41FF00 now has complete public typed source and a reproducible
+candidate unit. Whole1497 bytes still differ at163 positions, first+835; no
+exact credit. Native/source CFG421 instructions each,419 reachable; only exact
+LEA/NOP8 at420068 is skipped by EB08. RTTI render slot6C0BCC/CSelect descriptor
+6E6050 proves game ownership through the unchanged generic origin gate.
+Four isolated call-observer cases match (1/30/79/79 events), preserve stack,
+callee saves and bool result; corrupted random-entry15 is detected. No helper,
+rendering or OS execution, no universal equivalence claim. Eleven tests added.
+Source1635/authored1654/mapped1822/review301/units810, excluded2072; exact
+1429/443911 unchanged. See SELECT_RENDER_SOURCE_2026_11_02.md. The old closed
+row-lifetime/index spelling controls remain closed; typed-member adoption is
+byte-neutral and not a new matching lead.
+
 CSelect shared state is now typed: four actual MenuCursorState records at100,
 two selected-effect pointers1954 and stage/variant cursors195C/1970. Guide mix
 2D78 corrected from bool to unsigned byte, independently proved by exact341

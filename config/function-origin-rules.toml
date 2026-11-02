@@ -5982,3 +5982,21 @@ subsystem = "network"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Real InputPacket24 member atNetworkBase+90 has no declared destructor and owns deque<short> at+10. Full emitted8-byte cleanup matches43BE90. Actual source/native unwind funclet1 at6BA40B receives this+90 and tail-enters it; complete parent411/EH197/metadata116 replay independently. No manual cleanup body, mask, new group-helper inventory or authored credit. docs/NETWORK_BASE_NESTED_EH_OWNER_2026_11_02.md."
+
+[[rules]]
+id = "select-render-authored-106a"
+addresses = ["0x0041FF00"]
+expected_count = 1
+expected_bytes = 1497
+expected_names = ["sub_41FF00"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "CSelect RTTI primary render slot owns complete1497-byte rendering policy: character portraits/cursors, selected effects, seven-row stage/name/music preview, byte-valued opacity and guides. CFG reaches419 of421 instructions; skipped LEA/NOP8 bytes are pinned and remain compared. Complete typed source is1497/163 unequal, no exact credit. Four isolated observer cases agree with native arguments/control flow and reject a corrupted random-character table entry; no game/helper rendering execution claim. docs/SELECT_RENDER_SOURCE_2026_11_02.md."
+required_rtti_virtual_bodies = [
+ { address = "0x0041FF00", size = 1497, sha256 = "d1bb636ab500206ab3ddf487b45ebd2a9dec4a1b8f3e16f479df1966ee8279ae", slot = "0x006C0BCC", col_slot = "0x006C0BC0", col = "0x006D78D0", type_descriptor = "0x006E6050", type_name_contains = "CSelect@@", calls = [{ site = "0x0041FF0B", target = "0x00401000" }, { site = "0x004201B6", target = "0x0043F900" }, { site = "0x004204B5", target = "0x0043F4C0" }, { site = "0x004204CA", target = "0x00401040" }] },
+]
+required_branch_skipped_padding = [
+ { owner = "0x0041FF00", jump_site = "0x00420066", padding_site = "0x00420068", padding_hex = "8da4240000000090" },
+]

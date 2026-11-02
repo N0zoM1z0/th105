@@ -29624,3 +29624,16 @@ address = "0x00406E50"
 symbol_base = "?render_fvf4142@CSprite@@UAEXMM@Z"
 rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360"]
 dir32_targets = ["?g_sprite_texture_manager@th105@@3UCHandleManager4@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_sprite_texture_device@th105@@3PAUD3DDevice9@1@A=?g_title_texture_cache_host@th105@@3PAXA", "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base"]
+
+[units.exact-first-select-render]
+kind = "probe"
+source = "src/ui/SelectRender.cpp"
+object = "build/match-units/ExactFirst_SelectRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete CSelect render1497 with typed cursor/mix storage. Whole candidate remains163 unequal bytes in the seven-row stage loop; no exact credit. Bounded native/source observer traces agree; docs/SELECT_RENDER_SOURCE_2026_11_02.md."
+
+[[units.exact-first-select-render.functions]]
+address = "0x0041FF00"
+symbol_base = "?render@CSelect@th105@@UAE_NXZ"
+rel32_targets = ["?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000", "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750", "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0", "?render@SelectRenderTileView@th105@@QAEXMMHH@Z=0x004099F0", "?draw_profile_overlay@th105@@YAXE@Z=0x0043F900", "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0", "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040"]

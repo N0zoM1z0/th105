@@ -716,7 +716,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041FB70,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041FB80,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041FC90,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0041FF00,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041FF00,authored_game,ui,authored,observed,select-render-authored-106a
 0x004204E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00420520,authored_game,ui,authored,observed,canonical-exact-authored
 0x00420560,authored_game,ui,authored,observed,canonical-exact-authored
