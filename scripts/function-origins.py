@@ -1216,6 +1216,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("vc8_log10_shared_anchor_file")
         or rule.get("vc8_pow_shared_anchor_file")
         or rule.get("sprite_default_anchor_file")
+        or rule.get("csprite_lifetime_anchor_file")
         or rule.get("sprite_callback_anchor_file")
         or rule.get("input_base_cleanup_anchor_file")
         or rule.get("replay_member_cleanup_anchor_file")
@@ -2550,6 +2551,10 @@ def validate_rule_evidence(
     if rule.get("sprite_callback_anchor_file"):
         from sprite_callback_origins import validate as validate_sprite_callback
         errors.extend(validate_sprite_callback(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("csprite_lifetime_anchor_file"):
+        from csprite_lifetime_origins import validate as validate_csprite_lifetimes
+        errors.extend(validate_csprite_lifetimes(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("sprite_default_anchor_file"):
         from sprite_default_origins import validate as validate_sprite_default

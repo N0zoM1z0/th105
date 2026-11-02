@@ -242,9 +242,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040AC50,authored_game,battle,authored,observed,canonical-exact-authored
 0x0040AC70,authored_game,battle,authored,observed,canonical-exact-authored
 0x0040AC90,authored_game,battle,authored,observed,canonical-exact-authored
-0x0040AD50,authored_game,battle,authored,observed,canonical-exact-authored
+0x0040AD50,compiler_generated,render,exclude,observed,csprite-real-lifetimes-106a
 0x0040AD60,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
-0x0040ADA0,authored_game,ui,authored,observed,canonical-exact-authored
+0x0040ADA0,compiler_generated,render,exclude,observed,csprite-real-lifetimes-106a
 0x0040ADB0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040ADE0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040ADF0,authored_game,ui,authored,observed,canonical-exact-authored
@@ -1269,7 +1269,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043BD40,compiler_generated,runtime,exclude,observed,vc8-generated-scene-resource-bootstrap-emitted-106a
 0x0043BDC0,compiler_generated,runtime,exclude,observed,vc8-generated-scene-resource-bootstrap-emitted-106a
 0x0043BE20,compiler_generated,runtime,exclude,observed,vc8-generated-scene-resource-bootstrap-emitted-106a
-0x0043BE90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0043BE90,compiler_generated,network,exclude,observed,implicit-input-packet-cleanup-106a
 0x0043BEA0,compiler_generated,runtime,exclude,inferred,network-input-endpoint-generated-destruction-106a
 0x0043BEF0,compiler_generated,runtime,exclude,observed,vc8-generated-scene-resource-bootstrap-emitted-106a
 0x0043BF20,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a

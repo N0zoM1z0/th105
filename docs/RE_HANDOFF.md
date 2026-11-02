@@ -1,5 +1,18 @@
 # TH10.5 reconstruction handoff
 
+NetworkBase constructor now has genuine nested queue lifetime at+20C and
+natural global CSprite members. Main411 remains exact; formerly207-byte source
+EH is now native197 with complete116-byte metadata exact. Group19 at43C380
+is actual compiler support outside inventory; no new census/credit. Packet
+cleanup43BE90/8 is implicitly emitted and now excluded. Real CSprite ctor16/
+cleanup7 replace manual-vptr source and pure inherited/compiler23 bytes are
+withdrawn from authored totals. RTTI273 unique bytes/first scalar31/array40
+verified.20 tests;378 sprite and782 network mutation scopes pass (overlap not
+added). Authored1429/443911, source1634/authored1653, excluded2072/review302,
+mapped1821/units808. See NETWORK_BASE_NESTED_EH_OWNER_2026_11_02.md and
+CSPRITE_NATURAL_LIFETIMES_2026_11_02.md. Correct EH owner6BA400/handler6BA4AA,
+not the other6B8C60 group. No complete rendering-vtable or OS-unwind claim.
+
 Replay vector forwarding42B8E0/27 and implicit input-array cleanup42C950/5
 are now whole exact/compiler-owned from unchanged real owner source. Actual
 constructor/destructor array sites23/35 pair callbacks/count2/stride104/member8;

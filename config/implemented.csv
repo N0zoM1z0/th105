@@ -359,7 +359,6 @@ InfoEffectObject_EffectManager_ctor
 InfoEffectObject_EffectManager_dtor
 ICharacterObjectManager_dtor
 YuyukoObjectManagerBase_dtor
-IColor_dtor
 CSpriteBase_set_color
 CSpriteBase_set_vertex_colors
 CSpriteBase_multiply_color
@@ -1035,7 +1034,6 @@ NetworkSendState_check
 CMenuEnd_initialize_runtime
 CollisionContext_dispatch_outcome_path
 CNetworkWinsock_shutdown
-CSprite_ctor
 BattleBaseEffect_ctor
 BattleBaseEffect_dtor
 BattleBaseEffect_shutdown

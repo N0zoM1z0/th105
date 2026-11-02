@@ -1,6 +1,6 @@
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "../input/InputManager.hpp"
-#include "../ui/UiPrimitives.hpp"
+#include "../battle/EffectSprite.hpp"
 
 #include <deque>
 #include <stddef.h>
@@ -44,6 +44,13 @@ struct NetworkQueueSlot20 {
     void *input_01c;
 };
 
+// The native EH action receives owner+20C and destroys two slots at+8.
+// Keep this real nested lifetime; the following eight parent bytes remain opaque.
+struct NetworkQueuePair48 {
+    unsigned char prefix_00[8];
+    NetworkQueueSlot20 slots_08[2];
+};
+
 class NetworkWinsockState314 {
 public:
     NetworkWinsockState314();
@@ -74,12 +81,12 @@ public:
     std::deque<short> queues_0b4[2];
     CriticalSectionWrapper critical_0dc;
     NetworkInputEndpoint7C endpoints_0f8[2];
-    unsigned char input_records_1f0[0x24];
-    NetworkQueueSlot20 queue_slots_214[2];
+    unsigned char input_records_1f0[0x1c];
+    NetworkQueuePair48 queue_pair_20c;
     unsigned char reserved_254[0x08];
     CriticalSectionWrapper critical_25c;
     void *sprite_handle_278;
-    UiSprite94 sprites_27c[2];
+    ::CSprite sprites_27c[2];
     unsigned char state_3a4;
     unsigned char reserved_3a5[7];
     unsigned int state_3ac;
@@ -93,10 +100,10 @@ CNetworkBaseConstructorView::CNetworkBaseConstructorView()
 {
     state_3a4 = 0;
     state_3ac = 0;
-    queue_slots_214[0].input_01c = input_records_1f0;
-    queue_slots_214[1].input_01c = input_records_1f0 + 8;
-    queue_slots_214[0].side_004 = 0;
-    queue_slots_214[1].side_004 = 1;
+    queue_pair_20c.slots_08[0].input_01c = input_records_1f0;
+    queue_pair_20c.slots_08[1].input_01c = input_records_1f0 + 8;
+    queue_pair_20c.slots_08[0].side_004 = 0;
+    queue_pair_20c.slots_08[1].side_004 = 1;
     score_value_3b0 = get_score_data()->value_004;
 }
 
@@ -107,6 +114,10 @@ typedef char NetworkInputEndpoint7C_size[
     sizeof(NetworkInputEndpoint7C) == 0x7c ? 1 : -1];
 typedef char NetworkQueueSlot20_size[
     sizeof(NetworkQueueSlot20) == 0x20 ? 1 : -1];
+typedef char NetworkQueuePairSlotsOffset[
+    offsetof(NetworkQueuePair48, slots_08) == 8 ? 1 : -1];
+typedef char CNetworkQueuePairOffset[
+    offsetof(CNetworkBaseConstructorView, queue_pair_20c) == 0x20c ? 1 : -1];
 typedef char NetworkWinsockState314_size[
     sizeof(NetworkWinsockState314) == 0x314 ? 1 : -1];
 typedef char CNetworkBaseConstructorView_size[
@@ -114,7 +125,7 @@ typedef char CNetworkBaseConstructorView_size[
 typedef char CNetworkBaseConstructorView_endpoint_offset[
     offsetof(CNetworkBaseConstructorView, endpoints_0f8) == 0x0f8 ? 1 : -1];
 typedef char CNetworkBaseConstructorView_slot_offset[
-    offsetof(CNetworkBaseConstructorView, queue_slots_214) == 0x214 ? 1 : -1];
+    (offsetof(CNetworkBaseConstructorView, queue_pair_20c) + offsetof(NetworkQueuePair48, slots_08)) == 0x214 ? 1 : -1];
 typedef char CNetworkBaseConstructorView_winsock_offset[
     offsetof(CNetworkBaseConstructorView, winsock_3b4) == 0x3b4 ? 1 : -1];
 

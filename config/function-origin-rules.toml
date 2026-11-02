@@ -5960,3 +5960,25 @@ subsystem = "input"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual ReplayStorage TU emits complete original vector_Destroy27 and implicit input cleanup5. Full range52/deque callback5, constructor/destructor array sites23/35 with count2/stride104/member8, full owner161/27/208 and independent input-base cleanup/RTTI all verified. No authored destructor invented, generic threshold relaxed, parent/EH or authored bytes recounted. docs/REPLAY_MEMBER_CLEANUPS_2026_11_02.md."
+
+[[rules]]
+id = "csprite-real-lifetimes-106a"
+csprite_lifetime_anchor_file = "config/csprite-lifetime-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 23
+origin = "compiler_generated"
+subsystem = "render"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual global CSprite empty C++ definitions replace manual vptr fields. Whole constructor16/cleanup7, full RTTI273 unique bytes, first deleting slot/weak fallback/scalar31 and actual paired NetworkBase array site40 pass. Parent411/EH197/metadata116 freshly exact after real nested queue lifetime. Prior23 authored bytes withdrawn; no duplicate physical cleanup, complete rendering-vtable or support credit. docs/CSPRITE_NATURAL_LIFETIMES_2026_11_02.md."
+
+[[rules]]
+id = "implicit-input-packet-cleanup-106a"
+implicit_lifetime_anchor_file = "config/implicit-input-packet-cleanup-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 8
+origin = "compiler_generated"
+subsystem = "network"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Real InputPacket24 member atNetworkBase+90 has no declared destructor and owns deque<short> at+10. Full emitted8-byte cleanup matches43BE90. Actual source/native unwind funclet1 at6BA40B receives this+90 and tail-enters it; complete parent411/EH197/metadata116 replay independently. No manual cleanup body, mask, new group-helper inventory or authored credit. docs/NETWORK_BASE_NESTED_EH_OWNER_2026_11_02.md."

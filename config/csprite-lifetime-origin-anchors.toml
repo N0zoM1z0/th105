@@ -1,0 +1,18 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+unit = "gpt-web-ui-sprite-lifetime"
+parent = "gpt-web-network-base-constructor-runtime"
+source_sha256 = { "src/ui/UiSpriteLifetime.cpp" = "45f6826c6a96ff083901b8f41f22d79c3a1bec00c4048ef78a01a4baaee2441f", "src/battle/EffectSprite.hpp" = "81187391923f8b5e7aea46f4f841ca56cc4566f7d279f43dd6d804a6287d83d1", "src/network/NetworkBaseConstructorRuntime.cpp" = "8b615a67edd3a9a9f57dc3d3189df4598885c339e55eff81a27166b5164e5eac", "src/input/InputManager.hpp" = "72677fbac3a0b5c0a4411cd87c0f7bd91315ef84a1f2191ccd09e38c76786875", "src/battle/Collision.hpp" = "dd4fbc4d5afcbf3d4762e19023a25b4a98197e4bdcb0c4a6f568ffaa42954132", "src/engine/CriticalSectionWrapper.hpp" = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5" }
+
+[[anchors]]
+address = "0x0040ADA0"
+size = 16
+symbol = "??0CSprite@@QAE@XZ"
+sha256 = "441b28e605dc172b9f30b99c5d6c4db8cbd26509b535e10682c4810fb1a06543"
+
+[[anchors]]
+address = "0x0040AD50"
+size = 7
+symbol = "??1CSprite@@UAE@XZ"
+sha256 = "d4fc9f884a86f5cbdf778b5d0b16126a7858e8cd0384741ed39f66a4122600b3"

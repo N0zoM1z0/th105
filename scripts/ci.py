@@ -56,6 +56,8 @@ EXACT_TEST_MODULES = (
     "test_vc8_log10_shared_origins",
     "test_vc8_pow_shared_origins",
     "test_sprite_default_origins",
+    "test_csprite_lifetime_origins",
+    "test_network_base_constructor_eh",
     "test_sprite_callback_origins",
     "test_input_base_cleanup_origins",
     "test_replay_member_cleanup_origins",

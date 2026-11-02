@@ -6664,11 +6664,6 @@ rel32_targets = [
 ]
 
 [[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
-address = "0x0040AD50"
-symbol_base = "??1IColor@@UAE@XZ"
-dir32_targets = ["??_7IColor@@6B@=??_7IColor@@6B@"]
-
-[[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
 address = "0x0040AE80"
 symbol_base = "??_GIColor@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
@@ -14729,7 +14724,7 @@ source = "src/network/NetworkBaseConstructorRuntime.cpp"
 object = "build/match-units/GptWeb_NetworkBaseConstructorRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI-owned CNetworkBase 0x6DC constructor. Three critical sections, two scene packets, INPUT packet, native deque arrays, two CInputManagerEx/deque endpoints, two queue slots, UiSprite94[2], winsock state and replay deque reproduce all ten unwind states and the current score-data initialization."
+notes = "Actual nested queue-pair lifetime at+20C and natural global CSprite members. Main411, complete remote EH197 and metadata116 replay through scripts/audit-network-base-constructor-eh.py. Implicit packet cleanup8 is separately compiler-owned; group19 remains support outside inventory. docs/NETWORK_BASE_NESTED_EH_OWNER_2026_11_02.md."
 
 [[units.gpt-web-network-base-constructor-runtime.functions]]
 address = "0x0044DB10"
@@ -14752,8 +14747,8 @@ dir32_targets = [
   "??0NetworkInputEndpoint7C@th105@@QAE@XZ=??0NetworkInputEndpoint7C@th105@@QAE@XZ",
   "??1NetworkQueueSlot20@th105@@QAE@XZ=??1NetworkQueueSlot20@th105@@QAE@XZ",
   "??0NetworkQueueSlot20@th105@@QAE@XZ=??0NetworkQueueSlot20@th105@@QAE@XZ",
-  "??1UiSprite94@th105@@QAE@XZ=_ui_sprite_icf_dtor_callback",
-  "??0UiSprite94@th105@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ",
+  "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback",
+  "??0CSprite@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ",
 ]
 
 [units.gpt-web-network-server-state-runtime]
@@ -16517,12 +16512,12 @@ source = "src/ui/UiSpriteLifetime.cpp"
 object = "build/match-units/GptWeb_UiSpriteLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current CSprite/UiSprite94 constructor callback independently passed to VC8 array construction by exact CMenuConfig/Title owners. A normal 0x94 constructor clears color value +0x04 then publishes the canonical CSprite vtable."
+notes = "Actual global CSprite ordinary C++ lifetime definitions replace raw-vptr probe. Whole16/7 and full RTTI/real array pairing qualify compiler-only lifetimes; no authored credit. docs/CSPRITE_NATURAL_LIFETIMES_2026_11_02.md."
 
 [[units.gpt-web-ui-sprite-lifetime.functions]]
 address = "0x0040ADA0"
-symbol_base = "??0UiSpriteCtorProbe@th105@@QAE@XZ"
-dir32_targets = ["_select_sprite_vtable_anchor=_select_sprite_vtable_anchor"]
+symbol_base = "??0CSprite@@QAE@XZ"
+dir32_targets = ["??_7CSprite@@6B@=_select_sprite_vtable_anchor"]
 
 [units.gpt-web-battle-base-effect-lifetime]
 kind = "probe"
@@ -29600,3 +29595,12 @@ rel32_targets = ["??$_Destroy_range@UReplayStorageSlot@th105@@V?$allocator@URepl
 address = "0x0042C950"
 symbol_base = "??1ProfileInputManagerExLifetime@th105@@UAE@XZ"
 rel32_targets = ["??1ProfileInputManagerLifetime@th105@@UAE@XZ=0x00409D50"]
+
+[[units.gpt-web-ui-sprite-lifetime.functions]]
+address = "0x0040AD50"
+symbol_base = "??1CSprite@@UAE@XZ"
+
+[[units.gpt-web-network-base-constructor-runtime.functions]]
+address = "0x0043BE90"
+symbol_base = "??1InputPacket24ConstructorView@th105@@QAE@XZ"
+rel32_targets = ["?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
