@@ -29586,3 +29586,7 @@ notes = "Whole original deque pop_back23, actual insertion caller and unchanged 
 [[units.vc8-original-short-deque-pop-back.functions]]
 address = "0x00428680"
 symbol_base = "?pop_back@?$deque@FV?$allocator@F@std@@@std@@QAEXXZ"
+
+[[units.exact-first-scene-timeline-loader.functions]]
+address = "0x00413DF0"
+symbol_base = "?pop_back@?$deque@IV?$allocator@I@std@@@std@@QAEXXZ"

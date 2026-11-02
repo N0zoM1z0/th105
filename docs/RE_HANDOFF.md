@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Unsigned-deque pop_back413DF0 is now independently qualified by actual
+Timeline range-insert caller452402/sourcefield1491 in whole1818-byte owner.
+The short-deque428680 identity remains separate. All8 old owner anchors,
+Timeline1584/full1676 payload and the old short-deque gate freshly pass.
+10 tests/1864 mutations; excluded2066/review305, units808; authored unchanged.
+See UNSIGNED_DEQUE_POP_BACK_2026_11_02.md.
+
 Original short-deque pop_back428680 is now whole23/23 compiler-owned through
 actual _Insert_n call463D05/sourcefield1094. Identical413DF0 stays review;
 no byte-uniqueness claim. Existing1404-byte insertion provenance freshly passes

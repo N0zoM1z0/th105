@@ -5927,3 +5927,14 @@ subsystem = "stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Entire relocation-free23-byte original deque<short>::pop_back matches413DF0/428680; only428680 is selected by the same real vendor instantiation's actual _Insert_n call at463D05; its independently accepted1404-byte provider is freshly revalidated under unchanged0.70/24-byte/no-tail provenance rules. No copied game source, threshold relaxation, parent/EH or authored credit. docs/DEQUE_POP_BACK_2026_11_01.md."
+
+[[rules]]
+id = "original-unsigned-deque-pop-back-106a"
+unsigned_deque_popback_anchor_file = "config/unsigned-deque-popback-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 23
+origin = "compiler_generated"
+subsystem = "stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Entire original deque<unsigned>::pop_back23 in actual SceneTimelineLoader TU. Actual _Insert sourcefield1491/nativecall452402 selects413DF0, independently of identical short-deque428680. Existing1818-byte insertion provenance freshly passes unchanged strict gate; timeline full1676 payload freshly exact. No generic threshold relaxation, alias doublecount, parent/EH or authored credit. docs/UNSIGNED_DEQUE_POP_BACK_2026_11_02.md."

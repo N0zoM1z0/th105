@@ -28,3 +28,7 @@ source-present1637 and authored1656 remain unchanged. Private receipts are in
 The older SHORT_DEQUE_INSERT note that428680 remains review is superseded only
 for this now separately proved callee. Other incoming calls and413DF0 remain
 independent work; no inferred blanket deque exclusion is made.
+
+Nov2:413DF0 is separately qualified through its actual unsigned-deque range
+insertion caller; see UNSIGNED_DEQUE_POP_BACK_2026_11_02.md. The short-deque
+proof above still selects only428680 and its byte-identity limits are unchanged.
