@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+CSelect now declares its native seventh virtual role (selection flow4208E0
+at6C0BDC) and frame update dispatches it directly. Typed state08/setup0C/input10
+members replace raw prefix views in entry/frame and both full layouts.
+Entry783/frame685 whole hashes unchanged; nativeframe697 still nonexact on
+cleanup/null-branch scheduling. Ctor4247/13 stable, full EH461/meta188 exact;
+dtor845/bind258/flow341 exact. Include closure6, all relevant consumers freshly
+compared; implicit CSpriteEx source guard renewed after proof. Seven-slot28
+native table/actual slot18 call checked; no whole-class linkage or namespace
+RTTI claim. Flow implementation still uses its exact view. No counts changed.
+See SELECT_PREFIX_AND_SLOT_2026_11_02.md.
+
 Actual global CTile now owns FileList page copy, texture wrapper and renderer.
 Native RTTI247 and four-slot table16 agree; direct CSpriteBase/IColor ancestry,
 not CSprite. Wrapper37, implicit copy164 and Growmap341 freshly exact; scalar31

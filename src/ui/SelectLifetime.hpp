@@ -47,14 +47,18 @@ extern "C" void *get_player_slot_record(int);
 extern "C" void *get_score_data();
 extern "C" const char *character_key_to_name(unsigned);
 
+struct SelectSetupEntryView;
 class CSelectLifetime : public CSceneBase {
 public:
  CSelectLifetime(); virtual ~CSelectLifetime();
  virtual int update();virtual bool render();virtual void unknown_scene_method();
  virtual void on_scene_enter(int);virtual void on_scene_exit(int);
+ virtual int update_selection();
  // Full2ED8 allocation is separately observed in the accepted scene factory.
  // Unknown uninitialized byte ranges are layout evidence, not shaping locals.
- unsigned char fields_008[0x10];
+ int state_008;
+ SelectSetupEntryView *setup_00c;
+ CInputManager *inputs_010[2];
  CInputManagerCluster input_018;
  unsigned char fields_090[3];bool locked_093;
  int choice_count_094;
@@ -102,3 +106,7 @@ CHECK_FIELD(guides_2d88,0x2d88);
 typedef char SelectCompleteStorage[(sizeof(CSelectLifetime)==0x2ed8)?1:-1];
 #undef CHECK_FIELD
 }
+
+typedef char CSelectLifetime_state_offset[offsetof(th105::CSelectLifetime,state_008)==8?1:-1];
+typedef char CSelectLifetime_setup_offset[offsetof(th105::CSelectLifetime,setup_00c)==0xc?1:-1];
+typedef char CSelectLifetime_inputs_offset[offsetof(th105::CSelectLifetime,inputs_010)==0x10?1:-1];

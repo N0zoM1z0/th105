@@ -9,7 +9,7 @@ normalized_sha256 = "bb354c1224af92092ef88b0f7475669dacafe7891f8aa5697fcb3e7a16b
 
 [[sources]]
 path = "src/ui/SelectConstructor.hpp"
-normalized_sha256 = "af2db84d011e38f6d7f2875ee830d7fdecc4d1cdc8f5f70f8042e871cb99a093"
+normalized_sha256 = "87a5b54e87efb8fd74ccb8ae625e27c80fe572b8ac452ec8f80b1f30909164c5"
 
 [[sources]]
 path = "src/ui/SelectConstructor.cpp"
