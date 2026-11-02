@@ -24,7 +24,7 @@ public:
     GuideOverlay guide_008;
     bool option_b0;
     unsigned texture_b4;
-    UiSprite94 sprites_b8[2];
+    CSprite sprites_b8[2];
     unsigned width_1e0, height_1e4;
     CDesignBase design_1e8;
     unsigned char unknown_21c[8];

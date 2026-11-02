@@ -70,7 +70,7 @@ private:
     GuideOverlay guide_08;
     bool option_b0;
     unsigned texture_b4;
-    UiSprite94 sprites_b8[2];
+    CSprite sprites_b8[2];
     int grid_width_1e0;
     int grid_height_1e4;
     TitleDesignResource design_1e8;

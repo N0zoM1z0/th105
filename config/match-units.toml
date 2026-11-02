@@ -7621,7 +7621,7 @@ dir32_targets = [
   "__ehhandler$??1CMenuConfig@th105@@UAE@XZ=__ehhandler$??1CMenuConfig@th105@@UAE@XZ",
   "___security_cookie=___security_cookie",
   "??_7CMenuConfig@th105@@6B@=??_7CMenuConfig@th105@@6B@",
-  "??1UiSprite94@th105@@QAE@XZ=_ui_sprite_icf_dtor_callback",
+  "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback",
 ]
 
 [[units.cross-v106a-menu-overlay-wave.functions]]
@@ -27825,7 +27825,7 @@ notes = "Complete868-byte native constructor; ordinary source863 remains nonexac
 address = "0x00441520"
 symbol_base = "??0CMenuConfig@th105@@QAE@XZ"
 rel32_targets = ["??0GuideOverlay@th105@@QAE@XZ=0x0043F540", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "?get_game_config@th105@@YAPAUGameConfig@1@XZ=0x0043AF10", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "__invalid_parameter_noinfo=0x0068A143", "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390"]
-dir32_targets = ["__ehhandler$??0CMenuConfig@th105@@QAE@XZ=__ehhandler$??0CMenuConfig@th105@@QAE@XZ", "___security_cookie=___security_cookie", "_g_scene_mode=_g_scene_mode", "??_7CMenuConfig@th105@@6B@=??_7CMenuConfig@th105@@6B@", "??1UiSprite94@th105@@QAE@XZ=_ui_sprite_icf_dtor_callback", "??0UiSprite94@th105@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ", "??_C@_0BM@NMNIHFEF@data?1menu?1config?1config?4dat?$AA@=_menu_config_design_path", "_g_active_menu_input=_g_active_menu_input", "??_C@_0BL@OCLANECO@data?1menu?1config?1mater?4bmp?$AA@=_menu_config_meter_path", "?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+dir32_targets = ["__ehhandler$??0CMenuConfig@th105@@QAE@XZ=__ehhandler$??0CMenuConfig@th105@@QAE@XZ", "___security_cookie=___security_cookie", "_g_scene_mode=_g_scene_mode", "??_7CMenuConfig@th105@@6B@=??_7CMenuConfig@th105@@6B@", "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback", "??0CSprite@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ", "??_C@_0BM@NMNIHFEF@data?1menu?1config?1config?4dat?$AA@=_menu_config_design_path", "_g_active_menu_input=_g_active_menu_input", "??_C@_0BL@OCLANECO@data?1menu?1config?1mater?4bmp?$AA@=_menu_config_meter_path", "?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
 
 [units.exact-first-connect-join-state]
 kind = "probe"

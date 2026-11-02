@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Config menu construction, update and render/lifetime views now share actual
+CSprite array members at +0xB8. Eight accepted roots in two units stay exact;
+two scalar support roots and nonexact constructor 863 retain fresh HEAD hashes.
+Only three units affected. Array sites prove two 0x94 elements, ctor callback
+16 and cleanup callback 7; actual sprite RTTI 273/nine slots pass. Full config
+ctor and dtor EH each 87+68 bytes pass (310 support total). Constructor's old
+late clamp difference remains closed, with no new exact credit.
+See CONFIG_REAL_SPRITES_2026_11_02.md.
+
 CGage now has one actual global declaration in ui/Gage.hpp, derived from the
 shared CSprite -> CSpriteBase -> IColor hierarchy. Lifetime, render and design
 member users share it; duplicate sprite/color/payload views are removed.
