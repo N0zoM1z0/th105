@@ -27628,7 +27628,7 @@ rel32_targets = [
  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
  "??_V@YAXPAX@Z=0x0068AA26",
  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
- "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+ "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
  "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
  "?bind_vertical@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z=0x00420520",
  "@__security_check_cookie@4=0x00689D25",
@@ -27657,7 +27657,7 @@ rel32_targets = [
  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
  "??3@YAXPAX@Z=0x006898EA",
  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
- "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+ "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
  "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
  "@__security_check_cookie@4=0x00689D25",
 ]

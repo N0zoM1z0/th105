@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Connect construction now uses actual CSprite members at +0x1D4/+0x268, matching
+its cleanup view. Address/history loaders now use actual CTile at +0x300. All
+three accepted constructor/getter roots remain exact; address 870 and history
+715 source candidates retain fresh before/after hashes and remain nonexact.
+Only three units affected. Actual sprite RTTI 273/nine slots and full constructor
+EH 168+116 pass. No count gain. See CONNECT_REAL_SPRITES_2026_11_02.md.
+
 CNumber now has one shared runtime/lifetime declaration: its ordinary inline
 destructor and three color forwarders are real CNumber methods. CNumberLifetime
 is only a compatibility typedef, not a separate class. Private offset checks

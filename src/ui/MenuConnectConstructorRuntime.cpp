@@ -43,8 +43,8 @@ private:
     ConnectTextureHandle texture_060;
     CTile tile_064;
     CNumber number_108;
-    UiSprite94 sprite_1d4;
-    UiSprite94 sprite_268;
+    CSprite sprite_1d4;
+    CSprite sprite_268;
     ConnectTextureHandle texture_2fc;
     CTile tile_300;
     std::deque<std::string> rows_3a4;

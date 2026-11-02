@@ -1,6 +1,6 @@
 #include "assets/FileReader.cpp"
 #include "ui/Title.hpp"
-#include "ui/UiPrimitives.hpp"
+#include "ui/Tile.hpp"
 #include "input/InputSelection.hpp"
 #include <deque>
 #include <string>
@@ -13,7 +13,7 @@ class CMenuConnectAddressListView {
 public:
  unsigned char prefix[0x2fc];
  unsigned texture;
- UiTileA4 tile;
+ CTile tile;
  std::deque<std::string> rows;
  unsigned char gap_3b8[0x2c];
  MenuCursorState cursor;
