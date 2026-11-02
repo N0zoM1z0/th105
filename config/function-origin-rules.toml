@@ -5949,3 +5949,14 @@ subsystem = "input"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Empty CInputManager destructor contains only compiler vptr restoration. Full7-byte body, actual named global type RTTI100 unique bytes, complete two-slot table, original weak vector-deleting fallback to full31-byte scalar body and actual static cleanup edge all verify. Source class naming corrected to real RTTI type without byte changes. Prior7 authored bytes are withdrawn; no scalar/RTTI/static or exclusive dynamic-type/ICF credit. docs/INPUT_BASE_CLEANUP_ACCOUNTING_2026_11_02.md."
+
+[[rules]]
+id = "replay-member-cleanups-106a"
+replay_member_cleanup_anchor_file = "config/replay-member-cleanup-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 32
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual ReplayStorage TU emits complete original vector_Destroy27 and implicit input cleanup5. Full range52/deque callback5, constructor/destructor array sites23/35 with count2/stride104/member8, full owner161/27/208 and independent input-base cleanup/RTTI all verified. No authored destructor invented, generic threshold relaxed, parent/EH or authored bytes recounted. docs/REPLAY_MEMBER_CLEANUPS_2026_11_02.md."

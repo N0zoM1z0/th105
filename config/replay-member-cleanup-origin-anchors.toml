@@ -1,0 +1,16 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+unit = "exact-first-replay-storage-constructor"
+
+[[anchors]]
+address = "0x0042B8E0"
+size = 27
+symbol = "?_Destroy@?$vector@UReplayStorageSlot@th105@@V?$allocator@UReplayStorageSlot@th105@@@std@@@std@@IAEXPAUReplayStorageSlot@th105@@0@Z"
+sha256 = "a6db4a0e49a41cbee90e0e20c77f995e2e7aa0087a7bda6ed1a18eb2725959f9"
+
+[[anchors]]
+address = "0x0042C950"
+size = 5
+symbol = "??1ProfileInputManagerExLifetime@th105@@UAE@XZ"
+sha256 = "764a979d09c57378cf03070accdc5ee0d6c791a1036054dfd6d69194450b8cde"

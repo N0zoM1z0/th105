@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Replay vector forwarding42B8E0/27 and implicit input-array cleanup42C950/5
+are now whole exact/compiler-owned from unchanged real owner source. Actual
+constructor/destructor array sites23/35 pair callbacks/count2/stride104/member8;
+all5 unit bodies161/27/208/27/5 pass. Full range52/deque callback5 and input-base
+RTTI proof revalidated.12 tests/147 mutations; excluded2069/review303, units808;
+authored unchanged. See REPLAY_MEMBER_CLEANUPS_2026_11_02.md. Native caller
+42C0D0 and remote parent EH remain separate unknowns.
+
 409D50 remains exact7 but is now compiler-only vptr restoration, withdrawing
 old authored credit from its empty destructor. Isolated source type renamed
 to actual global CInputManager; normal7/scalar31 unchanged. Full RTTI100 unique

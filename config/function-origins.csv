@@ -910,7 +910,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042B650,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x0042B6B0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x0042B7E0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
-0x0042B8E0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042B8E0,compiler_generated,input,exclude,observed,replay-member-cleanups-106a
 0x0042B900,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042B9B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042BAF0,authored_game,battle,authored,observed,existing-object-battle-source-stops-authored-106a
@@ -931,7 +931,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042C4D0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042C5C0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042C930,authored_game,input,authored,observed,canonical-exact-authored
-0x0042C950,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0042C950,compiler_generated,input,exclude,observed,replay-member-cleanups-106a
 0x0042C960,compiler_generated,runtime,exclude,observed,vc8-generated-score-defaults-emitted-106a
 0x0042C980,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x0042C9A0,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a

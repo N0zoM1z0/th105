@@ -1218,6 +1218,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("sprite_default_anchor_file")
         or rule.get("sprite_callback_anchor_file")
         or rule.get("input_base_cleanup_anchor_file")
+        or rule.get("replay_member_cleanup_anchor_file")
         or rule.get("score_vector_default_anchor_file")
         or rule.get("deque_popback_anchor_file")
         or rule.get("unsigned_deque_popback_anchor_file")
@@ -2537,6 +2538,10 @@ def validate_rule_evidence(
     if rule.get("score_vector_default_anchor_file"):
         from score_vector_default_origins import validate as validate_score_vector_default
         errors.extend(validate_score_vector_default(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("replay_member_cleanup_anchor_file"):
+        from replay_member_cleanup_origins import validate as validate_replay_member_cleanup
+        errors.extend(validate_replay_member_cleanup(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("input_base_cleanup_anchor_file"):
         from input_base_cleanup_origins import validate as validate_input_base_cleanup

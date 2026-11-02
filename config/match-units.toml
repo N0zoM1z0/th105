@@ -29590,3 +29590,13 @@ symbol_base = "?pop_back@?$deque@FV?$allocator@F@std@@@std@@QAEXXZ"
 [[units.exact-first-scene-timeline-loader.functions]]
 address = "0x00413DF0"
 symbol_base = "?pop_back@?$deque@IV?$allocator@I@std@@@std@@QAEXXZ"
+
+[[units.exact-first-replay-storage-constructor.functions]]
+address = "0x0042B8E0"
+symbol_base = "?_Destroy@?$vector@UReplayStorageSlot@th105@@V?$allocator@UReplayStorageSlot@th105@@@std@@@std@@IAEXPAUReplayStorageSlot@th105@@0@Z"
+rel32_targets = ["??$_Destroy_range@UReplayStorageSlot@th105@@V?$allocator@UReplayStorageSlot@th105@@@std@@@std@@YAXPAUReplayStorageSlot@th105@@0AAV?$allocator@UReplayStorageSlot@th105@@@0@U_Nonscalar_ptr_iterator_tag@0@@Z=0x0042B230"]
+
+[[units.exact-first-replay-storage-constructor.functions]]
+address = "0x0042C950"
+symbol_base = "??1ProfileInputManagerExLifetime@th105@@UAE@XZ"
+rel32_targets = ["??1ProfileInputManagerLifetime@th105@@UAE@XZ=0x00409D50"]
