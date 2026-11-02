@@ -1,5 +1,9 @@
 # Profile deck editor constructor44AAC0
 
+Actual global CSprite (nine slots) and CTile now replace the local views below.
+Fresh current measurements and initialization corrections are recorded in
+PROFILE_DECK_REAL_SPRITES_2026_11_02.md; older slot/prefix descriptions are historical.
+
 Complete constructor source is now present in ProfileDeckConstructor.cpp.
 The latest full root remains nonexact2132/native2136, first+1127/44AF27.
 See the October31 real-provider follow-up below; earlier control sizes are historical. Two separately

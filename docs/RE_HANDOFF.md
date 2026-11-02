@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+ProfileDeck constructor/display now use actual global CSprite and CTile,
+removing three partial views. Fresh before2132 first+110 becomes2132 first+1127:
+28 initialization byte positions now canonical, all bytes after200 unchanged.
+No prefix/exact credit. Number7/15 unchanged; display440 hash unchanged/nonexact.
+Actual RTTI/nine+four slots pass, tile wrapper37 exact; global CTile anchor now
+checks16 instead of4 bytes and11 explicit alias-consumer roots replay exact.
+No shared header change or count gain. See PROFILE_DECK_REAL_SPRITES_2026_11_02.md.
+
 Standalone CoreContracts.cpp is repaired: obsolete SequenceRecord4 assertion
 replaced by real FighterSequenceSlot prefix offsets0/2/4 plus existing size98,
 and enqueue's const-pointer member signature is now compile-checked. VC8 compile

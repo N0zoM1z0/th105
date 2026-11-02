@@ -1,5 +1,5 @@
 // Complete JP1.06a selected-card refresh; source remains nonexact440/439.
-// Real eight-slot sprite virtual interface; no manually loaded vtable.
+// Actual global nine-slot CSprite; no manually loaded vtable.
 #include "ui/Title.hpp"
 #include "ui/UiPrimitives.hpp"
 #include "battle/SpellData.hpp"
@@ -9,30 +9,16 @@ namespace th105 {
 extern TextFontOwner194 g_profile_deck_font;
 extern unsigned g_spell_texture_load_state;
 extern unsigned g_spell_texture_upload_state;
-class DeckDisplaySprite94 : public IColor {
-public:
-    unsigned int value_04;
-    DeckDisplaySprite94() : value_04(0) {}
-    virtual ~DeckDisplaySprite94() {}
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-    virtual void set_texture_options(unsigned, int, int, unsigned, unsigned, int, int);
-    virtual void set_texture(unsigned, int, int, int, int);
-    virtual void slot_18();
-    virtual void render(float, float);
-    SpriteVertex28 vertices_08[4];
-    float width_78, height_7c, extension_80[5];
-};
+
 
 // Only accessed member offsets are represented; no objects of this view are made.
 struct ProfileDeckDisplayView {
  unsigned char prefix_00[0x44];
  UiDesignObject *objects_44[20];
  unsigned texture_94;
- DeckDisplaySprite94 sprite_98;
+ CSprite sprite_98;
  unsigned field_12c;
- DeckDisplaySprite94 sprite_130, sprite_1c4;
+ CSprite sprite_130, sprite_1c4;
  unsigned char gap_258[0x3e0-0x258];
  unsigned char color_3e0;
  void show_record(SpellRecordView *record);

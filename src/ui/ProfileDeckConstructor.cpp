@@ -1,5 +1,5 @@
 // JP1.06a CProfileDeckEdit constructor-facing model; full root remains nonexact.
-// Native RTTI proves eight CSprite slots, four CTile slots and signed-char value adapters.
+// Actual global CSprite/CTile types and signed-char value adapters.
 // Runtime views and their accepted consumers remain unchanged.
 #include "ui/Menu.hpp"
 #include "ui/Title.hpp"
@@ -9,6 +9,7 @@
 #include "ui/DesignObjectLookup.cpp"
 #include "ui/ProfileDeckResourceLifetime.hpp"
 #include "battle/EffectSprite.hpp"
+#include "ui/Tile.hpp"
 #include "assets/TextFontOwner.hpp"
 #include "input/InputManager.hpp"
 #include <string>
@@ -32,33 +33,8 @@ extern TextFontOwner194 g_profile_deck_font;
 typedef std::map<int, SpellRecordView> DeckSpellMap;
 typedef std::map<unsigned, UiDesignObject *> DeckDesignMap;
 
-class DeckCtorSprite94 : public IColor {
-public:
-    unsigned int value_04;
-    DeckCtorSprite94() : value_04(0) {}
-    virtual ~DeckCtorSprite94() {}
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-    virtual void set_texture_options(unsigned, int, int, unsigned, unsigned, int, int);
-    virtual void set_texture(unsigned, int, int, int, int);
-    virtual void slot_18();
-    virtual void render(float, float);
-    SpriteVertex28 vertices_08[4];
-    float width_78, height_7c, extension_80[5];
-};
-class DeckCtorTileA4 : public IColor {
-public:
-    unsigned int value_04;
-    DeckCtorTileA4() : value_04(0) {}
-    virtual ~DeckCtorTileA4() {}
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-    void set_texture(unsigned, int, int, unsigned, unsigned);
-    SpriteVertex28 vertices_08[4];
-    float width_78, height_7c, extension_80[9];
-};
+
+
 struct DeckPlayerView {
     std::deque<unsigned short> *copy_deck(std::deque<unsigned short> *output, int character);
 };
@@ -86,13 +62,13 @@ public:
     CDesignBase design_10;
     UiDesignObject *objects_44[20];
     unsigned texture_94;
-    DeckCtorSprite94 sprite_98;
+    CSprite sprite_98;
     unsigned field_12c;
-    DeckCtorSprite94 sprite_130, sprite_1c4;
+    CSprite sprite_130, sprite_1c4;
     unsigned texture_258;
-    DeckCtorTileA4 tile_25c;
+    CTile tile_25c;
     unsigned texture_300;
-    DeckCtorSprite94 sprite_304;
+    CSprite sprite_304;
     ProfileDeckResourceGroupNative20 resources_398;
     SpellTree *local_tree_3b8, *common_tree_3bc;
     std::map<short, signed char> counts_3c0;
@@ -103,8 +79,8 @@ public:
     GuideOverlay guides_410[4];
 };
 
-typedef char SpriteSize[sizeof(DeckCtorSprite94)==0x94?1:-1];
-typedef char TileSize[sizeof(DeckCtorTileA4)==0xa4?1:-1];
+typedef char SpriteSize[sizeof(CSprite)==0x94?1:-1];
+typedef char TileSize[sizeof(CTile)==0xa4?1:-1];
 typedef char OwnerSize[sizeof(ProfileDeckConstructorView)==0x6b0?1:-1];
 typedef char ResourceOffset[offsetof(ProfileDeckConstructorView,resources_398)==0x398?1:-1];
 typedef char GuideOffset[offsetof(ProfileDeckConstructorView,guides_410)==0x410?1:-1];

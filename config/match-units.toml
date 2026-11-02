@@ -26163,7 +26163,7 @@ source = "src/ui/ProfileDeckConstructor.cpp"
 object = "build/match-units/ExactFirst_ProfileDeckConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete2136-byte CProfileDeckEdit constructor; real design lookup and texture-return temporary now give2132 bytes, nonexact at+1127 on loop register allocation. RTTI-backed signed-char number getters448B20/448B30 independently match7/15. No constructor or provider credit inferred from the leaves. docs/PROFILE_DECK_CONSTRUCTOR_2026_10_29.md."
+notes = "Complete2136-byte CProfileDeckEdit constructor; actual CSprite/CTile handle initializations with real design lookup and texture-return temporary give2132 bytes, nonexact at+1127 on loop register allocation. docs/PROFILE_DECK_REAL_SPRITES_2026_11_02.md. RTTI-backed signed-char number getters448B20/448B30 independently match7/15. No constructor or provider credit inferred from the leaves. docs/PROFILE_DECK_CONSTRUCTOR_2026_10_29.md."
 
 [[units.exact-first-profile-deck-constructor.functions]]
 address = "0x0044AAC0"
@@ -26182,7 +26182,7 @@ rel32_targets = [
   "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0",
   "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
   "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
-  "?set_texture@DeckCtorTileA4@th105@@QAEXIHHII@Z=0x004098B0",
+  "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
   "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
   "__invalid_parameter_noinfo=0x0068A143",
   "??3@YAXPAX@Z=0x006898EA",
