@@ -8,15 +8,24 @@
 namespace th105 {
 
 // Current RTTI identifies the 0xCC owner at CMenuConnect+0x108 as CNumber.
-// The 0x28-byte controller prefix owns a CTile-compatible 0xA4 object at +0x28.
+// The 0x28-byte controller prefix owns a actual CTile 0xA4 object at +0x28.
 // CNumber's constructor body clears the value adapter only after the tile has
 // completed construction; this ordering is required by the shipped ctor EH.
 struct INumberValue;
 
 class CNumber : public ::IColor {
 public:
-    CNumber() { number_value_24 = 0; }
-    virtual ~CNumber();
+    CNumber()
+    {
+        typedef char ValueOffset[offsetof(CNumber, number_value_24) == 0x24 ? 1 : -1];
+        typedef char TileOffset[offsetof(CNumber, tile_28) == 0x28 ? 1 : -1];
+        number_value_24 = 0;
+    }
+    virtual ~CNumber()
+    {
+        if (number_value_24 != 0)
+            operator delete(number_value_24);
+    }
     virtual void set_color(unsigned int);
     virtual void set_vertex_colors(const unsigned int *);
     virtual void multiply_color(unsigned int);

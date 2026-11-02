@@ -1910,7 +1910,7 @@ type_name = ".?AVCInputManager@@"
 address = "0x0040AE10"
 size = 60
 unit = "gpt-web-cnumber-lifetime"
-symbol_base = "??_GCNumberLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCNumber@th105@@UAEPAXI@Z"
 sha256 = "778cb8774685a6977529384329fe9092b6778a76ccfaa59999f0c5d619e007dd"
 
 [[anchors.owners]]

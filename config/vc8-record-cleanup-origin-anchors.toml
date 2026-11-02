@@ -12,7 +12,7 @@ sha256 = "097bb4aa8a02f52edc98e0434b8eb5293861bd0af2e1111aaf46df41c41d5bd1"
 
 [[sources]]
 path = "src/ui/CNumberLifetime.hpp"
-sha256 = "08815a4f52b62148b9068fb47aba60d305993ff4dda94e0a30327047b862a3d7"
+sha256 = "6b2829d372c4fb92a9d3a9a375f4242c8da81f223e977c3c3a48f4f0d8ee9051"
 
 [[sources]]
 path = "src/ui/DesignBaseLifetime.hpp"
@@ -56,3 +56,7 @@ kind = "destructor"
 [[sources]]
 path = "src/ui/Tile.hpp"
 sha256 = "8539250fb22377018429cbd006dec8f66259ab78b74e9819634a76115fce560f"
+
+[[sources]]
+path = "src/ui/CNumberRuntime.hpp"
+sha256 = "6f15b1cbbe18753cf114a8d4d53cd7dcebb711c43bb643aa46b7cf26f51f51d2"

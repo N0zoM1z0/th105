@@ -2,19 +2,17 @@
 
 namespace th105 {
 
-CNumberLifetime::CNumberLifetime() : number_value_24(0) {}
-
-void CNumberLifetime::set_color(unsigned int color)
+void CNumber::set_color(unsigned int color)
 {
     tile_28.set_color(color);
 }
 
-void CNumberLifetime::set_vertex_colors(const unsigned int *colors)
+void CNumber::set_vertex_colors(const unsigned int *colors)
 {
     tile_28.set_vertex_colors(colors);
 }
 
-void CNumberLifetime::multiply_color(unsigned int color)
+void CNumber::multiply_color(unsigned int color)
 {
     tile_28.multiply_color(color);
 }

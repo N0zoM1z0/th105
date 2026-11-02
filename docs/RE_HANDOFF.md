@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+CNumber now has one shared runtime/lifetime declaration: its ordinary inline
+destructor and three color forwarders are real CNumber methods. CNumberLifetime
+is only a compatibility typedef, not a separate class. Private offset checks
+retain +0x24/+0x28 without exposing fields. Runtime owner now emits the correct
+60-byte scalar cleanup, while all 28 accepted roots in 11 units remain exact.
+Closure 13 units; 13 other roots in eight units preserve fresh HEAD hashes.
+CNumber initialize 102 remains nonexact and closed. Connect ctor/dtor full EH
+284 each (568 total), tile RTTI 247 and IColor roles pass; origins 2/121 and 2/23
+pass. No authored count gain or full-program-linkage claim.
+See NUMBER_REAL_OWNER_2026_11_02.md.
+
 CNumberLifetime now owns actual CTile, and MenuConnectLifetime owns actual CTile
 and CSprite members. Two payload-only cleanup surrogates are removed. Number
 40/11/11/11 and Connect 315 stay exact; scalar 60/61 support stays exact. Closure

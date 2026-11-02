@@ -14546,31 +14546,31 @@ notes = "Raw CNumber RTTI COL 0x006DCBEC proves a zero-offset IColor base and vt
 
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040ADB0"
-symbol_base = "??1CNumberLifetime@th105@@UAE@XZ"
+symbol_base = "??1CNumber@th105@@UAE@XZ"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = [
-  "??_7CNumberLifetime@th105@@6B@=??_7CNumber@th105@@6B@",
+  "??_7CNumber@th105@@6B@=??_7CNumber@th105@@6B@",
   "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
 ]
 
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040ADE0"
-symbol_base = "?set_color@CNumberLifetime@th105@@UAEXI@Z"
+symbol_base = "?set_color@CNumber@th105@@UAEXI@Z"
 
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040ADF0"
-symbol_base = "?set_vertex_colors@CNumberLifetime@th105@@UAEXPBI@Z"
+symbol_base = "?set_vertex_colors@CNumber@th105@@UAEXPBI@Z"
 
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040AE00"
-symbol_base = "?multiply_color@CNumberLifetime@th105@@UAEXI@Z"
+symbol_base = "?multiply_color@CNumber@th105@@UAEXI@Z"
 
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040AE10"
-symbol_base = "??_GCNumberLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCNumber@th105@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = [
-  "??_7CNumberLifetime@th105@@6B@=??_7CNumber@th105@@6B@",
+  "??_7CNumber@th105@@6B@=??_7CNumber@th105@@6B@",
   "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
 ]
 
@@ -14579,7 +14579,7 @@ address = "0x0040BB00"
 symbol_base = "??_GCDesignNumberLifetime@th105@@UAEPAXI@Z"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = [
-  "??_7CNumberLifetime@th105@@6B@=??_7CNumber@th105@@6B@",
+  "??_7CNumber@th105@@6B@=??_7CNumber@th105@@6B@",
   "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@",
 ]
 
@@ -28195,7 +28195,7 @@ notes = "Complete CMenuConnect normal destructor443C30/315 canonical exact with 
 address = "0x00443C30"
 symbol_base = "??1CMenuConnectLifetime@th105@@UAE@XZ"
 rel32_targets = ["?shutdown@ConnectProfileListView@th105@@QAEXXZ=0x0043A0A0", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??1TitleDesignResource@th105@@QAE@XZ=0x00421890", "??3@YAXPAX@Z=0x006898EA", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90"]
-dir32_targets = ["??_7CMenuConnectLifetime@th105@@6B@=??_7CMenuConnect@th105@@6B@", "??_7CNumberLifetime@th105@@6B@=??_7CNumber@th105@@6B@", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@", "?g_connect_profile_list@th105@@3UConnectProfileListView@1@A=_g_profile_name_list"]
+dir32_targets = ["??_7CMenuConnectLifetime@th105@@6B@=??_7CMenuConnect@th105@@6B@", "??_7CNumber@th105@@6B@=??_7CNumber@th105@@6B@", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@", "?g_connect_profile_list@th105@@3UConnectProfileListView@1@A=_g_profile_name_list"]
 
 [units.exact-first-wave-service-lifetime]
 kind = "linked_candidate"
