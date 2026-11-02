@@ -10501,7 +10501,7 @@ address = "0x00454890"
 symbol_base = "?render@ScenarioResultResource@th105@@QAEXXZ"
 rel32_targets = [
   "?draw_profile_overlay@th105@@YAXE@Z=0x0043F900",
-  "?render@ProfileTileView@th105@@QAEXMMHH@Z=0x004099F0",
+  "?render@CTile@@QAEXMMHH@Z=0x004099F0",
 ]
 
 [[units.cross-v106a-scenario-result-runtime.functions]]
@@ -26871,7 +26871,7 @@ rel32_targets = [
  "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
  "?bind_secondary@ScenarioSecondaryDesignView@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50",
  "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
- "?set_texture_full@ScenarioTileSetupView@th105@@QAEXIHHIIHH@Z=0x004098E0",
+ "?set_texture_options@CTile@@QAEXIHHHHHH@Z=0x004098E0",
 ]
 
 [units.exact-first-system-effect-tracked-acquire]

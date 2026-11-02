@@ -4,6 +4,7 @@
 #include "SystemEffectManager.hpp"
 #include "ui/DesignBaseLifetime.hpp"
 #include "ui/UiPrimitives.hpp"
+#include "ui/Tile.hpp"
 
 #include <list>
 #include <map>
@@ -92,7 +93,7 @@ struct ScenarioResultResource {
     ScenarioResultPositionObject *primary_03c[4];
     ScenarioResultSecondaryObject *secondary_04c[3];
     unsigned int texture_058;
-    UiTileA4 tile_05c;
+    CTile tile_05c;
     int values_100[3];
     unsigned int colors_10c[3];
     float scales_118[3];

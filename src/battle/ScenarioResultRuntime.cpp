@@ -8,18 +8,6 @@ int __cdecl selector_random_roll(int limit);
 extern unsigned char g_round_counter;
 void draw_profile_overlay(unsigned char alpha);
 
-static float &scenario_result_tile_scale_x(UiTileA4 &tile)
-{
-    return *reinterpret_cast<float *>(
-        reinterpret_cast<unsigned char *>(&tile) + 0x88);
-}
-
-static float &scenario_result_tile_scale_y(UiTileA4 &tile)
-{
-    return *reinterpret_cast<float *>(
-        reinterpret_cast<unsigned char *>(&tile) + 0x8c);
-}
-
 void ScenarioResultResource::hide_and_reset()
 {
     ScenarioResultPositionObject *object = primary_03c[1];
@@ -121,21 +109,21 @@ void ScenarioResultResource::render()
         (static_cast<unsigned>(alpha_124) << 24) | 0x00ffffffu);
     reinterpret_cast<TitleDesignResource *>(&design_008)->render();
 
-    UiTileA4 *tile = &tile_05c;
+    CTile *tile = &tile_05c;
     float *scale = &scales_118[0];
     int remaining = 3;
     do {
         tile->set_color(*(reinterpret_cast<unsigned int *>(scale) - 3));
         const float current_scale = *scale;
-        scenario_result_tile_scale_x(*tile) = current_scale;
-        scenario_result_tile_scale_y(*tile) = current_scale;
+        tile->scale_x_88 = current_scale;
+        tile->scale_y_8c = current_scale;
 
         ScenarioResultSecondaryObject *secondary =
             *(reinterpret_cast<ScenarioResultSecondaryObject **>(scale) - 51);
         ScenarioResultPositionObject *primary =
             *(reinterpret_cast<ScenarioResultPositionObject **>(scale) - 54);
         const int mode = *(reinterpret_cast<int *>(scale) - 6);
-        reinterpret_cast<ProfileTileView *>(tile)->render(
+        tile->render(
             primary->x_04 + secondary->x_0c,
             secondary->y_10,
             mode,

@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Scenario result construction/runtime now use actual CTile at +0x5C. The local
+color/tile substitutes, setup receiver cast and raw scale-offset helpers are
+removed; real texture options and named scale fields are used. Constructor298,
+render187 and destructor116 remain exact. Actual include closure12 units:
+22 accepted roots in11 units pass; ScenarioData constructor1528 is unchanged,
+and command update retains its old unqualified basic_string constructor block.
+Tile RTTI247/four slots and complete ctor/dtor EH49+52 each pass. No count gain.
+See SCENARIO_RESULT_REAL_TILE_2026_11_02.md.
+
 The profile cleanup accounting question is closed: removing the empty explicit
 destructor makes the real ScoreDefaults local naturally emit the same complete
 205-byte body at 0x42D320. Its parent 0x42ED70 remains exact 2428 bytes with the

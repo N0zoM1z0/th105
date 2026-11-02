@@ -3,42 +3,13 @@
 #include "ui/DesignBaseLifetime.hpp"
 #include "ui/Title.hpp"
 #include "ui/UiPrimitives.hpp"
+#include "ui/Tile.hpp"
 #include <stddef.h>
-
-// Constructor-facing view of CTile's four-slot IColor hierarchy. Its texture
-// token is an initializing four-byte value, as in the accepted sprite owners.
-// No shared IColor layout or destructor-facing declaration is changed.
-class ScenarioResultColorView {
-public:
-    ScenarioResultColorView() {}
-    virtual ~ScenarioResultColorView() {}
-    virtual void set_color(unsigned int) = 0;
-    virtual void set_vertex_colors(const unsigned int *) = 0;
-    virtual void multiply_color(unsigned int) = 0;
-    th105::DesignTextureHandle value_04;
-};
-
-class ScenarioResultTileView : public ScenarioResultColorView {
-public:
-    virtual ~ScenarioResultTileView() {}
-    virtual void set_color(unsigned int);
-    virtual void set_vertex_colors(const unsigned int *);
-    virtual void multiply_color(unsigned int);
-    unsigned char observed_008[0x9c];
-};
-typedef char CheckCTileA4[sizeof(ScenarioResultTileView)==0xa4?1:-1];
 
 namespace th105 {
 
 struct ScenarioSecondaryDesignView {
     void bind_secondary(UiDesignObject **result, int object_id);
-};
-
-struct ScenarioTileSetupView {
-    void set_texture_full(
-        unsigned int handle, int x, int y,
-        unsigned int width, unsigned int height,
-        int source_width, int source_height);
 };
 
 struct ScenarioResultResourceOwner128 {
@@ -48,7 +19,7 @@ struct ScenarioResultResourceOwner128 {
     UiDesignObject *objects_03c[4];
     UiDesignObject *secondary_04c[3];
     unsigned int texture_058;
-    ::ScenarioResultTileView tile_05c;
+    CTile tile_05c;
     int secondary_modes_100[3];
     unsigned char unknown_10c[0x1c];
 
@@ -79,7 +50,7 @@ ScenarioResultResourceOwner128::ScenarioResultResourceOwner128()
     unsigned int loaded;
     texture_058 = *g_title_resource_manager.load_texture(
         &loaded, "data/infoeffect/result/rankFont.bmp", 0, 0);
-    reinterpret_cast<ScenarioTileSetupView *>(&tile_05c)->set_texture_full(
+    tile_05c.set_texture_options(
         texture_058, 0, 0, 64, 64, 32, 32);
 
     ScenarioSecondaryDesignView *secondary_design =
