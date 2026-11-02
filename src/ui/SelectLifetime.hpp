@@ -1,11 +1,11 @@
 // Destructor-facing actual layout; constructor-facing consumers remain separate.
-#include "ui/CNumberLifetime.hpp"
 #pragma once
 #include "engine/SceneBase.hpp"
 #include "ui/Title.hpp"
 #include "ui/MenuCursor.hpp"
 #include "ui/SelectSetupState.hpp"
 #include "ui/UiPrimitives.hpp"
+#include "ui/Tile.hpp"
 #include "ui/GuideOverlay.hpp"
 #include "ui/DesignBaseLifetime.hpp"
 #include "battle/EffectSprite.hpp"
@@ -69,7 +69,7 @@ public:
  CDesignBase character_design_150;
  DesignTextureHandle cursor_textures_184[2];::CSprite cursor_images_18c[2];
  DesignTextureHandle background_2b4;::CSprite background_2b8;
- DesignTextureHandle names_34c;CNumberTileLifetime names_350;
+ DesignTextureHandle names_34c;::CTile names_350;
  DesignTextureHandle random_names_3f4;::CSprite random_names_3f8;
  DesignTextureHandle extra_textures_48c[2];::CSprite extra_images_494[2];
  UiDesignObject *slots_5bc[16];
@@ -84,7 +84,7 @@ public:
  DesignTextureHandle pictures_19b8[16],names_19f8[16];
  ::CSprite picture_images_1a38[16],name_images_2378[16];
  UiDesignObject *slots_2cb8[3];UiDesignObject *background_anchor_2cc4,*background_anchor_2cc8;
- DesignTextureHandle music_2ccc;CNumberTileLifetime music_2cd0;
+ DesignTextureHandle music_2ccc;::CTile music_2cd0;
  UiDesignObject *music_anchor_2d74;unsigned char guide_mix_2d78;
  int field_2d7c;float field_2d80,field_2d84;
  GuideOverlay guides_2d88[2];

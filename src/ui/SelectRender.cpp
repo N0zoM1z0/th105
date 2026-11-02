@@ -10,8 +10,6 @@ struct SelectRenderEffectView {
     virtual void slot0c(); virtual void slot10(); virtual void slot14();
     virtual void render_side_18(int side);
 };
-struct SelectRenderTileView { void render(float x, float y, int row, int column); };
-#define TILE(object) reinterpret_cast<SelectRenderTileView *>(&(object))
 
 bool CSelect::render()
 {
@@ -43,7 +41,7 @@ bool CSelect::render()
             cursor_images_18c[player].render(slots_5bc[selected]->x, slots_5bc[selected]->y);
             int character = select_character_ids_61c8[selected];
             if (character != 15)
-                TILE(names_350)->render(slots_5fc[player]->x, slots_5fc[player]->y, 0, character);
+                names_350.render(slots_5fc[player]->x, slots_5fc[player]->y, 0, character);
             else
                 random_names_3f8.render(slots_5fc[player]->x, slots_5fc[player]->y);
         }
@@ -85,7 +83,7 @@ bool CSelect::render()
             picture_images_1a38[selected].render(picture_x, picture_y);
             name_images_2378[selected].render(name_x, name_y);
             int alternate = row == 3 && variant_cursor_1970.selection != 0 ? 1 : 0;
-            TILE(music_2cd0)->render(music_x, music_y, 0, selected + 15 * alternate);
+            music_2cd0.render(music_x, music_y, 0, selected + 15 * alternate);
         }
         double alpha = (1.0 - static_cast<float>(fabs(field_2d80))) * guide_mix_2d78;
         if (alpha < 0.0)
@@ -100,5 +98,4 @@ bool CSelect::render()
     g_render_mode_manager.finish_frame();
     return true;
 }
-#undef TILE
 } // namespace th105

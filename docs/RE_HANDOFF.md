@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+CSelect's two tiles350/2CD0 now use actual global CTile in both layouts;
+render calls actual CTile::render and removes its tile-view macro. Full ctor
+4247/13, EH461/meta188 and dtor845 unchanged; all8 owner candidate hashes
+stable. Actual constructor object now supplies matching CTile RTTI/four slots
+and both native ten-byte vptr stores4232DD/42348A are checked. Closure9 units,
+4 accepted roots fresh; implicit CSpriteEx guard now pins Tile.hpp and passes;
+4 render+12 character guarded cases/negatives rerun. Other CNumber/UiTile users
+unchanged. No counts/exact gain. See SELECT_REAL_TILES_2026_11_02.md.
+
 Selection flow341, stage890 and character619 now implement actual declared
 CSelect methods; three partial-owner views removed. Shared pointer-only setup
 view moved to SelectSetupState.hpp for entry/character/stage. Actual flow slot18

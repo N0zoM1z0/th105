@@ -9,7 +9,7 @@ normalized_sha256 = "bb354c1224af92092ef88b0f7475669dacafe7891f8aa5697fcb3e7a16b
 
 [[sources]]
 path = "src/ui/SelectConstructor.hpp"
-normalized_sha256 = "c977b42ef9b494c6fdb1d53a9fa869d3c66b0ba11216a578083701f0625abd06"
+normalized_sha256 = "a5cd67805e45d280e176c7815db18e7c30d039ffb478067c46258a0f0950a1f3"
 
 [[sources]]
 path = "src/ui/SelectConstructor.cpp"
@@ -22,6 +22,10 @@ normalized_sha256 = "197a615d44b5242cba6ee945583797dfecd0b1823f44e1b4dcfc2362d6e
 [[sources]]
 path = "src/ui/SelectSetupState.hpp"
 normalized_sha256 = "f2ea05f30cc7182752a5f2439af391b959200c0df7bb7d5dccf7b6999e96d5e6"
+
+[[sources]]
+path = "src/ui/Tile.hpp"
+normalized_sha256 = "75eca0c2848497b1cfca4b2aa7e0cc744bd1a4fd85d07d82fa558af3d092f1a6"
 
 [[anchors]]
 address = "0x0041F6E0"

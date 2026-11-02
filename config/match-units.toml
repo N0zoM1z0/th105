@@ -21308,45 +21308,8 @@ notes = "Complete JP1.06a CSelect4231A0,4247 main bytes and19 natural unwind sta
 [[units.exact-first-select-constructor.functions]]
 address = "0x004231A0"
 symbol_base = "??0CSelect@th105@@QAE@XZ"
-rel32_targets = [
-    "??0CDesignBase@th105@@QAE@XZ=0x004217F0",
-    "??0CInputManager@th105@@QAE@XZ=0x00409CF0",
-    "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240",
-    "??1CDesignBase@th105@@UAE@XZ=0x00421890",
-    "??1CInputManagerCluster@th105@@UAE@XZ=0x00420C10",
-    "??1CSceneBase@th105@@UAE@XZ=0x0041DF50",
-    "??1CSprite@@UAE@XZ=0x0040AD50",
-    "??1UiTileA4@th105@@QAE@XZ=0x0040AD50",
-    "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
-    "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
-    "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
-    "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0",
-    "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50",
-    "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
-    "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0",
-    "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
-    "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70",
-    "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
-    "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
-    "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0",
-    "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
-    "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
-    "@__security_check_cookie@4=0x00689D25",
-    "___CxxFrameHandler3=0x006899E7",
-    "__invalid_parameter_noinfo=0x0068A143",
-    "_character_key_to_name=0x0043BF80",
-    "_get_network_session=0x0043B090",
-    "_get_player_slot_record=0x0043AFE0",
-    "_get_score_data=0x0043AF20",
-]
-dir32_targets = [
- "??_7CSprite@@6B@=_select_sprite_vtable_anchor",
- "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback",
- "??0CSprite@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ",
-    "__real@4040000000000000=_select_ctor_double_32",
-    "__real@4020000000000000=_select_ctor_double_8",
-]
-
+rel32_targets = ["??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@th105@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@th105@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1CSprite@@UAE@XZ=0x0040AD50", "??1CTile@@UAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20"]
+dir32_targets = ["??_7CSprite@@6B@=_select_sprite_vtable_anchor", "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback", "??0CSprite@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ", "__real@4040000000000000=_select_ctor_double_32", "__real@4020000000000000=_select_ctor_double_8"]
 
 [units.exact-first-reimu-action-initialization]
 kind = "probe"
@@ -24375,7 +24338,7 @@ notes = "Full845-byte CSelect normal destructor canonical exact through actual p
 [[units.exact-first-select-destructor.functions]]
 address = "0x00424260"
 symbol_base = "??1CSelectLifetime@th105@@UAE@XZ"
-rel32_targets = ["?_Tidy@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@IAEXXZ=0x00420A80", "??1CInputManager@th105@@UAE@XZ=0x00409D50", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@th105@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@th105@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1UiSprite94@th105@@QAE@XZ=0x0040AD50", "??1UiTileA4@th105@@QAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@UiTileA4@th105@@QAEXIHHII@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??3@YAXPAX@Z=0x006898EA", "??1CSprite@@UAE@XZ=0x0040AD50", "??1CNumberTileLifetime@th105@@UAE@XZ=0x0040AD50"]
+rel32_targets = ["?_Tidy@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@IAEXXZ=0x00420A80", "??1CInputManager@th105@@UAE@XZ=0x00409D50", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@th105@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@th105@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1UiSprite94@th105@@QAE@XZ=0x0040AD50", "??1CTile@@UAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??3@YAXPAX@Z=0x006898EA", "??1CSprite@@UAE@XZ=0x0040AD50"]
 dir32_targets = ["_title_color_vtable_anchor=_title_color_vtable_anchor_external", "__ehhandler$??1CSelectLifetime@th105@@UAE@XZ=_select_destructor_eh", "___security_cookie=___security_cookie", "??_7CSelectLifetime@th105@@6B@=??_7CSelect@th105@@6B@", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@", "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback"]
 
 [units.exact-first-replay-storage-constructor]
@@ -29637,7 +29600,7 @@ notes = "Complete CSelect render1497 with typed cursor/mix storage. Whole candid
 [[units.exact-first-select-render.functions]]
 address = "0x0041FF00"
 symbol_base = "?render@CSelect@th105@@UAE_NXZ"
-rel32_targets = ["?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000", "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750", "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0", "?render@SelectRenderTileView@th105@@QAEXMMHH@Z=0x004099F0", "?draw_profile_overlay@th105@@YAXE@Z=0x0043F900", "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0", "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040"]
+rel32_targets = ["?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000", "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750", "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0", "?render@CTile@@QAEXMMHH@Z=0x004099F0", "?draw_profile_overlay@th105@@YAXE@Z=0x0043F900", "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0", "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040"]
 
 [units.exact-first-select-character-update]
 kind = "probe"
