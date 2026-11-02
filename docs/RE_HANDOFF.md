@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+CSprite texture options406A90 now has complete source in its actual shared class.
+The 334-byte body remains nonexact at+149; six guarded whole-object fixtures
+and mutated-write negative pass. Scoped authored origin1/334 and three evidence
+negatives pass. No accepted consumer changed and no exact credit was added.
+Source1637, authored1656, mapped1827, review295, excluded2076, units814; exact
+1426/443399 unchanged. CI passed966 tests in102.751 seconds.
+See SPRITE_TEXTURE_OPTIONS_SOURCE_2026_11_02.md.
+
 DesignObjects.hpp now shares the four real outer design classes across loader,
 lifetime and rendering code. All four RTTI graphs (499 unique bytes) and all
 28 slots pass. All 17 accepted authored roots in five affected units remain

@@ -29699,3 +29699,16 @@ dir32_targets = ["_profile_stand_path_format=_scenario_stand_path_format"]
 address = "0x0046EF30"
 symbol_base = "??1ComboResource34Lifecycle@th105@@QAE@XZ"
 rel32_targets = ["??1DesignResource34Lifecycle@th105@@QAE@XZ=0x00421890"]
+
+[units.exact-first-sprite-texture-options]
+kind = "probe"
+source = "src/ui/SpriteTextureOptions.cpp"
+object = "build/match-units/ExactFirst_SpriteTextureOptions.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Complete334-byte actual CSprite texture policy; first mismatch149 remains nonexact. Six bounded query-return fixtures agree; no exact credit. docs/SPRITE_TEXTURE_OPTIONS_SOURCE_2026_11_02.md."
+
+[[units.exact-first-sprite-texture-options.functions]]
+address = "0x00406A90"
+symbol_base = "?set_texture_options@CSprite@@UAEXIHHHHHH@Z"
+rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60"]

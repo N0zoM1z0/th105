@@ -71,6 +71,7 @@ EXACT_TEST_MODULES = (
     "test_design_color_owner",
     "test_client_ack_tail",
     "test_profile_character_preview",
+    "test_sprite_texture_options",
     "test_server_input_publish",
     "test_sprite_callback_origins",
     "test_input_base_cleanup_origins",

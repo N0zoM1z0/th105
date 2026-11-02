@@ -6084,3 +6084,17 @@ confidence = "observed"
 evidence = "Complete implicit profile-data destructor emitted by the unchanged exact ScoreDefaults owner after removing the empty explicit destructor. Whole205 bytes and actual ctor/dtor caller pair are canonical; native normal call42F6C3 targets42D320. Source declarations and real owner are pinned. No artificial lifetime probe, no original spelling or parent/helper credit. docs/PROFILE_IMPLICIT_CLEANUP_2026_11_02.md."
 required_body_hashes = [{ address = "0x0042D320", size = 205, sha256 = "8880bb1d3c7e6a2d2a2765acb29fcfef74f36bec02636d1362acc7557b3c19a4" }]
 required_direct_edges = [{ caller = "0x0042ED70", site = "0x0042F6C3", target = "0x0042D320", kind = "call" }]
+
+[[rules]]
+id = "sprite-texture-options-authored-106a"
+addresses = ["0x00406A90"]
+expected_count = 1
+expected_bytes = 334
+expected_names = ["sub_406A90"]
+origin = "authored_game"
+subsystem = "rendering"
+disposition = "authored"
+confidence = "observed"
+evidence = "Actual CSprite primary RTTI slot owns complete334-byte texture/UV initialization policy, querying game texture manager404E60. Full body, COL/type, virtual slot and direct query edge are checked. Source334 remains nonexact at149; six finite modeled-query cases agree, not universal equivalence. docs/SPRITE_TEXTURE_OPTIONS_SOURCE_2026_11_02.md."
+required_rtti_virtual_bodies = [{ address = "0x00406A90", size = 334, slot = "0x006C0678", col_slot = "0x006C0664", col = "0x006DCCDC", type_descriptor = "0x006FA52C", type_name_contains = ".?AVCSprite@@", sha256 = "cef4fe718e7b4a273a2644a8a1a781a6412fdb70a7e0f8bdd31c27471990e3af", calls = [{ site = "0x00406ACD", target = "0x00404E60" }] }]
+required_dword_values = [{ address = "0x006C067C", value = "0x00406A60" }]
