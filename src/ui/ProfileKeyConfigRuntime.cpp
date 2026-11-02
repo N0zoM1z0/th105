@@ -10,31 +10,16 @@
 namespace th105 {
 
 signed char __cdecl get_active_input_source_43b050();
-struct CTileRenderView { void render(float x, float y, int column, int row); };
 struct TitleResourceManagerValueView {
     TextureHandleResult load_texture_value(
         const char *path, unsigned int *width, unsigned int *height);
 };
 extern TitleResourceManagerValueView g_title_resource_manager_value;
 
-
-struct ProfileKeyConfigDesignVirtualView {
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void load(const char *path);
-};
-
-
 extern "C" CInputManager *g_active_menu_input;
 bool __cdecl is_menu_initial_press(
     unsigned char key, bool modifier0, bool modifier1, bool modifier2);
 void __cdecl dispatch_indexed_event(unsigned index);
-
-struct ProfileKeyConfigCaptureView {
-    bool capture_key_input_44b540();
-};
 
 struct PlayerSlotKeyConfigSaveView {
     void save_profile(const char *path);
@@ -71,7 +56,7 @@ CProfileKeyConfig::CProfileKeyConfig(PlayerSlotRecord *player, int input_slot)
     state_328 = 1;
     count_324 = 0;
 
-    reinterpret_cast<ProfileKeyConfigDesignVirtualView *>(&design_08)->load(
+    design_08.load(
         "data/profile/keyconfig/keyconfig.dat");
     design_08.bind_object_alt(&objects_18c[0], 100);
     design_08.bind_object_alt(&objects_18c[1], 103);
@@ -119,7 +104,7 @@ void CProfileKeyConfig::render()
     if (character_2ec == -1) {
         for (int i = 0; i < 11; ++i) {
             if (keys_2f0[i] >= 0) {
-                reinterpret_cast<CTileRenderView *>(&tile_40)->render(
+                tile_40.render(
                     x, y, keys_2f0[i] % 8, keys_2f0[i] / 8);
             }
             x = static_cast<float>(x + 16.0);
@@ -127,13 +112,13 @@ void CProfileKeyConfig::render()
         }
     } else if (character_2ec >= 0) {
         for (int i = 0; i < 4; ++i) {
-            reinterpret_cast<CTileRenderView *>(&tile_e8)->render(x, y, i, 0);
+            tile_e8.render(x, y, i, 0);
             x = static_cast<float>(x + 16.0);
             y = static_cast<float>(y + 20.0);
         }
         for (int i = 4; i < 11; ++i) {
             if (keys_2f0[i] >= 0) {
-                reinterpret_cast<CTileRenderView *>(&tile_e8)->render(
+                tile_e8.render(
                     x, y, keys_2f0[i] % 4, keys_2f0[i] / 4 + 1);
             }
             x = static_cast<float>(x + 16.0);
@@ -156,8 +141,7 @@ bool CProfileKeyConfig::update()
         return false;
     }
 
-    if (!reinterpret_cast<ProfileKeyConfigCaptureView *>(this)
-             ->capture_key_input_44b540()) {
+    if (!capture_key_input()) {
         if (std::abs(g_active_menu_input->hold.horizontal) == 1) {
             dispatch_indexed_event(0x27);
             alternate_320 = 1 - alternate_320;

@@ -874,7 +874,7 @@ type_name = ".?AVCProfileCharacterSelect@@"
 address = "0x0044BCD0"
 size = 30
 unit = "cross-v106a-profile-submenu-lifetimes"
-symbol_base = "??_GCProfileKeyConfigLifetime@th105@@UAEPAXI@Z"
+symbol_base = "??_GCProfileKeyConfig@th105@@UAEPAXI@Z"
 sha256 = "4976883acd141e5fb081bf34950d778996ccb0d4af8003fcb91f01f6d6b94272"
 
 [[anchors.owners]]

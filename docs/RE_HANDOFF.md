@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+CProfileKeyConfig now has actual CDesignBase/CTile members and one source owner
+for ctor567/render501/update355/dtor188, all unchanged exact. Dispatch views and
+obsolete ProfileSubmenuLifetime.hpp removed; capture790 remains declaration-only
+with its old785-byte tail lane closed. Tile.hpp uses minimal Sprite.hpp, no class
+or MatchSetup changes. Full Key EH348 exact (98+76 each), tile RTTI247 and owner
+four-slot/design roles pass; handlers27/table16 strengthened. Closure23 units:
+17 accepted roots/12 units fresh exact;19 other roots/13 units unchanged before/
+after. Scalar2/60, implicit17/1434/design2/307/default and Select EH461/meta188 pass;
+4+12+6 guarded observers retained. No count gain. See PROFILE_KEY_REAL_OWNER_2026_11_02.md.
+
 Actual CProfileCharacterSelect::refresh_character_preview4484F0 is now public
 source/registered unit:178 bytes/55 reachable instructions, both exact owner
 calls4489FE/4486EB pinned. Native/source178 differ12 bytes at+37 (old clear/load

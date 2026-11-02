@@ -5,6 +5,7 @@
 #include "GuideOverlay.hpp"
 #include "Title.hpp"
 #include "DesignBaseLifetime.hpp"
+#include "Tile.hpp"
 #include "UiPrimitives.hpp"
 
 namespace th105 {
@@ -40,12 +41,13 @@ public:
     virtual void render();
 
 private:
+    bool capture_key_input();
     PlayerSlotRecord *player_04;
-    TitleDesignResource design_08;
+    CDesignBase design_08;
     unsigned texture_3c;
-    UiTileA4 tile_40;
+    CTile tile_40;
     unsigned texture_e4;
-    UiTileA4 tile_e8;
+    CTile tile_e8;
     UiDesignObject *objects_18c[4];
     GuideOverlay guides_19c[2];
     signed char character_2ec;

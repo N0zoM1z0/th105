@@ -1,5 +1,5 @@
 #pragma once
-#include "battle/EffectSprite.hpp"
+#include "engine/Sprite.hpp"
 // Native RTTI: CTile -> CSpriteBase -> IColor; four inherited virtual slots.
 class CTile : public CSpriteBase {
 public:
