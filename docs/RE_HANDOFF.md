@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Actual CProfileCharacterSelect::refresh_character_preview4484F0 is now public
+source/registered unit:178 bytes/55 reachable instructions, both exact owner
+calls4489FE/4486EB pinned. Native/source178 differ12 bytes at+37 (old clear/load
+scheduling); no shaping retry or exact credit. Six guarded finite helper-return
+fixtures cover -1, load failure/success, full-width handles, call args, writes,
+RET0/nonvolatiles/GS; wrong-field control rejects. Helpers/OS are not executed.
+Four new audit tests. Only one reviewed authored/source row added:source1637,
+authored1656,mapped1826,review297,units813; excluded2074/exact1427/443604 unchanged.
+See PROFILE_CHARACTER_PREVIEW_SOURCE_2026_11_02.md.
+
 CProfileCharacterSelect now shares one actual source declaration for ctor571,
 update372, render205 and dtor164; local constructor/update/lifetime views removed.
 ActualCSprite/CDesignBase members and private offset checks preserve all bytes;

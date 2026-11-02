@@ -6054,3 +6054,20 @@ evidence = "Complete server input publication owns backpressure, ten-bit current
 required_rtti_virtual_bodies = [{ address = "0x0044F9A0", size = 409, sha256 = "058dc706f51602a4bf33490d47d37a5efc93a394c31b303a8f058481571b3ca5", slot = "0x006C1708", col_slot = "0x006C16E8", col = "0x006D803C", type_descriptor = "0x006E6904", type_name_contains = ".?AVCNetworkServer@@", calls = [{ site = "0x0044F9B1", target = "0x0040AC30" }, { site = "0x0044F9F9", target = "0x00416B60" }, { site = "0x0044FA43", target = "0x0042A4B0" }, { site = "0x0044FA4F", target = "0x0042A4B0" }, { site = "0x0044FAD4", target = "0x00416B60" }, { site = "0x0044FAEB", target = "0x0040AC30" }, { site = "0x0044FB02", target = "0x0042AA90" }, { site = "0x0044FB1B", target = "0x0042AA90" }, { site = "0x0044FB22", target = "0x0040AC40" }] }]
 required_dword_values = [{ address = "0x006C1720", value = "0x0044F550" }]
 # Outgoing tail edges are covered by the full body hash and the complete CFG audit.
+
+[[rules]]
+id = "profile-character-preview-authored-106a"
+addresses = ["0x004484F0"]
+expected_count = 1
+expected_bytes = 178
+expected_names = ["sub_4484F0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact shared CProfileCharacterSelect constructor571 and update372 call this complete178-byte game preview policy. It releases and clears the prior texture, skips character -1, formats data/stand/%s.bmp, loads without extent outputs and configures the actual sprite at+8 with512x480 and FF808080 color after success. Whole55-instruction RET0 CFG and both owner edges are pinned. Actual-class source remains178/12 unequal, no exact credit. Six guarded finite helper-return fixtures agree and a wrong-field negative rejects; no helper/OS execution or universal equivalence claim. docs/PROFILE_CHARACTER_PREVIEW_SOURCE_2026_11_02.md."
+required_body_hashes = [{ address = "0x004484F0", size = 178, sha256 = "1afe0ad43b693c126df82a1725c72af49dd16db7f1a08ec8be9695bdf712a4a9" }]
+required_direct_edges = [
+ { caller = "0x004487E0", site = "0x004489FE", target = "0x004484F0", kind = "call", caller_status = "matching" },
+ { caller = "0x004485B0", site = "0x004486EB", target = "0x004484F0", kind = "call", caller_status = "matching" },
+]

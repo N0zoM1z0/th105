@@ -1824,3 +1824,4 @@ CSelect_render,0x0041FF00,function
 CSelect_update_characters,0x0041FC90,function
 CNetworkClient_import_ack_info_tail,0x0044E6D0,function
 CNetworkServer_publish_input_frame,0x0044F9A0,function
+CProfileCharacterSelect_refresh_character_preview,0x004484F0,function
