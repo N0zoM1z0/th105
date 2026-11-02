@@ -46,7 +46,6 @@ struct ProfileMenuBaseDataLifetime {
     std::deque<unsigned short> decks_1ac[20];
 
     ProfileMenuBaseDataLifetime();
-    ~ProfileMenuBaseDataLifetime();
     void initialize_defaults();
     int load_character_deck(std::deque<short> *, int);
 };

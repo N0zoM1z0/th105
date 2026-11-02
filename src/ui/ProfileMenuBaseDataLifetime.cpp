@@ -16,8 +16,4 @@ ProfileMenuBaseDataLifetime::ProfileMenuBaseDataLifetime()
     input_owner_138 = &input_0d0;
 }
 
-ProfileMenuBaseDataLifetime::~ProfileMenuBaseDataLifetime()
-{
-}
-
 } // namespace th105

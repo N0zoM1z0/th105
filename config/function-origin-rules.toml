@@ -6071,3 +6071,16 @@ required_direct_edges = [
  { caller = "0x004487E0", site = "0x004489FE", target = "0x004484F0", kind = "call", caller_status = "matching" },
  { caller = "0x004485B0", site = "0x004486EB", target = "0x004484F0", kind = "call", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "implicit-profile-base-cleanup-106a"
+implicit_lifetime_anchor_file = "config/profile-base-cleanup-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 205
+origin = "compiler_generated"
+subsystem = "runtime"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Complete implicit profile-data destructor emitted by the unchanged exact ScoreDefaults owner after removing the empty explicit destructor. Whole205 bytes and actual ctor/dtor caller pair are canonical; native normal call42F6C3 targets42D320. Source declarations and real owner are pinned. No artificial lifetime probe, no original spelling or parent/helper credit. docs/PROFILE_IMPLICIT_CLEANUP_2026_11_02.md."
+required_body_hashes = [{ address = "0x0042D320", size = 205, sha256 = "8880bb1d3c7e6a2d2a2765acb29fcfef74f36bec02636d1362acc7557b3c19a4" }]
+required_direct_edges = [{ caller = "0x0042ED70", site = "0x0042F6C3", target = "0x0042D320", kind = "call" }]

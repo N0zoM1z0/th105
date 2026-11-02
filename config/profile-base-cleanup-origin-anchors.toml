@@ -1,0 +1,48 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
+
+[[sources]]
+path = "src/config/ScoreDefaults.cpp"
+sha256 = "222c22a035fc1abfbaea2de28d2e9cea9d7a6a0cee37950af61bf3c909faa4f5"
+
+[[sources]]
+path = "src/config/ScoreDataDefaults.hpp"
+sha256 = "9341ae925e2a91c49263a3817fb5fd77981271d4e431686d43433ba15709c0c0"
+
+[[sources]]
+path = "src/ui/ProfileMenuBaseDataLifetime.hpp"
+sha256 = "9aa94662d9ace0b77c983fd05219a50daf11b91dc8c694634126cc71ed48bae9"
+
+[[sources]]
+path = "src/ui/ProfileDeckResourceLifetime.hpp"
+sha256 = "b7325a149e26eb23561f628d518e70784009b99bfb180cc309c47fa9b0b96a9b"
+
+[[sources]]
+path = "src/battle/SpellData.hpp"
+sha256 = "4ad7393acbb302ee4e8ea99e81d8bcfb3cac452109afb2767a8ddb37065ab025"
+
+[[sources]]
+path = "src/assets/CsvReader.hpp"
+sha256 = "2f2910c48445d0db7171fddd3cb6838235ef34a5d9ab2fc2917d85fd829620b3"
+
+[[sources]]
+path = "src/engine/Sprite.hpp"
+sha256 = "8dc8c7c6f5baae0f3dd537c3b2c52c808a4a89e389bb1b4f6800650663b3694d"
+
+[[sources]]
+path = "src/engine/ColorInterface.hpp"
+sha256 = "71db76e78b423b322a52fe5d0b64559238fdb1fc33170b1f2954d7efd051b093"
+
+[[sources]]
+path = "src/engine/TextureHandleValue.hpp"
+sha256 = "c8ab0afa18da3d0b27d099345ad34e57849aa5a39d6ef757549304fb26f0be84"
+
+[[anchors]]
+address = "0x0042D320"
+size = 205
+sha256 = "8880bb1d3c7e6a2d2a2765acb29fcfef74f36bec02636d1362acc7557b3c19a4"
+unit = "exact-first-score-defaults"
+symbol_base = "??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ"
+emitted_symbol = "??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ"
+kind = "destructor"

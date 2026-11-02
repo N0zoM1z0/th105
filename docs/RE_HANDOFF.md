@@ -1,5 +1,17 @@
 # TH10.5 reconstruction handoff
 
+The profile cleanup accounting question is closed: removing the empty explicit
+destructor makes the real ScoreDefaults local naturally emit the same complete
+205-byte body at 0x42D320. Its parent 0x42ED70 remains exact 2428 bytes with the
+same constructor/destructor call pair; parent EH source bytes/relocations are
+unchanged. The implicit cleanup has unique whole-body inventory identity and
+exact EH 80+68. Its selector moved to the existing ScoreDefaults unit, with one
+source-pinned exclusion rule. Withdraw exactly 1 authored function / 205 bytes:
+exact 1426 / 443399, source 1636, authored 1655, excluded 2075; mapped 1826,
+review 297 and units 813 unchanged. Four accepted affected roots, Replay origin
+2/32, four negative controls and 9+12 focused tests pass. No artificial probe.
+See PROFILE_IMPLICIT_CLEANUP_2026_11_02.md.
+
 Profile portrait ownership/consumers now use actual CSprite: the profile data
 lifetime, player color, network result finalizer, battle profile renderer and
 profile UI helpers no longer have separate sprite/color interfaces. The false

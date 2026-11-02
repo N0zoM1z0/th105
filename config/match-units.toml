@@ -15986,7 +15986,7 @@ source = "src/ui/ProfileMenuBaseDataLifetime.cpp"
 object = "build/match-units/GptWeb_ProfileMenuBaseDataLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Target-backed 0x33c ProfileMenuBaseData lifetime using the real 0x94 polymorphic sprite, two VC8 std::string members, CInputManagerEx at +0xd0, body-published input owner +0x138, and twenty checked deque<unsigned short> decks at +0x1ac."
+notes = "Target-backed 0x33c ProfileMenuBaseData lifetime using the real 0x94 polymorphic sprite, two VC8 std::string members, CInputManagerEx at +0xd0, body-published input owner +0x138, and twenty checked deque<unsigned short> decks at +0x1ac. Implicit cleanup 0x42D320 is now emitted by the real ScoreDefaults local and compiler-excluded; this unit retains only authored constructor 192. docs/PROFILE_IMPLICIT_CLEANUP_2026_11_02.md."
 
 [[units.gpt-web-profile-menu-base-data-lifetime.functions]]
 address = "0x0042D260"
@@ -16005,21 +16005,6 @@ dir32_targets = [
   "___security_cookie=___security_cookie",
 ]
 
-[[units.gpt-web-profile-menu-base-data-lifetime.functions]]
-address = "0x0042D320"
-symbol_base = "??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ"
-rel32_targets = [
-  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
-  "??1ProfileInputManagerLifetime@th105@@UAE@XZ=0x00409D50",
-  "operator_delete=0x006898EA",
-  "@__security_check_cookie@4=0x00689D25",
-]
-dir32_targets = [
-  "??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
-  "??_7IColor@@6B@=??_7IColor@@6B@",
-  "__ehhandler$??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ=__ehhandler$??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ",
-  "___security_cookie=___security_cookie",
-]
 
 [units.gpt-web-connect-config-file]
 kind = "probe"
@@ -23147,7 +23132,7 @@ source = "src/config/ScoreDefaults.cpp"
 object = "build/match-units/ExactFirst_ScoreDefaults.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete2428-byte ScoreData defaults/reset42ED70. Full first source compared immediately. Three20-byte availability clears, native vector clear, real dedup flag and directly constructed path preserve target ownership/EH and reproduce all2428 bytes. No helper-origin credit. docs/SCORE_DEFAULTS_2026_10_26.md."
+notes = "Complete2428-byte ScoreData defaults/reset42ED70. Full first source compared immediately. Three20-byte availability clears, native vector clear, real dedup flag and directly constructed path preserve target ownership/EH and reproduce all2428 bytes. No helper-origin credit. docs/SCORE_DEFAULTS_2026_10_26.md. The real automatic profile local emits its complete implicit 205-byte cleanup, retained here as compiler-excluded evidence with the unchanged exact parent. docs/PROFILE_IMPLICIT_CLEANUP_2026_11_02.md."
 
 [[units.exact-first-score-defaults.functions]]
 address = "0x0042ED70"
@@ -23184,6 +23169,22 @@ rel32_targets = [
   "?resolve_scenario_event_name@th105@@YAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0043BFD0",
   "@__security_check_cookie@4=0x00689D25",
   "__invalid_parameter_noinfo=0x0068A143",
+]
+
+[[units.exact-first-score-defaults.functions]]
+address = "0x0042D320"
+symbol_base = "??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ"
+rel32_targets = [
+  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+  "??1ProfileInputManagerLifetime@th105@@UAE@XZ=0x00409D50",
+  "operator_delete=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
+  "??_7IColor@@6B@=??_7IColor@@6B@",
+  "__ehhandler$??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ=__ehhandler$??1ProfileMenuBaseDataLifetime@th105@@QAE@XZ",
+  "___security_cookie=___security_cookie",
 ]
 
 [units.exact-first-score-load]

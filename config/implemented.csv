@@ -1001,7 +1001,6 @@ ConnectConfigIni_has_file
 BattleInputGate_queue_control_word
 ReplayInputStorage_save_replay
 ProfileMenuBaseData_ctor
-ProfileMenuBaseData_dtor
 ScoreMusicLookup_publish_bgm_path
 CNetworkServer_ctor
 CNetworkClient_ctor
