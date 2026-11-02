@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+ScoreData42D010 existing source is correctly signed MAXIMUM, not minimum:
+native CMP register,memory/JLE and source CMP memory,register/JGE are
+equivalent. Temporary inverted comparison/field names fully restored; no
+source/ledger/origin changes. New guarded diagnostic13 finite normal cases
+with actual native getters passes; inverted-minimum negative rejects.
+Six tooling tests cover callback/stack/register/partial-instruction failures.
+Whole182/native191 stays nonexact due missing9-byte iterator compatibility
+check; do not insert a synthetic check or revive spelling grids. See
+SCORE_OBSERVATIONS_MAXIMUM_2026_11_02.md. No exact or census gain.
+
 CSelect now uses actual CSprite members and CSelect::bind_character, with
 ordinary inline lifetimes emitted by the real NetworkBase array. Existing
 lifetime selector unit stays but uses that actual source/GS profile; obsolete
