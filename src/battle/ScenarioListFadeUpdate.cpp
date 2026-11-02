@@ -1,22 +1,12 @@
+#include "engine/Sprite.hpp"
 // JP1.06a 0x00455850. Complete fade/update policy; source remains nonexact.
 // Pointer-only list value view. See docs/SCENARIO_LIST_FADE_2026_10_29.md.
 #include <list>
 #include <stddef.h>
 namespace th105 {
-struct ScenarioFadeSpriteView {
-    virtual ~ScenarioFadeSpriteView();
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-    virtual void slot_10();
-    virtual void slot_14();
-    virtual void slot_18();
-    virtual void render(float,float);
-    unsigned char fields_004[0x90];
-};
 struct ScenarioFadeEntryView {
     unsigned resource_handle_000;
-    ScenarioFadeSpriteView sprite_004;
+    CSprite sprite_004;
     unsigned char alpha_098;
     signed char delta_099;
     unsigned char reserved_09a[2];

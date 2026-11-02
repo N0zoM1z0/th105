@@ -124,7 +124,7 @@ typedef char ScenarioResultResource_alpha_offset_must_be_0x124[
 
 struct ScenarioRenderEntry9C {
     unsigned int resource_handle_000;
-    UiSprite94 sprite_004;
+    CSprite sprite_004;
     unsigned char reserved_098[4];
 
     ~ScenarioRenderEntry9C();
@@ -135,7 +135,7 @@ typedef char ScenarioRenderEntry9C_size_must_be_0x9c[
 
 struct ScenarioTextEntryDC {
     unsigned int resource_handle_000;
-    UiSprite94 sprite_004;
+    CSprite sprite_004;
     std::string text_098;
     unsigned char flags_0b4[4];
     int values_0b8[7];

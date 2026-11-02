@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Scenario draw/text records and runtime/render/fade/rebuild views now use actual
+CSprite. Named scale fields replace command-update byte-offset writes. Rebuild's
+borrowed copy declaration is gone: real implicit CSprite copy116 and original
+list node100 both match naturally, with the same existing entry cleanup85.
+All22 accepted roots in11 units pass (closure14); render930/list-fade418/data
+ctor1528 retain hashes, and command update keeps its old string-relocation block.
+Sprite RTTI273/nine slots, generated origin2/260 and full rebuild/release/entry
+EH110+104+82 pass. Rebuild handler is33 bytes, not the common27-byte shape.
+CI passed all 962 tests in 112.862 seconds. No count gain.
+See SCENARIO_REAL_SPRITES_2026_11_02.md.
+
 Scenario result construction/runtime now use actual CTile at +0x5C. The local
 color/tile substitutes, setup receiver cast and raw scale-offset helpers are
 removed; real texture options and named scale fields are used. Constructor298,

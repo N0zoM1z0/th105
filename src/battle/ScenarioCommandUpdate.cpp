@@ -343,11 +343,9 @@ signed char ScenarioCommandUpdateView::update()
                     it->second.resource_handle_000 = handle;
                     it->second.sprite_004.set_texture_options(
                         handle, 0, 0, width, height, width >> 1, height);
-                    *reinterpret_cast<float *>(
-                        it->second.sprite_004.reserved_08 + 0x80) =
+                    it->second.sprite_004.scale_x_88 =
                             static_cast<float>(it->second.flags_0d4[1]);
-                    *reinterpret_cast<float *>(
-                        it->second.sprite_004.reserved_08 + 0x84) = 1.0f;
+                    it->second.sprite_004.scale_y_8c = 1.0f;
                     it->second.flags_0d4[2] = 1;
                 }
                 s.set_effect_color_bytes(it->second.flags_0b4[1],

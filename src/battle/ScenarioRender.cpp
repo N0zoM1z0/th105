@@ -1,3 +1,4 @@
+#include "engine/Sprite.hpp"
 // CScenarioData primary vtable slot 0x0c, JP1.06a 0x00457F90.
 // Pointer-only render view. Real owned-member layouts are retained; this TU
 // does not construct or destroy the view. See SCENARIO_RENDER_2026_10_29.md.
@@ -14,33 +15,16 @@
 namespace th105 {
 struct CInputManager;
 
-struct ScenarioRenderSprite94 {
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void slot_14();
-    virtual void slot_18();
-    virtual void render(float x, float y);
-
-    unsigned char unknown_004[0x84];
-    float scale_x_088;
-    float scale_y_08c;
-    unsigned char unknown_090[4];
-};
-typedef char CheckRenderSprite94[sizeof(ScenarioRenderSprite94) == 0x94 ? 1 : -1];
-
 struct ScenarioRenderDrawEntry9C {
     unsigned int resource_handle_000;
-    ScenarioRenderSprite94 sprite_004;
+    CSprite sprite_004;
     unsigned char tail_098[4];
 };
 typedef char CheckRenderEntry9C[sizeof(ScenarioRenderDrawEntry9C) == 0x9c ? 1 : -1];
 
 struct ScenarioTextDrawEntryDC {
     unsigned int resource_handle_000;
-    ScenarioRenderSprite94 sprite_004;
+    CSprite sprite_004;
     std::string text_098;
     unsigned char flags_0b4[4];
     int values_0b8[7];
@@ -135,20 +119,20 @@ void CScenarioDataRenderView::render()
             if (tail_50c[1] != 0) {
                 render_it = render_entries_350.begin();
                 for (; render_it != render_entries_350.end(); ++render_it) {
-                    ScenarioRenderSprite94 *sprite = &render_it->sprite_004;
+                    CSprite *sprite = &render_it->sprite_004;
                     float scale = static_cast<float>(
                         static_cast<double>(field_324) / 40.0);
-                    sprite->scale_x_088 = 1.0f;
-                    sprite->scale_y_08c = scale;
+                    sprite->scale_x_88 = 1.0f;
+                    sprite->scale_y_8c = scale;
                     render_it->sprite_004.render(0.0f, 394.0f);
                 }
             }
         } else if (tail_50c[1] != 0) {
             render_it = render_entries_350.begin();
             for (; render_it != render_entries_350.end(); ++render_it) {
-                ScenarioRenderSprite94 *sprite = &render_it->sprite_004;
-                sprite->scale_x_088 = 1.0f;
-                sprite->scale_y_08c = 1.0f;
+                CSprite *sprite = &render_it->sprite_004;
+                sprite->scale_x_88 = 1.0f;
+                sprite->scale_y_8c = 1.0f;
                 render_it->sprite_004.render(0.0f, 392.0f);
             }
         }

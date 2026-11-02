@@ -108,30 +108,9 @@ namespace th105 {
 
 float __cdecl scenario_text_wave(int value);
 
-// Current 0x00454DA0 codegen requires sprite_04 to be a real polymorphic
-// 0x94-byte member: VC8 reloads its vptr after the color virtual, then safely
-// preserves that vptr across scenario_text_wave before the render virtual.
-class ScenarioTextSprite94View {
-public:
-    virtual void slot_00();
-    virtual void set_color_04(unsigned int color);
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void slot_14();
-    virtual void slot_18();
-    virtual void render_1c(float x, float y);
-
-    unsigned int reserved_04;
-    unsigned char reserved_08[0x8c];
-};
-
-typedef char ScenarioTextSprite94View_size_must_be_0x94[
-    sizeof(ScenarioTextSprite94View) == 0x94 ? 1 : -1];
-
 struct ScenarioTextEntryRenderViewDC {
     unsigned int resource_handle_000;
-    ScenarioTextSprite94View sprite_004;
+    CSprite sprite_004;
     std::string text_098;
     unsigned char flags_0b4[4];
     int values_0b8[7];
@@ -151,11 +130,11 @@ void ScenarioTextEntryRenderViewDC::render_dynamic()
         return;
 
     if (flags_0d4[3])
-        sprite_004.set_color_04(0xffffffffu);
+        sprite_004.set_color(0xffffffffu);
     else
-        sprite_004.set_color_04(0x80ffffffu);
+        sprite_004.set_color(0x80ffffffu);
 
-    sprite_004.render_1c(
+    sprite_004.render(
         static_cast<float>(
             static_cast<double>(values_0b8[0]) -
             ((1.0 - scenario_text_wave(3 * values_0b8[5])) *

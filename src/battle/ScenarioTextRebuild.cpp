@@ -1,3 +1,4 @@
+#include "engine/Sprite.hpp"
 // JP1.06a 0x00456760. Rebuild the current window text texture.
 // See docs/SCENARIO_TEXT_REBUILD_2026_10_29.md.
 #include "ui/DesignBaseLifetime.hpp"
@@ -7,33 +8,9 @@
 #include <string>
 #include <stddef.h>
 namespace th105 {
-class RebuildColorView {
-public:
-    RebuildColorView() {}
-    virtual ~RebuildColorView() {}
-    virtual void set_color(unsigned)=0;
-    virtual void set_vertex_colors(const unsigned *)=0;
-    virtual void multiply_color(unsigned)=0;
-    DesignTextureHandle handle_004;
-};
-class RebuildSpriteView : public RebuildColorView {
-public:
-    RebuildSpriteView() {}
-    // Native455160 is the nonthrowing physical sprite copy provider.
-    RebuildSpriteView(const RebuildSpriteView &) throw();
-    virtual ~RebuildSpriteView() {}
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-    virtual void set_texture_options(unsigned,int,int,unsigned,unsigned,int,int);
-    virtual void slot_14();
-    virtual void slot_18();
-    virtual void render(float,float);
-    unsigned char fields_008[0x8c];
-};
 struct RebuildEntryView {
     unsigned resource_handle_000;
-    RebuildSpriteView sprite_004;
+    CSprite sprite_004;
     // Only two semantic bytes follow the sprite; the final two are padding.
     unsigned char alpha_098;
     signed char delta_099;
