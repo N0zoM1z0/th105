@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Timeline loader's remaining fake texture receiver is removed. Four pivot
+branches call actual CSpriteEx::set_texture_options; compiler retains one
+shared REL32 field755 to407160, plus five-argument member atfield607.
+Before/after whole1676 payload remains exact (callable1584). Source-hash guard
+renewed only after equality; unsigned-deque23 and both existing emitted-origin
+groups8+2 pass unchanged. Five receiver-role tests added. No count/byte gain.
+See TIMELINE_REAL_SPRITE_RECEIVER_2026_11_02.md.
+
 NetworkBase destructor now shares genuine packet/endpoint/queue definitions
 with the constructor in NetworkBaseMembers.hpp and uses actual CSprite.
 Main259/scalar30/reset175 remain exact. Full remote EH169 at6B8C60 and

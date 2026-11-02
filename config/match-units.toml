@@ -26973,7 +26973,7 @@ rel32_targets = [
  "?push_back@?$deque@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@QAEXABVCSpriteEx@@@Z=0x00451BD0",
  "?push_back@?$list@URenderTimelineEntry@th105@@V?$allocator@URenderTimelineEntry@th105@@@std@@@std@@QAEXABURenderTimelineEntry@th105@@@Z=0x004540B0",
  "?set_texture@CSpriteEx@@QAEXIHHHH@Z=0x0041F640",
- "?set_texture_options@TimelineSpriteOptionsView@th105@@QAEXIHHHHHH@Z=0x00407160",
+ "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
  "__invalid_parameter_noinfo=0x0068A143",
 ]
 

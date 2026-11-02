@@ -59,6 +59,7 @@ EXACT_TEST_MODULES = (
     "test_csprite_lifetime_origins",
     "test_network_base_constructor_eh",
     "test_network_base_destructor_eh",
+    "test_timeline_texture_receiver",
     "test_sprite_callback_origins",
     "test_input_base_cleanup_origins",
     "test_replay_member_cleanup_origins",

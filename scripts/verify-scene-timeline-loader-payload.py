@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import importlib.util
 import json
+from coff_exception_rtti import Reader
 
 from workflow_manifest import ROOT, compiler_sha256, load_manifest, unit_input_digest
 
@@ -15,12 +16,23 @@ PAYLOAD_SIZE = 1676
 PAYLOAD_SHA256 = "b6bb1b77c0258c4c24bf3ff0eeec71ea11409e7f1af88d4d91e0dc13fe1af973"
 
 
+
+def check_texture_calls(reader, symbol):
+    calls = [(offset, kind, name) for offset, kind, name in
+             reader.refs(symbol, PAYLOAD_SIZE) if 'set_texture' in name]
+    if calls != [(607, 20, '?set_texture@CSpriteEx@@QAEXIHHHH@Z'),
+                 (755, 20, '?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z')]:
+        raise ValueError("timeline texture calls must use actual CSpriteEx members")
+    return calls
+
+
 def verify() -> dict:
     unit = load_manifest()["units"][UNIT]
     function = unit["functions"][0]
     if int(function["address"], 0) != ADDRESS:
         raise ValueError("timeline unit entry changed")
     obj = ROOT / unit["object"]
+    check_texture_calls(Reader(obj), function["symbol_base"])
     provenance = json.loads(obj.with_suffix(obj.suffix + ".provenance.json").read_text())
     digest, _ = unit_input_digest(UNIT, unit)
     if (provenance.get("unit") != UNIT or provenance.get("input_digest") != digest

@@ -14,9 +14,6 @@ struct TimelineScriptReaderView {
     CCommandBase *next_command();
 };
 struct TimelineCommandHeader { void *vtable_00; int id_04; };
-struct TimelineSpriteOptionsView {
-    void set_texture_options(unsigned,int,int,int,int,int,int);
-};
 struct SceneTimelineLoaderView {
     int bpm_00;
     unsigned start_tick_04, elapsed_08, end_time_0c;
@@ -80,13 +77,13 @@ bool SceneTimelineLoaderView::load_script(const char *path)
             case 0:
                 record->sprites_14.back().set_texture(record->texture_handles_00.back(),0,0,width,height);break;
             case 1:
-                reinterpret_cast<TimelineSpriteOptionsView *>(&record->sprites_14.back())->set_texture_options(record->texture_handles_00.back(),0,0,width,height,width/2,height/2);break;
+                record->sprites_14.back().set_texture_options(record->texture_handles_00.back(),0,0,width,height,width/2,height/2);break;
             case 2:
-                reinterpret_cast<TimelineSpriteOptionsView *>(&record->sprites_14.back())->set_texture_options(record->texture_handles_00.back(),0,0,width,height,0,height);break;
+                record->sprites_14.back().set_texture_options(record->texture_handles_00.back(),0,0,width,height,0,height);break;
             case 3:
-                reinterpret_cast<TimelineSpriteOptionsView *>(&record->sprites_14.back())->set_texture_options(record->texture_handles_00.back(),0,0,width,height,width,0);break;
+                record->sprites_14.back().set_texture_options(record->texture_handles_00.back(),0,0,width,height,width,0);break;
             case 4:
-                reinterpret_cast<TimelineSpriteOptionsView *>(&record->sprites_14.back())->set_texture_options(record->texture_handles_00.back(),0,0,width,height,width,height);break;
+                record->sprites_14.back().set_texture_options(record->texture_handles_00.back(),0,0,width,height,width,height);break;
             }
             record->blend_mode_68=c->arg4;
             break;
