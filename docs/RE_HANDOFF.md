@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Numeric rendering now uses actual global CTile, removing its manual-vptr tile
+view and duplicate tile render implementation. CNumber has its target-backed
+IColor base and named color slots. MenuConnect's tiles at 0x64, 0x130 and 0x300
+share that same type: mixed symbol identities caused 735 bytes, while the actual
+shared type naturally preserves the entire 728-byte constructor. All 20 accepted
+roots in 7 affected units remain exact; 4 other roots retain their prior hashes.
+Tile RTTI (247 unique bytes), four slots and one shared table relocation checked.
+CNumber cleanup remains a separate view; its runtime scalar body/full linkage
+are not claimed exact. No count gain. See NUMBER_REAL_TILE_2026_11_02.md.
+
 CProfileKeyConfig now has actual CDesignBase/CTile members and one source owner
 for ctor567/render501/update355/dtor188, all unchanged exact. Dispatch views and
 obsolete ProfileSubmenuLifetime.hpp removed; capture790 remains declaration-only

@@ -41,12 +41,12 @@ private:
     UiDesignObject *items_040[7];
     unsigned char reserved_05c[4];
     ConnectTextureHandle texture_060;
-    UiTileA4 tile_064;
+    CTile tile_064;
     CNumber number_108;
     UiSprite94 sprite_1d4;
     UiSprite94 sprite_268;
     ConnectTextureHandle texture_2fc;
-    UiTileA4 tile_300;
+    CTile tile_300;
     std::deque<std::string> rows_3a4;
     unsigned int reserved_3b8;
     MenuCursorState cursor_3bc;

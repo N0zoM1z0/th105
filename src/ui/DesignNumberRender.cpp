@@ -32,7 +32,7 @@ public:
     int fractional_digits_1c;
     unsigned char mode_20;
     INumberValue *number_value_24;
-    CNumberTileA4 tile_28;
+    CTile tile_28;
 };
 class NumberDesignObjectBaseView : public NumberColorView {
 public:
