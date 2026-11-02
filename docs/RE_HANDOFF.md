@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Info manager lifetime records now use actual CSprite. Owner 195 / 185 and
+support 30 / 28 / 15 remain exact; sprite RTTI 273 and shared physical EH
+104 + 76 pass. The real implicit ComboResource34Lifecycle cleanup at 0x46EF30
+now has complete 5-byte and native EH ownership proof, unique in the inventory.
+Add one compiler exclusion: excluded 2076, review 296. Authored exact remains
+1426 / 443399, source 1636, authored 1655, mapped 1826 and units 813.
+Implicit origin 3 / 28, four negative controls and nine focused tests pass.
+CI passed all 962 tests in 109.298 seconds.
+See INFO_LIFETIME_REAL_SPRITES_2026_11_02.md.
+
 Shared profile message/background/cursor globals now use actual CSprite, with
 named cursor scale fields. Duplicate sprite interfaces and texture-call view
 are removed; the existing exact 39-byte texture wrapper is CSprite::set_texture.

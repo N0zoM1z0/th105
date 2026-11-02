@@ -2078,7 +2078,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046EDB0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046EE40,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046EEB0,authored_game,battle,authored,observed,effect-object-manager-shared-helpers-authored-106a
-0x0046EF30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046EF30,compiler_generated,runtime,exclude,observed,implicit-record-cleanups-106a
 0x0046EF40,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046F020,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046F090,authored_game,battle,authored,observed,canonical-exact-authored

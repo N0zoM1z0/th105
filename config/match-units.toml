@@ -29694,3 +29694,8 @@ address = "0x004484F0"
 symbol_base = "?refresh_character_preview@CProfileCharacterSelect@th105@@AAEXXZ"
 rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80", "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90", "@__security_check_cookie@4=0x00689D25"]
 dir32_targets = ["_profile_stand_path_format=_scenario_stand_path_format"]
+
+[[units.cross-v106a-info-manager-base-lifetime.functions]]
+address = "0x0046EF30"
+symbol_base = "??1ComboResource34Lifecycle@th105@@QAE@XZ"
+rel32_targets = ["??1DesignResource34Lifecycle@th105@@QAE@XZ=0x00421890"]

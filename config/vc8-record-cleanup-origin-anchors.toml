@@ -8,7 +8,7 @@ sha256 = "f6fcffe670515df447a4780d6f13aaa5f3cf6ffabed198719f21d10f9991e07a"
 
 [[sources]]
 path = "src/battle/InfoManagerBaseLifetime.cpp"
-sha256 = "097bb4aa8a02f52edc98e0434b8eb5293861bd0af2e1111aaf46df41c41d5bd1"
+sha256 = "62f349c12cd4410b5f710d0004648dc2ff80b470923bebb4b9611773a65cb7b4"
 
 [[sources]]
 path = "src/ui/CNumberLifetime.hpp"
@@ -60,3 +60,12 @@ sha256 = "8539250fb22377018429cbd006dec8f66259ab78b74e9819634a76115fce560f"
 [[sources]]
 path = "src/ui/CNumberRuntime.hpp"
 sha256 = "6f15b1cbbe18753cf114a8d4d53cd7dcebb711c43bb643aa46b7cf26f51f51d2"
+
+[[anchors]]
+address = "0x0046EF30"
+size = 5
+sha256 = "297637762156706b1a1bdffa4e7de653ba49f562ed33570d30230a43fc3bd09b"
+unit = "cross-v106a-info-manager-base-lifetime"
+symbol_base = "??1ComboResource34Lifecycle@th105@@QAE@XZ"
+emitted_symbol = "??1ComboResource34Lifecycle@th105@@QAE@XZ"
+kind = "destructor"

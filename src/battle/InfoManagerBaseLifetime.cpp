@@ -1,31 +1,6 @@
 #include "battle/EffectSprite.hpp"
-#include "ui/CNumberLifetime.hpp"
 #include "ui/DesignBaseLifetime.hpp"
 namespace th105 {
-// Native record constructor46EA40 and sprite-copy455160 establish the
-// four-byte color base and two real sprite members. Texture04 is the
-// existing initializing handle value; no manual vptr writes.
-struct InfoRecordSpriteBase80 : CNumberColorLifetime {
-    InfoRecordSpriteBase80() {}
-    virtual ~InfoRecordSpriteBase80() {}
-    virtual void set_color(unsigned);
-    virtual void set_vertex_colors(const unsigned *);
-    virtual void multiply_color(unsigned);
-    DesignTextureHandle texture_04;
-    SpriteVertex28 vertices_08[4];
-    float width_78, height_7c;
-};
-struct InfoRecordSprite94 : InfoRecordSpriteBase80 {
-    virtual void set_texture_options(unsigned, int, int, unsigned, unsigned, int, int);
-    virtual void set_texture(unsigned, int, int, int, int);
-    virtual void render_rectangle(float, float, float, float);
-    virtual void render(float, float);
-    virtual void render_plain(float, float);
-    float pivot_x, pivot_y, scale_x, scale_y, angle;
-};
-
-
-
 struct InfoEffectManagerLifecycle94 {
     unsigned char storage_000[0x94];
     InfoEffectManagerLifecycle94();
@@ -49,8 +24,8 @@ struct InfoRecord34Lifecycle {
 
 struct InfoRecord154Lifecycle {
     void *resource_000;
-    InfoRecordSprite94 primary_004;
-    InfoRecordSprite94 secondary_098;
+    CSprite primary_004;
+    CSprite secondary_098;
     int timer_12c;
     unsigned char alpha_primary_130;
     unsigned char alpha_secondary_131;
