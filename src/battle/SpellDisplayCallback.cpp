@@ -27,8 +27,8 @@ void PlayerIndexedCallbackView::invoke_indexed_record(
     int width = unclamped_width >= 272 ? 272 : unclamped_width;
 
     if (!alternate_alignment_132) {
-        display_sprite_098.configure_record_display(
-            record->batch_resource_40,
+        display_sprite_098.set_texture_options(
+            reinterpret_cast<unsigned>(record->batch_resource_40),
             0,
             record->value_48,
             width,
@@ -36,8 +36,8 @@ void PlayerIndexedCallbackView::invoke_indexed_record(
             10,
             9);
     } else {
-        display_sprite_098.configure_record_display(
-            record->batch_resource_40,
+        display_sprite_098.set_texture_options(
+            reinterpret_cast<unsigned>(record->batch_resource_40),
             0,
             record->value_48,
             width,

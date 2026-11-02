@@ -5,26 +5,10 @@
 
 namespace th105 {
 
-struct SpellDisplaySpriteView {
-    virtual void unknown_00();
-    virtual void unknown_04();
-    virtual void unknown_08();
-    virtual void unknown_0c();
-    virtual void configure_record_display(
-        void *batch_resource,
-        int zero,
-        int record_value,
-        int width,
-        int height,
-        int vertical_offset,
-        int mode);
-};
-
 struct PlayerIndexedCallbackView {
     SpellDataOwner *spell_data_00;
     unsigned char unknown_004[0x94];
-    SpellDisplaySpriteView display_sprite_098;
-    unsigned char unknown_09c[0x90];
+    CSprite display_sprite_098;
     void *source_12c;
     unsigned char color_130;
     unsigned char intensity_131;

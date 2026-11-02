@@ -1,5 +1,13 @@
 # TH10.5 reconstruction handoff
 
+Indexed spell display now uses actual CSprite at +0x98 instead of a partial
+virtual interface plus storage tail. The 234-byte callback remains exact.
+All 21 accepted roots in 14 units pass (closure 18); eight other roots retain
+hashes. The shared spell resource field type is unchanged and its handle bits
+are passed explicitly. No manifest, origin, ledger or count changes.
+CI passed all 962 tests in 111.865 seconds.
+See SPELL_DISPLAY_REAL_SPRITE_2026_11_02.md.
+
 FighterSequenceSlot, prepare-record and battle-info renderer now use actual
 CSprite. Enqueue uses ordinary placement copy construction, removing borrowed
 copy ABI / receiver casts; full enqueue 114 and naturally emitted copy 116
