@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SpellData.hpp"
+#include "engine/Sprite.hpp"
 
 namespace th105 {
 
@@ -45,22 +46,10 @@ struct PlayerIndexedCallbackView {
 typedef char PlayerIndexedCallbackView_size_must_be_0x154[
     sizeof(PlayerIndexedCallbackView) == 0x154 ? 1 : -1];
 
-struct SpellSpriteWork {
-    void *vtable_00;
-    unsigned char unknown_04[0x90];
-
-    void load_optional_spell_resource(
-        void *resource,
-        int zero0,
-        int zero1,
-        void *global_a,
-        void *global_b);
-};
-
 struct FighterSequenceSlot {
     short record_id_00;
     unsigned short field_02;
-    SpellSpriteWork sprite_04;
+    CSprite sprite_04;
 };
 
 typedef char FighterSequenceSlot_size_must_be_0x98[

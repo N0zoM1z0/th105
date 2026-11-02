@@ -38,9 +38,7 @@ void Fighter::advance_fighter_sequence_55c()
         }
 
         if (controller->live_count_10 != 0) {
-            reinterpret_cast<CSprite *>(
-                &controller->slots_04[controller->head_0c]->sprite_04)
-                ->~CSprite();
+            controller->slots_04[controller->head_0c]->sprite_04.~CSprite();
             ++controller->head_0c;
             if (controller->slot_capacity_08 <= controller->head_0c) {
                 controller->head_0c = 0;
@@ -122,14 +120,10 @@ unsigned char Fighter::consume_spell_sequence_entry()
     return 0;
 }
 
-struct SequencePrepareSprite94 : CSpriteBase {
-    float pivot_x, pivot_y, scale_x, scale_y, angle;
-    void set_texture(unsigned handle,int x,int y,unsigned width,unsigned height);
-};
 struct SequencePrepareRecord98 {
     short record_id;
     unsigned short value;
-    SequencePrepareSprite94 sprite;
+    CSprite sprite;
 };
 typedef char prepare_record_size[sizeof(SequencePrepareRecord98)==0x98?1:-1];
 extern unsigned g_spell_texture_load_state;

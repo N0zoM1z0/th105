@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+FighterSequenceSlot, prepare-record and battle-info renderer now use actual
+CSprite. Enqueue uses ordinary placement copy construction, removing borrowed
+copy ABI / receiver casts; full enqueue 114 and naturally emitted copy 116
+remain canonical. Actual sprite RTTI 273 / nine slots pass. All 21 accepted
+roots in 14 units pass (closure 18), and eight other roots retain hashes.
+CoreContracts positive / wrong-offset / mutable-argument controls pass. Prepare
+remains 257 / 259 and other compiler residuals stay closed. No count gain.
+CI passed all 962 tests in 125.660 seconds.
+See SEQUENCE_SHARED_SPRITE_2026_11_02.md.
+
 Shared Title.hpp now owns actual CSprite / CTile members instead of manual
 vptr-cleanup facades. Title destructor 161 and scalar 30 remain exact; full
 EH 88 + 76 and emitted IColor RTTI 93 pass. Actual include closure 147 units:

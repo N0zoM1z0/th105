@@ -1,12 +1,8 @@
 #include "Collision.hpp"
 #include "SpellRuntime.hpp"
+#include <new>
 
 namespace th105 {
-
-struct FighterSequenceSpriteCopyView {
-    void *copy_fighter_sequence_sprite(
-        const FighterSequenceSpriteCopyView *source);
-};
 
 void FighterSequenceController::enqueue_record(
     const FighterSequenceSlot *record)
@@ -26,15 +22,7 @@ void FighterSequenceController::enqueue_record(
     }
 
     FighterSequenceSlot *destination = slots_04[index];
-    if (destination != 0) {
-        destination->record_id_00 = record->record_id_00;
-        destination->field_02 = record->field_02;
-        reinterpret_cast<FighterSequenceSpriteCopyView *>(
-            &destination->sprite_04)
-            ->copy_fighter_sequence_sprite(
-                reinterpret_cast<const FighterSequenceSpriteCopyView *>(
-                    &record->sprite_04));
-    }
+    new (destination) FighterSequenceSlot(*record);
 
     ++live_count_10;
 }

@@ -92,8 +92,8 @@ typedef char CheckShapeWordsSize[
     sizeof(ShapeWords) == 0x10 ? 1 : -1];
 typedef char CheckSpellRecordSize[
     sizeof(SpellRecordView) == 0x4c ? 1 : -1];
-typedef char CheckSpellSpriteWorkSize[
-    sizeof(SpellSpriteWork) == 0x94 ? 1 : -1];
+typedef char CheckSequenceSpriteSize[
+    sizeof(CSprite) == 0x94 ? 1 : -1];
 typedef char CheckSpellTreeIteratorSize[
     sizeof(SpellTreeIterator) == 0x08 ? 1 : -1];
 typedef char CheckWorldAabbSize[
