@@ -19905,7 +19905,7 @@ rel32_targets = [
 
 [[units.gpt-web-design-base-load.functions]]
 address = "0x0041B280"
-symbol_base = "?initialize_design_gage@th105@@YGXPAVDesignLoaderGage@1@HIHH@Z"
+symbol_base = "?initialize_design_gage@th105@@YGXPAVCGage@@HIHH@Z"
 rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60"]
 
 [[units.gpt-web-design-base-load.functions]]

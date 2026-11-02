@@ -3,7 +3,7 @@
 #include "Gage.hpp"
 #include <new>
 
-CGage::CGage() : value_a0(0) {}
+#include "GageConstructor.cpp"
 
 namespace th105 {
 

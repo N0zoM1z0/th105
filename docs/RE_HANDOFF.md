@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Design loading now uses actual CGage and one shared real constructor definition.
+All six accepted roots in the two affected units remain exact; scalar origin
+2 / 120 and loader-generated origin 9 / 948 pass. Loader CGage scalar56, full
+RTTI329 and nine slots pass. Gauge init360 keeps its hash and loader raw2580
+stays unchanged with the original EH block. No native loader or extra helper
+credit. Outer design-object views remain separate.
+CI passed all 962 tests in 103.735 seconds.
+See DESIGN_LOADER_REAL_GAGE_2026_11_02.md.
+
 Design loading now uses shared CNumber with friend access, removing its local
 number class. The real constructor naturally corrects tile-handle / table /
 value-pointer initialization order to native +44 / +40 / +3C. Raw loader2580

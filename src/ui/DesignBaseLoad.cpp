@@ -7,6 +7,7 @@
 #include "ui/Title.hpp"
 #include "ui/Tile.hpp"
 #include "ui/CNumberRuntime.hpp"
+#include "ui/GageConstructor.cpp"
 #include <stdlib.h>
 #include <string.h>
 
@@ -15,21 +16,6 @@ extern "C" __declspec(dllimport) int __cdecl wsprintfA(char *, const char *, ...
 #pragma float_control(except, off, push)
 
 namespace th105 {
-
-class DesignLoaderGage : public CSprite {
-public:
-    DesignLoaderGage() : value_a0(0) {}
-    virtual ~DesignLoaderGage()
-    {
-        if (value_a0 != 0)
-            ::operator delete(value_a0);
-    }
-    virtual void render(float, float);
-    virtual void render_fvf4142(float, float);
-    float u_span_94, v_span_98;
-    int mode_9c;
-    void *value_a0;
-};
 
 class DesignLoaderObjectBase : public DesignColorLifetimeView {
 public:
@@ -63,7 +49,7 @@ public:
     virtual void multiply_color(unsigned int);
     virtual void render_offset(float, float);
     virtual void render();
-    DesignLoaderGage gage_18;
+    CGage gage_18;
 };
 
 class DesignLoaderNumberObject : public DesignLoaderObjectBase {
@@ -80,11 +66,11 @@ struct DesignTextureRectangle {
     int x, y, width, height;
 };
 
-static void __stdcall initialize_design_gage(DesignLoaderGage *gage,
+static void __stdcall initialize_design_gage(CGage *gage,
     int mode, unsigned int handle, int width, int height)
 {
     gage->texture_width_78 = static_cast<float>(width);
-    gage->mode_9c = mode;
+    gage->fill_mode_9c = mode;
     gage->texture_height_7c = static_cast<float>(height);
     gage->pivot_x_80 = 0;
     gage->pivot_y_84 = 0;
@@ -264,7 +250,7 @@ void CDesignBase::load(const char *path)
 
 typedef char LoaderObjectSize[sizeof(DesignLoaderObjectBase) == 0x18 ? 1 : -1];
 typedef char LoaderSpriteSize[sizeof(CSprite) == 0x94 ? 1 : -1];
-typedef char LoaderGageSize[sizeof(DesignLoaderGage) == 0xa4 ? 1 : -1];
+typedef char LoaderGageSize[sizeof(CGage) == 0xa4 ? 1 : -1];
 typedef char LoaderTileSize[sizeof(CTile) == 0xa4 ? 1 : -1];
 typedef char LoaderNumberSize[sizeof(CNumber) == 0xcc ? 1 : -1];
 typedef char LoaderSpriteObjectSize[sizeof(DesignLoaderSpriteObject) == 0xac ? 1 : -1];
