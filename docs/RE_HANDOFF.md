@@ -1,5 +1,12 @@
 # TH10.5 reconstruction handoff
 
+Long battle info records now use actual CSprite for both members. The partial
+eight-slot sprite interface and resource-binding receiver cast are removed.
+The actual include closure has two units; all three roots remain exact:
+binding 107, render 323 and update 310 bytes. CI passed 962 tests in
+115.679 seconds. No ABI, ledger or count change.
+See INFO_LONG_REAL_SPRITES_2026_11_02.md.
+
 Scenario draw/text records and runtime/render/fade/rebuild views now use actual
 CSprite. Named scale fields replace command-update byte-offset writes. Rebuild's
 borrowed copy declaration is gone: real implicit CSprite copy116 and original

@@ -47,26 +47,26 @@ void InfoLongRecord154Runtime::render_4325c0()
         return;
 
     g_render_mode_manager.set_blend_mode(1);
-    InfoLongSprite94 *primary = &primary_004;
+    CSprite *primary = &primary_004;
     primary->set_color(
         (static_cast<unsigned>(alpha_primary_130) << 24) | 0x00ffffff);
-    InfoLongSprite94 *secondary = &secondary_098;
+    CSprite *secondary = &secondary_098;
     secondary->set_color(
         (static_cast<unsigned>(alpha_secondary_131) << 24) | 0x00ffffff);
 
     float scale = scale_144;
-    secondary->scale_x_088 = scale;
-    secondary->scale_y_08c = scale;
+    secondary->scale_x_88 = scale;
+    secondary->scale_y_8c = scale;
 
     if (!mirrored_132) {
-        primary->move_1c(x_134, y_138);
-        secondary->move_1c(
+        primary->render(x_134, y_138);
+        secondary->render(
             static_cast<float>(x_134 + 20.0),
             static_cast<float>(y_138 + 20.0));
     } else {
-        primary->move_1c(
+        primary->render(
             static_cast<float>(440.0 - x_134), y_138);
-        secondary->move_1c(
+        secondary->render(
             static_cast<float>(620.0 - x_134),
             static_cast<float>(y_138 + 20.0));
     }
