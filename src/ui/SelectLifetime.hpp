@@ -27,7 +27,6 @@ struct CInputManagerCluster : CInputManager {
 };
 // Pointer-only call views, never embedded or instantiated.
 struct SelectDesignCall { virtual void slot00();virtual void slot04();virtual void slot08();virtual void slot0c();virtual void load_10(const char *); };
-struct SelectSpriteCall { virtual void slot00();virtual void slot04();virtual void slot08();virtual void slot0c();virtual void slot10();virtual void set_texture_14(unsigned,int,int,int,int); };
 
 struct SelectEffectCall {
  virtual void slot00();virtual void load_04(const char *,unsigned);
@@ -64,11 +63,11 @@ public:
  // Four actual trivial cursor records, two axes per player.
  MenuCursorState character_cursors_100[2][2];
  CDesignBase character_design_150;
- DesignTextureHandle cursor_textures_184[2];UiSpriteLifetime94 cursor_images_18c[2];
- DesignTextureHandle background_2b4;UiSpriteLifetime94 background_2b8;
+ DesignTextureHandle cursor_textures_184[2];::CSprite cursor_images_18c[2];
+ DesignTextureHandle background_2b4;::CSprite background_2b8;
  DesignTextureHandle names_34c;CNumberTileLifetime names_350;
- DesignTextureHandle random_names_3f4;UiSpriteLifetime94 random_names_3f8;
- DesignTextureHandle extra_textures_48c[2];UiSpriteLifetime94 extra_images_494[2];
+ DesignTextureHandle random_names_3f4;::CSprite random_names_3f8;
+ DesignTextureHandle extra_textures_48c[2];::CSprite extra_images_494[2];
  UiDesignObject *slots_5bc[16];
  UiDesignObject *slots_5fc[2];UiDesignObject *slots_604[2];
  int field_60c;void *slots_610[2];UiDesignObject *anchor_618;
@@ -79,7 +78,7 @@ public:
  MenuCursorState stage_cursor_195c,variant_cursor_1970;
  CDesignBase background_design_1984;
  DesignTextureHandle pictures_19b8[16],names_19f8[16];
- UiSpriteLifetime94 picture_images_1a38[16],name_images_2378[16];
+ ::CSprite picture_images_1a38[16],name_images_2378[16];
  UiDesignObject *slots_2cb8[3];UiDesignObject *background_anchor_2cc4,*background_anchor_2cc8;
  DesignTextureHandle music_2ccc;CNumberTileLifetime music_2cd0;
  UiDesignObject *music_anchor_2d74;unsigned char guide_mix_2d78;

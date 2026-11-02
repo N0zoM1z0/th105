@@ -22,9 +22,6 @@ struct SelectEntryConfigView {
     unsigned char unknown_00[0x64];
     int identifier_64;
 };
-struct SelectEntryCallView {
-    void bind_character_41fb80(int side,int character);
-};
 CInputManager *get_selected_input(unsigned slot);
 SelectEntryConfigView *get_game_config();
 extern "C" void __cdecl play_bgm(const char *);
@@ -97,7 +94,7 @@ void CSelect::on_scene_enter(int previous_scene)
     }
     reinterpret_cast<SelectEntryUiEnabledView *>(slots_2cb8[2])->enabled=extras_0b8[stage_cursor_195c.selection]>=0;
     prefix->setup_0c->identifier_00=get_game_config()->identifier_64;
-    reinterpret_cast<SelectEntryCallView *>(this)->bind_character_41fb80(0,prefix->setup_0c->sides_08[0].character_key_00);
-    reinterpret_cast<SelectEntryCallView *>(this)->bind_character_41fb80(1,prefix->setup_0c->sides_08[1].character_key_00);
+    bind_character(0,prefix->setup_0c->sides_08[0].character_key_00);
+    bind_character(1,prefix->setup_0c->sides_08[1].character_key_00);
 }
 }

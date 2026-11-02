@@ -4,16 +4,7 @@
 
 #include <stddef.h>
 
-// Native IColor is the four-byte interface. The texture handle at +4 belongs
-// to CSpriteBase, as its constructor and implicit copy lifetimes establish.
-// Native descriptor 6FA560 spells .?AUIColor@@ (struct tag).
-struct IColor {
-public:
-    virtual ~IColor() {}
-    virtual void set_color(unsigned int color) = 0;
-    virtual void set_vertex_colors(const unsigned int *colors) = 0;
-    virtual void multiply_color(unsigned int color) = 0;
-};
+#include "engine/ColorInterface.hpp"
 
 struct SpriteVertex28 {
     float x;
@@ -40,8 +31,8 @@ public:
 
 class CSprite : public CSpriteBase {
 public:
-    CSprite();
-    virtual ~CSprite();
+    CSprite() {}
+    virtual ~CSprite() {}
     virtual void set_texture_options(unsigned handle, int x, int y,
         int width, int height, int pivot_x, int pivot_y);
     virtual void set_texture(unsigned handle, int x, int y, int width, int height);

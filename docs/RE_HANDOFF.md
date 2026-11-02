@@ -1,5 +1,20 @@
 # TH10.5 reconstruction handoff
 
+CSelect now uses actual CSprite members and CSelect::bind_character, with
+ordinary inline lifetimes emitted by the real NetworkBase array. Existing
+lifetime selector unit stays but uses that actual source/GS profile; obsolete
+UiSpriteLifetime.cpp removed. One actual IColor interface is shared through
+minimal engine/ColorInterface.hpp; CNumberColorLifetime is an alias, not a
+second class. This resolves private850/845 vptr-identity regression naturally;
+Select845/bind258 and Connect315 stay exact. No ABI/linkage change to solve the
+transitive-header conflict. Whole constructor4247/13 and EH461/meta188 stable.
+Final affected replay104 units/251 accepted roots passes (closure130); old
+pre-extraction receipts not reused. Four source guards,410 mutations, both
+network EH audits and4+12 guarded UI cases pass. Five strict EH alias and three
+source-owner tests added. No new exact/census credit. See
+SELECT_REAL_SPRITES_2026_11_02.md. Further class/TU changes require independent
+evidence, not another register/source-spelling grid.
+
 Character-selection41FC90 now has complete public619-byte source, still25
 unequal bytes first+36. New evidence closes the old refresh-ABI blocker:
 41FB80/258 and actual caller4208E0/341 freshly exact, with E9 at420A30.

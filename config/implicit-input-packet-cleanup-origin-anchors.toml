@@ -3,12 +3,8 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
 
 [[sources]]
-path = "src/ui/UiSpriteLifetime.cpp"
-sha256 = "45f6826c6a96ff083901b8f41f22d79c3a1bec00c4048ef78a01a4baaee2441f"
-
-[[sources]]
 path = "src/battle/EffectSprite.hpp"
-sha256 = "dfb6800e9f79c651c122cf9604101fd52f29806ac2d0ca4784c8b0ea7cc6b162"
+sha256 = "bb60054a7e07a5dd35865eb959e7e847f51f105108d4169b58445095f3fb28f2"
 
 [[sources]]
 path = "src/network/NetworkBaseConstructorRuntime.cpp"
@@ -29,6 +25,10 @@ sha256 = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
 [[sources]]
 path = "src/network/NetworkBaseMembers.hpp"
 sha256 = "f459eb2422e4f7f85a3ec0c5c559161226763c92310fde6062d9adaeb2afb940"
+
+[[sources]]
+path = "src/engine/ColorInterface.hpp"
+sha256 = "71db76e78b423b322a52fe5d0b64559238fdb1fc33170b1f2954d7efd051b093"
 
 [[anchors]]
 address = "0x0043BE90"

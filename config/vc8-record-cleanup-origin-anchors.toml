@@ -12,7 +12,7 @@ sha256 = "097bb4aa8a02f52edc98e0434b8eb5293861bd0af2e1111aaf46df41c41d5bd1"
 
 [[sources]]
 path = "src/ui/CNumberLifetime.hpp"
-sha256 = "75e77c295d7067c257287e3dbb9f9169881d687c5d5fd3a91a0874a3a5b163a6"
+sha256 = "6e405dcc74f9c1da27ed451ae424d3fb368c719eb16e71e597434c22105a8daa"
 
 [[sources]]
 path = "src/ui/DesignBaseLifetime.hpp"
@@ -20,7 +20,11 @@ sha256 = "907aeabfbb76a32dae23f3a20ee940fba5fdcf21f3023413720ae47ecfe69a71"
 
 [[sources]]
 path = "src/battle/EffectSprite.hpp"
-sha256 = "dfb6800e9f79c651c122cf9604101fd52f29806ac2d0ca4784c8b0ea7cc6b162"
+sha256 = "bb60054a7e07a5dd35865eb959e7e847f51f105108d4169b58445095f3fb28f2"
+
+[[sources]]
+path = "src/engine/ColorInterface.hpp"
+sha256 = "71db76e78b423b322a52fe5d0b64559238fdb1fc33170b1f2954d7efd051b093"
 
 [[anchors]]
 address = "0x0045CF50"

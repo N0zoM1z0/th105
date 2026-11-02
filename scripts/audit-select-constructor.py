@@ -122,6 +122,15 @@ def inventory(code):
     )
 
 
+def eh_named_aliases(data, overrides):
+    result = dict(data)
+    for source, target in overrides.items():
+        if target not in data:
+            raise ValueError("EH alias needs a pre-attested named data target: " + target)
+        result[source] = data[target]
+    return result
+
+
 def audit(object_path=None):
     identity = canonical.verify_target()
     eh = target_contract()
@@ -136,6 +145,7 @@ def audit(object_path=None):
         targets[name] = int(address, 0)
     overrides = dict(binding.split("=", 1) for binding in function["dir32_targets"])
     main = canonical.coff_symbol_bytes(object_path, SYMBOL, ADDRESS, 0xFFFFFFFF, targets, data, overrides)
+    data = eh_named_aliases(data, overrides)
     obj = coff_tool.CoffObject(object_path, symbol_base=SYMBOL)
     counts = Counter(s.name for s in obj.symbols.values() if s.section_number > 0)
     if any(n > 1 for name, n in counts.items() if "$" + SYMBOL in name):

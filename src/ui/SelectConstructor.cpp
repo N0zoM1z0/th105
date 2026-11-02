@@ -17,11 +17,11 @@ CSelect::CSelect()
  unsigned width,height;
  char path[260];char name[128];
  background_2b4=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(select_ctor_bg,&width,&height);
- reinterpret_cast<SelectSpriteCall *>(&background_2b8)->set_texture_14(background_2b4,0,0,width,height);
+ background_2b8.set_texture(background_2b4,0,0,width,height);
  names_34c=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(select_ctor_names,&width,&height);
  names_350.set_texture(names_34c,0,0,256,64);
  random_names_3f4=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(select_ctor_rnd_names,&width,&height);
- reinterpret_cast<SelectSpriteCall *>(&random_names_3f8)->set_texture_14(random_names_3f4,0,0,256,64);
+ random_names_3f8.set_texture(random_names_3f4,0,0,256,64);
  reinterpret_cast<SelectDesignCall *>(&character_design_150)->load_10(select_ctor_character_design);
  int flags;
  unsigned char *network=static_cast<unsigned char *>(get_network_session());
@@ -46,7 +46,7 @@ CSelect::CSelect()
  for(int i=0;i<2;++i) {
   wsprintfA(path,select_ctor_cursor_format,i+1);
   cursor_textures_184[i]=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(path,&width,&height);
-  reinterpret_cast<SelectSpriteCall *>(&cursor_images_18c[i])->set_texture_14(cursor_textures_184[i],0,0,width,height);
+  cursor_images_18c[i].set_texture(cursor_textures_184[i],0,0,width,height);
   character_design_150.find_object(&slots_5fc[i],i+200);
   character_design_150.bind_object_alt(&slots_604[i],i+300);
  }
@@ -61,10 +61,10 @@ CSelect::CSelect()
  for(int i=0;i<choice_count_094;++i) {
   wsprintfA(path,select_ctor_bg_picture_format,choices_098[i]);
   pictures_19b8[i]=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(path,&width,&height);
-  reinterpret_cast<SelectSpriteCall *>(&picture_images_1a38[i])->set_texture_14(pictures_19b8[i],0,0,width,height);
+  picture_images_1a38[i].set_texture(pictures_19b8[i],0,0,width,height);
   wsprintfA(path,select_ctor_bg_name_format,choices_098[i]);
   names_19f8[i]=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(path,&width,&height);
-  reinterpret_cast<SelectSpriteCall *>(&name_images_2378[i])->set_texture_14(names_19f8[i],0,0,width,height);
+  name_images_2378[i].set_texture(names_19f8[i],0,0,width,height);
  }
  music_2ccc=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)->load_texture(select_ctor_music,&width,&height);
  music_2cd0.set_texture(music_2ccc,0,0,512,16);

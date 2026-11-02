@@ -1,21 +1,15 @@
 #pragma once
 
+#include "engine/ColorInterface.hpp"
 #include <new>
 #include <stddef.h>
 
 namespace th105 {
 
 
-// RTTI for the target CNumber hierarchy proves a single zero-offset IColor
-// base. Keep a narrow lifetime view here so the existing render/layout model
-// does not need to manufacture vptr writes by hand.
-class CNumberColorLifetime {
-public:
-    virtual ~CNumberColorLifetime() {}
-    virtual void set_color(unsigned int color) = 0;
-    virtual void set_vertex_colors(const unsigned int *colors) = 0;
-    virtual void multiply_color(unsigned int color) = 0;
-};
+// Native CNumber, CTile and CSprite share the actual IColor interface.
+// Keep the legacy alias spelling, not a second source interface identity.
+typedef ::IColor CNumberColorLifetime;
 
 class CNumberTileLifetime : public CNumberColorLifetime {
 public:

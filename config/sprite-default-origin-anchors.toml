@@ -5,15 +5,19 @@ unit = "exact-first-select-constructor"
 
 [[sources]]
 path = "src/battle/EffectSprite.hpp"
-normalized_sha256 = "555ab67490256d82e7bfb7ef874ad7d3965d8bf15180ffdd0207f71aa9d0b37e"
+normalized_sha256 = "bb354c1224af92092ef88b0f7475669dacafe7891f8aa5697fcb3e7a16bbdadd"
 
 [[sources]]
 path = "src/ui/SelectConstructor.hpp"
-normalized_sha256 = "1b2b7fac2c50a2cb3e1ac8cf144e7e762a675d900ac445f479c1424ffd7b69a8"
+normalized_sha256 = "af2db84d011e38f6d7f2875ee830d7fdecc4d1cdc8f5f70f8042e871cb99a093"
 
 [[sources]]
 path = "src/ui/SelectConstructor.cpp"
-normalized_sha256 = "e0da8a0aa37dda73f044358771a2e1338bf1587b22ddd050bb50e8f46059a5f9"
+normalized_sha256 = "017521e70808db5d4e1186a0a2be9c946ff16a902480b4198404e13424bebc4b"
+
+[[sources]]
+path = "src/engine/ColorInterface.hpp"
+normalized_sha256 = "197a615d44b5242cba6ee945583797dfecd0b1823f44e1b4dcfc2362d6e08478"
 
 [[anchors]]
 address = "0x0041F6E0"

@@ -78,4 +78,13 @@ class SpriteLifetimeTests(unittest.TestCase):
             if extra:refs.append((36,6,'extra'))
             else:refs.pop()
             with self.assertRaises(ValueError):g.virtual_table(r,lambda a,s:bytes(n))
+    def test_real_array_owner_emits_lifetimes(self):
+        spec,rows,units=self.fixture();_,unit,parent=g.validate_spec(spec,rows,units,spec['target_sha256'])
+        self.assertEqual(unit['source'],parent['source']);self.assertTrue(unit['enable_gs'])
+    def test_detached_lifetime_stub_rejected(self):
+        spec,rows,units=self.fixture();units=copy.deepcopy(units);units[g.UNIT]['source']='src/ui/UiSpriteLifetime.cpp'
+        with self.assertRaises(ValueError):g.validate_spec(spec,rows,units,spec['target_sha256'])
+    def test_common_interface_source_must_be_reviewed(self):
+        spec,rows,units=self.fixture();spec['source_sha256'].pop('src/engine/ColorInterface.hpp')
+        with self.assertRaises(ValueError):g.validate_spec(spec,rows,units,spec['target_sha256'])
 if __name__=='__main__':unittest.main()

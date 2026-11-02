@@ -25,7 +25,6 @@ struct CInputManagerCluster : CInputManager {
 };
 // Pointer-only call views, never embedded or instantiated.
 struct SelectDesignCall { virtual void slot00();virtual void slot04();virtual void slot08();virtual void slot0c();virtual void load_10(const char *); };
-struct SelectSpriteCall { virtual void slot00();virtual void slot04();virtual void slot08();virtual void slot0c();virtual void slot10();virtual void set_texture_14(unsigned,int,int,int,int); };
 
 struct SelectEffectCall {
  virtual void slot00();virtual void load_04(const char *,unsigned);
@@ -48,6 +47,7 @@ extern "C" const char *character_key_to_name(unsigned);
 class CSelect : public CSceneBase {
 public:
  CSelect(); virtual ~CSelect();
+ void bind_character(int side,int character);
  virtual int update();virtual bool render();virtual void unknown_scene_method();
  virtual void on_scene_enter(int);virtual void on_scene_exit(int);
  // Full2ED8 allocation is separately observed in the accepted scene factory.
@@ -61,11 +61,11 @@ public:
  // Four actual trivial cursor records, two axes per player.
  MenuCursorState character_cursors_100[2][2];
  CDesignBase character_design_150;
- DesignTextureHandle cursor_textures_184[2];UiSprite94 cursor_images_18c[2];
- DesignTextureHandle background_2b4;UiSprite94 background_2b8;
+ DesignTextureHandle cursor_textures_184[2];::CSprite cursor_images_18c[2];
+ DesignTextureHandle background_2b4;::CSprite background_2b8;
  DesignTextureHandle names_34c;UiTileA4 names_350;
- DesignTextureHandle random_names_3f4;UiSprite94 random_names_3f8;
- DesignTextureHandle extra_textures_48c[2];UiSprite94 extra_images_494[2];
+ DesignTextureHandle random_names_3f4;::CSprite random_names_3f8;
+ DesignTextureHandle extra_textures_48c[2];::CSprite extra_images_494[2];
  UiDesignObject *slots_5bc[16];
  UiDesignObject *slots_5fc[2];UiDesignObject *slots_604[2];
  int field_60c;void *slots_610[2];UiDesignObject *anchor_618;
@@ -76,7 +76,7 @@ public:
  MenuCursorState stage_cursor_195c,variant_cursor_1970;
  CDesignBase background_design_1984;
  DesignTextureHandle pictures_19b8[16],names_19f8[16];
- UiSprite94 picture_images_1a38[16],name_images_2378[16];
+ ::CSprite picture_images_1a38[16],name_images_2378[16];
  UiDesignObject *slots_2cb8[3];UiDesignObject *background_anchor_2cc4,*background_anchor_2cc8;
  DesignTextureHandle music_2ccc;UiTileA4 music_2cd0;
  UiDesignObject *music_anchor_2d74;unsigned char guide_mix_2d78;
