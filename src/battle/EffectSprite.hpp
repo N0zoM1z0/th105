@@ -42,7 +42,17 @@ class CSprite : public CSpriteBase {
 public:
     CSprite();
     virtual ~CSprite();
-    unsigned char copied_extension_080[0x14];
+    virtual void set_texture_options(unsigned handle, int x, int y,
+        int width, int height, int pivot_x, int pivot_y);
+    virtual void set_texture(unsigned handle, int x, int y, int width, int height);
+    virtual void render_rectangle(float left, float top, float right, float bottom);
+    virtual void render(float x, float y);
+    virtual void render_fvf4142(float x, float y);
+    float pivot_x_80;
+    float pivot_y_84;
+    float scale_x_88;
+    float scale_y_8c;
+    float angle_90;
 };
 
 struct SpritePoint3 {
@@ -95,6 +105,12 @@ typedef char SpriteVertex28_size_must_be_0x1c[sizeof(SpriteVertex28) == 0x1c ? 1
 typedef char CSpriteBase_size_must_be_0x80[sizeof(CSpriteBase) == 0x80 ? 1 : -1];
 typedef char CSpriteBase_first_color_offset_must_be_0x18[offsetof(CSpriteBase, vertices_08) + offsetof(SpriteVertex28, color) == 0x18 ? 1 : -1];
 typedef char CSprite_size_must_be_0x94[sizeof(CSprite) == 0x94 ? 1 : -1];
+// Fields are read/written by the complete native texture and rendering methods.
+typedef char CSprite_pivot_x_offset[offsetof(CSprite, pivot_x_80) == 0x80 ? 1 : -1];
+typedef char CSprite_pivot_y_offset[offsetof(CSprite, pivot_y_84) == 0x84 ? 1 : -1];
+typedef char CSprite_scale_x_offset[offsetof(CSprite, scale_x_88) == 0x88 ? 1 : -1];
+typedef char CSprite_scale_y_offset[offsetof(CSprite, scale_y_8c) == 0x8c ? 1 : -1];
+typedef char CSprite_angle_offset[offsetof(CSprite, angle_90) == 0x90 ? 1 : -1];
 typedef char SpritePoint3_size_must_be_0x0c[sizeof(SpritePoint3) == 0x0c ? 1 : -1];
 typedef char CSpriteEx_size_must_be_0xe8[sizeof(CSpriteEx) == 0xe8 ? 1 : -1];
 typedef char CSpriteEx_source_quad_offset_must_be_0x80[offsetof(CSpriteEx, source_quad_080) == 0x80 ? 1 : -1];

@@ -5,7 +5,7 @@ unit = "exact-first-select-constructor"
 
 [[sources]]
 path = "src/battle/EffectSprite.hpp"
-normalized_sha256 = "02c83b2db38014a783a0ea95a25b1f9e58d5de6583f5db16996969dc57c19b76"
+normalized_sha256 = "555ab67490256d82e7bfb7ef874ad7d3965d8bf15180ffdd0207f71aa9d0b37e"
 
 [[sources]]
 path = "src/ui/SelectConstructor.hpp"

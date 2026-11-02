@@ -24,7 +24,7 @@ SCALAR='??_GCSprite@@UAEPAXI@Z'
 WEAK='??_ECSprite@@UAEPAXI@Z'
 OWNER='??0CNetworkBaseConstructorView@th105@@QAE@XZ'
 ARRAY='??_L@YGXPAXIHP6EX0@Z1@Z'
-SOURCES={'src/network/NetworkBaseMembers.hpp':'f459eb2422e4f7f85a3ec0c5c559161226763c92310fde6062d9adaeb2afb940','src/ui/UiSpriteLifetime.cpp':'45f6826c6a96ff083901b8f41f22d79c3a1bec00c4048ef78a01a4baaee2441f','src/battle/EffectSprite.hpp':'81187391923f8b5e7aea46f4f841ca56cc4566f7d279f43dd6d804a6287d83d1','src/network/NetworkBaseConstructorRuntime.cpp':'ac5d3ea4c7c09b6c42c446f83120a8da7ca23d6047901ead074febd861bde29e','src/input/InputManager.hpp':'72677fbac3a0b5c0a4411cd87c0f7bd91315ef84a1f2191ccd09e38c76786875','src/battle/Collision.hpp':'dd4fbc4d5afcbf3d4762e19023a25b4a98197e4bdcb0c4a6f568ffaa42954132','src/engine/CriticalSectionWrapper.hpp':'4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5'}
+SOURCES={'src/network/NetworkBaseMembers.hpp':'f459eb2422e4f7f85a3ec0c5c559161226763c92310fde6062d9adaeb2afb940','src/ui/UiSpriteLifetime.cpp':'45f6826c6a96ff083901b8f41f22d79c3a1bec00c4048ef78a01a4baaee2441f','src/battle/EffectSprite.hpp':'dfb6800e9f79c651c122cf9604101fd52f29806ac2d0ca4784c8b0ea7cc6b162','src/network/NetworkBaseConstructorRuntime.cpp':'ac5d3ea4c7c09b6c42c446f83120a8da7ca23d6047901ead074febd861bde29e','src/input/InputManager.hpp':'72677fbac3a0b5c0a4411cd87c0f7bd91315ef84a1f2191ccd09e38c76786875','src/battle/Collision.hpp':'dd4fbc4d5afcbf3d4762e19023a25b4a98197e4bdcb0c4a6f568ffaa42954132','src/engine/CriticalSectionWrapper.hpp':'4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5'}
 CONTRACT={'0x0040ADA0':(16,CTOR),'0x0040AD50':(7,DTOR)}
 def validate_spec(spec,selected,units,target_sha):
     require(set(spec)=={'schema_version','target_sha256','compiler_sha256','unit','parent','source_sha256','anchors'}and type(spec['schema_version'])is int and spec['schema_version']==1 and spec['target_sha256']==target_sha and spec['compiler_sha256']==COMPILER and spec['unit']==UNIT and spec['parent']==PARENT and spec['source_sha256']==SOURCES,'CSprite source/schema/compiler contract differs');aa=spec['anchors'];require(len(aa)==len(selected)==2 and {a['address']for a in aa}=={r['address']for r in selected}==set(CONTRACT),'CSprite selects two whole physical lifetimes');u=units[UNIT];p=units[PARENT]
@@ -44,14 +44,27 @@ def array_site(reader,read):
     for off in [1,6,36]:require(struct.unpack_from('<I',raw,off)[0]==0,'CSprite actual array addend differs')
     struct.pack_into('<I',raw,1,0x40ad50);struct.pack_into('<I',raw,6,0x40ada0);struct.pack_into('<i',raw,36,0x68a30c-(0x44dc03+40));require(raw[10:24]==bytes.fromhex('6a0268940000008d867c02000050'),'CSprite actual count2/stride94/member27C differs');require(bytes(raw)==read(0x44dc03,40),'CSprite whole array caller differs');return dict(address='0x0044DC03',size=40,constructor='0x0040ADA0',destructor='0x0040AD50',count=2,stride=148,member_offset=636,sha256=digest(raw))
 
+TABLE_SLOTS=[
+ (WEAK,0x40ae80),('?set_color@CSpriteBase@@UAEXI@Z',0x40ac50),
+ ('?set_vertex_colors@CSpriteBase@@UAEXPBI@Z',0x40ac70),('?multiply_color@CSpriteBase@@UAEXI@Z',0x40ac90),
+ ('?set_texture_options@CSprite@@UAEXIHHHHHH@Z',0x406a90),('?set_texture@CSprite@@UAEXIHHHH@Z',0x406a60),
+ ('?render_rectangle@CSprite@@UAEXMMMM@Z',0x4070c0),('?render@CSprite@@UAEXMM@Z',0x406be0),
+ ('?render_fvf4142@CSprite@@UAEXMM@Z',0x406e50)]
+def virtual_table(reader,read):
+    symbol='??_7CSprite@@6B@';section=reader.section(symbol)
+    require(section.name=='.rdata' and section.raw_size==40 and reader.symbol(symbol).value==4,'CSprite complete table storage/COL prefix differs')
+    require(reader.refs(symbol,36)==[(i*4,6,name)for i,(name,at)in enumerate(TABLE_SLOTS)] and reader.raw(symbol,36)==bytes(36),'CSprite nine actual virtual member roles differ')
+    expected=struct.pack('<9I',*(at for name,at in TABLE_SLOTS));require(read(0x6c0668,36)==expected,'CSprite entire native virtual table differs')
+    return dict(address='0x006C0668',size=36,sha256=digest(expected),slots=[dict(offset=i*4,symbol=n,address=hex(at))for i,(n,at)in enumerate(TABLE_SLOTS)],scope='complete slot identity only; rendering/texture body exactness is separate')
+
 def qualify(unit,parent,anchors,rows,read,c,game):
     for path,sha in SOURCES.items():require(digest((ROOT/path).read_bytes())==sha,'CSprite reviewed ordinary source changed: '+path)
     p=ROOT/unit['object'];r=Reader(p);pr=Reader(ROOT/parent['object']);g=RttiGraph(r,game,read,{'.?AVCSprite@@','.?AVCSpriteBase@@','.?AUIColor@@'});g.table('??_7CSprite@@6B@',0x6c0668,0,'.?AVCSprite@@');g.table('??_7IColor@@6B@',0x6c0624,0,'.?AUIColor@@');known=c.known_data_targets();facts=[]
     for a in anchors:
         size,sym=CONTRACT[a['address']];at=int(a['address'],0);refs=[(11,6,'??_7CSprite@@6B@')]if size==16 else[(2,6,'??_7IColor@@6B@')];require(r.symbol(sym).value==0 and r.section(sym).name=='.text'and r.section(sym).raw_size==size and r.refs(sym,size)==refs,'CSprite entire emitted lifetime differs');over={'??_7CSprite@@6B@':'_select_sprite_vtable_anchor'}if size==16 else{};b=c.coff_symbol_bytes(p,sym,at,size,{},known,over);require(len(b)==size and b==read(at,size)and digest(b)==a['sha256'],'CSprite whole canonical lifetime differs');core.decode_closed_body(b,at);hits=[x['address']for x in rows if int(x['size'],0)==size and c.coff_symbol_bytes(p,sym,int(x['address'],0),size,{},known,over)==read(int(x['address'],0),size)];expected=['0x0040ADA0']if size==16 else['0x0040AD50','0x00421D30'];require(hits==expected,'CSprite physical lifetime inventory differs');facts.append(dict(address=a['address'],size=size,sha256=digest(b),inventory_hits=hits,masked_bytes=0,unequal_bytes=0))
-    require(r.refs('??_7CSprite@@6B@',4)==[(0,6,WEAK)]and read(0x6c0668,4)==struct.pack('<I',0x40ae80),'CSprite actual first deleting slot differs');weak=weak_fallback(r,p.read_bytes());sb=c.coff_symbol_bytes(p,SCALAR,0x40ae80,31,{'??3@YAXPAX@Z':0x6898ea},known);require(r.section(SCALAR).raw_size==31 and len(sb)==31 and sb==read(0x40ae80,31),'CSprite complete scalar support differs');core.decode_closed_body(sb,0x40ae80)
+    table=virtual_table(r,read);weak=weak_fallback(r,p.read_bytes());sb=c.coff_symbol_bytes(p,SCALAR,0x40ae80,31,{'??3@YAXPAX@Z':0x6898ea},known);require(r.section(SCALAR).raw_size==31 and len(sb)==31 and sb==read(0x40ae80,31),'CSprite complete scalar support differs');core.decode_closed_body(sb,0x40ae80)
     unique={(x['address'],x['size'])for x in g.records};require(len(g.records)==24 and sum(n for a,n in unique)==273,'CSprite complete RTTI graph extent differs');site=array_site(pr,read)
-    return dict(anchors=facts,rtti=g.records,tables=g.tables,unique_rtti_bytes=273,array_site=site,scalar_support=dict(address='0x0040AE80',size=31,sha256=digest(sb),weak_fallback=weak),scope='23 pure inherited/compiler lifetime bytes withdrawn from authored credit; no exclusive normal/derived/ICF spelling, full rendering-vtable reconstruction or scalar/RTTI/array/parent credit')
+    return dict(anchors=facts,virtual_table=table,rtti=g.records,tables=g.tables,unique_rtti_bytes=273,array_site=site,scalar_support=dict(address='0x0040AE80',size=31,sha256=digest(sb),weak_fallback=weak),scope='23 pure inherited/compiler lifetime bytes withdrawn from authored credit; no exclusive normal/derived/ICF spelling, rendering/texture implementation equality or scalar/RTTI/array/parent credit')
 
 def validate(rule,selected,rows,read,target_sha):
     try:

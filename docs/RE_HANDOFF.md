@@ -1,5 +1,16 @@
 # TH10.5 reconstruction handoff
 
+Actual global CSprite now has nine RTTI-backed virtual slots and typed float
+pivot/scale/angle tail. Existing610/610 primary renders and153 rectangle now
+belong to it directly; prior candidate bytes and scheduling gaps are unchanged.
+Whole table36 plus RTTI273 and normal16/7/scalar31 pass;410 unique mutation
+controls and seven new tests. Affected include closure126:101 units/244 accepted
+authored roots freshly exact. Both full network EH scopes and four renewed
+source-origin guards pass. New renderer candidate unit makes809; all other
+counts unchanged1429/443911. No full-engine or all-facade cleanup claim.
+See CSPRITE_INTERFACE_2026_11_02.md. Continue source-backed hypotheses only;
+the actual owner spelling is now closed as an explanation for render scheduling.
+
 Original Boost search/matcher family now has all four complete remote EH
 scopes verified, closing the prior matcher-prefix-only limit: search235,
 matcher ctor243/dtor129, match_results dtor141, plus actual recursion8/44,

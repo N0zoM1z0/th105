@@ -24642,7 +24642,7 @@ enable_gs = false
 notes = "Complete4070C0 four-edge sprite rectangle render using real vertex storage and existing D3D interfaces."
 [[units.exact-first-sprite-rectangle-render.functions]]
 address = "0x004070C0"
-symbol_base = "?render_rectangle@SpriteRectangleRenderView@th105@@QAEXMMMM@Z"
+symbol_base = "?render_rectangle@CSprite@@UAEXMMMM@Z"
 rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0"]
 dir32_targets = [
  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
@@ -29604,3 +29604,23 @@ symbol_base = "??1CSprite@@UAE@XZ"
 address = "0x0043BE90"
 symbol_base = "??1InputPacket24ConstructorView@th105@@QAE@XZ"
 rel32_targets = ["?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
+
+[units.exact-first-sprite-primary-render]
+kind = "probe"
+source = "src/ui/SpriteRender.cpp"
+object = "build/match-units/ExactFirst_SpritePrimaryRender.obj"
+profile = "vc8-sp1-probe-o2-fp-strict"
+enable_gs = false
+notes = "Actual global CSprite virtual methods and typed five-float tail. Whole610/610 bodies retain their COM scheduling residual; no exact credit."
+
+[[units.exact-first-sprite-primary-render.functions]]
+address = "0x00406BE0"
+symbol_base = "?render@CSprite@@UAEXMM@Z"
+rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360"]
+dir32_targets = ["?g_sprite_texture_manager@th105@@3UCHandleManager4@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_sprite_texture_device@th105@@3PAUD3DDevice9@1@A=?g_title_texture_cache_host@th105@@3PAXA", "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base"]
+
+[[units.exact-first-sprite-primary-render.functions]]
+address = "0x00406E50"
+symbol_base = "?render_fvf4142@CSprite@@UAEXMM@Z"
+rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360"]
+dir32_targets = ["?g_sprite_texture_manager@th105@@3UCHandleManager4@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_sprite_texture_device@th105@@3PAUD3DDevice9@1@A=?g_title_texture_cache_host@th105@@3PAXA", "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base"]

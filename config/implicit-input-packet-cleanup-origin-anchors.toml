@@ -8,7 +8,7 @@ sha256 = "45f6826c6a96ff083901b8f41f22d79c3a1bec00c4048ef78a01a4baaee2441f"
 
 [[sources]]
 path = "src/battle/EffectSprite.hpp"
-sha256 = "81187391923f8b5e7aea46f4f841ca56cc4566f7d279f43dd6d804a6287d83d1"
+sha256 = "dfb6800e9f79c651c122cf9604101fd52f29806ac2d0ca4784c8b0ea7cc6b162"
 
 [[sources]]
 path = "src/network/NetworkBaseConstructorRuntime.cpp"
