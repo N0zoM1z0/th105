@@ -39,6 +39,7 @@ public:
     void bind_value(T value);
 
 private:
+    friend class CDesignBase;
     friend void __stdcall render_bound(CNumber *number, float x, float y);
     friend void __stdcall render_floating(CNumber *number, float value,
         float x, float y, int integer_digits, int fractional_digits,

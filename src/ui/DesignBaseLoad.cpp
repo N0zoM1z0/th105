@@ -6,6 +6,7 @@
 #include "assets/FileReader.hpp"
 #include "ui/Title.hpp"
 #include "ui/Tile.hpp"
+#include "ui/CNumberRuntime.hpp"
 #include <stdlib.h>
 #include <string.h>
 
@@ -28,24 +29,6 @@ public:
     float u_span_94, v_span_98;
     int mode_9c;
     void *value_a0;
-};
-
-class DesignLoaderNumber : public DesignColorLifetimeView {
-public:
-    DesignLoaderNumber() : value_24(0) {}
-    virtual ~DesignLoaderNumber()
-    {
-        if (value_24 != 0)
-            ::operator delete(value_24);
-    }
-    virtual void set_color(unsigned int);
-    virtual void set_vertex_colors(const unsigned int *);
-    virtual void multiply_color(unsigned int);
-    float glyph_width_04, spacing_08, scale_0c, secondary_scale_10;
-    int columns_14, integer_digits_18, fractional_digits_1c;
-    unsigned char mode_20;
-    void *value_24;
-    CTile tile_28;
 };
 
 class DesignLoaderObjectBase : public DesignColorLifetimeView {
@@ -90,7 +73,7 @@ public:
     virtual void multiply_color(unsigned int);
     virtual void render_offset(float, float);
     virtual void render();
-    DesignLoaderNumber number_18;
+    CNumber number_18;
 };
 
 struct DesignTextureRectangle {
@@ -257,9 +240,9 @@ void CDesignBase::load(const char *path)
             unsigned int handle = texture_handles_04[texture];
             object->number_18.glyph_width_04 = static_cast<float>(width);
             object->number_18.spacing_08 = static_cast<float>(spacing);
-            object->number_18.fractional_digits_1c = fractional_digits;
+            object->number_18.reserved_1c = fractional_digits;
             object->number_18.scale_0c = object->number_18.secondary_scale_10 = 1;
-            object->number_18.integer_digits_18 = integer_digits;
+            object->number_18.reserved_18 = integer_digits;
             object->number_18.columns_14 = columns;
             object->number_18.mode_20 = 0;
             object->number_18.tile_28.set_texture_options(handle, 0, 0,
@@ -283,12 +266,11 @@ typedef char LoaderObjectSize[sizeof(DesignLoaderObjectBase) == 0x18 ? 1 : -1];
 typedef char LoaderSpriteSize[sizeof(CSprite) == 0x94 ? 1 : -1];
 typedef char LoaderGageSize[sizeof(DesignLoaderGage) == 0xa4 ? 1 : -1];
 typedef char LoaderTileSize[sizeof(CTile) == 0xa4 ? 1 : -1];
-typedef char LoaderNumberSize[sizeof(DesignLoaderNumber) == 0xcc ? 1 : -1];
+typedef char LoaderNumberSize[sizeof(CNumber) == 0xcc ? 1 : -1];
 typedef char LoaderSpriteObjectSize[sizeof(DesignLoaderSpriteObject) == 0xac ? 1 : -1];
 typedef char LoaderGageObjectSize[sizeof(DesignLoaderGageObject) == 0xbc ? 1 : -1];
 typedef char LoaderNumberObjectSize[sizeof(DesignLoaderNumberObject) == 0xe4 ? 1 : -1];
 typedef char LoaderNumberOffset[offsetof(DesignLoaderNumberObject, number_18) == 0x18 ? 1 : -1];
-typedef char LoaderTileOffset[offsetof(DesignLoaderNumber, tile_28) == 0x28 ? 1 : -1];
 
 } // namespace th105
 

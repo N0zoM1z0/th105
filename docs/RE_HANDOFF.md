@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Design loading now uses shared CNumber with friend access, removing its local
+number class. The real constructor naturally corrects tile-handle / table /
+value-pointer initialization order to native +44 / +40 / +3C. Raw loader2580
+changes ten byte positions but remains EH-blocked, with no native byte credit.
+Actual CNumber scalar60 / four slots pass. All 28 accepted roots in 10 units
+pass (closure11); seven other hashes and the old block are unchanged. Origin
+3 / 28 and 9 / 948 plus scalar 1 / 30 and 2 / 121 pass. No count changes.
+CI passed all 962 tests in 100.432 seconds.
+See DESIGN_LOADER_REAL_NUMBER_2026_11_02.md.
+
 Design-number rendering now shares CNumber / IColor instead of duplicate
 number/color classes. Existing unexported helpers receive friend access without
 layout or calling-convention changes. Integer rendering is one verbatim shared
