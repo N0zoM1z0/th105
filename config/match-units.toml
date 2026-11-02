@@ -14792,7 +14792,7 @@ source = "src/network/NetworkServerContinuationRuntime.cpp"
 object = "build/match-units/GptWeb_NetworkServerContinuationRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current RTTI-owned CNetworkServer primary vtable 0x006C16EC. Vslot-1 reset extends exact CNetworkBase reset with Server state/counters; endpoint maintenance uses the two 0x7C composed input endpoints; auxiliary state import copies the +0x23C deque and peer byte; snapshot publication reuses the exact 0x4C state layout and must keep pending-positive work as fallthrough so the false epilogue remains at the target tail."
+notes = "Current RTTI-owned CNetworkServer primary vtable 0x006C16EC. Vslot-1 reset extends exact CNetworkBase reset with Server state/counters; endpoint maintenance uses the two 0x7C composed input endpoints; auxiliary state import copies the +0x23C deque and peer byte; the separate CNetworkClient snapshot publisher (table0x006C1754 slot0x0C) reuses the exact 0x4C state layout and must keep pending-positive work as fallthrough so the false epilogue remains at the target tail."
 
 [[units.gpt-web-network-server-continuation-runtime.functions]]
 address = "0x0043CBD0"
@@ -14823,7 +14823,7 @@ rel32_targets = [
 
 [[units.gpt-web-network-server-continuation-runtime.functions]]
 address = "0x0044F390"
-symbol_base = "?publish_snapshot@CNetworkServerPublishView@th105@@QAE_NPAUNetworkStateRecord4CPublish@2@@Z"
+symbol_base = "?publish_snapshot@CNetworkClientPublishView@th105@@QAE_NPAUNetworkStateRecord4C@2@@Z"
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
@@ -29630,7 +29630,7 @@ dir32_targets = ["?g_ui_tile_texture_manager@th105@@3UCHandleManager4@1@A=?g_tit
 
 [[units.gpt-web-network-primary-packet-continuation.functions]]
 address = "0x0044E6D0"
-symbol_base = "?import_ack_info_tail_44e6d0@CNetworkClientPacketContinuationView@th105@@QAEXPBUNetworkStateRecord4CView@2@@Z"
+symbol_base = "?import_ack_info_tail_44e6d0@CNetworkClientPacketContinuationView@th105@@QAEXPBUNetworkStateRecord4C@2@@Z"
 rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40"]
 
 [[units.gpt-web-network-primary-packet-continuation.functions]]

@@ -11,7 +11,7 @@ reachable instructions and ends in RET4. Native SHA256:
 `d0c302e135a6cab0a56a6b33b09a5f53b6d0544dd69d77e4db6697a17aee9cc0`.
 
 The callback enters the actual critical section at this+25C, copies the local
-peer's byte4 into the remote peer's byte4, imports packet bytes0E/2E into
+peer's byte4 into the remote peer's byte4, imports snapshot bytes0E/2E into
 owner21A/23A, writes pending3A6=1 and leaves the same critical section. Calls
 44E6DC and44E714 reach independently exact11-byte enter/leave wrappers40AC30
 and40AC40. These explicit game-state publications establish authored ownership;
@@ -28,7 +28,7 @@ liveness, padding, assembly or source-spelling trial was introduced.
 `audit-client-ack-tail.py` compares complete bodies and executes six finite
 normal-path cases, including high unsigned bytes and equal local/remote peer
 pointers. Both sides preserve RET4 and all nonvolatile registers, publish the
-same bytes, leave the packet and local peer unchanged, and call enter/leave
+same bytes, leave the snapshot and local peer unchanged, and call enter/leave
 in order with the correct receiver. Write hooks permit only the four observed
 byte destinations while between the helper boundaries, plus normal stack
 writes. Helper simulation clobbers EAX/ECX/EDX/flags rather than depending on
@@ -64,3 +64,13 @@ Authored exact remains1427 /443604 bytes; matches.csv is unchanged.
 Evidence: `.analysis/frontier-client-ack-tail-20261102/` and
 `build/frontier-client-ack-tail-20261102/`. Raw pinned target, serial native
 work CPU0/nice10, no IDA semantics or push.
+
+## Shared-record clarification
+
+The input is the in-process NetworkStateRecord4C with native deques at10/30,
+not the separate40-byte CDPP_ACK_INFO C++ packet object or MatchSetup. The
+historical ACK-tail label refers to marking ACK pending during state import.
+The shared-record follow-up replaces the old narrow input view without changing
+its78-byte candidate and adds client/server slot checks; see
+NETWORK_STATE_RECORD_2026_11_02.md. The earlier statement that C++ was unchanged
+refers specifically to the registration checkpoint.

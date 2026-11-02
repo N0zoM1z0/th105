@@ -1,4 +1,5 @@
 #include "../engine/CriticalSectionWrapper.hpp"
+#include "NetworkStateRecord.hpp"
 
 #include <deque>
 #include <stddef.h>
@@ -91,31 +92,11 @@ void CNetworkServerSmallRuntimeView::import_aux(
     critical_25c.leave();
 }
 
-struct NetworkStateRecord4CPublish {
-    unsigned char reserved_000[4];
-    unsigned char byte_004;
-    unsigned char byte_005;
-    unsigned char reserved_006[2];
-    unsigned int value_008;
-    unsigned char byte_00c;
-    unsigned char byte_00d;
-    unsigned char byte_00e;
-    unsigned char reserved_00f;
-    std::deque<short> queue_010;
-    unsigned int peer_024;
-    unsigned int value_028;
-    unsigned char byte_02c;
-    unsigned char byte_02d;
-    unsigned char byte_02e;
-    unsigned char reserved_02f;
-    std::deque<short> queue_030;
-    unsigned int value_044;
-    unsigned int value_048;
-};
 
-class CNetworkServerPublishView {
+
+class CNetworkClientPublishView {
 public:
-    virtual ~CNetworkServerPublishView();
+    virtual ~CNetworkClientPublishView();
     virtual void slot_01();
     virtual void slot_02();
     virtual void slot_03();
@@ -128,7 +109,7 @@ public:
     virtual void slot_0a();
     virtual void slot_0b(int value);
 
-    bool publish_snapshot(NetworkStateRecord4CPublish *destination);
+    bool publish_snapshot(NetworkStateRecord4C *destination);
 
     unsigned char reserved_004[0x0d8];
     CriticalSectionWrapper critical_0dc;
@@ -163,11 +144,11 @@ public:
     unsigned char reserved_6c4[4];
     std::deque<short> queue_6c8;
     unsigned char reserved_6dc[4];
-    int sample_count_6e0;
+    int state_word_6e0;
 };
 
-bool CNetworkServerPublishView::publish_snapshot(
-    NetworkStateRecord4CPublish *destination)
+bool CNetworkClientPublishView::publish_snapshot(
+    NetworkStateRecord4C *destination)
 {
     CriticalSectionWrapper *state_lock = &critical_25c;
     state_lock->enter();
@@ -176,10 +157,10 @@ bool CNetworkServerPublishView::publish_snapshot(
     if (pending) {
         critical_0dc.enter();
         queue_6c8.clear();
-        const bool no_samples = sample_count_6e0 == 0;
+        const bool state_is_zero = state_word_6e0 == 0;
         value_6bc = 0;
         value_6c0 = 0;
-        if (no_samples) {
+        if (state_is_zero) {
             ++sequence_6b8;
             if (sequence_6b8 == 0)
                 sequence_6b8 = 1;
@@ -202,9 +183,9 @@ bool CNetworkServerPublishView::publish_snapshot(
         destination->byte_005 = byte_211;
         destination->byte_004 = byte_210;
         destination->value_048 = value_254;
-        const bool still_no_samples = sample_count_6e0 == 0;
+        const bool state_still_zero = state_word_6e0 == 0;
         pending_3a5 = 0;
-        if (!still_no_samples)
+        if (!state_still_zero)
             slot_0b(5);
         state_lock->leave();
         return true;
@@ -218,11 +199,11 @@ typedef char CNetworkServerSmallRuntimeView_critical_offset_must_be_0xdc[
     offsetof(CNetworkServerSmallRuntimeView, critical_0dc) == 0xdc ? 1 : -1];
 typedef char CNetworkServerSmallRuntimeView_counter_offset_must_be_0x6e0[
     offsetof(CNetworkServerSmallRuntimeView, counter_6e0) == 0x6e0 ? 1 : -1];
-typedef char NetworkStateRecord4CPublish_size_must_be_0x4c[
-    sizeof(NetworkStateRecord4CPublish) == 0x4c ? 1 : -1];
-typedef char CNetworkServerPublishView_pending_offset_must_be_0x3a5[
-    offsetof(CNetworkServerPublishView, pending_3a5) == 0x3a5 ? 1 : -1];
-typedef char CNetworkServerPublishView_sample_offset_must_be_0x6e0[
-    offsetof(CNetworkServerPublishView, sample_count_6e0) == 0x6e0 ? 1 : -1];
+typedef char NetworkStateRecord4C_size_must_be_0x4c[
+    sizeof(NetworkStateRecord4C) == 0x4c ? 1 : -1];
+typedef char CNetworkClientPublishView_pending_offset_must_be_0x3a5[
+    offsetof(CNetworkClientPublishView, pending_3a5) == 0x3a5 ? 1 : -1];
+typedef char CNetworkClientPublishView_state_word_offset_must_be_0x6e0[
+    offsetof(CNetworkClientPublishView, state_word_6e0) == 0x6e0 ? 1 : -1];
 
 } // namespace th105

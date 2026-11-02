@@ -1,5 +1,14 @@
 # TH10.5 reconstruction handoff
 
+Three network snapshot views now share NetworkStateRecord.hpp: real deque
+members10/30 and tail bytes0E/2E, not MatchSetup or the separate ACK_INFO packet
+object. No new lifetime/storage behavior. RTTI slots also correct44F390's old
+server label: it is CNetworkClient slot0C at6C1760; source view and existing
+matching row renamed to client, full324 exact. All11 candidate hashes unchanged
+across3 affected units (9 accepted roots); ACK78/8 andserver404/409 remain
+nonexact. Six guarded snapshot cases/negative, both-owner slot assertions and
+2 new ownership tests pass. No counts changed. See NETWORK_STATE_RECORD_2026_11_02.md.
+
 Client/server publishers now read input208->resolved_mask through the existing
 CInputManagerEx source layout instead of raw+62 casts; both TUs assert offset62.
 Only two CPPs changed, no shared header/layout change. All7 complete bodies

@@ -1,4 +1,5 @@
 #include "../engine/CriticalSectionWrapper.hpp"
+#include "NetworkStateRecord.hpp"
 
 #include <deque>
 #include <stddef.h>
@@ -12,27 +13,7 @@ struct NetworkByte4Peer {
 
 // Current server vtable slots 2/3 exchange this 0x4c state snapshot.  The two
 // 0x14 members are native checked VC8 deque<short> objects.
-struct NetworkStateRecord4C {
-    unsigned char reserved_000[4];
-    unsigned char byte_004;
-    unsigned char byte_005;
-    unsigned char reserved_006[2];
-    unsigned int value_008;
-    unsigned char byte_00c;
-    unsigned char byte_00d;
-    unsigned char byte_00e;
-    unsigned char reserved_00f;
-    std::deque<short> queue_010;
-    unsigned int peer_024;
-    unsigned int value_028;
-    unsigned char byte_02c;
-    unsigned char byte_02d;
-    unsigned char byte_02e;
-    unsigned char reserved_02f;
-    std::deque<short> queue_030;
-    unsigned int value_044;
-    unsigned int value_048;
-};
+
 
 struct CNetworkServerStateView {
     void import_state(const NetworkStateRecord4C *source);

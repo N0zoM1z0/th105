@@ -6037,7 +6037,7 @@ origin = "authored_game"
 subsystem = "network"
 disposition = "authored"
 confidence = "observed"
-evidence = "Whole78-byte CNetworkClient slot8 callback imports two packet bytes, publishes local peer byte to remote peer and marks pending under the actual critical section. Complete21-instruction RET4 body, RTTI/table and exact enter/leave helper edges are pinned. Existing natural78-byte source remains8 differing bytes; six finite guarded lock-boundary observations and wrong-field negative pass. docs/CLIENT_ACK_TAIL_SOURCE_2026_11_02.md."
+evidence = "Whole78-byte CNetworkClient slot8 callback imports two state-snapshot bytes, publishes local peer byte to remote peer and marks pending under the actual critical section. Complete21-instruction RET4 body, RTTI/table and exact enter/leave helper edges are pinned. Existing natural78-byte source remains8 differing bytes; six finite guarded lock-boundary observations and wrong-field negative pass. docs/CLIENT_ACK_TAIL_SOURCE_2026_11_02.md."
 required_rtti_virtual_bodies = [{ address = "0x0044E6D0", size = 78, sha256 = "d0c302e135a6cab0a56a6b33b09a5f53b6d0544dd69d77e4db6697a17aee9cc0", slot = "0x006C175C", col_slot = "0x006C1750", col = "0x006D80BC", type_descriptor = "0x006E6924", type_name_contains = ".?AVCNetworkClient@@", calls = [{ site = "0x0044E6DC", target = "0x0040AC30" }, { site = "0x0044E714", target = "0x0040AC40" }] }]
 
 [[rules]]

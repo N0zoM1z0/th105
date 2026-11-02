@@ -1,4 +1,5 @@
 #include "../engine/CriticalSectionWrapper.hpp"
+#include "NetworkStateRecord.hpp"
 #include "../input/InputManager.hpp"
 
 #include <deque>
@@ -25,20 +26,14 @@ struct NetworkPeerByte5 {
     unsigned char byte_004;
 };
 
-struct NetworkStateRecord4CView {
-    unsigned char reserved_000[0x0e];
-    unsigned char side0_tail_00e;
-    unsigned char reserved_00f[0x1f];
-    unsigned char side1_tail_02e;
-    unsigned char reserved_02f[0x1d];
-};
+
 
 class CNetworkClientPacketContinuationView {
 public:
     int send_packet_with_result_44e6a0(
         NetworkPacketWithResult8 *packet, int option);
     void import_ack_info_tail_44e6d0(
-        const NetworkStateRecord4CView *source);
+        const NetworkStateRecord4C *source);
 
     unsigned char reserved_000[0x200];
     NetworkPeerByte5 *local_peer_200;
@@ -69,12 +64,12 @@ int CNetworkClientPacketContinuationView::send_packet_with_result_44e6a0(
 }
 
 void CNetworkClientPacketContinuationView::import_ack_info_tail_44e6d0(
-    const NetworkStateRecord4CView *source)
+    const NetworkStateRecord4C *source)
 {
     critical_25c.enter();
     remote_peer_250->byte_004 = local_peer_200->byte_004;
-    side0_tail_21a = source->side0_tail_00e;
-    side1_tail_23a = source->side1_tail_02e;
+    side0_tail_21a = source->byte_00e;
+    side1_tail_23a = source->byte_02e;
     ack_pending_3a6 = 1;
     critical_25c.leave();
 }
@@ -239,8 +234,8 @@ void CNetworkServerInputPublishView::publish_input_frame_44f9a0()
     lock->leave();
 }
 
-typedef char NetworkStateRecord4CView_size[
-    sizeof(NetworkStateRecord4CView) == 0x4c ? 1 : -1];
+typedef char NetworkStateRecord4C_size[
+    sizeof(NetworkStateRecord4C) == 0x4c ? 1 : -1];
 typedef char CNetworkClientPacketContinuationView_peer_offset[
     offsetof(CNetworkClientPacketContinuationView, local_peer_200) == 0x200
         ? 1 : -1];
