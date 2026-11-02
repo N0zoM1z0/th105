@@ -1,5 +1,15 @@
 # TH10.5 reconstruction handoff
 
+Existing client ACK-tail source44E6D0 is now formally registered: full78-byte
+CNetworkClient slot8/21 instructions/RET4, native RTTI and both exact critical
+wrapper edges prove authored ownership. Source unchanged78/8 mismatches at+53
+(store/load scheduling); no closed spelling lane reopened. Six guarded finite
+state/lock-boundary cases including shared peer pointer pass; wrong field21B
+rejects, no OS/network/concurrency execution. Existing48/162 accepted siblings
+and critical helpers fresh exact. New4 tests. Source1635/authored1654/mapped1824/
+review299; excluded2074 and exact1427/443604 unchanged, units812. See
+CLIENT_ACK_TAIL_SOURCE_2026_11_02.md.
+
 CDesignBase now shares actual global IColor; constructor/destructor both
 implicit and naturally emitted by real SelectConstructor.cpp. Old lifetime
 probe source/helper removed; Select calls real design.load without its view.

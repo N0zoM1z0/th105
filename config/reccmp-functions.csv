@@ -1822,3 +1822,4 @@ CFileList_go_parent_directory,0x004398B0,function
 NetworkReceiveLock_ctor,0x00401850,function
 CSelect_render,0x0041FF00,function
 CSelect_update_characters,0x0041FC90,function
+CNetworkClient_import_ack_info_tail,0x0044E6D0,function

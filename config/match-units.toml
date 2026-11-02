@@ -29627,3 +29627,8 @@ address = "0x004099F0"
 symbol_base = "?render@CTile@@QAEXMMHH@Z"
 rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360"]
 dir32_targets = ["?g_ui_tile_texture_manager@th105@@3UCHandleManager4@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_ui_tile_texture_device@th105@@3PAUD3DDevice9@1@A=?g_title_texture_cache_host@th105@@3PAXA", "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base"]
+
+[[units.gpt-web-network-primary-packet-continuation.functions]]
+address = "0x0044E6D0"
+symbol_base = "?import_ack_info_tail_44e6d0@CNetworkClientPacketContinuationView@th105@@QAEXPBUNetworkStateRecord4CView@2@@Z"
+rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40"]

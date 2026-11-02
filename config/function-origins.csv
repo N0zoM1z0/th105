@@ -1550,7 +1550,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044E2C0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E460,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0044E6A0,authored_game,network,authored,observed,canonical-exact-authored
-0x0044E6D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044E6D0,authored_game,network,authored,observed,client-ack-tail-import-authored-106a
 0x0044E720,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E730,authored_game,network,authored,observed,canonical-exact-authored
 0x0044E750,authored_game,network,authored,observed,canonical-exact-authored

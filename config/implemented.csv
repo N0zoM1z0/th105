@@ -1632,3 +1632,4 @@ EffectResourceManager_load_effect_resource_437ec0
 NetworkReceiveLock_ctor
 CSelect_render
 CSelect_update_characters
+CNetworkClient_import_ack_info_tail

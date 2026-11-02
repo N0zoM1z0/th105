@@ -69,6 +69,7 @@ EXACT_TEST_MODULES = (
     "test_ctile_real_owner",
     "test_select_owner_layout",
     "test_design_color_owner",
+    "test_client_ack_tail",
     "test_sprite_callback_origins",
     "test_input_base_cleanup_origins",
     "test_replay_member_cleanup_origins",
