@@ -395,7 +395,8 @@ command window, so this checkpoint does not claim a full census replay. See
 Profile selection `427C60`, result-menu active update `4472A0` and key capture
 `44B540` are authored by complete native bodies and exact owner edges. Their
 prior source hypotheses remained nonexact at that checkpoint; `44B540` has
-since been selected, still nonexact. Exact totals do not change. All three owner bodies were rebuilt exactly; the result owner's unit
+since been selected, still nonexact; the result update is also now selected.
+Exact totals do not change. All three owner bodies were rebuilt exactly; the result owner's unit
 still reports an overall mismatch on its separate constructor. The focused
 origin rule, tracking and target-independent CI pass; a full origin census was
 not replayed. See `ORIGIN_RECOVERY_2026_11_03.md`.
@@ -407,3 +408,11 @@ class via `exact-first-profile-key-capture`. Its candidate remains 785/790
 bytes with a 780-byte matching prefix and a different final return topology.
 The exact owner and input provider units and target-independent CI replayed;
 no exact byte credit is claimed. See `PROFILE_KEY_CAPTURE_SOURCE_2026_11_03.md`.
+
+### Active result-menu source (2026-11-03)
+
+The existing full `4472A0` result-menu policy is now individually selected by
+`exact-first-result-menu-active`. The 620-byte candidate remains nonexact against
+619 native bytes, first mismatch +81; EH cleanup is not proven exact. The exact
+wrapper was rebuilt in the prior origin checkpoint and target-independent CI
+passes. No exact bytes are added. See `RESULT_MENU_ACTIVE_SOURCE_2026_11_03.md`.

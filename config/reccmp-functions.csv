@@ -1846,3 +1846,4 @@ Fighter_update_scripted_input_state,0x00463E40,function
 NetworkClient_dispatch_replay_request,0x0044E460,function
 Fighter_initialize_battle_state,0x00460200,function
 CProfileKeyConfig_capture_key_input,0x0044B540,function
+CMenuResult_update_active,0x004472A0,function

@@ -26,8 +26,8 @@ classified as authored, without adding exact-match credit:
   unselected and nonexact.
 - `4472A0` (619 bytes) updates the active result menu, reached by the exact
   wrapper's tail jump at `447586`. Its full body closes 175 reachable
-  instructions and 27 direct calls. Its prior source hypothesis remains
-  unselected and nonexact.
+  instructions and 27 direct calls. Its prior source is now selected but remains
+  nonexact.
 - `44B540` (790 bytes) captures profile keyboard and gamepad input, called by
   the exact key configuration update at `44B8A5`. The CFG reaches 194
   instructions; the only skipped seven bytes at `44B659` are the original

@@ -1655,3 +1655,4 @@ Fighter_update_scripted_input_state
 NetworkClient_dispatch_replay_request
 Fighter_initialize_battle_state
 CProfileKeyConfig_capture_key_input
+CMenuResult_update_active
