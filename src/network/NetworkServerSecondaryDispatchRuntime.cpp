@@ -1,4 +1,5 @@
 #include "../engine/CriticalSectionWrapper.hpp"
+#include "NetworkAckInfoPacket.hpp"
 
 #include <deque>
 #include <stddef.h>
@@ -29,21 +30,6 @@ public:
     std::deque<short> values_010;
 };
 
-class AckInfoPacket40 : public PacketResultBase4 {
-public:
-    AckInfoPacket40();
-    virtual unsigned int serialize(void *buffer);
-    char parse(const unsigned char *input);
-    unsigned char value_008[2];
-    unsigned char status_00a[2];
-    std::deque<short> values_00c[2];
-    unsigned char peer_034[2];
-    unsigned char tail_036;
-    unsigned char tail_037;
-    unsigned int tail_038;
-    unsigned char sequence_03c;
-    unsigned char reserved_03d[3];
-};
 
 class EmbeddedStatePacket8 {
 public:
@@ -74,7 +60,7 @@ public:
     virtual void slot_03();
     virtual void slot_04();
     virtual void slot_05();
-    virtual void consume_ack_info(AckInfoPacket40 *packet);
+    virtual void consume_ack_info(NetworkAckInfoPacket40 *packet);
     virtual void slot_07();
     virtual void consume_input(InputPacket24 *packet);
     virtual void slot_09();
@@ -167,7 +153,7 @@ void CNetworkServerSecondaryDispatchView::dispatch_packet(
         break;
     }
     case 4: {
-        AckInfoPacket40 request;
+        NetworkAckInfoPacket40 request;
         request.parse(packet);
         owner()->consume_ack_info(&request);
         break;
@@ -192,7 +178,7 @@ typedef char ServerSecondaryDispatchSize[
     sizeof(CNetworkServerSecondaryDispatchView) == 0x08 ? 1 : -1];
 typedef char SceneAckPacket0C_size_s[sizeof(SceneAckPacket0C)==0x0c?1:-1];
 typedef char InputPacket24_size_s[sizeof(InputPacket24)==0x24?1:-1];
-typedef char AckInfoPacket40_size_s[sizeof(AckInfoPacket40)==0x40?1:-1];
+typedef char NetworkAckInfoPacket40_size_s[sizeof(NetworkAckInfoPacket40)==0x40?1:-1];
 typedef char NetworkRequestReplay10_size_s[sizeof(NetworkRequestReplay10)==0x10?1:-1];
 
 } // namespace th105

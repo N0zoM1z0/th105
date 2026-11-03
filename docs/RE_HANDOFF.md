@@ -286,3 +286,7 @@ A typed ACK/replay request dispatcher is selected at `0x44E460`, with both nativ
 ### 2026-11-03: unify ACK packet hierarchy
 
 The ACK packet serializer/parser, senders and replay dispatcher now share one `NetworkAckInfoPacket40` with the RTTI-proven polymorphic offset-zero base. This corrects the serializer/parser TU's superseded non-polymorphic-base view and match-unit notes. Fresh comparisons preserve both exact serializer/parser roots and both exact senders; the constructor and replay dispatcher retain their identical prior nonexact hashes. See `docs/ACK_PACKET_BASE_2026_10_29.md`. No new exact credit or complete-link claim.
+
+### 2026-11-03: share ACK type with secondary dispatchers
+
+Client `0x44EE80` and Server `0x44FB40` secondary packet dispatchers now use the shared RTTI-backed ACK type and actual parser instead of stale non-polymorphic-base aliases. Fresh body comparisons preserve 582/582 and 532/532. No new exact credit or new cleanup-EH equivalence claim. See `docs/ACK_PACKET_BASE_2026_10_29.md`.
