@@ -1643,3 +1643,4 @@ BattleInfoRecord_update_story
 PracticeBattlePolicy_update
 CScenarioData_select_label
 InfoComboResource_load
+CollisionContext_apply_forwarded_quantity_to_pair

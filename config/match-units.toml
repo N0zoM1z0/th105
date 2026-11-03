@@ -29771,3 +29771,23 @@ notes = "Complete BGM master volume source. Natural linked body357/native284 has
 address = "0x00403A30"
 symbol_base = "?set_master_gain@BgmLoadServiceView@th105@@QAEXM@Z"
 rel32_targets = ["?lookup@BgmLoadManagerView@th105@@QAEPAUBgmStreamRuntime@2@I@Z=0x00404330", "_log10=0x0068C0A0", "__ftol2_sse=0x0068A1A0", "__invalid_parameter_noinfo=0x0068A143"]
+
+[units.exact-first-forwarded-hit-quantity]
+kind = "probe"
+source = "src/battle/ForwardedHitQuantity.cpp"
+object = "build/match-units/ExactFirst_ForwardedHitQuantity.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete301-byte forwarded hit quantity policy with actual typed CBattleManager virtual slot. Ordinary source remains nonexact; no manual vptr or forced register. docs/FORWARDED_HIT_SOURCE_2026_11_03.md."
+
+[[units.exact-first-forwarded-hit-quantity.functions]]
+address = "0x0046C5B0"
+symbol_base = "?apply_forwarded_quantity_to_pair@CollisionContext@th105@@QAEXPAUAttackCandidate@2@PAUFighter@2@HHFC@Z"
+rel32_targets = [
+ "?is_state_13c_in_32_95@th105@@YI_NPAUFighter@1@@Z=0x0045E0E0",
+ "?reset_hit_exchange_scratch@CollisionContext@th105@@QAEXPAUFighter@2@0@Z=0x0046B350",
+ "?calculate_forwarded_quantity@AttackCandidate@th105@@QAEMXZ=0x0045B4A0",
+ "?adjust_capped_counter_558@Fighter@th105@@QAEXF@Z=0x0045CED0",
+ "__ftol2_sse=0x0068A1A0",
+]
+dir32_targets = ["__real@408f400000000000=__real@408f400000000000"]

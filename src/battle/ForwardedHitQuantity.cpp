@@ -1,23 +1,7 @@
-#include "Collision.hpp"
+#include "battle/Collision.hpp"
+#include "battle/BattleManagerVirtuals.hpp"
 
 namespace th105 {
-
-namespace {
-
-typedef void (__thiscall *ContextDepletionCallback)(
-    CollisionContext *context, Fighter *fighter);
-
-void invoke_context_slot_2c(
-    CollisionContext *context,
-    Fighter *fighter)
-{
-    ContextDepletionCallback callback =
-        reinterpret_cast<ContextDepletionCallback>(
-            (*reinterpret_cast<void ***>(context))[11]);
-    callback(context, fighter);
-}
-
-} // namespace
 
 void CollisionContext::apply_forwarded_quantity_to_pair(
     AttackCandidate *candidate,
@@ -62,7 +46,8 @@ void CollisionContext::apply_forwarded_quantity_to_pair(
     fighter->value_174 -= static_cast<short>(applied_quantity);
     if (fighter->value_174 <= 0) {
         fighter->value_174 = 0;
-        invoke_context_slot_2c(this, fighter);
+        reinterpret_cast<CBattleManager *>(this)
+            ->mark_terminal_pending_if_state_not_3_472490(fighter);
     }
     fighter->accumulated_hit_quantity_178 += applied_quantity;
 }
