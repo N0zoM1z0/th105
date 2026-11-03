@@ -1,0 +1,9 @@
+# Vector length-error origin, 2026-11-03
+
+The full 123-byte native entry at `0x40AAF0` is the compiler-generated `std::vector<unsigned>::_Xlen` length-error path, SHA-256 `567ff29dd208ccf9f58498146dd85054ec22273ddcfd1800aaaf4256b0ef4575`. It is excluded from authored-byte accounting, not counted as a new game-function match.
+
+The actual BGM stream-lifetime CIL naturally emits the typed vector helper and a `push_back → insert → _Insert_n → _Xlen` chain. The corresponding native vector insertion chain calls `0x40AAF0` at `0x40E0AA`; separately, an already-exact score routine calls the native vector insertion entry. The source and native parent functions are not asserted exact. Four existing BGM lifetime roots were freshly rebuilt and remained exact. Full same-size inventory comparison identifies one physical native body; no bytes are masked.
+
+The helper ends in a named, independently proven nonreturning CRT throw rather than `RET`. Its complete straight-line instruction sequence, every direct call and absolute-data role, source relocation inventory and all non-relocation bytes are checked. The proof also replays the complete 27-byte exception handler, unwind action, FuncInfo and unwind map, the original literal, length-error RTTI and all three catchable types, both logic-error constructors, relevant string/exception support and the CRT's noncontinuable throw record. These are supporting evidence, not additional authored credit. The existing linked decoder is not weakened. The validator pins the genuine source closure and VC8 headers; its receipt is `build/origin-anchors/linked-vector-xlen/proof.json`.
+
+Thirteen targeted corruption controls reject changes to the root, handler, unwind action/map, FuncInfo, throw metadata, literal, native parent, exact caller, CRT throw, dependency origin, source symbol and candidate inventory. The focused full proof and controls are recorded in `build/frontier-vector-xlen-origin-20261103/`.

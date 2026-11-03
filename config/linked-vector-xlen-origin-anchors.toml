@@ -1,0 +1,19 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "exact-first-bgm-stream-lifetime"
+[source_pins]
+"src/assets/ResourceHandleManager.hpp" = "211e69b06bd3e529243444e4d1628730ed8d434e02d7f907d87a3019217e3f42"
+"src/audio/BgmHandleResult.hpp" = "2f3e4d32d5d0a4a0748c9fa06d2cfc4ca37897abc15d52675348382a7d591ca6"
+"src/audio/BgmStreamAllocation.cpp" = "705a8f1a09a050710489816e113c7edec6b252648be40de95ce546d8533c0c57"
+"src/audio/DirectSound.hpp" = "515777a63a7efcd11884ed248d1ae0f0c21c9283df06ed8e8cf05dfc9e7afea3"
+"src/audio/DirectSoundResourceLifetime.cpp" = "69c2fd129bc2ec37e3b122ec1d3d9713507387d267d92ce5db9226ea7abc0582"
+"src/audio/OggDataSource.hpp" = "3b4c50ae80198d1a79418482bee8da05629b4a17c6438039fc46929f8b6842cd"
+"src/engine/CriticalSectionWrapper.cpp" = "14eb993ba3eaa3e22d8d808fbae288bb0073cd4c908d89ffeb5dcd2a1a29837f"
+"src/engine/CriticalSectionWrapper.hpp" = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
+"src/library/UnsignedIntList.cpp" = "02b4b940764c8f15fedb915d1a44ec7a4f5912ff7366b00033c2438e0e20e1c8"
+"src/library/UnsignedIntVector.cpp" = "c199617f8b35c32a7f5d3d2af6fcbc49255deea0e2ce8b5bc80034d27c2c31c3"
+[[anchors]]
+address = "0x0040AAF0"
+size = 123
+symbol = "?_Xlen@?$vector@IV?$allocator@I@std@@@std@@KAXXZ"
+sha256 = "567ff29dd208ccf9f58498146dd85054ec22273ddcfd1800aaaf4256b0ef4575"

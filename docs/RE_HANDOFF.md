@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Vector length-error helper `0x40AAF0` (123 bytes) is compiler-generated, proved through real BGM CIL, native vector callers, full nonreturning throw/EH metadata and unique whole-body identity. No authored credit. See `docs/VECTOR_XLEN_ORIGIN_2026_11_03.md`.
+
 2026-11-03: Exact source pins now have matching Git checkout line endings, and the changed BGM source pin was fully re-attested. Four affected origin rules pass; no counting change. See `docs/ORIGIN_SOURCE_EOL_2026_11_03.md`.
 
 2026-11-03: Fighter outcome selector `0x45E120` (620 bytes) is now individually mapped/source-present. Two exact battle callers replay; source610 remains nonexact. See `docs/OUTCOME_SELECTOR_SOURCE_2026_11_03.md`.
@@ -61,7 +63,7 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The prior reconstruction checkpoint is `1cd57d71` (fighter outcome selector source;
+The prior reconstruction checkpoint is `d1056417` (source-pin checkout integrity;
 no new authored exact match). Work was committed locally; no push was
 performed by this session. Inspect live Git status before making further changes.
 
@@ -77,7 +79,7 @@ Verified from the live ledgers at this checkpoint:
 | Measure | Value |
 | --- | ---: |
 | Provisional candidates | 4027 |
-| Authored / excluded / review | 1667 / 2083 / 277 |
+| Authored / excluded / review | 1667 / 2084 / 276 |
 | Mapped / source-present | 1838 / 1648 |
 | Exact authored functions / bytes | 1426 / 443399 |
 | Configured units / function entries | 820 / 1992 |
@@ -185,6 +187,6 @@ git diff --cached --check
 ```
 
 Default CI validates tooling and ledgers, not all native matches. Checkpoint
-the source-pin integrity checkpoint passed 997 tests in 108.808 seconds; the gate
-is recorded in `build/frontier-bgm-origin-revalidate-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
+the vector length-error checkpoint passed 1002 tests in 113.935 seconds; the gate
+is recorded in `build/frontier-vector-xlen-origin-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.
