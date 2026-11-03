@@ -44,3 +44,11 @@ scripts/repo-python scripts/compare-function.py 0x0066FE60 "$d/pngtrans-gs.obj" 
 printf '%s\n' 'Native PNG IO getter, create wrapper and BGR setter: 13/13, 35/35 and 13/13 match.'
 scripts/repo-python scripts/png_create_body_audit.py "$d/pngread-gs.obj" >"$d/png-create-body-compare.json"
 printf '%s\n' 'Native PNG create-read body and switch table: 756/756 and 28/28 match.'
+TH105_ENABLE_GS=1 TH105_EXTRA_INCLUDE_DIRS="$root/.tools/upstream/zlib-1.2.3" \
+  taskset -c 0 nice -n 10 scripts/compile-unit.sh \
+  "$root/.tools/upstream/zlib-1.2.3/inflate.c" "$d/inflate-gs.obj" >"$d/inflate-gs-compile.log" 2>&1
+scripts/repo-python scripts/zlib_init_audit.py "$d/inflate-gs.obj" >"$d/zlib-init-compare.json"
+scripts/repo-python scripts/compare-function.py 0x006679C0 "$d/inflate-gs.obj" \
+  --symbol-base _inflateInit_ --rel32-target '_inflateInit2_=0x006678F0' \
+  --json >"$d/zlib-init-wrapper-compare.json"
+printf '%s\n' 'Native zlib inflate-init and wrapper: 203/203 and 26/26 match.'

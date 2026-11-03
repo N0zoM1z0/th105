@@ -370,3 +370,7 @@ Pinned libpng 1.5.2 source also reproduces the full native IO getter 13/13, crea
 ### 2026-11-03: recover PNG zlib header context
 
 The PNG provider now uses locked official zlib 1.2.5 headers while retaining the zlib 1.2.3 implementation, matching the observed original header-version argument. The real 1x1 decode passes; all 14 CSV/bitmap linked roots, two replay-codec roots and the affected origin proof replay. Pinned libpng 1.5.2 source also reproduces the full 756-byte native create-read body and 28-byte switch table with explicit relocation-role bindings. No whole-library equivalence or authored-byte gain is claimed. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.
+
+### 2026-11-03: verify zlib initialization
+
+Pinned zlib 1.2.3 source reproduces the complete native inflate-init body `0x6678F0` (203/203 with explicit allocator/reset role bindings) and its `0x6679C0` wrapper (26/26). The provider audit now replays both along with PNG witnesses and the synthetic decode. This supports the mixed header/implementation context, not whole-library equivalence or authored credit. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.

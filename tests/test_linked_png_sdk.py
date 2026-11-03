@@ -10,6 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import linked_png_sdk as png
 import png_version_evidence as version
 import png_create_body_audit as create_body
+import zlib_init_audit as zlib_init
 
 class PngProviderTests(unittest.TestCase):
     def test_flag_and_locked_upstream_identity(self):
@@ -99,6 +100,15 @@ class PngProviderTests(unittest.TestCase):
             create_body.validate_references(refs)
         with self.assertRaises(ValueError):
             create_body.validate_references(create_body.EXPECTED_REFS[:-1])
+
+    def test_zlib_init_relocation_roles_fail_closed(self):
+        refs = list(zlib_init.EXPECTED_REFS)
+        zlib_init.validate_references(refs)
+        refs[0] = (refs[0][0], refs[0][1], 'wrong_symbol')
+        with self.assertRaises(ValueError):
+            zlib_init.validate_references(refs)
+        with self.assertRaises(ValueError):
+            zlib_init.validate_references(zlib_init.EXPECTED_REFS[:-1])
 
     def test_disabled_provider_never_reads_or_builds(self):
         self.assertEqual(png.inputs({}, Path('missing.dll')), [])
