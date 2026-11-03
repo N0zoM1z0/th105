@@ -44,6 +44,7 @@ EXACT_TEST_MODULES = (
     "test_linked_packet_deque_back_origins",
     "test_linked_csv_deque_copy_origins",
     "test_linked_wave_pointer_back_origins",
+    "test_origin_source_line_endings",
     "test_linked_bad_exception_origins",
     "test_boost_public_exception_copies",
     "test_boost_public_regex_exception",

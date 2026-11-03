@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Exact source pins now have matching Git checkout line endings, and the changed BGM source pin was fully re-attested. Four affected origin rules pass; no counting change. See `docs/ORIGIN_SOURCE_EOL_2026_11_03.md`.
+
 2026-11-03: Fighter outcome selector `0x45E120` (620 bytes) is now individually mapped/source-present. Two exact battle callers replay; source610 remains nonexact. See `docs/OUTCOME_SELECTOR_SOURCE_2026_11_03.md`.
 
 2026-11-03: Battle outcome path B `0x46D610` (542 bytes) is now individually mapped/source-present. Exact sibling and dispatcher replay; source530 remains nonexact. See `docs/OUTCOME_B_SOURCE_2026_11_03.md`.
@@ -59,7 +61,7 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The prior reconstruction checkpoint is `b763383b` (outcome-path B source;
+The prior reconstruction checkpoint is `1cd57d71` (fighter outcome selector source;
 no new authored exact match). Work was committed locally; no push was
 performed by this session. Inspect live Git status before making further changes.
 
@@ -183,6 +185,6 @@ git diff --cached --check
 ```
 
 Default CI validates tooling and ledgers, not all native matches. Checkpoint
-the outcome-selector checkpoint passed 996 tests in 102.530 seconds; the gate
-is recorded in `build/frontier-outcome-selector-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
+the source-pin integrity checkpoint passed 997 tests in 108.808 seconds; the gate
+is recorded in `build/frontier-bgm-origin-revalidate-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.
