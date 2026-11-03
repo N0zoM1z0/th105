@@ -1,3 +1,4 @@
+#include "NetworkReplayPacket.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkAckInfoPacket.hpp"
 #include <deque>
@@ -36,17 +37,6 @@ public:
 };
 
 
-class ReplayPacket28 : public PacketResultBase4 {
-public:
-    ReplayPacket28() {}
-    virtual unsigned int serialize(void *buffer);
-    void parse_compressed(const unsigned char *input);
-    unsigned int sequence_008;
-    unsigned int metadata_00c;
-    unsigned char tag_010;
-    unsigned char reserved_011[3];
-    std::deque<short> values_014;
-};
 
 class EmbeddedStatePacket8 {
 public:

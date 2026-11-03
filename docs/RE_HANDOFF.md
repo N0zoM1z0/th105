@@ -290,3 +290,7 @@ The ACK packet serializer/parser, senders and replay dispatcher now share one `N
 ### 2026-11-03: share ACK type with secondary dispatchers
 
 Client `0x44EE80` and Server `0x44FB40` secondary packet dispatchers now use the shared RTTI-backed ACK type and actual parser instead of stale non-polymorphic-base aliases. Fresh body comparisons preserve 582/582 and 532/532. No new exact credit or new cleanup-EH equivalence claim. See `docs/ACK_PACKET_BASE_2026_10_29.md`.
+
+### 2026-11-03: shared replay IPacket base
+
+The native replay RTTI identifies the same offset-zero `IPacket` base as ACK_INFO. Replay serialization, parsing, Client secondary dispatch and replay-request handling now share a single actual replay type with that base. All twelve packet-leaf exact roots, the Client dispatch and ACK exact roots/senders replay; the constructor and replay-request parent remain nonexact. No new exact credit. See `docs/ACK_PACKET_BASE_2026_10_29.md`.

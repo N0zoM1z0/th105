@@ -1,17 +1,10 @@
 #include "engine/CriticalSectionWrapper.hpp"
 #include "NetworkAckInfoPacket.hpp"
+#include "NetworkReplayPacket.hpp"
 #include <deque>
 #include <stddef.h>
 namespace th105 {
-struct DispatchResultBase { DispatchResultBase(): result(0) {} unsigned result; };
 struct DispatchPacketView { virtual unsigned serialize(void *buffer); };
-struct DispatchReplay : DispatchResultBase {
-    DispatchReplay() {}
-    virtual unsigned serialize(void *buffer);
-    unsigned sequence, metadata;
-    unsigned char tag, reserved[3];
-    std::deque<short> values;
-};
 struct DispatchRequest { unsigned char reserved[8]; unsigned sequence; unsigned char tag; };
 struct DispatchPeer { unsigned char reserved[4]; unsigned char value; };
 struct DispatchSide {
@@ -32,7 +25,7 @@ struct DispatchOwner {
 };
 typedef char SideSize[sizeof(DispatchSide)==0x20?1:-1];
 typedef char AckSize[sizeof(NetworkAckInfoPacket40)==0x40?1:-1];
-typedef char ReplaySize[sizeof(DispatchReplay)==0x28?1:-1];
+typedef char ReplaySize[sizeof(ReplayPacket28)==0x28?1:-1];
 typedef char ReplayLockOff[offsetof(DispatchOwner,replay_lock)==0xdc?1:-1];
 typedef char SideOff[offsetof(DispatchOwner,sides)==0x214?1:-1];
 typedef char TailValueOff[offsetof(DispatchOwner,tail_value)==0x254?1:-1];
@@ -61,14 +54,14 @@ void DispatchOwner::dispatch(unsigned channel, const DispatchRequest *request)
         sender.send(channel,buffer,view->serialize(buffer),0,0);
         ack_lock.leave();
     } else {
-        DispatchReplay packet;
-        packet.sequence=request->sequence;
-        packet.tag=tag;
-        packet.metadata=replay_metadata;
+        ReplayPacket28 packet;
+        packet.sequence_008=request->sequence;
+        packet.tag_010=tag;
+        packet.metadata_00c=replay_metadata;
         replay_lock.enter();
         for (unsigned i=request->sequence; i<request->sequence+60 && i<history.size(); ++i) {
-            packet.values.push_back(history.at(i));
-            ++packet.sequence;
+            packet.values_014.push_back(history.at(i));
+            ++packet.sequence_008;
         }
         replay_lock.leave();
         DispatchPacketView *view=reinterpret_cast<DispatchPacketView *>(&packet);
