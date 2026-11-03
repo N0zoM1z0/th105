@@ -25,7 +25,6 @@ def audit(read):
         raise ValueError('native zlib version argument differs')
     _call(read, 0x66D03D, 0x6679C0)
     return {'native_png_header': '1.5.2', 'native_zlib_header_argument': '1.2.5',
-            'comparison_libpng': '1.2.5',
             'scope': 'target version roles only; native release and runtime provider equivalence unproved'}
 
 

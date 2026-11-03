@@ -354,3 +354,7 @@ Complete native bodies and fresh exact caller edges establish authored ownership
 ### 2026-11-03: PNG provider version correction
 
 The native PNG create-read path compares against its getter returning `1.5.2`. The previous `1.2.5` marker was actually passed to zlib initialization and does not prove native libpng version. The pinned 1.2.5 comparison provider rejects the original 1.5.2 argument in a bounded runtime probe, so it is not a runnable-equivalent PNG provider. The 703-byte game-function match remains a code/relocation result, not runtime equivalence. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.
+
+### 2026-11-03: update linked PNG provider
+
+The linked context now uses official, source-locked libpng 1.5.2 and existing zlib 1.2.3. A reproducible Wine smoke test accepts the native version argument, checks the reconstructed info-prefix offsets and decodes a synthetic 1x1 PNG. All 14 accepted CSV/bitmap linked roots and both replay-codec roots remain exact; the affected CSV deque-copy origin rule replays. This removes the observed version rejection but does not establish full target-library or game-runtime equivalence. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.

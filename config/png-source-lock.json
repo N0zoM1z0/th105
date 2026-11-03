@@ -1,128 +1,146 @@
 {
   "libpng": {
     "repository": "https://github.com/pnggroup/libpng",
-    "commit": "0cc2f95a9d87ae903a9842f1121384e3b2e5bbdc",
-    "tag": "v1.2.5",
+    "commit": "dcc3505c7bd0660876fc80110f8e3581900a186a",
+    "tag": "v1.5.2",
     "files": [
       {
-        "path": "LICENSE",
-        "git_blob_sha1": "28b3b6620d9afc71c2d26b34f86dcd4d328503f4",
-        "size": 3834,
-        "sha256": "a0ae98603a515dbc805b203dd996c366b778875a62c3f3326fcb627afb5b310c"
-      },
-      {
         "path": "png.c",
-        "git_blob_sha1": "2a55ccb7980b546aa9c3d71925161635856a32a3",
-        "size": 22837,
-        "sha256": "1c0a063feade5505e43aa02c9d3287ea6903f5549997481404a6c30fb9fb2328"
+        "git_blob_sha1": "7d09b0dbd2104d5a0f1da7090b7eb0bf9e549e9c",
+        "size": 72922,
+        "sha256": "eea3192e4f8f163914391f5f01021039e382007a6cfd2a9f07fc0dc153013ae3"
       },
       {
         "path": "png.h",
-        "git_blob_sha1": "f059910e623510b17def0164e0fadc7e166d2cb8",
-        "size": 136663,
-        "sha256": "c68b2372b741b6aa2f5245f29ba3a2a21ac50fc6e49458dd5e71d2ec339e5705"
-      },
-      {
-        "path": "pngasmrd.h",
-        "git_blob_sha1": "d086d8c4ddd3adee18f333ebe8a15388ab7eec5d",
-        "size": 336,
-        "sha256": "9cb75d1fc5b9297f1b73792f878996db8885f6bff21a5a2d38d5705aa4730216"
+        "git_blob_sha1": "0af42b170ecd9fb2b5acb4be956aa64496830167",
+        "size": 96494,
+        "sha256": "0d8027f5bf501e3a9a83453203d5b753a12f795e6c8a71c600ca30743bda9ff0"
       },
       {
         "path": "pngconf.h",
-        "git_blob_sha1": "4a425dd1aaf803732db76384067765164ecc0c8e",
-        "size": 40750,
-        "sha256": "0b6376ec27ff077e454f25c1695232f566c14383beda67b4af5fde5435657cb0"
+        "git_blob_sha1": "c82fa5866c1e5119235121304f36ee21a649ac0b",
+        "size": 23317,
+        "sha256": "cebcbc640c05751bf65862cdc8a8c45a726057e9aa391e0c328924f765094a96"
+      },
+      {
+        "path": "pngdebug.h",
+        "git_blob_sha1": "16f81fdd141bb3a8cadc160162d76ca09b6ec7d8",
+        "size": 5403,
+        "sha256": "e22cee0df3e0eb2b6032503d3e8a6072331619a20a04e14e36c130620d450002"
       },
       {
         "path": "pngerror.c",
-        "git_blob_sha1": "fc3c304779cc240a3c0c2183d1dac06c37919c63",
-        "size": 8503,
-        "sha256": "c75c4b53810490fc41aad575b50be0dced1a5e78684a10f6b94e23d79db82d94"
+        "git_blob_sha1": "8290bb4106efbd5f18563a7c69f82e73bf47982c",
+        "size": 12970,
+        "sha256": "8bbb9495ef3123c11025bb2b99bb73469df6825b272c8e05ad5af3f847471d64"
       },
       {
         "path": "pngget.c",
-        "git_blob_sha1": "f7f5c6702b381787f5a4095c4787da697b560462",
-        "size": 25739,
-        "sha256": "163136b33908e709bd9ba61e47420bd467580df7dc368d9946cdccc5fae7e06b"
+        "git_blob_sha1": "b5e5798c020d12161f5e25f296a38b55d9ec0236",
+        "size": 27518,
+        "sha256": "83993d88c107e7f4e3dd6a7d817cab74cd31f54d03e080aa53dbc804f3e7636b"
+      },
+      {
+        "path": "pnginfo.h",
+        "git_blob_sha1": "fa19f85e72c00895f5de3be5557e25cfb79b680d",
+        "size": 12463,
+        "sha256": "3046e2bef64d190ad12c0a94a1bbce9d548c5e348c1d588ffe95912bf6c2880d"
       },
       {
         "path": "pngmem.c",
-        "git_blob_sha1": "66eec0b09f3bb3fe184f231497c774e09dfd1326",
-        "size": 16009,
-        "sha256": "d12a55fdc12e4eb1296caa0c8885ef7a425df51aad618c540e7664039b659797"
+        "git_blob_sha1": "a15d8b085936b5eb3271eaf3d4602198b12bad03",
+        "size": 17292,
+        "sha256": "9e61389845fb1eb3dc5de2b69400ac9a7b2356bd7f58387c943f8021e5fb1da2"
       },
       {
         "path": "pngpread.c",
-        "git_blob_sha1": "9f924c34cc4425dabdcf43d0afb35152c2f5bdcd",
-        "size": 44827,
-        "sha256": "6e193314e50ff1a67ab57a49b5a0dc485da8ebd20b6c0790b51be48366711984"
+        "git_blob_sha1": "5ab9007a161696492b3a0f5b02f0f7dc7c3557fb",
+        "size": 51196,
+        "sha256": "ca6f1679fa93dbce2bb671bb627bd5673683665c4f8590bf378d428e27ec6034"
+      },
+      {
+        "path": "pngpriv.h",
+        "git_blob_sha1": "a7e3b5272700ddebe49f33fec0f7d55045ec66ff",
+        "size": 47718,
+        "sha256": "2d6348f40d83b1a04f2b7158db047276aa9b1fa12eb8f43f6148d181b41be153"
       },
       {
         "path": "pngread.c",
-        "git_blob_sha1": "e91d3e89caf492b145fa0be47644288b0570d64a",
-        "size": 45428,
-        "sha256": "068ce62778dd5cb09483138d29a567313155d8b596237eeac920b62f902a6826"
+        "git_blob_sha1": "aa84001c4523559fcf4857ab26eb2fdafdb1e187",
+        "size": 42595,
+        "sha256": "3fff2dca79eddf0bb2ebf37c049e4d6c65b19fb518a62f7691e31927caee532a"
       },
       {
         "path": "pngrio.c",
-        "git_blob_sha1": "c33b1cdce3a7281cb5235e73cab68eed9f01374c",
-        "size": 5353,
-        "sha256": "7e5c2b4ca9456683460162e8df82f81e9b67082f60a1b067ba3289d519496df9"
+        "git_blob_sha1": "e9c381c5ba41f79eaaae9770cf7f0c7e222d2186",
+        "size": 5222,
+        "sha256": "9832dcbef694d630cfef9e26cb82c9f0a43849ebfd4f0a2671cfc2811e6322a7"
       },
       {
         "path": "pngrtran.c",
-        "git_blob_sha1": "3de91202c1d17e42b0beeb90b304eba391bd6fe6",
-        "size": 142253,
-        "sha256": "9bf7277879223783bec7beccd021deab884a4e324dc941f79a1c02a6eb008394"
+        "git_blob_sha1": "de5871add02319793b487e5f07625283b67e9d9a",
+        "size": 138249,
+        "sha256": "9bc396063f169a96ae0e8e2b3e03a99011575487bf6f7aa736a35c9bdded86ea"
       },
       {
         "path": "pngrutil.c",
-        "git_blob_sha1": "9cbfed65f0502d0b2c658dc3c4570cb6592f31e3",
-        "size": 90025,
-        "sha256": "29056f86ce72f30878762a09cb7f59a57b60a5d1d9b2035a2331717103e98ace"
+        "git_blob_sha1": "d4764317444f4ae85282c8e87d139329186971df",
+        "size": 99827,
+        "sha256": "ece6c8b8e77e4433098616b552f9e193151e09e265e63d3cd69b67999a6a7147"
       },
       {
         "path": "pngset.c",
-        "git_blob_sha1": "8e4e6197c95dd84009135e5b0a3e95c8c31b6152",
-        "size": 36432,
-        "sha256": "63ad16c3c4617e56ddfd8639665904cc897cbe3dc1245c82d4ba7037b6e81894"
+        "git_blob_sha1": "2cfcf33bdf97f41486d09cf4a0888b2b07957153",
+        "size": 34053,
+        "sha256": "1d234be6e92c132893a7bb7175e7d7367c96a01074774fd91fc17cb38cf41bdd"
+      },
+      {
+        "path": "pngstruct.h",
+        "git_blob_sha1": "8d781faefecae306ff4c27cd391e10ee6b74cf05",
+        "size": 13563,
+        "sha256": "450c741c6022f2ce291ed450f376b91a637610148d0436e74d1f82b645b20ce1"
       },
       {
         "path": "pngtrans.c",
-        "git_blob_sha1": "f08fb4ecfe9a14ca0ec7c9f5335d8d3365572a66",
-        "size": 20026,
-        "sha256": "2b87a2ecf02a225ff9f972a9f9558ef3048971b7bdb24223aded1fa3263522f8"
-      },
-      {
-        "path": "pngvcrd.c",
-        "git_blob_sha1": "4f513eb4d984039ba2dfe612854d1c7eb7e4d0ca",
-        "size": 142414,
-        "sha256": "d5e9445e10af9322bd9820fc7b5e11727fa1874198e361027ea7dfd0a5939912"
+        "git_blob_sha1": "cf7622cdc6e4b0b220b7ab64f5d0e60bf6e3a2c7",
+        "size": 19600,
+        "sha256": "4be30cc2f177043183d41cf7ed5d3116ac9c966a87b721e3d1892c72eaedf99b"
       },
       {
         "path": "pngwio.c",
-        "git_blob_sha1": "b39b4145f0fd99ae08d775e22a188c7c1e5588d1",
-        "size": 7438,
-        "sha256": "0fb44aa14589bad5fdbef9e4b19615cf0cbc96715d4603efa31e0448dcfb5d6f"
+        "git_blob_sha1": "95ffb3429f1373e7c061d46290ee2b20518601b2",
+        "size": 7635,
+        "sha256": "8ea78993bd3f388735953eb828fc155fca84cfb65538d34e2af8d2ff44380872"
       },
       {
         "path": "pngwrite.c",
-        "git_blob_sha1": "10c9ea40685532ec1ea8969b650223085514e7c3",
-        "size": 47407,
-        "sha256": "667f920d406dbc96d90f555740cec8094ded3a792dfbe668253ca4adb4fedf3e"
+        "git_blob_sha1": "9277a951628fd9aef31a13d685cff4b291ddf8a8",
+        "size": 49406,
+        "sha256": "b27c90718f372c309747a26afc9eb11dbb8575281a05461cff29c019e07bc4f7"
       },
       {
         "path": "pngwtran.c",
-        "git_blob_sha1": "c28da116b730c67dee4283baf73f4cfa6f26f4df",
-        "size": 16956,
-        "sha256": "b02e2a8a53fab33de3d857f03a105baab9ff390f1c7c1c745f1cba5e9ae826b0"
+        "git_blob_sha1": "bbf4a25b92e72b9f8400491691c084b480e31ba8",
+        "size": 17383,
+        "sha256": "cc6f7a4e2e8ea87b356a5dc23f69284615ac978d68e6137eeb5d8caaf31236f3"
       },
       {
         "path": "pngwutil.c",
-        "git_blob_sha1": "4b5ab6c87ec089e4369b656980d438792b4d94b4",
-        "size": 81681,
-        "sha256": "1e49fc17c6846a15d5af43821019624b5c908b96611d4602a1ac552168c273e3"
+        "git_blob_sha1": "2c35785aa125a2138a069b75801e7449cc27c7c0",
+        "size": 83529,
+        "sha256": "4bdf1e2e19eec2673fd53109219dbdf6a4f420996cea7ceecfc35fa306133be5"
+      },
+      {
+        "path": "LICENSE",
+        "git_blob_sha1": "6e4808cc0bc2df01d16b6c43c544814e5fb31fd5",
+        "size": 4196,
+        "sha256": "5536150c4cda93cf04f24582f213123f68445a0bd7cf802160dce933b0c37242"
+      },
+      {
+        "path": "scripts/pnglibconf.h.prebuilt",
+        "git_blob_sha1": "5f0c8525bea233036d6396be6ae8084e58d36326",
+        "size": 6031,
+        "sha256": "b5586cb3e05fc0868c7722be51c9fefb834b5281035d0f5e5ddfc7f454fcacc7"
       }
     ]
   },

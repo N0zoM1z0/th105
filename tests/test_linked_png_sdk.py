@@ -29,10 +29,23 @@ class PngProviderTests(unittest.TestCase):
             bad['libpng']['files'][0]['path'] = '../outside.c'
             with self.assertRaises(ValueError): png.verified_sources(root, bad)
             first = manifest['libpng']['files'][0]
-            f = root / '.tools/upstream/libpng-1.2.5' / first['path']
+            f = root / '.tools/upstream/libpng-1.5.2' / first['path']
             f.parent.mkdir(parents=True)
             f.write_bytes(b'wrong upstream contents')
             with self.assertRaises(ValueError): png.verified_sources(root, manifest)
+
+    def test_generated_configuration_must_match_prebuilt(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / 'scripts').mkdir()
+            (root / 'scripts/pnglibconf.h.prebuilt').write_bytes(b'official config')
+            with self.assertRaises(ValueError):
+                png.materialize_png_config(root)
+            png.materialize_png_config(root, generate=True)
+            png.materialize_png_config(root)
+            (root / 'pnglibconf.h').write_bytes(b'changed config')
+            with self.assertRaises(ValueError):
+                png.materialize_png_config(root)
 
     def test_native_version_roles_fail_closed(self):
         values = {0x66BF00: bytes.fromhex('b8046e6d00c3'),

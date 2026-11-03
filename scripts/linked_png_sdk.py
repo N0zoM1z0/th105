@@ -6,11 +6,11 @@ from pathlib import Path
 import re
 import subprocess
 
-SOURCE_LOCK_SHA256 = "e1bd10b901bf5a1669456a18f00a2b9d6f62d330f0361d32e42a5cf2a2e1e9c1"
+SOURCE_LOCK_SHA256 = "e15ee4be7778db9c26ede6be8d55a8231ea4b3ef1dabdc16de4e6fb9cc72b4e4"
 
 FAMILIES = {
-    'libpng': ('libpng-1.2.5', 'https://github.com/pnggroup/libpng',
-               '0cc2f95a9d87ae903a9842f1121384e3b2e5bbdc', 'v1.2.5'),
+    'libpng': ('libpng-1.5.2', 'https://github.com/pnggroup/libpng',
+               'dcc3505c7bd0660876fc80110f8e3581900a186a', 'v1.5.2'),
     'zlib': ('zlib-1.2.3', 'https://github.com/madler/zlib',
              'abf180a067223611620dd97dd5681df7c7fa7c9b', 'v1.2.3'),
 }
@@ -39,7 +39,7 @@ def verified_sources(root, manifest):
         seen = set()
         for record in records:
             path = record.get('path', '')
-            if (not re.fullmatch(r'[A-Za-z0-9_]+(?:\.[ch])?', path)
+            if (not (re.fullmatch(r'[A-Za-z0-9_]+(?:\.[ch])?', path) or name == 'libpng' and path == 'scripts/pnglibconf.h.prebuilt')
                     or path in seen or type(record.get('size')) is not int
                     or not re.fullmatch('[0-9a-f]{40}', record.get('git_blob_sha1', ''))
                     or not re.fullmatch('[0-9a-f]{64}', record.get('sha256', ''))):
@@ -55,6 +55,16 @@ def verified_sources(root, manifest):
     return result
 
 
+def materialize_png_config(png_root, *, generate=False):
+    """Use only the byte-pinned official prebuilt configuration."""
+    generated = png_root / 'pnglibconf.h'
+    prebuilt = png_root / 'scripts/pnglibconf.h.prebuilt'
+    if generate:
+        generated.write_bytes(prebuilt.read_bytes())
+    if not generated.is_file() or generated.read_bytes() != prebuilt.read_bytes():
+        raise ValueError('PNG prebuilt configuration differs')
+
+
 def inputs(unit, image, *, generate=False):
     import linked_pe as core
     validate(unit)
@@ -66,6 +76,7 @@ def inputs(unit, image, *, generate=False):
         raise ValueError("PNG source lock differs from the pinned upstream manifest")
     manifest = json.loads(lock.read_text())
     sources = verified_sources(root, manifest)
+    materialize_png_config(root / '.tools/upstream/libpng-1.5.2', generate=generate)
     target = core.comparator()
     target.verify_target()
     data = target.TARGET.read_bytes()
