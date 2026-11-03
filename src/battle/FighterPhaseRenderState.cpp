@@ -1,4 +1,4 @@
-#include "battle/EffectSprite.hpp"
+#include "battle/FighterPhaseRenderState.hpp"
 #include "battle/BattleRenderHelpers.hpp"
 #include "engine/RenderModeManager.hpp"
 
@@ -6,28 +6,6 @@
 #include <stddef.h>
 
 namespace th105 {
-
-struct PhaseRenderEntry {
-    CSpriteEx sprite;
-    signed char blend_mode;
-};
-
-typedef char PhaseRenderEntry_sprite_size[(offsetof(PhaseRenderEntry, blend_mode) == 0xe8) ? 1 : -1];
-
-struct FighterPhaseRenderState {
-    std::list<PhaseRenderEntry> entries;
-    signed char period_0c;
-    unsigned char reserved_0d;
-    signed short alpha_divisor_0e;
-    unsigned color_mask_10;
-
-    FighterPhaseRenderState();
-    signed char set_period(signed char value);
-    int set_color_mask(int value);
-    void pop_front_if_any();
-    void render_45aa00();
-    void enqueue_45ad40(const CSpriteEx *source, signed char blend);
-};
 
 typedef char PhaseRenderState_period_off[(offsetof(FighterPhaseRenderState, period_0c) == 0x0c) ? 1 : -1];
 typedef char PhaseRenderState_divisor_off[(offsetof(FighterPhaseRenderState, alpha_divisor_0e) == 0x0e) ? 1 : -1];

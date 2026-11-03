@@ -254,3 +254,7 @@ The parser now checks the selected column before the CSV read, and retains disti
 ### 2026-11-03: scenario parser iterators
 
 The parser now materializes its genuine begin/end iterators for list assignment. Its generated function is 543/native543 bytes with the same 403-byte exact prefix, but two scheduling/register-allocation regions still differ. No whole-function or EH credit; see `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: connect phase render provider
+
+The Fighter phase render callback now uses the shared real `FighterPhaseRenderState` type and implementation instead of a declaration-only alias. Fresh canonical comparisons preserve all five phase roots and all six render-state roots, including `0x464A80` 71/71 and `0x45AA00` 333/333. The existing six-entry compiler-generated phase-render-list origin rule was rebuilt and replayed successfully. Receipts: `build/frontier-phase-real-render-provider-20261103/`. No new exact credit is claimed.
