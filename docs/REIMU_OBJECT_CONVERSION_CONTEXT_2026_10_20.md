@@ -188,7 +188,7 @@ these negative controls do not establish an LTCG or standalone impossibility.
 
 ## Execution, database safety and reproduction
 
-Fresh baseline execution passes0/672 with the existing input SHA256
+Fresh baseline execution has 0 mismatches across 672 cases with the existing input SHA256
 `95ec78bf917491d75b16bb6865ce1db5c9af6dbb500dcc733e16e198c73e18b5`.
 Its scope remains the admitted906/999 selector/frame/sprite protocol, including
 624 actual helper chains; it is not whole-root semantic coverage. No changed

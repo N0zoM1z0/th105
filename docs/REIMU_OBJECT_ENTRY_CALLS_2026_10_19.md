@@ -60,7 +60,7 @@ stack. The supplied ten-sequence tree/frame/vector graph is read-only, has a
 zero texture handle and uses the original ReimuObject vtable. No helper result,
 instruction, vtable entry or callback return is substituted.
 
-The full matrix passes **0/672**:336 inputs per action,14 float request bit
+The full matrix has **0 mismatches across 672 cases**:336 inputs per action,14 float request bit
 patterns,12 initial sequence values(-1 through10), and x87 precision53/64.
 Requests include positive/negative zero, fractional values0.5/-0.5, and valid
 selector destinations0..9. Every input must restore the native RET ABI and

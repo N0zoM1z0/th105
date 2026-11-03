@@ -221,7 +221,7 @@ callable still ends4A2FFC without included alignment. Source SHA3803a002,
 canonical5440-byte payload65298d36; strict first difference+1140/4A2E20.
 Only14 callable bytes in906/999 remain different, in pointer/call registers
 and preparation. A fresh build still reproduces these pins. The new bounded
-execution audit passes0/672 through624 actual selector/frame/sprite-commit chains
+execution audit has 0 mismatches across 672 cases, including 624 actual selector/frame/sprite-commit chains
 and native RETs; wrong999 sequence and906 phase sources fail48/672 and28/672.
 Five conversion-carrier controls preserve the entire65298d36 payload and are
 unselected. This covers906/999 only, not whole-root semantics or exactness. See
@@ -259,7 +259,7 @@ are under `.analysis/reimu-object-entry-source-20261019/` and
 the root's remaining compiler context remains open.
 
 The2026-10-20 conversion/context batch freshly repeats the14-byte residual,
-all548 metadata bytes and41/43 diagnostics, plus0/672 native cases. Fifteen
+all548 metadata bytes and41/43 diagnostics, plus 0 mismatches across 672 native cases. Fifteen
 controls (debugZ7, long32, float/double-argument helpers, signed/unsigned word views,
 Gr, four physical/template/field-ownership views and an explicit800 index base)
 are payload-neutral.
