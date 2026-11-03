@@ -12,7 +12,7 @@ sha256 = "ac5d3ea4c7c09b6c42c446f83120a8da7ca23d6047901ead074febd861bde29e"
 
 [[sources]]
 path = "src/input/InputManager.hpp"
-sha256 = "72677fbac3a0b5c0a4411cd87c0f7bd91315ef84a1f2191ccd09e38c76786875"
+sha256 = "8ef1625a4716361f2c50f6e3a0413501817a6ca55e4dd0af3f9b8587e57c714b"
 
 [[sources]]
 path = "src/battle/Collision.hpp"

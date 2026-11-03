@@ -72,3 +72,18 @@ src/network/NetworkWinsockReceiveThread.cpp text eol=lf
 src/network/NetworkWinsockRuntime.cpp text eol=lf
 src/network/NetworkWinsockSendClient.cpp text eol=lf
 src/platform/BattleThreadHandleRuntime.cpp text eol=lf
+
+# Additional origin-anchor source pins across all supported anchor formats.
+src/assets/CsvReader.hpp text eol=lf
+src/battle/Collision.hpp text eol=lf
+src/battle/FighterSequenceRotate.cpp text eol=lf
+src/battle/InfoManagerBaseLifetime.cpp text eol=lf
+src/battle/SpellData.hpp text eol=lf
+src/characters/CharacterObjectManagerCtors.cpp text eol=lf
+src/characters/TObjectManagerBase.hpp text eol=lf
+src/config/ScoreDataDefaults.hpp text eol=lf
+src/config/ScoreDefaults.cpp text eol=lf
+src/ui/CNumberRuntime.hpp text eol=lf
+src/ui/ProfileDeckResourceLifetime.hpp text eol=lf
+src/ui/ProfileMenuBaseDataLifetime.hpp text eol=lf
+src/ui/ResultList.cpp text eol=lf

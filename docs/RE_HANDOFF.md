@@ -196,3 +196,7 @@ Default CI validates tooling and ledgers, not all native matches. Checkpoint
 the system-effect pool checkpoint passed 1002 tests in 102.232 seconds; the gate
 is recorded in `build/frontier-system-effect-pool-source-20261103/ci-final.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.
+
+### 2026-11-03: broaden origin source EOL protection
+
+The origin-source checkout test now covers `source_pins`, `source_sha256`, and `[[sources]]` anchor formats. Thirteen additional pinned source paths have explicit LF checkout attributes. Corrected two conflicting `InputManager.hpp` hashes to the actual LF bytes and replayed both affected native proofs successfully; see `docs/ORIGIN_SOURCE_EOL_2026_11_03.md`. No authored or exact-byte credit changed.
