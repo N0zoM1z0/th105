@@ -29882,3 +29882,33 @@ dir32_targets = [
  "___security_cookie=___security_cookie",
  "??_7SystemEffectObject@@6B@=??_7SystemEffectObject@@6B@",
 ]
+
+[units.exact-first-scenario-event-parser]
+kind = "probe"
+source = "src/battle/ScenarioEventParser.cpp"
+object = "build/match-units/ExactFirst_ScenarioEventParser.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Native scenario event parser45A7A0; source present and nonexact. EH handler address is a prologue witness only; no cleanup EH equality is inferred. docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md."
+
+[[units.exact-first-scenario-event-parser.functions]]
+address = "0x0045A7A0"
+symbol_base = "?parse_scenario_event_row_4591d0@BattlePhaseBlock@th105@@QAEXPAX@Z"
+rel32_targets = [
+ "?next_int@CsvReader@th105@@QAEHXZ=0x0040F480",
+ "?next_string@CsvReader@th105@@QAEPAXPAX@Z=0x0040F580",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+ "?resolve_scenario_event_name@th105@@YAHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0043BFD0",
+ "?advance_row@CsvReader@th105@@QAE_NXZ=0x0040F680",
+ "?clear_storage@ShortDeque8@th105@@QAEXXZ=0x00420A80",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?push_back@ShortDeque8@th105@@QAEPAFPBF@Z=0x0042AA90",
+ "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@PAU342@0ABH@Z=0x00421F30",
+ "?_Incsize@?$list@HV?$allocator@H@std@@@std@@IAEXI@Z=0x00440370",
+ "??$_Assign@V?$_Iterator@$00@?$list@HV?$allocator@H@std@@@std@@@?$list@HV?$allocator@H@std@@@std@@QAEXV?$_Iterator@$00@01@0Uinput_iterator_tag@1@@Z=0x0045A740",
+ "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+ "__ehhandler$?parse_scenario_event_row_4591d0@BattlePhaseBlock@th105@@QAEXPAX@Z=_scenario_event_parser_eh",
+ "___security_cookie=___security_cookie",
+]

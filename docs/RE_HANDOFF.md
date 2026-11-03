@@ -229,7 +229,7 @@ The complete 753-byte `0x463E40` fighter input/state policy is classified author
 
 ### 2026-11-03: scenario-event parser origin
 
-The native `0x45A7A0` scenario CSV/event parser is classified authored from its pinned 543-byte span and fresh exact story/setup caller edges. The span includes two internal alignment bytes. Existing parser source has no selected comparison unit; its fresh 518-byte object is blocked on EH relocation, so no source-present or exact credit is claimed. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
+The native `0x45A7A0` scenario CSV/event parser is classified authored from its pinned 543-byte span and fresh exact story/setup caller edges. The span includes two internal alignment bytes. The later source-selection checkpoint below resolves the initial EH address blocker and records the remaining nonexact comparison. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
 
 ### 2026-11-03: network replay-dispatch origin
 
@@ -238,3 +238,7 @@ The 566-byte network ACK/replay dispatch entry `0x44E460` is classified authored
 ### 2026-11-03: battle information-record runtime origin
 
 The complete 2,005-byte `0x46FF30` gauge/effect runtime is classified authored using its pinned native body and fresh exact normal/Story update caller edges. Existing private candidates remain nonexact and unselected; no source-present or exact-byte credit is claimed. See `docs/BATTLE_INFO_RUNTIME_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: select scenario parser source
+
+The earlier parser EH relocation blocker is resolved to its native handler address, without claiming EH equivalence. `exact-first-scenario-event-parser` now compares the complete candidate: source 518 versus target 543, first mismatch at frame size. The source is registered present, not exact. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
