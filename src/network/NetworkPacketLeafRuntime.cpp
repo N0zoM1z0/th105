@@ -292,8 +292,7 @@ void NetworkClientPacketOwnerView::pump_replay_request_44d880()
         NetworkRequestReplay10 packet;
         packet.tag_00c = expected_tag_6b8;
         packet.value_008 = replay_sequence_6bc;
-        PacketSerializeView *request =
-            reinterpret_cast<PacketSerializeView *>(&packet);
+        NetworkPacketBase8 *request = &packet;
         sender_3b4.send_client(
             packet_buffer_5b4,
             request->serialize(packet_buffer_5b4),

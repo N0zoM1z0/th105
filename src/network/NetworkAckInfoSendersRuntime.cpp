@@ -6,11 +6,6 @@
 
 namespace th105 {
 
-class NetworkPacketSerializeOnlyView {
-public:
-    virtual unsigned int serialize(void *buffer);
-};
-
 struct NetworkPeerByte5 {
     unsigned char reserved_000[4];
     unsigned char byte_004;
@@ -76,8 +71,7 @@ void CNetworkClientAckSenderView::send_ack_info_if_ready()
     lock->enter();
     packet.values_00c[1] = queue_23c;
     packet.peer_034[1] = peer_250->byte_004;
-    NetworkPacketSerializeOnlyView *request =
-        reinterpret_cast<NetworkPacketSerializeOnlyView *>(&packet);
+    NetworkPacketBase8 *request = &packet;
     send_3b4.send_client(
         buffer_5b4,
         request->serialize(buffer_5b4),
@@ -145,8 +139,7 @@ void CNetworkServerAckSenderView::send_ack_info_if_ready()
     packet.tail_036 = tail_210;
     packet.tail_037 = tail_211;
     packet.tail_038 = tail_254;
-    NetworkPacketSerializeOnlyView *request =
-        reinterpret_cast<NetworkPacketSerializeOnlyView *>(&packet);
+    NetworkPacketBase8 *request = &packet;
     send_3b4.send_server(
         0,
         buffer_5b4,

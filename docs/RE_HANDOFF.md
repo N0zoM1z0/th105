@@ -314,3 +314,7 @@ The ACK, replay, replay-request and INPUT concrete types now declare their exist
 ### 2026-11-03: infer shared packet parse signature
 
 The shared packet base now declares an inferred void parse slot. Removing artificial ACK returns preserves its full 183-byte native body, while both inspected callers ignore the return; all four packet vtables and previously exact affected roots replay, as do both pinned origin rules and full constructor/destructor EH and metadata. The original signature and base abstractness remain unproven, and integrated linking is not claimed. No exact-byte gain. See `docs/ACK_PACKET_BASE_2026_10_29.md`.
+
+### 2026-11-03: remove unrelated packet casts
+
+Both ACK senders and the request pump now use the RTTI-backed shared packet base instead of unrelated reinterpret-cast views. Their exact body comparisons and the four vtable checks pass; the ACK constructor retains its existing mismatch. No exact-byte gain or new EH/link claim. See `docs/ACK_PACKET_BASE_2026_10_29.md`.
