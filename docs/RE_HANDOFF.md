@@ -338,3 +338,7 @@ Complete CFGs and fresh exact caller edges establish authored ownership of spell
 ### 2026-11-03: exact PNG loader
 
 The linked PNG loader `0x41A910` now compares exactly for its complete 703-byte body by placing the real row-offset initialization before pixel allocation. Complete handler, cleanup funclet, FuncInfo and unwind map also replay exactly; the verified callback and target data bindings remain intact. The target version literal and linked provider version remain distinct; no runtime PNG decode-success claim. See `docs/PNG_LOADER_CONTEXT_2026_10_30.md`.
+
+### 2026-11-03: scenario source-list reference
+
+A real source-list reference in `0x45A7A0` reproduces native iterator preparation and reduces the full 543-byte candidate's differences from 25 to 16; the earlier node-preparation mismatch remains. Both exact callers and the generated-list origin rule replay. No exact-byte or EH claim. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.

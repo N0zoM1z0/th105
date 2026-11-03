@@ -78,9 +78,10 @@ void BattlePhaseBlock::parse_scenario_event_row_4591d0(void *destination)
         } while (--remaining);
     }
 
-    if (&state->destination_values_5a4 != &state->source_values_598) {
-        std::list<int>::iterator first = state->source_values_598.begin();
-        std::list<int>::iterator last = state->source_values_598.end();
+    std::list<int> &source = state->source_values_598;
+    if (&state->destination_values_5a4 != &source) {
+        std::list<int>::iterator first = source.begin();
+        std::list<int>::iterator last = source.end();
         state->destination_values_5a4.assign(first, last);
     }
 }

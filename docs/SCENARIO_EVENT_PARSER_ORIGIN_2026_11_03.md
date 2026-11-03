@@ -17,3 +17,7 @@ The native loop checks the selected column before calling the CSV integer reader
 ## Explicit list iterator lifetimes
 
 Materializing the actual source-list begin and end iterators before assignment naturally yields 543/native543 bytes without fabricated storage. The first 403 bytes still match. The remaining differences are two instruction scheduling/register-allocation regions: source-list node preparation after the final CSV value, and iterator preparation for the list assignment. Same size is not equality; the whole body and cleanup EH remain unaccepted. Receipts: `explicit-list-iterators.json` and `explicit-list-iterators.asm` in the same build directory.
+
+## Source-list reference and iterator scheduling
+
+A real local reference to the source list, used for the self-assignment check and begin/end iterators, preserves behavior while reproducing the native final iterator-preparation sequence. Fresh whole-body comparison remains 543/native543 and nonexact: the first mismatch is still `+0x193` at source-list node preparation, but the complete canonical difference census falls from 25 bytes to 16. Both exact caller units and the existing generated-list origin rule replay successfully. No exact-byte or cleanup-EH claim is made. Evidence: `build/frontier-scenario-insert-order-20261103/`.
