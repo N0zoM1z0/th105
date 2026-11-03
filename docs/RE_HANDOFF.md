@@ -258,3 +258,7 @@ The parser now materializes its genuine begin/end iterators for list assignment.
 ### 2026-11-03: connect phase render provider
 
 The Fighter phase render callback now uses the shared real `FighterPhaseRenderState` type and implementation instead of a declaration-only alias. Fresh canonical comparisons preserve all five phase roots and all six render-state roots, including `0x464A80` 71/71 and `0x45AA00` 333/333. The existing six-entry compiler-generated phase-render-list origin rule was rebuilt and replayed successfully. Receipts: `build/frontier-phase-real-render-provider-20261103/`. No new exact credit is claimed.
+
+### 2026-11-03: connect embedded phase provider
+
+The Fighter phase-finalize callback now uses the shared real `FighterEmbeddedState3d0Runtime` type and implementation instead of a declaration-only alias. Fresh canonical comparisons preserve all five phase roots and both embedded-state roots, including `0x464AD0` 71/71 and `0x4653F0` 45/45. Receipts: `build/frontier-phase-real-embedded-provider-20261103/`. No new exact credit is claimed.

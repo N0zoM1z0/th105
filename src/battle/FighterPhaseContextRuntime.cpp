@@ -1,5 +1,6 @@
 #include "FighterPhaseContext.hpp"
 #include "FighterPhaseRenderState.hpp"
+#include "FighterEmbeddedStateRuntime.hpp"
 #include "engine/RenderModeManager.hpp"
 
 namespace th105 {
@@ -14,10 +15,6 @@ struct FighterPhaseSubobjectView {
     virtual void slot_04() = 0;
     virtual void phase_05(int value) = 0;
     virtual void phase_06() = 0;
-};
-
-struct FighterPhaseFinalizeView {
-    void phase_4653f0();
 };
 
 struct FighterPhaseObjectView {
@@ -53,9 +50,9 @@ struct FighterPhaseObjectView {
             reinterpret_cast<unsigned char *>(this) + 0x674);
     }
 
-    FighterPhaseFinalizeView *finalize_state_3d0()
+    FighterEmbeddedState3d0Runtime *finalize_state_3d0()
     {
-        return reinterpret_cast<FighterPhaseFinalizeView *>(
+        return reinterpret_cast<FighterEmbeddedState3d0Runtime *>(
             reinterpret_cast<unsigned char *>(this) + 0x3d0);
     }
 };

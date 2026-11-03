@@ -12106,7 +12106,7 @@ address = "0x00464AD0"
 symbol_base = "?phase_463ab0@FighterPhaseContext@th105@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "?phase_4653f0@FighterPhaseFinalizeView@th105@@QAEXXZ=0x004653F0",
+  "?phase_4653f0@FighterEmbeddedState3d0Runtime@th105@@QAEXXZ=0x004653F0",
 ]
 
 [units.cross-v106a-fighter-phase-render-state]
