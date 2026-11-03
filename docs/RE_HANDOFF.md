@@ -242,3 +242,7 @@ The complete 2,005-byte `0x46FF30` gauge/effect runtime is classified authored u
 ### 2026-11-03: select scenario parser source
 
 The earlier parser EH relocation blocker is resolved to its native handler address, without claiming EH equivalence. `exact-first-scenario-event-parser` now compares the complete candidate: source 518 versus target 543, first mismatch at frame size. The source is registered present, not exact. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: scenario parser local lifetime
+
+The selected parser now reuses the actual selected-value local for the following source-list value, as established in the prior analysis. This naturally restores the native `/GS` frame size `0x34`; the full candidate remains 518/native543, with first mismatch at `+0x33` and no exact/EH claim. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.

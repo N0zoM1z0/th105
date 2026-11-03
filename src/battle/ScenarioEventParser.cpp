@@ -70,7 +70,8 @@ void BattlePhaseBlock::parse_scenario_event_row_4591d0(void *destination)
             selected_value.integer = static_cast<unsigned short>(
                 selected_value.integer);
             output.selected_values_08.push_back(&selected_value.short_value);
-            state->source_values_598.push_back(state->reader_038.next_int());
+            selected_value.integer = state->reader_038.next_int();
+            state->source_values_598.push_back(selected_value.integer);
             state->reader_038.advance_row();
         } while (--row_count);
     }
