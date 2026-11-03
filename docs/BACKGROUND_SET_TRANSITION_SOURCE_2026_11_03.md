@@ -20,3 +20,9 @@ at `4656A0`. Reproduce the nonexact setter with `scripts/repo-python
 scripts/build.py --unit exact-first-background-set-transition --compare --json`.
 The targeted origin rule was checked directly; no full origin-census replay is
 claimed.
+
+A subsequent bounded type control used an explicitly consumed unsigned-byte
+alpha in each loop, preserving the low-byte color result. It still emits a
+424-byte section and differs earlier, at +5; it does not resolve the stack
+assignment and was not selected. The original source was restored. Receipt:
+`build/frontier-background-alpha-type-20261103/compare.json`.
