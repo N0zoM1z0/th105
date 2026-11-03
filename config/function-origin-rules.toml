@@ -6408,20 +6408,6 @@ required_body_hashes = [{ address = "0x0045DC90", size = 259, sha256 = "9c5d531d
 required_direct_edges = [{ caller = "0x00428070", site = "0x00428238", target = "0x0045DC90", caller_status = "matching" }, { caller = "0x00428070", site = "0x00428246", target = "0x0045DC90", caller_status = "matching" }]
 
 [[rules]]
-id = "fighter-scripted-input-authored-106a"
-addresses = ["0x00463E40"]
-expected_count = 1
-expected_bytes = 753
-expected_names = ["sub_463E40"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete753-byte fighter scripted-input and action policy, called for both fighters by two independently exact round setup and pre-reset functions. Selected typed source remains nonexact; no exact-byte credit. docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md."
-required_body_hashes = [{ address = "0x00463E40", size = 753, sha256 = "f4fc93f5a85590424dd4f614584f07b853b9541eeeeeffbb58915e3d20fabddc" }]
-required_direct_edges = [{ caller = "0x00470BC0", site = "0x00470C02", target = "0x00463E40", caller_status = "matching" }, { caller = "0x00470BC0", site = "0x00470C0A", target = "0x00463E40", caller_status = "matching" }, { caller = "0x00472230", site = "0x00472272", target = "0x00463E40", caller_status = "matching" }, { caller = "0x00472230", site = "0x0047227A", target = "0x00463E40", caller_status = "matching" }]
-
-[[rules]]
 id = "scenario-event-parser-authored-106a"
 addresses = ["0x0045A7A0"]
 expected_count = 1

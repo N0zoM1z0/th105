@@ -44,7 +44,6 @@ void ScriptedInputView::update()
 {
     if(binding_6b0) {
         reinterpret_cast<FighterInputRuntimeView *>(this)->update_input_4631c0();
-        int horizontal=horizontal_6b4*facing_104;
         short packed=buttons_6bc[5]==1;
         packed=(packed<<1)|(buttons_6bc[4]==1);
         packed=(packed<<1)|(buttons_6bc[3]==1);
@@ -53,8 +52,8 @@ void ScriptedInputView::update()
         packed=(packed<<1)|(buttons_6bc[0]==1);
         packed=(packed<<1)|(vertical_6b8>0);
         packed=(packed<<1)|(vertical_6b8<0);
-        packed=(packed<<1)|(horizontal>0);
-        packed=(packed<<1)|(horizontal<0);
+        packed=(packed<<1)|(horizontal_6b4*facing_104>0);
+        packed=(packed<<1)|(horizontal_6b4*facing_104<0);
         if(action_13c>=300 &&
             (buttons_6bc[0]==1 || buttons_6bc[1]==1 || buttons_6bc[2]==1 ||
              buttons_6bc[3]==1 || buttons_6bc[4]==1 || buttons_6bc[5]==1)) {

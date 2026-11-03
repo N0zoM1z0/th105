@@ -29919,7 +29919,7 @@ source = "src/battle/FighterScriptedInputRuntime.cpp"
 object = "build/match-units/ExactFirst_FighterScriptedInput.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Fighter scripted-input/game policy463E40. Current typed source is nonexact; body and caller evidence only, no partial exact credit. docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md."
+notes = "Fighter scripted-input/game policy463E40; complete body matches, and four exact caller edges support authored ownership. No integrated-link claim. docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md."
 
 [[units.exact-first-fighter-scripted-input.functions]]
 address = "0x00463E40"
