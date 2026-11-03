@@ -1635,3 +1635,4 @@ CNetworkClient_import_ack_info_tail
 CNetworkServer_publish_input_frame
 CProfileCharacterSelect_refresh_character_preview
 CSprite_set_texture_options
+WaveService_set_handle_gain

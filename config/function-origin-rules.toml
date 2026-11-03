@@ -6164,3 +6164,17 @@ subsystem = "vc8_stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual wave-service CIL emits a whole91-byte pointer deque back helper. Source and native wave load and handle acquisition call edges are independently checked; both parents remain nonexact. Three static CRT calls and full inventory uniqueness pass. No authored credit. docs/WAVE_POINTER_DEQUE_BACK_ORIGIN_2026_11_03.md."
+
+[[rules]]
+id = "wave-handle-gain-authored-106a"
+addresses = ["0x00401CE0"]
+expected_count = 1
+expected_bytes = 109
+expected_names = ["sub_401CE0"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete109-byte service gain policy called by the exact SE configuration function. Threshold, handle lookup and DirectSound dispatch are game-specific; ordinary linked source101 remains nonexact. No fabricated alignment or exact credit. docs/WAVE_HANDLE_GAIN_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x00401CE0", size = 109, sha256 = "d756c176e1c50d926a0e91acce6dfa39bca022d1e6932111e4271fcf608fc2d5" }]
+required_direct_edges = [{ caller = "0x0043B1F0", site = "0x0043B22E", target = "0x00401CE0", caller_status = "matching" }]

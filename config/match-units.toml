@@ -29712,3 +29712,20 @@ notes = "Complete334-byte actual CSprite texture policy; first mismatch149 remai
 address = "0x00406A90"
 symbol_base = "?set_texture_options@CSprite@@UAEXIHHHHHH@Z"
 rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60"]
+
+[units.exact-first-wave-handle-gain]
+kind = "linked_candidate"
+source = "src/audio/WaveHandleGain.cpp"
+object = "build/match-units/ExactFirst_WaveHandleGain.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+link_xiph_sdk = true
+link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__timeGetTime@0=__imp__timeGetTime@0", "?bgm_minimum_gain@th105@@3MB=_bgm_transition_minimum_gain", "?logarithmic_volume_scale@th105@@3MB=_logarithmic_volume_scale", "?direct_sound_volume_units@th105@@3MB=_direct_sound_volume_units", "_wave_lock_error=_direct_sound_lock_error", "_wave_error_title=?sound_error_title@th105@@3QBDB"]
+notes = "Actual wave service per-handle gain policy; native109, ordinary linked source remains nonexact. No forced ABI or aligned scratch; docs/WAVE_HANDLE_GAIN_SOURCE_2026_11_03.md."
+
+[[units.exact-first-wave-handle-gain.functions]]
+address = "0x00401CE0"
+symbol_base = "?set_handle_gain@WaveHandleGainView@th105@@QAEXIM@Z"
+rel32_targets = ["?lookup_token_417800@CHandleManagerLookupView@th105@@QAEPAPAXI@Z=0x00417800", "?linear_gain_to_ds_volume@th105@@YGHM@Z=0x00418990"]
