@@ -29752,3 +29752,22 @@ notes = "Wave service master gain policy, complete native192 source; natural lin
 address = "0x00401C20"
 symbol_base = "?set_master_gain@WaveMasterGainView@th105@@QAEXM@Z"
 rel32_targets = ["_log10=0x0068C0A0", "__ftol2_sse=0x0068A1A0"]
+
+[units.exact-first-bgm-master-gain]
+kind = "linked_candidate"
+source = "src/audio/BgmServiceLoad.cpp"
+object = "build/match-units/ExactFirst_BgmMasterGain.dll"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+link_xiph_sdk = true
+preserve_public_members = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z", "??1FileReaderOwner@th105@@QAE@XZ", "?lookup@BgmLoadManagerView@th105@@QAEPAUBgmStreamRuntime@2@I@Z"]
+link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__timeGetTime@0=__imp__timeGetTime@0", "?bgm_minimum_gain@th105@@3MB=_bgm_transition_minimum_gain", "?logarithmic_volume_scale@th105@@3MB=_logarithmic_volume_scale", "?direct_sound_volume_units@th105@@3MB=_direct_sound_volume_units", "_wave_lock_error=_direct_sound_lock_error", "_wave_error_title=?sound_error_title@th105@@3QBDB", "__imp__SetEvent@4=__imp__SetEvent@4"]
+notes = "Complete BGM master volume source. Natural linked body357/native284 has unaccounted alignment gap and remains nonexact; no decoder waiver. docs/BGM_MASTER_GAIN_SOURCE_2026_11_03.md."
+
+
+[[units.exact-first-bgm-master-gain.functions]]
+address = "0x00403A30"
+symbol_base = "?set_master_gain@BgmLoadServiceView@th105@@QAEXM@Z"
+rel32_targets = ["?lookup@BgmLoadManagerView@th105@@QAEPAUBgmStreamRuntime@2@I@Z=0x00404330", "_log10=0x0068C0A0", "__ftol2_sse=0x0068A1A0", "__invalid_parameter_noinfo=0x0068A143"]

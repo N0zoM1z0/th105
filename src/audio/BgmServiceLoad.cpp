@@ -35,6 +35,7 @@ struct BgmLoadServiceView {
     std::list<BgmHandleResult> active_88, pending_94, retired_a0;
     float gain_ac, gain_b0;
     bool play(BgmHandleResult handle, const char *path, bool queued, float gain);
+    void set_master_gain(float gain);
 };
 typedef char LoadManagerSize[sizeof(BgmLoadManagerView)==0x50?1:-1];
 typedef char LoadServiceActive[offsetof(BgmLoadServiceView,active_88)==0x88?1:-1];
@@ -72,5 +73,28 @@ bool BgmLoadServiceView::play(BgmHandleResult handle, const char *path, bool que
         SetEvent(loading_event_14);
     }
     return true;
+}
+}
+
+namespace th105 {
+void BgmLoadServiceView::set_master_gain(float gain)
+{
+    if (gain < 0.0f) gain = 0.0f;
+    else if (gain > 1.0f) gain = 1.0f;
+    gain_ac = gain;
+    EnterCriticalSection(&lock_1c.critical_section_04);
+    for (std::list<BgmHandleResult>::iterator it = active_88.begin(); it != active_88.end(); ++it) {
+        BgmStreamRuntime *stream = manager_38.lookup(it->value);
+        if (stream) {
+            float master = gain_ac * gain_b0;
+            stream->master_1364 = master;
+            if (stream->active_20) {
+                float effective = master * stream->gain_1358;
+                long volume = effective <= bgm_minimum_gain ? -10000 : linear_gain_to_ds_volume(effective);
+                stream->buffer_24.set_volume(volume);
+            }
+        }
+    }
+    LeaveCriticalSection(&lock_1c.critical_section_04);
 }
 }

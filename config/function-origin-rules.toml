@@ -6209,3 +6209,17 @@ required_direct_edges = [
  { caller = "0x00403940", site = "0x00403974", target = "0x00402B70", caller_status = "matching" },
  { caller = "0x00403990", site = "0x004039C3", target = "0x00402B70", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "bgm-master-gain-authored-106a"
+addresses = ["0x00403A30"]
+expected_count = 1
+expected_bytes = 284
+expected_names = ["sub_403A30"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete284-byte BGM master gain policy called by exact configuration code. Clamp, locked active stream iteration and volume updates are application policy. Genuine linked source357 has an unaccounted gap and remains nonexact; no decoder waiver or exact credit. docs/BGM_MASTER_GAIN_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x00403A30", size = 284, sha256 = "9a96e51df5582338e56e081b3895ca413a8679357b0e3827a967f30b755bff2b" }]
+required_direct_edges = [{ caller = "0x0043B1C0", site = "0x0043B1E1", target = "0x00403A30", caller_status = "matching" }]
