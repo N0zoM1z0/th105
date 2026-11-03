@@ -15212,7 +15212,7 @@ notes = "Current scene-timeline easing helper. Ordinary float C++ clamps progres
 
 [[units.gpt-web-scene-interpolation-easing.functions]]
 address = "0x00450120"
-symbol_base = "?apply_easing@SceneInterpolationRuntimeView@th105@@QAEMHM@Z"
+symbol_base = "?apply_easing@SceneRenderClusterUpdateView@th105@@QAEMHM@Z"
 rel32_targets = [
   "_scene_easing_sine=0x00406360",
   "_scene_easing_cosine=0x004063D0",
@@ -27010,13 +27010,13 @@ notes = "Actual member easing call preserves the incoming scene receiver in ECX.
 
 [[units.exact-first-scene-interpolation.functions]]
 address = "0x004501B0"
-symbol_base = "?interpolate_byte@SceneInterpolationRuntimeView@th105@@QAEXPAE0PBUSceneInterpolationEntry24@2@I@Z"
-rel32_targets = ["?apply_easing@SceneInterpolationRuntimeView@th105@@QAEMHM@Z=0x00450120"]
+symbol_base = "?interpolate_scene_byte_4501b0@SceneRenderClusterUpdateView@th105@@QAEXPAE0PBUSceneInterpolationEntry24@2@I@Z"
+rel32_targets = ["?apply_easing@SceneRenderClusterUpdateView@th105@@QAEMHM@Z=0x00450120"]
 
 [[units.exact-first-scene-interpolation.functions]]
 address = "0x00450290"
-symbol_base = "?interpolate_float@SceneInterpolationRuntimeView@th105@@QAEXPAM0PBUSceneInterpolationEntry24@2@I@Z"
-rel32_targets = ["?apply_easing@SceneInterpolationRuntimeView@th105@@QAEMHM@Z=0x00450120"]
+symbol_base = "?interpolate_scene_float_450290@SceneRenderClusterUpdateView@th105@@QAEXPAM0PBUSceneInterpolationEntry24@2@I@Z"
+rel32_targets = ["?apply_easing@SceneRenderClusterUpdateView@th105@@QAEMHM@Z=0x00450120"]
 
 [units.exact-first-background-initialize]
 kind = "probe"

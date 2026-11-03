@@ -3,7 +3,7 @@
 #include "SceneInterpolationRuntime.hpp"
 namespace th105 {
 
-void SceneInterpolationRuntimeView::interpolate_byte(
+void SceneRenderClusterUpdateView::interpolate_scene_byte_4501b0(
     unsigned char *output,unsigned char *current,const SceneInterpolationEntry24 *entry,unsigned elapsed)
 {
     if(elapsed>=entry->end_08 || entry->start_04==entry->end_08) {
@@ -18,7 +18,7 @@ void SceneInterpolationRuntimeView::interpolate_byte(
         *output=static_cast<unsigned char>((static_cast<int>(entry->target.uint_0c)-base)*apply_easing(entry->easing_10,progress)+base);
     }
 }
-void SceneInterpolationRuntimeView::interpolate_float(
+void SceneRenderClusterUpdateView::interpolate_scene_float_450290(
     float *output,float *current,const SceneInterpolationEntry24 *entry,unsigned elapsed)
 {
     if(elapsed>=entry->end_08 || entry->start_04==entry->end_08) {

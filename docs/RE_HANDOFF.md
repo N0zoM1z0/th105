@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Scene update, byte/float interpolation and easing now share the same actual
+0x94-byte update receiver instead of separate method-only views. The exact update
+801, float160 and easing131 roots remain exact across the complete three-unit
+include closure; byte214/native211 remains unchanged and nonexact. No counts or
+ABI/layout changes. See SCENE_SHARED_INTERPOLATION_RECEIVER_2026_11_03.md.
+
 ## Resumed after maintenance — November 3, 2026
 
 The user requested documentation and storage cleanup, then paused the work.

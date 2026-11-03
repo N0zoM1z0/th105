@@ -4,7 +4,7 @@ extern "C" float __cdecl scene_easing_cosine(float value);
 
 namespace th105 {
 
-float SceneInterpolationRuntimeView::apply_easing(int mode, float value)
+float SceneRenderClusterUpdateView::apply_easing(int mode, float value)
 {
     if (value <= 0.0f)
         return 0.0f;
