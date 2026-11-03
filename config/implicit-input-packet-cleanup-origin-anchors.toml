@@ -40,7 +40,7 @@ sha256 = "8dc8c7c6f5baae0f3dd537c3b2c52c808a4a89e389bb1b4f6800650663b3694d"
 
 [[sources]]
 path = "src/network/NetworkInputPacket.hpp"
-sha256 = "f68fe04a99eef2cbe474a39c1f20433b9bc99b557daf6dbbb533d46c7974f342"
+sha256 = "7c5ef194da1e8bded84b2608ebfa272245ed6364b8618fe81ba271de7550aca9"
 
 [[sources]]
 path = "src/network/NetworkPacketBase.hpp"

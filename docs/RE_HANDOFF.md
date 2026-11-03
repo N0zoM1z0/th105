@@ -306,3 +306,7 @@ The native INPUT RTTI identifies the same offset-zero `IPacket` base. Packet-lea
 ### 2026-11-03: network-base real INPUT member
 
 The network base now uses the shared RTTI-backed INPUT class through its compatibility typedef. Constructor, destructor, packet cleanup and sprite lifetimes replay exact; complete constructor/destructor remote EH and metadata, plus the two affected source-pinned origin proofs, also pass after renewing reviewed pins and checkout attributes. Receipts: `build/frontier-input-base-real-type-20261103/`. No new exact bytes.
+
+### 2026-11-03: concrete packet vtable second slots
+
+The ACK, replay, replay-request and INPUT concrete types now declare their existing parse methods virtual as required by native two-slot tables. The common base parse declaration remains unresolved. `scripts/audit-network-packet-vtables.py` checks four fresh source COFF tables, native slot addresses and offset-zero IPacket RTTI; `test_network_packet_vtables` rejects missing/swapped slots. Existing exact packet/dispatcher/base roots replay; both affected source-pinned origin rules and full network constructor/destructor EH/metadata also pass after the INPUT header pin renewal. No exact-byte gain. See `docs/ACK_PACKET_BASE_2026_10_29.md`.

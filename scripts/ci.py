@@ -66,6 +66,7 @@ EXACT_TEST_MODULES = (
     "test_sprite_default_origins",
     "test_csprite_lifetime_origins",
     "test_network_base_constructor_eh",
+    "test_network_packet_vtables",
     "test_network_base_destructor_eh",
     "test_timeline_texture_receiver",
     "test_boost_matcher_lifetimes",

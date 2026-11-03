@@ -10,7 +10,7 @@ class NetworkAckInfoPacket40 : public NetworkPacketBase8 {
 public:
     NetworkAckInfoPacket40() {}
     virtual unsigned int serialize(void *buffer);
-    char parse(const unsigned char *input);
+    virtual char parse(const unsigned char *input);
 
     unsigned char value_008[2];
     unsigned char status_00a[2];
