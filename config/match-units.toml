@@ -15107,8 +15107,8 @@ rel32_targets = [
   "?send_simple_packet@NetworkClientPrimarySecondaryDispatchView@th105@@QAEHPAXH@Z=0x0044D770",
   "?parse@InputPacket24@th105@@UAEXPBE@Z=0x0044E050",
   "??0NetworkAckInfoPacket40@th105@@QAE@XZ=0x0044DAC0",
-  "?parse@NetworkAckInfoPacket40@th105@@UAEDPBE@Z=0x0044E0A0",
-  "?parse_compressed@ReplayPacket28@th105@@UAEXPBE@Z=0x0044E160",
+  "?parse@NetworkAckInfoPacket40@th105@@UAEXPBE@Z=0x0044E0A0",
+  "?parse@ReplayPacket28@th105@@UAEXPBE@Z=0x0044E160",
   "?consume_replay@NetworkClientPrimarySecondaryDispatchView@th105@@QAEHPAVReplayPacket28@2@@Z=0x0044E210",
   "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
   "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
@@ -15197,7 +15197,7 @@ rel32_targets = [
   "?parse@InputPacket24@th105@@UAEXPBE@Z=0x0044E050",
   "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
   "??0NetworkAckInfoPacket40@th105@@QAE@XZ=0x0044DAC0",
-  "?parse@NetworkAckInfoPacket40@th105@@UAEDPBE@Z=0x0044E0A0",
+  "?parse@NetworkAckInfoPacket40@th105@@UAEXPBE@Z=0x0044E0A0",
   "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -15406,7 +15406,7 @@ rel32_targets = [
 
 [[units.gpt-web-network-ack-info-packet-runtime.functions]]
 address = "0x0044E0A0"
-symbol_base = "?parse@NetworkAckInfoPacket40@th105@@UAEDPBE@Z"
+symbol_base = "?parse@NetworkAckInfoPacket40@th105@@UAEXPBE@Z"
 rel32_targets = [
   "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
   "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
@@ -15486,7 +15486,7 @@ rel32_targets = [
 
 [[units.gpt-web-network-packet-leaf-runtime.functions]]
 address = "0x0044E160"
-symbol_base = "?parse_compressed@ReplayPacket28@th105@@UAEXPBE@Z"
+symbol_base = "?parse@ReplayPacket28@th105@@UAEXPBE@Z"
 rel32_targets = [
   "_decompress_network_replay=0x00406890",
   "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",

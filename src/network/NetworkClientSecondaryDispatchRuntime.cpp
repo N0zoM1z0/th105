@@ -136,7 +136,7 @@ void CNetworkClientSecondaryDispatchView::dispatch_packet(
     case 9:
     case 10: {
         ReplayPacket28 request;
-        request.parse_compressed(packet);
+        request.parse(packet);
         owner()->consume_replay(&request);
         break;
     }

@@ -242,7 +242,7 @@ unsigned int ReplayPacket28::serialize(void *buffer)
     return compressed_size + 2;
 }
 
-void ReplayPacket28::parse_compressed(const unsigned char *input)
+void ReplayPacket28::parse(const unsigned char *input)
 {
     ReplayDecoded256 decoded;
     decompress_network_replay(

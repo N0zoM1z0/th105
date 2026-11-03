@@ -9,7 +9,7 @@ class ReplayPacket28 : public NetworkPacketBase8 {
 public:
     ReplayPacket28() {}
     virtual unsigned int serialize(void *buffer);
-    virtual void parse_compressed(const unsigned char *input);
+    virtual void parse(const unsigned char *input);
     unsigned int sequence_008;
     unsigned int metadata_00c;
     unsigned char tag_010;

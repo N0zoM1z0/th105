@@ -8,8 +8,8 @@ import linked_pe as core
 from workflow_manifest import ROOT, load_manifest, unit_input_digest, compiler_sha256
 
 SPECS = [
-    ('gpt-web-network-ack-info-senders-runtime', '??_7NetworkAckInfoPacket40@th105@@6B@', 0x6c2504, '.?AVCDPP_ACK_INFO@@', '?serialize@NetworkAckInfoPacket40@th105@@UAEIPAX@Z', '?parse@NetworkAckInfoPacket40@th105@@UAEDPBE@Z', 0x44df20, 0x44e0a0),
-    ('gpt-web-network-client-secondary-dispatch-runtime', '??_7ReplayPacket28@th105@@6B@', 0x6c24f8, '.?AVCDPP_REPLAY@@', '?serialize@ReplayPacket28@th105@@UAEIPAX@Z', '?parse_compressed@ReplayPacket28@th105@@UAEXPBE@Z', 0x44d990, 0x44e160),
+    ('gpt-web-network-ack-info-senders-runtime', '??_7NetworkAckInfoPacket40@th105@@6B@', 0x6c2504, '.?AVCDPP_ACK_INFO@@', '?serialize@NetworkAckInfoPacket40@th105@@UAEIPAX@Z', '?parse@NetworkAckInfoPacket40@th105@@UAEXPBE@Z', 0x44df20, 0x44e0a0),
+    ('gpt-web-network-client-secondary-dispatch-runtime', '??_7ReplayPacket28@th105@@6B@', 0x6c24f8, '.?AVCDPP_REPLAY@@', '?serialize@ReplayPacket28@th105@@UAEIPAX@Z', '?parse@ReplayPacket28@th105@@UAEXPBE@Z', 0x44d990, 0x44e160),
     ('gpt-web-network-client-secondary-runtime', '??_7NetworkRequestReplay10@th105@@6B@', 0x6c24e0, '.?AVCDPP_REQ_REPLAY@@', '?serialize@NetworkRequestReplay10@th105@@UAEIPAX@Z', '?parse@NetworkRequestReplay10@th105@@UAEXPBE@Z', 0x44d840, 0x44d860),
     ('gpt-web-network-base-constructor-runtime', '??_7InputPacket24@th105@@6B@', 0x6c24ec, '.?AVCDPP_INPUT@@', '?serialize@InputPacket24@th105@@UAEIPAX@Z', '?parse@InputPacket24@th105@@UAEXPBE@Z', 0x44d920, 0x44e050),
 ]
@@ -51,7 +51,7 @@ def audit():
         array = u32(hierarchy + 12); base = u32(array + 4)
         require(base == 0x6d870c and u32(base + 8) == 0 and cstring(u32(base) + 8) == '.?AVIPacket@@', 'native common base differs')
         facts.append(dict(unit=unit_name, vtable=hex(address), native_type=native_type, base_descriptor=hex(base), slots=[hex(serialize_at), hex(parse_at)]))
-    return dict(result='verified', target_sha256=target_sha, tables=facts, scope='two concrete slots and offset-zero base; base parse signature and full link remain unproved')
+    return dict(result='verified', target_sha256=target_sha, tables=facts, scope='two concrete slots and offset-zero base; shared void parse signature is inferred; full link remains unproved')
 
 
 if __name__ == '__main__':

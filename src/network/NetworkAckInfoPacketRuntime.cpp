@@ -38,7 +38,7 @@ unsigned int NetworkAckInfoPacket40::serialize(void *buffer)
     return static_cast<unsigned int>(output - static_cast<unsigned char *>(buffer));
 }
 
-char NetworkAckInfoPacket40::parse(const unsigned char *input)
+void NetworkAckInfoPacket40::parse(const unsigned char *input)
 {
     const unsigned char *source = input + 1;
     for (int side = 0; side < 2; ++side) {
@@ -49,7 +49,7 @@ char NetworkAckInfoPacket40::parse(const unsigned char *input)
         if (count > 20) {
             tail_036 = 0;
             tail_037 = 0;
-            return static_cast<char>(count);
+            return;
         }
         if (count > 0) {
             int remaining = count;
@@ -66,7 +66,6 @@ char NetworkAckInfoPacket40::parse(const unsigned char *input)
     tail_038 = *reinterpret_cast<const unsigned int *>(source);
     source += 4;
     sequence_03c = *source;
-    return static_cast<char>(tail_038);
 }
 
 } // namespace th105

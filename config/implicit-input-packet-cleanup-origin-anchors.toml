@@ -44,7 +44,7 @@ sha256 = "7c5ef194da1e8bded84b2608ebfa272245ed6364b8618fe81ba271de7550aca9"
 
 [[sources]]
 path = "src/network/NetworkPacketBase.hpp"
-sha256 = "f6f6a410bd3d8cc27be4501f3f0c9df24981c8174df2e25fd4a3b55f7bd652bb"
+sha256 = "a7df6d6cb5694058e5813f8f777bba55714672acfdd383ac3b208ce9bb91d983"
 
 [[anchors]]
 address = "0x0043BE90"
