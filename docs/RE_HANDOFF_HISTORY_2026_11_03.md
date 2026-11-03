@@ -1,0 +1,3147 @@
+# TH10.5 reconstruction handoff
+
+CSprite texture options406A90 now has complete source in its actual shared class.
+The 334-byte body remains nonexact at+149; six guarded whole-object fixtures
+and mutated-write negative pass. Scoped authored origin1/334 and three evidence
+negatives pass. No accepted consumer changed and no exact credit was added.
+Source1637, authored1656, mapped1827, review295, excluded2076, units814; exact
+1426/443399 unchanged. CI passed966 tests in102.751 seconds.
+See SPRITE_TEXTURE_OPTIONS_SOURCE_2026_11_02.md.
+
+DesignObjects.hpp now shares the four real outer design classes across loader,
+lifetime and rendering code. All four RTTI graphs (499 unique bytes) and all
+28 slots pass. All 17 accepted authored roots in five affected units remain
+exact, including numeric 55 / 63 / 95 / 581. Scalar gates 2 / 120 and 2 / 121,
+loader origin 9 / 948, and 16 complete alias/support body checks pass. Aliases,
+scalars and the unselected one-byte base render receive no extra credit. Loader
+raw2576 remains EH-blocked; gauge360 stays nonexact. No count changes.
+CI passed all 962 tests in 119.765 seconds.
+See DESIGN_SHARED_OWNERS_2026_11_02.md.
+
+Design loading now uses actual CGage and one shared real constructor definition.
+All six accepted roots in the two affected units remain exact; scalar origin
+2 / 120 and loader-generated origin 9 / 948 pass. Loader CGage scalar56, full
+RTTI329 and nine slots pass. Gauge init360 keeps its hash and loader raw2580
+stays unchanged with the original EH block. No native loader or extra helper
+credit. Outer design-object views remain separate.
+CI passed all 962 tests in 103.735 seconds.
+See DESIGN_LOADER_REAL_GAGE_2026_11_02.md.
+
+Design loading now uses shared CNumber with friend access, removing its local
+number class. The real constructor naturally corrects tile-handle / table /
+value-pointer initialization order to native +44 / +40 / +3C. Raw loader2580
+changes ten byte positions but remains EH-blocked, with no native byte credit.
+Actual CNumber scalar60 / four slots pass. All 28 accepted roots in 10 units
+pass (closure11); seven other hashes and the old block are unchanged. Origin
+3 / 28 and 9 / 948 plus scalar 1 / 30 and 2 / 121 pass. No count changes.
+CI passed all 962 tests in 100.432 seconds.
+See DESIGN_LOADER_REAL_NUMBER_2026_11_02.md.
+
+Design-number rendering now shares CNumber / IColor instead of duplicate
+number/color classes. Existing unexported helpers receive friend access without
+layout or calling-convention changes. Integer rendering is one verbatim shared
+definition, not duplicated provider code. Linked 55 / 63 / 95 / 581 roots remain
+exact with the same private edges and natural frame. All 25 accepted roots in
+nine units pass (closure 10); six other roots retain hashes. Implicit origin
+3 / 28 and scalar gates 1 / 30 plus 2 / 121 pass. No count gain.
+CI passed all 962 tests in 115.052 seconds.
+See DESIGN_NUMBER_REAL_OWNER_2026_11_02.md.
+
+Design loading now uses actual CSprite / CTile; the local gauge view inherits
+the real sprite and keeps its nine-slot override surface. Gauge/number/object
+views remain local. Three accepted public methods stay exact; gauge init 360
+keeps its hash. Main loader retains its EH block and identical raw source2580,
+with only actual-type relocation names and one same-offset local label renamed.
+This is not a native loader match. Member RTTI / tables and origin 9 / 948 pass.
+CI passed all 962 tests in 113.522 seconds. No ledger or count change.
+See DESIGN_LOADER_REAL_SPRITES_2026_11_02.md.
+
+Indexed spell display now uses actual CSprite at +0x98 instead of a partial
+virtual interface plus storage tail. The 234-byte callback remains exact.
+All 21 accepted roots in 14 units pass (closure 18); eight other roots retain
+hashes. The shared spell resource field type is unchanged and its handle bits
+are passed explicitly. No manifest, origin, ledger or count changes.
+CI passed all 962 tests in 111.865 seconds.
+See SPELL_DISPLAY_REAL_SPRITE_2026_11_02.md.
+
+FighterSequenceSlot, prepare-record and battle-info renderer now use actual
+CSprite. Enqueue uses ordinary placement copy construction, removing borrowed
+copy ABI / receiver casts; full enqueue 114 and naturally emitted copy 116
+remain canonical. Actual sprite RTTI 273 / nine slots pass. All 21 accepted
+roots in 14 units pass (closure 18), and eight other roots retain hashes.
+CoreContracts positive / wrong-offset / mutable-argument controls pass. Prepare
+remains 257 / 259 and other compiler residuals stay closed. No count gain.
+CI passed all 962 tests in 125.660 seconds.
+See SEQUENCE_SHARED_SPRITE_2026_11_02.md.
+
+Shared Title.hpp now owns actual CSprite / CTile members instead of manual
+vptr-cleanup facades. Title destructor 161 and scalar 30 remain exact; full
+EH 88 + 76 and emitted IColor RTTI 93 pass. Actual include closure 147 units:
+all 222 accepted roots in 113 units pass; 73 other roots in 61 units retain
+71 candidate hashes and two existing relocation blocks. No count changes.
+Outer constructor/destructor Title/resource declarations are still separate.
+CI passed all 962 tests in 105.814 seconds.
+See TITLE_LIFETIME_REAL_MEMBERS_2026_11_02.md.
+
+Title construction now uses actual CSprite / CTile, replacing the local color
+base and incomplete sprite/tile classes. The one affected constructor remains
+577-byte exact; its full 616-byte section, including alignment and nine-entry
+switch table, also matches. Member RTTI / all slots and full EH 88 + 76 pass.
+Outer Title/resource views remain separate. No ledger or count changes.
+CI passed all 962 tests in 139.882 seconds.
+See TITLE_REAL_SPRITES_2026_11_02.md.
+
+Info manager lifetime records now use actual CSprite. Owner 195 / 185 and
+support 30 / 28 / 15 remain exact; sprite RTTI 273 and shared physical EH
+104 + 76 pass. The real implicit ComboResource34Lifecycle cleanup at 0x46EF30
+now has complete 5-byte and native EH ownership proof, unique in the inventory.
+Add one compiler exclusion: excluded 2076, review 296. Authored exact remains
+1426 / 443399, source 1636, authored 1655, mapped 1826 and units 813.
+Implicit origin 3 / 28, four negative controls and nine focused tests pass.
+CI passed all 962 tests in 109.298 seconds.
+See INFO_LIFETIME_REAL_SPRITES_2026_11_02.md.
+
+Shared profile message/background/cursor globals now use actual CSprite, with
+named cursor scale fields. Duplicate sprite interfaces and texture-call view
+are removed; the existing exact 39-byte texture wrapper is CSprite::set_texture.
+All 22 accepted roots in seven units remain exact (closure eight); the pending
+deck renderer keeps its 2521-byte hash. Three native global vptrs and cursor
+scale storage are checked. No count gain or new global allocation.
+CI passed all 962 tests in 109.603 seconds.
+See PROFILE_GLOBAL_SPRITES_2026_11_02.md.
+
+Sequence rotation now owns actual CSprite instead of duplicate sprite classes.
+Rotation 265, implicit copy 116, card cleanup 8, assignment 143 and deque erase
+515 bytes remain exact; related enqueue 114 is freshly exact. Source pins and
+copy/assignment selectors now use the actual type. Three scoped origin gates,
+full EH 88 and sprite RTTI 273 / nine slots pass. No new credit.
+CI passed all 962 tests in 127.255 seconds.
+See SEQUENCE_REAL_SPRITE_2026_11_02.md.
+
+Profile rendering and MenuEnd initialization now share one actual CTile global
+declaration at 0x6E6A88; the two old views are removed. All 21 accepted roots
+in six units remain exact (closure seven), including renderer 142 and initializer
+512 bytes. The pending deck renderer retains its 2521-byte hash. Native initial
+vptr is the established CTile table. No count or lifetime changes.
+CI passed all 962 tests in 111.630 seconds.
+See PROFILE_SHARED_TILE_2026_11_02.md.
+
+CSelectScenario now uses actual CSprite / CTile members and direct typed
+texture calls. All 13 accepted roots in 10 units remain exact (closure 12),
+including ctor 862, dtor 277 and preview 186. Seven other roots retain hashes.
+Both scalar origins pass; full EH 492 and member RTTI / tables pass. The retained
+unselected renderer now uses native render(x, y, 0, scenario) argument order;
+it remains nonexact at 757 / 756 bytes, first +125. No ledger or count gain.
+CI passed all 962 tests in 110.932 seconds.
+See SELECT_SCENARIO_REAL_SPRITES_2026_11_02.md.
+
+Long battle info records now use actual CSprite for both members. The partial
+eight-slot sprite interface and resource-binding receiver cast are removed.
+The actual include closure has two units; all three roots remain exact:
+binding 107, render 323 and update 310 bytes. CI passed 962 tests in
+115.679 seconds. No ABI, ledger or count change.
+See INFO_LONG_REAL_SPRITES_2026_11_02.md.
+
+Scenario draw/text records and runtime/render/fade/rebuild views now use actual
+CSprite. Named scale fields replace command-update byte-offset writes. Rebuild's
+borrowed copy declaration is gone: real implicit CSprite copy116 and original
+list node100 both match naturally, with the same existing entry cleanup85.
+All22 accepted roots in11 units pass (closure14); render930/list-fade418/data
+ctor1528 retain hashes, and command update keeps its old string-relocation block.
+Sprite RTTI273/nine slots, generated origin2/260 and full rebuild/release/entry
+EH110+104+82 pass. Rebuild handler is33 bytes, not the common27-byte shape.
+CI passed all 962 tests in 112.862 seconds. No count gain.
+See SCENARIO_REAL_SPRITES_2026_11_02.md.
+
+Scenario result construction/runtime now use actual CTile at +0x5C. The local
+color/tile substitutes, setup receiver cast and raw scale-offset helpers are
+removed; real texture options and named scale fields are used. Constructor298,
+render187 and destructor116 remain exact. Actual include closure12 units:
+22 accepted roots in11 units pass; ScenarioData constructor1528 is unchanged,
+and command update retains its old unqualified basic_string constructor block.
+Tile RTTI247/four slots and complete ctor/dtor EH49+52 each pass. No count gain.
+See SCENARIO_RESULT_REAL_TILE_2026_11_02.md.
+
+The profile cleanup accounting question is closed: removing the empty explicit
+destructor makes the real ScoreDefaults local naturally emit the same complete
+205-byte body at 0x42D320. Its parent 0x42ED70 remains exact 2428 bytes with the
+same constructor/destructor call pair; parent EH source bytes/relocations are
+unchanged. The implicit cleanup has unique whole-body inventory identity and
+exact EH 80+68. Its selector moved to the existing ScoreDefaults unit, with one
+source-pinned exclusion rule. Withdraw exactly 1 authored function / 205 bytes:
+exact 1426 / 443399, source 1636, authored 1655, excluded 2075; mapped 1826,
+review 297 and units 813 unchanged. Four accepted affected roots, Replay origin
+2/32, four negative controls and 9+12 focused tests pass. No artificial probe.
+See PROFILE_IMPLICIT_CLEANUP_2026_11_02.md.
+
+Profile portrait ownership/consumers now use actual CSprite: the profile data
+lifetime, player color, network result finalizer, battle profile renderer and
+profile UI helpers no longer have separate sprite/color interfaces. The false
+8-byte color-base model is removed. All 18 accepted roots in eight affected units
+remain exact; three Replay support roots retain hashes. Actual sprite RTTI273,
+profile ctor/dtor EH148 each, Replay cleanup origin2/32 and 12 focused tests pass.
+No count gain. Next bounded accounting check: empty profile destructor42D320/205
+may have a natural implicit witness in real ScoreDefaults; no classification
+change is justified until whole emission/ownership is proved.
+See PROFILE_PORTRAIT_SPRITES_2026_11_02.md.
+
+CMenuResult now owns actual CSprite at +0x08. Four accepted roots in three
+units remain exact; closure five units. Constructor remains 495/native502 at
++45, but its handle initialization now precedes the EH state store as in the
+native sequence. Only those adjacent stores changed, with no byte credit.
+Other four support/pending roots retain fresh HEAD hashes. Sprite RTTI273/nine
+slots and full ctor/dtor EH115+84 each (398 total) pass; vector cleanup42 is
+whole-checked. Generic implicit origins17/1434 pass after the header pin update.
+See RESULT_REAL_SPRITE_2026_11_02.md.
+
+Scene construction/lifetime now uses actual CSprite, CEffectSprite and CTile.
+Logo lifetime is corrected from two CSpriteEx members to CEffectSprite +0x08,
+CTile +0xF0 and state +0x194, total 0x198. Loading lifetime adds its observed
+word timer +0xB8, total 0xBC. Both agree with fresh exact factory allocation.
+All 15 accepted roots in two affected units remain exact; factory observer also
+passes. Six scalar roots / 181 bytes retain their origin proof. Complete member
+RTTI graphs and six ctor/dtor EH regions (676 bytes) pass. Logo effect cleanup
+uses native 0x421D30, not the byte-identical 0x40AD50 location; no exclusive ICF
+claim. Loading render conversions were rejected at 218/native217 and restored.
+No count gain. See SCENE_REAL_MEMBERS_2026_11_02.md.
+
+The real CGage CIL context was rechecked after actual owner unification and
+numeric-literal support. The prior literal block is resolved: complete linked
+CFG/body comparison now succeeds as a comparison, but yields nonexact 1012
+versus1010, first difference at entry (aligned EBP frame). Canonical hash
+5a9a6d3c620abd2a41a6ebb9e7b7cb5542b247b89f922bead9c4eb01b346ff2f.
+Actual texture binder/handle runtime/trig providers and qualified static runtime
+were used. No source/flags were shaped, no public unit changed, no count gain.
+This closes the old unqualified-literal CIL stop; do not repeat the same context.
+See GAGE_ACTUAL_CIL_2026_11_02.md.
+
+ProfileDeckEdit shared owner now has actual CSprite/CTile members. Its renderer
+uses an actual local CSprite, named scale fields and normal typed calls instead
+of the manual-vptr local, dispatch macro and member casts. Seven accepted roots
+in five units remain exact; closure six units. Destructor353/scalar30 and
+nonexact renderer2521 retain their fresh HEAD hashes. Full destructor EH185+124
+passes with complete map52/deque5 cleanup providers; local sprite RTTI273 passes.
+No renderer shaping or new exact credit. See DECK_RENDER_REAL_SPRITES_2026_11_02.md.
+
+Config menu construction, update and render/lifetime views now share actual
+CSprite array members at +0xB8. Eight accepted roots in two units stay exact;
+two scalar support roots and nonexact constructor 863 retain fresh HEAD hashes.
+Only three units affected. Array sites prove two 0x94 elements, ctor callback
+16 and cleanup callback 7; actual sprite RTTI 273/nine slots pass. Full config
+ctor and dtor EH each 87+68 bytes pass (310 support total). Constructor's old
+late clamp difference remains closed, with no new exact credit.
+See CONFIG_REAL_SPRITES_2026_11_02.md.
+
+CGage now has one actual global declaration in ui/Gage.hpp, derived from the
+shared CSprite -> CSpriteBase -> IColor hierarchy. Lifetime, render and design
+member users share it; duplicate sprite/color/payload views are removed.
+Full native RTTI graph 329 bytes and all nine slots pass. Six accepted roots
+in two units stay exact; scalar support 56/64 passes its 2/120 origin gate.
+Render 41B3F0 remains 1010 bytes with unchanged hash and its old multiplication
+load-order mismatch at +0x190. No shaping retry or new exact credit. The slot8
+native body is shared with CSprite render; its override remains declaration-only.
+See GAGE_REAL_OWNER_2026_11_02.md.
+
+Connect construction now uses actual CSprite members at +0x1D4/+0x268, matching
+its cleanup view. Address/history loaders now use actual CTile at +0x300. All
+three accepted constructor/getter roots remain exact; address 870 and history
+715 source candidates retain fresh before/after hashes and remain nonexact.
+Only three units affected. Actual sprite RTTI 273/nine slots and full constructor
+EH 168+116 pass. No count gain. See CONNECT_REAL_SPRITES_2026_11_02.md.
+
+CNumber now has one shared runtime/lifetime declaration: its ordinary inline
+destructor and three color forwarders are real CNumber methods. CNumberLifetime
+is only a compatibility typedef, not a separate class. Private offset checks
+retain +0x24/+0x28 without exposing fields. Runtime owner now emits the correct
+60-byte scalar cleanup, while all 28 accepted roots in 11 units remain exact.
+Closure 13 units; 13 other roots in eight units preserve fresh HEAD hashes.
+CNumber initialize 102 remains nonexact and closed. Connect ctor/dtor full EH
+284 each (568 total), tile RTTI 247 and IColor roles pass; origins 2/121 and 2/23
+pass. No authored count gain or full-program-linkage claim.
+See NUMBER_REAL_OWNER_2026_11_02.md.
+
+CNumberLifetime now owns actual CTile, and MenuConnectLifetime owns actual CTile
+and CSprite members. Two payload-only cleanup surrogates are removed. Number
+40/11/11/11 and Connect 315 stay exact; scalar 60/61 support stays exact. Closure
+five units: eight accepted roots in four units pass; nine other roots in four
+units retain fresh HEAD hashes. Full Connect EH 168+116 is now checked, including
+whole deque 5/string 38 cleanup providers; tile RTTI 247/four slots pass. Record
+cleanup origins 2/23 and scalar origins 2/121 pass after source-pin refresh.
+CNumberLifetime still remains a separate owner view, not full runtime unification.
+No count gain. See NUMBER_SHARED_CLEANUP_2026_11_02.md.
+
+CMenuPractice now owns an actual CTile weather member at +0xB8. Rendering calls
+that named member directly, removing the offset-only CTileRenderView cast.
+Constructor 826 and render 211 remain exact; all 11 accepted roots in the
+four-unit include closure pass. Three emitted scalar roots are unchanged.
+Full constructor EH 98+76 and actual tile RTTI 247/four-slot table pass.
+No count gain. See PRACTICE_REAL_TILE_2026_11_02.md.
+
+ProfileEditor168 now has one shared declaration with actual global CTile members
+at +0x0C/+0xB0. The constructor-only eight-slot tile surrogate is removed; the
+native table has four slots. Constructor 33, destructor 15, initialize 108,
+shutdown 32 and read-name 42 remain exact. The 21-unit include closure preserves
+all 42 accepted roots in 19 units; six other roots in five units retain their
+fresh HEAD hashes. Actual tile RTTI 247 and four-slot table pass. No count gain.
+See PROFILE_EDITOR_REAL_TILES_2026_11_02.md.
+
+Numeric rendering now uses actual global CTile, removing its manual-vptr tile
+view and duplicate tile render implementation. CNumber has its target-backed
+IColor base and named color slots. MenuConnect's tiles at 0x64, 0x130 and 0x300
+share that same type: mixed symbol identities caused 735 bytes, while the actual
+shared type naturally preserves the entire 728-byte constructor. All 20 accepted
+roots in 7 affected units remain exact; 4 other roots retain their prior hashes.
+Tile RTTI (247 unique bytes), four slots and one shared table relocation checked.
+CNumber cleanup remains a separate view; its runtime scalar body/full linkage
+are not claimed exact. No count gain. See NUMBER_REAL_TILE_2026_11_02.md.
+
+CProfileKeyConfig now has actual CDesignBase/CTile members and one source owner
+for ctor567/render501/update355/dtor188, all unchanged exact. Dispatch views and
+obsolete ProfileSubmenuLifetime.hpp removed; capture790 remains declaration-only
+with its old785-byte tail lane closed. Tile.hpp uses minimal Sprite.hpp, no class
+or MatchSetup changes. Full Key EH348 exact (98+76 each), tile RTTI247 and owner
+four-slot/design roles pass; handlers27/table16 strengthened. Closure23 units:
+17 accepted roots/12 units fresh exact;19 other roots/13 units unchanged before/
+after. Scalar2/60, implicit17/1434/design2/307/default and Select EH461/meta188 pass;
+4+12+6 guarded observers retained. No count gain. See PROFILE_KEY_REAL_OWNER_2026_11_02.md.
+
+Actual CProfileCharacterSelect::refresh_character_preview4484F0 is now public
+source/registered unit:178 bytes/55 reachable instructions, both exact owner
+calls4489FE/4486EB pinned. Native/source178 differ12 bytes at+37 (old clear/load
+scheduling); no shaping retry or exact credit. Six guarded finite helper-return
+fixtures cover -1, load failure/success, full-width handles, call args, writes,
+RET0/nonvolatiles/GS; wrong-field control rejects. Helpers/OS are not executed.
+Four new audit tests. Only one reviewed authored/source row added:source1637,
+authored1656,mapped1826,review297,units813; excluded2074/exact1427/443604 unchanged.
+See PROFILE_CHARACTER_PREVIEW_SOURCE_2026_11_02.md.
+
+CProfileCharacterSelect now shares one actual source declaration for ctor571,
+update372, render205 and dtor164; local constructor/update/lifetime views removed.
+ActualCSprite/CDesignBase members and private offset checks preserve all bytes;
+deck launch/constructor pointer now CSprite*. Full EH support410 bytes exact:
+ctor88+76, dtor88+76, update38+44. Actual four-slot table and member roles checked;
+outer namespace RTTI/full linkage not claimed. Handler anchors now27 bytes,
+owner table16. Closure8 units:12 accepted roots/7 units pass; scalar2/60 gate
+passes; deck2132 and battle-menu892 unchanged/nonexact. No counts gained.
+See PROFILE_CHARACTER_REAL_OWNER_2026_11_02.md.
+
+GuideOverlay now owns actual global CSprite: load179/render124/update112/ctor20
+all exact and unchanged, dtor90/native92 unchanged. Manual vtable load and update
+casts removed; duplicate GuideOverlayLifetime.cpp removed and lifetime unit now
+selects actual GuideOverlay.cpp. Sprite definitions moved unchanged into minimal
+engine/Sprite.hpp; EffectSprite.hpp retains Collision compatibility. Separate
+legacy MatchSetup declarations are NOT merged. Actual Guide sprite RTTI273 and
+table36 pass. Closure200 units:388 accepted roots/163 units fresh exact;140 other
+roots/77 units retain fresh before/after hashes or old458440 string binding block.
+Six source-pinned lifetime families, full Network/Select EH and4+12 Select cases
+pass. No count gain. See GUIDE_REAL_OWNER_2026_11_02.md.
+
+ProfileDeck constructor/display now use actual global CSprite and CTile,
+removing three partial views. Fresh before2132 first+110 becomes2132 first+1127:
+28 initialization byte positions now canonical, all bytes after200 unchanged.
+No prefix/exact credit. Number7/15 unchanged; display440 hash unchanged/nonexact.
+Actual RTTI/nine+four slots pass, tile wrapper37 exact; global CTile anchor now
+checks16 instead of4 bytes and11 explicit alias-consumer roots replay exact.
+No shared header change or count gain. See PROFILE_DECK_REAL_SPRITES_2026_11_02.md.
+
+Standalone CoreContracts.cpp is repaired: obsolete SequenceRecord4 assertion
+replaced by real FighterSequenceSlot prefix offsets0/2/4 plus existing size98,
+and enqueue's const-pointer member signature is now compile-checked. VC8 compile
+passes; wrong offset and mutable argument negative controls reject. Exactenqueue114
+freshly preserved. No native TU or counts changed. This resolves the standalone
+validator blocker recorded below. See CORE_CONTRACTS_REPAIR_2026_11_02.md.
+
+Character destruction and fighter face/cutin resources now use actual CSprite,
+removing three partial sprite views. Exact resource132/333/199 and spell-owner101
+remain unchanged; spell EH117 and emitted sequence/Pat deque135/125 gates pass.
+Character905/one SIB byte and cutin95/native96 retain full candidate hashes.
+Only3 native units affected. CoreContracts' sprite check updated, but standalone
+validator still has old undefined SequenceRecord4 (fresh HEAD control reproduces).
+No counts gained; cutin cleanup nominal/ICF identity remains non-unique.
+See CHARACTER_RESOURCE_SPRITES_2026_11_02.md.
+
+Character462AB0 now uses actual global CSprite for members33C/3D4/570.
+Existing DesignTextureHandle moved unchanged to a minimal engine header and
+used by CSpriteBase+4; IColor stays4, removing the local8-byte color/sprite
+surrogates. Whole557 remains exact; actual sprite RTTI273/table36/publications
+pass. Include closure148: all316 accepted roots in116 units freshly exact
+(numerically reconciled address casing);124 other configured roots in63 units
+retain before/after hashes or known old blockers. Six lifetime-origin families
+and full Select EH461/meta188 pass; render4/character12 observers unchanged.
+No exact/count gain, no nominal handle API or full Character unwind claim.
+See CHARACTER_REAL_SPRITE_2026_11_02.md.
+
+Three network snapshot views now share NetworkStateRecord.hpp: real deque
+members10/30 and tail bytes0E/2E, not MatchSetup or the separate ACK_INFO packet
+object. No new lifetime/storage behavior. RTTI slots also correct44F390's old
+server label: it is CNetworkClient slot0C at6C1760; source view and existing
+matching row renamed to client, full324 exact. All11 candidate hashes unchanged
+across3 affected units (9 accepted roots); ACK78/8 andserver404/409 remain
+nonexact. Six guarded snapshot cases/negative, both-owner slot assertions and
+2 new ownership tests pass. No counts changed. See NETWORK_STATE_RECORD_2026_11_02.md.
+
+Client/server publishers now read input208->resolved_mask through the existing
+CInputManagerEx source layout instead of raw+62 casts; both TUs assert offset62.
+Only two CPPs changed, no shared header/layout change. All7 complete bodies
+byte-neutral: accepted48/162/166/152/175, pendingACK78/8 andserver404/409.
+Producer378, selected-input initializer153 and binder136 freshly corroborate
+field/handoff; no full dynamic-type/RTTI/constructor claim. Remaining server
+sender declaration in the state TU corrected to void; exact175 unchanged.
+Critical helpers, serverCFG and6 guardedACK cases/negative pass. No counts or
+exact credit changed. See NETWORK_TYPED_INPUT_2026_11_02.md.
+
+Server input publication44F9A0 now formally registered from existing source:
+CNetworkServer slot1C, complete409-byte/128-instruction CFG, both leave tails,
+call inventory and16-bit mask/current versus32-bit sequence stores verified.
+Source404/127 remains nonexact first+117; no scheduling grid. Sender declaration
+corrected int->void from actual inactive-path result evidence, whole caller
+byte-neutral. Static audit only, no server runtime/concurrency claim. Existing
+48/162 siblings exact and ACK78/8 plus6 guarded cases/negative preserved.
+Source1636/authored1655/mapped1825/review298; excluded2074,exact1427/443604 and
+units812 unchanged. See SERVER_INPUT_PUBLICATION_SOURCE_2026_11_02.md.
+
+Existing client ACK-tail source44E6D0 is now formally registered: full78-byte
+CNetworkClient slot8/21 instructions/RET4, native RTTI and both exact critical
+wrapper edges prove authored ownership. Source unchanged78/8 mismatches at+53
+(store/load scheduling); no closed spelling lane reopened. Six guarded finite
+state/lock-boundary cases including shared peer pointer pass; wrong field21B
+rejects, no OS/network/concurrency execution. Existing48/162 accepted siblings
+and critical helpers fresh exact. New4 tests. Source1635/authored1654/mapped1824/
+review299; excluded2074 and exact1427/443604 unchanged, units812. See
+CLIENT_ACK_TAIL_SOURCE_2026_11_02.md.
+
+CDesignBase now shares actual global IColor; constructor/destructor both
+implicit and naturally emitted by real SelectConstructor.cpp. Old lifetime
+probe source/helper removed; Select calls real design.load without its view.
+Whole153/154/scalar30 remain exact.307 compiler-only normal-lifetime bytes
+withdrawn from authored credit: exact1427/443604,source1634,authored1653,
+excluded2074; mapped1823/review300/units812 unchanged. New source-pinned rule
+uses strict parameterless default_constructor support in unchanged whole-byte
+gate. Actual design table40/baseIColor93/two native parent calls verified.
+Affected44 units:34/70 pre-withdrawal roots replayed, retaining33/68 authored;
+source-only old loaderEH/string-constructor blockers reproduced before change.
+Record2/23, scalar30, implicitSprite/fullSelectEH and4+12 observers pass.
+No full derived namespaceRTTI/linkage claim. See
+DESIGN_COLOR_IMPLICIT_LIFETIMES_2026_11_02.md.
+
+CSelect's two tiles350/2CD0 now use actual global CTile in both layouts;
+render calls actual CTile::render and removes its tile-view macro. Full ctor
+4247/13, EH461/meta188 and dtor845 unchanged; all8 owner candidate hashes
+stable. Actual constructor object now supplies matching CTile RTTI/four slots
+and both native ten-byte vptr stores4232DD/42348A are checked. Closure9 units,
+4 accepted roots fresh; implicit CSpriteEx guard now pins Tile.hpp and passes;
+4 render+12 character guarded cases/negatives rerun. Other CNumber/UiTile users
+unchanged. No counts/exact gain. See SELECT_REAL_TILES_2026_11_02.md.
+
+Selection flow341, stage890 and character619 now implement actual declared
+CSelect methods; three partial-owner views removed. Shared pointer-only setup
+view moved to SelectSetupState.hpp for entry/character/stage. Actual flow slot18
+now has source implementation; calls to children/bind_character use CSelect.
+Stage890/flow341/bind258/dtor845 exact; all five nonexact candidate hashes
+unchanged. Final closure9 units/4 accepted roots replayed, ctorEH461/meta188
+exact, implicit CSpriteEx gate includes new header and passes. Guarded character12
+and render4 cases/negative controls rerun. No ABI/algorithm/count changes;
+namespace RTTI, destructor-facing owner and full linkage remain separate.
+See SELECT_REAL_POLICY_METHODS_2026_11_02.md.
+
+CSelect now declares its native seventh virtual role (selection flow4208E0
+at6C0BDC) and frame update dispatches it directly. Typed state08/setup0C/input10
+members replace raw prefix views in entry/frame and both full layouts.
+Entry783/frame685 whole hashes unchanged; nativeframe697 still nonexact on
+cleanup/null-branch scheduling. Ctor4247/13 stable, full EH461/meta188 exact;
+dtor845/bind258/flow341 exact. Include closure6, all relevant consumers freshly
+compared; implicit CSpriteEx source guard renewed after proof. Seven-slot28
+native table/actual slot18 call checked; no whole-class linkage or namespace
+RTTI claim. Flow implementation still uses its exact view. No counts changed.
+See SELECT_PREFIX_AND_SLOT_2026_11_02.md.
+
+Actual global CTile now owns FileList page copy, texture wrapper and renderer.
+Native RTTI247 and four-slot table16 agree; direct CSpriteBase/IColor ancestry,
+not CSprite. Wrapper37, implicit copy164 and Growmap341 freshly exact; scalar31
+and actual copy call43A914 verified. Old copy-only CTileCopyLifetime removed;
+existing copy unit uses real FileListFinalize/GS profile. Generic implicit17
+roots/1434 and Growmap341 origin gates freshly pass with actual-owner symbols.
+Strict render756 hash unchanged; page1155/native1106 and renderer remain
+nonexact. No fake frame or new exact/source/census credit; units812. Other
+CNumber/UiTile/FileList tile views remain separate. See CTILE_REAL_OWNER_2026_11_02.md.
+
+ScoreData42D010 existing source is correctly signed MAXIMUM, not minimum:
+native CMP register,memory/JLE and source CMP memory,register/JGE are
+equivalent. Temporary inverted comparison/field names fully restored; no
+source/ledger/origin changes. New guarded diagnostic13 finite normal cases
+with actual native getters passes; inverted-minimum negative rejects.
+Six tooling tests cover callback/stack/register/partial-instruction failures.
+Whole182/native191 stays nonexact due missing9-byte iterator compatibility
+check; do not insert a synthetic check or revive spelling grids. See
+SCORE_OBSERVATIONS_MAXIMUM_2026_11_02.md. No exact or census gain.
+
+CSelect now uses actual CSprite members and CSelect::bind_character, with
+ordinary inline lifetimes emitted by the real NetworkBase array. Existing
+lifetime selector unit stays but uses that actual source/GS profile; obsolete
+UiSpriteLifetime.cpp removed. One actual IColor interface is shared through
+minimal engine/ColorInterface.hpp; CNumberColorLifetime is an alias, not a
+second class. This resolves private850/845 vptr-identity regression naturally;
+Select845/bind258 and Connect315 stay exact. No ABI/linkage change to solve the
+transitive-header conflict. Whole constructor4247/13 and EH461/meta188 stable.
+Final affected replay104 units/251 accepted roots passes (closure130); old
+pre-extraction receipts not reused. Four source guards,410 mutations, both
+network EH audits and4+12 guarded UI cases pass. Five strict EH alias and three
+source-owner tests added. No new exact/census credit. See
+SELECT_REAL_SPRITES_2026_11_02.md. Further class/TU changes require independent
+evidence, not another register/source-spelling grid.
+
+Character-selection41FC90 now has complete public619-byte source, still25
+unequal bytes first+36. New evidence closes the old refresh-ABI blocker:
+41FB80/258 and actual caller4208E0/341 freshly exact, with E9 at420A30.
+Native/source CFG192 instructions/191 reachable, six compared alignment bytes,
+four RET0 paths. Twelve guarded state/call cases match, including noisy upper
+bool EAX, opaque void returns, volatile registers/flags, random bounds and
+shared-input cancellation. Bad initial cursor-base patch is rejected before
+helper execution. Twelve target-independent tests added; no universal behavior
+or exactness claim. Source1636/authored1655/mapped1823/review300/units811;
+excluded2072 and exact1429/443911 stay. See
+SELECT_CHARACTER_UPDATE_SOURCE_2026_11_02.md. Keep the old cursor representation
+and source-spelling grids closed; selected source remains619/25.
+
+Observer guard correction: Unicorn ctypes can suppress exceptions raised
+inside hooks. Use existing native_callbacks.guarded_callback and reject its
+error list immediately after emu_start, before accepting any observation.
+Select-render and adjacent profile-deck observers are hardened. Actual bridge
+test proves a rejected hook stops before a guest write; Select's new redirected
+unknown-helper control rejects, all four positives/random-table control pass.
+Deck32-event/three-zero fixture remains valid. Private character-update12
+cases plus bad-cursor control pass only after this correction. No count change.
+See OBSERVER_CALLBACK_GUARD_2026_11_02.md. Do not assume every legacy observer
+has this property; check before reuse. Source/byte comparisons are independent.
+
+CSelect render41FF00 now has complete public typed source and a reproducible
+candidate unit. Whole1497 bytes still differ at163 positions, first+835; no
+exact credit. Native/source CFG421 instructions each,419 reachable; only exact
+LEA/NOP8 at420068 is skipped by EB08. RTTI render slot6C0BCC/CSelect descriptor
+6E6050 proves game ownership through the unchanged generic origin gate.
+Four isolated call-observer cases match (1/30/79/79 events), preserve stack,
+callee saves and bool result; corrupted random-entry15 is detected. No helper,
+rendering or OS execution, no universal equivalence claim. Eleven tests added.
+Source1635/authored1654/mapped1822/review301/units810, excluded2072; exact
+1429/443911 unchanged. See SELECT_RENDER_SOURCE_2026_11_02.md. The old closed
+row-lifetime/index spelling controls remain closed; typed-member adoption is
+byte-neutral and not a new matching lead.
+
+CSelect shared state is now typed: four actual MenuCursorState records at100,
+two selected-effect pointers1954 and stage/variant cursors195C/1970. Guide mix
+2D78 corrected from bool to unsigned byte, independently proved by exact341
+update-flow's +/-15 and0/255 behavior. Existing entry/frame/binding consumers
+use real members instead of raw buffers. Full before/after candidate hashes
+unchanged: ctor4247/nonexact13, entry783, update685/native697; binding258 and
+dtor845 exact. Constructor EH461/meta188 and implicit16/7 pass; default-sprite
+source guards renewed after proof. Stage890/flow341 also freshly exact.
+No count change. See SELECT_TYPED_STATE_2026_11_02.md.
+
+Actual global CSprite now has nine RTTI-backed virtual slots and typed float
+pivot/scale/angle tail. Existing610/610 primary renders and153 rectangle now
+belong to it directly; prior candidate bytes and scheduling gaps are unchanged.
+Whole table36 plus RTTI273 and normal16/7/scalar31 pass;410 unique mutation
+controls and seven new tests. Affected include closure126:101 units/244 accepted
+authored roots freshly exact. Both full network EH scopes and four renewed
+source-origin guards pass. New renderer candidate unit makes809; all other
+counts unchanged1429/443911. No full-engine or all-facade cleanup claim.
+See CSPRITE_INTERFACE_2026_11_02.md. Continue source-backed hypotheses only;
+the actual owner spelling is now closed as an explanation for render scheduling.
+
+Original Boost search/matcher family now has all four complete remote EH
+scopes verified, closing the prior matcher-prefix-only limit: search235,
+matcher ctor243/dtor129, match_results dtor141, plus actual recursion8/44,
+scoped_ptr25/repeater12/vector42. Four EH code/metadata pairs44/44,73/60,
+49/52,35/44 exact. Real paired arrays31/29 have count50/stride68/member136.
+All1280 distinct bytes reject individual corruption; eight structural tests.
+Original source/header closure unchanged. No origin/count/credit changes.
+See BOOST_MATCHER_COMPLETE_LIFETIMES_2026_11_02.md and public audit.
+
+Timeline loader's remaining fake texture receiver is removed. Four pivot
+branches call actual CSpriteEx::set_texture_options; compiler retains one
+shared REL32 field755 to407160, plus five-argument member atfield607.
+Before/after whole1676 payload remains exact (callable1584). Source-hash guard
+renewed only after equality; unsigned-deque23 and both existing emitted-origin
+groups8+2 pass unchanged. Five receiver-role tests added. No count/byte gain.
+See TIMELINE_REAL_SPRITE_RECEIVER_2026_11_02.md.
+
+NetworkBase destructor now shares genuine packet/endpoint/queue definitions
+with the constructor in NetworkBaseMembers.hpp and uses actual CSprite.
+Main259/scalar30/reset175 remain exact. Full remote EH169 at6B8C60 and
+metadata100 at6DEC98 now match; eight cleanup actions and handler6B8CEE
+verified. Constructor411/EH197/meta116 and natural sprite16/7 still exact.
+Eight structural tests and610 unique corruption controls pass. Both lifetime
+source guards renewed with shared-header hash after full proofs; scalar30
+receipt refreshed. No authored/count change or OS-exception execution claim.
+See NETWORK_BASE_DESTRUCTOR_EH_2026_11_02.md. Continue root-only, serial CPU0,
+nice10, repo-python, local commits only; do not cold rebuild the entire corpus.
+
+NetworkBase constructor now has genuine nested queue lifetime at+20C and
+natural global CSprite members. Main411 remains exact; formerly207-byte source
+EH is now native197 with complete116-byte metadata exact. Group19 at43C380
+is actual compiler support outside inventory; no new census/credit. Packet
+cleanup43BE90/8 is implicitly emitted and now excluded. Real CSprite ctor16/
+cleanup7 replace manual-vptr source and pure inherited/compiler23 bytes are
+withdrawn from authored totals. RTTI273 unique bytes/first scalar31/array40
+verified.20 tests;378 sprite and782 network mutation scopes pass (overlap not
+added). Authored1429/443911, source1634/authored1653, excluded2072/review302,
+mapped1821/units808. See NETWORK_BASE_NESTED_EH_OWNER_2026_11_02.md and
+CSPRITE_NATURAL_LIFETIMES_2026_11_02.md. Correct EH owner6BA400/handler6BA4AA,
+not the other6B8C60 group. No complete rendering-vtable or OS-unwind claim.
+
+Replay vector forwarding42B8E0/27 and implicit input-array cleanup42C950/5
+are now whole exact/compiler-owned from unchanged real owner source. Actual
+constructor/destructor array sites23/35 pair callbacks/count2/stride104/member8;
+all5 unit bodies161/27/208/27/5 pass. Full range52/deque callback5 and input-base
+RTTI proof revalidated.12 tests/147 mutations; excluded2069/review303, units808;
+authored unchanged. See REPLAY_MEMBER_CLEANUPS_2026_11_02.md. Native caller
+42C0D0 and remote parent EH remain separate unknowns.
+
+409D50 remains exact7 but is now compiler-only vptr restoration, withdrawing
+old authored credit from its empty destructor. Isolated source type renamed
+to actual global CInputManager; normal7/scalar31 unchanged. Full RTTI100 unique
+bytes, two-slot table, actual weak ??_E->??_G fallback and static cleanup edge
+pass.10 tests/156 mutations. Authored1431/443934, source1636, authored1655,
+excluded2067/review305, mapped1821/units808. See
+INPUT_BASE_CLEANUP_ACCOUNTING_2026_11_02.md. Static receiver6FBD60 is not inferred
+to have base dynamic type; registration6BEB4C is not a22-byte function.
+
+Unsigned-deque pop_back413DF0 is now independently qualified by actual
+Timeline range-insert caller452402/sourcefield1491 in whole1818-byte owner.
+The short-deque428680 identity remains separate. All8 old owner anchors,
+Timeline1584/full1676 payload and the old short-deque gate freshly pass.
+10 tests/1864 mutations; excluded2066/review305, units808; authored unchanged.
+See UNSIGNED_DEQUE_POP_BACK_2026_11_02.md.
+
+Original short-deque pop_back428680 is now whole23/23 compiler-owned through
+actual _Insert_n call463D05/sourcefield1094. Identical413DF0 stays review;
+no byte-uniqueness claim. Existing1404-byte insertion provenance freshly passes
+unchanged strict thresholds.10 tests/1450 mutations; excluded2065/review306,
+units808; authored1432/443941 unchanged. See DEQUE_POP_BACK_2026_11_01.md.
+
+Authored receive-lock constructor401850 now compares whole25/25 from the
+unchanged real NetworkWinsockReceiveThread.cpp TU. Actual caller41D8F9 passes
+a stack guard and endpoint CCriticalSection+E0; native import6C0108 is
+EnterCriticalSection. No synthetic emission or source/flag change. Existing
+thread callback14 stays exact; parent/worker/EH remain nonexact. New authored
+exact1432/443941, source1637, authored1656, review307, excluded2064, units807.
+See NETWORK_RECEIVE_LOCK_CONSTRUCTOR_2026_11_01.md.
+
+Original SIGABRT getter69BA48/13, rand_s initializer69BC05/10 and winxfltr
+initializer695033/1 now have complete source/caller/storage proofs. Full
+init_pointers76, winsig25 and abort243 replay. Abort retains its original
+terminal INT3 beyond provisional242; no callable/CFG waiver. Actual BSS20/4
+and initialized cells verified.14 tests/380 mutations; excluded2064/review308,
+units807. No authored credit or RET uniqueness/ICF claim. See
+CRT_POINTER_POLICY_2026_11_01.md.
+
+Original atan2/CIatan2 entries68BB70/7A are now whole10-byte runtime bodies.
+Complete owner20 plus support168/640/458 and data80/44/48 replay; all16 actual
+dispatch slots target original instruction entries. matherr_flag is initialized
+94260000, not BSS; fastflag is genuine zero-fill.13 tests/1462 mutations pass.
+Only20 runtime bytes: excluded2061/review311, units804; authored unchanged.
+See CRT_ATAN2_ENTRIES_2026_11_01.md. No whole-support reachability claim.
+
+Actual CSpriteEx now owns the seven-argument texture member; empty call views
+and nonconstructed derived receiver are removed. Provider193/helper261/wrapper37
+and all99 affected accepted units/242 roots freshly remain exact. Sprite
+constructor/callback/RTTI/array-site and record cleanup reviews were renewed.
+CSelect still differs by13/4247 bytes; full EH461/metadata188 remain exact.
+No new authored credit; see SPRITE_TEXTURE_RECEIVER_2026_11_01.md. Signedness
+and receiver-only controls are byte-identical and closed as matching leads.
+
+Original ValidateRead/Write/Execute aliases share one canonical13-byte native
+body69C4BF. Complete catch owner383/SEH4 scope28 prove all nine alias roles,
+using exact local-symbol indices for filter+363 and handler+367. All146
+instructions reached; only the original handler E9 to terminate is accepted.
+Full memmove payload869 and all six tables/biased addends replay independently.
+15 tests/1293 byte mutations pass. Only13 runtime bytes: excluded2059/review313,
+units803; authored exact/source unchanged. See CRT_VALIDATION_ALIAS_2026_11_01.md.
+No exclusive alias/ICF claim, extra provider credit or generic CFG relaxation.
+
+CRT debugger hook690987/8, Cxx filter registration695025/14 and SSE2 init
+69C9D8/13 now whole canonical/unique. Complete filter61/query96/walker32,
+actual C-table caller15/range32, XIC/XIY registration records, named import and
+two real common words pass.13 tests/275 initialized-byte mutations, no fake BSS
+reads. Only35 runtime bytes: excluded2058/review314, units802; authored/source
+unchanged. See CRT_CONTROL_ENTRIES_2026_11_01.md. The8-byte hook is dbghook.obj,
+not handler.obj's different10-byte heap initializer; no uniform patch-version
+or exclusive startup-object claim is made.
+
+Five original CRT address accessors68D059 and692481/87/8D/93 (6 bytes each)
+are whole canonical/unique. Full IOB640 and timezone152 data, all four original
+pointer relocations and the actual4096-byte __bufin common/PE-zero-fill extent
+pass. No raw BSS reads or fabricated BSS mutation controls. Twelve tests/822
+initialized-byte mutations pass. Only30 runtime bytes: excluded2055/review317,
+units799; authored exact/source unchanged. See CRT_DATA_ACCESSORS_2026_11_01.md.
+The four later getters are timezone/daylight/dstbias/tzname, not locale getters.
+
+Original CRT atof68B420/14, fread68CEEF/27 and flushall69A81E/9 are whole
+canonical/unique from actual pinned archive objects. Sole original REL32 fields,
+provider identities/extents and complete RET CFGs verified; no masks/tails or
+new provider/EH credit. Eight tests/50 actual byte mutations pass. Only50
+runtime bytes: excluded2050/review322, units797; authored exact/source unchanged.
+See CRT_PUBLIC_WRAPPERS_2026_11_01.md. No whole-runtime patch-version claim.
+
+Original VC8 vector constructor4460D0/14 now has a narrow complete-body
+proof from the real ScoreData array owner: pinned original vendor headers,
+inventory uniqueness, full31-byte caller and count20/stride16/member198 roles.
+All six owner-unit functions freshly remain exact. Eight tests/45 actual byte
+mutations pass. No source/header/flags changed, no parent/EH/authored recount.
+Excluded2047/review325, units794; authored exact/source unchanged. See
+SCORE_VECTOR_DEFAULT_2026_11_01.md.
+
+CMenuConfig441520 remains863/native868, first+821 in a fresh unchanged
+replay. New ordinary by-value SDK-clamp capture gives869/+820; a real cursor
+item_count-derived bound gives880/+815 and adds a target-absent count reload.
+Both hypotheses are closed, private and unselected; no source/ledger changes.
+See CONFIG_MENU_CONSTRUCTOR_2026_10_31.md, Nov1 appendix. Do not force the
+extra native upper comparison with redundant branches or repeat these controls.
+
+Actual implicit record cleanups45CF50/8 and46E950/15 now use the existing
+strict implicit-lifetime source/owner gate. No reconstruction source or
+validator changes. Both whole bodies are inventory-unique; all eight formal
+bodies in the two real owner units freshly compare exact, including prior
+rotation/copy and info owner/record lifetimes. Only23 compiler bytes added,
+no parent/support/authored recount. Excluded2046/review326, units794;
+authored exact/source unchanged. See IMPLICIT_RECORD_CLEANUPS_2026_11_01.md.
+
+The actual CSpriteEx array cleanup421D30/7 is now separately proved by the
+unchanged29-byte CSelect caller and paired unique constructor41F6E0, with full
+RTTI. Its bytes also match40AD50; only the actual callback target is selected,
+not a byte-uniqueness or exclusive-symbol claim. Seven new tests and334 unique
+byte mutation controls pass; old constructor gate freshly passes. No source
+change or new authored credit. Excluded2044/review328, units794 unchanged.
+See SPRITE_ARRAY_CALLBACK_2026_11_01.md. IEffectManager normal destructor is
+not emitted by this real owner; do not force its materialization.
+
+IColor now uses the native struct RTTI tag (.?AUIColor@@ at6FA560), rather
+than the prior class tag. Layout/access/slots unchanged. All99 affected units
+with242 accepted roots freshly replay exact; CSelect's221 emitted text sections
+are byte-identical before/after and its whole-main scheduling mismatch remains.
+Implicit CSpriteEx constructor41F6E0/16 is complete canonical/unique, supported
+by24 full RTTI records, the real29-byte array caller and destructor7. Eight
+tests/327 actual byte mutations pass. Only compiler16 credit: excluded2043,
+review329, units794; authored/source unchanged. See
+SPRITE_COLOR_TYPE_AND_DEFAULT_2026_11_01.md.
+
+Original pow shared 68C28D/453 now whole canonical/unique with complete
+x87 owner650 and P4 owner2912, all14656 P4 coefficient bytes, small data12,
+independently owned infinity10 and five whole common helpers287. Two actual
+public roots reach all939 instructions/3833 code bytes, with no external-tail
+or conditional-exit waiver. NOP1/P4 alignment15 and integer helper40 are
+checked but not new credit. Ten tests/3919 actual mutations pass. Excluded
+2042/review330, units794; authored/source unchanged. See
+VC8_POW_SHARED_OWNER_2026_11_01.md. CI704 passes.
+
+Original log10 P4 shared 697C6E/614 now whole canonical/unique within the
+actual 656-byte owner, with all 2336 coefficient bytes and exact source addends.
+Two actual public roots reach all 145 instructions/644 code bytes. Trailing
+12 bytes are original LEA ESP,[ESP]; ADD EAX,0 storage, not neutral or callable
+credit (ADD writes flags). Ten tests and 690 actual mutations pass. Excluded
+2041/review331, units793; authored/source unchanged. See
+VC8_LOG10_SHARED_OWNER_2026_11_01.md. Earlier log.obj comparisons were the
+wrong function family, not patch-mismatch evidence for this log10 owner.
+
+Original cos P4 shared6967CE/395 now whole canonical/unique with complete
+P4 owner428 and existing x87 cos owner297, full2224-byte coefficients and
+actual fallback/public entries. The trailing8D4900 is neutral LEA ECX,[ECX],
+not three NOPs; full source/native bytes compare and stay outside callable credit.
+Rooted graph235 instructions/890 code bytes; nine tests/765 actual mutations,
+prior sin/sqrt protocol freshly passes. Excluded2040/review332, units792;
+authored/source unchanged. See VC8_COS_SHARED_OWNER_2026_11_01.md.
+
+
+Coupled original sin x87 shared68B6C8/145 and P4 shared694E3E/425 now whole
+canonical/unique inside complete297/456-byte owners. Actual public prefixes,
+cross-module fallback and two exact NOP bytes are owned, not counted. All2208
+coefficient bytes/common data and actual SSE common-symbol flag/init20 pass.
+Two original public roots reach all242 instructions over920 code bytes; no
+unreachable/conditional-exit waiver. Nine tests/811 real mutations and prior
+float-sine18 gate freshly pass. Excluded2039/review333, units791; authored/
+source unchanged. See VC8_SIN_SHARED_OWNERS_2026_11_01.md.
+
+
+CRT sqrt shared body68A39D/157 now whole canonical/unique inside the actual
+complete sqrt.obj owner186, including CI/ordinary entry prefixes20/9. Six
+complete common helper/exit regions192 bytes and whole data8/44/68 plus true
+BSS flag4 close the protocol. Two actual public roots reach all111 instructions;
+conditional exits enter proved helper regions, not generic branch waivers.
+Twelve tests/498 every-initialized-byte mutations. Excluded2037/review335,
+units789; authored/source totals unchanged. See VC8_SQRT_SHARED_OWNER_2026_11_01.md.
+It is a shared physical runtime tail, not an invented standalone public ABI.
+
+
+Original std::exception deleting destructor689FFD/28 now whole canonical/unique
+from actual stdexcpt.obj and fresh original7-TU graph. Full normal22/what13,
+18-byte literal, RTTI and two actual vtable slots pass; weak G/E fallback is
+verified by final link resolution, not assumed. Delete5→free also exact.
+Seven tests/106 real mutations; invalid-copy/base gate freshly passes.
+Excluded2036/review336, units788; authored/source totals unchanged. See
+VC8_EXCEPTION_DELETE_2026_11_01.md. Existing normal/what provider credit unchanged.
+
+
+Original type_info deleting destructor6898FD/28 now whole exact/unique from
+both pinned typinfo.obj and a fresh unchanged original7-TU link. Original weak
+vector symbol has search-library fallback, not unconditional alias semantics;
+actual linked G/E resolution and source/native vslot are explicitly checked.
+Normal14/cleanup112/SEH/RTTI and whole operator-delete5 tail freshly pass.
+Seven tests/45 real mutations; excluded2035/review337, other totals unchanged.
+See VC8_TYPEINFO_DELETE_2026_11_01.md. One physical deleting body, no authored credit.
+
+
+Original SDK staticbook destroy681190/29 now whole canonical/unique, with
+actual clear6810C0/193 and all ten provider free calls. Full32/208 sections
+including18 total NOPs pass; only29 new library code bytes count. Seven tests/
+240 every-byte mutations. Excluded2034/review338, units787; authored/source
+counts unchanged. See XIPH_STATICBOOK_DESTROY_2026_11_01.md. The remaining
+review entries in665000..689890 are only five ambiguous tiny/null bodies.
+
+
+Original SDK inverse-square-root interpolation6897D0/77 now whole exact/unique,
+including3 NOPs, full1176-byte data, table element0/+4 and three real constants.
+Existing addend-specific mappings solve different table bytes without changing
+the data model. Legacy explicit-width80 symbols now decode with exact integer
+arithmetic; precision loss/specials/overflow/underflow rejected, no rounding.
+Sixteen literal tests/seven root tests/106 real mutations; prior getter pair and
+modern VC8 Alice flight roots4FC7C0/4FC900 freshly exact. Excluded2033/review339;
+other totals unchanged. See XIPH_INVSQ_LOOKUP_2026_11_01.md. Generic70% floor stays.
+
+
+Original SDK window getter684CF0/12 and inverse-square-root-exponent lookup
+689820/12 now whole canonical/unique, including4 NOPs each. Whole original
+.data sections32672/1176 bytes match, with all8 window pointers and the actual
+float-table+128 addend. Data stays initialized/writable, not incorrectly called
+readonly; no data/padding credit. Ten tests/94 real mutations. Excluded2032/
+review340, units786; authored/source totals unchanged. Duplicate vorbisfile
+members hash-identical/count once. See XIPH_TABLE_GETTERS_2026_11_01.md.
+
+
+Original libcmt:trnsctrl.obj member-call bridge68998E/7 now whole exact and
+inventory-unique. All three actual CallMemberFunction0/1/2 seven-byte COMDATs
+agree; formal0 is representative, not exclusive identity or proof all aliases
+were retained. One physical body counts once. Narrow four-instruction stack/
+this/indirect-tail CFG, ten tests/seven actual byte mutations; generic indirect
+jump rejection stays unchanged. Excluded2030/review342, units784; authored/
+source totals unchanged. See VC8_MEMBER_CALL_BRIDGE_2026_11_01.md.
+
+
+Actual original libcmt:typinfo.obj destructor6898EF/14 now whole canonical/
+unique with complete type_info RTTI7 records/6 regions. Original typname cleanup
+68E5D6/112 fully closes main103/finally9, scope28 and real BSS root8. The local
+$LN10 is bound by its COFF symbol index/section, not ambiguous name lookup.
+BSS uses PE zero-fill proof, never raw-file-byte reads. Nine tests/166 actual
+initialized-byte mutations; prior invalid-copy/base113 gate freshly passes.
+Excluded2029/review343, units783; authored/source totals unchanged. See
+VC8_TYPEINFO_DTOR_2026_11_01.md. Only14 new runtime bytes count.
+
+
+Actual original libcpmt:string.obj invalid_argument copy665B72/24 now whole
+canonical/unique with complete original RTTI21 records/14 unique regions.
+Named native logic_error copy4017A0/113 and full EH freshly pass its unchanged
+seven-TU original gate; archive alternative58 is explicitly not equal/credited.
+Seven tests/52 actual copy/RTTI mutations; prior public exception copies gate
+freshly passes. Excluded2028/review344, units782; authored/source totals unchanged.
+See VC8_INVALID_ARGUMENT_COPY_2026_11_01.md. Native destructor665AC7 remains
+separately classified; no new destructor or provider credit is added.
+
+
+Source-presence bookkeeping correction: already-exact effect loader437EC0/2528
+was missing from implemented.csv. Fresh unchanged-source whole replay passes;
+the one name is restored and exact rows now require source-present membership.
+Three new invariant tests; source count1636 (was1635), exact1431/443916 unchanged.
+The stale parked79-difference note is corrected, not treated as new byte progress.
+See SOURCE_LEDGER_CONSISTENCY_2026_11_01.md.
+
+
+Official SDK framing.obj packetout6B6800/21 and packetpeek6B6950/21 now whole
+canonical/unique, with actual advance1/0 and complete named provider6B6820/302.
+All32/32/304 source/native section bytes including24 total NOP padding pass;
+only42 new library code bytes count. Seven tests/368 real mutations cover every
+byte of all3 sections. New original SDK unit3 comparisons pass. Excluded2027/
+review345, units781; authored/source/mapped totals unchanged. See
+XIPH_PACKET_WRAPPERS_2026_11_01.md. Generic24-byte minimum remains unchanged.
+
+
+Original get_default_syntax6B45D0/548 now whole canonical/unique from unchanged
+regex_traits_defaults.cpp. All50 actual source DIR32 literal roles and complete
+strings/terminators pass; genuine60-pointer local array explains240-byte frame,
+not scratch. Isolated literal keys preserve other contexts. Nine added tests/
+647 actual mutations; existing error18/full-table gate freshly passes after
+allowing the second independently checked formal root in its same unit.
+Excluded2025/review347; other totals unchanged. See BOOST_DEFAULT_SYNTAX_2026_11_01.md.
+
+
+Original regex_traits_defaults.cpp error getter6B4800/18 now whole canonical/
+unique with its actual fastcall declaration. Full96-byte/24-pointer table and
+all22 unique whole strings/NUL terminators/aliases close both DIR32 roles.
+No source replacement or generic threshold change. Seven tests/85 actual
+mutations; original regex.cpp8 and release matcher14 regressions pass.
+Excluded2024/review348, units780; authored/source/mapped totals unchanged.
+Only18 third-party code bytes count, not metadata. See BOOST_DEFAULT_ERRORS_2026_11_01.md.
+
+
+Original matcher recursion stopper6A2830/19 and dot-repeat dispatch6B25B0/5
+now whole canonical/unique. Actual unwind table72 includes16 source members
+and2 null slots; full dispatcher58 and independent46/34 witnesses close its
+selected roles. Repeat dispatch uses actual matcher slot22 and whole target397,
+including two explicit slow-repeat tail exits and all8 named REL32 fields.
+All14 release comparisons and prior leaf ownership proof pass. Eight tests/
+47 actual mutations; excluded2023/review349. Other totals unchanged; no generic
+tiny-stub or whole-table credit. See BOOST_MATCHER_STACK_2026_11_01.md.
+
+
+Original checked-string matcher leaves6A0AA0/12 and6A0AF0/18 now whole exact
+and inventory-unique in unchanged original release instances.cpp. Actual
+30-slot symbolic table and independently exact literal/set slots2/15 uniquely
+identify native readonly table6D60C0; selected slots16/28 close ownership.
+No full-table/other-method credit. All12 release and5 public-search comparisons
+pass; eight tests/36 real mutations. Excluded2021/review351; authored/source/
+unit totals unchanged. See BOOST_MATCHER_LEAVES_2026_11_01.md. Tiny universal
+false-return stubs and earlier CIL public-search mismatch remain unaccepted.
+
+
+Original clone_base destructor6A0880/7 now whole canonical/unique through its
+actual original-0.obj symbol and clone_base RTTI/vptr field+2. Existing typed
+small-Boost gate extends from4/47 to5/54 and freshly replays all old members.
+Two added tests/seven actual byte mutations; no generic threshold/source/flags/
+export change. Excluded2019/review353; authored/source/unit totals unchanged.
+See LINKED_BOOST_SMALL_2026_11_01.md late appendix.
+
+
+Regex clone6B5350/46 now whole canonical/unique in a genuine original public
+throw_exception<regex_error> ordinary instantiation. New context fully closes
+injector154 and runtime copy113, including both complete EH35+44 sections;
+actual original regex.cpp destructor50 and its8 selected bodies pass. Previous
+CIL154 mismatch remains true, not waived. Complete9-role RTTI uses48/68 offsets.
+Eight tests/26 actual mutations; prior two public exception copies freshly pass.
+Excluded2018/review354, units779; authored/source/mapped totals unchanged.
+See BOOST_PUBLIC_REGEX_EXCEPTION_2026_11_01.md. No private export or fake body.
+
+
+Original public Boost throw_exception instantiations now prove clone copies
+6B5060/46 (logic_error) and6A95D0/46 (invalid_argument), whole/unique. Preserve
+original BOOST_ATTRIBUTE_NORETURN on explicit declarations: VC8 rejects its
+omission. No fake implementation/private export. Full COFF RTTI graph14 roles,
+injectors147/153 and both EH35+44 pass. Current logic copy113 remains29-byte
+nonexact; invalid destructor source50 is only base-body equivalent, NOT equal
+to actual native665AC7/11 typed vptr-store/tail provider. No provider credit.
+Thirteen tests/29 actual mutations; old runtime clone46 gate freshly passes.
+Excluded2017/review355, units778; authored/source/mapped totals stay unchanged.
+See BOOST_PUBLIC_EXCEPTION_COPIES_2026_11_01.md. Regex clone remains unaccepted.
+
+
+Actual original CRT bad_exception lifetimes68EF88/11,68EF93/34,68FB16/24 now
+whole canonical/unique; scalar/vector aliases counted once. Correct vtable
+6CD9B8 plus complete primary COL/TypeDescriptors/base descriptors/hierarchy
+arrays/cycles establish bad_exception, not old bad_alloc lookalike. Named CRT
+callees and every relocation checked. No new source/context/export or generic
+threshold change. Fourteen tests/20 real method/RTTI mutation controls.
+Excluded2015/review357; all authored/source/unit totals unchanged. See
+LINKED_BAD_EXCEPTION_2026_11_01.md.
+
+
+Actual peer-tree single erase414110/714 now whole canonical/unique in unchanged
+existing UDP lifetime/static context after fresh145/98 owner proofs. Complete
+normal/exception CFG, all11 REL32/5 HIGHLOW, root EH27/8/36/8, three-type
+out_of_range metadata, logic107/113 with full EH, actual rotators76/80/iterator97
+and dtor/copy/string cleanup pass. Import7TU same-length714 remains nonexact:
+its error-path string/logic helper ABIs differ. No new COFF barrier/source/unit
+changes; range199 and owner remain unaccepted. Twelve tests/23 actual mutations;
+old Boost logic gate freshly passes with preserved default owner. Excluded2012/
+review360, other totals stay. See LINKED_NETWORK_TREE_ERASE_2026_11_01.md.
+
+
+Rejection415B90/122 is NOT exact despite main-only equality in both new all-CIL
+network graphs. Full handler27/FuncInfo36/unwind8 replay, but cleanup8 uses EAX
+instead of native ECX at+1; source/native real destructor13 differs+1/+3/+5.
+One shared genuine guard-type control retains this mismatch. No fake COFF/ABI
+barrier or source change retained. Caller switch qualification also remains.
+See NETWORK_REJECTION_FULL_EH_2026_11_01.md; totals unchanged, no promotion.
+
+
+Actual peer allocator413C60/81 now whole canonical/unique from real32-byte peer
+initialization and all seven actual worker TUs. Only public initialization is
+exported; real callbacks/wait implementations close the old link blocker. No
+source/public unit edits, fake stride/helper export/COFF barrier. Full CFG,
+imports, exception metadata/support and receiveentry14 pass. Linked initializer
+470/native441, Assign113/native120 and insert383/native590 remain nonexact.
+Ordinary148/47/84/68 and prior endpoint81 freshly pass; fifteen tests/ten actual
+corruption controls. Excluded2011/review361, all other totals unchanged. See
+LINKED_PEER_ALLOCATOR_2026_11_01.md. All four private-ECX allocator leads now closed;
+overall98% authored goal remains active and incomplete.
+
+
+Actual endpoint allocator413CC0/81 now whole canonical/unique from current
+receive/peer/accept/thread all-CIL context. Real16-byte endpoint record, natural
+ECX count, no helper export/COFF barrier. Explicit actual peer/thread view
+connections are confined to origin-only build; ordinary unit/source unchanged.
+Full CFG/imports/bad_alloc metadata/copy/dtor pass; entry41D7B0/14 fresh exact.
+Linked connection558/native542 remains nonexact. Eleven tests/ten actual
+corruption controls; prior gamepad84, byte78/input266 and static five-body gates
+freshly pass. Excluded2010/review362, other totals stay. See
+LINKED_ENDPOINT_ALLOCATOR_2026_11_01.md. Remaining413C60/81(size32) is unaccepted.
+
+
+Actual gamepad-state allocator40E000/84 now whole canonical/unique from unchanged
+real80-byte RawGamepadState source in an origin-only import CIL context. Original
+ordinary unit stays unchanged; parent182/native176 remains nonexact. Complete
+CFG/three named calls/two HIGHLOW fields, native throw and full bad_alloc metadata/
+copy/dtor pass. Eight tests/nine actual corruption controls; old byte78/input266,
+static bad_alloc five-body and axis166 regressions pass. Excluded2009/review363,
+all authored/source/mapped/unit totals unchanged. See LINKED_GAMEPAD_ALLOCATOR_2026_11_01.md.
+Remaining16/32-byte-element allocator leads are unaccepted.
+
+
+Actual input-state CIL byte allocator40AB70/78 now whole canonical/unique after
+fresh exact owner40A550/266. Unexported original unsigned-byte allocator,
+natural ECX count, genuine MSVCR80 import identities, complete bad_alloc metadata/
+TypeDescriptors and copy25/dtor11 support pass. Public add-key269/native202 stays
+nonexact. Prior static bad_alloc five-body gate freshly passes; default85-byte
+contract is unchanged,78 explicit only. Excluded2008/review364; other totals
+stay. Nine tests/seven real mutation controls. See
+LINKED_INPUT_BYTE_ALLOCATOR_2026_11_01.md; other16/32/80 allocation leads unaccepted.
+
+
+Actual input-record std::_Allocate43B3B0/86 is now whole canonical from unchanged
+ResultInputTableLifetime/bootstrap source. Entire87-byte source section including
+one INT3 matches native; only86 candidate bytes classified. Full26-instruction
+normal/throw CFG, noncontinuable CRT proof and complete bad_alloc typed metadata/
+copy/dtor pass. Existing input cleanup73 freshly exact. Generic.70/24 threshold
+unchanged with explicit oneCC tail. Excluded2007/review365, other totals stay.
+See INPUT_RECORD_ALLOCATION_2026_11_01.md; no source/flag/ABI or parent promotion.
+
+
+Tenshi606 now uses original VC8 std::sin(float), removing the custom double
+facade. Actual emitted63D3C0/18 is whole canonical/unique; original raw math.h/
+cmath pins, real float stack argument, DWORD-zero comparison at646935 and
+caller cleanup prove the boundary. Only four bytes change in giant49032,
+which stays nonexact versus48968/frame328 versus320/first+8. No angle conversion.
+Excluded2006/review366; all other totals stay. Eight tests/three real mutation
+controls. See TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md; mixed unit is not a pass.
+
+
+Original public iterator/base regex_search4440A0/235 now whole canonical through
+a source-hash-pinned release explicit template instantiation, unchanged original
+headers and ordinary/O2/GS. Five public unit comparisons235/8/44/243/129 pass;
+main EH11+33+8+36 and original find forwarding5 fully replayed as support only.
+Actual Connect9 comparisons/full856 payload pass. Existing application-TU238
+and genuine8-TU public-CIL203 remain nonexact, no forcing. Generic.70/24/no-tail
+origin gate unchanged. Excluded2005/review367/units777; authored/source/mapped
+totals unchanged. Five source-integrity tests include LF/CRLF Git checkout
+normalization; immutable vendor source hashes remain raw.
+See BOOST_PUBLIC_SEARCH_2026_11_01.md.
+
+
+Linked tree shape leads remain CLOSED under current graph: CScript family has
+whole original recursiveErase86/increment97 matches (both already excluded),
+but singleErase783/native756 is unproved; actual CScript CIL emits270/806 versus
+range199/single756. Network original nil+19 differs from native+15. Both
+source/native range199 have unreachable JMP+123/LEA+125 rejected by strict
+decoder; no masking or boundary waiver. No code/ledger changes. See
+LINKED_TREE_CALLEE_BOUNDARIES_2026_11_01.md; reopen only for new actual callee/
+payload/owner evidence, not the same graph or arbitrary address mappings.
+
+
+Original cache-list node allocator6A3BD0/26 now whole-canonical/unique:20-byte
+allocation and self-linked prefix, original named new, no data/HIGHLOW refs.
+Actual original cache-data ctor and native6B0310 call6B0339 publish returned
+head+4/count0+8; complete native owner hash/origin and both caller CFGs checked.
+Parent117/native125 is not exact. Excluded2004/review368; all other totals stay.
+Eight synthetic and five real corruption controls. See
+LINKED_CACHE_LIST_NODE_2026_11_01.md. Tree payload mappings still unaccepted.
+
+
+Original runtime_error clone copy6A8370/46 now fully canonical/unique with
+complete injector6A5E40/147, destructor6A4B30/50 and full EH27/8/36/8 support.
+Eight actual primary/secondary RTTI roles checked. Underlying runtime_error
+copy6A59A0/113 is explicitly NONEXACT in this CIL graph (EH-state scheduling);
+its named identity is not an exact support claim. Regex clone/base154 and other
+nominal specializations stay unaccepted. Excluded2003/review369; other totals
+unchanged. Eight synthetic tests plus seven actual corruption controls.
+See LINKED_RUNTIME_CLONE_COPY_2026_11_01.md.
+
+
+Original Boost small members destroy6A08B0/13, clone_base copy6A4D30/11,
+free_module6B55D0/12 and HINSTANCE-deleter dispose6B55E0/11 now fully canonical.
+Actual source/native class RTTI/vslots and FreeLibrary import, full CFG/HIGHLOW
+coverage and inventory uniqueness pass. Excluded2002/review370; other totals
+unchanged. Prior four exception members freshly pass. Seven new synthetic
+tests. See LINKED_BOOST_SMALL_2026_11_01.md. Clone46/allocator/tree shape leads
+remain unaccepted; wrong nominal specializations are explicitly rejected.
+
+
+Original exception members now typed/whole-canonical: logic_error what4016E0/14,
+runtime_error what6A4B70/14, out_of_range copy401780/25 and length_error copy402570/25.
+The two what byte strings are identical: exact two-hit inventory is explicit,
+with actual named RTTI/vtable slot+4 disambiguation, not byte-unique claims.
+Derived copies are canonical-unique; both complete base logic_error/EH graphs
+freshly pass first. Excluded1998/review374, other totals unchanged. Nine new
+synthetic tests. See LINKED_EXCEPTION_MEMBERS_2026_11_01.md.
+
+
+Marisa410/414/562/563/733 virtual-count residuals are now qualified as physical
+next-sequence-vslot14 tail sharing, not missing vslot8/C operations. Both562/563
+retain the real post-next-sequence sequence4 reread. Fresh whole payload stays
+68204/native67936, frame1224/1216, first+14; no source/gate/ledger changes.
+See MARISA_ACTION_STATE_2026_10_28.md, five-site2026-11-01 appendix.
+Do not duplicate calls or force tail layout merely to match those counts.
+
+
+Original bad_alloc normal/scalar/copy lifetimes401630/11,401640/36,402680/25
+and one-/four-byte allocators402590/85,410130/85 are now fully canonical.
+Dedicated terminal-call CFG uses complete original CRT throw74, noncontinuable
+record32, actual RaiseException import and complete typed ThrowInfo/catchables/
+TypeDescriptors; generic closed-body gate unchanged. Full uniqueness, no masks.
+401780 is NOT bad_alloc and stays review. Excluded1994/review378; authored/source/
+unit totals unchanged. Prior logic_error full EH replay passes. Eleven new
+synthetic tests plus eleven real-byte rejection controls. See
+LINKED_BAD_ALLOC_2026_11_01.md. Payload-dependent tree leads remain unaccepted.
+
+
+Original linked std::logic_error constructors401670/107 and4017A0/113 now
+fully canonical with actual class RTTI, independently proved named callees and
+complete EH support per root (handler27/action8/FuncInfo36/unwind8). All source
+HIGHLOW fields and complete inventory uniqueness pass; no masked/prefix credit.
+Unchanged seven-TU vendor graph, public ctor112/111 remains nonexact. Existing
+vector back67/four native receivers freshly pass. Excluded1989/review383; all
+authored/source/unit totals stay. Twelve synthetic tests.
+See LINKED_LOGIC_ERROR_2026_11_01.md. Allocator/tree leads remain unaccepted.
+
+
+Original seven-TU Boost/VC8 CIL graph naturally reproduces private-EAX
+four-byte-vector back40DBF0/67. All27 instructions and3 named CRT calls match;
+original invarg16/archive ownership, no data/HIGHLOW refs, full uniqueness and
+four native gamepad-vector receiver sites pass. Long is a four-byte reference
+witness, not the game's device-pointer nominal type. Public context ctor112/111
+and enumeration334 stay nonexact. Excluded1987/review385; authored/source/units
+unchanged. Ten synthetic tests. See ORIGINAL_LINKED_VECTOR_BACK_2026_11_01.md.
+Other linked exception/allocator/tree shape leads remain unaccepted.
+
+Original Boost collation6B4820 now canonical455 with complete129/22 pointer
+tables and all151 source/native strings. Separate narrow whole-source gate
+resolves allnine fields, closes168 instructions/three RET0s and proves full
+canonical inventory uniqueness. Ordinary DIR32 semantics unchanged;604 table
+bytes are support only. Excluded1986/review386; all authored/source/unit totals
+stay. Eight synthetic tests added. See BOOST_COLLATION_ORIGIN_2026_11_01.md.
+
+Original Boost non-instance CPP context closes15 complete library bodies/1391
+bytes across core/raw-buffer/static-mutex/Windows traits. Separate immutable
+8-file source package leaves old184-header lock and reject-extra gate intact.
+All code/data fields canonically resolve; actual COFF/native RTTI, imports and
+literals are verified. Runtime-error ctor107/113, mutex dtor26 and module deleter12
+are auxiliary only. Old connect nine comparisons pass. Excluded1985/review387/
+units776; authored exact1431/443916/source1635/authored1655/mapped1820 stay.
+Collation lookup455 remains pending a complete nonuniform pointer-array contract;
+ordinary DIR32 mapping was not weakened. See BOOST_SOURCE_TUS_2026_11_01.md.
+
+Actual FileListFinalize source now proves complete tile-deque Growmap439D70
+canonical341, including allfour CRT memmove sites and original length/allocation
+helpers.313 nonrelocation bytes remain inventory-unique at unchanged gates.
+Parent1155/1106 remains nonexact. Excluded1970/review402; other totals stay.
+See FILE_LIST_GROWMAP_ORIGIN_2026_11_01.md. New-three-object census had one hit.
+
+CFileList parent4398B0 now has complete source and exact replay-delete555
+caller ownership at446C21. Ordinary91 differs only in two slash-home bytes,
+first+64; genuine standard-library LTCG123 is a closed negative (private
+char_traits call not force-mapped). Source1635/authored1655/mapped1820/review403/
+excluded1969/units772; exact1431/443916 stays. No char-array/union shaping.
+See FILE_LIST_PARENT_SOURCE_2026_11_01.md.
+
+INetworkUDPEventProc default notification/route policy43AA10/20/30 now
+canonical3/3/8 bytes through ordinary virtual methods. Original6C1630 RTTI
+six-slot table proves ownership; folded bodies counted once, existing44E8E0
+gets no duplicate credit. Client93/server289 routes freshly remain exact.
+Exact1431/443916; source1634/authored1654/mapped1819/review404/excluded1969/
+units771. See NETWORK_EVENT_DEFAULTS_2026_11_01.md. No output zeroing added.
+
+CFileList finalize43A590 now has complete source and native RTTI/vslot8
+ownership for1106 bytes/283 instructions. Current implicit-owner source1155
+remains nonexact+16 (frame3A0/native398). Correct Color4 layout gives canonical
+CTile copy164 within the real owner, compiler-only, no new copy credit.
+All14 existing FileList configured bodies freshly exact. Source1631/authored1651/
+mapped1816/review407/excluded1969/units770; exact1428/443902 unchanged.
+See FILE_LIST_FINALIZE_SOURCE_2026_11_01.md. No closed source grid reopened.
+
+Implicit lifetime accounting corrected separately:15 manager normal dtors81,
+ResultList dtor55 and CTile copy164 have no authored declaration/body in their
+selected sources. Full fresh canonical proofs remain;17/1434 authored credit
+removed. Exact1428/443902, source1630/authored1650/excluded1969/review408,
+mapped1815/units769. Historical totals below superseded, no byte regression.
+New full-byte origin gate pins reviewed source/header declarations; it does not
+lower .70 fingerprint coverage for ResultList55. Seven synthetic tests added.
+See IMPLICIT_LIFETIME_ACCOUNTING_2026_11_01.md. Explicit authored empty7 stays.
+
+Shared IColor now owns only its4-byte interface; texture04/default initialization
+belongs to CSpriteBase. Native CSpriteEx implicit copy450640 closes118/118,
+compiler-only, while actual background512 and all277 selected authored roots
+across121 affected units retain exactness. Guide keeps its genuine sprite-base
+lifetime; no flattened constructor regression remains. All28 affected generated
+origin rules and142 scalar wrappers/51 units freshly pass. Excluded1952/review408;
+exact1445/445336/source1647/authored1667/mapped1815/units769 unchanged.
+See SPRITE_COLOR_BASE_OWNERSHIP_2026_11_01.md. Older IColor8 claims superseded.
+
+Battle request-list growth466D10 is canonical160 from unchanged actual stage
+publisher with native-required GS. Complete push50/node59 witnesses also pass;
+those were already compiler-excluded. Original publisher120 freshly stays exact.
+Full length_error metadata identities and all named calls are bound; handler
+prefix is address ownership only. Excluded1951/review409/units769; authored
+exact1445/445336 and source1647 stay. See BATTLE_REQUEST_LIST_ORIGINS_2026_11_01.md.
+Cutin real-release CIL control closes negative at95/96; no gate relaxation.
+
+Youmu now includes its RTTI-proven intermediate CharacterEx base and abstract
+Character destructor interface. Constructor159 remains exact; implicit scalar
+teardown53B3D0 is canonical49, compiler-only, with actual deque7D0 cleanup.
+All51 selected scalar-wrapper owner units freshly replay under final inputs.
+Exact1445/445336 and authored/source unchanged; excluded1950/review410.
+See YOUMU_BASE_LIFETIME_2026_11_01.md. No authored destructor/vptr recipe.
+
+Compiler-wrapper accounting corrected: 141 complete canonical scalar deleting
+bodies / 4,691 bytes are compiler-generated, not authored game code. All 50
+actual owner units freshly replay with emitted ??_G symbols and native primary
+RTTI owners. Proofs, source and mappings remain; only authored credit changes.
+Corrected exact1445/445336, source1647/authored1667/excluded1949/review411,
+mapped1815/units768. Historical totals below are superseded by this correction.
+See SCALAR_WRAPPER_ACCOUNTING_2026_11_01.md. Next source lead: Youmu's native
+RTTI proves an intermediate CharacterEx base missing from its current view;
+no constructor/destructor experiment has yet been accepted for that lead.
+
+Original string-range cleanup41D5A0 is canonical57 in the real package CIL
+context, with only its scalar-delete call rebound and the complete original
+delete/free tail wrapper verified. Fresh exact roots163/228, full CFG and
+inventory uniqueness pass; no source/ABI/export changes or old gate loosening.
+Excluded1808/review411; authored/source/exact counts stay. CI324.
+See LINKED_STRING_RANGE_ORIGIN_2026_11_01.md.
+
+Global input-table43C280 is canonical73-byte original vector cleanup from
+the actual6FCA2C static lifetime and unchanged bootstrap type. Virtual flag0
+record destruction, stride68, free and pointer reset all match; init12/callback10
+also replay. Compiler-only: excluded1807/review412/units768; exact1586/450027
+and source counts stay. CI312. GameConfig string/EH lane remains unresolved.
+See INPUT_TABLE_LIFETIME_2026_11_01.md.
+
+Replay storage43F260 now has canonical implicit208-byte teardown from its
+actual static lifetime, no authored destructor body. Constructor161/input27
+remain exact. Range52 and two5-byte callbacks independently replay; input
+callback5 remains review. Full static initializer22/callback10 are witnessed.
+Excluded1806/review413; exact1586/450027 and source/units unchanged. CI312.
+See REPLAY_STORAGE_LIFETIME_2026_11_01.md.
+
+ScoreData constructor43E1A0 is canonical306 through actual member/array
+lifetimes then initialized-byte reset. The real static lifetime emits implicit
+dtor43DF10 canonical393 without a handwritten destructor; it is compiler-only.
+All four array callbacks match fully (14-byte ctor remains review), and actual
+static initializer22/atexit callback10 are independently witnessed. Existing
+defaults2428/persist1155 pass. Exact1586/450027; source1788/authored1808/mapped1815/
+excluded1805/review414/units767. CI312. See SCORE_OWNER_LIFETIME_2026_11_01.md.
+
+Package/network checked tree increments41D2B0/4143E0 each now have full
+canonical97-byte original-template CIL proofs. Separate strict call/tail gate
+requires the exact16-byte named CRT wrapper, actual private source ownership,
+no forced export/data refs and full-inventory uniqueness. Old pure gate stays.
+Four exact owner roots and prior rotations freshly pass. Excluded1804/review416;
+authored/source/exact unchanged. CI312.
+See LINKED_CHECKED_ITERATOR_ORIGINS_2026_11_01.md.
+
+PatGroup deque cleanup461AF0 now has full canonical125-byte compiler proof
+in unchanged CharacterDestructor source. All three calls are resolved; explicit
+operator-delete count2 separates it from authored CsvReader clear40FDB0.
+Existing singleton-site rules retain their defaults and all three replay.
+Character905 remains one-byte nonexact; spell101 and PatGroup peers pass.
+Excluded1802/review418; other counts stay. CI300.
+See PAT_DEQUE_TIDY_ORIGIN_2026_11_01.md.
+
+Group-A/B collision46BB10 now restores real per-call first-descriptor reloads
+and exact-producer-backed typed arrays. Old321 becomes complete398, still
+nonexact+20/44 positions; five explicitly substituted-helper observers confirm
+read lifetime only. Exact owner285/preparation2156 stay exact. No closed
+allocation controls reopened. Source1787/authored1807/mapped1814/excluded1801/
+review419/units766; exact1585/449721 stays. See GROUP_A_PAIR_COLLISION_2026_11_01.md.
+
+Two original floor1 SDK bodies now have canonical whole-payload proofs:
+687790 code514/payload544 and688620 code1497/payload1520. Real four-entry
+switches, exact alignment, qsort callback and static counter roles are owned.
+The original681C70 proof also freshly passes; old masked/no-suffix gates stay.
+Excluded1801/review420; authored1806/source1786/exact1585/449721 unchanged.
+DefaultCI294. See XIPH_FLOOR_OWNED_SWITCH_ORIGINS_2026_11_01.md.
+
+Original Xiph681C70 now has complete canonical912-byte SDK provenance:880 code
+plus32 owned switch bytes, no masks. Independent helper anchors freshly replay;
+bounded guard/CFG and inventory uniqueness pass. Separate validator preserves
+the old no-suffix gate. Excluded1799/review422; authored/source/exact unchanged
+(1806/1786/1585 with449721 exact bytes). No authored credit.
+See XIPH_OWNED_SWITCH_ORIGIN_2026_11_01.md.
+
+Arcade round473110 is formally authored/source-present: complete270 code plus
+separate36-byte switch table, unchanged264-byte source nonexact at entry.
+Fresh setup842 and transition231 remain exact; actual473300 call owns it.
+No closed cleanup/register experiments reopened. Exact1585/449721 unchanged;
+source1786/authored1806/mapped1813/excluded1798/review423/units765.
+See ARCADE_ROUND_FINALIZE_SOURCE_2026_11_01.md.
+
+GameConfig save427390 is now complete authored/source-present, still nonexact:
+877/877 with only operand-order bytes +579/+582 unequal. Actual std::string,
+deque and CFileWriter source retains natural GS/EH; const-method control is
+byte-neutral and closed. Exact close48/shutdown264 tail owners freshly pass.
+No prefix or remote-EH credit; global config ctor topology remains unresolved.
+Exact1585/449721 unchanged; source1785/authored1805/mapped1812/excluded1798/
+review424/units765. See GAME_CONFIG_SAVE_SOURCE_2026_11_01.md.
+
+Existing complete background runtime466F40 is now formally authored/source-
+present, not exact: full1074 target/308 instructions, unchanged1064 source+12.
+Fresh exact presentation105 owns46B1BC; all nine old same-TU accepted functions
+remain exact. No closed clamp/TU controls reopened. Exact1585/449721 stays;
+source1784/authored1804/mapped1811/excluded1798/review425/units764.
+See BATTLE_BACKGROUND_RUNTIME_SOURCE_2026_11_01.md.
+
+Title release404D70 is restored as genuine ordinary C++115/115 in the actual
+DesignBaseCleanupLinked context; cleanup310 stays exact. No source statements,
+ABI/flags or real export set changed, and no withdrawn assembly was reused.
+Load404C90 remains nonexact. Release moves from the former standalone probe
+into the existing cleanup unit, avoiding duplicate credit. Exact1585/449721;
+source1783/authored1803/mapped1810/excluded1798/review426; units764.
+See TITLE_RESOURCE_RELEASE_EXACT_2026_11_01.md.
+
+PCM418B70 is now canonical252 through unchanged source in the actual service
+CIL graph. Fresh exact play351 roots five nodes/six real call sites; the three
+intermediate stream bodies remain nonexact. A separate bounded stdcall graph
+proof retains ordinary source/RET8 and all named relocations, without exporting
+the leaf or weakening old source_only rules. Service play351/prepare159 and
+old stream Ogg291/SFL484/stop45 all freshly pass. Exact1584/449606; source1783,
+authored1803,mapped1810,excluded1798,review426,units765 stay.
+See OGG_PCM_EXACT_2026_11_01.md.
+
+Six pure original STL bodies now reproduce384 complete unmasked bytes in
+fresh real LTCG contexts: vector fills404500/40A870 and package/network tree
+rotations41CD10/41CD60/4138D0/413940. A separate strict compiler-origin path
+requires existing exact roots, unique CIL ownership, no relocations/calls/data
+references and whole-inventory uniqueness. Excluded1798/review426; authored
+exact1583/449354 and all other source/unit counts stay. No private ABI source
+or game-code changes. See LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md.
+
+DirectSound stop4185E0 is canonical45/45 through unchanged ordinary C++ and
+actual LTCG private ESI lowering. A separate strict relocation-free-member
+proof checks whole raw bytes/CFG/RET0 and both real subobject LEAs; old
+source_only_caller restrictions stay. Ogg291/SFL484 freshly remain exact;
+exported update969/943 and four other unit peers stay nonexact. Exact1583/449354,
+source1783/authored1803/mapped1810/excluded1792/review432/units765.
+See DIRECT_SOUND_STOP_EXACT_2026_11_01.md. Linked-library census leads remain
+private discovery only until fresh full provenance and canonical comparisons.
+
+Info record46EA40 now has a natural implicit28-byte constructor through its
+actual two sprite members and initializing texture handles. All three accepted
+InfoManagerBase owners195/185/30 stay exact; paired dtor15 also compares but
+remains review. Full-inventory24-byte/70%-minimum source proof excludes only
+the28-byte compiler body, no authored gain. Excluded1792/review433; other
+counts unchanged. See INFO_RECORD_LIFETIME_2026_11_01.md.
+
+After the Tenshi fix, twelve other complete public Fighter candidates received
+fresh bounded QWORD-capture checks. No additional missing-wide-capture truncation
+was established; Aya606 and Suika605/730 deficits are physical sharing residuals,
+not permission to force stores. All roots remain nonexact and counts unchanged.
+See WIDE_CAPTURE_CROSSCHECK_2026_11_01.md. The initially stated Alice scaffold-only
+priority was stale: AliceFighterActionState.cpp is already a complete unselected
+candidate. Fresh Alice checks now recover all nine native wide captures and79
+payload homes, with no unknown payloads. Full44032/44080 remains nonexact+8;
+no source or exact credit and no closed spelling controls are reopened.
+Reimu also retains all20 native wide stores and112 payload homes, frame1392
+both; its full82808/82924 payload remains nonexact. The fifteen-roster
+bounded width check is complete, not a whole-semantic proof.
+
+
+Tenshi63D3E0 scratch tracing found two genuine missing QWORD captures:505 peerY
+and542 updatedY+velocity across the real surface helper. Corrected double locals
+recover all13 wide stores; one bounded native542 nearest-rounding counterexample
+rejects the prior extrafloat truncation. Full49032 f45557a8 still nonexact+8,
+frame328/native320; all64 payload homes resolve. No source/exact credit; no fake
+scratch or ABI. See TENSHI_ACTION_STATE_2026_10_27.md November1 appendix.
+
+
+Actual package-store/node source now reproduces original map subtree cleanup
+41C630/94 canonically; its43-byte node destructor also freshly passes. Unique
+full-inventory compiler-origin proof moves only this94-byte helper to excluded,
+not authored exact. Excluded1791/review434/units765; exact1582/449309 and source
+counts unchanged. See PACKAGE_MAP_ERASE_ORIGIN_2026_11_01.md.
+
+
+RemiliaObject55BE70 follow-up naturally recovers901's physical shared tails by
+spelling its real2/8/9 assignments separately, without gotos or float snapshots.
+Full5384 b35e53a2 now differs in only10 bytes, two850/851 selector-call schedules;
+all387 suffix bytes and complete1339-instruction CFG/32RET/tail agree. Still
+nonexact; exact1582/449309 stays. Global selector-view/conversion controls close
+without improvement. See REMILIA_OBJECT_ENTRY_2026_10_24.md final appendix.
+
+
+Original VC8 std::deque<short> explicit instantiation proves1404-byte4638C0
+_Insert_n by the unchanged full-inventory unique compiler-origin gate. All
+1220 nonrelocation bytes agree (86.89%); no tail waiver or game transcription.
+Remote EH and callee428680 are not inferred exact. One compiler exclusion only:
+excluded1790/review435, exact1582/449309 and other source/unit counts unchanged.
+See VC8_SHORT_DEQUE_INSERT_ORIGIN_2026_11_01.md.
+
+
+RemiliaObject initializer55BE70 now gives its two actual spawn requests local
+branch lifetimes. Verified synchronous manager copy permits this; compiler
+naturally recovers native980 tail JMP55D1DE and full4997 callable/32RET/1339
+reachable instructions. Full5384 remains nonexact+440,437 positional differences;
+no exact credit. Remaining selector registers and901 shared tail are open.
+See REMILIA_OBJECT_ENTRY_2026_10_24.md November1 appendix. Exact1582/449309 stays.
+
+
+Aya's complete65601-byte action root received fresh real-manager-backed
+spawn-width controls. Original and both byte-view forwarding wrappers are
+canonical66; actual roster managers pass. Both narrowed roots remain
+65536/full66704 nonexact+48, so neither is selected. Count3 is truly copied
+as12 bytes by the manager;530/532's observed two-word homes remain an explicit
+extent/lifetime unknown, not an ignored third argument. No code/ledger changes.
+See AYA_ACTION_STATE_2026_10_28.md November1 appendix. Exact1582/449309 stays.
+
+
+Watch-input42BC40 now has complete140-byte ownership/source, with all48
+instructions/two RET8 exits and fresh exact LoadingWatch209 edge42697C.
+Source139 remains nonexact+46 in COFF and genuine save-provider CIL; no forced
+barrier. Native second-side tag reads through the rebound first-side descriptor
+and is preserved. Selected selector60/save305 remain exact; load332 unchanged.
+Exact1582/449309 stays; source1782/authored1802/mapped1809/excluded1789/review436/
+units764. See WATCH_INPUT_CONFIGURATION_SOURCE_2026_11_01.md.
+
+Actual slot construction views now use a flat0x50 record and one-byte tail34
+with natural padding. Both authored owners238/848 and old38 origin bodies
+remain exact/proven. Implicit copy116 plus standard copy/fill74/76/38 fully
+compare; six unique compiler origins total628, including two162-byte helpers
+with provenance only. Byte-array alternative breaks owner238->271 and is not
+selected; existing authored assignment162 is unchanged. Exact1582/449309,
+source1781/authored1801/mapped1808/units764 unchanged; excluded1789/review437.
+See FIXED_SLOT_COPY_LIFETIME_2026_11_01.md.
+
+Texture manager404F00 is canonical193 plus all120 EH bytes through the real
+0x84-byte manager/cache aggregate. New narrow texture lifecycle proof compares
+full59-byte CRT initializer,10-byte ECX callback, storage/table and fresh98/30
+cleanup support, without changing the old17/5 generic global contract. Actual
+7-cache negative is rejected; restored source and old resource/wave/package
+families pass. Twelve new tests; CI235. Existing texture dtor/scalar move units
+without recount. Exact1582/449309, source1781/authored1801/mapped1808,
+excluded1783/review443/units764. See TEXTURE_SERVICE_LIFETIME_EXACT_2026_10_31.md.
+
+Renderer pair-state404940 is canonical121 through actual COM calls and cached
+byte publication. Both real callers ignore the result; correcting the old
+char return to ordinary void removes artificial result retention and matches
+all bytes. Existing unused device slot67 is typed without changing layout.
+Renderer six roots and scene four roots freshly pass. Exact1581/449116,
+source1780/authored1800/mapped1807/excluded1783/review444/units763. See
+RENDER_PAIR_STATE_EXACT_2026_10_31.md.
+
+Shared front-card gate494450 is now authored/source-present, with complete
+950-byte/305-instruction/eight-RET4 closure and14 pinned exact roster caller
+edges. Existing source stays950/nonexact+72; no old range/lifetime retry.
+Eight family peers and Reimu6952/full7008 freshly pass. Exact1580/448995 stays;
+source1779/authored1799/mapped1806/excluded1783/review445/units762. See
+FRONT_CARD_ACTION_GATE_SOURCE_2026_10_31.md.
+
+Game TNumberValue<float*> getters46A640/10 and46A650/6 are canonical exact
+from unchanged existing source and actual story binding. Raw RTTI/vtable6C35C8
+plus INumberValue hierarchy prove authored identity, not tiny-pattern guessing.
+All existing gauge roots20/27/648/351 freshly pass. Exact1580/448995, source1778/
+authored1798/mapped1805, excluded1783/review446/units762. See
+NUMBER_FLOAT_VALUE_ADAPTERS_2026_10_31.md.
+
+Original VC8 basic_string<char> explicit instantiation fully matches
+rfind4395F0/165 with both canonical calls and full-inventory unique provenance.
+Compiler exclusion only; no game-source or tool changes. Excluded1783/review448,
+units762; exact1578/448979 and source1776/authored1796/mapped1803 unchanged.
+See VC8_STRING_RFIND_ORIGIN_2026_10_31.md.
+
+A reproducible explicit compiler probe now closes the two stale-object leads:
+implicit sprite assignment45CFB0/143 and genuine deque range erase45D830/515
+are full canonical exact and full-inventory unique. The probe reuses actual
+accepted rotation/card declarations; it is not a gameplay caller or advance
+workaround. Fresh rotation265/copy116 plus96 support bytes pass. Compiler
+exclusions only:1782/review449, units761; exact1578/448979 and source1776/
+authored1796/mapped1803 unchanged. See SEQUENCE_CARD_GENERATED_ORIGINS_2026_10_31.md.
+
+A broader existing-COFF discovery now proves59 further original compiler/STL
+bodies (14055 bytes) through14 fresh source-specific origin rebuilds. All55
+complete full-inventory hit sets pass unchanged gates, including four explicit
+two-member design-vector groups. No source/profile/tool changes or authored
+credit. Stale sequence-control objects and overlapping hit sets are not used.
+Exact1578/448979, source1776/authored1796/mapped1803/units760 unchanged;
+excluded1780/review451. See EMITTED_CONTAINER_ORIGINS_2026_10_31.md follow-up.
+
+SpellDataOwner destructor4619C0 is canonical101/101 plus all117 generated
+EH bytes, using the already emitted ordinary CharacterDtorSpell68 lifetime.
+Explicit spell cleanup precedes two short deques and resource-core destruction.
+No source/profile changes; direct cleanup171 and core126/118 freshly pass.
+Character parent905 retains its one SIB mismatch and receives no credit.
+Exact1578/448979, source1776/authored1796/mapped1803, excluded1721/review510,
+units760. See SPELL_OWNER_DESTRUCTOR_EXACT_2026_10_31.md.
+
+Seven original VC8 container/string helpers (1068 bytes) now have freshly
+rebuilt full-inventory-unique source fingerprints under unchanged origin gates.
+Five source-specific rules pass; all six existing authored roots and full1676
+byte timeline payload freshly pass. No source/tool/profile changes or authored
+credit. Excluded1721/review511; exact1577/448878, source1775/authored1795/
+mapped1802/units760 unchanged. Same-sized package allocator41D160 is rejected.
+See EMITTED_CONTAINER_ORIGINS_2026_10_31.md.
+
+Wave service load401AF0 now has complete source/ownership: stable token cell,
+CDSBuffer creation/load, failure delete/recycle and effective gain publication.
+All85 target instructions/two RET8 exits close; fresh exact caller45F680 binds
+45F6D3. Actual reader/DirectSound/manager CIL emits221/native224, nonexact at
+frame/private acquire ABI; no forcing. Fresh BGM Ogg291/SFL484, play351/
+prepare159+79EH and fighter resources132/333/199 pass. Exact1577/448878 stays;
+source1775/authored1795/mapped1802/excluded1714/review518/units760.
+See WAVE_SERVICE_LOAD_SOURCE_2026_10_31.md. Sequence preparation base control
+and genuine advance deque controls were negative and restored out.
+
+Fighter sequence rotation 45DDA0 now passes all 265 authored bytes through
+real deque lifetime, visible implicit sprite copy and byte count publication.
+Implicit copy 455160/116 and all 96 auxiliary bytes also pass; existing enqueue
+114 freshly passes. Copy ownership was already excluded, not a new count; its
+source-origin full-inventory anchor now passes. No shared header, fake register,
+manual vptr/copy recipe or verifier change. Exact 1577/448878, source 1774,
+authored 1794, mapped 1801, excluded 1714, review 519, units 759.
+See FIGHTER_SEQUENCE_ROTATE_EXACT_2026_10_31.md.
+
+Four more original Boost compact switches fully pass the unchanged gate:
+6A0DC0 code118/payload154,6A0EE0 84/126,6A2C40 196/255,6A7C90 546/583.
+All944 code and174 metadata bytes compare, with guarded local tables/closed
+all-reachable CFG. Expanded six-body origin rule passes4829 code bytes; only
+four new rows are excluded, no recount. Public release unit ten roots5744 code
+plus409 metadata passes; CI223. Source/compiler/verifier unchanged. Excluded1714/
+review520; exact1576/448613, source1773/authored1793/mapped1800/units759 unchanged.
+See BOOST_COMPACT_SWITCH_PAYLOAD_2026_10_31.md follow-up.
+
+Two original Boost release parsers now fully match including compact switches:
+6B04E0 code2478/payload2585 and6AF880 code1407/payload1535. Entire canonical
+COMDATs, alignment, local table relocations/maps, unsigned guards and closed
+all-reachable code pass; no prefix/table masking. New narrow switch_payload
+contract is mandatory in unit comparison and source-origin validation, retaining
+all old gates;12 new tests. Old15 canonical roots/eight origin rules244 bodies
+freshly pass; CI223. Two library exclusions only: excluded1710/review524;
+exact1576/448613, source1773/authored1793/mapped1800/units759 unchanged.
+See BOOST_COMPACT_SWITCH_PAYLOAD_2026_10_31.md.
+
+Original Boost narrow instances with standard NDEBUG now prove50 additional
+library bodies/20912 bytes. Two genuine shared_ptr assertion paths explain
+old do_assign466/native412; no source body or guard is hand-edited. Four full
+canonical witnesses412/133/224/146 pass915 bytes. Full-inventory50-body rule
+and complete39-byte equivalence pair pass; old12 canonical roots and six old
+origin rules191 bodies freshly pass. New explicit release wrapper retains all
+original source/hash/header checks, with one test; CI211. No authored credit.
+Exact1576/448613, source1773/authored1793/mapped1800 unchanged; excluded1708/
+review526/units759. See BOOST_RELEASE_LIBRARY_ORIGINS_2026_10_31.md.
+
+DirectInput shutdown40D3F0/331 now has complete source and exact-application-
+caller/full-body ownership evidence. Actual COM virtual dispatch and existing
+backend vectors preserve mouse/keyboard/pad release order, three clear() calls,
+and final interface release. COFF581/CIL585 remain nonexact: native keeps vector
+clear helpers out of line. Real bootstrap context is neutral and restored out;
+no manual containers, fake registers or forced barriers. Exact1576/448613 stays;
+source1773/authored1793/mapped1800, excluded1658/review576/units758; CI210.
+See DIRECT_INPUT_SHUTDOWN_SOURCE_2026_10_31.md.
+
+Renderer device-loss callback401610 now has complete source and independently
+checked CRenderer RTTI/slot/full-body/binder-call ownership. Both genuine existing
+texture value types emit15/native22; native outgoing argument materialization
+remains unresolved. No stack recipe/type grid or exact credit. Source1772/
+authored1792/mapped1799, excluded1658/review577/units757; exact1576/448613
+unchanged. CI210. See RENDER_MODE_LOST_SOURCE_2026_10_31.md.
+
+Renderer initialization401430/142 is canonical exact using the actual existing
+RenderModeManager type and real listener/critical/effect-initializer CIL graph.
+Independent initialized listener-base and zero field-tail data witnesses keep
+all absolute references checked without adding storage or widening old aliases.
+The real second effect caller retains native listener argument; both real
+initializer roots pass a strict context replay, and old effect/listener selected
+unit freshly passes. No dummy caller, source vptr store or verifier change.
+Exact1576/448613; source1771/authored1791/mapped1798, excluded1658/review578/
+units756; CI210. See RENDER_MODE_INITIALIZE_EXACT_2026_10_31.md.
+
+BGM play4036E0/351 and stream prepare402960/159 are newly canonical exact.
+Real stream/Ogg/DirectSound graph and allocated-token queues reproduce pending
+push_front, active/retired push_back and always-true return policy. By-value
+std::string preparation retains all79 EH bytes, through freshly exact351-byte
+parent at40375E. No ABI/frame forcing or verifier change. Old Ogg291/SFL484
+freshly pass. Stream start339/native358 in this context remains unaccepted.
+Exact1575/448471; source1770/authored1790/mapped1797, excluded1658/review579/
+units755; CI210. See BGM_LOAD_SERVICE_EXACT_2026_10_31.md.
+
+BGM shutdown4034F0/449 is now canonical exact in the real service/token queue/
+manager/thread CIL context. Native aligned frame and private EAX release calls
+emerge naturally; no source ABI or padding. All four roots199/148/133/449 and
+prior lifecycle EH/startup witnesses freshly pass. Release itself257/native184
+remains unaccepted. Old standalone shutdown unit and source-only rule retired.
+Exact1573/447961; source1768/authored1788/mapped1795, excluded1658/review581,
+units754; CI210. See BGM_SERVICE_SHUTDOWN_EXACT_2026_10_31.md.
+
+BGM manager constructor403ED0/133 is now exact plus all101 cleanup/EH bytes.
+Real existing BgmHandleResult outer queues distinguish packed allocated tokens
+from unsigned free indices; genuine unsigned-list/vector COFF plus token CIL
+now matches all three service/member lifetimes199/148/133. Fresh exact global
+parent199+180 EH and real startup witness bind unique40334B entry. No ABI
+annotation, fake type or verifier change. Exact1572/447512; source1768/authored1788/
+mapped1795, excluded1658/review581/units755. CI210.
+See BGM_TOKEN_MANAGER_CONSTRUCTOR_EXACT_2026_10_31.md.
+
+Global BGM constructor4032F0/199 and destructor4033C0/148 are fully exact,
+including180/117 cleanup/EH bytes and B4-byte storage7026E0 with real CRT
+initializer17, slot and exit5. Natural list CIL/vector COFF reproduces the
+native ABI; no padding or fake declarations. COFF section start alignment
+is now correctly independent of exact object extent; strict ownership stays.
+Old BGM six roots, wave four roots and package global pair freshly pass.
+Exact1571/447379; source1767/authored1787/mapped1794, excluded1658/review582/
+units755. Member ctor403ED0 remains126/native133, no credit.
+See BGM_SERVICE_LIFETIME_EXACT_2026_10_31.md.
+
+Wave member constructors401E40/193 and401F80/145 are now independently exact,
+each with all120 cleanup/EH bytes. Actual single calls4018A9/4018BB require the
+fresh exact143-byte global parent, full130 parent EH and same current startup/
+storage witness. No source ABI forcing or weakened comparisons. Old BGM220/15
+and UDP145/98/30 paths freshly pass. Exact1569/447032; source1765/authored1785/
+mapped1792, excluded1658/review584/units754.
+See WAVE_MANAGER_CONSTRUCTORS_EXACT_2026_10_31.md.
+
+Global wave-service constructor401880/143 and destructor401910/128 are
+fully exact, including130 cleanup/EH bytes each and real17-byte initializer/
+CRT slot/5-byte exit tail for458-byte storage702288. Four prior buffer callbacks
+209 bytes plus required EH replay before strictly typed code-pointer PUSH.
+Old resource-manager98x3/30x3 and package globals freshly pass. Member193/145
+constructors remain unselected. Exact1567/446694, source1763/authored1783/
+mapped1790, excluded1658/review586/units754.
+See WAVE_SERVICE_LIFETIME_EXACT_2026_10_31.md.
+
+UDP request buffer+78 now has consistent unsigned-byte array ownership in
+start/replacement, initialize, shutdown and owner destruction. Four source
+sites use actual delete[]; all eight old affected authored matches and the
+packet scalar wrapper freshly pass. Owner341/native333 remains nonexact.
+No count changes. See NETWORK_REQUEST_ARRAY_LIFETIME_2026_10_31.md.
+
+Profile key destructor44B9D0 is canonical exact188 through actual polymorphic
+tile lifetime. Shared UiSpriteLifetime94 removes duplicate lifetime declarations;
+all eleven old affected functions freshly remain exact (twelve comparisons).
+Constructor/runtime views are unchanged; no manual vptr stores or fake aliases.
+Exact1565/446423; source1761/authored1781/mapped1788, excluded1658/review588/
+units753 unchanged. See PROFILE_KEY_DESTRUCTOR_EXACT_2026_10_31.md.
+
+CSelect normal destructor424260 is canonical exact845. Actual polymorphic
+sprite/tile lifetimes resolve the former+605 scheduling difference, with no
+manual vptr writes. Shared CNumberLifetime.hpp preserves declarations; old
+connect315 and all six number/design-number roots freshly remain exact.
+Constructor-facing Select header is unchanged. Exact1564/446235,
+source1761/authored1781/mapped1788, excluded1658/review588/units753.
+See SELECT_DESTRUCTOR_EXACT_2026_10_31.md.
+
+Connect menu destructor443C30 is canonical exact315. Actual profile-list/
+texture/design cleanup plus ordinary guide/string/deque and polymorphic
+CNumber/tile/sprite/base lifetimes reproduce all bytes without manual vptr
+stores. Existing shared UI source is unchanged; wrapper444470 stays excluded.
+Exact1563/445390; source1760/authored1780/mapped1787, excluded1658/review589/
+units753. See CONNECT_MENU_DESTRUCTOR_EXACT_2026_10_31.md.
+
+Owning BGM manager403F60 is exact279 plus all139 bytes of four-state
+cleanup/EH. Actual RTTI is CHandleManagerEx<BgmBuffer>, distinct from the
+pointer-resource family. Ordinary delete loop and genuine unsigned-vector COFF
+recover ECX cleanup1 without waivers; old220/139/15+constructor89 remain exact.
+Scalar404090 stays excluded. Exact1562/445075, source1759/authored1779/mapped1786,
+excluded1658/review590/units752. See BGM_MANAGER_DESTRUCTOR_EXACT_2026_10_31.md.
+
+Three concrete pointer-resource manager destructors401F10/402020/404FD0
+are canonical exact98 each. Their three30-byte scalar wrappers also pass but
+remain excluded. Real CIL plus unchanged unsigned-list/vector COFF naturally
+preserves ESI deque cleanup. Narrow one-pointer-template vtable naming support
+keeps all RTTI/owner/relocation checks; old UDP98/30/145+full EH freshly pass.
+Exact1561/444796; source1758/authored1778/mapped1785, excluded1658/review591/
+units752. See RESOURCE_MANAGER_LIFETIMES_EXACT_2026_10_31.md.
+
+Original effect-group deque/placement-copy source now verifies three complete
+library bodies422770/341,422E00/117,4505A0/60, all518 canonical bytes.
+Full-inventory/hash/coverage provenance passes; generic templates do not imply
+unique original element identity. Excluded1658/review594/units751; authored
+exact1558/444502 unchanged. See EFFECT_GROUP_LIBRARY_ORIGINS_2026_10_31.md.
+
+PatternData effect-group constructor422AE0/131 and destructor422660/135
+are now complete canonical exact through ordinary vector<FrameData>::clear.
+Actual32-byte group declaration is shared; old loader2528 freshly stays exact.
+No generated helper credit. Exact1558/444502, source1755/authored1775/mapped1782,
+excluded1655/review597/units750. See EFFECT_GROUP_LIFETIME_EXACT_2026_10_31.md.
+
+Wave dispatcher408ED0 now has complete151-byte authored source and an exact
+304-byte DirectSound caller edge. Actual reader/loader CIL remains145/151;
+CV3 normal stdcall248/247 is EH-blocked, no waiver or exact credit. Shared
+WaveData and real delete[] ownership retain the304-byte caller exact.
+Source1753/authored1773/mapped1780, excluded1655/review599/units749;
+exact1556/444236 unchanged. See WAVE_RESOURCE_DISPATCH_2026_10_31.md.
+
+Effect loader437EC0 is now fully canonical exact2528 via the existing ordinary
+read_file_buffer helper, shared in FileReaderOperations.hpp. All15 old accepted
+functions in the two other affected consumers freshly remain exact, including
+linked EH. Authored totals1556/444236; no helper credit. The PAT source now
+uses the shared helper too: native3885 length, four differing bytes in two
+deque range-check load orders. Still nonexact+866, no exact credit.
+See EFFECT_READER_FORWARDING_EXACT_2026_10_31.md.
+
+Original VC8 vector<FrameData> now proves13 unique library bodies/1315 bytes.
+Six complete copy/fill/destroy witnesses pass580 canonical bytes; all13 pass
+full-inventory/hash/coverage validation. Duplicate source instantiations count
+once; one original CC tail is checked. Compiler-generated exclusions only:
+excluded1655/review600/units748; authored1555/441708 and source counts unchanged.
+See FRAME_VECTOR_ORIGINS_2026_10_31.md.
+
+PAT and effect frames now share the actual FrameData lifetime/type instead
+of a duplicate effect-only class. Ordinary whole-object28-byte construction
+naturally reproduces the same optimized PAT base stores; all five accepted
+lifetime roots remain exact. The full effect-loader2528 candidate is byte-for-
+byte unchanged (SHA94b3933b...), still nonexact+1269. No store/register forcing
+or count change. See FRAME_CONSTRUCTION_CONTEXT_2026_10_31.md.
+
+Correct PAT fields now naturally generate FrameData copy421B30 at91/91 and
+preserve derivedcopy460C90/311 with its real base call. Removed the provisional
+out-of-line copy declaration; no inline directive or hand-written copy added.
+All11 authored roots,33 old generated-origin bodies and assignment305 freshly
+pass again. This91-byte body is compiler-generated only. Excluded1642/review613/
+units747; authored exact1555/441708 and source counts unchanged.
+See PAT_BASE_FIELDS_2026_10_31.md follow-up.
+
+PAT FrameData base is now eight raw WORDs plus byte14 and natural15..17
+padding, independently established by the complete implicit assignment460DD0.
+Old neutral DWORD/union view gave295; actual typed layout gives305/305 including
+all three vector calls. This compiler-generated body is excluded, not authored
+credit. All11 affected authored roots and32 dependent old origin bodies freshly
+pass. Excluded1641/review614/units746; exact1555/441708 and source counts unchanged.
+See PAT_BASE_FIELDS_2026_10_31.md.
+
+Ogg reader-owner destructor418A00 is now canonical exact15/15 through the
+freshly exact private stream destructor220 and complete third11-byte cleanup.
+Its real private-parent entry witness is retained; same-register member+30
+preparation and both tail destinations match. No ABI/source body changes or
+cleanup-helper credit. Old220/139 destructors, CSV13 and constructor89 freshly
+pass. Totals1555/441708; all source/ownership/unit counts unchanged.
+See OGG_READER_DESTRUCTOR_EXACT_2026_10_31.md.
+
+FileBuffer destructor4055F0 is canonical exact14/14, reached through the
+freshly exact CScript loader282 and its complete one-state cleanup EH.
+Genuine CIL supplies EAX naturally; a strict indexed cleanup-tail witness
+validates all source/native receiver bytes and both actual destinations before
+whole-child comparison. No cleanup-helper credit or private ABI declaration.
+All12 old unit functions and two Ogg/SFL nested private/EH roots freshly remain
+exact. Totals1554/441693; source1752/authored1772/excluded1640/review615,
+mapped1779/units745 unchanged. See FILE_BUFFER_DESTRUCTOR_EXACT_2026_10_31.md.
+
+SFL/BMP typed local arrays now use matching delete[]; type-erased primitive
+pixel storage uses the actual ::operator delete[] storage API, not an assumed
+char-array destructor. Native producers retain allocation bases and the scalar
+bitmap dtor independently separates buffer-array delete from owner-scalar delete.
+All19 accepted functions in the three actual dependent units freshly remain
+exact, including linked EH. No counts change; BMP2181/native2230 remains
+nonexact at frame438h/430h. See PIXEL_AND_SFL_ARRAY_LIFETIMES_2026_10_31.md.
+
+Script prefix and FileBufferContext now correctly pair new[] with delete[]
+at four source sites; four scoped callee bindings follow actual emitted symbols.
+All14 accepted functions in the two actual dependent units freshly remain exact.
+The already-present complete399-byte parser405930 is now authored/source-tracked;
+linked405 remains nonexact and its ordinary-free-function EH contract stays
+unsupported, not bypassed. Source1752/authored1772/mapped1779/review615,
+excluded1640/units745; exact1553/441679 unchanged.
+See SCRIPT_ARRAY_LIFETIMES_2026_10_31.md.
+
+First BGM playback worker403B90 now has complete326-byte/98-instruction source
+and exact-wrapper ownership. It polls16ms, updates active handles under the real
+lock, retires completed streams and wakes the loader. Standalone331 is nonexact;
+genuine single-CIL326 recovers the aligned frame but retains list register
+ownership and the native private EDI update boundary. No ABI/register forcing.
+Fresh caller leaves73/28/28 remain exact. Source1751/authored1771/review616,
+excluded1640/units745; exact1553/441679 unchanged.
+See BGM_PLAYBACK_WORKER_2026_10_31.md.
+
+Original acos start_9 at69BD0E is now library-owned: original COFF start label,
+fixed wrapper CALL, complete1364-byte containing code and6176-byte polynomial
+data all reproduce native evidence. Its existing1334-byte inventory row alone
+is excluded. The six-byte external entry69BD08 is executable, not alignment;
+no row/byte credit is invented. Strict optional named-entry checks reject
+guessed offsets/partial data; previous patched25 and default-SP1 two-body rules
+freshly pass. Excluded1640/review617; exact1553/441679 and all source counts
+unchanged. See VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md.
+
+The isolated original runtime follow-up adds11 complete short/data-heavy
+bodies/655 bytes with all relocation operands pinned. Actual exception RTTI/
+fallback text and MessageBoxA API strings disambiguate nominal ownership;
+four x87 helpers have full byte equality with no relocations. Generic destructor/
+copy shapes remain unselected. Excluded1639/review618; authored1553/441679,
+source1750/ownership1770/units744 unchanged. See the follow-up section in
+VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md.
+
+Original official KB971090 runtime archives resolve14 reviewed complete bodies/
+4876 bytes, including write_nolock1570 and the220-byte write wrapper's true
+64-byte ioinfo stride (old SP1 uses56). Every native hash/relocation operand and
+full-inventory fingerprint is checked. The isolated archive selector defaults
+to unchanged SP1; no compiler/profile replacement or installer execution.
+Exact1553/441679, source1750/authored1770/units744 unchanged; excluded1628/
+review629. Public missing-only bootstrap independently replayed original hashes.
+See VC8_PATCHED_RUNTIME_ORIGINS_2026_10_31.md.
+
+Original Boost instance ambiguity is now resolved at library-family scope
+through nine complete full-inventory equivalence groups, not guessed unique
+addresses: 26 bodies/4047 bytes, std7/2216 and Boost19/1831. Existing group,
+coverage, native-hash and maximum-one-CC gates pass. No concrete template
+identity or authored exact claim. Excluded1614/review643; exact1553/441679,
+source1750/authored1770/units744 unchanged. See the follow-up section in
+BOOST_REGEX_LIBRARY_ORIGINS_2026_10_31.md.
+
+Original pinned Boost narrow instances now provide 148 unique full-body
+library-origin fingerprints (87 Boost / 12756 bytes; 61 VC8 std/stdext / 11474).
+Three canonical library witnesses pass 25/26/69 bytes; ambiguous shapes and
+nonexact do_assign466/412 remain unselected. The optional --instances bootstrap
+verifies the original697-byte CPP as well as headers. Incremental new-rule
+validation only; no all-unit or cold full-census replay. Authored1553/441679 and
+source1750/authored1770 unchanged; excluded1588/review669, units744.
+See BOOST_REGEX_LIBRARY_ORIGINS_2026_10_31.md.
+
+Connect main-state444830 now uses original pinned Boost1.40 regex/smatch/search
+headers rather than local ABI-only classes. Full827/856 and root EH215 remain
+exact; eight actual library helpers also match1116 complete bytes. A verified
+184-file original-source package and explicit bootstrap/checker make this
+reproducible; source/lock tamper and external.hpp inputs are checked. Seventeen
+unique Boost/VC8 library fingerprints remove1682 bytes from review, not authored
+progress. Totals1553/441679 unchanged, source1750/authored1770/excluded1440/
+review817. Compatible reference, not unique shipped release identification.
+See BOOST_REGEX_REFERENCE_2026_10_31.md.
+
+Actual pinned VC8 string append(count,char)442A00/166 and _Chassign410270/88
+are now compiler-origin exclusions, not game progress. Genuine member-address
+probe reproduces every byte; full4027-row fingerprint searches are unique.
+Excluded1423/review834; source1750/authored1770/exact1553/441679 unchanged.
+See STRING_COUNT_APPEND_ORIGIN_2026_10_31.md.
+
+Replay browser446860 now has durable complete511-byte/156-instruction source
+and caller-backed authored ownership. Natural559 remains the historical common
+GS-epilogue stop; no exact credit or coercion. Exact dispatcher132 freshly passes
+and its stale browse-exact note is corrected. Source1750/authored1770/review836;
+exact1553/441679 unchanged. See REPLAY_MENU_BROWSE_2026_10_31.md.
+
+Connect main-state444830 now matches all827 callable and29 alignment/table
+bytes. All seven cleanup actions77, double-cookie handler46 and metadata92
+are independently exact. Native signed4-WORD loop and real path/text-service
+clipboard member receiver close the initial852/856 gap; actual clipboard97
+provider separately exact. Regex8/56 ownership remains typed external library
+boundaries, not invented provider implementations. Totals1553/441679, source1749,
+authored1769, excluded1421, review837. See CONNECT_MAIN_STATE_EXACT_2026_10_31.md.
+
+Weather/effect pool acquire437520/4379D0 are each463 canonical exact, adding926
+bytes. Actual handle value and sprite/scratch constructors resolve prior ordering
+without guessed throw() or inlining barriers. Shared cleanup35 and metadata44
+match; guard provider13 separately exact in real lock-visible context, not a
+claim that the root TU guard7 matches. Totals1552/440852, source1748, authored1768,
+excluded1421, review838. See WEATHER_EFFECT_POOL_ACQUIRE_2026_10_31.md.
+
+Connect endpoint actions4424D0/4430D0/442CE0 are canonical exact84/85/329,
+adding498 bytes. The genuine VC8 swprintf header naturally supplies the private
+EDX count and matches27 bytes, classified runtime/excluded rather than authored.
+Four-WORD array copying closes the final source scheduling difference. Totals
+1550/439926; source1746, authored1766, excluded1421, review840. See
+CONNECT_ENDPOINT_ACTIONS_EXACT_2026_10_31.md.
+
+Connect middle-state444490 now has complete699-byte/205-instruction source
+and both switch tables reviewed. Full772/native760 payload remains nonexact
+on branch sharing/receiver preparation; no exact credit. Source1743,
+authored1763, review844; exact1547/439428 unchanged. See
+CONNECT_JOIN_STATE_2026_10_31.md.
+
+Deck constructor44AAC0 now uses the actual shared design lookup and natural
+returned texture-handle temporary. Earlier frame/lookup differences close;
+complete2132/native2136 remains nonexact at44AF27 on loop register allocation.
+Both7/15 signed adapter methods remain exact. No count change. See the latest
+PROFILE_DECK_CONSTRUCTOR_2026_10_29.md section.
+
+Config menu constructor441520 now has complete caller/RTTI-backed source.
+Actual lookup/cursor providers and returned-handle lifetime recover the first
+821 bytes, but complete863/native868 remains nonexact on a repeated final
+clamp comparison. No byte credit. Source1742, authored1762, review845; exact
+1547/439428 unchanged. See CONFIG_MENU_CONSTRUCTOR_2026_10_31.md.
+
+Practice menu constructor446170 is canonical exact826/826. Actual cursor and
+shared design lookup bodies plus the natural texture-handle return temporary
+recover the complete frame. All five cleanup actions/handler98 and FuncInfo76
+also match; seven affected design-render roots stay exact. Totals1547/439428,
+source1741, authored1761, review846. See PRACTICE_MENU_CONSTRUCTOR_2026_10_31.md.
+
+Floating number renderer415050 is now canonical exact 581/581 in real
+number/tile/angle/texture CIL with the pinned static CRT. Its 64-byte-aligned
+frame is compiler-generated, without forced alignment or extra storage.
+Native quotient-before-count updates close both remaining loop schedules.
+The three affected accepted callers remain 55/63/95 exact.
+Incremental totals: 1546 functions /438602 bytes.
+See DESIGN_NUMBER_FLOAT_EXACT_2026_10_31.md.
+
+Removed two legacy noinline declarations from Collision.hpp and the
+declaration-only ShortDeque8::front_checked attribute from SpellData.hpp.
+All 452 accepted functions in 164 Collision consumers and all 103 accepted
+functions in 61 SpellData consumers were freshly rebuilt and remain exact.
+The sets overlap; do not sum them as distinct coverage. No count change or
+unrelated cold replay. See COLLISION_INLINE_DECLARATION_AUDIT_2026_10_31.md.
+
+Audio scheduler finalizer419000 now retains the native cached end iterator,
+restoring the initial checked dereference. Ordinary273/native241 and actual
+provider CIL304/native241 remain nonexact; no byte gain. See
+AUDIO_SCHEDULER_FINALIZER_2026_10_31.md.
+
+Connect digit editors441BD0/441E10 are now complete source-present and
+caller-backed authored. Normal unsigned-char/bool key-test types are corrected.
+Ordinary and actual-provider CIL remain568/570 and888/891 nonexact. Source1740,
+review847; exact unchanged1545/438021. See CONNECT_DIGIT_EDITOR_2026_10_28.md.
+
+CTile texture options4098E0 is canonical exact266/266 in actual texture-size/lookup
+CIL with scoped FP-environment semantics. Four native unsigned denominator
+conversions remain independent. Affected CNumber render414F10 remains312 exact;
+initializer414E40 remains102/104 nonexact. Incremental1545 functions /438021 bytes.
+See TILE_TEXTURE_OPTIONS_EXACT_2026_10_31.md.
+
+Mouse bootstrap40D810 now has complete current-target source, restoring the
+omitted property-error notification. Real CIL296/native282 remains nonexact
+because the native private EAX error helper is inlined; no ABI/noinline coercion.
+All five affected platform/input exact roots remain exact. Totals unchanged
+1544 functions /437755 bytes. See DIRECTINPUT_MOUSE_SOURCE_2026_10_30.md.
+
+
+Input-state update40A550 is canonical exact266/266 through real CIL and the
+ordinary byte-key sibling. Current DirectInputBackend keyboard field20 replaces
+the old unselected wrong address. The independently pinned byte-vector117
+throw helper qualifies the error exit; the native3-byte unreachable loop LEA
+remains fully byte-compared. Incremental1544 functions /437755 bytes.
+See INPUT_STATE_UPDATE_EXACT_2026_10_30.md. Add-key40A6C0 remains269/native202.
+
+
+DirectInput gamepad initialization40D620 and device callback40D9F0 now have
+complete caller-backed source. Ordinary176/176 and327/334 remain nonexact;
+genuine parent/axis/CRT CIL182/573 does not close shared-template inlining.
+No byte gain; see DIRECTINPUT_GAMEPAD_BOOTSTRAP_2026_10_30.md.
+
+DirectInput axis callback40DB40 is canonical exact166/166 from unchanged
+source in real CIL/static-CRT context. The compiler now naturally recovers the
+native8-byte-aligned frame without changing property alignment or ABI.
+Incremental1543 functions /437489 bytes. See DIRECTINPUT_AXIS_EXACT_2026_10_30.md.
+
+Shared score/replay codecs4067F0/406890 are now canonical exact153/151 using
+real pinned zlib1.2.3 providers. Ordinary CIL naturally emits8-byte stack
+alignment from a4-aligned56-byte stream, closing the old alignment stop without
+source coercion. Incremental1542 functions /437323 bytes. See
+REPLAY_CODEC_EXACT_2026_10_30.md; larger score/network callers remain pending.
+
+Connect address/history loaders443130/4434B0 now have complete current-target
+source and caller-backed authored records. They remain870/881 and715/714
+nonexact; no byte gain. Preserve the typed layout and native failure ownership;
+see CONNECT_LIST_LOADING_2026_10_30.md for bounded negative controls.
+
+Replay loading42C5C0 is canonical exact848/848 in real CFileReader source
+context. Normal reader ownership, scoped default-slot lifetime and paired scalar
+slot fields recover the frame; six cleanup-EH records also match. The one
+affected library-origin fingerprint was revalidated through its minimal probe.
+Incremental1540 functions /437019 bytes. See REPLAY_LOADING_EXACT_2026_10_30.md.
+
+PNG41A910 now has complete703-byte CIL and exact cleanup EH, with one unequal
+SIB byte at41AAAD still preventing exact acceptance. Its actual callback33 is
+fully rechecked before pointer replay. All17 prior affected matches remain
+exact; no new byte credit. See PNG_LOADER_CONTEXT_2026_10_30.md.
+
+DDS4094E0 is now canonical exact696/696 with complete cleanup EH in the real
+bitmap/reader/PNG/zlib CIL. Original pinned library sources are verified before
+compile; no replacement implementation or library-byte credit. All22 prior
+focused matches remain exact. Incremental1539 functions /436171 bytes.
+Bitmap1126/native1106 and upload remain nonexact. See
+DDS_TEXTURE_LINKED_EXACT_2026_10_30.md.
+
+Profile cursor40EBC0 is canonical exact157/157 in the real IME/window TU.
+Full composition and four-input IME source now close the missing HWND semantic
+dependency; both larger bodies remain nonexact, with no prefix/table credit.
+See PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md.
+
+Application dispatcher408690 is now canonical exact240/240 after recovering
+explicit20-byte IME output-buffer memset and the native system-command switch.
+Callback33, mode helper126 and cursor157 remain exact. The IME message envelope
+is715/native715 but branch/return layout is still nonexact; equal size is no
+credit. Incremental total1537 functions /435387 bytes. See
+APPLICATION_WINDOW_MESSAGES_2026_10_30.md and PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md.
+
+D3D reset414A10 and window-mode toggle414B30 are canonical exact281/286 in
+genuine CIL. Native failure rollback, listener/COM lifecycle and all metric
+API calls are retained. The application pump remains177 exact after correcting
+its reset return declaration. See D3D_RESET_WINDOW_MODE_2026_10_30.md.
+
+D3D backend global constructor4146E0 is canonical exact131/131, including
+complete cleanup EH and actual startup/atexit/global-layout witnesses.
+All106 prior exact functions in41 affected units remain exact; destructor
+remains nonexact. See D3D_BACKEND_GLOBAL_LIFETIME_2026_10_30.md.
+
+UDP rejection415B90 and endpoint-list415C10 now have explicit authored/source
+records. Native iterator-range deletion replaces the old clear() hypothesis.
+Rejection has a 122-byte matching linked main-body diagnostic, not complete
+EH/private-caller acceptance; no new exact bytes. See
+NETWORK_UDP_RECEIVE_HELPERS_2026_10_30.md.
+
+UDP packet-pool constructor413780 is exact145 with all3 cleanup states in the
+real CNetworkUDP owner CIL. The existing98-byte pool destructor remains exact.
+Ordinary unsigned-vector library context recovers the native EH receiver;
+owner ctor/dtor remain nonexact. See NETWORK_UDP_LIFETIME_EXACT_2026_10_30.md.
+
+Spatial buffer destructor4180F0 is canonical exact139/139 with full cleanup
+EH and both complete native buffer vtables. The unchanged ordinary source
+closes its old scheduling difference in real CIL; stream destructor220 stays
+exact in the same image. See DIRECT_SOUND_SPATIAL_LIFETIME_EXACT_2026_10_30.md.
+
+Loading worker403CE0 is now source-present with its complete pending/active/
+retired queue and wait policy. Packed-token word views and native free-list
+erase context preserve both accepted stream lifetimes. Worker and supporting
+pool bodies remain nonexact; see BGM_LOADING_WORKER_2026_10_30.md.
+
+Stream destructor402880 is canonical exact220/220 with all three cleanup
+states. Codec close is part of the stream destructor body, before member
+reader/buffer/string destruction. The full pool lookup/release context is now
+source-present, including the independently bounded reader destructor418A00.
+Eight prior affected exact roots remain exact. See
+BGM_STREAM_LIFETIME_2026_10_30.md.
+
+SFL metadata418D10 is canonical exact484/484, including the complete
+cleanup EH. Exception-sensitive FP evaluation restores the native118h frame
+without added storage. Source-owned IEEE literals and the real normal reader
+destructor boundary are verified; the Ogg parent is freshly exact in the same
+image. See SFL_LOOP_METADATA_EXACT_2026_10_30.md.
+
+Ogg open418A10 is canonical exact291/291 in the real BGM stream caller and
+original pinned Xiph SDK context. Its private ESI receiver is compiler-derived;
+all four emitted callback slots are verified. New source closes stream
+start/update/handoff paths, but349/358,918/943,761/806 and PCM/gain remain
+nonexact. No extra frame storage or caller/library credit is added.
+See BGM_OGG_RUNTIME_2026_10_30.md.
+
+Palette dispatch408F70 and raw palette419E80 are canonical exact163/243,
+with full raw-loader EH and a freshly exact caller witness. Native scalar
+operator-delete ownership and typed read branches are restored. Nine prior
+accepted roots remain exact. BMP palette1047 is still nonexact at its entry
+load ordering; no alignment bytes are waived. See
+PALETTE_FILE_LOADING_EXACT_2026_10_30.md.
+
+Raw bitmap load41ACA0 is canonical exact448/448 with complete cleanup EH
+in the genuine reader/package CIL graph. Existing loader semantics and class
+layout are unchanged;13 prior accepted roots in2 affected units stay exact.
+BMP/PNG remain nonexact. See BITMAP_FILE_LOAD_EXACT_2026_10_30.md.
+
+Reader open40CF40 is canonical exact213/213 in real constructor/package CIL.
+The native normal stdcall provider boundary and both five-slot reader vtables
+are verified;31 previous accepted functions in12 affected units stay exact.
+No forced ABI/inlining/EH changes. See FILE_READER_OPEN_EXACT_2026_10_30.md.
+
+CSV parser40F200 now captures the native current-character lifetime before
+iterator calls. Seven affected accepted roots stay exact; parser remains
+nonexact (777 callable /839 with switch data, versus native575 /635).
+See CSV_FILE_LOADING_2026_10_29.md for boundary details and closed controls.
+
+Script loader405810 and text dispatch408DB0 are canonical exact282/140,
+with complete loader cleanup EH and source-owned CR/LF literal verification.
+All85 previous accepted functions in19 affected units and the full timeline
+payload remain exact. The omitted14-byte FileBuffer destructor4055F0 is
+authored/source-present, not separately exact. Parser405/399 remains
+unaccepted. See SCRIPT_FILE_LOADING_2026_10_29.md.
+
+Plain419860 and encoded419950 file loaders are canonical exact234/267,
+including complete cleanup EH. The actual public reader destructor restores
+the frame; ordinary read forwarding closes argument scheduling. The CSV
+wrapper140/reset151 and moved owner destructor15 stay exact. See
+FILE_BUFFER_LOADING_EXACT_2026_10_29.md.
+
+CSV file dispatch408E40 and iterator reset40F730 are canonical exact140/151
+in their real file/reader/package/CSV CIL graph. Source-only caller EH roles
+are explicit; caller176/170 and parser remain unaccepted. The old reset
+compiler-origin inference is corrected. See CSV_FILE_LOADING_2026_10_29.md.
+
+CScript pending-command cleanup405770 is canonical exact147/147 in genuine
+CIL after recovering its real shared method boundary. All79 affected accepted
+functions and full timeline payload remain exact; outer clear182/170 stays
+nonexact. See SCRIPT_PENDING_LIFETIME_2026_10_29.md.
+
+Encoded file-buffer419950 now preserves the native advancing payload cursor
+and owner-size rereads. Full source272/native267 remains nonexact; no new
+bytes. Wrapper exactness wording was corrected to raw-call evidence. See
+FILE_BUFFER_CURSOR_2026_10_29.md.
+
+The separate auxiliary pointer154 now owns the actual0x108 CSpriteEx wrapper
+allocated by45CD70, not the0x12C animation-state object. Both destruction
+consumers are corrected;168 accepted functions remain exact in the focused
+replay. See the added section in EFFECT_SPRITE_OWNER_2026_10_29.md.
+
+Factory-native th105-ida is available: canonical metadata/entry, all five
+legacy mapped-byte samples and inventory/disassembly/decompiler/call-graph
+probes passed independently. The old bridge still lacks its Python runtime;
+use the native workflow in [FACTORY_IDA_2026_10_29.md](FACTORY_IDA_2026_10_29.md).
+
+BGM transition threshold now preserves the native unordered-to-gain-provider
+path; exact fade70/set-level69 replay unchanged. No gain-provider acceptance
+or new bytes. See [BGM_GAIN_THRESHOLD_2026_10_29.md](BGM_GAIN_THRESHOLD_2026_10_29.md).
+
+Weather initializer46A260 now has complete946/native941 source. Its sprites
+are corrected to0xE8 CEffectSprite with assign semantics, and CSV rows remain
+alive through advance_row as native requires. Five accepted consumers and
+five generated anchors stay valid; stack-slot residual receives no exact credit.
+See [EVENT_EFFECT_INITIALIZE_2026_10_29.md](EVENT_EFFECT_INITIALIZE_2026_10_29.md).
+
+BG16 constructor469100 is now canonical exact868/868. Direct handle.value
+return and ordinary dimension locals close its frame; BG04 remains335/335
+with the same simpler model, replacing the earlier aggregate control. See
+[BACKGROUND_CONSTRUCTORS_2026_10_29.md](BACKGROUND_CONSTRUCTORS_2026_10_29.md).
+
+BG04 constructor468570 is now canonical exact335/335 using the corrected0xE8
+CEffectSprite type and real vector assign. BG02 has complete924-byte selected
+source but remains77 bytes nonexact; no prefix credit. Factory986 stays exact.
+See [BACKGROUND_CONSTRUCTORS_2026_10_29.md](BACKGROUND_CONSTRUCTORS_2026_10_29.md).
+
+CEffectSprite is now correctly0xE8 inside a nonpolymorphic0x12C animation-state
+owner. Constructor421FF0 is canonical79/79 and background initializer4664A0
+is512/512 with actual vector assign semantics. All321 affected accepted
+functions remain exact across113 focused units; generated assign186 is
+independently proven/excluded, not authored credit. See
+[EFFECT_SPRITE_OWNER_2026_10_29.md](EFFECT_SPRITE_OWNER_2026_10_29.md).
+
+Scene float interpolation450290 is canonical exact160/160 after recovering
+the real member easing call: incoming ECX is preserved, rather than treating
+450120 as free stdcall. Easing131 stays exact; byte interpolation214/211 remains
+nonexact. See [SCENE_INTERPOLATION_RECEIVER_2026_10_29.md](SCENE_INTERPOLATION_RECEIVER_2026_10_29.md).
+
+Scene render-cluster destruction41F1F0 is canonical exact247/247 on the first
+build with recovered record/multiset/CScript ownership. Implicit member
+destruction closes the old scheduling stop without changing scene tail views.
+See [SCENE_CLUSTER_LIFETIME_2026_10_29.md](SCENE_CLUSTER_LIFETIME_2026_10_29.md).
+
+Opening/Ending timeline loader4540F0 is canonical exact1584/1584, including a
+separate provenance-checked exact1676-byte payload replay for all three switch
+tables. Direct command-ID reloads and expression-local float conversions close
+the previous register/stack residual. Run the payload verifier after its build.
+See [SCENE_TIMELINE_LOADER_2026_10_29.md](SCENE_TIMELINE_LOADER_2026_10_29.md).
+
+CScript now owns CCommandBase pointers in its pending deque and one real12-byte
+checked iterator at028, replacing the old factory-pointer/three-cell hypothesis.
+All77 affected accepted functions remain exact, including full linked destructor
+EH. See [SCRIPT_COMMAND_CURSOR_2026_10_29.md](SCRIPT_COMMAND_CURSOR_2026_10_29.md).
+
+Scene timeline064 is now a start-time-ordered multiset, preserving duplicate
+timestamps, rather than the old layout-compatible object-ID map. Insert107
+independently proves the predicate; constructor196/update801/cleanup104 and
+all10 affected compiler-origin anchors remain valid. See
+[SCENE_TIMELINE_ORDERING_2026_10_29.md](SCENE_TIMELINE_ORDERING_2026_10_29.md).
+
+Timeline entry destruction41EC10 is canonical exact223/223. Its first deque
+owns texture handles, not sprites; the header is corrected and all three
+existing constructor/render/list consumers stay exact. See
+[RENDER_TIMELINE_ENTRY_OWNERSHIP_2026_10_29.md](RENDER_TIMELINE_ENTRY_OWNERSHIP_2026_10_29.md).
+
+Scenario window-text rebuild456760 is canonical exact563/563. Real entry
+alpha/delta initialization, sprite lifetime and checked-list ownership close
+the entire body; native100-byte node copy and85-byte entry cleanup also replay.
+See [SCENARIO_TEXT_REBUILD_2026_10_29.md](SCENARIO_TEXT_REBUILD_2026_10_29.md).
+
+Scenario064 is now correctly typed as its selected CInputManager pointer, not
+a scenario ID. The interpreter reads actual hold buttons0/2; configure90/90
+and all21 affected accepted functions remain exact. Constructor/render residuals
+are unchanged. See [SCENARIO_INPUT_OWNER_2026_10_29.md](SCENARIO_INPUT_OWNER_2026_10_29.md).
+
+Corrected a historical owner mix-up:454F10 advances the whole524-byte scenario,
+not its194-byte font member. The font view is now nonpolymorphic and the update/
+advance return is a signed byte. All24 affected accepted functions replay exact.
+See [SCENARIO_FONT_OWNER_CORRECTION_2026_10_29.md](SCENARIO_FONT_OWNER_CORRECTION_2026_10_29.md).
+
+Scenario list fade455850 now has complete selected signed-step/unsigned-alpha
+source, including strict-underflow retirement and both color paths. Root418/431
+remains nonexact; generated erase102/102 independently confirms the provider.
+See [SCENARIO_LIST_FADE_2026_10_29.md](SCENARIO_LIST_FADE_2026_10_29.md).
+
+SystemEffect tracked acquisition457110 is canonical exact91/91 through the
+real CObjectBase handle and typed checked-list ownership. Neighbor pool498/499
+and release119/119 remain nonexact. See
+[SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md](SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md).
+
+ScenarioResult constructor454C70 is canonical exact298/298. A real initializing
+tile texture-handle value closes the old EH/vptr scheduling gap; both generated
+cleanup funclets and the normal tile destructor also match their native bodies.
+See [SCENARIO_RESULT_CONSTRUCTOR_2026_10_29.md](SCENARIO_RESULT_CONSTRUCTOR_2026_10_29.md).
+
+Scenario render457F90 now has complete930-byte selected source with real owned
+layouts and MI member pointer. Checked sprite access now precedes window-scale
+evaluation as native requires. It remains33 bytes nonexact on EBX/EBP allocation
+and map-iterator publication; no exact credit. See
+[SCENARIO_RENDER_2026_10_29.md](SCENARIO_RENDER_2026_10_29.md).
+
+Environment is now the shared empty RTTI base; its former24-byte state belongs
+to AnimationObject. All offsets stay unchanged. Thirty-four accepted functions
+replay exact, and every Reimu COFF section/relocation is unchanged. See
+[ENVIRONMENT_EMPTY_BASE_2026_10_29.md](ENVIRONMENT_EMPTY_BASE_2026_10_29.md).
+
+ScenarioData constructor459C90 now has complete selected source for all24
+command registrations and owned members. Source1528/native1527 remains
+nonexact in receiver/config allocation; destructor411 replays unchanged.
+The local Environment empty-base view also restores native RTTI+4 placement.
+See [SCENARIO_DATA_CONSTRUCTOR_2026_10_29.md](SCENARIO_DATA_CONSTRUCTOR_2026_10_29.md).
+
+Pending-command cleanup now deletes the command before popping its queue slot,
+as native405770 requires. CScript destructor405660 remains canonical exact95/95
+in genuine CIL, with both
+cleanup funclets, complete handler/FuncInfo/unwind map and static CRT cookie
+verified. Existing ctor65/parser505 and old global lifetimes163/228 replay
+unchanged. See [SCRIPT_LIFECYCLE_2026_10_29.md](SCRIPT_LIFECYCLE_2026_10_29.md).
+
+CScenarioData destruction438A70 is canonical exact411/411 through real implicit
+member lifetimes, including the non-polymorphic font at+68. Existing exact
+manager/phase callers prove ownership. See [SCENARIO_DATA_LIFETIME_2026_10_29.md](SCENARIO_DATA_LIFETIME_2026_10_29.md).
+
+ResultList population4478B0 is canonical exact1133/1133. Real typed containers
+and two separate row-buffer string temporaries replace the old manual deque
+helper and shared temporary. See [RESULT_LIST_POPULATE_2026_10_29.md](RESULT_LIST_POPULATE_2026_10_29.md).
+
+MusicList population445830 is canonical exact867/867. The actual locked-label
+C-string constructor restores the native assign boundary and full stack
+lifetimes. See [MUSIC_LIST_POPULATE_2026_10_29.md](MUSIC_LIST_POPULATE_2026_10_29.md).
+
+ACK_INFO construction now models RTTI-proved IPacket at offset0 as an8-byte
+polymorphic base. Constructor44DAC0 remains43/41 nonexact; both269/341-byte
+senders replay exact. See [ACK_PACKET_BASE_2026_10_29.md](ACK_PACKET_BASE_2026_10_29.md).
+
+Descriptor-pair46BA10 and group-B traversal46BCA0 now have complete selected
+252/398-byte sources. Bit31 tests, typed arrays and per-call descriptor loads
+restore native paths, but both remain nonexact. Four accepted geometry helpers
+replay unchanged. See [DESCRIPTOR_PAIR_COLLISION_2026_10_29.md](DESCRIPTOR_PAIR_COLLISION_2026_10_29.md).
+
+Title/result match setup43B8F0 now has complete286-byte source, including
+ordinary inlining of the existing input-rebind policy and network modes4/5/6.
+Initial global publication scheduling remains nonexact; included accepted
+rebind/scenario bodies replay unchanged. See [MATCH_MODE_PREPARATION_2026_10_29.md](MATCH_MODE_PREPARATION_2026_10_29.md).
+
+Default character deck loader431E80 is canonical exact463/463. Real string
+concatenation, owned CSV reader and unsigned-short deque preserve the full
+twenty-card path and lifetimes. See [DEFAULT_DECK_CSV_2026_10_29.md](DEFAULT_DECK_CSV_2026_10_29.md).
+
+Yukari slot44 reset58A470 now has complete125-byte selected source. It remains
+nonexact on x87/integer zero-store scheduling; all thirteen accepted same-TU
+reset bodies replay unchanged. See [YUKARI_ROUND_RESET_2026_10_29.md](YUKARI_ROUND_RESET_2026_10_29.md).
+
+CSelectObject422140 and InfoEffectObject46F150 are canonical exact59/59 each.
+A four-byte initializing handle value restores the proper base initialization
+phase; fourteen affected accepted functions replay unchanged. See
+[OBJECT_HANDLE_VALUE_2026_10_29.md](OBJECT_HANDLE_VALUE_2026_10_29.md).
+
+BGM stream constructor402820 is canonical exact89/89 in genuine CIL. Actual
+Ogg source30 ownership restores store ordering; both private constructor edges
+and the complete two-slot CDSBuffer table are validated. Supporting allocator
+4040D0 remains571/401 nonexact. See
+[BGM_STREAM_CONSTRUCTOR_2026_10_29.md](BGM_STREAM_CONSTRUCTOR_2026_10_29.md).
+
+BGM allocation4036C0 now initializes its actual token result and uses the
+manager pointer-return/token-out contract. Natural26/28 remains nonexact on
+private EDI; all four playback roots remain exact. See
+[BGM_ALLOCATION_CONTRACT_2026_10_29.md](BGM_ALLOCATION_CONTRACT_2026_10_29.md).
+
+Effect layer forwarder4695F0 is canonical exact11/11. Primary table slot18
+independently proves void(signed char), correcting the old int/int contract.
+All nine caller roots and emitter/event siblings replay unchanged; see
+[EFFECT_LAYER_FORWARDER_2026_10_29.md](EFFECT_LAYER_FORWARDER_2026_10_29.md).
+
+Guide constructor43F540 retains20/20 through natural CSprite/IColor lifetime,
+replacing its selected manual-vptr witness. Dtor43F330 remains90/92; no extra
+exact credit. See [GUIDE_OVERLAY_LIFETIME_2026_10_29.md](GUIDE_OVERLAY_LIFETIME_2026_10_29.md).
+
+Guide overlay update43F450 is canonical exact112/112. Typed sprite color
+dispatch and branch-local compound alpha arguments close the old SUB/vtable
+scheduling stop. All three accepted siblings replay unchanged; see
+[GUIDE_OVERLAY_UPDATE_2026_10_29.md](GUIDE_OVERLAY_UPDATE_2026_10_29.md).
+
+Shared Fighter render45E6E0 now has complete selected570-byte source using
+real sprite/history types. Only five FILD/PUSH scheduling bytes differ; no
+exact credit. See [FIGHTER_RENDER_2026_10_29.md](FIGHTER_RENDER_2026_10_29.md).
+
+Profile message43F6E0 now has complete choice/accept/cancel source. First217
+bytes match; whole294/298 remains nonexact because VC8 shares a zero-return
+block. See [PROFILE_MESSAGE_UPDATE_2026_10_29.md](PROFILE_MESSAGE_UPDATE_2026_10_29.md).
+
+Profile defaults432050 is canonical exact334/334. Typed InputBindings and
+primary-before-secondary initialization close the old scheduling stop without
+shared-header changes. See [PROFILE_DEFAULTS_2026_10_29.md](PROFILE_DEFAULTS_2026_10_29.md).
+
+Network input endpoint44D8F0 is authored canonical exact48/48. Paired
+43BEA0 cleanup reproduces19/19 as a compiler-owned witness, excluded from
+authored progress. Real7C composition and
+two-slot input interface preserve ownership; flag-before-mask initialization
+closes the old store-order stop. See
+[NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md](NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md).
+
+Input parser44E050 is canonical exact78/78. A real byte-indexed forward loop
+recovers native TEST BL/JBE before extension; packet signedness stays unchanged.
+All eleven leaf siblings and the separate GS-off request pump replay exact.
+See [INPUT_PACKET_BYTE_LOOP_2026_10_29.md](INPUT_PACKET_BYTE_LOOP_2026_10_29.md).
+
+Replay consumer44E210 is now canonical exact170/170. Unsigned destination
+words remove the false signed conversion and old register-permutation stop;
+incoming signed packet view remains unchanged. Countdown precedes lock entry.
+See [NETWORK_REPLAY_CONSUMER_2026_10_29.md](NETWORK_REPLAY_CONSUMER_2026_10_29.md).
+
+Character destructor462CE0 is complete905-byte source, including its remote
+texture loop and two range-error tails. Real handle-class vector removes the
+scalar memmove path; just one commutative SIB byte remains nonexact. Constructor
+462AB0 subsequently reaches557/557 through its initializing sprite texture
+handle; the destructor remains nonexact. See
+[CHARACTER_DESTRUCTOR_2026_10_29.md](CHARACTER_DESTRUCTOR_2026_10_29.md).
+
+CharacterEx normal/scalar destruction491BC0/64B770 is canonical exact11/36
+from its verified RTTI-owned table and real Character base call. Native base
+slot0 purity corrects the constructor view without changing its557-byte result.
+See [CHARACTER_EX_LIFETIME_2026_10_29.md](CHARACTER_EX_LIFETIME_2026_10_29.md).
+
+Character base constructor462AB0 is now canonical exact557/557. The local
+IColor view owns an initializing four-byte texture handle, naturally closing
+the nine-byte EH-state/store-order mismatch. No shared caller/header change. See
+[CHARACTER_CONSTRUCTOR_2026_10_29.md](CHARACTER_CONSTRUCTOR_2026_10_29.md).
+
+Result-menu constructor447690 now restores the missing initial texture004=0
+store proved at4476CF. Whole495/502 remains nonexact+45; four accepted same-TU
+methods replay43/270/256/30 unchanged. See
+[RESULT_MENU_INITIALIZATION_2026_10_29.md](RESULT_MENU_INITIALIZATION_2026_10_29.md).
+
+Menu base destructor440730 independently matches17/17 from the existing real
+Menu.hpp definition emitted by the battle-menu constructor. The800-byte
+constructor remains nonexact; no shared source changed or larger credit added.
+
+CMenuBattle update4407E0 now has complete797-byte callable/880-byte owned
+source coverage, including both switches and replay-save transitions. Whole
+892-byte source stays nonexact+48 on early guard/return sharing, no exact credit.
+See [BATTLE_MENU_UPDATE_2026_10_29.md](BATTLE_MENU_UPDATE_2026_10_29.md).
+
+CMenuBattle constructor440B50 is complete800-byte source, nonexact in only
+six saved-this/clear-iterator stack-home bytes. All mode branches, typed design
+lifetime and vertical cursor agree. No dummy lifetimes or stack coloring; see
+[BATTLE_MENU_CONSTRUCTOR_2026_10_29.md](BATTLE_MENU_CONSTRUCTOR_2026_10_29.md).
+
+Wave resource release401BD0 is canonical exact76/76 in genuine source CIL
+with real lookup and ordinary unsigned-list COFF. Independent provider audit
+retains405200 at167/167 through native401C09; no duplicate provider credit. See
+[WAVE_RESOURCE_RELEASE_2026_10_29.md](WAVE_RESOURCE_RELEASE_2026_10_29.md).
+
+Selected-card display448B40 is now complete source-selected with real sprite
+virtuals and SpellRecordView;440/439 remains nonexact+95, no new exact credit.
+The prior optional-handle CSE stop remains; skip spelling/liveness grids. See
+[PROFILE_DECK_DISPLAY_2026_10_29.md](PROFILE_DECK_DISPLAY_2026_10_29.md).
+
+Deck category selector449E90 is canonical exact1375/1375; full1396-byte owned
+extent including its five-entry table is also equal. Real vertical cursor
+binding, signed category field and cursor-selection availability argument
+restore natural source dataflow. No shared headers changed. See
+[PROFILE_DECK_FILTER_2026_10_29.md](PROFILE_DECK_FILTER_2026_10_29.md).
+
+Constructor cursor correction: native44B277 input+38 is horizontal, not
+vertical. Source corrected; full2151 bytes SHA d15195f1 remains nonexact+391,
+and both accepted value getters replay unchanged.
+
+Latest deck-editor checkpoint:44AAC0 has complete2136-byte native ownership and
+a2151-byte constructor source, nonexact+391. Native RTTI corrects CTile to four
+slots and numeric bindings to signed char. Its independent448B20/448B30 value
+getters are exact7/15, adding22 bytes only. Read-only attested Ghidra navigation
+and raw CFG/type checks are complete; existing consumers remain unchanged. See
+[PROFILE_DECK_CONSTRUCTOR_2026_10_29.md](PROFILE_DECK_CONSTRUCTOR_2026_10_29.md).
+
+General-hit resolver46BF80 now uses real existing BattleManager/sequence virtual
+views instead of manually loaded vtables. Whole1581-byte candidate remains
+unchanged/nonexact against1579; exact46DA10 caller and complete395-instruction
+CFG establish authored/source selection, not exactness. See the Oct29 appendix
+in [GENERAL_HIT_RESOLVER_2026_10_27.md](GENERAL_HIT_RESOLVER_2026_10_27.md).
+
+Latest profile correction: writer4317A0 now uses the native checked deque.at
+operation, restoring the range-exception edge4319BB ->431AAB ->431610 absent
+from the old operator[] hypothesis. Natural indexed loops restore the target
+loop guard/pointer progression. Complete784-byte callable in785-byte COFF
+section remains nonexact+147; four accepted same-TU siblings retain equality.
+See [PROFILE_WRITER_CHECKED_DECK_2026_10_29.md](PROFILE_WRITER_CHECKED_DECK_2026_10_29.md).
+
+Latest giant-source checkpoint: Aya602250 now preserves native214 arithmetic
+branches,13 action740 orbit/RNG argument preparations and510 layer branches.
+Full65692/native66704 SHA73065d6a remains nonexact+48; frame3E8 and85 payload
+homes retained. All114 direct/FP-family censuses agree, five virtual physical
+count residuals remain. No exact credit. See the Oct29 appendix in
+[AYA_ACTION_STATE_2026_10_28.md](AYA_ACTION_STATE_2026_10_28.md).
+
+Line primitive401180 is now complete source-selected148/148, nonexact+20.
+Native two-vertex Z0/RHW1 and float half-pixel operations are closed; residual
+color-store/zero-argument scheduling remains. No ABI or padding forcing. See
+[LINE_PRIMITIVE_2026_10_29.md](LINE_PRIMITIVE_2026_10_29.md).
+
+Latest source correction: audio listener removal419400 now retains the end
+iterator exactly as native419419/419425/419441 show across the loop backedge.
+Whole198/193 stays nonexact; creation419350 remains169 exact and wait129/184.
+Do not retry std::find here: this native loop performs checked dereferences.
+See the later appendix in AUDIO_SCHEDULER_LISTENERS_LTCG_2026_10_29.md.
+
+Current bounded checkpoint: global reset-listener removal414D50 is now fully
+source-selected and positively authored from exact effect shutdown418040.
+Whole140/140 remains nonexact first+10; native early argument load and private
+erase receiver ABI remain unknown. Genuine mixed COFF context does not close
+them. No exact credit; do not force registers or stack shape. See
+[D3D_LISTENER_REMOVAL_2026_10_29.md](D3D_LISTENER_REMOVAL_2026_10_29.md).
+
+Preceding bounded checkpoint: reset-listener registration414CB0 now also matches
+157/157 in the same genuine effect/listener/lock TU. Native unchecked search
+followed by checked result/end comparison is recovered as standard std::find
+with a named iterator result. Actual exact initializer417FF0 witnesses its
+private entry and remains71/71. See
+[D3D_LISTENER_FIND_LTCG_2026_10_29.md](D3D_LISTENER_FIND_LTCG_2026_10_29.md)
+and build/frontier-d3d-listener-find-20261029/formal-build.json.
+
+Preceding bounded checkpoint: effect initialize417FF0 is canonical exact71/71
+in genuine initializer/listener/lock CIL context. The private EAX receiver
+emerges naturally; a strictly attested standard named D3DX import supplies the
+external link. Existing five lifetime callbacks and ordinal SDK lane replay
+independently. Provider414CB0 was nonexact at that checkpoint; the later result above supersedes it. See
+[BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md](BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md)
+and build/frontier-effect-listener-context-20261029/.
+
+Preceding bounded correction: Title404C90/404D70 inline-assembly transcriptions
+are replaced by natural C++, and their99/115 exact credits withdrawn. Whole
+93/99 and119/115 remain nonexact. Obsolete unselected manager assembly removed;
+the independent genuine shared helper405200 freshly retains167/167. See
+[TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md](TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md)
+and build/frontier-title-source-integrity-20261029/.
+
+Preceding bounded correction: volume conversion418990 no longer receives103
+exact bytes. The old aligned volatile scratch/self-stores lacked source evidence
+and were removed. Natural73/103 remains nonexact; DirectSound siblings82/110
+replay unchanged. BGM fade/level use a separate natural provider and retain
+their independent70/69 acceptance. See
+[DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md](DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md)
+and build/frontier-volume-source-integrity-20261029/formal-build.json.
+
+Preceding bounded checkpoint: BGM fade403940 and set-level403990 are canonical
+exact70/69 in genuine source/CRT context. Native raw-flag forwarding replaces
+unobserved Boolean normalization; the real transition ABI emerges from CIL.
+Runtime-only static CRT tables are strictly validated, without fake globals.
+Three affected facades and existing static-global/import-runtime examples pass.
+See [BGM_SERVICE_LTCG_2026_10_29.md](BGM_SERVICE_LTCG_2026_10_29.md) and
+build/frontier-bgm-transition-context-20261029/formal-final-build.json.
+
+Preceding bounded checkpoint: Fighter counter setter4776C0 and Scenario result
+enable4547D0 are canonical exact15/4. Fresh Reimu/Suika RTTI-root callers and
+Scenario+390 result-member pointer establish authored ownership. No shared
+header changed. See
+[ACTION_STATE_LEAF_SETTERS_2026_10_29.md](ACTION_STATE_LEAF_SETTERS_2026_10_29.md)
+and build/frontier-4776c0-20261029/{formal-build,boundary}.json.
+
+Preceding bounded candidate: Sakuya4CADB0 now restores native direct argument
+lifetimes for the knife macro plus96 independently checked staged spawn sites,
+and action214 arithmetic branch ownership. Whole76484/native76336 remains
+nonexact+8/frame4A8 versus4D8. All113 arithmetic-family censuses agree;95 payload
+homes remain, no exact credit. See
+[SAKUYA_ACTION_STATE_2026_10_28.md](SAKUYA_ACTION_STATE_2026_10_28.md) Oct29 appendix
+and build/frontier-sakuya-arguments-20261029/formal-allargs-{build,audit}.json.
+
+Preceding bounded candidate: scene-owned BGM shutdown4034F0 has complete449-byte
+source and raw CFG/caller ownership. Worker/event shutdown and three real
+checked handle-list release/clear passes are preserved. Whole449/449 remains
+nonexact+0 on frame/private helper ABI; no exact credit. See
+[BGM_SERVICE_SHUTDOWN_2026_10_29.md](BGM_SERVICE_SHUTDOWN_2026_10_29.md)
+and build/frontier-4034f0-20261029/{formal-build,boundary}.json.
+
+Preceding bounded candidate: group-A primary collision46B940 is fully reviewed
+and source-selected,197 bytes. Target-backed per-iteration primary-pointer
+reload corrects the retained cached view across callbacks. Whole197/197 is
+nonexact+0; register/stack lifetimes remain unresolved, no exact credit. See
+[GROUP_A_PRIMARY_COLLISION_2026_10_29.md](GROUP_A_PRIMARY_COLLISION_2026_10_29.md)
+and build/frontier-46b940-20261029/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: audio listener creation419350 is canonical exact169
+from unchanged source in genuine one-CIL VC8 LTCG context. Actual checked STL
+visibility naturally recovers the constant-one helper specialization. Remove
+178/193 and wait129/184 remain nonexact. See
+[AUDIO_SCHEDULER_LISTENERS_LTCG_2026_10_29.md](AUDIO_SCHEDULER_LISTENERS_LTCG_2026_10_29.md)
+and build/frontier-419350-20261029/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: DirectSound buffer clear418610 is canonical exact85
+in genuine one-CIL context with its real ordinary load caller4183B0. The existing
+private-caller witness closes native edge418495; VC8 naturally recovers ESI with
+no ABI/register invention. Caller245/247 and silent initializer227/234 remain
+nonexact. Public linked profile unchanged; no private cookie extension is used
+for acceptance. See [WAVE_BUFFER_INITIALIZE_2026_10_28.md](WAVE_BUFFER_INITIALIZE_2026_10_28.md)
+and build/frontier-401990-20261028/formal-linked-clear.json.
+
+Preceding bounded checkpoint: six primary CNetworkServer/Client byte accessors
+43CBA0/43CBB0/43CBC0 and43CD10/43CD20/43CD30 are canonical exact10/5/7 each,
+adding44 authored bytes. Fresh primary RTTI/vtable ownership supersedes the
+unreviewed label at43CBC0; EAX sign-extension and AL-only return widths remain
+separate. See [NETWORK_PRIMARY_BYTE_ACCESSORS_2026_10_28.md](NETWORK_PRIMARY_BYTE_ACCESSORS_2026_10_28.md)
+and build/frontier-43cba0-20261028/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: CSceneManager update41E140/render41E150 and CFade
+initialize41E240 are canonical exact5/5/11. Fresh RTTI vtable cells and complete
+raw boundaries close all three. Both affected units replay13 functions exact,
+including ten unchanged accepted siblings. See
+[SCENE_MANAGER_VIRTUAL_LEAVES_2026_10_28.md](SCENE_MANAGER_VIRTUAL_LEAVES_2026_10_28.md)
+and build/frontier-41e140-20261028/{manager-build,fade-build,boundary}.json.
+
+Preceding bounded checkpoint: BattleBaseEffect device-reset callbacks418070/418090
+are canonical exact21/21 each. The real COM OnLostDevice/OnResetDevice slots114/
+118 and exact owner vtable6D6CD0 close both leaf bodies. Three accepted lifetime
+siblings replay unchanged; initializer417FF0 retains its known private-ABI+17
+residual. See [BATTLE_EFFECT_RESET_2026_10_28.md](BATTLE_EFFECT_RESET_2026_10_28.md)
+and build/frontier-418070-20261028/{formal-build,boundary}.json.
+
+Preceding bounded candidate: Sakuya Fighter4CADB0 has complete113-action/default
+source and focused owned-extent/full76336 replay. Selected77064 remains nonexact
+at+8, frame4A8/native4D8;95 request homes agree in count, declaration extents and
+sharing remain unresolved. Native14/candidate13 tables and several call tails
+differ. Raw CFG closes all ten remote chunks; ownership74937 excludes105 padding
+bytes, all still included in strict full comparison. No exact credit. See
+[SAKUYA_ACTION_STATE_2026_10_28.md](SAKUYA_ACTION_STATE_2026_10_28.md),
+`scripts/audit-sakuya-action-state.py`, and
+build/frontier-4cadb0-20261028/{formal-tail-build,formal-tail-audit,target-audit}.json.
+
+Preceding bounded candidate: Aya Fighter602250 has complete114-action manual source
+and canonical full65720/native66704 replay, nonexact+18. Raw two-word530/532
+request homes restore native frame3E8; register allocation and tails still differ.
+All114 reachable direct-call censuses agree, but low31/native33 owners and physical
+tails differ. No exact credit. Independently attested Ghidra supplied navigation
+after IDA failed; raw instructions corrected508 fan direction and FP/lifetime
+errors. See [AYA_ACTION_STATE_2026_10_28.md](AYA_ACTION_STATE_2026_10_28.md),
+`scripts/audit-aya-action-state.py`, and
+build/frontier-602250-20261028/{formal-paired-build,formal-paired-audit}.json.
+
+Preceding bounded candidate: audio scheduler thread419100 has complete source for
+cadence correction, externally adjusted waits and checked listener notification.
+Whole576/native591 remains nonexact+0; prologue, float lifetimes and iterator
+checks differ. Raw CFG closes the full callable through41934F. No exact credit.
+See [AUDIO_SCHEDULER_THREAD_2026_10_28.md](AUDIO_SCHEDULER_THREAD_2026_10_28.md)
+and build/frontier-419100-20261028/{formal-build,boundary}.json.
+
+Preceding bounded candidate: AliceObject update4FCAB0 has complete38-action manual
+source and whole canonical replay. Full62960/native63248 remains nonexact+37.
+Frame348, all28 direct-callee counts,18 table dimensions and260 remap bytes agree.
+Shared817 impact continuation restores the direct-call census, but stack homes,
+floating lifetimes and tail sharing remain different. No exact credit. See
+[ALICE_OBJECT_UPDATE_2026_10_28.md](ALICE_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-alice-object-update.py` and
+build/frontier-4fcab0-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded candidate: SuikaObject update5B0460 has complete31-action manual
+source and whole canonical replay. Full53204/native53012 remains nonexact+17.
+Frame4B0, all23 direct-callee counts,18 table dimensions and200 remap bytes agree;
+initial owner scheduling and shared tails differ. No exact credit. See
+[SUIKA_OBJECT_UPDATE_2026_10_28.md](SUIKA_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-suika-object-update.py` and
+build/frontier-5b0460-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded candidate: PatchouliObject update520890 has complete30-action
+manual source and whole canonical replay. Full51428/native51564 remains
+nonexact+37. Actual shared packet lifetimes restore frame3E0; all28 direct-call
+counts,24 virtual calls,21 table dimensions and219 remap bytes agree. No exact
+credit. See [PATCHOULI_OBJECT_UPDATE_2026_10_28.md](PATCHOULI_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-patchouli-object-update.py` and
+build/frontier-520890-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded candidate: UdongeObject update5D46C0 has complete31-action
+manual source and an early whole canonical replay. Full43873/native43537
+remains nonexact+37; the real812 widened count restores frame2F0. All22
+direct-call counts,25 virtual calls,17 table dimensions and216remap bytes agree. No exact credit. See
+[UDONGE_OBJECT_UPDATE_2026_10_28.md](UDONGE_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-udonge-object-update.py` and
+build/frontier-5d46c0-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded candidate: MarisaObject update4BBE00 has complete manual
+41-action source and a focused canonical replay. Full50156/native49744 remains
+nonexact+37; native frame0x340 and all18 table dimensions are recovered, but
+call/return sharing and later code remain different. No exact credit. See
+[MARISA_OBJECT_UPDATE_2026_10_28.md](MARISA_OBJECT_UPDATE_2026_10_28.md),
+`scripts/audit-marisa-object-update.py` and
+build/frontier-4bbe00-20261028/{formal-build,full-audit}.json.
+
+Preceding bounded checkpoint: BGM service initialize403460 is canonical exact133.
+Actual paired thread owners and events plus existing visible start/priority
+bodies recover the complete native initializer on its first focused build.
+See [BGM_SERVICE_INITIALIZE_2026_10_28.md](BGM_SERVICE_INITIALIZE_2026_10_28.md)
+and build/frontier-403460-20261028/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: scenario BGM transition43D030 is canonical
+exact208/208, with all three accepted BGM siblings unchanged. The interpreter
+caller4594A2 pins path/duration/linked arguments and late global handle publish.
+See [BGM_TRANSITION_POLICY_2026_10_28.md](BGM_TRANSITION_POLICY_2026_10_28.md)
+and build/frontier-43d030-20261028/{formal-build,boundary,callers}.json.
+
+Preceding bounded checkpoint: scene resource shutdown43D670 and its CSceneManager
+owner41E120 are canonical exact264/25. Existing owner initialization41E070 stays
+exact162. Actual socket/member lifetimes reuse the independently exact network
+cleanup policy; all tails remain explicit. See
+[SCENE_RESOURCE_SHUTDOWN_2026_10_28.md](SCENE_RESOURCE_SHUTDOWN_2026_10_28.md)
+and build/frontier-43d670-20261028/{socket-owner-lifetime,scene-owner,boundary}.json.
+
+Preceding bounded checkpoint: CFade timer policies41E250/41E270 are canonical
+exact30/30 each; all six existing accepted scene-render peers remain exact.
+Current RTTI slots08/0C and the exact renderer pin color04/timer08 semantics.
+See [FADE_TIMER_POLICIES_2026_10_28.md](FADE_TIMER_POLICIES_2026_10_28.md)
+and build/frontier-41e250-20261028/{formal-build,boundary}.json.
+
+Preceding bounded checkpoint: Youmu constructor53B330 is canonical exact159/159.
+The existing history override independently fixes the deque<YoumuObjectRecord>
+at7D0, closing the previously unresolved member lifetime. Native boundary closes
+46 instructions; only the authored constructor receives credit. See
+[YOUMU_CONSTRUCTOR_2026_10_28.md](YOUMU_CONSTRUCTOR_2026_10_28.md)
+and build/frontier-53b330-20261028/{mapped-build,boundary}.json.
+
+Preceding bounded checkpoint: Ending entry41E790 and Connect reset442190
+are canonical exact40/25. Current RTTI slots own both; all16 existing accepted
+peers in the two affected TUs remain exact. See
+[SCENE_MENU_ENTRY_LEAVES_2026_10_28.md](SCENE_MENU_ENTRY_LEAVES_2026_10_28.md)
+and build/frontier-41e790-20261028/{formal-build,connect-reset}.json.
+
+Preceding bounded candidate: sprite rectangle renderer4070C0 is complete
+153/native153 under the independently available strict-FP context. Default
+161 uses a different half-pixel pool; strict recovers x87 work but still moves
+the texture-handle load before geometry stores. No credit. See
+[SPRITE_RECTANGLE_RENDER_2026_10_28.md](SPRITE_RECTANGLE_RENDER_2026_10_28.md)
+and build/frontier-4070c0-20261028/strict-fp.json.
+
+Preceding bounded candidate: Fighter cutin resource destructor465420 now has
+complete natural sprite/resource lifetime source. Candidate95/native96 remains
+nonexact+40 on handle load versus EH-state publication; no credit. See
+[FIGHTER_CUTIN_LIFETIME_2026_10_28.md](FIGHTER_CUTIN_LIFETIME_2026_10_28.md)
+and build/frontier-465420-20261028/formal-build.json.
+
+Preceding bounded checkpoint: wave buffer release401A80 is canonical exact97/97.
+Native constructor independently pins the paired32-element base/spatial arrays;
+ordinary source preserves three COM release guards per slot. See
+[WAVE_BUFFER_RELEASE_2026_10_28.md](WAVE_BUFFER_RELEASE_2026_10_28.md)
+and build/frontier-401a80-20261028/formal-build.json.
+
+Preceding bounded checkpoint: scene-owned battle effect bootstrap6654A0/6654C0
+is canonical exact21/10. Native scene callers, global owner and embedded
+program extent are attested; no shader bytes or static-init thunk credit. See
+[BATTLE_EFFECT_BOOTSTRAP_2026_10_28.md](BATTLE_EFFECT_BOOTSTRAP_2026_10_28.md)
+and build/frontier-6654a0-20261028/formal-build.json.
+
+Preceding bounded checkpoint: effect global forwarding6609C0/6609F0/665470
+is canonical exact47/16/45. Distinct info/weather globals and scene state08
+policy retain the target member-compatible versus cdecl boundaries. See
+[EFFECT_GLOBAL_FORWARDERS_2026_10_28.md](EFFECT_GLOBAL_FORWARDERS_2026_10_28.md)
+and build/frontier-6609c0-20261028/formal-build.json.
+
+Preceding bounded checkpoint: InfoEffectObject transform660730 and action
+initializer660780 are canonical exact80/266. Complete initializer576-byte
+code/table payload also matches. Real float shift lifetime and native late
+alpha-case family ordering close both; pending update65CB40 stays nonexact. See
+[INFO_EFFECT_VISUAL_2026_10_28.md](INFO_EFFECT_VISUAL_2026_10_28.md)
+and build/frontier-660730-20261028/late-alpha-group.json.
+
+Preceding bounded checkpoint: endpoint-edit initializer442390 is canonical
+exact165/165. One input receiver, native17/10 cursor counts and signed promoted
+address arithmetic reproduce the whole body. History selector443030 is complete
+153/native157 with retained-tail merging residual, no credit. See
+[CONNECT_ENDPOINT_SELECTION_2026_10_28.md](CONNECT_ENDPOINT_SELECTION_2026_10_28.md)
+and build/frontier-442390-20261028/final-build.json.
+
+Preceding bounded candidate: connect endpoint digit editor441E10 now restores
+complete IP/port decimal selection and replacement. Native cursor pair and
+branch-owned powers recover a192-byte exact prefix; full888/native891 remains
+nonexact at return scheduling. Port-only sibling441BD0 is now complete
+568/native570, first+106 at the same epilogue scheduling boundary. No credit. See
+[CONNECT_DIGIT_EDITOR_2026_10_28.md](CONNECT_DIGIT_EDITOR_2026_10_28.md)
+and build/frontier-441e10-20261028/cursor-pair.json.
+
+Preceding bounded candidate: result-menu character refresh447080 now has a
+complete342/native342 focused replay. Real class-valued texture result and
+branch-local input publication replace the retained hidden-result/zero-cast
+source. Remaining mismatch+38 is early selected-character load scheduling;
+no credit. See [RESULT_CHARACTER_REFRESH_2026_10_28.md](RESULT_CHARACTER_REFRESH_2026_10_28.md)
+and build/frontier-447080-20261028/branch-input-binding.json.
+
+Preceding bounded checkpoint: CProfileCharacterSelect render448420 is canonical
+exact205/205. Direct branch-local item expressions recover native count reloads
+and x87 rounding; cached item controls were shorter and are not retained.
+RTTI slot0C and complete56-instruction/tail boundary verified. See
+[PROFILE_CHARACTER_SELECT_RENDER_2026_10_28.md](PROFILE_CHARACTER_SELECT_RENDER_2026_10_28.md)
+and build/frontier-448420-20261028/direct-item-expressions.json.
+
+Preceding bounded checkpoint: DirectSound wave load4184B0 is canonical
+exact304/304, and CDS3DBuffer constructor4180B0 is exact20/20 after
+restoring derived ownership of both resource pointers. Six accepted lifetime
+peers remain exact; normal destructor139 remains nonexact+47. Natural owned-wave lifetime and real COM lock/copy/unlock close
+all114 native instructions. Source uses the observed ordinary fastcall
+dispatcher408ED0 without fabricating its private decoder child ABI. See
+[DIRECT_SOUND_WAVE_LOAD_2026_10_28.md](DIRECT_SOUND_WAVE_LOAD_2026_10_28.md)
+and build/frontier-4184b0-20261028/formal-build.json.
+
+Preceding bounded checkpoint: global replay storage constructor43F1B0 is
+canonical exact161/161, now with shared injected-input ctor42C930 exact27/27.
+RTTI corrects its inherited update override; profile192/205 and score defaults
+remain exact on focused replays. Real two-input ownership plus vector/string/critical
+section members reproduce the whole constructor naturally. Global thunk and
+implicit cleanup remain uncredited. See
+[REPLAY_STORAGE_CONSTRUCTOR_2026_10_28.md](REPLAY_STORAGE_CONSTRUCTOR_2026_10_28.md)
+and build/frontier-43f1b0-20261028/formal-build.json.
+
+Preceding bounded candidate: CSelect destructor424260 restores complete authored
+release policy and natural member destruction. Direct token values recover
+845/native845 and the first605 bytes; remaining mismatch is generated cleanup
+scheduling at4244BD. A typed sprite member trial was worse and fully reverted.
+No exact credit. See [SELECT_DESTRUCTOR_2026_10_28.md](SELECT_DESTRUCTOR_2026_10_28.md)
+and build/frontier-424260-20261028/restored-final.json.
+
+Preceding bounded candidate: Scenario label selection455490 now restores the
+owned-string search and real12-byte checked script iterator. Candidate275/
+native276 remains nonexact+36 on owner lifetime; named-script control251
+eliminates a target-retained range check and is not retained. No credit.
+See [SCENARIO_LABEL_SELECTION_2026_10_28.md](SCENARIO_LABEL_SELECTION_2026_10_28.md)
+and build/frontier-455490-20261028/formal-build.json.
+
+
+Preceding bounded checkpoint: CLoadingCL scene-state mapper426490 is canonical
+exact26/26, with205/313/217 Select network peers still exact. Current RTTI
+vtable6C0524 fixes the authored slot04 policy; no generated thunk credit.
+See [SELECT_NETWORK_RUNTIME_2026_10_28.md](SELECT_NETWORK_RUNTIME_2026_10_28.md)
+and build/frontier-4264b0-20261028/loading-client.json.
+
+
+Preceding bounded candidate: CSelect frame update421430 now has complete
+menu/input reassignment, cursor publications and native input-deque ownership.
+Candidate685/native697 remains first+337 on cdecl cleanup/publication ordering;
+no exact/source-selection credit. All231 native instructions are reachable.
+See [SELECT_SCENE_UPDATE_2026_10_28.md](SELECT_SCENE_UPDATE_2026_10_28.md)
+and build/frontier-421430-20261028/formal-build.json.
+
+
+Preceding bounded checkpoint: CSelect portrait binding41FB80 is canonical
+exact258/258. Ordinary scalar conversion of the real class-valued texture
+result recovers native handle/buffer lifetime. Related object transform41FAD0
+is complete154/154 but nonexact+25 on receiver/x87 scheduling, with no credit.
+See [SELECT_CHARACTER_BINDING_2026_10_28.md](SELECT_CHARACTER_BINDING_2026_10_28.md)
+and build/frontier-41fb80-20261028/scalar-handle-local.json.
+
+
+Preceding bounded candidate: CSelect entry421120 now restores the complete
+783-byte input/cursor/character/stage setup path. Candidate783/native783
+remains first+225 after target-backed input-value, cursor and UI-receiver
+lifetime recovery. Residual begins at zero-register scheduling; no exact credit.
+See [SELECT_SCENE_ENTRY_2026_10_28.md](SELECT_SCENE_ENTRY_2026_10_28.md)
+and build/frontier-421120-20261028/byte-ui-enabled.json.
+
+
+Preceding bounded checkpoint: CSelectSV update4262A0 is canonical exact217/217;
+same-unit205/313 peers remain exact. The neighboring CBattleSV/CL update
+roots426180/426380 are now complete candidates252/247 and259/267, with only
+the inspected return/tail-merge region left after switch dispatch recovery.
+No credit for those two candidates.
+See [SELECT_NETWORK_RUNTIME_2026_10_28.md](SELECT_NETWORK_RUNTIME_2026_10_28.md)
+and [BATTLE_NETWORK_UPDATE_2026_10_28.md](BATTLE_NETWORK_UPDATE_2026_10_28.md).
+
+
+Preceding bounded checkpoint: Select network entry4264B0 and client update426580
+are canonical exact205/313, adding518 authored bytes. Current RTTI fixes
+SV/CL ownership; natural event RAII and virtual session/input callbacks close
+both complete bodies. No shared-header changes.
+See [SELECT_NETWORK_RUNTIME_2026_10_28.md](SELECT_NETWORK_RUNTIME_2026_10_28.md)
+and build/frontier-4264b0-20261028/formal-build.json.
+
+
+Preceding bounded candidate: combo resource load46A8C0 was independently
+rechecked using current typed CDesignBase/CNumber owners. Complete427/native413
+remains first+2 on extra receiver/member-address lifetime. Outer-owner and
+typed-output controls did not solve it; shared-type source is retained.
+See [INFO_COMBO_LOAD_2026_10_28.md](INFO_COMBO_LOAD_2026_10_28.md).
+No exact/source-selection credit or existing caller changes.
+
+
+Preceding bounded checkpoint: local/practice battle controls428070 are canonical
+exact482/482, including the internal loop-alignment gap and final return.
+Repeated mode queries, signed modulo cycling and fresh scene/fighter reads
+match naturally. Existing callers/contracts remain unchanged.
+See [LOCAL_PRACTICE_BATTLE_CONTROLS_2026_10_28.md](LOCAL_PRACTICE_BATTLE_CONTROLS_2026_10_28.md)
+and build/frontier-428070-20261028/formal-build.json.
+
+
+Preceding bounded checkpoint: CBattleManager pre-reset virtual472230 is
+canonical exact314/314. The existing fully described CMenuPractice0x288 layout
+supersedes the historical allocation blocker; ordinary menu/input/EH source
+now matches the complete body. No shared header or global profile changed.
+See [BATTLE_MANAGER_PRE_RESET_2026_10_28.md](BATTLE_MANAGER_PRE_RESET_2026_10_28.md)
+and build/frontier-472230-20261028/formal-build.json.
+
+
+Preceding bounded candidate: spell preparation45DC90 now uses the real typed
+sprite record and deque ownership. Its old GS-buffer blocker and stale
+addresses/dataflow are corrected; current257/native259 remains nonexact.
+Initial entry/size loads now agree; optional-resource load/reuse is residual.
+Accepted front-ready118 remains exact; existing198/346 nonexact peers retain
+their residuals. See [SEQUENCE_PREPARATION_2026_10_28.md](SEQUENCE_PREPARATION_2026_10_28.md).
+No new exact credit from this candidate.
+
+
+Preceding bounded candidate: input policy428260 now has complete Practice and
+non-Practice restoration, guard, mode and player-input source. Raw CFG closes
+the553-byte callable plus five-entry table; candidate callable554/full576
+is nonexact at+9. No source-selection/exact credit. Pair-capture control was
+byte-neutral; no register/liveness workaround is retained.
+See [PRACTICE_BATTLE_POLICY_2026_10_28.md](PRACTICE_BATTLE_POLICY_2026_10_28.md).
+
+
+Preceding bounded checkpoint: presentation phase46B160 and Story reset471580
+are canonical exact105/14, adding119 authored bytes. All five previously
+accepted Story core peers remain exact in the fresh caller-unit replay.
+See [BATTLE_PRESENTATION_PHASE_2026_10_28.md](BATTLE_PRESENTATION_PHASE_2026_10_28.md)
+and build/frontier-46b160-20261028/{formal-build,story-caller}.json.
+
+
+Preceding bounded checkpoint: Story early phase pipelines471590/4715D0 are
+canonical exact59/88. Existing203/157/309-byte Story peers remain exact.
+RTTI-owned slots10/14, scenario callback/transition policy, signed countdown
+and pending transition are raw-target backed. New authored increment147 bytes.
+See [STORY_EARLY_PIPELINES_2026_10_28.md](STORY_EARLY_PIPELINES_2026_10_28.md)
+and build/frontier-471590-20261028/formal-build.json.
+The typed-owner trial for471930 was byte-neutral321/323 and is retained privately;
+public source was restored, with no exact credit.
+
+
+Preceding bounded checkpoint: story value binder471A80 is now canonical
+exact351/351. A mode-specific typed owner recovers native integer health and
+UI-receiver lifetimes; same-unit20/27/648 accepted peers remain exact.
+The old352-byte normal-mode alias candidate is superseded, not silently
+recredited. No shared header or compiler setting changed. New authored exact
+increment across the recent four accepted helpers is755 bytes.
+See [STORY_INFO_VALUE_BINDING_2026_10_28.md](STORY_INFO_VALUE_BINDING_2026_10_28.md)
+and build/frontier-471a80-20261028/formal-typed-owner.json.
+
+Preceding exact checkpoint: normal InfoManager initializer46EB90 is
+canonical exact228/228. Typed embedded resources and the actual number-pointer
+array remove the prior loop-cursor spill naturally. Same-unit119/171/30
+lifetime peers remain exact; no shared header/global profile/data binding
+changed. New authored exact increment across tangent406430, binder432550 and
+this initializer is404 bytes, excluding generated sprite-copy code.
+See [INFO_MANAGER_NORMAL_INITIALIZATION_2026_10_28.md](INFO_MANAGER_NORMAL_INITIALIZATION_2026_10_28.md)
+and build/frontier-46eb90-20261028/formal-build.json.
+
+Preceding checkpoint: story InfoManager update471930 now restores
+health/secondary smoothing and timer/alpha callbacks. Complete321/native323
+remains first+67 in the second signed smoothing stage; no exact credit.
+Its first67 and shifted trailing201-byte windows agree, but full ownership
+and positional bytes do not. Rejected clamp/scoping controls remain private.
+See [STORY_INFO_UPDATE_2026_10_28.md](STORY_INFO_UPDATE_2026_10_28.md)
+and build/frontier-471930-20261028/formal-build.json.
+
+Preceding checkpoint: story value binder471A80 now restores both
+integer gauges and both float-number adapters with native release/new and
+span-capture ordering. Complete352/native351 remains first+16 on the initial
+health-address/store schedule; no credit. Same-unit20/27/648 accepted peers
+remain exact. No shared header or global compiler setting changed.
+See [STORY_INFO_VALUE_BINDING_2026_10_28.md](STORY_INFO_VALUE_BINDING_2026_10_28.md)
+and build/frontier-471a80-20261028/formal-build.json.
+
+Preceding exact checkpoint: long InfoManager record binder432550 is canonical
+exact107/107. Native byte-side consumption and coherent caller declarations
+recover the actual output homes. All five functions in its two affected
+accepted caller units remain exact. No global flags or data bindings changed.
+See [INFO_LONG_RECORD_BINDING_2026_10_28.md](INFO_LONG_RECORD_BINDING_2026_10_28.md)
+and build/frontier-432550-20261028/formal-*.json. Together with tangent406430,
+the new authored exact increment is176 bytes; generated sprite copy455160
+remains excluded and receives no authored credit.
+
+Preceding checkpoint: Fighter sequence rotation45DDA0 now uses the real
+VC8 deque and a nontrivial polymorphic card temporary. Main265/265 remains
+12 unequal bytes at+123, confined to prefix-load/store scheduling. Generated
+record destructor8 bytes, unwind/handler44 bytes and metadata44 bytes replay
+exact independently; no authored credit is added for them or the main body.
+See [FIGHTER_SEQUENCE_ROTATE_2026_10_28.md](FIGHTER_SEQUENCE_ROTATE_2026_10_28.md)
+and build/frontier-45dda0-20261028/formal-{build,auxiliary}.json.
+
+Preceding exact checkpoint: float-angle tangent406430 is canonical exact69/69.
+The existing strict-FP profile plus balanced exception-scheduling-off pragma
+reproduces every byte without changing global build defaults. This adds one
+accepted function/69 bytes. Sine/cosine dependencies and Udonge remain nonexact.
+See [ANGLE_TANGENT_2026_10_28.md](ANGLE_TANGENT_2026_10_28.md)
+and build/frontier-406430-20261028/formal-build.json.
+
+Preceding checkpoint: Udonge5BFD50 has a complete-label unselected
+110-action candidate and shared prelude. Full replay67520/native67968,
+first+8 at5BFD58; frame488/native480. All32/34/39 sparse groups resolve.
+All110 per-action direct-call and FP-site counts agree;406 still merges
+one native virtual owner. All92 packet homes resolve, but frame displacement
+and ten per-action ownership differences remain. Cone tangent evaluation
+retains native post-call peer reloads without an extra FST32. No exact credit.
+See [UDONGE_ACTION_STATE_2026_10_28.md](UDONGE_ACTION_STATE_2026_10_28.md)
+and build/frontier-5bfd50-20261028/formal-{build,full,switches}.json.
+
+Preceding checkpoint: Suika598990 has a complete-label unselected
+115-action candidate. Full replay78988 versus native81136, first+17, frame578
+matches native. Sparse candidate groups32/50/31 versus native33/50/31;
+208/220 merge. Giant605/730 static surface/zero-motion bodies also merge;
+grab608 shared pose tails now restore its native direct/virtual call counts,
+while arithmetic ownership remains under review. Separate501 return guards
+also restore its virtual-site count. Native action ordering now aligns all112
+packet-home offsets. The native740 early/late phase order now also aligns all115
+ordered per-action packet-home lists. No exact credit.
+See [SUIKA_ACTION_STATE_2026_10_28.md](SUIKA_ACTION_STATE_2026_10_28.md)
+and build/frontier-598990-20261028/formal740-{build,full}.json.
+
+Preceding checkpoint: Marisa4A3710 now has a complete unselected
+130-action source candidate and shared prelude. Native-backed 565..568 scalar
+captures now retain both request branches; action708 narrows velocity before
+its QWORD predicted-Y capture. Current full compile68204 versus
+native67936, first+14, frame4C8 versus4C0. All32/45/48 action-table groups and98
+payload homes resolve; flight214 rate branches now match native arithmetic
+ownership. Direct-call and arithmetic-site counts agree across all130 actions,
+but virtual-call and lifetime differences remain. No exact credit.
+See [MARISA_ACTION_STATE_2026_10_28.md](MARISA_ACTION_STATE_2026_10_28.md)
+and build/frontier-4a3710-20261028/trial214-*.json.
+
+Preceding checkpoint: Yuyuko720 now preserves the native QWORD Y
+capture and unordered surface predicate: action700 only for ordered surface>=Y,
+gravity otherwise. Complete unselected source59456/full59672 remains first+8.
+See [YUYUKO_ACTION_STATE_2026_10_28.md](YUYUKO_ACTION_STATE_2026_10_28.md)
+and build/frontier-55d850-20261027/formal-surface720*.json. No exact credit.
+
+Preceding checkpoint: Tenshi raw-backed scalar captures reduce the
+extra frame from16 to8 bytes; request and atan argument lifetimes are refined.
+The complete unselected candidate is49032/full48968, first+8, frame328 versus320.
+All35/36/37 action-table groups and64 payload homes resolve. See
+[TENSHI_ACTION_STATE_2026_10_27.md](TENSHI_ACTION_STATE_2026_10_27.md)
+and build/frontier-63d3e0-20261027/formal-lifetimes*.json. No exact credit.
+
+Preceding checkpoint: Patchouli request-branch ownership, argument
+lifetimes and flight214 physical placement now follow native evidence.
+The complete unselected candidate is55026/full55610, first+8, frame468.
+All109 actions have matching per-action call/FP-site counts and91 resolved
+payload homes; these diagnostics do not establish exactness. See
+[PATCHOULI_ACTION_STATE_2026_10_27.md](PATCHOULI_ACTION_STATE_2026_10_27.md)
+and build/frontier-50f200-20261027/formal-ownerorder*.json. No exact credit.
+
+Preceding checkpoint: Yuyuko captured-X width and eight aim-argument
+lifetimes now follow raw native storage/evaluation evidence. The complete
+candidate remains unselected/nonexact,59456/full59672, first+8, frame4F0.
+All100 payload homes resolve. See
+[YUYUKO_ACTION_STATE_2026_10_28.md](YUYUKO_ACTION_STATE_2026_10_28.md)
+and build/frontier-55d850-20261027/formal-lifetimes*.json. No exact credit.
+
+Preceding checkpoint: Yukari aim argument lifetimes now follow the native
+DX-outgoing-before-DY sequence at seven atan sites. Their local 32-byte windows
+match; the complete candidate remains 57792/full58248, first+8, frame4E8.
+See [YUKARI_ACTION_STATE_2026_10_28.md](YUKARI_ACTION_STATE_2026_10_28.md)
+and build/frontier-57b030-20261028/formal-aimargs*.json. No exact credit.
+
+Preceding checkpoint: Remilia circular request preparation now recovers
+the native 4F0 frame. Its complete unselected 107-action candidate emits
+62912/full63316, first +18; all sixteen tables and 101 payload homes resolve.
+[KOMACHI_ACTION_STATE_2026_10_28.md](KOMACHI_ACTION_STATE_2026_10_28.md)
+and [REMILIA_ACTION_STATE_2026_10_28.md](REMILIA_ACTION_STATE_2026_10_28.md)
+record the separate scalar-angle and call-preparation causes. No exact credit.
+Latest Remilia receipts: build/frontier-545090-20261028/formal-frame*.json.
+
+Preceding Komachi f1df72c2 remains complete but unselected/nonexact:
+64884/full65176, first +42, native 490 frame; 108 actions, seven tables and
+94 payload homes. Byte-direction view is supported by its actual manager.
+Receipts: build/frontier-5e20e0-20261028/formal-frame*.json.
+
+Preceding Yukari b491d153 remains complete but unselected/nonexact:
+57792/full58248, first +8; 124 actions and 101 payload homes resolved. See
+[YUKARI_ACTION_STATE_2026_10_28.md](YUKARI_ACTION_STATE_2026_10_28.md).
+
+Preceding Yuyuko97a2575e remains complete but unselected/nonexact:
+59428/full59672, first+8;116 actions and100 payload homes resolved. See
+[YUYUKO_ACTION_STATE_2026_10_28.md](YUYUKO_ACTION_STATE_2026_10_28.md).
+
+Preceding Patchouli203faa8b remains complete but unselected/nonexact:
+54466/full55610, first+8;109 actions and91 payload homes resolved. See
+[PATCHOULI_ACTION_STATE_2026_10_27.md](PATCHOULI_ACTION_STATE_2026_10_27.md).
+
+Preceding Tenshi80a9f71d remains complete but unselected/nonexact:49096/full48968,
+first+8, two low-owner pairs merged. Its47,784-byte native root and110 actions
+are covered; RNG widths, coordinate types, live packets and shared500/501 tail
+were refined. See
+[TENSHI_ACTION_STATE_2026_10_27.md](TENSHI_ACTION_STATE_2026_10_27.md).
+
+Preceding b14285d6 Fighter reset460200 remains1247/1247 with25 differences,
+unselected/nonexact. Directly affected fighter-input-phase remains exact; see
+[FIGHTER_BATTLE_RESET_2026_10_27.md](FIGHTER_BATTLE_RESET_2026_10_27.md).
+
+The preceding94f0f3b7 checkpoint corrects general hit resolver46BF80 semantics;
+its complete1581/1579 source remains nonexact. See
+[GENERAL_HIT_RESOLVER_2026_10_27.md](GENERAL_HIT_RESOLVER_2026_10_27.md).
+
+The prior CBattleManager phase5 transition4724E0 remains991/991 exact, including
+its separately audited generated GS/EH code and metadata; cd976369 passed the
+final local CI. Weather emission660B30 remains12198/full12348 exact and
+WeatherEffectObject entry664E10 remains1383/full1630 exact. The complete
+InfoEffectObject and WeatherEffectObject update peers remain nonexact.
+
+The complete preceding handoff is preserved in
+[October26 history](RE_HANDOFF_HISTORY_2026_10_26.md). Earlier chronology and
+private artifact recovery remain linked from that archive and [ARTIFACTS.md](ARTIFACTS.md).
+Live ledgers and fresh command output take precedence over historical counts.
+
+## Start here
+
+Workflow maintenance (2026-10-28): routine CI now checks exact-comparison tooling
+and ledgers; analysis/probe suites are optional via `scripts/ci.py --all-tests`.
+Removed 69 historical checkpoint/count/source snapshots. Allocation-failure,
+null-pointer and broad runtime matrices are not reconstruction prerequisites.
+CI checks progress without rewriting it. No source, target address, match ledger
+or acceptance receipt changed; existing reconstruction blockers above remain.
+
+1. Read `AGENTS.md`, this file and the relevant source; consult architecture and
+   workflow notes as needed.
+2. Inspect Git status and the source/evidence document for the intended scope.
+3. Use `scripts/repo-python`; reconstruction/ledger work uses the preflights below.
+   Run the IDA check only when using IDA. Maintenance needs no native preflight.
+4. Keep one writable bounded scope, no subagents or concurrent VC8/Ghidra jobs.
+   `config/claims.csv` remains header-only. Builds use CPU0/nice10 serially.
+5. Compare the first complete medium/large source early. Test one supported
+   question per trial; retain byte-neutral results and switch without a grid.
+   Review family peers independently. Defer naming/abstraction until exactness.
+
+```bash
+git status --short
+scripts/repo-python scripts/verify-target.py
+scripts/repo-python scripts/check-ida-mcp.py
+scripts/repo-python scripts/report-reconstruction-status.py --summary
+scripts/repo-python scripts/validate-tracking.py --require-target
+```
+
+## Immutable target and environment
+
+Only original Japanese TH10.5v1.06a is valid: SHA-256
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`,
+image base400000, entry68B9D2. Do not substitute another patch/localization.
+The direct IDA launcher currently lacks mcp1.26.0/uv. Factory native IDA was
+freshly attested on October27 to this exact target, entry and mapped entry bytes;
+its inventory, disassembly, decompilation and xref operations succeeded.
+Any Ghidra use requires separate import/entry/mapped-byte attestation. Never
+patch the target or infer ownership from disassembler auto-analysis.
+
+The isolated environment pins Python3.11.14, Capstone4.0.2, pefile2024.8.26,
+Unicorn1.0.2 and setuptools75.8.0. The repo launcher enforces it. Preserve the
+active `.venv`, its external UV interpreter and installed VC8 SP1 toolchain.
+Use the VC8 x86 ABI and exact target facts;42 LTCG Rich records do not establish
+that a particular standalone mismatch requires LTCG.
+
+## Current durable state
+
+| Ledger state | Count |
+| --- | ---: |
+| Provisional / authored / excluded / review candidates |4024 /1625 /1419 /980 |
+| Mapped / source-present |1614 /1586 |
+| Exact functions / authored bytes |1431 /414554 |
+| Configured units / functions |642 /1614 |
+| Accepted units |539 |
+
+The423a2cd checkpoint passed529 cold units/1417 functions and390476 bytes.
+Subsequent focused comparisons add story refresh860, replay naming1322 and
+pattern expansion1323, deck update1339, stage selection890, selection flow341
+EffectObject entry2676; WeatherEffectObject entry1383 and weather emission12198 and battle phase5 transition991,
+with unchanged prior receipts retained. Current totals are incremental, not a
+new whole-corpus replay. Final CI is the current frontier's `local-ci.log`.
+
+`implemented.csv` means selected source-present; `matches.csv` requires canonical
+100% equality against this target. Complete unselected source already exists
+for many nonexact roots. Do not infer that a function is unwritten merely from
+its absence in implemented.csv. No helper inherits a caller's ownership/match.
+
+## Latest score-family checkpoint
+
+| Target | State | Source / evidence |
+| --- | --- | --- |
+|42D3F0 |1155/1155 exact |`src/config/ScorePersist.cpp`; [persistence](SCORE_PERSIST_2026_10_26.md) |
+|42ED70 |2428/2428 exact |`src/config/ScoreDefaults.cpp`; [defaults](SCORE_DEFAULTS_2026_10_26.md) |
+|42F6F0 |Complete1672-byte source;7 SIB-order differences; unselected |`src/config/ScoreLoad.cpp`; [loader](SCORE_LOAD_2026_10_26.md) |
+
+Shared definitions: `src/config/ScoreDataDefaults.hpp`. Constructor43E1A0
+independently proves20 map/vector slots. Defaults and persistence use only15
+roster keys; source layout is a bounded view, not the complete original owner.
+
+Persistence's first whole source was1155 bytes with80 differences, first42D661.
+One real count shared by serialized roster size and loop bound closes all1155
+bytes, SHA7c1f3777. All360 instructions/359 reached, RET0,3C-frame EH/cookie,
+19 checked-container guards and full relocations are accounted for. Four native
+and candidate cases pin332-byte serialization, duplicate records, values above
+200, ignored open/encode/write failure results, source preservation and cleanup.
+Actual I/O, compression providers and EH unwinding are not executed by fixtures.
+
+The October27 native vector.clear recovery improves the loader to1672 bytes
+with7 SIB-order differences (SHA6641fe76). A fresh genuine three-source TU
+preserves both exact peers and leaves this new loader residual unchanged.
+The four existing native/candidate observer cases agree; no new exact credit.
+See the superseding loader note and `build/frontier-42f6f0-clear-20261027/`. Original nominal types/TU and loader stack/iterator scheduling remain
+unknown; no LTCG-impossibility claim follows. The prior bootstrap return-type
+repair retains its complete3722-byte/11-difference nonexact body.
+
+Current scope receipts and raw decode:
+`build/frontier-42d3f0-20261026/` (`formal-first.json`, `formal-second.json`,
+`formal-audit-first.json`, `formal-audit-second.json`, `family-tu-summary.json`,
+`origins-write.log`, `origins-check.log`, `cold-all.log`, `local-ci.log`).
+Private first/count-control/family-TU sources and replay recipe:
+`.analysis/frontier-42d3f0-20261026/`.
+The new selected root adds1155 exact authored bytes; no provider receives credit.
+
+## Parked work
+
+November1 retained-source checks also close two immediate leads without credit:
+the genuine7-TU send entry remains16/native18 and worker423/native395; its
+acceptance223 uses a different private incoming-register assignment. See the
+late appendices in NETWORK_UDP_SEND_WORKER_2026_10_16.md and
+NETWORK_UDP_ACCEPT_2026_10_16.md. Original W32 transform ordinary539/native539
+has88 nonrelocation differences, retained CIL533; verified1.34.1 active ANSI
+char function text equals1.40 and supplies no version hypothesis. See
+BOOST_W32_TRANSFORM_NEGATIVE_2026_11_01.md. No source or ledger changes.
+
+
+Do not reopen these lanes without the independent evidence their dated notes
+request. The full history records commands, source pins and unknowns.
+
+- Spell resource CSV4343A0 is exact1646; filtered433B30 remains1987 bytes/two
+  operand differences. The genuine family-TU lane is closed.
+- Collision debug45E950 is exact3087. Rectangle4012A0 remains394 versus395,
+  85 unequal positions; native Z0.5 and finite lifetime controls are retained.
+- Scene bootstrap43E2E0 remains3722/11 stack-home differences. Effect loader
+  437EC0 is exact2528; its old79-difference stop was superseded by ordinary reader
+  forwarding. Fighter PAT461B70 reached3885 with four deque load-order differences;
+  see EFFECT_READER_FORWARDING_EXACT_2026_10_31.md.
+- Profile deck render448F60 is2521/1622 differences. Native execution rejected
+  a push-relative missing-count misread; correct zero counts agree in32 events.
+- Complete giant sources/hypotheses for Tenshi64CD50, Alice4E9F50, Youmu53CEA0
+  and Yuyuko56F700 remain saved in their documented selected/unselected states.
+  Aya61F0B0's complete4859-byte payload still has two operand differences.
+
+42E990 is now independently reviewed and exact. Small providers and constructors
+remain independent unknowns unless positively classified and compared.
+
+## Private recovery and cleanup
+
+The current-scope portable bundle is
+`build/handoff-cleanup-20261026/score-family-resume.tar.gz`; its member hashes and
+verified archive SHA are in `score-family-members.json` and `bundle.json` in the
+same directory. List the archive before restoring repository-relative members;
+avoid overwriting newer work. This ignored local archive is not included by a
+Git clone. It excludes target PE, compiler installs, databases and credentials;
+those remain separate local inputs. Final CI/remote receipts remain loose in
+the current build scope. See [artifact details](ARTIFACTS.md).
+
+Source-backed bytecode cleanup and protected-file/worktree checks are recorded
+in `build/handoff-cleanup-20261026/cache-cleanup.json`, `protected-before.json`
+and `protected-after.json`. Unknown cache files are retained. Primary Ghidra
+state remains under `.analysis/iku-vslot28-20261002/project/`, with the retained
+snapshot at `.analysis/archive-loader-shape-20261019/primary-before/`.
+Six older detached worktrees contain uncommitted work; preserve them and their
+frozen inputs. Their presence does not authorize parallel reconstruction.
+
+## Final gate and future commits
+
+Run the focused affected comparisons first. Shared headers/types/flags/TU or
+relocation changes require directly affected-unit replay. Preserve unchanged
+acceptance receipts for incremental totals; do not rebuild the whole corpus
+routinely. Full cold replay requires an explicit request or demonstrated
+repository-wide invalidation that cannot be narrowed.
+Every commit/push/PR requires the finished lightweight local gate; remote green
+is additional. Analysis matrices and the complete optional test collection are
+not part of the routine gate.
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 taskset -c 0 nice -n 10 scripts/repo-python scripts/ci.py
+git diff --check
+git diff --cached --check
+```
+
+Any later source, ledger, script, test or generated-progress edit requires the
+local gate again. Commit prefix: `gpt-dots: ...` (user instruction, 2026-10-29). Keep executables, game data,
+analysis databases, compiler installs, generated reports, credentials/private
+keys and `.tools/mcp_for_gptweb/.env` out of Git.

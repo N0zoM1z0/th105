@@ -3,9 +3,20 @@
 Every route is pinned to `config/target.toml`. Semantic output is evidence;
 only the canonical comparator can establish exactness.
 
-## Direct local workflow
+## Preferred Factory-native workflow
 
-Use this when the coding agent can access the local shell and registered MCP:
+Use the registered repository shell and native IDA provider when available.
+Before trusting that session's semantics, verify the canonical hash/size/base,
+entry point, all five mapped-byte samples and inventory/disassembly/decompiler/
+callers/callees operations. See [Factory IDA](FACTORY_IDA_2026_10_29.md) and
+[AGENTS.md](../AGENTS.md). Metadata-only attestation is insufficient; historical
+connection success is not current proof. Documentation-only maintenance needs
+no native analysis session.
+
+## Legacy direct local workflow
+
+Use this only for the legacy repository bridge when its dependencies and session
+are available. It is not a prerequisite for independently attested Factory IDA:
 
 ```bash
 scripts/repo-python scripts/verify-target.py
@@ -30,7 +41,7 @@ be on `PATH`.
 default. `patch_address_assembles` is never allowed. Use `--allow-write` only
 for reviewed names, types, comments, and other metadata; read back the result.
 
-## GPT-web Bash + IDA adapter
+## Legacy GPT-web Bash + IDA adapter
 
 `.tools/mcp_for_gptweb` is an ignored nested checkout adapted from the TH08
 two-tool service. It exposes exactly:
@@ -64,8 +75,9 @@ If `scripts/check-ida-mcp.py` fails, do not query or write through that IDA
 session. Exact target PE disassembly remains a valid bounded evidence source.
 Use a Ghidra database only after independently checking the imported target
 hash, entry point, and mapped bytes; treat its decompiler output as a
-hypothesis. Keep one Ghidra process at a time. This workflow does not require
-the factory MCP adapter.
+hypothesis. Keep one Ghidra process at a time. A failed legacy session does
+not invalidate an independently attested Factory-native session, nor authorize
+using the failed session through a different route.
 
 ## Matching tools
 
@@ -77,6 +89,8 @@ the factory MCP adapter.
   every function accepted by `matches.csv`. It builds each containing unit once
   but filters mixed units before comparison, so an intentional nonexact probe in
   the same object cannot make the accepted-exact gate fail by construction.
+  This cold run requires an explicit request or demonstrated repository-wide
+  invalidation that cannot be narrowed; routine work uses affected-unit replay.
 - `scripts/report-reconstruction-status.py`: select work from current ledgers.
 - `scripts/rank_retained_exact.py`: target-attested retained-1.06 source ranking for 1.06a; dual `/GS` profiles, normalized instruction shape, and relocation-masked raw mismatch counts are prioritization signals only. Repeatable `--historical-status` filters may widen the archaeology queue to old `implemented`/`compiles` rows without changing acceptance semantics.
 - `scripts/audit-roster-primary-vtable-coverage.py`: raw-PE closure check for all fifteen Fighter and fifteen Object primary-vtable surfaces. It reconstructs each vtable base from the SHA-pinned RTTI/origin-anchor manifests and reports candidate starts, candidate interiors and unledgered code pointers without consulting IDA function discovery.
@@ -88,8 +102,8 @@ the factory MCP adapter.
 For large Fighter vslot28 roots whose sparse switches use VC8 byte-index tables, use the fail-closed mapper instead of hand-decoding table bytes:
 
 ```bash
-python3 scripts/map-giant-action-switches.py youmu-vslot28
-python3 scripts/map-giant-action-switches.py youmu-vslot28 --json
+scripts/repo-python scripts/map-giant-action-switches.py youmu-vslot28
+scripts/repo-python scripts/map-giant-action-switches.py youmu-vslot28 --json
 ```
 
 Root/table witnesses live in `config/giant-action-switches.toml`.  The mapper reads `resources/th105.exe`, validates every byte index against the destination-table count, requires every decoded destination to stay inside the reviewed callable, checks retained call/RET/group census invariants, and annotates each physical action destination with direct callees from `config/functions.csv`.  Add new roster roots to the manifest only after independently attesting their callable and metadata boundaries.  The emitted spans are source-ownership evidence; they do not split the authored exact-byte ledger.

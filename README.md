@@ -63,13 +63,17 @@ scripts/repo-python scripts/report-reconstruction-status.py --summary
 scripts/repo-python scripts/validate-tracking.py --require-target
 ```
 
-Run `scripts/repo-python scripts/check-ida-mcp.py` before using IDA. Documentation
-and test-workflow maintenance need no target/IDA preflight or native build.
+For IDA, prefer the Factory-native provider and freshly verify the target, all
+five mapped-byte samples and analysis operations as specified in
+[AGENTS.md](AGENTS.md) and [Factory IDA](docs/FACTORY_IDA_2026_10_29.md).
+`scripts/check-ida-mcp.py` applies to the legacy bridge, not as a mandatory
+prerequisite for an independently attested Factory session. Documentation and
+test-workflow maintenance need no target/IDA preflight or native build.
 
 ## Documentation
 
 - [Current handoff](docs/RE_HANDOFF.md)
-- [Previous handoff archive](docs/RE_HANDOFF_HISTORY_2026_10_26.md)
+- [Previous handoff archive](docs/RE_HANDOFF_HISTORY_2026_11_03.md)
 - [Tenshi update resume notes](docs/TENSHI_OBJECT_UPDATE_2026_10_25.md)
 - [AyaObject evidence and selected checkpoint](docs/AYA_OBJECT_EVIDENCE.md)
 - [ReimuObject evidence and historical checkpoints](docs/REIMU_OBJECT_EVIDENCE.md)

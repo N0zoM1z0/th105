@@ -5,17 +5,51 @@ under `.analysis/`. Neither is included in a fresh clone. Start from the
 [current handoff](RE_HANDOFF.md) and live ledgers: old reports retain their
 source/object/tool epoch and cannot substitute for a fresh comparison.
 
+## November 3 maintenance and pause
+
+Reconstruction is paused at the user's request. The current handoff is now a
+concise state/recovery document; its preceding 3,147 lines are preserved verbatim
+in [the November 3 archive](RE_HANDOFF_HISTORY_2026_11_03.md). Historical dated
+sections below describe their own checkpoints, not the current task state.
+
+Git was repacked serially with `--keep-unreachable`, without expiring reflogs,
+pruning unreachable objects or removing worktrees. All object IDs, refs and
+reflog entries compared equal before/after. Allocated Git storage fell from
+356,564,992 to17,002,496 bytes (about323.8MiB reclaimed before this maintenance
+commit). Source-backed cache cleanup removed855 validated Python bytecode files;
+At the initial cleanup, build/pycache allocated storage fell from27,820,032
+to9,158,656 bytes; subsequent CI can regenerate temporary bytecode. Unqualified
+cache entries were retained. Logical-byte inventories are distinct from allocated
+storage and do not imply system-wide unique block savings.
+
+The protected before/after inventory verified2167 target/tool/environment/database
+files and all six other worktrees unchanged. No game source, ledger, compiler,
+active environment, analysis database, frozen native control or accepted receipt
+was removed. `build/match-units`, `build/origin-anchors` and private analysis
+recipes remain available. The cleanup script and inventories are local under
+`.analysis/handoff-cleanup-20261103/` and `build/handoff-cleanup-20261103/`.
+
+The last design-loader CIL experiment, sprite-options experiment and preceding
+private title-acquire provider context are additionally bundled in
+`build/handoff-cleanup-20261103/design-sprite-resume.tar.gz`. All261 members were
+round-trip hash-verified against `resume-members.json`; archive size1,957,960 bytes,
+SHA-256 `a2a6ccb1cd8febbfb4dde2d1420d21acda1ed5e522a53418457625a03ffda50e`.
+Loose originals remain in place, so this is a recovery copy, not extra cleanup
+savings. It is ignored/local and absent from a fresh clone. It excludes the
+canonical game PE, installed tools, databases and credentials. List the archive
+before selective restoration; never overwrite newer work blindly. Build success
+inside this bundle is not an accepted whole-function comparison.
+
 ## October 26 cleanup and handoff
 
-The user cleared the active reconstruction goal and requested handoff. The
-[current handoff](RE_HANDOFF.md) now contains the current state, score-family
-checkpoints, parked lanes, environment and recovery steps; the complete
+On October26 the user requested a handoff. That dated handoff recorded the
+score-family checkpoint, parked lanes, environment and recovery steps; the complete
 preceding handoff is preserved in
 [the October26 archive](RE_HANDOFF_HISTORY_2026_10_26.md). The already exact
 1155-byte score persistence function is finalized in
 [its evidence record](SCORE_PERSIST_2026_10_26.md); no new frontier was opened.
 
-Current-scope recipes, frozen first/control objects, public source snapshots,
+October26 score-family recipes, frozen first/control objects, public source snapshots,
 full comparison/audit receipts and the completed three-peer TU control are
 preserved in `build/handoff-cleanup-20261026/score-family-resume.tar.gz`.
 `score-family-members.json` pins every repository-relative member; `bundle.json`
@@ -41,8 +75,8 @@ No worktree, Git object or reflog is pruned by this cleanup.
 
 ## October 25 cleanup and handoff
 
-The user requested cleanup and a new-agent handoff. Current state is summarized
-in [RE_HANDOFF.md](RE_HANDOFF.md); its full preceding1582-line chronology is
+On October25 the user requested cleanup and a new-agent handoff. The then-current
+state was summarized in the handoff; its preceding1582-line chronology is
 preserved in [the dated archive](RE_HANDOFF_HISTORY_2026_10_25.md). The active
 Tenshi partial draft and target observations remain in their original private
 paths. No game source, ABI, compiler profile or acceptance ledger changed.
