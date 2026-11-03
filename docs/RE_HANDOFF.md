@@ -330,3 +330,7 @@ The complete Fighter scripted-input policy `0x463E40` now matches 753/753 by exp
 ### 2026-11-03: classify script command advance
 
 The complete 104-byte `0x405AC0` script cursor advance and two original call sites from the exact timeline loader establish game-authored ownership. Its source and private iterator helper ABI are still unresolved; no source or exact-byte credit is added. See `docs/SCRIPT_COMMAND_CURSOR_2026_10_29.md`.
+
+### 2026-11-03: classify battle policy bodies
+
+Complete CFGs and fresh exact caller edges establish authored ownership of spell selection shuffle `0x432420` (196 bytes) and battle overlay rendering `0x4666A0` (670 bytes). Both previous source hypotheses remain unselected/nonexact; no exact-byte gain. See `docs/ORIGIN_RECOVERY_2026_11_03.md`.

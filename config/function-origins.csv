@@ -1021,7 +1021,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00432310,authored_game,battle,authored,observed,canonical-exact-authored
 0x00432360,authored_game,battle,authored,observed,canonical-exact-authored
 0x004323B0,compiler_generated,battle,exclude,observed,vc8-generated-deque-short-erase
-0x00432420,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00432420,authored_game,battle,authored,observed,spell-shuffle-authored-106a
 0x004324F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00432520,authored_game,battle,authored,observed,canonical-exact-authored
 0x00432550,authored_game,battle,authored,observed,canonical-exact-authored
@@ -1949,7 +1949,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004660A0,compiler_generated,runtime,exclude,observed,vc8-generated-background-initialize-emitted-106a
 0x004663E0,compiler_generated,battle,exclude,observed,vc8-generated-effect-sprite-vector-assign-106a
 0x004664A0,authored_game,battle,authored,observed,canonical-exact-authored
-0x004666A0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004666A0,authored_game,battle,authored,observed,battle-overlay-render-authored-106a
 0x00466940,compiler_generated,battle,exclude,observed,vc8-generated-battle-render-request-list-comdat-106a
 0x00466980,authored_game,battle,authored,observed,canonical-exact-authored
 0x004669F0,authored_game,battle,authored,observed,canonical-exact-authored
