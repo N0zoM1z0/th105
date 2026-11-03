@@ -891,7 +891,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00429870,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004298F0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x00429970,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
-0x00429A30,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00429A30,authored_game,battle,authored,observed,replay-header-read-authored-106a
 0x00429B70,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042A0A0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0042A140,unknown,,review,unknown,ida-1.06a-initial-inventory
@@ -2117,7 +2117,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00470D60,authored_game,battle,authored,observed,canonical-exact-authored
 0x00470ED0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00470F00,authored_game,battle,authored,observed,canonical-exact-authored
-0x00471180,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00471180,authored_game,battle,authored,observed,battle-round-reset-authored-106a
 0x004712B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00471340,authored_game,battle,authored,observed,canonical-exact-authored
 0x00471580,authored_game,battle,authored,observed,canonical-exact-authored

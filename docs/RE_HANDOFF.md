@@ -346,3 +346,7 @@ A real source-list reference in `0x45A7A0` reproduces native iterator preparatio
 ### 2026-11-03: classify network battle updates
 
 Complete server/client battle-update CFGs and RTTI-backed primary virtual slots establish authored ownership at `0x426180` (247 bytes) and `0x426380` (267 bytes). Prior source candidates remain unselected and nonexact; no exact-byte gain. See `docs/BATTLE_NETWORK_UPDATE_2026_10_28.md`.
+
+### 2026-11-03: classify replay and round policy
+
+Complete native bodies and fresh exact caller edges establish authored ownership of replay-header read `0x429A30` (313 bytes) and battle-round reset `0x471180` (290 bytes). Existing source hypotheses remain unselected/nonexact; no exact-byte gain. See `docs/ORIGIN_RECOVERY_2026_11_03.md`.

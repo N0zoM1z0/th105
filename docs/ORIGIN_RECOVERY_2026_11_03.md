@@ -6,3 +6,7 @@ The original Japanese 1.06a image is SHA-256 `56350024879199861579c11b0e1c67b959
 - `0x4666A0` is the 670-byte battle-manager overlay rendering body. Its complete CFG reaches all bytes and the RET, with no indirect or outgoing jumps; the independently exact phase method `0x466980` tail-jumps to it at `0x4669DE`. Body SHA-256: `916c2058290c838da9b3a11d5ba076df2b0b0156f3ba375a3b314058f656a40f`.
 
 These game-policy bodies and original caller edges establish authored ownership. Prior near-size source hypotheses remain nonexact and unselected; these classifications add no source or exact-byte credit. Receipts: `build/frontier-spell-shuffle-origin-20261103/`.
+
+## Replay header and round reset
+
+The full 313-byte replay-header read `0x429A30` is called at `0x42A296` by the freshly exact replay-list formatter `0x42A150`; its SHA-256 is `7b806a89700b2d3f9220e0848a68b5c1fe52be0684658414d8821421eb3663f3`. The full 290-byte battle-round reset `0x471180` is called at `0x444E0D` by the freshly exact continue-menu update `0x444C70`; its SHA-256 is `bf64af9cf4b91fa500f9fef4f90c8c9415c211fb7f164d271c69ce45a6f46317`. Both closed CFGs reach every byte and have no indirect or outgoing direct jumps. Their game-specific behavior and exact caller edges establish authored ownership. Prior source hypotheses remain unselected/nonexact; no exact-byte gain. Evidence: `build/frontier-new-owner-edges-20261103/`.
