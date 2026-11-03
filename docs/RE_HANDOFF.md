@@ -362,3 +362,7 @@ The linked context now uses official, source-locked libpng 1.5.2 and existing zl
 ### 2026-11-03: native PNG source fingerprint
 
 Official libpng 1.5.2 `png_sig_cmp` compiled with pinned VC8 `/O2 /GS` reproduces all 298 native bytes at `0x66B870`; the same 1.2.5 control is 297 bytes and nonexact. This strengthens, but does not prove, the native library release identification. The provider audit reproduces the exact comparison and smoke test. No authored bytes added. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.
+
+### 2026-11-03: verify PNG provider interfaces
+
+Pinned libpng 1.5.2 source also reproduces the full native IO getter 13/13, create-read wrapper 35/35 and BGR setter 13/13. The provider audit now replays these alongside the 298-byte signature check and synthetic decode. These third-party bodies add no authored bytes and do not establish whole-library equivalence. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.
