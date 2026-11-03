@@ -6392,3 +6392,17 @@ evidence = "Complete499-byte specialized system-effect allocation/reuse and gene
 required_body_hashes = [{ address = "0x00456B70", size = 499, sha256 = "cefb3b0d53f5882470d1b170a6d2af2e44b77588a509a46b45cbedb6b7c1c012" }]
 required_direct_edges = [{ caller = "0x00457110", site = "0x00457127", target = "0x00456B70", caller_status = "matching" }]
 required_dword_values = [{ address = "0x006C2860", value = "0x00454FC0" }]
+
+[[rules]]
+id = "fighter-sequence-prepare-authored-106a"
+addresses = ["0x0045DC90"]
+expected_count = 1
+expected_bytes = 259
+expected_names = ["sub_45DC90"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete spell sequence preparation and actual sprite-record lifetime called twice by the canonical-exact practice control. Typed source257/native259 remains nonexact; no partial or exact-byte credit. docs/SEQUENCE_PREPARATION_2026_10_28.md."
+required_body_hashes = [{ address = "0x0045DC90", size = 259, sha256 = "9c5d531d1681747f13fea73e643355017f3be8cabcf65fbca0e41a6bfa91e23d" }]
+required_direct_edges = [{ caller = "0x00428070", site = "0x00428238", target = "0x0045DC90", caller_status = "matching" }, { caller = "0x00428070", site = "0x00428246", target = "0x0045DC90", caller_status = "matching" }]

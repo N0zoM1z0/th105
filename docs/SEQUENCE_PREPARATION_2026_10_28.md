@@ -56,3 +56,7 @@ that value. Base ownership does not explain this scheduling difference. The
 source control is restored out; no repeat of this base-only trial is needed.
 Receipts: build/frontier-sequence-prepare-copy-20261031/baseline.json and
 base-owner.json. No ledger, match or count changes.
+
+## 2026-11-03 source registration
+
+Fresh target-backed comparison still emits257/native259, with no whole-function or EH exactness claim. The complete 482-byte practice-control caller at `0x428070` remains canonical exact and calls this entry at both `0x428238` and `0x428246`. The native body hash and these two edges now anchor authored/source-present registration. Receipts: `build/frontier-sequence-prepare-source-20261103/`. This adds no canonical exact bytes.

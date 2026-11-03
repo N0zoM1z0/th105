@@ -218,3 +218,7 @@ The normal and Story InfoManager effect wrappers now call the shared real `Battl
 ### 2026-11-03: restore ordinary-COFF review discovery
 
 `rank-existing-object-review-symbols.py` now explicitly excludes named `.ltcg.obj` VC8 intermediates, which GNU `nm` cannot parse, and reports their count. It still fails on unexpected `nm` errors rather than silently discarding ordinary objects. A fresh scan covered 854 ordinary objects and excluded 42 LTCG intermediates. Three same-size rows all refer to the previously rejected package allocator `0x41D160`; the source-specific prior proof found a different native fingerprint, so no origin or exact credit is added. Discovery output is `build/frontier-review-discovery-20261103/rank.json` and remains provisional.
+
+### 2026-11-03: register spell sequence preparation source
+
+`Fighter::prepare_next_spell_sequence_entry` at `0x45DC90` is now classified authored and source-present using the complete 259-byte native body and two direct edges from the freshly exact 482-byte practice-control caller. Existing typed source emits257 bytes and remains nonexact; cleanup EH is not claimed exact. See `docs/SEQUENCE_PREPARATION_2026_10_28.md`. Canonical exact count and bytes remain unchanged.
