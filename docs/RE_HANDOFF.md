@@ -1,11 +1,11 @@
 # TH10.5 reconstruction handoff
 
-## Paused after maintenance — November 3, 2026
+## Resumed after maintenance — November 3, 2026
 
-The user requested documentation/code housekeeping, correction of outdated
-information and safe storage cleanup, then a pause. Do not resume reconstruction
-or native experiments until the user asks. This maintenance changes no game
-source, ABI, compiler profile, acceptance ledger or exactness claim.
+The user requested documentation and storage cleanup, then paused the work.
+They explicitly resumed the TH105 goal on November 3. The registered repository
+connection, clean worktree, target hash and ledgers were verified before resuming.
+The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
 The last reconstruction checkpoint is `38c54b63` (complete source for CSprite
 texture options, not an exact match). Work was committed locally; no push was
@@ -69,14 +69,27 @@ That supports shared behavior, not unique original source spelling/TU ownership.
 No wrapper, code-address binding, forced ABI or extra exact root was accepted.
 Public loader source remains independently EH-blocked and nonexact.
 
+A paired raw-PE/linked-image switch audit now validates both dense seven-entry
+switches and all destination instruction boundaries. Native 0x40B000 has 2666
+callable bytes, all 860 instructions reachable, followed by 8B FF alignment
+and its separate table at 0x40BA6C. CIL has 2708 callable bytes, 856 reachable
+instructions, one three-byte alignment gap and a separate 28-byte table. Both
+have no unresolved indirect jump or internal call. A provenance-checked private
+recipe is `.analysis/frontier-design-real-context-20261102/audit-switch.py`;
+its receipt is `build/frontier-design-real-context-20261102/paired-switch-audit.json`.
+It does not validate complete relocation/EH equality or confer any exact credit.
+The natural CIL gauge initializer uses mode EAX but receives the object on stack
+and RET16 (330 callable bytes); native uses ESI and RET12 (360 bytes). Do not
+force an ABI or reopen the old spelling/flag grid to close that difference.
+
 The related private title-acquire provider context and sprite-options experiment
 are retained in the verified recovery bundle described in [ARTIFACTS.md](ARTIFACTS.md).
-The last inspection was interrupted; no further native experiment ran during
-this maintenance. Do not reopen closed UV, x87, scratch-frame or source-spelling
+The earlier inspection was interrupted; the paired audit above was run after
+the user resumed the goal. Do not reopen closed UV, x87, scratch-frame or source-spelling
 lanes without independent new evidence. Consult the dated records and archive
 before repeating any experiment.
 
-## Resume workflow, only when requested
+## Bounded reconstruction workflow
 
 1. Read AGENTS.md, this handoff, the relevant source and its evidence note.
 2. Inspect status; preserve other sessions' changes and all six older worktrees.
