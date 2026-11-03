@@ -1,3 +1,4 @@
+#include "NetworkReplayRequestPacket.hpp"
 #include "NetworkReplayPacket.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 
@@ -46,15 +47,6 @@ struct ReplayPacketDequeOwner28 {
     ~ReplayPacketDequeOwner28();
 };
 
-class RequestReplayPacket10 : public PacketResultBase4 {
-public:
-    virtual unsigned int serialize(void *buffer);
-    void parse(const unsigned char *input);
-
-    unsigned int sequence_008;
-    unsigned char tag_00c;
-    unsigned char reserved_00d[3];
-};
 
 class NetworkClientSend4View {
 public:
@@ -178,18 +170,18 @@ ReplayPacketDequeOwner28::~ReplayPacketDequeOwner28()
 {
 }
 
-unsigned int RequestReplayPacket10::serialize(void *buffer)
+unsigned int NetworkRequestReplay10::serialize(void *buffer)
 {
     unsigned char *output = static_cast<unsigned char *>(buffer);
     output[0] = 11;
-    *reinterpret_cast<unsigned int *>(output + 1) = sequence_008;
+    *reinterpret_cast<unsigned int *>(output + 1) = value_008;
     output[5] = tag_00c;
     return 6;
 }
 
-void RequestReplayPacket10::parse(const unsigned char *input)
+void NetworkRequestReplay10::parse(const unsigned char *input)
 {
-    sequence_008 = *reinterpret_cast<const unsigned int *>(input + 1);
+    value_008 = *reinterpret_cast<const unsigned int *>(input + 1);
     tag_00c = input[5];
 }
 
@@ -312,9 +304,9 @@ void NetworkClientPacketOwnerView::flush_replay_values_44d800()
 void NetworkClientPacketOwnerView::pump_replay_request_44d880()
 {
     if (++g_replay_request_poll_counter % 4 == 0) {
-        RequestReplayPacket10 packet;
+        NetworkRequestReplay10 packet;
         packet.tag_00c = expected_tag_6b8;
-        packet.sequence_008 = replay_sequence_6bc;
+        packet.value_008 = replay_sequence_6bc;
         PacketSerializeView *request =
             reinterpret_cast<PacketSerializeView *>(&packet);
         sender_3b4.send_client(

@@ -1,3 +1,4 @@
+#include "NetworkReplayRequestPacket.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkAckInfoPacket.hpp"
 
@@ -38,19 +39,6 @@ public:
     unsigned int result_004;
 };
 
-struct NetworkRequestReplayBase4 {
-    NetworkRequestReplayBase4() : result_004(0) {}
-    unsigned int result_004;
-};
-
-class NetworkRequestReplay10 : public NetworkRequestReplayBase4 {
-public:
-    NetworkRequestReplay10() {}
-    virtual unsigned int serialize(void *buffer);
-    unsigned int value_008;
-    unsigned char tag_00c;
-    unsigned char reserved_00d[3];
-};
 
 class NetworkServerPrimarySecondaryDispatchView {
 public:

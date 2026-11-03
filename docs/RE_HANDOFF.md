@@ -294,3 +294,7 @@ Client `0x44EE80` and Server `0x44FB40` secondary packet dispatchers now use the
 ### 2026-11-03: shared replay IPacket base
 
 The native replay RTTI identifies the same offset-zero `IPacket` base as ACK_INFO. Replay serialization, parsing, Client secondary dispatch and replay-request handling now share a single actual replay type with that base. All twelve packet-leaf exact roots, the Client dispatch and ACK exact roots/senders replay; the constructor and replay-request parent remain nonexact. No new exact credit. See `docs/ACK_PACKET_BASE_2026_10_29.md`.
+
+### 2026-11-03: shared replay-request IPacket type
+
+The native request-replay RTTI identifies the same offset-zero `IPacket` base. Its serializer/parser, Client/Server dispatchers and request handler now share the real request type, replacing prior incompatible base and virtual-method views. All twelve packet-leaf roots, three Client secondary roots and the Server dispatcher replay exactly; the request handler remains nonexact with its prior hash. No new exact credit or complete-link/EH claim. See `docs/ACK_PACKET_BASE_2026_10_29.md`.

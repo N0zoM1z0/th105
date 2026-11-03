@@ -40,3 +40,9 @@ The Client and Server secondary packet dispatchers now also construct and parse 
 The SHA-pinned target's replay vtable `0x6C24F8` points to COL `0x6D880C`, whose hierarchy `0x6D8820` identifies `CDPP_REPLAY` and the same offset-zero `IPacket` base descriptor `0x6D870C` used by ACK_INFO. `NetworkPacketBase.hpp` now shares that established polymorphic base, and `NetworkReplayPacket.hpp` supplies the same real replay type to its serializer/parser, client secondary dispatcher and replay-request handler. Native RTTI receipt: `build/frontier-replay-shared-ipacket-20261103/rtti.json`.
 
 Fresh canonical comparisons preserve all twelve packet-leaf roots, including replay serialize `0x44D990` 285/285 and parse `0x44E160` 171/171; Client dispatch remains 582/582, both ACK serializer/parser roots and both exact ACK senders remain exact. The ACK constructor and replay-request dispatcher retain their prior nonexact results and hashes. No new authored exact bytes, cleanup-EH equivalence or complete-link claim.
+
+## Shared IPacket base for replay requests
+
+The target request-replay vtable `0x6C24E0` points to COL `0x6D8774` and hierarchy `0x6D8788`, which uses the same offset-zero `IPacket` base descriptor `0x6D870C`. `NetworkReplayRequestPacket.hpp` now supplies the real shared request type to Client/Server secondary dispatch, the request serializer/parser and the request handler. This also replaces the old Client-only `packet_type()` virtual declaration with the established serializer slot. RTTI receipt: `build/frontier-replay-request-shared-ipacket-20261103/rtti.json`.
+
+Fresh canonical comparisons preserve all twelve packet-leaf roots (including request serialization 27/27 and parse 19/19), Client secondary roots 91/91, 13/13 and 68/68, and Server dispatcher 532/532. The request handler remains 566/native566 nonexact with the same canonical candidate hash; full cleanup EH and integrated link are not claimed. No new exact bytes are added.

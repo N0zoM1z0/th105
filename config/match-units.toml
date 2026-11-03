@@ -15464,11 +15464,11 @@ rel32_targets = ["_strcpy_s=0x0068AD95"]
 
 [[units.gpt-web-network-packet-leaf-runtime.functions]]
 address = "0x0044D840"
-symbol_base = "?serialize@RequestReplayPacket10@th105@@UAEIPAX@Z"
+symbol_base = "?serialize@NetworkRequestReplay10@th105@@UAEIPAX@Z"
 
 [[units.gpt-web-network-packet-leaf-runtime.functions]]
 address = "0x0044D860"
-symbol_base = "?parse@RequestReplayPacket10@th105@@QAEXPBE@Z"
+symbol_base = "?parse@NetworkRequestReplay10@th105@@QAEXPBE@Z"
 
 [[units.gpt-web-network-packet-leaf-runtime.functions]]
 address = "0x0044D920"
@@ -15564,7 +15564,7 @@ rel32_targets = [
 ]
 dir32_targets = [
   "_g_replay_request_poll_counter=_g_replay_request_poll_counter",
-  "??_7RequestReplayPacket10@th105@@6B@=??_7NetworkRequestReplay10@th105@@6B@",
+  "??_7NetworkRequestReplay10@th105@@6B@=??_7NetworkRequestReplay10@th105@@6B@",
 ]
 [units.gpt-web-float-collision-extents]
 kind = "probe"
@@ -29942,7 +29942,7 @@ notes = "Network request replay/ACK dispatch44E460; complete native body and rea
 
 [[units.exact-first-network-replay-request-dispatch.functions]]
 address = "0x0044E460"
-symbol_base = "?dispatch@DispatchOwner@th105@@QAEXIPBUDispatchRequest@2@@Z"
+symbol_base = "?dispatch@DispatchOwner@th105@@QAEXIPBVNetworkRequestReplay10@2@@Z"
 rel32_targets = [
  "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
  "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
@@ -29956,7 +29956,7 @@ rel32_targets = [
  "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
- "__ehhandler$?dispatch@DispatchOwner@th105@@QAEXIPBUDispatchRequest@2@@Z=__ehhandler$?dispatch_secondary_request@CNetworkClientReplayDispatchView@th105@@QAEXIPBUNetworkRequestReplay10@2@@Z",
+ "__ehhandler$?dispatch@DispatchOwner@th105@@QAEXIPBVNetworkRequestReplay10@2@@Z=__ehhandler$?dispatch_secondary_request@CNetworkClientReplayDispatchView@th105@@QAEXIPBUNetworkRequestReplay10@2@@Z",
  "??_7NetworkAckInfoPacket40@th105@@6B@=??_7NetworkAckInfoPacket40@th105@@6B@",
  "??_7ReplayPacket28@th105@@6B@=??_7NetworkReplayPacket28@th105@@6B@",
  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",

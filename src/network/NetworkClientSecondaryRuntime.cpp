@@ -1,3 +1,4 @@
+#include "NetworkReplayRequestPacket.hpp"
 #include <stddef.h>
 #include <string.h>
 
@@ -26,20 +27,6 @@ struct NetworkInboundReplay6 {
 };
 #pragma pack(pop)
 
-struct NetworkRequestReplayBase4 {
-    NetworkRequestReplayBase4() : base_value_004(0) {}
-    unsigned int base_value_004;
-};
-
-class NetworkRequestReplay10 : public NetworkRequestReplayBase4 {
-public:
-    NetworkRequestReplay10() {}
-    virtual unsigned int packet_type() const;
-
-    unsigned int value_008;
-    unsigned char tag_00c;
-    unsigned char reserved_00d[3];
-};
 
 // The factory at 0x0043CEA1 allocates 0x6E4 bytes.  Current RTTI fixes this
 // secondary subobject at +0x6DC, so the interface itself is eight bytes:

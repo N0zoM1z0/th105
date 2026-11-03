@@ -1,11 +1,11 @@
 #include "engine/CriticalSectionWrapper.hpp"
 #include "NetworkAckInfoPacket.hpp"
 #include "NetworkReplayPacket.hpp"
+#include "NetworkReplayRequestPacket.hpp"
 #include <deque>
 #include <stddef.h>
 namespace th105 {
 struct DispatchPacketView { virtual unsigned serialize(void *buffer); };
-struct DispatchRequest { unsigned char reserved[8]; unsigned sequence; unsigned char tag; };
 struct DispatchPeer { unsigned char reserved[4]; unsigned char value; };
 struct DispatchSide {
     unsigned char value; unsigned char reserved1[4]; unsigned char status; unsigned char reserved2[2];
@@ -21,7 +21,7 @@ struct DispatchOwner {
     unsigned char reserved_278[0x13c]; DispatchSend sender; unsigned char reserved_3b5[0x1ff];
     unsigned char buffer[0x100]; void *input_sink; unsigned char tag; unsigned char reserved_6b9[3];
     unsigned replay_sequence, replay_metadata, reserved_6c4; std::deque<short> history;
-    void dispatch(unsigned channel, const DispatchRequest *request);
+    void dispatch(unsigned channel, const NetworkRequestReplay10 *request);
 };
 typedef char SideSize[sizeof(DispatchSide)==0x20?1:-1];
 typedef char AckSize[sizeof(NetworkAckInfoPacket40)==0x40?1:-1];
@@ -35,9 +35,9 @@ typedef char TagOff[offsetof(DispatchOwner,tag)==0x6b8?1:-1];
 typedef char MetadataOff[offsetof(DispatchOwner,replay_metadata)==0x6c0?1:-1];
 typedef char HistoryOff[offsetof(DispatchOwner,history)==0x6c8?1:-1];
 typedef char AckLockOff[offsetof(DispatchOwner,ack_lock)==0x25c?1:-1];
-void DispatchOwner::dispatch(unsigned channel, const DispatchRequest *request)
+void DispatchOwner::dispatch(unsigned channel, const NetworkRequestReplay10 *request)
 {
-    if (request->tag != tag) {
+    if (request->tag_00c != tag) {
         NetworkAckInfoPacket40 packet;
         ack_lock.enter();
         for (int i=0;i<2;++i) {
@@ -55,11 +55,11 @@ void DispatchOwner::dispatch(unsigned channel, const DispatchRequest *request)
         ack_lock.leave();
     } else {
         ReplayPacket28 packet;
-        packet.sequence_008=request->sequence;
+        packet.sequence_008=request->value_008;
         packet.tag_010=tag;
         packet.metadata_00c=replay_metadata;
         replay_lock.enter();
-        for (unsigned i=request->sequence; i<request->sequence+60 && i<history.size(); ++i) {
+        for (unsigned i=request->value_008; i<request->value_008+60 && i<history.size(); ++i) {
             packet.values_014.push_back(history.at(i));
             ++packet.sequence_008;
         }
