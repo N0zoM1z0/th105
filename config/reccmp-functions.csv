@@ -1832,3 +1832,4 @@ BgmStream_transition_gain,0x00402B70,function
 BgmService_set_master_gain,0x00403A30,function
 BattleInfoRecord_update_story,0x00471930,function
 PracticeBattlePolicy_update,0x00428260,function
+CScenarioData_select_label,0x00455490,function
