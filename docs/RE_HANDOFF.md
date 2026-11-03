@@ -233,7 +233,7 @@ The native `0x45A7A0` scenario CSV/event parser is classified authored from its 
 
 ### 2026-11-03: network replay-dispatch origin
 
-The 566-byte network ACK/replay dispatch entry `0x44E460` is classified authored from its complete target body and freshly exact client/server caller edges. An earlier same-size natural-source candidate remains nonexact and is not selected; no source-present, EH or exact-byte credit is claimed. See `docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md`.
+The 566-byte network ACK/replay dispatch entry `0x44E460` is classified authored from its complete target body and freshly exact client/server caller edges. A later source-selection checkpoint below records the natural candidate; it remains nonexact and no EH or exact-byte credit is claimed. See `docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md`.
 
 ### 2026-11-03: battle information-record runtime origin
 
@@ -278,3 +278,7 @@ The selected `0x463E40` source now uses the native direct random-threshold retur
 ### 2026-11-03: connect CPU boundary provider
 
 The Fighter CPU-input selector now calls the actual `Fighter::classify_fighter_x_boundary` implementation instead of a declaration-only alias. Fresh comparisons preserve the 171-byte CPU selector, four stage-geometry roots (including the 59-byte boundary classifier), and the scripted-input parent's unchanged 753/native753 nonexact two-byte residue. No complete-link or new exact credit is claimed. Receipts: `build/frontier-fighter-cpu-real-boundary-20261103/`.
+
+### 2026-11-03: select network replay source
+
+A typed ACK/replay request dispatcher is selected at `0x44E460`, with both native branches, real deque/packet lifetimes and target-address evidence for EH and vtables. Full canonical comparison is 566/native566 but 177 bytes differ, first at `+0x49` due to control-flow displacement. EH equivalence and an integrated link remain unproved. No exact credit. See `docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md`.

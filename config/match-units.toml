@@ -29931,3 +29931,35 @@ rel32_targets = [
  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
 ]
 dir32_targets = ["?g_match_identifier@th105@@3HA=?g_match_identifier@th105@@3HA"]
+
+[units.exact-first-network-replay-request-dispatch]
+kind = "probe"
+source = "src/network/NetworkReplayRequestDispatch.cpp"
+object = "build/match-units/ExactFirst_NetworkReplayRequestDispatch.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Network request replay/ACK dispatch44E460; complete native body and real packet lifetimes, currently nonexact. EH handler mapping is address evidence only; no complete cleanup-EH or linking claim. docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md."
+
+[[units.exact-first-network-replay-request-dispatch.functions]]
+address = "0x0044E460"
+symbol_base = "?dispatch@DispatchOwner@th105@@QAEXIPBUDispatchRequest@2@@Z"
+rel32_targets = [
+ "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
+ "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
+ "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+ "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+ "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
+ "?send@DispatchSend@th105@@QAEXIPBXIHPAI@Z=0x00416B60",
+ "?at@?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
+ "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042A4B0",
+ "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
+ "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+ "__ehhandler$?dispatch@DispatchOwner@th105@@QAEXIPBUDispatchRequest@2@@Z=__ehhandler$?dispatch_secondary_request@CNetworkClientReplayDispatchView@th105@@QAEXIPBUNetworkRequestReplay10@2@@Z",
+ "??_7DispatchAck@th105@@6B@=??_7NetworkAckInfoPacket40@th105@@6B@",
+ "??_7DispatchReplay@th105@@6B@=??_7NetworkReplayPacket28@th105@@6B@",
+ "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+ "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
+ "___security_cookie=___security_cookie",
+]

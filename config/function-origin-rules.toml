@@ -6445,7 +6445,7 @@ origin = "authored_game"
 subsystem = "network"
 disposition = "authored"
 confidence = "observed"
-evidence = "Network replay/ACK request dispatch, pinned by complete566-byte original body and two independently exact client/server secondary dispatchers. No current selected source or exact-byte credit. docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md."
+evidence = "Network replay/ACK request dispatch, pinned by complete566-byte original body and two independently exact client/server secondary dispatchers. Selected source remains nonexact; no exact-byte credit. docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md."
 required_body_hashes = [{ address = "0x0044E460", size = 566, sha256 = "1cf3d06ff026c5e6401efa673b64c3ab8eea34f7d0b664aa26ed61423b13952c" }]
 required_direct_edges = [{ caller = "0x0044EA30", site = "0x0044EA69", target = "0x0044E460", caller_status = "matching" }, { caller = "0x0044FB40", site = "0x0044FBB1", target = "0x0044E460", caller_status = "matching" }]
 
