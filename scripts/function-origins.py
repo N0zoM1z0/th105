@@ -1194,6 +1194,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("linked_endpoint_allocator_anchor_file")
         or rule.get("linked_peer_allocator_anchor_file")
         or rule.get("linked_packet_deque_back_anchor_file")
+        or rule.get("linked_csv_deque_copy_anchor_file")
         or rule.get("linked_unsigned_list_growth_anchor_file")
         or rule.get("linked_bgm_list_growth_anchor_file")
         or rule.get("linked_resource_deque_tidy_anchor_file")
@@ -2496,6 +2497,10 @@ def validate_rule_evidence(
         from linked_peer_allocator_origins import validate as validate_peer_allocator
         errors.extend(validate_peer_allocator(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
+    if rule.get("linked_csv_deque_copy_anchor_file"):
+        from linked_csv_deque_copy_origins import validate as validate_csv_deque_copy
+        errors.extend(validate_csv_deque_copy(rule, selected, rows, read_pe,
+            str(target_manifest()["target"]["sha256"])))
     if rule.get("linked_packet_deque_back_anchor_file"):
         from linked_packet_deque_back_origins import validate as validate_packet_deque_back
         errors.extend(validate_packet_deque_back(rule, selected, rows, read_pe,

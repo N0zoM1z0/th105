@@ -1,0 +1,7 @@
+# CSV deque copy origins, 2026-11-03
+
+The genuine CSV/file/script loading linked context emits two iterator specializations of `std::copy` and corresponding `_Copy_opt` implementations for `std::deque<std::string>`. Both specializations reproduce the whole 112-byte native body at `0x410ED0` and the whole 188-byte native body at `0x411040`, respectively, after only their named direct-call displacements are rebound. They are two physical native functions, not four. Both are classified as compiler-generated and excluded from authored-byte credit.
+
+The emitted const and nonconst chains each continue to a 170-byte forward-iterator implementation, whole-body equal to `0x411280`, which already had an independent compiler origin. Its direct string assignment target and the static invalid-parameter runtime also retain independent origin evidence. The validation checks the real typed symbols and owner, source and native direct call sites, pinned standard headers and source closure, complete bodies and relocation boundaries, and all same-size inventory entries. No bytes are masked. The source and native parent functions are not claimed exact or identical.
+
+The actual CSV CIL is rebuilt and its already-accepted script load and reader open roots are rechecked. The two source overloads are witnesses for the same physical native bodies; they are not counted twice. This classification changes the review/exclusion inventory, not the authored exact-byte total.

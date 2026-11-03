@@ -400,10 +400,10 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00410600,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00410E20,compiler_generated,ui,exclude,observed,vc8-generated-menu-connect-history-std-comdats-106a
 0x00410E80,compiler_generated,ui,exclude,observed,vc8-generated-menu-connect-history-std-comdats-106a
-0x00410ED0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00410ED0,compiler_generated,vc8_stl,exclude,observed,linked-csv-deque-copy-106a
 0x00410F40,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00410FC0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
-0x00411040,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00411040,compiler_generated,vc8_stl,exclude,observed,linked-csv-deque-copy-106a
 0x00411100,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x004111C0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00411280,compiler_generated,ui,exclude,observed,vc8-generated-menu-connect-history-std-comdats-106a

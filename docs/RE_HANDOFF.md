@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Real CSV CIL deque<string> copy chains validate two physical compiler-generated helpers at `0x410ED0` (112 bytes) and `0x411040` (188 bytes). Const/nonconst source witnesses map to the same two native bodies; the forward child was already excluded. Parents remain unaccepted. No authored exact-byte credit; see `docs/CSV_DEQUE_COPY_ORIGINS_2026_11_03.md`.
+
 Packet deque back 0x4179D0/82 is compiler-generated: whole body, real
 source/native acquire call edges, three runtime calls and inventory uniqueness
 pass; the acquire parent remains nonexact. Review291 / excluded2080; no authored

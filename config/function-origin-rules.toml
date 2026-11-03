@@ -6142,3 +6142,14 @@ subsystem = "vc8_stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Complete82-byte packet deque back emitted by real UDP acquire source in sender CIL and called by the native410-byte acquire parent at417706. Three verified invalid-parameter calls, actual private EDI receiver, full body and inventory uniqueness are checked. Parent remains nonexact; no authored byte credit. docs/PACKET_DEQUE_BACK_ORIGIN_2026_11_03.md."
+
+[[rules]]
+id = "linked-csv-deque-copy-106a"
+linked_csv_deque_copy_anchor_file = "config/linked-csv-deque-copy-origin-anchors.toml"
+expected_count = 2
+expected_bytes = 300
+origin = "compiler_generated"
+subsystem = "vc8_stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Real CSV loading CIL emits const and nonconst deque<string> copy specializations. Both typed chains match whole native bodies with named calls and unique inventory identities; the existing forward helper and runtime ownership are independently anchored. The source and native parents are not claimed exact. No authored byte credit. docs/CSV_DEQUE_COPY_ORIGINS_2026_11_03.md."
