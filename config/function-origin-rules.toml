@@ -6272,3 +6272,17 @@ confidence = "observed"
 evidence = "Complete276-byte owned-string scenario label search, called by freshly exact string wrapper. The actual source275 remains nonexact; neither partial bytes nor cleanup EH receive exact credit. docs/SCENARIO_LABEL_SOURCE_2026_11_03.md."
 required_body_hashes = [{ address = "0x00455490", size = 276, sha256 = "58a5ad2f28ad4f111408771ec435f7b34c3b1bf0bc77deb3185b7ce2f0498190" }]
 required_direct_edges = [{ caller = "0x0045A450", site = "0x0045A4A1", target = "0x00455490", caller_status = "matching" }]
+
+[[rules]]
+id = "info-combo-load-authored-106a"
+addresses = ["0x0046A8C0"]
+expected_count = 1
+expected_bytes = 413
+expected_names = ["sub_46A8C0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete413-byte game combo resource loading and adapter binding policy called by freshly exact InfoManager initialization. Existing source427 remains nonexact; no partial or exact-byte credit. docs/INFO_COMBO_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x0046A8C0", size = 413, sha256 = "396333d39a6ed32d902c670f80a884eacb5eb714a347451d93576e0201c61f48" }]
+required_direct_edges = [{ caller = "0x0046EB90", site = "0x0046EBB0", target = "0x0046A8C0", caller_status = "matching" }]

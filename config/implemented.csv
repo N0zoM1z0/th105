@@ -1642,3 +1642,4 @@ BgmService_set_master_gain
 BattleInfoRecord_update_story
 PracticeBattlePolicy_update
 CScenarioData_select_label
+InfoComboResource_load

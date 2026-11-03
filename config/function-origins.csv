@@ -2010,7 +2010,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0046A660,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046A800,authored_game,battle,authored,observed,canonical-exact-authored
 0x0046A8A0,authored_game,battle,authored,observed,canonical-exact-authored
-0x0046A8C0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0046A8C0,authored_game,battle,authored,observed,info-combo-load-authored-106a
 0x0046AA60,compiler_generated,battle,exclude,observed,vc8-generated-info-short-record-std-comdats-106a
 0x0046ABC0,compiler_generated,battle,exclude,observed,vc8-generated-info-short-record-std-comdats-106a
 0x0046AC30,authored_game,battle,authored,observed,canonical-exact-authored

@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Combo resource load `0x46A8C0` (413 bytes) is now individually mapped/source-present; exact InfoManager initialization replays. Source427 remains nonexact. See `docs/INFO_COMBO_SOURCE_2026_11_03.md`.
+
 2026-11-03: Scenario label selection `0x455490` (276 bytes) is now individually mapped/source-present. The exact owned-string caller replays; source275 and cleanup EH remain nonexact/unproved. See `docs/SCENARIO_LABEL_SOURCE_2026_11_03.md`.
 
 2026-11-03: Practice battle policy `0x428260` (553 callable bytes plus separate switch table) is now individually mapped/source-present; exact presentation caller replays. Source remains nonexact. See `docs/PRACTICE_POLICY_SOURCE_2026_11_03.md`.
@@ -51,7 +53,7 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The prior reconstruction checkpoint is `d70f0b2d` (practice-policy source tracking;
+The prior reconstruction checkpoint is `d6677200` (scenario-label source tracking;
 no new authored exact match). Work was committed locally; no push was
 performed by this session. Inspect live Git status before making further changes.
 
@@ -67,8 +69,8 @@ Verified from the live ledgers at this checkpoint:
 | Measure | Value |
 | --- | ---: |
 | Provisional candidates | 4027 |
-| Authored / excluded / review | 1663 / 2083 / 281 |
-| Mapped / source-present | 1834 / 1644 |
+| Authored / excluded / review | 1664 / 2083 / 280 |
+| Mapped / source-present | 1835 / 1645 |
 | Exact authored functions / bytes | 1426 / 443399 |
 | Configured units / function entries | 817 / 1989 |
 | Distinct units represented in matches.csv | 612 |
@@ -175,6 +177,6 @@ git diff --cached --check
 ```
 
 Default CI validates tooling and ledgers, not all native matches. Checkpoint
-the scenario-label checkpoint passed 996 tests in 106.353 seconds; the gate
-is recorded in `build/frontier-scenario-label-source-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
+the combo-source checkpoint passed 996 tests in 113.794 seconds; the gate
+is recorded in `build/frontier-info-combo-source-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.
