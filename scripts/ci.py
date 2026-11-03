@@ -38,6 +38,7 @@ EXACT_TEST_MODULES = (
     "test_linked_endpoint_allocator_origins",
     "test_linked_peer_allocator_origins",
     "test_linked_network_tree_erase_origins",
+    "test_linked_resource_deque_tidy_origins",
     "test_linked_bad_exception_origins",
     "test_boost_public_exception_copies",
     "test_boost_public_regex_exception",

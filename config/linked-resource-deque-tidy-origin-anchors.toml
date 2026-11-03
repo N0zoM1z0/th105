@@ -1,0 +1,15 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "exact-first-resource-manager-lifetime"
+[source_pins]
+"src/assets/ResourceHandleManagerLifetime.cpp" = "be15d390baacc57159029f59714449caa94bfcf6cfbb169cb01fa7479cab8896"
+"src/assets/ResourceHandleManagerLifetime.hpp" = "4f5b9c4d46abeb7762e7f88b4ef39f0a4cf61ac534d8ce465990b63d3912019f"
+"src/engine/CriticalSectionWrapper.hpp" = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
+"src/library/UnsignedIntList.cpp" = "02b4b940764c8f15fedb915d1a44ec7a4f5912ff7366b00033c2438e0e20e1c8"
+"src/library/UnsignedIntVector.cpp" = "c199617f8b35c32a7f5d3d2af6fcbc49255deea0e2ce8b5bc80034d27c2c31c3"
+"src/network/NetworkUdpPacketPool.hpp" = "a717ba21c199b4793d9582b2e3dc1da3846e6fdf1df807b696205e4b077eae72"
+[[anchors]]
+address = "0x00413E10"
+size = 102
+symbol = "?_Tidy@?$deque@PAUWaveBufferResource@th105@@V?$allocator@PAUWaveBufferResource@th105@@@std@@@std@@IAEXXZ"
+sha256 = "4de2dcbf24ee43a38316c27c60d25deff6dc0e0bdedb8f30de7cbc94a7e3b21d"

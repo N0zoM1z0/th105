@@ -6098,3 +6098,14 @@ confidence = "observed"
 evidence = "Actual CSprite primary RTTI slot owns complete334-byte texture/UV initialization policy, querying game texture manager404E60. Full body, COL/type, virtual slot and direct query edge are checked. Source334 remains nonexact at149; six finite modeled-query cases agree, not universal equivalence. docs/SPRITE_TEXTURE_OPTIONS_SOURCE_2026_11_02.md."
 required_rtti_virtual_bodies = [{ address = "0x00406A90", size = 334, slot = "0x006C0678", col_slot = "0x006C0664", col = "0x006DCCDC", type_descriptor = "0x006FA52C", type_name_contains = ".?AVCSprite@@", sha256 = "cef4fe718e7b4a273a2644a8a1a781a6412fdb70a7e0f8bdd31c27471990e3af", calls = [{ site = "0x00406ACD", target = "0x00404E60" }] }]
 required_dword_values = [{ address = "0x006C067C", value = "0x00406A60" }]
+
+[[rules]]
+id = "linked-resource-deque-tidy-106a"
+linked_resource_deque_tidy_anchor_file = "config/linked-resource-deque-tidy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 102
+origin = "compiler_generated"
+subsystem = "vc8_stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Complete102-byte deque cleanup emitted in real resource-manager CIL; exact98-byte wave owner calls it at401F6A. Both free calls, actual private ESI protocol, whole body and uniqueness across the candidate inventory are checked, without authored byte credit. docs/RESOURCE_DEQUE_TIDY_ORIGIN_2026_11_03.md."

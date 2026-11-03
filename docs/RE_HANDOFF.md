@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+The complete 102-byte 0x413E10 deque teardown is now independently classified
+compiler-generated from a fresh exact resource-manager CIL owner, full unmasked
+canonical body and inventory uniqueness. Review294 / excluded2077; no authored
+or exact credit. See RESOURCE_DEQUE_TIDY_ORIGIN_2026_11_03.md.
+
 Scene update, byte/float interpolation and easing now share the same actual
 0x94-byte update receiver instead of separate method-only views. The exact update
 801, float160 and easing131 roots remain exact across the complete three-unit

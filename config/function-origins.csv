@@ -463,7 +463,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00413CC0,compiler_generated,network,exclude,observed,vc8-linked-endpoint-allocator-106a
 0x00413D20,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413DF0,compiler_generated,stl,exclude,observed,original-unsigned-deque-pop-back-106a
-0x00413E10,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00413E10,compiler_generated,vc8_stl,exclude,observed,linked-resource-deque-tidy-106a
 0x00413E80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00413EC0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00414110,compiler_generated,network,exclude,observed,vc8-linked-network-tree-erase-106a
