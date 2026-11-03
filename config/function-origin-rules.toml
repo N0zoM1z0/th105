@@ -6434,3 +6434,17 @@ confidence = "observed"
 evidence = "Scenario event CSV row parsing and record/list publication, anchored by its complete543-byte native span and two independently exact story/setup callers. Includes two internal alignment bytes. Existing source is not registered or claimed exact. docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md."
 required_body_hashes = [{ address = "0x0045A7A0", size = 543, sha256 = "a6530f7089b75b611b3f33fdfb848e7d97940381460a66c9a3ac9774dda0e38f" }]
 required_direct_edges = [{ caller = "0x00434CE0", site = "0x00434CF6", target = "0x0045A7A0", caller_status = "matching" }, { caller = "0x00470880", site = "0x00470911", target = "0x0045A7A0", caller_status = "matching" }]
+
+[[rules]]
+id = "network-secondary-replay-dispatch-authored-106a"
+addresses = ["0x0044E460"]
+expected_count = 1
+expected_bytes = 566
+expected_names = ["sub_44E460"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "Network replay/ACK request dispatch, pinned by complete566-byte original body and two independently exact client/server secondary dispatchers. No current selected source or exact-byte credit. docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md."
+required_body_hashes = [{ address = "0x0044E460", size = 566, sha256 = "1cf3d06ff026c5e6401efa673b64c3ab8eea34f7d0b664aa26ed61423b13952c" }]
+required_direct_edges = [{ caller = "0x0044EA30", site = "0x0044EA69", target = "0x0044E460", caller_status = "matching" }, { caller = "0x0044FB40", site = "0x0044FBB1", target = "0x0044E460", caller_status = "matching" }]

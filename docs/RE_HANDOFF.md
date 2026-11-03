@@ -230,3 +230,7 @@ The complete 753-byte `0x463E40` fighter input/state policy is classified author
 ### 2026-11-03: scenario-event parser origin
 
 The native `0x45A7A0` scenario CSV/event parser is classified authored from its pinned 543-byte span and fresh exact story/setup caller edges. The span includes two internal alignment bytes. Existing parser source has no selected comparison unit; its fresh 518-byte object is blocked on EH relocation, so no source-present or exact credit is claimed. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: network replay-dispatch origin
+
+The 566-byte network ACK/replay dispatch entry `0x44E460` is classified authored from its complete target body and freshly exact client/server caller edges. An earlier same-size natural-source candidate remains nonexact and is not selected; no source-present, EH or exact-byte credit is claimed. See `docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md`.
