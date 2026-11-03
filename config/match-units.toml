@@ -11391,7 +11391,7 @@ dir32_targets = [
 address = "0x0046F820"
 symbol_base = "?emit_effect_46f820@CInfoManagerNormalEffectView@th105@@QAEXHHH@Z"
 rel32_targets = [
-  "?emit_group_effect_46f9f0@BattleInfoRecordEffectView@th105@@QAEXHH@Z=0x0046F9F0",
+  "?emit_group_effect_46f9f0@BattleInfoRecordEffectRuntimeView@th105@@QAEXHH@Z=0x0046F9F0",
 ]
 
 [units.cross-v106a-info-manager-story-binding]
@@ -11432,7 +11432,7 @@ dir32_targets = [
 address = "0x00472060"
 symbol_base = "?emit_effect_472060@CInfoManagerStoryBindingView@th105@@QAEXHHH@Z"
 rel32_targets = [
-  "?emit_group_effect_46f9f0@BattleInfoRecordEffectView@th105@@QAEXHH@Z=0x0046F9F0",
+  "?emit_group_effect_46f9f0@BattleInfoRecordEffectRuntimeView@th105@@QAEXHH@Z=0x0046F9F0",
 ]
 
 [units.cross-v106a-info-manager-normal-lifetime]

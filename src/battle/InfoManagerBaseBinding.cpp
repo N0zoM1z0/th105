@@ -1,4 +1,5 @@
 #include "battle/InfoLongRecordBinding.hpp"
+#include "battle/BattleInfoRecordEffectRuntime.hpp"
 namespace th105 {
 struct Fighter;
 struct SceneRendererFighterPairView { unsigned char reserved_000[0x0c]; Fighter *fighters_0c[2]; };
@@ -6,7 +7,6 @@ extern SceneRendererFighterPairView *g_scene_renderer;
 struct InfoEffectManagerReleaseView { void release_all_46eeb0(); };
 struct InfoShortRecordBindView { void bind_46a620(void *combo, Fighter *fighter); };
 struct BattleInfoRecordBindView { void bind_fighter_46fa90(Fighter *fighter); };
-struct BattleInfoRecordEffectView { void emit_group_effect_46f9f0(int effect_id, int index); };
 struct CInfoManagerBaseBindView { void bind_fighters_46ef40(); };
 struct CInfoManagerNormalEffectView { void emit_effect_46f820(int effect_id, int record_index, int group_index); };
 void CInfoManagerBaseBindView::bind_fighters_46ef40()
@@ -26,6 +26,6 @@ void CInfoManagerBaseBindView::bind_fighters_46ef40()
 }
 void CInfoManagerNormalEffectView::emit_effect_46f820(int effect_id, int record_index, int group_index)
 {
-    reinterpret_cast<BattleInfoRecordEffectView *>(reinterpret_cast<unsigned char *>(this) + 0x498 + record_index * 0xf8)->emit_group_effect_46f9f0(effect_id, group_index);
+    reinterpret_cast<BattleInfoRecordEffectRuntimeView *>(reinterpret_cast<unsigned char *>(this) + 0x498 + record_index * 0xf8)->emit_group_effect_46f9f0(effect_id, group_index);
 }
 }

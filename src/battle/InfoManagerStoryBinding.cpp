@@ -1,4 +1,5 @@
 #include "battle/InfoLongRecordBinding.hpp"
+#include "battle/BattleInfoRecordEffectRuntime.hpp"
 namespace th105 {
 struct Fighter;
 struct SceneRendererFighterPairView { unsigned char reserved_000[0x0c]; Fighter *fighters_0c[2]; };
@@ -7,7 +8,6 @@ struct InfoEffectManagerReleaseView { void release_all_46eeb0(); };
 struct InfoShortRecordBindView { void bind_46a620(void *combo, Fighter *fighter); };
 struct BattleInfoRecordBindView { void bind_fighter_46fa90(Fighter *fighter); };
 struct BattleInfoStoryRecordView { void attach_story_fighter_471be0(Fighter *fighter); };
-struct BattleInfoRecordEffectView { void emit_group_effect_46f9f0(int effect_id, int index); };
 struct CInfoManagerStoryBindingView {
     void refresh_roster_state_471ec0();
     void bind_fighters_471f10();
@@ -42,6 +42,6 @@ void CInfoManagerStoryBindingView::bind_fighters_471f10()
 void CInfoManagerStoryBindingView::emit_effect_472060(int effect_id, int side, int index)
 {
     if (side == 0)
-        reinterpret_cast<BattleInfoRecordEffectView *>(reinterpret_cast<unsigned char *>(this) + 0x498)->emit_group_effect_46f9f0(effect_id, index);
+        reinterpret_cast<BattleInfoRecordEffectRuntimeView *>(reinterpret_cast<unsigned char *>(this) + 0x498)->emit_group_effect_46f9f0(effect_id, index);
 }
 }
