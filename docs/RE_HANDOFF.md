@@ -358,3 +358,7 @@ The native PNG create-read path compares against its getter returning `1.5.2`. T
 ### 2026-11-03: update linked PNG provider
 
 The linked context now uses official, source-locked libpng 1.5.2 and existing zlib 1.2.3. A reproducible Wine smoke test accepts the native version argument, checks the reconstructed info-prefix offsets and decodes a synthetic 1x1 PNG. All 14 accepted CSV/bitmap linked roots and both replay-codec roots remain exact; the affected CSV deque-copy origin rule replays. This removes the observed version rejection but does not establish full target-library or game-runtime equivalence. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.
+
+### 2026-11-03: native PNG source fingerprint
+
+Official libpng 1.5.2 `png_sig_cmp` compiled with pinned VC8 `/O2 /GS` reproduces all 298 native bytes at `0x66B870`; the same 1.2.5 control is 297 bytes and nonexact. This strengthens, but does not prove, the native library release identification. The provider audit reproduces the exact comparison and smoke test. No authored bytes added. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.

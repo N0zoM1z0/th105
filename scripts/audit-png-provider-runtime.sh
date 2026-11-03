@@ -19,3 +19,12 @@ taskset -c 0 nice -n 10 wine "$msvc/bin/cl.exe" /nologo /TC /O2 /MT /GS- \
   "$(w "$sdk/libpng.lib")" "$(w "$sdk/zlib.lib")" >"$d/compile.log" 2>&1
 taskset -c 0 nice -n 10 wine "$d/smoke.exe" >"$d/runtime.log" 2>&1
 cat "$d/runtime.log"
+# Independently compare the complete upstream PNG signature routine with native bytes.
+TH105_ENABLE_GS=1 \
+TH105_EXTRA_INCLUDE_DIRS="$root/.tools/upstream/libpng-1.5.2:$root/.tools/upstream/zlib-1.2.3" \
+  taskset -c 0 nice -n 10 scripts/compile-unit.sh \
+  "$root/.tools/upstream/libpng-1.5.2/png.c" "$d/png-gs.obj" >"$d/png-gs-compile.log" 2>&1
+scripts/repo-python scripts/compare-function.py 0x0066B870 "$d/png-gs.obj" \
+  --symbol-base _png_sig_cmp --rel32-target '@__security_check_cookie@4=0x00689D25' \
+  --json >"$d/png-signature-compare.json"
+printf '%s\n' 'Native PNG signature routine: complete 298/298 canonical bytes match.'
