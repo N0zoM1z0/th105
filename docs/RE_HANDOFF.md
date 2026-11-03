@@ -318,3 +318,7 @@ The shared packet base now declares an inferred void parse slot. Removing artifi
 ### 2026-11-03: remove unrelated packet casts
 
 Both ACK senders and the request pump now use the RTTI-backed shared packet base instead of unrelated reinterpret-cast views. Their exact body comparisons and the four vtable checks pass; the ACK constructor retains its existing mismatch. No exact-byte gain or new EH/link claim. See `docs/ACK_PACKET_BASE_2026_10_29.md`.
+
+### 2026-11-03: exact network replay request dispatch
+
+The ACK/replay dispatcher at `0x44E460` now matches the complete 566-byte native body after correcting the independent tail-field publication order and using the shared packet base. Its complete remote cleanup code (59 bytes) and unwind/function metadata (52 bytes) also replay exactly. The pinned origin is authored; the two exact caller roots remain the ownership anchors. Integrated linking and runtime exception execution are not claimed. See `docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md`.

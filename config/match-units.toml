@@ -29938,7 +29938,7 @@ source = "src/network/NetworkReplayRequestDispatch.cpp"
 object = "build/match-units/ExactFirst_NetworkReplayRequestDispatch.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Network request replay/ACK dispatch44E460; complete native body and real packet lifetimes, currently nonexact. EH handler mapping is address evidence only; no complete cleanup-EH or linking claim. docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md."
+notes = "Network request replay/ACK dispatch44E460; complete native body and real packet lifetimes are exact. Remote cleanup EH and metadata also replay; no integrated linking claim. docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md."
 
 [[units.exact-first-network-replay-request-dispatch.functions]]
 address = "0x0044E460"

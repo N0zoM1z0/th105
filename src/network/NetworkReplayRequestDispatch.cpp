@@ -5,7 +5,6 @@
 #include <deque>
 #include <stddef.h>
 namespace th105 {
-struct DispatchPacketView { virtual unsigned serialize(void *buffer); };
 struct DispatchPeer { unsigned char reserved[4]; unsigned char value; };
 struct DispatchSide {
     unsigned char value; unsigned char reserved1[4]; unsigned char status; unsigned char reserved2[2];
@@ -47,10 +46,10 @@ void DispatchOwner::dispatch(unsigned channel, const NetworkRequestReplay10 *req
             packet.peer_034[i]=sides[i].peer->value;
         }
         packet.tail_036=tail0;
-        packet.tail_038=tail_value;
         packet.tail_037=tail1;
+        packet.tail_038=tail_value;
         packet.sequence_03c=tag;
-        DispatchPacketView *view=reinterpret_cast<DispatchPacketView *>(&packet);
+        NetworkPacketBase8 *view=&packet;
         sender.send(channel,buffer,view->serialize(buffer),0,0);
         ack_lock.leave();
     } else {
@@ -64,7 +63,7 @@ void DispatchOwner::dispatch(unsigned channel, const NetworkRequestReplay10 *req
             ++packet.sequence_008;
         }
         replay_lock.leave();
-        DispatchPacketView *view=reinterpret_cast<DispatchPacketView *>(&packet);
+        NetworkPacketBase8 *view=&packet;
         sender.send(channel,buffer,view->serialize(buffer),0xa0,0);
     }
 }
