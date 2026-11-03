@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Wave master gain `0x401C20` (192 bytes) now has complete source using both observed 32-slot arrays. Unforced CIL emits 242 bytes and remains nonexact; no exact credit. See `docs/WAVE_MASTER_GAIN_SOURCE_2026_11_03.md`.
+
 2026-11-03: Wave per-handle gain `0x401CE0` (109 bytes) now has complete target-backed source. Actual unforced CIL emits 101 bytes and remains nonexact; exact config caller is unchanged. See `docs/WAVE_HANDLE_GAIN_SOURCE_2026_11_03.md`.
 
 2026-11-03: Wave-service pointer deque back `0x4052B0` (91 bytes) is compiler-generated, verified by full body, real wave/acquire call graphs and unique inventory identity. The parents remain nonexact; no authored credit. See `docs/WAVE_POINTER_DEQUE_BACK_ORIGIN_2026_11_03.md`.
@@ -39,8 +41,8 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The prior reconstruction checkpoint is `0e39c193` (wave pointer deque origin
-evidence; no new authored exact match). Work was committed locally; no push was
+The prior reconstruction checkpoint is `031c8e9d` (wave per-handle gain source;
+no new authored exact match). Work was committed locally; no push was
 performed by this session. Inspect live Git status before making further changes.
 
 The preceding 3,147-line handoff is preserved verbatim in
@@ -55,10 +57,10 @@ Verified from the live ledgers at this checkpoint:
 | Measure | Value |
 | --- | ---: |
 | Provisional candidates | 4027 |
-| Authored / excluded / review | 1657 / 2083 / 287 |
-| Mapped / source-present | 1828 / 1638 |
+| Authored / excluded / review | 1658 / 2083 / 286 |
+| Mapped / source-present | 1829 / 1639 |
 | Exact authored functions / bytes | 1426 / 443399 |
-| Configured units / function entries | 815 / 1986 |
+| Configured units / function entries | 816 / 1987 |
 | Distinct units represented in matches.csv | 612 |
 
 These are incremental totals, not a fresh whole-corpus replay. `implemented.csv`
@@ -163,6 +165,6 @@ git diff --cached --check
 ```
 
 Default CI validates tooling and ledgers, not all native matches. Checkpoint
-the wave-gain source checkpoint passed 996 tests in 103.870 seconds; the gate
-is recorded in `build/frontier-wave-gain-natural-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
+the master-gain source checkpoint passed 996 tests in 106.825 seconds; the gate
+is recorded in `build/frontier-wave-master-gain-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.

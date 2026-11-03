@@ -1,0 +1,7 @@
+# Wave master gain source, 2026-11-03
+
+The native `0x401C20` is a 192-byte, 73-instruction closed body with `RET 4` and SHA-256 `5ba3f43fd3c6be880def8c0b5134077fed22b6a72ab1831403bf3d6fa600108b`. The exact SE configuration function calls it at `0x43B212`; its 80-byte public comparison was freshly replayed. Its two array strides and 32-element bounds agree with the independently reconstructed wave-service lifetime layout.
+
+The source clamps the supplied gain to zero through one, stores it at `+0x450`, combines it with gain `+0x454`, and applies the threshold and existing DirectSound conversion. It visits both 32-entry arrays in order, invoking the real DirectSound buffer's volume slot only when its pointer is present. The non-owning layout views are used only for fields reached by this method; original class and method spelling remain unknown.
+
+The unforced public unit `exact-first-wave-master-gain` emits 242 bytes versus native 192. This genuine CIL context inlines the gain conversion and emits a different stack/frame and scheduling sequence. Its static CRT calls are bound by named target identities. It remains a source-present nonexact function; there is no exact-byte credit, forced alignment, synthetic storage or hand-written machine code. Fresh receipts are in `build/frontier-wave-master-gain-20261103/public.json`; the exact caller receipt is in `build/frontier-wave-gain-natural-20261103/caller.json`.
