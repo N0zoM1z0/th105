@@ -6434,3 +6434,17 @@ confidence = "observed"
 evidence = "Complete2005-byte battle information record gauge/effect runtime called by freshly exact normal and story InfoManager updates. Existing private controls are nonexact and not selected; no source or exact credit. docs/BATTLE_INFO_RUNTIME_ORIGIN_2026_11_03.md."
 required_body_hashes = [{ address = "0x0046FF30", size = 2005, sha256 = "99d79a657a003cfd2dd32b1e3110eb0952676908631e6567a2087518bab97943" }]
 required_direct_edges = [{ caller = "0x0046E5A0", site = "0x0046E5C3", target = "0x0046FF30", caller_status = "matching" }, { caller = "0x00471C90", site = "0x00471C9C", target = "0x0046FF30", caller_status = "matching" }]
+
+[[rules]]
+id = "script-next-command-authored-106a"
+addresses = ["0x00405AC0"]
+expected_count = 1
+expected_bytes = 104
+expected_names = ["sub_405AC0"]
+origin = "authored_game"
+subsystem = "script"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete 104-byte game-owned script cursor advance and two direct calls from the canonical-exact scene timeline loader. Source and private iterator helper ABI are not yet recovered. docs/SCRIPT_COMMAND_CURSOR_2026_10_29.md."
+required_body_hashes = [{ address = "0x00405AC0", size = 104, sha256 = "f055a70e7657ac54bc37a49178b9e70497c30886170bd2eea163e46b1f69f4c8" }]
+required_direct_edges = [{ caller = "0x004540F0", site = "0x0045415F", target = "0x00405AC0", caller_status = "matching" }, { caller = "0x004540F0", site = "0x004546EC", target = "0x00405AC0", caller_status = "matching" }]

@@ -326,3 +326,7 @@ The ACK/replay dispatcher at `0x44E460` now matches the complete 566-byte native
 ### 2026-11-03: exact scripted input policy
 
 The complete Fighter scripted-input policy `0x463E40` now matches 753/753 by expressing its two direction checks directly, with no forced register or fake liveness. Four original caller edges and both exact caller bodies replay; the real input and CPU provider roots remain exact. The indirect virtual tail and integrated link remain unproved. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: classify script command advance
+
+The complete 104-byte `0x405AC0` script cursor advance and two original call sites from the exact timeline loader establish game-authored ownership. Its source and private iterator helper ABI are still unresolved; no source or exact-byte credit is added. See `docs/SCRIPT_COMMAND_CURSOR_2026_10_29.md`.
