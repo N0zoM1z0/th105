@@ -234,3 +234,7 @@ The native `0x45A7A0` scenario CSV/event parser is classified authored from its 
 ### 2026-11-03: network replay-dispatch origin
 
 The 566-byte network ACK/replay dispatch entry `0x44E460` is classified authored from its complete target body and freshly exact client/server caller edges. An earlier same-size natural-source candidate remains nonexact and is not selected; no source-present, EH or exact-byte credit is claimed. See `docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: battle information-record runtime origin
+
+The complete 2,005-byte `0x46FF30` gauge/effect runtime is classified authored using its pinned native body and fresh exact normal/Story update caller edges. Existing private candidates remain nonexact and unselected; no source-present or exact-byte credit is claimed. See `docs/BATTLE_INFO_RUNTIME_ORIGIN_2026_11_03.md`.

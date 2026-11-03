@@ -6448,3 +6448,17 @@ confidence = "observed"
 evidence = "Network replay/ACK request dispatch, pinned by complete566-byte original body and two independently exact client/server secondary dispatchers. No current selected source or exact-byte credit. docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md."
 required_body_hashes = [{ address = "0x0044E460", size = 566, sha256 = "1cf3d06ff026c5e6401efa673b64c3ab8eea34f7d0b664aa26ed61423b13952c" }]
 required_direct_edges = [{ caller = "0x0044EA30", site = "0x0044EA69", target = "0x0044E460", caller_status = "matching" }, { caller = "0x0044FB40", site = "0x0044FBB1", target = "0x0044E460", caller_status = "matching" }]
+
+[[rules]]
+id = "battle-info-record-runtime-authored-106a"
+addresses = ["0x0046FF30"]
+expected_count = 1
+expected_bytes = 2005
+expected_names = ["sub_46FF30"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete2005-byte battle information record gauge/effect runtime called by freshly exact normal and story InfoManager updates. Existing private controls are nonexact and not selected; no source or exact credit. docs/BATTLE_INFO_RUNTIME_ORIGIN_2026_11_03.md."
+required_body_hashes = [{ address = "0x0046FF30", size = 2005, sha256 = "99d79a657a003cfd2dd32b1e3110eb0952676908631e6567a2087518bab97943" }]
+required_direct_edges = [{ caller = "0x0046E5A0", site = "0x0046E5C3", target = "0x0046FF30", caller_status = "matching" }, { caller = "0x00471C90", site = "0x00471C9C", target = "0x0046FF30", caller_status = "matching" }]
