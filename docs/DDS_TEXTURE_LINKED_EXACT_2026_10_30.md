@@ -34,11 +34,11 @@ The DDS's own complete body and all cleanup records must still match exactly.
 
 The original comparison used libpng1.2.5 and zlib1.2.3. Later target role analysis showed that the 1.2.5 marker is a zlib initialization argument, not proof of the native PNG release. The current pinned comparison uses libpng1.5.2 and zlib1.2.3 and retains this exact result; see `docs/PNG_PROVIDER_VERSION_2026_11_03.md`. Source comes from:
 
-- https://github.com/pnggroup/libpng/tree/0cc2f95a9d87ae903a9842f1121384e3b2e5bbdc
+- https://github.com/pnggroup/libpng/tree/dcc3505c7bd0660876fc80110f8e3581900a186a
 - https://github.com/madler/zlib/tree/abf180a067223611620dd97dd5681df7c7fa7c9b
 
 config/png-source-lock.json retains immutable repository/commit identities,
-relative filenames, byte sizes, Git blob SHA1s and independent SHA256s for43
+relative filenames, byte sizes, Git blob SHA1s and independent SHA256s for46
 source/license files. The lock's own digest is pinned in linked_png_sdk.py.
 Unmodified source/license files are cached under .tools/upstream/libpng-1.5.2
 and .tools/upstream/zlib-1.2.3, outside Git. Restoring this cache requires those
