@@ -6377,3 +6377,18 @@ confidence = "observed"
 evidence = "Complete119-byte system-effect handle release/list cleanup called by freshly exact specialized manager destructor. Actual typed source119 remains nonexact; equal size is not equality. No partial or exact-byte credit. docs/SYSTEM_EFFECT_RELEASE_SOURCE_2026_11_03.md."
 required_body_hashes = [{ address = "0x00436E60", size = 119, sha256 = "a88e31755974913ecefd93f6777aca63d70add23ac2274bf75aea5db627cd4a9" }]
 required_direct_edges = [{ caller = "0x00437280", site = "0x004372B6", target = "0x00436E60", caller_status = "matching" }]
+
+[[rules]]
+id = "system-effect-pool-acquire-authored-106a"
+addresses = ["0x00456B70"]
+expected_count = 1
+expected_bytes = 499
+expected_names = ["sub_456B70"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete499-byte specialized system-effect allocation/reuse and generation policy called by freshly exact tracked-object acquisition. Ordinary source498 remains nonexact and EH is not claimed exact; no register or exact-byte credit. docs/SYSTEM_EFFECT_POOL_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x00456B70", size = 499, sha256 = "cefb3b0d53f5882470d1b170a6d2af2e44b77588a509a46b45cbedb6b7c1c012" }]
+required_direct_edges = [{ caller = "0x00457110", site = "0x00457127", target = "0x00456B70", caller_status = "matching" }]
+required_dword_values = [{ address = "0x006C2860", value = "0x00454FC0" }]

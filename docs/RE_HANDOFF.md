@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: System-effect pool acquire `0x456B70` (499 bytes) now has natural typed source and an individual mapping. Exact tracked acquisition replays; source498 and cleanup EH remain nonexact/unproved. See `docs/SYSTEM_EFFECT_POOL_SOURCE_2026_11_03.md`.
+
 2026-11-03: System-effect tracked release `0x436E60` (119 bytes) now has typed source and an individual mapping. Exact manager lifetime roots replay; source119 remains nonexact. See `docs/SYSTEM_EFFECT_RELEASE_SOURCE_2026_11_03.md`.
 
 2026-11-03: Connect endpoint-history selection `0x443030` (157 bytes) is now individually mapped/source-present. Its exact action caller and sibling replay; source153 remains nonexact. See `docs/CONNECT_HISTORY_SOURCE_2026_11_03.md`.
@@ -67,7 +69,7 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The prior reconstruction checkpoint is `d0a3dace` (connect history source;
+The prior reconstruction checkpoint is `d55dfbaa` (system-effect release source;
 no new authored exact match). Work was committed locally; no push was
 performed by this session. Inspect live Git status before making further changes.
 
@@ -83,10 +85,10 @@ Verified from the live ledgers at this checkpoint:
 | Measure | Value |
 | --- | ---: |
 | Provisional candidates | 4027 |
-| Authored / excluded / review | 1669 / 2084 / 274 |
-| Mapped / source-present | 1840 / 1650 |
+| Authored / excluded / review | 1670 / 2084 / 273 |
+| Mapped / source-present | 1841 / 1651 |
 | Exact authored functions / bytes | 1426 / 443399 |
-| Configured units / function entries | 821 / 1993 |
+| Configured units / function entries | 822 / 1994 |
 | Distinct units represented in matches.csv | 612 |
 
 These are incremental totals, not a fresh whole-corpus replay. `implemented.csv`
@@ -191,6 +193,6 @@ git diff --cached --check
 ```
 
 Default CI validates tooling and ledgers, not all native matches. Checkpoint
-the system-effect release checkpoint passed 1002 tests in 102.982 seconds; the gate
-is recorded in `build/frontier-system-effect-release-source-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
+the system-effect pool checkpoint passed 1002 tests in 102.232 seconds; the gate
+is recorded in `build/frontier-system-effect-pool-source-20261103/ci-final.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.

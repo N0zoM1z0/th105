@@ -29854,3 +29854,31 @@ rel32_targets = [
  "__invalid_parameter_noinfo=0x0068A143",
  "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[units.exact-first-system-effect-pool-acquire]
+kind = "probe"
+source = "src/battle/SystemEffectPoolAcquire.cpp"
+object = "build/match-units/ExactFirst_SystemEffectPoolAcquire.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete499-byte system-effect pool acquisition source, actual typed pool and normal guard. Natural source remains nonexact; cleanup EH is not claimed exact. docs/SYSTEM_EFFECT_POOL_SOURCE_2026_11_03.md."
+
+[[units.exact-first-system-effect-pool-acquire.functions]]
+address = "0x00456B70"
+symbol_base = "?acquire@?$CHandleManagerEx@VSystemEffectObject@@@@QAEPAVSystemEffectObject@@PAI@Z"
+rel32_targets = [
+ "?push_back@?$vector@PAVSystemEffectObject@@V?$allocator@PAVSystemEffectObject@@@std@@@std@@QAEXABQAVSystemEffectObject@@@Z=0x0064AF70",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "??0AnimationSpriteState@@QAE@XZ=0x00421FF0",
+ "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+ "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?erase@?$list@IV?$allocator@I@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x004026A0",
+ "?at@?$vector@PAVSystemEffectObject@@V?$allocator@PAVSystemEffectObject@@@std@@@std@@QAEAAPAVSystemEffectObject@@I@Z=0x0056D450",
+ "?push_back@?$vector@IV?$allocator@I@std@@@std@@QAEXABI@Z=0x0040DCF0",
+]
+dir32_targets = [
+ "__ehhandler$?acquire@?$CHandleManagerEx@VSystemEffectObject@@@@QAEPAVSystemEffectObject@@PAI@Z=__ehhandler$?acquire@?$CHandleManagerEx@VSystemEffectObject@@@@QAEPAVSystemEffectObject@@PAI@Z",
+ "___security_cookie=___security_cookie",
+ "??_7SystemEffectObject@@6B@=??_7SystemEffectObject@@6B@",
+]
