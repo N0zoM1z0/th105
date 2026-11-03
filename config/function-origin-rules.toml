@@ -6420,3 +6420,17 @@ confidence = "observed"
 evidence = "Complete753-byte fighter scripted-input and action policy, called for both fighters by two independently exact round setup and pre-reset functions. Native source context remains unrecovered; no source or exact-byte credit. docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md."
 required_body_hashes = [{ address = "0x00463E40", size = 753, sha256 = "f4fc93f5a85590424dd4f614584f07b853b9541eeeeeffbb58915e3d20fabddc" }]
 required_direct_edges = [{ caller = "0x00470BC0", site = "0x00470C02", target = "0x00463E40", caller_status = "matching" }, { caller = "0x00470BC0", site = "0x00470C0A", target = "0x00463E40", caller_status = "matching" }, { caller = "0x00472230", site = "0x00472272", target = "0x00463E40", caller_status = "matching" }, { caller = "0x00472230", site = "0x0047227A", target = "0x00463E40", caller_status = "matching" }]
+
+[[rules]]
+id = "scenario-event-parser-authored-106a"
+addresses = ["0x0045A7A0"]
+expected_count = 1
+expected_bytes = 543
+expected_names = ["sub_45A7A0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Scenario event CSV row parsing and record/list publication, anchored by its complete543-byte native span and two independently exact story/setup callers. Includes two internal alignment bytes. Existing source is not registered or claimed exact. docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md."
+required_body_hashes = [{ address = "0x0045A7A0", size = 543, sha256 = "a6530f7089b75b611b3f33fdfb848e7d97940381460a66c9a3ac9774dda0e38f" }]
+required_direct_edges = [{ caller = "0x00434CE0", site = "0x00434CF6", target = "0x0045A7A0", caller_status = "matching" }, { caller = "0x00470880", site = "0x00470911", target = "0x0045A7A0", caller_status = "matching" }]

@@ -226,3 +226,7 @@ The normal and Story InfoManager effect wrappers now call the shared real `Battl
 ### 2026-11-03: scripted fighter-input origin
 
 The complete 753-byte `0x463E40` fighter input/state policy is classified authored from its pinned body and four call edges in two freshly exact round-init/pre-reset callers. Its sole indirect virtual tail remains outside this ownership proof. The earlier 751-byte candidate is not in the current tracked source tree; no source-present or exact credit is claimed. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: scenario-event parser origin
+
+The native `0x45A7A0` scenario CSV/event parser is classified authored from its pinned 543-byte span and fresh exact story/setup caller edges. The span includes two internal alignment bytes. Existing parser source has no selected comparison unit; its fresh 518-byte object is blocked on EH relocation, so no source-present or exact credit is claimed. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
