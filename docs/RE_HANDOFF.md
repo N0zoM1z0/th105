@@ -204,3 +204,9 @@ The origin-source checkout test now covers `source_pins`, `source_sha256`, and `
 ### 2026-11-03: use the real sprite rotation provider
 
 `SystemEffectObjectBase::render_effect` at `0x00473CF0` now calls the existing `CSpriteEx::rotate_xyz` implementation at `0x00407680`, rather than a declared but undefined alias mapped to the same target. The six-float thiscall signature and target are unchanged. Fresh canonical comparisons for all five functions in `cross-v106a-system-effect-object` are exact, including render 222/222; receipt `build/frontier-system-effect-real-rotation-20261103/compare.json`. This removes one link obstacle but does not establish a complete integrated link or add exact-byte credit.
+
+### 2026-11-03: real linked system-effect pool context
+
+The rectangle renderer's line call now uses the existing `LinePrimitiveView::draw_line` provider at `0x00401180` rather than an undefined alias. Its two declarations have the same observed prefix and signature. The isolated `0x004012A0` comparison remains nonexact, with identical before/after canonical object hash and first mismatch; receipt `build/frontier-real-line-provider-20261103/`.
+
+A private linked image assembled the actual system-effect pool and caller together with existing real providers and linked successfully. With the existing target-backed call identities, `0x00457110` is 97 bytes in this LTCG context versus 91 target bytes, mismatching at offset zero. Receipt `build/frontier-system-effect-pool-cil-20261103/providers4.log`. This does not supersede the separate non-LTCG exact 91/91 unit, establish the pool as exact, or add exact-byte credit. The pool provider's native body remains nonexact; do not infer callee byte equivalence from the linked caller mapping.

@@ -2,7 +2,9 @@
 #include "ui/Title.hpp"
 
 namespace th105 {
-struct RectangleLineView {
+struct LinePrimitiveView {
+    unsigned vtable_00;
+    D3DDevice9 *device_04;
     int draw_line(float x1, float y1, float x2, float y2, unsigned color);
 };
 struct RectangleColorVertex {
@@ -16,7 +18,7 @@ int RenderModeManager::draw_rect(
     unsigned color, unsigned char filled)
 {
     if (!filled) {
-        RectangleLineView *lines = reinterpret_cast<RectangleLineView *>(this);
+        LinePrimitiveView *lines = reinterpret_cast<LinePrimitiveView *>(this);
         lines->draw_line(left, top, left, bottom, color);
         lines->draw_line(right, top, right, bottom, color);
         lines->draw_line(left, top, right, top, color);
