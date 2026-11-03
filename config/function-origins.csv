@@ -1400,7 +1400,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00442F40,third_party,boost_regex,exclude,observed,boost-regex-reference-106a
 0x00442FD0,compiler_generated,std,exclude,observed,boost-regex-vc8-std-106a
 0x00443020,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00443030,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00443030,authored_game,ui,authored,observed,connect-history-selection-authored-106a
 0x004430D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00443130,authored_game,ui,authored,observed,connect-address-list-load-authored-106a
 0x004434B0,authored_game,ui,authored,observed,connect-history-list-load-authored-106a

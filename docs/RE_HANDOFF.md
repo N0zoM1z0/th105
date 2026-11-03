@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Connect endpoint-history selection `0x443030` (157 bytes) is now individually mapped/source-present. Its exact action caller and sibling replay; source153 remains nonexact. See `docs/CONNECT_HISTORY_SOURCE_2026_11_03.md`.
+
 2026-11-03: Vector length-error helper `0x40AAF0` (123 bytes) is compiler-generated, proved through real BGM CIL, native vector callers, full nonreturning throw/EH metadata and unique whole-body identity. No authored credit. See `docs/VECTOR_XLEN_ORIGIN_2026_11_03.md`.
 
 2026-11-03: Exact source pins now have matching Git checkout line endings, and the changed BGM source pin was fully re-attested. Four affected origin rules pass; no counting change. See `docs/ORIGIN_SOURCE_EOL_2026_11_03.md`.
@@ -63,7 +65,7 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The prior reconstruction checkpoint is `d1056417` (source-pin checkout integrity;
+The prior reconstruction checkpoint is `a5fd69b8` (vector length-error origin;
 no new authored exact match). Work was committed locally; no push was
 performed by this session. Inspect live Git status before making further changes.
 
@@ -79,8 +81,8 @@ Verified from the live ledgers at this checkpoint:
 | Measure | Value |
 | --- | ---: |
 | Provisional candidates | 4027 |
-| Authored / excluded / review | 1667 / 2084 / 276 |
-| Mapped / source-present | 1838 / 1648 |
+| Authored / excluded / review | 1668 / 2084 / 275 |
+| Mapped / source-present | 1839 / 1649 |
 | Exact authored functions / bytes | 1426 / 443399 |
 | Configured units / function entries | 820 / 1992 |
 | Distinct units represented in matches.csv | 612 |
@@ -187,6 +189,6 @@ git diff --cached --check
 ```
 
 Default CI validates tooling and ledgers, not all native matches. Checkpoint
-the vector length-error checkpoint passed 1002 tests in 113.935 seconds; the gate
-is recorded in `build/frontier-vector-xlen-origin-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
+the connect-history checkpoint passed 1002 tests in 106.450 seconds; the gate
+is recorded in `build/frontier-connect-history-source-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.

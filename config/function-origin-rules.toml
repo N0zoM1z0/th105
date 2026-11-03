@@ -6349,3 +6349,17 @@ subsystem = "vc8_stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual BGM CIL emits the full vector<unsigned> length-error entry; source/native vector call chains and an independent exact score caller are checked. Complete nonreturning CRT throw, EH, length_error RTTI and metadata, literal and full inventory uniqueness pass. No masks or authored credit. docs/VECTOR_XLEN_ORIGIN_2026_11_03.md."
+
+[[rules]]
+id = "connect-history-selection-authored-106a"
+addresses = ["0x00443030"]
+expected_count = 1
+expected_bytes = 157
+expected_names = ["sub_443030"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete157-byte endpoint history input and selection policy called by freshly exact history action. Existing source153 remains nonexact; no partial or exact-byte credit. docs/CONNECT_HISTORY_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x00443030", size = 157, sha256 = "d5ded1997bd697302ca937d005e37921d6d73f5879713483b875b3d268d4b7ea" }]
+required_direct_edges = [{ caller = "0x004430D0", site = "0x004430DA", target = "0x00443030", caller_status = "matching" }]
