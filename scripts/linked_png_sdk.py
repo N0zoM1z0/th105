@@ -7,6 +7,7 @@ import re
 import subprocess
 
 SOURCE_LOCK_SHA256 = "e15ee4be7778db9c26ede6be8d55a8231ea4b3ef1dabdc16de4e6fb9cc72b4e4"
+ZLIB_HEADER_LOCK_SHA256 = "545cdad1f307bd6b15fced5a12d5c1d6fbe2b0b03fc80c680c492b378ee03210"
 
 FAMILIES = {
     'libpng': ('libpng-1.5.2', 'https://github.com/pnggroup/libpng',
@@ -55,6 +56,25 @@ def verified_sources(root, manifest):
     return result
 
 
+def verified_zlib_headers(root, manifest):
+    expected = {'repository': 'https://github.com/madler/zlib',
+                'commit': '9712272c78b9d9c93746d9c8e156a3728c65ca72', 'tag': 'v1.2.5'}
+    if set(manifest) != {'repository', 'commit', 'tag', 'files'} or any(
+            manifest.get(key) != value for key, value in expected.items()):
+        raise ValueError('PNG zlib header identity differs')
+    files = manifest['files']
+    if not isinstance(files, list) or len(files) != 2 or {x.get('path') for x in files} != {'zlib.h', 'zconf.h'}:
+        raise ValueError('PNG zlib header list differs')
+    for record in files:
+        path = root / '.tools/upstream/zlib-1.2.5-headers' / record['path']
+        data = path.read_bytes()
+        blob = b'blob ' + str(len(data)).encode() + b'\0' + data
+        if (len(data) != record.get('size') or hashlib.sha1(blob).hexdigest() != record.get('git_blob_sha1')
+                or hashlib.sha256(data).hexdigest() != record.get('sha256')):
+            raise ValueError('PNG zlib header bytes differ: ' + str(path))
+    return files
+
+
 def materialize_png_config(png_root, *, generate=False):
     """Use only the byte-pinned official prebuilt configuration."""
     generated = png_root / 'pnglibconf.h'
@@ -76,6 +96,10 @@ def inputs(unit, image, *, generate=False):
         raise ValueError("PNG source lock differs from the pinned upstream manifest")
     manifest = json.loads(lock.read_text())
     sources = verified_sources(root, manifest)
+    header_lock = root / 'config/png-zlib-header-lock.json'
+    if core.sha(header_lock) != ZLIB_HEADER_LOCK_SHA256:
+        raise ValueError('PNG zlib header lock differs')
+    zlib_headers = verified_zlib_headers(root, json.loads(header_lock.read_text()))
     materialize_png_config(root / '.tools/upstream/libpng-1.5.2', generate=generate)
     target = core.comparator()
     target.verify_target()
@@ -114,7 +138,7 @@ def inputs(unit, image, *, generate=False):
             objects.append(obj)
             command = ['wine', str(tools / 'bin/cl.exe'), '/nologo', '/c', '/TC', '/O2', '/MT', '/GS-',
                        '/I' + win(tools / 'include'), '/I' + win(tools / 'PlatformSDK/Include'),
-                       '/I' + win(source.parent), '/I' + win(root / '.tools/upstream/zlib-1.2.3'),
+                       '/I' + win(source.parent), '/I' + win(root / ('.tools/upstream/zlib-1.2.5-headers' if name == 'libpng' else '.tools/upstream/zlib-1.2.3')),
                        '/Fo' + win(obj), win(source)]
             commands.append(command)
             if generate:
@@ -132,10 +156,14 @@ def inputs(unit, image, *, generate=False):
             core.check_build_phase('PNG archive', done.returncode, log)
         if not archive.read_bytes().startswith(b'!<arch>\n'):
             raise ValueError('PNG provider is not a compiler-generated archive')
-        results.append({'family': name, 'path': str(archive.relative_to(root)), 'sha256': core.sha(archive),
-                        'source_manifest_sha256': core.sha(lock), 'sources': records,
-                        'objects': [{'path': str(p.relative_to(root)), 'sha256': core.sha(p)} for p in objects],
-                        'commands': commands, 'librarian_sha256': pin})
+        result = {'family': name, 'path': str(archive.relative_to(root)), 'sha256': core.sha(archive),
+                  'source_manifest_sha256': core.sha(lock), 'sources': records,
+                  'objects': [{'path': str(p.relative_to(root)), 'sha256': core.sha(p)} for p in objects],
+                  'commands': commands, 'librarian_sha256': pin}
+        if name == 'libpng':
+            result['zlib_header_lock_sha256'] = core.sha(header_lock)
+            result['zlib_headers'] = zlib_headers
+        results.append(result)
     return results
 
 

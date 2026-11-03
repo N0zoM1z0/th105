@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/madler/zlib",
+  "commit": "9712272c78b9d9c93746d9c8e156a3728c65ca72",
+  "tag": "v1.2.5",
+  "files": [
+    {
+      "path": "zlib.h",
+      "git_blob_sha1": "bfbba83e8ee0902abe8bcbfab8bdebbbc07dca69",
+      "size": 79564,
+      "sha256": "8d9049f1317cbb45e7da3a19752dd01e8c03561637b70afc0b2da9aabc5f12d5"
+    },
+    {
+      "path": "zconf.h",
+      "git_blob_sha1": "02ce56c4313b7e7490c0416ed52bfd9c65694553",
+      "size": 13375,
+      "sha256": "78eede3c265117bc8a1b0cb042e2ba8333fdbba6b78eb25094eb52b1fdc04bed"
+    }
+  ]
+}

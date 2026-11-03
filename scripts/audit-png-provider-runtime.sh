@@ -13,7 +13,7 @@ msvc="${TH105_MSVC8_ROOT:-$root/.tools/msvc80-sp1}"
 sdk="$root/build/match-units/ExactFirst_CsvFileLoading.png-sdk"
 taskset -c 0 nice -n 10 wine "$msvc/bin/cl.exe" /nologo /TC /O2 /MT /GS- \
   "/I$(w "$msvc/include")" "/I$(w "$msvc/PlatformSDK/Include")" \
-  "/I$(w "$root/.tools/upstream/libpng-1.5.2")" "/I$(w "$root/.tools/upstream/zlib-1.2.3")" \
+  "/I$(w "$root/.tools/upstream/libpng-1.5.2")" "/I$(w "$root/.tools/upstream/zlib-1.2.5-headers")" \
   "/Fe$(w "$d/smoke.exe")" "/Fo$(w "$d/smoke.obj")" "$(w "$root/scripts/probes/png_provider_smoke.c")" \
   /link "/LIBPATH:$(w "$msvc/lib")" "/LIBPATH:$(w "$msvc/PlatformSDK/Lib")" \
   "$(w "$sdk/libpng.lib")" "$(w "$sdk/zlib.lib")" >"$d/compile.log" 2>&1
@@ -21,7 +21,7 @@ taskset -c 0 nice -n 10 wine "$d/smoke.exe" >"$d/runtime.log" 2>&1
 cat "$d/runtime.log"
 # Independently compare the complete upstream PNG signature routine with native bytes.
 TH105_ENABLE_GS=1 \
-TH105_EXTRA_INCLUDE_DIRS="$root/.tools/upstream/libpng-1.5.2:$root/.tools/upstream/zlib-1.2.3" \
+TH105_EXTRA_INCLUDE_DIRS="$root/.tools/upstream/libpng-1.5.2:$root/.tools/upstream/zlib-1.2.5-headers" \
   taskset -c 0 nice -n 10 scripts/compile-unit.sh \
   "$root/.tools/upstream/libpng-1.5.2/png.c" "$d/png-gs.obj" >"$d/png-gs-compile.log" 2>&1
 scripts/repo-python scripts/compare-function.py 0x0066B870 "$d/png-gs.obj" \
@@ -32,7 +32,7 @@ scripts/repo-python scripts/compare-function.py 0x0066BEF0 "$d/png-gs.obj" \
   --symbol-base _png_get_io_ptr --json >"$d/png-io-compare.json"
 for source in pngread pngtrans; do
   TH105_ENABLE_GS=1 \
-  TH105_EXTRA_INCLUDE_DIRS="$root/.tools/upstream/libpng-1.5.2:$root/.tools/upstream/zlib-1.2.3" \
+  TH105_EXTRA_INCLUDE_DIRS="$root/.tools/upstream/libpng-1.5.2:$root/.tools/upstream/zlib-1.2.5-headers" \
     taskset -c 0 nice -n 10 scripts/compile-unit.sh \
     "$root/.tools/upstream/libpng-1.5.2/$source.c" "$d/$source-gs.obj" >"$d/$source-gs-compile.log" 2>&1
 done
@@ -42,3 +42,5 @@ scripts/repo-python scripts/compare-function.py 0x0066FD60 "$d/pngread-gs.obj" \
 scripts/repo-python scripts/compare-function.py 0x0066FE60 "$d/pngtrans-gs.obj" \
   --symbol-base _png_set_bgr --json >"$d/png-bgr-compare.json"
 printf '%s\n' 'Native PNG IO getter, create wrapper and BGR setter: 13/13, 35/35 and 13/13 match.'
+scripts/repo-python scripts/png_create_body_audit.py "$d/pngread-gs.obj" >"$d/png-create-body-compare.json"
+printf '%s\n' 'Native PNG create-read body and switch table: 756/756 and 28/28 match.'

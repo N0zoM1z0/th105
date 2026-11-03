@@ -32,16 +32,16 @@ The DDS's own complete body and all cleanup records must still match exactly.
 
 ## Pinned original external C providers
 
-The original comparison used libpng1.2.5 and zlib1.2.3. Later target role analysis showed that the 1.2.5 marker is a zlib initialization argument, not proof of the native PNG release. The current pinned comparison uses libpng1.5.2 and zlib1.2.3 and retains this exact result; see `docs/PNG_PROVIDER_VERSION_2026_11_03.md`. Source comes from:
+The original comparison used libpng1.2.5 and zlib1.2.3. Later target role analysis showed that the 1.2.5 marker is a zlib initialization argument, not proof of the native PNG release. The current pinned comparison uses libpng1.5.2 with zlib1.2.5 headers and a zlib1.2.3 implementation, and retains this exact result; see `docs/PNG_PROVIDER_VERSION_2026_11_03.md`. Source comes from:
 
 - https://github.com/pnggroup/libpng/tree/dcc3505c7bd0660876fc80110f8e3581900a186a
 - https://github.com/madler/zlib/tree/abf180a067223611620dd97dd5681df7c7fa7c9b
 
 config/png-source-lock.json retains immutable repository/commit identities,
 relative filenames, byte sizes, Git blob SHA1s and independent SHA256s for46
-source/license files. The lock's own digest is pinned in linked_png_sdk.py.
+source/license files. The two additional official zlib 1.2.5 header files are locked separately in `config/png-zlib-header-lock.json`; both lock digests are pinned in `linked_png_sdk.py`.
 Unmodified source/license files are cached under .tools/upstream/libpng-1.5.2
-and .tools/upstream/zlib-1.2.3, outside Git. Restoring this cache requires those
+and .tools/upstream/zlib-1.2.3, with the two 1.2.5 headers under `.tools/upstream/zlib-1.2.5-headers`, outside Git. Restoring this cache requires those
 exact listed files from those commits; an unavailable or modified file fails
 before compilation. The Factory workflow does not silently fetch substitutes.
 
