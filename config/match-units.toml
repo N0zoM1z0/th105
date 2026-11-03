@@ -15394,11 +15394,11 @@ source = "src/network/NetworkAckInfoPacketRuntime.cpp"
 object = "build/match-units/GptWeb_NetworkAckInfoPacketRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current RTTI-owned 0x40 ACK_INFO packet serializer/parser. The packet has a four-byte non-polymorphic result base, derived vfptr, two checked deque<short> members and tail state. Serializer uses deque::at() range semantics; parser preserves byte-count gating and int temporary lifetime."
+notes = "Current RTTI-owned 0x40 ACK_INFO packet serializer/parser. The packet inherits its offset-zero polymorphic IPacket base, followed by the result word, two checked deque<short> members and tail state. Serializer uses deque::at() range semantics; parser preserves byte-count gating and int temporary lifetime."
 
 [[units.gpt-web-network-ack-info-packet-runtime.functions]]
 address = "0x0044DF20"
-symbol_base = "?serialize@NetworkAckInfoPacket40Runtime@th105@@UAEIPAX@Z"
+symbol_base = "?serialize@NetworkAckInfoPacket40@th105@@UAEIPAX@Z"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "_Xran=0x00431610",
@@ -15406,7 +15406,7 @@ rel32_targets = [
 
 [[units.gpt-web-network-ack-info-packet-runtime.functions]]
 address = "0x0044E0A0"
-symbol_base = "?parse@NetworkAckInfoPacket40Runtime@th105@@QAEDPBE@Z"
+symbol_base = "?parse@NetworkAckInfoPacket40@th105@@QAEDPBE@Z"
 rel32_targets = [
   "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
   "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
@@ -29957,7 +29957,7 @@ rel32_targets = [
 ]
 dir32_targets = [
  "__ehhandler$?dispatch@DispatchOwner@th105@@QAEXIPBUDispatchRequest@2@@Z=__ehhandler$?dispatch_secondary_request@CNetworkClientReplayDispatchView@th105@@QAEXIPBUNetworkRequestReplay10@2@@Z",
- "??_7DispatchAck@th105@@6B@=??_7NetworkAckInfoPacket40@th105@@6B@",
+ "??_7NetworkAckInfoPacket40@th105@@6B@=??_7NetworkAckInfoPacket40@th105@@6B@",
  "??_7DispatchReplay@th105@@6B@=??_7NetworkReplayPacket28@th105@@6B@",
  "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
  "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",

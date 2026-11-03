@@ -282,3 +282,7 @@ The Fighter CPU-input selector now calls the actual `Fighter::classify_fighter_x
 ### 2026-11-03: select network replay source
 
 A typed ACK/replay request dispatcher is selected at `0x44E460`, with both native branches, real deque/packet lifetimes and target-address evidence for EH and vtables. Full canonical comparison is 566/native566 but 177 bytes differ, first at `+0x49` due to control-flow displacement. EH equivalence and an integrated link remain unproved. No exact credit. See `docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: unify ACK packet hierarchy
+
+The ACK packet serializer/parser, senders and replay dispatcher now share one `NetworkAckInfoPacket40` with the RTTI-proven polymorphic offset-zero base. This corrects the serializer/parser TU's superseded non-polymorphic-base view and match-unit notes. Fresh comparisons preserve both exact serializer/parser roots and both exact senders; the constructor and replay dispatcher retain their identical prior nonexact hashes. See `docs/ACK_PACKET_BASE_2026_10_29.md`. No new exact credit or complete-link claim.

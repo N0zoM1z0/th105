@@ -26,3 +26,9 @@ serialization implementation or accepted byte count changes.
 scripts/repo-python scripts/build.py --unit gpt-web-network-ack-info-senders-runtime --compare --json
 
 Receipt:build/frontier-ack-result-value-20261029/formal.json.
+
+## 2026-11-03 shared ACK packet type
+
+The serializer/parser TU still used the superseded non-polymorphic-base view even though the native RTTI proved the offset-zero polymorphic base above. `NetworkAckInfoPacket.hpp` now provides the single shared `NetworkAckInfoPacket40` definition, including its existing result word, two deques and tail fields. The sender, serializer/parser and newly recovered replay-dispatch source use that same type; the replay dispatcher's ACK virtual call now has the actual serializer implementation available rather than a distinct undefined ACK type.
+
+Fresh canonical comparisons preserve serializer `0x44DF20` 292/292, parser `0x44E0A0` 183/183 and senders `0x44F0F0` 269/269 and `0x44FE30` 341/341. The constructor remains nonexact 43/native41 with its previous object hash; the replay dispatcher remains nonexact 566/native566 with its previous object hash. The match-unit description now states the RTTI-backed hierarchy. Receipts: `build/frontier-ack-real-shared-type-20261103/`. This removes a source-type contradiction without adding exact bytes or claiming a complete integrated link.
