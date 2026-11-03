@@ -1,5 +1,10 @@
 # TH10.5 reconstruction handoff
 
+Packet deque back 0x4179D0/82 is compiler-generated: whole body, real
+source/native acquire call edges, three runtime calls and inventory uniqueness
+pass; the acquire parent remains nonexact. Review291 / excluded2080; no authored
+or exact credit. See PACKET_DEQUE_BACK_ORIGIN_2026_11_03.md.
+
 Unsigned list growth 0x402700/165 is compiler-generated: actual BGM lifetime
 CIL emission plus a separately exact native handle-manager caller, complete
 root/EH/exception proof and inventory uniqueness. Source release itself is not

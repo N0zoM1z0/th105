@@ -6131,3 +6131,14 @@ subsystem = "vc8_stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual BGM allocation manager CIL emits the full unsigned-list growth165 body and calls it naturally; independently exact native handle-manager release167 calls target402700 at405286. Complete root, EH, length_error RTTI/metadata and full inventory uniqueness pass. Source release parent is not claimed exact. No masks or authored credit. docs/UNSIGNED_LIST_GROWTH_ORIGIN_2026_11_03.md."
+
+[[rules]]
+id = "linked-packet-deque-back-106a"
+linked_packet_deque_back_anchor_file = "config/linked-packet-deque-back-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 82
+origin = "compiler_generated"
+subsystem = "vc8_stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Complete82-byte packet deque back emitted by real UDP acquire source in sender CIL and called by the native410-byte acquire parent at417706. Three verified invalid-parameter calls, actual private EDI receiver, full body and inventory uniqueness are checked. Parent remains nonexact; no authored byte credit. docs/PACKET_DEQUE_BACK_ORIGIN_2026_11_03.md."

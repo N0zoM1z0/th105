@@ -528,7 +528,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00417800,authored_game,assets,authored,observed,resource-handle-lookup-authored-106a
 0x004178D0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00417950,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
-0x004179D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x004179D0,compiler_generated,vc8_stl,exclude,observed,linked-packet-deque-back-106a
 0x00417A30,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00417A90,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00417AF0,unknown,,review,unknown,ida-1.06a-initial-inventory
