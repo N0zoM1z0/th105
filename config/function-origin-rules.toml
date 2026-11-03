@@ -6417,7 +6417,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete753-byte fighter scripted-input and action policy, called for both fighters by two independently exact round setup and pre-reset functions. Native source context remains unrecovered; no source or exact-byte credit. docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md."
+evidence = "Complete753-byte fighter scripted-input and action policy, called for both fighters by two independently exact round setup and pre-reset functions. Selected typed source remains nonexact; no exact-byte credit. docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md."
 required_body_hashes = [{ address = "0x00463E40", size = 753, sha256 = "f4fc93f5a85590424dd4f614584f07b853b9541eeeeeffbb58915e3d20fabddc" }]
 required_direct_edges = [{ caller = "0x00470BC0", site = "0x00470C02", target = "0x00463E40", caller_status = "matching" }, { caller = "0x00470BC0", site = "0x00470C0A", target = "0x00463E40", caller_status = "matching" }, { caller = "0x00472230", site = "0x00472272", target = "0x00463E40", caller_status = "matching" }, { caller = "0x00472230", site = "0x0047227A", target = "0x00463E40", caller_status = "matching" }]
 

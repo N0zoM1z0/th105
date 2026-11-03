@@ -225,7 +225,7 @@ The normal and Story InfoManager effect wrappers now call the shared real `Battl
 
 ### 2026-11-03: scripted fighter-input origin
 
-The complete 753-byte `0x463E40` fighter input/state policy is classified authored from its pinned body and four call edges in two freshly exact round-init/pre-reset callers. Its sole indirect virtual tail remains outside this ownership proof. The earlier 751-byte candidate is not in the current tracked source tree; no source-present or exact credit is claimed. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.
+The complete 753-byte `0x463E40` fighter input/state policy is classified authored from its pinned body and four call edges in two freshly exact round-init/pre-reset callers. Its sole indirect virtual tail remains outside this ownership proof. A later checkpoint below selects a retained typed candidate; neither that source nor the earlier 751-byte candidate is exact. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.
 
 ### 2026-11-03: scenario-event parser origin
 
@@ -262,3 +262,7 @@ The Fighter phase render callback now uses the shared real `FighterPhaseRenderSt
 ### 2026-11-03: connect embedded phase provider
 
 The Fighter phase-finalize callback now uses the shared real `FighterEmbeddedState3d0Runtime` type and implementation instead of a declaration-only alias. Fresh canonical comparisons preserve all five phase roots and both embedded-state roots, including `0x464AD0` 71/71 and `0x4653F0` 45/45. Receipts: `build/frontier-phase-real-embedded-provider-20261103/`. No new exact credit is claimed.
+
+### 2026-11-03: select scripted input source
+
+The retained typed Fighter scripted-input policy at `0x463E40` is now selected with the real signed-short history deque, existing selector global and mapped helpers. Its fresh whole-body comparison is 760/native753, nonexact at offset 1; view-method names are aliases, and a complete link is not established. No exact bytes are added. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.

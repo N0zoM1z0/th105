@@ -29912,3 +29912,22 @@ dir32_targets = [
  "__ehhandler$?parse_scenario_event_row_4591d0@BattlePhaseBlock@th105@@QAEXPAX@Z=_scenario_event_parser_eh",
  "___security_cookie=___security_cookie",
 ]
+
+[units.exact-first-fighter-scripted-input]
+kind = "probe"
+source = "src/battle/FighterScriptedInputRuntime.cpp"
+object = "build/match-units/ExactFirst_FighterScriptedInput.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Fighter scripted-input/game policy463E40. Current typed source is nonexact; body and caller evidence only, no partial exact credit. docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md."
+
+[[units.exact-first-fighter-scripted-input.functions]]
+address = "0x00463E40"
+symbol_base = "?update@ScriptedInputView@th105@@QAEXXZ"
+rel32_targets = [
+ "?sample@ScriptedInputView@th105@@QAEXXZ=0x004631C0",
+ "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
+ "?select_scripted@ScriptedInputView@th105@@QAEXXZ=0x004633E0",
+ "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]
+dir32_targets = ["?g_match_identifier@th105@@3HA=?g_match_identifier@th105@@3HA"]
