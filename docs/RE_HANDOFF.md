@@ -389,3 +389,13 @@ origin rule, two directly related exact units, tracking and target-independent
 CI were checked. The full origin census did not finish within the factory
 command window, so this checkpoint does not claim a full census replay. See
 `FIGHTER_BATTLE_RESET_2026_10_27.md` for the retained residual and boundaries.
+
+### UI policy origins (2026-11-03)
+
+Profile selection `427C60`, result-menu active update `4472A0` and key capture
+`44B540` are authored by complete native bodies and exact owner edges. Their
+prior source hypotheses remain unselected and nonexact; exact totals do not
+change. All three owner bodies were rebuilt exactly; the result owner's unit
+still reports an overall mismatch on its separate constructor. The focused
+origin rule, tracking and target-independent CI pass; a full origin census was
+not replayed. See `ORIGIN_RECOVERY_2026_11_03.md`.

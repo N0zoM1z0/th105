@@ -14,3 +14,33 @@ The full 313-byte replay-header read `0x429A30` is called at `0x42A296` by the f
 ## Profile menu state handlers
 
 The exact profile-menu dispatcher `0x44D240` tail-jumps to the primary handler `0x44BCF0` at `0x44D2DC` and state-one handler `0x44CA80` at `0x44D2E6`. Complete native code hashes and the seven- and four-entry original switch tables are pinned. Recursive decoding with those tables reaches all 256 and 446 body bytes, respectively; the tables themselves are excluded from these body counts. This supports game-authored ownership, not source or exact credit. Previous natural source candidates remain unselected and nonexact. Evidence: `build/frontier-profile-switch-origin-20261103/`.
+
+## Profile and result policies
+
+Three complete native UI policies have separately exact owner edges and are
+classified as authored, without adding exact-match credit:
+
+- `427C60` (333 bytes) updates profile editor selection, with a call from the
+  exact profile state-six owner at `44D04C`. Its full body closes 112 reachable
+  instructions and 12 direct calls. The retained 330-byte source remains
+  unselected and nonexact.
+- `4472A0` (619 bytes) updates the active result menu, reached by the exact
+  wrapper's tail jump at `447586`. Its full body closes 175 reachable
+  instructions and 27 direct calls. Its prior source hypothesis remains
+  unselected and nonexact.
+- `44B540` (790 bytes) captures profile keyboard and gamepad input, called by
+  the exact key configuration update at `44B8A5`. The CFG reaches 194
+  instructions; the only skipped seven bytes at `44B659` are the original
+  LEA alignment instruction after a direct jump. The complete native hash
+  includes those bytes. The latest retained 785-byte candidate has a 780-byte
+  exact prefix but a different final return topology and is unselected and
+  nonexact; an older 389-byte-prefix note is superseded.
+
+The origin rule pins all complete body hashes and exact-owner edges. No runtime
+input, rendering or complete gameplay execution is claimed. The target-specific
+rule was checked directly; no full origin-census replay is claimed.
+
+The three owner units were rebuilt. The profile and key-config units pass;
+the result unit reports overall mismatch because its separate result-menu
+constructor remains nonexact, while its `447560` owner itself is exact 43/43.
+Tracking and target-independent CI pass.
