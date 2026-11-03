@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Story battle-info update `0x471930` (323 bytes) is now individually mapped/source-present. Existing exact InfoManager caller replays; source321 remains nonexact. See `docs/STORY_INFO_SOURCE_2026_11_03.md`.
+
 2026-11-03: BGM master gain `0x403A30` (284 bytes) has complete source; original play/prepare/PCM roots remain exact. Its 357-byte CIL has an unaccounted unreachable gap, so comparison remains blocked and nonexact. See `docs/BGM_MASTER_GAIN_SOURCE_2026_11_03.md`.
 
 2026-11-03: Existing BGM stream transition `0x402B70` (153 bytes) is now individually mapped and source-present; two exact caller roots replay. Real CIL emits 142 bytes and remains nonexact. See `docs/BGM_TRANSITION_SOURCE_2026_11_03.md`.
@@ -45,7 +47,7 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The prior reconstruction checkpoint is `955e69f4` (BGM transition source;
+The prior reconstruction checkpoint is `cc492a26` (BGM master gain source;
 no new authored exact match). Work was committed locally; no push was
 performed by this session. Inspect live Git status before making further changes.
 
@@ -61,8 +63,8 @@ Verified from the live ledgers at this checkpoint:
 | Measure | Value |
 | --- | ---: |
 | Provisional candidates | 4027 |
-| Authored / excluded / review | 1660 / 2083 / 284 |
-| Mapped / source-present | 1831 / 1641 |
+| Authored / excluded / review | 1661 / 2083 / 283 |
+| Mapped / source-present | 1832 / 1642 |
 | Exact authored functions / bytes | 1426 / 443399 |
 | Configured units / function entries | 817 / 1989 |
 | Distinct units represented in matches.csv | 612 |
@@ -169,6 +171,6 @@ git diff --cached --check
 ```
 
 Default CI validates tooling and ledgers, not all native matches. Checkpoint
-the BGM master-gain checkpoint passed 996 tests in 109.660 seconds; the gate
-is recorded in `build/frontier-bgm-master-source-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
+the story-info checkpoint passed 996 tests in 105.496 seconds; the gate
+is recorded in `build/frontier-story-info-source-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.

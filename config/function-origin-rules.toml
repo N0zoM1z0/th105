@@ -6223,3 +6223,17 @@ confidence = "observed"
 evidence = "Complete284-byte BGM master gain policy called by exact configuration code. Clamp, locked active stream iteration and volume updates are application policy. Genuine linked source357 has an unaccounted gap and remains nonexact; no decoder waiver or exact credit. docs/BGM_MASTER_GAIN_SOURCE_2026_11_03.md."
 required_body_hashes = [{ address = "0x00403A30", size = 284, sha256 = "9a96e51df5582338e56e081b3895ca413a8679357b0e3827a967f30b755bff2b" }]
 required_direct_edges = [{ caller = "0x0043B1C0", site = "0x0043B1E1", target = "0x00403A30", caller_status = "matching" }]
+
+[[rules]]
+id = "story-info-update-authored-106a"
+addresses = ["0x00471930"]
+expected_count = 1
+expected_bytes = 323
+expected_names = ["sub_471930"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete323-byte story health, timer and alpha policy called by the freshly exact InfoManager update. Natural source321 remains nonexact; no partial byte credit. docs/STORY_INFO_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x00471930", size = 323, sha256 = "7422f38ee095768cde15559079fe5d8fef4b61440a84782d4eb334753ec2285a" }]
+required_direct_edges = [{ caller = "0x00471C90", site = "0x00471CA7", target = "0x00471930", caller_status = "matching" }]

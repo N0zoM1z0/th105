@@ -1,6 +1,6 @@
 #include "battle/InfoManagerResources.hpp"
 #include "ui/UiPrimitives.hpp"
-// Complete unselected candidate; docs/STORY_INFO_UPDATE_2026_10_28.md.
+// Complete source, still nonexact; see docs/STORY_INFO_SOURCE_2026_11_03.md.
 namespace th105 {
 struct StoryInfoFighterView {
     unsigned char reserved_000[0x174];

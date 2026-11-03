@@ -23998,7 +23998,7 @@ source = "src/battle/StoryInfoRecordUpdate.cpp"
 object = "build/match-units/ExactFirst_StoryInfoRecordUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete unselected471930 story health smoothing and timer/alpha update candidate321/native323. Independent stages retain signed /120 and byte wrapping. First67 and trailing201 bytes agree only after suffix displacement; full root remains nonexact. docs/STORY_INFO_UPDATE_2026_10_28.md."
+notes = "Complete471930 story health smoothing and timer/alpha source321/native323. Independent stages retain signed /120 and byte wrapping. Full root remains nonexact; exact InfoManager caller separately replayed. docs/STORY_INFO_SOURCE_2026_11_03.md."
 
 [[units.exact-first-story-info-update.functions]]
 address = "0x00471930"

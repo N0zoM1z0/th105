@@ -1830,3 +1830,4 @@ WaveService_set_handle_gain,0x00401CE0,function
 WaveService_set_master_gain,0x00401C20,function
 BgmStream_transition_gain,0x00402B70,function
 BgmService_set_master_gain,0x00403A30,function
+BattleInfoRecord_update_story,0x00471930,function

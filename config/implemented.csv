@@ -1639,3 +1639,4 @@ WaveService_set_handle_gain
 WaveService_set_master_gain
 BgmStream_transition_gain
 BgmService_set_master_gain
+BattleInfoRecord_update_story
