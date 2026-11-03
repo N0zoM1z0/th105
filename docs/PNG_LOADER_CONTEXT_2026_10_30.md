@@ -67,3 +67,7 @@ Reproduce with scripts/repo-python scripts/build.py --unit
 exact-first-csv-file-loading --json, then scripts/repo-python
 scripts/compare-linked-unit.py exact-first-csv-file-loading --address 0x0041A910
 --json. Expected result is mismatch at413, not exact, despite equal703-byte size.
+
+## Exact body and cleanup, 2026-11-03
+
+Declaring the real zero row offset before the pixel allocation naturally restores the native base/index encoding without changing the algorithm or forcing a register. The complete linked callable now compares exactly, 703/703; canonical SHA-256 `74d3548336f85f666e7ab0ce891f5538df71d6f2508ad4a48ec196be4869dfd0`. The linked comparator independently verifies the full 27-byte handler, 8-byte cleanup funclet, 36-byte FuncInfo and 8-byte unwind map, as well as the callback and target data roles. The affected source pin was renewed after independently replaying the linked CSV deque-copy origin rule and its exact roots. The native `1.5.2` version literal and linked `1.2.5` provider provenance remain distinct; no runtime decode-success claim is made. Evidence: `build/frontier-png-row-pointer-20261103/`.

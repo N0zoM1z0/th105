@@ -334,3 +334,7 @@ The complete 104-byte `0x405AC0` script cursor advance and two original call sit
 ### 2026-11-03: classify battle policy bodies
 
 Complete CFGs and fresh exact caller edges establish authored ownership of spell selection shuffle `0x432420` (196 bytes) and battle overlay rendering `0x4666A0` (670 bytes). Both previous source hypotheses remain unselected/nonexact; no exact-byte gain. See `docs/ORIGIN_RECOVERY_2026_11_03.md`.
+
+### 2026-11-03: exact PNG loader
+
+The linked PNG loader `0x41A910` now compares exactly for its complete 703-byte body by placing the real row-offset initialization before pixel allocation. Complete handler, cleanup funclet, FuncInfo and unwind map also replay exactly; the verified callback and target data bindings remain intact. The target version literal and linked provider version remain distinct; no runtime PNG decode-success claim. See `docs/PNG_LOADER_CONTEXT_2026_10_30.md`.

@@ -332,9 +332,9 @@ bool CBitmapData::load_png(const char *path)
         }
     } break;
     case 32: {
+        unsigned int offset = 0;
         unsigned char *pixels = new unsigned char[
             row_scale * field_0c * field_08 * info->channels_1d];
-        unsigned int offset = 0;
         if (info->height_04 > 0) {
             do {
                 png_read_row(png, pixels + offset, 0);
