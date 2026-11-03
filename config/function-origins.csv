@@ -1894,7 +1894,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004634A0,compiler_generated,battle,exclude,observed,vc8-generated-fighter-input-phase-std-comdats-106a
 0x00463500,authored_game,characters,authored,observed,fighter-command-matcher-authored-106a
 0x004638C0,compiler_generated,battle,exclude,observed,vc8-generated-short-deque-insert-106a
-0x00463E40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00463E40,authored_game,battle,authored,observed,fighter-scripted-input-authored-106a
 0x00464140,compiler_generated,battle,exclude,observed,vc8-generated-fighter-input-phase-std-comdats-106a
 0x00464200,authored_game,battle,authored,observed,canonical-exact-authored
 0x00464290,authored_game,battle,authored,observed,canonical-exact-authored

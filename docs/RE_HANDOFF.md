@@ -222,3 +222,7 @@ The normal and Story InfoManager effect wrappers now call the shared real `Battl
 ### 2026-11-03: register spell sequence preparation source
 
 `Fighter::prepare_next_spell_sequence_entry` at `0x45DC90` is now classified authored and source-present using the complete 259-byte native body and two direct edges from the freshly exact 482-byte practice-control caller. Existing typed source emits257 bytes and remains nonexact; cleanup EH is not claimed exact. See `docs/SEQUENCE_PREPARATION_2026_10_28.md`. Canonical exact count and bytes remain unchanged.
+
+### 2026-11-03: scripted fighter-input origin
+
+The complete 753-byte `0x463E40` fighter input/state policy is classified authored from its pinned body and four call edges in two freshly exact round-init/pre-reset callers. Its sole indirect virtual tail remains outside this ownership proof. The earlier 751-byte candidate is not in the current tracked source tree; no source-present or exact credit is claimed. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.
