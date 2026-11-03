@@ -6237,3 +6237,24 @@ confidence = "observed"
 evidence = "Complete323-byte story health, timer and alpha policy called by the freshly exact InfoManager update. Natural source321 remains nonexact; no partial byte credit. docs/STORY_INFO_SOURCE_2026_11_03.md."
 required_body_hashes = [{ address = "0x00471930", size = 323, sha256 = "7422f38ee095768cde15559079fe5d8fef4b61440a84782d4eb334753ec2285a" }]
 required_direct_edges = [{ caller = "0x00471C90", site = "0x00471CA7", target = "0x00471930", caller_status = "matching" }]
+
+[[rules]]
+id = "practice-battle-policy-authored-106a"
+addresses = ["0x00428260"]
+expected_count = 1
+expected_bytes = 553
+expected_names = ["sub_428260"]
+origin = "authored_game"
+subsystem = "input"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete553-byte practice guard, restoration and input policy with five-entry switch table, called by exact battle presentation. Existing full source is nonexact; no partial or table-byte credit. docs/PRACTICE_POLICY_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x00428260", size = 553, sha256 = "e111df68d1aa22d605f48a182591f33c9f62cf5b92f867c363d450b6d8d933b2" }]
+required_direct_edges = [{ caller = "0x0046B160", site = "0x0046B1A4", target = "0x00428260", caller_status = "matching" }]
+required_dword_values = [
+ { address = "0x0042848C", value = "0x004282AF" },
+ { address = "0x00428490", value = "0x004282CE" },
+ { address = "0x00428494", value = "0x004282AF" },
+ { address = "0x00428498", value = "0x004282AF" },
+ { address = "0x0042849C", value = "0x00428299" },
+]
