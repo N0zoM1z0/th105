@@ -25,3 +25,7 @@ Current receipt: build/frontier-426180-20261028/structured-switch.json.
 Earlier controls: formal-build.json,phase-switch.json. Neither root receives
 source-selection or exact credit. Only this new unit was built; no existing
 caller interface or shared header changed.
+
+## Authored ownership, 2026-11-03
+
+Fresh complete CFG and SHA checks cover all 247 and 267 native bytes, respectively. Each primary virtual slot is independently linked through its adjacent complete-object locator to the original `CBattleSV` or `CBattleCL` type descriptor. Their game-specific session, peer and scene-update policy supports authored ownership. The prior source candidates remain unselected and nonexact; this adds no exact-byte credit. Receipts: `build/frontier-new-owner-edges-20261103/network-battle-boundary.json`.

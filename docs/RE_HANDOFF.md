@@ -342,3 +342,7 @@ The linked PNG loader `0x41A910` now compares exactly for its complete 703-byte 
 ### 2026-11-03: scenario source-list reference
 
 A real source-list reference in `0x45A7A0` reproduces native iterator preparation and reduces the full 543-byte candidate's differences from 25 to 16; the earlier node-preparation mismatch remains. Both exact callers and the generated-list origin rule replay. No exact-byte or EH claim. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: classify network battle updates
+
+Complete server/client battle-update CFGs and RTTI-backed primary virtual slots establish authored ownership at `0x426180` (247 bytes) and `0x426380` (267 bytes). Prior source candidates remain unselected and nonexact; no exact-byte gain. See `docs/BATTLE_NETWORK_UPDATE_2026_10_28.md`.

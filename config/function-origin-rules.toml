@@ -6476,3 +6476,19 @@ confidence = "observed"
 evidence = "Battle manager overlay geometry and exact phase tail jump establish game ownership. No source or exact-byte credit. docs/ORIGIN_RECOVERY_2026_11_03.md."
 required_body_hashes = [{ address = "0x004666A0", size = 670, sha256 = "916c2058290c838da9b3a11d5ba076df2b0b0156f3ba375a3b314058f656a40f" }]
 required_direct_edges = [{ caller = "0x00466980", site = "0x004669DE", target = "0x004666A0", kind = "jump", caller_status = "matching" }]
+
+[[rules]]
+id = "battle-network-update-authored-106a"
+addresses = ["0x00426180", "0x00426380"]
+expected_count = 2
+expected_bytes = 514
+expected_names = ["sub_426180", "sub_426380"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete server/client battle-update policy and RTTI-owned primary virtual slots. Prior source hypotheses remain unselected and nonexact. docs/BATTLE_NETWORK_UPDATE_2026_10_28.md."
+required_rtti_virtual_bodies = [
+  { address = "0x00426180", size = 247, sha256 = "fec1f88bca6eaf66dd50aea811ac0b12d04692a0a0933310d0015f9d78032912", slot = "0x006C04EC", col_slot = "0x006C04E4", col = "0x006D7128", type_descriptor = "0x006E60B8", type_name_contains = ".?AVCBattleSV@@" },
+  { address = "0x00426380", size = 267, sha256 = "5d63cca281df0185cdb5f260172a4408b8ee6c0e69597c0d36e899243aceda0b", slot = "0x006C0544", col_slot = "0x006C053C", col = "0x006D721C", type_descriptor = "0x006E6104", type_name_contains = ".?AVCBattleCL@@" },
+]
