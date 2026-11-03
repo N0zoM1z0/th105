@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+Unsigned list growth 0x402700/165 is compiler-generated: actual BGM lifetime
+CIL emission plus a separately exact native handle-manager caller, complete
+root/EH/exception proof and inventory uniqueness. Source release itself is not
+claimed exact. Review292 / excluded2079; no authored or exact credit. See
+UNSIGNED_LIST_GROWTH_ORIGIN_2026_11_03.md.
+
 The 154-byte 0x40C6D0 list growth helper is compiler-generated, proved from the
 real exact BGM owner and complete body, EH and exception metadata. Review293 /
 excluded2078; no authored or exact credit. See BGM_LIST_GROWTH_ORIGIN_2026_11_03.md.

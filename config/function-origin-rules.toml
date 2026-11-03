@@ -6120,3 +6120,14 @@ subsystem = "vc8_stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Real exact BGM play351 calls this private constant-one list growth at three sites. Actual BGM CIL source emits whole154 matching bytes, complete EH and length_error metadata with three catchable types, full literal/RTTI and inventory uniqueness. No masks, fake ABI or authored byte credit. docs/BGM_LIST_GROWTH_ORIGIN_2026_11_03.md."
+
+[[rules]]
+id = "linked-unsigned-list-growth-106a"
+linked_unsigned_list_growth_anchor_file = "config/linked-unsigned-list-growth-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 165
+origin = "compiler_generated"
+subsystem = "vc8_stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual BGM allocation manager CIL emits the full unsigned-list growth165 body and calls it naturally; independently exact native handle-manager release167 calls target402700 at405286. Complete root, EH, length_error RTTI/metadata and full inventory uniqueness pass. Source release parent is not claimed exact. No masks or authored credit. docs/UNSIGNED_LIST_GROWTH_ORIGIN_2026_11_03.md."

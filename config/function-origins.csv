@@ -53,7 +53,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00402620,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00402680,compiler_generated,runtime,exclude,observed,linked-original-bad-alloc-106a
 0x004026A0,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
-0x00402700,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00402700,compiler_generated,vc8_stl,exclude,observed,linked-unsigned-list-growth-106a
 0x004027B0,compiler_generated,characters,exclude,observed,vc8-generated-roster-object-pools-std-comdats-106a
 0x004027E0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00402810,unknown,,review,unknown,ida-1.06a-initial-inventory
