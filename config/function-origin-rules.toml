@@ -6321,3 +6321,20 @@ required_direct_edges = [
  { caller = "0x0046D830", site = "0x0046D94E", target = "0x0046D610", caller_status = "matching" },
  { caller = "0x0046D830", site = "0x0046D976", target = "0x0046D610", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "outcome-selector-authored-106a"
+addresses = ["0x0045E120"]
+expected_count = 1
+expected_bytes = 620
+expected_names = ["sub_45E120"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete620-byte fighter reaction selector, with edges from freshly exact outcome path and dispatcher. Existing ordinary source610 remains nonexact; no register forcing or exact-byte credit. docs/OUTCOME_SELECTOR_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x0045E120", size = 620, sha256 = "5a84fe2d72fc87b44efa204195345867c9c95be0a8a46c38b20709d907dc6feb" }]
+required_direct_edges = [
+ { caller = "0x0046D3F0", site = "0x0046D4CB", target = "0x0045E120", caller_status = "matching" },
+ { caller = "0x0046D830", site = "0x0046D849", target = "0x0045E120", caller_status = "matching" },
+]

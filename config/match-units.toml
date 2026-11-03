@@ -29815,3 +29815,25 @@ rel32_targets = [
  "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
  "?apply_terminal_outcome@CollisionContext@th105@@QAEXPAUAttackCandidate@2@PAUFighter@2@@Z=0x0046C6E0",
 ]
+
+[units.exact-first-outcome-selector]
+kind = "probe"
+source = "src/battle/OutcomeSelector.cpp"
+object = "build/match-units/ExactFirst_OutcomeSelector.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete620-byte fighter outcome selector source; natural standalone probe remains nonexact, with no forced register or partial credit. docs/OUTCOME_SELECTOR_SOURCE_2026_11_03.md."
+
+[[units.exact-first-outcome-selector.functions]]
+address = "0x0045E120"
+symbol_base = "?select_outcome_path_from_frame_flags@Fighter@th105@@QAEHI@Z"
+rel32_targets = [
+ "?is_state_13c_in_96_c7@th105@@YIHPAUFighter@1@@Z=0x0045E100",
+ "?is_y_at_or_below_stage_surface@th105@@YIHPAUFighter@1@@Z=0x00435DC0",
+ "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+]
+dir32_targets = [
+ "?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
+ "?g_match_identifier@th105@@3HA=?g_match_identifier@th105@@3HA",
+ "__real@0000000000000000=__real@0000000000000000",
+]
