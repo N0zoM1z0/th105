@@ -1637,3 +1637,4 @@ CProfileCharacterSelect_refresh_character_preview
 CSprite_set_texture_options
 WaveService_set_handle_gain
 WaveService_set_master_gain
+BgmStream_transition_gain

@@ -1828,3 +1828,4 @@ CProfileCharacterSelect_refresh_character_preview,0x004484F0,function
 CSprite_set_texture_options,0x00406A90,function
 WaveService_set_handle_gain,0x00401CE0,function
 WaveService_set_master_gain,0x00401C20,function
+BgmStream_transition_gain,0x00402B70,function

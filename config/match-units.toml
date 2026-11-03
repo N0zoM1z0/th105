@@ -18446,6 +18446,12 @@ rel32_targets = [
   "?transition@BgmStreamView@th105@@QAEXHMHH@Z=0x00402B70",
 ]
 
+[[units.gpt-web-bgm-service-runtime.functions]]
+address = "0x00402B70"
+symbol_base = "?transition@BgmStreamView@th105@@QAEXHMHH@Z"
+private_from = { caller = "0x00403940", site = "0x00403974", through_exact_caller = true }
+rel32_targets = ["?bgm_transition_gain@th105@@YGHM@Z=0x00418990"]
+
 [units.gpt-web-battle-info-record-effect-runtime]
 kind = "probe"
 source = "src/battle/BattleInfoRecordEffectRuntime.cpp"

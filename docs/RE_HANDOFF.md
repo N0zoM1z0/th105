@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Existing BGM stream transition `0x402B70` (153 bytes) is now individually mapped and source-present; two exact caller roots replay. Real CIL emits 142 bytes and remains nonexact. See `docs/BGM_TRANSITION_SOURCE_2026_11_03.md`.
+
 2026-11-03: Wave master gain `0x401C20` (192 bytes) now has complete source using both observed 32-slot arrays. Unforced CIL emits 242 bytes and remains nonexact; no exact credit. See `docs/WAVE_MASTER_GAIN_SOURCE_2026_11_03.md`.
 
 2026-11-03: Wave per-handle gain `0x401CE0` (109 bytes) now has complete target-backed source. Actual unforced CIL emits 101 bytes and remains nonexact; exact config caller is unchanged. See `docs/WAVE_HANDLE_GAIN_SOURCE_2026_11_03.md`.
@@ -41,7 +43,7 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The prior reconstruction checkpoint is `031c8e9d` (wave per-handle gain source;
+The prior reconstruction checkpoint is `e348cd52` (wave master gain source;
 no new authored exact match). Work was committed locally; no push was
 performed by this session. Inspect live Git status before making further changes.
 
@@ -57,10 +59,10 @@ Verified from the live ledgers at this checkpoint:
 | Measure | Value |
 | --- | ---: |
 | Provisional candidates | 4027 |
-| Authored / excluded / review | 1658 / 2083 / 286 |
-| Mapped / source-present | 1829 / 1639 |
+| Authored / excluded / review | 1659 / 2083 / 285 |
+| Mapped / source-present | 1830 / 1640 |
 | Exact authored functions / bytes | 1426 / 443399 |
-| Configured units / function entries | 816 / 1987 |
+| Configured units / function entries | 816 / 1988 |
 | Distinct units represented in matches.csv | 612 |
 
 These are incremental totals, not a fresh whole-corpus replay. `implemented.csv`
@@ -165,6 +167,6 @@ git diff --cached --check
 ```
 
 Default CI validates tooling and ledgers, not all native matches. Checkpoint
-the master-gain source checkpoint passed 996 tests in 106.825 seconds; the gate
-is recorded in `build/frontier-wave-master-gain-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
+the BGM transition checkpoint passed 996 tests in 107.889 seconds; the gate
+is recorded in `build/frontier-bgm-transition-source-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.

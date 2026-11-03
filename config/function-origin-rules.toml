@@ -6192,3 +6192,20 @@ confidence = "observed"
 evidence = "Complete192-byte wave master gain policy called by the exact SE configuration function. Clamp and two 32-slot DirectSound loops are application policy; ordinary CIL source242 remains nonexact. No artificial ABI or exact credit. docs/WAVE_MASTER_GAIN_SOURCE_2026_11_03.md."
 required_body_hashes = [{ address = "0x00401C20", size = 192, sha256 = "5ba3f43fd3c6be880def8c0b5134077fed22b6a72ab1831403bf3d6fa600108b" }]
 required_direct_edges = [{ caller = "0x0043B1F0", site = "0x0043B212", target = "0x00401C20", caller_status = "matching" }]
+
+[[rules]]
+id = "bgm-transition-authored-106a"
+addresses = ["0x00402B70"]
+expected_count = 1
+expected_bytes = 153
+expected_names = ["sub_402B70"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete153-byte native immediate/scheduled stream gain policy has two freshly exact BGM callers. The genuine existing CIL source is142 bytes and remains nonexact; flag byte and unordered threshold are preserved. No authored exact credit. docs/BGM_TRANSITION_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x00402B70", size = 153, sha256 = "03472874fd8ef64fe1983667784150b3d4f33f18d192cfcfc63983a1dca6b148" }]
+required_direct_edges = [
+ { caller = "0x00403940", site = "0x00403974", target = "0x00402B70", caller_status = "matching" },
+ { caller = "0x00403990", site = "0x004039C3", target = "0x00402B70", caller_status = "matching" },
+]
