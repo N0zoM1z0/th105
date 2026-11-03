@@ -200,3 +200,7 @@ binaries, game data, tool installations, databases and credentials out of Git.
 ### 2026-11-03: broaden origin source EOL protection
 
 The origin-source checkout test now covers `source_pins`, `source_sha256`, and `[[sources]]` anchor formats. Thirteen additional pinned source paths have explicit LF checkout attributes. Corrected two conflicting `InputManager.hpp` hashes to the actual LF bytes and replayed both affected native proofs successfully; see `docs/ORIGIN_SOURCE_EOL_2026_11_03.md`. No authored or exact-byte credit changed.
+
+### 2026-11-03: use the real sprite rotation provider
+
+`SystemEffectObjectBase::render_effect` at `0x00473CF0` now calls the existing `CSpriteEx::rotate_xyz` implementation at `0x00407680`, rather than a declared but undefined alias mapped to the same target. The six-float thiscall signature and target are unchanged. Fresh canonical comparisons for all five functions in `cross-v106a-system-effect-object` are exact, including render 222/222; receipt `build/frontier-system-effect-real-rotation-20261103/compare.json`. This removes one link obstacle but does not establish a complete integrated link or add exact-byte credit.

@@ -101,7 +101,7 @@ void SystemEffectObjectBase::render_effect()
     effect_000.sprite_000.reset_transform();
     effect_000.sprite_000.scale_x(effect_000.reset_one_118, effect_000.reset_zero_104);
     effect_000.sprite_000.scale_y(effect_000.reset_one_11c, effect_000.reset_zero_108);
-    effect_000.sprite_000.transform_six(
+    effect_000.sprite_000.rotate_xyz(
         effect_000.reset_zero_120,
         effect_000.reset_zero_124,
         effect_000.reset_zero_128,

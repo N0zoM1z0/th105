@@ -6790,7 +6790,7 @@ rel32_targets = [
   "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0",
   "?scale_x@CSpriteEx@@QAEXMM@Z=0x004074E0",
   "?scale_y@CSpriteEx@@QAEXMM@Z=0x00407580",
-  "?transform_six@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
+  "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z=0x00407680",
   "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0",
   "?finalize_render@CSpriteEx@@QAEXXZ=0x00407AD0",
 ]
