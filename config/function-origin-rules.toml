@@ -6565,3 +6565,18 @@ confidence = "observed"
 evidence = "Complete profile selection, result-menu and key capture policies, each called by its exact UI owner. Prior source hypotheses are nonexact; key capture and result update are now selected. docs/ORIGIN_RECOVERY_2026_11_03.md."
 required_body_hashes = [{ address = "0x00427C60", size = 333, sha256 = "41df1dc4641c5c2094e1141e91a7d2f9de01e593b875d3fefa714d6f9eb6939b" }, { address = "0x004472A0", size = 619, sha256 = "f95a8af2443985dabebcfdda804b1b71ab603c8444e17303c2a349e8b5bbe0a1" }, { address = "0x0044B540", size = 790, sha256 = "77e1c9b7fd50d66e19f7ce4c1dfc4b1fd287dbe1a00eae1e88166c0f60ad24f6" }]
 required_direct_edges = [{ caller = "0x0044CF70", site = "0x0044D04C", target = "0x00427C60", caller_status = "matching" }, { caller = "0x00447560", site = "0x00447586", target = "0x004472A0", kind = "jump", caller_status = "matching" }, { caller = "0x0044B860", site = "0x0044B8A5", target = "0x0044B540", caller_status = "matching" }]
+
+[[rules]]
+id = "background-set-transition-authored-106a"
+addresses = ["0x004654F0"]
+expected_count = 1
+expected_bytes = 407
+expected_names = ["sub_4654F0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete background transition policy and four native jump-table entries, called from exact battle object dispatch. Complete source is selected and nonexact. docs/BACKGROUND_SET_TRANSITION_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x004654F0", size = 407, sha256 = "196a1aa24b152c18cb30ea6e1d56088375b203b70ea0e83a021241df3dae6443" }]
+required_direct_edges = [{ caller = "0x00467380", site = "0x004676C7", target = "0x004654F0", caller_status = "matching" }, { caller = "0x00467380", site = "0x004676FD", target = "0x004654F0", caller_status = "matching" }, { caller = "0x00467380", site = "0x00467715", target = "0x004654F0", caller_status = "matching" }]
+required_dword_values = [{ address = "0x00465688", value = "0x0046550C" }, { address = "0x0046568C", value = "0x00465515" }, { address = "0x00465690", value = "0x0046550C" }, { address = "0x00465694", value = "0x00465519" }]

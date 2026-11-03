@@ -416,3 +416,13 @@ The existing full `4472A0` result-menu policy is now individually selected by
 619 native bytes, first mismatch +81; EH cleanup is not proven exact. The exact
 wrapper was rebuilt in the prior origin checkpoint and target-independent CI
 passes. No exact bytes are added. See `RESULT_MENU_ACTIVE_SOURCE_2026_11_03.md`.
+
+### Background transition setter (2026-11-03)
+
+The complete `4654F0` background transition setter is authored and individually
+selected. Its 407-byte native body and four-entry switch are pinned, with three
+calls from exact battle-object dispatch. The source remains nonexact at +92;
+its separate metadata receives no authored-byte credit. Exact transition-step
+and dispatcher replays plus target-independent CI pass. The focused origin rule
+passes; no full origin census was replayed. See
+`BACKGROUND_SET_TRANSITION_SOURCE_2026_11_03.md`.

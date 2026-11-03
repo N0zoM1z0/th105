@@ -30003,3 +30003,17 @@ notes = "Complete active result-menu policy; source remains nonexact against the
 address = "0x004472A0"
 symbol_base = "?update_active@CMenuResult@th105@@AAE_NXZ"
 rel32_targets = ["?update@GuideOverlay@th105@@QAEXXZ=0x0043F450", "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "_dispatch_indexed_event=0x0043B1A0", "__invalid_parameter_noinfo=0x0068A143", "?refresh_selected_character@CMenuResult@th105@@AAEXXZ=0x00447080", "?at@ResultReplayDeque20@th105@@QAEPAFI@Z=0x0042D140", "_prepare_result_match=0x0043B8F0", "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50", "?at@ResultPointerDeque20@th105@@QAEPAII@Z=0x0042D1B0", "@release_owned_pointer_buffer@4=0x00420A80", "?assign@ResultReplayString@th105@@QAEXPBF@Z=0x0042AA90", "_prepare_scenario_match=0x0043AE90", "??2@YAPAXI@Z=0x00689DCB", "??0CProfileMenu@th105@@QAE@XZ=0x0044D4F0", "_install_menu_object_thunk=0x0043B0F0", "_is_menu_initial_press=0x0043ABD0"]
+
+[units.exact-first-background-set-transition]
+kind = "probe"
+source = "src/battle/BackgroundTransitionRuntime.cpp"
+object = "build/match-units/ExactFirst_BackgroundSetTransition.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete background transition setter. Canonical source remains nonexact; metadata is separate from authored body."
+
+[[units.exact-first-background-set-transition.functions]]
+address = "0x004654F0"
+symbol_base = "?set_transition_4654f0@BackgroundBase@th105@@QAEXHM@Z"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+dir32_targets = ["__real@406fe00000000000=__real@406fe00000000000"]
