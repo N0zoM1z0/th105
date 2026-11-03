@@ -6304,3 +6304,20 @@ required_dword_values = [
  { address = "0x006C1530", value = "0x00472490" },
  { address = "0x006C1578", value = "0x00472490" },
 ]
+
+[[rules]]
+id = "outcome-path-b-authored-106a"
+addresses = ["0x0046D610"]
+expected_count = 1
+expected_bytes = 542
+expected_names = ["sub_46D610"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete542-byte battle outcome path, with two edges from freshly exact dispatcher and exact sibling. Existing ordinary source530 remains nonexact; no partial or exact-byte credit. docs/OUTCOME_B_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x0046D610", size = 542, sha256 = "450e7afc48c3a42457f273e7d649db337ddc8595af95fc1a44e2bd6071b5d898" }]
+required_direct_edges = [
+ { caller = "0x0046D830", site = "0x0046D94E", target = "0x0046D610", caller_status = "matching" },
+ { caller = "0x0046D830", site = "0x0046D976", target = "0x0046D610", caller_status = "matching" },
+]

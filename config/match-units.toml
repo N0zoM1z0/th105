@@ -29791,3 +29791,27 @@ rel32_targets = [
  "__ftol2_sse=0x0068A1A0",
 ]
 dir32_targets = ["__real@408f400000000000=__real@408f400000000000"]
+
+[units.exact-first-outcome-path-b]
+kind = "probe"
+source = "src/battle/OutcomePaths.cpp"
+object = "build/match-units/ExactFirst_OutcomePathB.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete542-byte outcome path B source. Ordinary VC8 remains nonexact; existing exact sibling and dispatcher retain their separate unit. docs/OUTCOME_B_SOURCE_2026_11_03.md."
+
+[[units.exact-first-outcome-path-b.functions]]
+address = "0x0046D610"
+symbol_base = "?try_outcome_path_b@CollisionContext@th105@@QAE_NPAUAttackCandidate@2@PAUFighter@2@@Z"
+rel32_targets = [
+ "?is_state_13c_in_32_95@th105@@YI_NPAUFighter@1@@Z=0x0045E0E0",
+ "?reset_hit_exchange_scratch@CollisionContext@th105@@QAEXPAUFighter@2@0@Z=0x0046B350",
+ "?calculate_descriptor_scaled_quantity_20@AttackCandidate@th105@@QAEHXZ=0x0045C0E0",
+ "__ftol2_sse=0x0068A1A0",
+ "?adjust_capped_counter_558@Fighter@th105@@QAEXF@Z=0x0045CED0",
+ "?update_fighter_facing_from_other_x@th105@@YI_NPAUFighter@1@@Z=0x0045E070",
+ "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+ "?emit_effect_at_collision_center@CollisionContext@th105@@QAEXHH@Z=0x0046B650",
+ "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
+ "?apply_terminal_outcome@CollisionContext@th105@@QAEXPAUAttackCandidate@2@PAUFighter@2@@Z=0x0046C6E0",
+]

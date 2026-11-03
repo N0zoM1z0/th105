@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Battle outcome path B `0x46D610` (542 bytes) is now individually mapped/source-present. Exact sibling and dispatcher replay; source530 remains nonexact. See `docs/OUTCOME_B_SOURCE_2026_11_03.md`.
+
 2026-11-03: Forwarded hit quantity `0x46C5B0` (301 bytes) now uses the actual typed BattleManager virtual callback and is individually mapped/source-present. Source299 remains nonexact; exact forwarding caller replays. See `docs/FORWARDED_HIT_SOURCE_2026_11_03.md`.
 
 2026-11-03: Combo resource load `0x46A8C0` (413 bytes) is now individually mapped/source-present; exact InfoManager initialization replays. Source427 remains nonexact. See `docs/INFO_COMBO_SOURCE_2026_11_03.md`.
@@ -55,7 +57,7 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The prior reconstruction checkpoint is `e222fbf2` (combo source tracking;
+The prior reconstruction checkpoint is `4b144e6e` (typed forwarded-hit source;
 no new authored exact match). Work was committed locally; no push was
 performed by this session. Inspect live Git status before making further changes.
 
@@ -71,10 +73,10 @@ Verified from the live ledgers at this checkpoint:
 | Measure | Value |
 | --- | ---: |
 | Provisional candidates | 4027 |
-| Authored / excluded / review | 1665 / 2083 / 279 |
-| Mapped / source-present | 1836 / 1646 |
+| Authored / excluded / review | 1666 / 2083 / 278 |
+| Mapped / source-present | 1837 / 1647 |
 | Exact authored functions / bytes | 1426 / 443399 |
-| Configured units / function entries | 818 / 1990 |
+| Configured units / function entries | 819 / 1991 |
 | Distinct units represented in matches.csv | 612 |
 
 These are incremental totals, not a fresh whole-corpus replay. `implemented.csv`
@@ -179,6 +181,6 @@ git diff --cached --check
 ```
 
 Default CI validates tooling and ledgers, not all native matches. Checkpoint
-the forwarded-hit checkpoint passed 996 tests in 105.272 seconds; the gate
-is recorded in `build/frontier-forwarded-source-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
+the outcome-path checkpoint passed 996 tests in 108.822 seconds; the gate
+is recorded in `build/frontier-outcome-b-source-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.
