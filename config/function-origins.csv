@@ -282,7 +282,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040C350,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040C3D0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040C610,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040C6D0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040C6D0,compiler_generated,vc8_stl,exclude,observed,linked-bgm-list-growth-106a
 0x0040C770,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0040C7C0,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0040C820,unknown,,review,unknown,ida-1.06a-initial-inventory

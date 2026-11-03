@@ -1,5 +1,9 @@
 # TH10.5 reconstruction handoff
 
+The 154-byte 0x40C6D0 list growth helper is compiler-generated, proved from the
+real exact BGM owner and complete body, EH and exception metadata. Review293 /
+excluded2078; no authored or exact credit. See BGM_LIST_GROWTH_ORIGIN_2026_11_03.md.
+
 The complete 102-byte 0x413E10 deque teardown is now independently classified
 compiler-generated from a fresh exact resource-manager CIL owner, full unmasked
 canonical body and inventory uniqueness. Review294 / excluded2077; no authored

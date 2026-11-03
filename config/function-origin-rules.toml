@@ -6109,3 +6109,14 @@ subsystem = "vc8_stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Complete102-byte deque cleanup emitted in real resource-manager CIL; exact98-byte wave owner calls it at401F6A. Both free calls, actual private ESI protocol, whole body and uniqueness across the candidate inventory are checked, without authored byte credit. docs/RESOURCE_DEQUE_TIDY_ORIGIN_2026_11_03.md."
+
+[[rules]]
+id = "linked-bgm-list-growth-106a"
+linked_bgm_list_growth_anchor_file = "config/linked-bgm-list-growth-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 154
+origin = "compiler_generated"
+subsystem = "vc8_stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Real exact BGM play351 calls this private constant-one list growth at three sites. Actual BGM CIL source emits whole154 matching bytes, complete EH and length_error metadata with three catchable types, full literal/RTTI and inventory uniqueness. No masks, fake ABI or authored byte credit. docs/BGM_LIST_GROWTH_ORIGIN_2026_11_03.md."
