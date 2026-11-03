@@ -29976,3 +29976,17 @@ notes = "Complete Fighter base reset; source-present only, 1247-byte canonical c
 address = "0x00460200"
 symbol_base = "?initialize_fighter_battle_state@Fighter@th105@@QAEXXZ"
 rel32_targets = ["?reset_counters@CInputManager@th105@@QAEXXZ=0x00409F40", "?initialize_fighter_phase_62380@th105@@YIXPAUFighter@1@@Z=0x004633A0", "?initialize_fighter_phase_631e0@th105@@YIXPAUFighter@1@@Z=0x00464200", "?reset_fighter_action_scratch@FighterActionScratch@th105@@QAEXXZ=0x00435110", "?set_sequence_mode@SpellDataOwner@th105@@QAEXE@Z=0x00432520", "?clear_45fc80@FighterSequenceClearView@th105@@QAEXXZ=0x0045FC80", "?prepare_next_spell_sequence_entry@Fighter@th105@@QAEXXZ=0x0045DC90", "__invalid_parameter_noinfo=0x0068A143", "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20", "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0"]
+
+[units.exact-first-profile-key-capture]
+kind = "probe"
+source = "src/ui/ProfileKeyCapture.cpp"
+object = "build/match-units/ExactFirst_ProfileKeyCapture.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete keyboard and gamepad capture member; 785-byte source remains nonexact against the 790-byte target."
+
+[[units.exact-first-profile-key-capture.functions]]
+address = "0x0044B540"
+symbol_base = "?capture_key_input@CProfileKeyConfig@th105@@AAE_NXZ"
+rel32_targets = ["?is_raw_key_down@DirectInputBackend@th105@@QBE_NE@Z=0x0040D930", "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0", "?get_gamepad_state@DirectInputBackend@th105@@QAEPAURawGamepadState@2@H@Z=0x0040D990", "?get_gamepad_button_count@DirectInputBackend@th105@@QAEHH@Z=0x0040D940"]
+dir32_targets = ["?g_direct_input_backend@th105@@3UDirectInputBackend@1@A=_direct_input_backend_key_capture"]

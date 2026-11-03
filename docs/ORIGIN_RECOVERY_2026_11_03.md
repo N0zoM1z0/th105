@@ -33,8 +33,8 @@ classified as authored, without adding exact-match credit:
   instructions; the only skipped seven bytes at `44B659` are the original
   LEA alignment instruction after a direct jump. The complete native hash
   includes those bytes. The latest retained 785-byte candidate has a 780-byte
-  exact prefix but a different final return topology and is unselected and
-  nonexact; an older 389-byte-prefix note is superseded.
+  exact prefix but a different final return topology. It is now selected and
+  remains nonexact; an older 389-byte-prefix note is superseded.
 
 The origin rule pins all complete body hashes and exact-owner edges. No runtime
 input, rendering or complete gameplay execution is claimed. The target-specific
