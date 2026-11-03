@@ -21,9 +21,7 @@ registers, new safety behavior or modified exception semantics. The old ordinary
 680/703 and initial real-CIL671 results are superseded; the earlier assertion
 that only FileReader late-inline/EH remained was incomplete.
 
-Raw calls still pass the actual string1.5.2 at6D6E04. The embedded provider's
-provenance is libpng1.2.5. Neither is silently changed to make them agree, and
-this work does not claim native runtime decode success. The24-bit row scratch
+Raw calls still pass the actual string1.5.2 at6D6E04. The linked comparison provider is libpng 1.2.5, but the original PNG implementation's exact upstream release was not established by that marker. The linked provider rejects the original version argument; see `docs/PNG_PROVIDER_VERSION_2026_11_03.md`. No runtime decode success is claimed. The24-bit row scratch
 ownership and all original success/failure paths are preserved as observed.
 
 The first width/lifetime correction emitted700; format switch emitted703.
@@ -70,4 +68,4 @@ scripts/compare-linked-unit.py exact-first-csv-file-loading --address 0x0041A910
 
 ## Exact body and cleanup, 2026-11-03
 
-Declaring the real zero row offset before the pixel allocation naturally restores the native base/index encoding without changing the algorithm or forcing a register. The complete linked callable now compares exactly, 703/703; canonical SHA-256 `74d3548336f85f666e7ab0ce891f5538df71d6f2508ad4a48ec196be4869dfd0`. The linked comparator independently verifies the full 27-byte handler, 8-byte cleanup funclet, 36-byte FuncInfo and 8-byte unwind map, as well as the callback and target data roles. The affected source pin was renewed after independently replaying the linked CSV deque-copy origin rule and its exact roots. The native `1.5.2` version literal and linked `1.2.5` provider provenance remain distinct; no runtime decode-success claim is made. Evidence: `build/frontier-png-row-pointer-20261103/`.
+Declaring the real zero row offset before the pixel allocation naturally restores the native base/index encoding without changing the algorithm or forcing a register. The complete linked callable now compares exactly, 703/703; canonical SHA-256 `74d3548336f85f666e7ab0ce891f5538df71d6f2508ad4a48ec196be4869dfd0`. The linked comparator independently verifies the full 27-byte handler, 8-byte cleanup funclet, 36-byte FuncInfo and 8-byte unwind map, as well as the callback and target data roles. The affected source pin was renewed after independently replaying the linked CSV deque-copy origin rule and its exact roots. The native PNG getter also reports `1.5.2`; the linked `1.2.5` provider rejects that argument and is not runtime-equivalent. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`. Evidence: `build/frontier-png-row-pointer-20261103/`.

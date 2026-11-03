@@ -688,13 +688,13 @@ confidence = "observed"
 evidence = "current target functions are six-byte FF 25 jumps through IMM32 IAT slots"
 
 [[rules]]
-id = "libpng-1.2.5-106a"
+id = "libpng-native-106a"
 start = "0x0066B840"
 end = "0x006793C0"
 expected_count = 139
 expected_bytes = 54952
 required_target_strings = [
-  "1.2.5",
+  "1.5.2",
   "Application built with libpng-%.20s but running with %.20s",
   "Too many bytes for PNG signature",
   "Out of memory while processing unknown chunk",
@@ -703,7 +703,9 @@ origin = "third_party"
 subsystem = "assets"
 disposition = "exclude"
 confidence = "observed"
-evidence = "current target embeds the libpng 1.2.5 version/runtime diagnostics; the bounded island starts immediately after the four IMM32 import thunks, its first function reports the PNG-signature limit, and its last function owns libpng unknown-chunk allocation/error handling before the next function gap"
+evidence = "Native PNG-family code and diagnostics establish third-party ownership. Its create-read path calls a getter returning header version 1.5.2; a separate 1.2.5 literal is passed to zlib initialization and does not establish the libpng version. The exact upstream release of the island remains unproved. docs/PNG_PROVIDER_VERSION_2026_11_03.md."
+required_body_hashes = [{ address = "0x0066BF00", size = 6, sha256 = "80976f629487182d56b7d8ed4893c09c56448acfe9e68231332afeeaf2ceb62f" }, { address = "0x0066CE20", size = 756, sha256 = "5d1b0245401ddd1f1fdf335139484df87a8cc7dec838549405044e15fa4b106e" }]
+required_direct_edges = [{ caller = "0x0066CE20", site = "0x0066CF02", target = "0x0066BF00", caller_status = "unclassified" }]
 
 [[rules]]
 id = "late-external-import-thunks-106a"

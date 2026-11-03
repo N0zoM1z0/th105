@@ -236,7 +236,7 @@ A padding-isolated, RET-terminated `.text` island is only a boundary lead. Befor
 
 ### Separate third-party provenance from authored call-site constants
 
-A library fingerprint identifies the origin of the callee bytes, not the values an authored caller passed to that library. When reconstructing wrappers around third-party code, pin call-site literals from the canonical PE independently. The CBitmap PNG path is the current counterexample: the embedded implementation is classified as libpng 1.2.5, while the game caller at `0x0041A910` passes the literal `"1.5.2"` from `0x006D6E04`. Exact reconstruction follows the target-owned call-site bytes rather than normalizing them to the detected library version.
+A library fingerprint identifies the origin of the callee bytes, not the values an authored caller passed to that library. When reconstructing wrappers around third-party code, pin call-site literals from the canonical PE independently. The CBitmap PNG path is a caution: its caller and native PNG header-version getter both use `"1.5.2"`, while `"1.2.5"` is passed to zlib initialization and does not identify the native PNG release. The existing linked libpng 1.2.5 provider rejects the original literal; it is comparison context, not a proven runtime-equivalent provider. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.
 
 ### Main body versus adjacent switch metadata
 

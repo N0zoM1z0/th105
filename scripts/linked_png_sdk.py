@@ -1,4 +1,4 @@
-"""Build original PNG/zlib sources as real C providers, never replacement game code."""
+"""Build pinned PNG/zlib comparison providers; runtime equivalence is not claimed."""
 import hashlib
 import json
 import os
@@ -69,7 +69,7 @@ def inputs(unit, image, *, generate=False):
     target = core.comparator()
     target.verify_target()
     data = target.TARGET.read_bytes()
-    for marker in (b'1.2.5\0', b'deflate 1.2.3 Copyright 1995-2005 Jean-loup Gailly',
+    for marker in (b'1.5.2\0', b'1.2.5\0', b'deflate 1.2.3 Copyright 1995-2005 Jean-loup Gailly',
                    b'inflate 1.2.3 Copyright 1995-2005 Mark Adler'):
         if marker not in data:
             raise ValueError('canonical target PNG/zlib version evidence is absent')

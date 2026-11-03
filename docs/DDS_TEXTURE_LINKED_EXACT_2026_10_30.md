@@ -32,7 +32,7 @@ The DDS's own complete body and all cleanup records must still match exactly.
 
 ## Pinned original external C providers
 
-Target provenance strings identify libpng1.2.5 and zlib1.2.3. Source comes from:
+The linked comparison context uses libpng1.2.5 and zlib1.2.3. Later target role analysis showed that the 1.2.5 marker is a zlib initialization argument, not proof of the native PNG release; see `docs/PNG_PROVIDER_VERSION_2026_11_03.md`. Source comes from:
 
 - https://github.com/pnggroup/libpng/tree/0cc2f95a9d87ae903a9842f1121384e3b2e5bbdc
 - https://github.com/madler/zlib/tree/abf180a067223611620dd97dd5681df7c7fa7c9b

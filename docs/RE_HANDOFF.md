@@ -350,3 +350,7 @@ Complete server/client battle-update CFGs and RTTI-backed primary virtual slots 
 ### 2026-11-03: classify replay and round policy
 
 Complete native bodies and fresh exact caller edges establish authored ownership of replay-header read `0x429A30` (313 bytes) and battle-round reset `0x471180` (290 bytes). Existing source hypotheses remain unselected/nonexact; no exact-byte gain. See `docs/ORIGIN_RECOVERY_2026_11_03.md`.
+
+### 2026-11-03: PNG provider version correction
+
+The native PNG create-read path compares against its getter returning `1.5.2`. The previous `1.2.5` marker was actually passed to zlib initialization and does not prove native libpng version. The pinned 1.2.5 comparison provider rejects the original 1.5.2 argument in a bounded runtime probe, so it is not a runnable-equivalent PNG provider. The 703-byte game-function match remains a code/relocation result, not runtime equivalence. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.
