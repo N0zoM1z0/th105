@@ -265,8 +265,12 @@ The Fighter phase-finalize callback now uses the shared real `FighterEmbeddedSta
 
 ### 2026-11-03: select scripted input source
 
-The retained typed Fighter scripted-input policy at `0x463E40` is now selected with the real signed-short history deque, existing selector global and mapped helpers. Its fresh whole-body comparison is 760/native753, nonexact at offset 1; the original view-method aliases have since been replaced by real providers, but a complete link is not established. No exact bytes are added. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.
+The retained typed Fighter scripted-input policy at `0x463E40` is now selected with the real signed-short history deque, existing selector global and mapped helpers. Its initial whole-body comparison was 760/native753; the later control-flow checkpoint below improves this but remains nonexact. The original view-method aliases have since been replaced by real providers, but a complete link is not established. No exact bytes are added. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.
 
 ### 2026-11-03: connect scripted input helpers
 
-The Fighter scripted-input body calls the actual input sampler and CPU selector implementations through their shared typed views. Fresh native comparisons preserve the 480/480 and 171/171 helper matches, while the parent remains 760/native753 with identical nonexact canonical object hash. No complete-link or new exact-byte claim. Receipts: `build/frontier-scripted-input-real-providers-20261103/`.
+The Fighter scripted-input body calls the actual input sampler and CPU selector implementations through their shared typed views. Fresh native comparisons preserve the 480/480 and 171/171 helper matches, while the parent initially remained 760/native753 with identical nonexact canonical object hash; the later checkpoint below improves the parent. No complete-link or new exact-byte claim. Receipts: `build/frontier-scripted-input-real-providers-20261103/`.
+
+### 2026-11-03: scripted-input native control flow
+
+The selected `0x463E40` source now uses the native direct random-threshold returns and publishes the snapshot timer in target order. Whole-body output is 753/native753 with only two differing bytes (`+0x22/+0x2F`), both from ECX versus EDX for the horizontal input multiplication. Reversing multiplication operands was byte-neutral; no register coercion or exact credit. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.

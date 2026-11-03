@@ -59,6 +59,7 @@ void ScriptedInputView::update()
             (buttons_6bc[0]==1 || buttons_6bc[1]==1 || buttons_6bc[2]==1 ||
              buttons_6bc[3]==1 || buttons_6bc[4]==1 || buttons_6bc[5]==1)) {
             saved_horizontal_6d4=horizontal_6b4;
+            timer_70c=10;
             saved_vertical_6d8=vertical_6b8;
             saved_buttons_6dc[0]=buttons_6bc[0]==1;
             saved_buttons_6dc[1]=buttons_6bc[1]==1;
@@ -66,7 +67,6 @@ void ScriptedInputView::update()
             saved_buttons_6dc[3]=buttons_6bc[3]==1;
             saved_buttons_6dc[4]=buttons_6bc[4]==1;
             saved_buttons_6dc[5]=buttons_6bc[5]==1;
-            timer_70c=10;
         } else if(action_13c<300 || timer_70c<=0) {
             saved_horizontal_6d4=0;
             saved_vertical_6d8=0;
@@ -89,20 +89,18 @@ void ScriptedInputView::update()
     case 3: reinterpret_cast<FighterCpuInputRuntimeView *>(this)->update_cpu_input_4633e0();break;
     default: cpu_policy();break;
     }
-    bool clear=false;
     switch(g_match_identifier) {
-    case 0: clear=static_cast<unsigned>(selector_random_roll(100))<90;break;
-    case 1: clear=static_cast<unsigned>(selector_random_roll(100))<50;break;
-    case 2: clear=static_cast<unsigned>(selector_random_roll(100))<25;break;
+    case 0: if (static_cast<unsigned>(selector_random_roll(100)) >= 90) return; break;
+    case 1: if (static_cast<unsigned>(selector_random_roll(100)) >= 50) return; break;
+    case 2: if (static_cast<unsigned>(selector_random_roll(100)) >= 25) return; break;
+    default: return;
     }
-    if(clear) {
-        edge_6f4[0]=0;buttons_6bc[0]=0;
-        edge_6f4[1]=0;buttons_6bc[1]=0;
-        edge_6f4[2]=0;buttons_6bc[2]=0;
-        edge_6f4[3]=0;buttons_6bc[3]=0;
-        edge_6f4[4]=0;buttons_6bc[4]=0;
-        edge_6f4[5]=0;buttons_6bc[5]=0;
-        state_728=0;
-    }
+    edge_6f4[0]=0;buttons_6bc[0]=0;
+    edge_6f4[1]=0;buttons_6bc[1]=0;
+    edge_6f4[2]=0;buttons_6bc[2]=0;
+    edge_6f4[3]=0;buttons_6bc[3]=0;
+    edge_6f4[4]=0;buttons_6bc[4]=0;
+    edge_6f4[5]=0;buttons_6bc[5]=0;
+    state_728=0;
 }
 }
