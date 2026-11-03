@@ -214,3 +214,7 @@ A private linked image assembled the actual system-effect pool and caller togeth
 ### 2026-11-03: connect info-effect provider
 
 The normal and Story InfoManager effect wrappers now call the shared real `BattleInfoRecordEffectRuntimeView::emit_group_effect_46f9f0` declaration and implementation, rather than an undefined alias mapped to the same target. The common header preserves the existing target-backed layout. Fresh comparisons of both affected units remain exact for all five roots: `0x46EF40` 214, `0x46F820` 35, `0x471EC0` 78, `0x471F10` 215 and `0x472060` 31 bytes. The provider itself remains nonexact at 66/native85 with the same canonical object hash as its prior receipt. See `build/frontier-info-effect-real-provider-20261103/`. No new exact credit is claimed.
+
+### 2026-11-03: restore ordinary-COFF review discovery
+
+`rank-existing-object-review-symbols.py` now explicitly excludes named `.ltcg.obj` VC8 intermediates, which GNU `nm` cannot parse, and reports their count. It still fails on unexpected `nm` errors rather than silently discarding ordinary objects. A fresh scan covered 854 ordinary objects and excluded 42 LTCG intermediates. Three same-size rows all refer to the previously rejected package allocator `0x41D160`; the source-specific prior proof found a different native fingerprint, so no origin or exact credit is added. Discovery output is `build/frontier-review-discovery-20261103/rank.json` and remains provisional.

@@ -5,7 +5,10 @@ This is discovery only, never exact acceptance.  It joins three independent
 facts:
   * direct relative edges from canonical-exact target owners,
   * their configured decorated callee symbol names, and
-  * symbols actually emitted by existing build/match-units/*.obj files.
+  * symbols actually emitted by existing ordinary COFF build/match-units/*.obj files.
+
+VC8 LTCG intermediate objects are not ordinary COFF and are explicitly excluded;
+linked candidates require their own PE/map workflow.
 
 Same-size output is a prioritization signal, not a match claim.  Every candidate
 still needs canonical compare-function.py validation and origin review.
@@ -74,6 +77,11 @@ def decorated_targets(units: dict[str, Any], review: set[int]) -> dict[str, set[
     return output
 
 
+def ordinary_coff_objects(paths: list[Path]) -> list[Path]:
+    """Exclude named VC8 CIL intermediates, which GNU nm cannot parse."""
+    return [path for path in paths if not path.name.endswith('.ltcg.obj')]
+
+
 def emitted_symbols(object_paths: list[Path]) -> dict[str, list[dict[str, Any]]]:
     if not object_paths:
         return {}
@@ -139,7 +147,8 @@ def census() -> dict[str, Any]:
     }
     units = tomllib.loads(UNITS.read_text(encoding="utf-8"))["units"]
     names = decorated_targets(units, set(review_rows))
-    objects = sorted(OBJECT_DIR.glob("*.obj"))
+    all_objects = sorted(OBJECT_DIR.glob("*.obj"))
+    objects = ordinary_coff_objects(all_objects)
     rows = rank_rows(review_rows, names, emitted_symbols(objects))
     return {
         "schema": "th105-existing-object-review-symbols-v1",
@@ -147,10 +156,11 @@ def census() -> dict[str, Any]:
         "exact_owner_count": direct["exact_owner_count"],
         "review_start_count": direct["landing_counts"]["candidate_start"],
         "object_count": len(objects),
+        "excluded_ltcg_object_count": len(all_objects) - len(objects),
         "emitted_candidate_rows": len(rows),
         "exact_size_rows": sum(row["size_match"] for row in rows),
         "rows": rows,
-        "scope": "prioritization only; same-size emitted symbols require canonical byte comparison and independent origin review",
+        "scope": "ordinary COFF prioritization only; LTCG intermediates excluded; same-size emitted symbols require canonical byte comparison and independent origin review",
     }
 
 

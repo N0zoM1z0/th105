@@ -15,6 +15,10 @@ spec.loader.exec_module(ranking)
 
 
 class ExistingObjectReviewSymbolTests(unittest.TestCase):
+    def test_excludes_ltcg_intermediates_but_not_other_objects(self) -> None:
+        paths = [Path("a.obj"), Path("a.ltcg.obj"), Path("a.bindings.obj")]
+        self.assertEqual(ranking.ordinary_coff_objects(paths), [paths[0], paths[2]])
+
     def test_parse_nm_text_symbol(self) -> None:
         row = ranking.parse_nm_line("build/foo.obj:00000000 0000014c T ?function@@YAXXZ")
         self.assertEqual(row["object"], "build/foo.obj")
