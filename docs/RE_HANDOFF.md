@@ -374,3 +374,7 @@ The PNG provider now uses locked official zlib 1.2.5 headers while retaining the
 ### 2026-11-03: verify zlib initialization
 
 Pinned zlib 1.2.3 source reproduces the complete native inflate-init body `0x6678F0` (203/203 with explicit allocator/reset role bindings) and its `0x6679C0` wrapper (26/26). The provider audit now replays both along with PNG witnesses and the synthetic decode. This supports the mixed header/implementation context, not whole-library equivalence or authored credit. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`.
+
+### 2026-11-03: classify profile-menu handlers
+
+Exact dispatcher tail edges, complete body hashes and pinned original switch tables establish authored ownership for profile-menu primary `0x44BCF0` (256 bytes) and state-one `0x44CA80` (446 bytes). Switch-aware decoding reaches every body byte. Prior source candidates remain unselected/nonexact; no exact-byte gain. See `docs/ORIGIN_RECOVERY_2026_11_03.md`.

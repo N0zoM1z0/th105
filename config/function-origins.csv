@@ -1509,7 +1509,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044B9D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BA90,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BCD0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
-0x0044BCF0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044BCF0,authored_game,ui,authored,observed,profile-menu-switch-authored-106a
 0x0044BE10,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BEF0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BFE0,authored_game,ui,authored,observed,canonical-exact-authored
@@ -1518,7 +1518,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044C380,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044C710,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044C860,authored_game,ui,authored,observed,canonical-exact-authored
-0x0044CA80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044CA80,authored_game,ui,authored,observed,profile-menu-switch-authored-106a
 0x0044CC50,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044CDE0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044CF70,authored_game,ui,authored,observed,canonical-exact-authored

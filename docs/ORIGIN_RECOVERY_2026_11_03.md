@@ -10,3 +10,7 @@ These game-policy bodies and original caller edges establish authored ownership.
 ## Replay header and round reset
 
 The full 313-byte replay-header read `0x429A30` is called at `0x42A296` by the freshly exact replay-list formatter `0x42A150`; its SHA-256 is `7b806a89700b2d3f9220e0848a68b5c1fe52be0684658414d8821421eb3663f3`. The full 290-byte battle-round reset `0x471180` is called at `0x444E0D` by the freshly exact continue-menu update `0x444C70`; its SHA-256 is `bf64af9cf4b91fa500f9fef4f90c8c9415c211fb7f164d271c69ce45a6f46317`. Both closed CFGs reach every byte and have no indirect or outgoing direct jumps. Their game-specific behavior and exact caller edges establish authored ownership. Prior source hypotheses remain unselected/nonexact; no exact-byte gain. Evidence: `build/frontier-new-owner-edges-20261103/`.
+
+## Profile menu state handlers
+
+The exact profile-menu dispatcher `0x44D240` tail-jumps to the primary handler `0x44BCF0` at `0x44D2DC` and state-one handler `0x44CA80` at `0x44D2E6`. Complete native code hashes and the seven- and four-entry original switch tables are pinned. Recursive decoding with those tables reaches all 256 and 446 body bytes, respectively; the tables themselves are excluded from these body counts. This supports game-authored ownership, not source or exact credit. Previous natural source candidates remain unselected and nonexact. Evidence: `build/frontier-profile-switch-origin-20261103/`.
