@@ -250,3 +250,7 @@ The selected parser now reuses the actual selected-value local for the following
 ### 2026-11-03: scenario parser native read order
 
 The parser now checks the selected column before the CSV read, and retains distinct row count/remaining lifetimes as the native control flow does. The first 403 bytes match, but the complete source is 545/native543 bytes and still nonexact at source-list node/value scheduling. The natural nested-read control reintroduces the wrong frame and was rejected. No full-body or EH credit. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: scenario parser iterators
+
+The parser now materializes its genuine begin/end iterators for list assignment. Its generated function is 543/native543 bytes with the same 403-byte exact prefix, but two scheduling/register-allocation regions still differ. No whole-function or EH credit; see `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.

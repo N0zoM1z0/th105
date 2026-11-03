@@ -13,3 +13,7 @@ The target-backed source lifetime noted in `KNOWLEDGE_BASE.md` was missing from 
 ## Native column-check and remaining-row lifetimes
 
 The native loop checks the selected column before calling the CSV integer reader, with either branch consuming one value. Restoring that observable order and preserving distinct row-count and remaining-row lifetimes changes the first mismatch from `+0x33` to `+0x193` (403 bytes match from the start); the complete source body is 545/native543 bytes, still nonexact. The first residual concerns ordering of the source-list node pointer loads versus storing the read value. An ordinary nested `push_back(next_int())` control instead restores the larger `0x38` frame and is rejected. No exact or EH credit is claimed. Receipts: `final-read-order.json`, `remaining-inline-value.json` in the same build directory.
+
+## Explicit list iterator lifetimes
+
+Materializing the actual source-list begin and end iterators before assignment naturally yields 543/native543 bytes without fabricated storage. The first 403 bytes still match. The remaining differences are two instruction scheduling/register-allocation regions: source-list node preparation after the final CSV value, and iterator preparation for the list assignment. Same size is not equality; the whole body and cleanup EH remain unaccepted. Receipts: `explicit-list-iterators.json` and `explicit-list-iterators.asm` in the same build directory.
