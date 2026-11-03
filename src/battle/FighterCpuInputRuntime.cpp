@@ -1,4 +1,5 @@
 #include "FighterCpuInputRuntime.hpp"
+#include "Collision.hpp"
 #include <stddef.h>
 namespace th105 {
 typedef char cpu_x[offsetof(FighterCpuInputRuntimeView,x_ec)==0xec?1:-1];
@@ -14,7 +15,7 @@ void FighterCpuInputRuntimeView::update_cpu_input_4633e0()
 
     switch (g_battle_input_gate_cpu_runtime->horizontal_mode_1c) {
     case 0:
-        field_6b4 = classify_fighter_x_boundary() > 0 ? 0 : -1;
+        field_6b4 = reinterpret_cast<Fighter *>(this)->classify_fighter_x_boundary() > 0 ? 0 : -1;
         break;
     case 1:
         if (x_ec < 630.0f)
@@ -25,7 +26,7 @@ void FighterCpuInputRuntimeView::update_cpu_input_4633e0()
             field_6b4 = 0;
         break;
     case 2:
-        field_6b4 = classify_fighter_x_boundary() >= 0 ? 1 : 0;
+        field_6b4 = reinterpret_cast<Fighter *>(this)->classify_fighter_x_boundary() >= 0 ? 1 : 0;
         break;
     case 3:
     case 4:

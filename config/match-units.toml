@@ -15381,7 +15381,7 @@ notes = "Current Fighter CPU/scripted input selector. Shared input policy +0x18/
 [[units.gpt-web-fighter-cpu-input-runtime.functions]]
 address = "0x004633E0"
 symbol_base = "?update_cpu_input_4633e0@FighterCpuInputRuntimeView@th105@@QAEXXZ"
-rel32_targets = ["?classify_fighter_x_boundary@FighterCpuInputRuntimeView@th105@@QAECXZ=0x00435910"]
+rel32_targets = ["?classify_fighter_x_boundary@Fighter@th105@@QAECXZ=0x00435910"]
 dir32_targets = [
   "?g_battle_input_gate_cpu_runtime@th105@@3PAUFighterCpuInputPolicyView@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
   "__real@441d8000=__real@441d8000",

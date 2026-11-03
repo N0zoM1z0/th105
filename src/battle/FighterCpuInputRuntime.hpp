@@ -14,7 +14,6 @@ struct FighterCpuInputRuntimeView {
     unsigned char unknown_f0[0x5c4];
     int field_6b4;
     int field_6b8;
-    signed char classify_fighter_x_boundary();
     void update_cpu_input_4633e0();
 };
 } // namespace th105

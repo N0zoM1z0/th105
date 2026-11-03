@@ -274,3 +274,7 @@ The Fighter scripted-input body calls the actual input sampler and CPU selector 
 ### 2026-11-03: scripted-input native control flow
 
 The selected `0x463E40` source now uses the native direct random-threshold returns and publishes the snapshot timer in target order. Whole-body output is 753/native753 with only two differing bytes (`+0x22/+0x2F`), both from ECX versus EDX for the horizontal input multiplication. Reversing multiplication operands was byte-neutral; no register coercion or exact credit. See `docs/FIGHTER_SCRIPTED_INPUT_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: connect CPU boundary provider
+
+The Fighter CPU-input selector now calls the actual `Fighter::classify_fighter_x_boundary` implementation instead of a declaration-only alias. Fresh comparisons preserve the 171-byte CPU selector, four stage-geometry roots (including the 59-byte boundary classifier), and the scripted-input parent's unchanged 753/native753 nonexact two-byte residue. No complete-link or new exact credit is claimed. Receipts: `build/frontier-fighter-cpu-real-boundary-20261103/`.
