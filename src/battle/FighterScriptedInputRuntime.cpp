@@ -1,3 +1,5 @@
+#include "FighterInputRuntime.hpp"
+#include "FighterCpuInputRuntime.hpp"
 #include <deque>
 #include <stddef.h>
 namespace th105 {
@@ -41,7 +43,7 @@ typedef char ModeOffset[offsetof(ScriptedInputView,mode_72c)==0x72c?1:-1];
 void ScriptedInputView::update()
 {
     if(binding_6b0) {
-        sample();
+        reinterpret_cast<FighterInputRuntimeView *>(this)->update_input_4631c0();
         int horizontal=horizontal_6b4*facing_104;
         short packed=buttons_6bc[5]==1;
         packed=(packed<<1)|(buttons_6bc[4]==1);
@@ -84,7 +86,7 @@ void ScriptedInputView::update()
     }
     switch(mode_72c) {
     case 2: alternate_policy();break;
-    case 3: select_scripted();break;
+    case 3: reinterpret_cast<FighterCpuInputRuntimeView *>(this)->update_cpu_input_4633e0();break;
     default: cpu_policy();break;
     }
     bool clear=false;

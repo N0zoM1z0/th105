@@ -29925,9 +29925,9 @@ notes = "Fighter scripted-input/game policy463E40. Current typed source is nonex
 address = "0x00463E40"
 symbol_base = "?update@ScriptedInputView@th105@@QAEXXZ"
 rel32_targets = [
- "?sample@ScriptedInputView@th105@@QAEXXZ=0x004631C0",
+ "?update_input_4631c0@FighterInputRuntimeView@th105@@QAEXXZ=0x004631C0",
  "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
- "?select_scripted@ScriptedInputView@th105@@QAEXXZ=0x004633E0",
+ "?update_cpu_input_4633e0@FighterCpuInputRuntimeView@th105@@QAEXXZ=0x004633E0",
  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
 ]
 dir32_targets = ["?g_match_identifier@th105@@3HA=?g_match_identifier@th105@@3HA"]

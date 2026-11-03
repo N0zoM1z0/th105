@@ -1,20 +1,6 @@
+#include "FighterCpuInputRuntime.hpp"
 #include <stddef.h>
 namespace th105 {
-struct FighterCpuInputPolicyView {
-    unsigned char unknown_00[0x18];
-    int vertical_mode_18;
-    int horizontal_mode_1c;
-};
-extern FighterCpuInputPolicyView *g_battle_input_gate_cpu_runtime;
-struct FighterCpuInputRuntimeView {
-    unsigned char unknown_000[0xec];
-    float x_ec;
-    unsigned char unknown_f0[0x5c4];
-    int field_6b4;
-    int field_6b8;
-    signed char classify_fighter_x_boundary();
-    void update_cpu_input_4633e0();
-};
 typedef char cpu_x[offsetof(FighterCpuInputRuntimeView,x_ec)==0xec?1:-1];
 typedef char cpu_b4[offsetof(FighterCpuInputRuntimeView,field_6b4)==0x6b4?1:-1];
 typedef char cpu_b8[offsetof(FighterCpuInputRuntimeView,field_6b8)==0x6b8?1:-1];
