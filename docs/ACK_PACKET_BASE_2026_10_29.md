@@ -46,3 +46,9 @@ Fresh canonical comparisons preserve all twelve packet-leaf roots, including rep
 The target request-replay vtable `0x6C24E0` points to COL `0x6D8774` and hierarchy `0x6D8788`, which uses the same offset-zero `IPacket` base descriptor `0x6D870C`. `NetworkReplayRequestPacket.hpp` now supplies the real shared request type to Client/Server secondary dispatch, the request serializer/parser and the request handler. This also replaces the old Client-only `packet_type()` virtual declaration with the established serializer slot. RTTI receipt: `build/frontier-replay-request-shared-ipacket-20261103/rtti.json`.
 
 Fresh canonical comparisons preserve all twelve packet-leaf roots (including request serialization 27/27 and parse 19/19), Client secondary roots 91/91, 13/13 and 68/68, and Server dispatcher 532/532. The request handler remains 566/native566 nonexact with the same canonical candidate hash; full cleanup EH and integrated link are not claimed. No new exact bytes are added.
+
+## Shared IPacket base for INPUT
+
+Native INPUT vtable `0x6C24EC` points to COL `0x6D87C0` and hierarchy `0x6D87D4`, whose offset-zero base descriptor is again `0x6D870C` (`IPacket`). `NetworkInputPacket.hpp` now provides the shared INPUT type for its serializer/parser and Client/Server secondary dispatchers. The prior replay-request checkpoint also received a fresh canonical replay of its separate 110-byte pump `0x44D880`; the request serializer/parser ledger signatures now use the current shared request type. RTTI receipt: `build/frontier-input-shared-ipacket-20261103/rtti.json`.
+
+Fresh comparisons preserve all twelve packet-leaf roots, replay request pump 110/110 and Client/Server secondary dispatch bodies 582/582 and 532/532. The separate `InputPacket24ConstructorView` embedded in the network base remains to be reconciled independently; no new exact bytes, cleanup-EH equivalence or complete-link claim.

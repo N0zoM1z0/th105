@@ -298,3 +298,7 @@ The native replay RTTI identifies the same offset-zero `IPacket` base as ACK_INF
 ### 2026-11-03: shared replay-request IPacket type
 
 The native request-replay RTTI identifies the same offset-zero `IPacket` base. Its serializer/parser, Client/Server dispatchers and request handler now share the real request type, replacing prior incompatible base and virtual-method views. All twelve packet-leaf roots, three Client secondary roots and the Server dispatcher replay exactly; the request handler remains nonexact with its prior hash. No new exact credit or complete-link/EH claim. See `docs/ACK_PACKET_BASE_2026_10_29.md`.
+
+### 2026-11-03: shared INPUT IPacket type
+
+The native INPUT RTTI identifies the same offset-zero `IPacket` base. Packet-leaf serialization/parsing and Client/Server dispatchers now share the real INPUT type; all twelve packet-leaf roots, both dispatchers and the separate 110-byte replay request pump replay exactly. Corrected two request serializer/parser ledger signatures to the shared class name. The separate input constructor view in the network base remains pending; no new exact bytes or new EH claim. See `docs/ACK_PACKET_BASE_2026_10_29.md`.

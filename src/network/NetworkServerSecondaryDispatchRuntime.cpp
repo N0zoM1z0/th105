@@ -1,3 +1,4 @@
+#include "NetworkInputPacket.hpp"
 #include "NetworkReplayRequestPacket.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkAckInfoPacket.hpp"
@@ -20,16 +21,6 @@ public:
     unsigned char reserved_009[3];
 };
 
-class InputPacket24 : public PacketResultBase4 {
-public:
-    InputPacket24() {}
-    virtual unsigned int serialize(void *buffer);
-    void parse(const unsigned char *input);
-    unsigned int sequence_008;
-    unsigned char tag_00c;
-    unsigned char reserved_00d[3];
-    std::deque<short> values_010;
-};
 
 
 class EmbeddedStatePacket8 {
