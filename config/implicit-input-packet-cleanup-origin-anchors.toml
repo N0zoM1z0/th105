@@ -24,7 +24,7 @@ sha256 = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
 
 [[sources]]
 path = "src/network/NetworkBaseMembers.hpp"
-sha256 = "f459eb2422e4f7f85a3ec0c5c559161226763c92310fde6062d9adaeb2afb940"
+sha256 = "70f67e50a0094a38825da369f60f2a9bcdd78233f4a9b70238679bc9e38f3cb1"
 
 [[sources]]
 path = "src/engine/ColorInterface.hpp"
@@ -38,11 +38,19 @@ sha256 = "c8ab0afa18da3d0b27d099345ad34e57849aa5a39d6ef757549304fb26f0be84"
 path = "src/engine/Sprite.hpp"
 sha256 = "8dc8c7c6f5baae0f3dd537c3b2c52c808a4a89e389bb1b4f6800650663b3694d"
 
+[[sources]]
+path = "src/network/NetworkInputPacket.hpp"
+sha256 = "f68fe04a99eef2cbe474a39c1f20433b9bc99b557daf6dbbb533d46c7974f342"
+
+[[sources]]
+path = "src/network/NetworkPacketBase.hpp"
+sha256 = "f6f6a410bd3d8cc27be4501f3f0c9df24981c8174df2e25fd4a3b55f7bd652bb"
+
 [[anchors]]
 address = "0x0043BE90"
 size = 8
 unit = "gpt-web-network-base-constructor-runtime"
-symbol_base = "??1InputPacket24ConstructorView@th105@@QAE@XZ"
-emitted_symbol = "??1InputPacket24ConstructorView@th105@@QAE@XZ"
+symbol_base = "??1InputPacket24@th105@@QAE@XZ"
+emitted_symbol = "??1InputPacket24@th105@@QAE@XZ"
 kind = "destructor"
 sha256 = "8cd6ca819f01c529b205eb90f2b62a4bdfe5e295d00705e3d0f17ad2ce273dbf"

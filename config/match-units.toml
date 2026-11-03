@@ -14778,7 +14778,7 @@ dir32_targets = [
   "___security_cookie=___security_cookie",
   "??_7CNetworkBaseConstructorView@th105@@6B@=??_7CNetworkBaseFullLifetimeView@th105@@6B@",
   "??_7ScenePacket0C@th105@@6B@=??_7ScenePacket0C@th105@@6B@",
-  "??_7InputPacket24ConstructorView@th105@@6B@=??_7InputPacket24@th105@@6B@",
+  "??_7InputPacket24@th105@@6B@=??_7InputPacket24@th105@@6B@",
   "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
   "??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??0?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
   "??1NetworkInputEndpoint7C@th105@@QAE@XZ=??1NetworkInputEndpoint7C@th105@@QAE@XZ",
@@ -29614,7 +29614,7 @@ symbol_base = "??1CSprite@@UAE@XZ"
 
 [[units.gpt-web-network-base-constructor-runtime.functions]]
 address = "0x0043BE90"
-symbol_base = "??1InputPacket24ConstructorView@th105@@QAE@XZ"
+symbol_base = "??1InputPacket24@th105@@QAE@XZ"
 rel32_targets = ["?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
 
 [units.exact-first-sprite-primary-render]

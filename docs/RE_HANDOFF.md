@@ -301,4 +301,8 @@ The native request-replay RTTI identifies the same offset-zero `IPacket` base. I
 
 ### 2026-11-03: shared INPUT IPacket type
 
-The native INPUT RTTI identifies the same offset-zero `IPacket` base. Packet-leaf serialization/parsing and Client/Server dispatchers now share the real INPUT type; all twelve packet-leaf roots, both dispatchers and the separate 110-byte replay request pump replay exactly. Corrected two request serializer/parser ledger signatures to the shared class name. The separate input constructor view in the network base remains pending; no new exact bytes or new EH claim. See `docs/ACK_PACKET_BASE_2026_10_29.md`.
+The native INPUT RTTI identifies the same offset-zero `IPacket` base. Packet-leaf serialization/parsing and Client/Server dispatchers now share the real INPUT type; all twelve packet-leaf roots, both dispatchers and the separate 110-byte replay request pump replay exactly. Corrected two request serializer/parser ledger signatures to the shared class name. The later checkpoint below reconciles the separate input constructor view in the network base; no new exact bytes or new EH claim. See `docs/ACK_PACKET_BASE_2026_10_29.md`.
+
+### 2026-11-03: network-base real INPUT member
+
+The network base now uses the shared RTTI-backed INPUT class through its compatibility typedef. Constructor, destructor, packet cleanup and sprite lifetimes replay exact; complete constructor/destructor remote EH and metadata, plus the two affected source-pinned origin proofs, also pass after renewing reviewed pins and checkout attributes. Receipts: `build/frontier-input-base-real-type-20261103/`. No new exact bytes.

@@ -13,7 +13,7 @@ from workflow_manifest import ROOT,load_manifest,unit_input_digest,compiler_sha2
 UNIT='gpt-web-network-base-constructor-runtime'
 SPRITE_UNIT='gpt-web-ui-sprite-lifetime'
 OWNER='??0CNetworkBaseConstructorView@th105@@QAE@XZ'
-PACKET='??1InputPacket24ConstructorView@th105@@QAE@XZ'
+PACKET='??1InputPacket24@th105@@QAE@XZ'
 GROUP='??1NetworkQueuePair48@th105@@QAE@XZ'
 SLOT='??1NetworkQueueSlot20@th105@@QAE@XZ'
 ARRAY='??_M@YGXPAXIHP6EX0@Z@Z'

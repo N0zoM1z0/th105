@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../input/InputManager.hpp"
+#include "NetworkInputPacket.hpp"
 #include <deque>
 #include <stddef.h>
 
@@ -19,16 +20,7 @@ public:
     unsigned char payload_008[4];
 };
 
-class InputPacket24ConstructorView : public PacketResultBase4 {
-public:
-    InputPacket24ConstructorView() {}
-    virtual unsigned int serialize(void *buffer);
-
-    unsigned int sequence_008;
-    unsigned char tag_00c;
-    unsigned char reserved_00d[3];
-    std::deque<short> values_010;
-};
+typedef InputPacket24 InputPacket24ConstructorView;
 
 struct NetworkInputEndpoint7C {
     CInputManagerEx input_000;
