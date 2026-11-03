@@ -1,5 +1,7 @@
 # TH10.5 reconstruction handoff
 
+2026-11-03: Wave-service pointer deque back `0x4052B0` (91 bytes) is compiler-generated, verified by full body, real wave/acquire call graphs and unique inventory identity. The parents remain nonexact; no authored credit. See `docs/WAVE_POINTER_DEQUE_BACK_ORIGIN_2026_11_03.md`.
+
 2026-11-03: Real CSV CIL deque<string> copy chains validate two physical compiler-generated helpers at `0x410ED0` (112 bytes) and `0x411040` (188 bytes). Const/nonconst source witnesses map to the same two native bodies; the forward child was already excluded. Parents remain unaccepted. No authored exact-byte credit; see `docs/CSV_DEQUE_COPY_ORIGINS_2026_11_03.md`.
 
 Packet deque back 0x4179D0/82 is compiler-generated: whole body, real
@@ -35,9 +37,9 @@ They explicitly resumed the TH105 goal on November 3. The registered repository
 connection, clean worktree, target hash and ledgers were verified before resuming.
 The cleanup changed no game source, ABI, compiler profile or exactness claim.
 
-The last reconstruction checkpoint is `38c54b63` (complete source for CSprite
-texture options, not an exact match). Work was committed locally; no push was
-performed. Inspect live Git status before making any further changes.
+The latest reconstruction checkpoint is `4d205576` (CSV deque copy origin
+evidence; no new authored exact match). Work was committed locally; no push was
+performed by this session. Inspect live Git status before making further changes.
 
 The preceding 3,147-line handoff is preserved verbatim in
 [the November 3 archive](RE_HANDOFF_HISTORY_2026_11_03.md). Its dated narrative
@@ -51,7 +53,7 @@ Verified from the live ledgers at this checkpoint:
 | Measure | Value |
 | --- | ---: |
 | Provisional candidates | 4027 |
-| Authored / excluded / review | 1656 / 2076 / 295 |
+| Authored / excluded / review | 1656 / 2083 / 288 |
 | Mapped / source-present | 1827 / 1637 |
 | Exact authored functions / bytes | 1426 / 443399 |
 | Configured units / function entries | 814 / 1985 |
@@ -158,7 +160,7 @@ git diff --check
 git diff --cached --check
 ```
 
-Default CI validates tooling and ledgers, not all native matches. Reconstruction
-checkpoint38c54b63 passed966 tests; the maintenance gate also passed966 tests
-in115.351 seconds, recorded in build/handoff-cleanup-20261103/ci.log. Commit prefix: `gpt-dots:`. Keep target
+Default CI validates tooling and ledgers, not all native matches. Checkpoint
+`4d205576` passed 991 tests in 104.113 seconds; the gate is recorded in
+`build/frontier-csv-deque-copy-origins-20261103/ci.log`. Commit prefix: `gpt-dots:`. Keep target
 binaries, game data, tool installations, databases and credentials out of Git.

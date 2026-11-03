@@ -6153,3 +6153,14 @@ subsystem = "vc8_stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Real CSV loading CIL emits const and nonconst deque<string> copy specializations. Both typed chains match whole native bodies with named calls and unique inventory identities; the existing forward helper and runtime ownership are independently anchored. The source and native parents are not claimed exact. No authored byte credit. docs/CSV_DEQUE_COPY_ORIGINS_2026_11_03.md."
+
+[[rules]]
+id = "linked-wave-pointer-back-106a"
+linked_wave_pointer_back_anchor_file = "config/linked-wave-pointer-back-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 91
+origin = "compiler_generated"
+subsystem = "vc8_stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual wave-service CIL emits a whole91-byte pointer deque back helper. Source and native wave load and handle acquisition call edges are independently checked; both parents remain nonexact. Three static CRT calls and full inventory uniqueness pass. No authored credit. docs/WAVE_POINTER_DEQUE_BACK_ORIGIN_2026_11_03.md."
