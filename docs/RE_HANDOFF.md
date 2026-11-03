@@ -246,3 +246,7 @@ The earlier parser EH relocation blocker is resolved to its native handler addre
 ### 2026-11-03: scenario parser local lifetime
 
 The selected parser now reuses the actual selected-value local for the following source-list value, as established in the prior analysis. This naturally restores the native `/GS` frame size `0x34`; the full candidate remains 518/native543, with first mismatch at `+0x33` and no exact/EH claim. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.
+
+### 2026-11-03: scenario parser native read order
+
+The parser now checks the selected column before the CSV read, and retains distinct row count/remaining lifetimes as the native control flow does. The first 403 bytes match, but the complete source is 545/native543 bytes and still nonexact at source-list node/value scheduling. The natural nested-read control reintroduces the wrong frame and was rejected. No full-body or EH credit. See `docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md`.

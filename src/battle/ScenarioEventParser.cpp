@@ -57,13 +57,15 @@ void BattlePhaseBlock::parse_scenario_event_row_4591d0(void *destination)
     state->source_values_598.clear();
 
     if (row_count > 0) {
+        int remaining = row_count;
         do {
             ScenarioEventSelectedValue selected_value;
             selected_value.integer = 0;
             for (int column = 0; column < 4; ++column) {
-                int value = state->reader_038.next_int();
                 if (column == state->selected_column_590) {
-                    selected_value.integer = value;
+                    selected_value.integer = state->reader_038.next_int();
+                } else {
+                    state->reader_038.next_int();
                 }
             }
 
@@ -73,7 +75,7 @@ void BattlePhaseBlock::parse_scenario_event_row_4591d0(void *destination)
             selected_value.integer = state->reader_038.next_int();
             state->source_values_598.push_back(selected_value.integer);
             state->reader_038.advance_row();
-        } while (--row_count);
+        } while (--remaining);
     }
 
     if (&state->destination_values_5a4 != &state->source_values_598) {

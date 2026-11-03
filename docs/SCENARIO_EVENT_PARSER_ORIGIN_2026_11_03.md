@@ -9,3 +9,7 @@ Fresh canonical comparisons pass for `0x434CE0` (45 bytes) and `0x470880` (479 b
 ## Reuse of the selected-value local
 
 The target-backed source lifetime noted in `KNOWLEDGE_BASE.md` was missing from the selected candidate: after publishing the selected short, the same integer local holds the next CSV value for the source list. Restoring that real reuse changes the generated `/GS` frame from `0x38` to the target's `0x34`, without changing the value, access order or introducing a synthetic local. The fresh complete candidate remains 518/native543 bytes and nonexact, now first differing at `+0x33` on destination-register allocation. Receipt: `build/frontier-scenario-parser-origin-20261103/reuse-selected.json`. No cleanup-EH or exact-byte claim is made.
+
+## Native column-check and remaining-row lifetimes
+
+The native loop checks the selected column before calling the CSV integer reader, with either branch consuming one value. Restoring that observable order and preserving distinct row-count and remaining-row lifetimes changes the first mismatch from `+0x33` to `+0x193` (403 bytes match from the start); the complete source body is 545/native543 bytes, still nonexact. The first residual concerns ordering of the source-list node pointer loads versus storing the read value. An ordinary nested `push_back(next_int())` control instead restores the larger `0x38` frame and is rejected. No exact or EH credit is claimed. Receipts: `final-read-order.json`, `remaining-inline-value.json` in the same build directory.
