@@ -1853,7 +1853,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045FD70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0045FFD0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004601E0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
-0x00460200,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00460200,authored_game,battle,authored,observed,fighter-base-reset-authored-106a
 0x004606E0,compiler_generated,battle,exclude,observed,vc8-generated-int-byte-tree-family-106a
 0x004607A0,compiler_generated,battle,exclude,observed,vc8-generated-pat-group-lifetime-std-comdats-106a
 0x004607F0,compiler_generated,battle,exclude,observed,vc8-generated-pat-copy-anchors-106a

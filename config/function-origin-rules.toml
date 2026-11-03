@@ -6537,3 +6537,17 @@ evidence = "Complete profile-menu state policy bodies, original switch tables an
 required_body_hashes = [{ address = "0x0044BCF0", size = 256, sha256 = "f79a07e7cea422e69917c9934a5b8b4630c1296aaa5fdfa623f30d03ee93c951" }, { address = "0x0044CA80", size = 446, sha256 = "d14bb403a2a084f28285aa0cf1deb8aa6c554da1a4b026fab5874460b0adee5e" }]
 required_direct_edges = [{ caller = "0x0044D240", site = "0x0044D2DC", target = "0x0044BCF0", kind = "jump", caller_status = "matching" }, { caller = "0x0044D240", site = "0x0044D2E6", target = "0x0044CA80", kind = "jump", caller_status = "matching" }]
 required_dword_values = [{ address = "0x0044BDF0", value = "0x0044BD52" }, { address = "0x0044BDF4", value = "0x0044BD62" }, { address = "0x0044BDF8", value = "0x0044BD72" }, { address = "0x0044BDFC", value = "0x0044BD92" }, { address = "0x0044BE00", value = "0x0044BDA2" }, { address = "0x0044BE04", value = "0x0044BDB2" }, { address = "0x0044BE08", value = "0x0044BDEA" }, { address = "0x0044CC40", value = "0x0044CAC0" }, { address = "0x0044CC44", value = "0x0044CBDB" }, { address = "0x0044CC48", value = "0x0044CBDB" }, { address = "0x0044CC4C", value = "0x0044CC0B" }]
+
+[[rules]]
+id = "fighter-base-reset-authored-106a"
+addresses = ["0x00460200"]
+expected_count = 1
+expected_bytes = 1247
+expected_names = ["sub_460200"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete Fighter base reset, game-specific state and spell operations, called by the exact extended reset. Source is registered but remains nonexact. docs/FIGHTER_BATTLE_RESET_2026_10_27.md."
+required_body_hashes = [{ address = "0x00460200", size = 1247, sha256 = "128d06d3b0200ca588b3edcb8a208df463546771ef8fdf8d82ae11b51821dd64" }]
+required_direct_edges = [{ caller = "0x004776D0", site = "0x004776D3", target = "0x00460200", caller_status = "matching" }]

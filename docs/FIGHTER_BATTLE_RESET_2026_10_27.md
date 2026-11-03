@@ -1,7 +1,8 @@
 # Fighter battle reset 0x00460200
 
-The retained complete FighterInitialization.cpp body is corrected but remains
-unselected/nonexact. No authored/exact ledger credit is added. The original
+The retained complete FighterInitialization.cpp body was corrected at this
+checkpoint but remained unselected and nonexact. It has since been selected
+and classified as authored; it still has no exact credit. The original
 Japanese1.06a target is1247 bytes, ending atRET0 at4606DE. Three returns include
 two independent virtual action700 tails. The native EBP value seen by IDA is a
 conditionally saved local, not a usercall argument.
@@ -56,3 +57,20 @@ freshly rebuilt and canonically compared. It remains exact. No whole corpus is
 rebuilt. formal-public.json records the full root mismatch; affected-unit.json
 records the accepted consumer. No gameplay execution is claimed.
 The final local gate is local-ci.log in the same scope.
+
+## 2026-11-03 source registration
+
+The complete retained source is now selected by the reproducible
+`exact-first-fighter-battle-reset` unit. A fresh pinned build gives the same
+1247-byte canonical candidate and first mismatch at +853, with SHA-256
+`7b568c7c4fd87bcb204175e355f3e5e86c27add1df6a7d5a8003cf6c731ba31a`.
+It is still nonexact and earns no matching bytes.
+
+The original whole-body hash and the native call at 4776D3 from the exact
+346-byte Fighter extended reset establish authored ownership independently of
+source similarity. The generic origin rule checks that body and edge. The
+complete raw CFG closes 290 instructions and three returns; the function has
+no unresolved indirect or external jumps. This does not establish the
+original source spelling or untested runtime behavior. The target-specific
+origin rule was validated directly; a full origin census did not finish within
+the available factory command window and is not claimed here.

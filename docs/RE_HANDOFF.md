@@ -378,3 +378,14 @@ Pinned zlib 1.2.3 source reproduces the complete native inflate-init body `0x667
 ### 2026-11-03: classify profile-menu handlers
 
 Exact dispatcher tail edges, complete body hashes and pinned original switch tables establish authored ownership for profile-menu primary `0x44BCF0` (256 bytes) and state-one `0x44CA80` (446 bytes). Switch-aware decoding reaches every body byte. Prior source candidates remain unselected/nonexact; no exact-byte gain. See `docs/ORIGIN_RECOVERY_2026_11_03.md`.
+
+### Fighter base reset source registration (2026-11-03)
+
+The complete 0x00460200 Fighter base reset source is now selected by
+`exact-first-fighter-battle-reset` and classified authored from its full target
+hash and the call from exact 0x004776D0. Its 1247-byte candidate remains
+nonexact at +853 with 25 unequal bytes; no exact credit is added. The specific
+origin rule, two directly related exact units, tracking and target-independent
+CI were checked. The full origin census did not finish within the factory
+command window, so this checkpoint does not claim a full census replay. See
+`FIGHTER_BATTLE_RESET_2026_10_27.md` for the retained residual and boundaries.
