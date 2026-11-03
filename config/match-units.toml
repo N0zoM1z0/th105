@@ -29837,3 +29837,20 @@ dir32_targets = [
  "?g_match_identifier@th105@@3HA=?g_match_identifier@th105@@3HA",
  "__real@0000000000000000=__real@0000000000000000",
 ]
+
+[units.exact-first-system-effect-tracked-release]
+kind = "probe"
+source = "src/battle/SystemEffectTrackedRelease.cpp"
+object = "build/match-units/ExactFirst_SystemEffectTrackedRelease.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete119-byte system-effect tracked release policy with actual typed handle pool and checked list. Natural source remains nonexact; docs/SYSTEM_EFFECT_RELEASE_SOURCE_2026_11_03.md."
+
+[[units.exact-first-system-effect-tracked-release.functions]]
+address = "0x00436E60"
+symbol_base = "?release_all@SystemEffectReleaseView@th105@@QAEXXZ"
+rel32_targets = [
+ "?release_handle@?$CHandleManagerEx@VSystemEffectObject@@@@QAEXI@Z=0x0056D8F0",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "??3@YAXPAX@Z=0x006898EA",
+]

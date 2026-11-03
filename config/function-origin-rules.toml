@@ -6363,3 +6363,17 @@ confidence = "observed"
 evidence = "Complete157-byte endpoint history input and selection policy called by freshly exact history action. Existing source153 remains nonexact; no partial or exact-byte credit. docs/CONNECT_HISTORY_SOURCE_2026_11_03.md."
 required_body_hashes = [{ address = "0x00443030", size = 157, sha256 = "d5ded1997bd697302ca937d005e37921d6d73f5879713483b875b3d268d4b7ea" }]
 required_direct_edges = [{ caller = "0x004430D0", site = "0x004430DA", target = "0x00443030", caller_status = "matching" }]
+
+[[rules]]
+id = "system-effect-tracked-release-authored-106a"
+addresses = ["0x00436E60"]
+expected_count = 1
+expected_bytes = 119
+expected_names = ["sub_436E60"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete119-byte system-effect handle release/list cleanup called by freshly exact specialized manager destructor. Actual typed source119 remains nonexact; equal size is not equality. No partial or exact-byte credit. docs/SYSTEM_EFFECT_RELEASE_SOURCE_2026_11_03.md."
+required_body_hashes = [{ address = "0x00436E60", size = 119, sha256 = "a88e31755974913ecefd93f6777aca63d70add23ac2274bf75aea5db627cd4a9" }]
+required_direct_edges = [{ caller = "0x00437280", site = "0x004372B6", target = "0x00436E60", caller_status = "matching" }]

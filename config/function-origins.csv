@@ -1126,7 +1126,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00436D30,compiler_generated,runtime,exclude,observed,scenario-text-tree-erase-generated-106a
 0x00436D80,authored_game,battle,authored,observed,canonical-exact-authored
 0x00436DF0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00436E60,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00436E60,authored_game,battle,authored,observed,system-effect-tracked-release-authored-106a
 0x00436EE0,compiler_generated,battle,exclude,observed,vc8-generated-event-effect-state-lifetime-std-comdat-106a
 0x004371C0,compiler_generated,battle,exclude,observed,vc8-generated-event-effect-state-container-comdats-106a
 0x00437210,authored_game,battle,authored,observed,canonical-exact-authored
