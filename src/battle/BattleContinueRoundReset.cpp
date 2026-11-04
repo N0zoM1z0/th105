@@ -35,13 +35,20 @@ struct RoundPostVirtual {
     virtual void slot08();
     virtual void reset0c();
 };
-struct RoundPhaseLists {
-    unsigned char prefix[0x598];
+struct BattlePhaseBlockRoundView {
+    unsigned char prefix[0x68];
+    CScenarioData scenario_068;
+    void *selected_input_58c;
+    int selected_column_590;
+    signed char page_index_594;
+    signed char story_character_595;
+    unsigned char reserved_596[2];
     std::list<int> source_598;
     std::list<int> destination_5a4;
 };
-typedef char RoundPhaseLists_source[offsetof(RoundPhaseLists,source_598)==0x598?1:-1];
-typedef char RoundPhaseLists_dest[offsetof(RoundPhaseLists,destination_5a4)==0x5a4?1:-1];
+typedef char RoundPhaseScenario_offset[offsetof(BattlePhaseBlockRoundView,scenario_068)==0x68?1:-1];
+typedef char RoundPhaseLists_source[offsetof(BattlePhaseBlockRoundView,source_598)==0x598?1:-1];
+typedef char RoundPhaseLists_dest[offsetof(BattlePhaseBlockRoundView,destination_5a4)==0x5a4?1:-1];
 extern int g_pair_state;
 extern unsigned char g_round_counter;
 extern float g_stage_surface_heights[1280];
@@ -55,12 +62,12 @@ void ContinueOwnerRuntimeView::reset_battle_round_471180()
     reinterpret_cast<RoundFighterVirtual *>(fighter_10)->prepare44();
     update_global_battle_setup_state_second(g_global_battle_setup_state);
     g_shared_event_state.synchronize_targets();
-    RoundPhaseLists *phase = reinterpret_cast<RoundPhaseLists *>(g_battle_phase_block);
+    BattlePhaseBlockRoundView *phase =
+        reinterpret_cast<BattlePhaseBlockRoundView *>(g_battle_phase_block);
     if (&phase->destination_5a4 != &phase->source_598)
         phase->destination_5a4.assign(
             phase->source_598.begin(), phase->source_598.end());
-    reinterpret_cast<CScenarioData *>(
-        reinterpret_cast<unsigned char *>(phase) + 0x68)->reset_runtime_state();
+    phase->scenario_068.reset_runtime_state();
     g_effect_sink->unknown_10();
     reinterpret_cast<CollisionContext *>(this)->reset_collision_extents();
     end_pending_84 = 0;

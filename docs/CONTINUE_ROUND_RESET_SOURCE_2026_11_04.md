@@ -25,3 +25,11 @@ pinned to the target's full nine bytes; it is a relocation witness rather than
 extra code coverage. Receipts are in `build/frontier-continue-round-20261104/`.
 The focused authored-origin rule and all 1,027 target-independent CI tests
 passed, including generated-progress and whitespace checks.
+
+A follow-up replaces the opaque prefix with the independently established real
+`CScenarioData` member at `+0x68`, followed by the known fields and both real
+`std::list<int>` members. Compile-time offsets pin all three locations. This
+actual owner layout leaves the entire canonical candidate SHA unchanged
+(`98ce1f6ff13bdd6cf01ae1a452dd6d2b40259117c01aa1d6fc2f668a3a9d4a26`),
+so the 290-byte body remains nonexact. The typed layout is retained for source
+accuracy, not presented as a matching breakthrough.
