@@ -7307,3 +7307,18 @@ evidence = "CTitle RTTI virtual slot owns the complete title-screen render polic
 required_rtti_virtual_bodies = [
  { address = "0x00425740", size = 417, sha256 = "9b2d44fe34ca255edc9001a73621482ab1a9b3d5b405a7131dbb057a382131da", slot = "0x006C0CF4", col_slot = "0x006C0CE8", col = "0x006D7934", type_descriptor = "0x006E64E8", type_name_contains = "CTitle@@", calls = [{ site = "0x0042574B", target = "0x00401000" }, { site = "0x00425781", target = "0x004064B0" }, { site = "0x004258B2", target = "0x004099F0" }, { site = "0x004258D3", target = "0x00401040" }] },
 ]
+
+[[rules]]
+id = "network-client-import-snapshot-authored-106a"
+addresses = ["0x0044F200"]
+expected_count = 1
+expected_bytes = 399
+expected_names = ["sub_44F200"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "CNetworkClient RTTI slot owns the complete locked snapshot-import policy, state transitions and queue assignments. Fresh source emits 399 bytes and remains nonexact at +106. No exact or full EH credit. docs/NETWORK_CLIENT_SNAPSHOT_IMPORT_2026_11_04.md."
+required_rtti_virtual_bodies = [
+ { address = "0x0044F200", size = 399, sha256 = "e29370f519dcd44e027f0c2efeb8fdb16b8aa2867a0c60edaff88c80f8421ae8", slot = "0x006C176C", col_slot = "0x006C1750", col = "0x006D80BC", type_descriptor = "0x006E6924", type_name_contains = "CNetworkClient@@", calls = [{ site = "0x0044F233", target = "0x0040AC30" }, { site = "0x0044F2A2", target = "0x0042B6B0" }, { site = "0x0044F33F", target = "0x00431E50" }, { site = "0x0044F374", target = "0x0040AC40" }] },
+]
