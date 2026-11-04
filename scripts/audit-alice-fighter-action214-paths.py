@@ -33,6 +33,8 @@ def load_audit():
 
 
 def execute(image, code, case, address):
+    if case.get("stop_after_scratch"):
+        case = dict(case, stop_after_landing_check=True)
     engine = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
     engine.mem_map(0x400000, (len(image) + 4095) // 4096 * 4096)
     engine.mem_write(0x400000, image)
@@ -66,6 +68,9 @@ def execute(image, code, case, address):
             (0x732, "h", case.get("heading", 0)), (0x740, "f", case.get("angle", 0.0)),
             (0x4B8, "I", case.get("slow", 0)), (0x73C, "f", case.get("speed", 0.0))):
         put(offset, fmt, value)
+    if case.get("stop_after_scratch"):
+        for offset in (0x108, 0x10C, 0x110, 0x114, 0x11C, 0x120, 0x124, 0x128, 0x12C):
+            put(offset, "I", 0x12345678)
     engine.mem_protect(PEER, 0x10000, unicorn.UC_PROT_READ)
     engine.mem_write(STACK + 0xFF00, struct.pack("<I", RETURN))
     engine.reg_write(registers.UC_X86_REG_ECX, OWNER)
@@ -79,11 +84,16 @@ def execute(image, code, case, address):
         if (location == FRAME_HELPER or
             ((case.get("stop_at_adjust") or case.get("stop_after_adjust") or case.get("stop_after_landing_check")) and location in (0x4063D0, 0x406360)) or
             ((case.get("stop_after_adjust") or case.get("stop_after_landing_check")) and location == 0x46BF30) or
-            (case.get("stop_after_landing_check") and location in (0x5F9310, 0x435D60))):
+            (case.get("stop_after_landing_check") and location in (0x5F9310, 0x435D60)) or
+            (case.get("stop_after_scratch") and location == 0x435110)):
             trace.append(hex(location))
         boundary = BOUNDARIES.get(location)
         if case.get("stop_after_landing_check") and location == 0x5F9310:
             boundary = None
+        if case.get("stop_after_scratch") and location == 0x435110:
+            boundary = None
+        if case.get("stop_after_scratch") and location == 0x45BFE0:
+            boundary = "action"
         if case.get("stop_after_landing_check") and location == RETURN:
             boundary = "root_return"
         if case.get("stop_at_cosine") and location == 0x4063D0:
@@ -106,7 +116,7 @@ def execute(image, code, case, address):
                 sp = uc.reg_read(registers.UC_X86_REG_ESP)
                 result["argument_word"] = struct.unpack("<I", uc.mem_read(sp + 4, 4))[0]
                 result["receiver_offset"] = None  # cdecl helper has no receiver
-            if boundary in ("adjust", "sequence"):
+            if boundary in ("adjust", "sequence", "action"):
                 sp = uc.reg_read(registers.UC_X86_REG_ESP)
                 size = 8 if boundary == "adjust" else 4
                 result["arguments"] = list(struct.unpack("<" + "I" * (size // 4), uc.mem_read(sp + 4, size)))

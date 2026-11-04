@@ -685,3 +685,13 @@ branch mutation is detected. The stage-height table is synthetic and flat,
 and the chosen sequences avoid earlier sequence transitions. The scratch
 reset/action body, real stage initialization and full game remain untested.
 This does not select the source or change strict exact-byte credit.
+
+### Through landed scratch reset
+
+The 96 crossed-stage cases above now continue through the actual native
+`0x00435110` scratch reset, stopping at the action-215 virtual call. Both
+roots agree on nine reset fields and the action argument; an altered action
+argument is detected. Initial scratch fields are seeded with nonzero sentinels
+so this checks actual reset writes. Angle and flat terrain tables remain
+synthetic; the action-215 body and full-game execution are not covered. The
+root remains unselected and nonexact. All ten focused action-214 tests pass.
