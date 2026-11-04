@@ -20,11 +20,12 @@ void ScoreData::record_sequence_result_42c060(
     if (get_game_mode() != 0 || get_session_setup_option() == 2)
         return;
 
-    std::vector<ObservedRecord24> *records =
-        reinterpret_cast<std::vector<ObservedRecord24> *>(
-            reinterpret_cast<unsigned char *>(this) + 0x198) + range_selector;
-    for (std::vector<ObservedRecord24>::iterator record = records->begin();
-         record != records->end(); ++record) {
+    for (std::vector<ObservedRecord24>::iterator record =
+             reinterpret_cast<std::vector<ObservedRecord24> *>(
+                 reinterpret_cast<unsigned char *>(this) + 0x198)[range_selector].begin();
+         record != reinterpret_cast<std::vector<ObservedRecord24> *>(
+             reinterpret_cast<unsigned char *>(this) + 0x198)[range_selector].end();
+         ++record) {
         if (record->key_00 == key_00 && record->key_08 == key_08) {
             ++record->sequence_result_count_0c;
             return;

@@ -2906,7 +2906,7 @@ origin = "authored_game"
 subsystem = "config"
 disposition = "authored"
 confidence = "observed"
-evidence = "Hash-attested Fighter_finalize_sequence_entry45D110 calls this ScoreData method after the real singleton getter. Complete159-byte raw CFG gates on application game/session modes and increments the first record matching two application keys in the observed-record vector at198hex. The SDK checked iterator is inlined into authored record policy. New selected source is complete but142/159 nonexact; native1323 cases run real getters with1317 RETs and6 genuine invalid-parameter entries. Required source provider for Iku's real link, not a library-only wrapper or exact claim. docs/IKU_REAL_LINK_2026_10_17.md."
+evidence = "Hash-attested Fighter_finalize_sequence_entry45D110 calls this ScoreData method after the real singleton getter. Complete159-byte raw CFG gates on application game/session modes and increments the first record matching two application keys in the observed-record vector at198hex. The SDK checked iterator is inlined into authored record policy. The prior selected source was142/159; direct vector endpoints now produce two local 159/159 comparisons, with independent Factory acceptance pending. Earlier native1323 cases ran real getters with1317 RETs and6 genuine invalid-parameter entries. Required source provider for Iku's real link, not a library-only wrapper or exact claim. docs/IKU_REAL_LINK_2026_10_17.md."
 
 [[rules]]
 id = "package-file-entry-open-authored-106a"

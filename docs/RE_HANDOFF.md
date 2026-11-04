@@ -531,3 +531,8 @@ in two separately compiled objects, using direct checked-vector endpoints and
 the same signed maximum predicate. Independent Factory exactness replay could
 not start for the unregistered match; do not award exact credit. See
 `docs/SCORE_OBSERVATIONS_MAXIMUM_2026_11_02.md`.
+
+2026-11-04: score sequence-result update `0x0042CF70` now locally compares
+159/159 in two separately compiled objects after using direct vector endpoints.
+Independent Factory acceptance remains pending, so no exact credit is recorded.
+See `docs/SCORE_SEQUENCE_RESULT_2026_11_04.md`.
