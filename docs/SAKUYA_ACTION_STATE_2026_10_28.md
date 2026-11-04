@@ -184,3 +184,17 @@ length**. The current focused receipts are `formal-allargs-build.json`,
 `formal-allargs-audit.json` and `allargs-payload-review.log` in
 `build/frontier-sakuya-arguments-20261029/`. All section bytes and metadata remain
 unmasked; exact totals are unchanged.
+
+## Action 730 height grouping, 2026-11-04
+
+The native difficulty-0 first ring (`0x004DCB18..0x004DCB4F`) and difficulty-1
+rings (`0x004DC922..0x004DC959` and `0x004DCA12..0x004DCA45`) add the
+height offset (10.0 or 25.0) to fighter height before combining it with the
+loop's 30.0 step and random jitter, then subtract 10.0. Three source
+expressions previously combined the same terms in a different order; they
+now preserve the observed grouping. Fresh VC8 code emits the corresponding
+height-plus-offset x87 sequence. These paths can differ in floating-point
+rounding; no full runtime equivalence is claimed.
+
+The complete 75,042-byte target extent remains nonexact from +8. The candidate
+section tail is 76,500 bytes; this selected source contributes no exact bytes.
