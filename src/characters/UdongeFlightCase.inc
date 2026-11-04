@@ -40,19 +40,19 @@ case 214: {
             reset_action_scratch();
             if(sequence_index_13e==1 || sequence_index_13e==2){
                 if(C(0x104)==1){
-                    if(!(F(0xec)<=peer()->at<float>(0xec))){B(0x104)=255;F(0xf4)=-F(0xf4);select_sequence(6);}
+                    if(F(0xec)>peer()->at<float>(0xec)){B(0x104)=255;F(0xf4)=-F(0xf4);select_sequence(6);}
                     else select_sequence(5);
                 }else{
-                    if(!(peer()->at<float>(0xec)<=F(0xec))){C(0x104)=-C(0x104);F(0xf4)=-F(0xf4);select_sequence(6);}
+                    if(peer()->at<float>(0xec)>F(0xec)){C(0x104)=-C(0x104);F(0xf4)=-F(0xf4);select_sequence(6);}
                     else select_sequence(5);
                 }
             }
             if(sequence_index_13e==3 || sequence_index_13e==4){
                 if(C(0x104)==1){
-                    if(!(F(0xec)<=peer()->at<float>(0xec))){B(0x104)=255;F(0xf4)=-F(0xf4);select_sequence(5);return;}
+                    if(F(0xec)>peer()->at<float>(0xec)){B(0x104)=255;F(0xf4)=-F(0xf4);select_sequence(5);return;}
                     select_sequence(6);return;
                 }
-                if(!(peer()->at<float>(0xec)<=F(0xec))){C(0x104)=-C(0x104);F(0xf4)=-F(0xf4);select_sequence(5);return;}
+                if(peer()->at<float>(0xec)>F(0xec)){C(0x104)=-C(0x104);F(0xf4)=-F(0xf4);select_sequence(5);return;}
                 select_sequence(6);return;
             }
             return;

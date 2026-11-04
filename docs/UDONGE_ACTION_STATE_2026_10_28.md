@@ -102,3 +102,18 @@ trial-orbit900-payload-review.json. Private action slices, raw instructions and
 independent analysis attestations remain in the same bounded build directory.
 The checked-in candidate is authoritative; further refinements must be replayed
 against the complete canonical root.
+
+## Action 214 facing comparisons, 2026-11-04
+
+Native compares peer and own X in four flight-exit paths at
+`0x005C1DE0`, `0x005C1E1F`, `0x005C1E82` and `0x005C1ECD`. Its status
+checks flip facing only on the corresponding ordered strict comparison;
+unordered operands take the other sequence. The previous negated `<=`
+conditions also flipped on NaN. The four conditions now use ordered `>`.
+Fresh VC8 emits ordered comparisons at object offsets `0x2259`, `0x229E`,
+`0x2300` and `0x2351`; the second and fourth swap operand order and use a
+different equivalent status mask. This local observation does not establish
+whole-root or unmasked-exception equivalence.
+
+The 66,787-byte callable remains nonexact from +8; the candidate section
+tail is 67,520 bytes. The source remains unselected and adds no exact credit.
