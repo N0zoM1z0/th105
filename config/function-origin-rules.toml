@@ -6815,3 +6815,23 @@ required_body_hashes = [
 required_dword_values = [
  { address = "0x0042325B", value = "0x00403EB0" },
 ]
+
+[[rules]]
+id = "bgm-buffer-set-volume-authored-106a"
+addresses = ["0x00401830"]
+expected_count = 1
+expected_bytes = 19
+expected_names = ["sub_401830"]
+origin = "authored_game"
+subsystem = "audio"
+disposition = "authored"
+confidence = "observed"
+evidence = "Native BGM buffer policy checks the DirectSound resource and, when present, calls its volume vslot with the computed gain. Three BGM update call sites pass the actual buffer at stream+0x24 and volume in EDX. Ordinary C++ method source emits25/native19 due to the original private EAX/EDX boundary; no register ABI is imposed and no exact credit is claimed."
+required_body_hashes = [
+ { address = "0x00401830", size = 19, sha256 = "3a36996783e794ec7971e821df5362286f4d769105569e1e7ccfaeb64f177669" },
+]
+required_direct_edges = [
+ { caller = "0x00402C10", site = "0x00402EDD", target = "0x00401830", caller_status = "implemented" },
+ { caller = "0x00402C10", site = "0x00402F66", target = "0x00401830", caller_status = "implemented" },
+ { caller = "0x00402C10", site = "0x00402F8E", target = "0x00401830", caller_status = "implemented" },
+]

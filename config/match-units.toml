@@ -30255,3 +30255,15 @@ rel32_targets = [
  "??1?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@QAE@XZ=0x00455420",
  "??$?0V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@QAE@ABU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@1@@Z=0x00455C50",
 ]
+
+[units.gpt-web-bgm-buffer-set-volume]
+kind = "probe"
+source = "src/audio/BgmStreamRuntime.cpp"
+object = "build/match-units/GptWeb_BgmBufferSetVolume.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Bgm buffer set-volume wrapper 0x00401830: ordinary typed source emits25/native19 with the native private EAX/EDX ABI unresolved. No fabricated calling convention or exact credit."
+
+[[units.gpt-web-bgm-buffer-set-volume.functions]]
+address = "0x00401830"
+symbol_base = "?set_volume@BgmBufferRuntime@th105@@QAEXJ@Z"

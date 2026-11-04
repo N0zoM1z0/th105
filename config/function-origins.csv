@@ -20,7 +20,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00401740,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x00401780,compiler_generated,runtime,exclude,observed,linked-original-exception-members-106a
 0x004017A0,compiler_generated,runtime,exclude,observed,linked-original-logic-error-106a
-0x00401830,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00401830,authored_game,audio,authored,observed,bgm-buffer-set-volume-authored-106a
 0x00401850,authored_game,network,authored,observed,canonical-exact-authored
 0x00401880,authored_game,audio,authored,observed,canonical-exact-authored
 0x00401910,authored_game,audio,authored,observed,canonical-exact-authored
