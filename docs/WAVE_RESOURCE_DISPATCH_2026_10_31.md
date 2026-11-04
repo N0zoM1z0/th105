@@ -75,3 +75,11 @@ Existing unchanged ownership evidence is retained, not cold-regenerated.
 Totals:1556 exact /444236 authored bytes,1753 source-present,1773 authored,
 1780 mapped,1655 excluded,599 review,749 units. Compiler helpers receive no
 new exact or provenance credit.
+
+## Status reconciliation, 2026-11-04
+
+The existing source-present dispatcher was still marked `identified` in the
+function ledger. It is now marked `implemented`, consistent with its existing
+source mapping and without changing exact-credit accounting. A fresh scoped
+linked build reproduces the 145/151 mismatch at +27 and the same canonical
+candidate SHA-256 recorded above. The CV3 EH limitation remains unchanged.

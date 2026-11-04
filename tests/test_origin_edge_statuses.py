@@ -30,6 +30,15 @@ class OriginEdgeStatusTests(unittest.TestCase):
         with (ROOT / 'config/functions.csv').open(newline='') as stream:
             rows = {row['address'].upper(): row for row in csv.DictReader(stream)}
         self.assertEqual(mismatches(rules, rows), [])
+    def test_source_present_names_have_implemented_status(self):
+        with (ROOT / 'config/implemented.csv').open(newline='') as stream:
+            implemented = {row[0] for row in csv.reader(stream) if row}
+        with (ROOT / 'config/functions.csv').open(newline='') as stream:
+            rows = list(csv.DictReader(stream))
+        stale = [(row['address'], row['proposed_name'], row['status']) for row in rows
+                 if row['proposed_name'] in implemented
+                 and row['status'] not in ('implemented', 'matching')]
+        self.assertEqual(stale, [])
     def test_mismatched_caller_is_rejected(self):
         rules = [dict(id='caller', required_direct_edges=[dict(caller='0x10', caller_status='matching')])]
         self.assertEqual(len(mismatches(rules, {'0X10': dict(status='identified')})), 1)
