@@ -426,3 +426,13 @@ its separate metadata receives no authored-byte credit. Exact transition-step
 and dispatcher replays plus target-independent CI pass. The focused origin rule
 passes; no full origin census was replayed. See
 `BACKGROUND_SET_TRANSITION_SOURCE_2026_11_03.md`.
+
+### Spell-selection finalization (2026-11-04)
+
+The full `432200` spell-selection finalizer is now authored and individually
+selected. The natural source uses the real checked VC8 deque iterator instead
+of the earlier unselected hand-expanded iterator hypothesis. Its 226-byte
+candidate remains nonexact against the 260-byte native body; the exact load
+selector caller and target-independent CI pass. No exact bytes are added. The
+focused origin rule passed; no full origin census was replayed. See
+`SPELL_FINALIZE_SOURCE_2026_11_04.md`.

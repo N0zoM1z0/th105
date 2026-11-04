@@ -6580,3 +6580,17 @@ evidence = "Complete background transition policy and four native jump-table ent
 required_body_hashes = [{ address = "0x004654F0", size = 407, sha256 = "196a1aa24b152c18cb30ea6e1d56088375b203b70ea0e83a021241df3dae6443" }]
 required_direct_edges = [{ caller = "0x00467380", site = "0x004676C7", target = "0x004654F0", caller_status = "matching" }, { caller = "0x00467380", site = "0x004676FD", target = "0x004654F0", caller_status = "matching" }, { caller = "0x00467380", site = "0x00467715", target = "0x004654F0", caller_status = "matching" }]
 required_dword_values = [{ address = "0x00465688", value = "0x0046550C" }, { address = "0x0046568C", value = "0x00465515" }, { address = "0x00465690", value = "0x0046550C" }, { address = "0x00465694", value = "0x00465519" }]
+
+[[rules]]
+id = "spell-finalize-selection-authored-106a"
+addresses = ["0x00432200"]
+expected_count = 1
+expected_bytes = 260
+expected_names = ["sub_432200"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete spell selection finalization with exact load-selector caller and local/common spell lookup. Natural checked-deque source remains nonexact. docs/SPELL_FINALIZE_SOURCE_2026_11_04.md."
+required_body_hashes = [{ address = "0x00432200", size = 260, sha256 = "ea2b335f8b0495fd7bce7ebb28bbfd221c5f685b465510c9dc0a5bfcad7078ce" }]
+required_direct_edges = [{ caller = "0x00432360", site = "0x0043239C", target = "0x00432200", caller_status = "matching" }]

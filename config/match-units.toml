@@ -30017,3 +30017,16 @@ address = "0x004654F0"
 symbol_base = "?set_transition_4654f0@BackgroundBase@th105@@QAEXHM@Z"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 dir32_targets = ["__real@406fe00000000000=__real@406fe00000000000"]
+
+[units.exact-first-spell-finalize-natural]
+kind = "probe"
+source = "src/battle/SpellDataFinalize.cpp"
+object = "build/match-units/ExactFirst_SpellFinalizeNatural.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete natural checked-deque spell finalization candidate; no exact credit without a whole-body match."
+
+[[units.exact-first-spell-finalize-natural.functions]]
+address = "0x00432200"
+symbol_base = "?finalize_loaded_spell_data@SpellDataOwner@th105@@QAEXXZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20"]
