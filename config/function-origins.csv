@@ -1566,7 +1566,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044E9E0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044EA30,authored_game,network,authored,observed,canonical-exact-authored
 0x0044EA80,authored_game,network,authored,observed,canonical-exact-authored
-0x0044EAD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0044EAD0,authored_game,network,authored,observed,network-client-frame-pacing-authored-106a
 0x0044ED10,authored_game,network,authored,observed,canonical-exact-authored
 0x0044EDB0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044EE80,authored_game,network,authored,observed,canonical-exact-authored

@@ -1702,3 +1702,4 @@ CMenuSelect_update_primary_selection
 CSelectScenario_render
 CSelectScenario_update_selection
 CMenuConnect_render
+CNetworkClient_advance_frame

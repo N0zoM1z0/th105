@@ -7277,3 +7277,18 @@ required_dword_values = [
  { address = "0x00441BC8", value = "0x00441B4C" },
  { address = "0x00441BCC", value = "0x00441B4C" },
 ]
+
+[[rules]]
+id = "network-client-frame-pacing-authored-106a"
+addresses = ["0x0044EAD0"]
+expected_count = 1
+expected_bytes = 573
+expected_names = ["sub_44EAD0"]
+origin = "authored_game"
+subsystem = "network"
+disposition = "authored"
+confidence = "observed"
+evidence = "CNetworkClient RTTI slot owns the complete frame pacing, queue advancement and counter publication policy. Fresh source emits 573 bytes and remains nonexact at +459. No exact credit. docs/NETWORK_CLIENT_PACING_2026_11_04.md."
+required_rtti_virtual_bodies = [
+ { address = "0x0044EAD0", size = 573, sha256 = "2ed949cac1de89ef40e7801d90ac8f0da4fc8caad3bd96c3dae23cbdbe747431", slot = "0x006C1778", col_slot = "0x006C1750", col = "0x006D80BC", type_descriptor = "0x006E6924", type_name_contains = "CNetworkClient@@", calls = [{ site = "0x0044EB05", target = "0x0040AC30" }, { site = "0x0044EB12", target = "0x0040AC40" }, { site = "0x0044EC6A", target = "0x0044EA80" }, { site = "0x0044EC75", target = "0x0044EA80" }] },
+]

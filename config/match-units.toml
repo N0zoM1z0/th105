@@ -30546,3 +30546,21 @@ rel32_targets = [
 dir32_targets = [
  "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
 ]
+
+[units.exact-first-network-client-pacing]
+kind = "probe"
+source = "src/network/NetworkClientPacing.cpp"
+object = "build/match-units/ExactFirst_NetworkClientPacing.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete client frame pacing policy; remains nonexact."
+
+[[units.exact-first-network-client-pacing.functions]]
+address = "0x0044EAD0"
+symbol_base = "?advance_frame@ClientPacingView@th105@@UAE_NXZ"
+rel32_targets = [
+ "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
+ "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
+ "?advance_delay_queue@ClientPacingEndpointView@th105@@QAEXXZ=0x0044EA80",
+]
+dir32_targets = ["_g_network_frame_tick=_g_network_frame_tick"]
