@@ -1670,8 +1670,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00454E50,authored_game,battle,authored,observed,canonical-exact-authored
 0x00454EC0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00454F10,authored_game,battle,authored,observed,canonical-exact-authored
-0x00454F30,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00454F40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00454F30,compiler_generated,battle,exclude,observed,vc8-system-effect-member-pointer-thunks-106a
+0x00454F40,compiler_generated,battle,exclude,observed,vc8-system-effect-member-pointer-thunks-106a
 0x00454F50,authored_game,battle,authored,observed,canonical-exact-authored
 0x00454FC0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x00454FE0,authored_game,battle,authored,observed,canonical-exact-authored

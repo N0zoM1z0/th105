@@ -21,3 +21,13 @@ It is nonexact starting at +2: the compiler allocates a 12-byte stack frame
 where the target uses 8 bytes. It is recorded as authored/source-present but
 adds **no exact bytes**. No register coercion, parameter-slot aliasing or
 fabricated helper is used. No full executable link or behavior test is claimed.
+
+## Virtual member-pointer thunks
+
+Native Scenario update and render materialize `0x00454F30` and `0x00454F40`
+as pointers to the SystemEffectObjectBase update and render virtual members.
+A tracked pinned-VC8 witness emits the same complete five-byte thunks, each
+unique among the current candidate spans. Their native bodies and the two
+pointer-immediate sites are pinned as compiler-generated origin evidence.
+These ten bytes are excluded from authored progress, not newly matched game
+functions.

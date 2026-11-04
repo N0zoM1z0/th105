@@ -6755,3 +6755,24 @@ required_selected_body_calls = [
  { owner = "0x00456EB0", site = "0x00457071", target = "0x004115A0", target_status = "matching" },
  { owner = "0x00456EB0", site = "0x00457085", target = "0x00435F00", target_status = "matching" },
 ]
+
+[[rules]]
+id = "vc8-system-effect-member-pointer-thunks-106a"
+addresses = ["0x00454F30", "0x00454F40"]
+expected_count = 2
+expected_bytes = 10
+expected_names = ["sub_454F30", "sub_454F40"]
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 emits the actual SystemEffectObjectBase virtual-member-pointer update and render thunks. Both complete five-byte bodies are inventory-unique, and native Scenario update/render materialize their respective addresses as member pointers. No authored exact credit."
+vc8_generated_anchor_file = "config/vc8-system-effect-member-pointer-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00454F30", size = 5, sha256 = "5a90d0bd0afcbaffbae31458745dba34a323191670616da2e2939913e474ad99" },
+ { address = "0x00454F40", size = 5, sha256 = "36dd204b8c08514e55c5a4541c381d9c6c48ecda338001b0ac93e247ec819e94" },
+]
+required_dword_values = [
+ { address = "0x00458485", value = "0x00454F30" },
+ { address = "0x0045816F", value = "0x00454F40" },
+]
