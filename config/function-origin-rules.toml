@@ -6433,7 +6433,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete2005-byte battle information record gauge/effect runtime called by freshly exact normal and story InfoManager updates. Existing private controls are nonexact and not selected; no source or exact credit. docs/BATTLE_INFO_RUNTIME_ORIGIN_2026_11_03.md."
+evidence = "Complete2005-byte battle information record gauge/effect runtime called by freshly exact normal and story InfoManager updates. A complete checked-deque source hypothesis is registered but comparison is blocked; no exact credit. docs/BATTLE_INFO_RECORD_UPDATE_SOURCE_2026_11_04.md."
 required_body_hashes = [{ address = "0x0046FF30", size = 2005, sha256 = "99d79a657a003cfd2dd32b1e3110eb0952676908631e6567a2087518bab97943" }]
 required_direct_edges = [{ caller = "0x0046E5A0", site = "0x0046E5C3", target = "0x0046FF30", caller_status = "matching" }, { caller = "0x00471C90", site = "0x00471C9C", target = "0x0046FF30", caller_status = "matching" }]
 

@@ -1676,3 +1676,4 @@ ReplayHeader_read_version
 BattleContinue_reset_round
 RenderModeManager_draw_rect
 CScript_next_command
+BattleInfoRecord_update_runtime
