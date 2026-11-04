@@ -292,3 +292,15 @@ initializer5964C0 has complete nonexact source; it is a hypothesis/family lead,
 not an exact representative or proof of the new root's boundary or ABI. The
 separate shared980 continuation596370 is already exact323 bytes and must not
 be absorbed into the adjacent update. No compiler/LTCG impossibility is claimed.
+
+## Action 852 ordered motion clamp, 2026-11-04
+
+Native `0x006340D2..0x00634100` scales the motion parameter, stores it as
+float, then clamps it to 0.5 only when ordered and below 0.5. Its `AH & 0x41`
+skip includes unordered values. The previous negated `>= 0.5` also clamped
+NaN. The source now uses `< 0.5f`; fresh VC8 emits the same local status mask
+and skip at `0x13B5..0x13C0`, although surrounding branch layout differs.
+This does not establish whole-root or unmasked-exception equivalence.
+
+The 33,617-byte callable remains nonexact from +37; the candidate section
+tail is 34,748 bytes. No exact credit is added.

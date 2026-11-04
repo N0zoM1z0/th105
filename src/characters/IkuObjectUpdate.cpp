@@ -298,7 +298,7 @@ void IkuObjectUpdateView::update_action_state()
   case 2:
    if(AT(P,short,0x13c)!=602)RETIRE();if(AT(P,short,0x13e)<2){advance_six(0);advance_phase(0);F(0xf0)=AT(P,float,0xf0);F(0xec)=AT(P,float,0xec);if(I(0x180)!=0 && ++S(0x364)>4){S(0x364)=0;B(0x184)=1;I(0x180)=0;}}else COLORFADE(15);break;
   case 3:if(AT(P,short,0x13c)!=602)RETIRE();if(AT(P,short,0x13e)>1)COLORFADE(15);else{F(0xf0)=AT(P,float,0xf0);F(0xec)=AT(P,float,0xec);}break;
-  case 4:MOVE();H[1]*=D(0.9f);if(!(H[1]>=0.5f))H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*D(0.2f);SCALE(F(0x11c)*D(0.99f));if(I(0x144)>11)FADE(6,5);break;
+  case 4:MOVE();H[1]*=D(0.9f);if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*D(0.2f);SCALE(F(0x11c)*D(0.99f));if(I(0x144)>11)FADE(6,5);break;
   case 5:SCALE(F(0x11c)*D(0.9f));if(I(0x144)>4){if(B(0x113)<11)RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x112)-=10;}break;
   case 6:SCALE(F(0x11c)+D(0.15f));if(B(0x113)<16)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;break;
   }
