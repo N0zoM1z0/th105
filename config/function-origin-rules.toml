@@ -6482,20 +6482,6 @@ required_rtti_virtual_bodies = [
 ]
 
 [[rules]]
-id = "replay-header-read-authored-106a"
-addresses = ["0x00429A30"]
-expected_count = 1
-expected_bytes = 313
-expected_names = ["sub_429A30"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete replay header version read and call from exact replay list formatter. Prior source hypothesis is unselected and nonexact. docs/ORIGIN_RECOVERY_2026_11_03.md."
-required_body_hashes = [{ address = "0x00429A30", size = 313, sha256 = "7b806a89700b2d3f9220e0848a68b5c1fe52be0684658414d8821421eb3663f3" }]
-required_direct_edges = [{ caller = "0x0042A150", site = "0x0042A296", target = "0x00429A30", caller_status = "matching" }]
-
-[[rules]]
 id = "battle-round-reset-authored-106a"
 addresses = ["0x00471180"]
 expected_count = 1

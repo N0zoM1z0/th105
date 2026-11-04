@@ -1,4 +1,5 @@
 #include <windows.h>
+#include "ReplayFilenameFile.hpp"
 #include <string>
 #include <ctime>
 
@@ -13,20 +14,6 @@ extern ConnectConfigIniView g_connect_config_ini;
 const char *__cdecl character_key_to_name(int);
 struct ReplayFilenameSlot { signed char character_00[2]; };
 struct ReplayFilenameSlots { ReplayFilenameSlot *select_slot_4284c0(int index); };
-class ReplayFilenameFile {
-public:
-    explicit ReplayFilenameFile(const char *path) {
-        handle = CreateFileA(path, 1, 1, 0, 3, 0x80, 0);
-        if (handle == INVALID_HANDLE_VALUE) handle = 0;
-    }
-    virtual ~ReplayFilenameFile() { if (handle) CloseHandle(handle); }
-    virtual bool read(void *out, unsigned long count) { return ReadFile(handle, out, count, &last_count, 0) != 0; }
-    virtual unsigned long last_read_size() const { return last_count; }
-    virtual long seek(long offset, int origin) { return SetFilePointer(handle, offset, 0, origin); }
-    virtual unsigned long size() const { return GetFileSize(handle, 0); }
-    HANDLE handle;
-    unsigned long last_count;
-};
 // Only the flag and slot-store receiver are accessed; never instantiate this view.
 struct ReplayFilenameView {
     unsigned char unknown_000[0xec];

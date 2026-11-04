@@ -30136,3 +30136,25 @@ rel32_targets = [
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = ["__ehhandler$?update_state_one@CProfileMenu@th105@@AAE_NXZ=__ehhandler$?update_state_one@CProfileMenu@th105@@AAE_NXZ"]
+
+[units.exact-first-replay-header-read]
+kind = "probe"
+source = "src/ui/ReplayHeaderRead.cpp"
+object = "build/match-units/ExactFirst_ReplayHeaderRead.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Replay-header reader using real shared plain-file lifetime and local string append; complete main body and separate EH audit. docs/REPLAY_HEADER_READ_EXACT_2026_11_04.md."
+
+[[units.exact-first-replay-header-read.functions]]
+address = "0x00429A30"
+symbol_base = "?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z"
+rel32_targets = [
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
+  "??3@YAXPAX@Z=0x006898EA",
+  "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+  "??_7ReplayFilenameFile@th105@@6B@=??_7CFileReader@th105@@6B@",
+  "__ehhandler$?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z=__ehhandler$?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z",
+]

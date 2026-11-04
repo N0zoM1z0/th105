@@ -1858,3 +1858,4 @@ CProfileMenu_update_primary,0x0044BCF0,function
 CProfileMenu_update_state_one,0x0044CA80,function
 CBattleSV_update,0x00426180,function
 CBattleCL_update,0x00426380,function
+ReplayHeader_read_version,0x00429A30,function
