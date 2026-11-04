@@ -1682,3 +1682,4 @@ CScenarioData_install_character
 BgmBufferRuntime_set_volume
 ScenarioResultResource_update
 SystemEffectObjectManager_update_and_prune
+CMenuConfig_update_secondary_for_primary

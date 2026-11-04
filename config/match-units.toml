@@ -30302,3 +30302,17 @@ rel32_targets = [
  "?release_handle@?$CHandleManagerEx@VSystemEffectObject@@@@QAEXI@Z=0x0056D8F0",
  "??3@YAXPAX@Z=0x006898EA",
 ]
+
+[units.gpt-web-menu-config-secondary]
+kind = "probe"
+source = "src/ui/MenuConfigSecondary.cpp"
+object = "build/match-units/GptWeb_MenuConfigSecondary.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Five-case CMenuConfig secondary selection 0x00440FF0 with real cursor binder; source remains nonexact and its switch table is not accepted. No exact credit."
+
+[[units.gpt-web-menu-config-secondary.functions]]
+address = "0x00440FF0"
+symbol_base = "?update_secondary_for_primary@CMenuConfigUpdateView@th105@@QAEXH@Z"
+rel32_targets = ["?bind_horizontal@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z=0x004204E0"]
+dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]

@@ -6880,3 +6880,35 @@ required_direct_edges = [
 required_selected_body_calls = [
  { owner = "0x00456D70", site = "0x00456DF4", target = "0x0056D8F0", target_status = "matching" },
 ]
+
+[[rules]]
+id = "menu-config-secondary-authored-106a"
+addresses = ["0x00440FF0"]
+expected_count = 1
+expected_bytes = 413
+expected_names = ["sub_440FF0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Five-case configuration menu policy binds the secondary cursor, converts and clamps option and signed volume values, updates gauge widths, and maps two toggles. The RTTI-owned canonical-exact main update calls it; all five native switch destinations and the cursor-binding target are pinned. Natural source remains nonexact; no switch-table or exact credit is awarded."
+required_body_hashes = [
+ { address = "0x00440FF0", size = 413, sha256 = "f0bc9b07396b33344711212474ac611dadb4d0d0c47eee1e47b192a042f649e5" },
+]
+required_direct_edges = [
+ { caller = "0x004411B0", site = "0x004411E7", target = "0x00440FF0", caller_status = "matching" },
+]
+required_selected_body_calls = [
+ { owner = "0x00440FF0", site = "0x00441019", target = "0x004204E0", target_status = "matching" },
+ { owner = "0x00440FF0", site = "0x00441062", target = "0x004204E0", target_status = "matching" },
+ { owner = "0x00440FF0", site = "0x004410C3", target = "0x004204E0", target_status = "matching" },
+ { owner = "0x00440FF0", site = "0x00441145", target = "0x004204E0", target_status = "matching" },
+ { owner = "0x00440FF0", site = "0x00441171", target = "0x004204E0", target_status = "matching" },
+]
+required_dword_values = [
+ { address = "0x00441190", value = "0x00441009" },
+ { address = "0x00441194", value = "0x00441051" },
+ { address = "0x00441198", value = "0x004410B3" },
+ { address = "0x0044119C", value = "0x00441135" },
+ { address = "0x004411A0", value = "0x00441161" },
+]

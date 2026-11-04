@@ -11,8 +11,8 @@ namespace th105 {
 struct ConfigStateView {
     unsigned char reserved_00[0x64];
     int option_64;
-    unsigned bgm_percent_68;
-    unsigned se_percent_6c;
+    int bgm_percent_68;
+    int se_percent_6c;
     unsigned char windowed_70;
     unsigned char option_71;
 };
