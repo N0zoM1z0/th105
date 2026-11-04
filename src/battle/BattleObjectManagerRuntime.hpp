@@ -38,6 +38,17 @@ struct BattleBaseEffect {
     void shutdown();
 };
 
+struct BattleRenderVertex36 {
+    unsigned char reserved_00[0x10];
+    unsigned color_10;
+    float x_14;
+    float y_18;
+    float u_1c;
+    float v_20;
+};
+typedef char BattleRenderVertex36_size[sizeof(BattleRenderVertex36) == 0x24 ? 1 : -1];
+typedef char BattleRenderVertex36_color_offset[offsetof(BattleRenderVertex36, color_10) == 0x10 ? 1 : -1];
+
 struct BattleObjectManager {
     std::list<BattleRenderRequest> render_requests_00;
     unsigned char running_0c;
@@ -49,7 +60,7 @@ struct BattleObjectManager {
     std::list<BackgroundBase *> renderers_28;
     std::list<BackgroundBase *> owned_34;
     BattleBaseEffect effect_40;
-    unsigned char render_state_48[0x90];
+    BattleRenderVertex36 vertices_48[4];
     unsigned texture_a_d8;
     unsigned texture_b_dc;
     float drift_e0;
@@ -82,6 +93,8 @@ struct BattleObjectManager {
     void publish_stage(int stage, int count, bool notify);
 };
 
+typedef char BattleObjectManager_vertices_offset[
+    offsetof(BattleObjectManager, vertices_48) == 0x48 ? 1 : -1];
 typedef char BattleObjectManager_size_must_be_0x118[
     sizeof(BattleObjectManager) == 0x118 ? 1 : -1];
 typedef char BattleObjectManager_running_offset_must_be_0x0c[

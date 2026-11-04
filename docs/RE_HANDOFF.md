@@ -501,3 +501,13 @@ their exact render-color caller, the battle overlay and five reset/lifetime
 roots replay exact. The 1,018-test target-independent CI passed. This is
 source cleanup only, with no new exact bytes. See
 `SPRITE_EFFECT_D3DX_INTERFACE_2026_11_04.md`.
+
+### Battle overlay real owner (2026-11-04)
+
+The exact `4666A0` overlay is now the actual `BattleObjectManager` member, not a
+separate receiver-view symbol. Its four typed vertices replace the same-size
+opaque render area without changing the asserted owner layout. The caller and
+provider now emit the same member symbol. A fresh cold build and all 18 accepted
+roots in eight directly affected units replay exact; the prior nonexact `466F40`
+remains unchanged. No integrated-link or new-byte claim is made. See
+`BATTLE_RENDER_TAIL_EXACT_2026_11_04.md`.

@@ -15,9 +15,10 @@ The previously exact phase method at `466980` tail-jumps to this body at
 The ordinary C++ source keeps the observed fade gate, texture fallback and
 size lookup, four vertex positions and texture coordinates, two texture binds,
 color/alpha publication, two effect vectors, D3DX effect calls and primitive
-submission. It uses a pointer-only `BattleObjectRenderTailView` with asserted
-vertex, texture and fade offsets; it does not construct that partial view or
-claim the original class name. Existing target-bound texture and render
+submission. It is now defined on the existing `BattleObjectManager` source type, whose
+vertex array and existing texture and fade fields have asserted native sizes
+and offsets. The caller and provider emit the same real C++ member symbol;
+this does not establish the original class name. Existing target-bound texture and render
 providers retain their independent match status; this root does not give them
 new credit.
 
@@ -47,3 +48,17 @@ Reproduction and scope:
 - All 1,018 target-independent project CI tests and the tracking/whitespace
   checks passed on the resulting tree. No whole-corpus cold replay, actual D3D execution, or
   gameplay claim is made.
+
+## Shared real owner, 2026-11-04
+
+The initially accepted partial receiver view has been replaced with the
+existing `BattleObjectManager` owner. Its former 0x90-byte opaque render area is
+now four typed 0x24-byte vertices, preserving the asserted 0x118-byte manager
+layout and existing field offsets. The real caller's unresolved member symbol
+now has an actual source definition; a full integrated link is not claimed.
+
+A fresh independent cold build still matches the entire 670-byte original
+body. Dependency inspection found eight affected units with 18 accepted roots;
+all 18 replayed exact. The manager unit's separate `466F40` remains nonexact
+with its prior complete candidate hash unchanged. No new matching bytes are
+added by this owner cleanup. See `build/frontier-battle-overlay-real-owner-20261104/`.
