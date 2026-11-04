@@ -37,6 +37,9 @@ def execute(image, code, case, address):
     engine.mem_map(0x400000, (len(image) + 4095) // 4096 * 4096)
     engine.mem_write(0x400000, image)
     engine.mem_write(address, code)
+    if case.get("stop_at_adjust"):
+        # Synthetic table avoids assuming game initialization; both runs use it.
+        engine.mem_write(0x6FE8B0, struct.pack("<f", 0.25) * 3600)
     for base in (OWNER, PEER, STACK):
         engine.mem_map(base, 0x10000)
     engine.mem_map(RETURN, 0x1000)
@@ -65,11 +68,13 @@ def execute(image, code, case, address):
     result, trace = {}, []
 
     def observe(uc, location, size, unused):
-        if location == FRAME_HELPER:
+        if location == FRAME_HELPER or (case.get("stop_at_adjust") and location in (0x4063D0, 0x406360)):
             trace.append(hex(location))
         boundary = BOUNDARIES.get(location)
         if case.get("stop_at_cosine") and location == 0x4063D0:
             boundary = "cosine"
+        if case.get("stop_at_adjust") and location == 0x46BF30:
+            boundary = "adjust"
         if boundary is not None:
             trace.append(hex(location))
             result.update(boundary=boundary, helper_trace=trace,
@@ -82,6 +87,9 @@ def execute(image, code, case, address):
                 sp = uc.reg_read(registers.UC_X86_REG_ESP)
                 result["argument_word"] = struct.unpack("<I", uc.mem_read(sp + 4, 4))[0]
                 result["receiver_offset"] = None  # cdecl helper has no receiver
+            if boundary == "adjust":
+                sp = uc.reg_read(registers.UC_X86_REG_ESP)
+                result["arguments"] = list(struct.unpack("<II", uc.mem_read(sp + 4, 8)))
             uc.emu_stop()
 
     engine.hook_add(unicorn.UC_HOOK_CODE, observe)
