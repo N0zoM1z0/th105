@@ -1697,3 +1697,4 @@ CSelectObject_prepare_transform
 CSprite_render_rectangle
 CBattleManagerArcade_post_pipeline
 CBattleManager_update_event_timer
+FighterSpriteResource_cleanup

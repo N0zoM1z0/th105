@@ -1882,3 +1882,4 @@ CSelectObject_prepare_transform,0x0041FAD0,function
 CSprite_render_rectangle,0x004070C0,function
 CBattleManagerArcade_post_pipeline,0x00472F80,function
 CBattleManager_update_event_timer,0x00472A70,function
+FighterSpriteResource_cleanup,0x00465420,function
