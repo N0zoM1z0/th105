@@ -38,3 +38,13 @@ allocation and exception handling and full-game behavior are not covered. Run
 `scripts/repo-python -m unittest discover -s tests -p
 test_menu_select_cancel_observer.py`. Receipts are under
 `build/frontier-menu-select-primary-20261104/`.
+
+An unmasked whole-payload census compares the complete native callable,
+alignment and eight-entry switch table to the entire emitted source section.
+The target table begins at +672 and the source table at +648. The positional
+comparison has 555 unequal positions including 24 missing source bytes; these
+are not 555 independent semantic defects because shifted code moves later
+bytes. The census does not cover remote exception code or metadata and is not
+an acceptance mechanism. Reproduce with `scripts/repo-python
+scripts/audit-menu-select-primary-payload.py`; the receipt is `payload.json` in
+the same build directory.
