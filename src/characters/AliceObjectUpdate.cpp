@@ -685,7 +685,7 @@ case 852: {
 case 853: {
 
     if(I(0x180)==5) RETIRE();
-    if(S(0x13e)==0) {F(0x12c)+=30.0;double nextY=static_cast<double>(F(0xf0))+F(0xf8);if(!(stage_surface_height()<nextY)) {publish_battle_layout_scalar(10.0f);next_sequence_block();float packet[3]={0.0f,0.0f,2.0f};F(0xf0)=stage_surface_height();spawn_unparented(853,F(0xec),F(0xf0),B(0x104),1,packet,3);WAVE(25);F(0xf8)=static_cast<float>(-F(0xf8)*0.5);F(0xf4)*=static_cast<double>(0.2f);return;}F(0xf8)-=2.0;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);}
+    if(S(0x13e)==0) {F(0x12c)+=30.0;double nextY=static_cast<double>(F(0xf0))+F(0xf8);if(stage_surface_height()>=nextY) {publish_battle_layout_scalar(10.0f);next_sequence_block();float packet[3]={0.0f,0.0f,2.0f};F(0xf0)=stage_surface_height();spawn_unparented(853,F(0xec),F(0xf0),B(0x104),1,packet,3);WAVE(25);F(0xf8)=static_cast<float>(-F(0xf8)*0.5);F(0xf4)*=static_cast<double>(0.2f);return;}F(0xf8)-=2.0;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);}
     if(S(0x13e)==1) {F(0x12c)+=15.0;if(B(0x113)<=10) RETIRE();B(0x113)-=10;F(0xf8)-=0.5;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);}
     if(S(0x13e)==2) {advance_six(0);F(0x11c)-=static_cast<double>(0.005f);F(0x120)=F(0x11c);}
     if(S(0x13e)==3) {F(0x11c)+=static_cast<double>(0.3f);F(0x120)=F(0x11c);if(I(0x144)>0) {if(B(0x110)>25) {if(B(0x113)<=25) RETIRE();B(0x111)=0;B(0x110)=0;B(0x113)-=25;}else {B(0x111)-=25;B(0x110)-=25;}}}
@@ -1040,7 +1040,7 @@ case 998: {
 case 999: {
  {
     short phase=S(0x13e);switch(phase) {
-    case 0: {F(0xf8)-=static_cast<double>(0.3f);float nextY=F(0xf8)+F(0xf0);if(!(stage_surface_height()<nextY)) {FIELD(OWNER,short,0x78c)=1;F(0xf0)=stage_surface_height();F(0xf4)=0.0f;F(0xf8)=0.0f;F(0x100)=0.0f;select_sequence(1);return;}break;}
+    case 0: {F(0xf8)-=static_cast<double>(0.3f);double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(stage_surface_height()>=nextY) {FIELD(OWNER,short,0x78c)=1;F(0xf0)=stage_surface_height();F(0xf4)=0.0f;F(0xf8)=0.0f;F(0x100)=0.0f;select_sequence(1);return;}break;}
     case 2:if(FIELD(OWNER,short,0x78e)==1) {next_sequence_block();B(0x104)=1;return;}break;
     case 3:case 4:if(phase>=4) F(0xf8)-=F(0x100);break;
     }

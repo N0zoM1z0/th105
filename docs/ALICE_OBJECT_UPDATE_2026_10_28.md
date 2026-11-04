@@ -71,3 +71,17 @@ Only source and mapping advance; matches.csv is unchanged. Dedicated aliases do
 not alter existing consumers. No shared ABI, compiler profile or accepted source
 changed, so unchanged accepted receipts remain incremental and no corpus rebuild
 was required. The focused replay and default repository CI gate this checkpoint.
+
+## Actions 853 and 999 landing comparisons, 2026-11-04
+
+Native `0x0050619A..0x005061B8` and `0x0050BCAC..0x0050BCCE` retain
+next Y in a QWORD across the surface query, then skip the landing path when
+`AH & 1` is nonzero. That excludes unordered comparisons. Both source gates
+now express ordered `surface >= nextY`; action 999 also retains the sum as a
+double instead of rounding it to float before the query. The fresh VC8 object
+uses QWORD temporaries and the corresponding x87 mask and skip branches at
+0x9660 and 0xF0F4. These are local observations, not a claim about unmasked
+exceptions or the entire callable.
+
+The 62,278-byte callable remains nonexact from +37 (candidate section tail
+62,960 bytes), and this checkpoint adds no exact credit.
