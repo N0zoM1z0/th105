@@ -22865,7 +22865,7 @@ source = "src/battle/SpellCsvFilteredParser.cpp"
 object = "build/match-units/ExactFirst_SpellCsvFilteredParser.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete1987-byte filtered spell CSV parser433B30; all478 instructions reached and full remote else tail reconciled. Real set/map/deque and owning lifetimes recover frame/branches. Independently proven checked-back view from exact peer4343A0 reduces full strict replay to2 unequal operand bytes at433E24/433E27; both actual parsers in one TU preserve this1987-byte residual and exact1646-byte peer. Identified/unselected; no exact credit. docs/SPELL_FILTERED_CSV_2026_10_25.md."
+notes = "Complete1987-byte filtered spell CSV parser433B30; all478 instructions reached and full remote else tail reconciled. Real set/map/deque and owning lifetimes recover frame/branches. Independently proven checked-back view from exact peer4343A0 reduces full strict replay to2 unequal operand bytes at433E24/433E27; both actual parsers in one TU preserve this1987-byte residual and exact1646-byte peer. Source registered nonexact; no exact credit. docs/SPELL_FILTERED_CSV_2026_10_25.md."
 
 [[units.exact-first-spell-filtered-csv.functions]]
 address = "0x00433B30"
@@ -22937,7 +22937,7 @@ source = "src/engine/SceneResourceBootstrap.cpp"
 object = "build/match-units/ExactFirst_SceneResourceBootstrap.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete3722-byte scene resource bootstrap43E2E0: character names,48 policy mappings, keyboard/gamepad input, profiles/score and config audio. First complete3895-byte source compared early; real deque-provider boundary, scalar52-byte binding view and native input constructor recover3722 bytes with11 stack-home byte differences. Source remains identified/unselected. Native CFG821/823 reaches full RET0; two internal alignment operations pinned. docs/SCENE_RESOURCE_BOOTSTRAP_2026_10_26.md."
+notes = "Complete3722-byte scene resource bootstrap43E2E0: character names,48 policy mappings, keyboard/gamepad input, profiles/score and config audio. First complete3895-byte source compared early; real deque-provider boundary, scalar52-byte binding view and native input constructor recover3722 bytes with11 stack-home byte differences. Source is registered nonexact. Native CFG821/823 reaches full RET0; two internal alignment operations pinned. docs/SCENE_RESOURCE_BOOTSTRAP_2026_10_26.md."
 
 [[units.exact-first-scene-resource-bootstrap.functions]]
 address = "0x0043E2E0"

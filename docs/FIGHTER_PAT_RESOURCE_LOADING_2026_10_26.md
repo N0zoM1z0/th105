@@ -1,5 +1,7 @@
 # Fighter PAT and palette resource loading 0x00461B70
 
+Source registration was updated on 2026-11-04; see `LARGE_SOURCE_REGISTRATION_2026_11_04.md`. Earlier references to unselected status are historical.
+
 Update 2026-10-31: actual shared reader operations now reduce the complete
 public candidate to3885 bytes. Only four relocated byte positions differ,
 the operand order of two deque iterator range-check loads. Still nonexact;

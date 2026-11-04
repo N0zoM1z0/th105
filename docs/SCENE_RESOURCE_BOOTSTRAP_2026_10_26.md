@@ -1,5 +1,7 @@
 # Scene resource bootstrap 0x0043E2E0
 
+Source registration was updated on 2026-11-04; see `LARGE_SOURCE_REGISTRATION_2026_11_04.md`. Earlier references to unselected status are historical.
+
 The complete source hypothesis in `src/engine/SceneResourceBootstrap.cpp` builds
 as `exact-first-scene-resource-bootstrap`. Full canonical replay compares all
 3722 bytes and leaves **11 unequal stack displacement bytes**. It remains

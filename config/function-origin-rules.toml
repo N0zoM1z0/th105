@@ -11,7 +11,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete478-instruction spell CSV parser from exact wrapper434300 at434373. Selected spell IDs gate game card paths, texture ownership, sixteen-row text composites and spell-record map policy; surrounding STL operations do not establish library ownership of this root. Public target audit reaches all1987 bytes including the remote else tail after RET20. Whole ordinary C++ comparison now has2 unequal operand bytes in one unsigned deque upper-bound sum after independent exact-peer recovery; genuine joint-parser visibility preserves that residual and the exact peer; identified/unselected, no exact credit. docs/SPELL_FILTERED_CSV_2026_10_25.md."
+evidence = "Complete478-instruction spell CSV parser from exact wrapper434300 at434373. Selected spell IDs gate game card paths, texture ownership, sixteen-row text composites and spell-record map policy; surrounding STL operations do not establish library ownership of this root. Public target audit reaches all1987 bytes including the remote else tail after RET20. Whole ordinary C++ comparison now has2 unequal operand bytes in one unsigned deque upper-bound sum after independent exact-peer recovery; genuine joint-parser visibility preserves that residual and the exact peer; source registered nonexact, no exact credit. docs/SPELL_FILTERED_CSV_2026_10_25.md."
 required_body_hashes = [{ address = "0x00433B30", size = 1987, sha256 = "7d09cf25edce166f13585697b544749512d2c6d8b968c555a97d75d1cdb19cb8" }]
 required_direct_edges = [{ caller = "0x00434300", site = "0x00434373", target = "0x00433B30", caller_status = "matching" }]
 
@@ -3241,7 +3241,7 @@ origin = "authored_game"
 subsystem = "engine"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete3722-byte/823-instruction body has821 reachable instructions, two pinned internal alignment operations and one RET0. Exact scene-manager initializer41E070 calls it at41E104. Fifteen decoded character names, stage/BGM/effect policies, keyboard/gamepad binding defaults, profile/score/resource initialization and game volume settings establish authored ownership independently of its STL/CRT providers. Public full canonical probe is3722 bytes with11 stack displacement differences; source remains unselected. Nominal map specialization, original source spelling and TU context remain unknown. docs/SCENE_RESOURCE_BOOTSTRAP_2026_10_26.md."
+evidence = "Complete3722-byte/823-instruction body has821 reachable instructions, two pinned internal alignment operations and one RET0. Exact scene-manager initializer41E070 calls it at41E104. Fifteen decoded character names, stage/BGM/effect policies, keyboard/gamepad binding defaults, profile/score/resource initialization and game volume settings establish authored ownership independently of its STL/CRT providers. Public full canonical probe is3722 bytes with11 stack displacement differences; source registered nonexact. Nominal map specialization, original source spelling and TU context remain unknown. docs/SCENE_RESOURCE_BOOTSTRAP_2026_10_26.md."
 required_body_hashes = [
   { address = "0x0043E2E0", size = 3722, sha256 = "6ed872ce668bf9f01a571e00f18e0879828a40ef79c854fc2f5a5f22efeccb4c" },
 ]

@@ -1,5 +1,7 @@
 # Filtered spell CSV parser: complete source, two bytes pending
 
+Source registration was updated on 2026-11-04; see `LARGE_SOURCE_REGISTRATION_2026_11_04.md`. Earlier references to unselected status are historical.
+
 ## 2026-10-26: independent exact-peer follow-up
 
 After resource parser4343A0 independently passed its complete1646-byte
