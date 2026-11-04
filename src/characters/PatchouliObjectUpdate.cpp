@@ -481,7 +481,7 @@ case 830: {
 
     if(I(0x180)==5) RETIRE();
     if(S(0x13e)==0) {
-        if(emit_repeated(0,1,5)) RETIRE();if(!(F(0xf0)<1300.0f)) {float *parameters=PARAM;if(parameters[3]<=0.0f) {next_sequence_block();F(0xf0)=1300.0f;F(0x12c)=0.0f;F(0xf8)=-20.0f;release_auxiliary();return;}parameters[3]-=1.0;}
+        if(emit_repeated(0,1,5)) RETIRE();if(F(0xf0)>=1300.0f) {float *parameters=PARAM;if(parameters[3]<=0.0f) {next_sequence_block();F(0xf0)=1300.0f;F(0x12c)=0.0f;F(0xf8)=-20.0f;release_auxiliary();return;}parameters[3]-=1.0;}
     }
     if(S(0x13e)==1) {
         F(0xf8)-=0.75;if(emit_repeated(0,1,5)) RETIRE();advance_six(0);double nextY=static_cast<double>(F(0xf8))+F(0xf0);

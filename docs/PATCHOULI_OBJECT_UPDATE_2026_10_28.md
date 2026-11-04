@@ -108,3 +108,15 @@ This does not establish whole-root or unmasked-exception equivalence.
 
 The 50,649-byte callable remains nonexact from +37; the candidate section
 tail is 51,428 bytes. No exact credit is added.
+
+## Action 830 ordered height gate, 2026-11-04
+
+Native `0x005250E1..0x005250F2` compares 1300 to Y and skips the upper
+boundary path on parity of `AH & 0x41`. The path therefore requires an ordered
+Y at or above 1300; unordered values skip it. The previous negated `< 1300`
+admitted NaN. The source now uses `>= 1300.0f`; fresh VC8 emits the same
+local test and skip at `0x4822..0x482D`. This does not establish whole-root or
+unmasked-exception equivalence.
+
+The 50,649-byte callable remains nonexact from +37; the candidate section
+tail is 51,428 bytes. No exact credit is added.
