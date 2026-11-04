@@ -37,3 +37,23 @@ additional `CC` alignment byte, and the corresponding byte immediately after
 the target candidate is also `CC`; neither is counted as an authored body.
 The candidate's out-of-line throw path is retained in its body hash. This
 classification does not claim complete exception metadata equivalence.
+
+## Text-entry copy layout, 2026-11-04
+
+The native `0x00455A80` entry copy constructs its sprite and string, then
+copies four color bytes, seven integers and six state bytes individually. It
+does not copy the trailing two alignment bytes. A scalar-field layout in the
+shared `ScenarioTextEntryDC` preserves the 0xDC size and offsets and causes a
+fresh pinned-VC8 implicit copy constructor to reproduce the complete 337-byte
+native callable body after resolving the real sprite-copy and string-assign
+calls. Its body SHA-256 is
+`f69994866a9ed097e2dfff4b6e7a369942f46d869efadd6160c75058021d0a6b`.
+
+The separate pinned witness has a unique full-inventory relocation-masked
+fingerprint and the native pair constructors both call this body. It is an
+implicit compiler-generated copy constructor and is excluded from authored
+progress. The EH handler entry was resolved for the diagnostic body comparison;
+complete exception metadata equality is not established. The layout is a
+source hypothesis supported by the copy sequence, not proof of original field
+names. Twenty-seven affected accepted Scenario roots replay exact; the current
+character-install and render candidates retain their previous nonexact hashes.

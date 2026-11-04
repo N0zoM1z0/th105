@@ -140,10 +140,9 @@ struct ScenarioTextEntryDC {
     unsigned int resource_handle_000;
     CSprite sprite_004;
     std::string text_098;
-    unsigned char flags_0b4[4];
-    int values_0b8[7];
-    signed char flags_0d4[6];
-    unsigned char reserved_0da[2];
+    unsigned char flag_0b4, flag_0b5, flag_0b6, flag_0b7;
+    int value_0b8, value_0bc, value_0c0, value_0c4, value_0c8, value_0cc, value_0d0;
+    signed char flag_0d4, flag_0d5, flag_0d6, flag_0d7, flag_0d8, flag_0d9;
 
     ScenarioTextEntryDC();
     ~ScenarioTextEntryDC();

@@ -131,41 +131,41 @@ signed char CScenarioData::update()
 
     it = s.text_entries_32c.begin();
     while (it != s.text_entries_32c.end()) {
-        if (it->second.flags_0d4[4]) {
+        if (it->second.flag_0d8) {
             if (get_session_setup_option() == 2) {
                 if (scenario_peek_inline() !=
                     static_cast<unsigned short>(g_pair_state))
                     return 1;
                 scenario_pop_inline();
                 if (!scenario_slot_state->is_slot_active(
-                        it->second.flags_0d4[0])) {
+                        it->second.flag_0d4)) {
                     ScenarioEventHandle event;
                     while (!reinterpret_cast<ScenarioSlotSetupView *>(
                                 scenario_slot_state)->finish(
-                                    it->second.flags_0d4[0]))
+                                    it->second.flag_0d4))
                         WaitForSingleObject(event.handle, 16);
                     ScenarioCharacterView *fighter =
-                        scenario_character(it->second.flags_0d4[0]);
+                        scenario_character(it->second.flag_0d4);
                     fighter->prepare_44();
                     fighter->reset_for_roster(scenario_character(0));
                 }
             } else if (!scenario_slot_state->is_slot_active(
-                           it->second.flags_0d4[0])) {
+                           it->second.flag_0d4)) {
                 if (!reinterpret_cast<ScenarioSlotSetupView *>(
                          scenario_slot_state)->finish(
-                             it->second.flags_0d4[0]))
+                             it->second.flag_0d4))
                     return 1;
                 ScenarioCharacterView *fighter =
-                    scenario_character(it->second.flags_0d4[0]);
+                    scenario_character(it->second.flag_0d4);
                 fighter->prepare_44();
                 fighter->reset_for_roster(scenario_character(0));
             }
             if (get_session_setup_option() == 1)
                 get_player2_input()->queue_control_word(
                     static_cast<unsigned short>(g_pair_state));
-            it->second.flags_0d4[4] = scenario_character(
-                it->second.flags_0d4[0])->action_4c(it->second.values_0b8[6]);
-            if (!it->second.flags_0d4[4])
+            it->second.flag_0d8 = scenario_character(
+                it->second.flag_0d4)->action_4c(it->second.value_0d0);
+            if (!it->second.flag_0d8)
                 s.state_50c = 0;
             return 1;
         }
@@ -197,7 +197,7 @@ signed char CScenarioData::update()
     if (s.state_50f) {
         it = s.text_entries_32c.begin();
         while (it != s.text_entries_32c.end()) {
-            if (it->second.flags_0d4[5])
+            if (it->second.flag_0d9)
                 return -1;
             ++it;
         }
@@ -252,7 +252,7 @@ signed char CScenarioData::update()
                 s.string_4b8 = s.string_4d4;
                 it = s.text_entries_32c.begin();
                 while (it != s.text_entries_32c.end()) {
-                    it->second.flags_0d4[3] = 0;
+                    it->second.flag_0d7 = 0;
                     ++it;
                 }
                 s.trim_render_entries_and_begin_fade_455cd0();
@@ -260,7 +260,7 @@ signed char CScenarioData::update()
             }
             it = s.text_entries_32c.find(s.string_4f0);
             if (it != s.text_entries_32c.end())
-                it->second.flags_0d4[3] = 1;
+                it->second.flag_0d7 = 1;
             TCommand1<std::string> *text =
                 static_cast<TCommand1<std::string> *>(command);
             s.state_50d = 1;
@@ -302,7 +302,7 @@ signed char CScenarioData::update()
             if (it != s.text_entries_32c.end()) {
                 std::string path;
                 if (c->arg1.empty()) {
-                    it->second.flags_0d4[2] = 0;
+                    it->second.flag_0d6 = 0;
                 } else {
                     path = "data/character/" + it->first + "/stand/" +
                            c->arg1 + ".bmp";
@@ -315,12 +315,12 @@ signed char CScenarioData::update()
                     it->second.sprite_004.set_texture_options(
                         handle, 0, 0, width, height, width >> 1, height);
                     it->second.sprite_004.scale_x_88 =
-                            static_cast<float>(it->second.flags_0d4[1]);
+                            static_cast<float>(it->second.flag_0d5);
                     it->second.sprite_004.scale_y_8c = 1.0f;
-                    it->second.flags_0d4[2] = 1;
+                    it->second.flag_0d6 = 1;
                 }
-                s.set_effect_color_bytes(it->second.flags_0b4[1],
-                    it->second.flags_0b4[2], it->second.flags_0b4[3]);
+                s.set_effect_color_bytes(it->second.flag_0b5,
+                    it->second.flag_0b6, it->second.flag_0b7);
                 s.string_4f0 = it->first;
             }
             break;
@@ -330,16 +330,16 @@ signed char CScenarioData::update()
                 static_cast<TCommand2<std::string, int> *>(command);
             it = s.text_entries_32c.find(c->arg0_08);
             if (it != s.text_entries_32c.end()) {
-                it->second.flags_0d4[4] = 1;
-                it->second.values_0b8[6] = c->arg1;
+                it->second.flag_0d8 = 1;
+                it->second.value_0d0 = c->arg1;
                 s.state_50c = 1;
-                if (it->second.flags_0d4[0] != 0 &&
-                    it->second.flags_0d4[0] != 1)
+                if (it->second.flag_0d4 != 0 &&
+                    it->second.flag_0d4 != 1)
                     return 1;
-                it->second.flags_0d4[4] = scenario_character(
-                    it->second.flags_0d4[0])->action_4c(
-                        it->second.values_0b8[6]);
-                if (it->second.flags_0d4[4])
+                it->second.flag_0d8 = scenario_character(
+                    it->second.flag_0d4)->action_4c(
+                        it->second.value_0d0);
+                if (it->second.flag_0d8)
                     return 1;
                 s.state_50c = 0;
             }
@@ -432,7 +432,7 @@ signed char CScenarioData::update()
             if (it == s.text_entries_32c.end())
                 dispatch_indexed_event(c->arg1);
             else
-                scenario_character(it->second.flags_0d4[0])->dispatch_wave(c->arg1);
+                scenario_character(it->second.flag_0d4)->dispatch_wave(c->arg1);
             break;
         }
         case 13: {
@@ -484,13 +484,13 @@ signed char CScenarioData::update()
             if (static_cast<TCommand1<int> *>(command)->arg0_08 == 0) {
                 it = s.text_entries_32c.begin();
                 while (it != s.text_entries_32c.end()) {
-                    it->second.flags_0d4[2] = 1;
+                    it->second.flag_0d6 = 1;
                     ++it;
                 }
             } else {
                 it = s.text_entries_32c.begin();
                 while (it != s.text_entries_32c.end()) {
-                    it->second.flags_0d4[2] = 0;
+                    it->second.flag_0d6 = 0;
                     ++it;
                 }
                 s.state_50d = 0;
@@ -506,7 +506,7 @@ signed char CScenarioData::update()
         case 22:
             it = s.text_entries_32c.begin();
             while (it != s.text_entries_32c.end()) {
-                it->second.flags_0d4[2] = 0;
+                it->second.flag_0d6 = 0;
                 ++it;
             }
             s.state_50d = 0;

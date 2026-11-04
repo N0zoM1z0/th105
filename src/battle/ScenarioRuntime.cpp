@@ -64,14 +64,14 @@ void CScenarioData::reset_runtime_state()
         text_entries_32c.begin();
     while (it != text_entries_32c.end()) {
         ScenarioTextEntryDC &entry = it->second;
-        entry.values_0b8[5] = 30;
-        entry.values_0b8[2] = 400;
-        entry.values_0b8[3] = 0;
-        entry.values_0b8[4] = 0;
-        entry.flags_0d4[5] = 0;
-        entry.flags_0d4[2] = 0;
-        entry.flags_0d4[3] = 0;
-        entry.flags_0d4[4] = 0;
+        entry.value_0cc = 30;
+        entry.value_0c0 = 400;
+        entry.value_0c4 = 0;
+        entry.value_0c8 = 0;
+        entry.flag_0d9 = 0;
+        entry.flag_0d6 = 0;
+        entry.flag_0d7 = 0;
+        entry.flag_0d8 = 0;
         reinterpret_cast<ScenarioTextMapIteratorIncrementView *>(&it)
             ->increment();
     }
@@ -110,20 +110,20 @@ float __cdecl scenario_text_wave(int value);
 
 void ScenarioTextEntryDC::render_dynamic()
 {
-    if (flags_0d4[5] == 0)
+    if (flag_0d9 == 0)
         return;
 
-    if (flags_0d4[3])
+    if (flag_0d7)
         sprite_004.set_color(0xffffffffu);
     else
         sprite_004.set_color(0x80ffffffu);
 
     sprite_004.render(
         static_cast<float>(
-            static_cast<double>(values_0b8[0]) -
-            ((1.0 - scenario_text_wave(3 * values_0b8[5])) *
-                 values_0b8[2] + values_0b8[4]) * flags_0d4[1]),
-        static_cast<float>(values_0b8[3] + values_0b8[1] + values_0b8[4]));
+            static_cast<double>(value_0b8) -
+            ((1.0 - scenario_text_wave(3 * value_0cc)) *
+                 value_0c0 + value_0c8) * flag_0d5),
+        static_cast<float>(value_0c4 + value_0bc + value_0c8));
 }
 
 } // namespace th105
@@ -133,23 +133,23 @@ namespace th105 {
 
 int ScenarioTextEntryDC::update_dynamic_state()
 {
-    if (flags_0d4[2]) {
-        if (values_0b8[5] > 0)
-            --values_0b8[5];
-        flags_0d4[5] = 1;
-    } else if (values_0b8[5] < 30) {
-        ++values_0b8[5];
-        if (values_0b8[5] >= 30)
-            flags_0d4[5] = 0;
+    if (flag_0d6) {
+        if (value_0cc > 0)
+            --value_0cc;
+        flag_0d9 = 1;
+    } else if (value_0cc < 30) {
+        ++value_0cc;
+        if (value_0cc >= 30)
+            flag_0d9 = 0;
     }
 
-    if (flags_0d4[3]) {
-        if (values_0b8[4] > 0)
-            values_0b8[4] -= 2;
-    } else if (values_0b8[4] < 20) {
-        values_0b8[4] += 2;
+    if (flag_0d7) {
+        if (value_0c8 > 0)
+            value_0c8 -= 2;
+    } else if (value_0c8 < 20) {
+        value_0c8 += 2;
     }
-    return values_0b8[4];
+    return value_0c8;
 }
 
 } // namespace th105

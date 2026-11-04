@@ -6776,3 +6776,23 @@ required_dword_values = [
  { address = "0x00458485", value = "0x00454F30" },
  { address = "0x0045816F", value = "0x00454F40" },
 ]
+
+[[rules]]
+id = "vc8-scenario-text-entry-copy-106a"
+addresses = ["0x00455A80"]
+expected_count = 1
+expected_bytes = 337
+expected_names = ["sub_455A80"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "The native implicit ScenarioTextEntryDC copy constructor copies four color bytes, seven integer values and six state bytes individually, not the trailing alignment bytes. A shared scalar-field type reproduces its complete 337-byte generated COFF body; pinned VC8 witness and unique full-inventory fingerprint verify the two native call destinations. It is compiler-generated and adds no authored exact credit or full exception-metadata claim."
+vc8_generated_anchor_file = "config/vc8-scenario-text-entry-copy-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00455A80", size = 337, sha256 = "f69994866a9ed097e2dfff4b6e7a369942f46d869efadd6160c75058021d0a6b" },
+]
+required_direct_edges = [
+ { caller = "0x00455DD0", site = "0x00455E28", target = "0x00455A80", caller_status = "unclassified" },
+ { caller = "0x00455C50", site = "0x00455CA8", target = "0x00455A80", caller_status = "unclassified" },
+]

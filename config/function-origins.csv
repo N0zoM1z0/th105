@@ -1699,7 +1699,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00455830,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x00455850,authored_game,battle,authored,observed,scenario-render-list-fade-authored-106a
 0x00455A00,compiler_generated,std,exclude,observed,boost-narrow-std-equivalence-106a
-0x00455A80,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00455A80,compiler_generated,std,exclude,observed,vc8-scenario-text-entry-copy-106a
 0x00455BE0,compiler_generated,runtime,exclude,observed,vc8-generated-scenario-text-rebuild-extra-106a
 0x00455C50,compiler_generated,std,exclude,observed,vc8-scenario-text-pair-constructors-106a
 0x00455CD0,authored_game,battle,authored,observed,canonical-exact-authored

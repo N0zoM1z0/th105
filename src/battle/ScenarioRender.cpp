@@ -32,7 +32,7 @@ void CScenarioData::render()
     for (std::map<std::string, ScenarioTextEntryDC>::iterator it = text_entries_32c.begin();
          it != text_entries_32c.end(); ++it) {
         if (it->second.resource_handle_000 != 0) {
-            if (it->second.flags_0d4[3] == 0)
+            if (it->second.flag_0d7 == 0)
                 it->second.render_dynamic();
         }
     }
@@ -40,7 +40,7 @@ void CScenarioData::render()
     for (std::map<std::string, ScenarioTextEntryDC>::iterator it = text_entries_32c.begin();
          it != text_entries_32c.end(); ++it) {
         if (it->second.resource_handle_000 != 0) {
-            if (it->second.flags_0d4[3] != 0)
+            if (it->second.flag_0d7 != 0)
                 it->second.render_dynamic();
         }
     }

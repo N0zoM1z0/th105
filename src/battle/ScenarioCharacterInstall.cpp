@@ -10,28 +10,28 @@ void CScenarioData::install_character(
     const signed char side = static_cast<signed char>(slot);
     ScenarioTextEntryDC entry;
     entry.text_098 = text;
-    entry.flags_0d4[0] = side;
+    entry.flag_0d4 = side;
     if (side > 0) {
         entry.sprite_004.scale_x_88 = -1.0f;
         entry.sprite_004.scale_y_8c = 1.0f;
-        entry.flags_0d4[1] = -1;
-        entry.values_0b8[0] = 640 - x;
+        entry.flag_0d5 = -1;
+        entry.value_0b8 = 640 - x;
     } else {
-        entry.values_0b8[0] = x;
-        entry.flags_0d4[1] = 1;
+        entry.value_0b8 = x;
+        entry.flag_0d5 = 1;
     }
-    entry.flags_0b4[1] = red;
-    entry.flags_0b4[2] = green;
-    entry.values_0b8[1] = 480 + y;
-    entry.flags_0b4[3] = blue;
+    entry.flag_0b5 = red;
+    entry.flag_0b6 = green;
+    entry.value_0bc = 480 + y;
+    entry.flag_0b7 = blue;
     s.text_entries_32c.insert(std::pair<std::string, ScenarioTextEntryDC>(name, entry));
     ScenarioEffectConfig128 *config = &s.effect_config_1fc;
     config->color_100[0] = 0xff;
     config->color_100[2] = 0xff;
     config->color_100[4] = 0xff;
-    config->color_100[1] = entry.flags_0b4[1];
-    config->color_100[3] = entry.flags_0b4[2];
-    config->color_100[5] = entry.flags_0b4[3];
+    config->color_100[1] = entry.flag_0b5;
+    config->color_100[3] = entry.flag_0b6;
+    config->color_100[5] = entry.flag_0b7;
     s.effect_owner_068.configure(config);
 }
 } // namespace th105
