@@ -116,3 +116,26 @@ start = "0x004A00F0"
 end = "0x004A1979"
 size = 6282
 sha256 = "b523e6ad1a2344a1576ded336b4306475d8dc27957b970fe58f559a2d418db88"
+
+[[functions]]
+address = "0x0043B4A0"
+main_size = 209
+main_end = "0x0043B570"
+main_excluded_bytes = 3
+extent_end = "0x0044016F"
+remote_bytes = 160
+owned_bytes = 366
+remote_exact = false
+evidence = "The CSceneManager frame update's entry jumps from 43B547/43B563/43B56C to the separate UI continuation 4400D0..44016F. Raw control-flow traversal reaches all 160 tail bytes and 206 of 209 main bytes; the other three are skipped loop-alignment LEA. IDA xrefs to tail entry and internal branch destinations originate only within these owned regions. No remote exact credit. docs/SCENE_FRAME_UPDATE_2026_11_04.md."
+
+[[functions.main_exclusions]]
+start = "0x0043B4BD"
+end = "0x0043B4BF"
+size = 3
+sha256 = "53e090edb4fca0626d458dbefa0ae1bcbffc511ed159f1a70641610ad0d9a200"
+
+[[functions.chunks]]
+start = "0x004400D0"
+end = "0x0044016F"
+size = 160
+sha256 = "04df783d77c940ae49bf54b8b77670edac152e0c77bf56f4bd4f43de53dd87d0"

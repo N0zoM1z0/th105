@@ -18,3 +18,10 @@ continuation has SHA-256
 `04df783d77c940ae49bf54b8b77670edac152e0c77bf56f4bd4f43de53dd87d0`.
 The function earns no exact-byte credit. No live game or
 input execution was performed.
+
+The whole target has 366 owned code bytes: 206 reachable entry-region bytes
+and all 160 continuation bytes. The three skipped bytes at `0x0043B4BD` are
+loop alignment, not source code. The three entry-region exits all jump to the
+continuation, whose internal branch targets have no observed outside code
+references. This adjusts authored byte ownership only; the remote chunk has
+not been matched.
