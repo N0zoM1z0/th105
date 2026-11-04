@@ -25,3 +25,13 @@ following the shared header extraction. Evidence is under
 `build/frontier-profile-editor-selection-20261104/`. This is scoped checking,
 not a full application link or whole-corpus replay.
 Target-independent CI passed all 1,024 tests and progress/whitespace checks.
+
+## Bounded selection traces, 2026-11-04
+
+`scripts/audit-profile-editor-selection-observer.py` compares native and
+candidate instructions against an independent model for eight controlled
+fixtures, covering inactive mode, reset with different existing handles,
+no text, primary/secondary updates and both text updates. The texture,
+controller and tile calls are mocked; this does not prove actual font/IME or
+full-game behavior. A changed generated texture width is a negative control.
+The complete body remains 330/333 and nonexact, with no new exact credit.
