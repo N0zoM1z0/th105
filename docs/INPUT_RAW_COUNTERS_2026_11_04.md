@@ -22,3 +22,14 @@ values, selected keyboard combinations, disabled bindings and reset. The gamepad
 accessor is mocked; a changed threshold is detected by a negative test. Only
 finite valid binding indices and non-overflowing counter examples are covered.
 This is not DirectInput device, overflow, invalid-index or full-game testing.
+
+## Real-source CIL diagnostic
+
+One additional `/GL` diagnostic compiles the same natural input body with the
+real `InputManager.cpp` gamepad accessor as an ordinary COFF provider. It models
+the existing backend definition in a separate translation unit via the
+verified native data binding; no callable helper stub is supplied. The root is
+exported only so the diagnostic can locate it. The linked body is still
+406/native407 and has the same canonical SHA-256 and first mismatch as the
+ordinary build. This is not the shipped whole-program link, and no additional
+source or exact credit follows.
