@@ -462,7 +462,7 @@ void SakuyaObjectUpdateView::update_action_state()
  case 999:
   switch(S(0x13e)){
   case 0:case 1:case 2:AT(P,float,0xec)=F(0xec);if(F(0xec)>1480.0f || F(0xec)<-200.0)RETIRE();if(S(0x13e)>=1)F(0xf8)-=F(0x100);break;
-  case 4:{F(0xf8)-=D(0.35f);float next_y=F(0xf0)+F(0xf8);if(next_y<=stage_surface_height()){AT(P,short,0x78c)=1;F(0xf0)=stage_surface_height();F(0xf4)=0;F(0xf8)=0;F(0x100)=0;select_sequence(5);return;}break;}
+  case 4:{F(0xf8)-=D(0.35f);double next_y=static_cast<double>(F(0xf8))+F(0xf0);if(next_y<=stage_surface_height()){AT(P,short,0x78c)=1;F(0xf0)=stage_surface_height();F(0xf4)=0;F(0xf8)=0;F(0x100)=0;select_sequence(5);return;}break;}
   case 6:if(AT(P,short,0x78e)==1){next_sequence_block();B(0x104)=1;return;}break;
   case 7:case 8:if(S(0x13e)>=8)F(0xf8)-=F(0x100);break;
   }

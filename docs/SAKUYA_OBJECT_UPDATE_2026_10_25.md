@@ -271,3 +271,16 @@ KomachiObject slot28 candidate, requiring its own fresh attestation and complete
 boundary/ABI review. Remaining Sakuya unknowns include full execution
 equivalence, precise expression/return sharing, original nominal owner/return
 type and original TU/compiler context. No new aggregate cold replay is claimed.
+
+## Action 999 landing sum, 2026-11-04
+
+Native `0x004E7CD4..0x004E7CF6` stores the updated vertical speed as a
+float, reloads it, adds the position, and retains the sum as a QWORD across
+the surface query. The previous `float next_y` rounded the sum before that
+query. It now retains the sum as `double`. The fresh VC8 object at
+`0x6F58..0x6F7A` reproduces that local float store, QWORD sum and ordered
+comparison sequence. This is not a claim of whole-function exactness or
+unmasked-exception equivalence.
+
+The 28,985-byte callable remains nonexact from +37; the candidate section
+tail is 29,400 bytes. No exact credit is added.
