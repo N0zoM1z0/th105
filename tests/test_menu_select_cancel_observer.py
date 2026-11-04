@@ -24,7 +24,7 @@ class MenuSelectCancelObserverTests(unittest.TestCase):
                     self.assertEqual(observer.execute(body, *case), observer.expected(*case[1:]))
 
     def test_each_selection_and_network_branch(self):
-        for selection in range(8):
+        for selection in (-1, *range(9), 0x7fffffff):
             for mode in ((0, 3) if selection == 5 else (0,)):
                 for body in self.bodies:
                     with self.subTest(selection=selection, mode=mode):
