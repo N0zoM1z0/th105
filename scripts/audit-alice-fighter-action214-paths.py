@@ -37,7 +37,7 @@ def execute(image, code, case, address):
     engine.mem_map(0x400000, (len(image) + 4095) // 4096 * 4096)
     engine.mem_write(0x400000, image)
     engine.mem_write(address, code)
-    if case.get("stop_at_adjust"):
+    if case.get("stop_at_adjust") or case.get("stop_after_adjust"):
         # Synthetic tables avoid assuming game initialization; both runs use the same data.
         if case.get("table_kind") == "varying":
             table = b"".join(struct.pack("<f", (i % 17 - 8) / 16.0) for i in range(3600))
@@ -56,7 +56,7 @@ def execute(image, code, case, address):
             (0, "I", VTABLE), (0x104, "b", case.get("facing", 1)), (0xF8, "f", -2), (0x100, "f", 0.5),
             (0x13C, "h", 214), (0x13E, "h", case["sequence"]), (0x140, "h", 1),
             (0x142, "h", 0), (0x144, "i", 1), (0x14C, "h", 3),
-            (0x170, "I", PEER), (0x174, "h", 100), (0x482, "h", 1),
+            (0x170, "I", PEER), (0x174, "h", 100), (0x482, "h", case.get("counter", 1)),
             (0x6C8, "i", case["held"]), (0x736, "h", 20),
             (0x6B8, "i", case.get("vertical", 0)), (0x6B4, "i", case.get("horizontal", 0)),
             (0x732, "h", case.get("heading", 0)), (0x740, "f", case.get("angle", 0.0)),
@@ -72,13 +72,17 @@ def execute(image, code, case, address):
     result, trace = {}, []
 
     def observe(uc, location, size, unused):
-        if location == FRAME_HELPER or (case.get("stop_at_adjust") and location in (0x4063D0, 0x406360)):
+        if (location == FRAME_HELPER or
+            ((case.get("stop_at_adjust") or case.get("stop_after_adjust")) and location in (0x4063D0, 0x406360)) or
+            (case.get("stop_after_adjust") and location == 0x46BF30)):
             trace.append(hex(location))
         boundary = BOUNDARIES.get(location)
         if case.get("stop_at_cosine") and location == 0x4063D0:
             boundary = "cosine"
         if case.get("stop_at_adjust") and location == 0x46BF30:
             boundary = "adjust"
+        if case.get("stop_after_adjust") and location == 0x45C390:
+            boundary = "sequence"
         if boundary is not None:
             trace.append(hex(location))
             result.update(boundary=boundary, helper_trace=trace,
@@ -91,9 +95,10 @@ def execute(image, code, case, address):
                 sp = uc.reg_read(registers.UC_X86_REG_ESP)
                 result["argument_word"] = struct.unpack("<I", uc.mem_read(sp + 4, 4))[0]
                 result["receiver_offset"] = None  # cdecl helper has no receiver
-            if boundary == "adjust":
+            if boundary in ("adjust", "sequence"):
                 sp = uc.reg_read(registers.UC_X86_REG_ESP)
-                result["arguments"] = list(struct.unpack("<II", uc.mem_read(sp + 4, 8)))
+                size = 8 if boundary == "adjust" else 4
+                result["arguments"] = list(struct.unpack("<" + "I" * (size // 4), uc.mem_read(sp + 4, size)))
             uc.emu_stop()
 
     engine.hook_add(unicorn.UC_HOOK_CODE, observe)

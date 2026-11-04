@@ -659,3 +659,16 @@ claim is made about actual table contents, subsequent effects or landing,
 full-game execution, source selection or byte-exactness. Run
 `scripts/repo-python -m unittest discover -s tests -p
 'test_alice_action214*.py'`.
+
+### Through counter adjustment
+
+A third bounded observer continues through the actual native 74-byte counter
+adjustment at `0x0046BF30` and stops before the next sequence, scratch-reset
+or landing helper. Across 1,728 combinations including two counter values and
+both synthetic lookup tables, original and reconstructed roots agree with an
+independent model on counter/floor, sprite rotation, next boundary and sequence
+argument. A changed adjustment amount is detected. The original angle and
+counter helpers run in both traces; their source implementations are not tested
+here. Tables remain synthetic, the next helper bodies are not executed and no
+full-game or exact-root claim follows. Run `scripts/repo-python -m unittest
+discover -s tests -p 'test_alice_action214*.py'`.
