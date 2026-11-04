@@ -7082,3 +7082,21 @@ required_body_hashes = [
 required_direct_edges = [
  { caller = "0x0040D810", site = "0x0040D90C", target = "0x0040D540", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "csv-reader-parser-authored-106a"
+addresses = ["0x0040F200"]
+expected_count = 1
+expected_bytes = 575
+expected_names = ["sub_40F200"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "The native CSV loader calls this 575-byte parser before resetting its reader-owned iterators. Its switch implements game-specific comment, quote, delimiter and row-commit policy over owned CSV rows; it is not a generic container helper. Complete ordinary C++ exists in the real linked loader context but remains nonexact, including a private target receiver and different code layout. No exact credit is claimed. docs/CSV_FILE_LOADING_2026_10_29.md."
+required_body_hashes = [
+ { address = "0x0040F200", size = 575, sha256 = "f4e9faee8679c5af8c0ccb5f5e2061eea6ea553bd9d19f9cddb4e3919a8dc3be" },
+]
+required_direct_edges = [
+ { caller = "0x0040F150", site = "0x0040F1CC", target = "0x0040F200", caller_status = "implemented" },
+]

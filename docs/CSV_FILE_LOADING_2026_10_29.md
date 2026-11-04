@@ -54,8 +54,9 @@ public member interfaces.
 
 ## Parser and provider limits
 
-The full parser is included to supply the actual caller graph, not selected as
-exact: its current843 bytes differ from native575. The recovered policy keeps
+The full parser is included in the actual caller graph but is not exact. Its
+linked source callable is 777 bytes versus the native 575; their complete spans
+including switch data are 839 and 635 bytes respectively. The recovered policy keeps
 '#' as comment activation even inside quotes; quotes toggle even in comments;
 commas commit a field regardless of quote state when not in a comment. Quoted
 CR/LF are appended unless in a comment. Unquoted LF commits the field/row only
@@ -142,3 +143,21 @@ next-int and next-string consumers remains207; an Ob1 compiler control is also
 neutral. All controls stay private and receive no credit. Evidence directories:
 build/frontier-csv-clear-cil-20261030/ and
 build/frontier-csv-advance-cil-20261030/.
+
+
+## Parser source registration, 2026-11-04
+
+The complete existing `CsvContext::parse` source is now registered for the
+575-byte native parser at `0x0040F200`. The original loader call at
+`0x0040F1CC`, complete native body hash and application-specific CSV policy
+identify it as authored game code. This adds a source-present mapping, not a
+canonical exact function: the target uses a private receiver and the real
+linked source has different code, switch layout and exception machinery.
+The source behavior above remains a reconstruction hypothesis; no full-game
+execution or independent parser runtime matrix is claimed.
+The focused current origin rule validated the native body and loader edge.
+A fresh real-context build preserved the 839-byte source span, and the already
+accepted CSV wrapper and iterator reset replayed exact. Target-independent CI
+passed 1,031 tests and progress checks. Receipts are under
+`build/frontier-csv-parser-register-20261104/`. This scoped origin validation
+does not revalidate every unrelated origin rule.

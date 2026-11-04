@@ -367,7 +367,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040F100,authored_game,config,authored,observed,canonical-exact-authored
 0x0040F120,authored_game,config,authored,observed,canonical-exact-authored
 0x0040F150,authored_game,assets,authored,observed,csv-file-load-authored-106a
-0x0040F200,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040F200,authored_game,assets,authored,observed,csv-reader-parser-authored-106a
 0x0040F480,authored_game,assets,authored,observed,canonical-exact-authored
 0x0040F580,authored_game,assets,authored,observed,csv-reader-public-methods-authored-106a
 0x0040F680,authored_game,assets,authored,observed,csv-reader-public-methods-authored-106a
