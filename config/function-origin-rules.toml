@@ -6969,3 +6969,22 @@ required_dword_values = [
  { address = "0x00427FF0", value = "0x00427EC4" },
  { address = "0x00427FF4", value = "0x00427ECB" },
 ]
+
+[[rules]]
+id = "input-add-tracked-key-authored-106a"
+addresses = ["0x0040A6C0"]
+expected_count = 1
+expected_bytes = 202
+expected_names = ["sub_40A6C0"]
+origin = "authored_game"
+subsystem = "input"
+disposition = "authored"
+confidence = "observed"
+evidence = "Application key-tracking policy scans the actual checked byte vector for a duplicate and appends only a missing key; scene bootstrap registers its input keys through this helper. Full target body and incoming call sites are pinned. Ordinary real-source method199/native202 remains nonexact; no exact credit or forced frame."
+required_body_hashes = [
+ { address = "0x0040A6C0", size = 202, sha256 = "d216475e7dc02c57563922b36657dd6c8c3d58912cea295102f81b1b839f7839" },
+]
+required_direct_edges = [
+ { caller = "0x0043E2E0", site = "0x0043EE3B", target = "0x0040A6C0", caller_status = "implemented" },
+ { caller = "0x0043E2E0", site = "0x0043EE47", target = "0x0040A6C0", caller_status = "implemented" },
+]

@@ -30346,3 +30346,20 @@ rel32_targets = [
  "?render@CTile@@QAEXMMHH@Z=0x004099F0",
  "__ftol2_sse=0x0068A1A0",
 ]
+
+[units.gpt-web-input-add-tracked-key]
+kind = "probe"
+source = "src/input/InputStateTableUpdate.cpp"
+object = "build/match-units/GptWeb_InputAddTrackedKey.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Input key tracking 0x0040A6C0 ordinary source199/native202 remains nonexact; no aligned-frame forcing or exact credit."
+
+[[units.gpt-web-input-add-tracked-key.functions]]
+address = "0x0040A6C0"
+symbol_base = "?add_tracked_key@InputStateTableStorage@th105@@QAEXE@Z"
+rel32_targets = [
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?_Xran@?$vector@EV?$allocator@E@std@@@std@@KAXXZ=0x0040A8A0",
+ "?insert@?$vector@EV?$allocator@E@std@@@std@@QAE?AV?$_Vector_iterator@EV?$allocator@E@std@@@2@V32@ABE@Z=0x0040A7F0",
+]
