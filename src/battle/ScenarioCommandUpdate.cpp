@@ -60,7 +60,6 @@ struct ScenarioUpdateOperations {
 };
 struct ScenarioEffectOperations {
     void stage_music(int, int);
-    SystemEffectObject *spawn(const char *, unsigned short, float, float);
 };
 
 struct ScenarioEventHandle {
@@ -353,8 +352,7 @@ signed char CScenarioData::update()
         case 5: {
             typedef TCommand4<std::string, unsigned short, float, float> Effect;
             Effect *c = static_cast<Effect *>(command);
-            reinterpret_cast<ScenarioEffectOperations *>(&s.system_effects_004)
-                ->spawn(c->arg0_08.c_str(), c->arg1, c->arg2, c->arg3);
+            s.system_effects_004.spawn(c->arg0_08.c_str(), c->arg1, c->arg2, c->arg3);
             break;
         }
         case 6: {

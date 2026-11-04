@@ -6646,3 +6646,26 @@ required_body_hashes = [
 required_direct_edges = [
  { caller = "0x00455A00", site = "0x00455A0D", target = "0x00455270" },
 ]
+
+[[rules]]
+id = "system-effect-manager-spawn-authored-106a"
+addresses = ["0x00458340"]
+expected_count = 1
+expected_bytes = 125
+expected_names = ["sub_458340"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete native system-effect spawn acquires a managed game object, loads and binds its texture, stores world coordinates and a sign-extended 16-bit mode, then invokes its virtual reset. Scenario command dispatch calls it at 0x0045942A; exact SystemEffect manager acquisition and sprite texture owner methods corroborate the game policy. Source is nonexact and contributes no exact credit."
+required_body_hashes = [
+ { address = "0x00458340", size = 125, sha256 = "fb7c209236cf71b44bfd6bdebd6831442618fd0f2d5310c6c6744faec56182e1" },
+]
+required_direct_edges = [
+ { caller = "0x00458440", site = "0x0045942A", target = "0x00458340", caller_status = "identified" },
+]
+required_selected_body_calls = [
+ { owner = "0x00458340", site = "0x00458344", target = "0x00457110", target_status = "matching" },
+ { owner = "0x00458340", site = "0x00458364", target = "0x00404C90", target_status = "implemented" },
+ { owner = "0x00458340", site = "0x00458387", target = "0x00407160", target_status = "matching" },
+]

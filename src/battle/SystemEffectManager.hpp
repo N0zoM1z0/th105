@@ -19,6 +19,7 @@ template <typename ObjectType>
 class SystemEffectManager
     : public TObjectManagerBase<ObjectType, ::SystemEffectObjectBase> {
 public:
+    ObjectType *spawn(const char *path, short mode, float x, float y);
     void release_all_system_effects();
     void render_each(void (::SystemEffectObjectBase::*method)());
 };

@@ -22819,7 +22819,7 @@ rel32_targets = [
   "?scenario_play_sound@th105@@YAXPBDHE@Z=0x0043D030",
   "?set_bgm_volume@th105@@YAXHH@Z=0x0043B170",
   "?set_effect_color_bytes@CScenarioData@th105@@QAEXEEE@Z=0x00454EC0",
-  "?spawn@ScenarioEffectOperations@th105@@QAEPAVSystemEffectObject@@PBDGMM@Z=0x00458340",
+  "?spawn@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEPAVSystemEffectObject@@PBDFMM@Z=0x00458340",
   "?stage_music@ScenarioEffectOperations@th105@@QAEXHH@Z=0x00434DE0",
   "?start@ScenarioResultResource@th105@@QAEXXZ=0x004547D0",
   "?stop_bgm@th105@@YAXXZ=0x0043B120",
@@ -30212,3 +30212,21 @@ notes = "Complete battle info gauge and effect update hypothesis using the real 
 address = "0x0046FF30"
 symbol_base = "?update_runtime_46ff30@BattleInfoRecordF8@th105@@QAEXXZ"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
+
+[units.gpt-web-system-effect-manager-spawn]
+kind = "probe"
+source = "src/battle/SystemEffectManagerSpawn.cpp"
+object = "build/match-units/GptWeb_SystemEffectManagerSpawn.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Scenario system-effect spawn 0x00458340: actual manager/object/sprite types, signed 16-bit mode and texture output token. 125-byte candidate remains nonexact; see docs/SYSTEM_EFFECT_MANAGER_SPAWN_2026_11_04.md."
+
+[[units.gpt-web-system-effect-manager-spawn.functions]]
+address = "0x00458340"
+symbol_base = "?spawn@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEPAVSystemEffectObject@@PBDFMM@Z"
+rel32_targets = [
+ "?acquire_and_link_object@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEPAVSystemEffectObject@@XZ=0x00457110",
+ "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+ "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
+]
+dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
