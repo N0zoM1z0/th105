@@ -34,6 +34,7 @@ dereference inlined. It compares nonexact against the native 104-byte root at
 `scripts/audit-script-next-command-real-cil.py` executes the complete native
 root and its actual dereference helper alongside the linked source root on
 seven valid fixtures, including empty/end cursors and block-map wraparound.
-Both agree with an independent cursor/result model; a modified increment is
-detected. This does not test invalid iterators, allocation, actual script
+Both agree with an independent cursor/result model; repeated reads also run
+through exhaustion across an ordinary block and a wraparound boundary. A
+modified increment is detected. This does not test invalid iterators, allocation, actual script
 parsing, exceptions or full-game behavior and does not add exact credit.

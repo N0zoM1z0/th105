@@ -20,6 +20,15 @@ class ScriptNextCommandRealCilTests(unittest.TestCase):
                 self.assertEqual(observer.execute(self.images, True, *case), observer.expected(*case))
                 self.assertEqual(observer.execute(self.images, False, *case), observer.expected(*case))
 
+    def test_repeated_reads_until_end(self):
+        for offset, count in ((0, 4), (14, 3)):
+            expected = [observer.expected(offset, count, cursor)
+                        for cursor in range(offset, offset + count + 1)]
+            for native in (True, False):
+                with self.subTest(offset=offset, native=native):
+                    self.assertEqual(observer.execute(self.images, native, offset, count,
+                                                      offset, steps=count + 1), expected)
+
     def test_cursor_increment_mutation_is_detected(self):
         case = (0, 4, 2)
         self.assertNotEqual(observer.execute(self.images, False, *case, mutate=True),

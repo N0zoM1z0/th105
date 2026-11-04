@@ -46,7 +46,7 @@ def prepare():
             pe.get_memory_mapped_image(), root, address('__invalid_parameter_noinfo'))
 
 
-def execute(images, native, offset, count, cursor, mutate=False):
+def execute(images, native, offset, count, cursor, mutate=False, steps=1):
     native_image, source_image, root, invalid = images
     engine = uc.Uc(uc.UC_ARCH_X86, uc.UC_MODE_32)
     engine.mem_map(0x400000, 0x400000); engine.mem_write(0x400000, native_image)
@@ -76,10 +76,18 @@ def execute(images, native, offset, count, cursor, mutate=False):
         elif address in (0x68a143, invalid):
             raise ValueError('fixture hit checked invalid-parameter path')
     engine.hook_add(uc.UC_HOOK_CODE, step)
-    engine.emu_start(0x405ac0 if native else root, STOP + 1, count=2000)
-    if not stopped:
-        raise ValueError('script cursor did not return')
-    return engine.reg_read(reg.UC_X86_REG_EAX), get(OWNER + 0x30), engine.reg_read(reg.UC_X86_REG_ESP) - STACK
+    observations = []
+    for _ in range(steps):
+        stopped.clear()
+        put(STACK, STOP)
+        engine.reg_write(reg.UC_X86_REG_ESP, STACK)
+        engine.reg_write(reg.UC_X86_REG_ECX, OWNER)
+        engine.emu_start(0x405ac0 if native else root, STOP + 1, count=2000)
+        if not stopped:
+            raise ValueError('script cursor did not return')
+        observations.append((engine.reg_read(reg.UC_X86_REG_EAX), get(OWNER + 0x30),
+                             engine.reg_read(reg.UC_X86_REG_ESP) - STACK))
+    return observations[0] if steps == 1 else observations
 
 
 def expected(offset, count, cursor):
