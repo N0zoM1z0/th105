@@ -11,6 +11,13 @@ from pathlib import Path
 import subprocess
 import sys
 
+# Direct invocations (including external replay drivers) must use the same
+# locked interpreter as the documented scripts/repo-python entry point.
+if __name__ == "__main__" and os.environ.get("TH105_BUILD_PINNED_REEXEC") != "1":
+    wrapper = Path(__file__).resolve().parent / "repo-python"
+    os.environ["TH105_BUILD_PINNED_REEXEC"] = "1"
+    os.execv(str(wrapper), [str(wrapper), str(Path(__file__).resolve()), *sys.argv[1:]])
+
 from workflow_manifest import (
     MANIFEST,
     ROOT,
