@@ -1,5 +1,7 @@
 # Select portrait binding and object transform
 
+Source registration was updated on 2026-11-04; earlier unselected-status statements below are historical. See the registration section.
+
 ## Accepted portrait binding41FB80
 
 Complete258-byte canonical exact body:

@@ -1,5 +1,7 @@
 # Sprite rectangle render4070C0
 
+Source registration was updated on 2026-11-04; earlier unselected-status statements below are historical. See the registration section.
+
 Complete153/native153 strict-FP candidate remains nonexact at+16; no exact or
 source-selection credit. Receipt build/frontier-4070c0-20261028/strict-fp.json.
 Target SHA:1ae97c5fd56570a9684bcfde50d194a07e6b00e931a745ea4f918938452afb5f.

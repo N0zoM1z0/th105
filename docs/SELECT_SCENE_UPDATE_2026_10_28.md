@@ -1,5 +1,7 @@
 # CSelect frame update 0x00421430
 
+Source registration was updated on 2026-11-04; earlier unselected-status statements below are historical. See the registration section.
+
 Complete697-byte native root is reconstructed as an unselected685-byte
 candidate. First mismatch+337 is cdecl stack cleanup ordered before versus
 after pointer publications. No exact/source-selection credit.
