@@ -34,7 +34,7 @@ def code_bodies():
     return native, source
 
 
-def execute(code, selection, primary, cancel, menu_cancel):
+def execute(code, selection, primary, cancel, menu_cancel, game_mode=0, full=False):
     engine = uc.Uc(uc.UC_ARCH_X86, uc.UC_MODE_32)
     engine.mem_map(0, 0x1000); engine.mem_map(0x400000, 0x400000)
     engine.mem_map(OWNER, 0x10000); engine.mem_map(0x2000000, 0x10000)
@@ -42,6 +42,7 @@ def execute(code, selection, primary, cancel, menu_cancel):
     def put(address, value): engine.mem_write(address, struct.pack('<I', value & 0xffffffff))
     def get(address): return struct.unpack('<I', engine.mem_read(address, 4))[0]
     put(0x6fd030, INPUT); put(OWNER + 0x68, selection); put(INPUT + 0x40, primary); put(INPUT + 0x44, cancel)
+    engine.mem_write(OWNER + 4, bytes((0x55, 0x66))); engine.mem_write(OWNER + 0x70, b"\x44"); put(0x6e694c, 22)
     put(VTABLE + 4, COLOR)
     for index in range(8):
         obj = OBJECT + 0x20 * index; put(obj, VTABLE); put(OWNER + 0x3c + index * 4, obj)
@@ -50,7 +51,8 @@ def execute(code, selection, primary, cancel, menu_cancel):
     def hook(engine, address, size, _):
         if address == STOP:
             stopped.append(True); engine.emu_stop(); return
-        if address not in (0x41fa20, 0x43b1a0, 0x43abd0, COLOR): return
+        if address not in (0x41fa20, 0x43b1a0, 0x43abd0, COLOR, 0x689dcb,
+                           0x43afe0, 0x4487e0, 0x44ba90, 0x43b0f0, 0x43ac40): return
         sp = engine.reg_read(reg.UC_X86_REG_ESP); cleanup = 0
         if address == 0x41fa20:
             events.append(('cursor',)); engine.reg_write(reg.UC_X86_REG_EAX, 0)
@@ -58,13 +60,31 @@ def execute(code, selection, primary, cancel, menu_cancel):
             events.append(('event', get(sp + 4)))
         elif address == 0x43abd0:
             events.append(('menu_cancel',)); engine.reg_write(reg.UC_X86_REG_EAX, menu_cancel)
-        else:
+        elif address == COLOR:
             events.append(('color', engine.reg_read(reg.UC_X86_REG_ECX), get(sp + 4))); cleanup = 4
+        elif address == 0x689dcb:
+            events.append(('new', get(sp + 4))); engine.reg_write(reg.UC_X86_REG_EAX, 0x1006000)
+        elif address == 0x43afe0:
+            slot = get(sp + 4); events.append(('player', slot)); engine.reg_write(reg.UC_X86_REG_EAX, 0x1007000 + 0x100 * slot)
+        elif address in (0x4487e0, 0x44ba90):
+            receiver = engine.reg_read(reg.UC_X86_REG_ECX); player = get(sp + 4)
+            if address == 0x4487e0:
+                events.append(('character', receiver, player)); cleanup = 4
+            else:
+                events.append(('keys', receiver, player, get(sp + 8))); cleanup = 8
+            engine.reg_write(reg.UC_X86_REG_EAX, receiver)
+        elif address == 0x43b0f0:
+            events.append(('install', get(sp + 4)))
+        else:
+            events.append(('game_mode',)); engine.reg_write(reg.UC_X86_REG_EAX, game_mode)
         engine.reg_write(reg.UC_X86_REG_EIP, get(sp)); engine.reg_write(reg.UC_X86_REG_ESP, sp + 4 + cleanup)
     engine.hook_add(uc.UC_HOOK_CODE, hook)
     engine.emu_start(ADDRESS, STOP + 1, count=3000)
     if not stopped: raise ValueError('menu did not return')
-    return engine.reg_read(reg.UC_X86_REG_EAX) & 255, events
+    result = (engine.reg_read(reg.UC_X86_REG_EAX) & 255, events)
+    if full:
+        result += (bytes(engine.mem_read(OWNER + 4, 2)), bytes(engine.mem_read(OWNER + 0x70, 1))[0], get(0x6e694c))
+    return result
 
 
 def expected(primary, cancel, menu_cancel):
@@ -73,6 +93,30 @@ def expected(primary, cancel, menu_cancel):
     if cancel == 1: return 0, events + [('event', 41)]
     events += [('menu_cancel',)]
     return (0, events + [('event', 41)]) if menu_cancel else (1, events)
+
+
+def expected_selection(selection, game_mode):
+    events = [('cursor',)] + [('color', OBJECT + 0x20 * i, 0xffffffff) for i in range(8)]
+    events.append(('event', 40))
+    state, active, scene = 0x55, 0x44, 22
+    result = 1
+    if selection in (0, 1):
+        state, active = 1, selection
+    elif selection in (2, 3):
+        slot = selection - 2; active = slot
+        events += [('new', 0x288), ('player', slot),
+                   ('character', 0x1006000, 0x1007000 + 0x100 * slot), ('install', 0x1006000)]
+    elif selection in (4, 5):
+        slot = selection - 4
+        if selection == 5: events.append(('game_mode',))
+        binding = 0 if selection == 4 else (1 if game_mode == 3 else 0xffffffff)
+        events += [('new', 0x330), ('player', slot),
+                   ('keys', 0x1006000, 0x1007000 + 0x100 * slot, binding), ('install', 0x1006000)]
+    elif selection == 6:
+        scene = 2
+    elif selection == 7:
+        result = 0
+    return result, events, bytes((state, 0)), active, scene
 
 
 def audit():

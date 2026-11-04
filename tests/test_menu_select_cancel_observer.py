@@ -23,6 +23,14 @@ class MenuSelectCancelObserverTests(unittest.TestCase):
                 with self.subTest(case=case):
                     self.assertEqual(observer.execute(body, *case), observer.expected(*case[1:]))
 
+    def test_each_selection_and_network_branch(self):
+        for selection in range(8):
+            for mode in ((0, 3) if selection == 5 else (0,)):
+                for body in self.bodies:
+                    with self.subTest(selection=selection, mode=mode):
+                        self.assertEqual(observer.execute(body, selection, 1, 0, 0, mode, True),
+                                         observer.expected_selection(selection, mode))
+
     def test_case_seven_must_not_play_cancel_event(self):
         source = bytearray(self.bodies[1])
         self.assertEqual(struct.unpack('<I', source[-4:])[0], 0x447f91)
