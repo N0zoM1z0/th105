@@ -256,3 +256,16 @@ agree at34928 SHAc97edd07 with1,059 relocations replayed. All17 target-free
 audit controls and the mandatory local CI gate (604 tests) pass; all1,870
 literal target checks and tracking pass. No accepted source/header/profile or
 relocation binding changes, no exact increment and no new aggregate cold claim.
+
+## Action 821 vertical pursuit, 2026-11-04
+
+Native `0x00572C7B..0x00572CB7` accelerates upward only when the height
+difference is ordered and negative (`AH & 5`, parity branch skips otherwise),
+then clamps speed only when it is ordered and above the limit (`AH & 0x41`
+skips otherwise). The two previous negated comparisons admitted unordered
+values. They now use `< 0.0` and `> 6.0f`; fresh VC8 reproduces the local
+status masks and branches at `0x3895..0x38CB`. This does not assert whole-root
+or unmasked-exception equivalence.
+
+The 34,278-byte callable remains nonexact from +31; the candidate section
+tail is 34,928 bytes. No exact credit is added.

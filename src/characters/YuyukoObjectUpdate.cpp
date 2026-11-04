@@ -196,7 +196,7 @@ void YuyukoObjectUpdateView::update_action_state()
    if(C(0x184)<1){F(0xf4)*=D(0.95f);F(0xf8)*=D(0.95f);SCALE(F(0x11c)*D(0.95f));if(F(0x11c)<D(0.1f))RETIRE();F(0xf4)*=D(0.98f);F(0xf8)*=D(0.98f);F(0x370)-=25.0;if(F(0x370)<0.0)F(0x370)=0;set_secondary_alpha(static_cast<unsigned char>(F(0x370)));}
    else if(T==0){if(++S(0x364)>9)B(0x184)=0;F(0xf4)*=D(0.98f);F(0xf8)*=D(0.98f);}
    else{if(C(0x104)*(F(0xec)-AT(T,float,0xec))<0.0){F(0xf4)+=D(0.2f);if(F(0xf4)>6.0f)F(0xf4)=6;}if(C(0x104)*(F(0xec)-AT(T,float,0xec))>0.0){F(0xf4)-=D(0.2f);if(F(0xf4)<-6.0f)F(0xf4)=-6;}
-    if(F(0xf0)-AT(T,float,0xf0)>0.0){F(0xf8)-=D(0.2f);if(F(0xf8)<-6.0f)F(0xf8)=-6;}if(!(F(0xf0)-AT(T,float,0xf0)>=0.0)){F(0xf8)+=D(0.2f);if(!(F(0xf8)<=6.0f))F(0xf8)=6;}
+    if(F(0xf0)-AT(T,float,0xf0)>0.0){F(0xf8)-=D(0.2f);if(F(0xf8)<-6.0f)F(0xf8)=-6;}if(F(0xf0)-AT(T,float,0xf0)<0.0){F(0xf8)+=D(0.2f);if(F(0xf8)>6.0f)F(0xf8)=6;}
    }
   }else if(S(0x13e)==3){if(T==0)FADE(35,35);else{float *heading=H;float cosine=lookup_orientation_cosine_quantized_abs(heading[0]);float *motion=H;F(0xec)=cosine*heading[1]+AT(T,float,0xec);F(0xf0)=lookup_orientation_sine_quantized_abs(heading[0])*motion[1]+AT(T,float,0xf0);motion[1]*=D(0.95f);FADE(5,5);}}
   STEP();break;
