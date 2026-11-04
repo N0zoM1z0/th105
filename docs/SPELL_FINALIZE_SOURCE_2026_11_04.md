@@ -23,3 +23,11 @@ Reproduce the whole-body comparison with `scripts/repo-python scripts/build.py
 --unit exact-first-spell-finalize-natural --compare --json`; a mismatch is
 expected. The native target and the targeted origin rule were checked. Exact
 source spelling and original TU/LTCG context remain unknown.
+
+Two follow-up controls retain identical canonical output: explicitly naming
+and comparing the actual end iterator each iteration, and temporarily using a
+real `std::deque<short>` member of the same checked size in the owner rather
+than its existing layout view. Both still emit the same 226-byte candidate and
+entry mismatch; temporary source/header changes were restored. Receipts are in
+`build/frontier-spell-finalize-iterator-20261104/`. These controls do not
+establish the original nominal member type or a whole-program compiler context.
