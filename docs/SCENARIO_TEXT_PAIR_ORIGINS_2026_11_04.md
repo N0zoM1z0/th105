@@ -13,9 +13,9 @@ fingerprint with a unique hit in the complete current 4,027-candidate
 inventory. The two native callable-body hashes and both call sites are pinned
 by the origin rule. This establishes compiler-generated classification, not
 full relocation or exception-metadata equality; no authored exact bytes are
-awarded. The 598-byte character-installation caller remains unselected and
-nonexact, with original argument grouping and exception context still under
-review.
+awarded. The 598-byte character-installation caller now has a selected, nonexact
+599-byte source candidate. Its original argument grouping and exception
+context remain under review.
 
 The same installation path calls `0x00456A30` at `0x00456FFF`. A separate
 tracked witness instantiates the real checked `std::map<string,
