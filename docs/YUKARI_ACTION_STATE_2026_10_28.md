@@ -149,3 +149,17 @@ Native burst910 likewise captures its X+100 base as QWORD before RNG at
 changing these scalar widths. The compiler listing still places their shared
 QWORD group above the initial one-float packet; the cause remains unresolved.
 This checkpoint changes neither selected-source nor exact ledgers.
+
+## Action 310 ordered landing gate, 2026-11-04
+
+Native instructions `0x0057F9D4..0x0057F9F1` compare surface to the
+computed next Y, then zero to vertical speed. The status-word tests skip the
+landing path on either unordered comparison. The previous source used
+`!(surface < next_y)`, which can admit an unordered surface comparison. It now
+uses ordered `surface >= next_y` followed by `speed < 0`. The fresh VC8 object
+emits the target's corresponding x87 status masks (`AH & 1`, then `AH & 0x41`)
+and skip branches. This establishes the local gate ordering, not general
+runtime or unmasked-exception equivalence.
+
+The 57,042-byte callable remains nonexact from +8; the candidate section tail
+is 57,792 bytes. The source remains unselected and adds no exact credit.

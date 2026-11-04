@@ -278,7 +278,7 @@ case 309:
     if(!frame_timer_142){if(frame_index_140==2)packet848(2.0f,1);if(!frame_timer_142 && frame_index_140==3)dispatch_character_wave_handle(0);}return;
 case 310:
     if(I(0x180)){if(++S(0x730)>5){I(0x180)=0;S(0x730)=0;}}
-    if(sequence_index_13e==1){F(0xf8)=static_cast<float>(F(0xf8)-F(0x100)*0.5);F(0x12c)=static_cast<float>(F(0x12c)+40.0);F(0xf8)-=F(0x100);if(time_counter_144%15==0)event(27);double next_y=F(0xf0)+static_cast<double>(F(0xf8));if(!(yukari_surface(this)<next_y) && F(0xf8)<0.0f){F(0xf8)=0.0f;F(0xf0)=yukari_surface(this);next_sequence_block();F(0x12c)=0.0f;reset_action_scratch();return;}}
+    if(sequence_index_13e==1){F(0xf8)=static_cast<float>(F(0xf8)-F(0x100)*0.5);F(0x12c)=static_cast<float>(F(0x12c)+40.0);F(0xf8)-=F(0x100);if(time_counter_144%15==0)event(27);double next_y=F(0xf0)+static_cast<double>(F(0xf8));if(yukari_surface(this)>=next_y && F(0xf8)<0.0f){F(0xf8)=0.0f;F(0xf0)=yukari_surface(this);next_sequence_block();F(0x12c)=0.0f;reset_action_scratch();return;}}
     if(sequence_index_13e==2)decelerate(1.0,false);if(advance())set_action_and_finalize(0);return;
 case 320:
     landing();if(directional(0))return;if(B(0x47e))decelerate(0.5,true);if(advance())set_action_and_finalize(0);
