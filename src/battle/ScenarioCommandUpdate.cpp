@@ -53,10 +53,6 @@ struct ScenarioSlotSetupView {
     unsigned char finish(int slot);
 };
 
-struct ScenarioScriptPopView {
-    CCommandBase *next_command();
-};
-
 typedef std::map<std::string, ScenarioTextEntryDC> ScenarioTextMap;
 struct ScenarioTextFindView {
     ScenarioTextMap::iterator find(const std::string &);
@@ -262,9 +258,7 @@ signed char ScenarioCommandUpdateView::update()
         return 1;
 
     do {
-        CCommandBase *command =
-            reinterpret_cast<ScenarioScriptPopView *>(&s.script_35c)
-                ->next_command();
+        CCommandBase *command = s.script_35c.next_command();
         if (!command)
             return 0;
         int command_id = static_cast<CCommand0 *>(command)->command_id_04;
