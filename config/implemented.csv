@@ -1658,3 +1658,4 @@ CProfileKeyConfig_capture_key_input
 CMenuResult_update_active
 BackgroundBase_set_transition
 SpellDataOwner_finalize_loaded_spell_data
+CSelect_on_scene_enter

@@ -436,3 +436,12 @@ candidate remains nonexact against the 260-byte native body; the exact load
 selector caller and target-independent CI pass. No exact bytes are added. The
 focused origin rule passed; no full origin census was replayed. See
 `SPELL_FINALIZE_SOURCE_2026_11_04.md`.
+
+### Select scene entry (2026-11-04)
+
+The existing complete `421120` character/stage selection entry is now
+individually mapped and authored, using the full target hash and exact network
+select caller at `426554`. The 783-byte candidate remains nonexact at +225.
+All four network-select caller-unit bodies replay exact and target-independent
+CI reports passed. The specific origin rule was checked; a full origin census
+was not replayed. See `SELECT_SCENE_ENTRY_2026_10_28.md`.
