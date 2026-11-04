@@ -6988,3 +6988,22 @@ required_direct_edges = [
  { caller = "0x0043E2E0", site = "0x0043EE3B", target = "0x0040A6C0", caller_status = "implemented" },
  { caller = "0x0043E2E0", site = "0x0043EE47", target = "0x0040A6C0", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "result-menu-character-refresh-authored-106a"
+addresses = ["0x00447080"]
+expected_count = 1
+expected_bytes = 342
+expected_names = ["sub_447080"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Result-menu game policy refreshes the selected portrait, initializes that character's list and binds the result cursor. Two independently authored result-menu callers invoke this target. Complete native body and call sites are pinned; real-source candidate remains nonexact."
+required_body_hashes = [
+ { address = "0x00447080", size = 342, sha256 = "3e393e363d311dc2cc8f81649b9224c8f4ec66a61dd69f4f3f52170e9eebf532" },
+]
+required_direct_edges = [
+ { caller = "0x004472A0", site = "0x00447328", target = "0x00447080", caller_status = "implemented" },
+ { caller = "0x00447690", site = "0x0044786B", target = "0x00447080", caller_status = "implemented" },
+]
