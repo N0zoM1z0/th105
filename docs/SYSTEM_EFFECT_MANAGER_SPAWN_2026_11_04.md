@@ -31,3 +31,17 @@ unique among the current candidate spans. Their native bodies and the two
 pointer-immediate sites are pinned as compiler-generated origin evidence.
 These ten bytes are excluded from authored progress, not newly matched game
 functions.
+
+## Bounded observer, 2026-11-04
+
+A fresh pinned-compiler build and the hash-attested native body were executed
+in an isolated x86 observer with five signed mode values, including both
+16-bit extremes, and five finite coordinate pairs. The observer substitutes
+controlled allocation, texture-loading, sprite-setup and virtual-reset calls;
+it checks their order and arguments, the signed mode and coordinate stores,
+return object and stack cleanup. All five native/source traces agree. A test
+mutating the emitted mode-store offset is rejected by the trace comparison.
+
+This covers only those fixtures and stubbed dependencies. It does not exercise
+actual resource I/O, GPU rendering, allocation failure, operating-system EH or
+the full game, and does not change the nonexact byte status.
