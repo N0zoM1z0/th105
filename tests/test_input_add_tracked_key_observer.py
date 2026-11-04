@@ -23,6 +23,15 @@ class InputAddTrackedKeyObserverTests(unittest.TestCase):
                 self.assertEqual(target, observer.execute(self.candidate, values, key))
                 self.assertEqual(target, (expected, 8))
 
+    def test_full_capacity_insert_boundary(self):
+        for values, key in observer.GROWTH_CASES:
+            with self.subTest(values=values, key=key):
+                duplicate = key in values
+                expected = (bytes(values if duplicate else (*values, key)),
+                            [] if duplicate else [(len(values), key)], 8)
+                self.assertEqual(observer.execute_growth(self.native, True, values, key), expected)
+                self.assertEqual(observer.execute_growth(self.candidate, False, values, key), expected)
+
     def test_duplicate_gate_mutation_is_detected(self):
         body = bytearray(self.candidate)
         self.assertEqual(body[0x59:0x61], bytes.fromhex('8a073a442418745d'))

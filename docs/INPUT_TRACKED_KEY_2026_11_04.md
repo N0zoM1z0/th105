@@ -17,8 +17,11 @@ update remains exact in its real CIL unit.
 A bounded x86 observer checks six valid vectors with spare capacity: empty,
 existing and new keys, including byte values 0 and 255. Native and source
 produce the same vector and stack cleanup; a duplicate-gate mutation is
-detected. The observer explicitly rejects any reallocation or error path, so
-it does not prove allocation failure, invalid vectors or full-game behavior.
+detected. Four additional full-capacity fixtures check the native and source call-site
+arguments and return behavior against a modeled insertion helper, including an
+empty vector and a duplicate that must not call insert. The model does not
+execute the real insertion or allocator. Allocation failure, invalid vectors
+and full-game behavior remain untested.
 
 A separate real-source CIL diagnostic builds this method with the actual input
 unit and CRT. Its comparison stops at a newly inlined private vector insertion
