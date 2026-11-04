@@ -357,3 +357,14 @@ remains nonexact at 599/598, first mismatch +58, with canonical SHA-256
 `9fd51ab6ff74d87751a825e7b301317f17b3b4f060cc03573061c5d09438a761`.
 The command interpreter still blocks on its local string constructor. These
 results do not establish full-program linkage or full EH equivalence.
+
+## Updated joint-source control, 2026-11-04
+
+After connecting the real Scenario owner and the scalar text-entry layout, a
+single ordinary VC8 translation unit containing the actual character-install
+and command-update sources was compiled as a bounded diagnostic. The command
+root's raw 5,368-byte section is unchanged from its separate-source build
+(SHA-256 `0a8a11f6a14e32e94f09beff1352050ba8485d592ed1921eaa50459b1637c8fd`),
+and strict comparison still blocks at the same unresolved local string
+constructor. The combined object is not an accepted full-game link and earns
+no source or exact credit for the interpreter.
