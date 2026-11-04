@@ -1208,6 +1208,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("boost_public_regex_exception_anchor_file")
         or rule.get("boost_matcher_leaf_anchor_file")
         or rule.get("boost_matcher_stack_anchor_file")
+        or rule.get("boost_recursion_cleanup_anchor_file")
         or rule.get("boost_default_error_anchor_file")
         or rule.get("boost_default_syntax_anchor_file")
         or rule.get("xiph_packet_wrapper_anchor_file")
@@ -2668,6 +2669,10 @@ def validate_rule_evidence(
     if rule.get("boost_default_error_anchor_file"):
         from boost_default_error_origins import validate as validate_default_error
         errors.extend(validate_default_error(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("boost_recursion_cleanup_anchor_file"):
+        from boost_recursion_cleanup_origins import validate as validate_recursion_cleanup
+        errors.extend(validate_recursion_cleanup(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("boost_matcher_stack_anchor_file"):
         from boost_matcher_stack_origins import validate as validate_matcher_stack

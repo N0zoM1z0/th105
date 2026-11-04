@@ -1,0 +1,8 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "boost-regex-iterator-search"
+
+[[anchors]]
+address = "0x00443020"
+size = 8
+sha256 = "e273e09ce595653c6564d58efcfb8e86e3ed0674babf41678a8999a971cf864a"

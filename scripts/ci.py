@@ -72,6 +72,7 @@ EXACT_TEST_MODULES = (
     "test_network_base_destructor_eh",
     "test_timeline_texture_receiver",
     "test_boost_matcher_lifetimes",
+    "test_boost_recursion_cleanup_origins",
     "test_select_render_audit",
     "test_native_callbacks",
     "test_select_character_audit",
