@@ -592,7 +592,7 @@ case 850: {
     case 1: {
         MOTION->set_components(PARAM[0],40.0f);float packet[3]={0.0f,0.0f,6.0f};double centerY=F(0xf0)+40.0;double centerX=F(0xec)+40.0;
         spawn_unparented(850,static_cast<float>(centerX-static_cast<double>(RF(80))),static_cast<float>(centerY-static_cast<double>(RF(80))),B(0x104),1,packet,3);
-        double currentY=F(0xf0);if(stage_surface_height()<currentY) {F(0xec)=static_cast<float>(F(0xf4)*static_cast<double>(C(0x104))+F(0xec));F(0xf0)=F(0xf8)+F(0xf0);}
+        double currentY=F(0xf0);if(!(stage_surface_height()>=currentY)) {F(0xec)=static_cast<float>(F(0xf4)*static_cast<double>(C(0x104))+F(0xec));F(0xf0)=F(0xf8)+F(0xf0);}
         else {
             WAVE(51);publish_battle_layout_scalar(10.0f);float burst[3]={15.0f,0.0f,2.0f};spawn_unparented(850,F(0xec),F(0xf0),B(0x104),1,burst,3);
             burst[0]=0.0f;burst[1]=0.0f;burst[2]=3.0f;spawn_unparented(850,F(0xec),F(0xf0),B(0x104),1,burst,3);

@@ -83,3 +83,16 @@ Receipts: `build/frontier-520890-20261028/{formal-build,full-audit,target-audit}
 Private source preparation and raw navigation: `.analysis/frontier-520890-20261028/`.
 Only source/mapping ledgers advance; `matches.csv` is unchanged. Existing accepted
 units keep their prior receipts because no shared binding/profile/source changed.
+
+## Action 850 continuation gate, 2026-11-04
+
+At `0x0052663B..0x00526655`, native compares the surface to the saved
+current Y and continues movement when `AH & 1` is nonzero, including an
+unordered comparison. The previous ordered `<` selected the burst path on
+NaN. The source now uses negated ordered `>=`, and fresh VC8 emits the same
+status mask and corresponding opposite-direction branch at `0x5D57..0x5D60`.
+This is local evidence, not a claim about whole-root or unmasked-exception
+equivalence.
+
+The 50,649-byte callable remains nonexact from +37; the candidate section
+tail is 51,428 bytes. No exact credit is added.
