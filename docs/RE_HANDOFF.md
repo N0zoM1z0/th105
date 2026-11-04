@@ -547,3 +547,8 @@ separately compiled objects using natural zeroing and an integer ID, retaining
 the direct checked-deque endpoints. Independent Factory acceptance remains
 pending; no exact bytes are recorded. The exact loader caller remains exact.
 See `docs/SPELL_FINALIZE_SOURCE_2026_11_04.md`.
+
+2026-11-04: Komachi action 603 spawn-height expressions now preserve the
+observed target grouping `random + (height + 20.0)` in both direction branches.
+The full action root remains unselected/nonexact; see
+`docs/KOMACHI_ACTION_STATE_2026_10_28.md`.

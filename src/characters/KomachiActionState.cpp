@@ -381,8 +381,8 @@ case 603:
         F(0xf4)=static_cast<float>(F(0xf4)+static_cast<double>(0.1f));if(F(0xf4)>4.0f)F(0xf4)=3.0f;
         if(!(time_counter_144%2))spell_ground_particles(853,90,-45.0,5.0,3.0f);
         if(!(time_counter_144%4) && time_counter_144<=120){float p[3]={static_cast<float>(static_cast<double>(komachi_random(12))+6.0),static_cast<float>(static_cast<double>(komachi_random(8))+2.0),0.0f};
-            int direction=B(0x104);if(direction==1){float y=static_cast<float>(static_cast<double>(komachi_random(300))+F(0xf0)+20.0);spawn(853,static_cast<float>(komachi_boundary_6fbd1c-50.0),y,1,1,p,3);}
-            else{float y=static_cast<float>(static_cast<double>(komachi_random(300))+F(0xf0)+20.0);spawn(853,static_cast<float>(komachi_boundary_6fbd24+50.0),y,direction,1,p,3);}}
+            int direction=B(0x104);if(direction==1){float y=static_cast<float>(static_cast<double>(komachi_random(300))+(static_cast<double>(F(0xf0))+20.0));spawn(853,static_cast<float>(komachi_boundary_6fbd1c-50.0),y,1,1,p,3);}
+            else{float y=static_cast<float>(static_cast<double>(komachi_random(300))+(static_cast<double>(F(0xf0))+20.0));spawn(853,static_cast<float>(komachi_boundary_6fbd24+50.0),y,direction,1,p,3);}}
         if(time_counter_144>=150){next_sequence_block();return;}
     }
     if(sequence_index_13e==2 && frame_index_140<=1){decelerate(static_cast<double>(0.1f),false);spell_ground_particles(853,60,-10.0,10.0,3.0f);}

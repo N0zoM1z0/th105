@@ -183,3 +183,22 @@ Final stack audit still resolves all 94 payload homes; its offset set remains
 56..1172 step twelve, unchanged from native. Physical call and arithmetic
 residuals remain those described above. The preceding checkpoint is retained
 in Git; none of these structural improvements adds exact byte credit.
+
+## Action 603 spawn-height grouping, 2026-11-04
+
+In both direction branches the native code at `0x005EF2A5..0x005EF2B3`
+and `0x005EF2FA..0x005EF308` adds the exact double constant 20.0 to the
+fighter's float height before adding the converted random value. The previous
+source grouped the additions as `(random + height) + 20.0`. The candidate now
+expresses `random + (height + 20.0)` in both branches. The fresh VC8 object
+emits the corresponding x87 `fld height; fadd 20; faddp` grouping in each
+branch; the target and candidate both round once to float for the argument.
+This preserves an observed floating-point distinction rather than assuming
+addition is associative. The compiler still shares the random call physically;
+no general callback, FPU-mode or runtime equivalence is claimed.
+
+The complete 63,993-byte callable / 65,176-byte target payload remains
+nonexact. The fresh candidate payload is 64,900 bytes, SHA-256
+`b8a7f166299864852d5ed6de61fdcb7290ac7021c537e02a6884e7b1667d77f0`,
+with first mismatch +42 and 61,441 unequal positions over the full payload.
+The source remains unselected and earns no exact credit.
