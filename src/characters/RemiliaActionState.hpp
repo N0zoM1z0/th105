@@ -284,7 +284,7 @@ public:
         for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){
             p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(12))+18.0);p[2]=1.0f;
             spawn(902,static_cast<float>(remilia_cosine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)*facing()+at<float>(0xec)),
-                static_cast<float>(remilia_sine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)+at<float>(0xf0)+100.0),
+                static_cast<float>(remilia_sine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)+(static_cast<double>(at<float>(0xf0))+100.0)),
                 at<unsigned char>(0x104),1,p,3);
         }
     }

@@ -154,3 +154,18 @@ than a claimed gameplay change.
 The complete `0x00545090` callable remains nonexact, first mismatch +18;
 the candidate section tail is 62,912 bytes against the 61,962-byte callable.
 It remains unselected and adds no exact credit.
+
+## Spell spawn-height grouping, 2026-11-04
+
+The native 730/731 ring sites, including `0x00551E22..0x00551E3F` and
+`0x00552B83..0x00552B8F`, add 100.0 to the fighter height before combining
+it with the sine offset. The native 741 site `0x00553796..0x005537AB`
+similarly adds 230.0 to the height before the sine offset. The two source
+expressions now preserve those groupings. A fresh object emits corresponding
+x87 height-load/add/add-stack sequences. Since floating-point addition is not
+generally associative, this corrects a meaningful precision distinction; it
+does not establish gameplay equivalence.
+
+The whole 61,962-byte callable remains nonexact from +18; the 62,912-byte
+candidate section tail is not a full-function match. No source selection or
+exact-byte credit is added.
