@@ -30056,3 +30056,16 @@ notes = "Checked short-deque selection shuffle; whole canonical comparison deter
 address = "0x00432420"
 symbol_base = "?shuffle_selection@SpellDataOwner@th105@@QAEXXZ"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?selector_random_roll@th105@@YAHH@Z=0x004067D0", "?erase_one@ShortDequeMutationView@th105@@QAE?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V34@@Z=0x004323B0", "?push_front@ShortDequeMutationView@th105@@QAEXABF@Z=0x0042A4B0"]
+
+[units.exact-first-battle-render-tail-typed]
+kind = "probe"
+source = "src/battle/BattleObjectRenderTail.cpp"
+object = "build/match-units/ExactFirst_BattleRenderTailTyped.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete battle overlay with the shared actual D3DX effect COM interface; full 670-byte canonical comparison is exact."
+
+[[units.exact-first-battle-render-tail-typed.functions]]
+address = "0x004666A0"
+symbol_base = "?render_tail_4666a0@BattleObjectRenderTailView@th105@@QAEXXZ"
+rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60", "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0", "?submit_primitive@RenderModeManager@th105@@QAEJIIPBXII@Z=0x004010F0"]

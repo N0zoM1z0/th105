@@ -483,3 +483,12 @@ methods. Its 196-byte candidate remains nonexact in seven scheduling bytes
 at +132..+138. The exact mode setter and random provider replayed; all 1,018
 target-independent CI checks pass. No exact-byte credit is added. See
 `SPELL_SELECTION_SHUFFLE_SOURCE_2026_11_04.md`.
+
+### Battle overlay exact (2026-11-04)
+
+`4666A0` now matches the entire 670-byte original body after replacing the
+old manual effect-vtable probe with the actual shared D3DX COM interface.
+Configured and independent cold VC8 builds both compare exact. The five effect
+lifetime roots and nine accepted manager roots, including the caller, replay;
+the manager unit's separate `466F40` remains nonexact. This adds one authored
+exact function / 670 bytes. See `BATTLE_RENDER_TAIL_EXACT_2026_11_04.md`.

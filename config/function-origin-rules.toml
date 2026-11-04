@@ -6466,20 +6466,6 @@ required_body_hashes = [{ address = "0x00432420", size = 196, sha256 = "540ef3b2
 required_direct_edges = [{ caller = "0x00432520", site = "0x00432538", target = "0x00432420", caller_status = "matching" }]
 
 [[rules]]
-id = "battle-overlay-render-authored-106a"
-addresses = ["0x004666A0"]
-expected_count = 1
-expected_bytes = 670
-expected_names = ["sub_4666A0"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Battle manager overlay geometry and exact phase tail jump establish game ownership. No source or exact-byte credit. docs/ORIGIN_RECOVERY_2026_11_03.md."
-required_body_hashes = [{ address = "0x004666A0", size = 670, sha256 = "916c2058290c838da9b3a11d5ba076df2b0b0156f3ba375a3b314058f656a40f" }]
-required_direct_edges = [{ caller = "0x00466980", site = "0x004669DE", target = "0x004666A0", kind = "jump", caller_status = "matching" }]
-
-[[rules]]
 id = "battle-network-update-authored-106a"
 addresses = ["0x00426180", "0x00426380"]
 expected_count = 2

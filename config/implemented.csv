@@ -1661,3 +1661,4 @@ SpellDataOwner_finalize_loaded_spell_data
 CSelect_on_scene_enter
 CScenarioData_reset_runtime_state
 SpellDataOwner_shuffle_selection
+BattleObjectManager_render_tail
