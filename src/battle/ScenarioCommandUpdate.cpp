@@ -53,10 +53,8 @@ struct ScenarioSlotSetupView {
 };
 
 typedef std::map<std::string, ScenarioTextEntryDC> ScenarioTextMap;
-struct ScenarioUpdateOperations {
+struct ScenarioTextRebuildCallView {
     void rebuild_text(std::string *);
-    void install_character(std::string, std::string, signed char, int, int,
-                           unsigned char, unsigned char, unsigned char);
 };
 struct ScenarioEffectOperations {
     void stage_music(int, int);
@@ -105,8 +103,6 @@ static __forceinline void scenario_pop_inline()
 signed char CScenarioData::update()
 {
     CScenarioData &s = *this;
-    ScenarioUpdateOperations *operations =
-        reinterpret_cast<ScenarioUpdateOperations *>(this);
     s.field_514 = 0;
     s.system_effects_004.update_and_prune(&SystemEffectObjectBase::update_state);
     s.update_list(&s.render_entries_338);
@@ -279,12 +275,12 @@ signed char CScenarioData::update()
                                              text->arg0_08.size();
             if (wait) {
                 s.string_4b8.erase(s.string_4b8.end() - 1, s.string_4b8.end());
-                operations->rebuild_text(&s.string_4b8);
+                reinterpret_cast<ScenarioTextRebuildCallView *>(this)->rebuild_text(&s.string_4b8);
                 s.string_4b8.append("<br>", 4);
                 s.state_50c = 1;
             } else if (continuation) {
                 s.string_4b8.erase(s.string_4b8.end() - 1, s.string_4b8.end());
-                operations->rebuild_text(&s.string_4b8);
+                reinterpret_cast<ScenarioTextRebuildCallView *>(this)->rebuild_text(&s.string_4b8);
                 s.state_510 = 1;
                 s.state_50c = 1;
             } else {
@@ -294,7 +290,7 @@ signed char CScenarioData::update()
         }
         case 2: {
             CComCharacter *c = static_cast<CComCharacter *>(command);
-            operations->install_character(c->name_08, c->name_08,
+            s.install_character(c->name_08, c->name_08,
                 c->value_2c, c->value_24, c->value_28,
                 c->color_2d[0], c->color_2d[1], c->color_2d[2]);
             break;

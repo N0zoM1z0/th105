@@ -196,6 +196,9 @@ public:
     unsigned char select_label(std::string label);
     void trim_render_entries_and_begin_fade_455cd0();
     void update_list(std::list<ScenarioRenderEntry9C> *entries);
+    void install_character(std::string name, std::string text, signed char slot,
+                           int x, int y, unsigned char red,
+                           unsigned char green, unsigned char blue);
 };
 
 typedef char CScenarioData_size_must_be_0x524[

@@ -1678,3 +1678,4 @@ RenderModeManager_draw_rect
 CScript_next_command
 BattleInfoRecord_update_runtime
 SystemEffectManager_spawn
+CScenarioData_install_character

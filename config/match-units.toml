@@ -22803,7 +22803,7 @@ rel32_targets = [
   "?get_session_setup_option@th105@@YAIXZ=0x0043B070",
   "?get_slot_character@BattleSlotState@th105@@QBEPAVCharacter@2@I@Z=0x00464290",
   "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@QAEXXZ=0x00435C00",
-  "?install_character@ScenarioUpdateOperations@th105@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0CHHEEE@Z=0x00456EB0",
+  "?install_character@CScenarioData@th105@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0CHHEEE@Z=0x00456EB0",
   "?is_slot_active@BattleSlotState@th105@@QBEEI@Z=0x004642A0",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
   "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
@@ -22812,7 +22812,7 @@ rel32_targets = [
   "?play_bgm@th105@@YAXPBD@Z=0x0043CF80",
   "?pop_control_word@SynchronizedInputState@th105@@QAEGPAG@Z=0x00428930",
   "?queue_control_word@BattleInputGate@th105@@QAEXG@Z=0x0042B270",
-  "?rebuild_text@ScenarioUpdateOperations@th105@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00456760",
+  "?rebuild_text@ScenarioTextRebuildCallView@th105@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00456760",
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?reset_for_roster@ScenarioCharacterView@th105@@QAEXPAV12@@Z=0x0045F640",
   "?reset_runtime_state@CScenarioData@th105@@QAEXXZ=0x00457E40",
@@ -30230,3 +30230,28 @@ rel32_targets = [
  "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
 ]
 dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+
+[units.gpt-web-scenario-character-install]
+kind = "probe"
+source = "src/battle/ScenarioCharacterInstall.cpp"
+object = "build/match-units/GptWeb_ScenarioCharacterInstall.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Scenario character installation: actual owner and entries, provisional argument grouping; full 599/native598 candidate remains nonexact, EH entry pinned only."
+
+[[units.gpt-web-scenario-character-install.functions]]
+address = "0x00456EB0"
+symbol_base = "?install_character@CScenarioData@th105@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0CHHEEE@Z"
+rel32_targets = [
+ "??3@YAXPAX@Z=0x006898EA",
+ "@__security_check_cookie@4=0x00689D25",
+ "??0ScenarioTextEntryDC@th105@@QAE@XZ=0x00455360",
+ "??1ScenarioTextEntryDC@th105@@QAE@XZ=0x00435F00",
+ "?configure@ScenarioEffectOwner194@th105@@QAEXPBUScenarioEffectConfig128@2@@Z=0x004115A0",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+ "??1?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@QAE@XZ=0x00455420",
+ "?insert@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@2@@Z=0x00456A30",
+ "??0?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@QAE@ABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@ABUScenarioTextEntryDC@th105@@@Z=0x00455DD0",
+ "??1?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@QAE@XZ=0x00455420",
+ "??$?0V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@QAE@ABU?$pair@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@1@@Z=0x00455C50",
+]

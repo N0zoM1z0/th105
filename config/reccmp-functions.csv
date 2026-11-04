@@ -1863,3 +1863,4 @@ BattleContinue_reset_round,0x00471180,function
 CScript_next_command,0x00405AC0,function
 BattleInfoRecord_update_runtime,0x0046FF30,function
 SystemEffectManager_spawn,0x00458340,function
+CScenarioData_install_character,0x00456EB0,function

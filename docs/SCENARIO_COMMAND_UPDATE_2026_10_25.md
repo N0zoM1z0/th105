@@ -324,3 +324,21 @@ calls are pinned. The provisional source remains unselected and nonexact:
 the independently rebuilt actual-type control is 599/598 with unresolved
 argument grouping and EH/TU differences. This classification adds no source
 or exact credit and is not a full EH or behavior-equivalence claim.
+
+## Character-installation source, 2026-11-04
+
+A subsequent actual-type source candidate is selected for `0x00456EB0` and
+implements `CScenarioData::install_character`, using the real shared text-entry,
+sprite, map and font-configuration fields. The command-interpreter hypothesis
+calls this member directly. Formal argument grouping remains a source
+hypothesis, not a recovered original declaration. The selected ordinary VC8
+body is 599 bytes versus the native 598, with first mismatch at +58 and full
+candidate SHA-256 `c1b161af501134996ddaed612b60662ac16876d9729af8d76600e2a7c4ef589a`.
+Only the native EH handler's initial 16 bytes are pinned for relocation;
+complete EH metadata and general runtime equivalence are not established.
+
+Fresh scoped comparisons preserve 27 previously accepted related roots,
+including the 991-byte phase-five caller. The command interpreter remains
+blocked at its own local string constructor. The 598-byte install function is
+now source-present but contributes no exact bytes. This section supersedes the
+older statements above that its source candidate is private and unselected.
