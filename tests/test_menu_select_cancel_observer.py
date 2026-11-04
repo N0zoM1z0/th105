@@ -31,6 +31,16 @@ class MenuSelectCancelObserverTests(unittest.TestCase):
                         self.assertEqual(observer.execute(body, selection, 1, 0, 0, mode, True),
                                          observer.expected_selection(selection, mode))
 
+    def test_cursor_event_and_confirmation_priority(self):
+        # Confirmation takes precedence over cancel; cursor movement sounds first.
+        for selection in (0, 6, 7):
+            expected = observer.expected_selection(selection, 0)
+            events = expected[1][:1] + [("event", 39)] + expected[1][1:]
+            expected = (expected[0], events, expected[2], expected[3], expected[4])
+            for body in self.bodies:
+                with self.subTest(selection=selection):
+                    self.assertEqual(observer.execute(body, selection, 1, 1, 1, 0, True, True, 1), expected)
+
     def test_null_allocator_result_paths(self):
         # Mock the observed null-return branch; no real allocator behavior is implied.
         for selection in (2, 3, 4, 5):

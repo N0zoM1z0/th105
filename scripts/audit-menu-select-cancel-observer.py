@@ -34,7 +34,7 @@ def code_bodies():
     return native, source
 
 
-def execute(code, selection, primary, cancel, menu_cancel, game_mode=0, full=False, alloc_success=True):
+def execute(code, selection, primary, cancel, menu_cancel, game_mode=0, full=False, alloc_success=True, cursor_changed=0):
     engine = uc.Uc(uc.UC_ARCH_X86, uc.UC_MODE_32)
     engine.mem_map(0, 0x1000); engine.mem_map(0x400000, 0x400000)
     engine.mem_map(OWNER, 0x10000); engine.mem_map(0x2000000, 0x10000)
@@ -55,7 +55,7 @@ def execute(code, selection, primary, cancel, menu_cancel, game_mode=0, full=Fal
                            0x43afe0, 0x4487e0, 0x44ba90, 0x43b0f0, 0x43ac40): return
         sp = engine.reg_read(reg.UC_X86_REG_ESP); cleanup = 0
         if address == 0x41fa20:
-            events.append(('cursor',)); engine.reg_write(reg.UC_X86_REG_EAX, 0)
+            events.append(('cursor',)); engine.reg_write(reg.UC_X86_REG_EAX, cursor_changed)
         elif address == 0x43b1a0:
             events.append(('event', get(sp + 4)))
         elif address == 0x43abd0:

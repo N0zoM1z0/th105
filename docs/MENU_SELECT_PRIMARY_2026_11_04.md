@@ -63,3 +63,6 @@ provenance and relocation roles are pinned in
 `scripts/audit-menu-select-primary-eh.py`; tests mutate each metadata byte.
 This is static EH code/metadata equality, not OS exception execution. The
 menu root still differs and earns no exact-byte credit.
+Additional mocked cases verify that cursor movement emits its event before
+selection handling and that simultaneous confirmation and cancellation takes
+the confirmation path for selections 0, 6 and 7.
