@@ -38,8 +38,12 @@ def execute(image, code, case, address):
     engine.mem_write(0x400000, image)
     engine.mem_write(address, code)
     if case.get("stop_at_adjust"):
-        # Synthetic table avoids assuming game initialization; both runs use it.
-        engine.mem_write(0x6FE8B0, struct.pack("<f", 0.25) * 3600)
+        # Synthetic tables avoid assuming game initialization; both runs use the same data.
+        if case.get("table_kind") == "varying":
+            table = b"".join(struct.pack("<f", (i % 17 - 8) / 16.0) for i in range(3600))
+        else:
+            table = struct.pack("<f", 0.25) * 3600
+        engine.mem_write(0x6FE8B0, table)
     for base in (OWNER, PEER, STACK):
         engine.mem_map(base, 0x10000)
     engine.mem_map(RETURN, 0x1000)

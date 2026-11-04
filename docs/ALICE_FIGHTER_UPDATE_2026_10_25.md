@@ -648,13 +648,13 @@ test_alice_action214_active_prefix.py`. Receipts are under
 
 ### Native lookup execution
 
-A second observer continues those same 432 active cases through the actual
+A second observer continues 864 active cases through the actual
 native cosine and sine routines and their called runtime helpers, stopping
 before the counter-adjust body. Both the original root and reconstructed
 root agree on direction, angle, velocity, speed, call order and counter-adjust
 arguments, and a wrong velocity-factor mutation is detected. Both use a
-synthetic constant 3600-entry lookup table, not a table produced by game
-startup; the source versions of the lookup helpers are not exercised. No
+synthetic constant and varying 3600-entry lookup tables, not a table produced
+by game startup; the source versions of the lookup helpers are not exercised. No
 claim is made about actual table contents, subsequent effects or landing,
 full-game execution, source selection or byte-exactness. Run
 `scripts/repo-python -m unittest discover -s tests -p

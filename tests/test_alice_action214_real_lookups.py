@@ -14,7 +14,7 @@ class AliceAction214RealLookupTests(unittest.TestCase):
     def test_original_lookups_matrix(self):
         result = lookup.audit()
         self.assertEqual(result['result'], 'bounded_lookup_paths_agree')
-        self.assertEqual(result['cases'], 432)
+        self.assertEqual(result['cases'], 864)
 
     def test_wrong_velocity_factor_is_detected(self):
         prefix = lookup.load_prefix(); observer, address, image, _, source, _ = prefix.setup()
