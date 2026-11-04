@@ -7026,3 +7026,21 @@ required_direct_edges = [
  { caller = "0x0041BCF0", site = "0x0041BD8D", target = "0x0041B7F0", caller_status = "implemented" },
  { caller = "0x0041BCF0", site = "0x0041BF42", target = "0x0041B7F0", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "profile-ime-window-init-authored-106a"
+addresses = ["0x0040E780"]
+expected_count = 1
+expected_bytes = 111
+expected_names = ["sub_40E780"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Application bootstrap invokes the game-specific IME candidate-window initialization under its startup flag. The complete body stores the IME context and sets the candidate exclusion rectangle from the game window. The full body and incoming authored caller are pinned; source remains nonexact."
+required_body_hashes = [
+ { address = "0x0040E780", size = 111, sha256 = "14e87791d01c7bba0ea9206214dbb68afed1bc60f1e00c5faf6cb7692775722a" },
+]
+required_direct_edges = [
+ { caller = "0x00407DA0", site = "0x00407ED1", target = "0x0040E780", caller_status = "implemented" },
+]

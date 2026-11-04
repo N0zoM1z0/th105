@@ -1688,3 +1688,4 @@ ProfileEditor_render
 InputStateTableStorage_add_tracked_key
 CMenuResult_refresh_selected_character
 PackageFileIndexNode_ctor
+initialize_ime_window_state

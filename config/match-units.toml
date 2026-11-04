@@ -30378,3 +30378,23 @@ rel32_targets = [
  "??_U@YAPAXI@Z=0x00665B8A",
  "_strcpy_s=0x0068AD95",
 ]
+
+[units.gpt-web-profile-ime-window-init]
+kind = "probe"
+source = "src/ui/ProfileImeWindow.cpp"
+object = "build/match-units/GptWeb_ProfileImeWindowInit.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Actual profile IME candidate-window setup; standalone frame differs from native, no exact credit."
+[[units.gpt-web-profile-ime-window-init.functions]]
+address = "0x0040E780"
+symbol_base = "?initialize_ime_window_state@th105@@YAXXZ"
+rel32_targets = [
+ "_ImmGetContext@4=0x0066B824",
+ "_ImmSetCandidateWindow@8=0x0066B81E",
+]
+dir32_targets = [
+ "?g_bootstrap_window@th105@@3PAXA=?g_bootstrap_window@th105@@3PAXA",
+ "_g_profile_menu_controller=_g_profile_menu_controller",
+ "__imp__GetWindowRect@8=__imp__GetWindowRect@8",
+]

@@ -350,7 +350,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040E6A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040E6F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040E720,authored_game,ui,authored,observed,canonical-exact-authored
-0x0040E780,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040E780,authored_game,ui,authored,observed,profile-ime-window-init-authored-106a
 0x0040E7F0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040E840,authored_game,ui,authored,observed,canonical-exact-authored
 0x0040E8B0,authored_game,ui,authored,observed,profile-ime-commit-profile-ime-composition-authored-106a
