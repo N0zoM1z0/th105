@@ -6796,3 +6796,22 @@ required_direct_edges = [
  { caller = "0x00455DD0", site = "0x00455E28", target = "0x00455A80", caller_status = "unclassified" },
  { caller = "0x00455C50", site = "0x00455CA8", target = "0x00455A80", caller_status = "unclassified" },
 ]
+
+[[rules]]
+id = "vc8-string-default-constructor-106a"
+addresses = ["0x00403EB0"]
+expected_count = 1
+expected_bytes = 18
+expected_names = ["sub_403EB0"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 std::string array construction emits the complete default constructor as an 18-byte COMDAT with an inventory-unique fingerprint. The native Select constructor passes its address as an array constructor callback. No authored exact credit."
+vc8_generated_anchor_file = "config/vc8-string-default-constructor-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00403EB0", size = 18, sha256 = "8246af2f786a5ae528ac9b3284f8de002699bcbb0af05aa1ef24c8ac9cb776f8" },
+]
+required_dword_values = [
+ { address = "0x0042325B", value = "0x00403EB0" },
+]
