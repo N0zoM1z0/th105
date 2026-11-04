@@ -1,5 +1,14 @@
 # Complete CProfileDeckEdit renderer448F60
 
+## Source registration, 2026-11-04
+
+The complete source is registered as source-present but remains nonexact. A
+fresh 2521-byte candidate again differs in 1622 positions; the one finite
+call-observer fixture agrees for all 32 observed events. That fixture does not
+prove populated-deck grid, general floating-point or service behavior. No
+exact bytes are added. Earlier references to unselected status below are
+historical. Receipt: `build/frontier-profile-deck-registration-20261104/`.
+
 The complete2521-byte source is **nonexact**. Full canonical relocation replay
 finds1622 unequal positions, first449268; the first776 bytes agree. Candidate
 SHA is `73fb53f64d54c145d1e16c345045f4fa3373de46b173a6e9a648b64145942e38`.
@@ -121,3 +130,7 @@ Fresh `origins-check.log` passes all4024 candidates:1604 authored/1419 excluded/
 the current manifest; exact bytes remain385903. Floating audit passes399 ledger
 literals/1603 explicit mappings and2002 target references. During cold replay,
 swap reached143MB while available memory stayed over10GB. No new exact credit.
+
+Registration verification on 2026-11-04: the exact 358-byte availability
+function and both 179/124-byte guide functions replayed exact; 1,024
+target-independent CI tests and generated-progress checks passed.

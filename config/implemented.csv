@@ -1671,3 +1671,4 @@ ScoreData_load_42f6f0
 SpellDataOwner_parse_filtered_spell_csv
 Fighter_load_pat_data_and_palette_resources
 initialize_scene_resources_43e2e0
+CProfileDeckEdit_render
