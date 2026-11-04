@@ -455,3 +455,13 @@ the pinned native erase entry, but those larger erase implementations are not
 claimed equal. Targeted proof, seven corruption controls and 1,013
 target-independent CI tests passed. This adds no authored exact bytes; no full
 origin census was replayed. See `SCRIPT_MAP_TIDY_ORIGIN_2026_11_04.md`.
+
+### Package map cleanup origin (2026-11-04)
+
+The full `41C8D0` 56-byte package-index map cleanup is compiler-generated,
+proved by its real source-pinned CIL, exact archive-store destructor edge,
+whole-body call-role replay and inventory uniqueness. The source erase role is
+bound to the hash-pinned native erase entry; the erase implementations are not
+claimed equal. Targeted proof, seven corruption controls and 1,018
+target-independent CI tests passed. No authored exact bytes are added, and no
+full origin census was replayed. See `PACKAGE_MAP_TIDY_ORIGIN_2026_11_04.md`.

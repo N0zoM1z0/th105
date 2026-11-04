@@ -6619,3 +6619,14 @@ subsystem = "vc8_stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Real CScript map cleanup emitted in its genuine CIL; exact destructor calls it. Whole native body and original source bytes agree after qualified erase/delete role bindings. The erase implementation is not claimed exact. docs/SCRIPT_MAP_TIDY_ORIGIN_2026_11_04.md."
+
+[[rules]]
+id = "linked-package-map-tidy-106a"
+linked_package_map_tidy_anchor_file = "config/linked-package-map-tidy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 56
+origin = "compiler_generated"
+subsystem = "vc8_stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Real package archive map cleanup emitted in its genuine CIL; exact destructor calls it. Whole native body and source bytes agree after qualified erase/delete role bindings. The erase implementation is not claimed exact. docs/PACKAGE_MAP_TIDY_ORIGIN_2026_11_04.md."

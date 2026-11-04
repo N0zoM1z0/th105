@@ -1,0 +1,17 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+unit = "gpt-web-package-archive-store"
+[source_pins]
+"src/assets/PackageArchiveStore.cpp" = "ec461d506ef26f370939cedd717b51c5943f155ee1b486fdea85dd7b4b3b12f1"
+"src/assets/PackageArchiveStore.hpp" = "2c522e6f9b0eeb0e2bd16f42c6f48090626abf12340da2e5504673dd9ddc9810"
+"src/assets/PackageArchiveStoreLinked.cpp" = "17a768f8188d85b3f6b31bc11c1c373ccd52b109211044b9c26857faff7e0497"
+"src/assets/PackageFileIndexNode.cpp" = "8ca63c79fec5e03899784057da1d4832be132a0b51d4d2b12f971f9bae518765"
+"src/assets/PackageFileIndexNode.hpp" = "12ceeecf1d6e6b29946fd11711812cfc716f1781c471e95a0b2b8d751f699245"
+"src/engine/CriticalSectionWrapper.cpp" = "14eb993ba3eaa3e22d8d808fbae288bb0073cd4c908d89ffeb5dcd2a1a29837f"
+"src/engine/CriticalSectionWrapper.hpp" = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
+"src/library/StdStringAllocator.cpp" = "304b618cf46415fa40109d66825c235deaaa7606028c2fa62c597b1ec2ef7300"
+[[anchors]]
+address = "0x0041C8D0"
+size = 56
+symbol = "?_Tidy@?$_Tree@V?$_Tmap_traits@IUPackageFileIndexNode@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIUPackageFileIndexNode@th105@@@std@@@4@$0A@@std@@@std@@IAEXXZ"
+sha256 = "a61f3985aabb36db3e49b8eb44ef98f2935eb359c02585dc50a21480727b6898"

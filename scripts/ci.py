@@ -40,6 +40,7 @@ EXACT_TEST_MODULES = (
     "test_linked_network_tree_erase_origins",
     "test_linked_resource_deque_tidy_origins",
     "test_linked_script_map_tidy_origins",
+    "test_linked_package_map_tidy_origins",
     "test_linked_bgm_list_growth_origins",
     "test_linked_unsigned_list_growth_origins",
     "test_linked_packet_deque_back_origins",
