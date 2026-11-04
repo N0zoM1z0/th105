@@ -62,3 +62,22 @@ body. Dependency inspection found eight affected units with 18 accepted roots;
 all 18 replayed exact. The manager unit's separate `466F40` remains nonexact
 with its prior complete candidate hash unchanged. No new matching bytes are
 added by this owner cleanup. See `build/frontier-battle-overlay-real-owner-20261104/`.
+
+## Real-provider linked diagnostic, 2026-11-04
+
+A separate private CIL image now links the actual `BattleObjectManager`
+overlay source with the real texture query, resource lookup, texture binding
+and render primitive sources. The real rectangle and line source files are
+also linked to satisfy the full primitive object's references. The diagnostic
+image has no fake executable-address provider or fabricated return. It links
+successfully, but its LTCG overlay body is 676 bytes and differs at entry due
+to an aligned frame; it does not reproduce the target. It also does not include
+the manager phase caller, so this is not a full application integration or an
+exact linked-image claim. The independent 670/670 ordinary COFF match remains
+the accepted evidence; the separately nonexact providers gain no credit.
+
+Receipt and real-source build recipe:
+`build/frontier-overlay-real-cil-20261104/run2.log` and
+`.analysis/frontier-overlay-real-cil-20261104/`. The initial attempt lacked the
+real rectangle provider and failed to link; it was resolved by adding the
+existing rectangle and line sources, not by adding stubs.
