@@ -64,3 +64,10 @@ integer local, once directly and once with ordinary explicit branches. Both
 produce the identical 783-byte canonical candidate and the same +225 mismatch.
 The original selected source was restored. Receipts:
 `build/frontier-select-mode-expr-20261104/branch.json` and `explicit.json`.
+
+An additional ordinary branch-local publication control preserves both mode
+queries and writes either the existing secondary byte or zero. It remains a
+783-byte nonexact candidate, still first differing at +225, and changes the
+branch topology away from the observed common bitwise publication. The
+selected source was restored. Receipt:
+`build/frontier-select-mode-expr-20261104/branch-publication.json`.
