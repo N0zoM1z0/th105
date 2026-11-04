@@ -3,14 +3,15 @@
 
 namespace th105 {
 void CScenarioData::install_character(
-    std::string name, std::string text, signed char slot, int x, int y,
+    std::string name, std::string text, int slot, int x, int y,
     unsigned char red, unsigned char green, unsigned char blue)
 {
     CScenarioData &s = *this;
+    const signed char side = static_cast<signed char>(slot);
     ScenarioTextEntryDC entry;
     entry.text_098 = text;
-    entry.flags_0d4[0] = slot;
-    if (slot > 0) {
+    entry.flags_0d4[0] = side;
+    if (side > 0) {
         entry.sprite_004.scale_x_88 = -1.0f;
         entry.sprite_004.scale_y_8c = 1.0f;
         entry.flags_0d4[1] = -1;

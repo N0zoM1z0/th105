@@ -1,4 +1,5 @@
 #include "battle/BattleManagerVirtuals.hpp"
+#include "battle/ScenarioData.hpp"
 #include <windows.h>
 #include <string>
 
@@ -8,13 +9,7 @@ extern "C" void *__cdecl get_combined_menu_input();
 int __cdecl selector_random_roll(int);
 
 struct PhaseFiveOwnerView { void *prefix_00[3]; Fighter *fighters_0c[2]; };
-struct PhaseFiveScenarioView {
-    virtual void configure_input(void *);
-    int load_page(const char *);
-    void install_character(std::string, std::string, int, int, int,
-                           unsigned char, unsigned char, unsigned char);
-    unsigned char select_label(std::string);
-};
+
 
 void CBattleManager::run_transition_phase_5_4724e0()
 {
@@ -29,10 +24,10 @@ void CBattleManager::run_transition_phase_5_4724e0()
             int winner_key = reinterpret_cast<PhaseFiveOwnerView *>(this)->fighters_0c[i]->other_fighter_170->record_key_330;
             loser_key = reinterpret_cast<PhaseFiveOwnerView *>(this)->fighters_0c[i]->record_key_330;
             wsprintfA(path, "data/scenario/%s/win.txt", character_key_to_name(winner_key));
-            PhaseFiveScenarioView *scenario = reinterpret_cast<PhaseFiveScenarioView *>(
+            CScenarioData *scenario = reinterpret_cast<CScenarioData *>(
                 reinterpret_cast<unsigned char *>(this) + 0x8c);
-            scenario->configure_input(get_combined_menu_input());
-            scenario->load_page(path);
+            scenario->configure(static_cast<CInputManager *>(get_combined_menu_input()));
+            scenario->load_story_page_4583e0(path);
             scenario->install_character("win", character_key_to_name(winner_key),
                 reinterpret_cast<PhaseFiveOwnerView *>(this)->fighters_0c[i]->other_fighter_170->player_index_334,160,0,160,160,255);
             scenario->install_character("lose", character_key_to_name(loser_key),
@@ -55,11 +50,11 @@ void CBattleManager::run_transition_phase_5_4724e0()
         }
         for (int count = 0; count < 128; ++count) {
             wsprintfA(label, formats[group], count);
-            if (!reinterpret_cast<PhaseFiveScenarioView *>(
+            if (!reinterpret_cast<CScenarioData *>(
                     reinterpret_cast<unsigned char *>(this)+0x8c)->select_label(label)) {
                 if (count != 0) {
                     wsprintfA(label, formats[group], selector_random_roll(count));
-                    reinterpret_cast<PhaseFiveScenarioView *>(
+                    reinterpret_cast<CScenarioData *>(
                         reinterpret_cast<unsigned char *>(this)+0x8c)->select_label(label);
                     return;
                 }

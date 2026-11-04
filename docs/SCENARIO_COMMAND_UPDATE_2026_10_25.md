@@ -342,3 +342,18 @@ including the 991-byte phase-five caller. The command interpreter remains
 blocked at its own local string constructor. The 598-byte install function is
 now source-present but contributes no exact bytes. This section supersedes the
 older statements above that its source candidate is private and unselected.
+
+## Exact phase-five call graph, 2026-11-04
+
+The actual phase-five caller pushes the signed player index as an integer, while
+`0x00456EB0` reads its low byte as a signed side. Modeling the source interface
+as an integer and converting to a signed byte inside the callee preserves that
+observed behavior and lets the exact phase-five source call real
+`CScenarioData` methods for configuration, page loading, installation and label
+selection. The native original nominal signature is still not uniquely proven.
+
+A fresh comparison keeps phase five exact at 991/991; the install candidate
+remains nonexact at 599/598, first mismatch +58, with canonical SHA-256
+`9fd51ab6ff74d87751a825e7b301317f17b3b4f060cc03573061c5d09438a761`.
+The command interpreter still blocks on its local string constructor. These
+results do not establish full-program linkage or full EH equivalence.
