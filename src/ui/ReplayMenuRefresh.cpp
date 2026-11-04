@@ -1,4 +1,5 @@
 #include "ReplayMenu.hpp"
+#include "ReplayHeaderService.hpp"
 
 #include "../input/InputManager.hpp"
 
@@ -6,8 +7,6 @@ extern "C" th105::CInputManager *g_active_menu_input;
 
 namespace th105 {
 
-struct ReplayHeaderServiceView;
-ReplayHeaderServiceView *get_replay_header_service();
 
 static inline void bind_replay_vertical_cursor(
     MenuCursorState *cursor, CInputManager *input, int count)

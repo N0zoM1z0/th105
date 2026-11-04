@@ -1,12 +1,11 @@
 // JP1.06a446860: complete browse policy; common GS-return tail remains nonexact.
 #include "ui/ReplayMenu.hpp"
+#include "ui/ReplayHeaderService.hpp"
 #include "input/InputManager.hpp"
 extern "C" th105::CInputManager *g_active_menu_input;
 extern "C" __declspec(dllimport) int __cdecl wsprintfA(char *,const char *,...);
 namespace th105 {
 void dispatch_indexed_event(unsigned);
-struct ReplayHeaderServiceView {bool load_recording(const char *);};
-ReplayHeaderServiceView *get_replay_header_service();
 struct ReplayBrowseRuntimeView {
     template<class T> T &field(unsigned n) {return *reinterpret_cast<T *>(reinterpret_cast<unsigned char *>(this)+n);}
     unsigned char update_browse_state();

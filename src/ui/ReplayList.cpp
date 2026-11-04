@@ -1,4 +1,5 @@
 #include "FileList.hpp"
+#include "ReplayHeaderService.hpp"
 
 namespace th105 {
 
@@ -17,11 +18,6 @@ struct ReplayListStringAssignCopyView {
         unsigned int count);
 };
 
-struct ReplayHeaderServiceView {
-    int read_header_code(const char *path);
-};
-
-extern ReplayHeaderServiceView *get_replay_header_service();
 extern int get_current_replay_header_code();
 extern "C" __declspec(dllimport) int __cdecl wsprintfA(
     char *buffer, const char *format, ...);

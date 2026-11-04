@@ -1,11 +1,8 @@
 #include "battle/ReplayFilenameFile.hpp"
+#include "ReplayHeaderService.hpp"
 #include <string>
 
 namespace th105 {
-
-struct ReplayHeaderServiceView {
-    int read_header_code(const char *path);
-};
 
 int ReplayHeaderServiceView::read_header_code(const char *path)
 {
