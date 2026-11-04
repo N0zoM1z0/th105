@@ -30,3 +30,12 @@ stack cleanup, inert locals, padding or defensive guards were added.
 
 Only this new unit was compiled. The unresolved cleanup / tail scheduling
 is retained as a bounded compiler/TU question rather than coerced into place.
+
+## Source registration, 2026-11-04
+
+The existing complete candidate is now selected as source-present and the
+native body is classified as authored: the pinned CSelect RTTI table places it
+at slot `0x006C0BC8`, with its complete body and three application call sites
+validated. A fresh pinned build confirms 685/native697, first mismatch +337.
+This is not exact credit or whole-game execution. Receipt:
+`build/frontier-select-update-register-20261104/formal.json`.

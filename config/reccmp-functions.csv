@@ -1877,3 +1877,5 @@ initialize_ime_window_state,0x0040E780,function
 CHandleManager_acquire_token,0x00405090,function
 report_direct_input_error,0x0040D540,function
 CsvReader_parse,0x0040F200,function
+CSelect_update,0x00421430,function
+CSelectObject_prepare_transform,0x0041FAD0,function

@@ -712,7 +712,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0041FA20,authored_game,ui,authored,observed,menu-cursor-update-authored-106a
 0x0041FAA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0041FAB0,compiler_generated,runtime,exclude,inferred,rtti-inline-scalar-deleting-destructors-106a
-0x0041FAD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0041FAD0,authored_game,ui,authored,observed,select-object-transform-authored-106a
 0x0041FB70,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041FB80,authored_game,ui,authored,observed,canonical-exact-authored
 0x0041FC90,authored_game,ui,authored,observed,select-character-update-authored-106a
@@ -732,7 +732,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00420D90,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x00421050,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x00421120,authored_game,ui,authored,observed,select-scene-entry-authored-106a
-0x00421430,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00421430,authored_game,ui,authored,observed,select-scene-update-authored-106a
 0x004216F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00421780,authored_game,battle,authored,observed,canonical-exact-authored
 0x004217F0,compiler_generated,runtime,exclude,observed,implicit-design-base-lifetimes-106a

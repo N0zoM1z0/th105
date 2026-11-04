@@ -1692,3 +1692,5 @@ initialize_ime_window_state
 CHandleManager_acquire_token
 report_direct_input_error
 CsvReader_parse
+CSelect_update
+CSelectObject_prepare_transform

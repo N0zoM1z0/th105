@@ -7100,3 +7100,33 @@ required_body_hashes = [
 required_direct_edges = [
  { caller = "0x0040F150", site = "0x0040F1CC", target = "0x0040F200", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "select-scene-update-authored-106a"
+addresses = ["0x00421430"]
+expected_count = 1
+expected_bytes = 697
+expected_names = ["sub_421430"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "CSelect RTTI primary update slot owns 697-byte scene selection policy, including player-input assignment, cursor binding, menu construction and input-deque lifecycle. All 231 native instructions are reachable; complete ordinary source emits 685 bytes and remains nonexact. docs/SELECT_SCENE_UPDATE_2026_10_28.md."
+required_rtti_virtual_bodies = [
+ { address = "0x00421430", size = 697, sha256 = "196531baf2851a20cfb92cb487f662683b41d7c5001737d287835d0328942c63", slot = "0x006C0BC8", col_slot = "0x006C0BC0", col = "0x006D78D0", type_descriptor = "0x006E6050", type_name_contains = "CSelect@@", calls = [{ site = "0x00421457", target = "0x0043B6E0" }, { site = "0x004214F3", target = "0x004482E0" }, { site = "0x00421699", target = "0x00420A80" }] },
+]
+
+[[rules]]
+id = "select-object-transform-authored-106a"
+addresses = ["0x0041FAD0"]
+expected_count = 1
+expected_bytes = 154
+expected_names = ["sub_41FAD0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "CSelectObject RTTI virtual slot owns complete 154-byte frame-pivot and facing-specific sprite transform. The typed ordinary source is 154 bytes but nonexact at +25 on x87/receiver scheduling. No exact credit. docs/SELECT_CHARACTER_BINDING_2026_10_28.md."
+required_rtti_virtual_bodies = [
+ { address = "0x0041FAD0", size = 154, sha256 = "10685039ec3d5eacc9462477dca640e0d83965d1d9a9c604c57b3f4b47267d5c", slot = "0x006C0988", col_slot = "0x006C0950", col = "0x006D782C", type_descriptor = "0x006E6488", type_name_contains = "CSelectObject@@", calls = [{ site = "0x0041FB02", target = "0x004073A0" }, { site = "0x0041FB3C", target = "0x004073E0" }, { site = "0x0041FB5F", target = "0x004073E0" }] },
+]
