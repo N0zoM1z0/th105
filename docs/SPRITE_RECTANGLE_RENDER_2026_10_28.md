@@ -21,3 +21,11 @@ register is used to delay the load. Equal length is not exactness.
 The canonical render-manager device-base alias validates the genuine+4 device
 cell; no global allowance is broadened. Complete CFG boundary is audited beside
 the focused receipts. Shared headers and existing consumers remain unchanged.
+
+## Source registration, 2026-11-04
+
+The complete existing implementation is now source-present and authored.
+The current CSprite RTTI table pins its `0x006C0680` virtual slot, the full
+native body and the texture-binding call. A fresh strict-FP build reproduces
+153/native153 with first difference +16, so no exact credit is claimed.
+Receipt: `build/frontier-sprite-rectangle-register-20261104/formal.json`.

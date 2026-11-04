@@ -1879,3 +1879,4 @@ report_direct_input_error,0x0040D540,function
 CsvReader_parse,0x0040F200,function
 CSelect_update,0x00421430,function
 CSelectObject_prepare_transform,0x0041FAD0,function
+CSprite_render_rectangle,0x004070C0,function

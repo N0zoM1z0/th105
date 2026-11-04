@@ -7130,3 +7130,18 @@ evidence = "CSelectObject RTTI virtual slot owns complete 154-byte frame-pivot a
 required_rtti_virtual_bodies = [
  { address = "0x0041FAD0", size = 154, sha256 = "10685039ec3d5eacc9462477dca640e0d83965d1d9a9c604c57b3f4b47267d5c", slot = "0x006C0988", col_slot = "0x006C0950", col = "0x006D782C", type_descriptor = "0x006E6488", type_name_contains = "CSelectObject@@", calls = [{ site = "0x0041FB02", target = "0x004073A0" }, { site = "0x0041FB3C", target = "0x004073E0" }, { site = "0x0041FB5F", target = "0x004073E0" }] },
 ]
+
+[[rules]]
+id = "csprite-rectangle-render-authored-106a"
+addresses = ["0x004070C0"]
+expected_count = 1
+expected_bytes = 153
+expected_names = ["sub_4070C0"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "CSprite RTTI virtual slot owns the complete 153-byte rectangle rendering policy: half-pixel vertex coordinates, texture binding and D3D triangle-strip dispatch. Natural strict-FP source emits 153 bytes but differs at +16. No exact credit. docs/SPRITE_RECTANGLE_RENDER_2026_10_28.md."
+required_rtti_virtual_bodies = [
+ { address = "0x004070C0", size = 153, sha256 = "1ae97c5fd56570a9684bcfde50d194a07e6b00e931a745ea4f918938452afb5f", slot = "0x006C0680", col_slot = "0x006C0664", col = "0x006DCCDC", type_descriptor = "0x006FA52C", type_name_contains = "CSprite@@", calls = [{ site = "0x00407124", target = "0x00404DF0" }] },
+]
