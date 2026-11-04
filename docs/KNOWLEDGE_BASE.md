@@ -1,5 +1,7 @@
 # Reconstruction evidence notebook
 
+**Current update (2026-11-04):** BattleObjectManager render tail `4666A0` is now canonical exact 670/670 using the shared D3DX-compatible COM interface. The older 491-byte-prefix scheduling stop below is superseded. See `BATTLE_RENDER_TAIL_EXACT_2026_11_04.md`.
+
 Ogg open418A10 is canonical exact291/291 in the real BGM stream caller and
 original pinned Xiph SDK context. Its private ESI receiver is compiler-derived;
 all four emitted callback slots are verified. New source closes stream

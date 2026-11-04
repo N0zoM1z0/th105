@@ -333,7 +333,7 @@ The complete 104-byte `0x405AC0` script cursor advance and two original call sit
 
 ### 2026-11-03: classify battle policy bodies
 
-Complete CFGs and fresh exact caller edges establish authored ownership of spell selection shuffle `0x432420` (196 bytes) and battle overlay rendering `0x4666A0` (670 bytes). Both previous source hypotheses remain unselected/nonexact; no exact-byte gain. See `docs/ORIGIN_RECOVERY_2026_11_03.md`.
+Complete CFGs and exact caller edges established authored ownership of spell selection shuffle `0x432420` (196 bytes) and battle overlay rendering `0x4666A0` (670 bytes). Since that checkpoint, the shuffle source has been selected but remains nonexact, while the overlay is now fully exact. See `docs/ORIGIN_RECOVERY_2026_11_03.md` and `docs/BATTLE_RENDER_TAIL_EXACT_2026_11_04.md`.
 
 ### 2026-11-03: exact PNG loader
 
