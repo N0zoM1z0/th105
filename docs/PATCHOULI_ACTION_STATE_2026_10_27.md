@@ -169,3 +169,18 @@ Payload dataflow resolves91 homes with no unknown pointers; candidate homes
 remain uniformly+8. The residual frame, physical sharing, register allocation
 and complete semantics remain open. No compiler flags, ABI contracts, forced
 registers, padding, target bytes or unrelated accepted units were changed.
+
+## Orbit spawn-height grouping, 2026-11-04
+
+The original pre-dispatch action-710 orbit sites include `0x0050F670` and
+`0x0050F757`, and action-602 orbit sites include `0x0051A97A`, `0x0051AA0B`
+and `0x0051AA9C`. These x87 sequences first add 100.0 to the fighter height,
+then combine that value with the sine offset. The action-602 loop at
+`0x0051AB3F..0x0051AB52` preserves the same grouping using a shared 100.0
+stack value. The two shared source expressions now reflect that order; the
+fresh VC8 object contains corresponding height/add/add-stack sequences.
+This can matter for floating-point rounding and is not a full gameplay proof.
+
+The complete callable remains nonexact from +8: its 54,452-byte native body
+and 55,042-byte candidate section tail differ. This source remains unselected
+and adds no exact credit.

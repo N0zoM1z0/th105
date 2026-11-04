@@ -316,7 +316,7 @@ public:
     __forceinline void orbit852(float *p,double radius) {
         spawn(852,
               static_cast<float>(patchouli_cosine(-p[0])*radius*facing()+at<float>(0xec)),
-              static_cast<float>(patchouli_sine(p[0])*radius+at<float>(0xf0)+100.0),
+              static_cast<float>(patchouli_sine(p[0])*radius+(static_cast<double>(at<float>(0xf0))+100.0)),
               at<unsigned char>(0x104),1,p,3);
     }
 
@@ -335,7 +335,7 @@ public:
     __forceinline void orbit900(float *p,unsigned angle_offset) {
         spawn(900,
             static_cast<float>(patchouli_cosine(-at<float>(angle_offset))*150.0*facing()+at<float>(0xec)),
-            static_cast<float>(patchouli_sine(-at<float>(angle_offset))*150.0+at<float>(0xf0)+100.0),
+            static_cast<float>(patchouli_sine(-at<float>(angle_offset))*150.0+(static_cast<double>(at<float>(0xf0))+100.0)),
             at<unsigned char>(0x104),1,p,3);
     }
 };
