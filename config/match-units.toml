@@ -30414,3 +30414,15 @@ dir32_targets = [
  "?direct_input_error_title@th105@@3QBDB=_direct_input_error_title",
  "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
 ]
+
+[units.exact-first-arcade-post-pipeline]
+kind = "probe"
+source = "src/battle/BattleManagerArcadePost.cpp"
+object = "build/match-units/ExactFirst_ArcadePostPipeline.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Native Arcade slot30 transition policy; derived layout beyond the observed state byte is unknown."
+
+[[units.exact-first-arcade-post-pipeline.functions]]
+address = "0x00472F80"
+symbol_base = "?post_pipeline_slot_30@BattleManagerArcadePostView@th105@@UAEXXZ"

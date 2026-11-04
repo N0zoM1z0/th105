@@ -7145,3 +7145,18 @@ evidence = "CSprite RTTI virtual slot owns the complete 153-byte rectangle rende
 required_rtti_virtual_bodies = [
  { address = "0x004070C0", size = 153, sha256 = "1ae97c5fd56570a9684bcfde50d194a07e6b00e931a745ea4f918938452afb5f", slot = "0x006C0680", col_slot = "0x006C0664", col = "0x006DCCDC", type_descriptor = "0x006FA52C", type_name_contains = "CSprite@@", calls = [{ site = "0x00407124", target = "0x00404DF0" }] },
 ]
+
+[[rules]]
+id = "battle-arcade-post-pipeline-authored-106a"
+addresses = ["0x00472F80"]
+expected_count = 1
+expected_bytes = 198
+expected_names = ["sub_472F80"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "CBattleManagerArcade RTTI virtual slot owns the 198-byte post-pipeline policy: terminal flags, per-fighter counters, transition state and virtual dispatch. All native instructions are reachable. Complete ordinary C++ using the recovered base view emits 198 bytes but remains nonexact at +181 on virtual-dispatch scheduling. No exact credit. docs/BATTLE_ARCADE_POST_PIPELINE_2026_11_04.md."
+required_rtti_virtual_bodies = [
+ { address = "0x00472F80", size = 198, sha256 = "7bd9a3677d422ac3ea268666d008962cbe98e547bdb4a781dac8c5d4395143fe", slot = "0x006C157C", col_slot = "0x006C1548", col = "0x006D7F44", type_descriptor = "0x006E687C", type_name_contains = "CBattleManagerArcade@@" },
+]
