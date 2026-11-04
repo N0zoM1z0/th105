@@ -315,7 +315,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040D2A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040D360,authored_game,input,authored,observed,canonical-exact-authored
 0x0040D3F0,authored_game,input,authored,observed,direct-input-shutdown-authored-106a
-0x0040D540,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x0040D540,authored_game,input,authored,observed,directinput-error-report-authored-106a
 0x0040D560,authored_game,input,authored,observed,canonical-exact-authored
 0x0040D620,authored_game,input,authored,observed,direct-input-initialize-gamepad-devices-authored-106a
 0x0040D6D0,authored_game,input,authored,observed,canonical-exact-authored

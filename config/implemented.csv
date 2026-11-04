@@ -1690,3 +1690,4 @@ CMenuResult_refresh_selected_character
 PackageFileIndexNode_ctor
 initialize_ime_window_state
 CHandleManager_acquire_token
+report_direct_input_error

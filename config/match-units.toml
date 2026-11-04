@@ -30398,3 +30398,19 @@ dir32_targets = [
  "_g_profile_menu_controller=_g_profile_menu_controller",
  "__imp__GetWindowRect@8=__imp__GetWindowRect@8",
 ]
+
+[units.gpt-web-directinput-error-report]
+kind = "probe"
+source = "src/input/DirectInputMouseBootstrap.cpp"
+object = "build/match-units/GptWeb_DirectInputErrorReport.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Ordinary error reporter versus private-EAX native helper; no forced calling convention or exact credit."
+[[units.gpt-web-directinput-error-report.functions]]
+address = "0x0040D540"
+symbol_base = "?report_direct_input_error@th105@@YAHPBD@Z"
+dir32_targets = [
+ "?g_direct_input_window@th105@@3PAUHWND__@@A=_direct_input_window",
+ "?direct_input_error_title@th105@@3QBDB=_direct_input_error_title",
+ "__imp__MessageBoxA@16=__imp__MessageBoxA@16",
+]

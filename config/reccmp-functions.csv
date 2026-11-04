@@ -1875,3 +1875,4 @@ CMenuResult_refresh_selected_character,0x00447080,function
 PackageFileIndexNode_ctor,0x0041B7F0,function
 initialize_ime_window_state,0x0040E780,function
 CHandleManager_acquire_token,0x00405090,function
+report_direct_input_error,0x0040D540,function

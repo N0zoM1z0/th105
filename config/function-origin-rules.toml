@@ -7064,3 +7064,21 @@ required_direct_edges = [
  { caller = "0x00404C90", site = "0x00404CA3", target = "0x00405090", caller_status = "implemented" },
  { caller = "0x00404D00", site = "0x00404D12", target = "0x00405090", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "directinput-error-report-authored-106a"
+addresses = ["0x0040D540"]
+expected_count = 1
+expected_bytes = 22
+expected_names = ["sub_40D540"]
+origin = "authored_game"
+subsystem = "input"
+disposition = "authored"
+confidence = "observed"
+evidence = "The game DirectInput mouse initializer calls this helper for the native property-failure message; it forwards the game window and target-owned DirectInput title to MessageBoxA. Whole body and caller edge are pinned. Source remains nonexact due to the native private register input."
+required_body_hashes = [
+ { address = "0x0040D540", size = 22, sha256 = "25778b72befce238d77f475d00ff88b237cd2e8c3f1f17b592512599636d11bd" },
+]
+required_direct_edges = [
+ { caller = "0x0040D810", site = "0x0040D90C", target = "0x0040D540", caller_status = "implemented" },
+]
