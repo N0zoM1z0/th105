@@ -269,3 +269,19 @@ stops on an unresolved locally emitted string constructor, so the section
 size is not an accepted body comparison and there is no new exact or
 source-present credit. The target CFG audit continues to pass. No general
 behavioral equivalence or full executable link is claimed.
+
+## Real text-map lookup, 2026-11-04
+
+Four further map lookups now use the actual `std::map::find` operation instead
+of a declaration-only facade. A fresh VC8 object emits its `find` specialization
+exactly matching the already excluded native compiler helper `0x00455A00`,
+122/122 bytes. Its lower-bound callee is independently emitted from the actual
+Scenario text-map type and matches the native `0x00455270` body, 153/153,
+including its real `char_traits::compare` call. A fresh pinned-compiler origin
+witness checks the full 153-byte fingerprint against the entire current
+candidate inventory and identifies a unique hit. That helper is therefore
+classified as compiler-generated, not authored; it adds no authored exact bytes.
+
+The interpreter remains an unselected source hypothesis: the fresh 5,368-byte
+root section still blocks at an unresolved string constructor, and no full-body
+comparison or general behavioral equivalence is asserted.

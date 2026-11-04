@@ -1681,7 +1681,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004551E0,compiler_generated,runtime,exclude,observed,vc8-generated-scenario-data-lifetime-emitted-106a
 0x00455200,compiler_generated,runtime,exclude,observed,vc8-generated-map-int-value244-tree-comdats-106a
 0x00455240,authored_game,battle,authored,observed,canonical-exact-authored
-0x00455270,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00455270,compiler_generated,std,exclude,observed,vc8-scenario-text-map-lbound-106a
 0x00455310,authored_game,battle,authored,observed,canonical-exact-authored
 0x00455360,authored_game,battle,authored,observed,canonical-exact-authored
 0x004553C0,authored_game,battle,authored,observed,canonical-exact-authored

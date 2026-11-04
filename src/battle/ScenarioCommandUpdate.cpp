@@ -54,9 +54,6 @@ struct ScenarioSlotSetupView {
 };
 
 typedef std::map<std::string, ScenarioTextEntryDC> ScenarioTextMap;
-struct ScenarioTextFindView {
-    ScenarioTextMap::iterator find(const std::string &);
-};
 struct ScenarioTextAdvanceView {
     int update_dynamic_state();
 };
@@ -276,8 +273,7 @@ signed char ScenarioCommandUpdateView::update()
                 s.trim_render_entries_and_begin_fade_455cd0();
                 s.state_510 = 0;
             }
-            it = reinterpret_cast<ScenarioTextFindView *>(&s.text_entries_32c)
-                     ->find(s.string_4f0);
+            it = s.text_entries_32c.find(s.string_4f0);
             if (it != s.text_entries_32c.end())
                 it->second.flags_0d4[3] = 1;
             TCommand1<std::string> *text =
@@ -317,8 +313,7 @@ signed char ScenarioCommandUpdateView::update()
         case 3: {
             typedef TCommand2<std::string, std::string> StandCommand;
             StandCommand *c = static_cast<StandCommand *>(command);
-            it = reinterpret_cast<ScenarioTextFindView *>(&s.text_entries_32c)
-                     ->find(c->arg0_08);
+            it = s.text_entries_32c.find(c->arg0_08);
             if (it != s.text_entries_32c.end()) {
                 std::string path;
                 if (c->arg1.empty()) {
@@ -348,8 +343,7 @@ signed char ScenarioCommandUpdateView::update()
         case 4: {
             TCommand2<std::string, int> *c =
                 static_cast<TCommand2<std::string, int> *>(command);
-            it = reinterpret_cast<ScenarioTextFindView *>(&s.text_entries_32c)
-                     ->find(c->arg0_08);
+            it = s.text_entries_32c.find(c->arg0_08);
             if (it != s.text_entries_32c.end()) {
                 it->second.flags_0d4[4] = 1;
                 it->second.values_0b8[6] = c->arg1;
@@ -450,8 +444,7 @@ signed char ScenarioCommandUpdateView::update()
         case 12: {
             TCommand2<std::string, int> *c =
                 static_cast<TCommand2<std::string, int> *>(command);
-            it = reinterpret_cast<ScenarioTextFindView *>(&s.text_entries_32c)
-                     ->find(c->arg0_08);
+            it = s.text_entries_32c.find(c->arg0_08);
             if (it == s.text_entries_32c.end())
                 dispatch_indexed_event(c->arg1);
             else

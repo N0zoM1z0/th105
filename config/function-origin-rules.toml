@@ -6627,3 +6627,22 @@ subsystem = "boost_regex"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Original Boost recursion_info implicit destructor emitted by VC8: complete canonical 8-byte callback and real constructor/destructor array roles (50 elements, stride 68), with original public instantiation, header closure, four complete EH scopes and owner bodies independently replayed. No authored or extra exact credit. docs/BOOST_RECURSION_CLEANUP_ORIGIN_2026_11_04.md."
+
+[[rules]]
+id = "vc8-scenario-text-map-lbound-106a"
+addresses = ["0x00455270"]
+expected_count = 1
+expected_bytes = 153
+expected_names = ["sub_455270"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 builds the actual Scenario text-map find and emits its checked-tree _Lbound specialization. All153 bytes match the native body with the real char_traits comparator bound at 0x00405560; relocation-masked fingerprint is unique across the current candidate inventory. The already classified std::map find at 0x00455A00 calls it directly. No authored-byte credit."
+vc8_generated_anchor_file = "config/vc8-scenario-text-map-lbound-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00455270", size = 153, sha256 = "ada01fecd02545021cc12a99b1e7e56b4a5f463aa7ebb2119195f78805e16338" },
+]
+required_direct_edges = [
+ { caller = "0x00455A00", site = "0x00455A0D", target = "0x00455270" },
+]
