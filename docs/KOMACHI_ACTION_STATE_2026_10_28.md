@@ -202,3 +202,18 @@ nonexact. The fresh candidate payload is 64,900 bytes, SHA-256
 `b8a7f166299864852d5ed6de61fdcb7290ac7021c537e02a6884e7b1667d77f0`,
 with first mismatch +42 and 61,441 unequal positions over the full payload.
 The source remains unselected and earns no exact credit.
+
+## Actions 720 and 732 angle grouping, 2026-11-04
+
+The native loops for action 720 (`0x005F0988..0x005F09AE`) and both action
+732 surface branches (`0x005F1593..0x005F15A9` and
+`0x005F1663..0x005F1679`) convert the random value, separately add 30.0 to
+the loop angle, then combine the two x87 values. The source now reflects that
+observed grouping in all three places. The new object emits the corresponding
+`fild angle; fadd 30.0; faddp` sequence in each loop. For the bounded integer
+values in these loops the old and new groupings yield the same numeric result;
+this is source-structure evidence, not a claimed gameplay change.
+
+The whole function remains nonexact: the 63,993-byte comparison first differs
+at +42, with a 64,904-byte candidate section tail. The source remains unselected
+and no exact credit is claimed.

@@ -457,7 +457,7 @@ case 720:
     if(sequence_index_13e==1 && time_counter_144>=120)next_sequence_block();if(advance())set_action_and_finalize(700);
     if(entry(1)){
         dispatch_character_wave_handle(19);float p[3];
-        for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+angle+30.0);p[1]=13.0f;p[2]=2.0f;
+        for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
             if(!(p[0]>=0.0f && p[0]<=180.0f))spawn(817,F(0xec),F(0xf0),B(0x104),-1,p,3);else spawn(817,F(0xec),F(0xf0),B(0x104),1,p,3);}
         p[0]=0.0f;p[1]=10.0f;p[2]=0.0f;spawn(901,peer()->at<float>(0xec),F(0xf0),B(0x104),1,p,3);
         p[2]=4.0f;spawn(901,peer()->at<float>(0xec),F(0xf0),B(0x104),-1,p,3);
@@ -494,10 +494,10 @@ case 732:
             p[1]=0.0f;p[2]=2.0f;spawn_offset(930,0,100.0,p,3);
             p[1]=1.0f;spawn(930,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+100.0),B(0x104),1,p,3);
             if(komachi_on_surface(this)){
-                for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+angle+30.0);p[1]=13.0f;p[2]=2.0f;int layer=(p[0]>=0.0f && p[0]<=180.0f)?1:-1;spawn(817,F(0xec),F(0xf0),B(0x104),layer,p,3);}
+                for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;int layer=(p[0]>=0.0f && p[0]<=180.0f)?1:-1;spawn(817,F(0xec),F(0xf0),B(0x104),layer,p,3);}
             }
             if(komachi_on_surface(peer())){
-                for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+angle+30.0);p[1]=13.0f;p[2]=2.0f;
+                for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
                     if(!(p[0]>=0.0f && p[0]<=180.0f))spawn(817,peer()->at<float>(0xec),peer()->at<float>(0xf0),B(0x104),-1,p,3);
                     else spawn(817,peer()->at<float>(0xec),peer()->at<float>(0xf0),B(0x104),1,p,3);}
             }
