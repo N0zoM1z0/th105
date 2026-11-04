@@ -6461,7 +6461,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Spell selection shuffle owns game policy and is directly called by the canonical-exact mode setter. No source or exact-byte credit. docs/ORIGIN_RECOVERY_2026_11_03.md."
+evidence = "Spell selection shuffle owns game policy and is directly called by the canonical-exact mode setter. Source is present but nonexact. docs/ORIGIN_RECOVERY_2026_11_03.md."
 required_body_hashes = [{ address = "0x00432420", size = 196, sha256 = "540ef3b2fd1fd978957bf2df18d4d2272af85f78ec0ad79cfd09f1b904a8dbe0" }]
 required_direct_edges = [{ caller = "0x00432520", site = "0x00432538", target = "0x00432420", caller_status = "matching" }]
 

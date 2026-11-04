@@ -474,3 +474,12 @@ remains 339/334 and nonexact; the final system-effect tail is a separate
 nonexact callee. All five same-TU exact roots, the exact loader and 1,018
 target-independent CI checks pass. The focused origin rule was checked; no
 full origin census was replayed. See `SCENARIO_RUNTIME_RESET_SOURCE_2026_11_04.md`.
+
+### Spell selection shuffle (2026-11-04)
+
+The authored `432420` selection shuffle is now individually source-selected,
+using the actual VC8 checked iterator and target-observed out-of-line deque
+methods. Its 196-byte candidate remains nonexact in seven scheduling bytes
+at +132..+138. The exact mode setter and random provider replayed; all 1,018
+target-independent CI checks pass. No exact-byte credit is added. See
+`SPELL_SELECTION_SHUFFLE_SOURCE_2026_11_04.md`.

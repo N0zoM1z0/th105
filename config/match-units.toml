@@ -30043,3 +30043,16 @@ notes = "Complete scenario runtime reset; nonexact source with out-of-line check
 address = "0x00457E40"
 symbol_base = "?reset_runtime_state@CScenarioData@th105@@QAEXXZ"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?increment@ScenarioTextMapIteratorIncrementView@th105@@QAEXXZ=0x00435C00", "?assign_bytes@ScenarioStringAssignBytesView@th105@@QAEXPBDI@Z=0x004021C0", "?clear_entries@ScenarioRenderListClearView@th105@@QAEXXZ=0x00435FF0", "?release_all_system_effects@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEXXZ=0x00436E60"]
+
+[units.exact-first-spell-selection-shuffle]
+kind = "probe"
+source = "src/battle/SpellDataShuffle.cpp"
+object = "build/match-units/ExactFirst_SpellSelectionShuffle.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Checked short-deque selection shuffle; whole canonical comparison determines acceptance."
+
+[[units.exact-first-spell-selection-shuffle.functions]]
+address = "0x00432420"
+symbol_base = "?shuffle_selection@SpellDataOwner@th105@@QAEXXZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?selector_random_roll@th105@@YAHH@Z=0x004067D0", "?erase_one@ShortDequeMutationView@th105@@QAE?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V34@@Z=0x004323B0", "?push_front@ShortDequeMutationView@th105@@QAEXABF@Z=0x0042A4B0"]
