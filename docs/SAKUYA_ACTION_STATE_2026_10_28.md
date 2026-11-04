@@ -198,3 +198,17 @@ rounding; no full runtime equivalence is claimed.
 
 The complete 75,042-byte target extent remains nonexact from +8. The candidate
 section tail is 76,500 bytes; this selected source contributes no exact bytes.
+
+## Actions 520 and 521 ordered shot gates, 2026-11-04
+
+For the second shot phase, native `0x004D298F..0x004D29A0` and
+`0x004D2DDA..0x004D2DEB` load the field at 0x73c, then the limit,
+compare, and skip the shot path when `AH & 0x41` is nonzero. The path
+therefore requires the field to be ordered and below the limit. The earlier
+negated `limit <= field` also admitted NaN; both phase-two source conditions
+now use `field < limit`. The fresh VC8 object has the corresponding operand
+order, status mask and skip branches at offsets 0x7B8F and 0x7FDB.
+
+The 75,042-byte owned extent remains nonexact from +8 (candidate section tail
+76,500 bytes); this local observation adds no exact credit and does not assert
+unmasked-exception equivalence.
