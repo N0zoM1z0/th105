@@ -96,3 +96,15 @@ equivalence.
 
 The 50,649-byte callable remains nonexact from +37; the candidate section
 tail is 51,428 bytes. No exact credit is added.
+
+## Action 815 ordered decay gate, 2026-11-04
+
+Native `0x005222F2..0x0052230D` compares zero to the decay field and
+enters its zero-and-fade path only for an ordered field value at or below
+zero. The `AH & 1` skip also excludes unordered comparisons. The previous
+negated `field > 0` admitted NaN; the source now uses ordered `field <= 0`.
+Fresh VC8 emits the corresponding status mask and branch at `0x1A3C..0x1A49`.
+This does not establish whole-root or unmasked-exception equivalence.
+
+The 50,649-byte callable remains nonexact from +37; the candidate section
+tail is 51,428 bytes. No exact credit is added.

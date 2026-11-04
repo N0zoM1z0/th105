@@ -214,7 +214,7 @@ case 815: {
     if(S(0x13e)==1) {F(0x11c)*=static_cast<double>(0.95f);F(0xf8)=-2.0f;if(B(0x113)<15) RETIRE();B(0x113)-=15;}
     if(S(0x13e)==2) {
         F(0x11c)+=static_cast<double>(0.05f);if(F(0x370)>0.0f) F(0x370)-=static_cast<double>(0.1f);
-        if(!(F(0x370)>0.0f)) {F(0x370)=0.0f;if(B(0x113)<5) RETIRE();B(0x113)-=5;}
+        if(F(0x370)<=0.0f) {F(0x370)=0.0f;if(B(0x113)<5) RETIRE();B(0x113)-=5;}
         float scale=F(0x120)+F(0x370);F(0x120)=static_cast<float>(scale*static_cast<double>(0.98f));
     }
     if(S(0x13e)==3) {F(0x11c)+=static_cast<double>(0.025f);F(0x120)=F(0x11c);if(B(0x113)<10) RETIRE();B(0x113)-=10;}
