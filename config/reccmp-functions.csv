@@ -1874,3 +1874,4 @@ InputStateTableStorage_add_tracked_key,0x0040A6C0,function
 CMenuResult_refresh_selected_character,0x00447080,function
 PackageFileIndexNode_ctor,0x0041B7F0,function
 initialize_ime_window_state,0x0040E780,function
+CHandleManager_acquire_token,0x00405090,function
