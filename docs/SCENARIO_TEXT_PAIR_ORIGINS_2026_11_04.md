@@ -16,3 +16,10 @@ full relocation or exception-metadata equality; no authored exact bytes are
 awarded. The 598-byte character-installation caller remains unselected and
 nonexact, with original argument grouping and exception context still under
 review.
+
+The same installation path calls `0x00456A30` at `0x00456FFF`. A separate
+tracked witness instantiates the real checked `std::map<string,
+ScenarioTextEntryDC>::insert` member; its 317-byte generated body also has a
+unique relocation-masked hit across the current inventory. The native callable
+hash and direct call are pinned. It is classified as compiler-generated, with
+no authored exact or complete exception-metadata claim.
