@@ -163,3 +163,16 @@ runtime or unmasked-exception equivalence.
 
 The 57,042-byte callable remains nonexact from +8; the candidate section tail
 is 57,792 bytes. The source remains unselected and adds no exact credit.
+
+## Actions 402 and 406 ordered shot gates, 2026-11-04
+
+Native instructions `0x00580601..0x00580612` and
+`0x00580F01..0x00580F12` compare 5.0 against the field at 0x740 and
+skip the shot path when `AH & 0x41` is nonzero. Thus the path requires an
+ordered field value below 5.0; the previous negated `>=` also admitted NaN.
+Both conditions now use `< 5.0f`. The fresh VC8 object emits the same local
+x87 status mask and skip branch at both sites. This is evidence for the local
+gates, not an assertion of whole-function or unmasked-exception equivalence.
+
+The 57,042-byte callable remains nonexact from +8; the candidate section tail
+is 57,792 bytes. The source remains unselected and adds no exact credit.
