@@ -6936,3 +6936,36 @@ required_selected_body_calls = [
 required_dword_values = [
  { address = "0x006C1678", value = "0x00409DA0" },
 ]
+
+[[rules]]
+id = "profile-editor-render-authored-106a"
+addresses = ["0x00427DB0"]
+expected_count = 1
+expected_bytes = 568
+expected_names = ["sub_427DB0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete profile text-editor rendering policy selects primary/composition glyphs, highlights IME attributes and draws a blinking caret. The canonical-exact ProfileMenu render owns the call; target switch destinations, SetRect IAT and exact rectangle helper are pinned. Real-type ordinary source remains nonexact and receives no exact credit."
+required_body_hashes = [
+ { address = "0x00427DB0", size = 568, sha256 = "44953d23a8806cd2c7695c1f377cbfe8e09c6a7434ccdef8c89c945a306a0740" },
+]
+required_direct_edges = [
+ { caller = "0x0044BE10", site = "0x0044BEBA", target = "0x00427DB0", caller_status = "matching" },
+]
+required_selected_body_calls = [
+ { owner = "0x00427DB0", site = "0x00427EFE", target = "0x00401260", target_status = "matching" },
+ { owner = "0x00427DB0", site = "0x00427FCF", target = "0x00401260", target_status = "matching" },
+ { owner = "0x00427DB0", site = "0x00427F2C", target = "0x004099F0", target_status = "implemented" },
+ { owner = "0x00427DB0", site = "0x00427F50", target = "0x004099F0", target_status = "implemented" },
+]
+required_dword_values = [
+ { address = "0x00427E9D", value = "0x006C020C" },
+ { address = "0x00427EED", value = "0x006C020C" },
+ { address = "0x00427FBD", value = "0x006C020C" },
+ { address = "0x00427FE8", value = "0x00427EB8" },
+ { address = "0x00427FEC", value = "0x00427EBD" },
+ { address = "0x00427FF0", value = "0x00427EC4" },
+ { address = "0x00427FF4", value = "0x00427ECB" },
+]

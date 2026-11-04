@@ -30329,3 +30329,20 @@ notes = "CInputManager raw gamepad/keyboard counter update 0x00409DA0; ordinary 
 address = "0x00409DA0"
 symbol_base = "?update_player_input_counters_from_raw@CInputManager@th105@@UAEXXZ"
 rel32_targets = ["?get_gamepad_state@DirectInputBackend@th105@@QAEPAURawGamepadState@2@H@Z=0x0040D990"]
+
+[units.gpt-web-profile-editor-render]
+kind = "probe"
+source = "src/ui/ProfileEditorRender.cpp"
+object = "build/match-units/GptWeb_ProfileEditorRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Profile editor render 0x00427DB0 source hypothesis with real controller, tile and render-manager types; no exact credit."
+
+[[units.gpt-web-profile-editor-render.functions]]
+address = "0x00427DB0"
+symbol_base = "?render@ProfileEditor168@th105@@QAEXMM@Z"
+rel32_targets = [
+ "?draw_rect_int@RenderModeManager@th105@@QAEHPBHIE@Z=0x00401260",
+ "?render@CTile@@QAEXMMHH@Z=0x004099F0",
+ "__ftol2_sse=0x0068A1A0",
+]
