@@ -30267,3 +30267,21 @@ notes = "Bgm buffer set-volume wrapper 0x00401830: ordinary typed source emits25
 [[units.gpt-web-bgm-buffer-set-volume.functions]]
 address = "0x00401830"
 symbol_base = "?set_volume@BgmBufferRuntime@th105@@QAEXJ@Z"
+
+[units.gpt-web-scenario-result-update]
+kind = "probe"
+source = "src/battle/ScenarioResultUpdate.cpp"
+object = "build/match-units/GptWeb_ScenarioResultUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Scenario result phase update 0x00454A50, using actual result owner and sine/cosine providers; ordinary source remains nonexact. No exact credit."
+
+[[units.gpt-web-scenario-result-update.functions]]
+address = "0x00454A50"
+symbol_base = "?update@ScenarioResultResource@th105@@QAE_NXZ"
+rel32_targets = [
+ "?lookup_orientation_cosine@th105@@YAMH@Z=0x004064B0",
+ "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
+ "?reset@ScenarioResultResource@th105@@QAEXXZ=0x004549E0",
+ "?set_entry_level@ScenarioResultResource@th105@@QAEXHH@Z=0x00454950",
+]

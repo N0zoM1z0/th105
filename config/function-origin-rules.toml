@@ -6835,3 +6835,27 @@ required_direct_edges = [
  { caller = "0x00402C10", site = "0x00402F66", target = "0x00401830", caller_status = "implemented" },
  { caller = "0x00402C10", site = "0x00402F8E", target = "0x00401830", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "scenario-result-update-authored-106a"
+addresses = ["0x00454A50"]
+expected_count = 1
+expected_bytes = 403
+expected_names = ["sub_454A50"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete Scenario result phase policy updates fade alpha, timed panel positions, entry levels and phase/counter transitions. Scenario command update calls it on the real result member; native direct calls to exact sine/cosine, result reset and entry-level providers are pinned. Real-owner source emits403/native403 but remains nonexact, with no exact credit."
+required_body_hashes = [
+ { address = "0x00454A50", size = 403, sha256 = "f4e0aad65c899f67572a833c036a139fafafedd36dd8e360a6ea0809e0d6a871" },
+]
+required_direct_edges = [
+ { caller = "0x00458440", site = "0x00458972", target = "0x00454A50", caller_status = "identified" },
+]
+required_selected_body_calls = [
+ { owner = "0x00454A50", site = "0x00454AD7", target = "0x004064B0", target_status = "matching" },
+ { owner = "0x00454A50", site = "0x00454B08", target = "0x004549E0", target_status = "matching" },
+ { owner = "0x00454A50", site = "0x00454B3C", target = "0x00406480", target_status = "matching" },
+ { owner = "0x00454A50", site = "0x00454B66", target = "0x00454950", target_status = "matching" },
+]

@@ -1865,3 +1865,4 @@ BattleInfoRecord_update_runtime,0x0046FF30,function
 SystemEffectManager_spawn,0x00458340,function
 CScenarioData_install_character,0x00456EB0,function
 BgmBufferRuntime_set_volume,0x00401830,function
+ScenarioResultResource_update,0x00454A50,function

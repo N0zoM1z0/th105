@@ -1680,3 +1680,4 @@ BattleInfoRecord_update_runtime
 SystemEffectManager_spawn
 CScenarioData_install_character
 BgmBufferRuntime_set_volume
+ScenarioResultResource_update
