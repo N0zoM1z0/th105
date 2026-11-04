@@ -162,7 +162,7 @@ case 805: {
     short phase=S(0x13e);if(phase!=6 && phase!=7 && (S(0x174)<-500 || FIELD(OWNER,short,0x174)<=0)) select_sequence(6);
     switch(S(0x13e)) {
     case 0: {
-        MOTION->set_components(PARAM[0],PARAM[1]);float *parameters=PARAM;parameters[1]-=2.0;if(parameters[1]<0.0f) {parameters[1]=0.0f;next_sequence_block();return;}MOVE();double currentY=F(0xf0);if(!(stage_surface_height()<=currentY)) F(0xf0)=stage_surface_height();break;
+        MOTION->set_components(PARAM[0],PARAM[1]);float *parameters=PARAM;parameters[1]-=2.0;if(parameters[1]<0.0f) {parameters[1]=0.0f;next_sequence_block();return;}MOVE();double currentY=F(0xf0);if(stage_surface_height()>currentY) F(0xf0)=stage_surface_height();break;
     }
     case 1: {
         if(I(0x144)>=60) {next_sequence_block();return;}void *owner=OWNER;short action=FIELD(owner,short,0x13c);if((action==410 || action==411 || action==412 || action==414 || action==415 || action==416) && FIELD(owner,short,0x13e)==1) {next_sequence_block();S(0x366)=1;return;}break;

@@ -85,3 +85,15 @@ exceptions or the entire callable.
 
 The 62,278-byte callable remains nonexact from +37 (candidate section tail
 62,960 bytes), and this checkpoint adds no exact credit.
+
+## Action 805 surface clamp, 2026-11-04
+
+Native `0x004FE6BA..0x004FE6C8` clamps Y only when the surface is ordered
+and greater than the saved current Y (`AH & 0x41` skips the clamp). The prior
+negated `surface <= currentY` also clamped on an unordered comparison. The
+source now uses ordered `surface > currentY`; fresh VC8 emits the same local
+status mask and skip branch at `0x1BBD..0x1BC6`. This observation does not
+assert whole-root or unmasked-exception equivalence.
+
+The 62,278-byte callable remains nonexact from +37; the candidate section
+tail is 62,960 bytes. No exact credit is added.
