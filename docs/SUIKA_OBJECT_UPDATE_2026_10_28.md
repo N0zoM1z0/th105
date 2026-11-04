@@ -77,3 +77,18 @@ Private preparation: `.analysis/frontier-5b0460-20261028/`.
 Only source/mapping ledgers advance. `matches.csv` is unchanged, and unchanged
 accepted units retain their incremental receipts. No shared ABI/profile/binding
 was modified and no full corpus rebuild was needed.
+
+## Actions 821, 857 and 910 motion gates, 2026-11-04
+
+Seven native paths compare the surface with the QWORD next Y and branch to
+continued motion on `AH & 1`, followed by the frame-count gate. Their status
+tests are at `0x005B491B`, `0x005B5313`, `0x005B70A1`, `0x005B7968`,
+`0x005B7C33`, `0x005B93F5` and `0x005B9D56`. Unordered comparisons also
+take that motion branch. The earlier ordered `surface < nextY` instead fell
+through to the impact path on NaN. The seven conditions now use the negated
+ordered `surface >= nextY`, preserving the native unordered path. Fresh VC8
+emits the same local status mask, branch and frame-count check at all seven
+sites. This does not assert whole-function or unmasked-exception equivalence.
+
+The 52,190-byte callable remains nonexact from +17; the candidate section
+tail is 53,204 bytes. No exact credit is added.

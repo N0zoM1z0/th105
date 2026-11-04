@@ -333,7 +333,7 @@ case 821: {
     case 0: {
         F(0x12c)-=2.0;if(emit_repeated(1,4,4)) RETIRE();advance_six(0);advance_phase(1);
         if(I(0x144)%5==0) {float packet[3]={RF(360),0.0f,2.0f};double centerY=F(0xf0)+100.0;double centerX=F(0xec)+100.0;spawn_unparented(821,static_cast<float>(centerX-static_cast<double>(RF(200))),static_cast<float>(centerY-static_cast<double>(RF(200))),B(0x104),1,packet,3);}
-        F(0xf8)-=static_cast<double>(0.8f);double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(stage_surface_height()<nextY || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
+        F(0xf8)-=static_cast<double>(0.8f);double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(!(stage_surface_height()>=nextY) || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
         WAVE(24);float packet[3];int count=7;
         do {packet[0]=-RF(180);packet[1]=static_cast<float>(static_cast<double>(RF(3))+10.0);packet[2]=3.0f;double centerX=F(0xec)+100.0;spawn_unparented(821,static_cast<float>(centerX-static_cast<double>(RF(200))),F(0xf0),B(0x104),1,packet,3);}while(--count);
         do {packet[0]=static_cast<float>(static_cast<double>(count)+30.0);packet[1]=static_cast<float>(static_cast<double>(RF(5))+10.0);packet[2]=4.0f;if(packet[0]<0.0f || packet[0]>180.0f) spawn_unparented(821,F(0xec),F(0xf0),B(0x104),-1,packet,3);else spawn_unparented(821,F(0xec),F(0xf0),B(0x104),1,packet,3);count+=60;}while(count<360);
@@ -357,7 +357,7 @@ case 821: {
         if(emit_repeated(0,0,4)) RETIRE();advance_six(3);advance_phase(1);
         if(C(0x184)>0) {
             if(I(0x144)%10==0) {float packet[3]={RF(360),0.0f,7.0f};double centerY=F(0xf0)+20.0;double centerX=F(0xec)+20.0;spawn_unparented(821,static_cast<float>(centerX-static_cast<double>(RF(40))),static_cast<float>(centerY-static_cast<double>(RF(40))),B(0x104),1,packet,3);}
-            F(0xf8)-=0.5;double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(stage_surface_height()<nextY || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
+            F(0xf8)-=0.5;double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(!(stage_surface_height()>=nextY) || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
             WAVE(24);float packet[3]={0.0f,0.0f,8.0f};spawn_unparented(821,F(0xec),F(0xf0),B(0x104),1,packet,3);
             for(int count=4;count!=0;--count) {packet[0]=-RF(180);packet[1]=static_cast<float>(static_cast<double>(RF(3))+5.0);packet[2]=3.0f;double centerY=F(0xf0)+10.0;double centerX=F(0xec)+10.0;spawn_unparented(821,static_cast<float>(centerX-static_cast<double>(RF(20))),static_cast<float>(centerY-static_cast<double>(RF(20))),B(0x104),1,packet,3);}RETIRE();
         }else {
@@ -548,7 +548,7 @@ case 857: {
     case 0: {
         F(0x12c)-=2.0;advance_six(0);advance_phase(5);
         if(I(0x144)%5==0) {float packet[3]={RF(360),0.0f,2.0f};double centerY=F(0xf0)+100.0;double centerX=F(0xec)+100.0;spawn_unparented(857,static_cast<float>(centerX-static_cast<double>(RF(200))),static_cast<float>(centerY-static_cast<double>(RF(200))),B(0x104),1,packet,3);}
-        F(0xf8)-=static_cast<double>(0.8f);double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(stage_surface_height()<nextY || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
+        F(0xf8)-=static_cast<double>(0.8f);double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(!(stage_surface_height()>=nextY) || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
         WAVE(24);float packet[3];int count=7;
         do {packet[0]=-RF(180);packet[1]=static_cast<float>(static_cast<double>(RF(3))+10.0);packet[2]=3.0f;double centerX=F(0xec)+100.0;spawn_unparented(857,static_cast<float>(centerX-static_cast<double>(RF(200))),F(0xf0),B(0x104),1,packet,3);}while(--count);
         do {packet[0]=static_cast<float>(static_cast<double>(count)+30.0);packet[1]=static_cast<float>(static_cast<double>(RF(5))+10.0);packet[2]=4.0f;if(packet[0]<0.0f || packet[0]>180.0f) spawn_unparented(857,F(0xec),F(0xf0),B(0x104),-1,packet,3);else spawn_unparented(857,F(0xec),F(0xf0),B(0x104),1,packet,3);count+=60;}while(count<360);
@@ -571,7 +571,7 @@ case 857: {
         advance_six(3);advance_phase(1);
         if(C(0x184)>0) {
             if(I(0x144)%10==0) {float packet[3]={RF(360),0.0f,7.0f};double centerY=F(0xf0)+20.0;double centerX=F(0xec)+20.0;spawn_unparented(857,static_cast<float>(centerX-static_cast<double>(RF(40))),static_cast<float>(centerY-static_cast<double>(RF(40))),B(0x104),1,packet,3);}
-            F(0xf8)-=0.25;double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(stage_surface_height()<nextY || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
+            F(0xf8)-=0.25;double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(!(stage_surface_height()>=nextY) || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
             WAVE(24);float packet[3]={0.0f,0.0f,8.0f};spawn_unparented(857,F(0xec),F(0xf0),B(0x104),1,packet,3);
             for(int count=4;count!=0;--count) {packet[0]=-RF(180);packet[1]=static_cast<float>(static_cast<double>(RF(3))+5.0);packet[2]=3.0f;double centerY=F(0xf0)+10.0;double centerX=F(0xec)+10.0;spawn_unparented(857,static_cast<float>(centerX-static_cast<double>(RF(20))),static_cast<float>(centerY-static_cast<double>(RF(20))),B(0x104),1,packet,3);}RETIRE();
         }else {
@@ -580,7 +580,7 @@ case 857: {
     case 9: {
         F(0x12c)-=2.0;advance_six(0);advance_phase(5);
         if(I(0x144)%5==0) {float packet[3]={RF(360),0.0f,2.0f};double centerY=F(0xf0)+100.0;double centerX=F(0xec)+100.0;spawn_unparented(857,static_cast<float>(centerX-static_cast<double>(RF(200))),static_cast<float>(centerY-static_cast<double>(RF(200))),B(0x104),1,packet,3);}
-        F(0xf8)-=0.5;double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(stage_surface_height()<nextY || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
+        F(0xf8)-=0.5;double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(!(stage_surface_height()>=nextY) || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
         WAVE(24);float packet[3];int count=7;
         do {packet[0]=-RF(180);packet[1]=static_cast<float>(static_cast<double>(RF(3))+10.0);packet[2]=3.0f;double centerX=F(0xec)+100.0;spawn_unparented(857,static_cast<float>(centerX-static_cast<double>(RF(200))),F(0xf0),B(0x104),1,packet,3);}while(--count);
         do {packet[0]=static_cast<float>(static_cast<double>(count)+30.0);packet[1]=static_cast<float>(static_cast<double>(RF(5))+10.0);packet[2]=4.0f;if(packet[0]<0.0f || packet[0]>180.0f) spawn_unparented(857,F(0xec),F(0xf0),B(0x104),-1,packet,3);else spawn_unparented(857,F(0xec),F(0xf0),B(0x104),1,packet,3);count+=60;}while(count<360);
@@ -676,7 +676,7 @@ case 910: {
         if(FIELD(entryOwner,short,0x174)<=0) {float packet[3];for(int count=5;count!=0;--count) {packet[0]=-RF(180);packet[1]=static_cast<float>(static_cast<double>(RF(3))+10.0);packet[2]=3.0f;double centerX=F(0xec)+100.0;spawn_unparented(910,static_cast<float>(centerX-static_cast<double>(RF(200))),F(0xf0),B(0x104),1,packet,3);}RETIRE();}
         advance_six(0);advance_phase(0);
         if(I(0x144)%10==0) {float packet[3]={RF(360),0.0f,2.0f};double centerY=F(0xf0)+100.0;double centerX=F(0xec)+100.0;spawn_unparented(910,static_cast<float>(centerX-static_cast<double>(RF(200))),static_cast<float>(centerY-static_cast<double>(RF(200))),B(0x104),1,packet,3);}
-        F(0xf8)-=static_cast<double>(0.8f);double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(stage_surface_height()<nextY || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
+        F(0xf8)-=static_cast<double>(0.8f);double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(!(stage_surface_height()>=nextY) || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
         WAVE(24);float packet[3];int count=4;
         do {packet[0]=-RF(180);packet[1]=static_cast<float>(static_cast<double>(RF(3))+10.0);packet[2]=3.0f;double centerX=F(0xec)+100.0;spawn_unparented(910,static_cast<float>(centerX-static_cast<double>(RF(200))),F(0xf0),B(0x104),1,packet,3);}while(--count);
         do {packet[0]=static_cast<float>(static_cast<double>(count)+30.0);packet[1]=static_cast<float>(static_cast<double>(RF(5))+10.0);packet[2]=4.0f;if(packet[0]<0.0f || packet[0]>180.0f) spawn_unparented(910,F(0xec),F(0xf0),B(0x104),-1,packet,3);else spawn_unparented(910,F(0xec),F(0xf0),B(0x104),1,packet,3);count+=60;}while(count<180);
@@ -702,7 +702,7 @@ case 910: {
         advance_six(5);advance_phase(1);
         if(C(0x184)>0) {
             if(I(0x144)%10==0) {float packet[3]={RF(360),0.0f,7.0f};double centerY=F(0xf0)+20.0;double centerX=F(0xec)+20.0;spawn_unparented(910,static_cast<float>(centerX-static_cast<double>(RF(40))),static_cast<float>(centerY-static_cast<double>(RF(40))),B(0x104),1,packet,3);}
-            F(0xf8)-=0.5;double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(stage_surface_height()<nextY || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
+            F(0xf8)-=0.5;double nextY=static_cast<double>(F(0xf8))+F(0xf0);if(!(stage_surface_height()>=nextY) || I(0x144)<2) {F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;}
             WAVE(24);float packet[3]={0.0f,0.0f,8.0f};spawn_unparented(910,F(0xec),F(0xf0),B(0x104),1,packet,3);
             for(int count=3;count!=0;--count) {packet[0]=-RF(180);packet[1]=static_cast<float>(static_cast<double>(RF(3))+5.0);packet[2]=3.0f;double centerY=F(0xf0)+10.0;double centerX=F(0xec)+10.0;spawn_unparented(910,static_cast<float>(centerX-static_cast<double>(RF(20))),static_cast<float>(centerY-static_cast<double>(RF(20))),B(0x104),1,packet,3);}RETIRE();
         }else {
