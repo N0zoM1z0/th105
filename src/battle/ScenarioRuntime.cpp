@@ -108,23 +108,7 @@ namespace th105 {
 
 float __cdecl scenario_text_wave(int value);
 
-struct ScenarioTextEntryRenderViewDC {
-    unsigned int resource_handle_000;
-    CSprite sprite_004;
-    std::string text_098;
-    unsigned char flags_0b4[4];
-    int values_0b8[7];
-    signed char flags_0d4[6];
-    unsigned char reserved_0da[2];
-
-    void render_dynamic();
-    int update_dynamic_state();
-};
-
-typedef char ScenarioTextEntryRenderViewDC_size_must_be_0xdc[
-    sizeof(ScenarioTextEntryRenderViewDC) == 0xdc ? 1 : -1];
-
-void ScenarioTextEntryRenderViewDC::render_dynamic()
+void ScenarioTextEntryDC::render_dynamic()
 {
     if (flags_0d4[5] == 0)
         return;
@@ -147,7 +131,7 @@ void ScenarioTextEntryRenderViewDC::render_dynamic()
 
 namespace th105 {
 
-int ScenarioTextEntryRenderViewDC::update_dynamic_state()
+int ScenarioTextEntryDC::update_dynamic_state()
 {
     if (flags_0d4[2]) {
         if (values_0b8[5] > 0)

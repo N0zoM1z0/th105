@@ -285,3 +285,17 @@ classified as compiler-generated, not authored; it adds no authored exact bytes.
 The interpreter remains an unselected source hypothesis: the fresh 5,368-byte
 root section still blocks at an unresolved string constructor, and no full-body
 comparison or general behavioral equivalence is asserted.
+
+## Shared text-entry owner, 2026-11-04
+
+The existing exact `render_dynamic` and `update_dynamic_state` functions now
+belong to the real shared `ScenarioTextEntryDC` type rather than a duplicate
+layout view. The unselected interpreter calls that same update member on its
+actual map value, removing another declaration-only facade. Fresh builds and
+comparisons preserve 22 accepted functions across the directly affected source
+units, including both exact text-entry functions. The new map lower-bound
+origin witness also revalidates against the revised header.
+
+The interpreter itself still blocks at the same local string constructor and
+its 5,368-byte root section is not an exact comparison. This source-owner
+cleanup adds no authored exact bytes and does not establish full-program linkage.

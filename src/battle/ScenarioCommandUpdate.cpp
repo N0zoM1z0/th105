@@ -54,9 +54,6 @@ struct ScenarioSlotSetupView {
 };
 
 typedef std::map<std::string, ScenarioTextEntryDC> ScenarioTextMap;
-struct ScenarioTextAdvanceView {
-    int update_dynamic_state();
-};
 struct ScenarioUpdateOperations {
     void update_list(std::list<ScenarioRenderEntry9C> *);
     void rebuild_text(std::string *);
@@ -123,8 +120,7 @@ signed char ScenarioCommandUpdateView::update()
     operations->update_list(&s.render_entries_344);
     ScenarioTextMap::iterator it = s.text_entries_32c.begin();
     while (it != s.text_entries_32c.end()) {
-        reinterpret_cast<ScenarioTextAdvanceView *>(&it->second)
-            ->update_dynamic_state();
+        it->second.update_dynamic_state();
         ++it;
     }
 

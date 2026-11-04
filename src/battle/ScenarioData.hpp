@@ -145,6 +145,7 @@ struct ScenarioTextEntryDC {
     ScenarioTextEntryDC();
     ~ScenarioTextEntryDC();
     void render_dynamic();
+    int update_dynamic_state();
 };
 
 typedef char ScenarioTextEntryDC_size_must_be_0xdc[
