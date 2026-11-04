@@ -37,13 +37,15 @@ def execute(image, code, case, address):
     engine.mem_map(0x400000, (len(image) + 4095) // 4096 * 4096)
     engine.mem_write(0x400000, image)
     engine.mem_write(address, code)
-    if case.get("stop_at_adjust") or case.get("stop_after_adjust"):
+    if case.get("stop_at_adjust") or case.get("stop_after_adjust") or case.get("stop_after_landing_check"):
         # Synthetic tables avoid assuming game initialization; both runs use the same data.
         if case.get("table_kind") == "varying":
             table = b"".join(struct.pack("<f", (i % 17 - 8) / 16.0) for i in range(3600))
         else:
             table = struct.pack("<f", 0.25) * 3600
         engine.mem_write(0x6FE8B0, table)
+    if case.get("stop_after_landing_check"):
+        engine.mem_write(0x6FA898, struct.pack("<f", case.get("ground", 0.0)) * 1280)
     for base in (OWNER, PEER, STACK):
         engine.mem_map(base, 0x10000)
     engine.mem_map(RETURN, 0x1000)
@@ -53,7 +55,9 @@ def execute(image, code, case, address):
         engine.mem_write(OWNER + offset, struct.pack("<" + fmt, value))
 
     for offset, fmt, value in (
-            (0, "I", VTABLE), (0x104, "b", case.get("facing", 1)), (0xF8, "f", -2), (0x100, "f", 0.5),
+            (0, "I", VTABLE), (0x104, "b", case.get("facing", 1)),
+            (0xEC, "f", case.get("x", 0.0)), (0xF0, "f", case.get("y", 0.0)),
+            (0xF8, "f", -2), (0x100, "f", 0.5),
             (0x13C, "h", 214), (0x13E, "h", case["sequence"]), (0x140, "h", 1),
             (0x142, "h", 0), (0x144, "i", 1), (0x14C, "h", 3),
             (0x170, "I", PEER), (0x174, "h", 100), (0x482, "h", case.get("counter", 1)),
@@ -73,15 +77,20 @@ def execute(image, code, case, address):
 
     def observe(uc, location, size, unused):
         if (location == FRAME_HELPER or
-            ((case.get("stop_at_adjust") or case.get("stop_after_adjust")) and location in (0x4063D0, 0x406360)) or
-            (case.get("stop_after_adjust") and location == 0x46BF30)):
+            ((case.get("stop_at_adjust") or case.get("stop_after_adjust") or case.get("stop_after_landing_check")) and location in (0x4063D0, 0x406360)) or
+            ((case.get("stop_after_adjust") or case.get("stop_after_landing_check")) and location == 0x46BF30) or
+            (case.get("stop_after_landing_check") and location in (0x5F9310, 0x435D60))):
             trace.append(hex(location))
         boundary = BOUNDARIES.get(location)
+        if case.get("stop_after_landing_check") and location == 0x5F9310:
+            boundary = None
+        if case.get("stop_after_landing_check") and location == RETURN:
+            boundary = "root_return"
         if case.get("stop_at_cosine") and location == 0x4063D0:
             boundary = "cosine"
         if case.get("stop_at_adjust") and location == 0x46BF30:
             boundary = "adjust"
-        if case.get("stop_after_adjust") and location == 0x45C390:
+        if (case.get("stop_after_adjust") or case.get("stop_after_landing_check")) and location == 0x45C390:
             boundary = "sequence"
         if boundary is not None:
             trace.append(hex(location))
@@ -91,6 +100,8 @@ def execute(image, code, case, address):
                           x87_top=(uc.reg_read(registers.UC_X86_REG_FPSW) >> 11) & 7,
                           x87_tag=uc.reg_read(registers.UC_X86_REG_FPTAG),
                           x87_control=uc.reg_read(registers.UC_X86_REG_FPCW))
+            if boundary == "root_return":
+                result["receiver_offset"] = None
             if boundary == "cosine":
                 sp = uc.reg_read(registers.UC_X86_REG_ESP)
                 result["argument_word"] = struct.unpack("<I", uc.mem_read(sp + 4, 4))[0]

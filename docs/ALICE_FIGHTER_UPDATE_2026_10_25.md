@@ -672,3 +672,16 @@ counter helpers run in both traces; their source implementations are not tested
 here. Tables remain synthetic, the next helper bodies are not executed and no
 full-game or exact-root claim follows. Run `scripts/repo-python -m unittest
 discover -s tests -p 'test_alice_action214*.py'`.
+
+### Through landing and stage height
+
+A further bounded observer executes the native landing predicate `0x005F9310`
+and its actual stage-height lookup `0x00435D60` after the previously tested
+frame, angle and counter helpers. On 648 combinations of direction, turning
+rate, synthetic angle tables, height and three x positions, original and
+reconstructed roots agree with an independent model; 96 reach the landed
+scratch-reset boundary and the rest return from the root. An inverted landing
+branch mutation is detected. The stage-height table is synthetic and flat,
+and the chosen sequences avoid earlier sequence transitions. The scratch
+reset/action body, real stage initialization and full game remain untested.
+This does not select the source or change strict exact-byte credit.
