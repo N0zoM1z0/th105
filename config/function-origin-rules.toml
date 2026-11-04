@@ -7322,3 +7322,18 @@ evidence = "CNetworkClient RTTI slot owns the complete locked snapshot-import po
 required_rtti_virtual_bodies = [
  { address = "0x0044F200", size = 399, sha256 = "e29370f519dcd44e027f0c2efeb8fdb16b8aa2867a0c60edaff88c80f8421ae8", slot = "0x006C176C", col_slot = "0x006C1750", col = "0x006D80BC", type_descriptor = "0x006E6924", type_name_contains = "CNetworkClient@@", calls = [{ site = "0x0044F233", target = "0x0040AC30" }, { site = "0x0044F2A2", target = "0x0042B6B0" }, { site = "0x0044F33F", target = "0x00431E50" }, { site = "0x0044F374", target = "0x0040AC40" }] },
 ]
+
+[[rules]]
+id = "menu-practice-update-authored-106a"
+addresses = ["0x00445D90"]
+expected_count = 1
+expected_bytes = 381
+expected_names = ["sub_445D90"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "CMenuPractice RTTI virtual slot owns the complete cursor, settings, confirm/cancel and color update policy. Compiling source remains unselected because a locally emitted vector size helper has no proven target binding. No source-present or exact credit. docs/MENU_PRACTICE_UPDATE_2026_11_04.md."
+required_rtti_virtual_bodies = [
+ { address = "0x00445D90", size = 381, sha256 = "8a872b57510ed2ace1834a170611146056ed95ae67413d6a184131d623f09a64", slot = "0x006C1FA0", col_slot = "0x006C1F94", col = "0x006D83FC", type_descriptor = "0x006E6CF0", type_name_contains = "CMenuPractice@@", calls = [{ site = "0x00445DAB", target = "0x0043F450" }, { site = "0x00445DDB", target = "0x00445C80" }, { site = "0x00445E79", target = "0x0043ABD0" }] },
+]

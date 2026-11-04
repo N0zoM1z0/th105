@@ -1440,7 +1440,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00445830,authored_game,ui,authored,observed,canonical-exact-authored
 0x00445BA0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00445C80,authored_game,ui,authored,observed,canonical-exact-authored
-0x00445D90,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00445D90,authored_game,ui,authored,observed,menu-practice-update-authored-106a
 0x00445F10,compiler_generated,input,exclude,observed,vc8-generated-direct-input-vectors-106a
 0x004460D0,compiler_generated,runtime,exclude,observed,score-vector-default-constructor-106a
 0x004460E0,compiler_generated,input,exclude,observed,vc8-generated-direct-input-vectors-106a

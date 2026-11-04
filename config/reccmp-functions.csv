@@ -1890,3 +1890,4 @@ CMenuConnect_render,0x004418D0,function
 CNetworkClient_advance_frame,0x0044EAD0,function
 CTitle_render,0x00425740,function
 CNetworkClient_import_snapshot,0x0044F200,function
+CMenuPractice_update,0x00445D90,function

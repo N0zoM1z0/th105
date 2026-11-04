@@ -30607,3 +30607,24 @@ dir32_targets = [
  "__ehhandler$?import_snapshot@ClientImportView@th105@@UAEXPBUNetworkImportPacket@2@@Z=__ehhandler$?import_snapshot@CNetworkClientSnapshotView@th105@@QAEXPBUNetworkClientWire40@2@@Z",
  "___security_cookie=___security_cookie",
 ]
+
+[units.exact-first-menu-practice-update]
+kind = "probe"
+source = "src/ui/MenuPracticeUpdate.cpp"
+object = "build/match-units/ExactFirst_MenuPracticeUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Compiling practice menu update hypothesis; strict compare blocked by local vector size helper."
+
+[[units.exact-first-menu-practice-update.functions]]
+address = "0x00445D90"
+symbol_base = "?update@CMenuPractice@th105@@UAE_NXZ"
+rel32_targets = [
+ "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+ "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+ "_dispatch_indexed_event=0x0043B1A0",
+ "?configure_subcursor@CMenuPractice@th105@@QAEXH@Z=0x00445C80",
+ "_is_menu_initial_press=0x0043ABD0",
+ "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
