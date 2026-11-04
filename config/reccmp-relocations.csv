@@ -3883,3 +3883,4 @@ __ehhandler$?install_character@CScenarioData@th105@@QAEXV?$basic_string@DU?$char
 __real@c084000000000000,0x006C2718,00000000000084c0,0,Scenario result phase update uses native IEEE-754 double -640.0; target literal bytes attested,literal
 __imp__SetRect@20,0x006C020C,76532e00,0,TH105 1.06a PE import table identifies USER32 SetRect at this IAT slot; canonical thunk bytes attested,literal
 __ehhandler$?update_primary_selection@CMenuSelect@th105@@AAE_NXZ,0x006B9C77,8b5424088d42ec8b4ae833c8e89d00fd,0,Native 447D20 prologue references this handler; only the 16-byte prefix is attested and no full exception metadata equivalence is claimed.,address
+??_C@_08BNKBACAD@profile?1?$AA@,0x006C1230,70726f66696c652f00,0,Profile loader target literal profile directory prefix including terminating NUL; original 1.06a bytes attested 2026-11-04,literal

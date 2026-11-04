@@ -536,3 +536,8 @@ not start for the unregistered match; do not award exact credit. See
 159/159 in two separately compiled objects after using direct vector endpoints.
 Independent Factory acceptance remains pending, so no exact credit is recorded.
 See `docs/SCORE_SEQUENCE_RESULT_2026_11_04.md`.
+
+2026-11-04: `PlayerSlotRecord::load_profile @ 0x00431AC0` uses natural indexed
+deck access and has a reproducible probe: 728/native728, with only two resolved
+operand bytes differing at +540/+543. It remains nonexact; full EH is unproven.
+See `docs/PLAYER_SLOT_PROFILE_LOAD_2026_11_04.md`.

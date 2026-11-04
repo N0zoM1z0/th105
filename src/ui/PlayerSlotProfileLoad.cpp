@@ -81,24 +81,20 @@ bool PlayerSlotRecord::load_profile(const char *path)
     ReadFile(reader.file, &data->flag_13c, 1, &reader.bytes_read, 0);
     ReadFile(reader.file, &data->flag_1a8, 1, &reader.bytes_read, 0);
 
-    std::deque<unsigned short> *deck = data->decks_1ac;
-    int remaining = 20;
-    while (remaining != 0) {
+    for (int deck_index = 0; deck_index < 20; ++deck_index) {
         unsigned char count;
         ReadFile(reader.file, &count, 1, &reader.bytes_read, 0);
-        deck->clear();
+        data->decks_1ac[deck_index].clear();
         for (int index = 0; index < count; ++index) {
             unsigned short value = 0;
-            deck->push_back(value);
+            data->decks_1ac[deck_index].push_back(value);
             ReadFile(
                 reader.file,
-                &deck->back(),
+                &data->decks_1ac[deck_index].back(),
                 2,
                 &reader.bytes_read,
                 0);
         }
-        ++deck;
-        --remaining;
     }
 
     return true;

@@ -30657,3 +30657,29 @@ dir32_targets = [
  "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenuFrameView@th105@@V?$allocator@PAUUiSelectionMenuFrameView@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
  "_g_active_menu_input=_g_active_menu_input",
 ]
+
+[units.exact-first-player-slot-profile-load]
+kind = "probe"
+source = "src/ui/PlayerSlotProfileLoad.cpp"
+object = "build/match-units/ExactFirst_PlayerSlotProfileLoad.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete player profile load; natural indexed deck loop emits 728/728 bytes but checked deque loads differ in order. No exact or full EH credit."
+
+[[units.exact-first-player-slot-profile-load.functions]]
+address = "0x00431AC0"
+symbol_base = "?load_profile@PlayerSlotRecord@th105@@QAE_NPBD@Z"
+rel32_targets = [
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+ "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
+ "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@PBDABV10@@Z=0x00429970",
+ "??3@YAXPAX@Z=0x006898EA",
+ "?normalize_profile_name@PlayerSlotProfileDataView@th105@@QAEXXZ=0x00431690",
+ "?_Tidy@?$deque@GV?$allocator@G@std@@@std@@IAEXXZ=0x00420A80",
+ "?push_back@?$deque@GV?$allocator@G@std@@@std@@QAEXABG@Z=0x0042AA90",
+ "__invalid_parameter_noinfo=0x0068A143",
+ "@__security_check_cookie@4=0x00689D25",
+]
+dir32_targets = [
+ "??_7PlayerSlotProfileFileReaderView@th105@@6B@=??_7CFileReader@th105@@6B@",
+]
