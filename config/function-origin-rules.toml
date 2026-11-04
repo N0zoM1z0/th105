@@ -6859,3 +6859,24 @@ required_selected_body_calls = [
  { owner = "0x00454A50", site = "0x00454B3C", target = "0x00406480", target_status = "matching" },
  { owner = "0x00454A50", site = "0x00454B66", target = "0x00454950", target_status = "matching" },
 ]
+
+[[rules]]
+id = "system-effect-tracked-update-authored-106a"
+addresses = ["0x00456D70"]
+expected_count = 1
+expected_bytes = 201
+expected_names = ["sub_456D70"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete SystemEffect manager update-and-prune policy invokes the given actual member pointer on each tracked game object, retains live objects, releases dead handles and erases their checked-list nodes. Scenario command update calls it with the verified update thunk; exact SystemEffect handle release is pinned. Source201/native201 remains nonexact; no exact credit."
+required_body_hashes = [
+ { address = "0x00456D70", size = 201, sha256 = "3d388c3213b3e439b25969e50cbc0a28982fa4e44133e2d618c5db2e7846cba5" },
+]
+required_direct_edges = [
+ { caller = "0x00458440", site = "0x00458498", target = "0x00456D70", caller_status = "identified" },
+]
+required_selected_body_calls = [
+ { owner = "0x00456D70", site = "0x00456DF4", target = "0x0056D8F0", target_status = "matching" },
+]

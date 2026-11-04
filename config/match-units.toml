@@ -30285,3 +30285,20 @@ rel32_targets = [
  "?reset@ScenarioResultResource@th105@@QAEXXZ=0x004549E0",
  "?set_entry_level@ScenarioResultResource@th105@@QAEXHH@Z=0x00454950",
 ]
+
+[units.gpt-web-system-effect-tracked-update]
+kind = "probe"
+source = "src/battle/SystemEffectTrackedUpdate.cpp"
+object = "build/match-units/GptWeb_SystemEffectTrackedUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "System-effect tracked update/prune 0x00456D70, real member pointer and checked list; source201/native201 remains nonexact. No exact credit."
+
+[[units.gpt-web-system-effect-tracked-update.functions]]
+address = "0x00456D70"
+symbol_base = "?update_and_prune@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEXP8SystemEffectObjectBase@@AEXXZ@Z"
+rel32_targets = [
+ "__invalid_parameter_noinfo=0x0068A143",
+ "?release_handle@?$CHandleManagerEx@VSystemEffectObject@@@@QAEXI@Z=0x0056D8F0",
+ "??3@YAXPAX@Z=0x006898EA",
+]
