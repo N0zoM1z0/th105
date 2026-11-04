@@ -50,6 +50,15 @@ class ScriptNextCommandRealCilTests(unittest.TestCase):
                         iterator_owner=owner, stop_at_invalid=True),
                         ("invalid_parameter", case[2]))
 
+    def test_wrapped_logical_range_reaches_invalid_parameter(self):
+        # offset + size overflows 32 bits; the handler is observed, not run.
+        for cursor in (0xfffffffe, 0xffffffff, 0, 1):
+            for native in (True, False):
+                with self.subTest(cursor=cursor, native=native):
+                    self.assertEqual(observer.execute(self.images, native,
+                        0xfffffffe, 3, cursor, stop_at_invalid=True),
+                        ("invalid_parameter", cursor))
+
     def test_cursor_before_deque_offset_is_not_rejected_on_these_paths(self):
         # Observation only: a cursor before the live range is not a valid iterator.
         for native in (True, False):

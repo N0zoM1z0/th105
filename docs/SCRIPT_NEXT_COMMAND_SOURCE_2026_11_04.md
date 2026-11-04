@@ -59,3 +59,7 @@ slots with a three-command deque, at each live cursor and end. Both actual
 images agree with the independent model over these 64 layouts/cursor pairs;
 this remains a bounded test of the fixed four-block fixture, not an exhaustive
 proof of all deque configurations.
+
+A malformed logical range whose 32-bit start plus length wraps also reaches
+the invalid-parameter entry in both images, for four cursor values around the
+wrap point. The test stops at that entry and does not execute the handler.
