@@ -232,7 +232,7 @@ public:
                 float p[3]={0.0f,0.0f,0.0f};spawn(826,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),-1,p,3);
                 p[1]=15.0f;p[2]=1.0f;
                 for(float n=0.0f;n<6.0f;n=static_cast<float>(n+1.0)){
-                    p[0]=static_cast<float>(static_cast<double>(remilia_random(30))+n*60.0+30.0);
+                    p[0]=static_cast<float>(static_cast<double>(remilia_random(30))+(n*60.0+30.0));
                     if(p[0]<0.0f || p[0]>180.0f)spawn(826,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),-1,p,3);
                     else spawn(826,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);
                 }

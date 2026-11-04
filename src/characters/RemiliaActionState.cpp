@@ -409,7 +409,7 @@ case 720:
         if(static_cast<unsigned char>(crossed())){
             next_sequence_block();layout(8.0f);dispatch_character_wave_handle(57);F(0xf0)=remilia_surface(this);F(0xf4)=-15.0f;F(0xf8)=15.0f;F(0x100)=0.4f;
             float p[3]={0.0f,0.0f,0.0f};spawn(901,F(0xec),F(0xf0),B(0x104),-1,p,3);p[1]=25.0f;p[2]=1.0f;
-            for(float n=0.0f;n<8.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(static_cast<double>(remilia_random(30))+n*45.0+30.0);
+            for(float n=0.0f;n<8.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(static_cast<double>(remilia_random(30))+(n*45.0+30.0));
                 if(p[0]<0.0f || p[0]>180.0f)spawn(901,F(0xec),F(0xf0),B(0x104),-1,p,3);else spawn(901,F(0xec),F(0xf0),B(0x104),1,p,3);}
             p[0]=0.0f;p[1]=35.0f;p[2]=4.0f;
             spawn(901,static_cast<float>(50*facing()+static_cast<double>(F(0xec))),F(0xf0),B(0x104),1,p,3);

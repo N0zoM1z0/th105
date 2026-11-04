@@ -139,3 +139,18 @@ physical-call residual remains. Final full payload is 62,912 versus 63,316.
 This is an independent native instruction witness, not an automatic transfer
 of Komachi's different scalar-angle cause. No packet padding, dummy locals,
 register forcing, or compiler-flag change is used.
+
+## Diving ring angle grouping, 2026-11-04
+
+The native 565 and 566 loops at `0x0054DA16..0x0054DA32` and
+`0x0054DF13..0x0054DF2F`, and action 720 at
+`0x00550E95..0x00550EB1`, form the loop-angle product plus 30.0 before
+adding the converted random value. The two corresponding source expressions
+now preserve this grouping, and the fresh VC8 object emits the same x87
+multiply/add/add-stack sequence. The bounded integer loop and random values
+are exactly representable, so this is a source-structure correction rather
+than a claimed gameplay change.
+
+The complete `0x00545090` callable remains nonexact, first mismatch +18;
+the candidate section tail is 62,912 bytes against the 61,962-byte callable.
+It remains unselected and adds no exact credit.
