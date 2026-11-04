@@ -1030,7 +1030,7 @@ address = "0x0045A450"
 symbol_base = "dispatch_owned_string_458e80"
 rel32_targets = [
   "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
-  "?dispatch@ScenarioStringDispatchTarget@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00455490",
+  "?select_label@CScenarioData@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00455490",
   "operator_delete=0x006898EA",
 ]
 dir32_targets = [
@@ -24357,16 +24357,16 @@ notes = "Complete455490 owned-string label search; real checked pointer deque it
 
 [[units.exact-first-scenario-label-selection.functions]]
 address = "0x00455490"
-symbol_base = "?select_label@ScenarioLabelOwnerView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
+symbol_base = "?select_label@CScenarioData@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z"
 rel32_targets = [
- "?next_command@ScenarioLabelScriptView@th105@@QAEPAVCCommandBase@@XZ=0x00405AC0",
+ "?next_command@CScript@@QAEPAVCCommandBase@@XZ=0x00405AC0",
  "?compare@?$char_traits@D@std@@SAHPBD0I@Z=0x00405560",
  "__invalid_parameter_noinfo=0x0068A143",
  "??3@YAXPAX@Z=0x006898EA",
 ]
 dir32_targets = [
  "___security_cookie=___security_cookie",
- "__ehhandler$?select_label@ScenarioLabelOwnerView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_scenario_label_selection_eh",
+ "__ehhandler$?select_label@CScenarioData@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=_scenario_label_selection_eh",
 ]
 
 [units.exact-first-select-destructor]

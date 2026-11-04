@@ -189,6 +189,7 @@ public:
     int load_story_page_4583e0(const char *path);
     signed char advance_until_ready_454f10();
     void reset_runtime_state();
+    unsigned char select_label(std::string label);
     void trim_render_entries_and_begin_fade_455cd0();
 };
 
