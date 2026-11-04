@@ -164,3 +164,19 @@ it does not establish complete gameplay equivalence.
 
 The full 58,619-byte callable remains nonexact from +8, with a 59,456-byte
 candidate section tail. It is unselected and adds no exact credit.
+
+## Action 562 ordered landing gate, 2026-11-04
+
+The native gate at `0x005671C3..0x005671E2` compares surface against next Y,
+then zero against vertical speed. Its status-word tests skip the landing path
+for unordered comparisons as well as for surface below next Y, nonnegative
+speed or sequence index at least five. The previous negated `<` / `>=`
+expression accepted unordered values. The source now states the observed
+ordered `surface >= next_y`, `speed < 0`, `sequence < 5` conditions directly,
+preserving the native check order. Fresh VC8 output emits the same x87 status
+masks (`AH & 1`, then `AH & 0x41`) and skip branches at the corresponding
+gate. This is a bounded instruction/control-flow observation; it does not
+claim complete gameplay or unmasked-exception equivalence.
+
+The full 58,619-byte callable remains nonexact from +8; the candidate section
+tail is 59,456 bytes. No exact-byte credit is added.

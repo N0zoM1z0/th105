@@ -509,7 +509,7 @@ case 561:rush825(11.0f,40,true);return;
 case 562: {
     if(sequence_index_13e==5)landing();B(0x17c)=3;
     F(0xf8)-=F(0x100);double next_y=F(0xf8)+static_cast<double>(F(0xf0));
-    if(!(yuyuko_surface(this)<next_y || F(0xf8)>=0.0f || sequence_index_13e>=5)){select_sequence(5);F(0x100)=0.0f;B(0x47f)=0;F(0xf0)=yuyuko_surface(this);zero_motion();return;}
+    if(yuyuko_surface(this)>=next_y && F(0xf8)<0.0f && sequence_index_13e<5){select_sequence(5);F(0x100)=0.0f;B(0x47f)=0;F(0xf0)=yuyuko_surface(this);zero_motion();return;}
     if(sequence_index_13e<2 && !I(0x6c4))B(0x750)=0;
     if(S(0x730)>0 && (sequence_index_13e==2 || sequence_index_13e==3)) {
         if(S(0x730)%4==1) {
