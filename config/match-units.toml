@@ -30316,3 +30316,16 @@ address = "0x00440FF0"
 symbol_base = "?update_secondary_for_primary@CMenuConfigUpdateView@th105@@QAEXH@Z"
 rel32_targets = ["?bind_horizontal@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z=0x004204E0"]
 dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
+
+[units.gpt-web-input-raw-counters]
+kind = "probe"
+source = "src/input/InputPipeline.cpp"
+object = "build/match-units/GptWeb_InputRawCounters.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "CInputManager raw gamepad/keyboard counter update 0x00409DA0; ordinary source406/native407 remains nonexact. No fake zero/mask locals or exact credit."
+
+[[units.gpt-web-input-raw-counters.functions]]
+address = "0x00409DA0"
+symbol_base = "?update_player_input_counters_from_raw@CInputManager@th105@@UAEXXZ"
+rel32_targets = ["?get_gamepad_state@DirectInputBackend@th105@@QAEPAURawGamepadState@2@H@Z=0x0040D990"]

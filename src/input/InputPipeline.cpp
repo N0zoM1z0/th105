@@ -10,111 +10,102 @@ void CInputManager::update_player_input_counters_from_raw()
     if (source_id >= 0) {
         RawGamepadState *state =
             g_direct_input_backend.get_gamepad_state(source_id);
-        int zero = 0;
-        if (state == reinterpret_cast<RawGamepadState *>(zero))
+        if (state == 0)
             return;
 
         if (state->x < -500) {
-            if (hold.horizontal > zero)
-                hold.horizontal = zero;
+            if (hold.horizontal > 0)
+                hold.horizontal = 0;
             --hold.horizontal;
         } else if (state->x > 500) {
-            if (hold.horizontal < zero)
-                hold.horizontal = zero;
+            if (hold.horizontal < 0)
+                hold.horizontal = 0;
             ++hold.horizontal;
         } else {
-            hold.horizontal = zero;
+            hold.horizontal = 0;
         }
 
         if (state->y < -500) {
-            if (hold.vertical > zero)
-                hold.vertical = zero;
+            if (hold.vertical > 0)
+                hold.vertical = 0;
             --hold.vertical;
         } else if (state->y > 500) {
-            if (hold.vertical < zero)
-                hold.vertical = zero;
+            if (hold.vertical < 0)
+                hold.vertical = 0;
             ++hold.vertical;
         } else {
-            hold.vertical = zero;
+            hold.vertical = 0;
         }
 
-        int *counter = hold.buttons;
-        int remaining = 8;
-        do {
-            int binding = counter[-10];
-            if (binding >= zero)
-                if (state->buttons[binding] != zero)
-                    ++*counter;
+        for (int i = 0; i < 8; ++i) {
+            int binding = bindings.buttons[i];
+            if (binding >= 0) {
+                if (state->buttons[binding] != 0)
+                    ++hold.buttons[i];
                 else
-                    *counter = zero;
-            ++counter;
-        } while (--remaining != 0);
+                    hold.buttons[i] = 0;
+            }
+        }
         return;
     }
 
     if (source_id == -1) {
-        int zero = 0;
-        unsigned char high_bit = 0x80;
-        if (bindings.left >= zero && bindings.right >= zero) {
+        if (bindings.left >= 0 && bindings.right >= 0) {
             if (g_direct_input_backend.raw_keyboard_state[
-                    static_cast<unsigned char>(bindings.left)] & high_bit) {
-                if (hold.horizontal > zero)
-                    hold.horizontal = zero;
+                    static_cast<unsigned char>(bindings.left)] & 0x80) {
+                if (hold.horizontal > 0)
+                    hold.horizontal = 0;
                 --hold.horizontal;
             } else if (
                 g_direct_input_backend.raw_keyboard_state[
-                    static_cast<unsigned char>(bindings.right)] & high_bit) {
-                if (hold.horizontal < zero)
-                    hold.horizontal = zero;
+                    static_cast<unsigned char>(bindings.right)] & 0x80) {
+                if (hold.horizontal < 0)
+                    hold.horizontal = 0;
                 ++hold.horizontal;
             } else {
-                hold.horizontal = zero;
+                hold.horizontal = 0;
             }
         }
-        if (bindings.up >= zero && bindings.down >= zero) {
+        if (bindings.up >= 0 && bindings.down >= 0) {
             if (g_direct_input_backend.raw_keyboard_state[
-                    static_cast<unsigned char>(bindings.up)] & high_bit) {
-                if (hold.vertical > zero)
-                    hold.vertical = zero;
+                    static_cast<unsigned char>(bindings.up)] & 0x80) {
+                if (hold.vertical > 0)
+                    hold.vertical = 0;
                 --hold.vertical;
             } else if (
                 g_direct_input_backend.raw_keyboard_state[
-                    static_cast<unsigned char>(bindings.down)] & high_bit) {
-                if (hold.vertical < zero)
-                    hold.vertical = zero;
+                    static_cast<unsigned char>(bindings.down)] & 0x80) {
+                if (hold.vertical < 0)
+                    hold.vertical = 0;
                 ++hold.vertical;
             } else {
-                hold.vertical = zero;
+                hold.vertical = 0;
             }
         }
 
-        int *counter = hold.buttons;
-        int remaining = 8;
-        do {
-            int binding = counter[-10];
-            if (binding >= zero) {
+        for (int i = 0; i < 8; ++i) {
+            int binding = bindings.buttons[i];
+            if (binding >= 0) {
                 if (g_direct_input_backend.raw_keyboard_state[
-                        static_cast<unsigned char>(binding)] & high_bit)
-                    ++*counter;
+                        static_cast<unsigned char>(binding)] & 0x80)
+                    ++hold.buttons[i];
                 else
-                    *counter = zero;
+                    hold.buttons[i] = 0;
             }
-            ++counter;
-        } while (--remaining != 0);
+        }
         return;
     }
 
-    int zero = 0;
-    counters[0] = zero;
-    counters[1] = zero;
-    counters[2] = zero;
-    counters[3] = zero;
-    counters[4] = zero;
-    counters[5] = zero;
-    counters[6] = zero;
-    counters[7] = zero;
-    counters[8] = zero;
-    counters[9] = zero;
+    counters[0] = 0;
+    counters[1] = 0;
+    counters[2] = 0;
+    counters[3] = 0;
+    counters[4] = 0;
+    counters[5] = 0;
+    counters[6] = 0;
+    counters[7] = 0;
+    counters[8] = 0;
+    counters[9] = 0;
 }
 
 } // namespace th105

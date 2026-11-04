@@ -6912,3 +6912,27 @@ required_dword_values = [
  { address = "0x0044119C", value = "0x00441135" },
  { address = "0x004411A0", value = "0x00441161" },
 ]
+
+[[rules]]
+id = "input-raw-counters-authored-106a"
+addresses = ["0x00409DA0"]
+expected_count = 1
+expected_bytes = 407
+expected_names = ["sub_409DA0"]
+origin = "authored_game"
+subsystem = "input"
+disposition = "authored"
+confidence = "observed"
+evidence = "RTTI-owned CInputManager virtual input policy turns configured keyboard and gamepad state into directional and button hold counters, with source-specific reset and missing-device handling. Its exact logical-input caller, vtable slot and exact gamepad-state accessor are pinned. Natural typed source406/native407 is nonexact; no exact credit."
+required_body_hashes = [
+ { address = "0x00409DA0", size = 407, sha256 = "c24daf653f2aa593bc00ab6b851f9df8fc38d38cd9744ebd2056012ad5a86914" },
+]
+required_direct_edges = [
+ { caller = "0x00409F70", site = "0x0040A05D", target = "0x00409DA0", caller_status = "matching" },
+]
+required_selected_body_calls = [
+ { owner = "0x00409DA0", site = "0x00409DB8", target = "0x0040D990", target_status = "matching" },
+]
+required_dword_values = [
+ { address = "0x006C1678", value = "0x00409DA0" },
+]
