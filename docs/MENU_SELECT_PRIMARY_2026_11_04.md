@@ -49,5 +49,5 @@ an acceptance mechanism. Reproduce with `scripts/repo-python
 scripts/audit-menu-select-primary-payload.py`; the receipt is `payload.json` in
 the same build directory.
 The same mocked comparison also checks out-of-range selection values -1, 8
-and `INT_MAX`; both paths return true after the confirmation event. These are
+and `INT_MAX` with confirmation pressed; both return true after the event. These are
 bounded malformed-state observations, not a general input-safety claim.
