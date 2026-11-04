@@ -7241,3 +7241,18 @@ evidence = "CSelectScenario RTTI virtual slot owns the complete 756-byte scenari
 required_rtti_virtual_bodies = [
  { address = "0x00424A40", size = 756, sha256 = "be937fa045687cb538a3cb225c90c5de1e8564d59e67981e3274aa79dba81b0b", slot = "0x006C0C20", col_slot = "0x006C0C14", col = "0x006D78E4", type_descriptor = "0x006E64C4", type_name_contains = "CSelectScenario@@", calls = [{ site = "0x00424A4B", target = "0x00401000" }, { site = "0x00424BB4", target = "0x004099F0" }, { site = "0x00424D1B", target = "0x0043F4C0" }] },
 ]
+
+[[rules]]
+id = "select-scenario-selection-authored-106a"
+addresses = ["0x004248A0"]
+expected_count = 1
+expected_bytes = 414
+expected_names = ["sub_4248A0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "CSelectScenario RTTI slot owns the complete input, cursor and transition policy. Complete source emits 414 bytes but remains nonexact at +292. No exact credit. docs/SELECT_SCENARIO_REAL_SPRITES_2026_11_02.md."
+required_rtti_virtual_bodies = [
+ { address = "0x004248A0", size = 414, sha256 = "558a77536a6631fa57675cbb6ea153d753cd98908ecaf9469fd12824cda8fcef", slot = "0x006C0C30", col_slot = "0x006C0C14", col = "0x006D78E4", type_descriptor = "0x006E64C4", type_name_contains = "CSelectScenario@@", calls = [{ site = "0x004248AB", target = "0x0043F450" }, { site = "0x004249A7", target = "0x004245D0" }, { site = "0x00424A09", target = "0x0043AE90" }] },
+]

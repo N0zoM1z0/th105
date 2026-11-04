@@ -46,3 +46,13 @@ complete existing render source is now selected and classified as authored.
 A fresh focused build emits 757 bytes and first differs at +125; this is not
 a machine-code match and adds no exact bytes. The exact update and scene-entry
 functions were rebuilt and still match. No full-game rendering was executed.
+
+## Selection source registration, 2026-11-04
+
+The original `CSelectScenario` RTTI vtable owns `0x004248A0` at slot
+`+0x18`. The full 414-byte input and transition policy is reachable in the
+raw boundary audit. Its existing complete source is now selected and
+classified as authored. Fresh source and native bodies are both 414 bytes,
+but the first difference is +292, so no exact bytes are added. Inverting the
+source branch without changing its meaning did not recover the target block
+order. No complete game execution or full origin census is claimed.

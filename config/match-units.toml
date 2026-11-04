@@ -30501,3 +30501,25 @@ rel32_targets = [
   "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
   "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
 ]
+
+[units.exact-first-select-scenario-selection]
+kind = "probe"
+source = "src/ui/SelectScenarioFlow.cpp"
+object = "build/match-units/ExactFirst_SelectScenarioSelection.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete scenario-selection input policy; remains nonexact."
+
+[[units.exact-first-select-scenario-selection.functions]]
+address = "0x004248A0"
+symbol_base = "?update_selection@CSelectScenario@th105@@UAEHXZ"
+rel32_targets = [
+  "?update@GuideOverlay@th105@@QAEXXZ=0x0043F450",
+  "_lookup_orientation_cosine=0x004064B0",
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?apply_scenario@CSelectScenario@th105@@QAEXH@Z=0x004245D0",
+  "_prepare_scenario_match=0x0043AE90",
+  "_start_scene_fade=0x0043B140",
+]
