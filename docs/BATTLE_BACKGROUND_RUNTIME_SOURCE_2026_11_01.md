@@ -56,3 +56,13 @@ or permission for register forcing, dummy lifetimes, padding or assembly.
 
 Source1784, authored1804 and mapped1811; review425, excluded1798 and units764.
 Exact1585/449721 bytes is unchanged. No new function enters matches.csv.
+
+## Delta lifetime control, 2026-11-04
+
+Native code loads the level delta once before the zero branch. An ordinary
+used local capturing that delta tests this lifetime without register or dummy
+state. The complete candidate becomes 1045 bytes and still first differs at
++12, rather than resolving the native branch scheduling. All nine accepted
+same-unit roots remain exact. The original source was restored; this is a
+negative control, not evidence of exactness or compiler impossibility. Receipt:
+`build/frontier-background-delta-snapshot-20261104/compare.json`.
