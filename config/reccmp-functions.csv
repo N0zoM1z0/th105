@@ -1884,3 +1884,4 @@ CBattleManagerArcade_post_pipeline,0x00472F80,function
 CBattleManager_update_event_timer,0x00472A70,function
 FighterSpriteResource_cleanup,0x00465420,function
 CMenuSelect_update_primary_selection,0x00447D20,function
+CSelectScenario_render,0x00424A40,function

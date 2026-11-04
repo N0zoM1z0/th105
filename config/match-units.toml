@@ -30479,3 +30479,25 @@ dir32_targets = [
  "___security_cookie=___security_cookie",
  "__ehhandler$?update_primary_selection@CMenuSelect@th105@@AAE_NXZ=__ehhandler$?update_primary_selection@CMenuSelect@th105@@AAE_NXZ",
 ]
+
+[units.exact-first-select-scenario-render]
+kind = "probe"
+source = "src/ui/SelectScenarioRender.cpp"
+object = "build/match-units/ExactFirst_SelectScenarioRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete scenario-selection rendering; remains nonexact."
+
+[[units.exact-first-select-scenario-render.functions]]
+address = "0x00424A40"
+symbol_base = "?render@CSelectScenario@th105@@UAE_NXZ"
+rel32_targets = [
+  "?render@CTile@@QAEXMMHH@Z=0x004099F0",
+  "_get_score_data=0x0043AF20",
+  "__invalid_parameter_noinfo=0x0068A143",
+  "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+  "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+  "?prepare_frame@RenderModeManager@th105@@QAEXXZ=0x004010C0",
+  "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+  "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+]

@@ -36,3 +36,13 @@ Final CI passed all 962 tests in 110.932 seconds. Both diff checks gate the
 local checkpoint. No target or generated
 binary is committed. Counts remain 1426 exact / 443399 bytes, source 1636,
 authored 1655, mapped 1826, excluded 2075, review 297 and units 813.
+
+## Render source registration, 2026-11-04
+
+The original `CSelectScenario` RTTI virtual table at `0x006C0C18` owns
+`0x00424A40` at slot `+0x08`. The 756-byte body is fully reachable in the
+raw boundary audit, and calls the existing frame and tile providers. The
+complete existing render source is now selected and classified as authored.
+A fresh focused build emits 757 bytes and first differs at +125; this is not
+a machine-code match and adds no exact bytes. The exact update and scene-entry
+functions were rebuilt and still match. No full-game rendering was executed.

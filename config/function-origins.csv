@@ -800,7 +800,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00424690,authored_game,ui,authored,observed,canonical-exact-authored
 0x00424790,authored_game,ui,authored,observed,canonical-exact-authored
 0x004248A0,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x00424A40,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00424A40,authored_game,ui,authored,observed,select-scenario-render-authored-106a
 0x00424D40,compiler_generated,runtime,exclude,observed,vc8-generated-design-base-load-emitted-106a
 0x00424D70,compiler_generated,runtime,exclude,observed,vc8-generated-design-base-load-emitted-106a
 0x00424DA0,compiler_generated,runtime,exclude,observed,vc8-generated-design-base-load-emitted-106a

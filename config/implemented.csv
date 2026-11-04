@@ -1699,3 +1699,4 @@ CBattleManagerArcade_post_pipeline
 CBattleManager_update_event_timer
 FighterSpriteResource_cleanup
 CMenuSelect_update_primary_selection
+CSelectScenario_render
