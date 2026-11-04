@@ -27,3 +27,11 @@ highlight color is detected by a negative test. Actual IME input, D3D output,
 other floating environments, unbounded strings and full-game execution are not
 proved. Fresh comparison preserves the exact 223-byte ProfileMenu render and
 six exact render-primitive roots.
+
+## Same-translation-unit diagnostic
+
+An ordinary `/GS-` control compiled the real ProfileMenu caller and editor
+render source together. The caller still compares 223/223; the editor render
+retains its 596-byte candidate and the same first mismatch at +15. This is a
+bounded source-context experiment, not a full executable link or an exact match
+for the editor renderer.
