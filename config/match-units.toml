@@ -30158,3 +30158,31 @@ dir32_targets = [
   "??_7ReplayFilenameFile@th105@@6B@=??_7CFileReader@th105@@6B@",
   "__ehhandler$?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z=__ehhandler$?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z",
 ]
+
+[units.exact-first-continue-round-reset]
+kind = "probe"
+source = "src/battle/BattleContinueRoundReset.cpp"
+object = "build/match-units/ExactFirst_ContinueRoundReset.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete current round-reset source with real int-list and virtual interfaces; 290-byte candidate is nonexact. docs/CONTINUE_ROUND_RESET_SOURCE_2026_11_04.md."
+
+[[units.exact-first-continue-round-reset.functions]]
+address = "0x00471180"
+symbol_base = "?reset_battle_round_471180@ContinueOwnerRuntimeView@th105@@QAEXXZ"
+rel32_targets = [
+  "?set_session_setup_option@th105@@YAXI@Z=0x0043B080",
+  "?update_global_battle_setup_state_second@th105@@YIXPAX@Z=0x00426DF0",
+  "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
+  "?reset_runtime_state@CScenarioData@th105@@QAEXXZ=0x00457E40",
+  "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
+  "_memset=0x0068A440",
+  "?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0045A450",
+  "?run_scenario_step@BattlePhaseBlock@th105@@QAE_NXZ=0x0045A290",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
+  "??$_Assign@V?$_Iterator@$00@?$list@HV?$allocator@H@std@@@std@@@?$list@HV?$allocator@H@std@@@std@@QAEXV?$_Iterator@$00@01@0Uinput_iterator_tag@1@@Z=0x0045A740",
+]
+dir32_targets = [
+  "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
+  "??_C@_08LJHDLOLO@Continue?$AA@=_continue_round_literal",
+]

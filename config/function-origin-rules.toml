@@ -6491,7 +6491,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete game round reset and call from exact continue-menu update. Prior source hypothesis is unselected and nonexact. docs/ORIGIN_RECOVERY_2026_11_03.md."
+evidence = "Complete game round reset and call from exact continue-menu update. Current source is registered but nonexact. docs/CONTINUE_ROUND_RESET_SOURCE_2026_11_04.md."
 required_body_hashes = [{ address = "0x00471180", size = 290, sha256 = "bf64af9cf4b91fa500f9fef4f90c8c9415c211fb7f164d271c69ce45a6f46317" }]
 required_direct_edges = [{ caller = "0x00444C70", site = "0x00444E0D", target = "0x00471180", caller_status = "matching" }]
 

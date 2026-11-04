@@ -349,7 +349,7 @@ Complete server/client battle-update CFGs and RTTI-backed primary virtual slots 
 
 ### 2026-11-03: classify replay and round policy
 
-Replay-header read `0x429A30` is now 313/313 exact with complete EH replay; see `docs/REPLAY_HEADER_READ_EXACT_2026_11_04.md`. Battle-round reset `0x471180` remains authored but unselected/nonexact; see `docs/ORIGIN_RECOVERY_2026_11_03.md`.
+Replay-header read `0x429A30` is now 313/313 exact with complete EH replay; see `docs/REPLAY_HEADER_READ_EXACT_2026_11_04.md`. Battle-round reset `0x471180` is source-present but nonexact; see `docs/CONTINUE_ROUND_RESET_SOURCE_2026_11_04.md`.
 
 ### 2026-11-03: PNG provider version correction
 

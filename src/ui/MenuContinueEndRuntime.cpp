@@ -1,3 +1,4 @@
+#include "ContinueOwnerRuntime.hpp"
 #include "DesignBaseLifetime.hpp"
 #include "Menu.hpp"
 #include "../input/InputSelection.hpp"
@@ -16,16 +17,6 @@ extern "C" const char continue_save_success[];
 extern "C" const char continue_count_prompt_format[];
 
 namespace th105 {
-
-struct ContinueOwnerRuntimeView {
-    unsigned char unknown_000[0x84];
-    int end_pending_84;
-    unsigned char unknown_088[0x18];
-    int remaining_continues_a0;
-    unsigned char active_a4;
-
-    void reset_battle_round_471180();
-};
 
 struct ContinueGameConfigView {
     unsigned char unknown_000[0x71];
