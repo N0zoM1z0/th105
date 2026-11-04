@@ -49,7 +49,8 @@ struct TextureHandleResult {
     unsigned int value;
 };
 
-// 0x006ECD40 is the concrete CHandleManager<IDirect3DTexture9 *> instance.
+// In the pinned 1.06a target, 0x00702798 is the concrete
+// CHandleManager<IDirect3DTexture9 *> instance.
 // In particular, its eight cache cells begin at +0x64.
 struct TitleResourceManager : CHandleManager4 {
     unsigned int *load_texture(

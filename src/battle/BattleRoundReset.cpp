@@ -1,3 +1,7 @@
+// Historical cross-version hypothesis: this file is not selected by any current
+// 1.06a build unit. Its fixed addresses and virtual-call spelling have not been
+// migrated or qualified for the pinned target. The current 1.06a round-reset
+// candidate is at 0x00471180; see docs/ORIGIN_RECOVERY_2026_11_03.md.
 #include "battle/BattleController.hpp"
 #include "battle/Collision.hpp"
 #include "battle/ScenarioTransition.hpp"
