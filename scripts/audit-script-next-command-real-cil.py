@@ -46,7 +46,10 @@ def prepare():
             pe.get_memory_mapped_image(), root, address('__invalid_parameter_noinfo'))
 
 
-def execute(images, native, offset, count, cursor, mutate=False, steps=1):
+def execute(images, native, offset, count, cursor, mutate=False, steps=1,
+            iterator_owner="valid", stop_at_invalid=False):
+    if iterator_owner not in ("valid", "null"):
+        raise ValueError("unsupported iterator owner fixture")
     native_image, source_image, root, invalid = images
     engine = uc.Uc(uc.UC_ARCH_X86, uc.UC_MODE_32)
     engine.mem_map(0x400000, 0x400000); engine.mem_write(0x400000, native_image)
@@ -62,7 +65,7 @@ def execute(images, native, offset, count, cursor, mutate=False, steps=1):
         return struct.unpack('<I', engine.mem_read(address, 4))[0]
     deque = OWNER + 0x14
     put(deque + 4, MAP); put(deque + 8, 4); put(deque + 12, offset); put(deque + 16, count)
-    put(OWNER + 0x2c, deque); put(OWNER + 0x30, cursor)
+    put(OWNER + 0x2c, deque if iterator_owner == "valid" else 0); put(OWNER + 0x30, cursor)
     for block in range(4):
         put(MAP + 4 * block, BLOCKS + 0x100 * block)
         for index in range(4):
@@ -74,7 +77,9 @@ def execute(images, native, offset, count, cursor, mutate=False, steps=1):
         if address == STOP:
             stopped.append(True); engine.emu_stop()
         elif address in (0x68a143, invalid):
-            raise ValueError('fixture hit checked invalid-parameter path')
+            if not stop_at_invalid:
+                raise ValueError('fixture hit checked invalid-parameter path')
+            stopped.append('invalid_parameter'); engine.emu_stop()
     engine.hook_add(uc.UC_HOOK_CODE, step)
     observations = []
     for _ in range(steps):
@@ -85,6 +90,8 @@ def execute(images, native, offset, count, cursor, mutate=False, steps=1):
         engine.emu_start(0x405ac0 if native else root, STOP + 1, count=2000)
         if not stopped:
             raise ValueError('script cursor did not return')
+        if stopped == ['invalid_parameter']:
+            return ('invalid_parameter', get(OWNER + 0x30))
         observations.append((engine.reg_read(reg.UC_X86_REG_EAX), get(OWNER + 0x30),
                              engine.reg_read(reg.UC_X86_REG_ESP) - STACK))
     return observations[0] if steps == 1 else observations

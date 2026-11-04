@@ -36,5 +36,20 @@ root and its actual dereference helper alongside the linked source root on
 seven valid fixtures, including empty/end cursors and block-map wraparound.
 Both agree with an independent cursor/result model; repeated reads also run
 through exhaustion across an ordinary block and a wraparound boundary. A
-modified increment is detected. This does not test invalid iterators, allocation, actual script
-parsing, exceptions or full-game behavior and does not add exact credit.
+modified increment is detected. These valid fixtures do not test allocation, actual script parsing, exceptions
+or full-game behavior and do not add exact credit. Invalid iterator boundary
+observations are described below.
+
+
+## Checked-iterator boundary observations, 2026-11-04
+
+The genuine native/helper and linked-source observer now also stops immediately
+at each image's own invalid-parameter handler entry. For a cursor beyond the
+end, an empty deque with a nonzero cursor, and a null iterator owner, both
+images reach that boundary before changing the cursor. The handler itself is
+not executed, so no termination, exception, or recovery behavior is claimed.
+A separate deliberately invalid cursor immediately before the deque's start
+is *not* rejected on these observed paths: both images read its mapped slot
+and increment it. This is a bounded observation, not permission to use an
+invalid iterator or a general memory-safety claim. The exact match status and
+private ABI limitation are unchanged.

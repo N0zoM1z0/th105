@@ -29,6 +29,22 @@ class ScriptNextCommandRealCilTests(unittest.TestCase):
                     self.assertEqual(observer.execute(self.images, native, offset, count,
                                                       offset, steps=count + 1), expected)
 
+    def test_checked_invalid_parameter_boundary(self):
+        # Stop before the CRT handler; do not assume it returns or emulate OS termination.
+        for case, owner in (((3, 5, 9), "valid"), ((0, 0, 1), "valid"),
+                            ((0, 4, 0), "null")):
+            for native in (True, False):
+                with self.subTest(case=case, owner=owner, native=native):
+                    self.assertEqual(observer.execute(self.images, native, *case,
+                        iterator_owner=owner, stop_at_invalid=True),
+                        ("invalid_parameter", case[2]))
+
+    def test_cursor_before_deque_offset_is_not_rejected_on_these_paths(self):
+        # Observation only: a cursor before the live range is not a valid iterator.
+        for native in (True, False):
+            self.assertEqual(observer.execute(self.images, native, 3, 5, 2,
+                                              stop_at_invalid=True), (0x2008, 3, 4))
+
     def test_cursor_increment_mutation_is_detected(self):
         case = (0, 4, 2)
         self.assertNotEqual(observer.execute(self.images, False, *case, mutate=True),
