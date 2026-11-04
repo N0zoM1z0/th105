@@ -217,3 +217,19 @@ this is source-structure evidence, not a claimed gameplay change.
 The whole function remains nonexact: the 63,993-byte comparison first differs
 at +42, with a 64,904-byte candidate section tail. The source remains unselected
 and no exact credit is claimed.
+
+## Shared ring angle expressions, 2026-11-04
+
+The shared ring helpers also contained the earlier left-associated spelling.
+Raw target sites include `0x005E4DA8` (action 302), `0x005E50F0` (304),
+`0x005E9AE2` (525), `0x005EAC11` (541), `0x005EC5A5` (550) and
+`0x005F07C0` (711): each separately adds 30.0 to the integer loop angle
+before combining it with the converted random value. The six shared helper
+expressions now use that grouping. These bounded integer inputs remain exactly
+representable, so this is source-structure fidelity rather than a claimed
+numeric or gameplay change.
+
+The fresh ordinary VC8 object contains the corresponding integer-load,
+add-constant, add-stack-value sequences. The entire root remains nonexact,
+first mismatch +42 against its 63,993-byte callable, with a 64,952-byte
+candidate section tail. This unselected candidate contributes no exact credit.
