@@ -23,3 +23,14 @@ Reproduce with `scripts/repo-python scripts/build.py --unit
 exact-first-arcade-post-pipeline --compare --json` (expected mismatch exit 1).
 The focused origin rule independently validates the original RTTI slot and
 full body hash. Source selection adds no exact bytes.
+
+## Bounded execution comparison
+
+The native body and fully relocated source body agree with an independent
+model on 72 combinations of both fighters' pending flags, delay counters and
+state-byte values, including wraparound. The observer records both fighters'
+counters and finalize flags, the state byte, and transition arguments. A
+changed pending-flag branch is detected. The transition virtual is mocked;
+concurrency, the real transition and full-game execution are not covered.
+Run `scripts/repo-python -m unittest discover -s tests -p
+test_arcade_post_pipeline_observer.py`. No exact-byte credit follows.
