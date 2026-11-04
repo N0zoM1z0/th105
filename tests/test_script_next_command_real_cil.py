@@ -29,6 +29,17 @@ class ScriptNextCommandRealCilTests(unittest.TestCase):
                     self.assertEqual(observer.execute(self.images, native, offset, count,
                                                       offset, steps=count + 1), expected)
 
+    def test_each_block_and_slot_across_map_wrap(self):
+        # Four slots per block, four blocks: test every physical slot as a start
+        # and cross each map boundary with a three-element live deque.
+        for offset in range(16):
+            for cursor in range(offset, offset + 4):
+                case = (offset, 3, cursor)
+                for native in (True, False):
+                    with self.subTest(case=case, native=native):
+                        self.assertEqual(observer.execute(self.images, native, *case),
+                                         observer.expected(*case))
+
     def test_checked_invalid_parameter_boundary(self):
         # Stop before the CRT handler; do not assume it returns or emulate OS termination.
         for case, owner in (((3, 5, 9), "valid"), ((0, 0, 1), "valid"),

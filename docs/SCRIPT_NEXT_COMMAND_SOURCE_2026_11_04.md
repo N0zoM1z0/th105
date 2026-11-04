@@ -53,3 +53,9 @@ is *not* rejected on these observed paths: both images read its mapped slot
 and increment it. This is a bounded observation, not permission to use an
 invalid iterator or a general memory-safety claim. The exact match status and
 private ABI limitation are unchanged.
+
+The focused suite additionally exercises every one of the 16 block-map starting
+slots with a three-command deque, at each live cursor and end. Both actual
+images agree with the independent model over these 64 layouts/cursor pairs;
+this remains a bounded test of the fixed four-block fixture, not an exhaustive
+proof of all deque configurations.
