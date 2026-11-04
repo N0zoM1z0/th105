@@ -513,7 +513,9 @@ remains unchanged. No integrated-link or new-byte claim is made. See
 `BATTLE_RENDER_TAIL_EXACT_2026_11_04.md`.
 
 2026-11-04: `CMenuPractice_update` at `0x00445D90` now has a complete
-canonical 381/381-byte match in `src/ui/MenuPracticeUpdate.cpp`, using direct
+local 381/381-byte comparison in `src/ui/MenuPracticeUpdate.cpp`, using direct
 indexed container expressions rather than the previously outlined size helper.
-The target and candidate section hashes are equal; see
-`docs/MENU_PRACTICE_UPDATE_2026_11_04.md`. Live-game behavior was not run.
+The target and candidate section hashes are equal. Independent Factory replay
+was blocked by missing runner `capstone` and is not accepted; no exact credit
+is assigned pending replay. See `docs/MENU_PRACTICE_UPDATE_2026_11_04.md`.
+Live-game behavior was not run.

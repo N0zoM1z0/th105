@@ -7326,15 +7326,14 @@ required_rtti_virtual_bodies = [
 [[rules]]
 id = "menu-practice-update-authored-106a"
 addresses = ["0x00445D90"]
-skip_matching = true
-expected_count = 0
-expected_bytes = 0
-expected_names = []
+expected_count = 1
+expected_bytes = 381
+expected_names = ["sub_445D90"]
 origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "CMenuPractice RTTI virtual slot independently owns the update policy. Canonical-exact functions are skipped by this origin rule; see docs/MENU_PRACTICE_UPDATE_2026_11_04.md."
+evidence = "CMenuPractice RTTI virtual slot independently owns the update policy. Local bytes match; independent Factory replay is blocked by a missing runner dependency. See docs/MENU_PRACTICE_UPDATE_2026_11_04.md."
 required_rtti_virtual_bodies = [
  { address = "0x00445D90", size = 381, sha256 = "8a872b57510ed2ace1834a170611146056ed95ae67413d6a184131d623f09a64", slot = "0x006C1FA0", col_slot = "0x006C1F94", col = "0x006D83FC", type_descriptor = "0x006E6CF0", type_name_contains = "CMenuPractice@@", calls = [{ site = "0x00445DAB", target = "0x0043F450" }, { site = "0x00445DDB", target = "0x00445C80" }, { site = "0x00445E79", target = "0x0043ABD0" }] },
 ]
