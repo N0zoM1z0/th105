@@ -7338,3 +7338,22 @@ evidence = "CMenuPractice RTTI virtual slot independently owns the update policy
 required_rtti_virtual_bodies = [
  { address = "0x00445D90", size = 381, sha256 = "8a872b57510ed2ace1834a170611146056ed95ae67413d6a184131d623f09a64", slot = "0x006C1FA0", col_slot = "0x006C1F94", col = "0x006D83FC", type_descriptor = "0x006E6CF0", type_name_contains = "CMenuPractice@@", calls = [{ site = "0x00445DAB", target = "0x0043F450" }, { site = "0x00445DDB", target = "0x00445C80" }, { site = "0x00445E79", target = "0x0043ABD0" }] },
 ]
+
+[[rules]]
+id = "scene-frame-update-authored-106a"
+addresses = ["0x0043B4A0"]
+expected_count = 1
+expected_bytes = 209
+expected_names = ["sub_43B4A0"]
+origin = "authored_game"
+subsystem = "engine"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact CSceneManager update tail-jumps to this input, fade and UI update. The source includes the separate target UI continuation at 0x004400D0; entry-only comparison is nonexact and no bytes are credited. docs/SCENE_FRAME_UPDATE_2026_11_04.md."
+required_body_hashes = [{ address = "0x0043B4A0", size = 209, sha256 = "6613c3ab1c586bbba44b181467c439599230d4ffd81cf9c59484fd1445b0fe67" }]
+required_direct_edges = [{ caller = "0x0041E140", site = "0x0041E140", target = "0x0043B4A0", caller_status = "matching", kind = "jump" }]
+required_selected_body_calls = [
+ { owner = "0x0043B4A0", site = "0x0043B4A8", target = "0x0040A550", target_status = "matching" },
+ { owner = "0x0043B4A0", site = "0x0043B4B2", target = "0x00409F70", target_status = "matching" },
+ { owner = "0x0043B4A0", site = "0x0043B4FF", target = "0x0040A0F0", target_status = "matching" },
+]
