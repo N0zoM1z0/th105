@@ -1886,3 +1886,4 @@ FighterSpriteResource_cleanup,0x00465420,function
 CMenuSelect_update_primary_selection,0x00447D20,function
 CSelectScenario_render,0x00424A40,function
 CSelectScenario_update_selection,0x004248A0,function
+CMenuConnect_render,0x004418D0,function

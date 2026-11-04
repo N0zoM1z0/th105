@@ -30523,3 +30523,26 @@ rel32_targets = [
   "_prepare_scenario_match=0x0043AE90",
   "_start_scene_fade=0x0043B140",
 ]
+
+[units.exact-first-menu-connect-render]
+kind = "probe"
+source = "src/ui/MenuConnectRender.cpp"
+object = "build/match-units/ExactFirst_MenuConnectRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete Connect menu render candidate including its switch table; remains nonexact."
+
+[[units.exact-first-menu-connect-render.functions]]
+address = "0x004418D0"
+symbol_base = "?render@CMenuConnectRenderView@th105@@UAEXXZ"
+rel32_targets = [
+ "_render_menu_list@4=0x0043FA10",
+ "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
+ "?render_footer@CMenuConnectRenderView@th105@@AAEXXZ=0x0043F970",
+ "?render@CNumber@th105@@QAEXHMMHD@Z=0x00414F10",
+ "?render@CTile@@QAEXMMHH@Z=0x004099F0",
+ "?render@GuideOverlay@th105@@QAEXXZ=0x0043F4C0",
+]
+dir32_targets = [
+ "?g_profile_message_main@th105@@3PAUUiDesignObject@1@A=?g_profile_message_main@th105@@3PAUUiDesignObject@1@A",
+]

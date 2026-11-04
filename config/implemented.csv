@@ -1701,3 +1701,4 @@ FighterSpriteResource_cleanup
 CMenuSelect_update_primary_selection
 CSelectScenario_render
 CSelectScenario_update_selection
+CMenuConnect_render

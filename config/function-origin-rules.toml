@@ -7256,3 +7256,24 @@ evidence = "CSelectScenario RTTI slot owns the complete input, cursor and transi
 required_rtti_virtual_bodies = [
  { address = "0x004248A0", size = 414, sha256 = "558a77536a6631fa57675cbb6ea153d753cd98908ecaf9469fd12824cda8fcef", slot = "0x006C0C30", col_slot = "0x006C0C14", col = "0x006D78E4", type_descriptor = "0x006E64C4", type_name_contains = "CSelectScenario@@", calls = [{ site = "0x004248AB", target = "0x0043F450" }, { site = "0x004249A7", target = "0x004245D0" }, { site = "0x00424A09", target = "0x0043AE90" }] },
 ]
+
+[[rules]]
+id = "menu-connect-render-authored-106a"
+addresses = ["0x004418D0"]
+expected_count = 1
+expected_bytes = 752
+expected_names = ["sub_4418D0"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "CMenuConnect RTTI vtable owns the complete state-dependent menu renderer and the associated four-entry switch table. Complete natural source remains nonexact; no exact credit. docs/MENU_CONNECT_RENDER_2026_11_04.md."
+required_rtti_virtual_bodies = [
+ { address = "0x004418D0", size = 752, sha256 = "64a25b4cab114f5d7f11f92b13976b995474bf7934226ffb78be63fe12b435bc", slot = "0x006C1C48", col_slot = "0x006C1C38", col = "0x006D8280", type_descriptor = "0x006E6C5C", type_name_contains = "CMenuConnect@@", calls = [{ site = "0x004418DF", target = "0x0043FA10" }, { site = "0x00441933", target = "0x0043F970" }, { site = "0x00441BAA", target = "0x0043F4C0" }] },
+]
+required_dword_values = [
+ { address = "0x00441BC0", value = "0x0044194F" },
+ { address = "0x00441BC4", value = "0x004419EE" },
+ { address = "0x00441BC8", value = "0x00441B4C" },
+ { address = "0x00441BCC", value = "0x00441B4C" },
+]
