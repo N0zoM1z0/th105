@@ -6693,19 +6693,21 @@ required_direct_edges = [
 
 [[rules]]
 id = "vc8-scenario-text-map-insert-106a"
-addresses = ["0x00456A30"]
-expected_count = 1
-expected_bytes = 317
-expected_names = ["sub_456A30"]
+addresses = ["0x00456550", "0x00456A30"]
+expected_count = 2
+expected_bytes = 840
+expected_names = ["sub_456550", "sub_456A30"]
 origin = "compiler_generated"
 subsystem = "std"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Pinned VC8 compiles the real checked std::map<string, ScenarioTextEntryDC>::insert specialization. Its complete 317-byte generated COMDAT has one relocation-masked fingerprint hit in the current 4027-candidate inventory, and the Scenario character-installation body directly calls it. Native body hash and call site are pinned. No authored exact credit or full EH equivalence is claimed."
+evidence = "Pinned VC8 compiles the real checked std::map<string, ScenarioTextEntryDC>::insert specialization. Its 317-byte insert and 523-byte internal _Insert COMDATs each have one relocation-masked fingerprint hit in the current 4027-candidate inventory, and the Scenario character-installation body directly calls it. Native body hash and call site are pinned. No authored exact credit or full EH equivalence is claimed."
 vc8_generated_anchor_file = "config/vc8-scenario-text-map-insert-origin-anchors.toml"
 required_body_hashes = [
+ { address = "0x00456550", size = 523, sha256 = "8169fff63009963974bacee64efe6a73758da68c971fc2e89f6b697406544959" },
  { address = "0x00456A30", size = 317, sha256 = "65e20fae54b9023e2cc7a57656268ce29e43142789919923d643f3006bbe84d3" },
 ]
 required_direct_edges = [
+ { caller = "0x00456A30", site = "0x00456AF4", target = "0x00456550", caller_status = "unclassified" },
  { caller = "0x00456EB0", site = "0x00456FFF", target = "0x00456A30", caller_status = "unclassified" },
 ]

@@ -23,3 +23,8 @@ ScenarioTextEntryDC>::insert` member; its 317-byte generated body also has a
 unique relocation-masked hit across the current inventory. The native callable
 hash and direct call are pinned. It is classified as compiler-generated, with
 no authored exact or complete exception-metadata claim.
+
+The insert member directly calls the internal tree `_Insert` at `0x00456550`.
+The same witness independently regenerates that 523-byte COMDAT with a unique
+relocation-masked inventory fingerprint. Its native body and call site are
+pinned as compiler-generated evidence, without claiming complete EH equality.
