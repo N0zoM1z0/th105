@@ -1,27 +1,7 @@
 #include "ScoreDataDefaults.hpp"
 #include <cstring>
-extern "C" {
-__declspec(dllimport) void *__stdcall CreateFileA(const char *, unsigned long, unsigned long, void *, unsigned long, unsigned long, void *);
-__declspec(dllimport) int __stdcall CloseHandle(void *);
-__declspec(dllimport) unsigned long __stdcall GetFileSize(void *, unsigned long *);
-__declspec(dllimport) int __stdcall ReadFile(void *, void *, unsigned long, unsigned long *, void *);
-__declspec(dllimport) unsigned long __stdcall SetFilePointer(void *, long, long *, unsigned long);
-}
+#include "assets/PlainFileReader.hpp"
 namespace th105 {
-class ScoreLoadPlainFile {
-public:
-    explicit ScoreLoadPlainFile(const char *path) {
-        file = CreateFileA(path, 1, 1, 0, 3, 0x80, 0);
-        if (file == reinterpret_cast<void *>(-1)) file = 0;
-    }
-    virtual ~ScoreLoadPlainFile() { if (file) CloseHandle(file); }
-    virtual bool read(void *out, unsigned long count) { return ReadFile(file, out, count, &bytes_read, 0) != 0; }
-    virtual unsigned long last_read_size() const { return bytes_read; }
-    virtual long seek(long off, int origin) { return SetFilePointer(file, off, 0, origin); }
-    virtual unsigned long size() const { return GetFileSize(file, 0); }
-    void *file;
-    unsigned long bytes_read;
-};
 struct ScoreLoadBuffer {
     unsigned char *data;
     unsigned position;
@@ -40,8 +20,8 @@ struct ScoreLoadBuffer {
 unsigned __cdecl decode_score_payload_406890(const unsigned char *, unsigned, unsigned char *, unsigned);
 bool ScoreDataDefaultsView::load_42f6f0()
 {
-    ScoreLoadPlainFile file("score.dat");
-    if (file.file == 0) {
+    PlainFileReader file("score.dat");
+    if (file.handle == 0) {
         initialize_defaults_42ed70();
         return false;
     }
@@ -112,6 +92,6 @@ bool ScoreDataDefaultsView::load_42f6f0()
 }
 }
 
-typedef char ScoreLoadFile_size[sizeof(th105::ScoreLoadPlainFile) == 12 ? 1 : -1];
+typedef char ScoreLoadFile_size[sizeof(th105::PlainFileReader) == 12 ? 1 : -1];
 typedef char ScoreLoadBuffer_size[sizeof(th105::ScoreLoadBuffer) == 8 ? 1 : -1];
 typedef char ScoreLoadRecord_size[sizeof(th105::ScoreDefaultRecord24) == 24 ? 1 : -1];

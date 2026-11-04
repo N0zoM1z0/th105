@@ -1,5 +1,5 @@
 #include <windows.h>
-#include "ReplayFilenameFile.hpp"
+#include "assets/PlainFileReader.hpp"
 #include <string>
 #include <ctime>
 
@@ -65,7 +65,7 @@ int ReplayFilenameView::build_filename_42a560(char *out, const char *first, cons
     int index = 0;
     for (;;) {
         wsprintfA(out, "%s%s", name.c_str(), suffix.c_str());
-        ReplayFilenameFile file(out);
+        PlainFileReader file(out);
         if (!file.handle) break;
         wsprintfA(buffer, "_%d.rep", index);
         suffix = buffer;

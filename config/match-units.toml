@@ -23220,7 +23220,7 @@ rel32_targets = [
   "?refresh_story_progress_42e3f0@ScoreDataDefaultsView@th105@@QAEXXZ=0x0042E3F0",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
-dir32_targets = ["??_7ScoreLoadPlainFile@th105@@6B@=??_7CFileReader@th105@@6B@"]
+dir32_targets = ["??_7PlainFileReader@th105@@6B@=??_7CFileReader@th105@@6B@"]
 
 [units.exact-first-score-persist]
 kind = "probe"
@@ -23298,7 +23298,7 @@ rel32_targets = [
   "__localtime64_s=0x0068A6BC",
   "__time64=0x0068A981",
 ]
-dir32_targets = ["??_7ReplayFilenameFile@th105@@6B@=??_7CFileReader@th105@@6B@"]
+dir32_targets = ["??_7PlainFileReader@th105@@6B@=??_7CFileReader@th105@@6B@"]
 
 [[units.exact-first-replay-filename.functions]]
 address = "0x00429B70"
@@ -30155,7 +30155,7 @@ rel32_targets = [
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
-  "??_7ReplayFilenameFile@th105@@6B@=??_7CFileReader@th105@@6B@",
+  "??_7PlainFileReader@th105@@6B@=??_7CFileReader@th105@@6B@",
   "__ehhandler$?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z=__ehhandler$?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z",
 ]
 
