@@ -27,3 +27,16 @@ A separate real-source CIL diagnostic builds this method with the actual input
 unit and CRT. Its comparison stops at a newly inlined private vector insertion
 helper whose native destination is not established. It does not justify a
 fabricated binding, exact credit or a claim about the shipped full-program link.
+
+## Actual insertion execution, 2026-11-04
+
+`scripts/audit-input-add-key-real-growth.py` now builds the genuine input
+source CIL graph and executes its actual emitted insertion body alongside the
+original target registration and insertion bodies. Six bounded full-capacity
+cases cover empty and nonempty vectors, growth factors including 4 to 6 and
+6 to 9, and duplicate suppression. The resulting bytes, size, capacity,
+allocation/copy/free events and stack cleanup agree with an independent model.
+A mutated duplicate gate is detected. The allocator and CRT memory operations
+are still mocked; allocation failure, invalid vectors, concurrent use and
+full-game execution remain untested. This execution evidence does not resolve
+the native/source helper relocation binding or make either body byte-exact.
