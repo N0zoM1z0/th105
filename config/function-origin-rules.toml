@@ -7160,3 +7160,18 @@ evidence = "CBattleManagerArcade RTTI virtual slot owns the 198-byte post-pipeli
 required_rtti_virtual_bodies = [
  { address = "0x00472F80", size = 198, sha256 = "7bd9a3677d422ac3ea268666d008962cbe98e547bdb4a781dac8c5d4395143fe", slot = "0x006C157C", col_slot = "0x006C1548", col = "0x006D7F44", type_descriptor = "0x006E687C", type_name_contains = "CBattleManagerArcade@@" },
 ]
+
+[[rules]]
+id = "battle-event-timer-authored-106a"
+addresses = ["0x00472A70"]
+expected_count = 1
+expected_bytes = 172
+expected_names = ["sub_472A70"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "CBattleManager RTTI slot owns the 172-byte phase-specific event timer, mode transition and presentation-tail policy. Complete natural source emits 186 bytes and remains nonexact. The void source-facing view is bounded by the actual void presentation tail; original virtual return contract remains unknown. docs/BATTLE_EVENT_TIMER_2026_11_04.md."
+required_rtti_virtual_bodies = [
+ { address = "0x00472A70", size = 172, sha256 = "744492ad5c29309680cba21f4271bdd559ae224fff1495cdb581576f5a3c6878", slot = "0x006C1540", col_slot = "0x006C1500", col = "0x006D7EF4", type_descriptor = "0x006E685C", type_name_contains = "CBattleManager@@", calls = [{ site = "0x00472AB7", target = "0x00435CE0" }, { site = "0x00472AE1", target = "0x004067D0" }, { site = "0x00472AED", target = "0x00434E40" }, { site = "0x00472B0F", target = "0x00435CE0" }] },
+]

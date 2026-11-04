@@ -30426,3 +30426,27 @@ notes = "Native Arcade slot30 transition policy; derived layout beyond the obser
 [[units.exact-first-arcade-post-pipeline.functions]]
 address = "0x00472F80"
 symbol_base = "?post_pipeline_slot_30@BattleManagerArcadePostView@th105@@UAEXXZ"
+
+[units.exact-first-battle-event-timer]
+kind = "probe"
+source = "src/battle/BattleManagerEventTimer.cpp"
+object = "build/match-units/ExactFirst_BattleEventTimer.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete 472A70 battle event timer policy using current base layout and proven helper receivers."
+
+[[units.exact-first-battle-event-timer.functions]]
+address = "0x00472A70"
+symbol_base = "?update_event_timer@BattleManagerEventTimerView@th105@@QAEXXZ"
+rel32_targets = [
+ "?select_pair_mode_434780@PairEmbeddedModeView@th105@@QAEXHE@Z=0x00435CE0",
+ "?trigger_secondary_event_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E40",
+ "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
+ "?update_presentation_46b160@BattleTimerPresentationView@th105@@QAEXXZ=0x0046B160",
+]
+dir32_targets = [
+ "?g_pair_mode_primary@th105@@3HA=?g_fighter_state_4b8_default@th105@@3HA",
+ "?g_secondary_event_effect_id@th105@@3HA=?g_secondary_event_effect_id@th105@@3HA",
+ "?g_info_mode_value_6fa88c@th105@@3FA=?g_info_mode_value_6fa88c@th105@@3FA",
+ "?g_pair_state@th105@@3HA=?g_pair_state@th105@@3HA",
+]
