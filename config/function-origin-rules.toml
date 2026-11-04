@@ -7194,3 +7194,35 @@ required_direct_edges = [
  { caller = "0x00462CE0", site = "0x00462F5B", target = "0x00465420", caller_status = "implemented" },
 ]
 required_selected_body_calls = [{ owner = "0x00465420", site = "0x0046545D", target = "0x00404D70", target_status = "matching" }]
+
+[[rules]]
+id = "menu-select-primary-authored-106a"
+addresses = ["0x00447D20"]
+expected_count = 1
+expected_bytes = 669
+expected_names = ["sub_447D20"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "Exact CMenuSelect update calls this game-owned selection policy. Full native body and switch destinations cover player assignment, actual profile character/key configuration menus, scene change and cancel behavior. Current source uses those real submenu types; emitted section includes its switch table and differs from the native callable and table. EH prefix only is attested and no exact credit is claimed. docs/MENU_SELECT_PRIMARY_2026_11_04.md."
+required_body_hashes = [
+ { address = "0x00447D20", size = 669, sha256 = "1235b1756799370d4216478c8f698fa93cebcc4f382e2fcdca1be635ec44e89b" },
+]
+required_direct_edges = [
+ { caller = "0x00448200", site = "0x00448247", target = "0x00447D20", caller_status = "matching", kind = "jump" },
+]
+required_selected_body_calls = [
+ { owner = "0x00447D20", site = "0x00447E17", target = "0x004487E0", target_status = "matching" },
+ { owner = "0x00447D20", site = "0x00447ED1", target = "0x0044BA90", target_status = "matching" },
+]
+required_dword_values = [
+ { address = "0x00447FC0", value = "0x00447DB5" },
+ { address = "0x00447FC4", value = "0x00447DD2" },
+ { address = "0x00447FC8", value = "0x00447DF0" },
+ { address = "0x00447FCC", value = "0x00447E4A" },
+ { address = "0x00447FD0", value = "0x00447EA5" },
+ { address = "0x00447FD4", value = "0x00447F01" },
+ { address = "0x00447FD8", value = "0x00447F50" },
+ { address = "0x00447FDC", value = "0x00447FA7" },
+]

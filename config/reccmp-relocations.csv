@@ -3882,3 +3882,4 @@ _continue_round_literal,0x006C38DC,436f6e74696e756500,0,Current 1.06a round rese
 __ehhandler$?install_character@CScenarioData@th105@@QAEXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0HHHEEE@Z,0x006BAA61,8b5424088d8220fdffff8b8a1cfdffff,0,"Scenario character-installation EH handler entry; entry bytes only, not full exception-metadata equivalence.",address
 __real@c084000000000000,0x006C2718,00000000000084c0,0,Scenario result phase update uses native IEEE-754 double -640.0; target literal bytes attested,literal
 __imp__SetRect@20,0x006C020C,76532e00,0,TH105 1.06a PE import table identifies USER32 SetRect at this IAT slot; canonical thunk bytes attested,literal
+__ehhandler$?update_primary_selection@CMenuSelect@th105@@AAE_NXZ,0x006B9C77,8b5424088d42ec8b4ae833c8e89d00fd,0,Native 447D20 prologue references this handler; only the 16-byte prefix is attested and no full exception metadata equivalence is claimed.,address

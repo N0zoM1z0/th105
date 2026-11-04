@@ -30450,3 +30450,32 @@ dir32_targets = [
  "?g_info_mode_value_6fa88c@th105@@3FA=?g_info_mode_value_6fa88c@th105@@3FA",
  "?g_pair_state@th105@@3HA=?g_pair_state@th105@@3HA",
 ]
+
+[units.exact-first-menu-select-primary]
+kind = "probe"
+source = "src/ui/MenuSelectPrimary.cpp"
+object = "build/match-units/ExactFirst_MenuSelectPrimary.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Complete 447D20 menu-selection hypothesis with actual profile submenu classes; target switch and EH payload remain under comparison."
+
+[[units.exact-first-menu-select-primary.functions]]
+address = "0x00447D20"
+symbol_base = "?update_primary_selection@CMenuSelect@th105@@AAE_NXZ"
+rel32_targets = [
+ "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+ "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
+ "?is_menu_initial_press@th105@@YA_NE_N00@Z=0x0043ABD0",
+ "?get_player_slot_record@th105@@YAPAUPlayerSlotRecord@1@I@Z=0x0043AFE0",
+ "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
+ "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
+ "??2@YAPAXI@Z=0x00689DCB",
+ "??0CProfileCharacterSelect@th105@@QAE@PAUPlayerSlotRecord@1@@Z=0x004487E0",
+ "??0CProfileKeyConfig@th105@@QAE@PAUPlayerSlotRecord@1@H@Z=0x0044BA90",
+]
+dir32_targets = [
+ "_g_active_menu_input=_g_active_menu_input",
+ "_g_scene_mode=_g_scene_mode",
+ "___security_cookie=___security_cookie",
+ "__ehhandler$?update_primary_selection@CMenuSelect@th105@@AAE_NXZ=__ehhandler$?update_primary_selection@CMenuSelect@th105@@AAE_NXZ",
+]
