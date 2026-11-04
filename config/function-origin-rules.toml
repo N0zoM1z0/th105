@@ -6669,3 +6669,24 @@ required_selected_body_calls = [
  { owner = "0x00458340", site = "0x00458364", target = "0x00404C90", target_status = "implemented" },
  { owner = "0x00458340", site = "0x00458387", target = "0x00407160", target_status = "matching" },
 ]
+
+[[rules]]
+id = "vc8-scenario-text-pair-constructors-106a"
+addresses = ["0x00455C50", "0x00455DD0"]
+expected_count = 2
+expected_bytes = 229
+expected_names = ["sub_455C50", "sub_455DD0"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 builds genuine std::pair<string, ScenarioTextEntryDC> value construction and const-key conversion from the shared real entry type. Each 114/115-byte compiler helper has an inventory-unique relocation-masked fingerprint and pinned native body hash. Scenario character installation calls both; no authored exact credit or full EH equivalence is claimed."
+vc8_generated_anchor_file = "config/vc8-scenario-text-pair-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x00455C50", size = 115, sha256 = "4d27c86153c1fa619687c9253c9273533afd9437a053e09dad749d6473892c02" },
+ { address = "0x00455DD0", size = 114, sha256 = "f6b88dffe91a8c0edd0259a2b6de8736c1205801df05e9d5961136c5517f301d" },
+]
+required_direct_edges = [
+ { caller = "0x00456EB0", site = "0x00456FD0", target = "0x00455DD0", caller_status = "unclassified" },
+ { caller = "0x00456EB0", site = "0x00456FE2", target = "0x00455C50", caller_status = "unclassified" },
+]

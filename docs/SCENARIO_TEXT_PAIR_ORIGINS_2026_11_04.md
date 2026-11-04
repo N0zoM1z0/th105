@@ -1,0 +1,18 @@
+# Scenario text-entry pair origins
+
+For Japanese TH105 1.06a (SHA-256
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`),
+Scenario character installation `0x00456EB0` calls `0x00455DD0` and
+`0x00455C50` at `0x00456FD0` and `0x00456FE2`. Their 114- and 115-byte
+bodies implement the two standard-library pair constructions used to insert a
+string-keyed `ScenarioTextEntryDC` value.
+
+A small tracked witness builds the actual C++ standard-library pair types
+with the pinned VC8 compiler. Each generated body has a relocation-masked
+fingerprint with a unique hit in the complete current 4,027-candidate
+inventory. The two native callable-body hashes and both call sites are pinned
+by the origin rule. This establishes compiler-generated classification, not
+full relocation or exception-metadata equality; no authored exact bytes are
+awarded. The 598-byte character-installation caller remains unselected and
+nonexact, with original argument grouping and exception context still under
+review.

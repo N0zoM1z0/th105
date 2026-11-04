@@ -1701,9 +1701,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00455A00,compiler_generated,std,exclude,observed,boost-narrow-std-equivalence-106a
 0x00455A80,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00455BE0,compiler_generated,runtime,exclude,observed,vc8-generated-scenario-text-rebuild-extra-106a
-0x00455C50,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00455C50,compiler_generated,std,exclude,observed,vc8-scenario-text-pair-constructors-106a
 0x00455CD0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00455DD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00455DD0,compiler_generated,std,exclude,observed,vc8-scenario-text-pair-constructors-106a
 0x00455E50,compiler_generated,runtime,exclude,observed,vc8-generated-scenario-text-rebuild-extra-106a
 0x00455EF0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004560F0,authored_game,battle,authored,observed,canonical-exact-authored
