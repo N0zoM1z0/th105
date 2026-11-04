@@ -541,3 +541,9 @@ See `docs/SCORE_SEQUENCE_RESULT_2026_11_04.md`.
 deck access and has a reproducible probe: 728/native728, with only two resolved
 operand bytes differing at +540/+543. It remains nonexact; full EH is unproven.
 See `docs/PLAYER_SLOT_PROFILE_LOAD_2026_11_04.md`.
+
+2026-11-04: spell finalizer `0x00432200` now locally compares 260/260 in two
+separately compiled objects using natural zeroing and an integer ID, retaining
+the direct checked-deque endpoints. Independent Factory acceptance remains
+pending; no exact bytes are recorded. The exact loader caller remains exact.
+See `docs/SPELL_FINALIZE_SOURCE_2026_11_04.md`.

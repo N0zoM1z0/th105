@@ -43,3 +43,19 @@ are `12b243917656930f48ba64f54ec71b7eb59262029064fb84d403ace56400b346`
 and `ea2b335f8b0495fd7bce7ebb28bbfd221c5f685b465510c9dc0a5bfcad7078ce`,
 respectively. The retained code is ordinary C++ and does not add manual iterator
 checks. This is not an exact match or a claim of exception equivalence.
+
+## Local complete comparison, 2026-11-04
+
+The direct checked-deque endpoints are retained. Clearing the byte array with
+`std::memset` and promoting the first read ID to the lookup's `int` argument
+are ordinary operations with the observed target semantics; the later iterator
+read remains separate after the lookup. Two separately compiled VC8 objects
+now compare 260/260, including the original three-byte alignment instruction.
+Both resolved sections have SHA-256
+`ea2b335f8b0495fd7bce7ebb28bbfd221c5f685b465510c9dc0a5bfcad7078ce`.
+The previous 255-byte candidate is superseded.
+
+Independent Factory acceptance remains pending. This source-present method
+receives no exact credit until that replay is accepted; no live execution or
+broad exception-equivalence claim is made. The exact caller at `0x00432360`
+was rebuilt and remains exact.
