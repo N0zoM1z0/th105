@@ -31,3 +31,15 @@ than its existing layout view. Both still emit the same 226-byte candidate and
 entry mismatch; temporary source/header changes were restored. Receipts are in
 `build/frontier-spell-finalize-iterator-20261104/`. These controls do not
 establish the original nominal member type or a whole-program compiler context.
+
+## Direct checked-deque expressions, 2026-11-04
+
+Using the observed deque member directly at each iterator endpoint, instead of
+naming a reference to it, preserves the real checked iterator operations and
+reproduces the native 0x10-byte frame and its container-owner check. Fresh VC8
+emits 255 bytes against the native 260 and first differs at +3 in register-save
+ordering; the preceding 226-byte result is superseded. The two section hashes
+are `12b243917656930f48ba64f54ec71b7eb59262029064fb84d403ace56400b346`
+and `ea2b335f8b0495fd7bce7ebb28bbfd221c5f685b465510c9dc0a5bfcad7078ce`,
+respectively. The retained code is ordinary C++ and does not add manual iterator
+checks. This is not an exact match or a claim of exception equivalence.

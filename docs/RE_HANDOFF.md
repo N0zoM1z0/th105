@@ -520,3 +520,8 @@ The target and candidate section hashes are equal; see
 The independent forced-recompile replay for `0x00445D90` subsequently passed
 and was accepted after direct `build.py` invocations were routed through the
 existing pinned `repo-python` environment. The 381 bytes are accepted exact.
+
+2026-11-04: spell finalizer `0x00432200` now uses the deque member directly
+for iterator endpoints. This natural source form reproduces the target frame
+and checked owner comparison, but remains nonexact at 255/260 bytes, first
+mismatch +3. See `docs/SPELL_FINALIZE_SOURCE_2026_11_04.md`.
