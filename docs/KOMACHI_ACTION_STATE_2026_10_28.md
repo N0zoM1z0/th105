@@ -233,3 +233,18 @@ The fresh ordinary VC8 object contains the corresponding integer-load,
 add-constant, add-stack-value sequences. The entire root remains nonexact,
 first mismatch +42 against its 63,993-byte callable, with a 64,952-byte
 candidate section tail. This unselected candidate contributes no exact credit.
+
+## Swap attack spawn-height grouping, 2026-11-04
+
+For the extra rings in actions 541 and 543, native instructions at
+`0x005EADD4..0x005EADEB` and `0x005EB8D3..0x005EB8EA` form
+`sin(angle) * 200.0 + (height + 100.0)`. The previous shared source instead
+formed `(sin(angle) * 200.0 + height) + 100.0`. The source now preserves the
+native grouping, and the fresh object emits the corresponding height load,
+constant addition and x87 stack addition (for example candidate offset
+`0x8D0E..0x8D1E`). Floating-point addition is not generally associative; this
+is a target-backed ordering correction, not a claim of full gameplay
+verification.
+
+The complete callable remains nonexact at +42. The candidate section tail is
+64,952 bytes; no source selection or exact-byte credit is added.
