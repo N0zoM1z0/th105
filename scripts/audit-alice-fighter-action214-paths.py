@@ -46,11 +46,14 @@ def execute(image, code, case, address):
         engine.mem_write(OWNER + offset, struct.pack("<" + fmt, value))
 
     for offset, fmt, value in (
-            (0, "I", VTABLE), (0x104, "b", 1), (0xF8, "f", -2), (0x100, "f", 0.5),
+            (0, "I", VTABLE), (0x104, "b", case.get("facing", 1)), (0xF8, "f", -2), (0x100, "f", 0.5),
             (0x13C, "h", 214), (0x13E, "h", case["sequence"]), (0x140, "h", 1),
             (0x142, "h", 0), (0x144, "i", 1), (0x14C, "h", 3),
             (0x170, "I", PEER), (0x174, "h", 100), (0x482, "h", 1),
-            (0x6C8, "i", case["held"]), (0x736, "h", 20)):
+            (0x6C8, "i", case["held"]), (0x736, "h", 20),
+            (0x6B8, "i", case.get("vertical", 0)), (0x6B4, "i", case.get("horizontal", 0)),
+            (0x732, "h", case.get("heading", 0)), (0x740, "f", case.get("angle", 0.0)),
+            (0x4B8, "I", case.get("slow", 0)), (0x73C, "f", case.get("speed", 0.0))):
         put(offset, fmt, value)
     engine.mem_protect(PEER, 0x10000, unicorn.UC_PROT_READ)
     engine.mem_write(STACK + 0xFF00, struct.pack("<I", RETURN))
@@ -64,14 +67,21 @@ def execute(image, code, case, address):
     def observe(uc, location, size, unused):
         if location == FRAME_HELPER:
             trace.append(hex(location))
-        if location in BOUNDARIES:
+        boundary = BOUNDARIES.get(location)
+        if case.get("stop_at_cosine") and location == 0x4063D0:
+            boundary = "cosine"
+        if boundary is not None:
             trace.append(hex(location))
-            result.update(boundary=BOUNDARIES[location], helper_trace=trace,
+            result.update(boundary=boundary, helper_trace=trace,
                           receiver_offset=uc.reg_read(registers.UC_X86_REG_ECX) - OWNER,
                           observed_prefix=bytes(uc.mem_read(OWNER, 0x800)).hex(),
                           x87_top=(uc.reg_read(registers.UC_X86_REG_FPSW) >> 11) & 7,
                           x87_tag=uc.reg_read(registers.UC_X86_REG_FPTAG),
                           x87_control=uc.reg_read(registers.UC_X86_REG_FPCW))
+            if boundary == "cosine":
+                sp = uc.reg_read(registers.UC_X86_REG_ESP)
+                result["argument_word"] = struct.unpack("<I", uc.mem_read(sp + 4, 4))[0]
+                result["receiver_offset"] = None  # cdecl helper has no receiver
             uc.emu_stop()
 
     engine.hook_add(unicorn.UC_HOOK_CODE, observe)

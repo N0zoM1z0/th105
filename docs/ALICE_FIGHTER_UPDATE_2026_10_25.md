@@ -624,3 +624,23 @@ unselected, preserve the strict comparison and do not iterate equivalent
 spellings or re-run closed array/width/layout controls. Next work returns to a
 complete medium representative with a distinct untried provenance question,
 AyaObject61F0B0.
+
+## Action 214 active steering prefix, 2026-11-04
+
+A fresh build of the complete current source retains the 44,032-byte canonical
+candidate SHA-256 `4d312925be3f754e27ef0f963632f8034ca587c6b09be35dc7a7ff8aefd5bd1d`.
+A provenance-gated Unicorn observer executes both the original root and this
+candidate through the actual `0x4351C0` nonready frame helper, then stops at
+the first cdecl cosine lookup before its body. Across 432 combinations of
+active sequences 1–4, directional input, facing, normal/slow turn rate and
+three boundary angles, both roots agree with an independent steering model
+and each other on object-prefix bytes and cosine argument. A mutation that
+substitutes speed for the angle argument is detected. The six prior inactive
+prefix cases continue to pass.
+
+This is bounded prefix evidence only. The cosine, velocity computation,
+subsequent effects, landing paths, game reachability and full root are not
+executed or proved; no source-selection or exact credit is added. Run
+`scripts/repo-python -m unittest discover -s tests -p
+test_alice_action214_active_prefix.py`. Receipts are under
+`build/frontier-alice-active-prefix-20261104/`.
