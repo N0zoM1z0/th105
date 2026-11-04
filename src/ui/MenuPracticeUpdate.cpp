@@ -32,12 +32,11 @@ bool CMenuPractice::update()
         return false;
     }
     for (int category = 2; category < 8; ++category) {
-        std::vector<UiDesignObject *> &group = groups_1bc[category];
-        for (unsigned int i = 0; i < group.size(); ++i) {
+        for (unsigned int i = 0; i < groups_1bc[category].size(); ++i) {
             if (i == static_cast<unsigned int>(settings_004->category_value_00c[category]))
-                group[i]->set_color(0xffffffffu);
+                groups_1bc[category][i]->set_color(0xffffffffu);
             else
-                group[i]->set_color(0xff808080u);
+                groups_1bc[category][i]->set_color(0xff808080u);
         }
     }
     return true;

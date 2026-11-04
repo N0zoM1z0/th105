@@ -1705,3 +1705,4 @@ CMenuConnect_render
 CNetworkClient_advance_frame
 CTitle_render
 CNetworkClient_import_snapshot
+CMenuPractice_update

@@ -30614,7 +30614,7 @@ source = "src/ui/MenuPracticeUpdate.cpp"
 object = "build/match-units/ExactFirst_MenuPracticeUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Compiling practice menu update hypothesis; strict compare blocked by local vector size helper."
+notes = "Complete practice menu update; canonical exact 381/381 with direct vector expressions."
 
 [[units.exact-first-menu-practice-update.functions]]
 address = "0x00445D90"

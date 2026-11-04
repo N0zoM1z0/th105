@@ -511,3 +511,9 @@ provider now emit the same member symbol. A fresh cold build and all 18 accepted
 roots in eight directly affected units replay exact; the prior nonexact `466F40`
 remains unchanged. No integrated-link or new-byte claim is made. See
 `BATTLE_RENDER_TAIL_EXACT_2026_11_04.md`.
+
+2026-11-04: `CMenuPractice_update` at `0x00445D90` now has a complete
+canonical 381/381-byte match in `src/ui/MenuPracticeUpdate.cpp`, using direct
+indexed container expressions rather than the previously outlined size helper.
+The target and candidate section hashes are equal; see
+`docs/MENU_PRACTICE_UPDATE_2026_11_04.md`. Live-game behavior was not run.
