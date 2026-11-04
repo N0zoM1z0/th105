@@ -1,4 +1,5 @@
 #include "engine/Sprite.hpp"
+#include "battle/ScenarioData.hpp"
 // CScenarioData primary vtable slot 0x0c, JP1.06a 0x00457F90.
 // Pointer-only render view. Real owned-member layouts are retained; this TU
 // does not construct or destroy the view. See SCENARIO_RENDER_2026_10_29.md.
@@ -22,19 +23,6 @@ struct ScenarioRenderDrawEntry9C {
 };
 typedef char CheckRenderEntry9C[sizeof(ScenarioRenderDrawEntry9C) == 0x9c ? 1 : -1];
 
-struct ScenarioTextDrawEntryDC {
-    unsigned int resource_handle_000;
-    CSprite sprite_004;
-    std::string text_098;
-    unsigned char flags_0b4[4];
-    int values_0b8[7];
-    signed char flags_0d4[6];
-    unsigned char unknown_0da[2];
-
-    void render_dynamic();
-};
-typedef char CheckTextEntryDC[sizeof(ScenarioTextDrawEntryDC) == 0xdc ? 1 : -1];
-
 typedef TextFontOwner194 ScenarioRenderFont194;
 typedef TextFontConfig128 ScenarioRenderConfig128;
 
@@ -56,7 +44,7 @@ public:
     ScenarioRenderConfig128 effect_config_1fc;
     int field_324;
     int field_328;
-    std::map<std::string, ScenarioTextDrawEntryDC> text_entries_32c;
+    std::map<std::string, ScenarioTextEntryDC> text_entries_32c;
     std::list<ScenarioRenderDrawEntry9C> render_entries_338;
     std::list<ScenarioRenderDrawEntry9C> render_entries_344;
     std::list<ScenarioRenderDrawEntry9C> render_entries_350;
@@ -89,7 +77,7 @@ void CScenarioDataRenderView::render()
     for (; render_it != render_entries_344.end(); ++render_it)
         render_it->sprite_004.render(0.0f, 0.0f);
 
-    for (std::map<std::string, ScenarioTextDrawEntryDC>::iterator it = text_entries_32c.begin();
+    for (std::map<std::string, ScenarioTextEntryDC>::iterator it = text_entries_32c.begin();
          it != text_entries_32c.end(); ++it) {
         if (it->second.resource_handle_000 != 0) {
             if (it->second.flags_0d4[3] == 0)
@@ -97,7 +85,7 @@ void CScenarioDataRenderView::render()
         }
     }
 
-    for (std::map<std::string, ScenarioTextDrawEntryDC>::iterator it = text_entries_32c.begin();
+    for (std::map<std::string, ScenarioTextEntryDC>::iterator it = text_entries_32c.begin();
          it != text_entries_32c.end(); ++it) {
         if (it->second.resource_handle_000 != 0) {
             if (it->second.flags_0d4[3] != 0)

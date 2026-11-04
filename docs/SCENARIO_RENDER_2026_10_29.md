@@ -65,3 +65,13 @@ are unchanged; no previously accepted function is modified. The two exact
 render callees are pinned as native call witnesses by the authored-origin
 rule. Default CI validates the new source selection, ledgers and tooling;
 this is not a full cold-corpus rebuild.
+
+## Shared text-entry type, 2026-11-04
+
+The two map render passes now use the real shared `ScenarioTextEntryDC` and
+call its actual `render_dynamic` member, replacing a duplicate text-entry
+view. A fresh full candidate comparison reproduces the same 930-byte source
+SHA-256 and the same mismatch at +14 recorded above. All five functions in
+the real Scenario runtime provider unit, including `render_dynamic`, remain
+canonical exact. The render root is still nonexact; this does not add authored
+exact bytes or prove the full-program link.
