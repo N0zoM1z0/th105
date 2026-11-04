@@ -1664,3 +1664,4 @@ SpellDataOwner_shuffle_selection
 BattleObjectManager_render_tail
 ProfileEditor_update_selection
 CProfileMenu_update_primary
+CProfileMenu_update_state_one
