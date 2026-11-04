@@ -284,3 +284,15 @@ unmasked-exception equivalence.
 
 The 28,985-byte callable remains nonexact from +37; the candidate section
 tail is 29,400 bytes. No exact credit is added.
+
+## Action 859 ordered scale clamp, 2026-11-04
+
+At `0x004E63CA..0x004E63F8`, native stores the scale as float and clamps
+it at one only when the comparison is ordered and at least one. The status
+mask is 1, so unordered values skip the clamp. The previous negated `< 1`
+also clamped NaN. The source now uses `>= 1.0f`; fresh VC8 emits the same local
+mask and skip branch at `0x56F9..0x5701`. This does not establish whole-root
+or unmasked-exception equivalence.
+
+The 28,985-byte callable remains nonexact from +37; the candidate section
+tail is 29,396 bytes. No exact credit is added.

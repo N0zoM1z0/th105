@@ -368,7 +368,7 @@ void SakuyaObjectUpdateView::update_action_state()
   switch(S(0x13e)){
   case 0:{
    F(0x12c)+=1.0;
-   if(S(0x364)==0){F(0x11c)+=D(0.05f);if(!(F(0x11c)<1)){F(0x11c)=1;F(0x120)=1;S(0x364)=1;}F(0x120)=F(0x11c);}
+   if(S(0x364)==0){F(0x11c)+=D(0.05f);if(F(0x11c)>=1.0f){F(0x11c)=1;F(0x120)=1;S(0x364)=1;}F(0x120)=F(0x11c);}
    if(S(0x364)==1){++S(0x366);if(S(0x366)>299)S(0x364)=2;float radius=static_cast<float>(F(0x11c)*90.0);double y_square=square_float_value(static_cast<float>(AT(A,float,0xf0)+100.0-F(0xf0)));if(sqrt_float_value(static_cast<float>(square_float_value(AT(A,float,0xec)-F(0xec))+y_square))<radius)AT(A,short,0x186)=2;}
    if(S(0x364)==2){F(0x120)=F(0x11c)=static_cast<float>(F(0x11c)-D(0.025f));if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
    MOVE();H[1]*=D(0.9f);if(H[1]<1)H[1]=1;STEP();if(OUTSIDE(1480.0f,-200.0,1000.0,-260.0f))RETIRE();break;
