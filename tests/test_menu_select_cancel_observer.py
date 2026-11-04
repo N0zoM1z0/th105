@@ -31,6 +31,19 @@ class MenuSelectCancelObserverTests(unittest.TestCase):
                         self.assertEqual(observer.execute(body, selection, 1, 0, 0, mode, True),
                                          observer.expected_selection(selection, mode))
 
+    def test_null_allocator_result_paths(self):
+        # Mock the observed null-return branch; no real allocator behavior is implied.
+        for selection in (2, 3, 4, 5):
+            for mode in ((0, 3) if selection == 5 else (0,)):
+                expected = observer.expected_selection(selection, mode)
+                events = expected[1][:10]
+                if selection == 5: events.append(("game_mode",))
+                events += [("new", 0x288 if selection in (2, 3) else 0x330), ("install", 0)]
+                expected = (expected[0], events, expected[2], expected[3], expected[4])
+                for body in self.bodies:
+                    with self.subTest(selection=selection, mode=mode):
+                        self.assertEqual(observer.execute(body, selection, 1, 0, 0, mode, True, False), expected)
+
     def test_case_seven_must_not_play_cancel_event(self):
         source = bytearray(self.bodies[1])
         self.assertEqual(struct.unpack('<I', source[-4:])[0], 0x447f91)

@@ -31,8 +31,10 @@ All four agree on return and mocked call traces, and redirecting case 7 to
 the cancel-sound path is detected. Cursor, color, event and menu-input
 providers are mocked. A second matrix covers all eight selections and both
 network-mode branches against an independent expected call/state model.
-Allocation, player lookup, submenu constructors and installation are mocked;
-real allocation, exception handling and full-game behavior are not covered. Run
+Allocation, player lookup, submenu constructors and installation are mocked.
+For selections 2–5, both images also follow the modeled null-allocation
+branch and install a null pointer without constructing a submenu. Real
+allocation and exception handling and full-game behavior are not covered. Run
 `scripts/repo-python -m unittest discover -s tests -p
 test_menu_select_cancel_observer.py`. Receipts are under
 `build/frontier-menu-select-primary-20261104/`.
