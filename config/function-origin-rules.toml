@@ -6630,3 +6630,17 @@ subsystem = "vc8_stl"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Real package archive map cleanup emitted in its genuine CIL; exact destructor calls it. Whole native body and source bytes agree after qualified erase/delete role bindings. The erase implementation is not claimed exact. docs/PACKAGE_MAP_TIDY_ORIGIN_2026_11_04.md."
+
+[[rules]]
+id = "scenario-runtime-reset-authored-106a"
+addresses = ["0x00457E40"]
+expected_count = 1
+expected_bytes = 334
+expected_names = ["sub_457E40"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete scenario text, result and effect reset policy; pinned body and exact story-page loader caller. Selected source remains nonexact. docs/SCENARIO_RUNTIME_RESET_SOURCE_2026_11_04.md."
+required_body_hashes = [{ address = "0x00457E40", size = 334, sha256 = "f6f71511691781cee605df4807a7ce2aab4323cb1720b2e639bf153b0fe8acfd" }]
+required_direct_edges = [{ caller = "0x004583E0", site = "0x00458415", target = "0x00457E40", caller_status = "matching" }]

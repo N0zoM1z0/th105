@@ -30030,3 +30030,16 @@ notes = "Complete natural checked-deque spell finalization candidate; no exact c
 address = "0x00432200"
 symbol_base = "?finalize_loaded_spell_data@SpellDataOwner@th105@@QAEXXZ"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20"]
+
+[units.exact-first-scenario-runtime-reset]
+kind = "probe"
+source = "src/battle/ScenarioRuntime.cpp"
+object = "build/match-units/ExactFirst_ScenarioRuntimeReset.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete scenario runtime reset; nonexact source with out-of-line checked-STL call interfaces."
+
+[[units.exact-first-scenario-runtime-reset.functions]]
+address = "0x00457E40"
+symbol_base = "?reset_runtime_state@CScenarioData@th105@@QAEXXZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?increment@ScenarioTextMapIteratorIncrementView@th105@@QAEXXZ=0x00435C00", "?assign_bytes@ScenarioStringAssignBytesView@th105@@QAEXPBDI@Z=0x004021C0", "?clear_entries@ScenarioRenderListClearView@th105@@QAEXXZ=0x00435FF0", "?release_all_system_effects@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEXXZ=0x00436E60"]

@@ -1850,3 +1850,4 @@ CMenuResult_update_active,0x004472A0,function
 BackgroundBase_set_transition,0x004654F0,function
 SpellDataOwner_finalize_loaded_spell_data,0x00432200,function
 CSelect_on_scene_enter,0x00421120,function
+CScenarioData_reset_runtime_state,0x00457E40,function

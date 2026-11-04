@@ -465,3 +465,12 @@ bound to the hash-pinned native erase entry; the erase implementations are not
 claimed equal. Targeted proof, seven corruption controls and 1,018
 target-independent CI tests passed. No authored exact bytes are added, and no
 full origin census was replayed. See `PACKAGE_MAP_TIDY_ORIGIN_2026_11_04.md`.
+
+### Scenario runtime reset (2026-11-04)
+
+The complete `457E40` scenario state reset is authored and individually mapped
+using its full target hash and exact story-page loader edge. Its current source
+remains 339/334 and nonexact; the final system-effect tail is a separate
+nonexact callee. All five same-TU exact roots, the exact loader and 1,018
+target-independent CI checks pass. The focused origin rule was checked; no
+full origin census was replayed. See `SCENARIO_RUNTIME_RESET_SOURCE_2026_11_04.md`.
