@@ -30628,3 +30628,32 @@ rel32_targets = [
  "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
+
+[units.exact-first-scene-frame-update]
+kind = "probe"
+source = "src/engine/SceneFrameUpdate.cpp"
+object = "build/match-units/ExactFirst_SceneFrameUpdate.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Unselected complete frame-update hypothesis, including the physically separate UI tail."
+
+[[units.exact-first-scene-frame-update.functions]]
+address = "0x0043B4A0"
+symbol_base = "?update_scene_runtime@th105@@YAXXZ"
+rel32_targets = [
+ "?update_input_state_table@InputStateTableStorage@th105@@QAEXXZ=0x0040A550",
+ "?build_player_logical_input_mask@CInputManagerEx@th105@@UAEXXZ=0x00409F70",
+ "?merge_menu_input_sources@CInputManagerCluster@th105@@QAEXXZ=0x0040A0F0",
+ "?pop_profile_ui_menu_43ff40@th105@@YAXXZ=0x0043FF40",
+ "_is_menu_initial_press=0x0043ABD0",
+ "__invalid_parameter_noinfo=0x0068A143",
+]
+dir32_targets = [
+ "?g_frame_input_state@th105@@3UInputStateTableStorage@1@A=?g_global_input_state@th105@@3UGlobalInputStateFacade@1@A",
+ "?g_frame_player_input@th105@@3UCInputManagerEx@1@A=?g_default_input@th105@@3UPlayerInput@1@A",
+ "?g_frame_result_inputs@th105@@3V?$vector@UCInputManagerEx@th105@@V?$allocator@UCInputManagerEx@th105@@@std@@@std@@A=?g_result_input_records@th105@@3UResultInputRecordTableView@1@A",
+ "?g_combined_menu_input@th105@@3UCInputManagerCluster@1@A=?g_combined_menu_input_storage@th105@@3PAEA",
+ "?g_scene_mode@th105@@3HA=_g_scene_mode",
+ "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenuFrameView@th105@@V?$allocator@PAUUiSelectionMenuFrameView@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
+ "_g_active_menu_input=_g_active_menu_input",
+]
