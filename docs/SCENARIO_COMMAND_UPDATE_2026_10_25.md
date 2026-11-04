@@ -253,3 +253,19 @@ native-deque-front, generated-helper-scan, copy-constructor-all-text,
 current-inputs and Ghidra attestation/hash receipts. Private source snapshots,
 scan recipes and read-only decompiler driver are in the matching `.analysis/`
 scope. Generated files, target, analysis DB and compiler remain outside Git.
+
+## Real checked-map iteration, 2026-11-04
+
+The seven text-map advances in the still-unselected interpreter hypothesis now
+use the actual `std::map` iterator's `++it` rather than a declaration-only
+iterator facade. In a fresh ordinary VC8 build, its emitted checked-tree
+`_Inc` specialization compares exact 126/126 with the independently
+classified compiler-generated helper at `0x00435C00`, including the pinned
+invalid-parameter call. The probe binds that real specialization, not the old
+facade, to the existing target helper; it earns no authored-byte credit.
+
+The interpreter's fresh root section is 5,368 bytes. Strict comparison still
+stops on an unresolved locally emitted string constructor, so the section
+size is not an accepted body comparison and there is no new exact or
+source-present credit. The target CFG audit continues to pass. No general
+behavioral equivalence or full executable link is claimed.

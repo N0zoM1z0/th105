@@ -57,9 +57,6 @@ typedef std::map<std::string, ScenarioTextEntryDC> ScenarioTextMap;
 struct ScenarioTextFindView {
     ScenarioTextMap::iterator find(const std::string &);
 };
-struct ScenarioTextIteratorView {
-    void increment();
-};
 struct ScenarioTextAdvanceView {
     int update_dynamic_state();
 };
@@ -131,7 +128,7 @@ signed char ScenarioCommandUpdateView::update()
     while (it != s.text_entries_32c.end()) {
         reinterpret_cast<ScenarioTextAdvanceView *>(&it->second)
             ->update_dynamic_state();
-        reinterpret_cast<ScenarioTextIteratorView *>(&it)->increment();
+        ++it;
     }
 
     if (s.state_50d) {
@@ -190,7 +187,7 @@ signed char ScenarioCommandUpdateView::update()
                 s.state_50c = 0;
             return 1;
         }
-        reinterpret_cast<ScenarioTextIteratorView *>(&it)->increment();
+        ++it;
     }
 
     if (s.result_resources_390.update()) {
@@ -220,7 +217,7 @@ signed char ScenarioCommandUpdateView::update()
         while (it != s.text_entries_32c.end()) {
             if (it->second.flags_0d4[5])
                 return -1;
-            reinterpret_cast<ScenarioTextIteratorView *>(&it)->increment();
+            ++it;
         }
         s.reset_runtime_state();
         return 0;
@@ -274,7 +271,7 @@ signed char ScenarioCommandUpdateView::update()
                 it = s.text_entries_32c.begin();
                 while (it != s.text_entries_32c.end()) {
                     it->second.flags_0d4[3] = 0;
-                    reinterpret_cast<ScenarioTextIteratorView *>(&it)->increment();
+                    ++it;
                 }
                 s.trim_render_entries_and_begin_fade_455cd0();
                 s.state_510 = 0;
@@ -511,13 +508,13 @@ signed char ScenarioCommandUpdateView::update()
                 it = s.text_entries_32c.begin();
                 while (it != s.text_entries_32c.end()) {
                     it->second.flags_0d4[2] = 1;
-                    reinterpret_cast<ScenarioTextIteratorView *>(&it)->increment();
+                    ++it;
                 }
             } else {
                 it = s.text_entries_32c.begin();
                 while (it != s.text_entries_32c.end()) {
                     it->second.flags_0d4[2] = 0;
-                    reinterpret_cast<ScenarioTextIteratorView *>(&it)->increment();
+                    ++it;
                 }
                 s.state_50d = 0;
             }
@@ -534,7 +531,7 @@ signed char ScenarioCommandUpdateView::update()
             it = s.text_entries_32c.begin();
             while (it != s.text_entries_32c.end()) {
                 it->second.flags_0d4[2] = 0;
-                reinterpret_cast<ScenarioTextIteratorView *>(&it)->increment();
+                ++it;
             }
             s.state_50d = 0;
             s.state_50f = 1;
