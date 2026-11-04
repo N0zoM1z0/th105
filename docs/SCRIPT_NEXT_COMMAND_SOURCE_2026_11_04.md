@@ -25,3 +25,15 @@ origin proofs (script map cleanup and CSV deque copy) were rebuilt and fully
 revalidated. The source comparison remains
 blocked; those positive dependency proofs do not close its private ABI.
 Target-independent CI passed all 1,030 tests and progress checks.
+
+## Genuine CIL execution, 2026-11-04
+
+A new truthful CIL diagnostic emits a 156-byte root with the checked deque
+dereference inlined. It compares nonexact against the native 104-byte root at
++28; the normal standalone unit remains blocked at the unqualified helper.
+`scripts/audit-script-next-command-real-cil.py` executes the complete native
+root and its actual dereference helper alongside the linked source root on
+seven valid fixtures, including empty/end cursors and block-map wraparound.
+Both agree with an independent cursor/result model; a modified increment is
+detected. This does not test invalid iterators, allocation, actual script
+parsing, exceptions or full-game behavior and does not add exact credit.
