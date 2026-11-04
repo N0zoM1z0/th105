@@ -280,7 +280,7 @@ public:
             p[1]=static_cast<float>(yuyuko_sine(static_cast<float>(at<float>(0x740)*angle_scale))*speed_scale+2.0);
             p[2]=0.0f;p[3]=at<float>(0x740);
             spawn(812,static_cast<float>((yuyuko_cosine(-p[0])*100.0+at<float>(0x740)*5.0-85.0)*facing()+at<float>(0xec)),
-                  static_cast<float>(yuyuko_sine(-p[0])*40.0+at<float>(0xf0)+120.0),at<unsigned char>(0x104),1,p,4);
+                  static_cast<float>(yuyuko_sine(-p[0])*40.0+(static_cast<double>(at<float>(0xf0))+120.0)),at<unsigned char>(0x104),1,p,4);
         }
         at<float>(0x740)=static_cast<float>(at<float>(0x740)+1.0);
     }

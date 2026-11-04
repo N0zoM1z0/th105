@@ -151,3 +151,16 @@ The public full payload remains59456/full59672, frame4F0 and first+8, SHA256
 893e55b4e6e1976682b96b24c1b5245becea1c35b6f0c40b5299741ddaff5323.
 Receipt: build/frontier-55d850-20261027/formal-surface720-audit.json. The strict
 positional difference count is56540; there is still no exact acceptance.
+
+## Arc and spell height grouping, 2026-11-04
+
+Native action 510/511/512/513 arc sites at `0x00565526`, `0x005656CE`,
+`0x005658F5` and `0x00565A67` add 120.0 to fighter height before combining
+it with the sine offset. Action 731 at `0x0056B837..0x0056B84F` similarly
+adds 100.0 to height before the cosine offset. The two corresponding source
+expressions now preserve the native order. A fresh VC8 object contains the
+same height/add/add-stack pattern. This can affect floating-point rounding;
+it does not establish complete gameplay equivalence.
+
+The full 58,619-byte callable remains nonexact from +8, with a 59,456-byte
+candidate section tail. It is unselected and adds no exact credit.

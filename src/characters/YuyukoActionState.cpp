@@ -687,7 +687,7 @@ case 730:
     if(entry(1)){B(0x104)=255;F(0xf4)=static_cast<float>((640.0-F(0xec))/60.0*-1.0);F(0xf8)=18.5f;F(0x100)=0.5f;}return;
 case 731:
     F(0xec)=640.0f;
-    if(!sequence_index_13e && frame_index_140<=2 && time_counter_144%5==0){float p[3]={static_cast<float>(yuyuko_random(360)),static_cast<float>(static_cast<float>(yuyuko_random(250))+50.0),3.0f};spawn(922,static_cast<float>(yuyuko_cosine(-p[0])*p[1]*facing()+F(0xec)),static_cast<float>(yuyuko_cosine(-p[0])*p[1]+F(0xf0)+100.0),B(0x104),-1,p,3);}
+    if(!sequence_index_13e && frame_index_140<=2 && time_counter_144%5==0){float p[3]={static_cast<float>(yuyuko_random(360)),static_cast<float>(static_cast<float>(yuyuko_random(250))+50.0),3.0f};spawn(922,static_cast<float>(yuyuko_cosine(-p[0])*p[1]*facing()+F(0xec)),static_cast<float>(yuyuko_cosine(-p[0])*p[1]+(static_cast<double>(F(0xf0))+100.0)),B(0x104),-1,p,3);}
     if(sequence_index_13e==1 && time_counter_144>=120){next_sequence_block();return;}
     if(sequence_index_13e==2){F(0xf0)=static_cast<float>(yuyuko_sine(static_cast<float>(time_counter_144*3.0))*F(0x744)+F(0x740));F(0x744)=static_cast<float>(F(0x744)+static_cast<double>(0.1f));if(F(0x744)>=60.0f)F(0x744)=60.0f;}
     if(advance())set_action_and_finalize(700);
