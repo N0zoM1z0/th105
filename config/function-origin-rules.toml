@@ -7292,3 +7292,18 @@ evidence = "CNetworkClient RTTI slot owns the complete frame pacing, queue advan
 required_rtti_virtual_bodies = [
  { address = "0x0044EAD0", size = 573, sha256 = "2ed949cac1de89ef40e7801d90ac8f0da4fc8caad3bd96c3dae23cbdbe747431", slot = "0x006C1778", col_slot = "0x006C1750", col = "0x006D80BC", type_descriptor = "0x006E6924", type_name_contains = "CNetworkClient@@", calls = [{ site = "0x0044EB05", target = "0x0040AC30" }, { site = "0x0044EB12", target = "0x0040AC40" }, { site = "0x0044EC6A", target = "0x0044EA80" }, { site = "0x0044EC75", target = "0x0044EA80" }] },
 ]
+
+[[rules]]
+id = "title-render-authored-106a"
+addresses = ["0x00425740"]
+expected_count = 1
+expected_bytes = 417
+expected_names = ["sub_425740"]
+origin = "authored_game"
+subsystem = "ui"
+disposition = "authored"
+confidence = "observed"
+evidence = "CTitle RTTI virtual slot owns the complete title-screen render policy, including three cosine calls and 12 menu tiles. Fresh source emits 417 bytes and remains nonexact at +232. No exact credit. docs/TITLE_RENDER_2026_11_04.md."
+required_rtti_virtual_bodies = [
+ { address = "0x00425740", size = 417, sha256 = "9b2d44fe34ca255edc9001a73621482ab1a9b3d5b405a7131dbb057a382131da", slot = "0x006C0CF4", col_slot = "0x006C0CE8", col = "0x006D7934", type_descriptor = "0x006E64E8", type_name_contains = "CTitle@@", calls = [{ site = "0x0042574B", target = "0x00401000" }, { site = "0x00425781", target = "0x004064B0" }, { site = "0x004258B2", target = "0x004099F0" }, { site = "0x004258D3", target = "0x00401040" }] },
+]

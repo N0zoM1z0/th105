@@ -1888,3 +1888,4 @@ CSelectScenario_render,0x00424A40,function
 CSelectScenario_update_selection,0x004248A0,function
 CMenuConnect_render,0x004418D0,function
 CNetworkClient_advance_frame,0x0044EAD0,function
+CTitle_render,0x00425740,function

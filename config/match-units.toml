@@ -30564,3 +30564,23 @@ rel32_targets = [
  "?advance_delay_queue@ClientPacingEndpointView@th105@@QAEXXZ=0x0044EA80",
 ]
 dir32_targets = ["_g_network_frame_tick=_g_network_frame_tick"]
+
+[units.exact-first-title-render]
+kind = "probe"
+source = "src/ui/TitleRender.cpp"
+object = "build/match-units/ExactFirst_TitleRender.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Complete title-screen render candidate; remains nonexact."
+
+[[units.exact-first-title-render.functions]]
+address = "0x00425740"
+symbol_base = "?render@CTitle@th105@@UAE_NXZ"
+rel32_targets = [
+ "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
+ "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
+ "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
+ "_lookup_orientation_cosine=0x004064B0",
+ "?render@CTile@@QAEXMMHH@Z=0x004099F0",
+]
+dir32_targets = ["?g_render_mode_manager@th105@@3URenderModeManager@1@A=?g_render_mode_manager@th105@@3URenderModeManager@1@A"]
