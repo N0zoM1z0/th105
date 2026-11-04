@@ -74,3 +74,13 @@ now proves40E000/84, original allocator<RawGamepadState>, whole canonical.
 The ordinary unit and source are unchanged; linked initialization182/native176
 is still nonexact. Full exception metadata/CFG/import evidence and regressions
 are recorded in LINKED_GAMEPAD_ALLOCATOR_2026_11_01.md. No authored credit.
+
+## Typed enumeration control, 2026-11-04
+
+A bounded control replaces the root `EnumDevices` vtable expression with an
+ordinary call through a DInput-compatible COM prefix, keeping the same callback
+and argument order. The complete initialization and callback candidates remain
+byte-identical to the earlier 176- and 327-byte objects and are still nonexact.
+The source was restored; this does not prove the original nominal interface or
+resolve its private allocator/TU context. Receipt:
+`build/frontier-gamepad-typed-enum-20261104/compare.json`.
