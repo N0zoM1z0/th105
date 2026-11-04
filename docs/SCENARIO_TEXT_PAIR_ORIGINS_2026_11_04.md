@@ -28,3 +28,12 @@ The insert member directly calls the internal tree `_Insert` at `0x00456550`.
 The same witness independently regenerates that 523-byte COMDAT with a unique
 relocation-masked inventory fingerprint. Its native body and call site are
 pinned as compiler-generated evidence, without claiming complete EH equality.
+
+The internal tree insert calls `_Buynode` at `0x004564A0`. The same witness
+regenerates its 167-byte provisional body with a unique relocation-masked
+fingerprint, including separately verified allocation, pair-construction,
+free and exception-throw call destinations. The generated COMDAT has one
+additional `CC` alignment byte, and the corresponding byte immediately after
+the target candidate is also `CC`; neither is counted as an authored body.
+The candidate's out-of-line throw path is retained in its body hash. This
+classification does not claim complete exception metadata equivalence.

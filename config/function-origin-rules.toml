@@ -6711,3 +6711,22 @@ required_direct_edges = [
  { caller = "0x00456A30", site = "0x00456AF4", target = "0x00456550", caller_status = "unclassified" },
  { caller = "0x00456EB0", site = "0x00456FFF", target = "0x00456A30", caller_status = "unclassified" },
 ]
+
+[[rules]]
+id = "vc8-scenario-text-tree-buynode-106a"
+addresses = ["0x004564A0"]
+expected_count = 1
+expected_bytes = 167
+expected_names = ["sub_4564A0"]
+origin = "compiler_generated"
+subsystem = "std"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Pinned VC8 compiles real checked scenario text-map _Buynode with unique full-inventory relocation-masked 167-byte fingerprint and four verified native call destinations. The generated COMDAT has one additional CC alignment byte; target byte 0x00456547 is also CC and is outside the provisional 167-byte candidate. No authored exact credit or full EH equivalence is claimed."
+vc8_generated_anchor_file = "config/vc8-scenario-text-tree-buynode-origin-anchors.toml"
+required_body_hashes = [
+ { address = "0x004564A0", size = 167, sha256 = "d21253173f9b40f203653f33ebb6b9792045def1e3eea61b6623ea9bac8b0ae3" },
+]
+required_direct_edges = [
+ { caller = "0x00456550", site = "0x004565DF", target = "0x004564A0", caller_status = "unclassified" },
+]
