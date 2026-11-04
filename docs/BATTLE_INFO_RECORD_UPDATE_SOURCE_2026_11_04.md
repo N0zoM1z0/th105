@@ -6,15 +6,15 @@ body and those two edges are pinned in `BATTLE_INFO_RUNTIME_ORIGIN_2026_11_03.md
 
 The complete source hypothesis covers gauge interpolation, visibility groups,
 sequence indicators, and owned effect release/creation. Unlike earlier private
-controls, it uses the real checked `std::deque<FighterSequenceSlot>::front()`
+controls, it uses the real checked `std::deque<FighterSequenceSlot>` begin/dereference
 operation rather than handwritten iterator checks. Its pointer-only field view
 represents the `+0x534` dword as a signed count, which the native update adds to
 the signed state byte and compares as an integer. Compile-time checks pin that
 offset and the genuine deque's 20-byte physical size. The virtual effect call
 uses a typed interface, not a manual vtable.
 
-Fresh VC8 emits a 1,919-byte body and outlines the standard deque `front`
-operation, whereas the native body contains its checked logic. That local helper
+Fresh ordinary VC8 emits a 1,990-byte body and outlines the standard checked
+iterator dereference, whereas the native body contains its checked logic. That local helper
 has no independently established target call binding, so strict comparison is
 **blocked**, not an ordinary byte mismatch. No guessed helper, source-byte
 percentage or exact credit is added. Source semantics and actual runtime effect
@@ -24,3 +24,22 @@ not a canonical comparison. Receipts are under
 The two exact callers and their two same-unit peers replayed exact. The focused
 origin rule and all 1,030 target-independent CI tests passed. These checks do
 not resolve the new candidate's outlined deque helper or prove gameplay.
+
+## Real-source CIL diagnostic
+
+A separate genuine `/GL` + `/LTCG` build uses the current source and the
+actual static CRT, without fake helper providers. Its exported root is only a
+diagnostic retention mechanism. It inlines the checked iterator and links a
+complete body of 1,987 bytes against the 2,005-byte native body, with the first
+canonical mismatch at +32. This is a whole linked-body mismatch, not an
+exact result or a full game link. The regular COFF path remains blocked. No
+new authored or library bytes are credited. Reproduce with
+`scripts/repo-python scripts/probe-battle-info-update-cil.py`; the diagnostic
+reports its own result rather than treating a mismatch as success.
+
+The earlier 1,919-byte `front()` control and the separate 1,990-byte
+`*begin()` COFF candidate are retained in
+`build/frontier-info-runtime-natural-20261104/`. Neither establishes general
+STL equivalence or original translation-unit ownership.
+All four accepted InfoManager core roots and 1,030 target-independent CI tests
+passed after this source change.

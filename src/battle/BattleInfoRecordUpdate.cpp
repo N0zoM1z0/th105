@@ -129,7 +129,7 @@ void BattleInfoRecordF8::update_runtime_46ff30()
         typedef std::deque<FighterSequenceSlot> NativeSequenceDeque;
         NativeSequenceDeque *sequence = reinterpret_cast<NativeSequenceDeque *>(
             &sequence_fighter->sequence_controller_55c);
-        FighterSequenceSlot &front = sequence->front();
+        FighterSequenceSlot &front = *sequence->begin();
         visible_count = front.field_02;
         if (fighter_18->state_4b8 == 2 && front.field_02 > 1)
             --visible_count;

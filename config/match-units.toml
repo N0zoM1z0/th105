@@ -30206,7 +30206,7 @@ source = "src/battle/BattleInfoRecordUpdate.cpp"
 object = "build/match-units/ExactFirst_BattleInfoRecordUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete battle info gauge and effect update hypothesis using the real checked FighterSequenceSlot deque; strict comparison blocked by an unqualified outlined deque front. No fake provider or exact credit. docs/BATTLE_INFO_RECORD_UPDATE_SOURCE_2026_11_04.md."
+notes = "Complete battle info gauge and effect update hypothesis using the real checked FighterSequenceSlot deque; strict comparison blocked by an unqualified outlined checked-iterator dereference. No fake provider or exact credit. docs/BATTLE_INFO_RECORD_UPDATE_SOURCE_2026_11_04.md."
 
 [[units.exact-first-battle-info-record-update.functions]]
 address = "0x0046FF30"
