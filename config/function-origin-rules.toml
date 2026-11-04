@@ -6519,7 +6519,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete profile-menu state policy bodies, original switch tables and exact dispatcher tail edges. Prior source candidates remain unselected/nonexact. docs/ORIGIN_RECOVERY_2026_11_03.md."
+evidence = "Complete profile-menu state policy bodies, original switch tables and exact dispatcher tail edges. Primary source is selected but nonexact; state-one remains unselected. docs/ORIGIN_RECOVERY_2026_11_03.md and docs/PROFILE_MENU_PRIMARY_SOURCE_2026_11_04.md."
 required_body_hashes = [{ address = "0x0044BCF0", size = 256, sha256 = "f79a07e7cea422e69917c9934a5b8b4630c1296aaa5fdfa623f30d03ee93c951" }, { address = "0x0044CA80", size = 446, sha256 = "d14bb403a2a084f28285aa0cf1deb8aa6c554da1a4b026fab5874460b0adee5e" }]
 required_direct_edges = [{ caller = "0x0044D240", site = "0x0044D2DC", target = "0x0044BCF0", kind = "jump", caller_status = "matching" }, { caller = "0x0044D240", site = "0x0044D2E6", target = "0x0044CA80", kind = "jump", caller_status = "matching" }]
 required_dword_values = [{ address = "0x0044BDF0", value = "0x0044BD52" }, { address = "0x0044BDF4", value = "0x0044BD62" }, { address = "0x0044BDF8", value = "0x0044BD72" }, { address = "0x0044BDFC", value = "0x0044BD92" }, { address = "0x0044BE00", value = "0x0044BDA2" }, { address = "0x0044BE04", value = "0x0044BDB2" }, { address = "0x0044BE08", value = "0x0044BDEA" }, { address = "0x0044CC40", value = "0x0044CAC0" }, { address = "0x0044CC44", value = "0x0044CBDB" }, { address = "0x0044CC48", value = "0x0044CBDB" }, { address = "0x0044CC4C", value = "0x0044CC0B" }]

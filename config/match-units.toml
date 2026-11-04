@@ -30090,3 +30090,21 @@ rel32_targets = [
   "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
 ]
+
+[units.exact-first-profile-menu-primary]
+kind = "probe"
+source = "src/ui/ProfileMenuPrimary.cpp"
+object = "build/match-units/ExactFirst_ProfileMenuPrimary.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Profile menu primary state policy is source-present; callable remains 246 bytes against 256 target, with a 2-byte alignment and 28-byte source switch table. No exact-byte credit. docs/PROFILE_MENU_PRIMARY_SOURCE_2026_11_04.md."
+
+[[units.exact-first-profile-menu-primary.functions]]
+address = "0x0044BCF0"
+symbol_base = "?update_primary@CProfileMenu@th105@@AAE_NXZ"
+rel32_targets = [
+  "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
+  "_dispatch_indexed_event=0x0043B1A0",
+  "_is_menu_initial_press=0x0043ABD0",
+  "?set_mode@ProfileMenuController@th105@@QAEXH@Z=0x0040E7F0",
+]

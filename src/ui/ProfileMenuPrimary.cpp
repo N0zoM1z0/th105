@@ -45,17 +45,14 @@ bool CProfileMenu::update_primary()
         case 6:
             return false;
         default:
-            goto keep_open;
+            return true;
         }
     }
 
-    if (input->buttons[1] != 1 &&
-        !is_menu_initial_press(1, 0, 0, 0))
-        goto keep_open;
-    dispatch_indexed_event(0x29);
-    return false;
-
-keep_open:
+    if (input->buttons[1] == 1 || is_menu_initial_press(1, 0, 0, 0)) {
+        dispatch_indexed_event(0x29);
+        return false;
+    }
     return true;
 }
 
