@@ -7205,7 +7205,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Exact CMenuSelect update calls this game-owned selection policy. Full native body and switch destinations cover player assignment, actual profile character/key configuration menus, scene change and cancel behavior. Current source uses those real submenu types; emitted section includes its switch table and differs from the native callable and table. EH prefix only is attested and no exact credit is claimed. docs/MENU_SELECT_PRIMARY_2026_11_04.md."
+evidence = "Exact CMenuSelect update calls this game-owned selection policy. Full native body and switch destinations cover player assignment, actual profile character/key configuration menus, scene change and cancel behavior. Current source uses those real submenu types; emitted section includes its switch table and differs from the native callable and table. The remote EH code and metadata replay exactly, while the root remains nonexact and receives no exact credit. docs/MENU_SELECT_PRIMARY_2026_11_04.md."
 required_body_hashes = [
  { address = "0x00447D20", size = 669, sha256 = "1235b1756799370d4216478c8f698fa93cebcc4f382e2fcdca1be635ec44e89b" },
 ]

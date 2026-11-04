@@ -22,8 +22,8 @@ switch data, SHA-256
 The native callable and source section lengths are not comparable directly;
 the full native payload is 704 bytes. Formal comparison fails from +111 on a
 branch displacement, and the target and source switch placement differs.
-Only the native exception-handler prefix is pinned; full exception metadata
-is not verified. No exact bytes are claimed.
+The complete remote exception handler and metadata have since been independently
+replayed as described below. No root exact bytes are claimed.
 
 The observer executes actual native and fully relocated source code for the
 case-7 exit, button cancellation, menu-input cancellation and neutral path.
@@ -51,3 +51,15 @@ the same build directory.
 The same mocked comparison also checks out-of-range selection values -1, 8
 and `INT_MAX` with confirmation pressed; both return true after the event. These are
 bounded malformed-state observations, not a general input-safety claim.
+
+
+## Remote exception code and metadata
+
+The complete 82-byte remote exception section at `0x006B9C40` and 76-byte
+FuncInfo/unwind map at `0x006DF910` replay byte-for-byte against the genuine
+emitted source after only named relocations are resolved. Five unwind states
+all perform the actual delete cleanup. Whole code and metadata hashes, source
+provenance and relocation roles are pinned in
+`scripts/audit-menu-select-primary-eh.py`; tests mutate each metadata byte.
+This is static EH code/metadata equality, not OS exception execution. The
+menu root still differs and earns no exact-byte credit.
