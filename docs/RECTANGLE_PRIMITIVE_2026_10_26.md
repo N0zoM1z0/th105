@@ -1,5 +1,14 @@
 # Rectangle primitive4012A0: independent complete review
 
+## Source registration, 2026-11-04
+
+The complete rectangle source is registered as source-present, still nonexact.
+Fresh target and candidate replay confirms 394/395 bytes and 85 unequal common
+positions; three bounded call-observer cases agree. Those cases do not execute
+real D3D or establish broad floating-point or runtime equivalence. No exact
+bytes are added. Earlier unselected references below are historical. Receipts:
+`build/frontier-rectangle-registration-20261104/`.
+
 The complete rectangle provider is **nonexact**. The current source emits394
 bytes against395 target bytes; complete canonical relocation replay finds85
 unequal positions in the common394-byte range, first at4012A9. Its finite

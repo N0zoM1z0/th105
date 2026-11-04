@@ -74,6 +74,7 @@ EXACT_TEST_MODULES = (
     "test_boost_matcher_lifetimes",
     "test_boost_recursion_cleanup_origins",
     "test_replay_header_read_eh",
+    "test_origin_edge_statuses",
     "test_select_render_audit",
     "test_native_callbacks",
     "test_select_character_audit",

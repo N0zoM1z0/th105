@@ -23057,7 +23057,7 @@ source = "src/engine/RectanglePrimitive.cpp"
 object = "build/match-units/ExactFirst_RectanglePrimitive.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Independent full395-byte rectangle4012A0 review after exact debug caller45E950. Complete394-byte source is nonexact: target Z is0.5f; local fenv control preserves the repeated single-precision subtraction/store graph. Real common-result lifetime and same-receiver declaration controls are whole-payload byte-neutral. No source selection or exact credit. docs/RECTANGLE_PRIMITIVE_2026_10_26.md."
+notes = "Independent full395-byte rectangle4012A0 review after exact debug caller45E950. Complete394-byte source is nonexact: target Z is0.5f; local fenv control preserves the repeated single-precision subtraction/store graph. Real common-result lifetime and same-receiver declaration controls are whole-payload byte-neutral. Source is registered nonexact; no exact credit. docs/RECTANGLE_PRIMITIVE_2026_10_26.md."
 
 [[units.exact-first-rectangle-primitive.functions]]
 address = "0x004012A0"

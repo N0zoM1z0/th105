@@ -2562,8 +2562,8 @@ required_body_hashes = [
 ]
 required_direct_edges = [
   { caller = "0x00401130", site = "0x0040113F", target = "0x00404DF0", caller_status = "matching" },
-  { caller = "0x00401180", site = "0x004011DF", target = "0x00404DF0", caller_status = "identified" },
-  { caller = "0x004012A0", site = "0x004013F5", target = "0x00404DF0", caller_status = "identified" },
+  { caller = "0x00401180", site = "0x004011DF", target = "0x00404DF0", caller_status = "implemented" },
+  { caller = "0x004012A0", site = "0x004013F5", target = "0x00404DF0", caller_status = "implemented" },
 ]
 required_selected_body_calls = [
   { owner = "0x00404DF0", site = "0x00404E37", target = "0x00417800", target_status = "implemented" },
@@ -2584,10 +2584,10 @@ required_body_hashes = [
   { address = "0x00401180", size = 148, sha256 = "8fab1b24e1ad32aa03203b28ed4c80a795f9d83f6f21e9890e154bb531b3f28d" },
 ]
 required_direct_edges = [
-  { caller = "0x004012A0", site = "0x004012D5", target = "0x00401180", caller_status = "identified" },
-  { caller = "0x004012A0", site = "0x004012FB", target = "0x00401180", caller_status = "identified" },
-  { caller = "0x004012A0", site = "0x00401321", target = "0x00401180", caller_status = "identified" },
-  { caller = "0x004012A0", site = "0x00401347", target = "0x00401180", caller_status = "identified" },
+  { caller = "0x004012A0", site = "0x004012D5", target = "0x00401180", caller_status = "implemented" },
+  { caller = "0x004012A0", site = "0x004012FB", target = "0x00401180", caller_status = "implemented" },
+  { caller = "0x004012A0", site = "0x00401321", target = "0x00401180", caller_status = "implemented" },
+  { caller = "0x004012A0", site = "0x00401347", target = "0x00401180", caller_status = "implemented" },
 ]
 required_selected_body_calls = [
   { owner = "0x00401180", site = "0x004011DF", target = "0x00404DF0", target_status = "implemented" },
@@ -2603,7 +2603,7 @@ origin = "authored_game"
 subsystem = "engine"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete 395-byte two-RET target body branches on filled/outline mode. Outline draws four untextured line segments through helper 0x00401180; filled mode clears texture slot zero through 0x00404DF0, constructs four color vertices and calls D3D9 SetFVF/DrawPrimitiveUP for a two-primitive triangle strip. Eight distinct canonical-exact scene/fade/profile/effect renderers call it, including exact RenderModeManager_draw_rect_int. Full body, all eight exact inbound E8s, and all five helper E8s are replayed. Class/TU and exact source remain unresolved. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Complete 395-byte two-RET target body branches on filled/outline mode. Outline draws four untextured line segments through helper 0x00401180; filled mode clears texture slot zero through 0x00404DF0, constructs four color vertices and calls D3D9 SetFVF/DrawPrimitiveUP for a two-primitive triangle strip. Eight distinct canonical-exact scene/fade/profile/effect renderers call it, including exact RenderModeManager_draw_rect_int. Full body, all eight exact inbound E8s, and all five helper E8s are replayed. Class/TU and exact byte identity remain unresolved; source is present. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
   { address = "0x004012A0", size = 395, sha256 = "71aa186253ca2f14ce6ffc30ac72ef5a5ff29b01f2e2e85e3493c4f6d113b347" },
 ]
@@ -2618,10 +2618,10 @@ required_direct_edges = [
   { caller = "0x004696E0", site = "0x004698A1", target = "0x004012A0", caller_status = "matching" },
 ]
 required_selected_body_calls = [
-  { owner = "0x004012A0", site = "0x004012D5", target = "0x00401180", target_status = "identified" },
-  { owner = "0x004012A0", site = "0x004012FB", target = "0x00401180", target_status = "identified" },
-  { owner = "0x004012A0", site = "0x00401321", target = "0x00401180", target_status = "identified" },
-  { owner = "0x004012A0", site = "0x00401347", target = "0x00401180", target_status = "identified" },
+  { owner = "0x004012A0", site = "0x004012D5", target = "0x00401180", target_status = "implemented" },
+  { owner = "0x004012A0", site = "0x004012FB", target = "0x00401180", target_status = "implemented" },
+  { owner = "0x004012A0", site = "0x00401321", target = "0x00401180", target_status = "implemented" },
+  { owner = "0x004012A0", site = "0x00401347", target = "0x00401180", target_status = "implemented" },
   { owner = "0x004012A0", site = "0x004013F5", target = "0x00404DF0", target_status = "implemented" },
 ]
 
@@ -2920,7 +2920,7 @@ disposition = "authored"
 confidence = "observed"
 evidence = "Closed126-instruction/356-byte stdcall root implements game archive policy around the native checked map and filename vector: CRC lookup, optional collision chain, output size/offset publication, GENERIC_READ CreateFileA, and ignored-result absolute seek. The reviewed FileReaderOwner_open40CF40 calls it for the RTTI-owned package-reader constructor path. Container helper41C450 remains separately in review; its private ESI/EAX/key-stack ABI is not fabricated as a source facade. Fresh source is present but nonexact. docs/PACKAGE_FILE_ENTRY_2026_10_19.md."
 required_body_hashes = [{ address = "0x0041BFA0", size = 356, sha256 = "0fe57031fa66c1e1141f945c79607ccd0d7cade48ba30ea4058b7c8c12a440c3" }]
-required_direct_edges = [{ caller = "0x0040CF40", site = "0x0040CF87", target = "0x0041BFA0", caller_status = "implemented" }]
+required_direct_edges = [{ caller = "0x0040CF40", site = "0x0040CF87", target = "0x0041BFA0", caller_status = "matching" }]
 required_selected_body_calls = [{ owner = "0x0041BFA0", site = "0x0041BFC1", target = "0x00406930" }]
 
 [[rules]]
@@ -3394,7 +3394,7 @@ disposition = "authored"
 confidence = "observed"
 evidence = "Native game-side logarithmic DirectSound conversion scales log10 by33.22f/100.0f and clamps to[-10000,0]. Raw transition402B70 calls at402BB1 and passes its result to buffer SetVolume slot3C. The transition is reached by canonical-exact BGM level/fade members. Whole103-byte body/hash and actual caller edge are independent of reconstruction acceptance. Prior aligned volatile scratch byte shaping was removed; natural73/native103 remains nonexact. docs/DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md."
 required_body_hashes = [{ address = "0x00418990", size = 103, sha256 = "a27d362dcc7f3516132c59d2ead2e4d70816b9c02f88cfb7c2750bfbc35082b4" }]
-required_direct_edges = [{ caller = "0x00402B70", site = "0x00402BB1", target = "0x00418990", caller_status = "unclassified" }]
+required_direct_edges = [{ caller = "0x00402B70", site = "0x00402BB1", target = "0x00418990", caller_status = "implemented" }]
 
 [[rules]]
 id = "title-resource-ownership-authored-106a"
@@ -3528,9 +3528,9 @@ origin = "authored_game"
 subsystem = "characters"
 disposition = "authored"
 confidence = "observed"
-evidence = "Exact RTTI-owned CharacterEx scalar destructor64B770 calls462CE0 at64B779; the normal11-byte CharacterEx destructor also tail-enters it. Full905-byte Character cleanup releases texture/vector/deque/wave/manager/tree ownership and real base/member lifetimes. Cold range-error exits and remote second loop are included. Only one SIB operand byte differs. docs/CHARACTER_DESTRUCTOR_2026_10_29.md."
+evidence = "The independently canonical, compiler-excluded RTTI-owned CharacterEx scalar destructor64B770 calls462CE0 at64B779; the normal11-byte CharacterEx destructor also tail-enters it. Full905-byte Character cleanup releases texture/vector/deque/wave/manager/tree ownership and real base/member lifetimes. Cold range-error exits and remote second loop are included. Only one SIB operand byte differs. docs/CHARACTER_DESTRUCTOR_2026_10_29.md."
 required_body_hashes = [{ address = "0x00462CE0", size = 905, sha256 = "da514c9794ee2bc53351b4f4f246b76e45ebdce219411e81f603ff77014b7f35" }]
-required_direct_edges = [{ caller = "0x0064B770", site = "0x0064B779", target = "0x00462CE0", caller_status = "matching" }]
+required_direct_edges = [{ caller = "0x0064B770", site = "0x0064B779", target = "0x00462CE0", caller_status = "identified" }]
 
 [[rules]]
 id = "network-input-endpoint-generated-destruction-106a"
