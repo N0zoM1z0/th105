@@ -525,3 +525,9 @@ existing pinned `repo-python` environment. The 381 bytes are accepted exact.
 for iterator endpoints. This natural source form reproduces the target frame
 and checked owner comparison, but remains nonexact at 255/260 bytes, first
 mismatch +3. See `docs/SPELL_FINALIZE_SOURCE_2026_11_04.md`.
+
+2026-11-04: score observation update `0x0042D010` now locally compares 191/191
+in two separately compiled objects, using direct checked-vector endpoints and
+the same signed maximum predicate. Independent Factory exactness replay could
+not start for the unregistered match; do not award exact credit. See
+`docs/SCORE_OBSERVATIONS_MAXIMUM_2026_11_02.md`.

@@ -1726,7 +1726,7 @@ origin = "authored_game"
 subsystem = "config"
 disposition = "authored"
 confidence = "observed"
-evidence = "Raw current Fighter spell-sequence body 0x0045D230 calls 0x0042D010 at 0x0045D2C6 after get_score_data, matching the tracked ScoreData::update_observed_record_statistics contract over the +0x198 observed-record vector. Fresh ScoreObservations.cpp emits 182 bytes and canonical comparison closes game-mode/session/invalid-parameter callees; keep source-present nonexact rather than treating the second-order callee as an IDA-only unknown."
+evidence = "Raw current Fighter spell-sequence body 0x0045D230 calls 0x0042D010 at 0x0045D2C6 after get_score_data, matching the tracked ScoreData::update_observed_record_statistics contract over the +0x198 observed-record vector. Two local builds compare 191/191 after direct vector endpoints and the signed maximum predicate; independent replay acceptance is pending."
 
 [[rules]]
 id = "vc8-deque-string-growmap-xlen-caller-identity-106a"

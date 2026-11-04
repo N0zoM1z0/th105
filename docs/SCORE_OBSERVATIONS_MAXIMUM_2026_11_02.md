@@ -49,3 +49,19 @@ Diagnostic success does not override it. Private evidence is in
 `build/frontier-score-minimum-20261102/`; `restored.json` and
 `observations.json` describe the final source, while `corrected.json` and
 `replays/` describe the rejected temporary minimum hypothesis.
+
+## Direct vector endpoints, 2026-11-04
+
+The source now expresses both iterator endpoints directly from the observed
+vector member. It retains the real checked-container self-compatibility check,
+without adding one by hand. Writing the same signed maximum predicate as
+`observed_value > record->maximum_observed_14` preserves its meaning and
+matches the native operand order. A fresh configured VC8 build and a second
+separately compiled object each compare 191/191 against the native body, with
+SHA-256 `3d19b4fc049aa452ca13b25eaf72163499f21c3beed18590ec71637249951d75`.
+
+The independent Factory exactness replay could not be started for this
+unregistered match; a request to register it before that replay was denied.
+Therefore the function remains source-present and no exact credit is added.
+The 182-byte result above is historical. Neither local comparison establishes
+gameplay or broad exception behavior.
