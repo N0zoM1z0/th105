@@ -1,8 +1,8 @@
 #include "engine/Sprite.hpp"
 #include "battle/ScenarioData.hpp"
 // CScenarioData primary vtable slot 0x0c, JP1.06a 0x00457F90.
-// Pointer-only render view. Real owned-member layouts are retained; this TU
-// does not construct or destroy the view. See SCENARIO_RENDER_2026_10_29.md.
+// Uses the shared scenario, text, list-entry and result owners.
+// See SCENARIO_RENDER_2026_10_29.md.
 #include "engine/RenderModeManager.hpp"
 #include "battle/SystemEffectManager.hpp"
 #include "assets/TextFontOwner.hpp"
@@ -16,59 +16,11 @@
 namespace th105 {
 struct CInputManager;
 
-struct ScenarioRenderDrawEntry9C {
-    unsigned int resource_handle_000;
-    CSprite sprite_004;
-    unsigned char tail_098[4];
-};
-typedef char CheckRenderEntry9C[sizeof(ScenarioRenderDrawEntry9C) == 0x9c ? 1 : -1];
-
-typedef TextFontOwner194 ScenarioRenderFont194;
-typedef TextFontConfig128 ScenarioRenderConfig128;
-
-struct ScenarioRenderResult128 {
-    unsigned char storage_000[0x128];
-    void render_result();
-};
-
-class CScenarioDataRenderView : public ::Environment {
-public:
-    virtual void configure(CInputManager *input);
-    virtual void clear_runtime();
-    virtual signed char update();
-    virtual void render();
-
-    SystemEffectManager< ::SystemEffectObject> system_effects_004;
-    CInputManager *input_064;
-    ScenarioRenderFont194 effect_owner_068;
-    ScenarioRenderConfig128 effect_config_1fc;
-    int field_324;
-    int field_328;
-    std::map<std::string, ScenarioTextEntryDC> text_entries_32c;
-    std::list<ScenarioRenderDrawEntry9C> render_entries_338;
-    std::list<ScenarioRenderDrawEntry9C> render_entries_344;
-    std::list<ScenarioRenderDrawEntry9C> render_entries_350;
-    CScript script_35c;
-    ScenarioRenderResult128 result_resources_390;
-    std::string string_4b8;
-    std::string string_4d4;
-    std::string string_4f0;
-    unsigned char tail_50c[8];
-    int field_514,field_518,field_51c,field_520;
-};
-
-typedef char CheckScenarioRender524[sizeof(CScenarioDataRenderView) == 0x524 ? 1 : -1];
-typedef char CheckMap32c[offsetof(CScenarioDataRenderView, text_entries_32c) == 0x32c ? 1 : -1];
-typedef char CheckList338[offsetof(CScenarioDataRenderView, render_entries_338) == 0x338 ? 1 : -1];
-typedef char CheckList344[offsetof(CScenarioDataRenderView, render_entries_344) == 0x344 ? 1 : -1];
-typedef char CheckList350[offsetof(CScenarioDataRenderView, render_entries_350) == 0x350 ? 1 : -1];
-typedef char CheckResult390[offsetof(CScenarioDataRenderView, result_resources_390) == 0x390 ? 1 : -1];
-
-void CScenarioDataRenderView::render()
+void CScenarioData::render()
 {
     g_render_mode_manager.set_blend_mode(1);
 
-    std::list<ScenarioRenderDrawEntry9C>::iterator render_it;
+    std::list<ScenarioRenderEntry9C>::iterator render_it;
     render_it = render_entries_338.begin();
     for (; render_it != render_entries_338.end(); ++render_it)
         render_it->sprite_004.render(0.0f, 0.0f);
@@ -104,7 +56,7 @@ void CScenarioDataRenderView::render()
                 8.0f, 392.0f, 632.0f, right,
                 static_cast<unsigned>(field_328), 1);
 
-            if (tail_50c[1] != 0) {
+            if (state_50d != 0) {
                 render_it = render_entries_350.begin();
                 for (; render_it != render_entries_350.end(); ++render_it) {
                     CSprite *sprite = &render_it->sprite_004;
@@ -115,7 +67,7 @@ void CScenarioDataRenderView::render()
                     render_it->sprite_004.render(0.0f, 394.0f);
                 }
             }
-        } else if (tail_50c[1] != 0) {
+        } else if (state_50d != 0) {
             render_it = render_entries_350.begin();
             for (; render_it != render_entries_350.end(); ++render_it) {
                 CSprite *sprite = &render_it->sprite_004;
@@ -126,7 +78,7 @@ void CScenarioDataRenderView::render()
         }
     }
 
-    result_resources_390.render_result();
+    result_resources_390.render();
 }
 
 } // namespace th105

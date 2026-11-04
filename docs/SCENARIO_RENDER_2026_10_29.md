@@ -75,3 +75,13 @@ SHA-256 and the same mismatch at +14 recorded above. All five functions in
 the real Scenario runtime provider unit, including `render_dynamic`, remain
 canonical exact. The render root is still nonexact; this does not add authored
 exact bytes or prove the full-program link.
+
+## Shared scenario and list owners, 2026-11-04
+
+The selected render source now implements `CScenarioData::render` directly,
+uses its actual `ScenarioRenderEntry9C` list values, and calls the real
+`ScenarioResultResource::render`. This removes the remaining duplicate
+pointer-only render, list-value and result-resource views from this unit.
+The real owner preserves the observed field layout. The rebuilt canonical
+render candidate remains byte-for-byte the same 930-byte source candidate
+SHA-256 shown above, and remains nonexact against the target.
