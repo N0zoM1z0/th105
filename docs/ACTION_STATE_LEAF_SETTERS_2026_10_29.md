@@ -35,3 +35,12 @@ Focused proof: `build/frontier-4776c0-20261029/formal-build.json` compares both
 full functions; `boundary.json` retains complete instructions, body hashes,
 alignment and caller RTTI/field facts. Only19 newly exact authored bytes are
 credited. Neither large caller becomes exact as a consequence.
+
+## Shared Scenario result owner, 2026-11-04
+
+The result setter now implements `ScenarioResultResource::start` directly, and
+the unselected command interpreter calls that real member. The Fighter setter
+remains a pointer-only view. Fresh replay preserves both exact leaf bodies, and
+22 affected previously accepted Scenario roots also replay exact. The larger
+interpreter remains blocked at its unresolved local string constructor; no
+new exact bytes are credited.

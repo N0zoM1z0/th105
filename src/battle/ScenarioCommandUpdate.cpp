@@ -64,10 +64,6 @@ struct ScenarioEffectOperations {
     SystemEffectObject *spawn(const char *, unsigned short, float, float);
 };
 
-struct ScenarioResultStartView {
-    void start();
-};
-
 struct ScenarioEventHandle {
     void *handle;
     ScenarioEventHandle() : handle(CreateEventA(0, 0, 0, 0)) {}
@@ -508,8 +504,7 @@ signed char CScenarioData::update()
             }
             break;
         case 20:
-            reinterpret_cast<ScenarioResultStartView *>(&s.result_resources_390)
-                ->start();
+            s.result_resources_390.start();
             return 1;
         case 21:
             s.field_514 = 1;

@@ -102,6 +102,7 @@ struct ScenarioResultResource {
 
     ScenarioResultResource();
     ~ScenarioResultResource();
+    void start();
     void hide_and_reset();
     void add_nonnegative(int first, int second, int third);
     void enter_phase_three();

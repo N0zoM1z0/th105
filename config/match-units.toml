@@ -22821,7 +22821,7 @@ rel32_targets = [
   "?set_effect_color_bytes@CScenarioData@th105@@QAEXEEE@Z=0x00454EC0",
   "?spawn@ScenarioEffectOperations@th105@@QAEPAVSystemEffectObject@@PBDGMM@Z=0x00458340",
   "?stage_music@ScenarioEffectOperations@th105@@QAEXHH@Z=0x00434DE0",
-  "?start@ScenarioResultStartView@th105@@QAEXXZ=0x004547D0",
+  "?start@ScenarioResultResource@th105@@QAEXXZ=0x004547D0",
   "?stop_bgm@th105@@YAXXZ=0x0043B120",
   "?trim_render_entries_and_begin_fade_455cd0@CScenarioData@th105@@QAEXXZ=0x00455CD0",
   "?update@ScenarioResultResource@th105@@QAE_NXZ=0x00454A50",
@@ -26069,13 +26069,13 @@ source = "src/battle/ActionStateLeafSetters.cpp"
 object = "build/match-units/ExactFirst_ActionStateLeafSetters.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete native field setters4776C0/4547D0 with Reimu/Suika action-root and Scenario result-member caller ownership. Pointer-only views, no shared layout changes or whole-class claim."
+notes = "Complete native field setters4776C0/4547D0 with Reimu/Suika action-root and Scenario result-member caller ownership. Fighter stays pointer-only; the Scenario setter uses the real shared result owner."
 [[units.exact-first-action-state-leaf-setters.functions]]
 address = "0x004776C0"
 symbol_base = "?set_counter@FighterActionCounterLeafView@th105@@QAEXF@Z"
 [[units.exact-first-action-state-leaf-setters.functions]]
 address = "0x004547D0"
-symbol_base = "?start@ScenarioResultEnableLeafView@th105@@QAEXXZ"
+symbol_base = "?start@ScenarioResultResource@th105@@QAEXXZ"
 
 [units.exact-first-battle-base-effect-initialize-linked]
 kind = "linked_candidate"
