@@ -40,6 +40,7 @@ public:
     CScript();
     ~CScript();
     void clear_commands();
+    CCommandBase *next_command();
     bool load(const char *path, int option);
     void clear_pending_commands();
 

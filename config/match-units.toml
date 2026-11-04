@@ -30186,3 +30186,16 @@ dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
   "??_C@_08LJHDLOLO@Continue?$AA@=_continue_round_literal",
 ]
+
+[units.exact-first-script-next-command]
+kind = "probe"
+source = "src/battle/ScriptNextCommand.cpp"
+object = "build/match-units/ExactFirst_ScriptNextCommand.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = false
+notes = "Real checked-deque cursor advance. Native dereference helper uses an unqualified private register ABI, so strict canonical comparison is intentionally blocked; no fabricated provider binding or exact credit. docs/SCRIPT_NEXT_COMMAND_SOURCE_2026_11_04.md."
+
+[[units.exact-first-script-next-command.functions]]
+address = "0x00405AC0"
+symbol_base = "?next_command@CScript@@QAEPAVCCommandBase@@XZ"
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]

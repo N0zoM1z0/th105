@@ -1860,3 +1860,4 @@ CBattleSV_update,0x00426180,function
 CBattleCL_update,0x00426380,function
 ReplayHeader_read_version,0x00429A30,function
 BattleContinue_reset_round,0x00471180,function
+CScript_next_command,0x00405AC0,function

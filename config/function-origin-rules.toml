@@ -6447,7 +6447,7 @@ origin = "authored_game"
 subsystem = "script"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete 104-byte game-owned script cursor advance and two direct calls from the canonical-exact scene timeline loader. Source and private iterator helper ABI are not yet recovered. docs/SCRIPT_COMMAND_CURSOR_2026_10_29.md."
+evidence = "Complete 104-byte game-owned script cursor advance and two direct calls from the canonical-exact scene timeline loader. Checked iterator source is present, but the native private dereference ABI remains unqualified and strict comparison is blocked. docs/SCRIPT_NEXT_COMMAND_SOURCE_2026_11_04.md."
 required_body_hashes = [{ address = "0x00405AC0", size = 104, sha256 = "f055a70e7657ac54bc37a49178b9e70497c30886170bd2eea163e46b1f69f4c8" }]
 required_direct_edges = [{ caller = "0x004540F0", site = "0x0045415F", target = "0x00405AC0", caller_status = "matching" }, { caller = "0x004540F0", site = "0x004546EC", target = "0x00405AC0", caller_status = "matching" }]
 

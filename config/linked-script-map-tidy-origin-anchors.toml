@@ -2,7 +2,7 @@ schema_version = 1
 target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
 unit = "exact-first-script-lifecycle-linked"
 [source_pins]
-"src/battle/ScriptCommandRegistry.hpp" = "039a433ae25a1327a72c3efe9cbe93ddfa612121a4c8317c7bd9326845ab43b1"
+"src/battle/ScriptCommandRegistry.hpp" = "df8050c5c3fa81e6b54f8c38ac72e4ef8ebf40ccadf9f96ff87ea1be933f6a99"
 "src/battle/ScriptCommandRuntime.hpp" = "88e6be6b2b04ac72ca54b15c343276660d4b6ed34fda8af91ec0ef384b28a0b7"
 "src/battle/ScriptLifecycle.cpp" = "b13577dd8703b395f585e615fcf164ba33a5b5d888e0746b86ecef008f8b0e3a"
 [[anchors]]

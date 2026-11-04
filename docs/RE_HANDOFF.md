@@ -329,7 +329,7 @@ The complete Fighter scripted-input policy `0x463E40` now matches 753/753 by exp
 
 ### 2026-11-03: classify script command advance
 
-The complete 104-byte `0x405AC0` script cursor advance and two original call sites from the exact timeline loader establish game-authored ownership. Its source and private iterator helper ABI are still unresolved; no source or exact-byte credit is added. See `docs/SCRIPT_COMMAND_CURSOR_2026_10_29.md`.
+The 104-byte `0x405AC0` script cursor advance now has ordinary checked-iterator source; strict comparison remains blocked on the native private helper ABI and adds no exact credit. See `docs/SCRIPT_NEXT_COMMAND_SOURCE_2026_11_04.md`.
 
 ### 2026-11-03: classify battle policy bodies
 
