@@ -6687,8 +6687,8 @@ required_body_hashes = [
  { address = "0x00455DD0", size = 114, sha256 = "f6b88dffe91a8c0edd0259a2b6de8736c1205801df05e9d5961136c5517f301d" },
 ]
 required_direct_edges = [
- { caller = "0x00456EB0", site = "0x00456FD0", target = "0x00455DD0", caller_status = "unclassified" },
- { caller = "0x00456EB0", site = "0x00456FE2", target = "0x00455C50", caller_status = "unclassified" },
+ { caller = "0x00456EB0", site = "0x00456FD0", target = "0x00455DD0", caller_status = "identified" },
+ { caller = "0x00456EB0", site = "0x00456FE2", target = "0x00455C50", caller_status = "identified" },
 ]
 
 [[rules]]
@@ -6709,7 +6709,7 @@ required_body_hashes = [
 ]
 required_direct_edges = [
  { caller = "0x00456A30", site = "0x00456AF4", target = "0x00456550", caller_status = "unclassified" },
- { caller = "0x00456EB0", site = "0x00456FFF", target = "0x00456A30", caller_status = "unclassified" },
+ { caller = "0x00456EB0", site = "0x00456FFF", target = "0x00456A30", caller_status = "identified" },
 ]
 
 [[rules]]
@@ -6729,4 +6729,29 @@ required_body_hashes = [
 ]
 required_direct_edges = [
  { caller = "0x00456550", site = "0x004565DF", target = "0x004564A0", caller_status = "unclassified" },
+]
+
+[[rules]]
+id = "scenario-install-character-authored-106a"
+addresses = ["0x00456EB0"]
+expected_count = 1
+expected_bytes = 598
+expected_names = ["sub_456EB0"]
+origin = "authored_game"
+subsystem = "battle"
+disposition = "authored"
+confidence = "observed"
+evidence = "Complete native game policy constructs a Scenario text entry, assigns its name and signed side, computes side-dependent position, inserts it in the Scenario map and publishes color settings to its font owner. Exact battle transition and the Scenario interpreter call it; the 599-byte private source is nonexact and remains unselected because formal grouping and EH/TU context are not established."
+required_body_hashes = [
+ { address = "0x00456EB0", size = 598, sha256 = "dd05f8f6cc7172b95e7d9c00a183bd662b1c7ecfd0f1969d4762823bd92237cf" },
+]
+required_direct_edges = [
+ { caller = "0x004724E0", site = "0x0047264D", target = "0x00456EB0", caller_status = "matching" },
+ { caller = "0x004724E0", site = "0x004726EC", target = "0x00456EB0", caller_status = "matching" },
+ { caller = "0x00458440", site = "0x0045906D", target = "0x00456EB0", caller_status = "identified" },
+]
+required_selected_body_calls = [
+ { owner = "0x00456EB0", site = "0x00456EFC", target = "0x00455360", target_status = "matching" },
+ { owner = "0x00456EB0", site = "0x00457071", target = "0x004115A0", target_status = "matching" },
+ { owner = "0x00456EB0", site = "0x00457085", target = "0x00435F00", target_status = "matching" },
 ]

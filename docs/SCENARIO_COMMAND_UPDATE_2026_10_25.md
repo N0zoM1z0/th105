@@ -312,3 +312,15 @@ the unresolved local string constructor; this is not a full-body result.
 Target CFG audit and affected accepted scenario provider units pass. No source
 selection, authored exact credit, general behavior proof or whole-game link
 is claimed.
+
+## Character-installation ownership, 2026-11-04
+
+The complete 598-byte `0x00456EB0` body is now classified as authored game
+code: it creates and inserts a Scenario text entry, publishes side-dependent
+position and colors, and configures the Scenario font. Its body hash, three
+incoming sites (including two in the freshly revalidated 991-byte exact battle
+transition), and exact entry constructor, font configuration and destructor
+calls are pinned. The provisional source remains unselected and nonexact:
+the independently rebuilt actual-type control is 599/598 with unresolved
+argument grouping and EH/TU differences. This classification adds no source
+or exact credit and is not a full EH or behavior-equivalence claim.

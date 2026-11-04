@@ -1720,7 +1720,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00456B70,authored_game,battle,authored,observed,system-effect-pool-acquire-authored-106a
 0x00456D70,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00456E40,authored_game,battle,authored,observed,canonical-exact-authored
-0x00456EB0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00456EB0,authored_game,battle,authored,observed,scenario-install-character-authored-106a
 0x00457110,authored_game,battle,authored,observed,canonical-exact-authored
 0x00457170,authored_game,battle,authored,observed,canonical-exact-authored
 0x00457300,authored_game,battle,authored,observed,canonical-exact-authored
