@@ -126,7 +126,9 @@ typedef char ScenarioResultResource_alpha_offset_must_be_0x124[
 struct ScenarioRenderEntry9C {
     unsigned int resource_handle_000;
     CSprite sprite_004;
-    unsigned char reserved_098[4];
+    unsigned char alpha_098;
+    signed char delta_099;
+    unsigned char reserved_09a[2];
 
     ~ScenarioRenderEntry9C();
 };
@@ -193,6 +195,7 @@ public:
     void reset_runtime_state();
     unsigned char select_label(std::string label);
     void trim_render_entries_and_begin_fade_455cd0();
+    void update_list(std::list<ScenarioRenderEntry9C> *entries);
 };
 
 typedef char CScenarioData_size_must_be_0x524[

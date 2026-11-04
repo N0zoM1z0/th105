@@ -54,7 +54,6 @@ struct ScenarioSlotSetupView {
 
 typedef std::map<std::string, ScenarioTextEntryDC> ScenarioTextMap;
 struct ScenarioUpdateOperations {
-    void update_list(std::list<ScenarioRenderEntry9C> *);
     void rebuild_text(std::string *);
     void install_character(std::string, std::string, signed char, int, int,
                            unsigned char, unsigned char, unsigned char);
@@ -111,8 +110,8 @@ signed char CScenarioData::update()
         reinterpret_cast<ScenarioUpdateOperations *>(this);
     s.field_514 = 0;
     s.system_effects_004.update_and_prune(&SystemEffectObjectBase::update_state);
-    operations->update_list(&s.render_entries_338);
-    operations->update_list(&s.render_entries_344);
+    s.update_list(&s.render_entries_338);
+    s.update_list(&s.render_entries_344);
     ScenarioTextMap::iterator it = s.text_entries_32c.begin();
     while (it != s.text_entries_32c.end()) {
         it->second.update_dynamic_state();
@@ -123,7 +122,7 @@ signed char CScenarioData::update()
         if (s.field_324 < 40)
             s.field_324 += 4;
         else
-            operations->update_list(&s.render_entries_350);
+            s.update_list(&s.render_entries_350);
     } else if (s.render_entries_350.empty()) {
         if (s.field_324 > 0)
             s.field_324 -= 4;
@@ -131,8 +130,8 @@ signed char CScenarioData::update()
         for (std::list<ScenarioRenderEntry9C>::iterator p =
                  s.render_entries_350.begin();
              p != s.render_entries_350.end(); ++p)
-            p->reserved_098[1] = -20;
-        operations->update_list(&s.render_entries_350);
+            p->delta_099 = -20;
+        s.update_list(&s.render_entries_350);
     }
 
     it = s.text_entries_32c.begin();
@@ -370,13 +369,13 @@ signed char CScenarioData::update()
             for (std::list<ScenarioRenderEntry9C>::iterator p =
                      s.render_entries_338.begin();
                  p != s.render_entries_338.end(); ++p)
-                p->reserved_098[1] = -5;
+                p->delta_099 = -5;
             if (!c->arg0_08.empty()) {
                 {
                 ScenarioRenderEntry9C entry;
                 entry.resource_handle_000 = 0;
-                entry.reserved_098[0] = 0;
-                entry.reserved_098[1] = 5;
+                entry.alpha_098 = 0;
+                entry.delta_099 = 5;
                 s.render_entries_338.push_back(entry);
             }
                 unsigned int width, height, handle;
@@ -396,12 +395,12 @@ signed char CScenarioData::update()
             for (std::list<ScenarioRenderEntry9C>::iterator p =
                      s.render_entries_344.begin();
                  p != s.render_entries_344.end(); ++p)
-                p->reserved_098[1] = -5;
+                p->delta_099 = -5;
             {
                 ScenarioRenderEntry9C entry;
                 entry.resource_handle_000 = 0;
-                entry.reserved_098[0] = 0;
-                entry.reserved_098[1] = 5;
+                entry.alpha_098 = 0;
+                entry.delta_099 = 5;
                 s.render_entries_344.push_back(entry);
             }
             if (c->arg0_08.compare(0, c->arg0_08.size(), "BLACK", 5) == 0) {

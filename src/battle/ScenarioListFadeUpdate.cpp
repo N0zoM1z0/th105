@@ -1,24 +1,12 @@
-#include "engine/Sprite.hpp"
+#include "battle/ScenarioData.hpp"
 // JP1.06a 0x00455850. Complete fade/update policy; source remains nonexact.
-// Pointer-only list value view. See docs/SCENARIO_LIST_FADE_2026_10_29.md.
+// Uses the shared scenario and list-entry owners. See docs/SCENARIO_LIST_FADE_2026_10_29.md.
 #include <list>
 #include <stddef.h>
 namespace th105 {
-struct ScenarioFadeEntryView {
-    unsigned resource_handle_000;
-    CSprite sprite_004;
-    unsigned char alpha_098;
-    signed char delta_099;
-    unsigned char reserved_09a[2];
-    ~ScenarioFadeEntryView();
-};
-typedef char CheckFadeSize[sizeof(ScenarioFadeEntryView)==0x9c?1:-1];
-struct ScenarioListUpdateView {
-    void update_list(std::list<ScenarioFadeEntryView> *entries);
-};
-void ScenarioListUpdateView::update_list(std::list<ScenarioFadeEntryView> *entries)
+void CScenarioData::update_list(std::list<ScenarioRenderEntry9C> *entries)
 {
-    std::list<ScenarioFadeEntryView>::iterator it=entries->begin();
+    std::list<ScenarioRenderEntry9C>::iterator it=entries->begin();
     while(it!=entries->end()) {
         if(it->delta_099>0) {
             if(it->alpha_098<255) {

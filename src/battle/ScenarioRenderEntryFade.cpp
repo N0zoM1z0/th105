@@ -19,7 +19,7 @@ void CScenarioData::trim_render_entries_and_begin_fade_455cd0()
         render_entries_350.pop_front();
 
     if (!render_entries_350.empty())
-        render_entries_350.front().reserved_098[1] = -fade_step;
+        render_entries_350.front().delta_099 = -fade_step;
 }
 
 } // namespace th105

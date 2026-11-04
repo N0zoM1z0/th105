@@ -40,3 +40,15 @@ Source:src/battle/ScenarioListFadeUpdate.cpp.
 Receipt:build/frontier-scenario-list-update-20261029/formal.json.
 No shared header, existing relocation or accepted consumer changes. Default CI
 and progress regeneration validate this incremental selection, not a cold build.
+
+## Shared list and scenario owners, 2026-11-04
+
+The two observed tail bytes are now named `alpha_098` (unsigned) and
+`delta_099` (signed) in the shared `ScenarioRenderEntry9C`. The selected fade
+source implements `CScenarioData::update_list` directly and the command
+interpreter calls that member. The emitted 418-byte candidate has the same
+full canonical SHA-256 recorded above and is still nonexact against the
+431-byte native root. Its real checked-list erase helper remains 102/102, and
+the compiler-origin witness revalidates. Twenty-two dependent accepted Scenario
+roots and both setter leaves replay exact; this change adds no authored exact
+bytes or general behavior proof.
