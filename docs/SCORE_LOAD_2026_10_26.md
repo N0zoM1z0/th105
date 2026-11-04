@@ -1,5 +1,18 @@
 # Complete ScoreData loader42F6F0
 
+## Source registration, 2026-11-04
+
+The complete source is now registered as source-present, still nonexact. A
+fresh pinned compiler build emits 1672 bytes and preserves the seven unequal
+SIB-order bytes and candidate SHA `6641fe764731d97cf81c02a03bfaff9bf796c5cc9341aade96bd991d624ddf46`.
+The target observer audit again reports all four bounded cases equal and the
+body nonexact; its exit status 1 is expected, not an audit failure. Providers,
+real file I/O, decompression and exception unwinding remain outside that test.
+No exact byte or helper credit is added. Receipts: `build/frontier-score-load-registration-20261104/`.
+
+Historical references below to this function being unselected describe their
+respective checkpoints.
+
 ## Superseding focused result, 2026-10-27
 
 The newly exact story refresh42E3F0 supplied independent evidence for testing
@@ -173,3 +186,7 @@ target references. Final local CI receipt: `local-ci.log`.
 
 Next coherent medium peer is score persistence42D3F0,
 provisional1155 bytes, requiring a fresh bounded preflight and early whole build.
+
+Registration verification: defaults 2428/2428, its 205-byte implicit support,
+and persistence 1155/1155 replayed exact; target-independent CI passed 1,024
+tests and progress checks. The loader itself remains nonexact.
