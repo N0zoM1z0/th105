@@ -66,6 +66,7 @@ struct RenderModeManager : DeviceResetListener {
         const void *vertices,
         unsigned stride,
         unsigned fvf);
+    int draw_line(float x1, float y1, float x2, float y2, unsigned color);
     int draw_rect(
         float left,
         float top,

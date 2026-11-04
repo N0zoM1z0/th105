@@ -1,18 +1,11 @@
 #include "engine/RenderModeManager.hpp"
 #include "ui/Title.hpp"
 namespace th105 {
-// Exact-backed RenderModeManager prefix; this view is never instantiated.
-struct LinePrimitiveView {
-    unsigned vtable_00;
-    D3DDevice9 *device_04;
-    int draw_line(float x1, float y1, float x2, float y2, unsigned color);
-};
 struct LineVertex { float x, y, z, rhw; unsigned color; };
 typedef char LineVertexSize[sizeof(LineVertex) == 20 ? 1 : -1];
-typedef char LineDeviceOffset[offsetof(LinePrimitiveView, device_04) == 4 ? 1 : -1];
 // Preserve the observed single-precision subtraction/store graph.
 #pragma fenv_access(on)
-int LinePrimitiveView::draw_line(float x1, float y1, float x2, float y2, unsigned color)
+int RenderModeManager::draw_line(float x1, float y1, float x2, float y2, unsigned color)
 {
     LineVertex vertices[2];
     vertices[0].x = x1 - 0.5f;

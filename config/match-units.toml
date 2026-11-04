@@ -23063,7 +23063,7 @@ notes = "Independent full395-byte rectangle4012A0 review after exact debug calle
 address = "0x004012A0"
 symbol_base = "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z"
 rel32_targets = [
-  "?draw_line@LinePrimitiveView@th105@@QAEHMMMMI@Z=0x00401180",
+  "?draw_line@RenderModeManager@th105@@QAEHMMMMI@Z=0x00401180",
   "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0",
 ]
 
@@ -26156,7 +26156,7 @@ notes = "Complete148-byte line renderer with two20-byte XYZRHW/diffuse vertices.
 
 [[units.exact-first-line-primitive.functions]]
 address = "0x00401180"
-symbol_base = "?draw_line@LinePrimitiveView@th105@@QAEHMMMMI@Z"
+symbol_base = "?draw_line@RenderModeManager@th105@@QAEHMMMMI@Z"
 rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0"]
 
 [[units.cross-v106a-profile-data-writer.functions]]
