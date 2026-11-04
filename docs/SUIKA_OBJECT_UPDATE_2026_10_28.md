@@ -92,3 +92,18 @@ sites. This does not assert whole-function or unmasked-exception equivalence.
 
 The 52,190-byte callable remains nonexact from +17; the candidate section
 tail is 53,204 bytes. No exact credit is added.
+
+## Actions 815 and 940 continuation gates, 2026-11-04
+
+The three action 815 paths test the surface/current-Y comparison at
+`0x005B210D`, `0x005B238D` and `0x005B2616` and continue on `AH & 1`,
+including unordered values. Their source conditions now preserve that case.
+Action 940's three paths at `0x005BAD55`, `0x005BB175` and `0x005BB54A`
+likewise continue to the horizontal-bound checks when the surface comparison
+is unordered. Those checks also let unordered X pass. The first two source
+phases now use the same negated impact condition already used by phase 2.
+Fresh VC8 emits the corresponding local tests and branches for these paths.
+These observations do not establish unmasked-exception or whole-root equivalence.
+
+The 52,190-byte callable remains nonexact from +17 with a 53,204-byte candidate
+section tail. No exact credit is added.
