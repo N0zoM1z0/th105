@@ -1200,6 +1200,7 @@ def select(rule: dict[str, object], rows: list[dict[str, str]], msvc_symbols: se
         or rule.get("linked_unsigned_list_growth_anchor_file")
         or rule.get("linked_bgm_list_growth_anchor_file")
         or rule.get("linked_resource_deque_tidy_anchor_file")
+        or rule.get("linked_script_map_tidy_anchor_file")
         or rule.get("linked_network_tree_erase_anchor_file")
         or rule.get("linked_bad_exception_anchor_file")
         or rule.get("boost_public_exception_copy_anchor_file")
@@ -2526,6 +2527,10 @@ def validate_rule_evidence(
     if rule.get("linked_resource_deque_tidy_anchor_file"):
         from linked_resource_deque_tidy_origins import validate as validate_resource_deque_tidy
         errors.extend(validate_resource_deque_tidy(rule, selected, rows, read_pe,
+                      str(target_manifest()["target"]["sha256"])))
+    if rule.get("linked_script_map_tidy_anchor_file"):
+        from linked_script_map_tidy_origins import validate as validate_script_map_tidy
+        errors.extend(validate_script_map_tidy(rule, selected, rows, read_pe,
                       str(target_manifest()["target"]["sha256"])))
     if rule.get("linked_network_tree_erase_anchor_file"):
         from linked_network_tree_erase_origins import validate as validate_network_tree_erase

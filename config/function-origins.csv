@@ -130,7 +130,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00405BB0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405C00,compiler_generated,assets,exclude,observed,vc8-generated-string28-equals-std-comdats-106a
 0x00405C70,compiler_generated,battle,exclude,observed,vc8-generated-script-command-lifetime-std-comdats-106a
-0x00405CD0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00405CD0,compiler_generated,vc8_stl,exclude,observed,linked-script-map-tidy-106a
 0x00405D10,compiler_generated,battle,exclude,observed,vc8-generated-script-command-registry-std-comdats-106a
 0x00405D50,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00405E20,unknown,,review,unknown,ida-1.06a-initial-inventory

@@ -6608,3 +6608,14 @@ confidence = "observed"
 evidence = "Complete CSelect scene-entry policy, pinned original body and the exact network-select on-enter caller. Source remains nonexact. docs/SELECT_SCENE_ENTRY_2026_10_28.md."
 required_body_hashes = [{ address = "0x00421120", size = 783, sha256 = "fe27b3c54058dc2f9a1b5bdb27abb28a87b40fed6698fe48a247a864ada1e76a" }]
 required_direct_edges = [{ caller = "0x004264B0", site = "0x00426554", target = "0x00421120", caller_status = "matching" }]
+
+[[rules]]
+id = "linked-script-map-tidy-106a"
+linked_script_map_tidy_anchor_file = "config/linked-script-map-tidy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 56
+origin = "compiler_generated"
+subsystem = "vc8_stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Real CScript map cleanup emitted in its genuine CIL; exact destructor calls it. Whole native body and original source bytes agree after qualified erase/delete role bindings. The erase implementation is not claimed exact. docs/SCRIPT_MAP_TIDY_ORIGIN_2026_11_04.md."

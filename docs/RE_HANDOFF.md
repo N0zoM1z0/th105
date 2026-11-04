@@ -445,3 +445,13 @@ select caller at `426554`. The 783-byte candidate remains nonexact at +225.
 All four network-select caller-unit bodies replay exact and target-independent
 CI reports passed. The specific origin rule was checked; a full origin census
 was not replayed. See `SELECT_SCENE_ENTRY_2026_10_28.md`.
+
+### Script map cleanup origin (2026-11-04)
+
+The full `405CD0` 56-byte script command-map cleanup is compiler-generated,
+proved by a fresh genuine CIL source owner, exact destructor edge, whole-body
+relocation replay and inventory uniqueness. The source erase role is bound to
+the pinned native erase entry, but those larger erase implementations are not
+claimed equal. Targeted proof, seven corruption controls and 1,013
+target-independent CI tests passed. This adds no authored exact bytes; no full
+origin census was replayed. See `SCRIPT_MAP_TIDY_ORIGIN_2026_11_04.md`.
