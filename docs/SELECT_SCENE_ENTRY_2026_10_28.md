@@ -58,3 +58,9 @@ first differing at +225, with canonical SHA-256
 No equal-size, prefix or game-execution claim is counted as exact. The
 specific origin rule was checked directly; no full origin-census replay is
 claimed. Receipt: `build/frontier-select-entry-register-20261104/compare.json`.
+
+Two bounded follow-up controls spell the secondary-mode predicate as an actual
+integer local, once directly and once with ordinary explicit branches. Both
+produce the identical 783-byte canonical candidate and the same +225 mismatch.
+The original selected source was restored. Receipts:
+`build/frontier-select-mode-expr-20261104/branch.json` and `explicit.json`.
