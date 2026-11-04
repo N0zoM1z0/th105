@@ -30363,3 +30363,18 @@ rel32_targets = [
  "?_Xran@?$vector@EV?$allocator@E@std@@@std@@KAXXZ=0x0040A8A0",
  "?insert@?$vector@EV?$allocator@E@std@@@std@@QAE?AV?$_Vector_iterator@EV?$allocator@E@std@@@2@V32@ABE@Z=0x0040A7F0",
 ]
+
+[units.gpt-web-package-index-node-constructor]
+kind = "probe"
+source = "src/assets/PackageFileIndexRuntime.cpp"
+object = "build/match-units/GptWeb_PackageIndexNodeConstructor.obj"
+profile = "vc8-sp1-probe-o2"
+enable_gs = true
+notes = "Ordinary source constructor for private-register target 0x0041B7F0; ABI not fabricated, no exact credit."
+[[units.gpt-web-package-index-node-constructor.functions]]
+address = "0x0041B7F0"
+symbol_base = "??0PackageFileIndexNode@th105@@QAE@PBDIII@Z"
+rel32_targets = [
+ "??_U@YAPAXI@Z=0x00665B8A",
+ "_strcpy_s=0x0068AD95",
+]

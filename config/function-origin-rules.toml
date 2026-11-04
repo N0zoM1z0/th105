@@ -7007,3 +7007,22 @@ required_direct_edges = [
  { caller = "0x004472A0", site = "0x00447328", target = "0x00447080", caller_status = "implemented" },
  { caller = "0x00447690", site = "0x0044786B", target = "0x00447080", caller_status = "implemented" },
 ]
+
+[[rules]]
+id = "package-index-node-constructor-authored-106a"
+addresses = ["0x0041B7F0"]
+expected_count = 1
+expected_bytes = 84
+expected_names = ["sub_41B7F0"]
+origin = "authored_game"
+subsystem = "assets"
+disposition = "authored"
+confidence = "observed"
+evidence = "Package index game node construction owns a copied path, archive index, length, offset and next pointer. The authored package registration root calls this complete constructor twice. Source and native use different receiver ABIs and are not claimed exact."
+required_body_hashes = [
+ { address = "0x0041B7F0", size = 84, sha256 = "94fe2301dec70d8fd04576336b868a5c1c6a6ca39a7720dc36c272e353dfb701" },
+]
+required_direct_edges = [
+ { caller = "0x0041BCF0", site = "0x0041BD8D", target = "0x0041B7F0", caller_status = "implemented" },
+ { caller = "0x0041BCF0", site = "0x0041BF42", target = "0x0041B7F0", caller_status = "implemented" },
+]

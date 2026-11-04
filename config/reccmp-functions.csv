@@ -1872,3 +1872,4 @@ CInputManager_update_player_input_counters_from_raw,0x00409DA0,function
 ProfileEditor_render,0x00427DB0,function
 InputStateTableStorage_add_tracked_key,0x0040A6C0,function
 CMenuResult_refresh_selected_character,0x00447080,function
+PackageFileIndexNode_ctor,0x0041B7F0,function
