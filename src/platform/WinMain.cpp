@@ -15,7 +15,7 @@ extern const char startup_error_message[];
 extern const char startup_error_title[];
 
 extern "C" LRESULT __stdcall application_window_proc(HWND, UINT, WPARAM, LPARAM);
-bool __cdecl mount_startup_archive(const char *path);
+bool __cdecl load_package_archive(const char *path);
 
 // Entry-only views. The target RTTI/vtables fix the complete five-slot
 // order and allocation sizes; no constructor initializes CFade's scalars.
@@ -98,19 +98,19 @@ extern "C" int __stdcall WinMain(HINSTANCE instance, HINSTANCE previous,
     options.graphics_flag_25 = false;
     options.ime_enabled_23 = true;
     options.flag_27 = true;
-    if (!th105::mount_startup_archive(th105::startup_package_b)) {
+    if (!th105::load_package_archive(th105::startup_package_b)) {
         CloseHandle(mutex);
         delete static_cast<th105::StartupSceneManagerView *>(options.application_callbacks_14);
         delete static_cast<th105::StartupFadeView *>(options.secondary_callbacks_1c);
         return 0;
     }
-    if (!th105::mount_startup_archive(th105::startup_package_a)) {
+    if (!th105::load_package_archive(th105::startup_package_a)) {
         CloseHandle(mutex);
         delete static_cast<th105::StartupSceneManagerView *>(options.application_callbacks_14);
         delete static_cast<th105::StartupFadeView *>(options.secondary_callbacks_1c);
         return 0;
     }
-    th105::mount_startup_archive(th105::startup_package_c);
+    th105::load_package_archive(th105::startup_package_c);
     if (th105::g_application_entry.initialize(&options))
         th105::g_application_entry.run();
     else
