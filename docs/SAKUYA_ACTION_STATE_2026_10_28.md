@@ -212,3 +212,15 @@ order, status mask and skip branches at offsets 0x7B8F and 0x7FDB.
 The 75,042-byte owned extent remains nonexact from +8 (candidate section tail
 76,500 bytes); this local observation adds no exact credit and does not assert
 unmasked-exception equivalence.
+
+## Action 707 ordered speed clamp, 2026-11-04
+
+Native `0x004DA5FE..0x004DA623` subtracts from speed and clamps to zero
+only when the resulting value is ordered and negative. The status test skips
+on `AH & 0x41`, including unordered values. The previous negated `>= 0`
+also clamped NaN. The source now uses ordered `< 0`; fresh VC8 emits the
+corresponding local test and branch at `0xF89A..0xF8A9`. This does not
+establish whole-root or unmasked-exception equivalence.
+
+The 75,042-byte owned extent remains nonexact from +8; the candidate section
+tail is 76,500 bytes. No exact credit is added.
