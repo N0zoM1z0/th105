@@ -492,3 +492,12 @@ Configured and independent cold VC8 builds both compare exact. The five effect
 lifetime roots and nine accepted manager roots, including the caller, replay;
 the manager unit's separate `466F40` remains nonexact. This adds one authored
 exact function / 670 bytes. See `BATTLE_RENDER_TAIL_EXACT_2026_11_04.md`.
+
+### Shared sprite effect interface (2026-11-04)
+
+Four previously exact sprite effect routines now use the shared
+D3DX-compatible COM interface instead of a hand-declared vtable. All four,
+their exact render-color caller, the battle overlay and five reset/lifetime
+roots replay exact. The 1,018-test target-independent CI passed. This is
+source cleanup only, with no new exact bytes. See
+`SPRITE_EFFECT_D3DX_INTERFACE_2026_11_04.md`.

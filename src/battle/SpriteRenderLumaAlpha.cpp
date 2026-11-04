@@ -9,15 +9,15 @@ void SpriteRenderEffectView::render_luma_alpha(
     if (alpha != 0.0f) {
         float luma[4] = {luma_red, luma_green, luma_blue, 0.0f};
         RenderEffectService *const service = g_render_effect_service;
-        service->vtable->set_vector(service, "v4Arg0", luma);
+        service->SetVector("v4Arg0", reinterpret_cast<const D3DXVECTOR4 *>(luma));
         float color[4] = {red, green, blue, alpha};
-        service->vtable->set_vector(service, "v4Arg1", color);
-        service->vtable->begin(service);
-        service->vtable->configure_pair(service, 0, 0);
-        service->vtable->select_mode(service, 3);
+        service->SetVector("v4Arg1", reinterpret_cast<const D3DXVECTOR4 *>(color));
+        service->CommitChanges();
+        service->Begin(0, 0);
+        service->BeginPass(3);
         finalize_render();
-        service->vtable->finish_first(service);
-        service->vtable->finish_second(service);
+        service->EndPass();
+        service->End();
         return;
     }
     render_luma(luma_red, luma_green, luma_blue);

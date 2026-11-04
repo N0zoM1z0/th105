@@ -92,3 +92,11 @@ source-body gaps, but the prior 36-object link still describes its earlier
 inputs. Next include the new bodies and actual existing providers, resolve
 the native checked-map dependency and reconcile the quantized lookup return
 declarations before evaluating the complete owner/root's code generation.
+
+## Shared COM interface, 2026-11-04
+
+The earlier manual service-vtable view has been replaced by the shared
+D3DX-compatible COM interface. The luma/alpha function, three sibling effect
+bodies and the render-color caller still compare fully exact; the concrete
+runtime service type remains a hypothesis. This cleanup adds no new match or
+bytes. See `SPRITE_EFFECT_D3DX_INTERFACE_2026_11_04.md`.
