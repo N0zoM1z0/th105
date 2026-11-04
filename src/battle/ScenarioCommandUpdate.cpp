@@ -1,4 +1,3 @@
-#include "ScenarioCommandUpdate.hpp"
 #include "ScenarioData.hpp"
 #include "BattleController.hpp"
 #include "BattleSetup.hpp"
@@ -109,9 +108,9 @@ static __forceinline void scenario_pop_inline()
     input->lock_124.leave();
 }
 
-signed char ScenarioCommandUpdateView::update()
+signed char CScenarioData::update()
 {
-    CScenarioData &s = *reinterpret_cast<CScenarioData *>(this);
+    CScenarioData &s = *this;
     ScenarioUpdateOperations *operations =
         reinterpret_cast<ScenarioUpdateOperations *>(this);
     s.field_514 = 0;

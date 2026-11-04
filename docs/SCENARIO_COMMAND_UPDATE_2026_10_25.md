@@ -299,3 +299,16 @@ origin witness also revalidates against the revised header.
 The interpreter itself still blocks at the same local string constructor and
 its 5,368-byte root section is not an exact comparison. This source-owner
 cleanup adds no authored exact bytes and does not establish full-program linkage.
+
+## Shared scenario owner, 2026-11-04
+
+The still-unselected command-update hypothesis now implements the existing
+`CScenarioData::update` virtual member directly rather than a separate
+pointer-only receiver view. It uses the shared scenario fields and the
+same signed-byte return hypothesis, and its EH symbol binding follows the
+actual member name. The unused view header was removed. The ordinary VC8
+root section remains 5,368 bytes and strict comparison continues to stop at
+the unresolved local string constructor; this is not a full-body result.
+Target CFG audit and affected accepted scenario provider units pass. No source
+selection, authored exact credit, general behavior proof or whole-game link
+is claimed.

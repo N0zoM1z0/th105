@@ -22772,7 +22772,7 @@ notes = "Complete unselected 23-command source hypothesis for 00458440. First st
 
 [[units.exact-first-scenario-command-update.functions]]
 address = "0x00458440"
-symbol_base = "?update@ScenarioCommandUpdateView@th105@@QAECXZ"
+symbol_base = "?update@CScenarioData@th105@@UAECXZ"
 rel32_targets = [
   "??8const_iterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@QBE_NABV012@@Z=0x006A0CE0",
   "??9?$_Const_iterator@$00@?$list@UScenarioRenderEntry9C@th105@@V?$allocator@UScenarioRenderEntry9C@th105@@@std@@@std@@QBE_NABV012@@Z=0x0045A2B0",
@@ -22834,7 +22834,7 @@ rel32_targets = [
   "__mbsrchr=0x0068B4EE",
 ]
 dir32_targets = [
-  "__ehhandler$?update@ScenarioCommandUpdateView@th105@@QAECXZ=_scenario_update_eh_458440",
+  "__ehhandler$?update@CScenarioData@th105@@UAECXZ=_scenario_update_eh_458440",
   "??_9SystemEffectObjectBase@@$B3AE=_scenario_update_virtual4_thunk",
   "?scenario_slot_state@th105@@3PAUBattleSlotState@1@A=?g_fighter_phase_context@th105@@3PAUFighterPhaseContext@1@A",
 ]
