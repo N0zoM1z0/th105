@@ -1853,3 +1853,4 @@ CSelect_on_scene_enter,0x00421120,function
 CScenarioData_reset_runtime_state,0x00457E40,function
 SpellDataOwner_shuffle_selection,0x00432420,function
 BattleObjectManager_render_tail,0x004666A0,function
+ProfileEditor_update_selection,0x00427C60,function
