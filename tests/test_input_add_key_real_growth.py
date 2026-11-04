@@ -27,6 +27,13 @@ class InputAddKeyRealGrowthTests(unittest.TestCase):
             with self.subTest(native=native):
                 self.assertEqual(observer.run(self.images, native, (), keys), expected)
 
+    def test_many_growth_steps_and_duplicate_positions(self):
+        keys = tuple(range(100)) + (0, 50, 99, 100)
+        expected = observer.expected_series(keys)
+        for native in (True, False):
+            with self.subTest(native=native):
+                self.assertEqual(observer.run(self.images, native, (), keys), expected)
+
     def test_duplicate_gate_mutation_is_detected(self):
         self.assertNotEqual(observer.run(self.images, False, (5,), 5, mutate=True),
                             observer.expected((5,), 5))

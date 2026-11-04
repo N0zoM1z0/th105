@@ -36,8 +36,9 @@ original target registration and insertion bodies. Six bounded full-capacity
 cases cover empty and nonempty vectors, growth factors including 4 to 6 and
 6 to 9, and duplicate suppression. The resulting bytes, size, capacity,
 allocation/copy/free events and stack cleanup agree with an independent model.
-A repeated-registration sequence checks multiple growths, spare-capacity
-appends and duplicate suppression in one persistent vector. A mutated
+Repeated-registration sequences check multiple growths, spare-capacity
+appends and duplicate suppression in one persistent vector, including 101
+distinct keys and duplicates at the beginning, middle and end. A mutated
 duplicate gate is detected. The allocator and CRT memory operations
 are still mocked; allocation failure, invalid vectors, concurrent use and
 full-game execution remain untested. This execution evidence does not resolve
