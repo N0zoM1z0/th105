@@ -6475,7 +6475,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete server/client battle-update policy and RTTI-owned primary virtual slots. Prior source hypotheses remain unselected and nonexact. docs/BATTLE_NETWORK_UPDATE_2026_10_28.md."
+evidence = "Complete server/client battle-update policy and RTTI-owned primary virtual slots. Both source bodies are registered but nonexact. docs/BATTLE_NETWORK_UPDATE_2026_10_28.md."
 required_rtti_virtual_bodies = [
   { address = "0x00426180", size = 247, sha256 = "fec1f88bca6eaf66dd50aea811ac0b12d04692a0a0933310d0015f9d78032912", slot = "0x006C04EC", col_slot = "0x006C04E4", col = "0x006D7128", type_descriptor = "0x006E60B8", type_name_contains = ".?AVCBattleSV@@" },
   { address = "0x00426380", size = 267, sha256 = "5d63cca281df0185cdb5f260172a4408b8ee6c0e69597c0d36e899243aceda0b", slot = "0x006C0544", col_slot = "0x006C053C", col = "0x006D721C", type_descriptor = "0x006E6104", type_name_contains = ".?AVCBattleCL@@" },
