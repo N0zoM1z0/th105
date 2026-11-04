@@ -2,7 +2,7 @@ schema_version = 1
 target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
 compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c"
 unit = "exact-first-scene-timeline-loader"
-source_sha256 = "5c22d10d25327ca6ff6e47f67d980219ad479e86cfed7ab8ce296e00544d517a"
+source_sha256 = "159257406f26285c1c24792d93107689337a57f041b15b05ebde9709337622a5"
 
 [[anchors]]
 address = "0x00413DF0"

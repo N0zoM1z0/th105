@@ -9,10 +9,6 @@
 #include <string>
 #include <stddef.h>
 namespace th105 {
-struct TimelineScriptReaderView {
-    bool load(const char *, int);
-    CCommandBase *next_command();
-};
 struct TimelineCommandHeader { void *vtable_00; int id_04; };
 struct SceneTimelineLoaderView {
     int bpm_00;
@@ -32,7 +28,7 @@ typedef char ScriptOffset[offsetof(SceneTimelineLoaderView,script_18)==0x18?1:-1
 typedef char EventOffset[offsetof(SceneTimelineLoaderView,events_64)==0x64?1:-1];
 bool SceneTimelineLoaderView::load_script(const char *path)
 {
-    TimelineScriptReaderView *script=reinterpret_cast<TimelineScriptReaderView *>(&script_18);
+    CScript *script = &script_18;
     if(!script->load(path,0)) return false;
     bpm_00=120;
     previous_tick_10=0;
