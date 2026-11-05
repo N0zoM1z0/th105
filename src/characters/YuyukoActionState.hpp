@@ -323,8 +323,12 @@ public:
         float p[3];int angle=0;
         for(int n=0;angle<360;++n,angle+=60) {
             p[0]=static_cast<float>(angle);p[1]=300.0f;p[2]=mode;
-            spawn(820,static_cast<float>((yuyuko_cosine(static_cast<float>(static_cast<float>(n)*60.0))*300.0+50.0)*facing()+at<float>(0xec)),
-                static_cast<float>(yuyuko_sine(static_cast<float>(static_cast<float>(n)-6.0))*300.0+(at<float>(0xf0)+170.0)),at<unsigned char>(0x104),1,p,3);
+            unsigned char direction=at<unsigned char>(0x104);
+            float y=static_cast<float>(yuyuko_sine(static_cast<float>(static_cast<float>(n)-6.0))*300.0+(at<float>(0xf0)+170.0));
+            double cosine=yuyuko_cosine(static_cast<float>(static_cast<float>(n)*60.0));
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>((cosine*300.0+50.0)*signed_facing+at<float>(0xec));
+            spawn(820,x,y,direction,1,p,3);
         }
     }
     __forceinline void hold821(unsigned control,float angle) {
@@ -425,8 +429,12 @@ public:
         for(int n=0;angle<360;++n,angle+=40) {
             if(every_wave)dispatch_character_wave_handle(13);
             p[0]=static_cast<float>(static_cast<double>(angle)+phase);p[1]=700.0f;p[2]=0.0f;
-            spawn(900,static_cast<float>((yuyuko_cosine(static_cast<float>(static_cast<float>(n)*60.0))*300.0+50.0)*facing()+at<float>(0xec)),
-                static_cast<float>(yuyuko_sine(static_cast<float>(static_cast<float>(n)-6.0))*300.0+(at<float>(0xf0)+170.0)),at<unsigned char>(0x104),1,p,3);
+            unsigned char direction=at<unsigned char>(0x104);
+            float y=static_cast<float>(yuyuko_sine(static_cast<float>(static_cast<float>(n)-6.0))*300.0+(at<float>(0xf0)+170.0));
+            double cosine=yuyuko_cosine(static_cast<float>(static_cast<float>(n)*60.0));
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>((cosine*300.0+50.0)*signed_facing+at<float>(0xec));
+            spawn(900,x,y,direction,1,p,3);
         }
     }
     __forceinline void difficulty901(float *p,int period,double turn) {

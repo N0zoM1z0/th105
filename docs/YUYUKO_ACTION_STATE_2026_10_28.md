@@ -192,3 +192,9 @@ Native `0x565506..0x565594` captures the unsigned spawn-facing byte before the p
 ## Orbit spell facing lifetimes, 2026-11-05
 
 Native normal and reversed orbit spawns, including `0x5686B4..0x568726` and `0x56874C..0x5687C8`, capture unsigned spawn direction before sine and reload signed facing after cosine. Reversed paths also capture X before sine and subtract the cosine offset from that snapshot. The earlier shared candidate helper captured signed facing before both lookups. Ordinary locals now preserve the native read points in both branches; fresh VC8 output shows the signed post-cosine reload at all nine root sites, and retains the reversed branch's pre-sine X snapshot. The 58619-byte root remains non-exact (candidate section tail 59620, first mismatch +17); no exact credit or ordinary-gameplay difference is claimed.
+
+### Ring 820 and difficulty 900 facing reads (2026-11-05)
+
+The pinned target's ring-820 and difficulty-900 emitters capture the unsigned direction before the sine call and reload signed facing after cosine (for example, `0x566680..0x566719` and `0x56A8B5..0x56A94F`). The former candidate captured both interpretations before sine. The source now sequences the reads separately, preserving the target's `(sin * 300) + (Y + 170)` and `(cos * 300 + 50) * facing + X` associations. The rebuilt dispatcher shows the late signed load at both ring-820 sites and all four difficulty-900 sites. The lookup helpers do not ordinarily mutate the receiver, so this is a source and instruction-order fidelity correction rather than a demonstrated normal-play difference.
+
+The full dispatcher remains nonmatching: target 58,619 bytes; candidate section tail 59,652 bytes, first difference at offset 17. This change does not claim exact-match credit.
