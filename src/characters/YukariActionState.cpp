@@ -188,7 +188,14 @@ case 214: {
         if(F(0xf4)>=0.0f && sequence_index_13e==3)select_sequence(1);
         if(F(0xf4)<0.0f && sequence_index_13e==2)select_sequence(4);
         if(F(0xf4)>=0.0f && sequence_index_13e==4)select_sequence(2);
-        if(time_counter_144%5==1)effect(125,static_cast<float>(yukari_cosine(F(0x740))*100.0*facing()+F(0xec)),static_cast<float>(yukari_sine(F(0x740))*100.0+F(0xf0)+100.0),B(0x104),1);
+        if(time_counter_144%5==1) {
+            unsigned char direction=B(0x104);
+            float y=static_cast<float>(yukari_sine(F(0x740))*100.0+F(0xf0)+100.0);
+            double cosine=yukari_cosine(F(0x740));
+            int signed_facing=C(0x104);
+            float x=static_cast<float>(cosine*100.0*signed_facing+F(0xec));
+            effect(125,x,y,direction,1);
+        }
         retain=(I(0x6c8) || S(0x736)<=10) && S(0x482)>0;
     }
     if(retain){if(static_cast<unsigned char>(crossed())){F(0xf0)=yukari_surface(this);F(0xf8)=0.0f;if(sequence_index_13e>=5){set_action_and_finalize(10);zero_motion();}else{reset_action_scratch();set_action_and_finalize(215);}}return;}

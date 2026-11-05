@@ -176,3 +176,7 @@ gates, not an assertion of whole-function or unmasked-exception equivalence.
 
 The 57,042-byte callable remains nonexact from +8; the candidate section tail
 is 57,792 bytes. The source remains unselected and adds no exact credit.
+
+## Action 214 flight effect facing, 2026-11-05
+
+Native `0x57E111..0x57E181` captures the unsigned effect-facing byte before sine, computes and rounds Y, then separately reloads signed facing after cosine for the X offset. The earlier candidate reused signed facing captured before both lookups. Ordinary locals now preserve both native read points; fresh VC8 output captures the effect byte at `0x306A` and reloads signed facing at `0x30A1`, after cosine. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 57042-byte root remains non-exact (candidate section tail 57792, first mismatch +8); no exact credit is claimed.
