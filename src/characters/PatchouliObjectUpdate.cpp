@@ -290,13 +290,13 @@ case 816: {
         if(S(0x140)==0) {if(emit_repeated(0,0,4)) RETIRE();if(FIELD(OWNER,short,0x174)<=0 || I(0x180)!=0) {next_sequence_frame();return;}}
         if(S(0x140)==1) {F(0xf4)=0.0f;F(0xf8)=0.0f;F(0x11c)+=static_cast<double>(0.2f);F(0x120)=F(0x11c);if(B(0x113)<20) RETIRE();B(0x113)-=20;}
         MOTION->set_components(PARAM[0],PARAM[1]);float *parameters=PARAM;parameters[1]*=static_cast<double>(0.9f);if(parameters[1]<3.0f) parameters[1]=3.0f;
-        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || !(F(0xf0)>=-200.0f)) RETIRE();break;
+        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || F(0xf0)<-200.0f) RETIRE();break;
     }
     case 6: {
         if(S(0x140)==0) {if(emit_repeated(0,0,4)) RETIRE();if(FIELD(OWNER,short,0x174)<=0 || I(0x180)!=0) {next_sequence_frame();return;}}
         if(S(0x140)==1) {F(0xf4)=0.0f;F(0xf8)=0.0f;F(0x11c)+=static_cast<double>(0.2f);F(0x120)=F(0x11c);if(B(0x113)<20) RETIRE();B(0x113)-=20;}
         MOTION->set_components(PARAM[0],PARAM[1]);float *parameters=PARAM;parameters[1]*=static_cast<double>(0.9f);if(parameters[1]<6.0f) parameters[1]=6.0f;
-        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || !(F(0xf0)>=-200.0f)) RETIRE();break;
+        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || F(0xf0)<-200.0f) RETIRE();break;
     }
     }
     F(0xec)=static_cast<float>(F(0xf4)*static_cast<double>(C(0x104))+F(0xec));F(0xf0)=F(0xf8)+F(0xf0);if(advance_frame()) --I(0x330);

@@ -133,3 +133,16 @@ equivalence.
 
 The 50,649-byte callable remains nonexact from +37; the candidate section
 tail is 51,428 bytes. No exact credit is added.
+
+## Action 816 lower-bound source, 2026-11-05
+
+Both phase 5 and phase 6 reach native `0x0052304B..0x00523062`, which
+retires only on an ordered Y below -200: the parity skip on `AH & 5` also
+skips unordered comparisons. The source now expresses `Y < -200.0f` rather
+than the negated `Y >= -200.0f`. Fresh VC8 now emits the corresponding
+parity skip on `AH & 5` at `0x27B2..0x27C3`, matching the native local
+branch behavior. This does not establish whole-root or unmasked-exception
+equivalence.
+
+The 50,649-byte callable remains nonexact from +37; the candidate section
+tail is 51,428 bytes. No exact credit is added.
