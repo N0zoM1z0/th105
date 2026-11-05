@@ -107,3 +107,17 @@ These observations do not establish unmasked-exception or whole-root equivalence
 
 The 52,190-byte callable remains nonexact from +17 with a 53,204-byte candidate
 section tail. No exact credit is added.
+
+## Actions 858, 900 and 901 scale gates, 2026-11-05
+
+Native action 858 tests at `0x005B8109..0x005B8114` and
+`0x005B8169..0x005B8174` enter the fading paths only for ordered values
+below 0.5 and above 2.0 respectively. Actions 900/901 retire only for an
+ordered nonpositive scale at `0x005B89DA..0x005B89E5` and
+`0x005B9017..0x005B9022`. The earlier negated comparisons admitted NaN;
+the source now expresses the ordered relations. Fresh VC8 emits the
+corresponding masks and branches at `0x7CAB`, `0x7D0B`, `0x8577` and
+`0x8BD1`. This does not establish whole-root or unmasked-exception equivalence.
+
+The 52,190-byte callable remains nonexact from +17; the candidate section
+tail is 53,204 bytes. No exact credit is added.

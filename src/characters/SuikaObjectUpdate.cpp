@@ -600,8 +600,8 @@ case 858: {
     if(I(0x180)==5) RETIRE();
     switch(S(0x13e)) {
     case 0: {float *parameters=PARAM;parameters[1]*=static_cast<double>(0.9f);F(0x12c)+=F(0x370);F(0x370)*=static_cast<double>(0.98f);MOTION->set_components(parameters[0],parameters[1]);if(B(0x113)<5) RETIRE();B(0x113)-=5;B(0x111)-=5;B(0x110)-=5;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)=static_cast<float>(F(0xf8)*0.25+F(0xf0));break;}
-    case 1:F(0x11c)*=static_cast<double>(0.85f);F(0x120)=F(0x11c);if(!(F(0x11c)>=0.5f)) {if(B(0x113)<50) RETIRE();B(0x113)-=50;B(0x111)-=50;B(0x110)-=50;}break;
-    case 2:F(0x11c)+=static_cast<double>(0.4f);F(0x120)=F(0x11c);if(!(F(0x11c)<=2.0f)) {if(B(0x113)<20) RETIRE();B(0x113)-=20;B(0x111)-=20;B(0x110)-=20;}break;
+    case 1:F(0x11c)*=static_cast<double>(0.85f);F(0x120)=F(0x11c);if(F(0x11c)<0.5f) {if(B(0x113)<50) RETIRE();B(0x113)-=50;B(0x111)-=50;B(0x110)-=50;}break;
+    case 2:F(0x11c)+=static_cast<double>(0.4f);F(0x120)=F(0x11c);if(F(0x11c)>2.0f) {if(B(0x113)<20) RETIRE();B(0x113)-=20;B(0x111)-=20;B(0x110)-=20;}break;
     case 3:if(I(0x144)%3==0) {float packet[3]={RF(360),RF(5),0.0f};spawn_unparented(858,F(0xec),F(0xf0),B(0x104),1,packet,3);}if(I(0x144)>=36) RETIRE();{float *parameters=PARAM;parameters[1]*=static_cast<double>(0.9f);MOTION->set_components(parameters[0],parameters[1]);}MOVE();break;
     case 4:if(B(0x113)<20) RETIRE();B(0x113)-=20;B(0x111)-=20;B(0x110)-=20;MOTION->set_components(PARAM[0],PARAM[1]);MOVE();break;
     }FINISH();
@@ -625,7 +625,7 @@ case 900: {
             if(I(0x144)%10==0) {float packet[3]={0.0f,0.0f,1.0f};spawn_unparented(900,F(0xec),F(0xf0),B(0x104),1,packet,3);}
             F(0x370)+=static_cast<double>(0.05f);if(F(0x370)>8.0f) F(0x370)=8.0f;void *target=TARGET;owner=OWNER;
             if(FIELD(target,float,0xec)>=static_cast<double>(F(0xec))) FIELD(owner,float,0x6ac)=static_cast<float>(FIELD(owner,float,0x6ac)-static_cast<double>(FIELD(target,signed char,0x104))*F(0x370));else FIELD(owner,float,0x6ac)=static_cast<float>(static_cast<double>(FIELD(target,signed char,0x104))*F(0x370)+FIELD(owner,float,0x6ac));
-        }else {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(!(F(0x11c)>0.0f)) RETIRE();}break;
+        }else {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(F(0x11c)<=0.0f) RETIRE();}break;
     case 1:F(0xec)=FIELD(entryOwner,float,0xec);F(0xf0)=static_cast<float>(FIELD(entryOwner,float,0xf0)+100.0);F(0x12c)+=40.0;F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(B(0x113)<=20) RETIRE();B(0x113)-=20;break;
     case 2:
         if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && entryPhase==0) replace_secondary(990,15.0f,5,1,2);
@@ -655,7 +655,7 @@ case 901: {
             if(I(0x144)%10==0) {float packet[3]={0.0f,0.0f,1.0f};spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);}
             F(0x370)+=0.25;if(F(0x370)>5.0f) F(0x370)=5.0f;void *target=TARGET;owner=OWNER;
             if(FIELD(target,float,0xec)>=static_cast<double>(F(0xec))) FIELD(owner,float,0x6ac)=static_cast<float>(static_cast<double>(FIELD(target,signed char,0x104))*F(0x370)+FIELD(owner,float,0x6ac));else FIELD(owner,float,0x6ac)=static_cast<float>(FIELD(owner,float,0x6ac)-static_cast<double>(FIELD(target,signed char,0x104))*F(0x370));
-        }else {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(!(F(0x11c)>0.0f)) RETIRE();}break;
+        }else {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(F(0x11c)<=0.0f) RETIRE();}break;
     case 1:F(0xec)=FIELD(entryOwner,float,0xec);F(0xf0)=static_cast<float>(FIELD(entryOwner,float,0xf0)+100.0);F(0x12c)-=40.0;F(0x11c)+=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(B(0x113)<=20) RETIRE();B(0x113)-=20;break;
     case 2:
         if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && entryPhase==0) replace_secondary(990,15.0f,5,1,2);
