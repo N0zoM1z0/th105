@@ -116,7 +116,7 @@ case 525:
         do{p[0]=static_cast<float>((n*60.0-20.0)+static_cast<float>(suika_random(40)));p[1]=static_cast<float>(static_cast<float>(suika_random(8))+30.0);
            S(0x730)=(p[0]<0.0f || p[0]>180.0f)?-1:1;spawn_offset(816,103,0.0,p,3,B(0x730));n=static_cast<float>(n+1.0);
         }while(n<6.0f);
-        p[2]=3.0f;spawn_offset(816,103,0.0,p,3,255);p[2]=0.0f;
+        p[2]=3.0f;spawn_offset(816,103,0.0,p,3,-1);p[2]=0.0f;
         double count=static_cast<float>(C(0x609)+5.0);n=0.0f;
         while(n<count){p[0]=static_cast<float>(-static_cast<float>(suika_random(80))-20.0);p[1]=static_cast<float>(static_cast<float>(suika_random(18))+7.0);
             S(0x730)=(p[0]<0.0f || p[0]>180.0f)?-1:1;spawn_offset(816,103,0.0,p,3);n=static_cast<float>(n+1.0);
@@ -130,7 +130,7 @@ case 526:
         do{p[0]=static_cast<float>((n*60.0-20.0)+static_cast<float>(suika_random(40)));p[1]=static_cast<float>(static_cast<float>(suika_random(8))+30.0);
            S(0x730)=(p[0]<0.0f || p[0]>180.0f)?-1:1;spawn_offset(816,103,0.0,p,3,B(0x730));n=static_cast<float>(n+1.0);
         }while(n<6.0f);
-        p[2]=3.0f;spawn_offset(816,103,0.0,p,3,255);p[2]=0.0f;
+        p[2]=3.0f;spawn_offset(816,103,0.0,p,3,-1);p[2]=0.0f;
         double count=static_cast<float>(C(0x609)+7.0);n=0.0f;
         while(n<count){p[0]=static_cast<float>(-static_cast<float>(suika_random(80))-20.0);p[1]=static_cast<float>(static_cast<float>(suika_random(20))+10.0);
             S(0x730)=(p[0]<0.0f || p[0]>180.0f)?-1:1;spawn_offset(816,103,0.0,p,3);n=static_cast<float>(n+1.0);

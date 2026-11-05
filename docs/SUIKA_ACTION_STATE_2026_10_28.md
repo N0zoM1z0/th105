@@ -197,3 +197,20 @@ The focused VC8 build emits `push -1` in all four corresponding expansions.
 The complete 79435-byte callable remains nonexact from +17; the candidate
 section tail is 78980 bytes. No exact credit follows. The build receipt is
 `build/frontier-55d850-20261027/suika-impact-layer-20261105.json`.
+
+## Additional direct spawn layers, 2026-11-05
+
+Twelve additional source requests also used integer 255 for a layer whose
+native complete DWORD is -1. These are the two 816 requests at 5A0803 and
+5A0B2A, object 852 at 5A34F1/5A3501, object 855 at 5A5305/5A530F, object
+858 at 5A7B9B, objects 900 and 901 at 5A86C3 and 5A8800, object 920 at
+5A9604/5A960E, and four object 940 requests using the -1 EBP established at
+5AAF63 (argument pushes 5AB099, 5AB1CC, 5AB2FF and 5AB432). The 816 paths
+establish EBX=-1 at 5A06CF and 5A09F4. These are actual layer slots, not the
+separate dynamically selected byte-valued 0x730 layer.
+
+The source now uses -1 at the twelve corresponding sites. The Suika manager
+still consumes only the low byte; no ordinary gameplay difference is asserted.
+Fresh focused compilation remains nonexact at +17 with a 78876-byte section
+tail versus the 79435-byte native callable. No exact credit is added. Receipt:
+`build/frontier-55d850-20261027/suika-other-layers-20261105.json`.

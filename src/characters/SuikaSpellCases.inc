@@ -34,7 +34,7 @@ case 602:
     if(frame_index_140==18){F(0x11c)=static_cast<float>(F(0x11c)-static_cast<double>(0.1f));if(F(0x11c)<1.0f)F(0x11c)=1.0f;F(0x120)=F(0x11c);}
     if(advance())set_action_and_finalize(0);
     if(!frame_timer_142 && frame_index_140==6){
-        float p[3]={0.0f,0.0f,0.0f};spawn_offset(852,0,0.0,p,3,255);float n=0.0f;
+        float p[3]={0.0f,0.0f,0.0f};spawn_offset(852,0,0.0,p,3,-1);float n=0.0f;
         do{p[0]=static_cast<float>((n*45.0-20.0)+static_cast<float>(suika_random(40)));p[1]=30.0f;p[2]=1.0f;S(0x730)=(p[0]<0.0f || p[0]>180.0f)?-1:1;spawn_offset(811,40,0.0,p,3,B(0x730));n=static_cast<float>(n+1.0);}while(n<8.0f);
         dispatch_character_wave_handle(53);
     }

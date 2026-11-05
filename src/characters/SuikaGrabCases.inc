@@ -96,7 +96,7 @@ grab608_after8:
             do{p[0]=static_cast<float>(n*36.0+static_cast<float>(suika_random(20)));p[1]=static_cast<float>(static_cast<float>(suika_random(8))+45.0);S(0x730)=(p[0]<0.0f||p[0]>180.0f)?-1:1;spawn_offset(858,37,0.0,p,3,B(0x730));n=static_cast<float>(n+1.0);}while(n<10.0f);
             p[2]=3.0f;n=0.0f;
             do{p[0]=static_cast<float>(n*(-36.0)-static_cast<float>(suika_random(20)));p[1]=static_cast<float>(static_cast<float>(suika_random(25))+60.0);spawn_offset(858,37,0.0,p,3);n=static_cast<float>(n+1.0);}while(n<5.0f);
-            p[2]=1.0f;spawn_offset(858,37,0.0,p,3);p[2]=2.0f;spawn_offset(858,37,0.0,p,3,255);
+            p[2]=1.0f;spawn_offset(858,37,0.0,p,3);p[2]=2.0f;spawn_offset(858,37,0.0,p,3,-1);
         }
         if(!frame_index_140){peer()->set_action_and_finalize(107);moving_grab_pose(180.0f,21.0,140.0);}
         else if(frame_index_140==1){peer()->set_action_and_finalize(107);moving_grab_pose(120.0f,85.0,85.0);peer()->at<signed char>(0x104)=-C(0x104);}

@@ -64,7 +64,7 @@ case 13:
     switch(sequence_index_13e){
     case 0:
         if(frame_index_140>5)S(0x7a6)=600;
-        if(frame_index_140==6 && !frame_timer_142){float p[3]={0.0f,0.0f,0.0f};spawn_offset(855,0,0.0,p,3,255);giant_ring855(p,8.0f,45.0,30.0f,40);dispatch_character_wave_handle(53);}
+        if(frame_index_140==6 && !frame_timer_142){float p[3]={0.0f,0.0f,0.0f};spawn_offset(855,0,0.0,p,3,-1);giant_ring855(p,8.0f,45.0,30.0f,40);dispatch_character_wave_handle(53);}
         if(frame_index_140==16 && !frame_timer_142){F(0x11c)=1.0f;F(0x120)=1.0f;return;}break;
     case 1:if(frame_index_140==3 && !frame_timer_142){B(0x184)=1;I(0x180)=0;}break;
     case 2:
