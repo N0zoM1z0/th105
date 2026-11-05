@@ -195,3 +195,19 @@ The same `0x732` counter is compared as signed against 90 at `0x553B0C..0x553B2C
 ## Unsigned random conversion constants, 2026-11-05
 
 The native action root uses the float `2^32` correction for unsigned random results, for example at `0x548746..0x548762`. Eleven source expressions converted those results directly to double and produced 35 expanded double-correction sites. Expressing the float conversion before promotion restores the observed correction type: native and focused candidate each contain 92 float corrections and no double corrections, versus 57 float and 35 double in the previous candidate. The aggregate categories of the next x87 operation remain the same, with no added early float-store category. The count is a diagnostic rather than a per-site or full-function match proof. The calls use bounded, small integer ranges, so no ordinary-play numeric difference is established. The complete 61,962-byte root remains nonexact at +47 with a 63,052-byte candidate section tail; no exact credit is claimed.
+
+## Object 800 fan-angle association, 2026-11-05
+
+Nine native fan paths, including `0x5485A9..0x5485C6` and
+`0x54875C..0x548779`, retain the unsigned random conversion in x87, load the
+angle field, subtract the 10 or 15 degree bias from that field, then add the
+random value. The shared source previously grouped the addition before the
+subtraction. Parenthesizing the field-minus-bias expression restores the
+native operation order for both integer and float loop variants. The unsigned
+conversion still uses the native float 2^32 correction. The ordinary action
+angle and bounded RNG ranges do not establish a gameplay difference; the
+change follows the observed arithmetic association.
+
+The complete target remains 61962 bytes and nonexact at +47; the candidate
+section tail is 63068. Matching an operation order does not grant exact-function
+or byte credit.

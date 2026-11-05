@@ -147,8 +147,8 @@ public:
     }
     __forceinline void fan800(int count,int random_range,double bias,double speed,int x,double y,bool float_loop) {
         float p[3];
-        if(float_loop){for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(random_range)))+at<float>(0x744)-bias);p[1]=static_cast<float>(n+speed);p[2]=0.0f;spawn_offset(800,x,y,p,3);}}
-        else{for(int n=0;n<count;++n){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(random_range)))+at<float>(0x744)-bias);p[1]=static_cast<float>(n+speed);p[2]=0.0f;spawn_offset(800,x,y,p,3);}}
+        if(float_loop){for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(random_range)))+(at<float>(0x744)-bias));p[1]=static_cast<float>(n+speed);p[2]=0.0f;spawn_offset(800,x,y,p,3);}}
+        else{for(int n=0;n<count;++n){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(random_range)))+(at<float>(0x744)-bias));p[1]=static_cast<float>(n+speed);p[2]=0.0f;spawn_offset(800,x,y,p,3);}}
     }
     __forceinline void shot800(float low,float high,int count,int range,double bias,double speed,int x,double y,bool air,bool float_loop) {
         at<int>(0x180)=1;aim800(low,high);counter(200,45);if(air){at<float>(0xf4)=-4.0f;at<float>(0xf8)=9.0f;at<float>(0x100)=0.65f;}phase_counter(30);dispatch_character_wave_handle(0);fan800(count,range,bias,speed,x,y,float_loop);
