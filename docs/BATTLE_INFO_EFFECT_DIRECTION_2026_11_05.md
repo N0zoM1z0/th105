@@ -1,0 +1,5 @@
+# BattleInfo record group effect direction
+
+In target `0x46F9F0..0x46FA42`, the group index is used to select a position and then, after pushing the two trailing arguments, the direction byte is written into `[esp+0x18]`. At that point this is the original group-index stack word: the target retains its upper 24 bits while replacing its low byte with `1` for side zero or `0xFF` otherwise. It then pushes that whole word as the emitter's integer argument. The accepted owner layout identifies `group_60` as five pointers. For the defined group indices 0 through 4, the upper bits are zero, so the full forwarded values are `1` and `255`.
+
+The previous source used a signed-char direction, and its candidate passed `0xFFFFFFFF` for the latter. Using an unsigned byte naturally forwards `255` for those valid group indices, as shown in the current candidate. This does not reproduce the native word for arbitrary out-of-range group indices, whose array access is not defined by the five-entry owner layout, and it does not establish what every possible virtual emitter does with the upper bits. The complete emitter function remains nonexact; no exact credit is claimed.

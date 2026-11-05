@@ -8,7 +8,7 @@ void BattleInfoRecordEffectRuntimeView::emit_group_effect_46f9f0(
     int effect_id,
     int group_index)
 {
-    signed char direction = side_00 ? -1 : 1;
+    unsigned char direction = side_00 ? 255 : 1;
     BattleInfoEffectPosition *position = groups_60[group_index];
     float x = position->x_0c;
     float y = position->y_10;
