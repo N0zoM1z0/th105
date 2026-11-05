@@ -247,7 +247,7 @@ public:
                 int direction=at<unsigned char>(0x104);
                 spawn(826,static_cast<float>(50*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec))),at<float>(0xf0),direction,1,p,3);
                 direction=at<unsigned char>(0x104);
-                spawn(826,static_cast<float>(50*direction+static_cast<double>(at<float>(0xec))),at<float>(0xf0),static_cast<unsigned char>(-direction),1,p,3);
+                spawn(826,static_cast<float>(50*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec))),at<float>(0xf0),static_cast<unsigned char>(-direction),1,p,3);
             }
         }
         if(sequence_index_13e==4 || sequence_index_13e==5){
