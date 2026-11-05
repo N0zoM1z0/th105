@@ -471,7 +471,9 @@ case 741:
             if(!S(0x732)){dispatch_character_wave_handle(61);p[0]=0.0f;p[1]=0.0f;p[2]=7.0f;spawn_offset(903,0,230.0,p,3);}
             if(!(time_counter_144%6)){
                 p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(600))+100.0);p[2]=5.0f;
-                int direction=B(0x104);float y=static_cast<float>(remilia_sine(-p[0])*p[1]+(static_cast<double>(F(0xf0))+230.0));float x=static_cast<float>(remilia_cosine(-p[0])*p[1]*facing()+F(0xec));spawn(903,x,y,direction,1,p,3);
+                int direction=B(0x104);float y=static_cast<float>(remilia_sine(-p[0])*p[1]+(static_cast<double>(F(0xf0))+230.0));
+                double cosine=remilia_cosine(-p[0]);int signed_facing=at<signed char>(0x104);
+                float x=static_cast<float>(cosine*p[1]*signed_facing+F(0xec));spawn(903,x,y,direction,1,p,3);
             }
             switch(g_match_identifier){
             case 0:if(!S(0x732))ring903(p,6,60.0);if(at<unsigned short>(0x732)<90)++S(0x732);else I(0x730)=2;break;

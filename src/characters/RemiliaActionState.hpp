@@ -200,7 +200,12 @@ public:
         // Native exposes three written scalar cells but passes count four. The fourth value is not recovered.
         float p[3];for(float n=0.0f;n<(charged?6.0:static_cast<double>(at<signed char>(0x60d)+1));n=static_cast<float>(n+1.0)){
             p[0]=offset==0.0?static_cast<float>(at<float>(0x744)-n*6.0):static_cast<float>(at<float>(0x744)-n*6.0-offset);p[1]=35.0f;p[2]=0.0f;
-            spawn(817,static_cast<float>((remilia_cosine(-p[0])*200.0-120.0)*facing()+at<float>(0xec)),static_cast<float>(remilia_sine(-p[0])*200.0+at<float>(0xf0)+100.0),at<unsigned char>(0x104),1,p,4);
+            unsigned char direction=at<unsigned char>(0x104);
+            float y=static_cast<float>(remilia_sine(-p[0])*200.0+at<float>(0xf0)+100.0);
+            double cosine=remilia_cosine(-p[0]);
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>((cosine*200.0-120.0)*signed_facing+at<float>(0xec));
+            spawn(817,x,y,direction,1,p,4);
         }
     }
     __forceinline void ground817(int control,double offset) {
@@ -283,9 +288,13 @@ public:
     __forceinline void ring902(float *p,int count) {
         for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){
             p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(12))+18.0);p[2]=1.0f;
-            spawn(902,static_cast<float>(remilia_cosine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)*facing()+at<float>(0xec)),
-                static_cast<float>(remilia_sine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)+(static_cast<double>(at<float>(0xf0))+100.0)),
-                at<unsigned char>(0x104),1,p,3);
+            unsigned char direction=at<unsigned char>(0x104);
+            float y=static_cast<float>(remilia_sine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)+(static_cast<double>(at<float>(0xf0))+100.0));
+            double cosine=remilia_cosine(static_cast<float>(180.0-p[0]));
+            double radius=p[1]*60.0;
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>(cosine*radius*signed_facing+at<float>(0xec));
+            spawn(902,x,y,direction,1,p,3);
         }
     }
     __forceinline void burst902(float *p,int count,double bias) {
