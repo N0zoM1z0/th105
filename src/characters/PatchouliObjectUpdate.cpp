@@ -1065,7 +1065,7 @@ patchouli_920_burst:
             }
         }
         if(S(0x364)==3) {F(0xf4)=0.0f;F(0xf8)=0.0f;F(0x11c)=static_cast<float>(static_cast<double>(0.9f)*F(0x11c));F(0x120)=F(0x11c);if(B(0x113)<15) RETIRE();B(0x113)-=15;}
-        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>960.0 || !(F(0xf0)>=-200.0f)) RETIRE();break;
+        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>960.0 || F(0xf0)<-200.0f) RETIRE();break;
     case 9:case 10: {
         float *parameters=PARAM;parameters[1]*=static_cast<double>(0.95f);MOTION->set_components(parameters[0],parameters[1]);F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.9f);F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);if(B(0x113)<10) RETIRE();B(0x113)-=10;break;
     }

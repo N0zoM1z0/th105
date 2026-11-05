@@ -146,3 +146,15 @@ equivalence.
 
 The 50,649-byte callable remains nonexact from +37; the candidate section
 tail is 51,428 bytes. No exact credit is added.
+
+## Action 920 ordered lower bound, 2026-11-05
+
+Native `0x0052CC2D..0x0052CC44` retires below -200 only for an ordered Y;
+its parity skip on `AH & 5` also skips unordered comparisons. The earlier
+negated `Y >= -200` admitted NaN. The source now uses ordered `< -200.0f`,
+and fresh VC8 emits the corresponding local status test and branch at
+`0xC302..0xC319`. This does not establish whole-root or unmasked-exception
+equivalence.
+
+The 50,649-byte callable remains nonexact from +37; the candidate section
+tail is 51,428 bytes. No exact credit is added.
