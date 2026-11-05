@@ -376,7 +376,7 @@ public:
             float coordinate=static_cast<float>(reversed?angle:angle+180.0);
             p[0]=static_cast<float>(reversed?angle+jitter+180.0:angle+jitter);p[1]=speed;p[2]=0.0f;
             float neg=-coordinate;
-            unsigned char direction=at<unsigned char>(0x104);
+            unsigned int direction=at<unsigned char>(0x104);
             double sine=komachi_sine(neg);
             KomachiActionStateView *y_peer=peer();
             float y=static_cast<float>(sine*500.0+y_peer->at<float>(0xf0)+100.0);
