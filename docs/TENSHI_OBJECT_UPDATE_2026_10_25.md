@@ -273,3 +273,7 @@ The two target speed checks at `0x653084..0x6530A2` enter the trailing-effect pa
 ## Action 997 landing gate, 2026-11-05
 
 The target at `0x656939..0x656946` performs its landing reset only when Y is ordered and at or below zero. The earlier negated greater-than condition also reset an unordered Y. The source now uses ordered `<=`; the focused candidate emits the same `test ah, 1; jne` continuation at `0x9E0F..0x9E1C`. The full 41001-byte root remains non-exact (candidate section tail 42508, first mismatch +8); no exact credit is claimed.
+
+## Object 940 half-spread lifetime (2026-11-05)
+
+For owner mode 4, target `0x654866..0x654890` sign-extends the short spread, computes half of it, rounds that product to float, adds the stored heading, saves the sum as double, and then calls the random selector with the signed spread. The prior source used a short local and kept the half product unrounded. An int snapshot plus a float half-spread now produces the observed local `MOVSX`, float store/reload, heading addition and double save in the candidate (`0x7E40..0x7E6A`); stack offsets and the rest of the root still differ. Every signed 16-bit value multiplied by one half is exactly representable as float, so no normal numerical difference is claimed. The whole object update remains nonexact.

@@ -423,7 +423,7 @@ void TenshiObjectUpdateView::update_action_state()
    if(AT(P,short,0x738)==4){
     if(g_update_selector==1)turn_heading(0,0.5f,100);else if(g_update_selector==2)turn_heading(0,0.75f,100);else if(g_update_selector==3)turn_heading(0,1,100);
     if(AT(P,short,0x732)==0){AT(P,short,0x732)=1;I(0x144)=0;S(0x364)=0;F(0x370)=F(0x374)=0;S(0x368)=360;H[0]=-atan2_degrees((AT(A,float,0xf0)+100.0)-F(0xf0),C(0x104)*(AT(A,float,0xec)-F(0xec)));}
-    short spread=S(0x368);double heading=spread*0.5+H[0];PACKET(p120,heading-RND(spread),RND(30)+20.0,8);SPAWN(940,1,p120);S(0x368)=10;
+    int spread=S(0x368);float half_spread=spread*0.5;double heading=half_spread+H[0];PACKET(p120,heading-RND(spread),RND(30)+20.0,8);SPAWN(940,1,p120);S(0x368)=10;
    }
    if(AT(P,short,0x738)==5){turn_heading(0,0.2f,100);if(AT(P,short,0x732)==0){AT(P,short,0x732)=1;I(0x144)=0;PACKET(p216,H[0],0,13);spawn_parented(940,F(0xec),F(0xf0),B(0x104),1,reinterpret_cast<const unsigned *>(p216),3);}}
    if(AT(P,short,0x738)==6){turn_heading(0,0.2f,100);if(AT(P,short,0x732)==0){AT(P,short,0x732)=1;I(0x144)=0;PACKET(p520,H[0],0,13);spawn_parented(940,F(0xec),F(0xf0),B(0x104),1,reinterpret_cast<const unsigned *>(p520),3);if(g_update_selector==2 || g_update_selector==3){p520[3]=g_update_selector==2?1.0f:2.0f;PACKET(p520,0,0,14);spawn_parented(940,F(0xec),F(0xf0),B(0x104),1,reinterpret_cast<const unsigned *>(p520),4);}}}
