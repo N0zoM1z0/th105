@@ -188,3 +188,7 @@ Native `0x56355F..0x5635D2` captures unsigned spawn facing before sine, then rel
 ## Arc 812 facing lifetime, 2026-11-05
 
 Native `0x565506..0x565594` captures the unsigned spawn-facing byte before the position sine lookup, then reloads signed facing after cosine for X. The shared candidate arc helper formerly captured both before sine. Ordinary locals now preserve the native read points; fresh VC8 helper output reloads signed facing at `0xAB` after cosine. The target's `sin*40 + (Y+120)` association and `(cos*100 + state*5 - 85)*facing + X` grouping remain intact. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 58619-byte root remains non-exact (candidate section tail 59556, first mismatch +8); no exact credit is claimed.
+
+## Orbit spell facing lifetimes, 2026-11-05
+
+Native normal and reversed orbit spawns, including `0x5686B4..0x568726` and `0x56874C..0x5687C8`, capture unsigned spawn direction before sine and reload signed facing after cosine. Reversed paths also capture X before sine and subtract the cosine offset from that snapshot. The earlier shared candidate helper captured signed facing before both lookups. Ordinary locals now preserve the native read points in both branches; fresh VC8 output shows the signed post-cosine reload at all nine root sites, and retains the reversed branch's pre-sine X snapshot. The 58619-byte root remains non-exact (candidate section tail 59620, first mismatch +17); no exact credit or ordinary-gameplay difference is claimed.
