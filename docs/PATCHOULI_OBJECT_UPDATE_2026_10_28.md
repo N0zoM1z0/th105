@@ -192,3 +192,7 @@ The target at `0x52A589..0x52A5AB` continues the airborne path for unordered Y a
 ## Action 855 orbit layers, 2026-11-05
 
 All three target orbit-layer checks at `0x5286EC..0x528705`, `0x5287D6..0x5287EF` and `0x528C5C..0x528C75` select layer 1 for negative or unordered sine results and 255 for ordered nonnegative results. The earlier `< 0` missed the unordered case. The source now negates `>= 0`; focused compilation reproduces the native `test ah, 1` selection at candidate `0x7DCC`, `0x7EAC` and `0x834C`. The full 50649-byte root remains non-exact (candidate section tail 51412, first mismatch +37); no exact credit is claimed.
+
+## Action 810 surface-height captures, 2026-11-05
+
+In phases 0, 1 and 6, the native code first checks the collision flag; only if it is clear does it capture current Y as a QWORD and call the surface-height helper. The three target sequences are `0x521789..0x5217A3`, `0x521894..0x5218AE` and `0x521D0D..0x521D27`. Earlier source read Y after the helper. The conditional capture now preserves both the target lifetime and short-circuit behavior; focused VC8 output shows the three pre-call QWORD stores at `0xF0F`, `0x101F` and `0x14A3`. The ordered surface comparison is unchanged. The 50649-byte root remains non-exact (candidate section tail 51444, first mismatch +37); no exact credit is claimed.

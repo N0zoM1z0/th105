@@ -136,13 +136,15 @@ case 810: {
             spawn_unparented(810,static_cast<float>(static_cast<double>(RF(100))+F(0xec)-50.0),static_cast<float>(static_cast<double>(RF(100))+F(0xf0)-50.0),B(0x104),1,packet,3);
         }
         advance_six(0);advance_phase(10);
-        if(I(0x180)!=0 || stage_surface_height()>=static_cast<double>(F(0xf0))) {
+        bool burst=I(0x180)!=0;if(!burst){double currentY=F(0xf0);burst=stage_surface_height()>=currentY;}
+        if(burst) {
             WAVE(4);float packet[3]={0.0f,0.0f,2.0f};spawn_unparented(810,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=3.0f;spawn_unparented(810,F(0xec),F(0xf0),B(0x104),1,packet,3);RETIRE();
         }
     }
     if(S(0x13e)==1) {
         if(emit_repeated(0,3,5)) RETIRE();advance_six(0);advance_phase(3);
-        if(I(0x180)!=0 || stage_surface_height()>=static_cast<double>(F(0xf0))) {
+        bool burst=I(0x180)!=0;if(!burst){double currentY=F(0xf0);burst=stage_surface_height()>=currentY;}
+        if(burst) {
             WAVE(4);float packet[3]={0.0f,0.0f,2.0f};spawn_unparented(810,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=3.0f;spawn_unparented(810,F(0xec),F(0xf0),B(0x104),1,packet,3);RETIRE();
         }
     }
@@ -173,7 +175,8 @@ case 810: {
             spawn_unparented(810,static_cast<float>(static_cast<double>(RF(100))+F(0xec)-50.0),static_cast<float>(static_cast<double>(RF(100))+F(0xf0)-50.0),B(0x104),1,packet,3);
         }
         advance_six(0);advance_phase(10);
-        if(I(0x180)!=0 || stage_surface_height()>=static_cast<double>(F(0xf0))) {
+        bool burst=I(0x180)!=0;if(!burst){double currentY=F(0xf0);burst=stage_surface_height()>=currentY;}
+        if(burst) {
             WAVE(4);float packet[3]={0.0f,0.0f,2.0f};spawn_unparented(810,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=3.0f;spawn_unparented(810,F(0xec),F(0xf0),B(0x104),1,packet,3);RETIRE();
         }
     }
