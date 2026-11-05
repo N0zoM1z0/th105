@@ -154,7 +154,7 @@ case 740:
                 if(I(0x180)==6){B(0x184)=1;I(0x180)=0;}
                 if(I(0x180)){++S(0x734);if(S(0x734)>4){S(0x734)=0;B(0x184)=1;I(0x180)=0;}}
                 float dx=static_cast<float>((peer()->at<float>(0xec)-F(0xec))*facing());float desired=-suika_atan(peer()->at<float>(0xf0)-F(0xf0),dx);float delta=desired-F(0x744);
-                if(suika_cosine(delta)>0.0)F(0x740)=static_cast<float>(F(0x740)+0.25);
+                if(!(suika_cosine(delta)<=0.0))F(0x740)=static_cast<float>(F(0x740)+0.25);
                 else{F(0x740)=static_cast<float>(F(0x740)-static_cast<double>(0.05f));if(F(0x740)<0.0f)F(0x740)=0.0f;}
                 // No native initialized fallback is established outside difficulty0..3.
                 float turn;int period;
