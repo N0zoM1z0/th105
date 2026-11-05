@@ -192,7 +192,7 @@ case 815: {
     case 5:PARAM[1]*=static_cast<double>(0.85f);F(0x370)*=static_cast<double>(0.995f);F(0x12c)=F(0x370)+F(0x12c);F(0x11c)+=static_cast<double>(0.01f);F(0x120)=F(0x11c);if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x110)-=10;B(0x111)-=10;F(0xf8)-=static_cast<double>(0.1f);break;
     case 6: {
         float *parameters=PARAM;parameters[1]-=0.25;if(parameters[1]<=1.0f) parameters[1]=1.0f;MOTION->set_components(parameters[0],parameters[1]);
-        if(!(PARAM[1]>6.0f)) {if(B(0x111)>=15) {B(0x111)-=15;B(0x110)-=15;}else {B(0x111)=0;B(0x110)=0;if(B(0x113)<15) RETIRE();B(0x113)-=15;}}break;
+        if(PARAM[1]<=6.0f) {if(B(0x111)>=15) {B(0x111)-=15;B(0x110)-=15;}else {B(0x111)=0;B(0x110)=0;if(B(0x113)<15) RETIRE();B(0x113)-=15;}}break;
     }
     case 7: {
         if(emit_repeated(0,2,5)) RETIRE();void *owner=OWNER;short action=FIELD(owner,short,0x13c);if(action!=505 && action!=506 && action!=507 && action!=508) RETIRE();F(0xec)=static_cast<float>(FIELD(owner,float,0xec)-static_cast<double>(10*FIELD(owner,signed char,0x104)));F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+250.0);
@@ -827,7 +827,7 @@ case 940: {
     case 5:PARAM[1]*=static_cast<double>(0.85f);F(0x370)*=static_cast<double>(0.995f);F(0x12c)=F(0x370)+F(0x12c);F(0x11c)+=static_cast<double>(0.01f);F(0x120)=F(0x11c);if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x110)-=10;B(0x111)-=10;F(0xf8)-=static_cast<double>(0.1f);break;
     case 6: {
         float *parameters=PARAM;parameters[1]-=0.25;if(parameters[1]<=1.0f) parameters[1]=1.0f;MOTION->set_components(parameters[0],parameters[1]);
-        if(!(PARAM[1]>6.0f)) {if(B(0x111)>=15) {B(0x111)-=15;B(0x110)-=15;}else {B(0x111)=0;B(0x110)=0;if(B(0x113)<15) RETIRE();B(0x113)-=15;}}break;
+        if(PARAM[1]<=6.0f) {if(B(0x111)>=15) {B(0x111)-=15;B(0x110)-=15;}else {B(0x111)=0;B(0x110)=0;if(B(0x113)<15) RETIRE();B(0x113)-=15;}}break;
     }
     case 7: {
         if(FIELD(entryOwner,short,0x174)<=0 || FIELD(entryOwner,short,0x13c)!=751) RETIRE();F(0x11c)+=static_cast<double>(0.005f);F(0x120)=F(0x11c);F(0xec)=static_cast<float>(FIELD(entryOwner,float,0xec)-static_cast<double>(10*FIELD(entryOwner,signed char,0x104)));F(0xf0)=static_cast<float>(FIELD(entryOwner,float,0xf0)+250.0);

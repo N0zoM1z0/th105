@@ -138,3 +138,7 @@ tail is 53,204 bytes. No exact credit is added.
 ## Action 800 upper X bound, 2026-11-05
 
 At `0x5B09CD..0x5B09DE`, the target compares 1380 against X and retires only for an ordered X greater than 1380 (`test ah, 0x05; jnp`). The prior negated `<=` also retired an unordered X. The source now uses ordered `>`, and the focused candidate has the same branch at `0x55D..0x56E`. The 52190-byte root is still non-exact (candidate section tail 53204, first mismatch +17); no exact credit is claimed.
+
+## Actions 815 and 940 fade speed, 2026-11-05
+
+The target phase 6 checks at `0x5B293C..0x5B294A` and `0x5BB957..0x5BB965` enter fade only when parameter speed is ordered and at or below 6. The previous negated greater-than conditions also entered fade for unordered speed. Both now use ordered `<=`; focused compilation reproduces the target-style `test ah, 1; jne` continuation. The 52190-byte root remains non-exact (candidate section tail 53204, first mismatch +17); no exact credit is claimed.
