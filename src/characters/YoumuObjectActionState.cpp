@@ -425,7 +425,7 @@ void YoumuObjectUpdateView::update_action_state()
    F(0x120)=F(0x11C)=static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x364)))*D(0.2f)+1.0);
    if(S(0x364)%10==0) {
     payload[0]=0; payload[1]=0; payload[2]=1;
-    { unsigned char facing=B(0x104); float y=static_cast<float>(random_float(50)-25.0+F(0xF0)); float x=static_cast<float>(random_float(50)-25.0+F(0xEC)); spawn_unparented(899,x,y,facing,-1,reinterpret_cast<const unsigned *>(payload),3); }
+    { unsigned char facing=B(0x104); double y_roll=static_cast<unsigned>(selector_random_roll(50)); float y=static_cast<float>(y_roll-25.0+F(0xF0)); double x_roll=static_cast<unsigned>(selector_random_roll(50)); float x=static_cast<float>(x_roll-25.0+F(0xEC)); spawn_unparented(899,x,y,facing,-1,reinterpret_cast<const unsigned *>(payload),3); }
    }
    if(AT(P,short,0x7E6)==1) { S(0x174)=0; AT(P,short,0x7E6)=0; select_sequence(2); S(0x364)=0; P->dispatch_character_wave_handle(1); return; }
    if(AT(P,short,0x7E6)==2) {
@@ -544,7 +544,7 @@ void YoumuObjectUpdateView::update_action_state()
    F(0x120)=F(0x11C)=static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x364)))*D(0.2f)+1.0);
    if(S(0x364)%10==0) {
     payload[0]=0; payload[1]=0; payload[2]=1;
-    { unsigned char facing=B(0x104); float y=static_cast<float>(random_float(50)-25.0+F(0xF0)); float x=static_cast<float>(random_float(50)-25.0+F(0xEC)); spawn_unparented(899,x,y,facing,-1,reinterpret_cast<const unsigned *>(payload),3); }
+    { unsigned char facing=B(0x104); double y_roll=static_cast<unsigned>(selector_random_roll(50)); float y=static_cast<float>(y_roll-25.0+F(0xF0)); double x_roll=static_cast<unsigned>(selector_random_roll(50)); float x=static_cast<float>(x_roll-25.0+F(0xEC)); spawn_unparented(899,x,y,facing,-1,reinterpret_cast<const unsigned *>(payload),3); }
    }
    if(AT(P,short,0x13C)!=740) { AT(P,short,0x7E6)=0; select_sequence(0); return; }
    if(AT(P,short,0x13E)==2) { next_sequence_block(); return; }
@@ -554,7 +554,7 @@ void YoumuObjectUpdateView::update_action_state()
    F(0x120)=F(0x11C)=static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x364)))*D(0.2f)+1.0);
    if(S(0x364)%10==0) {
     payload[0]=0; payload[1]=0; payload[2]=1;
-    { unsigned char facing=B(0x104); float y=static_cast<float>(random_float(50)-25.0+F(0xF0)); float x=static_cast<float>(random_float(50)-25.0+F(0xEC)); spawn_unparented(899,x,y,facing,-1,reinterpret_cast<const unsigned *>(payload),3); }
+    { unsigned char facing=B(0x104); double y_roll=static_cast<unsigned>(selector_random_roll(50)); float y=static_cast<float>(y_roll-25.0+F(0xF0)); double x_roll=static_cast<unsigned>(selector_random_roll(50)); float x=static_cast<float>(x_roll-25.0+F(0xEC)); spawn_unparented(899,x,y,facing,-1,reinterpret_cast<const unsigned *>(payload),3); }
    }
    if(AT(P,short,0x13C)!=740) { AT(P,short,0x7E6)=0; select_sequence(0); return; }
    F(0xF4)=C(0x104)*((AT(P,float,0xEC)-F(0xEC))/30.0); F(0xF8)=(AT(P,float,0xF0)-F(0xF0))/30.0;
