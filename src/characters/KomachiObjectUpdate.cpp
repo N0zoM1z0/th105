@@ -146,7 +146,7 @@ void KomachiObjectUpdateView::update_action_state()
   case 2:SCALE(F(0x11c)+D(0.3f));FADE(11,10);break;
   case 3:MOVE();H[1]*=D(0.9f);SCALE(F(0x11c)*D(0.99f));FADE(11,10);STEP();break;
   case 4:
-   if(I(0x144)%10==0){trail_packet[0]=0;trail_packet[1]=0;trail_packet[2]=5;float y=(RND(50)-25.0)+F(0xf0);float x=(RND(50)-25.0)+F(0xec);spawn_unparented(820,x,y,B(0x104),-1,reinterpret_cast<const unsigned *>(trail_packet),3);}
+   if(I(0x144)%10==0){trail_packet[0]=0;trail_packet[1]=0;trail_packet[2]=5;unsigned char facing=B(0x104);float y=(RND(50)-25.0)+F(0xf0);float x=(RND(50)-25.0)+F(0xec);spawn_unparented(820,x,y,facing,-1,reinterpret_cast<const unsigned *>(trail_packet),3);}
    if(emit_repeated(0,1,1)){BURST(815,50,5.0,2);RETIRE();}if(emit_owner_gated_pair())RETIRE();F(0xf8)+=D(0.05f);
    if(I(0x180)!=0 || I(0x144)>29){BURST(815,50,5.0,2);RETIRE();}STEP();break;
   case 5:FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);STEP();break;

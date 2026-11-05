@@ -408,3 +408,7 @@ Unlike actions 854/855, the target action 822 check at `0x5FBFCB..0x5FBFE8` sele
 ## Action 853 trail facing, 2026-11-05
 
 The target captures the unsigned trail-facing byte before either RNG(50) call at `0x5FD219..0x5FD238`; Y is computed between calls and X after the second. The earlier source computed the coordinates first and read facing afterward. An ordinary facing local now preserves the target lifetime; focused compilation captures it at `0x3F1C` before the first call while retaining the coordinate order. The full 27874-byte root remains non-exact (candidate section tail 29040, first mismatch +8); no exact credit is claimed.
+
+## Action 820 trail facing, 2026-11-05
+
+The target captures the unsigned facing byte before both RNG(50) calls at `0x5FB88E..0x5FB8B2`, computes Y between the calls, and computes X after the second. The previous source read facing only after both calls. A facing local now preserves the native order; focused VC8 compilation captures it at candidate `0x24F2` before the first call and retains the coordinate order. The full root remains non-exact; no exact credit is claimed.
