@@ -477,7 +477,7 @@ case 831: {
     }
     if(S(0x13e)==6) {
         short action=FIELD(OWNER,short,0x13c);if(action<=49 || action>=150) {if(S(0x364)<=1 && action!=565) S(0x364)=2;}
-        else if(S(0x364)<=1) {for(int index=0;index<30;++index) {double centerY=F(0xf0)+10.0;emit_effect(201,static_cast<float>(static_cast<double>(RF(20))+static_cast<double>(40*index*C(0x104))+F(0xec)),static_cast<float>(centerY-static_cast<double>(RF(20))),B(0x104),1);}RETIRE();}
+        else if(S(0x364)<=1) {for(int index=0;index<30;++index) {double centerY=F(0xf0)+10.0;emit_effect(201,static_cast<float>(static_cast<double>(RF(20))+(static_cast<double>(40*index*C(0x104))+F(0xec))),static_cast<float>(centerY-static_cast<double>(RF(20))),B(0x104),1);}RETIRE();}
         if(S(0x364)==0) {if(RELATED) {void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);}F(0x120)+=static_cast<double>(0.1f);if(F(0x120)>0.7f) {F(0x120)=0.7f;S(0x364)=1;B(0x184)=10;return;}}
         if(S(0x364)==1) {if(RELATED) {void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);if(FIELD(related,short,0x364)==1) S(0x364)=2;}advance_six(0);if(I(0x180)!=0 && ++S(0x366)>=3) {S(0x366)=0;I(0x180)=0;}}
         if(S(0x364)==2) {B(0x184)=0;F(0x120)*=static_cast<double>(0.85f);if(F(0x120)<=0.01f) RETIRE();}
@@ -510,7 +510,7 @@ case 834: {
     }
     if(S(0x13e)==6) {
         short action=FIELD(OWNER,short,0x13c);if(action<=49 || action>=150) {if(S(0x364)<=1 && action!=566) S(0x364)=2;}
-        else if(S(0x364)<=1) {for(int index=0;index<20;++index) {double centerY=F(0xf0)+10.0;emit_effect(201,static_cast<float>(static_cast<double>(RF(30))+static_cast<double>(60*index*C(0x104))+F(0xec)),static_cast<float>(centerY-static_cast<double>(RF(20))),B(0x104),1);}RETIRE();}
+        else if(S(0x364)<=1) {for(int index=0;index<20;++index) {double centerY=F(0xf0)+10.0;emit_effect(201,static_cast<float>(static_cast<double>(RF(30))+(static_cast<double>(60*index*C(0x104))+F(0xec))),static_cast<float>(centerY-static_cast<double>(RF(20))),B(0x104),1);}RETIRE();}
         if(S(0x364)==0) {if(RELATED) {void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);}F(0x120)+=static_cast<double>(0.1f);if(F(0x120)>0.7f) {F(0x120)=0.7f;S(0x364)=1;B(0x184)=10;return;}}
         if(S(0x364)==1) {if(RELATED) {void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);if(FIELD(related,short,0x364)==1) S(0x364)=2;}advance_six(0);if(I(0x180)!=0 && ++S(0x366)>=3) {S(0x366)=0;I(0x180)=0;}}
         if(S(0x364)==2) {B(0x184)=0;F(0x120)*=static_cast<double>(0.85f);if(F(0x120)<=0.01f) RETIRE();}

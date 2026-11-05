@@ -97,3 +97,17 @@ assert whole-root or unmasked-exception equivalence.
 
 The 62,278-byte callable remains nonexact from +37; the candidate section
 tail is 62,960 bytes. No exact credit is added.
+
+## Actions 831 and 834 effect X grouping, 2026-11-05
+
+Native `0x00502AF7..0x00502B1C` and `0x00503363..0x0050338A`
+compute the integer index/facing offset, add current X, then add the random
+offset. The prior source associated random with the integer offset first.
+Both paths now express `random + (index_offset + X)`, preserving the native
+x87 order and possible rounding difference. Fresh VC8 emits the corresponding
+`fild`, `fadd X`, `faddp` sequences at `0x5FE2` and `0x6863`. Random call
+order and the existing QWORD Y captures are unchanged. This does not establish
+whole-root or unmasked-exception equivalence.
+
+The 62,278-byte callable remains nonexact from +37; the candidate section
+tail is 62,960 bytes. No exact credit is added.
