@@ -249,14 +249,12 @@ public:
             p[0]=static_cast<float>(static_cast<float>(tenshi_random(30))+n*step);
             if(p[0]<0.0f || p[0]>180.0f) {
                 int direction=at<unsigned char>(0x104);
-                float y=surface?tenshi_surface(this):(yoff==0.0?at<float>(0xf0):static_cast<float>(at<float>(0xf0)+yoff));
-                float x=xoff==0?at<float>(0xec):static_cast<float>(xoff*facing()+static_cast<double>(at<float>(0xec)));
-                spawn(object,x,y,direction,-1,p,3);
+                spawn(object,xoff==0?at<float>(0xec):static_cast<float>(xoff*facing()+static_cast<double>(at<float>(0xec))),
+                    surface?tenshi_surface(this):(yoff==0.0?at<float>(0xf0):static_cast<float>(at<float>(0xf0)+yoff)),direction,-1,p,3);
             } else {
                 int direction=at<unsigned char>(0x104);
-                float y=surface?tenshi_surface(this):(yoff==0.0?at<float>(0xf0):static_cast<float>(at<float>(0xf0)+yoff));
-                float x=xoff==0?at<float>(0xec):static_cast<float>(xoff*facing()+static_cast<double>(at<float>(0xec)));
-                spawn(object,x,y,direction,1,p,3);
+                spawn(object,xoff==0?at<float>(0xec):static_cast<float>(xoff*facing()+static_cast<double>(at<float>(0xec))),
+                    surface?tenshi_surface(this):(yoff==0.0?at<float>(0xf0):static_cast<float>(at<float>(0xf0)+yoff)),direction,1,p,3);
             }
         }
     }
