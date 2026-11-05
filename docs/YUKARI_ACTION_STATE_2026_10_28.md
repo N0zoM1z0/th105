@@ -186,3 +186,7 @@ Native `0x57E111..0x57E181` captures the unsigned effect-facing byte before sine
 The target's two shower-856 expansions capture the unsigned direction and `(Y + 350)` qword before RNG(400), round the resulting Y argument before RNG(300), and reload signed facing after that second random call (for example `0x586717..0x5867A5`). The earlier candidate cached signed facing before either RNG call. Explicit local values now preserve the target call/read ordering and separate final X/Y float stores; both rebuilt root sites show the signed reload after RNG(300). The actual random helper does not ordinarily mutate the receiver, so no normal-play difference is asserted for the read-order correction.
 
 Strict root comparison remains nonmatching: target 57,042 bytes, candidate section tail 57,824 bytes, first difference +18. This does not add exact-match credit.
+
+## Action 201 object 849 signed position, 2026-11-05
+
+At `0x57D207..0x57D24F`, the native frame-70 spawn reads the facing byte once, zero-extends and negates its low byte for the direction argument, but sign-extends the same byte before multiplying by 200 for X. The earlier source multiplied the unsigned byte instead. With facing `0xFF` and the action's X of 40, the native X is -160 while the old source gave 51040. The source now sign-extends the captured byte for the offset while preserving the byte-valued reversed direction. The focused VC8 build emits `movsx` followed by multiplication by 200 for this position; the entire root remains nonexact and receives no exact credit.

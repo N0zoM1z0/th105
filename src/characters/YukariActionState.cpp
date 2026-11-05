@@ -140,7 +140,7 @@ case 201:
     if(sequence_index_13e<3){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){F(0xf8)=0.0f;F(0x100)=0.0f;F(0xf0)=yukari_surface(this);select_sequence(3);return;}}
     if(sequence_index_13e==5 && time_counter_144>=10) {
         F(0xec)=B(0x104)==1?1240.0f:40.0f;F(0xf0)=yukari_surface(this);
-        if(time_counter_144==70){float p[3]={0.0f,0.0f,1.0f};unsigned char d=B(0x104);spawn(849,static_cast<float>(200*d+static_cast<double>(F(0xec))),static_cast<float>(F(0xf0)+70.0),static_cast<unsigned char>(-d),-1,p,3);}
+        if(time_counter_144==70){float p[3]={0.0f,0.0f,1.0f};unsigned char d=B(0x104);spawn(849,static_cast<float>(200*static_cast<signed char>(d)+static_cast<double>(F(0xec))),static_cast<float>(F(0xf0)+70.0),static_cast<unsigned char>(-d),-1,p,3);}
     }
     if(advance()){set_action_and_finalize(0);F(0xf4)=0.0f;return;}
     if(entry(1)){F(0xf4)=-10.0f;F(0xf8)=5.0f;F(0x100)=0.6f;dash_effects(true,80.0,false);}
