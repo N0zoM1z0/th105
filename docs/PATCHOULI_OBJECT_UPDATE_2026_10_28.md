@@ -120,3 +120,16 @@ unmasked-exception equivalence.
 
 The 50,649-byte callable remains nonexact from +37; the candidate section
 tail is 51,428 bytes. No exact credit is added.
+
+## Action 821 ordered retirement gate, 2026-11-04
+
+Native `0x00523B8A..0x00523B9D` compares the saved scale against the
+0.1f-derived threshold and retires only when it is ordered and below the
+threshold. The parity branch on `AH & 5` skips retirement for unordered
+values. The previous negated `>= 0.1f` retired on NaN; the source now uses
+ordered `< 0.1f`. Fresh VC8 emits the corresponding status mask and branch at
+`0x32D4..0x32E7`. This does not establish whole-root or unmasked-exception
+equivalence.
+
+The 50,649-byte callable remains nonexact from +37; the candidate section
+tail is 51,428 bytes. No exact credit is added.

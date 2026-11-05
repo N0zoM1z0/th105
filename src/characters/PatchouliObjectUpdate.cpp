@@ -358,7 +358,7 @@ case 821: {
     }
     case 1: {
         if(!RELATED) RETIRE();void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);F(0x12c)-=5.0;F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);
-        if(B(0x113)<=245) B(0x113)+=10;if(!(F(0x11c)>=0.1f)) RETIRE();break;
+        if(B(0x113)<=245) B(0x113)+=10;if(F(0x11c)<0.1f) RETIRE();break;
     }
     case 2:MOTION->set_components(PARAM[0],PARAM[1]);if(B(0x113)<15) RETIRE();B(0x113)-=15;MOVE();break;
     case 3: {
