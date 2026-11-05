@@ -1359,7 +1359,7 @@ case 848: {
         }
         if(S(0x13e)==1 && S(0x142)==0 && S(0x140)==3) {
             float packet[3];
-            packet[0]=RF(360);packet[1]=static_cast<float>(RF(10)*static_cast<double>(0.1f)+1.0);packet[2]=2.0f;
+            packet[0]=RF(360);float speed=static_cast<float>(RF(10)*static_cast<double>(0.1f));packet[1]=static_cast<float>(speed+1.0);packet[2]=2.0f;
             spawn_unparented(848,F(0xec),F(0xf0),B(0x104),1,packet,3);
         }
     }

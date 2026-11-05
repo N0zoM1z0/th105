@@ -127,3 +127,7 @@ The action 865 phase 8 movement and action 901 phases 8 and 11–14 converge on 
 ## Action 827 emitted speed rounding, 2026-11-05
 
 Native `0x4C1527..0x4C1547` rounds the RNG(250) product with double-promoted `0.01f` to float before adding 10. The former source kept the product at extended precision through the addition. The real intermediate float is now explicit; focused VC8 emits multiply, float store/reload, add and final store at `0x5748..0x5768`. This matters for ordinary values: RNG result 102 produces approximately 11.02000046 with the native sequence versus 11.01999950 without the intermediate rounding. The 48771-byte root remains non-exact (candidate section tail 50208, first mismatch +37); no exact credit is claimed.
+
+## Action 848 emitted speed rounding, 2026-11-05
+
+Native `0x4C1D21..0x4C1D40` stores the RNG(10) product with double-promoted `0.1f` as a float before adding 1. The earlier source added before this intermediate rounding. An ordinary float local now preserves that lifetime; focused VC8 emits the matching multiply/store/reload/add/store sequence. For RNG result 9, the previous expression rounds to about 1.89999998 and the target sequence to 1.90000010. The 48771-byte callable remains non-exact (candidate section tail 50216, first mismatch +37); no exact credit is claimed.
