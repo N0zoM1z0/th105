@@ -1013,9 +1013,12 @@ case 580:
         if(C(0x608)<=0)limit=4.0f;
         if(S(0x732)%5==0 && limit>=static_cast<double>(F(0x744))) {
             float p[4]={0.0f,0.0f,0.0f,static_cast<float>(F(0x744)*4.0)};
-            spawn(830,
-                  static_cast<float>((patchouli_cosine(static_cast<float>(-F(0x744)*140.0))*100.0+200.0)*facing()+F(0xec)),
-                  static_cast<float>(patchouli_sine(static_cast<float>(-F(0x744)*140.0))*25.0),B(0x104),1,p,4);
+            unsigned char direction=B(0x104);
+            float y=static_cast<float>(patchouli_sine(static_cast<float>(-F(0x744)*140.0))*25.0);
+            double cosine=patchouli_cosine(static_cast<float>(-F(0x744)*140.0));
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>((cosine*100.0+200.0)*signed_facing+F(0xec));
+            spawn(830,x,y,direction,1,p,4);
             F(0x744)=static_cast<float>(F(0x744)+1.0);
         }
     }
@@ -1036,9 +1039,12 @@ case 581:
         if(C(0x608)<=0)limit=4.0f;
         if(S(0x732)%5==0 && limit>=static_cast<double>(F(0x744))) {
             float p[4]={0.0f,0.0f,0.0f,static_cast<float>(F(0x744)*4.0)};
-            spawn(830,
-                  static_cast<float>((patchouli_cosine(static_cast<float>(-F(0x744)*140.0))*100.0+450.0)*facing()+F(0xec)),
-                  static_cast<float>(patchouli_sine(static_cast<float>(-F(0x744)*140.0))*25.0),B(0x104),1,p,4);
+            unsigned char direction=B(0x104);
+            float y=static_cast<float>(patchouli_sine(static_cast<float>(-F(0x744)*140.0))*25.0);
+            double cosine=patchouli_cosine(static_cast<float>(-F(0x744)*140.0));
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>((cosine*100.0+450.0)*signed_facing+F(0xec));
+            spawn(830,x,y,direction,1,p,4);
             F(0x744)=static_cast<float>(F(0x744)+1.0);
         }
     }
