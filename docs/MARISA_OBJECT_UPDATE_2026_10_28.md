@@ -101,3 +101,17 @@ versus native10. It is not selected. Smaller size is not the acceptance rule.
 The selected50156 bytes remain wholly nonexact, with all18 destination-table
 counts and all263 remap bytes equal, native0x340 frame, and the remaining
 call/return/control-sharing differences stated above.
+
+## Action 826 effect position grouping, 2026-11-05
+
+Native `0x004C0C4C..0x004C0C71` computes the integer count/facing offset,
+adds current X, then adds the random offset. The previous source associated
+the random offset with the count/facing offset first. It now expresses
+`random + (count_offset + X)`, preserving the native x87 order and its
+possible rounding difference. Fresh VC8 emits the corresponding local
+`fild`, `fadd X`, `faddp` sequence at `0x4E75..0x4E81`. The random call
+order is unchanged. This does not establish whole-root or unmasked-exception
+equivalence.
+
+The 48,771-byte callable remains nonexact from +37; the candidate section
+tail is 50,156 bytes. No exact credit is added.

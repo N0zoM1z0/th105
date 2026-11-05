@@ -1101,7 +1101,7 @@ case 826: {
         short action=FIELD(owner,short,0x13c);
         if(action>49 && action<150) {
             for(int count=0;count<40;++count)
-                emit_effect(201,static_cast<float>(RF(15)+static_cast<double>(30*count*C(0x104))+F(0xec)),F(0xf0),B(0x104),1);
+                emit_effect(201,static_cast<float>(RF(15)+(static_cast<double>(30*count*C(0x104))+F(0xec))),F(0xf0),B(0x104),1);
             RETIRE();
         }
         if((action==565 || action==566) && FIELD(owner,short,0x13e)<4) {
