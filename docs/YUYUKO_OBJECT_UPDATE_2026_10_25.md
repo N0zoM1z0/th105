@@ -281,3 +281,7 @@ The target at `0x56FCC6..0x56FCDF` takes the upward-acceleration branch for unor
 ## Action 811 fade gate, 2026-11-05
 
 At `0x570A99..0x570AAA` the target skips the fade when the decayed scale is greater than 0.3 or unordered. The previous negated `>` included unordered values in the fade. The source now uses ordered `<=`; focused compilation emits the same `test ah, 1; jne` continuation at `0x12E6..0x12F7`. The full 34278-byte root remains non-exact (candidate section tail 34928, first mismatch +31); no exact credit is claimed.
+
+## Actions 851 and 854 packet speed rounding, 2026-11-05
+
+Native `0x573C92..0x573CB3` and `0x574BBD..0x574BD9` round the RNG(40) and RNG(120) products with double-promoted `0.1f` to float before adding 2 and 10 respectively. The previous expressions added before the float conversion. The source now preserves the intermediate float; focused VC8 compilation emits the corresponding store/reload/add sequences at `0x468D..0x46A1` and `0x5424..0x5433`. Valid RNG values can change the final speed: action 851 with RNG 13 yields about 3.30000019 instead of 3.29999995, and action 854 with RNG 42 yields about 14.20000076 instead of 14.19999981. The 34278-byte root remains non-exact (candidate section tail 34948, first mismatch +31); no exact credit is claimed.

@@ -245,7 +245,7 @@ void YuyukoObjectUpdateView::update_action_state()
   }else if(S(0x13e)==2){FADE(13,13);MOVE();F(0xf8)+=F(0x370);F(0x370)+=D(0.2f);}
   else if(S(0x13e)==4){if(S(0x364)==0){SCALE(1.0-F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=0.005f){F(0x370)=0;S(0x364)=1;}}
    if(S(0x364)==2)SCALE(F(0x11c)*D(0.8f));if(S(0x364)<2){if((AT(P,short,0x13c)==601 || AT(P,short,0x13c)==651) && AT(P,short,0x13e)==1)position_relative(105,146);else S(0x364)=2;
-    if(I(0x144)%5==0){PACKET(p264,30.0-RND(60),RND(40)*D(0.1f)+2.0,1);SPAWN(851,1,p264);}}
+    if(I(0x144)%5==0){PACKET(p264,30.0-RND(60),static_cast<float>(RND(40)*D(0.1f))+2.0,1);SPAWN(851,1,p264);}}
   }STEP();break;
  case 852:
   if(I(0x180)==5)RETIRE();
@@ -288,7 +288,7 @@ void YuyukoObjectUpdateView::update_action_state()
   case 4:
    if(S(0x364)==0){SCALE(1.0-F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=0.005f){F(0x370)=0;S(0x364)=1;}}
    if(S(0x364)==2)SCALE(F(0x11c)*D(0.8f));if(S(0x364)<2){if(++S(0x366)>209 || emit_repeated(0,0,0)){S(0x364)=2;return;}if(AT(P,short,0x174)<1 || AT(A,short,0x174)<1)S(0x364)=2;
-    if(I(0x144)%4==0 && I(0x144)>19){PACKET(p516,-60.0-RND(60),RND(120)*D(0.1f)+10.0,1);unsigned char facing=B(0x104);spawn_unparented(854,(F(0xec)+100.0)-RND(200),F(0xf0),facing,1,reinterpret_cast<const unsigned *>(p516),3);
+    if(I(0x144)%4==0 && I(0x144)>19){PACKET(p516,-60.0-RND(60),static_cast<float>(RND(120)*D(0.1f))+10.0,1);unsigned char facing=B(0x104);spawn_unparented(854,(F(0xec)+100.0)-RND(200),F(0xf0),facing,1,reinterpret_cast<const unsigned *>(p516),3);
      PACKET(p516,static_cast<float>(static_cast<unsigned>(selector_random_roll(6)+I(0x144)*5)),25,3);SPAWN(854,(p516[0]<0.0 || !(p516[0]<=180.0f))?-1:1,p516);}
    }
    if(AT(A,float,0xec)<F(0xec))F(0xf4)-=C(0x104)*D(0.1f);if(F(0xec)<AT(A,float,0xec))F(0xf4)+=C(0x104)*D(0.1f);if(F(0xf4)>2.0f)F(0xf4)=2;if(F(0xf4)<-2.0f)F(0xf4)=-2;break;
