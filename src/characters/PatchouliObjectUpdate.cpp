@@ -507,14 +507,14 @@ case 831: {
     switch(S(0x13e)) {
     case 0: {
         void *secondary=FIELD(this,void*,0x154);if(FIELD(secondary,float,0xec)-200.0<=F(0xf0)) PARAM[1]*=0.5;if(FIELD(secondary,float,0xec)<=static_cast<double>(F(0xf0))) PARAM[1]=0.0f;
-        if(PARAM[1]>10.0f) {float packet[3]={RF(360),1.0f,2.0f};double centerX=F(0xec)+100.0;spawn_unparented(831,static_cast<float>(centerX-static_cast<double>(RF(200))),static_cast<float>(static_cast<double>(RF(200))+F(0xf0)+150.0),B(0x104),1,packet,3);}else B(0x184)=0;
+        if(PARAM[1]>10.0f) {float packet[3]={RF(360),1.0f,2.0f};double centerX=F(0xec)+100.0;spawn_unparented(831,static_cast<float>(centerX-static_cast<double>(RF(200))),static_cast<float>(static_cast<double>(RF(200))+(static_cast<double>(F(0xf0))+150.0)),B(0x104),1,packet,3);}else B(0x184)=0;
         advance_six(0);advance_phase(0);
         if(I(0x144)<50) MOTION->set_components(PARAM[0],PARAM[1]);else {F(0x12c)-=F(0x370);F(0x370)+=static_cast<double>(0.01f);F(0xf8)-=static_cast<double>(0.05f);if(B(0x113)<5) RETIRE();B(0x113)-=5;}
         MOVE();break;
     }
     case 3: {
         void *secondary=FIELD(this,void*,0x154);if(FIELD(secondary,float,0xec)-150.0<=F(0xf0)) PARAM[1]*=0.5;if(FIELD(secondary,float,0xec)<=static_cast<double>(F(0xf0))) PARAM[1]=0.0f;
-        if(PARAM[1]>10.0f) {float packet[3]={RF(360),1.0f,2.0f};double centerX=F(0xec)+100.0;spawn_unparented(831,static_cast<float>(centerX-static_cast<double>(RF(200))),static_cast<float>(static_cast<double>(RF(200))+F(0xf0)+150.0),B(0x104),1,packet,3);}else B(0x184)=0;
+        if(PARAM[1]>10.0f) {float packet[3]={RF(360),1.0f,2.0f};double centerX=F(0xec)+100.0;spawn_unparented(831,static_cast<float>(centerX-static_cast<double>(RF(200))),static_cast<float>(static_cast<double>(RF(200))+(static_cast<double>(F(0xf0))+150.0)),B(0x104),1,packet,3);}else B(0x184)=0;
         advance_six(0);advance_phase(0);
         if(I(0x144)<50) MOTION->set_components(PARAM[0],PARAM[1]);else {F(0x12c)-=F(0x370);F(0x370)+=static_cast<double>(0.01f);F(0xf8)-=static_cast<double>(0.05f);if(B(0x113)<5) RETIRE();B(0x113)-=5;}
         MOVE();break;

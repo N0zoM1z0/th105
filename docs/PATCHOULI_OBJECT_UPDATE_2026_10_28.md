@@ -158,3 +158,17 @@ equivalence.
 
 The 50,649-byte callable remains nonexact from +37; the candidate section
 tail is 51,428 bytes. No exact credit is added.
+
+## Action 831 spawn-height grouping, 2026-11-05
+
+Native `0x005257B8..0x005257C6` and `0x00525B14..0x00525B22`
+add 150 to the current Y before adding the random offset. The prior source
+associated the random offset with Y first. Both source paths now use
+`random + (Y + 150.0)`, preserving the observed x87 operation order and its
+possible rounding difference. Fresh VC8 emits the corresponding `fld Y`,
+`fadd 150`, `faddp` sequence at `0x4ECC..0x4EDA` and `0x50BA..0x50C8`.
+Random call order remains unchanged. This is local evidence, not whole-root
+or unmasked-exception equivalence.
+
+The 50,649-byte callable remains nonexact from +37; the candidate section
+tail is 51,412 bytes. No exact credit is added.
