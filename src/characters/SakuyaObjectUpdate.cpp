@@ -18,7 +18,6 @@ namespace th105 {
 #define RETIRE() {--I(0x330);return;}
 #define FRAME_EXIT() {if(advance_frame())--I(0x330);return;}
 #define OUTSIDE(xh,xl,yh,yl) (F(0xec)>xh || F(0xec)<xl || F(0xf0)>yh || F(0xf0)<yl)
-#define ORDERED_OUTSIDE(xh,xl,yh,yl) (!(F(0xec)<=xh && F(0xec)>=xl && F(0xf0)<=yh && F(0xf0)>=yl))
 #define CONTACT2468 (I(0x180)==2 || I(0x180)==4 || I(0x180)==6 || I(0x180)==8)
 #define CONTACT24768 (I(0x180)==2 || I(0x180)==4 || I(0x180)==7 || I(0x180)==6 || I(0x180)==8)
 #define WORDS(a) reinterpret_cast<const unsigned *>(a)
@@ -53,7 +52,7 @@ void SakuyaObjectUpdateView::update_action_state()
    }
    if(S(0x140)==2) {F(0x12c)-=30.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
   }
-  STEP();if(ORDERED_OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();
+  STEP();if(OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==2)--I(0x330);return;
  case 801:
   if(I(0x180)==5)RETIRE();
@@ -68,7 +67,7 @@ void SakuyaObjectUpdateView::update_action_state()
   } else if(S(0x13e)==3) {
    if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=0)RETIRE();F(0xec)=AT(R,float,0xec);F(0xf0)=AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);
   }
-  STEP();if(ORDERED_OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();
+  STEP();if(OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==2)--I(0x330);return;
  case 802:
   if(I(0x180)==5)RETIRE();
@@ -85,7 +84,7 @@ void SakuyaObjectUpdateView::update_action_state()
   } else if(S(0x13e)==3) {
    if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=2)RETIRE();F(0xec)=AT(R,float,0xec);F(0xf0)=AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);
   }
-  STEP();if(ORDERED_OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();
+  STEP();if(OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==3)--I(0x330);
   if(S(0x13e)<3 && S(0x142)==0 && S(0x140)==2) {replace_secondary(994,4.0f,10,2,2);float payload[3]={H[0],0,3};PARENTED(802,-1,3);}return;
  case 803:
@@ -127,7 +126,7 @@ void SakuyaObjectUpdateView::update_action_state()
    MOVE();STEP();if(S(0x140)==1){float payload[3]={H[0],0,2};P->spawn_owned(804,F(0xec),F(0xf0),B(0x104),-1,WORDS(payload),3);}
   }
   if(S(0x13e)==1){F(0x11c)+=D(0.1f);F(0x120)*=D(0.65f);MOVE();STEP();}
-  if(ORDERED_OUTSIDE(1680.0,-400.0,960.0,-120.0))RETIRE();
+  if(OUTSIDE(1680.0,-400.0,960.0,-120.0))RETIRE();
   if(advance_frame())--I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==1)--I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==2)--I(0x330);return;
@@ -262,7 +261,7 @@ void SakuyaObjectUpdateView::update_action_state()
    }
    if(S(0x140)==4){F(0x12c)-=30.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
   }else if(S(0x13e)==3){if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=2)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
-  STEP();if(ORDERED_OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==3)--I(0x330);return;
+  STEP();if(OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==3)--I(0x330);return;
  case 818:
   if(I(0x180)==5)RETIRE();
   if(S(0x13e)==0){
@@ -274,7 +273,7 @@ void SakuyaObjectUpdateView::update_action_state()
    if(S(0x140)==4){F(0x12c)-=5.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
   }else if(S(0x13e)==1){if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=2)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
   else if(S(0x13e)==2){F(0x11c)-=D(0.15f);if(F(0x11c)<1)F(0x11c)=1;F(0x120)=F(0x11c);if(I(0x144)>19)RETIRE();}
-  STEP();if(ORDERED_OUTSIDE(1580.0f,-300.0f,1200.0f,-300.0f))RETIRE();if(advance_frame())RETIRE();
+  STEP();if(OUTSIDE(1580.0f,-300.0f,1200.0f,-300.0f))RETIRE();if(advance_frame())RETIRE();
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==1)RETIRE();if(S(0x142)==0 && S(0x140)==3)RETIRE();return;
  case 849:
   if(S(0x13e)==0){F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0);if(AT(P,short,0x13c)!=308)RETIRE();}
@@ -489,7 +488,6 @@ void SakuyaObjectUpdateView::update_action_state()
 #undef STEP
 #undef RETIRE
 #undef FRAME_EXIT
-#undef ORDERED_OUTSIDE
 #undef OUTSIDE
 #undef CONTACT2468
 #undef CONTACT24768

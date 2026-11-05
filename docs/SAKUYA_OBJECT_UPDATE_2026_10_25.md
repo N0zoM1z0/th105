@@ -300,3 +300,7 @@ tail is 29,396 bytes. No exact credit is added.
 ## Actions 920 and 930 bounds, 2026-11-05
 
 Raw target branches at `0x4E7760..0x4E77AC` and `0x4E7AAE..0x4E7B04` retire on ordered comparisons outside the X/Y bounds. In particular, unordered coordinates pass these checks. The source previously included unordered values through a negated lower-bound test in action 920 and negated in-range tests in action 930. Both now use the observed ordered outside comparisons. The focused build preserves the lower-Y branch forms at candidate `0x6A05..0x6A10` and `0x6D5E..0x6D6F`. The full root remains non-exact: 28985-byte target, 29396-byte candidate section tail, first mismatch +37. No exact credit is claimed.
+
+## Actions 800–818 bounds, 2026-11-05
+
+Six further outside checks in actions 800, 801, 802, 804, 817 and 818 use ordered comparisons in the target, rather than negated in-range comparisons. Target evidence includes `0x4E10DD..0x4E1127`, `0x4E1370..0x4E13BA`, `0x4E1678..0x4E16C2`, `0x4E2072..0x4E20C8`, `0x4E433A..0x4E4384` and `0x4E46E2..0x4E472A`. Their source now uses the existing ordered-outside expression, preserving the target behavior for unordered coordinates. Focused compilation confirms the branch form, including `test ah, 0x05; jnp` at candidate `0x3EA..0x3F5`. Full root comparison remains non-exact (28985 target bytes, 29396-byte candidate section tail, first mismatch +37); no exact credit is claimed.
