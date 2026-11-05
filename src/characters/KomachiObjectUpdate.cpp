@@ -22,7 +22,7 @@ namespace th105 {
 #define SCALE(expr) {float scale=expr;F(0x11c)=scale;F(0x120)=scale;}
 #define SPAWN(a,l,p) spawn_unparented(a,F(0xec),F(0xf0),B(0x104),l,reinterpret_cast<const unsigned *>(p),3)
 #define BURST(a,r,base,kind) {float n=0;do{burst_packet[0]=n*45.0+RND(40);burst_packet[1]=static_cast<float>(RND(r)*D(0.01f))+base;burst_packet[2]=kind;SPAWN(a,1,burst_packet);n+=1.0;}while(n<8.0f);}
-#define TRAIL(a,kind) {trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=kind;float y=F(0xf0);float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(a,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
+#define TRAIL(a,kind) {trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=kind;unsigned char facing=B(0x104);float y=F(0xf0);float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(a,x,y,facing,1,reinterpret_cast<const unsigned *>(trail_packet),3);}
 #define RND_OFFSET(n,k) static_cast<float>(static_cast<unsigned>(selector_random_roll(n)-k))
 #define OUTSIDE(xh,xl,yh,yl) (F(0xec)>xh || F(0xec)<xl || F(0xf0)>yh || F(0xf0)<yl)
 #define ORDERED_OUTSIDE(xh,xl,yh,yl) (!(F(0xec)<=xh && F(0xec)>=xl && F(0xf0)<=yh && F(0xf0)>=yl))
@@ -83,19 +83,19 @@ void KomachiObjectUpdateView::update_action_state()
   }
   case 1:
    if(emit_repeated(0,2,5)||emit_owner_gated_pair())RETIRE();advance_six(0);
-   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;double center_y=F(0xf0)+25.0;float y=static_cast<float>(center_y-RND(50));float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
+   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;unsigned char facing=B(0x104);double center_y=F(0xf0)+25.0;float y=static_cast<float>(center_y-RND(50));float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,facing,1,reinterpret_cast<const unsigned *>(trail_packet),3);}
    if(I(0x180)!=0){BURST(810,150,15.0,3);RETIRE();}
    H[1]=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*6))*3.0+5.0;MOVE();break;
   case 2:H[1]*=D(0.995f);MOVE();FADE(10,10);break;
   case 3:H[1]*=D(0.9f);MOVE();if(S(0x364)<=I(0x144)){SCALE(F(0x11c)*D(0.98f));FADE(5,5);}break;
   case 4:
    if(emit_repeated(0,1,5)||emit_owner_gated_pair())RETIRE();advance_six(0);
-   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;double center_y=F(0xf0)+25.0;float y=static_cast<float>(center_y-RND(50));float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
+   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;unsigned char facing=B(0x104);double center_y=F(0xf0)+25.0;float y=static_cast<float>(center_y-RND(50));float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,facing,1,reinterpret_cast<const unsigned *>(trail_packet),3);}
    if(I(0x180)!=0){BURST(810,150,15.0,3);RETIRE();}
    H[1]=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*6))*3.0+5.0;MOVE();F(0x370)*=D(0.98f);F(0xf4)*=F(0x370);break;
   case 5:
    if(emit_repeated(0,1,2)||emit_owner_gated_pair())RETIRE();advance_six(0);
-   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;double center_y=F(0xf0)+25.0;float y=static_cast<float>(center_y-RND(50));float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
+   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;unsigned char facing=B(0x104);double center_y=F(0xf0)+25.0;float y=static_cast<float>(center_y-RND(50));float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,facing,1,reinterpret_cast<const unsigned *>(trail_packet),3);}
    if(I(0x180)!=0){BURST(810,150,15.0,3);RETIRE();}
    H[1]=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*6))*3.0+5.0;MOVE();F(0x370)*=D(0.98f);F(0xf4)*=F(0x370);break;
   }
