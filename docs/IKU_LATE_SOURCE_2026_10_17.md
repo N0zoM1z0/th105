@@ -150,3 +150,9 @@ python3 scripts/probe-iku-spell-actions.py --smoke > build/iku-late-spell-regres
 The two changed-source controls intentionally exit1. Continue whole-root
 source recovery/integration before selecting a genuine unit and performing
 canonical comparison. No unrelated accepted-unit or aggregate replay is claimed.
+
+## Action 780 direction after sine (2026-11-05)
+
+The target's sequence-1 and sequence-3 orbit gates call sine before loading signed direction (`0x62E700..0x62E72E`, `0x62E73D..0x62E76B`). The preceding source candidate loaded direction before each call. Separate natural locals now preserve the target read order, with the original ordered `> 0` and `< 0` gates intact; both rebuilt dispatcher sites show the signed load after sine. The lookup helper does not ordinarily mutate the receiver, so no ordinary-play difference is asserted.
+
+The complete dispatcher is still nonexact: the configured callable target is 59,038 bytes and the candidate section tail is 59,462 bytes, with first difference at +100. This source correction earns no exact-match credit.

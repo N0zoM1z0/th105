@@ -2936,13 +2936,15 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             float_at(0x73c) = static_cast<float>(float_at(0x73c) + 2.0);
             float_at(0xec) = static_cast<float>(lookup_orientation_cosine_quantized_abs(float_at(0x73c))
                 * float_at(0x740) + 800.0);
-            if (sequence_index_13e == 1
-                && facing() * lookup_orientation_sine_quantized_abs(float_at(0x73c)) > 0.0) {
-                next_sequence_block(); return true;
+            if (sequence_index_13e == 1) {
+                double sine = lookup_orientation_sine_quantized_abs(float_at(0x73c));
+                int direction = facing();
+                if (direction * sine > 0.0) { next_sequence_block(); return true; }
             }
-            if (sequence_index_13e == 3
-                && facing() * lookup_orientation_sine_quantized_abs(float_at(0x73c)) < 0.0) {
-                select_sequence(0); return true;
+            if (sequence_index_13e == 3) {
+                double sine = lookup_orientation_sine_quantized_abs(float_at(0x73c));
+                int direction = facing();
+                if (direction * sine < 0.0) { select_sequence(0); return true; }
             }
             if (short_at(0x730) > 0) {
                 if (short_at(0x730) == 1) {
