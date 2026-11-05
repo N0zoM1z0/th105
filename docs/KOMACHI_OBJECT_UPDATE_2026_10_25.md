@@ -404,3 +404,7 @@ The target chooses layer 255 when the sine result is ordered and nonnegative, in
 ## Action 822 orbit layer, 2026-11-05
 
 Unlike actions 854/855, the target action 822 check at `0x5FBFCB..0x5FBFE8` selects layer 1 for sine values at or below zero or unordered, and 255 for ordered positive values. The prior ordered `<=` missed the unordered case. The source now preserves this distinct behavior; focused compilation emits the equivalent `test ah, 0x41; jne` selection at `0x2C4D..0x2C6C`. The 27874-byte root remains non-exact (candidate section tail 29056, first mismatch +8); no exact credit is claimed.
+
+## Action 853 trail facing, 2026-11-05
+
+The target captures the unsigned trail-facing byte before either RNG(50) call at `0x5FD219..0x5FD238`; Y is computed between calls and X after the second. The earlier source computed the coordinates first and read facing afterward. An ordinary facing local now preserves the target lifetime; focused compilation captures it at `0x3F1C` before the first call while retaining the coordinate order. The full 27874-byte root remains non-exact (candidate section tail 29040, first mismatch +8); no exact credit is claimed.

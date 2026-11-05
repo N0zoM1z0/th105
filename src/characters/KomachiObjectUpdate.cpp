@@ -201,7 +201,7 @@ void KomachiObjectUpdateView::update_action_state()
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();
   if(advance_frame())RETIRE();if(RETURN_ON_ENTRY_PHASE(1))RETIRE();if(RETURN_ON_ENTRY_PHASE(2))RETIRE();return;
  case 853:
-  if(S(0x13e)==0){F(0xf4)+=D(0.1f);F(0xf8)=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*H[1];advance_six(0);if(I(0x144)%3==0){trail_packet[0]=0;trail_packet[1]=0;trail_packet[2]=1;float y=(RND(50)-25.0)+F(0xf0);float x=(RND(50)-25.0)+F(0xec);spawn_unparented(853,x,y,B(0x104),-1,reinterpret_cast<const unsigned *>(trail_packet),3);}}
+  if(S(0x13e)==0){F(0xf4)+=D(0.1f);F(0xf8)=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*H[1];advance_six(0);if(I(0x144)%3==0){trail_packet[0]=0;trail_packet[1]=0;trail_packet[2]=1;unsigned char facing=B(0x104);float y=(RND(50)-25.0)+F(0xf0);float x=(RND(50)-25.0)+F(0xec);spawn_unparented(853,x,y,facing,-1,reinterpret_cast<const unsigned *>(trail_packet),3);}}
   else if(S(0x13e)==1){FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);}
   else if(S(0x13e)==3){SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>29)FADE(15,15);}
   if(OUTSIDE(1480.0f,-200.0,1860.0,-600.0f))RETIRE();STEP();FRAME_EXIT();
