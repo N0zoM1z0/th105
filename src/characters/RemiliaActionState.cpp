@@ -465,7 +465,7 @@ case 741:
     if(static_cast<unsigned short>(sequence_index_13e)>=1 && static_cast<unsigned short>(sequence_index_13e)<=3){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){select_sequence(4);F(0xf0)=remilia_surface(this);zero_motion();return;}}
     if(sequence_index_13e==1 || sequence_index_13e==2){F(0xf8)-=F(0x100);if(F(0xf8)<0.0f)F(0xf8)=0.0f;F(0xf4)=static_cast<float>((640.0-F(0xec))/20.0*facing());}
     if(sequence_index_13e==2){
-        if(!S(0x730)){switch(g_match_identifier){case 0:case 1:case 2:case 3:if(at<unsigned short>(0x732)<60)++S(0x732);else I(0x730)=1;break;}}
+        if(!S(0x730)){switch(g_match_identifier){case 0:case 1:case 2:case 3:if(S(0x732)<60)++S(0x732);else I(0x730)=1;break;}}
         if(S(0x730)==1){
             float p[3];
             if(!S(0x732)){dispatch_character_wave_handle(61);p[0]=0.0f;p[1]=0.0f;p[2]=7.0f;spawn_offset(903,0,230.0,p,3);}

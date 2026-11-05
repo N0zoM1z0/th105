@@ -183,3 +183,7 @@ The native object 826 reverse-facing requests at `0x54DB75..0x54DBBE` and `0x54E
 ## Action 606 signed sequence gate, 2026-11-05
 
 At `0x54F50D..0x54F530`, the original compares the 16-bit sequence against 3 with signed `jg`, then tests the frame when equal. The earlier source explicitly converted the signed field to unsigned before `> 3`, incorrectly taking the texture branch for a negative sequence. Removing that conversion restores the target comparison. Reachability of negative sequence values during ordinary play is not established. Focused VC8 compilation remains nonexact for the whole root; no exact credit is added.
+
+## Action 741 signed counter threshold, 2026-11-05
+
+The target at `0x553675..0x553695` compares the 16-bit counter at `0x732` with 60 using signed `jl`; a negative value is incremented rather than triggering the reset. The prior source read the counter as unsigned, which treated negative values as above threshold. The field is now read as signed for this comparison. Focused VC8 compilation emits a signed conditional jump; ordinary-play reachability of negative counter values is not established. The whole root remains nonexact and receives no exact credit.
