@@ -1333,14 +1333,14 @@ case 740:
 case 741:
     F(0xf0)=tenshi_surface(this);
     if(sequence_index_13e==1) {
-        unsigned interval,duration;float speed;
+        int interval,duration;float speed;
         switch(g_match_identifier) {
         case 0:interval=15;speed=2.0f;duration=60;break;
         case 1:interval=7;speed=3.0f;duration=60;break;
         case 2:interval=5;speed=4.0f;duration=90;break;
         case 3:interval=4;speed=4.5f;duration=120;break;
         }
-        if(static_cast<unsigned>(time_counter_144)%interval==0) {
+        if(time_counter_144%interval==0) {
             dispatch_character_wave_handle(1);F(0x73c)=static_cast<float>(F(0x73c)+20.0);
             float p[3];p[0]=F(0x73c);p[1]=static_cast<float>(static_cast<float>(tenshi_random(4))+speed);p[2]=0.0f;
             int direction=B(0x104);float y=static_cast<float>(F(0xf0)+290.0);
@@ -1351,7 +1351,7 @@ case 741:
             x=static_cast<float>(40*static_cast<signed char>(direction)+static_cast<double>(F(0xec)));
             spawn(930,x,y,direction,1,p,3);
         }
-        if(static_cast<unsigned>(time_counter_144)>=duration){next_sequence_block();return;}
+        if(time_counter_144>=duration){next_sequence_block();return;}
     }
     if(sequence_index_13e==2 && time_counter_144>=30){next_sequence_block();return;}
     if(advance()){set_action_and_finalize(700);flip();}

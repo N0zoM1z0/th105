@@ -284,3 +284,11 @@ The source pin for the original VC8 float-sine origin was updated only after a f
 The target's four ring-801 spawn sites and the action-525 object-816 site capture unsigned direction before sine and reload signed direction after cosine (e.g. `0x642096..0x642102` and `0x6431D3..0x64324F`). The previous candidate cached signed direction early. The revised source preserves each packet's angle/radius reloads, coordinate associations, and the intervening first spawn; rebuilt root sites have the signed read after cosine. Since the lookup helpers do not ordinarily mutate the receiver, this is a source-fidelity correction without an asserted normal-play difference.
 
 The dispatcher remains nonexact: target callable 47,784 bytes, candidate section tail 49,152 bytes, first difference +8. The separately accepted float-sine helper remains 18/18 exact in the rebuilt unit, and its origin validator independently passes after reattesting both source hashes and the actual caller edge. No additional exact credit is claimed.
+
+### Action 741 signed timer (2026-11-05)
+
+The native sequence-1 cadence uses signed `CDQ; IDIV ECX` at `0x647E06..0x647E11`, and the duration gate uses signed `JGE` at `0x647F6B..0x647F71`. The previous candidate converted the signed `time_counter_144` to unsigned for both operations and emitted `DIV` / `JAE`. Both locals and operations now retain signed `int`; the fresh root emits `CDQ; IDIV` and `JGE` for the corresponding sites.
+
+This changes a concrete bounded state: at difficulty 0 with timer -1, native signed remainder by 15 is nonzero and -1 is below duration 60, while the old unsigned interpretation is 4294967295, divisible by 15 and at least 60. The old candidate would emit the pair and take the duration transition; the corrected logic does neither. Negative-timer reachability during ordinary play is not established. Out-of-range difficulty still has no invented fallback.
+
+The dispatcher remains nonexact (target callable 47,784 bytes, candidate section tail 49,152, first difference +8). The existing float-sine helper remains 18/18 in the fresh build, with source pin and its independent origin validator rechecked; no additional exact bytes are credited.
