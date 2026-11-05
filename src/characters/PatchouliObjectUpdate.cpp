@@ -725,7 +725,7 @@ case 854: {
             void *owner=OWNER;if(FIELD(owner,short,0x13c)!=604 || FIELD(owner,short,0x13e)>=3) {S(0x364)=2;return;}
             F(0x11c)=static_cast<float>(1.0-F(0x370)+1.0-F(0x370));F(0x120)=F(0x11c);F(0x370)*=static_cast<double>(0.97f);if(F(0x370)<=0.01f) F(0x370)=0.0f;position_relative_to_owner(0,0);
             short phase=FIELD(OWNER,short,0x13e);if(phase==1 || phase==2) {
-                if(I(0x144)%10==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(250))+50.0);packet[2]=4.0f;spawn_parented(854,F(0xec),F(0xf0),S(0x366)%2==0?1:255,packet[0]>180.0f?-1:1,packet,3);WAVE(56);++S(0x366);}
+                if(I(0x144)%10==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(250))+50.0);packet[2]=4.0f;spawn_parented(854,F(0xec),F(0xf0),S(0x366)%2==0?1:-1,packet[0]>180.0f?-1:1,packet,3);WAVE(56);++S(0x366);}
                 if(I(0x144)%20==0) {float packet[3]={RF(360),0.0f,3.0f};spawn_parented(854,F(0xec),F(0xf0),S(0x368)%2==0?B(0x104):static_cast<unsigned char>(-B(0x104)),1,packet,3);++S(0x368);}
             }
         }

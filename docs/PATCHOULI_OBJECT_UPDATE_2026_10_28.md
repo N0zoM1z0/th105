@@ -196,3 +196,18 @@ All three target orbit-layer checks at `0x5286EC..0x528705`, `0x5287D6..0x5287EF
 ## Action 810 surface-height captures, 2026-11-05
 
 In phases 0, 1 and 6, the native code first checks the collision flag; only if it is clear does it capture current Y as a QWORD and call the surface-height helper. The three target sequences are `0x521789..0x5217A3`, `0x521894..0x5218AE` and `0x521D0D..0x521D27`. Earlier source read Y after the helper. The conditional capture now preserves both the target lifetime and short-circuit behavior; focused VC8 output shows the three pre-call QWORD stores at `0xF0F`, `0x101F` and `0x14A3`. The ordered surface comparison is unchanged. The 50649-byte root remains non-exact (candidate section tail 51444, first mismatch +37); no exact credit is claimed.
+
+## Object 854 alternating direction, 2026-11-05
+
+At 527CE6..527D49 the native object-854 request selects a complete DWORD
+facing of +1 for even signed counter 366 and -1 for odd. The original CFG
+establishes EDI=1 at 527C60 and EBP=-1 at 527BA9, then pushes one of those
+registers. The source previously used 255 for the odd branch through an int
+call interface; it now uses -1. The actual object manager consumes only the
+facing byte, so no ordinary gameplay difference is asserted. Original nominal
+formal type is not established by this observation.
+
+The focused VC8 candidate now forms +1/-1 before the call at object offsets
+7435..7457. The complete native callable remains nonexact from +37; candidate
+section tail is 51444 bytes versus the 50649-byte callable. This adds no exact
+credit. Receipt: `build/frontier-55d850-20261027/patchouli854-direction-20261105.json`.
