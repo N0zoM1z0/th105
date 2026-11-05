@@ -194,12 +194,20 @@ public:
         sequence_window(0,window,60);secondary_cycle();
     }
     __forceinline void orbit900(float *p) {
-        spawn(900,static_cast<float>(udonge_cosine(-p[0])*100.0*facing()+at<float>(0xec)),
-            static_cast<float>(udonge_sine(-p[0])*100.0+at<float>(0xf0)+85.0),at<unsigned char>(0x104),1,p,3);
+        unsigned char direction=at<unsigned char>(0x104);
+        float y=static_cast<float>(udonge_sine(-p[0])*100.0+at<float>(0xf0)+85.0);
+        double cosine=udonge_cosine(-p[0]);
+        int signed_facing=at<signed char>(0x104);
+        float x=static_cast<float>(cosine*100.0*signed_facing+at<float>(0xec));
+        spawn(900,x,y,direction,1,p,3);
     }
     __forceinline void orbit852(float *p) {
-        spawn(852,static_cast<float>(udonge_cosine(-p[0])*100.0*facing()+at<float>(0xec)),
-            static_cast<float>(udonge_sine(-p[0])*100.0+(at<float>(0xf0)+130.0)),at<unsigned char>(0x104),1,p,4);
+        unsigned char direction=at<unsigned char>(0x104);
+        float y=static_cast<float>(udonge_sine(-p[0])*100.0+(at<float>(0xf0)+130.0));
+        double cosine=udonge_cosine(-p[0]);
+        int signed_facing=at<signed char>(0x104);
+        float x=static_cast<float>(cosine*100.0*signed_facing+at<float>(0xec));
+        spawn(852,x,y,direction,1,p,4);
     }
 };
 }
