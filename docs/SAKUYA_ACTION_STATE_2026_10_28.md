@@ -224,3 +224,19 @@ establish whole-root or unmasked-exception equivalence.
 
 The 75,042-byte owned extent remains nonexact from +8; the candidate section
 tail is 76,500 bytes. No exact credit is added.
+
+## Action 730 vertical jitter, 2026-11-05
+
+The eight object-920 shower loops keep RNG(20)'s unsigned conversion in x87
+through the height calculation. For example, native `0x4DCB18..0x4DCB51`
+combines the unspilled random value with the loop step and actor height before
+the final float store; `0x4DC534..0x4DC56B` does the same for a negative
+height offset. The old float jitter locals caused an intermediate float store.
+Double locals initialized through the existing float conversion preserve the
+native float 2^32 correction and let VC8 keep each jitter in x87. The 0..20 RNG
+range is exactly representable in float, so no normal gameplay numeric change
+is claimed.
+
+The full owned extent remains nonexact: 75042 bytes of extent, 74937 owned,
+first mismatch +8, and candidate section tail 76432. This local restoration
+adds no exact-function or byte credit.
