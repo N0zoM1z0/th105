@@ -34,8 +34,12 @@ case 214: {
         if(F(0xf4)<0.0f && sequence_index_13e==2)select_sequence(4);
         if(F(0xf4)>=0.0f && sequence_index_13e==4)select_sequence(2);
         if(time_counter_144%5==1){
-            effect(125,static_cast<float>(marisa_cosine(F(0x740))*100.0*facing()+F(0xec)),
-                   static_cast<float>(marisa_sine(F(0x740))*100.0+F(0xf0)+100.0),B(0x104),1);
+            unsigned char direction=B(0x104);
+            float y=static_cast<float>(marisa_sine(F(0x740))*100.0+F(0xf0)+100.0);
+            double cosine=marisa_cosine(F(0x740));
+            int signed_facing=C(0x104);
+            float x=static_cast<float>(cosine*100.0*signed_facing+F(0xec));
+            effect(125,x,y,direction,1);
         }
         // Native repeats this gate at580F and5830 without an intervening write/call.
         if((!I(0x6c8) && S(0x736)>10) || S(0x482)<=0){

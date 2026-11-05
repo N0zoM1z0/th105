@@ -166,3 +166,7 @@ five paired reachable-action disassemblies and qualified-virtual-sites.json.
 The private scripts retain raw-PE/source provenance. The target's16999
 instructions and all six switch boundaries were rechecked by the existing
 whole-root auditor. Authored/source/exact totals remain unchanged.
+
+## Action 214 flight effect facing, 2026-11-05
+
+Native `0x4A579A..0x4A580A` captures the unsigned effect-facing byte before sine and separately reloads signed facing after cosine for X. The earlier candidate reused a signed value captured before both lookups. Ordinary locals now preserve the two native read points; fresh VC8 captures direction at `0x20B6` and reloads signed facing at `0x20ED`, after cosine. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 66695-byte root remains non-exact (candidate section tail 68220, first mismatch +14); no exact credit is claimed.
