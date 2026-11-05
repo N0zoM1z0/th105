@@ -177,14 +177,21 @@ public:
     }
 
     __forceinline void emit801(float *p,double xoff,double yoff) {
-        if(xoff==0.0)
-            spawn(801,static_cast<float>(komachi_cosine(-p[0])*150.0*facing()+at<float>(0xec)),
-                static_cast<float>(komachi_sine(-p[0])*150.0+at<float>(0xf0)+yoff),
-                at<unsigned char>(0x104),1,p,3);
-        else
-            spawn(801,static_cast<float>((komachi_cosine(-p[0])*150.0+xoff)*facing()+at<float>(0xec)),
-                static_cast<float>(komachi_sine(-p[0])*150.0+at<float>(0xf0)+yoff),
-                at<unsigned char>(0x104),1,p,3);
+        if(xoff==0.0) {
+            unsigned char direction=at<unsigned char>(0x104);
+            float y=static_cast<float>(komachi_sine(-p[0])*150.0+at<float>(0xf0)+yoff);
+            double cosine=komachi_cosine(-p[0]);
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>(cosine*150.0*signed_facing+at<float>(0xec));
+            spawn(801,x,y,direction,1,p,3);
+        } else {
+            unsigned char direction=at<unsigned char>(0x104);
+            float y=static_cast<float>(komachi_sine(-p[0])*150.0+at<float>(0xf0)+yoff);
+            double cosine=komachi_cosine(-p[0]);
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>((cosine*150.0+xoff)*signed_facing+at<float>(0xec));
+            spawn(801,x,y,direction,1,p,3);
+        }
     }
     __forceinline void fan801(double spread,double second,float second_speed,double xoff,double yoff,bool charged,float low,float high) {
         phase_counter(50);dispatch_character_wave_handle(2);at<int>(0x180)=1;counter(200,60);aim(low,high);
