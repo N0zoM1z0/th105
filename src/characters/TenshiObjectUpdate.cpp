@@ -519,7 +519,7 @@ void TenshiObjectUpdateView::update_action_state()
  case 997:
   switch(S(0x13e)) {
   case 0:
-   if(F(0xec)>g_update_right && C(0x104)*F(0xf4)>0.0)F(0xf4)*=-1.0;if(F(0xec)<g_update_left && C(0x104)*F(0xf4)<0.0)F(0xf4)*=-1.0;F(0xf8)-=0.25;F(0x108)=3;F(0x10c)=45;F(0x12c)-=48.0;if(!(F(0xf0)>0.0)){F(0xf4)=F(0xf8)=F(0xf0)=F(0x12c)=0;next_sequence_block();AT(P,short,0x840)=2;}STEP();break;
+   if(F(0xec)>g_update_right && C(0x104)*F(0xf4)>0.0)F(0xf4)*=-1.0;if(F(0xec)<g_update_left && C(0x104)*F(0xf4)<0.0)F(0xf4)*=-1.0;F(0xf8)-=0.25;F(0x108)=3;F(0x10c)=45;F(0x12c)-=48.0;if(F(0xf0)<=0.0){F(0xf4)=F(0xf8)=F(0xf0)=F(0x12c)=0;next_sequence_block();AT(P,short,0x840)=2;}STEP();break;
   case 2:
    F(0xf0)=stage_surface_height();if(AT(P,short,0x13c)==750)RETIRE();if(AT(P,short,0x732)==3 && S(0x364)==0){PACKET(p132,-90,0,4);spawn_parented(997,F(0xec),F(0xf0),B(0x104),1,reinterpret_cast<const unsigned *>(p132),3);}if(AT(P,short,0x732)==2 && I(0x144)%2==0){PACKET(p108,-75.0-RND(30),RND(30)+20.0,3);SPAWN(997,1,p108);}break;
   case 3:F(0x12c)+=F(0x374);F(0x374)*=D(0.99f);MOVE();H[1]*=D(0.98f);if(I(0x144)>=15)FADE(10,10);STEP();if(OUTSIDE(1380.0f,-100.0,1080.0f,-280.0f))RETIRE();break;

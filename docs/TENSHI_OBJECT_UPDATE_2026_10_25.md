@@ -269,3 +269,7 @@ impossibility.
 ## Action 900 speed gate, 2026-11-05
 
 The two target speed checks at `0x653084..0x6530A2` enter the trailing-effect path when either speed is at least 3 or unordered. Ordinary `>=` omitted the unordered case. The source now expresses the observed branches; the focused candidate reproduces `test ah, 0x41; jne` at `0x65EC..0x660A`. The complete 41001-byte root remains non-exact (candidate section tail 42508, first mismatch +8); no exact credit is claimed.
+
+## Action 997 landing gate, 2026-11-05
+
+The target at `0x656939..0x656946` performs its landing reset only when Y is ordered and at or below zero. The earlier negated greater-than condition also reset an unordered Y. The source now uses ordered `<=`; the focused candidate emits the same `test ah, 1; jne` continuation at `0x9E0F..0x9E1C`. The full 41001-byte root remains non-exact (candidate section tail 42508, first mismatch +8); no exact credit is claimed.
