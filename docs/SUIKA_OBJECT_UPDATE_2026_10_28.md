@@ -146,3 +146,7 @@ The target phase 6 checks at `0x5B293C..0x5B294A` and `0x5BB957..0x5BB965` enter
 ## Action 811 signed collision counter, 2026-11-05
 
 Three native paths, `0x5B1236..0x5B1253`, `0x5B13E1..0x5B13FE` and `0x5B14B1..0x5B14CE`, compare the 16-bit field at `0x364` against 5 with signed `jge`. For a negative value and collision state 4 the target increments the counter, clears the collision and increments the hit byte; the earlier unsigned source skipped that work. The three source paths now use the signed short. Focused VC8 compilation confirms signed threshold gates. Negative-counter reachability in ordinary play is unproved; the complete root remains nonexact with no exact credit.
+
+## Action 930 signed age thresholds, 2026-11-05
+
+At `0x5BAAC1..0x5BAB23`, the native incremented 16-bit field at `0x366` is compared against 120, 180, 240 or 300 using signed `jl`, with a shared expiration branch. The former unsigned local caused a negative incremented value to expire immediately. The local and field access are now signed; focused VC8 emits signed threshold jumps for all four selectors. Normal-play reachability of a negative age is not established, and the full root remains nonexact without exact credit.

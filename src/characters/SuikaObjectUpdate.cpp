@@ -769,7 +769,7 @@ case 930: {
         if(S(0x364)==0) {F(0x11c)-=static_cast<double>(0.02f);F(0x120)=F(0x11c);if(B(0x113)<252) B(0x113)+=3;else {B(0x113)=255;S(0x364)=1;B(0x184)=1;}}
         if(S(0x364)==1) {
             PARAM[1]=0.1f;turn_heading(0.0f,360.0f,100.0f);MOTION->set_components(PARAM[0],PARAM[1]);if(I(0x180)!=0) {F(0x11c)*=2.0;F(0x120)*=2.0;S(0x364)=2;B(0x184)=0;}
-            unsigned short age=++US(0x366);switch(g_match_identifier) {
+            short age=++S(0x366);switch(g_match_identifier) {
             case 0:if(age>=120) {S(0x364)=2;F(0x11c)*=2.0;F(0x120)=static_cast<float>(2.0*F(0x120));B(0x184)=0;}break;
             case 1:if(age>=180) {S(0x364)=2;F(0x11c)*=2.0;F(0x120)=static_cast<float>(2.0*F(0x120));B(0x184)=0;}break;
             case 2:if(age>=240) {S(0x364)=2;F(0x11c)*=2.0;F(0x120)=static_cast<float>(2.0*F(0x120));B(0x184)=0;}break;
