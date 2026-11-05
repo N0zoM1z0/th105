@@ -383,7 +383,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(I(0x180)!=0 && ++S(0x366)>=5) { S(0x366)=0; B(0x184)=1; I(0x180)=0; }
    if(S(0x13E)<2) {
     payload[0]=random_float(40)-100.0; payload[1]=random_float(25)+5.0; payload[2]=4;
-    { unsigned char facing=B(0x104); float y=static_cast<float>(F(0xF0)+50.0); float offset=random_float(150); float x=static_cast<float>(C(0x104)*(offset+25.0)+F(0xEC)); spawn_unparented(857,x,y,facing,1,reinterpret_cast<const unsigned *>(payload),3); }
+    { unsigned char facing=B(0x104); float y=static_cast<float>(F(0xF0)+50.0); double offset=static_cast<unsigned>(selector_random_roll(150)); float x=static_cast<float>(C(0x104)*(offset+25.0)+F(0xEC)); spawn_unparented(857,x,y,facing,1,reinterpret_cast<const unsigned *>(payload),3); }
     position_relative(50,0);
     if(S(0x13E)==1) {
      if(AT(P,short,0x13C)!=607 || AT(P,short,0x140)>=10) goto next_block_857_902;
@@ -732,7 +732,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(S(0x13E)==7) {
     if(I(0x144)%5==0) {
      payload[0]=random_float(20)-90.0; payload[1]=random_float(15)+20.0; payload[2]=10;
-     { unsigned char facing=B(0x104); float y=static_cast<float>(F(0xF0)+50.0); float offset=random_float(150); float x=static_cast<float>(C(0x104)*(offset+25.0)+F(0xEC)); spawn_unparented(902,x,y,facing,1,reinterpret_cast<const unsigned *>(payload),3); }
+     { unsigned char facing=B(0x104); float y=static_cast<float>(F(0xF0)+50.0); double offset=static_cast<unsigned>(selector_random_roll(150)); float x=static_cast<float>(C(0x104)*(offset+25.0)+F(0xEC)); spawn_unparented(902,x,y,facing,1,reinterpret_cast<const unsigned *>(payload),3); }
     }
     if(I(0x144)>=H[1] || AT(P,short,0x174)<=0) goto next_block_857_902;
    }

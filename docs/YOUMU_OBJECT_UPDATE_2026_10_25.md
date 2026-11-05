@@ -394,3 +394,7 @@ In phase 5, native `0x54245A..0x542481` converts RNG(100) to x87 and directly ad
 ## Action 899 jitter conversion, 2026-11-05
 
 The three 899 emission paths, including `0x53F6FC..0x53F754` and `0x540850..0x540875`, convert each RNG(50) result in x87, subtract 25, add the corresponding coordinate, and round only the resulting Y or X. The previous candidate stored each random integer conversion to float first. The three source sites now use ordinary wider locals for the two rolls; focused VC8 output keeps both conversions in x87 through the subtraction and coordinate addition, retaining the facing snapshot and Y-before-X random order. Rolls 0..49 are exactly representable as float, so no normal-play difference is claimed. The 25,944-byte root remains nonexact at +34 (candidate section tail 27,040); no exact-byte credit is added.
+
+## Actions 857 and 902 horizontal offset, 2026-11-05
+
+Native `0x53F285..0x53F2C0` and `0x54281C..0x542857` convert RNG(150) in x87, add 25, multiply by the post-RNG signed facing, then add X and round the coordinate. The old candidate first stored the roll as float. Both source paths now keep a wider ordinary roll local, retain the earlier spawn-facing and Y snapshots, and read signed facing after RNG. Focused VC8 output no longer emits the intermediate float spill. All normal 0..149 rolls are exactly representable as float, so no normal-play numeric difference is claimed. The complete 25,944-byte root remains nonexact at +34 (candidate section tail 27,024); no exact-byte credit is claimed.
