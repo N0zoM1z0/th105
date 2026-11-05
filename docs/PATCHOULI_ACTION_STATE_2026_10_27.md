@@ -184,3 +184,9 @@ This can matter for floating-point rounding and is not a full gameplay proof.
 The complete callable remains nonexact from +8: its 54,452-byte native body
 and 55,042-byte candidate section tail differ. This source remains unselected
 and adds no exact credit.
+
+### Direction reads in orbit emitters (2026-11-05)
+
+Target ring-820 ground and orbit-825/852/900 paths read the unsigned direction before sine, and reload signed facing after cosine; representative target ranges are `0x5127AD..0x512838`, `0x51890E..0x518989`, `0x51A963..0x51A9D1`, and `0x50F651..0x50F6C9`. The candidate previously cached the signed value before sine. The source now sequences the two reads, preserving each path's original coordinate associations, the ring layer read, and its separate angle reloads. Rebuilt dispatcher sites show the late signed read for three ground-ring sites and four sites each for the three orbit families. The trig helpers do not ordinarily mutate the receiver, so this is a reconstruction-fidelity adjustment, not a demonstrated ordinary-play difference.
+
+Strict root comparison remains nonmatching: target 54,452 bytes, candidate section tail 55,602 bytes, first difference at offset 139. No exact-match credit is claimed.

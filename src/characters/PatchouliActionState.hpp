@@ -126,10 +126,13 @@ public:
         for(int angle=0;angle<360;angle+=45) {
             p[0]=static_cast<float>(patchouli_random(30)+angle);
             at<short>(0x730)=(p[0]<0.0f || p[0]<180.0f)?1:-1;
-            spawn(820,
-                static_cast<float>(patchouli_cosine(-p[0])*50.0+at<float>(0xec)+static_cast<double>(xoff*facing())),
-                static_cast<float>(patchouli_sine(-p[0])*50.0*0.25+at<float>(0xf0)),
-                at<unsigned char>(0x104),at<unsigned char>(0x730),p,3);
+            int layer=at<unsigned char>(0x730);
+            unsigned char direction=at<unsigned char>(0x104);
+            float y=static_cast<float>(patchouli_sine(-p[0])*50.0*0.25+at<float>(0xf0));
+            double cosine=patchouli_cosine(-p[0]);
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>(cosine*50.0+at<float>(0xec)+static_cast<double>(xoff*signed_facing));
+            spawn(820,x,y,direction,layer,p,3);
         }
     }
 
@@ -300,10 +303,12 @@ public:
         }
     }
     __forceinline void orbit825(float *p) {
-        spawn(825,
-            static_cast<float>((patchouli_cosine(-p[0])*200.0-100.0)*facing()+at<float>(0xec)),
-            static_cast<float>(patchouli_sine(-p[0])*200.0+at<float>(0xf0)+100.0),
-            at<unsigned char>(0x104),1,p,3);
+        unsigned char direction=at<unsigned char>(0x104);
+        float y=static_cast<float>(patchouli_sine(-p[0])*200.0+at<float>(0xf0)+100.0);
+        double cosine=patchouli_cosine(-p[0]);
+        int signed_facing=at<signed char>(0x104);
+        float x=static_cast<float>((cosine*200.0-100.0)*signed_facing+at<float>(0xec));
+        spawn(825,x,y,direction,1,p,3);
     }
 
     __forceinline void spell_flash(int xoff,double height,int outcome) {
@@ -314,10 +319,12 @@ public:
         effect(115,x,y,direction,1);sequence_window(0,outcome,60);secondary_cycle();
     }
     __forceinline void orbit852(float *p,double radius) {
-        spawn(852,
-              static_cast<float>(patchouli_cosine(-p[0])*radius*facing()+at<float>(0xec)),
-              static_cast<float>(patchouli_sine(p[0])*radius+(static_cast<double>(at<float>(0xf0))+100.0)),
-              at<unsigned char>(0x104),1,p,3);
+        unsigned char direction=at<unsigned char>(0x104);
+        float y=static_cast<float>(patchouli_sine(p[0])*radius+(static_cast<double>(at<float>(0xf0))+100.0));
+        double cosine=patchouli_cosine(-p[0]);
+        int signed_facing=at<signed char>(0x104);
+        float x=static_cast<float>(cosine*radius*signed_facing+at<float>(0xec));
+        spawn(852,x,y,direction,1,p,3);
     }
 
     template<class T> __forceinline T &at(unsigned o) {
@@ -333,10 +340,12 @@ public:
         reinterpret_cast<PatchouliActionScratch *>(reinterpret_cast<unsigned char *>(this)+4)->reset();
     }
     __forceinline void orbit900(float *p,unsigned angle_offset) {
-        spawn(900,
-            static_cast<float>(patchouli_cosine(-at<float>(angle_offset))*150.0*facing()+at<float>(0xec)),
-            static_cast<float>(patchouli_sine(-at<float>(angle_offset))*150.0+(static_cast<double>(at<float>(0xf0))+100.0)),
-            at<unsigned char>(0x104),1,p,3);
+        unsigned char direction=at<unsigned char>(0x104);
+        float y=static_cast<float>(patchouli_sine(-at<float>(angle_offset))*150.0+(static_cast<double>(at<float>(0xf0))+100.0));
+        double cosine=patchouli_cosine(-at<float>(angle_offset));
+        int signed_facing=at<signed char>(0x104);
+        float x=static_cast<float>(cosine*150.0*signed_facing+at<float>(0xec));
+        spawn(900,x,y,direction,1,p,3);
     }
 };
 }
