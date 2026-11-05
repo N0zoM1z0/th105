@@ -214,3 +214,18 @@ still consumes only the low byte; no ordinary gameplay difference is asserted.
 Fresh focused compilation remains nonexact at +17 with a 78876-byte section
 tail versus the 79435-byte native callable. No exact credit is added. Receipt:
 `build/frontier-55d850-20261027/suika-other-layers-20261105.json`.
+
+## Vertical grab X arithmetic, 2026-11-05
+
+The native vertical-grab paths at `0x5A6A8A..0x5A6AAC` and
+`0x5A6F7F..0x5A6FA1` multiply horizontal velocity by negative 30, multiply by
+signed facing, then add actor X. The former natural single expression had
+that source association, but VC8 emitted positive 30 and a final subtraction.
+Naming the actually consumed double offset preserves the expression and lets
+VC8 emit the negative-30 multiply, signed-facing multiply, and X addition at
+both expanded sites, without a double spill. Other receiver and store
+scheduling still differs; no normal-play numeric or exception-equivalence
+claim is made.
+
+The 79435-byte callable remains nonexact at +17; candidate section tail 78876.
+This is not exact-function or exact-byte credit.
