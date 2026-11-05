@@ -137,15 +137,23 @@ public:
         for(float n=0.0f;n<10.0f;n=static_cast<float>(n+1.0)) {
             p[3]=static_cast<float>(n*36.0+18.0);
             p[0]=static_cast<float>(p[3]+90.0);p[1]=15.0f;p[2]=0.0f;
-            spawn(801,
-                static_cast<float>(tenshi_cosine(-p[3])*80.0*facing()+at<float>(0xec)),
-                static_cast<float>(tenshi_sine(-p[3])*80.0+at<float>(0xf0)+height),
-                at<unsigned char>(0x104),1,p,3);
+            {
+                unsigned char direction=at<unsigned char>(0x104);
+                float y=static_cast<float>(tenshi_sine(-p[3])*80.0+at<float>(0xf0)+height);
+                double cosine=tenshi_cosine(-p[3]);
+                int signed_facing=at<signed char>(0x104);
+                float x=static_cast<float>(cosine*80.0*signed_facing+at<float>(0xec));
+                spawn(801,x,y,direction,1,p,3);
+            }
             p[2]=2.0f;
-            spawn(801,
-                static_cast<float>(tenshi_cosine(-p[3])*80.0*facing()+at<float>(0xec)),
-                static_cast<float>(tenshi_sine(-p[3])*80.0+at<float>(0xf0)+height),
-                at<unsigned char>(0x104),1,p,3);
+            {
+                unsigned char direction=at<unsigned char>(0x104);
+                float y=static_cast<float>(tenshi_sine(-p[3])*80.0+at<float>(0xf0)+height);
+                double cosine=tenshi_cosine(-p[3]);
+                int signed_facing=at<signed char>(0x104);
+                float x=static_cast<float>(cosine*80.0*signed_facing+at<float>(0xec));
+                spawn(801,x,y,direction,1,p,3);
+            }
         }
     }
     __forceinline void air_801() {

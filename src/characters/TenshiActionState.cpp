@@ -776,8 +776,12 @@ case 525:
         float p[3];
         for(float n=0.0f;n<4.0f;n=static_cast<float>(n+1.0)) {
             p[0]=static_cast<float>(-n*90.0);p[1]=100.0f;p[2]=0.0f;
-            spawn(816,static_cast<float>(tenshi_cosine(-p[0])*p[1]*facing()+F(0xec)),
-                  static_cast<float>(tenshi_sine(-p[0])*(p[1]*0.25)+F(0xf0)),B(0x104),1,p,3);++I(0x834);
+            unsigned char direction=B(0x104);
+            float y=static_cast<float>(tenshi_sine(-p[0])*(p[1]*0.25)+F(0xf0));
+            double cosine=tenshi_cosine(-p[0]);
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>(cosine*p[1]*signed_facing+F(0xec));
+            spawn(816,x,y,direction,1,p,3);++I(0x834);
         }
         S(0x82e)=static_cast<short>(60*(C(0x609)+2));counter(200,45);phase_counter(50);dispatch_character_wave_handle(16);
     }
