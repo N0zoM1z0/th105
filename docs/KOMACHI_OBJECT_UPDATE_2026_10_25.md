@@ -416,3 +416,7 @@ The target captures the unsigned facing byte before both RNG(50) calls at `0x5FB
 ## Actions 810 and 812 trail facing, 2026-11-05
 
 Six trail paths capture unsigned facing after generating the packet but before the coordinate RNG calls: `0x5F9DB7`, `0x5FA249`, `0x5FA558`, `0x5FA77F`, `0x5FABBF` and `0x5FAE1E`. The first, fifth and sixth retain Y across RNG(100); the other three retain `Y + 25.0` across RNG(50), then use RNG(100) for X. Previously all six read facing after the coordinate RNG calls. The source now captures facing before those calls, and focused VC8 compilation confirms the six corresponding lifetimes. The root remains non-exact (27874-byte target, 28768-byte candidate section tail, first mismatch +8); no exact credit is claimed.
+
+## Action 856 spawn facing, 2026-11-05
+
+At `0x5FE17F..0x5FE1C0`, the target captures unsigned facing and both double-precision coordinate centers before the first RNG(60); it computes Y between the two calls and X after the second. The earlier source captured the centers but loaded facing after both calls. An unsigned-byte local now captures facing in the proper interval; focused VC8 output loads it at `0x4EFD` before either coordinate RNG call and keeps both QWORD centers. The full 27874-byte root remains non-exact (candidate section tail 28944, first mismatch +8); no exact credit is claimed.

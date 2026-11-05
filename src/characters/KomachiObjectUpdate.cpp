@@ -241,7 +241,7 @@ void KomachiObjectUpdateView::update_action_state()
  case 856:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
-  case 0:{motion_packet[0]=RND(360);motion_packet[1]=RND(50)*D(0.01f)+5.0;motion_packet[2]=1;double y=F(0xf0)+30.0;double x=30.0+F(0xec);float spawn_y=y-RND(60);float spawn_x=x-RND(60);spawn_unparented(856,spawn_x,spawn_y,B(0x104),1,reinterpret_cast<const unsigned *>(motion_packet),3);
+  case 0:{motion_packet[0]=RND(360);motion_packet[1]=RND(50)*D(0.01f)+5.0;motion_packet[2]=1;unsigned char facing=B(0x104);double y=F(0xf0)+30.0;double x=30.0+F(0xec);float spawn_y=y-RND(60);float spawn_x=x-RND(60);spawn_unparented(856,spawn_x,spawn_y,facing,1,reinterpret_cast<const unsigned *>(motion_packet),3);
    if(I(0x144)%2==0){motion_packet[0]=H[0];motion_packet[1]=0;motion_packet[2]=4;SPAWN(856,1,motion_packet);}
    if(static_cast<unsigned char>(has_crossed_stage_surface_while_descending())==0){F(0xf0)+=F(0xf8);break;}
    P->publish_battle_layout_scalar(5);P->dispatch_character_wave_handle(54);float n=0;do{burst_packet[0]=-RND(160)-10.0;burst_packet[1]=RND(200)*D(0.01f)+20.0;burst_packet[2]=1;SPAWN(856,1,burst_packet);n+=1.0;}while(n<8.0f);burst_packet[0]=0;burst_packet[1]=0;burst_packet[2]=2;SPAWN(856,-1,burst_packet);RETIRE();}
