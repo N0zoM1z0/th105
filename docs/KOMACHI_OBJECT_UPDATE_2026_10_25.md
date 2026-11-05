@@ -382,3 +382,17 @@ unknowns include complete execution equivalence, other scalar precision/
 publication epochs, original expressions and nominal types, lexical scopes,
 and original TU/compiler context. The811 table-lowering question is resolved
 for this selected source/profile; it is not a general compiler recipe.
+
+## Action 810 trail height capture, 2026-11-05
+
+Native `0x005FA268..0x005FA295`, `0x005FA577..0x005FA5A4` and
+`0x005FA79E..0x005FA7CB` retain `Y + 25.0` in a QWORD across the random
+call before subtracting its result. The previous source stored that sum in a
+float first, introducing an early rounding step. Each of the three paths now
+uses a double capture and converts the subtraction result to float. Fresh VC8
+emits the corresponding QWORD store/call/subtract sequence at `0xED4`,
+`0x11D5` and `0x1444`. Random call order is unchanged. This does not establish
+whole-root or unmasked-exception equivalence.
+
+The 27,874-byte callable remains nonexact from +8; the candidate section
+tail is 29,056 bytes. No exact credit is added.

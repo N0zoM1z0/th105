@@ -83,19 +83,19 @@ void KomachiObjectUpdateView::update_action_state()
   }
   case 1:
    if(emit_repeated(0,2,5)||emit_owner_gated_pair())RETIRE();advance_six(0);
-   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;float y=F(0xf0)+25.0;y-=RND(50);float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
+   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;double center_y=F(0xf0)+25.0;float y=static_cast<float>(center_y-RND(50));float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
    if(I(0x180)!=0){BURST(810,150,15.0,3);RETIRE();}
    H[1]=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*6))*3.0+5.0;MOVE();break;
   case 2:H[1]*=D(0.995f);MOVE();FADE(10,10);break;
   case 3:H[1]*=D(0.9f);MOVE();if(S(0x364)<=I(0x144)){SCALE(F(0x11c)*D(0.98f));FADE(5,5);}break;
   case 4:
    if(emit_repeated(0,1,5)||emit_owner_gated_pair())RETIRE();advance_six(0);
-   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;float y=F(0xf0)+25.0;y-=RND(50);float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
+   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;double center_y=F(0xf0)+25.0;float y=static_cast<float>(center_y-RND(50));float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
    if(I(0x180)!=0){BURST(810,150,15.0,3);RETIRE();}
    H[1]=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*6))*3.0+5.0;MOVE();F(0x370)*=D(0.98f);F(0xf4)*=F(0x370);break;
   case 5:
    if(emit_repeated(0,1,2)||emit_owner_gated_pair())RETIRE();advance_six(0);
-   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;float y=F(0xf0)+25.0;y-=RND(50);float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
+   if(I(0x144)%3==0){trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=2;double center_y=F(0xf0)+25.0;float y=static_cast<float>(center_y-RND(50));float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(810,x,y,B(0x104),1,reinterpret_cast<const unsigned *>(trail_packet),3);}
    if(I(0x180)!=0){BURST(810,150,15.0,3);RETIRE();}
    H[1]=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*6))*3.0+5.0;MOVE();F(0x370)*=D(0.98f);F(0xf4)*=F(0x370);break;
   }
