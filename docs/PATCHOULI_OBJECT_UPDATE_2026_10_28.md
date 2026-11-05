@@ -188,3 +188,7 @@ The target action 854 phase 4 check at `0x52828D..0x528298` retires only for ord
 ## Action 857 airborne burst, 2026-11-05
 
 The target at `0x52A589..0x52A5AB` continues the airborne path for unordered Y as well as positive Y when the remaining guards pass. The prior ordered `Y > 0` instead entered the burst for unordered Y. The source now preserves the target branch, and the focused candidate emits its `test ah, 1; je` burst transfer at `0x9C6B..0x9C78`. The full 50649-byte root remains non-exact (candidate section tail 51412, first mismatch +37); no exact credit is claimed.
+
+## Action 855 orbit layers, 2026-11-05
+
+All three target orbit-layer checks at `0x5286EC..0x528705`, `0x5287D6..0x5287EF` and `0x528C5C..0x528C75` select layer 1 for negative or unordered sine results and 255 for ordered nonnegative results. The earlier `< 0` missed the unordered case. The source now negates `>= 0`; focused compilation reproduces the native `test ah, 1` selection at candidate `0x7DCC`, `0x7EAC` and `0x834C`. The full 50649-byte root remains non-exact (candidate section tail 51412, first mismatch +37); no exact credit is claimed.

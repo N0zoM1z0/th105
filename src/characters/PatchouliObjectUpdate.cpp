@@ -783,7 +783,7 @@ case 855: {
         if(S(0x364)==0) {
             if(FIELD(OWNER,short,0x7a4)<=0) {S(0x364)=3;return;}
             if(B(0x113)>=245) {B(0x113)=255;S(0x364)=1;}else B(0x113)+=10;
-            B(0x33c)=lookup_orientation_sine_quantized_abs(-PARAM[0])<0.0?1:255;
+            B(0x33c)=!(lookup_orientation_sine_quantized_abs(-PARAM[0])>=0.0)?1:255;
             parameters=PARAM;parameters[1]=static_cast<float>(150.0-F(0x378)*150.0);F(0x378)*=static_cast<double>(0.98f);
             double orbitX=lookup_orientation_cosine_quantized_abs(-parameters[0]);parameters=PARAM;
             F(0xec)=static_cast<float>(orbitX*parameters[1]*static_cast<double>(C(0x104))+FIELD(OWNER,float,0xec));
@@ -791,7 +791,7 @@ case 855: {
         }
         if(S(0x364)==1) {
             if(FIELD(OWNER,short,0x7a4)<=0) {S(0x364)=3;return;}
-            B(0x33c)=lookup_orientation_sine_quantized_abs(-PARAM[0])<0.0?1:255;
+            B(0x33c)=!(lookup_orientation_sine_quantized_abs(-PARAM[0])>=0.0)?1:255;
             parameters=PARAM;parameters[1]=static_cast<float>(150.0-F(0x378)*150.0);F(0x378)*=static_cast<double>(0.95f);
             double orbitX=lookup_orientation_cosine_quantized_abs(-parameters[0]);parameters=PARAM;void *owner=OWNER;
             F(0xec)=static_cast<float>(orbitX*parameters[1]*static_cast<double>(C(0x104))+FIELD(owner,float,0xec));
@@ -809,7 +809,7 @@ case 855: {
             if(++S(0x366)>=210) {S(0x366)=0;float packet[3];for(int count=8;count!=0;--count) {packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(15))+10.0);packet[2]=static_cast<float>(S(0x13e)+5.0);spawn_unparented(855,F(0xec),F(0xf0),B(0x104),1,packet,3);}
                 packet[0]=0.0f;packet[1]=0.25f;packet[2]=static_cast<float>(S(0x13e)+10.0);spawn_unparented(855,F(0xec),F(0xf0),B(0x104),1,packet,3);B(0x113)=255;S(0x364)=1;
             }
-            B(0x33c)=lookup_orientation_sine_quantized_abs(-PARAM[0])<0.0?1:255;
+            B(0x33c)=!(lookup_orientation_sine_quantized_abs(-PARAM[0])>=0.0)?1:255;
             parameters=PARAM;parameters[1]=static_cast<float>(100.0-F(0x378)*100.0);F(0x378)*=static_cast<double>(0.95f);
             double orbitX=lookup_orientation_cosine_quantized_abs(-parameters[0]);parameters=PARAM;
             F(0xec)=static_cast<float>(orbitX*parameters[1]*static_cast<double>(C(0x104))+FIELD(OWNER,float,0xec));
