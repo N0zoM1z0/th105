@@ -106,7 +106,7 @@ void IkuObjectUpdateView::update_action_state()
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
   case 0: {
-   short owner_action=AT(P,short,0x13c);if(owner_action>49 && owner_action<150){int n=0;do{float y=C(0x104)*n*30+F(0xf0)+RND(15);float x=static_cast<float>(static_cast<unsigned>(selector_random_roll(30)-15))+F(0xec);emit_fighter_effect_433cc0(201,x,y,B(0x104),1);++n;}while(n<30);RETIRE();}
+   short owner_action=AT(P,short,0x13c);if(owner_action>49 && owner_action<150){int n=0;do{unsigned char facing=B(0x104);float y=C(0x104)*n*30+F(0xf0)+RND(15);float x=static_cast<float>(static_cast<unsigned>(selector_random_roll(30)-15))+F(0xec);emit_fighter_effect_433cc0(201,x,y,facing,1);++n;}while(n<30);RETIRE();}
    F(0xf0)-=160.0;double y=F(0xf0);
    if(stage_surface_height()>y)goto iku_ground_clamp;
    goto iku_ground_advance;

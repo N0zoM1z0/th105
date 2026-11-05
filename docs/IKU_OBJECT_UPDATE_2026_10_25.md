@@ -304,3 +304,7 @@ This does not establish whole-root or unmasked-exception equivalence.
 
 The 33,617-byte callable remains nonexact from +37; the candidate section
 tail is 34,748 bytes. No exact credit is added.
+
+## Action 812 effect facing, 2026-11-05
+
+The target at `0x633E26..0x633EAA` captures the unsigned effect-facing byte before RNG(15), then separately reads signed facing after RNG for the Y offset, and computes X after RNG(30). The earlier candidate read the effect-facing byte after both random calls. An ordinary local now preserves the native capture; focused compilation shows it at `0x1100` before RNG(15), while the signed reload remains at `0x111F`. The 33617-byte root remains non-exact (candidate section tail 34748, first mismatch +37); no exact credit is claimed.
