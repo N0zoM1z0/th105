@@ -695,3 +695,24 @@ argument is detected. Initial scratch fields are seeded with nonzero sentinels
 so this checks actual reset writes. Angle and flat terrain tables remain
 synthetic; the action-215 body and full-game execution are not covered. The
 root remains unselected and nonexact. All ten focused action-214 tests pass.
+
+## Spawn layer argument width, 2026-11-05
+
+The original action 418 effect-object requests at 4EE84A and 4EE967 push
+`-1` as the complete 32-bit layer argument. The selected source had passed
+`255` through the admitted int-layer declaration. Although both have the same
+low byte, they are not the same forwarded 32-bit argument. The source now
+passes `-1` at both sites.
+
+The same native stack argument occurs at all 39 physical request sites for
+objects 820, 827, 830, 851, 852, 854, 855, 856, 900, 901 and 902, including
+shared tails. Forty further source sites use those requests and now pass `-1`.
+This observation is about the actual argument bits, not the unknown original
+formal type. The separately identified Alice manager reads only the low layer
+byte at 4FAB76 and publishes it at 4FABA8, so no ordinary gameplay difference
+is asserted for that manager.
+
+A focused VC8 rebuild emits signed `push -1` at the changed sites. The full
+callable remains nonexact from +8; the section tail is 43916 bytes versus the
+42721-byte native callable. The candidate remains unselected, with no exact
+credit. Focused build receipt: `build/frontier-55d850-20261027/alice-all-layer-20261105.json`.
