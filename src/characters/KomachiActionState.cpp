@@ -319,8 +319,8 @@ case 562:{
     if(sequence_index_13e==5)landing();B(0x17c)=3;F(0xf8)-=F(0x100);double y=F(0xf8)+static_cast<double>(F(0xf0));
     if(komachi_surface(this)>=y && F(0xf8)<0.0f && sequence_index_13e<5){select_sequence(5);F(0x100)=0.0f;B(0x47f)=0;F(0xf0)=komachi_surface(this);zero_motion();return;}
     if(sequence_index_13e<2 && !I(0x6c4))B(0x750)=0;
-    if(at<unsigned short>(0x730)>0 && (sequence_index_13e==2 || sequence_index_13e==3)){
-        if(at<unsigned short>(0x730)%4==1){phase_counter(10);I(0x180)=1;aim_short();dispatch_character_wave_handle(9);if(S(0x738)==1)burst808();else burst808();}++S(0x730);
+    if(S(0x730)>0 && (sequence_index_13e==2 || sequence_index_13e==3)){
+        if(S(0x730)%4==1){phase_counter(10);I(0x180)=1;aim_short();dispatch_character_wave_handle(9);if(S(0x738)==1)burst808();else burst808();}++S(0x730);
     }
     if(advance())set_action_and_finalize(0);if(entry(5)){set_action_and_finalize(9);return;}
     if(sequence_index_13e==1 && time_counter_144>4 && (!B(0x750)||time_counter_144>25))next_sequence_block();
@@ -379,7 +379,7 @@ case 601:
 case 602:
     texture(4,2);landing();
     if(S(0x730)==1 && !sequence_index_13e){if(!(S(0x732)%5)){I(0x180)=1;aim(-10.0f,10.0f);dispatch_character_wave_handle(14);
-        if(at<unsigned short>(0x734)<5){float p[3]={static_cast<float>(F(0x744)-static_cast<double>(at<unsigned short>(0x734))*18.0+25.0),7.0f,0.0f};spawn_offset(852,90,180.0,p,3);++S(0x734);}}++S(0x732);}
+        if(S(0x734)<5){float p[3]={static_cast<float>(F(0x744)-static_cast<double>(S(0x734))*18.0+25.0),7.0f,0.0f};spawn_offset(852,90,180.0,p,3);++S(0x734);}}++S(0x732);}
     if(advance())set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==2)spell_flash(0,140.0,1);if(!frame_timer_142 && frame_index_140==4)S(0x730)=1;}return;
 case 603:
@@ -421,7 +421,7 @@ case 604:
     }return;
 case 605:
     texture(4,2);landing();
-    if(S(0x730)==1 && !sequence_index_13e){if(!(S(0x732)%5)){dispatch_character_wave_handle(14);if(at<unsigned short>(0x734)<6){float p[3]={static_cast<float>(15.0-static_cast<double>(at<unsigned short>(0x734))*60.0),7.0f,0.0f};spawn_offset(855,90,180.0,p,3);++S(0x734);}}++S(0x732);}
+    if(S(0x730)==1 && !sequence_index_13e){if(!(S(0x732)%5)){dispatch_character_wave_handle(14);if(S(0x734)<6){float p[3]={static_cast<float>(15.0-static_cast<double>(S(0x734))*60.0),7.0f,0.0f};spawn_offset(855,90,180.0,p,3);++S(0x734);}}++S(0x732);}
     if(advance())set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==2)spell_flash(0,140.0,3);if(!frame_timer_142 && frame_index_140==4)S(0x730)=1;}return;
 case 606:
