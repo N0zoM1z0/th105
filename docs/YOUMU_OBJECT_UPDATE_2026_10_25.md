@@ -345,3 +345,21 @@ comparison still differs at 24,396 positions including length, with a 26,800
 byte candidate section tail. The source remains unselected; no exact credit
 is added. Receipts: `action813-captures-20261105.json` and
 `action813-captures-audit-20261105.json` in the existing Youmu object scope.
+
+## Action 899 trail argument timing, 2026-11-05
+
+The three native trail paths `0x0053F6F3..0x0053F764`,
+`0x00540814..0x00540885` and `0x00540945..0x005409B8` capture facing
+before the first RNG, compute and store Y after that RNG, then call RNG again
+and compute X. The earlier source left both coordinate expressions and facing
+in call arguments; fresh pre-change VC8 read facing and computed Y after both
+RNG calls. The three source paths now capture facing and compute Y and X in
+native order. Fresh VC8 preserves those local read/call boundaries, including
+Y before the second RNG, at object sites around `0x27D3`, `0x3932` and
+`0x3A7E`. This is local timing evidence, not whole-root equivalence.
+
+The candidate retains the native 0x48 frame and remains nonexact from +34;
+the full payload has 24,432 unmasked differing positions including length and
+a 26,816-byte section tail. The source remains unselected; no exact credit is
+added. Focused receipts use the `action899-trails` prefix in the existing build
+scope.
