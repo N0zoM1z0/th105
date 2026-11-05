@@ -296,3 +296,7 @@ or unmasked-exception equivalence.
 
 The 28,985-byte callable remains nonexact from +37; the candidate section
 tail is 29,396 bytes. No exact credit is added.
+
+## Actions 920 and 930 bounds, 2026-11-05
+
+Raw target branches at `0x4E7760..0x4E77AC` and `0x4E7AAE..0x4E7B04` retire on ordered comparisons outside the X/Y bounds. In particular, unordered coordinates pass these checks. The source previously included unordered values through a negated lower-bound test in action 920 and negated in-range tests in action 930. Both now use the observed ordered outside comparisons. The focused build preserves the lower-Y branch forms at candidate `0x6A05..0x6A10` and `0x6D5E..0x6D6F`. The full root remains non-exact: 28985-byte target, 29396-byte candidate section tail, first mismatch +37. No exact credit is claimed.

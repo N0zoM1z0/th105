@@ -440,7 +440,7 @@ void SakuyaObjectUpdateView::update_action_state()
    }
    if(S(0x140)==2){S(0x344)=0;F(0x12c)-=30.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
   }else if(S(0x13e)==3){if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>1)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
-  STEP();if(F(0xec)>1780.0 || F(0xec)<-500.0 || F(0xf0)>1400.0f || !(F(0xf0)>=-560.0f))RETIRE();
+  STEP();if(F(0xec)>1780.0 || F(0xec)<-500.0 || F(0xf0)>1400.0f || F(0xf0)<-560.0f)RETIRE();
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==3)--I(0x330);return;
  case 930:
   if(I(0x180)==5)RETIRE();
@@ -453,7 +453,7 @@ void SakuyaObjectUpdateView::update_action_state()
    if(S(0x140)==2){S(0x344)=0;F(0x12c)-=30.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
   }else if(S(0x13e)==3){if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>1)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
   if(AT(P,short,0x7a4)==0)STEP();
-  if(!(F(0xec)<=1780.0 && F(0xec)>=-500.0 && F(0xf0)<=1400.0f && F(0xf0)>=-560.0f))RETIRE();
+  if((F(0xec)>1780.0 || F(0xec)<-500.0 || F(0xf0)>1400.0f || F(0xf0)<-560.0f))RETIRE();
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==3)--I(0x330);return;
  case 980:update_ping_pong_motion();FRAME_EXIT();
  case 998:
