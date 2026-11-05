@@ -272,3 +272,9 @@ comparison. Only four bytes of the full49032 candidate change; native48968,
 frame328/320 and first+8 remain nonexact. No new authored credit or angle-unit
 conversion. See TENSHI_ORIGINAL_FLOAT_SINE_2026_11_01.md for complete header,
 caller, intrinsic and byte proof.
+
+## Action 214 flight effect facing, 2026-11-05
+
+Native `0x63F4B4..0x63F524` captures the unsigned effect-facing byte before sine and reloads signed facing after cosine for X. The earlier candidate read signed facing between the two lookups. Ordinary locals now preserve the two native read points; fresh VC8 captures direction at `0x20F5` and reloads signed facing at `0x212D`, after cosine. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 47784-byte root remains non-exact (candidate section tail 49032, first mismatch +8); no exact credit is claimed.
+
+The source pin for the original VC8 float-sine origin was updated only after a fresh `scripts/vc8_float_sine_origins.py` re-attestation passed: the full 18-byte helper, its C alias, actual caller edge and inventory uniqueness remain qualified. The giant caller itself remains non-exact. This updates the pinned source identity without changing the helper's acceptance or exact-byte count.
