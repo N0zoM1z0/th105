@@ -384,7 +384,7 @@ void IkuObjectUpdateView::update_action_state()
   case 9:
    if(AT(this,void *,0x34c)==0)S(0x364)=1;else{void *related=AT(this,void *,0x34c);F(0xec)=AT(related,float,0xec);F(0xf0)=AT(related,float,0xf0);if(AT(related,short,0x364)!=0)S(0x364)=1;}
    if(S(0x364)!=0){SCALE(F(0x11c)*D(0.995f));if(B(0x113)<10)RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x112)-=10;}
-   else{if(B(0x113)<251)B(0x113)+=5;else B(0x113)=255;SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144))*3.0f)*D(0.3f)+D(1.2f));}break;
+   else{if(B(0x113)<251)B(0x113)+=5;else B(0x113)=255;SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3.0))*D(0.3f)+D(1.2f));}break;
   }
   if(advance_frame())--I(0x330);if(ENTRY(1))--I(0x330);if(ENTRY(2))--I(0x330);if(ENTRY(9))--I(0x330);return;
  case 860:
@@ -517,7 +517,7 @@ void IkuObjectUpdateView::update_action_state()
   case 9:
    if(AT(this,void *,0x34c)==0)S(0x364)=1;else{void *related=AT(this,void *,0x34c);F(0xec)=AT(related,float,0xec);F(0xf0)=AT(related,float,0xf0);S(0x364)=AT(related,short,0x364);}
    if(S(0x364)!=0){SCALE(F(0x11c)*D(0.995f));if(B(0x113)<10)RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x112)-=10;}
-   else{if(B(0x113)<251)B(0x113)+=5;else B(0x113)=255;SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144))*3.0f)*D(0.3f)+D(1.2f));}break;
+   else{if(B(0x113)<251)B(0x113)+=5;else B(0x113)=255;SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3.0))*D(0.3f)+D(1.2f));}break;
   }
   if(advance_frame())--I(0x330);if(ENTRY(1))--I(0x330);if(ENTRY(9))--I(0x330);return;
  case 930:

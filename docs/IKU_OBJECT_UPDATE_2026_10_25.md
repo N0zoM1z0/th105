@@ -343,3 +343,7 @@ The `H[1] == 2` branch passes its random X conversion straight into the outgoing
 ## Related-object height writes (2026-11-05)
 
 The two related-object paths at `0x63827B..0x638292` and `0x63A6B9..0x63A6D0` call the surface-height provider, reload the related pointer, and write the returned x87 value directly to this object's Y field before comparing the related Y. The previous source's float `height` local caused an extra stack store/reload. Assigning the call result directly to `F(0xf0)` yields the same local order in the fresh candidate (`0x52E5..0x52FC` and `0x77E3..0x77FA`); later branch layout is still different. This is not a whole-function exact match.
+
+## Wave angle integer conversion (2026-11-05)
+
+Two wave-scale paths at `0x638635..0x63864D` and `0x63AA73..0x63AA8B` load the signed 32-bit timer as an integer, multiply by double `3.0`, then round once to the float angle passed to the sine lookup. The prior source converted the timer to float before multiplication; VC8 happened to elide that intermediate conversion in the selected default build, so its emitted 34,268-byte function code is unchanged. The source now expresses the observed conversion order explicitly. Under strict intermediate float semantics, timer 16,777,217 would produce 50,331,648 before versus 50,331,652 with the target order; reachability of that timer in these effects is not established. No whole-function match is claimed.
