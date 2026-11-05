@@ -314,9 +314,9 @@ public:
         short tick=at<short>(0x730);if(tick<=0)return;
         if(tick%2==0 && tick<=60){dispatch_character_wave_handle(21);float p[3]={0.0f,at<float>(0x73c),0.0f};int direction=at<unsigned char>(0x104);
             double base_y=at<float>(0xf0)+350.0;
-            float y=static_cast<float>(base_y-static_cast<double>(yukari_random(400)));
+            float y=static_cast<float>(base_y-static_cast<double>(static_cast<float>(yukari_random(400))));
             unsigned random_x=yukari_random(300);int signed_facing=at<signed char>(0x104);
-            float x=static_cast<float>((100.0-static_cast<double>(random_x))*signed_facing+at<float>(0xec));
+            float x=static_cast<float>((100.0-static_cast<double>(static_cast<float>(random_x)))*signed_facing+at<float>(0xec));
             spawn(856,x,y,direction,-1,p,3);at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+1.0);}
         ++at<short>(0x730);
     }
