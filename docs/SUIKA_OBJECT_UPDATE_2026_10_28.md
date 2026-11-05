@@ -158,3 +158,18 @@ For sequences 7 and 8, the native owner byte `0x608` is compared with 4 using si
 ## Action 818 signed owner-level rate, 2026-11-05
 
 At `0x5B4155..0x5B415D` and `0x5B42A5..0x5B42AD`, the owner byte `0x60B` uses signed `jg` comparisons with 2 and 3 to select the projectile interval. The former unsigned local routed values `0x80..0xFF` to the three-frame branch rather than the native five-frame branch. The local now reads a signed byte, retaining the separate post-random signed reload used for projectile speed. Focused VC8 emits signed branches; ordinary-play reachability of negative levels is unproved. The full root remains nonexact and receives no exact credit.
+
+## Fan-angle association, 2026-11-05
+
+Seven object 815, 855 and 940 fan paths compute the index step minus its
+20- or 30-degree bias before adding the random angle. Native examples include
+`0x5B21C0..0x5B21D4`, `0x5B67CC..0x5B67DE`, and
+`0x5BAEC9..0x5BAEDD`. The previous source added the random value before
+subtracting the bias. Parenthesizing the index expression restores the native
+x87 operation order at all seven expanded sites. Actual loop indices, steps,
+biases and bounded random values are small integers, so no ordinary numeric
+difference is claimed.
+
+The 52190-byte callable remains nonexact at +17; the candidate section tail is
+53204. The local operation-order match does not add exact-function or byte
+credit.

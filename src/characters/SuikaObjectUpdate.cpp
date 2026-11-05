@@ -169,7 +169,7 @@ case 815: {
         advance_six(5);
         if(I(0x180)==0) {double currentY=F(0xf0);if(!(stage_surface_height()>=currentY)) break;}
         reinterpret_cast<SuikaUpdateOwnerView*>(OWNER)->publish_battle_layout_scalar(4.0f);WAVE(12);float packet[4]={0.0f,0.0f,3.0f,1.0f};spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=4.0f;
-        for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+index*60.0-20.0);packet[1]=static_cast<float>(static_cast<double>(RF(20))+10.0);spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
+        for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+(index*60.0-20.0));packet[1]=static_cast<float>(static_cast<double>(RF(20))+10.0);spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
     }
     case 1: {
         F(0x12c)+=40.0;if(emit_repeated(1,2,5)) RETIRE();
@@ -177,7 +177,7 @@ case 815: {
         if(I(0x144)%3==0) {float packet[4]={0.0f,0.0f,5.0f,1.5f};spawn_unparented(815,static_cast<float>(static_cast<double>(RF(150))+F(0xec)-75.0),static_cast<float>(static_cast<double>(RF(150))+F(0xf0)-75.0),B(0x104),1,packet,4);}
         if(I(0x180)==0) {double currentY=F(0xf0);if(!(stage_surface_height()>=currentY)) break;}
         reinterpret_cast<SuikaUpdateOwnerView*>(OWNER)->publish_battle_layout_scalar(4.0f);WAVE(12);float packet[4]={0.0f,0.0f,3.0f,1.5f};spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=4.0f;
-        for(float index=0.0f;index<8.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+index*45.0-20.0);packet[1]=static_cast<float>(static_cast<double>(RF(25))+10.0);spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
+        for(float index=0.0f;index<8.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+(index*45.0-20.0));packet[1]=static_cast<float>(static_cast<double>(RF(25))+10.0);spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
     }
     case 2: {
         F(0x12c)+=40.0;if(emit_repeated(1,3,5)) RETIRE();
@@ -185,7 +185,7 @@ case 815: {
         if(I(0x144)%3==0) {float packet[4]={0.0f,0.0f,5.0f,2.0f};spawn_unparented(815,static_cast<float>(static_cast<double>(RF(200))+F(0xec)-100.0),static_cast<float>(static_cast<double>(RF(200))+F(0xf0)-100.0),B(0x104),1,packet,4);}
         if(I(0x180)==0) {double currentY=F(0xf0);if(!(stage_surface_height()>=currentY)) break;}
         reinterpret_cast<SuikaUpdateOwnerView*>(OWNER)->publish_battle_layout_scalar(4.0f);WAVE(12);float packet[4]={0.0f,0.0f,3.0f,2.0f};spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=4.0f;
-        for(float index=0.0f;index<10.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+index*36.0-20.0);packet[1]=static_cast<float>(static_cast<double>(RF(30))+10.0);spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
+        for(float index=0.0f;index<10.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+(index*36.0-20.0));packet[1]=static_cast<float>(static_cast<double>(RF(30))+10.0);spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
     }
     case 3:F(0x11c)+=static_cast<double>(0.4f);F(0x120)=F(0x11c);if(B(0x113)<=15) RETIRE();B(0x113)-=15;B(0x110)-=15;B(0x111)-=15;break;
     case 4:PARAM[1]*=static_cast<double>(0.85f);F(0x370)*=static_cast<double>(0.995f);F(0x12c)=F(0x370)+F(0x12c);F(0x11c)+=static_cast<double>(0.01f);F(0x120)=F(0x11c);if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x110)-=10;B(0x111)-=10;MOTION->set_components(PARAM[0],PARAM[1]);break;
@@ -508,7 +508,7 @@ case 855: {
     case 3:
         if(S(0x142)==0) {
             if(C(0x184)<=0) {I(0x180)=0;B(0x184)=1;}float packet[3]={0.0f,0.0f,4.0f};spawn_unparented(855,F(0xec),F(0xf0),B(0x104),1,packet,3);
-            for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(60))+index*60.0-30.0);packet[1]=30.0f;packet[2]=2.0f;S(0x364)=(packet[0]<0.0f || packet[0]>180.0f)?-1:1;spawn_unparented(855,F(0xec),F(0xf0),B(0x104),B(0x364),packet,3);}
+            for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(60))+(index*60.0-30.0));packet[1]=30.0f;packet[2]=2.0f;S(0x364)=(packet[0]<0.0f || packet[0]>180.0f)?-1:1;spawn_unparented(855,F(0xec),F(0xf0),B(0x104),B(0x364),packet,3);}
             for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(60))-120.0);packet[1]=static_cast<float>(static_cast<double>(RF(10))+10.0);packet[2]=1.0f;spawn_unparented(855,static_cast<float>(static_cast<double>(RF(300))+(static_cast<double>(F(0xec))-150.0)),F(0xf0),B(0x104),B(0x364),packet,3);}
         }
         if(F(0xec)>1480.0f || F(0xec)<-200.0) RETIRE();{double currentY=F(0xf0);if(stage_surface_height()!=currentY) RETIRE();}MOVE();break;
@@ -796,7 +796,7 @@ case 940: {
         reinterpret_cast<SuikaUpdateOwnerView*>(OWNER)->publish_battle_layout_scalar(4.0f);WAVE(12);float packet[4]={0.0f,0.0f,14.0f,90.0f};
         if(g_match_identifier==1) packet[3]=150.0f;
         spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=15.0f;packet[3]=1.0f;spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=16.0f;packet[3]=1.0f;spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=4.0f;
-        for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+index*60.0-20.0);packet[1]=static_cast<float>(static_cast<double>(RF(20))+10.0);spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
+        for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+(index*60.0-20.0));packet[1]=static_cast<float>(static_cast<double>(RF(20))+10.0);spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
     }
     case 1: {
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1460.0 || F(0xf0)<-100.0) RETIRE();F(0x12c)+=40.0;
@@ -808,7 +808,7 @@ case 940: {
         if(!(stage_surface_height()>=currentY || F(0xec)<0.0f || F(0xec)>1280.0f)) break;
         reinterpret_cast<SuikaUpdateOwnerView*>(OWNER)->publish_battle_layout_scalar(4.0f);WAVE(12);float packet[4]={0.0f,0.0f,14.0f,180.0f};
         spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=15.0f;packet[3]=1.0f;spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=16.0f;packet[3]=1.0f;spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=4.0f;
-        for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+index*60.0-20.0);packet[1]=static_cast<float>(static_cast<double>(RF(20))+10.0);spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
+        for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+(index*60.0-20.0));packet[1]=static_cast<float>(static_cast<double>(RF(20))+10.0);spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
     }
     case 2: {
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1460.0 || F(0xf0)<-100.0) RETIRE();F(0x12c)+=40.0;
@@ -820,7 +820,7 @@ case 940: {
         if(!(stage_surface_height()>=currentY || F(0xec)<0.0f || F(0xec)>1280.0f)) break;
         reinterpret_cast<SuikaUpdateOwnerView*>(OWNER)->publish_battle_layout_scalar(4.0f);WAVE(12);float packet[4]={0.0f,0.0f,14.0f,210.0f};
         spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=15.0f;packet[3]=1.0f;spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=16.0f;packet[3]=1.0f;spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=4.0f;
-        for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+index*60.0-20.0);packet[1]=static_cast<float>(static_cast<double>(RF(20))+10.0);spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
+        for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(40))+(index*60.0-20.0));packet[1]=static_cast<float>(static_cast<double>(RF(20))+10.0);spawn_unparented(940,F(0xec),F(0xf0),B(0x104),1,packet,4);}RETIRE();
     }
     case 3:F(0x11c)+=static_cast<double>(0.4f);F(0x120)=F(0x11c);if(B(0x113)<=15) RETIRE();B(0x113)-=15;B(0x110)-=15;B(0x111)-=15;break;
     case 4:PARAM[1]*=static_cast<double>(0.85f);F(0x370)*=static_cast<double>(0.995f);F(0x12c)=F(0x370)+F(0x12c);F(0x11c)+=static_cast<double>(0.01f);F(0x120)=F(0x11c);if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x110)-=10;B(0x111)-=10;MOTION->set_components(PARAM[0],PARAM[1]);break;
