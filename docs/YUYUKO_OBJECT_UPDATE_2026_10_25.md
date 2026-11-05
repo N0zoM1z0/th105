@@ -269,3 +269,7 @@ or unmasked-exception equivalence.
 
 The 34,278-byte callable remains nonexact from +31; the candidate section
 tail is 34,928 bytes. No exact credit is added.
+
+## Action 800 scale branches, 2026-11-05
+
+The target compares `1.0` against the existing X scale at `0x56F78B..0x56F798`: unordered values take the same branch as scale greater than or equal to one. The subsequent updated-scale clamp at `0x56F7AE..0x56F7BB` clamps only an ordered value greater than one. Expressing these two conditions accordingly fixes their unordered behavior. The focused VC8 build shows the corresponding `test ah, 0x41` branches at candidate offsets `0x8B..0x98` and `0xC4..0xD1`. The full 34278-byte root remains non-exact (candidate section tail 34928, first mismatch +31); no exact credit is claimed.

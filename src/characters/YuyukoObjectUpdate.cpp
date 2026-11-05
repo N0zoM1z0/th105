@@ -35,7 +35,7 @@ void YuyukoObjectUpdateView::update_action_state()
   case 0:case 1:case 2:case 3:
    if(emit_repeated(0,0,4))RETIRE();
    if(I(0x180)!=0 || I(0x144)>119){--I(0x330);int count=4;do{PACKET(p288,RND(360),RND(50)*D(0.1f)+5.0,static_cast<float>(S(0x13e)+4));SPAWN(800,1,p288);}while(--count!=0);return;}
-   if(F(0x11c)>=1.0)F(0x11c)+=D(0.01f);else{F(0x11c)+=D(0.02f);if(!(F(0x11c)<=1.0))F(0x11c)=1;}F(0x120)=F(0x11c);H[1]+=D(0.2f);MOVE();F(0x12c)=H[0];break;
+   if(!(F(0x11c)<1.0))F(0x11c)+=D(0.01f);else{F(0x11c)+=D(0.02f);if(F(0x11c)>1.0)F(0x11c)=1;}F(0x120)=F(0x11c);H[1]+=D(0.2f);MOVE();F(0x12c)=H[0];break;
   case 4:case 5:case 6:case 7:
    F(0x12c)+=F(0x370);F(0xf4)*=D(0.97f);F(0xf8)-=D(0.15f);SCALE(F(0x11c)-D(0.01f));if(I(0x144)>14)FADE(10,10);break;
   case 8:case 9:case 10:case 11:
