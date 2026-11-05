@@ -53,7 +53,7 @@ void YuyukoObjectUpdateView::update_action_state()
   case 1:
    if(emit_repeated(0,0,4))RETIRE();if(I(0x144)==0)replace_secondary(990,20,10,1,2);
    SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144))*6.0)*D(0.1f)+D(0.8f));F(0xf4)+=D(0.3f);
-   if(F(0xf0)<=AT(AT(P,void *,0x170),float,0xf0)+100.0){F(0xf8)+=D(0.3f);if(F(0xf8)>8.0f)F(0xf8)=8;}
+   if(!(F(0xf0)>AT(AT(P,void *,0x170),float,0xf0)+100.0)){F(0xf8)+=D(0.3f);if(F(0xf8)>8.0f)F(0xf8)=8;}
    else{F(0xf8)-=D(0.3f);if(F(0xf8)<-8.0f)F(0xf8)=-8;}advance_six(5);if(I(0x180)!=0)RETIRE();break;
   case 2:FADE(13,13);MOVE();F(0xf8)+=F(0x370);F(0x370)+=D(0.2f);break;
   case 3:
