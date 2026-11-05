@@ -1358,7 +1358,7 @@ case 741:
     if(entry(1) && !S(0x730)){S(0x730)=1;time_counter_144=0;}
     return;
 case 750:
-    if(S(0x738)==5 && static_cast<unsigned>(time_counter_144)%5u==0)layout(5.0f);
+    if(S(0x738)==5 && time_counter_144%5==0)layout(5.0f);
     if(!sequence_index_13e) {
         if(!time_counter_144 && !frame_timer_142 && !frame_index_140) {
             float *height=&F(0x7a4);
