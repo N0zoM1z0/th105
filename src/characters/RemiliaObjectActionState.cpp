@@ -533,9 +533,12 @@ void RemiliaObjectUpdateView::update_action_state()
    if(y-stage_surface_height_at_x()>10.0) --I(0x330);
    else { double const next_y=F(0xF0); if(next_y-stage_surface_height_at_x()<-10.0) --I(0x330); }
    MOVE(); if(H[1]<0.5f) H[1]=0.5f;
-   F(0xEC)+=F(0xF4)*C(0x104); F(0xF0)=static_cast<float>(F(0xF8)+F(0xF0));
+   unsigned char facing=B(0x104);
+   F(0xEC)+=F(0xF4)*static_cast<signed char>(facing);
+   float y_position=static_cast<float>(F(0xF8)+F(0xF0)); F(0xF0)=y_position;
    float payload[3]; payload[0]=0; payload[1]=0; payload[2]=5;
-   SPAWN_AT(901,static_cast<float>(random_float(40)+F(0xEC)-20.0),F(0xF0),1,3); break;
+   double roll=static_cast<unsigned>(selector_random_roll(40));
+   spawn_unparented(901,static_cast<float>(roll+F(0xEC)-20.0),y_position,facing,1,reinterpret_cast<const unsigned *>(payload),3); break;
   }
   case 5:
    F(0x11C)+=D(0.05f); F(0x120)*=D(0.98f);

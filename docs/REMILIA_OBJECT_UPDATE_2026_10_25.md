@@ -305,3 +305,7 @@ Its RTTI-backed primary cell6C50E4 points to that entry; the current25944-byte
 candidate extent still requires complete raw control-flow reconciliation.
 Source-present remains1543 and exact remains1403 functions/359740 authored
 code bytes. These counts do not include a Youmu update implementation yet.
+
+## Action 901 ground trail read lifetimes, 2026-11-05
+
+For phase 4, native `0x55AD3F..0x55ADD6` reads facing once before updating X, preserves that byte for the 901 spawn, rounds and stores the updated Y before drawing RNG(40), and adds the converted random integer to the then-current X before subtracting 20. The previous candidate read facing and Y after RNG and spilled the random conversion to float before adding X. Ordinary locals now retain the facing and updated Y snapshots and express the random conversion in the wider arithmetic; focused VC8 output reads facing at `0x36B1`, stores the rounded Y before RNG, and adds the converted integer to X without a float spill. This is an observed read/rounding lifetime correction; the native RNG is not shown to mutate the object, and the normal 0..39 roll is exactly representable as float, so no ordinary-gameplay difference is claimed. The complete 17,793-byte root remains nonexact (candidate section tail 18,360, first mismatch +8), with no exact-byte credit.
