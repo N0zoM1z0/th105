@@ -218,7 +218,7 @@ void YuyukoObjectUpdateView::update_action_state()
   case 7:position_relative(0,0);if(AT(P,short,0x13c)!=307 && AT(P,short,0x13c)!=418)RETIRE();break;
   case 8:position_relative(0,0);if(AT(P,short,0x13c)!=308)RETIRE();break;
   case 10:
-   if(S(0x364)==0){if(I(0x144)%2==0){PACKET(p480,0,0,11);unsigned char facing=B(0x104);spawn_unparented(848,(RND(60)+F(0xec))-30.0,(RND(60)+F(0xf0))-30.0,facing,1,reinterpret_cast<const unsigned *>(p480),3);}
+   if(S(0x364)==0){if(I(0x144)%2==0){PACKET(p480,0,0,11);unsigned int facing=B(0x104);spawn_unparented(848,(RND(60)+F(0xec))-30.0,(RND(60)+F(0xf0))-30.0,facing,1,reinterpret_cast<const unsigned *>(p480),3);}
     B(0x104)=AT(P,unsigned char,0x104);F(0xf4)-=2.0;F(0xf8)+=D(0.2f);if(F(0xf4)<0.0)F(0xf4)=0;if(F(0xf8)>0.0)F(0xf8)=0;
     F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);F(0xec)=AT(P,float,0xec)+F(0x370);F(0xf0)=AT(P,float,0xf0)+F(0x374);if(AT(P,short,0x13c)!=305)S(0x364)=1;
    }else{SCALE(F(0x11c)*D(0.9f));if(++S(0x364)>15)RETIRE();}goto yuyuko848_frame;
