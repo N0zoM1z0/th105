@@ -78,7 +78,7 @@ case 607:
 case 608:
     landing();texture(5,2);
     if(sequence_index_13e<5 && S(0x730)>0){
-        if(sequence_index_13e<4 && S(0x730)%4==1){dispatch_character_wave_handle(19);float p[4];p[0]=static_cast<float>(static_cast<double>(marisa_random(40))-20.0);p[1]=10.0f;p[2]=static_cast<float>(marisa_random(4));p[3]=0.0f;spawn_offset(859,25,87.0,p,4);}++S(0x730);
+        if(sequence_index_13e<4 && S(0x730)%4==1){dispatch_character_wave_handle(19);float p[4];p[0]=static_cast<float>(static_cast<double>(static_cast<float>(marisa_random(40)))-20.0);p[1]=10.0f;p[2]=static_cast<float>(marisa_random(4));p[3]=0.0f;spawn_offset(859,25,87.0,p,4);}++S(0x730);
     }
     if((sequence_index_13e==1 || sequence_index_13e==3) && time_counter_144>40){next_sequence_block();return;}
     if(advance())set_action_and_finalize(0);
@@ -120,7 +120,7 @@ case 615:
         if(!frame_timer_142 && frame_index_140==7){
             dispatch_character_wave_handle(24);S(0x7a6)=600;S(0x7a4)=0;float p[3];float n=0.0f;
             do{p[0]=static_cast<float>(90.0*n);p[1]=0.0f;p[2]=static_cast<float>(n+0.0);spawn(865,F(0xec),static_cast<float>(F(0xf0)+100.0),B(0x104),-1,p,3);n=static_cast<float>(n+1.0);}while(n<4.0f);
-            for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(angle)+30.0+static_cast<double>(marisa_random(40)));p[1]=13.0f;p[2]=2.0f;spawn(848,F(0xec),F(0xf0),B(0x104),(p[0]>=0.0f && p[0]<=180.0f)?1:-1,p,3);}
+            for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(angle)+30.0+static_cast<double>(static_cast<float>(marisa_random(40))));p[1]=13.0f;p[2]=2.0f;spawn(848,F(0xec),F(0xf0),B(0x104),(p[0]>=0.0f && p[0]<=180.0f)?1:-1,p,3);}
         }
         if(!sequence_index_13e && frame_index_140==3 && !frame_timer_142)spell_flash(-36,83.0,2);
     }return;
@@ -131,7 +131,7 @@ case 619:
     if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==3)spell_flash(-16,100.0,5);if(!frame_timer_142 && frame_index_140==5){float p[3]={0.0f,0.0f,11.0f};spawn_offset(869,100,105.0,p,3);dispatch_character_wave_handle(10);++S(0x732);}}return;
 case 658:
     if(sequence_index_13e==5)landing();else texture(5,2);
-    if(S(0x730)>0){if(sequence_index_13e<4 && S(0x730)%4==1){dispatch_character_wave_handle(19);float p[4];p[0]=static_cast<float>(static_cast<double>(marisa_random(40))-20.0);p[1]=10.0f;p[2]=static_cast<float>(marisa_random(4));p[3]=0.0f;spawn_offset(859,25,107.0,p,4);}++S(0x730);}
+    if(S(0x730)>0){if(sequence_index_13e<4 && S(0x730)%4==1){dispatch_character_wave_handle(19);float p[4];p[0]=static_cast<float>(static_cast<double>(static_cast<float>(marisa_random(40)))-20.0);p[1]=10.0f;p[2]=static_cast<float>(marisa_random(4));p[3]=0.0f;spawn_offset(859,25,107.0,p,4);}++S(0x730);}
     if((sequence_index_13e==1 || sequence_index_13e==3) && time_counter_144>40){next_sequence_block();return;}
     if(sequence_index_13e==4){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){select_sequence(5);zero_motion();F(0xf0)=marisa_surface(this);return;}}
     if(advance())set_action_and_finalize(0);if(entry(5)){set_action_and_finalize(9);return;}if(entry(1))spell_flash(-23,106.0,1);

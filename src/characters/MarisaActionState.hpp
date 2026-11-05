@@ -219,7 +219,7 @@ public:
     }
     __forceinline void rising_trail() {
         float p[3];p[0]=static_cast<float>(static_cast<float>(marisa_random_u32()%60u)+95.0-30.0);
-        float speed=static_cast<float>(static_cast<double>(marisa_random(100))*static_cast<double>(0.1f));
+        float speed=static_cast<float>(static_cast<double>(static_cast<float>(marisa_random(100)))*static_cast<double>(0.1f));
         p[1]=static_cast<float>(speed+10.0);p[2]=static_cast<float>(marisa_random_u32()&3u);
         spawn_offset(810,40,51.0,p,3);
     }
