@@ -371,7 +371,7 @@ void IkuObjectUpdateView::update_action_state()
   case 3:
    if(S(0x364)<2 && AT(this,void *,0x34c)){
     if(AT(AT(this,void *,0x34c),short,0x364)==2){S(0x364)=2;return;}
-    F(0xec)=AT(AT(this,void *,0x34c),float,0xec);float height=stage_surface_height();void *related=AT(this,void *,0x34c);F(0xf0)=height;
+    F(0xec)=AT(AT(this,void *,0x34c),float,0xec);F(0xf0)=stage_surface_height();void *related=AT(this,void *,0x34c);
     if(!(AT(related,float,0xf0)>=150.0f)){SCALE((150.0-AT(related,float,0xf0))/150.0+1.0);B(0x113)=255;}
     else{SCALE(1.0);if(!(AT(related,float,0xf0)<=405.0))B(0x113)=0;else B(0x113)=static_cast<unsigned char>(405.0-AT(related,float,0xf0));}}
    if(S(0x364)==2){if(B(0x113)<10)RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x112)-=10;}break;
@@ -504,7 +504,7 @@ void IkuObjectUpdateView::update_action_state()
    if(S(0x364)!=0){if(B(0x113)<10)RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x112)-=10;}
    else if(AT(this,void *,0x34c)){
     if(AT(AT(this,void *,0x34c),short,0x364)==1){S(0x364)=1;return;}
-    F(0xec)=AT(AT(this,void *,0x34c),float,0xec);float height=stage_surface_height();void *related=AT(this,void *,0x34c);F(0xf0)=height;
+    F(0xec)=AT(AT(this,void *,0x34c),float,0xec);F(0xf0)=stage_surface_height();void *related=AT(this,void *,0x34c);
     if(!(AT(related,float,0xf0)>=150.0f)){SCALE((150.0-AT(related,float,0xf0))/150.0+1.0);B(0x113)=255;}
     else{SCALE(1.0);if(!(AT(related,float,0xf0)<=405.0))B(0x113)=0;else B(0x113)=static_cast<unsigned char>(405.0-AT(related,float,0xf0));}}
    break;

@@ -339,3 +339,7 @@ In the `H[1] == 0` periodic 910 spawn, native `0x6399E6..0x639A26` chooses the d
 The `H[1] == 1` companion path has the same lifetime pattern at `0x639AF5..0x639B3B`: the height result is stored directly in the outgoing Y slot before the separate random X calculation, whose native float temporary is retained. Direct argument expressions reproduce that local sequence at candidate `0x6DA7..0x6DEC`, including the later X temporary. This also preserves the native call order: height provider, then random X. The whole object update remains nonexact.
 
 The `H[1] == 2` branch passes its random X conversion straight into the outgoing spawn argument at native `0x639BFE..0x639C38`, rather than saving it in a separate float local first. The direct argument at candidate `0x6D2E..0x6D7A` now follows the same order and removes that extra local store/reload. RNG remains unsigned with the original 2^32 correction. No whole-function exact claim is made.
+
+## Related-object height writes (2026-11-05)
+
+The two related-object paths at `0x63827B..0x638292` and `0x63A6B9..0x63A6D0` call the surface-height provider, reload the related pointer, and write the returned x87 value directly to this object's Y field before comparing the related Y. The previous source's float `height` local caused an extra stack store/reload. Assigning the call result directly to `F(0xf0)` yields the same local order in the fresh candidate (`0x52E5..0x52FC` and `0x77E3..0x77FA`); later branch layout is still different. This is not a whole-function exact match.
