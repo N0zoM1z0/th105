@@ -221,7 +221,7 @@ case 815: {
     if(S(0x13e)==4) {
         if(emit_repeated(0,0,0)) RETIRE();F(0xf4)=0.0f;F(0xf8)=0.0f;
         if(I(0x144)%10==0) {float packet[3]={0.0f,0.0f,3.0f};spawn_unparented(815,F(0xec),stage_surface_height(),B(0x104),-1,packet,3);}
-        if(!(PARAM[1]>=static_cast<double>(I(0x144)))) {
+        if(PARAM[1]<static_cast<double>(I(0x144))) {
             WAVE(5);float packet[3]={0.0f,0.0f,0.0f};spawn_unparented(815,F(0xec),static_cast<float>(stage_surface_height()-800.0),B(0x104),-1,packet,3);
             for(int count=6;count!=0;--count) {packet[0]=static_cast<float>(-60.0-static_cast<double>(RF(60)));packet[1]=static_cast<float>(static_cast<double>(RF(5))+10.0);packet[2]=5.0f;spawn_unparented(815,F(0xec),stage_surface_height(),B(0x104),-1,packet,3);}RETIRE();
         }

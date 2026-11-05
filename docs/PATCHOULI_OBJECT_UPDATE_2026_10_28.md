@@ -172,3 +172,7 @@ or unmasked-exception equivalence.
 
 The 50,649-byte callable remains nonexact from +37; the candidate section
 tail is 51,412 bytes. No exact credit is added.
+
+## Action 815 phase 4 timer, 2026-11-05
+
+The target at `0x522417..0x52242D` starts the burst only when the float timer limit is ordered and less than the integer frame. The prior negated `>=` also started it for unordered input. The source now uses ordered `<`; the focused candidate implements the equivalent reversed compare and continuation at `0x1B63..0x1B79`. The complete 50649-byte root remains non-exact (candidate section tail 51412, first mismatch +37); no exact credit is claimed.
