@@ -298,7 +298,7 @@ case 603:
     if(sequence_index_13e==6)landing();texture(6,2);
     if(sequence_index_13e==2){
         if(!(time_counter_144%7)){float p[3]={0.0f,0.0f,6.0f};double base_y=remilia_surface(this)+50.0;int direction=B(0x104);float base_x=static_cast<float>(F(0xec)+400.0);
-            float y=static_cast<float>(base_y-static_cast<double>(remilia_random(100)));float x=static_cast<float>(base_x-static_cast<double>(remilia_random(800)));spawn(853,x,y,direction,1,p,3);}
+            float y=static_cast<float>(base_y-static_cast<double>(static_cast<float>(remilia_random(100))));float x=static_cast<float>(base_x-static_cast<double>(static_cast<float>(remilia_random(800))));spawn(853,x,y,direction,1,p,3);}
         if(time_counter_144>=120){next_sequence_block();return;}
     }
     if(sequence_index_13e==3 && time_counter_144>=24){next_sequence_block();F(0x100)=0.4f;return;}
@@ -409,7 +409,7 @@ case 720:
         if(static_cast<unsigned char>(crossed())){
             next_sequence_block();layout(8.0f);dispatch_character_wave_handle(57);F(0xf0)=remilia_surface(this);F(0xf4)=-15.0f;F(0xf8)=15.0f;F(0x100)=0.4f;
             float p[3]={0.0f,0.0f,0.0f};spawn(901,F(0xec),F(0xf0),B(0x104),-1,p,3);p[1]=25.0f;p[2]=1.0f;
-            for(float n=0.0f;n<8.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(static_cast<double>(remilia_random(30))+(n*45.0+30.0));
+            for(float n=0.0f;n<8.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(30)))+(n*45.0+30.0));
                 if(p[0]<0.0f || p[0]>180.0f)spawn(901,F(0xec),F(0xf0),B(0x104),-1,p,3);else spawn(901,F(0xec),F(0xf0),B(0x104),1,p,3);}
             p[0]=0.0f;p[1]=35.0f;p[2]=4.0f;
             spawn(901,static_cast<float>(50*facing()+static_cast<double>(F(0xec))),F(0xf0),B(0x104),1,p,3);
@@ -431,7 +431,7 @@ case 720:
     if(advance())set_action_and_finalize(700);if(entry(1)){dispatch_character_wave_handle(13);F(0xf4)=0.0f;F(0xf8)=40.0f;}return;
 case 721:
     if(sequence_index_13e==7)landing();if(advance())set_action_and_finalize(700);
-    if(entry(1)){S(0x730)=1;F(0xf4)=-30.0f;F(0xf8)=static_cast<float>(static_cast<double>(remilia_random(12))+10.0);F(0x100)=0.3f;dispatch_character_wave_handle(13);}
+    if(entry(1)){S(0x730)=1;F(0xf4)=-30.0f;F(0xf8)=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(12)))+10.0);F(0x100)=0.3f;dispatch_character_wave_handle(13);}
     if(entry(4)){aim800(10.0f,70.0f);F(0x744)=0.0f;set_oriented_components_f0_f4(0.0f,50.0f);F(0x108)=0.0f;F(0x10c)=80.0f;F(0x12c)=F(0x744);dispatch_character_wave_handle(14);
         float p[3]={F(0x12c),0.0f,9.0f};spawn(901,F(0xec),F(0xf0),B(0x104),1,p,3);return;}
     if(sequence_index_13e==1 || sequence_index_13e==2)F(0xf8)-=F(0x100);
@@ -470,7 +470,7 @@ case 741:
             float p[3];
             if(!S(0x732)){dispatch_character_wave_handle(61);p[0]=0.0f;p[1]=0.0f;p[2]=7.0f;spawn_offset(903,0,230.0,p,3);}
             if(!(time_counter_144%6)){
-                p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(600))+100.0);p[2]=5.0f;
+                p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(600)))+100.0);p[2]=5.0f;
                 int direction=B(0x104);float y=static_cast<float>(remilia_sine(-p[0])*p[1]+(static_cast<double>(F(0xf0))+230.0));
                 double cosine=remilia_cosine(-p[0]);int signed_facing=at<signed char>(0x104);
                 float x=static_cast<float>(cosine*p[1]*signed_facing+F(0xec));spawn(903,x,y,direction,1,p,3);

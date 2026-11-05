@@ -237,7 +237,7 @@ public:
                 float p[3]={0.0f,0.0f,0.0f};spawn(826,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),-1,p,3);
                 p[1]=15.0f;p[2]=1.0f;
                 for(float n=0.0f;n<6.0f;n=static_cast<float>(n+1.0)){
-                    p[0]=static_cast<float>(static_cast<double>(remilia_random(30))+(n*60.0+30.0));
+                    p[0]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(30)))+(n*60.0+30.0));
                     if(p[0]<0.0f || p[0]>180.0f)spawn(826,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),-1,p,3);
                     else spawn(826,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);
                 }
@@ -282,12 +282,12 @@ public:
 
     __forceinline void random902(int range) {
         dispatch_character_wave_handle(58);
-        float p[3];p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(range))*static_cast<double>(0.1f)+4.0);p[2]=0.0f;spawn_offset(902,30,90.0,p,3);
+        float p[3];p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(range)))*static_cast<double>(0.1f)+4.0);p[2]=0.0f;spawn_offset(902,30,90.0,p,3);
     }
 
     __forceinline void ring902(float *p,int count) {
         for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){
-            p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(12))+18.0);p[2]=1.0f;
+            p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(12)))+18.0);p[2]=1.0f;
             unsigned char direction=at<unsigned char>(0x104);
             float y=static_cast<float>(remilia_sine(static_cast<float>(180.0-p[0]))*(p[1]*60.0)+(static_cast<double>(at<float>(0xf0))+100.0));
             double cosine=remilia_cosine(static_cast<float>(180.0-p[0]));
@@ -298,7 +298,7 @@ public:
         }
     }
     __forceinline void burst902(float *p,int count,double bias) {
-        for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(10))+bias);p[2]=5.0f;spawn_offset(902,0,100.0,p,3);}
+        for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(10)))+bias);p[2]=5.0f;spawn_offset(902,0,100.0,p,3);}
     }
     __forceinline void teleport902(float vx,float vy) {
         if(sequence_index_13e==1 || sequence_index_13e==2) {
@@ -323,7 +323,7 @@ public:
                 p[0]=0.0f;p[1]=0.0f;p[2]=2.0f;
                 spawn_offset(902,0,100.0,p,3);spawn_offset(902,0,100.0,p,3);spawn_offset(902,0,100.0,p,3);
                 p[2]=4.0f;spawn_offset(902,0,100.0,p,3);p[2]=3.0f;
-                for(float n=0.0f;n<8.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(22))+8.0);spawn_offset(902,0,100.0,p,3);}
+                for(float n=0.0f;n<8.0f;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(22)))+8.0);spawn_offset(902,0,100.0,p,3);}
                 select_sequence(4);return;
             }
         }
@@ -339,7 +339,7 @@ public:
         for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(n*step+angle);p[1]=0.0f;p[2]=0.0f;spawn_offset(903,0,230.0,p,3);}
     }
     __forceinline void burst903(float *p,int count,double bias) {
-        for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(remilia_random(40))*static_cast<double>(0.1f)+bias);p[2]=3.0f;spawn_offset(903,0,230.0,p,3);}
+        for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){p[0]=static_cast<float>(remilia_random(360));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(remilia_random(40)))*static_cast<double>(0.1f)+bias);p[2]=3.0f;spawn_offset(903,0,230.0,p,3);}
     }
 };
 }
