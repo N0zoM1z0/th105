@@ -1266,12 +1266,12 @@ case 730:
         if(S(0x730)%5==0 && F(0x73c)<=5.0f) {
             float p[3]={F(0x73c),0.0f,0.0f};int direction=B(0x104);
             unsigned random=tenshi_random(100);int signed_facing=at<signed char>(0x104);
-            spawn(920,static_cast<float>((static_cast<double>(random)+200.0+200.0*F(0x73c))*signed_facing+F(0xec)),
+            spawn(920,static_cast<float>((static_cast<double>(static_cast<float>(random))+200.0+200.0*F(0x73c))*signed_facing+F(0xec)),
                   -100.0f,direction,1,p,3);
             p[0]=static_cast<float>(F(0x73c)+6.0);p[1]=0.0f;p[2]=0.0f;
             direction=B(0x104);double base_x=F(0xec);
             random=tenshi_random(100);signed_facing=at<signed char>(0x104);
-            spawn(920,static_cast<float>(base_x-(static_cast<double>(random)+200.0+200.0*F(0x73c))*signed_facing),
+            spawn(920,static_cast<float>(base_x-(static_cast<double>(static_cast<float>(random))+200.0+200.0*F(0x73c))*signed_facing),
                   -100.0f,direction,1,p,3);F(0x73c)=static_cast<float>(F(0x73c)+1.0);
         }
         if(S(0x730)>=120){next_sequence_block();return;}

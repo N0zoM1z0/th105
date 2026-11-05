@@ -1,0 +1,4 @@
+
+## Action 730 unsigned random conversions, 2026-11-05
+
+Both native object-920 spawn paths convert RNG(100) using the float `2^32` correction before the coordinate arithmetic (`0x6477CF..0x64780B` and `0x647871..0x6478AD`). The previous source promoted each unsigned value directly to double, emitting two double corrections. Expressing conversion through float restores the observed correction type without an early float store. Native and focused candidate each contain 68 float corrections and no double corrections in the action root; the previous candidate contained 66 and 2. This aggregate is diagnostic rather than whole-root proof. RNG values are bounded below 100, so no ordinary-play numeric difference is established. The independent 18-byte sine origin remains exact, and its source pin is refreshed. The 47,784-byte action root remains nonexact at +8, with a 49,184-byte candidate section tail; no exact credit is claimed.
