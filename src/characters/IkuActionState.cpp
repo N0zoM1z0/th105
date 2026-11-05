@@ -1095,9 +1095,12 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
 
             {
                 middle_clear_input(0x6bc);
-                if (sequence_index_13e == 0 || sequence_index_13e == 1) {
-                    if (float_at(0xf4) > 0.0f)
-                        float_at(0xf4) = static_cast<float>(float_at(0xf4) - (sequence_index_13e == 0 ? 0.5 : 1.0));
+                if (sequence_index_13e == 0) {
+                    if (float_at(0xf4) > 0.0f) float_at(0xf4) -= 0.5;
+                    if (float_at(0xf4) < 0.0f) float_at(0xf4) = 0.0f;
+                }
+                if (sequence_index_13e == 1) {
+                    if (float_at(0xf4) > 0.0f) float_at(0xf4) -= 1.0;
                     if (float_at(0xf4) < 0.0f) float_at(0xf4) = 0.0f;
                 }
             }
