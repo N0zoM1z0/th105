@@ -281,7 +281,7 @@ case 600:
     if(sequence_index_13e==1 || sequence_index_13e==2 || sequence_index_13e==3)hover(240.0);
     if(sequence_index_13e>=4 && sequence_index_13e<=5){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){zero_motion();select_sequence(6);F(0xf0)=remilia_surface(this);return;}}
     if(advance())set_action_and_finalize(0);if(entry(1))F(0xf8)=0.0f;
-    if(entry(2)){float p[3]={0.0f,0.0f,0.0f};int direction=B(0x104);float y=remilia_surface(this);spawn(850,F(0xec),y,direction,1,p,3);dispatch_character_wave_handle(50);}return;
+    if(entry(2)){float p[3]={0.0f,0.0f,0.0f};int direction=B(0x104);spawn(850,F(0xec),remilia_surface(this),direction,1,p,3);dispatch_character_wave_handle(50);}return;
 case 601:
     if(entry(0)){spell_flash(-14,190.0,2);dispatch_character_wave_handle(52);float p[3]={0.0f,0.0f,0.0f};spawn(851,F(0xec),F(0xf0),B(0x104),1,p,3);}
     landing();texture(6,2);if(advance())set_action_and_finalize(0);
@@ -306,8 +306,8 @@ case 603:
     if(sequence_index_13e>=4 && sequence_index_13e<=5){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){zero_motion();select_sequence(6);F(0xf0)=remilia_surface(this);return;}}
     if(advance())set_action_and_finalize(0);if(entry(1))F(0xf8)=0.0f;
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==3)spell_flash(0,200.0,5);
-    if(entry(1)){float p[3]={0.0f,0.0f,0.0f};int direction=B(0x104);float y=remilia_surface(this);spawn(853,F(0xec),y,direction,1,p,3);
-        p[2]=4.0f;direction=B(0x104);y=remilia_surface(this);spawn(853,F(0xec),y,direction,1,p,3);
+    if(entry(1)){float p[3]={0.0f,0.0f,0.0f};int direction=B(0x104);spawn(853,F(0xec),remilia_surface(this),direction,1,p,3);
+        p[2]=4.0f;direction=B(0x104);spawn(853,F(0xec),remilia_surface(this),direction,1,p,3);
         p[2]=5.0f;spawn_offset(853,0,200.0,p,3);dispatch_character_wave_handle(51);}return;
 case 604:
     if(entry(0)){spell_flash(-14,190.0,4);dispatch_character_wave_handle(52);float p[3]={0.0f,0.0f,0.0f};spawn(854,F(0xec),F(0xf0),B(0x104),1,p,3);}
@@ -391,7 +391,7 @@ case 711:
     if(sequence_index_13e==2 && time_counter_144>60){next_sequence_block();F(0x100)=0.4f;return;}
     if(sequence_index_13e>=3 && sequence_index_13e<=4){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){zero_motion();select_sequence(5);F(0xf0)=remilia_surface(this);return;}}
     if(advance())set_action_and_finalize(700);if(entry(1))F(0xf8)=0.0f;
-    if(entry(2)){float p[3]={0.0f,0.0f,0.0f};int direction=B(0x104);float y=remilia_surface(this);spawn(850,F(0xec),y,direction,1,p,3);dispatch_character_wave_handle(50);}return;
+    if(entry(2)){float p[3]={0.0f,0.0f,0.0f};int direction=B(0x104);spawn(850,F(0xec),remilia_surface(this),direction,1,p,3);dispatch_character_wave_handle(50);}return;
 case 720:
     if(!sequence_index_13e || sequence_index_13e==6)landing();
     if(sequence_index_13e==1 && F(0xf0)>=1280.0f){F(0xf0)=1280.0f;zero_motion();next_sequence_block();return;}

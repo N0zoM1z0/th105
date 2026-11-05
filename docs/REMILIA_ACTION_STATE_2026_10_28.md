@@ -222,3 +222,7 @@ final addition, though it schedules the independent multiplication later
 than the target. No normal-play numeric difference is established. The root
 remains 61962 bytes, nonexact at +47, with candidate section tail 63068; no
 exact credit is claimed.
+
+## Surface-height spawn arguments (2026-11-05)
+
+Four calls in actions 600, 603, and 711 use the surface provider's return directly as the spawn Y argument in the target. Examples include `0x54E62D..0x54E654`, `0x54EE7B..0x54EEA3`, and `0x550A18..0x550A3F`; action 603 calls the provider separately for each of its two spawns. The previous float locals introduced an extra stack store/reload before each call. Direct arguments now reproduce the local provider-to-outgoing-slot lifetime, including both separate 603 provider calls. Direction is still captured before each provider call; no whole-root exactness or normal-gameplay numerical difference is asserted.
