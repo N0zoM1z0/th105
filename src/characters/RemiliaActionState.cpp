@@ -476,17 +476,17 @@ case 741:
                 float x=static_cast<float>(cosine*p[1]*signed_facing+F(0xec));spawn(903,x,y,direction,1,p,3);
             }
             switch(g_match_identifier){
-            case 0:if(!S(0x732))ring903(p,6,60.0);if(at<unsigned short>(0x732)<90)++S(0x732);else I(0x730)=2;break;
-            case 1:if(!S(0x732))ring903(p,8,45.0);if(at<unsigned short>(0x732)<90)++S(0x732);else I(0x730)=2;break;
-            case 2:if(!S(0x732))ring903(p,10,36.0);if(at<unsigned short>(0x732)<90)++S(0x732);else I(0x730)=2;break;
-            case 3:if(!S(0x732))ring903(p,12,30.0);if(at<unsigned short>(0x732)<90)++S(0x732);else I(0x730)=2;break;
+            case 0:if(!S(0x732))ring903(p,6,60.0);if(S(0x732)<90)++S(0x732);else I(0x730)=2;break;
+            case 1:if(!S(0x732))ring903(p,8,45.0);if(S(0x732)<90)++S(0x732);else I(0x730)=2;break;
+            case 2:if(!S(0x732))ring903(p,10,36.0);if(S(0x732)<90)++S(0x732);else I(0x730)=2;break;
+            case 3:if(!S(0x732))ring903(p,12,30.0);if(S(0x732)<90)++S(0x732);else I(0x730)=2;break;
             }
         }
         if(S(0x730)==2){
             if(!S(0x732)){layout(10.0f);dispatch_character_wave_handle(62);float flash[3]={0.0f,0.0f,6.0f};spawn_offset(903,0,230.0,flash,3);spawn_offset(903,0,230.0,flash,3);spawn_offset(903,0,230.0,flash,3);
                 float p[3];switch(g_match_identifier){case 0:burst903(p,8,3.0);break;case 1:burst903(p,12,3.0);break;case 2:burst903(p,20,3.0);break;case 3:burst903(p,30,2.0);break;}
             }
-            if(at<unsigned short>(0x732)<30)++S(0x732);else{S(0x732)=0;S(0x730)=0;}
+            if(S(0x732)<30)++S(0x732);else{S(0x732)=0;S(0x730)=0;}
         }
     }
     if(advance()){set_action_and_finalize(741);flip();}if(entry(1)){F(0xf4)=0.0f;F(0xf8)=15.0f;F(0x100)=0.3f;}return;

@@ -187,3 +187,7 @@ At `0x54F50D..0x54F530`, the original compares the 16-bit sequence against 3 wit
 ## Action 741 signed counter threshold, 2026-11-05
 
 The target at `0x553675..0x553695` compares the 16-bit counter at `0x732` with 60 using signed `jl`; a negative value is incremented rather than triggering the reset. The prior source read the counter as unsigned, which treated negative values as above threshold. The field is now read as signed for this comparison. Focused VC8 compilation emits a signed conditional jump; ordinary-play reachability of negative counter values is not established. The whole root remains nonexact and receives no exact credit.
+
+## Action 741 later signed counter thresholds, 2026-11-05
+
+The same `0x732` counter is compared as signed against 90 at `0x553B0C..0x553B2C` and against 30 at `0x553FA5..0x553FC5`, both using `jl`. Four difficulty-source branches share the former native comparison. The earlier unsigned reads incorrectly took the reset path for negative counters; the five source comparisons now preserve signed behavior. Focused VC8 emits signed `jge` gates for both thresholds. Negative-value reachability in ordinary play remains unproved, and the full root remains nonexact without exact credit.
