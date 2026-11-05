@@ -123,3 +123,7 @@ At `0x509BA8..0x509BB9`, the target retires only when the decayed scale is order
 ## Action 801 fade gates, 2026-11-05
 
 The target phase 10 and 11 checks at `0x4FD5ED..0x4FD5FE` and `0x4FD66F..0x4FD67A` retire only for ordered scales at or below 0.01. The previous negated greater-than checks also retired unordered values. Both source conditions now use ordered `<=`, and focused compilation reproduces the native local branch forms at `0xB04..0xB15` and `0xBBA..0xBC5`. The full 62278-byte root remains non-exact (candidate section tail 62960, first mismatch +37); no exact credit is claimed.
+
+## Action 817 surface-impact Y captures, 2026-11-05
+
+In phases 1, 10 and 8, the native surface-impact checks retain current Y in a QWORD before calling the surface-height helper at `0x50056B..0x50057C`, `0x500E4E..0x500E5F` and `0x500A64..0x500A75`. The earlier source read Y after that helper. Each path now captures Y only when its preceding distance or landing checks have failed, preserving the original short-circuit call order. Focused VC8 output shows the corresponding pre-call QWORD stores and comparisons at `0x3B00`, `0x3DBE` and `0x42FE`. The ordered greater-than test is unchanged. The full 62278-byte callable remains non-exact; no exact credit is claimed.

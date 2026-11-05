@@ -319,7 +319,8 @@ case 817: {
         if(FIELD(OWNER,signed char,0x60d)>=2 && S(0x364)==0) {void *target=TARGET;double dx=(FIELD(target,float,0xec)-static_cast<double>(F(0xec)))*C(0x104);if(dx<=200.0 && dx>=0.0 && F(0xf0)<static_cast<double>(FIELD(target,float,0xf0))) {
             S(0x364)=1;select_sequence(7);owner=OWNER;F(0xf4)=4.0f;F(0xf8)=static_cast<float>((static_cast<double>(FIELD(owner,signed char,0x60d))-2.0)*4.0+7.0);return;
         }}
-        if((square_float_value(F(0xec)-FIELD(TARGET,float,0xec))<=2500.0 && square_float_value(F(0xf0)-FIELD(TARGET,float,0xf0))<=10000.0) || stage_surface_height()>static_cast<double>(F(0xf0)) || S(0x174)<0) {
+        bool impact=(square_float_value(F(0xec)-FIELD(TARGET,float,0xec))<=2500.0 && square_float_value(F(0xf0)-FIELD(TARGET,float,0xf0))<=10000.0);if(!impact){currentY=F(0xf0);impact=stage_surface_height()>currentY;}
+        if(impact || S(0x174)<0) {
             publish_battle_layout_scalar(10.0f);select_sequence(6);B(0x135)=0;groundImpactA[0]=0.0f;groundImpactA[1]=0.0f;groundImpactA[2]=2.0f;groundImpact=groundImpactA;goto alice_817_ground_impact;
         }
 if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || F(0xf0)<-160.0) RETIRE();F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;
@@ -329,7 +330,8 @@ if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || F(0xf0)<-160.0) RETIRE
         if(FIELD(OWNER,signed char,0x60d)>=2) {void *target=TARGET;double dx=(FIELD(target,float,0xec)-static_cast<double>(F(0xec)))*C(0x104);if(dx<=200.0 && dx>=0.0 && F(0xf0)>=static_cast<double>(FIELD(target,float,0xf0))) {
             select_sequence(8);emit_effect(1,F(0xec),F(0xf0),B(0x104),1);reinterpret_cast<AliceUpdateOwnerView*>(OWNER)->dispatch_indexed_event_member(1);F(0xf4)+=3.0;F(0xf8)=4.0f;return;
         }}
-        if((square_float_value(F(0xec)-FIELD(TARGET,float,0xec))<=2500.0 && square_float_value(F(0xf0)-FIELD(TARGET,float,0xf0))<=10000.0) || stage_surface_height()>static_cast<double>(F(0xf0)) || S(0x174)<0) {
+        bool impact=(square_float_value(F(0xec)-FIELD(TARGET,float,0xec))<=2500.0 && square_float_value(F(0xf0)-FIELD(TARGET,float,0xf0))<=10000.0);if(!impact){currentY=F(0xf0);impact=stage_surface_height()>currentY;}
+        if(impact || S(0x174)<0) {
             publish_battle_layout_scalar(10.0f);select_sequence(6);B(0x135)=0;groundImpactB[0]=0.0f;groundImpactB[1]=0.0f;groundImpactB[2]=2.0f;groundImpact=groundImpactB;goto alice_817_ground_impact;
         }
 if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || F(0xf0)<-160.0) RETIRE();F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;
@@ -346,7 +348,8 @@ if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || F(0xf0)<-160.0) RETIRE
     }
     case 8: {
         if(emit_repeated(0,3,5)) RETIRE();F(0xf8)-=0.5;double nextY=static_cast<double>(F(0xf8))+F(0xf0);
-        if(stage_surface_height()>=nextY || (square_float_value(F(0xec)-FIELD(TARGET,float,0xec))<=2500.0 && square_float_value(F(0xf0)-FIELD(TARGET,float,0xf0))<=10000.0) || stage_surface_height()>static_cast<double>(F(0xf0)) || S(0x174)<0) {publish_battle_layout_scalar(10.0f);select_sequence(6);B(0x135)=0;float packet[3]={0.0f,0.0f,2.0f};spawn_unparented(817,F(0xec),F(0xf0),B(0x104),1,packet,3);WAVE(6);F(0xf8)=12.0f;F(0xf4)=-10.0f;return;}
+        bool impact=stage_surface_height()>=nextY || (square_float_value(F(0xec)-FIELD(TARGET,float,0xec))<=2500.0 && square_float_value(F(0xf0)-FIELD(TARGET,float,0xf0))<=10000.0);if(!impact){double currentY=F(0xf0);impact=stage_surface_height()>currentY;}
+        if(impact || S(0x174)<0) {publish_battle_layout_scalar(10.0f);select_sequence(6);B(0x135)=0;float packet[3]={0.0f,0.0f,2.0f};spawn_unparented(817,F(0xec),F(0xf0),B(0x104),1,packet,3);WAVE(6);F(0xf8)=12.0f;F(0xf4)=-10.0f;return;}
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || F(0xf0)<-160.0) RETIRE();F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;
     }
     }FINISH();
