@@ -206,7 +206,7 @@ case 806: {
     if(I(0x180)==5) RETIRE();
     if(S(0x13e)<=6) {
         if(S(0x140)==0) {if(emit_repeated(0,0,4)) RETIRE();if(I(0x180)!=0 || I(0x144)>60) {next_sequence_frame();float packet[3]={0.0f,0.0f,static_cast<float>(S(0x13e)+7)};spawn_unparented(806,F(0xec),F(0xf0),B(0x104),1,packet,3);return;}
-            if(!(F(0xec)<=1380.0f && F(0xec)>=-100.0f && F(0xf0)<=1000.0f && F(0xf0)>=-160.0f)) RETIRE();MOTION->set_components(PARAM[0],PARAM[1]);MOVE();}
+            if((F(0xec)>1380.0f || F(0xec)<-100.0f || F(0xf0)>1000.0f || F(0xf0)<-160.0f)) RETIRE();MOTION->set_components(PARAM[0],PARAM[1]);MOVE();}
         if(S(0x140)==1) {F(0x11c)*=static_cast<double>(0.85f);F(0x120)=F(0x11c);if(B(0x113)<=20) RETIRE();B(0x113)-=20;}
     }else {F(0x11c)+=static_cast<double>(0.02f);F(0x120)=F(0x11c);if(B(0x113)<=10) RETIRE();B(0x113)-=10;}FINISH();
 
@@ -269,7 +269,7 @@ case 815: {
     case 0: {
         if(emit_repeated(0,1,4)) RETIRE();double nextY=static_cast<double>(F(0xf0))+F(0xf8);
         if(stage_surface_height()>=nextY || S(0x174)<0) {publish_battle_layout_scalar(5.0f);next_sequence_block();float packet[3]={0.0f,0.0f,2.0f};spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);WAVE(6);F(0xf0)=stage_surface_height();F(0xf8)=-F(0xf8);F(0xf4)*=static_cast<double>(0.2f);return;}
-        if(!(F(0xec)<=1380.0f && F(0xec)>=-100.0f && F(0xf0)<=1000.0f && F(0xf0)>=-160.0f)) RETIRE();F(0xf8)-=0.5;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;
+        if((F(0xec)>1380.0f || F(0xec)<-100.0f || F(0xf0)>1000.0f || F(0xf0)<-160.0f)) RETIRE();F(0xf8)-=0.5;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;
     }
     case 1:F(0x12c)+=15.0;if(B(0x113)<=5) RETIRE();B(0x113)-=5;F(0xf8)-=0.5;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);break;
     case 2:advance_six(0);F(0x11c)-=static_cast<double>(0.01f);F(0x120)=F(0x11c);if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;break;
@@ -422,7 +422,7 @@ case 827: {
             }
         }
         MOTION->set_components(PARAM[0],PARAM[1]);owner=OWNER;F(0xec)=static_cast<float>(F(0xf4)*static_cast<double>(C(0x104))+F(0xec));F(0xf0)=F(0xf8)+F(0xf0);
-        if(FIELD(owner,short,0x7a6)<=0 && (F(0xec)<-100.0f || F(0xec)>1380.0f || F(0xf0)>1060.0f || !(F(0xf0)>=-260.0f))) RETIRE();break;
+        if(FIELD(owner,short,0x7a6)<=0 && (F(0xec)<-100.0f || F(0xec)>1380.0f || F(0xf0)>1060.0f || F(0xf0)<-260.0f)) RETIRE();break;
     }
     case 5:case 6: {
         if(emit_repeated(0,3,5)) RETIRE();float trail[3]={0.0f,0.0f,1.0f};spawn_unparented(827,F(0xec),F(0xf0),B(0x104),1,trail,3);advance_six(0);void *owner=OWNER;short count=FIELD(owner,short,0x7a6);
@@ -437,7 +437,7 @@ case 827: {
             }
         }
         MOTION->set_components(PARAM[0],PARAM[1]);owner=OWNER;F(0xec)=static_cast<float>(F(0xf4)*static_cast<double>(C(0x104))+F(0xec));F(0xf0)=F(0xf8)+F(0xf0);
-        if(FIELD(owner,short,0x7a6)<=0 && (F(0xec)<-100.0f || F(0xec)>1380.0f || F(0xf0)>1060.0f || !(F(0xf0)>=-260.0f))) RETIRE();break;
+        if(FIELD(owner,short,0x7a6)<=0 && (F(0xec)<-100.0f || F(0xec)>1380.0f || F(0xf0)>1060.0f || F(0xf0)<-260.0f)) RETIRE();break;
     }
     case 1:case 4:F(0x11c)*=static_cast<double>(0.98f);F(0x120)=F(0x11c);if(B(0x113)<=5) RETIRE();B(0x113)-=5;B(0x111)-=5;B(0x110)-=5;break;
     case 2:F(0x11c)+=F(0x370);F(0x120)=F(0x11c);F(0x370)-=static_cast<double>(0.2f);if(F(0x370)<0.05f) F(0x370)=0.05f;if(B(0x113)<=10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;break;
@@ -950,7 +950,7 @@ case 900: {
         double nextY=static_cast<double>(F(0xf0))+F(0xf8);bool hit=stage_surface_height()>=nextY || S(0x174)<0;
         if(!hit) {double dySquared=square_float_value(static_cast<float>(FIELD(TARGET,float,0xf0)+100.0-F(0xf0)));hit=square_float_value(FIELD(TARGET,float,0xec)-F(0xec))+dySquared<=2500.0;}
         if(hit) {publish_battle_layout_scalar(5.0f);next_sequence_block();float packet[3]={0.0f,0.0f,3.0f};spawn_unparented(900,F(0xec),F(0xf0),B(0x104),1,packet,3);WAVE(6);F(0xf8)=static_cast<float>(static_cast<double>(RF(5))+8.0);F(0xf4)*=static_cast<double>(0.2f);return;}
-        if(!(F(0xec)<=1580.0f && F(0xec)>=-300.0f && F(0xf0)<=1000.0f)) RETIRE();
+        if((F(0xec)>1580.0f || F(0xec)<-300.0f || F(0xf0)>1000.0f)) RETIRE();
         switch(g_match_identifier) {
         case 0:{turn_heading(0.0f,0.25f,100.0f);float *parameters=PARAM;parameters[1]+=static_cast<double>(0.3f);if(parameters[0]>90.0f) parameters[0]=90.0f;if(parameters[0]<-90.0f) parameters[0]=-90.0f;if(parameters[1]>=15.0f) parameters[1]=15.0f;break;}
         case 1:{turn_heading(0.0f,0.5f,100.0f);float *parameters=PARAM;parameters[1]+=static_cast<double>(0.3f);if(parameters[0]>90.0f) parameters[0]=90.0f;if(parameters[0]<-90.0f) parameters[0]=-90.0f;if(parameters[1]>=20.0f) parameters[1]=20.0f;break;}

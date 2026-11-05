@@ -111,3 +111,7 @@ whole-root or unmasked-exception equivalence.
 
 The 62,278-byte callable remains nonexact from +37; the candidate section
 tail is 62,960 bytes. No exact credit is added.
+
+## Actions 806, 815, 827 and 900 bounds, 2026-11-05
+
+Five movement-bound checks now use the target's ordered outside comparisons: actions 806 (`0x4FEEE2..0x4FEF38`), 815 (`0x4FFBDE..0x4FFC34`), both action 827 paths (`0x501DE4..0x501E24`, `0x5021DC..0x502228`), and action 900 (`0x50A6F1..0x50A730`). Their former negated in-range or lower-bound conditions also retired unordered coordinates, unlike the native x87 branches. A focused build confirms the target-style branch forms. The full root remains non-exact: target 62278 bytes, candidate section tail 62960, first mismatch +37. No exact credit is claimed.
