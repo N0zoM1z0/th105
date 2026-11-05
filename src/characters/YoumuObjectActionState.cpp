@@ -502,7 +502,7 @@ void YoumuObjectUpdateView::update_action_state()
    payload[0]=H[1]; payload[1]=0; payload[2]=1; SPAWN(813,1,3);
    if(I(0x144)%2==0) {
     payload[0]=random_float(360); payload[1]=0; payload[2]=0;
-    SPAWN_AT(813,static_cast<float>(50.0+F(0xEC)-random_float(100)),static_cast<float>(F(0xF0)+50.0-random_float(100)),1,3);
+    { unsigned char facing=B(0x104); double center_y=F(0xF0)+50.0; double center_x=50.0+F(0xEC); float y=static_cast<float>(center_y-random_float(100)); float x=static_cast<float>(center_x-random_float(100)); spawn_unparented(813,x,y,facing,1,reinterpret_cast<const unsigned *>(payload),3); }
    }
    MOVE(); break;
   case 9:

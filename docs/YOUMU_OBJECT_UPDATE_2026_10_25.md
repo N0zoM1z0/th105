@@ -328,3 +328,20 @@ Fresh VC8 emits the relevant QWORD store/call/subtract sequences at object
 `0x57FA..0x5814`; register and overall scheduling differences remain. The
 25,944-byte callable remains nonexact from +8, candidate section tail is
 26,800 bytes, and the source remains unselected. No exact credit is added.
+
+## Action 813 paired pre-random captures, 2026-11-05
+
+Native `0x00540293..0x00540310` reads facing and captures both `Y + 50.0`
+and `50.0 + X` as QWORDs before the first of two RNG calls. The previous
+source left both expressions in spawn arguments. It now captures facing and
+both centers before those calls, then subtracts the Y and X random offsets in
+native order. Fresh VC8 emits both QWORD stores before the first RNG at object
+`0x33B6..0x33D4`. This is real callback-lifetime and rounding evidence, not
+an artificial stack slot.
+
+The fresh complete callable comparison now has the target's `0x48` frame;
+the first mismatch moves from +8 to +34 (`0x0053CEC2`). Full unmasked payload
+comparison still differs at 24,396 positions including length, with a 26,800
+byte candidate section tail. The source remains unselected; no exact credit
+is added. Receipts: `action813-captures-20261105.json` and
+`action813-captures-audit-20261105.json` in the existing Youmu object scope.
