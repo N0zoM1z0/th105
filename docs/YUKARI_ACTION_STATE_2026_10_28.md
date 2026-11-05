@@ -194,3 +194,17 @@ At `0x57D207..0x57D24F`, the native frame-70 spawn reads the facing byte once, z
 ## Actions 606 and 656 shower conversions, 2026-11-05
 
 The two native shower expansions convert RNG(400) and RNG(300) using the float `2^32` correction before their coordinate arithmetic (`0x58672B..0x58678D` and `0x586988..0x5869EA`). The previous helper converted both unsigned values directly to double, producing four double-correction instructions. Converting through float before promotion preserves the observed correction type without an added float-store category: the native root and fresh candidate each have 35 float corrections and no double corrections, versus 31 and 4 respectively before this edit. These count comparisons are diagnostic, not proof of whole-root equality. The bounded random values are exactly representable as floats, so no ordinary-play numeric change is established. The 57,042-byte root remains nonexact at +18 with a 57,824-byte candidate section tail; no exact credit is claimed.
+
+## Object 800 fan-angle association, 2026-11-05
+
+Six native fan paths, for example `0x57FCFC..0x57FD1D` and
+`0x580185..0x5801A1`, subtract 20 from the float angle field before adding
+the signed counter-derived integer, then add the loop integer and subtract
+15 or 30. The old shared source grouped the counter and angle before
+subtracting 20. Parenthesizing the angle-minus-20 expression restores the
+native association in both fan loops; fresh VC8 emits the corresponding
+field subtraction, floating add, integer add and final subtraction sequence.
+No normal-play numeric difference is established.
+
+The 57042-byte root remains nonexact at +18, with a candidate section tail of
+57840. This local correction adds no exact-function or byte credit.

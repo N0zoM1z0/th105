@@ -168,13 +168,13 @@ public:
         if(!sequence_index_13e) {
             if(at<short>(0x732)%3==0 && at<short>(0x734)<5) {
                 at<int>(0x180)=1;if(air && !at<short>(0x734))counter(200,45);
-                float p[3];for(int n=0;n<45;n+=15){p[0]=static_cast<float>(10*at<short>(0x734)+static_cast<double>(at<float>(0x744))-20.0+n-15.0);p[1]=10.0f;p[2]=0.0f;spawn_offset(800,82,height,p,3);}
+                float p[3];for(int n=0;n<45;n+=15){p[0]=static_cast<float>(10*at<short>(0x734)+(static_cast<double>(at<float>(0x744))-20.0)+n-15.0);p[1]=10.0f;p[2]=0.0f;spawn_offset(800,82,height,p,3);}
                 phase_counter(10);dispatch_character_wave_handle(2);++at<short>(0x734);
             }
         } else {
             if(at<short>(0x732)%3==(air?1:0) && at<short>(0x734)<5) {
                 at<int>(0x180)=1;if(air && !at<short>(0x734))counter(200,45);
-                float p[3];for(int n=0;n<75;n+=15){p[0]=static_cast<float>(10*at<short>(0x734)+static_cast<double>(at<float>(0x744))-20.0+n-30.0);p[1]=10.0f;p[2]=0.0f;spawn_offset(800,82,height,p,3);}
+                float p[3];for(int n=0;n<75;n+=15){p[0]=static_cast<float>(10*at<short>(0x734)+(static_cast<double>(at<float>(0x744))-20.0)+n-30.0);p[1]=10.0f;p[2]=0.0f;spawn_offset(800,82,height,p,3);}
                 phase_counter(10);dispatch_character_wave_handle(2);++at<short>(0x734);
             }
         }
