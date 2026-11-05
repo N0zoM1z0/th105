@@ -2010,7 +2010,7 @@ expand_rgb_fade:
             spawn_unparented(865,F(0xec),F(0xf0),B(0x104),1,packet,3);RETIRE();
         }
         float *parameters=PARAM;parameters[1]+=0.1f;MOTION->set_components(parameters[0],parameters[1]);MOVE();
-        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || !(F(0xf0)>=-100.0)) RETIRE();FINISH();
+        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();FINISH();
     }
     case 19:case 20:
         if(RELATED) {
@@ -2249,7 +2249,7 @@ case 901: {
         advance_six(5);
         if(FIELD(OWNER,short,0x174)>0 && C(0x184)>0) {
             float *parameters=PARAM;parameters[1]+=0.1f;MOTION->set_components(parameters[0],parameters[1]);MOVE();
-            if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || !(F(0xf0)>=-100.0)) RETIRE();FINISH();
+            if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();FINISH();
         }
         float packet[3]={0.0f,0.0f,9.0f};spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);
         packet[2]=10.0f;spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);RETIRE();
@@ -2261,7 +2261,7 @@ case 901: {
             spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);RETIRE();
         }
         MOTION->set_components(PARAM[0],PARAM[1]);MOVE();
-        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || !(F(0xf0)>=-100.0)) RETIRE();FINISH();
+        if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();FINISH();
     case 15:case 16:case 17:case 18:
         F(0x11c)+=0.2f;F(0x120)=F(0x11c);if(B(0x113)<=15) RETIRE();B(0x113)-=15;FINISH();
     case 19:case 20: {

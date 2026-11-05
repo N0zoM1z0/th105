@@ -119,3 +119,7 @@ tail is 50,156 bytes. No exact credit is added.
 ## Action 827 phase 6 threshold, 2026-11-05
 
 The target checks the updated angle against 180 at `0x4C1860..0x4C1871` and enters the fade branch only when it is ordered and greater than 180. The previous phase 6 source expressed the opposite branch as `<=` with an `else`, sending unordered values to fade. The source now uses the target's ordered greater-than condition, as the existing phase 0 does. The focused candidate emits the corresponding `test ah, 0x41` branch at `0x5A94..0x5AA5`. Its full callable remains non-exact (target 48771 bytes, candidate section tail 50156, first mismatch +37); no exact credit is claimed.
+
+## Actions 865 and 901 lower Y bound, 2026-11-05
+
+The action 865 phase 8 movement and action 901 phases 8 and 11–14 converge on the same native bounds tail at `0x4C4EC2`; the latter two jump there from `0x4C6766` and `0x4C6844`. The final comparison at `0x4C4F33..0x4C4F3A` retires only for an ordered Y below -100. The previous negated `>=` also retired unordered Y. All three source paths now use ordered `<`; the candidate likewise shares its tail at `0x90CA`, with `test ah, 0x41; je` at `0x913F..0x9142`. The full 48771-byte root remains non-exact (candidate section tail 50156, first mismatch +37); no exact credit is claimed.
