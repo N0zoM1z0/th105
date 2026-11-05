@@ -537,7 +537,7 @@ void RemiliaObjectUpdateView::update_action_state()
    F(0xEC)+=F(0xF4)*static_cast<signed char>(facing);
    float y_position=static_cast<float>(F(0xF8)+F(0xF0)); F(0xF0)=y_position;
    float payload[3]; payload[0]=0; payload[1]=0; payload[2]=5;
-   double roll=static_cast<unsigned>(selector_random_roll(40));
+   double roll=static_cast<float>(static_cast<unsigned>(selector_random_roll(40)));
    spawn_unparented(901,static_cast<float>(roll+F(0xEC)-20.0),y_position,facing,1,reinterpret_cast<const unsigned *>(payload),3); break;
   }
   case 5:
