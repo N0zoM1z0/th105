@@ -369,9 +369,14 @@ public:
             float coordinate=static_cast<float>(reversed?angle:angle+180.0);
             p[0]=static_cast<float>(reversed?angle+jitter+180.0:angle+jitter);p[1]=speed;p[2]=0.0f;
             float neg=-coordinate;
-            spawn(902,static_cast<float>(komachi_cosine(neg)*500.0*facing()+peer()->at<float>(0xec)),
-                static_cast<float>(komachi_sine(neg)*500.0+peer()->at<float>(0xf0)+100.0),
-                at<unsigned char>(0x104),1,p,3);
+            unsigned char direction=at<unsigned char>(0x104);
+            double sine=komachi_sine(neg);
+            KomachiActionStateView *y_peer=peer();
+            float y=static_cast<float>(sine*500.0+y_peer->at<float>(0xf0)+100.0);
+            double cosine=komachi_cosine(neg);
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>(cosine*500.0*signed_facing+peer()->at<float>(0xec));
+            spawn(902,x,y,direction,1,p,3);
         }
     }
 
