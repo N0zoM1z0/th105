@@ -242,8 +242,8 @@ case 412:
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==13){
         phase_counter(50);I(0x7a8)=10;counter(200,60);dispatch_character_wave_handle(15);
         float p[3]={0.0f,85.0f,4.0f};spawn(801,static_cast<float>(84*facing()+static_cast<double>(F(0xec))),F(0xf0),B(0x104),1,p,3);
-        p[0]=static_cast<float>(static_cast<double>(komachi_random(80))-40.0);p[1]=static_cast<float>(static_cast<double>(komachi_random(80))-40.0);spawn(801,static_cast<float>(84*facing()+static_cast<double>(F(0xec))),F(0xf0),B(0x104),1,p,3);
-        p[0]=static_cast<float>(static_cast<double>(komachi_random(80))-40.0);p[1]=static_cast<float>(static_cast<double>(komachi_random(80))-40.0);spawn(801,static_cast<float>(84*facing()+static_cast<double>(F(0xec))),F(0xf0),B(0x104),1,p,3);
+        p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(80)))-40.0);p[1]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(80)))-40.0);spawn(801,static_cast<float>(84*facing()+static_cast<double>(F(0xec))),F(0xf0),B(0x104),1,p,3);
+        p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(80)))-40.0);p[1]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(80)))-40.0);spawn(801,static_cast<float>(84*facing()+static_cast<double>(F(0xec))),F(0xf0),B(0x104),1,p,3);
     }return;
 case 414:
     if(air_shot_landing(false))return;if(!I(0x6c4))B(0x750)=0;if(advance())set_action_and_finalize(0);if(entry(1)||entry(2)){set_action_and_finalize(9);return;}
@@ -387,9 +387,9 @@ case 603:
     if(sequence_index_13e==1){
         F(0xf4)=static_cast<float>(F(0xf4)+static_cast<double>(0.1f));if(F(0xf4)>4.0f)F(0xf4)=3.0f;
         if(!(time_counter_144%2))spell_ground_particles(853,90,-45.0,5.0,3.0f);
-        if(!(time_counter_144%4) && time_counter_144<=120){float p[3]={static_cast<float>(static_cast<double>(komachi_random(12))+6.0),static_cast<float>(static_cast<double>(komachi_random(8))+2.0),0.0f};
-            int direction=B(0x104);if(direction==1){float y=static_cast<float>(static_cast<double>(komachi_random(300))+(static_cast<double>(F(0xf0))+20.0));spawn(853,static_cast<float>(komachi_boundary_6fbd1c-50.0),y,1,1,p,3);}
-            else{float y=static_cast<float>(static_cast<double>(komachi_random(300))+(static_cast<double>(F(0xf0))+20.0));spawn(853,static_cast<float>(komachi_boundary_6fbd24+50.0),y,direction,1,p,3);}}
+        if(!(time_counter_144%4) && time_counter_144<=120){float p[3]={static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(12)))+6.0),static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(8)))+2.0),0.0f};
+            int direction=B(0x104);if(direction==1){float y=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(300)))+(static_cast<double>(F(0xf0))+20.0));spawn(853,static_cast<float>(komachi_boundary_6fbd1c-50.0),y,1,1,p,3);}
+            else{float y=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(300)))+(static_cast<double>(F(0xf0))+20.0));spawn(853,static_cast<float>(komachi_boundary_6fbd24+50.0),y,direction,1,p,3);}}
         if(time_counter_144>=150){next_sequence_block();return;}
     }
     if(sequence_index_13e==2 && frame_index_140<=1){decelerate(static_cast<double>(0.1f),false);spell_ground_particles(853,60,-10.0,10.0,3.0f);}
@@ -412,9 +412,9 @@ case 604:
             KomachiActionStateView *other=peer();F(0x73c)=static_cast<float>(other->at<short>(0x174));F(0x740)=static_cast<float>(S(0x174));other->at<short>(0x174)=static_cast<short>(static_cast<int>(F(0x740)));S(0x174)=static_cast<short>(static_cast<int>(F(0x73c)));
             layout(3.0f);float p[3];ring817_at(p,120);
             p[0]=0.0f;p[1]=0.0f;p[2]=5.0f;spawn(854,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+100.0),B(0x104),1,p,3);
-            for(int n=6;n;--n){p[0]=static_cast<float>(komachi_random(360));p[1]=static_cast<float>(static_cast<double>(komachi_random(75))*static_cast<double>(0.1f)+10.0);p[2]=4.0f;spawn(854,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+100.0),B(0x104),1,p,3);}
+            for(int n=6;n;--n){p[0]=static_cast<float>(komachi_random(360));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(75)))*static_cast<double>(0.1f)+10.0);p[2]=4.0f;spawn(854,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+100.0),B(0x104),1,p,3);}
             p[0]=0.0f;p[1]=0.0f;p[2]=5.0f;spawn_offset(854,0,100.0,p,3);
-            for(int n=6;n;--n){p[0]=static_cast<float>(komachi_random(360));p[1]=static_cast<float>(static_cast<double>(komachi_random(75))*static_cast<double>(0.1f)+10.0);p[2]=4.0f;spawn(854,F(0xec),F(0xf0),B(0x104),1,p,3);}
+            for(int n=6;n;--n){p[0]=static_cast<float>(komachi_random(360));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(75)))*static_cast<double>(0.1f)+10.0);p[2]=4.0f;spawn(854,F(0xec),F(0xf0),B(0x104),1,p,3);}
             dispatch_character_wave_handle(56);S(0x730)=2;S(0x732)=0;
         }
         if(S(0x730)==2 && ++S(0x732)>=30){peer()->at<float>(0x18c)=5.0f;peer()->at<float>(0x190)=10.0f;peer()->set_action_and_finalize(71);next_sequence_block();}
@@ -446,7 +446,7 @@ case 710:
         if(time_counter_144>=120)next_sequence_block();
         if(!(time_counter_144%S(0x736))){
             dispatch_character_wave_handle(1);float p[3]={0.0f,static_cast<float>(static_cast<double>(S(0x730))+S(0x730)),0.0f};
-            F(0x744)=static_cast<float>(static_cast<double>(komachi_random(150))+50.0);
+            F(0x744)=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(150)))+50.0);
             double x_offset=komachi_cosine(static_cast<float>(komachi_random(360)))*F(0x744);
             F(0x73c)=static_cast<float>(x_offset+peer()->at<float>(0xec));
             if(F(0x73c)<-50.0f)F(0x73c)=-50.0f;
@@ -466,7 +466,7 @@ case 720:
     if(sequence_index_13e==1 && time_counter_144>=120)next_sequence_block();if(advance())set_action_and_finalize(700);
     if(entry(1)){
         dispatch_character_wave_handle(19);float p[3];
-        for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
+        for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(40)))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
             if(!(p[0]>=0.0f && p[0]<=180.0f))spawn(817,F(0xec),F(0xf0),B(0x104),-1,p,3);else spawn(817,F(0xec),F(0xf0),B(0x104),1,p,3);}
         p[0]=0.0f;p[1]=10.0f;p[2]=0.0f;spawn(901,peer()->at<float>(0xec),F(0xf0),B(0x104),1,p,3);
         p[2]=4.0f;spawn(901,peer()->at<float>(0xec),F(0xf0),B(0x104),-1,p,3);
@@ -484,7 +484,7 @@ case 720:
 case 730:
     if(sequence_index_13e==1 && time_counter_144>=120)next_sequence_block();if(advance())set_action_and_finalize(700);
     if(entry(1)){
-        dispatch_character_wave_handle(12);float base=static_cast<float>(komachi_random(360));float jitter=static_cast<float>(static_cast<double>(komachi_random(20))-10.0);float p[3];
+        dispatch_character_wave_handle(12);float base=static_cast<float>(komachi_random(360));float jitter=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(20)))-10.0);float p[3];
         switch(g_match_identifier){
         case 0:ring902(p,base,jitter,6,60.0,0.0,false,5.0f);break;
         case 1:ring902(p,base,jitter,8,45.0,0.0,false,5.0f);break;
@@ -503,10 +503,10 @@ case 732:
             p[1]=0.0f;p[2]=2.0f;spawn_offset(930,0,100.0,p,3);
             p[1]=1.0f;spawn(930,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+100.0),B(0x104),1,p,3);
             if(komachi_on_surface(this)){
-                for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;int layer=(p[0]>=0.0f && p[0]<=180.0f)?1:-1;spawn(817,F(0xec),F(0xf0),B(0x104),layer,p,3);}
+                for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(40)))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;int layer=(p[0]>=0.0f && p[0]<=180.0f)?1:-1;spawn(817,F(0xec),F(0xf0),B(0x104),layer,p,3);}
             }
             if(komachi_on_surface(peer())){
-                for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
+                for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(40)))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
                     if(!(p[0]>=0.0f && p[0]<=180.0f))spawn(817,peer()->at<float>(0xec),peer()->at<float>(0xf0),B(0x104),-1,p,3);
                     else spawn(817,peer()->at<float>(0xec),peer()->at<float>(0xf0),B(0x104),1,p,3);}
             }

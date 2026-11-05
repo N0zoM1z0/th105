@@ -132,7 +132,7 @@ public:
     __forceinline void ring817() {
         event(29);
         for(int angle=0;angle<360;angle+=45){
-            float p[3]={static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0)),10.0f,2.0f};
+            float p[3]={static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(40)))+(static_cast<double>(angle)+30.0)),10.0f,2.0f};
             spawn_ring817(p,228);
         }
     }
@@ -220,7 +220,7 @@ public:
         if(at<short>(0x730)==1){
             int limit=5;if(at<signed char>(0x605)>=2)limit=6;if(at<signed char>(0x605)>=4)limit=8;
             if(at<short>(0x732)<limit){
-                if(!(at<short>(0x734)%3)){float p[3];p[0]=static_cast<float>(-80.0-static_cast<double>(komachi_random(20)));p[1]=static_cast<float>(static_cast<double>(komachi_random(50))*static_cast<double>(0.1f)+speed);p[2]=0.0f;
+                if(!(at<short>(0x734)%3)){float p[3];p[0]=static_cast<float>(-80.0-static_cast<double>(static_cast<float>(komachi_random(20))));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(50)))*static_cast<double>(0.1f)+speed);p[2]=0.0f;
                     spawn(815,static_cast<float>(113*facing()+static_cast<double>(at<float>(0xec))),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);++at<short>(0x732);}
                 ++at<short>(0x734);
             }
@@ -230,9 +230,9 @@ public:
     }
     __forceinline bool sweep817(float mode,double speed,int timeout) {
         if(at<signed char>(0x184)>0 && at<int>(0x180) && ++at<short>(0x730)>=5){at<int>(0x180)=0;at<short>(0x730)=0;}
-        if(!(time_counter_144%5)){dispatch_character_wave_handle(29);float p[3]={mode,static_cast<float>(static_cast<double>(komachi_random(5))+speed),0.0f};spawn_offset(817,120,140.0,p,3);}
+        if(!(time_counter_144%5)){dispatch_character_wave_handle(29);float p[3]={mode,static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(5)))+speed),0.0f};spawn_offset(817,120,140.0,p,3);}
         if(!(time_counter_144%15)){
-            for(int angle=0;angle<360;angle+=60){float p[3]={static_cast<float>(static_cast<double>(komachi_random(30))+(static_cast<double>(angle)+30.0)),10.0f,2.0f};
+            for(int angle=0;angle<360;angle+=60){float p[3]={static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(30)))+(static_cast<double>(angle)+30.0)),10.0f,2.0f};
                 spawn_ring817(p,120);}
         }
         if(time_counter_144>=timeout){next_sequence_block();return true;}return false;
@@ -249,11 +249,11 @@ public:
                 p[1]=1.0f;spawn(820,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+100.0),at<unsigned char>(0x104),1,p,3);
                 if(cooldown_before && at<unsigned char>(skill)!=4){peer()->at<short>(0x4a8)=15;peer()->at<short>(0x4ac)=15;}
                 if(komachi_on_surface(this)){
-                    for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
+                    for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(40)))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
                         int layer=(p[0]>=0.0f && p[0]<=180.0f)?1:-1;spawn(817,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),layer,p,3);}
                 }
                 if(komachi_on_surface(peer())){
-                    for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
+                    for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(40)))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
                         if(!(p[0]>=0.0f && p[0]<=180.0f))spawn(817,peer()->at<float>(0xec),peer()->at<float>(0xf0),at<unsigned char>(0x104),-1,p,3);
                         else spawn(817,peer()->at<float>(0xec),peer()->at<float>(0xf0),at<unsigned char>(0x104),1,p,3);}
                 }
@@ -305,7 +305,7 @@ public:
         if(!sequence_index_13e && frame_index_140>=4){accelerate822();publish822();}
         if(sequence_index_13e==1){
             accelerate822();
-            if(!(time_counter_144%3)){float p[3]={static_cast<float>(komachi_random(360)),static_cast<float>(static_cast<double>(komachi_random(150))+250.0),0.0f};spawn(822,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);}
+            if(!(time_counter_144%3)){float p[3]={static_cast<float>(komachi_random(360)),static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(150)))+250.0),0.0f};spawn(822,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);}
             publish822();
             if(time_counter_144>=10){
                 if(!at<unsigned char>(0x750) || time_counter_144>=90){if(clear_first){at<int>(0x180)=0;next_sequence_block();}else{next_sequence_block();at<int>(0x180)=0;}return;}
@@ -317,7 +317,7 @@ public:
         if(entry(1)){dispatch_character_wave_handle(20);at<int>(0x180)=1;}if(entry(3))set_action_and_finalize(0);
         if(!sequence_index_13e && !frame_timer_142 && frame_index_140==5){counter(200,120);phase_counter(50);}
         if(sequence_index_13e==2 && !frame_timer_142 && frame_index_140==3){dispatch_character_wave_handle(16);
-            for(int angle=0;angle<360;angle+=60){float p[3]={static_cast<float>(static_cast<double>(komachi_random(30))+(static_cast<double>(angle)+30.0)),10.0f,2.0f};spawn_ring817(p,120);}
+            for(int angle=0;angle<360;angle+=60){float p[3]={static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(30)))+(static_cast<double>(angle)+30.0)),10.0f,2.0f};spawn_ring817(p,120);}
         }
     }
 
@@ -342,7 +342,7 @@ public:
         if(at<short>(0x734)<-10)at<short>(0x734)=-10;if(at<short>(0x734)>10)at<short>(0x734)=10;
     }
     __forceinline void burst808() {
-        float p[3];p[0]=static_cast<float>(static_cast<double>(at<short>(0x734))+30.0-static_cast<double>(komachi_random_u32()%60u));p[1]=15.0f;p[2]=static_cast<float>(komachi_random(4));spawn_offset(808,44,85.0,p,3);
+        float p[3];p[0]=static_cast<float>(static_cast<double>(at<short>(0x734))+30.0-static_cast<double>(static_cast<float>(komachi_random_u32()%60u)));p[1]=15.0f;p[2]=static_cast<float>(komachi_random(4));spawn_offset(808,44,85.0,p,3);
     }
     __forceinline void ground827(int control) {
         landing();if(!at<int>(control))at<unsigned char>(0x750)=0;
@@ -361,11 +361,11 @@ public:
         effect(115,x,y,direction,1);sequence_window(0,outcome,60);secondary_cycle();
     }
     __forceinline void ring817_at(float *p,int xoff) {
-        for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(komachi_random(40))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
+        for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(40)))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
             spawn_ring817(p,xoff);}
     }
     __forceinline void spell_ground_particles(int object,int random_range,double bias,double speed,float mode) {
-        float p[3];p[0]=static_cast<float>(bias-static_cast<double>(komachi_random(random_range)));p[1]=static_cast<float>(static_cast<double>(komachi_random(5))+speed);p[2]=mode;
+        float p[3];p[0]=static_cast<float>(bias-static_cast<double>(static_cast<float>(komachi_random(random_range))));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(5)))+speed);p[2]=mode;
         spawn(object,static_cast<float>(80*facing()+static_cast<double>(at<float>(0xec))),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);
     }
     __forceinline void grab_peer() {peer()->set_action_and_finalize(102);peer()->zero_motion();next_sequence_block();}
