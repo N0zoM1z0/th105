@@ -447,10 +447,12 @@ case 710:
         if(!(time_counter_144%S(0x736))){
             dispatch_character_wave_handle(1);float p[3]={0.0f,static_cast<float>(static_cast<double>(S(0x730))+S(0x730)),0.0f};
             F(0x744)=static_cast<float>(static_cast<double>(komachi_random(150))+50.0);
-            F(0x73c)=static_cast<float>(komachi_cosine(static_cast<float>(komachi_random(360)))*F(0x744)+peer()->at<float>(0xec));
+            double x_offset=komachi_cosine(static_cast<float>(komachi_random(360)))*F(0x744);
+            F(0x73c)=static_cast<float>(x_offset+peer()->at<float>(0xec));
             if(F(0x73c)<-50.0f)F(0x73c)=-50.0f;
             if(F(0x740)<-150.0f)F(0x740)=-150.0f;
-            F(0x740)=static_cast<float>(komachi_sine(static_cast<float>(komachi_random(360)))*F(0x744)+peer()->at<float>(0xf0));
+            double y_offset=komachi_sine(static_cast<float>(komachi_random(360)))*F(0x744);
+            F(0x740)=static_cast<float>(y_offset+peer()->at<float>(0xf0));
             spawn(900,F(0x73c),F(0x740),B(0x104),1,p,3);++S(0x730);
         }
     }

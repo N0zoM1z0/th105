@@ -272,3 +272,7 @@ Native action 562 `0x5ED66F..0x5ED6AB` tests the 16-bit counter at `0x730` with 
 ## Actions 520 and 521 signed level gates, 2026-11-05
 
 The native stream-815 paths at `0x5E975A..0x5E9772` and `0x5E9857..0x5E986F` compare the byte at `0x605` against 2 and 4 using signed `jl`. The earlier helper read that byte as unsigned, selecting a limit of 8 for values `0x80..0xFF` where the native path selects 5. The helper now uses a signed byte; its focused VC8 output emits signed comparisons at both expanded call sites. Negative-level reachability during ordinary play has not been established. The full root remains nonexact and gains no exact credit.
+
+## Action 710 peer read lifetimes, 2026-11-05
+
+The native 900 spawn path calls cosine and sine before loading the peer pointer for each coordinate (`0x5F05D0..0x5F05E4` and `0x5F064D..0x5F0663`). The previous compound expressions caused the VC8 candidate to load that pointer before the random and trigonometric calls. Separate ordinary double offset locals preserve the observed evaluation points: the focused candidate now emits each multiply, then the peer-pointer load, then the coordinate addition, without a double spill. The native check of the existing Y value before overwriting it is deliberately retained. This establishes read order, not a demonstrated ordinary-play difference. The full 63,993-byte root remains nonexact at +42 (candidate section tail 65,448); no exact-byte credit is claimed.
