@@ -227,7 +227,7 @@ void IkuObjectUpdateView::update_action_state()
    if(emit_repeated(0,3,5))RETIRE();if(OUTSIDE(1480.0f,-200.0,1060.0f,-100.0))RETIRE();break;
   case 1:
    if(AT(this,void *,0x34c)==0){B(0x113)=0;S(0x364)-=5;if(S(0x364)<1){S(0x364)=0;RETIRE();}set_secondary_flags(0,1);set_secondary_alpha(B(0x364));}
-   else{float x_random=RND(60);void *related=AT(this,void *,0x34c);F(0xec)=x_random+AT(related,float,0xec)-30.0;F(0xf0)=RND(60)+AT(related,float,0xf0)-30.0;
+   else{double x_random=RND(60);void *related=AT(this,void *,0x34c);F(0xec)=x_random+AT(related,float,0xec)-30.0;F(0xf0)=RND(60)+AT(related,float,0xf0)-30.0;
     if(I(0x144)%3==0 && AT(related,int,0x144)>11){PACKET(p120,RND(360),RND(7)+4.0,2);SPAWN(818,1,p120);}}
    break;
   case 2:H[1]*=D(0.9f);MOVE();if(I(0x144)>24){if(B(0x113)<5)RETIRE();B(0x113)-=5;B(0x112)-=5;B(0x111)-=5;}break;

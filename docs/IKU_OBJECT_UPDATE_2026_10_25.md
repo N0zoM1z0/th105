@@ -316,3 +316,18 @@ Native `0x637058..0x63706C` and `0x638AAE..0x638AC2` round the RNG(10) product w
 ## Actions 859 and 920 scale rounding, 2026-11-05
 
 Native `0x637FA2..0x637FC9` and `0x63A484..0x63A4AB` round the RNG(75) product with double-promoted `0.01f` to float before adding 0.75 for scale. The earlier source added first. Float locals restore that intermediate rounding; fresh VC8 emits the store/reload/add sequences at `0x50D7` and `0x77D0`. With RNG 22 the target produces approximately 0.970000029 versus 0.969999969 previously. The 33617-byte root remains non-exact (candidate section tail 34788, first mismatch +37); no exact credit is claimed.
+
+## Action 818 related-object X, 2026-11-05
+
+In action 818 sequence 1, native `0x635DB4..0x635DE3` converts RNG(60),
+reloads the related object, adds its X and subtracts 30 before the first float
+store. The former float random local introduced an intermediate store and
+reload in the candidate. A double local initialized via the existing float
+conversion retains the native float 2^32 correction and the related-object
+reload, while allowing the candidate to add X before its first float store.
+RNG(60)'s ordinary values are exactly representable as float, so no normal
+numeric difference is claimed. The Y computation and subsequent related-object
+use remain unchanged.
+
+The complete 33617-byte callable remains nonexact at +37; the candidate section
+tail is 34788. No exact-function or byte credit is claimed.
