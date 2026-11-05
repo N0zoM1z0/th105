@@ -398,3 +398,7 @@ The three 899 emission paths, including `0x53F6FC..0x53F754` and `0x540850..0x54
 ## Actions 857 and 902 horizontal offset, 2026-11-05
 
 Native `0x53F285..0x53F2C0` and `0x54281C..0x542857` convert RNG(150) in x87, add 25, multiply by the post-RNG signed facing, then add X and round the coordinate. The old candidate first stored the roll as float. Both source paths now keep a wider ordinary roll local, retain the earlier spawn-facing and Y snapshots, and read signed facing after RNG. Focused VC8 output no longer emits the intermediate float spill. All normal 0..149 rolls are exactly representable as float, so no normal-play numeric difference is claimed. The complete 25,944-byte root remains nonexact at +34 (candidate section tail 27,024); no exact-byte credit is claimed.
+
+## Actions 856 and 902 vertical random offset, 2026-11-05
+
+At `0x53F0A9..0x53F0CF` and `0x542514..0x54253A`, the native path converts the first random integer directly in x87, adds current Y and then rounds the resulting coordinate, before drawing the second random value for X. The previous candidate spilled the converted integer to float before adding Y. Two ordinary wider roll locals now remove that intermediate spill; the candidate emits the direct add at `0x225C` and retains the facing and X-center snapshots and the Y-then-X random order. Normal 0..399/0..199 rolls are exactly representable as float, so no normal-play numeric change is claimed. The 25,944-byte root remains nonexact at +34 (candidate section tail 27,008); no exact-byte credit is claimed.
