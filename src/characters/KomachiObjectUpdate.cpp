@@ -21,7 +21,7 @@ namespace th105 {
 #define FADE(th,step) {if(B(0x113)<th)RETIRE();B(0x113)-=step;}
 #define SCALE(expr) {float scale=expr;F(0x11c)=scale;F(0x120)=scale;}
 #define SPAWN(a,l,p) spawn_unparented(a,F(0xec),F(0xf0),B(0x104),l,reinterpret_cast<const unsigned *>(p),3)
-#define BURST(a,r,base,kind) {float n=0;do{burst_packet[0]=n*45.0+RND(40);burst_packet[1]=static_cast<float>(RND(r)*D(0.01f))+base;burst_packet[2]=kind;SPAWN(a,1,burst_packet);n+=1.0;}while(n<8.0f);}
+#define BURST(a,r,base,kind) {float n=0;do{burst_packet[0]=n*45.0+RND(40);burst_packet[1]=RND(r)*D(0.01f)+base;burst_packet[2]=kind;SPAWN(a,1,burst_packet);n+=1.0;}while(n<8.0f);}
 #define TRAIL(a,kind) {trail_packet[0]=RND(360);trail_packet[1]=RND(20)*D(0.1f);trail_packet[2]=kind;unsigned char facing=B(0x104);float y=F(0xf0);float x=RND_OFFSET(100,50)+F(0xec);spawn_unparented(a,x,y,facing,1,reinterpret_cast<const unsigned *>(trail_packet),3);}
 #define RND_OFFSET(n,k) static_cast<float>(static_cast<unsigned>(selector_random_roll(n)-k))
 #define OUTSIDE(xh,xl,yh,yl) (F(0xec)>xh || F(0xec)<xl || F(0xf0)>yh || F(0xf0)<yl)

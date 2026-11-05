@@ -420,3 +420,7 @@ Six trail paths capture unsigned facing after generating the packet but before t
 ## Action 856 spawn facing, 2026-11-05
 
 At `0x5FE17F..0x5FE1C0`, the target captures unsigned facing and both double-precision coordinate centers before the first RNG(60); it computes Y between the two calls and X after the second. The earlier source captured the centers but loaded facing after both calls. An unsigned-byte local now captures facing in the proper interval; focused VC8 output loads it at `0x4EFD` before either coordinate RNG call and keeps both QWORD centers. The full 27874-byte root remains non-exact (candidate section tail 28944, first mismatch +8); no exact credit is claimed.
+
+## Burst speed arithmetic, 2026-11-05
+
+The shared burst paths multiply the random value by the double-promoted `0.01f`, add the base and only then store the packet float. For example, native `0x5F9895..0x5F98B2` and `0x5F9E7D..0x5F9E9A` have no intervening float store. The previous source explicitly converted the product to float before the addition; the burst macro now retains the native expression, and focused VC8 output confirms multiply/add/store at `0xA38..0xA4F`. A check of the ordinary bounded RNG results found no final float difference for the two current base/range combinations; the correction is to the recorded arithmetic lifetime, not a claim of an observed gameplay difference. The full 27874-byte root remains non-exact (candidate section tail 28800, first mismatch +8); no exact credit is claimed.
