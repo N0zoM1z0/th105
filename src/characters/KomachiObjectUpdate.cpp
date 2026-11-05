@@ -264,8 +264,8 @@ void KomachiObjectUpdateView::update_action_state()
   case 0:
    if(AT(P,short,0x174)<1){float n=0;do{motion_packet[0]=RND(360);motion_packet[1]=RND(10)+6.0;motion_packet[2]=1;SPAWN(900,1,motion_packet);n+=1.0;}while(n<4.0f);RETIRE();}
    if(B(0x113)<245)B(0x113)+=10;else B(0x113)=255;
-   F(0xf8)=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144))*4.0)*F(0x370);
-   SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144))*6.0)*D(0.2f)+1.0);STEP();
+   F(0xf8)=lookup_orientation_sine_quantized_abs(I(0x144)*4.0)*F(0x370);
+   SCALE(lookup_orientation_sine_quantized_abs(I(0x144)*6.0)*D(0.2f)+1.0);STEP();
    if(AT(P,short,0x13c)==711 && AT(P,short,0x730)==1)S(0x364)=1;
    if(S(0x364)==1){++S(0x366);if(H[1]+H[1]<=static_cast<float>(S(0x366))){B(0x184)=1;select_sequence(2);burst_packet[0]=0;burst_packet[1]=0;burst_packet[2]=3;B(0x113)=255;SPAWN(900,1,burst_packet);if(g_match_identifier==3){float n=0;do{burst_packet[0]=RND(360);burst_packet[1]=RND(16)+6.0;burst_packet[2]=4;SPAWN(900,1,burst_packet);n+=1.0;}while(n<4.0f);}goto reset_motion_return;}}break;
   case 1:H[1]-=0.5;if(H[1]<=D(0.2f))H[1]=0.2f;MOVE();FADE(10,10);STEP();break;

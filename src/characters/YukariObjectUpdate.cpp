@@ -177,7 +177,7 @@ void YukariObjectUpdateView::update_action_state()
  case 821:
   switch(S(0x13e)) {
   case 0:
-   F(0x11c)=lookup_orientation_cosine_quantized_abs(static_cast<float>(I(0x144))*5.0)*0.25+0.75;F(0x120)=lookup_orientation_cosine_quantized_abs(static_cast<float>(I(0x144))*5.0+135.0f)*0.25+0.75;
+   F(0x11c)=lookup_orientation_cosine_quantized_abs(I(0x144)*5.0)*0.25+0.75;F(0x120)=lookup_orientation_cosine_quantized_abs(I(0x144)*5.0+135.0f)*0.25+0.75;
    if(H[1]==1.0)F(0x12c)+=0.5;if(H[1]==2.0f)F(0x12c)-=0.5;
    if(I(0x144)%60==0){PACKET(p264,RND(360),static_cast<float>(static_cast<unsigned>(selector_random_roll(10)-5))*D(0.2f),4);spawn_parented(821,F(0xec),F(0xf0),B(0x104),1,reinterpret_cast<const unsigned *>(p264),3);}
    if(S(0x36c)==1 && emit_repeated(0,2,4)){AT(P,short,0x7bc)=0;RETIRE();}
@@ -200,7 +200,7 @@ void YukariObjectUpdateView::update_action_state()
     if(I(0x180)!=0 && ++S(0x364)>4){S(0x364)=0;I(0x180)=0;}
     if(I(0x144)%3==0){PACKET(p240,RND(360),RND(20)+10.0,5);SPAWN(821,1,p240);}if(I(0x144)%7==0){PACKET(p120,RND(360),static_cast<float>(static_cast<unsigned>(selector_random_roll(20)-10)),6);spawn_parented(821,F(0xec),F(0xf0),B(0x104),1,reinterpret_cast<const unsigned *>(p120),3);}
    }else{F(0x370)=static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*15)));if(F(0x370)==1.0){B(0x184)=10;I(0x144)=0;}}
-   F(0x11c)=(lookup_orientation_cosine_quantized_abs(static_cast<float>(I(0x144))*50.0)*0.5+1.5)*F(0x370);F(0x120)=(lookup_orientation_cosine_quantized_abs(static_cast<float>(I(0x144))*50.0+135.0f)*0.5+1.5)*F(0x370);break;
+   F(0x11c)=(lookup_orientation_cosine_quantized_abs(I(0x144)*50.0)*0.5+1.5)*F(0x370);F(0x120)=(lookup_orientation_cosine_quantized_abs(I(0x144)*50.0+135.0f)*0.5+1.5)*F(0x370);break;
   case 4:SCALE(F(0x11c)+D(0.01f));F(0x12c)+=H[1];if(AT(this,void *,0x34c)==0)RETIRE();F(0xec)=AT(AT(this,void *,0x34c),float,0xec);F(0xf0)=AT(AT(this,void *,0x34c),float,0xf0);FADE(3,2);break;
   case 5:if(I(0x144)>19)COLORFADE(10,10);H[1]*=D(0.85f);F(0x11c)*=D(0.9f);F(0x120)+=D(0.2f);MOVE();STEP();break;
   case 6:SCALE(F(0x370)+F(0x11c));F(0x370)*=D(0.95f);F(0x12c)+=H[1];FADE(11,10);break;

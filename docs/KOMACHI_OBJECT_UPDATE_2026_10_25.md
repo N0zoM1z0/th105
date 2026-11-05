@@ -446,3 +446,7 @@ or exception-order equivalence.
 
 The 27874-byte callable remains nonexact at +8; the candidate section tail is
 28832. No exact-function or byte credit is claimed.
+
+## Timer angle conversion order (2026-11-05)
+
+Native 0x5FE88D and 0x5FE8B6 loads the signed timer directly into x87, multiplies by the double angle constant, and rounds to float only after any angle offset. The source now preserves that order instead of first casting the timer to float. The pinned VC8 build already elided the earlier conversion: the compared function bytes remain unchanged (SHA-256 `3154aa4f6e8059cf7c53f43aff605e19b11a4100b1702af994534ec8d437e4b1`). The function remains nonexact; no claim is made that a timer large enough to expose strict floating-point rounding is reachable in normal play.
