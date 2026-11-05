@@ -309,7 +309,7 @@ void IkuObjectUpdateView::update_action_state()
   case 0:
    if(S(0x364)<2 && AT(P,short,0x174)<1)S(0x364)=2;
    if(S(0x364)==0){SCALE(F(0x11c)+D(0.1f));if(F(0x11c)>=1.0){S(0x364)=1;int angle=0;do{PACKET(p540,angle+22.5+F(0x370),40,4);int layer=(!(p540[0]>=0.0 && p540[0]<=180.0f))?-1:1;SPAWN(853,layer,p540);angle+=45;}while(angle<360);PACKET(p540,0,0,2);spawn_parented(853,F(0xec),F(0xf0),B(0x104),1,reinterpret_cast<const unsigned *>(p540),3);p540[2]=1;SPAWN(853,1,p540);}}
-   if(S(0x364)==1){F(0xf8)+=D(0.1f);if(F(0xf8)>2.0f)F(0xf8)=2;if(I(0x144)%2==0){F(0x12c)=RND(360);SCALE(RND(10)*D(0.1f)+2.0);}if(I(0x144)>159)S(0x364)=2;}
+   if(S(0x364)==1){F(0xf8)+=D(0.1f);if(F(0xf8)>2.0f)F(0xf8)=2;if(I(0x144)%2==0){F(0x12c)=RND(360);float variation=RND(10)*D(0.1f);SCALE(variation+2.0);}if(I(0x144)>159)S(0x364)=2;}
    if(S(0x364)==2){SCALE(F(0x11c)*D(0.9f));COLORFADE(15);}F(0xf0)+=F(0xf8);break;
   case 1:
    F(0x11c)*=D(0.99f);if(AT(P,short,0x13c)!=603)RETIRE();if(AT(P,short,0x13e)<2){F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0)+360.0;}
@@ -399,7 +399,7 @@ void IkuObjectUpdateView::update_action_state()
   case 3:H[1]*=D(0.9f);MOVE();if(I(0x144)>9){SCALE(F(0x11c)*D(0.98f));if(B(0x113)<5)RETIRE();B(0x113)-=5;B(0x112)-=5;B(0x111)-=5;}F(0xec)+=F(0xf4);F(0xf0)+=F(0xf8);break;
   case 4:
    if(S(0x364)==0){SCALE(F(0x11c)+D(0.1f));if(F(0x11c)>=1.0)S(0x364)=1;}
-   if(S(0x364)==1 && I(0x144)%2==0){F(0x12c)=RND(360);SCALE(RND(10)*D(0.1f)+2.0);}
+   if(S(0x364)==1 && I(0x144)%2==0){F(0x12c)=RND(360);float variation=RND(10)*D(0.1f);SCALE(variation+2.0);}
    if(S(0x364)<=1){if((AT(P,short,0x13c)==610 || AT(P,short,0x13c)==660) && AT(P,short,0x13e)<2){F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0)+275.0;}else S(0x364)=2;}
    if(S(0x364)==2){SCALE(F(0x11c)*D(0.9f));COLORFADE(15);}break;
   case 5:SCALE(F(0x11c)+0.5);COLORFADE(15);break;
@@ -455,7 +455,7 @@ void IkuObjectUpdateView::update_action_state()
   case 7:if(I(0x180)!=0 || I(0x144)>59){B(0x184)=0;if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x112)-=15;B(0x111)-=15;}break;
   }
   if(advance_frame())--I(0x330);if(ENTRY(5))--I(0x330);
-  if(S(0x13e)==4 && S(0x142)==0 && S(0x140)==3){p528[0]=RND(10)*D(0.1f)+1.0;if(static_cast<unsigned>(selector_random_roll(100))<51)p528[0]*=-1.0;p528[1]=-atan2_degrees(AT(A,float,0xf0)+100.0-F(0xf0),C(0x104)*(AT(A,float,0xec)-F(0xec)));p528[2]=2;SPAWN(900,1,p528);PACKET(p528,0,0,6);SPAWN(900,1,p528);}return;
+  if(S(0x13e)==4 && S(0x142)==0 && S(0x140)==3){float speed=RND(10)*D(0.1f);p528[0]=speed+1.0;if(static_cast<unsigned>(selector_random_roll(100))<51)p528[0]*=-1.0;p528[1]=-atan2_degrees(AT(A,float,0xf0)+100.0-F(0xf0),C(0x104)*(AT(A,float,0xec)-F(0xec)));p528[2]=2;SPAWN(900,1,p528);PACKET(p528,0,0,6);SPAWN(900,1,p528);}return;
  case 910:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
