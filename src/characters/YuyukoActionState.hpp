@@ -286,7 +286,7 @@ public:
             float y=static_cast<float>(yuyuko_sine(-p[0])*40.0+(static_cast<double>(at<float>(0xf0))+120.0));
             double cosine=yuyuko_cosine(-p[0]);
             int signed_facing=at<signed char>(0x104);
-            float x=static_cast<float>((cosine*100.0+at<float>(0x740)*5.0-85.0)*signed_facing+at<float>(0xec));
+            float x=static_cast<float>((cosine*100.0+(at<float>(0x740)*5.0-85.0))*signed_facing+at<float>(0xec));
             spawn(812,x,y,direction,1,p,4);
         }
         at<float>(0x740)=static_cast<float>(at<float>(0x740)+1.0);

@@ -187,7 +187,7 @@ Native `0x56355F..0x5635D2` captures unsigned spawn facing before sine, then rel
 
 ## Arc 812 facing lifetime, 2026-11-05
 
-Native `0x565506..0x565594` captures the unsigned spawn-facing byte before the position sine lookup, then reloads signed facing after cosine for X. The shared candidate arc helper formerly captured both before sine. Ordinary locals now preserve the native read points; fresh VC8 helper output reloads signed facing at `0xAB` after cosine. The target's `sin*40 + (Y+120)` association and `(cos*100 + state*5 - 85)*facing + X` grouping remain intact. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 58619-byte root remains non-exact (candidate section tail 59556, first mismatch +8); no exact credit is claimed.
+Native `0x565506..0x565594` captures the unsigned spawn-facing byte before the position sine lookup, then reloads signed facing after cosine for X. The shared candidate arc helper formerly captured both before sine. Ordinary locals now preserve the native read points; fresh VC8 helper output reloads signed facing at `0xAB` after cosine. The `sin*40 + (Y+120)` association remains intact. The X-expression association described at this checkpoint was corrected by the 2026-11-05 note below. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 58619-byte root remains non-exact (candidate section tail 59556, first mismatch +8); no exact credit is claimed.
 
 ## Orbit spell facing lifetimes, 2026-11-05
 
@@ -200,3 +200,18 @@ The pinned target's ring-820 and difficulty-900 emitters capture the unsigned di
 The full dispatcher remains nonmatching: target 58,619 bytes; candidate section tail 59,652 bytes, first difference at offset 17. This change does not claim exact-match credit.
 
 Action 731's object-922 spawn uses cosine for both coordinates. Target `0x56B822..0x56B89E` captures unsigned direction before the Y cosine and reloads signed facing after the X cosine. The candidate now preserves those separate reads, both angle/radius reloads, and `cosine * radius + (Y + 100)` grouping. Its rebuilt site shows the target read ordering. This does not assert an ordinary-play difference from the nonmutating lookup. The dispatcher remains nonexact, with target 58,619 bytes, candidate section tail 59,676 bytes and first difference +17; no exact credit is added.
+
+## Object 812 arc X association, 2026-11-05
+
+Four native arc paths (`0x565551..0x56557E`, `0x5656F9..0x565726`,
+`0x565920..0x56594B`, and `0x565A92..0x565ABD`) calculate
+`cosine*100 + (state_740*5 - 85)` before multiplying by facing and adding X.
+The earlier source grouped the first addition before subtracting 85; the
+2026-10-28 description above did not distinguish the two associations. The
+source now groups the state-derived offset as the native instructions do.
+VC8 calculates the two independent products in a different order but keeps
+the same subtraction/addition association. No normal-play numeric difference
+is established.
+
+The 58619-byte root remains nonexact at +17, with a 59676-byte candidate section
+tail. This local fix does not add exact-function or byte credit.
