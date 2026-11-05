@@ -331,3 +331,7 @@ use remain unchanged.
 
 The complete 33617-byte callable remains nonexact at +37; the candidate section
 tail is 34788. No exact-function or byte credit is claimed.
+
+## Object 910 first spawn height argument (2026-11-05)
+
+In the `H[1] == 0` periodic 910 spawn, native `0x6399E6..0x639A26` chooses the direction, places the trailing spawn arguments, calls the related actor's surface-height provider, and stores its returned x87 value directly into the outgoing Y argument. The prior source saved that return in a separate `float y` first; the compiled candidate consequently stored and reloaded an extra stack temporary. Passing the provider result directly as the Y argument restores the observed lifetime: candidate `0x6C9F..0x6CD3` now places trailing arguments before the call and writes its returned value directly to the outgoing slot. The independent argument and selector instruction scheduling still differs. This is a local source-fidelity improvement, not a whole-function exact match or a claim about normal gameplay differences.

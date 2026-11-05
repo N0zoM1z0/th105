@@ -462,7 +462,7 @@ void IkuObjectUpdateView::update_action_state()
   case 0:
    if(AT(P,short,0x174)<1)RETIRE();
    if(H[1]==0.0){int limit,period;switch(g_match_identifier){case 0:limit=2;period=45;break;case 1:limit=3;period=30;break;case 2:limit=4;period=30;break;case 3:limit=5;period=30;break;}
-    if(I(0x144)%period==0){if(limit<=S(0x364))RETIRE();++S(0x364);PACKET(p84,0,45,4);unsigned char facing=static_cast<unsigned>(selector_random_roll(100))>50?static_cast<unsigned char>(-1):1;float y=A->stage_surface_height();spawn_unparented(910,AT(A,float,0xec),y,facing,1,reinterpret_cast<const unsigned *>(p84),3);}}
+    if(I(0x144)%period==0){if(limit<=S(0x364))RETIRE();++S(0x364);PACKET(p84,0,45,4);unsigned char facing=static_cast<unsigned>(selector_random_roll(100))>50?static_cast<unsigned char>(-1):1;spawn_unparented(910,AT(A,float,0xec),A->stage_surface_height(),facing,1,reinterpret_cast<const unsigned *>(p84),3);}}
    if(H[1]==1.0){int limit,period;switch(g_match_identifier){case 0:limit=4;period=25;break;case 1:limit=6;period=20;break;case 2:limit=8;period=15;break;case 3:limit=10;period=13;break;}
     if(I(0x144)%period==0){if(limit<=S(0x364))RETIRE();++S(0x364);PACKET(p60,0,15,4);unsigned char facing=static_cast<unsigned>(selector_random_roll(100))>50?static_cast<unsigned char>(-1):1;float y=stage_surface_height();float x=RND(600)+F(0xec)-300.0;spawn_unparented(910,x,y,facing,1,reinterpret_cast<const unsigned *>(p60),3);}}
    if(H[1]==2.0f){int limit,period;switch(g_match_identifier){case 0:limit=3;period=40;break;case 1:limit=4;period=40;break;case 2:limit=6;period=40;break;case 3:limit=8;period=40;break;}
