@@ -161,3 +161,7 @@ first+17,77340 differing bytes, SHA-256
 bd6498bffe09d36b25990faaf71802fb172a15de750f352ee42cc25d85ac2b7b.
 Receipts: formal740-build.json, formal740-full.json, payload740-review.log,
 payload740-differences.json (empty), and trial740-branch-action-review.json.
+
+## Grab 608 vertical pose product order, 2026-11-05
+
+At `0x5A6A83..0x5A6AA6` and `0x5A6F78..0x5A6F9B`, the native vertical-pose X calculation multiplies horizontal velocity by -30 before multiplying by signed facing and adding X. The source previously multiplied facing by velocity first. The source now follows the observed product grouping; focused VC8 compilation similarly multiplies velocity by 30 before facing, although it expresses the negative result as subtraction rather than the native negative multiply/add. No ordinary-input gameplay difference is asserted from the regrouping. The 79435-byte root remains non-exact (candidate section tail 78988, first mismatch +17); no exact credit is claimed.

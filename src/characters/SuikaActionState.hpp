@@ -234,7 +234,7 @@ public:
     }
     __forceinline void moving_grab_vertical() {
         peer()->at<float>(0x12c)=0.0f;
-        peer()->at<float>(0xec)=static_cast<float>(facing()*at<float>(0xf4)*(-30.0)+at<float>(0xec));
+        peer()->at<float>(0xec)=static_cast<float>(at<float>(0xf4)*(-30.0)*facing()+at<float>(0xec));
         peer()->at<float>(0xf0)=static_cast<float>(at<float>(0xf0)+110.0+at<float>(0xf8));
         peer()->set_action_and_finalize(107);
     }
