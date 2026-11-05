@@ -509,7 +509,7 @@ case 855: {
         if(S(0x142)==0) {
             if(C(0x184)<=0) {I(0x180)=0;B(0x184)=1;}float packet[3]={0.0f,0.0f,4.0f};spawn_unparented(855,F(0xec),F(0xf0),B(0x104),1,packet,3);
             for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(60))+index*60.0-30.0);packet[1]=30.0f;packet[2]=2.0f;S(0x364)=(packet[0]<0.0f || packet[0]>180.0f)?-1:1;spawn_unparented(855,F(0xec),F(0xf0),B(0x104),B(0x364),packet,3);}
-            for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(60))-120.0);packet[1]=static_cast<float>(static_cast<double>(RF(10))+10.0);packet[2]=1.0f;spawn_unparented(855,static_cast<float>(static_cast<double>(RF(300))+F(0xec)-150.0),F(0xf0),B(0x104),B(0x364),packet,3);}
+            for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(60))-120.0);packet[1]=static_cast<float>(static_cast<double>(RF(10))+10.0);packet[2]=1.0f;spawn_unparented(855,static_cast<float>(static_cast<double>(RF(300))+(static_cast<double>(F(0xec))-150.0)),F(0xf0),B(0x104),B(0x364),packet,3);}
         }
         if(F(0xec)>1480.0f || F(0xec)<-200.0) RETIRE();{double currentY=F(0xf0);if(stage_surface_height()!=currentY) RETIRE();}MOVE();break;
     case 4:F(0x11c)+=static_cast<double>(0.025f);F(0x120)*=static_cast<double>(0.99f);if(B(0x113)<6) RETIRE();B(0x113)-=6;break;

@@ -121,3 +121,16 @@ corresponding masks and branches at `0x7CAB`, `0x7D0B`, `0x8577` and
 
 The 52,190-byte callable remains nonexact from +17; the candidate section
 tail is 53,204 bytes. No exact credit is added.
+
+## Action 855 spawn X grouping, 2026-11-05
+
+Native `0x005B691C..0x005B692C` subtracts 150 from current X before
+adding the random offset. The previous source associated the random offset
+with X first. It now uses `random + (X - 150.0)`, preserving the native x87
+order and its possible rounding difference. Fresh VC8 emits the corresponding
+`fld X`, `fsub 150`, `faddp` sequence at `0x64FD..0x650D`. Random call order
+is unchanged. This does not establish whole-root or unmasked-exception
+equivalence.
+
+The 52,190-byte callable remains nonexact from +17; the candidate section
+tail is 53,204 bytes. No exact credit is added.
