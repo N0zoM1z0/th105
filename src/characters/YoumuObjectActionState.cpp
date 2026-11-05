@@ -42,10 +42,10 @@ extern int g_match_identifier;
  if(I(0x144)>=H[1]) { \
   payload[0]=0; payload[1]=0; payload[2]=0; SPAWN(901,1,3); \
   float fragments[3]; \
-  for(int n=0;n<6;++n) { fragments[0]=random_float(360); fragments[1]=random_float(50)*D(0.1f)+10.0; fragments[2]=1; spawn_unparented(901,F(0xEC),F(0xF0),B(0x104),1,reinterpret_cast<const unsigned *>(fragments),3); } \
+  for(int n=0;n<6;++n) { fragments[0]=random_float(360); fragments[1]=static_cast<float>(random_float(50)*D(0.1f))+10.0; fragments[2]=1; spawn_unparented(901,F(0xEC),F(0xF0),B(0x104),1,reinterpret_cast<const unsigned *>(fragments),3); } \
   payload[1]=0.5f; payload[2]=final_kind; SPAWN(901,1,3); payload[2]=1; SPAWN(901,1,3); \
   if(!(hard_only) || g_match_identifier==3) { \
-   for(int n=0;n<4;++n) { fragments[0]=random_float(360); fragments[1]=random_float(50)*D(0.1f)+5.0; fragments[2]=7; spawn_unparented(901,F(0xEC),F(0xF0),B(0x104),1,reinterpret_cast<const unsigned *>(fragments),3); } \
+   for(int n=0;n<4;++n) { fragments[0]=random_float(360); fragments[1]=static_cast<float>(random_float(50)*D(0.1f))+5.0; fragments[2]=7; spawn_unparented(901,F(0xEC),F(0xF0),B(0x104),1,reinterpret_cast<const unsigned *>(fragments),3); } \
   } \
   P->dispatch_character_wave_handle(4); RETIRE(); \
  } \
@@ -372,7 +372,7 @@ void YoumuObjectUpdateView::update_action_state()
   }
   if(advance_frame()) --I(0x330);
   if(S(0x13E)==0 && S(0x142)==0 && S(0x140)==1) {
-   for(int n=0;n<6;++n) { payload[0]=random_float(360); payload[1]=random_float(50)*D(0.1f)+5.0; payload[2]=1; SPAWN(856,1,3); }
+   for(int n=0;n<6;++n) { payload[0]=random_float(360); payload[1]=static_cast<float>(random_float(50)*D(0.1f))+5.0; payload[2]=1; SPAWN(856,1,3); }
   }
   return;
  case 857:
@@ -751,7 +751,7 @@ void YoumuObjectUpdateView::update_action_state()
   if(advance_frame()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==9) RETIRE();
   if(S(0x13E)==0 && S(0x142)==0 && S(0x140)==1) {
-   for(int n=0;n<3;++n) { payload[0]=-random_float(90)-45.0; payload[1]=random_float(70)*D(0.1f)+10.0; payload[2]=1; SPAWN(902,1,3); }
+   for(int n=0;n<3;++n) { payload[0]=-random_float(90)-45.0; payload[1]=static_cast<float>(random_float(70)*D(0.1f))+10.0; payload[2]=1; SPAWN(902,1,3); }
   }
   return;
  case 930:
