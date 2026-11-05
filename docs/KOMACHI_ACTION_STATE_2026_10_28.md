@@ -248,3 +248,7 @@ verification.
 
 The complete callable remains nonexact at +42. The candidate section tail is
 64,952 bytes; no source selection or exact-byte credit is added.
+
+## Action 214 flight effect facing, 2026-11-05
+
+Native `0x5E3BC4..0x5E3C34` captures the unsigned effect-facing byte before sine and reloads signed facing after cosine for X. The earlier candidate read signed facing between the two lookups. Ordinary locals now preserve the two native read points; fresh VC8 captures direction at `0x1B15` and reloads signed facing at `0x1B4D`, after cosine. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 63993-byte root remains non-exact (candidate section tail 64952, first mismatch +42); no exact credit is claimed.

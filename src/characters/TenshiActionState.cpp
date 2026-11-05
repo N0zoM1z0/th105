@@ -334,7 +334,9 @@ case 214: {
         if(time_counter_144%5==1) {
             int direction=B(0x104);
             float y=static_cast<float>(tenshi_sine(F(0x740))*100.0+F(0xf0)+100.0);
-            float x=static_cast<float>(tenshi_cosine(F(0x740))*100.0*facing()+F(0xec));
+            double cosine=tenshi_cosine(F(0x740));
+            int signed_facing=C(0x104);
+            float x=static_cast<float>(cosine*100.0*signed_facing+F(0xec));
             effect(125,x,y,direction,1);
         }
         retain=((I(0x6c8)!=0 || S(0x736)<=10) && S(0x482)>0) ||
