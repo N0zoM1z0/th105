@@ -207,9 +207,12 @@ public:
         }
     }
     __forceinline void circle801(float *p) {
-        spawn(801,
-            static_cast<float>(yuyuko_cosine(-p[0])*100.0*facing()+at<float>(0xec)),
-            static_cast<float>(yuyuko_sine(p[0])*100.0+at<float>(0xf0)+100.0),at<unsigned char>(0x104),1,p,3);
+        unsigned char direction=at<unsigned char>(0x104);
+        float y=static_cast<float>(yuyuko_sine(p[0])*100.0+at<float>(0xf0)+100.0);
+        double cosine=yuyuko_cosine(-p[0]);
+        int signed_facing=at<signed char>(0x104);
+        float x=static_cast<float>(cosine*100.0*signed_facing+at<float>(0xec));
+        spawn(801,x,y,direction,1,p,3);
     }
     __forceinline bool land_air801() {
         at<float>(0xf8)-=at<float>(0x100);

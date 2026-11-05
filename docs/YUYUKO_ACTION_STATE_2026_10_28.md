@@ -180,3 +180,7 @@ claim complete gameplay or unmasked-exception equivalence.
 
 The full 58,619-byte callable remains nonexact from +8; the candidate section
 tail is 59,456 bytes. No exact-byte credit is added.
+
+## Circle 801 facing lifetime, 2026-11-05
+
+Native `0x56355F..0x5635D2` captures unsigned spawn facing before sine, then reloads signed facing after cosine for X. The former shared candidate helper captured signed facing before sine. Ordinary locals now preserve the two native read points; focused VC8 helper output captures direction at `0xB` and reloads signed facing at `0x40` after cosine. The native distinction between sine of `p[0]` and cosine of `-p[0]` remains intact. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 58619-byte root remains non-exact (candidate section tail 59524, first mismatch +8); no exact credit is claimed.
