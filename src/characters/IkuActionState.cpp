@@ -2984,8 +2984,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             if (time_counter_144 % 15 == 0) {
                 float payload[3] = {0.0f, 0.0f, static_cast<float>(static_cast<float>(random_roll(2)) + 1.0)};
                 unsigned char direction = random_roll(100) < 50 ? 0xff : 1;
-                float x = static_cast<float>(random_roll(640));
-                spawn_owned_object_via_manager(995, x, -200.0f, direction, 1, payload, 3);
+                spawn_owned_object_via_manager(995, static_cast<float>(random_roll(640)), -200.0f, direction, 1, payload, 3);
                 advance_frame_and_dispatch();
                 return true;
             }
