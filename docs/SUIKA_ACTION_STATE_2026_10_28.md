@@ -173,3 +173,11 @@ Native `0x5AA7A3..0x5AA7E3` compares zero against the cosine result and takes th
 ## Action 214 flight effect facing, 2026-11-05
 
 Native `0x59A30A..0x59A37A` captures the unsigned effect-facing byte before the sine lookup, computes and rounds Y, then calls cosine and separately reloads signed facing for the X offset. The earlier candidate reused a signed facing captured before both lookups. Ordinary locals now preserve the two native read points; focused VC8 output captures the effect byte at `0x18F8` and reloads signed facing at `0x192F`, after cosine. This establishes read order, not that the actual lookup changes facing or that ordinary gameplay differs. The 79435-byte root remains non-exact (candidate section tail 78948, first mismatch +17); no exact credit is claimed.
+
+### Grab 608 zero-height Y association (2026-11-05)
+
+For zero-height poses, native `0x5A63C6..0x5A63E0` and `0x5A6C5F..0x5A6C79` load vertical velocity and directly add the actor's Y. The earlier shared source evaluated `(Y + 0.0) + velocity`, and its emitted code included the extra qword-zero add. The source now uses `velocity + Y` for the real zero-height pose and retains `(Y + height) + velocity` for nonzero heights. Both 70-offset and 83-offset candidate expansions now emit the direct target operand order.
+
+This is an observable bounded floating-point distinction: with both Y and velocity equal to negative zero under round-to-nearest, the target direct sum is `0x80000000`, whereas the former extra positive-zero add yields `0x00000000`; the revised expression yields `0x80000000`. This example establishes the arithmetic distinction, not that the state occurs in ordinary play or whole-root exception equivalence.
+
+The dispatcher remains nonexact: target callable 79,435 bytes, candidate section tail 78,932 bytes, first difference +17. No exact credit is added.

@@ -230,7 +230,10 @@ public:
     __forceinline void moving_grab_pose(float rotation,double xoff,double height) {
         peer()->at<float>(0x12c)=rotation;
         peer()->at<float>(0xec)=static_cast<float>(facing()*(at<float>(0xf4)+xoff)+at<float>(0xec));
-        peer()->at<float>(0xf0)=static_cast<float>((at<float>(0xf0)+height)+at<float>(0xf8));
+        if(height==0.0)
+            peer()->at<float>(0xf0)=static_cast<float>(at<float>(0xf8)+at<float>(0xf0));
+        else
+            peer()->at<float>(0xf0)=static_cast<float>((at<float>(0xf0)+height)+at<float>(0xf8));
     }
     __forceinline void moving_grab_vertical() {
         peer()->at<float>(0x12c)=0.0f;
