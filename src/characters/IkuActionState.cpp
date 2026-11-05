@@ -974,7 +974,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         }
         if (!static_cast<unsigned char>(is_y_at_or_below_stage_surface(this)) && time_counter_144 % 5 == 0) opening_periodic_effect(true);
         if (sequence_index_13e == 1 || sequence_index_13e == 2) {
-            float_at(0xf8) = (static_cast<float>(float_at(0xf8) - 0.5));
+            float_at(0xf8) -= 0.5;
             if (static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) {
                 float_at(0xf8) = 0.0f; float_at(0xf0) = stage_surface_height_at_x(this); select_sequence(3); return true;
             }
