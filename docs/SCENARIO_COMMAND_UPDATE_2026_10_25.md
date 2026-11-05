@@ -368,3 +368,7 @@ root's raw 5,368-byte section is unchanged from its separate-source build
 and strict comparison still blocks at the same unresolved local string
 constructor. The combined object is not an accepted full-game link and earns
 no source or exact credit for the interpreter.
+
+## Character command signed slot transport (2026-11-05)
+
+The character command's original call sequence at `0x458FF3..0x45900E` loads byte `+0x2C` with `MOVSX` before passing the full four-byte slot argument to `install_character`. The command parser's storage remains an unsigned byte, but the unselected source previously promoted it unsigned, so values `0x80..0xFF` reached the call with different upper bits. Casting the stored byte to `signed char` at the call reproduces signed widening; the current candidate uses `MOVSX` at section offset `0x92F`. The known callee consumes the slot's low byte as a signed side, so this alone does not establish a gameplay-output difference. The complete command interpreter is still unselected and its whole comparison remains blocked by the separately unbound string-copy helper; no exact credit is claimed.

@@ -291,7 +291,7 @@ signed char CScenarioData::update()
         case 2: {
             CComCharacter *c = static_cast<CComCharacter *>(command);
             s.install_character(c->name_08, c->name_08,
-                c->value_2c, c->value_24, c->value_28,
+                static_cast<signed char>(c->value_2c), c->value_24, c->value_28,
                 c->color_2d[0], c->color_2d[1], c->color_2d[2]);
             break;
         }
