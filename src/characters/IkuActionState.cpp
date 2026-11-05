@@ -124,7 +124,7 @@ private:
         // Unlike the integer ring above, the target stores this loop carrier
         // as float and increments it with a floating addition.
         for (float ray = 0.0f; ray < 12.0f; ray += 1.0f) {
-            payload[0] = static_cast<float>(ray * 30.0 + offset);
+            payload[0] = static_cast<float>(offset == 0.0 ? ray * 30.0 : ray * 30.0 + offset);
             payload[1] = speed;
             payload[2] = 7.0f;
             spawn_owned_object_via_manager(920, float_at(0xec),
