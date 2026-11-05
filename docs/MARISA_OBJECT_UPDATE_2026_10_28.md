@@ -115,3 +115,7 @@ equivalence.
 
 The 48,771-byte callable remains nonexact from +37; the candidate section
 tail is 50,156 bytes. No exact credit is added.
+
+## Action 827 phase 6 threshold, 2026-11-05
+
+The target checks the updated angle against 180 at `0x4C1860..0x4C1871` and enters the fade branch only when it is ordered and greater than 180. The previous phase 6 source expressed the opposite branch as `<=` with an `else`, sending unordered values to fade. The source now uses the target's ordered greater-than condition, as the existing phase 0 does. The focused candidate emits the corresponding `test ah, 0x41` branch at `0x5A94..0x5AA5`. Its full callable remains non-exact (target 48771 bytes, candidate section tail 50156, first mismatch +37); no exact credit is claimed.

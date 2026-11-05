@@ -1287,17 +1287,17 @@ case 827: {
         double cosine=lookup_orientation_cosine_quantized_abs(F(0x370));
         F(0xf8)=static_cast<float>(cosine*PARAM[1]);
         F(0x370)+=10.0;
-        if(F(0x370)<=180.0) {
+        if(F(0x370)>180.0) {
+            F(0xf4)=0.0f;F(0xf8)=0.0f;B(0x113)=0;
+            if(!(F(0x374)>=20.0)) RETIRE();
+            set_secondary_alpha(static_cast<unsigned char>(F(0x374)));
+            F(0x374)-=20.0;
+        } else {
             short action=FIELD(OWNER,short,0x13c);
             if(action>49 && action<150) {
                 for(int count=4;count!=0;--count) emit_effect(201,F(0xec),F(0xf0),B(0x104),1);
                 RETIRE();
             }
-        } else {
-            F(0xf4)=0.0f;F(0xf8)=0.0f;B(0x113)=0;
-            if(!(F(0x374)>=20.0)) RETIRE();
-            set_secondary_alpha(static_cast<unsigned char>(F(0x374)));
-            F(0x374)-=20.0;
         }
         F(0xec)=C(0x104)*F(0xf4)+F(0xec);F(0xf0)=F(0xf0)+F(0xf8);
         FINISH();
