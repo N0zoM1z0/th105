@@ -208,3 +208,14 @@ No normal-play numeric difference is established.
 
 The 57042-byte root remains nonexact at +18, with a candidate section tail of
 57840. This local correction adds no exact-function or byte credit.
+
+## Action 402 fan-angle association, 2026-11-05
+
+At `0x580642..0x58066E`, the object-800 fan angle adds `state_740 * 5` to
+`state_744 - 20`, then adds the loop term and subtracts 10. The prior source
+added the two fields before subtracting 20. The corrected expression preserves
+the target association; VC8 evaluates the independent field subtraction and
+multiplication in a different order, but combines them in the observed order.
+No normal-play numeric difference is established. The 57042-byte root remains
+nonexact at +18 with a 57840-byte candidate section tail; no exact-function or
+byte credit is claimed.
