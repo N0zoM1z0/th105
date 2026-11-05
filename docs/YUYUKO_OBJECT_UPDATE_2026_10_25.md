@@ -277,3 +277,7 @@ The target compares `1.0` against the existing X scale at `0x56F78B..0x56F798`: 
 ## Action 801 vertical chase, 2026-11-05
 
 The target at `0x56FCC6..0x56FCDF` takes the upward-acceleration branch for unordered height comparisons as well as for Y at or below the target height. The prior `<=` selected the opposite branch for unordered inputs. The source now expresses the observed condition, and the focused candidate uses the corresponding `test ah, 0x05; jnp` inverse branch at `0x56C..0x585`. The full 34278-byte root remains non-exact (candidate section tail 34928, first mismatch +31); no exact credit is claimed.
+
+## Action 811 fade gate, 2026-11-05
+
+At `0x570A99..0x570AAA` the target skips the fade when the decayed scale is greater than 0.3 or unordered. The previous negated `>` included unordered values in the fade. The source now uses ordered `<=`; focused compilation emits the same `test ah, 1; jne` continuation at `0x12E6..0x12F7`. The full 34278-byte root remains non-exact (candidate section tail 34928, first mismatch +31); no exact credit is claimed.

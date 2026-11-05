@@ -90,7 +90,7 @@ void YuyukoObjectUpdateView::update_action_state()
     if(I(0x144)%5==0){PACKET(p24,RND(360),RND(50)*D(0.1f)+5.0,static_cast<float>(S(0x13e)+4));SPAWN(811,1,p24);}if(OUTSIDE(1380.0f,-100.0,1060.0f,-100.0)){S(0x364)=1;H[1]=0;}MOVE();break;
    }
    if(S(0x366)==0){S(0x366)=1;++AT(T,short,0x366);int count=8;do{PACKET(p384,RND(360),RND(50)*D(0.1f)+5.0,static_cast<float>(S(0x13e)+4));SPAWN(811,1,p384);}while(--count!=0);}
-   F(0xf4)=F(0xf8)=0;SCALE(F(0x11c)*D(0.95f));if(!(F(0x11c)>0.3f))FADE(12,12);break;
+   F(0xf4)=F(0xf8)=0;SCALE(F(0x11c)*D(0.95f));if(F(0x11c)<=0.3f)FADE(12,12);break;
   case 4:case 5:case 6:case 7:F(0x12c)+=F(0x370);F(0xf4)*=D(0.97f);F(0xf8)-=D(0.15f);SCALE(F(0x11c)-D(0.01f));if(I(0x144)>=15)FADE(10,10);break;
   case 8:case 9:case 10:case 11:
    publish_bounds(static_cast<int>(F(0x11c)*-32.0),10,0,-10,static_cast<short>(static_cast<int>(F(0x12c))),0,0);
