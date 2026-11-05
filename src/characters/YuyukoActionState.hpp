@@ -282,8 +282,12 @@ public:
             float p[4];p[0]=static_cast<float>(80.0-at<float>(0x740)*9.0);
             p[1]=static_cast<float>(yuyuko_sine(static_cast<float>(at<float>(0x740)*angle_scale))*speed_scale+2.0);
             p[2]=0.0f;p[3]=at<float>(0x740);
-            spawn(812,static_cast<float>((yuyuko_cosine(-p[0])*100.0+at<float>(0x740)*5.0-85.0)*facing()+at<float>(0xec)),
-                  static_cast<float>(yuyuko_sine(-p[0])*40.0+(static_cast<double>(at<float>(0xf0))+120.0)),at<unsigned char>(0x104),1,p,4);
+            unsigned char direction=at<unsigned char>(0x104);
+            float y=static_cast<float>(yuyuko_sine(-p[0])*40.0+(static_cast<double>(at<float>(0xf0))+120.0));
+            double cosine=yuyuko_cosine(-p[0]);
+            int signed_facing=at<signed char>(0x104);
+            float x=static_cast<float>((cosine*100.0+at<float>(0x740)*5.0-85.0)*signed_facing+at<float>(0xec));
+            spawn(812,x,y,direction,1,p,4);
         }
         at<float>(0x740)=static_cast<float>(at<float>(0x740)+1.0);
     }
