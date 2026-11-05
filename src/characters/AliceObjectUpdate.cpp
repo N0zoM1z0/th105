@@ -896,7 +896,7 @@ alice_858_clamp:
         if(S(0x140)==1) {F(0x11c)*=static_cast<double>(0.85f);F(0x120)=F(0x11c);if(B(0x113)<=20) RETIRE();B(0x113)-=20;}break;
     case 33:
         if(RELATED) {if(S(0x364)==0) {if(FIELD(RELATED,short,0x13e)!=14) S(0x364)=1;if(I(0x144)>=45) S(0x364)=1;else {void *related=RELATED;F(0xec)=static_cast<float>(static_cast<double>(60*C(0x104))+FIELD(related,float,0xec));F(0xf0)=static_cast<float>(FIELD(related,float,0xf0)+5.0);F(0x11c)=static_cast<float>(static_cast<double>(I(0x144)&2)*static_cast<double>(0.2f)+1.0);F(0x120)=F(0x11c);}short action=FIELD(OWNER,short,0x13c);if(action>49 && action<150) RETIRE();}}else S(0x364)=1;
-        if(S(0x364)==1) {F(0x11c)*=static_cast<double>(0.85f);F(0x120)=F(0x11c);if(!(F(0x11c)>=0.02f)) RETIRE();}break;
+        if(S(0x364)==1) {F(0x11c)*=static_cast<double>(0.85f);F(0x120)=F(0x11c);if(F(0x11c)<0.02f) RETIRE();}break;
     case 34:
         if(RELATED) {
             if(S(0x364)<=1 && FIELD(RELATED,short,0x364)==1) S(0x364)=2;
