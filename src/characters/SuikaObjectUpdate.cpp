@@ -79,19 +79,19 @@ case 811: {
     int collision=I(0x180);if(collision==5) RETIRE();
     if(S(0x13e)==0) {
         if(collision==6) {I(0x180)=0;++B(0x184);}
-        if(I(0x180)==4 && US(0x364)<5) {++US(0x364);I(0x180)=0;++B(0x184);}
+        if(I(0x180)==4 && S(0x364)<5) {++S(0x364);I(0x180)=0;++B(0x184);}
         if(I(0x144)==6 && FIELD(OWNER,signed char,0x605)>=4) {float packet[3]={0.0f,0.0f,3.0f};spawn_unparented(811,static_cast<float>(static_cast<double>(100*C(0x104))+F(0xec)),F(0xf0),B(0x104),1,packet,3);}
     }
     if(S(0x13e)==1) {float *parameters=PARAM;parameters[1]*=static_cast<double>(0.9f);MOTION->set_components(parameters[0],parameters[1]);if(B(0x113)<10) RETIRE();B(0x113)-=10;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)=static_cast<float>(F(0xf8)*0.25+F(0xf0));}
     if(S(0x13e)==2) {F(0x11c)+=static_cast<double>(0.4f);F(0x120)=F(0x11c);if(B(0x113)<=30) RETIRE();B(0x113)-=30;B(0x110)-=30;B(0x111)-=30;}
     if(S(0x13e)==3) {
         if(I(0x180)==6) {I(0x180)=0;++B(0x184);}
-        if(I(0x180)==4 && US(0x364)<5) {++US(0x364);I(0x180)=0;++B(0x184);}
+        if(I(0x180)==4 && S(0x364)<5) {++S(0x364);I(0x180)=0;++B(0x184);}
         if(I(0x144)==6 && FIELD(OWNER,signed char,0x605)>=4) {float packet[3]={0.0f,0.0f,4.0f};spawn_unparented(811,static_cast<float>(static_cast<double>(100*C(0x104))+F(0xec)),F(0xf0),B(0x104),1,packet,3);}
     }
     if(S(0x13e)==4) {
         if(I(0x180)==6) {I(0x180)=0;++B(0x184);}
-        if(I(0x180)==4 && US(0x364)<5) {++US(0x364);I(0x180)=0;++B(0x184);}
+        if(I(0x180)==4 && S(0x364)<5) {++S(0x364);I(0x180)=0;++B(0x184);}
     }
     if(advance_frame()) --I(0x330);
     if(I(0x144)==0 && ((S(0x142)==0 && S(0x140)==0 && S(0x13e)==1) || (S(0x142)==0 && S(0x140)==0 && S(0x13e)==4) || (S(0x142)==0 && S(0x140)==0 && S(0x13e)==5))) --I(0x330);return;

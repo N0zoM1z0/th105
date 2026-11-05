@@ -142,3 +142,7 @@ At `0x5B09CD..0x5B09DE`, the target compares 1380 against X and retires only for
 ## Actions 815 and 940 fade speed, 2026-11-05
 
 The target phase 6 checks at `0x5B293C..0x5B294A` and `0x5BB957..0x5BB965` enter fade only when parameter speed is ordered and at or below 6. The previous negated greater-than conditions also entered fade for unordered speed. Both now use ordered `<=`; focused compilation reproduces the target-style `test ah, 1; jne` continuation. The 52190-byte root remains non-exact (candidate section tail 53204, first mismatch +17); no exact credit is claimed.
+
+## Action 811 signed collision counter, 2026-11-05
+
+Three native paths, `0x5B1236..0x5B1253`, `0x5B13E1..0x5B13FE` and `0x5B14B1..0x5B14CE`, compare the 16-bit field at `0x364` against 5 with signed `jge`. For a negative value and collision state 4 the target increments the counter, clears the collision and increments the hit byte; the earlier unsigned source skipped that work. The three source paths now use the signed short. Focused VC8 compilation confirms signed threshold gates. Negative-counter reachability in ordinary play is unproved; the complete root remains nonexact with no exact credit.
