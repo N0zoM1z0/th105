@@ -176,3 +176,7 @@ tail is 51,412 bytes. No exact credit is added.
 ## Action 815 phase 4 timer, 2026-11-05
 
 The target at `0x522417..0x52242D` starts the burst only when the float timer limit is ordered and less than the integer frame. The prior negated `>=` also started it for unordered input. The source now uses ordered `<`; the focused candidate implements the equivalent reversed compare and continuation at `0x1B63..0x1B79`. The complete 50649-byte root remains non-exact (candidate section tail 51412, first mismatch +37); no exact credit is claimed.
+
+## Action 852 fade gates, 2026-11-05
+
+The phase 0 fade at `0x526E87..0x526E94` and the phase 1/2 shared fade at `0x526FF8..0x527005` retire only for ordered scale at or below zero. The prior negated greater-than expressions also retired unordered values. All three source branches now use ordered `<=`; focused compilation reproduces the `test ah, 1; jne` continuations at `0x6596..0x65A3` and `0x6707..0x6714`. The full 50649-byte root remains non-exact (candidate section tail 51412, first mismatch +37); no exact credit is claimed.

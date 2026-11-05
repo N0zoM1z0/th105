@@ -78,10 +78,10 @@ alice_801_owner_position: {
             if(S(0x13e)==9 && I(0x144)>=40) {select_sequence(5);TURN_TO_OWNER();}F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));break;
         case 10:
             if(!RELATED) RETIRE();if(FIELD(RELATED,short,0x13e)==9) {if(I(0x180)!=0) {if(S(0x364)<7) ++S(0x364);else {S(0x364)=0;I(0x180)=0;}}void *related=RELATED;F(0xec)=static_cast<float>(static_cast<double>(45*C(0x104))+FIELD(related,float,0xec));F(0xf0)=static_cast<float>(FIELD(related,float,0xf0)+5.0);}
-            else {B(0x184)=0;F(0x11c)*=static_cast<double>(0.85f);F(0x120)=F(0x11c);if(!(F(0x11c)>0.01f)) RETIRE();}break;
+            else {B(0x184)=0;F(0x11c)*=static_cast<double>(0.85f);F(0x120)=F(0x11c);if(F(0x11c)<=0.01f) RETIRE();}break;
         case 11: {
             F(0x12c)+=15.0;if(!RELATED) RETIRE();void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);
-            if(FIELD(related,signed char,0x184)>0) {F(0x120)+=static_cast<double>(0.3f);if(F(0x120)>3.0f) F(0x120)=3.0f;}else {F(0x120)*=static_cast<double>(0.65f);if(!(F(0x120)>0.01f)) RETIRE();}break;
+            if(FIELD(related,signed char,0x184)>0) {F(0x120)+=static_cast<double>(0.3f);if(F(0x120)>3.0f) F(0x120)=3.0f;}else {F(0x120)*=static_cast<double>(0.65f);if(F(0x120)<=0.01f) RETIRE();}break;
         }
         case 12: {
             if(!RELATED) RETIRE();void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);F(0x120)=static_cast<float>(lookup_orientation_sine(3*I(0x144))*6.0);F(0x11c)=F(0x120);if(B(0x113)<9) RETIRE();B(0x113)-=9;break;

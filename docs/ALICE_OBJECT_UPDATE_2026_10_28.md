@@ -119,3 +119,7 @@ Five movement-bound checks now use the target's ordered outside comparisons: act
 ## Action 800 phase 33 scale, 2026-11-05
 
 At `0x509BA8..0x509BB9`, the target retires only when the decayed scale is ordered and less than 0.02. The previous negated `>=` also retired an unordered value. The focused candidate now emits the same `test ah, 0x41; jne` continuation at `0xCFD1..0xCFE2`. The complete 62278-byte root is still non-exact (candidate section tail 62960, first mismatch +37); no exact credit is claimed.
+
+## Action 801 fade gates, 2026-11-05
+
+The target phase 10 and 11 checks at `0x4FD5ED..0x4FD5FE` and `0x4FD66F..0x4FD67A` retire only for ordered scales at or below 0.01. The previous negated greater-than checks also retired unordered values. Both source conditions now use ordered `<=`, and focused compilation reproduces the native local branch forms at `0xB04..0xB15` and `0xBBA..0xBC5`. The full 62278-byte root remains non-exact (candidate section tail 62960, first mismatch +37); no exact credit is claimed.

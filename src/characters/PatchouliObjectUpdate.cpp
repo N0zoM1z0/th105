@@ -640,7 +640,7 @@ case 852: {
     case 0:
         F(0x12c)-=15.0;
         if(S(0x364)==0) {F(0x11c)+=static_cast<double>(0.1f);if(F(0x11c)>=1.0f) F(0x11c)=1.0f;F(0x120)=F(0x11c);void *owner=OWNER;if(FIELD(owner,short,0x13c)==602 && FIELD(owner,short,0x13e)==1) {F(0xec)=FIELD(owner,float,0xec);F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+100.0);}else S(0x364)=1;}
-        if(S(0x364)==1) {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(!(F(0x11c)>0.0f)) RETIRE();}break;
+        if(S(0x364)==1) {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(F(0x11c)<=0.0f) RETIRE();}break;
     case 1:
         F(0x12c)+=15.0;
         if(S(0x364)==0) {
@@ -650,7 +650,7 @@ case 852: {
                 F(0xf0)=static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*6.0-PARAM[0]))*150.0+(FIELD(OWNER,float,0xf0)+100.0));
             }else S(0x364)=1;
         }
-        if(S(0x364)==1) {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(!(F(0x11c)>0.0f)) RETIRE();}break;
+        if(S(0x364)==1) {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(F(0x11c)<=0.0f) RETIRE();}break;
     case 2:
         F(0x12c)-=20.0;
         if(S(0x364)==0) {
@@ -660,7 +660,7 @@ case 852: {
                 F(0xf0)=static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(-parameters[0]-I(0x144)*9.0))*PARAM[1]+(FIELD(OWNER,float,0xf0)+100.0));
             }else S(0x364)=1;
         }
-        if(S(0x364)==1) {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(!(F(0x11c)>0.0f)) RETIRE();}break;
+        if(S(0x364)==1) {F(0x11c)-=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(F(0x11c)<=0.0f) RETIRE();}break;
     case 3:F(0x12c)-=F(0x370);F(0x370)*=static_cast<double>(0.98f);F(0x11c)+=static_cast<double>(0.005f);F(0x120)=F(0x11c);if(B(0x113)<15) RETIRE();B(0x113)-=15;break;
     }FINISH();
 
