@@ -386,3 +386,7 @@ Youmu object build scope.
 ## Actions 856, 901 and 902 packet speed rounding, 2026-11-05
 
 Native `0x53EE6C`, `0x5419CE`, `0x541AEC`, `0x541FEC`, `0x54211C` and `0x542AD1` round the random product with double-promoted `0.1f` to float before adding the speed base. The four source expressions cover all six sites, including both expansions of the action 901 burst macro. Explicit float conversions restore that lifetime; focused VC8 output shows the six store/reload/add sequences at `0x1FFF`, `0x4C61`, `0x4D7F`, `0x52C4`, `0x53EF` and `0x5E14`. For the add-10 paths, valid RNG 42 yields approximately 14.20000076 rather than 14.19999981 previously. The 25944-byte root remains non-exact (candidate section tail 27072, first mismatch +34); no exact credit is claimed.
+
+## Action 902 random X conversion, 2026-11-05
+
+In phase 5, native `0x54245A..0x542481` converts RNG(100) to x87 and directly adds current X, then subtracts 50 and rounds the final coordinate to float. The previous candidate first stored and reloaded the converted roll as a float. A wider ordinary local now keeps the converted value through the X arithmetic; focused VC8 output at `0x5742..0x577B` adds X without that intermediate float spill. Existing facing, layer and Y snapshots are retained. A normal 0..99 roll is exactly representable as float, so this corrects the observed intermediate lifetime without claiming a normal-play numeric difference. The complete 25,944-byte root remains nonexact (candidate section tail 27,072, first mismatch +34); no exact-byte credit is claimed.
