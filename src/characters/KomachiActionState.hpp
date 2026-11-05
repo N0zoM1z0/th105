@@ -256,7 +256,9 @@ public:
                         for(float n=0.0f;n<6.0f;n=static_cast<float>(n+1.0)){
                             float angle=static_cast<float>(-n*60.0);int direction=at<unsigned char>(0x104);
                             float y=static_cast<float>(komachi_sine(angle)*200.0+(static_cast<double>(at<float>(0xf0))+100.0));
-                            float x=static_cast<float>(komachi_cosine(angle)*200.0*facing()+at<float>(0xec));
+                            double cosine=komachi_cosine(angle);
+                            int signed_facing=at<signed char>(0x104);
+                            float x=static_cast<float>(cosine*200.0*signed_facing+at<float>(0xec));
                             spawn(820,x,y,direction,1,ring,3);
                         }
                     }else if(at<unsigned char>(skill)!=4){peer()->at<short>(0x4a8)=15;peer()->at<short>(0x4ac)=15;}
