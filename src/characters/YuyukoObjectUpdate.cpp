@@ -60,7 +60,7 @@ void YuyukoObjectUpdateView::update_action_state()
    if(emit_repeated(0,3,5))RETIRE();
    if(S(0x364)<2){SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144))*10.0)*D(0.1f)+D(0.9f));if(C(0x184)==0 || I(0x144)>=150 || ((AT(P,short,0x13c)==411 || AT(P,short,0x13c)==415) && AT(P,short,0x13e)==0 && AT(P,short,0x140)==0))S(0x364)=2;}
    advance_six(0);if(I(0x180)!=0 && ++S(0x366)>3 && C(0x184)>0){S(0x366)=0;I(0x180)=0;}
-   if(I(0x144)%5==0){PACKET(p120,0,0,4);unsigned char facing=B(0x104);spawn_unparented(801,(RND(70)-35.0)+F(0xec),(RND(70)-35.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p120),3);}
+   if(I(0x144)%5==0){PACKET(p120,0,0,4);unsigned int facing=B(0x104);spawn_unparented(801,(RND(70)-35.0)+F(0xec),(RND(70)-35.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p120),3);}
    if(S(0x364)==0){H[1]-=0.5;if(H[1]<=0.0){H[1]=0;S(0x364)=1;}}
    if(S(0x364)==1){turn_heading(0,10,100);H[1]+=D(0.05f);if(H[1]>=3.0f)H[1]=3;}
    if(S(0x364)==2){B(0x184)=0;F(0xf4)=F(0xf8)=0;SCALE(F(0x11c)*D(0.9f));FADE(15,15);}MOVE();break;
@@ -74,7 +74,7 @@ void YuyukoObjectUpdateView::update_action_state()
   if(S(0x13e)<4){if(emit_repeated(0,0,3))RETIRE();if(I(0x180)!=0 || I(0x144)>179){--I(0x330);int count=3;do{PACKET(p432,RND(360),RND(50)*D(0.1f)+5.0,static_cast<float>(S(0x13e)+4));SPAWN(810,1,p432);}while(--count!=0);return;}H[1]+=D(0.2f);MOVE();F(0x12c)=H[0];}
   if(S(0x13e)>3 && S(0x13e)<8){F(0x12c)+=F(0x370);F(0xf4)*=D(0.97f);F(0xf8)-=D(0.15f);SCALE(F(0x11c)-D(0.01f));if(I(0x144)>14)FADE(10,10);}
   if(S(0x13e)>7 && S(0x13e)<12){F(0xf4)=F(0xf8)=0;if(T==0)RETIRE();F(0xec)=C(0x104)*AT(T,float,0xf4)+AT(T,float,0xec);F(0xf0)=AT(T,float,0xf8)+AT(T,float,0xf0);SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144))*6.0)*0.5+1.0);}
-  if(S(0x13e)==12){if(emit_repeated(0,0,4))RETIRE();if(I(0x144)%3==0){PACKET(p216,0,0,13);unsigned char facing=B(0x104);spawn_unparented(810,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p216),3);}
+  if(S(0x13e)==12){if(emit_repeated(0,0,4))RETIRE();if(I(0x144)%3==0){PACKET(p216,0,0,13);unsigned int facing=B(0x104);spawn_unparented(810,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p216),3);}
    if(F(0xec)>=g_update_right || F(0xec)<=g_update_left || F(0xf0)>=g_update_top){--I(0x330);P->dispatch_character_wave_handle(11);F(0x374)=-atan2_degrees((AT(A,float,0xf0)+100.0)-F(0xf0),C(0x104)*(AT(A,float,0xec)-F(0xec)));float pattern=RND(4);int offset=0;do{PACKET(p408,(static_cast<float>(offset)+F(0x374))-15.0,0,pattern);SPAWN(810,1,p408);offset+=15;}while(offset<45);return;}MOVE();
   }
   if(S(0x13e)==13){FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);}
@@ -99,7 +99,7 @@ void YuyukoObjectUpdateView::update_action_state()
    if(C(0x184)<1)AT(T,short,0x364)=1;if(AT(T,short,0x364)==1){B(0x184)=0;FADE(10,10);}break;
   case 12:
    if(AT(P,short,0x13c)>49 && AT(P,short,0x13c)<150){int count=4;do{emit_fighter_effect_433cc0(201,F(0xec),F(0xf0),B(0x104),1);}while(--count!=0);RETIRE();}
-   if(I(0x144)%3==0){PACKET(p192,0,0,13);unsigned char facing=B(0x104);spawn_unparented(811,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p192),3);}
+   if(I(0x144)%3==0){PACKET(p192,0,0,13);unsigned int facing=B(0x104);spawn_unparented(811,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p192),3);}
    if(F(0xec)>=g_update_right || F(0xec)<=g_update_left || F(0xf0)>=g_update_top){--I(0x330);P->dispatch_character_wave_handle(15);PACKET(p360,H[0],0,14);SPAWN(811,1,p360);return;}MOVE();break;
   case 13:FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);break;
   case 14:
@@ -169,7 +169,7 @@ void YuyukoObjectUpdateView::update_action_state()
   if(S(0x13e)==0){if(emit_repeated(0,0,4))RETIRE();++S(0x36c);float *heading=H;heading[1]=150.0+lookup_orientation_cosine(I(0x144)*9)*150.0;F(0xec)=C(0x104)*lookup_orientation_cosine_quantized_abs(static_cast<float>(S(0x36c)*4)+heading[0])*H[1]+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x36c)*4)+H[0])*H[1]+F(0x374);if(I(0x144)>9)goto yuyuko820_next;}
   if(S(0x13e)==1){if(AT(P,short,0x13c)>49 && AT(P,short,0x13c)<150){int count=4;do{emit_fighter_effect_433cc0(201,F(0xec),F(0xf0),B(0x104),1);}while(--count!=0);RETIRE();}
    F(0x378)*=D(0.94f);F(0x370)+=C(0x104)*(F(0x378)*7.5);F(0x374)+=F(0x378)*15.0;++S(0x36c);float *heading=H;F(0xec)=C(0x104)*lookup_orientation_cosine_quantized_abs(static_cast<float>(S(0x36c)*4)+heading[0])*heading[1]+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x36c)*4)+heading[0])*H[1]+F(0x374);
-   if(I(0x144)%3==0){PACKET(p336,0,0,3);unsigned char facing=B(0x104);spawn_unparented(820,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p336),3);}advance_six(0);if(I(0x180)!=0 && ++S(0x364)>19){S(0x364)=0;I(0x180)=0;}
+   if(I(0x144)%3==0){PACKET(p336,0,0,3);unsigned int facing=B(0x104);spawn_unparented(820,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p336),3);}advance_six(0);if(I(0x180)!=0 && ++S(0x364)>19){S(0x364)=0;I(0x180)=0;}
    if(AT(P,signed char,0x606)<4){if(I(0x144)>59){next_sequence_block();return;}}else if(I(0x144)>89)goto yuyuko820_next;
   }
   if(S(0x13e)==2){FADE(13,13);SCALE(F(0x11c)*D(0.94f));}
@@ -177,7 +177,7 @@ void YuyukoObjectUpdateView::update_action_state()
   if(S(0x13e)==4){if(emit_repeated(0,0,4))RETIRE();++S(0x36c);float *heading=H;heading[1]=150.0+lookup_orientation_cosine(I(0x144)*9)*150.0;F(0xec)=C(0x104)*lookup_orientation_cosine_quantized_abs(static_cast<float>(S(0x36c)*4)+heading[0])*H[1]+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x36c)*4)+H[0])*H[1]+F(0x374);if(I(0x144)>9)goto yuyuko820_next;}
   if(S(0x13e)==5){if(AT(P,short,0x13c)>49 && AT(P,short,0x13c)<150){int count=4;do{emit_fighter_effect_433cc0(201,F(0xec),F(0xf0),B(0x104),1);}while(--count!=0);RETIRE();}
    ++S(0x36c);float *heading=H;F(0xec)=C(0x104)*lookup_orientation_cosine_quantized_abs(static_cast<float>(S(0x36c)*4)+heading[0])*heading[1]+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x36c)*4)+heading[0])*H[1]+F(0x374);
-   if(I(0x144)%3==0){PACKET(p168,0,0,3);unsigned char facing=B(0x104);spawn_unparented(820,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p168),3);}advance_six(0);if(I(0x180)!=0 && ++S(0x364)>19){S(0x364)=0;I(0x180)=0;}
+   if(I(0x144)%3==0){PACKET(p168,0,0,3);unsigned int facing=B(0x104);spawn_unparented(820,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p168),3);}advance_six(0);if(I(0x180)!=0 && ++S(0x364)>19){S(0x364)=0;I(0x180)=0;}
    if(AT(P,short,0x13c)!=540 || AT(P,short,0x13e)==0 || AT(P,short,0x13e)==3 || (AT(P,signed char,0x606)<4?I(0x144)>=60:I(0x144)>=90)){select_sequence(2);return;}
   }STEP();break;
  yuyuko820_next:
@@ -288,7 +288,7 @@ void YuyukoObjectUpdateView::update_action_state()
   case 4:
    if(S(0x364)==0){SCALE(1.0-F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=0.005f){F(0x370)=0;S(0x364)=1;}}
    if(S(0x364)==2)SCALE(F(0x11c)*D(0.8f));if(S(0x364)<2){if(++S(0x366)>209 || emit_repeated(0,0,0)){S(0x364)=2;return;}if(AT(P,short,0x174)<1 || AT(A,short,0x174)<1)S(0x364)=2;
-    if(I(0x144)%4==0 && I(0x144)>19){PACKET(p516,-60.0-RND(60),static_cast<float>(RND(120)*D(0.1f))+10.0,1);unsigned char facing=B(0x104);spawn_unparented(854,(F(0xec)+100.0)-RND(200),F(0xf0),facing,1,reinterpret_cast<const unsigned *>(p516),3);
+    if(I(0x144)%4==0 && I(0x144)>19){PACKET(p516,-60.0-RND(60),static_cast<float>(RND(120)*D(0.1f))+10.0,1);unsigned int facing=B(0x104);spawn_unparented(854,(F(0xec)+100.0)-RND(200),F(0xf0),facing,1,reinterpret_cast<const unsigned *>(p516),3);
      PACKET(p516,static_cast<float>(static_cast<unsigned>(selector_random_roll(6)+I(0x144)*5)),25,3);SPAWN(854,(p516[0]<0.0 || !(p516[0]<=180.0f))?-1:1,p516);}
    }
    if(AT(A,float,0xec)<F(0xec))F(0xf4)-=C(0x104)*D(0.1f);if(F(0xec)<AT(A,float,0xec))F(0xf4)+=C(0x104)*D(0.1f);if(F(0xf4)>2.0f)F(0xf4)=2;if(F(0xf4)<-2.0f)F(0xf4)=-2;break;
@@ -328,7 +328,7 @@ void YuyukoObjectUpdateView::update_action_state()
   }
   if(S(0x13e)>3 && S(0x13e)<8){F(0x12c)+=F(0x370);F(0xf4)*=D(0.97f);F(0xf8)-=D(0.15f);SCALE(F(0x11c)-D(0.01f));if(I(0x144)>14)FADE(10,10);}
   if(S(0x13e)>7 && S(0x13e)<12){F(0xf4)=F(0xf8)=0;if(T==0)RETIRE();F(0xec)=C(0x104)*AT(T,float,0xf4)+AT(T,float,0xec);F(0xf0)=AT(T,float,0xf8)+AT(T,float,0xf0);SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144))*6.0)*0.5+1.0);}
-  if(S(0x13e)==12){if(AT(P,short,0x174)<1)RETIRE();if(I(0x144)%3==0){PACKET(p276,0,0,13);unsigned char facing=B(0x104);spawn_unparented(856,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p276),3);}
+  if(S(0x13e)==12){if(AT(P,short,0x174)<1)RETIRE();if(I(0x144)%3==0){PACKET(p276,0,0,13);unsigned int facing=B(0x104);spawn_unparented(856,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p276),3);}
    if(F(0xec)>=g_update_right || F(0xec)<=g_update_left || F(0xf0)>=g_update_top){--I(0x330);P->dispatch_character_wave_handle(11);F(0x374)=-atan2_degrees((AT(A,float,0xf0)+100.0)-F(0xf0),C(0x104)*(AT(A,float,0xec)-F(0xec)));float pattern=RND(4);int n=0;do{PACKET(p252,(static_cast<float>(n)+F(0x374))-15.0,0,pattern);SPAWN(856,1,p252);n+=15;}while(n<45);return;}MOVE();
   }
   if(S(0x13e)==13){FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);}
@@ -353,7 +353,7 @@ void YuyukoObjectUpdateView::update_action_state()
   if(OUTSIDE(1880.0,-600.0f,1060.0f,-100.0))RETIRE();STEP();break;
  case 858:
   if(S(0x13e)==1){if(S(0x364)==0){if(B(0x113)<251)B(0x113)+=5;else{B(0x113)=255;B(0x184)=1;S(0x364)=1;}}
-   else{advance_six(0);if(I(0x144)%3==0){PACKET(p204,0,0,3);unsigned char facing=B(0x104);spawn_unparented(858,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p204),3);}if(I(0x180)!=0 && ++S(0x366)>9){S(0x366)=0;I(0x180)=0;B(0x184)=1;}}
+   else{advance_six(0);if(I(0x144)%3==0){PACKET(p204,0,0,3);unsigned int facing=B(0x104);spawn_unparented(858,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p204),3);}if(I(0x180)!=0 && ++S(0x366)>9){S(0x366)=0;I(0x180)=0;B(0x184)=1;}}
    H[1]-=2.0;if(AT(P,short,0x174)<1 || AT(A,short,0x174)<1){next_sequence_block();return;}++S(0x36c);float *heading=H;F(0xec)=C(0x104)*lookup_orientation_cosine_quantized_abs(static_cast<float>(S(0x36c)*6)+heading[0])*heading[1]+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x36c)*6)+heading[0])*H[1]+F(0x374);if(H[1]<=100.0){next_sequence_block();return;}
   }
   if(S(0x13e)==2){FADE(13,13);SCALE(F(0x11c)*D(0.94f));}if(S(0x13e)==3){FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)+=D(0.1f);}STEP();if(advance_frame())--I(0x330);return;
@@ -364,12 +364,12 @@ void YuyukoObjectUpdateView::update_action_state()
     if(S(0x364)==0){if(B(0x113)<246)B(0x113)+=10;else{B(0x113)=255;S(0x364)=1;B(0x184)=1;}}advance_six(0);advance_phase(0);if(AT(P,short,0x174)<1){select_sequence(2);return;}
     H[0]-=2.0;H[1]-=3.0;if(H[1]<=150.0f){if(g_match_identifier==0){select_sequence(2);S(0x364)=0;return;}H[1]=150;B(0x184)=1;next_sequence_block();F(0x37c)=-atan2_degrees((AT(A,float,0xf0)+100.0)-F(0x374),C(0x104)*(AT(A,float,0xec)-F(0x370)));}
     {float *heading=H;F(0xec)=lookup_orientation_cosine_quantized_abs(-heading[0])*heading[1]+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(-heading[0])*H[1]+F(0x374);}
-    if(I(0x144)%6==0){PACKET(p180,0,0,3);unsigned char facing=B(0x104);spawn_unparented(900,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p180),3);}break;
+    if(I(0x144)%6==0){PACKET(p180,0,0,3);unsigned int facing=B(0x104);spawn_unparented(900,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p180),3);}break;
    case 1:
     advance_six(0);advance_phase(0);if(I(0x180)!=0 && ++S(0x364)>9){B(0x184)=1;S(0x364)=0;I(0x180)=0;}if(AT(P,short,0x174)<1){select_sequence(2);return;}
     F(0x380)+=0.5;if(F(0x380)>=5.0f)F(0x380)=5;MOTION->set_components(F(0x37c),F(0x380));F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);
     {float *heading=H;heading[0]-=4.0;F(0xec)=lookup_orientation_cosine_quantized_abs(-heading[0])*heading[1]+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(-heading[0])*H[1]+F(0x374);}
-    if(I(0x144)>299){select_sequence(2);return;}if(I(0x144)%6==0){PACKET(p156,0,0,3);unsigned char facing=B(0x104);spawn_unparented(900,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p156),3);}break;
+    if(I(0x144)>299){select_sequence(2);return;}if(I(0x144)%6==0){PACKET(p156,0,0,3);unsigned int facing=B(0x104);spawn_unparented(900,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p156),3);}break;
    case 2:F(0xf4)=F(0xf8)=0;FADE(13,13);SCALE(F(0x11c)*D(0.96f));break;
    case 3:FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)+=D(0.1f);break;
    case 4:
@@ -384,7 +384,7 @@ void YuyukoObjectUpdateView::update_action_state()
    switch(S(0x13e)) {
    case 0:
     if(AT(P,short,0x174)<1 || S(0x174)<-699){PACKET(p108,0,0,5);packet=p108;goto yuyuko901_finish;}
-    if(I(0x144)%7==0){PACKET(p132,0,0,3);unsigned char facing=B(0x104);spawn_unparented(901,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p132),3);}
+    if(I(0x144)%7==0){PACKET(p132,0,0,3);unsigned int facing=B(0x104);spawn_unparented(901,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p132),3);}
     if(F(0xec)>=g_update_right || F(0xec)<=g_update_left || F(0xf0)>=g_update_top || F(0xf0)<=0.0){if(F(0xec)>=g_update_right || F(0xec)<=g_update_left)F(0xf4)=-F(0xf4);if(F(0xf0)>=g_update_top || F(0xf0)<=0.0)F(0xf8)=-F(0xf8);H[0]=-atan2_degrees(F(0xf8),F(0xf4));P->dispatch_character_wave_handle(11);
      int n=0;do{PACKET(p492,(static_cast<float>(n)+H[0])-15.0,RND(50)*D(0.1f),0);SPAWN(902,1,p492);n+=15;}while(n<45);p492[2]=5;SPAWN(901,1,p492);p492[2]=4;packet=p492;goto yuyuko901_finish;
     }MOVE();H[1]+=D(0.05f);break;
