@@ -379,3 +379,5 @@ The native 0x48 frame remains matched; the callable remains nonexact from
 +34 and the section tail is 26,816 bytes. The source remains unselected; no
 exact credit is added. Receipts use `action857-902-height` in the existing
 Youmu object build scope.
+
+- Action 902 phase 5's first shot determines its layer, captures facing, and saves its Y coordinate before the RNG(100) call at target `0x542427..0x542491`. The X coordinate is computed after that call. The earlier single call expression left facing and Y to be read after RNG in the independently compiled candidate. Explicit source locals preserve the observed ordering. Focused rebuild shows those captures before RNG (`0x5701..0x5717`) and the X load afterward. The candidate remains non-exact: its frame grows from `0x48` to `0x50`, first mismatch is offset 8, and the candidate section tail is 27040 bytes against a 25944-byte target. This is a source-fidelity improvement, not an exact-match claim.

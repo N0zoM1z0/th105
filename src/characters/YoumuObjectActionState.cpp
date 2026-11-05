@@ -712,7 +712,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(I(0x144)%4==0) {
     payload[0]=10.0-random_float(45); payload[1]=0; payload[2]=2;
     { double center_y=F(0xF0)+20.0; F(0x370)=static_cast<float>(center_y-random_float(40)); }
-    spawn_unparented(902,static_cast<float>(random_float(100)+F(0xEC)-50.0),F(0x370),B(0x104),static_cast<unsigned char>(F(0x370)<=F(0xF0)?1:-1),reinterpret_cast<const unsigned *>(payload),3);
+    { unsigned char layer=static_cast<unsigned char>(F(0x370)<=F(0xF0)?1:-1); unsigned char facing=B(0x104); float y=F(0x370); spawn_unparented(902,static_cast<float>(random_float(100)+F(0xEC)-50.0),y,facing,layer,reinterpret_cast<const unsigned *>(payload),3); }
    }
    if(I(0x144)%5==0) {
     payload[0]=0; payload[1]=0; payload[2]=4; SPAWN(902,1,3); payload[2]=0;
