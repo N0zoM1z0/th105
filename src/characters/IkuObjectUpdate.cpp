@@ -362,7 +362,7 @@ void IkuObjectUpdateView::update_action_state()
   case 2:
    position_relative(0,100);++S(0x368);
    if(S(0x364)<2 && (S(0x368)>299 || AT(P,short,0x174)<1 || AT(A,short,0x174)<1 || (AT(P,short,0x13c)>599 && AT(P,short,0x13c)<690 && (AT(P,short,0x13c)!=609 || AT(P,short,0x13e)<1)))){S(0x364)=2;B(0x184)=0;}
-   if(S(0x364)==0){if(I(0x144)%4==0){F(0x12c)=RND(360);SCALE(RND(75)*D(0.01f)+0.75);PACKET(p204,RND(360),RND(15)+10.0,4);SPAWN(859,1,p204);}
+   if(S(0x364)==0){if(I(0x144)%4==0){F(0x12c)=RND(360);float variation=RND(75)*D(0.01f);SCALE(variation+0.75);PACKET(p204,RND(360),RND(15)+10.0,4);SPAWN(859,1,p204);}
     if(I(0x180)==6){B(0x184)=1;I(0x180)=0;++S(0x366);}if(I(0x180)!=0)S(0x366)+=15;
     if(S(0x366)>14){S(0x366)=0;B(0x184)=0;S(0x364)=1;S(0x36a)=0;return;}}
    if(S(0x364)==1){F(0x11c)-=D(0.1f);if(F(0x11c)<0.5f)F(0x11c)=1;F(0x120)=F(0x11c);B(0x184)=0;
@@ -494,7 +494,7 @@ void IkuObjectUpdateView::update_action_state()
    else{SCALE(F(0x11c)*D(0.9f));if(B(0x113)<10)RETIRE();B(0x113)-=10;B(0x112)-=10;B(0x111)-=10;}break;
   case 2:
    if(AT(P,short,0x13c)==730)position_relative(0,100);else S(0x364)=1;
-   if(S(0x364)==0){if(I(0x144)%4==0){F(0x12c)=RND(360);SCALE(RND(75)*D(0.01f)+0.75);PACKET(p12,RND(360),RND(15)+10.0,4);SPAWN(920,1,p12);}
+   if(S(0x364)==0){if(I(0x144)%4==0){F(0x12c)=RND(360);float variation=RND(75)*D(0.01f);SCALE(variation+0.75);PACKET(p12,RND(360),RND(15)+10.0,4);SPAWN(920,1,p12);}
     if(I(0x180)==6){B(0x184)=1;I(0x180)=0;++S(0x366);}if(I(0x180)==4){B(0x184)=1;I(0x180)=0;S(0x366)+=2;}if(I(0x180)==8){B(0x184)=1;I(0x180)=0;S(0x366)+=20;}
     if(I(0x180)!=0 && ++S(0x366)>9){S(0x366)=0;I(0x180)=0;B(0x184)=1;}
     float lifetime;switch(g_match_identifier){case 0:lifetime=360;break;case 1:lifetime=480;break;case 2:lifetime=540;break;case 3:lifetime=600;break;}

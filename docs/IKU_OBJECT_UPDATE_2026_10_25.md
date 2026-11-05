@@ -312,3 +312,7 @@ The target at `0x633E26..0x633EAA` captures the unsigned effect-facing byte befo
 ## Actions 853, 860 and 900 intermediate rounding, 2026-11-05
 
 Native `0x637058..0x63706C` and `0x638AAE..0x638AC2` round the RNG(10) product with double-promoted `0.1f` to float before adding 2 for scale. Native `0x6397DC..0x6397F2` similarly rounds the product before adding 1 for an action 900 packet speed. The former source added first in all three paths. Explicit float locals now preserve these native lifetimes; fresh VC8 emits the corresponding store/reload/add sequences at `0x4256`, `0x5CDA` and `0x6A84`. For the packet-speed path RNG 9 yields about 1.90000010 natively versus 1.89999998 before the fix. The scale paths showed no final float difference across the normal RNG range. The full 33617-byte root remains non-exact (candidate section tail 34780, first mismatch +38); no exact credit is claimed.
+
+## Actions 859 and 920 scale rounding, 2026-11-05
+
+Native `0x637FA2..0x637FC9` and `0x63A484..0x63A4AB` round the RNG(75) product with double-promoted `0.01f` to float before adding 0.75 for scale. The earlier source added first. Float locals restore that intermediate rounding; fresh VC8 emits the store/reload/add sequences at `0x50D7` and `0x77D0`. With RNG 22 the target produces approximately 0.970000029 versus 0.969999969 previously. The 33617-byte root remains non-exact (candidate section tail 34788, first mismatch +37); no exact credit is claimed.
