@@ -365,7 +365,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(AT(P,short,0x174)<=0) RETIRE();
    if(I(0x144)>=H[1]) {
     payload[0]=0; payload[1]=0; payload[2]=4; SPAWN(856,1,3); payload[2]=0;
-    SPAWN_AT(856,static_cast<float>(F(0xEC)+100.0-random_float(200)),static_cast<float>(random_float(400)+F(0xF0)),1,3);
+    { unsigned char facing=B(0x104); double center_x=F(0xEC)+100.0; float y=static_cast<float>(random_float(400)+F(0xF0)); float x=static_cast<float>(center_x-random_float(200)); spawn_unparented(856,x,y,facing,1,reinterpret_cast<const unsigned *>(payload),3); }
     RETIRE();
    }
    break;
@@ -711,16 +711,16 @@ void YoumuObjectUpdateView::update_action_state()
    if(AT(P,short,0x174)<=0) RETIRE();
    if(I(0x144)%4==0) {
     payload[0]=10.0-random_float(45); payload[1]=0; payload[2]=2;
-    F(0x370)=F(0xF0)+20.0-random_float(40);
+    { double center_y=F(0xF0)+20.0; F(0x370)=static_cast<float>(center_y-random_float(40)); }
     spawn_unparented(902,static_cast<float>(random_float(100)+F(0xEC)-50.0),F(0x370),B(0x104),static_cast<unsigned char>(F(0x370)<=F(0xF0)?1:-1),reinterpret_cast<const unsigned *>(payload),3);
    }
    if(I(0x144)%5==0) {
     payload[0]=0; payload[1]=0; payload[2]=4; SPAWN(902,1,3); payload[2]=0;
-    SPAWN_AT(902,static_cast<float>(F(0xEC)+100.0-random_float(200)),static_cast<float>(random_float(200)+F(0xF0)),1,3);
+    { unsigned char facing=B(0x104); double center_x=F(0xEC)+100.0; float y=static_cast<float>(random_float(200)+F(0xF0)); float x=static_cast<float>(center_x-random_float(200)); spawn_unparented(902,x,y,facing,1,reinterpret_cast<const unsigned *>(payload),3); }
    }
    if(I(0x144)%10==0) {
     payload[0]=0; payload[1]=random_float(15)*D(0.01f)+D(0.2f); payload[2]=3;
-    SPAWN_AT(902,static_cast<float>(F(0xEC)+100.0-random_float(200)),F(0xF0),1,3);
+    { unsigned char facing=B(0x104); double center_x=F(0xEC)+100.0; float y=F(0xF0); float x=static_cast<float>(center_x-random_float(200)); spawn_unparented(902,x,y,facing,1,reinterpret_cast<const unsigned *>(payload),3); }
    }
    MOVE(); STEP(); if(F(0xEC)<-100.0 || F(0xEC)>1380.0f) RETIRE(); break;
   case 6: case 7: case 8:

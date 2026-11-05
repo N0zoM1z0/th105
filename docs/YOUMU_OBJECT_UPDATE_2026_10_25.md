@@ -309,3 +309,22 @@ already has a complete public compiling hypothesis and a closed raw CFG;
 it must not be treated as an unwritten function. The remaining instruction,
 default-domain, stack and physical-call-group questions stay parked. No new
 source-present or exact credit is recorded.
+
+## Actions 856 and 902 pre-random captures, 2026-11-05
+
+Native `0x0053F09C..0x0053F0B2` captures facing and `X + 100.0` before
+calling the Y-offset RNG in action 856. The analogous action 902 paths capture
+X before their RNG at `0x005424F4..0x0054251D` and
+`0x005425D0..0x005425FD`; the latter also reads Y before that call. The
+previous source left these reads in spawn arguments, and the fresh pre-change
+VC8 object made the random calls before reading X and facing. The source now
+captures the native values before the corresponding calls, with QWORD X
+storage. Action 902 also now captures `Y + 20.0` as QWORD before its RNG,
+following `0x005423F1..0x0054241B`. These captures can affect behavior if a
+call changes object state and avoid premature rounding.
+
+Fresh VC8 emits the relevant QWORD store/call/subtract sequences at object
+`0x216D..0x21CA`, `0x55D6..0x5600`, `0x573A..0x5754` and
+`0x57FA..0x5814`; register and overall scheduling differences remain. The
+25,944-byte callable remains nonexact from +8, candidate section tail is
+26,800 bytes, and the source remains unselected. No exact credit is added.
