@@ -346,7 +346,7 @@ void YuyukoObjectUpdateView::update_action_state()
    if(S(0x364)==1){F(0x11c)*=D(0.98f);F(0x120)*=D(0.85f);FADE(10,10);}break;
   case 13:SCALE(F(0x11c)*D(0.98f));if(F(0x11c)<=0.55f)FADE(10,10);break;
   case 14:
-   if((AT(P,short,0x13c)==607 || AT(P,short,0x13c)==657) && AT(P,short,0x13e)<2){if(S(0x364)==0){F(0x120)+=D(0.1f);if(F(0x120)>1.0){F(0x120)=1;if(I(0x144)>19)S(0x364)=1;}}if(S(0x364)==1){F(0x11c)=(1.0-F(0x370))*D(0.9f)+D(0.1f);F(0x370)*=D(0.9f);}position_relative(-20,0);}else S(0x364)=2;
+   if((AT(P,short,0x13c)==607 || AT(P,short,0x13c)==657) && AT(P,short,0x13e)<2){if(S(0x364)==0){F(0x120)+=D(0.1f);if(F(0x120)>=1.0){F(0x120)=1;if(I(0x144)>=20)S(0x364)=1;}}if(S(0x364)==1){F(0x11c)=(1.0-F(0x370))*D(0.9f)+D(0.1f);F(0x370)*=D(0.9f);}position_relative(-20,0);}else S(0x364)=2;
    if(S(0x364)==2){F(0x11c)*=D(0.9f);FADE(10,10);}break;
   case 15:SCALE(F(0x11c)+H[1]);H[1]*=D(0.85f);if(H[1]<=D(0.05f))H[1]=0.05f;if(I(0x144)>9)FADE(10,10);break;
   }

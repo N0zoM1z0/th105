@@ -295,3 +295,21 @@ The same full-word facing snapshot is observed in the native periodic spawns for
 ## Timer angle conversion order (2026-11-05)
 
 Native 0x56F99F, 0x56FC64, 0x56FDEA, 0x5700ED, 0x570388, 0x571C6A, 0x571DB8, 0x571E4C, 0x571EE4 and 0x5730C6 loads the signed timer directly into x87, multiplies by the double angle constant, and rounds to float only after any angle offset. The source now preserves that order instead of first casting the timer to float. The pinned VC8 build already elided the earlier conversion: the compared function bytes remain unchanged (SHA-256 `4b4b7bf867d87df277fff9d5a0778bcdebcdfbba3a20085693172797f83dad1a`). The function remains nonexact; no claim is made that a timer large enough to expose strict floating-point rounding is reachable in normal play.
+
+## Action 857 sequence 14 scale threshold (2026-11-05)
+
+At `0x5762CA..0x576301` the native code rounds the updated scale at `+0x120`
+to float, compares `1.0` against that value and enters the clamp for values
+greater than or **equal to** 1.0. The earlier source used `> 1.0` and could
+miss the state transition when the rounded value was exactly 1.0 and the timer
+was at least 20. The source now uses `>= 1.0` and spells the timer guard as
+`>= 20`; unordered comparisons still bypass the clamp. For example, a float
+near 0.9 plus the stored float 0.1 rounds to 1.0. No claim is made about how
+often that state occurs during play.
+
+The focused pinned-VC8 build now emits `test ah,0x41; jp` and `cmp ...,0x14;
+jl` at object offsets `0x6AD3..0x6AE5`, matching the native local comparison
+and timer-guard structure. The complete selected root remains nonexact, with
+34,868-byte section tail and compared SHA-256
+`0d3aac7b14ea022c60f4710238f171255c952a7eb235c5f8bf024b09c6f89eb8`;
+no whole-function or exact-byte credit is claimed.
