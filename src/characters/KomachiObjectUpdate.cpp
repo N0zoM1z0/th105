@@ -254,8 +254,8 @@ void KomachiObjectUpdateView::update_action_state()
   switch(S(0x13e)) {
   case 0:SCALE(F(0x11c)*D(0.9f));if(I(0x144)<15)break;if(I(0x144)==15){motion_packet[0]=0;motion_packet[1]=0;motion_packet[2]=1;SPAWN(861,1,motion_packet);}FADE(10,10);break;
   case 1:advance_six(0);if(I(0x144)>3)B(0x184)=0;if(F(0x370)!=0.0){F(0x11c)=1.0-F(0x370);F(0x370)*=0.75;if(F(0x370)<=0.01f){F(0x370)=0;request_packet[0]=0;request_packet[1]=0;request_packet[2]=2;SPAWN(861,1,request_packet);request_packet[2]=3;SPAWN(861,1,request_packet);}}else{FADE(10,10);}break;
-  case 2:F(0x370)=(1.0-F(0x11c))*10.0+F(0x370)+2.0;set_sprite_uv_size(0,F(0x370));if(I(0x144)>479 || AT(A,short,0x174)<1)S(0x364)=1;if(S(0x364)==0){if(fabsf(F(0xec)-AT(A,float,0xec))<=100.0)AT(A,float,0x4dc)=0.1f;}else{FADE(5,5);F(0x11c)*=D(0.98f);}break;
-  case 3:F(0x370)=(1.0-F(0x11c))*30.0+F(0x370)+8.0;set_sprite_uv_size(0,F(0x370));if(I(0x144)>=180){FADE(5,5);F(0x11c)*=D(0.98f);}break;
+  case 2:{float base=static_cast<float>(F(0x370)+2.0);F(0x370)=(1.0-F(0x11c))*10.0+base;set_sprite_uv_size(0,F(0x370));if(I(0x144)>479 || AT(A,short,0x174)<1)S(0x364)=1;if(S(0x364)==0){if(fabsf(F(0xec)-AT(A,float,0xec))<=100.0)AT(A,float,0x4dc)=0.1f;}else{FADE(5,5);F(0x11c)*=D(0.98f);}break;}
+  case 3:{float base=static_cast<float>(F(0x370)+8.0);F(0x370)=(1.0-F(0x11c))*30.0+base;set_sprite_uv_size(0,F(0x370));if(I(0x144)>=180){FADE(5,5);F(0x11c)*=D(0.98f);}break;}
   case 4:goto expanding_tail;
   }FRAME_EXIT();
  case 900:
@@ -280,8 +280,8 @@ void KomachiObjectUpdateView::update_action_state()
   switch(S(0x13e)) {
   case 0:SCALE(F(0x11c)*D(0.9f));if(I(0x144)>14){if(I(0x144)==15){motion_packet[0]=0;motion_packet[1]=0;motion_packet[2]=1;SPAWN(901,1,motion_packet);}FADE(10,10);}goto frame_exit;
   case 1:advance_six(0);if(I(0x144)>3)B(0x184)=0;if(F(0x370)==0.0){FADE(10,10);}else{float scale=1.0-F(0x370);F(0x11c)=scale+scale;F(0x370)*=0.75;if(F(0x370)<=0.01f){F(0x370)=0;request_packet[0]=0;request_packet[1]=0;request_packet[2]=2;SPAWN(901,1,request_packet);request_packet[2]=3;SPAWN(901,1,request_packet);}}goto frame_exit;
-  case 2:F(0x370)=(2.0-F(0x11c))*10.0+F(0x370)+2.0;set_sprite_uv_size(0,F(0x370));if(AT(P,short,0x13c)!=720)S(0x364)=1;if(S(0x364)!=1){if(fabsf(F(0xec)-AT(A,float,0xec))<=F(0x11c)*100.0)AT(A,float,0x4dc)=0.1f;}else{FADE(5,5);F(0x11c)*=D(0.98f);}goto frame_exit;
-  case 3:F(0x370)=(2.0-F(0x11c))*30.0+F(0x370)+8.0;set_sprite_uv_size(0,F(0x370));if(AT(P,short,0x13c)!=720)S(0x364)=1;if(S(0x364)==1){FADE(5,5);F(0x11c)*=D(0.98f);}goto frame_exit;
+  case 2:{float base=static_cast<float>(F(0x370)+2.0);F(0x370)=(2.0-F(0x11c))*10.0+base;set_sprite_uv_size(0,F(0x370));if(AT(P,short,0x13c)!=720)S(0x364)=1;if(S(0x364)!=1){if(fabsf(F(0xec)-AT(A,float,0xec))<=F(0x11c)*100.0)AT(A,float,0x4dc)=0.1f;}else{FADE(5,5);F(0x11c)*=D(0.98f);}goto frame_exit;}
+  case 3:{float base=static_cast<float>(F(0x370)+8.0);F(0x370)=(2.0-F(0x11c))*30.0+base;set_sprite_uv_size(0,F(0x370));if(AT(P,short,0x13c)!=720)S(0x364)=1;if(S(0x364)==1){FADE(5,5);F(0x11c)*=D(0.98f);}goto frame_exit;}
   case 4:goto expanding_tail;
   case 5:goto frame_exit;
   case 6:H[1]*=D(0.95f);MOVE();F(0x12c)+=F(0x374);F(0x374)*=D(0.95f);SCALE(F(0x11c)+D(0.005f));FADE(5,5);STEP();goto frame_exit;

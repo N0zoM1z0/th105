@@ -424,3 +424,25 @@ At `0x5FE17F..0x5FE1C0`, the target captures unsigned facing and both double-pre
 ## Burst speed arithmetic, 2026-11-05
 
 The shared burst paths multiply the random value by the double-promoted `0.01f`, add the base and only then store the packet float. For example, native `0x5F9895..0x5F98B2` and `0x5F9E7D..0x5F9E9A` have no intervening float store. The previous source explicitly converted the product to float before the addition; the burst macro now retains the native expression, and focused VC8 output confirms multiply/add/store at `0xA38..0xA4F`. A check of the ordinary bounded RNG results found no final float difference for the two current base/range combinations; the correction is to the recorded arithmetic lifetime, not a claim of an observed gameplay difference. The full 27874-byte root remains non-exact (candidate section tail 28800, first mismatch +8); no exact credit is claimed.
+
+## Actions 861 and 901 expansion rounding, 2026-11-05
+
+For object 861 sequences 2/3 and object 901 sequences 2/3, the target first
+rounds `state_370 + 2` or `state_370 + 8` to float, then adds the corresponding
+`(1 - scale) * 10/30` or `(2 - scale) * 10/30`, and stores the final float.
+For example, `0x5FE669..0x5FE698`, `0x5FE725..0x5FE754`,
+`0x5FEFB1..0x5FEFE6`, and `0x5FF07F..0x5FF0B0` show the intermediate
+float store and reload. The old single expressions added the unrounded state
+and constant after the product. Four local float bases now preserve the
+observed rounding before the final sum; the focused VC8 body emits a float
+store/reload in each corresponding branch.
+
+For finite float inputs `state_370 = 63.4810905456543` and
+`scale = 0.9330630302429199`, the sequence-2 calculation gives approximately
+66.15045928955078 with the old expression and 66.15046691894531 with the
+native rounding order. Reachability of this particular state in ordinary play
+is not established. This local numeric distinction does not prove full-root
+or exception-order equivalence.
+
+The 27874-byte callable remains nonexact at +8; the candidate section tail is
+28832. No exact-function or byte credit is claimed.
