@@ -363,3 +363,19 @@ the full payload has 24,432 unmasked differing positions including length and
 a 26,816-byte section tail. The source remains unselected; no exact credit is
 added. Focused receipts use the `action899-trails` prefix in the existing build
 scope.
+
+## Actions 857 and 902 pre-random Y, 2026-11-05
+
+Native `0x0053F260..0x0053F2CB` and `0x005427F7..0x00542862`
+capture the unsigned spawn-facing byte and rounded `Y + 50.0` before RNG150,
+then reload signed facing for the X expression after that call. The earlier
+source left these expressions in spawn arguments; fresh pre-change VC8 read
+both after RNG. Both paths now capture spawn-facing and Y first, call RNG,
+then read the signed facing used in X. Fresh VC8 preserves those read/call
+boundaries at object `0x2342..0x238C` and `0x5A0E..0x5A58`. These local
+observations do not establish whole-root equivalence.
+
+The native 0x48 frame remains matched; the callable remains nonexact from
++34 and the section tail is 26,816 bytes. The source remains unselected; no
+exact credit is added. Receipts use `action857-902-height` in the existing
+Youmu object build scope.
