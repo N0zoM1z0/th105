@@ -154,3 +154,7 @@ At `0x5BAAC1..0x5BAB23`, the native incremented 16-bit field at `0x366` is compa
 ## Action 815 signed owner-level timing, 2026-11-05
 
 For sequences 7 and 8, the native owner byte `0x608` is compared with 4 using signed `setge` at `0x5B2B47..0x5B2B56` and `0x5B2EDA..0x5B2EE9`. The earlier unsigned source treated byte values `0x80..0xFF` as upgraded, shortening the respective thresholds from 45 to 30 and 60 to 40 frames. Both reads now use signed char. Focused VC8 emits `setge` at the two corresponding sites. Negative level reachability in ordinary play is unproved; the entire root remains nonexact with no exact credit.
+
+## Action 818 signed owner-level rate, 2026-11-05
+
+At `0x5B4155..0x5B415D` and `0x5B42A5..0x5B42AD`, the owner byte `0x60B` uses signed `jg` comparisons with 2 and 3 to select the projectile interval. The former unsigned local routed values `0x80..0xFF` to the three-frame branch rather than the native five-frame branch. The local now reads a signed byte, retaining the separate post-random signed reload used for projectile speed. Focused VC8 emits signed branches; ordinary-play reachability of negative levels is unproved. The full root remains nonexact and receives no exact credit.

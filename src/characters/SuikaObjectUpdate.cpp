@@ -298,7 +298,7 @@ case 818: {
             void *owner=OWNER;short action=FIELD(owner,short,0x13c);if((action==565 || action==566) && FIELD(owner,short,0x13e)==0 && FIELD(owner,short,0x140)==0) {I(0x144)=duration+1;return;}
             if(emit_repeated(0,2,3)) RETIRE();if(F(0x11c)<1.0f) {F(0x11c)+=static_cast<double>(0.1f);F(0x120)=F(0x11c);}
             if(I(0x144)%10==0) {float packet[3]={0.0f,0.0f,2.0f};spawn_unparented(818,F(0xec),F(0xf0),B(0x104),1,packet,3);}
-            unsigned char level=FIELD(OWNER,unsigned char,0x60b);
+            signed char level=FIELD(OWNER,signed char,0x60b);
             if(level>2) {
                 if(level<=3) {if(I(0x144)%4==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(FIELD(OWNER,signed char,0x60b)*1.5+13.0);packet[2]=7.0f;spawn_unparented(818,F(0xec),F(0xf0),B(0x104),1,packet,3);}}
                 else if(I(0x144)%3==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(FIELD(OWNER,signed char,0x60b)*1.5+13.0);packet[2]=7.0f;spawn_unparented(818,F(0xec),F(0xf0),B(0x104),1,packet,3);}
