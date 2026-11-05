@@ -304,3 +304,9 @@ Raw target branches at `0x4E7760..0x4E77AC` and `0x4E7AAE..0x4E7B04` retire on o
 ## Actions 800–818 bounds, 2026-11-05
 
 Six further outside checks in actions 800, 801, 802, 804, 817 and 818 use ordered comparisons in the target, rather than negated in-range comparisons. Target evidence includes `0x4E10DD..0x4E1127`, `0x4E1370..0x4E13BA`, `0x4E1678..0x4E16C2`, `0x4E2072..0x4E20C8`, `0x4E433A..0x4E4384` and `0x4E46E2..0x4E472A`. Their source now uses the existing ordered-outside expression, preserving the target behavior for unordered coordinates. Focused compilation confirms the branch form, including `test ah, 0x05; jnp` at candidate `0x3EA..0x3F5`. Full root comparison remains non-exact (28985 target bytes, 29396-byte candidate section tail, first mismatch +37); no exact credit is claimed.
+
+## Direct random velocity additions, 2026-11-05
+
+The native RNG(40) velocity paths multiply by the double-promoted `0.1f` and add 6 before storing the float, including `0x4E19B8..0x4E19C4` and eight further physical paths. The native RNG(30) heading-speed path similarly adds 3 before its final float store (`0x4E7627..0x4E7641`). The previous source rounded the product to float first in all ten source paths. It now preserves the target's direct arithmetic, while retaining the distinct six RNG(30)-plus-5 paths whose native product really is rounded first. Fresh VC8 emits ten direct additions and six intermediate stores, matching those target physical counts; the complete 28,985-byte callable remains nonexact at +37 (candidate section tail 29,344), with no exact-byte credit.
+
+For the plus-3 path, normal RNG result 21 gives approximately 5.0999999046 with the native/direct order versus 5.1000003815 with the former intermediate float rounding. For RNG(40) plus 6, no final-float difference was found over the normal 0..39 range. This is a local arithmetic comparison, not a claim of complete gameplay validation.

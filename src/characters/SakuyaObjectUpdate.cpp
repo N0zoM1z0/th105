@@ -94,7 +94,7 @@ void SakuyaObjectUpdateView::update_action_state()
    if(S(0x140)==0 && emit_repeated(0,0,3))RETIRE();
    if(S(0x142)==0 && S(0x140)==0)replace_secondary(994,4.0f,10,2,2);
    if(S(0x140)==0) {
-    if(CONTACT24768) {release_secondary();set_sequence_frame(1);P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4);F(0xf8)=static_cast<float>(random_float(40)*D(0.1f))+6.0;return;}
+    if(CONTACT24768) {release_secondary();set_sequence_frame(1);P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4);F(0xf8)=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
     if(C(0x184)<1) {float alpha=static_cast<float>(F(0x374)-20.0);F(0x374)=alpha;B(0x113)=static_cast<unsigned char>(alpha);if(F(0x374)<0)RETIRE();set_secondary_alpha(static_cast<unsigned char>(F(0x374)));}
     else if(S(0x13e)==0 && F(0xf8)<0 && F(0xf0)<=stage_surface_height()) {P->dispatch_character_wave_handle(3);F(0xf8)=-F(0xf8);I(0x180)=0;next_sequence_block();F(0x12c)=-atan2_degrees(F(0xf8),F(0xf4));}
    }break;
@@ -106,7 +106,7 @@ void SakuyaObjectUpdateView::update_action_state()
    if(S(0x140)==0 && emit_repeated(0,0,3))RETIRE();
    if(S(0x142)==0 && S(0x140)==0)replace_secondary(994,4.0f,10,2,2);
    if(S(0x140)==0) {
-    if(CONTACT24768) {release_secondary();next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4);F(0xf8)=static_cast<float>(random_float(40)*D(0.1f))+6.0;return;}
+    if(CONTACT24768) {release_secondary();next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4);F(0xf8)=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
     if(C(0x184)<1) {float alpha=static_cast<float>(F(0x374)-20.0);F(0x374)=alpha;B(0x113)=static_cast<unsigned char>(alpha);if(F(0x374)<0)RETIRE();set_secondary_alpha(static_cast<unsigned char>(F(0x374)));}
     else if(S(0x13e)==3) {
      if(C(0x104)*F(0xf4)>0 && F(0xec)>=sakuya_update_right) {P->dispatch_character_wave_handle(3);F(0xf4)=-F(0xf4);I(0x180)=0;next_sequence_block();F(0x12c)=-atan2_degrees(F(0xf8),F(0xf4));}
@@ -175,7 +175,7 @@ void SakuyaObjectUpdateView::update_action_state()
   if(S(0x13e)<3 && S(0x140)<2 && emit_repeated(0,0,3))RETIRE();
   if(S(0x13e)==0 || S(0x13e)==1 || S(0x13e)==2) {
    if(S(0x140)==0) {
-    if(CONTACT24768){next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4)*0.5;F(0xf8)=static_cast<float>(random_float(40)*D(0.1f))+6.0;return;}
+    if(CONTACT24768){next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4)*0.5;F(0xf8)=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
     if(C(0x184)<1){F(0x374)-=20.0;B(0x113)=static_cast<unsigned char>(F(0x374));if(F(0x374)<0)RETIRE();}
     else if(S(0x13e)<2) {
      if(C(0x104)*F(0xf4)>0 && F(0xec)>=sakuya_update_right){F(0xf4)=-F(0xf4);P->dispatch_character_wave_handle(3);I(0x180)=0;next_sequence_block();F(0x12c)=-atan2_degrees(F(0xf8),F(0xf4));}
@@ -190,7 +190,7 @@ void SakuyaObjectUpdateView::update_action_state()
  case 812:
   if(I(0x180)==5)RETIRE();
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==0)replace_secondary(994,6.0f,30,2,2);
-  if(S(0x13e)==0){if(S(0x140)==0){if(emit_repeated(0,2,2))RETIRE();MOVE();advance_six(10);if(I(0x180)==2 || I(0x180)==4 || I(0x180)==7 || I(0x180)==8){release_secondary();next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4)*0.25;F(0xf8)=static_cast<float>(random_float(40)*D(0.1f))+6.0;return;}}
+  if(S(0x13e)==0){if(S(0x140)==0){if(emit_repeated(0,2,2))RETIRE();MOVE();advance_six(10);if(I(0x180)==2 || I(0x180)==4 || I(0x180)==7 || I(0x180)==8){release_secondary();next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4)*0.25;F(0xf8)=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}}
    else{F(0xf8)-=D(0.35f);F(0x12c)-=30.0;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}}
   if(S(0x13e)==1){if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0xec)=AT(R,float,0xec);F(0xf0)=AT(R,float,0xf0);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>0)RETIRE();}
   STEP();if(OUTSIDE(1680.0,-400.0,1000.0,-160.0f))RETIRE();
@@ -214,11 +214,11 @@ void SakuyaObjectUpdateView::update_action_state()
     F(0xec)=S(0x364)+lookup_orientation_cosine_quantized_abs(F(0x374)+H[0])*F(0x370);
     F(0xf0)=S(0x366)+lookup_orientation_sine_quantized_abs(H[0]+F(0x374))*F(0x370);
     if(S(0x140)==1){if(S(0x142)==0){float child[3]={0,0,1};spawn_parented(815,F(0xec),F(0xf0),B(0x104),1,WORDS(child),3);child[1]=-15;child[2]=4;spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,WORDS(child),3);}
-     if(CONTACT24768){set_sequence_frame(3);P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=static_cast<float>(static_cast<unsigned>(selector_random_roll(16)-8));F(0xf8)=static_cast<float>(random_float(40)*D(0.1f))+6.0;return;}
+     if(CONTACT24768){set_sequence_frame(3);P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=static_cast<float>(static_cast<unsigned>(selector_random_roll(16)-8));F(0xf8)=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
      if(C(0x184)<1){set_sequence_frame(2);return;}
     }
    }
-   if(S(0x140)==2 || S(0x140)==3){if(S(0x142)==0 && S(0x140)==2){F(0xf4)=static_cast<float>(static_cast<unsigned>(selector_random_roll(16)-8));F(0xf8)=static_cast<float>(random_float(40)*D(0.1f))+6.0;}F(0xf8)-=D(0.35f);F(0x12c)+=10.0;STEP();if(B(0x113)<=10)RETIRE();B(0x113)-=10;}break;
+   if(S(0x140)==2 || S(0x140)==3){if(S(0x142)==0 && S(0x140)==2){F(0xf4)=static_cast<float>(static_cast<unsigned>(selector_random_roll(16)-8));F(0xf8)=static_cast<float>(random_float(40)*D(0.1f)+6.0);}F(0xf8)-=D(0.35f);F(0x12c)+=10.0;STEP();if(B(0x113)<=10)RETIRE();B(0x113)-=10;}break;
   case 1:
    F(0x12c)-=20.0;F(0x370)+=15.0;if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);if(AT(R,short,0x140)!=1)RETIRE();break;
   case 2:
@@ -235,7 +235,7 @@ void SakuyaObjectUpdateView::update_action_state()
   if(S(0x13e)==0 || S(0x13e)==1 || S(0x13e)==2){
    if(S(0x142)==0 && S(0x140)==0)replace_secondary(994,6.0f,40,2,2);
    if(S(0x140)==0){if(advance_six(15))B(0x184)=0;if(AT(P,signed char,0x609)<2 && I(0x180)!=0)B(0x184)=0;
-    if(CONTACT24768 && C(0x184)<1){next_sequence_frame();P->dispatch_character_wave_handle(3);release_secondary();I(0x144)=0;F(0xf4)=-F(0xf4);F(0xf8)=static_cast<float>(random_float(40)*D(0.1f))+6.0;return;}
+    if(CONTACT24768 && C(0x184)<1){next_sequence_frame();P->dispatch_character_wave_handle(3);release_secondary();I(0x144)=0;F(0xf4)=-F(0xf4);F(0xf8)=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
     if(C(0x184)<1 || OUTSIDE(1380.0f,-100.0,900.0,-200.0)){F(0x374)-=20.0;B(0x113)=static_cast<unsigned char>(F(0x374));if(F(0x374)<0)RETIRE();set_secondary_alpha(static_cast<unsigned char>(F(0x374)));}
     else if(S(0x13e)<3 && C(0x184)>1){
      if(C(0x104)*F(0xf4)>0 && F(0xec)>=sakuya_update_right){P->dispatch_character_wave_handle(3);F(0xf4)=-F(0xf4);if(I(0x180)==0)--B(0x184);I(0x180)=0;F(0x12c)=-atan2_degrees(F(0xf8),F(0xf4));}
@@ -321,7 +321,7 @@ void SakuyaObjectUpdateView::update_action_state()
   if(I(0x180)==5 || OUTSIDE(1680.0,-400.0,1000.0,-160.0f))RETIRE();
   if(S(0x13e)<3){
    if(S(0x140)==0){
-    if(CONTACT24768){next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4)*0.5;F(0xf8)=static_cast<float>(random_float(40)*D(0.1f))+6.0;return;}
+    if(CONTACT24768){next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4)*0.5;F(0xf8)=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
     if(C(0x184)<1){F(0x374)-=20.0;B(0x113)=static_cast<unsigned char>(F(0x374));if(F(0x374)<0)RETIRE();}
     else if(S(0x13e)<1){
      if(C(0x104)*F(0xf4)>0 && F(0xec)>=sakuya_update_right){F(0xf4)=-F(0xf4);P->dispatch_character_wave_handle(3);I(0x180)=0;next_sequence_block();F(0x12c)=-atan2_degrees(F(0xf8),F(0xf4));}
@@ -387,7 +387,7 @@ void SakuyaObjectUpdateView::update_action_state()
   if(I(0x180)==5 || OUTSIDE(1680.0,-400.0,1000.0,-160.0f))RETIRE();
   if(S(0x13e)<3){
    if(S(0x140)==0){advance_six(3);
-    if(AT(P,short,0x174)<1 || CONTACT24768){next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4)*0.5;F(0xf8)=static_cast<float>(random_float(40)*D(0.1f))+6.0;return;}
+    if(AT(P,short,0x174)<1 || CONTACT24768){next_sequence_frame();P->dispatch_character_wave_handle(3);I(0x144)=0;F(0xf4)=-F(0xf4)*0.5;F(0xf8)=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
     if(C(0x184)<1){F(0x374)-=20.0;B(0x113)=static_cast<unsigned char>(F(0x374));if(F(0x374)<0)RETIRE();}
     else if(S(0x13e)==0 || (S(0x13e)==1 && (g_match_identifier==3 || g_match_identifier==2))){
      if(C(0x104)*F(0xf4)>0 && F(0xec)>=sakuya_update_right){F(0xf4)=-F(0xf4);if(S(0x13e)==0){F(0xf4)*=0.5;F(0xf8)*=0.5;}P->dispatch_character_wave_handle(3);I(0x180)=0;next_sequence_block();F(0x12c)=-atan2_degrees(F(0xf8),F(0xf4));}
@@ -433,7 +433,7 @@ void SakuyaObjectUpdateView::update_action_state()
    if(S(0x140)<2){switch(g_match_identifier){case 0:advance_six(1);break;case 1:advance_six(10);break;case 2:case 3:advance_six(0);break;}
     if(AT(P,short,0x174)<1 || CONTACT2468){B(0x184)=0;P->dispatch_character_wave_handle(3);set_sequence_frame(2);release_secondary();F(0xf4)=-F(0xf4)*(0.5-random_float(30)*D(0.01f));F(0xf8)=static_cast<float>(random_float(30)*D(0.05f))+5.0;}
     if(S(0x13e)==0 || S(0x13e)==1){if(S(0x140)==0){if(AT(P,short,0x7a4)<1){MOTION->set_components(H[0],H[1]+F(0x374));F(0x374)*=D(0.85f);F(0x12c)=H[0];}
-     else {F(0xf4)=0;F(0xf8)=0;if(AT(P,short,0x7a4)>30){F(0x12c)+=F(0x370);B(0x184)=0;}if(AT(P,short,0x7a4)==30){B(0x184)=1;I(0x180)=0;next_sequence_block();turn_heading(0,360.0f,100.0f);H[0]=(random_float(30)-15.0)+H[0];F(0x12c)=H[0];H[1]=static_cast<float>(random_float(30)*D(0.1f))+3.0;return;}}
+     else {F(0xf4)=0;F(0xf8)=0;if(AT(P,short,0x7a4)>30){F(0x12c)+=F(0x370);B(0x184)=0;}if(AT(P,short,0x7a4)==30){B(0x184)=1;I(0x180)=0;next_sequence_block();turn_heading(0,360.0f,100.0f);H[0]=(random_float(30)-15.0)+H[0];F(0x12c)=H[0];H[1]=static_cast<float>(random_float(30)*D(0.1f)+3.0);return;}}
     }else S(0x344)=0;}
     if(S(0x13e)==2){S(0x344)=0;MOVE();F(0x12c)=H[0];}
    }
