@@ -372,7 +372,7 @@ public:
 
     __forceinline void ring902(float *p,float base,float jitter,int count,double step,double offset,bool reversed,float speed) {
         for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){
-            float angle=static_cast<float>(offset==0.0?n*step+base:n*step+base+offset);
+            double angle=offset==0.0?n*step+base:n*step+base+offset;
             float coordinate=static_cast<float>(reversed?angle:angle+180.0);
             p[0]=static_cast<float>(reversed?angle+jitter+180.0:angle+jitter);p[1]=speed;p[2]=0.0f;
             float neg=-coordinate;
