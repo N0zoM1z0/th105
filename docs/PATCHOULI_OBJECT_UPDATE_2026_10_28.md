@@ -184,3 +184,7 @@ The phase 0 fade at `0x526E87..0x526E94` and the phase 1/2 shared fade at `0x526
 ## Actions 854 and 857 fade gates, 2026-11-05
 
 The target action 854 phase 4 check at `0x52828D..0x528298` retires only for ordered scale below 0.01; action 857 phases 6/7 at `0x52A709..0x52A71A` fade only for ordered scale at or below 0.5. The earlier negated conditions included unordered values. Both now use the observed ordered comparisons. Focused whole-root build remains non-exact (50649-byte target, 51412-byte candidate section tail, first mismatch +37); no exact credit is claimed.
+
+## Action 857 airborne burst, 2026-11-05
+
+The target at `0x52A589..0x52A5AB` continues the airborne path for unordered Y as well as positive Y when the remaining guards pass. The prior ordered `Y > 0` instead entered the burst for unordered Y. The source now preserves the target branch, and the focused candidate emits its `test ah, 1; je` burst transfer at `0x9C6B..0x9C78`. The full 50649-byte root remains non-exact (candidate section tail 51412, first mismatch +37); no exact credit is claimed.

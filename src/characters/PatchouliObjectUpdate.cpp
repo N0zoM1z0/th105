@@ -897,7 +897,7 @@ case 857: {
     case 2:case 3:
         if(RELATED) {void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);}F(0x11c)=static_cast<float>(2.0-F(0x370));F(0x120)=F(0x11c);F(0x370)*=static_cast<double>(0.98f);if(B(0x113)<5) RETIRE();B(0x113)-=5;break;
     case 4:case 5: {
-        F(0xf0)-=PARAM[1];advance_six(3);if(F(0xf0)>0.0f && C(0x184)>0 && I(0x144)<600) break;
+        F(0xf0)-=PARAM[1];advance_six(3);if(!(F(0xf0)<=0.0f) && C(0x184)>0 && I(0x144)<600) break;
         float packet[3]={0.0f,0.0f,static_cast<float>((S(0x13e)==5)+6.0)};spawn_unparented(857,F(0xec),F(0xf0),B(0x104),1,packet,3);
         for(int count=4;count!=0;--count) {packet[0]=RF(360);float speed=static_cast<float>(RF(40)*static_cast<double>(0.1f));packet[1]=static_cast<float>(speed+3.0);packet[2]=static_cast<float>((S(0x13e)==5)+10.0);spawn_unparented(857,F(0xec),F(0xf0),B(0x104),1,packet,3);}RETIRE();
     }
