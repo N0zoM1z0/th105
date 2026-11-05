@@ -149,7 +149,7 @@ public:
     }
     __forceinline void impact_fragments811() {
         float p[3]={0.0f,0.0f,0.0f};spawn_offset(811,40,0.0,p,3);
-        p[2]=2.0f;spawn_offset(811,40,0.0,p,3,255);p[2]=1.0f;float n=0.0f;
+        p[2]=2.0f;spawn_offset(811,40,0.0,p,3,-1);p[2]=1.0f;float n=0.0f;
         do{p[0]=static_cast<float>((n*60.0-20.0)+static_cast<float>(suika_random(40)));p[1]=static_cast<float>(static_cast<float>(suika_random(8))+30.0);
            at<short>(0x730)=(p[0]<0.0f || p[0]>180.0f)?-1:1;spawn_offset(811,40,0.0,p,3,at<unsigned char>(0x730));n=static_cast<float>(n+1.0);
         }while(n<6.0f);

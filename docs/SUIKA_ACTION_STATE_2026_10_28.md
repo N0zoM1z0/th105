@@ -181,3 +181,19 @@ For zero-height poses, native `0x5A63C6..0x5A63E0` and `0x5A6C5F..0x5A6C79` load
 This is an observable bounded floating-point distinction: with both Y and velocity equal to negative zero under round-to-nearest, the target direct sum is `0x80000000`, whereas the former extra positive-zero add yields `0x00000000`; the revised expression yields `0x80000000`. This example establishes the arithmetic distinction, not that the state occurs in ordinary play or whole-root exception equivalence.
 
 The dispatcher remains nonexact: target callable 79,435 bytes, candidate section tail 78,932 bytes, first difference +17. No exact credit is added.
+
+## Impact fragment layer argument, 2026-11-05
+
+The second object-811 request in `impact_fragments811` passes a full DWORD
+layer of `-1` in the native action 520/521/522/523 paths. The observed
+`or edi, -1; push edi` preparations are at 59FAA0, 59FE77, 5A01B9 and
+5A04F3. The source had passed integer 255 through its int layer argument;
+it now passes `-1`, preserving the target's actual 32-bit call value. This
+is one source correction expanded into four native action paths. It does not
+establish the original nominal parameter type. The Suika manager consumes
+only the low byte, so ordinary gameplay divergence is not claimed.
+
+The focused VC8 build emits `push -1` in all four corresponding expansions.
+The complete 79435-byte callable remains nonexact from +17; the candidate
+section tail is 78980 bytes. No exact credit follows. The build receipt is
+`build/frontier-55d850-20261027/suika-impact-layer-20261105.json`.
