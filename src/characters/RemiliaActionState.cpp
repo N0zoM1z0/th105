@@ -375,7 +375,7 @@ case 710:{
             if(F(0x73c)==0.0f){p[0]=F(0x744);p[1]=0.0f;p[2]=1.0f;p[3]=0.0f;spawn_offset(900,20,100.0,p,4);p[2]=0.0f;spawn_offset(900,20,100.0,p,4);dispatch_character_wave_handle(16);F(0x73c)=static_cast<float>(F(0x73c)+1.0);}break;
         case 1:
             if(F(0x744)>=90.0f)F(0x744)=90.0f;if(F(0x744)<=-90.0f)F(0x744)=-90.0f;
-            if(F(0x73c)<2.0f){p[0]=static_cast<float>(F(0x73c)*90.0+F(0x744)-45.0);p[1]=0.0f;p[2]=1.0f;p[3]=0.0f;spawn_offset(900,20,100.0,p,4);
+            if(F(0x73c)<2.0f){p[0]=static_cast<float>(F(0x73c)*90.0+(F(0x744)-45.0));p[1]=0.0f;p[2]=1.0f;p[3]=0.0f;spawn_offset(900,20,100.0,p,4);
                 p[0]=static_cast<float>(F(0x73c)*90.0+F(0x744));if(F(0x73c)==0.0f){p[2]=0.0f;spawn_offset(900,20,100.0,p,4);}dispatch_character_wave_handle(16);F(0x73c)=static_cast<float>(F(0x73c)+1.0);}break;
         case 2:
             if(F(0x73c)<3.0f){p[0]=static_cast<float>(F(0x73c)*120.0+F(0x744));p[1]=0.0f;p[2]=1.0f;p[3]=0.0f;spawn_offset(900,20,100.0,p,4);

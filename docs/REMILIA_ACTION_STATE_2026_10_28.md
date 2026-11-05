@@ -211,3 +211,14 @@ change follows the observed arithmetic association.
 The complete target remains 61962 bytes and nonexact at +47; the candidate
 section tail is 63068. Matching an operation order does not grant exact-function
 or byte credit.
+
+## Action 710 mode-1 angle association, 2026-11-05
+
+For the first object-900 request in mode 1, native `0x550605..0x550629`
+combines `state_73c * 90` with `(state_744 - 45)`. The prior source grouped
+the multiplication and `state_744` first, then subtracted 45. Parentheses now
+preserve the native association; VC8 emits the field subtraction before the
+final addition, though it schedules the independent multiplication later
+than the target. No normal-play numeric difference is established. The root
+remains 61962 bytes, nonexact at +47, with candidate section tail 63068; no
+exact credit is claimed.
