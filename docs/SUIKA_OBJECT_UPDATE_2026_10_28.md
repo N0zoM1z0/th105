@@ -150,3 +150,7 @@ Three native paths, `0x5B1236..0x5B1253`, `0x5B13E1..0x5B13FE` and `0x5B14B1..0x
 ## Action 930 signed age thresholds, 2026-11-05
 
 At `0x5BAAC1..0x5BAB23`, the native incremented 16-bit field at `0x366` is compared against 120, 180, 240 or 300 using signed `jl`, with a shared expiration branch. The former unsigned local caused a negative incremented value to expire immediately. The local and field access are now signed; focused VC8 emits signed threshold jumps for all four selectors. Normal-play reachability of a negative age is not established, and the full root remains nonexact without exact credit.
+
+## Action 815 signed owner-level timing, 2026-11-05
+
+For sequences 7 and 8, the native owner byte `0x608` is compared with 4 using signed `setge` at `0x5B2B47..0x5B2B56` and `0x5B2EDA..0x5B2EE9`. The earlier unsigned source treated byte values `0x80..0xFF` as upgraded, shortening the respective thresholds from 45 to 30 and 60 to 40 frames. Both reads now use signed char. Focused VC8 emits `setge` at the two corresponding sites. Negative level reachability in ordinary play is unproved; the entire root remains nonexact with no exact credit.

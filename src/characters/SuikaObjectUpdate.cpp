@@ -200,7 +200,7 @@ case 815: {
             spawn_parented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);
         }
         if(I(0x144)%8==0) {float packet[3]={RF(360),15.0f,11.0f};spawn_parented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);}
-        owner=OWNER;if(I(0x144)>=15*(3-(FIELD(owner,unsigned char,0x608)>=4))) {float packet[3]={0.0f,0.0f,12.0f};spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=13.0f;spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);next_sequence_block();return;}
+        owner=OWNER;if(I(0x144)>=15*(3-(FIELD(owner,signed char,0x608)>=4))) {float packet[3]={0.0f,0.0f,12.0f};spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=13.0f;spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);next_sequence_block();return;}
         if(FIELD(OWNER,short,0x732)!=1) break;
         float packet[3];packet[1]=30.0f;packet[2]=0.0f;void *target=TARGET;float dx=static_cast<float>((FIELD(target,float,0xec)-static_cast<double>(F(0xec)))*C(0x104));packet[0]=-atan2_degrees(static_cast<float>(FIELD(target,float,0xf0)+100.0-F(0xf0)),dx);if(packet[0]<0.0f) packet[0]=0.0f;if(packet[0]>60.0f) packet[0]=60.0f;spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);WAVE(17);RETIRE();
     }
@@ -210,7 +210,7 @@ case 815: {
             spawn_parented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);
         }
         if(I(0x144)%4==0) {float packet[3]={RF(360),17.0f,11.0f};spawn_parented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);}
-        owner=OWNER;if(I(0x144)>=20*(3-(FIELD(owner,unsigned char,0x608)>=4))) {float packet[3]={0.0f,0.0f,12.0f};spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=13.0f;spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);next_sequence_block();return;}
+        owner=OWNER;if(I(0x144)>=20*(3-(FIELD(owner,signed char,0x608)>=4))) {float packet[3]={0.0f,0.0f,12.0f};spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=13.0f;spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);next_sequence_block();return;}
         if(FIELD(OWNER,short,0x732)!=1) break;
         float packet[3];packet[1]=30.0f;packet[2]=1.0f;void *target=TARGET;float dx=static_cast<float>((FIELD(target,float,0xec)-static_cast<double>(F(0xec)))*C(0x104));packet[0]=-atan2_degrees(static_cast<float>(FIELD(target,float,0xf0)+100.0-F(0xf0)),dx);if(packet[0]<0.0f) packet[0]=0.0f;if(packet[0]>60.0f) packet[0]=60.0f;spawn_unparented(815,F(0xec),F(0xf0),B(0x104),1,packet,3);WAVE(17);RETIRE();
     }
