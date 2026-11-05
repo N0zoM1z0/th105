@@ -466,7 +466,7 @@ void IkuObjectUpdateView::update_action_state()
    if(H[1]==1.0){int limit,period;switch(g_match_identifier){case 0:limit=4;period=25;break;case 1:limit=6;period=20;break;case 2:limit=8;period=15;break;case 3:limit=10;period=13;break;}
     if(I(0x144)%period==0){if(limit<=S(0x364))RETIRE();++S(0x364);PACKET(p60,0,15,4);unsigned char facing=static_cast<unsigned>(selector_random_roll(100))>50?static_cast<unsigned char>(-1):1;spawn_unparented(910,RND(600)+F(0xec)-300.0,stage_surface_height(),facing,1,reinterpret_cast<const unsigned *>(p60),3);}}
    if(H[1]==2.0f){int limit,period;switch(g_match_identifier){case 0:limit=3;period=40;break;case 1:limit=4;period=40;break;case 2:limit=6;period=40;break;case 3:limit=8;period=40;break;}
-    if(I(0x144)%period==0){if(limit<=S(0x364))RETIRE();++S(0x364);PACKET(p36,0,45,4);unsigned char facing=static_cast<unsigned>(selector_random_roll(100))>50?static_cast<unsigned char>(-1):1;float x=RND(1280);spawn_unparented(910,x,0,facing,1,reinterpret_cast<const unsigned *>(p36),3);}}
+    if(I(0x144)%period==0){if(limit<=S(0x364))RETIRE();++S(0x364);PACKET(p36,0,45,4);unsigned char facing=static_cast<unsigned>(selector_random_roll(100))>50?static_cast<unsigned char>(-1):1;spawn_unparented(910,RND(1280),0,facing,1,reinterpret_cast<const unsigned *>(p36),3);}}
    break;
   case 1:F(0x11c)*=D(0.98f);F(0x120)-=D(0.001f);advance_six(0);advance_phase(0);F(0x370)*=D(0.95f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;if(I(0x144)>9){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
   case 2:SCALE(F(0x11c)+F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;if(I(0x144)>2){if(B(0x113)<20)RETIRE();B(0x113)-=20;B(0x111)-=20;B(0x112)-=20;}break;
