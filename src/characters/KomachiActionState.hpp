@@ -218,7 +218,7 @@ public:
     __forceinline void stream815(double speed) {
         landing();at<unsigned char>(0x17c)=1;
         if(at<short>(0x730)==1){
-            int limit=5;if(at<unsigned char>(0x605)>=2)limit=6;if(at<unsigned char>(0x605)>=4)limit=8;
+            int limit=5;if(at<signed char>(0x605)>=2)limit=6;if(at<signed char>(0x605)>=4)limit=8;
             if(at<short>(0x732)<limit){
                 if(!(at<short>(0x734)%3)){float p[3];p[0]=static_cast<float>(-80.0-static_cast<double>(komachi_random(20)));p[1]=static_cast<float>(static_cast<double>(komachi_random(50))*static_cast<double>(0.1f)+speed);p[2]=0.0f;
                     spawn(815,static_cast<float>(113*facing()+static_cast<double>(at<float>(0xec))),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);++at<short>(0x732);}

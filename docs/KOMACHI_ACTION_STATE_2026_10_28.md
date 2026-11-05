@@ -268,3 +268,7 @@ The native fan spawn sites, including `0x5E74BD..0x5E753B` with X offset and `0x
 ## Signed counters in actions 562, 602 and 605, 2026-11-05
 
 Native action 562 `0x5ED66F..0x5ED6AB` tests the 16-bit counter at `0x730` with signed `jle` and sign-extends it for the modulo. The previous unsigned read let a negative value enter and increment. Native action 602 `0x5EEF76..0x5EEFB3` and action 605 `0x5EFDED..0x5EFE22` compare counter `0x734` with 5 or 6 using signed `jge` and sign-extend the same value for the emitted angle. The previous unsigned reads skipped negative values and would calculate the wrong angle. All three source sites now use the signed short field. Focused VC8 compilation confirms signed threshold branches and sign extension; ordinary-play reachability of negative counters is not established. The full root remains nonexact and receives no exact credit.
+
+## Actions 520 and 521 signed level gates, 2026-11-05
+
+The native stream-815 paths at `0x5E975A..0x5E9772` and `0x5E9857..0x5E986F` compare the byte at `0x605` against 2 and 4 using signed `jl`. The earlier helper read that byte as unsigned, selecting a limit of 8 for values `0x80..0xFF` where the native path selects 5. The helper now uses a signed byte; its focused VC8 output emits signed comparisons at both expanded call sites. Negative-level reachability during ordinary play has not been established. The full root remains nonexact and gains no exact credit.
