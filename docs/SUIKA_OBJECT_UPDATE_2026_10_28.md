@@ -134,3 +134,7 @@ equivalence.
 
 The 52,190-byte callable remains nonexact from +17; the candidate section
 tail is 53,204 bytes. No exact credit is added.
+
+## Action 800 upper X bound, 2026-11-05
+
+At `0x5B09CD..0x5B09DE`, the target compares 1380 against X and retires only for an ordered X greater than 1380 (`test ah, 0x05; jnp`). The prior negated `<=` also retired an unordered X. The source now uses ordered `>`, and the focused candidate has the same branch at `0x55D..0x56E`. The 52190-byte root is still non-exact (candidate section tail 53204, first mismatch +17); no exact credit is claimed.

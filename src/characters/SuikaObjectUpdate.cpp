@@ -42,7 +42,7 @@ case 800: {
     if(S(0x13e)==5) {float *parameters=PARAM;F(0x11c)+=static_cast<double>(0.01f);F(0x120)=F(0x11c);F(0x12c)=F(0x370)+F(0x12c);parameters[1]-=0.5;if(parameters[1]<1.0f) parameters[1]=1.0f;MOTION->set_components(parameters[0],parameters[1]);if(B(0x113)<=8) RETIRE();B(0x113)-=8;B(0x110)-=8;B(0x111)-=8;}
     if(S(0x13e)==6) {F(0x11c)+=static_cast<double>(0.15f);F(0x120)=F(0x11c);if(B(0x113)<=20) RETIRE();B(0x113)-=20;B(0x110)-=20;B(0x111)-=20;}
     if(S(0x13e)==7) {F(0x11c)+=static_cast<double>(0.15f);F(0x120)=F(0x11c);if(B(0x113)<=15) RETIRE();B(0x113)-=15;B(0x110)-=15;B(0x111)-=15;}
-    if(!(F(0xec)<=1380.0f) || F(0xec)<-100.0 || F(0xf0)>1060.0 || F(0xf0)<-100.0) RETIRE();MOVE();FINISH();
+    if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0 || F(0xf0)<-100.0) RETIRE();MOVE();FINISH();
 
 
 }
