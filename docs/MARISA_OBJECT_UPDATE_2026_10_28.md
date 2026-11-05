@@ -123,3 +123,7 @@ The target checks the updated angle against 180 at `0x4C1860..0x4C1871` and ente
 ## Actions 865 and 901 lower Y bound, 2026-11-05
 
 The action 865 phase 8 movement and action 901 phases 8 and 11–14 converge on the same native bounds tail at `0x4C4EC2`; the latter two jump there from `0x4C6766` and `0x4C6844`. The final comparison at `0x4C4F33..0x4C4F3A` retires only for an ordered Y below -100. The previous negated `>=` also retired unordered Y. All three source paths now use ordered `<`; the candidate likewise shares its tail at `0x90CA`, with `test ah, 0x41; je` at `0x913F..0x9142`. The full 48771-byte root remains non-exact (candidate section tail 50156, first mismatch +37); no exact credit is claimed.
+
+## Action 827 emitted speed rounding, 2026-11-05
+
+Native `0x4C1527..0x4C1547` rounds the RNG(250) product with double-promoted `0.01f` to float before adding 10. The former source kept the product at extended precision through the addition. The real intermediate float is now explicit; focused VC8 emits multiply, float store/reload, add and final store at `0x5748..0x5768`. This matters for ordinary values: RNG result 102 produces approximately 11.02000046 with the native sequence versus 11.01999950 without the intermediate rounding. The 48771-byte root remains non-exact (candidate section tail 50208, first mismatch +37); no exact credit is claimed.

@@ -1245,7 +1245,8 @@ case 827: {
         if(I(0x144)<45 && C(0x184)>0) {
             float packet[3];
             packet[0]=RF(360);
-            packet[1]=static_cast<float>(RF(250)*static_cast<double>(0.01f)+10.0);
+            float speed=static_cast<float>(RF(250)*static_cast<double>(0.01f));
+            packet[1]=static_cast<float>(speed+10.0);
             packet[2]=5.0f;
             spawn_unparented(827,F(0xec),F(0xf0),B(0x104),1,packet,3);
             FINISH();
