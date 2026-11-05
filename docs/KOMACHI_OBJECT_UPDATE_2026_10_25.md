@@ -400,3 +400,7 @@ tail is 29,056 bytes. No exact credit is added.
 ## Actions 854 and 855 orbit layer, 2026-11-05
 
 The target chooses layer 255 when the sine result is ordered and nonnegative, including exactly zero; it chooses layer 1 for negative or unordered results. The five native checks are `0x5FD40A..0x5FD423`, `0x5FD551..0x5FD56A`, `0x5FD843..0x5FD85C`, `0x5FD985..0x5FD99E` and `0x5FDA82..0x5FDA9B`. The prior negated `> 0` incorrectly chose layer 1 at zero. All five source checks now negate `>= 0`, preserving the native zero and unordered behavior. Fresh VC8 uses an equivalent comparison, including `test ah, 1` at candidate `0x41B1..0x41CB`. An initial two-site edit attempt failed its count assertion because there are five sites; no source change or result was credited from that attempt. The verified full 27874-byte root remains non-exact (candidate section tail 29056, first mismatch +8); no exact credit is claimed.
+
+## Action 822 orbit layer, 2026-11-05
+
+Unlike actions 854/855, the target action 822 check at `0x5FBFCB..0x5FBFE8` selects layer 1 for sine values at or below zero or unordered, and 255 for ordered positive values. The prior ordered `<=` missed the unordered case. The source now preserves this distinct behavior; focused compilation emits the equivalent `test ah, 0x41; jne` selection at `0x2C4D..0x2C6C`. The 27874-byte root remains non-exact (candidate section tail 29056, first mismatch +8); no exact credit is claimed.

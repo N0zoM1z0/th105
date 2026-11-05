@@ -167,7 +167,7 @@ void KomachiObjectUpdateView::update_action_state()
   case 4:SCALE(F(0x11c)+F(0x370));F(0x370)*=D(0.85f);if(I(0x144)>=0)FADE(6,5);break;
   }FRAME_EXIT();
  case 822:
-  if(S(0x13e)==0){B(0x33c)=lookup_orientation_sine_quantized_abs(H[0])<=0.0?1:255;H[0]+=F(0x370);H[1]*=D(0.95f);float *polar=H;F(0x374)+=F(0x378);F(0x378)+=D(0.1f);double cosine=lookup_orientation_cosine_quantized_abs(polar[0]);F(0xec)=C(0x104)*(polar[1]+50.0)*cosine+AT(P,float,0xec);double sine=lookup_orientation_sine_quantized_abs(polar[0]);F(0xf0)=(H[1]+50.0)*sine*0.25+AT(P,float,0xf0)+F(0x374);if(S(0x364)==0){if(B(0x113)>245){B(0x113)=255;S(0x364)=1;}else B(0x113)+=10;}else{FADE(7,7);}}
+  if(S(0x13e)==0){B(0x33c)=!(lookup_orientation_sine_quantized_abs(H[0])>0.0)?1:255;H[0]+=F(0x370);H[1]*=D(0.95f);float *polar=H;F(0x374)+=F(0x378);F(0x378)+=D(0.1f);double cosine=lookup_orientation_cosine_quantized_abs(polar[0]);F(0xec)=C(0x104)*(polar[1]+50.0)*cosine+AT(P,float,0xec);double sine=lookup_orientation_sine_quantized_abs(polar[0]);F(0xf0)=(H[1]+50.0)*sine*0.25+AT(P,float,0xf0)+F(0x374);if(S(0x364)==0){if(B(0x113)>245){B(0x113)=255;S(0x364)=1;}else B(0x113)+=10;}else{FADE(7,7);}}
   FRAME_EXIT();
  case 825:
   if(I(0x180)==5)RETIRE();
