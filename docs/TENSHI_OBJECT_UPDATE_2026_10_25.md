@@ -265,3 +265,7 @@ Next inspect the still source-missing YoumuObject53CEA0 independently, starting
 with its provisional boundary. Do not reduce a frame with padding, inert locals
 or forced alignment. None of these standalone differences proves LTCG
 impossibility.
+
+## Action 900 speed gate, 2026-11-05
+
+The two target speed checks at `0x653084..0x6530A2` enter the trailing-effect path when either speed is at least 3 or unordered. Ordinary `>=` omitted the unordered case. The source now expresses the observed branches; the focused candidate reproduces `test ah, 0x41; jne` at `0x65EC..0x660A`. The complete 41001-byte root remains non-exact (candidate section tail 42508, first mismatch +8); no exact credit is claimed.

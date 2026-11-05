@@ -358,7 +358,7 @@ void TenshiObjectUpdateView::update_action_state()
    }
    if(S(0x364)==1){
     if(F(0xf4)>0.0 && (F(0xec)>1220.0f || F(0xec)<60.0)){F(0xf8)=F(0xf4);F(0xf4)=0;}F(0xf4)-=D(0.4f);if(F(0xf4)<0.0)F(0xf4)=0;F(0xf8)-=D(0.4f);if(F(0xf8)<0.0)F(0xf8)=0;advance_six(0);advance_phase(0);
-    if(F(0xf4)>=3.0f || F(0xf8)>=3.0f){if(I(0x144)%3==0){PACKET(p48,RND(360),RND(40)*D(0.1f)+2.0,3);unsigned char facing=B(0x104);double y=F(0xf0)+20.0;double x=20.0+F(0xec);spawn_unparented(900,x-RND(40),y-RND(40),facing,-1,reinterpret_cast<const unsigned *>(p48),3);}}else B(0x184)=0;
+    if(!(F(0xf4)<3.0f) || !(F(0xf8)<3.0f)){if(I(0x144)%3==0){PACKET(p48,RND(360),RND(40)*D(0.1f)+2.0,3);unsigned char facing=B(0x104);double y=F(0xf0)+20.0;double x=20.0+F(0xec);spawn_unparented(900,x-RND(40),y-RND(40),facing,-1,reinterpret_cast<const unsigned *>(p48),3);}}else B(0x184)=0;
     if(F(0xf4)<=0.0 && F(0xf8)<=0.0 && ++S(0x366)>=45){S(0x364)=2;S(0x366)=0;}STEP();
    }
    if(S(0x364)==2){
