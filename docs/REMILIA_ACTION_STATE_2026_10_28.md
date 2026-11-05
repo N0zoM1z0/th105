@@ -179,3 +179,7 @@ Strict callable-boundary comparison remains nonmatching: target 61,962 bytes, ca
 ## Reverse-object signed X offsets, 2026-11-05
 
 The native object 826 reverse-facing requests at `0x54DB75..0x54DBBE` and `0x54E072..0x54E0BB`, and the object 901 request at `0x550FA1..0x550FE8`, sign-extend the freshly read facing byte before multiplying by 50 for X. They separately negate its low byte for the facing argument. The earlier source used the unsigned byte in the X calculation for the second request. With facing `0xFF` this gave X+12750 rather than the native X-50. Both source sites now use the signed value; the 826 helper expands into the two native paths. Focused VC8 compilation shows the corresponding sign extension and multiply in all three generated paths. The full root remains nonexact, and this correction adds no exact credit.
+
+## Action 606 signed sequence gate, 2026-11-05
+
+At `0x54F50D..0x54F530`, the original compares the 16-bit sequence against 3 with signed `jg`, then tests the frame when equal. The earlier source explicitly converted the signed field to unsigned before `> 3`, incorrectly taking the texture branch for a negative sequence. Removing that conversion restores the target comparison. Reachability of negative sequence values during ordinary play is not established. Focused VC8 compilation remains nonexact for the whole root; no exact credit is added.

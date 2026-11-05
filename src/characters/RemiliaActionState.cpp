@@ -322,7 +322,7 @@ case 605:
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==3)spell_flash(-53,76.0,5);
     if(entry(1)){F(0xf4)=27.5f;F(0xf8)=15.0f;dispatch_character_wave_handle(55);float p[3]={0.0f,0.0f,2.0f};spawn_offset(855,90,125.0,p,3);}return;
 case 606:
-    if(static_cast<unsigned short>(sequence_index_13e)>3 || (sequence_index_13e==3 && frame_index_140>=3))texture(6,2);
+    if(sequence_index_13e>3 || (sequence_index_13e==3 && frame_index_140>=3))texture(6,2);
     if(sequence_index_13e==5)landing();if(advance())set_action_and_finalize(0);
     if(entry(1)){S(0x730)=1;F(0xf4)=-25.0f;F(0xf8)=25.0f;F(0x100)=0.3f;dispatch_character_wave_handle(13);}
     if(entry(4)){F(0xf4)=50.0f;F(0xf8)=static_cast<float>(F(0xf8)-25.0);dispatch_character_wave_handle(55);float p[3]={0.0f,0.0f,2.0f};spawn_offset(856,90,25.0,p,3);return;}
