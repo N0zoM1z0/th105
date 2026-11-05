@@ -2353,7 +2353,7 @@ retire_801_811:
                     reinterpret_cast<const unsigned *>(copied), 3);
                 for (int particle = 0; particle < 8; ++particle) {
                     copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                    copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(20)) + 5.0);
+                    copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(20))) + 5.0);
                     copied[2] = 5.0f;
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                         901, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -2408,7 +2408,7 @@ retire_801_811:
                     reinterpret_cast<const unsigned *>(health_packet), 3);
                 for (int particle = 0; particle < 8; ++particle) {
                     health_packet[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                    health_packet[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(20)) + 5.0);
+                    health_packet[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(20))) + 5.0);
                     health_packet[2] = 5.0f;
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                         901, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -2446,7 +2446,7 @@ retire_801_811:
                         reinterpret_cast<const unsigned *>(exhausted_packet), 3);
                     for (int particle = 0; particle < 8; ++particle) {
                         exhausted_packet[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        exhausted_packet[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(20)) + 5.0);
+                        exhausted_packet[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(20))) + 5.0);
                         exhausted_packet[2] = 5.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             901, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -2733,7 +2733,7 @@ fade_902:
                 if (_root_state.counter_144 % 10 == 0) {
                     float copied[3];
                     copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                    copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(30)) * static_cast<double>(0.1f) + 2.0);
+                    copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(30))) * static_cast<double>(0.1f) + 2.0);
                     copied[2] = static_cast<float>(_root_state.sequence_13e + 3.0);
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                         903, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -2743,7 +2743,7 @@ fade_902:
             if (_root_state.state_364 == 1 && *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13c) == 740 &&
                     *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13e) == 6) {
                 const int axis = selector_random_roll(2);
-                const float width = static_cast<float>(static_cast<unsigned int>(selector_random_roll(120)) * static_cast<double>(0.1f));
+                const float width = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(120))) * static_cast<double>(0.1f));
                 if (g_match_identifier == 1) {
                     for (float sector = 0.0f; sector < 2.0f; sector += 1.0f) {
                         double angle = sector * 180.0;
@@ -2823,7 +2823,7 @@ fade_902:
                 float copied[3];
                 for (int particle = 0; particle < 4; ++particle) {
                     copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                    copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(100)) * static_cast<double>(0.1f) + 5.0);
+                    copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(100))) * static_cast<double>(0.1f) + 5.0);
                     copied[2] = static_cast<float>(_root_state.sequence_13e + 3.0);
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                         904, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -2837,7 +2837,7 @@ fade_902:
             if (_root_state.counter_144 % 10 == 0) {
                 float copied[3];
                 copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(30)) * static_cast<double>(0.1f) + 2.0);
+                copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(30))) * static_cast<double>(0.1f) + 2.0);
                 copied[2] = static_cast<float>(_root_state.sequence_13e + 3.0);
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                     903, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -3472,7 +3472,7 @@ fade_902:
                     if (_root_state.counter_144 % 240 == 60 || _root_state.counter_144 % 240 == 80 || _root_state.counter_144 % 240 == 100 || _root_state.counter_144 % 240 == 120) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(7)) + 3.0);
+                        copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(7))) + 3.0);
                         copied[2] = 4.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             908, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -3482,7 +3482,7 @@ fade_902:
                     if (_root_state.counter_144 % 240 == 70 || _root_state.counter_144 % 240 == 90 || _root_state.counter_144 % 240 == 110 || _root_state.counter_144 % 240 == 130) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(3)) + 2.0);
+                        copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(3))) + 2.0);
                         copied[2] = 5.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             908, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -3500,7 +3500,7 @@ fade_902:
                     if (_root_state.counter_144 % 240 == 60 || _root_state.counter_144 % 240 == 80 || _root_state.counter_144 % 240 == 100) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(7)) + 3.0);
+                        copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(7))) + 3.0);
                         copied[2] = 4.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             908, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -3510,7 +3510,7 @@ fade_902:
                     if (_root_state.counter_144 % 240 == 70 || _root_state.counter_144 % 240 == 90 || _root_state.counter_144 % 240 == 110) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(3)) + 2.0);
+                        copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(3))) + 2.0);
                         copied[2] = 5.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             908, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -3526,7 +3526,7 @@ fade_902:
                     if (_root_state.counter_144 % 240 == 60 || _root_state.counter_144 % 240 == 80 || _root_state.counter_144 % 240 == 100) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(7)) + 3.0);
+                        copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(7))) + 3.0);
                         copied[2] = 4.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             908, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -3536,7 +3536,7 @@ fade_902:
                     if (_root_state.counter_144 % 240 == 70 || _root_state.counter_144 % 240 == 90) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(3)) + 2.0);
+                        copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(3))) + 2.0);
                         copied[2] = 5.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             908, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -3552,7 +3552,7 @@ fade_902:
                     if (_root_state.counter_144 % 240 == 60 || _root_state.counter_144 % 240 == 80) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(7)) + 3.0);
+                        copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(7))) + 3.0);
                         copied[2] = 4.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             908, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
@@ -3562,7 +3562,7 @@ fade_902:
                     if (_root_state.counter_144 % 240 == 70 || _root_state.counter_144 % 240 == 90) {
                         float copied[3];
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
-                        copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(3)) + 2.0);
+                        copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(3))) + 2.0);
                         copied[2] = 5.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                             908, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,

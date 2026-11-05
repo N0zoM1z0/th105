@@ -148,3 +148,7 @@ The [projectile follow-up](REIMU_OBJECT_PROJECTILES_2026_10_20.md) adds
 800/801/804/807/808 against their shared exits and actual helper contracts.
 Another31 concrete arms remain. Existing Fighter478FA0 and
 Object-entry4A1CE0 source/acceptance checkpoints remain unchanged.
+
+## Unsigned random conversion constants, 2026-11-05
+
+The native object-update root converts unsigned random results using the float `2^32` correction, including `0x49D18C..0x49D1AC` and `0x49E5A0..0x49E5BE`. Fifteen source expressions previously converted the integer directly to double, producing 15 double-correction instructions. Converting through float before the existing wider arithmetic produces 65 float corrections and no double corrections in the focused candidate, matching the native root's aggregate counts; the preceding candidate had 50 float and 15 double. The next x87 operation-category totals are unchanged, including the existing product-rounding paths, so no additional early float-store category appears. Counts are diagnostic, not proof of every path or whole-root equality. The affected random ranges are bounded small integers, so no ordinary-play numeric change is established. The 46,138-byte owned extent remains nonexact at +31 with a 45,684-byte candidate section tail; no exact credit is claimed.
