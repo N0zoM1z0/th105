@@ -2746,9 +2746,10 @@ fade_902:
                 const float width = static_cast<float>(static_cast<unsigned int>(selector_random_roll(120)) * static_cast<double>(0.1f));
                 if (g_match_identifier == 1) {
                     for (float sector = 0.0f; sector < 2.0f; sector += 1.0f) {
-                        packet_903_burst[0] = static_cast<float>(sector * 180.0);
+                        double angle = sector * 180.0;
                         if (axis == 0)
-                            packet_903_burst[0] = static_cast<float>(packet_903_burst[0] + 90.0);
+                            angle += 90.0;
+                        packet_903_burst[0] = static_cast<float>(angle);
                         packet_903_burst[1] = width;
                         packet_903_burst[2] = static_cast<float>(_root_state.sequence_13e);
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
