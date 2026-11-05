@@ -247,3 +247,18 @@ wrapper.json, bytes-wrapper.json, wrapper-original.json, managers.json,
 native-chain.json, compare.json, bytes-compare.json, actions.log and
 bytes-actions.log. Private complete source/header controls and replay scripts
 are under the corresponding .analysis directory. All native work was serial.
+
+## Actions 560 and 561 spawn height, 2026-11-05
+
+At `0x60CC72..0x60CCA2` and `0x60CE28..0x60CE58`, the native 825
+spawn retains the unsigned RNG(300) conversion in x87 while computing
+`actor Y + 300`, adds the two, and only then stores the float argument. The
+prior source stored the random value to a float local first. A double local
+initialized through the existing float conversion retains the original float
+2^32 correction while allowing VC8 to keep the value in x87; the focused
+candidate now performs the additions before its first float store at both sites.
+The RNG's ordinary 0..300 integer range is exactly representable as float, so
+no normal gameplay numeric change is claimed.
+
+The complete 65601-byte root remains nonexact at +48; the new section tail is
+65700 bytes. This local observation does not add exact-function or byte credit.

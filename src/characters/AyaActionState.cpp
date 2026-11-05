@@ -836,7 +836,7 @@ case 560:{
  landing();B(0x17c)=3;
  if(S(0x730)==1){if(!(S(0x732)%4)&&S(0x732)*0.25<=C(0x607)+5){
   float packet[3];packet[0]=(static_cast<float>(static_cast<unsigned>(aya_random(400)))+F(0xec))-200.0;packet[1]=(F(0xf0)+175.0)+175.0;packet[2]=0.0f;
-  int facing=B(0x104);float randomHeight=static_cast<float>(static_cast<unsigned>(aya_random(300)));float height=randomHeight+(F(0xf0)+300.0);
+  int facing=B(0x104);double randomHeight=static_cast<float>(static_cast<unsigned>(aya_random(300)));float height=randomHeight+(F(0xf0)+300.0);
   spawn(825,1380.0-1480*(B(0x104)==1),height,facing,1,packet,3);
  }++S(0x732);}
  ADVANCE_TO(0);if(FRAME(0,1)){dispatch_character_wave_handle(17);S(0x730)=1;I(0x180)=1;counter(200,120);phase_counter(50);}return;
@@ -846,7 +846,7 @@ case 561:{
  landing();B(0x17c)=3;
  if(S(0x730)==1){if(!(S(0x732)%4)&&S(0x732)*0.25<=C(0x607)+5){
   float packet[3];packet[0]=(static_cast<float>(static_cast<unsigned>(aya_random(400)))+PF(0xec))-200.0;packet[1]=(PF(0xf0)+175.0)+175.0;packet[2]=0.0f;
-  int facing=B(0x104);float randomHeight=static_cast<float>(static_cast<unsigned>(aya_random(300)));float height=randomHeight+(F(0xf0)+300.0);
+  int facing=B(0x104);double randomHeight=static_cast<float>(static_cast<unsigned>(aya_random(300)));float height=randomHeight+(F(0xf0)+300.0);
   spawn(825,1380.0-1480*(B(0x104)==1),height,facing,1,packet,3);
  }++S(0x732);}
  ADVANCE_TO(0);if(FRAME(0,1)){dispatch_character_wave_handle(17);S(0x730)=1;I(0x180)=1;counter(200,120);phase_counter(50);}return;
