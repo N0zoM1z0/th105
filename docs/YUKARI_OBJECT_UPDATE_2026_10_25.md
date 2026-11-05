@@ -369,3 +369,7 @@ remaining branch/return context. Current tracking is mapped1581/source1562,601 u
 1569 configured functions. Accepted1412/381108 bytes/524 units stay unchanged;
 the latest aggregate cold receipt remains the prior Remilia checkpoint,
 `build/exact-first-remilia-action-entry-20261025/cold-all.log`.
+
+## Action 810 movement bounds, 2026-11-05
+
+The target at `0x58EAB9..0x58EB07` retires only for ordered coordinates outside the four movement limits. The former negated in-range expression also retired unordered coordinates. The source now uses explicit ordered outside comparisons. The focused complete build remains non-exact (33972-byte target, 34628-byte candidate section tail, first mismatch +31); no exact credit is claimed.

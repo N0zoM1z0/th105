@@ -93,7 +93,7 @@ void YukariObjectUpdateView::update_action_state()
    if(S(0x140)==1)FADE(5,5);STEP();break;
   case 4:H[1]*=D(0.9f);MOVE();FADE(10,10);F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;break;
   }
-  if(!(F(0xec)<=1380.0f && F(0xec)>=-100.0 && F(0xf0)<=1000.0 && F(0xf0)>=-120.0))RETIRE();
+  if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1000.0 || F(0xf0)<-120.0)RETIRE();
   if(advance_frame())--I(0x330);if(ENTRY(1))--I(0x330);return;
  case 811:
   if(S(0x13e)==0){
