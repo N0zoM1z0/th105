@@ -458,3 +458,5 @@ Native actions 815, 825, 826, 827, 852, 853 and 855 use signed switch-shaped pha
 ### Actions 800 and 850 phase dispatch
 
 The original action 800 dispatch at `0x5F9486` sign-extends the phase and uses an unsigned comparison against 2. Grouping cases 0, 1, and 2 in a switch preserves the existing short-phase behavior and recovers that dispatch family in the candidate. Action 850 at `0x5FCCFB` sign-extends the phase and subtracts 1 before branching; its single-case switch similarly recovers that local sequence. The surrounding code and complete function remain non-exact; the focused candidate section is 28,832 bytes.
+
+Action 817's original dispatch at `0x5FB422` selects phase 0 or 2 once, before either body. A switch restores the sign-extended load and the subtract-0/subtract-2 branch sequence; it also follows the original's single selection rather than re-reading the phase after the phase-0 body. The focused candidate section is 28,800 bytes and the whole function remains non-exact.

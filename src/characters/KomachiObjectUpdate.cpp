@@ -133,8 +133,8 @@ void KomachiObjectUpdateView::update_action_state()
   if(OUTSIDE(1380.0f,-100.0,1360.0f,-100.0))RETIRE();STEP();FRAME_EXIT();
  case 817:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==0){SCALE(F(0x11c)+D(0.015f));F(0x12c)-=34.0;FADE(10,10);H[1]*=D(0.85f);MOVE();STEP();}
-  if(S(0x13e)==2){MOVE();H[1]-=0.5;if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;F(0x12c)+=F(0x374);SCALE(F(0x11c)+D(0.02f));if(I(0x144)>=0)FADE(6,5);F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;}
+  switch(S(0x13e)){case 0:{SCALE(F(0x11c)+D(0.015f));F(0x12c)-=34.0;FADE(10,10);H[1]*=D(0.85f);MOVE();STEP();}break;
+  case 2:{MOVE();H[1]-=0.5;if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;F(0x12c)+=F(0x374);SCALE(F(0x11c)+D(0.02f));if(I(0x144)>=0)FADE(6,5);F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;}break;}
   FRAME_EXIT();
  case 820:
   switch(S(0x13e)) {
