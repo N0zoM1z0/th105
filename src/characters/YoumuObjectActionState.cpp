@@ -177,12 +177,13 @@ void YoumuObjectUpdateView::update_action_state()
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==2) --I(0x330);
   return;
  case 813:
-  if(S(0x13E)==0) {
+  switch(S(0x13E)) {
+  case 0:
    if(B(0x113)<8) RETIRE();
-   F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)*D(0.99f)); F(0xF8)-=D(0.15f); B(0x113)-=8;
-  } else if(S(0x13E)==1) {
+   F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)*D(0.99f)); F(0xF8)-=D(0.15f); B(0x113)-=8; break;
+  case 1:
    if(B(0x113)<20) RETIRE(); F(0x12C)+=15.0;
-   F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+D(0.05f)); B(0x113)-=20;
+   F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+D(0.05f)); B(0x113)-=20; break;
   }
   STEP(); FRAME_EXIT();
  case 815:
@@ -301,13 +302,14 @@ void YoumuObjectUpdateView::update_action_state()
   if(AT(P,short,0x186)==0) { if(advance_frame()) --I(0x330); }
   return;
  case 852:
-  if(S(0x13E)==0) {
+  switch(S(0x13E)) {
+  case 0:
    F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+D(0.4f));
-   if(I(0x144)>=5) { if(B(0x113)<=25) RETIRE(); B(0x113)-=25; B(0x111)-=25; B(0x110)-=25; }
-  } else if(S(0x13E)==1) {
+   if(I(0x144)>=5) { if(B(0x113)<=25) RETIRE(); B(0x113)-=25; B(0x111)-=25; B(0x110)-=25; } break;
+  case 1:
    F(0x12C)+=F(0x370); F(0x370)*=D(0.98f); if(F(0x370)<=D(0.1f)) F(0x370)=0.1f;
    F(0x120)=F(0x11C)=static_cast<float>(F(0x374)+F(0x11C)); F(0x374)*=D(0.9f);
-   if(B(0x113)<=5) RETIRE(); B(0x113)-=5;
+   if(B(0x113)<=5) RETIRE(); B(0x113)-=5; break;
   }
   FRAME_EXIT();
  case 853:
