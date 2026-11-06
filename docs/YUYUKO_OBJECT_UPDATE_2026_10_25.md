@@ -336,3 +336,7 @@ No whole-function or exact-byte credit is claimed.
 ## Timer comparison precision (2026-11-06)
 
 At `0x57528B`, native loads the signed timer with `fild` and directly compares it with parameter 1. Source now converts the timer to double rather than float before that comparison, avoiding premature rounding of large integers. The pinned VC8 candidate remains unchanged at SHA-256 `6a4bc69f0cb99eb0283671e7a11084fa13ba70617be09a417ecc1c4fb463fab4`. Normal-play reachability of such values is unknown; the function remains nonexact.
+
+## Four phase dispatches (2026-11-06)
+
+Native actions 821, 825, 851 and 920 use signed phase dispatches at `0x572965`, `0x573183`, `0x573B43` and `0x5775CD`. The equivalent source conditions now use ordinary switches, restoring the four local signed phase loads and switch branch families in the focused VC8 output while retaining case/default behavior. The complete candidate remains nonexact (34944-byte section tail, first mismatch +31); no exact credit is claimed.

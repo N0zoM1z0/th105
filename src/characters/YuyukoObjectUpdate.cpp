@@ -183,7 +183,7 @@ void YuyukoObjectUpdateView::update_action_state()
  yuyuko820_next:
   next_sequence_block();return;
  case 821:
-  if(S(0x13e)==0){if((AT(P,short,0x13c)==545 || AT(P,short,0x13c)==546 || AT(P,short,0x13c)==547 || AT(P,short,0x13c)==548) && AT(P,short,0x13e)<3){
+  switch(S(0x13e)){case 0:{if((AT(P,short,0x13c)==545 || AT(P,short,0x13c)==546 || AT(P,short,0x13c)==547 || AT(P,short,0x13c)==548) && AT(P,short,0x13e)<3){
     if(I(0x144)%4==0){PACKET(p312,RND(360),RND(125)+50.0,3);spawn_parented(821,F(0xec),F(0xf0),B(0x104),1,reinterpret_cast<const unsigned *>(p312),3);}
     if(I(0x144)%6==0 && F(0x370)<5.0f){PACKET(p48,(H[0]+144.0)-F(0x370)*72.0,6,1);spawn_parented(821,AT(P,signed char,0x104)*55+AT(P,float,0xec),AT(P,float,0xf0)+180.0,B(0x104),1,reinterpret_cast<const unsigned *>(p48),3);F(0x370)+=1.0;}
     if(AT(P,signed char,0x104)*AT(P,int,0x6b4)>0){F(0xf4)+=0.25;if(F(0xf4)>10.0f)F(0xf4)=10;}if(AT(P,signed char,0x104)*AT(P,int,0x6b4)<0){F(0xf4)-=0.25;if(F(0xf4)<-10.0f)F(0xf4)=-10;}
@@ -192,16 +192,18 @@ void YuyukoObjectUpdateView::update_action_state()
     if(AT(P,int,0x6b8)==0){if(F(0xf8)>0.0){F(0xf8)-=0.25;if(F(0xf8)<0.0)F(0xf8)=0;}if(F(0xf8)<0.0){F(0xf8)+=0.25;if(F(0xf8)>0.0)F(0xf8)=0;}}
    }else S(0x364)=1;
    if(S(0x364)==0)SCALE(lookup_orientation_sine_quantized_abs(I(0x144)*3.0)*D(0.2f)+D(0.8f));else{SCALE(F(0x11c)*D(0.9f));FADE(25,25);}
-  }else if(S(0x13e)==1){if(emit_repeated(0,0,4))RETIRE();if(I(0x144)==0)replace_secondary(990,15,60,1,2);advance_six(20);
+  }break; case 1:{if(emit_repeated(0,0,4))RETIRE();if(I(0x144)==0)replace_secondary(990,15,60,1,2);advance_six(20);
    if(C(0x184)<1){F(0xf4)*=D(0.95f);F(0xf8)*=D(0.95f);SCALE(F(0x11c)*D(0.95f));if(F(0x11c)<D(0.1f))RETIRE();F(0xf4)*=D(0.98f);F(0xf8)*=D(0.98f);F(0x370)-=25.0;if(F(0x370)<0.0)F(0x370)=0;set_secondary_alpha(static_cast<unsigned char>(F(0x370)));}
    else if(T==0){if(++S(0x364)>9)B(0x184)=0;F(0xf4)*=D(0.98f);F(0xf8)*=D(0.98f);}
    else{if(C(0x104)*(F(0xec)-AT(T,float,0xec))<0.0){F(0xf4)+=D(0.2f);if(F(0xf4)>6.0f)F(0xf4)=6;}if(C(0x104)*(F(0xec)-AT(T,float,0xec))>0.0){F(0xf4)-=D(0.2f);if(F(0xf4)<-6.0f)F(0xf4)=-6;}
     if(F(0xf0)-AT(T,float,0xf0)>0.0){F(0xf8)-=D(0.2f);if(F(0xf8)<-6.0f)F(0xf8)=-6;}if(F(0xf0)-AT(T,float,0xf0)<0.0){F(0xf8)+=D(0.2f);if(F(0xf8)>6.0f)F(0xf8)=6;}
    }
-  }else if(S(0x13e)==3){if(T==0)FADE(35,35);else{float *heading=H;float cosine=lookup_orientation_cosine_quantized_abs(heading[0]);float *motion=H;F(0xec)=cosine*heading[1]+AT(T,float,0xec);F(0xf0)=lookup_orientation_sine_quantized_abs(heading[0])*motion[1]+AT(T,float,0xf0);motion[1]*=D(0.95f);FADE(5,5);}}
+  }break; case 3:{if(T==0)FADE(35,35);else{float *heading=H;float cosine=lookup_orientation_cosine_quantized_abs(heading[0]);float *motion=H;F(0xec)=cosine*heading[1]+AT(T,float,0xec);F(0xf0)=lookup_orientation_sine_quantized_abs(heading[0])*motion[1]+AT(T,float,0xf0);motion[1]*=D(0.95f);FADE(5,5);}}
+break;}
   STEP();break;
  case 825:
-  B(0x17c)=3;if(S(0x13e)==1){F(0x12c)+=F(0x370);F(0xf4)*=D(0.97f);F(0xf8)-=D(0.15f);SCALE(F(0x11c)-D(0.01f));if(I(0x144)>14)FADE(10,10);}
+  B(0x17c)=3;switch(S(0x13e)){case 1:{F(0x12c)+=F(0x370);F(0xf4)*=D(0.97f);F(0xf8)-=D(0.15f);SCALE(F(0x11c)-D(0.01f));if(I(0x144)>14)FADE(10,10);}
+break;}
   STEP();if(advance_frame())--I(0x330);if(ENTRY(1))--I(0x330);return;
  case 826:
   if(I(0x180)==5)RETIRE();if(S(0x13e)==0){SCALE(F(0x11c)*D(0.6f));if(I(0x144)>9)--I(0x330);}
@@ -240,13 +242,14 @@ void YuyukoObjectUpdateView::update_action_state()
   }STEP();break;
  case 851:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==1){if(F(0xec)>1480.0f || F(0xec)<-200.0)RETIRE();if(C(0x184)>0){F(0xf4)+=D(0.05f);F(0xf8)=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(F(0x374))+lookup_orientation_sine_quantized_abs(-H[0])*5.0;}
+  switch(S(0x13e)){case 1:{if(F(0xec)>1480.0f || F(0xec)<-200.0)RETIRE();if(C(0x184)>0){F(0xf4)+=D(0.05f);F(0xf8)=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(F(0x374))+lookup_orientation_sine_quantized_abs(-H[0])*5.0;}
    advance_six(10);if(C(0x184)<1){PACKET(p72,360,RND(7)+7.0,2);SPAWN(851,1,p72);RETIRE();}
-  }else if(S(0x13e)==2){FADE(13,13);MOVE();F(0xf8)+=F(0x370);F(0x370)+=D(0.2f);}
-  else if(S(0x13e)==4){if(S(0x364)==0){SCALE(1.0-F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=0.005f){F(0x370)=0;S(0x364)=1;}}
+  }break; case 2:{FADE(13,13);MOVE();F(0xf8)+=F(0x370);F(0x370)+=D(0.2f);}
+  break; case 4:{if(S(0x364)==0){SCALE(1.0-F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=0.005f){F(0x370)=0;S(0x364)=1;}}
    if(S(0x364)==2)SCALE(F(0x11c)*D(0.8f));if(S(0x364)<2){if((AT(P,short,0x13c)==601 || AT(P,short,0x13c)==651) && AT(P,short,0x13e)==1)position_relative(105,146);else S(0x364)=2;
     if(I(0x144)%5==0){PACKET(p264,30.0-RND(60),static_cast<float>(RND(40)*D(0.1f))+2.0,1);SPAWN(851,1,p264);}}
-  }STEP();break;
+  }break;}
+STEP();break;
  case 852:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
@@ -405,13 +408,13 @@ void YuyukoObjectUpdateView::update_action_state()
   if(S(0x13e)>7 && S(0x13e)<12){F(0xf4)=F(0xf8)=0;if(T==0)RETIRE();F(0xec)=C(0x104)*AT(T,float,0xf4)+AT(T,float,0xec);F(0xf0)=AT(T,float,0xf8)+AT(T,float,0xf0);SCALE(lookup_orientation_sine_quantized_abs(I(0x144)*6.0)*0.5+1.0);}
   if(OUTSIDE(1380.0f,-100.0,1060.0f,-100.0))RETIRE();STEP();break;
  case 920:
-  if(S(0x13e)==0){if(AT(P,short,0x174)<1){select_sequence(2);F(0xf4)=F(0xf8)=0;return;}
+  switch(S(0x13e)){case 0:{if(AT(P,short,0x174)<1){select_sequence(2);F(0xf4)=F(0xf8)=0;return;}
    float *heading=H;F(0xec)=C(0x104)*lookup_orientation_cosine_quantized_abs(-heading[0])*heading[1]+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(-heading[0])*H[1]+F(0x374);H[1]-=3.0;if(H[1]<100.0)H[1]=100;H[0]+=4.0;
    if(B(0x113)>251){B(0x113)=255;B(0x184)=1;next_sequence_block();return;}B(0x113)+=4;
-  }else if(S(0x13e)==1){if(AT(P,short,0x174)<1){select_sequence(2);F(0xf4)=F(0xf8)=0;return;}
+  }break; case 1:{if(AT(P,short,0x174)<1){select_sequence(2);F(0xf4)=F(0xf8)=0;return;}
    if(I(0x144)%10==0){PACKET(p36,RND(360),RND(50)*D(0.1f)+5.0,4);SPAWN(800,1,p36);}advance_six(0);advance_phase(0);
    float *heading=H;F(0xec)=C(0x104)*lookup_orientation_cosine_quantized_abs(-heading[0])*heading[1]+F(0x370);F(0xf0)=lookup_orientation_sine_quantized_abs(-heading[0])*H[1]+F(0x374);H[1]-=3.0;if(H[1]<100.0)H[1]=100;H[0]+=4.0;if(I(0x144)>119){next_sequence_block();return;}
-  }else if(S(0x13e)==2){SCALE(F(0x11c)*D(0.99f));FADE(10,10);}break;
+  }break; case 2:{SCALE(F(0x11c)*D(0.99f));FADE(10,10);}break;}break;
  case 922:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
