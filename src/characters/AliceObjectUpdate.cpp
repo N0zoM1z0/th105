@@ -827,7 +827,7 @@ case 858: {
         if(FIELD(owner,int,0x6b8)<0) {F(0xf8)+=2.0;if(F(0xf8)>10.0f) F(0xf8)=10.0f;}if(FIELD(owner,int,0x6b8)>0) {F(0xf8)-=2.0;if(F(0xf8)<-10.0f) F(0xf8)=-10.0f;}
         if(FIELD(owner,int,0x6b8)==0) {if(F(0xf8)<=0.0f) {F(0xf8)+=2.0;if(F(0xf8)>0.0f) F(0xf8)=0.0f;}else {F(0xf8)-=2.0;if(F(0xf8)<0.0f) F(0xf8)=0.0f;}}
         if(S(0x13e)==0 && F(0xf4)>5.0f) select_sequence(1);if(S(0x13e)==1 && F(0xf4)<5.0f) select_sequence(0);
-        owner=OWNER;int primary=FIELD(owner,int,0x6bc);if(primary!=0 && primary<4) {
+        owner=OWNER;unsigned primary=FIELD(owner,unsigned,0x6bc);if(primary!=0 && primary<4) {
             int horizontal=FIELD(owner,int,0x6b4);int vertical=FIELD(owner,int,0x6b8);if(horizontal==0 && vertical==0) {S(0x364)=0;B(0x184)=1;select_sequence(2);return;}
             int direction=horizontal*C(0x104);if(direction>0 && vertical==0) {S(0x364)=0;B(0x184)=1;select_sequence(3);return;}
             if((direction>0 && vertical>0) || (direction==0 && vertical>0)) {S(0x364)=0;B(0x184)=1;select_sequence(6);return;}
@@ -839,7 +839,7 @@ case 858: {
     case 2: {
         if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && entryPhase==2) {F(0xf4)=30.0f;F(0xf8)=2.0f;}F(0xf4)-=3.0;if(F(0xf4)<=1.0f) F(0xf4)=1.0f;F(0xf8)-=0.5;if(F(0xf8)<0.5f) F(0xf8)=0.5f;
         if(S(0x140)>=2 && I(0x144)%2==0) {F(0x378)=static_cast<float>(static_cast<double>(RF(90))-45.0);float packet[3]={F(0x378),0.0f,21.0f};spawn_unparented(858,static_cast<float>(lookup_orientation_cosine_quantized_abs(-F(0x378))*100.0*static_cast<double>(C(0x104))+F(0xec)),static_cast<float>(lookup_orientation_sine_quantized_abs(-F(0x378))*100.0+F(0xf0)),B(0x104),1,packet,3);}
-        void *owner=OWNER;int primary=FIELD(owner,int,0x6bc);
+        void *owner=OWNER;unsigned primary=FIELD(owner,unsigned,0x6bc);
         if(primary!=0 && primary<4 && I(0x180)!=0) {int direction=FIELD(owner,int,0x6b4)*C(0x104);int vertical=FIELD(owner,int,0x6b8);if(direction>0 && vertical==0) {S(0x364)=0;B(0x184)=1;select_sequence(3);return;}if((direction>0 && vertical>0) || (direction==0 && vertical>0)) {S(0x364)=0;B(0x184)=1;select_sequence(6);return;}if(direction==0 && vertical<0) {S(0x364)=0;B(0x184)=4;F(0xf4)=0.0f;F(0xf8)=0.0f;select_sequence(9);return;}}
         if(FIELD(owner,unsigned,0x6c0)!=0 && FIELD(owner,unsigned,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,unsigned,0x6c4)!=0 && FIELD(owner,unsigned,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}
         F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);goto alice_858_clamp;
