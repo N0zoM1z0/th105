@@ -716,3 +716,7 @@ A focused VC8 rebuild emits signed `push -1` at the changed sites. The full
 callable remains nonexact from +8; the section tail is 43916 bytes versus the
 42721-byte native callable. The candidate remains unselected, with no exact
 credit. Focused build receipt: `build/frontier-55d850-20261027/alice-all-layer-20261105.json`.
+
+## Skill-level switch signedness (2026-11-06)
+
+Eight native switch sites beginning at `0x4EF0E0` sign-extend the byte at `0x605` before selecting cases 0 through 4. The input policy independently uses a signed view of the same field. The eight source switches now do likewise; the fresh candidate emits `movsx` at all eight sites. All 256 byte values still select the same paths because values outside 0–4 take the default. The full focused candidate remains nonexact (43916-byte section tail against a 42721-byte main span, first mismatch +8); no exact credit is claimed.

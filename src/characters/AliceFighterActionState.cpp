@@ -2177,7 +2177,7 @@ void AliceFighterActionStateView::dispatch_action_state()
   if(S(0x13E)==0 || S(0x13E)==4 || S(0x13E)==8) RESOLVE();
   if(I(0x6C0)==0) B(0x750)=0;
   if((S(0x13E)==2 || S(0x13E)==3) && I(0x144)>=0) {
-   switch(B(0x605)) { case 0: S(0x732)=3; break; case 1: case 2: S(0x732)=4; break; case 3: case 4: S(0x732)=5; break; }
+   switch(C(0x605)) { case 0: S(0x732)=3; break; case 1: case 2: S(0x732)=4; break; case 3: case 4: S(0x732)=5; break; }
    if(I(0x144)%6==0 && S(0x730)<S(0x732)) {
     I(0x180)=1; SCALE(10); ++S(0x730);
     float packet[3]; packet[0]=static_cast<float>(-25*S(0x730)+70); packet[1]=15; packet[2]=0;
@@ -2186,7 +2186,7 @@ void AliceFighterActionStateView::dispatch_action_state()
    }
   }
   if((S(0x13E)==6 || S(0x13E)==7) && I(0x144)>=0) {
-   switch(B(0x605)) { case 0: S(0x732)=5; break; case 1: case 2: S(0x732)=6; break; case 3: case 4: S(0x732)=7; break; }
+   switch(C(0x605)) { case 0: S(0x732)=5; break; case 1: case 2: S(0x732)=6; break; case 3: case 4: S(0x732)=7; break; }
    if(I(0x144)%3==0 && S(0x730)<S(0x732)) {
     I(0x180)=1; ++S(0x730); SCALE(10);
     float packet[3]; packet[0]=static_cast<float>((5-S(0x730))*15); packet[1]=15; packet[2]=0;
@@ -2212,7 +2212,7 @@ void AliceFighterActionStateView::dispatch_action_state()
   if(S(0x13E)==0 || S(0x13E)==4 || S(0x13E)==8) RESOLVE();
   if(I(0x6C0)==0) B(0x750)=0;
   if((S(0x13E)==2 || S(0x13E)==3) && I(0x144)>=0) {
-   switch(B(0x605)) { case 0: S(0x732)=3; break; case 1: case 2: S(0x732)=4; break; case 3: case 4: S(0x732)=5; break; }
+   switch(C(0x605)) { case 0: S(0x732)=3; break; case 1: case 2: S(0x732)=4; break; case 3: case 4: S(0x732)=5; break; }
    if(I(0x144)%6==0 && S(0x730)<S(0x732)) {
     I(0x180)=1; SCALE(10); ++S(0x730);
     float packet[3]; packet[0]=static_cast<float>(-25*S(0x730)+40); packet[1]=15; packet[2]=0;
@@ -2221,7 +2221,7 @@ void AliceFighterActionStateView::dispatch_action_state()
    }
   }
   if((S(0x13E)==6 || S(0x13E)==7) && I(0x144)>=0) {
-   switch(B(0x605)) { case 0: S(0x732)=5; break; case 1: case 2: S(0x732)=6; break; case 3: case 4: S(0x732)=7; break; }
+   switch(C(0x605)) { case 0: S(0x732)=5; break; case 1: case 2: S(0x732)=6; break; case 3: case 4: S(0x732)=7; break; }
    if(I(0x144)%3==0 && S(0x730)<S(0x732)) {
     I(0x180)=1; ++S(0x730); SCALE(10);
     float packet[3]; packet[0]=static_cast<float>((5-S(0x730))*15); packet[1]=15; packet[2]=0;
@@ -2247,7 +2247,7 @@ void AliceFighterActionStateView::dispatch_action_state()
   if(S(0x13E)==8) RESOLVE();
   if(I(0x6C0)==0) B(0x750)=0;
   if((S(0x13E)==2 || S(0x13E)==3) && I(0x144)>=0) {
-   switch(B(0x605)) { case 0: S(0x732)=3; break; case 1: case 2: S(0x732)=4; break; case 3: case 4: S(0x732)=5; break; }
+   switch(C(0x605)) { case 0: S(0x732)=3; break; case 1: case 2: S(0x732)=4; break; case 3: case 4: S(0x732)=5; break; }
    if(I(0x144)%6==0 && S(0x730)<S(0x732)) {
     I(0x180)=1; SCALE(10); ++S(0x730);
     float packet[3]; packet[0]=static_cast<float>(-25*S(0x730)+70); packet[1]=15; packet[2]=0;
@@ -2256,7 +2256,7 @@ void AliceFighterActionStateView::dispatch_action_state()
    }
   }
   if((S(0x13E)==6 || S(0x13E)==7) && I(0x144)>=0) {
-   switch(B(0x605)) { case 0: S(0x732)=5; break; case 1: case 2: S(0x732)=6; break; case 3: case 4: S(0x732)=7; break; }
+   switch(C(0x605)) { case 0: S(0x732)=5; break; case 1: case 2: S(0x732)=6; break; case 3: case 4: S(0x732)=7; break; }
    if(I(0x144)%3==0 && S(0x730)<S(0x732)) {
     I(0x180)=1; ++S(0x730); SCALE(10);
     float packet[3]; packet[0]=static_cast<float>((5-S(0x730))*15); packet[1]=15; packet[2]=0;
@@ -2282,7 +2282,7 @@ void AliceFighterActionStateView::dispatch_action_state()
   if(S(0x13E)==8) RESOLVE();
   if(I(0x6C0)==0) B(0x750)=0;
   if((S(0x13E)==2 || S(0x13E)==3) && I(0x144)>=0) {
-   switch(B(0x605)) { case 0: S(0x732)=3; break; case 1: case 2: S(0x732)=4; break; case 3: case 4: S(0x732)=5; break; }
+   switch(C(0x605)) { case 0: S(0x732)=3; break; case 1: case 2: S(0x732)=4; break; case 3: case 4: S(0x732)=5; break; }
    if(I(0x144)%6==0 && S(0x730)<S(0x732)) {
     I(0x180)=1; SCALE(10); ++S(0x730);
     float packet[3]; packet[0]=static_cast<float>(-25*S(0x730)+40); packet[1]=15; packet[2]=0;
@@ -2291,7 +2291,7 @@ void AliceFighterActionStateView::dispatch_action_state()
    }
   }
   if((S(0x13E)==6 || S(0x13E)==7) && I(0x144)>=0) {
-   switch(B(0x605)) { case 0: S(0x732)=5; break; case 1: case 2: S(0x732)=6; break; case 3: case 4: S(0x732)=7; break; }
+   switch(C(0x605)) { case 0: S(0x732)=5; break; case 1: case 2: S(0x732)=6; break; case 3: case 4: S(0x732)=7; break; }
    if(I(0x144)%3==0 && S(0x730)<S(0x732)) {
     I(0x180)=1; ++S(0x730); SCALE(10);
     float packet[3]; packet[0]=static_cast<float>((5-S(0x730))*15); packet[1]=15; packet[2]=0;
