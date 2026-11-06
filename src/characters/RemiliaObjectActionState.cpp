@@ -102,7 +102,7 @@ void RemiliaObjectUpdateView::update_action_state()
    float *const input=H;
    F(0x11C)=1.0f-F(0x370); F(0x370)*=D(0.85f); F(0x120)=F(0x11C);
    F(0x12C)=F(0x378)+F(0x374); F(0x374)*=D(0.95f); F(0x378)=F(0x37C)+F(0x378);
-   if(static_cast<float>(I(0x144))>=input[3]) {
+   if(static_cast<double>(I(0x144))>=input[3]) {
     P->dispatch_character_wave_handle(1); float payload[3]; payload[0]=0; payload[1]=15; payload[2]=1; SPAWN(815,1,3); payload[2]=2; SPAWN(815,1,3); payload[2]=3; SPAWN(815,1,3); { --I(0x330); return; }
    }
    MOTION->set_components(input[0],input[1]); H[1]*=D(0.95f);

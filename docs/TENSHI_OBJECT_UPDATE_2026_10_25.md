@@ -333,3 +333,5 @@ No complete-function or exact-byte credit is claimed.
 ## Timer comparison precision (2026-11-06)
 
 At `0x65574F`, native loads the signed timer with `fild` and directly compares it with parameter 4. Source now converts the timer to double rather than float before that comparison, avoiding premature rounding of large integers. Normal-play reachability of such values is unknown; the focused body remains nonexact and no exact credit is claimed.
+
+The sequence 9/10 threshold at `0x6552C6..0x6552E4` likewise converts the signed timer directly with `fild` before comparing parameter 1. The source now avoids a preliminary float conversion there too; this adjustment leaves the focused candidate hash unchanged. The same reachability and nonexact limitations apply.

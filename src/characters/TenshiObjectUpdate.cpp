@@ -446,7 +446,7 @@ void TenshiObjectUpdateView::update_action_state()
   case 9:case 10:
    if(T!=0){F(0x12c)=H[0];F(0xec)=(lookup_orientation_cosine_quantized_abs(-H[0])*100.0)*C(0x104)+AT(T,float,0xec);F(0xf0)=lookup_orientation_sine_quantized_abs(-H[0])*100.0+AT(T,float,0xf0);}
    if(S(0x364)==0){
-    if(AT(P,short,0x174)<=0 || AT(P,float,0x74c)>0.0 || H[1]<static_cast<float>(I(0x144))){S(0x364)=1;return;}
+    if(AT(P,short,0x174)<=0 || AT(P,float,0x74c)>0.0 || H[1]<static_cast<double>(I(0x144))){S(0x364)=1;return;}
     if(I(0x144)%2==0){double heading=H[0]+20.0;PACKET(p204,heading-RND(40),RND(40)+30.0,8);SPAWN(940,1,p204);}advance_six(0);advance_phase(0);if(I(0x180)!=0 && ++S(0x366)>=4){S(0x366)=0;I(0x180)=0;B(0x184)=1;}
    }if(S(0x364)==1){B(0x184)=0;F(0x120)*=D(0.97f);FADE(10,10);B(0x110)-=10;B(0x111)-=10;}break;
   case 11:
