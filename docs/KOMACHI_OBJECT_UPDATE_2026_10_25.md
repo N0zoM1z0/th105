@@ -468,3 +468,5 @@ The original timer gates at `0x5FBA31`, `0x5FDF50`, and `0x5FE6AC` use threshold
 The three repeated 4-frame gates at `0x5FBC4F`, `0x5FE57E`, and `0x5FEEA7`, and the 180-frame gate at `0x5FEC57`, now use the equivalent threshold forms observed in the original. Their local comparisons and branches are recovered; integer behavior is unchanged and the full candidate remains non-exact.
 
 Four further 30- and 120-frame bounds at `0x5FCD6E`, `0x5FD145`, `0x5FDC78`, and `0x5FB297` now use equivalent native threshold forms. Their local signed comparisons and branches are recovered; the complete candidate remains non-exact.
+
+The signed state gates at `0x5FEC3E` and `0x5FFA06` now use the equivalent `<= 0` form, recovering their local comparison and branch families. Some register scheduling still differs, and the 28,816-byte complete candidate remains non-exact.

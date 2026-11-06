@@ -37,7 +37,7 @@ case 304:
     landing();if(directional(1))return;if(!I(0x6bc))B(0x750)=0;if(C(0x47e)>0)decelerate(static_cast<double>(0.6f),true);
     if(advance())set_action_and_finalize(2);if(entry(1)){set_action_and_finalize(2);return;}
     if(!sequence_index_13e){
-        if(frame_index_140>5)decelerate(0.5,false);
+        if(frame_index_140>=6)decelerate(0.5,false);
         if(!frame_timer_142 && frame_index_140==4){
             if(B(0x750)){next_sequence_block();effect(62,static_cast<float>(34*facing()+F(0xec)),static_cast<float>(F(0xf0)+40.0),B(0x104),1);return;}
             F(0xf4)=15.0f;B(0x47e)=0;event(29);

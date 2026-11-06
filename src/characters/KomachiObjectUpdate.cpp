@@ -272,7 +272,7 @@ void KomachiObjectUpdateView::update_action_state()
   case 1:H[1]-=0.5;if(H[1]<=D(0.2f))H[1]=0.2f;MOVE();FADE(10,10);STEP();break;
   case 2:if(I(0x144)<60)advance_six(0);else{B(0x184)=0;SCALE(F(0x11c)*D(0.95f));FADE(10,10);}break;
   case 3:SCALE(F(0x11c)+D(0.3f));FADE(20,20);break;
-  case 4:F(0x370)*=D(0.7f);if(F(0x370)<=0.25f)F(0x370)=0.25f;turn_heading(0,0.5f,100);MOTION->set_components(H[0],H[1]*F(0x370));advance_six(2);if(C(0x184)<1 || AT(P,short,0x174)<1 || I(0x144)>=180)S(0x364)=1;if(S(0x364)==1){B(0x184)=0;FADE(10,10);}STEP();if(OUTSIDE(1380.0f,-100.0,1060.0f,-200.0))RETIRE();break;
+  case 4:F(0x370)*=D(0.7f);if(F(0x370)<=0.25f)F(0x370)=0.25f;turn_heading(0,0.5f,100);MOTION->set_components(H[0],H[1]*F(0x370));advance_six(2);if(C(0x184)<=0 || AT(P,short,0x174)<1 || I(0x144)>=180)S(0x364)=1;if(S(0x364)==1){B(0x184)=0;FADE(10,10);}STEP();if(OUTSIDE(1380.0f,-100.0,1060.0f,-200.0))RETIRE();break;
   case 5:H[1]-=0.5;if(H[1]<=D(0.2f))H[1]=0.2f;MOVE();FADE(10,10);STEP();break;
   case 6:SCALE(F(0x11c)+0.5);FADE(9,8);break;
   }FRAME_EXIT();
@@ -306,7 +306,7 @@ void KomachiObjectUpdateView::update_action_state()
  case 902:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
-  case 0:advance_six(0);advance_phase(1);if(C(0x184)<1 || AT(P,short,0x174)<1 || S(0x364)<=I(0x144)){float n=0;do{motion_packet[0]=n*90.0+RND(40);motion_packet[1]=RND(150)*D(0.01f)+15.0;motion_packet[2]=1;SPAWN(902,1,motion_packet);n+=1.0;}while(n<4.0f);RETIRE();}MOVE();STEP();break;
+  case 0:advance_six(0);advance_phase(1);if(C(0x184)<=0 || AT(P,short,0x174)<1 || S(0x364)<=I(0x144)){float n=0;do{motion_packet[0]=n*90.0+RND(40);motion_packet[1]=RND(150)*D(0.01f)+15.0;motion_packet[2]=1;SPAWN(902,1,motion_packet);n+=1.0;}while(n<4.0f);RETIRE();}MOVE();STEP();break;
   case 1:H[1]*=D(0.9f);MOVE();if(S(0x364)<=I(0x144)){SCALE(F(0x11c)*D(0.98f));FADE(5,5);}STEP();break;
   case 2:SCALE(F(0x11c)+D(0.15f));FADE(10,10);break;
   case 3:SCALE(F(0x11c)*D(0.95f));FADE(5,5);break;

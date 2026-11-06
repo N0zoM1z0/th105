@@ -239,3 +239,5 @@ Native `0x59C0FD..0x59C115` sign-extends the phase and dispatches phases 1, 2 an
 Five original integer gates at `0x59977E`, `0x5999C2`, `0x59C1E5`, `0x5AAA85`, and `0x5AB54C` use thresholds 16, 16, 25, 690, and 300. Equivalent source threshold forms restore their local signed comparisons and branches without changing integer behavior. The complete candidate remains non-exact, with a 78,908-byte section.
 
 Two repeated 180-frame gates at `0x5A8629` and `0x5A8766` now use the equivalent native threshold form. Their local signed compare and branch families are recovered; the complete candidate remains non-exact.
+
+The frame gate at `0x59B5C7` now uses the equivalent 6-frame bound and recovers its local signed comparison and branch. The complete candidate remains non-exact.
