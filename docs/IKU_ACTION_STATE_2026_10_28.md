@@ -16,3 +16,5 @@ At `0x62E341` the native action 740 groups phases 1–3 through a signed switch-
 The original gate at `0x624442` branches while the timer is below 15. The equivalent `>= 15` source form recovers that local comparison and branch. Integer behavior is unchanged; the 59,430-byte candidate remains non-exact.
 
 Five further original integer gates at `0x6210C3`, `0x621202`, `0x627323`, `0x627497`, and `0x62BF61` use timer 40 and frame 11 thresholds. Equivalent source forms recover the local signed comparisons and branches without changing integer behavior. The 59,430-byte candidate remains non-exact.
+
+Two repeated signed skill-level gates at `0x6284F3` and `0x62880F` now use the equivalent `>= 4` bound, recovering the local signed comparison and branch. The complete candidate remains non-exact.

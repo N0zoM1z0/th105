@@ -1886,7 +1886,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         middle_clear_input(0x6c0); advance_or_action(0);
         if (sequence_entry(1)) { set_action_and_finalize(0); return true; }
         if (sequence_index_13e == 0) {
-            if (frame_index_140 > 5 && frame_index_140 < 14 && static_cast<signed char>(byte_at(0x606)) > 3) short_at(0x4a8) = 2;
+            if (frame_index_140 > 5 && frame_index_140 < 14 && static_cast<signed char>(byte_at(0x606)) >= 4) short_at(0x4a8) = 2;
             if (middle_frame(8)) {
                 add_phase_scaled_counter_558(50); adjust_counter_482(200, 120);
                 float payload[3] = {0.0f, 0.0f, 1.0f};
@@ -1916,7 +1916,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         middle_clear_input(0x6c4); advance_or_action(0);
         if (sequence_entry(1)) { set_action_and_finalize(0); return true; }
         if (sequence_index_13e == 0) {
-            if (frame_index_140 > 5 && frame_index_140 < 14 && static_cast<signed char>(byte_at(0x606)) > 3) short_at(0x4a8) = 2;
+            if (frame_index_140 > 5 && frame_index_140 < 14 && static_cast<signed char>(byte_at(0x606)) >= 4) short_at(0x4a8) = 2;
             if (middle_frame(8)) {
                 add_phase_scaled_counter_558(50); adjust_counter_482(200, 120);
                 float payload[3] = {0.0f, 0.0f, 1.0f};
