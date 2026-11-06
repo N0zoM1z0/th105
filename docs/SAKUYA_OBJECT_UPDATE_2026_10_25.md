@@ -314,3 +314,7 @@ For the plus-3 path, normal RNG result 21 gives approximately 5.0999999046 with 
 ## Seven phase dispatches (2026-11-06)
 
 Native phase dispatches at `0x4E1177`, `0x4E140E`, `0x4E3FF4`, `0x4E43D4`, `0x4E4843`, `0x4E738E` and `0x4E77ED` sign-extend the phase and use switch-style grouped or three-arm branching. The equivalent if/else chains in actions 801, 802, 817, 818, 849, 920 and 930 now use ordinary switches, restoring the local signed phase loads and branch families in the focused VC8 output. Case and default behavior is preserved; register allocation and the complete function still differ. The section tail is 29328 bytes, first mismatch +37; no exact credit is claimed.
+
+### Timer gate thresholds
+
+Four original timer gates at `0x4E4EE9`, `0x4E51C4`, `0x4E5487`, and `0x4E54E9` use thresholds 15, 180, 120, and 40. Equivalent `>=` source forms recover the local signed comparisons and branches while preserving integer behavior. The complete function remains non-exact; the candidate section is 29,328 bytes.

@@ -300,7 +300,7 @@ void SakuyaObjectUpdateView::update_action_state()
   if(S(0x364)==1){if(B(0x113)>10)B(0x113)-=10;else RETIRE();}return;
  case 852:
   if(S(0x13e)==0){F(0x11c)+=D(0.1f);F(0x120)+=D(0.02f);}
-  if(S(0x13e)==1 && ((AT(P,short,0x13c)>49 && AT(P,short,0x13c)<150) || AT(P,short,0x13c)!=602 || I(0x144)>14))RETIRE();
+  if(S(0x13e)==1 && ((AT(P,short,0x13c)>49 && AT(P,short,0x13c)<150) || AT(P,short,0x13c)!=602 || I(0x144)>=15))RETIRE();
   STEP();FRAME_EXIT();
  case 853:
   if(I(0x180)==5)RETIRE();
@@ -308,7 +308,7 @@ void SakuyaObjectUpdateView::update_action_state()
     float count=0;do{children[0]=(H[0]+15.0)-count*15.0;spawn_unparented(853,F(0xec),F(0xf0),B(0x104),1,WORDS(children),4);count+=1.0;}while(count<3.0f);
     children[2]=6;spawn_unparented(853,F(0xec),F(0xf0),B(0x104),1,WORDS(children),4);children[2]=7;spawn_unparented(853,F(0xec),F(0xf0),B(0x104),1,WORDS(children),4);}}
   if(S(0x13e)==1){MOVE();if(I(0x144)>=H[3]){next_sequence_block();float *words=H;words[0]=-atan2_degrees(static_cast<float>(AT(A,float,0xf0)+100.0-F(0xf0)),static_cast<float>(C(0x104)*(AT(A,float,0xec)-F(0xec))));words[1]=80.0f;F(0x12c)=words[0];return;}}
-  if(S(0x13e)==2){MOVE();if(I(0x144)>179)RETIRE();}
+  if(S(0x13e)==2){MOVE();if(I(0x144)>=180)RETIRE();}
   if(S(0x13e)==4){if(!R)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>0)RETIRE();}
   if(S(0x13e)==5){if(!R)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);F(0x12c)=AT(R,float,0x12c);F(0x11c)+=D(0.1f);F(0x120)*=D(0.95f);if(AT(R,short,0x140)>0)RETIRE();}
   if(S(0x13e)==6){F(0x120)=F(0x11c)=static_cast<float>(F(0x11c)-D(0.01f));if(B(0x113)<=20)RETIRE();B(0x113)-=20;B(0x110)-=20;B(0x111)-=20;}
@@ -319,8 +319,8 @@ void SakuyaObjectUpdateView::update_action_state()
   if(S(0x364)==1){if(B(0x113)>10)B(0x113)-=10;else RETIRE();}return;
  case 855:
   if(S(0x13e)==0){F(0x11c)+=0.5;F(0x120)+=D(0.02f);}
-  if(S(0x13e)==1){F(0x11c)+=0.5;F(0x120)*=D(0.98f);H[1]+=1.0;MOVE();if(I(0x144)>119 || F(0x120)<=D(0.1f))RETIRE();}
-  if(S(0x13e)==2 && ((AT(P,short,0x13c)>49 && AT(P,short,0x13c)<150) || AT(P,short,0x13c)!=605 || I(0x144)>39))RETIRE();
+  if(S(0x13e)==1){F(0x11c)+=0.5;F(0x120)*=D(0.98f);H[1]+=1.0;MOVE();if(I(0x144)>=120 || F(0x120)<=D(0.1f))RETIRE();}
+  if(S(0x13e)==2 && ((AT(P,short,0x13c)>49 && AT(P,short,0x13c)<150) || AT(P,short,0x13c)!=605 || I(0x144)>=40))RETIRE();
   STEP();if(advance_frame())--I(0x330);if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==1)--I(0x330);return;
  case 856:
   if(I(0x180)==5 || OUTSIDE(1680.0,-400.0,1000.0,-160.0f))RETIRE();
