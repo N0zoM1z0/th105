@@ -251,7 +251,7 @@ void IkuObjectUpdateView::update_action_state()
   }
   case 1:
    if(AT(this,void *,0x34c)==0)RETIRE();F(0xec)=AT(AT(this,void *,0x34c),float,0xec);F(0xf0)=AT(AT(this,void *,0x34c),float,0xf0);SCALE(F(0x11c)+D(0.02f));
-   if(I(0x144)>14){if(B(0x113)<10)RETIRE();B(0x113)-=10;B(0x112)-=10;B(0x111)-=10;}break;
+   if(I(0x144)>=15){if(B(0x113)<10)RETIRE();B(0x113)-=10;B(0x112)-=10;B(0x111)-=10;}break;
   case 2: {
    if(emit_repeated(0,0,0))B(0x184)=0;
    bool end=advance_six(10)!=0;if(!end){if(I(0x144)>=360)end=true;else{short action=AT(P,short,0x13c);if((action==570 || action==571 || action==572 || action==573) && AT(P,short,0x140)==0 && AT(P,short,0x13e)==0)end=true;}}

@@ -320,3 +320,5 @@ Native phase dispatches at `0x4E1177`, `0x4E140E`, `0x4E3FF4`, `0x4E43D4`, `0x4E
 Four original timer gates at `0x4E4EE9`, `0x4E51C4`, `0x4E5487`, and `0x4E54E9` use thresholds 15, 180, 120, and 40. Equivalent `>=` source forms recover the local signed comparisons and branches while preserving integer behavior. The complete function remains non-exact; the candidate section is 29,328 bytes.
 
 The repeated five-frame color-fade gate, including original `0x4E3999`, now uses an equivalent `>= 5` form. The candidate recovers the native threshold and signed branch family, though shared-tail folding and branch length differ. Its section is 29,228 bytes; the complete function remains non-exact.
+
+Three repeated early-frame scale gates at `0x4E38F7`, `0x4E6779`, and `0x4E70FA` use the equivalent `<= 3` form. Fresh compilation recovers the signed compare and branch family, with some branch distances still different. The complete function remains non-exact.
