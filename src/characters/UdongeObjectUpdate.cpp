@@ -1050,7 +1050,7 @@ case 849: {
 }
 case 850: {
 
-    if(S(0x13e)==0) {
+    switch(S(0x13e)) { case 0: {
         if(S(0x140)==0) {
             publish_bounds_descriptor(static_cast<int>(F(0x11c)*-35.0),static_cast<int>(F(0x11c)*75.0),static_cast<int>(F(0x11c)*35.0),static_cast<int>(F(0x11c)*-75.0),static_cast<short>(static_cast<int>(PARAM[0])),0,0);
             F(0x11c)+=0.03f;F(0x120)=F(0x11c);advance_six(0);int collision=I(0x180);
@@ -1065,7 +1065,7 @@ case 850: {
             if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;
         }
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();MOTION->set_components(PARAM[0],PARAM[1]);
-    }else if(S(0x13e)==1) {
+    }break; case 1: {
         F(0x12c)+=6.0;if(!RELATED) RETIRE();
         double cosine=lookup_orientation_cosine_quantized_abs(static_cast<float>(6*I(0x144)+PARAM[0]));void *related=RELATED;float *parameters=PARAM;
         F(0xec)=static_cast<float>(cosine*static_cast<float>(2*I(0x144))*static_cast<double>(0.3f)*C(0x104)+FIELD(related,float,0xec));
@@ -1076,10 +1076,11 @@ case 850: {
         else if(I(0x144)%10==0) {
             float packet[4]={PARAM[0],1.0f,2.0f,F(0x11c)};spawn_unparented(850,F(0xec),F(0xf0),B(0x104),1,packet,4);
         }
-    }else if(S(0x13e)==2) {
+    }break; case 2: {
         MOTION->set_components(PARAM[0],PARAM[1]);F(0x11c)+=0.1f;F(0x120)+=0.1f;
         if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;
     }
+    break; }
     MOVE();FINISH();
 
 
@@ -1142,7 +1143,7 @@ case 852: {
 }
 case 853: {
 
-    if(S(0x13e)==0) {
+    switch(S(0x13e)) { case 0: {
         if(S(0x140)==0) {
             publish_bounds_descriptor(static_cast<int>(F(0x11c)*-35.0),static_cast<int>(F(0x11c)*75.0),static_cast<int>(F(0x11c)*35.0),static_cast<int>(F(0x11c)*-75.0),static_cast<short>(static_cast<int>(PARAM[0])),0,0);
             F(0x11c)+=0.2f;if(F(0x11c)>=4.0f) F(0x11c)=4.0f;F(0x120)=F(0x11c);advance_six(0);int collision=I(0x180);
@@ -1157,7 +1158,7 @@ case 853: {
             if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;
         }
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();MOTION->set_components(PARAM[0],PARAM[1]);
-    }else if(S(0x13e)==1) {
+    }break; case 1: {
         F(0x12c)+=12.0;if(!RELATED) RETIRE();void *related=RELATED;
         F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);
         F(0x11c)=FIELD(related,float,0x11c);F(0x120)=F(0x11c);
@@ -1165,10 +1166,11 @@ case 853: {
         else if(I(0x144)%5==0) {
             float packet[4]={PARAM[0],1.0f,2.0f,F(0x11c)};spawn_unparented(853,F(0xec),F(0xf0),B(0x104),1,packet,4);
         }
-    }else if(S(0x13e)==2) {
+    }break; case 2: {
         MOTION->set_components(PARAM[0],PARAM[1]);F(0x11c)+=0.02f;F(0x120)+=0.02f;
         if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;
     }
+    break; }
     MOVE();FINISH();
 
 

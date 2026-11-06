@@ -106,3 +106,7 @@ without merging semantically different entry-retirement paths. The early
 800/910/920 empty-alpha guard uses the native nonpositive spelling. Local
 frame offsets, remaining physical tail sharing and instruction scheduling
 still differ; matching counts and size reductions are not exactness claims.
+
+## Actions 850 and 853 phase dispatch (2026-11-06)
+
+The native dispatches at `0x5DABD5` and `0x5DB508` sign-extend the phase and branch through cases 0, 1 and 2 using switch-shaped subtraction sequences. Replacing equivalent if/else chains with ordinary switches restores that local signed load and dispatch pattern in the focused VC8 output, preserving the handled and default phases. The complete candidate remains nonexact (43921-byte section tail, first mismatch +37); no exact credit is claimed.
