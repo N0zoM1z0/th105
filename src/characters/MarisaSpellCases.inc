@@ -126,7 +126,7 @@ case 615:
     }return;
 case 619:
     landing();texture(5,2);
-    if((sequence_index_13e==1 && time_counter_144>44) || (sequence_index_13e==4 && time_counter_144>89) || (sequence_index_13e==5 && time_counter_144>39)){next_sequence_block();return;}
+    if((sequence_index_13e==1 && time_counter_144>=45) || (sequence_index_13e==4 && time_counter_144>=90) || (sequence_index_13e==5 && time_counter_144>39)){next_sequence_block();return;}
     if(advance())set_action_and_finalize(0);if(entry(4))spawn_offset(990,-80,130.0,0,0);
     if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==3)spell_flash(-16,100.0,5);if(!frame_timer_142 && frame_index_140==5){float p[3]={0.0f,0.0f,11.0f};spawn_offset(869,100,105.0,p,3);dispatch_character_wave_handle(10);++S(0x732);}}return;
 case 658:

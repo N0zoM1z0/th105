@@ -45,7 +45,7 @@ case 510:case 512:
         F(0xf4)=static_cast<float>(F(0xf4)-0.75);if(F(0xf4)<2.0f)F(0xf4)=2.0f;F(0xf8)-=F(0x100);
         if(static_cast<unsigned char>(crossed())){F(0xf0)=marisa_surface(this);zero_motion();select_sequence(4);F(0x12c)=0.0f;}
         if(sequence_index_13e==1){F(0x73c)=static_cast<float>(F(0x73c)+2.0);F(0x12c)=static_cast<float>(F(0x12c)-25.0);if(F(0x12c)<-720.0f){next_sequence_block();F(0x12c)=0.0f;return;}}
-        if(sequence_index_13e==3 && time_counter_144>23){set_action_and_finalize(9);return;}
+        if(sequence_index_13e==3 && time_counter_144>=24){set_action_and_finalize(9);return;}
     }
     if(advance())set_action_and_finalize(0);
     if(entry(1)){
@@ -79,7 +79,7 @@ case 525:
     if(sequence_index_13e==3 && static_cast<unsigned char>(crossed())){next_sequence_block();F(0xf0)=marisa_surface(this);zero_motion();}
     if(advance())set_action_and_finalize(0);
     if(entry(1)){
-        float p[3];p[0]=-85.0f;p[1]=0.0f;if(C(0x609)>3)p[2]=5.0f;if(C(0x609)<4)p[2]=4.0f;if(C(0x609)<2)p[2]=3.0f;
+        float p[3];p[0]=-85.0f;p[1]=0.0f;if(C(0x609)>=4)p[2]=5.0f;if(C(0x609)<4)p[2]=4.0f;if(C(0x609)<=1)p[2]=3.0f;
         spawn_offset(849,61,232.0,p,3);effect(127,F(0xec),F(0xf0),B(0x104),-1);
         dispatch_character_wave_handle(28);counter(200,120);phase_counter(50);F(0xf4)=7.0f;F(0xf8)=30.0f;F(0x100)=0.5f;I(0x180)=1;
     }

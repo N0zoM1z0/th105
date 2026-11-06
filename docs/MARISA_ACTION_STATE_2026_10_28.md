@@ -205,3 +205,7 @@ The complete candidate remains unselected and nonexact, section tail 68,220
 bytes and compared SHA-256
 `0e469ce06822a4d9cd1a9ceaabcac592f9f3f346cc46515a341a72339df2ebdc`.
 No full-function or exact-byte credit is claimed.
+
+### Integer gate thresholds
+
+Nine integer threshold forms were adjusted using original gates at `0x4A91BF`, `0x4A9AB5`, `0x4AA4EB`, `0x4AAEB7`, `0x4AAEE2`, `0x4B1DB2`, `0x4B1DC5`, `0x4B2B64`, and `0x4B2BAC`. The candidate recovers their branch conditions and threshold values; some operand allocation and intervening layout still differ. Integer behavior is unchanged, and the complete 68,220-byte candidate remains non-exact.
