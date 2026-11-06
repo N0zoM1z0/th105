@@ -122,7 +122,7 @@ bool CollisionContext::try_outcome_path_b(
     }
     if (frame->amount_22 != 0) {
         const short before = fighter->counter_482;
-        unsigned short amount =
+        unsigned amount =
             static_cast<unsigned short>(frame->amount_22);
         if ((candidate->frame_1a4->flags_50 & 0x00400000) != 0) {
             amount *= 2;
