@@ -416,3 +416,9 @@ The native two-case phase dispatches for actions 813 and 852 at `0x53DB25` and `
 ### Spawn-count gates
 
 The original gates at `0x53FAB9` and `0x53FE77` branch when the signed count exceeds 10 and 17. Equivalent source comparisons recover both local compare and branch sequences, including their displacements. Integer behavior is unchanged; the 27,004-byte candidate remains non-exact.
+
+## Action 823 phase 1 fade correction, 2026-11-06
+
+The native phase table at `0x543534` maps phase 1 to `0x53E6FE`. After the scale update, frames at least 2 inspect byte `+0x113` at `0x53E760`: values below 15 retire the object; otherwise `0x53E76E..0x53E77E` subtracts 15 from bytes `+0x111`, `+0x112`, and `+0x113` before advancing the frame. The earlier source instead tested and decremented only `+0x113` by 20. The source now follows the native threshold, two color-byte updates, and alpha-byte update. This is a real behavior correction, including the retirement threshold.
+
+A fresh complete comparison remains nonexact: the candidate section tail is 27,024 bytes and first differs at +34 against the 25,944-byte native callable. The hypothesis remains unselected and earns no exact credit. Focused receipts are `build/youmu-823-fade-fix.json` and `build/youmu-823-fade-fix.dis`.

@@ -280,7 +280,7 @@ void YoumuObjectUpdateView::update_action_state()
   case 1:
    F(0x370)*=D(0.9f); if(F(0x370)<=0.02f) F(0x370)=0.02f;
    F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+F(0x370));
-   if(I(0x144)>=2) { if(B(0x113)<20) RETIRE(); B(0x113)-=20; }
+   if(I(0x144)>=2) { if(B(0x113)<15) RETIRE(); B(0x111)-=15; B(0x112)-=15; B(0x113)-=15; }
    break;
   case 2:
    F(0x11C)+=D(0.01f); F(0x120)*=D(0.95f);
