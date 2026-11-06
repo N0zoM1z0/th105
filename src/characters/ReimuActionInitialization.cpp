@@ -158,7 +158,7 @@ void ReimuFinalizationView::initialize_action_entry()
  case 614:
   F(0xf8)=F(0xf4)=0;S(0x730)=0;I(0x180)=0;F(0x100)=0;S(0x7cc)=0;return;
  case 616:
-  zero_motion();F(0x73c)=0;I(0x180)=0;B(0x47e)=0;B(0x184)=5;S(0x7cc)=1;return;
+  zero_motion();F(0x73c)=0;I(0x180)=0;B(0x184)=5;B(0x47e)=0;S(0x7cc)=1;return;
  case 619:
   zero_motion();F(0x73c)=0;S(0x7ca)=S(0x7c8)=0;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;
  case 650:case 651:

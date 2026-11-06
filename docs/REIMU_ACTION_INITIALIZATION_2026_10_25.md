@@ -157,3 +157,7 @@ No prior accepted source, header, compiler profile or relocation key changes.
 Only new exclusive literal aliases and local function bindings are added.
 Source-present1545/mapped1564, units584; exact stays1403/359740 bytes. No new
 aggregate cold replay is claimed.
+
+## Action 616 initialization tail
+
+The original action 616 path at `0x49292A` calls zero-motion, clears `+0x73C`, and then has its own state-publication tail rather than joining action 612's tail. Reordering the independent `+0x184` and `+0x47E` writes after the call preserves behavior and causes the focused candidate to recover that distinct native instruction sequence and store order. The fields do not overlap and no call intervenes. The full candidate section is now 4,734 bytes versus the 4,738-byte original payload. Full relocation replay remains non-exact, with 2,296 differing byte positions and first difference +0x28; no exact credit is claimed.
