@@ -129,3 +129,5 @@ Native 852 spawns including `0x5CD8FC..0x5CD976` and `0x5CD9F0..0x5CDA6A`, and 9
 ### Integer gate thresholds
 
 The original signed timer gates at `0x5C3027`, `0x5CA05F`, `0x5CC1D1`, `0x5CC227`, and `0x5CDCC0` compare against 18, 30, 12, 20, and 120. Equivalent source forms, including the repeated skill cases sharing the 12/20 gates, recover the local compare-and-branch sequences without changing integer behavior. The complete candidate remains non-exact, with a 67,896-byte section.
+
+Six repeated 25- and 180-frame gates at `0x5CA24C`, `0x5CA7C1`, `0x5CAD88`, `0x5CB344`, `0x5CC360`, and `0x5CC499` now use equivalent native threshold forms. Focused compilation recovers their local signed comparisons and branches. Integer behavior is unchanged; the 67,896-byte candidate remains non-exact.
