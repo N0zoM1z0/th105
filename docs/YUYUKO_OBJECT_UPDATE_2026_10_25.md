@@ -352,3 +352,5 @@ The action 901 owner-state gate at `0x576D95` branches for a signed short at or 
 ### Opponent-position comparison
 
 In action 854, the first horizontal-position comparison at `0x574CE7` loads the object position and then the opponent position before testing x87 status bits `0x05`. Expressing the same ordered comparison with the object's position on the left recovers that load order and status test. Equality and unordered comparisons still skip the update. The complete candidate remains non-exact.
+
+The repeated timer gates for 30, 60, and 180 frames and the signed-byte zero gate are now expressed in the equivalent forms observed in the original. Focused compilation recovers their local signed compare-and-branch families. Integer behavior is unchanged; the complete 34,924-byte candidate remains non-exact.
