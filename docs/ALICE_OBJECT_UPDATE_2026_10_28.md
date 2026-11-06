@@ -143,3 +143,14 @@ inverted branch layout (`test bl,ah` where BL is 1). The full root remains
 nonexact, section tail 62,972 bytes, compared SHA-256
 `9014c56e98e0739732e7b139ea5dbc09e098ff79ef9fc49f5c97df81b55c59b3`.
 No full-function or exact-byte credit is claimed.
+
+## Action 854 packet selector (2026-11-06)
+
+At `0x50682B..0x506847`, the native packet selects value 6 when the fourth
+motion parameter is at least 360 or the comparison is unordered, and value 5
+otherwise. The earlier ordered `>=` chose 5 on an unordered value. The source
+now uses `!(parameter < 360.0f)`; finite results are unchanged. Candidate
+`0x9D06..0x9D09` reproduces the same outcomes with an inverted branch. Whether
+an unordered parameter occurs in play is unknown. The full root remains
+nonexact, section tail 62,972, compared SHA-256
+`5b4f6d53907b989ae2a9f9131c37dd2347e0f2927415ce40602c87894ad683fc`.

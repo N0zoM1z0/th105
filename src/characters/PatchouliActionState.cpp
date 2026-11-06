@@ -1305,10 +1305,10 @@ case 720:
 case 721:
     if(sequence_index_13e<=1) {
         if(entry(0)) {
-            if(F(0xec)>=640.0f)F(0x74c)=static_cast<float>(580.0-static_cast<float>(patchouli_random(360)));
+            if(!(F(0xec)<640.0f))F(0x74c)=static_cast<float>(580.0-static_cast<float>(patchouli_random(360)));
             else F(0x74c)=static_cast<float>(static_cast<float>(patchouli_random(360))+700.0);
             F(0x748)=static_cast<float>(static_cast<float>(patchouli_random(260))+60.0);
-            if(F(0x74c)>=static_cast<double>(F(0xec)))B(0x104)=1;else B(0x104)=255;
+            if(!(F(0x74c)<static_cast<double>(F(0xec))))B(0x104)=1;else B(0x104)=255;
         }
         F(0xf4)=static_cast<float>((F(0x74c)-F(0xec))*static_cast<double>(0.02f)*facing());
         F(0xf8)=static_cast<float>(static_cast<double>(0.02f)*(F(0x748)-F(0xf0)));

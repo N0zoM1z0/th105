@@ -711,7 +711,7 @@ case 854: {
     }
     if(S(0x13e)==0) {B(0x184)=0;if(F(0x378)<=2.0f) {next_sequence_block();B(0x33c)=1;B(0x184)=1;return;}}
     if(S(0x13e)==1) {
-        if(I(0x144)==0) {float packet[4]={0.0f,0.0f,PARAM[3]>=360.0f?6.0f:5.0f,0.0f};spawn_parented(854,F(0xec),F(0xf0),B(0x104),1,packet,4);}advance_six(0);if(I(0x180)!=0 && ++S(0x368)>=30) {S(0x368)=0;I(0x180)=0;B(0x184)=1;}
+        if(I(0x144)==0) {float packet[4]={0.0f,0.0f,!(PARAM[3]<360.0f)?6.0f:5.0f,0.0f};spawn_parented(854,F(0xec),F(0xf0),B(0x104),1,packet,4);}advance_six(0);if(I(0x180)!=0 && ++S(0x368)>=30) {S(0x368)=0;I(0x180)=0;B(0x184)=1;}
         if(I(0x144)>=120) {B(0x184)=0;next_sequence_block();B(0x33c)=255;F(0x370)=0.0f;if(F(0xec)-FIELD(OWNER,float,0xec)>0.0f) C(0x104)=-1;if(F(0xec)-FIELD(OWNER,float,0xec)<0.0f) C(0x104)=1;return;}
     }
     if(S(0x13e)==2) {if(update_owner_tracking_and_proximity()) return;F(0xec)=F(0xf4)+F(0xec);F(0xf0)=F(0xf8)+F(0xf0);}
