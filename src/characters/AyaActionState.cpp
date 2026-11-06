@@ -629,7 +629,7 @@ case 529:{
  short phase=S(0x13e);
  if(phase==2||phase==5||phase==8||phase==11||phase==14){
   if(I(0x144)>19){next_sequence_block();return;}
-  if(((!S(0x738)&&C(0x609)>1)||(S(0x738)==1&&C(0x609)>3))&&(I(0x6bc)||I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);++S(0x738);set_action_and_finalize(529);return;}
+  if(((!S(0x738)&&C(0x609)>=2)||(S(0x738)==1&&C(0x609)>3))&&(I(0x6bc)||I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);++S(0x738);set_action_and_finalize(529);return;}
  }
  if(phase==3||phase==6||phase==9||phase==12||phase==15){
   if(I(0x144)>4){select_sequence(static_cast<unsigned char>(aya_on_surface(this))?16:17);F(0xf4)*=0.5;if(F(0xf8)>0.0)F(0xf8)*=0.5;return;}
@@ -711,7 +711,7 @@ case 546:{
   dispatch_character_wave_handle(23);layout(5.0f);float packet[3]={0.0f,0.0f,5.0f};spawn(821,F(0xec),F(0xf0),B(0x104),-1,packet,3);packet[2]=6.0f;spawn(821,F(0xec),F(0xf0),B(0x104),-1,packet,3);
   for(int angle=0;angle<360;angle+=60){packet[0]=angle+30.0;packet[1]=15.0f;packet[2]=1.0f;spawn(821,F(0xec),F(0xf0),B(0x104),(packet[0]>=0.0&&packet[0]<=180.0)?1:-1,packet,3);}
   packet[0]=0.0f;packet[1]=17.5f;packet[2]=3.0f;spawn(821,F(0xec),0.0f,B(0x104),1,packet,3);spawn(821,F(0xec),0.0f,static_cast<unsigned char>(-B(0x104)),1,packet,3);
-  if(C(0x60a)>3){packet[1]=30.0f;spawn(821,F(0xec),0.0f,B(0x104),1,packet,3);spawn(821,F(0xec),0.0f,static_cast<unsigned char>(-B(0x104)),1,packet,3);}
+  if(C(0x60a)>=4){packet[1]=30.0f;spawn(821,F(0xec),0.0f,B(0x104),1,packet,3);spawn(821,F(0xec),0.0f,static_cast<unsigned char>(-B(0x104)),1,packet,3);}
   select_sequence(2);F(0xf0)=aya_surface(this);zero_motion();I(0x180)=1;return;
  }
  ADVANCE_TO(0);if(FRAME(0,4)){counter(200,120);phase_counter(50);dispatch_character_wave_handle(15);MOTION->set_oriented_components(70.0f,25.0f);float packet[3]={70.0f,0.0f,2.0f};spawn(821,20*C(0x104)+F(0xec),F(0xf0),B(0x104),1,packet,3);}return;
@@ -911,7 +911,7 @@ case 606:{
  if(!S(0x13e)||S(0x13e)==4||S(0x13e)==9)landing();texture(2,2);
  if(S(0x13e)==1&&I(0x180)==1){float packet[3]={0.0f,0.0f,0.0f};spawn(856,F(0xec),F(0xf0),B(0x104),1,packet,3);select_sequence(5);zero_motion();shared_first(1,PF(0xec));shared_second(1,F(0xf0));F(0xec)=PF(0xec);F(0xf0)=PF(0xf0);return;}
  if(S(0x13e)==2||S(0x13e)==3){F(0xf4)-=0.5;if(F(0xf4)<5.0)F(0xf4)=5.0;F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){select_sequence(4);zero_motion();F(0xf0)=aya_surface(this);event(30);return;}}
- if(S(0x13e)==5){shared_first(1,PF(0xec));shared_second(1,F(0xf0));F(0xec)=PF(0xec);F(0xf0)=PF(0xf0);if(I(0x144)>59){F(0xf0)=PF(0xf0);next_sequence_block();return;}}
+ if(S(0x13e)==5){shared_first(1,PF(0xec));shared_second(1,F(0xf0));F(0xec)=PF(0xec);F(0xf0)=PF(0xf0);if(I(0x144)>=60){F(0xf0)=PF(0xf0);next_sequence_block();return;}}
  if(S(0x13e)==6){
   if(F(0x73c)==0.0&&I(0x6b4)){F(0x73c)=static_cast<float>(I(0x6b4));F(0xf8)+=1.0;}
   if(F(0x73c)>0.0&&I(0x6b4)<0){F(0x73c)=static_cast<float>(I(0x6b4));F(0xf8)+=1.0;}
@@ -937,7 +937,7 @@ case 606:{
    if(!(S(0x738)%2)){packet[0]=4.0-static_cast<float>(static_cast<unsigned>(aya_random(8)));packet[1]=static_cast<float>(static_cast<unsigned>(aya_random(50)))+150.0;packet[2]=2.0f;spawn(856,1380.0f,static_cast<float>(static_cast<unsigned>(aya_random(200)))+F(0xf0),-1,1,packet,3);}
    else{packet[0]=4.0-static_cast<float>(static_cast<unsigned>(aya_random(8)));packet[1]=static_cast<float>(static_cast<unsigned>(aya_random(50)))+150.0;packet[2]=2.0f;spawn(856,-100.0f,static_cast<float>(static_cast<unsigned>(aya_random(200)))+F(0xf0),1,1,packet,3);}++S(0x738);
   }
-  if(I(0x144)>299){packet[0]=90.0f;packet[1]=30.0f;packet[2]=5.0f;spawn(856,640.0f,F(0xf0)+100.0,1,1,packet,3);packet[0]=-90.0f;spawn(856,640.0f,F(0xf0)+100.0,1,1,packet,3);packet[2]=4.0f;spawn(856,PF(0xec),F(0xf0)+100.0,1,1,packet,3);next_sequence_block();return;}
+  if(I(0x144)>=300){packet[0]=90.0f;packet[1]=30.0f;packet[2]=5.0f;spawn(856,640.0f,F(0xf0)+100.0,1,1,packet,3);packet[0]=-90.0f;spawn(856,640.0f,F(0xf0)+100.0,1,1,packet,3);packet[2]=4.0f;spawn(856,PF(0xec),F(0xf0)+100.0,1,1,packet,3);next_sequence_block();return;}
  }
  if(S(0x13e)==7){F(0xec)=PF(0xec);F(0xf8)=40.0;if(F(0xf0)>1280.0)F(0xf0)=1280.0;if(I(0x144)>39){F(0xf8)=-30.0;F(0x100)=0.5f;next_sequence_block();shared_first(0,PF(0xec));shared_second(0,F(0xf0));return;}}
  if(S(0x13e)==8){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){next_sequence_block();F(0xf0)=aya_surface(this);zero_motion();return;}}

@@ -262,3 +262,7 @@ no normal gameplay numeric change is claimed.
 
 The complete 65601-byte root remains nonexact at +48; the new section tail is
 65700 bytes. This local observation does not add exact-function or byte credit.
+
+### Integer gate thresholds
+
+Four original gates at `0x60A2D0`, `0x60B745`, `0x60DF0A`, and `0x60E548` compare signed values against 2, 4, 60, and 300. The equivalent threshold forms recover their local comparisons and branches with no integer behavior change. The complete candidate remains non-exact, with a 65,700-byte section.
