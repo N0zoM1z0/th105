@@ -363,3 +363,7 @@ Four original signed timer gates compare against 90 (`0x6336EF`), 45 (`0x635736`
 A further pass restores equivalent timer bounds for the native 12-, 20-, 30-, 60-, 180-, and 300-frame gates. Fresh compilation recovers the observed compare/branch forms at the corresponding bodies; some repeated bodies fold together differently, so this is not a one-to-one code-layout claim. Integer behavior is unchanged and the complete 34,252-byte candidate remains non-exact.
 
 The action 823 timer gate at `0x63632F` now uses the equivalent 15-frame bound observed in the original, recovering its local compare and branch. The complete function remains non-exact.
+
+### Action 820 bounce gates
+
+The original bounce check at `0x635BA0` reuses the 12-frame threshold in EDI and compares the signed owner skill byte against 4. Expressing both bounds in equivalent native forms makes the candidate reuse that threshold and recover the local compare and branch sequences. Behavior is unchanged; the complete 34,264-byte candidate remains non-exact.

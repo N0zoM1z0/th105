@@ -221,7 +221,7 @@ void IkuObjectUpdateView::update_action_state()
     else{if(H[0]>60.0)H[0]=60;if(H[0]<-60.0)H[0]=-60;}
     H[1]=25;MOVE();B(0x184)=1;
    }
-   if(I(0x144)>11 && AT(P,signed char,0x60b)>3 && F(0xf8)<0.0 && F(0xf0)<=0.0){F(0xf8)=-F(0xf8);F(0xf4)*=0.5;}
+   if(I(0x144)>=12 && AT(P,signed char,0x60b)>=4 && F(0xf8)<0.0 && F(0xf0)<=0.0){F(0xf8)=-F(0xf8);F(0xf4)*=0.5;}
    advance_six(0);advance_phase(1);
    if(I(0x180)==4 || I(0x180)==8){PACKET(p72,RND(360),0,2);SPAWN(801,1,p72);I(0x180)=0;RETIRE();}
    if(I(0x180)!=0){PACKET(p240,RND(360),0,2);SPAWN(801,1,p240);I(0x180)=0;B(0x184)=0;}
