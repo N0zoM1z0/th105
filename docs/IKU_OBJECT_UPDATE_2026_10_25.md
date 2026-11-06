@@ -355,3 +355,7 @@ At `0x639E74`, native loads the signed timer with `fild` and directly compares i
 ## Five phase dispatch shapes (2026-11-06)
 
 Native action dispatches at `0x633CFF` (811), `0x637A4A` (857), `0x638C1A` (898), `0x638DA5` (899) and `0x63ACF6` (995) sign-extend the phase and use switch-style branch sequences. The equivalent if/else chains now use ordinary switches, preserving their handled phases and default paths. The focused VC8 output restores signed phase loads and corresponding local dispatch shapes; other registers, branches and the complete function still differ. The section tail is 34252 bytes against the 33617-byte main span, first mismatch +37. No exact credit is claimed.
+
+### Timer threshold forms
+
+Four original signed timer gates compare against 90 (`0x6336EF`), 45 (`0x635736`), 160 (`0x637080`), and 4 (`0x638B73`), branching while below the threshold. The corresponding source now uses `>=` with those values instead of `>` with the preceding integer. This preserves behavior and restores the local immediate-and-branch forms in the candidate. The full function remains non-exact, with a 34,252-byte candidate section.

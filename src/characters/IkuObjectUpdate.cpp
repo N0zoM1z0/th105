@@ -80,7 +80,7 @@ void IkuObjectUpdateView::update_action_state()
   switch(S(0x13e)) {
   case 0: {
    if(emit_repeated(0,2,5))RETIRE();double y=F(0xf0);if(y<stage_surface_height()){next_sequence_block();return;}
-   F(0x12c)+=38.0;advance_six(0);if(I(0x144)>89){B(0x184)=0;next_sequence_block();return;}
+   F(0x12c)+=38.0;advance_six(0);if(I(0x144)>=90){B(0x184)=0;next_sequence_block();return;}
    if(I(0x180)!=0){if(C(0x184)<1){next_sequence_block();return;}if(++S(0x366)>5){I(0x180)=0;S(0x366)=0;}}
    if(I(0x144)%20==0){double y_now=F(0xf0);if(y_now-stage_surface_height()<=200.0){int angle=0;do{p468[0]=angle+30.0+RND(30);p468[1]=20;p468[2]=2;int layer=(p468[0]<0.0 || p468[0]>180.0f)?-1:1;spawn_unparented(802,F(0xec),stage_surface_height(),B(0x104),layer,reinterpret_cast<const unsigned *>(p468),3);angle+=60;}while(angle<360);}}
    H[1]-=0.5;if(H[1]<=3.0f)H[1]=3;MOVE();STEP();break;
@@ -200,7 +200,7 @@ void IkuObjectUpdateView::update_action_state()
    if(F(0x11c)<=0.01f && S(0x364)==0){PACKET(p264,0,H[1],8);SPAWN(817,1,p264);RETIRE();}break;
   case 6:
    F(0xf0)*=D(0.85f);F(0x11c)*=D(0.99f);F(0x120)*=D(0.95f);
-   if(I(0x144)>44){--I(0x330);PACKET(p568,0,0,2);spawn_unparented(817,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p568),3);p568[2]=3;spawn_unparented(817,F(0xec),0,B(0x104),-1,reinterpret_cast<const unsigned *>(p568),3);p568[2]=7;spawn_unparented(817,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p568),3);int angle=0;do{PACKET(p568,angle+22.5+F(0x370),30,4);int layer=(!(p568[0]>=0.0 && p568[0]<=180.0f))?-1:1;SPAWN(817,layer,p568);angle+=45;}while(angle<360);P->dispatch_character_wave_handle(13);return;}break;
+   if(I(0x144)>=45){--I(0x330);PACKET(p568,0,0,2);spawn_unparented(817,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p568),3);p568[2]=3;spawn_unparented(817,F(0xec),0,B(0x104),-1,reinterpret_cast<const unsigned *>(p568),3);p568[2]=7;spawn_unparented(817,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p568),3);int angle=0;do{PACKET(p568,angle+22.5+F(0x370),30,4);int layer=(!(p568[0]>=0.0 && p568[0]<=180.0f))?-1:1;SPAWN(817,layer,p568);angle+=45;}while(angle<360);P->dispatch_character_wave_handle(13);return;}break;
   case 7:
    if(I(0x144)%4==0)F(0x12c)=RND(360);SCALE(F(0x11c)*D(0.95f));F(0x370)*=D(0.95f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;
    if(I(0x144)>9){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
@@ -310,7 +310,7 @@ void IkuObjectUpdateView::update_action_state()
   case 0:
    if(S(0x364)<2 && AT(P,short,0x174)<1)S(0x364)=2;
    if(S(0x364)==0){SCALE(F(0x11c)+D(0.1f));if(F(0x11c)>=1.0){S(0x364)=1;int angle=0;do{PACKET(p540,angle+22.5+F(0x370),40,4);int layer=(!(p540[0]>=0.0 && p540[0]<=180.0f))?-1:1;SPAWN(853,layer,p540);angle+=45;}while(angle<360);PACKET(p540,0,0,2);spawn_parented(853,F(0xec),F(0xf0),B(0x104),1,reinterpret_cast<const unsigned *>(p540),3);p540[2]=1;SPAWN(853,1,p540);}}
-   if(S(0x364)==1){F(0xf8)+=D(0.1f);if(F(0xf8)>2.0f)F(0xf8)=2;if(I(0x144)%2==0){F(0x12c)=RND(360);float variation=RND(10)*D(0.1f);SCALE(variation+2.0);}if(I(0x144)>159)S(0x364)=2;}
+   if(S(0x364)==1){F(0xf8)+=D(0.1f);if(F(0xf8)>2.0f)F(0xf8)=2;if(I(0x144)%2==0){F(0x12c)=RND(360);float variation=RND(10)*D(0.1f);SCALE(variation+2.0);}if(I(0x144)>=160)S(0x364)=2;}
    if(S(0x364)==2){SCALE(F(0x11c)*D(0.9f));COLORFADE(15);}F(0xf0)+=F(0xf8);break;
   case 1:
    F(0x11c)*=D(0.99f);if(AT(P,short,0x13c)!=603)RETIRE();if(AT(P,short,0x13e)<2){F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0)+360.0;}
@@ -405,7 +405,7 @@ void IkuObjectUpdateView::update_action_state()
    if(S(0x364)<=1){if((AT(P,short,0x13c)==610 || AT(P,short,0x13c)==660) && AT(P,short,0x13e)<2){F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0)+275.0;}else S(0x364)=2;}
    if(S(0x364)==2){SCALE(F(0x11c)*D(0.9f));COLORFADE(15);}break;
   case 5:SCALE(F(0x11c)+0.5);COLORFADE(15);break;
-  case 6:advance_six(0);advance_phase(0);if(I(0x144)>3)B(0x184)=0;SCALE(F(0x11c)*D(0.95f));COLORFADE(15);break;
+  case 6:advance_six(0);advance_phase(0);if(I(0x144)>=4)B(0x184)=0;SCALE(F(0x11c)*D(0.95f));COLORFADE(15);break;
   }
   if(advance_frame())--I(0x330);if(ENTRY(2))--I(0x330);return;
  case 898:
