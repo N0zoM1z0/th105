@@ -244,3 +244,7 @@ adds no exact-function or byte credit.
 ## Actions 545–548 skill-level signedness (2026-11-06)
 
 At `0x4D4EEF`, `0x4D5601`, `0x4D5DFC` and `0x4D65BB`, the native dispatcher sign-extends the byte at `0x60A` before selecting cases 1 through 4. The fighter input policy independently reads that field as a signed byte. The four switch expressions now use the same signed view, and the focused candidate emits `movsx` at all four sites instead of `movzx`. Both views choose the same case for every byte value because all values outside 1–4 use the default path. The full focused candidate remains nonexact: section tail 76432 bytes, first mismatch +8. No exact credit is claimed.
+
+### Action 302 timer thresholds
+
+The original phase-1 and phase-3 timer gates at `0x4CD920` and `0x4CD985` use signed comparisons against 25 and 24, respectively, branching while the timer is below each threshold. Writing these as `>= 25` and `>= 24` preserves the previous integer behavior and restores both local comparison-and-branch sequences in the focused candidate. The complete action-state function remains non-exact; its candidate section is 76,432 bytes.

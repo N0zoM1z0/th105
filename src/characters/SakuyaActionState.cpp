@@ -315,8 +315,8 @@ case 301:{landing();if(directional(0))return;if(B(0x47e)){F(0xf4)-=0.5;if(F(0xf4
 
 case 302:{
  if(directional(1))return;if(!S(0x13e)||S(0x13e)==2||S(0x13e)==4)landing();
- if(S(0x13e)==1){F(0xf8)-=F(0x100);if(I(0x144)>24)landing();}
- if(S(0x13e)==3){F(0xf8)-=F(0x100);F(0xf4)-=0.75;if(F(0xf4)<3.0)F(0xf4)=3.0;if(I(0x144)>23){F(0xf4)=5.0;F(0xf8)=-25.0;}}
+ if(S(0x13e)==1){F(0xf8)-=F(0x100);if(I(0x144)>=25)landing();}
+ if(S(0x13e)==3){F(0xf8)-=F(0x100);F(0xf4)-=0.75;if(F(0xf4)<3.0)F(0xf4)=3.0;if(I(0x144)>=24){F(0xf4)=5.0;F(0xf8)=-25.0;}}
  if(S(0x13e)<2){if(static_cast<unsigned char>(crossed())){event(29);F(0xf0)=sakuya_surface(this);zero_motion();select_sequence(2);return;}}
  else if(S(0x13e)==3&&static_cast<unsigned char>(crossed())){event(29);F(0xf0)=sakuya_surface(this);zero_motion();select_sequence(4);event(22);layout(2.0f);effect(58,135*C(0x104)+F(0xec),F(0xf0),B(0x104),-1);return;}
  if(!I(0x6bc))B(0x750)=0;ADVANCE_TO(0);if(I(0x144))return;
