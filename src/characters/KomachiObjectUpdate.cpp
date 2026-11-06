@@ -128,7 +128,7 @@ void KomachiObjectUpdateView::update_action_state()
   switch(S(0x13e)){case 0: {
    if(emit_repeated(0,2,5)){BURST(815,50,5.0,2);RETIRE();}
    if(emit_owner_gated_pair())RETIRE();F(0xf8)-=0.5;if(F(0xf8)<-6.0f)F(0xf8)=-6.0f;advance_six(10);advance_phase(4);
-   if(I(0x180)!=0 || I(0x144)>119){BURST(815,50,5.0,2);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}
+   if(I(0x180)!=0 || I(0x144)>=120){BURST(815,50,5.0,2);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}
   }break; case 1:{FADE(16,15);}break; case 2:{CURVED_FADE();}break;}
   if(OUTSIDE(1380.0f,-100.0,1360.0f,-100.0))RETIRE();STEP();FRAME_EXIT();
  case 817:
@@ -194,7 +194,7 @@ void KomachiObjectUpdateView::update_action_state()
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();
   if(advance_frame())RETIRE();if(RETURN_ON_ENTRY_PHASE(1))RETIRE();if(RETURN_ON_ENTRY_PHASE(2))RETIRE();return;
  case 850:
-  if(I(0x180)==5)RETIRE();switch(S(0x13e)){case 1:{SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>29)FADE(15,15);STEP();}break;}FRAME_EXIT();
+  if(I(0x180)==5)RETIRE();switch(S(0x13e)){case 1:{SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>=30)FADE(15,15);STEP();}break;}FRAME_EXIT();
  case 852:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)){case 0:{if(emit_owner_gated_pair())RETIRE();ORBIT_WAVE_UNCAPTURED();advance_six(0);advance_phase(2);if(I(0x180)!=0){BURST(852,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}}
@@ -204,7 +204,7 @@ void KomachiObjectUpdateView::update_action_state()
  case 853:
   switch(S(0x13e)){case 0:{F(0xf4)+=D(0.1f);F(0xf8)=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*H[1];advance_six(0);if(I(0x144)%3==0){trail_packet[0]=0;trail_packet[1]=0;trail_packet[2]=1;unsigned char facing=B(0x104);float y=(RND(50)-25.0)+F(0xf0);float x=(RND(50)-25.0)+F(0xec);spawn_unparented(853,x,y,facing,-1,reinterpret_cast<const unsigned *>(trail_packet),3);}}
   break; case 1:{FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);}
-  break; case 3:{SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>29)FADE(15,15);}break;}
+  break; case 3:{SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>=30)FADE(15,15);}break;}
   if(OUTSIDE(1480.0f,-200.0,1860.0,-600.0f))RETIRE();STEP();FRAME_EXIT();
  case 854:
   switch(S(0x13e)) {
@@ -224,7 +224,7 @@ void KomachiObjectUpdateView::update_action_state()
    if(S(0x364)==2){H[1]-=10.0;if(H[1]<0.0)H[1]=0;float *polar=H;double cosine=lookup_orientation_cosine_quantized_abs(-polar[0]);F(0xec)=C(0x104)*cosine*polar[1]+AT(A,float,0xec);double sine=lookup_orientation_sine_quantized_abs(-polar[0]);F(0xf0)=(sine*H[1]+AT(P,float,0xf0))*D(0.2f)+100.0+F(0x370);B(0x33c)=!(lookup_orientation_sine_quantized_abs(H[0])>=0.0)?1:255;if(H[1]==0.0)S(0x364)=3;}
    if(S(0x364)==3){float dy=AT(P,float,0xf0)+100.0-F(0xf0);float dx=AT(P,float,0xec)-F(0xec);H[0]=-atan2_degrees(dy,C(0x104)*dx);MOTION->set_components(H[0],20);double square=square_float_value(dx);if(square+square_float_value(dy)<=100.0){F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0)+100.0;RETIRE();}STEP();}break;
   case 2:case 3:FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);STEP();break;
-  case 4:SCALE(F(0x11c)*D(0.98f));MOVE();H[1]*=D(0.95f);if(I(0x144)>29)FADE(15,15);STEP();break;
+  case 4:SCALE(F(0x11c)*D(0.98f));MOVE();H[1]*=D(0.95f);if(I(0x144)>=30)FADE(15,15);STEP();break;
   case 5:SCALE(F(0x11c)+D(0.2f));FADE(15,15);break;
   }FRAME_EXIT();
  case 855:

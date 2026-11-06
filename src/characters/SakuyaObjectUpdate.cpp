@@ -272,10 +272,10 @@ void SakuyaObjectUpdateView::update_action_state()
    if(S(0x140)==0)MOVE();
    if(S(0x140)==1){if(AT(P,short,0x48c)<1){next_sequence_frame();S(0x344)=0;replace_secondary(994,4.0f,10,2,2);float payload[3]={H[0],0,1};PARENTED(818,-1,3);return;}MOTION->set_components(H[0],0);}
    if(S(0x140)==2){if(CONTACT2468){B(0x184)=0;set_sequence_frame(4);P->dispatch_character_wave_handle(3);release_secondary();F(0xf4)=-F(0xf4)*(0.5-random_float(30)*D(0.01f));F(0xf8)=static_cast<float>(random_float(30)*D(0.05f))+5.0;return;}if(I(0x180)!=0){next_sequence_frame();release_secondary();return;}MOVE();}
-   if(S(0x140)==3){F(0xf4)=0;F(0xf8)=0;if(I(0x144)>19)RETIRE();}
+   if(S(0x140)==3){F(0xf4)=0;F(0xf8)=0;if(I(0x144)>=20)RETIRE();}
    if(S(0x140)==4){F(0x12c)-=5.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
   }break; case 1:{if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=2)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
-  break; case 2:{F(0x11c)-=D(0.15f);if(F(0x11c)<1)F(0x11c)=1;F(0x120)=F(0x11c);if(I(0x144)>19)RETIRE();}
+  break; case 2:{F(0x11c)-=D(0.15f);if(F(0x11c)<1)F(0x11c)=1;F(0x120)=F(0x11c);if(I(0x144)>=20)RETIRE();}
   break;}
   STEP();if(OUTSIDE(1580.0f,-300.0f,1200.0f,-300.0f))RETIRE();if(advance_frame())RETIRE();
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==1)RETIRE();if(S(0x142)==0 && S(0x140)==3)RETIRE();return;

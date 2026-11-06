@@ -322,3 +322,5 @@ Four original timer gates at `0x4E4EE9`, `0x4E51C4`, `0x4E5487`, and `0x4E54E9` 
 The repeated five-frame color-fade gate, including original `0x4E3999`, now uses an equivalent `>= 5` form. The candidate recovers the native threshold and signed branch family, though shared-tail folding and branch length differ. Its section is 29,228 bytes; the complete function remains non-exact.
 
 Three repeated early-frame scale gates at `0x4E38F7`, `0x4E6779`, and `0x4E70FA` use the equivalent `<= 3` form. Fresh compilation recovers the signed compare and branch family, with some branch distances still different. The complete function remains non-exact.
+
+The two 20-frame gates at `0x4E4434` and `0x4E4656` now use equivalent native threshold forms and recover the local signed comparisons and branches. The complete candidate remains non-exact.

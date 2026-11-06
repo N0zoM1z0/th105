@@ -466,3 +466,5 @@ Action 817's original dispatch at `0x5FB422` selects phase 0 or 2 once, before e
 The original timer gates at `0x5FBA31`, `0x5FDF50`, and `0x5FE6AC` use thresholds 30, 900, and 480. Equivalent `>=` forms restore their local compare and signed branch instructions in the focused candidate. Integer behavior is unchanged; the complete function remains non-exact with a 28,800-byte candidate section.
 
 The three repeated 4-frame gates at `0x5FBC4F`, `0x5FE57E`, and `0x5FEEA7`, and the 180-frame gate at `0x5FEC57`, now use the equivalent threshold forms observed in the original. Their local comparisons and branches are recovered; integer behavior is unchanged and the full candidate remains non-exact.
+
+Four further 30- and 120-frame bounds at `0x5FCD6E`, `0x5FD145`, `0x5FDC78`, and `0x5FB297` now use equivalent native threshold forms. Their local signed comparisons and branches are recovered; the complete candidate remains non-exact.
