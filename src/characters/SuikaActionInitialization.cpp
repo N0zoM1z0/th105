@@ -49,7 +49,7 @@ void SuikaActionEntryView::initialize_action_entry()
   B(0x17c)=4;B(0x750)=1;zero_motion();B(0x184)=0;B(0x47e)=0;S(0x730)=0;S(0x732)=0;I(0x180)=1;return;
  case 520:case 521:case 522:case 523:
   B(0x17c)=1;zero_motion();I(0x180)=0;B(0x47e)=0;S(0x730)=0;B(0x184)=1;return;
- case 525:case 526:B(0x17c)=5;zero_motion();I(0x180)=0;B(0x47e)=0;S(0x730)=0;B(0x184)=1;return;
+ case 525:case 526:B(0x17c)=5;zero_motion();I(0x180)=0;S(0x730)=0;B(0x47e)=0;B(0x184)=1;return;
  case 530:case 531:B(0x17c)=9;zero_motion();B(0x184)=0;B(0x47e)=0;I(0x180)=1;return;
  case 540:case 541:
   B(0x17c)=2;I(0x180)=0;zero_motion();S(0x730)=0;S(0x732)=0;S(0x736)=0;S(0x738)=0;B(0x750)=0;return;
