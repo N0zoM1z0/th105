@@ -316,3 +316,16 @@ This does not establish whether unordered values occur in ordinary play.
 The full root remains nonexact, section tail 42,508 bytes and compared SHA-256
 `42fa3ca657e4a405155c252e862becd9b3aa2cb6af4202200a7e7016e00de350`.
 These local corrections add no exact-function or exact-byte credit.
+
+## Action 940 sequence 14 count guard (2026-11-06)
+
+At `0x6555E9..0x6555FF`, native retires when motion parameter 3 is less than
+the object's count at `+0x370` or the comparison is unordered. The earlier
+ordered `<` guard continued on an unordered value. It now uses
+`!(parameter >= count)`, retaining the same finite-value decisions. Normal
+play reachability of unordered values is not established. The focused
+candidate's reversed-operand comparison at `0x8B64..0x8B6B` has the same four
+comparison outcomes. The full root remains nonexact, section tail 42,508 bytes,
+compared SHA-256
+`4cb4dd944f75ebe130856e45f2fd47d0aaf1becad2f89cb4f9d6992ac4af34b9`.
+No complete-function or exact-byte credit is claimed.
