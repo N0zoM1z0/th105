@@ -2853,7 +2853,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     }
 
     case 740: {
-        if (sequence_index_13e >= 1 && sequence_index_13e <= 3) {
+        switch (sequence_index_13e) { case 1: case 2: case 3: {
             ++short_at(0x730);
             if (short_at(0x730) >= 60) {
                 select_sequence(4);
@@ -2870,7 +2870,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             short_at(0x4a8) = 2;
             short_at(0x4ac) = 2;
             float_at(0xf8) -= float_at(0x100);
-        }
+        } break; }
         advance_or_action(700);
         if (time_counter_144 == 0) {
             if (sequence_entry(1)) {
@@ -2983,7 +2983,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     case 781: {
         ++short_at(0x7b2);
         if (short_at(0x7b2) > 255) short_at(0x7b2) = 255;
-        if (sequence_index_13e == 0) {
+        switch (sequence_index_13e) { case 0: {
             if (time_counter_144 % 15 == 0) {
                 float payload[3] = {0.0f, 0.0f, static_cast<float>(static_cast<float>(random_roll(2)) + 1.0)};
                 unsigned char direction = random_roll(100) < 50 ? 0xff : 1;
@@ -2991,7 +2991,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
                 advance_frame_and_dispatch();
                 return true;
             }
-        } else if (sequence_index_13e == 1) {
+        } break; case 1: {
             short_at(0x78c) = 1;
             set_shared_first_target(1, 640.0f);
             set_shared_second_target(1, 0.0f);
@@ -3009,7 +3009,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
             reinterpret_cast<IkuEventPairView *>(reinterpret_cast<unsigned char *>(this) + 0x130)
             ->set_global_pair(0.0f, float_at(0x7b4));
             if (short_at(0x732) == 1) { set_action_and_finalize(700); return true; }
-        }
+        } break; }
         advance_frame_and_dispatch();
         return true;
     }
