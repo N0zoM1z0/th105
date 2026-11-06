@@ -351,3 +351,7 @@ Two wave-scale paths at `0x638635..0x63864D` and `0x63AA73..0x63AA8B` load the s
 ## Timer comparison precision (2026-11-06)
 
 At `0x639E74`, native loads the signed timer with `fild` and directly compares it with parameter 1. Source now converts the timer to double rather than float before that comparison, avoiding premature rounding of large integers. Normal-play reachability of such values is unknown; the focused body remains nonexact and no exact credit is claimed.
+
+## Five phase dispatch shapes (2026-11-06)
+
+Native action dispatches at `0x633CFF` (811), `0x637A4A` (857), `0x638C1A` (898), `0x638DA5` (899) and `0x63ACF6` (995) sign-extend the phase and use switch-style branch sequences. The equivalent if/else chains now use ordinary switches, preserving their handled phases and default paths. The focused VC8 output restores signed phase loads and corresponding local dispatch shapes; other registers, branches and the complete function still differ. The section tail is 34252 bytes against the 33617-byte main span, first mismatch +37. No exact credit is claimed.
