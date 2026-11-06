@@ -28,7 +28,7 @@ case 710:
     if(advance()){set_action_and_finalize(700);return;}
     if(sequence_index_13e==1){if(time_counter_144%10==0)layout(4.0f);switch(g_match_identifier){
         case 0:if(time_counter_144>119){next_sequence_block();return;}break;
-        case 1:if(time_counter_144>179){next_sequence_block();return;}break;
+        case 1:if(time_counter_144>=180){next_sequence_block();return;}break;
         case 2:case 3:if(time_counter_144>239){next_sequence_block();return;}break;
     }}
     if(entry(1)){dispatch_character_wave_handle(15);float p[3]={0.0f,0.0f,0.0f};spawn_offset(900,0,100.0,p,3,-1);}return;
@@ -36,7 +36,7 @@ case 711:
     if(advance()){set_action_and_finalize(700);return;}
     if(sequence_index_13e==1){if(time_counter_144%10==0)layout(4.0f);switch(g_match_identifier){
         case 0:if(time_counter_144>119){next_sequence_block();return;}break;
-        case 1:if(time_counter_144>179){next_sequence_block();return;}break;
+        case 1:if(time_counter_144>=180){next_sequence_block();return;}break;
         case 2:case 3:if(time_counter_144>239){next_sequence_block();return;}break;
     }}
     if(entry(1)){dispatch_character_wave_handle(25);float p[3]={0.0f,0.0f,0.0f};spawn_offset(901,0,100.0,p,3,-1);}return;
