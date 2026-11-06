@@ -252,3 +252,5 @@ The original phase-1 and phase-3 timer gates at `0x4CD920` and `0x4CD985` use si
 Five further integer gates at `0x4D15CC`, `0x4D1CEF`, `0x4DC451`, `0x4DC468`, and `0x4DCFE9` use thresholds 7, 20, 100, 75, and 8. Equivalent source comparisons recover their local compare-and-branch forms; behavior is unchanged and the 76,432-byte candidate remains non-exact.
 
 Repeated action gates for timer thresholds 10, 35, 45, 60, and 36, plus signed skill level 4, now use the equivalent forms observed in the original. Focused compilation recovers the corresponding local comparison and branch families. Integer behavior is unchanged; the 76,432-byte complete candidate remains non-exact.
+
+Additional timer gates, including `0x4D1F61`, `0x4D8C59`, and `0x4DB352`, now use the equivalent 30-, 60-, and 40-frame comparisons observed in the original. The local signed branch families are recovered; the complete candidate remains non-exact.
