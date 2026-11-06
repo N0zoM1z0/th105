@@ -52,11 +52,11 @@ int Fighter::select_outcome_path_from_frame_flags(unsigned frame_flags)
                     goto after_refresh;
                 }
             } else if (g_match_identifier == 0) {
-                if (selector_random_roll(100) >= 70) {
+                if (static_cast<unsigned>(selector_random_roll(100)) >= 70) {
                     goto after_refresh;
                 }
             } else if (g_match_identifier == 1 &&
-                       selector_random_roll(100) >= 95) {
+                       static_cast<unsigned>(selector_random_roll(100)) >= 95) {
                 goto after_refresh;
             }
 
