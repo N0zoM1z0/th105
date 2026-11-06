@@ -579,7 +579,7 @@ dispatch_character_wave_handle(12);}if(!S(0x142)&&S(0x140)==7)F(0x100)=0.5f;retu
 
 case 545:{
 landing();B(0x17c)=6;if(!I(0x6c0))B(0x750)=0;ADVANCE_TO(0);if(!ENTRY(1))return;
-phase_counter(50);counter(200,120);I(0x180)=1;float request[3]={0.0f,15.0f,0.0f};switch(B(0x60a)){
+phase_counter(50);counter(200,120);I(0x180)=1;float request[3]={0.0f,15.0f,0.0f};switch(C(0x60a)){
 case 1:{
 for(float i=0.0f;i<3.0f;i+=1.0){spawn(817,(sakuya_sine(i*45.0+45.0)*150.0-50.0)*C(0x104)+F(0xec),i*40.0+F(0xf0)+60.0,B(0x104),1,request,3);}
 for(float i=0.0f;i<2.0f;i+=1.0){spawn(817,(URAND(100)+50.0+0.0)*C(0x104)+F(0xec),URAND(250)+F(0xf0),B(0x104),1,request,3);}
@@ -600,7 +600,7 @@ break;}
 
 case 546:{
 landing();B(0x17c)=6;if(!I(0x6c0))B(0x750)=0;ADVANCE_TO(0);if(!ENTRY(1))return;
-phase_counter(50);counter(200,120);I(0x180)=1;float request[3]={0.0f,15.0f,0.0f};switch(B(0x60a)){
+phase_counter(50);counter(200,120);I(0x180)=1;float request[3]={0.0f,15.0f,0.0f};switch(C(0x60a)){
 case 1:{
 for(float i=0.0f;i<4.0;i+=1.0){request[0]=45.0-30.0*i;spawn(817,(sakuya_sine(i*45.0+22.5)*150.0-50.0)*C(0x104)+F(0xec),i*40.0+F(0xf0)+40.0,B(0x104),1,request,3);}
 for(float i=0.0f;i<3.0;i+=1.0){request[0]=30.0-i*30.0;spawn(817,(sakuya_sine(30.0+60.0*i)*120.0-50.0)*C(0x104)+F(0xec),i*40.0+F(0xf0)+60.0,B(0x104),1,request,3);}
@@ -621,7 +621,7 @@ break;}
 
 case 547:{
 if(S(0x13e)==4)landing();B(0x17c)=6;if(!I(0x6c0))B(0x750)=0;F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())&&S(0x13e)<4){B(0x47f)=0;zero_motion();F(0xf0)=sakuya_surface(this);select_sequence(4);return;}ADVANCE_TO(0);if(I(0x144))return;if(!S(0x142)&&!S(0x140)&&S(0x13e)==4){set_action_and_finalize(9);return;}if(S(0x142)||S(0x140)||S(0x13e)!=1)return;F(0xf4)=-10.0;F(0xf8)=5.0;F(0x100)=0.5f;
-phase_counter(50);counter(200,120);I(0x180)=1;float request[3]={0.0f,15.0f,0.0f};switch(B(0x60a)){
+phase_counter(50);counter(200,120);I(0x180)=1;float request[3]={0.0f,15.0f,0.0f};switch(C(0x60a)){
 case 1:{
 for(float i=0.0f;i<3.0f;i+=1.0){spawn(817,(sakuya_sine(i*45.0+45.0)*150.0-50.0)*C(0x104)+F(0xec),i*40.0+F(0xf0)+60.0,B(0x104),1,request,3);}
 for(float i=0.0f;i<2.0f;i+=1.0){spawn(817,(URAND(100)+50.0+0.0)*C(0x104)+F(0xec),URAND(250)+F(0xf0),B(0x104),1,request,3);}
@@ -642,7 +642,7 @@ break;}
 
 case 548:{
 if(S(0x13e)==4)landing();B(0x17c)=6;if(!I(0x6c0))B(0x750)=0;F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())&&S(0x13e)<4){B(0x47f)=0;zero_motion();F(0xf0)=sakuya_surface(this);select_sequence(4);return;}ADVANCE_TO(0);if(I(0x144))return;if(!S(0x142)&&!S(0x140)&&S(0x13e)==4){set_action_and_finalize(9);return;}if(S(0x142)||S(0x140)||S(0x13e)!=1)return;F(0xf4)=-10.0;F(0xf8)=5.0;F(0x100)=0.5f;
-phase_counter(50);counter(200,120);I(0x180)=1;float request[3]={0.0f,15.0f,0.0f};switch(B(0x60a)){
+phase_counter(50);counter(200,120);I(0x180)=1;float request[3]={0.0f,15.0f,0.0f};switch(C(0x60a)){
 case 1:{
 for(float i=0.0f;i<4.0;i+=1.0){request[0]=45.0-30.0*i;spawn(817,(sakuya_sine(i*45.0+22.5)*150.0-50.0)*C(0x104)+F(0xec),i*40.0+F(0xf0)+40.0,B(0x104),1,request,3);}
 for(float i=0.0f;i<3.0;i+=1.0){request[0]=30.0-i*30.0;spawn(817,(sakuya_sine(30.0+60.0*i)*120.0-50.0)*C(0x104)+F(0xec),i*40.0+F(0xf0)+60.0,B(0x104),1,request,3);}
