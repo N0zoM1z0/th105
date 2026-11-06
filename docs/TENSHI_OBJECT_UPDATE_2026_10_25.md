@@ -295,3 +295,24 @@ outcomes. The complete root remains nonexact, section tail 42,508 bytes and
 compared SHA-256
 `99476771f68fe2af5c2d55cb268d9d26bb3b6c77ad05ae7eb7158bd099736f2b`.
 No whole-function or exact-byte credit is claimed.
+
+## Direction and counter comparison boundaries (2026-11-06)
+
+For action 848 sequence 0, native `0x650363..0x65038C` writes direction -1
+for an angle from 0 through 180 inclusive, and +1 outside that range or when
+unordered. The old source used `angle <= 0` in the +1 condition, so exactly
+zero selected the wrong direction. Zero can also be produced by the preceding
+360-degree wrap; no claim is made about its frequency during play. The source
+now preserves both endpoints and the native unordered branch. The focused
+candidate emits the corresponding `test ah,0x41` and `test ah,0x1` conditions
+at offsets `0x36C2` and `0x36D5`.
+
+For action 920 sequence 9, native `0x65401F..0x654052` resets the owner's
+counter above 10 or when unordered, and increments it otherwise. The earlier
+ordered `> 10` instead incremented an unordered value. The source now uses
+`!(value <= 10.0f)` and the focused candidate emits `test ah,0x1` at `0x75FA`.
+This does not establish whether unordered values occur in ordinary play.
+
+The full root remains nonexact, section tail 42,508 bytes and compared SHA-256
+`42fa3ca657e4a405155c252e862becd9b3aa2cb6af4202200a7e7016e00de350`.
+These local corrections add no exact-function or exact-byte credit.

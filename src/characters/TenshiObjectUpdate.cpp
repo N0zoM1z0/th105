@@ -208,7 +208,7 @@ void TenshiObjectUpdateView::update_action_state()
  case 848:
   switch(S(0x13e)) {
   case 0:
-   if(AT(P,short,0x13c)!=307)RETIRE();if(AT(P,short,0x186)==0){F(0x370)+=15.0;if(F(0x370)>=360.0f)F(0x370)=0;}C(0x33c)=(F(0x370)<=0.0 || F(0x370)>180.0f)?1:-1;
+   if(AT(P,short,0x13c)!=307)RETIRE();if(AT(P,short,0x186)==0){F(0x370)+=15.0;if(F(0x370)>=360.0f)F(0x370)=0;}C(0x33c)=(!(F(0x370)>=0.0) || !(F(0x370)<=180.0f))?1:-1;
    if(AT(P,short,0x140)<7){F(0xec)=(lookup_orientation_cosine_quantized_abs(F(0x370))*H[1])*C(0x104)+AT(P,float,0xec);double y=lookup_orientation_sine_quantized_abs(F(0x370))*(H[1]*0.5)+(AT(P,float,0xf0)+100.0);F(0xf0)=lookup_orientation_cosine_quantized_abs(F(0x370))*H[1]*0.25+y;}
    else{F(0x11c)*=D(0.85f);F(0x120)+=D(0.1f);if(F(0x11c)<D(0.05f))RETIRE();}break;
   case 1:case 3:
@@ -397,7 +397,7 @@ void TenshiObjectUpdateView::update_action_state()
    }if(S(0x140)==2){F(0xf4)=F(0xf8)=0;FADE(10,10);}break;
   case 9:
    if(S(0x364)!=2 && AT(P,short,0x174)<=0)S(0x364)=2;
-   if(S(0x364)==0){F(0xf4)*=D(0.99f);AT(AUX,float,0xe8)=F(0xec);double y=F(0xf8)+F(0xf0);if(y<=stage_surface_height()){P->dispatch_character_wave_handle(2);F(0xf0)=stage_surface_height();S(0x364)=2;F(0xf4)=F(0xf8)=0;PACKET(p144,AT(P,float,0x824),RND(70)+10.0,1);SPAWN(920,1,p144);if(AT(P,float,0x824)>10.0f)AT(P,float,0x824)=0;else AT(P,float,0x824)+=1.0;return;}}
+   if(S(0x364)==0){F(0xf4)*=D(0.99f);AT(AUX,float,0xe8)=F(0xec);double y=F(0xf8)+F(0xf0);if(y<=stage_surface_height()){P->dispatch_character_wave_handle(2);F(0xf0)=stage_surface_height();S(0x364)=2;F(0xf4)=F(0xf8)=0;PACKET(p144,AT(P,float,0x824),RND(70)+10.0,1);SPAWN(920,1,p144);if(!(AT(P,float,0x824)<=10.0f))AT(P,float,0x824)=0;else AT(P,float,0x824)+=1.0;return;}}
    if(S(0x364)==2){F(0xf4)*=D(0.98f);F(0xf8)*=D(0.98f);SCALE(F(0x11c)*D(0.99f));FADE(10,10);}break;
   case 10:
    if(S(0x364)==0){if(T!=0){F(0xec)=AT(T,float,0xec);F(0xf0)=stage_surface_height();if(!(AT(T,float,0xf0)>=255.0)){B(0x113)=static_cast<unsigned char>(static_cast<int>(255.0-AT(T,float,0xf0)));SCALE(((255.0-AT(T,float,0xf0))*0.5)/255.0+1.0);if(AT(T,short,0x364)==2){S(0x364)=1;break;}}else B(0x113)=0;}}
