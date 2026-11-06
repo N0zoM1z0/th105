@@ -100,9 +100,9 @@ public:
         if(sequence_index_13e==1){
             switch(g_match_identifier){
             case 0:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>4.0f)at<float>(0x73c)=4.0f;if(time_counter_144>59){next_sequence_block();return;}break;
-            case 1:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>6.0f)at<float>(0x73c)=6.0f;if(time_counter_144>89){next_sequence_block();return;}break;
-            case 2:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>7.0)at<float>(0x73c)=7.0f;if(time_counter_144>89){next_sequence_block();return;}break;
-            case 3:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>8.0f)at<float>(0x73c)=8.0f;if(time_counter_144>89){next_sequence_block();return;}break;
+            case 1:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>6.0f)at<float>(0x73c)=6.0f;if(time_counter_144>=90){next_sequence_block();return;}break;
+            case 2:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>7.0)at<float>(0x73c)=7.0f;if(time_counter_144>=90){next_sequence_block();return;}break;
+            case 3:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>8.0f)at<float>(0x73c)=8.0f;if(time_counter_144>=90){next_sequence_block();return;}break;
             }
         }else{at<float>(0x73c)=static_cast<float>(at<float>(0x73c)-0.5);if(at<float>(0x73c)<0.0f)at<float>(0x73c)=0.0f;}
         if(sequence_index_13e==2 && time_counter_144>59){next_sequence_block();return;}
@@ -189,7 +189,7 @@ public:
                 if(!at<unsigned char>(0x750)){next_sequence_block();return;}
                 if(time_counter_144==10)effect(62,static_cast<float>(at<float>(0xec)-23*facing()),static_cast<float>(at<float>(0xf0)+(air?107.0:95.0)),at<unsigned char>(0x104),1);
             }
-            if(time_counter_144>24){next_sequence_block();return;}
+            if(time_counter_144>=25){next_sequence_block();return;}
         }
         if(entry(1)){float p[3]={0.0f,0.0f,4.0f};spawn_offset(825,air?-23:-24,air?107.0:95.0,p,3);}
         if(sequence_index_13e==2 && frame_index_140==2 && !frame_timer_142){at<short>(0x730)=1;counter(200,120);if(!air && !alternate)phase_counter(50);}
