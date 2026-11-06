@@ -149,7 +149,7 @@ void KomachiObjectUpdateView::update_action_state()
   case 4:
    if(I(0x144)%10==0){trail_packet[0]=0;trail_packet[1]=0;trail_packet[2]=5;unsigned char facing=B(0x104);float y=(RND(50)-25.0)+F(0xf0);float x=(RND(50)-25.0)+F(0xec);spawn_unparented(820,x,y,facing,-1,reinterpret_cast<const unsigned *>(trail_packet),3);}
    if(emit_repeated(0,1,1)){BURST(815,50,5.0,2);RETIRE();}if(emit_owner_gated_pair())RETIRE();F(0xf8)+=D(0.05f);
-   if(I(0x180)!=0 || I(0x144)>29){BURST(815,50,5.0,2);RETIRE();}STEP();break;
+   if(I(0x180)!=0 || I(0x144)>=30){BURST(815,50,5.0,2);RETIRE();}STEP();break;
   case 5:FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);STEP();break;
   }FRAME_EXIT();
  case 821:
@@ -234,7 +234,7 @@ void KomachiObjectUpdateView::update_action_state()
    if((F(0xec)-AT(target,float,0xec))*C(0x104)>0.0){F(0xf4)-=D(0.2f);if(F(0xf4)<-6.0f)F(0xf4)=-6.0f;}
    if(F(0xf0)-AT(target,float,0xf0)-100.0>0.0){F(0xf8)-=D(0.2f);if(F(0xf8)<-6.0f)F(0xf8)=-6.0f;}
    if(F(0xf0)-AT(target,float,0xf0)-100.0<0.0){F(0xf8)+=D(0.2f);if(F(0xf8)>6.0f)F(0xf8)=6.0f;}
-   if(I(0x144)>899){BURST(855,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}
+   if(I(0x144)>=900){BURST(855,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}
    if(AT(target,short,0x174)<1 || AT(P,short,0x174)<1){BURST(855,50,5.0,1);RETIRE();}STEP();
   }break; case 1:{CURVED_FADE_VALUES();STEP();}break;}
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();
@@ -255,7 +255,7 @@ void KomachiObjectUpdateView::update_action_state()
   switch(S(0x13e)) {
   case 0:SCALE(F(0x11c)*D(0.9f));if(I(0x144)<15)break;if(I(0x144)==15){motion_packet[0]=0;motion_packet[1]=0;motion_packet[2]=1;SPAWN(861,1,motion_packet);}FADE(10,10);break;
   case 1:advance_six(0);if(I(0x144)>3)B(0x184)=0;if(F(0x370)!=0.0){F(0x11c)=1.0-F(0x370);F(0x370)*=0.75;if(F(0x370)<=0.01f){F(0x370)=0;request_packet[0]=0;request_packet[1]=0;request_packet[2]=2;SPAWN(861,1,request_packet);request_packet[2]=3;SPAWN(861,1,request_packet);}}else{FADE(10,10);}break;
-  case 2:{float base=static_cast<float>(F(0x370)+2.0);F(0x370)=(1.0-F(0x11c))*10.0+base;set_sprite_uv_size(0,F(0x370));if(I(0x144)>479 || AT(A,short,0x174)<1)S(0x364)=1;if(S(0x364)==0){if(fabsf(F(0xec)-AT(A,float,0xec))<=100.0)AT(A,float,0x4dc)=0.1f;}else{FADE(5,5);F(0x11c)*=D(0.98f);}break;}
+  case 2:{float base=static_cast<float>(F(0x370)+2.0);F(0x370)=(1.0-F(0x11c))*10.0+base;set_sprite_uv_size(0,F(0x370));if(I(0x144)>=480 || AT(A,short,0x174)<1)S(0x364)=1;if(S(0x364)==0){if(fabsf(F(0xec)-AT(A,float,0xec))<=100.0)AT(A,float,0x4dc)=0.1f;}else{FADE(5,5);F(0x11c)*=D(0.98f);}break;}
   case 3:{float base=static_cast<float>(F(0x370)+8.0);F(0x370)=(1.0-F(0x11c))*30.0+base;set_sprite_uv_size(0,F(0x370));if(I(0x144)>=180){FADE(5,5);F(0x11c)*=D(0.98f);}break;}
   case 4:goto expanding_tail;
   }FRAME_EXIT();
