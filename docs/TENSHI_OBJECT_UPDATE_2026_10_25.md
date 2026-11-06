@@ -277,3 +277,21 @@ The target at `0x656939..0x656946` performs its landing reset only when Y is ord
 ## Object 940 half-spread lifetime (2026-11-05)
 
 For owner mode 4, target `0x654866..0x654890` sign-extends the short spread, computes half of it, rounds that product to float, adds the stored heading, saves the sum as double, and then calls the random selector with the signed spread. The prior source used a short local and kept the half product unrounded. An int snapshot plus a float half-spread now produces the observed local `MOVSX`, float store/reload, heading addition and double save in the candidate (`0x7E40..0x7E6A`); stack offsets and the rest of the root still differ. Every signed 16-bit value multiplied by one half is exactly representable as float, so no normal numerical difference is claimed. The whole object update remains nonexact.
+
+## Action 920 sequence 10 height threshold (2026-11-05)
+
+Native `0x6540EE..0x65418A` compares 255.0 against the related object's
+height. A height equal to or greater than 255 takes the zero-alpha path and
+does not update scale or test the related object's state. A height below 255
+enters the calculation and may advance this object's state. The previous source
+used `height <= 255`, incorrectly taking the calculation at equality. The
+source now expresses the native condition as `!(height >= 255.0)`. This also
+preserves the native branch direction for an unordered comparison; the later
+float-to-integer conversion on such an input is not claimed portable or tested.
+
+The focused pinned-VC8 candidate emits the native `test ah,0x41` condition at
+`0x76E5`; its inverted branch layout is equivalent for the four x87 comparison
+outcomes. The complete root remains nonexact, section tail 42,508 bytes and
+compared SHA-256
+`99476771f68fe2af5c2d55cb268d9d26bb3b6c77ad05ae7eb7158bd099736f2b`.
+No whole-function or exact-byte credit is claimed.
