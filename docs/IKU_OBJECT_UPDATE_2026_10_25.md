@@ -367,3 +367,5 @@ The action 823 timer gate at `0x63632F` now uses the equivalent 15-frame bound o
 ### Action 820 bounce gates
 
 The original bounce check at `0x635BA0` reuses the 12-frame threshold in EDI and compares the signed owner skill byte against 4. Expressing both bounds in equivalent native forms makes the candidate reuse that threshold and recover the local compare and branch sequences. Behavior is unchanged; the complete 34,264-byte candidate remains non-exact.
+
+Four further gates at `0x6330FC`, `0x63550E`, `0x636DA2`, and `0x639D32` now use the original equivalent signed-zero and 3/5-frame bounds. The candidate recovers their local comparisons and branches; integer behavior is unchanged. The complete 34,260-byte candidate remains non-exact.

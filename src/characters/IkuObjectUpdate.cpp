@@ -55,7 +55,7 @@ void IkuObjectUpdateView::update_action_state()
   case 1:
    if(emit_repeated(0,0,3))RETIRE();H[1]-=D(0.7f);if(H[1]<1.0f)H[1]=1;MOVE();
    if(OUTSIDE(1380.0f,-100.0,1060.0f,-100.0))RETIRE();
-   if(I(0x144)>=60 || C(0x184)<1){F(0x12c)=RND(360);select_sequence(2);F(0xf4)=F(0xf8)=0;return;}break;
+   if(I(0x144)>=60 || C(0x184)<=0){F(0x12c)=RND(360);select_sequence(2);F(0xf4)=F(0xf8)=0;return;}break;
   case 2:SCALE(F(0x11c)+D(0.05f));break;
   case 3:
    if(I(0x144)%10==0)H[0]=-H[0];advance_six(0);advance_phase(1);
@@ -193,7 +193,7 @@ void IkuObjectUpdateView::update_action_state()
   case 2:
    F(0x11c)*=D(0.99f);F(0x120)-=D(0.001f);advance_six(0);advance_phase(0);F(0x370)*=D(0.95f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;
    if(I(0x144)>9){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
-  case 3:SCALE(F(0x11c)+F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;if(I(0x144)>2){if(B(0x113)<25)RETIRE();B(0x113)-=25;B(0x111)-=25;B(0x112)-=25;}break;
+  case 3:SCALE(F(0x11c)+F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;if(I(0x144)>=3){if(B(0x113)<25)RETIRE();B(0x113)-=25;B(0x111)-=25;B(0x112)-=25;}break;
   case 4:MOVE();H[1]*=D(0.9f);if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*D(0.2f);SCALE(F(0x11c)*D(0.99f));if(I(0x144)>=12)FADE(6,5);break;
   case 5:
    F(0xf8)=6;F(0xf0)+=6.0;if(emit_repeated(0,0,0))S(0x364)=1;F(0x11c)*=D(0.95f);F(0x120)+=0.5;
@@ -300,7 +300,7 @@ void IkuObjectUpdateView::update_action_state()
    if(AT(P,short,0x13c)!=602)RETIRE();if(AT(P,short,0x13e)<2){advance_six(0);advance_phase(0);F(0xf0)=AT(P,float,0xf0);F(0xec)=AT(P,float,0xec);if(I(0x180)!=0 && ++S(0x364)>4){S(0x364)=0;B(0x184)=1;I(0x180)=0;}}else COLORFADE(15);break;
   case 3:if(AT(P,short,0x13c)!=602)RETIRE();if(AT(P,short,0x13e)>1)COLORFADE(15);else{F(0xf0)=AT(P,float,0xf0);F(0xec)=AT(P,float,0xec);}break;
   case 4:MOVE();H[1]*=D(0.9f);if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*D(0.2f);SCALE(F(0x11c)*D(0.99f));if(I(0x144)>=12)FADE(6,5);break;
-  case 5:SCALE(F(0x11c)*D(0.9f));if(I(0x144)>4){if(B(0x113)<11)RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x112)-=10;}break;
+  case 5:SCALE(F(0x11c)*D(0.9f));if(I(0x144)>=5){if(B(0x113)<11)RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x112)-=10;}break;
   case 6:SCALE(F(0x11c)+D(0.15f));if(B(0x113)<16)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;break;
   }
   if(advance_frame())--I(0x330);return;
@@ -473,7 +473,7 @@ void IkuObjectUpdateView::update_action_state()
     if(I(0x144)%period==0){if(limit<=S(0x364))RETIRE();++S(0x364);PACKET(p36,0,45,4);unsigned char facing=static_cast<unsigned>(selector_random_roll(100))>50?static_cast<unsigned char>(-1):1;spawn_unparented(910,RND(1280),0,facing,1,reinterpret_cast<const unsigned *>(p36),3);}}
    break;
   case 1:F(0x11c)*=D(0.98f);F(0x120)-=D(0.001f);advance_six(0);advance_phase(0);F(0x370)*=D(0.95f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;if(I(0x144)>9){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
-  case 2:SCALE(F(0x11c)+F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;if(I(0x144)>2){if(B(0x113)<20)RETIRE();B(0x113)-=20;B(0x111)-=20;B(0x112)-=20;}break;
+  case 2:SCALE(F(0x11c)+F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;if(I(0x144)>=3){if(B(0x113)<20)RETIRE();B(0x113)-=20;B(0x111)-=20;B(0x112)-=20;}break;
   case 3:MOVE();H[1]*=D(0.9f);if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*D(0.2f);SCALE(F(0x11c)*D(0.99f));if(I(0x144)>=12)FADE(6,5);break;
   case 4:
    F(0xf0)*=D(0.85f);F(0x11c)*=D(0.99f);F(0x120)*=D(0.95f);
