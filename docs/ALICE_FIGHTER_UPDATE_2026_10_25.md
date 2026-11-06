@@ -720,3 +720,7 @@ credit. Focused build receipt: `build/frontier-55d850-20261027/alice-all-layer-2
 ## Skill-level switch signedness (2026-11-06)
 
 Eight native switch sites beginning at `0x4EF0E0` sign-extend the byte at `0x605` before selecting cases 0 through 4. The input policy independently uses a signed view of the same field. The eight source switches now do likewise; the fresh candidate emits `movsx` at all eight sites. All 256 byte values still select the same paths because values outside 0–4 take the default. The full focused candidate remains nonexact (43916-byte section tail against a 42721-byte main span, first mismatch +8); no exact credit is claimed.
+
+### Integer gate thresholds
+
+Four original signed integer gates at `0x4F1992`, `0x4F24F1`, `0x4F29A1`, and `0x4F2EC7` compare against 10, 60, 80, and 480. Equivalent source forms recover their local comparison and branch instructions without changing integer behavior. The complete function remains non-exact; its candidate section is 43,916 bytes.

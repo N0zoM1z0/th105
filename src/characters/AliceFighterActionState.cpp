@@ -2511,7 +2511,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 548: {
   if(S(0x13E)==4) RESOLVE();
-  if((S(0x13E)==1 || S(0x13E)==2) && I(0x144)%7==0 && S(0x730)<11) {
+  if((S(0x13E)==1 || S(0x13E)==2) && I(0x144)%7==0 && S(0x730)<=10) {
    float packet[3]; packet[0]=static_cast<float>(static_cast<float>(mt19937_next_u32()%110)-60.0);
    packet[1]=static_cast<float>(static_cast<float>(mt19937_next_u32()%170)+10.0); packet[2]=0;
    if(static_cast<unsigned>(selector_random_roll(100))<51) S(0x732)=1; else S(0x732)=-1;
@@ -2627,7 +2627,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 602: {
   RESOLVE(); publish_texture_state(3,2);
-  if(S(0x13E)==1 && I(0x144)>=61) BLOCK();
+  if(S(0x13E)==1 && I(0x144)>60) BLOCK();
   if(S(0x13E)==2 && I(0x144)>=19) BLOCK();
   if(FRAME()) ACTION(0);
   if(S(0x13E)!=0) return;
@@ -2677,7 +2677,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 605: {
   RESOLVE(); publish_texture_state(3,2);
-  if(S(0x13E)==1 && I(0x144)>=81) BLOCK();
+  if(S(0x13E)==1 && I(0x144)>80) BLOCK();
   if(S(0x13E)==2 && I(0x144)>=19) BLOCK();
   if(FRAME()) ACTION(0);
   if(S(0x13E)!=0) return;
@@ -2729,7 +2729,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 608: {
   RESOLVE(); publish_texture_state(3,2);
-  if(S(0x13E)==1 && (I(0x144)>=481 || I(0x6C8)!=0)) { BLOCK(); return; }
+  if(S(0x13E)==1 && (I(0x144)>480 || I(0x6C8)!=0)) { BLOCK(); return; }
   if(FRAME()) ACTION(0);
   if(S(0x13E)==0 && S(0x142)==0 && S(0x140)==3) {
    S(0x48A)=40; EVENT(23);
