@@ -211,3 +211,18 @@ The focused VC8 candidate now forms +1/-1 before the call at object offsets
 7435..7457. The complete native callable remains nonexact from +37; candidate
 section tail is 51444 bytes versus the 50649-byte callable. This adds no exact
 credit. Receipt: `build/frontier-55d850-20261027/patchouli854-direction-20261105.json`.
+
+## Action 831 speed comparison (2026-11-06)
+
+For sequences 0 and 3, native `0x525720..0x52573C` and
+`0x525A7C..0x525A98` spawn the additional object when its motion parameter is
+greater than 10 or the comparison is unordered. The previous ordered `> 10`
+condition instead cleared the flag for an unordered parameter. The two source
+conditions now use `!(parameter <= 10.0f)`. Finite values retain their previous
+behavior; normal-play occurrence of an unordered parameter is unknown.
+
+The focused VC8 candidate now uses `test ah,0x1` at offsets `0x4E67` and
+`0x5055`, matching the native comparison outcome with inverted branch layout.
+The full root remains nonexact, section tail 51,444 bytes and compared SHA-256
+`621ddd5f5be246fe2d2ad5adf4dd860f4f66a5caef13d08dc4921e64d5c8d7b5`.
+No full-function or exact-byte credit is claimed.
