@@ -607,7 +607,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     case 197: {
         if ((sequence_index_13e == 0) || sequence_index_13e == 2)
             resolve_stage_surface_landing_transition();
-        if ((sequence_index_13e == 1) && time_counter_144 > 39) {
+        if ((sequence_index_13e == 1) && time_counter_144 >= 40) {
             zero_velocity_acceleration(); select_sequence(2); return true;
         }
         if (advance_frame_and_dispatch()) {
@@ -629,7 +629,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
     case 198: {
         if ((sequence_index_13e == 0) || sequence_index_13e == 2)
             resolve_stage_surface_landing_transition();
-        if ((sequence_index_13e == 1) && time_counter_144 > 39) {
+        if ((sequence_index_13e == 1) && time_counter_144 >= 40) {
             zero_velocity_acceleration(); select_sequence(2); return true;
         }
         if (advance_frame_and_dispatch()) {
@@ -1737,7 +1737,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         resolve_stage_surface_landing_transition(); byte_at(0x17c) = 0;
         if (sequence_index_13e == 0 && frame_index_140 > 6) {
             float_at(0xf4) = static_cast<float>(float_at(0xf4) - 0.75);
-            float lower = frame_index_140 < 12 ? 1.0f : 0.0f;
+            float lower = frame_index_140 <= 11 ? 1.0f : 0.0f;
             if (float_at(0xf4) < lower) float_at(0xf4) = lower;
             if (int_at(0x180) != 0) {
                 ++short_at(0x730);
@@ -1757,7 +1757,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         resolve_stage_surface_landing_transition(); byte_at(0x17c) = 0;
         if (sequence_index_13e == 0 && frame_index_140 > 6) {
             float_at(0xf4) = static_cast<float>(float_at(0xf4) - 0.75);
-            float lower = frame_index_140 < 12 ? 1.0f : 0.0f;
+            float lower = frame_index_140 <= 11 ? 1.0f : 0.0f;
             if (float_at(0xf4) < lower) float_at(0xf4) = lower;
             if (int_at(0x180) != 0) {
                 ++short_at(0x730);
@@ -2450,7 +2450,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
         if (sequence_index_13e == 0 && frame_index_140 >= 7) {
             float adjusted = static_cast<float>(float_at(0xf4) - 0.75);
             float_at(0xf4) = adjusted;
-            if (frame_index_140 < 12) {
+            if (frame_index_140 <= 11) {
                 if (adjusted < 1.0f)
                     float_at(0xf4) = 1.0f;
             } else if (adjusted < 0.0f) {
