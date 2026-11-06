@@ -226,3 +226,7 @@ The focused VC8 candidate now uses `test ah,0x1` at offsets `0x4E67` and
 The full root remains nonexact, section tail 51,444 bytes and compared SHA-256
 `621ddd5f5be246fe2d2ad5adf4dd860f4f66a5caef13d08dc4921e64d5c8d7b5`.
 No full-function or exact-byte credit is claimed.
+
+## Actions 826 and 851 phase dispatch (2026-11-06)
+
+Native phase dispatches at `0x524B1D` and `0x526B2D` sign-extend the phase and use three-arm switch sequences. Expressing the equivalent source branches as ordinary switches restores those local `movsx` and subtract/branch patterns in the focused VC8 candidate. Handled and default phase behavior is unchanged. The full candidate remains nonexact (51444-byte section tail, first mismatch +37); no exact credit is claimed.

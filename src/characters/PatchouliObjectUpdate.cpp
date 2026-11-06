@@ -452,12 +452,13 @@ case 825: {
 case 826: {
 
     if(I(0x180)==5) RETIRE();
-    if(S(0x13e)==0) {
+    switch(S(0x13e)) { case 0: {
         F(0x12c)+=60.0;if(emit_repeated(0,1,5)) RETIRE();
         if(I(0x144)%5==0) {float packet[3]={F(0x12c),0.0f,2.0f};spawn_unparented(826,F(0xec),F(0xf0),B(0x104),-1,packet,3);}
         if(F(0xf0)<=0.0f && F(0xf8)<0.0f) F(0xf8)=-F(0xf8);advance_six(0);if(C(0x184)<=0) RETIRE();if(I(0x180)!=0) I(0x180)=0;MOVE();
-    }else if(S(0x13e)==1) {if(!RELATED) RETIRE();void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);F(0x12c)=FIELD(related,float,0x12c);}
-    else if(S(0x13e)==2) {F(0x12c)+=60.0;F(0x11c)+=static_cast<double>(0.05f);F(0x120)=F(0x11c);if(B(0x112)<25) {if(B(0x113)<25) RETIRE();B(0x113)-=25;}else {B(0x112)-=25;B(0x111)-=25;}}
+    }break; case 1: {if(!RELATED) RETIRE();void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);F(0x12c)=FIELD(related,float,0x12c);}
+    break; case 2: {F(0x12c)+=60.0;F(0x11c)+=static_cast<double>(0.05f);F(0x120)=F(0x11c);if(B(0x112)<25) {if(B(0x113)<25) RETIRE();B(0x113)-=25;}else {B(0x112)-=25;B(0x111)-=25;}}
+    break; }
     if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0 || F(0xf0)<-100.0) RETIRE();if(advance_frame()) RETIRE();if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==1) --I(0x330);return;
 
 
@@ -621,7 +622,7 @@ case 850: {
 case 851: {
  {
     int collision=I(0x180);if(collision==5) RETIRE();if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0 || F(0xf0)<-100.0) RETIRE();
-    if(S(0x13e)==1) {
+    switch(S(0x13e)) { case 1: {
         if(S(0x140)==0 && collision!=0) {
             advance_six(0);if(B(0x184)==0 || I(0x180)!=0) {
                 F(0xf4)=0.0f;F(0xf8)=0.0f;select_frame(1);F(0x11c)=2.0f;F(0x120)=2.0f;float packet[3];packet[2]=3.0f;
@@ -629,8 +630,9 @@ case 851: {
             }
         }
         if(S(0x140)==1) {F(0x11c)*=0.99f;F(0x120)=0.99f*F(0x120);if(B(0x113)<30) {B(0x113)=0;RETIRE();}B(0x113)-=30;}
-    }else if(S(0x13e)==2) {F(0x11c)+=static_cast<double>(0.01f);F(0x120)=F(0x11c);if(B(0x113)<30) RETIRE();B(0x113)-=30;B(0x111)-=30;B(0x112)-=30;}
-    else if(S(0x13e)==3) {F(0x11c)=F(0x370)+F(0x11c);F(0x120)=F(0x11c);F(0xf8)-=static_cast<double>(0.3f);F(0x370)-=static_cast<double>(0.3f);if(F(0x370)<0.05f) F(0x370)=0.05f;if(I(0x144)>=10) {if(B(0x113)<15) RETIRE();B(0x113)-=15;}}
+    }break; case 2: {F(0x11c)+=static_cast<double>(0.01f);F(0x120)=F(0x11c);if(B(0x113)<30) RETIRE();B(0x113)-=30;B(0x111)-=30;B(0x112)-=30;}
+    break; case 3: {F(0x11c)=F(0x370)+F(0x11c);F(0x120)=F(0x11c);F(0xf8)-=static_cast<double>(0.3f);F(0x370)-=static_cast<double>(0.3f);if(F(0x370)<0.05f) F(0x370)=0.05f;if(I(0x144)>=10) {if(B(0x113)<15) RETIRE();B(0x113)-=15;}}
+    break; }
     MOVE();FINISH();
 }
 
