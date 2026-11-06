@@ -833,7 +833,7 @@ case 858: {
             if((direction>0 && vertical>0) || (direction==0 && vertical>0)) {S(0x364)=0;B(0x184)=1;select_sequence(6);return;}
             if(direction==0 && vertical<0) {S(0x364)=0;B(0x184)=4;F(0xf4)=0.0f;F(0xf8)=0.0f;select_sequence(9);return;}
         }
-        if(FIELD(owner,int,0x6c0)!=0 && FIELD(owner,int,0x6c0)<4) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,int,0x6c4)!=0 && FIELD(owner,int,0x6c4)<4) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}
+        if(FIELD(owner,unsigned,0x6c0)!=0 && FIELD(owner,unsigned,0x6c0)<4) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,unsigned,0x6c4)!=0 && FIELD(owner,unsigned,0x6c4)<4) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}
         MOVE();goto alice_858_clamp;
     }
     case 2: {
@@ -841,12 +841,12 @@ case 858: {
         if(S(0x140)>=2 && I(0x144)%2==0) {F(0x378)=static_cast<float>(static_cast<double>(RF(90))-45.0);float packet[3]={F(0x378),0.0f,21.0f};spawn_unparented(858,static_cast<float>(lookup_orientation_cosine_quantized_abs(-F(0x378))*100.0*static_cast<double>(C(0x104))+F(0xec)),static_cast<float>(lookup_orientation_sine_quantized_abs(-F(0x378))*100.0+F(0xf0)),B(0x104),1,packet,3);}
         void *owner=OWNER;int primary=FIELD(owner,int,0x6bc);
         if(primary!=0 && primary<4 && I(0x180)!=0) {int direction=FIELD(owner,int,0x6b4)*C(0x104);int vertical=FIELD(owner,int,0x6b8);if(direction>0 && vertical==0) {S(0x364)=0;B(0x184)=1;select_sequence(3);return;}if((direction>0 && vertical>0) || (direction==0 && vertical>0)) {S(0x364)=0;B(0x184)=1;select_sequence(6);return;}if(direction==0 && vertical<0) {S(0x364)=0;B(0x184)=4;F(0xf4)=0.0f;F(0xf8)=0.0f;select_sequence(9);return;}}
-        if(FIELD(owner,int,0x6c0)!=0 && FIELD(owner,int,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,int,0x6c4)!=0 && FIELD(owner,int,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}
+        if(FIELD(owner,unsigned,0x6c0)!=0 && FIELD(owner,unsigned,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,unsigned,0x6c4)!=0 && FIELD(owner,unsigned,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}
         F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);goto alice_858_clamp;
     }
     case 3:case 4:case 5: {
         if(entryPhase==4 && I(0x144)>=16) {next_sequence_block();return;}if(entryPhase>=4) {F(0xf4)-=3.0;if(F(0xf4)<=0.5f) F(0xf4)=0.5f;}
-        void *owner=OWNER;if(FIELD(owner,int,0x6c0)!=0 && FIELD(owner,int,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,int,0x6c4)!=0 && FIELD(owner,int,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}MOVE();goto alice_858_clamp;
+        void *owner=OWNER;if(FIELD(owner,unsigned,0x6c0)!=0 && FIELD(owner,unsigned,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,unsigned,0x6c4)!=0 && FIELD(owner,unsigned,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}MOVE();goto alice_858_clamp;
     }
     case 6:
         F(0x12c)+=40.0;F(0xf4)-=1.0;if(F(0xf4)<0.0f) F(0xf4)=0.0f;if(F(0xf8)<=0.0f) {F(0xf8)+=1.0;if(F(0xf8)>0.0f) F(0xf8)=0.0f;}else {F(0xf8)-=1.0;if(F(0xf8)<0.0f) F(0xf8)=0.0f;}
@@ -854,18 +854,18 @@ case 858: {
         F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);goto alice_858_clamp;
     case 7: {
         float *parameters=PARAM;parameters[1]-=2.0;if(parameters[1]<-0.5f) {parameters[1]=-0.5f;B(0x184)=0;}MOTION->set_components(PARAM[0],PARAM[1]);if(I(0x144)>=20) {next_sequence_block();return;}
-        void *owner=OWNER;if(FIELD(owner,int,0x6c0)!=0 && FIELD(owner,int,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,int,0x6c4)!=0 && FIELD(owner,int,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}MOVE();goto alice_858_clamp;
+        void *owner=OWNER;if(FIELD(owner,unsigned,0x6c0)!=0 && FIELD(owner,unsigned,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,unsigned,0x6c4)!=0 && FIELD(owner,unsigned,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}MOVE();goto alice_858_clamp;
     }
     case 8: {
         float *parameters=PARAM;parameters[1]-=5.0;if(parameters[1]<-0.5f) {parameters[1]=-0.5f;B(0x184)=0;}MOTION->set_components(PARAM[0],PARAM[1]);if(I(0x144)>=30) {select_sequence(0);return;}
-        void *owner=OWNER;if(FIELD(owner,int,0x6c0)!=0 && FIELD(owner,int,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,int,0x6c4)!=0 && FIELD(owner,int,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}MOVE();goto alice_858_clamp;
+        void *owner=OWNER;if(FIELD(owner,unsigned,0x6c0)!=0 && FIELD(owner,unsigned,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,unsigned,0x6c4)!=0 && FIELD(owner,unsigned,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}MOVE();goto alice_858_clamp;
     }
     case 9:
         F(0xf4)-=1.0;if(F(0xf4)<0.0f) F(0xf4)=0.0f;if(F(0xf8)<=0.0f) {F(0xf8)+=1.0;if(F(0xf8)>0.0f) F(0xf8)=0.0f;}else {F(0xf8)-=1.0;if(F(0xf8)<0.0f) F(0xf8)=0.0f;}F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);goto alice_858_clamp;
     case 10: {
         if(I(0x144)==0) {float packet[3]={0.0f,0.0f,23.0f};spawn_parented(858,F(0xec),F(0xf0),B(0x104),1,packet,3);}if(I(0x144)%15==0) WAVE(4);if(I(0x180)!=0 && ++S(0x364)>=4) {S(0x364)=0;I(0x180)=0;}
         if(I(0x144)>=45) {select_sequence(0);if(F(0xec)-FIELD(OWNER,float,0xec)>0.0f) C(0x104)=1;if(F(0xec)-FIELD(OWNER,float,0xec)<0.0f) C(0x104)=-1;return;}
-        void *owner=OWNER;F(0xf8)*=static_cast<double>(0.95f);if(FIELD(owner,int,0x6c0)!=0 && FIELD(owner,int,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,int,0x6c4)!=0 && FIELD(owner,int,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);
+        void *owner=OWNER;F(0xf8)*=static_cast<double>(0.95f);if(FIELD(owner,unsigned,0x6c0)!=0 && FIELD(owner,unsigned,0x6c0)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(11);return;}if(FIELD(owner,unsigned,0x6c4)!=0 && FIELD(owner,unsigned,0x6c4)<4 && I(0x180)!=0) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);
     }
 alice_858_clamp:
         if(F(0xf0)<=0.0f) F(0xf0)=0.0f;if(F(0xec)>1260.0f) F(0xec)=1260.0f;if(F(0xec)<20.0f) F(0xec)=20.0f;break;
@@ -874,7 +874,7 @@ alice_858_clamp:
         if(I(0x144)%3==0 && S(0x364)<=6) {WAVE(0);++S(0x364);void *target=TARGET;float dx=static_cast<float>((FIELD(target,float,0xec)-static_cast<double>(F(0xec)))*C(0x104));F(0x378)=-atan2_degrees(static_cast<float>(FIELD(target,float,0xf0)+100.0-F(0xf0)),dx);if(F(0x378)<-30.0f) F(0x378)=-30.0f;if(F(0x378)>30.0f) F(0x378)=30.0f;
             float packet[3];packet[0]=static_cast<float>(static_cast<double>(RF(20))+F(0x378)-10.0);packet[1]=12.5f;packet[2]=static_cast<float>(static_cast<double>(S(0x364)%7)+26.0);spawn_unparented(858,static_cast<float>(static_cast<double>(20*C(0x104))+F(0xec)),static_cast<float>(F(0xf0)+5.0),B(0x104),1,packet,3);packet[2]=static_cast<float>(static_cast<double>(S(0x364)%7)+7.0);spawn_unparented(800,static_cast<float>(static_cast<double>(20*C(0x104))+F(0xec)),static_cast<float>(F(0xf0)+5.0),B(0x104),1,packet,3);WAVE(0);
         }
-        if(I(0x144)>=18 && FIELD(OWNER,int,0x6c4)!=0 && FIELD(OWNER,int,0x6c4)<4) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}if(I(0x144)>=40) select_sequence(0);break;
+        if(I(0x144)>=18 && FIELD(OWNER,unsigned,0x6c4)!=0 && FIELD(OWNER,unsigned,0x6c4)<4) {S(0x364)=0;B(0x184)=0;select_sequence(13);return;}if(I(0x144)>=40) select_sequence(0);break;
     case 13: {
         S(0x364)=0;void *owner=OWNER;if(FIELD(owner,int,0x6b4)*C(0x104)<=0) F(0xf4)=0.0f;else {F(0xf4)+=1.0;if(F(0xf4)>2.0f) F(0xf4)=2.0f;}
         if(FIELD(owner,int,0x6b8)<0) {F(0xf8)+=1.0;if(F(0xf8)>2.0f) F(0xf8)=2.0f;}if(FIELD(owner,int,0x6b8)>0) {F(0xf8)-=1.0;if(F(0xf8)<-2.0f) F(0xf8)=-2.0f;}if(FIELD(owner,int,0x6b8)==0) F(0xf8)=0.0f;MOVE();break;

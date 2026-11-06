@@ -154,3 +154,7 @@ now uses `!(parameter < 360.0f)`; finite results are unchanged. Candidate
 an unordered parameter occurs in play is unknown. The full root remains
 nonexact, section tail 62,972, compared SHA-256
 `5b4f6d53907b989ae2a9f9131c37dd2347e0f2927415ce40602c87894ad683fc`.
+
+## Action 858 owner-state ranges (2026-11-06)
+
+The thirteen checks of owner fields `0x6C0` and `0x6C4` in action 858 use unsigned bounds in the native body. For example, `0x508D6E..0x508D90` accepts only values 1 through 3, using unsigned `jbe`/`jae` branches. The former signed source accepted values with bit 31 set as well. All corresponding source checks now read the fields as unsigned, consistent with the fighter-side unsigned field view; the fresh candidate emits unsigned bounds at these sites. Ordinary values 0 through 3 retain their behavior. Whether high-bit values arise in normal play is not established. The complete focused candidate remains nonexact (62972-byte section tail against a 62278-byte main span, first mismatch +37); no exact credit is claimed.
