@@ -602,7 +602,7 @@ case 525:{
 case 526:{
  if(!S(0x13e)||S(0x13e)==5)landing();
  if(S(0x13e)==1){if(I(0x180)!=0&&I(0x180)!=3){next_sequence_block();return;}if(I(0x144)>29){select_sequence(3);F(0xf4)*=0.5;F(0xf8)*=0.5;return;}if(I(0x144)>19&&(I(0x6bc)||I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);set_action_and_finalize(529);return;}}
- if(S(0x13e)==2){if(I(0x144)>19){next_sequence_block();F(0xf4)*=0.5;F(0xf8)*=0.5;return;}if((I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);set_action_and_finalize(529);return;}}
+ if(S(0x13e)==2){if(I(0x144)>=20){next_sequence_block();F(0xf4)*=0.5;F(0xf8)*=0.5;return;}if((I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);set_action_and_finalize(529);return;}}
  if(S(0x13e)==3||S(0x13e)==4){F(0xf8)-=0.5;if(static_cast<unsigned char>(crossed())){select_sequence(5);F(0xf0)=aya_surface(this);zero_motion();return;}}
  ADVANCE_TO(0);if(ENTRY(1)){float packet[3]={-45.0f,0.0f,0.0f};spawn(816,F(0xec),F(0xf0)+45.0,B(0x104),1,packet,3);effect(127,F(0xec),F(0xf0),B(0x104),-1);MOTION->set_oriented_components(-45.0f,20.0f);counter(200,120);phase_counter(50);dispatch_character_wave_handle(5);}return;
 }
@@ -610,7 +610,7 @@ case 526:{
 case 527:{
  if(S(0x13e)==5)landing();
  if(S(0x13e)==1){if(I(0x180)!=0&&I(0x180)!=3){next_sequence_block();return;}if(I(0x144)>29){select_sequence(3);F(0xf4)*=0.5;F(0xf8)*=0.5;return;}if(I(0x144)>19&&(I(0x6bc)||I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);set_action_and_finalize(529);return;}}
- if(S(0x13e)==2){if(I(0x144)>19){next_sequence_block();F(0xf4)*=0.5;F(0xf8)*=0.5;return;}if((I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);set_action_and_finalize(529);return;}}
+ if(S(0x13e)==2){if(I(0x144)>=20){next_sequence_block();F(0xf4)*=0.5;F(0xf8)*=0.5;return;}if((I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);set_action_and_finalize(529);return;}}
  if(S(0x13e)==3||S(0x13e)==4){F(0xf8)-=0.5;if(static_cast<unsigned char>(crossed())){select_sequence(5);F(0xf0)=aya_surface(this);zero_motion();return;}}
  ADVANCE_TO(0);if(ENTRY(1)){float packet[3]={0.0f,0.0f,0.0f};spawn(816,F(0xec),F(0xf0)+45.0,B(0x104),1,packet,3);effect(127,F(0xec),F(0xf0),B(0x104),-1);MOTION->set_oriented_components(0.0f,20.0f);counter(200,120);phase_counter(50);dispatch_character_wave_handle(5);}return;
 }
@@ -928,7 +928,7 @@ case 606:{
     else{spawn(856,-100.0f,spawnY-static_cast<float>(static_cast<unsigned>(aya_random(400))),1,1,packet,3);++S(0x732);S(0x730)=static_cast<short>(30-S(0x732));if(S(0x730)<10)S(0x730)=10;}
    }
   }
-  if(I(0x144)>19&&--S(0x734)<=0&&F(0xf0)<960.0){
+  if(I(0x144)>=20&&--S(0x734)<=0&&F(0xf0)<960.0){
    if(!(S(0x736)%2)){packet[0]=4.0-static_cast<float>(static_cast<unsigned>(aya_random(8)));packet[1]=S(0x736)+120.0;packet[2]=3.0f;spawn(856,1380.0f,static_cast<float>(static_cast<unsigned>(aya_random(200)))+F(0xf0),-1,1,packet,3);}
    else{packet[0]=4.0-static_cast<float>(static_cast<unsigned>(aya_random(8)));packet[1]=S(0x736)+120.0;packet[2]=3.0f;spawn(856,-100.0f,static_cast<float>(static_cast<unsigned>(aya_random(200)))+F(0xf0),1,1,packet,3);}
    ++S(0x736);S(0x734)=static_cast<short>(25-S(0x736));if(S(0x734)<10)S(0x734)=10;
