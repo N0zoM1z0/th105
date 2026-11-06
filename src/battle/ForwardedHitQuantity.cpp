@@ -11,13 +11,13 @@ void CollisionContext::apply_forwarded_quantity_to_pair(
     short forwarded_counter_delta,
     signed char use_dynamic_scalar)
 {
-    int applied_quantity = quantity;
     if (static_cast<signed char>(
             is_state_13c_in_32_95(fighter)) == 0 &&
         fighter->field_4a4 == 0) {
         reset_hit_exchange_scratch(candidate->owner_16c, fighter);
     }
 
+    int applied_quantity = quantity;
     if (use_dynamic_scalar != 0) {
         applied_quantity = static_cast<int>(
             candidate->calculate_forwarded_quantity() * applied_quantity);
@@ -33,14 +33,15 @@ void CollisionContext::apply_forwarded_quantity_to_pair(
         static_cast<short>(applied_quantity);
 
     if (candidate->owner_16c->factor_4d4 > 0.0f) {
+        Fighter *owner = candidate->owner_16c;
         int recovered = static_cast<int>(
-            candidate->owner_16c->factor_4d4 * applied_quantity);
+            owner->factor_4d4 * applied_quantity);
         recovered = static_cast<short>(recovered);
-        int next = fighter->value_174 + recovered;
-        if (fighter->maximum_176 <= next) {
-            next = fighter->maximum_176;
+        int next = owner->value_174 + recovered;
+        if (next >= owner->maximum_176) {
+            next = owner->maximum_176;
         }
-        fighter->value_174 = static_cast<short>(next);
+        owner->value_174 = static_cast<short>(next);
     }
 
     fighter->value_174 -= static_cast<short>(applied_quantity);
