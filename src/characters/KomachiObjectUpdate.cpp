@@ -124,11 +124,11 @@ void KomachiObjectUpdateView::update_action_state()
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();STEP();FRAME_EXIT();
  case 815:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==0) {
+  switch(S(0x13e)){case 0: {
    if(emit_repeated(0,2,5)){BURST(815,50,5.0,2);RETIRE();}
    if(emit_owner_gated_pair())RETIRE();F(0xf8)-=0.5;if(F(0xf8)<-6.0f)F(0xf8)=-6.0f;advance_six(10);advance_phase(4);
    if(I(0x180)!=0 || I(0x144)>119){BURST(815,50,5.0,2);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}
-  }else if(S(0x13e)==1){FADE(16,15);}else if(S(0x13e)==2){CURVED_FADE();}
+  }break; case 1:{FADE(16,15);}break; case 2:{CURVED_FADE();}break;}
   if(OUTSIDE(1380.0f,-100.0,1360.0f,-100.0))RETIRE();STEP();FRAME_EXIT();
  case 817:
   if(I(0x180)==5)RETIRE();
@@ -171,17 +171,17 @@ void KomachiObjectUpdateView::update_action_state()
   FRAME_EXIT();
  case 825:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==0){if(emit_repeated(0,3,5)){BURST(825,50,5.0,1);RETIRE();}if(emit_owner_gated_pair())RETIRE();ORBIT_WAVE(facing);if(I(0x180)==6){++B(0x184);I(0x180)=0;}if(I(0x180)!=0){BURST(825,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}}
-  else if(S(0x13e)==1){CURVED_FADE();}
+  switch(S(0x13e)){case 0:{if(emit_repeated(0,3,5)){BURST(825,50,5.0,1);RETIRE();}if(emit_owner_gated_pair())RETIRE();ORBIT_WAVE(facing);if(I(0x180)==6){++B(0x184);I(0x180)=0;}if(I(0x180)!=0){BURST(825,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}}
+  break; case 1:{CURVED_FADE();}break;}
   if(OUTSIDE(1480.0f,-200.0,1860.0,-600.0f))RETIRE();STEP();FRAME_EXIT();
  case 826:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==0){if(emit_repeated(0,0,0))RETIRE();if(I(0x144)<90){if(AT(P,int,0x7a8)!=0){select_sequence(1);request_packet[0]=0;request_packet[1]=0;request_packet[2]=2;SPAWN(826,1,request_packet);goto reset_motion_return;}}else{FADE(10,10);}SCALE(F(0x11c)*D(0.995f));F(0xf8)+=D(0.025f);H[0]*=D(0.95f);H[1]*=D(0.95f);F(0xec)+=C(0x104)*H[0];F(0xf0)+=H[1]+F(0xf8);}
-  else if(S(0x13e)==1){if(I(0x144)<15)advance_six(0);else{B(0x184)=0;SCALE(F(0x11c)*D(0.95f));FADE(10,10);}}
-  else if(S(0x13e)==2){SCALE(F(0x11c)+D(0.15f));FADE(20,20);}FRAME_EXIT();
+  switch(S(0x13e)){case 0:{if(emit_repeated(0,0,0))RETIRE();if(I(0x144)<90){if(AT(P,int,0x7a8)!=0){select_sequence(1);request_packet[0]=0;request_packet[1]=0;request_packet[2]=2;SPAWN(826,1,request_packet);goto reset_motion_return;}}else{FADE(10,10);}SCALE(F(0x11c)*D(0.995f));F(0xf8)+=D(0.025f);H[0]*=D(0.95f);H[1]*=D(0.95f);F(0xec)+=C(0x104)*H[0];F(0xf0)+=H[1]+F(0xf8);}
+  break; case 1:{if(I(0x144)<15)advance_six(0);else{B(0x184)=0;SCALE(F(0x11c)*D(0.95f));FADE(10,10);}}
+  break; case 2:{SCALE(F(0x11c)+D(0.15f));FADE(20,20);}break;}FRAME_EXIT();
  case 827:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==0){if(emit_owner_gated_pair())RETIRE();SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);KomachiObjectUpdateView *target=A;
+  switch(S(0x13e)){case 0:{if(emit_owner_gated_pair())RETIRE();SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);KomachiObjectUpdateView *target=A;
    if((F(0xec)-AT(target,float,0xec))*C(0x104)<0.0){F(0xf4)+=D(0.2f);if(F(0xf4)>6.0f)F(0xf4)=6.0f;}
    if((F(0xec)-AT(target,float,0xec))*C(0x104)>0.0){F(0xf4)-=D(0.2f);if(F(0xf4)<-6.0f)F(0xf4)=-6.0f;}
    if(F(0xf0)-AT(target,float,0xf0)-100.0>0.0){F(0xf8)-=D(0.2f);if(F(0xf8)<-6.0f)F(0xf8)=-6.0f;}
@@ -189,21 +189,21 @@ void KomachiObjectUpdateView::update_action_state()
    KomachiObjectUpdateView *owner=P;
    if((AT(owner,signed char,0x60b)+3)*60<=I(0x144) || ((AT(owner,short,0x13c)==565 || AT(owner,short,0x13c)==566) && AT(owner,short,0x13e)==0 && AT(owner,short,0x140)==0)){BURST(827,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}
    if(AT(target,short,0x174)<1 || AT(owner,short,0x174)<1){BURST(827,50,5.0,1);RETIRE();}STEP();
-  }else if(S(0x13e)==1){CURVED_FADE_VALUES();STEP();}
+  }break; case 1:{CURVED_FADE_VALUES();STEP();}break;}
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();
   if(advance_frame())RETIRE();if(RETURN_ON_ENTRY_PHASE(1))RETIRE();if(RETURN_ON_ENTRY_PHASE(2))RETIRE();return;
  case 850:
   if(I(0x180)==5)RETIRE();if(S(0x13e)==1){SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>29)FADE(15,15);STEP();}FRAME_EXIT();
  case 852:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==0){if(emit_owner_gated_pair())RETIRE();ORBIT_WAVE_UNCAPTURED();advance_six(0);advance_phase(2);if(I(0x180)!=0){BURST(852,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}}
-  else if(S(0x13e)==1){CURVED_FADE_VALUES();STEP();}
+  switch(S(0x13e)){case 0:{if(emit_owner_gated_pair())RETIRE();ORBIT_WAVE_UNCAPTURED();advance_six(0);advance_phase(2);if(I(0x180)!=0){BURST(852,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}}
+  break; case 1:{CURVED_FADE_VALUES();STEP();}break;}
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();
   if(advance_frame())RETIRE();if(RETURN_ON_ENTRY_PHASE(1))RETIRE();if(RETURN_ON_ENTRY_PHASE(2))RETIRE();return;
  case 853:
-  if(S(0x13e)==0){F(0xf4)+=D(0.1f);F(0xf8)=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*H[1];advance_six(0);if(I(0x144)%3==0){trail_packet[0]=0;trail_packet[1]=0;trail_packet[2]=1;unsigned char facing=B(0x104);float y=(RND(50)-25.0)+F(0xf0);float x=(RND(50)-25.0)+F(0xec);spawn_unparented(853,x,y,facing,-1,reinterpret_cast<const unsigned *>(trail_packet),3);}}
-  else if(S(0x13e)==1){FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);}
-  else if(S(0x13e)==3){SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>29)FADE(15,15);}
+  switch(S(0x13e)){case 0:{F(0xf4)+=D(0.1f);F(0xf8)=lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*H[1];advance_six(0);if(I(0x144)%3==0){trail_packet[0]=0;trail_packet[1]=0;trail_packet[2]=1;unsigned char facing=B(0x104);float y=(RND(50)-25.0)+F(0xf0);float x=(RND(50)-25.0)+F(0xec);spawn_unparented(853,x,y,facing,-1,reinterpret_cast<const unsigned *>(trail_packet),3);}}
+  break; case 1:{FADE(13,13);SCALE(F(0x11c)*D(0.94f));F(0xf8)-=D(0.1f);}
+  break; case 3:{SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>29)FADE(15,15);}break;}
   if(OUTSIDE(1480.0f,-200.0,1860.0,-600.0f))RETIRE();STEP();FRAME_EXIT();
  case 854:
   switch(S(0x13e)) {
@@ -228,14 +228,14 @@ void KomachiObjectUpdateView::update_action_state()
   }FRAME_EXIT();
  case 855:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==0){if(emit_owner_gated_pair())RETIRE();SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);KomachiObjectUpdateView *target=A;
+  switch(S(0x13e)){case 0:{if(emit_owner_gated_pair())RETIRE();SCALE(lookup_orientation_sine_quantized_abs(static_cast<float>(I(0x144)*3))*D(0.2f)+1.0);KomachiObjectUpdateView *target=A;
    if((F(0xec)-AT(target,float,0xec))*C(0x104)<0.0){F(0xf4)+=D(0.2f);if(F(0xf4)>6.0f)F(0xf4)=6.0f;}
    if((F(0xec)-AT(target,float,0xec))*C(0x104)>0.0){F(0xf4)-=D(0.2f);if(F(0xf4)<-6.0f)F(0xf4)=-6.0f;}
    if(F(0xf0)-AT(target,float,0xf0)-100.0>0.0){F(0xf8)-=D(0.2f);if(F(0xf8)<-6.0f)F(0xf8)=-6.0f;}
    if(F(0xf0)-AT(target,float,0xf0)-100.0<0.0){F(0xf8)+=D(0.2f);if(F(0xf8)>6.0f)F(0xf8)=6.0f;}
    if(I(0x144)>899){BURST(855,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}
    if(AT(target,short,0x174)<1 || AT(P,short,0x174)<1){BURST(855,50,5.0,1);RETIRE();}STEP();
-  }else if(S(0x13e)==1){CURVED_FADE_VALUES();STEP();}
+  }break; case 1:{CURVED_FADE_VALUES();STEP();}break;}
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();
   if(advance_frame())RETIRE();if(RETURN_ON_ENTRY_PHASE(1))RETIRE();if(RETURN_ON_ENTRY_PHASE(2))RETIRE();return;
  case 856:

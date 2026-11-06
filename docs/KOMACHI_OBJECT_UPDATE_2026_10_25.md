@@ -450,3 +450,7 @@ The 27874-byte callable remains nonexact at +8; the candidate section tail is
 ## Timer angle conversion order (2026-11-05)
 
 Native 0x5FE88D and 0x5FE8B6 loads the signed timer directly into x87, multiplies by the double angle constant, and rounds to float only after any angle offset. The source now preserves that order instead of first casting the timer to float. The pinned VC8 build already elided the earlier conversion: the compared function bytes remain unchanged (SHA-256 `3154aa4f6e8059cf7c53f43aff605e19b11a4100b1702af994534ec8d437e4b1`). The function remains nonexact; no claim is made that a timer large enough to expose strict floating-point rounding is reachable in normal play.
+
+## Seven phase dispatches (2026-11-06)
+
+Native actions 815, 825, 826, 827, 852, 853 and 855 use signed switch-shaped phase dispatches, including entries `0x5FB02D`, `0x5FC102`, `0x5FC5B4`, `0x5FC79D`, `0x5FCDAE`, `0x5FD0BB` and `0x5FDCF3`. Equivalent if/else chains now use ordinary switches, restoring seven local signed phase loads and branch families in the focused VC8 candidate while retaining handled/default behavior. The full candidate remains nonexact (29008-byte section tail, first mismatch +8); no exact credit is claimed.
