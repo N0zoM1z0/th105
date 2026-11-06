@@ -142,3 +142,7 @@ Source-present1549/mapped1568, units588. The exact ledger is unchanged; the last
 aggregate cold replay remains the Patchouli checkpoint, with no new aggregate
 replay claimed here. Next fresh same-slot peer is Tenshi64A0A0, candidate2453:
 re-attest its slot and reconcile its own complete CFG/ABI before implementation.
+
+## Shared initialization tail
+
+The original action 602 path at `0x5ADBA8` and actions 605/730 at `0x5ADBFB` load their respective 1.0/2.0 values, clear `+0x730`, and converge at `0x5ADBB3` for the remaining writes and zero-motion tail. Writing the independent `+0x73C` assignment before the `+0x180` clear in both cases causes VC8 to recover this shared tail. In the focused candidate, both entries and their shared local sequence match the original instruction structure, including the short `EB A7` backward jump; the fields do not overlap and no call occurs between the reordered writes. The full candidate section is now 3,123 bytes against the original 3,171-byte full payload, and the full comparison still fails first at +0x15. No exact credit is claimed.
