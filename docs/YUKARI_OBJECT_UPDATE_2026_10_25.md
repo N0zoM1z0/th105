@@ -387,3 +387,7 @@ The same direct signed-integer comparison is present in the equality checks at `
 ## Nine phase dispatches (2026-11-06)
 
 Actions 811, 825, 849, 850, 852, 856, 865, 900 and 920 have native switch-shaped phase dispatches at `0x58EB61`, `0x5908DE`, `0x591246`, `0x591320`, `0x5919BD`, `0x593089`, `0x5937EC`, `0x593C8D` and `0x594A08`. The corresponding source conditions now use ordinary switches. The focused VC8 candidate restores all nine signed phase loads and their local dispatch families; cases and default paths remain unchanged. The complete candidate remains nonexact (34604-byte section tail, first mismatch +31); no exact credit is claimed.
+
+### Integer gate thresholds
+
+Six original integer gates at `0x58EBA6`, `0x58ECDB`, `0x58F8CE`, `0x591C47`, `0x5924AB`, and `0x59594E` compare directly against 4, 10, 120, 5, 240, and 90. The source now uses those equivalent threshold forms; the candidate recovers the local compare and signed branch instructions. Their integer behavior is unchanged. The complete function remains non-exact and its candidate section is 34,608 bytes.
