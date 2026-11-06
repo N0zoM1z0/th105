@@ -266,3 +266,5 @@ The complete 65601-byte root remains nonexact at +48; the new section tail is
 ### Integer gate thresholds
 
 Four original gates at `0x60A2D0`, `0x60B745`, `0x60DF0A`, and `0x60E548` compare signed values against 2, 4, 60, and 300. The equivalent threshold forms recover their local comparisons and branches with no integer behavior change. The complete candidate remains non-exact, with a 65,700-byte section.
+
+Repeated frame and signed-level gates at `0x60A2E2`, `0x60A468`, `0x60A94E`, `0x60ABA2`, `0x60BB3E`, and `0x60BF6A` now use the equivalent original thresholds. The frame comparisons and all six branch conditions follow the native forms; the candidate uses a register for the two level thresholds and still differs in layout. Integer behavior is unchanged, and the 65,672-byte candidate remains non-exact.

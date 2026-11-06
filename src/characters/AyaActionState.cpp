@@ -629,11 +629,11 @@ case 529:{
  short phase=S(0x13e);
  if(phase==2||phase==5||phase==8||phase==11||phase==14){
   if(I(0x144)>19){next_sequence_block();return;}
-  if(((!S(0x738)&&C(0x609)>=2)||(S(0x738)==1&&C(0x609)>3))&&(I(0x6bc)||I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);++S(0x738);set_action_and_finalize(529);return;}
+  if(((!S(0x738)&&C(0x609)>=2)||(S(0x738)==1&&C(0x609)>=4))&&(I(0x6bc)||I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);++S(0x738);set_action_and_finalize(529);return;}
  }
  if(phase==3||phase==6||phase==9||phase==12||phase==15){
   if(I(0x144)>4){select_sequence(static_cast<unsigned char>(aya_on_surface(this))?16:17);F(0xf4)*=0.5;if(F(0xf8)>0.0)F(0xf8)*=0.5;return;}
-  if(!S(0x738)&&C(0x609)>3&&(I(0x6bc)||I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);S(0x738)=1;set_action_and_finalize(529);return;}
+  if(!S(0x738)&&C(0x609)>=4&&(I(0x6bc)||I(0x6c0)||I(0x6c4))){CHOOSE_FOLLOWUP(1);S(0x738)=1;set_action_and_finalize(529);return;}
  }
  if(phase<16&&static_cast<unsigned char>(crossed())){select_sequence(19);F(0xf0)=aya_surface(this);F(0xf8)=0.0;return;}
  if(S(0x13e)==16){F(0xf4)-=0.5;if(F(0xf4)<0.0)F(0xf4)=0.0;}
@@ -658,14 +658,14 @@ case 529:{
 
 case 530:{
  if(S(0x13e)==4)landing();B(0x17c)=9;
- if(S(0x13e)==2||S(0x13e)==3){F(0xf4)-=3.0;if(F(0xf4)<3.0)F(0xf4)=3.0;F(0xf8)-=F(0x100);if(S(0x13e)==2&&S(0x140)<12&&F(0xf8)<=-1.0)F(0xf8)=-1.0;if(static_cast<unsigned char>(crossed())){select_sequence(4);F(0xf0)=aya_surface(this);zero_motion();return;}}
+ if(S(0x13e)==2||S(0x13e)==3){F(0xf4)-=3.0;if(F(0xf4)<3.0)F(0xf4)=3.0;F(0xf8)-=F(0x100);if(S(0x13e)==2&&S(0x140)<=11&&F(0xf8)<=-1.0)F(0xf8)=-1.0;if(static_cast<unsigned char>(crossed())){select_sequence(4);F(0xf0)=aya_surface(this);zero_motion();return;}}
  ADVANCE_TO(0);if(ENTRY(2))F(0x100)=0.5f;if(FRAME(0,5)){F(0xf4)=40.0;F(0xf8)=10.0;effect(127,F(0xec),F(0xf0),B(0x104),-1);}
  if(FRAME(2,5)){request530[0]=15.0f;request530[1]=30.0f;paired_request=request530;goto paired_817_request;}return;
 }
 
 case 532:{
  if(S(0x13e)==4)landing();B(0x17c)=9;
- if(S(0x13e)==2||S(0x13e)==3){F(0xf4)-=3.0;if(F(0xf4)<3.0)F(0xf4)=3.0;F(0xf8)-=F(0x100);if(S(0x13e)==2&&S(0x140)<12&&F(0xf8)<=-1.0)F(0xf8)=-1.0;if(static_cast<unsigned char>(crossed())){select_sequence(4);F(0xf0)=aya_surface(this);zero_motion();return;}}
+ if(S(0x13e)==2||S(0x13e)==3){F(0xf4)-=3.0;if(F(0xf4)<3.0)F(0xf4)=3.0;F(0xf8)-=F(0x100);if(S(0x13e)==2&&S(0x140)<=11&&F(0xf8)<=-1.0)F(0xf8)=-1.0;if(static_cast<unsigned char>(crossed())){select_sequence(4);F(0xf0)=aya_surface(this);zero_motion();return;}}
  ADVANCE_TO(0);if(ENTRY(2))F(0x100)=0.5f;if(FRAME(0,5)){F(0xf4)=40.0;F(0xf8)=10.0;effect(127,F(0xec),F(0xf0),B(0x104),-1);}
  if(FRAME(2,5)){request532[0]=15.0f;request532[1]=30.0f;paired_request=request532;goto paired_817_request;}return;
 }
@@ -732,7 +732,7 @@ case 550:{
  if(S(0x13e)==5||S(0x13e)==6){
   if(C(0x104)*I(0x6b4)>0)F(0xf4)+=0.25;if(C(0x104)*I(0x6b4)<0)F(0xf4)-=0.25;
   if(F(0xf4)>12.0)F(0xf4)=12.0;if(F(0xf4)<-12.0)F(0xf4)=-12.0;
-  if(S(0x13e)==6||(S(0x13e)==5&&S(0x140)>2)){if(I(0x6c4)){set_action_and_finalize(554);select_sequence(6);return;}if(I(0x6c0)){set_action_and_finalize(554);return;}if(I(0x6bc)){set_action_and_finalize(554);select_sequence(3);return;}}
+  if(S(0x13e)==6||(S(0x13e)==5&&S(0x140)>=3)){if(I(0x6c4)){set_action_and_finalize(554);select_sequence(6);return;}if(I(0x6c0)){set_action_and_finalize(554);return;}if(I(0x6bc)){set_action_and_finalize(554);select_sequence(3);return;}}
  }
  ADVANCE_TO(0);if(!I(0x144)){
   if(FRAME(1,0)){counter(200,120);phase_counter(50);dispatch_character_wave_handle(15);F(0xf4)=10.0;F(0xf8)=25.0;F(0x100)=1.25f;spawn(990,F(0xec),F(0xf0),B(0x104),1,0,0);effect(128,200*C(0x104)+F(0xec),F(0xf0),B(0x104),-1);}
@@ -755,7 +755,7 @@ case 551:{
  if(S(0x13e)==5||S(0x13e)==6){
   if(C(0x104)*I(0x6b4)>0)F(0xf4)+=0.25;if(C(0x104)*I(0x6b4)<0)F(0xf4)-=0.25;
   if(F(0xf4)>12.0)F(0xf4)=12.0;if(F(0xf4)<-12.0)F(0xf4)=-12.0;
-  if(S(0x13e)==6||(S(0x13e)==5&&S(0x140)>2)){if(I(0x6c4)){set_action_and_finalize(554);select_sequence(6);return;}if(I(0x6c0)){set_action_and_finalize(554);return;}if(I(0x6bc)){set_action_and_finalize(554);select_sequence(3);return;}}
+  if(S(0x13e)==6||(S(0x13e)==5&&S(0x140)>=3)){if(I(0x6c4)){set_action_and_finalize(554);select_sequence(6);return;}if(I(0x6c0)){set_action_and_finalize(554);return;}if(I(0x6bc)){set_action_and_finalize(554);select_sequence(3);return;}}
  }
  ADVANCE_TO(0);if(!I(0x144)){
   if(FRAME(1,0)){counter(200,120);phase_counter(50);dispatch_character_wave_handle(15);F(0xf4)=25.0;F(0xf8)=25.0;F(0x100)=1.0f;spawn(990,F(0xec),F(0xf0),B(0x104),1,0,0);effect(128,200*C(0x104)+F(0xec),F(0xf0),B(0x104),-1);}
