@@ -202,3 +202,7 @@ is unknown. The focused candidate emits `test ah,0x1; jne` at
 The full root remains nonexact, section tail 53,204 bytes and compared SHA-256
 `c8b7fdd964a11e6f16017f7e7b68df9d6934f47033b557b273a3bf70f6a444ca`.
 No full-function or exact-byte credit is claimed.
+
+## Four phase dispatches (2026-11-06)
+
+Native object actions 850, 853, 854 and 920 dispatch signed phases at `0x5B56E2`, `0x5B5ECF`, `0x5B6515` and `0x5BA14D`. Their existing conditional branches now use ordinary switches, restoring the four local signed loads and phase-dispatch branch families in the focused VC8 output. The common finish paths and handled/default phase behavior are retained. The full candidate remains nonexact (53188-byte section tail, first mismatch +17); no exact credit is claimed.

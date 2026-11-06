@@ -389,7 +389,7 @@ case 848: {
 case 850: {
 
     if(I(0x180)==5) RETIRE();
-    if(S(0x13e)==0) {
+    switch(S(0x13e)){case 0: {
         if(S(0x364)==0) {
             void *owner=entryOwner;
             if(FIELD(owner,short,0x13c)==600) {
@@ -415,7 +415,7 @@ case 850: {
         if(S(0x364)==1) {MOTION->set_components(PARAM[0],PARAM[1]);MOVE();double currentY=F(0xf0);if(stage_surface_height()>=currentY || C(0x184)<=0) {reinterpret_cast<SuikaUpdateOwnerView*>(OWNER)->publish_battle_layout_scalar(10.0f);WAVE(52);RETIRE();}}
         if(S(0x364)==2) RETIRE();FINISH();
     }
-    if(S(0x13e)==1) {
+    break; case 1: {
         if(RELATED) {
             if(S(0x364)==0) {
                 double dySquared=square_float_value(F(0xf0)-FIELD(RELATED,float,0xf0));
@@ -426,7 +426,7 @@ case 850: {
         }else {
             S(0x344)=0;if(S(0x366)==0) {S(0x366)=1;float speed=static_cast<float>(RF(200)*static_cast<double>(0.1f));F(0xf4)=static_cast<float>(speed-10.0);F(0xf8)=static_cast<float>(RF(60)*static_cast<double>(0.1f)+4.0);}F(0xf8)-=static_cast<double>(0.2f);if(B(0x113)<5) RETIRE();B(0x113)-=5;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);
         }
-    }FINISH();
+    }break;}FINISH();
 
 
 }
@@ -445,7 +445,7 @@ case 852: {
 case 853: {
 
     if(I(0x180)==5) RETIRE();
-    if(S(0x13e)==0) {
+    switch(S(0x13e)){case 0: {
         if(S(0x364)==0) {
             FIELD(TARGET,short,0x4a8)=2;FIELD(TARGET,short,0x4ac)=2;
             void *owner=OWNER;
@@ -474,7 +474,7 @@ case 853: {
         }
         if(S(0x364)==2) RETIRE();FINISH();
     }
-    if(S(0x13e)==1) {
+    break; case 1: {
         if(RELATED) {
             if(S(0x364)==0) {
                 double dySquared=square_float_value(F(0xf0)-FIELD(RELATED,float,0xf0));
@@ -485,13 +485,13 @@ case 853: {
         }else {
             S(0x344)=0;if(S(0x366)==0) {S(0x366)=1;float speed=static_cast<float>(RF(200)*static_cast<double>(0.1f));F(0xf4)=static_cast<float>(speed-10.0);F(0xf8)=static_cast<float>(RF(60)*static_cast<double>(0.1f)+4.0);}F(0xf8)-=static_cast<double>(0.2f);if(B(0x113)<5) RETIRE();B(0x113)-=5;F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);
         }
-    }FINISH();
+    }break;}FINISH();
 
 
 }
 case 854: {
 
-    if(I(0x180)==5) RETIRE();if(S(0x13e)==0) {if(FIELD(entryOwner,short,0x13c)!=604 || FIELD(entryOwner,short,0x13e)!=3 || FIELD(entryOwner,short,0x140)!=2) RETIRE();if(B(0x113)>245) B(0x113)=255;else B(0x113)+=10;position_relative_to_owner(0,0);}else if(S(0x13e)==1) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}FINISH();
+    if(I(0x180)==5) RETIRE();switch(S(0x13e)){case 0: {if(FIELD(entryOwner,short,0x13c)!=604 || FIELD(entryOwner,short,0x13e)!=3 || FIELD(entryOwner,short,0x140)!=2) RETIRE();if(B(0x113)>245) B(0x113)=255;else B(0x113)+=10;position_relative_to_owner(0,0);}break; case 1: {if(B(0x113)<10) RETIRE();B(0x113)-=10;}break;}FINISH();
 
 
 }
@@ -727,8 +727,8 @@ case 910: {
 case 920: {
 
     if(I(0x180)==5) RETIRE();
-    if(S(0x13e)==0) {F(0x11c)+=static_cast<double>(0.6f);F(0x120)=F(0x11c);if(B(0x113)<15) RETIRE();B(0x113)-=15;}
-    else if(S(0x13e)==2) {float *parameters=PARAM;parameters[1]*=static_cast<double>(0.95f);MOTION->set_components(parameters[0],parameters[1]);if(B(0x113)<4) RETIRE();B(0x113)-=4;F(0x12c)+=F(0x370);F(0x370)*=static_cast<double>(0.9f);F(0x11c)+=static_cast<double>(0.005f);F(0x120)=F(0x11c);F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)=static_cast<float>(F(0xf8)*0.25+F(0xf0));}FINISH();
+    switch(S(0x13e)){case 0: {F(0x11c)+=static_cast<double>(0.6f);F(0x120)=F(0x11c);if(B(0x113)<15) RETIRE();B(0x113)-=15;}
+    break; case 2: {float *parameters=PARAM;parameters[1]*=static_cast<double>(0.95f);MOTION->set_components(parameters[0],parameters[1]);if(B(0x113)<4) RETIRE();B(0x113)-=4;F(0x12c)+=F(0x370);F(0x370)*=static_cast<double>(0.9f);F(0x11c)+=static_cast<double>(0.005f);F(0x120)=F(0x11c);F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)=static_cast<float>(F(0xf8)*0.25+F(0xf0));}break;}FINISH();
 
 
 }
