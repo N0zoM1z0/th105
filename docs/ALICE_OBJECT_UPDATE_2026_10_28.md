@@ -127,3 +127,19 @@ The target phase 10 and 11 checks at `0x4FD5ED..0x4FD5FE` and `0x4FD66F..0x4FD67
 ## Action 817 surface-impact Y captures, 2026-11-05
 
 In phases 1, 10 and 8, the native surface-impact checks retain current Y in a QWORD before calling the surface-height helper at `0x50056B..0x50057C`, `0x500E4E..0x500E5F` and `0x500A64..0x500A75`. The earlier source read Y after that helper. Each path now captures Y only when its preceding distance or landing checks have failed, preserving the original short-circuit call order. Focused VC8 output shows the corresponding pre-call QWORD stores and comparisons at `0x3B00`, `0x3DBE` and `0x42FE`. The ordered greater-than test is unchanged. The full 62278-byte callable remains non-exact; no exact credit is claimed.
+
+## Action 854 orbit selector (2026-11-06)
+
+Native `0x50654F..0x506569` compares 359.0 against the fourth motion
+parameter. A value greater than 359 or an unordered comparison selects the
+negative-angle, radius-200 orbit; otherwise it selects the positive-angle,
+radius-100 orbit. The earlier ordered `> 359.0f` source chose the latter for
+an unordered parameter. The condition now reads `!(parameter <= 359.0f)`.
+Finite values retain their existing branch; whether an unordered parameter
+occurs in normal play and downstream conversion behavior are not established.
+
+The focused VC8 candidate uses the same C0 comparison bit at `0x9A25`, with an
+inverted branch layout (`test bl,ah` where BL is 1). The full root remains
+nonexact, section tail 62,972 bytes, compared SHA-256
+`9014c56e98e0739732e7b139ea5dbc09e098ff79ef9fc49f5c97df81b55c59b3`.
+No full-function or exact-byte credit is claimed.

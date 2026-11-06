@@ -700,7 +700,7 @@ case 853: {
 case 854: {
 
     if(S(0x13e)<=1) {
-        if(PARAM[3]>359.0f) {
+        if(!(PARAM[3]<=359.0f)) {
             F(0x370)=static_cast<float>(static_cast<double>(C(0x104))*F(0x378)+F(0x370));F(0x378)-=2.0;if(F(0x378)<2.0f) F(0x378)=2.0f;S(0x36c)+=3;S(0x36a)-=4*C(0x104);if(S(0x36c)>=90) S(0x36c)=90;
             double orbitX=lookup_orientation_cosine_quantized_abs(static_cast<float>(PARAM[3]+static_cast<double>(S(0x36a))));double elevationX=lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x36c)));float *parameters=PARAM;F(0xec)=static_cast<float>(elevationX*200.0*orbitX+F(0x370));double orbitY=lookup_orientation_sine_quantized_abs(static_cast<float>(parameters[3]+static_cast<double>(S(0x36a))));F(0xf0)=static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(S(0x36c)))*200.0*orbitY+F(0x374));
         }
