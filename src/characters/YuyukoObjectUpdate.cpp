@@ -206,7 +206,7 @@ void YuyukoObjectUpdateView::update_action_state()
  case 826:
   if(I(0x180)==5)RETIRE();if(S(0x13e)==0){SCALE(F(0x11c)*D(0.6f));if(I(0x144)>9)--I(0x330);}
   else if(static_cast<unsigned>(static_cast<int>(S(0x13e))-1)<4){F(0x12c)+=F(0x370);F(0xf4)*=D(0.97f);F(0xf8)-=D(0.15f);SCALE(F(0x11c)-D(0.01f));if(I(0x144)>14)FADE(10,10);}
-  if(F(0xec)<=1380.0f && F(0xec)>=-100.0 && F(0xf0)<=1060.0f && F(0xf0)>=-100.0)goto yuyuko810_move_frame;RETIRE();
+  if(F(0xec)>1380.0f)RETIRE();if(F(0xec)<-100.0)RETIRE();if(F(0xf0)>1060.0f)RETIRE();if(F(0xf0)<-100.0)RETIRE();goto yuyuko810_move_frame;
  case 848:
   switch(S(0x13e)) {
   case 1:position_relative(0,0);if(AT(P,short,0x13c)!=300)RETIRE();break;

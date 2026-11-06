@@ -313,3 +313,22 @@ and timer-guard structure. The complete selected root remains nonexact, with
 34,868-byte section tail and compared SHA-256
 `0d3aac7b14ea022c60f4710238f171255c952a7eb235c5f8bf024b09c6f89eb8`;
 no whole-function or exact-byte credit is claimed.
+
+## Action 826 out-of-bounds comparisons (2026-11-06)
+
+Native `0x573361..0x5733B7` checks each of the four out-of-bounds predicates
+separately. An unordered coordinate does not by itself trigger retirement.
+The earlier source expressed the complementary ordered in-bounds range, so an
+unordered coordinate caused retirement instead. Four direct guards now preserve
+native ordered comparison behavior for the same bounds. Finite in-range and
+out-of-range inputs retain their prior decisions; normal-play occurrence of an
+unordered coordinate is unknown.
+
+The selected candidate at `0x3BA3..0x3BFA` keeps a distinct four-comparison
+sequence, including `test ah,0x5` at the upper bounds. VC8 emits local return
+copies where the native branches use shared return tails, so physical ownership
+is not yet correct. A single combined OUTSIDE expression was also tried but
+merged this whole comparison sequence into another action; it was not selected.
+The full root remains nonexact, section tail 34,884 bytes, compared SHA-256
+`6a4bc69f0cb99eb0283671e7a11084fa13ba70617be09a417ecc1c4fb463fab4`.
+No whole-function or exact-byte credit is claimed.
