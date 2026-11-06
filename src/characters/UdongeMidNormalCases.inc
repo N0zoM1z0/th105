@@ -27,7 +27,7 @@ case 302:
         if(time_counter_144>=18 || I(0x180)){S(0x7a6)=255;next_sequence_block();return;}
     }
     if(sequence_index_13e==2){F(0xf4)=static_cast<float>(F(0xf4)-1.0);if(F(0xf4)<0.0f)F(0xf4)=0.0f;}
-    if(sequence_index_13e==4){F(0xf4)=static_cast<float>(F(0xf4)-static_cast<double>(0.1f));if(time_counter_144>23 || I(0x180)){next_sequence_block();return;}}
+    if(sequence_index_13e==4){F(0xf4)=static_cast<float>(F(0xf4)-static_cast<double>(0.1f));if(time_counter_144>=24 || I(0x180)){next_sequence_block();return;}}
     if(sequence_index_13e==5){F(0xf4)=static_cast<float>(F(0xf4)-1.0);if(F(0xf4)<0.0f)F(0xf4)=0.0f;}return;
 case 303:
     landing();if(directional(0))return;

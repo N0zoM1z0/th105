@@ -181,10 +181,10 @@ public:
         if(diagonal){
             p[0]=-45.0f;p[1]=0.0f;p[2]=1.0f;beam_pair826(p);
             p[0]=45.0f;p[1]=0.0f;p[2]=1.0f;beam_pair826(p);
-            if(at<signed char>(0x60b)>3){p[1]=0.0f;p[2]=1.0f;p[0]=90.0f;spawn_offset(826,0,0.0,p,3);p[0]=90.0f;spawn(826,at<float>(0xec),at<float>(0xf0),static_cast<unsigned char>(-at<signed char>(0x104)),1,p,3);}
+            if(at<signed char>(0x60b)>=4){p[1]=0.0f;p[2]=1.0f;p[0]=90.0f;spawn_offset(826,0,0.0,p,3);p[0]=90.0f;spawn(826,at<float>(0xec),at<float>(0xf0),static_cast<unsigned char>(-at<signed char>(0x104)),1,p,3);}
         }else{
             p[0]=0.0f;p[1]=0.0f;p[2]=1.0f;beam_pair826(p);
-            if(at<signed char>(0x60b)>3){p[0]=-45.0f;p[1]=0.0f;p[2]=1.0f;beam_pair826(p);p[0]=45.0f;p[1]=0.0f;p[2]=1.0f;beam_pair826(p);}
+            if(at<signed char>(0x60b)>=4){p[0]=-45.0f;p[1]=0.0f;p[2]=1.0f;beam_pair826(p);p[0]=45.0f;p[1]=0.0f;p[2]=1.0f;beam_pair826(p);}
         }
         p[2]=5.0f;spawn_offset(826,0,100.0,p,3);
     }
