@@ -36,12 +36,12 @@ void TenshiObjectUpdateView::update_action_state()
   case 0:
    if(emit_repeated(0,1,4))RETIRE();MOVE();F(0x12c)=H[0];if(I(0x180)!=0){next_sequence_block();float vx=RND(50)*D(0.1f);F(0xf4)=-vx-2.0;float vy=RND(50)*D(0.1f);F(0xf8)=vy+4.0;return;}STEP();break;
   case 1:F(0xf8)-=D(0.4f);F(0x12c)+=12.0;FADE(11,10);STEP();break;
-  case 2:SCALE(F(0x11c)-D(0.005f));if(S(0x140)>0){FADE(21,20);B(0x112)-=20;B(0x111)-=20;}break;
+  case 2:SCALE(F(0x11c)-D(0.005f));if(S(0x140)>=1){FADE(21,20);B(0x112)-=20;B(0x111)-=20;}break;
   case 3:
    F(0x370)+=6.0;if(F(0x370)>90.0f)F(0x370)=90;SCALE((lookup_orientation_cosine_quantized_abs(F(0x370))*D(0.2f)+D(0.01f))+F(0x11c));FADE(11,10);B(0x112)-=10;B(0x111)-=10;break;
   case 4:
    if(emit_repeated(0,2,5))RETIRE();MOVE();H[1]+=2.0;if(H[1]>=17.5f)H[1]=17.5f;F(0x12c)=H[0];
-   if(I(0x180)!=0){advance_six(15);if(C(0x184)>0){H[1]=3;if(S(0x364)>4){S(0x364)=0;I(0x180)=0;if(C(0x184)<4){short frame=S(0x140);next_sequence_block();set_sequence_frame(frame);return;}}++S(0x364);}else{FADE(10,10);H[1]=1;}}
+   if(I(0x180)!=0){advance_six(15);if(C(0x184)>0){H[1]=3;if(S(0x364)>4){S(0x364)=0;I(0x180)=0;if(C(0x184)<=3){short frame=S(0x140);next_sequence_block();set_sequence_frame(frame);return;}}++S(0x364);}else{FADE(10,10);H[1]=1;}}
    STEP();break;
   case 5:
    if(emit_repeated(0,2,5))RETIRE();MOVE();H[1]+=2.0;if(H[1]>=17.5f)H[1]=17.5f;F(0x12c)=H[0];

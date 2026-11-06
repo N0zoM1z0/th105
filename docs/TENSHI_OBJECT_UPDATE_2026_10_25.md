@@ -335,3 +335,7 @@ No complete-function or exact-byte credit is claimed.
 At `0x65574F`, native loads the signed timer with `fild` and directly compares it with parameter 4. Source now converts the timer to double rather than float before that comparison, avoiding premature rounding of large integers. Normal-play reachability of such values is unknown; the focused body remains nonexact and no exact credit is claimed.
 
 The sequence 9/10 threshold at `0x6552C6..0x6552E4` likewise converts the signed timer directly with `fild` before comparing parameter 1. The source now avoids a preliminary float conversion there too; this adjustment leaves the focused candidate hash unchanged. The same reachability and nonexact limitations apply.
+
+### Action 800 integer gates
+
+The original phase-2 frame gate at `0x64CEF3` compares against 1, and the phase-4 signed-byte gate at `0x64D06D` compares against 3. Equivalent source forms recover their local compare-and-branch sequences. Integer behavior is unchanged, and the 42,508-byte candidate remains non-exact.
