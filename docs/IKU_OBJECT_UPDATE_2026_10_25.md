@@ -359,3 +359,5 @@ Native action dispatches at `0x633CFF` (811), `0x637A4A` (857), `0x638C1A` (898)
 ### Timer threshold forms
 
 Four original signed timer gates compare against 90 (`0x6336EF`), 45 (`0x635736`), 160 (`0x637080`), and 4 (`0x638B73`), branching while below the threshold. The corresponding source now uses `>=` with those values instead of `>` with the preceding integer. This preserves behavior and restores the local immediate-and-branch forms in the candidate. The full function remains non-exact, with a 34,252-byte candidate section.
+
+A further pass restores equivalent timer bounds for the native 12-, 20-, 30-, 60-, 180-, and 300-frame gates. Fresh compilation recovers the observed compare/branch forms at the corresponding bodies; some repeated bodies fold together differently, so this is not a one-to-one code-layout claim. Integer behavior is unchanged and the complete 34,252-byte candidate remains non-exact.
