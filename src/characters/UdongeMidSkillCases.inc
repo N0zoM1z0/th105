@@ -63,13 +63,13 @@ case 520:
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==8){dispatch_character_wave_handle(7);I(0x180)=1;counter(200,120);phase_counter(50);float p[3]={0.0f,0.0f,0.0f};spawn_offset(815,60,108.0,p,3);}
     if(sequence_index_13e==2 && time_counter_144>19)next_sequence_block();
     if(sequence_index_13e==4 && !frame_timer_142 && frame_index_140==6){dispatch_character_wave_handle(7);I(0x180)=1;}
-    if(sequence_index_13e==6 && time_counter_144>19)next_sequence_block();return;
+    if(sequence_index_13e==6 && time_counter_144>=20)next_sequence_block();return;
 case 521:
     landing();if(!I(0x6c4))B(0x750)=0;if(advance())set_action_and_finalize(0);if(entry(4))set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==4){dispatch_character_wave_handle(7);I(0x180)=1;counter(200,120);phase_counter(50);float p[3]={-25.0f,-0.5f,0.0f};spawn_offset(815,20,145.0,p,3);}
-    if(sequence_index_13e==2 && time_counter_144>29)next_sequence_block();
+    if(sequence_index_13e==2 && time_counter_144>=30)next_sequence_block();
     if(entry(5)){dispatch_character_wave_handle(7);I(0x180)=1;}
-    if(sequence_index_13e==6 && time_counter_144>19)next_sequence_block();return;
+    if(sequence_index_13e==6 && time_counter_144>=20)next_sequence_block();return;
 case 525:
     landing();if(!I(0x6c0))B(0x750)=0;expand_cone();
     if(sequence_index_13e==1){
@@ -160,27 +160,27 @@ case 531:
 case 540:
     landing();if(!I(0x6c0))B(0x750)=0;if(advance())set_action_and_finalize(0);if(entry(4))set_action_and_finalize(0);
     if(entry(1)){dispatch_character_wave_handle(8);I(0x180)=1;counter(200,120);phase_counter(50);float p[3]={2.5f,static_cast<float>(C(0x606)*45.0+120.0),0.0f};spawn_offset(820,-8,120.0,p,3);}
-    if(sequence_index_13e==2 && time_counter_144>11)next_sequence_block();
+    if(sequence_index_13e==2 && time_counter_144>=12)next_sequence_block();
     if(entry(5)){dispatch_character_wave_handle(8);I(0x180)=1;}
-    if(sequence_index_13e==6 && time_counter_144>19)next_sequence_block();return;
+    if(sequence_index_13e==6 && time_counter_144>=20)next_sequence_block();return;
 case 541:
     landing();if(!I(0x6c0))B(0x750)=0;if(advance())set_action_and_finalize(0);if(entry(4))set_action_and_finalize(0);
     if(entry(1)){dispatch_character_wave_handle(8);I(0x180)=1;counter(200,120);phase_counter(50);float p[3]={1.5f,static_cast<float>(C(0x606)*20.0+60.0),0.0f};spawn(820,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+120.0),B(0x104),1,p,3);}
-    if(sequence_index_13e==2 && time_counter_144>11)next_sequence_block();
+    if(sequence_index_13e==2 && time_counter_144>=12)next_sequence_block();
     if(entry(5)){dispatch_character_wave_handle(8);I(0x180)=1;}
-    if(sequence_index_13e==6 && time_counter_144>19)next_sequence_block();return;
+    if(sequence_index_13e==6 && time_counter_144>=20)next_sequence_block();return;
 case 545:
     landing();if(!I(0x6c0))B(0x750)=0;if(advance())set_action_and_finalize(0);if(entry(4))set_action_and_finalize(0);
     if(entry(1)){dispatch_character_wave_handle(17);I(0x180)=1;counter(200,120);phase_counter(50);float p[3]={static_cast<float>(C(0x60a)*static_cast<double>(0.3f)+static_cast<double>(2.2f)),180.0f,0.0f};spawn_offset(821,-8,120.0,p,3);}
-    if(sequence_index_13e==2 && time_counter_144>11)next_sequence_block();
+    if(sequence_index_13e==2 && time_counter_144>=12)next_sequence_block();
     if(entry(5)){dispatch_character_wave_handle(8);I(0x180)=1;}
-    if(sequence_index_13e==6 && time_counter_144>19)next_sequence_block();return;
+    if(sequence_index_13e==6 && time_counter_144>=20)next_sequence_block();return;
 case 546:
     landing();if(!I(0x6c4))B(0x750)=0;if(advance())set_action_and_finalize(0);if(entry(4))set_action_and_finalize(0);
     if(entry(1)){dispatch_character_wave_handle(8);I(0x180)=1;counter(200,120);phase_counter(50);float p[3]={static_cast<float>(C(0x60a)*0.25+1.5),90.0f,0.0f};spawn(821,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+120.0),B(0x104),1,p,3);}
-    if(sequence_index_13e==2 && time_counter_144>11)next_sequence_block();
+    if(sequence_index_13e==2 && time_counter_144>=12)next_sequence_block();
     if(entry(5)){dispatch_character_wave_handle(8);I(0x180)=1;}
-    if(sequence_index_13e==6 && time_counter_144>19)next_sequence_block();return;
+    if(sequence_index_13e==6 && time_counter_144>=20)next_sequence_block();return;
 case 550:
     landing();if(!I(0x6c0))B(0x750)=0;if(S(0x736) && !sequence_index_13e)S(0x4ae)=2;
     if(advance())set_action_and_finalize(0);

@@ -24,7 +24,7 @@ case 302:
     if(entry(4)){F(0xf4)=17.5f;event(29);}
     if(sequence_index_13e==1){
         F(0xf4)=static_cast<float>(F(0xf4)-static_cast<double>(0.05f));if(S(0x7a6)<251)S(0x7a6)=static_cast<short>(S(0x7a6)+5);else S(0x7a6)=255;
-        if(time_counter_144>17 || I(0x180)){S(0x7a6)=255;next_sequence_block();return;}
+        if(time_counter_144>=18 || I(0x180)){S(0x7a6)=255;next_sequence_block();return;}
     }
     if(sequence_index_13e==2){F(0xf4)=static_cast<float>(F(0xf4)-1.0);if(F(0xf4)<0.0f)F(0xf4)=0.0f;}
     if(sequence_index_13e==4){F(0xf4)=static_cast<float>(F(0xf4)-static_cast<double>(0.1f));if(time_counter_144>23 || I(0x180)){next_sequence_block();return;}}

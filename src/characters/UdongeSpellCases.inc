@@ -17,7 +17,7 @@ case 603:
     landing();texture(0,2);
     if(sequence_index_13e==1){
         if(time_counter_144%10==0 && S(0x730)<10){float p[3]={0.0f,25.0f,0.0f};spawn_offset(853,60,100.0,p,3);dispatch_character_wave_handle(12);++S(0x730);}
-        if(time_counter_144>119){next_sequence_block();return;}
+        if(time_counter_144>=120){next_sequence_block();return;}
     }
     if(advance())set_action_and_finalize(0);
     if(entry(1))time_counter_144=0;

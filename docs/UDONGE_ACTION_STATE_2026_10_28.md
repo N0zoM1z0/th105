@@ -125,3 +125,7 @@ Native `0x5C1D0E..0x5C1D7E` captures the unsigned effect-facing byte before sine
 ## Orbit 852 and 900 facing lifetimes, 2026-11-05
 
 Native 852 spawns including `0x5CD8FC..0x5CD976` and `0x5CD9F0..0x5CDA6A`, and 900 spawns including `0x5CF45C..0x5CF4D4`, capture the unsigned spawn-facing byte before sine and reload signed facing after cosine for the X offset. The former candidate's shared helpers captured the signed value before sine as well. The two helpers now express the native read points with ordinary locals, preserving their distinct native Y associations. Fresh VC8 helper output reads direction before sine and signed facing after cosine for each. The 66787-byte root remains non-exact (candidate section tail 67876, first mismatch +67); its frame now matches the native 0x480, but no exact credit or ordinary-gameplay difference is claimed.
+
+### Integer gate thresholds
+
+The original signed timer gates at `0x5C3027`, `0x5CA05F`, `0x5CC1D1`, `0x5CC227`, and `0x5CDCC0` compare against 18, 30, 12, 20, and 120. Equivalent source forms, including the repeated skill cases sharing the 12/20 gates, recover the local compare-and-branch sequences without changing integer behavior. The complete candidate remains non-exact, with a 67,896-byte section.
