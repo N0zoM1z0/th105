@@ -56,7 +56,7 @@ void SakuyaObjectUpdateView::update_action_state()
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==2)--I(0x330);return;
  case 801:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)>=0 && S(0x13e)<3) {
+  switch(S(0x13e)){case 0:case 1:case 2: {
    if(S(0x140)<2 && emit_repeated(0,0,4))RETIRE();
    if(S(0x142)==0 && S(0x140)==0)replace_secondary(994,4.0f,10,2,2);
    if(S(0x140)<2) {
@@ -64,14 +64,15 @@ void SakuyaObjectUpdateView::update_action_state()
     if(CONTACT2468) {B(0x184)=0;set_sequence_frame(2);P->dispatch_character_wave_handle(3);I(0x144)=0;release_secondary();F(0xf4)=-F(0xf4)*0.5;F(0xf8)=static_cast<float>(random_float(30)*D(0.1f))+5.0;return;}
    }
    if(S(0x140)==2) {F(0x12c)-=30.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
-  } else if(S(0x13e)==3) {
+  } break; case 3: {
    if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=0)RETIRE();F(0xec)=AT(R,float,0xec);F(0xf0)=AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);
   }
+  break;}
   STEP();if(OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==2)--I(0x330);return;
  case 802:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)>=0 && S(0x13e)<3) {
+  switch(S(0x13e)){case 0:case 1:case 2: {
    if(S(0x142)==0 && S(0x140)==0)replace_secondary(994,4.0f,10,2,2);
    if(S(0x140)<3 && emit_repeated(0,2,5))RETIRE();
    if(S(0x140)<3) {
@@ -81,9 +82,10 @@ void SakuyaObjectUpdateView::update_action_state()
     if(S(0x140)==1)MOTION->set_components(H[0],static_cast<float>(H[1]*D(0.05f)));
    }
    if(S(0x140)==4) {F(0x12c)-=30.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
-  } else if(S(0x13e)==3) {
+  } break; case 3: {
    if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=2)RETIRE();F(0xec)=AT(R,float,0xec);F(0xf0)=AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);
   }
+  break;}
   STEP();if(OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==3)--I(0x330);
   if(S(0x13e)<3 && S(0x142)==0 && S(0x140)==2) {replace_secondary(994,4.0f,10,2,2);float payload[3]={H[0],0,3};PARENTED(802,-1,3);}return;
@@ -250,7 +252,7 @@ void SakuyaObjectUpdateView::update_action_state()
   STEP();FRAME_EXIT();
  case 817:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)>=0 && S(0x13e)<3){
+  switch(S(0x13e)){case 0:case 1:case 2:{
    if(S(0x140)<2 && emit_repeated(0,2,5))RETIRE();
    if(S(0x142)==0 && S(0x140)==2){replace_secondary(994,4.0f,10,2,2);float payload[3]={H[0],0,3};PARENTED(817,-1,3);}
    if(S(0x140)<3){
@@ -260,25 +262,28 @@ void SakuyaObjectUpdateView::update_action_state()
      if((AT(P,short,0x13c)==545 && AT(P,short,0x13e)==0 && AT(P,short,0x140)==8) || (AT(P,short,0x13c)==546 && AT(P,short,0x13e)==0 && AT(P,short,0x140)==8) || (AT(P,short,0x13c)==547 && AT(P,short,0x13e)==0 && AT(P,short,0x140)==8) || (AT(P,short,0x13c)==548 && AT(P,short,0x13e)==0 && AT(P,short,0x140)==8)){next_sequence_frame();return;}}
    }
    if(S(0x140)==4){F(0x12c)-=30.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
-  }else if(S(0x13e)==3){if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=2)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
+  }break; case 3:{if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=2)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
+  break;}
   STEP();if(OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==3)--I(0x330);return;
  case 818:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)==0){
+  switch(S(0x13e)){case 0:{
    if(S(0x140)<2 && emit_repeated(0,0,3))RETIRE();
    if(S(0x140)==0)MOVE();
    if(S(0x140)==1){if(AT(P,short,0x48c)<1){next_sequence_frame();S(0x344)=0;replace_secondary(994,4.0f,10,2,2);float payload[3]={H[0],0,1};PARENTED(818,-1,3);return;}MOTION->set_components(H[0],0);}
    if(S(0x140)==2){if(CONTACT2468){B(0x184)=0;set_sequence_frame(4);P->dispatch_character_wave_handle(3);release_secondary();F(0xf4)=-F(0xf4)*(0.5-random_float(30)*D(0.01f));F(0xf8)=static_cast<float>(random_float(30)*D(0.05f))+5.0;return;}if(I(0x180)!=0){next_sequence_frame();release_secondary();return;}MOVE();}
    if(S(0x140)==3){F(0xf4)=0;F(0xf8)=0;if(I(0x144)>19)RETIRE();}
    if(S(0x140)==4){F(0x12c)-=5.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
-  }else if(S(0x13e)==1){if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=2)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
-  else if(S(0x13e)==2){F(0x11c)-=D(0.15f);if(F(0x11c)<1)F(0x11c)=1;F(0x120)=F(0x11c);if(I(0x144)>19)RETIRE();}
+  }break; case 1:{if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);if(AT(R,short,0x140)!=2)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
+  break; case 2:{F(0x11c)-=D(0.15f);if(F(0x11c)<1)F(0x11c)=1;F(0x120)=F(0x11c);if(I(0x144)>19)RETIRE();}
+  break;}
   STEP();if(OUTSIDE(1580.0f,-300.0f,1200.0f,-300.0f))RETIRE();if(advance_frame())RETIRE();
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==1)RETIRE();if(S(0x142)==0 && S(0x140)==3)RETIRE();return;
  case 849:
-  if(S(0x13e)==0){F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0);if(AT(P,short,0x13c)!=308)RETIRE();}
-  else if(S(0x13e)==1){F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0);if(AT(P,short,0x13c)!=304 && AT(P,short,0x13c)!=309)RETIRE();}
-  else if(S(0x13e)==2){MOVE();H[1]-=0.5;if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;F(0x12c)+=F(0x374);F(0x120)=F(0x11c)=static_cast<float>(F(0x11c)+D(0.02f));if(I(0x144)>=0){if(B(0x113)<=5)RETIRE();B(0x113)-=5;}F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;}
+  switch(S(0x13e)){case 0:{F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0);if(AT(P,short,0x13c)!=308)RETIRE();}
+  break; case 1:{F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0);if(AT(P,short,0x13c)!=304 && AT(P,short,0x13c)!=309)RETIRE();}
+  break; case 2:{MOVE();H[1]-=0.5;if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;F(0x12c)+=F(0x374);F(0x120)=F(0x11c)=static_cast<float>(F(0x11c)+D(0.02f));if(I(0x144)>=0){if(B(0x113)<=5)RETIRE();B(0x113)-=5;}F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;}
+  break;}
   if(AT(P,short,0x186)!=0)return;if(advance_frame())--I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==1)--I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==2)--I(0x330);return;
@@ -429,7 +434,7 @@ void SakuyaObjectUpdateView::update_action_state()
   FRAME_EXIT();
  case 920:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)>=0 && S(0x13e)<3){
+  switch(S(0x13e)){case 0:case 1:case 2:{
    if(S(0x140)<2){switch(g_match_identifier){case 0:advance_six(1);break;case 1:advance_six(10);break;case 2:case 3:advance_six(0);break;}
     if(AT(P,short,0x174)<1 || CONTACT2468){B(0x184)=0;P->dispatch_character_wave_handle(3);set_sequence_frame(2);release_secondary();F(0xf4)=-F(0xf4)*(0.5-random_float(30)*D(0.01f));F(0xf8)=static_cast<float>(random_float(30)*D(0.05f))+5.0;}
     if(S(0x13e)==0 || S(0x13e)==1){if(S(0x140)==0){if(AT(P,short,0x7a4)<1){MOTION->set_components(H[0],H[1]+F(0x374));F(0x374)*=D(0.85f);F(0x12c)=H[0];}
@@ -438,19 +443,21 @@ void SakuyaObjectUpdateView::update_action_state()
     if(S(0x13e)==2){S(0x344)=0;MOVE();F(0x12c)=H[0];}
    }
    if(S(0x140)==2){S(0x344)=0;F(0x12c)-=30.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
-  }else if(S(0x13e)==3){if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>1)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
+  }break; case 3:{if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>1)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
+  break;}
   STEP();if(F(0xec)>1780.0 || F(0xec)<-500.0 || F(0xf0)>1400.0f || F(0xf0)<-560.0f)RETIRE();
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==3)--I(0x330);return;
  case 930:
   if(I(0x180)==5)RETIRE();
-  if(S(0x13e)>=0 && S(0x13e)<3){
+  switch(S(0x13e)){case 0:case 1:case 2:{
    if(S(0x140)<2){if(S(0x13e)==0 || S(0x13e)==1)advance_six(0);else if(S(0x13e)==2)advance_six(1);
     if(AT(P,short,0x174)<1 || CONTACT2468){B(0x184)=0;P->dispatch_character_wave_handle(3);set_sequence_frame(2);release_secondary();F(0xf4)=-F(0xf4)*(0.5-random_float(30)*D(0.01f));F(0xf8)=static_cast<float>(random_float(30)*D(0.05f))+5.0;}
     if(S(0x13e)==0 || S(0x13e)==1){if(S(0x140)==0){if(AT(P,short,0x7a4)>0){B(0x184)=0;if(AT(P,short,0x7a4)==60){next_sequence_block();return;}if(AT(P,short,0x7a4)==1){B(0x184)=1;I(0x180)=0;}}}else S(0x344)=0;}
     if(S(0x13e)==2){S(0x344)=0;MOVE();F(0x12c)=H[0];}
    }
    if(S(0x140)==2){S(0x344)=0;F(0x12c)-=30.0;F(0xf8)-=0.5;if(B(0x113)<=10)RETIRE();B(0x113)-=10;}
-  }else if(S(0x13e)==3){if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>1)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
+  }break; case 3:{if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>1)RETIRE();F(0xec)=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);F(0xf0)=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
+  break;}
   if(AT(P,short,0x7a4)==0)STEP();
   if((F(0xec)>1780.0 || F(0xec)<-500.0 || F(0xf0)>1400.0f || F(0xf0)<-560.0f))RETIRE();
   if(advance_frame())--I(0x330);if(S(0x142)==0 && S(0x140)==3)--I(0x330);return;
