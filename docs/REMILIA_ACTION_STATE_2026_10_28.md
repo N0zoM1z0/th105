@@ -226,3 +226,21 @@ exact credit is claimed.
 ## Surface-height spawn arguments (2026-11-05)
 
 Three calls in actions 600 and 603 use the surface provider's return directly as spawn Y in the target, including `0x54E62D..0x54E654` and the two separately called 603 paths beginning at `0x54EE7B`. Direct arguments reproduce these local provider-to-outgoing-slot lifetimes. Action 711's native `0x550A18..0x550A3F` also passes the return directly, but making its source identical to action 600 caused VC8 to merge two physical target call sites into one. Its previous float local is therefore retained while that code-sharing difference remains unresolved. The selected candidate keeps both 850 call sites; the 711 local still introduces an extra store/reload. Direction remains captured before each provider call; no whole-root exactness or normal-gameplay numerical difference is asserted.
+
+## Action 711 surface argument and direction width (2026-11-06)
+
+The earlier action 711 float local preserved the two physical object-850
+spawn sites but introduced an extra store and reload of the surface return.
+Keeping the captured direction as its observed unsigned-byte value and passing
+the surface call directly to the spawn is a natural alternative. It preserves
+both physical 850 pushes while removing the extra surface-result spill. The
+candidate at `0xB815..0xB840` captures the direction before the provider call,
+stores the provider's result directly into outgoing Y, and then loads X, as in
+native `0x550A18..0x550A3F`. The exact instruction schedule still differs:
+the candidate loads the byte and zero-extends it separately. No claim of a
+normal-play numerical difference is made.
+
+The selected root remains nonexact, with 63,036-byte section tail and compared
+SHA-256 `d066c11f0aa3334b9ff2391104fbc454875386b39054c23b04f87517f340ec57`.
+This supersedes the retained-local limitation in the preceding section; the
+complete function earns no exact-byte credit.
