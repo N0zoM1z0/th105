@@ -2628,7 +2628,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  case 602: {
   RESOLVE(); publish_texture_state(3,2);
   if(S(0x13E)==1 && I(0x144)>60) BLOCK();
-  if(S(0x13E)==2 && I(0x144)>=19) BLOCK();
+  if(S(0x13E)==2 && I(0x144)>18) BLOCK();
   if(FRAME()) ACTION(0);
   if(S(0x13E)!=0) return;
   if(S(0x142)==0 && S(0x140)==3) {
@@ -2678,7 +2678,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  case 605: {
   RESOLVE(); publish_texture_state(3,2);
   if(S(0x13E)==1 && I(0x144)>80) BLOCK();
-  if(S(0x13E)==2 && I(0x144)>=19) BLOCK();
+  if(S(0x13E)==2 && I(0x144)>18) BLOCK();
   if(FRAME()) ACTION(0);
   if(S(0x13E)!=0) return;
   if(S(0x142)==0 && S(0x140)==3) {
@@ -2697,7 +2697,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  case 606: {
   RESOLVE(); publish_texture_state(3,2);
   if(S(0x13E)==1) {
-   if(I(0x144)%2==0 && S(0x730)<8) {
+   if(I(0x144)%2==0 && S(0x730)<=7) {
     WAVE(28);
     float packet[4]; packet[0]=static_cast<float>((S(0x730)%4)*6-60.0); packet[1]=S(0x730)*3.0+20.0;
     packet[2]=0; packet[3]=S(0x730);
