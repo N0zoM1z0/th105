@@ -325,7 +325,7 @@ void YoumuObjectUpdateView::update_action_state()
   if(advance_frame()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==2) --I(0x330);
-  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==3) --I(0x330);
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==2) --I(0x330);
   return;
  case 854:
   if(I(0x180)==5 || AT(P,short,0x13C)!=604) RETIRE();
