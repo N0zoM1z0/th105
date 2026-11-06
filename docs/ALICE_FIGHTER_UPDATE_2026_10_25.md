@@ -724,3 +724,5 @@ Eight native switch sites beginning at `0x4EF0E0` sign-extend the byte at `0x605
 ### Integer gate thresholds
 
 Four original signed integer gates at `0x4F1992`, `0x4F24F1`, `0x4F29A1`, and `0x4F2EC7` compare against 10, 60, 80, and 480. Equivalent source forms recover their local comparison and branch instructions without changing integer behavior. The complete function remains non-exact; its candidate section is 43,916 bytes.
+
+Four repeated timer gates at `0x4F00BE`, `0x4F03EE`, `0x4F1BC5`, and `0x4F1C11` compare against 15 or 12 in the original. Equivalent source forms recover their local signed comparisons and branches. Integer behavior is unchanged; the 43,916-byte candidate remains non-exact.
