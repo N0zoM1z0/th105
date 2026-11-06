@@ -385,7 +385,7 @@ void AyaObjectActionView::update_action_state()
             return;
         }
         unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
-        if (sequence_index_13e == 1) {
+        switch (sequence_index_13e) { case 1: {
             if (alpha < 20) {
                 --lifetime_330;
                 return;
@@ -400,7 +400,7 @@ void AyaObjectActionView::update_action_state()
                 sprite_004.reset_one_118 + 0.1f);
             sprite_004.reset_one_118 = scale;
             sprite_004.reset_one_11c = scale;
-        } else if (sequence_index_13e == 2) {
+        } break; case 2: {
             motion_core()->set_oriented_components_f0_f4(heading_340[0], heading_340[1]);
             heading_340[1] = static_cast<float>(heading_340[1] - 0.5);
             if (heading_340[1] < 0.5f)
@@ -423,7 +423,7 @@ void AyaObjectActionView::update_action_state()
                 }
                 alpha -= 5;
             }
-        } else if (sequence_index_13e == 0) {
+        } break; case 0: {
             if (!frame_index_140
                 && effect_emitter()->emit_repeated_effects_for_owner_state(0, 0, 4)) {
                 --lifetime_330;
@@ -456,7 +456,7 @@ void AyaObjectActionView::update_action_state()
             state_370 = static_cast<float>(
                 static_cast<double>(state_370)
                 + 8 * static_cast<signed char>(sprite_004.object_facing_100));
-        }
+        } break; }
         if (sprite_004.object_x_0e8 > 1580.0f
             || sprite_004.object_x_0e8 < -300.0f
             || sprite_004.object_y_0ec > 1200.0f
@@ -567,7 +567,7 @@ void AyaObjectActionView::update_action_state()
             return;
         }
         unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
-        if (sequence_index_13e == 0) {
+        switch (sequence_index_13e) { case 0: {
             if (effect_emitter()->emit_repeated_effects_for_owner_state(0, 4, 3)) {
                 --lifetime_330;
                 return;
@@ -599,7 +599,7 @@ void AyaObjectActionView::update_action_state()
             sprite_004.object_x_0e8 +=
                 static_cast<float>(sprite_004.object_facing_100) * motion_core()->component_f0;
             sprite_004.object_y_0ec += motion_core()->component_f4;
-        } else if (sequence_index_13e == 1) {
+        } break; case 1: {
             unsigned char const current_alpha = alpha;
             float const scale = static_cast<float>(
                 sprite_004.reset_one_118 + 0.1f);
@@ -612,7 +612,7 @@ void AyaObjectActionView::update_action_state()
                 return;
             }
             alpha = static_cast<unsigned char>(current_alpha - 15);
-        } else if (sequence_index_13e == 2) {
+        } break; case 2: {
             float const prior_rotation = sprite_004.reset_zero_128;
             unsigned char const current_alpha = alpha;
             sprite_004.reset_zero_128 = static_cast<float>(prior_rotation + state_370);
@@ -626,7 +626,7 @@ void AyaObjectActionView::update_action_state()
                 return;
             }
             alpha = static_cast<unsigned char>(current_alpha - 20);
-        }
+        } break; }
     }
 aya_sequence_two_frame_tail:
         if (advance_frame_and_dispatch())
@@ -828,7 +828,7 @@ aya_sequence_two_frame_tail:
             return;
         }
         unsigned char &alpha = reinterpret_cast<unsigned char *>(this)[0x113];
-        if (sequence_index_13e == 0) {
+        switch (sequence_index_13e) { case 0: {
             if (effect_emitter()->emit_repeated_effects_for_owner_state(0, 4, 3)) {
                 --lifetime_330;
                 return;
@@ -865,7 +865,7 @@ aya_sequence_two_frame_tail:
                 --lifetime_330;
                 return;
             }
-        } else if (sequence_index_13e == 1) {
+        } break; case 1: {
             unsigned char const current_alpha = alpha;
             float const scale = static_cast<float>(
                 sprite_004.reset_one_118 + 0.1f);
@@ -878,7 +878,7 @@ aya_sequence_two_frame_tail:
                 return;
             }
             alpha = static_cast<unsigned char>(current_alpha - 15);
-        } else if (sequence_index_13e == 2) {
+        } break; case 2: {
             float const prior_rotation = sprite_004.reset_zero_128;
             unsigned char const current_alpha = alpha;
             sprite_004.reset_zero_128 = static_cast<float>(prior_rotation + state_370);
@@ -892,7 +892,7 @@ aya_sequence_two_frame_tail:
                 return;
             }
             alpha = static_cast<unsigned char>(current_alpha - 20);
-        }
+        } break; }
         if (advance_frame_and_dispatch())
             --lifetime_330;
         if (!time_counter_144 && !frame_timer_142 && !frame_index_140

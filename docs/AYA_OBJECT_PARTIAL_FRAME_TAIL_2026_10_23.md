@@ -127,3 +127,7 @@ replay. Rebase future trials on this source and verify the complete function.
 Do not carry the rejected fade's smaller size or older return-view effects
 forward as acceptance evidence. Accepted ledger totals are unchanged; no
 aggregate cold replay was performed.
+
+## Three phase dispatches (2026-11-06)
+
+Native object actions 812, 817 and 822 use signed phase dispatch at `0x61AD7C`, `0x61B2BC` and `0x61BD0F`. Their equivalent if/else chains now use ordinary switches, restoring three local signed phase loads and switch-branch families in focused VC8 output. Case and default behavior is retained. The complete candidate remains nonexact (20052-byte section tail, first mismatch +34); shared tail and register allocation still differ, and no exact credit is claimed.
