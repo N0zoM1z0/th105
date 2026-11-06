@@ -295,7 +295,7 @@ STEP();break;
     if(I(0x144)%4==0 && I(0x144)>19){PACKET(p516,-60.0-RND(60),static_cast<float>(RND(120)*D(0.1f))+10.0,1);unsigned int facing=B(0x104);spawn_unparented(854,(F(0xec)+100.0)-RND(200),F(0xf0),facing,1,reinterpret_cast<const unsigned *>(p516),3);
      PACKET(p516,static_cast<float>(static_cast<unsigned>(selector_random_roll(6)+I(0x144)*5)),25,3);SPAWN(854,(p516[0]<0.0 || !(p516[0]<=180.0f))?-1:1,p516);}
    }
-   if(AT(A,float,0xec)<F(0xec))F(0xf4)-=C(0x104)*D(0.1f);if(F(0xec)<AT(A,float,0xec))F(0xf4)+=C(0x104)*D(0.1f);if(F(0xf4)>2.0f)F(0xf4)=2;if(F(0xf4)<-2.0f)F(0xf4)=-2;break;
+   if(F(0xec)>AT(A,float,0xec))F(0xf4)-=C(0x104)*D(0.1f);if(F(0xec)<AT(A,float,0xec))F(0xf4)+=C(0x104)*D(0.1f);if(F(0xf4)>2.0f)F(0xf4)=2;if(F(0xf4)<-2.0f)F(0xf4)=-2;break;
   }STEP();break;
  case 855:
   if(I(0x180)==5)RETIRE();
