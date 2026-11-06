@@ -229,3 +229,7 @@ claim is made.
 
 The 79435-byte callable remains nonexact at +17; candidate section tail 78876.
 This is not exact-function or exact-byte credit.
+
+## Action 331 phase dispatch (2026-11-06)
+
+Native `0x59C0FD..0x59C115` sign-extends the phase and dispatches phases 1, 2 and 3 using three subtractions and conditional branches. Expressing the existing source branches as an ordinary switch reproduces that local instruction and branch pattern in the focused VC8 candidate; handled and default phase behavior is unchanged. The complete candidate remains nonexact (78908-byte section tail, first mismatch +17); no exact credit is claimed.
