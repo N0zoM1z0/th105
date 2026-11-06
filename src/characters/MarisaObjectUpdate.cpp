@@ -1310,12 +1310,12 @@ case 827: {
 }
 case 848: {
 
-    if(S(0x13e)==0) {
+    switch(S(0x13e)){case 0: {
         void *owner=OWNER;
         F(0xec)=FIELD(owner,float,0xec);F(0xf0)=FIELD(owner,float,0xf0);
         short action=FIELD(owner,short,0x13c);
         if(action!=322 && action!=418 && action!=696) RETIRE();
-    } else if(S(0x13e)==1) {
+    } break; case 1: {
         float *parameters=PARAM;
         if(parameters[1]==0.0) {
             void *owner=OWNER;
@@ -1338,7 +1338,7 @@ case 848: {
                 F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+103.0);
             }
         }
-    } else if(S(0x13e)==2) {
+    } break; case 2: {
         MOTION->set_components(PARAM[0],PARAM[1]);
         PARAM[1]-=0.5;if(PARAM[1]<0.5) PARAM[1]=0.5f;
         F(0xec)=C(0x104)*F(0xf4)+F(0xec);
@@ -1351,6 +1351,7 @@ case 848: {
         F(0xec)=C(0x104)*F(0xf4)+F(0xec);
         F(0xf0)=static_cast<float>(0.25*F(0xf8)+F(0xf0));
     }
+    break;}
     if(FIELD(OWNER,short,0x186)==0) {
         if(advance_frame()) --I(0x330);
         if(I(0x144)==0) {
@@ -2483,10 +2484,11 @@ case 998: {
 }
 case 999: {
 
-    if(static_cast<unsigned>(S(0x13e))<=1u) {
+    switch(S(0x13e)){case 0:case 1: {
         FIELD(OWNER,float,0xec)=F(0xec);if(F(0xec)>1480.0f || F(0xec)<-200.0) RETIRE();
         if(S(0x13e)>=1) F(0xf8)-=F(0x100);
     }
+    break;}
     F(0xec)=C(0x104)*F(0xf4)+F(0xec);F(0xf0)=F(0xf0)+F(0xf8);
     if(advance_frame()) --I(0x330);
     if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==1) {F(0xf4)=15.0f;F(0xf8)=15.0f;F(0x100)=0.2f;}

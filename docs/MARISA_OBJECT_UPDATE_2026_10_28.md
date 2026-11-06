@@ -131,3 +131,7 @@ Native `0x4C1527..0x4C1547` rounds the RNG(250) product with double-promoted `0.
 ## Action 848 emitted speed rounding, 2026-11-05
 
 Native `0x4C1D21..0x4C1D40` stores the RNG(10) product with double-promoted `0.1f` as a float before adding 1. The earlier source added before this intermediate rounding. An ordinary float local now preserves that lifetime; focused VC8 emits the matching multiply/store/reload/add/store sequence. For RNG result 9, the previous expression rounds to about 1.89999998 and the target sequence to 1.90000010. The 48771-byte callable remains non-exact (candidate section tail 50216, first mismatch +37); no exact credit is claimed.
+
+## Actions 848 and 999 phase dispatch (2026-11-06)
+
+Native action 848 at `0x4C1980` uses a signed three-phase switch, and action 999 at `0x4C7B7C` groups phases 0 and 1 through a signed switch range. The equivalent source conditions now use ordinary switches. Focused VC8 output restores those local signed loads and dispatch branch families while retaining the same handled/default phases. The complete candidate remains nonexact (50224-byte section tail, first mismatch +37); no exact credit is claimed.
