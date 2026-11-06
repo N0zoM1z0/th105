@@ -190,3 +190,18 @@ four comparison outcomes. The complete candidate remains unselected and
 nonexact, section tail 68,220 bytes, compared SHA-256
 `bbcf6b1fef5ebeb9903c73000799a9ec1993f805085fcd2b252e3d45244ca481`.
 No full-function or exact-byte credit is claimed.
+
+## Action 720 destination side (2026-11-06)
+
+The preceding native comparison at `0x4B2C0D..0x4B2C47` chooses the
+`580 - random` destination when current X is at least 640 or the comparison is
+unordered. The prior ordered `current X >= 640` instead chose `700 + random`
+for unordered X. The condition now uses `!(current X < 640.0f)`. Finite values
+retain their prior selection; the availability of unordered X in normal play
+is not established. The focused candidate's `test ah,0x41; je` at
+`0xF617..0xF61A` has the native outcomes with inverted branch layout.
+
+The complete candidate remains unselected and nonexact, section tail 68,220
+bytes and compared SHA-256
+`0e469ce06822a4d9cd1a9ceaabcac592f9f3f346cc46515a341a72339df2ebdc`.
+No full-function or exact-byte credit is claimed.
