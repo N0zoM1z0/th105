@@ -387,7 +387,7 @@ STEP();break;
   {float *packet;
    switch(S(0x13e)) {
    case 0:
-    if(AT(P,short,0x174)<1 || S(0x174)<-699){PACKET(p108,0,0,5);packet=p108;goto yuyuko901_finish;}
+    if(AT(P,short,0x174)<1 || S(0x174)<=-700){PACKET(p108,0,0,5);packet=p108;goto yuyuko901_finish;}
     if(I(0x144)%7==0){PACKET(p132,0,0,3);unsigned int facing=B(0x104);spawn_unparented(901,(RND(50)-25.0)+F(0xec),(RND(50)-25.0)+F(0xf0),facing,-1,reinterpret_cast<const unsigned *>(p132),3);}
     if(F(0xec)>=g_update_right || F(0xec)<=g_update_left || F(0xf0)>=g_update_top || F(0xf0)<=0.0){if(F(0xec)>=g_update_right || F(0xec)<=g_update_left)F(0xf4)=-F(0xf4);if(F(0xf0)>=g_update_top || F(0xf0)<=0.0)F(0xf8)=-F(0xf8);H[0]=-atan2_degrees(F(0xf8),F(0xf4));P->dispatch_character_wave_handle(11);
      int n=0;do{PACKET(p492,(static_cast<float>(n)+H[0])-15.0,RND(50)*D(0.1f),0);SPAWN(902,1,p492);n+=15;}while(n<45);p492[2]=5;SPAWN(901,1,p492);p492[2]=4;packet=p492;goto yuyuko901_finish;

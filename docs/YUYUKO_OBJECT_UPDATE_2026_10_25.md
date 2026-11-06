@@ -346,3 +346,5 @@ Action 826 at `0x57329E` likewise uses a signed phase switch, with phase 0 separ
 ### Integer gate thresholds
 
 Six original integer gates at `0x56F77E`, `0x56FA01`, `0x57212A`, `0x5743C9`, `0x5754D5`, and `0x577784` compare against 120, 60, 10, 300, 360, and 120. The equivalent source threshold forms recover these local compare and signed-branch instructions without changing integer behavior. The complete function remains non-exact; the candidate section is 34,924 bytes.
+
+The action 901 owner-state gate at `0x576D95` branches for a signed short at or below -700. The equivalent source bound restores its original compare and branch; the complete candidate remains non-exact.

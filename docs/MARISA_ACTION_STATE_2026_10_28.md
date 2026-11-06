@@ -209,3 +209,5 @@ No full-function or exact-byte credit is claimed.
 ### Integer gate thresholds
 
 Nine integer threshold forms were adjusted using original gates at `0x4A91BF`, `0x4A9AB5`, `0x4AA4EB`, `0x4AAEB7`, `0x4AAEE2`, `0x4B1DB2`, `0x4B1DC5`, `0x4B2B64`, and `0x4B2BAC`. The candidate recovers their branch conditions and threshold values; some operand allocation and intervening layout still differ. Integer behavior is unchanged, and the complete 68,220-byte candidate remains non-exact.
+
+The action 658 phase gate at `0x4B0E90` skips its spawn path above phase 3. Its equivalent source bound restores the original local comparison and branch; the complete candidate remains non-exact.

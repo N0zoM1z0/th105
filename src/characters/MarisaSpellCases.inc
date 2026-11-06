@@ -131,7 +131,7 @@ case 619:
     if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==3)spell_flash(-16,100.0,5);if(!frame_timer_142 && frame_index_140==5){float p[3]={0.0f,0.0f,11.0f};spawn_offset(869,100,105.0,p,3);dispatch_character_wave_handle(10);++S(0x732);}}return;
 case 658:
     if(sequence_index_13e==5)landing();else texture(5,2);
-    if(S(0x730)>0){if(sequence_index_13e<4 && S(0x730)%4==1){dispatch_character_wave_handle(19);float p[4];p[0]=static_cast<float>(static_cast<double>(static_cast<float>(marisa_random(40)))-20.0);p[1]=10.0f;p[2]=static_cast<float>(marisa_random(4));p[3]=0.0f;spawn_offset(859,25,107.0,p,4);}++S(0x730);}
+    if(S(0x730)>0){if(sequence_index_13e<=3 && S(0x730)%4==1){dispatch_character_wave_handle(19);float p[4];p[0]=static_cast<float>(static_cast<double>(static_cast<float>(marisa_random(40)))-20.0);p[1]=10.0f;p[2]=static_cast<float>(marisa_random(4));p[3]=0.0f;spawn_offset(859,25,107.0,p,4);}++S(0x730);}
     if((sequence_index_13e==1 || sequence_index_13e==3) && time_counter_144>40){next_sequence_block();return;}
     if(sequence_index_13e==4){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){select_sequence(5);zero_motion();F(0xf0)=marisa_surface(this);return;}}
     if(advance())set_action_and_finalize(0);if(entry(5)){set_action_and_finalize(9);return;}if(entry(1))spell_flash(-23,106.0,1);
