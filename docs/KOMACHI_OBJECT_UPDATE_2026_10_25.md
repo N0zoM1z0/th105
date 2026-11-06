@@ -454,3 +454,7 @@ Native 0x5FE88D and 0x5FE8B6 loads the signed timer directly into x87, multiplie
 ## Seven phase dispatches (2026-11-06)
 
 Native actions 815, 825, 826, 827, 852, 853 and 855 use signed switch-shaped phase dispatches, including entries `0x5FB02D`, `0x5FC102`, `0x5FC5B4`, `0x5FC79D`, `0x5FCDAE`, `0x5FD0BB` and `0x5FDCF3`. Equivalent if/else chains now use ordinary switches, restoring seven local signed phase loads and branch families in the focused VC8 candidate while retaining handled/default behavior. The full candidate remains nonexact (29008-byte section tail, first mismatch +8); no exact credit is claimed.
+
+### Actions 800 and 850 phase dispatch
+
+The original action 800 dispatch at `0x5F9486` sign-extends the phase and uses an unsigned comparison against 2. Grouping cases 0, 1, and 2 in a switch preserves the existing short-phase behavior and recovers that dispatch family in the candidate. Action 850 at `0x5FCCFB` sign-extends the phase and subtracts 1 before branching; its single-case switch similarly recovers that local sequence. The surrounding code and complete function remain non-exact; the focused candidate section is 28,832 bytes.

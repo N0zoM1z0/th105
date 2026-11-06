@@ -38,12 +38,13 @@ void KomachiObjectUpdateView::update_action_state()
  case 800:
   if(I(0x180)==5)RETIRE();
   if(S(0x13e)<3 && emit_repeated(0,0,4))RETIRE();
-  if(static_cast<unsigned short>(S(0x13e))<3) {
+  switch(S(0x13e)){case 0:case 1:case 2: {
    F(0x12c)+=2.0;
    if(S(0x140)==0) {H[1]+=D(0.05f);MOVE();if(I(0x180)!=0){P->dispatch_character_wave_handle(3);F(0xf4)*=-0.5;float speed=RND(25)*D(0.1f);I(0x144)=0;F(0xf8)=speed+5.0;next_sequence_frame();return;}}
    if(S(0x140)==1) {F(0xf8)-=D(0.3f);if(I(0x144)>29)FADE(5,5);}
    STEP();
   }
+  break;}
   if(OUTSIDE(1380.0f,-100.0,1060.0f,-100.0))RETIRE();
   if(advance_frame())RETIRE();
   if(RETURN_ON_ENTRY_PHASE(1))RETIRE();if(RETURN_ON_ENTRY_PHASE(2))RETIRE();return;
@@ -193,7 +194,7 @@ void KomachiObjectUpdateView::update_action_state()
   if(OUTSIDE(1680.0,-400.0,1360.0f,-400.0))RETIRE();
   if(advance_frame())RETIRE();if(RETURN_ON_ENTRY_PHASE(1))RETIRE();if(RETURN_ON_ENTRY_PHASE(2))RETIRE();return;
  case 850:
-  if(I(0x180)==5)RETIRE();if(S(0x13e)==1){SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>29)FADE(15,15);STEP();}FRAME_EXIT();
+  if(I(0x180)==5)RETIRE();switch(S(0x13e)){case 1:{SCALE(F(0x11c)+F(0x370));F(0xf8)-=D(0.3f);F(0x370)-=D(0.3f);if(F(0x370)<D(0.05f))F(0x370)=0.05f;if(I(0x144)>29)FADE(15,15);STEP();}break;}FRAME_EXIT();
  case 852:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)){case 0:{if(emit_owner_gated_pair())RETIRE();ORBIT_WAVE_UNCAPTURED();advance_six(0);advance_phase(2);if(I(0x180)!=0){BURST(852,50,5.0,1);burst_packet[0]=F(0xf4);burst_packet[1]=F(0xf8);burst_packet[2]=0;SPAWN(826,1,burst_packet);RETIRE();}}
