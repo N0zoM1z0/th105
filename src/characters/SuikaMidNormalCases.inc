@@ -109,7 +109,7 @@ case 331:
     switch(sequence_index_13e){case 1:{
         if(I(0x180) && C(0x184)>0){++S(0x730);if(S(0x730)>5){S(0x730)=0;I(0x180)=0;}}
         if(time_counter_144%6==0)event(28);
-        if(time_counter_144>24){next_sequence_block();B(0x184)=1;I(0x180)=0;F(0xf8)=10.0f;F(0xf4)=7.0f;F(0x100)=0.75f;return;}
+        if(time_counter_144>=25){next_sequence_block();B(0x184)=1;I(0x180)=0;F(0xf8)=10.0f;F(0xf4)=7.0f;F(0x100)=0.75f;return;}
     }break; case 2:{if(!frame_timer_142 && frame_index_140==2)event(29);}
     break; case 3: if(time_counter_144==45){set_action_and_finalize(9);return;} break;}
     if(advance())set_action_and_finalize(9);if(entry(4))F(0x100)=0.5f;return;

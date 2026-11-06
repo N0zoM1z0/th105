@@ -169,7 +169,7 @@ case 740:
                 else F(0x744)=desired;
                 if(time_counter_144%period==0){dispatch_character_wave_handle(60);shot_particle930();}
             }else{B(0x184)=0;F(0x740)=static_cast<float>(F(0x740)-static_cast<double>(0.2f));F(0x748)=static_cast<float>(F(0x748)+static_cast<double>(0.05f));if(F(0x740)<0.0f)F(0x740)=0.0f;
-                if(S(0x730)>689){burst999();B(0x113)=255;F(0xf8)=15.0f;F(0x100)=0.2f;next_sequence_block();return;}
+                if(S(0x730)>=690){burst999();B(0x113)=255;F(0xf8)=15.0f;F(0x100)=0.2f;next_sequence_block();return;}
             }
             update_oriented_velocity();F(0xf8)+=F(0x748);
         }
@@ -201,7 +201,7 @@ case 751:
         }
         F(0x6ac)=F(0x73c);
         if((F(0xec)<peer()->at<float>(0xec) && peer()->at<signed char>(0x104)==1) || (peer()->at<float>(0xec)<F(0xec) && peer()->at<signed char>(0x104)==-1))F(0x6ac)=-F(0x73c);
-        if(time_counter_144>299){next_sequence_block();return;}
+        if(time_counter_144>=300){next_sequence_block();return;}
     }
     if(sequence_index_13e==2 && !frame_timer_142){if(frame_index_140==2){flip();release_fragments811();}if(!frame_timer_142 && frame_index_140==9)F(0x100)=0.2f;}
     if(sequence_index_13e==2 || sequence_index_13e==3){F(0xf8)-=F(0x100);if(static_cast<unsigned char>(crossed())){zero_motion();F(0xf0)=suika_surface(this);select_sequence(4);return;}}return;

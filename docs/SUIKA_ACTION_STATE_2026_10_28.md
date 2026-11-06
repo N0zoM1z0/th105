@@ -233,3 +233,7 @@ This is not exact-function or exact-byte credit.
 ## Action 331 phase dispatch (2026-11-06)
 
 Native `0x59C0FD..0x59C115` sign-extends the phase and dispatches phases 1, 2 and 3 using three subtractions and conditional branches. Expressing the existing source branches as an ordinary switch reproduces that local instruction and branch pattern in the focused VC8 candidate; handled and default phase behavior is unchanged. The complete candidate remains nonexact (78908-byte section tail, first mismatch +17); no exact credit is claimed.
+
+### Integer gate thresholds
+
+Five original integer gates at `0x59977E`, `0x5999C2`, `0x59C1E5`, `0x5AAA85`, and `0x5AB54C` use thresholds 16, 16, 25, 690, and 300. Equivalent source threshold forms restore their local signed comparisons and branches without changing integer behavior. The complete candidate remains non-exact, with a 78,908-byte section.
