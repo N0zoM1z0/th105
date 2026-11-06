@@ -907,11 +907,15 @@ case 998: {
 case 999: {
 
     if(I(0x180)==5) RETIRE();
-    if(S(0x13e)==0) {
+    switch(S(0x13e)) {
+    case 0: {
         float *parameters=PARAM;F(0x12c)+=F(0x370);F(0x374)+=static_cast<double>(0.1f);F(0x370)*=static_cast<double>(0.95f);F(0x11c)+=static_cast<double>(0.005f);F(0x120)=F(0x11c);parameters[1]=static_cast<float>(static_cast<double>(0.95f)*parameters[1]);if(parameters[1]<1.0f) parameters[1]=1.0f;MOTION->set_components(parameters[0],parameters[1]);F(0xf8)=F(0x374)+F(0xf8);if(I(0x144)>=5) {if(B(0x113)<3) RETIRE();B(0x113)-=3;}F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);
     }
-    if(S(0x13e)==1) {
+    break;
+    case 1: {
         float *parameters=PARAM;F(0x12c)+=F(0x370);F(0x374)+=static_cast<double>(0.1f);F(0x370)*=static_cast<double>(0.95f);F(0x11c)+=static_cast<double>(0.005f);F(0x120)=F(0x11c);parameters[1]=static_cast<float>(static_cast<double>(0.95f)*parameters[1]);if(parameters[1]<0.0f) parameters[1]=0.0f;MOTION->set_components(parameters[0],parameters[1]);F(0xf8)=F(0x374)+F(0xf8);if(I(0x144)>=2) {if(B(0x113)<12) RETIRE();B(0x113)-=12;}F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)+=F(0xf8);
+    }
+    break;
     }
     FINISH();
 

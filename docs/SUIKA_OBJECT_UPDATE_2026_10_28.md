@@ -206,3 +206,7 @@ No full-function or exact-byte credit is claimed.
 ## Four phase dispatches (2026-11-06)
 
 Native object actions 850, 853, 854 and 920 dispatch signed phases at `0x5B56E2`, `0x5B5ECF`, `0x5B6515` and `0x5BA14D`. Their existing conditional branches now use ordinary switches, restoring the four local signed loads and phase-dispatch branch families in the focused VC8 output. The common finish paths and handled/default phase behavior are retained. The full candidate remains nonexact (53188-byte section tail, first mismatch +17); no exact credit is claimed.
+
+### Action 999 phase dispatch
+
+The original at `0x5BCE5B` selects phase 0 or 1 once with a sign-extended load and subtract-and-branch sequence. A switch restores that local dispatch and avoids re-reading the phase after the first body. The candidate's corresponding dispatch now has the same instruction sequence and branch displacements; the complete function is still non-exact, with a 53,152-byte candidate section.
