@@ -36,7 +36,7 @@ case 720:
     if(sequence_index_13e==1){F(0xf8)=static_cast<float>(F(0xf8)*static_cast<double>(0.9f));F(0xf4)=static_cast<float>(static_cast<double>(0.9f)*F(0xf4));if(time_counter_144>71){select_sequence(4);F(0xf4)=0.0f;F(0xf8)=0.0f;return;}}
     if(entry(2)){
         if(F(0xec)>=640.0f)F(0x74c)=static_cast<float>(580.0-static_cast<double>(static_cast<float>(marisa_random(360))));else F(0x74c)=static_cast<float>(static_cast<double>(static_cast<float>(marisa_random(360)))+700.0);
-        F(0x748)=static_cast<float>(static_cast<double>(static_cast<float>(marisa_random(260)))+60.0);B(0x104)=F(0xec)<=F(0x74c)?1:255;
+        F(0x748)=static_cast<float>(static_cast<double>(static_cast<float>(marisa_random(260)))+60.0);B(0x104)=!(F(0x74c)<F(0xec))?1:255;
     }
     if(sequence_index_13e==3){
         S(0x736)=0;S(0x738)=0;F(0xf4)=static_cast<float>(facing()*(F(0x74c)-F(0xec))*static_cast<double>(0.05f));F(0xf8)=static_cast<float>((F(0x748)-F(0xf0))*static_cast<double>(0.05f));

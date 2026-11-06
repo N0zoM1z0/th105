@@ -174,3 +174,19 @@ Native `0x4A579A..0x4A580A` captures the unsigned effect-facing byte before sine
 ## Unsigned random conversion constants, 2026-11-05
 
 The native action root uses float `2^32` corrections for unsigned random results; for example `0x4AA717..0x4AA729` feeds the observed float-rounded 0.1 product. Eight source expressions converted unsigned values directly to double, producing 11 expanded double-correction sites. Converting through float before the surrounding double arithmetic now yields 70 float corrections and no double corrections in the focused candidate, matching the native root's aggregate counts; the previous candidate had 59 and 11 respectively. The next x87 operation-category totals are unchanged and do not indicate additional early float stores. These counts are diagnostic, not proof of every path or of whole-root equality. Bounded random values are exactly representable as floats, so no ordinary-play numeric change is established. The 66,695-byte root remains nonexact at +14 with a 68,220-byte candidate section tail; no exact credit is claimed.
+
+## Action 720 destination facing (2026-11-06)
+
+Native `0x4B2C98..0x4B2CB6` selects facing +1 when the randomly chosen
+destination is at least the current X position or the comparison is unordered;
+otherwise it selects -1. The earlier ordered `current <= destination` expression
+selected -1 for an unordered comparison. The source now expresses the native
+condition as `!(destination < current)`. Finite values retain their previous
+result; whether an unordered position occurs in normal play is unknown.
+
+The focused VC8 candidate uses the reversed operand order and
+`test ah,0x41; jne` at `0xF69F..0xF6A7`, producing the native result for all
+four comparison outcomes. The complete candidate remains unselected and
+nonexact, section tail 68,220 bytes, compared SHA-256
+`bbcf6b1fef5ebeb9903c73000799a9ec1993f805085fcd2b252e3d45244ca481`.
+No full-function or exact-byte credit is claimed.
