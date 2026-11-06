@@ -206,8 +206,9 @@ break;}
 break;}
   STEP();if(advance_frame())--I(0x330);if(ENTRY(1))--I(0x330);return;
  case 826:
-  if(I(0x180)==5)RETIRE();if(S(0x13e)==0){SCALE(F(0x11c)*D(0.6f));if(I(0x144)>9)--I(0x330);}
-  else if(static_cast<unsigned>(static_cast<int>(S(0x13e))-1)<4){F(0x12c)+=F(0x370);F(0xf4)*=D(0.97f);F(0xf8)-=D(0.15f);SCALE(F(0x11c)-D(0.01f));if(I(0x144)>14)FADE(10,10);}
+  if(I(0x180)==5)RETIRE();switch(S(0x13e)){case 0:{SCALE(F(0x11c)*D(0.6f));if(I(0x144)>9)--I(0x330);}
+  break; case 1:case 2:case 3:case 4:{F(0x12c)+=F(0x370);F(0xf4)*=D(0.97f);F(0xf8)-=D(0.15f);SCALE(F(0x11c)-D(0.01f));if(I(0x144)>14)FADE(10,10);}
+  break;}
   if(F(0xec)>1380.0f)RETIRE();if(F(0xec)<-100.0)RETIRE();if(F(0xf0)>1060.0f)RETIRE();if(F(0xf0)<-100.0)RETIRE();goto yuyuko810_move_frame;
  case 848:
   switch(S(0x13e)) {

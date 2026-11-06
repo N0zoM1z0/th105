@@ -340,3 +340,5 @@ At `0x57528B`, native loads the signed timer with `fild` and directly compares i
 ## Four phase dispatches (2026-11-06)
 
 Native actions 821, 825, 851 and 920 use signed phase dispatches at `0x572965`, `0x573183`, `0x573B43` and `0x5775CD`. The equivalent source conditions now use ordinary switches, restoring the four local signed phase loads and switch branch families in the focused VC8 output while retaining case/default behavior. The complete candidate remains nonexact (34944-byte section tail, first mismatch +31); no exact credit is claimed.
+
+Action 826 at `0x57329E` likewise uses a signed phase switch, with phase 0 separate and phases 1–4 sharing a branch. Replacing the equivalent unsigned range check with those switch cases restores the signed load and local range-dispatch family; all other phase values retain the default path. The focused section tail is 34924 bytes, first mismatch +31, and the complete function remains nonexact.
