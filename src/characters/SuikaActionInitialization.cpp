@@ -44,7 +44,7 @@ void SuikaActionEntryView::initialize_action_entry()
   F(0x100)=0;I(0x180)=0;F(0xf4)*=0.2f;F(0xf8)*=0.2f;S(0x732)=0;S(0x730)=0;B(0x750)=1;return;
  case 418:F(0xf4)=17.5f;if(B(0x47e)==0)zero_motion();I(0x180)=0;B(0x184)=1;return;
  case 500:case 501:
-  B(0x750)=1;B(0x17c)=0;zero_motion();I(0x180)=0;B(0x47e)=0;S(0x730)=0;S(0x732)=0;B(0x184)=1;return;
+  B(0x750)=1;B(0x17c)=0;zero_motion();I(0x180)=0;B(0x47e)=0;B(0x184)=1;S(0x730)=0;S(0x732)=0;return;
  case 505:case 506:case 507:case 508:
   B(0x17c)=4;B(0x750)=1;zero_motion();B(0x184)=0;B(0x47e)=0;S(0x730)=0;S(0x732)=0;I(0x180)=1;return;
  case 520:case 521:case 522:case 523:
