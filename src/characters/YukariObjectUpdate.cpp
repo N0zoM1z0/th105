@@ -57,7 +57,7 @@ void YukariObjectUpdateView::update_action_state()
  case 801:
   switch(S(0x13e)) {
   case 0:
-   if(emit_repeated(0,0,5))RETIRE();MOVE();if(H[3]<=static_cast<float>(I(0x144))){next_sequence_block();SCALE(1.0);H[0]-=90.0;H[1]=10;return;}break;
+   if(emit_repeated(0,0,5))RETIRE();MOVE();if(H[3]<=static_cast<double>(I(0x144))){next_sequence_block();SCALE(1.0);H[0]-=90.0;H[1]=10;return;}break;
   case 1:
    if(I(0x144)==0)replace_secondary(991,5,20,1,2);if(emit_repeated(0,0,5))RETIRE();advance_six(5);
    if(I(0x180)!=0){next_sequence_block();F(0xf4)=F(0xf8)=0;PACKET(p544,RND(360),0,3);SPAWN(801,1,p544);p544[2]=4;float n=0;do{p544[0]=RND(360);p544[1]=RND(20)+10.0;SPAWN(801,1,p544);n+=1.0;}while(n<8.0f);return;}
@@ -68,17 +68,17 @@ void YukariObjectUpdateView::update_action_state()
   case 3:F(0x11c)+=D(0.3f);F(0x120)+=D(0.3f);COLORFADE(10,10);break;
   case 4:if(I(0x144)>19)COLORFADE(10,10);H[1]*=D(0.9f);MOVE();break;
   case 5:
-   if(I(0x144)==0)replace_secondary(991,5,20,1,2);if(emit_repeated(0,0,5))RETIRE();MOVE();if(H[3]<=static_cast<float>(I(0x144))){select_sequence(7);I(0x144)=0;SCALE(1.0);H[0]+=90.0;H[1]=10;S(0x364)=0;return;}break;
+   if(I(0x144)==0)replace_secondary(991,5,20,1,2);if(emit_repeated(0,0,5))RETIRE();MOVE();if(H[3]<=static_cast<double>(I(0x144))){select_sequence(7);I(0x144)=0;SCALE(1.0);H[0]+=90.0;H[1]=10;S(0x364)=0;return;}break;
   case 6:
-   if(I(0x144)==0)replace_secondary(991,5,20,1,2);if(emit_repeated(0,0,5))RETIRE();MOVE();if(H[3]<=static_cast<float>(I(0x144))){select_sequence(8);I(0x144)=0;SCALE(1.0);H[0]-=90.0;H[1]=10;S(0x364)=0;return;}break;
+   if(I(0x144)==0)replace_secondary(991,5,20,1,2);if(emit_repeated(0,0,5))RETIRE();MOVE();if(H[3]<=static_cast<double>(I(0x144))){select_sequence(8);I(0x144)=0;SCALE(1.0);H[0]-=90.0;H[1]=10;S(0x364)=0;return;}break;
   case 7:
    if(emit_repeated(0,0,5))RETIRE();advance_six(5);
    if(I(0x180)!=0){next_sequence_block();F(0xf4)=F(0xf8)=0;PACKET(p568,RND(360),0,3);SPAWN(801,1,p568);p568[2]=4;float n=0;do{p568[0]=RND(360);p568[1]=RND(20)+10.0;SPAWN(801,1,p568);n+=1.0;}while(n<8.0f);return;}
-   if(H[3]<=static_cast<float>(I(0x144)) && S(0x364)==0){H[0]+=45.0;++S(0x364);}H[1]+=1.0;if(H[1]>30.0)H[1]=30;MOVE();if(OUTSIDE(1680.0,-400.0,1400.0f,-520.0f))RETIRE();break;
+   if(H[3]<=static_cast<double>(I(0x144)) && S(0x364)==0){H[0]+=45.0;++S(0x364);}H[1]+=1.0;if(H[1]>30.0)H[1]=30;MOVE();if(OUTSIDE(1680.0,-400.0,1400.0f,-520.0f))RETIRE();break;
   case 8:
    if(emit_repeated(0,0,5))RETIRE();advance_six(5);
    if(I(0x180)!=0){next_sequence_block();F(0xf4)=F(0xf8)=0;PACKET(p556,RND(360),0,3);SPAWN(801,1,p556);p556[2]=4;float n=0;do{p556[0]=RND(360);p556[1]=RND(20)+10.0;SPAWN(801,1,p556);n+=1.0;}while(n<8.0f);return;}
-   if(H[3]<=static_cast<float>(I(0x144)) && S(0x364)==0){S(0x364)=1;H[0]-=45.0;}H[1]+=1.0;if(H[1]>30.0)H[1]=30;MOVE();if(OUTSIDE(1680.0,-400.0,1400.0f,-520.0f))RETIRE();break;
+   if(H[3]<=static_cast<double>(I(0x144)) && S(0x364)==0){S(0x364)=1;H[0]-=45.0;}H[1]+=1.0;if(H[1]>30.0)H[1]=30;MOVE();if(OUTSIDE(1680.0,-400.0,1400.0f,-520.0f))RETIRE();break;
   }
   STEP();break;
  case 810:

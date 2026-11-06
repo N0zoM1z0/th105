@@ -377,3 +377,7 @@ The target at `0x58EAB9..0x58EB07` retires only for ordered coordinates outside 
 ## Timer angle conversion order (2026-11-05)
 
 Native 0x58FF63, 0x58FF92, 0x5906F7 and 0x59072C loads the signed timer directly into x87, multiplies by the double angle constant, and rounds to float only after any angle offset. The source now preserves that order instead of first casting the timer to float. The pinned VC8 build already elided the earlier conversion: the compared function bytes remain unchanged (SHA-256 `cb3d2411ec40b5057fd72fb4fda963d26a9a68b34b380c4a8730fabad8d45d60`). The function remains nonexact; no claim is made that a timer large enough to expose strict floating-point rounding is reachable in normal play.
+
+## Action 801 timer comparison precision (2026-11-06)
+
+In sequences 0, 5, 6, 7 and 8, native addresses `0x58DEE3`, `0x58E345`, `0x58E3FF`, `0x58E5AA` and `0x58E748` load the signed 32-bit timer with `fild` and compare it directly against parameter 3. There is no intervening single-precision store. The source now converts the timer to double rather than float before the comparison, preserving the native integer value even beyond the exact integer range of float. The prior and current pinned VC8 output both compare directly with `fild` at these sites; whether such large timers are reachable in normal play is unknown. The focused build remains nonexact (33972-byte target, 34628-byte candidate tail, first mismatch +31); no exact credit is claimed.
