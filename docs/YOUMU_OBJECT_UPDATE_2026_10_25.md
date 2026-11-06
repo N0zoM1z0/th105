@@ -406,3 +406,7 @@ At `0x53F0A9..0x53F0CF` and `0x542514..0x54253A`, the native path converts the f
 ## Random integer conversion constants, 2026-11-05
 
 The 11 wider roll locals introduced for actions 856, 857, 899 and 902 kept the desired no-spill x87 lifetime but converted unsigned integers with the double `2^32` correction. Native sites including `0x53F0B7..0x53F0C9`, `0x53F28F..0x53F2A8`, `0x53F6FD..0x53F710`, and `0x542522..0x542534` use the float correction instead. The source now expresses conversion through float while retaining each wider local. Fresh VC8 emits the float correction without forcing an intermediate float store before coordinate arithmetic; no double `2^32` corrections remain in this object. The bounded RNG values are exactly representable, so this does not establish a normal-play numeric difference. The complete 25,944-byte root remains nonexact at +34 (candidate section tail 27,008); no exact-byte credit is claimed.
+
+## Action 848 phase dispatch (2026-11-06)
+
+The target at `0x540CE5..0x540D24` sign-extends the phase and dispatches cases 0 and 1 through the characteristic two-arm switch sequence. Expressing the existing branches as an ordinary switch recovers that local `movsx`, two subtractions and branch order in the focused VC8 output, while preserving the default path and both owner-action guards. The complete candidate remains nonexact (27008-byte section tail, first mismatch +34); no exact credit is claimed.

@@ -578,8 +578,10 @@ void YoumuObjectUpdateView::update_action_state()
   }
   STEP(); FRAME_EXIT();
  case 848:
-  if(S(0x13E)==0) { if(AT(P,short,0x13C)!=302) RETIRE(); position_relative(0,0); }
-  else if(S(0x13E)==1) { if(AT(P,short,0x13C)!=304) RETIRE(); position_relative(0,0); }
+  switch(S(0x13E)) {
+  case 0: if(AT(P,short,0x13C)!=302) RETIRE(); position_relative(0,0); break;
+  case 1: if(AT(P,short,0x13C)!=304) RETIRE(); position_relative(0,0); break;
+  }
   if(AT(P,short,0x186)==0 && advance_frame()) RETIRE();
   if(S(0x142)==0 && S(0x140)==0) --I(0x330);
   return;
