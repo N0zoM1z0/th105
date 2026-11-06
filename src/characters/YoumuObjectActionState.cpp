@@ -451,7 +451,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(B(0x113)<13) RETIRE(); B(0x113)-=13; F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)*D(0.94f)); F(0xF8)-=D(0.1f); break;
   case 2:
    AT(P,short,0x7E6)=0; AT(P,unsigned char,0x7E5)=1; F(0xF4)*=0.5; F(0xF8)*=0.5;
-   if(I(0x144)>=10 && I(0x144)%5==0 && S(0x364)<11) {
+   if(I(0x144)>=10 && I(0x144)%5==0 && S(0x364)<=10) {
     P->dispatch_character_wave_handle(0);
     payload[0]=static_cast<float>(S(0x364)*20); payload[1]=0; payload[2]=1;
     SPAWN_AT(801,static_cast<float>(lookup_orientation_cosine_quantized_abs(-payload[0])*50.0*C(0x104)+F(0xEC)),static_cast<float>(lookup_orientation_sine_quantized_abs(-payload[0])*50.0+F(0xF0)),1,3);
@@ -473,7 +473,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(B(0x113)<20) RETIRE(); B(0x113)-=20; F(0x12C)+=15.0; F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+D(0.05f)); break;
   case 5:
    AT(P,short,0x7E6)=0; AT(P,unsigned char,0x7E5)=1; F(0xF4)*=0.5; F(0xF8)*=0.5;
-   if(I(0x144)>=30 && I(0x144)%5==0 && S(0x364)<18) {
+   if(I(0x144)>=30 && I(0x144)%5==0 && S(0x364)<=17) {
     P->dispatch_character_wave_handle(0);
     payload[0]=static_cast<float>(S(0x364)*25); payload[1]=0; payload[2]=1;
     SPAWN_AT(801,static_cast<float>(lookup_orientation_cosine_quantized_abs(-payload[0])*50.0*C(0x104)+F(0xEC)),static_cast<float>(lookup_orientation_sine_quantized_abs(-payload[0])*50.0+F(0xF0)),1,3);

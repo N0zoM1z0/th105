@@ -10,3 +10,7 @@ Target `0x623984..0x623A00` tests sequence 0 and sequence 1 independently. Each 
 ## Actions 740 and 781 phase dispatch (2026-11-06)
 
 At `0x62E341` the native action 740 groups phases 1–3 through a signed switch-style range dispatch; at `0x62E928` action 781 dispatches phases 0 and 1 through a signed two-arm subtraction chain. Expressing these existing source conditions as ordinary switches restores those local instruction shapes in the focused VC8 output while retaining the same phase and default behavior. Register choices and the full function still differ. The candidate section tail is 59430 bytes, with first mismatch +100; no exact credit is claimed.
+
+### Timer threshold
+
+The original gate at `0x624442` branches while the timer is below 15. The equivalent `>= 15` source form recovers that local comparison and branch. Integer behavior is unchanged; the 59,430-byte candidate remains non-exact.

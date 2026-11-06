@@ -1285,7 +1285,7 @@ __forceinline bool IkuActionStateView::try_dispatch_verified_action()
                 if (static_cast<signed char>(byte_at(0x184)) > 0 && int_at(0x180) != 0) {
                     if (++short_at(0x730) > 3) { int_at(0x180) = 0; short_at(0x730) = 0; }
                 }
-                if (time_counter_144 > 14) { next_sequence_block(); float_at(0x100) = 0.6f; return true; }
+                if (time_counter_144 >= 15) { next_sequence_block(); float_at(0x100) = 0.6f; return true; }
             }
             advance_or_action(9);
 

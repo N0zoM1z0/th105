@@ -412,3 +412,7 @@ The 11 wider roll locals introduced for actions 856, 857, 899 and 902 kept the d
 The target at `0x540CE5..0x540D24` sign-extends the phase and dispatches cases 0 and 1 through the characteristic two-arm switch sequence. Expressing the existing branches as an ordinary switch recovers that local `movsx`, two subtractions and branch order in the focused VC8 output, while preserving the default path and both owner-action guards. The complete candidate remains nonexact (27008-byte section tail, first mismatch +34); no exact credit is claimed.
 
 The native two-case phase dispatches for actions 813 and 852 at `0x53DB25` and `0x53E93B` use the same signed switch lowering. Replacing the equivalent if/else chains with switches restores the local `movsx` and two-subtraction dispatch at both sites. The focused section tail is now 27004 bytes with first mismatch +34; the full function remains nonexact.
+
+### Spawn-count gates
+
+The original gates at `0x53FAB9` and `0x53FE77` branch when the signed count exceeds 10 and 17. Equivalent source comparisons recover both local compare and branch sequences, including their displacements. Integer behavior is unchanged; the 27,004-byte candidate remains non-exact.
