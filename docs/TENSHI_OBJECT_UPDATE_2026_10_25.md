@@ -339,3 +339,5 @@ The sequence 9/10 threshold at `0x6552C6..0x6552E4` likewise converts the signed
 ### Action 800 integer gates
 
 The original phase-2 frame gate at `0x64CEF3` compares against 1, and the phase-4 signed-byte gate at `0x64D06D` compares against 3. Equivalent source forms recover their local compare-and-branch sequences. Integer behavior is unchanged, and the 42,508-byte candidate remains non-exact.
+
+The signed state gate at `0x64D285` now uses the equivalent `<= 0` form, recovering the local compare and branch. The complete function remains non-exact.

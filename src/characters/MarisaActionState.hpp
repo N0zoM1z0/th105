@@ -99,7 +99,7 @@ public:
         landing();
         if(sequence_index_13e==1){
             switch(g_match_identifier){
-            case 0:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>4.0f)at<float>(0x73c)=4.0f;if(time_counter_144>59){next_sequence_block();return;}break;
+            case 0:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>4.0f)at<float>(0x73c)=4.0f;if(time_counter_144>=60){next_sequence_block();return;}break;
             case 1:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>6.0f)at<float>(0x73c)=6.0f;if(time_counter_144>=90){next_sequence_block();return;}break;
             case 2:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>7.0)at<float>(0x73c)=7.0f;if(time_counter_144>=90){next_sequence_block();return;}break;
             case 3:at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+0.5);if(at<float>(0x73c)>8.0f)at<float>(0x73c)=8.0f;if(time_counter_144>=90){next_sequence_block();return;}break;

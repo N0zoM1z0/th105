@@ -395,3 +395,5 @@ Six original integer gates at `0x58EBA6`, `0x58ECDB`, `0x58F8CE`, `0x591C47`, `0
 A further pass restores original equivalent bounds for repeated frame, timer, and signed-byte gates, including frame 20 and timers 10, 15, 20, and 60. Fresh compilation recovers the corresponding local signed branch families; some register allocation and shared layout still differ. Integer behavior is unchanged, and the 34,608-byte candidate remains non-exact.
 
 The action 813 timer gate at `0x58F31F` now uses the equivalent 40-frame bound and recovers its local signed comparison and branch. The complete candidate remains non-exact.
+
+The signed state gate at `0x58ED4F` now uses the equivalent `<= 0` form, recovering the local compare and branch. The complete function remains non-exact.

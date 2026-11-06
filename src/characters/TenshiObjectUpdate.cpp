@@ -53,7 +53,7 @@ void TenshiObjectUpdateView::update_action_state()
   switch(S(0x13e)) {
   case 0:
    if(emit_repeated(0,0,5))RETIRE();advance_six(5);
-   if(C(0x184)<1){PACKET(p456,0,0,1);SPAWN(801,1,p456);p456[2]=2;SPAWN(801,1,p456);p456[2]=3;int count=6;do{p456[0]=RND(360);p456[1]=RND(10)+5.0;SPAWN(801,1,p456);}while(--count!=0);RETIRE();}
+   if(C(0x184)<=0){PACKET(p456,0,0,1);SPAWN(801,1,p456);p456[2]=2;SPAWN(801,1,p456);p456[2]=3;int count=6;do{p456[0]=RND(360);p456[1]=RND(10)+5.0;SPAWN(801,1,p456);}while(--count!=0);RETIRE();}
    if(OUTSIDE(1380.0f,-100.0,960.0,-200.0))RETIRE();break;
   case 1:SCALE(F(0x11c)+D(0.1f));FADE(15,15);B(0x111)-=15;B(0x110)-=15;break;
   case 2:SCALE(F(0x11c)*D(0.85f));FADE(15,15);B(0x111)-=15;B(0x110)-=15;break;

@@ -105,7 +105,7 @@ void YukariObjectUpdateView::update_action_state()
    if(I(0x144)>=4 && S(0x364)==0){if(S(0x36c)==0)S(0x36c)=(C(0x184)!=0)+1;B(0x184)=0;H[1]*=0.25;if(H[1]<=0.01f){H[1]=0;B(0x184)=0;S(0x364)=1;I(0x144)=0;}if(AT(P,short,0x13c)!=505){S(0x364)=1;B(0x184)=0;I(0x144)=0;}}
    if(S(0x364)==1 && (I(0x144)>19 || AT(P,short,0x13c)!=505)){S(0x364)=2;if(I(0x144)>19 && AT(P,signed char,0x608)>3 && S(0x36c)==2){S(0x364)=3;B(0x184)=1;I(0x180)=0;}I(0x144)=0;}
    if(S(0x364)==2){H[1]=-40;if(I(0x144)>=10)RETIRE();}
-   if(S(0x364)==3){if(emit_repeated(0,1,2))RETIRE();MOTION->set_components(H[0],static_cast<float>(lookup_orientation_cosine_quantized_abs(-H[0])*10.0+20.0));advance_six(0);if(C(0x184)<1)FADE(5,5);if(F(0xec)>1680.0 || F(0xec)<-400.0)RETIRE();}
+   if(S(0x364)==3){if(emit_repeated(0,1,2))RETIRE();MOTION->set_components(H[0],static_cast<float>(lookup_orientation_cosine_quantized_abs(-H[0])*10.0+20.0));advance_six(0);if(C(0x184)<=0)FADE(5,5);if(F(0xec)>1680.0 || F(0xec)<-400.0)RETIRE();}
    STEP();
   }break;}break;
  case 812:

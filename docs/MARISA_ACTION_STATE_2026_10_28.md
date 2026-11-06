@@ -213,3 +213,5 @@ Nine integer threshold forms were adjusted using original gates at `0x4A91BF`, `
 The action 658 phase gate at `0x4B0E90` skips its spawn path above phase 3. Its equivalent source bound restores the original local comparison and branch; the complete candidate remains non-exact.
 
 Repeated timer gates for 25, 30, and 90 frames now use the equivalent forms observed in the original. The focused candidate recovers the corresponding local comparisons and branches, including repeated inlined bodies. Integer behavior is unchanged; the 68,220-byte candidate remains non-exact.
+
+The 60-frame gates at `0x4B2DFA`, `0x4B3301`, and `0x4B3692` now use equivalent native threshold forms, recovering the local comparisons and branches. Repeated inlining still differs, and the complete 68,212-byte candidate remains non-exact.

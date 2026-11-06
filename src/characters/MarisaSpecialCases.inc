@@ -44,7 +44,7 @@ case 720:
     }
     if(sequence_index_13e==4){S(0x736)=0;S(0x738)=0;}
     if(sequence_index_13e==5 && time_counter_144>19){S(0x738)=1;if(time_counter_144%5==0)S(0x736)=static_cast<short>(static_cast<short>(marisa_random(6))+1);}
-    if(sequence_index_13e==6 && time_counter_144>19)S(0x738)=1;if(sequence_index_13e==7 && time_counter_144>59)S(0x738)=1;
+    if(sequence_index_13e==6 && time_counter_144>19)S(0x738)=1;if(sequence_index_13e==7 && time_counter_144>=60)S(0x738)=1;
     if(advance())set_action_and_finalize(700);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==3){F(0xf4)=3.0f;F(0xf8)=14.0f;F(0x100)=0.3f;}
     if(entry(1)){float p[3];switch(g_match_identifier){case 0:orbit901(p,120.0,3.0f);break;case 1:orbit901(p,90.0,4.0f);break;case 2:orbit901(p,72.0,5.0f);break;case 3:orbit901(p,60.0,6.0f);break;}F(0x73c)=0.0f;F(0x740)=0.0f;F(0x744)=3.0f;S(0x730)=0;S(0x732)=0;}return;
