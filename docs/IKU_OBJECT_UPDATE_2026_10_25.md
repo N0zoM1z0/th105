@@ -347,3 +347,7 @@ The two related-object paths at `0x63827B..0x638292` and `0x63A6B9..0x63A6D0` ca
 ## Wave angle integer conversion (2026-11-05)
 
 Two wave-scale paths at `0x638635..0x63864D` and `0x63AA73..0x63AA8B` load the signed 32-bit timer as an integer, multiply by double `3.0`, then round once to the float angle passed to the sine lookup. The prior source converted the timer to float before multiplication; VC8 happened to elide that intermediate conversion in the selected default build, so its emitted 34,268-byte function code is unchanged. The source now expresses the observed conversion order explicitly. Under strict intermediate float semantics, timer 16,777,217 would produce 50,331,648 before versus 50,331,652 with the target order; reachability of that timer in these effects is not established. No whole-function match is claimed.
+
+## Timer comparison precision (2026-11-06)
+
+At `0x639E74`, native loads the signed timer with `fild` and directly compares it with parameter 1. Source now converts the timer to double rather than float before that comparison, avoiding premature rounding of large integers. Normal-play reachability of such values is unknown; the focused body remains nonexact and no exact credit is claimed.

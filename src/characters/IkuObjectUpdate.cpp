@@ -473,7 +473,7 @@ void IkuObjectUpdateView::update_action_state()
   case 3:MOVE();H[1]*=D(0.9f);if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*D(0.2f);SCALE(F(0x11c)*D(0.99f));if(I(0x144)>11)FADE(6,5);break;
   case 4:
    F(0xf0)*=D(0.85f);F(0x11c)*=D(0.99f);F(0x120)*=D(0.95f);
-   if(H[1]<=static_cast<float>(I(0x144))){--I(0x330);PACKET(p580,0,0,5);spawn_unparented(910,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p580),3);p580[2]=1;spawn_unparented(910,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p580),3);p580[2]=2;spawn_unparented(910,F(0xec),0,B(0x104),-1,reinterpret_cast<const unsigned *>(p580),3);
+   if(H[1]<=static_cast<double>(I(0x144))){--I(0x330);PACKET(p580,0,0,5);spawn_unparented(910,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p580),3);p580[2]=1;spawn_unparented(910,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p580),3);p580[2]=2;spawn_unparented(910,F(0xec),0,B(0x104),-1,reinterpret_cast<const unsigned *>(p580),3);
     int angle=0;do{PACKET(p580,angle+22.5+F(0x370),30,3);int layer=(!(p580[0]>=0.0 && p580[0]<=180.0f))?-1:1;SPAWN(910,layer,p580);angle+=45;}while(angle<360);
     if(g_match_identifier==3){int n=7;do{PACKET(p580,-10.0-RND(160),RND(25)+10.0,7);SPAWN(910,1,p580);--n;}while(n!=0);}P->dispatch_character_wave_handle(13);return;}
    break;

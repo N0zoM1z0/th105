@@ -381,3 +381,5 @@ Native 0x58FF63, 0x58FF92, 0x5906F7 and 0x59072C loads the signed timer directly
 ## Action 801 timer comparison precision (2026-11-06)
 
 In sequences 0, 5, 6, 7 and 8, native addresses `0x58DEE3`, `0x58E345`, `0x58E3FF`, `0x58E5AA` and `0x58E748` load the signed 32-bit timer with `fild` and compare it directly against parameter 3. There is no intervening single-precision store. The source now converts the timer to double rather than float before the comparison, preserving the native integer value even beyond the exact integer range of float. The prior and current pinned VC8 output both compare directly with `fild` at these sites; whether such large timers are reachable in normal play is unknown. The focused build remains nonexact (33972-byte target, 34628-byte candidate tail, first mismatch +31); no exact credit is claimed.
+
+The same direct signed-integer comparison is present in the equality checks at `0x58F244`, `0x5936AC` and `0x59528B`. These three source expressions also now retain integer precision; the focused candidate body hash is unchanged by this second adjustment. Large timer values remain unverified for normal play.

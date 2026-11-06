@@ -305,7 +305,7 @@ void YuyukoObjectUpdateView::update_action_state()
   case 3:
    H[0]+=2.0;if(T==0)FADE(5,5);else{F(0x378)*=D(0.95f);F(0x374)=200.0-F(0x378);F(0xec)=C(0x104)*lookup_orientation_cosine_quantized_abs(-H[0])*F(0x374)+AT(A,float,0xec);F(0xf0)=(lookup_orientation_sine_quantized_abs(-H[0])*F(0x374)*D(0.2f)+AT(A,float,0xf0))+100.0;
     if(!(H[0]>=0.0)){int angle=static_cast<int>(H[0]);C(0x33c)=angle%360<-180?1:-1;}else{int angle=static_cast<int>(H[0]);if(angle%360>=180)B(0x33c)=255;else if(angle%360>=0)B(0x33c)=1;}
-    if(H[1]<=static_cast<float>(I(0x144)) || AT(T,short,0x364)==1){int count=6;do{PACKET(p504,RND(360),RND(50)*D(0.1f)+5.0,5);SPAWN(855,1,p504);}while(--count!=0);count=8;do{PACKET(p504,RND(360),RND(125)*D(0.1f)+5.0,6);SPAWN(855,1,p504);}while(--count!=0);RETIRE();}
+    if(H[1]<=static_cast<double>(I(0x144)) || AT(T,short,0x364)==1){int count=6;do{PACKET(p504,RND(360),RND(50)*D(0.1f)+5.0,5);SPAWN(855,1,p504);}while(--count!=0);count=8;do{PACKET(p504,RND(360),RND(125)*D(0.1f)+5.0,6);SPAWN(855,1,p504);}while(--count!=0);RETIRE();}
     if(B(0x113)>245)B(0x113)=255;else B(0x113)+=10;
    }break;
   case 4:

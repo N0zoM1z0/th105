@@ -332,3 +332,7 @@ merged this whole comparison sequence into another action; it was not selected.
 The full root remains nonexact, section tail 34,884 bytes, compared SHA-256
 `6a4bc69f0cb99eb0283671e7a11084fa13ba70617be09a417ecc1c4fb463fab4`.
 No whole-function or exact-byte credit is claimed.
+
+## Timer comparison precision (2026-11-06)
+
+At `0x57528B`, native loads the signed timer with `fild` and directly compares it with parameter 1. Source now converts the timer to double rather than float before that comparison, avoiding premature rounding of large integers. The pinned VC8 candidate remains unchanged at SHA-256 `6a4bc69f0cb99eb0283671e7a11084fa13ba70617be09a417ecc1c4fb463fab4`. Normal-play reachability of such values is unknown; the function remains nonexact.

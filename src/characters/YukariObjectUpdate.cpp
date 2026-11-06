@@ -119,7 +119,7 @@ void YukariObjectUpdateView::update_action_state()
    }else{SCALE(F(0x11c)+D(0.2f));COLORFADE(25,25);}break;
   case 1: {
    float width=static_cast<float>(18.0-F(0x370));F(0x11c)=width+width;F(0x120)*=D(0.95f);F(0x370)*=D(0.8f);if(B(0x111)<3){B(0x112)=0;B(0x111)=0;}else{B(0x112)-=3;B(0x111)-=3;}
-   if(H[1]==static_cast<float>(I(0x144))){PACKET(p60,H[0],80,2);SPAWN(812,1,p60);}if(F(0x120)<=D(0.005f))RETIRE();break;
+   if(H[1]==static_cast<double>(I(0x144))){PACKET(p60,H[0],80,2);SPAWN(812,1,p60);}if(F(0x120)<=D(0.005f))RETIRE();break;
   }
   case 2:MOVE();F(0x11c)+=0.75;F(0x120)*=D(0.98f);if(I(0x144)>39){B(0x184)=0;COLORFADE(5,5);}STEP();break;
   case 3:F(0x12c)-=3.0;SCALE(F(0x11c)+D(0.1f));COLORFADE(10,10);break;
@@ -356,7 +356,7 @@ void YukariObjectUpdateView::update_action_state()
    }break;
   case 1: {
    if(AT(P,short,0x174)<1)RETIRE();float width=static_cast<float>(18.0-F(0x370));F(0x11c)=width+width;F(0x120)*=D(0.95f);F(0x370)*=D(0.8f);
-   if(B(0x111)<3){B(0x112)=0;B(0x111)=0;}else{B(0x112)-=3;B(0x111)-=3;}if(H[1]==static_cast<float>(I(0x144))){PACKET(p276,H[0],80,2);SPAWN(857,1,p276);}if(F(0x120)<=D(0.005f))RETIRE();break;
+   if(B(0x111)<3){B(0x112)=0;B(0x111)=0;}else{B(0x112)-=3;B(0x111)-=3;}if(H[1]==static_cast<double>(I(0x144))){PACKET(p276,H[0],80,2);SPAWN(857,1,p276);}if(F(0x120)<=D(0.005f))RETIRE();break;
   }
   case 2:if(AT(P,short,0x174)<1){I(0x144)=40;B(0x184)=0;}MOVE();F(0x11c)+=0.75;if(F(0x11c)>=36.0f)F(0x11c)=36;F(0x120)*=D(0.98f);if(I(0x144)>39){B(0x184)=0;COLORFADE(5,5);}STEP();break;
   case 3:F(0x12c)-=3.0;SCALE(F(0x11c)+D(0.1f));COLORFADE(10,10);break;
@@ -443,7 +443,7 @@ void YukariObjectUpdateView::update_action_state()
     SCALE(1.0-F(0x370));F(0x370)*=D(0.9f);if(AT(P,short,0x174)<1)RETIRE();
    }break;
   case 1: {
-   if(AT(P,short,0x174)<1)RETIRE();float width=static_cast<float>(18.0-F(0x370));F(0x11c)=width+width;F(0x120)*=D(0.95f);F(0x370)*=D(0.8f);if(B(0x111)<3){B(0x112)=0;B(0x111)=0;}else{B(0x112)-=3;B(0x111)-=3;}if(H[1]==static_cast<float>(I(0x144))){PACKET(p132,H[0],80,2);SPAWN(930,1,p132);}if(F(0x120)<=D(0.005f))RETIRE();break;
+   if(AT(P,short,0x174)<1)RETIRE();float width=static_cast<float>(18.0-F(0x370));F(0x11c)=width+width;F(0x120)*=D(0.95f);F(0x370)*=D(0.8f);if(B(0x111)<3){B(0x112)=0;B(0x111)=0;}else{B(0x112)-=3;B(0x111)-=3;}if(H[1]==static_cast<double>(I(0x144))){PACKET(p132,H[0],80,2);SPAWN(930,1,p132);}if(F(0x120)<=D(0.005f))RETIRE();break;
   }
   case 2:if(AT(P,short,0x174)<1){I(0x144)=40;B(0x184)=0;}MOVE();F(0x11c)+=0.75;F(0x120)*=D(0.98f);if(I(0x144)>39){B(0x184)=0;COLORFADE(5,5);}STEP();break;
   case 3:F(0x12c)-=3.0;SCALE(F(0x11c)+D(0.1f));COLORFADE(10,10);break;
