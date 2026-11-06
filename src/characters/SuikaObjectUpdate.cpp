@@ -265,7 +265,7 @@ case 817: {
     case 0: {
         float *parameters=PARAM;void *owner=OWNER;double orbitX=lookup_orientation_cosine_quantized_abs(parameters[0]);parameters=PARAM;float x=static_cast<float>(orbitX*FIELD(owner,float,0x73c)+FIELD(owner,float,0xec));owner=OWNER;F(0xec)=x;
         F(0xf0)=static_cast<float>(lookup_orientation_sine_quantized_abs(parameters[0])*FIELD(owner,float,0x73c)+(FIELD(owner,float,0xf0)+100.0));
-        if(I(0x144)%8==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(5))+5.0);packet[2]=1.0f;spawn_unparented(817,F(0xec),F(0xf0),B(0x104),1,packet,3);}if(!(FIELD(OWNER,float,0x73c)>0.0f)) RETIRE();break;
+        if(I(0x144)%8==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(5))+5.0);packet[2]=1.0f;spawn_unparented(817,F(0xec),F(0xf0),B(0x104),1,packet,3);}if(FIELD(OWNER,float,0x73c)<=0.0f) RETIRE();break;
     }
     case 1:case 2: {
         float *parameters=PARAM;F(0x12c)+=F(0x370);F(0x374)+=static_cast<double>(0.1f);F(0x370)*=static_cast<double>(0.95f);F(0x11c)+=static_cast<double>(0.005f);F(0x120)=F(0x11c);parameters[1]-=0.25;if(parameters[1]<0.0f) parameters[1]=0.0f;MOTION->set_components(parameters[0],parameters[1]);F(0xf8)=F(0x374)+F(0xf8);

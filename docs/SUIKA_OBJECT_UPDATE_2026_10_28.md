@@ -188,3 +188,17 @@ outcomes. Whether an unordered scale occurs in normal play remains unknown.
 The complete root is still nonexact, section tail 53,204 bytes, compared
 SHA-256 `5c025943faf12b560e17f3172ec88e4b817c19d70078accd3430803a0d0d754e`.
 No full-function or exact-byte credit is claimed.
+
+## Action 817 owner radius guard (2026-11-06)
+
+At `0x5B3B4B..0x5B3B64`, native retires the object when its owner's radius
+at `+0x73C` is ordered and at most zero. An unordered comparison follows the
+continuation path. The prior `!(radius > 0)` source incorrectly retired on an
+unordered value; the condition now uses `radius <= 0.0f`. Finite values retain
+their existing decisions, and normal-play occurrence of an unordered radius
+is unknown. The focused candidate emits `test ah,0x1; jne` at
+`0x36D7..0x36DA`, as does the native local guard.
+
+The full root remains nonexact, section tail 53,204 bytes and compared SHA-256
+`c8b7fdd964a11e6f16017f7e7b68df9d6934f47033b557b273a3bf70f6a444ca`.
+No full-function or exact-byte credit is claimed.
