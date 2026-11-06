@@ -248,3 +248,5 @@ At `0x4D4EEF`, `0x4D5601`, `0x4D5DFC` and `0x4D65BB`, the native dispatcher sign
 ### Action 302 timer thresholds
 
 The original phase-1 and phase-3 timer gates at `0x4CD920` and `0x4CD985` use signed comparisons against 25 and 24, respectively, branching while the timer is below each threshold. Writing these as `>= 25` and `>= 24` preserves the previous integer behavior and restores both local comparison-and-branch sequences in the focused candidate. The complete action-state function remains non-exact; its candidate section is 76,432 bytes.
+
+Five further integer gates at `0x4D15CC`, `0x4D1CEF`, `0x4DC451`, `0x4DC468`, and `0x4DCFE9` use thresholds 7, 20, 100, 75, and 8. Equivalent source comparisons recover their local compare-and-branch forms; behavior is unchanged and the 76,432-byte candidate remains non-exact.
