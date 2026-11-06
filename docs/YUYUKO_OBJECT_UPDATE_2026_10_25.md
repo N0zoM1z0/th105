@@ -356,3 +356,5 @@ In action 854, the first horizontal-position comparison at `0x574CE7` loads the 
 The repeated timer gates for 30, 60, and 180 frames and the signed-byte zero gate are now expressed in the equivalent forms observed in the original. Focused compilation recovers their local signed compare-and-branch families. Integer behavior is unchanged; the complete 34,924-byte candidate remains non-exact.
 
 The 2-, 10-, and 90-frame gates at `0x57103C`, `0x571202`, `0x5722F1`, `0x5726FC`, and `0x5738C1` now use equivalent native threshold forms. Action 853's phase 0–3 branch at `0x574573` is also arranged with the 90-frame path first, restoring its local signed branch and fallthrough structure. The source preserves the same integer and float operations on both paths; the complete 34,944-byte candidate remains non-exact.
+
+Three phase upper bounds at `0x570214`, `0x575866`, and `0x57723C` now use the equivalent signed `<= 3` form. Focused compilation recovers their local comparisons and branches; some register scheduling differs. The complete 34,944-byte candidate remains non-exact.
