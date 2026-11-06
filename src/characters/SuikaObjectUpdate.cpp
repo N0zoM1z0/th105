@@ -615,7 +615,7 @@ case 900: {
         F(0x12c)+=40.0;if(FIELD(entryOwner,short,0x174)<=0 || FIELD(entryOwner,short,0x13c)!=710 || FIELD(entryOwner,short,0x13e)>=2) S(0x364)=1;
         if(S(0x364)==0) {
             void *owner=OWNER;F(0xec)=FIELD(owner,float,0xec);F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+100.0);
-            if(F(0x11c)>=1.0f) {switch(g_match_identifier) {
+            if(!(F(0x11c)<1.0f)) {switch(g_match_identifier) {
                 case 0: if(I(0x144)%20==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(15))+20.0);packet[2]=2.0f;spawn_unparented(900,static_cast<float>(lookup_orientation_cosine_quantized_abs(static_cast<float>(180.0-packet[0]))*(packet[1]*60.0)*static_cast<double>(C(0x104))+F(0xec)),static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(180.0-packet[0]))*(packet[1]*60.0)+F(0xf0)),B(0x104),1,packet,3);}break;
                 case 1: if(I(0x144)%10==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(15))+20.0);packet[2]=2.0f;spawn_unparented(900,static_cast<float>(lookup_orientation_cosine_quantized_abs(static_cast<float>(180.0-packet[0]))*(packet[1]*60.0)*static_cast<double>(C(0x104))+F(0xec)),static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(180.0-packet[0]))*(packet[1]*60.0)+F(0xf0)),B(0x104),1,packet,3);}break;
                 case 2: if(I(0x144)%4==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(15))+20.0);packet[2]=2.0f;spawn_unparented(900,static_cast<float>(lookup_orientation_cosine_quantized_abs(static_cast<float>(180.0-packet[0]))*(packet[1]*60.0)*static_cast<double>(C(0x104))+F(0xec)),static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(180.0-packet[0]))*(packet[1]*60.0)+F(0xf0)),B(0x104),1,packet,3);}break;
@@ -645,7 +645,7 @@ case 901: {
         F(0x12c)-=40.0;if(FIELD(entryOwner,short,0x174)<=0 || FIELD(entryOwner,short,0x13c)!=711 || FIELD(entryOwner,short,0x13e)>=2) S(0x364)=1;
         if(S(0x364)==0) {
             void *owner=OWNER;F(0xec)=FIELD(owner,float,0xec);F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+100.0);
-            if(F(0x11c)>=1.0f) {switch(g_match_identifier) {
+            if(!(F(0x11c)<1.0f)) {switch(g_match_identifier) {
                 case 0: if(I(0x144)%12==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(25))+15.0);packet[2]=2.0f;spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);}break;
                 case 1: if(I(0x144)%7==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(25))+15.0);packet[2]=2.0f;spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);}break;
                 case 2: if(I(0x144)%3==0) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(25))+15.0);packet[2]=2.0f;spawn_unparented(901,F(0xec),F(0xf0),B(0x104),1,packet,3);}break;

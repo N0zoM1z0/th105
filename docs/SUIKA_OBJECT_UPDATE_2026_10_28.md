@@ -173,3 +173,18 @@ difference is claimed.
 The 52190-byte callable remains nonexact at +17; the candidate section tail is
 53204. The local operation-order match does not add exact-function or byte
 credit.
+
+## Actions 900 and 901 unordered scale (2026-11-06)
+
+At `0x5B836B..0x5B83C3` and `0x5B8C2A..0x5B8C82`, the native
+comparison enters the mode-dependent path when scale is at least 1.0 or the
+comparison is unordered. The earlier source's ordered `>= 1.0f` instead
+entered the growth path for an unordered value. Both conditions now use
+`!(scale < 1.0f)`; finite values retain their prior behavior. The candidate
+emits `test ah,0x41; je` into the growth path at offsets `0x7F17..0x7F1A`
+and `0x87D1..0x87D4`, equivalent to the native branch for all four comparison
+outcomes. Whether an unordered scale occurs in normal play remains unknown.
+
+The complete root is still nonexact, section tail 53,204 bytes, compared
+SHA-256 `5c025943faf12b560e17f3172ec88e4b817c19d70078accd3430803a0d0d754e`.
+No full-function or exact-byte credit is claimed.
