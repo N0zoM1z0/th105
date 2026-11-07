@@ -4,61 +4,63 @@ namespace th105 {
 
 void CollisionContext::reset_collision_extents()
 {
-    extent_1c = -10000;
-    extent_20 = -10000;
-    extent_24 = 10000;
-    extent_28 = 10000;
+    overlap_left = -10000;
+    overlap_top = -10000;
+    overlap_right = 10000;
+    overlap_bottom = 10000;
 }
 
 void CollisionContext::accumulate_collision_extents(
     const int *first,
     const int *second)
 {
+    // X endpoints may arrive reversed; narrow the running intersection with
+    // the lesser and greater endpoint of each box in turn.
     int first_x = first[0];
     int first_x2 = first[2];
     if (first_x < first_x2) {
-        if (extent_1c < first_x) {
-            extent_1c = first_x;
+        if (overlap_left < first_x) {
+            overlap_left = first_x;
         }
-        first_x = *(volatile const int *)(first + 2);
+        first_x = first[2];
     } else {
-        if (extent_1c < first_x2) {
-            extent_1c = first_x2;
+        if (overlap_left < first_x2) {
+            overlap_left = first_x2;
         }
-        first_x = *(volatile const int *)first;
+        first_x = first[0];
     }
-    if (extent_24 > first_x) {
-        extent_24 = first_x;
+    if (overlap_right > first_x) {
+        overlap_right = first_x;
     }
 
     int second_x = second[0];
     int second_x2 = second[2];
     if (second_x < second_x2) {
-        if (extent_1c < second_x) {
-            extent_1c = second_x;
+        if (overlap_left < second_x) {
+            overlap_left = second_x;
         }
-        second_x = *(volatile const int *)(second + 2);
+        second_x = second[2];
     } else {
-        if (extent_1c < second_x2) {
-            extent_1c = second_x2;
+        if (overlap_left < second_x2) {
+            overlap_left = second_x2;
         }
-        second_x = *(volatile const int *)second;
+        second_x = second[0];
     }
-    if (extent_24 > second_x) {
-        extent_24 = second_x;
+    if (overlap_right > second_x) {
+        overlap_right = second_x;
     }
 
-    if (extent_20 < first[1]) {
-        extent_20 = first[1];
+    if (overlap_top < first[1]) {
+        overlap_top = first[1];
     }
-    if (extent_20 < second[1]) {
-        extent_20 = second[1];
+    if (overlap_top < second[1]) {
+        overlap_top = second[1];
     }
-    if (extent_28 > first[3]) {
-        extent_28 = first[3];
+    if (overlap_bottom > first[3]) {
+        overlap_bottom = first[3];
     }
-    if (extent_28 > second[3]) {
-        extent_28 = second[3];
+    if (overlap_bottom > second[3]) {
+        overlap_bottom = second[3];
     }
 }
 
@@ -72,6 +74,8 @@ int CollisionContext::test_and_accumulate_float_aabb_overlap(
     differences[1] = second->top - first->bottom;
     differences[3] = first->top - second->bottom;
 
+    // The target tests sign bits after float subtraction, including signed
+    // zero and NaN representations; this is not a generic <= overlap test.
     int sign_bits = *(int *)&differences[0] & *(int *)&differences[2] &
                     *(int *)&differences[1] & *(int *)&differences[3];
     if (sign_bits & 0x80000000) {

@@ -373,10 +373,11 @@ struct CollisionContext {
     unsigned char unknown_00[0x0c];
     Fighter *fighters[2];
     unsigned char unknown_14[0x08];
-    int extent_1c;
-    int extent_20;
-    int extent_24;
-    int extent_28;
+    // Running intersection bounds in collision coordinates.
+    int overlap_left;
+    int overlap_top;
+    int overlap_right;
+    int overlap_bottom;
     CollisionList family_0[2];
     CollisionList family_1[2];
     CollisionList family_2[2];
