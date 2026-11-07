@@ -1,0 +1,5 @@
+# Fighter health in the shared update
+
+The `CharacterEx` shared update at `0x476D10` uses the signed 16-bit fields at `+0x174` and `+0x176` as current and maximum health. The `0x460200` battle initialization sets both to 10000 by default, the attack resolver at `0x46BF80` subtracts hit quantity and clamps the current field at zero, and the story gauge update at `0x471930` smooths its displayed health toward that field using the maximum. These latter three are target-backed source views but remain nonexact; their evidence does not confer exactness on them or establish historical field names.
+
+The exact shared update now names these two fields `health_174` and `max_health_176` and names the captured initial value `health`. In this function the snapshot determines the zero-health gates; a later active recovery path adds four to the live field and caps it at the maximum. Keeping the snapshot distinct matters for control flow. The separately compiled 1,608-byte `0x476D10` body still matches the target in full. This naming applies to the fighter view; objects sharing an offset are not automatically asserted to have identical semantics.

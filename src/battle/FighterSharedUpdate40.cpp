@@ -30,8 +30,8 @@ struct FighterSharedUpdate40View {
     short state_13c;
     unsigned char unknown_13e[0x32];
     FighterSharedUpdate40View *other_fighter_170;
-    short value_174;
-    short maximum_176;
+    short health_174;
+    short max_health_176;
     unsigned char unknown_178[4];
     signed char state_17c;
     unsigned char unknown_17d[0x1b7];
@@ -79,7 +79,7 @@ struct FighterSharedUpdate40View {
 #define OFFCHECK(name, off) typedef char offcheck_##name[offsetof(FighterSharedUpdate40View, name)==off?1:-1]
 OFFCHECK(x_ec,0xec); OFFCHECK(y_f0,0xf0); OFFCHECK(facing_104,0x104);
 OFFCHECK(state_13c,0x13c); OFFCHECK(other_fighter_170,0x170);
-OFFCHECK(value_174,0x174); OFFCHECK(state_17c,0x17c); OFFCHECK(player_index_334,0x334);
+OFFCHECK(health_174,0x174); OFFCHECK(state_17c,0x17c); OFFCHECK(player_index_334,0x334);
 OFFCHECK(gate_48c,0x48c); OFFCHECK(value_4a2,0x4a2); OFFCHECK(field_4a4,0x4a4);
 OFFCHECK(gate_4b0,0x4b0); OFFCHECK(gate_4b2,0x4b2); OFFCHECK(gate_4b4,0x4b4);
 OFFCHECK(trigger_4b6,0x4b6); OFFCHECK(state_4b8,0x4b8); OFFCHECK(source_factor_4bc,0x4bc);
@@ -102,18 +102,18 @@ void FighterSharedUpdate40View::update_shared_state_40()
     else
         peer_action_600_689_75a = 0;
 
-    const short value = value_174;
-    if (value <= 0) {
+    const short health = health_174;
+    if (health <= 0) {
         gate_4b0 = 0;
         gate_4b2 = 0;
         gate_4b4 = 0;
     }
-    if (peer->value_174 <= 0) {
+    if (peer->health_174 <= 0) {
         gate_4b0 = 0;
         gate_4b2 = 0;
     }
 
-    if (value <= 0 && state_72c == 2 &&
+    if (health <= 0 && state_72c == 2 &&
         state_13c >= 50 && state_13c <= 149) {
         finalize_sequence_entry_45bb10(0);
         publish_texture_state(0, 0);
@@ -123,9 +123,9 @@ void FighterSharedUpdate40View::update_shared_state_40()
         if (is_state_13c_in_32_95(this))
             gate_4b4 = 0;
 
-        value_174 += 4;
-        if (value_174 >= maximum_176)
-            value_174 = maximum_176;
+        health_174 += 4;
+        if (health_174 >= max_health_176)
+            health_174 = max_health_176;
 
         if (gate_4b4 % 15 == 0) {
             emit_fighter_effect_433cc0(
