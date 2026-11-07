@@ -141,6 +141,19 @@ class WorkflowToolingTests(unittest.TestCase):
             )
             self.assertFalse(overlap, f"{rule['id']} reclaims exact functions: {sorted(overlap)}")
 
+    def test_skip_matching_rule_names_describe_active_selection(self) -> None:
+        rows = [
+            {"address": "0x00401000", "status": "implemented", "current_name": "active"},
+            {"address": "0x00401100", "status": "matching", "current_name": "exact"},
+        ]
+        rule = {"id": "skip-control", "addresses": [row["address"] for row in rows],
+                "skip_matching": True, "expected_names": ["active"]}
+        selected = self.origins.select(rule, rows)
+        self.assertEqual(selected, rows[:1])
+        self.assertEqual(self.origins.validate_rule_evidence(rule, selected, rows, b"", lambda *_: b""), [])
+        rule["expected_names"] = ["active", "exact"]
+        self.assertTrue(self.origins.validate_rule_evidence(rule, selected, rows, b"", lambda *_: b""))
+
     def test_origin_direct_edge_witness_replays_target_call(self) -> None:
         site = 0x401002
         target = 0x401100

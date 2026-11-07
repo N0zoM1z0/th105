@@ -1783,7 +1783,7 @@ addresses = ["0x00419A60", "0x00419E80"]
 skip_matching = true
 expected_count = 1
 expected_bytes = 1047
-expected_names = ["sub_419A60", "sub_419E80"]
+expected_names = ["sub_419A60"]
 origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
@@ -3702,7 +3702,8 @@ disposition = "authored"
 confidence = "observed"
 evidence = "Three complete game stream paths use the independently proved1378-byte stream, decoder+30 and CDSBuffer+24 ownership. Start calls exact Ogg open, then the ring-update and linked-stream handoff bodies; they manage the100000h ring,8000h decode chunks,scheduling,gain fades and stream links. Raw canonical bodies and incoming start edges are pinned. Source candidates remain nonexact. docs/BGM_OGG_RUNTIME_2026_10_30.md."
 required_body_hashes = [{ address = "0x00402A00", size = 358, sha256 = "73f7ccb4f53ae4cfd1a71d3dcd4ca8f76bd5f215370a0ff11904425c21919ac2" }, { address = "0x00402C10", size = 943, sha256 = "6cb0f82e49c6b4b2b1222b1f4c5f4a7270b4d43e2914fbd16f376fc8a4b2f854" }, { address = "0x00402FC0", size = 806, sha256 = "61c4852c20e1cd9fa035c956a7f17e949faeac24117323389cca962e3da404e9" }]
-required_direct_edges = [{ caller = "0x00402A00", site = "0x00402A1E", target = "0x00418A10", caller_status = "implemented" }, { caller = "0x00402A00", site = "0x00402B33", target = "0x00402C10", caller_status = "implemented" }, { caller = "0x00402A00", site = "0x00402B25", target = "0x00402FC0", caller_status = "implemented" }]
+required_direct_edges = [{ caller = "0x00402A00", site = "0x00402B33", target = "0x00402C10", caller_status = "implemented" }, { caller = "0x00402A00", site = "0x00402B25", target = "0x00402FC0", caller_status = "implemented" }]
+required_selected_body_calls = [{ owner = "0x00402A00", site = "0x00402A1E", target = "0x00418A10", target_status = "matching" }]
 
 [[rules]]
 id = "bgm-stream-member-lifetime-authored-106a"
@@ -7321,22 +7322,6 @@ confidence = "observed"
 evidence = "CNetworkClient RTTI slot owns the complete locked snapshot-import policy, state transitions and queue assignments. Fresh source emits 399 bytes and remains nonexact at +106. No exact or full EH credit. docs/NETWORK_CLIENT_SNAPSHOT_IMPORT_2026_11_04.md."
 required_rtti_virtual_bodies = [
  { address = "0x0044F200", size = 399, sha256 = "e29370f519dcd44e027f0c2efeb8fdb16b8aa2867a0c60edaff88c80f8421ae8", slot = "0x006C176C", col_slot = "0x006C1750", col = "0x006D80BC", type_descriptor = "0x006E6924", type_name_contains = "CNetworkClient@@", calls = [{ site = "0x0044F233", target = "0x0040AC30" }, { site = "0x0044F2A2", target = "0x0042B6B0" }, { site = "0x0044F33F", target = "0x00431E50" }, { site = "0x0044F374", target = "0x0040AC40" }] },
-]
-
-[[rules]]
-id = "menu-practice-update-authored-106a"
-addresses = ["0x00445D90"]
-skip_matching = true
-expected_count = 0
-expected_bytes = 0
-expected_names = []
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "CMenuPractice RTTI virtual slot independently owns the update policy. Canonical-exact functions are skipped by this origin rule; see docs/MENU_PRACTICE_UPDATE_2026_11_04.md."
-required_rtti_virtual_bodies = [
- { address = "0x00445D90", size = 381, sha256 = "8a872b57510ed2ace1834a170611146056ed95ae67413d6a184131d623f09a64", slot = "0x006C1FA0", col_slot = "0x006C1F94", col = "0x006D83FC", type_descriptor = "0x006E6CF0", type_name_contains = "CMenuPractice@@", calls = [{ site = "0x00445DAB", target = "0x0043F450" }, { site = "0x00445DDB", target = "0x00445C80" }, { site = "0x00445E79", target = "0x0043ABD0" }] },
 ]
 
 [[rules]]
