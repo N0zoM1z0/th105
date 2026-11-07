@@ -4,11 +4,11 @@ namespace th105 {
 
 int EffectAnimationSequenceView::apply_sequence_frame()
 {
-    EffectAnimationBlockView *const block = sequence_168;
+    EffectResourceGroup *const block = sequence_168;
     unsigned int const index = static_cast<unsigned int>(frame_index_140);
     frame_150 = &block->frames_04[index];
     frame_timer_142 = 0;
-    frame_limit_14c = frame_150->duration_08;
+    frame_limit_14c = static_cast<short>(frame_150->duration_bits_08);
     return apply_current_frame();
 }
 
@@ -23,7 +23,7 @@ unsigned char EffectAnimationSequenceView::next_sequence_frame()
     frame_index_140 = static_cast<short>(
         (frame_index_140 + 1) % frame_count_148);
     apply_sequence_frame();
-    return frame_index_140 == 0 && sequence_168->mode_14 == 0;
+    return frame_index_140 == 0 && sequence_168->flag_14 == 0;
 }
 
 int EffectAnimationSequenceView::previous_sequence_frame()
@@ -35,7 +35,7 @@ int EffectAnimationSequenceView::previous_sequence_frame()
 
 unsigned char EffectAnimationSequenceView::next_sequence_block()
 {
-    EffectAnimationBlockView *block = sequence_168;
+    EffectResourceGroup *block = sequence_168;
     if (block->next_1c != 0) {
         ++sequence_index_13e;
         time_counter_144 = 0;
@@ -54,7 +54,7 @@ unsigned char EffectAnimationSequenceView::next_sequence_block()
 
 int EffectAnimationSequenceView::previous_sequence_block()
 {
-    EffectAnimationBlockView *block = sequence_168;
+    EffectResourceGroup *block = sequence_168;
     if (block->previous_18 != 0) {
         --sequence_index_13e;
         time_counter_144 = 0;
@@ -75,7 +75,7 @@ int EffectAnimationSequenceView::select_sequence(int sequence)
         --sequence;
         sequence_168 = sequence_168->next_1c;
     }
-    EffectAnimationBlockView *const block = sequence_168;
+    EffectResourceGroup *const block = sequence_168;
     frame_count_148 = static_cast<short>(block->frames_04.size());
     return set_sequence_frame(0);
 }
@@ -86,7 +86,7 @@ int EffectAnimationSequenceView::reset_sequence()
     time_counter_144 = 0;
     int const key = action_id_13c;
     sequence_168 = sequence_tree_160->find(key)->second;
-    EffectAnimationBlockView *const block = sequence_168;
+    EffectResourceGroup *const block = sequence_168;
     frame_count_148 = static_cast<short>(block->frames_04.size());
     return set_sequence_frame(0);
 }

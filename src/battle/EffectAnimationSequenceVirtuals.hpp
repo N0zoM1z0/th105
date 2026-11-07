@@ -1,27 +1,12 @@
 #pragma once
 
 #include <stddef.h>
-#include <vector>
 #include <map>
+#include "battle/EffectResourceGroup.hpp"
 
 namespace th105 {
 
-struct EffectAnimationFrame28 {
-    unsigned char unknown_00[0x08];
-    short duration_08;
-    unsigned char unknown_0a[0x12];
-};
-
-struct EffectAnimationBlockView {
-    unsigned unknown_00;
-    std::vector<EffectAnimationFrame28> frames_04;
-    unsigned char mode_14;
-    unsigned char unknown_15[0x03];
-    EffectAnimationBlockView *previous_18;
-    EffectAnimationBlockView *next_1c;
-};
-
-typedef std::map<int, EffectAnimationBlockView *> EffectAnimationMap;
+typedef std::map<int, EffectResourceGroup *> EffectAnimationMap;
 
 class EffectAnimationSequenceView {
 public:
@@ -49,17 +34,13 @@ public:
     unsigned char unknown_14a[0x02];
     short frame_limit_14c;
     unsigned char unknown_14e[0x02];
-    EffectAnimationFrame28 *frame_150;
+    FrameData *frame_150;
     unsigned char unknown_154[0x0c];
     EffectAnimationMap *sequence_tree_160;
     unsigned char unknown_164[0x04];
-    EffectAnimationBlockView *sequence_168;
+    EffectResourceGroup *sequence_168;
 };
 
-typedef char EffectAnimationFrame28_size_must_be_0x1c[
-    sizeof(EffectAnimationFrame28) == 0x1c ? 1 : -1];
-typedef char EffectAnimationBlock_size_must_be_0x20[
-    sizeof(EffectAnimationBlockView) == 0x20 ? 1 : -1];
 typedef char EffectAnimationSequence_action_offset_must_be_0x13c[
     offsetof(EffectAnimationSequenceView, action_id_13c) == 0x13c ? 1 : -1];
 typedef char EffectAnimationSequence_frame_index_offset_must_be_0x140[

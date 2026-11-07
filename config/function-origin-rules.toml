@@ -1216,7 +1216,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of exact EffectAnimationSequenceVirtuals.cpp regenerates std::vector<EffectAnimationFrame28>::size; complete full-inventory fingerprint replay must resolve exactly the two 33-byte current clone addresses"
+evidence = "SHA-pinned VC8 SP1 rebuild of exact EffectAnimationSequenceVirtuals.cpp regenerates std::vector<FrameData>::size; complete full-inventory fingerprint replay must resolve exactly the two 33-byte current clone addresses"
 
 [[rules]]
 id = "vc8-generated-spriteex-vector-comdats-106a"

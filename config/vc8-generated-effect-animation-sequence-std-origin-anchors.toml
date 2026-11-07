@@ -11,11 +11,11 @@ alignment_tail_hex = ""
 [[anchors]]
 address = "0x0041C240"
 size = 33
-symbol = "?size@?$vector@UEffectAnimationFrame28@th105@@V?$allocator@UEffectAnimationFrame28@th105@@@std@@@std@@QBEIXZ"
+symbol = "?size@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@QBEIXZ"
 equivalence_group = "effect-animation-sequence-generated-group-1"
 
 [[anchors]]
 address = "0x00421B00"
 size = 33
-symbol = "?size@?$vector@UEffectAnimationFrame28@th105@@V?$allocator@UEffectAnimationFrame28@th105@@@std@@@std@@QBEIXZ"
+symbol = "?size@?$vector@VFrameData@th105@@V?$allocator@VFrameData@th105@@@std@@@std@@QBEIXZ"
 equivalence_group = "effect-animation-sequence-generated-group-1"

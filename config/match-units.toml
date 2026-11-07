@@ -10543,7 +10543,7 @@ source = "src/battle/EffectAnimationSequenceVirtuals.cpp"
 object = "build/match-units/CrossV106a_EffectAnimationSequenceVirtuals.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current CSelectObject, WeatherEffectObject, EffectObject, and InfoEffectObject vtables share the complete effect-animation frame/block/tree sequence surface. A real checked std::vector<EffectAnimationFrame28> lives at block +0x04 (28-byte frames), with tree +0x160 and current block +0x168; ordinary C++ reproduces all eight physical methods exactly."
+notes = "Current CSelectObject, WeatherEffectObject, EffectObject, and InfoEffectObject vtables share the complete effect-animation frame/block/tree sequence surface. A real checked std::vector<FrameData> lives at block +0x04 (28-byte frames), with tree +0x160 and current block +0x168; ordinary C++ reproduces all eight physical methods exactly."
 
 [[units.cross-v106a-effect-animation-sequence-virtuals.functions]]
 address = "0x00473950"
@@ -10580,7 +10580,7 @@ symbol_base = "previous_sequence_block"
 address = "0x00473B80"
 symbol_base = "select_sequence"
 rel32_targets = [
-  "?find@?$_Tree@V?$_Tmap_traits@HPAUEffectAnimationBlockView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectAnimationBlockView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUEffectResourceGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectResourceGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 
@@ -10588,7 +10588,7 @@ rel32_targets = [
 address = "0x00473C50"
 symbol_base = "reset_sequence"
 rel32_targets = [
-  "?find@?$_Tree@V?$_Tmap_traits@HPAUEffectAnimationBlockView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectAnimationBlockView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUEffectResourceGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectResourceGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 
