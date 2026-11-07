@@ -19479,7 +19479,7 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
   "?at@?$vector@IV?$allocator@I@std@@@std@@QAEAAII@Z=0x0040C100",
-  "?find@?$_Tree@V?$_Tmap_traits@HPAUAuxiliarySpriteSequenceBlockView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAuxiliarySpriteSequenceBlockView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
 ]
 
 [units.gpt-web-collision-geometry-preparation]

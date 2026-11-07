@@ -19,7 +19,7 @@ void CharacterObjectEffectEmitter::replace_secondary_animation(
     // A real temporary checked iterator lets VC8 reuse the completed new
     // expression's cleanup slot. An explicit out-parameter facade does not.
     AnimationSequenceBlock *const block =
-        reinterpret_cast<AnimationSequenceMap *>(sequence_tree_160)->find(key)->second;
+        sequence_tree_160->find(key)->second;
     AnimationSequenceFrame &frame = block->records_00[0];
     secondary_renderer_338->initialize(
         reinterpret_cast<SecondaryAnimationOwnerRuntimeView *>(this),

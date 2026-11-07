@@ -60,7 +60,7 @@ public:
     void *aux_renderer_154;
     AnimationSequenceFrame *frame_158;
     AnimationSequenceBlock *sequence_15c;
-    AnimationSequenceTree *sequence_tree_160;
+    AnimationSequenceMap *sequence_tree_160;
     unsigned int *wave_handles_164;
     void *owner_168;
     CharacterObjectEffectEmitter *related_16c;

@@ -2,12 +2,11 @@
 
 #include "battle/Collision.hpp"
 #include "battle/SecondaryAnimationRender.hpp"
+#include "characters/AnimationSequenceVirtuals.hpp"
 
 #include <stddef.h>
 
 namespace th105 {
-
-struct AnimationSequenceTree;
 
 // Shared observed prefix used by all roster-owned CharacterObject families.
 // Concrete character objects continue beyond +0x377.
@@ -31,7 +30,7 @@ struct CharacterObjectEffectEmitter {
     unsigned char unknown_140[0x04];
     int time_counter_144;
     unsigned char unknown_148[0x18];
-    AnimationSequenceTree *sequence_tree_160;
+    AnimationSequenceMap *sequence_tree_160;
     unsigned char unknown_164[0x08];
     void *related_16c;
     CharacterObjectEffectEmitter *target_170;

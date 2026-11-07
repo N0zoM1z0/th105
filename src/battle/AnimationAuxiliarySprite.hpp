@@ -1,13 +1,12 @@
 #pragma once
 
 #include "EffectSprite.hpp"
+#include "characters/AnimationSequenceVirtuals.hpp"
 
 #include <stddef.h>
 #include <vector>
 
 namespace th105 {
-
-struct AnimationSequenceTree;
 
 //45CD70 allocates108h, constructs this CSpriteEx member at zero, and writes
 // the frame offsets/scales/angle below. Youmu entry code accesses x/y/facing.
@@ -33,7 +32,7 @@ struct AnimationAuxiliarySpriteOwnerView {
     unsigned char unknown_134[0x20];
     AuxiliarySpriteRuntimeView *aux_renderer_154;
     unsigned char unknown_158[8];
-    AnimationSequenceTree *sequence_tree_160;
+    AnimationSequenceMap *sequence_tree_160;
 
     void replace_auxiliary_sprite(short resource_id);
 };

@@ -11,9 +11,6 @@ typedef PatGroup AnimationSequenceBlock;
 
 typedef std::map<int, AnimationSequenceBlock *> AnimationSequenceMap;
 
-// Other incomplete views still refer to this legacy tree type by pointer.
-struct AnimationSequenceTree;
-
 class AnimationSequenceObjectView {
 public:
     virtual void scalar_delete_slot_00();
