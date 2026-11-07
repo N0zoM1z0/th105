@@ -46,8 +46,8 @@ struct CBattleManagerStory {
     void reset_fighter_fields_6bc_728_view();
     void prepare_match_roster_470060();
     void run_global_action_owned_phase_view();
-    void run_intermediate_phase_46dff0();
-    void run_collision_phase_46cca0();
+    void run_attack_projectile_collision_phase();
+    void resolve_fighter_body_collision();
     void run_global_position_status_timer_phase_view();
     void run_post_update_callbacks_view();
     void update_presentation_46b160_view();

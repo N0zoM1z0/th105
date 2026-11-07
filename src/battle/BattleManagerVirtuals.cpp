@@ -90,7 +90,7 @@ void CBattleManager::update_phase_object_if_needed_4724b0()
 int CBattleManager::run_pipeline_and_transition_472d80()
 {
     run_global_action_owned_phase_view();
-    run_collision_phase_46cca0();
+    resolve_fighter_body_collision();
     run_global_position_status_timer_phase_view();
     run_post_update_callbacks_and_global_state(this);
     if (frame_counter_04 > 60) {
@@ -105,7 +105,7 @@ int CBattleManager::run_reset_pipeline_472dc0()
     pre_reset_slot_40();
     reset_fighter_fields_6bc_728(this);
     run_global_action_owned_phase_view();
-    run_collision_phase_46cca0();
+    resolve_fighter_body_collision();
     run_global_position_status_timer_phase_view();
     run_post_update_callbacks_and_global_state(this);
     if (pending_08 != 0)
@@ -117,8 +117,8 @@ int CBattleManager::run_full_pipeline_471630()
 {
     pre_reset_slot_40();
     run_global_action_owned_phase_view();
-    run_intermediate_phase_46dff0();
-    run_collision_phase_46cca0();
+    run_attack_projectile_collision_phase();
+    resolve_fighter_body_collision();
     run_global_position_status_timer_phase_view();
     run_post_update_callbacks_and_global_state(this);
     post_pipeline_slot_30();
@@ -134,8 +134,8 @@ int CBattleManager::run_120_frame_pipeline_472e10()
             reset_fighter_fields_6bc_728(this);
         run_global_action_owned_phase_view();
         if (fighter_0c->unknown_4ec == 0 || fighter_10->unknown_4ec == 0)
-            run_intermediate_phase_46dff0();
-        run_collision_phase_46cca0();
+            run_attack_projectile_collision_phase();
+        resolve_fighter_body_collision();
         run_global_position_status_timer_phase_view();
     }
     run_post_update_callbacks_and_global_state(this);
@@ -152,8 +152,8 @@ int CBattleManager::run_180_frame_pipeline_472ea0()
         if (frame_counter_04 >= 180)
             reset_fighter_fields_6b4_728(this);
         run_global_action_owned_phase_view();
-        run_intermediate_phase_46dff0();
-        run_collision_phase_46cca0();
+        run_attack_projectile_collision_phase();
+        resolve_fighter_body_collision();
         run_global_position_status_timer_phase_view();
     }
     run_post_update_callbacks_and_global_state(this);
@@ -178,7 +178,7 @@ int CBattleManager::run_info_phase_pipeline_472f10()
     if (phase_object_8c.status_08() <= 0)
         transition_slot_34(6);
     run_global_action_owned_phase_view();
-    run_collision_phase_46cca0();
+    resolve_fighter_body_collision();
     run_global_position_status_timer_phase_view();
     run_post_update_callbacks_and_global_state(this);
     return 0;

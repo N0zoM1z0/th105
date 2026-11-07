@@ -48,9 +48,9 @@ struct CBattleManager {
     // the helper body itself does not consume ECX. These are ABI views only;
     // they do not claim separate source ownership for the target callees.
     void run_global_action_owned_phase_view();
-    void run_collision_phase_46cca0();
+    void resolve_fighter_body_collision();
     void run_global_position_status_timer_phase_view();
-    void run_intermediate_phase_46dff0();
+    void run_attack_projectile_collision_phase();
     void run_shared_pre_phase_46bf00();
     void run_transition_phase_5_4724e0();
 

@@ -19,3 +19,9 @@ The shared header is pinned by the CSprite lifetime and implicit packet-cleanup 
 ## Live state and collision snapshot
 
 The exact `0x45C500` preparation routine copies action `+0x13c`, sequence pointer `+0x15c`, state `+0x174`, result `+0x180`, result slot `+0x184`, and facing `+0x104` into a separate set of collision fields before processing boxes. The corresponding local view now names these live and snapshot roles instead of just `copied` and `prepared` offsets. The cached frame pointer guards refreshing counts and descriptor pointers when the frame changes; box coordinates are transformed on each preparation, not only on a frame change. These names describe observed roles, not a recovered original class hierarchy. Fresh complete comparisons of the 2,156-byte preparation body and its three geometry providers remain exact.
+
+## Battle-frame collision order
+
+The TH105 full pipeline at `0x471630` calls the action/owned-object phase, then `0x46DFF0` to prepare collision snapshots and dispatch attack/object interactions, then `0x46CCA0` for fighter body collision, followed by position/status/timer work and post-update callbacks. The BattleManager and Story views now call these two collision stages `run_attack_projectile_collision_phase` and `resolve_fighter_body_collision`; the original method names and declaring classes remain unknown. Other pipeline variants can conditionally omit the attack/object stage, so this sequence should not be treated as universal.
+
+EFZ's [battle loop](https://github.com/N0zoM1z0/Eternal-Fighter-Zero/blob/43b64996c5f710406d8fbd2d3f974d319196784f/src/SceneBattleLoop.cpp) suggested checking this ordering, but the sequence above comes from TH105's own exact pipeline and independently reviewed callees. Fresh complete comparisons for the BattleManager virtual and Story core units remain exact after updating their relocation symbol names; no target addresses or behavior were changed.

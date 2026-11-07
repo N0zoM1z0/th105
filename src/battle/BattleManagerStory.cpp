@@ -62,7 +62,7 @@ int CBattleManagerStory::run_countdown_pipeline_4715d0()
     pre_reset_slot_40();
     reset_fighter_fields_6bc_728_view();
     run_global_action_owned_phase_view();
-    run_collision_phase_46cca0();
+    resolve_fighter_body_collision();
     run_global_position_status_timer_phase_view();
     run_post_update_callbacks_view();
     if (pending_08 != 0)
@@ -96,8 +96,8 @@ int CBattleManagerStory::run_threshold_pipeline_471670()
         if (was_pending != 0 && fighter_0c->terminal_pending_4e9 == 0)
             fighter_0c->value_174 = fighter_0c->maximum_176;
 
-        run_intermediate_phase_46dff0();
-        run_collision_phase_46cca0();
+        run_attack_projectile_collision_phase();
+        resolve_fighter_body_collision();
         run_global_position_status_timer_phase_view();
     }
 
@@ -115,8 +115,8 @@ int CBattleManagerStory::run_180_300_pipeline_471740()
         if (frame_counter_04 >= 180)
             reset_fighter_fields_6b4_728_view();
         run_global_action_owned_phase_view();
-        run_intermediate_phase_46dff0();
-        run_collision_phase_46cca0();
+        run_attack_projectile_collision_phase();
+        resolve_fighter_body_collision();
         run_global_position_status_timer_phase_view();
     }
 
@@ -168,7 +168,7 @@ int CBattleManagerStory::run_story_pipeline_4717e0()
     }
 
     run_global_action_owned_phase_view();
-    run_collision_phase_46cca0();
+    resolve_fighter_body_collision();
     run_global_position_status_timer_phase_view();
     run_post_update_callbacks_view();
     return 0;
