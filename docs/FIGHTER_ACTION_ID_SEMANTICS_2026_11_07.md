@@ -1,0 +1,5 @@
+# Fighter action identifier
+
+The shared `Fighter` view's signed 16-bit field at `+0x13c` is now named `action_id_13c`, consistent with the existing animation-sequence view and with roster action dispatch tables. The collision preparation routine copies it into the collision snapshot. It is distinct from the sequence index at `+0x13e`, frame index at `+0x140`, frame timer at `+0x142`, and elapsed counter at `+0x144`; grouping all of these as a single generic state would obscure their different roles. These names describe target-backed behavior, not proven original source spelling or a complete class definition.
+
+Direct users of the shared `Fighter` field now use the same name. Separately declared views, and helper symbols whose names encode the offset, remain unchanged in this batch. Eight affected units were compared: all 19 already-exact functions in them remain exact. The other selected function was already nonexact. The two shared-header lifetime-origin proofs and the generated fighter-input deque proof were rebuilt and passed; no origin or exact classification changed.

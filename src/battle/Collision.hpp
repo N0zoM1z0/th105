@@ -189,7 +189,7 @@ struct Fighter {
     unsigned char facing_104;
     unsigned char unknown_105[0x2b];
     EventSubobject130 event_subobject_130;
-    short state_13c;
+    short action_id_13c;
     unsigned char unknown_13e[0x1a];
     FighterFrame *frame_158;
     unsigned char unknown_15c[0x14];

@@ -244,7 +244,7 @@ unsigned char CharacterObjectEffectEmitter::emit_repeated_effects_for_owner_stat
     int effect_201_count)
 {
     if (mode == 0) {
-        short const owner_state = owner_348->state_13c;
+        short const owner_state = owner_348->action_id_13c;
         if (owner_state <= 49 || owner_state >= 150) {
             return 0;
         }
@@ -252,7 +252,7 @@ unsigned char CharacterObjectEffectEmitter::emit_repeated_effects_for_owner_stat
         if (mode != 1) {
             return 0;
         }
-        short const owner_state = owner_348->state_13c;
+        short const owner_state = owner_348->action_id_13c;
         if (owner_state > 70) {
             if (owner_state < 150) {
                 // Accepted mode-one owner action window.

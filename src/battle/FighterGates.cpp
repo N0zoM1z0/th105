@@ -4,18 +4,18 @@ namespace th105 {
 
 bool __fastcall is_state_13c_in_32_95(Fighter *fighter)
 {
-    return fighter->state_13c >= 0x32 && fighter->state_13c < 0x96;
+    return fighter->action_id_13c >= 0x32 && fighter->action_id_13c < 0x96;
 }
 
 int __fastcall is_state_13c_in_96_c7(Fighter *fighter)
 {
-    return fighter->state_13c >= 0x96 && fighter->state_13c < 0xc8;
+    return fighter->action_id_13c >= 0x96 && fighter->action_id_13c < 0xc8;
 }
 
 int __fastcall is_positive_y_and_state_window(Fighter *fighter)
 {
     return fighter->y_f0 > 0.0f && fighter->field_49e == 0 &&
-        fighter->state_13c >= 0x32 && fighter->state_13c < 0x96;
+        fighter->action_id_13c >= 0x32 && fighter->action_id_13c < 0x96;
 }
 
 int __fastcall is_y_at_or_below_stage_surface(Fighter *fighter)

@@ -176,7 +176,7 @@ void __fastcall decrement_fighter_timers_and_cleanup(void *raw_fighter)
     }
 
     if (fighter->value_4a2 != 0) {
-        if (fighter->state_13c >= 197 && fighter->state_13c <= 199) {
+        if (fighter->action_id_13c >= 197 && fighter->action_id_13c <= 199) {
             short *raw = reinterpret_cast<short *>(fighter);
             raw[594] = 0;
             raw[593] = 0;

@@ -47,8 +47,8 @@ void __fastcall run_common_character_update(void *raw_fighter)
             }
         }
 
-        if (fighter->state_13c >= 0x32 &&
-            fighter->state_13c < 0x96 &&
+        if (fighter->action_id_13c >= 0x32 &&
+            fighter->action_id_13c < 0x96 &&
             fighter->y_f0 > 0.0f) {
             update_common_fighter_state_window(fighter);
         }

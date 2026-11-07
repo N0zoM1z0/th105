@@ -22,7 +22,7 @@ int __cdecl selector_random_roll(int limit);
 bool __fastcall is_state_13c_below_32(void *raw_fighter)
 {
     Fighter *fighter = static_cast<Fighter *>(raw_fighter);
-    return fighter->state_13c < 0x32;
+    return fighter->action_id_13c < 0x32;
 }
 
 void __fastcall update_common_fighter_state_window(void *raw_fighter)
