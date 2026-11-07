@@ -56,11 +56,14 @@ int CollisionContext::test_aabb_against_descriptor_shape(
     const ShapeWords *descriptor,
     const CollisionAabb *second)
 {
-    int overlap = descriptor->y0 - second->bottom + first->top;
-    overlap &= second->top - descriptor->y1 - first->top;
-    overlap &= first->left - second->right;
-    overlap &= second->left - first->right;
-    if ((static_cast<unsigned>(overlap) & 0x80000000u) == 0) {
+    // The native broad phase ANDs four 32-bit wrapped endpoint differences.
+    // Unsigned arithmetic makes that wrapping explicit in C++.
+    unsigned overlap = static_cast<unsigned>(descriptor->y0) -
+                       second->bottom + first->top;
+    overlap &= static_cast<unsigned>(second->top) - descriptor->y1 - first->top;
+    overlap &= static_cast<unsigned>(first->left) - second->right;
+    overlap &= static_cast<unsigned>(second->left) - first->right;
+    if ((overlap & 0x80000000u) == 0) {
         return 0;
     }
 
