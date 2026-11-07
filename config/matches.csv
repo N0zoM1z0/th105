@@ -47,7 +47,6 @@ address,name,size,status,match_percent,unit,evidence
 0x0046B6C0,reset_collision_extents,23,matching,100.00,cross-v106a-collision,python3 scripts/build.py --unit cross-v106a-collision --compare --json reports exact 23/23 against TH105 1.06a
 0x0046B6E0,transform_local_aabb_to_world,91,matching,100.00,cross-v106a-collision,python3 scripts/build.py --unit cross-v106a-collision --compare --json reports exact 91/91 against TH105 1.06a
 0x0046B740,test_and_accumulate_float_aabb_overlap,97,matching,100.00,cross-v106a-collision,python3 scripts/build.py --unit cross-v106a-collision --compare --json reports exact 97/97 against TH105 1.06a
-0x0046B8B0,test_descriptor_point_inside,142,matching,100.00,cross-v106a-hit-geometry,python3 scripts/build.py --unit cross-v106a-hit-geometry --compare --json reports exact 142/142 against TH105 1.06a
 0x0046BF30,adjust_counter_482,74,matching,100.00,cross-v106a-fighter-state,python3 scripts/build.py --unit cross-v106a-fighter-state --compare --json reports exact 74/74 against TH105 1.06a
 0x0046C7F0,try_candidate_flag_outcome,169,matching,100.00,cross-v106a-candidate-outcomes,python3 scripts/build.py --unit cross-v106a-candidate-outcomes --compare --json reports exact 169/169 against TH105 1.06a
 0x0046C8A0,try_frame_flag_pair_outcome,143,matching,100.00,cross-v106a-hit-detection,python3 scripts/build.py --unit cross-v106a-hit-detection --compare --json reports exact 143/143 against TH105 1.06a

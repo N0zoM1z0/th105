@@ -58,7 +58,10 @@ def validate(rule, selected, rows, read, target_sha):
         groups=validate_spec(spec,selected,rows,units,target_sha)
         if compiler_sha256()!=COMPILER:raise ValueError('implicit lifetime compiler changed')
         for name,anchors in groups.items():
-            unit=units[name];build_unit(name,unit,True,target_sha)
+            # Fresh builds must not overwrite other validators' pinned objects.
+            unit=dict(units[name])
+            unit['object']=str(Path('build/origin-anchors/implicit-lifetimes') / path.stem / (name + '.obj'))
+            build_unit(name,unit,True,target_sha)
             obj=repository_path(unit['object'],output=True)
             for a in anchors:
                 actual,body,wild,relocs=read_coff_function(obj,a['symbol_base'],None)

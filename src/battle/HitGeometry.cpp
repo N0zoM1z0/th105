@@ -51,10 +51,8 @@ int CollisionContext::test_descriptor_point_inside(
     const unsigned q3 = static_cast<unsigned>(descriptor->y1) *
         (static_cast<unsigned>(y) - aabb->bottom) - 1u +
         static_cast<unsigned>(descriptor->x1) * (static_cast<unsigned>(x) - aabb->right);
-    // VC8 x86 converts the bit patterns to signed 32-bit values and uses
-    // arithmetic right shift, yielding -1 only when all four signs are set.
-    return (static_cast<int>(q0) >> 31) & (static_cast<int>(q1) >> 31) &
-           (static_cast<int>(q2) >> 31) & (static_cast<int>(q3) >> 31);
+    // The point passes when all four wrapped expressions have bit 31 set.
+    return (q0 & q1 & q2 & q3 & 0x80000000u) != 0 ? -1 : 0;
 }
 
 int CollisionContext::test_aabb_against_descriptor_shape(

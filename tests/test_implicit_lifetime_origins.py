@@ -42,6 +42,35 @@ class ImplicitLifetimeTests(unittest.TestCase):
         s,r,u,b=self.fixture();s['sources'].append(copy.deepcopy(s['sources'][0]))
         with self.assertRaises(ValueError):self.check(s,r,u,b)
 
+    def test_fresh_build_is_isolated_from_canonical_object(self):
+        s,r,u,b=self.fixture()
+        u['owner']['object']='build/match-units/canonical.obj'
+        anchor=s['anchors'][0]
+        anchor['sha256']=hashlib.sha256(b'native').hexdigest()
+        calls=[]
+        with tempfile.TemporaryDirectory() as tmp:
+            anchor_file=Path(tmp)/'review.toml';anchor_file.write_text('')
+            def repo_path(path, output=False):
+                return Path(tmp)/path if output else anchor_file
+            def build(name, unit, *args):
+                calls.append(('build',unit['object']))
+            def compare(unit, *args):
+                calls.append(('compare',unit['object']))
+                return 0, []
+            with patch.object(implicit,'repository_path',side_effect=repo_path), \
+                 patch.object(implicit.tomllib,'loads',return_value=s), \
+                 patch.object(implicit,'load_manifest',return_value={'units':u}), \
+                 patch.object(implicit,'validate_spec',return_value={'owner':[anchor]}), \
+                 patch.object(implicit,'compiler_sha256',return_value=implicit.COMPILER), \
+                 patch.object(implicit,'build_unit',side_effect=build), \
+                 patch.object(implicit,'read_coff_function',return_value=(anchor['emitted_symbol'],b'x'*55,[],[])), \
+                 patch.object(implicit,'compare_unit',side_effect=compare), \
+                 patch.object(implicit,'verify_comparisons'):
+                self.assertEqual(implicit.validate({'implicit_lifetime_anchor_file':'review.toml'},r,r,lambda *args:b'native','b'*64),[])
+        isolated='build/origin-anchors/implicit-lifetimes/review/owner.obj'
+        self.assertEqual(calls,[('build',isolated),('compare',isolated)])
+        self.assertEqual(u['owner']['object'],'build/match-units/canonical.obj')
+
     def test_parameterless_default_constructor(self):
         s,r,u,b=self.fixture();s['anchors'][0].update(kind='default_constructor',emitted_symbol='??0Fixture@@QAE@XZ');self.assertTrue(self.check(s,r,u,b))
     def test_default_constructor_cannot_select_copy_or_argument_constructor(self):
