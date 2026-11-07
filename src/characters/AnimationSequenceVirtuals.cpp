@@ -93,8 +93,7 @@ int AnimationSequenceObjectView::select_sequence(int sequence)
 {
     time_counter_144 = 0;
     int const key = action_id_13c;
-    typedef std::map<int, AnimationSequenceBlock *> SequenceMap;
-    sequence_15c = reinterpret_cast<SequenceMap *>(sequence_tree_160)->find(key)->second;
+    sequence_15c = sequence_tree_160->find(key)->second;
     sequence_index_13e = static_cast<short>(sequence);
     time_counter_144 = 0;
     while (static_cast<short>(sequence) != 0) {
@@ -114,7 +113,7 @@ int AnimationSequenceObjectView::reset_sequence()
     sequence_index_13e = 0;
     int const key = action_id_13c;
     AnimationSequenceTreeIterator *const result =
-        sequence_tree_160->lower_bound(&found, &key);
+        reinterpret_cast<AnimationSequenceTree *>(sequence_tree_160)->lower_bound(&found, &key);
     if (result->owner_00 == 0)
         _invalid_parameter_noinfo();
     if (result->node_04 == result->owner_00->end_node_04)

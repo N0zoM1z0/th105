@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stddef.h>
+#include <map>
 
 namespace th105 {
 
@@ -20,6 +21,8 @@ struct AnimationSequenceBlock {
     AnimationSequenceBlock *previous_18;
     AnimationSequenceBlock *next_1c;
 };
+
+typedef std::map<int, AnimationSequenceBlock *> AnimationSequenceMap;
 
 struct AnimationSequenceTreeNode {
     AnimationSequenceTreeNode *left_00;
@@ -88,7 +91,7 @@ public:
     void *unknown_154;
     AnimationSequenceFrame *frame_158;
     AnimationSequenceBlock *sequence_15c;
-    AnimationSequenceTree *sequence_tree_160;
+    AnimationSequenceMap *sequence_tree_160;
     unsigned *wave_handles_164;
     void *owner_168;
     void *related_16c;
