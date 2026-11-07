@@ -15,9 +15,9 @@ bool CollisionContext::try_group_a_vs_group_b_interaction(
 
     source->result_180 = 9;
     source->result_slot_184 = source->source_1a0 - 1;
-    source->result_186 = source->frame_1a4->result_2a;
+    source->result_186 = source->frame_1a4->candidate_output_2a;
     other->value_174 -= source->frame_1a4->quantity_1c;
-    dispatch_indexed_event(source->frame_1a4->event_44);
+    dispatch_indexed_event(source->frame_1a4->indexed_event_44);
     emit_effect_at_collision_center(
         source->frame_1a4->effect_46, source->facing_104);
     reset_collision_extents();

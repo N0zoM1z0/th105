@@ -85,23 +85,8 @@ struct AttackCandidate {
     int calculate_descriptor_scaled_quantity_20();
 };
 
-struct CollisionObjectFrame4c {
-    unsigned char unknown_00[0x1c];
-    short quantity_1c;
-    unsigned char unknown_1e[0x0c];
-    unsigned short result_2a;
-    unsigned char unknown_2c[0x18];
-    short event_44;
-    unsigned short effect_46;
-    unsigned char unknown_48[0x04];
-    unsigned flags_4c;
-};
-
-struct CollisionObjectFrame50 {
-    unsigned char unknown_00[0x4c];
-    unsigned flags_4c;
-    unsigned flags_50;
-};
+typedef PatRecord88 CollisionObjectFrame4c;
+typedef PatRecord88 CollisionObjectFrame50;
 
 struct CollisionObjectClashFrame {
     unsigned char unknown_00[0x10];
