@@ -372,3 +372,23 @@ no source or exact credit for the interpreter.
 ## Character command signed slot transport (2026-11-05)
 
 The character command's original call sequence at `0x458FF3..0x45900E` loads byte `+0x2C` with `MOVSX` before passing the full four-byte slot argument to `install_character`. The command parser's storage remains an unsigned byte, but the unselected source previously promoted it unsigned, so values `0x80..0xFF` reached the call with different upper bits. Casting the stored byte to `signed char` at the call reproduces signed widening; the current candidate uses `MOVSX` at section offset `0x92F`. The known callee consumes the slot's low byte as a signed side, so this alone does not establish a gameplay-output difference. The complete command interpreter is still unselected and its whole comparison remains blocked by the separately unbound string-copy helper; no exact credit is claimed.
+
+## Object command argument ownership, 2026-11-07
+
+The actual Scenario command registry constructs command 5 as
+`TCommand4<std::string, int, float, float>` (see
+`docs/SCENARIO_DATA_CONSTRUCTOR_2026_10_29.md`). The unselected interpreter
+previously cast that object to a different specialization whose second argument
+was `unsigned short`. Although the relevant field offsets coincide, that was
+not the registered C++ object type. The interpreter now uses the registered
+`int` specialization and explicitly narrows the argument to its low 16 bits
+for the existing spawn interface. The native caller at `0x459414` loads that
+word with `MOVZX`; the fresh candidate does likewise at object offset `0xD32`.
+This corrects the source's object-type hypothesis and does not by itself claim
+an observable gameplay change.
+
+The strict full-interpreter comparison remains blocked on the previously
+unbound local `basic_string` constructor. This is not an unequal-byte result;
+the interpreter remains unselected and earns no exact credit. The default
+CI passed, including 1,031 target-independent tests, and the existing unrelated
+unstaged Alice audit change was left untouched.
