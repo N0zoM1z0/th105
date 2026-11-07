@@ -189,10 +189,10 @@ void IkuObjectUpdateView::update_action_state()
  case 817:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
-  case 0:SCALE(F(0x11c)*D(0.9f));if(I(0x144)>9){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
+  case 0:SCALE(F(0x11c)*D(0.9f));if(I(0x144)>=10){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
   case 2:
    F(0x11c)*=D(0.99f);F(0x120)-=D(0.001f);advance_six(0);advance_phase(0);F(0x370)*=D(0.95f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;
-   if(I(0x144)>9){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
+   if(I(0x144)>=10){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
   case 3:SCALE(F(0x11c)+F(0x370));F(0x370)*=D(0.85f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;if(I(0x144)>=3){if(B(0x113)<25)RETIRE();B(0x113)-=25;B(0x111)-=25;B(0x112)-=25;}break;
   case 4:MOVE();H[1]*=D(0.9f);if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*D(0.2f);SCALE(F(0x11c)*D(0.99f));if(I(0x144)>=12)FADE(6,5);break;
   case 5:
@@ -203,7 +203,7 @@ void IkuObjectUpdateView::update_action_state()
    if(I(0x144)>=45){--I(0x330);PACKET(p568,0,0,2);spawn_unparented(817,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p568),3);p568[2]=3;spawn_unparented(817,F(0xec),0,B(0x104),-1,reinterpret_cast<const unsigned *>(p568),3);p568[2]=7;spawn_unparented(817,F(0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p568),3);int angle=0;do{PACKET(p568,angle+22.5+F(0x370),30,4);int layer=(!(p568[0]>=0.0 && p568[0]<=180.0f))?-1:1;SPAWN(817,layer,p568);angle+=45;}while(angle<360);P->dispatch_character_wave_handle(13);return;}break;
   case 7:
    if(I(0x144)%4==0)F(0x12c)=RND(360);SCALE(F(0x11c)*D(0.95f));F(0x370)*=D(0.95f);if(F(0x370)<=D(0.05f))F(0x370)=0.05f;
-   if(I(0x144)>9){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
+   if(I(0x144)>=10){if(B(0x113)<15)RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x112)-=15;}break;
   case 8:
    if(emit_repeated(0,0,0) || AT(A,short,0x174)<1)RETIRE();
    if(AT(P,signed char,0x60a)*40+180<=I(0x144) || (AT(P,int,0x6c0)==0 && H[1]==0.0) || (AT(P,int,0x6c4)==0 && H[1]==1.0)){

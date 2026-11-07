@@ -369,3 +369,7 @@ The action 823 timer gate at `0x63632F` now uses the equivalent 15-frame bound o
 The original bounce check at `0x635BA0` reuses the 12-frame threshold in EDI and compares the signed owner skill byte against 4. Expressing both bounds in equivalent native forms makes the candidate reuse that threshold and recover the local compare and branch sequences. Behavior is unchanged; the complete 34,264-byte candidate remains non-exact.
 
 Four further gates at `0x6330FC`, `0x63550E`, `0x636DA2`, and `0x639D32` now use the original equivalent signed-zero and 3/5-frame bounds. The candidate recovers their local comparisons and branches; integer behavior is unchanged. The complete 34,260-byte candidate remains non-exact.
+
+### Action 817 fade timer (2026-11-07)
+
+Sequences 0, 2, and 7 share the native ten-frame fade gate at `0x635415`, with sequence 7 reaching it through the shared clamp path. The equivalent signed comparison now uses `>= 10` rather than `> 9`. Fresh VC8 emits the native `cmp ..., 10` and `jl` form at candidate `0x24F0` and `0x29B5`; branch sharing still differs. Integer behavior is unchanged. The 33,617-byte callable remains nonexact from +37; the candidate section tail is 34,196 bytes. No exact credit is claimed.
