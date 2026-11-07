@@ -111,7 +111,7 @@ void BattleController::prepare_match_roster_470060()
             reinterpret_cast<unsigned char *>(fighter_10) + 0xf0));
     frame_counter_04 = 0;
     *reinterpret_cast<int *>(unknown_08) = 0;
-    fighter_0c->value_174 = fighter_0c->maximum_176;
+    fighter_0c->health_174 = fighter_0c->max_health_176;
     reinterpret_cast<BattleRendererSetupView *>(post_sequence_context_8c)
         ->refresh_roster_state_471470();
     g_battle_phase_block->advance_scenario_script_page_458d10();

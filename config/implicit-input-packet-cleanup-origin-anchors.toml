@@ -16,7 +16,7 @@ sha256 = "8ef1625a4716361f2c50f6e3a0413501817a6ca55e4dd0af3f9b8587e57c714b"
 
 [[sources]]
 path = "src/battle/Collision.hpp"
-sha256 = "968a566fc35e66d0fdde15eaa11fc94060166a443c3d6722e64b618d4ed02601"
+sha256 = "d786155d23c54abb54a9cd1fa5f75bb90ed6b1d86d527077252b1db24773bb7e"
 
 [[sources]]
 path = "src/engine/CriticalSectionWrapper.hpp"

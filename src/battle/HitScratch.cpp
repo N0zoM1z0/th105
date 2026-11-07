@@ -24,7 +24,7 @@ void CollisionContext::reset_hit_exchange_scratch(
     Fighter *owner,
     Fighter *target)
 {
-    target->value_47c = target->value_174;
+    target->value_47c = target->health_174;
     target->value_4a2 = 0;
     owner->value_498 = 0;
     owner->scalar_494 = 1.0f;

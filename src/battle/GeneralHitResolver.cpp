@@ -75,7 +75,7 @@ threshold_done:
             }
         }
 
-        if (fighter->value_174 <= 0 || fighter->value_4a2 >= 100) {
+        if (fighter->health_174 <= 0 || fighter->value_4a2 >= 100) {
             unsigned short action = frame->action_code_36;
             selected_action = action == 0x46 ? 0x47 : action;
         } else if (static_cast<signed char>(is_y_at_or_below_stage_surface(fighter)) != 0 &&
@@ -172,9 +172,9 @@ threshold_done:
 
     fighter->accumulated_hit_quantity_178 += hit_quantity;
     if (fighter->state_4ea == 0) {
-        fighter->value_174 -= hit_quantity;
-        if (fighter->value_174 <= 0) {
-            fighter->value_174 = 0;
+        fighter->health_174 -= hit_quantity;
+        if (fighter->health_174 <= 0) {
+            fighter->health_174 = 0;
             reinterpret_cast<CBattleManager *>(this)
                 ->mark_terminal_pending_if_state_not_3_472490(fighter);
             selected_action = frame->action_code_36 == 0x46 ? 0x47 :
@@ -182,7 +182,7 @@ threshold_done:
         }
     }
 
-    if (candidate->result_180 != 7 || fighter->value_174 <= 0) {
+    if (candidate->result_180 != 7 || fighter->health_174 <= 0) {
         update_fighter_facing_from_other_x(fighter);
     }
     if (static_cast<short>(selected_action) >= 0) {

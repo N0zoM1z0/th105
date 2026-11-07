@@ -55,17 +55,17 @@ void __fastcall process_fighter_transient_status(Fighter *fighter)
     fighter->x_scale_4dc = 1.0f;
     fighter->y_scale_4e0 = 1.0f;
 
-    if (fighter->value_174 < 0) {
-        fighter->value_174 = 0;
+    if (fighter->health_174 < 0) {
+        fighter->health_174 = 0;
     }
     if (fighter->value_47c < 0) {
         fighter->value_47c = 0;
     }
-    if (fighter->value_174 > fighter->maximum_176) {
-        fighter->value_174 = fighter->maximum_176;
+    if (fighter->health_174 > fighter->max_health_176) {
+        fighter->health_174 = fighter->max_health_176;
     }
     if (!is_state_13c_in_32_95(fighter)) {
-        fighter->value_47c = fighter->value_174;
+        fighter->value_47c = fighter->health_174;
     }
 
     reinterpret_cast<FighterEmbeddedState3d0 *>(raw + 0x3d0)->step();

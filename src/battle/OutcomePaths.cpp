@@ -41,9 +41,9 @@ bool CollisionContext::try_outcome_path_a(
     if (fighter->state_4ea == 0) {
         const unsigned short quantity = static_cast<unsigned short>(
             candidate->calculate_descriptor_scaled_quantity_20());
-        fighter->value_174 -= quantity;
-        if (fighter->value_174 < 1) {
-            fighter->value_174 = 1;
+        fighter->health_174 -= quantity;
+        if (fighter->health_174 < 1) {
+            fighter->health_174 = 1;
         }
         if (candidate->owner_16c->factor_4d4 > 0.0f) {
             deferred_74[candidate->owner_16c->player_index_334] +=
@@ -103,9 +103,9 @@ bool CollisionContext::try_outcome_path_b(
     if (fighter->state_4ea == 0) {
         const unsigned short quantity = static_cast<unsigned short>(
             candidate->calculate_descriptor_scaled_quantity_20());
-        fighter->value_174 -= quantity;
-        if (fighter->value_174 < 1) {
-            fighter->value_174 = 1;
+        fighter->health_174 -= quantity;
+        if (fighter->health_174 < 1) {
+            fighter->health_174 = 1;
         }
         if (candidate->owner_16c->factor_4d4 > 0.0f) {
             deferred_74[candidate->owner_16c->player_index_334] +=

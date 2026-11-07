@@ -45,9 +45,9 @@ void BattleInfoRecordF8::update_runtime_46ff30()
     const signed char direction =
         static_cast<signed char>((fighter->player_index_334 == 0) * 2 - 1);
 
-    const int upper_target = fighter->value_174;
+    const int upper_target = fighter->health_174;
     if (gauge_0c < upper_target) {
-        int value = gauge_0c + fighter->maximum_176 / 120;
+        int value = gauge_0c + fighter->max_health_176 / 120;
         if (value >= upper_target)
             value = upper_target;
         gauge_0c = value;
@@ -57,7 +57,7 @@ void BattleInfoRecordF8::update_runtime_46ff30()
 
     const int lower_target = fighter->value_47c;
     if (gauge_10 > lower_target) {
-        int value = gauge_10 - fighter->maximum_176 / 120;
+        int value = gauge_10 - fighter->max_health_176 / 120;
         if (value <= lower_target)
             value = lower_target;
         gauge_10 = value;

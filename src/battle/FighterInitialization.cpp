@@ -148,8 +148,8 @@ void Fighter::initialize_fighter_battle_state()
     store_word(this, 0x4b0, 0);
     store_word(this, 0x4b2, 0);
     state_4b8 = g_fighter_state_4b8_default;
-    maximum_176 = 10000;
-    value_174 = 10000;
+    max_health_176 = 10000;
+    health_174 = 10000;
     value_47c = 10000;
     blocker_48e = 0;
     field_49e = 0;
@@ -229,7 +229,7 @@ void Fighter::initialize_fighter_battle_state()
             checked_front_sequence_slot(&sequence_controller_55c);
         SpellRecordView *record =
             lookup->find_local_then_common_spell_record(front->record_id_00);
-        value_174 = maximum_176 = record->value_1e;
+        health_174 = max_health_176 = record->value_1e;
         store_byte(this, 0x6a2, 0);
 
         front = checked_front_sequence_slot(&sequence_controller_55c);

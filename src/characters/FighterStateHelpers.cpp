@@ -25,7 +25,7 @@ void Fighter::reset_for_roster_45e040(Fighter *other)
 
 void Fighter::copy_action_word_176_to_174()
 {
-    value_174 = maximum_176;
+    health_174 = max_health_176;
 }
 
 } // namespace th105

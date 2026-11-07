@@ -37,16 +37,16 @@ void CollisionContext::apply_forwarded_quantity_to_pair(
         int recovered = static_cast<int>(
             owner->factor_4d4 * applied_quantity);
         recovered = static_cast<short>(recovered);
-        int next = owner->value_174 + recovered;
-        if (next >= owner->maximum_176) {
-            next = owner->maximum_176;
+        int next = owner->health_174 + recovered;
+        if (next >= owner->max_health_176) {
+            next = owner->max_health_176;
         }
-        owner->value_174 = static_cast<short>(next);
+        owner->health_174 = static_cast<short>(next);
     }
 
-    fighter->value_174 -= static_cast<short>(applied_quantity);
-    if (fighter->value_174 <= 0) {
-        fighter->value_174 = 0;
+    fighter->health_174 -= static_cast<short>(applied_quantity);
+    if (fighter->health_174 <= 0) {
+        fighter->health_174 = 0;
         reinterpret_cast<CBattleManager *>(this)
             ->mark_terminal_pending_if_state_not_3_472490(fighter);
     }

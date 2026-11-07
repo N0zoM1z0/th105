@@ -30,7 +30,7 @@ void __fastcall update_common_fighter_state_window(void *raw_fighter)
     Fighter *fighter = static_cast<Fighter *>(raw_fighter);
     if ((fighter->frame_158->flags_4c & 0x100000) != 0 ||
         fighter->value_4a2 >= 100 ||
-        fighter->value_174 <= 0 ||
+        fighter->health_174 <= 0 ||
         static_cast<unsigned char>(is_y_at_or_below_stage_surface(fighter))) {
         return;
     }

@@ -26,8 +26,8 @@ void CBattleManager::transition_slot_34(int phase)
         if (transition_state_5b0() == 0)
             reinterpret_cast<PostSequenceTransitionView *>(g_info_manager)
                 ->publish_transition_effect_at_46e130(400.0f);
-        fighter_0c->value_174 = fighter_0c->maximum_176;
-        fighter_10->value_174 = fighter_10->maximum_176;
+        fighter_0c->health_174 = fighter_0c->max_health_176;
+        fighter_10->health_174 = fighter_10->max_health_176;
         break;
     case 2:
         fighter_0c->unknown_4ec = 0;

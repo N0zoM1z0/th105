@@ -59,7 +59,7 @@ void Fighter::advance_fighter_sequence_55c()
             reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);
         if (lookup->find_local_then_common_spell_record(record_id)
                 ->selector_1c == -1) {
-            maximum_176 = lookup->find_local_then_common_spell_record(
+            max_health_176 = lookup->find_local_then_common_spell_record(
                 static_cast<short>(controller->entry_at_checked(0)
                     ->record_id_00))->value_1e.value;
         }
@@ -99,7 +99,7 @@ unsigned char Fighter::consume_spell_sequence_entry()
             reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0)
                 ->find_local_then_common_spell_record(static_cast<short>(
                     sequence_controller_55c.entry_at_checked(0)->record_id_00));
-        maximum_176 = record->value_1e.value;
+        max_health_176 = record->value_1e.value;
         if (sequence_controller_55c.entry_at_checked(0)->record_id_00 < 200) {
             post_advance_value_650 = static_cast<int>(
                 reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0)

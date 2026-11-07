@@ -41,14 +41,14 @@ void PracticeBattlePolicyView::update_428260()
             break;
         }
         if(is_state_13c_below_32(first)) {
-            first->value_174=first->maximum_176;
+            first->health_174=first->max_health_176;
             first->unknown_484=1000;
             first->counter_482=1000;
             first->floor_486=0;
             *reinterpret_cast<short *>(first->unknown_488)=0;
         }
         if(is_state_13c_below_32(second)) {
-            second->value_174=second->maximum_176;
+            second->health_174=second->max_health_176;
             int spirit=g_battle_input_gate->spirit_14*1000/5;
             if(second->counter_482<spirit)spirit=second->counter_482;
             second->counter_482=static_cast<short>(spirit);
@@ -82,7 +82,7 @@ void PracticeBattlePolicyView::update_428260()
         for(int i=0;i<2;++i) {
             Fighter *fighter=fighters[i];
             if(!is_state_13c_in_32_95(fighter))
-                fighter->value_174=fighter->maximum_176;
+                fighter->health_174=fighter->max_health_176;
             if(is_state_13c_below_32(fighter)) {
                 fighter->unknown_484=1000;
                 fighter->counter_482=1000;

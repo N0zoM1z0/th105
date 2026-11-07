@@ -8,12 +8,12 @@ float AttackCandidate::calculate_forwarded_quantity()
         related_fighter_170->target_factor_4c0;
     result = result * owner_16c->scalar_494;
 
-    if (related_fighter_170->value_174 < 0) {
+    if (related_fighter_170->health_174 < 0) {
         result = result * 0.7f;
-    } else if (related_fighter_170->maximum_176 > related_fighter_170->value_174) {
+    } else if (related_fighter_170->max_health_176 > related_fighter_170->health_174) {
         result =
-            ((static_cast<float>(related_fighter_170->value_174) /
-              static_cast<float>(related_fighter_170->maximum_176)) * 0.3f + 0.7f) *
+            ((static_cast<float>(related_fighter_170->health_174) /
+              static_cast<float>(related_fighter_170->max_health_176)) * 0.3f + 0.7f) *
             result;
     }
 
@@ -61,10 +61,10 @@ float AttackCandidate::calculate_base_hit_quantity()
 
     if (related_fighter_170->scalar_quantity_198 < 0) {
         result = result * 0.7f;
-    } else if (related_fighter_170->maximum_176 > related_fighter_170->scalar_quantity_198) {
+    } else if (related_fighter_170->max_health_176 > related_fighter_170->scalar_quantity_198) {
         result =
             ((static_cast<float>(related_fighter_170->scalar_quantity_198) /
-              static_cast<float>(related_fighter_170->maximum_176)) * 0.3f + 0.7f) *
+              static_cast<float>(related_fighter_170->max_health_176)) * 0.3f + 0.7f) *
             result;
     }
 

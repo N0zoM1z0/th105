@@ -194,8 +194,8 @@ struct Fighter {
     FighterFrame *frame_158;
     unsigned char unknown_15c[0x14];
     Fighter *other_fighter_170;
-    short value_174;
-    short maximum_176;
+    short health_174;
+    short max_health_176;
     int accumulated_hit_quantity_178;
     unsigned char unknown_17c[0x04];
     unsigned result_180;
