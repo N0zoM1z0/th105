@@ -1,18 +1,14 @@
 // Partial runtime views; no original complete class/TU identity is asserted.
+#include "PatResourceContracts.hpp"
 #include <list>
 #include <stddef.h>
 namespace th105 {
 namespace {
-struct ClashFrame {
-    unsigned char unknown_00[0x4c];
-    unsigned flags_4c;
-    unsigned flags_50;
-};
 struct ClashObject {
     unsigned char unknown_000[0x1a0];
     unsigned char active_1a0;
     unsigned char unknown_1a1[3];
-    ClashFrame *frame_1a4;
+    PatRecord88 *frame_1a4;
 };
 struct ClashContext {
     unsigned char unknown_00[0x44];

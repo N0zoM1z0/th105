@@ -8,9 +8,7 @@ namespace {
 
 unsigned frame_flags_50(const CollisionObject *object)
 {
-    const unsigned char *frame =
-        reinterpret_cast<const unsigned char *>(object->frame_1a4);
-    return *reinterpret_cast<const unsigned *>(frame + 0x50);
+    return object->frame_1a4->flags_50;
 }
 
 } // namespace
