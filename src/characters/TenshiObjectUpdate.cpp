@@ -475,7 +475,7 @@ void TenshiObjectUpdateView::update_action_state()
      {float x=static_cast<float>(S(0x13e)*160);fill_stage_surface_range(x,159.0+x,F(0xf0));}AT(P,float,0x7a4+S(0x13e)*4)=F(0xf0);
     }else{
      AT(AUX,float,0xec)=-AT(P,float,0x828);
-     if(AT(P,float,0x7a4+S(0x13e)*4)<=F(0xf0)){
+     if(!(AT(P,float,0x7a4+S(0x13e)*4)>F(0xf0))){
       if(AT(P,float,0x7a4+S(0x13e)*4)<F(0xf0)){
        if(S(0x364)==0){B(0x184)=0;S(0x364)=1;p328[1]=20;p328[2]=4;float n=0;do{p328[0]=n*45.0+RND(30);int layer=(p328[0]>=0.0 && p328[0]<=180.0f)?1:-1;unsigned char facing=B(0x104);spawn_unparented(815,F(0xec),stage_surface_height(),facing,layer,reinterpret_cast<const unsigned *>(p328),3);n+=1.0;}while(n<8.0f);}
        F(0xf8)=(AT(P,float,0x7a4+S(0x13e)*4)-F(0xf0))*0.5;if(F(0xf8)<-60.0)F(0xf8)=-60;if(F(0xf8)>-1.0f){F(0xf8)=0;S(0x364)=0;F(0xf0)=AT(P,float,0x7a4+S(0x13e)*4);}
@@ -497,7 +497,7 @@ void TenshiObjectUpdateView::update_action_state()
     if(F(0xf8)>0.0)F(0xf8)=0;F(0xf8)-=0.25;if(F(0xf0)<=0.0){float x=static_cast<float>(S(0x13e)*160);fill_stage_surface_range(x,159.0+x,0);RETIRE();}
     {float x=static_cast<float>(S(0x13e)*160);fill_stage_surface_range(x,159.0+x,F(0xf0));}AT(P,float,0x7a4+S(0x13e)*4)=F(0xf0);
    }else{
-    if(AT(P,float,0x7a4+S(0x13e)*4)<=F(0xf0)){
+    if(!(AT(P,float,0x7a4+S(0x13e)*4)>F(0xf0))){
      if(AT(P,float,0x7a4+S(0x13e)*4)<F(0xf0)){
       if(S(0x364)==0){B(0x184)=1;S(0x364)=1;p352[1]=20;p352[2]=4;float n=0;do{p352[0]=n*45.0+RND(30);int layer=(p352[0]>=0.0 && p352[0]<=180.0f)?1:-1;unsigned char facing=B(0x104);spawn_unparented(815,F(0xec),stage_surface_height(),facing,layer,reinterpret_cast<const unsigned *>(p352),3);n+=1.0;}while(n<8.0f);}
       F(0xf8)=(AT(P,float,0x7a4+S(0x13e)*4)-F(0xf0))*0.5;if(F(0xf8)<-60.0)F(0xf8)=-60;if(F(0xf8)>-1.0f){B(0x184)=0;F(0xf8)=0;S(0x364)=0;F(0xf0)=AT(P,float,0x7a4+S(0x13e)*4);}

@@ -341,3 +341,22 @@ The sequence 9/10 threshold at `0x6552C6..0x6552E4` likewise converts the signed
 The original phase-2 frame gate at `0x64CEF3` compares against 1, and the phase-4 signed-byte gate at `0x64D06D` compares against 3. Equivalent source forms recover their local compare-and-branch sequences. Integer behavior is unchanged, and the 42,508-byte candidate remains non-exact.
 
 The signed state gate at `0x64D285` now uses the equivalent `<= 0` form, recovering the local compare and branch. The complete function remains non-exact.
+
+## Actions 960 and 961 unordered height comparisons (2026-11-07)
+
+For the active owner-height paths, native action 960 at `0x655BD9..0x655BEF`
+selects the upward branch only when the owner's target height is ordered and
+greater than the object's height. Equality, a lower target and an unordered
+comparison reach `0x655D82`, which separately checks for an ordered lower
+target; unordered values skip both movement branches. Action 961 has the same
+structure at `0x656226..0x656243` and `0x6563DA..0x6563E9`.
+
+The previous outer `target <= height` condition instead selected the upward
+branch for unordered values. Both source arms now use `!(target > height)`,
+while retaining the inner ordered `<` check. Finite and equal cases are
+unchanged. Whether such unordered heights occur in ordinary play is unknown.
+The focused VC8 output uses reversed operands at `0x9176..0x9198` and
+`0x976D..0x9791`; its two tests select the same four comparison outcomes.
+The full candidate remains nonexact: its section tail is 42,508 bytes against
+the 41,001-byte native callable, with first mismatch at +8. No exact credit is
+claimed. Receipts: `build/tenshi-unordered-height-20261107.json` and `.dis`.
