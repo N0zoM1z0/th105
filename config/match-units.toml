@@ -10580,7 +10580,7 @@ symbol_base = "previous_sequence_block"
 address = "0x00473B80"
 symbol_base = "select_sequence"
 rel32_targets = [
-  "?lower_bound@EffectAnimationTree@th105@@QAEPAUEffectAnimationTreeIterator@2@PAU32@PBH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUEffectAnimationBlockView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectAnimationBlockView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 
@@ -10588,7 +10588,7 @@ rel32_targets = [
 address = "0x00473C50"
 symbol_base = "reset_sequence"
 rel32_targets = [
-  "?lower_bound@EffectAnimationTree@th105@@QAEPAUEffectAnimationTreeIterator@2@PAU32@PBH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUEffectAnimationBlockView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUEffectAnimationBlockView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 

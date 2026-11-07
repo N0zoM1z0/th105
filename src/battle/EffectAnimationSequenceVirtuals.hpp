@@ -2,6 +2,7 @@
 
 #include <stddef.h>
 #include <vector>
+#include <map>
 
 namespace th105 {
 
@@ -20,29 +21,7 @@ struct EffectAnimationBlockView {
     EffectAnimationBlockView *next_1c;
 };
 
-struct EffectAnimationTreeNode {
-    EffectAnimationTreeNode *left_00;
-    EffectAnimationTreeNode *parent_04;
-    EffectAnimationTreeNode *right_08;
-    int key_0c;
-    EffectAnimationBlockView *value_10;
-    unsigned char unknown_14;
-    unsigned char is_end_15;
-    unsigned char unknown_16[0x02];
-};
-
-struct EffectAnimationTree;
-struct EffectAnimationTreeIterator {
-    EffectAnimationTree *owner_00;
-    EffectAnimationTreeNode *node_04;
-};
-struct EffectAnimationTree {
-    unsigned unknown_00;
-    EffectAnimationTreeNode *end_node_04;
-    EffectAnimationTreeIterator *lower_bound(
-        EffectAnimationTreeIterator *result,
-        const int *key);
-};
+typedef std::map<int, EffectAnimationBlockView *> EffectAnimationMap;
 
 class EffectAnimationSequenceView {
 public:
@@ -72,7 +51,7 @@ public:
     unsigned char unknown_14e[0x02];
     EffectAnimationFrame28 *frame_150;
     unsigned char unknown_154[0x0c];
-    EffectAnimationTree *sequence_tree_160;
+    EffectAnimationMap *sequence_tree_160;
     unsigned char unknown_164[0x04];
     EffectAnimationBlockView *sequence_168;
 };
