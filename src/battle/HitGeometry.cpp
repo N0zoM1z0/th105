@@ -40,15 +40,21 @@ int CollisionContext::test_descriptor_point_inside(
     int x,
     int y)
 {
-    const int q0 = descriptor->y0 * (aabb->top - y) - 1 +
-        descriptor->x0 * (aabb->left - x);
-    const int q1 = descriptor->y0 * (y - aabb->bottom) - 1 +
-        descriptor->x0 * (x - aabb->right);
-    const int q2 = (aabb->top - y) * descriptor->y1 - 1 +
-        (aabb->left - x) * descriptor->x1;
-    const int q3 = descriptor->y1 * (y - aabb->bottom) - 1 +
-        descriptor->x1 * (x - aabb->right);
-    return (q0 >> 31) & (q1 >> 31) & (q2 >> 31) & (q3 >> 31);
+    const unsigned q0 = static_cast<unsigned>(descriptor->y0) *
+        (static_cast<unsigned>(aabb->top) - y) - 1u +
+        static_cast<unsigned>(descriptor->x0) * (static_cast<unsigned>(aabb->left) - x);
+    const unsigned q1 = static_cast<unsigned>(descriptor->y0) *
+        (static_cast<unsigned>(y) - aabb->bottom) - 1u +
+        static_cast<unsigned>(descriptor->x0) * (static_cast<unsigned>(x) - aabb->right);
+    const unsigned q2 = (static_cast<unsigned>(aabb->top) - y) * descriptor->y1 - 1u +
+        (static_cast<unsigned>(aabb->left) - x) * descriptor->x1;
+    const unsigned q3 = static_cast<unsigned>(descriptor->y1) *
+        (static_cast<unsigned>(y) - aabb->bottom) - 1u +
+        static_cast<unsigned>(descriptor->x1) * (static_cast<unsigned>(x) - aabb->right);
+    // VC8 x86 converts the bit patterns to signed 32-bit values and uses
+    // arithmetic right shift, yielding -1 only when all four signs are set.
+    return (static_cast<int>(q0) >> 31) & (static_cast<int>(q1) >> 31) &
+           (static_cast<int>(q2) >> 31) & (static_cast<int>(q3) >> 31);
 }
 
 int CollisionContext::test_aabb_against_descriptor_shape(
