@@ -51,8 +51,7 @@ struct OpaqueWaveHandleService {
  unsigned char release_handle(unsigned);
 };
 extern OpaqueWaveHandleService g_wave_handle_service;
-struct AnimationSequenceBlock;
-typedef std::map<int,AnimationSequenceBlock *> CharacterActionTree;
+typedef std::map<int,PatGroup *> CharacterActionTree;
 // Typed accessed base prefix; no overlay instance is constructed.
 struct CharacterBaseResourcesView {
  unsigned char prefix_000[0x130];

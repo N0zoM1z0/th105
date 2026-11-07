@@ -4,6 +4,7 @@
 #include "battle/AttackObject.hpp"
 #include "battle/GameMode.hpp"
 #include "battle/SpellData.hpp"
+#include "battle/PatResourceContracts.hpp"
 #include "ui/ProfileDeckResourceLifetime.hpp"
 #include "ui/DesignBaseLifetime.hpp"
 
@@ -86,8 +87,7 @@ struct SpriteHandleResource98 {
 };
 typedef char SpriteHandleResource98_size[sizeof(SpriteHandleResource98) == 0x98 ? 1 : -1];
 
-struct AnimationSequenceBlock;
-typedef std::map<int, AnimationSequenceBlock *> ActionTree0c;
+typedef std::map<int, PatGroup *> ActionTree0c;
 
 struct Element4 {
     unsigned value_00;
