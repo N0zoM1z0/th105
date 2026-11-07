@@ -59,7 +59,7 @@ enum CoreFunctionAddress {
 // VC8-compatible compile-time layout checks for complete views. Partial views
 // intentionally have no sizeof claim.
 typedef char CheckAttackCandidateFrameSize[
-    sizeof(AttackCandidateFrame) == 0x54 ? 1 : -1];
+    sizeof(AttackCandidateFrame) == 0x88 ? 1 : -1];
 typedef char CheckCollisionAabbSize[
     sizeof(CollisionAabb) == 0x10 ? 1 : -1];
 typedef char CheckCollisionListSize[

@@ -4,6 +4,7 @@
 
 #include "CollisionList.hpp"
 #include "GameMode.hpp"
+#include "PatResourceContracts.hpp"
 
 namespace th105 {
 
@@ -50,33 +51,7 @@ struct FighterActionScratch {
     void reset_fighter_action_scratch();
 };
 
-struct AttackCandidateFrame {
-    unsigned char unknown_00[0x1c];
-    short quantity_1c;
-    short owner_multiplier_per_1000_1e;
-    short quantity_20;
-    short amount_22;
-    short boosted_response_quantity_24;
-    short threshold_increment_26;
-    short result_accumulator_increment_28;
-    unsigned short candidate_output_2a;
-    unsigned short fighter_output_2c;
-    unsigned short result_2e;
-    unsigned short result_30;
-    short owner_capped_counter_quantity_32;
-    unsigned short amount_34;
-    unsigned short action_code_36;
-    unsigned short alternate_action_code_38;
-    unsigned char unknown_3a[0x02];
-    float response_3c;
-    float response_40;
-    short indexed_event_44;
-    unsigned short effect_46;
-    signed char action_offset_48;
-    unsigned char owner_flag_bits_49;
-    unsigned char unknown_4a[0x06];
-    unsigned flags_50;
-};
+typedef PatRecord88 AttackCandidateFrame;
 
 struct FighterFrame {
     unsigned char unknown_00[0x4c];

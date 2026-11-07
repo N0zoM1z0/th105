@@ -68,24 +68,24 @@ public:
     short boosted_response_quantity_24;
     short threshold_increment_26;
     short result_accumulator_increment_28;
-    short candidate_output_bits_2a;
-    short fighter_output_bits_2c;
-    short candidate_result_bits_2e;
-    short fighter_result_bits_30;
+    unsigned short candidate_output_2a;
+    unsigned short fighter_output_2c;
+    unsigned short result_2e;
+    unsigned short result_30;
     short owner_capped_counter_quantity_32;
-    short amount_bits_34;
-    short action_code_bits_36;
-    short alternate_action_code_bits_38;
+    unsigned short amount_34;
+    unsigned short action_code_36;
+    unsigned short alternate_action_code_38;
     // +0x3A..+0x3B are natural alignment padding and are not copy members.
     float response_3c;
     float response_40;
     short indexed_event_44;
-    short effect_bits_46;
-    unsigned char action_offset_bits_48;
+    unsigned short effect_46;
+    signed char action_offset_48;
     unsigned char owner_flag_bits_49;
     // +0x4A..+0x4B are natural alignment padding and are not copy members.
     unsigned flags_4c;
-    unsigned hit_flags_50;
+    unsigned flags_50;
     // Collision preparation interprets these raw records as boxes/descriptors.
     PatRaw16 *primary_collision_box_54;
     std::vector<PatRaw16> group_b_collision_boxes_58;
