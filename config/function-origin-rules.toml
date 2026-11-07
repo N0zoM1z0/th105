@@ -1004,7 +1004,7 @@ origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/ProfileMenuData.cpp regenerates 1 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 1 review candidates / 100 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/battle/BattleInputFlush.cpp regenerates the checked deque<short> operator[] COMDAT; its complete inventory hit set contains exactly one candidate / 100 bytes. Target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed. The earlier ProfileMenuData operator[] witness was superseded by the verified at() source."
 
 [[rules]]
 id = "vc8-generated-profile-deck-counts-std-comdats-106a"
