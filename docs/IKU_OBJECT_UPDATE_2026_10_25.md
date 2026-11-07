@@ -373,3 +373,7 @@ Four further gates at `0x6330FC`, `0x63550E`, `0x636DA2`, and `0x639D32` now use
 ### Action 817 fade timer (2026-11-07)
 
 Sequences 0, 2, and 7 share the native ten-frame fade gate at `0x635415`, with sequence 7 reaching it through the shared clamp path. The equivalent signed comparison now uses `>= 10` rather than `> 9`. Fresh VC8 emits the native `cmp ..., 10` and `jl` form at candidate `0x24F0` and `0x29B5`; branch sharing still differs. Integer behavior is unchanged. The 33,617-byte callable remains nonexact from +37; the candidate section tail is 34,196 bytes. No exact credit is claimed.
+
+### Action 818 timer bounds (2026-11-07)
+
+The related object's emission gate at `0x635E2B` and the phase-2 fade gate at `0x635F47` use signed comparisons against 12 and 25. Their source forms now use the same bounds, equivalent to the previous `> 11` and `> 24`. Fresh candidate code emits the corresponding `cmp` and `jl` pairs at `0x2F3C` and `0x301A`. The whole 33,617-byte callable remains nonexact from +37, with a 34,196-byte candidate section tail; no exact credit is claimed.
