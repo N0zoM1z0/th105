@@ -24,29 +24,8 @@ struct AnimationSequenceBlock {
 
 typedef std::map<int, AnimationSequenceBlock *> AnimationSequenceMap;
 
-struct AnimationSequenceTreeNode {
-    AnimationSequenceTreeNode *left_00;
-    AnimationSequenceTreeNode *parent_04;
-    AnimationSequenceTreeNode *right_08;
-    int key_0c;
-    AnimationSequenceBlock *value_10;
-    unsigned char unknown_14;
-    unsigned char is_end_15;
-    unsigned char unknown_16[0x02];
-};
-
+// Other incomplete views still refer to this legacy tree type by pointer.
 struct AnimationSequenceTree;
-struct AnimationSequenceTreeIterator {
-    AnimationSequenceTree *owner_00;
-    AnimationSequenceTreeNode *node_04;
-};
-struct AnimationSequenceTree {
-    unsigned unknown_00;
-    AnimationSequenceTreeNode *end_node_04;
-    AnimationSequenceTreeIterator *lower_bound(
-        AnimationSequenceTreeIterator *result,
-        const int *key);
-};
 
 class AnimationSequenceObjectView {
 public:

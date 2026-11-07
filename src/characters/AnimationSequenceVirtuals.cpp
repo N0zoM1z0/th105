@@ -108,17 +108,10 @@ int AnimationSequenceObjectView::select_sequence(int sequence)
 
 int AnimationSequenceObjectView::reset_sequence()
 {
-    AnimationSequenceTreeIterator found;
     time_counter_144 = 0;
     sequence_index_13e = 0;
     int const key = action_id_13c;
-    AnimationSequenceTreeIterator *const result =
-        reinterpret_cast<AnimationSequenceTree *>(sequence_tree_160)->lower_bound(&found, &key);
-    if (result->owner_00 == 0)
-        _invalid_parameter_noinfo();
-    if (result->node_04 == result->owner_00->end_node_04)
-        _invalid_parameter_noinfo();
-    sequence_15c = result->node_04->value_10;
+    sequence_15c = sequence_tree_160->find(key)->second;
     AnimationSequenceBlock *const block = sequence_15c;
     sequence_frame_count_148 = block->frames_begin_04 == 0 ? 0 :
         block->frames_end_08 - block->frames_begin_04;
