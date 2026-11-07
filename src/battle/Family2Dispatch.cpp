@@ -36,13 +36,13 @@ void CollisionContext::dispatch_family2_against_family1()
         ends.source.owner = source_end_list;
         ends.source.node = source_end_list->sentinel;
 
-source_loop:
-        if (source_begin_list != ends.source.owner) {
-            _invalid_parameter_noinfo();
-        }
-        if (source_it == ends.source.node) {
-            goto source_done;
-        }
+        for (;;) {
+            if (source_begin_list != ends.source.owner) {
+                _invalid_parameter_noinfo();
+            }
+            if (source_it == ends.source.node) {
+                break;
+            }
             if (source_it == source_begin_list->sentinel) {
                 _invalid_parameter_noinfo();
             }
@@ -64,13 +64,13 @@ source_loop:
                     ends.other.owner = other_end_list;
                     ends.other.node = other_end_list->sentinel;
 
-other_loop:
-                    if (other_begin_list != ends.other.owner) {
-                        _invalid_parameter_noinfo();
-                    }
-                    if (other_it == ends.other.node) {
-                        goto other_done;
-                    }
+                    for (;;) {
+                        if (other_begin_list != ends.other.owner) {
+                            _invalid_parameter_noinfo();
+                        }
+                        if (other_it == ends.other.node) {
+                            break;
+                        }
                         if (other_it == other_begin_list->sentinel) {
                             _invalid_parameter_noinfo();
                         }
@@ -98,8 +98,7 @@ other_loop:
                             _invalid_parameter_noinfo();
                         }
                         other_it = other_it->next;
-                    goto other_loop;
-other_done:
+                    }
 
                     if (source_it == source_begin_list->sentinel) {
                         _invalid_parameter_noinfo();
@@ -113,13 +112,13 @@ other_done:
                         ends.same.owner = same_end_list;
                         ends.same.node = same_end_list->sentinel;
 
-same_loop:
-                        if (same_begin_list != ends.same.owner) {
-                            _invalid_parameter_noinfo();
-                        }
-                        if (same_it == ends.same.node) {
-                            goto same_done;
-                        }
+                        for (;;) {
+                            if (same_begin_list != ends.same.owner) {
+                                _invalid_parameter_noinfo();
+                            }
+                            if (same_it == ends.same.node) {
+                                break;
+                            }
                             if (source_it == source_begin_list->sentinel) {
                                 _invalid_parameter_noinfo();
                             }
@@ -156,9 +155,7 @@ same_loop:
                                 _invalid_parameter_noinfo();
                             }
                             same_it = same_it->next;
-                        goto same_loop;
-same_done:
-                        ;
+                        }
                     }
                 }
             }
@@ -167,8 +164,7 @@ same_done:
                 _invalid_parameter_noinfo();
             }
             source_it = source_it->next;
-        goto source_loop;
-source_done:
+        }
         ++fighter;
     } while (--fighter_count != 0);
 }
