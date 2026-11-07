@@ -208,7 +208,7 @@ case 214: {
 yukari_release_second:
     if(sequence_index_13e==3 || sequence_index_13e==4) {
         if(B(0x104)==1){if(peer()->at<float>(0xec)<F(0xec)){B(0x104)=255;F(0xf4)=-F(0xf4);select_sequence(5);return;}select_sequence(6);return;}
-        if(peer()->at<float>(0xec)<=F(0xec)){select_sequence(6);return;}
+        if(!(peer()->at<float>(0xec)>F(0xec))){select_sequence(6);return;}
         B(0x104)=static_cast<unsigned char>(-B(0x104));F(0xf4)=-F(0xf4);select_sequence(5);
     }return;
 }

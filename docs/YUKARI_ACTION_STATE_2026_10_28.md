@@ -219,3 +219,20 @@ multiplication in a different order, but combines them in the observed order.
 No normal-play numeric difference is established. The 57042-byte root remains
 nonexact at +18 with a 57840-byte candidate section tail; no exact-function or
 byte credit is claimed.
+
+## Action 214 unordered peer-position comparison, 2026-11-07
+
+For release sequences 3 and 4 with a facing byte other than 1, the native
+comparison at `0x57E2E0..0x57E2F3` compares the peer's X with the fighter's X.
+Only an ordered peer-X-greater result takes the facing/velocity reversal and
+sequence-5 path. Less, equal, and unordered results select sequence 6 at
+`0x57E31E` (EBP holds 6 from `0x57DDE0`). The earlier ordered `peerX <= selfX`
+source sent unordered values to the reversal path instead.
+
+The unselected source now uses `!(peerX > selfX)`, preserving all ordered
+outcomes and the original unordered branch. The fresh candidate compares the
+operands in reverse at `0x327D..0x3296`, with a parity branch that selects the
+same four outcomes. Ordinary-play reachability of an unordered position is
+unknown. The complete candidate remains nonexact: 57,840-byte section tail
+against the 57,042-byte native callable, first mismatch +18. No exact credit
+is claimed. Receipts: `build/yukari-unordered-peer-20261107.json` and `.dis`.
