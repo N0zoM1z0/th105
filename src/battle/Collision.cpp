@@ -1,5 +1,7 @@
 #include "Collision.hpp"
 
+#include <cstring>
+
 namespace th105 {
 
 void CollisionContext::reset_collision_extents()
@@ -76,9 +78,16 @@ int CollisionContext::test_and_accumulate_float_aabb_overlap(
 
     // The target tests sign bits after float subtraction, including signed
     // zero and NaN representations; this is not a generic <= overlap test.
-    int sign_bits = *(int *)&differences[0] & *(int *)&differences[2] &
-                    *(int *)&differences[1] & *(int *)&differences[3];
-    if (sign_bits & 0x80000000) {
+    typedef char FloatBitsHaveSameSize[sizeof(float) == sizeof(unsigned) ? 1 : -1];
+    unsigned second_left_gap_bits, first_left_gap_bits;
+    unsigned second_top_gap_bits, first_top_gap_bits;
+    std::memcpy(&second_left_gap_bits, &differences[0], sizeof(second_left_gap_bits));
+    std::memcpy(&first_left_gap_bits, &differences[2], sizeof(first_left_gap_bits));
+    std::memcpy(&second_top_gap_bits, &differences[1], sizeof(second_top_gap_bits));
+    std::memcpy(&first_top_gap_bits, &differences[3], sizeof(first_top_gap_bits));
+    unsigned sign_bits = second_left_gap_bits & first_left_gap_bits &
+                         second_top_gap_bits & first_top_gap_bits;
+    if (sign_bits & 0x80000000u) {
         accumulate_float_collision_extents(first, second);
         return 1;
     }
