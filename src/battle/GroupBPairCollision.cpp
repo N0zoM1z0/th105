@@ -63,7 +63,7 @@ int CollisionContext::test_group_b_against_group_b(
                         overlap &= second_box->left - first_box->right;
                         if ((static_cast<unsigned>(overlap) & 0x80000000u) != 0) {
                             accumulate_collision_extents(
-                                &first_box->left, &second_box->left);
+                                first_box, second_box);
                             hit = 1;
                         } else {
                             hit = 0;

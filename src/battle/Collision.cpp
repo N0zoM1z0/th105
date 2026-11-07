@@ -11,56 +11,56 @@ void CollisionContext::reset_collision_extents()
 }
 
 void CollisionContext::accumulate_collision_extents(
-    const int *first,
-    const int *second)
+    const CollisionAabb *first,
+    const CollisionAabb *second)
 {
     // X endpoints may arrive reversed; narrow the running intersection with
     // the lesser and greater endpoint of each box in turn.
-    int first_x = first[0];
-    int first_x2 = first[2];
+    int first_x = first->left;
+    int first_x2 = first->right;
     if (first_x < first_x2) {
         if (overlap_left < first_x) {
             overlap_left = first_x;
         }
-        first_x = first[2];
+        first_x = first->right;
     } else {
         if (overlap_left < first_x2) {
             overlap_left = first_x2;
         }
-        first_x = first[0];
+        first_x = first->left;
     }
     if (overlap_right > first_x) {
         overlap_right = first_x;
     }
 
-    int second_x = second[0];
-    int second_x2 = second[2];
+    int second_x = second->left;
+    int second_x2 = second->right;
     if (second_x < second_x2) {
         if (overlap_left < second_x) {
             overlap_left = second_x;
         }
-        second_x = second[2];
+        second_x = second->right;
     } else {
         if (overlap_left < second_x2) {
             overlap_left = second_x2;
         }
-        second_x = second[0];
+        second_x = second->left;
     }
     if (overlap_right > second_x) {
         overlap_right = second_x;
     }
 
-    if (overlap_top < first[1]) {
-        overlap_top = first[1];
+    if (overlap_top < first->top) {
+        overlap_top = first->top;
     }
-    if (overlap_top < second[1]) {
-        overlap_top = second[1];
+    if (overlap_top < second->top) {
+        overlap_top = second->top;
     }
-    if (overlap_bottom > first[3]) {
-        overlap_bottom = first[3];
+    if (overlap_bottom > first->bottom) {
+        overlap_bottom = first->bottom;
     }
-    if (overlap_bottom > second[3]) {
-        overlap_bottom = second[3];
+    if (overlap_bottom > second->bottom) {
+        overlap_bottom = second->bottom;
     }
 }
 

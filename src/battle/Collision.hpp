@@ -10,6 +10,7 @@ namespace th105 {
 struct Fighter;
 struct ActorPosition;
 struct LocalAabb;
+struct CollisionAabb;
 struct WorldAabb;
 
 void __fastcall release_owned_pointer_buffer(void *buffer);
@@ -385,7 +386,7 @@ struct CollisionContext {
     int deferred_7c[2];
 
     void reset_collision_extents();
-    void accumulate_collision_extents(const int *first, const int *second);
+    void accumulate_collision_extents(const CollisionAabb *first, const CollisionAabb *second);
     void accumulate_float_collision_extents(
         WorldAabb *first,
         WorldAabb *second);

@@ -7,12 +7,12 @@ void CollisionContext::accumulate_descriptor_extents(
     const ShapeWords *descriptor,
     const CollisionAabb *second)
 {
-    int local[4];
-    local[0] = first->left;
-    local[2] = first->right;
-    local[1] = descriptor->y0 + first->top;
-    local[3] = descriptor->y1 + first->top;
-    accumulate_collision_extents(local, &second->left);
+    CollisionAabb local;
+    local.left = first->left;
+    local.right = first->right;
+    local.top = descriptor->y0 + first->top;
+    local.bottom = descriptor->y1 + first->top;
+    accumulate_collision_extents(&local, second);
 }
 
 void CollisionContext::accumulate_descriptor_pair_extents(
@@ -21,17 +21,17 @@ void CollisionContext::accumulate_descriptor_pair_extents(
     const CollisionAabb *second,
     const ShapeWords *second_descriptor)
 {
-    int first_local[4];
-    int second_local[4];
-    first_local[0] = first->left;
-    first_local[2] = first->right;
-    first_local[1] = first_descriptor->y0 + first->top;
-    first_local[3] = first_descriptor->y1 + first->top;
-    second_local[0] = second->left;
-    second_local[2] = second->right;
-    second_local[1] = second_descriptor->y0 + second->top;
-    second_local[3] = second_descriptor->y1 + second->top;
-    accumulate_collision_extents(first_local, second_local);
+    CollisionAabb first_local;
+    CollisionAabb second_local;
+    first_local.left = first->left;
+    first_local.right = first->right;
+    first_local.top = first_descriptor->y0 + first->top;
+    first_local.bottom = first_descriptor->y1 + first->top;
+    second_local.left = second->left;
+    second_local.right = second->right;
+    second_local.top = second_descriptor->y0 + second->top;
+    second_local.bottom = second_descriptor->y1 + second->top;
+    accumulate_collision_extents(&first_local, &second_local);
 }
 
 int CollisionContext::test_descriptor_point_inside(

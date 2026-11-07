@@ -58,7 +58,7 @@ int CollisionContext::test_group_a_against_primary_box(
             overlap &= aabb->left - primary_box(second)->right;
             overlap &= primary_box(second)->left - aabb->right;
             if ((static_cast<unsigned>(overlap) & 0x80000000u) != 0) {
-                accumulate_collision_extents(&aabb->left, &primary_box(second)->left);
+                accumulate_collision_extents(aabb, primary_box(second));
                 hit = 1;
             } else {
                 hit = 0;
@@ -115,7 +115,7 @@ int CollisionContext::test_group_a_against_group_b(
                         overlap &= second_box->left - first_box->right;
                         if (overlap < 0) {
                             accumulate_collision_extents(
-                                &first_box->left, &second_box->left);
+                                first_box, second_box);
                             hit = 1;
                         } else {
                             hit = 0;
@@ -180,7 +180,7 @@ int CollisionContext::test_group_b_against_group_b(
                         overlap &= second_box->left - first_box->right;
                         if (overlap < 0) {
                             accumulate_collision_extents(
-                                &first_box->left, &second_box->left);
+                                first_box, second_box);
                             hit = 1;
                         } else {
                             hit = 0;

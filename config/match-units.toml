@@ -26060,7 +26060,7 @@ address = "0x0046B940"
 symbol_base = "?test_group_a_against_primary_box@CollisionContext@th105@@QAEHPAUCollisionObject@2@0@Z"
 rel32_targets = [
  "?test_aabb_against_descriptor_shape@CollisionContext@th105@@QAEHPBUCollisionAabb@2@PBUShapeWords@2@0@Z=0x0046B7B0",
- "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBH0@Z=0x0046B3B0",
+ "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBUCollisionAabb@2@0@Z=0x0046B3B0",
 ]
 
 [units.exact-first-action-state-leaf-setters]
@@ -26672,7 +26672,7 @@ symbol_base = "test_group_b_against_group_b"
 rel32_targets = [
  "?test_descriptor_shapes_overlap@CollisionContext@th105@@QAEHPBUCollisionAabb@2@PBUShapeWords@2@01@Z=0x0046BA10",
  "?test_aabb_against_descriptor_shape@CollisionContext@th105@@QAEHPBUCollisionAabb@2@PBUShapeWords@2@0@Z=0x0046B7B0",
- "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBH0@Z=0x0046B3B0",
+ "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBUCollisionAabb@2@0@Z=0x0046B3B0",
 ]
 
 [units.exact-first-music-list-populate]
@@ -28695,7 +28695,7 @@ symbol_base = "?test_group_a_against_group_b@CollisionContext@th105@@QAEHPAUColl
 rel32_targets = [
  "?test_descriptor_shapes_overlap@CollisionContext@th105@@QAEHPBUCollisionAabb@2@PBUShapeWords@2@01@Z=0x0046BA10",
  "?test_aabb_against_descriptor_shape@CollisionContext@th105@@QAEHPBUCollisionAabb@2@PBUShapeWords@2@0@Z=0x0046B7B0",
- "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBH0@Z=0x0046B3B0",
+ "?accumulate_collision_extents@CollisionContext@th105@@QAEXPBUCollisionAabb@2@0@Z=0x0046B3B0",
 ]
 
 [units.exact-first-score-data-lifetime]
