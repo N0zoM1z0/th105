@@ -125,15 +125,15 @@ void Fighter::initialize_fighter_battle_state()
     facing_104 = static_cast<unsigned char>(
         1 - (player_index_334 == 1) * 2);
     y_f0 = 0.0f;
-    x_component_f4 = 0.0f;
-    y_component_f8 = 0.0f;
+    x_velocity_f4 = 0.0f;
+    y_velocity_f8 = 0.0f;
     body_overlap_x_6a4 = 0.0f;
     body_overlap_y_6a8 = 0.0f;
     peer_component_6ac = 0.0f;
     response_18c = 0.0f;
     response_190 = 0.0f;
-    x_component_fc = 0.0f;
-    y_component_100 = 0.0f;
+    x_acceleration_fc = 0.0f;
+    y_acceleration_100 = 0.0f;
     reinterpret_cast<FighterActionScratch *>(
         reinterpret_cast<unsigned char *>(this) + 4)
         ->reset_fighter_action_scratch();

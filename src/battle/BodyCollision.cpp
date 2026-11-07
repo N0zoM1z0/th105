@@ -25,14 +25,14 @@ void CollisionContext::resolve_fighter_body_collision()
     float first_motion;
     float second_motion;
     first_motion =
-        fighters[0]->x_scale_4dc * fighters[0]->x_component_f4;
+        fighters[0]->x_scale_4dc * fighters[0]->x_velocity_f4;
     second_motion =
-        fighters[1]->x_scale_4dc * fighters[1]->x_component_f4;
+        fighters[1]->x_scale_4dc * fighters[1]->x_velocity_f4;
     first_coupled_motion =
-        (fighters[1]->peer_component_6ac + fighters[0]->x_component_f4) *
+        (fighters[1]->peer_component_6ac + fighters[0]->x_velocity_f4) *
         fighters[0]->x_scale_4dc;
     second_coupled_motion =
-        (fighters[0]->peer_component_6ac + fighters[1]->x_component_f4) *
+        (fighters[0]->peer_component_6ac + fighters[1]->x_velocity_f4) *
         fighters[1]->x_scale_4dc;
 
     // Target +0x08 is a boundary byte until edge resolution finishes, then
@@ -232,8 +232,8 @@ void CollisionContext::resolve_fighter_body_collision()
         average_motion * static_cast<signed char>(fighters[1]->facing_104);
     first_coupled_motion =
         static_cast<signed char>(fighters[0]->facing_104) * average_motion;
-    fighters[0]->body_overlap_x_6a4 = first_coupled_motion - fighters[0]->x_component_f4;
-    fighters[1]->body_overlap_x_6a4 = second_coupled_motion - fighters[1]->x_component_f4;
+    fighters[0]->body_overlap_x_6a4 = first_coupled_motion - fighters[0]->x_velocity_f4;
+    fighters[1]->body_overlap_x_6a4 = second_coupled_motion - fighters[1]->x_velocity_f4;
 }
 
 } // namespace th105

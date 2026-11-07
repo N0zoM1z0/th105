@@ -12,7 +12,7 @@ void __fastcall integrate_and_clamp_fighter_position(void *raw_fighter)
 
     const float delta_x =
         static_cast<float>(static_cast<signed char>(fighter->facing_104)) *
-        (fighter->body_overlap_x_6a4 + fighter->x_component_f4 +
+        (fighter->body_overlap_x_6a4 + fighter->x_velocity_f4 +
          fighter->other_fighter_170->peer_component_6ac) *
         fighter->x_scale_4dc;
 
@@ -30,7 +30,7 @@ void __fastcall integrate_and_clamp_fighter_position(void *raw_fighter)
         fighter->x_ec = 1240.0f;
     }
 
-    fighter->y_f0 += fighter->y_scale_4e0 * fighter->y_component_f8;
+    fighter->y_f0 += fighter->y_scale_4e0 * fighter->y_velocity_f8;
     if (static_cast<char>(is_y_at_or_below_stage_surface(fighter)) != 0) {
         fighter->y_f0 = stage_surface_height_at_x(fighter);
     }

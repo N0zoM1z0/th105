@@ -182,10 +182,10 @@ struct Fighter {
     unsigned char unknown_000[0xec];
     float x_ec;
     float y_f0;
-    float x_component_f4;
-    float y_component_f8;
-    float x_component_fc;
-    float y_component_100;
+    float x_velocity_f4;
+    float y_velocity_f8;
+    float x_acceleration_fc;
+    float y_acceleration_100;
     unsigned char facing_104;
     unsigned char unknown_105[0x2b];
     EventSubobject130 event_subobject_130;
