@@ -96,14 +96,14 @@ void EffectResourceManagerView::load_effect_resource(const char *path)
             FrameData &frame = current->frames_04[frame_index];
             int texture_index;
             read_file_buffer(file.reader, &texture_index, 4);
-            frame.raw_0a = static_cast<short>(texture_index);
-            read_file_buffer(file.reader, &frame.raw_0c, 2);
-            read_file_buffer(file.reader, &frame.raw_0e, 2);
-            read_file_buffer(file.reader, &frame.raw_10, 2);
-            read_file_buffer(file.reader, &frame.raw_12, 2);
-            read_file_buffer(file.reader, &frame.raw_04, 2);
-            read_file_buffer(file.reader, &frame.raw_06, 2);
-            read_file_buffer(file.reader, &frame.raw_08, 2);
+            frame.texture_index_bits_0a = static_cast<short>(texture_index);
+            read_file_buffer(file.reader, &frame.texture_x_bits_0c, 2);
+            read_file_buffer(file.reader, &frame.texture_y_bits_0e, 2);
+            read_file_buffer(file.reader, &frame.texture_width_bits_10, 2);
+            read_file_buffer(file.reader, &frame.texture_height_bits_12, 2);
+            read_file_buffer(file.reader, &frame.pivot_x_bits_04, 2);
+            read_file_buffer(file.reader, &frame.pivot_y_bits_06, 2);
+            read_file_buffer(file.reader, &frame.duration_bits_08, 2);
             read_file_buffer(file.reader, &frame.tag_14, 1);
             if (frame.tag_14 == 2) {
                 frame.optional_mode_payload_18 = new PatOptionalModePayload20;

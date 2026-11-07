@@ -38,18 +38,19 @@ public:
     FrameData();
     virtual ~FrameData();
 
-    unsigned short raw_04, raw_06;
-    unsigned short raw_08, raw_0a;
-    unsigned short raw_0c, raw_0e;
-    unsigned short raw_10, raw_12;
+    // Raw 16-bit frame fields; render/animation views interpret these bits.
+    unsigned short pivot_x_bits_04, pivot_y_bits_06;
+    unsigned short duration_bits_08, texture_index_bits_0a;
+    unsigned short texture_x_bits_0c, texture_y_bits_0e;
+    unsigned short texture_width_bits_10, texture_height_bits_12;
     unsigned char tag_14;
     // +15..+17 are natural alignment padding, not assignment members.
     PatOptionalModePayload20 *optional_mode_payload_18;
 };
 
 typedef char FrameData_base_size[sizeof(FrameData) == 0x1c ? 1 : -1];
-typedef char FrameData_first_word_offset[offsetof(FrameData, raw_04) == 4 ? 1 : -1];
-typedef char FrameData_last_word_offset[offsetof(FrameData, raw_12) == 0x12 ? 1 : -1];
+typedef char FrameData_first_word_offset[offsetof(FrameData, pivot_x_bits_04) == 4 ? 1 : -1];
+typedef char FrameData_last_word_offset[offsetof(FrameData, texture_height_bits_12) == 0x12 ? 1 : -1];
 typedef char FrameData_tag_offset[offsetof(FrameData, tag_14) == 0x14 ? 1 : -1];
 typedef char FrameData_payload_offset[offsetof(FrameData, optional_mode_payload_18) == 0x18 ? 1 : -1];
 

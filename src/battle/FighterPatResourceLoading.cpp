@@ -113,14 +113,14 @@ void Fighter::load_pat_data_and_palette_resources()
             PatRecord88 &frame = current->records_00[frame_index];
             int texture_index;
             read_file_buffer(file.reader, &texture_index, 4);
-            pat_member<short>(&frame, 0x0A) = static_cast<short>(texture_index);
-            read_file_buffer(file.reader, &pat_member<short>(&frame, 0x0C), 2);
-            read_file_buffer(file.reader, &pat_member<short>(&frame, 0x0E), 2);
-            read_file_buffer(file.reader, &pat_member<short>(&frame, 0x10), 2);
-            read_file_buffer(file.reader, &pat_member<short>(&frame, 0x12), 2);
-            read_file_buffer(file.reader, &pat_member<short>(&frame, 0x04), 2);
-            read_file_buffer(file.reader, &pat_member<short>(&frame, 0x06), 2);
-            read_file_buffer(file.reader, &pat_member<short>(&frame, 0x08), 2);
+            frame.texture_index_bits_0a = static_cast<short>(texture_index);
+            read_file_buffer(file.reader, &frame.texture_x_bits_0c, 2);
+            read_file_buffer(file.reader, &frame.texture_y_bits_0e, 2);
+            read_file_buffer(file.reader, &frame.texture_width_bits_10, 2);
+            read_file_buffer(file.reader, &frame.texture_height_bits_12, 2);
+            read_file_buffer(file.reader, &frame.pivot_x_bits_04, 2);
+            read_file_buffer(file.reader, &frame.pivot_y_bits_06, 2);
+            read_file_buffer(file.reader, &frame.duration_bits_08, 2);
             read_file_buffer(file.reader, &frame.tag_14, 1);
             short value;
             if (frame.tag_14 == 2) {
