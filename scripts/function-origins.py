@@ -2247,6 +2247,33 @@ def validate_rule_evidence(
             continue
         if actual_hash != body["sha256"]:
             errors.append(f"{rule_id}: body 0x{address:08X} SHA-256 differs")
+    for context in rule.get("required_caller_context_hashes", []):
+        owner = int(str(context["owner"]), 0)
+        address = int(str(context["address"]), 0)
+        size = int(context["size"])
+        owner_key = f"0x{owner:08X}".upper()
+        owner_row = row_by_address.get(owner_key)
+        expected_status = str(context["owner_status"])
+        if owner_row is None or owner_row["status"] != expected_status:
+            errors.append(f"{rule_id}: context owner 0x{owner:08X} status differs")
+            continue
+        owner_size = int(owner_row["size"], 0)
+        if size <= 0 or not owner <= address < address + size <= owner + owner_size:
+            errors.append(f"{rule_id}: context 0x{address:08X} is outside owner")
+            continue
+        try:
+            actual = read_pe(address, size)
+        except ValueError as exc:
+            errors.append(f"{rule_id}: caller context: {exc}")
+            continue
+        if len(actual) != size or hashlib.sha256(actual).hexdigest() != context["sha256"]:
+            errors.append(f"{rule_id}: context 0x{address:08X} SHA-256 differs")
+            continue
+        if "push_target" in context:
+            target = int(str(context["push_target"]), 0)
+            target_key = f"0x{target:08X}".upper()
+            if target_key not in selected_addresses or actual[:5] != b"\x68" + struct.pack("<I", target):
+                errors.append(f"{rule_id}: context 0x{address:08X} selected target push differs")
     for edge in rule.get("required_selected_body_calls", []):
         owner = int(str(edge["owner"]), 0)
         site = int(str(edge["site"]), 0)

@@ -7,3 +7,7 @@ A full origin-census regeneration failed on six rules. This batch repairs three 
 - The menu-practice rule selected zero functions after its target became exact but still required a selected RTTI witness. The inactive rule is removed; the existing matching baseline and `MENU_PRACTICE_UPDATE_2026_11_04.md` retain the evidence.
 
 The two active repaired rules were validated directly against the hash-attested target; a targeted test covers name lists after `skip_matching`. The full census is still blocked by separate profile generated-symbol, network caller-context and scalar-proof-cache issues. This batch does not claim to repair or bypass them.
+
+## Network caller context
+
+The endpoint destructor rule previously put the 31-byte `0x44DBB5` constructor fragment into `required_body_hashes`, a field reserved for complete selected functions. It is now represented as a caller-context witness: the validator requires the enclosing `0x44DB10` constructor to retain its matching status, checks that the whole 31-byte span lies inside it, checks its SHA-256, and verifies that the span starts by pushing the selected `0x43BEA0` destructor address. The 19-byte destructor remains the selected full-body witness; the fragment is not added as a function. The real target witness and positive/negative unit controls pass. This repairs one more census failure without changing any classification. Profile generated-symbol and scalar-proof-cache failures remain unresolved.

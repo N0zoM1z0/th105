@@ -208,6 +208,28 @@ class WorkflowToolingTests(unittest.TestCase):
             rule, [row], [{**row, "size": "3"}], b"", lambda _address, _size: body
         ))
 
+    def test_origin_caller_context_is_owned_hashed_and_pushes_selected_target(self) -> None:
+        target = {"address": "0x00401100", "size": "5", "status": "identified"}
+        owner = {"address": "0x00401000", "size": "16", "status": "matching"}
+        body = b"\x68" + struct.pack("<I", 0x401100) + b"\x90"
+        witness = {"owner": owner["address"], "owner_status": "matching",
+                   "address": "0x00401004", "size": len(body),
+                   "sha256": hashlib.sha256(body).hexdigest(),
+                   "push_target": target["address"]}
+        rule = {"id": "caller-context-control", "required_caller_context_hashes": [witness]}
+        verify = self.origins.validate_rule_evidence
+        read = lambda _address, _size: body
+        self.assertEqual(verify(rule, [target], [owner, target], b"", read), [])
+        self.assertTrue(verify(rule, [target], [target], b"", read))
+        self.assertTrue(verify(rule, [target], [{**owner, "status": "implemented"}, target], b"", read))
+        outside = {**witness, "address": "0x0040100F"}
+        self.assertTrue(verify({**rule, "required_caller_context_hashes": [outside]}, [target], [owner, target], b"", read))
+        self.assertTrue(verify(rule, [target], [owner, target], b"", lambda *_: b"\x90" * len(body)))
+        self.assertTrue(verify(rule, [], [owner, target], b"", read))
+        wrong_push = b"\x68" + struct.pack("<I", 0x401101) + b"\x90"
+        wrong = {**witness, "sha256": hashlib.sha256(wrong_push).hexdigest()}
+        self.assertTrue(verify({**rule, "required_caller_context_hashes": [wrong]}, [target], [owner, target], b"", lambda *_: wrong_push))
+
     def test_origin_tail_jump_requires_complete_alias_and_candidate_target(self) -> None:
         source = {"address": "0x00401000", "size": "5", "status": "identified"}
         target = {"address": "0x00401100", "size": "7", "status": "unclassified"}
