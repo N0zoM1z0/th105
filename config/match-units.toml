@@ -332,7 +332,7 @@ rel32_targets = [
   "??3@YAXPAX@Z=0x006898EA",
   "??2@YAPAXI@Z=0x00689DCB",
   "??0SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430050",
-  "?find@?$_Tree@V?$_Tmap_traits@HPAUAnimationSequenceBlockVectorView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlockVectorView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
   "?initialize@SecondaryAnimationRenderRuntimeView@th105@@QAEXPAUSecondaryAnimationOwnerRuntimeView@2@PBUSecondaryAnimationFrameRuntimeView@2@MHHH@Z=0x00430750",
 ]
@@ -9200,7 +9200,7 @@ symbol_base = "select_sequence"
 rel32_targets = [
   # Retain the independent short-parameter ABI witness binding.
   "?lower_bound@AnimationSequenceTree@th105@@QAEPAUAnimationSequenceTreeIterator@2@PAU32@PBH@Z=0x0045C320",
-  "?find@?$_Tree@V?$_Tmap_traits@HPAUAnimationSequenceBlock@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlock@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 
@@ -9209,7 +9209,7 @@ address = "0x0045C460"
 symbol_base = "reset_sequence"
 rel32_targets = [
   "?lower_bound@AnimationSequenceTree@th105@@QAEPAUAnimationSequenceTreeIterator@2@PAU32@PBH@Z=0x0045C320",
-  "?find@?$_Tree@V?$_Tmap_traits@HPAUAnimationSequenceBlock@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlock@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 

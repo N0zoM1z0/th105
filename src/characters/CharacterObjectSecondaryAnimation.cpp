@@ -5,20 +5,6 @@
 
 namespace th105 {
 
-struct AnimationSequenceBlockVectorView {
-    std::vector<AnimationSequenceFrame> frames_00;
-    unsigned int unknown_10;
-    unsigned char mode_14;
-    unsigned char unknown_15[3];
-    void *previous_18;
-    void *next_1c;
-};
-
-typedef std::map<int, AnimationSequenceBlockVectorView *> SecondarySequenceMap;
-typedef char CheckSecondarySequenceMapSize[sizeof(SecondarySequenceMap) == 0x0c ? 1 : -1];
-typedef char CheckAnimationSequenceBlockVectorViewSize[
-    sizeof(AnimationSequenceBlockVectorView) == 0x20 ? 1 : -1];
-
 void CharacterObjectEffectEmitter::replace_secondary_animation(
     int key, float half_width, int subdivision_count,
     int band_count, int blend_mode)
@@ -32,9 +18,9 @@ void CharacterObjectEffectEmitter::replace_secondary_animation(
     key = static_cast<short>(key);
     // A real temporary checked iterator lets VC8 reuse the completed new
     // expression's cleanup slot. An explicit out-parameter facade does not.
-    AnimationSequenceBlockVectorView *const block =
-        reinterpret_cast<SecondarySequenceMap *>(sequence_tree_160)->find(key)->second;
-    AnimationSequenceFrame &frame = block->frames_00[0];
+    AnimationSequenceBlock *const block =
+        reinterpret_cast<AnimationSequenceMap *>(sequence_tree_160)->find(key)->second;
+    AnimationSequenceFrame &frame = block->records_00[0];
     secondary_renderer_338->initialize(
         reinterpret_cast<SecondaryAnimationOwnerRuntimeView *>(this),
         reinterpret_cast<const SecondaryAnimationFrameRuntimeView *>(&frame),

@@ -2,25 +2,12 @@
 
 #include <stddef.h>
 #include <map>
+#include "battle/PatResourceContracts.hpp"
 
 namespace th105 {
 
-struct AnimationSequenceFrame {
-    unsigned char unknown_00[0x08];
-    short duration_08;
-    unsigned char unknown_0a[0x7e];
-};
-
-struct AnimationSequenceBlock {
-    unsigned unknown_00;
-    AnimationSequenceFrame *frames_begin_04;
-    AnimationSequenceFrame *frames_end_08;
-    unsigned char unknown_0c[0x08];
-    unsigned char mode_14;
-    unsigned char unknown_15[0x03];
-    AnimationSequenceBlock *previous_18;
-    AnimationSequenceBlock *next_1c;
-};
+typedef PatRecord88 AnimationSequenceFrame;
+typedef PatGroup AnimationSequenceBlock;
 
 typedef std::map<int, AnimationSequenceBlock *> AnimationSequenceMap;
 
