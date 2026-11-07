@@ -1,4 +1,5 @@
 // Target-backed runtime prefixes; these do not recover complete original classes.
+#include "PatResourceContracts.hpp"
 #include <list>
 #include <vector>
 #include <stddef.h>
@@ -6,23 +7,10 @@
 namespace th105 {
 void __fastcall prepare_collision_geometry_from_frame(void *object);
 namespace {
-struct Box16 { int x0, y0, x1, y1; };
-struct PhaseFrame {
-    unsigned char unknown_00[0x4c];
-    unsigned flags_4c;
-    unsigned flags_50;
-    void *primary_54;
-    std::vector<Box16> family1_58;
-    std::vector<Box16> family2_68;
-};
-struct PhaseCandidateFrame {
-    unsigned char unknown_00[0x50];
-    unsigned flags_50;
-};
 struct PhaseFighter;
 struct PhaseObject {
     unsigned char unknown_000[0x158];
-    PhaseFrame *frame_158;
+    PatRecord88 *frame_158;
     unsigned char unknown_15c[0x10];
     PhaseFighter *owner_16c;
     unsigned char unknown_170[0x10];
@@ -31,7 +19,7 @@ struct PhaseObject {
     unsigned char unknown_185[0x0f];
     void *extension_194;
     unsigned char unknown_198[0x0c];
-    PhaseCandidateFrame *prepared_frame_1a4;
+    PatRecord88 *prepared_frame_1a4;
 };
 struct PhaseManager {
     virtual void slot_00(); virtual void slot_04();
@@ -44,7 +32,7 @@ struct PhaseManager {
 struct PhaseFighter {
     unsigned char unknown_000[0x170];
     PhaseFighter *other_170;
-    short value_174, maximum_176;
+    short health_174, max_health_176;
     unsigned char unknown_178[8];
     int result_180;
     signed char result_184;
@@ -98,19 +86,21 @@ void CollisionPhase::run_attack_projectile_collision_phase()
         std::list<PhaseObject *>::iterator end=fighters[slot]->manager_658->collision_objects_24()->end();
         for (;it!=end;++it) {
             int player=(*it)->owner_16c->player_334;
-            int family2_count=(*it)->frame_158->family2_68.size();
-            int family1_count=(*it)->frame_158->family1_58.size();
+            // Group A can produce fighter-hit candidates; Group B also
+            // participates in the object collision passes.
+            int group_a_count=(*it)->frame_158->group_a_collision_boxes_68.size();
+            int group_b_count=(*it)->frame_158->group_b_collision_boxes_58.size();
             if ((*it)->extension_194!=0) {
-                ++family2_count;
+                ++group_a_count;
                 if (((*it)->frame_158->flags_4c & 0x1000000)!=0)
-                    ++family1_count;
+                    ++group_b_count;
             }
-            if (family2_count!=0 && (*it)->result_180==0 && (*it)->result_184>0) {
+            if (group_a_count!=0 && (*it)->result_180==0 && (*it)->result_184>0) {
                 prepare_collision_geometry_from_frame(*it);
                 family_0[player].push_back(*it);
-                if (family1_count!=0)family_1[player].push_back(*it);
+                if (group_b_count!=0)family_1[player].push_back(*it);
                 family_2[player].push_back(*it);
-            } else if (family1_count!=0) {
+            } else if (group_b_count!=0) {
                 prepare_collision_geometry_from_frame(*it);
                 family_1[player].push_back(*it);
                 family_2[player].push_back(*it);
@@ -136,11 +126,11 @@ void CollisionPhase::run_attack_projectile_collision_phase()
         }
     }
     for (slot=0;slot<2;++slot) {
-        if (deferred_74[slot]!=0 && fighters[slot]->value_174>0) {
+        if (deferred_74[slot]!=0 && fighters[slot]->health_174>0) {
             PhaseFighter *fighter = fighters[slot];
-            int value=static_cast<short>(deferred_74[slot])+static_cast<int>(fighter->value_174);
-            if (value>=fighter->maximum_176)value=fighter->maximum_176;
-            fighter->value_174=static_cast<short>(value);
+            int value=static_cast<short>(deferred_74[slot])+static_cast<int>(fighter->health_174);
+            if (value>=fighter->max_health_176)value=fighter->max_health_176;
+            fighter->health_174=static_cast<short>(value);
         }
         if (deferred_7c[slot]!=0)
             fighters[slot]->apply_deferred_counter_558(static_cast<short>(deferred_7c[slot]));
