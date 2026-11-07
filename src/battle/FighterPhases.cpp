@@ -17,7 +17,9 @@ struct OwnedObjectManagerView {
     virtual void slot_10();
 };
 
-struct ActiveFighterView {
+// RTTI identifies the shared fighter base as CharacterEx. This is a
+// pointer-only phase view, not a complete class declaration.
+struct CharacterExPhaseView {
     virtual void slot_00();
     virtual void slot_04();
     virtual void slot_08();
@@ -28,7 +30,7 @@ struct ActiveFighterView {
     virtual void slot_1c();
     virtual void slot_20();
     virtual void slot_24();
-    virtual void slot_28();
+    virtual void dispatch_action_state();
     virtual void slot_2c();
     virtual void slot_30();
     virtual void slot_34();
@@ -45,7 +47,7 @@ struct FighterPhaseContextView {
     // _Myfirst, so the object begins at +0x38 while its pointer triplet is
     // observed at +0x3c/+0x40/+0x44.
     unsigned char unknown_00[0x38];
-    std::vector<ActiveFighterView *> fighters_3c;
+    std::vector<CharacterExPhaseView *> fighters_3c;
 };
 
 } // namespace
@@ -64,7 +66,7 @@ void __fastcall run_active_character_and_owned_object_callbacks(
         context->fighters_3c[index]->owned_manager_658->slot_0c();
     }
     for (index = 0; index < context->fighters_3c.size(); ++index) {
-        context->fighters_3c[index]->slot_28();
+        context->fighters_3c[index]->dispatch_action_state();
     }
     for (index = 0; index < context->fighters_3c.size(); ++index) {
         run_common_character_update(context->fighters_3c[index]);
