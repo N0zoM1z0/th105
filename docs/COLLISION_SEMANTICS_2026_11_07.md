@@ -15,3 +15,7 @@ The independently reconstructed EFZ revision `43b64996c5f710406d8fbd2d3f974d3191
 EFZ snapshots pose and frame data before collision; TH105's own `0x45C500` preparation similarly motivates distinguishing live animation state from prepared collision state, but does not prove identical lifecycle or ownership. EFZ's four attack/five hurt boxes do not establish TH105 array identities: TH105 preparation independently shows two five-entry groups, descriptors and a primary box. Common layouts do not alone prove common inheritance.
 
 The shared header is pinned by the CSprite lifetime and implicit packet-cleanup origin proofs. Its updated source hash was recorded only with both existing proofs rebuilt and passing, including the CSprite owner and EH checks. No origin or exact classification changed.
+
+## Live state and collision snapshot
+
+The exact `0x45C500` preparation routine copies action `+0x13c`, sequence pointer `+0x15c`, state `+0x174`, result `+0x180`, result slot `+0x184`, and facing `+0x104` into a separate set of collision fields before processing boxes. The corresponding local view now names these live and snapshot roles instead of just `copied` and `prepared` offsets. The cached frame pointer guards refreshing counts and descriptor pointers when the frame changes; box coordinates are transformed on each preparation, not only on a frame change. These names describe observed roles, not a recovered original class hierarchy. Fresh complete comparisons of the 2,156-byte preparation body and its three geometry providers remain exact.

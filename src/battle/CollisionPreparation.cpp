@@ -52,25 +52,25 @@ struct CollisionGeometryObject {
     unsigned char unknown_110[0x1c];
     float angle_12c;
     unsigned char unknown_130[0x0c];
-    unsigned short copied_13c;
+    unsigned short live_action_13c;
     unsigned char unknown_13e[0x1a];
     FrameGeometry *frame_158;
-    void *copied_15c;
+    void *live_sequence_15c;
     unsigned char unknown_160[0x14];
-    unsigned short copied_174;
+    unsigned short live_state_174;
     unsigned char unknown_176[0x0a];
-    unsigned copied_180;
-    unsigned char copied_184;
+    unsigned live_result_180;
+    unsigned char live_result_slot_184;
     unsigned char unknown_185[0x0f];
     OrientedRecord *extension_194;
-    short prepared_198;
-    unsigned prepared_19c;
-    unsigned char prepared_1a0;
+    short snapshot_state_198;
+    unsigned snapshot_result_19c;
+    unsigned char snapshot_result_slot_1a0;
     unsigned short prepared_1a2;
     FrameGeometry *cached_frame_1a4;
-    void *prepared_1a8;
-    short prepared_1ac;
-    signed char prepared_1ae;
+    void *snapshot_sequence_1a8;
+    short snapshot_action_1ac;
+    signed char snapshot_facing_1ae;
     signed char prepared_group_a_count_1af;
     signed char prepared_group_b_count_1b0;
     LocalAabb prepared_group_b_1b4[5];
@@ -266,15 +266,16 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
 {
     CollisionGeometryObject *self =
         static_cast<CollisionGeometryObject *>(raw_object);
-    // Copy the state tuple before the action/frame snapshot, matching the
-    // target access schedule without inventing extra storage.
-    self->prepared_198 = static_cast<short>(self->copied_174);
-    self->prepared_19c = self->copied_180;
-    self->prepared_1a0 = self->copied_184;
+    // Snapshot live actor state for collision processing. Refresh cached
+    // frame counts and descriptor pointers when the current frame changes;
+    // the box geometry below is transformed on each preparation.
+    self->snapshot_state_198 = static_cast<short>(self->live_state_174);
+    self->snapshot_result_19c = self->live_result_180;
+    self->snapshot_result_slot_1a0 = self->live_result_slot_184;
     self->prepared_1a2 = 0;
-    self->prepared_1ac = static_cast<short>(self->copied_13c);
-    self->prepared_1ae = self->facing_104;
-    self->prepared_1a8 = self->copied_15c;
+    self->snapshot_action_1ac = static_cast<short>(self->live_action_13c);
+    self->snapshot_facing_1ae = self->facing_104;
+    self->snapshot_sequence_1a8 = self->live_sequence_15c;
 
     if (self->cached_frame_1a4 != self->frame_158) {
         self->cached_frame_1a4 = self->frame_158;
