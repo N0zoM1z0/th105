@@ -24,23 +24,23 @@ PatRecord88::PatRecord88()
     // This destructive zeroing looks unusual, but it is the current target's
     // observed constructor body after base/member construction.
     std::memset(this, 0, sizeof(*this));
-    optional_raw16_54 = 0;
-    raw16_vector_58.clear();
-    raw16_vector_68.clear();
-    raw16_pointer_vector_78.clear();
+    primary_collision_box_54 = 0;
+    group_b_collision_boxes_58.clear();
+    group_a_collision_boxes_68.clear();
+    group_a_descriptors_78.clear();
 }
 
 PatRecord88::~PatRecord88()
 {
-    for (unsigned int index = 0; index < raw16_pointer_vector_78.size(); ++index) {
-        if (raw16_pointer_vector_78[index] != 0)
-            delete raw16_pointer_vector_78[index];
+    for (unsigned int index = 0; index < group_a_descriptors_78.size(); ++index) {
+        if (group_a_descriptors_78[index] != 0)
+            delete group_a_descriptors_78[index];
     }
-    if (optional_raw16_54 != 0)
-        delete optional_raw16_54;
-    raw16_vector_58.clear();
-    raw16_vector_68.clear();
-    raw16_pointer_vector_78.clear();
+    if (primary_collision_box_54 != 0)
+        delete primary_collision_box_54;
+    group_b_collision_boxes_58.clear();
+    group_a_collision_boxes_68.clear();
+    group_a_descriptors_78.clear();
 }
 
 } // namespace th105

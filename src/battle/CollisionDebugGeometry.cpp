@@ -28,7 +28,7 @@ void CollisionDebugObjectView::render_debug_geometry_45e950()
         LINE(box->right, box->bottom, box->left, box->bottom, 0xFF00FFFFu);
         LINE(box->left, box->bottom, box->left, box->top, 0xFF00FFFFu);
     }
-    if (debug_field<PatRecord88 *>(this, 0x158)->raw16_vector_58.size() != 0) {
+    if (debug_field<PatRecord88 *>(this, 0x158)->group_b_collision_boxes_58.size() != 0) {
         for (int index = 0; index < debug_field<signed char>(this, 0x1B0); ++index) {
             const DebugRect4 *box = &debug_field<DebugRect4>(this, 0x1B4 + index * 16);
             if (box != 0) {
@@ -51,7 +51,7 @@ void CollisionDebugObjectView::render_debug_geometry_45e950()
             }
         }
     }
-    if (debug_field<PatRecord88 *>(this, 0x158)->raw16_vector_68.size() +
+    if (debug_field<PatRecord88 *>(this, 0x158)->group_a_collision_boxes_68.size() +
             static_cast<unsigned>(debug_field<DebugRect4 *>(this, 0x194) != 0) != 0 &&
         debug_field<unsigned>(this, 0x180) == 0 &&
         debug_field<signed char>(this, 0x184) > 0) {

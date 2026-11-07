@@ -176,30 +176,30 @@ void Fighter::load_pat_data_and_palette_resources()
             signed char count;
             read_file_buffer(file.reader, &count, 1);
             if (count != 0) {
-                frame.optional_raw16_54 = new PatRaw16;
-                read_file_buffer(file.reader, frame.optional_raw16_54, 16);
+                frame.primary_collision_box_54 = new PatRaw16;
+                read_file_buffer(file.reader, frame.primary_collision_box_54, 16);
             }
             read_file_buffer(file.reader, &count, 1);
-            frame.raw16_vector_58.assign(count, PatRaw16());
+            frame.group_b_collision_boxes_58.assign(count, PatRaw16());
             for (int index = 0; index < count; ++index) {
-                read_file_buffer(file.reader, &frame.raw16_vector_58[index], 16);
+                read_file_buffer(file.reader, &frame.group_b_collision_boxes_58[index], 16);
                 // Preserve the observed second checked access after the reader callback.
-                frame.raw16_vector_58[index];
+                frame.group_b_collision_boxes_58[index];
             }
             read_file_buffer(file.reader, &count, 1);
-            frame.raw16_vector_68.assign(count, PatRaw16());
-            frame.raw16_pointer_vector_78.assign(count, static_cast<PatRaw16 *>(0));
+            frame.group_a_collision_boxes_68.assign(count, PatRaw16());
+            frame.group_a_descriptors_78.assign(count, static_cast<PatRaw16 *>(0));
             for (int index = 0; index < count; ++index) {
-                read_file_buffer(file.reader, &frame.raw16_vector_68[index], 16);
+                read_file_buffer(file.reader, &frame.group_a_collision_boxes_68[index], 16);
                 signed char has_pointer;
                 read_file_buffer(file.reader, &has_pointer, 1);
                 if (has_pointer != 0) {
-                    frame.raw16_pointer_vector_78[index] = new PatRaw16;
-                    read_file_buffer(file.reader, frame.raw16_pointer_vector_78[index], 16);
+                    frame.group_a_descriptors_78[index] = new PatRaw16;
+                    read_file_buffer(file.reader, frame.group_a_descriptors_78[index], 16);
                 }
             }
             if ((frame.flags_4c & 0x01000000u) != 0)
-                frame.raw16_vector_58 = frame.raw16_vector_68;
+                frame.group_b_collision_boxes_58 = frame.group_a_collision_boxes_68;
         }
     }
     while (!alias_targets.empty()) {

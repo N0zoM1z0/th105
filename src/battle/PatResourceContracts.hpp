@@ -84,10 +84,11 @@ public:
     // +0x4A..+0x4B are natural alignment padding and are not copy members.
     unsigned flags_4c;
     unsigned field_50;
-    PatRaw16 *optional_raw16_54;
-    std::vector<PatRaw16> raw16_vector_58;
-    std::vector<PatRaw16> raw16_vector_68;
-    std::vector<PatRaw16 *> raw16_pointer_vector_78;
+    // Collision preparation interprets these raw records as boxes/descriptors.
+    PatRaw16 *primary_collision_box_54;
+    std::vector<PatRaw16> group_b_collision_boxes_58;
+    std::vector<PatRaw16> group_a_collision_boxes_68;
+    std::vector<PatRaw16 *> group_a_descriptors_78;
 };
 
 struct PatGroup {
@@ -132,7 +133,7 @@ typedef char PatRecord88_size_must_be_0x88[
 typedef char PatRecord88_tag_must_be_at_0x14[
     offsetof(PatRecord88, tag_14) == 0x14 ? 1 : -1];
 typedef char PatRecord88_nested_vectors_must_begin_at_0x58[
-    offsetof(PatRecord88, raw16_vector_58) == 0x58 ? 1 : -1];
+    offsetof(PatRecord88, group_b_collision_boxes_58) == 0x58 ? 1 : -1];
 typedef char PatTransientPairNode_size_must_be_0x0c[
     sizeof(PatTransientPairNode) == 0x0c ? 1 : -1];
 
