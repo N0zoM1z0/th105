@@ -75,9 +75,9 @@ void Fighter::load_pat_data_and_palette_resources()
             PatGroup *previous = &pat_member<std::deque<PatGroup> >(this, 0x65C).back();
             pat_member<std::deque<PatGroup> >(this, 0x65C).push_back(PatGroup());
             current = &pat_member<std::deque<PatGroup> >(this, 0x65C).back();
-            previous->link_1c = current;
-            current->link_1c = chain_root;
-            current->link_18 = previous;
+            previous->next_1c = current;
+            current->next_1c = chain_root;
+            current->previous_18 = previous;
             break;
         }
         case -1: {
@@ -95,8 +95,8 @@ void Fighter::load_pat_data_and_palette_resources()
                 pat_member<std::map<int, PatGroup *> *>(this, 0x160)->erase(found);
             pat_member<std::deque<PatGroup> >(this, 0x65C).push_back(PatGroup());
             current = &pat_member<std::deque<PatGroup> >(this, 0x65C).back();
-            current->link_18 = 0;
-            current->link_1c = current;
+            current->previous_18 = 0;
+            current->next_1c = current;
             chain_root = current;
             pat_member<std::map<int, PatGroup *> *>(this, 0x160)->insert(std::pair<int, PatGroup *>(key, current));
             break;

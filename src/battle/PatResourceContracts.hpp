@@ -96,8 +96,8 @@ struct PatGroup {
     short field_12;
     unsigned char field_14;
     // 0x15..0x17 are natural alignment padding; current copy construction does not copy them.
-    PatGroup *link_18;
-    PatGroup *link_1c;
+    PatGroup *previous_18;
+    PatGroup *next_1c; // The last block can link back to the chain root.
 
     PatGroup();
     ~PatGroup();
@@ -122,7 +122,7 @@ typedef char PatGroupDequeView_size_must_be_0x14[
 typedef char PatGroup_size_must_be_0x20[
     sizeof(PatGroup) == 0x20 ? 1 : -1];
 typedef char PatGroup_links_must_begin_at_0x18[
-    offsetof(PatGroup, link_18) == 0x18 ? 1 : -1];
+    offsetof(PatGroup, previous_18) == 0x18 ? 1 : -1];
 typedef char PatOptionalModePayload20_size_must_be_0x20[
     sizeof(PatOptionalModePayload20) == 0x20 ? 1 : -1];
 typedef char FrameData_size_must_be_0x1c[

@@ -51,15 +51,15 @@ int AnimationSequenceObjectView::previous_sequence_frame()
 unsigned char AnimationSequenceObjectView::next_sequence_block()
 {
     AnimationSequenceBlock *block = sequence_15c;
-    if (block->link_1c != 0) {
+    if (block->next_1c != 0) {
         ++sequence_index_13e;
         time_counter_144 = 0;
-        sequence_15c = block->link_1c;
+        sequence_15c = block->next_1c;
     }
     block = sequence_15c;
     sequence_frame_count_148 = static_cast<short>(block->records_00.size());
     set_sequence_frame(0);
-    if (sequence_15c->link_18 == 0) {
+    if (sequence_15c->previous_18 == 0) {
         sequence_index_13e = 0;
         time_counter_144 = 0;
         return 1;
@@ -70,10 +70,10 @@ unsigned char AnimationSequenceObjectView::next_sequence_block()
 int AnimationSequenceObjectView::previous_sequence_block()
 {
     AnimationSequenceBlock *block = sequence_15c;
-    if (block->link_18 != 0) {
+    if (block->previous_18 != 0) {
         --sequence_index_13e;
         time_counter_144 = 0;
-        sequence_15c = block->link_18;
+        sequence_15c = block->previous_18;
     }
     block = sequence_15c;
     sequence_frame_count_148 = static_cast<short>(block->records_00.size());
@@ -89,7 +89,7 @@ int AnimationSequenceObjectView::select_sequence(int sequence)
     time_counter_144 = 0;
     while (static_cast<short>(sequence) != 0) {
         --sequence;
-        sequence_15c = sequence_15c->link_1c;
+        sequence_15c = sequence_15c->next_1c;
     }
     AnimationSequenceBlock *const block = sequence_15c;
     sequence_frame_count_148 = static_cast<short>(block->records_00.size());
