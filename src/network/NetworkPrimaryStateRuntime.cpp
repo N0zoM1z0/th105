@@ -1,5 +1,6 @@
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "../input/InputManager.hpp"
+#include "NetworkInputPacket.hpp"
 
 #include <deque>
 
@@ -68,11 +69,7 @@ public:
     unsigned int ahead_084;
     unsigned int behind_088;
     unsigned int combined_08c;
-    NetworkPrimaryPacket8 packet_090;
-    unsigned char state_098[4];
-    unsigned char state_09c;
-    unsigned char reserved_09d[3];
-    std::deque<short> queue_0a0;
+    InputPacket24 input_packet_090;
     unsigned char reserved_0b4[0x28];
     CriticalSectionWrapper critical_0dc;
     unsigned char reserved_0f8[0x78];
@@ -118,9 +115,9 @@ unsigned char CNetworkClientPrimaryStateView::sync_peer_state(
         return 0;
     }
 
-    if (state_09c != value) {
+    if (input_packet_090.tag_00c != value) {
         reset_state();
-        state_09c = state_078;
+        input_packet_090.tag_00c = state_078;
     }
     lock->leave();
 
@@ -138,15 +135,15 @@ void CNetworkClientPrimaryStateView::publish_input_value()
 {
     CriticalSectionWrapper *lock = &critical_048;
     lock->enter();
-    if (queue_0a0.size() != 0) {
+    if (input_packet_090.values_010.size() != 0) {
         unsigned short value = input_208->resolved_mask;
-        queue_0a0.at(0) = static_cast<short>(value & 0x3ff);
+        input_packet_090.values_010.at(0) = static_cast<short>(value & 0x3ff);
     } else {
         unsigned short value = input_208->resolved_mask;
-        queue_0a0.push_back(static_cast<short>(value & 0x3ff));
+        input_packet_090.values_010.push_back(static_cast<short>(value & 0x3ff));
     }
 
-    NetworkPrimaryPacket8 *packet = &packet_090;
+    NetworkPacketBase8 *packet = &input_packet_090;
     unsigned char *buffer = buffer_5b4;
     send_3b4.send_client(
         buffer,
@@ -177,10 +174,8 @@ public:
     unsigned int ahead_084;
     unsigned int behind_088;
     unsigned int combined_08c;
-    NetworkPrimaryPacket8 packet_090;
-    unsigned char state_098[4];
-    unsigned char state_09c;
-    unsigned char reserved_09d[0x33];
+    InputPacket24 input_packet_090;
+    unsigned char reserved_0b4[0x1c];
     unsigned char reserved_0d0[0x0c];
     CriticalSectionWrapper critical_0dc;
     unsigned char reserved_0f8[0x78];
@@ -211,9 +206,9 @@ unsigned char CNetworkServerPrimaryStateView::sync_peer_state(
         return 0;
     }
 
-    if (state_09c != value) {
+    if (input_packet_090.tag_00c != value) {
         reset_state();
-        state_09c = state_06c;
+        input_packet_090.tag_00c = state_06c;
     }
     lock->leave();
 
@@ -230,3 +225,7 @@ unsigned char CNetworkServerPrimaryStateView::sync_peer_state(
 } // namespace th105
 
 typedef char NetworkResolvedInputMaskOffset[offsetof(th105::CInputManagerEx,resolved_mask)==0x62?1:-1];
+typedef char NetworkClientInputPacketOffset[offsetof(th105::CNetworkClientPrimaryStateView,input_packet_090)==0x90?1:-1];
+typedef char NetworkServerInputPacketOffset[offsetof(th105::CNetworkServerPrimaryStateView,input_packet_090)==0x90?1:-1];
+typedef char NetworkClientPacketFollowingLockOffset[offsetof(th105::CNetworkClientPrimaryStateView,critical_0dc)==0xdc?1:-1];
+typedef char NetworkServerPacketFollowingLockOffset[offsetof(th105::CNetworkServerPrimaryStateView,critical_0dc)==0xdc?1:-1];
