@@ -6,7 +6,7 @@ at `+0x70C`. The reset at `0x4633A0` clears those eight values and the timer;
 it does not clear the live input fields or release edges. Reimu's input policy
 calls this same reset after selecting certain actions.
 
-The reset and Reimu caller now use one pointer-only receiver view instead of a
+The reset and Reimu caller use the shared Fighter input snapshot rather than a
 Reimu-specific method declaration. The complete 57-byte reset and Reimu's
 6,952-byte callable plus owned data compared exactly against Japanese TH10.5
 1.06a with the pinned VC8 profile. The signed interpretation of the timer in
@@ -43,3 +43,9 @@ CPU receiver and gate aliases have been removed. The CPU update and scripted
 input dispatcher remain exact, along with the checked continuity, round setup
 and common state-window consumers. The general hit resolver retains its prior
 nonexact hash.
+
+Fighter now owns the same saved-input value structure and signed timer used by
+the scripted update. The reset is a Fighter method, and roster input policies
+read that object directly instead of a separate pointer-only snapshot receiver.
+The reset, scripted update, two battle reset functions and fourteen previously
+exact roster policies remain exact; Marisa's nonexact candidate is unchanged.

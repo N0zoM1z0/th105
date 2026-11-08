@@ -1,5 +1,5 @@
 #include "FighterInputRuntime.hpp"
-#include "FighterInputSnapshotResetRuntime.hpp"
+#include "FighterInputSnapshot.hpp"
 #include "Collision.hpp"
 #include <deque>
 #include <stddef.h>

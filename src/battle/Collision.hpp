@@ -5,6 +5,7 @@
 #include "CollisionList.hpp"
 #include "GameMode.hpp"
 #include "PatResourceContracts.hpp"
+#include "FighterInputSnapshot.hpp"
 
 namespace th105 {
 
@@ -250,27 +251,21 @@ struct Fighter {
     int field_6c8;
     int field_6cc;
     int field_6d0;
-    int field_6d4;
+    FighterInputSnapshotValues snapshot_6d4;
 
     void dispatch_indexed_sequence_window_45c8b0(
         signed char relative_index,
         int outcome,
         int source_token);
     unsigned char rotate_front_spell_sequence_entry_to_back();
-    int field_6d8;
-    int field_6dc;
-    int field_6e0;
-    int field_6e4;
-    int field_6e8;
-    int field_6ec;
-    int field_6f0;
     int field_6f4;
     int field_6f8;
     int field_6fc;
     int field_700;
     int field_704;
     int field_708;
-    unsigned char unknown_70c[0x18];
+    signed char snapshot_timer_70c;
+    unsigned char unknown_70d[0x17];
     int field_724;
     int field_728;
     signed char state_72c;
@@ -295,6 +290,7 @@ struct Fighter {
     void prepare_next_spell_sequence_entry();
     void set_pending_gate_48a(short value);
     void update_cpu_input_4633e0();
+    int reset_input_snapshot_4633a0();
     Fighter *initialize_fighter_base_from_setup(const MatchSetup::Side *setup);
     void initialize_fighter_battle_state();
     void load_pat_data_and_palette_resources();
