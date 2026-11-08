@@ -1,5 +1,37 @@
 # Complete server input-frame publication source
 
+## November 8: use real short values at deque boundaries
+
+The publisher now passes actual `short` temporaries to `deque<short>` instead
+of binding short references to `int` objects. The current input is still
+masked to ten bits, and conversion of the previous unsigned word retains its
+low sixteen bits under VC8. The two history values retain their separate
+lifetimes; the current-value temporary is reused for the two output queues.
+This removes four type-punning references without changing the packet layout,
+queue order, virtual dispatch or lock policy.
+
+The complete new candidate is 407 bytes versus the target's 409, with its first
+difference at +23 in register allocation. Both closed CFGs retain nine direct
+calls, three indirect calls, the 16-bit mask/current store, 32-bit sequence
+store and two outer-lock tail exits. The earlier 404-byte source was also
+nonexact.
+
+A direct-conversion alternative without the two addressable value temporaries
+produced 414 bytes and was not retained. Both alternatives and disassemblies
+are in `.analysis/frontier-server-input-natural-20261108/`; complete canonical
+comparisons are in `build/frontier-server-input-natural-20261108/`. The two
+accepted same-TU roots remain exact (48 and 162 bytes), and the ACK tail keeps
+its previous 78-byte candidate and mismatch. No new exact credit is claimed.
+
+The CFG diagnostic now checks the full extracted candidate rather than
+requiring the historical nonexact size of 404 bytes. Its existing call, field,
+mask, return and tail-exit checks remain unchanged; all four contract tests
+and the bounded real audit pass. Further exact work needs
+evidence for the original value lifetimes or compiler context, rather than
+source spelling or forced register choices.
+
+## Original November 2 evidence
+
 The retained natural implementation44F9A0 is now formally selected and
 registered as authored/source-present. Native CNetworkServer primary table
 6C16EC, slot1C at6C1708, COL6D803C and type descriptor6E6904 establish the

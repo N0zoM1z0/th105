@@ -558,3 +558,13 @@ See `docs/SPELL_FINALIZE_SOURCE_2026_11_04.md`.
 observed target grouping `random + (height + 20.0)` in both direction branches.
 The full action root remains unselected/nonexact; see
 `docs/KOMACHI_ACTION_STATE_2026_10_28.md`.
+
+
+2026-11-08: Server input publication `0x0044F9A0` now uses actual short
+values at the checked-deque boundaries, removing four int-to-short reference
+casts. Full candidate407/native409 remains nonexact at +23; the same-TU exact
+sender48/adaptive162 and unchanged ACK candidate78 were rechecked. The complete
+CFG/call/field-width audit passes. See
+`docs/SERVER_INPUT_PUBLICATION_SOURCE_2026_11_02.md` for the retained alternative
+and evidence paths. Further matching needs value-lifetime/compiler-context
+evidence, not a source-spelling grid.

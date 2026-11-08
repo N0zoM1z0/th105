@@ -199,12 +199,10 @@ void CNetworkServerInputPublishView::publish_input_frame_44f9a0()
         input_208->resolved_mask & 0x3ff;
     current_07c = current;
     ++input_packet_090.sequence_008;
-    unsigned int current_value = current;
-    int previous_value = static_cast<unsigned short>(previous_07e);
-    input_packet_090.values_010.push_front(
-        reinterpret_cast<const short &>(previous_value));
-    input_packet_090.values_010.push_front(
-        reinterpret_cast<const short &>(current_value));
+    short current_value = static_cast<short>(current);
+    short previous_value = static_cast<short>(previous_07e);
+    input_packet_090.values_010.push_front(previous_value);
+    input_packet_090.values_010.push_front(current_value);
     while (input_packet_090.values_010.size() >
            2 * (input_packet_090.sequence_008 - high_water_6e8)) {
         input_packet_090.values_010.pop_back();
@@ -222,12 +220,10 @@ void CNetworkServerInputPublishView::publish_input_frame_44f9a0()
     update_adaptive_delay(0);
 
     critical_0dc.enter();
-    current_value = current;
-    output_a_160.push_back(
-        reinterpret_cast<const short &>(current_value));
-    current_value = static_cast<unsigned short>(previous_value);
-    output_b_1dc.push_back(
-        reinterpret_cast<const short &>(current_value));
+    current_value = static_cast<short>(current);
+    output_a_160.push_back(current_value);
+    current_value = previous_value;
+    output_b_1dc.push_back(current_value);
     critical_0dc.leave();
     lock->leave();
 }

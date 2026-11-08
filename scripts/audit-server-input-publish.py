@@ -55,7 +55,6 @@ def audit():
     u,p = h.fresh(UNIT)
     f = next(f for f in u['functions'] if int(f['address'],0) == ADDRESS)
     source = h.canonical(c,u,p,f)
-    require(len(source) == 404, 'server source complete extent differs')
     target_cfg, source_cfg = cfg(native),cfg(source)
     require(struct.unpack('<I',c.target_bytes(0x6c1708,4))[0] == ADDRESS and struct.unpack('<I',c.target_bytes(0x6c1720,4))[0] == 0x44f550, 'server publication/adaptive virtual identities differ')
     af = next(f for f in u['functions'] if int(f['address'],0) == 0x44f550)

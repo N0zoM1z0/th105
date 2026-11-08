@@ -6055,7 +6055,7 @@ origin = "authored_game"
 subsystem = "network"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete server input publication owns backpressure, ten-bit current input, sequence/history trimming, send/adaptive dispatch and paired output queues. Native CNetworkServer slot1C, whole409-byte CFG and both outer-lock tail exits are attested; ordinary404-byte source remains nonexact. docs/SERVER_INPUT_PUBLICATION_SOURCE_2026_11_02.md."
+evidence = "Complete server input publication owns backpressure, ten-bit current input, sequence/history trimming, send/adaptive dispatch and paired output queues. Native CNetworkServer slot1C, whole409-byte CFG and both outer-lock tail exits are attested; typed407-byte source remains nonexact. docs/SERVER_INPUT_PUBLICATION_SOURCE_2026_11_02.md."
 required_rtti_virtual_bodies = [{ address = "0x0044F9A0", size = 409, sha256 = "058dc706f51602a4bf33490d47d37a5efc93a394c31b303a8f058481571b3ca5", slot = "0x006C1708", col_slot = "0x006C16E8", col = "0x006D803C", type_descriptor = "0x006E6904", type_name_contains = ".?AVCNetworkServer@@", calls = [{ site = "0x0044F9B1", target = "0x0040AC30" }, { site = "0x0044F9F9", target = "0x00416B60" }, { site = "0x0044FA43", target = "0x0042A4B0" }, { site = "0x0044FA4F", target = "0x0042A4B0" }, { site = "0x0044FAD4", target = "0x00416B60" }, { site = "0x0044FAEB", target = "0x0040AC30" }, { site = "0x0044FB02", target = "0x0042AA90" }, { site = "0x0044FB1B", target = "0x0042AA90" }, { site = "0x0044FB22", target = "0x0040AC40" }] }]
 required_dword_values = [{ address = "0x006C1720", value = "0x0044F550" }]
 # Outgoing tail edges are covered by the full body hash and the complete CFG audit.
