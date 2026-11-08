@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# Resolve Wine through Factory while retaining repository-owned state.
+factory_repo_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+export PATH="$factory_repo_root/.tools/factory-bin:$PATH"
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
