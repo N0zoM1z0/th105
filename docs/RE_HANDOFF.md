@@ -697,3 +697,11 @@ bodies compare equal. Nine actual derived-type consumers preserve all 13
 accepted roots, and five affected compiler-origin proofs pass. Global class
 identity and constructor-view unification remain separate work. See
 `docs/INPUT_MANAGER_OVERRIDE_2026_11_08.md`.
+
+
+2026-11-08: The actual network input endpoint now uses the existing shared
+base60/endpoint48/cleanup19 implementations, removing independent constructor
+views and the owner's incomplete implicit base9/endpoint23 definitions.
+Eleven focused units preserve 15 accepted roots; parent411/EH197/metadata116
+and five origin proofs pass. Global input-class identity remains separate.
+See `docs/NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md`.

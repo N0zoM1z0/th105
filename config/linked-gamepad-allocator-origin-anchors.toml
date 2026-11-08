@@ -4,7 +4,7 @@ unit = "exact-first-directinput-gamepad-bootstrap"
 [source_pins]
 "src/input/DirectInputGamepadBootstrap.cpp" = "510f9271a5307a9d620336cd44bdcb9ba8266640963c5c4324a39b81968bf831"
 "src/input/InputManager.cpp" = "1dc804c6a04696badde1d692b89a9775fd7d93d088f1d5791e47cdf2faaadd5b"
-"src/input/InputManager.hpp" = "aa1270124dd4d6fb30c2a651f1049940f9babba66e67e7d32481179b03dd721b"
+"src/input/InputManager.hpp" = "b52e71339b2381be4ff95b58cb6413892248feea986c0995500cb9f9433d3f0b"
 
 [[anchors]]
 address = "0x0040E000"

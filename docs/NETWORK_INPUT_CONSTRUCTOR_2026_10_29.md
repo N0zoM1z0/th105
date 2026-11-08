@@ -52,3 +52,49 @@ The focused formal-lifetime.json receipt replays both48-byte construction and
 authored ledger credit is withdrawn; the configured exact witness is retained.
 The authored increase remains48 bytes from the constructor, whose flag/mask/clear
 body has independently observed application policy.
+
+## Shared endpoint owner, November 8, 2026
+
+The accepted constructor and cleanup now define the actual
+`NetworkInputEndpoint7C` used by `NetworkBaseMembers.hpp`. The independent
+`InputCore60View`, `NetworkInputConstructorView` and endpoint constructor view
+have been removed. `CInputManager` also declares its existing constructor in
+the shared header, and `InputManagerConstructor.cpp` defines that shared type
+instead of another local class and duplicate bindings/counter layouts.
+
+This fixes an initialization gap in the real network owner. Before the merge,
+its object emitted a nine-byte implicit base constructor that only published
+a vfptr, and a 23-byte implicit endpoint constructor that only published the
+derived vfptr and zeroed the deque. Those definitions did not initialize the
+bindings, counters or injected-input policy. Exact comparison of the parent's
+callback addresses alone had not exposed their different emitted bodies.
+The original 31-byte array-call site at `44DBB5` proves the constructor and
+cleanup pair, two elements, stride `7C` and parent member offset `F8`.
+
+The shared providers now reproduce complete base construction `409CF0`/60,
+endpoint construction `44D8F0`/48 and endpoint cleanup `43BEA0`/19. The two
+constructor declarations resolve to these actual definitions; the parent no
+longer emits the incomplete implicit versions. The derived normal/scalar
+support remains exact at 5/30 bytes, and both callable table roles are checked.
+The resolved mask at offset `62` remains untouched, as in the original.
+
+Eleven focused units preserve all 15 accepted roots and the four existing
+nonexact results. The nine consumers retain every other non-debug section's
+bytes and relocation roles; only the superseded implicit input lifetime/type
+sections disappear from the real owners. SafeSEH symbol identities also remain
+unchanged after COFF symbol-table renumbering. The complete network parent
+still matches main411, EH197 and metadata116. Five affected origin proofs pass,
+with only the two changed executable header pins renewed where consumed.
+No exact ledger entry or count changes.
+
+Private before/after objects, `section-diff.json`, `context.json` and the origin
+results are in `build/frontier-input-endpoint-owner-20261108/`. The bounded
+replay drivers are in `.analysis/frontier-input-endpoint-owner-20261108/`.
+Target and VC8 profiles are unchanged. The source diff and changed TOML files
+were checked; no broad corpus rebuild was needed.
+
+Global nominal identity remains separate. The shared namespaced structs do not
+yet match the native global-class RTTI. The base constructor TU also retains
+its previous 30-byte scalar wrapper, while the existing global lifetime TU
+provides the exact native31 witness. That visibility/identity boundary was
+not changed to force a match.

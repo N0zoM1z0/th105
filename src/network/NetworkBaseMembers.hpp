@@ -23,6 +23,9 @@ public:
 typedef InputPacket24 InputPacket24ConstructorView;
 
 struct NetworkInputEndpoint7C {
+    NetworkInputEndpoint7C();
+    ~NetworkInputEndpoint7C();
+
     CInputManagerEx input_000;
     std::deque<short> queue_068;
 };

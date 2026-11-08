@@ -12,7 +12,7 @@ sha256 = "ac5d3ea4c7c09b6c42c446f83120a8da7ca23d6047901ead074febd861bde29e"
 
 [[sources]]
 path = "src/input/InputManager.hpp"
-sha256 = "aa1270124dd4d6fb30c2a651f1049940f9babba66e67e7d32481179b03dd721b"
+sha256 = "b52e71339b2381be4ff95b58cb6413892248feea986c0995500cb9f9433d3f0b"
 
 [[sources]]
 path = "src/battle/Collision.hpp"
@@ -24,7 +24,7 @@ sha256 = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
 
 [[sources]]
 path = "src/network/NetworkBaseMembers.hpp"
-sha256 = "70f67e50a0094a38825da369f60f2a9bcdd78233f4a9b70238679bc9e38f3cb1"
+sha256 = "22f4ffb8e82280e9b286c8ef3fab2670b8990218fe427e87db84dfb05778f894"
 
 [[sources]]
 path = "src/engine/ColorInterface.hpp"

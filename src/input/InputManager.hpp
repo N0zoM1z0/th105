@@ -27,6 +27,7 @@ struct HoldCounters {
 };
 
 struct CInputManager {
+    CInputManager();
     virtual ~CInputManager();
     virtual void update_player_input_counters_from_raw();
 
