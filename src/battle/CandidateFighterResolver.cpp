@@ -20,7 +20,7 @@ void CollisionContext::resolve_attack_candidate_against_fighter(
         return;
     }
 
-    const unsigned flags = candidate->frame_1a4->flags_50;
+    const unsigned flags = candidate->prepared_frame_1a4->flags_50;
     if ((flags & 0x00400000) != 0) {
         if ((flags & 0x00040000) == 0) {
             if (fighter->gate_4ac != 0 ||
@@ -52,7 +52,7 @@ void CollisionContext::resolve_attack_candidate_against_fighter(
     }
 
     fighter->unknown_490 = static_cast<unsigned char>(
-        ~(candidate->frame_1a4->flags_50 >> 22) & 1);
+        ~(candidate->prepared_frame_1a4->flags_50 >> 22) & 1);
     if (try_frame_flag_pair_outcome(candidate, fighter)) {
         return;
     }

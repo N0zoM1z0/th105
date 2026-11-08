@@ -79,7 +79,7 @@ struct AttackCandidate {
     unsigned char unknown_188[0x18];
     unsigned char source_1a0;
     unsigned char unknown_1a1[3];
-    AttackCandidateFrame *frame_1a4;
+    AttackCandidateFrame *prepared_frame_1a4;
 
     float calculate_forwarded_quantity();
     float calculate_base_hit_quantity();
@@ -115,7 +115,7 @@ struct CollisionObject {
     unsigned char unknown_18a[0x16];
     unsigned char source_1a0;
     unsigned char unknown_1a1[0x03];
-    CollisionObjectFrame4c *frame_1a4;
+    CollisionObjectFrame4c *prepared_frame_1a4;
     CollisionObjectClashFrame *frame_1a8;
 };
 

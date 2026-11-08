@@ -6,7 +6,7 @@ void CollisionContext::apply_terminal_outcome(
     AttackCandidate *candidate,
     Fighter *fighter)
 {
-    AttackCandidateFrame *frame = candidate->frame_1a4;
+    AttackCandidateFrame *frame = candidate->prepared_frame_1a4;
     fighter->consume_counter_484_steps(1);
     reset_hit_exchange_scratch(candidate->owner_16c, fighter);
 

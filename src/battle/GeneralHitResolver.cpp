@@ -13,7 +13,7 @@ void CollisionContext::resolve_general_attack_hit(
     AttackCandidate *candidate,
     Fighter *fighter)
 {
-    AttackCandidateFrame *frame = candidate->frame_1a4;
+    AttackCandidateFrame *frame = candidate->prepared_frame_1a4;
     bool boosted_path = false;
 
     if (static_cast<signed char>(
@@ -25,7 +25,7 @@ void CollisionContext::resolve_general_attack_hit(
     if (fighter->threshold_scale_4c4 != 0.0f) {
         double increment;
         unsigned current_flags;
-        if ((candidate->frame_1a4->flags_50 & 0x20) != 0) {
+        if ((candidate->prepared_frame_1a4->flags_50 & 0x20) != 0) {
             increment = static_cast<float>(frame->threshold_increment_26);
         } else {
             current_flags = fighter->frame_158->flags_4c;
@@ -67,7 +67,7 @@ threshold_done:
             candidate->owner_16c->value_498 == 0) {
             boost_gate = true;
         }
-        if ((candidate->frame_1a4->flags_50 & 0x400) != 0 && boost_gate) {
+        if ((candidate->prepared_frame_1a4->flags_50 & 0x400) != 0 && boost_gate) {
             boosted_path = true;
             ++action_bias;
             if (action_bias > 3) {
@@ -88,7 +88,7 @@ threshold_done:
                     else selected_action = action;
                 } else selected_action = action;
             } else if ((fighter->frame_158->flags_4c & 1) != 0) {
-                if ((candidate->frame_1a4->flags_50 & 1) != 0)
+                if ((candidate->prepared_frame_1a4->flags_50 & 1) != 0)
                     selected_action = static_cast<unsigned short>(action_bias + 0x38);
                 else
                     selected_action = static_cast<unsigned short>(action_bias + 0x32);

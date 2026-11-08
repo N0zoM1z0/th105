@@ -71,7 +71,7 @@ float AttackCandidate::calculate_base_hit_quantity()
                   scalar_table_index_17c]) / 10.0f) + 1.0f) * result;
     }
 
-    const unsigned flags = frame_1a4->flags_50;
+    const unsigned flags = prepared_frame_1a4->flags_50;
     if ((flags & 0x1000) != 0) {
         result = source_168->source_modifier_4c8 * result;
     }

@@ -6,7 +6,7 @@ bool CollisionContext::try_frame_flag_pair_outcome(
     AttackCandidate *candidate,
     Fighter *fighter)
 {
-    const unsigned candidate_flags = candidate->frame_1a4->flags_50;
+    const unsigned candidate_flags = candidate->prepared_frame_1a4->flags_50;
 
     if ((candidate_flags & 0x2000) &&
         (fighter->frame_158->flags_4c & 0x8000)) {

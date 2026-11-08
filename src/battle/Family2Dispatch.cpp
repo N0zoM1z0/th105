@@ -8,7 +8,7 @@ namespace {
 
 unsigned frame_flags_50(const CollisionObject *object)
 {
-    return object->frame_1a4->flags_50;
+    return object->prepared_frame_1a4->flags_50;
 }
 
 } // namespace

@@ -6,7 +6,7 @@ bool CollisionContext::try_candidate_flag_outcome(
     AttackCandidate *candidate,
     Fighter *fighter)
 {
-    const unsigned flags = candidate->frame_1a4->flags_50;
+    const unsigned flags = candidate->prepared_frame_1a4->flags_50;
     if ((flags & 0x00400000) == 0) {
         return false;
     }

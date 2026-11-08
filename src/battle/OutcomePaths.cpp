@@ -33,7 +33,7 @@ bool CollisionContext::try_outcome_path_a(
     AttackCandidate *candidate,
     Fighter *fighter)
 {
-    AttackCandidateFrame *frame = candidate->frame_1a4;
+    AttackCandidateFrame *frame = candidate->prepared_frame_1a4;
     if (is_state_13c_in_32_95(fighter) == 0 && fighter->field_4a4 == 0) {
         reset_hit_exchange_scratch(candidate->owner_16c, fighter);
     }
@@ -55,13 +55,13 @@ bool CollisionContext::try_outcome_path_a(
 
     if (frame->amount_22 != 0) {
         const short before = fighter->counter_482;
-        if ((candidate->frame_1a4->flags_50 & 0x00400000) != 0) {
+        if ((candidate->prepared_frame_1a4->flags_50 & 0x00400000) != 0) {
             fighter->counter_482 -= frame->amount_22;
             fighter->floor_486 = 0x3c;
         } else if (fighter->select_outcome_path_from_frame_flags(
-                       candidate->frame_1a4->flags_50) == 5) {
+                       candidate->prepared_frame_1a4->flags_50) == 5) {
             fighter->counter_482 -=
-                static_cast<short>(candidate->frame_1a4->amount_22) / 2;
+                static_cast<short>(candidate->prepared_frame_1a4->amount_22) / 2;
             fighter->floor_486 = 0x3c;
         }
         if (fighter->counter_482 <= 0 && fighter->counter_482 < before) {
@@ -95,7 +95,7 @@ bool CollisionContext::try_outcome_path_b(
     AttackCandidate *candidate,
     Fighter *fighter)
 {
-    AttackCandidateFrame *frame = candidate->frame_1a4;
+    AttackCandidateFrame *frame = candidate->prepared_frame_1a4;
     if (is_state_13c_in_32_95(fighter) == 0 && fighter->field_4a4 == 0) {
         reset_hit_exchange_scratch(candidate->owner_16c, fighter);
     }
@@ -115,7 +115,7 @@ bool CollisionContext::try_outcome_path_b(
         }
     }
 
-    if ((candidate->frame_1a4->flags_50 & 0x00080000) != 0 ||
+    if ((candidate->prepared_frame_1a4->flags_50 & 0x00080000) != 0 ||
         candidate->source_168->gate_4e4 != 0) {
         apply_terminal_outcome(candidate, fighter);
         return true;
@@ -124,7 +124,7 @@ bool CollisionContext::try_outcome_path_b(
         const short before = fighter->counter_482;
         unsigned amount =
             static_cast<unsigned short>(frame->amount_22);
-        if ((candidate->frame_1a4->flags_50 & 0x00400000) != 0) {
+        if ((candidate->prepared_frame_1a4->flags_50 & 0x00400000) != 0) {
             amount *= 2;
         }
         fighter->counter_482 -= amount;
@@ -161,7 +161,7 @@ bool CollisionContext::dispatch_outcome_path(
     Fighter *fighter)
 {
     switch (fighter->select_outcome_path_from_frame_flags(
-        candidate->frame_1a4->flags_50)) {
+        candidate->prepared_frame_1a4->flags_50)) {
     case 0:
         return false;
     case 1:
@@ -172,7 +172,7 @@ bool CollisionContext::dispatch_outcome_path(
         }
         set_fighter_action(
             fighter,
-            static_cast<short>(candidate->frame_1a4->action_offset_48 + 0x96));
+            static_cast<short>(candidate->prepared_frame_1a4->action_offset_48 + 0x96));
         // The common non-case cleanup is the physical fallthrough here.
     default:
         reset_fighter_action_scratch_after_outcome(fighter);
@@ -183,7 +183,7 @@ bool CollisionContext::dispatch_outcome_path(
         else
             set_fighter_action(
                 fighter,
-                static_cast<short>(candidate->frame_1a4->action_offset_48 + 0x9a));
+                static_cast<short>(candidate->prepared_frame_1a4->action_offset_48 + 0x9a));
         reset_fighter_action_scratch_after_outcome(fighter);
         return true;
     case 5:
@@ -199,7 +199,7 @@ bool CollisionContext::dispatch_outcome_path(
         else
             set_fighter_action(
                 fighter,
-                static_cast<short>(candidate->frame_1a4->action_offset_48 + 0x9f));
+                static_cast<short>(candidate->prepared_frame_1a4->action_offset_48 + 0x9f));
         reset_fighter_action_scratch_after_outcome(fighter);
         return true;
     case 4:
@@ -208,7 +208,7 @@ bool CollisionContext::dispatch_outcome_path(
         else
             set_fighter_action(
                 fighter,
-                static_cast<short>(candidate->frame_1a4->action_offset_48 + 0xa3));
+                static_cast<short>(candidate->prepared_frame_1a4->action_offset_48 + 0xa3));
         reset_fighter_action_scratch_after_outcome(fighter);
         return true;
     case 6:
