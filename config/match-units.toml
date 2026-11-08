@@ -9485,7 +9485,7 @@ notes = "Current SpellDataOwner side-payload copy plus sequence-mode selector. N
 
 [[units.cross-v106a-spell-data-input-setup.functions]]
 address = "0x004324F0"
-symbol_base = "?initialize_side_payload_430f70@SpellDataOwner@th105@@QAEXPBUShortDeque8@2@@Z"
+symbol_base = "?initialize_side_payload@CharacterSpellResources@th105@@QAEXPBUShortDeque8@2@@Z"
 rel32_targets = ["??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0"]
 
 [[units.cross-v106a-spell-data-input-setup.functions]]
@@ -26386,7 +26386,7 @@ rel32_targets = [
  "?_Buynode@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@2@XZ=0x00420A40",
  "??_U@YAPAXI@Z=0x00665B8A",
  "??_H@YGXPAXIHP6EPAX0@Z@Z=0x00401220",
- "?initialize_side_payload_430f70@SpellDataOwner@th105@@QAEXPBUShortDeque8@2@@Z=0x004324F0",
+ "?initialize_side_payload@CharacterSpellResources@th105@@QAEXPBUShortDeque8@2@@Z=0x004324F0",
 ]
 
 [units.exact-first-character-ex-lifetime]
@@ -26431,7 +26431,7 @@ rel32_targets = [
  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
  "?_Tidy@?$deque@UPatGroup@th105@@V?$allocator@UPatGroup@th105@@@std@@@std@@IAEXXZ=0x00461AF0",
  "?_Tidy@?$deque@UCharacterSequenceRecord98@th105@@V?$allocator@UCharacterSequenceRecord98@th105@@@std@@@std@@IAEXXZ=0x0045FC80",
- "?clear_resources@CharacterDtorSpell68@th105@@QAEXXZ=0x004321A0",
+ "?clear_resources@CharacterSpellResources@th105@@QAEXXZ=0x004321A0",
  "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E900",
  "??1CharacterSpriteResource98@th105@@QAE@XZ=0x00465420",
  "?_Xran@?$deque@IV?$allocator@I@std@@@std@@KAXXZ=0x00431610",
@@ -28471,9 +28471,9 @@ rel32_targets = ["?linear_gain_to_ds_volume@th105@@YGHM@Z=0x00418990", "?acquire
 
 [[units.exact-first-character-destructor.functions]]
 address = "0x004619C0"
-symbol_base = "??1CharacterDtorSpell68@th105@@QAE@XZ"
+symbol_base = "??1CharacterSpellResources@th105@@QAE@XZ"
 rel32_targets = [
- "?clear_resources@CharacterDtorSpell68@th105@@QAEXXZ=0x004321A0",
+ "?clear_resources@CharacterSpellResources@th105@@QAEXXZ=0x004321A0",
  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
  "??1ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E900",
 ]

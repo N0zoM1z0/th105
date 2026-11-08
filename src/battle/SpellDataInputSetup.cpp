@@ -1,4 +1,5 @@
 #include "SpellData.hpp"
+#include "characters/CharacterSpellResource.hpp"
 
 #include <deque>
 
@@ -6,16 +7,16 @@ namespace th105 {
 
 typedef std::deque<short> NativeShortDeque;
 
-// 0x00430F70 preserves a nullable Side+0x08 payload boundary.  The two
+// 0x004324F0 preserves a nullable Side+0x08 payload boundary.  The two
 // destination fields are the native 0x14-byte VC8 deque representation; use
 // its real assignment rather than a raw-header copy so ownership is retained.
-void SpellDataOwner::initialize_side_payload_430f70(
+void CharacterSpellResources::initialize_side_payload(
     const ShortDeque8 *payload)
 {
     if (payload) {
-        loaded_spell_ids_20 =
+        loaded =
             *reinterpret_cast<const NativeShortDeque *>(payload);
-        selection_ids_34 =
+        selection =
             *reinterpret_cast<const NativeShortDeque *>(payload);
     }
 }

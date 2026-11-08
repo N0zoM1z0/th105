@@ -1,4 +1,5 @@
 #include "battle/CharacterWaveHandle.hpp"
+#include "characters/CharacterSpellResource.hpp"
 // Complete JP1.06a Character destruction, including both cold range-error tails.
 // Natural source905 bytes differs only in one commutative SIB operand byte.
 #include "battle/AttackObjectLifetime.cpp"
@@ -17,13 +18,6 @@ struct CharacterSpriteResource98 {
  unsigned handle;
  CSprite sprite;
  ~CharacterSpriteResource98();
-};
-struct CharacterDtorSpell68 {
- ProfileDeckResourceGroupNative20 core;
- std::deque<short> loaded,selection;
- unsigned char values_48[0x20];
- void clear_resources();
- ~CharacterDtorSpell68() { clear_resources(); }
 };
 struct CharacterSequenceRecord98 {
  short id;
@@ -66,7 +60,7 @@ public:
  CSprite sprite_33c;
  CharacterSpriteResource98 resource_3d0;
  unsigned char gap_468[0x88];
- CharacterDtorSpell68 spells_4f0;
+ CharacterSpellResources spells_4f0;
  unsigned char counters_558[4];
  std::deque<CharacterSequenceRecord98> sequence_55c;
  CSprite sprite_570;

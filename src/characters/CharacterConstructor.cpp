@@ -3,6 +3,7 @@
 // Full roster subtype/opaque cleanup bodies are not claimed.
 #include "battle/AttackObject.hpp"
 #include "battle/CharacterWaveHandle.hpp"
+#include "characters/CharacterSpellResource.hpp"
 #include "battle/GameMode.hpp"
 #include "battle/SpellData.hpp"
 #include "battle/PatResourceContracts.hpp"
@@ -15,14 +16,6 @@
 #include <map>
 
 namespace th105 {
-
-struct CharacterSpellData68 {
-    ProfileDeckResourceGroupNative20 core_00;
-    std::deque<short> loaded_20;
-    std::deque<short> selection_34;
-    unsigned char values_48[0x20];
-    ~CharacterSpellData68();
-};
 
 struct SequenceController14 {
     unsigned unknown_00;
@@ -95,7 +88,7 @@ public:
     CSprite sprite_33c;
     SpriteHandleResource98 resource_3d0;
     unsigned char reserved_468[0x88];
-    CharacterSpellData68 spell_data_4f0;
+    CharacterSpellResources spell_data_4f0;
     short counter_558;
     signed char state_55a;
     signed char state_55b;
@@ -129,7 +122,7 @@ public:
 };
 
 typedef char CharacterPhaseSize[sizeof(CharacterPhaseRender14)==0x14?1:-1];
-typedef char CharacterSpellSize[sizeof(CharacterSpellData68)==0x68?1:-1];
+typedef char CharacterSpellSize[sizeof(CharacterSpellResources)==0x68?1:-1];
 typedef char C0[offsetof(CharacterConstructorView, character_key_330) == 0x330 ? 1 : -1];
 typedef char C1[offsetof(CharacterConstructorView, sprite_33c) == 0x33c ? 1 : -1];
 typedef char C2[offsetof(CharacterConstructorView, resource_3d0) + offsetof(SpriteHandleResource98, sprite_04) == 0x3d4 ? 1 : -1];
@@ -168,7 +161,7 @@ CharacterConstructorView::CharacterConstructorView(const MatchSetup::Side *setup
     character_key_330 = setup->character_key_00;
     option_335 = setup->fighter_option_05;
     option_334 = setup->fighter_option_04;
-    reinterpret_cast<SpellDataOwner *>(&spell_data_4f0)->initialize_side_payload_430f70(
+    spell_data_4f0.initialize_side_payload(
         reinterpret_cast<const ShortDeque8 *>(setup->input_payload_08));
     transition_link_6b0 = setup->transition_link_1c;
     if (transition_link_6b0 == 0)
