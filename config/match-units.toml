@@ -9748,7 +9748,7 @@ rel32_targets = [
   "ReimuObjectPool_acquire=0x00493340",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9758,7 +9758,7 @@ rel32_targets = [
   "MarisaObjectPool_acquire=0x004B9920",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VMarisaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9768,7 +9768,7 @@ rel32_targets = [
   "AliceObjectPool_acquire=0x004FA630",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VAliceObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9778,7 +9778,7 @@ rel32_targets = [
   "PatchouliObjectPool_acquire=0x0051E8F0",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VPatchouliObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9788,7 +9788,7 @@ rel32_targets = [
   "YoumuObjectPool_acquire=0x0053ACB0",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VYoumuObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9798,7 +9798,7 @@ rel32_targets = [
   "RemiliaObjectPool_acquire=0x00555A00",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VRemiliaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9808,7 +9808,7 @@ rel32_targets = [
   "YuyukoObjectPool_acquire=0x0056D6E0",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VYuyukoObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9818,7 +9818,7 @@ rel32_targets = [
   "YukariObjectPool_acquire=0x0058B990",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VYukariObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9828,7 +9828,7 @@ rel32_targets = [
   "SuikaObjectPool_acquire=0x005AE670",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VSuikaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9838,7 +9838,7 @@ rel32_targets = [
   "UdongeObjectPool_acquire=0x005D25C0",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VUdongeObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9848,7 +9848,7 @@ rel32_targets = [
   "KomachiObjectPool_acquire=0x005F7440",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VKomachiObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9858,7 +9858,7 @@ rel32_targets = [
   "AyaObjectPool_acquire=0x00617DF0",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VAyaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9868,7 +9868,7 @@ rel32_targets = [
   "IkuObjectPool_acquire=0x00630CA0",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VIkuObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [[units.cross-v106a-roster-object-tracked-list.functions]]
@@ -9878,7 +9878,7 @@ rel32_targets = [
   "TenshiObjectPool_acquire=0x0064B070",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VTenshiObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [units.cross-v106a-sakuya-object-tracked-list]
@@ -9896,7 +9896,7 @@ rel32_targets = [
   "SakuyaObjectPool_acquire=0x004DEE40",
   "_Buynode=0x00421F30",
   "_Incsize=0x00440370",
-  "RosterObjectManagerBase_release_all_tracked_objects=0x0056DA90",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VSakuyaObject@@VCharacterObject@@@@QAEXXZ=0x0056DA90",
 ]
 
 [units.cross-v106a-effect-object-tracked-list]
@@ -17936,10 +17936,10 @@ notes = "Shared roster TObjectManagerBase release helper called by all fifteen c
 
 [[units.gpt-web-roster-object-release-all.functions]]
 address = "0x0056DA90"
-symbol_base = "?release_all_tracked_objects@RosterObjectManagerBase@th105@@QAEXXZ"
+symbol_base = "?release_all_tracked_objects@?$TObjectManagerBase@VReimuObject@@VCharacterObject@@@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "?release_handle@?$CharacterObjectPoolStorageT@URosterOwnedObjectPrefix338@th105@@@th105@@QAEXI@Z=0x0056D8F0",
+  "?release_handle@?$CHandleManagerEx@VReimuObject@@@@QAEXI@Z=0x0056D8F0",
   "??3@YAXPAX@Z=0x006898EA",
 ]
 

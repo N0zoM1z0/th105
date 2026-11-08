@@ -649,3 +649,11 @@ See `docs/FILE_WRITER_GLOBAL_IDENTITY_2026_11_08.md`. No new exact credit.
 callable graphs close, with all 50 control transfers identical. Main-body
 scheduling/register differences remain; no source or exact-ledger change.
 See `docs/PROFILE_WRITER_CHECKED_DECK_2026_10_29.md`.
+
+
+2026-11-08: Roster release `0x56DA90` now defines all fifteen real
+`TObjectManagerBase<RosterObject, CharacterObject>` members, and the fifteen
+preallocation callers use those members. All 129 accepted roots across the
+nine focused units retain exact comparisons. Each emitted release body still
+has its original two register differences; no new exact credit. See
+`docs/ROSTER_RELEASE_OWNER_2026_11_08.md`.

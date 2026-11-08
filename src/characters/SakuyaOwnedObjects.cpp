@@ -1,4 +1,5 @@
 #include "characters/Sakuya.hpp"
+#include "characters/TObjectManagerBase.hpp"
 
 namespace th105 {
 
@@ -36,7 +37,8 @@ void SakuyaObjectManagerBase::preallocate_object_pool(unsigned target_count)
                 acquire_sakuya_for_tracked_list(&pool_04));
         } while (manager->linked_objects_54.size() < target_count);
     }
-    manager->release_all_tracked_objects();
+    typedef TObjectManagerBase< ::SakuyaObject, ::CharacterObject> ManagerOwner;
+    reinterpret_cast<ManagerOwner *>(this)->release_all_tracked_objects();
 }
 
 } // namespace th105

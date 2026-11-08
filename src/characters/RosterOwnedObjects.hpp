@@ -74,8 +74,6 @@ struct RosterObjectManagerBase {
     void *manager_vtable_00;
     CharacterObjectPoolStorage pool_04;
     std::list<CharacterObject *> linked_objects_54;
-
-    void release_all_tracked_objects();
 };
 
 typedef char CheckRosterObjectManagerBaseSize[

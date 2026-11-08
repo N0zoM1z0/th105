@@ -1,4 +1,5 @@
 #include "characters/RosterOwnedObjects.hpp"
+#include "characters/TObjectManagerBase.hpp"
 
 namespace th105 {
 
@@ -79,7 +80,9 @@ TH105_DEFINE_ACQUIRE_AND_LINK(Tenshi)
                     acquire_##FighterName##_for_tracked_list(&pool_04));      \
             } while (manager->linked_objects_54.size() < target_count);       \
         }                                                                     \
-        manager->release_all_tracked_objects();                               \
+        typedef TObjectManagerBase< ::FighterName##Object,                   \
+                                    ::CharacterObject> ManagerOwner;         \
+        reinterpret_cast<ManagerOwner *>(this)->release_all_tracked_objects(); \
     }
 
 TH105_DEFINE_PREALLOCATE(Reimu)
