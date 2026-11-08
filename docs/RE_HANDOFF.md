@@ -705,3 +705,11 @@ views and the owner's incomplete implicit base9/endpoint23 definitions.
 Eleven focused units preserve 15 accepted roots; parent411/EH197/metadata116
 and five origin proofs pass. Global input-class identity remains separate.
 See `docs/NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md`.
+
+
+2026-11-08: CInputManagerCluster now implements the original update override,
+and selection construction/lifetime use the same shared input definitions.
+The complete two-slot table, update1003, normal19 and scalar40 match locally.
+All 12 distinct accepted roots across 20 units are preserved; four origin
+proofs pass. Global input identity still requires a coordinated signature and
+forward-declaration migration. See `docs/INPUT_CLUSTER_SHARED_OVERRIDE_2026_11_08.md`.

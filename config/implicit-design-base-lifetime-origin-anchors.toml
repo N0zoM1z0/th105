@@ -16,7 +16,7 @@ sha256 = "3ec88b2a6b1b7f60eb2615d1b02728f71f0f289da82694dd5bcea9c6d725e8e9"
 
 [[sources]]
 path = "src/ui/SelectConstructor.hpp"
-sha256 = "653c9f340eb66177e14610846f329caca5ee495f4336d7275741dad89476696f"
+sha256 = "2a802354bf7163de941d5f1a68951a72cc96889fc27582f03bb999ba22b98062"
 
 [[sources]]
 path = "src/ui/SelectSetupState.hpp"

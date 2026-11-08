@@ -17,7 +17,7 @@ extern "C" const char title_bgm_path[];
 extern "C" const int select_entry_character_ids[];
 static void bind_cursor(MenuCursorState *cursor,CInputManager *input,int count,bool vertical)
 {
-    if(input)cursor->input_counter=&input->hold_38[vertical?1:0];
+    if(input)cursor->input_counter=&input->counters[vertical?1:0];
     else cursor->input_counter=0;
     cursor->selection=0;
     cursor->window_start=0;
@@ -36,7 +36,7 @@ void CSelect::on_scene_enter(int previous_scene)
         inputs_010[side]=get_selected_input(side);
         if(inputs_010[side]) {
             CInputManager *input=inputs_010[side];
-            input_018.sources_60.push_back(input);
+            input_018.sources.push_back(input);
         }
         CInputManager *bound=inputs_010[side];
         bind_cursor(&cursors[side][0],bound,4,false);

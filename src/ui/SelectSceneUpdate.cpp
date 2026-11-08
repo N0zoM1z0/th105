@@ -17,16 +17,16 @@ extern "C" bool __cdecl is_menu_initial_press(unsigned char,bool,bool,bool);
 extern "C" int g_scene_mode;
 static void bind_input(MenuCursorState *horizontal,MenuCursorState *vertical,CInputManager *input)
 {
-    if(input)horizontal->input_counter=&input->hold_38[0];
+    if(input)horizontal->input_counter=&input->counters[0];
     else horizontal->input_counter=0;
-    if(input)vertical->input_counter=&input->hold_38[1];
+    if(input)vertical->input_counter=&input->counters[1];
     else vertical->input_counter=0;
 }
 int CSelect::update()
 {
     if(has_ui_selection_state_changed())return g_scene_mode==2?2:3;
     for(int i=0;i<2;++i) {
-        if(inputs_010[i] && inputs_010[i]->hold_38[4]==1) {
+        if(inputs_010[i] && inputs_010[i]->counters[4]==1) {
             dispatch_indexed_event(40);
             install_menu_object(new CMenuSelect);
             return 3;
@@ -68,14 +68,14 @@ int CSelect::update()
     MenuCursorState (*cursors)[2]=character_cursors_100;
     bind_input(&cursors[0][0],&cursors[0][1],inputs_010[0]);
     bind_input(&cursors[1][0],&cursors[1][1],inputs_010[1]);
-    input_018.sources_60.clear();
+    input_018.sources.clear();
     if(inputs_010[0]) {
         CInputManager *input=inputs_010[0];
-        input_018.sources_60.push_back(input);
+        input_018.sources.push_back(input);
     }
     if(inputs_010[1]) {
         CInputManager *input=inputs_010[1];
-        input_018.sources_60.push_back(input);
+        input_018.sources.push_back(input);
     }
     return update_selection();
 }

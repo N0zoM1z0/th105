@@ -15651,7 +15651,7 @@ notes = "Target-pinned 0x0040A0F0 combined-menu input merge. Natural checked deq
 
 [[units.gpt-web-input-merge-runtime.functions]]
 address = "0x0040A0F0"
-symbol_base = "?merge_menu_input_sources@CInputManagerCluster@th105@@QAEXXZ"
+symbol_base = "?update_player_input_counters_from_raw@CInputManagerCluster@th105@@UAEXXZ"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
 [units.gpt-web-profile-ui-pop]
@@ -30645,7 +30645,7 @@ symbol_base = "?update_scene_runtime@th105@@YAXXZ"
 rel32_targets = [
  "?update_input_state_table@InputStateTableStorage@th105@@QAEXXZ=0x0040A550",
  "?update_player_input_counters_from_raw@CInputManagerEx@th105@@UAEXXZ=0x00409F70",
- "?merge_menu_input_sources@CInputManagerCluster@th105@@QAEXXZ=0x0040A0F0",
+ "?update_player_input_counters_from_raw@CInputManagerCluster@th105@@UAEXXZ=0x0040A0F0",
  "?pop_profile_ui_menu_43ff40@th105@@YAXXZ=0x0043FF40",
  "_is_menu_initial_press=0x0043ABD0",
  "__invalid_parameter_noinfo=0x0068A143",

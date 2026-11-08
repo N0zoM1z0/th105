@@ -26,7 +26,7 @@ int CSelect::update_stage_420560()
         dispatch_indexed_event(39);
         variant_cursor_1970.selection = 0;
         field_2d7c = 10;
-        if (input_018.hold_38[1] > 0) {
+        if (input_018.counters[1] > 0) {
             field_2d80 = static_cast<float>(field_2d80 + 1.0);
             field_2d84 = field_2d80;
         } else {
@@ -35,7 +35,7 @@ int CSelect::update_stage_420560()
         }
         return 3;
     }
-    if (input_018.hold_38[2] == 1) {
+    if (input_018.counters[2] == 1) {
         if (stage_cursor_195c.selection)
             setup_00c->random_4c[2] = 0;
         else
@@ -77,7 +77,7 @@ int CSelect::update_stage_420560()
         fade_bgm(1000, 0);
         return 6;
     }
-    if (input_018.hold_38[3] == 1) {
+    if (input_018.counters[3] == 1) {
         dispatch_indexed_event(41);
         state_008 = 0;
         fields_7f8[1] = 0;

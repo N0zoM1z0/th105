@@ -18,7 +18,7 @@ int CSelect::update_characters_41fc90()
     for (int i = 0; i < 2; ++i) {
         if (inputs_010[i]) {
             if (fields_7f8[i] == 1) {
-                if (inputs_010[i]->hold_38[3] == 1) {
+                if (inputs_010[i]->counters[3] == 1) {
                     dispatch_indexed_event(41);
                     fields_7f8[i] = 0;
                 }
@@ -41,12 +41,12 @@ int CSelect::update_characters_41fc90()
                     else
                         setup_00c->sides_08[i].character_key_00 = select_character_ids_61c8[selected];
                     bind_character(i, setup_00c->sides_08[i].character_key_00);
-                } else if (inputs_010[i]->hold_38[2] == 1) {
+                } else if (inputs_010[i]->counters[2] == 1) {
                     dispatch_indexed_event(40);
                     setup_00c->sides_08[i].fighter_option_05 =
-                        static_cast<unsigned>(inputs_010[i]->hold_38[5]) > 0u;
+                        static_cast<unsigned>(inputs_010[i]->counters[5]) > 0u;
                     fields_7f8[i] = 1;
-                } else if (inputs_010[i]->hold_38[3] == 1) {
+                } else if (inputs_010[i]->counters[3] == 1) {
                     dispatch_indexed_event(41);
                     cancelled[i] = true;
                 }

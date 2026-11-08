@@ -2,6 +2,7 @@
 #include "engine/SceneBase.hpp"
 #include "ui/Title.hpp"
 #include "ui/MenuCursor.hpp"
+#include "input/InputCluster.hpp"
 #include "ui/SelectSetupState.hpp"
 #include "ui/UiPrimitives.hpp"
 #include "ui/Tile.hpp"
@@ -14,17 +15,6 @@
 #include <vector>
 #include <stddef.h>
 namespace th105 {
-// Complete0x60 base storage: accepted input constructor/destructor evidence.
-struct CInputManager {
- CInputManager(); virtual ~CInputManager();
- virtual void update_player_input_counters_from_raw();
- unsigned char bindings_04[0x34]; int hold_38[10];
-};
-struct CInputManagerCluster : CInputManager {
- virtual void update_player_input_counters_from_raw();
- std::deque<CInputManager *> sources_60;
- signed char active_source_74;
-};
 // Pointer-only call views, never embedded or instantiated.
 
 struct SelectEffectCall {

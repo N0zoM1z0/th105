@@ -12,7 +12,7 @@ struct CInputManagerCluster : CInputManager {
     signed char active_source;
 
     signed char get_active_source() const;
-    void merge_menu_input_sources();
+    virtual void update_player_input_counters_from_raw();
 };
 
 struct InputStateTableStorage {

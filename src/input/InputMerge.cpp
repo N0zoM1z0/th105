@@ -5,7 +5,7 @@
 
 namespace th105 {
 
-void CInputManagerCluster::merge_menu_input_sources()
+void CInputManagerCluster::update_player_input_counters_from_raw()
 {
     std::memset(&hold, 0, sizeof(hold));
 
