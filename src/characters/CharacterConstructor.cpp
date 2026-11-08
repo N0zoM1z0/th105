@@ -15,19 +15,10 @@
 
 namespace th105 {
 
-struct Header14 {
-    unsigned allocator_00;
-    void **blocks_04;
-    unsigned capacity_08;
-    unsigned head_0c;
-    unsigned count_10;
-    Header14() : blocks_04(0), capacity_08(0), head_0c(0), count_10(0) {}
-};
-
 struct CharacterSpellData68 {
     ProfileDeckResourceGroupNative20 core_00;
-    Header14 loaded_20;
-    Header14 selection_34;
+    std::deque<short> loaded_20;
+    std::deque<short> selection_34;
     unsigned char values_48[0x20];
     ~CharacterSpellData68();
 };

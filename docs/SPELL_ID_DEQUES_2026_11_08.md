@@ -18,3 +18,9 @@ This unifies the receiver's accessed storage, not the entire owning lifetime:
 the Character constructor still uses its separately represented resource
 owner, whose deque construction and destruction need their own reconciliation.
 Scope is Japanese TH10.5 1.06a with the pinned VC8 profile.
+
+The Character constructor's separately represented spell resource owner now
+constructs the same two native short deques rather than initializing two raw
+headers. Its complete `0x462AB0` body still compares exactly. The destructor
+already represents those two members as native deques, but the constructor and
+destructor owner types and their cleanup/EH linkage remain separate views.
