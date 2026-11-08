@@ -68,3 +68,31 @@ and after, verified by two focused source builds in
 build/frontier-profile-reader-declarations-20261029/body-equality.json.
 This is generated-source equality, not a new canonical or vtable acceptance.
 No reader layout, used virtual method, exact ledger or public header changes.
+
+## November 8: complete cleanup comparison
+
+With the recovered global CFileWriter identity, the current emitted object now
+compares equal for all 64 bytes of remote cleanup/handler code at `0x006B80F0`
+and all 60 bytes of unwind/FuncInfo metadata at `0x006DE320`. The three cleanup
+actions destroy the two strings at frame offsets -0x2C/-0x48 and the writer at
+-0x5C. Their unwind chain is `[-1, 0, 0]`; both cookie checks, the handler's
+FuncInfo pointer and its FrameHandler3 tail are included. The complete writer
+destructor also matches its 21-byte native body.
+
+The equal SHA-256 values are `b399506949614420a9de44371b6ce2e09e66974cd6a6289c7d83407c74a39aac`
+for EH code and `dbc25bc35c067e5d216c56805d7b9b41403092ed7ddca0e480055545b0e6d9c7`
+for metadata. This closes the earlier address/structure-only EH evidence.
+
+The main callable remains nonexact at +147. Both complete callable graphs have
+261 reachable instructions, including the terminal deque range-exception call;
+all 50 call, branch and return instructions have identical locations and bytes.
+The source section retains its separate trailing INT3. Inspection of the unequal
+slices finds the existing string-member address scheduling and temporary integer
+register allocation differences, not a missing cleanup or range-check path.
+No source change is justified by that inspection alone.
+
+The focused check verifies current compiler/source/object provenance, complete
+section ownership, every EH relocation and both callable graphs. Reproduce with
+`scripts/repo-python .analysis/frontier-profile-save-context-20261108/check-eh.py`.
+Results and the instruction comparison are under
+`build/frontier-profile-save-context-20261108/`. No new exact root is recorded.

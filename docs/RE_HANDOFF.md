@@ -642,3 +642,10 @@ method bodies, all four vtable slots and six RTTI records compare equal. The
 source-dependent origin proofs pass. GameConfig save's complete 35-byte EH code
 and 44-byte metadata also match; its main body retains only +579/+582.
 See `docs/FILE_WRITER_GLOBAL_IDENTITY_2026_11_08.md`. No new exact credit.
+
+
+2026-11-08: Profile save `0x4317A0` now has complete local equality for its
+64-byte cleanup/EH code and 60-byte unwind metadata. Both 261-instruction
+callable graphs close, with all 50 control transfers identical. Main-body
+scheduling/register differences remain; no source or exact-ledger change.
+See `docs/PROFILE_WRITER_CHECKED_DECK_2026_10_29.md`.
