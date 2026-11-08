@@ -40,15 +40,12 @@ short &fighter_short(Fighter *fighter, unsigned offset)
 void __fastcall process_fighter_transient_status(Fighter *fighter)
 {
     unsigned char *raw = reinterpret_cast<unsigned char *>(fighter);
-    unsigned short &pending_48a =
-        *reinterpret_cast<unsigned short *>(raw + 0x48a);
-
     if (fighter->gate_48c != 0) {
         --fighter->gate_48c;
     }
-    if (pending_48a != 0) {
-        fighter->gate_48c = pending_48a;
-        pending_48a = 0;
+    if (fighter->pending_gate_48a != 0) {
+        fighter->gate_48c = fighter->pending_gate_48a;
+        fighter->pending_gate_48a = 0;
     }
 
     fighter->peer_component_6ac = 0.0f;
@@ -105,29 +102,29 @@ void __fastcall update_fighter_counter_thresholds(Fighter *fighter)
 {
     short const counter = fighter->unknown_484;
     if (counter < 1000) {
-        short const accumulated = fighter_short(fighter, 0x488);
+        short const accumulated = fighter->accumulated_counter_488;
         if (accumulated < 4800) {
             if (fighter->state_4b8 == 8) {
-                fighter_short(fighter, 0x488) = accumulated + 50;
+                fighter->accumulated_counter_488 = accumulated + 50;
             } else {
                 if (counter <= 800) {
-                    fighter_short(fighter, 0x488) = accumulated + 5;
+                    fighter->accumulated_counter_488 = accumulated + 5;
                 }
                 if (counter <= 600) {
-                    fighter_short(fighter, 0x488) += 2;
+                    fighter->accumulated_counter_488 += 2;
                 }
                 if (counter <= 400) {
-                    fighter_short(fighter, 0x488) += 3;
+                    fighter->accumulated_counter_488 += 3;
                 }
                 if (counter <= 200) {
-                    fighter_short(fighter, 0x488) += 8;
+                    fighter->accumulated_counter_488 += 8;
                 }
                 if (counter <= 0) {
-                    fighter_short(fighter, 0x488) += 10;
+                    fighter->accumulated_counter_488 += 10;
                 }
             }
 
-            if (fighter_short(fighter, 0x488) >= 4800) {
+            if (fighter->accumulated_counter_488 >= 4800) {
                 BattleSceneRendererView *renderer =
                     reinterpret_cast<BattleSceneRendererView *>(g_info_manager);
                 renderer->vtable_00->notify_counter_threshold(
@@ -136,7 +133,7 @@ void __fastcall update_fighter_counter_thresholds(Fighter *fighter)
                     fighter->player_index_334,
                     counter / 200);
                 fighter->unknown_484 += 200;
-                fighter_short(fighter, 0x488) = 0;
+                fighter->accumulated_counter_488 = 0;
             }
         }
     }

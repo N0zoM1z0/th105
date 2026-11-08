@@ -1,13 +1,9 @@
 #include <stddef.h>
 #include "battle/ScenarioData.hpp"
+#include "battle/Collision.hpp"
 namespace th105 {
-// Fighter view is pointer-only; scenario uses the shared result owner.
-struct FighterActionCounterLeafView {
- unsigned char unknown_000[0x48a];
- short counter_48a;
- void set_counter(short value);
-};
-typedef char CounterOffset[offsetof(FighterActionCounterLeafView,counter_48a)==0x48a?1:-1];
-void FighterActionCounterLeafView::set_counter(short value) {counter_48a=value;}
+typedef char AccumulatedOffset[offsetof(Fighter, accumulated_counter_488) == 0x488 ? 1 : -1];
+typedef char PendingOffset[offsetof(Fighter, pending_gate_48a) == 0x48a ? 1 : -1];
+void Fighter::set_pending_gate_48a(short value) {pending_gate_48a=value;}
 void ScenarioResultResource::start() {state_000=1;}
 }
