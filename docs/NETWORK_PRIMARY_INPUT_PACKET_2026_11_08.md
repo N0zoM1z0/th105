@@ -30,3 +30,5 @@ The adjacent owner +0x64 and +0x70 scene packets likewise use the actual
 `ScenePacket0C` objects constructed by the network base, with the peer-state
 bytes expressed as their first payload bytes. Client and server sync plus
 client publication remain exact with complete relocation comparisons.
+The client protocol view now uses those same two scene packet members rather
+than separate opaque bytes. Its four selected protocol functions remain exact.

@@ -1,6 +1,7 @@
 #include "../battle/SpellData.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkInputPacket.hpp"
+#include "NetworkBaseMembers.hpp"
 
 #include <stddef.h>
 
@@ -47,12 +48,9 @@ struct CNetworkClientPrimaryProtocolView {
 
     unsigned char reserved_000[0x48];
     CriticalSectionWrapper critical_048;
-    unsigned char reserved_064[0x08];
-    unsigned char state_06c;
-    unsigned char reserved_06d[3];
-    unsigned char reserved_070[0x08];
-    unsigned char peer_state_078;
-    unsigned char reserved_079[0x07];
+    ScenePacket0C packet_064;
+    ScenePacket0C packet_070;
+    unsigned char reserved_07c[4];
     unsigned char reserved_080;
     unsigned char delay_081;
     unsigned char reserved_082[0x0e];
