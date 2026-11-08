@@ -12,3 +12,10 @@ Fresh full-function comparisons of client sync `0x44E8F0`, client publication
 `0x44ED10`, and server sync `0x44F730` all remain exact against JP 1.06a,
 including their relocations. This is semantic consolidation, not new exact
 credit.
+
+The server input publisher now also uses the packet's real `sequence_008` and
+`values_010` members, connecting its increment and history maintenance to the
+same object subsequently serialized. The two previously exact peers in that
+translation unit remain exact; the ACK tail and server publisher remain
+nonexact with their pre-change object hashes, including 404 versus 409 bytes
+for the publisher. No new exact credit is claimed.

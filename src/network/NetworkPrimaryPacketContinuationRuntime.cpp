@@ -1,5 +1,6 @@
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkStateRecord.hpp"
+#include "NetworkInputPacket.hpp"
 #include "../input/InputManager.hpp"
 
 #include <deque>
@@ -129,10 +130,7 @@ public:
     unsigned short previous_07e;
     signed char adaptive_delay_080;
     unsigned char reserved_081[0x0f];
-    NetworkPacketWithResult8 packet_090;
-    unsigned int sequence_098;
-    unsigned char reserved_09c[4];
-    std::deque<short> history_0a0;
+    InputPacket24 input_packet_090;
     unsigned char reserved_0b4[0x28];
     CriticalSectionWrapper critical_0dc;
     unsigned char reserved_0f8[0x68];
@@ -183,10 +181,10 @@ void CNetworkServerInputPublishView::publish_input_frame_44f9a0()
 {
     CriticalSectionWrapper *lock = &critical_048;
     lock->enter();
-    if (sequence_098 - high_water_6e8 >
+    if (input_packet_090.sequence_008 - high_water_6e8 >
         static_cast<unsigned int>(adaptive_delay_080 + 3)) {
         unsigned char *buffer = packet_buffer_5b4;
-        NetworkPacketWithResult8 *packet = &packet_090;
+        NetworkPacketBase8 *packet = &input_packet_090;
         sender_3b4.send_server(
             0,
             buffer,
@@ -200,21 +198,21 @@ void CNetworkServerInputPublishView::publish_input_frame_44f9a0()
     const unsigned short current =
         input_208->resolved_mask & 0x3ff;
     current_07c = current;
-    ++sequence_098;
+    ++input_packet_090.sequence_008;
     unsigned int current_value = current;
     int previous_value = static_cast<unsigned short>(previous_07e);
-    history_0a0.push_front(
+    input_packet_090.values_010.push_front(
         reinterpret_cast<const short &>(previous_value));
-    history_0a0.push_front(
+    input_packet_090.values_010.push_front(
         reinterpret_cast<const short &>(current_value));
-    while (history_0a0.size() >
-           2 * (sequence_098 - high_water_6e8)) {
-        history_0a0.pop_back();
-        history_0a0.pop_back();
+    while (input_packet_090.values_010.size() >
+           2 * (input_packet_090.sequence_008 - high_water_6e8)) {
+        input_packet_090.values_010.pop_back();
+        input_packet_090.values_010.pop_back();
     }
 
     unsigned char *buffer = packet_buffer_5b4;
-    NetworkPacketWithResult8 *packet = &packet_090;
+    NetworkPacketBase8 *packet = &input_packet_090;
     sender_3b4.send_server(
         0,
         buffer,
@@ -252,7 +250,7 @@ typedef char CNetworkServerAdaptiveDelayView_counter_offset[
     offsetof(CNetworkServerAdaptiveDelayView, sample_count_6e0) == 0x6e0
         ? 1 : -1];
 typedef char CNetworkServerInputPublishView_history_offset[
-    offsetof(CNetworkServerInputPublishView, history_0a0) == 0x0a0
+    offsetof(CNetworkServerInputPublishView, input_packet_090) + offsetof(InputPacket24, values_010) == 0x0a0
         ? 1 : -1];
 typedef char CNetworkServerInputPublishView_input_offset[
     offsetof(CNetworkServerInputPublishView, input_208) == 0x208
