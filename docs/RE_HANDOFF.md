@@ -568,3 +568,12 @@ CFG/call/field-width audit passes. See
 `docs/SERVER_INPUT_PUBLICATION_SOURCE_2026_11_02.md` for the retained alternative
 and evidence paths. Further matching needs value-lifetime/compiler-context
 evidence, not a source-spelling grid.
+
+
+2026-11-08: Profile load `0x00431AC0` now has complete local byte equality
+for its 64-byte remote EH code, 60-byte unwind/FuncInfo metadata and 21-byte
+reader cleanup, including all relocations. The main body remains 728/728 with
+two differing operand bytes at +540/+543. No new exact credit is recorded.
+See `docs/PLAYER_SLOT_PROFILE_LOAD_2026_11_04.md` for the resolved ownership and
+reproduction; the remaining scope is the main-body load order and real reader
+type, not an unknown EH layout.
