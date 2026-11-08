@@ -1,5 +1,6 @@
 #include "../battle/SpellData.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
+#include "NetworkInputPacket.hpp"
 
 #include <stddef.h>
 
@@ -38,12 +39,6 @@ struct NetworkSendStateView {
     int status();
 };
 
-class NetworkClientPacket8View {
-public:
-    virtual unsigned int serialize(void *buffer);
-    unsigned int result_004;
-};
-
 struct CNetworkClientPrimaryProtocolView {
     unsigned char send_state_ready();
     bool send_if_needed();
@@ -61,8 +56,8 @@ struct CNetworkClientPrimaryProtocolView {
     unsigned char reserved_080;
     unsigned char delay_081;
     unsigned char reserved_082[0x0e];
-    NetworkClientPacket8View packet_090;
-    unsigned char reserved_098[0x30f];
+    InputPacket24 input_packet_090;
+    unsigned char reserved_0b4[0x2f3];
     unsigned char pending_3a7;
     unsigned char reserved_3a8[0x0c];
     NetworkClientSend4View send_3b4;
@@ -98,7 +93,7 @@ bool CNetworkClientPrimaryProtocolView::send_if_needed()
         return true;
 
     critical->enter();
-    NetworkClientPacket8View *packet = &packet_090;
+    NetworkPacketBase8 *packet = &input_packet_090;
     unsigned char *buffer = buffer_5b4;
     send_3b4.send_client(
         buffer, packet->serialize(buffer), 0x50, &packet->result_004);

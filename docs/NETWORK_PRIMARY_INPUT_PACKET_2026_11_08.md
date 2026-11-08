@@ -19,3 +19,9 @@ same object subsequently serialized. The two previously exact peers in that
 translation unit remain exact; the ACK tail and server publisher remain
 nonexact with their pre-change object hashes, including 404 versus 409 bytes
 for the publisher. No new exact credit is claimed.
+
+The primary protocol send paths on both sides now use the same embedded input
+packet and its real base as well. The server's sequence comparison is tied to
+`sequence_008`; the clients' pending-send path serializes that same packet.
+All seven selected client/server protocol functions remain exact, including
+complete relocations. No additional exact functions are claimed.

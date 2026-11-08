@@ -1,4 +1,5 @@
 #include "../engine/CriticalSectionWrapper.hpp"
+#include "NetworkInputPacket.hpp"
 
 #include <stddef.h>
 
@@ -7,12 +8,6 @@ namespace th105 {
 struct NetworkSendStateView {
     bool check(int index);
     void process(int index);
-};
-
-class NetworkMemberPacket8 {
-public:
-    virtual unsigned int serialize(void *buffer);
-    unsigned int result_004;
 };
 
 struct NetworkTerminateBase4 {
@@ -52,9 +47,8 @@ struct CNetworkServerPrimaryProtocolView {
     unsigned char reserved_000[0x48];
     CriticalSectionWrapper critical_048;
     unsigned char reserved_064[0x2c];
-    NetworkMemberPacket8 packet_090;
-    unsigned int sequence_098;
-    unsigned char reserved_09c[0x318];
+    InputPacket24 input_packet_090;
+    unsigned char reserved_0b4[0x300];
     NetworkSendStateView send_3b4;
     unsigned char reserved_3b5[0x1ff];
     unsigned char buffer_5b4[0x134];
@@ -88,8 +82,8 @@ unsigned char CNetworkServerPrimaryProtocolView::send_state_or_terminate()
     CriticalSectionWrapper *critical = &critical_048;
     critical->enter();
     unsigned char *buffer = buffer_5b4;
-    if (sequence_098 != last_sequence_6e8) {
-        NetworkMemberPacket8 *packet = &packet_090;
+    if (input_packet_090.sequence_008 != last_sequence_6e8) {
+        NetworkPacketBase8 *packet = &input_packet_090;
         reinterpret_cast<NetworkServerSend5View *>(&send_3b4)->send_server(
             0,
             buffer,
@@ -119,7 +113,7 @@ typedef char NetworkTerminatePacket8_size[
 typedef char ServerCriticalOff[
     offsetof(CNetworkServerPrimaryProtocolView, critical_048) == 0x48 ? 1 : -1];
 typedef char ServerPacketOff[
-    offsetof(CNetworkServerPrimaryProtocolView, packet_090) == 0x90 ? 1 : -1];
+    offsetof(CNetworkServerPrimaryProtocolView, input_packet_090) == 0x90 ? 1 : -1];
 typedef char ServerSendOff[
     offsetof(CNetworkServerPrimaryProtocolView, send_3b4) == 0x3b4 ? 1 : -1];
 typedef char ServerBufferOff[
