@@ -1,5 +1,11 @@
 # Reverse-engineering workflow
 
+> Current workflow: follow the **Highest priority** section in `AGENTS.md`.
+> Prefer affected exact comparisons and useful Markdown knowledge. Ordinary
+> notes do not require full CI, native replay or document-hash/pin refreshes.
+> Older broad validation instructions apply only when their impact is relevant.
+
+
 The workflow copies TH08's conservative state machine while adapting its
 mechanics to TH105's VC8/LTCG executable.
 

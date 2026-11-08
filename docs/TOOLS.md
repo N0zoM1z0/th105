@@ -1,5 +1,11 @@
 # Tool routing
 
+> Current workflow: follow the **Highest priority** section in `AGENTS.md`.
+> Prefer affected exact comparisons and useful Markdown knowledge. Ordinary
+> notes do not require full CI, native replay or document-hash/pin refreshes.
+> Older broad validation instructions apply only when their impact is relevant.
+
+
 Every route is pinned to `config/target.toml`. Semantic output is evidence;
 only the canonical comparator can establish exactness.
 

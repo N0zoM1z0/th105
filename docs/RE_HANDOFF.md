@@ -1,5 +1,11 @@
 # TH10.5 reconstruction handoff
 
+> Current workflow: follow the **Highest priority** section in `AGENTS.md`.
+> Prefer affected exact comparisons and useful Markdown knowledge. Ordinary
+> notes do not require full CI, native replay or document-hash/pin refreshes.
+> Older broad validation instructions apply only when their impact is relevant.
+
+
 2026-11-03: System-effect pool acquire `0x456B70` (499 bytes) now has natural typed source and an individual mapping. Exact tracked acquisition replays; source498 and cleanup EH remain nonexact/unproved. See `docs/SYSTEM_EFFECT_POOL_SOURCE_2026_11_03.md`.
 
 2026-11-03: System-effect tracked release `0x436E60` (119 bytes) now has typed source and an individual mapping. Exact manager lifetime roots replay; source119 remains nonexact. See `docs/SYSTEM_EFFECT_RELEASE_SOURCE_2026_11_03.md`.
