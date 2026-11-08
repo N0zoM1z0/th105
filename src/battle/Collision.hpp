@@ -77,7 +77,7 @@ struct AttackCandidate {
     unsigned char unknown_185;
     unsigned short result_186;
     unsigned char unknown_188[0x18];
-    unsigned char source_1a0;
+    unsigned char snapshot_result_slot_1a0;
     unsigned char unknown_1a1[3];
     AttackCandidateFrame *prepared_frame_1a4;
 
@@ -113,7 +113,7 @@ struct CollisionObject {
     signed char counter_188;
     signed char gate_189;
     unsigned char unknown_18a[0x16];
-    unsigned char source_1a0;
+    unsigned char snapshot_result_slot_1a0;
     unsigned char unknown_1a1[0x03];
     CollisionObjectFrame4c *prepared_frame_1a4;
     CollisionObjectClashFrame *frame_1a8;

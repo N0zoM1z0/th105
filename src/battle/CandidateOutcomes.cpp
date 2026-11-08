@@ -24,7 +24,7 @@ bool CollisionContext::try_candidate_flag_outcome(
         fighter->adjust_counter_482(4, 30);
     }
     candidate->result_180 = 6;
-    candidate->result_slot_184 = candidate->source_1a0 - 1;
+    candidate->result_slot_184 = candidate->snapshot_result_slot_1a0 - 1;
     ++fighter->field_4a6;
     emit_effect_at_collision_center(0x34, fighter->facing_104);
     reset_collision_extents();

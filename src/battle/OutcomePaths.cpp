@@ -71,7 +71,7 @@ bool CollisionContext::try_outcome_path_a(
     }
 
     candidate->result_180 = 2;
-    candidate->result_slot_184 = candidate->source_1a0 - 1;
+    candidate->result_slot_184 = candidate->snapshot_result_slot_1a0 - 1;
     candidate->result_186 = frame->result_2e;
     fighter->result_186 = frame->result_30;
     fighter->response_18c = frame->response_3c;
@@ -136,7 +136,7 @@ bool CollisionContext::try_outcome_path_b(
     }
 
     candidate->result_180 = 2;
-    candidate->result_slot_184 = candidate->source_1a0 - 1;
+    candidate->result_slot_184 = candidate->snapshot_result_slot_1a0 - 1;
     candidate->result_186 = frame->result_2e;
     fighter->result_186 = frame->result_30;
     fighter->response_18c = frame->response_3c;

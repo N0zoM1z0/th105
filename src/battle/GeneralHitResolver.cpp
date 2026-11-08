@@ -122,7 +122,7 @@ threshold_done:
         }
     }
 
-    candidate->result_slot_184 = candidate->source_1a0 - 1;
+    candidate->result_slot_184 = candidate->snapshot_result_slot_1a0 - 1;
     candidate->result_186 = frame->candidate_output_2a;
     fighter->result_186 = frame->fighter_output_2c;
 

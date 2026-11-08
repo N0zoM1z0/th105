@@ -11,7 +11,7 @@ void CollisionContext::apply_terminal_outcome(
     reset_hit_exchange_scratch(candidate->owner_16c, fighter);
 
     candidate->result_180 = 2;
-    candidate->result_slot_184 = candidate->source_1a0 - 1;
+    candidate->result_slot_184 = candidate->snapshot_result_slot_1a0 - 1;
     candidate->result_186 = frame->result_2e;
     candidate->owner_16c->flag_491 |= 4;
 
