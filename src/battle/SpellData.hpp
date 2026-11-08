@@ -185,7 +185,7 @@ struct SpellDataOwner {
         const char *path,
         DwordDeque4 *image_owner,
         SpellTree *destination,
-        void *mode_argument);
+        ShortDeque8 *selected_spell_ids);
     void parse_spell_csv_and_build_card_resources(
         const char *character_name,
         const char *path,
@@ -204,7 +204,7 @@ struct SpellDataOwner {
     unsigned char load_spell_csv_via_325b0(
         int character_key,
         signed char story_mode,
-        void *mode_argument);
+        ShortDeque8 *selected_spell_ids);
     unsigned char load_spell_csv_via_32e20(
         int character_key,
         signed char story_mode,

@@ -11,7 +11,7 @@ const char *__cdecl character_key_to_name(int character_key);
 unsigned char SpellDataOwner::load_spell_csv_via_325b0(
     int character_key,
     signed char story_mode,
-    void *mode_argument)
+    ShortDeque8 *selected_spell_ids)
 {
     char path[260];
     clear_spell_entries();
@@ -31,7 +31,7 @@ unsigned char SpellDataOwner::load_spell_csv_via_325b0(
         path,
         &image_handles_00,
         &local_tree_14,
-        mode_argument);
+        selected_spell_ids);
     return 1;
 }
 

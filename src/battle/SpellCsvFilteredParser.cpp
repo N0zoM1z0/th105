@@ -44,7 +44,7 @@ void SpellDataOwner::parse_spell_csv_via_325b0(
     const char *path,
     DwordDeque4 *image_owner,
     SpellTree *destination,
-    void *mode_argument)
+    ShortDeque8 *selected_spell_ids)
 {
     typedef std::map<int, SpellRecordView> RecordMap;
     RecordMap *const records = reinterpret_cast<RecordMap *>(destination);
@@ -69,7 +69,7 @@ void SpellDataOwner::parse_spell_csv_via_325b0(
 
     std::set<short> selected_ids;
     std::deque<short> *const queued_ids =
-        static_cast<std::deque<short> *>(mode_argument);
+        reinterpret_cast<std::deque<short> *>(selected_spell_ids);
     for (unsigned index = 0; index < queued_ids->size(); ++index)
         selected_ids.insert((*queued_ids)[index]);
 
