@@ -8,8 +8,8 @@ namespace th105 {
 
 void EventEffectStateData::set_event_id(int event_id)
 {
-    if (current_event_id_00 != static_cast<unsigned>(event_id)) {
-        current_event_id_00 = static_cast<unsigned>(event_id);
+    if (current_event_id_00 != event_id) {
+        current_event_id_00 = event_id;
         publish_stage_state_469d50(static_cast<signed char>(g_battle_transition_mode));
     }
 }
@@ -27,7 +27,7 @@ void EventEffectStateData::dispatch_emitter_state(signed char layer)
 }
 
 
-void EventEffectStateView::render_background_effects()
+void EventEffectStateData::render_background_effects()
 {
     g_render_mode_manager.set_blend_mode(1);
     g_render_mode_manager.set_mode(2);

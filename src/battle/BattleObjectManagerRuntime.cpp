@@ -50,7 +50,7 @@ BattleObjectManager::~BattleObjectManager()
 void BattleObjectManager::phase_466980()
 {
     g_event_effect_state->render_background_effects();
-    reinterpret_cast<EventEffectStateData *>(g_event_effect_state)->dispatch_emitter_state(-2);
+    g_event_effect_state->dispatch_emitter_state(-2);
     for (std::list<BackgroundBase *>::iterator it = renderers_28.begin();
          it != renderers_28.end(); ++it)
         (*it)->slot_10();
@@ -62,7 +62,7 @@ void BattleObjectManager::phase_4669f0()
     for (std::list<BackgroundBase *>::iterator it = renderers_28.begin();
          it != renderers_28.end(); ++it)
         (*it)->slot_0c();
-    reinterpret_cast<EventEffectStateData *>(g_event_effect_state)->dispatch_emitter_state(-1);
+    g_event_effect_state->dispatch_emitter_state(-1);
 }
 
 void BattleObjectManager::phase_466a50()
@@ -70,7 +70,7 @@ void BattleObjectManager::phase_466a50()
     for (std::list<BackgroundBase *>::iterator it = renderers_28.begin();
          it != renderers_28.end(); ++it)
         (*it)->slot_08();
-    reinterpret_cast<EventEffectStateData *>(g_event_effect_state)->dispatch_emitter_state(1);
+    g_event_effect_state->dispatch_emitter_state(1);
 }
 
 void BattleObjectManager::manager_worker_loop_466c70()
@@ -142,7 +142,7 @@ void BattleObjectManager::update_background_runtime_466f40()
             effect_level_f8 += 10;
         else
             effect_level_f8 = 255;
-        update_background_pattern_660b30(g_event_effect_state->current_event_id);
+        update_background_pattern_660b30(g_event_effect_state->current_event_id_00);
     }
 
     drift_e0 += 0.005f;
@@ -150,49 +150,50 @@ void BattleObjectManager::update_background_runtime_466f40()
     drift_e4 += 0.005f;
     drift_ec += 0.005f;
 
-    if (background_x_100 < g_event_effect_state->background_target_x_dc()) {
+    if (background_x_100 < g_event_effect_state->runtime_x_dc) {
         const double next = background_x_100 + 0.01f;
         background_x_100 = static_cast<float>(
-            next < g_event_effect_state->background_target_x_dc()
+            next < g_event_effect_state->runtime_x_dc
                 ? next
-                : g_event_effect_state->background_target_x_dc());
-    } else if (background_x_100 > g_event_effect_state->background_target_x_dc()) {
+                : g_event_effect_state->runtime_x_dc);
+    } else if (background_x_100 > g_event_effect_state->runtime_x_dc) {
         const double next = background_x_100 - 0.01f;
         background_x_100 = static_cast<float>(
-            next > g_event_effect_state->background_target_x_dc()
+            next > g_event_effect_state->runtime_x_dc
                 ? next
-                : g_event_effect_state->background_target_x_dc());
+                : g_event_effect_state->runtime_x_dc);
     }
 
-    if (background_y_104 < g_event_effect_state->background_target_y_e0()) {
+    if (background_y_104 < g_event_effect_state->runtime_y_e0) {
         const double next = background_y_104 + 0.01f;
         background_y_104 = static_cast<float>(
-            next < g_event_effect_state->background_target_y_e0()
+            next < g_event_effect_state->runtime_y_e0
                 ? next
-                : g_event_effect_state->background_target_y_e0());
-    } else if (background_y_104 > g_event_effect_state->background_target_y_e0()) {
+                : g_event_effect_state->runtime_y_e0);
+    } else if (background_y_104 > g_event_effect_state->runtime_y_e0) {
         const double next = background_y_104 - 0.01f;
         background_y_104 = static_cast<float>(
-            next > g_event_effect_state->background_target_y_e0()
+            next > g_event_effect_state->runtime_y_e0
                 ? next
-                : g_event_effect_state->background_target_y_e0());
+                : g_event_effect_state->runtime_y_e0);
     }
 
-    if (background_z_108 < g_event_effect_state->background_target_z_e4()) {
+    if (background_z_108 < g_event_effect_state->runtime_z_e4) {
         const double next = background_z_108 + 0.01f;
         background_z_108 = static_cast<float>(
-            next < g_event_effect_state->background_target_z_e4()
+            next < g_event_effect_state->runtime_z_e4
                 ? next
-                : g_event_effect_state->background_target_z_e4());
-    } else if (background_z_108 > g_event_effect_state->background_target_z_e4()) {
+                : g_event_effect_state->runtime_z_e4);
+    } else if (background_z_108 > g_event_effect_state->runtime_z_e4) {
         const double next = background_z_108 - 0.01f;
         background_z_108 = static_cast<float>(
-            next > g_event_effect_state->background_target_z_e4()
+            next > g_event_effect_state->runtime_z_e4
                 ? next
-                : g_event_effect_state->background_target_z_e4());
+                : g_event_effect_state->runtime_z_e4);
     }
 
-    g_event_effect_state->update_background_entries_469b70();
+    g_event_effect_state
+        ->update_background_entries_469b70();
 
     if (!renderers_28.empty()) {
         if (renderers_28.size() > 1) {

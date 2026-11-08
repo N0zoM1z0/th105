@@ -5013,7 +5013,7 @@ rel32_targets = [
 dir32_targets = [
   "?g_event_effect_id@th105@@3HA=?g_event_effect_id@th105@@3HA",
   "?g_info_effect_emitter@th105@@3PAUInfoEffectEmitterView@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A",
-  "?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
+  "?g_event_effect_state@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
   "__real@43a00000=__real@43a00000",
   "__real@42280000=__real@42280000",
 ]
@@ -5142,7 +5142,7 @@ rel32_targets = [
 ]
 dir32_targets = [
   "?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
-  "?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
+  "?g_event_effect_state@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
 ]
 
 [units.cross-v106a-event-effect-state]
@@ -5169,7 +5169,7 @@ symbol_base = "?dispatch_emitter_state@EventEffectStateData@th105@@QAEXC@Z"
 
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x004696E0"
-symbol_base = "?render_background_effects@EventEffectStateView@th105@@QAEXXZ"
+symbol_base = "?render_background_effects@EventEffectStateData@th105@@QAEXXZ"
 rel32_targets = [
   "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
   "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
@@ -12248,11 +12248,11 @@ address = "0x00466980"
 symbol_base = "?phase_466980@BattleObjectManager@th105@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "EventEffectStateView_render_background_effects=0x004696E0",
+  "EventEffectStateData_render_background_effects=0x004696E0",
   "EventEffectStateData_dispatch_emitter_state=0x004695F0",
   "?render_tail_4666a0@BattleObjectManager@th105@@QAEXXZ=0x004666A0",
 ]
-dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
 
 [[units.cross-v106a-battle-object-manager-runtime.functions]]
 address = "0x004669F0"
@@ -12261,7 +12261,7 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "EventEffectStateData_dispatch_emitter_state=0x004695F0",
 ]
-dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
 
 [[units.cross-v106a-battle-object-manager-runtime.functions]]
 address = "0x00466A50"
@@ -12270,7 +12270,7 @@ rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "EventEffectStateData_dispatch_emitter_state=0x004695F0",
 ]
-dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
 
 [[units.cross-v106a-battle-object-manager-runtime.functions]]
 address = "0x00466C70"
@@ -13378,7 +13378,7 @@ rel32_targets = [
 dir32_targets = [
   "__ehhandler$??0EventEffectStateData@th105@@QAE@XZ=__ehhandler$??0EventEffectStateLifetime@th105@@QAE@XZ",
   "___security_cookie=___security_cookie",
-  "?g_event_effect_state_lifetime@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
+  "?g_event_effect_state@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
 ]
 
 [[units.gpt-web-event-effect-state-lifetime.functions]]
@@ -13921,7 +13921,7 @@ notes = "Current EventEffectState background deque maintenance. The native check
 
 [[units.gpt-web-event-effect-background-runtime.functions]]
 address = "0x00469B70"
-symbol_base = "?update_background_entries_469b70@EventEffectStateView@th105@@QAEXXZ"
+symbol_base = "?update_background_entries_469b70@EventEffectStateData@th105@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "?erase@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@$00@2@V32@0@Z=0x004304F0",
@@ -23487,6 +23487,7 @@ rel32_targets = [
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
 ]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
 
 [units.exact-first-info-effect-update]
 kind = "probe"
@@ -24586,7 +24587,7 @@ dir32_targets = ["?g_effect_scene_state@th105@@3PAUEffectSceneStateView@1@A=?g_s
 address = "0x00665470"
 symbol_base = "?emit_weather_effect_665470@th105@@YAPAVWeatherEffectObject@@HMMHH@Z"
 rel32_targets = ["?emit_effect@EventEffectStateData@th105@@QAEPAVWeatherEffectObject@@HMMHH@Z=0x004695B0"]
-dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
 
 [units.exact-first-battle-effect-bootstrap]
 kind = "probe"
@@ -28660,14 +28661,14 @@ address = "0x00466F40"
 symbol_base = "?update_background_runtime_466f40@BattleObjectManager@th105@@QAEXXZ"
 rel32_targets = [
  "?update_background_pattern_660b30@th105@@YAXH@Z=0x00660B30",
- "?update_background_entries_469b70@EventEffectStateView@th105@@QAEXXZ=0x00469B70",
+ "?update_background_entries_469b70@EventEffectStateData@th105@@QAEXXZ=0x00469B70",
  "__invalid_parameter_noinfo=0x0068A143",
  "?step_transition_4656a0@BackgroundBase@th105@@QAEXXZ=0x004656A0",
  "?_Buynode@?$list@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@2@PAU342@0ABQAUBackgroundBase@th105@@@Z=0x00421F30",
  "?_Incsize@?$list@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@std@@IAEXI@Z=0x00440370",
  "?erase@?$list@PAUBackgroundBase@th105@@V?$allocator@PAUBackgroundBase@th105@@@std@@@std@@QAE?AV?$_Iterator@$00@12@V312@@Z=0x0043FC40",
 ]
-dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A", "__imp__SetEvent@4=__imp__SetEvent@4"]
+dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A", "__imp__SetEvent@4=__imp__SetEvent@4"]
 
 [units.exact-first-game-config-save]
 kind = "probe"

@@ -10,9 +10,7 @@ Lifetime, runtime update and resource initialization now share the same
 `EventEffectStateData` declaration. The complete constructor, destructor and
 three runtime methods remain exact against Japanese TH10.5 1.06a with the pinned
 VC8 profile. The resource initializer's existing nonexact candidate hash is
-unchanged. The narrower caller interface remains separate: its stage-publish
-return/signature and emitter call need independent ABI reconciliation before
-it can be merged safely.
+unchanged. The narrower caller interface was subsequently reconciled as described below.
 
 The stage/music wrapper at `0x434DE0` now calls the shared state's actual
 `void(signed char)` stage-publish interface. VC8 still emits the exact original
@@ -31,3 +29,11 @@ The event-ID setter is now a member of the same resource-owning state as the
 stage publisher. Its global-event caller uses that owner directly; the narrow
 view no longer declares this method. Setter, caller, lifetime and runtime
 comparisons all remain exact.
+
+The global event-state pointer and background render/update paths now use the
+same `EventEffectStateData` owner. Weather emission writes its three coordinate
+fields directly, while background update reads them from that owner. Shutdown
+and update call the real weather manager virtuals at `+0x08` and `+0x14` rather
+than an emitter facade. The affected exact event, weather and render functions
+remain exact; the existing nonexact weather initializer and background update
+retain their previous candidate hashes.

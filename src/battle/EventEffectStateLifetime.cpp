@@ -19,11 +19,9 @@ typedef char EventEffect_x_off[(offsetof(EventEffectStateData,runtime_x_dc)==0xd
 typedef char EventEffect_z_off[(offsetof(EventEffectStateData,runtime_z_e4)==0xe4)?1:-1];
 typedef char EventEffect_size[(sizeof(EventEffectStateData)==0xe8)?1:-1];
 
-extern EventEffectStateData *g_event_effect_state_lifetime;
-
 EventEffectStateData::EventEffectStateData()
 {
-    g_event_effect_state_lifetime = this;
+    g_event_effect_state = this;
 }
 
 EventEffectStateData::~EventEffectStateData()

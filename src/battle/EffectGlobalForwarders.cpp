@@ -20,6 +20,6 @@ void InfoEffectGlobalCalls::set_scene_state(int state)
 }
 WeatherEffectObject *__cdecl emit_weather_effect_665470(int id,float x,float y,int a,int b)
 {
-    return reinterpret_cast<EventEffectStateData *>(g_event_effect_state)->emit_effect(id,x,y,a,b);
+    return g_event_effect_state->emit_effect(id,x,y,a,b);
 }
 }

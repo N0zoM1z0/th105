@@ -1,8 +1,8 @@
-#include "EventEffectState.hpp"
+#include "EventEffectStateData.hpp"
 
 namespace th105 {
 
-void EventEffectStateView::update_background_entries_469b70()
+void EventEffectStateData::update_background_entries_469b70()
 {
     std::deque<BackgroundRenderEntry>::iterator entry =
         background_entries_28.begin();
@@ -17,7 +17,7 @@ void EventEffectStateView::update_background_entries_469b70()
         }
     }
 
-    emitter_48.slot_14();
+    emitter_48.update_effects();
 }
 
 } // namespace th105

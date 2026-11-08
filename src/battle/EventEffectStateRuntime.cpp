@@ -34,7 +34,7 @@ void EventEffectStateData::prepare_shutdown_469ec0()
     stage_rows_3c.clear();
     for (unsigned i = 0; i < resources_08.size(); ++i)
         g_title_resource_manager.release_title_resource_handle(resources_08[i]);
-    reinterpret_cast<EffectEmitterSubobject *>(&emitter_48)->slot_08();
+    emitter_48.clear_effects_and_resources();
 }
 
 void EventEffectStateData::reset_runtime_state_469f40()

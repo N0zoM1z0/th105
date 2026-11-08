@@ -11,7 +11,7 @@ namespace th105 {
 // The resource-owning event/effect state. Construction leaves the coordinates
 // untouched; the runtime reset initializes them after loading resources.
 struct EventEffectStateData {
-    unsigned current_event_id_00;
+    int current_event_id_00;
     signed char current_stage_04;
     unsigned char reserved_05[3];
     std::vector<unsigned> resources_08;
@@ -26,6 +26,8 @@ struct EventEffectStateData {
     EventEffectStateData();
     ~EventEffectStateData();
     WeatherEffectObject *emit_effect(int effect_id, float x, float y, int flag_a, int flag_b);
+    void render_background_effects();
+    void update_background_entries_469b70();
     void dispatch_emitter_state(signed char layer);
     void set_event_id(int event_id);
     void initialize_effect_runtime();

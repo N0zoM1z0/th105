@@ -11,7 +11,7 @@ struct BattleAudioSetupView {
 void BattleAudioSetupView::set_stage_music_433860(int stage, int value)
 {
     g_battle_object_manager->publish_stage(stage, value, true);
-    reinterpret_cast<EventEffectStateData *>(g_event_effect_state)
+    g_event_effect_state
         ->publish_stage_state_469d50(static_cast<signed char>(stage));
 }
 
