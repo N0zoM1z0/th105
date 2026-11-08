@@ -5008,7 +5008,7 @@ symbol_base = "trigger_global_effect"
 rel32_targets = [
   "?lookup_event_effect_record@th105@@YAHH@Z=0x0043C150",
   "?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0",
-  "?set_event_id@EventEffectStateView@th105@@QAEXH@Z=0x00469DF0",
+  "?set_event_id@EventEffectStateData@th105@@QAEXH@Z=0x00469DF0",
 ]
 dir32_targets = [
   "?g_event_effect_id@th105@@3HA=?g_event_effect_id@th105@@3HA",

@@ -6,12 +6,11 @@
 
 namespace th105 {
 
-void EventEffectStateView::set_event_id(int event_id)
+void EventEffectStateData::set_event_id(int event_id)
 {
-    if (current_event_id != event_id) {
-        current_event_id = event_id;
-        reinterpret_cast<EventEffectStateData *>(this)
-            ->publish_stage_state_469d50(static_cast<signed char>(g_battle_transition_mode));
+    if (current_event_id_00 != static_cast<unsigned>(event_id)) {
+        current_event_id_00 = static_cast<unsigned>(event_id);
+        publish_stage_state_469d50(static_cast<signed char>(g_battle_transition_mode));
     }
 }
 

@@ -26,3 +26,8 @@ old same-return-type forwarding explanation in `KNOWLEDGE_BASE.md` is superseded
 The two full bodies remain exact, as do the fourteen exact roster bridges, pair
 mode and fighter system-command consumers. Yukari and the unselected Tenshi
 action candidate retain their earlier nonexact candidate hashes.
+
+The event-ID setter is now a member of the same resource-owning state as the
+stage publisher. Its global-event caller uses that owner directly; the narrow
+view no longer declares this method. Setter, caller, lifetime and runtime
+comparisons all remain exact.

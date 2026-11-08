@@ -1,5 +1,6 @@
 #include "EventSubobject130.hpp"
 #include "EventEffectState.hpp"
+#include "EventEffectStateData.hpp"
 #include "InfoEffectEmitter.hpp"
 
 namespace th105 {
@@ -21,7 +22,7 @@ void EventSubobject130::trigger_global_effect(int value)
     g_event_effect_id = value;
     g_info_effect_emitter->emit_effect(
         lookup_event_effect_record(value), 320.0f, 42.0f, 1, 1);
-    g_event_effect_state->set_event_id(value);
+    reinterpret_cast<EventEffectStateData *>(g_event_effect_state)->set_event_id(value);
 }
 
 void EventSubobject130::trigger_secondary_event_effect(int event_id)

@@ -25,6 +25,7 @@ struct EventEffectStateData {
 
     EventEffectStateData();
     ~EventEffectStateData();
+    void set_event_id(int event_id);
     void initialize_effect_runtime();
     void publish_stage_state_469d50(signed char state);
     void prepare_shutdown_469ec0();
