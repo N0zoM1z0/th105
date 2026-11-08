@@ -14,10 +14,11 @@ void EventEffectStateData::set_event_id(int event_id)
     }
 }
 
-int EventEffectStateView::emit_effect(
+WeatherEffectObject *EventEffectStateData::emit_effect(
     int effect_id, float x, float y, int flag_a, int flag_b)
 {
-    return emitter_48.emit(effect_id, x, y, flag_a, flag_b, 0);
+    return emitter_48.spawn_effect(effect_id, x, y,
+        static_cast<unsigned char>(flag_a), static_cast<unsigned char>(flag_b), 0);
 }
 
 void EventEffectStateView::dispatch_emitter_state(signed char layer)

@@ -1,3 +1,4 @@
+class WeatherEffectObject;
 namespace th105 {
 struct EventEffectStateView;
 extern EventEffectStateView *g_event_effect_state;
@@ -6,7 +7,7 @@ extern int g_event_runtime_state;
 extern int g_event_runtime_zero;
 int __cdecl selector_random_roll(int);
 void __cdecl dispatch_indexed_event(unsigned);
-int __cdecl emit_weather_effect_665470(int, float, float, int, int);
+WeatherEffectObject *__cdecl emit_weather_effect_665470(int, float, float, int, int);
 #define V(o) (*reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(g_event_effect_state)+(o)))
 #define T static_cast<unsigned>(g_event_runtime_zero)
 #define R(n) static_cast<float>(static_cast<unsigned>(selector_random_roll(n)))

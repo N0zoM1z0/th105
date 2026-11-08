@@ -23,3 +23,11 @@ emitted manager EH symbols and their relocations were unchanged between builds
 before and after restoring `virtual`; that is a before/after check, not an
 independent comparison of every EH byte against the executable. No new exact
 function is counted for this change.
+
+The event/weather forwarding path now calls the actual virtual spawn on its
+`CEffectManager<WeatherEffectObject>` member, rather than a second polymorphic
+emitter facade. The returned value is a WeatherEffectObject pointer; the two
+integer flags are passed to the spawn method as their low bytes. This preserves
+values such as -2 as byte 0xFE. The complete event forwarder `0x4695B0`,
+global forwarder `0x665470`, weather emission `0x660B30`, and the affected
+event-state lifetime/runtime roots remain exact.

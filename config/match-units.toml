@@ -5161,7 +5161,7 @@ dir32_targets = ["?g_battle_transition_mode@th105@@3EA=?g_battle_transition_mode
 
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x004695B0"
-symbol_base = "?emit_effect@EventEffectStateView@th105@@QAEHHMMHH@Z"
+symbol_base = "?emit_effect@EventEffectStateData@th105@@QAEPAVWeatherEffectObject@@HMMHH@Z"
 
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x004695F0"
@@ -23483,7 +23483,7 @@ notes = "Complete12198-byte weather emission policy and full12348 payload; indep
 address = "0x00660B30"
 symbol_base = "?update_weather_emission_660b30@th105@@YAXH@Z"
 rel32_targets = [
-  "?emit_weather_effect_665470@th105@@YAHHMMHH@Z=0x00665470",
+  "?emit_weather_effect_665470@th105@@YAPAVWeatherEffectObject@@HMMHH@Z=0x00665470",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
 ]
@@ -24584,8 +24584,8 @@ symbol_base = "?set_scene_state@InfoEffectGlobalCalls@th105@@QAEXH@Z"
 dir32_targets = ["?g_effect_scene_state@th105@@3PAUEffectSceneStateView@1@A=?g_scene_renderer@th105@@3PAUSceneRendererView@1@A"]
 [[units.exact-first-effect-global-forwarders.functions]]
 address = "0x00665470"
-symbol_base = "?emit_weather_effect_665470@th105@@YAHHMMHH@Z"
-rel32_targets = ["?emit_effect@EventEffectStateView@th105@@QAEHHMMHH@Z=0x004695B0"]
+symbol_base = "?emit_weather_effect_665470@th105@@YAPAVWeatherEffectObject@@HMMHH@Z"
+rel32_targets = ["?emit_effect@EventEffectStateData@th105@@QAEPAVWeatherEffectObject@@HMMHH@Z=0x004695B0"]
 dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
 
 [units.exact-first-battle-effect-bootstrap]
