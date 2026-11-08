@@ -657,3 +657,11 @@ preallocation callers use those members. All 129 accepted roots across the
 nine focused units retain exact comparisons. Each emitted release body still
 has its original two register differences; no new exact credit. See
 `docs/ROSTER_RELEASE_OWNER_2026_11_08.md`.
+
+
+2026-11-08: Client snapshot import now uses the existing ACK_INFO packet class,
+proved by the original constructor, parser and primary-vtable dispatch chain.
+Its 399-byte candidate is unchanged; the dispatcher and both codecs remain
+exact. Complete handler27 and metadata44 match, but cleanup7/native13 adds a
+separate known full-EH blocker. See
+`docs/NETWORK_CLIENT_SNAPSHOT_IMPORT_2026_11_04.md`.

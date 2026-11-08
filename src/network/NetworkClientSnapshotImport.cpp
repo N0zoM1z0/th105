@@ -1,19 +1,10 @@
 #include "engine/CriticalSectionWrapper.hpp"
 #include "input/InputSelection.hpp"
+#include "NetworkAckInfoPacket.hpp"
 #include <deque>
 #include <stddef.h>
 namespace th105 {
 struct NetworkImportPeer { unsigned char reserved[4]; unsigned char value_004; };
-struct NetworkImportPacket {
-    unsigned char reserved_000[8];
-    unsigned char value_008[2];
-    unsigned char tag_00a[2];
-    std::deque<short> queues_00c[2];
-    unsigned char peer_byte_034[2];
-    unsigned char flag_036, flag_037;
-    unsigned int value_038;
-    unsigned char sequence_03c;
-};
 struct ClientImportSlot {
     unsigned int value_000;
     unsigned char reserved_004, tag_005, reserved_006[2];
@@ -35,7 +26,7 @@ public:
     virtual ~ClientImportView();
     virtual void slot_04(); virtual void slot_08(); virtual void slot_0c();
     virtual void slot_10(); virtual void slot_14();
-    virtual void import_snapshot(const NetworkImportPacket *packet);
+    virtual void import_snapshot(const NetworkAckInfoPacket40 *packet);
     virtual void slot_1c(); virtual void slot_20(); virtual void slot_24();
     virtual void slot_28(); virtual void set_state(unsigned char);
     unsigned char reserved_004[0x20c];
@@ -53,10 +44,10 @@ public:
     unsigned char reserved_6c4[0x1c];
     int mode_6e0;
 };
-typedef char ImportPacketExtent[sizeof(NetworkImportPacket)==0x40?1:-1];
+typedef char ImportPacketExtent[sizeof(NetworkAckInfoPacket40)==0x40?1:-1];
 typedef char ImportLockOffset[offsetof(ClientImportView,critical_25c)==0x25c?1:-1];
 typedef char ImportModeOffset[offsetof(ClientImportView,mode_6e0)==0x6e0?1:-1];
-void ClientImportView::import_snapshot(const NetworkImportPacket *packet)
+void ClientImportView::import_snapshot(const NetworkAckInfoPacket40 *packet)
 {
     ScopedClientStateLock scope(&critical_25c);
     if (mode_6e0 == 1) {
@@ -68,26 +59,26 @@ void ClientImportView::import_snapshot(const NetworkImportPacket *packet)
             sequence_6b8 = sequence;
             for (int i = 0; i < 2; ++i) {
                 slots_214[i].value_000 = packet->value_008[i];
-                slots_214[i].tag_005 = packet->tag_00a[i];
-                slots_214[i].queue_008 = packet->queues_00c[i];
-                slots_214[i].peer_01c->value_004 = packet->peer_byte_034[i];
+                slots_214[i].tag_005 = packet->status_00a[i];
+                slots_214[i].queue_008 = packet->values_00c[i];
+                slots_214[i].peer_01c->value_004 = packet->peer_034[i];
             }
-            flag_210 = packet->flag_036;
-            flag_211 = packet->flag_037;
-            value_254 = packet->value_038;
+            flag_210 = packet->tail_036;
+            flag_211 = packet->tail_037;
+            value_254 = packet->tail_038;
         }
     } else {
         slots_214[0].value_000 = packet->value_008[0];
-        slots_214[0].tag_005 = packet->tag_00a[0];
+        slots_214[0].tag_005 = packet->status_00a[0];
         slots_214[1].value_000 = packet->value_008[1];
-        slots_214[1].tag_005 = packet->tag_00a[1];
-        slots_214[0].queue_008 = packet->queues_00c[0];
-        slots_214[0].peer_01c->value_004 = packet->peer_byte_034[0];
+        slots_214[1].tag_005 = packet->status_00a[1];
+        slots_214[0].queue_008 = packet->values_00c[0];
+        slots_214[0].peer_01c->value_004 = packet->peer_034[0];
         reinterpret_cast<PlayerSlotCopyView *>(get_player_slot_record(0))->copy_deck(
             reinterpret_cast<std::deque<unsigned short> *>(&slots_214[1].queue_008), slots_214[1].value_000);
-        flag_210 = packet->flag_036;
-        flag_211 = packet->flag_037;
-        value_254 = packet->value_038;
+        flag_210 = packet->tail_036;
+        flag_211 = packet->tail_037;
+        value_254 = packet->tail_038;
     }
     pending_3a5 = 1;
 }

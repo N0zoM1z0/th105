@@ -30597,7 +30597,7 @@ notes = "Complete client snapshot import candidate with scoped critical-section 
 
 [[units.exact-first-network-client-snapshot-import.functions]]
 address = "0x0044F200"
-symbol_base = "?import_snapshot@ClientImportView@th105@@UAEXPBUNetworkImportPacket@2@@Z"
+symbol_base = "?import_snapshot@ClientImportView@th105@@UAEXPBVNetworkAckInfoPacket40@2@@Z"
 rel32_targets = [
  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
@@ -30606,7 +30606,7 @@ rel32_targets = [
  "?copy_deck@PlayerSlotCopyView@th105@@QAEPAV?$deque@GV?$allocator@G@std@@@std@@PAV34@H@Z=0x00431E50",
 ]
 dir32_targets = [
- "__ehhandler$?import_snapshot@ClientImportView@th105@@UAEXPBUNetworkImportPacket@2@@Z=__ehhandler$?import_snapshot@CNetworkClientSnapshotView@th105@@QAEXPBUNetworkClientWire40@2@@Z",
+ "__ehhandler$?import_snapshot@ClientImportView@th105@@UAEXPBVNetworkAckInfoPacket40@2@@Z=__ehhandler$?import_snapshot@CNetworkClientSnapshotView@th105@@QAEXPBUNetworkClientWire40@2@@Z",
  "___security_cookie=___security_cookie",
 ]
 
