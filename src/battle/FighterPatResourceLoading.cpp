@@ -105,7 +105,7 @@ void Fighter::load_pat_data_and_palette_resources()
 
         read_file_buffer(file.reader, &current->field_10, 2);
         read_file_buffer(file.reader, &current->field_12, 2);
-        read_file_buffer(file.reader, &current->field_14, 1);
+        read_file_buffer(file.reader, &current->suppress_wrap_signal_14, 1);
         int frame_count;
         read_file_buffer(file.reader, &frame_count, 4);
         current->records_00.assign(frame_count, PatRecord88());

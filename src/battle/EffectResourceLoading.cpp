@@ -88,7 +88,7 @@ void EffectResourceManagerView::load_effect_resource(const char *path)
             break;
         }
         }
-        read_file_buffer(file.reader, &current->flag_14, 1);
+        read_file_buffer(file.reader, &current->suppress_wrap_signal_14, 1);
         int frame_count;
         read_file_buffer(file.reader, &frame_count, 4);
         current->frames_04.assign(frame_count, FrameData());

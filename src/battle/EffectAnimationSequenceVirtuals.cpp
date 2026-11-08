@@ -23,7 +23,7 @@ unsigned char EffectAnimationSequenceView::next_sequence_frame()
     frame_index_140 = static_cast<short>(
         (frame_index_140 + 1) % frame_count_148);
     apply_sequence_frame();
-    return frame_index_140 == 0 && sequence_168->flag_14 == 0;
+    return frame_index_140 == 0 && sequence_168->suppress_wrap_signal_14 == 0;
 }
 
 int EffectAnimationSequenceView::previous_sequence_frame()

@@ -9,7 +9,9 @@ struct EffectResourceGroup {
     EffectResourceGroup();
     virtual ~EffectResourceGroup();
     std::vector<FrameData> frames_04;
-    unsigned char flag_14;
+    // Nonzero suppresses the frame-wrap signal used for automatic block advance.
+    // Frames still wrap, and explicit block selection remains possible.
+    unsigned char suppress_wrap_signal_14;
     EffectResourceGroup *previous_18;
     EffectResourceGroup *next_1c;
 };

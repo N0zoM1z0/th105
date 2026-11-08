@@ -37,7 +37,7 @@ unsigned char AnimationSequenceObjectView::next_sequence_frame()
     frame_index_140 = static_cast<short>(
         (frame_index_140 + 1) % sequence_frame_count_148);
     apply_sequence_frame();
-    return frame_index_140 == 0 && sequence_15c->field_14 == 0;
+    return frame_index_140 == 0 && sequence_15c->suppress_wrap_signal_14 == 0;
 }
 
 int AnimationSequenceObjectView::previous_sequence_frame()

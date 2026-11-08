@@ -97,7 +97,9 @@ struct PatGroup {
     std::vector<PatRecord88> records_00;
     short field_10;
     short field_12;
-    unsigned char field_14;
+    // Nonzero suppresses the frame-wrap signal used for automatic block advance.
+    // Frames still wrap, and explicit block selection remains possible.
+    unsigned char suppress_wrap_signal_14;
     // 0x15..0x17 are natural alignment padding; current copy construction does not copy them.
     PatGroup *previous_18;
     PatGroup *next_1c; // The last block can link back to the chain root.
