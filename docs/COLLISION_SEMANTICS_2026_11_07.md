@@ -47,3 +47,10 @@ The broad phase in `0x46B7B0` subtracts four rectangle/descriptor endpoints as 3
 ## Descriptor point-test arithmetic
 
 The point test `0x46B8B0` computes four descriptor expressions, subtracts one in each, and returns -1 only when all four resulting sign bits are set. The products, sums and coordinate differences now use unsigned 32-bit arithmetic so the target's wraparound is explicit rather than signed-overflow-dependent. An explicit mask and conditional now returns -1 if all four sign bits are set and zero otherwise, without relying on implementation-defined unsigned-to-signed conversion or signed right shift. All 16 possible combinations of sign bits yield the same result as the prior VC8 x86 formulation. The complete target is 142 bytes; the fresh candidate section tail is 139 bytes and differs from +97. The former exact source is retained in Git at commit `136cbdb4`, but the selected source is now honestly tracked as nonexact and receives no exact-byte credit. The other previously exact functions in its unit still compare exactly; the unrelated descriptor-pair root remains nonexact. This establishes the bit-test equivalence, not a general runtime proof for every possible input or exception environment.
+
+A follow-up tried expanding each sign bit with `-static_cast<int>(q >> 31)`
+before ANDing the four masks. This retains defined arithmetic but emits 150
+bytes and differs from the 142-byte target at +98: VC8 uses a logical shift and
+negation instead of the target's arithmetic shift. The clearer aggregate test
+remains selected. The three exact peers in the unit still compared exactly;
+`0x46BA10` remained nonexact.
