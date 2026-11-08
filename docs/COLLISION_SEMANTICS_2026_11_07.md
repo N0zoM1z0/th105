@@ -54,3 +54,16 @@ bytes and differs from the 142-byte target at +98: VC8 uses a logical shift and
 negation instead of the target's arithmetic shift. The clearer aggregate test
 remains selected. The three exact peers in the unit still compared exactly;
 `0x46BA10` remained nonexact.
+
+
+A bounded 2026-11-08 control copied each wrapped result's representation into
+an `int` with `memcpy`, then combined four `value < 0 ? -1 : 0` masks. This
+avoids both a narrowing integer conversion and negative signed right shift
+on the pinned 32-bit target, but VC8 emits 173/native142 bytes with its first
+difference at +1. The representation change does not reproduce the target body.
+The selected aggregate mask was restored and rebuilt: its 139-byte hash and
+both nonexact results are unchanged, and the three accepted peers remain
+exact. No source or ledger change is retained. Private source and full reports
+are under `.analysis/frontier-point-sign-mask-20261108/` and
+`build/frontier-point-sign-mask-20261108/`. Further mask spelling trials need
+new compiler or source evidence.

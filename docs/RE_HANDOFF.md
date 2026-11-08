@@ -600,3 +600,10 @@ by its destructor and both Scenario callers. The duplicate callable receiver
 and undefined Scenario alias are removed. All 27 affected units retain their
 prior comparisons, including 34 accepted roots; release keeps its same two-byte
 register residue. See `docs/SYSTEM_EFFECT_RELEASE_SOURCE_2026_11_03.md`.
+
+
+2026-11-08: A representation-preserving sign-mask control for `0x46B8B0`
+emits 173/native142 rather than recovering the target arithmetic shifts.
+The selected 139-byte aggregate-mask source is restored; the complete unit
+retains its three accepted roots and both previous nonexact candidates.
+See `docs/COLLISION_SEMANTICS_2026_11_07.md`; no new exact credit.
