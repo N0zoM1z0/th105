@@ -1,10 +1,10 @@
+#include "battle/EffectManager.hpp"
 #include "battle/InfoLongRecordBinding.hpp"
 #include "battle/BattleInfoRecordEffectRuntime.hpp"
 namespace th105 {
 struct Fighter;
 struct SceneRendererFighterPairView { unsigned char reserved_000[0x0c]; Fighter *fighters_0c[2]; };
 extern SceneRendererFighterPairView *g_scene_renderer;
-struct InfoEffectManagerReleaseView { void release_all_46eeb0(); };
 struct InfoShortRecordBindView { void bind_46a620(void *combo, Fighter *fighter); };
 struct BattleInfoRecordBindView { void bind_fighter_46fa90(Fighter *fighter); };
 struct CInfoManagerBaseBindView { void bind_fighters_46ef40(); };
@@ -14,7 +14,8 @@ void CInfoManagerBaseBindView::bind_fighters_46ef40()
     unsigned char *self = reinterpret_cast<unsigned char *>(this);
     *reinterpret_cast<int *>(self + 0x494) = 0;
     *reinterpret_cast<int *>(self + 0x484) = 0;
-    reinterpret_cast<InfoEffectManagerReleaseView *>(self + 0x08)->release_all_46eeb0();
+    reinterpret_cast<TObjectManagerBase<InfoEffectObject, EffectObjectBase> *>(
+        self + 0x08)->release_all_tracked_objects();
     Fighter *fighters[2];
     for (int i = 0; i < 2; ++i) {
         fighters[i] = g_scene_renderer->fighters_0c[i];

@@ -1,45 +1,35 @@
+#include "EffectManager.hpp"
+#include "EffectObjectHierarchy.hpp"
+
 #include <list>
-#include <stddef.h>
 
-namespace th105 {
+namespace {
 
-class EffectObjectReleaseView {
-public:
-    unsigned char unknown_000[0x15c];
-    unsigned handle_token_15c;
+// CollisionList retains the recovered owner layout. This view supplies the
+// checked element type without introducing another callable manager class.
+struct InfoEffectTrackedListView {
+    virtual ~InfoEffectTrackedListView();
+    CHandleManagerEx<InfoEffectObject> pool_004;
+    std::list<EffectObjectBase *> objects_054;
 };
 
-class EffectHandlePool50View {
-public:
-    void release_handle(unsigned handle_token);
-    unsigned char storage_00[0x50];
-};
+typedef char CheckTrackedManagerSize[
+    sizeof(InfoEffectTrackedListView) == 0x60 ? 1 : -1];
+typedef char CheckTrackedListOffset[
+    offsetof(InfoEffectTrackedListView, objects_054) == 0x54 ? 1 : -1];
 
-class EffectObjectManagerReleaseView {
-public:
-    void release_all_tracked_objects();
+} // namespace
 
-    void *vtable_00;
-    EffectHandlePool50View handle_pool_04;
-    std::list<EffectObjectReleaseView *> linked_objects_54;
-};
-
-typedef char EffectObjectManagerRelease_pool_offset[
-    offsetof(EffectObjectManagerReleaseView, handle_pool_04) == 0x04 ? 1 : -1];
-typedef char EffectObjectManagerRelease_list_offset[
-    offsetof(EffectObjectManagerReleaseView, linked_objects_54) == 0x54 ? 1 : -1];
-typedef char EffectObjectRelease_handle_offset[
-    offsetof(EffectObjectReleaseView, handle_token_15c) == 0x15c ? 1 : -1];
-
-void EffectObjectManagerReleaseView::release_all_tracked_objects()
+template <>
+void TObjectManagerBase<InfoEffectObject, EffectObjectBase>::release_all_tracked_objects()
 {
-    for (std::list<EffectObjectReleaseView *>::iterator current =
-             linked_objects_54.begin();
-         current != linked_objects_54.end(); ++current) {
-        unsigned const handle_token = (*current)->handle_token_15c;
+    InfoEffectTrackedListView *manager =
+        reinterpret_cast<InfoEffectTrackedListView *>(this);
+    for (std::list<EffectObjectBase *>::iterator current =
+             manager->objects_054.begin();
+         current != manager->objects_054.end(); ++current) {
+        unsigned const handle_token = (*current)->handle_token_004;
         handle_pool_04.release_handle(handle_token);
     }
-    linked_objects_54.clear();
+    manager->objects_054.clear();
 }
-
-} // namespace th105

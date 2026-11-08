@@ -11379,7 +11379,7 @@ notes = "Current normal InfoManager binding/runtime wrappers. Fighter *fighters[
 address = "0x0046EF40"
 symbol_base = "?bind_fighters_46ef40@CInfoManagerBaseBindView@th105@@QAEXXZ"
 rel32_targets = [
-  "?release_all_46eeb0@InfoEffectManagerReleaseView@th105@@QAEXXZ=0x0046EEB0",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
   "?bind_46a620@InfoShortRecordBindView@th105@@QAEXPAXPAUFighter@2@@Z=0x0046A620",
   "?bind_fighter_46fa90@BattleInfoRecordBindView@th105@@QAEXPAUFighter@2@@Z=0x0046FA90",
   "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXE@Z=0x00432550",
@@ -11419,7 +11419,7 @@ dir32_targets = [
 address = "0x00471F10"
 symbol_base = "?bind_fighters_471f10@CInfoManagerStoryBindingView@th105@@QAEXXZ"
 rel32_targets = [
-  "?release_all_46eeb0@InfoEffectManagerReleaseView@th105@@QAEXXZ=0x0046EEB0",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
   "?bind_46a620@InfoShortRecordBindView@th105@@QAEXPAXPAUFighter@2@@Z=0x0046A620",
   "?bind_fighter_46fa90@BattleInfoRecordBindView@th105@@QAEXPAUFighter@2@@Z=0x0046FA90",
   "?bind_432550@InfoLongRecordBindView@th105@@QAEXPAXE@Z=0x00432550",
@@ -17919,10 +17919,10 @@ notes = "Current effect TObjectManagerBase release helper. Exact CEffectManager 
 
 [[units.gpt-web-effect-object-manager-release.functions]]
 address = "0x0046EEB0"
-symbol_base = "?release_all_tracked_objects@EffectObjectManagerReleaseView@th105@@QAEXXZ"
+symbol_base = "?release_all_tracked_objects@?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "?release_handle@EffectHandlePool50View@th105@@QAEXI@Z=0x0056D8F0",
+  "?release_handle@?$CHandleManagerEx@VInfoEffectObject@@@@QAEXI@Z=0x0056D8F0",
   "??3@YAXPAX@Z=0x006898EA",
 ]
 

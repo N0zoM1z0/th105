@@ -616,3 +616,12 @@ callers use `vector<int>` while BGM uses `vector<unsigned>`; preserve those
 independent source types. The inner growth body remains 473/native475, and no
 ledger or Factory acceptance status changes. See
 `docs/VECTOR_INSERT_SHARED_BODY_2026_11_08.md`.
+
+
+2026-11-08: Info-effect release `0x46EEB0` now defines the actual
+`TObjectManagerBase<InfoEffectObject, EffectObjectBase>` member, and both
+InfoManager binding callers use it. Five rebuilt units preserve 21 exact roots
+and both prior nonexact bodies. A separate reverted trial exposed missing
+AnimationObject virtual declarations: the shared effect header currently places
+update at +0x10 instead of native +0x28. Recover that base contract before
+merging the virtual consumer. See `docs/INFO_EFFECT_RELEASE_OWNER_2026_11_08.md`.
