@@ -1,3 +1,4 @@
+#include "battle/CharacterWaveHandle.hpp"
 // Complete JP1.06a Character destruction, including both cold range-error tails.
 // Natural source905 bytes differs only in one commutative SIB operand byte.
 #include "battle/AttackObjectLifetime.cpp"
@@ -39,10 +40,6 @@ struct CharacterPhaseOwner14 {
  unsigned char unused_0d;
  short alpha_divisor;
  unsigned mask;
-};
-struct CharacterWaveHandle4 {
- unsigned value;
- CharacterWaveHandle4() : value(0) {}
 };
 struct CharacterOwnedManager {
  virtual ~CharacterOwnedManager();

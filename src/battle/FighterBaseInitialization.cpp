@@ -144,6 +144,7 @@ Fighter *Fighter::initialize_fighter_base_from_setup(
     }
     store_ptr(this, 0x130, triplet);
 
+    // The 64 four-byte entries at +0x164 are character wave handles.
     void *opaque_array = operator new(0x100);
     if (opaque_array) {
         construct_opaque_array_401250(

@@ -1,4 +1,5 @@
 #include "Collision.hpp"
+#include "CharacterWaveHandle.hpp"
 #include "FighterResources.hpp"
 #include "PatResourceContracts.hpp"
 #include "SpellData.hpp"
@@ -35,8 +36,8 @@ void Fighter::load_indexed_character_wave_resources()
             "data/se/%s/%03d.wav",
             character_name,
             index);
-        (*reinterpret_cast<unsigned **>(
-            reinterpret_cast<unsigned char *>(this) + 0x164))[index] =
+        (*reinterpret_cast<CharacterWaveHandle4 **>(
+            reinterpret_cast<unsigned char *>(this) + 0x164))[index].value =
             *g_wave_handle_service.load_wave_handle(&loaded_handle, path);
     }
 }
