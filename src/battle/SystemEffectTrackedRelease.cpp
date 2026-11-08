@@ -1,18 +1,31 @@
 #include "battle/SystemEffectManager.hpp"
+
 #include <list>
-namespace th105 {
-struct SystemEffectReleaseView {
-    virtual ~SystemEffectReleaseView();
+
+namespace {
+
+// The shared owner still stores the recovered list layout as CollisionList.
+// Expose its checked list type without constructing a second owner.
+struct SystemEffectTrackedListView {
+    virtual ~SystemEffectTrackedListView();
     CHandleManagerEx<SystemEffectObject> pool_004;
     std::list<SystemEffectObjectBase *> objects_054;
-    void release_all();
 };
-typedef char CheckSize[sizeof(SystemEffectReleaseView)==0x60?1:-1];
-void SystemEffectReleaseView::release_all()
+
+typedef char CheckTrackedManagerSize[
+    sizeof(SystemEffectTrackedListView) == 0x60 ? 1 : -1];
+typedef char CheckTrackedListOffset[
+    offsetof(SystemEffectTrackedListView, objects_054) == 0x54 ? 1 : -1];
+
+} // namespace
+
+template <>
+void TObjectManagerBase<SystemEffectObject, SystemEffectObjectBase>::release_all_tracked_objects()
 {
-    for(std::list<SystemEffectObjectBase *>::iterator it=objects_054.begin();
-        it!=objects_054.end();++it)
-        pool_004.release_handle((*it)->handle_token_004);
-    objects_054.clear();
-}
+    SystemEffectTrackedListView *manager =
+        reinterpret_cast<SystemEffectTrackedListView *>(this);
+    for (std::list<SystemEffectObjectBase *>::iterator it = manager->objects_054.begin();
+         it != manager->objects_054.end(); ++it)
+        handle_pool_04.release_handle((*it)->handle_token_004);
+    manager->objects_054.clear();
 }

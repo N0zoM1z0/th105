@@ -592,3 +592,11 @@ global identities. All twelve RTTI records compare equal, and the 32-unit
 consumer closure preserves its 47 accepted roots. Three dependent helper-origin
 proofs and the reader checker pass. Profile load remains nonexact at its same
 two operand bytes. See `docs/FILE_READER_GLOBAL_IDENTITY_2026_11_08.md`.
+
+
+2026-11-08: System-effect tracked release `0x436E60` now implements the real
+`TObjectManagerBase<SystemEffectObject, SystemEffectObjectBase>` member used
+by its destructor and both Scenario callers. The duplicate callable receiver
+and undefined Scenario alias are removed. All 27 affected units retain their
+prior comparisons, including 34 accepted roots; release keeps its same two-byte
+register residue. See `docs/SYSTEM_EFFECT_RELEASE_SOURCE_2026_11_03.md`.

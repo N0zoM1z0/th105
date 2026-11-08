@@ -10452,7 +10452,7 @@ address = "0x00457DF0"
 symbol_base = "?clear_runtime@CScenarioData@th105@@UAEXXZ"
 rel32_targets = [
   "?_Erase@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@2@@Z=0x00436D30",
-  "?release_all_system_effects@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEXXZ=0x00436E60",
+  "?release_all_tracked_objects@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEXXZ=0x00436E60",
   "?clear_commands@CScript@@QAEXXZ=0x004056C0",
 ]
 
@@ -29850,7 +29850,7 @@ notes = "Complete119-byte system-effect tracked release policy with actual typed
 
 [[units.exact-first-system-effect-tracked-release.functions]]
 address = "0x00436E60"
-symbol_base = "?release_all@SystemEffectReleaseView@th105@@QAEXXZ"
+symbol_base = "?release_all_tracked_objects@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEXXZ"
 rel32_targets = [
  "?release_handle@?$CHandleManagerEx@VSystemEffectObject@@@@QAEXI@Z=0x0056D8F0",
  "__invalid_parameter_noinfo=0x0068A143",
@@ -30044,7 +30044,7 @@ notes = "Complete scenario runtime reset; nonexact source with out-of-line check
 [[units.exact-first-scenario-runtime-reset.functions]]
 address = "0x00457E40"
 symbol_base = "?reset_runtime_state@CScenarioData@th105@@QAEXXZ"
-rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?increment@ScenarioTextMapIteratorIncrementView@th105@@QAEXXZ=0x00435C00", "?assign_bytes@ScenarioStringAssignBytesView@th105@@QAEXPBDI@Z=0x004021C0", "?clear_entries@ScenarioRenderListClearView@th105@@QAEXXZ=0x00435FF0", "?release_all_system_effects@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEXXZ=0x00436E60"]
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?increment@ScenarioTextMapIteratorIncrementView@th105@@QAEXXZ=0x00435C00", "?assign_bytes@ScenarioStringAssignBytesView@th105@@QAEXPBDI@Z=0x004021C0", "?clear_entries@ScenarioRenderListClearView@th105@@QAEXXZ=0x00435FF0", "?release_all_tracked_objects@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEXXZ=0x00436E60"]
 
 [units.exact-first-spell-selection-shuffle]
 kind = "probe"

@@ -50,7 +50,7 @@ void CScenarioData::set_effect_color_bytes(
 void CScenarioData::clear_runtime()
 {
     text_entries_32c.clear();
-    system_effects_004.release_all_system_effects();
+    system_effects_004.release_all_tracked_objects();
     script_35c.clear_commands();
 }
 
@@ -99,7 +99,7 @@ void CScenarioData::reset_runtime_state()
         ->clear_entries();
     reinterpret_cast<ScenarioRenderListClearView *>(&render_entries_350)
         ->clear_entries();
-    system_effects_004.release_all_system_effects();
+    system_effects_004.release_all_tracked_objects();
 }
 
 } // namespace th105
