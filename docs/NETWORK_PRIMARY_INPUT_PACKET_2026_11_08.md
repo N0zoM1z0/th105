@@ -25,3 +25,8 @@ packet and its real base as well. The server's sequence comparison is tied to
 `sequence_008`; the clients' pending-send path serializes that same packet.
 All seven selected client/server protocol functions remain exact, including
 complete relocations. No additional exact functions are claimed.
+
+The adjacent owner +0x64 and +0x70 scene packets likewise use the actual
+`ScenePacket0C` objects constructed by the network base, with the peer-state
+bytes expressed as their first payload bytes. Client and server sync plus
+client publication remain exact with complete relocation comparisons.

@@ -1,6 +1,7 @@
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "../input/InputManager.hpp"
 #include "NetworkInputPacket.hpp"
+#include "NetworkBaseMembers.hpp"
 
 #include <deque>
 
@@ -9,12 +10,6 @@ namespace th105 {
 struct NetworkPeerByte5 {
     unsigned char reserved_000[4];
     unsigned char byte_004;
-};
-
-class NetworkPrimaryPacket8 {
-public:
-    virtual unsigned int serialize(void *buffer);
-    unsigned int result_004;
 };
 
 struct NetworkClientSend4View {
@@ -54,12 +49,8 @@ public:
 
     unsigned char reserved_004[0x44];
     CriticalSectionWrapper critical_048;
-    NetworkPrimaryPacket8 packet_064;
-    unsigned char state_06c;
-    unsigned char reserved_06d[3];
-    NetworkPrimaryPacket8 packet_070;
-    unsigned char state_078;
-    unsigned char reserved_079[3];
+    ScenePacket0C packet_064;
+    ScenePacket0C packet_070;
     unsigned short current_07c;
     unsigned short previous_07e;
     signed char adaptive_080;
@@ -101,10 +92,10 @@ unsigned char CNetworkClientPrimaryStateView::sync_peer_state(
 {
     CriticalSectionWrapper *lock = &critical_048;
     lock->enter();
-    const bool same = state_06c == value;
-    state_078 = value;
+    const bool same = packet_064.payload_008[0] == value;
+    packet_070.payload_008[0] = value;
     if (!same) {
-        NetworkPrimaryPacket8 *packet = &packet_070;
+        ScenePacket0C *packet = &packet_070;
         unsigned char *buffer = buffer_5b4;
         send_3b4.send_client(
             buffer,
@@ -117,7 +108,7 @@ unsigned char CNetworkClientPrimaryStateView::sync_peer_state(
 
     if (input_packet_090.tag_00c != value) {
         reset_state();
-        input_packet_090.tag_00c = state_078;
+        input_packet_090.tag_00c = packet_070.payload_008[0];
     }
     lock->leave();
 
@@ -159,12 +150,8 @@ public:
 
     unsigned char reserved_004[0x44];
     CriticalSectionWrapper critical_048;
-    NetworkPrimaryPacket8 packet_064;
-    unsigned char state_06c;
-    unsigned char reserved_06d[3];
-    NetworkPrimaryPacket8 packet_070;
-    unsigned char state_078;
-    unsigned char reserved_079[3];
+    ScenePacket0C packet_064;
+    ScenePacket0C packet_070;
     unsigned short current_07c;
     unsigned short previous_07e;
     signed char adaptive_080;
@@ -191,10 +178,10 @@ unsigned char CNetworkServerPrimaryStateView::sync_peer_state(
 {
     CriticalSectionWrapper *lock = &critical_048;
     lock->enter();
-    const bool same = value == state_078;
-    state_06c = value;
+    const bool same = value == packet_070.payload_008[0];
+    packet_064.payload_008[0] = value;
     if (!same) {
-        NetworkPrimaryPacket8 *packet = &packet_064;
+        ScenePacket0C *packet = &packet_064;
         unsigned char *buffer = buffer_5b4;
         send_3b4.send_server(
             0,
@@ -208,7 +195,7 @@ unsigned char CNetworkServerPrimaryStateView::sync_peer_state(
 
     if (input_packet_090.tag_00c != value) {
         reset_state();
-        input_packet_090.tag_00c = state_06c;
+        input_packet_090.tag_00c = packet_064.payload_008[0];
     }
     lock->leave();
 
@@ -229,3 +216,5 @@ typedef char NetworkClientInputPacketOffset[offsetof(th105::CNetworkClientPrimar
 typedef char NetworkServerInputPacketOffset[offsetof(th105::CNetworkServerPrimaryStateView,input_packet_090)==0x90?1:-1];
 typedef char NetworkClientPacketFollowingLockOffset[offsetof(th105::CNetworkClientPrimaryStateView,critical_0dc)==0xdc?1:-1];
 typedef char NetworkServerPacketFollowingLockOffset[offsetof(th105::CNetworkServerPrimaryStateView,critical_0dc)==0xdc?1:-1];
+typedef char NetworkClientScenePacketOffset[offsetof(th105::CNetworkClientPrimaryStateView,packet_064)==0x64?1:-1];
+typedef char NetworkServerScenePacketOffset[offsetof(th105::CNetworkServerPrimaryStateView,packet_070)==0x70?1:-1];
