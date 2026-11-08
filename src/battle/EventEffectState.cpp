@@ -21,9 +21,9 @@ WeatherEffectObject *EventEffectStateData::emit_effect(
         static_cast<unsigned char>(flag_a), static_cast<unsigned char>(flag_b), 0);
 }
 
-void EventEffectStateView::dispatch_emitter_state(signed char layer)
+void EventEffectStateData::dispatch_emitter_state(signed char layer)
 {
-    emitter_48.dispatch_state(layer);
+    emitter_48.render_effects_for_layer(layer);
 }
 
 

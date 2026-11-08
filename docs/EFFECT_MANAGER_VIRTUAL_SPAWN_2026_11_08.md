@@ -31,3 +31,9 @@ integer flags are passed to the spawn method as their low bytes. This preserves
 values such as -2 as byte 0xFE. The complete event forwarder `0x4695B0`,
 global forwarder `0x665470`, weather emission `0x660B30`, and the affected
 event-state lifetime/runtime roots remain exact.
+
+The layer forwarder `0x4695F0` now uses the same real weather manager's
+`render_effects_for_layer` virtual at `+0x18`. The three battle-render phases
+call it through the shared event state, with layers -2, -1 and +1. The complete
+forwarder and all nine previously exact battle-object-manager peers remain
+exact; its background-update peer retains its prior nonexact hash.

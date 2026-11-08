@@ -5165,7 +5165,7 @@ symbol_base = "?emit_effect@EventEffectStateData@th105@@QAEPAVWeatherEffectObjec
 
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x004695F0"
-symbol_base = "?dispatch_emitter_state@EventEffectStateView@th105@@QAEXC@Z"
+symbol_base = "?dispatch_emitter_state@EventEffectStateData@th105@@QAEXC@Z"
 
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x004696E0"
@@ -12249,7 +12249,7 @@ symbol_base = "?phase_466980@BattleObjectManager@th105@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "EventEffectStateView_render_background_effects=0x004696E0",
-  "EventEffectStateView_dispatch_emitter_state=0x004695F0",
+  "EventEffectStateData_dispatch_emitter_state=0x004695F0",
   "?render_tail_4666a0@BattleObjectManager@th105@@QAEXXZ=0x004666A0",
 ]
 dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
@@ -12259,7 +12259,7 @@ address = "0x004669F0"
 symbol_base = "?phase_4669f0@BattleObjectManager@th105@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "EventEffectStateView_dispatch_emitter_state=0x004695F0",
+  "EventEffectStateData_dispatch_emitter_state=0x004695F0",
 ]
 dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
 
@@ -12268,7 +12268,7 @@ address = "0x00466A50"
 symbol_base = "?phase_466a50@BattleObjectManager@th105@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "EventEffectStateView_dispatch_emitter_state=0x004695F0",
+  "EventEffectStateData_dispatch_emitter_state=0x004695F0",
 ]
 dir32_targets = ["?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A"]
 

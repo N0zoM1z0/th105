@@ -26,6 +26,7 @@ struct EventEffectStateData {
     EventEffectStateData();
     ~EventEffectStateData();
     WeatherEffectObject *emit_effect(int effect_id, float x, float y, int flag_a, int flag_b);
+    void dispatch_emitter_state(signed char layer);
     void set_event_id(int event_id);
     void initialize_effect_runtime();
     void publish_stage_state_469d50(signed char state);
