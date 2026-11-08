@@ -16,22 +16,30 @@ namespace th105 {
 typedef void *FileHandle;
 typedef unsigned long FileSize;
 
+class FileReaderOwner;
+
+} // namespace th105
+
 class CFileReader {
 public:
     CFileReader() : file(0) {}
     explicit CFileReader(const char *path);
     virtual ~CFileReader();
-    virtual bool read(void *destination, FileSize size);
-    virtual FileSize last_read_size() const;
+    virtual bool read(void *destination, th105::FileSize size);
+    virtual th105::FileSize last_read_size() const;
     virtual long seek(long offset, int origin);
-    virtual FileSize size() const;
+    virtual th105::FileSize size() const;
 
 protected:
-    friend class FileReaderOwner;
+    friend class th105::FileReaderOwner;
 
-    FileHandle file;
-    FileSize bytes_read;
+    th105::FileHandle file;
+    th105::FileSize bytes_read;
 };
+
+namespace th105 {
+
+using ::CFileReader;
 
 class CFileWriter {
 public:
@@ -67,19 +75,25 @@ protected:
     FileSize bytes_written;
 };
 
+} // namespace th105
+
 class CPackageFileReader : public CFileReader {
 public:
     explicit CPackageFileReader(const char *path);
-    virtual bool read(void *destination, FileSize size);
+    virtual bool read(void *destination, th105::FileSize size);
     virtual long seek(long offset, int origin);
-    virtual FileSize size() const;
+    virtual th105::FileSize size() const;
 
-    FileSize entry_size;
-    FileSize entry_offset;
-    FileSize position;
+    th105::FileSize entry_size;
+    th105::FileSize entry_offset;
+    th105::FileSize position;
     unsigned char xor_key;
     unsigned char reserved_19[3];
 };
+
+namespace th105 {
+
+using ::CPackageFileReader;
 
 class FileReaderOwner {
 public:

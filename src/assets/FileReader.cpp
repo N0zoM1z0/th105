@@ -25,21 +25,18 @@ extern "C" __declspec(dllimport) void *__stdcall CreateFileA(
     unsigned long flags,
     void *template_file);
 
-namespace th105 {
-
-
 CFileReader::~CFileReader()
 {
     if (file != 0)
         CloseHandle(file);
 }
 
-bool CFileReader::read(void *destination, FileSize size)
+bool CFileReader::read(void *destination, th105::FileSize size)
 {
     return ReadFile(file, destination, size, &bytes_read, 0) != 0;
 }
 
-FileSize CFileReader::last_read_size() const
+th105::FileSize CFileReader::last_read_size() const
 {
     return bytes_read;
 }
@@ -49,12 +46,12 @@ long CFileReader::seek(long offset, int origin)
     return SetFilePointer(file, offset, 0, origin);
 }
 
-FileSize CFileReader::size() const
+th105::FileSize CFileReader::size() const
 {
     return GetFileSize(file, 0);
 }
 
-bool CPackageFileReader::read(void *destination, FileSize size)
+bool CPackageFileReader::read(void *destination, th105::FileSize size)
 {
     if (entry_offset + entry_size < position + size)
         size = entry_offset + entry_size - position;
@@ -64,7 +61,7 @@ bool CPackageFileReader::read(void *destination, FileSize size)
         return false;
 
     position += bytes_read;
-    for (FileSize i = 0; i < size; i++)
+    for (th105::FileSize i = 0; i < size; i++)
         static_cast<unsigned char *>(destination)[i] ^= xor_key;
     return true;
 }
@@ -92,10 +89,26 @@ long CPackageFileReader::seek(long offset, int origin)
     }
 }
 
-FileSize CPackageFileReader::size() const
+th105::FileSize CPackageFileReader::size() const
 {
     return entry_size;
 }
+
+inline CFileReader::CFileReader(const char *path)
+{
+    file = CreateFileA(path, 1, 1, 0, 3, 0x80, 0);
+    if (file == reinterpret_cast<th105::FileHandle>(-1))
+        file = 0;
+}
+inline CPackageFileReader::CPackageFileReader(const char *path)
+{
+    file = th105::open_package_file_entry(path, &entry_size, &entry_offset);
+    position = entry_offset;
+    if (file != 0)
+        xor_key = static_cast<unsigned char>((entry_offset >> 1) | 0x23);
+}
+
+namespace th105 {
 
 FileReaderOwner::~FileReaderOwner()
 {
@@ -103,19 +116,6 @@ FileReaderOwner::~FileReaderOwner()
         delete reader;
 }
 
-inline CFileReader::CFileReader(const char *path)
-{
-    file = CreateFileA(path, 1, 1, 0, 3, 0x80, 0);
-    if (file == reinterpret_cast<FileHandle>(-1))
-        file = 0;
-}
-inline CPackageFileReader::CPackageFileReader(const char *path)
-{
-    file = open_package_file_entry(path, &entry_size, &entry_offset);
-    position = entry_offset;
-    if (file != 0)
-        xor_key = static_cast<unsigned char>((entry_offset >> 1) | 0x23);
-}
 bool FileReaderOwner::open(const char *path)
 {
     if (reader != 0)

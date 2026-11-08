@@ -832,7 +832,7 @@ class LinkedPeTests(unittest.TestCase):
 
     def test_reader_vtables_require_exact_family_and_five_slots(self):
         import linked_reader_vtables as reader
-        key = "??_7CFileReader@th105@@6B@"
+        key = "??_7CFileReader@@6B@"
         table = {"family": "CFileReader", "target": key,
                  "entries": ["0x00401000"] * 5}
         reader.validate({"link_reader_vtables": [table]}, {key})
@@ -845,7 +845,7 @@ class LinkedPeTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             reader.validate({"link_reader_vtables": [table, table]}, {key})
         self.assertEqual(reader.slot_symbols("CPackageFileReader")[2],
-                         "?last_read_size@CFileReader@th105@@UBEKXZ")
+                         "?last_read_size@CFileReader@@UBEKXZ")
 
     def test_reader_vtable_checks_all_slots_rtti_and_source_relocations(self):
         import linked_reader_vtables as reader
@@ -855,22 +855,27 @@ class LinkedPeTests(unittest.TestCase):
         entries = [base + 0x1010 + 16 * i for i in range(5)]
         struct.pack_into("<I5I", pe.data, 0x200c, col, *entries)
         struct.pack_into("<5I", pe.data, 0x2050, 0, 0, 0, descriptor, col + 20)
-        name = b".?AVCFileReader@th105@@\0"
+        name = b".?AVCFileReader@@\0"
         pe.data[0x3028:0x3028 + len(name)] = name
         pe.DIRECTORY_ENTRY_BASERELOC = [SimpleNamespace(entries=[
             SimpleNamespace(rva=0x2010 + 4 * i, type=3) for i in range(5)])]
-        reader.inspect_table(pe, vt, entries, ".?AVCFileReader@th105@@")
+        reader.inspect_table(pe, vt, entries, ".?AVCFileReader@@")
         for offset, value in [(0x2014, entries[2]), (0x2024, entries[0]),
                               (0x2054, 4)]:
             bad = copy.deepcopy(pe)
             struct.pack_into("<I", bad.data, offset, value)
             with self.subTest(offset=offset), self.assertRaises(ValueError):
-                reader.inspect_table(bad, vt, entries, ".?AVCFileReader@th105@@")
+                reader.inspect_table(bad, vt, entries, ".?AVCFileReader@@")
         bad = copy.deepcopy(pe); bad.DIRECTORY_ENTRY_BASERELOC[0].entries.pop()
         with self.assertRaises(ValueError):
-            reader.inspect_table(bad, vt, entries, ".?AVCFileReader@th105@@")
+            reader.inspect_table(bad, vt, entries, ".?AVCFileReader@@")
         with self.assertRaises(ValueError):
-            reader.inspect_table(pe, vt, entries, ".?AVCPackageFileReader@th105@@")
+            reader.inspect_table(pe, vt, entries, ".?AVCPackageFileReader@@")
+        bad = copy.deepcopy(pe)
+        qualified = b".?AVCFileReader@th105@@\0"
+        bad.data[0x3028:0x3028 + len(qualified)] = qualified
+        with self.assertRaises(ValueError):
+            reader.inspect_table(bad, vt, entries, ".?AVCFileReader@@")
 
     def test_native_vtable_owner_rtti_slot_and_readonly_storage_are_independent(self):
         pe = VTablePe()

@@ -585,3 +585,10 @@ differences, while complete EH and all five reader method bodies compare
 equal. The source's namespaced RTTI string still differs from the target's
 global class name. See `docs/PLAYER_SLOT_PROFILE_LOAD_2026_11_04.md`; no new
 exact credit or shared-header change.
+
+
+2026-11-08: `CFileReader` and `CPackageFileReader` now have their target-proved
+global identities. All twelve RTTI records compare equal, and the 32-unit
+consumer closure preserves its 47 accepted roots. Three dependent helper-origin
+proofs and the reader checker pass. Profile load remains nonexact at its same
+two operand bytes. See `docs/FILE_READER_GLOBAL_IDENTITY_2026_11_08.md`.

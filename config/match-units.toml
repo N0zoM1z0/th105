@@ -3137,9 +3137,9 @@ notes = "TH105 1.06a plain CFileReader destructor. A canonical-PE wildcard scan 
 
 [[units.cross-v106a-plain-file-reader-dtor.functions]]
 address = "0x0040CEB0"
-symbol_base = "??1CFileReader@th105@@UAE@XZ"
+symbol_base = "??1CFileReader@@UAE@XZ"
 dir32_targets = [
-  "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@",
+  "??_7CFileReader@@6B@=??_7CFileReader@@6B@",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]
 
@@ -3391,7 +3391,7 @@ address = "0x0041B890"
 symbol_base = "CFileReader_scalar_deleting_destructor"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = [
-  "??_7CFileReader@th105@@6B@=??_7CFileReader@th105@@6B@",
+  "??_7CFileReader@@6B@=??_7CFileReader@@6B@",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]
 
@@ -13632,7 +13632,7 @@ dir32_targets = [
   "__ehhandler$?load_config_427800@GameConfigLoadView@th105@@QAEEXZ=__ehhandler$?load_config_427800@GameConfigLoadView@th105@@QAEEXZ",
   "___security_cookie=___security_cookie",
   "??_C@_0L@DMKLMINN@config?4dat?$AA@=??_C@_0L@DMKLMINN@config?4dat?$AA@",
-  "??_7GameConfigFileReaderView@th105@@6B@=??_7CFileReader@th105@@6B@",
+  "??_7GameConfigFileReaderView@th105@@6B@=??_7CFileReader@@6B@",
   "__imp__CreateFileA@28=__imp__CreateFileA@28",
   "__imp__ReadFile@20=__imp__ReadFile@20",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
@@ -23221,7 +23221,7 @@ rel32_targets = [
   "?refresh_story_progress_42e3f0@ScoreDataDefaultsView@th105@@QAEXXZ=0x0042E3F0",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
-dir32_targets = ["??_7PlainFileReader@th105@@6B@=??_7CFileReader@th105@@6B@"]
+dir32_targets = ["??_7PlainFileReader@th105@@6B@=??_7CFileReader@@6B@"]
 
 [units.exact-first-score-persist]
 kind = "probe"
@@ -23299,7 +23299,7 @@ rel32_targets = [
   "__localtime64_s=0x0068A6BC",
   "__time64=0x0068A981",
 ]
-dir32_targets = ["??_7PlainFileReader@th105@@6B@=??_7CFileReader@th105@@6B@"]
+dir32_targets = ["??_7PlainFileReader@th105@@6B@=??_7CFileReader@@6B@"]
 
 [[units.exact-first-replay-filename.functions]]
 address = "0x00429B70"
@@ -27251,12 +27251,12 @@ rel32_targets = ["??2@YAPAXI@Z=0x00689DCB", "?open_package_file_entry@th105@@YGP
 
 [[units.exact-first-csv-file-loading.link_reader_vtables]]
 family = "CFileReader"
-target = "??_7CFileReader@th105@@6B@"
+target = "??_7CFileReader@@6B@"
 entries = ["0x0041B890", "0x0040CED0", "0x00407C40", "0x00407C50", "0x0040CF00"]
 
 [[units.exact-first-csv-file-loading.link_reader_vtables]]
 family = "CPackageFileReader"
-target = "??_7CPackageFileReader@th105@@6B@"
+target = "??_7CPackageFileReader@@6B@"
 entries = ["0x0041B890", "0x0041C110", "0x00407C40", "0x0041C180", "0x0041B880"]
 
 [[units.exact-first-csv-file-loading.functions]]
@@ -28105,7 +28105,7 @@ link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
 notes = "Complete151-byte wave format dispatch408ED0 source; actual reader/loader CIL graph remains145/151. CV3 normal stdcall remains248/247; RIFF aggregate/private ABI remains unresolved. No exact credit."
 link_data_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=dds_texture_backend_object", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__wsprintfA=__imp__wsprintfA", "?g_bitmap_texture_levels@th105@@3HA=?g_bitmap_texture_levels@th105@@3HA", "?g_bitmap_texture_base_level@th105@@3HA=?g_bitmap_texture_base_level@th105@@3HA", "?g_bitmap_texture_palette@th105@@3IA=?g_bitmap_texture_palette@th105@@3IA", "?g_bitmap_texture_encoded@th105@@3_NA=?g_bitmap_texture_encoded@th105@@3_NA", "__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A"]
-link_reader_vtables = [{family = "CFileReader", target = "??_7CFileReader@th105@@6B@", entries = ["0x0041B890", "0x0040CED0", "0x00407C40", "0x00407C50", "0x0040CF00"]}, {family = "CPackageFileReader", target = "??_7CPackageFileReader@th105@@6B@", entries = ["0x0041B890", "0x0041C110", "0x00407C40", "0x0041C180", "0x0041B880"]}]
+link_reader_vtables = [{family = "CFileReader", target = "??_7CFileReader@@6B@", entries = ["0x0041B890", "0x0040CED0", "0x00407C40", "0x00407C50", "0x0040CF00"]}, {family = "CPackageFileReader", target = "??_7CPackageFileReader@@6B@", entries = ["0x0041B890", "0x0041C110", "0x00407C40", "0x0041C180", "0x0041B880"]}]
 
 [[units.exact-first-wave-resource-dispatch.functions]]
 address = "0x00408ED0"
@@ -30157,7 +30157,7 @@ rel32_targets = [
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
-  "??_7PlainFileReader@th105@@6B@=??_7CFileReader@th105@@6B@",
+  "??_7PlainFileReader@th105@@6B@=??_7CFileReader@@6B@",
   "__ehhandler$?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z=__ehhandler$?read_header_code@ReplayHeaderServiceView@th105@@QAEHPBD@Z",
 ]
 

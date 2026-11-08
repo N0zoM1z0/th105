@@ -87,3 +87,8 @@ Final receipts are `real-reader-final.json` and `real-reader-eh.json` in the
 same evidence directory. The private check now uses the actual reader symbols
 and verifies the weak-slot fallback and all five complete method bodies.
 No new authored exact functions are recorded.
+
+
+The later [global reader identity correction](FILE_READER_GLOBAL_IDENTITY_2026_11_08.md)
+removes the RTTI namespace mismatch recorded above. Both complete reader RTTI
+graphs now compare equal, while this loader retains its two main-body differences.

@@ -7,10 +7,10 @@ FAMILIES = ("CFileReader", "CPackageFileReader")
 
 
 def slot_symbols(family):
-    owner = family + "@th105"
+    owner = family
     return ["??_G" + owner + "@@UAEPAXI@Z",
             "?read@" + owner + "@@UAE_NPAXK@Z",
-            "?last_read_size@CFileReader@th105@@UBEKXZ",
+            "?last_read_size@CFileReader@@UBEKXZ",
             "?seek@" + owner + "@@UAEJJH@Z",
             "?size@" + owner + "@@UBEKXZ"]
 
@@ -26,7 +26,7 @@ def validate(unit, data_keys):
         family = table["family"]
         if not isinstance(family, str) or family not in FAMILIES or family in seen:
             raise ValueError("reader vtable family is invalid or duplicated")
-        key = "??_7" + family + "@th105@@6B@"
+        key = "??_7" + family + "@@6B@"
         entries = table["entries"]
         if (table["target"] != key or key not in data_keys
                 or not isinstance(entries, list) or len(entries) != 5
@@ -94,7 +94,7 @@ def witnesses(unit, source, symbols, functions, cil_owner):
                     if symbol == name and owner.split()[-1:] == [cil_owner]]) != 1:
                 raise ValueError("reader slot map ownership disagrees")
             actual.append(entry)
-        inspect_table(source, start, actual, ".?AV" + family + "@th105@@")
+        inspect_table(source, start, actual, ".?AV" + family + "@@")
         result.append({"symbol": key, "target_key": key, "source_address": start,
                        "target_address": address, "kind": "five-slot-reader",
                        "target_type_name": ".?AV" + family + "@@",
