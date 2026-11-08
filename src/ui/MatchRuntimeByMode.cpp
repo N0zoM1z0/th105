@@ -1,3 +1,4 @@
+#include "PlayerSlotDeckView.hpp"
 #include "battle/GameMode.hpp"
 
 #include <deque>
@@ -29,8 +30,6 @@ struct MatchPlayerSlotView {
     unsigned char reserved_000[0x138];
     unsigned char selected_deck_state_138[0x204];
 
-    std::deque<unsigned short> *copy_deck(
-        std::deque<unsigned short> *output, int index);
     int load_character_deck(
         std::deque<unsigned short> *output, int character);
     void select_deck(signed char source);
@@ -88,7 +87,7 @@ unsigned __cdecl prepare_match_runtime_by_mode()
     switch (mode) {
     case GAME_MODE_VS_PLAYER:
     case GAME_MODE_PRACTICE:
-        g_player_slot_records[0].copy_deck(
+        reinterpret_cast<PlayerSlotDeckView *>(&g_player_slot_records[0])->copy_deck(
             &g_scenario_match_runtime.deck_58, deck_index);
         g_player_slot_records[1].load_character_deck(
             &g_scenario_match_runtime.deck_78,
@@ -101,7 +100,7 @@ unsigned __cdecl prepare_match_runtime_by_mode()
         break;
 
     case GAME_MODE_VS_COM:
-        g_player_slot_records[0].copy_deck(
+        reinterpret_cast<PlayerSlotDeckView *>(&g_player_slot_records[0])->copy_deck(
             &g_scenario_match_runtime.deck_58, deck_index);
         g_player_slot_records[0].select_deck(
             g_selected_input_sources_view.bytes.first);
@@ -111,7 +110,7 @@ unsigned __cdecl prepare_match_runtime_by_mode()
         break;
 
     case GAME_MODE_NETWORK_CLIENT:
-        g_player_slot_records[0].copy_deck(
+        reinterpret_cast<PlayerSlotDeckView *>(&g_player_slot_records[0])->copy_deck(
             &g_scenario_match_runtime.deck_58, deck_index);
         g_player_slot_records[0].select_deck(
             g_selected_input_sources_view.bytes.first);
@@ -135,9 +134,9 @@ unsigned __cdecl prepare_match_runtime_by_mode()
         break;
 
     case GAME_MODE_NETWORK_SERVER:
-        g_player_slot_records[0].copy_deck(
+        reinterpret_cast<PlayerSlotDeckView *>(&g_player_slot_records[0])->copy_deck(
             &g_scenario_match_runtime.deck_58, deck_index);
-        g_player_slot_records[1].copy_deck(
+        reinterpret_cast<PlayerSlotDeckView *>(&g_player_slot_records[1])->copy_deck(
             &g_scenario_match_runtime.deck_78,
             g_scenario_match_runtime.field_70);
         g_player_slot_records[0].select_deck(

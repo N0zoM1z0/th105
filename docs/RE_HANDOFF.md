@@ -665,3 +665,11 @@ Its 399-byte candidate is unchanged; the dispatcher and both codecs remain
 exact. Complete handler27 and metadata44 match, but cleanup7/native13 adds a
 separate known full-EH blocker. See
 `docs/NETWORK_CLIENT_SNAPSHOT_IMPORT_2026_11_04.md`.
+
+
+2026-11-08: Nine player-slot deck-copy calls now use the existing implemented
+provider through one typed header. The seven-unit include closure retains six
+accepted roots and all three previous nonexact bodies. Normal match setup's
+complete 556-byte code/alignment/switch-table section also matches. Constructor
+EH/RTTI section contents and relocation roles are unchanged. See
+`docs/PLAYER_SLOT_DECK_PROVIDER_2026_11_08.md`.

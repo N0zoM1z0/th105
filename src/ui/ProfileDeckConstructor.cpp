@@ -1,3 +1,4 @@
+#include "PlayerSlotDeckView.hpp"
 // JP1.06a CProfileDeckEdit constructor-facing model; full root remains nonexact.
 // Actual global CSprite/CTile types and signed-char value adapters.
 // Runtime views and their accepted consumers remain unchanged.
@@ -35,9 +36,6 @@ typedef std::map<unsigned, UiDesignObject *> DeckDesignMap;
 
 
 
-struct DeckPlayerView {
-    std::deque<unsigned short> *copy_deck(std::deque<unsigned short> *output, int character);
-};
 struct ProfileDeckRefreshFacade {
     void clear_common_resources();
     unsigned char reload_common_resources(unsigned char red, unsigned char green, unsigned char blue);
@@ -164,7 +162,7 @@ ProfileDeckConstructorView::ProfileDeckConstructorView(
     select_filter(0);
     total_3e1 = 0;
     import_counts(*reinterpret_cast<std::deque<short> *>(
-        reinterpret_cast<DeckPlayerView *>(player_04)->copy_deck(0, character_08)));
+        reinterpret_cast<PlayerSlotDeckView *>(player_04)->copy_deck(0, character_08)));
     show_record(&filtered_3cc[0]->second);
     CInputManager *input = g_active_menu_input;
     cursor_3f8.input_counter = input ? &input->hold.horizontal : 0;

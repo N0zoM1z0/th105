@@ -1,10 +1,7 @@
+#include "PlayerSlotDeckView.hpp"
 #include <stddef.h>
 
 namespace th105 {
-
-struct ScenarioDeckStorage20 {
-    unsigned char bytes_00[0x14];
-};
 
 struct ScenarioMatchRuntimeState {
     unsigned char flag_4c;
@@ -15,7 +12,7 @@ struct ScenarioMatchRuntimeState {
     unsigned char flag_55;
     unsigned char flag_56;
     unsigned char unknown_57;
-    ScenarioDeckStorage20 deck_58;
+    std::deque<unsigned short> deck_58;
     void *current_deck_6c;
     int field_70;
     unsigned char flag_74;
@@ -30,8 +27,6 @@ struct ScenarioMatchRuntimeState {
 };
 
 struct PlayerSlotRecordScenarioView {
-    ScenarioDeckStorage20 *copy_deck(
-        ScenarioDeckStorage20 *output, int index);
     void select_deck(unsigned char source);
 };
 
@@ -55,7 +50,7 @@ void __cdecl prepare_scenario_match(int player)
     g_scenario_match_runtime.flag_76 = 2;
     g_scenario_match_runtime.flag_55 = static_cast<unsigned char>(zero);
     g_scenario_match_runtime.flag_75 = static_cast<unsigned char>(zero);
-    record->copy_deck(
+    reinterpret_cast<PlayerSlotDeckView *>(g_player_slot_records)->copy_deck(
         &g_scenario_match_runtime.deck_58,
         g_scenario_match_runtime.deck_index_50);
 

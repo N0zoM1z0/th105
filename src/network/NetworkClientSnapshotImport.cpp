@@ -1,3 +1,4 @@
+#include "ui/PlayerSlotDeckView.hpp"
 #include "engine/CriticalSectionWrapper.hpp"
 #include "input/InputSelection.hpp"
 #include "NetworkAckInfoPacket.hpp"
@@ -10,9 +11,6 @@ struct ClientImportSlot {
     unsigned char reserved_004, tag_005, reserved_006[2];
     std::deque<short> queue_008;
     NetworkImportPeer *peer_01c;
-};
-struct PlayerSlotCopyView {
-    std::deque<unsigned short> *copy_deck(std::deque<unsigned short> *, int);
 };
 class ScopedClientStateLock {
 public:
@@ -74,7 +72,7 @@ void ClientImportView::import_snapshot(const NetworkAckInfoPacket40 *packet)
         slots_214[1].tag_005 = packet->status_00a[1];
         slots_214[0].queue_008 = packet->values_00c[0];
         slots_214[0].peer_01c->value_004 = packet->peer_034[0];
-        reinterpret_cast<PlayerSlotCopyView *>(get_player_slot_record(0))->copy_deck(
+        reinterpret_cast<PlayerSlotDeckView *>(get_player_slot_record(0))->copy_deck(
             reinterpret_cast<std::deque<unsigned short> *>(&slots_214[1].queue_008), slots_214[1].value_000);
         flag_210 = packet->tail_036;
         flag_211 = packet->tail_037;

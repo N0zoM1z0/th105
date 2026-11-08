@@ -1,3 +1,4 @@
+#include "PlayerSlotDeckView.hpp"
 #include "ProfileDeckEdit.hpp"
 #include "input/InputManager.hpp"
 #include <map>
@@ -21,7 +22,6 @@ struct DeckUpdateMenuView {
     void show_spell_record_448b40(SpellRecordView *record);
 };
 struct DeckUpdatePlayerView {
-    std::deque<unsigned short> *copy_deck(std::deque<unsigned short> *destination, int character);
     void save_to_profile(const char *path);
 };
 #define SPELL_AT(index) reinterpret_cast<DeckUpdateDequeAt *>(&filtered_3cc)->at(index)
@@ -54,7 +54,7 @@ bool CProfileDeckEdit::update()
                 return true;
             }
             export_deck_counts(reinterpret_cast<ProfileDeckKeyDeque *>(
-                PLAYER_VIEW->copy_deck(0, character_08)));
+                reinterpret_cast<PlayerSlotDeckView *>(player_04)->copy_deck(0, character_08)));
             PLAYER_VIEW->save_to_profile(0);
             return false;
         case 4:

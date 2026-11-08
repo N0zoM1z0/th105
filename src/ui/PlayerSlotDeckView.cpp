@@ -1,15 +1,7 @@
-#include <deque>
+#include "PlayerSlotDeckView.hpp"
 
 namespace th105 {
 
-struct PlayerSlotDeckView {
-    unsigned char reserved_000[0x1AC];
-    std::deque<unsigned short> decks_1ac[20];
-
-    std::deque<unsigned short> *copy_deck(
-        std::deque<unsigned short> *output,
-        int index);
-};
 
 std::deque<unsigned short> *PlayerSlotDeckView::copy_deck(
     std::deque<unsigned short> *output,
