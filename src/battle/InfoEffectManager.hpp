@@ -83,13 +83,6 @@ struct InfoEffectManagerSpawnView {
         return reinterpret_cast<unsigned char *>(this) + 0x88;
     }
 
-    InfoEffectObjectView *spawn_effect_46f460(
-        int effect_id,
-        float x,
-        float y,
-        unsigned char facing,
-        unsigned char spawn_flag,
-        int spawn_context);
     int load_effect_resource_437ec0(const char *path);
     void load_effect_resource_and_preallocate_46f900(
         const char *path, unsigned target_count);

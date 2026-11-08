@@ -52,7 +52,7 @@ public:
     virtual void load_effect_resource_and_preallocate(
         const char *path, unsigned target_count);
     virtual void clear_effects_and_resources();
-    ObjectType *spawn_effect(
+    virtual ObjectType *spawn_effect(
         int effect_id,
         float x,
         float y,

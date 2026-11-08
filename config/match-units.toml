@@ -5582,9 +5582,9 @@ notes = "TH105 1.06a InfoEffectObject effect-manager virtual methods. The curren
 
 [[units.cross-v106a-info-effect-manager.functions]]
 address = "0x0046F460"
-symbol_base = "spawn_effect_46f460"
+symbol_base = "?spawn_effect@?$CEffectManager@VInfoEffectObject@@@@UAEPAVInfoEffectObject@@HMMEEH@Z"
 rel32_targets = [
-  "?allocate_46f370@InfoEffectObjectPoolView@th105@@QAEPAUInfoEffectObjectView@2@XZ=0x0046F370",
+  "?acquire_and_link_object@?$TObjectManagerBase@VInfoEffectObject@@VEffectObjectBase@@@@QAEPAVInfoEffectObject@@XZ=0x0046F370",
 ]
 
 [[units.cross-v106a-info-effect-manager.functions]]
@@ -6476,21 +6476,21 @@ notes = "TH105 1.06a CEffectManager<CSelectObject/WeatherEffectObject/EffectObje
 
 [[units.cross-v106a-effect-manager-spawn-family.functions]]
 address = "0x00422fb0"
-symbol_base = "?spawn_effect@?$CEffectManager@VCSelectObject@@@@QAEPAVCSelectObject@@HMMEEH@Z"
+symbol_base = "?spawn_effect@?$CEffectManager@VCSelectObject@@@@UAEPAVCSelectObject@@HMMEEH@Z"
 rel32_targets = [
   "?acquire_and_link_object@?$TObjectManagerBase@VCSelectObject@@VEffectObjectBase@@@@QAEPAVCSelectObject@@XZ=0x00422EA0",
 ]
 
 [[units.cross-v106a-effect-manager-spawn-family.functions]]
 address = "0x004377c0"
-symbol_base = "?spawn_effect@?$CEffectManager@VWeatherEffectObject@@@@QAEPAVWeatherEffectObject@@HMMEEH@Z"
+symbol_base = "?spawn_effect@?$CEffectManager@VWeatherEffectObject@@@@UAEPAVWeatherEffectObject@@HMMEEH@Z"
 rel32_targets = [
   "?acquire_and_link_object@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEPAVWeatherEffectObject@@XZ=0x00437760",
 ]
 
 [[units.cross-v106a-effect-manager-spawn-family.functions]]
 address = "0x00437c00"
-symbol_base = "?spawn_effect@?$CEffectManager@VEffectObject@@@@QAEPAVEffectObject@@HMMEEH@Z"
+symbol_base = "?spawn_effect@?$CEffectManager@VEffectObject@@@@UAEPAVEffectObject@@HMMEEH@Z"
 rel32_targets = [
   "?acquire_and_link_object@?$TObjectManagerBase@VEffectObject@@VEffectObjectBase@@@@QAEPAVEffectObject@@XZ=0x00437BA0",
 ]
