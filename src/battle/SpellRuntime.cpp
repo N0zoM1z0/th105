@@ -132,7 +132,7 @@ extern unsigned g_spell_texture_upload_state;
 void Fighter::prepare_next_spell_sequence_entry()
 {
     if (static_cast<signed char>(reinterpret_cast<std::deque<SequencePrepareRecord98> *>(&sequence_controller_55c)->size()) >= state_55b ||
-        reinterpret_cast<std::deque<short> *>(&reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0)->selection_ids_34)->size() == 0)
+        reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0)->selection_ids_34.size() == 0)
         return;
     counter_558=0;
     SequencePrepareRecord98 sequence_record;

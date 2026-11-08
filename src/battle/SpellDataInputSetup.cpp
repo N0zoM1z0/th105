@@ -13,17 +13,16 @@ void SpellDataOwner::initialize_side_payload_430f70(
     const ShortDeque8 *payload)
 {
     if (payload) {
-        *reinterpret_cast<NativeShortDeque *>(&loaded_spell_ids_20) =
+        loaded_spell_ids_20 =
             *reinterpret_cast<const NativeShortDeque *>(payload);
-        *reinterpret_cast<NativeShortDeque *>(&selection_ids_34) =
+        selection_ids_34 =
             *reinterpret_cast<const NativeShortDeque *>(payload);
     }
 }
 
 void SpellDataOwner::set_sequence_mode(unsigned char value)
 {
-    *reinterpret_cast<NativeShortDeque *>(&selection_ids_34) =
-        *reinterpret_cast<const NativeShortDeque *>(&loaded_spell_ids_20);
+    selection_ids_34 = loaded_spell_ids_20;
     if (value != 0)
         shuffle_selection();
 }

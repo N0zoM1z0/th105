@@ -23,10 +23,9 @@ typedef char SpellShuffleMutationSize[sizeof(ShortDequeMutationView) == sizeof(S
 
 void SpellDataOwner::shuffle_selection()
 {
-    const unsigned count = selection_ids_34.live_count_10;
+    const unsigned count = selection_ids_34.size();
     if (count != 0) {
-        NativeShortDeque &selection =
-            *reinterpret_cast<NativeShortDeque *>(&selection_ids_34);
+        NativeShortDeque &selection = selection_ids_34;
         int remaining = 100;
         do {
             NativeShortDeque::iterator it = selection.begin();

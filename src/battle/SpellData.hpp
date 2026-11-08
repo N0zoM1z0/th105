@@ -1,5 +1,7 @@
 #pragma once
 
+#include <deque>
+
 #include "assets/String28.hpp"
 
 namespace th105 {
@@ -172,11 +174,13 @@ struct ShortDeque8 {
     void clear_storage();
 };
 
+typedef char NativeSpellIdDequeSize[sizeof(std::deque<short>) == 0x14 ? 1 : -1];
+
 struct SpellDataOwner {
     DwordDeque4 image_handles_00;
     SpellTree local_tree_14;
-    ShortDeque8 loaded_spell_ids_20;
-    ShortDeque8 selection_ids_34;
+    std::deque<short> loaded_spell_ids_20;
+    std::deque<short> selection_ids_34;
     unsigned char selected_value_by_index_48[0x20];
 
     void clear_spell_entries();
@@ -185,7 +189,7 @@ struct SpellDataOwner {
         const char *path,
         DwordDeque4 *image_owner,
         SpellTree *destination,
-        ShortDeque8 *selected_spell_ids);
+        std::deque<short> *selected_spell_ids);
     void parse_spell_csv_and_build_card_resources(
         const char *character_name,
         const char *path,
@@ -204,7 +208,7 @@ struct SpellDataOwner {
     unsigned char load_spell_csv_via_325b0(
         int character_key,
         signed char story_mode,
-        ShortDeque8 *selected_spell_ids);
+        std::deque<short> *selected_spell_ids);
     unsigned char load_spell_csv_via_32e20(
         int character_key,
         signed char story_mode,

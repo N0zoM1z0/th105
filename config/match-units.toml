@@ -587,7 +587,7 @@ notes = "TH105 1.06a cross-version exact spell-record selector with current dequ
 [[units.cross-v106a-spell-data-runtime.functions]]
 address = "0x00432310"
 symbol_base = "select_spell_record_id"
-rel32_targets = ["ShortDeque8_front_checked=0x004321B0"]
+rel32_targets = ["?front@?$deque@FV?$allocator@F@std@@@std@@QAEAAFXZ=0x004321B0"]
 
 [units.cross-v106a-input-logical]
 kind = "probe"
@@ -4638,7 +4638,7 @@ symbol_base = "load_spell_csv_via_325b0"
 rel32_targets = [
   "?clear_spell_entries@SpellDataOwner@th105@@QAEXXZ=0x00433A80",
   "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80",
-  "?parse_spell_csv_via_325b0@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@PAUShortDeque8@2@@Z=0x00433B30",
+  "?parse_spell_csv_via_325b0@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@PAV?$deque@FV?$allocator@F@std@@@std@@@Z=0x00433B30",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
@@ -22870,9 +22870,9 @@ notes = "Complete1987-byte filtered spell CSV parser433B30; all478 instructions 
 
 [[units.exact-first-spell-filtered-csv.functions]]
 address = "0x00433B30"
-symbol_base = "?parse_spell_csv_via_325b0@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@PAUShortDeque8@2@@Z"
+symbol_base = "?parse_spell_csv_via_325b0@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@PAV?$deque@FV?$allocator@F@std@@@std@@@Z"
 dir32_targets = [
-  "__ehhandler$?parse_spell_csv_via_325b0@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@PAUShortDeque8@2@@Z=_filtered_spell_csv_eh",
+  "__ehhandler$?parse_spell_csv_via_325b0@SpellDataOwner@th105@@QAEXPBD0PAUDwordDeque4@2@PAUSpellTree@2@PAV?$deque@FV?$allocator@F@std@@@std@@@Z=_filtered_spell_csv_eh",
 ]
 rel32_targets = [
   "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
