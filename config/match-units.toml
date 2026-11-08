@@ -13370,20 +13370,20 @@ notes = "Current 0xE8 EventEffectState lifetime. Exact current consumers close v
 
 [[units.gpt-web-event-effect-state-lifetime.functions]]
 address = "0x00438DF0"
-symbol_base = "??0EventEffectStateLifetime@th105@@QAE@XZ"
+symbol_base = "??0EventEffectStateData@th105@@QAE@XZ"
 rel32_targets = [
   "?_Buynode@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@IAEPAU_Node@?$_Tree_nod@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@2@XZ=0x00435E70",
   "??0?$CEffectManager@VWeatherEffectObject@@@@QAE@XZ=0x00437430",
 ]
 dir32_targets = [
-  "__ehhandler$??0EventEffectStateLifetime@th105@@QAE@XZ=__ehhandler$??0EventEffectStateLifetime@th105@@QAE@XZ",
+  "__ehhandler$??0EventEffectStateData@th105@@QAE@XZ=__ehhandler$??0EventEffectStateLifetime@th105@@QAE@XZ",
   "___security_cookie=___security_cookie",
-  "?g_event_effect_state_lifetime@th105@@3PAUEventEffectStateLifetime@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
+  "?g_event_effect_state_lifetime@th105@@3PAUEventEffectStateData@1@A=?g_event_effect_state@th105@@3PAUEventEffectStateView@1@A",
 ]
 
 [[units.gpt-web-event-effect-state-lifetime.functions]]
 address = "0x00438C10"
-symbol_base = "??1EventEffectStateLifetime@th105@@QAE@XZ"
+symbol_base = "??1EventEffectStateData@th105@@QAE@XZ"
 rel32_targets = [
   "??1?$CEffectManager@VWeatherEffectObject@@@@UAE@XZ=0x00437D20",
   "?erase@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x004388A0",
@@ -13392,7 +13392,7 @@ rel32_targets = [
   "?_Tidy@?$vector@VCEffectSprite@@V?$allocator@VCEffectSprite@@@std@@@std@@IAEXXZ=0x00436420",
 ]
 dir32_targets = [
-  "__ehhandler$??1EventEffectStateLifetime@th105@@QAE@XZ=__ehhandler$??1EventEffectStateLifetime@th105@@QAE@XZ",
+  "__ehhandler$??1EventEffectStateData@th105@@QAE@XZ=__ehhandler$??1EventEffectStateLifetime@th105@@QAE@XZ",
   "___security_cookie=___security_cookie",
 ]
 
@@ -13467,7 +13467,7 @@ notes = "Current EventEffectState authored runtime over the target-backed 0xE8 p
 
 [[units.gpt-web-event-effect-state-runtime.functions]]
 address = "0x00469D50"
-symbol_base = "?publish_stage_state_469d50@EventEffectStateRuntimeView@th105@@QAEXC@Z"
+symbol_base = "?publish_stage_state_469d50@EventEffectStateData@th105@@QAEXC@Z"
 rel32_targets = [
   "?find@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABC@Z=0x004698E0",
   "__invalid_parameter_noinfo=0x0068A143",
@@ -13477,7 +13477,7 @@ rel32_targets = [
 
 [[units.gpt-web-event-effect-state-runtime.functions]]
 address = "0x00469EC0"
-symbol_base = "?prepare_shutdown_469ec0@EventEffectStateRuntimeView@th105@@QAEXXZ"
+symbol_base = "?prepare_shutdown_469ec0@EventEffectStateData@th105@@QAEXXZ"
 rel32_targets = [
   "?_Erase@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@2@@Z=0x004371C0",
   "__invalid_parameter_noinfo=0x0068A143",
@@ -13489,11 +13489,11 @@ dir32_targets = [
 
 [[units.gpt-web-event-effect-state-runtime.functions]]
 address = "0x00469F40"
-symbol_base = "?reset_runtime_state_469f40@EventEffectStateRuntimeView@th105@@QAEXXZ"
+symbol_base = "?reset_runtime_state_469f40@EventEffectStateData@th105@@QAEXXZ"
 rel32_targets = [
   "?release_all_tracked_objects@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
   "?_Tidy@?$deque@UBackgroundRenderEntry@th105@@V?$allocator@UBackgroundRenderEntry@th105@@@std@@@std@@IAEXXZ=0x00420A80",
-  "?publish_stage_state_469d50@EventEffectStateRuntimeView@th105@@QAEXC@Z=0x00469D50",
+  "?publish_stage_state_469d50@EventEffectStateData@th105@@QAEXC@Z=0x00469D50",
 ]
 dir32_targets = [
   "?g_event_runtime_state@th105@@3HA=?g_event_runtime_state@th105@@3HA",
@@ -27125,7 +27125,7 @@ notes = "Complete weather resource/stage CSV policy with actual0xE8 CEffectSprit
 
 [[units.exact-first-event-effect-initialize.functions]]
 address = "0x0046A260"
-symbol_base = "?initialize_effect_runtime@EventEffectRuntimeInitializerView@th105@@QAEXXZ"
+symbol_base = "?initialize_effect_runtime@EventEffectStateData@th105@@QAEXXZ"
 rel32_targets = [
  "??0?$vector@EV?$allocator@E@std@@@std@@QAE@ABV01@@Z=0x00469CC0",
  "??3@YAXPAX0@Z=0x006898EA",
@@ -27140,7 +27140,7 @@ rel32_targets = [
  "?load@CsvReaderRuntimeInit@th105@@QAE_NPBD@Z=0x0040F150",
  "?load_texture@EventTextureLoadView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
  "?next_int@CsvReaderRuntimeInit@th105@@QAEHXZ=0x0040F480",
- "?publish_stage_state@EventEffectRuntimeInitializerView@th105@@QAEXC@Z=0x00469D50",
+ "?publish_stage_state_469d50@EventEffectStateData@th105@@QAEXC@Z=0x00469D50",
  "?release_all_tracked_objects@?$TObjectManagerBase@VWeatherEffectObject@@VEffectObjectBase@@@@QAEXXZ=0x0046EEB0",
  "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
  "@__security_check_cookie@4=0x00689D25",

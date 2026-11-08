@@ -1,3 +1,4 @@
+#include "battle/EventEffectStateData.hpp"
 #include "battle/EffectManager.hpp"
 #include "battle/EffectSprite.hpp"
 #include "battle/EventEffectState.hpp"
@@ -50,28 +51,11 @@ struct EffectRuntimeLoaderView {
     virtual void load_runtime(const char *path, unsigned option);
 };
 
-struct EventEffectRuntimeInitializerView {
-    unsigned current_event_id_00;
-    signed char current_stage_04;
-    unsigned char reserved_05[3];
-    std::vector<unsigned> resources_08;
-    std::vector<CEffectSprite> sprites_18;
-    std::deque<BackgroundRenderEntry> background_entries_28;
-    std::map<signed char, std::vector<unsigned char> > stage_rows_3c;
-    CEffectManager<WeatherEffectObject> emitter_48;
-    float runtime_x_dc;
-    float runtime_y_e0;
-    float runtime_z_e4;
-
-    void initialize_effect_runtime();
-    void publish_stage_state(signed char state);
-};
-
 extern int g_event_runtime_state;
 extern int g_event_runtime_zero;
 extern unsigned char g_battle_transition_mode;
 
-void EventEffectRuntimeInitializerView::initialize_effect_runtime()
+void EventEffectStateData::initialize_effect_runtime()
 {
     reinterpret_cast<EffectRuntimeLoaderView *>(&emitter_48)
         ->load_runtime("data/weather/effect/effect.pat", 0);
@@ -114,7 +98,7 @@ void EventEffectRuntimeInitializerView::initialize_effect_runtime()
     g_event_runtime_state = 16;
     g_event_runtime_zero = 0;
     background_entries_28.clear();
-    publish_stage_state(g_battle_transition_mode);
+    publish_stage_state_469d50(g_battle_transition_mode);
     runtime_x_dc = 0.0f;
     runtime_y_e0 = 0.0f;
     runtime_z_e4 = 0.0f;
