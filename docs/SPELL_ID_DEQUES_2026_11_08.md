@@ -24,3 +24,8 @@ constructs the same two native short deques rather than initializing two raw
 headers. Its complete `0x462AB0` body still compares exactly. The destructor
 already represents those two members as native deques, but the constructor and
 destructor owner types and their cleanup/EH linkage remain separate views.
+
+A direct `deque::erase` and `push_front` spelling for the shuffle was also
+tried after the native queue migration. VC8 emitted 237 bytes against the
+196-byte target, differing from +18; the existing out-of-line mutation view
+remains selected. This does not change the shuffle's nonexact status.
