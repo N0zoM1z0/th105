@@ -23,3 +23,9 @@ type between scripted-input update and reset. Their timer remains separate
 because six edge fields lie between the values and timer. The 753-byte update
 and 57-byte reset remained exact; the fourteen previously exact roster policies
 also remained exact, and Marisa's candidate hash stayed unchanged.
+
+The roster input policies now read saved horizontal and vertical directions
+through that same snapshot view. Their up/forward checks consider either live
+input or the saved direction; the existing checks and read order are unchanged.
+All fourteen previously exact policies still compare exactly, and Marisa's
+nonexact candidate remains unchanged.

@@ -14,8 +14,9 @@ namespace th105 {
 #define PERMITTED ((S(0x13C) > 299 && I(0x180) != 0 && I(0x180) != 3) || S(0x13C) < 300)
 #define OVERRIDE(flag) (S(0x13C) >= 500 && S(0x13C) <= 599 && B(flag) == 0)
 #define COMMAND_OK(key, flag) (window <= command_window(key) || OVERRIDE(flag))
-#define UP (I(0x6B8) > 0 || I(0x6D8) > 0)
-#define FORWARD (I(0x6B4) * C(0x104) > 0 || I(0x6D4) * C(0x104) > 0)
+#define INPUT_SNAPSHOT (reinterpret_cast<FighterInputSnapshotResetRuntimeView *>(this)->snapshot_6d4)
+#define UP (I(0x6B8) > 0 || INPUT_SNAPSHOT.vertical > 0)
+#define FORWARD (I(0x6B4) * C(0x104) > 0 || INPUT_SNAPSHOT.horizontal * C(0x104) > 0)
 #define DISPATCH(key, flag) { B(flag) = 1; pack_input(); if (window >= 10) B(0x491) |= 8; set_action(key); return; }
 #define ACTION(key) { set_action(key); reinterpret_cast<FighterInputSnapshotResetRuntimeView *>(this)->reset_input_snapshot_4633a0(); return; }
 void KomachiInputPolicyView::dispatch_input()
@@ -138,7 +139,7 @@ void KomachiInputPolicyView::dispatch_input()
             if (window <= command_window(300) && PERMITTED) ACTION(300);
         } else {
             if (PERMITTED) {
-                if ((I(0x6B8) < 0 || I(0x6D8) < 0) && I(0x6B4) == 0
+                if ((I(0x6B8) < 0 || INPUT_SNAPSHOT.vertical < 0) && I(0x6B4) == 0
                     && window <= command_window(309)) ACTION(309);
                 if (UP && FORWARD && window <= command_window(308)) ACTION(308);
                 if (UP && window <= command_window(308)) ACTION(308);
