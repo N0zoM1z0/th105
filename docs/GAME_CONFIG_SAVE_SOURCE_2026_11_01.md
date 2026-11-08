@@ -22,10 +22,12 @@ game type and volume fields. The writer retains actual CreateFileA/WriteFile/
 CloseHandle behavior. No builds execute configuration file I/O.
 
 The native prologue has a real security cookie and EH handler. The selected
-vc8-sp1-probe-o2 unit therefore enables GS. The handler's first 16 bytes at
-6B7A38 are 8b5424088d42d88b4ad433c8e8dc22fd. This is a relocation ownership
-binding only, not a full remote EH-body equality claim. Existing writer vtable
-6C0F4C and config.dat literal 6C0F5C bindings are reused.
+vc8-sp1-probe-o2 unit therefore enables GS. The November 8
+[writer identity check](FILE_WRITER_GLOBAL_IDENTITY_2026_11_08.md) now compares
+the complete 35-byte cleanup/handler section at 6B7A30 and 44-byte unwind/FuncInfo
+section at 6DDB80, including every relocation. The global CFileWriter type,
+complete four-slot vtable and all six RTTI records also compare equal.
+The config.dat literal binding remains 6C0F5C.
 
 ## Full comparison and bounded residual
 

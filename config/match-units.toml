@@ -8337,9 +8337,9 @@ notes = "Current ProfileMenuBaseData/CFileWriter serialization island. RTTI/vtab
 
 [[units.cross-v106a-profile-data-writer.functions]]
 address = "0x00407BF0"
-symbol_base = "??1CFileWriter@th105@@UAE@XZ"
+symbol_base = "??1CFileWriter@@UAE@XZ"
 dir32_targets = [
-  "??_7CFileWriter@th105@@6B@=??_7CFileWriter@th105@@6B@",
+  "??_7CFileWriter@@6B@=??_7CFileWriter@@6B@",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]
 
@@ -8353,7 +8353,7 @@ address = "0x00407C70"
 symbol_base = "CFileWriter_scalar_deleting_destructor"
 rel32_targets = ["??3@YAXPAX@Z=0x006898EA"]
 dir32_targets = [
-  "??_7CFileWriter@th105@@6B@=??_7CFileWriter@th105@@6B@",
+  "??_7CFileWriter@@6B@=??_7CFileWriter@@6B@",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",
 ]
 
@@ -15976,7 +15976,7 @@ rel32_targets = [
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
-  "??_7CFileWriter@th105@@6B@=??_7CFileWriter@th105@@6B@",
+  "??_7CFileWriter@@6B@=??_7CFileWriter@@6B@",
   "__imp__CreateFileA@28=__imp__CreateFileA@28",
   "__imp__WriteFile@20=__imp__WriteFile@20",
   "__imp__CloseHandle@4=__imp__CloseHandle@4",

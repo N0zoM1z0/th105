@@ -41,12 +41,14 @@ namespace th105 {
 
 using ::CFileReader;
 
+} // namespace th105
+
 class CFileWriter {
 public:
     explicit CFileWriter(const char *path)
     {
         file = CreateFileA(path, 0x40000000u, 0, 0, 2, 0x80, 0);
-        if (file == reinterpret_cast<FileHandle>(-1))
+        if (file == reinterpret_cast<th105::FileHandle>(-1))
             file = 0;
     }
 
@@ -56,12 +58,12 @@ public:
             CloseHandle(file);
     }
 
-    virtual bool write(const void *source, FileSize size)
+    virtual bool write(const void *source, th105::FileSize size)
     {
         return WriteFile(file, source, size, &bytes_written, 0) != 0;
     }
 
-    virtual FileSize last_write_size() const { return bytes_written; }
+    virtual th105::FileSize last_write_size() const { return bytes_written; }
 
     virtual long seek(long offset, int origin)
     {
@@ -71,9 +73,13 @@ public:
     bool is_open() const { return file != 0; }
 
 protected:
-    FileHandle file;
-    FileSize bytes_written;
+    th105::FileHandle file;
+    th105::FileSize bytes_written;
 };
+
+namespace th105 {
+
+using ::CFileWriter;
 
 } // namespace th105
 

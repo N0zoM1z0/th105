@@ -634,3 +634,11 @@ allocation view still differs from native CharacterObjectEx RTTI. Both int and
 void action-finalizer controls reproduce the same complete bodies, so the
 existing return types cannot alone establish the original override signatures.
 No shared-header merge was made. See `docs/ANIMATION_VIRTUAL_CONTRACT_2026_11_08.md`.
+
+
+2026-11-08: `CFileWriter` now has its native global identity. Five complete
+method bodies, all four vtable slots and six RTTI records compare equal. The
+29-unit shared-header closure preserves all 44 accepted roots, and three
+source-dependent origin proofs pass. GameConfig save's complete 35-byte EH code
+and 44-byte metadata also match; its main body retains only +579/+582.
+See `docs/FILE_WRITER_GLOBAL_IDENTITY_2026_11_08.md`. No new exact credit.
