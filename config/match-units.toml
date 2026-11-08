@@ -599,7 +599,7 @@ notes = "TH105 1.06a cross-version exact logical-input mask builder with current
 
 [[units.cross-v106a-input-logical.functions]]
 address = "0x00409F70"
-symbol_base = "build_player_logical_input_mask"
+symbol_base = "?update_player_input_counters_from_raw@CInputManagerEx@th105@@UAEXXZ"
 rel32_targets = ["CInputManager_update_player_input_counters_from_raw=0x00409DA0"]
 
 # Structural-fingerprint migration wave.  The normalized instruction shape was
@@ -30644,7 +30644,7 @@ address = "0x0043B4A0"
 symbol_base = "?update_scene_runtime@th105@@YAXXZ"
 rel32_targets = [
  "?update_input_state_table@InputStateTableStorage@th105@@QAEXXZ=0x0040A550",
- "?build_player_logical_input_mask@CInputManagerEx@th105@@UAEXXZ=0x00409F70",
+ "?update_player_input_counters_from_raw@CInputManagerEx@th105@@UAEXXZ=0x00409F70",
  "?merge_menu_input_sources@CInputManagerCluster@th105@@QAEXXZ=0x0040A0F0",
  "?pop_profile_ui_menu_43ff40@th105@@YAXXZ=0x0043FF40",
  "_is_menu_initial_press=0x0043ABD0",

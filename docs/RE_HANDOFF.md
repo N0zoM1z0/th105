@@ -689,3 +689,11 @@ Both affected profiles preserve all section bytes and relocation roles; the
 readiness118 and enqueue114 roots remain exact. Complete EH code44, metadata44
 and record destructor8 now compare equal. The main body remains257/native259.
 See `docs/SEQUENCE_PREPARATION_2026_10_28.md`.
+
+
+2026-11-08: CInputManagerEx now overrides the base update instead of adding a
+third virtual slot. The original two-slot table and all three emitted method
+bodies compare equal. Nine actual derived-type consumers preserve all 13
+accepted roots, and five affected compiler-origin proofs pass. Global class
+identity and constructor-view unification remain separate work. See
+`docs/INPUT_MANAGER_OVERRIDE_2026_11_08.md`.

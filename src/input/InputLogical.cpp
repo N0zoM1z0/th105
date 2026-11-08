@@ -2,7 +2,7 @@
 
 namespace th105 {
 
-void CInputManagerEx::build_player_logical_input_mask()
+void CInputManagerEx::update_player_input_counters_from_raw()
 {
     if (use_injected_input) {
         int zero = 0;

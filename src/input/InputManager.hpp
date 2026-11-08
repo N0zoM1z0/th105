@@ -45,7 +45,8 @@ struct CInputManagerEx : CInputManager {
     bool use_injected_input;
     unsigned char reserved_65[3];
 
-    virtual void build_player_logical_input_mask();
+    // Native slot +4 overrides the base update; there is no third slot.
+    virtual void update_player_input_counters_from_raw();
 };
 
 struct RawGamepadState {

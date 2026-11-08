@@ -26,7 +26,7 @@ void __cdecl pop_profile_ui_menu_43ff40();
 void __cdecl update_scene_runtime()
 {
     g_frame_input_state.update_input_state_table();
-    g_frame_player_input.build_player_logical_input_mask();
+    g_frame_player_input.update_player_input_counters_from_raw();
     for (unsigned int i = 0; i < g_frame_result_inputs.size(); ++i)
         g_frame_result_inputs[i].update_player_input_counters_from_raw();
     g_combined_menu_input.merge_menu_input_sources();
