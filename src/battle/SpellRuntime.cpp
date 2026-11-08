@@ -120,34 +120,28 @@ unsigned char Fighter::consume_spell_sequence_entry()
     return 0;
 }
 
-struct SequencePrepareRecord98 {
-    short record_id;
-    unsigned short value;
-    CSprite sprite;
-};
-typedef char prepare_record_size[sizeof(SequencePrepareRecord98)==0x98?1:-1];
 extern unsigned g_spell_texture_load_state;
 extern unsigned g_spell_texture_upload_state;
 
 void Fighter::prepare_next_spell_sequence_entry()
 {
-    if (static_cast<signed char>(reinterpret_cast<std::deque<SequencePrepareRecord98> *>(&sequence_controller_55c)->size()) >= state_55b ||
+    if (static_cast<signed char>(reinterpret_cast<std::deque<FighterSequenceSlot> *>(&sequence_controller_55c)->size()) >= state_55b ||
         reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0)->selection_ids_34.size() == 0)
         return;
     counter_558=0;
-    SequencePrepareRecord98 sequence_record;
+    FighterSequenceSlot sequence_record;
     SpellDataOwner *lookup=reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);
-    sequence_record.record_id=lookup->select_spell_record_id();
-    SpellRecordView *record=lookup->find_local_then_common_spell_record(sequence_record.record_id);
+    sequence_record.record_id_00=lookup->select_spell_record_id();
+    SpellRecordView *record=lookup->find_local_then_common_spell_record(sequence_record.record_id_00);
     if (!record)return;
-    sequence_record.value=record->value_1e.value;
-    if(record->selector_1c==1)sequence_record.value=1;
+    sequence_record.field_02=record->value_1e.value;
+    if(record->selector_1c==1)sequence_record.field_02=1;
     if(record->card_texture_handle_44)
-        sequence_record.sprite.set_texture(
+        sequence_record.sprite_04.set_texture(
             record->card_texture_handle_44,0,0,
             g_spell_texture_load_state,g_spell_texture_upload_state);
-    sequence_controller_55c.enqueue_record(reinterpret_cast<const FighterSequenceSlot *>(&sequence_record));
-    state_55a=static_cast<signed char>(reinterpret_cast<std::deque<SequencePrepareRecord98> *>(&sequence_controller_55c)->size());
+    sequence_controller_55c.enqueue_record(&sequence_record);
+    state_55a=static_cast<signed char>(reinterpret_cast<std::deque<FighterSequenceSlot> *>(&sequence_controller_55c)->size());
 }
 
 } // namespace th105

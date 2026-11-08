@@ -60,3 +60,34 @@ base-owner.json. No ledger, match or count changes.
 ## 2026-11-03 source registration
 
 Fresh target-backed comparison still emits257/native259, with no whole-function or EH exactness claim. The complete 482-byte practice-control caller at `0x428070` remains canonical exact and calls this entry at both `0x428238` and `0x428246`. The native body hash and these two edges now anchor authored/source-present registration. Receipts: `build/frontier-sequence-prepare-source-20261103/`. This adds no canonical exact bytes.
+
+## November 8: shared record and complete cleanup proof
+
+Preparation now constructs the existing `FighterSequenceSlot` directly and
+passes it to `FighterSequenceController::enqueue_record` without a cast from
+a duplicate local record type. Both size reads likewise use
+`deque<FighterSequenceSlot>`, consistent with the existing render, update and
+window consumers. The shared record is the same 0x98 layout: signed short ID,
+unsigned short value, then the actual `CSprite` at +4. Native call `0x45DD6A`
+enters the exact 114-byte enqueue implementation, which copy-constructs that
+record into its queue storage.
+
+Both affected compilation profiles preserve every byte and relocation role
+in all 106 non-debug COFF sections after accounting for the corrected record
+symbol. Their four complete comparison results are unchanged. The 118-byte
+readiness method and independently rebuilt 114-byte enqueue remain exact.
+Preparation still emits 257/native259 with its prior canonical source hash;
+no new authored match is recorded.
+
+The previously unproved exception regions now have complete local equality:
+44 bytes of unwind/handler code at `0x6BAD30`, 44 bytes of unwind-map/FuncInfo
+at `0x6E082C`, and the eight-byte record destructor at `0x45CF50`. The sole
+unwind state destroys the record at frame -0xA4. The destructor writes the
+`IColor` vptr to the sprite subobject at record +4, with no allocation release.
+All code and metadata relocations are accounted for, and both complete main
+CFGs and the auxiliary callable boundaries close. This narrows the remaining
+work to the already-recorded main-body texture-load scheduling difference.
+
+Receipts and the source/compiler-provenance check are under
+`build/frontier-sequence-record-owner-20261108/` and
+`.analysis/frontier-sequence-record-owner-20261108/check-context.py`.

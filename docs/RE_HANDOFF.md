@@ -681,3 +681,11 @@ real wrapper implementation naturally matches destructor13 and action8, but
 grows the main body to 404/native399 and changes handler frame offsets. The
 private control is not retained; original TU visibility remains the blocker.
 See `docs/NETWORK_CLIENT_SNAPSHOT_IMPORT_2026_11_04.md`.
+
+
+2026-11-08: Spell-sequence preparation now uses the existing FighterSequenceSlot
+record through construction and enqueue, removing the duplicate stack type.
+Both affected profiles preserve all section bytes and relocation roles; the
+readiness118 and enqueue114 roots remain exact. Complete EH code44, metadata44
+and record destructor8 now compare equal. The main body remains257/native259.
+See `docs/SEQUENCE_PREPARATION_2026_10_28.md`.
