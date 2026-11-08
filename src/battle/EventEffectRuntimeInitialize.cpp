@@ -46,19 +46,14 @@ struct EventTextureLoadView {
     DesignTextureHandle load_texture(const char *,unsigned *,unsigned *);
 };
 
-struct EffectRuntimeLoaderView {
-    virtual void slot_00();
-    virtual void load_runtime(const char *path, unsigned option);
-};
-
 extern int g_event_runtime_state;
 extern int g_event_runtime_zero;
 extern unsigned char g_battle_transition_mode;
 
 void EventEffectStateData::initialize_effect_runtime()
 {
-    reinterpret_cast<EffectRuntimeLoaderView *>(&emitter_48)
-        ->load_runtime("data/weather/effect/effect.pat", 0);
+    emitter_48.load_effect_resource_and_preallocate(
+        "data/weather/effect/effect.pat", 0);
 
     resources_08.assign(17,0);
     {

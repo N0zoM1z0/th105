@@ -37,3 +37,7 @@ and update call the real weather manager virtuals at `+0x08` and `+0x14` rather
 than an emitter facade. The affected exact event, weather and render functions
 remain exact; the existing nonexact weather initializer and background update
 retain their previous candidate hashes.
+
+Resource initialization also calls the weather manager's real virtual
+`load_effect_resource_and_preallocate` at `+0x04`, removing its separate
+loader facade. The initializer retains the same nonexact candidate hash.
