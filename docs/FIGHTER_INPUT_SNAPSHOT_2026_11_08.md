@@ -29,3 +29,8 @@ through that same snapshot view. Their up/forward checks consider either live
 input or the saved direction; the existing checks and read order are unchanged.
 All fourteen previously exact policies still compare exactly, and Marisa's
 nonexact candidate remains unchanged.
+
+Roster button checks also read the saved buttons from the shared snapshot.
+They retain the original unsigned comparison at each use, even though the
+snapshot's storage uses signed 32-bit values. The fourteen exact policies and
+the existing Marisa candidate retained their previous comparison results.

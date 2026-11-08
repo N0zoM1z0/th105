@@ -55,7 +55,7 @@ void RemiliaInputPolicyView::dispatch_input()
     if (!primary) return;
     if (S(0x4B0) == 0) {
         if (SURFACE) {
-            if (((U(0x6D0) > 0 && U(0x6D0) < 3) || U(0x6F0) > 0) && front_ready(0)) {
+            if (((U(0x6D0) > 0 && U(0x6D0) < 3) || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[5]) > 0) && front_ready(0)) {
                 if (gate494450(window)) return;
                 if (window <= 100 && FRONT >= 200 && FRONT <= 299 && PERMITTED) {
                     switch (FRONT) {
@@ -111,7 +111,7 @@ void RemiliaInputPolicyView::dispatch_input()
                 }
             }
         } else {
-            if (((U(0x6D0) > 0 && U(0x6D0) < 3) || U(0x6F0) > 0) && front_ready(0)
+            if (((U(0x6D0) > 0 && U(0x6D0) < 3) || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[5]) > 0) && front_ready(0)
                 && window <= 100 && FRONT >= 200 && FRONT <= 299 && PERMITTED && FRONT == 206) {
                 finalize_command(606, window);
                 return;
@@ -128,7 +128,7 @@ void RemiliaInputPolicyView::dispatch_input()
             }
         }
     }
-    if (I(0x4B8) != 5 && ((U(0x6F4) > 0 && U(0x6F4) < 3) || I(0x6BC) == 2 || U(0x6DC) > 0)) {
+    if (I(0x4B8) != 5 && ((U(0x6F4) > 0 && U(0x6F4) < 3) || I(0x6BC) == 2 || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[0]) > 0)) {
         if (SURFACE) {
             if (PERMITTED) {
                 if (UP && FORWARD && window <= command_window(304)) ACTION(304);
@@ -155,7 +155,7 @@ void RemiliaInputPolicyView::dispatch_input()
             }
         }
     }
-    if ((U(0x6F8) > 0 && U(0x6F8) < 3) || I(0x6C0) == 2 || U(0x6E0) > 0) {
+    if ((U(0x6F8) > 0 && U(0x6F8) < 3) || I(0x6C0) == 2 || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[1]) > 0) {
         if (SURFACE) {
             if (PERMITTED) {
                 if (UP && FORWARD && S(0x482) >= 200 && window <= command_window(402)) ACTION(402);
@@ -174,7 +174,7 @@ void RemiliaInputPolicyView::dispatch_input()
         }
     }
     group6fc:
-    if ((U(0x6FC) > 0 && U(0x6FC) < 3) || I(0x6C4) == 2 || U(0x6E4) > 0) {
+    if ((U(0x6FC) > 0 && U(0x6FC) < 3) || I(0x6C4) == 2 || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[2]) > 0) {
         if (SURFACE) {
             if (!PERMITTED) return;
             if (UP && FORWARD && S(0x482) >= 200 && window <= command_window(412)) ACTION(412);

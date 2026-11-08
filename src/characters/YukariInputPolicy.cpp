@@ -55,7 +55,7 @@ void YukariInputPolicyView::dispatch_input()
     if (!primary) return;
     if (S(0x4B0) == 0) {
         if (SURFACE) {
-            if (((U(0x6D0) > 0 && U(0x6D0) < 3) || U(0x6F0) > 0) && front_ready(0)) {
+            if (((U(0x6D0) > 0 && U(0x6D0) < 3) || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[5]) > 0) && front_ready(0)) {
                 if (gate494450(window)) return;
                 if (window <= 100 && FRONT >= 200 && FRONT <= 299 && PERMITTED) {
                     switch (FRONT) {
@@ -108,7 +108,7 @@ void YukariInputPolicyView::dispatch_input()
                 }
             }
         } else {
-            if (((U(0x6D0) > 0 && U(0x6D0) < 3) || U(0x6F0) > 0) && front_ready(0)
+            if (((U(0x6D0) > 0 && U(0x6D0) < 3) || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[5]) > 0) && front_ready(0)
                 && window <= 100 && FRONT >= 200 && FRONT <= 299 && PERMITTED && FRONT == 206) {
                 finalize_command(656, window);
                 return;
@@ -123,7 +123,7 @@ void YukariInputPolicyView::dispatch_input()
             }
         }
     }
-    if (I(0x4B8) != 5 && ((U(0x6F4) > 0 && U(0x6F4) < 3) || I(0x6BC) == 2 || U(0x6DC) > 0)) {
+    if (I(0x4B8) != 5 && ((U(0x6F4) > 0 && U(0x6F4) < 3) || I(0x6BC) == 2 || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[0]) > 0)) {
         if (SURFACE) {
             if (S(0x13C) == 200 && I(0x6B8) == 0 && FORWARD && window <= command_window(305)) ACTION_KEEP(305);
             if (PERMITTED) {
@@ -150,7 +150,7 @@ void YukariInputPolicyView::dispatch_input()
             }
         }
     }
-    if ((U(0x6F8) > 0 && U(0x6F8) < 3) || I(0x6C0) == 2 || U(0x6E0) > 0) {
+    if ((U(0x6F8) > 0 && U(0x6F8) < 3) || I(0x6C0) == 2 || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[1]) > 0) {
         if (SURFACE) {
             if (S(0x13C) == 200 && I(0x4B8) != 5 && I(0x6B8) == 0 && FORWARD && window <= command_window(408)) ACTION(408);
             if (PERMITTED) {
@@ -166,7 +166,7 @@ void YukariInputPolicyView::dispatch_input()
             }
         }
     }
-    if ((U(0x6FC) > 0 && U(0x6FC) < 3) || I(0x6C4) == 2 || U(0x6E4) > 0) {
+    if ((U(0x6FC) > 0 && U(0x6FC) < 3) || I(0x6C4) == 2 || static_cast<unsigned>(INPUT_SNAPSHOT.buttons[2]) > 0) {
         if (SURFACE) {
             if (S(0x13C) == 200 && I(0x4B8) != 5 && I(0x6B8) == 0 && FORWARD && window <= command_window(418)) ACTION(418);
             if (S(0x482) < 200) return;
