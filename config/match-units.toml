@@ -5007,7 +5007,7 @@ address = "0x00434E90"
 symbol_base = "trigger_global_effect"
 rel32_targets = [
   "?lookup_event_effect_record@th105@@YAHH@Z=0x0043C150",
-  "?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0",
+  "?emit_effect@InfoEffectEmitterView@th105@@QAEPAVInfoEffectObject@@HMMHH@Z=0x0046E9D0",
   "?set_event_id@EventEffectStateData@th105@@QAEXH@Z=0x00469DF0",
 ]
 dir32_targets = [
@@ -5031,7 +5031,7 @@ address = "0x00434E40"
 symbol_base = "trigger_secondary_event_effect"
 rel32_targets = [
   "?lookup_event_effect_record@th105@@YAHH@Z=0x0043C150",
-  "?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0",
+  "?emit_effect@InfoEffectEmitterView@th105@@QAEPAVInfoEffectObject@@HMMHH@Z=0x0046E9D0",
 ]
 dir32_targets = [
   "?g_secondary_event_effect_id@th105@@3HA=?g_secondary_event_effect_id@th105@@3HA",
@@ -5245,7 +5245,7 @@ rel32_targets = [
   "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
   "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
   "?lookup_event_effect_record@th105@@YAHH@Z=0x0043C150",
-  "?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0",
+  "?emit_effect@InfoEffectEmitterView@th105@@QAEPAVInfoEffectObject@@HMMHH@Z=0x0046E9D0",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
 ]
 dir32_targets = [
@@ -23502,7 +23502,7 @@ address = "0x0065CB40"
 symbol_base = "?update_65cb40@InfoEffectUpdateView@th105@@QAEXXZ"
 rel32_targets = [
   "?dispatch_indexed_event_member@InfoEffectUpdateView@th105@@QAEXI@Z=0x004359F0",
-  "?emit_info_effect_6609c0@InfoEffectUpdateView@th105@@QAEHHMMHH@Z=0x006609C0",
+  "?emit_info_effect_6609c0@InfoEffectUpdateView@th105@@QAEPAVInfoEffectObject@@HMMHH@Z=0x006609C0",
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?dispatch_info_state_6609f0@InfoEffectUpdateView@th105@@QAEHH@Z=0x006609F0",
   "?advance_frame_and_dispatch@InfoEffectUpdateView@th105@@QAEEXZ=0x004351C0",
@@ -24576,8 +24576,8 @@ enable_gs = false
 notes = "Current info6609C0/6609F0 member-compatible global policy and weather665470 cdecl forwarding; no incoming receiver read."
 [[units.exact-first-effect-global-forwarders.functions]]
 address = "0x006609C0"
-symbol_base = "?emit@InfoEffectGlobalCalls@th105@@QAEHHMMHH@Z"
-rel32_targets = ["?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0"]
+symbol_base = "?emit@InfoEffectGlobalCalls@th105@@QAEPAVInfoEffectObject@@HMMHH@Z"
+rel32_targets = ["?emit_effect@InfoEffectEmitterView@th105@@QAEPAVInfoEffectObject@@HMMHH@Z=0x0046E9D0"]
 dir32_targets = ["?g_info_effect_emitter@th105@@3PAUInfoEffectEmitterView@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
 [[units.exact-first-effect-global-forwarders.functions]]
 address = "0x006609F0"

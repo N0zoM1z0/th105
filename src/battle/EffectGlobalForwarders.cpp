@@ -7,10 +7,10 @@ extern EffectSceneStateView *g_effect_scene_state;
 // These info helpers are reached by member-compatible callers that prepare
 // ECX, but the complete target bodies never consume the incoming receiver.
 struct InfoEffectGlobalCalls {
-    int emit(int,float,float,int,int);
+    InfoEffectObject *emit(int,float,float,int,int);
     void set_scene_state(int);
 };
-int InfoEffectGlobalCalls::emit(int id,float x,float y,int a,int b)
+InfoEffectObject *InfoEffectGlobalCalls::emit(int id,float x,float y,int a,int b)
 {
     return g_info_effect_emitter->emit_effect(id,x,y,a,b);
 }

@@ -1,3 +1,4 @@
+class InfoEffectObject;
 namespace th105 {
 extern int g_event_effect_id;
 extern int g_secondary_event_effect_id;
@@ -6,7 +7,7 @@ int __cdecl get_game_mode();
 double __cdecl lookup_orientation_cosine_quantized_abs(float);
 double __cdecl lookup_orientation_sine_quantized_abs(float);
 struct InfoEffectUpdateView {
-    int emit_info_effect_6609c0(int, float, float, int, int);
+    InfoEffectObject *emit_info_effect_6609c0(int, float, float, int, int);
     int dispatch_info_state_6609f0(int);
     void update_65cb40();
     unsigned char advance_frame_and_dispatch();

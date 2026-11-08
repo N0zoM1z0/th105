@@ -44,3 +44,9 @@ emitter facade. This exposes the correct owner and byte-sized flags, but does
 not solve `0x46F9F0`: the revised candidate is 61 bytes against the 85-byte
 original and remains nonexact. Its five directly affected normal/story binding
 and forwarding functions remain exact.
+
+The info-effect forwarding path similarly uses the real
+`CEffectManager<InfoEffectObject>` at owner `+0x04`. Its `0x46E9D0` wrapper and
+`0x6609C0` global forwarder now return the spawned object pointer and pass the
+two flags as bytes. Both remain exact, as do their event and pair-mode callers.
+The existing InfoEffect update candidate remains nonexact with its prior hash.

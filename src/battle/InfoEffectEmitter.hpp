@@ -1,9 +1,11 @@
 #pragma once
 
+#include "EffectManager.hpp"
+#include <stddef.h>
+
 namespace th105 {
 
-// Narrow current-target view of the polymorphic emitter embedded at
-// InfoEffectEmitterView +0x04. The exact 0x0046E9D0 facade calls vslot +0x0C.
+// Pointer-only virtual view used by other effect receivers.
 struct EffectEmitterSubobject {
     virtual void slot_00();
     virtual void slot_04();
@@ -23,10 +25,13 @@ struct EffectEmitterSubobject {
 
 struct InfoEffectEmitterView {
     unsigned int reserved_00;
-    EffectEmitterSubobject emitter_04;
+    CEffectManager<InfoEffectObject> emitter_04;
 
-    int emit_effect(int effect_id, float x, float y, int flag_a, int flag_b);
+    InfoEffectObject *emit_effect(int effect_id, float x, float y, int flag_a, int flag_b);
 };
+
+typedef char InfoEffectEmitterManagerOffset[offsetof(InfoEffectEmitterView, emitter_04) == 4 ? 1 : -1];
+typedef char InfoEffectEmitterViewSize[sizeof(InfoEffectEmitterView) == 0x98 ? 1 : -1];
 
 extern InfoEffectEmitterView *g_info_effect_emitter;
 
