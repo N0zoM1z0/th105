@@ -607,3 +607,12 @@ emits 173/native142 rather than recovering the target arithmetic shifts.
 The selected 139-byte aggregate-mask source is restored; the complete unit
 retains its three accepted roots and both previous nonexact candidates.
 See `docs/COLLISION_SEMANTICS_2026_11_07.md`; no new exact credit.
+
+
+2026-11-08: Real BGM CIL locally reproduces the complete 143-byte vector
+insertion helper at `0x40DEE0`, including all five calls, closed CFG and unique
+inventory identity. Four BGM and two Score exact roots replay. Exact Score
+callers use `vector<int>` while BGM uses `vector<unsigned>`; preserve those
+independent source types. The inner growth body remains 473/native475, and no
+ledger or Factory acceptance status changes. See
+`docs/VECTOR_INSERT_SHARED_BODY_2026_11_08.md`.
