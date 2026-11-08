@@ -1,4 +1,5 @@
 #include "FighterInputRuntime.hpp"
+#include "FighterInputSnapshotResetRuntime.hpp"
 #include "FighterCpuInputRuntime.hpp"
 #include <deque>
 #include <stddef.h>
@@ -20,8 +21,7 @@ struct ScriptedInputView {
  void *binding_6b0;
  int horizontal_6b4,vertical_6b8;
  int buttons_6bc[6];
- int saved_horizontal_6d4,saved_vertical_6d8;
- int saved_buttons_6dc[6];
+ FighterInputSnapshotValues snapshot_6d4;
  int edge_6f4[6];
  signed char timer_70c;
  std::deque<short> history_710;
@@ -57,24 +57,24 @@ void ScriptedInputView::update()
         if(action_13c>=300 &&
             (buttons_6bc[0]==1 || buttons_6bc[1]==1 || buttons_6bc[2]==1 ||
              buttons_6bc[3]==1 || buttons_6bc[4]==1 || buttons_6bc[5]==1)) {
-            saved_horizontal_6d4=horizontal_6b4;
+            snapshot_6d4.horizontal=horizontal_6b4;
             timer_70c=10;
-            saved_vertical_6d8=vertical_6b8;
-            saved_buttons_6dc[0]=buttons_6bc[0]==1;
-            saved_buttons_6dc[1]=buttons_6bc[1]==1;
-            saved_buttons_6dc[2]=buttons_6bc[2]==1;
-            saved_buttons_6dc[3]=buttons_6bc[3]==1;
-            saved_buttons_6dc[4]=buttons_6bc[4]==1;
-            saved_buttons_6dc[5]=buttons_6bc[5]==1;
+            snapshot_6d4.vertical=vertical_6b8;
+            snapshot_6d4.buttons[0]=buttons_6bc[0]==1;
+            snapshot_6d4.buttons[1]=buttons_6bc[1]==1;
+            snapshot_6d4.buttons[2]=buttons_6bc[2]==1;
+            snapshot_6d4.buttons[3]=buttons_6bc[3]==1;
+            snapshot_6d4.buttons[4]=buttons_6bc[4]==1;
+            snapshot_6d4.buttons[5]=buttons_6bc[5]==1;
         } else if(action_13c<300 || timer_70c<=0) {
-            saved_horizontal_6d4=0;
-            saved_vertical_6d8=0;
-            saved_buttons_6dc[0]=0;
-            saved_buttons_6dc[1]=0;
-            saved_buttons_6dc[2]=0;
-            saved_buttons_6dc[3]=0;
-            saved_buttons_6dc[4]=0;
-            saved_buttons_6dc[5]=0;
+            snapshot_6d4.horizontal=0;
+            snapshot_6d4.vertical=0;
+            snapshot_6d4.buttons[0]=0;
+            snapshot_6d4.buttons[1]=0;
+            snapshot_6d4.buttons[2]=0;
+            snapshot_6d4.buttons[3]=0;
+            snapshot_6d4.buttons[4]=0;
+            snapshot_6d4.buttons[5]=0;
             timer_70c=0;
         }
         if(timer_70c!=0)--timer_70c;

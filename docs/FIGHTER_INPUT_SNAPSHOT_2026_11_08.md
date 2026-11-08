@@ -17,3 +17,9 @@ policies. Thirteen of those complete policy payloads remained exact; Marisa's
 previously nonexact candidate retained its original compared hash and first
 mismatch. This is a shared call target, not a claim that the character input
 policies themselves are identical.
+
+The saved direction and six button values now share a `FighterInputSnapshotValues`
+type between scripted-input update and reset. Their timer remains separate
+because six edge fields lie between the values and timer. The 753-byte update
+and 57-byte reset remained exact; the fourteen previously exact roster policies
+also remained exact, and Marisa's candidate hash stayed unchanged.
