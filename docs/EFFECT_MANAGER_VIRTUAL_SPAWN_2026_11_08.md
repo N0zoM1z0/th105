@@ -50,3 +50,10 @@ The info-effect forwarding path similarly uses the real
 `0x6609C0` global forwarder now return the spawned object pointer and pass the
 two flags as bytes. Both remain exact, as do their event and pair-mode callers.
 The existing InfoEffect update candidate remains nonexact with its prior hash.
+
+The InfoManager resource loader and release wrapper now use its actual
+`CEffectManager<InfoEffectObject>` virtual methods at `+0x04` and `+0x08`.
+The release wrapper is `void`: its sole direct target caller ignores EAX, and
+the tail-called manager clear method is void. Both wrappers, normal/story
+lifetimes, story initialization and record initialization retain complete
+exact comparisons.

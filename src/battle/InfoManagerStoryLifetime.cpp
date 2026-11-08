@@ -14,7 +14,7 @@ struct CInfoManagerStoryLifecycle : InfoManagerBaseStoryDependency {
     CInfoManagerStoryLifecycle();
     virtual ~CInfoManagerStoryLifecycle();
     void initialize_story_info_resources_471e50();
-    int release_info_effect_resources_46e990();
+    void release_info_effect_resources_46e990();
 };
 CInfoManagerStoryLifecycle::CInfoManagerStoryLifecycle()
 {

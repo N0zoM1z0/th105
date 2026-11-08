@@ -11321,7 +11321,7 @@ dir32_targets = [
 address = "0x00472080"
 symbol_base = "??1CInfoManagerStoryLifecycle@th105@@UAE@XZ"
 rel32_targets = [
-  "?release_info_effect_resources_46e990@CInfoManagerStoryLifecycle@th105@@QAEHXZ=0x0046E990",
+  "?release_info_effect_resources_46e990@CInfoManagerStoryLifecycle@th105@@QAEXXZ=0x0046E990",
   "??1BattleInfoRecordF8StoryDependency@th105@@QAE@XZ=0x0046F970",
   "??1InfoManagerBaseStoryDependency@th105@@UAE@XZ=0x0046F6A0",
 ]

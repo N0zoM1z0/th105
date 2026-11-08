@@ -10,7 +10,7 @@ struct UiDesignObject;
 struct InfoEffectManagerSubobject {
     virtual void slot_00();
     virtual void load_resource(const char *path, int option);
-    virtual int release_resource();
+    virtual void release_resource();
 };
 
 struct InfoDesignResourceSubobject {
@@ -130,7 +130,7 @@ struct InfoManagerResourceView {
     }
 
     int load_info_effect_resources_46e960();
-    int release_info_effect_resources_46e990();
+    void release_info_effect_resources_46e990();
     void initialize_story_info_resources_471e50();
     void update_normal_46e5a0();
     void update_runtime_471c90();
