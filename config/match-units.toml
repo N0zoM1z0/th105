@@ -30682,6 +30682,3 @@ rel32_targets = [
  "__invalid_parameter_noinfo=0x0068A143",
  "@__security_check_cookie@4=0x00689D25",
 ]
-dir32_targets = [
- "??_7PlayerSlotProfileFileReaderView@th105@@6B@=??_7CFileReader@th105@@6B@",
-]

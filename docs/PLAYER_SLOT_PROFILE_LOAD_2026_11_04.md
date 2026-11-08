@@ -13,9 +13,9 @@ the two inputs to one checked-deque bound addition are loaded in the reverse
 order. The previous 723-byte pointer-loop candidate omitted a checked end
 validation. Both field reads and the iterator check are retained naturally,
 without synthetic guards or forced registers. This is nonexact and adds no
-exact bytes. The reader-vtable pointer is a relocation binding; its complete table and RTTI
-graph, and live file behavior, remain unverified. The remote EH comparison is
-now complete, as described below.
+exact bytes. The remote EH comparison is now complete. The later real-reader change below
+also verifies its five method bodies and table roles; the RTTI type name still
+differs from the target, and live file behavior has not been tested.
 
 Reproduce with `scripts/repo-python scripts/build.py --unit
 exact-first-player-slot-profile-load --compare --json`.
@@ -53,3 +53,37 @@ The private check verifies current source/compiler/object provenance, complete
 section ownership, all relocation roles, the unwind state chain and every
 cleanup/handler boundary. Results are in
 `build/frontier-profile-load-context-20261108/baseline.json` and `eh.json`.
+
+
+## Use the existing CFileReader provider
+
+Profile loading now constructs the real `CFileReader` and calls its `read`
+method. The duplicate reader class and its undefined seek/size declarations
+are removed, along with the vtable alias in the match recipe. The translation
+unit includes the existing reader implementation, as the repository already
+does for CSV loading, battle recordings and the connect address list. A narrow
+read-only handle view remains solely for the open test; no shared reader
+header or layout changed.
+
+The entire 728-byte main candidate retains its previous hash and two
+mismatches, so using the real provider does not close the deque scheduling
+residual. The complete 64-byte EH code, 60-byte metadata and 21-byte destructor
+also keep their equal hashes. The five native method slots at `0x006C0F34`
+now have actual emitted source, all locally byte-equal with their relocations:
+
+- Scalar deletion `0x0041B890`, 45 bytes. The COFF weak slot resolves to this
+  emitted scalar destructor.
+- Read `0x0040CED0`, 35 bytes.
+- Last read size `0x00407C40`, 4 bytes.
+- Seek `0x00407C50`, 25 bytes.
+- File size `0x0040CF00`, 13 bytes.
+
+The source RTTI string is `.?AVCFileReader@th105@@`, while the target string is
+`.?AVCFileReader@@`. Their names do not match, even though the method bodies
+and resolved twenty-byte table agree. This is a remaining whole-object
+identity issue, not a reason to alter target bytes or mask a comparison.
+
+Final receipts are `real-reader-final.json` and `real-reader-eh.json` in the
+same evidence directory. The private check now uses the actual reader symbols
+and verifies the weak-slot fallback and all five complete method bodies.
+No new authored exact functions are recorded.

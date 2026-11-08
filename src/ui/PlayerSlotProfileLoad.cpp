@@ -1,48 +1,16 @@
 #include "ProfileMenu.hpp"
 
-#include "assets/FileReader.hpp"
+#include "assets/FileReader.cpp"
 
 #include <string.h>
 
-extern "C" __declspec(dllimport) int __stdcall ReadFile(
-    void *file,
-    void *buffer,
-    unsigned long bytes_to_read,
-    unsigned long *bytes_read,
-    void *overlapped);
-
 namespace th105 {
 
-// The profile loader owns a concrete CFileReader automatic object.  This
-// call-site view keeps that lifetime visible to VC8 without changing the
-// current shared FileReader header or its already-exact translation units.
-struct PlayerSlotProfileFileReaderView {
-    explicit PlayerSlotProfileFileReaderView(const char *path)
-    {
-        file = CreateFileA(path, 1, 1, 0, 3, 0x80, 0);
-        if (file == reinterpret_cast<void *>(-1))
-            file = 0;
-    }
-
-    virtual ~PlayerSlotProfileFileReaderView()
-    {
-        if (file != 0)
-            CloseHandle(file);
-    }
-
-    virtual bool read(void *destination, unsigned long size)
-    {
-        return ReadFile(file, destination, size, &bytes_read, 0) != 0;
-    }
-
-    virtual unsigned long last_read_size() const { return bytes_read; }
-    // Unused here; declarations preserve the real reader slots without
-    // inventing implementations for the call-site view.
-    virtual long seek(long, int);
-    virtual unsigned long size() const;
-
-    void *file;
-    unsigned long bytes_read;
+// Only the open-handle test needs a read-only layout view. Construction,
+// reads, normal destruction and exception cleanup use the real CFileReader.
+struct PlayerSlotProfileReaderHandleView {
+    void *vtable_000;
+    FileHandle file_004;
 };
 
 struct PlayerSlotProfileDataView {
@@ -69,40 +37,38 @@ bool PlayerSlotRecord::load_profile(const char *path)
     std::string profile_path(path);
     profile_path = "profile/" + profile_path;
 
-    PlayerSlotProfileFileReaderView reader(profile_path.c_str());
-    if (reader.file == 0)
+    CFileReader reader(profile_path.c_str());
+    if (reinterpret_cast<PlayerSlotProfileReaderHandleView *>(&reader)->file_004 == 0)
         return false;
 
     data->string_098.assign(path, strlen(path));
     data->normalize_profile_name();
 
-    ReadFile(reader.file, data->block_140, 0x34, &reader.bytes_read, 0);
-    ReadFile(reader.file, data->block_174, 0x34, &reader.bytes_read, 0);
-    ReadFile(reader.file, &data->flag_13c, 1, &reader.bytes_read, 0);
-    ReadFile(reader.file, &data->flag_1a8, 1, &reader.bytes_read, 0);
+    reader.read(data->block_140, 0x34);
+    reader.read(data->block_174, 0x34);
+    reader.read(&data->flag_13c, 1);
+    reader.read(&data->flag_1a8, 1);
 
     for (int deck_index = 0; deck_index < 20; ++deck_index) {
         unsigned char count;
-        ReadFile(reader.file, &count, 1, &reader.bytes_read, 0);
+        reader.read(&count, 1);
         data->decks_1ac[deck_index].clear();
         for (int index = 0; index < count; ++index) {
             unsigned short value = 0;
             data->decks_1ac[deck_index].push_back(value);
-            ReadFile(
-                reader.file,
-                &data->decks_1ac[deck_index].back(),
-                2,
-                &reader.bytes_read,
-                0);
+            reader.read(&data->decks_1ac[deck_index].back(), 2);
         }
     }
 
     return true;
 }
 
-typedef char PlayerSlotProfileFileReaderView_size_must_be_0x0c[
-    sizeof(PlayerSlotProfileFileReaderView) == 0x0C ? 1 : -1];
+typedef char PlayerSlotProfileFileReader_size_must_be_0x0c[
+    sizeof(CFileReader) == 0x0C ? 1 : -1];
 typedef char PlayerSlotProfileDataView_size_must_be_0x33c[
     sizeof(PlayerSlotProfileDataView) == 0x33C ? 1 : -1];
+
+typedef char PlayerSlotProfileReaderHandleOffset[
+    offsetof(PlayerSlotProfileReaderHandleView, file_004) == 4 ? 1 : -1];
 
 } // namespace th105

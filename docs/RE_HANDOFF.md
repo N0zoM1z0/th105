@@ -577,3 +577,11 @@ two differing operand bytes at +540/+543. No new exact credit is recorded.
 See `docs/PLAYER_SLOT_PROFILE_LOAD_2026_11_04.md` for the resolved ownership and
 reproduction; the remaining scope is the main-body load order and real reader
 type, not an unknown EH layout.
+
+
+2026-11-08: Profile load now uses the existing real `CFileReader` provider
+instead of its duplicate reader class. Main728 retains exactly the prior two
+differences, while complete EH and all five reader method bodies compare
+equal. The source's namespaced RTTI string still differs from the target's
+global class name. See `docs/PLAYER_SLOT_PROFILE_LOAD_2026_11_04.md`; no new
+exact credit or shared-header change.
