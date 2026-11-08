@@ -673,3 +673,11 @@ accepted roots and all three previous nonexact bodies. Normal match setup's
 complete 556-byte code/alignment/switch-table section also matches. Constructor
 EH/RTTI section contents and relocation roles are unchanged. See
 `docs/PLAYER_SLOT_DECK_PROVIDER_2026_11_08.md`.
+
+
+2026-11-08: Snapshot lock cleanup has no demonstrated lifetime error: both
+paths release the same critical-section member exactly once. Revealing the
+real wrapper implementation naturally matches destructor13 and action8, but
+grows the main body to 404/native399 and changes handler frame offsets. The
+private control is not retained; original TU visibility remains the blocker.
+See `docs/NETWORK_CLIENT_SNAPSHOT_IMPORT_2026_11_04.md`.

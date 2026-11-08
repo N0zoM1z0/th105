@@ -41,3 +41,29 @@ Evidence: `.analysis/frontier-network-snapshot-owner-20261108/check-context.py`
 and `build/frontier-network-snapshot-owner-20261108/` contain the source/compiler
 provenance, full body and metadata results, target dispatch edge checks, and
 three exact witness comparisons. This checkpoint adds no authored exact credit.
+
+## Lock lifetime and implementation visibility
+
+The 7/13-byte difference is not a missing ownership operation. Native entry
+stores `owner + 0x25C` in the four-byte guard before calling `enter`, then sets
+the sole EH state to zero. Normal exit disables that state and calls `leave`
+through the saved pointer. The unwind action uses the same guard at frame
+-0x10. Both native destructor13 and current destructor7 followed by wrapper11
+pass `guard.pointer + 4` once to the same `LeaveCriticalSection` import; neither
+destroys the critical-section object.
+
+One private ordinary-TU control makes the real `CriticalSectionWrapper.cpp`
+implementation visible before the unchanged snapshot source. The guard
+cleanup becomes exactly the native 13 bytes, and its eight-byte unwind action
+and 44-byte metadata also match. However, the main function becomes 404/native399,
+first differing at +16 as its frame grows by four bytes. The 27-byte handler
+then differs in both frame displacements. The complete candidate CFG closes,
+including its three-byte loop-alignment LEA; no bytes were omitted.
+
+The control establishes an implementation-visibility issue, not a reason to
+change the lock lifetime. It is not retained. A future source/TU reconstruction
+must explain the native combination of out-of-line normal enter/leave calls
+and the inlined wrapper inside the exception destructor. Do not replace the
+guard with manual normal/exception cleanup or force an artificial destructor
+boundary. Evidence: `build/frontier-snapshot-lock-lifetime-20261108/context.json`
+and its paired private source/inspection script.
