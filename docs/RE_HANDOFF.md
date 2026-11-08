@@ -625,3 +625,12 @@ and both prior nonexact bodies. A separate reverted trial exposed missing
 AnimationObject virtual declarations: the shared effect header currently places
 update at +0x10 instead of native +0x28. Recover that base contract before
 merging the virtual consumer. See `docs/INFO_EFFECT_RELEASE_OWNER_2026_11_08.md`.
+
+
+2026-11-08: The animation virtual-interface audit verifies complete RTTI for
+five real classes but confirms their current emitted vtables are incomplete.
+AttackObject/CharacterObject must retain abstract callbacks, and the roster
+allocation view still differs from native CharacterObjectEx RTTI. Both int and
+void action-finalizer controls reproduce the same complete bodies, so the
+existing return types cannot alone establish the original override signatures.
+No shared-header merge was made. See `docs/ANIMATION_VIRTUAL_CONTRACT_2026_11_08.md`.
