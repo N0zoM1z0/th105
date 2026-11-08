@@ -23,6 +23,8 @@ typedef char CheckFrameOffset[offsetof(ClashObject, prepared_frame_1a4) == 0x1a4
 
 void ClashContext::dispatch_family1_object_clashes()
 {
+    // Same-side pass: only an object with flags_50 bit 0x100000 can
+    // initiate a clash. Ordered pairs are visited, except self-pairs.
     for (int slot=0;slot<2;++slot) {
         std::list<void *>::iterator outer=family_1[slot].begin();
         std::list<void *>::iterator end=family_1[slot].end();
@@ -44,6 +46,9 @@ void ClashContext::dispatch_family1_object_clashes()
             }
         }
     }
+    // Cross-side pass: visit family 1 slot 0 against slot 1 once.
+    // Both sides use the same frame-flag and snapshot-slot gates as above;
+    // this pass does not require the initiator bit used in the first pass.
     std::list<void *>::iterator outer=family_1[0].begin();
     std::list<void *>::iterator left_end=family_1[0].end();
     for (;outer!=left_end;++outer) {
