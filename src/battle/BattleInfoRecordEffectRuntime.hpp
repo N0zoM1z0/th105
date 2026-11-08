@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InfoEffectEmitter.hpp"
+#include "EffectManager.hpp"
 
 namespace th105 {
 
@@ -13,7 +13,7 @@ struct BattleInfoEffectPosition {
 struct BattleInfoRecordEffectRuntimeView {
     unsigned char side_00;
     unsigned char reserved_01[0x13];
-    EffectEmitterSubobject *emitter_14;
+    CEffectManager<InfoEffectObject> *emitter_14;
     unsigned char reserved_18[0x48];
     BattleInfoEffectPosition *groups_60[5];
 

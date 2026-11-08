@@ -37,3 +37,10 @@ The layer forwarder `0x4695F0` now uses the same real weather manager's
 call it through the shared event state, with layers -2, -1 and +1. The complete
 forwarder and all nine previously exact battle-object-manager peers remain
 exact; its background-update peer retains its prior nonexact hash.
+
+Battle info records also hold the InfoEffect manager at `+0x14`. Their group
+emitter now calls the actual manager's virtual spawn instead of a generic
+emitter facade. This exposes the correct owner and byte-sized flags, but does
+not solve `0x46F9F0`: the revised candidate is 61 bytes against the 85-byte
+original and remains nonexact. Its five directly affected normal/story binding
+and forwarding functions remain exact.

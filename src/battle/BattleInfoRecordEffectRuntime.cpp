@@ -12,7 +12,7 @@ void BattleInfoRecordEffectRuntimeView::emit_group_effect_46f9f0(
     BattleInfoEffectPosition *position = groups_60[group_index];
     float x = position->x_0c;
     float y = position->y_10;
-    emitter_14->emit(effect_id, x, y, direction, 1, 0);
+    emitter_14->spawn_effect(effect_id, x, y, direction, 1, 0);
 }
 
 typedef char BattleInfoRecordEmitterOffset[
