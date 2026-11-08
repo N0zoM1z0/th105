@@ -1,17 +1,14 @@
 #pragma once
 
 #include <stddef.h>
+#include "EffectManager.hpp"
 
 namespace th105 {
 
 struct Fighter;
 struct UiDesignObject;
 
-struct InfoEffectManagerSubobject {
-    virtual void slot_00();
-    virtual void load_resource(const char *path, int option);
-    virtual void release_resource();
-};
+typedef CEffectManager<InfoEffectObject> InfoEffectManager;
 
 struct InfoDesignResourceSubobject {
     virtual void slot_00();
@@ -33,14 +30,14 @@ struct BattleInfoRecordF8 {
         float story_progress_10;
     };
     union {
-        InfoEffectManagerSubobject *effect_manager_14;
+        InfoEffectManager *effect_manager_14;
         struct {
             unsigned char fade_alpha_14;
             unsigned char story_state_15[3];
         };
     };
     union {
-        InfoEffectManagerSubobject *story_context_18;
+        InfoEffectManager *story_context_18;
         Fighter *fighter_18;
     };
     union {
@@ -66,11 +63,11 @@ struct BattleInfoRecordF8 {
         int index,
         InfoDesignResourceSubobject *upper,
         InfoDesignResourceSubobject *lower,
-        InfoEffectManagerSubobject *effect_manager);
+        InfoEffectManager *effect_manager);
     void initialize_story_471c10(
         InfoDesignResourceSubobject *upper,
         InfoDesignResourceSubobject *lower,
-        InfoEffectManagerSubobject *context);
+        InfoEffectManager *context);
     void attach_story_fighter_471be0(Fighter *fighter);
     void bind_fighter_46fa90(Fighter *fighter);
     void bind_story_values_471a80();
@@ -99,9 +96,9 @@ struct InfoComboResourceSubobject {
 };
 
 struct InfoManagerResourceView {
-    __forceinline InfoEffectManagerSubobject &effect_manager_04()
+    __forceinline InfoEffectManager &effect_manager_04()
     {
-        return *reinterpret_cast<InfoEffectManagerSubobject *>(
+        return *reinterpret_cast<InfoEffectManager *>(
             reinterpret_cast<unsigned char *>(this) + 0x04);
     }
 

@@ -27,14 +27,14 @@ CInfoManagerNormalLifecycle::~CInfoManagerNormalLifecycle()
     reinterpret_cast<InfoDesignResourceSubobject *>(reinterpret_cast<unsigned char *>(this) + 0x98)->release_design();
     reinterpret_cast<InfoDesignResourceSubobject *>(reinterpret_cast<unsigned char *>(this) + 0xcc)->release_design();
     reinterpret_cast<InfoComboResourceSubobject *>(reinterpret_cast<unsigned char *>(this) + 0x100)->release_combo_resources_46a610();
-    reinterpret_cast<InfoEffectManagerSubobject *>(reinterpret_cast<unsigned char *>(this) + 0x04)->release_resource();
+    reinterpret_cast<InfoEffectManager *>(reinterpret_cast<unsigned char *>(this) + 0x04)->clear_effects_and_resources();
 }
 }
 
 namespace th105 {
 // Bounded typed runtime view of the already established embedded-resource extents.
 
-struct NormalEffect94 { InfoEffectManagerSubobject api; unsigned char rest[0x90]; };
+typedef InfoEffectManager NormalEffect94;
 struct NormalDesign34 { InfoDesignResourceSubobject api; unsigned char rest[0x30]; };
 struct NormalInfoRuntimeView {
     void *vtable;
@@ -51,12 +51,12 @@ typedef char normal_records_offset[offsetof(NormalInfoRuntimeView,records_498)==
 void CInfoManagerNormalLifecycle::initialize_normal_runtime_46eb90()
 {
     NormalInfoRuntimeView *view=reinterpret_cast<NormalInfoRuntimeView *>(this);
-    view->effect.api.load_resource("data/infoEffect/effect.pat",0);
+    view->effect.load_effect_resource_and_preallocate("data/infoEffect/effect.pat",0);
     view->combo.load_combo_resources_46a8c0();
     view->upper.api.load_design("data/battle/battleUpper.dat");
     view->lower.api.load_design("data/battle/battleUnder.dat");
-    view->records_498[0].initialize_46fd20(0,&view->upper.api,&view->lower.api,&view->effect.api);
-    view->records_498[1].initialize_46fd20(1,&view->upper.api,&view->lower.api,&view->effect.api);
+    view->records_498[0].initialize_46fd20(0,&view->upper.api,&view->lower.api,&view->effect);
+    view->records_498[1].initialize_46fd20(1,&view->upper.api,&view->lower.api,&view->effect);
     for(int i=0;i<2;++i){
         reinterpret_cast<TitleDesignResource *>(&view->upper.api)->bind_object_alt(&view->numbers_48c[i],100+i);
         reinterpret_cast<CNumber *>(reinterpret_cast<unsigned char *>(view->numbers_48c[i])+0x18)->bind_value(&view->counter_488);

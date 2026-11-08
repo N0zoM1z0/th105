@@ -57,3 +57,12 @@ The release wrapper is `void`: its sole direct target caller ignores EAX, and
 the tail-called manager clear method is void. Both wrappers, normal/story
 lifetimes, story initialization and record initialization retain complete
 exact comparisons.
+
+The InfoManager and its battle-info records now share the actual
+`CEffectManager<InfoEffectObject>` type, including the embedded 0x94-byte
+manager in the normal runtime view. This removes the three-slot facade and
+padding that previously obscured their common owner. All 27 previously exact
+functions in the affected resource, lifetime, initialization, render and gauge
+units still compare exact. The two previously nonexact update candidates remain
+nonexact: Story retains the same first mismatch, while normal update retains its
+existing unresolved local deque relocation.

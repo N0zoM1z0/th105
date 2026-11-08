@@ -28,7 +28,7 @@ void BattleInfoRecordF8::initialize_46fd20(
     int index,
     InfoDesignResourceSubobject *upper,
     InfoDesignResourceSubobject *lower,
-    InfoEffectManagerSubobject *effect_manager)
+    InfoEffectManager *effect_manager)
 {
     TitleDesignResource *upper_design =
         reinterpret_cast<TitleDesignResource *>(upper);
@@ -78,7 +78,7 @@ void BattleInfoRecordF8::initialize_46fd20(
 void BattleInfoRecordF8::initialize_story_471c10(
     InfoDesignResourceSubobject *upper,
     InfoDesignResourceSubobject *,
-    InfoEffectManagerSubobject *context)
+    InfoEffectManager *context)
 {
     TitleDesignResource *upper_design =
         reinterpret_cast<TitleDesignResource *>(upper);

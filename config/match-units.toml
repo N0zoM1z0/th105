@@ -5564,8 +5564,8 @@ address = "0x00471E50"
 symbol_base = "initialize_story_info_resources_471e50"
 rel32_targets = [
   "?load_info_effect_resources_46e960@InfoManagerResourceView@th105@@QAEHXZ=0x0046E960",
-  "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z=0x0046FD20",
-  "?initialize_story_471c10@BattleInfoRecordF8@th105@@QAEXPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z=0x00471C10",
+  "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAV?$CEffectManager@VInfoEffectObject@@@@@Z=0x0046FD20",
+  "?initialize_story_471c10@BattleInfoRecordF8@th105@@QAEXPAUInfoDesignResourceSubobject@2@0PAV?$CEffectManager@VInfoEffectObject@@@@@Z=0x00471C10",
 ]
 dir32_targets = [
   "??_C@_0CB@ICILFCFK@data?1battle?1battleUpperStory?4dat@=??_C@_0CB@ICILFCFK@data?1battle?1battleUpperStory?4dat@",
@@ -9547,7 +9547,7 @@ notes = "TH105 1.06a battle-info record core. Current callers and runtime access
 
 [[units.cross-v106a-battle-info-record-core.functions]]
 address = "0x0046FD20"
-symbol_base = "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z"
+symbol_base = "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAV?$CEffectManager@VInfoEffectObject@@@@@Z"
 rel32_targets = [
   "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
   "__ftol2_sse=0x0068A1A0",
@@ -9555,7 +9555,7 @@ rel32_targets = [
 
 [[units.cross-v106a-battle-info-record-core.functions]]
 address = "0x00471C10"
-symbol_base = "?initialize_story_471c10@BattleInfoRecordF8@th105@@QAEXPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z"
+symbol_base = "?initialize_story_471c10@BattleInfoRecordF8@th105@@QAEXPAUInfoDesignResourceSubobject@2@0PAV?$CEffectManager@VInfoEffectObject@@@@@Z"
 rel32_targets = [
   "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
 ]
@@ -11490,7 +11490,7 @@ address = "0x0046EB90"
 symbol_base = "?initialize_normal_runtime_46eb90@CInfoManagerNormalLifecycle@th105@@QAEXXZ"
 rel32_targets = [
   "?load_combo_resources_46a8c0@InfoComboResourceSubobject@th105@@QAEHXZ=0x0046A8C0",
-  "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAUInfoEffectManagerSubobject@2@@Z=0x0046FD20",
+  "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAV?$CEffectManager@VInfoEffectObject@@@@@Z=0x0046FD20",
   "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
   "??2@YAPAXI@Z=0x00689DCB",
   "??3@YAXPAX@Z=0x006898EA",
