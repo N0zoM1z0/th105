@@ -41,7 +41,7 @@ void CProfileDeckEdit::render()
             pending = count->second;
             if (pending != 0) {
                 sprite.set_texture(
-                    reinterpret_cast<unsigned>(reinterpret_cast<SpellDataOwner *>(&resources_398)->find_local_then_common_spell_record(count->first)->optional_resource_44),
+                    reinterpret_cast<SpellDataOwner *>(&resources_398)->find_local_then_common_spell_record(count->first)->card_texture_handle_44,
                     0, 0, g_spell_texture_load_state, g_spell_texture_upload_state);
                 sprite.scale_x_88 = 0.5f;
                 sprite.scale_y_8c = 0.5f;
@@ -75,7 +75,7 @@ void CProfileDeckEdit::render()
             int width = static_cast<int>(DECK_AT(cursor_3e4.window_start + row)->second.name_00.size()) * 8 < 200
                 ? static_cast<int>(DECK_AT(cursor_3e4.window_start + row)->second.name_00.size()) * 8 : 200;
             sprite.set_texture(
-                reinterpret_cast<unsigned>(DECK_AT(cursor_3e4.window_start + row)->second.batch_resource_40),
+                DECK_AT(cursor_3e4.window_start + row)->second.batch_texture_handle_40,
                 0, DECK_AT(cursor_3e4.window_start + row)->second.value_48, width, 16);
         } else {
             sprite.set_texture(texture_258, 0, 160, 160, 16);
@@ -105,10 +105,10 @@ void CProfileDeckEdit::render()
         int width = static_cast<int>(DECK_INDEX(cursor_3e4.selection)->second.name_00.size()) * 8 < 272
             ? static_cast<int>(DECK_AT(cursor_3e4.selection)->second.name_00.size()) * 8 : 272;
         sprite.set_texture(
-            reinterpret_cast<unsigned>(DECK_INDEX(cursor_3e4.selection)->second.batch_resource_40),
+            DECK_INDEX(cursor_3e4.selection)->second.batch_texture_handle_40,
             0, DECK_INDEX(cursor_3e4.selection)->second.value_48, width, 16);
         sprite.render(static_cast<float>(grid_x + 56.0), static_cast<float>(grid_y + 4.0));
-        if (DECK_INDEX(cursor_3e4.selection)->second.optional_resource_44 != 0)
+        if (DECK_INDEX(cursor_3e4.selection)->second.card_texture_handle_44 != 0)
             sprite_1c4.render(grid_x, grid_y);
         sprite_98.render(grid_x, grid_y);
     }

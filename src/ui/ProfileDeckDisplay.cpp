@@ -38,9 +38,9 @@ void ProfileDeckDisplayView::show_record(SpellRecordView *record)
     }
 
     g_title_resource_manager.release_title_resource_handle(texture_94);
-    if (reinterpret_cast<unsigned>(record->optional_resource_44) != 0) {
+    if (record->card_texture_handle_44 != 0) {
         sprite_1c4.set_texture_options(
-            reinterpret_cast<unsigned>(record->optional_resource_44),
+            record->card_texture_handle_44,
             0,
             0,
             g_spell_texture_load_state,

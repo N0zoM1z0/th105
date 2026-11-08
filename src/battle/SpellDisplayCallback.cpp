@@ -28,7 +28,7 @@ void PlayerIndexedCallbackView::invoke_indexed_record(
 
     if (!alternate_alignment_132) {
         display_sprite_098.set_texture_options(
-            reinterpret_cast<unsigned>(record->batch_resource_40),
+            record->batch_texture_handle_40,
             0,
             record->value_48,
             width,
@@ -37,7 +37,7 @@ void PlayerIndexedCallbackView::invoke_indexed_record(
             9);
     } else {
         display_sprite_098.set_texture_options(
-            reinterpret_cast<unsigned>(record->batch_resource_40),
+            record->batch_texture_handle_40,
             0,
             record->value_48,
             width,

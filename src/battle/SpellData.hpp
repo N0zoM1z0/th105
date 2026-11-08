@@ -32,8 +32,8 @@ struct SpellRecordView {
     String28 description_20;
     SpellRecordCopyShort value_3c;
     short value_3e;
-    void *batch_resource_40;
-    void *optional_resource_44;
+    unsigned batch_texture_handle_40;
+    unsigned card_texture_handle_44;
     int value_48;
 
     SpellRecordView() {}

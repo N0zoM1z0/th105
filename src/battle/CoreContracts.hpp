@@ -110,7 +110,7 @@ typedef char CheckFighterSequenceOffset[
 typedef char CheckFighterCategoryOffset[
     offsetof(Fighter, state_72c) == 0x72c ? 1 : -1];
 typedef char CheckSpellRecordResourceOffset[
-    offsetof(SpellRecordView, optional_resource_44) == 0x44 ? 1 : -1];
+    offsetof(SpellRecordView, card_texture_handle_44) == 0x44 ? 1 : -1];
 typedef char CheckLoadedSpellIdsOffset[
     offsetof(SpellDataOwner, loaded_spell_ids_20) == 0x20 ? 1 : -1];
 typedef char CheckSelectionIdsOffset[
