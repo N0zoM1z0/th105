@@ -5138,7 +5138,7 @@ address = "0x00434DE0"
 symbol_base = "set_stage_music_433860"
 rel32_targets = [
   "?publish_stage@BattleObjectManager@th105@@QAEXHH_N@Z=0x00467850",
-  "?publish_stage_state@EventEffectStateView@th105@@QAEHH@Z=0x00469D50",
+  "?publish_stage_state_469d50@EventEffectStateData@th105@@QAEXC@Z=0x00469D50",
 ]
 dir32_targets = [
   "?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",

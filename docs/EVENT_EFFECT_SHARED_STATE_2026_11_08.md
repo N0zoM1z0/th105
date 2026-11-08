@@ -13,3 +13,8 @@ VC8 profile. The resource initializer's existing nonexact candidate hash is
 unchanged. The narrower caller interface remains separate: its stage-publish
 return/signature and emitter call need independent ABI reconciliation before
 it can be merged safely.
+
+The stage/music wrapper at `0x434DE0` now calls the shared state's actual
+`void(signed char)` stage-publish interface. VC8 still emits the exact original
+40-byte wrapper, including its full-width argument push. The separate event-ID
+setter remains on its earlier return-bearing view pending caller-return analysis.
