@@ -28,7 +28,6 @@ public:
     int spawn_owned_object_via_manager(int object_id, float x, float y, int direction, int variant, int parameters, int count);
     void pop_sequence();
     int pack_input();
-    int reset_input();
     unsigned char gate493ac0();
     unsigned char gate493b40();
     unsigned char gate493c50();

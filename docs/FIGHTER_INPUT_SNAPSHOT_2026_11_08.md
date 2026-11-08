@@ -11,3 +11,9 @@ Reimu-specific method declaration. The complete 57-byte reset and Reimu's
 6,952-byte callable plus owned data compared exactly against Japanese TH10.5
 1.06a with the pinned VC8 profile. The signed interpretation of the timer in
 scripted input remains distinct from the reset's byte store.
+
+The same reset receiver is now used by the other fourteen roster input
+policies. Thirteen of those complete policy payloads remained exact; Marisa's
+previously nonexact candidate retained its original compared hash and first
+mismatch. This is a shared call target, not a claim that the character input
+policies themselves are identical.

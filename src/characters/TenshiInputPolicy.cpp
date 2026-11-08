@@ -1,4 +1,5 @@
 #include "characters/TenshiInputPolicy.hpp"
+#include "battle/FighterInputSnapshotResetRuntime.hpp"
 #include <cmath>
 namespace th105 {
 #define FIELD(type, offset) (*reinterpret_cast<type *>(reinterpret_cast<unsigned char *>(this) + offset))
@@ -16,7 +17,7 @@ namespace th105 {
 #define UP (I(0x6B8) > 0 || I(0x6D8) > 0)
 #define FORWARD (I(0x6B4) * C(0x104) > 0 || I(0x6D4) * C(0x104) > 0)
 #define DISPATCH(key, flag) { B(flag) = 1; pack_input(); if (window >= 10) B(0x491) |= 8; set_action(key); return; }
-#define ACTION(key) { set_action(key); reset_input(); return; }
+#define ACTION(key) { set_action(key); reinterpret_cast<FighterInputSnapshotResetRuntimeView *>(this)->reset_input_snapshot_4633a0(); return; }
 void TenshiInputPolicyView::dispatch_input()
 {
     short const window = *reinterpret_cast<short *>(FIELD(unsigned char *, 0x15C) + 0x12);

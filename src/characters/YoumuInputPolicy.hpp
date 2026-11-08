@@ -27,7 +27,6 @@ public:
     virtual void dispatch_input();
     void pop_sequence();
     int pack_input();
-    int reset_input();
     unsigned char gate493ac0();
     unsigned char gate493b40();
     unsigned char gate493c50();
