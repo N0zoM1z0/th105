@@ -82,8 +82,8 @@ struct CollisionGeometryObject {
     ShapeWords *prepared_group_b_shape_ptrs_318[5];
     LocalAabb *prepared_primary_ptr_32c;
 
-    void transform_box_from_local_frame(int *record, int *out_box);
-    void transform_box_from_local_frame_flipped_y(int *record, int *out_box);
+    void transform_box_from_local_frame(LocalAabb *record, LocalAabb *out_box);
+    void transform_box_from_local_frame_flipped_y(LocalAabb *record, LocalAabb *out_box);
     void build_oriented_box_and_descriptor(
         int *record, short angle, short pivot_x, short pivot_y,
         int *out_box, int *out_descriptor);
@@ -112,50 +112,52 @@ typedef char CollisionGeometryObject_shape_pointers_offset[
 namespace {
 
 void CollisionGeometryObject::transform_box_from_local_frame(
-    int *record,
-    int *out_box)
+    LocalAabb *record,
+    LocalAabb *out_box)
 {
     if (facing_104 == 1) {
-        out_box[0] =
-            static_cast<int>(static_cast<float>(ceil(x_ec))) + record[0];
-        out_box[2] =
-            static_cast<int>(static_cast<float>(ceil(x_ec))) + record[2];
+        out_box->left =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) + record->left;
+        out_box->right =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) + record->right;
     } else {
-        out_box[0] =
-            static_cast<int>(static_cast<float>(ceil(x_ec))) - record[2];
-        out_box[2] =
-            static_cast<int>(static_cast<float>(ceil(x_ec))) - record[0];
+        out_box->left =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) - record->right;
+        out_box->right =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) - record->left;
     }
-    out_box[1] =
-        record[1] - static_cast<int>(static_cast<float>(ceil(y_f0)));
-    out_box[3] =
-        record[3] - static_cast<int>(static_cast<float>(ceil(y_f0)));
+    out_box->top =
+        record->top - static_cast<int>(static_cast<float>(ceil(y_f0)));
+    out_box->bottom =
+        record->bottom - static_cast<int>(static_cast<float>(ceil(y_f0)));
 }
 
+// For a reversed facing, this variant also swaps the Y endpoints; it does
+// not normalize the result to a conventional min/max AABB.
 void CollisionGeometryObject::transform_box_from_local_frame_flipped_y(
-    int *record,
-    int *out_box)
+    LocalAabb *record,
+    LocalAabb *out_box)
 {
     if (facing_104 == 1) {
-        out_box[0] =
-            static_cast<int>(static_cast<float>(ceil(x_ec))) + record[0];
-        out_box[2] =
-            static_cast<int>(static_cast<float>(ceil(x_ec))) + record[2];
-        out_box[1] =
-            record[1] - static_cast<int>(static_cast<float>(ceil(y_f0)));
-        out_box[3] =
-            record[3] - static_cast<int>(static_cast<float>(ceil(y_f0)));
+        out_box->left =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) + record->left;
+        out_box->right =
+            static_cast<int>(static_cast<float>(ceil(x_ec))) + record->right;
+        out_box->top =
+            record->top - static_cast<int>(static_cast<float>(ceil(y_f0)));
+        out_box->bottom =
+            record->bottom - static_cast<int>(static_cast<float>(ceil(y_f0)));
         return;
     }
 
-    out_box[0] =
-        static_cast<int>(static_cast<float>(ceil(x_ec))) - record[2];
-    out_box[2] =
-        static_cast<int>(static_cast<float>(ceil(x_ec))) - record[0];
-    out_box[1] =
-        record[3] - static_cast<int>(static_cast<float>(ceil(y_f0)));
-    out_box[3] =
-        record[1] - static_cast<int>(static_cast<float>(ceil(y_f0)));
+    out_box->left =
+        static_cast<int>(static_cast<float>(ceil(x_ec))) - record->right;
+    out_box->right =
+        static_cast<int>(static_cast<float>(ceil(x_ec))) - record->left;
+    out_box->top =
+        record->bottom - static_cast<int>(static_cast<float>(ceil(y_f0)));
+    out_box->bottom =
+        record->top - static_cast<int>(static_cast<float>(ceil(y_f0)));
 }
 
 void CollisionGeometryObject::build_oriented_box_and_descriptor(
@@ -313,9 +315,8 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
          ++index) {
         if (self->live_frame_158->group_a_descriptors_78[index] != 0) {
             self->transform_box_from_local_frame_flipped_y(
-                reinterpret_cast<int *>(
-                    &self->live_frame_158->group_a_68.at(index)),
-                reinterpret_cast<int *>(&self->prepared_group_a_204[index]));
+                &self->live_frame_158->group_a_68.at(index),
+                &self->prepared_group_a_204[index]);
             if (self->facing_104 > 0) {
                 *self->prepared_group_a_shape_ptrs_304[index] =
                     *self->live_frame_158->group_a_descriptors_78[index];
@@ -339,8 +340,8 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
                 reinterpret_cast<int *>(&local_box),
                 reinterpret_cast<int *>(&local_shape));
             self->transform_box_from_local_frame_flipped_y(
-                reinterpret_cast<int *>(&local_box),
-                reinterpret_cast<int *>(&self->prepared_group_a_204[index]));
+                &local_box,
+                &self->prepared_group_a_204[index]);
             if (self->facing_104 > 0) {
                 *self->prepared_group_a_shape_ptrs_304[index] = local_shape;
             } else {
@@ -351,9 +352,8 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
             }
         } else {
             self->transform_box_from_local_frame(
-                reinterpret_cast<int *>(
-                    &self->live_frame_158->group_a_68.at(index)),
-                reinterpret_cast<int *>(&self->prepared_group_a_204[index]));
+                &self->live_frame_158->group_a_68.at(index),
+                &self->prepared_group_a_204[index]);
         }
     }
 
@@ -370,8 +370,8 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
                 reinterpret_cast<int *>(&local_box),
                 reinterpret_cast<int *>(&local_shape));
             self->transform_box_from_local_frame_flipped_y(
-                reinterpret_cast<int *>(&local_box),
-                reinterpret_cast<int *>(&self->prepared_group_b_1b4[index]));
+                &local_box,
+                &self->prepared_group_b_1b4[index]);
             if (self->facing_104 > 0) {
                 *self->prepared_group_b_shape_ptrs_318[index] = local_shape;
             } else {
@@ -390,9 +390,8 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
              index < static_cast<int>(self->live_frame_158->group_b_58.size());
              ++index) {
             self->transform_box_from_local_frame(
-                reinterpret_cast<int *>(
-                    &self->live_frame_158->group_b_58.at(index)),
-                reinterpret_cast<int *>(&self->prepared_group_b_1b4[index]));
+                &self->live_frame_158->group_b_58.at(index),
+                &self->prepared_group_b_1b4[index]);
         }
     }
 
@@ -411,8 +410,8 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
                 reinterpret_cast<int *>(&local_box),
                 reinterpret_cast<int *>(&local_shape));
             self->transform_box_from_local_frame_flipped_y(
-                reinterpret_cast<int *>(&local_box),
-                reinterpret_cast<int *>(&self->prepared_group_a_204[a_count]));
+                &local_box,
+                &self->prepared_group_a_204[a_count]);
             if (self->facing_104 > 0) {
                 *self->prepared_group_a_shape_ptrs_304[a_count] = local_shape;
             } else {
@@ -424,8 +423,8 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
         } else {
             self->prepared_group_a_shape_ptrs_304[a_count] = 0;
             self->transform_box_from_local_frame(
-                reinterpret_cast<int *>(self->extension_194),
-                reinterpret_cast<int *>(&self->prepared_group_a_204[a_count]));
+                &self->extension_194->box,
+                &self->prepared_group_a_204[a_count]);
         }
         if ((self->live_frame_158->flags_4c & 0x1000000) != 0) {
             int b_count = static_cast<int>(self->live_frame_158->group_b_58.size());
@@ -439,8 +438,8 @@ void __fastcall prepare_collision_geometry_from_frame(void *raw_object)
     if (self->live_frame_158->primary_54 != 0) {
         self->prepared_primary_ptr_32c = &self->prepared_primary_2f4;
         self->transform_box_from_local_frame(
-            reinterpret_cast<int *>(self->live_frame_158->primary_54),
-            reinterpret_cast<int *>(self->prepared_primary_ptr_32c));
+            self->live_frame_158->primary_54,
+            self->prepared_primary_ptr_32c);
     } else {
         self->prepared_primary_ptr_32c = 0;
     }

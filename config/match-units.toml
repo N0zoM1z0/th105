@@ -19497,9 +19497,9 @@ rel32_targets = [
   "__ftol2_sse=0x0068A1A0",
   "__invalid_parameter_noinfo=0x0068A143",
   "?_Xran@?$vector@ULocalAabb@?A0xb3abb375@th105@@V?$allocator@ULocalAabb@?A0xb3abb375@th105@@@std@@@std@@KAXXZ=0x0040C350",
-  "?transform_box_from_local_frame_flipped_y@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAH0@Z=0x0045B8B0",
+  "?transform_box_from_local_frame_flipped_y@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAULocalAabb@23@0@Z=0x0045B8B0",
   "?build_oriented_box_and_descriptor@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAHFFF00@Z=0x0045BA70",
-  "?transform_box_from_local_frame@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAH0@Z=0x0045B760",
+  "?transform_box_from_local_frame@CollisionGeometryObject@?A0xb3abb375@th105@@QAEXPAULocalAabb@23@0@Z=0x0045B760",
 ]
 
 [units.gpt-web-battle-collision-phase]
