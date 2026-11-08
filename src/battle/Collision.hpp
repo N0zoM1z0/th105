@@ -294,6 +294,7 @@ struct Fighter {
     unsigned char consume_spell_sequence_entry();
     void prepare_next_spell_sequence_entry();
     void set_pending_gate_48a(short value);
+    void update_cpu_input_4633e0();
     Fighter *initialize_fighter_base_from_setup(const MatchSetup::Side *setup);
     void initialize_fighter_battle_state();
     void load_pat_data_and_palette_resources();

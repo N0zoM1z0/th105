@@ -34,3 +34,12 @@ Roster button checks also read the saved buttons from the shared snapshot.
 They retain the original unsigned comparison at each use, even though the
 snapshot's storage uses signed 32-bit values. The fourteen exact policies and
 the existing Marisa candidate retained their previous comparison results.
+
+CPU/scripted input uses the same Fighter and BattleInputGate objects. The gate
+holds vertical and horizontal CPU modes at `+0x18/+0x1C`; the CPU update at
+`0x4633E0` maps them to Fighter's live directions and consults the existing
+X-boundary classifier for horizontal modes 0 and 2. The separate pointer-only
+CPU receiver and gate aliases have been removed. The CPU update and scripted
+input dispatcher remain exact, along with the checked continuity, round setup
+and common state-window consumers. The general hit resolver retains its prior
+nonexact hash.

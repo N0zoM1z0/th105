@@ -15381,10 +15381,10 @@ notes = "Current Fighter CPU/scripted input selector. Shared input policy +0x18/
 
 [[units.gpt-web-fighter-cpu-input-runtime.functions]]
 address = "0x004633E0"
-symbol_base = "?update_cpu_input_4633e0@FighterCpuInputRuntimeView@th105@@QAEXXZ"
+symbol_base = "?update_cpu_input_4633e0@Fighter@th105@@QAEXXZ"
 rel32_targets = ["?classify_fighter_x_boundary@Fighter@th105@@QAECXZ=0x00435910"]
 dir32_targets = [
-  "?g_battle_input_gate_cpu_runtime@th105@@3PAUFighterCpuInputPolicyView@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
+  "?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A",
   "__real@441d8000=__real@441d8000",
   "__real@44228000=__real@44228000",
 ]
@@ -29928,7 +29928,7 @@ symbol_base = "?update@ScriptedInputView@th105@@QAEXXZ"
 rel32_targets = [
  "?update_input_4631c0@FighterInputRuntimeView@th105@@QAEXXZ=0x004631C0",
  "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
- "?update_cpu_input_4633e0@FighterCpuInputRuntimeView@th105@@QAEXXZ=0x004633E0",
+ "?update_cpu_input_4633e0@Fighter@th105@@QAEXXZ=0x004633E0",
  "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
 ]
 dir32_targets = ["?g_match_identifier@th105@@3HA=?g_match_identifier@th105@@3HA"]

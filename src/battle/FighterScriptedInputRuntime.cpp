@@ -1,6 +1,6 @@
 #include "FighterInputRuntime.hpp"
 #include "FighterInputSnapshotResetRuntime.hpp"
-#include "FighterCpuInputRuntime.hpp"
+#include "Collision.hpp"
 #include <deque>
 #include <stddef.h>
 namespace th105 {
@@ -85,7 +85,7 @@ void ScriptedInputView::update()
     }
     switch(mode_72c) {
     case 2: alternate_policy();break;
-    case 3: reinterpret_cast<FighterCpuInputRuntimeView *>(this)->update_cpu_input_4633e0();break;
+    case 3: reinterpret_cast<Fighter *>(this)->update_cpu_input_4633e0();break;
     default: cpu_policy();break;
     }
     switch(g_match_identifier) {

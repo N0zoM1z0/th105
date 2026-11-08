@@ -46,7 +46,10 @@ struct FighterControlInput {
 struct BattleInputGate {
     FighterControlInput *first_control_input_000;
     FighterControlInput *second_control_input_004;
-    unsigned char unknown_008[0x60];
+    unsigned char unknown_008[0x10];
+    int cpu_vertical_mode_18;
+    int cpu_horizontal_mode_1c;
+    unsigned char unknown_020[0x48];
     unsigned short first_control_low_bits_068;
     unsigned char unknown_06a[0x66];
     unsigned short second_control_low_bits_0d0;
