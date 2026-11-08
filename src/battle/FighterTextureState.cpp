@@ -1,12 +1,8 @@
 #include <stddef.h>
 #include "battle/BattleObjectManagerRuntime.hpp"
+#include "battle/SpellData.hpp"
 
 namespace th105 {
-
-struct FighterTextureHandleDequeView {
-    unsigned char storage_00[0x14];
-    int *entry_at_checked(int index);
-};
 
 struct FighterTextureStateView {
     void publish_texture_state(signed char texture_index, short duration);
@@ -16,7 +12,7 @@ struct FighterTextureStateView {
     unsigned char unknown_174[0x1c0];
     signed char player_index_334;
     unsigned char unknown_335[0x357];
-    FighterTextureHandleDequeView texture_handles_68c;
+    DwordDeque4 texture_handles_68c;
     short texture_state_duration_6a0;
     signed char texture_index_6a2;
 };

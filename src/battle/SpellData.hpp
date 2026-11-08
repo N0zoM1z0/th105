@@ -110,6 +110,7 @@ struct DwordDeque4 {
     unsigned live_count_10;
 
     void push_back(const unsigned *value);
+    int *entry_at_checked(int index);
     unsigned &back_checked();
     void clear_storage();
 };

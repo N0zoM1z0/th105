@@ -17212,7 +17212,7 @@ notes = "Current TH105 1.06a Fighter texture-state publisher. Fighter +0x68C is 
 address = "0x0045F560"
 symbol_base = "?publish_texture_state@FighterTextureStateView@th105@@QAEXCF@Z"
 rel32_targets = [
-  "?entry_at_checked@FighterTextureHandleDequeView@th105@@QAEPAHH@Z=0x0042D1B0",
+  "?entry_at_checked@DwordDeque4@th105@@QAEPAHH@Z=0x0042D1B0",
 ]
 dir32_targets = [
   "?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A=?g_battle_object_manager@th105@@3PAUBattleObjectManager@1@A",
