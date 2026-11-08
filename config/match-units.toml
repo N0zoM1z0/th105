@@ -4502,7 +4502,7 @@ rel32_targets = [
   "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
   "?zero_velocity_acceleration@AliceEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@AliceEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4682,7 +4682,7 @@ rel32_targets = [
   "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
   "?zero_velocity_acceleration@SakuyaEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@SakuyaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4706,7 +4706,7 @@ rel32_targets = [
   "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
   "?zero_velocity_acceleration@ReimuEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@ReimuEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
   "?set_shared_second_target@ReimuEventView@th105@@QAEDDM@Z=0x00476AD0",
 ]
 dir32_targets = [
@@ -4731,7 +4731,7 @@ rel32_targets = [
   "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
   "?zero_velocity_acceleration@MarisaEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@MarisaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4755,7 +4755,7 @@ rel32_targets = [
   "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
   "?zero_velocity_acceleration@PatchouliEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@PatchouliEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4779,7 +4779,7 @@ rel32_targets = [
   "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
   "?zero_velocity_acceleration@YuyukoEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@YuyukoEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4804,7 +4804,7 @@ rel32_targets = [
   "?set_shared_second_target@KomachiEventView@th105@@QAEDDM@Z=0x00476AD0",
   "?zero_velocity_acceleration@KomachiEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@KomachiEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4829,7 +4829,7 @@ rel32_targets = [
   "?set_shared_second_target@RemiliaEventView@th105@@QAEDDM@Z=0x00476AD0",
   "?zero_velocity_acceleration@RemiliaEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@RemiliaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4853,7 +4853,7 @@ rel32_targets = [
   "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
   "?zero_velocity_acceleration@YoumuEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@YoumuEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4877,7 +4877,7 @@ rel32_targets = [
   "?synchronize_targets@SharedEventState@th105@@QAEHXZ=0x004272F0",
   "?zero_velocity_acceleration@UdongeEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@UdongeEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4902,7 +4902,7 @@ rel32_targets = [
   "?set_shared_second_target@SuikaEventView@th105@@QAEDDM@Z=0x00476AD0",
   "?zero_velocity_acceleration@SuikaEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@SuikaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4927,7 +4927,7 @@ rel32_targets = [
   "?set_shared_second_target@AyaEventView@th105@@QAEDDM@Z=0x00476AD0",
   "?zero_velocity_acceleration@AyaEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@AyaEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -4952,7 +4952,7 @@ rel32_targets = [
   "?set_shared_second_target@TenshiEventView@th105@@QAEDDM@Z=0x00476AD0",
   "?zero_velocity_acceleration@TenshiEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@TenshiEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
   "?set_shared_scalar@TenshiEventView@th105@@QAEHM@Z=0x004359D0",
 ]
 dir32_targets = [
@@ -4979,7 +4979,7 @@ rel32_targets = [
   "?set_shared_second_target@IkuEventView@th105@@QAEDDM@Z=0x00476AD0",
   "?zero_velocity_acceleration@IkuEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@IkuEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
   "?set_global_pair@EventSubobject130@th105@@QAEPAXMM@Z=0x00434E10",
 ]
 dir32_targets = [
@@ -5008,7 +5008,7 @@ symbol_base = "trigger_global_effect"
 rel32_targets = [
   "?lookup_event_effect_record@th105@@YAHH@Z=0x0043C150",
   "?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0",
-  "?set_event_id@EventEffectStateView@th105@@QAEHH@Z=0x00469DF0",
+  "?set_event_id@EventEffectStateView@th105@@QAEXH@Z=0x00469DF0",
 ]
 dir32_targets = [
   "?g_event_effect_id@th105@@3HA=?g_event_effect_id@th105@@3HA",
@@ -5156,7 +5156,7 @@ notes = "TH105 1.06a shared event/background state at receiver 0x006FBCAC. Exact
 [[units.cross-v106a-event-effect-state.functions]]
 address = "0x00469DF0"
 symbol_base = "set_event_id"
-rel32_targets = ["?publish_stage_state@EventEffectStateView@th105@@QAEHH@Z=0x00469D50"]
+rel32_targets = ["?publish_stage_state_469d50@EventEffectStateData@th105@@QAEXC@Z=0x00469D50"]
 dir32_targets = ["?g_battle_transition_mode@th105@@3EA=?g_battle_transition_mode@th105@@3EA"]
 
 [[units.cross-v106a-event-effect-state.functions]]
@@ -5242,7 +5242,7 @@ notes = "TH105 1.06a pair/event mode transition. Exact battle-pair initializatio
 address = "0x00435CE0"
 symbol_base = "select_pair_mode_434780"
 rel32_targets = [
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
   "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
   "?lookup_event_effect_record@th105@@YAHH@Z=0x0043C150",
   "?emit_effect@InfoEffectEmitterView@th105@@QAEHHMMHH@Z=0x0046E9D0",
@@ -15319,7 +15319,7 @@ rel32_targets = [
   "?set_target_20_enabled_2c@SharedEventStateSystemView@th105@@QAEEEM@Z=0x00427290",
   "?set_shared_second_target_476ad0@FighterSystemCommandView@th105@@QAEEEM@Z=0x00476AD0",
   "?set_target_28_enabled_2e@SharedEventStateSystemView@th105@@QAEEEM@Z=0x004272D0",
-  "?trigger_global_effect@FighterEvent130SystemView@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@FighterEvent130SystemView@th105@@QAEXH@Z=0x00434E90",
   "?start_scene_fade_in@th105@@YAXIH@Z=0x0043B280",
   "?start_scene_fade_out@th105@@YAXIH@Z=0x0043B240",
   "?set_global_pair@FighterEvent130SystemView@th105@@QAEXMM@Z=0x00434E10",
@@ -17903,7 +17903,7 @@ rel32_targets = [
   "?set_target_24_enabled_2d@SharedEventState@th105@@QAEDDM@Z=0x004272B0",
   "?zero_velocity_acceleration@YukariEventView@th105@@QAEXXZ=0x0045AF40",
   "?spawn_owned_object_via_manager@YukariEventView@th105@@QAEHHMMHHHH@Z=0x00465190",
-  "?trigger_global_effect@EventSubobject130@th105@@QAEHH@Z=0x00434E90",
+  "?trigger_global_effect@EventSubobject130@th105@@QAEXH@Z=0x00434E90",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
@@ -23544,7 +23544,7 @@ address = "0x0063D3E0"
 symbol_base = "?dispatch_action_state_vslot28@TenshiActionStateView@th105@@QAEXXZ"
 rel32_targets = [
     "?at@TenshiCardDeque@th105@@QAEPAFI@Z=0x004399C0",
-    "?trigger@TenshiEvent130@th105@@QAEHH@Z=0x00434E90",
+    "?trigger@TenshiEvent130@th105@@QAEXH@Z=0x00434E90",
     "?spawn@TenshiActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
     "?tenshi_bgm_volume@th105@@YAXHH@Z=0x0043B170",
     "?landing@TenshiActionStateView@th105@@QAEEXZ=0x00473DD0",

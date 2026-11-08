@@ -12,7 +12,7 @@ void __cdecl start_scene_fade_out(unsigned color, int duration);
 void __cdecl play_bgm(const char *path);
 
 struct FighterEvent130SystemView {
-    int trigger_global_effect(int value);
+    void trigger_global_effect(int value);
     void set_global_pair(float first, float second);
     void set_stage_music(int stage, int value);
 };

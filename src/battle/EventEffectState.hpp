@@ -23,8 +23,7 @@ struct EventEffectStateView {
     unsigned char reserved_3c[0x0c];
     EffectEmitterSubobject emitter_48;
 
-    int publish_stage_state(int state);
-    int set_event_id(int event_id);
+    void set_event_id(int event_id);
     int emit_effect(int effect_id, float x, float y, int flag_a, int flag_b);
     void dispatch_emitter_state(signed char layer);
     void render_background_effects();

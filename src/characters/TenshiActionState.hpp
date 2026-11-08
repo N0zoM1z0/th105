@@ -21,7 +21,7 @@ extern short g_tenshi_weather_counter;
 extern unsigned char g_tenshi_weather_selector;
 struct TenshiCardDeque { short *at(unsigned); };
 struct TenshiEvent130 {
-    int trigger(int);
+    void trigger(int);
     void *pair(float,float);
     void music(int,int);
     void pair_mode(int,unsigned char);

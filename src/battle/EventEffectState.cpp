@@ -1,16 +1,18 @@
 #include "EventEffectState.hpp"
+#include "EventEffectStateData.hpp"
 #include "BattleBackgroundLayout.hpp"
 #include "EffectSprite.hpp"
 #include "engine/RenderModeManager.hpp"
 
 namespace th105 {
 
-int EventEffectStateView::set_event_id(int event_id)
+void EventEffectStateView::set_event_id(int event_id)
 {
-    if (current_event_id == event_id)
-        return event_id;
-    current_event_id = event_id;
-    return publish_stage_state(g_battle_transition_mode);
+    if (current_event_id != event_id) {
+        current_event_id = event_id;
+        reinterpret_cast<EventEffectStateData *>(this)
+            ->publish_stage_state_469d50(static_cast<signed char>(g_battle_transition_mode));
+    }
 }
 
 int EventEffectStateView::emit_effect(
