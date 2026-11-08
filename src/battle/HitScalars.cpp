@@ -23,10 +23,7 @@ float AttackCandidate::calculate_forwarded_quantity()
                   scalar_table_index_17c]) / 10.0f) + 1.0f) * result;
     }
 
-    CollisionObjectFrame50 *frame =
-        *reinterpret_cast<CollisionObjectFrame50 **>(
-            reinterpret_cast<unsigned char *>(this) + 0x158);
-    const unsigned flags = frame->flags_50;
+    const unsigned flags = live_frame_158->flags_50;
     if ((flags & 0x1000) != 0) {
         result = source_168->source_modifier_4c8 * result;
     }

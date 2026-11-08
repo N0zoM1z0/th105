@@ -63,7 +63,9 @@ struct FighterFrame {
 struct AttackCandidate {
     unsigned char unknown_000[0x104];
     unsigned char facing_104;
-    unsigned char unknown_105[0x63];
+    unsigned char unknown_105[0x53];
+    PatRecord88 *live_frame_158;
+    unsigned char unknown_15c[0x0c];
     Fighter *source_168;
     Fighter *owner_16c;
     Fighter *related_fighter_170;

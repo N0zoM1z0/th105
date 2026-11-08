@@ -99,6 +99,10 @@ typedef char CheckSpellTreeIteratorSize[
 typedef char CheckWorldAabbSize[
     sizeof(WorldAabb) == 0x10 ? 1 : -1];
 
+typedef char CheckCandidateLiveFrameOffset[
+    offsetof(AttackCandidate, live_frame_158) == 0x158 ? 1 : -1];
+typedef char CheckCandidatePreparedFrameOffset[
+    offsetof(AttackCandidate, frame_1a4) == 0x1a4 ? 1 : -1];
 typedef char CheckAttackFrameFlagsOffset[
     offsetof(AttackCandidateFrame, flags_50) == 0x50 ? 1 : -1];
 typedef char CheckFighterSequenceOffset[
