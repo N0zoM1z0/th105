@@ -2,6 +2,7 @@
 // Actual CSprite owns its initializing handle through CSpriteBase.
 // Full roster subtype/opaque cleanup bodies are not claimed.
 #include "battle/AttackObject.hpp"
+#include "battle/CharacterWaveHandle.hpp"
 #include "battle/GameMode.hpp"
 #include "battle/SpellData.hpp"
 #include "battle/PatResourceContracts.hpp"
@@ -79,11 +80,6 @@ struct SpriteHandleResource98 {
 typedef char SpriteHandleResource98_size[sizeof(SpriteHandleResource98) == 0x98 ? 1 : -1];
 
 typedef std::map<int, PatGroup *> ActionTree0c;
-
-struct Element4 {
-    unsigned value_00;
-    Element4() : value_00(0) {}
-};
 
 class CharacterConstructorView : public ::AttackObject {
 public:
@@ -164,8 +160,8 @@ CharacterConstructorView::CharacterConstructorView(const MatchSetup::Side *setup
     std::vector<DesignTextureHandle> *triplet = new std::vector<DesignTextureHandle>;
     *reinterpret_cast<std::vector<DesignTextureHandle> **>(reinterpret_cast<unsigned char *>(this) + 0x130) = triplet;
 
-    Element4 *elements = new Element4[64];
-    *reinterpret_cast<Element4 **>(reinterpret_cast<unsigned char *>(this) + 0x164) = elements;
+    CharacterWaveHandle4 *elements = new CharacterWaveHandle4[64];
+    *reinterpret_cast<CharacterWaveHandle4 **>(reinterpret_cast<unsigned char *>(this) + 0x164) = elements;
 
     transition_link_6b0 = 0;
 
