@@ -1223,3 +1223,11 @@ the original unordered -1 path. Full fresh comparisons isolate the changes
 to two facing selections; all other section bytes and 975 relocations remain
 unchanged. The complete root remains nonexact. Pending input work is preserved.
 See `YUKARI_OBJECT_UPDATE_2026_10_25.md`.
+
+## November 9: AliceObject orbit target precision
+
+Two phase-0 orbit target coordinates now round to float before distance and
+aim calculations, matching native 834/855 paths. Finite-coordinate witnesses
+show the prior difference. Fresh full comparison replays all 1,454 relocations;
+131 other non-debug sections and switch/call inventories are unchanged.
+The full root remains nonexact. See `ALICE_OBJECT_UPDATE_2026_10_28.md`.

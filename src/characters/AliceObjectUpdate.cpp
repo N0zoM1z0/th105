@@ -493,9 +493,9 @@ case 834: {
  {
     void *owner=OWNER;short action=FIELD(owner,short,0x13c);if(action>49 && action<150 && S(0x13e)<=3) {select_sequence(4);F(0xf4)=0.0f;F(0xf8)=0.0f;return;}
     if(S(0x13e)==0) {
-        double orbitX=lookup_orientation_cosine_quantized_abs(static_cast<float>(static_cast<double>(3*FIELD(owner,short,0x7ac))+PARAM[2]*120.0));owner=OWNER;double desiredX=orbitX*20.0+static_cast<double>(75*FIELD(owner,signed char,0x104))+FIELD(owner,float,0xec);
+        double orbitX=lookup_orientation_cosine_quantized_abs(static_cast<float>(static_cast<double>(3*FIELD(owner,short,0x7ac))+PARAM[2]*120.0));owner=OWNER;float desiredX=static_cast<float>(orbitX*20.0+static_cast<double>(75*FIELD(owner,signed char,0x104))+FIELD(owner,float,0xec));
         float desiredY=static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(static_cast<double>(3*FIELD(owner,short,0x7ac))+PARAM[2]*120.0))*80.0+(FIELD(OWNER,float,0xf0)+100.0));
-        double dx=desiredX-F(0xec);F(0x370)=static_cast<float>(dx*dx);double dy=static_cast<double>(desiredY)-F(0xf0);F(0x374)=static_cast<float>(dy*dy);F(0x378)=sqrt_float_value(F(0x374)+F(0x370));
+        double dx=static_cast<double>(desiredX)-F(0xec);F(0x370)=static_cast<float>(dx*dx);double dy=static_cast<double>(desiredY)-F(0xf0);F(0x374)=static_cast<float>(dy*dy);F(0x378)=sqrt_float_value(F(0x374)+F(0x370));
         float *parameters=PARAM;parameters[0]=-atan2_degrees(desiredY-F(0xf0),static_cast<float>(desiredX-F(0xec)));parameters[1]=static_cast<float>(F(0x378)*static_cast<double>(0.2f));if(parameters[1]>50.0f) parameters[1]=50.0f;MOTION->set_components(parameters[0],parameters[1]);C(0x104)=F(0xf4)>=0.0f?1:-1;
         if(I(0x144)>=16) {next_sequence_block();B(0x104)=FIELD(OWNER,unsigned char,0x104);F(0xec)=static_cast<float>(desiredX);F(0xf0)=desiredY;return;}F(0xec)=F(0xf4)+F(0xec);F(0xf0)=F(0xf8)+F(0xf0);
     }
@@ -727,8 +727,8 @@ case 855: {
     void *owner=OWNER;short action=FIELD(owner,short,0x13c);if(action>49 && action<150 && S(0x13e)<=3) {select_sequence(4);F(0xf4)=0.0f;F(0xf8)=0.0f;return;}
     if(S(0x13e)==0) {
         double orbitX=lookup_orientation_cosine_quantized_abs(static_cast<float>(static_cast<double>(4*FIELD(owner,short,0x7ac))+PARAM[3]*60.0));owner=OWNER;float desiredX=static_cast<float>(orbitX*(F(0x380)*0.25+20.0)+static_cast<double>(75*FIELD(owner,signed char,0x104))+FIELD(owner,float,0xec));
-        double desiredY=(lookup_orientation_sine_quantized_abs(static_cast<float>(static_cast<double>(4*FIELD(owner,short,0x7ac))+PARAM[3]*60.0))*(F(0x380)+80.0)+(FIELD(OWNER,float,0xf0)+100.0));
-        double dx=desiredX-F(0xec);F(0x370)=static_cast<float>(dx*dx);double dy=desiredY-F(0xf0);F(0x374)=static_cast<float>(dy*dy);F(0x378)=sqrt_float_value(F(0x374)+F(0x370));
+        float desiredY=static_cast<float>(lookup_orientation_sine_quantized_abs(static_cast<float>(static_cast<double>(4*FIELD(owner,short,0x7ac))+PARAM[3]*60.0))*(F(0x380)+80.0)+(FIELD(OWNER,float,0xf0)+100.0));
+        double dx=static_cast<double>(desiredX)-F(0xec);F(0x370)=static_cast<float>(dx*dx);double dy=static_cast<double>(desiredY)-F(0xf0);F(0x374)=static_cast<float>(dy*dy);F(0x378)=sqrt_float_value(F(0x374)+F(0x370));
         float *parameters=PARAM;parameters[0]=-atan2_degrees(static_cast<float>(desiredY-F(0xf0)),static_cast<float>(desiredX-F(0xec)));parameters[1]=static_cast<float>(F(0x378)*static_cast<double>(0.2f));if(parameters[1]>50.0f) parameters[1]=50.0f;MOTION->set_components(parameters[0],parameters[1]);C(0x104)=F(0xf4)>=0.0f?1:-1;
         if(I(0x144)>=16) {next_sequence_block();B(0x104)=FIELD(OWNER,unsigned char,0x104);F(0xec)=static_cast<float>(desiredX);F(0xf0)=static_cast<float>(desiredY);return;}F(0xec)=F(0xf4)+F(0xec);F(0xf0)=F(0xf8)+F(0xf0);
     }

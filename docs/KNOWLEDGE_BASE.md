@@ -3075,3 +3075,12 @@ ordered-positive X deltas. An inverted `<= 0` ternary changes the unordered
 case; use `> 0 ? 1 : -1`. Fresh complete builds isolate the correction to
 the two selections, with all 975 relocation roles unchanged. The full root
 remains nonexact. See `YUKARI_OBJECT_UPDATE_2026_10_25.md`.
+
+## AliceObject orbit target precision, 2026-11-09
+
+Action 834 desired X and action 855 desired Y are float snapshots before
+distance and aim calculations, observed at `0x502D4E` and `0x506CBD`. Keeping
+them as double changes ordinary finite-coordinate results. Two source type
+corrections restore the m32 stores/reloads. Full payload and relocation
+comparison remains nonexact; all other emitted sections are unchanged.
+See `ALICE_OBJECT_UPDATE_2026_10_28.md` for finite witnesses and evidence.

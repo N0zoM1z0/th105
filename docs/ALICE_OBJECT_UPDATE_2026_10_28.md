@@ -160,3 +160,33 @@ nonexact, section tail 62,972, compared SHA-256
 The thirteen checks of owner fields `0x6C0` and `0x6C4` in action 858 use unsigned bounds in the native body. For example, `0x508D6E..0x508D90` accepts only values 1 through 3, using unsigned `jbe`/`jae` branches. The former signed source accepted values with bit 31 set as well. All corresponding source checks now read the fields as unsigned, consistent with the fighter-side unsigned field view; the fresh candidate emits unsigned bounds at these sites. Ordinary values 0 through 3 retain their behavior. Whether high-bit values arise in normal play is not established. The complete focused candidate remains nonexact (62972-byte section tail against a 62278-byte main span, first mismatch +37); no exact credit is claimed.
 
 The adjacent primary-state checks at `0x5085CB..0x5085DC` and `0x50895B..0x50896C` apply the same unsigned 1-through-3 bounds to owner field `0x6BC`. Those two source reads now use an unsigned primary value as well. The fresh candidate emits unsigned branches; the same high-bit reachability limitation applies and the complete function remains nonexact.
+
+## Orbit target coordinate rounding, 2026-11-09
+
+Phase 0 of action 834 rounds its desired X coordinate to float before using it
+for distance, aim and the eventual position snap. Native `0x502D4E` stores m32
+before the sine call, then `0x502D8F` reloads that value before subtracting the
+object's X and squaring. Phase 0 of action 855 likewise stores desired Y to
+m32 at `0x506CBD` and reloads it at `0x506CD3` before the Y difference and
+square. The source incorrectly retained these two coordinates as double.
+They are now explicit float values, preserving the observed state precision.
+
+The difference occurs with finite coordinates, without an exceptional value.
+For example, a float lookup return of `0x3F5DB3D7`, radius 20, owner-X-plus-facing
+offset 715 and object X 720 give native squared X distance `0x4317CB6C`; the
+previous wide target gives `0x4317CB7F`. A second finite fixture covers action
+855's Y distance. These are arithmetic counterexamples, not gameplay traces.
+
+Fresh pinned VC8 output stores/reloads both target coordinates as m32 at
+candidate `0x502CD8`/`0x502D1D` and `0x506C65`/`0x506C7B`. Only the update
+section changes; all 131 other non-debug sections are byte-identical.
+The complete comparison replays all 1,454 relocations and preserves call
+counts, the 18 switch-table dimensions and all 260 remap bytes. The candidate
+payload grows from 62,972 to 62,976 bytes against the native 63,248-byte extent,
+including its 62,278-byte callable body. It remains nonexact from +37.
+
+Evidence: `build/frontier-alice-orbit-rounding-20261109/`, with fresh before/after
+objects, full audits and `verification.json`. After payload SHA-256:
+`ae399452d72ecb330d62b1b543284c128a297cd746c014dcca82564919910e71`.
+Only `exact-first-alice-object-update` consumes this source; no ledger or
+pending input/source-pin changes are needed.
