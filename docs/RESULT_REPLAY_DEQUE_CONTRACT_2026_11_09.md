@@ -41,3 +41,25 @@ Private reproducible evidence:
 - `build/frontier-result-replay-deque-20261109/verification.json`
 
 The pending input-class migration and its source pins are a separate change.
+
+## Remaining packet getters, November 9
+
+Two declaration-only `at()` views still named the wrong provider: INPUT packet
+serialization at `0x44D920` and replay consumption at `0x44E210`. Both now index
+their existing `std::deque<short>` member directly. No packet layout, count
+guard, reverse-consumption order, lock scope or unsigned input-word conversion
+changes. Their real nonconst `operator[]` instantiations each emit the complete
+100-byte native provider, including all three invalid-parameter calls.
+
+The two affected units retain all 13 full local canonical matches, including
+104-byte INPUT serialization and 170-byte replay consumption. Seventeen complete
+root/EH sections retain their bytes and relocations after the provider-symbol
+substitution. Evidence is in `build/frontier-packet-subscript-providers-20261109/`,
+with the bounded verification script in the corresponding `.analysis/` directory.
+These are repository-local comparisons, not a new Factory acceptance claim.
+The separate Factory invocation/environment freshness issue remains unresolved.
+
+The earlier result-menu 620-byte status above is historical. Its subsequent
+619-byte local match and full EH proof are documented in
+`RESULT_MENU_ACTIVE_SOURCE_2026_11_03.md`; current authoritative registry
+acceptance must still be checked independently.

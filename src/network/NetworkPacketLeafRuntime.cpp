@@ -9,16 +9,6 @@
 
 namespace th105 {
 
-struct ShortDeque20CallView {
-    unsigned int allocator_state_00;
-    void *map_04;
-    unsigned int map_size_08;
-    unsigned int offset_0c;
-    unsigned int size_10;
-
-    short &at(unsigned int index);
-};
-
 class PacketSerializeView {
 public:
     virtual unsigned int serialize(void *buffer);
@@ -189,11 +179,9 @@ unsigned int InputPacket24::serialize(void *buffer)
     if (values_010.size() < 100) {
         unsigned int index = 0;
         if (values_010.size() > 0) {
-            ShortDeque20CallView *values =
-                reinterpret_cast<ShortDeque20CallView *>(&values_010);
             do {
                 *reinterpret_cast<unsigned short *>(output) =
-                    static_cast<unsigned short>(values->at(index));
+                    static_cast<unsigned short>(values_010[index]);
                 output += 2;
                 ++index;
             } while (index < values_010.size());

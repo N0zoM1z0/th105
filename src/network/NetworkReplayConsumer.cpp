@@ -12,7 +12,6 @@ struct ReplayInputPacketView {
  std::deque<short> values_14;
 };
 struct ReplayInputSinkView { void append(unsigned short); };
-struct ReplayDequeAccessView { short &at(unsigned); };
 class ReplayConsumerView {
 public:
  virtual void slot00();virtual void slot04();virtual void slot08();
@@ -46,7 +45,7 @@ void ReplayConsumerView::consume(ReplayInputPacketView *packet)
    --count;
    lock_0dc.enter();
    unsigned short value=static_cast<unsigned short>(
-    reinterpret_cast<ReplayDequeAccessView *>(&packet->values_14)->at(count));
+    packet->values_14[count]);
    values_6c8.push_back(value);
    lock_0dc.leave();
    sink_6b4->append(value);

@@ -15475,7 +15475,7 @@ symbol_base = "?parse@NetworkRequestReplay10@th105@@UAEXPBE@Z"
 address = "0x0044D920"
 symbol_base = "?serialize@InputPacket24@th105@@UAEIPAX@Z"
 rel32_targets = [
-  "?at@ShortDeque20CallView@th105@@QAEAAFI@Z=0x0042D140",
+  "??A?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
 ]
 
 [[units.gpt-web-network-packet-leaf-runtime.functions]]
@@ -26455,7 +26455,7 @@ address = "0x0044E210"
 symbol_base = "?consume@ReplayConsumerView@th105@@QAEXPAUReplayInputPacketView@2@@Z"
 rel32_targets = [
  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
- "?at@ReplayDequeAccessView@th105@@QAEAAFI@Z=0x0042D140",
+ "??A?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
  "?push_back@?$deque@GV?$allocator@G@std@@@std@@QAEXABG@Z=0x0042AA90",
  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
  "?append@ReplayInputSinkView@th105@@QAEXG@Z=0x0042B270",

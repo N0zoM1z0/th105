@@ -1104,3 +1104,9 @@ restore the native selection, replay, profile and cancel paths. Full 38-byte
 EH code, 44-byte metadata, five container providers and direct wrapper/menu
 stack also replay exactly. See `docs/RESULT_MENU_ACTIVE_SOURCE_2026_11_03.md`.
 The separate initialization body remains nonexact; input migration is untouched.
+
+2026-11-09: INPUT packet serialization and replay consumption now use actual
+short-deque subscripts instead of declaration-only `at()` aliases. All 13
+affected functions remain locally byte-exact; 17 full root/EH sections are
+unchanged and both 100-byte providers match. No new Factory acceptance or
+progress credit is claimed. See `docs/RESULT_REPLAY_DEQUE_CONTRACT_2026_11_09.md`.
