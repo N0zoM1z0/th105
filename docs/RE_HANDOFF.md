@@ -1207,3 +1207,11 @@ comparisons in sequences 3/4. Fresh complete comparisons isolate the fix to
 one branch opcode across 240 non-debug sections and 2,269 unchanged
 relocations. The full action root remains nonexact; no ledger credit or input
 pin changes. See `KOMACHI_ACTION_STATE_2026_10_28.md`.
+
+## November 9: Yuyuko ordered wave limit
+
+Action 720's four difficulty paths now reject unordered wave counters as
+the original does. Full before/after comparisons isolate four root branch
+opcodes and the corresponding emitted helper opcode; all 2,125 relocations
+are unchanged. The root remains nonexact. Pending input work is preserved.
+See `YUYUKO_ACTION_STATE_2026_10_28.md`.

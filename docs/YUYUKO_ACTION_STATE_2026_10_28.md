@@ -215,3 +215,27 @@ is established.
 
 The 58619-byte root remains nonexact at +17, with a 59676-byte candidate section
 tail. This local fix does not add exact-function or byte credit.
+
+## Action 720 ordered wave limit, 2026-11-09
+
+The four native difficulty paths compare the float counter at +0x73C with
+100.0 at `0x56AF34`, `0x56B022`, `0x56B10F` and `0x56B1FD`. Each uses
+`test ah,41h; jp` to skip the wave for an above-limit or unordered result.
+Only ordered counter <=100 reaches wave-handle 10, the two object-901
+requests and the counter increment. The shared source helper previously
+returned for `counter > 100` only, allowing unordered values through. Its
+guard now rejects `!(counter <= 100)`. NaN reachability during ordinary play
+has not been established.
+
+Fresh pinned-VC8 comparisons cover the complete 58,619-byte callable and
+59,672-byte original switch-bearing extent. The 59,676-byte candidate changes
+only four `je` opcodes to `jp`, at root offsets `0xD70D`, `0xD7FA`, `0xD8E7`
+and `0xD9D3`. The separately emitted source helper has the same one-opcode
+change at +0x57. All other bytes across 181 non-debug sections and all 2,125
+relocations remain unchanged. The four comparison outcomes are checked
+against the original guards.
+
+The full root remains nonexact at +17; candidate SHA-256 is
+`45ce2e0fe7e3da0bfc754cfb19b189bd7438a21c48f93c4392a4c7958dceedd5`.
+Full comparisons, section checks and branch contexts are retained under
+`build/frontier-yuyuko-wave-guard-20261109/`.

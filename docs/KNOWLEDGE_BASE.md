@@ -3058,3 +3058,12 @@ includes unordered results and selects sequence 6, so its source predicate
 is `!(peer_x > self_x)`, not `peer_x <= self_x`. The complete VC8 candidate
 changes one branch opcode; all 2,269 relocations remain unchanged. See
 `KOMACHI_ACTION_STATE_2026_10_28.md`. The whole root is still nonexact.
+
+## Yuyuko wave-limit predicate, 2026-11-09
+
+All four action-720 difficulty paths admit only ordered counter <=100 at
++0x73C. Their native `test ah,41h; jp` skips both above-limit and unordered
+values. A source early return on `counter > 100` loses the latter case.
+The corrected shared guard changes four root branch opcodes and its emitted
+helper's branch, preserving every relocation. See
+`YUYUKO_ACTION_STATE_2026_10_28.md`; the complete root remains nonexact.

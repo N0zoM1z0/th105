@@ -439,7 +439,7 @@ public:
     }
     __forceinline void difficulty901(float *p,int period,double turn) {
         if(!time_counter_144)at<float>(0x740)=static_cast<float>(yuyuko_random(360));
-        if(time_counter_144%period || at<float>(0x73c)>100.0f)return;
+        if(time_counter_144%period || !(at<float>(0x73c)<=100.0f))return;
         dispatch_character_wave_handle(10);p[0]=static_cast<float>(at<float>(0x73c)*turn+at<float>(0x740));p[1]=6.0f;p[2]=0.0f;
         spawn_offset(901,0,120.0,p,3);p[2]=5.0f;spawn_offset(901,0,120.0,p,3);at<float>(0x73c)=static_cast<float>(at<float>(0x73c)+1.0);
     }
