@@ -1246,3 +1246,14 @@ The ACK-constructor real-CIL probe remains a separate technical stop: its
 actual providers lack definitions for the IPacket base serialize/parse slots.
 Do not fabricate bodies or declare the base pure solely to make the link pass.
 Evidence: `build/frontier-ack-constructor-cil-20261109/Actual.link.log`.
+
+## AliceObject orbit facing, November 9
+
+Actions 831/834/852/855 now preserve native facing +1 for unordered horizontal
+velocity, using an ordered-negative condition for -1. Complete before/after
+comparison covers all 1,454 relocations and the full 62,976-byte candidate;
+131 other sections and all control-flow/table inventories are unchanged.
+The root remains nonexact from +37. See the final section of
+`ALICE_OBJECT_UPDATE_2026_10_28.md` and
+`build/frontier-alice-orbit-facing-20261109/verification.json`.
+Pending input files and SHA pins remain untouched.

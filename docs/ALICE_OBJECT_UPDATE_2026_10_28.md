@@ -190,3 +190,29 @@ objects, full audits and `verification.json`. After payload SHA-256:
 `ae399452d72ecb330d62b1b543284c128a297cd746c014dcca82564919910e71`.
 Only `exact-first-alice-object-update` consumes this source; no ledger or
 pending input/source-pin changes are needed.
+
+## Ordered-negative orbit facing, 2026-11-09
+
+Actions 831, 834, 852 and 855 select facing -1 only for an ordered-negative
+horizontal velocity. Native `0x502643`, `0x502E58`, `0x505A75` and `0x506D8A`
+load zero, compare it with the velocity, and use `test ah,41h; jne` to select
++1 for nonnegative or unordered results. The previous `velocity >= 0 ? 1 : -1`
+source incorrectly selected -1 for unordered values. All four expressions now
+use `velocity < 0 ? -1 : 1`, and fresh VC8 output reproduces that branch policy.
+Negative, zero and positive results are unchanged. Whether unordered velocity
+occurs in normal play is not established.
+
+The complete candidate remains 62,976 bytes against the native 63,248-byte
+owned extent, with first mismatch +37. All 1,454 relocations replay, and the
+complete call, return, frame, switch-table and remap inventories are unchanged.
+All 131 other non-debug sections remain byte-identical. The root changes 126
+bytes: the four facing selections and register/load scheduling in four adjacent
+angle calculations. Those calculations retain their integer multiplier, float
+parameter product, sum and stores; four constant relocation offsets move with
+the loads, while every relocation symbol and kind remains unchanged.
+
+Evidence: `build/frontier-alice-orbit-facing-20261109/`, including fresh before
+and after objects, complete audits, `instruction-diff.txt` and `verification.json`.
+After payload SHA-256: `c10fff5cbcc3d85df89f3d23fb84c9f74e461faae46a74d985e5bdad5059e78f`.
+Only `exact-first-alice-object-update` consumes this source. The root remains
+nonexact, with no ledger credit or changes to the pending input work.
