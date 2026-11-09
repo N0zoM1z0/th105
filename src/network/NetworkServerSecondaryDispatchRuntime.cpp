@@ -1,3 +1,4 @@
+#include "NetworkSimplePackets.hpp"
 #include "NetworkInputPacket.hpp"
 #include "NetworkReplayRequestPacket.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
@@ -7,21 +8,6 @@
 #include <stddef.h>
 
 namespace th105 {
-
-struct PacketResultBase4 {
-    PacketResultBase4() : result_004(0) {}
-    unsigned int result_004;
-};
-
-class SceneAckPacket0C : public PacketResultBase4 {
-public:
-    SceneAckPacket0C() {}
-    virtual unsigned int serialize(void *buffer);
-    unsigned char state_008;
-    unsigned char reserved_009[3];
-};
-
-
 
 class EmbeddedStatePacket8 {
 public:

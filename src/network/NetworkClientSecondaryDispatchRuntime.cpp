@@ -1,3 +1,4 @@
+#include "NetworkSimplePackets.hpp"
 #include "NetworkInputPacket.hpp"
 #include "NetworkReplayPacket.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
@@ -6,28 +7,6 @@
 #include <stddef.h>
 
 namespace th105 {
-
-struct PacketResultBase4 {
-    PacketResultBase4() : result_004(0) {}
-    unsigned int result_004;
-};
-
-class SceneAckPacket0C : public PacketResultBase4 {
-public:
-    SceneAckPacket0C() {}
-    virtual unsigned int serialize(void *buffer);
-    unsigned char state_008;
-    unsigned char reserved_009[3];
-};
-
-class TerminatePacket8 : public PacketResultBase4 {
-public:
-    TerminatePacket8() {}
-    virtual unsigned int serialize(void *buffer);
-};
-
-
-
 
 class EmbeddedStatePacket8 {
 public:
@@ -116,7 +95,7 @@ void CNetworkClientSecondaryDispatchView::dispatch_packet(
         break;
     }
     case 8: {
-        TerminatePacket8 request;
+        NetworkTerminatePacket8 request;
         owner()->send_simple_packet(&request, 0x50);
         CriticalSectionWrapper *critical = &owner()->critical_048;
         critical->enter();
@@ -146,7 +125,7 @@ void CNetworkClientSecondaryDispatchView::dispatch_packet(
 }
 
 typedef char SceneAckPacket0C_size[sizeof(SceneAckPacket0C)==0x0c?1:-1];
-typedef char TerminatePacket8_size[sizeof(TerminatePacket8)==0x08?1:-1];
+typedef char NetworkTerminatePacket8_size[sizeof(NetworkTerminatePacket8)==0x08?1:-1];
 typedef char InputPacket24_size[sizeof(InputPacket24)==0x24?1:-1];
 typedef char NetworkAckInfoPacket40_size[sizeof(NetworkAckInfoPacket40)==0x40?1:-1];
 typedef char ReplayPacket28_size[sizeof(ReplayPacket28)==0x28?1:-1];

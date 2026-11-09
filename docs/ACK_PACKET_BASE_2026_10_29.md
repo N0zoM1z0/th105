@@ -72,3 +72,44 @@ Fresh source/native vtable audit verified all four tables; both source-pinned li
 ### 2026-11-03: use the shared base at serialization call sites
 
 The two ACK senders and replay-request pump now upcast their concrete packet objects to the shared `NetworkPacketBase8` instead of reinterpreting them as unrelated one-slot view classes. Canonical comparisons preserve both ACK senders (269/269 and 341/341), all twelve packet-leaf roots and the 110-byte request pump; the ACK constructor retains its prior 43/native41 mismatch and hash. The four packet vtable audit still verifies. This removes undefined cross-type casts without adding exact bytes or claiming new cleanup-EH or integrated-link equivalence. Evidence: `build/frontier-ack-sender-real-base-20261103/`.
+
+
+## 2026-11-09: restore the small ACK and termination packet surfaces
+
+The locally constructed SCENE_ACK and TERMINATE packets had only one virtual
+slot and a non-polymorphic four-byte result base. Fresh pre-change objects
+confirmed that omission, although the accepted dispatchers still matched:
+their vptr relocation mapped the incomplete local table to the original table.
+
+The original tables at `0x6C2568` and `0x6C2574` each contain two methods.
+Their COLs at `0x6D893C` and `0x6D8988` identify `CDPP_SCENE_ACK` and
+`CDPP_TERMINATE`. Both complete two-entry hierarchies use the same offset-zero
+`IPacket` descriptor `0x6D870C`. The ACK payload byte is at +8; termination
+has only the eight-byte base.
+
+`NetworkSimplePackets.hpp` now supplies both concrete types to the Client
+secondary dispatcher and the two Server callers. Each inherits the existing
+shared packet base and supplies both virtual methods. The former stand-alone
+type-2/type-8 serializers are now implementations of those actual classes,
+connecting the emitted tables to real source providers. ACK parsing copies
+input byte 1 to the payload; termination parsing is the observed no-op.
+
+All four complete method bodies match: ACK serializer 21 bytes at `0x44E850`,
+parser 13 at `0x44D7C0`, termination serializer 15 at `0x44E870`, and parser
+3 at `0x44E8E0`. Four emitted table instances now have the complete eight-byte
+slot arrays and the native inheritance geometry. Source RTTI names remain the
+repository's descriptive names, and the common void parse signature remains
+an inference from these implementations rather than recovered source spelling.
+
+The actual include closure is four units. All eleven previously accepted roots
+remain exact. Client dispatch also matches its full 624-byte code/table section,
+70-byte EH code and 60-byte metadata; Server dispatch matches 564, 56 and 52
+bytes respectively. All three emitted packet cleanup bodies remain exact.
+No new authored exact credit is added: these physical methods were already
+recorded. No source pins changed, and the pending input migration is untouched.
+
+Evidence: `build/frontier-simple-packet-slots-20261109/` contains before/after
+comparisons, `native-rtti.json`, `slots-proof.json`, and both full EH reports.
+That evidence directory also retains the four pre-change objects; the small
+verification scripts are in the corresponding private analysis scope. Ordinary code/table comparison alone is not enough
+to establish a constructed object's complete virtual surface.

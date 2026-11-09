@@ -864,3 +864,11 @@ and shared known sequence guards preserve their incoming constants. The
 Yukari 820 redundancy and Yuyuko 848 short circuit are native behavior. See
 `docs/ROSTER_SHARED_TAIL_REVIEW_2026_11_09.md`. Factory access has recovered;
 the pending input migration and its source-pin blocker remain unchanged.
+
+
+2026-11-09: SCENE_ACK and TERMINATE now have the RTTI-proved IPacket base and
+both native virtual slots. Their missing parsers are restored, and serializers
+are real methods shared by callers. Four full method bodies and all eleven
+previously exact roots match; both dispatchers' complete code/tables, EH and
+metadata also match. See the small-packet section of
+`docs/ACK_PACKET_BASE_2026_10_29.md`. No new exact credit or source-pin changes.

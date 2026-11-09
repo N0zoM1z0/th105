@@ -1,3 +1,4 @@
+#include "NetworkSimplePackets.hpp"
 #include "NetworkSendState.hpp"
 #include "NetworkWinsockPeerRemoval.hpp"
 #include "NetworkWinsockSendClient.hpp"
@@ -7,17 +8,6 @@
 #include <stddef.h>
 
 namespace th105 {
-
-struct NetworkTerminateBase4 {
-    NetworkTerminateBase4() : result_004(0) {}
-    unsigned int result_004;
-};
-
-class NetworkTerminatePacket8 : public NetworkTerminateBase4 {
-public:
-    NetworkTerminatePacket8() {}
-    virtual unsigned int serialize(void *buffer);
-};
 
 class NetworkGenericPacket8 {
 public:

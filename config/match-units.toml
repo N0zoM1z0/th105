@@ -14958,11 +14958,11 @@ symbol_base = "?serialize_type7@NetworkPacketByte12@th105@@QBEIPAE@Z"
 
 [[units.gpt-web-network-protocol-serializers.functions]]
 address = "0x0044E850"
-symbol_base = "?serialize_type2@NetworkPacketByte12@th105@@QBEIPAE@Z"
+symbol_base = "?serialize@SceneAckPacket0C@th105@@UAEIPAX@Z"
 
 [[units.gpt-web-network-protocol-serializers.functions]]
 address = "0x0044E870"
-symbol_base = "?serialize_type8@NetworkPacketTypeOnly8@th105@@QBEIPAE@Z"
+symbol_base = "?serialize@NetworkTerminatePacket8@th105@@UAEIPAX@Z"
 
 [units.gpt-web-network-client-primary-protocol]
 kind = "probe"
@@ -15097,7 +15097,7 @@ dir32_targets = [
   "__ehhandler$?dispatch_packet@CNetworkClientSecondaryDispatchView@th105@@UAEXPBEH@Z=__ehhandler$?dispatch_packet@CNetworkClientSecondaryDispatchView@th105@@UAEXPBEH@Z",
   "??_7SceneAckPacket0C@th105@@6B@=??_7SceneAckPacket0C@th105@@6B@",
   "??_7InputPacket24@th105@@6B@=??_7InputPacket24@th105@@6B@",
-  "??_7TerminatePacket8@th105@@6B@=??_7NetworkTerminatePacket8@th105@@6B@",
+  "??_7NetworkTerminatePacket8@th105@@6B@=??_7NetworkTerminatePacket8@th105@@6B@",
   "??_7ReplayPacket28@th105@@6B@=??_7NetworkReplayPacket28@th105@@6B@",
   "??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ=??1?$deque@FV?$allocator@F@std@@@std@@QAE@XZ",
 ]
