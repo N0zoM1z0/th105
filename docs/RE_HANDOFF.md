@@ -1149,3 +1149,12 @@ chain and whole-inventory uniqueness are verified. Remove the mistaken authored
 credit; neighboring hit-scaling roots37/37 and37/37 remain unchanged. The larger
 loader and insertion remain nonexact. No new Factory acceptance or input
 migration/pin changes. See `PAT_VECTOR_SIZE_ORIGIN_2026_11_09.md`.
+
+## November 9: actual CPU sequence receivers
+
+Marisa and Alice CPU policies now read the real 0x98-byte sequence-record deque
+at Fighter+55C instead of undefined short-pointer `at()` facades. All 47 native
+receiver/read sites are verified and both emitted subscript providers match
+94/94. Complete caller sections, switch payloads and relocation roles remain
+unchanged and nonexact. No progress credit or input/pin changes. See
+`CPU_SEQUENCE_OWNER_2026_11_09.md`.

@@ -1,4 +1,6 @@
 #include "MarisaCpuPolicy.hpp"
+#include "battle/SpellRuntime.hpp"
+#include <deque>
 // JP1.06a 0x004B4070: complete source candidate, not an exact-match claim.
 // See docs/MARISA_CPU_TARGET_2026_10_24.md for boundary and comparison evidence.
 #include <stdlib.h>
@@ -12,7 +14,7 @@ namespace th105 {
 #define F(o) FIELD(float,o)
 #define PEER(o) (*reinterpret_cast<float *>(FIELD(unsigned char *,0x170)+(o)))
 #define PEER_S(o) (*reinterpret_cast<short *>(FIELD(unsigned char *,0x170)+(o)))
-#define FRONT (*reinterpret_cast<MarisaCpuSequenceView *>(reinterpret_cast<unsigned char *>(this)+0x55C)->at(0))
+#define FRONT (FIELD(std::deque<FighterSequenceSlot>,0x55C)[0].record_id_00)
 #define RNG(n) static_cast<unsigned>(selector_random_roll(n))
 #define PREPARE() if (I(0x180)==0) S(0x764)=0; else if (I(0x180)!=3 && S(0x764)==0) S(0x764)=static_cast<short>(selector_random_roll(100))
 #define RANGE(a,b) (S(0x764)>=(a) && S(0x764)<=(b))

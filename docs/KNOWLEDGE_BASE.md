@@ -3030,3 +3030,9 @@ exact comparisons remain unchanged; no new authored credit. See
   the native assignment/insertion call chain and all 31 bytes establish the
   provider; larger callers remain nonexact. See
   `PAT_VECTOR_SIZE_ORIGIN_2026_11_09.md`.
+
+- Marisa/Alice CPU sequence reads use the existing 0x98-byte
+  `FighterSequenceSlot` deque at Fighter+55C, not a short-element deque or an
+  undefined `at()` method. All 47 native sites read record WORD0; actual
+  subscript94 matches while both full CPU payloads stay unchanged and nonexact.
+  See `CPU_SEQUENCE_OWNER_2026_11_09.md`.
