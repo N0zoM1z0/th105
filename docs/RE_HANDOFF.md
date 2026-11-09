@@ -907,3 +907,12 @@ its unit to fail compilation; the native-offset repair restores all six story
 matches. Eight affected roots remain exact, continue/reset remains unchanged
 and nonexact, and full story EH plus 295 COFF sections pass. See
 `docs/SCENARIO_STATUS_CONTRACT_2026_11_09.md`. No source-pin or input edits.
+
+
+2026-11-09: Sequence-effect reset now uses its actual CSprite member and one
+shared void method; both callers resolve to that real implementation. Native
+Character construction, sprite RTTI and both calls establish the offsets and
+contract. All three complete roots and three color providers remain exact;
+170 non-debug sections are unchanged. See
+`docs/SEQUENCE_EFFECT_SPRITE_CONTRACT_2026_11_09.md`. No source-pin changes,
+input migration edits or new exact credit.

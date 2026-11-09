@@ -796,7 +796,7 @@ notes = "TH105 1.06a structural-remap fighter sequence-effect reset/color helper
 
 [[units.cross-v106a-fighter-sequence-effect.functions]]
 address = "0x004652B0"
-symbol_base = "FighterSequenceEffect_reset_and_set_color"
+symbol_base = "?reset_and_set_color@FighterSequenceEffectView@th105@@QAEXXZ"
 dir32_targets = ["__real@c4200000=__real@c4200000"]
 
 [units.cross-v106a-battle-round-resolution]
@@ -868,7 +868,7 @@ rel32_targets = [
   "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
   "?get_score_data@th105@@YAPAUScoreData@1@XZ=0x0043AF20",
   "?record_sequence_result_42c060@ScoreData@th105@@QAEXHHH@Z=0x0042CF70",
-  "?finalize_4643f0@FighterSequenceEffectView@th105@@QAEXXZ=0x004652B0",
+  "?reset_and_set_color@FighterSequenceEffectView@th105@@QAEXXZ=0x004652B0",
   "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z=0x00432DE0",
 ]
 dir32_targets = ["?g_info_manager@th105@@3PAUInfoManager@1@A=?g_info_manager@th105@@3PAUInfoManager@1@A"]
@@ -17192,7 +17192,7 @@ symbol_base = "?dispatch_indexed_sequence_window_45c8b0@Fighter@th105@@QAEXCHH@Z
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "??D?$_Deque_iterator@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@$00@std@@QBEAAUFighterSequenceSlot@th105@@XZ=0x0045CF60",
-  "?reset_and_set_color@FighterSequenceEffectWindowView@th105@@QAEHXZ=0x004652B0",
+  "?reset_and_set_color@FighterSequenceEffectView@th105@@QAEXXZ=0x004652B0",
   "?invoke_indexed_record@PlayerIndexedCallbackView@th105@@QAEXHH@Z=0x00432DE0",
   "?erase@?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAE?AV?$_Deque_iterator@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@$00@2@V32@@Z=0x0045DC20",
 ]

@@ -1,13 +1,10 @@
+#include "FighterSequenceEffect.hpp"
 #include "Collision.hpp"
 #include "SpellRuntime.hpp"
 
 #include "config/ScoreData.hpp"
 
 namespace th105 {
-
-struct FighterSequenceEffectView {
-    void finalize_4643f0();
-};
 
 void Fighter::finalize_sequence_entry_45bb10(int outcome)
 {
@@ -26,7 +23,7 @@ void Fighter::finalize_sequence_entry_45bb10(int outcome)
             sequence_controller_55c.entry_at_checked(0)->record_id_00);
         reinterpret_cast<FighterSequenceEffectView *>(
             reinterpret_cast<unsigned char *>(this) + 0x3d0)
-            ->finalize_4643f0();
+            ->reset_and_set_color();
     }
 
     reinterpret_cast<PlayerIndexedCallbackView *>(

@@ -1,14 +1,9 @@
+#include "FighterSequenceEffect.hpp"
 #include <deque>
 #include "battle/SpellRuntime.hpp"
 #include "battle/Collision.hpp"
 
 namespace th105 {
-
-class FighterSequenceEffectWindowView {
-public:
-    int reset_and_set_color();
-};
-
 
 extern unsigned char *g_battle_scene_renderer;
 
@@ -51,7 +46,7 @@ void Fighter::dispatch_indexed_sequence_window_45c8b0(
     }
 
     if ((*iterator).record_id_00 >= 200) {
-        reinterpret_cast<FighterSequenceEffectWindowView *>(
+        reinterpret_cast<FighterSequenceEffectView *>(
             reinterpret_cast<unsigned char *>(this) + 0x3d0)
             ->reset_and_set_color();
     }
