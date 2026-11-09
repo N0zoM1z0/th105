@@ -3049,3 +3049,12 @@ exact comparisons remain unchanged; no new authored credit. See
   generated providers are checked. Their full switch-bearing payloads remain
   unchanged and nonexact, and Tenshi's existing float-sine proof passes. See
   `ACTION_STATE_SEQUENCE_OWNER_2026_11_09.md`.
+
+## Komachi flight-exit comparison, 2026-11-09
+
+At `0x5E3D97..0x5E3DDE`, action 214 sequences 3/4 with facing other than 1
+reverse facing and X velocity only when peer X is ordered greater than self X. The other arm
+includes unordered results and selects sequence 6, so its source predicate
+is `!(peer_x > self_x)`, not `peer_x <= self_x`. The complete VC8 candidate
+changes one branch opcode; all 2,269 relocations remain unchanged. See
+`KOMACHI_ACTION_STATE_2026_10_28.md`. The whole root is still nonexact.

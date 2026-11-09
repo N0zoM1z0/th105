@@ -1199,3 +1199,11 @@ Ten native read sites and three complete 94-byte subscript providers are checked
 Their full nonexact payloads and all 542 existing sections remain unchanged;
 Tenshi's affected float-sine origin proof passes. Input migration and pending
 pins are preserved. See `ACTION_STATE_SEQUENCE_OWNER_2026_11_09.md`.
+
+## November 9: Komachi unordered flight exit
+
+Action 214 now preserves the original no-reversal path for unordered X
+comparisons in sequences 3/4. Fresh complete comparisons isolate the fix to
+one branch opcode across 240 non-debug sections and 2,269 unchanged
+relocations. The full action root remains nonexact; no ledger credit or input
+pin changes. See `KOMACHI_ACTION_STATE_2026_10_28.md`.

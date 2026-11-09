@@ -292,3 +292,26 @@ The native ring paths retain `n * step + base` on the x87 stack for the packet a
 ## Unsigned random conversion constants, 2026-11-05
 
 The complete native action root uses the float `2^32` correction for unsigned random conversions, including the RNG(150) conversion at `0x5F0590..0x5F05A2`. Fresh pre-change VC8 emitted the double correction at 56 expanded sites because 28 source expressions converted unsigned results straight to double. Those expressions now convert through float before promotion, retaining the surrounding double arithmetic. In the root disassembly the native and new candidate each contain 82 float corrections and no double corrections, versus 26 float and 56 double before this change. The next x87 arithmetic/store-category census is unchanged apart from the correction type: the 56 changed paths introduce no extra early float-store category. This count is a routing and code-generation observation, not a per-site proof or whole-function match. All affected random ranges are bounded to small integers, so no ordinary-play numeric difference is established. The 63,993-byte root remains nonexact at +8 with a 65,304-byte candidate section tail; no exact credit is claimed.
+
+## Action 214 unordered flight exit, 2026-11-09
+
+For sequences 3/4 with facing other than 1, native `0x5E3D97..0x5E3DDE`
+compares peer X with self X. `test ah,41h; jne` selects sequence 6 without
+changing facing or horizontal velocity for less, equal or unordered results.
+Only ordered peer X greater than self X reverses both values and selects
+sequence 5. The source's `peer_x <= self_x` condition sent unordered values
+into the reversal arm. It now states `!(peer_x > self_x)`. Ordinary-play
+reachability of NaN coordinates has not been established.
+
+Fresh pinned-VC8 before/after builds change exactly one byte in the complete
+65,304-byte candidate payload: at root offset `0x1CE4`, `jp` becomes `je`
+for the compiler's opposite-layout reversal branch. All 2,269 relocations and
+the other bytes of all 240 non-debug sections are unchanged. The four x87
+comparison outcomes now select the native sequence and reversal behavior.
+
+The complete 63,993-byte callable and its switch payload remain nonexact
+against the 65,176-byte original extent, first difference +8. The new full
+candidate SHA-256 is
+`4c4bf8d203af7047cb15a442d62954ee1e28f873cd839264a9fe525cb4a0e88e`.
+Evidence is in `build/frontier-komachi-flight-guard-20261109/`, including
+full before/after comparisons, native branch contexts and the truth table.

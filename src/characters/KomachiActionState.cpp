@@ -114,7 +114,7 @@ case 214:
             if(sequence_index_13e==3 || sequence_index_13e==4){
                 unsigned char direction=B(0x104);double x=F(0xec);
                 if(direction==1){if(peer()->at<float>(0xec)<x){B(0x104)=255;F(0xf4)=-F(0xf4);select_sequence(5);}else select_sequence(6);}
-                else if(peer()->at<float>(0xec)<=x)select_sequence(6);
+                else if(!(peer()->at<float>(0xec)>x))select_sequence(6);
                 else{B(0x104)=static_cast<unsigned char>(-direction);F(0xf4)=-F(0xf4);select_sequence(5);}
             }
             return;
