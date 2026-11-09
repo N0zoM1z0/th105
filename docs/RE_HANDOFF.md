@@ -1231,3 +1231,18 @@ aim calculations, matching native 834/855 paths. Finite-coordinate witnesses
 show the prior difference. Fresh full comparison replays all 1,454 relocations;
 131 other non-debug sections and switch/call inventories are unchanged.
 The full root remains nonexact. See `ALICE_OBJECT_UPDATE_2026_10_28.md`.
+
+## System-effect spawn exact, November 9
+
+`SystemEffectManager::spawn @ 0x458340` now compares complete canonical
+125/125. The real four-byte texture value return recovers the target's natural
+dead-path-slot reuse; no shared header or input SHA changed. Factory job
+`job:d97cbbccf07c4a739d36185e86996fd1` returned pass / accepted. The configured
+whole-root comparison, existing observer tests and focused CI pass. See
+`SYSTEM_EFFECT_MANAGER_SPAWN_2026_11_04.md` and
+`build/frontier-system-spawn-value-20261109/`.
+
+The ACK-constructor real-CIL probe remains a separate technical stop: its
+actual providers lack definitions for the IPacket base serialize/parse slots.
+Do not fabricate bodies or declare the base pure solely to make the link pass.
+Evidence: `build/frontier-ack-constructor-cil-20261109/Actual.link.log`.

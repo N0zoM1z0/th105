@@ -1,5 +1,9 @@
 # System-effect manager spawn
 
+The November 9 value-return recovery closes the complete root at **125/125**.
+The earlier frame mismatch below is retained as the failed explicit-result
+model, not the current status.
+
 Scope: Japanese TH105 1.06a, executable SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 The complete 125-byte body at `0x00458340` has SHA-256
@@ -45,3 +49,29 @@ mutating the emitted mode-store offset is rejected by the trace comparison.
 This covers only those fixtures and stubbed dependencies. It does not exercise
 actual resource I/O, GPU rendering, allocation failure, operating-system EH or
 the full game, and does not change the nonexact byte status.
+
+## Four-byte texture return closes the frame, 2026-11-09
+
+The texture loader's result is the existing four-byte `TextureHandleResult`
+value, returned through VC8's hidden member-result pointer. Other recovered
+texture callers already use this contract. Applying it to this caller removes
+the named `token` local without changing the texture loader or shared headers.
+
+Native `0x458349` loads the path before `0x45835A` takes the same, now-dead
+argument slot for the result. Ordinary C++ value-return lowering reproduces
+that lifetime automatically. The fresh frame changes from 12 to 8 bytes and
+all 125 bytes match, including the three direct-call relocations, the title
+manager address and the virtual-reset tail ending in `ret 16`. No explicit
+argument-slot aliasing or register constraint is used.
+
+Reproduction: `scripts/repo-python scripts/build.py --unit
+gpt-web-system-effect-manager-spawn --compare --json`. The relocated source
+SHA-256 now equals the target hash above. Private evidence is in
+`build/frontier-system-spawn-value-20261109/`: baseline/value comparisons,
+`target.txt`, configured `formal.json`, `observer.json`, and `ci.log`. Both
+existing observer tests pass, including the changed-mode-store negative case.
+
+Factory forced-recompile job `job:d97cbbccf07c4a739d36185e86996fd1` returned
+`pass` / `accepted`; receipt
+`receipt:85f48a5df3fc4de463364c9241075cfb4c004a901cc059ad0fe71a4012f4110d`.
+The local source/unit checkpoint preserves all unrelated input-migration work.

@@ -30225,14 +30225,14 @@ source = "src/battle/SystemEffectManagerSpawn.cpp"
 object = "build/match-units/GptWeb_SystemEffectManagerSpawn.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Scenario system-effect spawn 0x00458340: actual manager/object/sprite types, signed 16-bit mode and texture output token. 125-byte candidate remains nonexact; see docs/SYSTEM_EFFECT_MANAGER_SPAWN_2026_11_04.md."
+notes = "Scenario system-effect spawn 0x00458340: actual manager/object/sprite types, signed 16-bit mode and four-byte texture value return. Complete canonical exact 125/125; see docs/SYSTEM_EFFECT_MANAGER_SPAWN_2026_11_04.md."
 
 [[units.gpt-web-system-effect-manager-spawn.functions]]
 address = "0x00458340"
 symbol_base = "?spawn@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEPAVSystemEffectObject@@PBDFMM@Z"
 rel32_targets = [
  "?acquire_and_link_object@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEPAVSystemEffectObject@@XZ=0x00457110",
- "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
+ "?load_texture@SpawnTextureCall@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90",
  "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
 ]
 dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
