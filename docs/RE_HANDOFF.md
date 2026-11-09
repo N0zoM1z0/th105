@@ -1140,3 +1140,12 @@ the real standard member, and remove the mistaken authored credit. Readiness118
 and all prior nonexact main-body hashes are preserved; preparation EH44,
 metadata44 and cleanup8 remain exact. No new Factory acceptance is claimed;
 pending input work is untouched. See `SEQUENCE_DEQUE_PROVIDER_2026_11_09.md`.
+
+## November 9: correct PAT vector size ownership
+
+`0x45C090` is the real compiler-generated PAT vector size provider, exact31/31
+from the actual loader and the public provider. Its native loader/assign/insert
+chain and whole-inventory uniqueness are verified. Remove the mistaken authored
+credit; neighboring hit-scaling roots37/37 and37/37 remain unchanged. The larger
+loader and insertion remain nonexact. No new Factory acceptance or input
+migration/pin changes. See `PAT_VECTOR_SIZE_ORIGIN_2026_11_09.md`.

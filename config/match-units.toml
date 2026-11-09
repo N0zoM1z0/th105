@@ -247,7 +247,7 @@ notes = "TH105 1.06a cross-version raw-identity candidate promoted only after fr
 
 [[units.cross-v106a-hit-quantities.functions]]
 address = "0x0045C090"
-symbol_base = "count_0x88_byte_stride_entries"
+symbol_base = "?size@?$vector@VPatRecord88@th105@@V?$allocator@VPatRecord88@th105@@@std@@@std@@QBEIXZ"
 
 [[units.cross-v106a-hit-quantities.functions]]
 address = "0x0045C0B0"

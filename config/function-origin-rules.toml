@@ -7381,3 +7381,17 @@ confidence = "observed"
 evidence = "The existing FighterSequenceSlot and VC8 deque::push_back reproduce the entire 114-byte provider with its grow-map, allocation, and real CSprite copy calls. All 102 non-relocation bytes and three complete call targets identify one current inventory entry. Native preparation passes the 0x98-byte stack record to Fighter+55C. docs/SEQUENCE_DEQUE_PROVIDER_2026_11_09.md."
 required_direct_edges = [{ caller = "0x0045DC90", site = "0x0045DD6A", target = "0x0045DBA0", caller_status = "implemented" }]
 required_dword_values = [{ address = "0x0045DD66", value = "0x0000055C" }]
+
+[[rules]]
+id = "vc8-generated-pat-vector-size-106a"
+vc8_generated_anchor_file = "config/vc8-generated-pat-vector-size-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 31
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "The actual Fighter PAT loader automatically emits vector<PatRecord88>::size at 31/31, with no relocations or alignment tail and one complete-inventory hit. Its generated insert provider calls size at the same +0x100 site as native 461740; the loader-to-assign-to-insert chain establishes the actual PAT vector receiver. The larger caller bodies remain nonexact. docs/PAT_VECTOR_SIZE_ORIGIN_2026_11_09.md."
+required_direct_edges = [
+ { caller = "0x00461640", site = "0x00461740", target = "0x0045C090" },
+]

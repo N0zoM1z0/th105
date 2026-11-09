@@ -3024,3 +3024,9 @@ exact comparisons remain unchanged; no new authored credit. See
   Replacing the undefined facade supplies its exact 105-byte provider, while
   all ten accepted roots retain 2,349 bytes and the front-card residual stays
   unchanged. See `docs/COMMAND_GATE_PAT_OWNER_2026_11_09.md`.
+
+- The old `count_0x88_byte_stride_entries @ 0x45C090` is the actual PAT vector's
+  compiler-generated `size()`, not a game-authored helper. Real loader emission,
+  the native assignment/insertion call chain and all 31 bytes establish the
+  provider; larger callers remain nonexact. See
+  `PAT_VECTOR_SIZE_ORIGIN_2026_11_09.md`.
