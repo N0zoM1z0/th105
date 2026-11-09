@@ -1215,3 +1215,11 @@ the original does. Full before/after comparisons isolate four root branch
 opcodes and the corresponding emitted helper opcode; all 2,125 relocations
 are unchanged. The root remains nonexact. Pending input work is preserved.
 See `YUYUKO_ACTION_STATE_2026_10_28.md`.
+
+## November 9: YukariObject ordered facing
+
+Actions 856/920 now select +1 only for ordered-positive X deltas, matching
+the original unordered -1 path. Full fresh comparisons isolate the changes
+to two facing selections; all other section bytes and 975 relocations remain
+unchanged. The complete root remains nonexact. Pending input work is preserved.
+See `YUKARI_OBJECT_UPDATE_2026_10_25.md`.

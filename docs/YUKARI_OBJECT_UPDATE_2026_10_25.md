@@ -397,3 +397,28 @@ A further pass restores original equivalent bounds for repeated frame, timer, an
 The action 813 timer gate at `0x58F31F` now uses the equivalent 40-frame bound and recovers its local signed comparison and branch. The complete candidate remains non-exact.
 
 The signed state gate at `0x58ED4F` now uses the equivalent `<= 0` form, recovering the local compare and branch. The complete function remains non-exact.
+
+## Ordered facing selection, 2026-11-09
+
+Actions 856 and 920, sequence 0, select facing +1 only when the opponent's
+X minus this object's X is ordered and positive. Native spans
+`0x593222..0x593256` and `0x594B8F..0x594BBE` subtract the two float fields,
+compare with double zero at `0x6CD148`, and use `test ah,41h; jne` to select
+-1 for negative, zero or unordered results. The former `delta <= 0 ? -1 : 1`
+source incorrectly selected +1 for unordered results. Both expressions now
+use `delta > 0 ? 1 : -1`. Normal gameplay reachability of unordered coordinates
+is not established.
+
+Fresh pinned VC8 before/after builds preserve the 34,608-byte complete candidate
+payload. Twelve changed bytes implement just the two facing selections; all
+other bytes across 110 non-debug sections and all 975 relocation roles remain
+unchanged. The two candidate branches now retain +1 only on the ordered-greater
+status. The complete native extent is 34,800 bytes, including the 33,972-byte
+callable body and all twenty switch tables. The root remains nonexact, first
+mismatch +31; no ledger credit is added.
+
+Evidence: `build/frontier-yukari-facing-20261109/`, including fresh build logs,
+`before/full.json`, `after/full.json`, and `verification.json`. The after payload
+SHA-256 is `9d6e3f4377ce2f11f59c9035502679377301f7e49fc127dd7627393ba73a6a18`.
+Only `exact-first-yukari-object-update` consumes this source. Pending input work
+and its source pins are unchanged.

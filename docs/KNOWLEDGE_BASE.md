@@ -3067,3 +3067,11 @@ values. A source early return on `counter > 100` loses the latter case.
 The corrected shared guard changes four root branch opcodes and its emitted
 helper's branch, preserving every relocation. See
 `YUYUKO_ACTION_STATE_2026_10_28.md`; the complete root remains nonexact.
+
+## YukariObject ordered facing, 2026-11-09
+
+The native 856/920 facing selections at `0x593222` and `0x594B8F` use
+ordered-positive X deltas. An inverted `<= 0` ternary changes the unordered
+case; use `> 0 ? 1 : -1`. Fresh complete builds isolate the correction to
+the two selections, with all 975 relocation roles unchanged. The full root
+remains nonexact. See `YUKARI_OBJECT_UPDATE_2026_10_25.md`.
