@@ -1102,7 +1102,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00435D60,authored_game,battle,authored,observed,canonical-exact-authored
 0x00435DC0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00435DF0,compiler_generated,runtime,exclude,observed,vc8-generated-map-int-value244-tree-comdats-106a
-0x00435E50,authored_game,battle,authored,observed,canonical-exact-authored
+0x00435E50,compiler_generated,vc8_stl,exclude,observed,typed-list-sentinel-generated-106a
 0x00435E70,compiler_generated,runtime,exclude,observed,vc8-generated-map-int-value16-tree-comdats-106a
 0x00435EB0,compiler_generated,runtime,exclude,observed,vc8-generated-list-voidptr-tidy-106a
 0x00435F00,authored_game,battle,authored,observed,canonical-exact-authored

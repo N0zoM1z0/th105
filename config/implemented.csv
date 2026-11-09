@@ -162,7 +162,6 @@ dispatch_indexed_event
 GuideOverlay_ctor
 CMenuResult_update
 shutdown_direct_sound
-create_collision_list_sentinel
 get_player_slot_record
 invalidate_selected_input
 get_selected_input

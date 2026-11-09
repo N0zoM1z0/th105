@@ -166,7 +166,7 @@ dispatch_indexed_event,0x0043B1A0,function
 GuideOverlay_ctor,0x0043F540,function
 CMenuResult_update,0x00447560,function
 shutdown_direct_sound,0x004188C0,function
-create_collision_list_sentinel,0x00435E50,function
+std_list_sentinel_buy_node,0x00435E50,function
 get_player_slot_record,0x0043AFE0,function
 invalidate_selected_input,0x0043AFF0,function
 get_selected_input,0x0043B010,function

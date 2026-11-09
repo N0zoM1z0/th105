@@ -1580,7 +1580,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "All twenty canonical-exact CHandleManagerEx<T> constructors in the current SHA-pinned PE call 0x004040B0 exactly once while constructing their checked std::list<unsigned> free-handle sentinel. Their exact source owns that list specialization. A fresh VC8 _Buynode body has the same 26-byte shape, but raw fingerprint identity is deliberately not used because authored collision-list sentinel 0x00435E50 folds to identical bytes. Caller/container ownership, not byte uniqueness, proves this helper is generated STL machinery. Exact native font constructor411430 now independently calls this pooled sentinel at411474 for list<unsigned*>. Its actual CIL26-byte helper is independently equal after the named MSVCR80 operator-new import replay, and ECX scratch is defined before first use; this corroborates unused receiver/private lowering without helper credit. docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md."
+evidence = "All twenty canonical-exact CHandleManagerEx<T> constructors in the current SHA-pinned PE call 0x004040B0 exactly once while constructing their checked std::list<unsigned> free-handle sentinel. Their exact source owns that list specialization. A fresh VC8 _Buynode body has the same 26-byte shape, but raw fingerprint identity is deliberately not used because the separately located list sentinel 0x00435E50 has the same complete relocated body (also compiler-generated; docs/LIST_SENTINEL_OWNERSHIP_2026_11_09.md). Caller/container ownership, not byte uniqueness, proves this helper is generated STL machinery. Exact native font constructor411430 now independently calls this pooled sentinel at411474 for list<unsigned*>. Its actual CIL26-byte helper is independently equal after the named MSVCR80 operator-new import replay, and ECX scratch is defined before first use; this corroborates unused receiver/private lowering without helper credit. docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md."
 required_body_hashes = [{ address = "0x004040B0", size = 26, sha256 = "51243f7677d4ddc7fee890ea0c868b516ac40dfcf9644172bef7bbb3083caaa6" }]
 required_direct_edges = [{ caller = "0x00411430", site = "0x00411474", target = "0x004040B0", caller_status = "matching" }]
 
@@ -7394,4 +7394,21 @@ confidence = "observed"
 evidence = "The actual Fighter PAT loader automatically emits vector<PatRecord88>::size at 31/31, with no relocations or alignment tail and one complete-inventory hit. Its generated insert provider calls size at the same +0x100 site as native 461740; the loader-to-assign-to-insert chain establishes the actual PAT vector receiver. The larger caller bodies remain nonexact. docs/PAT_VECTOR_SIZE_ORIGIN_2026_11_09.md."
 required_direct_edges = [
  { caller = "0x00461640", site = "0x00461740", target = "0x0045C090" },
+]
+
+[[rules]]
+id = "typed-list-sentinel-generated-106a"
+addresses = ["0x00435E50"]
+expected_count = 1
+expected_bytes = 26
+expected_names = ["sub_435E50"]
+origin = "compiler_generated"
+subsystem = "vc8_stl"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Real exact CDesignBase list<UiDesignObject*> and CMenuReplay list<int> constructors independently emit the same complete26-byte VC8 _Buynode provider. Their typed native calls publish the return value as the sentinel at owner+4 and zero count+8. Whole-inventory comparison finds both physical sentinels4040B0/435E50; explicit caller ownership identifies this address without assuming uniqueness or changing comparison thresholds. docs/LIST_SENTINEL_OWNERSHIP_2026_11_09.md."
+required_body_hashes = [{ address = "0x00435E50", size = 26, sha256 = "1d4ba0f8056546355caf2c4dca8f4b8a9532f281d4a7bc817dd6deab875d5ab6" }]
+required_direct_edges = [
+ { caller = "0x004217F0", site = "0x00421839", target = "0x00435E50", caller_status = "identified" },
+ { caller = "0x00446DE0", site = "0x00446E6D", target = "0x00435E50", caller_status = "matching" },
 ]

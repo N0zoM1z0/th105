@@ -543,10 +543,10 @@ against the exact target, current source, and tracking ledgers.
   `create_collision_list_node` source has a zero-non-relocation-difference
   51-byte candidate at `0x00421F30`, but current xrefs show that helper is shared
   broadly across engine and roster container code. It remains origin-review
-  pending. By contrast, `create_collision_list_sentinel` at `0x00435E50` is
-  authored-accepted because exact `initialize_collision_list` stores its result
-  as the sentinel and accepted roster units independently resolve the same
-  helper; fresh VC8 is 26/26 exact.
+  pending. The earlier authored classification of the 26-byte sentinel at
+  `0x00435E50` was corrected on November 9: the actual CDesignBase and CMenuReplay
+  list constructors emit it and call the same native entry. Complete generated
+  providers replay 26/26. See [list sentinel ownership](LIST_SENTINEL_OWNERSHIP_2026_11_09.md).
 - Nearby vtables must not be conflated by address proximity. `ResultList` uses
   the vtable at `0x006C2058`, while current `CMenuResult` destruction writes the
   distinct vtable at `0x006C2070`; its slot `+8` points to the accepted 43-byte
@@ -2707,7 +2707,7 @@ Direct edges from canonical-exact owners are now a first-class boundary-discover
 
 This exact-owner pass closes five small game-authored functions / **32 bytes** without assembly or codegen coercion. `BattleThreadHandle_ctor @ 0x0040CF10` is **9/9**: exact FighterPhaseContext and BattleObjectManager constructors each build two 8-byte thread handles, and exact `start()` proves member `+4` is the real `CreateThread` thread-id out parameter, so the constructor truthfully initializes only handle `+0`. `get_current_replay_header_code @ 0x0043AA40` is **6/6** from exact replay-save and ReplayList callers and ordinary `return 0x6A`. UI facades `0x0043B100/0x0043B110` are **5/5 + 5/5** ordinary tail-forwarders to already-exact `trim_profile_ui_menu_stack` and `set_ui_selection_state_tracking`; exact scene callers independently prove the no-argument and explicit `char 0/1` contracts. `InfoComboResourceSubobject_release_combo_resources_46a610 @ 0x0046A610` is **7/7**: exact InfoManager teardown callers establish the combo subobject receiver, and a typed vslot `+0x14` member forwarder emits the target `mov vptr / load slot / jmp` body. Keeping that definition in its own TU preserves the pre-existing exact 33/33 and 60/60 InfoManager resource facades.
 
-Origin evidence must remain stronger than raw byte equality. A fresh VC8 `std::list<unsigned>::_Buynode` probe for `0x004040B0` initially appeared to give a unique 26-byte generated helper, but fail-closed inventory validation also hit canonical-exact **authored** `create_collision_list_sentinel @ 0x00435E50`. The generated-fingerprint rule was rejected rather than weakened. `0x004040B0` is instead excluded as compiler-generated because **all twenty canonical-exact `CHandleManagerEx<T>` constructors** call it exactly once while constructing their checked `std::list<unsigned>` free-handle sentinel. Identical machine code can therefore have different source ownership after COMDAT folding; caller/container provenance outranks raw fingerprint identity.
+Origin evidence must remain stronger than raw byte equality. The complete 26-byte VC8 list sentinel matches both `0x004040B0` and `0x00435E50`, so a uniqueness-based rule was correctly rejected. Typed `CHandleManagerEx<T>` and font constructors identify the first entry. Fresh exact CDesignBase and CMenuReplay owners identify the second as generated too, correcting its former authored classification. Preserve both physical entries and establish each through its actual caller/container; see [list sentinel ownership](LIST_SENTINEL_OWNERSHIP_2026_11_09.md).
 
 `CHandleManagerLookupView_lookup_token @ 0x00417800` is also now a formal nonexact unit. Natural `/GS` scoped-lock/vector source is **196/196**, with first canonical mismatch at `+0x37`; remaining differences are unwind-state scheduling and the original-TU/private `vector::at @ 0x00417A90` receiver boundary. Preserve it as source-present evidence only; do not invent a private calling convention.
 ## 2026-09-08 second exact-owner leaf wave

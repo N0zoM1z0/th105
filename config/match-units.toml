@@ -3015,16 +3015,16 @@ dir32_targets = [
 
 [units.cross-v106a-collision-list-sentinel]
 kind = "probe"
-source = "src/battle/CollisionList.cpp"
+source = "src/ui/ReplayMenuLifetime.cpp"
 object = "build/match-units/CrossV106a_CollisionListSentinel.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
-notes = "TH105 1.06a CollisionList sentinel allocator. Current exact initialize_collision_list stores this return value as the list sentinel, and accepted roster object-manager units independently resolve the same current helper; generic node allocator 0x00421F30 remains unpromoted pending origin review."
+enable_gs = true
+notes = "Actual list<int> sentinel provider emitted by the real CMenuReplay owner. Complete26-byte canonical equality and independent exact CDesignBase pointer-list emission establish compiler ownership; typed native caller edges distinguish the two identical physical sentinel bodies. docs/LIST_SENTINEL_OWNERSHIP_2026_11_09.md."
 
 [[units.cross-v106a-collision-list-sentinel.functions]]
 address = "0x00435E50"
-symbol_base = "create_collision_list_sentinel"
-rel32_targets = ["?operator_new@th105@@YAPAXI@Z=0x00689DCB"]
+symbol_base = "?_Buynode@?$list@HV?$allocator@H@std@@@std@@IAEPAU_Node@?$_List_nod@HV?$allocator@H@std@@@2@XZ"
+rel32_targets = ["??2@YAPAXI@Z=0x00689DCB"]
 
 [units.cross-v106a-input-selection-accessors]
 kind = "probe"
