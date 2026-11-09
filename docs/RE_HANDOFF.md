@@ -1014,3 +1014,12 @@ Both 72-byte wrappers remain exact, seven native caller sites and thirty map
 initializations are confirmed, and all 348 bootstrap sections are unchanged.
 See `docs/CHARACTER_POLICY_MAPS_2026_11_09.md`. No new authored exact count or
 input/source-pin changes.
+
+
+2026-11-09: Configuration BGM/SE setters now share void contracts with their
+audio providers rather than propagating an incidental final EAX value. Native
+menu and bootstrap call chains discard it. Roots 39/80/665 remain exact, the
+menu's complete 688-byte section matches, and all 359 scoped non-debug sections
+retain their bytes and relocation roles. Bootstrap's prior mismatch remains.
+See `docs/CONFIG_VOLUME_CONTRACT_2026_11_09.md`. No new exact count, input
+migration edits or source-pin changes.

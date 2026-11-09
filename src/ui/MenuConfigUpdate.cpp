@@ -1,4 +1,5 @@
 #include "MenuConfigUpdate.hpp"
+#include "ConfigAudioHelpers.hpp"
 #include "../input/InputManager.hpp"
 
 #include <windows.h>
@@ -10,8 +11,6 @@ extern "C" bool __cdecl is_menu_initial_press(
 
 namespace th105 {
 
-int apply_bgm_percent(int value);
-int apply_se_percent(int value);
 void close_config_menu();
 extern int g_config_window_mode_state;
 extern HWND g_main_window;

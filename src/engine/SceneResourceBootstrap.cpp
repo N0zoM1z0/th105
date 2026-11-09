@@ -9,6 +9,7 @@
 #include "input/InputManager.hpp"
 #include "battle/EventEffectRecords.hpp"
 #include "battle/CharacterPolicyMaps.hpp"
+#include "ui/ConfigAudioHelpers.hpp"
 
 namespace th105 {
 
@@ -76,10 +77,6 @@ struct SceneBootstrapDeckRefresh {
 struct SceneBootstrapScore {
     bool load();
 };
-struct BgmVolumeService {
-    int set_volume(float value);
-};
-
 extern std::map<int, std::string> g_bootstrap_character_names;
 extern SceneBootstrapKeyTable g_bootstrap_keys;
 extern SceneBootstrapInputBase g_bootstrap_keyboard;
@@ -94,12 +91,10 @@ extern bool g_bootstrap_send_enter;
 extern HWND g_main_window;
 extern int g_bootstrap_bgm_percent;
 extern int g_bootstrap_se_percent;
-extern BgmVolumeService g_bgm_volume_service;
 
 bool __cdecl initialize_profile_ui(void *input);
 void __cdecl initialize_scene_auxiliary_6654a0();
 void __cdecl initialize_player_profiles_from_game_config();
-int __cdecl apply_se_percent(int value);
 
 void __cdecl initialize_scene_resources_43e2e0()
 {

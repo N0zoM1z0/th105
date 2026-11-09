@@ -9429,8 +9429,8 @@ rel32_targets = [
   "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20",
   "_dispatch_indexed_event=0x0043B1A0",
   "?update_secondary_for_primary@CMenuConfigUpdateView@th105@@QAEXH@Z=0x00440FF0",
-  "?apply_bgm_percent@th105@@YAHH@Z=0x0043B1C0",
-  "?apply_se_percent@th105@@YAHH@Z=0x0043B1F0",
+  "?apply_bgm_percent@th105@@YAXH@Z=0x0043B1C0",
+  "?apply_se_percent@th105@@YAXH@Z=0x0043B1F0",
   "?close_config_menu@th105@@YAXXZ=0x0043CDD0",
   "_is_menu_initial_press=0x0043ABD0",
 ]
@@ -9441,20 +9441,20 @@ source = "src/ui/ConfigAudioHelpers.cpp"
 object = "build/match-units/CrossV106a_ConfigAudioHelpers.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Config BGM/SE percentage helpers. Target arithmetic proves 0.01f promoted to double before 0.75 scaling; SE walks the complete 128-entry indexed-event handle table and returns the final handle-volume call result."
+notes = "Config BGM/SE percentage setters share void contracts with their actual providers. Native callers never consume the residual EAX value. Arithmetic retains double-promoted 0.01f and 0.75; SE updates all 128 handles. docs/CONFIG_VOLUME_CONTRACT_2026_11_09.md."
 
 [[units.cross-v106a-config-audio-helpers.functions]]
 address = "0x0043B1C0"
-symbol_base = "?apply_bgm_percent@th105@@YAHH@Z"
-rel32_targets = ["?set_volume@BgmVolumeService@th105@@QAEHM@Z=0x00403A30"]
+symbol_base = "?apply_bgm_percent@th105@@YAXH@Z"
+rel32_targets = ["?set_volume@BgmVolumeService@th105@@QAEXM@Z=0x00403A30"]
 dir32_targets = ["?g_bgm_volume_service@th105@@3UBgmVolumeService@1@A=?g_bgm_service@th105@@3UBgmServiceView@1@A"]
 
 [[units.cross-v106a-config-audio-helpers.functions]]
 address = "0x0043B1F0"
-symbol_base = "?apply_se_percent@th105@@YAHH@Z"
+symbol_base = "?apply_se_percent@th105@@YAXH@Z"
 rel32_targets = [
   "?set_master_volume@SoundVolumeService@th105@@QAEXM@Z=0x00401C20",
-  "?set_handle_volume@SoundVolumeService@th105@@QAEHIM@Z=0x00401CE0",
+  "?set_handle_volume@SoundVolumeService@th105@@QAEXIM@Z=0x00401CE0",
 ]
 dir32_targets = ["?g_sound_volume_service@th105@@3USoundVolumeService@1@A=?g_wave_handle_service@th105@@3UOpaqueWaveHandleService@1@A"]
 
@@ -22953,7 +22953,7 @@ rel32_targets = [
   "??3@YAXPAX@Z=0x006898EA",
   "?_Assign_n@?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@IAEXIABUSceneBootstrapInputEx@th105@@@Z=0x0043DDD0",
   "?add_tracked_key@SceneBootstrapKeyTable@th105@@QAEXE@Z=0x0040A6C0",
-  "?apply_se_percent@th105@@YAHH@Z=0x0043B1F0",
+  "?apply_se_percent@th105@@YAXH@Z=0x0043B1F0",
   "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
   "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
   "?assign_profile@SceneBootstrapInputBase@th105@@QAEXPBUSceneBootstrapBindings@2@@Z=0x00409D60",
@@ -22967,7 +22967,7 @@ rel32_targets = [
   "?push_back@SceneBootstrapInputSourcesView@th105@@QAEXABQAUSceneBootstrapInputBase@2@@Z=0x006183F0",
   "?reload_common_resources@SceneBootstrapDeckRefresh@th105@@QAEEEEE@Z=0x00434AC0",
   "?reset@SceneBootstrapKeyTable@th105@@QAEXXZ=0x0040A510",
-  "?set_volume@BgmVolumeService@th105@@QAEHM@Z=0x00403A30",
+  "?set_volume@BgmVolumeService@th105@@QAEXM@Z=0x00403A30",
   "@__security_check_cookie@4=0x00689D25",
   "__invalid_parameter_noinfo=0x0068A143",
   "_memset=0x0068A440",
