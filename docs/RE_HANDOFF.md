@@ -986,3 +986,12 @@ unselected with no new exact credit. See
 CSceneBase's alleged scene_id as a CFade pointer; that shared type correction
 is the next bounded follow-up. Existing units, dirty input work and pins remain
 unchanged.
+
+
+2026-11-09: Corrected CSceneBase's supposed scene_id to the actual CFade pointer
+and removed Opening's integer-to-pointer color access. All 29 scoped units keep
+identical 3,482 non-debug sections; 36 exact roots and nine existing nonexact
+results are unchanged. Complete Title/member/factory EH also passes. See
+`docs/SCENE_BASE_FADE_POINTER_2026_11_09.md`. The Application direct no-EH callback
+has no supported existing strict-selection route; no validator changes or
+acceptance retries. Pending input changes and source pins remain untouched.

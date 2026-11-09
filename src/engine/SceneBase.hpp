@@ -2,7 +2,9 @@
 
 namespace th105 {
 
-extern "C" int g_active_scene_id;
+class CFade;
+// Historical binding name: application +78 holds the shared fade pointer.
+extern "C" CFade *g_active_scene_id;
 
 class IScene {
 public:
@@ -19,7 +21,7 @@ public:
 
 class CSceneBase : public IScene {
 public:
-    CSceneBase() : scene_id(g_active_scene_id) {}
+    CSceneBase() : fade_04(g_active_scene_id) {}
 
     virtual int update();
     virtual bool render();
@@ -30,7 +32,7 @@ public:
     int advance_battle_setup_state();
     int map_battle_setup_state_to_scene();
 
-    int scene_id;
+    CFade *fade_04;
 };
 
 } // namespace th105

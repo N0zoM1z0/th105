@@ -80,3 +80,8 @@ pointer.
 stores it as an integer; Opening casts it back to a pointer. It should become
 a typed `CFade *` after checking the actual scene-base users. This checkpoint
 does not expand into that shared-header migration.
+
+Follow-up: the scene-base pointer type and Opening color access are now
+corrected, with all affected output unchanged. See
+`docs/SCENE_BASE_FADE_POINTER_2026_11_09.md`, which also records why the currently
+supported strict global callback routes do not cover this Application candidate.

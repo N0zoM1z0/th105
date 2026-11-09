@@ -1,4 +1,5 @@
 #include "engine/SceneBase.hpp"
+#include "ui/Fade.hpp"
 #include "ui/Title.hpp"
 #include "ui/Tile.hpp"
 
@@ -168,8 +169,7 @@ int OpeningConstructorView::update()
         return (*reinterpret_cast<int *>(
             get_combined_menu_input_counters() + 8) - 1) ? 1 : 2;
     }
-    *reinterpret_cast<unsigned *>(
-        reinterpret_cast<unsigned char *>(scene_id) + 4) = 0xFFFFFF;
+    fade_04->color_04 = 0xFFFFFF;
     return 2;
 }
 
