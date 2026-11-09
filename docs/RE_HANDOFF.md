@@ -1097,3 +1097,10 @@ See `docs/PROFILE_DECK_INDEX_PROVIDER_2026_11_09.md`. Input work is preserved.
 The complete 1,375-byte callable, 1,396-byte owned extent with all five switch
 relocations, and 99-byte provider remain exact. See
 `docs/PROFILE_DECK_FILTER_2026_10_29.md`. Input migration work remains untouched.
+
+2026-11-09: Result-menu active policy `0x4472A0` is now canonical exact across
+all 619 authored bytes. Real container views and C++ installation semantics
+restore the native selection, replay, profile and cancel paths. Full 38-byte
+EH code, 44-byte metadata, five container providers and direct wrapper/menu
+stack also replay exactly. See `docs/RESULT_MENU_ACTIVE_SOURCE_2026_11_03.md`.
+The separate initialization body remains nonexact; input migration is untouched.

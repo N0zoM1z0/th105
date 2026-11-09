@@ -7007,7 +7007,7 @@ required_body_hashes = [
  { address = "0x00447080", size = 342, sha256 = "3e393e363d311dc2cc8f81649b9224c8f4ec66a61dd69f4f3f52170e9eebf532" },
 ]
 required_direct_edges = [
- { caller = "0x004472A0", site = "0x00447328", target = "0x00447080", caller_status = "implemented" },
+ { caller = "0x004472A0", site = "0x00447328", target = "0x00447080", caller_status = "matching" },
  { caller = "0x00447690", site = "0x0044786B", target = "0x00447080", caller_status = "implemented" },
 ]
 
