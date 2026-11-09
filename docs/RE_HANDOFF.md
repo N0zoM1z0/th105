@@ -802,3 +802,10 @@ Native incoming constants distinguish 812/853 at the shared guard; 812's second
 phase-zero branch is intentional. Eight bounded motion/fade paths agree with
 the unchanged candidate. See the shared-tail follow-up in
 `docs/YOUMU_OBJECT_UPDATE_2026_10_25.md`. No source or exact-ledger change.
+
+
+2026-11-09: Bitmap upload `0x41AE60` has a new bounded cursor-control result:
+native pointer induction restores the local frame but remains nonexact in both
+COFF and the actual reader/bitmap/PNG LTCG context. The two contexts produce
+identical complete payloads. No source or exact-ledger change was retained;
+see `docs/BITMAP_TEXTURE_LOADING_2026_10_30.md` before repeating this control.

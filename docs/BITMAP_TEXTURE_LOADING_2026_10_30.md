@@ -96,3 +96,28 @@ build/frontier-bitmap-texture-20261030 and the matching .analysis directory.
 Semantic source evidence is retained with the DDS scope. Reproduce with
 scripts/repo-python scripts/build.py --unit exact-first-bitmap-texture-loading
 --compare --json; the expected nonzero exit reflects the documented mismatches.
+
+
+## Pixel-cursor source control, 2026-11-09
+
+The native RLE loops advance separate destination cursors at `0x41AF2A`,
+`0x41AFE1` and `0x41B08D`, while retaining the X index for the final-pixel guard.
+A private ordinary typed-cursor version preserves that structure and recovers
+the native 0x10-byte local frame. It does not close the function: the complete
+payload grows from 1,037 to 1,069 bytes against the native 1,041 bytes, with its
+first mismatch at +13. Widening the two WORD-color locals to unsigned integers
+is byte-neutral and does not explain the native DWORD spill slots.
+
+Both the baseline and cursor version were compiled independently and through
+the actual ScriptFileLoading/bitmap/reader/PNG LTCG context, with its unchanged
+exports, compiler settings and pinned libraries. In each case, all 12 internal
+absolute relocations and the complete payload replay identically between COFF
+and linked PE. Thus this real caller context does not recover the remaining
+cursor allocation and scheduling. No source change was retained; further work
+needs new target evidence rather than increment-order or register controls.
+
+The private source, commands and complete comparisons are under
+`.analysis/frontier-bitmap-upload-color-20261109/` and
+`build/frontier-bitmap-upload-color-20261109/`. Baseline payload SHA-256 is
+`005a66826248ca973621b01a5fd5286a61e098b941210d6e73aba423a66e4d57`;
+the cursor control is `140d7e87975aaaf2b7c289f843a2d1cc399dd6d0dc8d96fc00a7a2b4ec1c872e`.
