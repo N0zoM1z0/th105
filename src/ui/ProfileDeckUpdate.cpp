@@ -9,7 +9,7 @@ extern "C" bool __cdecl is_menu_initial_press(int, int, int, int);
 
 namespace th105 {
 typedef std::map<int, SpellRecordView> DeckUpdateSpellMap;
-struct DeckUpdateDequeAt { DeckUpdateSpellMap::iterator &at(unsigned index); };
+typedef std::deque<DeckUpdateSpellMap::iterator> DeckUpdateIteratorDeque;
 // The target explicitly supplies ECX for both no-stack-argument menu calls.
 // Their bodies do not read it; original source-level static/member identity
 // remains unknown. These declarations preserve this caller ABI, not a new
@@ -24,7 +24,7 @@ struct DeckUpdateMenuView {
 struct DeckUpdatePlayerView {
     void save_to_profile(const char *path);
 };
-#define SPELL_AT(index) reinterpret_cast<DeckUpdateDequeAt *>(&filtered_3cc)->at(index)
+#define SPELL_INDEX(index) reinterpret_cast<DeckUpdateIteratorDeque &>(filtered_3cc)[index]
 #define MENU_VIEW reinterpret_cast<DeckUpdateMenuView *>(this)
 #define PLAYER_VIEW reinterpret_cast<DeckUpdatePlayerView *>(player_04)
 
@@ -64,7 +64,7 @@ bool CProfileDeckEdit::update()
         }
     }
     ProfileDeckCountMap::iterator count = counts_3c0.find(
-        static_cast<short>(static_cast<unsigned short>(SPELL_AT(cursor_3e4.selection)->first)));
+        static_cast<short>(static_cast<unsigned short>(SPELL_INDEX(cursor_3e4.selection)->first)));
     if (g_active_menu_input->hold.buttons[0] == 1) {
         if (available_count_for_index_448df0(cursor_3e4.selection)) {
             dispatch_indexed_event(40);
@@ -88,8 +88,8 @@ bool CProfileDeckEdit::update()
             dispatch_indexed_event(39);
             if (count == counts_3c0.end()) {
                 counts_3c0.insert(std::make_pair(
-                    static_cast<short>(SPELL_AT(cursor_3e4.selection)->first), static_cast<signed char>(0)));
-                count = counts_3c0.find(static_cast<short>(static_cast<unsigned short>(SPELL_AT(cursor_3e4.selection)->first)));
+                    static_cast<short>(SPELL_INDEX(cursor_3e4.selection)->first), static_cast<signed char>(0)));
+                count = counts_3c0.find(static_cast<short>(static_cast<unsigned short>(SPELL_INDEX(cursor_3e4.selection)->first)));
             }
             if (count->second < available_count_for_index_448df0(cursor_3e4.selection) && count->second < 4) {
                 ++count->second;
@@ -112,7 +112,7 @@ bool CProfileDeckEdit::update()
         guides_410[0].visible = true;
         if (cursor_3e4.update()) {
             if (available_count_for_index_448df0(cursor_3e4.selection))
-                MENU_VIEW->show_spell_record_448b40(&SPELL_AT(cursor_3e4.selection)->second);
+                MENU_VIEW->show_spell_record_448b40(&SPELL_INDEX(cursor_3e4.selection)->second);
             else {
                 objects_44[17]->enabled = false;
                 objects_44[5]->enabled = false;

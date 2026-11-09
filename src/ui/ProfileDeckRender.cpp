@@ -10,13 +10,11 @@ extern unsigned g_spell_texture_upload_state;
 extern unsigned g_spell_texture_load_state;
 typedef std::map<int, SpellRecordView> DeckRenderSpellMap;
 typedef std::deque<DeckRenderSpellMap::iterator> DeckRenderIteratorDeque;
-struct DeckRenderAtView { DeckRenderSpellMap::iterator &at(unsigned index); };
 struct DeckFooterView { void render_profile_menu_footer(); };
 template<class T> static T &deck_render_field(void *object, unsigned offset)
 {
     return *reinterpret_cast<T *>(static_cast<unsigned char *>(object) + offset);
 }
-#define DECK_AT(index) reinterpret_cast<DeckRenderAtView *>(&filtered_3cc)->at(index)
 #define DECK_INDEX(index) reinterpret_cast<DeckRenderIteratorDeque &>(filtered_3cc)[index]
 
 void CProfileDeckEdit::render()
@@ -72,11 +70,11 @@ void CProfileDeckEdit::render()
         float y = static_cast<float>(16.0 * row + objects_44[0]->y);
         int available = available_count_for_index_448df0(cursor_3e4.window_start + row);
         if (available != 0) {
-            int width = static_cast<int>(DECK_AT(cursor_3e4.window_start + row)->second.name_00.size()) * 8 < 200
-                ? static_cast<int>(DECK_AT(cursor_3e4.window_start + row)->second.name_00.size()) * 8 : 200;
+            int width = static_cast<int>(DECK_INDEX(cursor_3e4.window_start + row)->second.name_00.size()) * 8 < 200
+                ? static_cast<int>(DECK_INDEX(cursor_3e4.window_start + row)->second.name_00.size()) * 8 : 200;
             sprite.set_texture(
-                DECK_AT(cursor_3e4.window_start + row)->second.batch_texture_handle_40,
-                0, DECK_AT(cursor_3e4.window_start + row)->second.value_48, width, 16);
+                DECK_INDEX(cursor_3e4.window_start + row)->second.batch_texture_handle_40,
+                0, DECK_INDEX(cursor_3e4.window_start + row)->second.value_48, width, 16);
         } else {
             sprite.set_texture(texture_258, 0, 160, 160, 16);
         }
@@ -84,7 +82,7 @@ void CProfileDeckEdit::render()
         // The native clear is at ESP+0x20 while an index argument is pushed.
         int owned = 0;
         count = counts_3c0.find(
-            static_cast<short>(static_cast<unsigned short>(DECK_AT(cursor_3e4.window_start + row)->first)));
+            static_cast<short>(static_cast<unsigned short>(DECK_INDEX(cursor_3e4.window_start + row)->first)));
         if (count != counts_3c0.end())
             owned = count->second;
         const int highlight = cursor_3e4.window_start + row == cursor_3e4.selection && flags_40c[3] != 0;
@@ -103,7 +101,7 @@ void CProfileDeckEdit::render()
     }
     if (available_count_for_index_448df0(cursor_3e4.selection) != 0) {
         int width = static_cast<int>(DECK_INDEX(cursor_3e4.selection)->second.name_00.size()) * 8 < 272
-            ? static_cast<int>(DECK_AT(cursor_3e4.selection)->second.name_00.size()) * 8 : 272;
+            ? static_cast<int>(DECK_INDEX(cursor_3e4.selection)->second.name_00.size()) * 8 : 272;
         sprite.set_texture(
             DECK_INDEX(cursor_3e4.selection)->second.batch_texture_handle_40,
             0, DECK_INDEX(cursor_3e4.selection)->second.value_48, width, 16);
@@ -118,6 +116,5 @@ void CProfileDeckEdit::render()
     for (int index = 0; index < 4; ++index)
         guides_410[index].render();
 }
-#undef DECK_AT
 #undef DECK_INDEX
 } // namespace th105

@@ -1086,3 +1086,9 @@ actual deque indexing providers instead of mismatched at() bindings. Six exact
 music roots, the unchanged nonexact result root and fifteen complete root/EH
 sections are preserved. String94 and integer100 providers match in full.
 See `docs/UI_DEQUE_INDEX_PROVIDERS_2026_11_09.md`. Input work is untouched.
+
+2026-11-09: Profile-deck availability/render/update now use the writers' actual
+iterator deque instead of at() declaration-only receivers. Natural indexing
+preserves both exact roots358/1339, the prior render2521 mismatch and five
+complete root/EH sections. All three emitted 99-byte indexing providers match.
+See `docs/PROFILE_DECK_INDEX_PROVIDER_2026_11_09.md`. Input work is preserved.
