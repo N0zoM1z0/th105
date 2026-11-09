@@ -3036,3 +3036,10 @@ exact comparisons remain unchanged; no new authored credit. See
   undefined `at()` method. All 47 native sites read record WORD0; actual
   subscript94 matches while both full CPU payloads stay unchanged and nonexact.
   See `CPU_SEQUENCE_OWNER_2026_11_09.md`.
+
+- Action-entry readers at `0x477830` and `0x51D650` use the same real
+  `deque<FighterSequenceSlot>` at Fighter+55C as sequence insertion. Native
+  calls `0x478470` and `0x51DDE7` invoke the 94-byte subscript provider
+  `0x4399C0`, not `at()`. Replacing the undefined short-record facades preserves
+  Patchouli's entire 3,868-byte exact payload and the common initializer's
+  existing nonexact payload. See `ACTION_ENTRY_SEQUENCE_OWNER_2026_11_09.md`.

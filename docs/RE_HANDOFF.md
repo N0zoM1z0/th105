@@ -1183,3 +1183,11 @@ exact; the public unit now selects the real provider. Remove the mistaken
 authored credit. Both identical physical sentinels remain separately identified
 by native owner calls. See `LIST_SENTINEL_OWNERSHIP_2026_11_09.md`. Input work
 and source pins are unchanged.
+
+## November 9: actual action-entry sequence receivers
+
+Common Fighter and Patchouli initialization now use the real sequence deque
+and subscript provider. Both emitted providers match 94/94; Patchouli retains
+its complete 3,868-byte exact payload. The common initializer's full nonexact
+payload and all 40 existing code/data sections are unchanged. Pending input
+work and source pins remain intact. See `ACTION_ENTRY_SEQUENCE_OWNER_2026_11_09.md`.

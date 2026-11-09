@@ -1,8 +1,5 @@
 #pragma once
 namespace th105 {
-// Only a returned record prefix is accessed; no record/owner is instantiated.
-struct CommonEntryCardSlot { short code; };
-struct CommonEntryCardDeque { CommonEntryCardSlot &at(unsigned); };
 class CommonActionEntryView {
 public:
  virtual void slot00();virtual void slot04();virtual int set_action(short);

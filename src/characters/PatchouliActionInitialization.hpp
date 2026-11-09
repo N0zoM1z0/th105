@@ -3,8 +3,6 @@ namespace th105 {
 // Pointer-only receiver/returned-record views; no complete owner is instantiated.
 // Original nominal class layout and source partition remain provisional.
 struct PatchouliEntryScratchView { void reset(); };
-struct PatchouliEntryCardSlot { short code; };
-struct PatchouliEntryCardDeque { PatchouliEntryCardSlot &at(unsigned); };
 class PatchouliActionEntryView {
 public:
  virtual void slot00();virtual void slot04();virtual void slot08();virtual void slot0c();

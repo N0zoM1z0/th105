@@ -1,5 +1,7 @@
 // Complete JP1.06a477830 hypothesis from all1272 raw main instructions.
 #include "CommonFighterActionInitialization.hpp"
+#include "battle/SpellRuntime.hpp"
+#include <deque>
 namespace th105 {
 #define FIELD(t,o) (*reinterpret_cast<t *>(reinterpret_cast<unsigned char *>(this)+(o)))
 #define F(o) FIELD(float,o)
@@ -128,7 +130,7 @@ void CommonActionEntryView::initialize_common_action_entry()
   emit_effect(71,F(0xec),static_cast<float>(F(0xf0)+100.0),DIR,1);
   S(0x730)=0;S(0x732)=0;
   if(C(0x55a)>0) {
-   S(0x738)=reinterpret_cast<CommonEntryCardDeque *>(reinterpret_cast<unsigned char *>(this)+0x55c)->at(0).code;
+   S(0x738)=FIELD(std::deque<FighterSequenceSlot>,0x55c)[0].record_id_00;
    I(0x180)=1;zero_motion();
    switch(S(0x738)) {
    case 100:
