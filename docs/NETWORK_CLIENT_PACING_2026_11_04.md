@@ -14,3 +14,10 @@ pinned VC8 build emits 573 bytes and matches the first 459, but differs from
 +459 where the two counter operands are read in reverse order. This is not
 an exact match, adds no exact bytes and does not establish concurrent runtime
 equivalence. No live network or full-game execution was performed.
+
+
+2026-11-09: The two queue calls now use the shared implementation view for
+the +0xF8/+0x174 input endpoints. The 79-byte callee is not a Client primary
+method; Server maintenance uses the same two endpoint receivers. The 573-byte
+pacing comparison and its +459 residual are unchanged. See
+`docs/NETWORK_INPUT_DELAY_OWNER_2026_11_09.md`.

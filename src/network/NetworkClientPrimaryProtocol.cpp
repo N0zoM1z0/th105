@@ -1,6 +1,6 @@
 #include "NetworkSendState.hpp"
 #include "NetworkWinsockSendClient.hpp"
-#include "../battle/SpellData.hpp"
+#include "NetworkInputDelayQueue.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkInputPacket.hpp"
 #include "NetworkBaseMembers.hpp"
@@ -26,7 +26,6 @@ struct CNetworkClientPrimaryProtocolView {
     unsigned char send_state_ready();
     bool send_if_needed();
     int send_delay(unsigned char value);
-    void advance_delay_queue();
 
     unsigned char reserved_000[0x48];
     CriticalSectionWrapper critical_048;
@@ -42,14 +41,6 @@ struct CNetworkClientPrimaryProtocolView {
     unsigned char reserved_3a8[0x0c];
     NetworkWinsockSendClientView send_3b4;
     unsigned char buffer_5b4[0x50];
-};
-
-struct CNetworkClientDelayQueueView {
-    void advance_delay_queue();
-    unsigned char reserved_000[0x60];
-    short current_060;
-    unsigned char reserved_062[0x06];
-    ShortDeque8 queue_068;
 };
 
 unsigned char CNetworkClientPrimaryProtocolView::send_state_ready()
@@ -90,11 +81,11 @@ int CNetworkClientPrimaryProtocolView::send_delay(unsigned char value)
         buffer_5b4, request->serialize(buffer_5b4), 0, 0);
 }
 
-void CNetworkClientDelayQueueView::advance_delay_queue()
+void NetworkInputDelayQueueView::advance_delay_queue()
 {
     if (queue_068.live_count_10 != 0) {
         ShortDeque8 *queue = &queue_068;
-        current_060 = *queue->front_checked();
+        injected_mask_060 = *queue->front_checked();
         if (queue->live_count_10 != 0) {
             ++queue->head_0c;
             if (queue->block_capacity_08 * 8 <= queue->head_0c)
@@ -115,7 +106,5 @@ typedef char ClientSendOff[
     offsetof(CNetworkClientPrimaryProtocolView, send_3b4) == 0x3b4 ? 1 : -1];
 typedef char ClientBufferOff[
     offsetof(CNetworkClientPrimaryProtocolView, buffer_5b4) == 0x5b4 ? 1 : -1];
-typedef char ClientDelayQueueOff[
-    offsetof(CNetworkClientDelayQueueView, queue_068) == 0x68 ? 1 : -1];
 
 } // namespace th105

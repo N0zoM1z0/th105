@@ -770,3 +770,12 @@ inheritance geometry pass. Client dispatcher section624, EH70, metadata60 and
 three packet cleanups also match. Primary-class and callback-implementation
 view unification remains open. See `docs/DERIVED_UDP_CALLBACKS_2026_11_09.md`.
 No source pins changed; the pending input migration is preserved.
+
+
+2026-11-09: Queue advancement at 0x44EA80 now has the correct input-endpoint
+owner and a shared implementation used by both Client pacing and Server
+maintenance. Three units preserve eight accepted roots and the existing
+573-byte pacing mismatch. All 318 original non-debug sections retain bytes
+and relocation roles. The full network primary merge remains coupled to the
+pending input member closure; it is not attempted here. See
+`docs/NETWORK_INPUT_DELAY_OWNER_2026_11_09.md`.

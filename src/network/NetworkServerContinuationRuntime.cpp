@@ -1,5 +1,6 @@
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkStateRecord.hpp"
+#include "NetworkInputDelayQueue.hpp"
 
 #include <deque>
 #include <stddef.h>
@@ -9,13 +10,6 @@ namespace th105 {
 struct NetworkPeerByte5 {
     unsigned char reserved_000[4];
     unsigned char byte_004;
-};
-
-struct NetworkEndpointAdvance7C {
-    unsigned char reserved_000[0x78];
-    unsigned int remaining_078;
-
-    void advance();
 };
 
 struct NetworkAuxRecord39 {
@@ -41,8 +35,8 @@ struct CNetworkServerSmallRuntimeView {
     signed char state_080;
     unsigned char reserved_081[0x5b];
     CriticalSectionWrapper critical_0dc;
-    NetworkEndpointAdvance7C endpoint_0f8;
-    NetworkEndpointAdvance7C endpoint_174;
+    NetworkInputDelayQueueView endpoint_0f8;
+    NetworkInputDelayQueueView endpoint_174;
     unsigned char reserved_1f0[0x40];
     NetworkPeerByte5 *peer_230;
     unsigned char reserved_234[0x08];
@@ -72,9 +66,9 @@ void CNetworkServerSmallRuntimeView::reset_server()
 bool CNetworkServerSmallRuntimeView::maintain_endpoints()
 {
     critical_0dc.enter();
-    if (endpoint_0f8.remaining_078 > static_cast<unsigned int>(state_080)) {
-        endpoint_0f8.advance();
-        endpoint_174.advance();
+    if (endpoint_0f8.queue_068.live_count_10 > static_cast<unsigned int>(state_080)) {
+        endpoint_0f8.advance_delay_queue();
+        endpoint_174.advance_delay_queue();
         critical_0dc.leave();
         return true;
     }

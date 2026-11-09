@@ -1,10 +1,10 @@
 #include "engine/CriticalSectionWrapper.hpp"
 #include "battle/BattleController.hpp"
 #include "network/NetworkBaseMembers.hpp"
+#include "network/NetworkInputDelayQueue.hpp"
 #include <stddef.h>
 namespace th105 {
 extern "C" unsigned int g_network_frame_tick;
-struct ClientPacingEndpointView { void advance_delay_queue(); };
 class ClientPacingView {
 public:
     virtual ~ClientPacingView();
@@ -82,8 +82,8 @@ bool ClientPacingView::advance_frame()
             }
         }
         critical_0dc.enter();
-        reinterpret_cast<ClientPacingEndpointView *>(&endpoints_0f8[0])->advance_delay_queue();
-        reinterpret_cast<ClientPacingEndpointView *>(&endpoints_0f8[1])->advance_delay_queue();
+        reinterpret_cast<NetworkInputDelayQueueView *>(&endpoints_0f8[0])->advance_delay_queue();
+        reinterpret_cast<NetworkInputDelayQueueView *>(&endpoints_0f8[1])->advance_delay_queue();
         critical_0dc.leave();
         unsigned int tick = g_network_frame_tick;
         ++pacing_082;

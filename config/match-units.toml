@@ -14848,7 +14848,7 @@ address = "0x0044F8E0"
 symbol_base = "?maintain_endpoints@CNetworkServerSmallRuntimeView@th105@@QAE_NXZ"
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
-  "?advance@NetworkEndpointAdvance7C@th105@@QAEXXZ=0x0044EA80",
+  "?advance_delay_queue@NetworkInputDelayQueueView@th105@@QAEXXZ=0x0044EA80",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
 ]
 
@@ -14994,7 +14994,7 @@ dir32_targets = ["??_7NetworkDelayPacket12@th105@@6B@=??_7NetworkDelayPacket12@t
 
 [[units.gpt-web-network-client-primary-protocol.functions]]
 address = "0x0044EA80"
-symbol_base = "?advance_delay_queue@CNetworkClientDelayQueueView@th105@@QAEXXZ"
+symbol_base = "?advance_delay_queue@NetworkInputDelayQueueView@th105@@QAEXXZ"
 rel32_targets = ["?front_checked@ShortDeque8@th105@@QAEPAFXZ=0x004321B0"]
 
 [units.gpt-web-network-secondary-route-runtime]
@@ -30563,7 +30563,7 @@ symbol_base = "?advance_frame@ClientPacingView@th105@@UAE_NXZ"
 rel32_targets = [
  "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
- "?advance_delay_queue@ClientPacingEndpointView@th105@@QAEXXZ=0x0044EA80",
+ "?advance_delay_queue@NetworkInputDelayQueueView@th105@@QAEXXZ=0x0044EA80",
 ]
 dir32_targets = ["_g_network_frame_tick=_g_network_frame_tick"]
 
