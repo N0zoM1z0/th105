@@ -1,4 +1,6 @@
 #include "characters/YukariActionState.hpp"
+#include "battle/SpellRuntime.hpp"
+#include <deque>
 // Complete JP1.06a57B030 candidate, not selected or exact.
 // See docs/YUKARI_ACTION_STATE_2026_10_28.md.
 namespace th105 {
@@ -118,8 +120,8 @@ case 199:
     if(recover_action())return;
     if(!frame_timer_142) {
         if(frame_index_140==10 && C(0x55a)>0) {
-            YukariCardDeque *deck=reinterpret_cast<YukariCardDeque *>(reinterpret_cast<unsigned char *>(this)+0x55c);
-            if(B(0x72c)==2 && *deck->at(0)>=16 && *deck->at(0)<=19){B(0x113)=0;F(0xec)=640.0f;F(0xf0)=200.0f;set_action_and_finalize(750);B(0x104)=1;return;}
+            std::deque<FighterSequenceSlot> *deck=&at<std::deque<FighterSequenceSlot> >(0x55c);
+            if(B(0x72c)==2 && (*deck)[0].record_id_00>=16 && (*deck)[0].record_id_00<=19){B(0x113)=0;F(0xec)=640.0f;F(0xf0)=200.0f;set_action_and_finalize(750);B(0x104)=1;return;}
             packet981(3.0f);
         }
         if(!frame_timer_142 && frame_index_140==23)ground_face();

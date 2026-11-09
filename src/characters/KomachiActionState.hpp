@@ -14,7 +14,6 @@ double __cdecl komachi_sine(float);
 double __cdecl komachi_cosine(float);
 float __fastcall komachi_surface(KomachiActionStateView *);
 unsigned char __fastcall komachi_on_surface(KomachiActionStateView *);
-struct KomachiCardDeque { short *at(unsigned); };
 struct KomachiActionScratch { void reset(); };
 // Pointer-only extension, not a complete owner layout.
 // Pointer-only extension; never instantiate as a recovered complete Fighter.

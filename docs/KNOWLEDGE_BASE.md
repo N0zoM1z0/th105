@@ -3043,3 +3043,9 @@ exact comparisons remain unchanged; no new authored credit. See
   `0x4399C0`, not `at()`. Replacing the undefined short-record facades preserves
   Patchouli's entire 3,868-byte exact payload and the common initializer's
   existing nonexact payload. See `ACTION_ENTRY_SEQUENCE_OWNER_2026_11_09.md`.
+
+- Tenshi, Yukari and Komachi action-state roots also read Fighter+55C through
+  the real sequence-record subscript. All ten native sites and three 94-byte
+  generated providers are checked. Their full switch-bearing payloads remain
+  unchanged and nonexact, and Tenshi's existing float-sine proof passes. See
+  `ACTION_STATE_SEQUENCE_OWNER_2026_11_09.md`.

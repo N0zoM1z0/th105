@@ -12,7 +12,6 @@ double __cdecl yukari_sine(float);
 double __cdecl yukari_cosine(float);
 float __fastcall yukari_surface(YukariActionStateView *);
 unsigned char __fastcall yukari_on_surface(YukariActionStateView *);
-struct YukariCardDeque { short *at(unsigned); };
 struct YukariActionScratch { void reset(); };
 // Pointer-only extension, not a complete owner layout.
 class YukariActionStateView : public AnimationSequenceObjectView {

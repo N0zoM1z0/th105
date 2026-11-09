@@ -1,5 +1,7 @@
 #pragma once
 #include <math.h>
+#include "battle/SpellRuntime.hpp"
+#include <deque>
 #include "characters/AnimationSequenceVirtuals.hpp"
 namespace th105 {
 class TenshiActionStateView;
@@ -19,7 +21,6 @@ extern int g_match_identifier;
 extern int g_fighter_state_4b8_default;
 extern short g_tenshi_weather_counter;
 extern unsigned char g_tenshi_weather_selector;
-struct TenshiCardDeque { short *at(unsigned); };
 struct TenshiEvent130 {
     void trigger(int);
     void *pair(float,float);
@@ -270,7 +271,7 @@ public:
         return static_cast<TenshiActionStateView *>(related_170);
     }
     __forceinline short card() {
-        return *reinterpret_cast<TenshiCardDeque *>(reinterpret_cast<unsigned char *>(this)+0x55c)->at(0);
+        return at<std::deque<FighterSequenceSlot> >(0x55c)[0].record_id_00;
     }
     __forceinline TenshiEvent130 *event_owner() {
         return reinterpret_cast<TenshiEvent130 *>(reinterpret_cast<unsigned char *>(this)+0x130);

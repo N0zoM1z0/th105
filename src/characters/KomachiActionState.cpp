@@ -1,4 +1,6 @@
 #include "characters/KomachiActionState.hpp"
+#include "battle/SpellRuntime.hpp"
+#include <deque>
 // Complete JP 1.06a 5e20e0 candidate, not selected or exact.
 // See docs/KOMACHI_ACTION_STATE_2026_10_28.md.
 namespace th105 {
@@ -11,7 +13,7 @@ void KomachiActionStateView::dispatch_action_state_vslot28() {
 
 S(0x7a0)=0;S(0x7a2)=106;
 if(B(0x72c)==2 && C(0x55a)>0){
-    switch(*reinterpret_cast<KomachiCardDeque *>(reinterpret_cast<unsigned char *>(this)+0x55c)->at(0)){
+    switch(at<std::deque<FighterSequenceSlot> >(0x55c)[0].record_id_00){
     case 0:case 1:case 2:case 3:case 4:card_expiration();break;
     case 5:case 6:case 7:case 8:card_expiration();break;
     }

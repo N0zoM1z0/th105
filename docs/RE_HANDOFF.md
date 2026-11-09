@@ -1191,3 +1191,11 @@ and subscript provider. Both emitted providers match 94/94; Patchouli retains
 its complete 3,868-byte exact payload. The common initializer's full nonexact
 payload and all 40 existing code/data sections are unchanged. Pending input
 work and source pins remain intact. See `ACTION_ENTRY_SEQUENCE_OWNER_2026_11_09.md`.
+
+## November 9: actual action-state sequence receivers
+
+Tenshi, Yukari and Komachi now use the shared 0x98-byte sequence record deque.
+Ten native read sites and three complete 94-byte subscript providers are checked.
+Their full nonexact payloads and all 542 existing sections remain unchanged;
+Tenshi's affected float-sine origin proof passes. Input migration and pending
+pins are preserved. See `ACTION_STATE_SEQUENCE_OWNER_2026_11_09.md`.
