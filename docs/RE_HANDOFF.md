@@ -967,3 +967,11 @@ has the real shared-class provider. Title616 and color81 remain canonical, as do
 the seven design-render/lookup roots, implicit lifetimes and all398 owned EH
 bytes. See `docs/TITLE_DESIGN_OWNER_2026_11_09.md`. No shared header, input pin,
 origin gate or exact count changed; the outer Title layout remains separate.
+
+
+2026-11-09: CTitle now has one shared scene declaration across its factory,
+constructor, destructor and all callbacks. Actual handle-value extraction keeps
+both lifetimes exact; the missing empty virtual method is supplied. All nine
+accepted roots, owned tables, complete1,105-byte EH closure and scalar origin
+proof pass. The renderer's417-byte nonexact candidate is unchanged. See
+`docs/TITLE_OUTER_OWNER_2026_11_09.md`. No new exact credit or input/source-pin edits.

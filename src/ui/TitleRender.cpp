@@ -1,5 +1,5 @@
 #include "ui/UiPrimitives.hpp"
-#include "ui/Title.hpp"
+#include "ui/TitleScene.hpp"
 #include "engine/RenderModeManager.hpp"
 extern "C" float __cdecl lookup_orientation_cosine(int angle);
 namespace th105 {

@@ -1,11 +1,11 @@
 #include "SceneManager.hpp"
+#include "ui/TitleScene.hpp"
 
 namespace th105 {
 
 struct CLogo { unsigned char bytes[0x198]; CLogo(); };
 struct Opening { unsigned char bytes[0x0A0]; Opening(); };
 struct CLoading { unsigned char bytes[0x0BC]; CLoading(); };
-struct CTitle { unsigned char bytes[0x28C]; CTitle(); };
 struct CSelect { unsigned char bytes[0x2ED8]; CSelect(); };
 struct CSelectScenario { unsigned char bytes[0x3EC]; CSelectScenario(); };
 struct CBattle { unsigned char bytes[0x08]; CBattle(); };

@@ -1,15 +1,6 @@
-#include "ui/Title.hpp"
-#include "ui/DesignBaseLifetime.hpp"
+#include "ui/TitleScene.hpp"
 
 namespace th105 {
-
-// Constructor-facing physical view of the RTTI-owned 0x28C CTitle object.
-// Its sprite, tile and design members use their actual shared classes.
-// The outer CTitle declaration still has a separate resource-facing layout.
-struct SceneTextureHandle {
-    unsigned int value;
-    SceneTextureHandle() : value(0) {}
-};
 
 extern "C" void *__cdecl get_combined_menu_input();
 unsigned int get_session_setup_option();
@@ -18,36 +9,7 @@ extern "C" const char title_base_path[];
 extern "C" const char title_menu_item_path[];
 extern "C" const char title_design_path[];
 
-class CTitleConstructorView : public CSceneBase {
-public:
-    CTitleConstructorView();
-    virtual ~CTitleConstructorView();
-    virtual int update();
-    virtual bool render();
-    virtual void unknown_scene_method();
-    virtual void on_scene_enter(int previous_scene);
-    virtual void on_scene_exit(int next_scene);
-private:
-    SceneTextureHandle texture_08;
-    CSprite sprite_0c;
-    SceneTextureHandle texture_a0;
-    CSprite sprite_a4;
-    CTile tile_138;
-    CDesignBase design_1dc;
-    int item_count_210;
-    int state_214;
-    void *menu_input_218;
-    int mode_21c;
-    int state_220;
-    UiDesignObject *design_items_224[12];
-    float menu_item_wave_offsets_254[12];
-    int state_284;
-    int wave_counter_288;
-};
-
-typedef char CTitleProbe_size_must_be_0x28c[sizeof(CTitleConstructorView) == 0x28c ? 1 : -1];
-
-CTitleConstructorView::CTitleConstructorView()
+CTitle::CTitle()
 {
     unsigned int width;
     unsigned int height;
@@ -56,16 +18,16 @@ CTitleConstructorView::CTitleConstructorView()
         unsigned int handle1;
         texture_08.value = *g_title_resource_manager.load_texture(
             &handle1, title_base_path, &width, &height);
-        sprite_0c.set_texture(texture_08.value, 0, 0, 640, 480);
+        color_0c.set_texture(texture_08.value, 0, 0, 640, 480);
     }
 
     {
         unsigned int handle2;
         texture_a0.value = *g_title_resource_manager.load_texture(
             &handle2, title_menu_item_path, &width, &height);
-        sprite_a4.set_texture_options(
+        color_a4.set_texture_options(
             texture_a0.value, 0, 0, width, 16, width >> 1, 0);
-        tile_138.set_texture_options(
+        color_138.set_texture_options(
             texture_a0.value, 0, 16, width, 24, width >> 1, 0);
     }
 
@@ -73,35 +35,36 @@ CTitleConstructorView::CTitleConstructorView()
 
     void *input = get_combined_menu_input();
     if (input)
-        menu_input_218 = reinterpret_cast<unsigned char *>(input) + 0x3C;
+        cursor_210.input_counter = reinterpret_cast<int *>(
+            reinterpret_cast<unsigned char *>(input) + 0x3C);
     else
-        menu_input_218 = 0;
-    mode_21c = 0;
-    state_220 = 0;
-    state_214 = 0;
-    item_count_210 = 12;
+        cursor_210.input_counter = 0;
+    cursor_210.selection = 0;
+    cursor_210.window_start = 0;
+    cursor_210.page_size = 0;
+    cursor_210.item_count = 12;
 
     for (int i = 0; i < 12; ++i) {
-        design_1dc.find_object(&design_items_224[i], i + 100);
-        menu_item_wave_offsets_254[i] = 0.0f;
+        design_1dc.find_object(&menu_items_224[i], i + 100);
+        menu_item_wave_offsets[i] = 0.0f;
     }
 
-    state_284 = 0;
-    wave_counter_288 = 0;
+    reserved_0284 = 0;
+    menu_item_wave_counter = 0;
 
     if (get_session_setup_option() == 2 && get_game_mode() != 6) {
-        mode_21c = 6;
+        cursor_210.selection = 6;
     } else {
         switch (get_game_mode()) {
-        case 0: mode_21c = 0; break;
-        case 1: mode_21c = 1; break;
-        case 2: mode_21c = 2; break;
-        case 3: mode_21c = 3; break;
+        case 0: cursor_210.selection = 0; break;
+        case 1: cursor_210.selection = 1; break;
+        case 2: cursor_210.selection = 2; break;
+        case 3: cursor_210.selection = 3; break;
         case 4:
         case 5:
-        case 6: mode_21c = 4; break;
-        case 8: mode_21c = 5; break;
-        case 7: mode_21c = 8; break;
+        case 6: cursor_210.selection = 4; break;
+        case 8: cursor_210.selection = 5; break;
+        case 7: cursor_210.selection = 8; break;
         default: break;
         }
     }

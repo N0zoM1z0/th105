@@ -1,4 +1,4 @@
-#include "Title.hpp"
+#include "TitleScene.hpp"
 #include "UiSelectionState.hpp"
 #include "LoadingWatch.hpp"
 
@@ -12,10 +12,14 @@ const unsigned int title_color_vtable_anchor[] = {0x0040AE80};
 
 namespace th105 {
 
+void CTitle::unknown_scene_method()
+{
+}
+
 CTitle::~CTitle()
 {
-    g_title_resource_manager.release_title_resource_handle(texture_08);
-    g_title_resource_manager.release_title_resource_handle(texture_a0);
+    g_title_resource_manager.release_title_resource_handle(texture_08.value);
+    g_title_resource_manager.release_title_resource_handle(texture_a0.value);
     design_1dc.virtual_cleanup();
 }
 

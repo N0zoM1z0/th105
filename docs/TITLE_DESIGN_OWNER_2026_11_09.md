@@ -51,3 +51,7 @@ Evidence is in `build/frontier-title-design-owner-20261109/`: `formal-build.json
 `color-formal.json`, `design-providers.json` and `verification.json`. Private
 before-state snapshots and the complete audit are in the matching `.analysis/`
 directory. Tracking, lightweight CI and the diff check pass.
+
+The subsequent outer-owner pass unifies the remaining CTitle declarations,
+including the factory and both lifetimes. The focused class header avoids
+changing unrelated resource consumers. See `TITLE_OUTER_OWNER_2026_11_09.md`.
