@@ -15,6 +15,9 @@ extern "C" __declspec(dllimport) unsigned long __stdcall SetFilePointer(
     long distance,
     long *distance_high,
     unsigned long origin);
+extern "C" __declspec(dllimport) unsigned long __stdcall GetFileSize(
+    void *file,
+    unsigned long *size_high);
 
 namespace th105 {
 
@@ -45,7 +48,7 @@ struct GameConfigFileReaderView {
     {
         return SetFilePointer(file, offset, 0, origin);
     }
-    virtual unsigned long size() const { return 0; }
+    virtual unsigned long size() const { return GetFileSize(file, 0); }
 
     void *file;
     unsigned long bytes_read;

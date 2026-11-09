@@ -848,3 +848,11 @@ and all 83 non-debug sections are unchanged; provider roots remain exact.
 Review of 32 actions preserves the original shared-tail conditions, including
 810's own-sequence redundancy and 849's branch-after-comparison edge. See
 `docs/SAKUYA_OBJECT_UPDATE_2026_10_25.md`. No new exact credit or input changes.
+
+
+2026-11-09: Fixed the configuration reader's emitted size virtual, which returned
+zero instead of calling native GetFileSize. Its complete 13-byte provider and
+all five virtual slots now match; the accepted loader remains 953/953 and all
+180 other non-debug sections are unchanged. See the configuration-reader section
+in `docs/SHARED_PLAIN_FILE_READER_2026_11_04.md`. No new exact credit or input
+migration changes.
