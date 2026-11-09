@@ -823,3 +823,11 @@ runtime providers instead of twelve undefined aliases. Complete native CFGs
 prove all 251 receiver offsets; all 339 non-debug sections and three complete
 candidate payloads are unchanged. Four provider roots remain exact; parents
 remain nonexact. See `docs/ROSTER_RUNTIME_PROVIDERS_2026_11_09.md`.
+
+
+2026-11-09: Tenshi's quantized-trig return-type review found no justified
+prototype change. Both native providers return a direct float-table load in
+ST0; 81 calls across Tenshi, Iku and Udonge plus complete motion/tangent callers
+show differing expression lifetimes without proving float versus double
+return spelling. See the return-contract section in
+`docs/TENSHI_OBJECT_UPDATE_2026_10_25.md`. Source and exact status are unchanged.

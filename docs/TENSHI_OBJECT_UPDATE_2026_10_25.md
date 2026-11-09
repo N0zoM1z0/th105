@@ -360,3 +360,50 @@ The focused VC8 output uses reversed operands at `0x9176..0x9198` and
 The full candidate remains nonexact: its section tail is 42,508 bytes against
 the 41,001-byte native callable, with first mismatch at +8. No exact credit is
 claimed. Receipts: `build/tenshi-unordered-height-20261107.json` and `.dis`.
+
+## Quantized lookup return contract (2026-11-09)
+
+The local `float(float)` declarations for sine `0x406360` and cosine
+`0x4063D0` are not disproved by the `double(float)` declarations in other
+translation units. The latter remain an explicit hypothesis in the function
+ledger and [the angle evidence](ANGLE_RATIO_EVIDENCE_2026_09_12.md).
+No return-type change is justified by the current target observations.
+
+A fresh raw-PE check covers both complete providers (100 and 94 bytes), each
+with one ordinary cdecl return. Both read their argument as m32 and finish
+with `FLD m32 [EDX*4+0x6FE8B0]`, followed only by restoring ESP/EBP and RET.
+Thus the returned ST0 value is loaded directly from the float table. Every
+finite table value is exactly representable as either float or double; the
+return register itself does not reveal the original C++ return type.
+
+Complete native CFG traversal finds all 42 Tenshi lookup calls, 21 to each
+provider. Their first x87 instruction is a multiply at 40 sites, a doubling
+at `0x64D5C5`, and another operand load at one site. None immediately rounds
+the returned value through a float store. This does not turn those expressions
+into evidence of a double-return declaration: the already loaded table value
+needs no additional rounding, and subsequent expression promotions and local
+lifetimes are separate questions. In particular, action 801's direct doubling
+and addition still support its existing double local, not a global prototype
+change.
+
+The same check covers Iku's 11 and Udonge's 28 calls. Their local declarations
+are double-return views, yet their native windows likewise begin arithmetic
+or load another operand rather than distinguish the provider's return type.
+Two small, complete callers provide a useful contrast: oriented motion
+`0x435160` consumes ST0 directly in multiplication before storing each final
+float component, while tangent `0x406430` immediately stores the cosine as a
+float for its zero test and later division. Those are distinct, observed
+consumer lifetimes, not conflicting provider ABIs. The existing motion and
+tangent sources reproduce these callers with different declaration views.
+
+Evidence uses the pinned Japanese v1.06a executable and the existing complete
+root payload hashes. The private script is
+`.analysis/frontier-tenshi-trig-return-20261109/check-return-contract.py`; its
+provider disassemblies, 81 call windows, reachable-instruction counts and two
+small caller bodies are retained in
+`build/frontier-tenshi-trig-return-20261109/native-contract.json`.
+The windows are bounded instruction observations, not a universal floating-
+point execution proof. No source, manifest, provider pin or exact ledger was
+changed. A future shared declaration needs stronger compiler/source evidence
+and complete affected-consumer comparisons; changing it merely to agree with
+another provisional translation unit would conceal the unresolved question.
