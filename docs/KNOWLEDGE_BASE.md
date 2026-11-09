@@ -1494,22 +1494,15 @@ assembly, copied bytes, or relocation aliases between distinct RTTI classes.
 
 ## Result/network exact-reconstruction patterns (2026-08-27)
 
-The current result-input/network island adds three ordinary-VC8 exact bodies at
-`0x0043B300`, `0x0043B410`, and `0x0044DCB0`.  The useful lessons are broader
-than these three functions:
+The result-input/network island originally recorded exact bodies at
+`0x0043B300`, `0x0043B410`, and `0x0044DCB0`. The November 9 ownership review
+establishes that `0x0043B300` is VC8 `vector::operator[]`, not an authored
+accessor. Its real input-vector provider reproduces all 59 bytes, so the old
+hand-written predicate and translation-unit spelling are not evidence of
+authored policy. See `INPUT_VECTOR_SUBSCRIPT_ORIGIN_2026_11_09.md`.
 
-- For a checked contiguous record accessor, mathematically equivalent unsigned
-  predicates are not codegen-equivalent in VC8.  `count <= index` emitted
-  `cmp count,index / ja`, while the target spelling was recovered by keeping
-  the same fall-through invalid-parameter lifetime and writing
-  `!(index < count)`, which emits `cmp index,count / jb`.  Do not replace the
-  invalid branch with an early-return form: that changes register lifetimes and
-  the whole prologue.
-- Keep small checked accessors in their own translation unit when the target
-  contains a real call edge.  Defining `ResultInputRecordTableView::at` in the
-  caller TU caused VC8 to inline it into `prepare_result_match`; a declaration
-  in the caller plus an out-of-line definition preserves the target ownership
-  boundary naturally.
+The useful application-level findings remain:
+
 - Assignment ownership order can be enough to recover VC8 scheduling without
   fake dependencies.  In the 136-byte network result binder, publishing the
   primary/alternate selected-input pointers before the two enable flags makes

@@ -1110,3 +1110,12 @@ short-deque subscripts instead of declaration-only `at()` aliases. All 13
 affected functions remain locally byte-exact; 17 full root/EH sections are
 unchanged and both 100-byte providers match. No new Factory acceptance or
 progress credit is claimed. See `docs/RESULT_REPLAY_DEQUE_CONTRACT_2026_11_09.md`.
+
+## November 9: correct input-vector accessor ownership
+
+`0x43B300` is the actual input vector's compiler-generated subscript, not an
+authored `at` method. The real provider remains locally exact 59/59; whole-body
+inventory uniqueness and the native `0x6FCA2C` receiver are verified. Remove its
+false authored credit. The selected-input caller remains exact 153/153, while
+the 286-byte match-mode caller remains nonexact. Pending input migration files
+and SHA pins are unchanged. See `INPUT_VECTOR_SUBSCRIPT_ORIGIN_2026_11_09.md`.

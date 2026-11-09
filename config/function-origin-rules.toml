@@ -7369,3 +7369,16 @@ subsystem = "characters"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Actual Youmu reader 53CDF0 calls deque<YoumuObjectRecord>::at at 53CD90. The complete 94-byte access helper and four 117-byte range-error clones retain full inventory, relocation and boundary proof. The native constructor and history writer establish the same 44-byte record deque at +7D0. docs/FILE_LIST_TILE_CONTAINER_2026_11_09.md."
+
+[[rules]]
+id = "vc8-generated-input-table-subscript-106a"
+vc8_generated_anchor_file = "config/vc8-generated-input-table-subscript-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 59
+origin = "compiler_generated"
+subsystem = "input"
+disposition = "exclude"
+confidence = "observed"
+evidence = "The real bootstrap input class and VC8 vector::operator[] reproduce all 59 bytes at 43B300; its 55 non-relocation bytes and complete invalid-parameter call mapping uniquely identify the current inventory candidate. The exact selected-input caller passes the actual vector at 6FCA2C. docs/INPUT_VECTOR_SUBSCRIPT_ORIGIN_2026_11_09.md."
+required_direct_edges = [{ caller = "0x0043B640", site = "0x0043B6BE", target = "0x0043B300", caller_status = "matching" }]
+required_dword_values = [{ address = "0x0043B6BA", value = "0x006FCA2C" }]

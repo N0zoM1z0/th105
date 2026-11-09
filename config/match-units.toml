@@ -12524,11 +12524,11 @@ source = "src/ui/ResultInputRecordAccess.cpp"
 object = "build/match-units/GptWeb_ResultInputRecordAccess.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current result-input checked 0x68-stride accessor. The target's unsigned validity spelling is !(index < count), which preserves the canonical cmp index,count / jb success edge without assembly or register forcing."
+notes = "Compiler-owned checked vector<SceneBootstrapInputEx>::operator[] over the actual input table. Complete 59-byte body; excluded from authored credit. docs/INPUT_VECTOR_SUBSCRIPT_ORIGIN_2026_11_09.md."
 
 [[units.gpt-web-result-input-record-access.functions]]
 address = "0x0043B300"
-symbol_base = "?at@ResultInputRecordTableView@th105@@QAEPAUResultInputRecord68@2@I@Z"
+symbol_base = "??A?$vector@USceneBootstrapInputEx@th105@@V?$allocator@USceneBootstrapInputEx@th105@@@std@@@std@@QAEAAUSceneBootstrapInputEx@th105@@I@Z"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
 [units.gpt-web-network-result-binding]
