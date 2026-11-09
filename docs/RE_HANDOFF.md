@@ -816,3 +816,10 @@ runtime providers. All 68 native receiver offsets are proved; the complete
 28,816-byte candidate and all 85 non-debug sections are unchanged. Four provider
 roots replay exact, while the parent remains nonexact. See
 `docs/KOMACHI_OBJECT_UPDATE_2026_10_25.md`. Input migration remains untouched.
+
+
+2026-11-09: Iku, Tenshi and Udonge object updates now use the four existing
+runtime providers instead of twelve undefined aliases. Complete native CFGs
+prove all 251 receiver offsets; all 339 non-debug sections and three complete
+candidate payloads are unchanged. Four provider roots remain exact; parents
+remain nonexact. See `docs/ROSTER_RUNTIME_PROVIDERS_2026_11_09.md`.

@@ -9,7 +9,7 @@ public:
  virtual unsigned char next_sequence_block();virtual void slot18();
  virtual int select_frame(short);virtual unsigned char next_sequence_frame();
  virtual void slot24();virtual void update_action_state();
- unsigned char advance_frame();unsigned char advance_phase(int);unsigned char advance_six(int);
+
  unsigned char emit_repeated(int,int,int);
  void replace_secondary(int,float,int,int,int);
  void turn_heading(float,float,float);
@@ -26,7 +26,6 @@ class UdongeUpdateOwnerView {public:
  void dispatch_character_wave_handle(unsigned);
  void apply_deferred_counter_558(short);
 };
-class UdongeUpdateMotionView {public:void set_components(float,float);};
 int __cdecl selector_random_roll(int);
 double __cdecl lookup_orientation_sine_quantized_abs(float);
 double __cdecl lookup_orientation_cosine_quantized_abs(float);

@@ -10,7 +10,7 @@ public:
  virtual void update_action_state();
  unsigned char emit_repeated(int,int,int);
  void dispatch_character_wave_handle(unsigned);
- unsigned char advance_frame();unsigned char advance_six(int);unsigned char advance_phase(int);
+
  void *spawn_unparented(int,float,float,int,int,const unsigned *,int);
  void *spawn_parented(int,float,float,int,int,const unsigned *,int);
  float stage_surface_height();void set_sprite_uv_size(float,float);
@@ -19,7 +19,6 @@ public:
  void *position_relative(int,int);void emit_fighter_effect_433cc0(int,float,float,int,int);
  void publish_bounds(int,int,int,int,short,short,short);
 };
-class IkuUpdateMotionView {public:void set_components(float,float);};
 int __cdecl selector_random_roll(int);
 double __cdecl lookup_orientation_sine_quantized_abs(float);
 double __cdecl lookup_orientation_cosine_quantized_abs(float);
