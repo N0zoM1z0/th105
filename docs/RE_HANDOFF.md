@@ -760,3 +760,13 @@ EH35/metadata44 and factory EH38/metadata44 also match. The native Server-null
 and Client-secondary-pointer destructor policies are preserved. See
 `docs/NETWORK_CALLBACK_PUBLICATION_2026_11_09.md`. No origin pins changed;
 the input migration remains separate.
+
+
+2026-11-09: Constructor/lifetime views now inherit the real six-slot UDP
+interface with Server slots 3/4 and Client slots 0-4 overridden. Three Client
+notifications no longer promise incidental EAX values. Ten authored exact
+roots and two compiler wrappers remain equal; full secondary tables, COLs and
+inheritance geometry pass. Client dispatcher section624, EH70, metadata60 and
+three packet cleanups also match. Primary-class and callback-implementation
+view unification remains open. See `docs/DERIVED_UDP_CALLBACKS_2026_11_09.md`.
+No source pins changed; the pending input migration is preserved.

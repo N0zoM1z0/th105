@@ -34,11 +34,11 @@ struct NetworkInboundReplay6 {
 // rather than pretending the secondary object is standalone.
 class CNetworkClientSecondaryView {
 public:
-    virtual CNetworkClientSecondaryView *configure(
+    virtual void configure(
         int flags, const void *state_blob, int unused);
-    virtual int set_option_bits(int value);
+    virtual void set_option_bits(int value);
     virtual void slot_2();
-    virtual int handle_request(
+    virtual void handle_request(
         int context, const NetworkInboundReplay6 *packet, int unused);
 
     int secondary_state_004;
@@ -51,7 +51,7 @@ private:
     }
 };
 
-CNetworkClientSecondaryView *CNetworkClientSecondaryView::configure(
+void CNetworkClientSecondaryView::configure(
     int flags, const void *state_blob, int)
 {
     NetworkClientOwnerSecondaryView *primary = owner();
@@ -67,25 +67,22 @@ CNetworkClientSecondaryView *CNetworkClientSecondaryView::configure(
     memcpy(primary->state_blob_004, state_blob, 0x44);
     primary->copied_state_3b0 =
         *reinterpret_cast<const int *>(primary->state_blob_004 + 0x40);
-    return this;
 }
 
-int CNetworkClientSecondaryView::set_option_bits(int value)
+void CNetworkClientSecondaryView::set_option_bits(int value)
 {
     owner()->option_bits_3ac = value;
-    return value;
 }
 
-int CNetworkClientSecondaryView::handle_request(
+void CNetworkClientSecondaryView::handle_request(
     int context, const NetworkInboundReplay6 *packet, int)
 {
     if (packet->type_000 == 11) {
         NetworkRequestReplay10 request;
         request.value_008 = packet->value_001;
         request.tag_00c = packet->tag_005;
-        return owner()->dispatch_secondary_request(context, &request);
+        owner()->dispatch_secondary_request(context, &request);
     }
-    return reinterpret_cast<int>(packet);
 }
 
 typedef char NetworkClientOwnerSecondaryView_size_must_be_0x6dc[

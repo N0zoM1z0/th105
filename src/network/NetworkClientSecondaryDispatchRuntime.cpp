@@ -71,10 +71,10 @@ typedef char PrimaryDispatchSize[
 
 class CNetworkClientSecondaryDispatchView {
 public:
-    virtual CNetworkClientSecondaryDispatchView *configure(int, const void *, int);
-    virtual int set_option_bits(int value);
+    virtual void configure(int, const void *, int);
+    virtual void set_option_bits(int value);
     virtual void dispatch_packet(const unsigned char *packet, int unused);
-    virtual int handle_request(int, const void *, int);
+    virtual void handle_request(int, const void *, int);
 
     int secondary_state_004;
 

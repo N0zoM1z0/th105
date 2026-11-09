@@ -35,9 +35,9 @@ the existing vector at +0x108 and status +0x144. Compile-time assertions
 check the offsets and the modeled 0x148-byte prefix. This is not a complete
 transport-class definition. The UDP send view still describes another prefix,
 and `process(int)` remains an existing call-only boundary to peer removal.
-The derived constructor/lifetime secondary interfaces also remain partial
-views; joining them to the full native interface requires recovery of their
-actual derived overrides.
+The follow-up in `docs/DERIVED_UDP_CALLBACKS_2026_11_09.md` connects the complete
+secondary interface and native override declarations. Concrete callback
+implementations and the primary base still require owner-view unification.
 
 ## Focused comparison
 
@@ -84,5 +84,5 @@ The local replay uses the existing `audit-select-constructor.py` section
 resolver; private scripts and the original worktree snapshot remain in
 `.analysis/frontier-network-callback-publication-20261109/`.
 
-The next useful boundary is the actual derived UDP callback override set,
-not another spelling change to the already-exact publication routine.
+The derived UDP callback follow-up resolves the six-slot declaration boundary;
+joining the remaining primary and callback implementation views is still open.

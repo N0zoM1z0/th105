@@ -14052,7 +14052,7 @@ rel32_targets = [
 ]
 dir32_targets = [
   "??_7CNetworkServerLifetimeView@th105@@6BCNetworkBaseLifetimeView@1@@=??_7CNetworkServer@@6B@",
-  "??_7CNetworkServerLifetimeView@th105@@6BNetworkSecondaryInterfaceView@1@@=??_7CNetworkServer@@6B@_0",
+  "??_7CNetworkServerLifetimeView@th105@@6BINetworkUDPEventProc@@@=??_7CNetworkServer@@6B@_0",
 ]
 
 [[units.gpt-web-network-derived-lifetime.functions]]
@@ -14072,7 +14072,7 @@ rel32_targets = [
 ]
 dir32_targets = [
   "??_7CNetworkClientLifetimeView@th105@@6BCNetworkBaseLifetimeView@1@@=??_7CNetworkClient@@6B@",
-  "??_7CNetworkClientLifetimeView@th105@@6BNetworkSecondaryInterfaceView@1@@=??_7CNetworkClient@@6B@_0",
+  "??_7CNetworkClientLifetimeView@th105@@6BINetworkUDPEventProc@@@=??_7CNetworkClient@@6B@_0",
 ]
 
 [[units.gpt-web-network-derived-lifetime.functions]]
@@ -14919,15 +14919,15 @@ notes = "Current factory allocation at 0x0043CEA1 is 0x6E4 bytes while RTTI fixe
 
 [[units.gpt-web-network-client-secondary-runtime.functions]]
 address = "0x0044E7E0"
-symbol_base = "?configure@CNetworkClientSecondaryView@th105@@UAEPAV12@HPBXH@Z"
+symbol_base = "?configure@CNetworkClientSecondaryView@th105@@UAEXHPBXH@Z"
 
 [[units.gpt-web-network-client-secondary-runtime.functions]]
 address = "0x0044E840"
-symbol_base = "?set_option_bits@CNetworkClientSecondaryView@th105@@UAEHH@Z"
+symbol_base = "?set_option_bits@CNetworkClientSecondaryView@th105@@UAEXH@Z"
 
 [[units.gpt-web-network-client-secondary-runtime.functions]]
 address = "0x0044EA30"
-symbol_base = "?handle_request@CNetworkClientSecondaryView@th105@@UAEHHPBUNetworkInboundReplay6@2@H@Z"
+symbol_base = "?handle_request@CNetworkClientSecondaryView@th105@@UAEXHPBUNetworkInboundReplay6@2@H@Z"
 rel32_targets = ["?dispatch_secondary_request@NetworkClientOwnerSecondaryView@th105@@QAEHHPBX@Z=0x0044E460"]
 dir32_targets = ["??_7NetworkRequestReplay10@th105@@6B@=??_7NetworkRequestReplay10@th105@@6B@"]
 
@@ -16058,9 +16058,9 @@ rel32_targets = [
 dir32_targets = [
   "__ehhandler$??0CNetworkServerCtorView@th105@@QAE@XZ=__ehhandler$??0CNetworkServerCtorView@th105@@QAE@XZ",
   "___security_cookie=___security_cookie",
-  "??_7INetworkUDPEventProcCtorView@th105@@6B@=??_7INetworkUDPEventProcCtorView@th105@@6B@",
+  "??_7INetworkUDPEventProc@@6B@=??_7INetworkUDPEventProcCtorView@th105@@6B@",
   "??_7CNetworkServerCtorView@th105@@6BCNetworkBaseCtorDependency@1@@=??_7CNetworkServer@@6B@",
-  "??_7CNetworkServerCtorView@th105@@6BINetworkUDPEventProcCtorView@1@@=??_7CNetworkServer@@6B@_0",
+  "??_7CNetworkServerCtorView@th105@@6BINetworkUDPEventProc@@@=??_7CNetworkServer@@6B@_0",
 ]
 [[units.gpt-web-network-derived-constructor.functions]]
 address = "0x0043CCA0"
@@ -16073,9 +16073,9 @@ rel32_targets = [
 dir32_targets = [
   "__ehhandler$??0CNetworkClientCtorView@th105@@QAE@XZ=__ehhandler$??0CNetworkClientCtorView@th105@@QAE@XZ",
   "___security_cookie=___security_cookie",
-  "??_7INetworkUDPEventProcCtorView@th105@@6B@=??_7INetworkUDPEventProcCtorView@th105@@6B@",
+  "??_7INetworkUDPEventProc@@6B@=??_7INetworkUDPEventProcCtorView@th105@@6B@",
   "??_7CNetworkClientCtorView@th105@@6BCNetworkBaseCtorDependency@1@@=??_7CNetworkClient@@6B@",
-  "??_7CNetworkClientCtorView@th105@@6BINetworkUDPEventProcCtorView@1@@=??_7CNetworkClient@@6B@_0",
+  "??_7CNetworkClientCtorView@th105@@6BINetworkUDPEventProc@@@=??_7CNetworkClient@@6B@_0",
 ]
 [[units.gpt-web-network-derived-constructor.functions]]
 address = "0x0043CE00"

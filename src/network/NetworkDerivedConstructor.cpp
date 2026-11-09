@@ -1,4 +1,5 @@
 #include "NetworkSendState.hpp"
+#include "NetworkUdpEvent.hpp"
 
 namespace th105 {
 
@@ -12,40 +13,41 @@ protected:
     unsigned char reserved_4fc[0x6dc - 0x4fc];
 };
 
-class INetworkUDPEventProcCtorView {
-public:
-    INetworkUDPEventProcCtorView() {}
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void slot_08();
-    virtual void slot_0c();
-    int state_04;
-};
-
 class CNetworkServerCtorView : public CNetworkBaseCtorDependency,
-                               public INetworkUDPEventProcCtorView {
+                               public INetworkUDPEventProc {
 public:
     CNetworkServerCtorView();
     virtual ~CNetworkServerCtorView();
+    virtual void on_peer_data(unsigned slot, const void *payload, int size);
+    virtual int route_payload(unsigned slot, int *code,
+        const unsigned char *payload, int size, void **reply,
+        unsigned short *reply_size);
 private:
     unsigned char server_tail_6e4[8];
 };
 
 class CNetworkClientCtorView : public CNetworkBaseCtorDependency,
-                               public INetworkUDPEventProcCtorView {
+                               public INetworkUDPEventProc {
 public:
     CNetworkClientCtorView();
     virtual ~CNetworkClientCtorView();
+    virtual void on_accepted(unsigned code, const void *payload, unsigned size);
+    virtual void on_rejected(unsigned code);
+    virtual void on_primary_data(const void *payload, int size);
+    virtual void on_peer_data(unsigned slot, const void *payload, int size);
+    virtual int route_payload(unsigned slot, int *code,
+        const unsigned char *payload, int size, void **reply,
+        unsigned short *reply_size);
 };
 
 CNetworkServerCtorView::CNetworkServerCtorView()
 {
-    state_3b4.publish_callback(static_cast<INetworkUDPEventProcCtorView *>(this));
+    state_3b4.publish_callback(static_cast<INetworkUDPEventProc *>(this));
 }
 
 CNetworkClientCtorView::CNetworkClientCtorView()
 {
-    state_3b4.publish_callback(static_cast<INetworkUDPEventProcCtorView *>(this));
+    state_3b4.publish_callback(static_cast<INetworkUDPEventProc *>(this));
 }
 
 extern CNetworkBaseCtorDependency *g_network_session;
@@ -67,7 +69,7 @@ CNetworkBaseCtorDependency *__cdecl create_connect_client_43ce80()
 typedef char NetworkBaseCtorDependency_size[
     sizeof(CNetworkBaseCtorDependency) == 0x6dc ? 1 : -1];
 typedef char NetworkSecondaryCtorView_size[
-    sizeof(INetworkUDPEventProcCtorView) == 8 ? 1 : -1];
+    sizeof(INetworkUDPEventProc) == 8 ? 1 : -1];
 typedef char NetworkServerCtorView_size[
     sizeof(CNetworkServerCtorView) == 0x6ec ? 1 : -1];
 typedef char NetworkClientCtorView_size[
