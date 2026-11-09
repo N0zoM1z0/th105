@@ -795,3 +795,10 @@ Eight focused native executions pass; the old body fails both reset-counter
 cases. Four common operations now call their existing exact implementations,
 with all 48 native receiver offsets verified. Whole root 27024/native26576
 remains nonexact. See `docs/YOUMU_OBJECT_UPDATE_2026_10_25.md`.
+
+
+2026-11-09: The Youmu shared-tail follow-up found no further retirement fix.
+Native incoming constants distinguish 812/853 at the shared guard; 812's second
+phase-zero branch is intentional. Eight bounded motion/fade paths agree with
+the unchanged candidate. See the shared-tail follow-up in
+`docs/YOUMU_OBJECT_UPDATE_2026_10_25.md`. No source or exact-ledger change.

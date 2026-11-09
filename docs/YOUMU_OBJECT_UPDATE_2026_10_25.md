@@ -472,3 +472,34 @@ added. This semantic correction is retained despite increasing the byte gap.
 Receipts and private recipes are in the matching
 `build/frontier-youmu-runtime-providers-20261109/` and `.analysis/` scope.
 No shared provider source, input-migration file or origin pin changes.
+
+
+## Shared-tail follow-up, 2026-11-09
+
+The other reviewed retirement tails do not need the action 853 correction.
+Per-action constant propagation over the pinned native control-flow graph covers
+all 28 primary actions and identifies 32 distinct writes that decrement `+0x330`;
+each adds exactly -1. The reset-counter guards retain phase 1 for action 810,
+phases 1/2 for 812, phase 3 for 815/857 and phase 9 for 902. In particular,
+`0x53DB0A` compares against incoming BX=2 from 812 but BX=3 from 853. Keep that
+caller-specific state when reasoning about the shared block.
+
+Action 812 also intentionally tests its own phase zero twice. Native
+`0x53DA39` tests the unchanged CX loaded from owner `+0x13E` at `0x53D97C`.
+Only then does `0x53DA51` load the parent's phase and test 2/7. Changing that
+second owner-phase-zero guard to phase two would introduce a semantic error.
+
+The shared fade paths retain their different gates: 852/855 phase 1 retire at
+alpha <=5; 856/901 phase 1 retire below 5; 902 phase 1 delays that latter fade
+until its age/state gate opens. Eight full-entry native/candidate executions
+check 856/901 at age 20 and 902 at ages 20/120, each with alpha 4/7 and phase 1.
+All owner bytes through `+0x387`, frame-provider calls, stack balance and saved
+registers agree. The actual frame provider executes; no calls are mocked.
+These bounded cases and the constant facts justify leaving those paths alone,
+not accepting the still-nonexact whole root.
+
+Private analysis and receipts are in
+`.analysis/frontier-youmu-shared-tails-20261109/` and
+`build/frontier-youmu-shared-tails-20261109/` (`retirement-tails.json` and
+`motion-fades.json`). The candidate is the unchanged 27,024-byte payload
+`f8f4ccca336eb93a9cfde74bcbacf721dad064f45a77e24e55aed23283296002`.
