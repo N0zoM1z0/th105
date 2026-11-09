@@ -975,3 +975,14 @@ both lifetimes exact; the missing empty virtual method is supplied. All nine
 accepted roots, owned tables, complete1,105-byte EH closure and scalar origin
 proof pass. The renderer's417-byte nonexact candidate is unchanged. See
 `docs/TITLE_OUTER_OWNER_2026_11_09.md`. No new exact credit or input/source-pin edits.
+
+
+2026-11-09: Added the application's real static initialization candidate.
+The complete255-byte constructor, generated73-byte cleanup,139-byte EH closure,
+initializer17 and all member helpers reproduce the pinned target. The current
+paired-global proof cannot select a direct no-EH atexit body, so this remains
+unselected with no new exact credit. See
+`docs/APPLICATION_INITIALIZATION_2026_11_09.md`. The same data flow identifies
+CSceneBase's alleged scene_id as a CFade pointer; that shared type correction
+is the next bounded follow-up. Existing units, dirty input work and pins remain
+unchanged.
