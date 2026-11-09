@@ -1,38 +1,16 @@
-#include "engine/SceneBase.hpp"
-#include "ui/Tile.hpp"
+#include "ui/Title.hpp"
+#include "ui/DesignBaseLifetime.hpp"
 
 namespace th105 {
 
 // Constructor-facing physical view of the RTTI-owned 0x28C CTitle object.
-// The shared Title.hpp intentionally keeps destructor-facing sprite facades;
-// this TU uses actual CSprite / CTile members so VC8 emits the
-// target member construction and EH cleanup naturally.
-struct UiDesignObject;
-
+// Its sprite, tile and design members use their actual shared classes.
+// The outer CTitle declaration still has a separate resource-facing layout.
 struct SceneTextureHandle {
     unsigned int value;
     SceneTextureHandle() : value(0) {}
 };
 
-class TitleDesignResource {
-public:
-    TitleDesignResource();
-    virtual ~TitleDesignResource();
-    virtual void slot_04();
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void load(const char *path);
-    void bind_object(UiDesignObject **result, int object_id);
-private:
-    unsigned char reserved_04[0x30];
-};
-
-struct TitleResourceManager {
-    unsigned int *load_texture(
-        unsigned int *result, const char *path,
-        unsigned int *width, unsigned int *height);
-};
-extern TitleResourceManager g_title_resource_manager;
 extern "C" void *__cdecl get_combined_menu_input();
 unsigned int get_session_setup_option();
 int get_game_mode();
@@ -55,7 +33,7 @@ private:
     SceneTextureHandle texture_a0;
     CSprite sprite_a4;
     CTile tile_138;
-    TitleDesignResource design_1dc;
+    CDesignBase design_1dc;
     int item_count_210;
     int state_214;
     void *menu_input_218;
@@ -104,7 +82,7 @@ CTitleConstructorView::CTitleConstructorView()
     item_count_210 = 12;
 
     for (int i = 0; i < 12; ++i) {
-        design_1dc.bind_object(&design_items_224[i], i + 100);
+        design_1dc.find_object(&design_items_224[i], i + 100);
         menu_item_wave_offsets_254[i] = 0.0f;
     }
 

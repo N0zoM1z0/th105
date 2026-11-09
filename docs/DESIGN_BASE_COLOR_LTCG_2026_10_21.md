@@ -66,3 +66,11 @@ passes; IDA again rejects its wrong-target session. No Ghidra session or
 database write is used. Heavy work is pinned to CPU0 at nice10. Original
 source spelling/TU partition and the CDesignBase binary loader implementation
 remain open; Reimu496540 remains nonexact at+31.
+
+## Shared-class provider, 2026-11-09
+
+The historical profile-only source view is now replaced by the actual shared
+CDesignBase::set_color definition. This closes the declared virtual slot's missing
+provider while preserving all81 canonical bytes and three runtime relocations.
+The address's durable profile-facing label remains unchanged. See
+`TITLE_DESIGN_OWNER_2026_11_09.md` for the native table and full owner evidence.

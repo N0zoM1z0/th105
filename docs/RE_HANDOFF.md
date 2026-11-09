@@ -959,3 +959,11 @@ remain unchanged. The real callback pointer is traced but its provider is still
 nonexact, so no new pointer exception or exact claim is made. See
 `docs/AUDIO_SCHEDULER_INITIALIZATION_2026_11_09.md`. Input changes and pins remain
 untouched.
+
+
+2026-11-09: Title construction now embeds the actual shared CDesignBase rather
+than a local five-slot opaque class, and its declared set_color virtual slot now
+has the real shared-class provider. Title616 and color81 remain canonical, as do
+the seven design-render/lookup roots, implicit lifetimes and all398 owned EH
+bytes. See `docs/TITLE_DESIGN_OWNER_2026_11_09.md`. No shared header, input pin,
+origin gate or exact count changed; the outer Title layout remains separate.

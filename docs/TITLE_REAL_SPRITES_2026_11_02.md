@@ -26,3 +26,8 @@ Private controls and receipts: .analysis/frontier-title-real-sprites-20261102/
 and build/frontier-title-real-sprites-20261102/. Final CI passed all 962 tests in
 139.882 seconds. Both diff checks gate the local checkpoint. Totals remain 1426 exact / 443399 bytes, source 1636,
 authored 1655, mapped 1826, excluded 2076, review 296 and units 813.
+
+2026-11-09: The constructor also now uses the actual shared CDesignBase and
+texture manager. Its whole 616-byte body/table and complete EH remain exact;
+the real design color virtual provider is restored at81/81. See
+`TITLE_DESIGN_OWNER_2026_11_09.md`. The outer Title layout is still separate.

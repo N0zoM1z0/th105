@@ -1,37 +1,18 @@
-#include <list>
-#include <stddef.h>
+#include "DesignBaseLifetime.hpp"
 
 namespace th105 {
 
-struct ProfileRenderColorItem {
-    virtual void slot_00();
-    virtual void set_color(unsigned int color);
+struct UiDesignObject : public DesignColorLifetimeView {
+    virtual void render_offset(float x, float y);
+    virtual void render();
 };
 
-struct ProfileRenderListColorRuntimeView {
-    unsigned char reserved_000[0x14];
-    std::list<ProfileRenderColorItem *> objects_014;
-
-    void set_color(unsigned int color);
-};
-
-void ProfileRenderListColorRuntimeView::set_color(unsigned int color)
+void CDesignBase::set_color(unsigned int color)
 {
-    for (std::list<ProfileRenderColorItem *>::iterator it = objects_014.begin();
-         it != objects_014.end(); ++it) {
+    for (std::list<UiDesignObject *>::iterator it = objects_14.begin();
+         it != objects_14.end(); ++it) {
         (*it)->set_color(color);
     }
 }
-
-typedef char ProfileRenderListObjectsOffset[
-    offsetof(ProfileRenderListColorRuntimeView, objects_014) == 0x14 ? 1 : -1];
-
-// The checked iterator already occupies eight bytes, aligned to four.
-// These source ABI facts alone do not explain the target's ESP alignment.
-typedef std::list<ProfileRenderColorItem *>::iterator ProfileRenderColorIterator;
-typedef char ProfileRenderColorIteratorSize[
-    sizeof(ProfileRenderColorIterator) == 8 ? 1 : -1];
-typedef char ProfileRenderColorIteratorAlignment[
-    __alignof(ProfileRenderColorIterator) == 4 ? 1 : -1];
 
 } // namespace th105
