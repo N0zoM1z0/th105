@@ -139,3 +139,12 @@ same build directory. Exact authored totals remain1413 functions/382816 bytes.
 Original variable identity, stack allocator/TU context, nominal map/input types
 and original source spelling remain unknown. The lane is parked until new
 independent evidence explains those stack homes.
+
+
+## Follow-up: event-effect key width, 2026-11-09
+
+The earlier char-key getter declaration was incorrect. Its actual native find
+provider reads and compares signed DWORD keys, so the reader and this writer
+now share `EventEffectRecords.hpp` and `map<int,int>` at `6FBF14`. The complete
+lookup wrapper and emitted find compare 72/72 and 105/105; bootstrap code, data
+and EH remain unchanged. See `EVENT_EFFECT_KEY_WIDTH_2026_11_09.md`.

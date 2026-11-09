@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include "input/InputManager.hpp"
+#include "battle/EventEffectRecords.hpp"
 
 namespace th105 {
 
@@ -81,8 +82,6 @@ struct BgmVolumeService {
 extern std::map<int, std::string> g_bootstrap_character_names;
 extern std::map<int, unsigned char> g_bootstrap_stages;
 extern std::map<int, unsigned char> g_bootstrap_bgms;
-// DWORD key/value ABI projection; original nominal specialization is unknown.
-extern std::map<int, int> g_bootstrap_effect_frames;
 extern SceneBootstrapKeyTable g_bootstrap_keys;
 extern SceneBootstrapInputBase g_bootstrap_keyboard;
 extern SceneBootstrapInputCluster g_bootstrap_combined_input;

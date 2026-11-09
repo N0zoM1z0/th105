@@ -13898,17 +13898,17 @@ source = "src/battle/EventEffectRecordLookup.cpp"
 object = "build/match-units/GptWeb_EventEffectRecordLookup.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current checked event-effect record lookup. The stack-slot address passed to std::map<char,int>::find proves a one-byte key contract; checked iterator dereference returns the mapped int at node+0x10. The map object at 0x006FBF14 is independently established in the loader-zero virtual .data tail."
+notes = "Native find 45C320 loads and compares signed DWORD keys. Lookup and scene-resource initialization now share map<int,int> at 6FBF14; the complete 72-byte wrapper and its actual 105-byte generated provider both compare exact. The old char-key caller-only match did not prove the helper contract. docs/EVENT_EFFECT_KEY_WIDTH_2026_11_09.md."
 
 [[units.gpt-web-event-effect-record-lookup.functions]]
 address = "0x0043C150"
-symbol_base = "?lookup_event_effect_record@th105@@YAHD@Z"
+symbol_base = "?lookup_event_effect_record@th105@@YAHH@Z"
 rel32_targets = [
-  "?find@?$_Tree@V?$_Tmap_traits@DHU?$less@D@std@@V?$allocator@U?$pair@$$CBDH@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABD@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = [
-  "?g_event_effect_records@th105@@3V?$map@DHU?$less@D@std@@V?$allocator@U?$pair@$$CBDH@std@@@2@@std@@A=?g_event_effect_records@th105@@3V?$map@DHU?$less@D@std@@V?$allocator@U?$pair@$$CBDH@std@@@2@@std@@A",
+  "?g_bootstrap_effect_frames@th105@@3V?$map@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@@std@@A=?g_bootstrap_effect_frames@th105@@3V?$map@HHU?$less@H@std@@V?$allocator@U?$pair@$$CBHH@std@@@2@@std@@A",
 ]
 
 [units.gpt-web-event-effect-background-runtime]

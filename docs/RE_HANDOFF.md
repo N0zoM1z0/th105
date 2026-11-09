@@ -995,3 +995,13 @@ results are unchanged. Complete Title/member/factory EH also passes. See
 `docs/SCENE_BASE_FADE_POINTER_2026_11_09.md`. The Application direct no-EH callback
 has no supported existing strict-selection route; no validator changes or
 acceptance retries. Pending input changes and source pins remain untouched.
+
+
+2026-11-09: Corrected the event-effect map's key from char to signed DWORD.
+The old 72-byte wrapper match hid a wrong 114-byte generated callee; the shared
+int-key reader/writer now emits the actual 105-byte find exactly. All three
+native direct callers and eighteen bootstrap writes are confirmed. Five exact
+roots and the existing bootstrap mismatch are unchanged, as are 363 consumer
+sections apart from a separate SafeSEH handler-list ordering change. See
+`docs/EVENT_EFFECT_KEY_WIDTH_2026_11_09.md`. No new authored exact credit, input
+migration changes or source-pin updates.

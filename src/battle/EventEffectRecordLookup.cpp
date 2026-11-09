@@ -1,13 +1,8 @@
-#include <map>
+#include "EventEffectRecords.hpp"
 
 namespace th105 {
-
-typedef std::map<char, int> EventEffectRecordMap;
-extern EventEffectRecordMap g_event_effect_records;
-
-int __cdecl lookup_event_effect_record(char event_id)
+int __cdecl lookup_event_effect_record(int event_id)
 {
-    return g_event_effect_records.find(event_id)->second;
+    return g_bootstrap_effect_frames.find(event_id)->second;
 }
-
 } // namespace th105
