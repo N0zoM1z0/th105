@@ -14895,18 +14895,18 @@ source = "src/network/NetworkRequestInfoRuntime.cpp"
 object = "build/match-units/GptWeb_NetworkRequestInfoRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current Server/Client request-info serializers. CDPP_REQ_INFO is an 8-byte derived polymorphic packet whose four-byte data lives in a non-polymorphic base: base initialization therefore clears +4 before the derived vfptr publication, exactly matching both target serializers."
+notes = "Current Server/Client request-info sends construct the RTTI-proved two-slot IPacket-derived CDPP_REQ_INFO. Single-buffer virtual serialization is nested inside the actual four/five-argument UDP send; the pending timeout/result arguments belong to the outer call. Complete roots remain exact."
 
 [[units.gpt-web-network-request-info-runtime.functions]]
 address = "0x0044F7E0"
 symbol_base = "?send_request_info@CNetworkServerRequestView@th105@@QAEXXZ"
-rel32_targets = ["?send_server@NetworkServerSendView@th105@@QAEXHPBXI@Z=0x00416B60"]
+rel32_targets = ["?send_server@NetworkWinsockSendClientView@th105@@QAEXIPBXIIPAI@Z=0x00416B60"]
 dir32_targets = ["??_7NetworkRequestInfo8@th105@@6B@=??_7NetworkRequestInfo8@th105@@6B@"]
 
 [[units.gpt-web-network-request-info-runtime.functions]]
 address = "0x0044E9A0"
 symbol_base = "?send_request_info@CNetworkClientRequestView@th105@@QAEXXZ"
-rel32_targets = ["?send_client@NetworkClientSendView@th105@@QAEXPBXI@Z=0x00416990"]
+rel32_targets = ["?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990"]
 dir32_targets = ["??_7NetworkRequestInfo8@th105@@6B@=??_7NetworkRequestInfo8@th105@@6B@"]
 
 [units.gpt-web-network-client-secondary-runtime]
@@ -14950,11 +14950,11 @@ symbol_base = "?parse_type1@NetworkPacketByte12@th105@@QAEXPBE@Z"
 
 [[units.gpt-web-network-protocol-serializers.functions]]
 address = "0x0044E720"
-symbol_base = "?serialize_type5@NetworkPacketTypeOnly8@th105@@QBEIPAE@Z"
+symbol_base = "?serialize@NetworkRequestInfo8@th105@@UAEIPAX@Z"
 
 [[units.gpt-web-network-protocol-serializers.functions]]
 address = "0x0044E7C0"
-symbol_base = "?serialize_type7@NetworkPacketByte12@th105@@QBEIPAE@Z"
+symbol_base = "?serialize@NetworkDelayPacket12@th105@@UAEIPAX@Z"
 
 [[units.gpt-web-network-protocol-serializers.functions]]
 address = "0x0044E850"

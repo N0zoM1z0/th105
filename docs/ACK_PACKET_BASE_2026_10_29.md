@@ -113,3 +113,40 @@ comparisons, `native-rtti.json`, `slots-proof.json`, and both full EH reports.
 That evidence directory also retains the four pre-change objects; the small
 verification scripts are in the corresponding private analysis scope. Ordinary code/table comparison alone is not enough
 to establish a constructed object's complete virtual surface.
+
+
+## 2026-11-09: request-info call ownership and delay packets
+
+REQ_INFO had an inconsistent call contract hidden by its byte-exact senders.
+The source declared a three-argument serializer, followed by a two-argument
+Client sender or three-argument Server sender. Native serializer `0x44E720`
+ends in RET 4, while the actual UDP send providers end in RET 16 and RET 20.
+The two incorrect stack-pop assumptions canceled across each pair of calls.
+
+At `0x44E9A7` and `0x44F7E7`, the zero result pointer and timeout (0x50 for
+Client, 0x20 for Server) are already on the stack before the buffer is pushed
+for serialization. Those first two arguments belong to the outer UDP send,
+not the serializer. `NetworkRequestInfoRuntime.cpp` now expresses that nested
+call using the real shared sender and a one-buffer virtual serializer. The
+complete 63-byte Client and 65-byte Server roots remain exact.
+
+REQ_INFO and DELAY also had single-slot tables. Native COLs `0x6D88A4` and
+`0x6D88F0` identify `CDPP_REQ_INFO` and `CDPP_DELAY`; both inherit offset-zero
+IPacket through descriptor `0x6D870C`. Their shared definitions now include
+both virtual methods. REQ_INFO serialization is the actual 15-byte provider
+at `0x44E720`, with a three-byte no-op parser. DELAY uses the actual 21-byte
+provider at `0x44E7C0`, with the 13-byte parser copying input byte 1 to +8.
+The earlier four-byte fake bases and undefined serializer aliases are gone.
+
+The six-unit include closure preserves all seventeen accepted roots, the
+previous ACK/termination table proofs, and both complete dispatcher/EH checks.
+The old single-slot objects are retained as rejected controls. Evidence lives
+in `build/frontier-request-delay-packets-20261109/`, including the native call
+contracts, RTTI, before/after objects, full comparisons and slot proofs.
+
+A bounded census of the nine IPacket-derived tables in
+`[0x6C24D4,0x6C2580)` finds fifteen distinct method addresses, all already
+recorded exact. Shared parser addresses therefore add no authored credit.
+SCENE still has the analogous incomplete declaration in
+`NetworkBaseMembers.hpp`; its source-pinned input/lifetime closure is part of
+the pending migration, so that header and its pins were not changed here.

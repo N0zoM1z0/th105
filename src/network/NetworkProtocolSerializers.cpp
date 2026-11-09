@@ -8,11 +8,6 @@ struct NetworkPacketByte12 {
 
     unsigned int serialize_type1(unsigned char *out) const;
     void parse_type1(const unsigned char *in);
-    unsigned int serialize_type7(unsigned char *out) const;
-};
-
-struct NetworkPacketTypeOnly8 {
-    unsigned int serialize_type5(unsigned char *out) const;
 };
 
 unsigned int NetworkPacketByte12::serialize_type1(unsigned char *out) const
@@ -35,16 +30,18 @@ unsigned int SceneAckPacket0C::serialize(void *buffer)
     return 2;
 }
 
-unsigned int NetworkPacketTypeOnly8::serialize_type5(unsigned char *out) const
+unsigned int NetworkRequestInfo8::serialize(void *buffer)
 {
+    unsigned char *out = static_cast<unsigned char *>(buffer);
     out[0] = 5;
     return 1;
 }
 
-unsigned int NetworkPacketByte12::serialize_type7(unsigned char *out) const
+unsigned int NetworkDelayPacket12::serialize(void *buffer)
 {
+    unsigned char *out = static_cast<unsigned char *>(buffer);
     out[0] = 7;
-    out[1] = value_008;
+    out[1] = delay_008;
     return 2;
 }
 

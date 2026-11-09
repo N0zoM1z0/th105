@@ -872,3 +872,12 @@ are real methods shared by callers. Four full method bodies and all eleven
 previously exact roots match; both dispatchers' complete code/tables, EH and
 metadata also match. See the small-packet section of
 `docs/ACK_PACKET_BASE_2026_10_29.md`. No new exact credit or source-pin changes.
+
+
+2026-11-09: REQ_INFO now uses its actual single-buffer serializer inside the
+real four/five-argument UDP send; the old incorrect parameter counts had
+canceled on the stack. REQ_INFO and DELAY now also have both RTTI-backed
+virtual slots. All seventeen affected roots and complete dispatcher/EH checks
+remain exact. See `docs/ACK_PACKET_BASE_2026_10_29.md`. The bounded packet
+census adds no new physical exact methods; SCENE remains coupled to the
+pending input/source-pin closure and is untouched.

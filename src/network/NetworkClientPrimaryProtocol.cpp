@@ -1,3 +1,4 @@
+#include "NetworkSimplePackets.hpp"
 #include "NetworkSendState.hpp"
 #include "NetworkWinsockSendClient.hpp"
 #include "NetworkInputDelayQueue.hpp"
@@ -8,19 +9,6 @@
 #include <stddef.h>
 
 namespace th105 {
-
-struct NetworkDelayBase8 {
-    NetworkDelayBase8() : value_004(0) {}
-    unsigned int value_004;
-    unsigned char delay_008;
-    unsigned char reserved_009[3];
-};
-
-class NetworkDelayPacket12 : public NetworkDelayBase8 {
-public:
-    NetworkDelayPacket12() {}
-    virtual unsigned int serialize(void *buffer);
-};
 
 struct CNetworkClientPrimaryProtocolView {
     unsigned char send_state_ready();
