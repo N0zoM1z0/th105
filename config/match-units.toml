@@ -14237,7 +14237,7 @@ notes = "Current 0x0041E320 scene factory. A real typed-new sparse switch over C
 
 [[units.gpt-web-scene-factory-runtime.functions]]
 address = "0x0041E320"
-symbol_base = "?create_scene_for_id_41e320@th105@@YGPAXH@Z"
+symbol_base = "?create_scene@CSceneManager@th105@@UAEPAXH@Z"
 rel32_targets = [
   "??2@YAPAXI@Z=0x00689DCB",
   "??0CLogo@th105@@QAE@XZ=0x0041F780",
@@ -14258,7 +14258,7 @@ rel32_targets = [
   "??0CBattleWatch@th105@@QAE@XZ=0x0041E220",
 ]
 dir32_targets = [
-  "__ehhandler$?create_scene_for_id_41e320@th105@@YGPAXH@Z=__ehhandler$?create_scene_for_id_41e320@th105@@YGPAXH@Z",
+  "__ehhandler$?create_scene@CSceneManager@th105@@UAEPAXH@Z=__ehhandler$?create_scene_for_id_41e320@th105@@YGPAXH@Z",
   "___security_cookie=___security_cookie",
 ]
 
@@ -18637,7 +18637,10 @@ rel32_targets = [
   "?shutdown@ApplicationEntryView@th105@@QAEXXZ=0x00407F80",
   "__security_check_cookie=0x00689D25",
 ]
-dir32_targets = ["??_7CFade@th105@@6B@=??_7StartupFadeView@th105@@6B@"]
+dir32_targets = [
+  "??_7CFade@th105@@6B@=??_7StartupFadeView@th105@@6B@",
+  "??_7CSceneManager@th105@@6B@=??_7StartupSceneManagerView@th105@@6B@",
+]
 
 [units.cross-v106a-application-message-loop]
 kind = "probe"

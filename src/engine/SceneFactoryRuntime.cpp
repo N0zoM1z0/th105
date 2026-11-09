@@ -1,3 +1,5 @@
+#include "SceneManager.hpp"
+
 namespace th105 {
 
 struct CLogo { unsigned char bytes[0x198]; CLogo(); };
@@ -17,7 +19,7 @@ struct CBattleCL { unsigned char bytes[0x0C]; CBattleCL(); };
 struct CLoadingWatch { unsigned char bytes[0x0A4]; CLoadingWatch(); };
 struct CBattleWatch { unsigned char bytes[0x08]; CBattleWatch(); };
 
-void *__stdcall create_scene_for_id_41e320(int scene)
+void *CSceneManager::create_scene(int scene)
 {
     switch (scene) {
     case 0: return new CLogo;

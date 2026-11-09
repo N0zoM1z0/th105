@@ -889,3 +889,12 @@ are restored; all five full providers and the complete table match. Nine
 renderer roots remain exact, while the 695-byte WinMain candidate is unchanged
 and nonexact. See `docs/SCENE_MANAGER_VIRTUAL_LEAVES_2026_10_28.md`.
 No new exact credit, source-pin changes or input migration edits.
+
+
+2026-11-09: WinMain now constructs the shared CSceneManager with its native
+ISceneManager base. All five slots resolve to real implementations, including
+the scene factory restored as a member. Five providers, the full factory
+switch table, sixteen EH cleanup states and RTTI geometry match; WinMain's
+695-byte nonexact candidate is unchanged. See
+`docs/SCENE_MANAGER_VIRTUAL_LEAVES_2026_10_28.md`. No new exact credit or
+source-pin changes; the pending input migration remains unchanged.

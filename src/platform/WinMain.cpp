@@ -2,6 +2,7 @@
 #include <string.h>
 #include "platform/ApplicationStartupOptions.hpp"
 #include "ui/Fade.hpp"
+#include "engine/SceneManager.hpp"
 
 namespace th105 {
 extern const char startup_mutex_name[];
@@ -18,15 +19,6 @@ extern const char startup_error_title[];
 extern "C" LRESULT __stdcall application_window_proc(HWND, UINT, WPARAM, LPARAM);
 bool __cdecl load_package_archive(const char *path);
 
-// The scene-manager entry view retains its five observed slots. CFade uses
-// the shared actual type; its implicit constructor leaves the scalars untouched.
-struct StartupSceneManagerView {
-    virtual void initialize();
-    virtual void shutdown();
-    virtual void update();
-    virtual unsigned char render();
-    virtual void *create_scene(int selector);
-};
 // Only method-call ABI is used here. Full application layout remains
 // separate; this extern view does not allocate or construct an application.
 struct ApplicationEntryView {
@@ -85,20 +77,20 @@ extern "C" int __stdcall WinMain(HINSTANCE instance, HINSTANCE previous,
     th105::ApplicationStartupOptions options;
     options.window_00 = window;
     options.instance_04 = instance;
-    options.application_callbacks_14 = new th105::StartupSceneManagerView;
+    options.application_callbacks_14 = new th105::CSceneManager;
     options.secondary_callbacks_1c = new th105::CFade;
     options.graphics_flag_25 = false;
     options.ime_enabled_23 = true;
     options.flag_27 = true;
     if (!th105::load_package_archive(th105::startup_package_b)) {
         CloseHandle(mutex);
-        delete static_cast<th105::StartupSceneManagerView *>(options.application_callbacks_14);
+        delete static_cast<th105::CSceneManager *>(options.application_callbacks_14);
         delete static_cast<th105::CFade *>(options.secondary_callbacks_1c);
         return 0;
     }
     if (!th105::load_package_archive(th105::startup_package_a)) {
         CloseHandle(mutex);
-        delete static_cast<th105::StartupSceneManagerView *>(options.application_callbacks_14);
+        delete static_cast<th105::CSceneManager *>(options.application_callbacks_14);
         delete static_cast<th105::CFade *>(options.secondary_callbacks_1c);
         return 0;
     }
@@ -113,5 +105,5 @@ extern "C" int __stdcall WinMain(HINSTANCE instance, HINSTANCE previous,
     return 0;
 }
 
-typedef char StartupSceneManagerAllocationSize[sizeof(th105::StartupSceneManagerView) == 4 ? 1 : -1];
+typedef char StartupSceneManagerAllocationSize[sizeof(th105::CSceneManager) == 4 ? 1 : -1];
 typedef char StartupFadeAllocationSize[sizeof(th105::CFade) == 12 ? 1 : -1];

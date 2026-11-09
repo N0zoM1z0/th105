@@ -64,3 +64,44 @@ native RTTI, before/after objects, comparisons and `proof.json`. The private
 verification script checks fresh provenance, source hierarchy geometry, the
 entire table and all five providers. No source pins or input migration files
 changed. The scene-manager entry view remains separate work.
+
+## Shared constructed scene manager, November 9, 2026
+
+WinMain now constructs `CSceneManager : ISceneManager` from the shared
+`engine/SceneManager.hpp`. Its four existing runtime methods and the existing
+scene factory provide all five virtual slots. The old constructed entry view
+had no base and five undefined methods; the runtime class separately declared
+only four slots. The factory is now the real `CSceneManager::create_scene`
+member rather than a standalone stdcall function mapped to its address.
+
+Native table `0x6C74AC`, COL `0x6DBD58` and hierarchy `0x6DBD6C` establish the
+class and its offset-zero ISceneManager base at descriptor `0x6DBD08`.
+WinMain allocates four bytes and writes only the vptr. Application bootstrap
+at `0x407F1C` and the creation thread at `0x40885E` call slot +0x10 with the
+manager in ECX and one stack selector, then publish EAX as the scene pointer.
+The provider ignores its receiver and returns with RET4. This explains why
+the old free-function implementation matched bytes despite the incomplete
+class contract. The ordinary member now produces the same complete bytes.
+
+Lifetime evidence supports the implicit nonvirtual destructor: application
+shutdown calls slot one, then the ordinary deallocator. WinMain's archive-load
+failure path directly frees the manager. No destructor slot, scalar field or
+new initialization is introduced. The source retains the factory's existing
+opaque pointer result; recovering every allocated scene's shared declaration
+is separate from the manager's proven five-slot ABI.
+
+All five providers remain exact: initialize 162 bytes, shutdown 25, update 5,
+render 5 and factory 980. Factory verification also covers the complete
+84-byte, 21-entry switch table, all reachable instructions, 16 allocation
+cleanup states, 202 bytes of EH code and 164 bytes of exception metadata.
+The entire 20-byte manager table and complete RTTI inheritance geometry match
+under their canonical bindings. Descriptive source type names still include
+the namespace, so this is not an exact RTTI-name or integrated application-link
+claim. The unconstructed application callback views are unchanged.
+
+Only the manager, factory and WinMain units consume the changed sources.
+Their six root comparisons are unchanged: five exact, and the same nonexact
+695-byte WinMain candidate. No additional authored method was found in this
+five-slot closure, and no source pins changed. Before/after objects, native
+caller and lifetime disassembly, provenance and full closure proof are in
+`build/frontier-scene-manager-interface-20261109/`.
