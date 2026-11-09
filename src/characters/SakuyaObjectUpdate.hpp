@@ -13,8 +13,6 @@ public:
  void release_secondary();
  void set_secondary_alpha(unsigned char);
  void dispatch_character_wave_handle(unsigned);
- unsigned char advance_frame();
- unsigned char advance_six(int);
  float stage_surface_height();
  void turn_heading(float,float,float);
  void *spawn_parented(int,float,float,int,int,const unsigned *,int);
@@ -22,7 +20,6 @@ public:
  int spawn_owned(int,float,float,int,int,const unsigned *,int);
  void update_ping_pong_motion();
 };
-class SakuyaUpdateMotionView { public: void set_components(float,float); };
 int __cdecl selector_random_roll(int);
 float __cdecl atan2_degrees(float,float);
 float __cdecl square_float_value(float);

@@ -122,7 +122,7 @@ Examples of independently inspected source distinctions:
   the wider5/6 constants. Twenty-one corresponding random-speed expressions
   now retain that consumed single-precision boundary. Float-promoted qword
   operands such as0.01/0.1/0.05 use the target's extended float values.
-- The805 and810 trigonometric consumers use the full ST0 double result.
+- The805 and810 trigonometric consumers use ST0 without an intermediate float store.
   Raw810 spills the captured facing value as a qword across the trig call.
   Its duplicated owner-valid/owner-invalid orbit paths remain independent
   call sites; all six sine and six cosine calls survive. Captured owner
@@ -324,3 +324,46 @@ The repeated five-frame color-fade gate, including original `0x4E3999`, now uses
 Three repeated early-frame scale gates at `0x4E38F7`, `0x4E6779`, and `0x4E70FA` use the equivalent `<= 3` form. Fresh compilation recovers the signed compare and branch family, with some branch distances still different. The complete function remains non-exact.
 
 The two 20-frame gates at `0x4E4434` and `0x4E4656` now use equivalent native threshold forms and recover the local signed comparisons and branches. The complete candidate remains non-exact.
+
+## Shared tails and real runtime providers (2026-11-09)
+
+Sakuya now calls the existing CharacterObjectRuntime motion, frame-advance and
+six-state implementations. The three undefined aliases and empty motion-view
+class are removed. A complete native CFG check proves all 53 receivers: the
+27 motion calls use owner+4, while 17 frame calls and nine six-state calls use
+the owner itself. The shared provider header and implementations are unchanged.
+
+The accompanying tail review covers all 32 primary actions and verifies that
+all 37 physical writes to life counter `+0x330` decrement it by one, including
+register-carried constants across shared tails. The existing source correctly
+preserves these reviewed reset-counter conditions:
+
+- 804 checks sequence 1 and then 2; 805 checks sequence 3.
+- 812, 815 and 855 enter the `0x4E31B0` tail with its sequence comparison
+  resolved to 1.
+- 849 checks sequence 1 and then 2. Its last jump enters the shared conditional
+  branch after its own comparison, so the preceding sequence-1 comparison at
+  `0x4E31D9` is not executed on that edge.
+
+Action 810 also contains a redundant original condition that must not be
+rewritten as a parent-state test. `0x4E24F0` loads the object's sequence into
+CX; `0x4E24FD` compares it with 1, and `0x4E2523` later compares that unchanged
+CX with BX=2. Only the intervening action checks read the parent. The source's
+own-sequence condition therefore reflects the original instructions. This
+review found no additional retirement bug.
+
+Fresh full payload comparison remains 29,228/native29,476 bytes, first mismatch
++37, with unchanged canonical SHA-256
+`116e0ac5d4587b9b1c4fbe1731b5088b81a1f6bec5df01e30e115452edfb9469`.
+All 83 non-debug COFF sections retain their bytes, attributes and relocation
+roles after the three external-symbol substitutions, without local-label
+changes. The three provider units replay motion57, frame62, six-state66 and
+co-emitted phase73 exact; their existing Reimu parent remains unchanged and
+nonexact. No new authored exact credit or source-origin pin change.
+
+The actual source closure is this one update unit. Private scripts and reports
+are under `.analysis/frontier-sakuya-runtime-20261109/` and
+`build/frontier-sakuya-runtime-20261109/`, including native receiver propagation,
+per-action shared-tail constants, full before/after payloads and section checks.
+Tracking validation, scoped CI and diff checks pass. Unrelated input migration
+and Alice edits remain untouched.

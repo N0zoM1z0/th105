@@ -840,3 +840,11 @@ an undefined alias. All 40 affected root comparisons retain their results
 export timestamps. Three affected origin proofs pass. See
 `docs/SHARED_THREAD_HANDLE_2026_11_09.md`. No new exact credit; pending input
 migration remains unchanged.
+
+
+2026-11-09: Sakuya's three common runtime calls now use their real providers;
+all 53 native receiver offsets are proved. The complete 29,228-byte candidate
+and all 83 non-debug sections are unchanged; provider roots remain exact.
+Review of 32 actions preserves the original shared-tail conditions, including
+810's own-sequence redundancy and 849's branch-after-comparison edge. See
+`docs/SAKUYA_OBJECT_UPDATE_2026_10_25.md`. No new exact credit or input changes.
