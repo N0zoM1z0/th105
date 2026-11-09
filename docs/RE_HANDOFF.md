@@ -809,3 +809,10 @@ native pointer induction restores the local frame but remains nonexact in both
 COFF and the actual reader/bitmap/PNG LTCG context. The two contexts produce
 identical complete payloads. No source or exact-ledger change was retained;
 see `docs/BITMAP_TEXTURE_LOADING_2026_10_30.md` before repeating this control.
+
+
+2026-11-09: KomachiObject's four common operations now use their existing real
+runtime providers. All 68 native receiver offsets are proved; the complete
+28,816-byte candidate and all 85 non-debug sections are unchanged. Four provider
+roots replay exact, while the parent remains nonexact. See
+`docs/KOMACHI_OBJECT_UPDATE_2026_10_25.md`. Input migration remains untouched.

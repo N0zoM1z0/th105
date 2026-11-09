@@ -470,3 +470,34 @@ The three repeated 4-frame gates at `0x5FBC4F`, `0x5FE57E`, and `0x5FEEA7`, and 
 Four further 30- and 120-frame bounds at `0x5FCD6E`, `0x5FD145`, `0x5FDC78`, and `0x5FB297` now use equivalent native threshold forms. Their local signed comparisons and branches are recovered; the complete candidate remains non-exact.
 
 The signed state gates at `0x5FEC3E` and `0x5FFA06` now use the equivalent `<= 0` form, recovering their local comparison and branch families. Some register scheduling still differs, and the 28,816-byte complete candidate remains non-exact.
+
+
+## Shared runtime providers, 2026-11-09
+
+KomachiObject now calls the existing `CharacterObjectRuntime` implementations
+for oriented motion, frame advancement, six-state advancement and phase
+advancement. The four undefined local aliases and the empty motion-view class
+are removed. Only this caller, its private header and its four manifest call
+bindings change; the shared runtime declarations and implementations stay intact.
+
+Pointer propagation through all 6,773 reachable native instructions verifies
+every affected call: 34 calls to `0x435160` receive owner+4, while 10 calls to
+`0x4351C0`, 19 to `0x4963A0` and five to `0x64CD00` receive owner. Calls invalidate
+EAX/ECX/EDX facts, and control-flow joins retain only identical proven offsets.
+The emitted caller retains those four call counts.
+
+The complete 28,816-byte candidate payload is unchanged, SHA-256
+`3b951eb1fd7a5ccb0a90b8385eda7806a4a8f35cfa372670c86a2f958bc340c1`.
+All 85 non-debug COFF sections preserve their bytes and relocation roles after
+the four provider-symbol substitutions and one compiler-local label renaming.
+The source include closure contains only `exact-first-komachi-object-update`.
+Fresh comparisons of the three provider units retain exact motion57, frame62,
+six-state66 and phase73. Reimu's co-emitted update remains unchanged and nonexact.
+Komachi's full target payload is 28,520 bytes and the first difference remains
++8, so this resolves provider identities without adding authored exact credit.
+
+Private recipes and receipts are in
+`.analysis/frontier-komachi-runtime-providers-20261109/` and
+`build/frontier-komachi-runtime-providers-20261109/`, including `receivers.json`,
+`sections.json` and the complete before/after payload reports. No origin pin or
+pending input-migration file is changed by this work.
