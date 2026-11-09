@@ -42,3 +42,12 @@ Mapping existed already; source presence advances, matches.csv does not change.
 Focused receipt: build/frontier-419100-20261028/formal-build.json.
 Raw complete-boundary receipt: build/frontier-419100-20261028/boundary.json.
 No shared header, alias or compiler profile changed; no corpus rebuild is needed.
+
+
+2026-11-09 follow-up: precise arithmetic and floating-point environment access
+are now scoped in the source, preserving these semantics in the real global
+LTCG context as well as the selected strict profile. The selected complete body
+and all 21 non-debug COFF sections remain unchanged. The global candidate improves
+from 523 to 577 bytes but is still nonexact against 591; the complete code-pointer
+identity evidence and remaining differences are recorded in
+`AUDIO_SCHEDULER_INITIALIZATION_2026_11_09.md`.

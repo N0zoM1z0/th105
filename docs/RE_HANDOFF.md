@@ -949,3 +949,13 @@ destructor proof remain unsupported; no validator relaxation or exact claim.
 Both accepted consumers remain exact, all other affected code is unchanged.
 See `docs/AUDIO_SCHEDULER_INITIALIZATION_2026_11_09.md`. Input migration remains
 untouched; no source pins or ledgers changed.
+
+
+2026-11-09: Audio callback arithmetic no longer depends on the surrounding build
+profile. Scoped FP environment access restores the native repeated drift
+calculations and float constant in the real global context, changing 523 to 577
+bytes against native 591. The selected 576-byte candidate and all 21 COFF sections
+remain unchanged. The real callback pointer is traced but its provider is still
+nonexact, so no new pointer exception or exact claim is made. See
+`docs/AUDIO_SCHEDULER_INITIALIZATION_2026_11_09.md`. Input changes and pins remain
+untouched.

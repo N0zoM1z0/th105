@@ -44,10 +44,11 @@ The public source compiles normally with VC8: constructor 217 bytes and destruct
 specializes the receiver, producing constructor 249 and destructor 371 bytes.
 The native destructor is 241 bytes, so it remains clearly nonexact.
 
-That private context also includes the actual scheduler loop. Its default-FP
-523-byte result is not the native 591-byte callback, nor the separately selected
-strict-FP 576-byte candidate. The existing strict linker comparator has no
-supported code-pointer witness for this callback. Binding its code address as
+The initial private context also included the actual scheduler loop. Its
+default-FP result was 523 bytes, compared with native 591 and the separately
+selected strict-FP candidate at 576. The follow-up below corrects that context
+dependence, while the complete callback remains nonexact. The existing strict
+linker comparator has no supported code-pointer witness for this callback. Binding its code address as
 data is rejected, and was not retained. The paired global checker also expects
 cleanup EH on both lifecycle methods, whereas this destructor has none. No
 validator relaxation or new pointer-binding exception is part of this checkpoint.
@@ -68,3 +69,41 @@ Evidence and the preserved private compiler recipe are under
 `.analysis/` directory. The public candidate is deliberately absent from match
 units and exact ledgers. A next pass needs a supported, complete callback and
 no-EH lifecycle proof, rather than another constructor spelling experiment.
+
+
+## Callback arithmetic and code-pointer follow-up
+
+The callback now carries its own precise arithmetic and floating-point environment
+controls. Previously those semantics came only from its standalone strict-FP build
+profile and disappeared when the same source joined the actual global owner.
+
+The complete native callback contains four physical drift calculations, with
+single-precision stores and a float 60 constant (`00007042`). The initial global
+build folds those calculations into one and loads a double 60 constant. Enabling
+precise arithmetic alone leaves that 523-byte result unchanged. Adding scoped
+`fenv_access(on)` restores all four calculations and the native float constant,
+producing 577 bytes in the real global context. The actual source-only context
+and the private diagnostic produce identical complete callback bytes.
+
+This still leaves a 0x20 rather than 0x28 aligned local frame, four additional
+x87 instructions around rounded drift transfers, different scalar allocation and
+only two of the native four invalid-parameter call sites in listener iteration.
+The original compiler settings and iterator lifetimes remain unresolved. No
+further source-shape search is justified by the current evidence.
+
+The constructor's code pointer is independently traced, without treating it as
+data. Native `PUSH 0x419100` at `0x418FC7` supplies the start-routine argument to
+`CreateThread`; all 591 callback bytes form a closed CFG ending in `RET 4`.
+The original executable has no base-relocation directory. In the fresh linked
+image, the corresponding push at `0x10001107` references the real emitted stdcall
+symbol at `0x10001370` and owns a HIGHLOW relocation. Its complete body is 577
+bytes, so this establishes callback identity, not a valid exact callback witness.
+The existing wave callback mechanism requires complete exact providers and cannot
+be reused here. No comparison tool, pointer exception or acceptance record changed.
+
+The selected standalone callback remains byte-for-byte unchanged at 576/591,
+including all 21 non-debug COFF sections and relocations. Its only configured
+source consumer is the callback unit; the new lifecycle candidate remains
+unselected. Fresh evidence, source-only build recipes and complete comparison are
+in `build/frontier-audio-callback-proof-20261109/` and the matching `.analysis/`
+directory. Tracking, lightweight CI and the diff check pass.

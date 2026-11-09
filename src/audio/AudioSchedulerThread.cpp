@@ -1,7 +1,9 @@
 #include "AudioSchedulerRuntime.hpp"
-// Native arithmetic rounds drift and fractional accumulation to single precision.
-// Retain strict rounding without exception-sensitive instruction scheduling.
-#pragma float_control(except, off, push)
+// Preserve the native repeated drift evaluation and single-precision rounding
+// even when this callback is included in a whole-owner LTCG translation unit.
+#pragma float_control(precise, on, push)
+#pragma fenv_access(on)
+#pragma float_control(except, off)
 namespace th105 {
 extern "C" __declspec(dllimport) void *__stdcall CreateEventA(void *,int,int,const char *);
 extern "C" __declspec(dllimport) int __stdcall CloseHandle(void *);
@@ -51,4 +53,5 @@ unsigned long __stdcall AudioScheduler_thread_main(void *)
 }
 }
 
+#pragma fenv_access(off)
 #pragma float_control(pop)
