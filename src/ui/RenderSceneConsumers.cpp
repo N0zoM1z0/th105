@@ -131,7 +131,7 @@ unsigned char Ending::render()
 
     g_render_mode_manager.prepare_frame();
     if (alpha_97 < 0xff) {
-        g_battle_phase_block->run_458cd0();
+        g_battle_phase_block->render_scenario();
         cluster_04.render();
     }
 

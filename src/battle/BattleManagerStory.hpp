@@ -29,7 +29,7 @@ struct CBattleManagerStory {
     virtual void slot_2c();
     virtual void slot_30();
     virtual void transition_slot_34(int phase);
-    virtual void slot_38();
+    virtual void render();
     virtual void reset_info_mode_and_present_471580();
     virtual void pre_reset_slot_40();
 
@@ -37,7 +37,8 @@ struct CBattleManagerStory {
     int pending_08;
     Fighter *fighter_0c;
     Fighter *fighter_10;
-    unsigned char reserved_14[0x78];
+    unsigned char reserved_14[0x74];
+    int phase_88;
     StoryInfoPhaseCounterView *info_8c;
     signed char mode_90;
 
@@ -55,6 +56,8 @@ struct CBattleManagerStory {
 
 typedef char CBattleManagerStory_fighter_offset_must_be_0x0c[
     offsetof(CBattleManagerStory, fighter_0c) == 0x0c ? 1 : -1];
+typedef char CBattleManagerStory_phase_offset_must_be_0x88[
+    offsetof(CBattleManagerStory, phase_88) == 0x88 ? 1 : -1];
 typedef char CBattleManagerStory_info_offset_must_be_0x8c[
     offsetof(CBattleManagerStory, info_8c) == 0x8c ? 1 : -1];
 typedef char CBattleManagerStory_mode_offset_must_be_0x90[

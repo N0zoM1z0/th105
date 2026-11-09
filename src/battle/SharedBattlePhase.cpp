@@ -1,4 +1,5 @@
 #include "Collision.hpp"
+#include "SharedBattlePhase.hpp"
 #include "FighterPhaseContext.hpp"
 #include "BattleObjectManagerRuntime.hpp"
 
@@ -19,11 +20,6 @@ typedef void (__thiscall *InfoManagerPhaseCallback)(
 
 struct InfoManagerPhaseView {
     InfoManagerPhaseCallback *vtable_00;
-};
-
-struct SharedBattlePhaseController {
-    void run_shared_battle_phase_sequence();
-    void run_battle_phase_and_info_callback();
 };
 
 BattleObjectManager *g_battle_object_manager;

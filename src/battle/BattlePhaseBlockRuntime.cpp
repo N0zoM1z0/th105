@@ -6,7 +6,7 @@ struct ScenarioStepRuntime {
     virtual void unknown_00();
     virtual void unknown_04();
     virtual signed char run_scenario_step();
-    virtual int run_phase_step();
+    virtual void render_scenario();
 };
 
 signed char BattlePhaseBlock::run_scenario_step()
@@ -16,11 +16,11 @@ signed char BattlePhaseBlock::run_scenario_step()
         ->run_scenario_step();
 }
 
-int BattlePhaseBlock::run_458cd0()
+void BattlePhaseBlock::render_scenario()
 {
-    return reinterpret_cast<ScenarioStepRuntime *>(
+    reinterpret_cast<ScenarioStepRuntime *>(
         reinterpret_cast<unsigned char *>(this) + 0x68)
-        ->run_phase_step();
+        ->render_scenario();
 }
 
 } // namespace th105

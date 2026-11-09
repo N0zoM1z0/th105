@@ -122,17 +122,15 @@ struct BattleController {
     void initialize_round_state_4701c0();
     void publish_fighter_terminal_effect_470300(Fighter *fighter);
     void advance_round_resolution_470360();
-    int run_active_simulation_frame_4704d0();
     int reset_battle_round_470780();
     int dispatch_battle_state_frame_470940();
     void initialize_battle_fighter_pair_46a490();
 
-    int run_battle_phase_and_info_callback();
 };
 
 struct BattlePhaseBlock {
     signed char run_scenario_step();
-    int run_458cd0();
+    void render_scenario();
     void advance_scenario_script_page_458d10();
     void initialize_character_story_script_458f10(
         int character_key,

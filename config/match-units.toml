@@ -846,10 +846,10 @@ notes = "TH105 1.06a structural-remap active simulation wrapper; shared BattlePh
 
 [[units.cross-v106a-battle-active-simulation.functions]]
 address = "0x00470ED0"
-symbol_base = "run_active_simulation_frame_4704d0"
+symbol_base = "?render@CBattleManagerStory@th105@@UAEXXZ"
 rel32_targets = [
-  "?run_battle_phase_and_info_callback@BattleController@th105@@QAEHXZ=0x0046BF00",
-  "?run_458cd0@BattlePhaseBlock@th105@@QAEHXZ=0x0045A2A0",
+  "?run_battle_phase_and_info_callback@SharedBattlePhaseController@th105@@QAEXXZ=0x0046BF00",
+  "?render_scenario@BattlePhaseBlock@th105@@QAEXXZ=0x0045A2A0",
 ]
 dir32_targets = ["?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A=?g_battle_phase_block@th105@@3PAUBattlePhaseBlock@1@A"]
 
@@ -6951,7 +6951,7 @@ symbol_base = "?render@Ending@th105@@UAEEXZ"
 rel32_targets = [
   "?begin_frame@RenderModeManager@th105@@QAE_NXZ=0x00401000",
   "?prepare_frame@RenderModeManager@th105@@QAEXXZ=0x004010C0",
-  "?run_458cd0@BattlePhaseBlock@th105@@QAEHXZ=0x0045A2A0",
+  "?render_scenario@BattlePhaseBlock@th105@@QAEXXZ=0x0045A2A0",
   "?render@EndingRenderCluster93@th105@@QAEXXZ=0x00450FC0",
   "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z=0x004012A0",
   "?finish_frame@RenderModeManager@th105@@QAEXXZ=0x00401040",
@@ -15860,7 +15860,7 @@ symbol_base = "?run_scenario_step@BattlePhaseBlock@th105@@QAECXZ"
 
 [[units.gpt-web-battle-phase-block-runtime.functions]]
 address = "0x0045A2A0"
-symbol_base = "?run_458cd0@BattlePhaseBlock@th105@@QAEHXZ"
+symbol_base = "?render_scenario@BattlePhaseBlock@th105@@QAEXXZ"
 
 [units.gpt-web-fighter-state-helpers]
 kind = "probe"

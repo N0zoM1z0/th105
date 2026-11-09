@@ -916,3 +916,12 @@ contract. All three complete roots and three color providers remain exact;
 170 non-debug sections are unchanged. See
 `docs/SEQUENCE_EFFECT_SPRITE_CONTRACT_2026_11_09.md`. No source-pin changes,
 input migration edits or new exact credit.
+
+
+2026-11-09: Native RTTI and the scene caller identify 470ED0 as Story's void
+render callback. It now implements the actual +38 slot and calls the shared
+provider instead of an undefined int alias; 45A2A0 and Ending share the void
+scenario-render contract. All 21 affected roots, 233 non-debug sections and
+complete Story EH remain exact/unchanged. See
+`docs/STORY_RENDER_CONTRACT_2026_11_09.md`. Input migration and pins are
+unchanged; no new exact credit.

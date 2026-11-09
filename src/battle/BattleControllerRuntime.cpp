@@ -1,15 +1,17 @@
 #include "BattleController.hpp"
+#include "BattleManagerStory.hpp"
+#include "SharedBattlePhase.hpp"
 
 namespace th105 {
 
-int BattleController::run_active_simulation_frame_4704d0()
+void CBattleManagerStory::render()
 {
-    int result = run_battle_phase_and_info_callback();
+    reinterpret_cast<SharedBattlePhaseController *>(this)
+        ->run_battle_phase_and_info_callback();
     int phase = phase_88;
     if (phase == 0 || phase == 5 || phase == 6) {
-        return g_battle_phase_block->run_458cd0();
+        g_battle_phase_block->render_scenario();
     }
-    return result;
 }
 
 } // namespace th105
