@@ -32,9 +32,6 @@ struct NetworkSendStateView {
     void publish_callback(void *callback);
     bool check(int index);
     int status();
-
-    // Existing peer-removal call boundary; its implementation has a separate view.
-    void process(int index);
 };
 
 typedef char NetworkSendRecord20_size_must_be_0x20[

@@ -779,3 +779,11 @@ maintenance. Three units preserve eight accepted roots and the existing
 and relocation roles. The full network primary merge remains coupled to the
 pending input member closure; it is not attempted here. See
 `docs/NETWORK_INPUT_DELAY_OWNER_2026_11_09.md`.
+
+
+2026-11-09: Server flush now calls the existing peer-removal implementation
+instead of an undefined state alias. Seven units preserve 19 exact comparisons
+and both pending peer bodies; all 323 existing non-debug sections are unchanged
+after the call-symbol substitution. Both affected linked allocator proofs pass.
+See `docs/NETWORK_PEER_REMOVAL_BINDING_2026_11_09.md`. No new exact credit;
+the input migration remains separate.

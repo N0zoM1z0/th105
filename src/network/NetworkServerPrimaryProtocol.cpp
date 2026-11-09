@@ -1,4 +1,5 @@
 #include "NetworkSendState.hpp"
+#include "NetworkWinsockPeerRemoval.hpp"
 #include "NetworkWinsockSendClient.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkInputPacket.hpp"
@@ -45,7 +46,7 @@ struct CNetworkServerPrimaryProtocolView {
 bool CNetworkServerPrimaryProtocolView::flush_send_state()
 {
     if (reinterpret_cast<NetworkSendStateView *>(&send_3b4)->check(0)) {
-        reinterpret_cast<NetworkSendStateView *>(&send_3b4)->process(0);
+        reinterpret_cast<NetworkWinsockPeerRemovalView *>(&send_3b4)->remove_peer(0);
         return true;
     }
     return false;

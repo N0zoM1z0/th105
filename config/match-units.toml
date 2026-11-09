@@ -15027,7 +15027,7 @@ address = "0x0044F520"
 symbol_base = "?flush_send_state@CNetworkServerPrimaryProtocolView@th105@@QAE_NXZ"
 rel32_targets = [
   "?check@NetworkSendStateView@th105@@QAE_NH@Z=0x00413390",
-  "?process@NetworkSendStateView@th105@@QAEXH@Z=0x00413170",
+  "?remove_peer@NetworkWinsockPeerRemovalView@th105@@QAEXI@Z=0x00413170",
 ]
 
 [[units.gpt-web-network-server-primary-protocol.functions]]

@@ -34,7 +34,8 @@ The shared layout carries callback +0x80, critical sections +0x88/+0x124,
 the existing vector at +0x108 and status +0x144. Compile-time assertions
 check the offsets and the modeled 0x148-byte prefix. This is not a complete
 transport-class definition. The UDP send view still describes another prefix,
-and `process(int)` remains an existing call-only boundary to peer removal.
+and the peer-removal binding is now shared as described in
+`docs/NETWORK_PEER_REMOVAL_BINDING_2026_11_09.md`.
 The follow-up in `docs/DERIVED_UDP_CALLBACKS_2026_11_09.md` connects the complete
 secondary interface and native override declarations. Concrete callback
 implementations and the primary base still require owner-view unification.
