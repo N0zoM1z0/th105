@@ -26,7 +26,7 @@ void CFileList::render_item(float x, float y, unsigned int index)
 {
     if (index >= rows_004.size())
         return;
-    render_items_040.at(index >> 4).render(x, y, 0, index & 15);
+    render_items_040[index >> 4].render(x, y, 0, index & 15);
 }
 
 bool CFileList::contains(const std::string *value) const

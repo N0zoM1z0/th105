@@ -1,21 +1,10 @@
 #pragma once
 
+#include "ui/Tile.hpp"
 #include <deque>
 #include <string>
 
 namespace th105 {
-
-// Binary CTile-compatible page object owned by CFileList.  Current CFileList
-// code only needs its polymorphic destruction and four-argument render ABI;
-// the 0xA4 size is independently established by current tile consumers.
-class FileListTile {
-public:
-    virtual ~FileListTile();
-    void render(float x, float y, int page, int item);
-
-private:
-    unsigned char storage_04[0xA0];
-};
 
 // Current RTTI names this 0xB4 polymorphic base CFileList. CMenuReplay places
 // its next owned member at +0xBC after a CReplayList at +0x08, independently
@@ -46,7 +35,7 @@ protected:
     std::deque<std::string> rows_004;
     std::deque<unsigned char> flags_018;
     std::deque<unsigned int> handles_02c;
-    std::deque<FileListTile> render_items_040;
+    std::deque<CTile> render_items_040;
     std::string path_054;
     std::string filter_070;
     std::string directory_08c;
@@ -70,8 +59,8 @@ public:
         std::deque<std::string>::iterator current);
 };
 
-typedef char FileListTile_size_must_be_0xA4[
-    sizeof(FileListTile) == 0xA4 ? 1 : -1];
+typedef char CTile_size_must_be_0xA4[
+    sizeof(CTile) == 0xA4 ? 1 : -1];
 typedef char CFileList_size_must_be_0xB4[
     sizeof(CFileList) == 0xB4 ? 1 : -1];
 typedef char CProfileList_size_must_be_0xB4[

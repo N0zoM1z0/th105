@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stddef.h>
+#include <deque>
 
 namespace th105 {
 
@@ -19,13 +20,9 @@ struct YoumuObjectRecord {
     unsigned char phase_29;
 };
 
-struct YoumuObjectRecordRing {
-    YoumuObjectRecord *object_record_ring_at(unsigned int index);
-};
-
 struct YoumuRecordOwner {
     unsigned char unknown_000[0x7d0];
-    YoumuObjectRecordRing records_7d0;
+    std::deque<YoumuObjectRecord> records_7d0;
 };
 
 struct YoumuObjectRecordState {
@@ -67,3 +64,8 @@ typedef char CheckYoumuObjectRecordOwnerOffset[
     offsetof(YoumuObjectRecordState, owner_348) == 0x348 ? 1 : -1];
 
 } // namespace th105
+
+namespace th105 {
+typedef char CheckYoumuRecordSize[sizeof(YoumuObjectRecord) == 0x2c ? 1 : -1];
+typedef char CheckYoumuHistoryOffset[offsetof(YoumuRecordOwner, records_7d0) == 0x7d0 ? 1 : -1];
+}

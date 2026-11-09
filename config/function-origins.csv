@@ -230,7 +230,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040A790,compiler_generated,runtime,exclude,observed,input-tracked-key-vector-clear-generated-106a
 0x0040A7F0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040A870,compiler_generated,input,exclude,observed,vc8-linked-pure-byte-fill-106a
-0x0040A8A0,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
+0x0040A8A0,compiler_generated,characters,exclude,observed,vc8-generated-youmu-history-access-106a
 0x0040A920,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040AAF0,compiler_generated,vc8_stl,exclude,observed,linked-vector-xlen-106a
 0x0040AB70,compiler_generated,input,exclude,observed,vc8-linked-input-byte-allocator-106a
@@ -1006,7 +1006,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004313F0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00431410,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00431440,authored_game,ui,authored,observed,canonical-exact-authored
-0x00431610,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
+0x00431610,compiler_generated,characters,exclude,observed,vc8-generated-youmu-history-access-106a
 0x00431690,authored_game,ui,authored,observed,canonical-exact-authored
 0x00431730,authored_game,ui,authored,observed,canonical-exact-authored
 0x004317A0,authored_game,ui,authored,observed,profile-binary-writer-authored-106a
@@ -2382,7 +2382,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0053B3D0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x0053B410,authored_game,characters,authored,observed,canonical-exact-authored
 0x0053CBC0,authored_game,characters,authored,observed,canonical-exact-authored
-0x0053CD90,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
+0x0053CD90,compiler_generated,characters,exclude,observed,vc8-generated-youmu-history-access-106a
 0x0053CDF0,authored_game,characters,authored,observed,canonical-exact-authored
 0x0053CEA0,authored_game,characters,authored,observed,roster-character-object-vtable-authored-106a
 0x00543670,authored_game,characters,authored,observed,roster-character-object-vtable-authored-106a
@@ -2418,7 +2418,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0056C840,authored_game,characters,authored,observed,canonical-exact-authored
 0x0056D2A0,authored_game,characters,authored,observed,canonical-exact-authored
 0x0056D3B0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
-0x0056D3D0,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
+0x0056D3D0,compiler_generated,characters,exclude,observed,vc8-generated-youmu-history-access-106a
 0x0056D450,compiler_generated,characters,exclude,observed,vc8-generated-chandle-manager-ex-std-comdat-106a
 0x0056D4B0,authored_game,characters,authored,observed,canonical-exact-authored
 0x0056D650,authored_game,characters,authored,observed,canonical-exact-authored
@@ -3733,7 +3733,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x006A58B0,compiler_generated,std,exclude,observed,boost-narrow-std-equivalence-106a
 0x006A5930,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x006A59A0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
-0x006A5A20,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
+0x006A5A20,compiler_generated,characters,exclude,observed,vc8-generated-youmu-history-access-106a
 0x006A5AA0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x006A5B20,third_party,boost_regex,exclude,observed,boost-narrow-library-106a
 0x006A5C80,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a

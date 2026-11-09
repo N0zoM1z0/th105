@@ -1043,3 +1043,15 @@ and scalar-wrapper proofs pass. Two prior mismatches and the BattleInfoRecord
 iterator-relocation blocker remain unchanged. See
 `docs/INFO_RESOURCE_CONTRACT_2026_11_09.md`. No new exact credit or pending
 input/source-pin edits.
+
+
+2026-11-09: CFileList now owns real CTile elements, and rendering calls the
+actual deque operator[] rather than rebinding at() to a different native body.
+Youmu's reader now shares its constructor/writer's real history deque and
+provides the separate at() helper. Both complete 94-byte providers match;
+21 units retain 44 exact comparisons, full CTile RTTI/copy/scalar support and
+FileList destructor EH. Five generated exclusions move to the actual Youmu
+source; all affected origin proofs pass without changing classification totals.
+Three previous mismatches remain. See
+`docs/FILE_LIST_TILE_CONTAINER_2026_11_09.md`. Only the changed FileListFinalize
+source pin is renewed; pending input work is preserved.

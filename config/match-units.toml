@@ -720,14 +720,14 @@ kind = "probe"
 source = "src/characters/YoumuObjectRecords.cpp"
 object = "build/match-units/CrossV106a_YoumuObjectRecords.obj"
 profile = "vc8-sp1-probe-o2"
-enable_gs = false
+enable_gs = true
 notes = "TH105 1.06a structural-remap exact Youmu owner-record adapter; both current callees were reconciled from complete target control flow."
 
 [[units.cross-v106a-youmu-object-record.functions]]
 address = "0x0053CDF0"
 symbol_base = "apply_owner_record"
 rel32_targets = [
-  "object_record_ring_at=0x0053CD90",
+  "?at@?$deque@UYoumuObjectRecord@th105@@V?$allocator@UYoumuObjectRecord@th105@@@std@@@std@@QAEAAUYoumuObjectRecord@th105@@I@Z=0x0053CD90",
   "reset_for_new_record=0x00436760",
 ]
 
@@ -7934,7 +7934,7 @@ source = "src/ui/FileList.cpp"
 object = "build/match-units/CrossV106a_CFileList.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI/vtable plus CMenuReplay member boundaries close the shared 0xB4 CFileList object: checked deque<string> +0x04, one-byte directory-flag deque +0x18, deque<unsigned> +0x2C, deque<FileListTile> +0x40, std::string +0x54/+0x70/+0x8C, and tail state through +0xB0. ResultList owns its extra character id at +0xB4. Natural VC8 STL lifetime, checked navigation, formatter append semantics, and the Win32 filesystem population pipeline reproduce thirteen authored bodies. Populate requires a default-constructed then assigned path string whose branch-local lifetime ends before the common virtual finalize tail."
+notes = "Current RTTI/vtable plus CMenuReplay member boundaries close the shared 0xB4 CFileList object: checked deque<string> +0x04, one-byte directory-flag deque +0x18, deque<unsigned> +0x2C, deque<CTile> +0x40, std::string +0x54/+0x70/+0x8C, and tail state through +0xB0. ResultList owns its extra character id at +0xB4. Natural VC8 STL lifetime, checked navigation, formatter append semantics, and the Win32 filesystem population pipeline reproduce thirteen authored bodies. Populate requires a default-constructed then assigned path string whose branch-local lifetime ends before the common virtual finalize tail."
 
 [[units.cross-v106a-cfile-list.functions]]
 address = "0x004395E0"
@@ -7965,8 +7965,8 @@ dir32_targets = [
 address = "0x00439A20"
 symbol_base = "CFileList_render_item"
 rel32_targets = [
-  "?at@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@QAEAAVFileListTile@th105@@I@Z=0x004399C0",
-  "?render@FileListTile@th105@@QAEXMMHH@Z=0x004099F0",
+  "??A?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@QAEAAVCTile@@I@Z=0x004399C0",
+  "?render@CTile@@QAEXMMHH@Z=0x004099F0",
 ]
 
 [[units.cross-v106a-cfile-list.functions]]
@@ -7981,7 +7981,7 @@ address = "0x00439FC0"
 symbol_base = "CFileList_dtor"
 rel32_targets = [
   "??3@YAXPAX@Z=0x006898EA",
-  "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ=0x00420AF0",
+  "?_Tidy@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXXZ=0x00420AF0",
   "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
   "?_Tidy@?$deque@EV?$allocator@E@std@@@std@@IAEXXZ=0x00420A80",
   "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
@@ -7998,7 +7998,7 @@ symbol_base = "CFileList_shutdown"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-  "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ=0x00420AF0",
+  "?_Tidy@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXXZ=0x00420AF0",
   "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
   "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
 ]
@@ -28796,7 +28796,7 @@ notes = "Actual global CTile member/copy ownership; complete page1155/native1106
 [[units.exact-first-file-list-finalize.functions]]
 address = "0x0043A590"
 symbol_base = "?finalize@CFileList@th105@@UAEXXZ"
-rel32_targets = ["??0TextFontOwner194@th105@@QAE@XZ=0x00411430", "_strcpy_s=0x0068AD95", "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0", "__invalid_parameter_noinfo=0x0068A143", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90", "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ=0x00420AF0", "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50", "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00", "?push_back_value@FileListUnsignedDequePushView@th105@@QAEXABI@Z=0x00417240", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?_Growmap@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXI@Z=0x00439D70", "??2@YAPAXI@Z=0x00689DCB", "??0CTile@@QAE@ABV0@@Z=0x004396A0", "?assign_bytes@FileListStringAssignBytesView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0", "??3@YAXPAX@Z=0x006898EA", "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0", "@__security_check_cookie@4=0x00689D25"]
+rel32_targets = ["??0TextFontOwner194@th105@@QAE@XZ=0x00411430", "_strcpy_s=0x0068AD95", "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0", "__invalid_parameter_noinfo=0x0068A143", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90", "?_Tidy@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXXZ=0x00420AF0", "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50", "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00", "?push_back_value@FileListUnsignedDequePushView@th105@@QAEXABI@Z=0x00417240", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?_Growmap@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXI@Z=0x00439D70", "??2@YAPAXI@Z=0x00689DCB", "??0CTile@@QAE@ABV0@@Z=0x004396A0", "?assign_bytes@FileListStringAssignBytesView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0", "??3@YAXPAX@Z=0x006898EA", "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0", "@__security_check_cookie@4=0x00689D25"]
 
 [[units.exact-first-file-list-finalize.functions]]
 address = "0x00439D70"

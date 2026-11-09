@@ -4,7 +4,7 @@ compiler_sha256 = "71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e86036213
 
 [[sources]]
 path = "src/ui/FileListFinalize.cpp"
-sha256 = "a9cb65de4fdfa9418b96b8092c74ea0f1115deca2db96ab9ee0a238f695346ac"
+sha256 = "1f5825495f33898c19dc85c2697edd84e7ceb087d45b1ca0e10075150696b966"
 
 [[sources]]
 path = "src/ui/Tile.hpp"

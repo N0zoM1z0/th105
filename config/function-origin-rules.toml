@@ -965,13 +965,13 @@ evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/battle/BattleInputSl
 [[rules]]
 id = "vc8-generated-cfile-list-std-comdats-106a"
 vc8_generated_anchor_file = "config/vc8-generated-cfile-list-std-origin-anchors.toml"
-expected_count = 28
-expected_bytes = 3452
+expected_count = 23
+expected_bytes = 2890
 origin = "compiler_generated"
 subsystem = "ui"
 disposition = "exclude"
 confidence = "observed"
-evidence = "SHA-pinned VC8 SP1 rebuild of already-exact src/ui/FileList.cpp regenerates 22 standard-library COMDAT fingerprints whose complete current-inventory hit sets contain exactly 28 review candidates / 3452 bytes; target/compiler hashes, relocation forms, non-relocation coverage, bounded CC tails and clone equivalence groups are replayed fail-closed"
+evidence = "Actual CFileList source emits twenty STL COMDAT fingerprints covering 23 candidates and 2,890 bytes. Full inventory, relocation and boundary proof is retained. The at() helper and its four range-error clones now come from the real Youmu history reader. docs/FILE_LIST_TILE_CONTAINER_2026_11_09.md."
 
 [[rules]]
 id = "vc8-generated-input-cluster-std-comdats-106a"
@@ -7358,3 +7358,14 @@ confidence = "observed"
 evidence = "Target body and five native collision-predicate call sites identify the game-owned point test. Historical source was 142/142 exact; current portable semantic spelling is nonexact. docs/COLLISION_SEMANTICS_2026_11_07.md."
 required_body_hashes = [{ address = "0x0046B8B0", size = 142, sha256 = "34cef77ded75288c9f29b2a9a3e8a3464b61f311c5ff9ef083429b931458cf84" }]
 required_direct_edges = [{ caller = "0x0046BA10", site = "0x0046BA6F", target = "0x0046B8B0", caller_status = "implemented" }]
+
+[[rules]]
+id = "vc8-generated-youmu-history-access-106a"
+vc8_generated_anchor_file = "config/vc8-generated-youmu-history-access-origin-anchors.toml"
+expected_count = 5
+expected_bytes = 562
+origin = "compiler_generated"
+subsystem = "characters"
+disposition = "exclude"
+confidence = "observed"
+evidence = "Actual Youmu reader 53CDF0 calls deque<YoumuObjectRecord>::at at 53CD90. The complete 94-byte access helper and four 117-byte range-error clones retain full inventory, relocation and boundary proof. The native constructor and history writer establish the same 44-byte record deque at +7D0. docs/FILE_LIST_TILE_CONTAINER_2026_11_09.md."

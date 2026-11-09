@@ -12,30 +12,6 @@ alignment_tail_hex = "cc"
 # recompiles this source and verifies the complete current-inventory hit set.
 
 [[anchors]]
-address = "0x0040A8A0"
-size = 117
-symbol = "?_Xran@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@KAXXZ"
-equivalence_group = "cfile-list-std-01-clones"
-
-[[anchors]]
-address = "0x00431610"
-size = 117
-symbol = "?_Xran@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@KAXXZ"
-equivalence_group = "cfile-list-std-01-clones"
-
-[[anchors]]
-address = "0x0056D3D0"
-size = 117
-symbol = "?_Xran@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@KAXXZ"
-equivalence_group = "cfile-list-std-01-clones"
-
-[[anchors]]
-address = "0x006A5A20"
-size = 117
-symbol = "?_Xran@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@KAXXZ"
-equivalence_group = "cfile-list-std-01-clones"
-
-[[anchors]]
 address = "0x00439C10"
 size = 344
 symbol = "?_Growmap@?$deque@EV?$allocator@E@std@@@std@@IAEXI@Z"
@@ -97,7 +73,7 @@ symbol = "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2
 [[anchors]]
 address = "0x00420AF0"
 size = 135
-symbol = "?_Tidy@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@IAEXXZ"
+symbol = "?_Tidy@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXXZ"
 
 [[anchors]]
 address = "0x0040F990"
@@ -132,11 +108,6 @@ size = 97
 symbol = "??$_Construct@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V12@@std@@YAXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@@Z"
 
 [[anchors]]
-address = "0x0053CD90"
-size = 94
-symbol = "?at@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@QAEAAVFileListTile@th105@@I@Z"
-
-[[anchors]]
 address = "0x0040F8F0"
 size = 91
 symbol = "?push_back@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z"
@@ -149,7 +120,7 @@ symbol = "?pop_back@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@
 [[anchors]]
 address = "0x0041EB50"
 size = 57
-symbol = "?pop_back@?$deque@VFileListTile@th105@@V?$allocator@VFileListTile@th105@@@std@@@std@@QAEXXZ"
+symbol = "?pop_back@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@QAEXXZ"
 
 [[anchors]]
 address = "0x00431410"

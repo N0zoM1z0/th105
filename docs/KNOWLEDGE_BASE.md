@@ -3016,3 +3016,11 @@ status contract, and each observed direct consumer overwrites EAX. The native
 base/normal/Story +4 initialization slots are checked separately. All 27 scoped
 exact roots and complete normal EH remain exact. See
 `INFO_RESOURCE_CONTRACT_2026_11_09.md`.
+
+CFileList's exact 57-byte renderer previously concealed a wrong generated
+callee: source deque::at was assigned to native operator[] at 4399C0. The real
+operator now matches all 94 bytes. The distinct at helper at 53CD90 comes from
+Youmu's actual history deque reader. FileList also now owns deque<CTile>
+directly, eliminating the cross-specialization container cast. All 44 scoped
+exact comparisons remain unchanged; no new authored credit. See
+`FILE_LIST_TILE_CONTAINER_2026_11_09.md`.

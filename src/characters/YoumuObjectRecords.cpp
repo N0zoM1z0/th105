@@ -5,7 +5,7 @@ namespace th105 {
 unsigned char YoumuObjectRecordState::apply_owner_record(unsigned int index)
 {
     YoumuObjectRecord *record =
-        owner_348->records_7d0.object_record_ring_at(index);
+        &owner_348->records_7d0.at(index);
     if (record->identifier_00 != record_identifier_158) {
         field_150 = record_identifier_158 = record->identifier_00;
         reset_for_new_record();

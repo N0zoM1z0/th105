@@ -50,7 +50,7 @@ void CFileList::finalize()
    reinterpret_cast<FileListUnsignedDequePushView *>(&handles_02c)->push_back_value(handle);
    CTile tile;
    tile.set_texture(handle,0,0,width,16);
-   reinterpret_cast<std::deque<CTile> *>(&render_items_040)->push_back(tile);
+   render_items_040.push_back(tile);
    reinterpret_cast<FileListStringAssignBytesView *>(&text)->assign_bytes("",0);
   } while(current!=rows_004.end());
  }
