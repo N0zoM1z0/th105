@@ -14041,13 +14041,13 @@ source = "src/network/NetworkDerivedLifetime.cpp"
 object = "build/match-units/GptWeb_NetworkDerivedLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current CNetworkServer/CNetworkClient derived lifetime. Exact session fields fix CNetworkBase physical extent 0x6DC; RTTI COLs at the secondary vtables independently prove a second polymorphic base at +0x6DC. Ordinary multiple inheritance naturally publishes both derived vfptrs, performs cleanup on the +0x3B4 session member, then calls the current CNetworkBase normal destructor."
+notes = "Current CNetworkServer/CNetworkClient derived lifetime. Exact session fields fix CNetworkBase physical extent 0x6DC; RTTI COLs at the secondary vtables independently prove a second polymorphic base at +0x6DC. Ordinary multiple inheritance naturally publishes both derived vfptrs, publishes the callback through the +0x3B4 transport view, then calls the current CNetworkBase normal destructor."
 
 [[units.gpt-web-network-derived-lifetime.functions]]
 address = "0x0043CC10"
 symbol_base = "??1CNetworkServerLifetimeView@th105@@UAE@XZ"
 rel32_targets = [
-  "?cleanup@NetworkCleanupView@th105@@QAEXPAX@Z=0x00413360",
+  "?publish_callback@NetworkSendStateView@th105@@QAEXPAX@Z=0x00413360",
   "??1CNetworkBaseLifetimeView@th105@@UAE@XZ=0x0043C950",
 ]
 dir32_targets = [
@@ -14067,7 +14067,7 @@ rel32_targets = [
 address = "0x0043CD40"
 symbol_base = "??1CNetworkClientLifetimeView@th105@@UAE@XZ"
 rel32_targets = [
-  "?cleanup@NetworkCleanupView@th105@@QAEXPAX@Z=0x00413360",
+  "?publish_callback@NetworkSendStateView@th105@@QAEXPAX@Z=0x00413360",
   "??1CNetworkBaseLifetimeView@th105@@UAE@XZ=0x0043C950",
 ]
 dir32_targets = [
@@ -16052,7 +16052,7 @@ address = "0x0043CB30"
 symbol_base = "??0CNetworkServerCtorView@th105@@QAE@XZ"
 rel32_targets = [
   "??0CNetworkBaseCtorDependency@th105@@QAE@XZ=0x0044DB10",
-  "?cleanup@NetworkCleanupCtorView@th105@@QAEXPAX@Z=0x00413360",
+  "?publish_callback@NetworkSendStateView@th105@@QAEXPAX@Z=0x00413360",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
@@ -16067,7 +16067,7 @@ address = "0x0043CCA0"
 symbol_base = "??0CNetworkClientCtorView@th105@@QAE@XZ"
 rel32_targets = [
   "??0CNetworkBaseCtorDependency@th105@@QAE@XZ=0x0044DB10",
-  "?cleanup@NetworkCleanupCtorView@th105@@QAEXPAX@Z=0x00413360",
+  "?publish_callback@NetworkSendStateView@th105@@QAEXPAX@Z=0x00413360",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [

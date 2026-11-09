@@ -1,8 +1,6 @@
-namespace th105 {
+#include "NetworkSendState.hpp"
 
-struct NetworkCleanupCtorView {
-    void cleanup(void *peer);
-};
+namespace th105 {
 
 class CNetworkBaseCtorDependency {
 public:
@@ -10,8 +8,8 @@ public:
     virtual ~CNetworkBaseCtorDependency();
 protected:
     unsigned char reserved_004[0x3b0];
-    NetworkCleanupCtorView cleanup_3b4;
-    unsigned char reserved_3b5[0x6dc - 0x3b5];
+    NetworkSendStateView state_3b4;
+    unsigned char reserved_4fc[0x6dc - 0x4fc];
 };
 
 class INetworkUDPEventProcCtorView {
@@ -42,12 +40,12 @@ public:
 
 CNetworkServerCtorView::CNetworkServerCtorView()
 {
-    cleanup_3b4.cleanup(static_cast<INetworkUDPEventProcCtorView *>(this));
+    state_3b4.publish_callback(static_cast<INetworkUDPEventProcCtorView *>(this));
 }
 
 CNetworkClientCtorView::CNetworkClientCtorView()
 {
-    cleanup_3b4.cleanup(static_cast<INetworkUDPEventProcCtorView *>(this));
+    state_3b4.publish_callback(static_cast<INetworkUDPEventProcCtorView *>(this));
 }
 
 extern CNetworkBaseCtorDependency *g_network_session;

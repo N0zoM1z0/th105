@@ -1,3 +1,4 @@
+#include "NetworkSendState.hpp"
 #include "NetworkWinsockSendClient.hpp"
 #include "../battle/SpellData.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
@@ -19,10 +20,6 @@ class NetworkDelayPacket12 : public NetworkDelayBase8 {
 public:
     NetworkDelayPacket12() {}
     virtual unsigned int serialize(void *buffer);
-};
-
-struct NetworkSendStateView {
-    int status();
 };
 
 struct CNetworkClientPrimaryProtocolView {

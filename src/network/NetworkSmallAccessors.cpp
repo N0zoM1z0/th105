@@ -1,11 +1,5 @@
+#include "NetworkSendState.hpp"
 namespace th105 {
-
-struct NetworkSendStateView {
-    unsigned char unknown_000[0x144];
-    int status_144;
-
-    int status();
-};
 
 int NetworkSendStateView::status()
 {

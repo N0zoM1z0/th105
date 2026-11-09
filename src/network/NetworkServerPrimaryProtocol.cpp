@@ -1,3 +1,4 @@
+#include "NetworkSendState.hpp"
 #include "NetworkWinsockSendClient.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkInputPacket.hpp"
@@ -5,11 +6,6 @@
 #include <stddef.h>
 
 namespace th105 {
-
-struct NetworkSendStateView {
-    bool check(int index);
-    void process(int index);
-};
 
 struct NetworkTerminateBase4 {
     NetworkTerminateBase4() : result_004(0) {}

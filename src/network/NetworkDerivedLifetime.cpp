@@ -1,16 +1,14 @@
-namespace th105 {
+#include "NetworkSendState.hpp"
 
-struct NetworkCleanupView {
-    void cleanup(void *peer);
-};
+namespace th105 {
 
 class CNetworkBaseLifetimeView {
 public:
     virtual ~CNetworkBaseLifetimeView();
 protected:
     unsigned char reserved_004[0x3B0];
-    NetworkCleanupView cleanup_3b4;
-    unsigned char reserved_3b5[0x6DC - 0x3B5];
+    NetworkSendStateView state_3b4;
+    unsigned char reserved_4fc[0x6DC - 0x4FC];
 };
 
 class NetworkSecondaryInterfaceView {
@@ -32,12 +30,12 @@ public:
 
 CNetworkServerLifetimeView::~CNetworkServerLifetimeView()
 {
-    cleanup_3b4.cleanup(0);
+    state_3b4.publish_callback(0);
 }
 
 CNetworkClientLifetimeView::~CNetworkClientLifetimeView()
 {
-    cleanup_3b4.cleanup(static_cast<NetworkSecondaryInterfaceView *>(this));
+    state_3b4.publish_callback(static_cast<NetworkSecondaryInterfaceView *>(this));
 }
 
 typedef char Base_size[sizeof(CNetworkBaseLifetimeView)==0x6DC?1:-1];

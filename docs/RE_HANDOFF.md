@@ -750,3 +750,13 @@ nonexact comparison are preserved. Two linked allocator proofs and the four
 emitted-helper checks pass. See `docs/UDP_EVENT_INTERFACE_2026_11_09.md`.
 The send-provider notes now explicitly describe 0x200 as a modeled prefix,
 not the full native class size. Input migration remains untouched.
+
+
+2026-11-09: Network construction and teardown now call the real callback
+publication implementation instead of undefined cleanup aliases. A shared
+state prefix joins publication, indexed checks and status reads across six
+units; 17 authored exact roots and two compiler wrappers remain equal. Folded
+EH35/metadata44 and factory EH38/metadata44 also match. The native Server-null
+and Client-secondary-pointer destructor policies are preserved. See
+`docs/NETWORK_CALLBACK_PUBLICATION_2026_11_09.md`. No origin pins changed;
+the input migration remains separate.
