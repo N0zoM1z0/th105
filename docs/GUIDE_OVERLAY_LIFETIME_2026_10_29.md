@@ -37,3 +37,35 @@ scripts/repo-python scripts/build.py --unit exact-first-guide-overlay-lifetime -
 Source:src/ui/GuideOverlayLifetime.cpp.
 Receipt:build/frontier-guide-natural-lifetime-20261029/formal-build.json.
 The report intentionally combines the exact constructor and nonexact destructor.
+
+
+## November 9: complete exception cleanup comparison
+
+The current real `GuideOverlay` destructor now has complete local equality
+for its remote cleanup support, including every relocation:
+
+- `0x006B9050`, 38 bytes: the eleven-byte sprite unwind action followed by
+  the 27-byte handler at `0x006B905B`.
+- `0x006DF02C`, 44 bytes: the one-state unwind table and FuncInfo at
+  `0x006DF034`.
+- `0x0040AD50`, 7 bytes: the actual `CSprite` destructor used by the unwind
+  action, restoring the `IColor` vtable.
+
+The single unwind state has predecessor -1. Its action loads the saved owner
+from frame offset -0x10, selects the sprite at owner+8, and tail-calls its real
+destructor. The handler performs the original security-cookie check and tail
+jump to `CxxFrameHandler3`. Both main-body graphs close through 27 instructions.
+
+The complete main candidate remains 90/native92 with the same first mismatch
+at +40 and the previously recorded candidate hash. Native code compares the
+handle in memory and reloads it before the release call; the compiler retains
+the load in EAX. The matching support regions remove an EH uncertainty without
+resolving that main-body difference. No source or exact-ledger change is made
+for this destructor.
+
+Rebuild `exact-first-guide-overlay-lifetime`, then run
+`scripts/repo-python .analysis/frontier-guide-dtor-eh-20261109/check.py`.
+The private check verifies current source/compiler/object provenance, complete
+section ownership, relocation roles, unwind state and closed control flow.
+Results are in `build/frontier-guide-dtor-eh-20261109/build.json` and `eh.json`.
+The already accepted constructor still compares 20/20.

@@ -713,3 +713,16 @@ The complete two-slot table, update1003, normal19 and scalar40 match locally.
 All 12 distinct accepted roots across 20 units are preserved; four origin
 proofs pass. Global input identity still requires a coordinated signature and
 forward-declaration migration. See `docs/INPUT_CLUSTER_SHARED_OVERRIDE_2026_11_08.md`.
+
+
+2026-11-09: Spell finalization now uses its actual short-deque member directly,
+removing two obsolete casts from the prior layout view. Full local 260-byte and
+71-byte caller comparisons are unchanged; acceptance and exact ledgers are untouched.
+See `docs/SPELL_FINALIZE_SOURCE_2026_11_04.md`.
+
+2026-11-09: GuideOverlay destruction now has complete local equality for
+the 38-byte cleanup/handler, 44-byte unwind metadata and seven-byte real sprite
+cleanup. The 90-byte main candidate still differs from the 92-byte target at
++40; the 20-byte constructor remains exact.
+See `docs/GUIDE_OVERLAY_LIFETIME_2026_10_29.md`. The suspended global input
+migration and its source-pin blocker remain untouched and uncommitted.

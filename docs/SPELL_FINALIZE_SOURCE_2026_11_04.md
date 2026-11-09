@@ -59,3 +59,17 @@ Independent Factory acceptance remains pending. This source-present method
 receives no exact credit until that replay is accepted; no live execution or
 broad exception-equivalence claim is made. The exact caller at `0x00432360`
 was rebuilt and remains exact.
+
+
+## November 9: use the native deque member directly
+
+The November 8 queue migration made `loaded_spell_ids_20` an actual
+`std::deque<short>`. Finalization now calls that member's `begin()` and `end()`
+directly, removing two obsolete reinterpret casts and the comparison with the
+old layout facade. The iterator lifetime and lookup/read sequence are unchanged.
+
+Fresh complete comparisons before and after this cleanup both reproduce all
+260 bytes with the same canonical hash recorded above. The loader caller at
+`0x00432360` also remains 71/71. Receipts are in
+`build/frontier-spell-finalize-native-deque-20261109/`. These are local replay
+results; acceptance status and the exact ledger are unchanged.
