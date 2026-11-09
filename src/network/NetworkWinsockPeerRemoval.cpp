@@ -1,3 +1,4 @@
+#include "network/NetworkUdpEvent.hpp"
 #include "engine/CriticalSectionWrapper.hpp"
 
 #include <map>
@@ -22,15 +23,6 @@ struct NetworkPeerRecord20 {
 
 typedef std::multimap<unsigned int, NetworkPeerRecord20 *> NetworkPeerMap;
 
-class NetworkPeerRemovalCallbackView {
-public:
-    virtual void unreviewed_slot_00();
-    virtual void unreviewed_slot_04();
-    virtual void unreviewed_slot_08();
-    virtual void unreviewed_slot_0c();
-    virtual void unreviewed_slot_10();
-    virtual void on_peer_removed(unsigned int slot);
-};
 
 class NetworkPeerRemovalLock {
 public:
@@ -63,7 +55,7 @@ struct NetworkWinsockPeerRemovalView {
     unsigned char unreviewed_000[0x28];
     unsigned int socket_028;
     unsigned char unreviewed_02c[0x54];
-    NetworkPeerRemovalCallbackView *callback_080;
+    INetworkUDPEventProc *callback_080;
     CriticalSectionWrapper callback_lock_084;
     unsigned char unreviewed_0a0[0x5c];
     NetworkPeerMap peers_0fc;

@@ -3,8 +3,9 @@
 The primary protocol, peer-state publication, packet continuation and replay
 paths now use the same `NetworkWinsockSendClientView` member as the ACK senders.
 Five translation units no longer declare eight independent method-only sender
-classes. Each caller has the real 0x200-byte sender at owner +0x3B4, followed by
-its packet buffer at +0x5B4. The existing provider supplies the unsigned timeout
+classes. Each caller uses the existing 0x200-byte send view at owner +0x3B4, followed by
+its packet buffer at +0x5B4. The view models only that prefix; the separate
+0x314-byte lifetime view still has unresolved tail ownership. The existing provider supplies the unsigned timeout
 and result-pointer types; the delay sender passes a null result pointer without
 a separate `void *` signature. State-query helper views remain separate.
 

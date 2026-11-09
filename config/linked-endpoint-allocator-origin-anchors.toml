@@ -2,10 +2,11 @@ schema_version = 1
 target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
 unit = "cross-v106a-network-winsock-receive-thread"
 [source_pins]
+"src/network/NetworkUdpEvent.hpp" = "5dd3d372a2516cc3ffe675705a34560bc76a9412cc1283cffe5602123ab2df79"
 "src/engine/CriticalSectionWrapper.hpp" = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
-"src/network/NetworkWinsockAccept.cpp" = "b11e032699e435665bc4ec88eb6003357d040659c7cb11d8181dbc6f57bc607b"
-"src/network/NetworkWinsockPeerRemoval.cpp" = "a2d2a43696d7725ac85d468156ff0c8fb1127618bf701ef423a5b8d5ea190fbb"
-"src/network/NetworkWinsockReceiveThread.cpp" = "5fc35db83596224f270281f55bac814bf1e45ff2b808c0540db93caef5a4a15f"
+"src/network/NetworkWinsockAccept.cpp" = "589ba4a9be69d187d9605573ff5bb320a2d461a99ba2f9462ad38ba3eaa52e35"
+"src/network/NetworkWinsockPeerRemoval.cpp" = "41565135acb5604b7aee5edb92f568dc2b643eae0990113ddde6c479b4ab81ae"
+"src/network/NetworkWinsockReceiveThread.cpp" = "82e651897cd4dd7bd0fc71ea1f119ffd9bc2484d3841354ad58108f399f2013b"
 "src/platform/BattleThreadHandleRuntime.cpp" = "0bfc5cdf04656f2cce938039ca691aaa030884ebad669bb334a24941ae79e550"
 
 [[anchors]]

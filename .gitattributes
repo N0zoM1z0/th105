@@ -93,3 +93,4 @@ src/network/NetworkInputPacket.hpp text eol=lf
 src/network/NetworkPacketBase.hpp text eol=lf
 
 src/network/NetworkWinsockSendClient.hpp text eol=lf
+src/network/NetworkUdpEvent.hpp text eol=lf

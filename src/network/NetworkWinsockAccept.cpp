@@ -1,3 +1,4 @@
+#include "network/NetworkUdpEvent.hpp"
 #include "engine/CriticalSectionWrapper.hpp"
 
 namespace th105 {
@@ -12,10 +13,6 @@ struct NetworkAcceptPacketHeader0C {
     unsigned short unreviewed_0a;
 };
 #pragma pack(pop)
-class NetworkAcceptCallbackView {
-public:
-    virtual void on_accepted(unsigned int code, const void *payload, unsigned int size);
-};
 class NetworkAcceptLock {
 public:
     explicit NetworkAcceptLock(CriticalSectionWrapper *lock) : lock_(lock)
@@ -31,7 +28,7 @@ private:
 };
 struct NetworkUdpAcceptView {
     unsigned char unreviewed_000[0x80];
-    NetworkAcceptCallbackView *callback_080;
+    INetworkUDPEventProc *callback_080;
     CriticalSectionWrapper callback_lock_084;
     unsigned char unreviewed_0a0[0x20];
     NetworkAcceptAddress16 endpoint_0c0;

@@ -1,3 +1,4 @@
+#include "network/NetworkUdpEvent.hpp"
 #include "engine/CriticalSectionWrapper.hpp"
 #include <map>
 #include <vector>
@@ -87,15 +88,6 @@ struct NetworkReceiveAccept0C {
 };
 #pragma pack(pop)
 
-class NetworkReceiveCallbackView {
-public:
-    virtual void on_accepted(unsigned int code, const void *payload, unsigned int size);
-    virtual void on_rejected(unsigned int code);
-    virtual void on_primary_data(const void *payload, int size);
-    virtual void on_peer_data(unsigned int slot, const void *payload, int size);
-    virtual int route_payload(unsigned int slot, int *code, const unsigned char *payload,
-                              int size, void **reply, unsigned short *reply_size);
-};
 class NetworkReceiveLock {
 public:
     explicit NetworkReceiveLock(CriticalSectionWrapper *lock) : lock_(lock)
@@ -128,7 +120,7 @@ public:
     unsigned char *request_data_078;
     unsigned short request_size_07c;
     unsigned char unreviewed_07e[2];
-    NetworkReceiveCallbackView *callback_080;
+    INetworkUDPEventProc *callback_080;
     CriticalSectionWrapper callback_lock_084;
     NetworkReceiveAddress16 connection_endpoint_0a0;
     unsigned char unreviewed_0b0[0x10];

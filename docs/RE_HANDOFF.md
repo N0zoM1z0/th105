@@ -729,7 +729,7 @@ migration and its source-pin blocker remain untouched and uncommitted.
 
 
 2026-11-09: Both ACK_INFO senders now use the existing shared UDP send provider
-and its real 0x200-byte member, removing undefined caller aliases. Sender
+and its shared 0x200-byte prefix view, removing undefined caller aliases. Sender
 269/341 and token release 167 remain exact; complete shared EH code 48,
 metadata 44 and packet cleanup 19 also match. Two affected origin proofs pass.
 See `docs/ACK_SEND_PROVIDER_2026_11_09.md`. Input migration remains separate.
@@ -741,3 +741,12 @@ packet wrapper's false integer result contract is corrected to void. Seven
 units retain all 26 accepted roots and both prior nonexact results. The server
 dispatcher's complete code/table564, EH56, metadata52 and cleanup8/19 also match.
 See `docs/PROTOCOL_SEND_PROVIDER_2026_11_09.md`. No origin pins changed.
+
+
+2026-11-09: UDP receive, acceptance and peer removal now share the native
+INetworkUDPEventProc interface and existing default implementations. All six
+slots have whole-method equality; five accepted roots and every affected
+nonexact comparison are preserved. Two linked allocator proofs and the four
+emitted-helper checks pass. See `docs/UDP_EVENT_INTERFACE_2026_11_09.md`.
+The send-provider notes now explicitly describe 0x200 as a modeled prefix,
+not the full native class size. Input migration remains untouched.

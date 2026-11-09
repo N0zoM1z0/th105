@@ -28809,13 +28809,13 @@ enable_gs = false
 notes = "Original INetworkUDPEventProc6C1630 default callbacks: no-op two/three-word notifications and route rejection9 without touching outputs. Shared one-word no-op44E8E0 already counted elsewhere; no additional clone credit. docs/NETWORK_EVENT_DEFAULTS_2026_11_01.md."
 [[units.exact-first-network-event-defaults.functions]]
 address = "0x0043AA10"
-symbol_base = "?on_primary_data@NetworkEventDefaultsView@th105@@UAEXPBXH@Z"
+symbol_base = "?on_primary_data@INetworkUDPEventProc@@UAEXPBXH@Z"
 [[units.exact-first-network-event-defaults.functions]]
 address = "0x0043AA20"
-symbol_base = "?on_accepted@NetworkEventDefaultsView@th105@@UAEXIPBXI@Z"
+symbol_base = "?on_accepted@INetworkUDPEventProc@@UAEXIPBXI@Z"
 [[units.exact-first-network-event-defaults.functions]]
 address = "0x0043AA30"
-symbol_base = "?route_payload@NetworkEventDefaultsView@th105@@UAEHIPAHPBEHPAPAXPAG@Z"
+symbol_base = "?route_payload@INetworkUDPEventProc@@UAEHIPAHPBEHPAPAXPAG@Z"
 
 [units.exact-first-file-list-parent]
 kind = "probe"

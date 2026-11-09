@@ -15,9 +15,11 @@ owner+0x3B4 and the serialized packet buffer from owner+0x5B4. The provider's
 existing fields extend through the queue lock at +0x1E4, ending at +0x200.
 
 `NetworkWinsockSendClient.hpp` moves that existing definition unchanged from
-its implementation file. Both ACK sender views now contain the same 0x200-byte
-member instead of a method-only byte followed by 0x1FF reserved bytes. Size
-and offset assertions preserve the transport and buffer boundaries. Calls use
+its implementation file. Both ACK sender views now use the same 0x200-byte
+prefix instead of a method-only byte followed by 0x1FF reserved bytes. This is
+the send provider's modeled prefix, not a proved complete native class size.
+The separate lifetime view reserves 0x314 bytes; its tail ownership remains
+unresolved. Size and offset assertions preserve the transport and buffer offsets. Calls use
 the provider's existing unsigned timeout argument and actual return types.
 No shared packet, input class, wire format or sending policy changes.
 
