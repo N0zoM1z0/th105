@@ -23,9 +23,9 @@ Complete decoded bodies and target hashes are in
 `build/frontier-call-contract-triage-20261109/native.json`. No native build or
 source modification was needed for these read-only checks.
 
-The animation sequence families remain a more substantial open contract:
-several int-returning frame/sequence methods forward the separately recovered
-void sprite-frame operation at `0x436760`. Changing that chain requires the
-complete virtual-call consumer closure, including finalize overrides; local
-byte equality or the leaf declaration alone is insufficient. No change to
-those methods or their exact status is made here.
+The animation sequence families remain an open contract. The subsequent
+[original-call audit](ANIMATION_RETURN_CONTRACT_2026_11_09.md) distinguishes
+frame propagation, byte wrap signals and the independent +3C finalizer chain.
+It closes the direct paths and finds real wrap-status consumption, but does not
+resolve every virtual consumer. Their declarations and exact status remain
+unchanged.

@@ -932,3 +932,11 @@ fade/replay statuses retain their native values, the shared one-word no-op
 is genuine folding, and slot-finalization callers may discard its status.
 Animation sequence return propagation still needs its full virtual-call
 closure. See `docs/CALL_CONTRACT_TRIAGE_2026_11_09.md`. No source change.
+
+
+2026-11-09: Animation return review closes 23 original bodies and all eleven
+raw direct edges, plus the wrap dispatcher. The 53-table census separates
+frame propagation from 35 distinct +3C finalizers; the dispatcher genuinely
+consumes the next-frame/block byte statuses. Full indirect consumer typing is
+still unresolved, so no family-wide int/void change was made. See
+`docs/ANIMATION_RETURN_CONTRACT_2026_11_09.md`. Pending input work is unchanged.
