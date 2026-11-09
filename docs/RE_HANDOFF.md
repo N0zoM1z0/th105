@@ -726,3 +726,10 @@ cleanup. The 90-byte main candidate still differs from the 92-byte target at
 +40; the 20-byte constructor remains exact.
 See `docs/GUIDE_OVERLAY_LIFETIME_2026_10_29.md`. The suspended global input
 migration and its source-pin blocker remain untouched and uncommitted.
+
+
+2026-11-09: Both ACK_INFO senders now use the existing shared UDP send provider
+and its real 0x200-byte member, removing undefined caller aliases. Sender
+269/341 and token release 167 remain exact; complete shared EH code 48,
+metadata 44 and packet cleanup 19 also match. Two affected origin proofs pass.
+See `docs/ACK_SEND_PROVIDER_2026_11_09.md`. Input migration remains separate.

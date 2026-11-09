@@ -6,7 +6,8 @@ unit = "cross-v106a-network-winsock-send-client"
 "src/engine/CriticalSectionWrapper.hpp" = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
 "src/library/UnsignedIntList.cpp" = "02b4b940764c8f15fedb915d1a44ec7a4f5912ff7366b00033c2438e0e20e1c8"
 "src/network/NetworkUdpPacketPool.hpp" = "a717ba21c199b4793d9582b2e3dc1da3846e6fdf1df807b696205e4b077eae72"
-"src/network/NetworkWinsockSendClient.cpp" = "985a6b51794315c5b3b92f945e255810524ead4fc6a9021af75f33b305de64f9"
+"src/network/NetworkWinsockSendClient.cpp" = "c52f58ef5e71e688fe7071255462025be50ac0191695984ff226f8b1ce892c76"
+"src/network/NetworkWinsockSendClient.hpp" = "21a7641d8ff11d1aa36d5ef4262e2f625e95e75d459989a09cc076324231c064"
 [[anchors]]
 address = "0x004179D0"
 size = 82

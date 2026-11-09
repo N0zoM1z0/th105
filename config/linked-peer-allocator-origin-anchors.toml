@@ -10,7 +10,8 @@ unit = "cross-v106a-network-winsock-runtime"
 "src/network/NetworkWinsockProbeThread.cpp" = "b72339db3f42f817fba460857c7dc186e5ea0b53ead1836394070521677eae57"
 "src/network/NetworkWinsockReceiveThread.cpp" = "5fc35db83596224f270281f55bac814bf1e45ff2b808c0540db93caef5a4a15f"
 "src/network/NetworkWinsockRuntime.cpp" = "f268710731f93558b6c6db37efe713a88d10621bc4dfa608445e361b4f70001a"
-"src/network/NetworkWinsockSendClient.cpp" = "985a6b51794315c5b3b92f945e255810524ead4fc6a9021af75f33b305de64f9"
+"src/network/NetworkWinsockSendClient.cpp" = "c52f58ef5e71e688fe7071255462025be50ac0191695984ff226f8b1ce892c76"
+"src/network/NetworkWinsockSendClient.hpp" = "21a7641d8ff11d1aa36d5ef4262e2f625e95e75d459989a09cc076324231c064"
 "src/platform/BattleThreadHandleRuntime.cpp" = "0bfc5cdf04656f2cce938039ca691aaa030884ebad669bb334a24941ae79e550"
 
 [[anchors]]

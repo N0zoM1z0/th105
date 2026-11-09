@@ -91,3 +91,5 @@ src/ui/ResultList.cpp text eol=lf
 # Exact source pins for the shared native INPUT packet hierarchy.
 src/network/NetworkInputPacket.hpp text eol=lf
 src/network/NetworkPacketBase.hpp text eol=lf
+
+src/network/NetworkWinsockSendClient.hpp text eol=lf

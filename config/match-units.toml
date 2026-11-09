@@ -15149,7 +15149,7 @@ rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
   "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
-  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+  "?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990",
   "@__security_check_cookie@4=0x00689D25",
 ]
 
@@ -15168,7 +15168,7 @@ rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
   "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
-  "?send_server@NetworkServerSend5View@th105@@QAEHIPBXIHPAI@Z=0x00416B60",
+  "?send_server@NetworkWinsockSendClientView@th105@@QAEXIPBXIIPAI@Z=0x00416B60",
   "@__security_check_cookie@4=0x00689D25",
 ]
 
