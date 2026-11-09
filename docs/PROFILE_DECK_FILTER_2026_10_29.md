@@ -34,8 +34,8 @@ native order.
 The pointer-only view constructs no synthetic game objects. Spell and count
 maps and the iterator deque use the pinned VC8 checked containers.4300B0 is
 an out-of-line checked deque subscript, not deque.at: the bounded native body
-has iterator guards but no range-exception helper. Its declaration-only
-receiver therefore models operator[], with an8-byte iterator reference result.
+has iterator guards but no range-exception helper. Its real checked iterator-deque operator[] returns an 8-byte iterator reference.
+The earlier declaration-only receiver was removed on November 9.
 No shared runtime header or existing consumer source changed.
 
 ## Comparisons
@@ -55,3 +55,16 @@ build/frontier-profile-deck-filter-20261029/. Public source is
 src/ui/ProfileDeckFilter.cpp. The full replay also relocates all five table
 entries, beyond the callable ledger bound. Existing exact receipts remain
 unchanged; default CI and diff checks validate the completed tracking update.
+
+## Real provider replay, November 9, 2026
+
+The filter now indexes its actual `std::deque<FilterSpellMap::iterator>` directly.
+VC8 SP1 `/O2` emits the real 99-byte `operator[]` provider, identical to native
+`0x4300B0`. The full 1,375-byte callable and 1,396-byte owned extent remain exact
+with the same hashes above, including all five switch-table relocations. A fresh
+control-flow walk covers 404 instructions, all four returns and the three-byte
+internal alignment. No source shape or provider boundary needs to be faked.
+
+Evidence: `build/frontier-filter-provider-20261109/compare.json` and
+`verification.json`. This replaces the provider declaration, not the established
+category behavior or exact credit.

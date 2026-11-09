@@ -11,9 +11,6 @@ extern "C" th105::CInputManager *g_active_menu_input;
 namespace th105 {
 typedef std::map<int, SpellRecordView> FilterSpellMap;
 typedef std::map<short, signed char> FilterCountMap;
-// Native4300B0 is checked iterator subscripting, not deque.at: no _Xran edge.
-// Declaration-only view preserves its observed out-of-line boundary.
-struct FilterDequeSubscript { FilterSpellMap::iterator &operator[](unsigned index); };
 // Pointer-only view, never constructed. Unaccessed ranges retain native offsets.
 struct ProfileDeckFilterView {
  unsigned char prefix_00[0x44];
@@ -77,7 +74,7 @@ void ProfileDeckFilterView::select_filter(signed char category)
  category_40c=category;
  if(objects_44[7+category_40c]) objects_44[7+category_40c]->enabled=true;
  cursor_3e4.bind_vertical(g_active_menu_input, filtered_3cc.size(), 15);
- if(available_count(cursor_3e4.selection)) show_record(&(*reinterpret_cast<FilterDequeSubscript *>(&filtered_3cc))[cursor_3e4.selection]->second);
+ if(available_count(cursor_3e4.selection)) show_record(&filtered_3cc[cursor_3e4.selection]->second);
  else {
   objects_44[17]->enabled=false;
   objects_44[5]->enabled=false;

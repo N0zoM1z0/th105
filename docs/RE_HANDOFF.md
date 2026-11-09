@@ -1092,3 +1092,8 @@ iterator deque instead of at() declaration-only receivers. Natural indexing
 preserves both exact roots358/1339, the prior render2521 mismatch and five
 complete root/EH sections. All three emitted 99-byte indexing providers match.
 See `docs/PROFILE_DECK_INDEX_PROVIDER_2026_11_09.md`. Input work is preserved.
+
+2026-11-09: ProfileDeckFilter now uses its real checked iterator-deque subscript.
+The complete 1,375-byte callable, 1,396-byte owned extent with all five switch
+relocations, and 99-byte provider remain exact. See
+`docs/PROFILE_DECK_FILTER_2026_10_29.md`. Input migration work remains untouched.
