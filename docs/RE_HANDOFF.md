@@ -1080,3 +1080,9 @@ source was incorrectly rebound to that address. Dispatcher566, actual
 push_front122, grow-map344 and remote EH59/metadata52 all replay exactly.
 See the November 9 section of
 `docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md`. Input work is preserved.
+
+2026-11-09: Music path selection and result value/label reads now use their
+actual deque indexing providers instead of mismatched at() bindings. Six exact
+music roots, the unchanged nonexact result root and fifteen complete root/EH
+sections are preserved. String94 and integer100 providers match in full.
+See `docs/UI_DEQUE_INDEX_PROVIDERS_2026_11_09.md`. Input work is untouched.

@@ -79,10 +79,10 @@ bool CMenuMusic::update_primary()
     if (input->buttons[0] == 1) {
         unsigned index = static_cast<unsigned>(
             cursors_11c[1].selection + 16 * cursors_11c[0].selection);
-        const std::string &path = music_list_004.paths_b4.at(index);
+        const std::string &path = music_list_004.paths_b4[index];
         if (reinterpret_cast<ScoreMusicLookupView *>(get_score_data())
                 ->contains_bgm_path(path.c_str()))
-            play_bgm(music_list_004.paths_b4.at(index).c_str());
+            play_bgm(music_list_004.paths_b4[index].c_str());
     } else if (input->buttons[2] == 1) {
         dispatch_indexed_event(0x28);
         install_menu_object(new CProfileMenu());

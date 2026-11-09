@@ -50,11 +50,13 @@ bool CMenuResult::update_active()
         reinterpret_cast<int *>(get_match_setup())[2] =
             selected_character_0c4;
         reinterpret_cast<unsigned int *>(get_match_setup())[0] =
-            *results_0c8[selected_character_0c4].values().at(
-                result_cursor_108c.selection);
+            reinterpret_cast<std::deque<int> &>(
+                results_0c8[selected_character_0c4].values())[
+                result_cursor_108c.selection];
         reinterpret_cast<unsigned int *>(get_match_setup())[10] =
-            *results_0c8[selected_character_0c4].labels().at(
-                result_cursor_108c.selection);
+            reinterpret_cast<std::deque<int> &>(
+                results_0c8[selected_character_0c4].labels())[
+                result_cursor_108c.selection];
 
         unsigned char *setup =
             reinterpret_cast<unsigned char *>(get_match_setup());
