@@ -16502,7 +16502,7 @@ notes = "Complete shutdown/preparation source over the reviewed CNetworkUDP pref
 [[units.gpt-web-network-winsock-shutdown.functions]]
 address = "0x00412FD0"
 symbol_base = "?shutdown_412fd0@NetworkWinsockShutdownView@th105@@QAEXXZ"
-rel32_targets = ["?prepare_udp_shutdown@th105@@YGXPAUNetworkWinsockShutdownView@1@@Z=0x004130D0", "?wait_for_exit@BattleThreadHandleShutdownView@th105@@QAEXXZ=0x00414640", "??_V@YAXPAX@Z=0x0068AA26"]
+rel32_targets = ["?prepare_udp_shutdown@th105@@YGXPAUNetworkWinsockShutdownView@1@@Z=0x004130D0", "?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640", "??_V@YAXPAX@Z=0x0068AA26"]
 dir32_targets = ["__imp__SetEvent@4=__imp__SetEvent@4", "__imp__shutdown@8=__imp__shutdown@8", "__imp__closesocket@4=__imp__closesocket@4", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__WSACleanup@0=__imp__WSACleanup@0", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "_g_winsock_ref_lock=_g_winsock_ref_lock", "_g_winsock_refcount=_g_winsock_refcount"]
 
 [[units.gpt-web-network-winsock-shutdown.functions]]

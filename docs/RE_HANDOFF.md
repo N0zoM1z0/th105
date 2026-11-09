@@ -831,3 +831,12 @@ ST0; 81 calls across Tenshi, Iku and Udonge plus complete motion/tangent callers
 show differing expression lifetimes without proving float versus double
 return spelling. See the return-contract section in
 `docs/TENSHI_OBJECT_UPDATE_2026_10_25.md`. Source and exact status are unchanged.
+
+
+2026-11-09: Platform, audio and battle now share the actual eight-byte thread
+handle declaration; network shutdown calls its real wait provider instead of
+an undefined alias. All 40 affected root comparisons retain their results
+(34 exact), with 711 COFF sections and both linked images unchanged apart from
+export timestamps. Three affected origin proofs pass. See
+`docs/SHARED_THREAD_HANDLE_2026_11_09.md`. No new exact credit; pending input
+migration remains unchanged.

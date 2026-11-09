@@ -1,3 +1,4 @@
+#include "platform/BattleThreadHandle.hpp"
 #include <new>
 #include <winsock2.h>
 #include <windows.h>
@@ -6,13 +7,6 @@
 #include <vector>
 
 namespace th105 {
-
-struct BattleThreadHandleShutdownView {
-    void *handle_00;
-    unsigned long thread_id_04;
-
-    void wait_for_exit();
-};
 
 struct NetworkShutdownPeer20 {
     unsigned char endpoint_00[16];
@@ -24,9 +18,9 @@ struct NetworkWinsockShutdownView {
     unsigned char reserved_000[0x28];
     SOCKET socket_028;
     unsigned char reserved_02c[0x30];
-    BattleThreadHandleShutdownView worker_05c;
-    BattleThreadHandleShutdownView worker_064;
-    BattleThreadHandleShutdownView worker_06c;
+    BattleThreadHandle worker_05c;
+    BattleThreadHandle worker_064;
+    BattleThreadHandle worker_06c;
     unsigned char running_074;
     unsigned char reserved_075[3];
     unsigned char *heap_buffer_078;
@@ -37,7 +31,7 @@ struct NetworkWinsockShutdownView {
     unsigned char unreviewed_0fc[0x0c];
     std::vector<NetworkShutdownPeer20> peers_108;
     unsigned char unreviewed_118[0x24];
-    BattleThreadHandleShutdownView worker_13c;
+    BattleThreadHandle worker_13c;
     unsigned int state_144;
     unsigned char reserved_148[0x98];
     HANDLE event_1e0;

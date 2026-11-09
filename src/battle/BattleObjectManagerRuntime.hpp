@@ -1,5 +1,7 @@
 #pragma once
 
+#include "platform/BattleThreadHandle.hpp"
+
 #include "battle/BattleRenderHelpers.hpp"
 
 #include <list>
@@ -15,17 +17,6 @@ struct BattleRenderRequest {
 
 struct BattleOwnedObject {
     virtual ~BattleOwnedObject();
-};
-
-struct BattleThreadHandle {
-    HANDLE handle_00;
-    unsigned thread_id_04;
-
-    BattleThreadHandle();
-    ~BattleThreadHandle();
-    bool start(LPTHREAD_START_ROUTINE proc, void *argument);
-    void wait_for_exit();
-    int set_priority(int priority);
 };
 
 struct BattleBaseEffect {

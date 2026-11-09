@@ -51,9 +51,7 @@ def materialize(texts):
     return td+'\n'+pd+'\n'+source
 
 def extra_contexts(texts):
-    thread=texts['thread'];require(thread.count('class BattleThreadHandle {')==thread.count('BattleThreadHandle::BattleThreadHandle()')==1,'initializer thread declaration differs')
-    body=thread[thread.index('class BattleThreadHandle {'):thread.index('BattleThreadHandle::BattleThreadHandle()')]
-    initialize='namespace th105 {\n'+body+'\n}\n'+texts['initialize']
+    initialize='#include "platform/BattleThreadHandle.hpp"\n'+texts['initialize']
     old='        wait_for_exit();';require(initialize.count(old)==1,'initializer actual wait call differs')
     initialize=initialize.replace(old,'        reinterpret_cast<BattleThreadHandle *>(this)->wait_for_exit();')
     peer=texts['peer'];require(peer.count('NetworkPeerMap::iterator NetworkWinsockPeerRemovalView::find_peer')==1,'service peer declaration differs')

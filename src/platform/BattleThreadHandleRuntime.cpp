@@ -1,3 +1,5 @@
+#include "platform/BattleThreadHandle.hpp"
+
 namespace th105 {
 
 extern "C" __declspec(dllimport) void *__stdcall CreateThread(
@@ -9,21 +11,6 @@ extern "C" __declspec(dllimport) int __stdcall GetExitCodeThread(
 extern "C" __declspec(dllimport) int __stdcall SetThreadPriority(
     void *thread, int priority);
 extern "C" __declspec(dllimport) int __stdcall CloseHandle(void *handle);
-
-class BattleThreadHandle {
-public:
-    BattleThreadHandle();
-    ~BattleThreadHandle();
-
-    bool start(unsigned long (__stdcall *entry)(void *), void *parameter);
-    void wait_for_exit();
-    int set_priority(int priority);
-    bool is_running();
-
-private:
-    void *handle_;
-    unsigned long thread_id_;
-};
 
 BattleThreadHandle::BattleThreadHandle()
     : handle_(0)
@@ -69,8 +56,5 @@ bool BattleThreadHandle::is_running()
     }
     return false;
 }
-
-typedef char BattleThreadHandle_size_must_be_8[
-    sizeof(BattleThreadHandle) == 8 ? 1 : -1];
 
 } // namespace th105

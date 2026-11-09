@@ -2,6 +2,7 @@ schema_version = 1
 target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
 unit = "exact-first-bgm-service-lifetime"
 [source_pins]
+"src/platform/BattleThreadHandle.hpp" = "c31a4168cb61298d7cbe4c1dcadfbc34662f65a647a58e497ce260c6a78ece47"
 "src/assets/ResourceHandleManager.hpp" = "211e69b06bd3e529243444e4d1628730ed8d434e02d7f907d87a3019217e3f42"
 "src/audio/BgmHandleResult.hpp" = "2f3e4d32d5d0a4a0748c9fa06d2cfc4ca37897abc15d52675348382a7d591ca6"
 "src/audio/BgmServiceLifetime.cpp" = "8980a7e798daf31ef8dc08f976ac5c7400ba31ea71b3777ce8366f1912552f53"
@@ -13,7 +14,7 @@ unit = "exact-first-bgm-service-lifetime"
 "src/engine/CriticalSectionWrapper.hpp" = "4d5b4b8731d7fe40d8827900b877c012d12f12b6bf349153c2c9995673fbb3c5"
 "src/library/UnsignedIntList.cpp" = "02b4b940764c8f15fedb915d1a44ec7a4f5912ff7366b00033c2438e0e20e1c8"
 "src/library/UnsignedIntVector.cpp" = "c199617f8b35c32a7f5d3d2af6fcbc49255deea0e2ce8b5bc80034d27c2c31c3"
-"src/platform/BattleThreadHandleRuntime.cpp" = "0bfc5cdf04656f2cce938039ca691aaa030884ebad669bb334a24941ae79e550"
+"src/platform/BattleThreadHandleRuntime.cpp" = "e1cd665d68ae6203f544d3b14fe2ef969e84dd7ba1eb2ca4e30decbfe4ed8e9c"
 [[anchors]]
 address = "0x00402700"
 size = 165

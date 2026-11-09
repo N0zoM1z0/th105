@@ -57,7 +57,7 @@ class LinkedPeerAllocatorTests(unittest.TestCase):
 
 class ReceiveContextTests(unittest.TestCase):
     def fixture(self):
-        return dict(thread='namespace th105 { class BattleThreadHandle {};\nBattleThreadHandle::BattleThreadHandle() {}\n}',
+        return dict(thread='#include "platform/BattleThreadHandle.hpp"\nnamespace th105 {\nBattleThreadHandle::BattleThreadHandle() {}\n}',
             peer='namespace th105 { extern "C" __declspec(dllimport) int __stdcall sendto(int);\nNetworkPeerMap::iterator NetworkWinsockPeerRemovalView::find_peer() {}\n}',
             main='namespace th105 { void actual() {\n                    remove_peer(it->second->slot_10);\nconnection_worker_13c.start(network_winsock_connection_thread, &handoff);\n} }')
     def test_only_actual_implementation_connections_are_changed(self):
@@ -87,6 +87,7 @@ class InitializeContextTests(unittest.TestCase):
     def test_initializer_and_service_use_actual_implementations(self):
         out=linked.network.extra_contexts(self.extra_fixture())
         self.assertEqual(set(out),{'initialize','service'})
+        self.assertTrue(out['initialize'].startswith('#include "platform/BattleThreadHandle.hpp"\n'))
         self.assertIn('reinterpret_cast<BattleThreadHandle *>(this)->wait_for_exit();',out['initialize'])
         self.assertIn('reinterpret_cast<NetworkWinsockPeerRemovalView *>(owner)->remove_peer(slot);',out['service'])
         self.assertNotIn('BattleThreadHandle::BattleThreadHandle() {}',out['initialize'])
@@ -98,9 +99,6 @@ class InitializeContextTests(unittest.TestCase):
             with self.assertRaises(ValueError):linked.network.extra_contexts(t)
     def test_changed_service_call_rejected(self):
         t=self.extra_fixture();t['service']=t['service'].replace('owner->remove_peer(slot);','other();')
-        with self.assertRaises(ValueError):linked.network.extra_contexts(t)
-    def test_missing_thread_class_rejected(self):
-        t=self.extra_fixture();t['thread']=t['thread'].replace('class BattleThreadHandle {','class Other {')
         with self.assertRaises(ValueError):linked.network.extra_contexts(t)
 
 if __name__=='__main__':unittest.main()
