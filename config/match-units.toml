@@ -14822,7 +14822,7 @@ address = "0x0044F930"
 symbol_base = "?consume_ack@CNetworkServerAckRecordView@th105@@QAEXPBUNetworkAckRecord24@2@@Z"
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
-  "?at@?$deque@FV?$allocator@F@std@@@std@@QBEABFI@Z=0x0042D140",
+  "??A?$deque@FV?$allocator@F@std@@@std@@QBEABFI@Z=0x0042D140",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
 ]
 
@@ -14885,7 +14885,7 @@ symbol_base = "?consume_sequence@CNetworkClientReplayView@th105@@QAEXPBUNetworkR
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
-  "?at@?$deque@FV?$allocator@F@std@@@std@@QBEABFI@Z=0x0042D140",
+  "??A?$deque@FV?$allocator@F@std@@@std@@QBEABFI@Z=0x0042D140",
   "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
 ]
 
@@ -15068,7 +15068,7 @@ symbol_base = "?publish_input_value@CNetworkClientPrimaryStateView@th105@@QAEXXZ
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
-  "?at@?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
+  "??A?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
   "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
   "?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990",
 ]
@@ -29956,7 +29956,7 @@ rel32_targets = [
  "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
  "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
  "?send@DispatchSend@th105@@QAEXIPBXIHPAI@Z=0x00416B60",
- "?at@?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
+ "??A?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
  "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042A4B0",
  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
  "@__security_check_cookie@4=0x00689D25",
@@ -30008,7 +30008,7 @@ notes = "Complete active result-menu policy; source remains nonexact against the
 [[units.exact-first-result-menu-active.functions]]
 address = "0x004472A0"
 symbol_base = "?update_active@CMenuResult@th105@@AAE_NXZ"
-rel32_targets = ["?update@GuideOverlay@th105@@QAEXXZ=0x0043F450", "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "_dispatch_indexed_event=0x0043B1A0", "__invalid_parameter_noinfo=0x0068A143", "?refresh_selected_character@CMenuResult@th105@@AAEXXZ=0x00447080", "?at@ResultReplayDeque20@th105@@QAEPAFI@Z=0x0042D140", "_prepare_result_match=0x0043B8F0", "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50", "?at@ResultPointerDeque20@th105@@QAEPAII@Z=0x0042D1B0", "@release_owned_pointer_buffer@4=0x00420A80", "?assign@ResultReplayString@th105@@QAEXPBF@Z=0x0042AA90", "_prepare_scenario_match=0x0043AE90", "??2@YAPAXI@Z=0x00689DCB", "??0CProfileMenu@th105@@QAE@XZ=0x0044D4F0", "_install_menu_object_thunk=0x0043B0F0", "_is_menu_initial_press=0x0043ABD0"]
+rel32_targets = ["?update@GuideOverlay@th105@@QAEXXZ=0x0043F450", "?update@MenuCursorState@th105@@QAE_NXZ=0x0041FA20", "_dispatch_indexed_event=0x0043B1A0", "__invalid_parameter_noinfo=0x0068A143", "?refresh_selected_character@CMenuResult@th105@@AAEXXZ=0x00447080", "??A?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140", "_prepare_result_match=0x0043B8F0", "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50", "?at@ResultPointerDeque20@th105@@QAEPAII@Z=0x0042D1B0", "@release_owned_pointer_buffer@4=0x00420A80", "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90", "_prepare_scenario_match=0x0043AE90", "??2@YAPAXI@Z=0x00689DCB", "??0CProfileMenu@th105@@QAE@XZ=0x0044D4F0", "_install_menu_object_thunk=0x0043B0F0", "_is_menu_initial_press=0x0043ABD0"]
 
 [units.exact-first-background-set-transition]
 kind = "probe"

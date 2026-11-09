@@ -110,7 +110,7 @@ void CNetworkClientPrimaryStateView::publish_input_value()
     lock->enter();
     if (input_packet_090.values_010.size() != 0) {
         unsigned short value = input_208->resolved_mask;
-        input_packet_090.values_010.at(0) = static_cast<short>(value & 0x3ff);
+        input_packet_090.values_010[0] = static_cast<short>(value & 0x3ff);
     } else {
         unsigned short value = input_208->resolved_mask;
         input_packet_090.values_010.push_back(static_cast<short>(value & 0x3ff));

@@ -1,6 +1,8 @@
 #include "ResultMenu.hpp"
 #include "ProfileMenu.hpp"
 
+#include <deque>
+
 #include "../input/InputManager.hpp"
 
 extern "C" th105::CInputManager *g_active_menu_input;
@@ -16,10 +18,6 @@ extern "C" int g_next_scene_mode;
 namespace th105 {
 
 extern MatchSetup *get_match_setup();
-
-struct ResultReplayString {
-    void assign(const short *source);
-};
 
 bool CMenuResult::update_active()
 {
@@ -41,8 +39,9 @@ bool CMenuResult::update_active()
     }
 
     if (input->buttons[0] == 1) {
-        short *replay = results_0c8[selected_character_0c4].replays().at(
-            result_cursor_108c.selection);
+        short *replay = &reinterpret_cast<std::deque<short> &>(
+            results_0c8[selected_character_0c4].replays())[
+            result_cursor_108c.selection];
         if (*replay < 0)
             return true;
 
@@ -60,11 +59,12 @@ bool CMenuResult::update_active()
         unsigned char *setup =
             reinterpret_cast<unsigned char *>(get_match_setup());
         release_owned_pointer_buffer(setup + 0x30);
-        replay = results_0c8[selected_character_0c4].replays().at(
-            result_cursor_108c.selection);
-        reinterpret_cast<ResultReplayString *>(
+        replay = &reinterpret_cast<std::deque<short> &>(
+            results_0c8[selected_character_0c4].replays())[
+            result_cursor_108c.selection];
+        reinterpret_cast<std::deque<short> *>(
             reinterpret_cast<unsigned char *>(get_match_setup()) + 0x30)
-            ->assign(replay);
+            ->push_back(*replay);
         prepare_scenario_match(0);
         g_scene_mode = 6;
         g_next_scene_mode = 7;

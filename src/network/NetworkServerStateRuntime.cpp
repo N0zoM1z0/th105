@@ -136,7 +136,7 @@ void CNetworkServerAckRecordView::consume_ack(const NetworkAckRecord24 *record)
     if (record->sequence_008 <= sequence_limit_098 &&
         record->peer_tag_00c == peer_tag_06c) {
         if (!record->values_010.empty())
-            value_07e = record->values_010.at(0);
+            value_07e = record->values_010[0];
         else
             value_07e = 0;
         const unsigned int sequence = record->sequence_008;

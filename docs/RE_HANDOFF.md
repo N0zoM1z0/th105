@@ -1064,3 +1064,12 @@ ten exact roots (2,349 bytes), all 72 previous sections per object, and the
 unchanged 950-byte front-card candidate; the real find provider is 105/105.
 See `docs/COMMAND_GATE_PAT_OWNER_2026_11_09.md`. No new exact credit, source-pin
 updates or changes to pending input work.
+
+2026-11-09: Result and network replay reads now call the actual short-deque
+operator[] provider instead of rebinding at(). Result-menu replay append now
+uses deque push_back rather than the string-assignment facade. Five affected
+units preserve eight exact roots and thirteen complete root/EH sections.
+The accessor100, append119 and grow-map344 providers match in full; menu
+update remains 620/native619 with mismatch +81. See
+`docs/RESULT_REPLAY_DEQUE_CONTRACT_2026_11_09.md`. Pending input migration and
+source pins are unchanged.

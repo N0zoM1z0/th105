@@ -47,11 +47,11 @@ void CNetworkClientReplayView::consume_sequence(
                     critical_0dc.enter();
                     --remaining;
                     int value = static_cast<unsigned short>(
-                        record->values_010.at(remaining));
+                        record->values_010[remaining]);
                     queue_1dc.push_back(static_cast<short>(value));
                     --remaining;
                     value = static_cast<unsigned short>(
-                        record->values_010.at(remaining));
+                        record->values_010[remaining]);
                     queue_160.push_back(static_cast<short>(value));
                     critical_0dc.leave();
                 } while (remaining != 0);
