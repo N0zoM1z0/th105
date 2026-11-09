@@ -59,7 +59,7 @@ void DispatchOwner::dispatch(unsigned channel, const NetworkRequestReplay10 *req
         packet.metadata_00c=replay_metadata;
         replay_lock.enter();
         for (unsigned i=request->value_008; i<request->value_008+60 && i<history.size(); ++i) {
-            packet.values_014.push_back(history[i]);
+            packet.values_014.push_front(history[i]);
             ++packet.sequence_008;
         }
         replay_lock.leave();

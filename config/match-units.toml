@@ -29957,7 +29957,7 @@ rel32_targets = [
  "??4?$deque@FV?$allocator@F@std@@@std@@QAEAAV01@ABV01@@Z=0x0042B6B0",
  "?send@DispatchSend@th105@@QAEXIPBXIHPAI@Z=0x00416B60",
  "??A?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
- "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042A4B0",
+ "?push_front@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042A4B0",
  "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
  "@__security_check_cookie@4=0x00689D25",
 ]

@@ -11,3 +11,25 @@ Fresh canonical comparisons replay client secondary dispatcher `0x44EA30` (68 by
 The two independent ACK tail bytes are assigned before the tail word, a valid ordering under the held lock. With the actual shared packet base used at both serialization calls, the complete bounded body compares exactly: 566/566, SHA-256 `1cf3d06ff026c5e6401efa673b64c3ab8eea34f7d0b664aa26ed61423b13952c`. The two original exact callers and the pinned authored-origin proof remain the ownership evidence.
 
 The emitted remote cleanup code at `0x6BA560` independently replays 59/59, including both destructor targets and the handler; the complete associated unwind and function metadata at `0x6DFF6C` replay 52/52. Run `scripts/repo-python scripts/audit-network-replay-dispatch-eh.py` after rebuilding the unit. These are bounded relocation replays, not an integrated-link or runtime exception-execution claim. Evidence: `build/frontier-replay-scalar-order-20261103/`.
+
+## Replay ordering and actual insertion provider, 2026-11-09
+
+The replay branch walks history from the requested index upward, but inserts
+each short at the front of the packet's real deque. At 0x44E60F the dispatcher
+indexes history; 0x44E619 then calls 0x42A4B0 with that short's address and the
+packet deque as receiver. The complete 122-byte helper decrements the starting
+offset, handles wraparound, stores the short, and publishes the new offset.
+It is `push_front`, as the existing generated-origin anchor also records.
+
+The source previously said `push_back` while its relocation forced the call
+to this front-insertion address. Correcting the source and relocation name
+preserves the entire 566-byte dispatcher. The actual emitted `push_front`
+now compares 122/122 and its grow-map provider 344/344, with full relocations.
+The independent remote cleanup audit again passes 59/59 code and 52/52 metadata.
+The former append provider is a different 119-byte function.
+
+Evidence is retained in
+`build/frontier-replay-front-insertion-20261109/{compare,eh,verification}.json`;
+the bounded provider check is
+`.analysis/frontier-replay-front-insertion-20261109/verify.py`.
+No shared layout, input migration, source pins or exact totals changed.

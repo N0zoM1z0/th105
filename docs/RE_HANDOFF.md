@@ -1073,3 +1073,10 @@ The accessor100, append119 and grow-map344 providers match in full; menu
 update remains 620/native619 with mismatch +81. See
 `docs/RESULT_REPLAY_DEQUE_CONTRACT_2026_11_09.md`. Pending input migration and
 source pins are unchanged.
+
+2026-11-09: Replay-request dispatch now prepends history values with the actual
+deque push_front, matching native call 0x44E619 -> 0x42A4B0. The old push_back
+source was incorrectly rebound to that address. Dispatcher566, actual
+push_front122, grow-map344 and remote EH59/metadata52 all replay exactly.
+See the November 9 section of
+`docs/NETWORK_SECONDARY_REPLAY_ORIGIN_2026_11_03.md`. Input work is preserved.
