@@ -40,10 +40,12 @@ both in41BCF0: the initial temporary and the appended heap node.
 
 It allocates `strlen(path)+1` with array new665B8A, publishes the pointer,
 copies through `strcpy_s @68AD95`, writes index/size/offset and clears next.
-The already-exact destructor41B850 nevertheless calls CRT free for that path.
-The old workflow's inference of a CRT allocation from this release was wrong;
-both allocation and release are now represented as observed. Child nodes use
-scalar new689DCB and delete6898EA instead.
+The destructor41B850 releases that path through array delete68AA26. Its
+previous CRT free identification was wrong: the pinned VC8 array-delete
+entry jumps to scalar delete6898EA, which then reaches CRT free68C686.
+Child nodes use scalar new689DCB and delete6898EA. The corrected source
+and complete affected comparisons are recorded in
+[the November 9 correction](PACKAGE_INDEX_ARRAY_DELETE_2026_11_09.md).
 
 Copying clones the filename allocation and copies all other fields, including
 the next pointer. It does not recursively clone a collision chain. The

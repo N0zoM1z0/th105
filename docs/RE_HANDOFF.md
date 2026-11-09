@@ -1158,3 +1158,11 @@ receiver/read sites are verified and both emitted subscript providers match
 94/94. Complete caller sections, switch payloads and relocation roles remain
 unchanged and nonexact. No progress credit or input/pin changes. See
 `CPU_SEQUENCE_OWNER_2026_11_09.md`.
+
+## November 9: package path array ownership
+
+The package node now pairs array new with actual array delete rather than a
+CRT-free relocation alias. All thirteen affected units preserve their 43
+comparison results, including the exact 43-byte destructor; four dependent
+origin proofs pass. Pending input migration and its source pins are preserved.
+See `PACKAGE_INDEX_ARRAY_DELETE_2026_11_09.md`.
