@@ -91,3 +91,14 @@ work to the already-recorded main-body texture-load scheduling difference.
 Receipts and the source/compiler-provenance check are under
 `build/frontier-sequence-record-owner-20261108/` and
 `.analysis/frontier-sequence-record-owner-20261108/check-context.py`.
+
+## November 9: actual deque insertion provider
+
+The 114-byte callee at `0x45DBA0` is now independently identified as the real
+`deque<FighterSequenceSlot>::push_back`, rather than an authored enqueue
+method. Preparation calls that standard member directly. Both compiler
+profiles preserve all four authored bodies and owned EH sections; the full
+44/44/8 cleanup regions remain exact. The main preparation candidate retains
+its prior 257-byte hash and is still nonexact. The incorrectly credited callee
+is moved to compiler-generated ownership. See
+`SEQUENCE_DEQUE_PROVIDER_2026_11_09.md`.

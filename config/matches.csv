@@ -29,7 +29,6 @@ address,name,size,status,match_percent,unit,evidence
 0x0043F5D0,MenuCursorState_move_page_forward,103,matching,100.00,cross-v106a-menu-cursor,python3 scripts/build.py --unit cross-v106a-menu-cursor --compare --json reports exact 103/103 against TH105 1.06a
 0x0045AF40,Fighter_zero_velocity_acceleration,27,matching,100.00,fighter-motion-reset,python3 scripts/build.py --unit fighter-motion-reset --compare --json reports exact 27/27 against TH105 1.06a
 0x0045C090,count_0x88_byte_stride_entries,31,matching,100.00,cross-v106a-hit-quantities,python3 scripts/build.py --unit cross-v106a-hit-quantities --compare --json reports exact 31/31 against TH105 1.06a
-0x0045DBA0,FighterSequenceController_enqueue_record,114,matching,100.00,cross-v106a-sequence-enqueue,python3 scripts/build.py --unit cross-v106a-sequence-enqueue --compare --json reports exact 114/114 against TH105 1.06a
 0x0045E070,update_fighter_facing_from_other_x,93,matching,100.00,cross-v106a-fighter-facing,python3 scripts/build.py --unit cross-v106a-fighter-facing --compare --json reports exact 93/93 against TH105 1.06a
 0x0045E0D0,is_state_13c_below_32,14,matching,100.00,cross-v106a-fighter-common-update-helpers,python3 scripts/build.py --unit cross-v106a-fighter-common-update-helpers --compare --json reports exact 14/14 against TH105 1.06a
 0x0045E0E0,is_state_13c_in_32_95,28,matching,100.00,cross-v106a-fighter-gates,python3 scripts/build.py --unit cross-v106a-fighter-gates --compare --json reports exact 28/28 against TH105 1.06a

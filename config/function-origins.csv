@@ -1808,7 +1808,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0045D7B0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x0045D830,compiler_generated,battle,exclude,observed,vc8-generated-sequence-card-lifetime-106a
 0x0045DA40,compiler_generated,battle,exclude,observed,vc8-generated-fighter-sequence-deque-comdats-106a
-0x0045DBA0,authored_game,battle,authored,observed,canonical-exact-authored
+0x0045DBA0,compiler_generated,battle,exclude,observed,vc8-generated-fighter-sequence-push-106a
 0x0045DC20,compiler_generated,battle,exclude,observed,vc8-generated-deque-short-erase
 0x0045DC90,authored_game,battle,authored,observed,fighter-sequence-prepare-authored-106a
 0x0045DDA0,authored_game,battle,authored,observed,canonical-exact-authored

@@ -7368,3 +7368,16 @@ confidence = "observed"
 evidence = "The real bootstrap input class and VC8 vector::operator[] reproduce all 59 bytes at 43B300; its 55 non-relocation bytes and complete invalid-parameter call mapping uniquely identify the current inventory candidate. The exact selected-input caller passes the actual vector at 6FCA2C. docs/INPUT_VECTOR_SUBSCRIPT_ORIGIN_2026_11_09.md."
 required_direct_edges = [{ caller = "0x0043B640", site = "0x0043B6BE", target = "0x0043B300", caller_status = "matching" }]
 required_dword_values = [{ address = "0x0043B6BA", value = "0x006FCA2C" }]
+
+[[rules]]
+id = "vc8-generated-fighter-sequence-push-106a"
+vc8_generated_anchor_file = "config/vc8-generated-fighter-sequence-push-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 114
+origin = "compiler_generated"
+subsystem = "battle"
+disposition = "exclude"
+confidence = "observed"
+evidence = "The existing FighterSequenceSlot and VC8 deque::push_back reproduce the entire 114-byte provider with its grow-map, allocation, and real CSprite copy calls. All 102 non-relocation bytes and three complete call targets identify one current inventory entry. Native preparation passes the 0x98-byte stack record to Fighter+55C. docs/SEQUENCE_DEQUE_PROVIDER_2026_11_09.md."
+required_direct_edges = [{ caller = "0x0045DC90", site = "0x0045DD6A", target = "0x0045DBA0", caller_status = "implemented" }]
+required_dword_values = [{ address = "0x0045DD66", value = "0x0000055C" }]

@@ -140,7 +140,8 @@ void Fighter::prepare_next_spell_sequence_entry()
         sequence_record.sprite_04.set_texture(
             record->card_texture_handle_44,0,0,
             g_spell_texture_load_state,g_spell_texture_upload_state);
-    sequence_controller_55c.enqueue_record(&sequence_record);
+    reinterpret_cast<std::deque<FighterSequenceSlot> *>(
+        &sequence_controller_55c)->push_back(sequence_record);
     state_55a=static_cast<signed char>(reinterpret_cast<std::deque<FighterSequenceSlot> *>(&sequence_controller_55c)->size());
 }
 

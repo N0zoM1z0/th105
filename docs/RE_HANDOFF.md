@@ -1130,3 +1130,13 @@ instead produces a rejected 237-byte root. Local authored credit increases by
 196 bytes; Factory acceptance is still separate from local equality. Pending
 input work and SHA pins remain untouched. See
 `SPELL_SELECTION_SHUFFLE_SOURCE_2026_11_04.md`.
+
+## November 9: correct sequence push ownership
+
+`0x45DBA0` is the actual 114-byte deque push-back provider, verified with the
+shared FighterSequenceSlot, full inventory uniqueness and all three original
+calls. Replace the hand-written implementation and its preparation caller with
+the real standard member, and remove the mistaken authored credit. Readiness118
+and all prior nonexact main-body hashes are preserved; preparation EH44,
+metadata44 and cleanup8 remain exact. No new Factory acceptance is claimed;
+pending input work is untouched. See `SEQUENCE_DEQUE_PROVIDER_2026_11_09.md`.
