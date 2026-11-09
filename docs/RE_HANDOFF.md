@@ -1055,3 +1055,12 @@ source; all affected origin proofs pass without changing classification totals.
 Three previous mismatches remain. See
 `docs/FILE_LIST_TILE_CONTAINER_2026_11_09.md`. Only the changed FileListFinalize
 source pin is renewed; pending input work is preserved.
+
+
+2026-11-09: Command gates now use the PAT loader's actual map and PatGroup
+instead of the undefined lower_bound/node facade. Fixed stale Fighter field
+names that prevented this source from compiling. Three affected units retain
+ten exact roots (2,349 bytes), all 72 previous sections per object, and the
+unchanged 950-byte front-card candidate; the real find provider is 105/105.
+See `docs/COMMAND_GATE_PAT_OWNER_2026_11_09.md`. No new exact credit, source-pin
+updates or changes to pending input work.

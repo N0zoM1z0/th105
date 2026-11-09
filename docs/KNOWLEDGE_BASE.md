@@ -3024,3 +3024,10 @@ Youmu's actual history deque reader. FileList also now owns deque<CTile>
 directly, eliminating the cross-specialization container cast. All 44 scoped
 exact comparisons remain unchanged; no new authored credit. See
 `FILE_LIST_TILE_CONTAINER_2026_11_09.md`.
+
+- Command gates at `0x493D40` and `0x494450` read the PAT loader's real
+  `map<int, PatGroup *>` at Fighter `+0x160`; the short window is `PatGroup+0x10`.
+  Helper `0x45C320` includes equality rejection and is `find`, not `lower_bound`.
+  Replacing the undefined facade supplies its exact 105-byte provider, while
+  all ten accepted roots retain 2,349 bytes and the front-card residual stays
+  unchanged. See `docs/COMMAND_GATE_PAT_OWNER_2026_11_09.md`.

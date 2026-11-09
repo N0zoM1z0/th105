@@ -705,13 +705,13 @@ source = "src/characters/CommandGates.cpp"
 object = "build/match-units/CrossV106a_CommandGates.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a structural-remap exact signed command-gate lookup with current tree and validation callees."
+notes = "Real PAT map find and checked iterator access; complete lookup78 and generated find105 are canonical exact. docs/COMMAND_GATE_PAT_OWNER_2026_11_09.md."
 
 [[units.cross-v106a-command-gate-lookup.functions]]
 address = "0x00493D40"
 symbol_base = "Fighter_lookup_command_gate_value"
 rel32_targets = [
-  "lower_bound=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 
@@ -28527,7 +28527,7 @@ symbol_base = "?get_floating@?$TNumberValue@PAM@th105@@UAEMXZ"
 address = "0x00494450"
 symbol_base = "?try_dispatch_front_word_actions_690_696@Fighter@th105@@QAEEH@Z"
 rel32_targets = [
- "?lower_bound@CommandGateTree@th105@@QAEPAUCommandGateIterator@2@PAU32@PBH@Z=0x0045C320",
+ "?find@?$_Tree@V?$_Tmap_traits@HPAUPatGroup@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUPatGroup@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
  "__invalid_parameter_noinfo=0x0068A143",
  "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0",
  "?initialize_fighter_phase_631e0@th105@@YIHPAUFighter@1@@Z=0x00464200",
