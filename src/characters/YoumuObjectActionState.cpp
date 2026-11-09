@@ -1,6 +1,7 @@
 // JP1.06a 53CEA0: complete compiling hypothesis; not selected or exact.
 // See docs/YOUMU_OBJECT_UPDATE_2026_10_25.md for reviewed facts and open questions.
 #include "characters/YoumuObjectActionState.hpp"
+#include "characters/CharacterObjectRuntime.hpp"
 #include <math.h>
 namespace th105 {
 #define AT(p,t,o) (*reinterpret_cast<t *>(reinterpret_cast<unsigned char *>(p)+(o)))
@@ -13,10 +14,11 @@ namespace th105 {
 #define P AT(this,YoumuObjectUpdateView *,0x348)
 #define A AT(this,YoumuObjectUpdateView *,0x170)
 #define D(v) static_cast<double>(v)
-#define MOTION reinterpret_cast<YoumuUpdateMotionView *>(reinterpret_cast<unsigned char *>(this)+4)
-#define MOVE() MOTION->set_components(H[0],H[1])
+#define CORE reinterpret_cast<CharacterObjectRuntime *>(this)
+#define MOTION reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this)+4)
+#define MOVE() MOTION->set_oriented_components_f0_f4(H[0],H[1])
 #define STEP() { F(0xEC)+=C(0x104)*F(0xF4); F(0xF0)+=F(0xF8); }
-#define FRAME_EXIT() { if(advance_frame()) --I(0x330); return; }
+#define FRAME_EXIT() { if(CORE->advance_frame_and_dispatch()) --I(0x330); return; }
 #define RETIRE() { --I(0x330); return; }
 #define SPAWN(a,l,c) spawn_unparented(a,F(0xEC),F(0xF0),B(0x104),l,reinterpret_cast<const unsigned *>(payload),c)
 #define SPAWN_AT(a,x,y,l,c) spawn_unparented(a,x,y,B(0x104),l,reinterpret_cast<const unsigned *>(payload),c)
@@ -142,7 +144,7 @@ void YoumuObjectUpdateView::update_action_state()
   }
   F(0xF4)*=D(0.95f); if(F(0xF4)<D(0.1f)) F(0xF4)=0.1f;
   F(0xEC)+=C(0x104)*F(0xF4);
-  if(advance_frame()) --I(0x330);
+  if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) --I(0x330);
   return;
  case 811:
@@ -155,7 +157,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(AT(P,short,0x13C)!=520 && AT(P,short,0x13C)!=521) RETIRE();
    F(0xEC)=C(0x104)*AT(P,float,0xF4)+AT(P,float,0xEC); F(0xF0)=AT(P,float,0xF8)+AT(P,float,0xF0);
   }
-  if(advance_frame()) --I(0x330);
+  if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) --I(0x330);
   return;
  case 812:
@@ -172,7 +174,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(AT(P,short,0x13C)!=540) RETIRE();
    if(AT(P,short,0x13E)==2 || AT(P,short,0x13E)==7) { F(0xEC)=C(0x104)*AT(P,float,0xF4)+AT(P,float,0xEC); F(0xF0)=AT(P,float,0xF8)+AT(P,float,0xF0); }
   }
-  if(advance_frame()) --I(0x330);
+  if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==2) --I(0x330);
   return;
@@ -211,7 +213,7 @@ void YoumuObjectUpdateView::update_action_state()
   }
   if(S(0x13E)==5) { F(0xF4)-=D(0.2f); if(F(0xF4)<0.0f) F(0xF4)=0; }
   if(F(0xEC)>1500.0f || F(0xEC)<-300.0f) RETIRE();
-  STEP(); if(advance_frame()) --I(0x330);
+  STEP(); if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==3) --I(0x330);
   return;
  case 817:
@@ -253,19 +255,19 @@ void YoumuObjectUpdateView::update_action_state()
     if(B(0x113)<15) RETIRE(); B(0x111)-=15; B(0x112)-=15; B(0x113)-=15;
    }
   }
-  STEP(); if(advance_frame()) --I(0x330);
+  STEP(); if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) --I(0x330);
   return;
  case 821:
   if(I(0x180)==5 || (AT(P,short,0x13C)!=565 && AT(P,short,0x13C)!=566)) RETIRE();
-  position_relative(150,115); if(advance_frame()) --I(0x330);
+  position_relative(150,115); if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(S(0x142)==0 && S(0x140)==3) F(0x11C)=6;
   return;
  case 823:
   if(I(0x180)==5) RETIRE();
   switch(S(0x13E)) {
   case 0:
-   if(emit_repeated(0,1,5)) RETIRE(); advance_six(4);
+   if(emit_repeated(0,1,5)) RETIRE(); CORE->advance_state_six_counter_conditional(4);
    if(OUTSIDE(1480.0f,-200.0,1300.0f,-200.0)) RETIRE();
    if(I(0x144)%3==0) {
     payload[0]=random_float(360); payload[1]=random_float(60)*D(0.1f)+5.0; payload[2]=3; SPAWN(823,1,3);
@@ -293,13 +295,13 @@ void YoumuObjectUpdateView::update_action_state()
   FRAME_EXIT();
  case 850:
   if(I(0x180)==5) RETIRE();
-  if(advance_frame()) --I(0x330);
+  if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) --I(0x330);
   return;
  case 851:
   if(I(0x180)==5 || AT(P,short,0x13C)!=601) RETIRE();
   F(0xEC)=C(0x104)*AT(P,float,0xF4)+AT(P,float,0xEC); F(0xF0)=AT(P,float,0xF8)+AT(P,float,0xF0);
-  if(AT(P,short,0x186)==0) { if(advance_frame()) --I(0x330); }
+  if(AT(P,short,0x186)==0) { if(CORE->advance_frame_and_dispatch()) --I(0x330); }
   return;
  case 852:
   switch(S(0x13E)) {
@@ -315,22 +317,22 @@ void YoumuObjectUpdateView::update_action_state()
  case 853:
   if(I(0x180)==5) RETIRE();
   if(S(0x13E)==1) {
-   MOTION->set_components(H[0],100); F(0x11C)+=D(0.2f); F(0x120)-=D(0.1f);
+   MOTION->set_oriented_components_f0_f4(H[0],100); F(0x11C)+=D(0.2f); F(0x120)-=D(0.1f);
    if(F(0x120)<=0.0f) RETIRE(); STEP();
   }
   if(S(0x13E)==3) {
    F(0x11C)+=D(0.1f); F(0x120)*=D(0.98f);
    if(I(0x144)>=5) { if(B(0x113)<10) RETIRE(); B(0x113)-=10; }
   }
-  if(advance_frame()) --I(0x330);
+  if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==2) --I(0x330);
-  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==2) --I(0x330);
+  if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==3) --I(0x330);
   return;
  case 854:
   if(I(0x180)==5 || AT(P,short,0x13C)!=604) RETIRE();
   F(0xEC)=C(0x104)*AT(P,float,0xF4)+AT(P,float,0xEC); F(0xF0)=AT(P,float,0xF8)+AT(P,float,0xF0);
-  if(AT(P,short,0x186)==0) { if(advance_frame()) --I(0x330); }
+  if(AT(P,short,0x186)==0) { if(CORE->advance_frame_and_dispatch()) --I(0x330); }
   return;
  case 855:
   switch(S(0x13E)) {
@@ -343,7 +345,7 @@ void YoumuObjectUpdateView::update_action_state()
    F(0x120)=F(0x11C)=static_cast<float>(F(0x374)+F(0x11C)); F(0x374)*=D(0.9f);
    if(B(0x113)<=5) RETIRE(); B(0x113)-=5; break;
   case 2:
-   MOTION->set_components(H[0],6); F(0x11C)+=D(0.05f); F(0x120)*=D(0.99f);
+   MOTION->set_oriented_components_f0_f4(H[0],6); F(0x11C)+=D(0.05f); F(0x120)*=D(0.99f);
    if(I(0x144)>=10) { if(B(0x113)<=5) RETIRE(); B(0x113)-=5; }
    STEP(); break;
   }
@@ -361,7 +363,7 @@ void YoumuObjectUpdateView::update_action_state()
    F(0x120)+=F(0x370); F(0x370)*=D(0.95f); F(0x11C)*=D(0.9f);
    if(I(0x144)>=5) { if(B(0x113)<15) RETIRE(); B(0x113)-=15; } break;
   case 4:
-   advance_six(0); F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+D(0.2f));
+   CORE->advance_state_six_counter_conditional(0); F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+D(0.2f));
    if(B(0x113)<10) RETIRE(); B(0x113)-=10; break;
   case 5:
    if(AT(P,short,0x174)<=0) RETIRE();
@@ -372,7 +374,7 @@ void YoumuObjectUpdateView::update_action_state()
    }
    break;
   }
-  if(advance_frame()) --I(0x330);
+  if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(S(0x13E)==0 && S(0x142)==0 && S(0x140)==1) {
    for(int n=0;n<6;++n) { payload[0]=random_float(360); payload[1]=static_cast<float>(random_float(50)*D(0.1f))+5.0; payload[2]=1; SPAWN(856,1,3); }
   }
@@ -381,7 +383,7 @@ void YoumuObjectUpdateView::update_action_state()
   switch(S(0x13E)) {
   case 0: case 1: case 2:
    if(S(0x364)%20==0 && S(0x13E)<2) { payload[0]=0; payload[1]=0; payload[2]=3; SPAWN_AT(857,static_cast<float>(C(0x104)*110+F(0xEC)),F(0xF0),1,3); }
-   ++S(0x364); advance_six(0); advance_phase(0);
+   ++S(0x364); CORE->advance_state_six_counter_conditional(0); CORE->advance_phase_counter_conditional(0);
    if(I(0x180)!=0 && ++S(0x366)>=5) { S(0x366)=0; B(0x184)=1; I(0x180)=0; }
    if(S(0x13E)<2) {
     payload[0]=random_float(40)-100.0; payload[1]=random_float(25)+5.0; payload[2]=4;
@@ -400,7 +402,7 @@ void YoumuObjectUpdateView::update_action_state()
    F(0xF8)-=D(0.4f); F(0xF4)*=D(0.99f); F(0x12C)+=F(0x370); F(0x370)*=D(0.98f);
    if(I(0x144)>=60) { if(B(0x113)<10) RETIRE(); B(0x113)-=10; } STEP(); break;
   }
-  if(advance_frame()) --I(0x330);
+  if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==3) --I(0x330);
   return;
  case 899:
@@ -462,7 +464,7 @@ void YoumuObjectUpdateView::update_action_state()
    if((AT(P,short,0x13C)>=50 && AT(P,short,0x13C)<150) || I(0x144)>=90) { AT(P,unsigned char,0x7E5)=0; select_sequence(0); S(0x364)=0; return; }
    break;
   case 3:
-   AT(P,short,0x7E6)=0; advance_six(0);
+   AT(P,short,0x7E6)=0; CORE->advance_state_six_counter_conditional(0);
    if(S(0x174)<0) { B(0x184)=0; H[1]=0; F(0xF4)=0; F(0xF8)=0; select_sequence(0); B(0x33C)=255; AT(P,unsigned char,0x7E5)=0; return; }
    if(I(0x144)>=14 || F(0xEC)>1380.0f || F(0xEC)<-100.0) {
     H[1]-=4.0;
@@ -496,7 +498,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(AT(P,short,0x7EA)<=0) { AT(P,unsigned char,0x7E5)=0; S(0x344)=0; I(0x114)=0; B(0x113)=255; select_sequence(0); S(0x364)=0; return; }
    I(0x114)=1; apply_owner_record(10); return;
   case 8:
-   AT(P,short,0x7E6)=0; advance_six(0);
+   AT(P,short,0x7E6)=0; CORE->advance_state_six_counter_conditional(0);
    if(I(0x180)==1) AT(P,short,0x7E8)=180;
    if(I(0x144)>=14 || F(0xEC)>1380.0f || F(0xEC)<-100.0 || S(0x174)<=(-1-AT(P,signed char,0x607))*500) {
     B(0x184)=0; H[1]=0; F(0xF4)=0; F(0xF8)=0; select_sequence(0); B(0x33C)=255; AT(P,unsigned char,0x7E5)=0; return;
@@ -584,7 +586,7 @@ void YoumuObjectUpdateView::update_action_state()
   case 0: if(AT(P,short,0x13C)!=302) RETIRE(); position_relative(0,0); break;
   case 1: if(AT(P,short,0x13C)!=304) RETIRE(); position_relative(0,0); break;
   }
-  if(AT(P,short,0x186)==0 && advance_frame()) RETIRE();
+  if(AT(P,short,0x186)==0 && CORE->advance_frame_and_dispatch()) RETIRE();
   if(S(0x142)==0 && S(0x140)==0) --I(0x330);
   return;
  case 900:
@@ -598,7 +600,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(S(0x364)==1) {
     if(AT(P,short,0x174)<=0 || I(0x144)>=90) { S(0x364)=2; return; }
     publish_bounds_descriptor(0,10,static_cast<int>(F(0x11C)*330.0),-10,static_cast<short>(static_cast<int>(H[0])),0,0);
-    advance_six(0); advance_phase(0);
+    CORE->advance_state_six_counter_conditional(0); CORE->advance_phase_counter_conditional(0);
     if(I(0x180)!=0 && ++S(0x366)>=10) { S(0x366)=0; B(0x184)=1; I(0x180)=0; }
     if(S(0x368)==0 && AT(P,short,0x13C)==710 && AT(P,short,0x730)==1) {
      S(0x368)=1;
@@ -627,7 +629,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(S(0x364)==1) {
     if(AT(P,short,0x174)<=0 || I(0x144)>=90) { S(0x364)=2; return; }
     publish_bounds_descriptor(0,10,static_cast<int>(F(0x11C)*330.0),-10,static_cast<short>(static_cast<int>(H[0])),0,0);
-    advance_six(0); advance_phase(0);
+    CORE->advance_state_six_counter_conditional(0); CORE->advance_phase_counter_conditional(0);
     if(I(0x180)!=0) { S(0x364)=2; B(0x184)=0; }
    }
    if(S(0x364)==2) { B(0x184)=0; F(0x120)*=D(0.99f); if(B(0x113)<5) RETIRE(); B(0x113)-=5; }
@@ -669,7 +671,7 @@ void YoumuObjectUpdateView::update_action_state()
    MOVE(); STEP(); F(0x11C)+=D(0.1f); F(0x120)*=D(0.98f);
    if(I(0x144)>=10) { if(B(0x113)<20) RETIRE(); B(0x113)-=20; } break;
   case 3: case 4:
-   F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+H[1]); H[1]*=D(0.95f); advance_six(0);
+   F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+H[1]); H[1]*=D(0.95f); CORE->advance_state_six_counter_conditional(0);
    if(B(0x113)<10) RETIRE(); B(0x113)-=10; break;
   case 5: RADIAL_901(3,0); break;
   case 6:
@@ -709,7 +711,7 @@ void YoumuObjectUpdateView::update_action_state()
    F(0x11C)+=H[1]; H[1]*=D(0.95f); F(0x120)*=D(0.99f);
    if(I(0x144)>=10) { if(B(0x113)<10) RETIRE(); B(0x113)-=10; } break;
   case 4:
-   advance_six(0); F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+D(0.2f));
+   CORE->advance_state_six_counter_conditional(0); F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)+D(0.2f));
    if(B(0x113)<10) RETIRE(); B(0x113)-=10; break;
   case 5:
    if(AT(P,short,0x174)<=0) RETIRE();
@@ -731,7 +733,7 @@ void YoumuObjectUpdateView::update_action_state()
    if(S(0x364)%20==0 && (S(0x13E)==6 || S(0x13E)==7)) {
     payload[0]=0; payload[1]=0; payload[2]=9; SPAWN_AT(902,static_cast<float>(C(0x104)*110+F(0xEC)),F(0xF0),1,3);
    }
-   ++S(0x364); advance_six(0); advance_phase(0);
+   ++S(0x364); CORE->advance_state_six_counter_conditional(0); CORE->advance_phase_counter_conditional(0);
    if(I(0x180)!=0 && ++S(0x366)>=15) { S(0x366)=0; B(0x184)=1; I(0x180)=0; }
    if(S(0x13E)==7) {
     if(I(0x144)%5==0) {
@@ -752,7 +754,7 @@ void YoumuObjectUpdateView::update_action_state()
    F(0x12C)+=F(0x370); F(0x370)*=D(0.98f);
    if(I(0x144)>=300 || C(0x184)<=0 || AT(P,short,0x174)<=0) { B(0x184)=0; if(B(0x113)<5) RETIRE(); B(0x113)-=5; } STEP(); break;
   }
-  if(advance_frame()) --I(0x330);
+  if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==9) RETIRE();
   if(S(0x13E)==0 && S(0x142)==0 && S(0x140)==1) {
    for(int n=0;n<3;++n) { payload[0]=-random_float(90)-45.0; payload[1]=static_cast<float>(random_float(70)*D(0.1f))+10.0; payload[2]=1; SPAWN(902,1,3); }
@@ -839,13 +841,13 @@ void YoumuObjectUpdateView::update_action_state()
   case 6: case 7:
    if(S(0x13E)>=7) F(0xF8)-=F(0x100); break;
   }
-  STEP(); if(advance_frame()) --I(0x330);
+  STEP(); if(CORE->advance_frame_and_dispatch()) --I(0x330);
   if(I(0x144)==0) {
    if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) { F(0xF4)=17.5f; F(0xF8)=15; F(0x100)=0.2f; }
    if(S(0x142)==0 && S(0x140)==0 && S(0x13E)==7) { F(0xF4)=10; F(0xF8)=14; F(0x100)=0.05f; }
   }
   return;
- default: advance_frame(); return;
+ default: CORE->advance_frame_and_dispatch(); return;
  }
 next_block_857_902:
  B(0x184)=0; next_sequence_block(); return;
@@ -861,6 +863,7 @@ next_block_857_902:
 #undef P
 #undef A
 #undef D
+#undef CORE
 #undef MOTION
 #undef MOVE
 #undef STEP

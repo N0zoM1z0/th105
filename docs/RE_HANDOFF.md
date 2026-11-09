@@ -787,3 +787,11 @@ and both pending peer bodies; all 323 existing non-debug sections are unchanged
 after the call-symbol substitution. Both affected linked allocator proofs pass.
 See `docs/NETWORK_PEER_REMOVAL_BINDING_2026_11_09.md`. No new exact credit;
 the input migration remains separate.
+
+
+2026-11-09: YoumuObject action 853 now preserves the shared tail's incoming
+EBX=3: its last retirement guard checks sequence 3 instead of repeating 2.
+Eight focused native executions pass; the old body fails both reset-counter
+cases. Four common operations now call their existing exact implementations,
+with all 48 native receiver offsets verified. Whole root 27024/native26576
+remains nonexact. See `docs/YOUMU_OBJECT_UPDATE_2026_10_25.md`.

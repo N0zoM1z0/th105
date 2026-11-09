@@ -11,9 +11,6 @@ public:
  virtual unsigned char next_sequence_frame(); virtual void slot24();
  virtual void update_action_state();
  unsigned char emit_repeated(int mode,int count200,int count201);
- unsigned char advance_frame();
- unsigned char advance_phase(int limit);
- unsigned char advance_six(int limit);
  void turn_heading(float bias,float max_step,float y_offset);
  void *position_relative(int x,int y);
  void dispatch_character_wave_handle(unsigned index);
@@ -24,7 +21,6 @@ public:
  void emit_fighter_effect(int code,float x,float y,int direction,int trailing);
  unsigned char apply_owner_record(unsigned index);
 };
-class YoumuUpdateMotionView { public: void set_components(float angle,float magnitude); };
 int __cdecl selector_random_roll(int limit);
 float __cdecl atan2_degrees(float y,float x);
 float __cdecl square_float_value(float value);

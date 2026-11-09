@@ -428,3 +428,47 @@ A fresh complete comparison remains nonexact: the candidate section tail is 27,0
 After `advance_frame`, native action 853 checks the frame counters and phase 1 at `0x53EB56..0x53EB80`. Its next check at `0x53EB86..0x53EBB7` compares phase against 2 and jumps to `0x53DAD9`: on equality it decrements `+0x330` at `0x53DADB`, then falls through to the shared check at `0x53DAE1..0x53DB17`, which checks phase 2 again and decrements it again. If the frame-counter conditions fail, the shared check rechecks those conditions and does not decrement. The previous source's final check instead used phase 3. It now reproduces the native phase-2 double decrement, without adding a phase-3 decrement. The separate decrement for a true `advance_frame` result remains unchanged.
 
 A fresh full-root candidate is 27,020 bytes in its section tail, first mismatch +34 against the 25,944-byte callable. This behavior correction does not prove whole-function equivalence; the hypothesis remains unselected and earns no exact credit. Focused receipts: `build/youmu-853-double-phase2.json` and `.dis`.
+
+
+## Action 853 shared-tail correction, 2026-11-09
+
+The final retirement guard in action 853 checks sequence **3**, not 2. The
+previous hypothesis duplicated the sequence-2 guard, decrementing state +0x330
+twice for sequence 2 and omitting its sequence-3 decrement when the animation
+counters return to zero.
+
+Native `0x53EAED` sets EBX to 3 before the frame helper. The explicit sequence-2
+comparison at `0x53EBAF` enters the shared tail at `0x53DAD9`; its following
+sequence comparison at `0x53DB0A` uses BX. The other action that owns this tail
+arrives with different register values. A shared destination does not imply
+identical constants for every incoming action. The corrected ordinary C++
+changes only that final guard from 2 to 3.
+
+Eight bounded whole-entry executions compare sequences 2/3 with zero/nonzero
+post-increment timer and frame counters. They execute the real native frame
+helper without mocked calls, check all 0x388 owner bytes, stack balance and
+callee-saved registers. All fixed cases agree. The retained pre-fix object
+fails the two reset-counter cases: starting at five, it leaves three for
+sequence 2 and five for sequence 3, whereas native leaves four in both.
+The fixtures exercise these integer states, not a full animation-resource or
+whole-game execution claim.
+
+The same change connects four existing common operations to their actual
+`CharacterObjectRuntime` implementations, removing the local motion class and
+three undefined frame/counter aliases. Complete native CFG propagation through
+6,233 reachable instructions establishes all 48 relevant receivers: 18 motion
+calls use owner +4; 16 frame calls, ten state-six calls and four phase calls use
+the unchanged owner. The provider bodies remain exact at 57, 62, 66 and 73 bytes.
+
+The provider-only intermediate preserves the complete 27,020-byte payload.
+After the semantic correction, the source payload is 27,024 bytes, SHA256
+`f8f4ccca336eb93a9cfde74bcbacf721dad064f45a77e24e55aed23283296002`.
+The full target payload is still 26,576 bytes; the first mismatch remains +34.
+All payload relocations are replayed, including the extra candidate tail.
+The other 241 non-debug sections across four checked objects are unchanged.
+The root remains an unselected, nonexact hypothesis, and no exact credit is
+added. This semantic correction is retained despite increasing the byte gap.
+
+Receipts and private recipes are in the matching
+`build/frontier-youmu-runtime-providers-20261109/` and `.analysis/` scope.
+No shared provider source, input-migration file or origin pin changes.
