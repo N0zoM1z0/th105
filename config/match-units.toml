@@ -18637,6 +18637,7 @@ rel32_targets = [
   "?shutdown@ApplicationEntryView@th105@@QAEXXZ=0x00407F80",
   "__security_check_cookie=0x00689D25",
 ]
+dir32_targets = ["??_7CFade@th105@@6B@=??_7StartupFadeView@th105@@6B@"]
 
 [units.cross-v106a-application-message-loop]
 kind = "probe"

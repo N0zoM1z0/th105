@@ -12,7 +12,7 @@ Fresh raw PE readback attests the canonical executable SHA256
 CSceneManager's primary vtable6C74AC/COL6DBD58 resolves its current RTTI name;
 slot8 cell6C74B4 points to41E140 and slotC cell6C74B8 points to41E150. CFade's
 vtable6C74C4/COL6DBDA4 likewise resolves its RTTI name and points to41E240.
-Existing exact WinMain owner evidence independently fixes the four-byte manager
+Raw WinMain owner evidence independently fixes the four-byte manager
 and twelve-byte fade allocation and their initialization calls.
 
 41E140 directly tail-calls43B4A0, ignoring its unused receiver. Its internal
@@ -33,3 +33,34 @@ Receipts are in build/frontier-41e140-20261028/{manager-build.json,fade-build.js
 boundary.json}. The thirteen affected functions were compiled and compared;
 unchanged accepted receipts remain incremental. Only the three new complete
 roots add21 exact authored bytes. No cold corpus replay was needed.
+
+
+## Shared constructed fade, November 9, 2026
+
+WinMain now allocates the same `CFade` whose methods are implemented in
+`RenderSceneConsumers.cpp`, rather than an unrelated entry-only class with
+five undefined methods. The new `ui/Fade.hpp` also restores its IFade base and
+the real empty shutdown method.
+
+Native vtable `0x6C74C4`, COL `0x6DBDA4` and hierarchy `0x6DBDB8` identify
+CFade with the offset-zero IFade descriptor `0x6DBD3C`. The old emitted entry
+view had a one-type hierarchy. The shared class now has the corresponding
+two-type inheritance geometry, size 12, color at +4 and timer at +8. Its
+implicit construction leaves those scalars uninitialized, as the target does.
+
+The complete five-method table now resolves to real source providers, each
+strictly equal to the native body: initialize 11 bytes, shutdown 1, update 30,
+midpoint 30 and render 142. Shutdown shares physical `0x41F890` with other
+already recorded empty methods; it adds no independent authored credit.
+
+Only two units consume the changed files. All nine renderer roots remain
+exact. WinMain's full 695-byte candidate is byte-identical to the prior
+candidate after canonical relocation and still differs from the target at +2;
+the frame-home residual is not addressed. Source RTTI spelling and a full
+application link are not part of these table/body comparisons.
+
+Evidence is retained in `build/frontier-fade-interface-20261109/`, with the
+native RTTI, before/after objects, comparisons and `proof.json`. The private
+verification script checks fresh provenance, source hierarchy geometry, the
+entire table and all five providers. No source pins or input migration files
+changed. The scene-manager entry view remains separate work.

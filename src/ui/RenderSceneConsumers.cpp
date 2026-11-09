@@ -1,3 +1,4 @@
+#include "Fade.hpp"
 #include "engine/RenderModeManager.hpp"
 #include "battle/BattleController.hpp"
 #include "battle/EffectSprite.hpp"
@@ -46,17 +47,6 @@ bool SharedSceneRenderDelegate::render()
     }
     return false;
 }
-
-struct CFade {
-    virtual bool initialize();
-    virtual void fade_slot_1();
-    virtual bool update_fade();
-    virtual bool advance_to_midpoint();
-    virtual bool render();
-
-    unsigned color_04;
-    int timer_08;
-};
 
 typedef char CFade_color_offset[offsetof(CFade, color_04) == 0x04 ? 1 : -1];
 typedef char CFade_timer_offset[offsetof(CFade, timer_08) == 0x08 ? 1 : -1];

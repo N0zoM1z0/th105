@@ -881,3 +881,11 @@ virtual slots. All seventeen affected roots and complete dispatcher/EH checks
 remain exact. See `docs/ACK_PACKET_BASE_2026_10_29.md`. The bounded packet
 census adds no new physical exact methods; SCENE remains coupled to the
 pending input/source-pin closure and is untouched.
+
+
+2026-11-09: WinMain now constructs the actual shared CFade instead of a class
+with undefined callbacks. Its RTTI-proved IFade base and empty shutdown slot
+are restored; all five full providers and the complete table match. Nine
+renderer roots remain exact, while the 695-byte WinMain candidate is unchanged
+and nonexact. See `docs/SCENE_MANAGER_VIRTUAL_LEAVES_2026_10_28.md`.
+No new exact credit, source-pin changes or input migration edits.
