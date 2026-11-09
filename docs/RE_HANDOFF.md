@@ -1166,3 +1166,11 @@ CRT-free relocation alias. All thirteen affected units preserve their 43
 comparison results, including the exact 43-byte destructor; four dependent
 origin proofs pass. Pending input migration and its source pins are preserved.
 See `PACKAGE_INDEX_ARRAY_DELETE_2026_11_09.md`.
+
+## November 9: CharacterObject copied-word array ownership
+
+The real fourteen spawn paths allocate +0x340 with array new; the shared
+destructor now uses array delete rather than a misleading free binding.
+Constructor78, destructor145 and scalar-wrapper30 remain exact; all 42
+non-debug sections and the selected wrapper-origin proof are preserved.
+See `CHARACTER_OBJECT_ARRAY_DELETE_2026_11_09.md`. Input work is untouched.

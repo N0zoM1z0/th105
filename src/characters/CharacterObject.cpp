@@ -1,7 +1,7 @@
 #include "CharacterObject.hpp"
 #include "battle/SecondaryAnimationRender.hpp"
 
-#include <stdlib.h>
+#include <new>
 
 
 CharacterObject::CharacterObject()
@@ -17,7 +17,7 @@ CharacterObject::CharacterObject()
 CharacterObject::~CharacterObject()
 {
     if (copied_words_340 != 0) {
-        free(copied_words_340);
+        delete[] copied_words_340;
         copied_words_340 = 0;
     }
     if (field_338 != 0) {

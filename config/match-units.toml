@@ -767,7 +767,7 @@ rel32_targets = ["??0AttackObject@@QAE@XZ=0x0045FA30"]
 address = "0x00492ED0"
 symbol_base = "??1CharacterObject@@UAE@XZ"
 rel32_targets = [
-  "_free=0x0068AA26",
+  "??_V@YAXPAX@Z=0x0068AA26",
   "??1SecondaryAnimationRenderRuntimeView@th105@@QAE@XZ=0x00430080",
   "??3@YAXPAX@Z=0x006898EA",
   "??1AttackObject@@UAE@XZ=0x0045F8E0",
