@@ -940,3 +940,12 @@ frame propagation from 35 distinct +3C finalizers; the dispatcher genuinely
 consumes the next-frame/block byte statuses. Full indirect consumer typing is
 still unresolved, so no family-wide int/void change was made. See
 `docs/ANIMATION_RETURN_CONTRACT_2026_11_09.md`. Pending input work is unchanged.
+
+
+2026-11-09: Recovered the audio scheduler's initialization and real global
+lifecycle as an unselected source candidate. Natural global LTCG yields the
+249-byte constructor shape at 418F00, but callback code-pointer and no-EH
+destructor proof remain unsupported; no validator relaxation or exact claim.
+Both accepted consumers remain exact, all other affected code is unchanged.
+See `docs/AUDIO_SCHEDULER_INITIALIZATION_2026_11_09.md`. Input migration remains
+untouched; no source pins or ledgers changed.

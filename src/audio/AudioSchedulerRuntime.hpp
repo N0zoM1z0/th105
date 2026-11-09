@@ -9,6 +9,9 @@
 namespace th105 {
 
 struct AudioSchedulerState {
+    AudioSchedulerState();
+    ~AudioSchedulerState();
+
     CriticalSectionWrapper critical_section_00;
     BattleThreadHandle thread_1c;
     int tick_interval_24;
