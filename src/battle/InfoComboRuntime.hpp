@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ui/DesignBaseLifetime.hpp"
+#include "ui/DesignObjects.hpp"
 #include <deque>
 #include <stddef.h>
 
@@ -14,32 +16,17 @@ struct InfoComboEntry {
     unsigned char reserved_09[3];
 };
 
-struct InfoComboUiObject {
-    void *vtable_00;
-    float x_04;
-    float y_08;
-    unsigned char reserved_0c[8];
-    unsigned char enabled_14;
-};
-
 class InfoComboResourceRuntimeView {
 public:
-    virtual void slot_00();
-    virtual void set_color_04(unsigned int color);
-    virtual void slot_08();
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void slot_14();
-    virtual void slot_18();
-    virtual void move_1c(float x, float y);
-
-    unsigned char reserved_04[0x40];
-    InfoComboUiObject *items_44[6];
+    CDesignBase design_00;
+    unsigned char reserved_34[0x10];
+    CDesignObjectBase *items_44[6];
     int value_5c;
     int value_60;
     float value_64;
     int value_68;
 
+    void load_combo_46a8c0();
     void render_combo_46a660(
         float x,
         float y,
@@ -67,6 +54,9 @@ typedef char InfoComboEntry_size_must_be_0x0c[
     sizeof(InfoComboEntry) == 0x0c ? 1 : -1];
 typedef char InfoComboResourceRuntimeView_size_must_be_0x6c[
     sizeof(InfoComboResourceRuntimeView) == 0x6c ? 1 : -1];
+typedef char InfoComboDesignOffset[offsetof(InfoComboResourceRuntimeView, design_00) == 0 ? 1 : -1];
+typedef char InfoComboItemsOffset[offsetof(InfoComboResourceRuntimeView, items_44) == 0x44 ? 1 : -1];
+typedef char InfoComboValuesOffset[offsetof(InfoComboResourceRuntimeView, value_5c) == 0x5c ? 1 : -1];
 typedef char InfoShortRecord34Runtime_size_must_be_0x34[
     sizeof(InfoShortRecord34Runtime) == 0x34 ? 1 : -1];
 typedef char InfoShortRecord34Runtime_entries_offset_must_be_0x20[

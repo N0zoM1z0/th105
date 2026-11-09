@@ -3001,3 +3001,11 @@ Stream destructor220 remains exact. See
 - Collision-object live frame `+0x158` and prepared frame `+0x1A4` now share the PAT frame type as well. They remain separate pointers: preparation updates the latter from the former, and collision code can read either according to its phase. This does not claim that their values are always equal.
 
 - The two hit scalar paths intentionally read different frame pointers: `calculate_forwarded_quantity` consumes the live frame at `+0x158`, while `calculate_base_hit_quantity` uses the prepared collision snapshot at `+0x1A4`. Both hold `PatRecord88`, but their values need not be equal between preparation steps. The candidate view now exposes the live pointer directly instead of using raw byte-offset casts.
+
+
+The combo loader and renderer now share the observed 0x6C resource view with
+actual CDesignBase and CDesignNumber types. Item base offsets +4/+8 are distinct
+from design-file coordinates +0C/+10. The loader uses the actual 118-byte
+bind_object_alt provider instead of rebinding find_object; three runtime roots
+remain exact and the full 427-byte loader candidate is unchanged. See
+`INFO_COMBO_SHARED_OWNER_2026_11_09.md`.

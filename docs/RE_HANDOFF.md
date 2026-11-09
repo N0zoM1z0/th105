@@ -1023,3 +1023,12 @@ menu's complete 688-byte section matches, and all 359 scoped non-debug sections
 retain their bytes and relocation roles. Bootstrap's prior mismatch remains.
 See `docs/CONFIG_VOLUME_CONTRACT_2026_11_09.md`. No new exact count, input
 migration edits or source-pin changes.
+
+
+2026-11-09: Combo loading/rendering and short-record color dispatch now share
+the proven 0x6C layout and actual design/number types. Ten lookups use the real
+118-byte bind_object_alt provider. Roots 413/156/572 remain exact; all 427 bytes
+of the nonexact loader and 191 existing non-debug sections are unchanged. Both
+generated deque helper proofs pass. See
+`docs/INFO_COMBO_SHARED_OWNER_2026_11_09.md`. Outer lifetime interfaces, pending
+input work and source pins remain untouched; no new exact count.

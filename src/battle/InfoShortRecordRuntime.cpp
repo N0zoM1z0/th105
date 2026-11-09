@@ -21,7 +21,7 @@ void InfoShortRecord34Runtime::render_46a800()
         alpha = static_cast<unsigned char>(progress_18 * 255 / 30);
 
     g_render_mode_manager.set_blend_mode(1);
-    combo_00->set_color_04(
+    combo_00->design_00.set_color(
         (static_cast<unsigned>(alpha) << 24) | 0x00ffffff);
     combo_00->render_combo_46a660(render_x, y_0c, fighter_04, &entries_20);
 }

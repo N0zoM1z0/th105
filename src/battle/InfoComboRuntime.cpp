@@ -21,12 +21,12 @@ void InfoComboResourceRuntimeView::render_combo_46a660(
     for (std::deque<InfoComboEntry>::iterator it = entries->begin();
          it != entries->end(); ++it) {
         items_44[it->item_index_08]->enabled_14 = 1;
-        items_44[it->item_index_08]->x_04 = it->value_00;
-        items_44[it->item_index_08]->y_08 = item_y;
+        items_44[it->item_index_08]->base_x_04 = it->value_00;
+        items_44[it->item_index_08]->base_y_08 = item_y;
         item_y += 12.0f;
     }
 
-    move_1c(x, y);
+    design_00.render_offset(x, y);
 }
 
 } // namespace th105

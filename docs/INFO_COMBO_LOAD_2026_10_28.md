@@ -29,3 +29,13 @@ ui-owner-binding.json, post-release-address.json, typed-output.json.
 The added path literal is independently pinned to6C35E0 including NUL.
 Only the new unit was compiled; no shared header, existing binding or caller
 source changed.
+
+
+## Shared owner follow-up, 2026-11-09
+
+Loading and rendering now share the observed 0x6C combo layout, with a real
+CDesignBase prefix and actual CDesignNumber values. The ten lookups call the
+existing bind_object_alt implementation at 420B90 rather than aliasing the
+separate find_object method. The complete 427-byte candidate is unchanged.
+See `INFO_COMBO_SHARED_OWNER_2026_11_09.md` for the native layout and bounded
+consumer/generated-helper comparisons.
