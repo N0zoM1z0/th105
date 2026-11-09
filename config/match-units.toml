@@ -30056,12 +30056,12 @@ source = "src/battle/SpellDataShuffle.cpp"
 object = "build/match-units/ExactFirst_SpellSelectionShuffle.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Checked short-deque selection shuffle; whole canonical comparison determines acceptance."
+notes = "Complete 196-byte spell shuffle with the real push_front provider and the native out-of-line checked erase contract. Local canonical root and direct callers compare exactly; docs/SPELL_SELECTION_SHUFFLE_SOURCE_2026_11_04.md."
 
 [[units.exact-first-spell-selection-shuffle.functions]]
 address = "0x00432420"
 symbol_base = "?shuffle_selection@SpellDataOwner@th105@@QAEXXZ"
-rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?selector_random_roll@th105@@YAHH@Z=0x004067D0", "?erase_one@ShortDequeMutationView@th105@@QAE?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V34@@Z=0x004323B0", "?push_front@ShortDequeMutationView@th105@@QAEXABF@Z=0x0042A4B0"]
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?selector_random_roll@th105@@YAHH@Z=0x004067D0", "?erase_one@ShortDequeMutationView@th105@@QAE?AV?$_Deque_iterator@FV?$allocator@F@std@@$00@std@@V34@@Z=0x004323B0", "?push_front@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042A4B0"]
 
 [units.exact-first-battle-render-tail-typed]
 kind = "probe"

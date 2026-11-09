@@ -5,8 +5,8 @@ namespace th105 {
 int __cdecl selector_random_roll(int modulus);
 typedef std::deque<short> NativeShortDeque;
 
-// Declaration-only ABI view for the observed out-of-line VC8 deque methods.
-// The actual checked iterator and owning deque layout are retained.
+// The native single-element erase remains an out-of-line VC8 provider.
+// Keep its checked iterator contract; push_front uses the owning deque directly.
 struct ShortDequeMutationView {
     unsigned unknown_00;
     short **blocks_04;
@@ -15,7 +15,6 @@ struct ShortDequeMutationView {
     unsigned live_count_10;
 
     NativeShortDeque::iterator erase_one(NativeShortDeque::iterator position);
-    void push_front(const short &value);
 };
 
 typedef char SpellShuffleDequeSize[sizeof(NativeShortDeque) == sizeof(ShortDeque8) ? 1 : -1];
@@ -34,7 +33,7 @@ void SpellDataOwner::shuffle_selection()
             ShortDequeMutationView *mutation =
                 reinterpret_cast<ShortDequeMutationView *>(&selection);
             mutation->erase_one(it);
-            mutation->push_front(value);
+            selection.push_front(value);
         } while (--remaining != 0);
     }
 }

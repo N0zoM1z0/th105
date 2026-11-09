@@ -1119,3 +1119,14 @@ inventory uniqueness and the native `0x6FCA2C` receiver are verified. Remove its
 false authored credit. The selected-input caller remains exact 153/153, while
 the 286-byte match-mode caller remains nonexact. Pending input migration files
 and SHA pins are unchanged. See `INPUT_VECTOR_SUBSCRIPT_ORIGIN_2026_11_09.md`.
+
+## November 9: spell selection shuffle is locally exact
+
+The actual deque push-front provider closes `0x432420` at 196/196 without
+changing flags or forcing the inliner. Complete push-front122, grow-map344,
+independent erase108, and direct source-unit roots33/35 match. The original
+out-of-line single-element erase edge must be retained; exposing it inline
+instead produces a rejected 237-byte root. Local authored credit increases by
+196 bytes; Factory acceptance is still separate from local equality. Pending
+input work and SHA pins remain untouched. See
+`SPELL_SELECTION_SHUFFLE_SOURCE_2026_11_04.md`.

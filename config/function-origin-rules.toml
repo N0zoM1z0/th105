@@ -6455,20 +6455,6 @@ required_body_hashes = [{ address = "0x00405AC0", size = 104, sha256 = "f055a70e
 required_direct_edges = [{ caller = "0x004540F0", site = "0x0045415F", target = "0x00405AC0", caller_status = "matching" }, { caller = "0x004540F0", site = "0x004546EC", target = "0x00405AC0", caller_status = "matching" }]
 
 [[rules]]
-id = "spell-shuffle-authored-106a"
-addresses = ["0x00432420"]
-expected_count = 1
-expected_bytes = 196
-expected_names = ["sub_432420"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Spell selection shuffle owns game policy and is directly called by the canonical-exact mode setter. Source is present but nonexact. docs/ORIGIN_RECOVERY_2026_11_03.md."
-required_body_hashes = [{ address = "0x00432420", size = 196, sha256 = "540ef3b2fd1fd978957bf2df18d4d2272af85f78ec0ad79cfd09f1b904a8dbe0" }]
-required_direct_edges = [{ caller = "0x00432520", site = "0x00432538", target = "0x00432420", caller_status = "matching" }]
-
-[[rules]]
 id = "battle-network-update-authored-106a"
 addresses = ["0x00426180", "0x00426380"]
 expected_count = 2

@@ -1021,7 +1021,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00432310,authored_game,battle,authored,observed,canonical-exact-authored
 0x00432360,authored_game,battle,authored,observed,canonical-exact-authored
 0x004323B0,compiler_generated,battle,exclude,observed,vc8-generated-deque-short-erase
-0x00432420,authored_game,battle,authored,observed,spell-shuffle-authored-106a
+0x00432420,authored_game,battle,authored,observed,canonical-exact-authored
 0x004324F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00432520,authored_game,battle,authored,observed,canonical-exact-authored
 0x00432550,authored_game,battle,authored,observed,canonical-exact-authored
