@@ -1005,3 +1005,12 @@ roots and the existing bootstrap mismatch are unchanged, as are 363 consumer
 sections apart from a separate SafeSEH handler-list ordering change. See
 `docs/EVENT_EFFECT_KEY_WIDTH_2026_11_09.md`. No new authored exact credit, input
 migration changes or source-pin updates.
+
+
+2026-11-09: Replaced the character stage/BGM tree facade with real shared
+map<int,unsigned char> readers. Native 45C320 performs an equality check after
+lower-bound traversal; the actual generated find now matches all 105 bytes.
+Both 72-byte wrappers remain exact, seven native caller sites and thirty map
+initializations are confirmed, and all 348 bootstrap sections are unchanged.
+See `docs/CHARACTER_POLICY_MAPS_2026_11_09.md`. No new authored exact count or
+input/source-pin changes.

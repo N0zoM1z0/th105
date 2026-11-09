@@ -148,3 +148,9 @@ provider reads and compares signed DWORD keys, so the reader and this writer
 now share `EventEffectRecords.hpp` and `map<int,int>` at `6FBF14`. The complete
 lookup wrapper and emitted find compare 72/72 and 105/105; bootstrap code, data
 and EH remain unchanged. See `EVENT_EFFECT_KEY_WIDTH_2026_11_09.md`.
+
+The stage and BGM readers now also share the writer's real map declarations.
+Their old unimplemented lower_bound facade has been replaced by the native
+find operation, including rejection of a non-equal candidate. Both 72-byte
+wrappers and the actual 105-byte provider remain exact; all 348 bootstrap
+sections are unchanged. See `CHARACTER_POLICY_MAPS_2026_11_09.md`.

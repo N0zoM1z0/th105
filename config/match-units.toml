@@ -11762,25 +11762,25 @@ source = "src/battle/CharacterStageBgmLookup.cpp"
 object = "build/match-units/CrossV106a_CharacterStageBgmLookup.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current character-to-stage/BGM checked-map wrappers. Each wrapper directly passes its own character_key argument slot to shared lower_bound 0x0045C320; extracting a common helper creates an extra key copy and grows 72-byte target bodies to 80 bytes."
+notes = "Native 45C320 performs find equality rejection, not lower_bound alone. Shared map<int,unsigned char> readers now use the same declarations as bootstrap writers; complete roots72/72 and emitted find105/105 compare exact. docs/CHARACTER_POLICY_MAPS_2026_11_09.md."
 
 [[units.cross-v106a-character-stage-bgm-lookup.functions]]
 address = "0x0043C0B0"
 symbol_base = "?get_stage_for_character@th105@@YAEH@Z"
 rel32_targets = [
-  "?lower_bound@CharacterByteMapTree@th105@@QAEPAUCharacterByteMapIterator@2@PAU32@PBH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
-dir32_targets = ["?g_stage_for_character_map@th105@@3UCharacterByteMapTree@1@A=?g_stage_for_character_map@th105@@3UCharacterByteMapTree@1@A"]
+dir32_targets = ["?g_bootstrap_stages@th105@@3V?$map@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A=?g_bootstrap_stages@th105@@3V?$map@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A"]
 
 [[units.cross-v106a-character-stage-bgm-lookup.functions]]
 address = "0x0043C100"
 symbol_base = "?get_bgm_for_character@th105@@YAEH@Z"
 rel32_targets = [
-  "?lower_bound@CharacterByteMapTree@th105@@QAEPAUCharacterByteMapIterator@2@PAU32@PBH@Z=0x0045C320",
+  "?find@?$_Tree@V?$_Tmap_traits@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z=0x0045C320",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
-dir32_targets = ["?g_bgm_for_character_map@th105@@3UCharacterByteMapTree@1@A=?g_bgm_for_character_map@th105@@3UCharacterByteMapTree@1@A"]
+dir32_targets = ["?g_bootstrap_bgms@th105@@3V?$map@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A=?g_bootstrap_bgms@th105@@3V?$map@HEU?$less@H@std@@V?$allocator@U?$pair@$$CBHE@std@@@2@@std@@A"]
 
 [units.cross-v106a-scenario-match-preparation]
 kind = "probe"

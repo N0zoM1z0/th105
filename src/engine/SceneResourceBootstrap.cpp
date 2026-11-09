@@ -8,6 +8,7 @@
 #include <vector>
 #include "input/InputManager.hpp"
 #include "battle/EventEffectRecords.hpp"
+#include "battle/CharacterPolicyMaps.hpp"
 
 namespace th105 {
 
@@ -80,8 +81,6 @@ struct BgmVolumeService {
 };
 
 extern std::map<int, std::string> g_bootstrap_character_names;
-extern std::map<int, unsigned char> g_bootstrap_stages;
-extern std::map<int, unsigned char> g_bootstrap_bgms;
 extern SceneBootstrapKeyTable g_bootstrap_keys;
 extern SceneBootstrapInputBase g_bootstrap_keyboard;
 extern SceneBootstrapInputCluster g_bootstrap_combined_input;
