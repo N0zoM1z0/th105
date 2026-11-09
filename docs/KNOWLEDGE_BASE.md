@@ -3009,3 +3009,10 @@ from design-file coordinates +0C/+10. The loader uses the actual 118-byte
 bind_object_alt provider instead of rebinding find_object; three runtime roots
 remain exact and the full 427-byte loader candidate is unchanged. See
 `INFO_COMBO_SHARED_OWNER_2026_11_09.md`.
+
+InfoManager's combo load/release callers now use that same 0x6C resource view.
+The base loader and combo release are void: their actual providers supply no
+status contract, and each observed direct consumer overwrites EAX. The native
+base/normal/Story +4 initialization slots are checked separately. All 27 scoped
+exact roots and complete normal EH remain exact. See
+`INFO_RESOURCE_CONTRACT_2026_11_09.md`.

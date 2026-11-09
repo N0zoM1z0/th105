@@ -1032,3 +1032,14 @@ of the nonexact loader and 191 existing non-debug sections are unchanged. Both
 generated deque helper proofs pass. See
 `docs/INFO_COMBO_SHARED_OWNER_2026_11_09.md`. Outer lifetime interfaces, pending
 input work and source pins remain untouched; no new exact count.
+
+
+2026-11-09: Removed the independent combo resource facade from InfoManager's
+normal initialization and teardown. The real shared receiver supplies loading
+and void cleanup; the outer base loader also uses the provider's void contract.
+Fourteen affected units retain 27 exact roots, 516 existing COFF sections and
+228 bytes of normal lifetime EH. Actual cleanup310 and both generated-helper
+and scalar-wrapper proofs pass. Two prior mismatches and the BattleInfoRecord
+iterator-relocation blocker remain unchanged. See
+`docs/INFO_RESOURCE_CONTRACT_2026_11_09.md`. No new exact credit or pending
+input/source-pin edits.

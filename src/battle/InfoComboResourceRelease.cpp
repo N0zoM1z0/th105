@@ -1,10 +1,10 @@
-#include "InfoManagerResources.hpp"
+#include "InfoComboRuntime.hpp"
 
 namespace th105 {
 
-int InfoComboResourceSubobject::release_combo_resources_46a610()
+void InfoComboResourceRuntimeView::release_combo_46a610()
 {
-    return release_resource_slot_14();
+    design_00.virtual_cleanup();
 }
 
 } // namespace th105

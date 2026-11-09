@@ -5538,7 +5538,7 @@ notes = "TH105 1.06a CInfoManagerBase resource load/release facades. Current lif
 address = "0x0046E960"
 symbol_base = "load_info_effect_resources_46e960"
 rel32_targets = [
-  "?load_combo_resources_46a8c0@InfoComboResourceSubobject@th105@@QAEHXZ=0x0046A8C0",
+  "?load_combo_46a8c0@InfoComboResourceRuntimeView@th105@@QAEXXZ=0x0046A8C0",
 ]
 dir32_targets = [
   "??_C@_0BL@GKGBIJHA@data?1infoEffect?1effect?4pat?$AA@=??_C@_0BL@GKGBIJHA@data?1infoEffect?1effect?4pat?$AA@",
@@ -5548,7 +5548,7 @@ dir32_targets = [
 address = "0x0046E990"
 symbol_base = "release_info_effect_resources_46e990"
 rel32_targets = [
-  "?release_combo_resources_46a610@InfoComboResourceSubobject@th105@@QAEHXZ=0x0046A610",
+  "?release_combo_46a610@InfoComboResourceRuntimeView@th105@@QAEXXZ=0x0046A610",
 ]
 
 [units.cross-v106a-info-manager-story-resources]
@@ -5563,7 +5563,7 @@ notes = "TH105 1.06a Story info-manager resource override. Keeping the exact 0x0
 address = "0x00471E50"
 symbol_base = "initialize_story_info_resources_471e50"
 rel32_targets = [
-  "?load_info_effect_resources_46e960@InfoManagerResourceView@th105@@QAEHXZ=0x0046E960",
+  "?load_info_effect_resources_46e960@InfoManagerResourceView@th105@@QAEXXZ=0x0046E960",
   "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAV?$CEffectManager@VInfoEffectObject@@@@@Z=0x0046FD20",
   "?initialize_story_471c10@BattleInfoRecordF8@th105@@QAEXPAUInfoDesignResourceSubobject@2@0PAV?$CEffectManager@VInfoEffectObject@@@@@Z=0x00471C10",
 ]
@@ -11464,7 +11464,7 @@ dir32_targets = [
 address = "0x0046F850"
 symbol_base = "??1CInfoManagerNormalLifecycle@th105@@UAE@XZ"
 rel32_targets = [
-  "?release_combo_resources_46a610@InfoComboResourceSubobject@th105@@QAEHXZ=0x0046A610",
+  "?release_combo_46a610@InfoComboResourceRuntimeView@th105@@QAEXXZ=0x0046A610",
   "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
   "??1InfoManagerBaseNormalDependency@th105@@UAE@XZ=0x0046F6A0",
 ]
@@ -11489,7 +11489,7 @@ rel32_targets = [
 address = "0x0046EB90"
 symbol_base = "?initialize_normal_runtime_46eb90@CInfoManagerNormalLifecycle@th105@@QAEXXZ"
 rel32_targets = [
-  "?load_combo_resources_46a8c0@InfoComboResourceSubobject@th105@@QAEHXZ=0x0046A8C0",
+  "?load_combo_46a8c0@InfoComboResourceRuntimeView@th105@@QAEXXZ=0x0046A8C0",
   "?initialize_46fd20@BattleInfoRecordF8@th105@@QAEXHPAUInfoDesignResourceSubobject@2@0PAV?$CEffectManager@VInfoEffectObject@@@@@Z=0x0046FD20",
   "?bind_object_alt@TitleDesignResource@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
   "??2@YAPAXI@Z=0x00689DCB",
@@ -17986,7 +17986,7 @@ notes = "Current InfoManager combo-resource subobject virtual-release facade @ 0
 
 [[units.gpt-web-info-combo-resource-release.functions]]
 address = "0x0046A610"
-symbol_base = "?release_combo_resources_46a610@InfoComboResourceSubobject@th105@@QAEHXZ"
+symbol_base = "?release_combo_46a610@InfoComboResourceRuntimeView@th105@@QAEXXZ"
 
 [units.gpt-web-ui-scene-state-facades]
 kind = "probe"

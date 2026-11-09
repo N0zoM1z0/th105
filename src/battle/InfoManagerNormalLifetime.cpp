@@ -1,4 +1,5 @@
 #include "InfoManagerResources.hpp"
+#include "InfoComboRuntime.hpp"
 #include "../ui/Title.hpp"
 #include "../ui/CNumberRuntime.hpp"
 namespace th105 {
@@ -26,7 +27,7 @@ CInfoManagerNormalLifecycle::~CInfoManagerNormalLifecycle()
 {
     reinterpret_cast<InfoDesignResourceSubobject *>(reinterpret_cast<unsigned char *>(this) + 0x98)->release_design();
     reinterpret_cast<InfoDesignResourceSubobject *>(reinterpret_cast<unsigned char *>(this) + 0xcc)->release_design();
-    reinterpret_cast<InfoComboResourceSubobject *>(reinterpret_cast<unsigned char *>(this) + 0x100)->release_combo_resources_46a610();
+    reinterpret_cast<InfoComboResourceRuntimeView *>(reinterpret_cast<unsigned char *>(this) + 0x100)->release_combo_46a610();
     reinterpret_cast<InfoEffectManager *>(reinterpret_cast<unsigned char *>(this) + 0x04)->clear_effects_and_resources();
 }
 }
@@ -40,19 +41,21 @@ struct NormalInfoRuntimeView {
     void *vtable;
     NormalEffect94 effect;
     NormalDesign34 upper,lower;
-    InfoComboResourceSubobject combo;
-    unsigned char rest_104[0x384];
+    InfoComboResourceRuntimeView combo;
+    unsigned char rest_16c[0x31c];
     float counter_488;
     UiDesignObject *numbers_48c[2];
     int state_494;
     BattleInfoRecordF8 records_498[2];
 };
+typedef char normal_combo_offset[offsetof(NormalInfoRuntimeView,combo)==0x100?1:-1];
+typedef char normal_counter_offset[offsetof(NormalInfoRuntimeView,counter_488)==0x488?1:-1];
 typedef char normal_records_offset[offsetof(NormalInfoRuntimeView,records_498)==0x498?1:-1];
 void CInfoManagerNormalLifecycle::initialize_normal_runtime_46eb90()
 {
     NormalInfoRuntimeView *view=reinterpret_cast<NormalInfoRuntimeView *>(this);
     view->effect.load_effect_resource_and_preallocate("data/infoEffect/effect.pat",0);
-    view->combo.load_combo_resources_46a8c0();
+    view->combo.load_combo_46a8c0();
     view->upper.api.load_design("data/battle/battleUpper.dat");
     view->lower.api.load_design("data/battle/battleUnder.dat");
     view->records_498[0].initialize_46fd20(0,&view->upper.api,&view->lower.api,&view->effect);

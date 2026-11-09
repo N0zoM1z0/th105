@@ -83,17 +83,7 @@ typedef char BattleInfoRecordF8_group_24_offset_must_be_0x24[
 typedef char BattleInfoRecordF8_owned_effect_offset_must_be_0xd8[
     offsetof(BattleInfoRecordF8, owned_effect_d8) == 0xd8 ? 1 : -1];
 
-struct InfoComboResourceSubobject {
-    virtual int resource_slot_00();
-    virtual int resource_slot_04();
-    virtual int resource_slot_08();
-    virtual int resource_slot_0c();
-    virtual int resource_slot_10();
-    virtual int release_resource_slot_14();
-
-    int load_combo_resources_46a8c0();
-    int release_combo_resources_46a610();
-};
+class InfoComboResourceRuntimeView;
 
 struct InfoManagerResourceView {
     __forceinline InfoEffectManager &effect_manager_04()
@@ -114,9 +104,9 @@ struct InfoManagerResourceView {
             reinterpret_cast<unsigned char *>(this) + 0xcc);
     }
 
-    __forceinline InfoComboResourceSubobject &combo_design_100()
+    __forceinline InfoComboResourceRuntimeView &combo_design_100()
     {
-        return *reinterpret_cast<InfoComboResourceSubobject *>(
+        return *reinterpret_cast<InfoComboResourceRuntimeView *>(
             reinterpret_cast<unsigned char *>(this) + 0x100);
     }
 
@@ -126,7 +116,7 @@ struct InfoManagerResourceView {
             reinterpret_cast<unsigned char *>(this) + 0x498);
     }
 
-    int load_info_effect_resources_46e960();
+    void load_info_effect_resources_46e960();
     void release_info_effect_resources_46e990();
     void initialize_story_info_resources_471e50();
     void update_normal_46e5a0();

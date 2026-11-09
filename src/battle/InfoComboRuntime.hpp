@@ -27,6 +27,7 @@ public:
     int value_68;
 
     void load_combo_46a8c0();
+    void release_combo_46a610();
     void render_combo_46a660(
         float x,
         float y,
