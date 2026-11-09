@@ -21,8 +21,6 @@ struct StoryEventWait {
 };
 
 struct BattlePhaseStoryView {
-    signed char status_45a290();
-
     signed char current_594() const
     {
         return *reinterpret_cast<const signed char *>(
@@ -94,7 +92,7 @@ int CBattleManagerStory::run_threshold_pipeline_471670()
         unsigned char was_pending = fighter_0c->terminal_pending_4e9;
         run_global_action_owned_phase_view();
         if (was_pending != 0 && fighter_0c->terminal_pending_4e9 == 0)
-            fighter_0c->value_174 = fighter_0c->maximum_176;
+            fighter_0c->health_174 = fighter_0c->max_health_176;
 
         run_attack_projectile_collision_phase();
         resolve_fighter_body_collision();
@@ -149,8 +147,7 @@ int CBattleManagerStory::run_story_pipeline_4717e0()
     if (info_8c->counter_494 < 30)
         ++info_8c->counter_494;
 
-    if (reinterpret_cast<BattlePhaseStoryView *>(g_battle_phase_block)
-            ->status_45a290() <= 0) {
+    if (g_battle_phase_block->run_scenario_step() <= 0) {
         if (fighter_0c->terminal_finalize_4eb != 0) {
             transition_slot_34(6);
             return 0;

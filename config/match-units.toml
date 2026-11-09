@@ -9687,7 +9687,7 @@ address = "0x004717E0"
 symbol_base = "?run_story_pipeline_4717e0@CBattleManagerStory@th105@@UAEHXZ"
 rel32_targets = [
   "?reset_fighter_fields_6b4_728_view@CBattleManagerStory@th105@@QAEXXZ=0x0046B080",
-  "?status_45a290@BattlePhaseStoryView@th105@@QAECXZ=0x0045A290",
+  "?run_scenario_step@BattlePhaseBlock@th105@@QAECXZ=0x0045A290",
   "?get_async_scene_load_request@th105@@YAHXZ=0x0043AB90",
   "?prepare_match_roster_470060@CBattleManagerStory@th105@@QAEXXZ=0x00470A60",
   "?run_global_action_owned_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AF90",
@@ -9709,7 +9709,7 @@ address = "0x00471590"
 symbol_base = "?run_scenario_gate_471590@CBattleManagerStory@th105@@UAEHXZ"
 rel32_targets = [
   "?reset_fighter_fields_6b4_728_view@CBattleManagerStory@th105@@QAEXXZ=0x0046B080",
-  "?run_scenario_step@BattlePhaseBlock@th105@@QAE_NXZ=0x0045A290",
+  "?run_scenario_step@BattlePhaseBlock@th105@@QAECXZ=0x0045A290",
   "?run_global_action_owned_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AF90",
   "?run_global_position_status_timer_phase_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFA0",
   "?run_post_update_callbacks_view@CBattleManagerStory@th105@@QAEXXZ=0x0046AFB0",
@@ -15856,7 +15856,7 @@ notes = "Current BattlePhaseBlock embeds its scenario-step runtime at +0x68. Nat
 
 [[units.gpt-web-battle-phase-block-runtime.functions]]
 address = "0x0045A290"
-symbol_base = "?run_scenario_step@BattlePhaseBlock@th105@@QAE_NXZ"
+symbol_base = "?run_scenario_step@BattlePhaseBlock@th105@@QAECXZ"
 
 [[units.gpt-web-battle-phase-block-runtime.functions]]
 address = "0x0045A2A0"
@@ -30184,7 +30184,7 @@ rel32_targets = [
   "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
   "_memset=0x0068A440",
   "?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0045A450",
-  "?run_scenario_step@BattlePhaseBlock@th105@@QAE_NXZ=0x0045A290",
+  "?run_scenario_step@BattlePhaseBlock@th105@@QAECXZ=0x0045A290",
   "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
   "??$_Assign@V?$_Iterator@$00@?$list@HV?$allocator@H@std@@@std@@@?$list@HV?$allocator@H@std@@@std@@QAEXV?$_Iterator@$00@01@0Uinput_iterator_tag@1@@Z=0x0045A740",
 ]

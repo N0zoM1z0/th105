@@ -898,3 +898,12 @@ switch table, sixteen EH cleanup states and RTTI geometry match; WinMain's
 695-byte nonexact candidate is unchanged. See
 `docs/SCENE_MANAGER_VIRTUAL_LEAVES_2026_10_28.md`. No new exact credit or
 source-pin changes; the pending input migration remains unchanged.
+
+
+2026-11-09: Corrected the scenario-step wrapper from bool to signed byte after
+verifying native 00/01/FF returns and the story caller's signed comparison.
+Story now calls the real provider. A stale health-field reference also caused
+its unit to fail compilation; the native-offset repair restores all six story
+matches. Eight affected roots remain exact, continue/reset remains unchanged
+and nonexact, and full story EH plus 295 COFF sections pass. See
+`docs/SCENARIO_STATUS_CONTRACT_2026_11_09.md`. No source-pin or input edits.
