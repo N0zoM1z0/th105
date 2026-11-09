@@ -925,3 +925,10 @@ scenario-render contract. All 21 affected roots, 233 non-debug sections and
 complete Story EH remain exact/unchanged. See
 `docs/STORY_RENDER_CONTRACT_2026_11_09.md`. Input migration and pins are
 unchanged; no new exact credit.
+
+
+2026-11-09: Call-contract triage rejects four misleading alias mismatches:
+fade/replay statuses retain their native values, the shared one-word no-op
+is genuine folding, and slot-finalization callers may discard its status.
+Animation sequence return propagation still needs its full virtual-call
+closure. See `docs/CALL_CONTRACT_TRIAGE_2026_11_09.md`. No source change.
