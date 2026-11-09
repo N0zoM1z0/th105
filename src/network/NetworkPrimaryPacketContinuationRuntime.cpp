@@ -1,3 +1,4 @@
+#include "NetworkWinsockSendClient.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkStateRecord.hpp"
 #include "NetworkInputPacket.hpp"
@@ -12,14 +13,6 @@ class NetworkPacketWithResult8 {
 public:
     virtual unsigned int serialize(void *buffer);
     unsigned int result_004;
-};
-
-struct NetworkClientSend4View {
-    int send_client(
-        const void *buffer,
-        unsigned int size,
-        int option,
-        unsigned int *result);
 };
 
 struct NetworkPeerByte5 {
@@ -49,8 +42,7 @@ public:
     unsigned char reserved_278[0x12e];
     bool ack_pending_3a6;
     unsigned char reserved_3a7[0x0d];
-    NetworkClientSend4View sender_3b4;
-    unsigned char reserved_3b5[0x1ff];
+    NetworkWinsockSendClientView sender_3b4;
     unsigned char packet_buffer_5b4[0x128];
 };
 
@@ -108,17 +100,6 @@ public:
     virtual void update_adaptive_delay(int value);
 };
 
-struct NetworkServerSend5View {
-    // The real sender has no meaningful result on its inactive path; this
-    // publisher discards results and preserves the five-word RET20 interface.
-    void send_server(
-        unsigned int channel,
-        const void *buffer,
-        unsigned int size,
-        int option,
-        unsigned int *result);
-};
-
 class CNetworkServerInputPublishView : public NetworkServerInputVirtualBase {
 public:
     void publish_input_frame_44f9a0();
@@ -140,8 +121,7 @@ public:
     unsigned char reserved_1f0[0x18];
     CInputManagerEx *input_208;
     unsigned char reserved_20c[0x1a8];
-    NetworkServerSend5View sender_3b4;
-    unsigned char reserved_3b5[0x1ff];
+    NetworkWinsockSendClientView sender_3b4;
     unsigned char packet_buffer_5b4[0x134];
     unsigned int high_water_6e8;
 };

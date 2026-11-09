@@ -48,7 +48,7 @@ public:
 
     int dispatch_secondary_request(
         unsigned int context, const NetworkRequestReplay10 *request);
-    int send_packet(unsigned int channel, void *packet, int option);
+    void send_packet(unsigned int channel, void *packet, int option);
 
     unsigned char reserved_004[0x44];
     CriticalSectionWrapper critical_048;

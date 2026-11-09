@@ -1,3 +1,4 @@
+#include "NetworkWinsockSendClient.hpp"
 #include "../battle/SpellData.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkInputPacket.hpp"
@@ -18,22 +19,6 @@ class NetworkDelayPacket12 : public NetworkDelayBase8 {
 public:
     NetworkDelayPacket12() {}
     virtual unsigned int serialize(void *buffer);
-};
-
-struct NetworkClientDelaySend4View {
-    int send_client(
-        const void *buffer,
-        unsigned int size,
-        int option,
-        void *completion);
-};
-
-struct NetworkClientSend4View {
-    int send_client(
-        const void *buffer,
-        unsigned int size,
-        int option,
-        unsigned int *result);
 };
 
 struct NetworkSendStateView {
@@ -58,8 +43,7 @@ struct CNetworkClientPrimaryProtocolView {
     unsigned char reserved_0b4[0x2f3];
     unsigned char pending_3a7;
     unsigned char reserved_3a8[0x0c];
-    NetworkClientSend4View send_3b4;
-    unsigned char reserved_3b5[0x1ff];
+    NetworkWinsockSendClientView send_3b4;
     unsigned char buffer_5b4[0x50];
 };
 
@@ -105,7 +89,7 @@ int CNetworkClientPrimaryProtocolView::send_delay(unsigned char value)
     NetworkDelayPacket12 packet;
     NetworkDelayPacket12 *request = &packet;
     request->delay_008 = value;
-    return reinterpret_cast<NetworkClientDelaySend4View *>(&send_3b4)->send_client(
+    return send_3b4.send_client(
         buffer_5b4, request->serialize(buffer_5b4), 0, 0);
 }
 

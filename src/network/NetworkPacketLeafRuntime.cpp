@@ -1,3 +1,4 @@
+#include "NetworkWinsockSendClient.hpp"
 #include "NetworkInputPacket.hpp"
 #include "NetworkReplayRequestPacket.hpp"
 #include "NetworkReplayPacket.hpp"
@@ -32,15 +33,6 @@ struct ReplayPacketDequeOwner28 {
     ~ReplayPacketDequeOwner28();
 };
 
-
-class NetworkClientSend4View {
-public:
-    int send_client(
-        const void *buffer,
-        unsigned int size,
-        int option,
-        unsigned int *sent_size);
-};
 
 class NetworkInputSinkView {
 public:
@@ -77,8 +69,7 @@ public:
     unsigned char reserved_044[0x98];
     CriticalSectionWrapper replay_critical_0dc;
     unsigned char reserved_0f8[0x2bc];
-    NetworkClientSend4View sender_3b4;
-    unsigned char reserved_3b5[0x200 - sizeof(NetworkClientSend4View)];
+    NetworkWinsockSendClientView sender_3b4;
     unsigned char packet_buffer_5b4[0x100];
     NetworkInputSinkView *input_sink_6b4;
     unsigned char expected_tag_6b8;
@@ -349,3 +340,6 @@ typedef char NetworkReplayStateView_critical_offset[
     offsetof(NetworkReplayStateView, critical_124) == 0x124 ? 1 : -1];
 
 } // namespace th105
+
+typedef char NetworkClientPacketSenderOffset[offsetof(th105::NetworkClientPacketOwnerView,sender_3b4)==0x3b4?1:-1];
+typedef char NetworkClientPacketBufferOffset[offsetof(th105::NetworkClientPacketOwnerView,packet_buffer_5b4)==0x5b4?1:-1];

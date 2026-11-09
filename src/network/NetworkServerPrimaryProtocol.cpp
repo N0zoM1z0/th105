@@ -1,3 +1,4 @@
+#include "NetworkWinsockSendClient.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "NetworkInputPacket.hpp"
 
@@ -27,18 +28,9 @@ public:
     unsigned int result_004;
 };
 
-struct NetworkServerSend5View {
-    int send_server(
-        unsigned int channel,
-        const void *buffer,
-        unsigned int size,
-        int option,
-        unsigned int *result);
-};
-
 struct CNetworkServerPrimaryProtocolView {
     bool flush_send_state();
-    int send_packet(
+    void send_packet(
         unsigned int channel,
         NetworkGenericPacket8 *packet,
         int option);
@@ -49,27 +41,26 @@ struct CNetworkServerPrimaryProtocolView {
     unsigned char reserved_064[0x2c];
     InputPacket24 input_packet_090;
     unsigned char reserved_0b4[0x300];
-    NetworkSendStateView send_3b4;
-    unsigned char reserved_3b5[0x1ff];
+    NetworkWinsockSendClientView send_3b4;
     unsigned char buffer_5b4[0x134];
     unsigned int last_sequence_6e8;
 };
 
 bool CNetworkServerPrimaryProtocolView::flush_send_state()
 {
-    if (send_3b4.check(0)) {
-        send_3b4.process(0);
+    if (reinterpret_cast<NetworkSendStateView *>(&send_3b4)->check(0)) {
+        reinterpret_cast<NetworkSendStateView *>(&send_3b4)->process(0);
         return true;
     }
     return false;
 }
 
-int CNetworkServerPrimaryProtocolView::send_packet(
+void CNetworkServerPrimaryProtocolView::send_packet(
     unsigned int channel,
     NetworkGenericPacket8 *packet,
     int option)
 {
-    return reinterpret_cast<NetworkServerSend5View *>(&send_3b4)->send_server(
+    send_3b4.send_server(
         channel,
         buffer_5b4,
         packet->serialize(buffer_5b4),
@@ -84,7 +75,7 @@ unsigned char CNetworkServerPrimaryProtocolView::send_state_or_terminate()
     unsigned char *buffer = buffer_5b4;
     if (input_packet_090.sequence_008 != last_sequence_6e8) {
         NetworkPacketBase8 *packet = &input_packet_090;
-        reinterpret_cast<NetworkServerSend5View *>(&send_3b4)->send_server(
+        send_3b4.send_server(
             0,
             buffer,
             packet->serialize(buffer),
@@ -96,7 +87,7 @@ unsigned char CNetworkServerPrimaryProtocolView::send_state_or_terminate()
 
     NetworkTerminatePacket8 packet;
     NetworkTerminatePacket8 *request = &packet;
-    reinterpret_cast<NetworkServerSend5View *>(&send_3b4)->send_server(
+    send_3b4.send_server(
         0,
         buffer,
         request->serialize(buffer),

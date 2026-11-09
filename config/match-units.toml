@@ -14983,13 +14983,13 @@ symbol_base = "?send_if_needed@CNetworkClientPrimaryProtocolView@th105@@QAE_NXZ"
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
-  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+  "?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990",
 ]
 
 [[units.gpt-web-network-client-primary-protocol.functions]]
 address = "0x0044E9E0"
 symbol_base = "?send_delay@CNetworkClientPrimaryProtocolView@th105@@QAEHE@Z"
-rel32_targets = ["?send_client@NetworkClientDelaySend4View@th105@@QAEHPBXIHPAX@Z=0x00416990"]
+rel32_targets = ["?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990"]
 dir32_targets = ["??_7NetworkDelayPacket12@th105@@6B@=??_7NetworkDelayPacket12@th105@@6B@"]
 
 [[units.gpt-web-network-client-primary-protocol.functions]]
@@ -15032,8 +15032,8 @@ rel32_targets = [
 
 [[units.gpt-web-network-server-primary-protocol.functions]]
 address = "0x0044F4E0"
-symbol_base = "?send_packet@CNetworkServerPrimaryProtocolView@th105@@QAEHIPAVNetworkGenericPacket8@2@H@Z"
-rel32_targets = ["?send_server@NetworkServerSend5View@th105@@QAEHIPBXIHPAI@Z=0x00416B60"]
+symbol_base = "?send_packet@CNetworkServerPrimaryProtocolView@th105@@QAEXIPAVNetworkGenericPacket8@2@H@Z"
+rel32_targets = ["?send_server@NetworkWinsockSendClientView@th105@@QAEXIPBXIIPAI@Z=0x00416B60"]
 
 [[units.gpt-web-network-server-primary-protocol.functions]]
 address = "0x0044F830"
@@ -15041,7 +15041,7 @@ symbol_base = "?send_state_or_terminate@CNetworkServerPrimaryProtocolView@th105@
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
-  "?send_server@NetworkServerSend5View@th105@@QAEHIPBXIHPAI@Z=0x00416B60",
+  "?send_server@NetworkWinsockSendClientView@th105@@QAEXIPBXIIPAI@Z=0x00416B60",
 ]
 dir32_targets = ["??_7NetworkTerminatePacket8@th105@@6B@=??_7NetworkTerminatePacket8@th105@@6B@"]
 
@@ -15059,7 +15059,7 @@ symbol_base = "?sync_peer_state@CNetworkClientPrimaryStateView@th105@@QAEEE@Z"
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
-  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+  "?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990",
 ]
 
 [[units.gpt-web-network-primary-state-runtime.functions]]
@@ -15070,7 +15070,7 @@ rel32_targets = [
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
   "?at@?$deque@FV?$allocator@F@std@@@std@@QAEAAFI@Z=0x0042D140",
   "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90",
-  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+  "?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990",
 ]
 
 [[units.gpt-web-network-primary-state-runtime.functions]]
@@ -15079,7 +15079,7 @@ symbol_base = "?sync_peer_state@CNetworkServerPrimaryStateView@th105@@QAEEE@Z"
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
-  "?send_server@NetworkServerSend5View@th105@@QAEXIPBXIHPAI@Z=0x00416B60",
+  "?send_server@NetworkWinsockSendClientView@th105@@QAEXIPBXIIPAI@Z=0x00416B60",
 ]
 
 [units.gpt-web-network-client-secondary-dispatch-runtime]
@@ -15194,7 +15194,7 @@ rel32_targets = [
   "?dispatch_secondary_request@NetworkServerPrimarySecondaryDispatchView@th105@@QAEHIPBVNetworkRequestReplay10@2@@Z=0x0044E460",
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
-  "?send_packet@NetworkServerPrimarySecondaryDispatchView@th105@@QAEHIPAXH@Z=0x0044F4E0",
+  "?send_packet@NetworkServerPrimarySecondaryDispatchView@th105@@QAEXIPAXH@Z=0x0044F4E0",
   "?parse@InputPacket24@th105@@UAEXPBE@Z=0x0044E050",
   "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
   "??0NetworkAckInfoPacket40@th105@@QAE@XZ=0x0044DAC0",
@@ -15433,7 +15433,7 @@ rel32_targets = [
 address = "0x0044D770"
 symbol_base = "?send_simple_packet@NetworkClientPacketOwnerView@th105@@QAEHPAVPacketSerializeView@2@H@Z"
 rel32_targets = [
-  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+  "?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990",
 ]
 
 [[units.gpt-web-network-packet-leaf-runtime.functions]]
@@ -15542,7 +15542,7 @@ notes = "Current Client packet/result send and ACK tail import plus Server adapt
 address = "0x0044E6A0"
 symbol_base = "?send_packet_with_result_44e6a0@CNetworkClientPacketContinuationView@th105@@QAEHPAVNetworkPacketWithResult8@2@H@Z"
 rel32_targets = [
-  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+  "?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990",
 ]
 
 [[units.gpt-web-network-primary-packet-continuation.functions]]
@@ -15561,7 +15561,7 @@ notes = "Current Client replay request pump. This callable belongs to the non-/G
 address = "0x0044D880"
 symbol_base = "?pump_replay_request_44d880@NetworkClientPacketOwnerView@th105@@QAEXXZ"
 rel32_targets = [
-  "?send_client@NetworkClientSend4View@th105@@QAEHPBXIHPAI@Z=0x00416990",
+  "?send_client@NetworkWinsockSendClientView@th105@@QAEHPBXIIPAI@Z=0x00416990",
 ]
 dir32_targets = [
   "_g_replay_request_poll_counter=_g_replay_request_poll_counter",
@@ -29687,7 +29687,7 @@ rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "?lea
 [[units.gpt-web-network-primary-packet-continuation.functions]]
 address = "0x0044F9A0"
 symbol_base = "?publish_input_frame_44f9a0@CNetworkServerInputPublishView@th105@@QAEXXZ"
-rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40", "?send_server@NetworkServerSend5View@th105@@QAEXIPBXIHPAI@Z=0x00416B60", "?push_front@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042A4B0", "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90"]
+rel32_targets = ["?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30", "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40", "?send_server@NetworkWinsockSendClientView@th105@@QAEXIPBXIIPAI@Z=0x00416B60", "?push_front@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042A4B0", "?push_back@?$deque@FV?$allocator@F@std@@@std@@QAEXABF@Z=0x0042AA90"]
 
 [units.exact-first-profile-character-preview]
 kind = "probe"

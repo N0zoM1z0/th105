@@ -1,3 +1,4 @@
+#include "NetworkWinsockSendClient.hpp"
 #include "../engine/CriticalSectionWrapper.hpp"
 #include "../input/InputManager.hpp"
 #include "NetworkInputPacket.hpp"
@@ -10,24 +11,6 @@ namespace th105 {
 struct NetworkPeerByte5 {
     unsigned char reserved_000[4];
     unsigned char byte_004;
-};
-
-struct NetworkClientSend4View {
-    int send_client(
-        const void *buffer,
-        unsigned int size,
-        int option,
-        unsigned int *result);
-};
-
-struct NetworkServerSend5View {
-    // The caller discards the real sender result; the inactive path has none.
-    void send_server(
-        unsigned int channel,
-        const void *buffer,
-        unsigned int size,
-        int option,
-        unsigned int *result);
 };
 
 class NetworkPrimaryStateVirtualBase {
@@ -82,8 +65,7 @@ public:
     unsigned char reserved_278[0x12e];
     unsigned char pending_3a6;
     unsigned char reserved_3a7[0x0d];
-    NetworkClientSend4View send_3b4;
-    unsigned char reserved_3b5[0x1ff];
+    NetworkWinsockSendClientView send_3b4;
     unsigned char buffer_5b4[0x50];
 };
 
@@ -168,8 +150,7 @@ public:
     unsigned char reserved_0f8[0x78];
     unsigned int available_170;
     unsigned char reserved_174[0x240];
-    NetworkServerSend5View send_3b4;
-    unsigned char reserved_3b5[0x1ff];
+    NetworkWinsockSendClientView send_3b4;
     unsigned char buffer_5b4[0x50];
 };
 
@@ -218,3 +199,8 @@ typedef char NetworkClientPacketFollowingLockOffset[offsetof(th105::CNetworkClie
 typedef char NetworkServerPacketFollowingLockOffset[offsetof(th105::CNetworkServerPrimaryStateView,critical_0dc)==0xdc?1:-1];
 typedef char NetworkClientScenePacketOffset[offsetof(th105::CNetworkClientPrimaryStateView,packet_064)==0x64?1:-1];
 typedef char NetworkServerScenePacketOffset[offsetof(th105::CNetworkServerPrimaryStateView,packet_070)==0x70?1:-1];
+
+typedef char NetworkClientStateSenderOffset[offsetof(th105::CNetworkClientPrimaryStateView,send_3b4)==0x3b4?1:-1];
+typedef char NetworkServerStateSenderOffset[offsetof(th105::CNetworkServerPrimaryStateView,send_3b4)==0x3b4?1:-1];
+typedef char NetworkClientStateBufferOffset[offsetof(th105::CNetworkClientPrimaryStateView,buffer_5b4)==0x5b4?1:-1];
+typedef char NetworkServerStateBufferOffset[offsetof(th105::CNetworkServerPrimaryStateView,buffer_5b4)==0x5b4?1:-1];

@@ -733,3 +733,11 @@ and its real 0x200-byte member, removing undefined caller aliases. Sender
 269/341 and token release 167 remain exact; complete shared EH code 48,
 metadata 44 and packet cleanup 19 also match. Two affected origin proofs pass.
 See `docs/ACK_SEND_PROVIDER_2026_11_09.md`. Input migration remains separate.
+
+
+2026-11-09: Primary protocol, state, continuation and replay sends now share the
+existing UDP provider. Eight duplicate sender classes are gone; the server
+packet wrapper's false integer result contract is corrected to void. Seven
+units retain all 26 accepted roots and both prior nonexact results. The server
+dispatcher's complete code/table564, EH56, metadata52 and cleanup8/19 also match.
+See `docs/PROTOCOL_SEND_PROVIDER_2026_11_09.md`. No origin pins changed.
