@@ -1,4 +1,5 @@
 #include "ResourceHandleLookupRuntime.hpp"
+#include <string.h>
 
 namespace th105 {
 
@@ -23,8 +24,8 @@ void **CHandleManagerLookupView::lookup_token_417800(
     unsigned int packed_token)
 {
     ScopedHandleManagerLock scope(&lock_048);
-    const ResourceHandleToken &token =
-        *reinterpret_cast<const ResourceHandleToken *>(&packed_token);
+    ResourceHandleToken token;
+    memcpy(&token, &packed_token, sizeof(token));
 
     if (generations_028.size() <= token.slot_00
         || generations_028[token.slot_00] != token.generation_02)

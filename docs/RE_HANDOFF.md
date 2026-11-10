@@ -1298,3 +1298,11 @@ separate list-clear provider and retained string-assignment visibility boundary
 are not promoted. Pending input changes and source pins remain untouched.
 See `SCENARIO_RUNTIME_RESET_SOURCE_2026_11_04.md` and
 `build/frontier-scenario-reset-containers-20261110/verification.json`.
+
+2026-11-10: Shared resource-handle lookup now decodes its packed token into a
+real four-byte object instead of aliasing an unsigned integer as a struct.
+All 110 non-debug COFF sections and 206 relocations are unchanged. The five
+linked consumer images are identical apart from build timestamps, and all
+three existing exact caller roots replay. Lookup and gain residuals remain
+nonexact; no ledger or input-pin changes. See `RESOURCE_HANDLE_TOKEN_2026_11_10.md`
+and `build/frontier-resource-token-20261110/verification.json`.
