@@ -54,3 +54,27 @@ layout change preserves complete COFF contents and relocations. Fresh
 `gpt-web-score-story-progress` comparisons remain exact for both event
 publication `0x42E750` (95 bytes) and refresh `0x42E3F0` (860 bytes).
 Evidence and focused CI output: `build/frontier-score-story-arrays-20261110/`.
+
+## Shared owned prefix and deck availability
+
+The common `ScoreData` declaration now models the previously recovered prefix:
+initialization byte, flags, three twenty-byte arrays, two unsigned sets, four
+integer vectors, common count map, twenty character count maps, and twenty
+record vectors. This carries the native constructor and persistence knowledge
+into the actual accessor's type rather than leaving its first 0x198 bytes opaque.
+Offsets +0x44, +0x9C, +0xA8 and +0x198 are compile-time checked. No new instance
+or lifetime is introduced; the separate constructor/serialization definitions
+remain unchanged.
+
+Deck availability now accesses those maps directly, removing its duplicate
+fifteen-map prefix. It still rereads the score accessor for each existing
+operation, performs character-first/common-fallback lookup, and caps successful
+counts at 99. Complete `0x448DF0` remains 358/358 exact. All fourteen affected
+manifest units replay with their previous exact/nonexact outcomes. Twelve
+complete section/relocation dumps are identical; deck availability and arcade
+setup only reorder unchanged compiler support sections and their debug records.
+Their full section-content and relocation multisets are identical, and each
+selected root is independently compared rather than relying on that diagnostic.
+
+Reports: `build/frontier-score-record-owner-20261110/full-prefix/`, compared
+with `result-consumer/`. Focused CI and diff checks pass.
