@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: ResultList now consumes the shared twenty-vector ScoreData owner and observed-record schema, including the recovered difficulty DWORD. Complete population stays 1133/1133 exact; fourteen affected units retain executable bytes and relocations. See `docs/RESULT_LIST_POPULATE_2026_10_29.md`.
+
 2026-11-10: Story-progress arrays now distinguish twenty-byte serialized storage from fifteen-character policy loops. Event publication 95/95 and refresh 860/860 remain exact with unchanged full COFF contents/relocations. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.
 
 2026-11-10: Score statistics and sequence recording now use the twenty-vector member array proven by native construction, replacing casts beyond a prefix-only owner. Fresh roots remain 191/191 and 159/159 exact; fourteen affected units replay with existing mismatches unchanged. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.

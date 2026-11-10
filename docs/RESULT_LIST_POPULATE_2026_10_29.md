@@ -15,7 +15,8 @@ character selector+B4. Size108 and field offsets are asserted. It is never
 allocated as a replacement full nominal class. The method clears visible rows,
 +B8, +CC and+F4; it deliberately does not invent a clear of+E0.
 
-ScoreData+198 contains fifteen real std::vector<ResultRecord24> records. The
+ScoreData+198 contains twenty checked record vectors; the active roster uses
+fifteen. The
 method rereads the score singleton for the loop bound and checked indexing,
 retaining the native invalid-parameter path rather than introducing at()/an
 out-of-range exception. A real32-byte ProfileDeckResourceGroupNative20 owns
@@ -55,3 +56,26 @@ headers and accepted lifetime/menu/caller units remain unchanged. The method
 gets authored exact credit only after the full canonical zero-difference replay.
 Generated string/vector/deque helpers remain dependencies, not new authored
 roots. There is no whole-corpus rebuild or unrelated test expansion.
+
+## Shared score record owner, 2026-11-10
+
+The result list now reads `ScoreData::records_198` and `ObservedRecord24`
+directly, eliminating its duplicate fifteen-vector owner and duplicate record
+schema. The formerly unknown DWORD at record+4 is named `difficulty_04`:
+score defaults stores the 0..3 difficulty index there, and native result
+formatting reads it at `0x447A5E` to select the E/N/H/L label at `0x447A64`.
+The producer's sequence count, observation count and maximum frame count now
+retain their shared names in the consumer rather than maximum/current/frames.
+The original two singleton lookups per iteration and all helper calls remain.
+
+Complete `0x4478B0` remains 1133/1133 exact with its previous canonical hash.
+All fourteen affected source-dependency units were rebuilt. Every executable
+section, data byte and executable relocation remains unchanged. Only two
+vector-helper debug relocations in the result-list object change their nominal
+record type from `ResultRecord24` to `ObservedRecord24`; all other whole-object
+section/relocation dumps are identical. The existing nonexact consumer roots
+remain nonexact at the same locations. Focused CI passes.
+
+Reports: `build/frontier-score-record-owner-20261110/result-consumer/`, compared
+with its `after/` baseline. This preserves local exactness; no new Factory
+acceptance or authored-byte count is claimed.

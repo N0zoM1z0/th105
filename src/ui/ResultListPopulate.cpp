@@ -10,13 +10,6 @@
 extern "C" int __cdecl _sprintf_s(char *,unsigned,const char *,...);
 extern "C" const char result_empty_row_format[],result_row_format[];
 namespace th105 {
-struct ResultRecord24 {
- int character_id,language,spell_id,maximum,current,frames;
-};
-struct ResultScoreState {
- unsigned char prefix[0x198];
- std::vector<ResultRecord24> records[15];
-};
 class ResultListPopulateView : public CFileList {
 public:
  virtual void populate();
@@ -26,7 +19,7 @@ public:
  std::deque<int> values_e0;
  std::deque<short> metadata_f4;
 };
-typedef char ResultRecordSize[sizeof(ResultRecord24) == 24 ? 1 : -1];
+typedef char ResultRecordSize[sizeof(ObservedRecord24) == 24 ? 1 : -1];
 typedef char ResultListViewSize[sizeof(ResultListPopulateView) == 0x108 ? 1 : -1];
 typedef char ResultListIndexOffset[offsetof(ResultListPopulateView, indices_b8) == 0xb8 ? 1 : -1];
 typedef char ResultListReplayOffset[offsetof(ResultListPopulateView, metadata_f4) == 0xf4 ? 1 : -1];
@@ -36,20 +29,20 @@ void ResultListPopulateView::populate()
  unsigned short languages[4]={'E','N','H','L'};
  ProfileDeckResourceGroupNative20 names;
  int loaded_character=15;
- for(unsigned index=0;index<reinterpret_cast<ResultScoreState *>(get_score_data())->records[character_id_b4].size();++index) {
-  ResultRecord24 &record=reinterpret_cast<ResultScoreState *>(get_score_data())->records[character_id_b4][index];
-  if(record.character_id!=loaded_character) {
-   loaded_character=record.character_id;
+ for(unsigned index=0;index<get_score_data()->records_198[character_id_b4].size();++index) {
+  ObservedRecord24 &record=get_score_data()->records_198[character_id_b4][index];
+  if(record.key_00!=loaded_character) {
+   loaded_character=record.key_00;
    reinterpret_cast<SpellDataOwner *>(&names)->load_spell_csv_via_32e20(loaded_character,1,0);
   }
-  SpellRecordView *spell=reinterpret_cast<SpellDataOwner *>(&names)->find_local_then_common_spell_record(record.spell_id);
+  SpellRecordView *spell=reinterpret_cast<SpellDataOwner *>(&names)->find_local_then_common_spell_record(record.key_08);
   if(spell) {
    char row[1024];
-   if(record.maximum!=0) {
+   if(record.sequence_result_count_0c!=0) {
     _sprintf_s(row,sizeof(row),result_row_format,spell->name_00.c_str(),
-     reinterpret_cast<char *>(languages+record.language),record.current,record.maximum,
-     record.frames/60,record.frames*100/60%100);
-    metadata_f4.push_back(static_cast<unsigned short>(record.spell_id));
+     reinterpret_cast<char *>(languages+record.difficulty_04),record.update_count_10,record.sequence_result_count_0c,
+     record.maximum_observed_14/60,record.maximum_observed_14*100/60%100);
+    metadata_f4.push_back(static_cast<unsigned short>(record.key_08));
    } else {
     _sprintf_s(row,sizeof(row),result_empty_row_format);
     metadata_f4.push_back(-1);
@@ -57,7 +50,7 @@ void ResultListPopulateView::populate()
    rows_004.push_back(std::string(row));
    indices_b8.push_back(std::string(row));
    labels_cc.push_back(loaded_character);
-   values_e0.push_back(record.language);
+   values_e0.push_back(record.difficulty_04);
   }
  }
  reinterpret_cast<SpellDataOwner *>(&names)->clear_spell_entries();

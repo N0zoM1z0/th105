@@ -7,7 +7,7 @@ namespace th105 {
 
 struct ObservedRecord24 {
     int key_00;
-    unsigned char unknown_04[0x04];
+    int difficulty_04;
     int key_08;
     int sequence_result_count_0c;
     int update_count_10;
