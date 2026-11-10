@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Complete descriptor collision chains agree across 8192 ordinary/extreme integer cases, including full owner writes, return/stack/register restoration, all five short-circuit corner sites and actual accumulator calls. The point/pair functions remain nonexact. See `docs/DESCRIPTOR_PAIR_COLLISION_2026_10_29.md` for scope and executable evidence.
+
 2026-11-10: Descriptor-pair broad-phase arithmetic now explicitly wraps at 32 bits, matching native SUB/ADD/AND/TEST. Full geometry COFF is unchanged and its three exact roots remain exact. A signed-bit memcpy narrow-phase trial grew 248 to 260 bytes and was not selected. See `docs/COLLISION_SEMANTICS_2026_11_07.md`.
 
 2026-11-10: SystemEffect acquisition, bulk release and update/prune now share the same typed tracking declaration while retaining their distinct object hierarchy. All three complete COFF objects are identical; acquisition stays 91/91 exact and the two known mismatches remain. See `docs/SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md`.

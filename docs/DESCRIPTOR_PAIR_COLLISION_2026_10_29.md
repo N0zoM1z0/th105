@@ -68,3 +68,36 @@ GroupBPairCollision.cpp. GeometryGroups.cpp remains an unselected older
 traversal hypothesis for this address; no shared header or existing caller
 changes. The authored-origin rule is retained, with the connecting caller now
 recorded as source-present. Original source/class/TU spelling remains unknown.
+
+## Complete bounded call-chain comparison, 2026-11-10
+
+The current nonexact pair predicate and point helper were checked together,
+not as independent formulas with mocked helper returns. Each world executes
+one complete root, all actual point tests, its actual descriptor accumulator
+and the native integer intersection accumulator at 46B3B0. The compiled world
+uses the current strictly relocated five HitGeometry bodies; the reference
+world uses the pinned Japanese 1.06a PE throughout. Execution outside these six
+reviewed functions fails the diagnostic.
+
+There are 4096 cases for the single-descriptor root 46B7B0 and 4096 for the
+pair root 46BA10. Half of each set draws coordinates/descriptor words from
+-32..32; the other half uses zero, small signed values, signed extrema and
+positive/negative 2^30. The deterministic seed is 0x46BA10. These deliberately
+exercise machine-arithmetic boundaries and do not assert that every generated
+shape is a valid gameplay asset.
+
+All 8192 cases agree on the return value and complete 0x1000-byte owner state.
+Both worlds preserve the four input records, restore the expected RET12/RET16
+stack and all four callee-saved registers. The single root reports 43 hits and
+the pair root 51. Both worlds execute 940 actual point-predicate calls and 94
+integer intersection accumulations. Every one of the pair root's five
+short-circuit corner sites is exercised, respectively 207, 195, 187, 181 and
+170 times in each world. No provider result or register packet is substituted.
+
+The diagnostic report and exact compiled payload hashes are retained in
+`build/frontier-descriptor-chain-20261110/check.json`; the bounded driver is
+`.analysis/frontier-descriptor-chain-20261110/check.py`. This establishes
+agreement for the sampled full call chains, including the recently corrected
+wrapping broad phase. It neither proves all integer inputs nor converts the
+139/142-byte point or 252-byte nonexact pair candidate into exact functions.
+No executable source, mapping or acceptance ledger changes in this checkpoint.
