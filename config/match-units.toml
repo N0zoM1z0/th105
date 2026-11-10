@@ -926,7 +926,7 @@ rel32_targets = [
   "?get_slot_character_463270@FighterPhaseContextPairView@th105@@QAEPAUFighter@2@I@Z=0x00464290",
   "?reset_for_roster_45e040@Fighter@th105@@QAEXPAU12@@Z=0x0045F640",
   "?finish_slot_464240@FighterPhaseContextPairView@th105@@QAEXH@Z=0x00465100",
-  "?initialize_pair_metadata_426440@GlobalBattlePairStateView@th105@@QAEXPAM000@Z=0x00427320",
+  "?initialize_pair_metadata@GlobalBattlePairState@th105@@QAEXPAM000@Z=0x00427320",
   "?reset_collision_extents@CollisionContext@th105@@QAEXXZ=0x0046B6C0",
   "_memset=0x0068A440",
   "?reset_pair_state_4694e0@PairPostResetView@th105@@QAEXXZ=0x00469F40",
@@ -1097,7 +1097,7 @@ rel32_targets = [
   "get_bgm_for_character=0x0043C100",
   "BattleAudioSetupView_set_stage_music_433860=0x00434DE0",
   "play_bgm=0x0043CF80",
-  "GlobalBattleSetupStateView_update_second_425f10=0x00426DF0",
+  "?update_second@GlobalBattlePairState@th105@@QAEXXZ=0x00426DF0",
   "__security_check_cookie=0x00689D25",
 ]
 dir32_targets = [
@@ -1121,7 +1121,7 @@ rel32_targets = [
   "FighterPhaseContextSetupView_is_slot_active_463280=0x004642A0",
   "Fighter_reset_for_roster_45e040=0x0045F640",
   "FighterPhaseContextSetupView_finish_slot_464240=0x00465100",
-  "GlobalBattleSetupStateView_copy_roster_metadata_425cb0=0x00426B90",
+  "?copy_roster_metadata@GlobalBattlePairState@th105@@QAEXPAM000@Z=0x00426B90",
   "BattleRendererSetupView_refresh_roster_state_471470=0x00471EC0",
   "BattlePhaseBlock_advance_scenario_script_page_458d10=0x0045A2E0",
 ]

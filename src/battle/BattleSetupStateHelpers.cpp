@@ -1,55 +1,11 @@
 #include "Collision.hpp"
+#include "GlobalBattlePairState.hpp"
 
 #include <math.h>
 
 namespace th105 {
 
-struct GlobalBattlePairState {
-    float source_00;
-    float source_04;
-    float source_08;
-    float source_0c;
-    float source_10;
-    float mirrored_14;
-    float mirrored_18;
-    float mirrored_1c;
-    float scale_20;
-    float target_24;
-    float target_28;
-    unsigned char enabled_2c;
-    unsigned char enabled_2d;
-    unsigned char enabled_2e;
-    unsigned char unknown_2f;
-    float target_30;
-    float target_34;
-    float target_38;
-    float target_3c;
-    float target_40;
-    float *first_x_44;
-    float *second_x_48;
-    float *first_y_4c;
-    float *second_y_50;
-    float midpoint_x_54;
-    float midpoint_y_58;
-    float viewport_left_5c;
-    float viewport_top_60;
-    float viewport_right_64;
-    float viewport_bottom_68;
 
-    void update_first();
-    void update_second();
-
-    void copy_roster_metadata(
-        float *first_x,
-        float *first_y,
-        float *second_x,
-        float *second_y);
-    void initialize_pair_metadata(
-        float *first_x,
-        float *first_y,
-        float *second_x,
-        float *second_y);
-};
 
 double __cdecl battle_camera_wave_y(float phase);
 double __cdecl battle_camera_wave_x(float phase);

@@ -1,6 +1,7 @@
 #include "BattleController.hpp"
 
 #include "Collision.hpp"
+#include "GlobalBattlePairState.hpp"
 #include "GameMode.hpp"
 
 namespace th105 {
@@ -19,14 +20,7 @@ struct FighterPhaseContextSetupView {
         int value);
 };
 
-struct GlobalBattleSetupStateView {
-    void copy_roster_metadata_425cb0(
-        int *first_a,
-        int *first_b,
-        int *second_a,
-        int *second_b);
-    void update_second_425f10();
-};
+
 
 struct BattleRendererSetupView {
     void refresh_roster_state_471470();
@@ -56,9 +50,9 @@ inline FighterPhaseContextSetupView *fighter_phase_context_for_setup()
     return *reinterpret_cast<FighterPhaseContextSetupView **>(0x006fbc9c);
 }
 
-inline GlobalBattleSetupStateView *global_battle_setup_state()
+inline GlobalBattlePairState *global_battle_setup_state()
 {
-    return reinterpret_cast<GlobalBattleSetupStateView *>(0x006fbcc0);
+    return reinterpret_cast<GlobalBattlePairState *>(0x006fbcc0);
 }
 
 inline EffectSink *effect_sink_for_setup()
@@ -100,15 +94,11 @@ void BattleController::prepare_match_roster_470060()
     }
 
     fighter_0c->reset_for_roster_45e040(fighter_10);
-    global_battle_setup_state()->copy_roster_metadata_425cb0(
-        reinterpret_cast<int *>(
-            reinterpret_cast<unsigned char *>(fighter_0c) + 0xec),
-        reinterpret_cast<int *>(
-            reinterpret_cast<unsigned char *>(fighter_0c) + 0xf0),
-        reinterpret_cast<int *>(
-            reinterpret_cast<unsigned char *>(fighter_10) + 0xec),
-        reinterpret_cast<int *>(
-            reinterpret_cast<unsigned char *>(fighter_10) + 0xf0));
+    global_battle_setup_state()->copy_roster_metadata(
+        &fighter_0c->x_ec,
+        &fighter_0c->y_f0,
+        &fighter_10->x_ec,
+        &fighter_10->y_f0);
     frame_counter_04 = 0;
     *reinterpret_cast<int *>(unknown_08) = 0;
     fighter_0c->health_174 = fighter_0c->max_health_176;
@@ -187,7 +177,7 @@ void BattleController::initialize_or_transition_46fe80(MatchSetup *setup)
     phase_a0 = 3;
     transition_a4 = 0;
     fighter_0c->terminal_delay_4e8 = 3;
-    global_battle_setup_state()->update_second_425f10();
+    global_battle_setup_state()->update_second();
 }
 
 } // namespace th105

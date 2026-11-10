@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Battle controller setup, pair initialization and camera providers share GlobalBattlePairState. Roster handoff now passes the real four float coordinate addresses instead of int-pointer aliases. Nine roots remain exact; only three caller binding symbols and one debug type name change. See `docs/BATTLE_PAIR_CAMERA_OWNER_2026_11_10.md`.
+
 2026-11-10: Complete descriptor collision chains agree across 8192 ordinary/extreme integer cases, including full owner writes, return/stack/register restoration, all five short-circuit corner sites and actual accumulator calls. The point/pair functions remain nonexact. See `docs/DESCRIPTOR_PAIR_COLLISION_2026_10_29.md` for scope and executable evidence.
 
 2026-11-10: Descriptor-pair broad-phase arithmetic now explicitly wraps at 32 bits, matching native SUB/ADD/AND/TEST. Full geometry COFF is unchanged and its three exact roots remain exact. A signed-bit memcpy narrow-phase trial grew 248 to 260 bytes and was not selected. See `docs/COLLISION_SEMANTICS_2026_11_07.md`.

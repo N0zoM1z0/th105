@@ -1,5 +1,6 @@
 #include "BattleController.hpp"
 #include "Collision.hpp"
+#include "GlobalBattlePairState.hpp"
 #include "PairEmbeddedMode.hpp"
 
 #include <cstring>
@@ -13,13 +14,7 @@ struct FighterPhaseContextPairView {
     void finish_slot_464240(int slot);
 };
 
-struct GlobalBattlePairStateView {
-    void initialize_pair_metadata_426440(
-        float *first_a,
-        float *first_b,
-        float *second_a,
-        float *second_b);
-};
+
 
 struct PairPostResetView {
     void reset_pair_state_4694e0();
@@ -64,8 +59,8 @@ void BattleController::initialize_battle_fighter_pair_46a490()
     fighter_phase_context_for_pair()->finish_slot_464240(zero);
     fighter_phase_context_for_pair()->finish_slot_464240(1);
 
-    reinterpret_cast<GlobalBattlePairStateView *>(0x006fbcc0)
-        ->initialize_pair_metadata_426440(
+    reinterpret_cast<GlobalBattlePairState *>(0x006fbcc0)
+        ->initialize_pair_metadata(
             &fighter_0c->x_ec,
             &fighter_0c->y_f0,
             &fighter_10->x_ec,
