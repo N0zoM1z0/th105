@@ -30,3 +30,30 @@ checked-deque helper relocation. Neither receives new exact credit.
 Fresh receipts and the complete section review are under
 `build/frontier-story-health-owner-20261110/`. Pending input changes and source
 pins were not modified.
+
+## Real Fighter ownership, November 10
+
+The update now reads the existing `Fighter` object directly. The removed
+`StoryInfoFighterView` duplicated five fields already owned by `Fighter`:
+health +0x174, maximum health +0x176, secondary health +0x47C, remaining
+frames +0x64C and initial duration +0x650. Compile-time offset checks cover
+these accesses without changing the shared class. The raw target uses signed
+word loads for the three health fields and signed dword arithmetic for the
+countdown. `FighterSequenceFinalize.cpp` copies +0x650 to +0x64C, and
+`FighterContinuity.cpp` decrements positive +0x64C values, linking the HUD's
+countdown to the existing fighter lifecycle rather than a separate overlay.
+
+Fresh VC8 compilation before and after this ownership change produces identical
+COFF section contents and symbolic relocations (`objdump -sr`, excluding only
+the file heading). The full update comparison still emits 321 bytes against
+323 and first differs at +67. Native secondary smoothing keeps its target in
+EBX and displayed value in EBP, computing the quotient in EDI before moving
+EBP to EAX for subtraction. The current compiler instead uses EBP/EDI and an
+EAX quotient. The ownership correction does not solve that allocation issue;
+no padding or source-spelling sweep was used.
+
+The directly calling `cross-v106a-info-manager-runtime-core` unit was rebuilt:
+0x46E5A0, 0x471C90, 0x471D00 and 0x471D10 all remain locally exact. Evidence is
+under `build/frontier-story-fighter-owner-20261110/` (`before.json`, `after.json`,
+`caller.json`, and the identical `.sections` dumps). The focused CI gate passes.
+No new exact ledger entry or Factory acceptance was added.
