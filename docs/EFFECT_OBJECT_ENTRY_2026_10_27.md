@@ -104,3 +104,31 @@ superseding the older389-prefix witness; its final SETNE versus target shared
 false-return branch remains nonexact. Byte-result and positive outer-guard
 controls do not close it. Complete sources/controls are retained privately under
 `.analysis/frontier-ADDRESS-20261027/` and build counterparts, unselected.
+
+## Typed entry and context storage, 2026-11-10
+
+The entry routine now uses `EffectObjectState` members instead of FIELD/F/S/B
+macros. Its coordinates, velocities, angles, scales, alpha, action and two tail
+floats have explicit types and offsets. The context pointer at +0x164 points
+to a bounded `EffectObjectContextState` view: action/sequence and angle reads
+in action125 no longer reinterpret arbitrary bytes. Its nominal complete owner
+is still unknown. Neither view is instantiated, and no virtual declaration is
+added. Unsigned emission-facing conversion remains explicit even though the
+stored direction byte is signed.
+
+All 44 case labels and their order are retained. Fresh comparison preserves
+2676/2676 callable bytes and the complete 2980/2980 payload, with the same
+`d91263ec...` full hash. Complete COFF contents and every relocation are also
+identical to the fresh pre-change object. Focused CI and diff checks pass.
+Reports: `build/frontier-effect-object-state-20261110/`.
+
+A related typed-update trial was not selected. It preserves its 9350-byte full
+size but changes exactly three x87 addition schedules: native `FLD [ESI+F0];
+FADD ST(n)` becomes `FLD ST(n-1); FADD [ESI+F0]`. Native witnesses are
+`0x65AF71`, `0x65B74A` and `0x65B864`. The surrounding stores and relocations
+are unchanged, but exceptional floating-point details were not established.
+The original update was restored and rebuilt to canonical candidate hash
+`4fc56ccdb479afb9158a6dab1c58b22ac8471aa32080a87fe43addf21b52f254`.
+Its +8 mismatch and dispatch/metadata residual remain. The private typed trial
+is retained under `.analysis/frontier-effect-object-state-20261110/` for a
+future focused floating-point investigation, not a source-spelling search.
