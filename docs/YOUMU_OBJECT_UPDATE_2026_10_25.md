@@ -503,3 +503,25 @@ Private analysis and receipts are in
 `build/frontier-youmu-shared-tails-20261109/` (`retirement-tails.json` and
 `motion-fades.json`). The candidate is the unchanged 27,024-byte payload
 `f8f4ccca336eb93a9cfde74bcbacf721dad064f45a77e24e55aed23283296002`.
+
+## Action 813 and 818 fade boundaries, November 10
+
+The next bounded review confirms the existing action-813 phase-0/1 and
+818 phase-1 paths. At `0x53DB40`, `0x53DB84` and `0x53E0A7`, native alpha
+thresholds are respectively 20, 8 and 10, with retirement strictly below the
+threshold. The surviving paths update their different scale, rotation and
+velocity fields before the shared movement/frame tail. Native qword constants
+at `0x6C41D0`, `0x6C41D8` and `0x6C42B8` are float values promoted to double
+(0.05f, 0.99f and 0.15f), agreeing with the existing source conversions.
+
+Twelve whole-entry native/candidate executions cover alpha one below and exactly
+at each threshold with x87 control words 0x27F and 0x37F. All 0x388 owner bytes,
+actual frame-provider call traces, stack balance and saved registers agree.
+The real native provider runs without mocked calls. These finite fade-boundary
+fixtures justify retaining the current source, not whole-function equivalence.
+
+A fresh complete payload comparison still reports 27,024 candidate bytes
+against 26,576 native bytes, with first mismatch +34. No source, ledger or
+exact-credit change follows. Receipts and the small private diagnostic are in
+`build/frontier-youmu-813-818-fades-20261110/` and its matching `.analysis/`
+directory, including `full-payload.json` and `cases.json`.
