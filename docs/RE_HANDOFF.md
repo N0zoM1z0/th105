@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Battle-info group effects now use the shared record and UI-anchor owners, and both forwarding wrappers use the existing record-array accessor. Five caller roots remain exact; provider remains unchanged at 61/85. Only the real 7-byte accessor/debug record is newly emitted in the caller objects. See `docs/BATTLE_INFO_ANCHORS_2026_11_10.md`.
+
 2026-11-10: Common action 690 now models the sixteen skill alternatives as a signed 4-by-4 matrix. All 4096 native-versus-compiled byte/arm cases and 432 guard cases pass. Complete candidate is 5309 bytes and remains nonexact at +0x14; no Factory acceptance. See `docs/COMMON_ACTION_INITIALIZATION_2026_10_25.md`.
 
 2026-11-10: Weather entry/update now share a typed, offset-checked state instead of 534 raw accesses. Both full COFF contents/relocations are unchanged. Entry remains locally exact at 1383 code / 1630 payload bytes; update retains its 4730-byte payload and +9 nonexact residual. See `docs/WEATHER_EFFECT_ENTRY_2026_10_27.md`.

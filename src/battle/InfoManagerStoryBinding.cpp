@@ -8,7 +8,7 @@ extern SceneRendererFighterPairView *g_scene_renderer;
 struct InfoShortRecordBindView { void bind_46a620(void *combo, Fighter *fighter); };
 struct BattleInfoRecordBindView { void bind_fighter_46fa90(Fighter *fighter); };
 struct BattleInfoStoryRecordView { void attach_story_fighter_471be0(Fighter *fighter); };
-struct CInfoManagerStoryBindingView {
+struct CInfoManagerStoryBindingView : InfoManagerResourceView {
     void refresh_roster_state_471ec0();
     void bind_fighters_471f10();
     void emit_effect_472060(int effect_id, int side, int index);
@@ -43,6 +43,6 @@ void CInfoManagerStoryBindingView::bind_fighters_471f10()
 void CInfoManagerStoryBindingView::emit_effect_472060(int effect_id, int side, int index)
 {
     if (side == 0)
-        reinterpret_cast<BattleInfoRecordEffectRuntimeView *>(reinterpret_cast<unsigned char *>(this) + 0x498)->emit_group_effect_46f9f0(effect_id, index);
+        reinterpret_cast<BattleInfoRecordEffectRuntimeView *>(&battle_records_498()[0])->emit_group_effect_46f9f0(effect_id, index);
 }
 }
