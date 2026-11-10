@@ -86,3 +86,14 @@ acceptance is a separate result and must be checked for the current inputs.
 Only the constructor adds authored exact coverage; generated lifetime support
 does not add authored functions. The pending input-source pins and all earlier
 uncommitted input/scenario edits remain unchanged.
+
+## Factory result
+
+The forced cold replay for this new function compiled successfully, but the
+current `th105-vc8-function-v1` driver sent the linked DLL to its standalone
+COFF comparator. Comparison failed with `coff.machine_unsupported`, so receipt
+`e9e9107536aecd426d9877966f99b9ea205aab51fc3131d48943bd3a53215eef`
+was rejected for incomplete coverage and a non-pass verdict. Job:
+`2cb3ff00dcfa4390b49d579df738267f`. The local linked proof above remains the
+result; Factory acceptance needs a supported linked-image replay route. No
+retry or comparator substitution was made.
