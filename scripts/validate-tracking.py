@@ -121,6 +121,10 @@ def validate_origins(functions: dict[int, dict[str, str]]) -> None:
             raise ValueError(f"function-origins.csv:{line}: duplicate address")
         if row["disposition"] not in {"review", "authored", "exclude"}:
             raise ValueError(f"function-origins.csv:{line}: invalid disposition")
+        if functions.get(address, {}).get("status") == "matching" and (
+                row["origin"] != "authored_game" or row["disposition"] != "authored"
+                or not row["evidence_id"].strip()):
+            raise ValueError(f"function-origins.csv:{line}: exact function needs authored origin evidence")
         addresses.add(address)
     if addresses != set(functions):
         raise ValueError("function-origins.csv: addresses differ from functions.csv")
@@ -232,6 +236,8 @@ def main() -> int:
     target = parser.add_mutually_exclusive_group()
     target.add_argument("--require-target", action="store_true")
     target.add_argument("--skip-target-bytes", action="store_true")
+    target.add_argument("--portable", action="store_true",
+                        help="check ledgers/build graph without target bytes or native comparison contracts")
     args = parser.parse_args()
     try:
         manifest = validate_target(args.require_target and not args.skip_target_bytes)
@@ -257,7 +263,7 @@ def main() -> int:
         )
         reccmp = validate_reccmp_ledgers()
         implemented = read_implemented(reccmp)
-        match_manifest = load_manifest()
+        match_manifest = load_manifest(binary_contracts=not args.portable)
         validate_real_literal_relocations(
             match_manifest,
             require_bytes=args.require_target and not args.skip_target_bytes,

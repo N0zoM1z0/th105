@@ -72,7 +72,8 @@ def deferred_upstream_include(unit: dict[str, Any], path: str) -> bool:
             and path == ".tools/upstream/zlib-1.2.3")
 
 
-def load_manifest() -> dict[str, Any]:
+def load_manifest(*, binary_contracts: bool = True) -> dict[str, Any]:
+    """Validate the graph; native comparison contracts need analysis packages."""
     with MANIFEST.open("rb") as stream:
         manifest = tomllib.load(stream)
     if manifest.get("schema_version") != 1:
@@ -104,8 +105,11 @@ def load_manifest() -> dict[str, Any]:
         if not isinstance(unit.get("enable_gs"), bool):
             raise ValueError(f"match unit {name!r} enable_gs must be boolean")
         if unit["kind"] == "linked_candidate":
-            from linked_pe import validate_contract
-            validate_contract(unit, dir32_allowlist)
+            if unit["profile"] != "vc8-sp1-ltcg-o2" or not str(unit.get("object", "")).endswith(".dll"):
+                raise ValueError("linked_candidate requires its LTCG profile and a .dll output")
+            if binary_contracts:
+                from linked_pe import validate_contract
+                validate_contract(unit, dir32_allowlist)
         elif unit["profile"] == "vc8-sp1-ltcg-o2":
             raise ValueError("the LTCG profile requires a linked_candidate unit")
         if unit["kind"] == "upstream_prebuilt":
@@ -199,8 +203,9 @@ def load_manifest() -> dict[str, Any]:
             if "switch_payload" in function:
                 if unit["kind"] != "probe" or function.get("owned_extent") or function.get("contiguous_span"):
                     raise ValueError("compact-switch payload requires one ordinary COFF candidate extent")
-                from coff_switch_payload import validate_contract as validate_switch_payload
-                validate_switch_payload(function["switch_payload"], int(ledger[address]["size"]))
+                if binary_contracts:
+                    from coff_switch_payload import validate_contract as validate_switch_payload
+                    validate_switch_payload(function["switch_payload"], int(ledger[address]["size"]))
             for mapping in function.get("rel32_targets", []):
                 if not isinstance(mapping, str) or not REL32_TARGET.fullmatch(mapping):
                     raise ValueError(

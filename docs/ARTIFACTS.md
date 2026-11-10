@@ -5,6 +5,20 @@ game's Wine prefix and analyzer projects. Shared runtimes are selected through
 `.tools/shared-runtimes.json`; see [SHARED_TOOLS.md](SHARED_TOOLS.md).
 Keep `.venv` for the pinned repository Python environment.
 
+The VC8 profile uses x86 compiler/linker tools, the locked complete header
+trees, release CRT libraries and x86 SDK libraries. Debug/CLR CRT libraries
+and other target architectures are unnecessary for the configured profiles.
+Trimming those components was checked by fully rebuilding and comparing
+`Collision.cpp`, `ScoreMusicLookup.cpp`, `TextureSizeQueryUnit.cpp` and
+`PackageArchiveStoreLinked.cpp`, covering COFF, STL and import/static CRT links.
+Keep resource tools and runtime dependencies. Host architecture alone does not
+determine whether a component is needed.
+
+Optional MCP bridges retain their source and lock files; their virtualenv,
+`node_modules` and build caches can be regenerated when enabling them. Existing
+Ghidra extensions stay installed. Identical authentication dependencies can
+use the Factory copies; keep any additional local dependencies.
+
 Current source and exact ledgers live in Git. `config/match-units.toml` and the
 repository build/comparison scripts reproduce configured comparisons. Exactness
 requires a complete fresh comparison of the affected scope, including owned

@@ -6,11 +6,12 @@ TH10.5 v1.06a executable with SHA-256
 
 ## Current work
 
-The November 10 maintenance removes obsolete archives, diagnostic outputs and
-cleanup history. Current source, exact ledgers, reproducible build scripts,
-toolchains and analysis projects remain in place. Keep useful findings in the
-existing topic notes; a file being cited is not a reason to retain it.
-See [ARTIFACTS.md](ARTIFACTS.md) for the small set of private inputs to preserve.
+The November 10 maintenance removes reproducible trial outputs, optional bridge
+caches and unused VC8 components. The configured release compiler paths still
+match exactly in focused COFF/STL/import-CRT/static-CRT checks; see
+[ARTIFACTS.md](ARTIFACTS.md). Current source, exact ledgers, analyzer projects,
+canonical caches and unresolved compiler contexts remain available. Keep useful
+findings in the existing topic notes; a citation alone is not a retention reason.
 
 The latest reconstruction checkpoint before maintenance is `ec2fbccf`, joining
 battle setup to the live camera owner. The worktree also contains earlier
@@ -73,7 +74,8 @@ and a successful link confer no exact credit.
 
 Retain a short finding and checkpoint stable work with `gpt-dots: <summary>`.
 Run the applicable focused checks and `python3 scripts/ci.py` before committing.
-Basic CI needs no analysis packages and runs only syntax/whitespace checks;
-GitHub Actions uses `--all` for tracked-file syntax. Tests and reconstruction
-validators run separately when relevant to the change.
+Basic CI uses only the standard library for tracked-file syntax, whitespace,
+portable ledger/build-graph consistency and private artifact checks. GitHub
+Actions checks the PR/push commit range with `--base COMMIT`. Native contracts,
+target-byte validation, tests and exact comparisons run separately when relevant.
 Ordinary documentation maintenance needs no native build or broad replay.

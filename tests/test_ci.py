@@ -17,6 +17,9 @@ class BasicCiTests(unittest.TestCase):
         self.root = Path(folder.name)
         (self.root / "scripts").mkdir()
         shutil.copyfile(ROOT / "scripts/ci.py", self.root / "scripts/ci.py")
+        (self.root / "scripts/validate-tracking.py").write_text(
+            "import sys\nassert sys.argv[1:] == ['--portable']\n"
+        )
         self.git("init", "--quiet")
         self.commit()
 
@@ -70,8 +73,46 @@ class BasicCiTests(unittest.TestCase):
         self.commit()
         (self.root / "note.md").write_text("later commit\n")
         self.commit()
-        self.assertEqual(self.check().returncode, 0)
+        self.assertNotEqual(self.check().returncode, 0)
         self.assertNotEqual(self.check("--all", ci=True).returncode, 0)
+
+    def test_private_artifacts_fail_including_forced_ignored_files(self):
+        for name, data in {"build/probe.obj": b"object", "resources/th105.exe": b"MZ",
+                           ".tools/tool": b"tool", ".env": b"secret", "renamed": b"\x7fELF"}.items():
+            with self.subTest(name=name):
+                path = self.root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(data)
+                self.git("add", "--force", name)
+                self.assertNotEqual(self.check().returncode, 0)
+                self.git("rm", "--force", name)
+
+    def test_tracking_failure_is_propagated(self):
+        (self.root / "scripts/validate-tracking.py").write_text("raise SystemExit(1)\n")
+        self.assertNotEqual(self.check().returncode, 0)
+
+    def test_base_checks_whitespace_in_earlier_pr_commit(self):
+        base = self.git("rev-parse", "HEAD").stdout.strip()
+        (self.root / "earlier.md").write_text("trailing space \n")
+        self.commit()
+        (self.root / "later.md").write_text("clean\n")
+        self.commit()
+        self.assertNotEqual(self.check("--base", base).returncode, 0)
+
+    def test_invalid_base_fails(self):
+        self.assertNotEqual(self.check("--base", "missing-commit").returncode, 0)
+
+    def test_base_checks_pr_commits_behind_checkout_merge(self):
+        base = self.git("rev-parse", "HEAD").stdout.strip()
+        self.git("checkout", "-q", "-b", "feature")
+        (self.root / "feature.md").write_text("trailing space \n")
+        self.commit()
+        self.git("checkout", "-q", "--detach", base)
+        (self.root / "base.md").write_text("clean\n")
+        self.commit()
+        self.git("-c", "user.name=CI Test", "-c", "user.email=ci@example.invalid",
+                 "merge", "--quiet", "--no-ff", "feature", "-m", "PR merge")
+        self.assertNotEqual(self.check("--base", base).returncode, 0)
 
     def test_ci_rejects_whitespace_already_in_the_commit(self):
         (self.root / "note.md").write_text("trailing space \n")

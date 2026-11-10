@@ -153,12 +153,13 @@ python3 scripts/ci.py
 ```
 
 The finished local gate is required before commit/push/PR; rerun after changes
-to source, ledgers, scripts, tests or generated progress. Default CI checks
-changed Python/JSON/TOML/shell syntax and staged/unstaged whitespace only.
-GitHub Actions uses `--all` to check syntax across tracked files and checks
-commit whitespace. Ledger validation, affected exact comparisons and relevant
-tool tests run separately when the task requires them. Do not add a routine
-test suite, progress freshness check or environment audit to basic CI.
+to source, ledgers, scripts, tests or generated progress. Default CI checks all
+tracked Python/JSON/TOML/shell syntax, staged/unstaged whitespace, portable
+ledger/build-graph consistency and private artifact mistakes. GitHub Actions
+uses `--base COMMIT` to check whitespace across the PR/push commit range.
+Target-backed validation, native comparison contracts, affected exact
+comparisons and relevant tool tests run separately when required. Do not add
+a routine test suite, progress freshness check or environment audit to basic CI.
 Regenerate progress explicitly when its inputs change.
 
 Update `docs/RE_HANDOFF.md` when phase/blocker changes. Report addresses,

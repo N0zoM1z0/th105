@@ -88,12 +88,12 @@ for a reconstructed function. Preserve the target's actual guards and EH paths
 in source. Use a bounded execution probe only when it answers a concrete ABI,
 lifetime, floating-point or side-effect question blocking the comparison.
 
-Basic CI checks Python/JSON/TOML/shell syntax and whitespace using the standard
-library, without requiring the reconstruction environment. Locally it checks
-changed files; GitHub Actions uses `--all` for tracked-file syntax and also
-checks commit whitespace. It does not run tests, ledger validation, native
-builds or progress checks. Run the relevant validator or test directly when
-changing that tool. Broader tests remain available through
+Basic CI checks all tracked Python/JSON/TOML/shell syntax, whitespace, portable
+ledger/build-graph consistency and private artifacts using the standard library.
+It needs no reconstruction environment or original executable. GitHub Actions
+also checks whitespace throughout the PR/push commit range with `--base COMMIT`.
+Native comparison contracts, target-byte validation, builds and tests run only
+when relevant to the change. Broader tests remain available through
 `scripts/repo-python -m unittest discover -s tests` when needed. Do not add
 fixed progress totals, checkpoint status or source-string snapshots.
 Generate progress explicitly when its inputs change.

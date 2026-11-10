@@ -94,10 +94,13 @@ Basic CI needs only Python 3.11+, Git and Bash, with no package installation:
 python3 scripts/ci.py
 ```
 
-It checks changed Python/JSON/TOML/shell syntax and staged/unstaged whitespace.
-GitHub Actions runs `python3 scripts/ci.py --all` to check syntax across tracked
-files and whitespace in the checked commit. Native compilation, exact comparison,
-ledger validation and tests are separate task-specific commands.
+It checks all tracked Python/JSON/TOML/shell syntax, staged/unstaged whitespace,
+ledger consistency, the basic build graph and accidentally tracked private
+artifacts. Nonignored untracked files are checked too. GitHub Actions passes
+`--base COMMIT` to check whitespace throughout the PR/push commit range,
+including commits behind its merge commit. A clean checkout needs no target or
+private tools. Native comparison contracts, compilation, exact comparison and
+tests remain task-specific commands.
 
 Use `scripts/repo-python` for reconstruction and analysis Python commands. It
 checks the exact CPython version in `.python-version`, all package versions in

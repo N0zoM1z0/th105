@@ -119,27 +119,18 @@ class WorkflowToolingTests(unittest.TestCase):
         identifiers = [rule["id"] for rule in rules["rules"]]
         self.assertEqual(len(identifiers), len(set(identifiers)))
 
-    def test_exact_functions_use_the_exact_origin_baseline(self) -> None:
-        with (ROOT / "config" / "functions.csv").open(newline="", encoding="utf-8") as stream:
-            matching = {
-                row["address"].upper()
-                for row in csv.DictReader(stream)
-                if row["status"] == "matching"
-            }
-        with (ROOT / "config" / "function-origins.csv").open(newline="", encoding="utf-8") as stream:
-            origins = {row["address"].upper(): row for row in csv.DictReader(stream)}
-        self.assertTrue(all(
-            origins[address]["evidence_id"] == "canonical-exact-authored"
-            for address in matching
-        ))
-        rules = tomllib.loads((ROOT / "config" / "function-origin-rules.toml").read_text())
-        for rule in rules["rules"]:
-            if rule.get("skip_matching"):
-                continue
-            overlap = matching.intersection(
-                str(address).upper() for address in rule.get("addresses", [])
-            )
-            self.assertFalse(overlap, f"{rule['id']} reclaims exact functions: {sorted(overlap)}")
+    def test_exact_functions_require_authored_origin_evidence(self) -> None:
+        functions = {0x401000: {"status": "matching"}}
+        row = dict(address="0x00401000", origin="authored_game", disposition="authored",
+                   evidence_id="reviewed-topic-evidence")
+        with mock.patch.object(self.validator, "require_header", return_value=[row]):
+            self.validator.validate_origins(functions)
+            for change in ({"origin": "compiler_runtime"}, {"disposition": "exclude"},
+                           {"evidence_id": ""}):
+                with self.subTest(change=change), mock.patch.object(
+                        self.validator, "require_header", return_value=[dict(row, **change)]):
+                    with self.assertRaisesRegex(ValueError, "authored origin evidence"):
+                        self.validator.validate_origins(functions)
 
     def test_skip_matching_rule_names_describe_active_selection(self) -> None:
         rows = [
