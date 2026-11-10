@@ -107,15 +107,9 @@ The caller's own ESI entry and helper's private entry also need coupled review.
 
 ## Reproduction and remaining work
 
-Public focused commands are the two standard `build.py --unit ... --compare
---json` invocations for `gpt-web-ogg-metadata` and
-`cross-v106a-network-winsock-receive-thread`. Private before/after builds,
-source/object hashes, raw CFGs, ordinary/formal/section controls, SFL visibility
-summaries and Ghidra pins are under `build/allocator-interface-20261019/`.
-Drivers and visibility source are under `.analysis/allocator-interface-20261019/`.
-The mixed network command/source pins and image/map/replay records are
-`build/allocator-interface-network.*`, from
-`.analysis/network-udp-linked-20261016/probe-linked.py` and `replay-diagnostic.py`.
+Public focused commands are the two standard `build.py --unit ... --compare --json`
+invocations for `gpt-web-ogg-metadata` and
+`cross-v106a-network-winsock-receive-thread`.
 
 The final ledger scan also records seven other nonexact probes that bind
 scalar-new symbols to665B8A:419860,419A60,419E80,419590,419690,419950 and46FA90.

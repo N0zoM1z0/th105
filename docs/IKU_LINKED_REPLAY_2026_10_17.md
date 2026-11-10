@@ -89,9 +89,7 @@ git diff --check
 
 The focused ordinary comparison intentionally exits1 for nonexact+64hex.
 The genuine link and full diagnostic replay succeed; all44 source compilation
-steps reuse hash-checked objects. The v2 receipt at
-`build/iku-action-ltcg/receipt.json` binds the new replay module as well as
-source/tool/image/map inputs. Five parser/control tests cover complete field
+steps reuse hash-checked objects. Five parser/control tests cover complete field
 replay, preserved opcode differences, literal identity/bytes/width/section,
 relocation completeness, instruction boundaries, index bytes, tail alignment,
 call identity and game-data identity. They use synthetic parser fixtures,

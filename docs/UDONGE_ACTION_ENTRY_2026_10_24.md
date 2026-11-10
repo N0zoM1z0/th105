@@ -100,13 +100,10 @@ before tuning. No decompiler text was mechanically pasted as source.
 |08, neutral|A typed offset-prefix view, with compiled offsetof checks, is byte-identical to04. Do not repeat the layout/spelling question.|
 |Selected|Drop the rejected phi and retain the ordinary per-case02 body with the proven04 byte call view. Full5118, matching formal/cold SHA above. All ten scoped native controls pass.|
 
-Private frozen recipes/sources are under
-`.analysis/exact-first-udonge-entry-20261024/`; generated objects, full normalized
-payloads, CFG/literal receipts and reports are under the corresponding `build/`
-directory. These working artifacts are not committed. Source retains actual
-function-scope float payload, signed WORD state writes, signed BYTE60E guard,
-independent repeated callbacks and declaration-only helper interfaces. No asm,
-copied machine bytes, inert locals, fake returns or ABI/register forcing is used.
+These working artifacts are not committed. Source retains actual function-scope
+float payload, signed WORD state writes, signed BYTE60E guard, independent repeated
+callbacks and declaration-only helper interfaces. No asm, copied machine bytes,
+inert locals, fake returns or ABI/register forcing is used.
 
 The regional branch placement, three extra visual-reset copies and some x87
 storage scheduling remain nonexact. Original source variables, complete owner

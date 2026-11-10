@@ -120,16 +120,12 @@ no opaque post-wave continuation is executed for these trials. The same-TU
 
 ## Retention and reproduction
 
-Compiler/source/header pins and frozen inputs are under
-`build/reimu-object-small-dependency-20261021/`; RTM/SP1 receipts are under
-`build/angle-quantized-20261021/`; root arithmetic receipts are under
-`build/reimu-object-908-sum-20261021/`. Private recipes live in matching
-`.analysis/` scopes and use frozen baseline sources. Completed unselected
-products are archived only after per-file SHA256 readback; manifests retain
-sizes and hashes. The pair-control archive reduces261030 to43742 bytes; the
-root-control archive reduces2591358 to328748 bytes. Baseline inputs, canonical
-target, tools and primary databases are retained. No aggregate cold replay, new percentage or new numerical
-regression claim is made for byte-neutral/unselected sources.
+Completed unselected products are archived only after per-file SHA256 readback;
+manifests retain sizes and hashes. The pair-control archive reduces261030 to43742
+bytes; the root-control archive reduces2591358 to328748 bytes. Baseline inputs,
+canonical target, tools and primary databases are retained. No aggregate cold
+replay, new percentage or new numerical regression claim is made for
+byte-neutral/unselected sources.
 
 ```bash
 # Expected exit1: seven exact effects functions and nonexact5F9350.

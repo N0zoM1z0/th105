@@ -35,12 +35,8 @@ The root's whole14-byte extent, two relocations, remaining bytes, CFG and
 full-inventory uniqueness pass. Existing native cleanup/provider code and
 metadata get no additional authored or function-byte credit.
 
-Nine focused tests protect source/archive/member/type/bindings and zero-fill
-storage rules. All166 actual initialized-byte mutations fail: every root,
-provider and scope-table byte plus the boundaries of all unique RTTI regions.
-The prior invalid_argument copy and its independently exact logic_error113/EH
-gate freshly pass after registering the actual type_info vtable.
-
-Evidence: build/origin-anchors/vc8-typeinfo-dtor/proof.json and
-build/frontier-typeinfo-dtor-20261101/. Private scripts are under
-.analysis/frontier-typeinfo-dtor-20261101/.
+Nine focused tests protect source/archive/member/type/bindings and zero-fill storage
+rules. All166 actual initialized-byte mutations fail: every root, provider and
+scope-table byte plus the boundaries of all unique RTTI regions. The prior
+invalid_argument copy and its independently exact logic_error113/EH gate freshly
+pass after registering the actual type_info vtable.

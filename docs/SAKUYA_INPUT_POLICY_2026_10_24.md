@@ -103,12 +103,6 @@ observed-tail and virtual-call metadata are read back and rolled back. All
 pinned primary database hashes remain unchanged. CPU0/nice10 and a384 MiB
 configured heap bound the analysis; builds are serial with the same CPU/nice.
 
-Recipes and the unchanged first complete source/header snapshots remain under
-`.analysis/exact-first-sakuya-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts, full CFG closure, all ten table edges, disassembly,
-attestation/logs/database hashes, the first formal object, independent cold
-receipts, relocation counts, original origin row and retained input hashes.
-
 A negative control changes only the first table byte in a generated COFF object.
 The complete audit rejects it at `+0x170C / 0x4E0BBC`, target F9/source FA.
 The target is untouched. Existing Remilia/Tenshi source/header inputs remain

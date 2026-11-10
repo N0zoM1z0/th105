@@ -117,15 +117,9 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-Fresh configured reports: `build/aya-sequence-final-20261002.json` and
-`build/aya-sequence-final-owners-20261002.json`; object-bound raw and guard
-reports: `build/aya-sequence-final-raw-20261002.json` and
-`build/aya-sequence-final-guards-20261002.json`. Source controls/exported
-packets live below `.analysis/aya-sequence-structure-20261002/` and
-`build/aya-sequence-structure-20261002/`. Their existing-object comparisons
-have no configured build provenance and award no exact credit. The controls
-are the isolated source transformations described above; they are not an
-acceptance recipe.
+Their existing-object comparisons
+have no configured build provenance and award no exact credit. The controls are the
+isolated source transformations described above; they are not an acceptance recipe.
 
 Complete raw traversal still reaches4,630 instructions/all19,522 target
 bytes through seven validated switches, with no unresolved indirect exit or

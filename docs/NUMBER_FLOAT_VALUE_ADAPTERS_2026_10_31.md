@@ -23,7 +23,6 @@ number objects. Fresh full-unit replay preserves the existing gauge virtuals
 20/27, general binding648 and story binding351 while adding both complete
 getters. No source, header, compiler flag, data alias or verification tool changes.
 
-Receipts: build/frontier-number-float-values-20261031/formal.json and rtti.json.
 The unit remains gpt-web-battle-info-gauge-runtime. Only16 authored bytes/two
 functions are added: exact1580/448995, source1778/authored1798/mapped1805,
 excluded1783/review446/units762.

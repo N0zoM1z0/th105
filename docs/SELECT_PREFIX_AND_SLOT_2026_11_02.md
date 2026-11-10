@@ -43,8 +43,6 @@ identity is inferred. Other state flags retain their original widths.
   and fresh whole consumer receipts. Four tests cover the missing seventh slot,
   wrong flow role and all28 single-byte native slot mutations.
 
-No ledger, matches or count changes. Evidence:
-`.analysis/frontier-select-prefix-20261102/` and
-`build/frontier-select-prefix-20261102/`. Raw pinned target only, serial native
-jobs, no IDA semantic reuse or push. This consolidation does not reopen the
-closed frame/entry source-spelling or register-scheduling lanes.
+No ledger, matches or count changes. Raw pinned target only, serial native jobs, no
+IDA semantic reuse or push. This consolidation does not reopen the closed
+frame/entry source-spelling or register-scheduling lanes.

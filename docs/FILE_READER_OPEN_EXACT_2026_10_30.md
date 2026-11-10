@@ -58,12 +58,10 @@ exact results. Two focused verifier tests cover the five-slot contract,
 RTTI, slot order, extra slots and missing relocation rejection. Local CI and
 whitespace checks pass. There was no cold full-corpus rebuild.
 
-The source is in src/assets/FileReader.hpp and FileReader.cpp. The selected
-root is compiled through src/battle/ScriptFileLoading.cpp. The old standalone
-reader unit retains its two accessor anchors. The former standalone package
-opener descriptor is moved into this real CIL unit without accepting it.
-Private evidence lives under build/frontier-reader-constructor-cil-20261030,
-including public-compare.json and the two regressions JSON batches.
+The source is in src/assets/FileReader.hpp and FileReader.cpp. The selected root is
+compiled through src/battle/ScriptFileLoading.cpp. The old standalone reader unit
+retains its two accessor anchors. The former standalone package opener descriptor is
+moved into this real CIL unit without accepting it.
 
 ```bash
 scripts/repo-python scripts/build.py --unit exact-first-csv-file-loading --json

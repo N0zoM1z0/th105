@@ -42,9 +42,6 @@ Opening update remains 52/52, its constructor 130/130, Title's complete extent
 existing Title/member/factory audit also rechecks all 1,105 owned EH bytes and
 their complete tables. Select's pre-existing nonexact work remains unchanged.
 
-Evidence is in `.analysis/frontier-scene-fade-pointer-20261109/` and
-`build/frontier-scene-fade-pointer-20261109/`. `verification.json` records the
-native operands, full-body hashes, root comparisons and section counts.
 Input-migration changes, source pins and exact ledgers are untouched.
 
 ## Application callback route review

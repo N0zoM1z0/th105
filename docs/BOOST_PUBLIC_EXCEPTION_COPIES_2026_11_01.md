@@ -81,13 +81,10 @@ storage, full names, hierarchy cycles and consistent pointer identities.
 Twenty-nine actual mutations of roots, injectors, EH, RTTI and typed provider
 witnesses are rejected.
 
-The previous original runtime_error clone46 gate freshly passes after the
-upstream probe guard addition. Its source remains unchanged; no cold all-unit
-rebuild is justified. Evidence is retained in
-build/origin-anchors/boost-public-exception-copies.json and
-build/frontier-public-boost-throw-20261101, including mutations.json and
-runtime-clone-regression.log. The initial private COFF leads alone were not
-accepted; full type/EH validation precedes the final narrow origin replay.
+The previous original runtime_error clone46 gate freshly passes after the upstream
+probe guard addition. Its source remains unchanged; no cold all-unit rebuild is
+justified. The initial private COFF leads alone were not accepted; full type/EH
+validation precedes the final narrow origin replay.
 
 Excluded2017/review355; authored exact1431/443916 bytes, authored1655,
 source1635 and mapped1820 remain unchanged. The new library unit brings the

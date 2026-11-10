@@ -140,10 +140,6 @@ allocation epochs are unproved. Private receipt: `target-packet-locations.json`.
 This section records the first checkpoint `6fdd010`; the follow-up below
 supersedes its selected hash and current residuals.
 
-Receipts below are under `build/exact-first-komachi-object-update-20261025/`;
-private raw/decompiler drivers, complete source snapshots and recipes are under
-the corresponding `.analysis/` directory.
-
 | Complete source/control | Full bytes | SHA256 prefix | Result |
 | --- | ---: | --- | --- |
 |First manual complete body|29056|bb6323b2|27592 differences; first+8, frame0x28|
@@ -201,9 +197,7 @@ destinations, truncation, external CFG edges and exact unreachable-padding sets.
 This section records checkpoint `b342a30`; the next follow-up supersedes its
 selected hash while retaining these scalar/table corrections.
 
-Fresh receipts are under `build/komachi-update-sharing-20261025/`; complete
-private controls are under the corresponding `.analysis/` directory. A fresh
-baseline build reproduces the preceding checkpoint. IDA still rejects its
+A fresh baseline build reproduces the preceding checkpoint. IDA still rejects its
 different executable; all new instruction evidence uses the hash-attested PE.
 
 Raw801/825/852 all have a consumed float rounding boundary before multiplication
@@ -266,10 +260,8 @@ bindings, source-present count and exact ledgers do not change in this follow-up
 
 ## Further follow-up: pre-call Y captures and physical frame reuse
 
-New receipts are under `build/komachi-update-frame-epochs-20261025/`; the
-corresponding private directory retains the stack-depth recipe and full source
-controls. Fresh whole-function baseline replay reproduces29040/58b2730b.
-No new Ghidra process or use of the rejected IDA session is involved.
+Fresh whole-function baseline replay reproduces29040/58b2730b. No new Ghidra process
+or use of the rejected IDA session is involved.
 
 The raw target captures Y as a qword before three stage-height calls, then
 compares the returned ST0 against that saved value:
@@ -471,7 +463,6 @@ Four further 30- and 120-frame bounds at `0x5FCD6E`, `0x5FD145`, `0x5FDC78`, and
 
 The signed state gates at `0x5FEC3E` and `0x5FFA06` now use the equivalent `<= 0` form, recovering their local comparison and branch families. Some register scheduling still differs, and the 28,816-byte complete candidate remains non-exact.
 
-
 ## Shared runtime providers, 2026-11-09
 
 KomachiObject now calls the existing `CharacterObjectRuntime` implementations
@@ -496,8 +487,4 @@ six-state66 and phase73. Reimu's co-emitted update remains unchanged and nonexac
 Komachi's full target payload is 28,520 bytes and the first difference remains
 +8, so this resolves provider identities without adding authored exact credit.
 
-Private recipes and receipts are in
-`.analysis/frontier-komachi-runtime-providers-20261109/` and
-`build/frontier-komachi-runtime-providers-20261109/`, including `receivers.json`,
-`sections.json` and the complete before/after payload reports. No origin pin or
-pending input-migration file is changed by this work.
+No origin pin or pending input-migration file is changed by this work.

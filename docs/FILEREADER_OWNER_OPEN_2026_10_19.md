@@ -75,9 +75,8 @@ with PUSH ECX and saves ESI/EDI before conditional paths. Candidate save
 placement, allocation-null guards and vptr/initialization scheduling also
 differ. The one-byte size deficit is not a one-byte reconstruction problem.
 
-Target allocation guards enclose initialization, which is consistent with
-inlined path constructors but does not prove original C++ construction syntax.
-Private controls test that hypothesis without changing public interfaces:
+Target allocation guards enclose initialization, which is consistent with inlined
+path constructors but does not prove original C++ construction syntax.
 
 | Control | Observation |
 | --- | --- |
@@ -131,12 +130,8 @@ loaders remain nonexact. No matches row, source code, shared header, class
 layout or compiler flag changes. All seven open-function relocation fields
 are replayed explicitly; there is no ignored range/register normalization.
 
-Private evidence is below `.analysis/filereader-open-20261019/` and
-`build/filereader-open-20261019/`: target/source CFG and assembly, caller
-inventory, typed Ghidra hypothesis/attestation and nine-file hashes, private
-source controls, `execution.json`, `reviewed-unit.json`, and `bmp-replay.json`.
-The source-selection and origin evidence are durable in the public ledgers.
-No generated binary/report or analysis database is committed.
+The source-selection and origin evidence are durable in the public ledgers. No
+generated binary/report or analysis database is committed.
 
 Next work should obtain the genuine package-entry/provider implementation at
 41BFA0 and then re-evaluate constructor/whole-program context for CF40 and

@@ -119,8 +119,7 @@ unique PCs14744/states16894; target14870/16959. Changed storage correlations
 and owner counts are compiler diagnostics, not source-variable or payload-
 value proof.
 
-Reports are `build/iku-effect-final-{compare,native,control,facts,payloads,
-owners}.json`. Previous native/link results retain their earlier source
+Previous native/link results retain their earlier source
 hashes in [conditional exits](IKU_LANDING_ARGUMENT_OWNERSHIP_2026_10_17.md)
 and [glide exits](IKU_GLIDE_EXIT_OWNERSHIP_2026_10_17.md); they were not broadly
 replayed. No accepted shared header/layout/profile/relocation or exact ledger

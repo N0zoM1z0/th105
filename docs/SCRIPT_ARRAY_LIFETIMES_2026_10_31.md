@@ -58,10 +58,8 @@ The parser is neither exact nor promoted by its exact caller.
 
 ## Verification and accounting
 
-Fresh accepted receipts:
-build/frontier-script-parser-lifetime-20261031/final-csv-accepted.json
-and final-bgm-accepted.json. The affected-unit list, native parser facts and
-intermediate diagnostics are retained in the same private build scope.
+The affected-unit list, native parser facts and intermediate diagnostics are
+retained in the same private build scope.
 
 Only the new parser authored-origin row is materialized; its whole hash and
 exact-caller edge pass the normal validator. No existing accepted function
@@ -80,6 +78,5 @@ an unproven spelling improvement. The existing free-stdcall EH comparison
 boundary remains unchanged.
 
 Fresh restoration builds retain all 14 currently registered exact roots in the
-linked unit. Receipts and both rejected source controls are under
-`build/frontier-script-line-control-20261110/` and its matching private analysis
-scope. No shared input, comparison contract, source pin or exact ledger changed.
+linked unit. No shared input, comparison contract, source pin or exact ledger
+changed.

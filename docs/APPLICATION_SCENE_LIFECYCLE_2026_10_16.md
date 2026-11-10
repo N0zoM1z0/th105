@@ -91,15 +91,12 @@ or claims about ownership of remote EH chunks:
 | Original target | 148 | 281 | 154 |
 
 Every diagnostic used the same actual VC8 import libraries, original data/IAT
-bindings and resolved link without `/FORCE`. Input hashes, commands, maps,
-logs and disassembly were recorded below
-`build/application-scene-visibility-20261016/`; private drivers are below
-`.analysis/application-scene-visibility-20261016/`. The `/Os` output is densely
-packed and does not outline the observed insertion helper. `/Ob1` leaves the
-two authored extents unchanged. `/GS` restores a cookie-bearing `_Incsize`,
-but its frame, saved ESI and string-construction call contract still differ.
-A near-sized helper is not a match. None of these controls resolves the
-producer's private insertion boundary; no source/profile change was retained.
+bindings and resolved link without `/FORCE`. The `/Os` output is densely packed and
+does not outline the observed insertion helper. `/Ob1` leaves the two authored
+extents unchanged. `/GS` restores a cookie-bearing `_Incsize`, but its frame, saved
+ESI and string-construction call contract still differ. A near-sized helper is not a
+match. None of these controls resolves the producer's private insertion boundary; no
+source/profile change was retained.
 
 Raw E8 discovery followed by instruction/CFG verification identifies shared
 `40C6D0` calls from `4036E0` (three), `403B90`, `403CE0` (two), `4089C0`,
@@ -112,8 +109,7 @@ been reached by the bounded `40B000` inspection. The subsequent
 [complete CDesignBase loader audit](DESIGN_BASE_NATIVE_VECTOR_2026_10_21.md)
 resolves the switch and reaches all860 instructions, including this call to
 `40C6D0`. Count that caller edge as verified; generic-helper source ownership
-remains open. The earlier receipt is
-`build/application-scene-visibility-incsize-callers.json`.
+remains open.
 
 The insertion helper `4089C0` still has only the independently verified scene
 handoff call at `4080DF`. The target's reference-in-EAX/list-on-stack boundary
@@ -134,17 +130,13 @@ python3 scripts/build.py --unit cross-v106a-application-scene-lifecycle --json
 python3 scripts/compare-linked-unit.py cross-v106a-application-scene-lifecycle --address 0x00408870 --json
 ```
 
-Reports are `build/application-scene-lifecycle-boundaries.json`,
-`build/application-scene-lifecycle-linked-formal.json` and the accepted selected
-report `build/application-scene-disposal-formal.json`. Full-unit comparison
+Full-unit comparison
 still reports the producer mismatch. Only the consumer enters matches.csv;
 the producer has an independent hash/edge/data-backed authored-origin rule.
 Unrelated origin fingerprints are preserved after scope/overlap checks.
 
-Direct Ghidra sessions independently attest executable/program SHA, image/entry,
-x86 Windows identity and every mapped .text byte before saving and freshly
-reading back both names, complete extents, return/parameter widths, cdecl0 versus
-stdcall4 and body hashes. Scripts stay under
-`.analysis/application-scene-lifecycle-20261016/ghidra-scripts/`; logs stay under
-`build/application-scene-lifecycle-ghidra-*.log`. Processes use768MiB and two
-active processors; no failed IDA session or factory adapter supplies analysis.
+Direct Ghidra sessions independently attest executable/program SHA, image/entry, x86
+Windows identity and every mapped .text byte before saving and freshly reading back
+both names, complete extents, return/parameter widths, cdecl0 versus stdcall4 and
+body hashes. Processes use768MiB and two active processors; no failed IDA session or
+factory adapter supplies analysis.

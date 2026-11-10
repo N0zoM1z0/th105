@@ -49,8 +49,6 @@ validator was not weakened.
 
 ## Evidence and stopping condition
 
-Private scope .analysis/frontier-linked-tree-callees-20261101 and
-build/frontier-linked-tree-callees-20261101 retain:
 - actual full root/child disassembly and named source specializations;
 - sixteen bounded source/native child-shape comparisons;
 - two complete already-excluded child canonical receipts;

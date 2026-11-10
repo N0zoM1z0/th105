@@ -42,6 +42,4 @@ spelling grid, register forcing or new exactness credit is introduced.
 Authored/source/exact counts remain unchanged: source1636, authored1655,
 mapped1825, review298, excluded2074, exact1427/443604, units812.
 
-Evidence: `.analysis/frontier-network-typed-input-20261102/` and
-`build/frontier-network-typed-input-20261102/`. Original pinned target only;
-serial CPU0/nice10 native work and no push.
+Original pinned target only; serial CPU0/nice10 native work and no push.

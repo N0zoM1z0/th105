@@ -61,12 +61,6 @@ results remain tied to unchanged selected inputs. They were not rerun or
 claimed as new validation of the rejected controls. Exact totals remain1381
 functions/234914 bytes; no aggregate replay claim.
 
-Recipes and complete CPP inputs:
-`.analysis/aya-903-tail-placement-20261022/{probe,retirement,color-order}.py`
-and sibling source files. Build/comparison/provenance receipts, owner reports
-and final `selected-formal.json` remain under
-`build/aya-903-tail-placement-20261022/`.
-
 Final gate: `python3 scripts/ci.py` followed by `git diff --check`. Neither a
 source-present mapping nor these diagnostic/control results constitute exact
 acceptance. The full large-function objective remains open.

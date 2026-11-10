@@ -19,11 +19,9 @@ signed byte with `MOVSX EDX` before the direction branch, then convert with
 state `+0x374`, then uses `FMULP`; the positive arm uses memory `FMUL`.
 The product is stored to owner `+0x6AC`. Source spelling remains unknown.
 
-Private scope: `build/aya-852-rtm-20261023/`. `selected.cpp` is the current
-source; `int-facing.cpp` changes only the genuinely used facing local from
-signed byte to int. The raw byte access and ABI are unchanged. The serial
-recipe is `.analysis/aya-852-rtm-20261023/controls.py`. Frozen CPPs, commands,
-compiler/frontend/backend hashes and baseline input pins are retained.
+`selected.cpp` is the current source; `int-facing.cpp` changes only the genuinely
+used facing local from signed byte to int. The raw byte access and ABI are
+unchanged.
 
 ## Compiler and source controls
 

@@ -72,8 +72,7 @@ membership remain unproved; the source uses a void/no-argument
 contract without inventing a result.
 
 Receipts are `build/animation-auxiliary-render-20261022/formal.json` and
-`target-facts.json`. The private raw traversal recipe remains at
-`.analysis/animation-auxiliary-render-20261022/target_facts.py`.
+`target-facts.json`.
 
 ## Affected replay and continuation
 

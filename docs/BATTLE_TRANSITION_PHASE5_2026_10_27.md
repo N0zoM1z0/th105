@@ -95,10 +95,8 @@ emulation. No inert locals, fake returns, assembly, copied bytes or padding.
 - scripts/repo-python scripts/check-match-literals.py --require-target
 - scripts/repo-python scripts/ci.py
 
-Private complete controls and strict auxiliary replay:
-build/frontier-4724e0-20261027/ and .analysis/frontier-4724e0-20261027/.
-The retained audit_auxiliary.py replays68 code plus52 metadata bytes against
-the pinned target; target-facts.json records all extents/hashes.
+The retained audit_auxiliary.py replays68 code plus52 metadata bytes against the
+pinned target; target-facts.json records all extents/hashes.
 
 Only this new unit is built; prior exact receipts are retained and totals remain
 incremental. Final local CI is pending at writing; its terminal exit/log is the

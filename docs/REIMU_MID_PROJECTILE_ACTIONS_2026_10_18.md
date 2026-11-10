@@ -69,13 +69,6 @@ python3 scripts/audit-reimu-mid-projectile-actions.py build/reimu-mid-projectile
 Pinned VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default FP, no injected environment,
 produces17524 staged text bytes. Object SHA256 is
 `f495235a74f80f74a5208af846a7008cef9f013c338771097257995cccd18a33`.
-The manual compiler/source/header/object receipt is
-`build/reimu-mid-projectiles/build-receipt.json`; the oracle separately pins
-its object/support inputs and does not itself attest compilation.
-
-Final result **0/2932 differences**, report
-`build/reimu-mid-projectiles/native-final.json`, input SHA256
-`d5a78a146a80b6860982d1d0a45f1480fcbc5d671148cd0b0773d8381da4f03e`.
 
 |Cohort|Cases|
 |---|---:|
@@ -134,15 +127,13 @@ only a private include directory. No helper-result or target-byte patch is used.
 
 ## Preservation, resource use and next work
 
-All six older adapters are freshly rebuilt: non-debug code/data and every
-relocation offset/type/symbol/value/section identity remain identical. Text
-sizes remain530,771,1562,4017,4409,11271; receipt
-`build/reimu-mid-projectiles/preserved-stages.json`. Focused replays pass0/9
-entry,0/88 low,0/64 recovery,0/99 movement,0/150 late-low,0/59 low dispatch.
-The changed monolithic method's earlier paths are covered by the191-case
-integration cohort. Historical full matrices are not repeated. No accepted
-unit uses this private header; accepted source/flags/relocation ledgers and
-exact totals are unchanged. No aggregate cold replay is claimed.
+All six older adapters are freshly rebuilt: non-debug code/data and every relocation
+offset/type/symbol/value/section identity remain identical. Focused replays pass0/9
+entry,0/88 low,0/64 recovery,0/99 movement,0/150 late-low,0/59 low dispatch. The
+changed monolithic method's earlier paths are covered by the191-case integration
+cohort. Historical full matrices are not repeated. No accepted unit uses this
+private header; accepted source/flags/relocation ledgers and exact totals are
+unchanged. No aggregate cold replay is claimed.
 
 The fixture adds optional nine-sequence graphs with computed block/frame
 strides and image capacity. Each case supplies the current action and real

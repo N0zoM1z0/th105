@@ -114,9 +114,5 @@ therefore resolves to six genuine array-declaration fixes plus the incorrectly
 bound scalar gauge allocator, rather than seven identical allocation cases.
 There is no new runtime-origin or exclusion claim from the forwarding entry.
 
-Receipts are under `build/array-declarations-20261019/`: target-cfgs.json,
-primary-db before/after pins, baseline/updated/final focused reports,
-array-payload-control.json, gauge-relocations.json and the647/648-byte private
-controls. Analysis scripts and read-only Ghidra hypothesis are under
-`.analysis/array-declarations-20261019/`. Continue archive-loader41BA70/context
-recovery and the unresolved reader/BMP lifetimes after this checkpoint.
+Continue archive-loader41BA70/context recovery and the unresolved reader/BMP
+lifetimes after this checkpoint.

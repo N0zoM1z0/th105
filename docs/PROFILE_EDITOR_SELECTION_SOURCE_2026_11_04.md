@@ -20,11 +20,10 @@ byte-exact**, and contributes no exact bytes or functions. No gameplay or
 runtime execution has been claimed.
 
 The independently exact caller, all 10 selected controller bodies, the editor
-initializer, and its three selected lifetime/leaf bodies each replay exact
-following the shared header extraction. Evidence is under
-`build/frontier-profile-editor-selection-20261104/`. This is scoped checking,
-not a full application link or whole-corpus replay.
-Target-independent CI passed all 1,024 tests and progress/whitespace checks.
+initializer, and its three selected lifetime/leaf bodies each replay exact following
+the shared header extraction. This is scoped checking, not a full application link
+or whole-corpus replay. Target-independent CI passed all 1,024 tests and
+progress/whitespace checks.
 
 ## Bounded selection traces, 2026-11-04
 

@@ -48,9 +48,6 @@ The emitted short/int deque subscripts (100 bytes each), short deque teardown
 The direct wrapper and menu-install facade/stack are freshly rebuilt and exact.
 The separate result initialization body remains nonexact; it was not changed.
 
-Reproduce the root with:
-`scripts/repo-python scripts/build.py --unit exact-first-result-menu-active --compare --json`.
-Full scoped reports, provenance and EH/provider checks are retained under
-`build/frontier-result-active-exact-20261109/`; the bounded replay script is
-`.analysis/frontier-result-active-exact-20261109/verify.py`. Only the 619 authored
-callable bytes are newly credited. No gameplay or integrated runtime test was run.
+Reproduce the root with: `scripts/repo-python scripts/build.py --unit
+exact-first-result-menu-active --compare --json`. Only the 619 authored callable
+bytes are newly credited. No gameplay or integrated runtime test was run.

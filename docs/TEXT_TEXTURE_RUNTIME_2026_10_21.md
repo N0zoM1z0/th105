@@ -126,12 +126,10 @@ the experiments.
 [The font entry checkpoint](TEXT_FONT_RENDER_2026_10_21.md) selects actual
 326-byte412670 source and a new bounded prefix declaration. The texture TU now
 includes that header instead of deriving its view from the retained composite
-facade. Fresh raw native-list/fallback-color evidence rejects that facade's
-164 label and any complete-size168 assumption. This include/type-view change
-leaves the complete wrapper/backend canonical candidates50731d79/15555b85
-unchanged; current receipts are in `build/font-render-20261021/`. The earlier
-typed-pointer source SHA above describes the frozen preceding checkpoint.
-Real provider/TU closure remains open, with no new exact acceptance.
+facade. Fresh raw native-list/fallback-color evidence rejects that facade's 164
+label and any complete-size168 assumption. The earlier typed-pointer source SHA
+above describes the frozen preceding checkpoint. Real provider/TU closure remains
+open, with no new exact acceptance.
 
 ## November1: real font provider and shared texture callers
 
@@ -155,15 +153,13 @@ The existing color352, finish168 and reset162 all freshly pass through their
 actual complete font caller paths in this same private image.
 
 One further genuine caller control combines the actual reader/PNG/DDS/bitmap
-provider graph with font/text creation and the real bitmap-load wrapper. Private
-source copies unify the existing COM texture view with the actual DDS texture
-interface and make both wrappers use the same real token acquire/release class.
-No extra helper implementation is invented. The text wrapper remains identical
-110/cfb6e605, bitmap wrapper93/native99 remains nonexact+0, acquire454 and
-release163 remain nonexact. The population body is269 but this second control
-is NOT an accepted private-leaf proof: the verifier rejects its .analysis source
-path, as designed. No verifier/source-path relaxation or extra acceptance follows.
-The two public wrapper comparisons run independently without bypassing that gate.
+provider graph with font/text creation and the real bitmap-load wrapper. No extra
+helper implementation is invented. The text wrapper remains identical 110/cfb6e605,
+bitmap wrapper93/native99 remains nonexact+0, acquire454 and release163 remain
+nonexact. The population body is269 but this second control is NOT an accepted
+private-leaf proof: the verifier rejects its .analysis source path, as designed. No
+verifier/source-path relaxation or extra acceptance follows. The two public wrapper
+comparisons run independently without bypassing that gate.
 
 Nothing is selected from either control: public source, headers, manifests,
 existing accepted receipts and exact totals are unchanged. Do not repeat the
@@ -171,7 +167,5 @@ missing-font-provider or shared bitmap/text caller hypothesis without new
 independent evidence. Original nominal APIs, physical argument allocation and
 original TU boundaries remain unresolved.
 
-Receipts: build/frontier-text-texture-font-context-20261101/compare.json,
-font-controls.json,0x00404D00-both.json,0x00404C90-both.json and both-build.log.
 The corresponding private directory retains the complete source/units/recipes.
 Native work was serial CPU0/nice10; images were never executed.

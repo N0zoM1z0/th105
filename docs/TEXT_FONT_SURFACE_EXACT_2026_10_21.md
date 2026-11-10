@@ -130,11 +130,9 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Selected source/COFF, complete45-byte/caller evidence and480/480 receipts are
-retained in `build/font-setter-local-20261021/`; private controls/recipes are
-in `.analysis/font-setter-local-20261021/`. The scalar member GL control is
-phase-scoped to baseline commit ec7c0eb; its source input snapshot is preserved.
-Unselected outputs are archived only after per-file SHA readback verification.
+The scalar member GL control is phase-scoped to baseline commit ec7c0eb; its source
+input snapshot is preserved. Unselected outputs are archived only after per-file SHA
+readback verification.
 
 Next: recover the larger markup/private source context, its8-byte frame
 residual and EH, alongside the remaining glyph coordinate ordering. Reimu496540

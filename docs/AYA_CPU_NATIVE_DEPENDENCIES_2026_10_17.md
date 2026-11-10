@@ -144,10 +144,6 @@ The type is a shared prefix model, not a new complete-class assertion. The
 visible duplicate project is removed after verified transfer to the primary
 working project. IDA preflight rejects its different target and is unused.
 
-Local reports include `build/aya-cpu-layout-native-source.json`,
-`aya-cpu-layout-native-deque-exact.json`, `aya-cpu-layout-byte-neutral.json`,
-`aya-cpu-layout-closed-{preserve,all}.json` and
-`aya-cpu-layout-ghidra-{save,readback}.log`. Private phase controls are under
-`.analysis/aya-cpu-layout-20261017/`. Remaining work is whole-root canonical
+Remaining work is whole-root canonical
 matching: the mixed COFF/LTCG source context and inherited control/register/
 shared-tail ownership remain open, with no standalone/LTCG impossibility claim.

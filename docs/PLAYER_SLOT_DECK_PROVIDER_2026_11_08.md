@@ -36,7 +36,5 @@ known cleanup mismatch were also rechecked. The constructor-dependent
 compiler-origin proof for the 55-byte node helper at `0x43BBC0` passes its
 fresh compile and complete-inventory comparison.
 
-Evidence is in `.analysis/frontier-player-slot-deck-provider-20261108/` and
-`build/frontier-player-slot-deck-provider-20261108/`. The final seven objects
-have verified source/compiler provenance. This removes disconnected call
-interfaces without adding authored exact credit.
+The final seven objects have verified source/compiler provenance. This removes
+disconnected call interfaces without adding authored exact credit.

@@ -42,9 +42,6 @@ contains no range-exception call.
 - The unchanged match-mode caller remains 286/286 but nonexact, first differing
   at +3. It receives no new credit.
 
-Evidence is in `build/frontier-input-vector-subscript-20261109/verification.json`
-and its three unit reports. The private driver is
-`.analysis/frontier-input-vector-subscript-20261109/verify.py`.
 The public replay is `scripts/repo-python scripts/build.py --unit
 gpt-web-result-input-record-access --compare --json`.
 

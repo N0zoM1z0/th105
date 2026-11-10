@@ -95,8 +95,7 @@ A compare exit status of 1 is expected for these nonexact candidates; verify
 that compilation actually succeeded before consuming the object. Rebuild
 again after reverting a hypothesis. Do not compare a stale variant object.
 
-Local ignored evidence is under `build/aya-entry-*`, with the callee packet
-at `build/aya-angle-return-typed.json`. Float-hypothesis reports use
+Float-hypothesis reports use
 `float-return-hypothesis` and `phase-order-hypothesis` in their filenames.
 The retained source uses `retained-formal.json` and `retained-audit.json`.
 The diagnostic link commands are in `build/probe-aya-entry-ltcg.sh`.

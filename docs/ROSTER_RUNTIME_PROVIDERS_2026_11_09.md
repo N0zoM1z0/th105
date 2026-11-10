@@ -40,8 +40,6 @@ remain exact. The co-emitted Reimu update remains unchanged and nonexact.
 These changes resolve real provider identities, not the parent functions'
 existing byte differences. No authored exact credit or source-origin pin changes.
 
-Private recipes and receipts are in
-`.analysis/frontier-roster-runtime-providers-20261109/` and
-`build/frontier-roster-runtime-providers-20261109/`. Each caller has a full native
-receiver report and complete before/after payload report; `sections.json` records
-the unchanged section comparisons. The pending input migration is untouched.
+Each caller has a full native receiver report and complete before/after payload
+report; `sections.json` records the unchanged section comparisons. The pending input
+migration is untouched.

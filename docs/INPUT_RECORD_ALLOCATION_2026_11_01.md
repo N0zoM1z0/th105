@@ -58,11 +58,7 @@ record payload nor its whole construction is inferred exact from allocation.
 
 - scripts/repo-python scripts/build.py --unit vc8-result-input-table-lifetime --compare --json
 - Narrow vc8-generated-input-record-allocation-106a origin replay.
-- Full86+INT3/typed-metadata/CFG proof is retained in
-  .analysis/frontier-input-record-allocation-20261101/prove_allocator.py.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
-Receipts: build/frontier-input-record-allocation-20261101/owner-build.json and
-proof.json; the anchor is config/vc8-input-record-allocation-origin-anchors.toml.
-This is pinned Japanese1.06a raw-PE and original VC8 source evidence, not a new
-IDA interpretation, runtime exception test or generated executable run.
+This is pinned Japanese1.06a raw-PE and original VC8 source evidence, not a new IDA
+interpretation, runtime exception test or generated executable run.

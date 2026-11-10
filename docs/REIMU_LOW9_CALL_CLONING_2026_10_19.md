@@ -110,8 +110,7 @@ contexts. Every control remains nonexact at+541=4791BD.
 ## Reproduction and retained evidence
 
 Selected source is unchanged; its public producer remains
-`scripts/probe-reimu-action-ltcg.py`. Private recipes and receipts live in
-`build/reimu-low9-x87/`:
+`scripts/probe-reimu-action-ltcg.py`.
 
 ```bash
 nice -n 10 taskset -c 0 python3 -B build/reimu-low9-x87/one-advance.py

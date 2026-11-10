@@ -49,18 +49,15 @@ Three additional regressions cover the11-byte member-offset form, a wrong
 register despite equal byte hashes, and retention of the private parent's
 independent entry proof. The11 cleanup-contract tests are target-independent.
 
-Receipts are in build/frontier-ogg-reader-cleanup-20261031/:
-accepted.json, csv-accepted.json and constructor-focused.json.
 The mixed constructor unit's other candidate still blocks its all-functions
-comparison; only the requested accepted constructor is claimed freshly exact.
-No cold all-unit corpus or game execution was performed.
+comparison; only the requested accepted constructor is claimed freshly exact. No
+cold all-unit corpus or game execution was performed.
 
 Only this15-byte authored body is added. Compiler cleanup bytes and the reader's
 virtual callees receive no duplicate credit. The source-only lifetime origin
 rule now skips both exact destructors and still owns only release/lookup.
 Totals become1,555 exact /441,708 bytes. Source1,752, ownership1,772,
 exclusions1,640, review615, mapped1,779 and match units745 are unchanged.
-
 
 Promotion also exposed a pre-existing duplicated BGM origin-rule identifier.
 The constructor/allocator scope keeps its original ID; remaining member-lifetime

@@ -124,12 +124,6 @@ and is not pasted into source; in particular, raw operands establish the
 spawn's float arguments. Own process uses384MiB/one CPU. All compiles remain
 serial CPU0/nice10, with memory/swap monitored.
 
-Private recipes and all three complete probes remain under
-`.analysis/exact-first-yuyuko-slot5c-20261024/`; the matching `build/` scope
-retains CFG/tables/literals, attestation/DB pins, formal/cold comparisons,
-formal object/provenance and generated negative. Private reports/binaries/
-databases are not committed.
-
 Only Yuyuko's origin evidence label becomes canonical-exact-authored. The
 nonmatching Fighter-vtable selector becomes46 roots/1028598 provisional bytes;
 its immutable73-root witness and all dispositions/denominator remain unchanged.

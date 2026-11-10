@@ -120,14 +120,11 @@ python3 scripts/audit-giant-action-owners.py youmu-vslot28 \
   --unit gpt-web-youmu-vslot28-full-root --json
 ```
 
-Fresh reports: `build/youmu-spawn-argument-final-20261002.json` and
-`build/youmu-spawn-argument-final-owners-20261002.json`. Explicit-object
-guard, stack, arithmetic and load/store reports use the same prefix with
-`-guards`, `-stack`, `-arithmetic` and `-load-store` before the date.
-Private probes are below `.analysis/youmu-shared-sequence-20261002/` and
-`build/youmu-shared-sequence-20261002/`. The load/store census takes explicit
-OBJECT, OWNER_AUDIT and OUTPUT arguments and verifies their object hash.
-It normalizes stack identities and establishes no semantic equivalence.
+Explicit-object guard,
+stack, arithmetic and load/store reports use the same prefix with `-guards`,
+`-stack`, `-arithmetic` and `-load-store` before the date. The load/store census
+takes explicit OBJECT, OWNER_AUDIT and OUTPUT arguments and verifies their object
+hash. It normalizes stack identities and establishes no semantic equivalence.
 
 No new analysis database output is used. The wrong-target IDA preflight
 again fails; all new observations use the hash-attested PE and canonical

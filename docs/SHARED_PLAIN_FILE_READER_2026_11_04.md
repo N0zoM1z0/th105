@@ -14,9 +14,9 @@ target in seven SIB bytes; all four previously bounded call-observer cases still
 agree. These cases do not execute real file I/O, decompression or OS exception
 unwinding. No new exact functions or bytes are credited.
 
-The focused score origin rule and the emitted replay-string helper origin proof
-were both revalidated. Receipts: `build/frontier-shared-plain-reader-20261104/`.
-All 1,030 target-independent CI tests and generated-progress checks passed.
+The focused score origin rule and the emitted replay-string helper origin proof were
+both revalidated. All 1,030 target-independent CI tests and generated-progress
+checks passed.
 
 ## Configuration reader's missing size implementation, 2026-11-09
 
@@ -40,10 +40,8 @@ providers now match their complete native bodies (45/35/4/25/13 bytes), and the
 slot uses VC8's weak vector-deleting symbol alias to the emitted scalar-deleting
 body. The local nominal RTTI is not claimed to reproduce CFileReader RTTI.
 
-The only source-dependent unit is `gpt-web-game-config-load`. Its whole root
-remains 953/953; all 180 other non-debug COFF sections retain their bytes and
-relocation roles, including EH and RTTI. No source pins or exact ledgers change:
-these native providers already have established ownership and exact records.
-Evidence is in `build/frontier-config-reader-size-20261109/` (`before.json`,
-`after.json`, `proof.json`); the private verifier is in the matching `.analysis/`
-directory. Tracking and the current lightweight CI pass.
+The only source-dependent unit is `gpt-web-game-config-load`. Its whole root remains
+953/953; all 180 other non-debug COFF sections retain their bytes and relocation
+roles, including EH and RTTI. No source pins or exact ledgers change: these native
+providers already have established ownership and exact records. Tracking and the
+current lightweight CI pass.

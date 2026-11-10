@@ -115,10 +115,7 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Selected source/COFF/full289-byte proof, leaf/caller receipts and affected-unit
-reports are retained in `build/font-blend-20261021/`; private recipes are in
-`.analysis/font-blend-20261021/`. Completed controls may be compressed only
-after per-file SHA readback verification.
+Completed controls may be compressed only after per-file SHA readback verification.
 
 Next: re-examine the glyph/setter/markup nominal-member hypotheses through real
 caller visibility before assuming LTCG is required. Larger main functions,

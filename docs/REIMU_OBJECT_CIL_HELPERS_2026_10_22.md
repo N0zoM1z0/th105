@@ -101,16 +101,13 @@ original coordinate representation or compiler context.
 
 ## Reproduction, current selection and remaining work
 
-Private recipes are under `.analysis/reimu-object-helper-cil-20261022/`:
-`probe.py`, `graphs.py`, `census.py`, `phase_lifetimes.py`,
-`double_fabs_probe.py`, `fabs_roundtrips.py` and `native_replay.py`.
 Receipts are below the matching `build/` directory: `results.json`,
 `graph-results.json`, `owner-results.json`, `phase-lifetimes.json`,
 `double-fabs-link.json`, `graph-results-double-fabs.json`,
-`owner-results-double-fabs.json`, `fabs-roundtrips.json` and
-`native-replay.json`. The coordinate recipe and provider comparison are in
-the matching `reimu-object-position-value-20261022` private/build directories.
-All builds run serially at CPU0/nice10. Neither linked image is executed.
+`owner-results-double-fabs.json`, `fabs-roundtrips.json` and `native-replay.json`.
+The coordinate recipe and provider comparison are in the matching
+`reimu-object-position-value-20261022` private/build directories. All builds run
+serially at CPU0/nice10. Neither linked image is executed.
 
 Fresh native replay rebuilds the selected public root and genuine public
 spawn providers. Root source SHA256 remains

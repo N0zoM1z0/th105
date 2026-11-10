@@ -21,11 +21,7 @@ This includes the67-byte Fighter scratch reset and26-byte indexed-entry reset.
 Other accepted receipts were preserved. This was a header-scoped replay, not
 `verify-exact-units --all` and not a claim of a fresh whole-corpus run.
 
-The private reproducible batch recipe is
-.analysis/collision-inline-declaration-audit-20261031/check.py; its explicit
-index-to-unit/address selection, per-unit full comparison reports and summary
-are under build/collision-inline-declaration-audit-20261031/. No aggregate
-count or source-spelling regression assertion was added to tests.
+No aggregate count or source-spelling regression assertion was added to tests.
 
 The final target-independent CI passes155 tests and the whitespace gate passes.
 Exact totals remain1545 functions /438021 bytes. Source1740, authored1760 and
@@ -39,13 +35,9 @@ ShortDeque8::front_checked in src/battle/SpellData.hpp. Its normal separately
 defined implementation and all layouts, signatures and bodies are unchanged.
 No replacement optimizer constraint was introduced.
 
-All 103 accepted functions in the 61 actual affected units were freshly
-compiled and remain canonical exact. The explicit affected selection and
-complete per-unit reports are retained under
-build/spell-inline-declaration-audit-20261031/, with the reproducible recipe
-under .analysis/spell-inline-declaration-audit-20261031/check.py.
-This set overlaps the earlier 452-function Collision replay; these counts
-must not be summed as distinct coverage.
+All 103 accepted functions in the 61 actual affected units were freshly compiled and
+remain canonical exact. This set overlaps the earlier 452-function Collision replay;
+these counts must not be summed as distinct coverage.
 
 A literal tracked-source search finds no remaining __declspec(noinline)
 outside src/library. This is not a general compiler-directive audit.

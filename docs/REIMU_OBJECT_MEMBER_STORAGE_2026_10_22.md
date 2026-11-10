@@ -127,23 +127,20 @@ python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --js
 python3 scripts/audit-reimu-object-800-prefix.py build/match-units/GptWeb_ReimuObjectActionState.obj > build/reimu-object-member-800.json
 ```
 
-The build/comparison intentionally exits1 for the unaccepted root; its
-report independently records the exact66-byte helper. The prefix audit
+The prefix audit
 passes for selected source. Use `taskset -c 0 nice -n 10` for bounded CPU use.
 The prefix tool accepts `--symbol`, `--contrast-object` and
 `--contrast-symbol` for ordinary private owner COFF inputs. Reports pin their
 objects, target and comparison dependencies but explicitly do not attest
 those objects' source/build provenance.
 
-Private recipes/trees remain under `.analysis/reimu-object-members-20261022/`;
-reports and retained COFF inputs are under `build/reimu-object-members-20261022/`.
 `prepare.py`, `build.py`, the separate array/reference build recipes,
 `member-map.json`, comparison receipts, `target-member-widths.json`,
 `runtime-equality.json`, `selected-800.json`, `words-800.json` and
-`prior-owner-800.json` record the controls. `members-804/869/902/908.json`
-retain the other bounded execution results. The scalar source SHA256 is
-`a689211c4449c91615f198b303153e11a2880b6f49589dde65e0c1d6de8d71d8`;
-the five-short-array source is
+`prior-owner-800.json` record the controls. `members-804/869/902/908.json` retain
+the other bounded execution results. The scalar source SHA256 is
+`a689211c4449c91615f198b303153e11a2880b6f49589dde65e0c1d6de8d71d8`; the
+five-short-array source is
 `614bd6c063653d946d294d339f43c583f34e9085830792bfa3d83bb772910b4f`.
 
 Selected source remains77fe73a4; no shared interface/layout/profile/binding,

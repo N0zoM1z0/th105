@@ -92,11 +92,9 @@ code. An initial link without them correctly failed unresolved-symbol checks;
 no linker warning/error gate was waived. Their existing global bindings are
 unchanged and none is a new root data operand or game-code implementation.
 
-Repeated complete builds and a fresh accepted-unit cold replay all report
-138/138 exact. Receipts and source/PE/map/provenance snapshots are under
-`build/font-owner-20261021/`; private recipes are under
-`.analysis/font-owner-20261021/`. No source/body cropping, assembly, byte arrays,
-inert local, forced prologue or register ABI is used.
+Repeated complete builds and a fresh accepted-unit cold replay all report 138/138
+exact. No source/body cropping, assembly, byte arrays, inert local, forced prologue
+or register ABI is used.
 
 ## Ledgers, scope and remaining work
 

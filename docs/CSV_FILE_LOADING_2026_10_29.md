@@ -17,11 +17,9 @@ providers or caller EH. No partial-function or size-only credit is used.
 ## Raw target and actual source context
 
 Factory-native IDA passed a fresh metadata/entry, five mapped-byte samples and
-inventory/disassembly/decompiler/call-graph preflight. Samples were compared
-with the canonical raw PE; responses remain under build/frontier-csv-load-20261029.
-No analysis-database metadata or executable bytes were changed. The575-byte
-parser decompilation was only navigation; raw switch/field/call instructions
-establish the source behavior below.
+inventory/disassembly/decompiler/call-graph preflight. No analysis-database metadata
+or executable bytes were changed. The575-byte parser decompilation was only
+navigation; raw switch/field/call instructions establish the source behavior below.
 
 The8-byte FileBufferContext owns its allocation and size. In encoded-resource
 mode, load_csv copies the path into a260-byte local and replaces its last four
@@ -92,14 +90,13 @@ remain unchanged; only the separately explicit role contract is new.
 
 ## Reproduction and focused checks
 
-    scripts/repo-python scripts/build.py --unit exact-first-csv-file-loading --json
+scripts/repo-python scripts/build.py --unit exact-first-csv-file-loading --json
     scripts/repo-python scripts/compare-linked-unit.py exact-first-csv-file-loading --address 0x00408E40 --address 0x0040F730 --json
 
-Use address-selected comparison: the other configured root is a nonaccepted
-caller witness, whose ordinary full canonical comparison remains blocked by
-its unmatched EH surface. The two accepted bodies have closed CFGs and every
-byte/relocation is replayed. Receipts are public-build.json/public-compare.json
-in build/frontier-csv-load-20261029.
+Use address-selected comparison: the other configured root is a nonaccepted caller
+witness, whose ordinary full canonical comparison remains blocked by its unmatched
+EH surface. The two accepted bodies have closed CFGs and every byte/relocation is
+replayed.
 
 Focused source replay keeps all three score/hash functions exact. Legacy
 private single-edge script destructor95/pending cleanup147 and the genuine
@@ -128,36 +125,30 @@ evaluation-order controls did not establish a canonical match and were not
 selected. Script-line common-tail and genuine token-acquire context controls
 also remain private; neither improved the accepted source boundary.
 
-Evidence: build/frontier-script-file-load-20261029/csv-character-public-build.json
-and csv-character-accepted.json. The source dependency scan identifies only
-exact-first-csv-file-loading; unrelated native units were not rebuilt.
+The source dependency scan identifies only exact-first-csv-file-loading; unrelated
+native units were not rebuilt.
 
 ## Additional native-container controls, 2026-10-30
 
-The unchanged clear operation was exported in the full real script/file CIL
-graph. It is a10-byte wrapper, with the genuine nested-deque _Tidy125 emitted
-separately; this does not close native clear125 and does not justify copying
-STL internals into the authored method. Adding the real advance-row consumer
-gives207/native167 because its row iterator helper is inlined. Adding actual
-next-int and next-string consumers remains207; an Ob1 compiler control is also
-neutral. All controls stay private and receive no credit. Evidence directories:
-build/frontier-csv-clear-cil-20261030/ and
-build/frontier-csv-advance-cil-20261030/.
-
+The unchanged clear operation was exported in the full real script/file CIL graph.
+It is a10-byte wrapper, with the genuine nested-deque _Tidy125 emitted separately;
+this does not close native clear125 and does not justify copying STL internals into
+the authored method. Adding the real advance-row consumer gives207/native167 because
+its row iterator helper is inlined. Adding actual next-int and next-string consumers
+remains207; an Ob1 compiler control is also neutral. All controls stay private and
+receive no credit.
 
 ## Parser source registration, 2026-11-04
 
-The complete existing `CsvContext::parse` source is now registered for the
-575-byte native parser at `0x0040F200`. The original loader call at
-`0x0040F1CC`, complete native body hash and application-specific CSV policy
-identify it as authored game code. This adds a source-present mapping, not a
-canonical exact function: the target uses a private receiver and the real
-linked source has different code, switch layout and exception machinery.
-The source behavior above remains a reconstruction hypothesis; no full-game
-execution or independent parser runtime matrix is claimed.
-The focused current origin rule validated the native body and loader edge.
-A fresh real-context build preserved the 839-byte source span, and the already
-accepted CSV wrapper and iterator reset replayed exact. Target-independent CI
-passed 1,031 tests and progress checks. Receipts are under
-`build/frontier-csv-parser-register-20261104/`. This scoped origin validation
-does not revalidate every unrelated origin rule.
+The complete existing `CsvContext::parse` source is now registered for the 575-byte
+native parser at `0x0040F200`. The original loader call at `0x0040F1CC`, complete
+native body hash and application-specific CSV policy identify it as authored game
+code. This adds a source-present mapping, not a canonical exact function: the target
+uses a private receiver and the real linked source has different code, switch layout
+and exception machinery. The source behavior above remains a reconstruction
+hypothesis; no full-game execution or independent parser runtime matrix is claimed.
+The focused current origin rule validated the native body and loader edge. A fresh
+real-context build preserved the 839-byte source span, and the already accepted CSV
+wrapper and iterator reset replayed exact. Target-independent CI passed 1,031 tests
+and progress checks. This scoped origin validation does not revalidate every
+unrelated origin rule.

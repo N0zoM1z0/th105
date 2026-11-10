@@ -69,13 +69,8 @@ new runtime/GDI, allocation-failure, aliasing or unwind claim.
 
 ## Receipts and next action
 
-Private recipes are `capture_context.py`, `cache_types.py` and
-`project_options.py` in `.analysis/font-glyph-cil-20261022/`. Complete reports
-and logs are under `build/font-glyph-cil-20261022/`: `linked-context.json`,
-`cache-types.json`, `project-options.json`, `debug-manager-identities.json`,
-the failed `pdb-zi-compile.log`, and full target/source disassemblies. Only the
-configured color result is strict linked acceptance; the glyph comparison is
-explicitly diagnostic. Six finished private COFFs are archived and every member
+Only the configured color result is strict linked acceptance; the glyph comparison
+is explicitly diagnostic. Six finished private COFFs are archived and every member
 hash is read back before removing loose copies; public objects remain present.
 
 The successful field, debug and SSE controls close these specific hypotheses

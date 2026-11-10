@@ -51,11 +51,9 @@ one review row moves to authored/source-present. Source1637, authored1656,
 mapped1826, review297 and units813; excluded2074 and exact1427/443604 bytes remain
 unchanged. No generic origin gate or whole-byte comparison is relaxed.
 
-    scripts/repo-python scripts/build.py --unit exact-first-profile-character-preview --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-profile-character-preview --compare --json
     scripts/repo-python scripts/audit-profile-character-preview.py
 
-The comparison intentionally reports mismatch; the diagnostic audit succeeds
-only when all bounded checks pass. Receipts are under
-build/frontier-profile-character-preview-20261102/, with the scoped origin
-validation and private source publication controls in its .analysis counterpart.
-Default CI and both diff checks gate the local checkpoint.
+The comparison intentionally reports mismatch; the diagnostic audit succeeds only
+when all bounded checks pass. Default CI and both diff checks gate the local
+checkpoint.

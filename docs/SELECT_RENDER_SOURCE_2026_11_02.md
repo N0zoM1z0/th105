@@ -69,8 +69,7 @@ Run serial CPU0/nice10 via scripts/repo-python:
 - scripts/ci.py
 
 The first two commands intentionally exit with mismatch, while retaining full
-reports. Receipts and the original private proof are under the corresponding
-build/.analysis frontier-select-render-20261102 directories.
+reports.
 
 Exact authored remains 1429 / 443911 bytes. Source-present rises 1634 to 1635,
 authored 1653 to 1654, mapped 1821 to 1822, review 302 to 301, and units 809 to

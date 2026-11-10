@@ -59,26 +59,19 @@ unaccepted. Full focused replay preserves the existing89-byte constructor and
 220-byte destructor, including all three destructor cleanup states.
 
 Evidence:
-- build/frontier-bgm-token-views-20261030/ contains the two focused receipts.
-- build/frontier-bgm-complete-graph-20261030/ contains the raw worker, coherent
-  CIL controls and public-worker-build.json diagnostic.
-- build/frontier-bgm-shutdown-lifetime-20261030/ closes the narrower shutdown
-  control and records the three actual release sites.
 
 No new exact ledger entry, broad gameplay test or all-unit rebuild is claimed.
 
 ## Shared list-library boundary follow-up
 
-The existing genuine src/library/UnsignedIntList.cpp instantiates only the
-standard unsigned list; it contains no authored game wrapper. Using this same
-COFF library context already employed by the accepted network release preserves
-its ordinary shared helper interfaces. In the public stream-lifetime unit it
-naturally recovers release's native8-byte-aligned frame, without any source
-alignment or extra local. Release becomes183/native184; allocator494/native401
-and lookup195/native196 remain nonexact. The private vector::at argument and
-register scheduling still differ. Full destructor220 and all cleanup regions
-freshly remain exact in public-compare.json under
-build/frontier-bgm-shared-list-20261030/. The constructor-only unit is unchanged.
+The existing genuine src/library/UnsignedIntList.cpp instantiates only the standard
+unsigned list; it contains no authored game wrapper. Using this same COFF library
+context already employed by the accepted network release preserves its ordinary
+shared helper interfaces. In the public stream-lifetime unit it naturally recovers
+release's native8-byte-aligned frame, without any source alignment or extra local.
+Release becomes183/native184; allocator494/native401 and lookup195/native196 remain
+nonexact. The private vector::at argument and register scheduling still differ. The
+constructor-only unit is unchanged.
 
 Applying that shared library to the larger private worker graph gives477/native
 461, so that separate worker control is not selected. No authored source is

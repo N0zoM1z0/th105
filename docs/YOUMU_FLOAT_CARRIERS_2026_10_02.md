@@ -146,17 +146,9 @@ python3 scripts/audit-giant-action-owners.py youmu-vslot28 \
   --unit gpt-web-youmu-vslot28-full-root --json
 ```
 
-Configured build and owner reports are
-`build/youmu-float-carriers-final-20261002.json` and
-`build/youmu-float-carriers-final-owners-20261002.json`.
-Private guard scanner:
-`.analysis/youmu-payload-order-20261002/scan-all-guards.py`.
-Private stack/definition analysis:
-`.analysis/youmu-payload-lifetimes-20261002/stack-packets.py`.
-Both take explicit object, current owner report and output arguments; their
-default owner reports belong to older checkpoints. Final outputs are
-`build/youmu-float-carriers-final-guards-20261002.json` and
-`build/youmu-float-carriers-final-stack-20261002.json`.
-Raw traversal still reaches all 9,912 target instructions / 37,692 callable
-bytes, including the auxiliary switch, without unresolved indirect jumps.
-These are focused results; no aggregate cold replay is claimed.
+Both take explicit object,
+current owner report and output arguments; their default owner reports belong to
+older checkpoints. Raw traversal still reaches
+all 9,912 target instructions / 37,692 callable bytes, including the auxiliary
+switch, without unresolved indirect jumps. These are focused results; no aggregate
+cold replay is claimed.

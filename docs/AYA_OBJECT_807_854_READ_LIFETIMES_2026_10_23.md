@@ -104,9 +104,8 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-The whole-root comparator is expected to report nonexact. Previous object is
-the savedc93029f epoch. Graph receipts in `build/aya-854-fade-20261023/` describe
-three successive stages:807-snapshot,854-alpha and854-snapshot. Each intermediate
-has frozen source/object/provenance and an outside-action graph result. Replay
-a graph receipt with its recorded pair, rather than mixing object epochs.
-Private binaries, reports and compiler/runtime inputs are not committed.
+The whole-root comparator is expected to report nonexact. Previous object is the
+savedc93029f epoch. Each intermediate has frozen source/object/provenance and an
+outside-action graph result. Replay a graph receipt with its recorded pair, rather
+than mixing object epochs. Private binaries, reports and compiler/runtime inputs are
+not committed.

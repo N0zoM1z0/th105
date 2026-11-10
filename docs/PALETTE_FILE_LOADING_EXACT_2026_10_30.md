@@ -57,9 +57,6 @@ with the new dispatcher and raw loader,11 accepted roots were verified.
 Local CI and whitespace checks pass. No cold full-corpus build or broad
 runtime/test matrix was added.
 
-Private receipts are under build/frontier-palette-reader-cil-20261030,
-including public-wrapper.json, public-raw.json and accepted-final.json.
-
 ```bash
 scripts/repo-python scripts/build.py --unit exact-first-csv-file-loading --json
 scripts/repo-python scripts/compare-linked-unit.py exact-first-csv-file-loading --address 0x00408F70 --address 0x00419E80 --json

@@ -65,16 +65,9 @@ python3 scripts/audit-reimu-mid-normal-actions.py build/reimu-mid-normal/ReimuAc
 ```
 
 VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default FP, no injected compiler environment,
-produces14878 staging text bytes. The manual compiler/source/header/object
-receipt is `build/reimu-mid-normal/build-receipt.json`; the oracle separately
-pins its object and support files and does not claim compilation provenance.
-Object SHA256 is
-`057294a8359523333f3a3c8c035cc58cde6fa704403e547f24621ba4fbf4d244`.
-The object has the partial bool ABI and is not canonically equal to the parent.
-
-Final focused native result: **0/5729 differences**, report
-`build/reimu-mid-normal/native-final.json`, input SHA256
-`d56e546164c6f775248597e292c066250071455bd835994833388fd703016247`.
+produces14878 staging text bytes. Object SHA256 is
+`057294a8359523333f3a3c8c035cc58cde6fa704403e547f24621ba4fbf4d244`. The object has
+the partial bool ABI and is not canonically equal to the parent.
 
 |Cohort|Cases|
 |---|---:|
@@ -130,14 +123,13 @@ include directory; their source/objects are removed after inspection.
 
 ## Preservation, analysis safety and remaining work
 
-All six previous staging objects are freshly rebuilt. Their non-debug code/
-data sections and every relocation's offset/type/symbol/value/section identity
-remain identical to the prior checkpoint. Sizes remain530,771,1562,4017,4409,
-11271; receipt `build/reimu-mid-normal/preserved-stages.json`. Debug/file/
-timestamp metadata is excluded only from this preservation check. Canonical
-acceptance rules are unchanged. Old focused replays pass0/9 entry,0/88 low,
-0/64 recovery,0/99 movement,0/150 late-low and0/59 low dispatch. Their full
-historical matrices are not repeated, and no accepted unit uses this header.
+All six previous staging objects are freshly rebuilt. Their non-debug code/ data
+sections and every relocation's offset/type/symbol/value/section identity remain
+identical to the prior checkpoint. Debug/file/ timestamp metadata is excluded only
+from this preservation check. Canonical acceptance rules are unchanged. Old focused
+replays pass0/9 entry,0/88 low, 0/64 recovery,0/99 movement,0/150 late-low and0/59
+low dispatch. Their full historical matrices are not repeated, and no accepted unit
+uses this header.
 
 The read-only fixture supports fourteen frames/seven sequences/64 keys with
 computed nonoverlapping spans. Its default six-frame output stays byte-equal

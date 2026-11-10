@@ -17,7 +17,7 @@ python3 scripts/audit-candidate-boundaries.py 0x00407160 0x00407230 --json
 python3 scripts/check-match-literals.py --require-target
 ```
 
-Fresh formal report: `build/sprite-texture-setup-formal.json`. The canonical
+The canonical
 comparator validates complete COFF symbol ownership, both callable extents,
 the real-valued literal, the manager data relocation, the external resource
 size call and the caller's relocation to its same-TU helper. Source is
@@ -92,15 +92,13 @@ express those lifetimes and give full equality without padding or fake work.
 ## Attested analysis and remaining limits
 
 Direct Ghidra sessions independently checked executable hash, entry and
-external-entry marker, x86 Windows language/compiler, full mapped `.text`
-and bounded bytes before saving metadata. A fresh read-only process checked
-both names, extents, return hypotheses and purge values, public ECX storage,
-and custom helper storage: EAX plus six float stack parameters at +4..+24.
-The helper's Ghidra convention is explicitly unknown/custom, not an invented
-external standard ABI. Pseudocode remains a hypothesis. Processes used a
-768 MiB heap and two active processors; no factory adapter or IDA analysis
-was used. Private working state is under
-`.analysis/sprite-texture-island-20261016/`.
+external-entry marker, x86 Windows language/compiler, full mapped `.text` and
+bounded bytes before saving metadata. A fresh read-only process checked both names,
+extents, return hypotheses and purge values, public ECX storage, and custom helper
+storage: EAX plus six float stack parameters at +4..+24. The helper's Ghidra
+convention is explicitly unknown/custom, not an invented external standard ABI.
+Pseudocode remains a hypothesis. Processes used a 768 MiB heap and two active
+processors; no factory adapter or IDA analysis was used.
 
 This adds exactly **two authored functions / 454 exact bytes**. The selected
 unit has no mixed nonexact member. Original TU partition, original local

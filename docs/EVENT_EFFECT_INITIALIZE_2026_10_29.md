@@ -63,9 +63,8 @@ scripts/repo-python scripts/build.py --unit exact-first-event-effect-initialize 
 scripts/repo-python scripts/build.py --unit gpt-web-event-effect-state-lifetime --compare --json
 scripts/repo-python scripts/build.py --unit gpt-web-event-effect-state-runtime --compare --json
 
-The latter two preserve all five accepted functions160/173/153/123/86. Both
-existing generated-origin manifests were also freshly verified: all five
-anchors retain unique fingerprints across the4024-candidate inventory.
-Reports are in build/frontier-event-effect-loader-20261029/, including
-full-public.json and anchors.json. The formal root comparison intentionally
-reports mismatch; its941-byte prefix hash is not a complete-source hash.
+The latter two preserve all five accepted functions160/173/153/123/86. Both existing
+generated-origin manifests were also freshly verified: all five anchors retain
+unique fingerprints across the4024-candidate inventory. The formal root comparison
+intentionally reports mismatch; its941-byte prefix hash is not a complete-source
+hash.

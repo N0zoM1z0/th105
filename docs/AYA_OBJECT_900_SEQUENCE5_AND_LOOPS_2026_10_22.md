@@ -68,10 +68,8 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-The comparator intentionally reports nonexact. Optional `--previous-object`
-provides the scoped contrast. Reports are under
-`build/aya-900-sequence5-20261022/`; private prior source is under
-`.analysis/aya-900-sequence5-20261022/`. Local CI and whitespace gates apply.
-Remaining leads are the common animation-tail placement, sequence0/4 scratch
-homes, shared next-sequence exits and other action families; whole-root floating
-exception/callback behavior remains unproven.
+The comparator intentionally reports nonexact. Optional `--previous-object` provides
+the scoped contrast. Local CI and whitespace gates apply. Remaining leads are the
+common animation-tail placement, sequence0/4 scratch homes, shared next-sequence
+exits and other action families; whole-root floating exception/callback behavior
+remains unproven.

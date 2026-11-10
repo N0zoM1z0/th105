@@ -35,15 +35,11 @@ scripts/repo-python scripts/audit-yukari-action-state.py
 scripts/repo-python scripts/compare-giant-action-switches.py yukari-vslot28 build/match-units/ExactFirst_YukariActionState.obj --json
 ```
 
-Public replay emits57792 full bytes versus58248. First difference+8 is the
-frame immediate4E8 versus native4E0. Candidate SHA256:
-12d9549c7a1da78ef8e507fb170ddd006203e0ead7926d0fd9e4ad11e94a2360.
-Full audit reports54483 unequal/missing positional bytes, not a semantic
-percentage. Comparison exit1 is expected. Final receipts:
-build/frontier-57b030-20261028/formal-first.json, formal-audit.json,
-final-map.json and final-action-{calls,fp-ops}.json. Private first/zero-offset/
-owner-order/random-argument/entry-gate trials remain in the same build scope;
-source recovery fragments are in .analysis/frontier-57b030-20261028/.
+Public replay emits57792 full bytes versus58248. First difference+8 is the frame
+immediate4E8 versus native4E0. Candidate SHA256:
+12d9549c7a1da78ef8e507fb170ddd006203e0ead7926d0fd9e4ad11e94a2360. Full audit
+reports54483 unequal/missing positional bytes, not a semantic percentage. Comparison
+exit1 is expected.
 
 New source/header and append-only unit/literal entries have no existing accepted
 consumers. Unchanged exact receipts are retained; no whole-corpus cold build is
@@ -123,7 +119,6 @@ whole calls in if/else, instead of a ternary direction temporary, reduces the
 not exact credit. Packet, call and arithmetic semantics remain the scope;
 no assembly, target modifications or dummy dependencies were introduced.
 
-
 ## Aim argument lifetime refinement
 
 The current source keeps the binary32 DX local and evaluates the binary32 DY
@@ -134,13 +129,11 @@ source captured DY before placing DX and kept a separate DY stack home.
 No helper call or field write intervenes in either coordinate calculation;
 all arithmetic widths and the ordered DX capture remain unchanged.
 
-The isolated change affects 140 bytes in seven same-sized instruction ranges.
-At all seven sites the 32 bytes immediately before the atan call now match
-native verbatim; none did before. These are local diagnostic windows, not
-function acceptance. Function size, action-owner map, metadata and 4E8 frame
-remain unchanged. The complete unmasked canonical audit still mismatches at+8.
-Receipts: build/frontier-57b030-20261028/formal-aimargs.json,
-formal-aimargs-audit.json and aimargs-call-evidence.json.
+The isolated change affects 140 bytes in seven same-sized instruction ranges. At all
+seven sites the 32 bytes immediately before the atan call now match native verbatim;
+none did before. These are local diagnostic windows, not function acceptance.
+Function size, action-owner map, metadata and 4E8 frame remain unchanged. The
+complete unmasked canonical audit still mismatches at+8.
 
 The frame investigation also rejected narrowing the action730 Y capture:
 588639..58864A explicitly stores and compares a QWORD across surface().
@@ -229,10 +222,9 @@ sequence-5 path. Less, equal, and unordered results select sequence 6 at
 `0x57E31E` (EBP holds 6 from `0x57DDE0`). The earlier ordered `peerX <= selfX`
 source sent unordered values to the reversal path instead.
 
-The unselected source now uses `!(peerX > selfX)`, preserving all ordered
-outcomes and the original unordered branch. The fresh candidate compares the
-operands in reverse at `0x327D..0x3296`, with a parity branch that selects the
-same four outcomes. Ordinary-play reachability of an unordered position is
-unknown. The complete candidate remains nonexact: 57,840-byte section tail
-against the 57,042-byte native callable, first mismatch +18. No exact credit
-is claimed. Receipts: `build/yukari-unordered-peer-20261107.json` and `.dis`.
+The unselected source now uses `!(peerX > selfX)`, preserving all ordered outcomes
+and the original unordered branch. The fresh candidate compares the operands in
+reverse at `0x327D..0x3296`, with a parity branch that selects the same four
+outcomes. Ordinary-play reachability of an unordered position is unknown. The
+complete candidate remains nonexact: 57,840-byte section tail against the
+57,042-byte native callable, first mismatch +18. No exact credit is claimed.

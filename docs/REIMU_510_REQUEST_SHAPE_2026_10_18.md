@@ -114,12 +114,10 @@ blocks, so those values remain unproved rather than being reported as wrong
 runtime values. Native and static evidence stay distinct. No target bytes,
 helper outputs, callback returns or actor outputs are fabricated.
 
-`build-analysis-receipt.json`, native/static reports and control-build receipt
-are below `build/reimu-510-shape/`. The prior direct Ghidra510 receipt is reused
-after rechecking target entries/instructions and all9 unchanged primary DB
-hashes; no new process/clone or IDA semantics. Superseded source probes,
-baseline/control objects and caches are removed; current two objects and
-bounded evidence remain. Next attack710/711/720/730 mode/request lowering,
-then reconcile740 undefined paths, full void/default ABI, returning world
-contexts, full relocations and truthful VC8/LTCG/TU provenance before exact
-acceptance of all81550 bytes.
+The prior direct Ghidra510 receipt is reused after rechecking target
+entries/instructions and all9 unchanged primary DB hashes; no new process/clone or
+IDA semantics. Superseded source probes, baseline/control objects and caches are
+removed; current two objects and bounded evidence remain. Next attack710/711/720/730
+mode/request lowering, then reconcile740 undefined paths, full void/default ABI,
+returning world contexts, full relocations and truthful VC8/LTCG/TU provenance
+before exact acceptance of all81550 bytes.

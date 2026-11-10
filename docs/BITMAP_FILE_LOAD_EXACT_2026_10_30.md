@@ -40,8 +40,6 @@ frame, not exact against the native2230-byte callable plus45-byte metadata.
 Read forwarding at its actual read sites does not close that residual.
 The PNG loader also remains nonexact; neither receives partial credit.
 
-Private receipts are under build/frontier-bitmap-reader-cil-20261030:
-public-compare.json, the two affected-unit JSON files and ci.log.
 The selected root stays in exact-first-csv-file-loading.
 
 ```bash

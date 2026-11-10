@@ -1655,11 +1655,10 @@ constant/scheduling choices; disabling global optimization gives239. Neither
 is selected, and no fake divisor or local is added. Evidence:
 build/frontier-menu-cursor-size-20261030/.
 
-Unchanged capped-counter45CED0 isolated in ordinary CIL remains126/native126
-with the same+3F branch-merge register difference. Its full old source TU needs
-real effect/sequence providers, so no stub was supplied. The isolated diagnostic
-receives no credit or public source change. Evidence:
-build/frontier-counter-merge-cil-20261030/.
+Unchanged capped-counter45CED0 isolated in ordinary CIL remains126/native126 with
+the same+3F branch-merge register difference. Its full old source TU needs real
+effect/sequence providers, so no stub was supplied. The isolated diagnostic receives
+no credit or public source change.
 
 Further2026-10-30 closed controls:
 - A standard div(input,6).rem menu-cursor expression emits a real external div
@@ -1692,19 +1691,18 @@ experiment as a requirement to keep incompatible constructor views.
 
 ### CsvReader clear: real reader CIL control, 2026-10-31
 
-The fresh existing-COFF census finds the exact125-byte nested-deque `_Tidy`
-shape at40FDB0, but that does not prove the authored clear_rows entry. A private
-linked control exports the existing actual CsvContext::clear_rows body from
-CsvFileLoading.cpp, with ordinary `rows.clear()` and its real provider source.
-It emits10 bytes, retaining an out-of-line `_Tidy` call, not the native125-byte
+The fresh existing-COFF census finds the exact125-byte nested-deque `_Tidy` shape
+at40FDB0, but that does not prove the authored clear_rows entry. A private linked
+control exports the existing actual CsvContext::clear_rows body from
+CsvFileLoading.cpp, with ordinary `rows.clear()` and its real provider source. It
+emits10 bytes, retaining an out-of-line `_Tidy` call, not the native125-byte
 expanded method. The broad copied reader contract also stops on an unused PNG
-callback witness after dead stripping, so no canonical root receipt is claimed.
-The emitted10-byte boundary itself is already insufficient. No source or public
-manifest changed; no helper body is substituted into the authored entry.
-The private link map is `build/frontier-csv-clear-context-20261031/Clear.map`.
-The old103-byte gain hit in the same stale-object census is from the removed
-aligned/volatile volume transcription, not the current natural source, and is
-not reused. Existing negative source-integrity guidance remains in force.
+callback witness after dead stripping, so no canonical root receipt is claimed. The
+emitted10-byte boundary itself is already insufficient. No source or public manifest
+changed; no helper body is substituted into the authored entry. The old103-byte gain
+hit in the same stale-object census is from the removed aligned/volatile volume
+transcription, not the current natural source, and is not reused. Existing negative
+source-integrity guidance remains in force.
 
 ### Relocation-free private member leaf
 

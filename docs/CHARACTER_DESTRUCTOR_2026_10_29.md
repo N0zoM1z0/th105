@@ -76,8 +76,5 @@ No EH-body acceptance is inferred from metadata count agreement.
 scripts/repo-python scripts/build.py --unit exact-first-character-destructor --compare --json
 scripts/repo-python scripts/build.py --unit exact-first-character-constructor --compare --json
 
-Source:src/characters/CharacterDestructor.cpp.
-Evidence:build/frontier-character-destructor-20261029/formal-build.json,
-constructor-handle-class.json, native-facts.json and source-eh.json.
-Default CI and diff checks validate final tracking/progress. No broad runtime
-matrix or cold corpus build is required.
+Source:src/characters/CharacterDestructor.cpp. Default CI and diff checks validate
+final tracking/progress. No broad runtime matrix or cold corpus build is required.

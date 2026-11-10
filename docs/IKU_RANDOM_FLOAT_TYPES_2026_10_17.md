@@ -103,17 +103,15 @@ interpret the coordinate; no visible gameplay defect is inferred.
 ## Compiler corroboration and working types
 
 Private pinned VC8 `/O2 /GS- /GR /EHsc /MT` scalar controls compile natural
-unsigned-to-float conversion to `FILD; TEST; JGE; FADD2^32`; a signed conversion
-has no correction. A natural float store of
-`static_cast<float>(unsigned_offset) + x` retains the conversion in x87 until
-the final store and uses the same DWORD correction constant. An explicit
-double-conversion control uses a QWORD correction constant instead. Thus the
-native model's wider host arithmetic is not a prescription to introduce a
-double source operand, and a C++ float cast is not evidence of an intervening
-float32 store under this compiler. These scalar controls are compiler
-corroboration, not original function boundaries, TU provenance or canonical
-root comparisons. Private sources/receipts remain under
-`.analysis/iku-types-20261017/` and `build/IkuUnsignedFloatControls.*`.
+unsigned-to-float conversion to `FILD; TEST; JGE; FADD2^32`; a signed conversion has
+no correction. A natural float store of `static_cast<float>(unsigned_offset) + x`
+retains the conversion in x87 until the final store and uses the same DWORD
+correction constant. An explicit double-conversion control uses a QWORD correction
+constant instead. Thus the native model's wider host arithmetic is not a
+prescription to introduce a double source operand, and a C++ float cast is not
+evidence of an intervening float32 store under this compiler. These scalar controls
+are compiler corroboration, not original function boundaries, TU provenance or
+canonical root comparisons.
 
 ESI is assigned from ECX only at62092F; all131 ESI restores occur immediately
 before the standard root RET epilogue. The complete instruction inventory has

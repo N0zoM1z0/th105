@@ -20,7 +20,6 @@ cleanup, not four new matches or additional exact bytes. The exact
 reset/lifetime roots were separately rechecked against the shared interface;
 no actual D3D or gameplay execution is claimed.
 
-Receipts: `build/frontier-sprite-d3dx-typed-20261104/` and
-`build/frontier-render-tail-typed-20261104/`. Reproduce with the
-`cross-v106a-sprite-render-effects`, `cross-v106a-sprite-render-luma-alpha`
-and `cross-v106a-animation-render-color` units.
+Reproduce with the `cross-v106a-sprite-render-effects`,
+`cross-v106a-sprite-render-luma-alpha` and `cross-v106a-animation-render-color`
+units.

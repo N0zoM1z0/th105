@@ -26,17 +26,15 @@ rejected. Independent member size reads recover the native entry register
 ownership and full-width initial count read. Selection size()==0 reproduces
 its native MOV/test; empty() was byte-neutral against the old memory compare.
 
-Current result:257/native259, first+59 is the changed forward branch distance.
-The remaining substantive difference is optional-resource pointer load/reuse
-and its downstream register choices. No exact or source-selection credit.
-Receipt: build/frontier-45dc90-20261028/typed-selection-size.json.
-Target SHA:9c5d531d1681747f13fea73e643355017f3be8cabcf65fbca0e41a6bfa91e23d.
+Current result:257/native259, first+59 is the changed forward branch distance. The
+remaining substantive difference is optional-resource pointer load/reuse and its
+downstream register choices. No exact or source-selection credit. Target
+SHA:9c5d531d1681747f13fea73e643355017f3be8cabcf65fbca0e41a6bfa91e23d.
 
-The existing front-ready118-byte accepted peer remains exact in the fresh
-original GS-off unit. Existing nonexact advance198 and consume346 retain
-their +46/+204 residuals. Receipt:
-build/frontier-45dc90-20261028/affected-peers-final.json.
-Only this TU's two explicit profiles were built; no shared header changed.
+The existing front-ready118-byte accepted peer remains exact in the fresh original
+GS-off unit. Existing nonexact advance198 and consume346 retain their +46/+204
+residuals. Only this TU's two explicit profiles were built; no shared header
+changed.
 
 The new EH relocation is independently read from the canonical prologue and
 handler prefix at6BAD3B. It is an address witness, not acceptance of the
@@ -45,21 +43,23 @@ visibility and optional-resource scheduling remain unresolved.
 
 ## 2026-10-31 implicit-copy layout control
 
-After the rotation/copy checkpoint, a bounded local control gave texture04 to
-an actual four-byte color-interface-derived sprite base, as independently proved
-by the whole116-byte implicit copy. Fresh baseline and this control emit the
-same257-byte preparation body and canonical compared hash
-637bbd266bc8cbf15594bb7c0b13653ccbe5e68773722d282f8fba991d02234c.
-The native259-byte body still compares optional resource in memory and reloads
-it for the texture call, while both source variants load once into EAX and test
-that value. Base ownership does not explain this scheduling difference. The
-source control is restored out; no repeat of this base-only trial is needed.
-Receipts: build/frontier-sequence-prepare-copy-20261031/baseline.json and
-base-owner.json. No ledger, match or count changes.
+After the rotation/copy checkpoint, a bounded local control gave texture04 to an
+actual four-byte color-interface-derived sprite base, as independently proved by the
+whole116-byte implicit copy. Fresh baseline and this control emit the same257-byte
+preparation body and canonical compared hash
+637bbd266bc8cbf15594bb7c0b13653ccbe5e68773722d282f8fba991d02234c. The native259-byte
+body still compares optional resource in memory and reloads it for the texture call,
+while both source variants load once into EAX and test that value. Base ownership
+does not explain this scheduling difference. The source control is restored out; no
+repeat of this base-only trial is needed. No ledger, match or count changes.
 
 ## 2026-11-03 source registration
 
-Fresh target-backed comparison still emits257/native259, with no whole-function or EH exactness claim. The complete 482-byte practice-control caller at `0x428070` remains canonical exact and calls this entry at both `0x428238` and `0x428246`. The native body hash and these two edges now anchor authored/source-present registration. Receipts: `build/frontier-sequence-prepare-source-20261103/`. This adds no canonical exact bytes.
+Fresh target-backed comparison still emits257/native259, with no whole-function or
+EH exactness claim. The complete 482-byte practice-control caller at `0x428070`
+remains canonical exact and calls this entry at both `0x428238` and `0x428246`. The
+native body hash and these two edges now anchor authored/source-present
+registration. This adds no canonical exact bytes.
 
 ## November 8: shared record and complete cleanup proof
 
@@ -87,10 +87,6 @@ unwind state destroys the record at frame -0xA4. The destructor writes the
 All code and metadata relocations are accounted for, and both complete main
 CFGs and the auxiliary callable boundaries close. This narrows the remaining
 work to the already-recorded main-body texture-load scheduling difference.
-
-Receipts and the source/compiler-provenance check are under
-`build/frontier-sequence-record-owner-20261108/` and
-`.analysis/frontier-sequence-record-owner-20261108/check-context.py`.
 
 ## November 9: actual deque insertion provider
 

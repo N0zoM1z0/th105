@@ -130,16 +130,11 @@ The readback has all 4,097 instructions and the original body hash unchanged.
 The existing 27-field CPU prefix view is reused; decompiler output remains a
 hypothesis. IDA preflight rejects its different executable and is unused.
 
-Private script: `.analysis/aya-cpu-20261017/ghidra-scripts/Th105AyaCpuRoot20261017.java`.
-The attested saved project is returned to the existing primary working project;
-the duplicate visible-path project is removed. Generated objects/reports and
-analysis databases are excluded from Git.
+The attested saved project is returned to the existing primary working project; the
+duplicate visible-path project is removed. Generated objects/reports and analysis
+databases are excluded from Git.
 
-Local evidence: `build/aya-cpu-target-bridge.json`, `aya-cpu-target-map.json`,
-`aya-cpu-target-boundary.json`, `aya-cpu-first-build.json`,
-`aya-cpu-first-owners.json`, `aya-cpu-native-finite.json`,
-`aya-cpu-native-commands.json`, `aya-cpu-negative-missing-commands.json`, and
-`aya-cpu-ghidra-{save,readback}.log`. Fresh final receipts use the
+Fresh final receipts use the
 `aya-cpu-final-` prefix. Remaining work is canonical whole-root byte equality,
 including the inherited shared control/register/tail layout. Original source
 partition and possible LTCG involvement remain unknown, not established causes.

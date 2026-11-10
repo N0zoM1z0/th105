@@ -116,9 +116,6 @@ local callable; no target address is invented. A private inlining-hint control
 completes comparison but emits46164 bytes/canonical4aac37b0 and still shares the
 advance. It remains unselected; the selected source uses no such helper/hint.
 
-Frozen inputs/reports are under `build/reimu-object-817-tail-20261021/`; recipes
-are in the corresponding `.analysis/` scope and read frozen baseline inputs.
-
 All heavy work is serial at CPU0/nice10.
 
 ```bash

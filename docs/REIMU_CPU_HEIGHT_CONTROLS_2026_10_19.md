@@ -29,12 +29,12 @@ Raw instructions establish these distinct facts:
 ## Unselected compiler/source controls
 
 All controls start from selected source SHA256
-`1d121503b98277c808727f58af725f13642dfe5ab78ee91bb03aa32b283876d5`,
-saved privately as `build/reimu-cpu-controls/Baseline.cpp`. The ordinary VC8
-SP1 options and existing five real callee bindings are used throughout.
-Table mapping covers the actions/policy regions; policy0 is separately
-traversed to closure with only selector calls, no unresolved indirect exits
-or internal calls. These are candidate diagnostics, not whole-root equality.
+`1d121503b98277c808727f58af725f13642dfe5ab78ee91bb03aa32b283876d5`, saved privately
+as the source control. The ordinary VC8 SP1 options and existing five real callee
+bindings are used throughout. Table mapping covers the actions/policy regions;
+policy0 is separately traversed to closure with only selector calls, no unresolved
+indirect exits or internal calls. These are candidate diagnostics, not whole-root
+equality.
 
 | Control | Prefix / payload bytes | Root selector / RET sites | Reachable policy0 instructions / selectors / RETs | First strict difference |
 | --- | --- | --- | --- | --- |
@@ -76,21 +76,16 @@ It is not executed or selected. This rejects this pragma-only explanation;
 other original source/TU/lifetime contexts remain unknown.
 
 **Typed-output follow-up:** replace43 raw `_DWORD` accesses to the existing
-6B4/6B8/6BC/6C0/6C4/6C8/724 members with those typed members, preserving
-their actual32-bit write widths and values. The entire canonical16461-byte
-payload remains07cb7a40, including all primary and policy code. The existing
-typed member declarations are not changed. This particular mixed-access
-spelling does not explain EBP allocation or terminal sharing and remains an
-unselected cleanup. Fresh focused baseline/source-control receipts are under
-`build/reimu-cpu-fields/`. A new read-only Ghidra attestation under
-`.analysis/reimu-cpu-fields-20261019/` again leaves all nine DB files unchanged
-and removes its alias. No extra native replay is needed for byte-identical
-code; earlier execution retains its recorded scope.
+6B4/6B8/6BC/6C0/6C4/6C8/724 members with those typed members, preserving their
+actual32-bit write widths and values. The entire canonical16461-byte payload
+remains07cb7a40, including all primary and policy code. The existing typed member
+declarations are not changed. This particular mixed-access spelling does not explain
+EBP allocation or terminal sharing and remains an unselected cleanup. No extra
+native replay is needed for byte-identical code; earlier execution retains its
+recorded scope.
 
-Private generated inputs, objects, disassembly, table packets and closed
-policy0 profiles remain under `build/reimu-cpu-controls/`. Do not repeat
-these unchanged controls without new evidence. No fake callee bindings,
-forced registers, assembly, padding or fabricated terminal operations are
+Do not repeat these unchanged controls without new evidence. No fake callee
+bindings, forced registers, assembly, padding or fabricated terminal operations are
 used.
 
 ## Exceptional-height execution
@@ -129,8 +124,7 @@ git diff --check
 The focused strict comparison intentionally remains nonzero at+12E/48D4BE.
 No cold aggregate replay or new exact function/byte is claimed.
 
-Read-only direct Ghidra re-attests imported identity, entry, full mapped text,
-root bytes and typed metadata. All nine primary DB file hashes agree before
-and after; the temporary alias is removed. The CPU0/384MiB recipe is under
-`.analysis/reimu-cpu-controls-20261019/`. Required IDA preflight rejects its
-wrong PE; no IDA semantics or factory adapter is used.
+Read-only direct Ghidra re-attests imported identity, entry, full mapped text, root
+bytes and typed metadata. All nine primary DB file hashes agree before and after;
+the temporary alias is removed. Required IDA preflight rejects its wrong PE; no IDA
+semantics or factory adapter is used.

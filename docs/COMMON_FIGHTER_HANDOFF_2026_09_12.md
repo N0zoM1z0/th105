@@ -27,9 +27,7 @@ help distinguish these, but do not replace the complete canonical comparison.
 No source, compiler profile, shared header, boundary, relocation permission or
 exact ledger is changed in this documentation checkpoint.
 
-Fresh artifacts from this batch are `build/common13-switch-typed.json`,
-`build/common13-switch-baseline-formal.json` and
-`build/common13-switch-baseline-owners.json`. Target/IDA preflight and tracking
+Target/IDA preflight and tracking
 validation passed. The baseline formal build returns 1 for the expected
 nonexact result; it is not a successful exact verification.
 

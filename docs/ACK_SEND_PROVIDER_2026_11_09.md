@@ -52,7 +52,5 @@ The separate blocked input migration was not included.
 Reproduction uses `build.py --compare --json` with
 `gpt-web-network-ack-info-senders-runtime`,
 `cross-v106a-network-winsock-send-client` and
-`cross-v106a-network-udp-packet-acquire`. The retained private EH checker is
-`.analysis/frontier-ack-send-provider-20261109/check-eh.py`; receipts are under
-`build/frontier-ack-send-provider-20261109/`. No new authored exact count or
-complete application link is claimed.
+`cross-v106a-network-udp-packet-acquire`. No new authored exact count or complete
+application link is claimed.

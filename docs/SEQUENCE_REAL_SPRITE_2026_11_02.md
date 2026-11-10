@@ -23,7 +23,6 @@ together with the 8-byte cleanup they preserve the same 96 support bytes.
 Actual sprite RTTI 273 bytes and all nine virtual slots pass from this real owner.
 None of these compiler or metadata bytes confer authored credit.
 
-Private controls and receipts: .analysis/frontier-sequence-real-sprite-20261102/
-and build/frontier-sequence-real-sprite-20261102/. Final CI passed all 962 tests in
-127.255 seconds. Both diff checks gate the local checkpoint. Counts remain 1426 exact / 443399 bytes, source 1636,
-authored 1655, mapped 1826, excluded 2075, review 297 and units 813.
+Final CI passed all 962 tests in 127.255 seconds. Both diff checks gate the local
+checkpoint. Counts remain 1426 exact / 443399 bytes, source 1636, authored 1655,
+mapped 1826, excluded 2075, review 297 and units 813.

@@ -91,16 +91,13 @@ target output SHA256:
 `a6b8aaee31fc0dc0b3d0fe3495e377f86347593943cc5085efb0fa61e1d73b19`.
 
 Selected source CRLF SHA256 remains
-`69c43bf58dcfbeee08866a93b007fa266718a37c7850b79609056b3920fa864b`;
-full59502-byte canonical section remains
-`dac7642939ffc375a5fc6095057722c35a47ebc7112faf978e9bdfcfd3b3f751`.
-Fresh native/configured sections normalize identically. Strict whole59038
-still differs at+0x64/620984. The preceding selected-source instruction,
-call, home and owner diagnostics remain unchanged; no aggregate replay was
-run. Reports are `build/iku-sequence-exit-final-{compare,native,control,facts}.json`.
-Small private control patches remain under `.analysis/iku-730-face-20261017/`;
-superseded full copies/objects are removed. Original C++/TU/inheritance and
-compiler-phase provenance, payload-value equivalence, post-backend behavior
-and exceptional timing remain unknown. Further work must recover joint
-argument/control lifetimes or justified compilation context rather than
-assuming a source label guarantees a unique machine tail.
+`69c43bf58dcfbeee08866a93b007fa266718a37c7850b79609056b3920fa864b`; full59502-byte
+canonical section remains
+`dac7642939ffc375a5fc6095057722c35a47ebc7112faf978e9bdfcfd3b3f751`. Fresh
+native/configured sections normalize identically. Strict whole59038 still differs
+at+0x64/620984. The preceding selected-source instruction, call, home and owner
+diagnostics remain unchanged; no aggregate replay was run. Original
+C++/TU/inheritance and compiler-phase provenance, payload-value equivalence,
+post-backend behavior and exceptional timing remain unknown. Further work must
+recover joint argument/control lifetimes or justified compilation context rather
+than assuming a source label guarantees a unique machine tail.

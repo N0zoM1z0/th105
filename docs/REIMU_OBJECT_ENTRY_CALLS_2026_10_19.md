@@ -98,16 +98,11 @@ taskset -c 0 nice -n 10 python3 scripts/audit-giant-action-owners.py reimu-objec
 taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-entry-calls.py build/match-units/GptWeb_ReimuObjectActionEntry.obj
 ```
 
-The first command still returns1 for the strict mismatch. The execution auditor
-accepts an existing object and explicitly does not claim build provenance;
-the fresh build report is `build/reimu-init-direction-baseline-20261019.json`.
-Its object SHA256 is
-`7ca8c6a3200d19110cb3df3769878251982a2b56bb6908e63d09698ba4563a2f`;
-COFF timestamps can change on reproduction, while source/canonical pins remain.
+The first command still returns1 for the strict mismatch. Its object SHA256 is
+`7ca8c6a3200d19110cb3df3769878251982a2b56bb6908e63d09698ba4563a2f`; COFF timestamps
+can change on reproduction, while source/canonical pins remain.
 
-Reports, current canonical packet, native/negative receipts and nine-file DB
-pins are below `build/reimu-entry-carriers-20261019/`. Private probe/export,
-negative-control and read-only Ghidra recipes are under the corresponding
-`.analysis/` directory. Unselected carrier source/object copies are regenerable.
-VC8 builds were serial; heavy analysis ran on CPU0/nice10 with a128MiB Java heap.
-Accepted unit inputs are unchanged; no aggregate cold replay is claimed.
+Private probe/export, negative-control and read-only Ghidra recipes are under the
+corresponding `.analysis/` directory. Unselected carrier source/object copies are
+regenerable. VC8 builds were serial; heavy analysis ran on CPU0/nice10 with a128MiB
+Java heap. Accepted unit inputs are unchanged; no aggregate cold replay is claimed.

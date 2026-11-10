@@ -132,10 +132,7 @@ font caller edge and game rendering policy, not by adjacency or GDI ownership.
 `implemented.csv` gains one row; `matches.csv` is unchanged. Progress remains
 a provisional-denominator ledger display, not a fresh aggregate verification.
 
-Receipts, target/source disassembly, native and negative objects, final scoped
-replay and semantic cases are under `build/font-glyph-20261021/`; recipes are
-under `.analysis/font-glyph-20261021/`. Completed controls are compressed after
-per-file hash readback. Final local gates:
+Final local gates:
 
 ```bash
 python3 scripts/validate-tracking.py --require-target

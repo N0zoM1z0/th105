@@ -112,12 +112,10 @@ behavior for this affected scope. They do not validate unrelated emulators.
 
 ## Reproduction and remaining work
 
-Private double-control recipe/source and build reports reside under
-`.analysis/aya-903-native-20261022/` and `build/aya-903-native-20261022/`.
 The initial invalid trial is clearly marked and supplies no accepted result.
 Selected and control execution reports are `selected.json`/`double.json`;
-`fault-injection.json` records the actual rejected callback; regression receipts
-are `901-regression.json`, `902-phase-regression.json`, `902-spawn-regression.json`.
+`fault-injection.json` records the actual rejected callback; regression receipts are
+`901-regression.json`, `902-phase-regression.json`, `902-spawn-regression.json`.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-903-native.py

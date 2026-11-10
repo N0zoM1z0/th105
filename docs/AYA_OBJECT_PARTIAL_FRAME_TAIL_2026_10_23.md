@@ -108,12 +108,8 @@ Initializer remains4859 bytes /`6f70b6f3...`, with its two register-byte differe
 
 ## Reproduce and continue
 
-Recipes: `.analysis/aya-tail-callviews-20261023/`; frozen inputs/receipts:
-`build/aya-tail-callviews-20261023/`. Key records are `controls.json`,
-`angle-captures.json`, `proved-flow.json`, `native-witnesses.json`,
-`fade-native-witnesses.json`, `fade-captures.json`, `rtm-controls.json`, and
-`joint/{unified,replay}.json`. Native final/public identity and final gate:
-`final-identity.json`, `final-formal.json`, `oriented-anchor.json`, `ci.log`.
+Native final/public identity and final gate: `final-identity.json`,
+`final-formal.json`, `oriented-anchor.json`, `ci.log`.
 
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json

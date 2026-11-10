@@ -77,9 +77,8 @@ All source pointer fields in code and metadata have exact HIGHLOW coverage.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
 Receipts: build/origin-anchors/linked-bad-alloc/proof.json,
-logic-error-regression.json and negative-mutations.json.
-Private discovery: .analysis/frontier-linked-bad-alloc-20261101/.
-Target identity remains the pinned original Japanese1.06a SHA-256; this scope
-uses raw PE evidence, not new IDA semantics. No executable is run or committed.
-The public Boost constructor112/native111 and payload-dependent tree helpers
-remain unaccepted. No native code copying, private export or fake ABI was used.
+logic-error-regression.json and negative-mutations.json. Target identity remains the
+pinned original Japanese1.06a SHA-256; this scope uses raw PE evidence, not new IDA
+semantics. No executable is run or committed. The public Boost
+constructor112/native111 and payload-dependent tree helpers remain unaccepted. No
+native code copying, private export or fake ABI was used.

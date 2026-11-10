@@ -132,11 +132,10 @@ ledger or accepted compiler boundary. Seven extent tests exercise opt-in and
 overflow rejection; three symbolic tests cover signed zero, rounding and
 addition grouping.
 
-Reports, target packet, control/build receipts and reused analysis identity
-are below `build/reimu-mode-shape/`. The earlier direct Ghidra receipt was
-reused after PE checks and all9 unchanged primary DB hashes; no new Ghidra
-process/clone or IDA semantics. Superseded baseline/control/experimental objects,
-temporary source copies and caches are removed; current objects and bounded
-evidence remain. Next prioritize720/730 mode/request lowering, then740's
-undefined paths, original void/default ABI, returning world contexts and full
-relocation/VC8/LTCG evidence before canonical acceptance of all81550 bytes.
+The earlier direct Ghidra receipt was reused after PE checks and all9 unchanged
+primary DB hashes; no new Ghidra process/clone or IDA semantics. Superseded
+baseline/control/experimental objects, temporary source copies and caches are
+removed; current objects and bounded evidence remain. Next prioritize720/730
+mode/request lowering, then740's undefined paths, original void/default ABI,
+returning world contexts and full relocation/VC8/LTCG evidence before canonical
+acceptance of all81550 bytes.

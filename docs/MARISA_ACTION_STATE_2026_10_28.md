@@ -55,7 +55,7 @@ forced registers, copied target bytes or padding is used.
 
 ## Reproduction and current comparison
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-marisa-action-state --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-marisa-action-state --compare --json
     scripts/repo-python scripts/audit-marisa-action-state.py
     scripts/repo-python scripts/compare-giant-action-switches.py marisa-vslot28 build/match-units/ExactFirst_MarisaActionState.obj --json
 
@@ -68,11 +68,10 @@ Candidate sparse tables have the same 32/45/48 cardinalities and no native group
 splits. It has 141 epilogues and 216 receiver-qualified indirect call sites,
 versus native138/211. All 63 crossed-floor and 10 on-surface sites test AL.
 
-Receipts are build/frontier-4a3710-20261028/formal-build.json and
-formal-full.json. Eleven absent native-backed literal bindings were added;
-existing bindings and accepted consumers were not changed. Only this new unit
-was compiled. Next work is source-level lifetime/branch ownership refinement
-against this complete baseline, not whole-corpus rebuilding.
+Eleven absent native-backed literal bindings were added; existing bindings and
+accepted consumers were not changed. Only this new unit was compiled. Next work is
+source-level lifetime/branch ownership refinement against this complete baseline,
+not whole-corpus rebuilding.
 
 ## Request-lifetime refinement
 
@@ -160,12 +159,9 @@ it does not establish full path/FP/callback equivalence or exactness. No
 equivalent-bound rewrite, manual vtable call, forced register, duplicated work
 or artificial branch is introduced to make static call counts agree.
 
-Private receipts: build/frontier-marisa-shot-lifetimes-20261101 contains the
-fresh baseline build/full comparison, switch mapping, full canonical binary,
-five paired reachable-action disassemblies and qualified-virtual-sites.json.
-The private scripts retain raw-PE/source provenance. The target's16999
-instructions and all six switch boundaries were rechecked by the existing
-whole-root auditor. Authored/source/exact totals remain unchanged.
+The private scripts retain raw-PE/source provenance. The target's16999 instructions
+and all six switch boundaries were rechecked by the existing whole-root auditor.
+Authored/source/exact totals remain unchanged.
 
 ## Action 214 flight effect facing, 2026-11-05
 

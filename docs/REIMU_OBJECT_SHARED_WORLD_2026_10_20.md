@@ -226,8 +226,6 @@ export bounded shared-tail and903 instruction listings. No decompiler output
 is used. CPU0/nice10/128MiB heap and all nine primary database hashes are
 preserved; temporary aliases are removed. No target byte is patched.
 
-Generated reports/controls remain under `build/reimu-object-shared-tails-20261020`;
-private drivers remain under `.analysis/reimu-object-shared-tails-20261020`.
 No executable, compiler, database, generated report or credential is committed.
 
 ```bash

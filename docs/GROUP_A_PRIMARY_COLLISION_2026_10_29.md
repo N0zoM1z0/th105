@@ -38,6 +38,4 @@ padding, fake ABI or partial-byte credit is used. Source-level complete object
 extents and original class/TU spellings are not recovered; the existing narrow
 raw-offset accessors remain explicit views, not full object definitions.
 
-Unit: exact-first-group-a-primary-collision. Receipts:
-`build/frontier-46b940-20261029/{formal-build,boundary}.json`.
-Private controls: `.analysis/frontier-46b940-20261029/`.
+Unit: exact-first-group-a-primary-collision.

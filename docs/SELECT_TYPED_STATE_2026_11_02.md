@@ -49,10 +49,8 @@ byte; its earlier1497/163 nonexact status is not changed or reaccepted here.
 No new source-spelling/register grid is opened by the layout correction.
 
 Reproduce with scripts/repo-python, serial CPU0/nice10: the five affected build
-units, scripts/audit-select-constructor.py, scripts/sprite_default_origins.py,
-plus exact-first-select-update-flow and exact-first-select-stage-update.
-Receipts are in build/frontier-select-typed-state-20261102; before/after source
-controls are in the matching ignored analysis directory.
+units, scripts/audit-select-constructor.py, scripts/sprite_default_origins.py, plus
+exact-first-select-update-flow and exact-first-select-stage-update.
 
 Counts unchanged: exact authored1429 /443911 bytes; source1634, authored1653,
 excluded2072, review302, mapped1821, units809. This corrects source types and

@@ -31,10 +31,8 @@ nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-call-sharing.py build/rei
 nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-linked-coff.py build/reimu-ltcg/receipt.json
 ```
 
-Reports/receipts and private control recipes are below
-`build/reimu-shared-sequence/`; they are disposable generated evidence.
-The retained full-width direction control is the earlier positive witness
-described in [the speed-lifetime checkpoint](REIMU_TRAJECTORY_SPEED_LIFETIME_2026_10_18.md).
+The retained full-width direction control is the earlier positive witness described
+in [the speed-lifetime checkpoint](REIMU_TRAJECTORY_SPEED_LIFETIME_2026_10_18.md).
 
 ## What the auditor establishes
 

@@ -36,16 +36,13 @@ frame pivots to float, resets the sprite, translates by negative facing-scaled
 X/negative Y pivots, then translates to the object position.
 
 Natural output is154/native154, first+25: the sprite receiver LEA is scheduled
-before rather than after the first x87 integer load. It remains unselected
-and earns no exact credit. No source-coercion search was performed.
-Receipt: build/frontier-41fb80-20261028/object-transform.json.
-Both raw CFGs and transform pointer cells are recorded in boundary.json.
+before rather than after the first x87 integer load. It remains unselected and earns
+no exact credit. No source-coercion search was performed. Both raw CFGs and
+transform pointer cells are recorded in boundary.json.
 
 ### Source registration, 2026-11-04
 
 The existing complete transform is now source-present and authored. The
-CSelectObject RTTI table points to it at `0x006C0988`; its complete body and
-three transform call sites are pinned. A fresh build reproduces the
-154/native154 nonexact result at +25. This does not add exact credit or prove
-full rendering behavior. Receipt:
-`build/frontier-select-transform-register-20261104/formal.json`.
+CSelectObject RTTI table points to it at `0x006C0988`; its complete body and three
+transform call sites are pinned. A fresh build reproduces the 154/native154 nonexact
+result at +25. This does not add exact credit or prove full rendering behavior.

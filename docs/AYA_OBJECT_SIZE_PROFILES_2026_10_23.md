@@ -44,11 +44,6 @@ No runtime equivalence matrix is claimed for either control, and these results
 do not rule out other genuine TU, visibility or lifetime contexts. An older
 Aya `/Os` experiment targeted initializer `0x61F0B0`, not this update root.
 
-Private recipes: `.analysis/aya-size-profile-20261023/controls.py`.
-Private scope: `build/aya-size-profile-20261023/`. `controls.json` records exact
-commands, compiler/source/object pins, entry instructions and comparison
-results; `inputs.json` pins 157 public build inputs. Frozen source, all three
-objects and both canonical bodies remain loose. `handoff-verification.json`
-records fresh target entry bytes and successful readback of all input hashes.
-The controls script refuses existing output objects; inspect its receipts
-before attempting to rerun it in the same directory.
+Frozen source, all three objects and both canonical bodies remain loose. The
+controls script refuses existing output objects; inspect its receipts before
+attempting to rerun it in the same directory.

@@ -63,9 +63,8 @@ acceptance profile. Removing the gain export and retaining its real stream
 callers is likewise neutral89. Full exception mode calls the distinct
 _ftol2_sse_excpt and is rejected rather than aliased to the native conversion.
 
-The full float-overload candidate also changes the current Ogg open from exact
-291 to nonexact288 in the shared CIL graph. It therefore remains private and
-the accepted public source is restored. No exact rows or progress are added.
-Evidence: build/frontier-gain-overload-20261030/ and corresponding private
-source controls. Recovery still requires genuine frame/caller context and
-preservation of the accepted Ogg/SFL roots, not another synthetic aligned local.
+The full float-overload candidate also changes the current Ogg open from exact 291
+to nonexact288 in the shared CIL graph. It therefore remains private and the
+accepted public source is restored. No exact rows or progress are added. Recovery
+still requires genuine frame/caller context and preservation of the accepted Ogg/SFL
+roots, not another synthetic aligned local.

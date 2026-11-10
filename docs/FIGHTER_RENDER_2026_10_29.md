@@ -40,6 +40,5 @@ restarted and no instruction/padding workaround was introduced.
 
 scripts/repo-python scripts/build.py --unit exact-first-fighter-render --compare --json
 
-Source:src/battle/FighterRender.cpp.
-Formal receipt:build/frontier-fighter-render-20261029/formal-build.json.
-Private full-section diagnostic:compare.json in the same directory.
+Source:src/battle/FighterRender.cpp. Private full-section diagnostic:compare.json in
+the same directory.

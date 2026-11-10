@@ -41,7 +41,5 @@ replay verifies13/10/1 complete roots. Only24 runtime bytes are newly excluded:
 excluded2064/review308/units807. Authored1431/443916 and source-present1636
 remain unchanged. No initialization, abort, BSS, data or provider support credit.
 
-Private evidence: .analysis/frontier-crt-pointer-policy-20261101/ and
-build/origin-anchors/vc8-pointer-policy/. The first private pattern scan was
-ambiguous and is not the acceptance test; the qualified source/caller/storage
-proof is scripts/vc8_pointer_policy_origins.py.
+The first private pattern scan was ambiguous and is not the acceptance test; the
+qualified source/caller/storage proof is scripts/vc8_pointer_policy_origins.py.

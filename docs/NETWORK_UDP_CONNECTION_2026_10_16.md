@@ -112,14 +112,9 @@ Selected ordinary worker source is945/1009, first mismatch on the frame size.
 
 ## Genuine linked control and verification
 
-The private reproducible recipe
-`.analysis/network-udp-connection-20261016/probe-linked.py` compiles the full
-receive/request/connection/worker TU with pinned VC8 `/O2 /GL /GS /EHsc` and
-links actual ordinary COFF implementations from NetworkWinsockPeerRemoval,
-NetworkWinsockAccept and BattleThreadHandleRuntime, plus pinned runtime and
-WS2_32 import libraries. Calls use the actual existing class declarations;
-there are no substitute bodies, executable ABS symbols or `/FORCE`.
-Only attested nonexecutable data/IAT bindings are absolute link inputs.
+Calls use the actual existing class declarations; there are no substitute bodies,
+executable ABS symbols or `/FORCE`. Only attested nonexecutable data/IAT bindings
+are absolute link inputs.
 
 The link succeeds with zero unresolved implementations. Connection is also
 exported to preserve its real external UI call surface; without that visibility
@@ -143,13 +138,9 @@ python3 scripts/audit-candidate-boundaries.py 0x00415340 0x00415D60 --json
 python3 scripts/build.py --unit cross-v106a-network-winsock-receive-thread --json
 python3 scripts/compare-unit-object.py cross-v106a-network-winsock-receive-thread build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj --json
 python3 scripts/compare-unit-object.py cross-v106a-network-winsock-receive-thread build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj --address 0x0041D7B0 --json
-python3 .analysis/network-udp-connection-20261016/probe-linked.py
 ```
 
-Fresh reports are `build/network-udp-connection-{boundary,facts,build,formal,accepted}.json`,
-the worker-boundary/known-packet-comparison reports, and
-`build/network-udp-connection-ltcg-probe.diagnosis.json` with exact tool/source
-hashes and commands. The direct Ghidra save and separate readback re-attest
+The direct Ghidra save and separate readback re-attest
 the executable, mapped .text, entry, x86 Windows language and both complete
 bodies; owner/handoff types and physical argument/return storage are saved.
 Decompiler locals and imported prototypes remain hypotheses; raw bytes decide
@@ -173,17 +164,12 @@ it to+14C with84 differing bytes. Remaining differences include the DNS value
 register, endpoint-copy schedule, private vector argument placement and loop
 alignment. They are real code differences, not just metadata addresses.
 
-A direct native vector.clear control reproduces those same84 differences, so
-the existing complete wrapper is not the cause. RTM14.0.50727.42 cl/c2/link
-with the same pinned SP1 headers/import libraries and SP1 msobj80 resolver also
-retains exactly those84 differences; this mixed control is not a recovered
-original profile. No additional padding, ABI adapter or profile sweep is used.
-Recipes and exact tool/source/image/map hashes remain under
-`.analysis/network-udp-linked-20261016/` and
-`build/network-udp-linked-*.{diagnosis,replay-diagnostic}.json`. The fresh
-configured object reports are `build/network-udp-linked-{formal-build,formal,accepted}.json`.
-The next priority is the shared10219-byte Fighter root4740C0, called by every
-roster action root; the network residual is recorded for a later new discriminator.
+A direct native vector.clear control reproduces those same84 differences, so the
+existing complete wrapper is not the cause. RTM14.0.50727.42 cl/c2/link with the
+same pinned SP1 headers/import libraries and SP1 msobj80 resolver also retains
+exactly those84 differences; this mixed control is not a recovered original profile.
+No additional padding, ABI adapter or profile sweep is used. The next priority is the shared10219-byte Fighter root4740C0, called by every roster
+action root; the network residual is recorded for a later new discriminator.
 
 The [October19 allocation-interface follow-up](ALLOCATOR_INTERFACES_2026_10_19.md)
 corrects the retained source's malloc alias to real array new. Fresh ordinary

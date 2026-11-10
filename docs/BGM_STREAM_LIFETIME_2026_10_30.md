@@ -71,10 +71,9 @@ existing exact-parent route. There is no handler-only or frame-waiver mode.
 
 Reproduce:
 
-    scripts/repo-python scripts/build.py --unit exact-first-bgm-stream-lifetime --json
+scripts/repo-python scripts/build.py --unit exact-first-bgm-stream-lifetime --json
     scripts/repo-python scripts/compare-linked-unit.py exact-first-bgm-stream-lifetime --address 0x00402880 --json
 
-Evidence: build/frontier-bgm-service-allocation-20261030/public-compare.json.
 The mixed unit's other roots deliberately remain unaccepted.
 
 Final focused native replay rebuilds only the three affected units: seven

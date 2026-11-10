@@ -133,13 +133,8 @@ python3 scripts/audit-giant-action-owners.py youmu-vslot28 \
   --unit gpt-web-youmu-vslot28-full-root --json
 ```
 
-Fresh configured reports are
-`build/youmu-typed-virtual-final-20261002.json` and
-`build/youmu-typed-virtual-final-owners-20261002.json`. Explicit-object guard,
+Explicit-object guard,
 stack, arithmetic, load/store and call packets use the same prefix and date.
-Private controls are under `.analysis/youmu-velocity-lifetimes-20261002/`
-and `build/youmu-velocity-lifetimes-20261002/`; the fresh fifteen-table raw
-readback is `primary-sequence-vtables.json` there.
 
 The remaining work is target-backed recovery of zero/value lifetimes,
 argument schedules and physical shared tails, followed by complete canonical

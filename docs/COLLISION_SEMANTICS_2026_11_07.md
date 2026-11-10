@@ -55,18 +55,14 @@ negation instead of the target's arithmetic shift. The clearer aggregate test
 remains selected. The three exact peers in the unit still compared exactly;
 `0x46BA10` remained nonexact.
 
-
-A bounded 2026-11-08 control copied each wrapped result's representation into
-an `int` with `memcpy`, then combined four `value < 0 ? -1 : 0` masks. This
-avoids both a narrowing integer conversion and negative signed right shift
-on the pinned 32-bit target, but VC8 emits 173/native142 bytes with its first
-difference at +1. The representation change does not reproduce the target body.
-The selected aggregate mask was restored and rebuilt: its 139-byte hash and
-both nonexact results are unchanged, and the three accepted peers remain
-exact. No source or ledger change is retained. Private source and full reports
-are under `.analysis/frontier-point-sign-mask-20261108/` and
-`build/frontier-point-sign-mask-20261108/`. Further mask spelling trials need
-new compiler or source evidence.
+A bounded 2026-11-08 control copied each wrapped result's representation into an
+`int` with `memcpy`, then combined four `value < 0 ? -1 : 0` masks. This avoids both
+a narrowing integer conversion and negative signed right shift on the pinned 32-bit
+target, but VC8 emits 173/native142 bytes with its first difference at +1. The
+representation change does not reproduce the target body. The selected aggregate
+mask was restored and rebuilt: its 139-byte hash and both nonexact results are
+unchanged, and the three accepted peers remain exact. No source or ledger change is
+retained. Further mask spelling trials need new compiler or source evidence.
 
 ## Descriptor-pair broad phase, 2026-11-10
 
@@ -79,11 +75,10 @@ for this gate. Later corner construction and narrow-phase expressions are
 unchanged, so this is not a claim that all collision arithmetic is now defined
 for every integer input.
 
-A fresh complete-unit replay preserves every COFF section byte and relocation.
-The 248-byte single-descriptor root and the 67/110-byte accumulation helpers
-remain exact. The point predicate and descriptor-pair root retain their prior
-nonexact results. Before/selected reports, section dumps, raw native disassembly
-and the passing CI log are in `build/frontier-descriptor-wrap-20261110/`.
+A fresh complete-unit replay preserves every COFF section byte and relocation. The
+248-byte single-descriptor root and the 67/110-byte accumulation helpers remain
+exact. The point predicate and descriptor-pair root retain their prior nonexact
+results.
 
 A separate natural narrow-phase control used unsigned products/sums and a
 four-byte memcpy to interpret their signed result. VC8 emitted four extra

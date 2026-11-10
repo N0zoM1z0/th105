@@ -7,16 +7,13 @@ This checkpoint adds **no exact credit**.
 
 ## Observed target and build facts
 
-The fresh raw-PE packet in
-`build/font-glyph-coordinate-20261021/baseline-facts.json` independently closes
-the 624-byte candidate at RET12 `411DED`, ending exclusively at `411DF0`.
 Its SHA256 is `3e67460ec4d76b1bdf2e30566a9dc74d44c3d34116e847e49ea78667bfb93630`.
 All 189 instructions decode, 187 are reachable, and the eight skipped alignment
 bytes at `411CD8..DF` remain in the comparison. Direct calls are array allocation,
 array release and accent rendering; two indirect calls use the GDI IAT cell
-`6C0010`. These are raw-byte observations, independent of the rejected IDA
-session. The target/status/tracking preflights pass; IDA still opens the wrong
-SHA256 `10350095bcf95edb59e03bee9849a2dc8a7714b4927ad5909c569c550fce6822`.
+`6C0010`. These are raw-byte observations, independent of the rejected IDA session.
+The target/status/tracking preflights pass; IDA still opens the wrong SHA256
+`10350095bcf95edb59e03bee9849a2dc8a7714b4927ad5909c569c550fce6822`.
 
 The new baseline reproduces glyph canonical SHA256
 `a1f0b4e58a76926fa837cdd852256122752fea9e5c9226332fc02139a8ac7806`,
@@ -62,11 +59,9 @@ Only this source's accepted unit is affected. No runtime sweep or aggregate
 cold replay is presented as new evidence: the compared instruction streams
 did not change. The earlier execution receipts retain their own source epochs.
 
-Private reproduction/capture scripts and controls are in
-`.analysis/font-glyph-coordinate-20261021/`. The original coordinate expression,
-original TU/profile, real GDI, allocation failure and EH unwinding remain open.
-The glyph is still nonexact. Larger font and Reimu roots are not advanced by
-this type correction.
+The original coordinate expression, original TU/profile, real GDI, allocation
+failure and EH unwinding remain open. The glyph is still nonexact. Larger font and
+Reimu roots are not advanced by this type correction.
 
 The subsequent [arithmetic/compiler controls](FONT_GLYPH_ARITHMETIC_CONTROLS_2026_10_22.md)
 revalidate the selected source, isolate the top local without changing its loops,

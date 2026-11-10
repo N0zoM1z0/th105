@@ -47,8 +47,4 @@ There was no register/flag search or change to its known residual.
 are unchanged. Validation is limited to the three actual units, complete roots,
 helper body, and supporting target data flow. No source pins change.
 
-Private evidence is in `.analysis/frontier-command-gate-owner-20261109/` and
-`build/frontier-command-gate-owner-20261109/`: original compiler failure,
-name-only baseline, probe comparisons, fresh unit reports, complete native
-reader listings, loader disassembly, and `verification.json`. Lightweight CI
-and the staged diff check pass before the local checkpoint.
+Lightweight CI and the staged diff check pass before the local checkpoint.

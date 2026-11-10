@@ -64,15 +64,14 @@ application bodies and the actual header helper. Canonical application hashes:
 
 Formal command:
 
-    scripts/repo-python scripts/build.py --unit exact-first-connect-endpoint-actions --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-connect-endpoint-actions
+--compare --json
 
 This is an append-only unit/source/literal checkpoint. No shared header or
 existing provider changes, so unrelated accepted receipts remain valid.
 The middle-state699 body and combined891-byte digit editor remain nonexact;
 exact callers do not promote them.
 
-Receipts and the single real-array source control are retained under
-build/frontier-connect-endpoint-actions-20261031/ and its .analysis counterpart.
-The new header rule and three canonical origin rows are updated incrementally
-after their witnesses pass; unchanged origin evidence is retained. Progress is
+The new header rule and three canonical origin rows are updated incrementally after
+their witnesses pass; unchanged origin evidence is retained. Progress is
 regenerated. Final CI and whitespace checks gate the local commit; no push.

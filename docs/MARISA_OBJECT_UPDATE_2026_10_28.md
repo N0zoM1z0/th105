@@ -67,16 +67,15 @@ scripts/repo-python scripts/audit-marisa-object-update.py --target-only
 scripts/repo-python scripts/audit-marisa-object-update.py
 ```
 
-Receipts: `build/frontier-4bbe00-20261028/formal-build.json` and
-`full-audit.json`. The selected canonical full candidate is50156 bytes,
-SHA256`7378dbdae931e6b638b8b04269c50711cf02447b6cd2c75fc35d65a746d53c14`.
-Full comparison has41591 unmasked differing bytes, first+37/4BBE25 in the
-initial default-branch displacement. This is not merely a displacement fix:
-code order, precision, call/return sharing and later control flow remain
-nonexact. Candidate frame0x340, all18 table dimensions and four remap lengths
-agree;37 virtual calls versus36 and92 RETs versus71 remain. All22 direct
-callee counts agree except advance_frame11 versus10. These structural facts
-are diagnostics, not execution-equivalence or byte-exact acceptance.
+The selected canonical full candidate is50156 bytes,
+SHA256`7378dbdae931e6b638b8b04269c50711cf02447b6cd2c75fc35d65a746d53c14`. Full
+comparison has41591 unmasked differing bytes, first+37/4BBE25 in the initial
+default-branch displacement. This is not merely a displacement fix: code order,
+precision, call/return sharing and later control flow remain nonexact. Candidate
+frame0x340, all18 table dimensions and four remap lengths agree;37 virtual calls
+versus36 and92 RETs versus71 remain. All22 direct callee counts agree except
+advance_frame11 versus10. These structural facts are diagnostics, not
+execution-equivalence or byte-exact acceptance.
 
 The unit is isolated; aliases only bind this function's literal operands and
 match identifier. The callable/source/mapping inventory changes, but

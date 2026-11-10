@@ -52,31 +52,25 @@ retains the complete canonical lifetime results:
 | normal dtor `421890` | 154 | `6e049b6b301522e2ab32a3c72e6ebdc6c6c7047bf0c26759e196aeac01ff31c9` |
 | scalar deleting dtor `421930` | 30 | `544eb06ac72099d36c8f16ad444a8df5f16f1d38e88288605aab53cf792c0f13` |
 
-The semantic include closure selects 13 existing units. All 43 affected
-accepted functions were rebuilt serially and remain completely exact.
-`build/design-loader-20261021/header-consumers.json` lists the closure;
-`affected-replays.json` records every comparison. Private native-container
-controls agree with the public lifetime replay. No flags, relocation bindings,
-or accepted extents changed. All work ran on CPU0 at nice10.
+The semantic include closure selects 13 existing units. All 43 affected accepted
+functions were rebuilt serially and remain completely exact. Private
+native-container controls agree with the public lifetime replay. No flags,
+relocation bindings, or accepted extents changed. All work ran on CPU0 at nice10.
 
 ## Evidence, records and remaining work
 
-Raw instruction/edge/vtable facts are in
-`build/design-loader-20261021/target-facts.json` and `target.asm`.
-IDA preflight rejects the attached wrong-target session. A single direct
-Ghidra process independently attested the canonical imported hash, x86 Windows
-specification, image base/entry, all four file-backed PE sections, and the
-entire callable span. The corrected read-only run temporarily created the
-bounded entry, verified its extent, decompiled it, explicitly removed the new
-entry, and read back its absence. All nine primary database file hashes are
-unchanged. Earlier failed attempts and their receipts remain private.
+IDA preflight rejects the attached wrong-target session. A single direct Ghidra
+process independently attested the canonical imported hash, x86 Windows
+specification, image base/entry, all four file-backed PE sections, and the entire
+callable span. The corrected read-only run temporarily created the bounded entry,
+verified its extent, decompiled it, explicitly removed the new entry, and read back
+its absence. All nine primary database file hashes are unchanged. Earlier failed
+attempts and their receipts remain private.
 
-The decompilation is a hypothesis: missing private-callee prototypes cause
-stack drift and poor inferred types. It is not a source implementation.
-Private scripts and receipts are under `.analysis/design-loader-20261021/`
-and `build/design-loader-20261021/`. The 197 prior origin-rule selections are
-unchanged and disjoint from the newly identified loader; only the new rule's
-body, caller and table witnesses needed evidence replay.
+The decompilation is a hypothesis: missing private-callee prototypes cause stack
+drift and poor inferred types. It is not a source implementation. The 197 prior
+origin-rule selections are unchanged and disjoint from the newly identified loader;
+only the new rule's body, caller and table witnesses needed evidence replay.
 
 `functions.csv`, `reccmp-functions.csv`, and the positive authored origin rule
 now record the loader identity. `implemented.csv` and `matches.csv` are

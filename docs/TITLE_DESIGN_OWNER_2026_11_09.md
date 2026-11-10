@@ -47,10 +47,8 @@ consumers. The outer CTitle constructor-facing layout remains separate from
 Title.hpp, whose other legacy design facades are outside this change. There is
 no new authored exact credit.
 
-Evidence is in `build/frontier-title-design-owner-20261109/`: `formal-build.json`,
-`color-formal.json`, `design-providers.json` and `verification.json`. Private
-before-state snapshots and the complete audit are in the matching `.analysis/`
-directory. Tracking, lightweight CI and the diff check pass.
+Private before-state snapshots and the complete audit are in the matching
+`.analysis/` directory. Tracking, lightweight CI and the diff check pass.
 
 The subsequent outer-owner pass unifies the remaining CTitle declarations,
 including the factory and both lifetimes. The focused class header avoids

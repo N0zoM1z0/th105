@@ -95,10 +95,6 @@ Canonical equality does not prove a parked peer has the same compiler context.
 
 ## First full comparison and bounded controls
 
-Private sources/inspection drivers remain in
-`.analysis/exact-first-patchouli-action-entry-20261025/`; receipts are below
-`build/exact-first-patchouli-action-entry-20261025/`.
-
 | Complete source/control | Full bytes | Canonical SHA256 | Result |
 | --- | ---: | --- | --- |
 | First complete source | 3792 | bfb8aa73a5588b0227bcfef3b25b9808279917b47b1d4efd24cec3db9c3536f1 | nonexact+15 |

@@ -58,13 +58,9 @@ preserve its recovered speed-read lifetime while investigating branch-local
 FILD duplication and scratch placement. Existing negative compiler controls
 do not establish an LTCG impossibility. Rebase every trial onto selected source.
 
-Prioritize complete-function compile/compare work with gameplay naming deferred;
-see the [TH075-inspired workflow](RE_WORKFLOW.md#exact-first-priority-from-the-th075-review).
-Latest completed private scope: `build/aya-tail-callviews-20261023/`.
-Preceding scopes include `build/aya-exact-first-source-20261023/`,
-`build/aya-852-sharing-context-20261023/`, `build/aya-852-expression-20261023/`,
-`build/aya-size-profile-20261023/` and `build/aya-joint-cil-20261023/`.
-Their frozen inputs and receipts remain
-loose. Older reports may need restoration from gzip or per-scope archives;
-consult [artifact recovery](ARTIFACTS.md). Private flow-alignment diagnostics
-remain incomplete and are not acceptance evidence.
+Prioritize complete-function compile/compare work with gameplay naming deferred; see
+the [TH075-inspired
+workflow](RE_WORKFLOW.md#exact-first-priority-from-the-th075-review). Their frozen
+inputs and receipts remain loose. Older reports may need restoration from gzip or
+per-scope archives; consult [artifact recovery](ARTIFACTS.md). Private
+flow-alignment diagnostics remain incomplete and are not acceptance evidence.

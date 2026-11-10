@@ -35,11 +35,8 @@ pattern expansion1323, and effect loader2528. The timeline verifier also passes
 the full1676-byte payload including92 table/alignment bytes and fresh build
 provenance. No source, compiler profile or acceptance tool changed.
 
-Receipts: build/frontier-existing-emitted-20261031/coff-report.json, hits.json,
-five exact-first unit reports and timeline-payload.json. The five origin-rule
-validation reports are retained under build/frontier-boost-library-20261031.
-The census and registration scripts remain private in the corresponding
-.analysis scope.
+The census and registration scripts remain private in the corresponding .analysis
+scope.
 
 Only origins change: excluded1721, review511. Exact1577/448878, source1775,
 authored1795, mapped1802 and units760 are unchanged. No compiler bytes are

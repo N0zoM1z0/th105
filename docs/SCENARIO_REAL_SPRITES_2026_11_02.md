@@ -36,10 +36,8 @@ complete source-owned region and actual native handler form are checked rather
 than imposing the usual27-byte size. The other two handlers are27 bytes. No EH,
 copy-provider, container or duplicate cleanup bytes are added to authored credit.
 
-Private controls and receipts are under
-.analysis/frontier-scenario-real-sprites-20261102/ and
-build/frontier-scenario-real-sprites-20261102/. Final CI passed all 962 tests in 112.862 seconds. Both diff checks gate
-the local checkpoint. No target or generated binary is committed.
+Final CI passed all 962 tests in 112.862 seconds. Both diff checks gate the local
+checkpoint. No target or generated binary is committed.
 
 Totals unchanged:1426 exact /443399 bytes,1636 source-present,1655 authored,
 1826 mapped,2075 excluded,297 review and813 units.

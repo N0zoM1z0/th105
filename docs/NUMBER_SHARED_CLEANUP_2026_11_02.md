@@ -35,13 +35,10 @@ owner unit. The two scalar origins (121 bytes) and two implicit record origins
 (23 bytes) pass scoped validation. The latter source pins now include Tile.hpp
 and the reviewed CNumberLifetime.hpp hash. No exclusion decision changes.
 
-Private scripts and receipts are under
-.analysis/frontier-number-shared-cleanup-20261102/ and
-build/frontier-number-shared-cleanup-20261102/. Default CI passed 962 tests
-(90.973 seconds), tracking, generated progress and whitespace. The client timed
-out while waiting, but the persisted exit marker is zero and the full final log
-confirms completion; the gate was not rerun. Both diff checks passed. No target
-or private evidence file is committed.
+Default CI passed 962 tests (90.973 seconds), tracking, generated progress and
+whitespace. The client timed out while waiting, but the persisted exit marker is
+zero and the full final log confirms completion; the gate was not rerun. Both diff
+checks passed. No target or private evidence file is committed.
 
 Counts remain 1427 exact / 443604 bytes; 1637 source-present, 1656 authored,
 1826 mapped, 2074 excluded, 297 review, 813 units.

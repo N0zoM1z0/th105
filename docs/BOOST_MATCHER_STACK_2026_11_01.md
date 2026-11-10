@@ -47,8 +47,5 @@ byte-corruption controls fail: every new root byte, selected/null table slots,
 provider call/tail fields and supporting body boundaries. The narrow origin
 rule passes before changing only the two review rows.
 
-Evidence is retained in build/origin-anchors/boost-matcher-stack.json and
-build/frontier-matcher-stack-20261101/. Private scripts are under
-.analysis/frontier-matcher-stack-20261101/. Generic minimum coverage/byte
-thresholds remain unchanged. Universal false-return stubs and previous
-nonexact public-search CIL results remain unaccepted.
+Generic minimum coverage/byte thresholds remain unchanged. Universal false-return
+stubs and previous nonexact public-search CIL results remain unaccepted.

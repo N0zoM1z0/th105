@@ -44,12 +44,9 @@ The corrected18-byte root remains exact, SHA256:
 cc9df09e62e570b708f377cbbf06738a179ff84c16e1c656df25d977ccb5a67f.
 
 The dependency graph identifies13 affected units including both direct story
-callers. Serial replays preserve all24 accepted functions. Receipts and the
-explicit accepted-address inventory are in
-build/frontier-scenario-font-owner-20261029/affected.json and regressions.json,
-with the root's separate advance.json. This includes scenario runtime/result,
-result lifetime, common spell resources, story setup/ending/page load, text
-entry lifetime/release, list fading and the accepted scenario destructor.
+callers. Serial replays preserve all24 accepted functions. This includes scenario
+runtime/result, result lifetime, common spell resources, story setup/ending/page
+load, text entry lifetime/release, list fading and the accepted scenario destructor.
 
 The constructor remains1528/native1527 nonexact. The interpreter still blocks
 at its unqualified source-emitted string copy constructor; the correction does

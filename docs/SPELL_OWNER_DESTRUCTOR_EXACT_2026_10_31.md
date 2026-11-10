@@ -29,9 +29,8 @@ compare exactly. The deque unwind action uses448DE0, distinct from the normal
 inlined destructor call to tidy420A80. No cleanup metadata is masked or counted
 as additional authored bytes.
 
-Receipts under build/frontier-spell-owner-dtor-20261031: formal.json and
-auxiliary.json. The full auxiliary audit is retained in the corresponding
-.analysis scope. The source and compiler profiles are unchanged.
+The full auxiliary audit is retained in the corresponding .analysis scope. The
+source and compiler profiles are unchanged.
 
 The parent Character destructor462CE0 still emits905 bytes and retains its
 single commutative SIB mismatch at462DF8 (0F versus39). It remains nonexact;
@@ -40,9 +39,6 @@ comparison result, with only4619C0 promoted. The directly called spell cleanup
 171 and resource-core destructor126/constructor118 freshly replay exactly.
 
 Reproduction:
-
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-character-destructor --compare --json
-    taskset -c 0 nice -n 10 scripts/repo-python .analysis/frontier-spell-owner-dtor-20261031/audit_auxiliary.py build/match-units/ExactFirst_CharacterDestructor.obj
 
 Only101 authored bytes are added: exact1578/448979, source1776, authored1796,
 mapped1803, excluded1721, review510, units760. The wider existing-object scan

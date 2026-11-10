@@ -62,10 +62,6 @@ not integer pointer fabrication. The return value is unused at both spawn sites.
 
 ## Whole-source comparisons and corrections
 
-Private receipts are below `build/exact-first-yukari-action-entry-20261025/`;
-trial sources/scripts remain in
-`.analysis/exact-first-yukari-action-entry-20261025/`.
-
 | Complete source/control | Full bytes | Canonical SHA256 | Result |
 | --- | ---: | --- | --- |
 | First complete source | 4326 | cefc5a5dd4310e31345476ee61c393d8ff78b815b8cd1e3eeb72f2d4d30dc2aa | nonexact+8 |

@@ -46,12 +46,8 @@ this genuine provider context.
   as affected. Shared query/lookup sources and headers are unchanged; other
   accepted receipts are preserved, not cold-replayed.
 
-Receipts and IDA evidence are under `build/frontier-tile-cil-20261031/`;
-the same-session metadata/mapped-byte check is retained under
-`build/frontier-rectangle-cil-20261031/ida-preflight.json`. Private generation
-recipes are under `.analysis/frontier-tile-cil-20261031/`.
-Incremental totals are1545 exact functions /438021 bytes. No provider or
-origin credit is added, and no runtime/general equivalence claim is made.
+Incremental totals are1545 exact functions /438021 bytes. No provider or origin
+credit is added, and no runtime/general equivalence claim is made.
 
 ## Other bounded negative results
 

@@ -117,11 +117,6 @@ verifying destructor210 plus the compiler71 witness. All other accepted unit
 definitions and shared headers/compiler flags/relocation ledgers remain intact.
 No unrelated or aggregate cold replay is claimed; progress is a ledger snapshot.
 
-Full raw facts, initial COFF control, canonical/private-caller results, source/
-PE/map/provenance snapshots and cold receipts are under
-`build/font-owner-dtor-20261021/`; corresponding private recipes are under
-`.analysis/font-owner-dtor-20261021/`.
-
 ```bash
 python3 scripts/validate-tracking.py --require-target
 taskset -c 0 nice -n 10 python3 scripts/ci.py

@@ -146,9 +146,7 @@ bash scripts/probe-ltcg-visibility.sh \
 ```
 
 It compiles one real source TU once and performs two serial links of that
-same GL object. Input/compiler hashes, compile/link logs, maps and disassembly
-are generated in a fresh `build/ltcg-visibility.XXXXXX/` directory.
-The current production replay is `build/ltcg-visibility.Z41KS0/`.
+same GL object. The current production replay is `build/ltcg-visibility.Z41KS0/`.
 Both forms start PUSH EBP; MOV EBP,ESP; AND ESP,-8, unlike the target PUSH ECX.
 
 **These DLLs have unresolved symbols, must never be executed and are not
@@ -162,16 +160,13 @@ This resume adds compiler-phase controls only. It does **not** change the
 retained common-Fighter source, match unit, target boundary, relocation policy,
 or 53/66 owner baseline.
 
-The local VC8 reference was re-verified with `scripts/reference-vc8.py` against
-`build/references/vc8/VS2005_CPP_en-us.pdf` (SHA-256
-`ca6831ccd92d5198fc9f71e0f49c0603b00202acd47b11d500d8e786fcfab509`).
-The relevant Microsoft documentation states that `/GL` plus `/LTCG` may use a
-custom x86 calling convention when all call sites are visible, but must retain
-the public convention when a function may be called from a module that was not
-compiled with `/GL`. It separately documents x86 stack double-alignment and
-profile-guided basic-block, branch, switch-value and function-layout
-optimizations. These capabilities are compiler controls, not evidence that this
-specific target function used them.
+The relevant Microsoft documentation states that `/GL` plus `/LTCG` may use a custom
+x86 calling convention when all call sites are visible, but must retain the public
+convention when a function may be called from a module that was not compiled with
+`/GL`. It separately documents x86 stack double-alignment and profile-guided
+basic-block, branch, switch-value and function-layout optimizations. These
+capabilities are compiler controls, not evidence that this specific target function
+used them.
 
 A new mixed-visibility diagnostic follows that documented distinction without
 inventing a target ABI. `build/common-mixed-ltcg.9j4mMJ/` compiles the real

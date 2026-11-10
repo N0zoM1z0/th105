@@ -67,9 +67,6 @@ The target has two next-sequence/RET blocks:47D7BE->CALL47D7C5->RET47D7CE and
 branches. The helper is the accepted unsigned-char thiscall45C220/138-byte
 sequence advance; the root discards its return value.
 
-Private source controls are pinned to generated source8751b928 / canonical
-01a4ea74 from the previous checkpoint:
-
 |Control|Complete qualified outcome|
 |---|---|
 |Five early joins, two late joins, combined seven joins, or all-high joins via619/610 labels|Retain both wrong complete memberships;619 or other high callers can move into the wrong copy|
@@ -156,15 +153,12 @@ x86/windows analysis target, full mapped text and callable bytes before decoding
 both tails/all37 edges,602's guards/unsigned conversion and five preparation
 windows. All nine primary DB hashes remain unchanged and temporary aliases are
 removed. Java heap128MiB and CPU0/nice10 bound the analysis; VC8 builds are serial.
-Recipes are `.analysis/reimu-next-sequence-20261019/{probe,native,native602,effect115,guard-prefixes,effect-prefixes,stage}.py`
-and the three `ghidra*.py`/Java pairs; reports are below the corresponding build
-directory. The prior8751b928 baseline is pinned there for regenerating controls.
+The prior8751b928 baseline is pinned there for regenerating controls.
 
 ```bash
 taskset -c 0 nice -n 10 python3 -B scripts/probe-reimu-action-ltcg.py
 python3 -B scripts/audit-reimu-call-sharing.py build/reimu-ltcg/ordinary.obj
 python3 -B scripts/audit-reimu-root-relocations.py build/reimu-ltcg/ordinary.obj
-taskset -c 0 nice -n 10 python3 -B .analysis/reimu-next-sequence-20261019/native602.py build/reimu-ltcg/ordinary.obj
 ```
 
 **Unknown:** whole-root canonical equality, original TU/profile/visibility,

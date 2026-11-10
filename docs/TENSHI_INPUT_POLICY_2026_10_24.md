@@ -106,12 +106,6 @@ external-tail and action-call metadata were read back and rolled back; all
 pinned primary database files have identical before/after hashes. Pseudocode
 remains corroborating hypothesis, not source or acceptance evidence.
 
-Private recipes and two complete source revisions remain under
-`.analysis/exact-first-tenshi-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, full CFG closure, the family diagnostic,
-attested views/logs/database pins, formal and independent cold comparisons,
-complete-payload receipts and the previous origin-baseline row.
-
 A negative control changes only the first table byte in a generated object.
 The complete audit rejects it at `+0x14E8 / 0x64CC88`, target E9/source EA.
 The target is never patched. No large runtime matrix or aggregate cold replay

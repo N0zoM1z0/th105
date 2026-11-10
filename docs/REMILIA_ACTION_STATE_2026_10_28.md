@@ -89,7 +89,7 @@ remain open, not solved by the count agreement.
 Only the new unit was compiled; no shared accepted source was changed and
 no cold full-corpus run was performed.
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-remilia-action-state --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-remilia-action-state --compare --json
     scripts/repo-python scripts/audit-remilia-action-state.py
     scripts/repo-python scripts/ci.py
     git diff --check
@@ -104,10 +104,7 @@ Final candidate SHA-256:
 Full positional differences including absent trailing bytes: 59,877.
 That count is diagnostic, not a semantic similarity or completion metric.
 
-Receipts: build/frontier-545090-20261028/formal-frame.json and formal-frame-audit.json.
-Private raw and source diagnostics are in the same frontier build directory;
-draft recovery is under .analysis/frontier-545090-20261028/. The checked-in
-source is authoritative. Existing exact receipts remain incremental.
+The checked-in source is authoritative. Existing exact receipts remain incremental.
 
 ### Physical-owner refinement
 
@@ -117,7 +114,6 @@ without changing action semantics or adding a padding/return workaround.
 The native prelude captures unsigned direction once and then sign-extends
 that captured byte for X. The candidate now expresses that flow explicitly.
 Neither of those two changes solved the then-first +8 mismatch; no exact credit was awarded.
-
 
 ### Native-size frame from circular request preparation
 

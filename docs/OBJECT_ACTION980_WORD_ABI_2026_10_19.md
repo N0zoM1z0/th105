@@ -86,11 +86,9 @@ unselected. A repeated optional-selector helper and `/Os` compile but no longer
 have the expected42-destination root table; the structural exporter rejects
 them and no canonical-equality claim is made for either.
 
-Sources/scripts are under `.analysis/reimu-object-entry-source-20261019/`;
-commands, compiler pins, packets and failure logs are under
-`build/reimu-object-entry-source-20261019/`. Builds run serially atCPU0/nice10.
-The root residual still requires an independent source/compiler-context
-explanation; the successful action980 change is not a general scheduling rule.
+Builds run serially atCPU0/nice10. The root residual still requires an independent
+source/compiler-context explanation; the successful action980 change is not a
+general scheduling rule.
 
 ## Saved Ghidra boundary correction
 
@@ -110,12 +108,7 @@ not rewrite the instruction bytes. The helper's p-code also stays within its
 again for signature/storage/body/flow and zero external p-code addresses.
 The readback project file hashes remain unchanged before promotion.
 
-The current primary pins are
-`build/object980-short-context-20261019/primary-db-after.json`; the archive
-loader pins describe its predecessor. The Java script and controller are
-under `.analysis/object980-short-context-20261019/`; write/readback logs and
-receipts are in the corresponding build directory. An initial entry-only
-attempt correctly failed the out-of-body check and was not promoted, despite
-Ghidra returning zero and saving the project. Explicit success/error/readback
-checks remain necessary. Decompiler text is still a hypothesis, and the
-remaining indirect-call prototypes are not thereby recovered.
+An initial entry-only attempt correctly failed the out-of-body check and was not
+promoted, despite Ghidra returning zero and saving the project. Explicit
+success/error/readback checks remain necessary. Decompiler text is still a
+hypothesis, and the remaining indirect-call prototypes are not thereby recovered.

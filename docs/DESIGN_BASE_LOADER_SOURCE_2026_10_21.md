@@ -171,21 +171,17 @@ do not recover the target private lowering. Original source/member spelling
 and honest larger TU/LTCG context remain open; no compiler setting or public
 source is changed and no new exact is recorded.
 
-Frozen source/header/object, formal baseline, complete comparisons and raw
-instruction text are in `build/design-gage-member-context-20261021/`, with a
-matching private `.analysis/` recipe. The two completed source/object/helper
-sets are compressed only after per-file SHA256 readback. No unrelated replay
-or aggregate claim is made. The preceding cleanup blocker is now superseded
-by [its complete 310-byte acceptance](DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md).
+No unrelated replay or aggregate claim is made. The preceding cleanup blocker is now
+superseded by [its complete 310-byte
+acceptance](DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md).
 
 ## Shared reader forwarding control, 2026-10-31
 
-The later genuine read_file_buffer helper was tested at all30 reader sites.
-A fresh baseline and that control emit identical raw2580-byte main COMDATs,
-SHA-256fe527be121cf925ff120f33f741054dbe3884581598a51ddb115f982e1cc4a19.
-This is section data, not a new callable-size or canonical-equality claim.
-The main remains blocked by unqualified EH; the gauge stays360/native360 and
-nonexact at5. All three existing empty-virtual witnesses still compare exact.
-The helper change was restored out of selected source. This closes the reader-
-forwarding question for this current context without another spelling grid.
-Evidence: build/frontier-design-reader-context-20261031/.
+The later genuine read_file_buffer helper was tested at all30 reader sites. A fresh
+baseline and that control emit identical raw2580-byte main COMDATs,
+SHA-256fe527be121cf925ff120f33f741054dbe3884581598a51ddb115f982e1cc4a19. This is
+section data, not a new callable-size or canonical-equality claim. The main remains
+blocked by unqualified EH; the gauge stays360/native360 and nonexact at5. All three
+existing empty-virtual witnesses still compare exact. The helper change was restored
+out of selected source. This closes the reader- forwarding question for this current
+context without another spelling grid.

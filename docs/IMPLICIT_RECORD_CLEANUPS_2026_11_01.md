@@ -36,9 +36,5 @@ owner destructor185, deleting destructor30, record constructor28 and cleanup15.
 These are fresh actual native comparisons, not cached claims. Existing implicit-
 lifetime tooling tests remain applicable; no new validator behavior is added.
 
-Only23 compiler bytes and two exclusions are added. Authored exact/source
-counts do not change. The earlier IColor declaration correction is unchanged.
-
-Evidence: build/frontier-record-cleanups-20261101/{rotate,info,whole-bodies}.json
-and the scoped origin-validation receipt. Private registration script is under
-.analysis/frontier-record-cleanups-20261101/.
+Only23 compiler bytes and two exclusions are added. Authored exact/source counts do
+not change. The earlier IColor declaration correction is unchanged.

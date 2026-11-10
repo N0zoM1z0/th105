@@ -60,16 +60,6 @@ The target412928 call reaches665B33. It is a complete63-byte native range-error
 body, rather than an import thunk. The old runtime exclusion rule relied only
 on IDA names. Fresh corroboration uses pinned VC8 SP1:
 
-- `libcpmt.lib` SHA256
-  `e1b17cb213bfcf77e3c0988f8cb33ec8be143872d1c52de62c5da07ea1eb8031`;
-- member `build/intel/mt_obj/string.obj`, SHA256
-  `b2c7c0bc31c4e276c1657300d954990d5766d0e18509b76692ca80d5689df521`;
-- its defined native `_String_base::_Xran` and `_Xlen` symbols, both63 bytes;
-- all31 nonrelocation bytes in each corresponding target body;
-- target messages `invalid string position` / `string too long`, independent
-  out_of_range / length_error RTTI, and native string/logic_error construction,
-  vtable, throw-info and CxxThrowException relocation roles.
-
 The existing two-function runtime rule now requires full target body hashes
 and documents this archive/literal/RTTI evidence. Its classification/counts do
 not change. This is positive runtime identity corroboration, not a canonical

@@ -64,11 +64,9 @@ all4 and12 bounded observer cases and negative controls pass. Actual Select
 owner and design-color/table audits pass. Fighter cleanup465420 remains95
 versus native96; this does not reopen its closed CSE-shaping lane.
 
-Evidence: build/frontier-character-real-sprite-20261102/, including coverage.json,
-owner-proof.json, replays/, nonexact/ and baseline-neighbors/. Private controls
-are under the corresponding .analysis directory. Canonical entry replay:
+Canonical entry replay:
 
-    scripts/repo-python scripts/build.py --unit exact-first-character-constructor --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-character-constructor --compare --json
     scripts/repo-python scripts/csprite_lifetime_origins.py
     scripts/repo-python scripts/sprite_default_origins.py
 

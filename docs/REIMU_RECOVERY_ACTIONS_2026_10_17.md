@@ -75,13 +75,9 @@ python3 scripts/audit-reimu-recovery-actions.py build/reimu-71/ReimuActionStateR
 
 Fresh VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default FP, no injected compiler
 environment, yields1562 staging text bytes. CRLF source SHA256 is
-`d428caf56e157a19f5ca9a2b7b54065a52a5c19bb0f3e1256e7c6cc5889f2599`,
-header SHA256
-`d8e236e63dc2857ecc2037b31777e4b9dfb354193678d758d759afbb5047f5da`,
-and object SHA256
-`15f85b618851e84a1b64ee84f6242a77070000bd9187be1ec1b5a6b5c686e127`.
-The manual build receipt is `build/reimu-71/build-receipt.json`; the oracle
-attests its object input but does not itself attest compilation.
+`d428caf56e157a19f5ca9a2b7b54065a52a5c19bb0f3e1256e7c6cc5889f2599`, header SHA256
+`d8e236e63dc2857ecc2037b31777e4b9dfb354193678d758d759afbb5047f5da`, and object
+SHA256 `15f85b618851e84a1b64ee84f6242a77070000bd9187be1ec1b5a6b5c686e127`.
 
 **0/4595 differences**, input SHA256
 `f78eb11f656eb7224a986ec65319fc43257f35c92b038be9e0df4c2028c0ee7f`:

@@ -88,11 +88,6 @@ hashes. The exported pseudocode is a hypothesis: in particular it expands the
 source was written from the instruction/control-flow review, not copied from
 that output.
 
-Receipts: `build/exact-first-remilia-entry-20261024/ghidra-receipt.json`,
-`primary-db-before.json`, `primary-db-after.json`, `ghidra.log`, `target.asm`,
-`raw-facts.json`, and `constants.json`. Private analysis/recipes stay under
-`.analysis/exact-first-remilia-entry-20261024/`.
-
 ## Whole-function experiment receipts
 
 The 00..09 source trials were serial, pinned to CPU0 at nice10, with the existing
@@ -139,7 +134,6 @@ neutral named-field or terminal/default controls without new independent
 instruction/compiler evidence. Switch to another bounded roster initializer
 when the next hypothesis would merely repeat these scheduler experiments.
 
-
 ## November1: request-local lifetimes recover the real 980 tail
 
 The two actual parented requests belong only to800/sequence0 and854/sequence2.
@@ -181,13 +175,9 @@ scheduling plus901's shared heading-store/return placement. Local equality and
 recovered physical extents are diagnostics, not partial exact-byte credit.
 No further old sequence-view or switch-placement spelling controls were run.
 
-The public build reproduces the isolated lifetime control exactly. Receipts:
-build/frontier-remilia-request-lifetime-20261101/{baseline,selected,
-selected-full,request-lifetime-evidence,complete-cfg,effects,tail-provider}.json,
-Scoped.canonical.bin, scoped-differences.txt and ci.log. Private Scoped.cpp is
-retained under the corresponding .analysis directory. Only this source, its
-tracking evidence and documentation change; shared headers/providers stay intact.
-
+The public build reproduces the isolated lifetime control exactly. Only this source,
+its tracking evidence and documentation change; shared headers/providers stay
+intact.
 
 ## November1 follow-up:901's distinct source arms and full metadata
 

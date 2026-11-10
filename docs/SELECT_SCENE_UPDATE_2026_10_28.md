@@ -2,12 +2,11 @@
 
 Source registration was updated on 2026-11-04; earlier unselected-status statements below are historical. See the registration section.
 
-Complete697-byte native root is reconstructed as an unselected685-byte
-candidate. First mismatch+337 is cdecl stack cleanup ordered before versus
-after pointer publications. No exact/source-selection credit.
-Receipt: build/frontier-421430-20261028/formal-build.json.
-Raw recursive CFG closes all231 instructions through the final return,
-including the early menu/exit EH epilogues: boundary.json.
+Complete697-byte native root is reconstructed as an unselected685-byte candidate.
+First mismatch+337 is cdecl stack cleanup ordered before versus after pointer
+publications. No exact/source-selection credit. Raw recursive CFG closes all231
+instructions through the final return, including the early menu/exit EH epilogues:
+boundary.json.
 
 The update first handles a changed UI selection and scene-mode2/3 return.
 Either active player input's counter48 can open the real0x1C4 CMenuSelect after
@@ -35,9 +34,8 @@ is retained as a bounded compiler/TU question rather than coerced into place.
 
 ## Source registration, 2026-11-04
 
-The existing complete candidate is now selected as source-present and the
-native body is classified as authored: the pinned CSelect RTTI table places it
-at slot `0x006C0BC8`, with its complete body and three application call sites
-validated. A fresh pinned build confirms 685/native697, first mismatch +337.
-This is not exact credit or whole-game execution. Receipt:
-`build/frontier-select-update-register-20261104/formal.json`.
+The existing complete candidate is now selected as source-present and the native
+body is classified as authored: the pinned CSelect RTTI table places it at slot
+`0x006C0BC8`, with its complete body and three application call sites validated. A
+fresh pinned build confirms 685/native697, first mismatch +337. This is not exact
+credit or whole-game execution.

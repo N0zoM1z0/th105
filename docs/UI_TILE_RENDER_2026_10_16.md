@@ -107,13 +107,11 @@ Recorded controls, all bounded and sequential:
   This does not establish the original inline/TU boundary or justify forced
   inlining, fake stack storage, register forcing, or a global compiler change.
 
-Private scripts, Ghidra hypotheses and reports are under
-`.analysis/tile-render-20261016/` and `build/tile-*`; the commands above are
-the durable reconstruction reproduction. The root advances to **source-present**
-only. No match-unit or matches.csv entry is added. Original TU/compiler-phase
-provenance, the extra four-byte frame reservation, and the tail call scheduling
-remain unknown. The quantized helpers' original return spelling remains
-underconstrained; this caller observes their explicit float materialization.
+The root advances to **source-present** only. No match-unit or matches.csv entry is
+added. Original TU/compiler-phase provenance, the extra four-byte frame reservation,
+and the tail call scheduling remain unknown. The quantized helpers' original return
+spelling remains underconstrained; this caller observes their explicit float
+materialization.
 
 ## TH075 cross-check
 

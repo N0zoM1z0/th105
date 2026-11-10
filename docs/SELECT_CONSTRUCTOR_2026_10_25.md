@@ -75,10 +75,7 @@ the byte comparison remains decisive.
 
 ## Evidence-backed source trials
 
-Each row compares the whole source immediately after that change. Private
-receipts and original source snapshots remain under
-`.analysis/exact-first-select-base-ctor-20261025` and
-`build/exact-first-select-base-ctor-20261025`.
+Each row compares the whole source immediately after that change.
 
 | Question / control | Main bytes / differing bytes | Canonical main SHA256 prefix |
 | --- | --- | --- |

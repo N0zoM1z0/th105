@@ -63,7 +63,4 @@ identical before and after, including relocations, except the export-directory
 build timestamp. This also preserves emitted lookup and compiler support code.
 Only this translation unit changes; no shared layout or source pin changes.
 
-Evidence: `build/frontier-wave-token-copy-20261110/` contains before/after
-public reports, DLLs, full provider reports and focused CI output. The private
-comparison script is `.analysis/frontier-wave-token-copy-20261110/compare.py`.
 Existing local exactness is preserved; this is not a new Factory acceptance.

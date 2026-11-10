@@ -8,9 +8,6 @@ ownership and exact rows remain unchanged. No new exact credit is claimed.
 
 ## Selected comparison and entry observations
 
-`build/reimu-object-822-constant-lifetime-20261022/mapper-formal.json` freshly
-reproduces the complete selected comparison:
-
 | Body | Result |
 | --- | --- |
 | `496540` | Source section 45,700 bytes; owned target comparison 46,138 bytes; first difference `49655F / +31` |
@@ -58,10 +55,8 @@ that stronger evidence. See [the argument-lifetime record](REIMU_OBJECT_822_ARGU
 ## Fresh physical call and return census
 
 `census.py baseline` rebuilds target reachability from the PE and candidate
-reachability from the current object, including reviewed switch destinations.
-`baseline-census.json` records 433 physical calls / 68 RETs in the target and
-428 / 63 in the source; call/RET membership distances remain 11 / 27.
-These are normal-control-flow facts, not execution through opaque callbacks.
+reachability from the current object, including reviewed switch destinations. These
+are normal-control-flow facts, not execution through opaque callbacks.
 
 For example, target advance calls at `496844`, `497D6F` and `49A5DD` belong
 respectively to actions 800/821, 811 and 825. The source shares one physical
@@ -81,9 +76,7 @@ lists the 25 real starts and their current source/unit annotations.
 
 ## Unselected controls and limits
 
-All controls retain source recipes below
-`.analysis/reimu-object-822-constant-lifetime-20261022/` and reports below the
-matching `build/` directory. None changes reconstruction selection.
+None changes reconstruction selection.
 
 | Control | Observation |
 | --- | --- |

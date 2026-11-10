@@ -63,8 +63,5 @@ all five affected scalar-wrapper proofs also pass. Only FileListFinalize's
 changed reviewed-source pin is renewed, preserving its declared CRLF checkout.
 Unrelated classifications and pending input-migration pins are unchanged.
 
-Evidence: `.analysis/frontier-file-list-tile-owner-20261109/` and
-`build/frontier-file-list-tile-owner-20261109/`, including complete before/after
-objects, both access-provider comparisons, native owner checks, RTTI/EH results
-and scoped origin reports. The original at()-to-operator[] mismatch is retained
-in the verification rather than hidden by the wrapper's exact bytes.
+The original at()-to-operator[] mismatch is retained in the verification rather than
+hidden by the wrapper's exact bytes.

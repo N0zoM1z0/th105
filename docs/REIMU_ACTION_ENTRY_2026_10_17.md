@@ -148,9 +148,7 @@ and final RET. This metadata is not compiler provenance. All nine primary
 database files stayed hash-identical; the clone was removed, with no target
 byte patching.
 
-Facts are retained in the manifest, ledger note, typed staged source and
-auditors. Private recipes/reports are in `.analysis/reimu-action-root-20261017/`
-and `build/reimu-action-root/`. The [low0..10 follow-up](REIMU_LOW_ACTIONS_2026_10_17.md)
-now carries the shared staging header and current source/native proof.
-Complete81KB source and a strict whole-root comparison are still required
-before any root implementation/exact claim.
+Facts are retained in the manifest, ledger note, typed staged source and auditors.
+The [low0..10 follow-up](REIMU_LOW_ACTIONS_2026_10_17.md) now carries the shared
+staging header and current source/native proof. Complete81KB source and a strict
+whole-root comparison are still required before any root implementation/exact claim.

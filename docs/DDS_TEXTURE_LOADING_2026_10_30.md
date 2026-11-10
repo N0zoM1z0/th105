@@ -70,10 +70,6 @@ The new nonexact DDS authored rule is bound to its full body hash and actual
 caller edge. Creation uses the normal exact-origin baseline. Existing sources,
 headers, flags and import tooling are untouched; unchanged receipts are retained.
 
-Private evidence is in build/frontier-dds-texture-20261030 and matching .analysis
-sources, including boundaries.json, ida-source-evidence.json and linked-command
-provenance. Full preflight is in build/frontier-medium-native-20261030.
-
 Reproduce with scripts/repo-python scripts/build.py --unit
 exact-first-dds-texture-loading --compare --json. This probe now contains only the88-byte helper and must pass. The DDS
 descriptor moved to exact-first-csv-file-loading; its current full linked body

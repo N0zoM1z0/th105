@@ -4,4 +4,9 @@ The complete native `0x401CE0` body is 109 bytes (SHA-256 `d756c176e1c50d926a0e9
 
 The operation rejects a zero handle, multiplies the requested gain by the wave service's gain at `+0x450`, rounds to float and uses the existing minimum threshold and gain-to-DirectSound conversion. It looks up the resource through the manager at `+0x64` and, if the DirectSound resource exists, calls its volume slot. The source reuses the existing resource lookup and audio implementations. Its view names and original source organization are reconstruction labels, not historical claims.
 
-The genuine linked unit `exact-first-wave-handle-gain` emits 101 bytes against native 109. It retains the same threshold branch, call targets and volume dispatch, but native uses an 8-byte-aligned EBP frame and a different save schedule. The complete source remains nonexact and adds no exact bytes. No artificial aligned scratch, forced register ABI, inlining barrier or opcode adjustment is used. The earlier preservation-only control is superseded by this unforced public unit. See `build/frontier-wave-gain-natural-20261103/public.json` and `caller.json` for the fresh comparisons.
+The genuine linked unit `exact-first-wave-handle-gain` emits 101 bytes against
+native 109. It retains the same threshold branch, call targets and volume dispatch,
+but native uses an 8-byte-aligned EBP frame and a different save schedule. The
+complete source remains nonexact and adds no exact bytes. No artificial aligned
+scratch, forced register ABI, inlining barrier or opcode adjustment is used. The
+earlier preservation-only control is superseded by this unforced public unit.

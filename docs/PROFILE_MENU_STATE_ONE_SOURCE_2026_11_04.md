@@ -19,7 +19,5 @@ EH equivalence. The newly pinned handler address `0x006BA250` is verified by
 the original body's push and the handler's first 16 bytes only; it is a
 relocation identity, not a complete handler proof or additional coverage.
 
-Receipts are in `build/frontier-profile-state-one-20261104/`; no application
-link or gameplay test is claimed.
 The exact 227-byte dispatcher and 696-byte sibling state-six body both replayed
 exact; target-independent CI passed all 1,024 tests and progress checks.

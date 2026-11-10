@@ -117,11 +117,9 @@ nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-shot-effect-returns.py \
   --output-dir build/reimu-landing-exits/effect62-smoke --smoke
 ```
 
-Compile the three staging sources with `scripts/compile-unit.sh`, then use
-their existing `audit-reimu-movement-attack-actions.py`,
-`audit-reimu-late-low-actions.py` and `audit-reimu-low-dispatch.py` adapters with
-`--smoke`. Exact commands, input hashes and terminal statuses are retained in
-`build/reimu-landing-exits/validation-receipt.json`. No full historical matrix
+Compile the three staging sources with `scripts/compile-unit.sh`, then use their
+existing `audit-reimu-movement-attack-actions.py`, `audit-reimu-late-low-actions.py`
+and `audit-reimu-low-dispatch.py` adapters with `--smoke`. No full historical matrix
 or aggregate exact-unit replay is run.
 
 Direct read-only Ghidra re-attests executable identity, entry, language/compiler,

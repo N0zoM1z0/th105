@@ -92,6 +92,5 @@ Build with scripts/repo-python scripts/build.py --unit exact-first-csv-file-load
 --json, then scripts/repo-python scripts/compare-linked-unit.py
 exact-first-csv-file-loading --address 0x004094E0 --json.
 
-Formal evidence: build/frontier-bitmap-texture-20261030/dds-formal-final.json
-and png-context-affected.log. Private original-library and control evidence is
-retained in build/frontier-png-library-20261030 and matching analysis directories.
+Formal evidence: build/frontier-bitmap-texture-20261030/dds-formal-final.json and
+png-context-affected.log.

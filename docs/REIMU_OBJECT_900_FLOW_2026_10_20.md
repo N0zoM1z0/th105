@@ -205,11 +205,9 @@ and the temporary alias is removed. Decompiler locals and array sizes remain
 hypotheses; raw push-adjusted ESP proves the buffer addresses above. No
 external engine analogy or retained source overrides these instructions.
 
-Generated reports and controls stay in `build/reimu-object-900-flow-20261020`;
-private drivers remain in `.analysis/reimu-object-900-flow-20261020`.
-Redundant canonical byte copies and unselected full-root owner diagnostics
-are removed, retaining their900 scope, source, COFF and regeneration recipes.
-No executable, database, compiler installation or generated report is committed.
+Redundant canonical byte copies and unselected full-root owner diagnostics are
+removed, retaining their900 scope, source, COFF and regeneration recipes. No
+executable, database, compiler installation or generated report is committed.
 
 ```bash
 python3 scripts/verify-target.py

@@ -105,22 +105,16 @@ scripts/repo-python scripts/build.py --unit exact-first-bgm-stream-runtime --jso
 scripts/repo-python scripts/compare-linked-unit.py exact-first-bgm-stream-runtime --address 0x00418A10 --json
 ```
 
-Private receipts are under build/frontier-bgm-stream-runtime-20261030:
-ida-preflight.json, ida-stream-functions.json, formal-build.json,
-formal-open.json, the focused regression receipts and ci.log.
 SDK archives, generated libraries and analysis artifacts are not committed.
 
 ## Ring-wrap expression follow-up
 
-Raw402C71..402C78 and402CC1..402CC9 form a boolean and shift it20 bits.
-The source now spells both wrap offsets as unsigned boolean shifts rather
-than ternary constants. Fresh CIL recovers both native SBB/NEG-or-ADD/SHL
-sequences. The complete update is918/native943 and remains unaccepted; its
-frame, private receiver and volume helper boundaries remain open.
-Both accepted Ogg291 and SFL484 roots freshly retain canonical equality.
-The accepted-root replay is recorded in
-`build/frontier-stream-update-fp-20261030/accepted-replay.json`.
-No exact ledger or byte credit changes.
+Raw402C71..402C78 and402CC1..402CC9 form a boolean and shift it20 bits. The source
+now spells both wrap offsets as unsigned boolean shifts rather than ternary
+constants. Fresh CIL recovers both native SBB/NEG-or-ADD/SHL sequences. The complete
+update is918/native943 and remains unaccepted; its frame, private receiver and
+volume helper boundaries remain open. Both accepted Ogg291 and SFL484 roots freshly
+retain canonical equality. No exact ledger or byte credit changes.
 
 Scoped exception-sensitive update FP was also checked independently. It
 materializes transition values but gives931 bytes and leaves the frame and

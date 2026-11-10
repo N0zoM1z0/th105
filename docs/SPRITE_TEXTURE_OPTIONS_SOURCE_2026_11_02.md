@@ -60,7 +60,6 @@ No shared header or existing source unit changed, so no accepted consumer was
 invalidated. Only the selected source-present and authored-origin rows change.
 Exact stays 1426 / 443399 bytes. Source 1637, authored 1656, mapped 1827,
 review 295, excluded 2076, units 814. No matches.csv addition.
-Private build/audit evidence is in build/frontier-sprite-options-source-20261102.
 
 Scoped authored-origin validation passes 1 / 334; corrupted whole-body hash,
 wrong vtable slot and wrong type descriptor are all rejected. Full default CI

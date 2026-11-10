@@ -33,11 +33,10 @@ EDI=actor+4 and restores ECX from EDI before **both** range calls:
 |404|47E9EE|47EA13|
 |406|47EFED|47F012|
 
-A full reviewed-CFG reaching-definition packet traces ECX at all eight sites
-through the LEA/MOV chain to the entry receiver+4, including loop backedges.
-The same proof succeeds at all eight expanded-source sites. The packet is
-`build/reimu-random-receiver/receiver-packet.json`. Original class identity and
-original source spelling remain unknown.
+A full reviewed-CFG reaching-definition packet traces ECX at all eight sites through
+the LEA/MOV chain to the entry receiver+4, including loop backedges. The same proof
+succeeds at all eight expanded-source sites. Original class identity and original
+source spelling remain unknown.
 
 ## Source correction and resulting compiler changes
 
@@ -122,12 +121,11 @@ A compiled actor+8 accessor control fails immediately at4351A0 with
 `unreviewed receiver`, despite the callee's unused ECX. The selected source
 stays at+4. This closes a caller-input hole that output-only range checks missed.
 
-An earlier compiler-only RTM42 control used the preceding receiver-free source
-and unchanged SP1 headers/flags. It produced prefix81576/text82948, retained
-first+17 and exceeded the callable limit26; it was never executed. The
-RTM/SP1 cl/c1xx/c2 file versions and hashes are recorded under
-`build/reimu-compiler-versions/`. This is phase-scoped negative evidence, not
-identification of the original compiler patch or a full RTM library profile.
+An earlier compiler-only RTM42 control used the preceding receiver-free source and
+unchanged SP1 headers/flags. It produced prefix81576/text82948, retained first+17
+and exceeded the callable limit26; it was never executed. This is phase-scoped
+negative evidence, not identification of the original compiler patch or a full RTM
+library profile.
 
 ## Reproduction and continuation
 
@@ -140,12 +138,10 @@ nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-void-root.py build/reimu-
 nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-void-root.py build/reimu-random-receiver/compact/ReimuActionStateDispatch.obj --cohort integration --cohort defaults --cohort unresolved740 --cohort aim_argument_lifetimes
 ```
 
-`build/reimu-random-receiver/` retains receipts, source/target packets, the
-fresh sharing census and focused native reports. The+8 control copies the
-compact source/header, changes only the accessor's unique+4 to+8, and compiles
-with the ordinary recipe before running the receiver cohort; expected exit2.
-Large duplicate sources, objects and temporary reports are cleaned afterward.
-All9 primary analysis database files hash unchanged by streamed reads.
+The+8 control copies the compact source/header, changes only the accessor's unique+4
+to+8, and compiles with the ordinary recipe before running the receiver cohort;
+expected exit2. Large duplicate sources, objects and temporary reports are cleaned
+afterward. All9 primary analysis database files hash unchanged by streamed reads.
 
 Root remains unclassified/declaration-only with no new exact/source-present
 credit. Continue reducing the supported lifetime/physical-sharing differences

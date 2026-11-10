@@ -51,9 +51,8 @@ evidence is used; no new IDA semantics are required.
 - Four private actual-code corruption controls all fail.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
-Contracts: config/linked-exception-members-origin-anchors.toml.
-Fresh full proof: build/origin-anchors/linked-exception-members/proof.json.
-Private discovery: .analysis/frontier-linked-exception-members-20261101/.
+Contracts: config/linked-exception-members-origin-anchors.toml. Fresh full proof:
+build/origin-anchors/linked-exception-members/proof.json.
 
 The ordinary library root112/native111 and payload-dependent tree leads remain
 nonexact/unaccepted. These short bodies do not improve the authored numerator.

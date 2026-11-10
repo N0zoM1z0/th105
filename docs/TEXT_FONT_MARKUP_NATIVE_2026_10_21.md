@@ -131,12 +131,9 @@ Font render still intentionally reports comparison_failed: eight roots remain
 nonexact and all three accepted leaves remain exact. Owner reports ok; texture
 has its existing two nonexact candidates, without resolver failures.
 
-Current formal reports, selected COFF, complete canonical bodies, caller/EH
-facts and execution receipts are in `build/font-markup-local-20261021/`.
-Private source recipes and baseline snapshot are under
-`.analysis/font-markup-local-20261021/`. Completed unselected controls are
-compressed only after per-file SHA256 archive readback; selected evidence stays
-available. No generated binary/report is committed.
+Current formal reports, selected COFF, complete canonical bodies, caller/EH facts
+and execution receipts are in `build/font-markup-local-20261021/`. No generated
+binary/report is committed.
 
 Next: explain actual stack-value lifetimes, destructor-state scheduling and
 the8-byte frame residual with the now recovered entry/caller context. Glyph

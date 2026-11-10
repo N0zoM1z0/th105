@@ -55,12 +55,9 @@ callable and reports mismatch. A separate canonical relocation replay compares
 the entire772/760 source/target payload, including both switch tables.
 No prefix, table-only or equal-length acceptance is claimed.
 
-Receipts and reproducible private source controls are retained under
-build/frontier-connect-join-state-20261031/ and its .analysis counterpart.
-Fresh target/IDA attestation is retained under
-build/frontier-medium-discovery-20261031/. The new narrow origin rule checks
-the whole callable, exact-caller tail edge and two accepted downstream calls.
-Only its new origin row is updated; unchanged origin evidence is retained.
+The new narrow origin rule checks the whole callable, exact-caller tail edge and two
+accepted downstream calls. Only its new origin row is updated; unchanged origin
+evidence is retained.
 
 This append-only source/unit/data checkpoint changes no accepted consumer.
 Progress becomes source1743, authored1763, review844; exact remains1547

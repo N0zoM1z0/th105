@@ -43,9 +43,7 @@ shared-header change is a signature for a previously unused slot with unchanged
 layout; no unrelated corpus rebuild is needed. Default CI also checks the
 complete current manifest and ledgers.
 
-Receipts: build/frontier-render-pair-state-20261031/void.json, ownership.json,
-renderer.json and scene.json. formal.json retains the rejected123-byte return
-control. No source or acceptance-tool forcing was used.
+No source or acceptance-tool forcing was used.
 
 Totals: exact1581/449116, source1780, authored1800, mapped1807,
 excluded1783/review444, units763. Only this121-byte game function is added.

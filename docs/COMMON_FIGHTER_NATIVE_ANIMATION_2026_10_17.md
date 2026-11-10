@@ -118,10 +118,6 @@ invalid topologies. These controls reject this partition explanation; they
 do not establish that all source/TU alternatives are exhausted or that LTCG
 is the cause.
 
-Final local evidence: `build/common-animation-final-build.json`,
-`common-animation-final-owners.json`, `common-animation-final-native.json`,
-`common-animation-final-negative-zero.json` and
-`common-animation-scope-negative.json`. Private source recipes remain under
-`.analysis/common-handler-20261017/`; generated objects are disposable.
-The remaining whole-root blocker is simultaneous clamp/sequence physical
-ownership and SUB lowering while preserving rounding and unordered behavior.
+The remaining whole-root blocker is
+simultaneous clamp/sequence physical ownership and SUB lowering while preserving
+rounding and unordered behavior.

@@ -43,12 +43,10 @@ coverage/minimum-byte thresholds are unchanged. Other selected bodies have
 no tail. These are compiler-generated/std exclusions only, not game-authored
 or helper-inflated exact progress.
 
-Public source: scripts/probes/FrameDataVectorOrigin.cpp.
-Unit: vc8-frame-vector-origin.
-Anchor: config/vc8-frame-vector-origin-anchors.toml.
-Receipts: build/frontier-frame-vector-20261031/{formal.json,scan.txt,selected.json}.
-The new origin rule was natively validated; unchanged prior evidence is
-retained rather than cold-rebuilt.
+Public source: scripts/probes/FrameDataVectorOrigin.cpp. Unit:
+vc8-frame-vector-origin. Anchor: config/vc8-frame-vector-origin-anchors.toml. The
+new origin rule was natively validated; unchanged prior evidence is retained rather
+than cold-rebuilt.
 
 Exclusions become1,655 and review becomes600. Match units become748.
 Authored exact stays1,555 /441,708 bytes; source1,752, ownership1,772 and

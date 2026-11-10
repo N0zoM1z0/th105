@@ -113,12 +113,10 @@ pre-edit5f30ef4 baseline. That baseline passes the old0/104 smoke. Under the
 new852-case integration domain it differs once:798 now executes its real body
 where the old source returned pending. The other851 cases agree.
 
-**0/11820 differences**, `build/reimu-high-final/native.json`, input SHA256
-`ebd6a7861452a4065ee96cd88d3e0a8bd059adb78e73e946a8089266d0c039c5`.
-There are10364 genuine RETs,1400 actual465190 stops,30 effects,12 common entries,
-1 set669 and13 pending (including the eight740 cases).10381 target/6732 staged
-root instruction addresses are sampled. Real MT-next/random-roll helpers each
-execute2267 times; texture publication270, inactive finalization/WORD copy64 each.
+There are10364 genuine RETs,1400 actual465190 stops,30 effects,12 common entries, 1
+set669 and13 pending (including the eight740 cases).10381 target/6732 staged root
+instruction addresses are sampled. Real MT-next/random-roll helpers each execute2267
+times; texture publication270, inactive finalization/WORD copy64 each.
 
 |Cohort|Cases|
 |---|---:|

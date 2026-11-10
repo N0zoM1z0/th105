@@ -88,17 +88,14 @@ for this complete byte comparison.
 The formal build receipt pins the source, compiler, manifest and object before
 comparison. Frozen `selected.cpp`/`selected.obj`, preflight logs, full target
 packet, initial controls and `formal-build.json` are under
-`build/gage-design-render-20261021/`. Private target and acceptance recipes are
-under `.analysis/gage-design-render-20261021/`.
+`build/gage-design-render-20261021/`.
 
-Both previously unclaimed review candidates receive durable names,
-source-present entries and complete matching rows together. Origin updates
-use the official `function-origins.py` baseline function for exactly these two
-new matching rows. All196 explicit origin-rule selections are checked before
-and after: their ordered selections are unchanged and neither address is
-selected. The target and origin-rule file are unchanged. `acceptance-delta.json`
-records that bounded update and its pins; no complete library-anchor replay
-or new aggregate cold-replay claim is made.
+Both previously unclaimed review candidates receive durable names, source-present
+entries and complete matching rows together. Origin updates use the official
+`function-origins.py` baseline function for exactly these two new matching rows.
+All196 explicit origin-rule selections are checked before and after: their ordered
+selections are unchanged and neither address is selected. The target and origin-rule
+file are unchanged.
 
 No prior accepted source/header, object partition, flag or relocation changes.
 The focused formal build therefore covers the affected new unit. Existing

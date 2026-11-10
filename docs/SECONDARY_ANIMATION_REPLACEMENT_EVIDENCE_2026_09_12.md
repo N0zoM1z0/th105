@@ -13,7 +13,6 @@ Unit: `gpt-web-secondary-animation-replacement`, existing `/O2 /GS` profile.
 No assembly, extra storage, padding, volatile, fake liveness or custom calling
 convention was introduced. The canonical body hash is
 `7f23a75bc598a02d6f0b6c23549610b908fa7df5834b1539060899ec352ee111`.
-Local report: `build/secondary-replacement-native-formal.json`.
 
 ```bash
 python3 scripts/check-ida-mcp.py
@@ -24,8 +23,7 @@ python3 scripts/build.py --unit gpt-web-secondary-animation-replacement --compar
 The root is newly credited for 274 bytes. Compiler-generated find and EH
 machinery are not added to authored progress. Three existing sibling methods
 remain exact after the source split: release at `0x004963F0` (43 bytes),
-alpha at `0x00496370` (35), and flags at `0x00632C10` (27). Their filtered
-report is `build/secondary-replacement-sibling-formal.json`. No unrelated
+alpha at `0x00496370` (35), and flags at `0x00632C10` (27). No unrelated
 modules or aggregate cold rebuild were run.
 
 ## Fresh observations

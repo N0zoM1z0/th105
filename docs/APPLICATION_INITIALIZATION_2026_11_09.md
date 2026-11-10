@@ -59,12 +59,6 @@ exact ledger was changed. Supporting the observed generated callback safely
 requires a separately bounded proof change, not a fictitious destructor or EH
 record.
 
-Evidence: `.analysis/frontier-application-initialization-20261109/` and
-`build/frontier-application-initialization-20261109/`. The final source build is
-`ApplicationPublished.dll`; `verification.json` records the full comparisons
-and `ApplicationLayout.obj` supplies the compiler-owned BSS extent. No existing
-configured unit includes these new files, so there are no old consumer rebuilds.
-
 ## Follow-up: the scene-base member is a fade pointer
 
 This layout also resolves a misleading existing declaration. Bootstrap

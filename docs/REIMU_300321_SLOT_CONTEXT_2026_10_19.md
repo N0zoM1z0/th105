@@ -88,11 +88,10 @@ serially, independently of the intentional wrong-event control:
 |Double friction plus common event parameter|82936-byte object exceeds the unchanged diagnostic envelope; both public auditors reject it|
 |720 array/struct, common scalar scopes/declarations, index-first forms, double base|New scalar layouts or instruction orders; no selected source change|
 
-`summary.json` retains every object/canonical pin, complete membership result,
-frame/count report and rejection. In particular, preserving1214 physical
-membership/multiplicity checks is necessary but does not establish argument
-values, instruction equality or source semantics. None of these experiments
-proves the original TU/profile or a standalone-object/LTCG impossibility.
+In particular, preserving1214 physical membership/multiplicity checks is necessary
+but does not establish argument values, instruction equality or source semantics.
+None of these experiments proves the original TU/profile or a standalone-object/LTCG
+impossibility.
 
 ## Execution evidence and reproduction
 
@@ -116,14 +115,6 @@ The cohorts are motion340, friction192, frames160, nodes170, directional120,
 required branches4 and terminal3. Input SHA256 is
 `cf8b769e3bcd17cc6c72ebcfb23c7166a65717e02be079bf1c65ba4d2f7e1fde`.
 
-```bash
-python3 scripts/audit-reimu-call-sharing.py build/reimu-300320-slots-20261019/fresh-baseline/candidate.obj
-python3 scripts/audit-reimu-root-relocations.py build/reimu-300320-slots-20261019/fresh-baseline/candidate.obj
-taskset -c 0 nice -n 10 python3 -B .analysis/reimu-300320-slots-20261019/native-three.py build/reimu-300320-slots-20261019/fresh-baseline/candidate.obj
-```
-
-Private recipes are under `.analysis/reimu-300320-slots-20261019/`; reports,
-slot/loop facts, frozen source/header/compiler baseline and DB pins are under
-the corresponding build directory. Keep the baseline and current genuine cache;
-unselected generated source/object copies are regenerable. CPU0/nice10 and one
-128MiB-heap Ghidra process bound the work. No aggregate cold replay is claimed.
+Keep the baseline and current genuine cache; unselected generated source/object
+copies are regenerable. CPU0/nice10 and one 128MiB-heap Ghidra process bound the
+work. No aggregate cold replay is claimed.

@@ -104,9 +104,6 @@ four-float-only869 guard. The new subclass permits3/4, retaining aligned live
 stack, complete count/content and target-versus-source comparison. Earlier
 fixture classes and key domains are unchanged; this subclass adds704.
 
-**0/6481 differences**, `build/reimu-high-late/native.json`, input SHA256
-`a8b85f40550e88ea49c65b30b8cc9f02f88cd3d97991eb6a0847ece13fb076a8`:
-
 |Cohort|Cases|
 |---|---:|
 |Motion/landing/completion/NaN|864|

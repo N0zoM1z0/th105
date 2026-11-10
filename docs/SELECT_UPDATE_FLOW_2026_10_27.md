@@ -60,11 +60,8 @@ combined promoted-int polling gives601/554; byte narrowing and physical paired
 members return unchanged619/25. The representation lane stops here, not an
 unbounded spelling grid. Revisit with independent owner/TU/loop-lifetime evidence.
 
-Its full source/controls are retained privately at
-`.analysis/frontier-41fc90-20261027/`, with objects/previews under the matching
-build directory. No source selection, match entry or extra exact credit is
-inherited from this exact caller. Refresh helper41FB80 remains independently
-unreviewed for source selection.
+No source selection, match entry or extra exact credit is inherited from this exact
+caller. Refresh helper41FB80 remains independently unreviewed for source selection.
 
 ## Reproduce
 

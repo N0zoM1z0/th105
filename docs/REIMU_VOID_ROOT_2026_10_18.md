@@ -95,10 +95,8 @@ only literal-placement evidence, not a complete relocation contract. Decoded
 call-count deltas identify remaining wave/counter/landing sharing differences.
 Do not restore a bool result merely to improve layout or call counts.
 
-Receipts, selector packets, native/static/control reports and structural
-diagnostics are under build/reimu-void-root/. All9 primary Ghidra DB hashes
-were checked unchanged against the reused direct-analysis identity. No new
-process/clone or IDA semantics. Obsolete initial/control/bool copies and caches
-are cleaned; current void source/object and bounded evidence remain. Next
-recover truthful full relocation ownership and the remaining source/compiler
-sharing before canonical root acceptance.
+All9 primary Ghidra DB hashes were checked unchanged against the reused
+direct-analysis identity. No new process/clone or IDA semantics. Obsolete
+initial/control/bool copies and caches are cleaned; current void source/object and
+bounded evidence remain. Next recover truthful full relocation ownership and the
+remaining source/compiler sharing before canonical root acceptance.

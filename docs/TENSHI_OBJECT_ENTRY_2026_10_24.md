@@ -25,11 +25,10 @@ python3 scripts/audit-tenshi-object-entry.py \
   --object build/exact-first-tenshi-object-entry-20261024/cold.obj
 ```
 
-The compile returns0; all four comparisons return1 for the retained mismatch.
-The existing-object comparator reports `build_provenance_verified=false`;
-the separate cold compilation supplies build evidence. Formal receipts carry
-the source, compiler and build-input hashes. Generated reports are under
-`build/exact-first-tenshi-object-entry-20261024/`.
+The compile returns0; all four comparisons return1 for the retained mismatch. The
+existing-object comparator reports `build_provenance_verified=false`; the separate
+cold compilation supplies build evidence. Formal receipts carry the source, compiler
+and build-input hashes.
 
 ## Observed target identity, ownership and boundary
 
@@ -148,8 +147,6 @@ Park this checkpoint and select another complete representative.
 
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/audit-tenshi-object-entry-paths.py
-taskset -c 0 nice -n 10 python3 scripts/audit-tenshi-object-entry-paths.py \
-  --object build/exact-first-tenshi-object-entry-20261024/cold.obj
 ```
 
 Both return0: ten inputs, ten actual RETs, zero mismatches. Vector SHA256:

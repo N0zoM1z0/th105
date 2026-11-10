@@ -65,7 +65,4 @@ New totals:
 - Source-present: 1636; authored: 1655; excluded: 2075.
 - Mapped: 1826; review: 297; units: 813; candidates: 4027, unchanged.
 
-Private controls and reproducible scripts are under
-.analysis/frontier-profile-implicit-cleanup-20261102/ and
-build/frontier-profile-implicit-cleanup-20261102/. No target, compiler artifact
-or private report is committed.
+No target, compiler artifact or private report is committed.

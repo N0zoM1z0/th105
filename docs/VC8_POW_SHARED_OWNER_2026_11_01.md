@@ -50,13 +50,9 @@ All come from the pinned unchanged SP1 archive. No assembly implementation or
 native byte payload is authored.
 
 Ten tests reject partial bodies/masks, integer-helper double credit, wrong
-member/provider/data bindings, broken selector protocol and generic padding
-or external-tail waivers. All3919 actual byte mutation controls fail: every
-byte of both owners and the five helpers, half/name/infinity data, all P4
-coefficient label boundaries and two interior table points. Full coefficient
-comparison remains mandatory, independent of the mutation sample selection.
-Mutation runs were serial CPU0/nice10 and resumed from saved results.
-
-Evidence: build/origin-anchors/vc8-pow-shared/proof.json and
-build/frontier-crt-pow-owners-20261101/mutations.json. Private probes are under
-.analysis/frontier-crt-pow-owners-20261101/.
+member/provider/data bindings, broken selector protocol and generic padding or
+external-tail waivers. All3919 actual byte mutation controls fail: every byte of
+both owners and the five helpers, half/name/infinity data, all P4 coefficient label
+boundaries and two interior table points. Full coefficient comparison remains
+mandatory, independent of the mutation sample selection. Mutation runs were serial
+CPU0/nice10 and resumed from saved results.

@@ -125,12 +125,9 @@ inputs remain in the final matrix; only the explicit sequence0 terminal
 domain forces completion. The remaining observed outcomes are checked by
 cohort rather than silently discarded.
 
-Input SHA256 is
-`17e37523e79a7bd6722f0a006c06d45336923e131ea1a2d8ad59a5af6c54f4c8`.
-Private source changing only616's completed operation to `set_action(1)`
-passes both object auditors but fails **330/1896**, exactly the completed
-domain's case count. The public audit exits1 as intended. No
-helper return, world callback or target byte is fabricated.
+Input SHA256 is `17e37523e79a7bd6722f0a006c06d45336923e131ea1a2d8ad59a5af6c54f4c8`.
+The public audit exits1 as intended. No helper return, world callback or target byte
+is fabricated.
 
 Fresh selected full-root integration/shot/nonflat replay passes0/2675;
 the public ten-action effect-direction audit passes0/400. Those matrices
@@ -175,12 +172,8 @@ taskset -c 0 nice -n 10 python3 scripts/audit-reimu-616-completion.py build/reim
 taskset -c 0 nice -n 10 python3 scripts/probe-reimu-action-ltcg.py
 ```
 
-Local reports are under `build/reimu-return616-20261020/`: `facts.json`,
-`summary.json`, `selected/{receipt,sharing,relocations,preservation}.json`,
-`effect-prefixes.json`, `native616-public.json`, its `negative-action/`
-counterpart, `native-directions.json`, `native-broad.json` and Ghidra/DB pins.
 The current genuine receipts remain `build/reimu-ltcg/{receipt,coff-replay}.json`;
-predecessor receipts are archived in this checkpoint's `prior-genuine/`.
-Private regeneration recipes remain under the matching `.analysis/` directory.
-VC8 builds run serially; heavy jobs use CPU0/nice10 and the single Ghidra
-process uses a128MiB heap. Generated objects/reports and databases are not committed.
+predecessor receipts are archived in this checkpoint's `prior-genuine/`. Private
+regeneration recipes remain under the matching `.analysis/` directory. VC8 builds
+run serially; heavy jobs use CPU0/nice10 and the single Ghidra process uses a128MiB
+heap. Generated objects/reports and databases are not committed.

@@ -138,9 +138,7 @@ python3 scripts/compare-linked-unit.py cross-v106a-network-udp-packet-pool --add
 python3 scripts/build.py --unit gpt-web-network-winsock-scalar-dtor --compare --json
 ```
 
-Formal reports are `build/network-udp-packet-pool-dtor-formal.json`,
-`build/network-udp-packet-pool-selected-formal.json` and
-`build/network-udp-native-owner-formal.json`. The owner unit's expected full
+The owner unit's expected full
 comparison exit is1 because the two authored methods remain nonexact.
 After the shared linked comparator change, a fresh build and accepted-function
 dispatch reproduce scene retirement `408870` as281/281 and the pool destructor
@@ -157,10 +155,7 @@ Ghidra independently checks executable/program SHA, base, entry marker,
 x86 Windows identity and every mapped .text byte before work. The owner's
 0x314 and pool's0x64 types, full four lifecycle extents, names and physical
 parameter storage were saved, then read back in a fresh read-only invocation.
-Logs are `build/network-udp-lifetime-ghidra-save.log` and
-`build/network-udp-lifetime-ghidra-readback.log`; the latter ends
-`NETWORK_UDP_LIFETIME_READBACK_COMPLETE`. Boundary evidence is
-`build/network-udp-lifetime-boundaries.json`. Private drivers/database stay
+Private drivers/database stay
 below `.analysis/`; one Ghidra process uses768MiB and two active processors.
 
 Remaining unknowns are the original source partition/inline decisions,

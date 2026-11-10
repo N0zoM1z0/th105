@@ -128,10 +128,8 @@ each clone is deleted after completion. Target spans and SHA-256:
 
 Initial constant1 lifetime, joint exits/outgoing arguments, original C++/TU/
 inheritance/optimizer and full payload/post-backend/exception behavior remain
-unknown. Reports live under `build/iku-initial-one/`, private recipes under
-`.analysis/iku-initial-one-20261017/`. Superseded objects, private source
-controls, clones and caches are disposable; retain current proof objects and
-the small genuine-provider cache.
+unknown. Superseded objects, private source controls, clones and caches are
+disposable; retain current proof objects and the small genuine-provider cache.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-iku-action-state --compare --json

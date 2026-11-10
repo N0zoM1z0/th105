@@ -80,8 +80,5 @@ and `real-context-inspection.json`. Inspection rechecks every actual object
 hash, clean linker diagnostics, all four data bindings, map/export ownership,
 the complete counter CFG and the current selected root source hash.
 
-Private recipes remain in `.analysis/reimu-object-provider-link-20261022/`:
-`native.py gy`, `extras.py gy ...`, `partition.py`, `texture_probe.py current`,
-`link.py native-gy`, `link.py cil-gy` and `inspect_resolved.py`. The query's
-native record is inserted into the extra-provider list before linking; all
-sources must retain their recorded epochs. No aggregate cold replay is claimed.
+The query's native record is inserted into the extra-provider list before linking;
+all sources must retain their recorded epochs. No aggregate cold replay is claimed.

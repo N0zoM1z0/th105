@@ -57,8 +57,4 @@ loader remains unchanged at 427/native413. BattleInfoRecord update retains its
 pre-existing unresolved local deque-iterator relocation; all of its COFF
 sections are unchanged. No authored exact count changes.
 
-Reproduction evidence is in
-`.analysis/frontier-info-resource-contract-20261109/` and
-`build/frontier-info-resource-contract-20261109/`: before/after unit reports,
-complete-section checks, native reference census, provider replay and EH/origin
-proofs. No input-migration source pins were updated.
+No input-migration source pins were updated.

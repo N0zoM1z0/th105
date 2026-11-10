@@ -51,7 +51,4 @@ EH461/metadata188. Select render4, character12 and profile preview6 guarded
 finite cases/negative controls pass without claiming runtime/helper execution.
 
 No source/exact count changes:1427 exact/443604 bytes, source1637 and813 units.
-Evidence is in build/frontier-profile-key-real-owner-20261102/, including
-replays-final/, baseline-neighbors/, coverage.json, owner-proof.json and full-eh.json.
-Private controls are in its .analysis counterpart. Default CI and both diff
-checks gate the local checkpoint.
+Default CI and both diff checks gate the local checkpoint.

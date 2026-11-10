@@ -25,19 +25,17 @@ branch displacement, and the target and source switch placement differs.
 The complete remote exception handler and metadata have since been independently
 replayed as described below. No root exact bytes are claimed.
 
-The observer executes actual native and fully relocated source code for the
-case-7 exit, button cancellation, menu-input cancellation and neutral path.
-All four agree on return and mocked call traces, and redirecting case 7 to
-the cancel-sound path is detected. Cursor, color, event and menu-input
-providers are mocked. A second matrix covers all eight selections and both
-network-mode branches against an independent expected call/state model.
-Allocation, player lookup, submenu constructors and installation are mocked.
-For selections 2–5, both images also follow the modeled null-allocation
-branch and install a null pointer without constructing a submenu. Real
-allocation and exception handling and full-game behavior are not covered. Run
+The observer executes actual native and fully relocated source code for the case-7
+exit, button cancellation, menu-input cancellation and neutral path. All four agree
+on return and mocked call traces, and redirecting case 7 to the cancel-sound path is
+detected. Cursor, color, event and menu-input providers are mocked. A second matrix
+covers all eight selections and both network-mode branches against an independent
+expected call/state model. Allocation, player lookup, submenu constructors and
+installation are mocked. For selections 2–5, both images also follow the modeled
+null-allocation branch and install a null pointer without constructing a submenu.
+Real allocation and exception handling and full-game behavior are not covered. Run
 `scripts/repo-python -m unittest discover -s tests -p
-test_menu_select_cancel_observer.py`. Receipts are under
-`build/frontier-menu-select-primary-20261104/`.
+test_menu_select_cancel_observer.py`.
 
 An unmasked whole-payload census compares the complete native callable,
 alignment and eight-entry switch table to the entire emitted source section.
@@ -51,7 +49,6 @@ the same build directory.
 The same mocked comparison also checks out-of-range selection values -1, 8
 and `INT_MAX` with confirmation pressed; both return true after the event. These are
 bounded malformed-state observations, not a general input-safety claim.
-
 
 ## Remote exception code and metadata
 

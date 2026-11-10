@@ -36,9 +36,8 @@ That source context does not close the residual and is not selected. No fake
 callers, opaque return stubs, noinline/COFF barriers, register variables or
 source spelling grid is used. The original COFF remains the reproducible unit.
 
-Receipts: build/frontier-watch-input-20261101/coff.json, caller.json,
-ownership.json, linked.log and linked.json. The origin rule pins the complete
-native body and actual exact-caller edge. No corpus-wide replay is claimed.
+The origin rule pins the complete native body and actual exact-caller edge. No
+corpus-wide replay is claimed.
 
 Totals: source1782/authored1802/mapped1809, excluded1789/review436, units764.
 Exact1582/449309 remains unchanged. This is source/ownership progress only.

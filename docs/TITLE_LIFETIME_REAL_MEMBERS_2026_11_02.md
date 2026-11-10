@@ -24,8 +24,7 @@ CSprite / CTile RTTI roots; their complete member identity proof is the already
 accepted actual title-constructor context in TITLE_REAL_SPRITES_2026_11_02.md.
 No synthetic owner or additional RTTI emission is inserted for the audit.
 
-Private controls and receipts: .analysis/frontier-title-lifetime-real-members-20261102/
-and build/frontier-title-lifetime-real-members-20261102/. Final CI passed all 962 tests in
-105.814 seconds. Both diff checks gate the local checkpoint. No manifest, validator or ledger changes.
-Totals remain 1426 exact / 443399 bytes, source 1636, authored 1655, mapped 1826,
-excluded 2076, review 296 and units 813.
+Final CI passed all 962 tests in 105.814 seconds. Both diff checks gate the local
+checkpoint. No manifest, validator or ledger changes. Totals remain 1426 exact /
+443399 bytes, source 1636, authored 1655, mapped 1826, excluded 2076, review 296 and
+units 813.

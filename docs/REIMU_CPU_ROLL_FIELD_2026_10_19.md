@@ -44,11 +44,10 @@ raw WORD/short casts is independently canonical-payload-identical; deleting
 the policy-roll macro is also byte-identical. Shared field layouts are
 unchanged. This is a supported source hypothesis, not proof of original source.
 
-Direct read-only Ghidra independently re-attests imported identity, entry,
-mapped text, root bytes and typed method metadata. Nine primary DB file hashes
-remain unchanged; alias removed. The384MiB/CPU0 recipe is under
-`.analysis/reimu-cpu-roll-field-20261019/`. Required IDA preflight still rejects
-the wrong open file; no IDA semantics, factory adapter or target patch is used.
+Direct read-only Ghidra independently re-attests imported identity, entry, mapped
+text, root bytes and typed method metadata. Nine primary DB file hashes remain
+unchanged; alias removed. Required IDA preflight still rejects the wrong open file;
+no IDA semantics, factory adapter or target patch is used.
 
 ## Whole-root and reachable policy0 diagnostics
 
@@ -117,12 +116,10 @@ coupled terminal records,50/46 observed RETs and46420 paired selector calls.
 This is actual-helper execution from explicit empty masked-PC53 input, with
 full actor/RNG/call/ftol2/stack/control comparisons, not substituted outcomes.
 
-Fresh selected-object execution passes0/5000 general,0/45714 action-edge and
-0/368 height/NaN cases. Together with the16160 selected-shape selection cases,
-this is0/67242 on the current canonical code. General and action-edge suites
-execute all five original helpers on both sides. These reports are retained
-under `build/reimu-cpu-roll-field/`, together with strict comparisons, closed
-CFG profiles and unselected controls. Reproduction:
+Fresh selected-object execution passes0/5000 general,0/45714 action-edge and 0/368
+height/NaN cases. Together with the16160 selected-shape selection cases, this
+is0/67242 on the current canonical code. General and action-edge suites execute all
+five original helpers on both sides. Reproduction:
 
 ```bash
 python3 scripts/build.py --unit gpt-web-reimu-cpu-action-policy --compare --json

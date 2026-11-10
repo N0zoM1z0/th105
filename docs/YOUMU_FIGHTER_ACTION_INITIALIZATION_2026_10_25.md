@@ -103,10 +103,6 @@ EAX sequence; no fabricated upper-word contract is assumed.
 
 ## Whole-function experiments and stopping point
 
-Private source controls are under
-`.analysis/exact-first-youmu-fighter-action-entry-20261025/`; objects/reports
-are under `build/exact-first-youmu-fighter-action-entry-20261025/`.
-
 | Complete source/control | Full bytes | SHA256 prefix | Whole result |
 | --- | ---: | --- | --- |
 | First complete source |1910|7d0af66a|extra604 copy;24 RETs/15 zero calls instead of23/14|

@@ -18,7 +18,6 @@ Only source symbol names for the existing 0x4099F0 render and 0x4098B0 texture
 providers change; their destination addresses and all caller hashes are unchanged.
 No compiler flags, lifetime implementation, storage size or ledger changes.
 
-Private controls and receipts: .analysis/frontier-profile-shared-tile-20261102/
-and build/frontier-profile-shared-tile-20261102/. Final CI passed all 962 tests in
-111.630 seconds. Both diff checks gate the local checkpoint. Counts remain 1426 exact / 443399 bytes, source 1636,
-authored 1655, mapped 1826, excluded 2075, review 297 and units 813.
+Final CI passed all 962 tests in 111.630 seconds. Both diff checks gate the local
+checkpoint. Counts remain 1426 exact / 443399 bytes, source 1636, authored 1655,
+mapped 1826, excluded 2075, review 297 and units 813.

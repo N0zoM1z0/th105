@@ -21,7 +21,6 @@ adopted comparisons; all eight other roots in seven units preserve their fresh
 before/after hashes. No compiler flags, relocation manifest, origin rule or
 ledger changes are needed. No new exact credit is claimed.
 
-Private controls and receipts: .analysis/frontier-spell-display-real-sprite-20261102/
-and build/frontier-spell-display-real-sprite-20261102/. Final CI passed all 962 tests in
-111.865 seconds. Both diff checks gate the local checkpoint. Totals remain 1426 exact / 443399 bytes,
-source 1636, authored 1655, mapped 1826, excluded 2076, review 296 and units 813.
+Final CI passed all 962 tests in 111.865 seconds. Both diff checks gate the local
+checkpoint. Totals remain 1426 exact / 443399 bytes, source 1636, authored 1655,
+mapped 1826, excluded 2076, review 296 and units 813.

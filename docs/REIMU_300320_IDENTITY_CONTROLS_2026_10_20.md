@@ -160,12 +160,10 @@ or LTCG requirement. No game source/header, profile, binding, ledger or
 accepted unit input changes. Hash-attested raw PE observations require no
 database write; the failed IDA preflight is not used for semantics.
 
-Recipes/receipts are under `.analysis/reimu-300-source-context-20261020/` and
-`build/reimu-300-source-context-20261020/`. The summary distinguishes the fresh
-baseline, two qualified negatives and one compiled rejection. Six redundant
-generated copies (1338567 bytes) are removed after their hashes are recorded;
-baseline and the direct-in-low input remain for replay. The prior twenty
-controls above retain their original input and validation scope.
+The summary distinguishes the fresh baseline, two qualified negatives and one
+compiled rejection. Six redundant generated copies (1338567 bytes) are removed after
+their hashes are recorded; baseline and the direct-in-low input remain for replay.
+The prior twenty controls above retain their original input and validation scope.
 
 ## Database safety, reproduction and retained products
 
@@ -177,23 +175,17 @@ database files remain unchanged; the temporary alias is removed. RTTI above
 is separately decoded from the hash-attested PE. IDA's failed preflight blocks
 its use; no IDA semantics or factory adapter is used.
 
-Private recipes are in `.analysis/reimu-300320-identity-20261020/`; reports
-and retained inputs are in `build/reimu-300320-identity-20261020/`. The private
-runtime binding is installed only while its serial wrapper runs, then restored
-byte-for-byte. The public binding SHA remains
+The private runtime binding is installed only while its serial wrapper runs, then
+restored byte-for-byte. The public binding SHA remains
 `d19770dd14b9e0e4fc6c8064d7d94cf05804ea4ab3d5a46a7e3e5af864df863c`.
 
 ```bash
-taskset -c 0 nice -n 10 python3 -B .analysis/reimu-300320-identity-20261020/probe.py gatewide320 runtime320 runtime-both
-taskset -c 0 nice -n 10 python3 -B scripts/audit-reimu-call-sharing.py build/reimu-300320-identity-20261020/gatewide320/candidate.obj --baseline-object build/reimu-300320-identity-20261020/baseline/candidate.obj
-taskset -c 0 nice -n 10 python3 -B .analysis/reimu-300320-identity-20261020/linked.py replay
 python3 -m unittest discover -s tests -p test_reimu_call_sharing.py
 ```
 
-`summary.json` retains hashes/results for all21 builds. Redundant generated
-sources/objects are removed after recording them; the recipe regenerates
-controls. Baseline, wide-gate and runtime inputs remain for direct replay.
-The current selected root, public genuine closure, source/layout/bindings and
-progress ledgers remain unchanged. The remaining300/320 prefix ownership,
-616 effect preparation,720 float homes and full-root/world semantics still
-require evidence. No aggregate cold replay or percentage claim is made.
+Redundant generated sources/objects are removed after recording them; the recipe
+regenerates controls. Baseline, wide-gate and runtime inputs remain for direct
+replay. The current selected root, public genuine closure, source/layout/bindings
+and progress ledgers remain unchanged. The remaining300/320 prefix ownership, 616
+effect preparation,720 float homes and full-root/world semantics still require
+evidence. No aggregate cold replay or percentage claim is made.

@@ -134,20 +134,6 @@ python3 scripts/audit-giant-action-owners.py youmu-vslot28 \
   --unit gpt-web-youmu-vslot28-full-root --json
 ```
 
-Fresh configured reports are `build/youmu-fpu-values-final-20261002.json`
-and `build/youmu-fpu-values-final-owners-20261002.json`. Explicit-object
-guard, stack and arithmetic reports are
-`build/youmu-fpu-values-final-guards-20261002.json`,
-`build/youmu-fpu-values-final-stack-20261002.json` and
-`build/youmu-fpu-values-final-arithmetic-20261002.json`.
-
-Private analysis scripts, each invoked with OBJECT, OWNER_AUDIT and OUTPUT:
-`.analysis/youmu-payload-order-20261002/scan-all-guards.py`,
-`.analysis/youmu-payload-lifetimes-20261002/stack-packets.py`, and
-`.analysis/youmu-fpu-coverage-20261002/arithmetic-census.py`.
-Other probes are below `.analysis/youmu-fpu-coverage-20261002/` and
-`build/youmu-fpu-coverage-20261002/`; they carry no exact acceptance claim.
-
 Shared-tail placement, argument scheduling, remaining float lifetimes,
 original local/TU/compiler context and full numerical closure remain unknown.
 No shared header, accepted helper, compiler flag or object partition changed.

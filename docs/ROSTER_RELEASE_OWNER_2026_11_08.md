@@ -27,12 +27,8 @@ The seven-unit changed-source/header closure and two direct owner/runtime
 witness units preserve all 129 accepted roots. Every comparison result and
 comparable canonical hash is unchanged. No new authored exact credit is added.
 
-Private before/after reports are in
-`build/frontier-roster-release-owner-20261108/`. The focused
-`.analysis/frontier-roster-release-owner-20261108/check-owners.py` verifies
-current object/compiler/source provenance, all fifteen bodies, the thirty
-native owner edges and the affected accepted roots. It uses the existing
-repository comparison tools; no shared validation tool was added.
+It uses the existing repository comparison tools; no shared validation tool was
+added.
 
 The polymorphic `CharacterObjectManagerRuntime` family still uses a separate
 runtime receiver. It cannot truthfully be replaced by an arbitrary roster

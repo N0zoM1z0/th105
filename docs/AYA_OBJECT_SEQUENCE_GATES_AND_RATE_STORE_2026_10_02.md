@@ -99,11 +99,6 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-Configured reports are `build/aya-sequence-gates-final-20261002.json` and
-`build/aya-sequence-gates-final-owners-20261002.json`; raw, guards and proof
-reports share that prefix. Private controls and hash-bound interval checker
-are below `.analysis/aya-sequence-gates-20261002/`; objects and
-`controls-summary.json` are below `build/aya-sequence-gates-20261002/`.
 Existing-object control reports have no configured build provenance.
 
 Fresh raw traversal still reaches all4,630 target instructions/all19,522

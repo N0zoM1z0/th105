@@ -50,8 +50,6 @@ nested private/EH functions also freshly replay exact after the tooling change.
 Eight new target-independent regressions cover the cleanup-entry contract.
 The new helper is included in linked build input hashes.
 
-Receipts: build/frontier-script-parser-lifetime-20261031/
-cleanup-final-accepted.json and cleanup-bgm-accepted.json.
 This is a focused replay, not a fresh all-unit corpus claim.
 
 The obsolete source-only origin rule for4055F0 is removed and its census row
@@ -60,7 +58,6 @@ Source1,752, authored ownership1,772, exclusions1,640, review615, mapped1,779 an
 match units745 are unchanged.
 
 Default target-independent CI passes188 tests; generated progress and whitespace checks pass.
-
 
 The subsequent Ogg reader-owner scope also supports a directly witnessed
 private exact parent and the complete11-byte same-register member-offset

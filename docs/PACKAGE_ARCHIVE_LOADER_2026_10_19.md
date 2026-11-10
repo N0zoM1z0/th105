@@ -133,21 +133,16 @@ Reproduce the fail-closed focused probe with:
 python3 scripts/build.py --unit gpt-web-package-archive-loader --compare --json
 ```
 
-Receipts are under `build/package-loader-20261019/`: target-cfg.json, all raw
-assembly, before/after database pins, formal.json, execution.json,
-shared-count-controls.json, focused reports and closure commands/map/CFGs.
-Private scripts and decompiler hypothesis are below
-`.analysis/package-loader-20261019/`. Continue the truthful vector-helper,
-EH/frame and translation-unit context review before returning to reader/BMP
-code generation. Their previous residuals are not resolved by this checkpoint.
+Continue the truthful vector-helper, EH/frame and translation-unit context review
+before returning to reader/BMP code generation. Their previous residuals are not
+resolved by this checkpoint.
 
-The subsequent physical-store batch rebuilds17 existing affected units and
-preserves all36 outcomes/22 accepted functions. Its current-source100-case
-loader model is under `build/package-loader-context-20261019/`. Full lifecycle
-execution and private constructor/destructor/EH receipts are in the
-[store review](PACKAGE_ARCHIVE_STORE_2026_10_19.md). The later formal linked
-contract accepts391 lifecycle bytes; the loader remains nonexact. Its fresh
-[template/ABI controls and persisted analysis](PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md)
+The subsequent physical-store batch rebuilds17 existing affected units and preserves
+all36 outcomes/22 accepted functions. Full lifecycle execution and private
+constructor/destructor/EH receipts are in the [store
+review](PACKAGE_ARCHIVE_STORE_2026_10_19.md). The later formal linked contract
+accepts391 lifecycle bytes; the loader remains nonexact. Its fresh [template/ABI
+controls and persisted analysis](PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md)
 supersede the historical independent-global controls for current-source context
 claims, without changing this selected source.
 

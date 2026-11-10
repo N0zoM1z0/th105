@@ -129,10 +129,6 @@ nine primary DB pins are unchanged. Decompiled output only corroborates raw
 facts and is not pasted into source. Own Ghidra uses384MiB/one CPU; builds
 remain serial CPU0/nice10 with memory/swap monitored.
 
-Private recipes/probes remain under
-`.analysis/exact-first-suika-slot5c-20261024/`; the corresponding `build/` scope
-retains raw CFG/tables/literals/tail facts, attested call views/DB pins, all five
-complete probes and comparisons, formal full audit and object/provenance.
-Source-present total becomes1525 and configured graph566 units/1534 functions.
-Exact ledger totals stay1397 functions/327058 callable bytes, with no aggregate
-cold replay claim. Origin dispositions/denominator/selector stay unchanged.
+Source-present total becomes1525 and configured graph566 units/1534 functions. Exact
+ledger totals stay1397 functions/327058 callable bytes, with no aggregate cold
+replay claim. Origin dispositions/denominator/selector stay unchanged.

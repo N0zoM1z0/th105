@@ -6,12 +6,14 @@ TH10.5 v1.06a executable with SHA-256
 
 ## Current work
 
-The November 10 maintenance removes reproducible trial outputs, optional bridge
-caches and unused VC8 components. The configured release compiler paths still
-match exactly in focused COFF/STL/import-CRT/static-CRT checks; see
-[ARTIFACTS.md](ARTIFACTS.md). Current source, exact ledgers, analyzer projects,
-canonical caches and unresolved compiler contexts remain available. Keep useful
-findings in the existing topic notes; a citation alone is not a retention reason.
+The November 10 maintenance removes obsolete trial sources, ledger snapshots,
+diagnostic outputs, optional bridge/manual caches and unused VC8 components. Useful
+conclusions remain in the topic notes, with obsolete artifact citations removed. The
+configured release compiler paths still match exactly in focused
+COFF/STL/import-CRT/static-CRT checks; see [ARTIFACTS.md](ARTIFACTS.md). Current
+source, exact ledgers, analyzer projects, canonical caches and unresolved compiler
+contexts remain available. Keep useful findings in the existing topic notes; a
+citation alone is not a retention reason.
 
 The latest reconstruction checkpoint before maintenance is `ec2fbccf`, joining
 battle setup to the live camera owner. The worktree also contains earlier

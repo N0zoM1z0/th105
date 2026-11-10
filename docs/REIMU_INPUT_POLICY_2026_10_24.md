@@ -94,14 +94,9 @@ the raw extent. Temporary metadata is read back and rolled back; pinned primary
 DB hashes remain unchanged. Analysis uses CPU0/nice10 and384 MiB heap; builds
 run serially on CPU0/nice10.
 
-Private recipes and first complete source remain under
-`.analysis/exact-first-reimu-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, CFG closure, nine destinations and all
-twenty remapped selector edges, attested views/logs/DB hashes, first full probe,
-formal/cold comparisons, first formal object/provenance, relocation counts,
-original origin row and input hashes. Generated-object negatives independently
-damage the first destination and first remap byte. The full audit rejects both
-at `+0x1B28 / 0x496338`, target67/source68, and `+0x1B4C / 0x49635C`,
-target00/source01. The target stays untouched. Earlier input source/header pairs
-remain unchanged. No broad runtime matrix or aggregate cold replay is claimed.
-Continue remaining complete peers; Marisa stays parked at its recorded residual.
+Generated-object negatives independently damage the first destination and first
+remap byte. The full audit rejects both at `+0x1B28 / 0x496338`, target67/source68,
+and `+0x1B4C / 0x49635C`, target00/source01. The target stays untouched. Earlier
+input source/header pairs remain unchanged. No broad runtime matrix or aggregate
+cold replay is claimed. Continue remaining complete peers; Marisa stays parked at
+its recorded residual.

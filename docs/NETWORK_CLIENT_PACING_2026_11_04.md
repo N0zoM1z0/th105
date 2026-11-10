@@ -15,7 +15,6 @@ pinned VC8 build emits 573 bytes and matches the first 459, but differs from
 an exact match, adds no exact bytes and does not establish concurrent runtime
 equivalence. No live network or full-game execution was performed.
 
-
 2026-11-09: The two queue calls now use the shared implementation view for
 the +0xF8/+0x174 input endpoints. The 79-byte callee is not a Client primary
 method; Server maintenance uses the same two endpoint receivers. The 573-byte

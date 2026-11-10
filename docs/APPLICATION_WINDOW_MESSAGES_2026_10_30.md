@@ -74,9 +74,6 @@ and two explicitly nonexact IME bodies. New exact
 functions use unchanged compiler flags. The dispatcher now uses the exact-origin baseline; its superseded explicit
 authored rule was removed. Unaffected origin rules are retained. No full-corpus replay or new test infrastructure was added.
 
-Evidence: build/frontier-application-window-20261030/boundaries.json and
-formal.json; final checkpoint uses
-build/frontier-profile-ime-zero-20261030/formal-window.json. Source controls
-remain in the matching private .analysis folders.
+Source controls remain in the matching private .analysis folders.
 
 `scripts/repo-python scripts/build.py --unit exact-first-application-window-messages --compare --json`

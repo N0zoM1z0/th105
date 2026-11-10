@@ -24,12 +24,9 @@ first difference+23. Their checked-iterator lifetime/helper differences remain
 unresolved. Only create419350 gains exact credit. No library helper is claimed
 as authored and no matching callee result is inferred from a relocated call.
 
-Receipts: `build/frontier-419350-20261029/formal-build.json` and `boundary.json`.
-Private first linked experiment and recording scripts are retained under
-`.analysis/frontier-419350-20261029/`. No shared source/header or profile changed;
-other units' accepted receipts remain unchanged. Validation is focused, not a
-cold corpus rebuild.
-
+Receipts: `build/frontier-419350-20261029/formal-build.json` and `boundary.json`. No
+shared source/header or profile changed; other units' accepted receipts remain
+unchanged. Validation is focused, not a cold corpus rebuild.
 
 ## Later native end-iterator lifetime correction
 
@@ -42,10 +39,9 @@ creation419350 remains169 exact and wait4194D0 remains129/184 first+23.
 Initializing cached end before begin gives the same result, unselected.
 
 The target193-byte remove body contains checked iterator dereference/increment
-inside the loop, unlike the unchecked std::find search used by D3D registration.
-Do not substitute find here: the earlier find diagnostic was235/193. Source
-and target erase-helper call ABIs remain different; whole-image raw call scan
-finds414DE0 callers only414D50 and419400. The recovered nominal pointer list
-types differ, so that shared code alone does not prove a common source type
-or authorize a fabricated ABI. No exact credit changes. Focused receipts:
-build/frontier-audio-listener-cached-end-20261029/formal-build.json and ci.log.
+inside the loop, unlike the unchecked std::find search used by D3D registration. Do
+not substitute find here: the earlier find diagnostic was235/193. Source and target
+erase-helper call ABIs remain different; whole-image raw call scan finds414DE0
+callers only414D50 and419400. The recovered nominal pointer list types differ, so
+that shared code alone does not prove a common source type or authorize a fabricated
+ABI. No exact credit changes.

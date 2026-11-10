@@ -79,11 +79,5 @@ were changed. Acceptance and exact ledgers are unchanged.
 
 ## Evidence and continuation
 
-Focused before/after build reports, the section comparison and complete EH
-replays are retained in `build/frontier-network-callback-publication-20261109/`.
-The local replay uses the existing `audit-select-constructor.py` section
-resolver; private scripts and the original worktree snapshot remain in
-`.analysis/frontier-network-callback-publication-20261109/`.
-
 The derived UDP callback follow-up resolves the six-slot declaration boundary;
 joining the remaining primary and callback implementation views is still open.

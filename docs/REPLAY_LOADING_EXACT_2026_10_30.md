@@ -9,11 +9,10 @@ initialization is used. The complete source section and target body have SHA256
 
 ## Evidence and recovered semantics
 
-Fresh Factory metadata, entry point, all five mapped samples and semantic
-probes passed. Private evidence is retained under
-`build/frontier-medium-scan-20261030/`. Raw PE disassembly independently closes
-all238 instructions, including the failure tail after RET that jumps back into
-the common epilogue. Internal alignment instructions remain compared.
+Fresh Factory metadata, entry point, all five mapped samples and semantic probes
+passed. Raw PE disassembly independently closes all238 instructions, including the
+failure tail after RET that jumps back into the common epilogue. Internal alignment
+instructions remain compared.
 
 The old retained source was not a current-target match. It placement-constructed
 a reader into byte storage, requested GENERIC_READ rather than the native access1,
@@ -35,13 +34,11 @@ Replacing the old array hypothesis changes genuine VC8 /GS local ordering;
 together with correct ownership and lifetime, the native frame is recovered.
 The full original C++ spelling remains an inference, not recovered source text.
 
-A private complete EH check also matches all six records: string cleanup8 at
-6B7DF0, reader cleanup11 at6B7DF8, slot cleanup8 at6B7E03, handler46 at6B7E0B,
-FuncInfo36 at6DE038 and its observed unwind-table24 at6DE020. Calls resolve to
-401E00/40CEB0/429480 and the pinned cookie/frame runtime. No EH bytes are added
-to authored byte totals. The durable match-unit recipe verifies the full848-byte
-main body; the supplementary EH audit is retained in
-`build/frontier-replay-load-20261030/eh-audit.json`.
+A private complete EH check also matches all six records: string cleanup8 at 6B7DF0,
+reader cleanup11 at6B7DF8, slot cleanup8 at6B7E03, handler46 at6B7E0B, FuncInfo36
+at6DE038 and its observed unwind-table24 at6DE020. Calls resolve to
+401E00/40CEB0/429480 and the pinned cookie/frame runtime. No EH bytes are added to
+authored byte totals.
 
 ## Affected evidence
 

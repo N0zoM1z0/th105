@@ -106,12 +106,6 @@ python3 scripts/audit-giant-action-owners.py youmu-object-action-entry \
   --unit gpt-web-youmu-object-action-entry --json
 ```
 
-Finished-worktree reports:
-`build/youmu-object-entry-load-final-20261002.json` and
-`build/youmu-object-entry-load-final-owners-20261002.json`.
-Private controls and compare/export helpers are in
-`.analysis/youmu-object-entry-lifetimes-20261002/`; corresponding reports and
-hash-pinned raw instruction packets are in
-`build/youmu-object-entry-lifetimes-20261002/`.
-No source, shared ABI/header, compiler flag, relocation map, object partition
-or exact acceptance changes. No cold aggregate replay is claimed.
+No source, shared
+ABI/header, compiler flag, relocation map, object partition or exact acceptance
+changes. No cold aggregate replay is claimed.

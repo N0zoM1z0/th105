@@ -32,10 +32,7 @@ vc8-generated-short-deque-insert-106a. The rule recompiles the original probe
 and verifies full-inventory uniqueness; a separate discovery scan is not the
 acceptance result.
 
-Receipts: build/frontier-short-deque-members-20261101/{hits,bindings}.json,
-build/frontier-boost-library-20261031/vc8-generated-short-deque-insert-106a-validation.json,
-and the focused scope ci.log. Anchor file:
-config/vc8-generated-short-deque-insert-origin-anchors.toml.
+Anchor file: config/vc8-generated-short-deque-insert-origin-anchors.toml.
 
 Excluded1790/review435; authored1802/source1782/mapped1809 and units764 stay.
 Authored exact1582/449309 bytes stays. Default CI235 and whitespace checks pass.

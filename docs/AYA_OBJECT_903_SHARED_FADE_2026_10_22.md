@@ -90,18 +90,14 @@ contracts remain unchanged. No previously accepted unit is affected.
 
 ## Reproduction and receipts
 
-Recipes and all complete control CPPs:
-`.analysis/aya-903-shared-fade-20261022/probe.py` and sibling files.
-Reports/objects: `build/aya-903-shared-fade-20261022/`.
-`selected-formal.json` is the configured selected build;
-`selected-owner.json`, `selected-native.json`, `previous-native.json`,
-`float-native.json`, and `selected-other-graphs.json` bind their respective scopes.
-The preserved predecessor object is from commit5934dca's selected source.
+`selected-formal.json` is the configured selected build; `selected-owner.json`,
+`selected-native.json`, `previous-native.json`, `float-native.json`, and
+`selected-other-graphs.json` bind their respective scopes. The preserved predecessor
+object is from commit5934dca's selected source.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-903-native.py
-python3 scripts/audit-aya-object-normal-flow.py build/aya-903-shared-fade-20261022/previous.obj build/match-units/GptWeb_AyaObjectActionState.obj --exclude-903-sequence 2 --exclude-903-sequence 3
 python3 scripts/audit-giant-action-owners.py aya-object-vslot28 build/match-units/GptWeb_AyaObjectActionState.obj --unit gpt-web-aya-object-vslot28-full-root --json
 python3 scripts/ci.py
 git diff --check

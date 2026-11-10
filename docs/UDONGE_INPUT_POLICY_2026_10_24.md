@@ -109,13 +109,8 @@ the raw extent. Temporary metadata is read back and rolled back; pinned primary
 DB hashes remain unchanged. Analysis uses CPU0/nice10 and384 MiB heap; builds
 run serially on CPU0/nice10.
 
-Private recipes and first complete source remain under
-`.analysis/exact-first-udonge-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, full CFG/table closure, spawn-callee
-bytes/hash/ABI evidence, attested views/logs/DB hashes, first complete probe,
-formal/cold comparisons, first formal object/provenance, relocation counts,
-original origin row and input hashes. A generated-object table negative fails
-at `+0x1A1C / 0x5D468C`, targetB9/sourceBA; the target stays untouched. Earlier
-input source/header pairs and the accepted spawn source remain unchanged.
-No broad runtime matrix or aggregate cold replay is claimed. Continue the
-remaining complete peer; Marisa stays parked at its recorded placement residual.
+A generated-object table negative fails at `+0x1A1C / 0x5D468C`, targetB9/sourceBA;
+the target stays untouched. Earlier input source/header pairs and the accepted spawn
+source remain unchanged. No broad runtime matrix or aggregate cold replay is
+claimed. Continue the remaining complete peer; Marisa stays parked at its recorded
+placement residual.

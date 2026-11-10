@@ -38,7 +38,5 @@ pointer/DWORD spelling or artificial liveness/volatile controls.
 Focused build:
 scripts/repo-python scripts/build.py --unit exact-first-profile-deck-display --compare --json
 
-Full raw disassembly, private complete-relocation comparison and formal receipt
-are in build/frontier-profile-deck-display-20261029/. This is source selection
-and positive ownership only. Existing accepted filter and update receipts are
-unchanged; default CI validates the final ledgers and progress.
+This is source selection and positive ownership only. Existing accepted filter and
+update receipts are unchanged; default CI validates the final ledgers and progress.

@@ -9,9 +9,9 @@ then binds both character displays. The three random flags at setup4C..4E are
 observed beyond the older bounded MatchSetup prefix; the local view does not
 assert a newly constructed object's full extent.
 
-Current candidate is783/native783 but nonexact at+225. At the original checkpoint it was not selected; it has since been selected,
-but still has no exact credit. Receipt: build/frontier-421120-20261028/byte-ui-enabled.json.
-Target SHA:fe27b3c54058dc2f9a1b5bdb27abb28a87b40fed6698fe48a247a864ada1e76a.
+Current candidate is783/native783 but nonexact at+225. At the original checkpoint it
+was not selected; it has since been selected, but still has no exact credit. Target
+SHA:fe27b3c54058dc2f9a1b5bdb27abb28a87b40fed6698fe48a247a864ada1e76a.
 
 Target-backed lifetime/type refinements:
 - The numeric0/1 secondary flag expression materializes an integer before
@@ -40,10 +40,8 @@ Native6183F0 is a block-size4,16-byte-block pointer-deque push_back with
 reference input; the caller relocation is supported by that decoded behavior.
 No authored or generated helper credit is added for it.
 
-Raw recursive CFG receipt: build/frontier-421120-20261028/boundary.json.
-Earlier focused controls are retained beside the current receipt. Only the
-new unit was compiled; source headers, global flags and existing callers were
-unchanged.
+Earlier focused controls are retained beside the current receipt. Only the new unit
+was compiled; source headers, global flags and existing callers were unchanged.
 
 ## Source registration, 2026-11-04
 
@@ -52,22 +50,18 @@ The retained complete source is now individually selected and mapped. Its
 network-select on-enter method calls it at `426554`. The original whole-body
 hash and that edge are pinned by `select-scene-entry-authored-106a`.
 
-A fresh pinned comparison produces the same 783-byte nonexact candidate,
-first differing at +225, with canonical SHA-256
-`c5a5b8b1dc50bbd2e16c13d84f36263ed6bead06faa0536c0547a9fed2474ef3`.
-No equal-size, prefix or game-execution claim is counted as exact. The
-specific origin rule was checked directly; no full origin-census replay is
-claimed. Receipt: `build/frontier-select-entry-register-20261104/compare.json`.
+A fresh pinned comparison produces the same 783-byte nonexact candidate, first
+differing at +225, with canonical SHA-256
+`c5a5b8b1dc50bbd2e16c13d84f36263ed6bead06faa0536c0547a9fed2474ef3`. No equal-size,
+prefix or game-execution claim is counted as exact. The specific origin rule was
+checked directly; no full origin-census replay is claimed.
 
 Two bounded follow-up controls spell the secondary-mode predicate as an actual
-integer local, once directly and once with ordinary explicit branches. Both
-produce the identical 783-byte canonical candidate and the same +225 mismatch.
-The original selected source was restored. Receipts:
-`build/frontier-select-mode-expr-20261104/branch.json` and `explicit.json`.
+integer local, once directly and once with ordinary explicit branches. Both produce
+the identical 783-byte canonical candidate and the same +225 mismatch. The original
+selected source was restored.
 
-An additional ordinary branch-local publication control preserves both mode
-queries and writes either the existing secondary byte or zero. It remains a
-783-byte nonexact candidate, still first differing at +225, and changes the
-branch topology away from the observed common bitwise publication. The
-selected source was restored. Receipt:
-`build/frontier-select-mode-expr-20261104/branch-publication.json`.
+An additional ordinary branch-local publication control preserves both mode queries
+and writes either the existing secondary byte or zero. It remains a 783-byte
+nonexact candidate, still first differing at +225, and changes the branch topology
+away from the observed common bitwise publication. The selected source was restored.

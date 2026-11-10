@@ -69,8 +69,7 @@ exact-first-select-character-update, exact-first-select-update-flow and
 exact-first-select-character-binding. Then run audit-select-character-update.py,
 validate-tracking.py --require-target and ci.py. The candidate compare and
 audit intentionally report mismatch; they cannot turn25 unequal bytes into
-exactness. Receipts and private controls are under the corresponding
-build/.analysis frontier-select-character-20261102 directories.
+exactness.
 
 Source-present rises1635 to1636, authored1654 to1655, mapped1822 to1823,
 review301 to300 and units810 to811. Excluded stays2072. Exact authored remains

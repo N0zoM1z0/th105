@@ -4,7 +4,11 @@ The existing `CollisionContext::try_outcome_path_b` source is now tracked indivi
 
 The source covers the target's conditional scratch reset, nonlethal quantity adjustment, terminal gates, counters, result publication, facing, event and effect updates. Its dataflow is preserved independently of the exact sibling; a shared caller does not establish equality. Prior target-backed work and bounded allocator controls are summarized in `KNOWLEDGE_BASE.md`.
 
-A separate `exact-first-outcome-path-b` probe compiles the existing source to 530 bytes versus native 542. The first canonical mismatch is offset 180 and involves a register choice; the function remains nonexact. The separate unit leaves the existing two-function exact unit usable. No source rewrite, forced register, partial-byte or exact-byte credit was added. Receipts: `build/frontier-outcome-b-source-20261103/source.json` and `caller.json`.
+A separate `exact-first-outcome-path-b` probe compiles the existing source to 530
+bytes versus native 542. The first canonical mismatch is offset 180 and involves a
+register choice; the function remains nonexact. The separate unit leaves the
+existing two-function exact unit usable. No source rewrite, forced register,
+partial-byte or exact-byte credit was added.
 
 ## Counter amount promotion, 2026-11-06
 

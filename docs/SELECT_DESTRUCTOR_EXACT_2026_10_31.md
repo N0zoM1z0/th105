@@ -53,12 +53,10 @@ Fresh public canonical replay passes all eight affected functions:
 Only the new845-byte root adds authored credit. Existing scalar/helper ownership
 and all old match records are unchanged.
 
-Public unit: exact-first-select-destructor.
-Receipts: build/frontier-select-lifetime-20261031/formal.json, connect.json,
-number.json. The comparison resolves every full-body relocation, including the
-actual seven-byte IColor array callback and original destructor handler entry.
-This remains the complete COFF-function contract, not an additional linked
-claim over remote exception metadata outside the authored body.
+Public unit: exact-first-select-destructor. The comparison resolves every full-body
+relocation, including the actual seven-byte IColor array callback and original
+destructor handler entry. This remains the complete COFF-function contract, not an
+additional linked claim over remote exception metadata outside the authored body.
 
 Totals:1564 exact /446235 bytes; source1761, authored1781, mapped1788,
 excluded1658, review588, units753. Seven old lifetime functions freshly remain

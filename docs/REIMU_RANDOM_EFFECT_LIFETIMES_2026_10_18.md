@@ -72,14 +72,11 @@ separate12-byte next-owner INT3 gap. Equality here is between candidate
 forms. First strict target mismatch remains+17/478FB1.
 
 Current ordinary object SHA256:
-`2db6449a4c8f96d427765934f87309afc4cf80f60ceae5c45fc6448014859e77`.
-Linked image SHA256:
-`623740ceb34b6302cbadcab7c66bed2a330e9b45ff08eae131a3adab3632cd96`.
-Fragment CRLF SHA256:
-`f0c4fd4f47f14af4bf7ff3430d84c4c8ad4baf104f69bb4510085137988a089e`.
+`2db6449a4c8f96d427765934f87309afc4cf80f60ceae5c45fc6448014859e77`. Linked image
+SHA256: `623740ceb34b6302cbadcab7c66bed2a330e9b45ff08eae131a3adab3632cd96`. Fragment
+CRLF SHA256: `f0c4fd4f47f14af4bf7ff3430d84c4c8ad4baf104f69bb4510085137988a089e`.
 Native400-input SHA256:
 `bf361d468c8d66edf136c733e164f896f4064018c174a107eea66798511cf069`.
-Receipts are under `build/reimu-ltcg/` and `build/reimu-shared-finish/`.
 
 Run heavy commands serially with `nice -n 10 taskset -c 0`:
 

@@ -41,9 +41,8 @@ helper receives new exact credit from this root.
 
 ## Contract and verification scope
 
-Public unit: exact-first-connect-menu-lifetime.
-Public source: src/ui/MenuConnectLifetime.cpp.
-Fresh full receipt: build/frontier-connect-lifetime-20261031/formal.json.
+Public unit: exact-first-connect-menu-lifetime. Public source:
+src/ui/MenuConnectLifetime.cpp.
 
 All native calls and absolute references are replayed, including the actual
 profile global, title manager, four vtable identities, GuideOverlay callback,

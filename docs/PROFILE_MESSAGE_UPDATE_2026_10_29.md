@@ -28,7 +28,5 @@ than force an extra return with dummy lifetimes or assembly.
 
 scripts/repo-python scripts/build.py --unit exact-first-profile-message-update --compare --json
 
-Source:src/ui/ProfileMessageUpdate.cpp.
-Receipt:build/frontier-profile-message-20261029/formal-build.json.
-Only this isolated source unit changed; existing accepted consumers and
-shared headers are unchanged.
+Source:src/ui/ProfileMessageUpdate.cpp. Only this isolated source unit changed;
+existing accepted consumers and shared headers are unchanged.

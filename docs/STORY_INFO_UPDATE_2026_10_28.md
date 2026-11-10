@@ -26,9 +26,9 @@ clamp helper changed earlier register allocation. Those controls were rejected,
 and the direct ordinary branch implementation is retained. No assembly,
 register forcing, dummy locals, padding or artificial ABI is used.
 
-    scripts/repo-python scripts/build.py --unit exact-first-story-info-update --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-story-info-update --compare
+--json
 
-Receipt: build/frontier-471930-20261028/formal-build.json.
 Only this new unit was compiled; no accepted source/header or caller contract
 changed. Native raw extent is471930..471A73 exclusive, with both return paths
 included in the323-byte comparison.

@@ -4,4 +4,8 @@ The native system-effect pool acquisition at `0x456B70` is 499 bytes, SHA-256 `c
 
 The source specializes the actual typed pool. Under an ordinary scoped lock it either creates a SystemEffectObject and appends its slot and generation, or reuses a free slot, updates the generation and reconstructs the object. It publishes the observed two-word handle and returns the checked slot. The guard uses normal C++ inlining rather than a forced inline directive. The current shared AnimationSpriteState constructor is bound to its independently exact native `0x421FF0`; no earlier obsolete class-name alias is used. See `SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md` for the prior private type and allocation evidence.
 
-The public `exact-first-system-effect-pool-acquire` probe emits 498 bytes against native 499 and first differs at offset 54 because of register allocation. Its ordinary comparison uses the previously attested handler address; full cleanup-EH equality is not established. It remains source-present and nonexact, with no partial or exact-byte credit. Fresh receipts: `build/frontier-system-effect-pool-source-20261103/source-final.json` and `caller.json`.
+The public `exact-first-system-effect-pool-acquire` probe emits 498 bytes against
+native 499 and first differs at offset 54 because of register allocation. Its
+ordinary comparison uses the previously attested handler address; full cleanup-EH
+equality is not established. It remains source-present and nonexact, with no partial
+or exact-byte credit.

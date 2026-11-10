@@ -98,8 +98,6 @@ target-independent tests covering dense positive replay, malformed bounds and
 guards, and missing address/destination relocations; compressed-table controls
 continue to pass.
 
-Private inputs/receipts are under `build/aya-joint-cil-20261023/`, with the second
-context in `shared/`. Recipes are under `.analysis/aya-joint-cil-20261023/`.
 `inspection.json`, `replay.json`, `mapped-identities.json` and `807-example.json`
 retain the closure, address replay, complete byte identities and runtime sample.
 Generated images, maps and reports stay outside Git.

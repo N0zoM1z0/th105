@@ -185,12 +185,9 @@ Neither failed pseudocode nor old local names are used as evidence. Both runs
 preserve all nine primary database hashes and remove their temporary aliases.
 Only one Ghidra process runs at a time under CPU0/nice10/128MiB heap.
 
-Reports, COFFs and private source controls stay below
-`build/reimu-object-900-selector-store-20261020`; private drivers stay below
-`.analysis/reimu-object-900-selector-store-20261020`. Redundant canonical
-copies and unselected full-root owner diffs can be removed while retaining
-900-scoped facts and reproducible recipes. No generated reports, executables,
-compiler installs, credentials or analysis databases are committed.
+Redundant canonical copies and unselected full-root owner diffs can be removed while
+retaining 900-scoped facts and reproducible recipes. No generated reports,
+executables, compiler installs, credentials or analysis databases are committed.
 
 ```bash
 python3 scripts/verify-target.py

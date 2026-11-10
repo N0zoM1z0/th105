@@ -33,12 +33,11 @@ Generic implicit-lifetime validation passes all 17 roots / 1434 bytes after
 refreshing only the reviewed ResultMenu.hpp source hash. No classification or
 support bytes are promoted to authored exactness.
 
-Private scripts/reports are under .analysis/frontier-result-real-sprite-20261102/
-and build/frontier-result-real-sprite-20261102/. The baseline report explicitly
-records the known constructor change; other comparisons are unchanged. Final
-CI passed 962 tests (131.404 seconds), tracking, generated progress and whitespace.
-After the client timeout, the persisted exit marker and terminal log confirmed
-success without a repeat run. Both working-tree and staged diff checks passed.
+The baseline report explicitly records the known constructor change; other
+comparisons are unchanged. Final CI passed 962 tests (131.404 seconds), tracking,
+generated progress and whitespace. After the client timeout, the persisted exit
+marker and terminal log confirmed success without a repeat run. Both working-tree
+and staged diff checks passed.
 
 Totals remain 1427 exact / 443604 bytes, 1637 source-present, 1656 authored,
 1826 mapped, 2074 excluded, 297 review and 813 units.

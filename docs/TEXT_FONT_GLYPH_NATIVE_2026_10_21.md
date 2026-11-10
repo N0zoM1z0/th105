@@ -135,12 +135,9 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-The font-render comparison intentionally exits comparison_failed: glyph and
-eight other candidates remain nonexact, while hex45/blend289 stay exact.
-Selected source/COFF/full-function proofs,5376/160 receipts and genuine linked
-metadata are retained in `build/font-glyph-local-20261021/`; private recipes are
-in `.analysis/font-glyph-local-20261021/`. Unselected controls are archived only
-after per-file SHA readback verification.
+The font-render comparison intentionally exits comparison_failed: glyph and eight
+other candidates remain nonexact, while hex45/blend289 stay exact. Unselected
+controls are archived only after per-file SHA readback verification.
 
 Next: continue exact recovery of the remaining coordinate expression and
 setter/markup caller visibility, using the resolved native link as evidence

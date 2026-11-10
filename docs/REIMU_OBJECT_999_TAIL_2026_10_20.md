@@ -203,11 +203,9 @@ exit for the root mismatch; its accepted66-byte helper remains exact.
 
 ## Receipts and next work
 
-Generated receipts and controls stay under
-`build/reimu-object-x87-cleanup-20261020`, private recipes under the matching
-`.analysis` scope. All nine primary database hashes remain unchanged;
-no Ghidra process or metadata write is used. IDA's wrong executable supplies no
-semantics. No unrelated or aggregate cold replay/percentage is claimed.
+All nine primary database hashes remain unchanged; no Ghidra process or metadata
+write is used. IDA's wrong executable supplies no semantics. No unrelated or
+aggregate cold replay/percentage is claimed.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json

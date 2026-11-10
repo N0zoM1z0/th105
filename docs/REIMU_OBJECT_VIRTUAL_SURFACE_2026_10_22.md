@@ -126,17 +126,12 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-The focused mixed unit still reports root45700/nonexact49655F/+31 and
-counter66/66. Source SHA256 remains
-`3b9e4896c3645bb1228db3b432a832154870c5639a80df6c02cb67ce2dba12cc`;
-complete canonical source remains
-`d0ff3d3259c823cc56e322c5e0ec238456d8b490c78b4a5336a249b45a405a58`.
-Full private recipes `probe.py`, `negative_controls.py` and `vtable_context.py`
-are under `.analysis/reimu-object-virtual-surface-20261022/`; receipts below
-the corresponding `build/` directory include `final-formal.json`,
-`virtual-surface.json`, `negative-controls.json`, `bounce.json` and
-`vtable-context.json`, with before/after input hashes in the call packet.
-The guarded source graph uses the existing public proof directly.
+The focused mixed unit still reports root45700/nonexact49655F/+31 and counter66/66.
+Source SHA256 remains
+`3b9e4896c3645bb1228db3b432a832154870c5639a80df6c02cb67ce2dba12cc`; complete
+canonical source remains
+`d0ff3d3259c823cc56e322c5e0ec238456d8b490c78b4a5336a249b45a405a58`. The guarded
+source graph uses the existing public proof directly.
 
 Only the root's evidence ledger and handoff change. Exact totals stay1376
 functions/233560 bytes; no whole-root, new exact or aggregate cold claim is made.

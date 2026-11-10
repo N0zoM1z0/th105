@@ -110,11 +110,7 @@ rolled back. All nine primary DB pins are unchanged. Decompiler output only
 corroborates raw stack/edge interpretation and is not pasted as source. Heap
 384MiB/one CPU; compilation remains serial CPU0/nice10, with memory monitored.
 
-Private recipes/probes remain under
-`.analysis/exact-first-patchouli-slot5c-20261024/`; its `build/` counterpart
-retains full raw CFG/tables/literals, attested views/DB pins, probe comparisons,
-formal object/provenance and byte-by-byte residual classification. No shared
-header, flag, source partition or relocation mapping changes. Existing exact
-units remain unchanged. Exact ledger totals stay1397 functions/327058 bytes;
-no aggregate cold replay is claimed. Continue another complete same-slot peer
-rather than repeating neutral layout controls.
+No shared header, flag, source partition or relocation mapping changes. Existing
+exact units remain unchanged. Exact ledger totals stay1397 functions/327058 bytes;
+no aggregate cold replay is claimed. Continue another complete same-slot peer rather
+than repeating neutral layout controls.

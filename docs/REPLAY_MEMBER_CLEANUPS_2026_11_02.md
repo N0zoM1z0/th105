@@ -38,7 +38,5 @@ cleanup gate freshly pass. Twelve tests and147 actual byte mutations cover
 both roots, both array sites, range52 and deque callback5. No generic threshold,
 mask, tail tolerance or ownership validator was weakened.
 
-Only32 compiler bytes added: excluded2069/review303, units808. Authored
-1431/443934, source-present1636 and authored1655 remain unchanged.
-Private evidence: build/frontier-replay-destroy-wrapper-20261102/ and
-build/origin-anchors/replay-member-cleanup/.
+Only32 compiler bytes added: excluded2069/review303, units808. Authored 1431/443934,
+source-present1636 and authored1655 remain unchanged.

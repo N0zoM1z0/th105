@@ -178,13 +178,11 @@ are cells, not table bases. The two raw primary-table-address literals occur
 inside the already accepted493340 pool body; no new constructor or source
 partition is inferred from them.
 
-Recipes are under `.analysis/reimu-entry-word-protocol-20261020/`; full
-receipts and `summary.json` are under the corresponding `build/` directory.
-The summary records all26 source/object hashes and comparison scopes before
-56 redundant artifacts (1675515 bytes) are removed. The public source, shared
-headers, accepted helpers, profiles and ledgers stay unchanged. Remaining
-906/999 allocation and original declaration/TU ownership are still unknown;
-these negative controls do not establish an LTCG or standalone impossibility.
+The summary records all26 source/object hashes and comparison scopes before 56
+redundant artifacts (1675515 bytes) are removed. The public source, shared headers,
+accepted helpers, profiles and ledgers stay unchanged. Remaining 906/999 allocation
+and original declaration/TU ownership are still unknown; these negative controls do
+not establish an LTCG or standalone impossibility.
 
 ## Execution, database safety and reproduction
 
@@ -201,11 +199,8 @@ two target conversion calls, decodes the171-byte island and verifies its hash.
 All nine primary database files remain unchanged; the temporary alias is
 removed. No IDA semantics or factory adapter is used.
 
-Recipes are below `.analysis/reimu-entry-conversion-context-20261020/`;
-reports/inputs are below `build/reimu-entry-conversion-context-20261020/`.
 `probe.py` covers scalar/helper/flag controls, `hierarchy.py` the four layout
 controls, `ftol.py` the complete member proof and `ghidra.py` the independent
-readback. `summary.json` records hashes/results before redundant files are
-removed. The current source, accepted helper inputs and genuine65298d36
-closure remain unchanged; no aggregate cold replay or LTCG impossibility is
-claimed. The fourteen906/999 register/preparation bytes remain unresolved.
+readback. The current source, accepted helper inputs and genuine65298d36 closure
+remain unchanged; no aggregate cold replay or LTCG impossibility is claimed. The
+fourteen906/999 register/preparation bytes remain unresolved.

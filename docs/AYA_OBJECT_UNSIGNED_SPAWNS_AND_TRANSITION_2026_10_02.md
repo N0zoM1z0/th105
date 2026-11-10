@@ -179,12 +179,8 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-Fresh configured reports are `build/aya-spawn-values-final-20261002.json`
-and `build/aya-spawn-values-final-owners-20261002.json`; raw, guard and proof
-reports share that prefix. Source-hashed private controls and decoded
-instruction model are under `.analysis/aya-spawn-values-20261002/` and
-`build/aya-spawn-values-20261002/controls-summary.json`. Existing-object
-control reports have no configured build provenance and award no exact credit.
+Existing-object control reports have no configured build provenance and award no
+exact credit.
 
 Full target traversal remains4,630 instructions/all19,522 bytes through
 seven validated switches, with no unresolved indirect exit or unledgered

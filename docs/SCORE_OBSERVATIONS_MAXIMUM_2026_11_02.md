@@ -44,11 +44,8 @@ scripts/repo-python scripts/audit-score-observations.py
 scripts/repo-python -m unittest discover -s tests -p test_score_observations_audit.py
 ```
 
-The first command deliberately returns comparison failure (182/191).
-Diagnostic success does not override it. Private evidence is in
-`build/frontier-score-minimum-20261102/`; `restored.json` and
-`observations.json` describe the final source, while `corrected.json` and
-`replays/` describe the rejected temporary minimum hypothesis.
+The first command deliberately returns comparison failure (182/191). Diagnostic
+success does not override it.
 
 ## Direct vector endpoints, 2026-11-04
 

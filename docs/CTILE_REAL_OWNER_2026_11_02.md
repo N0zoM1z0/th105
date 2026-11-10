@@ -63,6 +63,4 @@ before/after provenance explicitly records the strict profile.
 - No matches.csv or function-origins.csv changes. Exact1429/443911,
   source1636/authored1655/mapped1823/review300/excluded2072 stay. Units812.
 
-Evidence: `.analysis/frontier-ctile-real-owner-20261102/` and
-`build/frontier-ctile-real-owner-20261102/`. Native work serial CPU0/nice10,
-original pinned target, no IDA semantics or push.
+Native work serial CPU0/nice10, original pinned target, no IDA semantics or push.

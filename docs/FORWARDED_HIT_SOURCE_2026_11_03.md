@@ -4,7 +4,10 @@ The complete native hit-quantity routine at `0x46C5B0` is 301 bytes, SHA-256 `67
 
 The retained source covers conditional scratch reset, dynamic quantity scaling, counter and owner updates, possible health recovery, damage and terminal handling. The former manually indexed vtable call is replaced by the existing `CBattleManager` typed virtual interface. Both actual BattleManager vtables identify slot `+0x2C` as `0x472490`, the independently reviewed depletion callback. This is the same target-backed interface used by the existing general-hit resolver; no manual vptr access or custom calling convention remains in this function.
 
-The public `exact-first-forwarded-hit-quantity` probe emits 299 bytes against native 301, with first difference at the entry. It is source-present and nonexact; a two-byte length difference is not a claim that only two bytes differ. All seven actual relocation fields are replayed, and no exact or partial bytes are awarded. Receipts are `build/frontier-forwarded-source-20261103/source.json` and `caller.json`; the prior private typed-interface control is under `build/frontier-forwarded-virtual-20261029/`.
+The public `exact-first-forwarded-hit-quantity` probe emits 299 bytes against native
+301, with first difference at the entry. It is source-present and nonexact; a
+two-byte length difference is not a claim that only two bytes differ. All seven
+actual relocation fields are replayed, and no exact or partial bytes are awarded.
 
 ## Recovery recipient correction, 2026-11-06
 

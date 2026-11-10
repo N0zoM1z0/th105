@@ -52,8 +52,6 @@ acceptance boundary or a general floating-point equivalence proof.
 ## Bounded context controls
 
 The fresh baseline reproduces the old1010-byte canonical1c7e7946... body.
-The following complete-function controls are retained under
-`build/gage-render-context-20261021/`; none changes an accepted shared input.
 
 | Control | Complete source extent / first mismatch | Result |
 | --- | --- | --- |
@@ -87,13 +85,11 @@ full object bytes, helper arguments, endpoint arguments and the existing
 x87/stack/register contract agree. Input pins are unchanged during execution.
 
 Input matrix SHA256 remains
-`a9335c55c58e5c3525df3fee417fd9ff03bae2f8c8513e49e280bd1aa2779bb5`.
-`selected-native.json` records this source/object/script epoch, fresh target
-closure and the canonical+190 diagnostic. Its build-provenance flag remains
-false; source-to-object provenance is provided separately by the formal build
-receipt. The previous wrong-NaN/wrong-UV negative controls remain historical
-calibration of the unchanged audit and are not presented as fresh builds of
-this source.
+`a9335c55c58e5c3525df3fee417fd9ff03bae2f8c8513e49e280bd1aa2779bb5`. Its
+build-provenance flag remains false; source-to-object provenance is provided
+separately by the formal build receipt. The previous wrong-NaN/wrong-UV negative
+controls remain historical calibration of the unchanged audit and are not presented
+as fresh builds of this source.
 
 The finite masked-x87 fixtures and native entry stops keep the
 [previous audit's scope](GAGE_RENDER_2026_10_20.md#native-prefix-audit-and-negative-controls):
@@ -116,11 +112,8 @@ unchanged, and no library-anchor or aggregate cold replay is claimed.
 |Formal COFF|074cdb38ed189278386927aff1f7d6955c94c35c95ed85fdf6af7261569f5d18|
 |Complete canonical source|fa2cc075b86578cc4f121c28aa54d9746ee0dd89701a1a821d8701dee80bea6a|
 
-`baseline-build.json` and `selected-build.json` record the fresh before/after
-formal comparisons. `selected-instructions.json` records the whole instruction
-diagnostic. Frozen baseline/selected sources and the selected COFF remain in
-the build scope; private control recipes are in
-`.analysis/gage-render-context-20261021/`.
+`baseline-build.json` and `selected-build.json` record the fresh before/after formal
+comparisons.
 
 ```bash
 # Expected exit1: first mismatch41B580/+190, complete1010-byte comparison.
@@ -136,11 +129,9 @@ git diff --check
 
 ## Additional product and inheritance controls
 
-The subsequent `build/gage-product-20261021/baseline-build.json` formally
-rebuilds the unchanged selected source and confirms the same complete1010-byte
-canonicalfa2cc075... body, still nonexact at+190. The selected source and
-object are frozen in that scope. Its fresh IDA preflight again fails target
-identity, so these controls use only the canonical PE and pinned compiler.
+The selected source and object are frozen in that scope. Its fresh IDA preflight
+again fails target identity, so these controls use only the canonical PE and pinned
+compiler.
 
 The remaining fraction/height pair is examined through actual product
 lifetimes, without introducing inert storage or changing a public input:
@@ -161,17 +152,13 @@ limitation. The public implementation, selected profile, bindings and accepted
 providers remain unchanged, so the earlier source-pinned native receipt is
 retained without another unrelated fixture replay. No new exact credit.
 
-Private regeneration recipes are in `.analysis/gage-product-20261021/`.
-
 ## Floating environment and a genuine larger CIL context
 
-The subsequent `build/gage-fenv-context-20261021/baseline.json` freshly rebuilds
-the unchanged selected source:1010 bytes, canonicalfa2cc075..., nonexact+190.
-Whole-function `fenv_access(on)` and three direct expression promotions
-(fraction to double, height to double, subtraction to double) each produce
-that same complete canonical body. These are distinct from the preceding
-product-local controls: no intermediate variable/home is introduced. None
-recovers the remaining pair. No new numeric/exception coverage is claimed.
+Whole-function `fenv_access(on)` and three direct expression promotions (fraction to
+double, height to double, subtraction to double) each produce that same complete
+canonical body. These are distinct from the preceding product-local controls: no
+intermediate variable/home is introduced. None recovers the remaining pair. No new
+numeric/exception coverage is claimed.
 
 VC8 rejects statement-local fenv pragmas with C4177: global or namespace scope
 is required. That trial is rejected rather than counted as an effective
@@ -210,10 +197,8 @@ remain serial on CPU0 at nice10. No new exact is added in this audit.
 
 ## Field-lifetime and getter interaction audit
 
-`build/gage-field-lifetimes-20261021/` freshly pins the complete1010-byte/
-323-instruction target, both RET8 exits and CGage vtable6D6A38 slot1C. The
-selected source still produces canonicalfa2cc075... and first differs+190.
-Six complete source controls leave all public source and shared inputs intact:
+The selected source still produces canonicalfa2cc075... and first differs+190. Six
+complete source controls leave all public source and shared inputs intact:
 
 | Control | Complete extent/instructions | Unequal instructions |
 | --- | --- | --- |
@@ -235,10 +220,8 @@ the selected baseline stays loose. No new exact or native-coverage claim.
 
 ## Getter clamp lifetime controls
 
-`build/gage-clamp-context-20261021/` freshly rebuilds the unchanged selected
-source60ce4f3b: complete1010-byte canonicalfa2cc075, still nonexact+190.
-Five additional source controls test whether the getter/clamp lifetime rather
-than the final product expression explains the remaining operand choice.
+Five additional source controls test whether the getter/clamp lifetime rather than
+the final product expression explains the remaining operand choice.
 
 | Complete source control | Bytes/instructions | Result |
 | --- | --- | --- |

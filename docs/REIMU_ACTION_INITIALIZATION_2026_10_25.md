@@ -117,14 +117,12 @@ state agreement does not excuse those differences.
 
 ## Finite controls and remaining unknowns
 
-An accessed-prefix member-layout control emits4714 (`d8d164dd...`) before the
-byte interface, and4694 (`f47665e4...`) with it. Neither is selected. Capturing
-case76's direction/Y inputs introduces a real extra temporary/frame and changes
-physical helper/exit sharing (`5405b9af...`); it does not close the target.
-Capturing genuine double velocity products emits4694 (`75bb9e7d...`), also
-unselected. Preserve these receipts instead of adding storage or register
-constraints. All private sources/receipts remain under `.analysis/` and
-`build/exact-first-reimu-finalization-20261025/`.
+An accessed-prefix member-layout control emits4714 (`d8d164dd...`) before the byte
+interface, and4694 (`f47665e4...`) with it. Neither is selected. Capturing case76's
+direction/Y inputs introduces a real extra temporary/frame and changes physical
+helper/exit sharing (`5405b9af...`); it does not close the target. Capturing genuine
+double velocity products emits4694 (`75bb9e7d...`), also unselected. Preserve these
+receipts instead of adding storage or register constraints.
 
 Original helper visibility, caller/TU optimization context and the remaining
 shared-tail/FP scheduling are unresolved. No standalone/LTCG impossibility is

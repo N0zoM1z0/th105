@@ -9,15 +9,13 @@ No exact bytes or functions are added.
 ## Target and interpretation
 
 Only original Japanese 1.06a is used, executable SHA256
-`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Root `[48D390,49120F)` SHA256 is
-`3bd363994e140603ae0ec249ffd3a36b1ae0448e72a389e417c4cc7a6d113e2d`.
-The existing vtable, void ECX/no-stack-argument and complete root CFG evidence
-is unchanged. Direct read-only Ghidra re-attested file/entry/text/root bytes
-and typed method metadata; nine primary DB file hashes remained unchanged.
-The384MiB heap/CPU0 run is under
-`.analysis/reimu-cpu-policy0-20261019/`; no factory adapter, IDA semantic data,
-copied project or target patch was used. The project alias is removed.
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`. Root
+`[48D390,49120F)` SHA256 is
+`3bd363994e140603ae0ec249ffd3a36b1ae0448e72a389e417c4cc7a6d113e2d`. The existing
+vtable, void ECX/no-stack-argument and complete root CFG evidence is unchanged.
+Direct read-only Ghidra re-attested file/entry/text/root bytes and typed method
+metadata; nine primary DB file hashes remained unchanged. The project alias is
+removed.
 
 Observed target48FC28 saves full EAX into ECX, then48FC2D stores CX at76A.
 Later conditions consume signed16-bit CX. The former short local made VC8
@@ -93,10 +91,9 @@ TU/LTCG contexts. The27-byte result was already accepted and adds no credit.
 | Canonical16401-byte payload | `70905d5a0663e6c41cbdc5dfd94a9ee56b8ed3a197011432c5270e87b2990ae4` |
 
 The prior payload was
-`8baf522260e54665fb7bf441a6ff4db19863b1483387b86f082f4c1792d36547`.
-Native reports and normalization/control recipes remain below
-`build/reimu-cpu-policy0/`. Shared headers, flags, TU selection and relocation
-bindings are unchanged; the real-selector TU is an unselected control.
+`8baf522260e54665fb7bf441a6ff4db19863b1483387b86f082f4c1792d36547`. Shared headers,
+flags, TU selection and relocation bindings are unchanged; the real-selector TU is
+an unselected control.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-reimu-cpu-action-policy --compare --json

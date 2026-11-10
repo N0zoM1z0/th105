@@ -111,8 +111,7 @@ action-group/physical-ordinal pairing,59 identity. Candidate dataflow now
 visits14836 unique pre-epilogue PCs/16888 states; target14870/16959.
 These constraints prove neither payload values nor feasible paths.
 
-Generated reports are `build/iku-landing-final-{compare,branches,ring-native,
-control,facts,payloads,owners}.json`. The preceding genuine link and action214
+The preceding genuine link and action214
 native checkpoint belong to the earlier source in
 [glide exit ownership](IKU_GLIDE_EXIT_OWNERSHIP_2026_10_17.md); they were not
 replayed or promoted to current-source evidence. No accepted unit, public

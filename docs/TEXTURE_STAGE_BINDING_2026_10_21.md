@@ -167,9 +167,6 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Selected source/COFF, target packet, control reports and native receipts are
-under `build/texture-bind-20261021/`. Private regeneration recipes are under
-`.analysis/texture-bind-20261021/`. Generated compiler/linker artifacts are not
-committed. Current ledgers and this source
-epoch supersede the older97-byte
-probe diagnosis; original frame and save-placement recovery remains open.
+Generated compiler/linker artifacts are not committed. Current ledgers and this
+source epoch supersede the older97-byte probe diagnosis; original frame and
+save-placement recovery remains open.

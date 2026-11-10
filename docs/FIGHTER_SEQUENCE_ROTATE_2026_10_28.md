@@ -48,10 +48,6 @@ accesses, register forcing, assembly, artificial locals or padding are used.
 
 ## Replay
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-fighter-sequence-rotate --compare --json
-    scripts/repo-python build/frontier-45dda0-20261028/audit_auxiliary.py build/match-units/ExactFirst_FighterSequenceRotate.obj
-
-Receipts: build/frontier-45dda0-20261028/formal-build.json,
-formal-preview.log and formal-auxiliary.json. The auxiliary script and earlier
-controls are retained privately in that directory. Only this bounded unit was
-built. Shared headers and accepted input-policy sources are unchanged.
+The auxiliary script and earlier controls are retained privately in that directory.
+Only this bounded unit was built. Shared headers and accepted input-policy sources
+are unchanged.

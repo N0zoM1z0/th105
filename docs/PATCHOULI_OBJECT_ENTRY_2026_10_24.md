@@ -28,11 +28,10 @@ scripts/repo-python scripts/audit-patchouli-object-entry.py \
 ```
 
 Compilation returns0; comparisons return1 for the retained mismatch. The public
-payload audit replays every relocation through the complete section tail,
-without masks. Existing-object comparison reports build provenance unverified;
-the separate cold compilation supplies build evidence. Formal receipts include
-source/compiler/input hashes. Generated reports are below
-`build/exact-first-patchouli-object-entry-20261024/`.
+payload audit replays every relocation through the complete section tail, without
+masks. Existing-object comparison reports build provenance unverified; the separate
+cold compilation supplies build evidence. Formal receipts include
+source/compiler/input hashes.
 
 ## Observed target identity, ownership and boundary
 

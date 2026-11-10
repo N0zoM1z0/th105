@@ -136,12 +136,9 @@ switches and126 primary destinations remain. No aggregate cold replay.
 Current object SHA256 is
 `9fe46459022a5ff625033aee50527b43cc7f0565b343f4e655166be3ec02e75f`.
 
-Bounded reports and source/compiler/object receipts are below
-build/reimu-root-layout/. Raw PE supplies this unit's new facts; no IDA
-semantics, Ghidra process or clone. All9 primary database hashes stay unchanged.
-Obsolete private sources, listings, control objects and caches are cleaned;
-current objects and compact evidence remain. Next recover the remaining
-scalar spill/alignment and call sharing, while retaining the returning-world,
+Raw PE supplies this unit's new facts; no IDA semantics, Ghidra process or clone.
+All9 primary database hashes stay unchanged. Next recover the remaining scalar
+spill/alignment and call sharing, while retaining the returning-world,
 indeterminate740 and compiler/TU/LTCG proof obligations.
 
 The follow-up [550 request/frame checkpoint](REIMU_550_REQUEST_FRAME_2026_10_18.md)

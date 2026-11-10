@@ -73,12 +73,10 @@ needed one explicit include in the previously nonexact Youmu entry; its replay
 then completed. This is an affected-header replay, not a repository cold build.
 The timeline loader's separate1676-byte payload check also remains exact.
 
-Receipts:build/frontier-effect-sprite-owner-20261029/formal-owner.json,
-formal-initialize.json, replay-*.json, replay-summary-*.json, provider.json and
-origin-validation.json. The generated anchor is tracked at
-config/vc8-generated-effect-sprite-assign-origin-anchors.toml. It rebuilds the
-real initializer source, not a copied template implementation. The private
-comparison recipes retain full relocation-aware provider/root replay details.
+The generated anchor is tracked at
+config/vc8-generated-effect-sprite-assign-origin-anchors.toml. It rebuilds the real
+initializer source, not a copied template implementation. The private comparison
+recipes retain full relocation-aware provider/root replay details.
 
 The older CEffectSprite0x12C attribution and corresponding background
 LTCG-slice speculation in historical notes are superseded by this evidence.
@@ -102,7 +100,6 @@ unsized delete; that did not prove a shared complete object type.
 
 All30 header-dependent units and the344-byte allocating producer were freshly
 replayed, preserving168 unique previously accepted functions. No exact count
-changes. In particular replacement45CD70 remains344/344, release520860 remains
-40/40 and normal AttackObject destruction45F8E0 remains78/78. Reports are under
-build/frontier-auxiliary-owner-20261029/. No whole-repository cold build or
-runtime test matrix was used.
+changes. In particular replacement45CD70 remains344/344, release520860 remains 40/40
+and normal AttackObject destruction45F8E0 remains78/78. No whole-repository cold
+build or runtime test matrix was used.

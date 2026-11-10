@@ -62,10 +62,8 @@ callback address mapping does not award callback body equality. Existing
 mappings are unchanged. Only the two new authored-source rules are replayed;
 no unrelated exact or origin corpus is rebuilt.
 
-Evidence: build/frontier-gamepad-enumeration-20261030/formal.json,
-semantic.json, boundaries.json and the genuine linked private unit/logs.
-Fresh Factory session/sample attestation is shared with the immediately
-preceding axis scope. No hardware or user-system settings were accessed.
+Fresh Factory session/sample attestation is shared with the immediately preceding
+axis scope. No hardware or user-system settings were accessed.
 
 ## 2026-11-01 original allocator ownership
 
@@ -77,17 +75,14 @@ are recorded in LINKED_GAMEPAD_ALLOCATOR_2026_11_01.md. No authored credit.
 
 ## Typed enumeration control, 2026-11-04
 
-A bounded control replaces the root `EnumDevices` vtable expression with an
-ordinary call through a DInput-compatible COM prefix, keeping the same callback
-and argument order. The complete initialization and callback candidates remain
-byte-identical to the earlier 176- and 327-byte objects and are still nonexact.
-The source was restored; this does not prove the original nominal interface or
-resolve its private allocator/TU context. Receipt:
-`build/frontier-gamepad-typed-enum-20261104/compare.json`.
+A bounded control replaces the root `EnumDevices` vtable expression with an ordinary
+call through a DInput-compatible COM prefix, keeping the same callback and argument
+order. The complete initialization and callback candidates remain byte-identical to
+the earlier 176- and 327-byte objects and are still nonexact. The source was
+restored; this does not prove the original nominal interface or resolve its private
+allocator/TU context.
 
 A separate callback-side control uses ordinary virtual calls through
-DInput-compatible creation and device prefixes. The two complete candidates
-retain their earlier 327- and 176-byte hashes and remain nonexact. The source
-was restored; the trial does not resolve the native aligned frame or checked
-container boundaries. Receipt:
-`build/frontier-gamepad-typed-callback-20261104/compare.json`.
+DInput-compatible creation and device prefixes. The two complete candidates retain
+their earlier 327- and 176-byte hashes and remain nonexact. The source was restored;
+the trial does not resolve the native aligned frame or checked container boundaries.

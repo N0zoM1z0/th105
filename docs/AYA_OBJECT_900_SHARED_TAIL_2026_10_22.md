@@ -80,10 +80,7 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-The canonical comparator intentionally remains nonzero. Private complete-source
-controls are under `.analysis/aya-900-tail-20261022/`, objects/reports under
-`build/aya-900-tail-20261022/`. The selected configured-source results are
-`selected-formal.json`, `selected-owner.json`, `selected-graphs.json` and
-`execution.json`. Local CI and whitespace gates apply before commit/push.
-Remaining concrete900 leads are the two scratch homes and next-sequence exit
-sharing; wider root placement and other actions remain unresolved.
+The canonical comparator intentionally remains nonzero. Local CI and whitespace
+gates apply before commit/push. Remaining concrete900 leads are the two scratch
+homes and next-sequence exit sharing; wider root placement and other actions remain
+unresolved.

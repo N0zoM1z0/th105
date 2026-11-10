@@ -89,15 +89,9 @@ Control full canonical SHA256 values:
 # Configured root remains nonexact; no acceptance follows from a successful build.
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
 python3 scripts/audit-aya-object-852-facing-lifetimes.py --output build/aya-801-sequence-20261023/selected-facing-facts.json
-# Frozen controls may need restoring from this scope's integrity-checked archive.
 python3 scripts/audit-aya-object-852-facing-lifetimes.py --object build/match-units/GptWeb_AyaObjectActionState.obj --object build/aya-801-sequence-20261023/852-int.obj --object build/aya-801-sequence-20261023/852-double.obj --object build/aya-801-sequence-20261023/snapshot.obj --output build/aya-801-sequence-20261023/facing-facts.json
 python3 scripts/audit-aya-object-predicate-widths.py
 python3 scripts/validate-tracking.py --require-target
 taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
-
-Reports, formal build commands, frozen source and native receipts remain under
-`build/aya-801-sequence-20261023/`. The exploratory alignment recipe under
-`.analysis/aya-801-sequence-20261023/` is private, incomplete and untrusted for
-acceptance; the public strict graph checker was not modified or weakened.

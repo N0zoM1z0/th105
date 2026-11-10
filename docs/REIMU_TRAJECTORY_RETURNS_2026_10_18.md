@@ -128,14 +128,12 @@ nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-root-stack.py build/reimu
 nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-circular-returns.py --smoke
 ```
 
-The trajectory smoke has four inputs/20 objects. Negative compilation reuses
-the genuine ordinary receipt command, changing only source/output paths and
-the four final-angle expressions; pass its object with `--object` and a
-separate output directory. Local recipes/receipts are retained below
-`build/reimu-sharing-flow/`; normal full-return receipts are below
-`build/reimu-trajectory-returns/`. Generated binaries/streams are disposable.
-The native320-case job peaks at307600KiB; focused producer refresh at321080KiB.
-Primary database hashes remain unchanged. Other world/resource states, later
-object ticks, exceptions and complete root canonical equality remain open.
-Continue recovering lifetimes/scheduling that preserve the positive full-width
-sharing evidence and restore fit; do not repeat these unchanged controls.
+The trajectory smoke has four inputs/20 objects. Negative compilation reuses the
+genuine ordinary receipt command, changing only source/output paths and the four
+final-angle expressions; pass its object with `--object` and a separate output
+directory. Generated binaries/streams are disposable. The native320-case job peaks
+at307600KiB; focused producer refresh at321080KiB. Primary database hashes remain
+unchanged. Other world/resource states, later object ticks, exceptions and complete
+root canonical equality remain open. Continue recovering lifetimes/scheduling that
+preserve the positive full-width sharing evidence and restore fit; do not repeat
+these unchanged controls.

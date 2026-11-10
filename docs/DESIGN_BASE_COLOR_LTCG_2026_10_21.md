@@ -60,12 +60,10 @@ source/profile are unchanged. No cold aggregate replay or new aggregate
 percentage is claimed. The earlier same-day iterator-layout/SSE/RTM controls
 remain valid historical ordinary-COFF observations, not current blockers.
 
-Reports and raw facts are in `build/design-base-color-20261021/`, with private
-recipes in `.analysis/design-base-color-20261021/`. Target/tracking preflight
-passes; IDA again rejects its wrong-target session. No Ghidra session or
-database write is used. Heavy work is pinned to CPU0 at nice10. Original
-source spelling/TU partition and the CDesignBase binary loader implementation
-remain open; Reimu496540 remains nonexact at+31.
+Target/tracking preflight passes; IDA again rejects its wrong-target session. No
+Ghidra session or database write is used. Heavy work is pinned to CPU0 at nice10.
+Original source spelling/TU partition and the CDesignBase binary loader
+implementation remain open; Reimu496540 remains nonexact at+31.
 
 ## Shared-class provider, 2026-11-09
 

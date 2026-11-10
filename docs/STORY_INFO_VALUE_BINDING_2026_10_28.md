@@ -50,7 +50,8 @@ union field view and explicit real health-value capture were byte-neutral;
 neither speculative change was retained. No forced registers, volatile
 accesses, padding, fake ABI or assembly are used.
 
-    scripts/repo-python scripts/build.py --unit gpt-web-battle-info-gauge-runtime --compare --json
+scripts/repo-python scripts/build.py --unit gpt-web-battle-info-gauge-runtime
+--compare --json
 
-Receipt: build/frontier-471a80-20261028/formal-build.json. That historical report separates three existing exact functions and the then
+That historical report separates three existing exact functions and the then
 nonexact story binder; formal-typed-owner.json supersedes its main result.

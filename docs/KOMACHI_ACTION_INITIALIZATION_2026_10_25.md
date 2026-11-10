@@ -107,8 +107,6 @@ not decimal double0.2/0.1. Every literal has a target-observed width/bit binding
 
 ## Finite whole-function experiments
 
-Private inputs are retained in `.analysis/exact-first-komachi-action-entry-20261025/`;
-reports/objects are under `build/exact-first-komachi-action-entry-20261025/`.
 All comparisons replay the complete emitted section without masking.
 
 | Complete source/control | Full bytes | SHA256 prefix | Whole result |

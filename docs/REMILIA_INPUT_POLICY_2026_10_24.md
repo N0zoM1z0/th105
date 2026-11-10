@@ -125,12 +125,10 @@ never patched target bytes. The final pseudocode is still a hypothesis; raw
 pushes, conditions, field widths, complete CFG and canonical comparison control
 acceptance. Source was written as natural C++ from those observations.
 
-Private recipes and three complete source revisions are retained under
-`.analysis/exact-first-remilia-slot50-20261024/`. Receipts are under the matching
-`build/` directory: `raw-facts.json`, `target.asm`, `cfg-closure.json`,
-`call-surfaces.json`, native callee exports, attested database logs/hashes,
-`formal-compare.json`, `formal-full-payload.json`, `cold-compare.json` and
-`cold-full-payload.json`.
+Receipts are under the matching `build/` directory: `raw-facts.json`, `target.asm`,
+`cfg-closure.json`, `call-surfaces.json`, native callee exports, attested database
+logs/hashes, `formal-compare.json`, `formal-full-payload.json`, `cold-compare.json`
+and `cold-full-payload.json`.
 
 A negative control changes only one byte in the generated COFF switch table,
 not the target. The complete-payload audit rejects it at `+0x1528 / 0x557598`,

@@ -77,11 +77,8 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-The canonical comparator intentionally reports mismatch. `--previous-object`
-adds the finite old-source contrast. Private prior source is under
-`.analysis/aya-902-phase-20261022/`; objects/reports are under
-`build/aya-902-phase-20261022/`, including `execution.json`, `other-graphs.json`,
-`regression901.json`, `selected-formal.json`, and `owner-audit.json`.
-Local CI and whitespace checks gate commit/push. Aggregate strict totals remain
-unchanged; no all-unit cold replay is claimed. Remaining902 differences include
-speed-branch placement, floating scratch homes and spawn argument formation.
+The canonical comparator intentionally reports mismatch. `--previous-object` adds
+the finite old-source contrast. Local CI and whitespace checks gate commit/push.
+Aggregate strict totals remain unchanged; no all-unit cold replay is claimed.
+Remaining902 differences include speed-branch placement, floating scratch homes and
+spawn argument formation.

@@ -64,9 +64,7 @@ source freshly replays327/native334 callback and176/native176 initialization
 with first mismatch0/+2, respectively. Existing separate axis166 is freshly
 exact. No callback-pointer mapping or blanket linked-parent acceptance is added.
 
-Evidence: build/origin-anchors/linked-gamepad-allocator.json and
-build/frontier-gamepad-import-20261101/{ordinary-roots,axis,mutations}.json;
-byte-regression.log and static-regression.log. The final narrow origin replay,
-CI and diff check accompany the checkpoint. Excluded2009/review363; authored
-exact1431/443916, authored1655, source1635, mapped1820 and units777 stay unchanged.
-Remaining16/32-byte-element allocator candidates are unaccepted.
+The final narrow origin replay, CI and diff check accompany the checkpoint.
+Excluded2009/review363; authored exact1431/443916, authored1655, source1635,
+mapped1820 and units777 stay unchanged. Remaining16/32-byte-element allocator
+candidates are unaccepted.

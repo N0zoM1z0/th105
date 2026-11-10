@@ -145,15 +145,13 @@ aggregates, and hashed into build provenance. Native layout artifacts, static
 libraries, image/map/CIL and the comparator are also pinned. No current function
 is accepted from an old/private report or a parent-only byte comparison.
 
-The fresh public report
-`build/archive-linked-contract/gpt-web-package-archive-store-formal.json`
-reports **163/163 and228/228 exact**. The13 parent/EH code+data regions cover606
-bytes with zero differences; only the391 authored body bytes enter matches.csv.
-The initializer, callback, table slot and compiler cleanup regions add no
-independent authored credit. All three existing linked accepted units are
-cold-rebuilt/replayed: scene408870/281, packet-pool413820/98 and shared release
-405200/167; all remain exact. The affected Node41B850/43 is also cold-rebuilt
-and exact. No aggregate all-unit replay or percentage claim is made.
+The13 parent/EH code+data regions cover606 bytes with zero differences; only the391
+authored body bytes enter matches.csv. The initializer, callback, table slot and
+compiler cleanup regions add no independent authored credit. All three existing
+linked accepted units are cold-rebuilt/replayed: scene408870/281,
+packet-pool413820/98 and shared release 405200/167; all remain exact. The affected
+Node41B850/43 is also cold-rebuilt and exact. No aggregate all-unit replay or
+percentage claim is made.
 
 The old candidate inventory omitted `41C200`. Its complete57-byte RET body
 ends41C238, followed by seven INT3 alignment bytes. Native ESI vector access,
@@ -200,12 +198,6 @@ uses CPU0/nice10 and a384 MiB heap; all nine primary DB file hashes remain
 unchanged and aliases are removed. IDA fails identity preflight and supplies
 no semantic evidence.
 
-Receipts and commands are under `build/package-loader-context-20261019/`,
-especially source-change-controls.json, selected-store/commands.json,
-selected-store-store-regions.json, selected-store-integration.json,
-execution.json and database before/after pins. Private scripts and hypotheses
-are under `.analysis/package-loader-context-20261019/`.
-
 Reproduce the accepted lifecycle and the still-nonexact loader with:
 
 ```bash
@@ -217,7 +209,6 @@ Continue the loader's private vector-helper/EH/frame context and the
 registration, opener and reader/BMP residuals. Original archive class name,
 inheritance, TU partition and game-method ownership remain unknown. The formal
 byte/EH proof does not expand the execution model's OS/runtime coverage.
-
 
 The later [loader context review](PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md)
 adds actual native allocator header-method support to this linked unit. A fresh

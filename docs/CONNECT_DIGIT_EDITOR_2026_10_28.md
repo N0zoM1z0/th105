@@ -25,17 +25,14 @@ compiler still delays EDI restoration before unsigned digit division: first
 +192 for combined and+106 for port-only. Do not reopen the old spelling controls
 or fabricate liveness. The private provider closure earns no helper credit.
 
-The reproducible public unit remains exact-first-connect-digit-editor.
-Source dependency traversal finds no accepted consumer of this source; existing
-caller receipts remain unchanged. Narrow origin-rule validation pins both
-complete hashes and incoming call sites. Fresh receipts are under
-build/frontier-connect-digit-cil-20261031/. Totals:1740 source-present,
-1766 mapped,1760 authored,847 review; exact remains1545 /438021 bytes.
-
+The reproducible public unit remains exact-first-connect-digit-editor. Source
+dependency traversal finds no accepted consumer of this source; existing caller
+receipts remain unchanged. Narrow origin-rule validation pins both complete hashes
+and incoming call sites. Totals:1740 source-present, 1766 mapped,1760 authored,847
+review; exact remains1545 /438021 bytes.
 
 Complete candidate888/native891 remains nonexact, first difference+192 at a
 port-selection return's register restoration. No exact or source-selection credit.
-Receipt: build/frontier-441e10-20261028/cursor-pair.json.
 Target SHA:f96c0b43c0c97fcb965a04a603505f71926c95456816cccd2ae2d7c07d5f32ee.
 
 The native CMenuConnect state wrapper442CE0 calls this helper at442CFE. Existing

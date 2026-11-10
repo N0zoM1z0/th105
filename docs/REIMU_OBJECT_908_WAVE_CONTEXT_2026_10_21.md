@@ -70,7 +70,6 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Formal baseline, per-variant full comparisons and instruction facts remain in
-`build/reimu-object-908-wave-context-20261021/`. Matching `.analysis/` recipes
-preserve frozen baseline source/header/object inputs. Source recovery must
-still explain the 908 post-wave lifetime and the other Reimu call/RET sharing differences.
+Matching `.analysis/` recipes preserve frozen baseline source/header/object inputs.
+Source recovery must still explain the 908 post-wave lifetime and the other Reimu
+call/RET sharing differences.

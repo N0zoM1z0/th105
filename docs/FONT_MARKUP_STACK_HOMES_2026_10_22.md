@@ -100,13 +100,8 @@ also leaves that tested CIL parser size/frame unchanged.
 
 ## Evidence and next constraints
 
-Private recipes are in `.analysis/font-markup-homes-20261022/`; receipts are in
-the matching `build/` directory: `baseline-formal.json`, `baseline-facts.json`,
-`target-facts.json`, `stack-homes.json`, `eh-facts.json`, `rtm-header.json`,
-`raw-array-storage.json`, `bounded-token.json`, `member-contexts.json` and
-`public-member-contexts.json`, with exact source/tool/object/image pins and
-actual caller windows. The selected input correction's `formal.json` preserves
-the complete baseline markup body and its original private native interface.
+The selected input correction's `formal.json` preserves the complete baseline markup
+body and its original private native interface.
 
 The two gaps, allocation-argument cleanup, payload/count lifetime, color-home
 reuse and original compilation ownership remain unexplained. These measurements

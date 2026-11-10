@@ -112,9 +112,8 @@ used vertical, a semantic error now corrected to horizontal. This category
 cursor differs from the card-list vertical cursor recovered in449E90.
 
 Whole source remains2151/native2136, first+391, SHA
-d15195f10de8db59e60b9cc23d1e050536225e099374a90ff74a58bd16b60774.
-Both selected signed-char getters replay7/7 and15/15 unchanged. No exact
-credit is added. Evidence:build/frontier-profile-deck-cursor-20261029/.
+d15195f10de8db59e60b9cc23d1e050536225e099374a90ff74a58bd16b60774. Both selected
+signed-char getters replay7/7 and15/15 unchanged. No exact credit is added.
 
 ## Real lookup and returned-handle context, 2026-10-31
 
@@ -136,6 +135,5 @@ difference to44AF26, so the simpler indexed loops remain selected. Do not add
 dummy lifetimes, register constraints or padding.
 
 The exact signed-byte adapter methods448B20/448B30 still replay7/15. This is the
-only consumer of the changed constructor source, and unrelated exact receipts
-are preserved. Formal receipts and the bounded control are retained under
-build/frontier-deck-constructor-providers-20261031/ and its .analysis counterpart.
+only consumer of the changed constructor source, and unrelated exact receipts are
+preserved.

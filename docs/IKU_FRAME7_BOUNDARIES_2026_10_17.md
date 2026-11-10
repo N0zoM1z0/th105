@@ -93,9 +93,7 @@ python3 scripts/audit-iku-call-sharing.py --object build/match-units/GptWeb_IkuA
 python3 scripts/audit-giant-action-owners.py iku-vslot28 build/match-units/GptWeb_IkuActionState.obj --unit gpt-web-iku-action-state --json
 ```
 
-The strict comparison and wrong control intentionally exit 1. Reports are
-under `build/iku-prelude-constant/`; the small source patch/readback script
-is under `.analysis/iku-prelude-constant-20261017/`. No shared header, ABI,
-compiler profile, partition, relocation or accepted-unit ledger changed.
-Initial constant lifetime, remaining shared call/argument placement and
-original source/TU/optimizer provenance remain unresolved.
+The strict comparison and wrong control intentionally exit 1. No shared header, ABI,
+compiler profile, partition, relocation or accepted-unit ledger changed. Initial
+constant lifetime, remaining shared call/argument placement and original
+source/TU/optimizer provenance remain unresolved.

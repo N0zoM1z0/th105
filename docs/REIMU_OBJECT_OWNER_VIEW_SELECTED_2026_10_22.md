@@ -143,16 +143,12 @@ python3 scripts/audit-reimu-object-member-widths.py > build/reimu-object-member-
 ```
 
 The build/comparison deliberately exits1 for the pending root, while separately
-recording the accepted66-byte helper. Primary execution audits pass. Reports,
-complete body/window packets, source/object/tool fingerprints, graph receipts
-and private controls are in `build/reimu-object-908-access-20261022/`;
-recipes are in `.analysis/reimu-object-908-access-20261022/`.
+recording the accepted66-byte helper. Primary execution audits pass.
 
-The preceding accent store/advance experiment is closed without source
-selection: native and genuine CIL both give416/4275dddb, nonexact+6. Its six
-other native bodies stay unchanged. Receipts/recipes are under
-`build/font-accent-pixels-20261022/` and `.analysis/font-accent-pixels-20261022/`.
-The selected accent remains417/5a5cbf13 with its existing scope.
+The preceding accent store/advance experiment is closed without source selection:
+native and genuine CIL both give416/4275dddb, nonexact+6. Its six other native
+bodies stay unchanged. The selected accent remains417/5a5cbf13 with its existing
+scope.
 
 Exact ledgers remain1381 functions/234914 bytes, authored denominator2136806
 (10.99%). Only the affected root unit/accepted helper requires cold replay;

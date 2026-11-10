@@ -35,11 +35,9 @@ Twenty-seven other units only include the declarations and use none of the
 changed methods; they were not rebuilt.
 
 The complete native Story callback, phase wrapper, shared render provider,
-scene/Ending callers and 930-byte scenario render body were decoded. The
-indirect tail exits are checked explicitly, and the Story callback's external
-E9 edge is bound to the scenario wrapper. Evidence, fresh before/after objects,
-comparisons and `proof.json` are retained in
-`build/frontier-story-render-contract-20261109/`.
+scene/Ending callers and 930-byte scenario render body were decoded. The indirect
+tail exits are checked explicitly, and the Story callback's external E9 edge is
+bound to the scenario wrapper.
 
 Historical function keys and the unit name remain stable. This connects an
 existing exact implementation to its actual virtual slot and corrects its

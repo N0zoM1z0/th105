@@ -35,11 +35,9 @@ clear_commands296/170, Scenario constructor1528/1527 and render930/930 retain
 their previous canonical candidate hashes. The Scenario interpreter remains
 blocked at its unqualified local string-copy constructor, not accepted.
 
-Receipts:build/frontier-script-command-cursor-20261029/affected.json,
-regressions-0-9.json, regressions-9-18.json and each named unit's formal report.
-The full destructor receipt retains its validated_cleanup_eh packet. No cold
-corpus rebuild or unrelated origin-check claim is made. Default CI validates
-the final header/source/manifest reconciliation.
+The full destructor receipt retains its validated_cleanup_eh packet. No cold corpus
+rebuild or unrelated origin-check claim is made. Default CI validates the final
+header/source/manifest reconciliation.
 
 ## Next-command boundary remains open
 
@@ -52,4 +50,11 @@ no new method, helper or authored credit is selected from them.
 
 ## Authored cursor ownership, 2026-11-03
 
-The complete 104-byte `0x405AC0` body has two reachable returns, no uncovered bytes or indirect/outgoing jumps, and SHA-256 `f055a70e7657ac54bc37a49178b9e70497c30886170bd2eea163e46b1f69f4c8`. The freshly exact scene timeline loader calls it at `0x45415F` and `0x4546EC`; its entire 1,676-byte code-and-switch payload also replays exactly. Together with the observed command iterator and cursor policy, these support game-authored ownership. The source and private iterator helper ABI remain unproved, so this is origin classification only and adds no exact bytes. Receipts: `build/frontier-script-next-origin-20261103/`.
+The complete 104-byte `0x405AC0` body has two reachable returns, no uncovered bytes
+or indirect/outgoing jumps, and SHA-256
+`f055a70e7657ac54bc37a49178b9e70497c30886170bd2eea163e46b1f69f4c8`. The freshly
+exact scene timeline loader calls it at `0x45415F` and `0x4546EC`; its entire
+1,676-byte code-and-switch payload also replays exactly. Together with the observed
+command iterator and cursor policy, these support game-authored ownership. The
+source and private iterator helper ABI remain unproved, so this is origin
+classification only and adds no exact bytes.

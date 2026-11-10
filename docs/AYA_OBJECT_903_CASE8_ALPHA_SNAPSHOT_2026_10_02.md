@@ -12,7 +12,9 @@ The preceding ten-entry auxiliary table ordering and case 4/5 218-byte/40-instru
 
 ## Verification and remaining unknowns
 
-The hash-bound private checker `.analysis/aya-903-order-20261002/prove-case8-alpha-snapshot.py` verifies the source/object/PE hashes, 59-byte region, 11 instruction forms and death edges, and the differing tail sites. The control object and reports are under `build/aya-903-order-20261002/case8-prior-alpha-*`; configured final reports share `build/aya-903-case8-final-*20261002.json`. Existing-object controls lack configured build provenance; the retained source was rebuilt through `scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json`.
+Existing-object controls lack configured
+build provenance; the retained source was rebuilt through `scripts/build.py --unit
+gpt-web-aya-object-vslot28-full-root --compare --json`.
 
 The final object retains 903 at 1,726 bytes/372 instructions versus target 1,697 bytes/364 instructions, raw diagnostics 3/34 (entry/800/980), 33 main switch destinations with zero splits, and full target traversal of 4,630 instructions/all 19,522 bytes. The 124/124 guard model, all 18 unsigned selector conversions, 826 postspawn and 861 owner/payload paths, two 641-value unsigned-Y paths, 450 scoped emission cases, RTTI byte-call widths, and 852 translated patterns were rerun on this object. These are scoped checks. No shared ABI/header/helper/compiler/object-partition or accepted-unit relocation contract changed.
 

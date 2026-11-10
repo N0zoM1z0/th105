@@ -84,9 +84,7 @@ profiles, object partition and relocation ledgers remain unchanged. No
 unrelated or aggregate cold replay is claimed; progress is the updated ledger
 snapshot with provisional authored denominator.
 
-Full target/caller facts, native source/COFF/binary,1024 leaf/8640 parent receipts
-and final canonical reports are under `build/font-hex-20261021/`; private recipes
-are under `.analysis/font-hex-20261021/`. Selected evidence stays available.
+Selected evidence stays available.
 
 ```bash
 python3 scripts/validate-tracking.py --require-target

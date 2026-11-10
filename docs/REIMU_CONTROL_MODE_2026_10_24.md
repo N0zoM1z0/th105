@@ -120,12 +120,6 @@ primary DB pins remain unchanged. Decompiled output corroborates raw facts
 and is not pasted into source. Own process uses384MiB/one CPU. Compiles remain
 serial CPU0/nice10, with available memory/swap monitored.
 
-Private recipes, retained draft and both complete probes remain under
-`.analysis/exact-first-reimu-slot5c-20261024/`; the matching `build/` scope
-retains CFG/tables/literals, attestation/DB pins, baseline/formal/cold comparisons,
-formal object/provenance and generated negative. Private reports/binaries/
-databases are not committed.
-
 Only Reimu's origin evidence label becomes canonical-exact-authored. The
 nonmatching Fighter-vtable selector becomes45 roots/1027032 provisional bytes;
 its immutable73-root witness and all dispositions/denominator stay unchanged.

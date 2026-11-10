@@ -213,12 +213,9 @@ before launching another size-only spelling matrix.
 
 ## Replay artifacts and regression tests
 
-Private local evidence for this checkpoint is under
-`.analysis/gptweb-common-owner-audit/`: `typed.json`, independently cold-built
-`baseline.cpp` / `baseline.obj`, `audit-baseline.json`, `audit-final.json`, and
-`formal-final.json`. These files contain proprietary target observations or
-build products and are intentionally not committed. The commands above
-regenerate the durable diagnostic from a locally supplied target/toolchain.
+These files contain proprietary target observations or build products and are
+intentionally not committed. The commands above regenerate the durable diagnostic
+from a locally supplied target/toolchain.
 
 `tests/test_giant_owner_audit.py` supplies 24 synthetic, target-independent
 regression tests for opcode/width retention, owner identity, switch address

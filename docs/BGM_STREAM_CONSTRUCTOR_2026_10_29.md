@@ -65,12 +65,11 @@ accepted, and selecting every unit function is not a successful full-unit claim.
 The normal accepted-function workflow selects402820 while retaining the complete
 unit for its private-caller evidence.
 
-Source:src/audio/BgmStreamAllocation.cpp, using the real DirectSound resource
-source and existing OggDataSource/BgmHandleResult/critical-section layouts.
-Receipts:build/frontier-bgm-allocation-context-20261029/formal-build.json and
-formal-constructor.json. Focused legacy replay preserves package lifetime
-163/228 and effect/listener71/157, covering old one-slot and one-call contracts.
-No all-unit cold rebuild or target execution is claimed.
+Source:src/audio/BgmStreamAllocation.cpp, using the real DirectSound resource source
+and existing OggDataSource/BgmHandleResult/critical-section layouts. Focused legacy
+replay preserves package lifetime 163/228 and effect/listener71/157, covering old
+one-slot and one-call contracts. No all-unit cold rebuild or target execution is
+claimed.
 
 The2026-10-30 lifetime follow-up extends the same source with real stream
 destruction and pool lookup/release. The constructor-only unit now uses the

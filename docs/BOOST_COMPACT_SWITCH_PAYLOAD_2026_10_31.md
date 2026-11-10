@@ -81,10 +81,8 @@ anchors pass. All15 previously accepted connect/narrow/effect-deque canonical
 roots freshly pass, as do eight prior origin rules covering244 physical bodies.
 Default CI223 and whitespace checks pass. No cold whole-corpus reconstruction.
 
-New rule: boost-release-switch-library-106a.
-Anchors: config/boost-release-switch-origin-anchors.toml.
-Receipts: build/frontier-boost-switch-payload-20261031/ and the focused new-rule
-validation under build/frontier-boost-library-20261031/.
+New rule: boost-release-switch-library-106a. Anchors:
+config/boost-release-switch-origin-anchors.toml.
 
 Two library exclusions add3885 code bytes only: excluded1710, review524.
 Authored exact1576 /448613 bytes, source1773, authored1793, mapped1800 and
@@ -113,12 +111,11 @@ release wrapper. No source, compiler flags, verifier or tests change here.
 The two remaining append_set reference sections remain genuinely nonmatching
 in both configurations; section-size similarity is not accepted as equality.
 
-The expanded full-inventory switch rule passes all six physical bodies/4829
-code bytes, each with its entire canonical payload. Only the four newly
-reviewed rows change classification; the previous two are not counted again.
-The public release unit now passes ten canonical roots:5744 code bytes plus409
-metadata bytes. Default CI223 and whitespace checks pass. Receipts:
-build/frontier-boost-more-switches-20261031/.
+The expanded full-inventory switch rule passes all six physical bodies/4829 code
+bytes, each with its entire canonical payload. Only the four newly reviewed rows
+change classification; the previous two are not counted again. The public release
+unit now passes ten canonical roots:5744 code bytes plus409 metadata bytes. Default
+CI223 and whitespace checks pass.
 
 Excluded1714/review520; exact1576 /448613, source1773/authored1793/mapped1800
 and units759 remain unchanged. No authored credit or table truncation.

@@ -64,12 +64,9 @@ previous nonexact code. All 57 non-debug COFF sections in the three ordinary uni
 are unchanged. The listener DLL's four sections are unchanged apart from its
 export-directory timestamp.
 
-Evidence and the preserved private compiler recipe are under
-`build/frontier-audio-scheduler-lifetime-20261109/` and the corresponding
-`.analysis/` directory. The public candidate is deliberately absent from match
-units and exact ledgers. A next pass needs a supported, complete callback and
-no-EH lifecycle proof, rather than another constructor spelling experiment.
-
+The public candidate is deliberately absent from match units and exact ledgers. A
+next pass needs a supported, complete callback and no-EH lifecycle proof, rather
+than another constructor spelling experiment.
 
 ## Callback arithmetic and code-pointer follow-up
 
@@ -102,8 +99,6 @@ The existing wave callback mechanism requires complete exact providers and canno
 be reused here. No comparison tool, pointer exception or acceptance record changed.
 
 The selected standalone callback remains byte-for-byte unchanged at 576/591,
-including all 21 non-debug COFF sections and relocations. Its only configured
-source consumer is the callback unit; the new lifecycle candidate remains
-unselected. Fresh evidence, source-only build recipes and complete comparison are
-in `build/frontier-audio-callback-proof-20261109/` and the matching `.analysis/`
-directory. Tracking, lightweight CI and the diff check pass.
+including all 21 non-debug COFF sections and relocations. Its only configured source
+consumer is the callback unit; the new lifecycle candidate remains unselected.
+Tracking, lightweight CI and the diff check pass.

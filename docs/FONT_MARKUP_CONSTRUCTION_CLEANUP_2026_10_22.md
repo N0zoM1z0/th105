@@ -130,12 +130,9 @@ taskset -c 0 nice -n 10 python3 scripts/audit-text-font-markup-cleanup.py --json
   > build/font-markup-cleanup.json
 ```
 
-Private controls/recipes are in `.analysis/font-markup-guard-20261022/`;
-full audit, command/tool hashes, loader logs and split-TU reports are in
-`build/font-markup-guard-20261022/`, including the four full canonical leaf
-receipts in `split-cil.json`. Four in-memory negative controls reject an
-unsupported state count, try map, cyclic unwind edge and unterminated action;
-the original four-state packet passes. No executable/database is patched.
+Four in-memory negative controls reject an unsupported state count, try map, cyclic
+unwind edge and unterminated action; the original four-state packet passes. No
+executable/database is patched.
 
 The selected native markup still differs+16:1728/frame788 versus1744/frame796.
 Its current ABI and four cleanups already agree in role with the target.

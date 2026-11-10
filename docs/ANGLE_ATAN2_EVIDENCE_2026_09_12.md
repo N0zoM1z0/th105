@@ -14,7 +14,7 @@ python3 scripts/check-ida-mcp.py
 python3 scripts/build.py --unit gpt-web-angle-atan2-natural --compare --json
 ```
 
-Local report: `build/angle-natural-formal.json`. The relocated candidate and
+The relocated candidate and
 target callable both hash to
 `c6e3d63c7180373f7cdda0c68622c1fedbdcb700e55db0571986eb47834946b0`.
 This replaces an already credited function and adds no exact-count credit.
@@ -57,10 +57,7 @@ negation and narrowing into `y_offset` preserves its previous double
 arithmetic and target rounding without misdeclaring the callee.
 
 Reproduction units: `cross-v106a-alice-flight-state` and
-`cross-v106a-character-heading`. Local reports:
-`build/angle-alice-flight-float-comparison.json`,
-`build/angle-alice-tracking-float-comparison.json`, and
-`build/angle-heading-float-widen-comparison.json`.
+`cross-v106a-character-heading`.
 
 Nonexact CPU/Aya/Youmu probes use the same header and updated REL32 symbol.
 They receive no exact credit from this correction. Their bodies are not a

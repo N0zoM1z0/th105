@@ -111,13 +111,11 @@ owner score. All are discarded. The next work remains recovering simultaneous
 physical clamp/sequence ownership while preserving the demonstrated rounding,
 not counting execution coverage as exactness or repeating equivalent shapes.
 
-Direct Ghidra re-attests executable identity, entry, Windows/x86 target and
-mapped text. It saves and reads back signed16 field+14C and the native-helper
-context comment, keeping all earlier ABI/domain facts and every target byte.
-The view now has52 named data fields plus its vptr; only51 are direct root
-accesses. A fresh read-only process verifies the update before the working
-project is copied back. Private recipes use `.analysis/common-residual-20261017/`;
-reports use `build/common-motion-` and `build/common-residual-`. Temporary
-project copies and probe objects are removed after use. No shared header,
-compiler profile, relocation contract or accepted unit changes; no aggregate
-cold replay is claimed.
+Direct Ghidra re-attests executable identity, entry, Windows/x86 target and mapped
+text. It saves and reads back signed16 field+14C and the native-helper context
+comment, keeping all earlier ABI/domain facts and every target byte. The view now
+has52 named data fields plus its vptr; only51 are direct root accesses. A fresh
+read-only process verifies the update before the working project is copied back.
+Temporary project copies and probe objects are removed after use. No shared header,
+compiler profile, relocation contract or accepted unit changes; no aggregate cold
+replay is claimed.

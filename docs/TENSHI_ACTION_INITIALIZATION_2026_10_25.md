@@ -92,10 +92,6 @@ No inert storage, forced return, padding, assembly or invented ABI is used.
 
 ## Full-function experiments
 
-Private source controls are retained in
-`.analysis/exact-first-tenshi-action-entry-20261025/`; reports/objects are under
-`build/exact-first-tenshi-action-entry-20261025/`.
-
 | Complete source/control | Full bytes | SHA256 prefix | Whole result |
 | --- | ---: | --- | --- |
 | First complete source, all packets case-local | 2887 | b92254e6 | nonexact+2; frame16 versus28 |

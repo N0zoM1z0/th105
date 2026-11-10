@@ -60,9 +60,5 @@ header instead of extracting a class definition from the implementation.
 Its 14 positive/negative tests pass, as do the 11 endpoint tests. The new
 header uses LF checkout bytes consistently with its raw source pin.
 
-Private evidence is under `.analysis/frontier-thread-handle-shared-20261109/`
-and `build/frontier-thread-handle-shared-20261109/`: before/after unit reports,
-`native-owners.json`, `sections.json`, the three origin results, context tests
-and the shared-header compilation. Tracking validation, scoped CI and diff
-checks pass. The pre-existing input migration and Alice audit edits remain
-separate and unchanged.
+Tracking validation, scoped CI and diff checks pass. The pre-existing input
+migration and Alice audit edits remain separate and unchanged.

@@ -68,7 +68,5 @@ remain exact. Existing wave-service143/128 and member constructors193/145,
 and package global constructor/destructor also freshly pass. Lifecycle tests
 pass, followed by the default CI gate. No cold whole-repository replay.
 
-Only two functions add347 authored bytes:1571 exact /447379 bytes;
-source1767, authored1787, mapped1794, excluded1658, review582, units755.
-Receipts and rejected control logs are under
-build/frontier-bgm-service-lifetime-20261031/.
+Only two functions add347 authored bytes:1571 exact /447379 bytes; source1767,
+authored1787, mapped1794, excluded1658, review582, units755.

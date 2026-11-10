@@ -56,9 +56,6 @@ contract changes.
 
 Anchor:config/vc8-generated-pat-deque-tidy-origin-anchors.toml.
 Rule:vc8-generated-pat-deque-tidy-106a.
-Receipts:build/frontier-coff-review-discovery-20261101/character.json,
-patgroup.json, pat-tidy-canonical.json and the three focused origin regressions.
-The scoped origin receipt remains in build/frontier-boost-library-20261031.
 
 Excluded1802/review418; authored1807/source1787/mapped1814/units766 and
 exact1585/449721 authored bytes are unchanged. Default CI300 passes.

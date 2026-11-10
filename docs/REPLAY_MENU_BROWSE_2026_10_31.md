@@ -48,13 +48,11 @@ header/provider was modified and no unrelated corpus replay was performed.
 
 ## Evidence and accounting
 
-    scripts/repo-python scripts/build.py --unit exact-first-replay-menu-browse --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-replay-menu-browse --compare --json
     scripts/repo-python scripts/build.py --unit gpt-web-replay-menu-update --compare --json
 
-Formal receipts and bounded controls are retained under
-build/frontier-replay-browse-20261031 and its .analysis counterpart.
 The authored rule pins the full511-byte target hash, exact incoming tail and
-outgoing exact replay-loader call. Only that new rule is materialized and
-validated incrementally; previous rule witnesses remain unchanged.
-Source1750, authored1770, excluded1421, review836, mapped1777 and units742.
-Exact progress stays1553 /441679. Final CI gates a local checkpoint; no push.
+outgoing exact replay-loader call. Only that new rule is materialized and validated
+incrementally; previous rule witnesses remain unchanged. Source1750, authored1770,
+excluded1421, review836, mapped1777 and units742. Exact progress stays1553 /441679.
+Final CI gates a local checkpoint; no push.

@@ -15,10 +15,8 @@ No function or authored byte is added again. The associated standard-library
 helper remains separately compiler-excluded.
 
 Both affected generated-origin rules (8 and 2 helpers) and the distinct
-unsigned-deque pop-back proof were fully revalidated. The latter's source pin
-was updated to the new CRLF-stable source after reviewing the exact payload;
-the native body, caller, named roles and uniqueness checks were not weakened.
-Target-independent line-ending pin checks pass. Receipts are under
-`build/frontier-timeline-real-script-20261104/`.
-All 1,030 target-independent CI tests, including source-pin and generated
-progress checks, passed.
+unsigned-deque pop-back proof were fully revalidated. The latter's source pin was
+updated to the new CRLF-stable source after reviewing the exact payload; the native
+body, caller, named roles and uniqueness checks were not weakened.
+Target-independent line-ending pin checks pass. All 1,030 target-independent CI
+tests, including source-pin and generated progress checks, passed.

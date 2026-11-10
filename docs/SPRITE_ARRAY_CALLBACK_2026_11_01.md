@@ -42,7 +42,4 @@ CSelect object. It is not materialized with an artificial caller/export or
 accepted from matching bytes. This is a closed missing-source-owner lead until
 an actual source consumer provides that emitted body.
 
-Evidence: build/origin-anchors/sprite-callback/proof.json and
-build/frontier-sprite-default-20261101/callback-mutations.json. The existing
-constructor gate retains its own proof. Private scripts are in
-.analysis/frontier-sprite-default-20261101/.
+The existing constructor gate retains its own proof.

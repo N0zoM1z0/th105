@@ -56,8 +56,6 @@ python3 scripts/audit-candidate-boundaries.py 0x00408800 0x00408820 0x00408840 -
 python3 scripts/build.py --unit cross-v106a-application-thread-entries --compare --json
 ```
 
-The current object report is `build/application-thread-entries-with-scene-formal.json`;
-the new raw boundary report is `build/application-scene-creation-thread-boundary.json`.
 Scene-creation name, source selection and exact row advance together. Only its
 origin baseline row changes after checking unchanged rules for overlap and
 attesting the PE. Both earlier accepted entries are freshly replayed from the
@@ -67,14 +65,8 @@ in [the control note](APPLICATION_CONTROL_WORKER_2026_10_16.md) and
 [the graphics note](APPLICATION_GRAPHICS_WORKER_2026_10_16.md).
 
 Sequential direct Ghidra sessions attest executable/program SHA, image base,
-entry/external entry marker, x86 Windows identity and every mapped .text byte
-before saving names, 28-byte extents, stdcall, four-byte return/argument and
-purge4. Same-session and fresh read-only checks verify the metadata, parameter
-storage and full body hashes. Private scripts are under
-`.analysis/application-thread-entries-20261016/ghidra-scripts/`; logs stay under
-`build/application-thread-entries-ghidra-*.log`. Each process uses768MiB and two
-active processors. The mismatched IDA session is excluded from analysis.
-Scene creation has the same independently attested save/fresh-readback gate
-for its48-byte body and standard callback signature; its scripts/logs use
-`.analysis/application-scene-creation-thread-20261016/ghidra-scripts/` and
-`build/application-scene-creation-thread-ghidra-*.log`.
+entry/external entry marker, x86 Windows identity and every mapped .text byte before
+saving names, 28-byte extents, stdcall, four-byte return/argument and purge4.
+Same-session and fresh read-only checks verify the metadata, parameter storage and
+full body hashes. Each process uses768MiB and two active processors. The mismatched
+IDA session is excluded from analysis.

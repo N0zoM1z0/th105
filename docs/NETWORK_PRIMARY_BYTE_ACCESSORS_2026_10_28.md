@@ -31,6 +31,5 @@ No complete allocation, lock, validation or new state behavior is introduced.
 No shared networking header or existing caller ABI changes.
 
 Focused unit `exact-first-network-primary-byte-accessors` replays all six roots
-exact under VC8 SP1 O2. Receipts are
-build/frontier-43cba0-20261028/{formal-build.json,boundary.json}. Existing accepted
+exact under VC8 SP1 O2. Existing accepted
 native receipts remain incremental; no cold corpus replay was run.

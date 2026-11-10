@@ -20,9 +20,4 @@ with first mismatch +776. All three canonicalized root bodies and five
 complete root/EH sections are unchanged. The actual provider appears in
 all three objects, with two, six and four direct root call edges respectively.
 
-Private boundary probes are under
-`.analysis/frontier-deck-index-boundary-20261109/`.
-The public-source rebuild and complete provider/owned-section proof are
-`.analysis/frontier-deck-reader-provider-20261109/{build_units,verify}.py`;
-reports are in `build/frontier-deck-reader-provider-20261109/`.
 Shared storage layouts, input work and source pins are unchanged.

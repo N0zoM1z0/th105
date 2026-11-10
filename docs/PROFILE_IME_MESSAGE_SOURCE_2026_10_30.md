@@ -83,9 +83,6 @@ profile runtime source/unit is unchanged. Origin validation is limited to the
 two newly authored rules, the changed dispatcher evidence and the new exact
 cursor baseline; all other origin evidence is retained.
 
-Private evidence: build/frontier-profile-ime-20261030/formal.json,
-target-switch-proof.json, linked.log and matching .analysis controls.
-
 `scripts/repo-python scripts/build.py --unit exact-first-application-window-messages --compare --json`
 
 Latest focused receipt: build/frontier-profile-ime-zero-20261030/formal-window.json.

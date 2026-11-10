@@ -38,14 +38,12 @@ fail closed. No CPU, helper, world callback or oversized candidate executes.
 
 All65536 WORD13C bit patterns, interpreted as signed16 actions, reach the
 corresponding declared arm/default in both target and source models: zero
-routing-membership mismatches,21 distinct selector instructions on each side.
-Source labels sharing one physical entry are retained as a set rather than
-overwriting one another. This proves selector-to-declared-arm membership;
-body semantics and a physical owner bijection remain separate questions.
-An isolated source-instruction-model bound300->301 control misroutes exactly
-300 and301. This changes no executable/object bytes and is not a compiled or
-native negative control. Full raw snapshots, model implementation and reports
-remain under `build/reimu-live-action/`.
+routing-membership mismatches,21 distinct selector instructions on each side. Source
+labels sharing one physical entry are retained as a set rather than overwriting one
+another. This proves selector-to-declared-arm membership; body semantics and a
+physical owner bijection remain separate questions. An isolated
+source-instruction-model bound300->301 control misroutes exactly 300 and301. This
+changes no executable/object bytes and is not a compiled or native negative control.
 
 ## Physical sharing found outside the primary tables
 

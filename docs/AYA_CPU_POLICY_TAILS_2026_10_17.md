@@ -112,8 +112,7 @@ comments and signed768/76A method-view fields.4097 instructions, layout and
 target bytes remain unchanged. IDA preflight rejects its other executable
 and is unused. Temporary Ghidra copies and discarded probe binaries are removed.
 
-Reports use `build/aya-cpu-tail-*`; private controls and the seed finder are
-under `.analysis/aya-cpu-tails-20261017/`. Local CI passes183 tests, including
-three caller-identity/trace-pairing regressions without proprietary input.
-Earlier native counter/finite/command/height results retain their prior
-checkpoint scope. No unrelated accepted-unit or aggregate cold replay is claimed.
+Local CI passes183 tests, including three caller-identity/trace-pairing regressions
+without proprietary input. Earlier native counter/finite/command/height results
+retain their prior checkpoint scope. No unrelated accepted-unit or aggregate cold
+replay is claimed.

@@ -49,11 +49,10 @@ instruction shapes remain independent evidence obligations.
 - Four private actual-code mutations are all rejected.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
-Contract: config/linked-boost-small-origin-anchors.toml.
-Fresh proof: build/origin-anchors/linked-boost-small/proof.json.
-Private source discovery: .analysis/frontier-linked-boost-small-20261101/.
-Raw PE observations are against the pinned Japanese1.06a target; no new IDA
-semantics or generated executable execution is involved.
+Contract: config/linked-boost-small-origin-anchors.toml. Fresh proof:
+build/origin-anchors/linked-boost-small/proof.json. Raw PE observations are against
+the pinned Japanese1.06a target; no new IDA semantics or generated executable
+execution is involved.
 
 The broader small-source discovery is not acceptance. Its bad_alloc-shaped
 68EF88 is actually bad_exception and is not assigned the wrong type. Runtime-
@@ -80,10 +79,8 @@ proved for copy11; no other class is substituted. All seven bytes, closed CFG,
 source HIGHLOW inventory and whole-candidate uniqueness pass. No caller or
 provider byte is inferred from this short body.
 
-The existing typed small-body contract now contains five roots/54 bytes. Its
-four previous members are freshly rebuilt and replayed unchanged. Two added
-scope/type tests and all seven actual body-byte mutation controls pass.
-No generic threshold, source, flags, exports or unit changes are made.
-Evidence: build/origin-anchors/linked-boost-small/proof.json and
-build/frontier-clone-base-dtor-20261101/mutations.json. Only7 new library bytes;
+The existing typed small-body contract now contains five roots/54 bytes. Its four
+previous members are freshly rebuilt and replayed unchanged. Two added scope/type
+tests and all seven actual body-byte mutation controls pass. No generic threshold,
+source, flags, exports or unit changes are made. Only7 new library bytes;
 excluded2019/review353, all authored/source/unit totals unchanged.

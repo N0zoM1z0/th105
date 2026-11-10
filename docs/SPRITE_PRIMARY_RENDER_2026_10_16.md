@@ -120,13 +120,11 @@ binds stage zero through `404DF0`, then submits FVF `144` and a two-primitive
 triangle strip. Depth, color and UV fields are untouched. Body SHA-256 is
 `1ae97c5fd56570a9684bcfde50d194a07e6b00e931a745ea4f918938452afb5f`.
 
-The private ordinary C++ hypothesis under
-`.analysis/sprite-rectangle-render-20261016/` compiles to 153 bytes. Both plain
-strict FP and strict FP with local exception scheduling off produce identical
-comparison bytes, first differing at `+10`: the candidate hoists the handle
-load while the target reads it after geometry. This is a new bounded instance
-of the scheduling residual; do not repeat those two profiles without new
-evidence. No durable name, source-present row or exact claim was added.
+Both plain strict FP and strict FP with local exception scheduling off produce
+identical comparison bytes, first differing at `+10`: the candidate hoists the
+handle load while the target reads it after geometry. This is a new bounded instance
+of the scheduling residual; do not repeat those two profiles without new evidence.
+No durable name, source-present row or exact claim was added.
 
 ## Fresh call-context controls, 2026-10-21
 
@@ -179,12 +177,10 @@ fabricated return or private convention is introduced, and the normal
 ECX/RET8 binder mapping is used only to diagnose its actual call. This closes
 these source-context hypotheses without selecting them.
 
-The existing `src/ui/SpriteRender.cpp`, shared headers, profiles, relocation
-ledgers and all accepted functions are unchanged. No new exact, authored byte
-or aggregate replay is claimed. The remaining question is genuine source/TU
-visibility and scheduling for the two COM calls; the present controls do not
-prove that standalone matching is impossible. Full receipts and target facts
-are in `build/sprite-render-call-context-20261021/facts-and-controls.json`;
-recipes are in the matching `.analysis/` directory. Ten unselected trials were
-archived with per-file SHA256 round-trip checks:491074 ->76313 bytes. The
-fresh baseline stays loose for further comparison.
+The existing `src/ui/SpriteRender.cpp`, shared headers, profiles, relocation ledgers
+and all accepted functions are unchanged. No new exact, authored byte or aggregate
+replay is claimed. The remaining question is genuine source/TU visibility and
+scheduling for the two COM calls; the present controls do not prove that standalone
+matching is impossible. Ten unselected trials were archived with per-file SHA256
+round-trip checks:491074 ->76313 bytes. The fresh baseline stays loose for further
+comparison.

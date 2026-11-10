@@ -185,9 +185,7 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Receipts and frozen selected source/COFF are in `build/gage-render-20261020/`;
-raw target packets/private source trials and negative generation recipes are
-under `.analysis/gage-render-20261020/`. No generated object/report is committed.
+No generated object/report is committed.
 
 The function moves from review to authored/source-present with a complete
 target-pinned origin rule. Exact totals do not change. ReimuObject496540 stays

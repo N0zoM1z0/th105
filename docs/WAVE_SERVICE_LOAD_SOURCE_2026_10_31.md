@@ -67,10 +67,8 @@ explicitly in the freshly built unchanged unit, without bypassing a gate.
 BGM play351 and prepare159 plus all79 preparation EH bytes pass. The existing
 fighter wave resource unit passes its132/333/199 roots. No corpus-wide rebuild.
 
-Receipts under build/frontier-wave-service-load-20261031 include public.json,
-ownership.json, native.txt, bgm-runtime-focused.json, bgm-service.json and
-caller.json. The independent ownership rule checks the complete body hash and
-fresh exact caller edge. Private experiments remain under .analysis.
+The independent ownership rule checks the complete body hash and fresh exact caller
+edge.
 
 This is source-present/authored ownership only. Exact stays1577/448878; source
 becomes1775, authored1795, mapped1802, excluded1714, review518 and units760.

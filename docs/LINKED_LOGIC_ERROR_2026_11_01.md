@@ -63,8 +63,6 @@ Fresh serial CPU0/nice10 replay:
 - scripts/repo-python scripts/ci.py and git diff --check.
 
 Reproducible contract: config/linked-logic-error-origin-anchors.toml.
-Current build/proof: build/origin-anchors/linked-logic-error/proof.json.
-Private discovery: .analysis/frontier-linked-logic-error-20261101/prove.py.
 
 Allocator85 and payload-dependent tree erase/Tidy observations remain
 unaccepted. Their masked shape alone is not a proof, and existing strict

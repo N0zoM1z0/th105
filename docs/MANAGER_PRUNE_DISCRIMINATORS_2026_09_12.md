@@ -47,8 +47,7 @@ The postincrement test changes the lifetime of a genuinely used iterator;
 its different frame is evidence against that spelling, not an invitation to
 add dummy storage. Both branch tests preserve ordinary loop semantics.
 
-Private files and JSON reports are under `build/manager-prune-*` with suffixes
-`baseline`, `rtm`, `postincrement`, `continue`, and `zero-first`. The template
+The template
 object uses the same method body in `NativeManager<Object>`, a dependent
 `std::list<Object *>` and `typename ObjectList::iterator`. Its decorated symbol
 is passed explicitly to `compare-function.py` with the existing unit's three

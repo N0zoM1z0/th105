@@ -33,9 +33,7 @@ Two less obvious Yukari/Yuyuko paths also support retaining the current code:
   result reaches the sequence-12 entry guard; the following signed sequence-at-most-9
   check is separate. The source preserves that short circuit.
 
-Evidence is retained under
-`.analysis/frontier-{yukari,yuyuko,patchouli,remilia}-shared-tails-20261109/check.py`
-and the corresponding `build/frontier-*/guards.json` files. These checks use
+These checks use
 only the SHA-attested Japanese 1.06a target, not decompiler output. The retained
 Yukari/Yuyuko reports were verified after Factory access recovered, then rerun
 with the explicit object-base assertion alongside the new Patchouli/Remilia

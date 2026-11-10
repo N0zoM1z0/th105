@@ -28,10 +28,6 @@ pointer, and the first and final bytes of every unique string. The full narrow
 origin rule passes before reclassifying the one review row.
 
 All eight selected original regex.cpp comparisons and the 14 release matcher
-comparisons freshly pass after adding the two typed data bindings; the prior
-matcher stack/dispatch ownership proof also passes. No cold corpus rebuild
-was needed. Generic byte/coverage thresholds remain unchanged.
-
-Evidence: build/origin-anchors/boost-default-errors.json and
-build/frontier-regex-default-errors-20261101/. Private exploratory scripts are
-under .analysis/frontier-regex-default-errors-20261101/.
+comparisons freshly pass after adding the two typed data bindings; the prior matcher
+stack/dispatch ownership proof also passes. No cold corpus rebuild was needed.
+Generic byte/coverage thresholds remain unchanged.

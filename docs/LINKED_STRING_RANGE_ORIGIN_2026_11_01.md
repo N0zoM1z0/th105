@@ -33,13 +33,13 @@ new classification or authored credit from this proof.
 
 ## Reproduction
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_string_range_origins.py vc8-linked-string-range-cleanup-106a
+taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_string_range_origins.py
+vc8-linked-string-range-cleanup-106a
 
 The source/target proof is
-build/origin-anchors/vc8-linked-string-range-origin-anchors-linked.json.
-It pins validator, anchor, image, MAP and build-receipt hashes and includes
-both exact-root reports, the complete leaf and its real call binding.
-Scope records are under build/frontier-linked-string-range-20261101.
+build/origin-anchors/vc8-linked-string-range-origin-anchors-linked.json. It pins
+validator, anchor, image, MAP and build-receipt hashes and includes both exact-root
+reports, the complete leaf and its real call binding.
 
 Twelve synthetic tests cover the complete comparison and CRT wrapper, owner
 identity, forced exports, modified bytes, extra/wrong calls, data relocations,

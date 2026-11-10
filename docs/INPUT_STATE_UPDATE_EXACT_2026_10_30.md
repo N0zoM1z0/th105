@@ -68,6 +68,4 @@ functions. The existing design-cleanup linked unit retains its310-byte exact
 root and original range-error witness. Focused linked/error tests pass.
 No full-corpus rebuild was performed; unrelated receipts are preserved.
 
-Receipts and raw boundaries: build/frontier-input-state-cil-20261030.
-Mapped sample evidence: build/frontier-pixel-upload-20261030/ida-preflight.json.
 Private sibling/static-CRT controls are under the matching .analysis directory.

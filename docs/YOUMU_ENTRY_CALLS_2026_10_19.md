@@ -151,8 +151,6 @@ The root comparator is expected to return1/nonexact; owner/native and callee
 checks return0. To reproduce the historical negative source independently:
 
 ```bash
-git show 993cd94:src/characters/YoumuObjectActionEntry.cpp > .analysis/youmu-old851.cpp
-scripts/compile-unit.sh .analysis/youmu-old851.cpp build/youmu-old851.obj
 python3 scripts/audit-youmu-object-entry-calls.py build/youmu-old851.obj
 ```
 
@@ -161,14 +159,10 @@ object or source file is required to trust a cached result. Existing-object
 comparisons and the native auditor report build provenance as unverified;
 use the preceding producer command/report for that separate assertion.
 
-Full private source/control/compile recipes are under
-`.analysis/youmu-entry-carriers-20261019/`; canonical packets, fresh official
-build/owner/native reports, ABI witnesses and Ghidra receipts are under
-`build/youmu-entry-carriers-20261019/`. They occupy under8MiB combined.
-The required IDA preflight again rejects the wrong open executable. Two direct
-read-only Ghidra passes use128MiB heap, CPU0 and no analysis/write/save;
-they independently attest imported/file identity, entry, mapped text, root
-bytes and RTTI descriptor bytes/names. All nine primary database hashes agree
-afterward; temporary aliases are removed. An initial attempt without an820
-instruction failed closed and is preserved separately. No target bytes,
-metadata or analysis database are patched. No cold aggregate replay is claimed.
+They occupy under8MiB combined. The required IDA preflight again rejects the wrong
+open executable. Two direct read-only Ghidra passes use128MiB heap, CPU0 and no
+analysis/write/save; they independently attest imported/file identity, entry, mapped
+text, root bytes and RTTI descriptor bytes/names. All nine primary database hashes
+agree afterward; temporary aliases are removed. An initial attempt without an820
+instruction failed closed and is preserved separately. No target bytes, metadata or
+analysis database are patched. No cold aggregate replay is claimed.

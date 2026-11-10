@@ -72,12 +72,10 @@ both target-observed drawing providers through ordinary REL32 replay exposed
 exactly one unequal byte, at45F497: native `cmp edi,eax` versus emitted
 `cmp eax,edi`. The source initially said `related == this`.
 
-Writing the observed operand order, `this == related`, makes the complete
-function exact. Both are ordinary pointer equality expressions; no conditions,
-flags, liveness, padding or register ABI were invented. No further source trials
-were needed. Private first source/object/replay and corrected source/object
-remain under `.analysis/exact-first-45e950-20261026/` and the matching build
-scope. The first complete canonical SHA was
+Writing the observed operand order, `this == related`, makes the complete function
+exact. Both are ordinary pointer equality expressions; no conditions, flags,
+liveness, padding or register ABI were invented. No further source trials were
+needed. The first complete canonical SHA was
 `480532ec359bea88d774d1c8c81177f6e164149d00d044fd27b5e67570678fe8`.
 
 The nonconstructing receiver uses typed offset accesses, actual checked-vector

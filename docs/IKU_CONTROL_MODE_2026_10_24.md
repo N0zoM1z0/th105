@@ -122,14 +122,10 @@ flow, ABI and operand widths govern the source. Changes are rolled back, and
 all nine pinned primary DB hashes are unchanged. Heap is384MiB and maximum CPU
 count1. Compilation is serial under CPU0/nice10; available memory is monitored.
 
-Private recipes, frozen first source and four focused trials remain under
-`.analysis/exact-first-iku-slot5c-20261024/`. The corresponding `build/` scope
-retains complete raw CFG/tables/literals, attested decompile views and DB pins,
-formal/cold comparisons, original formal object/provenance and table negative.
 Public ledgers record1396 exact functions/324774 callable bytes after this
-acceptance; these are ledger totals, without a new aggregate cold replay.
-Continue independently reviewed same-slot peers. Marisa's complete source and
-its neutral receiver-schedule controls remain parked.
+acceptance; these are ledger totals, without a new aggregate cold replay. Continue
+independently reviewed same-slot peers. Marisa's complete source and its neutral
+receiver-schedule controls remain parked.
 
 The full origin-census replay also catches stale expected counts in the
 `skip_matching` Fighter-vtable rule: its64-root/1124191-byte subset still

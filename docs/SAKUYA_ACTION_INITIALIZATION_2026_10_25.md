@@ -102,8 +102,6 @@ No standalone-object/LTCG impossibility or broader runtime contract is claimed.
 
 ## Whole-function experiments
 
-Private inputs are retained in `.analysis/exact-first-sakuya-action-entry-20261025/`;
-reports/objects are under `build/exact-first-sakuya-action-entry-20261025/`.
 Every experiment compares the entire emitted symbol, not an isolated first diff.
 
 | Complete source/control | Full bytes | SHA256 prefix | Whole result |

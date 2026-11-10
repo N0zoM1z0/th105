@@ -138,19 +138,14 @@ every writer, lifetime or caller of heading340, nor a compiler-visible
 no-alias promise. No `restrict` declaration or shared helper ABI change is
 adopted from that observation.
 
-Receipts, complete trial sources, canonical packets and the factory raw
-decode are below `build/youmu-entry-evaluation/`. Private candidates use
-`scripts/compile-unit.sh`; baseline comparison and owner commands below
-remain the public producer/checker. Direct384MiB/CPU0 read-only Ghidra
-independently re-attests file/imported identity, entry, mapped text and root
-bytes before bounded decoding/decompilation. All nine primary database
-file hashes agree afterward and the temporary project alias is removed.
-The decompiler output under
-`.analysis/youmu-entry-evaluation-20261019/` remains a hypothesis. Required
-IDA preflight again rejects the wrong open executable; no IDA semantics
-or factory adapter is used. This follow-up changes evidence and handoff
-only; source, ledgers, accepted-unit contracts and exact byte credit remain
-unchanged.
+Private candidates use `scripts/compile-unit.sh`; baseline comparison and owner
+commands below remain the public producer/checker. Direct384MiB/CPU0 read-only
+Ghidra independently re-attests file/imported identity, entry, mapped text and root
+bytes before bounded decoding/decompilation. All nine primary database file hashes
+agree afterward and the temporary project alias is removed. Required IDA preflight
+again rejects the wrong open executable; no IDA semantics or factory adapter is
+used. This follow-up changes evidence and handoff only; source, ledgers,
+accepted-unit contracts and exact byte credit remain unchanged.
 
 ## Whole-function exit and floating-environment controls
 
@@ -175,16 +170,13 @@ This is caller/profile evidence favoring the selected signed-word interface;
 the low-word callee alone does not establish original source signedness.
 
 Local `fenv_access(on)` produces5216/5548, SHA256
-`5fcd69a05d9865b6afb8123f31f5aa7892f78fb0c3c8a2074b03ea6fee7ca08f`.
-It preserves20 conversions/22 RETs and first differs at+80; it does not
-recover the target21/23 copies. The successful sprite-rotation environment
-recipe therefore does not transfer to this root as tested. All five controls
-are unselected; no shared flags, headers or exact ledgers change. Sources,
-build logs and complete canonical packets are below
-`build/youmu-entry-exit-context/`. These experiments inspect the hash-attested
-PE directly and make no new database/decompiler claims. Further identical
-scope/exit tests lack new evidence; original ownership and compiler/TU phase
-remain open.
+`5fcd69a05d9865b6afb8123f31f5aa7892f78fb0c3c8a2074b03ea6fee7ca08f`. It preserves20
+conversions/22 RETs and first differs at+80; it does not recover the target21/23
+copies. The successful sprite-rotation environment recipe therefore does not
+transfer to this root as tested. All five controls are unselected; no shared flags,
+headers or exact ledgers change. These experiments inspect the hash-attested PE
+directly and make no new database/decompiler claims. Further identical scope/exit
+tests lack new evidence; original ownership and compiler/TU phase remain open.
 
 ## Reproduction and analysis limits
 
@@ -208,12 +200,9 @@ checkpoint does not claim new gameplay/native coverage or aggregate cold
 replay. Shared headers, profiles, literal/relocation contracts and accepted
 implementations elsewhere are unchanged.
 
-Focused source, object and owner packets, independently read RTTI and the
-rejected851 receipt remain below `build/youmu-entry-word/`. Direct Ghidra
-re-attests executable identity, entry, mapped text and root bytes. Bounded
-read-only decoding of the1294 target instructions and temporary5159-byte
-function produces a decompiler hypothesis; it does not set the durable
-boundary. Nine primary DB hashes remain unchanged and the temporary alias is
-removed. The384MiB/CPU0 recipe is under
-`.analysis/youmu-entry-word-20261019/`. Required IDA preflight rejects its
-wrong PE; no IDA semantics, target-byte patch or factory adapter is used.
+Direct Ghidra re-attests executable identity, entry, mapped text and root bytes.
+Bounded read-only decoding of the1294 target instructions and temporary5159-byte
+function produces a decompiler hypothesis; it does not set the durable boundary.
+Nine primary DB hashes remain unchanged and the temporary alias is removed. Required
+IDA preflight rejects its wrong PE; no IDA semantics, target-byte patch or factory
+adapter is used.

@@ -133,11 +133,9 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-The strict comparison and intentional negative control exit1. Reports are
-under `build/iku-effect-direction/`; private source recipes are under
-`.analysis/iku-effect-direction-20261017/`. Obsolete controls, linked images
-and database clones are disposable; retain the small genuine-provider cache.
-No public ABI, layout, shared header, accepted profile, relocation ledger or
-exact ledger changed. No accepted-unit matrix or aggregate cold replay was
-needed. The selected source's extra X home and earlier argument join remain
-unresolved, alongside initial constant1 lifetime and other call-sharing gaps.
+The strict comparison and intentional negative control exit1. Obsolete controls,
+linked images and database clones are disposable; retain the small genuine-provider
+cache. No public ABI, layout, shared header, accepted profile, relocation ledger or
+exact ledger changed. No accepted-unit matrix or aggregate cold replay was needed.
+The selected source's extra X home and earlier argument join remain unresolved,
+alongside initial constant1 lifetime and other call-sharing gaps.

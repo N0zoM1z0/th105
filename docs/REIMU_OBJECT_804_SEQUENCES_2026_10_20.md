@@ -201,10 +201,7 @@ Unicorn SSE conversion gap in the terrain audit.
 |Public build object|`d5be3e981b034954c536773bed5c4e79b7da4379150408c51d1f9cce56a37d61`|
 |804 auditor|`2f6f42ed6c6928146a053757eb7f148b9408e85ecda2fec83ec4e5fba47c1209`|
 
-Reports, controls and fresh build receipts stay below
-`build/reimu-object-sequence-804-20261020`; private raw/Ghidra/shape recipes
-stay below `.analysis/reimu-object-sequence-804-20261020`. No generated report,
-executable, object, database or compiler install is committed.
+No generated report, executable, object, database or compiler install is committed.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-update-target.py --json

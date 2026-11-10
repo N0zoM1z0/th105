@@ -49,7 +49,4 @@ phase/render wrapper was replayed but its separate return contract was not
 changed. No interpreter-source, input migration, source-pin or exact-count
 change is included.
 
-Evidence is in `build/frontier-scenario-status-contract-20261109/`: native
-provider/callers, the original compile diagnostic, before/after objects,
-comparison reports and `proof.json`. The existing target-interpreter auditor
-was rerun without modifying it.
+The existing target-interpreter auditor was rerun without modifying it.

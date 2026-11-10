@@ -10,14 +10,12 @@ counter, updates the byte at owner offset `0x5B0` and dispatches transitions
 view, without asserting the original full derived layout.
 
 The ordinary pinned VC8 build emits 198 bytes, canonical SHA-256
-`a194fd236d33d3094f29894db9af4efd7177b239619b37927799ab0b1514221d`.
-It differs first at +181: target loads the vptr before incrementing the state
-byte, while the candidate increments first. It remains nonexact. The native
-and source class's original nominal names and translation-unit context remain
-unknown. No manual vtable, fake operation, forced register, or runtime
-behavioral equivalence is claimed. Receipts and boundary audit are under
-`build/frontier-arcade-post-source-20261104/` and
-`build/arcade-472f80-boundary.json`.
+`a194fd236d33d3094f29894db9af4efd7177b239619b37927799ab0b1514221d`. It differs first
+at +181: target loads the vptr before incrementing the state byte, while the
+candidate increments first. It remains nonexact. The native and source class's
+original nominal names and translation-unit context remain unknown. No manual
+vtable, fake operation, forced register, or runtime behavioral equivalence is
+claimed.
 
 Reproduce with `scripts/repo-python scripts/build.py --unit
 exact-first-arcade-post-pipeline --compare --json` (expected mismatch exit 1).

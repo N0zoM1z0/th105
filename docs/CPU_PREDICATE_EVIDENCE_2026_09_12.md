@@ -102,9 +102,7 @@ the three new keys do not change any pre-existing mapping.
 A temporary positive geometry ladder at `0x5F3E82..0x5F3FA0` preserves the
 two separate random calls but still emits a different 75.0 operand form and
 branch layout. It gives the same 16,481-byte total and 14/41 owners, not a
-whole match, and was reverted. The restored default object again hashes to
-the checkpoint hash above; report `build/cpu-after-strict-trials-restored.json`.
-There are no retained CPU source changes from these trials.
+whole match, and was reverted. There are no retained CPU source changes from these trials.
 
 ### Post-checkpoint discriminators
 
@@ -118,9 +116,7 @@ the private `this` register to ESI; its aligned EBP frame remains. A temporary
 minimal virtual facade (22 preceding slots, CPU at +0x58, opaque prefix reduced
 by four bytes to preserve all field offsets) plus an escaped static object
 restores ECX `this`, but also retains the aligned EBP frame. The complete
-original hierarchy/call graph is not represented by that fixture. All facade
-and caller experiments are excluded from retained reconstruction state;
-generated diagnostics are under `build/cpu-ltcg-*`. None proves that every
+original hierarchy/call graph is not represented by that fixture. None proves that every
 possible original LTCG context has been ruled out.
 
 The nonvirtual caller fixture was simply:

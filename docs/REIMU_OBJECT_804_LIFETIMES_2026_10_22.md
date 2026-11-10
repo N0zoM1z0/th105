@@ -119,13 +119,7 @@ not independently attest a source-to-object build; retain the fresh build
 receipt alongside it. A contrast mismatch is informational, while a primary
 snapshot/output mismatch fails the command.
 
-Private recipes are in `.analysis/reimu-object-804-lifetimes-20261022/`:
-`facts.py`, `word_build.py`, `word_root.py`, `direct_float.py`, `direct_delta.py`.
-Receipts under `build/reimu-object-804-lifetimes-20261022/` include
-`facts.json`, `word-sequence-comparison.json`, `word-root-comparison.json`,
-`direct-float-inputs.json`, `direct-float-comparison.json`, `direct-counter.json`,
-`public-audit.json`, `direct-audit.json`, `direct-source-delta.json` and
-`fresh-public-build.json`. Private headers, objects and reports are uncommitted.
+Private headers, objects and reports are uncommitted.
 
 Fresh public replay retains source SHA256
 `3b9e4896c3645bb1228db3b432a832154870c5639a80df6c02cb67ce2dba12cc`,

@@ -72,6 +72,5 @@ character cases/negative controls remain stable. Four new design-table tests
 check virtual roles, full extent/addends and all40 native slot-byte mutations;
 two generic-gate tests cover valid and invalid default constructors.
 
-Private evidence: `.analysis/frontier-design-color-20261102/` and
-`build/frontier-design-color-20261102/`. No global origin-ledger rewrite,
-whole-corpus rebuild, IDA semantic reuse or push; native jobs serial CPU0/nice10.
+No global origin-ledger rewrite, whole-corpus rebuild, IDA semantic reuse or push;
+native jobs serial CPU0/nice10.

@@ -50,12 +50,11 @@ provider, nor promote any nonexact helper.
 
 ## Reproduction and scope
 
-    scripts/repo-python scripts/build.py --unit exact-first-weather-effect-pool-acquire --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-weather-effect-pool-acquire
+--compare --json
 
-Formal receipts, independent strict cleanup replay, full boundary decoding and
-provider controls are retained under build/frontier-weather-effect-pools-20261031
-and its .analysis counterpart. The canonical body gate is unchanged. Actual
-source and known typed relocations reproduce every byte of each complete root.
+The canonical body gate is unchanged. Actual source and known typed relocations
+reproduce every byte of each complete root.
 
 No existing shared source or header changes. Existing exact receipts therefore
 remain valid; only this new unit is rebuilt. The two origin rows use the existing
@@ -77,10 +76,7 @@ constructors and cleanup providers. The shared 35-byte cleanup/handler and
 The manifest's include closure contains only this unit; no shared source,
 ledger, input pin or Factory acceptance changes were made.
 
-A preliminary short-copy read emitted a redundant zero extension and made each
-root six bytes longer. Reading the unsigned token's high word avoids that
-conversion. Copying the source words directly, rather than converting through
-short temporaries, preserves the native word loads. The rejected controls and
-fresh evidence are in `build/frontier-effect-pool-token-20261110/`; reproduce
-with the unit command above and the private `check_eh.py` and `verify.py` under
-`.analysis/frontier-effect-pool-token-20261110/`.
+A preliminary short-copy read emitted a redundant zero extension and made each root
+six bytes longer. Reading the unsigned token's high word avoids that conversion.
+Copying the source words directly, rather than converting through short temporaries,
+preserves the native word loads.

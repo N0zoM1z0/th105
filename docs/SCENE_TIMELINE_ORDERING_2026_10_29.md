@@ -48,8 +48,5 @@ fingerprint validation passes all3/5/2 existing anchors. Classification totals
 stay unchanged; no compiler-generated helper is credited as authored code.
 This is not a claim that all unrelated origin rules or native units were rerun.
 
-Receipts:build/frontier-timeline-ordering-20261029/ contains the three formal
-unit JSON files, shared.json and insert-proof.txt. Private source/provider
-recipes remain in the matching .analysis directory. Default CI and tracking
-checks cover the final source/manifest/anchor reconciliation. No cold-corpus
-rebuild was performed.
+Default CI and tracking checks cover the final source/manifest/anchor
+reconciliation. No cold-corpus rebuild was performed.

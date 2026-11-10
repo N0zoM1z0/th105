@@ -40,12 +40,8 @@ only their two changed executable source inputs.
 
 ## Reproduction and remaining work
 
-Private checks and the affected-unit list are under
-`.analysis/frontier-file-reader-identity-20261108/`. The corresponding
-`build/frontier-file-reader-identity-20261108/` directory contains the before
-and after comparisons, `global-identity.json`, the three origin results and
-`reader-tests.log`. `check-profile-identity.py` verifies current object/compiler
-provenance before comparing the complete profile/EH/reader/RTTI regions.
+`check-profile-identity.py` verifies current object/compiler provenance before
+comparing the complete profile/EH/reader/RTTI regions.
 
 Further work on profile loading still needs evidence for the two deque operand
 loads. The identity change does not justify another spelling or register

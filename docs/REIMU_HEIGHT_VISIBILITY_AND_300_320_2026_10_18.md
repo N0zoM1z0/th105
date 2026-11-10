@@ -124,16 +124,12 @@ HIGHLOWs and the separate eight-byte INT3 alignment gap. The linked image SHA is
 Neither visible-body image is executed; no behavior or target-root equality
 claim follows from this source-to-source correspondence.
 
-Private recipes, receipts and readbacks remain under `build/reimu-300-320/`:
-`terminal-break.py`, `middle-breaks.py`, `effect-direction.py`,
-`height-visible.py`, `height-control.py`, `height-proof.py`,
-`separate-height-ltcg.py` and `separate-height-proof.py`. They pin the unchanged
-`build/reimu-ltcg/` source/object/provider cache and compiler commands. The closed
-provider/census recipes and complete partition comparison remain alongside
-their reports. Large generated source/object/link products were discarded;
-regenerate them before reusing an inspection command. The initial visible-body
-wrapper failed while saving receipt metadata after both compilations; COFF and
-input hashes were read back to recover the receipt without recompiling.
+They pin the unchanged `build/reimu-ltcg/` source/object/provider cache and compiler
+commands. The closed provider/census recipes and complete partition comparison
+remain alongside their reports. Large generated source/object/link products were
+discarded; regenerate them before reusing an inspection command. The initial
+visible-body wrapper failed while saving receipt metadata after both compilations;
+COFF and input hashes were read back to recover the receipt without recompiling.
 
 Focused public commands run in this checkpoint include:
 

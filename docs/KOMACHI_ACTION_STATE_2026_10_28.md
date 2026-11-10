@@ -126,7 +126,7 @@ no volatile or inert duplicate gate is added.
 
 ## Reproduction
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-komachi-action-state --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-komachi-action-state --compare --json
     scripts/repo-python scripts/audit-komachi-action-state.py
     scripts/repo-python scripts/ci.py
     git diff --check
@@ -139,10 +139,7 @@ bytes. Final candidate SHA-256:
 61,429 positional differences including missing tail bytes are diagnostic,
 not a completion percentage.
 
-Receipts: build/frontier-5e20e0-20261028/formal-frame.json and formal-frame-audit.json.
-Private raw/source diagnostics are in that build directory and
-.analysis/frontier-5e20e0-20261028/. Checked-in source is authoritative.
-
+Checked-in source is authoritative.
 
 ## Scalar frame and request preparation refinement
 
@@ -309,9 +306,6 @@ for the compiler's opposite-layout reversal branch. All 2,269 relocations and
 the other bytes of all 240 non-debug sections are unchanged. The four x87
 comparison outcomes now select the native sequence and reversal behavior.
 
-The complete 63,993-byte callable and its switch payload remain nonexact
-against the 65,176-byte original extent, first difference +8. The new full
-candidate SHA-256 is
+The complete 63,993-byte callable and its switch payload remain nonexact against the
+65,176-byte original extent, first difference +8. The new full candidate SHA-256 is
 `4c4bf8d203af7047cb15a442d62954ee1e28f873cd839264a9fe525cb4a0e88e`.
-Evidence is in `build/frontier-komachi-flight-guard-20261109/`, including
-full before/after comparisons, native branch contexts and the truth table.

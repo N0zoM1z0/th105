@@ -105,11 +105,6 @@ tail and virtual-call metadata is read back and rolled back; pinned primary
 DB hashes are unchanged. CPU0/nice10 and384 MiB heap bound analysis. Builds are
 serial on CPU0/nice10.
 
-Private recipes and the first complete source snapshot remain under
-`.analysis/exact-first-yukari-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, complete CFG/table closure, attested
-views/logs/database pins, formal/cold receipts, first formal object/provenance,
-relocation counts, original origin row and input hashes. A generated-object
-table negative fails at `+0x185C / 0x58DB3C`, target29/source2A; the target stays
-untouched. Earlier exact input sources and the existing Yukari gate inputs are
-unchanged. No broad runtime matrix or aggregate cold replay is claimed.
+A generated-object table negative fails at `+0x185C / 0x58DB3C`, target29/source2A;
+the target stays untouched. Earlier exact input sources and the existing Yukari gate
+inputs are unchanged. No broad runtime matrix or aggregate cold replay is claimed.

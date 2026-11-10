@@ -89,14 +89,11 @@ has one visible cookie setup, whereas this candidate has separate buffer and
 EH cookie setups. This motivates a bounded GS-minus control rather than a
 profile claim: ordinary GS-minus387/410 still differs.
 
-Resolved `/O2 /GL /LTCG` controls give540/410 with GS and486/410 without it.
-Both naturally acquire the aligned EBP frame but keep source's ECX owner and
-change native helper/inlining decisions. They are diagnostic sizes, not
-canonical exact results: internal linked EH remains unsupported by the formal
-linked comparator. Source, flags, tool hashes, commands, maps and disassembly
-are retained privately below `.analysis/network-udp-acquire-20261016/` and
-`build/network-udp-acquire-ltcg*/`. No control changes the accepted profile or
-forces a register/stack ABI into the source.
+Resolved `/O2 /GL /LTCG` controls give540/410 with GS and486/410 without it. Both
+naturally acquire the aligned EBP frame but keep source's ECX owner and change
+native helper/inlining decisions. They are diagnostic sizes, not canonical exact
+results: internal linked EH remains unsupported by the formal linked comparator. No
+control changes the accepted profile or forces a register/stack ABI into the source.
 
 The next useful evidence is original caller/TU visibility for the two real
 send methods and their deque/vector operations. Do not compensate for those
@@ -110,8 +107,7 @@ python3 scripts/audit-candidate-boundaries.py 0x00417660 --json
 python3 scripts/build.py --unit cross-v106a-network-udp-packet-acquire --compare --json
 ```
 
-Reports are `build/network-udp-acquire-boundary.json` and
-`build/network-udp-packet-acquire-formal.json`. The latter's expected exit is1
+The latter's expected exit is1
 with a full427-byte candidate, no unresolved relocation and a mismatch at+0.
 A dedicated target-attested EH mapping is appended without modifying any
 prior permission. `matches.csv` is unchanged. A fresh rebuild/comparison of the
@@ -127,10 +123,7 @@ marker, x86 Windows compiler identity and every mapped .text byte before use.
 Initial decompiler output was a hypothesis with missing private-register
 types, and was not pasted as source. Accepted packet/token types, physical
 stack parameters, name and complete extent were saved and checked in a fresh
-read-only invocation. Logs are `build/network-udp-acquire-ghidra-inspect.log`,
-`build/network-udp-acquire-ghidra-save.log` and
-`build/network-udp-acquire-ghidra-readback.log`; the last ends
-`NETWORK_UDP_ACQUIRE_READBACK_COMPLETE`. One process uses768MiB and two CPUs.
+read-only invocation. One process uses768MiB and two CPUs.
 
 The original function spelling, source partition, compiler GS setting and
 private entry specialization remain unknown. No aggregate cold replay or new

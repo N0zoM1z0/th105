@@ -9,7 +9,7 @@ Other UiPrimitives users are not changed by this scope.
 
 The load call uses ordinary C++ assignment in the argument:
 
-    sprite_08.set_texture(texture_04 = loaded, 0, 0, width, height);
+sprite_08.set_texture(texture_04 = loaded, 0, 0, width, height);
 
 This preserves the native receiver/value evaluation without saving or manually
 calling a vtable pointer. Its complete179 bytes remain exact, as do render124,
@@ -54,10 +54,8 @@ render4 and character12 finite cases/negative controls retain their nonexact
 candidate hashes. Source guards and canonical whole-byte requirements are not
 weakened to accommodate the header move.
 
-Evidence: build/frontier-guide-real-owner-20261102/, including coverage.json,
-owner-proof.json, replays/, nonexact/, baseline-neighbors/ and six origin checks.
-Private bounded controls live in the corresponding .analysis scope. Reproduce
-Guide bodies through cross-v106a-guide-overlay, exact-first-guide-overlay-update
-and exact-first-guide-overlay-lifetime. Default CI and both diff checks gate the
-local checkpoint. Counts remain1427 exact/443604 bytes,1636 source-present,
-812 units; this is source ownership consolidation, not new exact credit.
+Private bounded controls live in the corresponding .analysis scope. Reproduce Guide
+bodies through cross-v106a-guide-overlay, exact-first-guide-overlay-update and
+exact-first-guide-overlay-lifetime. Default CI and both diff checks gate the local
+checkpoint. Counts remain1427 exact/443604 bytes,1636 source-present, 812 units;
+this is source ownership consolidation, not new exact credit.

@@ -25,8 +25,7 @@ The existing real sprite layout assertions cover size and scale offsets; the
 record size assertion remains 0x154. No manual vptr, copied body, inert local,
 ABI change or compiler barrier was introduced.
 
-Private before/after results: build/frontier-info-long-real-sprites-20261102/.
-Final adopted replays pass. CI passed all 962 tests in 115.679 seconds.
-Both diff checks gate the local checkpoint.
-Totals remain 1426 exact functions / 443399 bytes, 1636 source-present,
-1655 authored, 1826 mapped, 2075 excluded, 297 review and 813 units.
+Final adopted replays pass. CI passed all 962 tests in 115.679 seconds. Both diff
+checks gate the local checkpoint. Totals remain 1426 exact functions / 443399 bytes,
+1636 source-present, 1655 authored, 1826 mapped, 2075 excluded, 297 review and 813
+units.

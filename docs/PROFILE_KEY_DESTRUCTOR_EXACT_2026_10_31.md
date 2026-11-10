@@ -37,9 +37,8 @@ All twelve affected public whole-function comparisons pass:
 - Old CNumber destructor40, three11-byte color forwarders, scalar60 and
   design-number scalar61.
 
-Thus eleven old functions remain exact, with no helper or duplicate credit.
-Receipts are under build/frontier-profile-key-lifetime-20261031, named after
-the four affected public units. This is focused replay, not a cold whole build.
+Thus eleven old functions remain exact, with no helper or duplicate credit. This is
+focused replay, not a cold whole build.
 
 Only one new188-byte authored match is added:1565 functions /446423 bytes.
 Source1761/authored1781/mapped1788, excluded1658/review588 and units753 remain

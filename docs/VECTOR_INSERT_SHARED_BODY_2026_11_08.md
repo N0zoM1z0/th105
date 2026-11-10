@@ -43,13 +43,10 @@ or run a source-spelling grid to remove it.
 
 ## Retained work and next use
 
-Private driver `.analysis/frontier-bgm-vector-fill-20261108/check-insert.py`
-reuses the existing linked comparison and CFG code. Results are in
-`build/frontier-bgm-vector-fill-20261108/insert-comparisons.json` and
-`score-caller.json`. The preceding fresh BGM build and four-root replay are in
+The preceding fresh BGM build and four-root replay are in
 `build/origin-anchors/bgm-fill-linked.json`. These provide a concrete helper
-identity for future consumer work without inventing a new matching framework.
-No source, origin ledger or exact ledger is changed here; there is no Factory
+identity for future consumer work without inventing a new matching framework. No
+source, origin ledger or exact ledger is changed here; there is no Factory
 acceptance receipt for this new local comparison.
 
 The neighboring pointer-vector chain was also bounded: `0x404400` forwards to

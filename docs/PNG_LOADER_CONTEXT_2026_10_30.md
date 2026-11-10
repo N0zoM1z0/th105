@@ -58,9 +58,6 @@ from the comparator's own recorded relocations is checked against its canonical
 SHA256 before enumerating differences. It is diagnostic only, not alternate
 acceptance. No full-corpus replay or behavior matrix was introduced.
 
-Private source, object, full report and difference census are in
-build/frontier-png-loader-20261030 and the matching .analysis folder.
-
 Reproduce with scripts/repo-python scripts/build.py --unit
 exact-first-csv-file-loading --json, then scripts/repo-python
 scripts/compare-linked-unit.py exact-first-csv-file-loading --address 0x0041A910
@@ -68,4 +65,14 @@ scripts/compare-linked-unit.py exact-first-csv-file-loading --address 0x0041A910
 
 ## Exact body and cleanup, 2026-11-03
 
-Declaring the real zero row offset before the pixel allocation naturally restores the native base/index encoding without changing the algorithm or forcing a register. The complete linked callable now compares exactly, 703/703; canonical SHA-256 `74d3548336f85f666e7ab0ce891f5538df71d6f2508ad4a48ec196be4869dfd0`. The linked comparator independently verifies the full 27-byte handler, 8-byte cleanup funclet, 36-byte FuncInfo and 8-byte unwind map, as well as the callback and target data roles. The affected source pin was renewed after independently replaying the linked CSV deque-copy origin rule and its exact roots. The native PNG getter also reports `1.5.2`; the earlier linked `1.2.5` provider rejected that argument, and the current 1.5.2 provider passes the bounded smoke test. See `docs/PNG_PROVIDER_VERSION_2026_11_03.md`. Evidence: `build/frontier-png-row-pointer-20261103/`.
+Declaring the real zero row offset before the pixel allocation naturally restores
+the native base/index encoding without changing the algorithm or forcing a register.
+The complete linked callable now compares exactly, 703/703; canonical SHA-256
+`74d3548336f85f666e7ab0ce891f5538df71d6f2508ad4a48ec196be4869dfd0`. The linked
+comparator independently verifies the full 27-byte handler, 8-byte cleanup funclet,
+36-byte FuncInfo and 8-byte unwind map, as well as the callback and target data
+roles. The affected source pin was renewed after independently replaying the linked
+CSV deque-copy origin rule and its exact roots. The native PNG getter also reports
+`1.5.2`; the earlier linked `1.2.5` provider rejected that argument, and the current
+1.5.2 provider passes the bounded smoke test. See
+`docs/PNG_PROVIDER_VERSION_2026_11_03.md`.

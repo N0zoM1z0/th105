@@ -48,9 +48,8 @@ Every byte and relocation agrees. All 142 main-body instructions are reachable
 through the original switch; both unwind predecessors are -1, with separate
 packet lifetimes at frame -0x50. This adds evidence, not new exact ledger credit.
 
-Reports are under `build/frontier-protocol-send-provider-20261109/`.
 The private `check-sections.py` and `check-dispatch-eh.py` recipes in the matching
-`.analysis/` directory bind the comparisons to their actual executable inputs.
-The seven unit names are recorded in `units.json`; each was rebuilt with
-`scripts/repo-python scripts/build.py --unit UNIT --compare --json` before and
-after the change. The unrelated input migration remains uncommitted.
+`.analysis/` directory bind the comparisons to their actual executable inputs. The
+seven unit names are recorded in `units.json`; each was rebuilt with
+`scripts/repo-python scripts/build.py --unit UNIT --compare --json` before and after
+the change. The unrelated input migration remains uncommitted.

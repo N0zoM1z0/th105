@@ -106,9 +106,6 @@ the original landing helper switch to action9, bypassing the intended gates.
 Required original sites exposed that unsuitable input; it was corrected
 without changing source or the landing helper.
 
-**0/6165 differences**, `build/reimu-high-entry/native.json`, input SHA256
-`06b8a35de43ff390e606b1e5355cc41494b1f6aa3fc5aa3917bc7d5deaa006a3`:
-
 |Cohort|Cases|
 |---|---:|
 |Motion/landing/completion/NaN|972|

@@ -37,10 +37,7 @@ source destructor is seven bytes and instead tail-calls the out-of-line
 binding, even though its guard offset agrees. Matching handler and metadata
 do not close that difference or the main-body mismatch.
 
-Evidence: `.analysis/frontier-network-snapshot-owner-20261108/check-context.py`
-and `build/frontier-network-snapshot-owner-20261108/` contain the source/compiler
-provenance, full body and metadata results, target dispatch edge checks, and
-three exact witness comparisons. This checkpoint adds no authored exact credit.
+This checkpoint adds no authored exact credit.
 
 ## Lock lifetime and implementation visibility
 
@@ -60,10 +57,8 @@ first differing at +16 as its frame grows by four bytes. The 27-byte handler
 then differs in both frame displacements. The complete candidate CFG closes,
 including its three-byte loop-alignment LEA; no bytes were omitted.
 
-The control establishes an implementation-visibility issue, not a reason to
-change the lock lifetime. It is not retained. A future source/TU reconstruction
-must explain the native combination of out-of-line normal enter/leave calls
-and the inlined wrapper inside the exception destructor. Do not replace the
-guard with manual normal/exception cleanup or force an artificial destructor
-boundary. Evidence: `build/frontier-snapshot-lock-lifetime-20261108/context.json`
-and its paired private source/inspection script.
+The control establishes an implementation-visibility issue, not a reason to change
+the lock lifetime. It is not retained. A future source/TU reconstruction must
+explain the native combination of out-of-line normal enter/leave calls and the
+inlined wrapper inside the exception destructor. Do not replace the guard with
+manual normal/exception cleanup or force an artificial destructor boundary.

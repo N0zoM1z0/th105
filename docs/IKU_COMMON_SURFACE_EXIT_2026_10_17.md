@@ -113,12 +113,11 @@ python3 scripts/audit-iku-call-sharing.py --object build/match-units/GptWeb_IkuA
 python3 scripts/audit-giant-action-owners.py iku-vslot28 build/match-units/GptWeb_IkuActionState.obj --unit gpt-web-iku-action-state --json
 ```
 
-Strict comparison intentionally exits 1. To reproduce the negative control,
-copy current source below `build/`, negate only the two
-`if (middle_ground_air_fan(404/406))` conditions, then use `--source` with
-`--all-actions --actions 404 406`. Reports are under `build/iku-common-landing/`;
-small control/readback sources remain under `.analysis/iku-common-landing-20261017/`.
-Older native/link checkpoints retain their source hashes. No broad accepted-
-unit or cold aggregate replay was needed; shared interfaces/profiles and
-relocations stay unchanged. Initial constant lifetime, physical layout,
-remaining argument/call sharing and original source/TU provenance remain open.
+Strict comparison intentionally exits 1. To reproduce the negative control, copy
+current source below `build/`, negate only the two `if
+(middle_ground_air_fan(404/406))` conditions, then use `--source` with
+`--all-actions --actions 404 406`. Older native/link checkpoints retain their source
+hashes. No broad accepted- unit or cold aggregate replay was needed; shared
+interfaces/profiles and relocations stay unchanged. Initial constant lifetime,
+physical layout, remaining argument/call sharing and original source/TU provenance
+remain open.

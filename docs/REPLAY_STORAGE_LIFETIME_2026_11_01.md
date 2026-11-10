@@ -55,10 +55,10 @@ non-relocation bytes under unchanged0.70/24/no-tail gates, verifies every
 named repeated call destination and whole-inventory uniqueness, and replays
 the existing global callback's E9 edge plus the exact critical-section call.
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-replay-storage-constructor --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit
+exact-first-replay-storage-constructor --compare --json
 
-All three functions pass. Receipts:build/frontier-replay-storage-lifetime-20261101/
-formal.json, canonical.json and static-witness.json. Default CI312 passes.
+All three functions pass. Default CI312 passes.
 
 Excluded1806/review413. Exact1586/450027 authored bytes, source1788/authored1808/
 mapped1815/units767 remain unchanged.

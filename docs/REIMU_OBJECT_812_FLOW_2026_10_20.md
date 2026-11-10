@@ -152,10 +152,9 @@ then exports the bounded812 instruction listing. CPU0/nice10/128MiB heap, one
 Ghidra process and all nine primary database hashes are preserved. No target
 bytes are patched; temporary project aliases are removed.
 
-Generated controls/reports are under `build/reimu-object-812-20261020`, with
-private drivers under `.analysis/reimu-object-812-20261020`. Object-only audits
-retain `build_provenance_verified=false`; formal compiler/input/source/COFF
-receipts are separate. No compiler, game binary, database or report is committed.
+Object-only audits retain `build_provenance_verified=false`; formal
+compiler/input/source/COFF receipts are separate. No compiler, game binary, database
+or report is committed.
 
 ```bash
 python3 scripts/verify-target.py

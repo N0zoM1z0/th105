@@ -53,6 +53,4 @@ unreferenced. The existing generated-code proof independently rebuilds and
 revalidates both InfoShortRecord deque helpers over the complete candidate
 inventory. Source pins and acceptance rules are unchanged.
 
-Evidence: `build/frontier-info-combo-owner-20261109/` and
-`.analysis/frontier-info-combo-owner-20261109/`. Tracking and lightweight CI
-pass; no new authored exact credit is added.
+Tracking and lightweight CI pass; no new authored exact credit is added.

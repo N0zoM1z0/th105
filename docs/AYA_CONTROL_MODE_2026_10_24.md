@@ -130,13 +130,9 @@ primary DB pins remain unchanged. Decompiled output corroborates raw facts
 and is not pasted into source. Own Ghidra uses384MiB/one CPU; compiles remain
 serial CPU0/nice10 with available memory/swap monitored.
 
-Private recipes, retained draft and all five complete probes remain under
-`.analysis/exact-first-aya-slot5c-20261024/`; the matching `build/` scope retains
-raw CFG/tables/literals, attestation/DB pins, baseline/probe/formal comparisons,
-full audit and formal object/provenance. Private reports/binaries/databases are
-not committed. Existing accepted headers/sources/flags/bindings stay unchanged.
-Source-present total becomes1528; configured graph remains567 units/1535
-functions. Exact ledger totals stay1399 functions/330507 callable bytes, with
-no aggregate cold replay claim. Origin dispositions/denominator and selector
-46/1028598 remain unchanged. Continue remaining independently reviewed peers;
-previous parked controls stay parked.
+Existing accepted headers/sources/flags/bindings stay unchanged. Source-present
+total becomes1528; configured graph remains567 units/1535 functions. Exact ledger
+totals stay1399 functions/330507 callable bytes, with no aggregate cold replay
+claim. Origin dispositions/denominator and selector 46/1028598 remain unchanged.
+Continue remaining independently reviewed peers; previous parked controls stay
+parked.

@@ -18,6 +18,8 @@ The target and candidate remain 323 bytes; the prior 81/82 normalized-instructio
 
 **Private compiler controls:** VC8 explicitly reports warning `D9002`, ignoring `/G7`; its canonical comparison window is identical to the configured build. A single-TU `/O2 /Ot /GL` diagnostic DLL also has a 323-byte `.text` body and the same candidate call order at offset `+0x21`. Its link used `/FORCE:UNRESOLVED` and reported missing externals, so the DLL is not runnable or a canonical comparison object. This limited probe does not exclude the original TU/LTCG context or other supported compiler options. No compiler profile, source, or relocation contract was changed.
 
-The private checker `.analysis/object980-g7-20261002/prove-scheduler-controls.py` verifies target PE and configured source/object identities, replays the COFF relocation bindings, checks the exact eight-byte scheduling windows, and checks both private controls. It writes `build/object980-scheduler-controls-proof-20261002.json`; the configured report is `build/object980-g7-baseline-20261002.json`. The attached IDA session still fails target identity, so only hash-attested PE bytes were used. No Ghidra import or aggregate cold replay is claimed.
+The attached IDA session
+still fails target identity, so only hash-attested PE bytes were used. No Ghidra
+import or aggregate cold replay is claimed.
 
 The [AyaObject action-entry control](AYA_ENTRY_VSLOT0C_SCHEDULING_2026_10_02.md) independently found 11 virtual sequence sites with the same `ECX`/argument ordering issue. An existing exact `BattleInputGate_collect_battle_control_bits` source emits both orderings at two nearby member calls, so the order is context-dependent; neither a global CPU flag nor a register-forcing source edit is justified by these observations. The remaining path is independent original source/TU/compiler-context evidence. No exact-ledger credit was added.

@@ -61,9 +61,7 @@ linking, invoke the virtual update before checking retirement, return a retired
 handle before erasing its node, and return all handles before bulk list clear.
 No public manager layout or shared header was changed in this checkpoint.
 
-Fresh serial comparisons retain acquisition 457110 at 91/91 exact. Release
-436E60 remains 119/native119 nonexact and update/prune 456D70 remains
-201/native201 nonexact. All three full COFF section contents and relocations
-are identical before and after. Reports and full dumps are retained under
-`build/frontier-system-tracked-state-20261110/{before,after}/`; `ci.log` passes
-the focused local gate. This adds no Factory acceptance.
+Fresh serial comparisons retain acquisition 457110 at 91/91 exact. Release 436E60
+remains 119/native119 nonexact and update/prune 456D70 remains 201/native201
+nonexact. All three full COFF section contents and relocations are identical before
+and after. This adds no Factory acceptance.

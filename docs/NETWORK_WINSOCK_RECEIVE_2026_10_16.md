@@ -179,28 +179,20 @@ python3 scripts/compare-unit-object.py cross-v106a-network-winsock-receive-threa
 python3 scripts/compare-unit-object.py cross-v106a-network-winsock-receive-thread build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj --address 0x0041D7B0 --json
 ```
 
-The ordinary boundary audit deliberately reports the unresolved switch rather
-than claiming full closure. The full table-resolved packet is
-`build/network-winsock-receive-facts.json`, produced by the private raw-PE
-driver `.analysis/network-receive-20261016/audit.py`; it verifies target and
-guard bytes, owns every main instruction, and records table/EH hashes.
-The complete comparison intentionally returns1 for the main; the accepted-only
-entry comparison returns0. Reports are
-`build/network-receive-source-{build,formal,accepted}.json` and
-`build/network-receive-source-ltcg-probe.diagnosis.json`. Fresh source/object
-hashes and the current unit-input digest are independently checked against
-the build record. No other accepted unit shares a changed source/header/flag.
+The ordinary boundary audit deliberately reports the unresolved switch rather than
+claiming full closure. The complete comparison intentionally returns1 for the main;
+the accepted-only entry comparison returns0. Fresh source/object hashes
+and the current unit-input digest are independently checked against the build
+record. No other accepted unit shares a changed source/header/flag.
 
-Direct Ghidra inspection independently attests executable/program SHA, base,
-entry marker, x86 Windows identity and every mapped .text byte before analysis.
-Decompiler output remains a private hypothesis. Supported names, complete
-main extents, return/parameter widths and ECX versus native stdcall storage
-are saved and checked in a fresh read-only session. The source checkpoint
-adds the supported15C-byte owner prefix and native address/peer/map/vector
-types; complete original owner size remains separately reviewed as314.
-Scripts stay below `.analysis/network-receive-source-20261016/ghidra-scripts/`;
-logs are `build/network-receive-source-ghidra-{save,readback}.log`.
-Only one Ghidra process runs at a time, with768MiB and two active processors.
+Direct Ghidra inspection independently attests executable/program SHA, base, entry
+marker, x86 Windows identity and every mapped .text byte before analysis. Decompiler
+output remains a private hypothesis. Supported names, complete main extents,
+return/parameter widths and ECX versus native stdcall storage are saved and checked
+in a fresh read-only session. The source checkpoint adds the supported15C-byte owner
+prefix and native address/peer/map/vector types; complete original owner size
+remains separately reviewed as314. Only one Ghidra process runs at a time,
+with768MiB and two active processors.
 
 ## Subsequent connection-chain closure
 

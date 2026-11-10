@@ -100,8 +100,5 @@ taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-903-paths.py
 ```
 
-The canonical build is expected to exit nonzero. Private scope is
-`build/aya-903-read-epochs-20261023/`: positive/negative execution receipts,
-callback fault receipt, raw target blocks, frozen CPPs and helper-control pins.
-Partial exploratory probes under `.analysis/` are historical inputs, not the
-new public auditor's acceptance path.
+The canonical build is expected to exit nonzero. Partial exploratory probes under
+`.analysis/` are historical inputs, not the new public auditor's acceptance path.

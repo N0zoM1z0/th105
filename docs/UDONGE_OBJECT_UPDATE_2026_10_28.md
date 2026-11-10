@@ -72,16 +72,15 @@ scripts/repo-python scripts/audit-udonge-object-update.py --target-only
 scripts/repo-python scripts/audit-udonge-object-update.py
 ```
 
-Receipts: `build/frontier-5d46c0-20261028/formal-build.json` and
-`full-audit.json`. Full selected candidate43873 bytes, SHA256
-`86d85bf7ca358e9a9f2b1a8bb021c234c56c2269a2daf8b1063a84ce465fc97c`.
-Unmasked comparison reports38087 differing bytes, first+37/5D46E5 in the
-initial default-branch displacement. The actual812 floating count lifetime
-recovers the native0x2F0 frame; this is still a whole-layout/precision/
-physical-sharing residual, not merely a displacement correction.
-All17 table dimensions and all216 remap bytes agree. Candidate has74 RETs
-versus64 and25 virtual calls versus25. All22 direct-callee counts now agree,
-including19 sine calls and15 advance calls. These are diagnostics only.
+Full selected candidate43873 bytes, SHA256
+`86d85bf7ca358e9a9f2b1a8bb021c234c56c2269a2daf8b1063a84ce465fc97c`. Unmasked
+comparison reports38087 differing bytes, first+37/5D46E5 in the initial
+default-branch displacement. The actual812 floating count lifetime recovers the
+native0x2F0 frame; this is still a whole-layout/precision/ physical-sharing
+residual, not merely a displacement correction. All17 table dimensions and all216
+remap bytes agree. Candidate has74 RETs versus64 and25 virtual calls versus25. All22
+direct-callee counts now agree, including19 sine calls and15 advance calls. These
+are diagnostics only.
 
 Source and mapping inventory now include this root; exact matches do not.
 Original class layout, translation-unit visibility, expression lifetimes,

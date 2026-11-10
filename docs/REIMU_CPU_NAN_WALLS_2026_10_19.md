@@ -107,15 +107,13 @@ unproved.
 | Fresh selected ordinary object | `4baa55369ce8eade9d817547d95617f4ddaed1de70a5b49edabfd9860786fe24` |
 | Canonical16461-byte payload | `4a4cb565b9c023fb82e6f4fbb01e63df711d3b3f59ce15fef1c1f9c52b581792` |
 
-Reports, native path/flags traces and normalization recipes are under
-`build/reimu-cpu-geometry/`. Direct read-only Ghidra re-attests identity,
-entry, mapped text, root bytes and metadata with384MiB/CPU0. Nine primary DB
-file hashes remain unchanged; project alias removed. Its private recipe is
-under `.analysis/reimu-cpu-geometry-20261019/`. Required IDA preflight still
-rejects the wrong open target; no IDA semantic data or factory adapter is used.
-Two materialized input arrays totaling about12MB were removed after execution;
-the public generator regenerates the cases and the trace recipe reads it
-directly. Reports, source controls and small recipes remain available.
+Direct read-only Ghidra re-attests identity, entry, mapped text, root bytes and
+metadata with384MiB/CPU0. Nine primary DB file hashes remain unchanged; project
+alias removed. Required IDA preflight still rejects the wrong open target; no IDA
+semantic data or factory adapter is used. Two materialized input arrays totaling
+about12MB were removed after execution; the public generator regenerates the cases
+and the trace recipe reads it directly. Reports, source controls and small recipes
+remain available.
 
 Two initial controls remain unselected. Reading peerY directly instead of
 through an integer pointer snapshot is completely payload-identical to the

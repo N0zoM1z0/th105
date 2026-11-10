@@ -6,4 +6,6 @@ The actual BGM stream-lifetime CIL naturally emits the typed vector helper and a
 
 The helper ends in a named, independently proven nonreturning CRT throw rather than `RET`. Its complete straight-line instruction sequence, every direct call and absolute-data role, source relocation inventory and all non-relocation bytes are checked. The proof also replays the complete 27-byte exception handler, unwind action, FuncInfo and unwind map, the original literal, length-error RTTI and all three catchable types, both logic-error constructors, relevant string/exception support and the CRT's noncontinuable throw record. These are supporting evidence, not additional authored credit. The existing linked decoder is not weakened. The validator pins the genuine source closure and VC8 headers; its receipt is `build/origin-anchors/linked-vector-xlen/proof.json`.
 
-Thirteen targeted corruption controls reject changes to the root, handler, unwind action/map, FuncInfo, throw metadata, literal, native parent, exact caller, CRT throw, dependency origin, source symbol and candidate inventory. The focused full proof and controls are recorded in `build/frontier-vector-xlen-origin-20261103/`.
+Thirteen targeted corruption controls reject changes to the root, handler, unwind
+action/map, FuncInfo, throw metadata, literal, native parent, exact caller, CRT
+throw, dependency origin, source symbol and candidate inventory.

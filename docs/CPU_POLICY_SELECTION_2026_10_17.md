@@ -66,7 +66,6 @@ The matrix executes no atan2 or checked-sequence path. Those dependencies are
 covered by the separate5000 finite whole-root controls, not this region claim.
 The matrix input SHA-256 is
 `77bfa4510ee00ca1cf9bce3cbe20fdad06db5d64fdc0bab74d704be00aa60ad2`.
-Reports under `build/cpu-tail-` pin executable/body, object and emulator hashes.
 
 The coverage gate derives the internal entry from the attested target tables,
 uses the existing raw CFG auditor and fails on an unreviewed transfer. A wrong

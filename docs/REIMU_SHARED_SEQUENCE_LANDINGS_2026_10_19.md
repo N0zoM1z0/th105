@@ -101,13 +101,11 @@ nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-void-root.py build/reimu-
   --cohort unresolved740 --cohort surface_inputs
 ```
 
-Private recipes, baseline rebuild, native adapter and receipts are under
-`build/reimu-sequence-landings/`. The affected adapter is `native-affected.py`;
-its SHA256 is `01910d4f3afc809344c9badc70367b90bdc4cf88c2fe34b4d0dc7f6b4eef8dee`.
-Run it with the selected ordinary object as its positional argument. Inputs
-come from the complete existing movement/high-middle/high-late family generators,
-filtered to the four affected actions and excluding inherited integration cases.
-Recipes and reports are private evidence, not committed acceptance units.
+The affected adapter is `native-affected.py`; its SHA256 is
+`01910d4f3afc809344c9badc70367b90bdc4cf88c2fe34b4d0dc7f6b4eef8dee`. Run it with the
+selected ordinary object as its positional argument. Inputs come from the complete
+existing movement/high-middle/high-late family generators, filtered to the four
+affected actions and excluding inherited integration cases.
 
 Heavy work stays serial on CPU0/nice10. Genuine production peaks 313 MiB;
 bounded Ghidra uses a 128 MiB heap and takes 9.90s, peaking 311 MiB. Disposable

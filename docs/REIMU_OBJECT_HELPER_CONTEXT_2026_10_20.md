@@ -107,13 +107,10 @@ The3600-input check is repeated as `helper-entry/selected-rebuilt.json`;
 the preceding `selected.json` retains the previousda35fa38 COFF pin.
 Do not equate raw object-file identity with canonical payload identity.
 
-Receipts reside in `build/reimu-object-exact-20261020/`: `helper-entry/`,
-`visible-runtime-callees.json`, individual `visible-*-summary.json`, and
-`linked-context/results.json`/`ftol-provenance.json`. Private regeneration
-recipes are `visible-single.py`, `linked-context.py`, and
-`natural-returns-current.py` in the corresponding `.analysis/` directory.
-Preserve their actual command lines, sources and objects. No full aggregate
-exact replay is claimed.
+Private regeneration recipes are `visible-single.py`, `linked-context.py`, and
+`natural-returns-current.py` in the corresponding `.analysis/` directory. Preserve
+their actual command lines, sources and objects. No full aggregate exact replay is
+claimed.
 
 Routine cleanup compresses27 superseded owner/census reports, saving11059583
 bytes. Each gzip is decompressed and checked before removing its original;

@@ -97,7 +97,6 @@ Semantic source evidence is retained with the DDS scope. Reproduce with
 scripts/repo-python scripts/build.py --unit exact-first-bitmap-texture-loading
 --compare --json; the expected nonzero exit reflects the documented mismatches.
 
-
 ## Pixel-cursor source control, 2026-11-09
 
 The native RLE loops advance separate destination cursors at `0x41AF2A`,
@@ -116,8 +115,6 @@ and linked PE. Thus this real caller context does not recover the remaining
 cursor allocation and scheduling. No source change was retained; further work
 needs new target evidence rather than increment-order or register controls.
 
-The private source, commands and complete comparisons are under
-`.analysis/frontier-bitmap-upload-color-20261109/` and
-`build/frontier-bitmap-upload-color-20261109/`. Baseline payload SHA-256 is
-`005a66826248ca973621b01a5fd5286a61e098b941210d6e73aba423a66e4d57`;
-the cursor control is `140d7e87975aaaf2b7c289f843a2d1cc399dd6d0dc8d96fc00a7a2b4ec1c872e`.
+Baseline payload SHA-256 is
+`005a66826248ca973621b01a5fd5286a61e098b941210d6e73aba423a66e4d57`; the cursor
+control is `140d7e87975aaaf2b7c289f843a2d1cc399dd6d0dc8d96fc00a7a2b4ec1c872e`.

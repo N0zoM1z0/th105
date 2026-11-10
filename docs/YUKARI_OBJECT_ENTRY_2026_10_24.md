@@ -22,13 +22,12 @@ python3 scripts/audit-yukari-object-entry.py
 taskset -c 0 nice -n 10 python3 scripts/audit-yukari-object-entry-paths.py
 ```
 
-The first two commands return1 for the recorded mismatch; the last returns0
-for eleven scoped inputs. Both audits accept `--object`. A separate cold object
-is reproducible with `scripts/compile-unit.sh` using the selected source and a
-new path below `build/`. The full audit replays every relocation in the emitted
-section and requires equality of complete length and bytes, including tables;
-there are no masks. Generated receipts live under
-`build/exact-first-yukari-object-entry-20261024/`.
+The first two commands return1 for the recorded mismatch; the last returns0 for
+eleven scoped inputs. Both audits accept `--object`. A separate cold object is
+reproducible with `scripts/compile-unit.sh` using the selected source and a new path
+below `build/`. The full audit replays every relocation in the emitted section and
+requires equality of complete length and bytes, including tables; there are no
+masks.
 
 The first complete source retains all92 direct calls,28 virtual calls and the
 real596370 tail. It also retains all33 destination entries and the entire

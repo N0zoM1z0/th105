@@ -133,14 +133,10 @@ nonexact. All five previously accepted siblings remain exact: constructor23,
 scalar destructor47, normal destructor21, descriptor copy196 and PNG read
 callback33 bytes. No match/implemented/origin/boundary ledger changed.
 
-Private commands/scripts are in `.analysis/cbitmap-bmp-20261019/` and receipts
-in `build/cbitmap-bmp-20261019/`: `target-facts.json`, target/candidate assembly,
-`revised-unit.json`, `revised-shape.json`, `*-execution.json`, Ghidra logs and
-nine-file before/after hashes, and `ltcg/commands.json`. These are local
-investigation artifacts, not checked-in generated reports. The execution
-harness is `execute-bmp.py`, SHA256
-`e3998c65305beb8620387c7c4c4ade1c44d5d44901ceb6a982627f35f7fcd684`;
-its selected-input name is `revised`.
+These are local investigation artifacts, not checked-in generated reports. The
+execution harness is `execute-bmp.py`, SHA256
+`e3998c65305beb8620387c7c4c4ade1c44d5d44901ceb6a982627f35f7fcd684`; its
+selected-input name is `revised`.
 
 The [EH/allocator follow-up](CBITMAP_BMP_EH_2026_10_19.md) closes the
 one-owner EH chain and corrects the array-new interface without changing

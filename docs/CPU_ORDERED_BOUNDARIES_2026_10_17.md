@@ -150,11 +150,9 @@ A fresh read-only process verified the metadata and unchanged callable bytes.
 The hypothesis has no PIC/unreachable warning; its globals-overlap warning is
 not a source result. No decompiler text is pasted into reconstruction source.
 
-The verified project was copied back to the primary private database only
-after Java exited; the temporary project was removed. Private
-recipes and hypotheses are under `.analysis/cpu-root-20261017/`; reports use
-`build/cpu-root-20261017-`. The shared Fighter root `4740C0` remains at its
-53/66 diagnostic checkpoint; this pass changes no common-action source.
+The verified project was copied back to the primary private database only after Java
+exited; the temporary project was removed. The shared Fighter root `4740C0` remains
+at its 53/66 diagnostic checkpoint; this pass changes no common-action source.
 
 ## Follow-up: reset flow and complete native execution
 
@@ -239,8 +237,7 @@ the grounded/airborne source blocks, typed physical-field substitutions and
 float zero literals provide no identical-owner gain. No compiler flags,
 headers, TU partition or relocation contracts change. Direct Ghidra was
 re-attested/read back for this work; its target bytes and saved ABI/view remain
-unchanged. Reports for the retained checkpoint use
-`build/cpu-root-20261017-reset-`.
+unchanged.
 
 ## Follow-up: ordered heights and RNG consumption
 
@@ -300,4 +297,4 @@ owners survive. Only the common airborne body, physically grouped under
 recorded. Raw target facts above are mirrored in three direct Ghidra comments,
 saved and checked in a fresh read-only process after re-attesting the target,
 entry, mapped text and body hash. Target bytes and the27-field ABI view remain
-unchanged. Reports for this checkpoint use `build/cpu-height-`.
+unchanged.

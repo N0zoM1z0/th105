@@ -24,11 +24,7 @@ unchanged apart from resolving the old facade calls to the real provider:
 - Marisa remains 16,867 bytes versus native 16,907, first mismatch +302.
 - Alice remains 16,869 bytes versus native 17,009, first mismatch +53.
 
-Both existing full-payload auditors reproduce their previous canonical hashes.
-This repairs the source/provider contract without changing the known CPU
-residuals or awarding new authored exact credit. No shared header, compiler
-setting, source SHA pin or pending input migration file is changed.
-
-The scoped driver is `.analysis/frontier-cpu-sequence-owner-20261109/verify.py`.
-Baseline and final full-payload reports, all native read sites and the complete
-provider checks are in `build/frontier-cpu-sequence-owner-20261109/`.
+Both existing full-payload auditors reproduce their previous canonical hashes. This
+repairs the source/provider contract without changing the known CPU residuals or
+awarding new authored exact credit. No shared header, compiler setting, source SHA
+pin or pending input migration file is changed.

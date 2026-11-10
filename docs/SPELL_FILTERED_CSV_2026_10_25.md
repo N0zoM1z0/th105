@@ -40,13 +40,10 @@ equivalence or an LTCG impossibility. The joint control remains private.
 | Same filtered caller with both real parsers in one TU |1987 |2 |
 | Resource representative in that same joint TU |1646 |0 |
 
-Receipts are under `build/exact-first-spell-filtered-peer-20261026/`:
-`baseline-build.json`, `baseline-census.json`, `proven-back-census.json`,
-`joint-filtered-census.json`, `joint-resource-census.json`, `formal-final.json`
-and `formal-census.json`. Trial sources and the untouched starting source are
-retained in the corresponding private analysis directory. No shared header,
-existing accepted source, profile or relocation binding changed. The inline
-member definition is identical to the representative's definition.
+Trial sources and the untouched starting source are retained in the corresponding
+private analysis directory. No shared header, existing accepted source, profile or
+relocation binding changed. The inline member definition is identical to the
+representative's definition.
 
 This finite peer/visibility lane is closed. Preserve the new public two-byte
 checkpoint and switch to a fresh complete medium/large authored candidate.
@@ -203,11 +200,9 @@ The original checkpoint instead reported first+10C and four unequal bytes. The
 census uses the public unit's exact aliases and replays every relocation across
 the full section; it is a diagnostic, not an alternative acceptance procedure.
 
-Receipts: `build/exact-first-spell-filtered-csv-20261025/target-audit.json`,
-`formal-final.json`, `formal-census.json` and the final local CI log.
-First source, each trial source/object, all full replay JSON/bin files and
-negative controls remain under the matching private analysis/build directories.
-Generated outputs and compiler binaries are not committed.
+First source, each trial source/object, all full replay JSON/bin files and negative
+controls remain under the matching private analysis/build directories. Generated
+outputs and compiler binaries are not committed.
 
 IDA preflight rejected the wrong GUI executable. All accepted observations here
 come from the hash-attested raw PE; no IDA patches, Ghidra sessions or concurrent

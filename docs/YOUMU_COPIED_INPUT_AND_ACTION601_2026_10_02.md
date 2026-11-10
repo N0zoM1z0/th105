@@ -155,13 +155,8 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-Fresh reports are `build/youmu-copied-input-601-final-20261002.json` and
-`build/youmu-copied-input-601-final-owners-20261002.json`. Explicit-object call,
-guard, stack, arithmetic and load/store packets use that prefix/date. Private
-controls and raw helper/manager packets are below
-`.analysis/youmu-pointer-contract-20261002/` and
-`build/youmu-pointer-contract-20261002/`; existing-object control comparisons
-have diagnostic provenance, not configured build attestation.
+Explicit-object call,
+guard, stack, arithmetic and load/store packets use that prefix/date.
 
 Original source types, remaining register/temporary homes,710 argument
 schedule, shared physical tails, compiler/TU context and numerical/exception

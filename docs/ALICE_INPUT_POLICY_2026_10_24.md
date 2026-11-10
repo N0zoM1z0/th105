@@ -94,12 +94,7 @@ the raw extent. Temporary metadata is read back and rolled back; pinned primary
 DB hashes remain unchanged. Analysis uses CPU0/nice10 and384 MiB heap; builds
 run serially on CPU0/nice10.
 
-Private recipes and first complete source remain under
-`.analysis/exact-first-alice-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, CFG/table closure, attested views/logs/
-DB hashes, first complete probe, formal/cold comparisons, first formal object
-and provenance, relocation counts, original origin row and input hashes. A
-generated-object table negative fails at `+0x1A18 / 0x4FC6E8`, target17/source18;
-the target stays untouched. Earlier input source/header pairs remain unchanged.
-No broad runtime matrix or aggregate cold replay is claimed. Continue remaining
+A generated-object table negative fails at `+0x1A18 / 0x4FC6E8`, target17/source18;
+the target stays untouched. Earlier input source/header pairs remain unchanged. No
+broad runtime matrix or aggregate cold replay is claimed. Continue remaining
 complete peers; Marisa stays parked at its recorded placement residual.

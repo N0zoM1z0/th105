@@ -100,7 +100,6 @@ only the strict configured result supports matches.csv. Synthetic regression
 tests reject returning/branching helpers, forged anchors/imports/throw
 arguments/types, writable metadata, aliases and missing/nonnative exports.
 
-
 ## November1 independent release acceptance
 
 The current genuine TextureHandleRuntime.cpp release provider is freshly

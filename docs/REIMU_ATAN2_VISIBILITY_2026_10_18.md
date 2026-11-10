@@ -68,12 +68,11 @@ possible read. The search treats ordinary register/address reads and other
 calls conservatively; only the independently reviewed stack-argument atan2
 and ST0 `_ftol2` contracts are treated as having no ECX input.
 
-Across 80, 78 and 92 visited instructions respectively, no path reads that
-incoming ECX value before a full definition or return. First definitions
-include `47DF60`, `47E49E` and `47EC2C`; return paths end at `489D71`.
-This provides no evidence for forcing a preserved ECX value in the caller.
-It does not identify the original TU, compiler profile or register allocator
-context. The private packet is `build/reimu-register-context/ecx-liveness.json`.
+Across 80, 78 and 92 visited instructions respectively, no path reads that incoming
+ECX value before a full definition or return. First definitions include `47DF60`,
+`47E49E` and `47EC2C`; return paths end at `489D71`. This provides no evidence for
+forcing a preserved ECX value in the caller. It does not identify the original TU,
+compiler profile or register allocator context.
 
 ## Reproduction and next step
 
@@ -88,8 +87,6 @@ nice -n 10 taskset -c 0 python3 -B scripts/probe-reimu-action-ltcg.py
 nice -n 10 taskset -c 0 python3 -B scripts/probe-reimu-atan2-visibility.py
 ```
 
-The completed reproduction used output directory
-`build/reimu-register-context/reproduced/`. Keep investigating the root's
-physical sharing for 300/320, 215/310/797 and 522/523, and the duplicated target
-resource gate in 214. These need source/visibility evidence; the math result
-does not justify arbitrary ABI or source constraints.
+Keep investigating the root's physical sharing for 300/320, 215/310/797 and 522/523,
+and the duplicated target resource gate in 214. These need source/visibility
+evidence; the math result does not justify arbitrary ABI or source constraints.

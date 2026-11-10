@@ -67,13 +67,11 @@ remain deliberate. The declaration-only providers receive no implementation
 credit. `config/functions.csv` retains41001 callable bytes and inclusive end
 656D78; the full audit compares41984 bytes through657150 separately.
 
-The first complete private body compiled under the ordinary VC8 SP1 `/O2`
-probe profile with GS disabled, without alignment or register shaping. It
-naturally emitted `AND ESP,-8` and frame2B0. Full42068 bytes, SHA-256
-`278d5bb4a6c1ea1c1361295568e4b8800d600aa286dd136eaf2cde1d4becbc09`,
-compared with39549 unmasked differences; first64CD58, frame allocation2B0
-versus native2A8. Receipt:
-`build/exact-first-tenshi-object-update-20261025/first-complete.json`.
+The first complete private body compiled under the ordinary VC8 SP1 `/O2` probe
+profile with GS disabled, without alignment or register shaping. It naturally
+emitted `AND ESP,-8` and frame2B0. Full42068 bytes, SHA-256
+`278d5bb4a6c1ea1c1361295568e4b8800d600aa286dd136eaf2cde1d4becbc09`, compared
+with39549 unmasked differences; first64CD58, frame allocation2B0 versus native2A8.
 This is a full mismatch, not a similarity/acceptance claim.
 
 That first comparison's per-action call census identified missing **physical**
@@ -135,7 +133,6 @@ No exact credit is added.
 ```bash
 scripts/repo-python scripts/audit-tenshi-object-update-paths.py
 # Negative control: old complete object fails one native input.
-scripts/repo-python scripts/audit-tenshi-object-update-paths.py --object build/exact-first-tenshi-object-update-20261025/selected.obj
 ```
 
 Receipts: `frame-return-build.log`, `frame-return-full-audit.json`,
@@ -199,7 +196,6 @@ failure or proof of original int formals.825's eight real RET checks still pass.
 ```bash
 scripts/repo-python scripts/audit-tenshi-object-request-paths.py
 # Old byte-view negative: four full-DWORD request mismatches.
-scripts/repo-python scripts/audit-tenshi-object-request-paths.py --object build/exact-first-tenshi-object-update-20261025/old-facing-byte.obj
 ```
 
 The separate unselected `comparison-values` control removes eight named
@@ -253,11 +249,8 @@ It also records per-action and physical call ownership separately. Synthetic
 negative controls exercise metadata truncation, escaping destinations, default
 restoration and the distinction between per-action counts and physical sharing.
 
-Receipts are in `build/exact-first-tenshi-object-update-20261025/`:
-`formal.log`, `formal-full-audit.json`, `cold-build.log`,
-`cold-full-audit.json`, `target-audit.json`, plus the first complete comparison.
-The private recipes retain the raw facts, attested Ghidra worksheet, first body
-and branch-control source. Reports and private material are not committed.
+The private recipes retain the raw facts, attested Ghidra worksheet, first body and
+branch-control source. Reports and private material are not committed.
 
 This bounded width/transfer question is checkpointed. The comparison-carrier
 question did not close frame2B0; retain it rather than repeating a carrier grid.
@@ -351,15 +344,14 @@ comparison reach `0x655D82`, which separately checks for an ordered lower
 target; unordered values skip both movement branches. Action 961 has the same
 structure at `0x656226..0x656243` and `0x6563DA..0x6563E9`.
 
-The previous outer `target <= height` condition instead selected the upward
-branch for unordered values. Both source arms now use `!(target > height)`,
-while retaining the inner ordered `<` check. Finite and equal cases are
-unchanged. Whether such unordered heights occur in ordinary play is unknown.
-The focused VC8 output uses reversed operands at `0x9176..0x9198` and
-`0x976D..0x9791`; its two tests select the same four comparison outcomes.
-The full candidate remains nonexact: its section tail is 42,508 bytes against
-the 41,001-byte native callable, with first mismatch at +8. No exact credit is
-claimed. Receipts: `build/tenshi-unordered-height-20261107.json` and `.dis`.
+The previous outer `target <= height` condition instead selected the upward branch
+for unordered values. Both source arms now use `!(target > height)`, while retaining
+the inner ordered `<` check. Finite and equal cases are unchanged. Whether such
+unordered heights occur in ordinary play is unknown. The focused VC8 output uses
+reversed operands at `0x9176..0x9198` and `0x976D..0x9791`; its two tests select the
+same four comparison outcomes. The full candidate remains nonexact: its section tail
+is 42,508 bytes against the 41,001-byte native callable, with first mismatch at +8.
+No exact credit is claimed.
 
 ## Quantized lookup return contract (2026-11-09)
 
@@ -396,14 +388,9 @@ float for its zero test and later division. Those are distinct, observed
 consumer lifetimes, not conflicting provider ABIs. The existing motion and
 tangent sources reproduce these callers with different declaration views.
 
-Evidence uses the pinned Japanese v1.06a executable and the existing complete
-root payload hashes. The private script is
-`.analysis/frontier-tenshi-trig-return-20261109/check-return-contract.py`; its
-provider disassemblies, 81 call windows, reachable-instruction counts and two
-small caller bodies are retained in
-`build/frontier-tenshi-trig-return-20261109/native-contract.json`.
-The windows are bounded instruction observations, not a universal floating-
-point execution proof. No source, manifest, provider pin or exact ledger was
-changed. A future shared declaration needs stronger compiler/source evidence
-and complete affected-consumer comparisons; changing it merely to agree with
-another provisional translation unit would conceal the unresolved question.
+Evidence uses the pinned Japanese v1.06a executable and the existing complete root
+payload hashes. The windows are bounded instruction observations, not a universal
+floating- point execution proof. No source, manifest, provider pin or exact ledger
+was changed. A future shared declaration needs stronger compiler/source evidence and
+complete affected-consumer comparisons; changing it merely to agree with another
+provisional translation unit would conceal the unresolved question.

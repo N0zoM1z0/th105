@@ -40,12 +40,11 @@ rebound or rewritten. Stores, narrow/interior reads and address escapes fail.
 
 Reproduction:
 
-    scripts/repo-python scripts/build.py --unit exact-first-bgm-stream-runtime --json
+scripts/repo-python scripts/build.py --unit exact-first-bgm-stream-runtime --json
     scripts/repo-python scripts/compare-linked-unit.py exact-first-bgm-stream-runtime --address 0x00418A10 --address 0x00418D10 --json
 
-Initial formal receipt: build/frontier-sfl-fp-except-20261030/public-compare.json.
-Focused final receipts use the same directory. The mixed unit's other roots
-remain unaccepted; do not interpret their source coverage as exactness.
+Focused final receipts use the same directory. The mixed unit's other roots remain
+unaccepted; do not interpret their source coverage as exactness.
 
 Final focused replay freshly builds only the two affected/context units:
 Ogg + SFL2/2 and the existing reader/script/bitmap/palette file graph11/11

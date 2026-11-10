@@ -42,6 +42,5 @@ canonical source hash:
 Its first residual remains+1269/4383B5. Neither the unchanged size nor shared
 type model earns exact credit or reopens register/branch-spelling experiments.
 
-Actual dependency discovery finds only these two changed-source consumers.
-Private coherent controls and public full receipts are retained in
-build/frontier-frame-construction-20261031/. Counts are unchanged.
+Actual dependency discovery finds only these two changed-source consumers. Counts
+are unchanged.

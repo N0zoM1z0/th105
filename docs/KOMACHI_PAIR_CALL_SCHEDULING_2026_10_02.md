@@ -4,6 +4,12 @@ The reviewed authored/source-present `KomachiObject_emit_owner_gated_object_826_
 
 A fresh `python3 scripts/build.py --unit cross-v106a-character-object-effects --compare --json` yields a 203-byte nonexact candidate against the 205-byte target. The first mismatch at `5F9365` is the branch displacement caused by later scheduling. At the first call, target `5F9371` copies the gate-loaded owner from `EAX` to `ECX`, then uses `EAX` for the payload pointer and facing byte; the candidate uses `EDX` for those values and retains the owner in `EAX`. Target pushes the constant argument 1 at `5F939A`, after loading the manager's virtual slot, while the candidate pushes it before completing the payload float stores. The target's second manager lookup similarly reloads owner into `EAX`, while the candidate uses `ECX`. This is a register/evaluation-order residual, not evidence of an omitted spawn.
 
-Private `/GS` VC8 controls tested an explicit first manager-call expression using the already evidenced owner `+0x658` field, a typed owner-view call expression, a real payload-pointer local, a real facing local, an element-address spelling and split payload initialization. None reached exact; both explicit-manager variants fetch the manager too early, while the latter four controls retain the 203-byte candidate and first mismatch. An early-return guard shrinks the body to 199 bytes and changes the target branch form. The rejected sources and focused reports are under `.analysis/komachi-pair-20261002/` and `build/komachi-pair-20261002-*`.
+Private `/GS` VC8 controls tested an explicit first manager-call expression using
+the already evidenced owner `+0x658` field, a typed owner-view call expression, a
+real payload-pointer local, a real facing local, an element-address spelling and
+split payload initialization. None reached exact; both explicit-manager variants
+fetch the manager too early, while the latter four controls retain the 203-byte
+candidate and first mismatch. An early-return guard shrinks the body to 199 bytes
+and changes the target branch form.
 
 This corroborates the earlier [Object giant leaf closure](KNOWLEDGE_BASE.md#object-giant-leaf-closure-and-remaining-direct-callee-floor-2026-09-08) while narrowing the first-call instruction residual. The accepted source, match unit and exact ledger remain unchanged. Original source grouping and compiler/TU context are unknown; further register-forcing or fabricated argument dependencies would not be supported by target evidence.

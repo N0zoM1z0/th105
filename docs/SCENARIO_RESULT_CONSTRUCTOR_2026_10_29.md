@@ -37,10 +37,10 @@ the out-parameter call, as in native code.
 
 Native handler6BA856 is27 bytes. FuncInfo6E03B8 has two unwind states at6E03A8:
 state0 cleans CDesignBase008 through421890; state1 cleans tile05C through40AD50.
-Fresh generated cleanup funclets match both complete11-byte native blocks at
-6BA840 and6BA84B after ordinary call relocation, and the emitted tile normal
-destructor matches the existing7-byte IColor destructor. These checks add no
-separate authored credit. See build/frontier-scenario-result-constructor-20261029/cleanup.json.
+Fresh generated cleanup funclets match both complete11-byte native blocks at 6BA840
+and6BA84B after ordinary call relocation, and the emitted tile normal destructor
+matches the existing7-byte IColor destructor. These checks add no separate authored
+credit.
 
 ## Reproduction
 

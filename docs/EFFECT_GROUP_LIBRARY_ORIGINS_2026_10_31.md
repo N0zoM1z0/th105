@@ -26,11 +26,9 @@ element type. The placement-copy source is also implicitly generated, not a
 new authored copy body. No hand-written copy loop or target machine bytes are
 part of the source probe.
 
-Public source: scripts/probes/EffectGroupDequeOrigin.cpp.
-Anchors: config/vc8-effect-group-deque-origin-anchors.toml.
-Rule: vc8-generated-effect-group-deque-106a.
-Private receipts: build/frontier-effect-group-library-20261031/formal.json and
-the focused rule validation under build/frontier-boost-library-20261031.
+Public source: scripts/probes/EffectGroupDequeOrigin.cpp. Anchors:
+config/vc8-effect-group-deque-origin-anchors.toml. Rule:
+vc8-generated-effect-group-deque-106a.
 
 The census gains three exclusions/518 bytes only: excluded1658, review594,
 units751. Authored exact1558/444502, source1755/authored1775/mapped1782 remain

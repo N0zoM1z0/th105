@@ -4,7 +4,9 @@ The existing complete source for `BattleInfoRecordF8::update_story_471930` is no
 
 The story-specific policy smooths displayed health and the secondary gauge, publishes countdown progress, and updates byte-wrapping alpha, colors and visibility. The implementation retains the observed callback reloads and does not add saturation or null guards. `STORY_INFO_UPDATE_2026_10_28.md` documents its field and control-flow evidence and bounded negative controls.
 
-The public `exact-first-story-info-update` unit compiles to 321 bytes against native 323 and first differs at offset 67. It is source-present but nonexact. No suffix-only or partial-byte credit is assigned. Fresh receipts are `build/frontier-story-info-source-20261103/source-final.json` and `caller-final.json`.
+The public `exact-first-story-info-update` unit compiles to 321 bytes against native
+323 and first differs at offset 67. It is source-present but nonexact. No
+suffix-only or partial-byte credit is assigned.
 
 ## Shared health ownership, November 10
 
@@ -27,9 +29,7 @@ including cleanup code and metadata. Story update remains 321/323 nonexact;
 the separate normal update at `0x46FF30` remains blocked at its existing local
 checked-deque helper relocation. Neither receives new exact credit.
 
-Fresh receipts and the complete section review are under
-`build/frontier-story-health-owner-20261110/`. Pending input changes and source
-pins were not modified.
+Pending input changes and source pins were not modified.
 
 ## Real Fighter ownership, November 10
 
@@ -53,7 +53,5 @@ EAX quotient. The ownership correction does not solve that allocation issue;
 no padding or source-spelling sweep was used.
 
 The directly calling `cross-v106a-info-manager-runtime-core` unit was rebuilt:
-0x46E5A0, 0x471C90, 0x471D00 and 0x471D10 all remain locally exact. Evidence is
-under `build/frontier-story-fighter-owner-20261110/` (`before.json`, `after.json`,
-`caller.json`, and the identical `.sections` dumps). The focused CI gate passes.
-No new exact ledger entry or Factory acceptance was added.
+0x46E5A0, 0x471C90, 0x471D00 and 0x471D10 all remain locally exact. The focused CI
+gate passes. No new exact ledger entry or Factory acceptance was added.

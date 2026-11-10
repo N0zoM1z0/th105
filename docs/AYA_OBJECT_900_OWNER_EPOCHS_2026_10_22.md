@@ -91,9 +91,7 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-The first command intentionally reports a mismatch. Optional
-`--previous-object PATH` supplies the old COFF for the scoped contrast. Private
-control recipe/source inputs are under `.analysis/aya-900-read-epochs-20261022/`;
-reports/objects are under `build/aya-900-read-epochs-20261022/`. Current configured
-source uses `selected-formal.json`, `owner-audit.json`, and `execution.json`.
-Local CI and whitespace gates are mandatory before commit/push.
+The first command intentionally reports a mismatch. Optional `--previous-object
+PATH` supplies the old COFF for the scoped contrast. Current configured source uses
+`selected-formal.json`, `owner-audit.json`, and `execution.json`. Local CI and
+whitespace gates are mandatory before commit/push.

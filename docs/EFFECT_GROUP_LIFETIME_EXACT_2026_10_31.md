@@ -43,9 +43,8 @@ claim that all remote EH metadata has a separate linked replay. The new entry
 bindings preserve full observed handler bytes instead of only a prefix.
 
 The declaration extraction's only old accepted source consumer is
-exact-first-effect-resources, freshly exact2528. Private initial comparisons
-were followed by the formal public manifest builds before ledger promotion.
-Receipts: build/frontier-effect-group-lifetime-20261031/formal.json and loader.json.
+exact-first-effect-resources, freshly exact2528. Private initial comparisons were
+followed by the formal public manifest builds before ledger promotion.
 
 Authored exact totals gain two whole functions and266 bytes:
 1558 functions /444502 bytes. Source1755, authored1775, mapped1782,

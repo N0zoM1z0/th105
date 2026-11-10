@@ -38,9 +38,8 @@ nonexact store-order bytes. No accepted caller/header changed.
 
 scripts/repo-python scripts/build.py --unit exact-first-character-ex-lifetime --compare --json
 
-Source:src/characters/CharacterExLifetime.cpp.
-Formal receipt and raw hierarchy facts:
-build/frontier-character-ex-lifetime-20261029/formal-build.json and rtti.json.
-Constructor recheck:build/frontier-character-constructor-20261029/formal-pure-base.json.
+Source:src/characters/CharacterExLifetime.cpp. Formal receipt and raw hierarchy
+facts: build/frontier-character-ex-lifetime-20261029/formal-build.json and
+rtti.json.
 
 Default CI and diff checks validate the final exact ledgers and progress.

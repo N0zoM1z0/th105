@@ -90,18 +90,13 @@ python3 scripts/compare-unit-object.py gpt-web-network-winsock-shutdown build/ma
 python3 scripts/compare-unit-object.py gpt-web-network-winsock-shutdown build/match-units/GptWeb_NetworkWinsockShutdown.obj --address 0x00412FD0 --json
 ```
 
-The complete comparison intentionally returns1: preparation is115/149
-nonexact, while the accepted-only175-byte caller comparison returns0.
-All selected COFF relocations replay, including the ordinary peer-removal
-call, native IATs and existing caller dependencies. Fresh source/object
-hashes and the current unit-input digest are independently checked against
-the build record; comparing an existing object alone does not attest a build.
-Reports are `build/network-udp-prepare-shutdown-{boundary,build,formal,accepted}.json`
-and `build/network-udp-prepare-shutdown-probe-comparisons.json`.
-The resolved-link diagnosis is
-`build/network-udp-prepare-shutdown-linked-probe.diagnosis.json`.
-Private control scripts/sources stay under
-`.analysis/network-udp-prepare-shutdown-20261016/`.
+The complete comparison intentionally returns1: preparation is115/149 nonexact,
+while the accepted-only175-byte caller comparison returns0. All selected COFF
+relocations replay, including the ordinary peer-removal call, native IATs and
+existing caller dependencies. Fresh source/object hashes and the current unit-input
+digest are independently checked against the build record; comparing an existing
+object alone does not attest a build. The resolved-link
+diagnosis is `build/network-udp-prepare-shutdown-linked-probe.diagnosis.json`.
 
 The origin rule pins the complete149-byte hash, the exact caller edge, the
 peer-removal edge and all three native IAT fields. This promotes one game
@@ -116,5 +111,4 @@ mapped .text bytes. The owner/peer/vector types, complete149/175-byte extents,
 private ESI preparation and ECX caller parameter storage, void returns and
 zero stack pops are saved and independently checked in a fresh read-only
 invocation. Decompiler output remains a hypothesis, especially its aligned
-stack aliases. Logs are
-`build/network-udp-prepare-shutdown-ghidra-{save,readback}.log`.
+stack aliases.

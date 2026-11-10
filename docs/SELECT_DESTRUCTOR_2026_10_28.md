@@ -5,11 +5,10 @@ through actual polymorphic sprite/tile lifetimes and the independently
 exact-backed IColor interface. See SELECT_DESTRUCTOR_EXACT_2026_10_31.md.
 The following records the earlier nonexact checkpoint and rejected control.
 
-The complete normal destructor now has an 845-byte source candidate against
-845 native bytes. It remains nonexact at +605 (4244BD), and receives no exact
-or source-selection credit. The canonical target SHA is
+The complete normal destructor now has an 845-byte source candidate against 845
+native bytes. It remains nonexact at +605 (4244BD), and receives no exact or
+source-selection credit. The canonical target SHA is
 f94acb78add9eced382d01511cd077d52b27f973ec1c300d83631f7f467632b5.
-Final receipt: build/frontier-424260-20261028/restored-final.json.
 
 The authored body clears both effect banks for fifteen characters, releases
 back/extra/cursor/field and name/background handles, cleans both designs,

@@ -187,18 +187,13 @@ python3 scripts/audit-reimu-root-relocations.py build/reimu-sequence-carriers-20
 taskset -c 0 nice -n 10 python3 scripts/audit-reimu-effect-direction-carriers.py build/reimu-sequence-carriers-20261020/selected/candidate.obj
 ```
 
-Private recipes are under `.analysis/reimu-sequence-carriers-20261020/`;
-input hashes and full reports are under the corresponding build directory.
-`summary.json` retains every control's input/object/canonical pins and full
-preservation outcome. `effect-prefixes.json` retains exact instruction
-windows and actual outgoing destinations. `native-effects.json`,
-`native-sequences.json`, `native-broad.json`, `native-advance.json` and
-`negative605/native-effects.json` record the scoped execution and negative
-control. `native-effects-public.json` and its `negative605/` counterpart
-record the public command's fresh positive/negative replay.
-`native602.json`, `native-three.json` and `native-bool606.json`
-record the additional bounded replays. The current genuine receipts are
-`build/reimu-ltcg/{receipt,coff-replay}.json`; the preceding receipts are
-archived under this checkpoint's `prior-genuine/` directory. Generated files and analysis
-databases are not committed. Builds, native probes and the single128MiB
-Ghidra process use CPU0/nice10; VC8 builds are serial.
+`native-effects.json`, `native-sequences.json`, `native-broad.json`,
+`native-advance.json` and `negative605/native-effects.json` record the scoped
+execution and negative control. `native-effects-public.json` and its `negative605/`
+counterpart record the public command's fresh positive/negative replay.
+`native602.json`, `native-three.json` and `native-bool606.json` record the
+additional bounded replays. The current genuine receipts are
+`build/reimu-ltcg/{receipt,coff-replay}.json`; the preceding receipts are archived
+under this checkpoint's `prior-genuine/` directory. Generated files and analysis
+databases are not committed. Builds, native probes and the single128MiB Ghidra
+process use CPU0/nice10; VC8 builds are serial.

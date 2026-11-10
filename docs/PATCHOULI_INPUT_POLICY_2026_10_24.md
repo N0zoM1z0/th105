@@ -95,14 +95,9 @@ the raw extent. Temporary metadata is read back and rolled back; pinned primary
 DB hashes remain unchanged. Analysis uses CPU0/nice10 and384 MiB heap; builds
 run serially on CPU0/nice10.
 
-Private recipes and first complete source remain under
-`.analysis/exact-first-patchouli-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, full CFG/table closure, attested views/
-logs/DB hashes, first complete probe, formal/cold comparisons, first formal
-object/provenance, relocation counts, original origin row and input hashes. A
-generated-object table negative fails at `+0x18D0 / 0x520830`, targetA9/sourceAA;
-the target stays untouched. Earlier input source/header pairs remain unchanged.
-No broad runtime matrix or aggregate cold replay is claimed. The roster's
-fifteen complete slot50 policies now have source: fourteen exact peers and
-Marisa's separately recorded nonexact placement residual. Continue another
-complete representative without repeating Marisa's neutral controls unchanged.
+A generated-object table negative fails at `+0x18D0 / 0x520830`, targetA9/sourceAA;
+the target stays untouched. Earlier input source/header pairs remain unchanged. No
+broad runtime matrix or aggregate cold replay is claimed. The roster's fifteen
+complete slot50 policies now have source: fourteen exact peers and Marisa's
+separately recorded nonexact placement residual. Continue another complete
+representative without repeating Marisa's neutral controls unchanged.

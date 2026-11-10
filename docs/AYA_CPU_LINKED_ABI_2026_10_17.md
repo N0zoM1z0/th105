@@ -105,11 +105,8 @@ No target metadata, shared header, compiler profile or accepted unit changes.
 The prior native root checks retain their earlier checkpoint scope; no new
 native/gameplay or aggregate cold replay is claimed for this probe-only change.
 
-Fresh focused dependency builds pass their existing canonical comparisons.
-Three new target-independent regression cases reject a missing switch
-destination, a same-named helper with a different receiver/cleanup, and an
-unattested runtime call. Local CI passes180 tests. Receipts are below
-`build/aya-cpu-ltcg-probes/{all,all-coff-deque,preserve-coff-deque}/`; summary
-reports use `build/aya-cpu-shape-*.json`. Private controls are below
-`.analysis/aya-cpu-linked-shape-20261017/`. Discarded private binaries are
-removed; source, commands and reports retain the experiment record.
+Fresh focused dependency builds pass their existing canonical comparisons. Three new
+target-independent regression cases reject a missing switch destination, a
+same-named helper with a different receiver/cleanup, and an unattested runtime call.
+Local CI passes180 tests. Discarded private binaries are removed;
+source, commands and reports retain the experiment record.

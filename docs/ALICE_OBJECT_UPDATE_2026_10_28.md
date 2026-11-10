@@ -64,13 +64,11 @@ Frame348, all28 direct-callee counts (424 calls), all18 table dimensions and all
 120/134. Stack homes, shared tails and floating-point scheduling remain open.
 No normalized comparison, partial case or structural count receives exact credit.
 
-Audit: `scripts/audit-alice-object-update.py`.
-Receipts: `build/frontier-4fcab0-20261028/{formal-build,full-audit,target-audit}.json`.
-Private preparation: `.analysis/frontier-4fcab0-20261028/`.
-Only source and mapping advance; matches.csv is unchanged. Dedicated aliases do
-not alter existing consumers. No shared ABI, compiler profile or accepted source
-changed, so unchanged accepted receipts remain incremental and no corpus rebuild
-was required. The focused replay and default repository CI gate this checkpoint.
+Audit: `scripts/audit-alice-object-update.py`. Only source and mapping advance;
+matches.csv is unchanged. Dedicated aliases do not alter existing consumers. No
+shared ABI, compiler profile or accepted source changed, so unchanged accepted
+receipts remain incremental and no corpus rebuild was required. The focused replay
+and default repository CI gate this checkpoint.
 
 ## Actions 853 and 999 landing comparisons, 2026-11-04
 
@@ -185,11 +183,10 @@ counts, the 18 switch-table dimensions and all 260 remap bytes. The candidate
 payload grows from 62,972 to 62,976 bytes against the native 63,248-byte extent,
 including its 62,278-byte callable body. It remains nonexact from +37.
 
-Evidence: `build/frontier-alice-orbit-rounding-20261109/`, with fresh before/after
-objects, full audits and `verification.json`. After payload SHA-256:
-`ae399452d72ecb330d62b1b543284c128a297cd746c014dcca82564919910e71`.
-Only `exact-first-alice-object-update` consumes this source; no ledger or
-pending input/source-pin changes are needed.
+After payload SHA-256:
+`ae399452d72ecb330d62b1b543284c128a297cd746c014dcca82564919910e71`. Only
+`exact-first-alice-object-update` consumes this source; no ledger or pending
+input/source-pin changes are needed.
 
 ## Ordered-negative orbit facing, 2026-11-09
 
@@ -211,8 +208,7 @@ angle calculations. Those calculations retain their integer multiplier, float
 parameter product, sum and stores; four constant relocation offsets move with
 the loads, while every relocation symbol and kind remains unchanged.
 
-Evidence: `build/frontier-alice-orbit-facing-20261109/`, including fresh before
-and after objects, complete audits, `instruction-diff.txt` and `verification.json`.
-After payload SHA-256: `c10fff5cbcc3d85df89f3d23fb84c9f74e461faae46a74d985e5bdad5059e78f`.
-Only `exact-first-alice-object-update` consumes this source. The root remains
-nonexact, with no ledger credit or changes to the pending input work.
+After payload SHA-256:
+`c10fff5cbcc3d85df89f3d23fb84c9f74e461faae46a74d985e5bdad5059e78f`. Only
+`exact-first-alice-object-update` consumes this source. The root remains nonexact,
+with no ledger credit or changes to the pending input work.

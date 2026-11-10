@@ -21,13 +21,12 @@ are introduced. The only consumer of BattleManagerStory.hpp is this TU;
 all five registered unit functions compare exact, including unchanged
 203/157/309-byte peers. The new authored increment is147 bytes.
 
-    scripts/repo-python scripts/build.py --unit cross-v106a-battle-manager-story-core --compare --json
+scripts/repo-python scripts/build.py --unit cross-v106a-battle-manager-story-core
+--compare --json
 
 Receipt: build/frontier-471590-20261028/formal-build.json.
 Origin rules were checked for both previously unknown roots before acceptance.
 No generated or library functions are credited.
 
 The independent typed story-owner trial for update471930 was byte-neutral:
-321/native323, first+67. Its retained source and exactness status are unchanged;
-private receipt build/frontier-471930-20261028/typed-owner.json records this
-negative result.
+321/native323, first+67.

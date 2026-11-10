@@ -34,15 +34,11 @@ for_each trial removed native checked-iterator diagnostics and was not selected.
 These are bounded whole-function controls, not credited fragments. Native frame
 alignment, checked-iterator retention and scalar allocation remain unrecovered.
 
-Selected unit: exact-first-audio-scheduler-thread.
-Selected complete candidate SHA256:
-`e2e19578441e5e424183b78eb0f38bea753271f63c8f78db2f4f0afcd1927e52`.
-First mismatch is the prologue at+0; candidate576 versus native591 is **nonexact**.
-Mapping existed already; source presence advances, matches.csv does not change.
-Focused receipt: build/frontier-419100-20261028/formal-build.json.
-Raw complete-boundary receipt: build/frontier-419100-20261028/boundary.json.
-No shared header, alias or compiler profile changed; no corpus rebuild is needed.
-
+Selected unit: exact-first-audio-scheduler-thread. Selected complete candidate
+SHA256: `e2e19578441e5e424183b78eb0f38bea753271f63c8f78db2f4f0afcd1927e52`. First
+mismatch is the prologue at+0; candidate576 versus native591 is **nonexact**.
+Mapping existed already; source presence advances, matches.csv does not change. No
+shared header, alias or compiler profile changed; no corpus rebuild is needed.
 
 2026-11-09 follow-up: precise arithmetic and floating-point environment access
 are now scoped in the source, preserving these semantics in the real global

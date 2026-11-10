@@ -45,10 +45,9 @@ moved, ABI changed or extra rounding store emitted. Under the same pinned
 VC8 SP1/default-FP configuration, these conversions recover all seven FIMULs.
 Original spelling and original TU/profile provenance remain unknown.
 
-Private same-source /Os, /fp:fast and RTM controls each emit zero FIMULs.
-They are unselected, unexecuted diagnostics; this is not a general exclusion
-of other compiler/TU contexts. Their recipes and receipts are below
-`build/reimu-x87-state/`; obsolete products have been removed.
+Private same-source /Os, /fp:fast and RTM controls each emit zero FIMULs. They are
+unselected, unexecuted diagnostics; this is not a general exclusion of other
+compiler/TU contexts.
 
 ## Complete source qualification
 
@@ -125,14 +124,6 @@ nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-call-sharing.py build/rei
 nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-root-stack.py build/reimu-ltcg/ordinary.obj --action 545 --action 546 --action 550 --action 551 --require-contracts
 ```
 
-Current private adapters/reports remain under `build/reimu-x87-state/`:
-`operand-windows.py`, `graphs.py`, `trace.py`, `native-affected.py`,
-`float-operand-windows.json`, `selected-state-report.json`,
-`float-qualification.json`, `native-float-operands.json`, partial smoke
-reports and cleanup/resource receipts. The native adapter runs with
-`python3 -B build/reimu-x87-state/native-affected.py build/reimu-ltcg/ordinary.obj`;
-input SHA256 is
-`56ff32069b186d73f428ec5d10a9cb63da019b06724c0324a28bf83cec3577ae`.
 Private files are ignored working evidence, not committed acceptance units.
 
 No IDA semantics, Ghidra process or database write was used for this unit.

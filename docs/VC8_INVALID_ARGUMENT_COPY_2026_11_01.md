@@ -40,7 +40,4 @@ fail: every root byte and the first/final bytes of every unique RTTI region.
 The full narrow origin rule passes before reclassifying the single review row.
 Generic thresholds and authored exact totals remain unchanged.
 
-Evidence: build/origin-anchors/vc8-invalid-copy.json and
-build/frontier-invalid-copy-20261101/. Provider evidence:
-build/origin-anchors/linked-logic-error/proof.json. Private exploratory scripts
-are under .analysis/frontier-invalid-copy-20261101/.
+Provider evidence: build/origin-anchors/linked-logic-error/proof.json.

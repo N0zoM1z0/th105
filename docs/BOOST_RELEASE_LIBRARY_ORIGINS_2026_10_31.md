@@ -77,9 +77,7 @@ checks pass.
 
 The new origin rule is boost-release-library-106a, backed by
 config/boost-release-library-origin-anchors.toml. The public canonical unit is
-boost-regex-release-library-origin. Reports and private controls are under
-build/frontier-boost-release-20261031/; the new rule's focused validation is
-also retained under build/frontier-boost-library-20261031/.
+boost-regex-release-library-origin.
 
 Excluded rises1658 to1708 and review576 to526. Authored exact1576 /448613 bytes,
 source1773, authored1793 and mapped1800 stay unchanged. Units759. No authored

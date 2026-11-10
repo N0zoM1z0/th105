@@ -25,7 +25,7 @@ The configured full-root comparison remains **nonexact at +0x22**, target `0F` /
 
 ## Verification and remaining unknowns
 
-The private proof `.analysis/aya-903-order-20261002/prove-sequence-order.py` verifies target PE identity, retained source/object hashes, target table bytes, relocated COFF table bytes, strict physical ordering, case 6 lengths/edges, and the four register differences. The prior case 4/5 proof was rerun on the configured object. Final reports use `build/aya-903-order-final-*20261002.json` and the configured build object `build/match-units/GptWeb_AyaObjectActionState.obj`.
+The prior case 4/5 proof was rerun on the configured object.
 
 The final object still has 903 at 1,726 bytes/372 instructions against target 1,697 bytes/364 instructions, and raw diagnostics 3/34 (entry/800/980). The target traversal covers all 4,630 instructions/19,522 bytes through seven switches; the main switch has 33 distinct destinations and zero splits. The 124/124 guard model, all 18 selector conversions, 826 postspawn and 861 owner/payload paths, two 641-value unsigned-Y paths, 450 scoped emission cases, RTTI byte-call widths, and 852 translated patterns were rerun against this object. Their scope is limited to the asserted intervals and models. No shared ABI/header/helper/compiler/object-partition or accepted-unit relocation contract changed.
 

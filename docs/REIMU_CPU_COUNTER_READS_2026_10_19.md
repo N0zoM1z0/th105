@@ -16,15 +16,14 @@ bytes, function, boundary, origin or source-present count are added.
 ## Observed target and compiler evidence
 
 The target remains original Japanese 1.06a, executable SHA256
-`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-The accepted callable `[48D390,49120F)` is15999 bytes, SHA256
-`3bd363994e140603ae0ec249ffd3a36b1ae0448e72a389e417c4cc7a6d113e2d`.
-Existing complete CFG/ABI/vtable evidence is unchanged. The direct read-only
-Ghidra run independently checked executable/entry/text/root identity and read
-back the typed15999-byte void ECX method. Nine primary DB files remain
-unchanged; no IDA semantic data, factory adapter, copied project or concurrent
-Ghidra process was used. New private receipts are in `build/reimu-cpu-shape/`
-and `.analysis/reimu-cpu-shape-20261019/`.
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`. The accepted
+callable `[48D390,49120F)` is15999 bytes, SHA256
+`3bd363994e140603ae0ec249ffd3a36b1ae0448e72a389e417c4cc7a6d113e2d`. Existing
+complete CFG/ABI/vtable evidence is unchanged. The direct read-only Ghidra run
+independently checked executable/entry/text/root identity and read back the
+typed15999-byte void ECX method. Nine primary DB files remain unchanged; no IDA
+semantic data, factory adapter, copied project or concurrent Ghidra process was
+used.
 
 At action300, target `48D6C3..48D6D4` loads the764 word and compares AX with10
 and90 using separate JL/JG guards. Action320 at `48E2AB..48E2BF` separately
@@ -58,7 +57,7 @@ changing the first mismatch from+12E to+97 does not measure the whole change.
 
 All controls use ordinary VC8 SP1 O2 compilation with unchanged GS/FP flags,
 headers, layout, unit and relocation bindings. Only the field-read source is
-selected. Private controls remain disposable below `build/reimu-cpu-shape/`:
+selected.
 
 | Source property | Callable prefix | COFF payload | Result |
 | --- | ---: | ---: | --- |
@@ -136,8 +135,7 @@ sites including the entry draw;46420 paired observations have no output
 differences. This agrees with the independent37/33 static policy0 closure,
 but does not prove a complete caller bijection or branch coverage.
 
-Final gates are `python3 scripts/validate-tracking.py --require-target`,
-local `python3 scripts/ci.py` and `git diff --check`. Only this source unit is
-affected; shared headers, ABI, flags, relocation ledgers and accepted exact
-units are unchanged. Detailed local reports remain under
-`build/reimu-cpu-shape/`; source-present and exact census values are unchanged.
+Final gates are `python3 scripts/validate-tracking.py --require-target`, local
+`python3 scripts/ci.py` and `git diff --check`. Only this source unit is affected;
+shared headers, ABI, flags, relocation ledgers and accepted exact units are
+unchanged.

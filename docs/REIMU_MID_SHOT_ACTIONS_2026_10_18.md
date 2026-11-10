@@ -62,14 +62,8 @@ python3 scripts/audit-reimu-mid-shot-actions.py build/reimu-mid-shots/ReimuActio
 ```
 
 VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default FP/no injected compiler environment,
-produces20258 staged text bytes. Object SHA256
-`c445eaf0aa9fd5d5f88e3043153d3333428905b00a2da38dea92ba83c4336f7d`;
-manual compiler/source/header/object receipt:
-`build/reimu-mid-shots/build-receipt.json`. The oracle separately pins its
-object/support inputs; it does not itself attest compilation provenance.
-
-**0/2217 differences**, report `build/reimu-mid-shots/native.json`, input SHA256
-`e05e410b282c59ae34a982de343a3c4cc5132c2c1d6b3b7f54e7b546556a024a`:
+produces20258 staged text bytes. The oracle separately pins its object/support
+inputs; it does not itself attest compilation provenance.
 
 |Cohort|Cases|
 |---|---:|
@@ -119,21 +113,18 @@ include directory. Rejected control source/objects are removed after review.
 
 ## Preservation, analysis and remaining work
 
-The six prior adapters are rebuilt and preserve every non-debug code/data
-byte and relocation offset/type/symbol/value/section identity; text sizes
-remain530,771,1562,4017,4409,11271. Receipt:
-`build/reimu-mid-shots/preserved-stages.json`. Old focused replays pass0/9,
+The six prior adapters are rebuilt and preserve every non-debug code/data byte and
+relocation offset/type/symbol/value/section identity; text sizes
+remain530,771,1562,4017,4409,11271. Old focused replays pass0/9,
 0/88,0/64,0/99,0/150,0/59. The changed monolithic method's earlier paths use
-the251-case integration cohort. Full historical matrices are not repeated.
-No accepted unit uses this private header, and no accepted source, compiler
-profile, relocation ledger or exact total changes. No cold aggregate claim.
+the251-case integration cohort. Full historical matrices are not repeated. No
+accepted unit uses this private header, and no accepted source, compiler profile,
+relocation ledger or exact total changes. No cold aggregate claim.
 
-The preceding direct Ghidra readback already attested all five entries and
-complete target identity/entry/text/root. This phase rechecks its successful
-log, nine unchanged primary DB file hashes, canonical body hashes and shared
-exit instructions. Receipt `build/reimu-mid-shots/analysis-reuse.json`; no new
-Ghidra process, database write or clone is needed. The wrong-target IDA
-preflight is rejected and supplies no semantics.
+The preceding direct Ghidra readback already attested all five entries and complete
+target identity/entry/text/root. This phase rechecks its successful log, nine
+unchanged primary DB file hashes, canonical body hashes and shared exit
+instructions. The wrong-target IDA preflight is rejected and supplies no semantics.
 
 Read-only animation, flat surface, zero wave/texture/event handles, inactive
 secondary-event cycle and masked PC53/PC64 still limit the proof. Original

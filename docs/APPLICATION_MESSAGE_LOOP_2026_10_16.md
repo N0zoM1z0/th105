@@ -45,9 +45,7 @@ python3 scripts/audit-candidate-boundaries.py 0x00408120 --json
 
 `src/platform/ApplicationMessageLoop.cpp` produces **177/177 canonical exact**
 over the complete callable and complete COFF section tail. The first source
-probe already matched after target-pinned relocation resolution. The formal
-report is `build/application-message-loop-formal.json`; all ten DIR32 fields
-and the one reset-helper REL32 field replay with zero differences. Compiler
+probe already matched after target-pinned relocation resolution. Compiler
 loop alignment supplies the target's one NOP naturally. No extra stack local,
 manual instruction, fake return or ABI adjustment is used.
 
@@ -57,13 +55,10 @@ checking unchanged earlier rules/rows and absence of any exclusion-rule overlap.
 Unchanged library fingerprints are preserved; no full exact-unit replay is run.
 The WinMain caller remains nonexact at its previously documented frame homes.
 
-Sequential direct Ghidra sessions independently attest executable SHA, image
-base, entry/external-entry marker, x86 Windows analysis identity and every
-mapped .text byte before saving the function, thiscall/void caller-view contract,
-ECX receiver and zero purge. A fresh read-only session verifies metadata and
-whole-body SHA. Scripts stay under
-`.analysis/application-message-loop-20261016/ghidra-scripts/`; logs stay under
-`build/application-message-loop-ghidra-*.log`. Each process uses768 MiB heap and
-two active processors. No failed IDA session or factory adapter is used for
-analysis. Original application type/TU spelling and unused receiver-prefix
-fields remain unknown; no complete class-size claim is made.
+Sequential direct Ghidra sessions independently attest executable SHA, image base,
+entry/external-entry marker, x86 Windows analysis identity and every mapped .text
+byte before saving the function, thiscall/void caller-view contract, ECX receiver
+and zero purge. A fresh read-only session verifies metadata and whole-body SHA. Each
+process uses768 MiB heap and two active processors. No failed IDA session or factory
+adapter is used for analysis. Original application type/TU spelling and unused
+receiver-prefix fields remain unknown; no complete class-size claim is made.

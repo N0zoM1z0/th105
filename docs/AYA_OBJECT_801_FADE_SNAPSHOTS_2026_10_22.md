@@ -101,7 +101,5 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-The configured root comparison is expected to report nonexact. `previous.obj`
-is the saved8466c73 object. Omit that argument when replaying selected code only.
-Frozen controls and reports remain under `build/aya-801-fade-20261022/`; private
-expanded diagnostics are in `.analysis/aya-801-fade-20261022/`.
+The configured root comparison is expected to report nonexact. `previous.obj` is the
+saved8466c73 object. Omit that argument when replaying selected code only.

@@ -209,10 +209,7 @@ cap, CPU0 and nice10. Its decompilation corroborates family structure only as
 a hypothesis. All nine primary database hashes remain unchanged; the alias is
 removed. No target bytes, databases or original vtables are patched.
 
-Build reports, raw packets, shape controls and runtime reports stay below
-`build/reimu-object-selector-families-20261020`; private recipes/Ghidra scripts
-stay below `.analysis/reimu-object-selector-families-20261020`. No generated
-object, report, executable or database is committed.
+No generated object, report, executable or database is committed.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-update-target.py --json

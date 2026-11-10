@@ -122,12 +122,10 @@ python3 scripts/audit-iku-call-sharing.py --object build/match-units/GptWeb_IkuA
 python3 scripts/audit-giant-action-owners.py iku-vslot28 build/match-units/GptWeb_IkuActionState.obj --unit gpt-web-iku-action-state --json
 ```
 
-The strict comparison intentionally exits 1. Current local evidence is under
-`build/iku-landing-join/`; the small control patch/readback script remains
-under `.analysis/iku-landing-join-20261017/`. Older effect, sequence-exit,
-full-link and MT-visibility/native results retain their earlier source hash
-in their dated notes. No broad native matrix, accepted-unit or cold aggregate
-replay was needed; shared interfaces/profiles/relocations stay unchanged.
+The strict comparison intentionally exits 1. Older effect, sequence-exit, full-link
+and MT-visibility/native results retain their earlier source hash in their dated
+notes. No broad native matrix, accepted-unit or cold aggregate replay was needed;
+shared interfaces/profiles/relocations stay unchanged.
 
 Remaining leads are the effect argument's partial outgoing-stack join,
 730's duplicated facing suffix and the remaining advancement/event sharing.

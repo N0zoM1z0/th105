@@ -210,16 +210,10 @@ HIGHLOW entries agree exactly with the DIR32 inventory. Every direct edge
 reaches its named real provider; literal bytes/widths and local pointer roles
 are checked before canonicalization.
 
-The resulting canonical payload is again65298d36:14 differing callable
-bytes, zero differing metadata bytes, and the same10h local frame. This
-particular closed LTCG context therefore does not explain the remaining
-register allocation. It neither proves an original TU nor excludes another
-faithful context. The producer/auditor and receipts are under
-`build/reimu-object-entry-abi/`; final link receipt SHA256 is
-`4f3cb994c934308525fb80ae065700280a51bf6eac0c76e8e937bab4ae87c6a9`.
-Reproduction of this diagnostic observation is
-`python3 -B build/reimu-object-entry-abi/link-context.py` followed by
-`python3 -B build/reimu-object-entry-abi/audit-link.py`. It is not an accepted
+The resulting canonical payload is again65298d36:14 differing callable bytes, zero
+differing metadata bytes, and the same10h local frame. This particular closed LTCG
+context therefore does not explain the remaining register allocation. It neither
+proves an original TU nor excludes another faithful context. It is not an accepted
 linked-unit command or whole-root execution proof.
 
 ## Independently observed inheritance and bounded controls
@@ -271,12 +265,9 @@ All following controls remain unselected and phase-scoped:
   inner cases preserve the selected fulla72cf4f1 payload. Neither is selected.
 
 The384MiB/CPU0 Ghidra hierarchy session leaves all nine primary DB file hashes
-unchanged; its project alias is removed. It writes no durable metadata and
-produces no new decompiler/native proof. Raw packets, complete trial sources,
-comparison receipts and the checked hierarchy script remain under
-`build/reimu-object-entry-lifetimes/` and
-`.analysis/reimu-object-entry-lifetimes-20261019/`. No shared header, helper
-implementation, compiler profile or relocation binding changes.
+unchanged; its project alias is removed. It writes no durable metadata and produces
+no new decompiler/native proof. No shared header, helper implementation, compiler
+profile or relocation binding changes.
 
 ## Joined-source register and argument controls
 
@@ -317,11 +308,10 @@ same27-byte-difference payload as the two extra angle joins alone. These
 controls do not close the remaining906/999 allocation. Keep the selected
 41/43 source and the original full-equality gate.
 
-Sources, commands/tool pins, objects, canonical exports and failure logs remain
-under `build/reimu-object-entry-registers/`. All VC8 builds run serially on
-CPU0/nice10. Target PE identity and tracking pass; IDA preflight again reports
-the wrong10350095 database and no IDA semantics are used. No new analysis
-DB, native execution proof, exact credit or cold aggregate claim is produced.
+All VC8 builds run serially on CPU0/nice10. Target PE identity and tracking pass;
+IDA preflight again reports the wrong10350095 database and no IDA semantics are
+used. No new analysis DB, native execution proof, exact credit or cold aggregate
+claim is produced.
 
 ## Current strict result and open questions
 
@@ -374,25 +364,19 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-The strict root comparison intentionally returns nonzero. Final packets,
-the initial and corrected source snapshots, canonical exports and rejected
-environment control are under `build/reimu-object-entry/`. The roster shared
-callee ranking was rerun before this family analysis. Focused accepted-helper
-replays are separate from this nonexact root and from any cold aggregate claim.
-All23 accepted functions across seven focused helper units replay exact; the
-receipt is `build/reimu-object-entry/accepted-helper-replays.json`. The
-effect unit also contains the already nonaccepted5F9350 probe, which remains
-nonexact. Its seven accepted members all pass; the entire mixed probe unit
-is not reported as a passing exact unit.
+The strict root comparison intentionally returns nonzero. The roster shared callee
+ranking was rerun before this family analysis. Focused accepted-helper replays are
+separate from this nonexact root and from any cold aggregate claim. The effect unit
+also contains the already nonaccepted5F9350 probe, which remains nonexact. Its seven
+accepted members all pass; the entire mixed probe unit is not reported as a passing
+exact unit.
 
 Direct read-only Ghidra uses384MiB heap and CPU0/nice10. Before semantics it
 independently verifies file/imported SHA256,400000 base,68B9D2 entry,
-x86LE32/windows language/compiler, full mapped .text and root bytes. Its
-temporary function metadata is read back and discarded; all nine primary
-database file hashes agree afterward and its temporary project alias is
-removed. The decompiler output in
-`.analysis/reimu-object-entry-20261019/` remains a hypothesis. In particular,
-it removes4A26F6's impossible negative unsigned-remainder branch and follows
-the980 tail outside this root. Raw ownership retains the branch bytes and
-models980 as a real helper transfer. Required IDA preflight rejects the wrong
-open executable; no IDA semantics, factory adapter or target-byte patch is used.
+x86LE32/windows language/compiler, full mapped .text and root bytes. Its temporary
+function metadata is read back and discarded; all nine primary database file hashes
+agree afterward and its temporary project alias is removed. In particular, it
+removes4A26F6's impossible negative unsigned-remainder branch and follows the980
+tail outside this root. Raw ownership retains the branch bytes and models980 as a
+real helper transfer. Required IDA preflight rejects the wrong open executable; no
+IDA semantics, factory adapter or target-byte patch is used.

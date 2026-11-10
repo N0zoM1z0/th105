@@ -47,11 +47,9 @@ CNumber's zero-offset IColor base and four method roles pass. Namespace-specific
 outer RTTI and full-program linkage are not asserted identical.
 
 Scoped scalar origins (2 / 121 bytes) and record cleanup origins (2 / 23 bytes)
-pass. No origin disposition or count changes. Private reproducibility scripts
-and receipts are under .analysis/frontier-number-real-owner-20261102/ and
-build/frontier-number-real-owner-20261102/. Final CI passed all 962 tests
-(97.791 seconds), tracking, generated progress and whitespace checks. Both diff
-checks passed. No private evidence or target binary is committed.
+pass. No origin disposition or count changes. Final CI passed all 962 tests (97.791
+seconds), tracking, generated progress and whitespace checks. Both diff checks
+passed. No private evidence or target binary is committed.
 
 Totals: 1427 exact / 443604 bytes, 1637 source-present, 1656 authored,
 1826 mapped, 2074 excluded, 297 review and 813 units, all unchanged.

@@ -142,9 +142,6 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Frozen source/header/objects, old-unit recipe, full native inspection, markup
-facts/prototype and final receipts are under `build/font-native-class-20261021/`;
-private recipes are under `.analysis/font-native-class-20261021/`. Exact totals
-are unchanged. The SVG's authored denominator grows by newly classified1744
-markup bytes, so its provisional ratio changes10.91%->10.90% without any loss
-of exact bytes. Origin review advances by one candidate.
+Exact totals are unchanged. The SVG's authored denominator grows by newly
+classified1744 markup bytes, so its provisional ratio changes10.91%->10.90% without
+any loss of exact bytes. Origin review advances by one candidate.

@@ -120,12 +120,10 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-Comparison and the intentional control exit1. Reports are under
-`build/iku-advance-sharing/`; private source/Ghidra recipes are under
-`.analysis/iku-advance-sharing-20261017/`. Direct Ghidra independently attests
-import/file identity, entry, full mapped .text, root, all13 dependency spans,
-the three vtable words and the decisive AL/callback instructions. Bounded
-disassembly changes were discarded in one read-only768MiB/two-CPU clone;
-all nine primary files are hash-unchanged. The clone and temporary path alias
-were removed. Superseded controls/objects/caches are disposable. No C++/shared
+Comparison and the intentional control exit1. Direct Ghidra independently attests
+import/file identity, entry, full mapped .text, root, all13 dependency spans, the
+three vtable words and the decisive AL/callback instructions. Bounded disassembly
+changes were discarded in one read-only768MiB/two-CPU clone; all nine primary files
+are hash-unchanged. The clone and temporary path alias were removed. Superseded
+controls/objects/caches are disposable. No C++/shared
 header/layout/profile/relocation, exact ledger or aggregate replay changed.

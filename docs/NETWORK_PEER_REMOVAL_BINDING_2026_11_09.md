@@ -28,8 +28,6 @@ aggregate requires the root-relative `network/NetworkWinsockPeerRemoval.hpp`
 include; a source-local include failed to resolve in that aggregate and was
 corrected before the successful replay.
 
-Receipts are in `build/frontier-peer-removal-binding-20261109/`; private scope
-and before/after comparisons are in the matching `.analysis/` directory.
-The transport still has separate prefix views; joining its entire class
-requires the unresolved member and input closure. No exact ledger or count
-changes, and no pending input-migration file is included in this checkpoint.
+The transport still has separate prefix views; joining its entire class requires the
+unresolved member and input closure. No exact ledger or count changes, and no
+pending input-migration file is included in this checkpoint.

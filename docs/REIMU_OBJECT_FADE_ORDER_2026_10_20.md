@@ -176,11 +176,9 @@ while the accepted66-byte helper remains exact.
 
 ## Receipts and next work
 
-Receipts/controls remain under `build/reimu-object-fade-order-20261020`,
-private recipes in the matching `.analysis` scope. All nine primary
-database hashes remain unchanged; no Ghidra process or metadata write is used.
-IDA's wrong executable supplies no semantics. No unrelated/aggregate cold
-replay or new authored-byte percentage is claimed.
+All nine primary database hashes remain unchanged; no Ghidra process or metadata
+write is used. IDA's wrong executable supplies no semantics. No unrelated/aggregate
+cold replay or new authored-byte percentage is claimed.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json

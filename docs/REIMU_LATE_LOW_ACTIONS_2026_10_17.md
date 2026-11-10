@@ -109,13 +109,11 @@ python3 scripts/audit-reimu-late-low-actions.py build/reimu-late-low/ReimuAction
 
 Pinned VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default FP, no injected compiler
 environment gives4409 staging text bytes. CRLF source SHA256 is
-`70aa4459a84986dbcf1777e54f5072cf1332382435df6c7a222fbdf202870ac1`,
-header SHA256
-`b6edbe0548ccf2eeda987c5a0bc1329f339f4970469201d8e2f1a224254daa6a`,
-and object SHA256
-`3d4f11e1d528b1ecfc7e411334cb9468b7e32bf7977e310b4be5c4ea11d03ee3`.
-Manual build receipt: `build/reimu-late-low/build-receipt.json`. The execution
-oracle attests its object separately and does not itself attest compilation.
+`70aa4459a84986dbcf1777e54f5072cf1332382435df6c7a222fbdf202870ac1`, header SHA256
+`b6edbe0548ccf2eeda987c5a0bc1329f339f4970469201d8e2f1a224254daa6a`, and object
+SHA256 `3d4f11e1d528b1ecfc7e411334cb9468b7e32bf7977e310b4be5c4ea11d03ee3`. The
+execution oracle attests its object separately and does not itself attest
+compilation.
 
 **0/3414 differences**, input SHA256
 `da95a3f2424b34380b20d14bcddfe605c03d9faf958b0cb873e5ffdcb5485d3b`:
@@ -174,12 +172,11 @@ cases. Wrong objects are removed after retaining sources, hashes and receipts.
 
 Fresh rebuilds of all four previous staging objects have byte-identical text,
 non-debug code/data sections and every relocation's offset/type/symbol/value/
-section identity. Debug/file/timestamp metadata is excluded from this
-preservation check, not from any canonical target comparison. Current smoke
-replays pass0/9 entry,0/88 low,0/64 recovery and0/99 movement/attack. Full old
-matrices are not redundantly rerun, and no affected accepted unit exists:
-the shared header is used only by these five unaccepted staged sources.
-The receipt is `build/reimu-late-low/preserved-stages.json`.
+section identity. Debug/file/timestamp metadata is excluded from this preservation
+check, not from any canonical target comparison. Current smoke replays pass0/9
+entry,0/88 low,0/64 recovery and0/99 movement/attack. Full old matrices are not
+redundantly rerun, and no affected accepted unit exists: the shared header is used
+only by these five unaccepted staged sources.
 
 IDA preflight rejects the unrelated loaded image; it supplies no semantics.
 One direct Ghidra clone attested the executable SHA256, entry68B9D2,

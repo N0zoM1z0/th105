@@ -115,8 +115,7 @@ not root admission. No image or private control is executed.
 
 ## Reproduction and next work
 
-Private recipes, receipts, full membership regressions and payload hashes are
-under `build/reimu-landing-memberships/`. The representative object command is:
+The representative object command is:
 
 ```bash
 nice -n 10 taskset -c 0 python3 -B build/reimu-landing-memberships/two-common-exits.py

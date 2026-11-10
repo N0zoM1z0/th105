@@ -96,13 +96,9 @@ python3 scripts/build.py --unit cross-v106a-network-winsock-accept --json
 python3 scripts/compare-unit-object.py cross-v106a-network-winsock-accept build/match-units/CrossV106a_NetworkWinsockAccept.obj --json
 ```
 
-The strict comparison intentionally returns1 for223/223 nonexact. Build
-provenance is independently checked against current source/object hashes
-and the unit-input digest. Reports are
-`build/network-udp-accept-{boundary,facts,build,formal}.json`; resolved-link
-commands, source hash, tool pins and data bindings are in
-`build/network-udp-accept-linked-probe.diagnosis.json`. Private controls remain
-under `.analysis/network-udp-accept-20261016/`.
+The strict comparison intentionally returns1 for223/223 nonexact. Build provenance
+is independently checked against current source/object hashes and the unit-input
+digest.
 
 The origin rule pins the main hash, receive-loop edge, lock IAT fields,
 EH-handler operand and FuncInfo fields. The dedicated DIR32 EH mapping
@@ -117,8 +113,7 @@ attests executable/program SHA, base, entry marker, x86 Windows identity and
 all mapped .text bytes. Supported owner/address/packed-header types, the
 complete223-byte body, void result and physical ECX/EDX/stack parameter
 storage are saved and independently checked in a fresh read-only invocation.
-Decompiler output is retained as a hypothesis. Logs are
-`build/network-udp-accept-ghidra-{save,readback}.log`.
+Decompiler output is retained as a hypothesis.
 
 ## November 1: actual seven-TU caller context is also nonexact
 

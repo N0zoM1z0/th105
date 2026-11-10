@@ -90,7 +90,5 @@ COFF contents and relocations are identical. The InfoEffect object differs
 only by removing seven obsolete 7-byte address-accessor COMDATs and their
 compiler debug records; all remaining contents and relocations are identical.
 
-Reports and full section dumps are in
-`build/frontier-effect-spawn-state-20261110/{before,after}/`, with the passing
-local CI result in `ci.log`. Only these two units consume the changed inputs.
-This preserves local exactness and adds no new Factory acceptance.
+Only these two units consume the changed inputs. This preserves local exactness and
+adds no new Factory acceptance.

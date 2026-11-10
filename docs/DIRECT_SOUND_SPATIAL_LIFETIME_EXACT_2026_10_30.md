@@ -41,9 +41,8 @@ Only the changed linked context is freshly built. Both the new spatial139 and
 existing stream220 destructor, with all of its three cleanup states, remain
 canonical exact in that image.
 
-    scripts/repo-python scripts/build.py --unit exact-first-bgm-stream-lifetime --json
+scripts/repo-python scripts/build.py --unit exact-first-bgm-stream-lifetime --json
     scripts/repo-python scripts/compare-linked-unit.py exact-first-bgm-stream-lifetime --address 0x00402880 --address 0x004180F0 --json
 
-Receipts: build/frontier-spatial-buffer-lifetime-20261030/public-build.json
-and public-compare.json. Target-independent CI passes142 tests; no all-unit
-cold rebuild or end-to-end audio claim is made.
+Target-independent CI passes142 tests; no all-unit cold rebuild or end-to-end audio
+claim is made.

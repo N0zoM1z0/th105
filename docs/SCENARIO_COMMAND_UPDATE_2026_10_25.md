@@ -122,8 +122,7 @@ scripts/repo-python scripts/compare-function.py 0x0068B4EE \
 ```
 
 The active runtime codepage is not established here. No locale behavior matrix
-or whole-interpreter runtime equivalence is claimed. Receipts use the
-`mbsrchr-*` prefix, including the corrected complete build/comparison.
+or whole-interpreter runtime equivalence is claimed.
 
 ## Entry ownership and real-provider control,2026-10-25
 

@@ -53,17 +53,11 @@ python3 scripts/audit-reimu-low-dispatch.py build/reimu-low-dispatch/ReimuAction
 ```
 
 Pinned VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default FP, with no injected compiler
-environment produces11271 staging text bytes. This is a partial method's
-code size, not a comparison against or replacement for the81550-byte root.
-CRLF source SHA256 is
-`0c6537cd5a1940b7d8c108927feb8f9705974b93d9109e35cb61158bbd95b03d`,
-header SHA256
-`a4b9aaa5a8a90e8ddeb6b64ae6f3b7c9ef39d70345bac902bc359af75f7778b1`,
-and object SHA256
-`8235f93e49ffb9ac1e02462337b857d7142125df2029e3d8e057ac0fdf75f698`.
-The manual compiler/source/header/object receipt is
-`build/reimu-low-dispatch/build-receipt.json`; the native oracle separately
-attests its object input and does not itself attest compilation.
+environment produces11271 staging text bytes. This is a partial method's code size,
+not a comparison against or replacement for the81550-byte root. CRLF source SHA256
+is `0c6537cd5a1940b7d8c108927feb8f9705974b93d9109e35cb61158bbd95b03d`, header SHA256
+`a4b9aaa5a8a90e8ddeb6b64ae6f3b7c9ef39d70345bac902bc359af75f7778b1`, and object
+SHA256 `8235f93e49ffb9ac1e02462337b857d7142125df2029e3d8e057ac0fdf75f698`.
 
 **0/3122 differences**, input SHA256
 `a03943b61eda8569c5444cb8ac56c85fb08c674711934a9333e1692d5c5df613`:
@@ -115,12 +109,11 @@ are genuine compiled wrong behaviors, not fabricated helper results.
 
 ## Preservation and resource context
 
-All five old adapters are freshly rebuilt after extraction. Their text,
-non-debug code/data sections and every relocation's offset/type/symbol/value/
-section identity are byte-identical to the previous checkpoint. Their text
-sizes remain530,771,1562,4017,4409. Debug/file/timestamp metadata is excluded
-only from this preservation check; canonical acceptance rules are unchanged.
-The receipt is `build/reimu-low-dispatch/preserved-stages.json`.
+All five old adapters are freshly rebuilt after extraction. Their text, non-debug
+code/data sections and every relocation's offset/type/symbol/value/ section identity
+are byte-identical to the previous checkpoint. Their text sizes
+remain530,771,1562,4017,4409. Debug/file/timestamp metadata is excluded only from
+this preservation check; canonical acceptance rules are unchanged.
 
 Current focused old-stage replays pass0/9 entry,0/88 low,0/64 recovery,
 0/99 movement/attack and0/150 late-low. Their full historical matrices are

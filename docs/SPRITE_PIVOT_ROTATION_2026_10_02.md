@@ -28,8 +28,6 @@ The fresh formal command is:
 python3 scripts/build.py --unit cross-v106a-effect-sprite-transforms --compare --json
 ```
 
-`build/sprite-rotate-formal-exact.json` reports `result=ok` and **all eleven
-functions exact**, including the ten pre-existing transform functions.
 All six REL32 lookup fields replay through decorated `double(float)`
 namespace-qualified symbols in `config/match-units.toml`; no DIR32 fields
 are present in this callable. The rotation is now in `matches.csv` and
@@ -147,11 +145,7 @@ python3 scripts/compare-function.py 0x00407680 \
 
 At the earlier checkpoint, the last command exited 1 for the byte mismatch,
 with all six REL32 fields resolved. It now exits 0. The unit has since added
-the exact rotation to its ten previously accepted transform functions. Private reports are
-`build/sprite-rotate-corrected-unit.json`,
-`build/sprite-rotate-corrected-compare.json`,
-`build/sprite-rotate-differences.json` and
-`build/sprite-rotate-ghidra-bounded.log`.
+the exact rotation to its ten previously accepted transform functions.
 
 ## Tested hypotheses and remaining work
 

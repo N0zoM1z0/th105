@@ -114,10 +114,9 @@ remain unresolved; this is not global semantic closure.
 | Change duplicate index carrier to float | 25/98, loses low11; metadata `+0x92B8`. | Not retained. |
 | Remove duplicate index carrier | 26/98, metadata `+0x92B0`; target loop-test template restored. | Retained through configured rebuild. |
 
-Private probes are below `.analysis/youmu-call-topology-20261002/` and
-`build/youmu-call-topology-20261002/`. Existing-object comparisons are
-diagnostic with unverified build provenance. No shared type, accepted helper,
-compiler flag, relocation mapping or object partition changes.
+Existing-object comparisons are diagnostic with unverified build provenance. No
+shared type, accepted helper, compiler flag, relocation mapping or object partition
+changes.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-youmu-vslot28-full-root --compare --json
@@ -126,12 +125,9 @@ python3 scripts/audit-giant-action-owners.py youmu-vslot28 \
   --unit gpt-web-youmu-vslot28-full-root --json
 ```
 
-Fresh configured reports: `build/youmu-action602-final-20261002.json` and
-`build/youmu-action602-final-owners-20261002.json`. Private call classifier:
-`.analysis/youmu-call-topology-20261002/call-packets.py`; report
-`build/youmu-action602-final-calls-20261002.json`. Its linear predecessor
-slot classification is a diagnostic; the accepted target edges and the
-action-203 shared path are separately reconciled above.
+Its linear predecessor slot
+classification is a diagnostic; the accepted target edges and the action-203 shared
+path are separately reconciled above.
 
 The explicit-object guard and stack analyses described in
 [the preceding float-carrier checkpoint](YOUMU_FLOAT_CARRIERS_2026_10_02.md)

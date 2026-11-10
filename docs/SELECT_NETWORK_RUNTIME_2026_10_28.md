@@ -1,10 +1,9 @@
 # Select network entry and client update
 
 Canonical exact:4264B0,205 bytes;426580,313 bytes. New authored total518 bytes.
-Receipt: build/frontier-4264b0-20261028/formal-build.json.
-Native CFG:69/69 and122/122 decoded instructions reachable, respectively,
-including executed loop-alignment instructions and complete return paths.
-Receipt: build/frontier-4264b0-20261028/boundary.json.
+Receipt: build/frontier-4264b0-20261028/formal-build.json. Native CFG:69/69
+and122/122 decoded instructions reachable, respectively, including executed
+loop-alignment instructions and complete return paths.
 
 Current RTTI evidence:
 - Table6C04AC, COL6D6FD8, type descriptor6E6038 names CSelectSV.

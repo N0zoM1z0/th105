@@ -128,10 +128,7 @@ python3 scripts/probe-iku-mt-preservation.py build/iku-action-ltcg/provider-visi
 ```
 
 The final command intentionally returns 1. These are diagnostic visibility
-builds, not canonical full-root comparators. Local reports are
-`build/iku-mt-boundary-public-{noinline,native,control}.json` and
-`build/iku-mt-boundary-static-facts.json`; generated artifacts stay untracked.
-The ordinary visibility context remains `e3b0c44298fc1c14`.
+builds, not canonical full-root comparators. The ordinary visibility context remains `e3b0c44298fc1c14`.
 
 Retain ordinary MT opacity for the canonical source while investigating
 the shared effect ST0 join, landing-tail ownership and action 730's extra

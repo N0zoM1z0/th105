@@ -18,10 +18,6 @@ its17 disassembly lines and nonempty decompilation work, as do callers/callees.
 The byte-read fallback followed failed global-value queries for the code probe.
 
 Private responses and comparison:
-- build/factory-ida-preflight-20261029/operations.json
-- build/factory-ida-preflight-20261029/samples.json
-- build/factory-ida-preflight-20261029/comparison.json
-- build/factory-ida-preflight-20261029/semantic.json
 
 The legacy repository bridge still fails before connecting because its Python
 runtime lacks mcp1.26.0. The Factory-native provider is a separate session;

@@ -44,7 +44,4 @@ stubs. All 36 real corruption controls fail: every byte of both leaves, four
 selected table fields and each independent witness body. The full narrow
 origin rule passes before the two review rows are reclassified.
 
-Evidence: build/origin-anchors/boost-matcher-leaves.json and
-build/frontier-matcher-leaves-20261101/. Private exploratory and mutation
-scripts are under .analysis/frontier-matcher-leaves-20261101/.
 Universal false-return or similar three/five-byte stubs remain unaccepted.

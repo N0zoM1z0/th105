@@ -136,10 +136,9 @@ The earlier PIC/unreachable-block warnings and the eight root-local virtual
 tail warnings are gone. A warning at helper4351F8 remains outside this root;
 its separate indirect behavior is not qualified by this packet.
 
-Recipes/working data are under `.analysis/common-fighter-20261016/`. Reports
-use `build/fighter-common-20261016-`: final-build/formal/owners, virtual-facts,
-indirect-tails, RTM controls, and Ghidra save/readback logs. The canonical
-root object stays in its configured match-unit path. Reproduce the main checks:
+The
+canonical root object stays in its configured match-unit path. Reproduce the main
+checks:
 
 ```bash
 python3 scripts/build.py --unit gpt-web-fighter-common-action-state --json

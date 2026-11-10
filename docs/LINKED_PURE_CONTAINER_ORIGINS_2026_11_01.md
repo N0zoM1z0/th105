@@ -67,17 +67,15 @@ call rejection and omitted/trailing code. Existing validators are not weakened.
 
 Each command rebuilds its normal unit and validates only that origin group:
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_generated_origins.py vc8-linked-pure-pointer-fill-106a
+taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_generated_origins.py vc8-linked-pure-pointer-fill-106a
     taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_generated_origins.py vc8-linked-pure-byte-fill-106a
     taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_generated_origins.py vc8-linked-pure-package-tree-106a
     taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_generated_origins.py vc8-linked-pure-network-tree-106a
 
 Reports under build/origin-anchors/*-linked.json retain the target, anchor,
 validator, image, MAP and build-receipt hashes, whole-root exact receipts and
-whole-helper facts. Initial discovery is separate under
-build/frontier-linked-review-discovery-20261101; the unmasked full-inventory
-census and tests are under build/frontier-linked-library-pure-20261101.
-No generated image executes; all native jobs are serial CPU0/nice10.
+whole-helper facts. No generated image executes; all native jobs are serial
+CPU0/nice10.
 
 Only exclusions change:1798 compiler/library exclusions,426 review. Authored
 exact1583/449354 bytes, source1783, authored1803, mapped1810 and765 units stay.

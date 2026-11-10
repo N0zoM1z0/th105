@@ -118,13 +118,10 @@ taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-907-bounce.py \
   --output build/reimu-object-907-bounce.json
 ```
 
-Receipts are under `build/reimu-object-call-ret-context-20261021/`, including
-the formal baseline, fresh target census, facts-and-controls, provider66/66
-comparison and four final audit runs. Recipes are in the matching `.analysis/`
-directory. All four final matrices ran serially on CPU0/nice10 in33.65 seconds,
-peak RSS137516 KiB. Three unselected source/object/native/large-report sets
-were archived with per-file SHA256 round-trip checks:2417222 ->305663 bytes.
-The baseline, summaries, native execution and provider receipts stay loose.
+All four final matrices ran serially on CPU0/nice10 in33.65 seconds, peak RSS137516
+KiB. Three unselected source/object/native/large-report sets were archived with
+per-file SHA256 round-trip checks:2417222 ->305663 bytes. The baseline, summaries,
+native execution and provider receipts stay loose.
 
 Only this audit and evidence documents change. No shared header, compiler
 profile, game source, relocation/match/origin ledger or ownership record is

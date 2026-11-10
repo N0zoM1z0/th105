@@ -160,9 +160,7 @@ taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-808-buffer.py build/r
 python3 -m unittest discover -s tests -p 'test_reimu_object*py'
 ```
 
-Recipes remain below `.analysis/reimu-object-projectiles-20261020/`; fresh
-target/positive/control/Ghidra outputs stay below its build counterpart. Builds
-are serial and temporary products remain small. No implementation/matches row,
-match unit or exact credit is added. Next recover810/811/812 and their shared
-exits, then continue the other28 concrete actions. The separate Fighter478FA0
-and Object-entry4A1CE0 checkpoints remain unchanged.
+Builds are serial and temporary products remain small. No implementation/matches
+row, match unit or exact credit is added. Next recover810/811/812 and their shared
+exits, then continue the other28 concrete actions. The separate Fighter478FA0 and
+Object-entry4A1CE0 checkpoints remain unchanged.

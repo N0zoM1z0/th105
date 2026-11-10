@@ -209,14 +209,11 @@ All nine primary DB hashes remain unchanged and its alias is removed.
 Decompiler local names/array sizes remain hypotheses; push-adjusted raw ESP
 addresses resolve the actual buffer identities above.
 
-Generated reports/objects/controls stay below
-`build/reimu-object-901-tails-20261020`; private scripts and Ghidra work stay
-below `.analysis/reimu-object-901-tails-20261020`. No generated artifact,
-executable, database or compiler install is committed.
+No generated artifact, executable, database or compiler install is committed.
 Redundant unselected full-root owner diagnostics are reduced to901 plus their
-root/hash metadata, and redundant canonical byte copies are removed. Source,
-COFF and regeneration recipes remain; full baseline/selected/sharing-control
-diagnostics are retained. This reduces the new build scope from11.1 to6.3MiB.
+root/hash metadata, and redundant canonical byte copies are removed. Source, COFF
+and regeneration recipes remain; full baseline/selected/sharing-control diagnostics
+are retained. This reduces the new build scope from11.1 to6.3MiB.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-update-target.py --json

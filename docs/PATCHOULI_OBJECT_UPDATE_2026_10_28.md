@@ -77,12 +77,10 @@ native82 and differing packet stack homes, control-tail sharing, expression
 lifetimes and instruction scheduling remain. These agreements are diagnostics,
 not an exactness percentage or acceptance.
 
-Isolated unit: `exact-first-patchouli-object-update`.
-Audit: `scripts/audit-patchouli-object-update.py`.
-Receipts: `build/frontier-520890-20261028/{formal-build,full-audit,target-audit}.json`.
-Private source preparation and raw navigation: `.analysis/frontier-520890-20261028/`.
-Only source/mapping ledgers advance; `matches.csv` is unchanged. Existing accepted
-units keep their prior receipts because no shared binding/profile/source changed.
+Isolated unit: `exact-first-patchouli-object-update`. Audit:
+`scripts/audit-patchouli-object-update.py`. Only source/mapping ledgers advance;
+`matches.csv` is unchanged. Existing accepted units keep their prior receipts
+because no shared binding/profile/source changed.
 
 ## Action 850 continuation gate, 2026-11-04
 
@@ -210,7 +208,7 @@ formal type is not established by this observation.
 The focused VC8 candidate now forms +1/-1 before the call at object offsets
 7435..7457. The complete native callable remains nonexact from +37; candidate
 section tail is 51444 bytes versus the 50649-byte callable. This adds no exact
-credit. Receipt: `build/frontier-55d850-20261027/patchouli854-direction-20261105.json`.
+credit.
 
 ## Action 831 speed comparison (2026-11-06)
 

@@ -28,12 +28,9 @@ including the actual CTile cleanup call to shared physical address 0x40AD50.
 That shared address does not uniquely identify a nominal cleanup class.
 Actual CTile four-slot table 0x6C0718 and 247 unique RTTI bytes also match.
 
-Private scripts and receipts are under
-.analysis/frontier-practice-real-tile-20261102/ and
-build/frontier-practice-real-tile-20261102/, including probe, replay, full-eh,
-owner-proof and fresh baseline-neighbors evidence. Default CI passed all 962
-tests (90.674 seconds), tracking, generated progress and whitespace checks.
-Both diff checks passed. No target binary or private report is committed.
+Default CI passed all 962 tests (90.674 seconds), tracking, generated progress and
+whitespace checks. Both diff checks passed. No target binary or private report is
+committed.
 
 Totals unchanged: 1427 exact / 443604 bytes, 1637 source-present, 1656 authored,
 1826 mapped, 2074 excluded, 297 review and 813 units.

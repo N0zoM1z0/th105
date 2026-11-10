@@ -30,7 +30,6 @@ objects retain every section byte; only three call relocation symbol names
 and the pointer accessor's return-type debug symbol change. The three binding
 entries resolve those real declarations to the same native addresses.
 
-Evidence is in `build/frontier-battle-pair-owner-20261110/{before,after}/` and
-its passing `ci.log`. The original input migration and baseline edits remain
-separate and are not included in the commit. This preserves local exactness;
-it adds no Factory acceptance or authored-byte credit.
+The original input migration and baseline edits remain separate and are not included
+in the commit. This preserves local exactness; it adds no Factory acceptance or
+authored-byte credit.

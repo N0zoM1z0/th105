@@ -36,10 +36,9 @@ is now source-present and authored, but contributes zero exact bytes.
 Reproduce with:
 scripts/repo-python scripts/build.py --unit exact-first-scenario-list-fade --compare --json
 
-Source:src/battle/ScenarioListFadeUpdate.cpp.
-Receipt:build/frontier-scenario-list-update-20261029/formal.json.
-No shared header, existing relocation or accepted consumer changes. Default CI
-and progress regeneration validate this incremental selection, not a cold build.
+Source:src/battle/ScenarioListFadeUpdate.cpp. No shared header, existing relocation
+or accepted consumer changes. Default CI and progress regeneration validate this
+incremental selection, not a cold build.
 
 ## Shared list and scenario owners, 2026-11-04
 

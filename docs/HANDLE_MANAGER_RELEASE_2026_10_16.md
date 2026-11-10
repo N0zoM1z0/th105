@@ -116,9 +116,7 @@ python3 scripts/build.py --unit cross-v106a-network-winsock-send-client --json
 python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client --address 0x00405200 --json
 ```
 
-Reports are `build/network-udp-release-boundary.json`,
-`build/network-udp-release-callers.json`, `build/network-udp-release-linked-build.json`
-and `build/handle-manager-release-formal.json`. The complete mixed-unit
+The complete mixed-unit
 comparison, `build/network-winsock-send-client-linked-full.json`, intentionally
 returns1: sender561/464 is nonexact while release167/167 is exact. Both supported
 Capstone versions4.0.2 and5.0.6 independently rebuild and compare the private
@@ -144,8 +142,7 @@ x86 Windows identity and every mapped .text byte. Its saved shared prefix,
 full extent, durable name, custom EAX/stack token storage and RET4 are checked
 in a fresh read-only invocation. The source remains a normal C++ member;
 custom storage is analysis metadata describing the observed machine entry.
-Logs are `build/handle-release-ghidra-save.log` and
-`build/handle-release-ghidra-readback.log`. One process uses768MiB and two CPUs.
+One process uses768MiB and two CPUs.
 
 The original TU, template source spelling, broader source profile and sender
 inlining choices remain unknown. This accepted function proves the bounded

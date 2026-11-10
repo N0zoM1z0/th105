@@ -133,12 +133,11 @@ taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit gpt-web-text-font-color-linked --compare --json
 ```
 
-Mixed nonzero comparison exits remain expected for the pending functions.
-The full selected accent must be417/5a5cbf13/nonexact+6; source-present remains
-distinct from exact. Baseline/selected formal comparisons, complete CFGs,
-canonical bodies, semantic/source/tool fingerprints and private native/CIL
-control receipts are in `build/font-accent-cil-20261022/`. Recipes, including
-the full execution audit, are in `.analysis/font-accent-cil-20261022/`.
+Mixed nonzero comparison exits remain expected for the pending functions. The full
+selected accent must be417/5a5cbf13/nonexact+6; source-present remains distinct from
+exact. Baseline/selected formal comparisons, complete CFGs, canonical bodies,
+semantic/source/tool fingerprints and private native/CIL control receipts are in
+`build/font-accent-cil-20261022/`.
 
 Early topY promotion and reuse of its argument home, first-width spilling,
 pixel-loop placement and original compiler/TU ownership remain unresolved.

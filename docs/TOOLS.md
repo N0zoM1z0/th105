@@ -5,7 +5,6 @@
 > notes do not require full CI, native replay or document-hash/pin refreshes.
 > Older broad validation instructions apply only when their impact is relevant.
 
-
 Every route is pinned to `config/target.toml`. Semantic output is evidence;
 only the canonical comparator can establish exactness.
 

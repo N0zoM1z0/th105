@@ -62,12 +62,11 @@ is introduced. Equal length is not acceptance.
 scripts/repo-python scripts/build.py --unit cross-v106a-hit-geometry --compare --json
 scripts/repo-python scripts/build.py --unit exact-first-group-b-pair-collision --compare --json
 
-Receipts:build/frontier-descriptor-pairs-20261029/formal-shapes.json and
-formal-groups.json. Selected source is HitGeometry.cpp plus the new isolated
-GroupBPairCollision.cpp. GeometryGroups.cpp remains an unselected older
-traversal hypothesis for this address; no shared header or existing caller
-changes. The authored-origin rule is retained, with the connecting caller now
-recorded as source-present. Original source/class/TU spelling remains unknown.
+Selected source is HitGeometry.cpp plus the new isolated GroupBPairCollision.cpp.
+GeometryGroups.cpp remains an unselected older traversal hypothesis for this
+address; no shared header or existing caller changes. The authored-origin rule is
+retained, with the connecting caller now recorded as source-present. Original
+source/class/TU spelling remains unknown.
 
 ## Complete bounded call-chain comparison, 2026-11-10
 
@@ -94,10 +93,7 @@ integer intersection accumulations. Every one of the pair root's five
 short-circuit corner sites is exercised, respectively 207, 195, 187, 181 and
 170 times in each world. No provider result or register packet is substituted.
 
-The diagnostic report and exact compiled payload hashes are retained in
-`build/frontier-descriptor-chain-20261110/check.json`; the bounded driver is
-`.analysis/frontier-descriptor-chain-20261110/check.py`. This establishes
-agreement for the sampled full call chains, including the recently corrected
-wrapping broad phase. It neither proves all integer inputs nor converts the
-139/142-byte point or 252-byte nonexact pair candidate into exact functions.
-No executable source, mapping or acceptance ledger changes in this checkpoint.
+This establishes agreement for the sampled full call chains, including the recently
+corrected wrapping broad phase. It neither proves all integer inputs nor converts
+the 139/142-byte point or 252-byte nonexact pair candidate into exact functions. No
+executable source, mapping or acceptance ledger changes in this checkpoint.

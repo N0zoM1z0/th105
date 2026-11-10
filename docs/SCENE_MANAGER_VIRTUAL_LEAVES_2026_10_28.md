@@ -29,11 +29,9 @@ The shared CFade slot0 declaration is corrected from an unused void placeholder
 to the observed Boolean return; the other slots and scalar offsets are unchanged.
 No assembly, custom ABI, copied bytes, forced reload or padding is introduced.
 
-Receipts are in build/frontier-41e140-20261028/{manager-build.json,fade-build.json,
-boundary.json}. The thirteen affected functions were compiled and compared;
+The thirteen affected functions were compiled and compared;
 unchanged accepted receipts remain incremental. Only the three new complete
 roots add21 exact authored bytes. No cold corpus replay was needed.
-
 
 ## Shared constructed fade, November 9, 2026
 
@@ -59,10 +57,8 @@ candidate after canonical relocation and still differs from the target at +2;
 the frame-home residual is not addressed. Source RTTI spelling and a full
 application link are not part of these table/body comparisons.
 
-Evidence is retained in `build/frontier-fade-interface-20261109/`, with the
-native RTTI, before/after objects, comparisons and `proof.json`. The private
-verification script checks fresh provenance, source hierarchy geometry, the
-entire table and all five providers. No source pins or input migration files
+The private verification script checks fresh provenance, source hierarchy geometry,
+the entire table and all five providers. No source pins or input migration files
 changed. The scene-manager entry view remains separate work.
 
 ## Shared constructed scene manager, November 9, 2026
@@ -99,9 +95,7 @@ under their canonical bindings. Descriptive source type names still include
 the namespace, so this is not an exact RTTI-name or integrated application-link
 claim. The unconstructed application callback views are unchanged.
 
-Only the manager, factory and WinMain units consume the changed sources.
-Their six root comparisons are unchanged: five exact, and the same nonexact
-695-byte WinMain candidate. No additional authored method was found in this
-five-slot closure, and no source pins changed. Before/after objects, native
-caller and lifetime disassembly, provenance and full closure proof are in
-`build/frontier-scene-manager-interface-20261109/`.
+Only the manager, factory and WinMain units consume the changed sources. Their six
+root comparisons are unchanged: five exact, and the same nonexact 695-byte WinMain
+candidate. No additional authored method was found in this five-slot closure, and no
+source pins changed.

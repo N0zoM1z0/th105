@@ -107,12 +107,10 @@ uses fake results or dead control flow. Shorter code alone does not establish
 the target's sharing. These counts are complete decoded-prefix observations,
 not reachability proofs. Every oversized control stays read-only.
 
-Local recipes, receipts, complete deltas and owner/ESP packets are retained
-below `build/reimu-direction-lifetimes/`. Keep the genuine current cache and
-the useful full-width/reused-speed diagnostic; duplicate rejected products
-and native streams are disposable. All9 primary database hashes remain
-unchanged. Serial CPU0/nice10 jobs peak at321144KiB for producer refresh and
-307672KiB for the complete-return check. Uninitialized740 paths, other runtime
-contexts, original source/visibility and full root equality remain unknown.
-Continue from522/523's shared exits while preserving the recovered speed slot;
-do not repeat these unchanged controls or promote span diagnostics to matches.
+Keep the genuine current cache and the useful full-width/reused-speed diagnostic;
+duplicate rejected products and native streams are disposable. All9 primary database
+hashes remain unchanged. Serial CPU0/nice10 jobs peak at321144KiB for producer
+refresh and 307672KiB for the complete-return check. Uninitialized740 paths, other
+runtime contexts, original source/visibility and full root equality remain unknown.
+Continue from522/523's shared exits while preserving the recovered speed slot; do
+not repeat these unchanged controls or promote span diagnostics to matches.

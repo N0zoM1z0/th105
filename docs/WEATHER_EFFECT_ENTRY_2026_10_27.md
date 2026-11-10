@@ -74,10 +74,9 @@ literal bit patterns match. Existing globals/ABI/headers/relocations are unchang
 - scripts/repo-python scripts/check-match-literals.py --require-target
 - scripts/repo-python scripts/ci.py
 
-First complete private source and formal public unit both match immediately.
-The full-tail audit uses the canonical comparator, not masking or normalization
-beyond its validated relocation replay. Receipts and full raw decode/CFG facts
-are in build/frontier-664e10-20261027/. No source-shaping grid was needed.
+First complete private source and formal public unit both match immediately. The
+full-tail audit uses the canonical comparator, not masking or normalization beyond
+its validated relocation replay. No source-shaping grid was needed.
 
 Only this new independent unit is built. Prior exact receipts remain retained;
 totals are incremental rather than a new whole-corpus replay. Final local CI is
@@ -108,7 +107,5 @@ before and after for both units, not merely their callable prefixes. Their
 canonical payload hashes above remain unchanged. Dependency inspection finds
 only these two units consuming the new header.
 
-Evidence: `build/frontier-weather-state-20261110/{before,after}/`, containing
-build reports, complete payload audits and section/relocation dumps. The local
-CI gate passes in `ci.log`. This checkpoint adds no Factory acceptance and
+The local CI gate passes in `ci.log`. This checkpoint adds no Factory acceptance and
 leaves the update's zero-promotion/register-allocation question open.

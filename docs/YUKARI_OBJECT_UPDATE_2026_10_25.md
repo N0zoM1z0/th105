@@ -171,10 +171,8 @@ or return is added to pretend the ambiguity is resolved.
 
 ## Complete comparisons and controls
 
-Artifact prefix: `build/exact-first-yukari-object-update-20261025/`.
-Private source/recipes: `.analysis/exact-first-yukari-object-update-20261025/`.
-All comparisons use the complete normalized section including metadata;
-there are no masks or separately accepted actions.
+All comparisons use the complete normalized section including metadata; there are no
+masks or separately accepted actions.
 
 | Complete candidate | Bytes / canonical SHA256 prefix | Result |
 | --- | --- | --- |
@@ -200,8 +198,6 @@ original-LTCG-impossibility claim is made.
 
 ## Follow-up: argument lifetimes, return carriers and real joins
 
-The first frame follow-up artifacts are in `build/yukari-update-frame-20261025/`;
-private frozen sources/recipes are in `.analysis/yukari-update-frame-20261025/`.
 The preceding table and older artifact prefix remain the initial checkpoint.
 
 Raw stack-depth accounting distinguishes entry-relative local offsets from
@@ -268,8 +264,6 @@ local, force stack alignment or search compiler flags to obtain the frame.
 
 ## Follow-up: floating copies and frame exits
 
-Current artifacts: `build/yukari-update-frame-exits-20261025/`; private recipes
-and frozen complete sources: `.analysis/yukari-update-frame-exits-20261025/`.
 Fresh formal replay first confirms the prior41c02c6f checkpoint.
 
 The prior source mistakenly treated52 floating transfer occurrences as integer
@@ -355,13 +349,10 @@ scripts/repo-python scripts/audit-yukari-object-update.py \
   --object build/yukari-update-frame-exits-20261025/cold.obj
 ```
 
-The existing-object comparison honestly reports build provenance unverified;
-the separate compile command/log supplies that provenance. Current formal and
-cold full audits agree on34628/0330e417 and32402 differences. Current receipts
-are `selected-formal.log`, `selected-formal-full.json`, `cold-build.log`,
-`cold-compare.json`, `cold-full-audit.json`, `selected-frame-facts.json`,
-`frame-sharing-groups.json` and `control-receipts.json`. Earlier boundary,
-decompiler and frame/carrier receipts remain under their original prefixes.
+The existing-object comparison honestly reports build provenance unverified; the
+separate compile command/log supplies that provenance. Current formal and cold full
+audits agree on34628/0330e417 and32402 differences. Earlier boundary, decompiler and
+frame/carrier receipts remain under their original prefixes.
 
 Do not resume this parked root without new independent evidence for the
 remaining branch/return context.
@@ -413,8 +404,7 @@ status. The complete native extent is 34,800 bytes, including the 33,972-byte
 callable body and all twenty switch tables. The root remains nonexact, first
 mismatch +31; no ledger credit is added.
 
-Evidence: `build/frontier-yukari-facing-20261109/`, including fresh build logs,
-`before/full.json`, `after/full.json`, and `verification.json`. The after payload
-SHA-256 is `9d6e3f4377ce2f11f59c9035502679377301f7e49fc127dd7627393ba73a6a18`.
-Only `exact-first-yukari-object-update` consumes this source. Pending input work
-and its source pins are unchanged.
+The after payload SHA-256 is
+`9d6e3f4377ce2f11f59c9035502679377301f7e49fc127dd7627393ba73a6a18`. Only
+`exact-first-yukari-object-update` consumes this source. Pending input work and its
+source pins are unchanged.

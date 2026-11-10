@@ -40,13 +40,9 @@ operand choice; neither matches. The selected nested structured clamp remains
 863 bytes. No redundant hand-written branch, volatile, unused storage,
 register directive or optimizer barrier is inserted to imitate the target.
 
-The public unit exact-first-config-menu-constructor compares the entire body
-and intentionally reports mismatch. Existing provider source, shared headers
-and accepted units are unchanged, so unrelated native replays are not needed.
-Fresh target/IDA attestation is retained under
-build/frontier-medium-discovery-20261031/. Formal comparisons and bounded
-controls are under build/frontier-config-constructor-20261031/ and its
-.analysis counterpart.
+The public unit exact-first-config-menu-constructor compares the entire body and
+intentionally reports mismatch. Existing provider source, shared headers and
+accepted units are unchanged, so unrelated native replays are not needed.
 
 The new narrow authored rule revalidates the whole body, actual exact-caller
 edge and vtable publication. Its single origin row is updated incrementally;
@@ -77,6 +73,4 @@ unresolved compiler/source-context boundary. Do not insert a redundant manual
 branch or repeat value-capture/SDK equality/member-bound variants without new
 independent evidence.
 
-Receipts: build/frontier-config-clamp-capture-20261101/{baseline,capture,cursor-bound}.json.
-Full private source and build inputs are under the corresponding .analysis
-scope. The selected constructor and all ledgers remain unchanged.
+The selected constructor and all ledgers remain unchanged.

@@ -75,9 +75,6 @@ comparison_failed remains expected and is not described as a full unit pass.
   actual float stack argument/result/cleanup; three real-byte mutations fail.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
-TenshiActionState.hpp has only this source consumer. No unrelated accepted
-unit, shared layout or compiler flag was changed; no cold corpus build or
-generated executable run occurred. Evidence is raw-PE based, not new IDA
-semantics. Source/header/full-candidate and negative-control receipts are in
-build/frontier-tenshi-original-sine-20261101 and
-build/origin-anchors/vc8-float-sine.json.
+TenshiActionState.hpp has only this source consumer. No unrelated accepted unit,
+shared layout or compiler flag was changed; no cold corpus build or generated
+executable run occurred. Evidence is raw-PE based, not new IDA semantics.

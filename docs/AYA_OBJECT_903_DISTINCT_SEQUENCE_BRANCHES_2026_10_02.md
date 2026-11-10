@@ -85,15 +85,10 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-Final configured reports share prefix `build/aya-903-branches-final-`.
-Private controls and the complete table/region checker are under
-`.analysis/aya-903-branches-20261002/`; their objects and source/object/
-window-hashed `controls-summary.json` are under
-`build/aya-903-branches-20261002/`. Existing-object controls lack configured
-build provenance; the retained source is rebuilt through the configured unit.
-IDA still fails target identity and was not used. No Ghidra import or
-aggregate cold replay is claimed. Run the mandatory local CI/whitespace gate
-before commit.
+Existing-object controls lack configured build provenance; the retained source is
+rebuilt through the configured unit. IDA still fails target identity and was not
+used. No Ghidra import or aggregate cold replay is claimed. Run the mandatory local
+CI/whitespace gate before commit.
 
 Remaining issues include903's other auxiliary cases, register and physical
 tail ownership,852's FILD/facing/scratch homes,826/861 physical sharing, and

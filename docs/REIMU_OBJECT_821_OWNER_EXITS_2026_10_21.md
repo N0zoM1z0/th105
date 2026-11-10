@@ -160,13 +160,11 @@ an LTCG/standalone impossibility claim.
 
 ## Reproduction and retained artifacts
 
-Artifacts/frozen inputs are in `build/reimu-object-905-lifetimes-20261021/`;
-private recipes are under the corresponding `.analysis/` path. Canonical
-comparison, formal build provenance and finite runtime scope are separate
-receipts. Complete46160-byte native equality bridges the guard-control COFF
-to the tested formal COFF and to the final metadata-only rebuild. The formal
-receipt separately attests current source/compiler inputs. Older26342/133192
-receipts remain historical source epochs and are not bridged to this body.
+Canonical comparison, formal build provenance and finite runtime scope are separate
+receipts. Complete46160-byte native equality bridges the guard-control COFF to the
+tested formal COFF and to the final metadata-only rebuild. The formal receipt
+separately attests current source/compiler inputs. Older26342/133192 receipts remain
+historical source epochs and are not bridged to this body.
 
 The initial ignored-heading receipt was invalid; use the actual
 applied-heading checks described above.

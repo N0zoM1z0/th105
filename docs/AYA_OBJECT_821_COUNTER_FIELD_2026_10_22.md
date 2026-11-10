@@ -90,17 +90,10 @@ no new function-level exact credit or aggregate replay is claimed.
 
 ## Reproduction
 
-Receipts live under `build/aya-821-counter-20261022/`:
-`before.json` records the expected failing predecessor run;
-`selected-native.json` binds the differential matrix and complete canonical delta;
-`canonical-delta.json` additionally decodes the four changed instructions;
-`outside821.json`, `selected-owner.json` and `selected-formal.json` record their
-respective scopes. The predecessor object is from8ecffe2's selected source.
+The predecessor object is from8ecffe2's selected source.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
-taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-821-counter.py --previous-object build/aya-821-counter-20261022/previous.obj
-python3 scripts/audit-aya-object-normal-flow.py build/aya-821-counter-20261022/previous.obj build/match-units/GptWeb_AyaObjectActionState.obj --exclude-action 821
 python3 scripts/ci.py
 git diff --check
 ```

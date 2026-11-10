@@ -163,17 +163,8 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-Fresh reports use `build/youmu-facing-return-final-20261002.json` and
-`build/youmu-facing-return-final-owners-20261002.json`. Explicit-object guard,
+Explicit-object guard,
 stack, call, arithmetic and load/store diagnostics use that prefix/date.
-The object-hash-bound regional diagnostic is
-`build/youmu-facing-return-final-region-20261002.json`; its external jump is
-normalized only after both destinations decode to the common seven-instruction
-return epilogue. The private generator is
-`.analysis/youmu-return-paths-20261002/facing-region.py OBJECT OWNER_AUDIT OUTPUT`.
-Private controls are below `.analysis/youmu-return-paths-20261002/` and
-`build/youmu-return-paths-20261002/`; their formal reports are existing-object
-diagnostics without configured build provenance.
 
 Original local types, physical shared tails, register allocation, argument
 schedules, numerical/exception closure and original compiler/TU context remain

@@ -98,11 +98,9 @@ the strict canonical comparator is unchanged.
 
 ## Reproduction and retention
 
-Private recipes: `.analysis/aya-852-sharing-context-20261023/`.
-Receipts and frozen inputs: `build/aya-852-sharing-context-20261023/`.
 `audited-float.obj` preserves the exact COFF used by the large matrix;
-`selected.obj` is the preceding a04ba76 control, despite its historical name.
-Key receipts are `complete-pair-delta.json`, `scale-read-lifetimes.json`,
+`selected.obj` is the preceding a04ba76 control, despite its historical name. Key
+receipts are `complete-pair-delta.json`, `scale-read-lifetimes.json`,
 `scale-guard-checks.json`, `prior-852-graph-revalidated.json`,
 `float-lookup/{unified,comparison-summary,replay}.json`, and `oriented-anchor.json`.
 The final rebuilt public object is checked against frozen native/CIL bytes.

@@ -129,15 +129,7 @@ manifest/data ledgers, imported scripts and engine versions before/after the
 run. Build provenance is a separate actual build receipt, explicitly not
 attested by the execution command alone.
 
-Private recipes are under `.analysis/reimu-object-902-owner-20261022/`, including
-`facts.py`, `product_build.py`, `double_build.py`, `runtime_build.py`,
-`locals_build.py`, `graph_check.py`, `subsequences_check.py` and `probe.py`. Generated receipts under
-`build/reimu-object-902-owner-20261022/` include their compiler comparisons,
-`facts.json`, `probe.json`, `locals-audit.json`, `unchanged-graphs.json`,
-`locals-source-delta.json`, `unchanged-902-subsequences.json`, `selected-build.json`,
-`selected-audit.json`, `selected-804-audit.json`, `selected-869-audit.json` and
-`negative-primary.json`. Private native fields,
-sources and reports remain uncommitted.
+Private native fields, sources and reports remain uncommitted.
 
 Only the902 source, its evidence/manifest notes, the focused audit and handoff
 change. Existing selection and helper acceptance remain. No shared header,

@@ -50,7 +50,5 @@ new authored-origin rule.
 Source1631, authored1651, mapped1816, review407, excluded1969, units770.
 Exact authored remains1428 /443902 bytes. No prefix/copy double credit.
 
-Receipts: build/frontier-file-list-color4-20261101/formal.json,
-native.json, copy-canonical.json and file-list-peers.json. Raw native bytes
-were reattested; older retained decompilation was not used as new authority.
-No whole-corpus rebuild or push.
+Raw native bytes were reattested; older retained decompilation was not used as new
+authority. No whole-corpus rebuild or push.

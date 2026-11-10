@@ -29,12 +29,10 @@ lookup/key support controls retain their prior ownership; receive_loop,
 requests, endpoint processing and worker EH remain nonexact. No new caller,
 destructor or EH credit follows from this small constructor.
 
-Only this whole authored root is added: exact1432/443941 bytes,
-source-present1637, authored1656, excluded2064, review307, units807.
-Source raw SHA256 remains
-5fc35db83596224f270281f55bac814bf1e45ff2b808c0540db93caef5a4a15f.
-Evidence: build/frontier-receive-lock-20261101/constructor.json and formal.json.
-Before acceptance, the existing strict origin framework verified the full
-body hash and actual incoming call. That receipt is retained privately; the
-accepted root now uses the canonical-exact-authored baseline, without a second
-origin rule reclaiming it. Shared source and toolchain settings are unchanged.
+Only this whole authored root is added: exact1432/443941 bytes, source-present1637,
+authored1656, excluded2064, review307, units807. Source raw SHA256 remains
+5fc35db83596224f270281f55bac814bf1e45ff2b808c0540db93caef5a4a15f. Before acceptance,
+the existing strict origin framework verified the full body hash and actual incoming
+call. That receipt is retained privately; the accepted root now uses the
+canonical-exact-authored baseline, without a second origin rule reclaiming it.
+Shared source and toolchain settings are unchanged.

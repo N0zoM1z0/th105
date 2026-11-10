@@ -68,7 +68,7 @@ target bytes, fake ABI, inert locals or padding is used.
 
 ## Reproduction
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-suika-action-state --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-suika-action-state --compare --json
     scripts/repo-python scripts/audit-suika-action-state.py
     scripts/repo-python scripts/compare-giant-action-switches.py suika-vslot28 build/match-units/ExactFirst_SuikaActionState.obj --json
 
@@ -82,12 +82,9 @@ native-backed literal bindings were added without changing existing bindings
 or shared headers. Only this unit was compiled; accepted receipts elsewhere
 remain unchanged.
 
-Receipts: build/frontier-598990-20261028/formal-build.json, formal-full.json,
-trial-giant-owners-map.json and trial-giant-owners-action-review.json.
-Private raw boundaries, all115 diagnostic slices and IDA/Ghidra attestation
-receipts remain in that bounded build directory. Continue source-level
-ownership/lifetime refinement against this complete baseline.
-
+Private raw boundaries, all115 diagnostic slices and IDA/Ghidra attestation receipts
+remain in that bounded build directory. Continue source-level ownership/lifetime
+refinement against this complete baseline.
 
 ## Separate action501 return owners
 
@@ -99,7 +96,6 @@ c950a4e409eb06b07a9463fca62141fe5e9d6442a05e7f5a4442ef3e8e91f741.
 Receipts: trial501.full.json, trial501-map.json, trial501-action-review.json.
 The prior baseline SHA above remains historical. Explicit inlining of the
 giant surface-check helper was byte-identical and was not retained.
-
 
 ## Grab608 shared call tails
 
@@ -118,7 +114,6 @@ bytes. SHA-256:
 d233df12e5ebf011944056b91df85c708c3fbb7b3a18d102d611046a37db7baa.
 Receipts: formal608-build.json, formal608-full.json, trial608-y-map.json and
 trial608-y-action-review.json under the same bounded build directory.
-
 
 ## Action ordering and packet-home evidence
 
@@ -148,7 +143,6 @@ formal-order-full.json, trial-owner-order2-map.json, payload-order-review.log,
 native-action-payload-review.json, candidate-action-payload-review.json and
 payload-order-differences.json in the bounded build directory. Previous packet
 diagnostics are retained under payload-before-owner-order/.
-
 
 ## Tracking740 phase order
 
@@ -193,10 +187,9 @@ is one source correction expanded into four native action paths. It does not
 establish the original nominal parameter type. The Suika manager consumes
 only the low byte, so ordinary gameplay divergence is not claimed.
 
-The focused VC8 build emits `push -1` in all four corresponding expansions.
-The complete 79435-byte callable remains nonexact from +17; the candidate
-section tail is 78980 bytes. No exact credit follows. The build receipt is
-`build/frontier-55d850-20261027/suika-impact-layer-20261105.json`.
+The focused VC8 build emits `push -1` in all four corresponding expansions. The
+complete 79435-byte callable remains nonexact from +17; the candidate section tail
+is 78980 bytes. No exact credit follows.
 
 ## Additional direct spawn layers, 2026-11-05
 
@@ -209,11 +202,10 @@ native complete DWORD is -1. These are the two 816 requests at 5A0803 and
 establish EBX=-1 at 5A06CF and 5A09F4. These are actual layer slots, not the
 separate dynamically selected byte-valued 0x730 layer.
 
-The source now uses -1 at the twelve corresponding sites. The Suika manager
-still consumes only the low byte; no ordinary gameplay difference is asserted.
-Fresh focused compilation remains nonexact at +17 with a 78876-byte section
-tail versus the 79435-byte native callable. No exact credit is added. Receipt:
-`build/frontier-55d850-20261027/suika-other-layers-20261105.json`.
+The source now uses -1 at the twelve corresponding sites. The Suika manager still
+consumes only the low byte; no ordinary gameplay difference is asserted. Fresh
+focused compilation remains nonexact at +17 with a 78876-byte section tail versus
+the 79435-byte native callable. No exact credit is added.
 
 ## Vertical grab X arithmetic, 2026-11-05
 

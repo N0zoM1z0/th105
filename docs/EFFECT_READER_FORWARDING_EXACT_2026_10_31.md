@@ -34,8 +34,6 @@ previously accepted functions in the two other actual changed-source consumers:
 Linked comparisons retain their ordinary private-call and complete EH checks.
 No unrelated cold rebuild or whole-origin-census claim is made.
 
-Private and public receipts:
-build/frontier-reader-forwarding-20261031/*-public.json.
 The authored match ledger gains one whole function and 2528 bytes:
 1556 functions / 444236 bytes. No helper or compiler-library credit is added.
 The old source-only origin rule is replaced by canonical-exact-authored.

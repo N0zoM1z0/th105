@@ -98,13 +98,12 @@ it. No analysis database state is the durable record.
 Receipts are under `build/exact-first-alice-fighter-update-20261025/`:
 `initial-map.json`, `raw-facts.json`, `target.asm`, `literals.json`,
 `public-target-audit.json`, `ghidra-receipt.json`, `ghidra.log`, `decompile.txt`,
-and `primary-db-before.json`/`primary-db-after.json`. Private recipes are in the
-corresponding `.analysis/` directory. All are local and excluded from Git.
+and `primary-db-before.json`/`primary-db-after.json`. All are local and excluded
+from Git.
 
 The following source checkpoint supersedes that target-only planning step.
 Original source spelling and full nominal layout remain unknown. No exactness
 or standalone/LTCG impossibility has been established.
-
 
 ## Complete manual hypothesis and first comparison
 
@@ -194,13 +193,9 @@ predecessor/write/consumer analysis is still required. The complete source
 must remain unselected until its instruction, ABI and default-domain review
 supports selection. Do not infer LTCG impossibility or try padding the frame.
 
-Current receipts in the existing build scope: `first-complete-*`,
-`callback-epochs-*`, `formal-build.log`, `formal-full-audit.json`,
-`cold-build.log`, `cold-full-audit.json`, `native-inventory.json`, and
-`literal-impact.json`. First/control source and focused call-ownership recipes
-remain in the matching private analysis scope. The public source/unit/audit
-are the reproducible current state; generated reports/objects stay out of Git.
-
+First/control source and focused call-ownership recipes remain in the matching
+private analysis scope. The public source/unit/audit are the reproducible current
+state; generated reports/objects stay out of Git.
 
 ## Narrow-facing control and native214 routing correction
 
@@ -269,13 +264,10 @@ comparison. The source stays identified/unselected with no new exact or
 source-present credit. No accepted unit input changes and no new aggregate
 cold acceptance is claimed.
 
-Current receipts use `action214-formal-*`, `action214-cold-*`,
-`action214-live-fields-*` and `action214-old-negative-paths.json`.
 The intermediate `action214-live-fields.obj` and formal/cold objects all emit
 4fa62a2b. The frozen `action214-before.obj` is the8dd4473a predecessor. Continue
-from the public complete source and these actual residuals; keep the width
-control separate and avoid unproved packet-size changes.
-
+from the public complete source and these actual residuals; keep the width control
+separate and avoid unproved packet-size changes.
 
 ## Separate542 terminal guards and common547/548 exit
 
@@ -327,7 +319,6 @@ are frozen in the corresponding analysis scope. Current public source is3022
 lines. The terminal-structure questions are now closed; next inspect actual
 stack/packet lifetimes and separately review the five special direct arms,
 without repeating guard-spelling trials or shrinking packets to force a frame.
-
 
 ## Direct-dispatch coverage and packet extent control
 
@@ -382,7 +373,6 @@ The control is closed without a size/lifetime permutation search. Receipts:
 `packet570-571-three-*`; the complete source and exact commands are retained
 privately. No accepted source, header, flags, relocation or ledger selection
 changed in this investigation.
-
 
 ## Action-owner partitions expose request-publication order
 
@@ -452,7 +442,6 @@ source is `publication-before.cpp`; the new private source is
 from the remaining actual partitions and field-read epochs; do not force a
 particular global call count or conflate local site sharing with behavior.
 
-
 ## Native predicate result-consumption width
 
 The197/198 zero-motion site partition is separately reviewed: both native
@@ -506,7 +495,6 @@ comparisons and diagnostic widths. The28-byte-only delta is recorded in
 0a47fcc9; `predicate-low-byte.cpp` is the single29-expression control. This
 consumption question and the two reviewed site-sharing pairs are closed;
 continue with independent lifetime/field-read evidence, not type permutations.
-
 
 ## Request-loop arithmetic and root case layout
 
@@ -574,7 +562,6 @@ The retained public3022-line source differs from its numeric permutation only
 in the one526 expression. These two controls are closed; continue from actual
 field-read/lifetime evidence rather than another ordering or spelling sweep.
 
-
 ## Shared request intermediate and bounded checkpoint
 
 A new dataflow check first inspects the currentef85ed75 candidate. In525's
@@ -638,13 +625,10 @@ and each other on object-prefix bytes and cosine argument. A mutation that
 substitutes speed for the angle argument is detected. The six prior inactive
 prefix cases continue to pass.
 
-This first check is bounded prefix evidence only; it stops before cosine and
-does not itself prove later behavior. No source-selection or exact credit is
-added. Run
+This first check is bounded prefix evidence only; it stops before cosine and does
+not itself prove later behavior. No source-selection or exact credit is added. Run
 `scripts/repo-python -m unittest discover -s tests -p
-test_alice_action214_active_prefix.py`. Receipts are under
-`build/frontier-alice-active-prefix-20261104/`.
-
+test_alice_action214_active_prefix.py`.
 
 ### Native lookup execution
 
@@ -712,10 +696,9 @@ formal type. The separately identified Alice manager reads only the low layer
 byte at 4FAB76 and publishes it at 4FABA8, so no ordinary gameplay difference
 is asserted for that manager.
 
-A focused VC8 rebuild emits signed `push -1` at the changed sites. The full
-callable remains nonexact from +8; the section tail is 43916 bytes versus the
-42721-byte native callable. The candidate remains unselected, with no exact
-credit. Focused build receipt: `build/frontier-55d850-20261027/alice-all-layer-20261105.json`.
+A focused VC8 rebuild emits signed `push -1` at the changed sites. The full callable
+remains nonexact from +8; the section tail is 43916 bytes versus the 42721-byte
+native callable. The candidate remains unselected, with no exact credit.
 
 ## Skill-level switch signedness (2026-11-06)
 

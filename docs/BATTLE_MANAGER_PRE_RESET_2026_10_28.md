@@ -1,10 +1,8 @@
 # Battle manager pre-reset virtual 0x00472230
 
 Complete314-byte canonical exact replay, SHA:
-4ec5dff96179efa9a34bfc9518671e2bc830aa7cd3ba473825c67ad4ede224d0.
-Receipt: build/frontier-472230-20261028/formal-build.json.
-Raw CFG and vtable-cell observations:
-build/frontier-472230-20261028/boundary.json.
+4ec5dff96179efa9a34bfc9518671e2bc830aa7cd3ba473825c67ad4ede224d0. Receipt:
+build/frontier-472230-20261028/formal-build.json.
 
 The old CMenuPractice allocation/layout blocker is superseded by the repo's
 current shared MenuPractice.hpp, whose named members close its0x288 extent.

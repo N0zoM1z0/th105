@@ -51,23 +51,19 @@ records the actual complete handler fingerprint; it does not author EH code.
 - Writer is now positively source-selected under its existing authored origin;
   no new exact or excluded bytes. Public header/layout/other TUs are unchanged.
 
-Receipts: build/frontier-profile-writer-at-20261029/formal-build.json,
-eh-boundary.json, private-compare.json and ci.log. The ordinary comparator
-replays every body relocation; the raw audit separately closes the no-return
-boundary and the real compiler-generated cleanup metadata. Default CI follows
-final ledger/progress changes. Earlier statements that this root had only
-compiler scheduling left are superseded by the observed missing range guard.
+The ordinary comparator replays every body relocation; the raw audit separately
+closes the no-return boundary and the real compiler-generated cleanup metadata.
+Default CI follows final ledger/progress changes. Earlier statements that this root
+had only compiler scheduling left are superseded by the observed missing range
+guard.
 
 ## Adjacent reader declaration cleanup
 
 PlayerSlotProfileLoad.cpp's local reader view previously supplied unconditional
-zero-return bodies for seek/size, although this caller never invokes them.
-Those unsupported bodies are now declarations only. The unchanged723-byte
-loader section and all26 relocation fields/names are byte-identical before
-and after, verified by two focused source builds in
-build/frontier-profile-reader-declarations-20261029/body-equality.json.
-This is generated-source equality, not a new canonical or vtable acceptance.
-No reader layout, used virtual method, exact ledger or public header changes.
+zero-return bodies for seek/size, although this caller never invokes them. Those
+unsupported bodies are now declarations only. This is generated-source equality, not
+a new canonical or vtable acceptance. No reader layout, used virtual method, exact
+ledger or public header changes.
 
 ## November 8: complete cleanup comparison
 
@@ -92,7 +88,5 @@ register allocation differences, not a missing cleanup or range-check path.
 No source change is justified by that inspection alone.
 
 The focused check verifies current compiler/source/object provenance, complete
-section ownership, every EH relocation and both callable graphs. Reproduce with
-`scripts/repo-python .analysis/frontier-profile-save-context-20261108/check-eh.py`.
-Results and the instruction comparison are under
-`build/frontier-profile-save-context-20261108/`. No new exact root is recorded.
+section ownership, every EH relocation and both callable graphs. No new exact root
+is recorded.

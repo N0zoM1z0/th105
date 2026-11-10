@@ -80,8 +80,6 @@ are preserved. Aggregate indirect totals are target220/current221; only410
 (4/3) and416(5/4) retain per-action deficits. Equal dynamic behavior or a
 correct aggregate count does not establish complete physical ownership.
 
-Private controls start from the preceding3dd029c9…/9b56f280… phase:
-
 | Control | Observation |
 | --- | --- |
 |297 flat-case exits become breaks;100 arms,30 complex arms untouched|Owned sites fall to241; eight direct partitions remain. Unselected.|
@@ -154,13 +152,12 @@ reaches1388952KiB (about1.32GiB). It has exited. Use bounded instruction/ABI
 views rather than repeating that whole-root attempt. Producer and effect62
 native peaks are320816/307240KiB; jobs run serially on CPU0 at nice10.
 
-Receipts, target windows, control recipes and resource measurements are under
-`build/reimu-case-exits/`. They are disposable phase evidence. No historical
-full matrix, cold aggregate replay, accepted match-unit or exact ledger changes.
-Cleanup removes53 obsolete objects/generated sources/native inputs and
-snapshots,10.53MiB, including the superseded int-direction witness. Current
-genuine providers, phase receipts/recipes and the tiny real-visibility source
-witness remain; the temporary Ghidra project alias is removed.
-Next recover the remaining advancement/effect/height/zero/landing/action-gate
-partitions and410/416 virtual-next memberships. Original TU/source shape,
-other world/resource contexts and exception paths remain unproved.
+They are disposable phase evidence. No historical full matrix, cold aggregate
+replay, accepted match-unit or exact ledger changes. Cleanup removes53 obsolete
+objects/generated sources/native inputs and snapshots,10.53MiB, including the
+superseded int-direction witness. Current genuine providers, phase receipts/recipes
+and the tiny real-visibility source witness remain; the temporary Ghidra project
+alias is removed. Next recover the remaining
+advancement/effect/height/zero/landing/action-gate partitions and410/416
+virtual-next memberships. Original TU/source shape, other world/resource contexts
+and exception paths remain unproved.

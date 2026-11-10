@@ -14,10 +14,9 @@ uniqueness independently passes the full4027-function inventory with the
 unchanged0.70/24/no-tail contract and pinned whole-body hash.
 
 The explicit-instantiation probe is scripts/probes/Vc8StringOrigin.cpp; unit
-vc8-string-library-origin. Reports are under build/frontier-vc8-string-origin-20261031.
-No authored source, old unit, flag or verifier changed. The additional standard
-members emitted by explicit instantiation receive no unverified origin or
-matching credit.
+vc8-string-library-origin. No authored source, old unit, flag or verifier changed.
+The additional standard members emitted by explicit instantiation receive no
+unverified origin or matching credit.
 
 Only one compiler exclusion is added: excluded1783/review448/units762.
 Exact1578/448979, source1776/authored1796/mapped1803 remain unchanged.

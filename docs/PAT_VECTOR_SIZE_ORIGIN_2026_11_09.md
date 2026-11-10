@@ -35,11 +35,9 @@ also remains nonexact: 3885 bytes, first mismatch +866.
   match-unit edit selects only the new provider symbol.
 
 Canonical provider SHA-256:
-`1b52d9bdc5d0c414653cfef5c2021e378dda72c8dffec05e66f763a86cdf7f8d`.
-Replay the public unit with `scripts/repo-python scripts/build.py --unit
-cross-v106a-hit-quantities --compare --json`. The private scoped driver is
-`.analysis/frontier-pat-vector-size-20261109/verify.py`; its results and baseline
-reports are under `build/frontier-pat-vector-size-20261109/`.
+`1b52d9bdc5d0c414653cfef5c2021e378dda72c8dffec05e66f763a86cdf7f8d`. Replay the
+public unit with `scripts/repo-python scripts/build.py --unit
+cross-v106a-hit-quantities --compare --json`.
 
 This checkpoint corrects local ownership and accounting. It does not add a
 Factory-authoritative accepted claim.

@@ -44,11 +44,9 @@ bounded analysis. Known ordinary helper ABIs, including exact45E0E0, were read
 back in the isolated project. Full navigation export completed377265 bytes and
 the project saved, verified after a client timeout before any repeat operation.
 
-Decompiler removed-block/spacebase warnings remain hypotheses to review against
-raw instructions. No target bytes or IDA metadata changed. The initial Iku
-project is untouched. Receipts and raw disassembly are in
-build/frontier-4cadb0-20261028/{target-facts.json,target-facts.log,target.asm,ghidra.log};
-private preparation is .analysis/frontier-4cadb0-20261028/.
+Decompiler removed-block/spacebase warnings remain hypotheses to review against raw
+instructions. No target bytes or IDA metadata changed. The initial Iku project is
+untouched.
 
 ## Complete source and replay
 
@@ -94,9 +92,6 @@ padding is inserted to force the frame. All58 native and57 candidate surface
 consumers, and8 native/7 candidate on-surface consumers, test AL. Physical
 counts differ through shared tails and are not ABI changes.
 
-Receipts: build/frontier-4cadb0-20261028/{formal-build.json,formal-audit.json,
-target-audit.json,action-call-comparison.json,action-fp-comparison.json,
-native-payload-homes.json,candidate-payload-homes.json,payload-review.log}.
 Only this new unit was natively compiled; unchanged accepted receipts remain
 incremental. The default repository gate is separate from native exact replay.
 
@@ -151,10 +146,8 @@ extents, frame allocation and tail sharing remain unresolved. The native has159
 returns and190 virtual sites. This checkpoint earns **no exact credit**.
 
 Focused public full-extent build and complete payload audit:
-`build/frontier-sakuya-arguments-20261029/{formal-build,formal-audit}.json`.
-Private corrected call/arithmetic census and payload receipts are in that scope;
-recipes are `.analysis/frontier-sakuya-arguments-20261029/`. No shared header,
-relocation binding, compiler profile or accepted consumer changed.
+`build/frontier-sakuya-arguments-20261029/{formal-build,formal-audit}.json`. No
+shared header, relocation binding, compiler profile or accepted consumer changed.
 
 ### Completed argument-lifetime pass
 

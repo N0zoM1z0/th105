@@ -128,15 +128,13 @@ nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-effect-returns.py
 ```
 
 Use `--smoke` for the14-input owned subset. For the negative, copy the base
-producer's expanded source/header below `build/`, require exactly12 occurrences
-of `parameters[0] = -10.0f; parameters[1] = 23.0f; parameters[2] = 0.0f;`, and
-change only the first constant to-15. Compile with the base ordinary compile
-receipt's command, changing only source and `/Fo` paths, then pass that object
-with `--object` and a separate output directory. The resulting audit returns1
-for80 differences. Private compile/native receipts are under
-`build/reimu-owned-control/`; the positive is under `build/reimu-owned-returns/`.
-Large temporary streams/build products can be regenerated and are cleaned
-after verification; compact witnesses and receipts remain.
+producer's expanded source/header below `build/`, require exactly12 occurrences of
+`parameters[0] = -10.0f; parameters[1] = 23.0f; parameters[2] = 0.0f;`, and change
+only the first constant to-15. Compile with the base ordinary compile receipt's
+command, changing only source and `/Fo` paths, then pass that object with `--object`
+and a separate output directory. The resulting audit returns1 for80 differences.
+Large temporary streams/build products can be regenerated and are cleaned after
+verification; compact witnesses and receipts remain.
 
 The shared-host change also requires the focused effect regression: current
 effect123 remains0/600, and its post-effect wrong-comparison control remains

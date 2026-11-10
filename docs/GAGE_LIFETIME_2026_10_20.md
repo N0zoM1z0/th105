@@ -95,13 +95,10 @@ or new aggregate percentage is claimed.
 
 ## Receipts and pins
 
-Fresh preflight, raw byte/RTTI packets, private trials and the formal report
-are under `build/gage-lifetime-20261020/`. `formal-build.json` records all five
-complete exact comparisons and build provenance. `target-facts.json` records
-the observed fields/tables/factory slice; its private recipe is
-`.analysis/gage-lifetime-20261020/facts.py`. The initial direct and source-local
-views also reproduce all five bodies; only the latter is selected, to keep
-the observed physical slots without expanding a shared header.
+Fresh preflight, raw byte/RTTI packets, private trials and the formal report are
+under `build/gage-lifetime-20261020/`. The initial direct and source-local views
+also reproduce all five bodies; only the latter is selected, to keep the observed
+physical slots without expanding a shared header.
 
 Selected CRLF source SHA256 at commit74ccfae:
 338fd39a66984f89cd8d27fb72005a71fdc84202a589f8d2fdf0f1101a077492.

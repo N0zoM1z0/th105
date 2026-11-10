@@ -39,6 +39,4 @@ independent evidence. Public sources, profiles, manifest and ledgers were not
 edited. This is documentation-only closure of a prior blocked comparison;
 the accepted native receipts and the last full CI962 gate remain unchanged.
 
-Private scripts, successful unit contract and comparison are under
-.analysis/frontier-gage-actual-cil-20261102/ and
-build/frontier-gage-actual-cil-20261102/. No generated binary is committed.
+No generated binary is committed.

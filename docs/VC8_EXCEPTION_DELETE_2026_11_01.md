@@ -26,13 +26,8 @@ Original stdexcpt.obj SHA256:
 No source/header/flag/export changes or new generic acceptance relaxations are
 introduced. Three formal original-member comparisons pass.
 
-Seven focused tests reject wrong class/archive/member, missing providers or
-literal bindings, masked/short roots and duplicate alias credit. All106 real
-corruption controls fail across every class-body, literal, vtable and delete-
-stub byte plus unique RTTI boundaries. The prior invalid_argument copy and
-logic_error base/EH gate freshly pass after adding the actual std::exception
-vtable and literal bindings.
-
-Evidence: build/origin-anchors/vc8-exception-delete-link/proof.json and
-build/frontier-exception-delete-20261101/. Private scripts are under
-.analysis/frontier-exception-delete-20261101/.
+Seven focused tests reject wrong class/archive/member, missing providers or literal
+bindings, masked/short roots and duplicate alias credit. All106 real corruption
+controls fail across every class-body, literal, vtable and delete- stub byte plus
+unique RTTI boundaries. The prior invalid_argument copy and logic_error base/EH gate
+freshly pass after adding the actual std::exception vtable and literal bindings.

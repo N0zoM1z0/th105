@@ -21,15 +21,12 @@ Reimu vtable entry, ECX receiver, no stack arguments, callable extent
 157 calls to five helpers and52 balanced RETs. The callable SHA256 is
 `3bd363994e140603ae0ec249ffd3a36b1ae0448e72a389e417c4cc7a6d113e2d`.
 
-Direct Ghidra analysis re-attested the executable identity, entry, mapped
-text and complete root bytes before decompiling the existing typed method.
-It read back `void __thiscall`, ECX:4 receiver and15999-byte body. The typed
-decompilation remains a hypothesis, not source or proof of its predicates.
-This invocation was read-only; all nine primary database hashes remained
-unchanged. Its report and pins are in `build/reimu-cpu-source/`; private
-hypothesis and Java recipe are under `.analysis/reimu-cpu-source-20261019/`.
-The temporary project alias was removed; no second Ghidra process/project
-copy or IDA semantic analysis was used.
+Direct Ghidra analysis re-attested the executable identity, entry, mapped text and
+complete root bytes before decompiling the existing typed method. It read back `void
+__thiscall`, ECX:4 receiver and15999-byte body. The typed decompilation remains a
+hypothesis, not source or proof of its predicates. This invocation was read-only;
+all nine primary database hashes remained unchanged. The temporary project alias was
+removed; no second Ghidra process/project copy or IDA semantic analysis was used.
 
 ## Source and predicate recovery
 
@@ -102,8 +99,6 @@ ordinary candidate may insert a flag-preserving MOV EDI,6 between them. The
 default/Aya join rule remains unchanged. Regression tests reject duplicate,
 wrong-counter, unreviewed constant, flag-changing and truncated shapes. This
 boundary does not terminate complete-return execution or replace helpers.
-
-Finished-source build pins (`build/reimu-cpu-source/unit.json`):
 
 | Artifact | SHA256 |
 | --- | --- |

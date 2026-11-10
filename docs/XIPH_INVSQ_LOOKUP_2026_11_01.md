@@ -46,7 +46,4 @@ proofs freshly pass. Two existing authored VC8 flight functions4FC7C0/4FC900,
 which use modern32/64-bit literals, are freshly rebuilt and remain exact.
 No cold corpus replay is claimed or needed for this disjoint format addition.
 
-Evidence: build/origin-anchors/xiph-invsq.json and
-build/frontier-sdk-invsq-20261101/. Private scripts are under
-.analysis/frontier-sdk-invsq-20261101/. No authored, padding or data-byte credit
-is added.
+No authored, padding or data-byte credit is added.

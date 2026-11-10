@@ -30,8 +30,7 @@ python3 scripts/audit-giant-action-owners.py fighter-common-action \
 ```
 
 The first command returns exit 1 for the ordinary mismatch; a successful
-owner audit does not imply a successful canonical comparison. Local reports
-are `build/common-fighter-20261002-{baseline,target-map,baseline-owners}.json`.
+owner audit does not imply a successful canonical comparison.
 
 ## Remaining physical-owner differences
 
@@ -51,11 +50,9 @@ terminal placement.
 
 ## New private source probes
 
-All probes compile serially on CPU 0 with the existing profile. They are
-isolated under `.analysis/common-fighter-20261002/`, with objects under
-`build/common-fighter-20261002/`. Existing-object comparison reuses the unit's
-relocation contract but explicitly reports unverified build provenance; these
-probes cannot be promoted as canonical acceptance evidence.
+All probes compile serially on CPU 0 with the existing profile. Existing-object
+comparison reuses the unit's relocation contract but explicitly reports unverified
+build provenance; these probes cannot be promoted as canonical acceptance evidence.
 
 | Probe | Observation | Disposition |
 | --- | --- | --- |
@@ -93,13 +90,10 @@ source declarations. The conversion runtime and indirect virtual calls still
 need separate modeling. Inferred root `uint` return and flattened floating
 expressions remain decompiler hypotheses and were not adopted into source.
 
-Private script/output: `.analysis/common-fighter-20261002/ghidra-scripts/`
-and `ghidra-typed-hypothesis.c`; log:
-`build/common-fighter-20261002-ghidra-typed.log`. Ghidra rejected project paths
-with dot-prefixed components, so the successful transient project lived below
-`build/` and used `-deleteProject`. Script and hypothesis paths can remain
-below `.analysis/`. No target bytes were patched. The mismatched IDA session
-and factory adapter were not used.
+Ghidra rejected project paths with dot-prefixed components, so the successful
+transient project lived below `build/` and used `-deleteProject`. Script and
+hypothesis paths can remain below `.analysis/`. No target bytes were patched. The
+mismatched IDA session and factory adapter were not used.
 
 ## What the TH08 reference actually shows
 
@@ -177,8 +171,5 @@ not establish the original compiler's inlining settings or exclude every
 possible original TU context. Both probes are discarded from reconstruction
 state. The earlier blanket TU/LTCG explanation remains unproven.
 
-Private inputs, logs, existing-object comparator reports, owner reports and
-per-root call-site counts live in `.analysis/common-fighter-visibility-20261002/`;
-objects are under `build/common-fighter-visibility-20261002/`. The production
-baseline report is `build/common-fighter-visibility-baseline-20261002.json`.
-No source or exact ledger changes, and no aggregate cold replay, are involved.
+No source or exact ledger
+changes, and no aggregate cold replay, are involved.

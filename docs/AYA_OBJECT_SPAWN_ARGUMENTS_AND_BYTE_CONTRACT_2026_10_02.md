@@ -134,17 +134,12 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-Final configured reports share prefix `build/aya-spawn-arguments-final-`.
-Controls, byte-contract binding probes, emission model and width/interval
-checker are under `.analysis/aya-spawn-arguments-20261002/`; control objects
-and source/object/window-hashed `controls-summary.json` are under
-`build/aya-spawn-arguments-20261002/`. Existing-object private controls do
-not have configured build provenance. The adopted alias is now in the
-normal configured root contract; final audits use the standard scripts.
-The existing workflow test's obsolete `direction = 1` source-spelling
-assertion is replaced by a check that the local call view binds64CCB0.
-Its source-present/nonexact separation checks remain. This does not promote
-any interval diagnostic or mocked execution result to exact acceptance.
+Existing-object private controls do not have configured build provenance. The
+adopted alias is now in the normal configured root contract; final audits use the
+standard scripts. The existing workflow test's obsolete `direction = 1`
+source-spelling assertion is replaced by a check that the local call view
+binds64CCB0. Its source-present/nonexact separation checks remain. This does not
+promote any interval diagnostic or mocked execution result to exact acceptance.
 
 Full raw target traversal closes all4,630 instructions/all19,522 bytes
 through seven switches. Guards remain124/124, with the established853

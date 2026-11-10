@@ -34,10 +34,8 @@ separate definition. All caller ABI mappings remain unchanged.
 
 scripts/repo-python scripts/build.py --unit exact-first-guide-overlay-lifetime --compare --json
 
-Source:src/ui/GuideOverlayLifetime.cpp.
-Receipt:build/frontier-guide-natural-lifetime-20261029/formal-build.json.
-The report intentionally combines the exact constructor and nonexact destructor.
-
+Source:src/ui/GuideOverlayLifetime.cpp. The report intentionally combines the exact
+constructor and nonexact destructor.
 
 ## November 9: complete exception cleanup comparison
 
@@ -63,9 +61,6 @@ the load in EAX. The matching support regions remove an EH uncertainty without
 resolving that main-body difference. No source or exact-ledger change is made
 for this destructor.
 
-Rebuild `exact-first-guide-overlay-lifetime`, then run
-`scripts/repo-python .analysis/frontier-guide-dtor-eh-20261109/check.py`.
 The private check verifies current source/compiler/object provenance, complete
-section ownership, relocation roles, unwind state and closed control flow.
-Results are in `build/frontier-guide-dtor-eh-20261109/build.json` and `eh.json`.
-The already accepted constructor still compares 20/20.
+section ownership, relocation roles, unwind state and closed control flow. The
+already accepted constructor still compares 20/20.

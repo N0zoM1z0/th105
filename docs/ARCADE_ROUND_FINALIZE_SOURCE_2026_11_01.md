@@ -44,12 +44,10 @@ The mixed unit's mismatch result is expected, not a whole-unit exact pass.
 
 Reproduction:
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit cross-v106a-battle-manager-arcade-setup-override --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit cross-v106a-battle-manager-arcade-setup-override --compare --json
     taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit cross-v106a-battle-manager-arcade-transition-override --compare --json
 
-Receipts: build/frontier-arcade-finalize-source-20261101/formal.json,
-transition.json, boundary.json and native.txt/source.txt. The private audit
-checks both complete CFGs and actual switch entry ownership.
+The audit checks both complete CFGs and actual switch entry ownership.
 
 Source1786/authored1806/mapped1813/excluded1798/review423/units765.
 Exact1585/449721 authored bytes stays unchanged. matches.csv is unchanged.

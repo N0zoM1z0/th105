@@ -63,8 +63,7 @@ both greater (`00`, even parity) and unordered (`41`, even parity after the
 mask). The corrected JE reversal edge selects only the zero masked result.
 The private fact packet asserts the actual target instructions, both sequence
 arguments, complete root hash, one-byte COFF delta, equal relocation records
-and all four comparison states. Report:
-`build/youmu-facing-contract-20261002.json`.
+and all four comparison states.
 
 **Unknown:** reachability of NaN positions during normal gameplay and original
 source spelling. The correction preserves target behavior for all four
@@ -100,9 +99,6 @@ These metadata views do not establish new original declarations or callee
 ownership. The custom x87 conversion helper and indirect virtual signatures
 remain limitations of this decompilation.
 
-Private corrected output:
-`.analysis/youmu-tail-placement-20261002/ghidra-typed-hypothesis.c`;
-attestation/readback log: `build/youmu-ghidra-typed-20261002.log`.
 Imports run one at a time in transient projects below `build/` with
 `-deleteProject`; no analysis database is committed.
 

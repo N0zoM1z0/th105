@@ -32,7 +32,6 @@ CNumber initialization's closed 102 / 104-byte residual. The existing implicit
 cleanup gate passes 3 / 28 after renewing the conservative header source pin;
 affected scalar gates pass 1 / 30 and 2 / 121. No origin/ledger counts change.
 
-Private controls and receipts: .analysis/frontier-design-number-real-owner-20261102/
-and build/frontier-design-number-real-owner-20261102/. Final CI passed all 962 tests in
-115.052 seconds. Both diff checks gate the local checkpoint. Totals remain 1426 exact / 443399 bytes,
-source 1636, authored 1655, mapped 1826, excluded 2076, review 296 and units 813.
+Final CI passed all 962 tests in 115.052 seconds. Both diff checks gate the local
+checkpoint. Totals remain 1426 exact / 443399 bytes, source 1636, authored 1655,
+mapped 1826, excluded 2076, review 296 and units 813.

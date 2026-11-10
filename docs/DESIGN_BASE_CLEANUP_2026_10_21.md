@@ -63,13 +63,9 @@ bounded witnesses pass. No shared header, existing unit, relocation ledger or
 accepted source changes, so no predecessor unit needs rebuilding. There is no
 cold aggregate replay or aggregate exact claim.
 
-Cleanup evidence and recipes are under
-`build/design-base-cleanup-20261021/` and its corresponding `.analysis/` scope;
-gauge controls are under `build/gage-initialize-matching-20261021/`.
 Cleanup source SHA256:
-`cbf04850c56c45cb3d09d48c11f6217a7d01d031b0474eed145679f80e2872b9`.
-Formal COFF SHA256:
-`4f4f9dedee9f83ed8ca64721fdafbbbaffb004d7a04afee591b85b704574dedd`.
-IDA preflight rejects the wrong image; all new observations use the canonical
-PE. Builds are serial on CPU0 at nice10. Next: recover genuine texture-release
-provider visibility for the larger design lifetime/loading context.
+`cbf04850c56c45cb3d09d48c11f6217a7d01d031b0474eed145679f80e2872b9`. Formal COFF
+SHA256: `4f4f9dedee9f83ed8ca64721fdafbbbaffb004d7a04afee591b85b704574dedd`. IDA
+preflight rejects the wrong image; all new observations use the canonical PE. Builds
+are serial on CPU0 at nice10. Next: recover genuine texture-release provider
+visibility for the larger design lifetime/loading context.

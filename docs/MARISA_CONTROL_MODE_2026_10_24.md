@@ -127,10 +127,9 @@ Temporary root/callee views are read back and rolled back; nine pinned primary
 DB hashes are unchanged. Decompiled output is a hypothesis, never pasted as
 source. The raw CFG independently classifies its warned-about register tail.
 
-Recipes and source snapshots remain under
-`.analysis/exact-first-marisa-slot5c-20261024/`. Generated raw CFG/literals,
-full-source/COFF/normalization/difference receipts, DB attestation, formal builds,
-and positive/negative facing outputs remain under the corresponding `build/`.
-No executables, analysis databases or generated reports are committed. Existing
-accepted source, shared headers, compiler settings and relocation mappings are
-unchanged. The existing unit is reused; no redundant unit is added.
+Generated raw CFG/literals, full-source/COFF/normalization/difference receipts, DB
+attestation, formal builds, and positive/negative facing outputs remain under the
+corresponding `build/`. No executables, analysis databases or generated reports are
+committed. Existing accepted source, shared headers, compiler settings and
+relocation mappings are unchanged. The existing unit is reused; no redundant unit is
+added.

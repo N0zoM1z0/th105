@@ -27,13 +27,11 @@ python3 scripts/audit-marisa-object-entry.py \
   --object build/exact-first-marisa-object-entry-20261024/cold.obj
 ```
 
-Compilation returns0; all four comparisons return1 for the retained mismatch.
-The full audit replays every relocation through the complete section tail,
-including both destination tables and the action remap; there are no masks.
-Existing-object comparison reports `build_provenance_verified=false`; the
-separate cold compilation supplies build evidence. Formal receipts include
-source/compiler/input hashes. Reports are below
-`build/exact-first-marisa-object-entry-20261024/`.
+Compilation returns0; all four comparisons return1 for the retained mismatch. The
+full audit replays every relocation through the complete section tail, including
+both destination tables and the action remap; there are no masks. Existing-object
+comparison reports `build_provenance_verified=false`; the separate cold compilation
+supplies build evidence. Formal receipts include source/compiler/input hashes.
 
 ## Observed target identity, ownership and boundary
 
@@ -165,8 +163,6 @@ independent evidence; continue another complete representative.
 
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/audit-marisa-object-entry-paths.py
-taskset -c 0 nice -n 10 python3 scripts/audit-marisa-object-entry-paths.py \
-  --object build/exact-first-marisa-object-entry-20261024/cold.obj
 ```
 
 Both return0: ten actual RET0 paths, stack delta4, zero mismatches. Vector SHA256:

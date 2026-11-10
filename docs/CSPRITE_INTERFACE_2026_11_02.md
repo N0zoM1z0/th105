@@ -62,5 +62,4 @@ Reproduce with scripts/repo-python, CPU0/nice10: csprite_lifetime_origins.py,
 sprite_default_origins.py, the two implicit-lifetime guards, both network EH
 audits, build.py --unit exact-first-sprite-primary-render --compare --json,
 and the analogous rectangle unit. The renderer comparisons intentionally
-report mismatches. Fresh receipts and the bounded replay/mutation drivers live
-under build/.analysis frontier-sprite-interface-20261102.
+report mismatches.

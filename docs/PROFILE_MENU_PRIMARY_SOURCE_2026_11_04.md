@@ -19,7 +19,5 @@ native switch table remains independently pinned; source table equality and
 runtime behavior have not been claimed. See `BUILD_MATCHING.md` for the earlier
 bounded negative controls. The adjacent state-one body was subsequently selected as nonexact; see `PROFILE_MENU_STATE_ONE_SOURCE_2026_11_04.md`.
 
-Receipts: `build/frontier-profile-primary-20261104/`; a scoped replay of the
-exact dispatcher validates its caller edge, not a full application link.
 Target-independent CI passed all 1,024 tests, including progress and whitespace
 checks; the exact 227-byte dispatcher replay also passed.

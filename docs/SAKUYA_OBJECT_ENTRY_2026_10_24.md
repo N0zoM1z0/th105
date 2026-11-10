@@ -83,11 +83,9 @@ inert locals, synthetic padding or fabricated helper implementation is used.
 
 ## Early whole comparisons and finite trials
 
-Every trial compiles the complete body with the unchanged VC8 SP1 O2 profile.
-The first complete source was compared before local tuning. Private frozen
-sources/recipes are under `.analysis/exact-first-sakuya-object-entry-20261024/`;
-generated objects, normalized bytes and reports are under the corresponding
-`build/` directory. These private artifacts are not committed.
+Every trial compiles the complete body with the unchanged VC8 SP1 O2 profile. The
+first complete source was compared before local tuning. These private artifacts are
+not committed.
 
 | Trial | Whole-function evidence and decision |
 | --- | --- |
@@ -196,9 +194,4 @@ the same full payload99097f1b. The three binary hashes, version fields, command,
 source and object hashes are recorded. This is a compiler-release control, not
 a new public build profile or evidence of the target's original patch release.
 
-Reproduction inputs: .analysis/frontier-sakuya-entry-cil-20261030/.
-Receipts and full audit results: build/frontier-sakuya-entry-cil-20261030/,
-including parented.json, unparented.json, motion.json, continuation.json,
-link-ob1/receipt.json, payload3-audit.json, payload-extents-audit.json,
-payload-scope-audit.json, inherited-audit.json and rtm-audit.json.
 Public source/header, compiler profile and exact ledger remain unchanged.

@@ -68,8 +68,6 @@ Reproduce serially on CPU0/nice10 with scripts/repo-python: the focused unit
 builds, csprite_lifetime_origins.py, sprite_default_origins.py, both packet/record
 implicit-lifetime gates, the two network EH audits and the CSelect constructor,
 render and character audits. Nonexact candidate audits still report mismatch.
-Receipts and bounded replay drivers are in the corresponding build/.analysis
-frontier-select-real-sprites-20261102 directories.
 
 No count or exact-byte gain: exact1429 /443911; source1636, authored1655,
 excluded2072, review300, mapped1823, units811. Remaining UiTile/other UI call

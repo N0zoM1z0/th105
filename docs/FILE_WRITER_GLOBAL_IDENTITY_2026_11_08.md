@@ -47,10 +47,6 @@ Changed TOML and relocation CSV inputs parse, and the source diff passes the
 whitespace check. No broad suite or whole-corpus replay was needed for this
 bounded identity correction.
 
-Reproduce the focused builds with `scripts/build.py --unit UNIT --compare
---json` through `scripts/repo-python`. The private driver, exact consumer list,
-RTTI/EH check and origin checks are in
-`.analysis/frontier-file-writer-identity-20261108/`. Completed reports,
-`writer-proof.json`, and `comparison-summary.json` are in the corresponding
-`build/frontier-file-writer-identity-20261108/` directory. The writer check
-verifies current source, compiler and object provenance before comparison.
+Reproduce the focused builds with `scripts/build.py --unit UNIT --compare --json`
+through `scripts/repo-python`. The writer check verifies current source, compiler
+and object provenance before comparison.

@@ -36,7 +36,6 @@ comparison proves all136 Reimu section payloads and relocation tables identical.
 Only the timestamp and one compiler local-symbol numeric suffix differ.
 No partial body, metadata byte or nonexact giant gets new exact credit.
 
-Receipts:build/frontier-environment-ownership-20261029/, including one JSON per
-unit, source-rtti.json and reimu-section-equality.json. Default CI/diff checks
-cover the final header correction. Original high-level static/helper methods
-of the tag remain outside this layout recovery; no such methods are invented.
+Default CI/diff checks cover the final header correction. Original high-level
+static/helper methods of the tag remain outside this layout recovery; no such
+methods are invented.

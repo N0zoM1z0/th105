@@ -125,11 +125,7 @@ Own process uses384MiB/one CPU. Compiles are serial CPU0/nice10, with memory/
 swap monitored. Formal/cold full audits and the generated negative behave as
 expected before ledger promotion.
 
-Private recipes, retained draft and all three complete probes remain under
-`.analysis/exact-first-sakuya-slot5c-20261024/`; its matching `build/` scope
-retains raw CFG/tables/literals, attestation/DB pins, baseline/formal/cold
-comparisons, formal object/provenance and generated table negative. No private
-binary/report/database is committed.
+No private binary/report/database is committed.
 
 Only Sakuya's origin evidence label becomes canonical-exact-authored. The
 nonmatching Fighter-vtable selector becomes47 roots/1030251 provisional bytes;

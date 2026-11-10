@@ -11,8 +11,6 @@ The fresh target and relocation-replayed candidate body hashes are both
 taskset -c 0 python3 scripts/build.py --unit cross-v106a-body-collision --compare --json
 ```
 
-`build/body-collision-formal-exact-20261002.json` reports `result=ok`, one
-exact comparison, a 1862-byte COFF function extent and no first mismatch.
 The unit replays all ten REL32 call fields and 24 DIR32 fields. Five decorated
 helper mappings cover boundary classification, world-box transform, overlap,
 extent reset and stage-height proposal. The two byte globals are pinned to
@@ -33,9 +31,8 @@ exact BattleManager/Story callers remain pinned in the archived origin
 witness. That witness is replayed by the existing workflow test, including
 a deliberately incorrect outgoing helper destination.
 
-The attached IDA session failed identity attestation and was not used.
-This unit needed raw PE instruction/CFG evidence, not a new Ghidra import.
-Private source probes and disassembly are in `.analysis/body-collision-20261002/`.
+The attached IDA session failed identity attestation and was not used. This unit
+needed raw PE instruction/CFG evidence, not a new Ghidra import.
 
 ## Correcting two retained semantic assumptions
 

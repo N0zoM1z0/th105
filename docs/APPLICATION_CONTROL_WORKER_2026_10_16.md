@@ -90,8 +90,7 @@ python3 scripts/audit-candidate-boundaries.py 0x004081E0 --json
 python3 scripts/build.py --unit cross-v106a-application-control-worker --compare --json
 ```
 
-Reports are `build/application-control-worker-boundary.json` and
-`build/application-control-worker-formal.json`. The boundary report exposes
+The boundary report exposes
 the EH-only interval; the tables above reconcile it. The complete COFF tail
 is787 bytes versus target771, nonexact at **+1**. The candidate uses a biased
 EBP frame, combines the first two cdecl argument cleanups, emits three pacing
@@ -108,14 +107,12 @@ C-linkage substitution is added to erase them. Original TU, frame and exception
 optimization remain unknown. No match row or exact bytes are added.
 
 An independent authored-origin rule checks the exact callback edge, exact
-input/thread-wait/presentation calls, existing scheduler source, complete body,
-FP constants, key input/title/callback operands and the entire EH table shape.
-Only this origin row changes after checking unchanged older rules for overlap;
-unrelated library fingerprints are preserved without a full regeneration.
-Direct Ghidra save/readback sessions attest executable/program SHA, image/entry,
-x86 Windows identity, every mapped .text byte and EH/type data hashes before
-verifying the771-byte cdecl/void no-argument contract, purge0 and catch label.
-Private scripts are under
-`.analysis/application-control-worker-20261016/ghidra-scripts/`; logs stay under
-`build/application-control-worker-ghidra-*.log`. Each process uses768MiB and two
-active processors. The mismatched IDA session is excluded from analysis.
+input/thread-wait/presentation calls, existing scheduler source, complete body, FP
+constants, key input/title/callback operands and the entire EH table shape. Only
+this origin row changes after checking unchanged older rules for overlap; unrelated
+library fingerprints are preserved without a full regeneration. Direct Ghidra
+save/readback sessions attest executable/program SHA, image/entry, x86 Windows
+identity, every mapped .text byte and EH/type data hashes before verifying
+the771-byte cdecl/void no-argument contract, purge0 and catch label. Each process
+uses768MiB and two active processors. The mismatched IDA session is excluded from
+analysis.

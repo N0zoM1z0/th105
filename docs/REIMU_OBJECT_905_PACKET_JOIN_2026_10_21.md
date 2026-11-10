@@ -147,11 +147,9 @@ controls are not selected and establish no universal source/TU limitation.
 
 ## Reproduction and limits
 
-Current receipts/frozen inputs are in `build/reimu-object-call-sharing-20261021/`,
-with private recipes in the corresponding `.analysis/` directory. The
-[local-exit checkpoint](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md) retains its own
-earlier source/object/native epoch. Native and graph reports do not certify
-compiler provenance; `selected-build.json` supplies that separate evidence.
+The [local-exit checkpoint](REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md) retains its own
+earlier source/object/native epoch. Native and graph reports do not certify compiler
+provenance; `selected-build.json` supplies that separate evidence.
 
 Private generators use the frozen predecessor source/header to retain the
 source epoch.

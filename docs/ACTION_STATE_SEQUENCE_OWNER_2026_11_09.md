@@ -36,8 +36,4 @@ caller, intrinsic, and inventory-uniqueness proof passes with the changed Tenshi
 header pin. No input-migration source pin is changed.
 
 The three authored roots remain unselected and nonexact. No new authored exact
-credit or Factory acceptance is claimed. The existing payload auditors and
-`.analysis/frontier-action-state-sequence-owner-20261109/verify.py` produced the
-before/after objects, native call contexts, comparisons and sine-origin proof in
-`build/frontier-action-state-sequence-owner-20261109/`. All 18 pending input files
-are preserved.
+credit or Factory acceptance is claimed. All 18 pending input files are preserved.

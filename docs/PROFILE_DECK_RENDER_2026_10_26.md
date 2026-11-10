@@ -2,12 +2,11 @@
 
 ## Source registration, 2026-11-04
 
-The complete source is registered as source-present but remains nonexact. A
-fresh 2521-byte candidate again differs in 1622 positions; the one finite
-call-observer fixture agrees for all 32 observed events. That fixture does not
-prove populated-deck grid, general floating-point or service behavior. No
-exact bytes are added. Earlier references to unselected status below are
-historical. Receipt: `build/frontier-profile-deck-registration-20261104/`.
+The complete source is registered as source-present but remains nonexact. A fresh
+2521-byte candidate again differs in 1622 positions; the one finite call-observer
+fixture agrees for all 32 observed events. That fixture does not prove
+populated-deck grid, general floating-point or service behavior. No exact bytes are
+added. Earlier references to unselected status below are historical.
 
 The complete2521-byte source is **nonexact**. Full canonical relocation replay
 finds1622 unequal positions, first449268; the first776 bytes agree. Candidate
@@ -118,18 +117,16 @@ scripts/repo-python scripts/audit-profile-deck-render-target.py
 scripts/repo-python scripts/audit-profile-deck-render-target.py --object build/match-units/ExactFirst_ProfileDeckRender.obj
 ```
 
-Build/object audit exit1/nonexact; target-only audit exits0. Receipts are under
-`build/frontier-448f60-20261026/`; private first/control sources and recipes are
-under `.analysis/frontier-448f60-20261026/`. New data rows qualify the EH prefix,
-float384 and double304; double21 reuses an existing value-checked literal row.
-All other prior bindings, source and profiles are unchanged. Heavy work runs
-serially on CPU0/nice10; available memory stayed over10GB. Swap rose from134MB
-to140MB during the focused work and then remained stable.
-Fresh `origins-check.log` passes all4024 candidates:1604 authored/1419 excluded/
-1001 review. `cold-all.log` passes all526 accepted units/1414 functions under
-the current manifest; exact bytes remain385903. Floating audit passes399 ledger
-literals/1603 explicit mappings and2002 target references. During cold replay,
-swap reached143MB while available memory stayed over10GB. No new exact credit.
+Build/object audit exit1/nonexact; target-only audit exits0. New data rows qualify
+the EH prefix, float384 and double304; double21 reuses an existing value-checked
+literal row. All other prior bindings, source and profiles are unchanged. Heavy work
+runs serially on CPU0/nice10; available memory stayed over10GB. Swap rose from134MB
+to140MB during the focused work and then remained stable. Fresh `origins-check.log`
+passes all4024 candidates:1604 authored/1419 excluded/ 1001 review. `cold-all.log`
+passes all526 accepted units/1414 functions under the current manifest; exact bytes
+remain385903. Floating audit passes399 ledger literals/1603 explicit mappings
+and2002 target references. During cold replay, swap reached143MB while available
+memory stayed over10GB. No new exact credit.
 
 Registration verification on 2026-11-04: the exact 358-byte availability
 function and both 179/124-byte guide functions replayed exact; 1,024

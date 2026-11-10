@@ -85,14 +85,12 @@ scripts/repo-python scripts/check-match-literals.py --require-target
 scripts/repo-python scripts/ci.py
 ```
 
-Receipts: `build/frontier-65bf90-20261027/` has full target CFG/tables, first
-and width/selector/publication controls, formal-first/full-first and final
-focused/full/CI logs. Source controls remain under the corresponding private
-analysis directory. Final CI is pending at writing; its terminal log/exit is
-the commit gate. Only the new unit is compiled; unchanged acceptance receipts
-are retained and totals are incremental. Actual game execution, RNG execution
-and effect rendering are not part of this static comparison; no runtime matrix
-is added. Callees and adjacent65CB40 receive no inherited exact/origin credit.
+Source controls remain under the corresponding private analysis directory. Final CI
+is pending at writing; its terminal log/exit is the commit gate. Only the new unit
+is compiled; unchanged acceptance receipts are retained and totals are incremental.
+Actual game execution, RNG execution and effect rendering are not part of this
+static comparison; no runtime matrix is added. Callees and adjacent65CB40 receive no
+inherited exact/origin credit.
 
 ## Other bounded candidates retained this pass
 
@@ -102,8 +100,7 @@ render41FF00 improves1513/787 to1497/163 through direct live mix access. New
 ProfileKeyConfig capture44B540 reaches785 bytes with780-byte exact prefix,
 superseding the older389-prefix witness; its final SETNE versus target shared
 false-return branch remains nonexact. Byte-result and positive outer-guard
-controls do not close it. Complete sources/controls are retained privately under
-`.analysis/frontier-ADDRESS-20261027/` and build counterparts, unselected.
+controls do not close it.
 
 ## Typed entry and context storage, 2026-11-10
 
@@ -120,15 +117,12 @@ All 44 case labels and their order are retained. Fresh comparison preserves
 2676/2676 callable bytes and the complete 2980/2980 payload, with the same
 `d91263ec...` full hash. Complete COFF contents and every relocation are also
 identical to the fresh pre-change object. Focused CI and diff checks pass.
-Reports: `build/frontier-effect-object-state-20261110/`.
 
-A related typed-update trial was not selected. It preserves its 9350-byte full
-size but changes exactly three x87 addition schedules: native `FLD [ESI+F0];
-FADD ST(n)` becomes `FLD ST(n-1); FADD [ESI+F0]`. Native witnesses are
-`0x65AF71`, `0x65B74A` and `0x65B864`. The surrounding stores and relocations
-are unchanged, but exceptional floating-point details were not established.
-The original update was restored and rebuilt to canonical candidate hash
-`4fc56ccdb479afb9158a6dab1c58b22ac8471aa32080a87fe43addf21b52f254`.
-Its +8 mismatch and dispatch/metadata residual remain. The private typed trial
-is retained under `.analysis/frontier-effect-object-state-20261110/` for a
-future focused floating-point investigation, not a source-spelling search.
+A related typed-update trial was not selected. It preserves its 9350-byte full size
+but changes exactly three x87 addition schedules: native `FLD [ESI+F0]; FADD ST(n)`
+becomes `FLD ST(n-1); FADD [ESI+F0]`. Native witnesses are `0x65AF71`, `0x65B74A`
+and `0x65B864`. The surrounding stores and relocations are unchanged, but
+exceptional floating-point details were not established. The original update was
+restored and rebuilt to canonical candidate hash
+`4fc56ccdb479afb9158a6dab1c58b22ac8471aa32080a87fe43addf21b52f254`. Its +8 mismatch
+and dispatch/metadata residual remain.

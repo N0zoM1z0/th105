@@ -73,18 +73,14 @@ python3 scripts/build.py --unit cross-v106a-application-shutdown --compare --jso
 python3 scripts/audit-candidate-boundaries.py 0x00407F80 --json
 ```
 
-Formal report: `build/application-shutdown-formal.json`, zero differences over
-the complete callable and complete 245-byte COFF section tail. Exact source is
+Exact source is
 `src/platform/ApplicationShutdown.cpp`. Mapping, implementation and match rows
 advance together; the canonical authored baseline regenerates the origin row.
 Only focused validation is needed for this isolated addition.
 
 Direct Ghidra sessions independently attested PE SHA, image base, entry and
-external-entry marker, x86 Windows analysis identity and full mapped .text
-before saving the 245-byte function, durable name, void thiscall contract and
-zero purge. A fresh read-only session checked saved metadata, ECX storage and
-whole-body SHA. Scripts stay private under
-`.analysis/application-shutdown-20261016/ghidra-scripts/`; save/readback logs
-stay under `build/application-shutdown-ghidra-*.log`. Ghidra used one process
-at a time with 768 MiB heap and two active processors. The failed IDA target
-preflight and factory adapter were not used for analysis.
+external-entry marker, x86 Windows analysis identity and full mapped .text before
+saving the 245-byte function, durable name, void thiscall contract and zero purge. A
+fresh read-only session checked saved metadata, ECX storage and whole-body SHA.
+Ghidra used one process at a time with 768 MiB heap and two active processors. The
+failed IDA target preflight and factory adapter were not used for analysis.

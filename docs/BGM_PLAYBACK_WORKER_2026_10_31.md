@@ -62,10 +62,6 @@ Only this new origin row is materialized. Fresh affected replay preserves
 service linking 4039E0 / 73 and both thread wrappers 403B50/403B70 / 28 each.
 
 Source: src/audio/BgmPlaybackWorker.cpp.
-Private artifacts: build/frontier-bgm-playback-worker-20261031/ contains the
-raw body/CFG facts, public formal.json, callers-fresh.json, shared-list and
-single-CIL build logs/images/disassemblies. Private sources and recipes remain
-under its corresponding .analysis directory.
 
 Source functions increase to 1,751; authored ownership to 1,771; review becomes
 616, exclusions remain 1,640. Match units become 745. Exact authored remains
@@ -74,12 +70,11 @@ rebuild was performed.
 
 ## Real token queue context follow-up
 
-After the service lifetime/load recovery, the same worker policy was tested
-with the actual BgmHandleResult queues and complete BgmStreamRuntime provider
-context. Its326-byte size still agrees, but the first mismatch remains at65:
-native retains the list owner in EBX and source selects EDI. Stream update is
-918/native943 and also unaccepted. Both accepted play351 and prepare159 roots
-remain exact in this private context. The token type alone therefore does not
-close the worker. No ABI or register declarations were added, and the control
-was restored out of selected source. Evidence:
-build/frontier-bgm-token-worker-20261031/.
+After the service lifetime/load recovery, the same worker policy was tested with the
+actual BgmHandleResult queues and complete BgmStreamRuntime provider context.
+Its326-byte size still agrees, but the first mismatch remains at65: native retains
+the list owner in EBX and source selects EDI. Stream update is 918/native943 and
+also unaccepted. Both accepted play351 and prepare159 roots remain exact in this
+private context. The token type alone therefore does not close the worker. No ABI or
+register declarations were added, and the control was restored out of selected
+source.

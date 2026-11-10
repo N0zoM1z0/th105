@@ -52,16 +52,14 @@ The remaining load-only authored-origin rule preserves99-byte404C90 evidence.
 
 ## Reproduction and incremental accounting
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit gpt-web-design-base-cleanup --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit gpt-web-design-base-cleanup --compare --json
     scripts/repo-python scripts/validate-tracking.py --require-target
     scripts/repo-python scripts/ci.py
 
-Receipts: build/frontier-title-release-real-owner-20261101/formal-owner.json,
-body.json, canonical-diagnostic.json, formal-release.json and the final current
-build/CI logs. Freshness is essential: initial retained DLL/MAP matches alone
-were not accepted. No DLL or game function is executed. No shared header or
-semantic source change requires unrelated native rebuilds; cleanup310 is the
-actual affected owner and freshly remains exact.
+Freshness is essential: initial retained DLL/MAP matches alone were not accepted. No
+DLL or game function is executed. No shared header or semantic source change
+requires unrelated native rebuilds; cleanup310 is the actual affected owner and
+freshly remains exact.
 
 Authored exact becomes1585 functions/449721 bytes, adding only115 bytes.
 Source1783, authored1803, mapped1810, excluded1798 and review426 stay. Unit count

@@ -119,14 +119,10 @@ pinned primary DB hashes remain unchanged. Decompiled output only corroborates
 raw branches/operands and is not pasted into source. Heap384MiB/one CPU;
 builds run serially at CPU0/nice10, with memory/swap monitored.
 
-Private recipes/frozen first source and corrected probe remain under
-`.analysis/exact-first-alice-slot5c-20261024/`; the corresponding `build/` scope
-retains raw CFG/tables/literals, attested views/DB pins, formal/cold comparisons,
-formal object/provenance and generated table negative. Source/exact ledgers and
-the nonmatching Fighter-vtable subset are synchronized:48 roots/1032047 bytes
-remain in that selector; its immutable73-root pointer witness is unchanged.
-Only Alice's origin evidence label becomes canonical-exact-authored; authored,
-excluded and review dispositions and the denominator stay unchanged. Ledger
-exact totals become1397 functions/327058 callable bytes, without a new aggregate
-cold replay claim. Continue independently reviewed same-slot peers; keep the
-recorded Tenshi and Marisa neutral controls parked.
+Source/exact ledgers and the nonmatching Fighter-vtable subset are synchronized:48
+roots/1032047 bytes remain in that selector; its immutable73-root pointer witness is
+unchanged. Only Alice's origin evidence label becomes canonical-exact-authored;
+authored, excluded and review dispositions and the denominator stay unchanged.
+Ledger exact totals become1397 functions/327058 callable bytes, without a new
+aggregate cold replay claim. Continue independently reviewed same-slot peers; keep
+the recorded Tenshi and Marisa neutral controls parked.

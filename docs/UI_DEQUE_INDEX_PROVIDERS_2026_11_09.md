@@ -20,8 +20,5 @@ remains the same 620-byte candidate against 619 native bytes, with mismatch
 are unchanged. The actual emitted string operator[] compares 94/94 and the
 integer operator[] 100/100, including every relocation.
 
-Reproduce with `.analysis/frontier-ui-deque-index-20261109/build_units.py`
-and `verify.py`. Reports are under
-`build/frontier-ui-deque-index-20261109/`, including `verification.json`.
-These provider corrections add no authored exact credit. The input migration
-and source pins remain separate.
+These provider corrections add no authored exact credit. The input migration and
+source pins remain separate.

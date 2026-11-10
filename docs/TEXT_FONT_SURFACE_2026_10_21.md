@@ -70,7 +70,5 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-The focused command intentionally exits comparison_failed. Selected evidence
-and leaf/parent receipts are in `build/font-surface-20261021/`; private recipes
-are in `.analysis/font-surface-20261021/`. Next: blend4127C0 and real font
-TU/link/EH closure. Reimu496540 remains nonexact49655F/+31.
+The focused command intentionally exits comparison_failed. Next: blend4127C0 and
+real font TU/link/EH closure. Reimu496540 remains nonexact49655F/+31.

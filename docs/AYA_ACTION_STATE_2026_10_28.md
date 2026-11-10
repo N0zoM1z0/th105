@@ -96,12 +96,11 @@ These are omission diagnostics, not opcode, operand, semantic or byte acceptance
 Remaining frame bytes, control sharing, scalar lifetimes and FP scheduling remain
 unresolved. The original TU/LTCG context and complete nominal layout are unknown.
 
-Receipts: build/frontier-602250-20261028/{formal-build,full-audit,target-audit}.json.
-Private source preparation and diagnostics: .analysis/frontier-602250-20261028/.
-The formal public build reproduces the selected private payload exactly.145
-isolated aliases are appended; existing aliases, shared ABI, compiler profile and
-accepted sources remain unchanged. Only the affected unit is built. matches.csv
-is unchanged; no new whole-corpus replay or exact percentage is claimed.
+The
+formal public build reproduces the selected private payload exactly.145 isolated
+aliases are appended; existing aliases, shared ABI, compiler profile and accepted
+sources remain unchanged. Only the affected unit is built. matches.csv is unchanged;
+no new whole-corpus replay or exact percentage is claimed.
 
 ## Two-word request homes and shared continuation
 
@@ -138,10 +137,7 @@ home44 also agrees. Some other home ordering remains different. Candidate
 609565's surface result is tested in AL after an intervening FLDZ, so the older
 immediate-next-instruction diagnostic reports false without an ABI mismatch.
 
-Current receipts: build/frontier-602250-20261028/formal-paired-build.json and
-formal-paired-audit.json. Native/candidate-payload-homes.json and
-paired-payload-review.log retain the bounded address/lifetime evidence. The
-formal source reproduces the private payload; no exact ledger changes.
+The formal source reproduces the private payload; no exact ledger changes.
 
 ## 2026-10-29: scalar and call-argument lifetimes
 
@@ -196,12 +192,8 @@ The previously pending action529 positive-vertical-speed guard is also closed:
 negative, zero or unordered values. Existing F8>0 source is correct and remains
 unchanged. No NaN policy is invented from decompiler output.
 
-Receipts: build/frontier-aya-scalar-lifetimes-20261029/{formal-build,formal-audit,
-orbit-call-facts,candidate-payload-homes}.json, layer-census.log,
-payload-review.log and ci.log. Private Baseline.cpp, Branch214.cpp and
-OrbitArgs.cpp retain intermediate whole-root candidates. Do not rerun the old
-Oct28 assembly/writer scripts over this source: they predate these changes.
-
+Do not rerun the old Oct28 assembly/writer scripts over this source: they predate
+these changes.
 
 ## November1: complete manager-backed spawn-width controls
 
@@ -242,11 +234,7 @@ four times count to memcpy when the pointer is non-null. Consequently the
 observed two-word homes remain an unresolved original extent/lifetime issue;
 this scope does not synthesize a third word or enlarge the arrays to hide it.
 
-Receipts: build/frontier-aya-spawn-contract-20261101/baseline.json,
-wrapper.json, bytes-wrapper.json, wrapper-original.json, managers.json,
-native-chain.json, compare.json, bytes-compare.json, actions.log and
-bytes-actions.log. Private complete source/header controls and replay scripts
-are under the corresponding .analysis directory. All native work was serial.
+All native work was serial.
 
 ## Actions 560 and 561 spawn height, 2026-11-05
 

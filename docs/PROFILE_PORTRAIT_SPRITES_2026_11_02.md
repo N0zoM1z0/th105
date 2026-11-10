@@ -42,10 +42,8 @@ from the real ScoreDefaults local object. That requires its own complete emissio
 and owner proof before any reclassification; this checkpoint does not infer an
 original declaration or change accounting merely from the empty body.
 
-Private scripts/reports: .analysis/frontier-profile-portrait-sprites-20261102/
-and build/frontier-profile-portrait-sprites-20261102/. Final default CI passed
-962 tests (101.251 seconds), tracking, generated progress and whitespace. Both
-diff checks passed. No target or generated binary is committed.
+Final default CI passed 962 tests (101.251 seconds), tracking, generated progress
+and whitespace. Both diff checks passed. No target or generated binary is committed.
 
 Counts remain 1427 exact / 443604 bytes, 1637 source-present, 1656 authored,
 1826 mapped, 2074 excluded, 297 review and 813 units.

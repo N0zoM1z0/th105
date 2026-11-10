@@ -21,9 +21,8 @@ size outputs. Its private compiled interface does not establish whether the
 original C++ used aggregate or separate output parameters.
 
 Factory-native IDA metadata, entry point and five16-byte mapped samples were
-rechecked against the pinned raw executable before using its decompilation.
-All passed; no database or target bytes were changed. Raw instruction listings
-and responses are retained in build/frontier-wave-resource-20261031.
+rechecked against the pinned raw executable before using its decompilation. All
+passed; no database or target bytes were changed.
 
 ## Actual source and ownership
 
@@ -54,12 +53,11 @@ introduced.
 - Existing standalone RIFF419690 remains a nonexact ordinary aggregate-API
   control. Native private output splitting is not manually declared.
 
-Private controls are bounded: leaving CV3 private gives235 and dispatcher143,
-which do not represent its actual ordinary stdcall entry. Preserving that real
-entry gives248 and dispatcher145. A normal four-output C++ RIFF interface, chosen
-from the observed output addresses rather than forced registers, gives444-byte
-RIFF and163-byte dispatcher; it is rejected and not published. Array-ownership
-correction is byte-neutral in the selected CIL graph. No spelling grid followed.
+Preserving that real entry gives248 and dispatcher145. A normal four-output C++ RIFF
+interface, chosen from the observed output addresses rather than forced registers,
+gives444-byte RIFF and163-byte dispatcher; it is rejected and not published.
+Array-ownership correction is byte-neutral in the selected CIL graph. No spelling
+grid followed.
 
 The new unit is exact-first-wave-resource-dispatch; the CV3 entry moved from
 the old standalone unit to this real caller graph. The old unit still retains

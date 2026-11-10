@@ -45,13 +45,10 @@ Their resource, geometry and numerical scope remains as documented in
 
 ## Real source and library link
 
-`scripts/probe-common-fighter-ltcg.py` builds the real root with `/GL`, keeps
-the explicit SDK deque member in ordinary COFF, and links24 real game source
-providers plus the pinned static VC8 CRT and Windows SDK libraries. There
-are no stub bodies, code ABS symbols, manufactured callers, `/FORCE` options
-or unresolved link inputs. The probe records source/object/image/map/tool/
-library hashes, build commands, data bindings and separate dependency checks
-under `build/common-fighter-ltcg/`.
+`scripts/probe-common-fighter-ltcg.py` builds the real root with `/GL`, keeps the
+explicit SDK deque member in ordinary COFF, and links24 real game source providers
+plus the pinned static VC8 CRT and Windows SDK libraries. There are no stub bodies,
+code ABS symbols, manufactured callers, `/FORCE` options or unresolved link inputs.
 
 Five source-local diagnostic partitions retain the actual required complete
 method bodies plus their declarations, types, inline helpers and globals:

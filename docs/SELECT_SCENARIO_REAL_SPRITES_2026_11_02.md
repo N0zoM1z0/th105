@@ -30,12 +30,10 @@ bytes, first mismatch at +125, and remains nonexact. No public match selector,
 source-present ledger entry or new byte credit is added for that render body.
 This does not resolve its loop scheduling and floating-point differences.
 
-Private controls: .analysis/frontier-select-scenario-real-sprites-20261102/.
-Receipts: build/frontier-select-scenario-real-sprites-20261102/.
-Final CI passed all 962 tests in 110.932 seconds. Both diff checks gate the
-local checkpoint. No target or generated
-binary is committed. Counts remain 1426 exact / 443399 bytes, source 1636,
-authored 1655, mapped 1826, excluded 2075, review 297 and units 813.
+Final CI passed all 962 tests in 110.932 seconds. Both diff checks gate the local
+checkpoint. No target or generated binary is committed. Counts remain 1426 exact /
+443399 bytes, source 1636, authored 1655, mapped 1826, excluded 2075, review 297 and
+units 813.
 
 ## Render source registration, 2026-11-04
 

@@ -110,8 +110,6 @@ suffix and skipped write was reviewed for this peer independently.
 
 ## Whole-function experiments and negative control
 
-Private inputs are retained in `.analysis/exact-first-remilia-action-entry-20261025/`;
-reports/objects are under `build/exact-first-remilia-action-entry-20261025/`.
 Every row compares the complete emitted symbol with all relocations replayed.
 
 | Complete source/control | Full bytes | SHA256 prefix | Whole result |

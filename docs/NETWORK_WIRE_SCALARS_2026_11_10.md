@@ -28,7 +28,4 @@ root from 78 to 89 bytes, first mismatch +48. It was not retained. This source
 boundary therefore remains unresolved; the other packet changes do not imply
 that every packet access is alignment-independent.
 
-Evidence: `build/frontier-network-wire-fields-20261110/`, with complete before
-and after comparisons and `verification.json`. The bounded full-section check
-is `.analysis/frontier-network-wire-fields-20261110/verify.py`. These are local
-comparisons preserving existing matches, not new Factory acceptance.
+These are local comparisons preserving existing matches, not new Factory acceptance.

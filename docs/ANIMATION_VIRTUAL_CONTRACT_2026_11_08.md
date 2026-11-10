@@ -66,8 +66,4 @@ complete emitted RTTI/vtables. This audit changes no shared header or source
 ABI. Four representative source units were freshly built: all 24 selected roots
 remain exact. The two finalization roots were also freshly replayed.
 
-Private evidence is in `build/frontier-animation-vtable-contract-20261108/`:
-`audit.json` retains full native/source tables and whole RTTI records;
-`int-return.json` and `void-return.json` retain the return-type control. The
-bounded drivers and private source copies are in the corresponding `.analysis/`
-directory. The existing checked-list and effect release sources remain unchanged.
+The existing checked-list and effect release sources remain unchanged.

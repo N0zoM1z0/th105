@@ -50,6 +50,4 @@ No new function, source/exact credit or total changes: exact1427/443604,
 source1636, authored1655, mapped1825, review298, excluded2074, units812.
 The matching publisher is renamed in the existing row, not duplicated.
 
-Evidence: `.analysis/frontier-network-state-record-20261102/` and
-`build/frontier-network-state-record-20261102/`. Original pinned target,
-serial CPU0/nice10 work, no IDA semantic reuse or push.
+Original pinned target, serial CPU0/nice10 work, no IDA semantic reuse or push.

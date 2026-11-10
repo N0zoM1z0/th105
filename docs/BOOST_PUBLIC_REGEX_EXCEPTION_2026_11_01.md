@@ -59,10 +59,7 @@ replacement provider source, changed formal bindings, omitted original
 attributes and extra probe code. Twenty-six actual code, support, EH and RTTI
 byte corruptions are rejected. Shared RTTI/EH comparison contracts are unchanged.
 
-Evidence: build/origin-anchors/boost-public-regex-exception.json and
-build/frontier-public-regex-exception-20261101, including core-regression.json,
-support.json, mutations.json and previous-public-regression.log. Final narrow
-replay, CI and diff checks accompany the checkpoint.
+Final narrow replay, CI and diff checks accompany the checkpoint.
 
 Excluded2018/review354; authored exact1431/443916 bytes, authored1655,
 source1635 and mapped1820 remain unchanged. Configured units779. No push.

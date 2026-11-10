@@ -32,9 +32,8 @@ It is not fabricated zero-fill. The separate fastflag is the actual fpinit.obj
 BSS subobject at6FD3A4, verified as PE zero-fill without reading raw BSS bytes.
 Existing dispatch/exception provider ownership is reused, not newly counted.
 
-Thirteen tests and1462 individual initialized-byte corruption controls are
-rejected. No fake BSS byte controls are claimed. Formal replay verifies both
-entries. Scope:20 new runtime bytes only, no source/game exact, table, support
-or provider credit. Authored exact remains1431/443916; source-present1636.
-Excluded2061, review311, units804. Private evidence is retained under
-.analysis/frontier-atan2-dispatch-20261101/ and build/origin-anchors/vc8-atan2-entries/.
+Thirteen tests and1462 individual initialized-byte corruption controls are rejected.
+No fake BSS byte controls are claimed. Formal replay verifies both entries. Scope:20
+new runtime bytes only, no source/game exact, table, support or provider credit.
+Authored exact remains1431/443916; source-present1636. Excluded2061, review311,
+units804.

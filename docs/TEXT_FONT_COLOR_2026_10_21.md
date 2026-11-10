@@ -92,9 +92,7 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-The focused command intentionally exits comparison_failed: seven candidates
-remain nonexact and hex45 is exact. Reports and selected source/COFF evidence
-are retained in `build/font-color-20261021/`; private recipes are in
-`.analysis/font-color-20261021/`. Only source-present/authored classification is
-added. Next bounded work is reset4118F0, then setter/blend closure before the
-larger parent/TU/link/EH comparison. Reimu496540 remains nonexact49655F/+31.
+The focused command intentionally exits comparison_failed: seven candidates remain
+nonexact and hex45 is exact. Only source-present/authored classification is added.
+Next bounded work is reset4118F0, then setter/blend closure before the larger
+parent/TU/link/EH comparison. Reimu496540 remains nonexact49655F/+31.

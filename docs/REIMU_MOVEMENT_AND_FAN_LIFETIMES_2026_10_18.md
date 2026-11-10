@@ -103,11 +103,9 @@ Source522/523 share4859C6 where target separates them.209/221 correctly share
 47B59E. Recheck300/320 and original visibility/profile before further tuning.
 
 Ordinary object SHA256:
-`0c189b55f5ab6c87914183183f5a1a3a03a64b5159546c9f1dac6566dfbc350d`.
-Linked image SHA256:
-`167cb81e6d300d785d6972f662a7378dbb364c5a606ef1facceac290009c12bf`.
-Current receipts are under `build/reimu-movement-lifetimes/` and
-`build/reimu-ltcg/`. Run heavy commands serially with `nice -n 10 taskset -c 0`:
+`0c189b55f5ab6c87914183183f5a1a3a03a64b5159546c9f1dac6566dfbc350d`. Linked image
+SHA256: `167cb81e6d300d785d6972f662a7378dbb364c5a606ef1facceac290009c12bf`. Run
+heavy commands serially with `nice -n 10 taskset -c 0`:
 
 ```bash
 python3 scripts/probe-reimu-action-ltcg.py

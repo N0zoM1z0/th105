@@ -37,6 +37,5 @@ explicit; no algorithm or exactness change is claimed. No global rebuild,
 ledger change, new authored/source count or exact credit. Exact1429/443911,
 source1636, authored1655, mapped1823, review300, excluded2072, units812 stay.
 
-Evidence: `.analysis/frontier-select-real-tiles-20261102/` and
-`build/frontier-select-real-tiles-20261102/`. All native work serial CPU0/nice10,
-original pinned target, no IDA semantics or push.
+All native work serial CPU0/nice10, original pinned target, no IDA semantics or
+push.

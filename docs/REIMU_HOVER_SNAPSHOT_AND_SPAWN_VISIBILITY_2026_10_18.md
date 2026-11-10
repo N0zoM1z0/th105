@@ -140,12 +140,10 @@ alignment gap; all82888 canonical bytes remain7816b79c…. The private DLL hash
 is `f87438223ce1b930470106892cd09e581c9159b7973c8c5fd6b4c2725f4ead17`.
 No diagnostic DLL is executed and no comparator acceptance rule is relaxed.
 
-Receipts and recipes are under `build/reimu-trajectory-tails/`, with baseline
-source hashes in `visible-spawn/*receipt.json`; regenerate at the stated phase
-before relying on them. Real body visibility alone does not explain this
-baseline giant's non-inlining. The original TU, inline budget and final source
-shape remain unknown. Do not repeat this control as if visibility were still
-untested, or generalize it to every future source phase.
+Real body visibility alone does not explain this baseline giant's non-inlining. The
+original TU, inline budget and final source shape remain unknown. Do not repeat this
+control as if visibility were still untested, or generalize it to every future
+source phase.
 
 Heavy jobs run serially on CPU0 at nice10. The genuine producer peaks at
 320936KiB (about313MiB); the focused native run stays below190MiB. Disposable

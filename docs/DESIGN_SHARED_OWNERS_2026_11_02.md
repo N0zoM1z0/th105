@@ -38,7 +38,6 @@ That source-size change is not a native comparison or byte improvement claim.
 Gauge initialization retains its 360-byte nonexact candidate hash and first +5
 residual. No guessed EH binding, private ABI facade or compiler-profile change.
 
-Private controls and receipts: .analysis/frontier-design-shared-owners-20261102/
-and build/frontier-design-shared-owners-20261102/. Final CI passed all 962 tests in
-119.765 seconds. Both diff checks gate the local checkpoint. Totals remain 1426 exact / 443399 bytes, source 1636,
-authored 1655, mapped 1826, excluded 2076, review 296 and units 813.
+Final CI passed all 962 tests in 119.765 seconds. Both diff checks gate the local
+checkpoint. Totals remain 1426 exact / 443399 bytes, source 1636, authored 1655,
+mapped 1826, excluded 2076, review 296 and units 813.

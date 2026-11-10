@@ -68,17 +68,14 @@ the four-word bounds. Extra CC bytes remain recorded as metadata alignment,
 not jump destinations or discarded comparison bytes. Full canonical inputs
 are never shortened or patched by this diagnostic partition.
 
-Private receipts are build/frontier-{yukari,aya,iku,sakuya,youmu}-stack-lifetimes-20261101/
-and build/frontier-roster-wide-captures-20261101/{patchouli,remilia,yuyuko,marisa,
-komachi,suika,udonge}/. Each contains fresh build and actual graph/stack/operand
-facts; summary.json records completed batch checks and initial-blocked files
-retain the superseded parser attempts. Private scripts retain all exact input
-contracts. No process ran in parallel and no generated source image executed.
+Each contains fresh build and actual graph/stack/operand facts; summary.json records
+completed batch checks and initial-blocked files retain the superseded parser
+attempts. Private scripts retain all exact input contracts. No process ran in
+parallel and no generated source image executed.
 
 All neighboring whole comparisons remain nonexact. Exact1582/449309 bytes,
 source1782, authored1802, mapped1809, excluded1791/review434 and units765 stay.
 Default CI235 and whitespace pass for this documentation checkpoint.
-
 
 ## Alice correction and fresh wide-capture check
 
@@ -106,11 +103,9 @@ home24 in both graphs. There is no further missing-wide-capture correction
 supported by this check. Counts and stack-pointer closure alone do not prove
 all request extents, callback epochs or whole-root execution equivalence.
 
-Receipts are build/frontier-alice-action-state-20261101/alice/: formal.json,
-map.json, native/candidate-wide.json, payload and peer-facts reports,
-wide-capture-windows.asm and summary.json. The existing complete candidate
-remains unselected and nonexact. The stale scaffold-only planning statement
-is corrected here and in RE_HANDOFF.md, without promoting historical metadata.
+The existing complete candidate remains unselected and nonexact. The stale
+scaffold-only planning statement is corrected here and in RE_HANDOFF.md, without
+promoting historical metadata.
 
 ## Reimu research candidate, same bounded check
 
@@ -124,9 +119,7 @@ The existing relocation audit qualifies all2473 relocations:1185 calls,
 unresolved. Whole payload remains nonexact against82924 target bytes.
 
 Both graphs expose40 QWORD operands,20 stores,112 resolved payload homes and
-1392-byte frames. Per-action store counts agree, including all three616
-captures and one each for565,566,612 and730. No additional missing-wide
-capture is demonstrated. This does not prove all request extents or whole-root
-execution equivalence. No source is modified or selected; no exact credit.
-Receipts are build/frontier-reimu-wide-captures-20261101, with fresh generator,
-existing relocation audit and separate native/candidate graph/stack reports.
+1392-byte frames. Per-action store counts agree, including all three616 captures and
+one each for565,566,612 and730. No additional missing-wide capture is demonstrated.
+This does not prove all request extents or whole-root execution equivalence. No
+source is modified or selected; no exact credit.

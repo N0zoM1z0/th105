@@ -140,25 +140,19 @@ python3 scripts/compare-unit-object.py cross-v106a-network-winsock-receive-threa
 python3 scripts/compare-unit-object.py cross-v106a-network-winsock-receive-thread build/match-units/CrossV106a_NetworkWinsockReceiveThread.obj --address 0x0041D7B0 --json
 ```
 
-The complete comparison intentionally returns1 for the two nonexact authored
-bodies. The accepted-only callback remains14/14; the two148/33 dependency
-controls earn no authored credit. The four affected Winsock runtime functions
-are independently rebuilt/replayed after the limit-field rename and retain
-148/47/84/68 exact. No shared header, compiler flag or earlier relocation
-permission changes. Reports are `build/network-udp-request-{facts,build,formal,accepted}.json`,
-`build/network-udp-request-runtime-{build,accepted}.json` and
-`build/network-udp-request-ltcg-probe.diagnosis.json`. Fresh source/object
-hashes and unit-input digests are independently checked against both builds.
-Private recipes stay under `.analysis/network-udp-request-20261016/`.
+The complete comparison intentionally returns1 for the two nonexact authored bodies.
+The accepted-only callback remains14/14; the two148/33 dependency controls earn no
+authored credit. The four affected Winsock runtime functions are independently
+rebuilt/replayed after the limit-field rename and retain 148/47/84/68 exact. No
+shared header, compiler flag or earlier relocation permission changes. Fresh source/object hashes
+and unit-input digests are independently checked against both builds.
 
 IDA preflight still identifies another executable and is not used for
 analysis. Direct Ghidra attests executable/program SHA, base, entry marker,
 x86 Windows identity and all mapped .text bytes. It saves and independently
 reads back the1355/148/33 extents and physical parameter/return storage, the
 packed24-byte request, native peer/vector types and method-specific13C-byte
-owner prefix. Decompiler output remains a hypothesis. Logs are
-`build/network-udp-request-ghidra-{inspect,save,readback}.log`; one process is
-limited to768MiB heap/two CPUs. The new origin rule classifies only request1355
+owner prefix. Decompiler output remains a hypothesis. The new origin rule classifies only request1355
 as authored, with no new exact or library exclusion credit.
 
 ## Subsequent connection-chain closure

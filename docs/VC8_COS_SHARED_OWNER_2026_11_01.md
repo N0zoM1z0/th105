@@ -36,11 +36,7 @@ aa3a55ae1ac29df47d273068cfdd76f91ff7c0a36cc00ca79bdd6629d8106ad1.
 Both are extracted from the unchanged pinned SP1 archive.
 
 Nine tests reject wrong member, masks/short bodies, incorrect fallback or
-coefficient bindings, missing common support and alignment-as-code credit.
-All765 actual corruption controls fail: every owner and operation-name byte,
-all named coefficient boundaries and an interior table point. Complete2224-
-byte comparison is mandatory, not replaced by selected corruption samples.
-
-Evidence: build/origin-anchors/vc8-cos-shared/proof.json and
-build/frontier-crt-cos-owners-20261101/. Private scripts are under
-.analysis/frontier-crt-cos-owners-20261101/.
+coefficient bindings, missing common support and alignment-as-code credit. All765
+actual corruption controls fail: every owner and operation-name byte, all named
+coefficient boundaries and an interior table point. Complete2224- byte comparison is
+mandatory, not replaced by selected corruption samples.

@@ -159,12 +159,9 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-Fresh reports use `build/youmu-zero-effect-final-20261002.json` and
-`build/youmu-zero-effect-final-owners-20261002.json`. Explicit-object call,
-guard, stack, arithmetic and load/store packets use that prefix and date.
-Private controls are below `.analysis/youmu-flow-lifetimes-20261002/` and
-`build/youmu-flow-lifetimes-20261002/`; their reports contain their actual
-object hashes. The load/store census checks object/audit hash agreement.
+Explicit-object call, guard,
+stack, arithmetic and load/store packets use that prefix and date. The load/store
+census checks object/audit hash agreement.
 
 Original local types, other argument schedules, physical tail placement and
 TU/compiler context remain unknown. The recovered zero lifetime is evidence

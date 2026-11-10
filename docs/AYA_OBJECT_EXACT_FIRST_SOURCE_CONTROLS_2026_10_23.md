@@ -106,12 +106,6 @@ or payload size must not hide the extra dispatch instruction, later placement
 or reversed floating reads. These concrete offset/minimal-owner declarations
 and sum-expression variants need no further investigation in the tested epoch.
 
-Private recipes: `.analysis/aya-exact-first-source-20261023/`; receipts and
-frozen controls: `build/aya-exact-first-source-20261023/`. Start with
-`baseline.json`, `controls.json`, `frame-owners.json`, `common-frame-owners.json`,
-`common-tails.json`, `inline-tails.json`, `partial-tails.json`,
-`scale-expression-scope.json`, `fenv-controls.json`, `root-fenv-completed.json`,
-and `cil-member-tail/inspection.json`. Other predicate and graph diagnostics
-retain their logs. Recipes protect completed output paths against overwrite.
-Final public-input identity and local CI receipts are `final-state.json` and
-`ci.log`. Accepted totals remain unchanged; no aggregate replay was performed.
+Other predicate and graph diagnostics retain their logs. Final public-input identity
+and local CI receipts are `final-state.json` and `ci.log`. Accepted totals remain
+unchanged; no aggregate replay was performed.

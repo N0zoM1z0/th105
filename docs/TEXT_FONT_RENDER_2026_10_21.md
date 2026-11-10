@@ -130,12 +130,9 @@ This supports the loop/output recovery without substituting semantic agreement
 for exactness or claiming GDI, overflow-allocation, arbitrary-alias or physical
 read-footprint coverage.
 
-Receipts, full raw facts/caller census and frozen controls are under
-`build/font-render-20261021/`; corresponding recipes are in
-`.analysis/font-render-20261021/`. Completed unselected controls are archived
-31,936 ->5,789 bytes, with per-file SHA256 readback before loose-file deletion.
-Selected source/object/binary and comparison/semantic receipts stay available.
-The final gates are:
+Completed unselected controls are archived 31,936 ->5,789 bytes, with per-file
+SHA256 readback before loose-file deletion. Selected source/object/binary and
+comparison/semantic receipts stay available. The final gates are:
 
 ```bash
 python3 scripts/validate-tracking.py --require-target
@@ -166,7 +163,6 @@ caller is322/115, canonical7087f023 and nonexact+0. Earlier source sizes/hashes
 in this note describe frozen preceding checkpoints. Current begin4320 and
 caller13100 bounded cases pass; owner and remaining providers remain open.
 
-
 ## Four-byte character read, November 10
 
 The fixed-size byte copy compiles to the same load. Both source consumers were
@@ -176,6 +172,4 @@ The linked font image is identical except for its COFF and export timestamps.
 All seven existing exact roots still replay; the five nonexact roots remain
 unchanged, including the linked text entry at 335/native 326 bytes.
 
-Evidence is in `build/frontier-font-byte-read-20261110/verification.json`,
-with complete before/after receipts beside it. No ledger, source pin or Factory
-acceptance was changed.
+No ledger, source pin or Factory acceptance was changed.

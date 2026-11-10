@@ -103,11 +103,9 @@ boundaries. Stops remain1246 real RETs,82 objects,30 effects,177 common entries,
 remain unproved. Fresh compact bool build passes0/12 smoke and0/8 unknown
 boundaries. The710/711/720 static loops and48 510 packets/12 level reloads pass.
 
-Receipts, profile/control reports, opcode delta and strict replay are below
-build/reimu-root-relocations/. Current inputs/compiler/objects are pinned;
-all9 primary Ghidra DB hashes stay unchanged under the reused direct identity.
-No new process/clone or IDA semantics. Rejected profile/initial cast products,
-superseded objects/source copies and caches are cleaned; current artifacts
-and small evidence records remain. Next address the source/compiler ordering,
-remaining call sharing, exact callable ownership and returning-world evidence
-before canonical acceptance of the whole root.
+Current inputs/compiler/objects are pinned; all9 primary Ghidra DB hashes stay
+unchanged under the reused direct identity. No new process/clone or IDA semantics.
+Rejected profile/initial cast products, superseded objects/source copies and caches
+are cleaned; current artifacts and small evidence records remain. Next address the
+source/compiler ordering, remaining call sharing, exact callable ownership and
+returning-world evidence before canonical acceptance of the whole root.

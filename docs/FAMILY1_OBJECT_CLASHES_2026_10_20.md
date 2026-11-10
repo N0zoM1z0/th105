@@ -76,18 +76,15 @@ The parent remains source-present/nonexact; this checkpoint accepts46DD40 only.
 
 ## Native execution
 
-`scripts/audit-family1-object-clashes.py` reuses the bounded environment from
-the parent auditor. The original parent first prepares valid object geometry;
-its node allocator/free environment callbacks are limited and disclosed there.
-The standalone dispatcher entries then execute original game, pair and
-geometry instructions, with no supplied dispatcher/pair result or code patch.
-The child phase itself must perform no allocation. Code/resources are read-only
-while native writes stay within the fixture arena/stack/SEH cell.
-The subsequent collision-phase v2 review corrects source168 ownership in the
-parent seed and rejects non-SEH zero-page reads. This226-record child matrix
-replays with zero mismatches after that change; refreshed receipts are under
-`build/collision-tail-20261020/family1-final.json`. The canonical source and
-686-byte exact result are unchanged.
+`scripts/audit-family1-object-clashes.py` reuses the bounded environment from the
+parent auditor. The original parent first prepares valid object geometry; its node
+allocator/free environment callbacks are limited and disclosed there. The standalone
+dispatcher entries then execute original game, pair and geometry instructions, with
+no supplied dispatcher/pair result or code patch. The child phase itself must
+perform no allocation. Code/resources are read-only while native writes stay within
+the fixture arena/stack/SEH cell. The subsequent collision-phase v2 review corrects
+source168 ownership in the parent seed and rejects non-SEH zero-page reads. The
+canonical source and 686-byte exact result are unchanged.
 
 The full matrix has226 records: zero/one/two nodes per side, three same-side
 flag patterns, four suppression/active patterns, separated or overlapping
@@ -117,11 +114,10 @@ covers the missing46CB74 path and selects source after2638 native cases;
 the pair remains557/542 nonexact. It does not change this traversal's exact
 acceptance or add new aggregate exact bytes.
 
-A guarded source negative control reverses the payload inequality in the first
-phase and fails9/15 smoke records. It is compiled at the original source path and restored before auditing,
-so anonymous namespace identities stay stable. This tests the real same-side
-identity filter, separately from whole-body byte comparison. Private recipes
-and generated reports are retained below the analysis/build directories.
+A guarded source negative control reverses the payload inequality in the first phase
+and fails9/15 smoke records. It is compiled at the original source path and restored
+before auditing, so anonymous namespace identities stay stable. This tests the real
+same-side identity filter, separately from whole-body byte comparison.
 
 ## Analysis safety and reproduction
 
@@ -143,8 +139,5 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-Focused build returns0/exact. The audit returns0 for the supported matrix;
-`--smoke` selects15 records. Reports, raw instructions and DB receipts are
-under `build/family1-clash-20261020/`; source/closure controls and guarded
-negative recipes are under `.analysis/family1-clash-20261020/` and
-`.analysis/collision-phase-20261020/`.
+Focused build returns0/exact. The audit returns0 for the supported matrix; `--smoke`
+selects15 records.

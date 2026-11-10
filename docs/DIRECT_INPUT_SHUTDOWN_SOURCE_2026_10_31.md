@@ -50,12 +50,10 @@ clear helpers; it does not broaden the old raw-key-state alias.
 
 ## Validation and accounting
 
-Public unit: exact-first-directinput-shutdown.
-Focused report: build/frontier-direct-input-shutdown-20261031/formal.json,
-intentionally comparison_failed/mismatch. Private linked controls are in the
+Public unit: exact-first-directinput-shutdown. Private linked controls are in the
 same directory. Only the new ownership rule is materialized after focused
-body/caller validation; existing census evidence is retained.
-Default CI210 and whitespace checks pass. No cold whole-corpus replay.
+body/caller validation; existing census evidence is retained. Default CI210 and
+whitespace checks pass. No cold whole-corpus replay.
 
 Source1773, authored1793, mapped1800, excluded1658, review576, units758.
 Exact authored stays1576 /448613 bytes. No library helpers or partial native

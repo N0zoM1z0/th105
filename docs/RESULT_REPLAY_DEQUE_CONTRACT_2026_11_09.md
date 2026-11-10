@@ -35,9 +35,6 @@ These are compiler-generated support bodies already classified as such;
 authored exact totals do not change.
 
 Private reproducible evidence:
-- `.analysis/frontier-result-replay-deque-20261109/build_units.py`
-- `.analysis/frontier-result-replay-deque-20261109/verify.py`
-- `build/frontier-result-replay-deque-20261109/verification.json`
 
 The pending input-class migration and its source pins are a separate change.
 
@@ -53,10 +50,9 @@ changes. Their real nonconst `operator[]` instantiations each emit the complete
 The two affected units retain all 13 full local canonical matches, including
 104-byte INPUT serialization and 170-byte replay consumption. Seventeen complete
 root/EH sections retain their bytes and relocations after the provider-symbol
-substitution. Evidence is in `build/frontier-packet-subscript-providers-20261109/`,
-with the bounded verification script in the corresponding `.analysis/` directory.
-These are repository-local comparisons, not a new Factory acceptance claim.
-The separate Factory invocation/environment freshness issue remains unresolved.
+substitution. These are repository-local comparisons, not a new Factory acceptance
+claim. The separate Factory invocation/environment freshness issue remains
+unresolved.
 
 The earlier result-menu 620-byte status above is historical. Its subsequent
 619-byte local match and full EH proof are documented in

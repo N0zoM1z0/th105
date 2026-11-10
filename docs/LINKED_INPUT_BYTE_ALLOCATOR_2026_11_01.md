@@ -66,9 +66,8 @@ units777 stay. There is no new authored or sibling exact claim.
   changed imports, extents, typed roles, control flow and exception data.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
-Contract: config/linked-byte-allocator-origin-anchors.toml.
-Full proof: build/origin-anchors/linked-byte-allocator.json.
-Diagnostics/regressions: build/frontier-search-allocator-context-20261101.
+Contract: config/linked-byte-allocator-origin-anchors.toml. Full proof:
+build/origin-anchors/linked-byte-allocator.json.
 
 The discovery inspected only four remaining bad_alloc-ending allocation shapes,
 not a cold corpus replay. Eight retained leads from37 hash-consistent images

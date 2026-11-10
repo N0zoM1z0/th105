@@ -34,12 +34,10 @@ CDesignBase/CTile cleanup targets match, totaling 202 support bytes. Equal
 physical cleanup bodies do not establish an exclusive original nominal class.
 No support, partial function or unresolved command bytes receive exact credit.
 
-Private evidence: .analysis/frontier-scenario-result-real-tile-20261102/ and
-build/frontier-scenario-result-real-tile-20261102/. Final default CI passed
-962 tests (137.258 seconds), tracking, generated progress and whitespace. The
-client timeout was reconciled against the zero exit marker and complete terminal
-log without rerunning CI. Both diff checks passed. No target or generated binary
-is committed.
+Final default CI passed 962 tests (137.258 seconds), tracking, generated progress
+and whitespace. The client timeout was reconciled against the zero exit marker and
+complete terminal log without rerunning CI. Both diff checks passed. No target or
+generated binary is committed.
 
 Totals unchanged: 1426 exact / 443399 bytes, 1636 source-present, 1655 authored,
 1826 mapped, 2075 excluded, 297 review and 813 units.

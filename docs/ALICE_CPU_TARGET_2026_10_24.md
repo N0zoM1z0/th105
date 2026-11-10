@@ -65,13 +65,10 @@ destination counts and all action helper counts. Attack and policy stages are
 being independently checked, including ordered float guards, sequence IDs,
 independent RNG draws and repeated timer/probability observations.
 
-Private bounded work is under
-`.analysis/exact-first-alice-slot58-20261024/`; generated receipts are under
-`build/exact-first-alice-slot58-20261024/`. `raw.py`, `setup.py`, `phases.py`
-and `diagnose.py` reproduce target closure and complete-object diagnostics.
-These inputs and receipts are local working state, not committed artifacts.
-The first boundary-only checkpoint did not claim source or exact credit.
-The subsequent complete source selection below supersedes that phase.
+`raw.py`, `setup.py`, `phases.py` and `diagnose.py` reproduce target closure and
+complete-object diagnostics. These inputs and receipts are local working state, not
+committed artifacts. The first boundary-only checkpoint did not claim source or
+exact credit. The subsequent complete source selection below supersedes that phase.
 
 **Unknown:** original local names, full nominal owner layout, original TU,
 compiler phase and explanation for retained redundant probability checks.

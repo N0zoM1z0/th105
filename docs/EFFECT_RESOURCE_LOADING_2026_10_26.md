@@ -109,19 +109,15 @@ scripts/repo-python scripts/audit-effect-resources-target.py
 scripts/repo-python scripts/audit-effect-resources-target.py --object build/match-units/ExactFirst_EffectResources.obj
 ```
 
-Build/object audit exit1/nonexact; target-only audit exits0. Receipts are below
-`build/effect-resource-437ec0-20261026/`; private first/control sources, bindings
-and full-replay recipes are below `.analysis/effect-resource-437ec0-20261026/`.
-Only the root EH prefix and complete5-byte format literal add data rows; the
-path receiver aliases the already attested module-path global. Prior source,
-headers/profiles and bindings are unchanged. Heavy work is CPU0/nice10, serial;
-available memory remained over10GB and swap stayed134MB during focused work.
-Fresh `origins-check.log` passes all4024 rows with1603 authored/1419 excluded/
-1002 review candidates. `cold-all.log` passes all526 accepted units/1414
-functions under the current manifest; exact authored bytes remain385903.
-Target-backed floating audit still passes all1999 references. This root adds
-no exact or source-selected credit.
-
+Build/object audit exit1/nonexact; target-only audit exits0. Only the root EH prefix
+and complete5-byte format literal add data rows; the path receiver aliases the
+already attested module-path global. Prior source, headers/profiles and bindings are
+unchanged. Heavy work is CPU0/nice10, serial; available memory remained over10GB and
+swap stayed134MB during focused work. Fresh `origins-check.log` passes all4024 rows
+with1603 authored/1419 excluded/ 1002 review candidates. `cold-all.log` passes
+all526 accepted units/1414 functions under the current manifest; exact authored
+bytes remain385903. Target-backed floating audit still passes all1999 references.
+This root adds no exact or source-selected credit.
 
 ## 2026-10-31 shared FrameData lifetime
 

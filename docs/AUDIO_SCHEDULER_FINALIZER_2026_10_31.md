@@ -29,8 +29,8 @@ The public ordinary comparator reports the complete273-byte mismatch normally.
 Source: src/audio/AudioSchedulerFinalizer.cpp. Only its existing unit includes
 this file; no accepted root is affected. Public reproduction:
 
-    scripts/repo-python scripts/build.py --unit gpt-web-audio-scheduler-finalizer --compare --json
+scripts/repo-python scripts/build.py --unit gpt-web-audio-scheduler-finalizer
+--compare --json
 
-Receipts: build/frontier-audio-finalizer-cil-20261031/ordinary.json,
-boundary.json and ci.log. Private real-provider recipes are retained in the
-corresponding .analysis directory. Exact totals remain1545 /438021 bytes.
+Private real-provider recipes are retained in the corresponding .analysis directory.
+Exact totals remain1545 /438021 bytes.

@@ -4,7 +4,11 @@ The existing fighter outcome-selector source is now tracked individually. Native
 
 The source selects reaction outcomes from the observed low-byte attack flags, current frame flags, fighter state, practice settings, random policy and relative position. Source and field names describe the recovered behavior, not known original spelling. Earlier bounded type and source-lifetime controls are summarized in `KNOWLEDGE_BASE.md`.
 
-The separate public `exact-first-outcome-selector` unit compiles to 610 bytes against native 620, with first mismatch at offset 20 from a register-allocation choice. It remains nonexact; the ten-byte size difference is not a count of byte mismatches. No forced register, partial-byte or exact credit was added. The existing exact sibling/dispatcher unit remains separate and passes. Fresh receipts: `build/frontier-outcome-selector-20261103/source.json` and `caller.json`.
+The separate public `exact-first-outcome-selector` unit compiles to 610 bytes
+against native 620, with first mismatch at offset 20 from a register-allocation
+choice. It remains nonexact; the ten-byte size difference is not a count of byte
+mismatches. No forced register, partial-byte or exact credit was added. The existing
+exact sibling/dispatcher unit remains separate and passes.
 
 ## Random-roll comparison, 2026-11-06
 

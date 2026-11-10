@@ -36,13 +36,9 @@ Earlier log_pentium4.obj comparisons used the wrong mathematical function.
 They are not compiler-version or patch-mismatch evidence for this log10 body.
 This result does not claim the whole runtime uses one patch version.
 
-Ten tests reject wrong function-family member, shortened or masked bodies,
-wrong provider/coefficients, padding credit and generic reachability waivers.
-All 690 actual byte corruption controls fail: every one of 656 owner bytes,
-all coefficient label boundaries, explicit nonzero-addend positions and two
-interior table positions. Complete data comparison is mandatory regardless
-of selected mutation samples.
-
-Evidence: build/origin-anchors/vc8-log10-shared/proof.json and
-build/frontier-crt-log10-owners-20261101/mutations.json. Private scripts are
-under .analysis/frontier-crt-log10-owners-20261101/.
+Ten tests reject wrong function-family member, shortened or masked bodies, wrong
+provider/coefficients, padding credit and generic reachability waivers. All 690
+actual byte corruption controls fail: every one of 656 owner bytes, all coefficient
+label boundaries, explicit nonzero-addend positions and two interior table
+positions. Complete data comparison is mandatory regardless of selected mutation
+samples.

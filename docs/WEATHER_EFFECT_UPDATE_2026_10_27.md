@@ -94,10 +94,8 @@ Its28-byte body shortfall remains a genuine failure. Do not force registers,
 add inert values, mask differences or call this an LTCG impossibility. Further
 work needs independent compiler/source-context evidence, not a spelling grid.
 
-Private complete controls, target assembly/CFG/call facts and comparison outputs:
-.analysis/frontier-663b70-20261027/ and build/frontier-663b70-20261027/.
-The original write_source.py generates the first candidate only; do not use it
-to overwrite the selected later source.
+The original write_source.py generates the first candidate only; do not use it to
+overwrite the selected later source.
 
 ## Reproduce
 

@@ -56,11 +56,6 @@ four-byte STL constant sections to the Server object; it adds no code section
 or linker-directive change. No origin proof consumes the changed translation
 units, and no source pins were changed.
 
-Receipts: `build/frontier-input-delay-owner-20261109/`, including focused
-before/after builds, `sections.json` and `native-owner.json`. Private section
-checks and the inherited worktree snapshot remain under
-`.analysis/frontier-input-delay-owner-20261109/`.
-
 ## Full network class boundary
 
 The independent primary-table inventory establishes 17 slots for each of

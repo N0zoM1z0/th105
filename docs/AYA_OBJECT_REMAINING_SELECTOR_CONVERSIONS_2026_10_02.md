@@ -109,11 +109,8 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-Final configured reports share prefix `build/aya-payload-and-sequence-final-`.
-Private controls/checkers are under `.analysis/aya-facing-lifetime-20261002/`;
-objects and source/object/window-hashed `controls-summary.json` are under
-`build/aya-facing-lifetime-20261002/`. Existing-object controls lack configured
-build provenance; retained source is independently rebuilt through the unit.
+Existing-object controls lack configured build provenance; retained source is
+independently rebuilt through the unit.
 
 Final checks again close4,630 instructions/all19,522 target bytes through
 seven switches,124/124 floating guards, two641-value unsignedY paths,

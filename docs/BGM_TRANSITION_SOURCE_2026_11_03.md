@@ -4,4 +4,10 @@ The existing `BgmStreamView::transition` source in `BgmServiceRuntime.cpp` repre
 
 A nonpositive duration updates current gain and the DirectSound volume immediately; a positive duration records the start time, starting and target gains, duration and low flag byte. The existing threshold deliberately sends unordered float values to the gain provider, consistent with the native x87 test. Source names and the original nominal parameter types are reconstruction labels.
 
-The actual CIL linked unit now includes the private function under its genuine exact fade caller. Fresh public comparison retains fade 70/70 and set-level 69/69, while transition emits 142 bytes versus native 153 and is nonexact at its aligned-frame entry. The linked compiler naturally uses the observed private EAX/EDI receiver/argument arrangement; no custom calling convention, fabricated register or exact-byte credit is added. Scheduling and stop retain their existing nonexact status. The public receipt is `build/frontier-bgm-transition-source-20261103/public.json`; earlier semantics and threshold analysis are in `BGM_SERVICE_LTCG_2026_10_29.md` and `BGM_GAIN_THRESHOLD_2026_10_29.md`.
+The actual CIL linked unit now includes the private function under its genuine exact
+fade caller. Fresh public comparison retains fade 70/70 and set-level 69/69, while
+transition emits 142 bytes versus native 153 and is nonexact at its aligned-frame
+entry. The linked compiler naturally uses the observed private EAX/EDI
+receiver/argument arrangement; no custom calling convention, fabricated register or
+exact-byte credit is added. Scheduling and stop retain their existing nonexact
+status.

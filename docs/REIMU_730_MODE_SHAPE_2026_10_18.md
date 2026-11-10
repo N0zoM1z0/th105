@@ -91,11 +91,10 @@ mismatch at478FA8. The pre-table deficit is262 bytes. These are alignment-
 inclusive diagnostic spans, not accepted compiler boundaries or equality.
 The existing reviewed metadata ceiling is unchanged.
 
-Reports, current PE packet and build/control receipts are below
-`build/reimu-730-mode/`. The earlier direct Ghidra receipt is reused after
-current byte checks and all9 unchanged primary hashes. No new process/clone
-or IDA semantics. Superseded720 objects/source copies, the rejected control
-and caches are removed; current objects/source and bounded evidence remain.
-Next reconcile740's two mode switches and undefined paths, then the original
-void/default ABI, returning world contexts and full relocation/VC8/LTCG
-provenance before canonical acceptance of the81550-byte root.
+The earlier direct Ghidra receipt is reused after current byte checks and all9
+unchanged primary hashes. No new process/clone or IDA semantics. Superseded720
+objects/source copies, the rejected control and caches are removed; current
+objects/source and bounded evidence remain. Next reconcile740's two mode switches
+and undefined paths, then the original void/default ABI, returning world contexts
+and full relocation/VC8/LTCG provenance before canonical acceptance of the81550-byte
+root.

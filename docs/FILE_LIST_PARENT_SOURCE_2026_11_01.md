@@ -25,6 +25,5 @@ rule pins the complete target body and exact caller edge. No shared headers or
 other selected source changed. Source1635/authored1655/mapped1820/review403;
 excluded1969/units772; exact1431 /443916 bytes unchanged.
 
-Receipts: build/frontier-file-parent-linked-20261101/formal.json and caller.json.
-The private linked image/map and RESULT.txt record the negative control.
-No new library or prefix credit, whole-corpus rebuild or push.
+The private linked image/map and RESULT.txt record the negative control. No new
+library or prefix credit, whole-corpus rebuild or push.

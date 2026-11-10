@@ -46,13 +46,11 @@ CNumber initialize's old scratch-word mismatch remains closed. CNumberLifetime
 is still a separate cleanup view; the runtime scalar body and full linked owner
 are not asserted exact.
 
-Private evidence: .analysis/frontier-number-real-tile-20261102/ and
-build/frontier-number-real-tile-20261102/, including replay-1.log, owner-proof.json,
-nonexact.log and baseline.log. Default CI ran all 962 tests successfully, but its
-first aggregate exit rejected a trailing blank line. That formatting error was
-removed; the final aggregate gate passed all 962 tests (90.918 seconds), tracking,
-generated progress and whitespace checks. The texture-options unit was rebuilt
-and again compared exact after that formatting correction.
+Default CI ran all 962 tests successfully, but its first aggregate exit rejected a
+trailing blank line. That formatting error was removed; the final aggregate gate
+passed all 962 tests (90.918 seconds), tracking, generated progress and whitespace
+checks. The texture-options unit was rebuilt and again compared exact after that
+formatting correction.
 
 Totals unchanged: 1427 exact functions / 443604 bytes, 1637 source-present,
 1656 authored, 1826 mapped, 2074 excluded, 297 review, 813 units.

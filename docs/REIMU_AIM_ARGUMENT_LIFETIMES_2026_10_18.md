@@ -88,12 +88,9 @@ Root remains unclassified/declaration-only; implementation/exact ledgers stay
 unchanged.
 
 Final ordinary object SHA256:
-`41bf3b15ff2dbf6cf7c25e0c0191ab18d963782e0e7fab5d3b9af82c0ab245fd`.
-Linked image SHA256:
-`7c58cd311800f91d99225a0090582cbce489d6c23b14f66fa4ec089798a8a2b3`.
-Receipts, the baseline control and locality/equality packets occupy
-`build/reimu-aimed-lifetimes/`; current link products occupy `build/reimu-ltcg/`.
-Run heavy commands serially with `nice -n 10 taskset -c 0`:
+`41bf3b15ff2dbf6cf7c25e0c0191ab18d963782e0e7fab5d3b9af82c0ab245fd`. Linked image
+SHA256: `7c58cd311800f91d99225a0090582cbce489d6c23b14f66fa4ec089798a8a2b3`. Run
+heavy commands serially with `nice -n 10 taskset -c 0`:
 
 ```bash
 python3 scripts/probe-reimu-action-ltcg.py

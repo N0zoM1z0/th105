@@ -146,12 +146,7 @@ the43-byte destructor after its shared declaration changes. Existing CF40,
 BMP, PNG and file-loader probes remain nonexact. The ordinary selected BMP
 payload remains2181 bytes. No cold aggregate replay was run.
 
-Receipts: `build/package-entry-20261019/target-cfg.json`, `incoming-edges.json`,
-`execution.json`, `primary-db-before.json`, `primary-db-after.json`,
-`selected-compare.json`, the four focused comparison reports, and
-`reader-bmp/{commands.json,root-cfgs.json,cf40-audit.json}`. Private controls and
-execution driver live under `.analysis/package-entry-20261019/`. Next recover
-the genuine shared index-helper caller/ownership context, then revisit
-reader construction and BMP workspace/EH lifetimes. The registration follow-up
-above now supplies that second caller's source, with private ABI differences
-still unresolved. No exact numerator changes.
+Next recover the genuine shared index-helper caller/ownership context, then revisit
+reader construction and BMP workspace/EH lifetimes. The registration follow-up above
+now supplies that second caller's source, with private ABI differences still
+unresolved. No exact numerator changes.

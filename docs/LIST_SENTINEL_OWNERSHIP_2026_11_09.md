@@ -40,8 +40,6 @@ The broader CollisionList receiver and its retained handwritten compatibility
 source are unchanged; they are not used as evidence for this exclusion.
 
 The original Japanese 1.06a target hash remains
-`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Evidence is retained under `build/frontier-list-sentinel-origin-20261109/`
-and the bounded driver under `.analysis/frontier-list-sentinel-origin-20261109/`.
-Pending input work and its source pins are preserved. This corrects local
-ownership and accounting, with no new Factory acceptance.
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`. Pending input
+work and its source pins are preserved. This corrects local ownership and
+accounting, with no new Factory acceptance.

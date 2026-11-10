@@ -147,14 +147,11 @@ The predecessor's full133192-input pass belongs to CPP1c9a12c4 and is not
 reissued or byte-bridged to this changed root. No unrelated accepted unit,
 aggregate replay or aggregate percentage is claimed.
 
-Artifacts and frozen inputs are in `build/reimu-object-906-tail-20261021/`;
-private recipes are in the corresponding `.analysis/` directory. The formal
-build receipt separately proves source/compiler provenance; complete native
-byte equality bridges the order-control COFF to the tested formal COFF.
-A final rebuild after CSV line-ending normalization is bridged by complete
-native equality to that tested COFF, preserving its scoped receipts without
-replaying unchanged instructions. Recipes read the frozen predecessor when
-that control requires it.
+The formal build receipt separately proves source/compiler provenance; complete
+native byte equality bridges the order-control COFF to the tested formal COFF. A
+final rebuild after CSV line-ending normalization is bridged by complete native
+equality to that tested COFF, preserving its scoped receipts without replaying
+unchanged instructions.
 
 ```bash
 # Expected exit1: root mismatch+31; helper4963A0 must remain66/66.

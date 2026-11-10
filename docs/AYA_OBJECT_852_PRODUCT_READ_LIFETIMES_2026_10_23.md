@@ -100,13 +100,11 @@ python3 scripts/audit-aya-object-852-facing-lifetimes.py
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-852-native.py --product-read-lifetimes
 ```
 
-The root comparison intentionally remains nonzero; the selected-only runtime
-audit is expected to pass. Private scope: `build/aya-852-expression-20261023/`;
-recipes: `.analysis/aya-852-expression-20261023/`. Frozen `selected.cpp/obj`
-means the **pre-change** baseline in this scope. `final-formal.json`,
-`final-read-lifetimes.json`, `outside-product.json`, `guard-checks.json` and
-`cil-selected/replay.json` retain the fresh evidence. `final-identities.json`
-pins complete canonical and mapped identity between the audited and rebuilt
-public objects. No shared game ABI,
-header, compiler profile, partition, binding or accepted-unit change; no new
-aggregate cold replay claim. Earlier 852/CIL records retain their source epochs.
+The root comparison intentionally remains nonzero; the selected-only runtime audit
+is expected to pass. Frozen `selected.cpp/obj` means the **pre-change** baseline in
+this scope. `final-formal.json`, `final-read-lifetimes.json`,
+`outside-product.json`, `guard-checks.json` and `cil-selected/replay.json` retain
+the fresh evidence. `final-identities.json` pins complete canonical and mapped
+identity between the audited and rebuilt public objects. No shared game ABI, header,
+compiler profile, partition, binding or accepted-unit change; no new aggregate cold
+replay claim. Earlier 852/CIL records retain their source epochs.

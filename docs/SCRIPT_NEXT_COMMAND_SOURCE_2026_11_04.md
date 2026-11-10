@@ -15,8 +15,7 @@ claim is used. The new nonvirtual declaration preserves the existing `CScript`
 layout; the exact accepted dependencies are replayed separately.
 
 This is source-present, not canonical exact. Original source spelling and the
-whole-program context that produced the private helper remain unknown. Receipts:
-`build/frontier-script-next-source-20261104/`.
+whole-program context that produced the private helper remain unknown.
 
 All 89 accepted roots across the 19 affected source-dependent units replayed
 exact, including the real linked script lifetime and CSV loading units. The
@@ -39,7 +38,6 @@ through exhaustion across an ordinary block and a wraparound boundary. A
 modified increment is detected. These valid fixtures do not test allocation, actual script parsing, exceptions
 or full-game behavior and do not add exact credit. Invalid iterator boundary
 observations are described below.
-
 
 ## Checked-iterator boundary observations, 2026-11-04
 

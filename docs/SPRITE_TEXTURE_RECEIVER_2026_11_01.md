@@ -33,9 +33,8 @@ and record cleanups8/15. The complete sprite RTTI/actual array-site gates pass.
 Only after these reviews were the three normalized sprite source hashes and
 the record gate's raw EffectSprite.hpp hash renewed. No validator was relaxed.
 
-Private evidence: build/frontier-sprite-owner-20261101/ and
-.analysis/frontier-select-texture-contract-20261101/. These are local generated
-artifacts, not distributable source inputs. All changed C++ files retain CRLF.
+These are local generated artifacts, not distributable source inputs. All changed
+C++ files retain CRLF.
 
 Authored totals remain1431 functions/443916 bytes; source-present1636,
 excluded2059, review313, units803. This commit supplies no new matching credit.

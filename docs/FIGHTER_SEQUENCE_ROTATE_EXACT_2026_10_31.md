@@ -47,14 +47,12 @@ No target bytes, acceptance gates or global origin census were rewritten.
 
 Replay commands:
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-fighter-sequence-rotate --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-fighter-sequence-rotate --compare --json
     taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit cross-v106a-sequence-enqueue --compare --json
 
-Private receipts are under build/frontier-sequence-sprite-copy-20261031:
-final.json, final-auxiliary.json, enqueue.json and origin.json. Earlier controls
-are retained separately. The auxiliary audit is retained under the matching
-.analysis directory. The earlier 2026-10-28 report records historical nonexact
-controls, superseded by this whole-body replay.
+Earlier controls are retained separately. The auxiliary audit is retained under the
+matching .analysis directory. The earlier 2026-10-28 report records historical
+nonexact controls, superseded by this whole-body replay.
 
 Only 265 authored bytes and one authored function are added. Totals are 1,577
 exact functions / 448,878 bytes, 1,774 source-present, 1,794 authored and 1,801

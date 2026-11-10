@@ -93,15 +93,10 @@ addition. Raw owner diagnostics are4/34; this is not an exact-count metric.
 Exact totals remain1381 functions/234914 bytes. Shared ABI/header/helper/profile/
 manifest/relocation contracts and accepted units are unchanged.
 
-Receipts in `build/aya-804-sequence-read-20261022/`:
-`selected-formal.json`, `selected-owner.json`, `selected-native.json`,
-`outside804.json`, and the four scoped replay reports. The predecessor object
-is from2d07f7c's source epoch.
+The predecessor object is from2d07f7c's source epoch.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
-taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-804-sequence-read.py --previous-object build/aya-804-sequence-read-20261022/previous.obj
-python3 scripts/audit-aya-object-normal-flow.py build/aya-804-sequence-read-20261022/previous.obj build/match-units/GptWeb_AyaObjectActionState.obj --exclude-action 804
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-900-scale-prefix.py
 python3 scripts/ci.py
 git diff --check

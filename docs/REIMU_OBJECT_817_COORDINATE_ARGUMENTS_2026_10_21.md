@@ -113,9 +113,6 @@ is built; no cold aggregate replay is claimed.
 
 ## Retention and reproduction
 
-Current frozen inputs, COFFs, receipts and private recipes are under
-`build/reimu-object-rng-captures-20261021/` and its matching `.analysis/` scope.
-
 Primary databases, compiler installations and canonical target are preserved.
 All heavy work runs serially at CPU0/nice10.
 

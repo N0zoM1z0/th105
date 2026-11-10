@@ -28,9 +28,8 @@ credited authored bytes. No OS exception unwinding or real file I/O is executed.
 The configured and cold bodies, exact 501-byte replay formatter and 159-byte
 constructor, and exact 1322/1323-byte filename builder/pattern functions all
 replayed after extracting the unchanged shared reader class. Scoped origin
-materialization changed only this entry to canonical exact; it did not rerun
-every unrelated origin evidence validator. Receipts and independent cold
-object are in `build/frontier-replay-header-20261104/`.
+materialization changed only this entry to canonical exact; it did not rerun every
+unrelated origin evidence validator.
 
 Reproduce serially with `scripts/repo-python scripts/build.py --unit
 exact-first-replay-header-read --compare --json` followed by

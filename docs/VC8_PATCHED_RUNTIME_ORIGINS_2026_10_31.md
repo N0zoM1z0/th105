@@ -50,7 +50,7 @@ later cabinet data. A first exploratory all-member traversal encountered an
 LZX error after the two selected libraries; fresh bounded extraction and the
 public bootstrap replay independently reproduced both original hashes.
 
-    scripts/repo-python scripts/upstream_vc8_runtime.py --fetch
+scripts/repo-python scripts/upstream_vc8_runtime.py --fetch
     scripts/repo-python scripts/upstream_vc8_runtime.py
 
 Fetch is explicit and missing-only, with size/hash verification before atomic
@@ -180,7 +180,6 @@ The new rule passed natively. After changing the validator, the previous
 rule all passed fresh focused validation. Nine regressions cover the new
 entry and data boundaries. Final exclusions 1,640 / review 617; all authored,
 source, exact and unit counts remain unchanged.
-
 
 All 30 absolute code references additionally resolve through the original COFF
 symbol values and original addends into that verified read-only section. A

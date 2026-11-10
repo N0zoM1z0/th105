@@ -24,12 +24,8 @@ and accesses +3C; the candidate keeps both the owner and its adapter-slot
 address across calls. The simpler shared CNumber candidate is retained.
 No volatile, fake storage, register forcing or manual instruction reproduction.
 
-Receipts: build/frontier-46a8c0-20261028/typed-owner.json (retained source),
-ui-owner-binding.json, post-release-address.json, typed-output.json.
-The added path literal is independently pinned to6C35E0 including NUL.
-Only the new unit was compiled; no shared header, existing binding or caller
-source changed.
-
+The added path literal is independently pinned to6C35E0 including NUL. Only the new
+unit was compiled; no shared header, existing binding or caller source changed.
 
 ## Shared owner follow-up, 2026-11-09
 

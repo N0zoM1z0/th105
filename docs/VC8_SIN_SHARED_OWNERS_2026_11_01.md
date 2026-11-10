@@ -47,14 +47,10 @@ comparisons pass. The preceding complete sqrt/common proof is freshly replayed,
 as is the original18-byte std::sin(float) wrapper gate. The still-nonexact
 Tenshi giant receives no extra credit from that helper regression.
 
-Nine focused tests reject changed source/member, wrong fallback, incomplete
-constant bindings, missing owner/common support and padding-as-code claims.
-All811 actual mutation controls fail: every owner byte, every selector-
-initializer and operation-name byte, plus all named coefficient-span boundaries
-and an interior table point. Complete2208-byte data comparison is mandatory,
-not replaced by selected mutation samples. The narrow origin rule passes
-before both review rows are reclassified.
-
-Evidence: build/origin-anchors/vc8-sin-shared/proof.json and
-build/frontier-crt-sin-owners-20261101/. Private scripts are under
-.analysis/frontier-crt-sin-owners-20261101/.
+Nine focused tests reject changed source/member, wrong fallback, incomplete constant
+bindings, missing owner/common support and padding-as-code claims. All811 actual
+mutation controls fail: every owner byte, every selector- initializer and
+operation-name byte, plus all named coefficient-span boundaries and an interior
+table point. Complete2208-byte data comparison is mandatory, not replaced by
+selected mutation samples. The narrow origin rule passes before both review rows are
+reclassified.

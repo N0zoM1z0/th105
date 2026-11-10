@@ -69,9 +69,7 @@ accepted functions. The full 1676-byte timeline payload also remains exact
 Unchanged unrelated receipts were preserved; no cold full-corpus build ran.
 The local CI gate and whitespace check passed.
 
-Private receipts are under build/frontier-script-file-load-20261029,
-including the three regressions JSON batches, per-unit accepted comparisons
-and timeline-payload.json. Reproduce the new roots with:
+Reproduce the new roots with:
 
 ```bash
 scripts/repo-python scripts/build.py --unit exact-first-csv-file-loading --json

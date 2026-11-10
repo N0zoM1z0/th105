@@ -48,8 +48,7 @@ or exact acceptance. Only the160-byte float root adds credit.
 scripts/repo-python scripts/build.py --unit gpt-web-scene-interpolation-easing --compare --json
 scripts/repo-python scripts/build.py --unit exact-first-scene-interpolation --compare --json
 
-Receipts:build/frontier-scene-interpolation-20261029/formal-easing.json and
-formal.json. The latter is mixed: byte mismatch, float exact. No new data
-mapping or compiler flag is introduced. Existing SceneRenderCluster caller
-source is unchanged; its normal member-call ABI already supplies ECX. Default
-CI validates the corrected symbol contract, source selection and progress.
+The latter is mixed: byte mismatch, float exact. No new data mapping or compiler
+flag is introduced. Existing SceneRenderCluster caller source is unchanged; its
+normal member-call ABI already supplies ECX. Default CI validates the corrected
+symbol contract, source selection and progress.

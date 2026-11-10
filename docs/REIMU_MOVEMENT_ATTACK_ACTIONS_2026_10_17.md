@@ -99,13 +99,9 @@ python3 scripts/audit-reimu-movement-attack-actions.py build/reimu-low-completio
 
 Fresh pinned VC8 SP1 uses `/O2 /GS- /GR /EHsc /MT`, default FP, with no injected
 compiler environment. Staging text is4017 bytes. CRLF source SHA256 is
-`c155f4db72015e2ceea6e7a71a6b99be0beec68f6b3177a0f0c10abfa0b8250b`,
-header SHA256
-`72f3cead53c3eb12095280618fe7fc6b9c2f0b5e81b87e0d4e808d0b3db50f0f`,
-and object SHA256
-`b33a5346ed3cc9490d625a98f5957f98fbb2af49dc60ada4e998815029bbf0c7`.
-The manual compiler/input receipt is `build/reimu-low-completion/build-receipt.json`;
-the native oracle separately attests the object it executes.
+`c155f4db72015e2ceea6e7a71a6b99be0beec68f6b3177a0f0c10abfa0b8250b`, header SHA256
+`72f3cead53c3eb12095280618fe7fc6b9c2f0b5e81b87e0d4e808d0b3db50f0f`, and object
+SHA256 `b33a5346ed3cc9490d625a98f5957f98fbb2af49dc60ada4e998815029bbf0c7`.
 
 **0/4445 differences**, input SHA256
 `e060aed69b228daa7c9c02609317718fe4300d46b6548ff7e3c9011c3fcb1f16`:

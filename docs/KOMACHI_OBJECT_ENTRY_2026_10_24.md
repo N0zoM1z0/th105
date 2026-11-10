@@ -24,11 +24,10 @@ taskset -c 0 nice -n 10 python3 scripts/audit-komachi-object-entry-paths.py
 ```
 
 The first two commands return1 for the recorded mismatch; the last returns0 for
-eight scoped inputs. Both audits accept `--object`. Compile the selected source
-with `scripts/compile-unit.sh` to a new path under `build/` for an independent
-cold object. The full audit replays every relocation and compares the entire
-emitted section, including metadata; no bytes are masked. Generated receipts
-live under `build/exact-first-komachi-object-entry-20261024/`.
+eight scoped inputs. Both audits accept `--object`. Compile the selected source with
+`scripts/compile-unit.sh` to a new path under `build/` for an independent cold
+object. The full audit replays every relocation and compares the entire emitted
+section, including metadata; no bytes are masked.
 
 | Remaining target region | Observation |
 | --- | --- |
@@ -158,13 +157,10 @@ that the original methods shared a TU or that all compiler contexts are closed.
 |Input pointer captured before BYTE184|6540|732ea4336323b83634f7669c6c8299ef3576f584dcdcf2970331514778ffa5b9|7|
 |Complete same-owner update/initializer TU|6540|732ea4336323b83634f7669c6c8299ef3576f584dcdcf2970331514778ffa5b9|7|
 
-Private source/header snapshots are under `.analysis/komachi-entry-context-20261025/`;
-canonical reports, COFFs, raw instruction readback and the source/object SHA256
-receipt are under `build/komachi-entry-context-20261025/`. The normal
-`scripts/audit-komachi-object-entry.py --object OBJECT` command replays the
-initializer's complete section for either object. No bytes are masked. Accepted
-units and aggregate counts do not change; no fresh native matrix is claimed.
-The earlier eight-input witness retains its scope.
+The normal `scripts/audit-komachi-object-entry.py --object OBJECT` command replays
+the initializer's complete section for either object. No bytes are masked. Accepted
+units and aggregate counts do not change; no fresh native matrix is claimed. The
+earlier eight-input witness retains its scope.
 
 Both new questions yield identical complete initializer output. Close these
 pointer-publication/common-owner controls unless independent evidence changes

@@ -65,6 +65,5 @@ with the same hashes above, including all five switch-table relocations. A fresh
 control-flow walk covers 404 instructions, all four returns and the three-byte
 internal alignment. No source shape or provider boundary needs to be faked.
 
-Evidence: `build/frontier-filter-provider-20261109/compare.json` and
-`verification.json`. This replaces the provider declaration, not the established
-category behavior or exact credit.
+This replaces the provider declaration, not the established category behavior or
+exact credit.

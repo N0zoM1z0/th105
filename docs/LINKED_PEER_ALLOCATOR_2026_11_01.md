@@ -73,11 +73,8 @@ gate also freshly passes. Fifteen synthetic tests cover selection, source
 connections and strict canonical/CFG contracts; ten actual target-byte mutation
 controls reject changed root, metadata, support, initializer and receive entry.
 
-Evidence: build/origin-anchors/linked-peer-allocator.json,
-build/origin-anchors/network-initialize-link/build.json and
-build/frontier-network-peer-allocation-20261101/{ordinary,mutations,callers}.json.
-Excluded2011/review361; authored exact1431/443916 bytes, authored1655,
-source1635, mapped1820 and units777 stay unchanged.
+Excluded2011/review361; authored exact1431/443916 bytes, authored1655, source1635,
+mapped1820 and units777 stay unchanged.
 
 All four previously identified private-ECX allocator candidates are now proved
 in genuine source contexts: byte40AB70/78, gamepad40E000/84,

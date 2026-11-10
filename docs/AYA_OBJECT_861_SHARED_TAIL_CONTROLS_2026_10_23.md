@@ -19,11 +19,10 @@ the 41-byte phase/count block immediately before that check. The phase block
 clears DWORD `+0x180` before WORD `+0x364`; its SHA256 is
 `d608b139dd6f1669fef8c698db0d55282beca03769065ca6e6bde819d506062f`.
 
-The common position interval at `0x61C2BA` is the already pinned 37 bytes:
-commit X, load owner Y, update alpha, add 100, commit Y. This is a physical
-shared target path, not a similarity inferred from neighboring source cases.
-`target-facts.json` retains bytes, instructions, entries and both incoming edges.
-Original source labels, helper definitions and TU partition remain unknown.
+The common position interval at `0x61C2BA` is the already pinned 37 bytes: commit X,
+load owner Y, update alpha, add 100, commit Y. This is a physical shared target
+path, not a similarity inferred from neighboring source cases. Original source
+labels, helper definitions and TU partition remain unknown.
 
 ## Compiler controls
 
@@ -131,9 +130,6 @@ taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions
 # Selected861 is intentionally diagnostic: its interval hit count is zero.
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions 861 --position-lifetimes --diagnostic
 ```
-
-Private artifacts are under `build/aya-861-owner-y-20261023/`; frozen CPPs,
-formal/native receipts and the per-object registry retain their source epochs.
 
 The partial `.analysis/` flow exploration is not acceptance evidence. Future
 work needs a supported context preserving 807's second zero-sequence check

@@ -57,9 +57,7 @@ previously accepted 14-byte entry remains exact. The old 148-byte key and
 prior origin-review/no-credit status. All nine ordinary function comparisons
 resolve their relocations; only previously accepted roots remain credited.
 
-Private evidence: .analysis/frontier-udp-endpoint-list-20261030 and
-build/frontier-udp-endpoint-list-20261030, including boundaries.json,
-formal.json and rejection-main-diagnostic.json. Reproduce the ordinary unit:
+Reproduce the ordinary unit:
 
 `scripts/repo-python scripts/build.py --unit cross-v106a-network-winsock-receive-thread --compare --json`
 

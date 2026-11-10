@@ -27,12 +27,8 @@ The whole original sections, absence of relocations, native hash and complete
 same-sized candidate inventory are checked. No masks, copied implementation,
 private ABI declaration or generic minimum-threshold relaxation is introduced.
 
-Ten focused tests cover original archive/member identity, single physical
-credit, no shortened/masked comparisons, exact stack/register roles and
-rejection of direct jumps or extra/truncated instructions. All seven actual
-code-byte corruption controls fail. The narrow origin rule passes before
-reclassifying the single review row. Authored exact totals do not change.
-
-Evidence: build/origin-anchors/vc8-member-call-bridge.json and
-build/frontier-member-call-bridge-20261101/. Private scripts are under
-.analysis/frontier-member-call-bridge-20261101/.
+Ten focused tests cover original archive/member identity, single physical credit, no
+shortened/masked comparisons, exact stack/register roles and rejection of direct
+jumps or extra/truncated instructions. All seven actual code-byte corruption
+controls fail. The narrow origin rule passes before reclassifying the single review
+row. Authored exact totals do not change.

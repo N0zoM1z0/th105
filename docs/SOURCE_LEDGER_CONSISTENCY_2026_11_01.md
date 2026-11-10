@@ -16,7 +16,5 @@ an unrelated name. The stale parked effect-loader79-difference note is also
 corrected to point to its existing later acceptance; the separate PAT load-order
 negative remains explicit.
 
-Fresh evidence:
-build/frontier-source-ledger-consistency-20261101/effect-replay.json.
 Prior source and acceptance explanation:
 [EFFECT_READER_FORWARDING_EXACT_2026_10_31.md](EFFECT_READER_FORWARDING_EXACT_2026_10_31.md).

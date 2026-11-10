@@ -19,9 +19,7 @@ prevent changing source merely to make their declarations agree:
   Some callers discard its result through void views. That alone does not
   establish a behavioral error or recover the original return-type spelling.
 
-Complete decoded bodies and target hashes are in
-`build/frontier-call-contract-triage-20261109/native.json`. No native build or
-source modification was needed for these read-only checks.
+No native build or source modification was needed for these read-only checks.
 
 The animation sequence families remain an open contract. The subsequent
 [original-call audit](ANIMATION_RETURN_CONTRACT_2026_11_09.md) distinguishes

@@ -102,14 +102,10 @@ taskset -c 0 nice -n 10 python3 scripts/audit-text-font-input.py \
   build/match-units/GptWeb_TextFontRender.obj --output build/font-input.json
 ```
 
-Receipts are under `build/font-markup-homes-20261022/`: `formal.json`,
-`input-formal.json`, `input-negative-control.json`, `input-footprint.json` and
-`packed-caller-replay.json`. The frozen pre-correction COFF is
-`pre-packed-render.obj`; running the same input audit on it exits1 with13
-value/stop and39 read differences. Private recipes, frozen old source and
-unselected packed-load controls are in the matching `.analysis/` directory.
-All compilation/execution is serial at CPU0/nice10. Only the affected font
-unit is rebuilt; no aggregate cold replay is claimed.
+The frozen pre-correction COFF is `pre-packed-render.obj`; running the same input
+audit on it exits1 with13 value/stop and39 read differences. All
+compilation/execution is serial at CPU0/nice10. Only the affected font unit is
+rebuilt; no aggregate cold replay is claimed.
 
 The associated [markup stack/context audit](FONT_MARKUP_STACK_HOMES_2026_10_22.md)
 retains the8-byte frame question. The input correction does not make glyph,

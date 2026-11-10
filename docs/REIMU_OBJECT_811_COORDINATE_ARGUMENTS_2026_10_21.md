@@ -98,11 +98,8 @@ Header, ABI, layout, flags, bindings, ownership, origin and matches are unchange
 
 ## Local receipts
 
-`build/reimu-object-811-arguments-20261021/` retains frozen baseline, private
-candidate, formaltested.obj, positive/negative execution receipts and
-`facts-summary.json`. Private recipes live in the same-named `.analysis/`
-directory. The graph diagnostic additionally recognizes the exact trailing
-register-preserving `8D4900` alignment form; it is not an acceptance rule.
+The graph diagnostic additionally recognizes the exact trailing register-preserving
+`8D4900` alignment form; it is not an acceptance rule.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json

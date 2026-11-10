@@ -181,11 +181,9 @@ vtable emission establish the bounded ABI contract used here.
 |Ownership ledger|`e6e9d4e0321a468f7e38e2abf7cc8e0f224132f0230c5d4814e3757792be8d08`|
 
 The formal unit writes a fresh compiler/input/object provenance receipt. Native
-object-only audits retain `build_provenance_verified=false`; file pins and
-observed fresh builds are separate evidence. Reports/objects/constructor and
-shape controls stay under `build/reimu-object-void-root-20261020`; private
-recipes and Ghidra scripts stay under `.analysis/reimu-object-void-root-20261020`.
-No executable, database, compiler install or generated report is committed.
+object-only audits retain `build_provenance_verified=false`; file pins and observed
+fresh builds are separate evidence. No executable, database, compiler install or
+generated report is committed.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-update-target.py --json

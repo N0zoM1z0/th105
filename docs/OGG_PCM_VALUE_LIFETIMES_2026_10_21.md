@@ -72,9 +72,8 @@ acceptance is introduced. Frame/TU provenance remains open.
 |Canonical source251|`aca14b4149974f7233630bf995e74666401f62e50023398ac2f06676dfd84089`|
 |Target252|`0dc9e4a97d421f4a70c85adc63d05400cd89dd4d910cef847f80771eb0439d0d`|
 
-Private target/caller packets, baseline, compiler controls and formal comparison
-reside in `build/ogg-pcm-values-20261021/`. `selected.cpp` and `selected.obj`
-preserve the tested epoch independently of later match-unit builds. Rejected
-controls may be restored from their SHA-checked gzip receipts. The preceding
-[CNumber frame audit](NUMBER_FRAME_AUDIT_2026_10_21.md) uses the Ogg source
-pinned before this correction; its recipe now names that commit explicitly.
+`selected.cpp` and `selected.obj` preserve the tested epoch independently of later
+match-unit builds. Rejected controls may be restored from their SHA-checked gzip
+receipts. The preceding [CNumber frame audit](NUMBER_FRAME_AUDIT_2026_10_21.md) uses
+the Ogg source pinned before this correction; its recipe now names that commit
+explicitly.

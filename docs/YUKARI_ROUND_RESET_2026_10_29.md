@@ -25,7 +25,6 @@ class declaration and compilation context remain unknown.
 
 scripts/repo-python scripts/build.py --unit gpt-web-character-round-reset-runtime --compare --json
 
-Formal receipt:build/frontier-yukari-reset-20261029/formal.json.
 All thirteen prior reset bodies remain exact in that fresh changed-TU build:
-97/54/38/71/89/97/43/38/77/37/17/47/156 bytes. The existing authored vtable
-origin rule stays unchanged; no generated helper is promoted.
+97/54/38/71/89/97/43/38/77/37/17/47/156 bytes. The existing authored vtable origin
+rule stays unchanged; no generated helper is promoted.

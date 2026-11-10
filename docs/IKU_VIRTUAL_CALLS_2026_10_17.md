@@ -50,16 +50,15 @@ hypothesis. The island extent is not a newly proved standalone boundary.
 
 ## Saved analysis and validation
 
-One direct Ghidra process at a time works on a clone and first independently
-attests PE identity, entry68B9D2, x86 Windows language/compiler, full mapped
-`.text` and root bytes. It saves four virtual interfaces,177 call target sets
-and effective callsite prototypes, plus custom conversion storage ST0:10 to
-EAX:4. A fresh read-only process verifies the actual references and override
-types, register/stack storage, returns, purges and unchanged instructions; it
-also rechecks the prior58 receiver components and30 ordinary helper ABIs.
-Only the verified clone is transferred after primary-project hashes are
-confirmed unchanged. Clone/backup files are removed. Private script,
-hypothesis and snapshot: `.analysis/iku-virtual-20261017/`; logs below `build/`.
+One direct Ghidra process at a time works on a clone and first independently attests
+PE identity, entry68B9D2, x86 Windows language/compiler, full mapped `.text` and
+root bytes. It saves four virtual interfaces,177 call target sets and effective
+callsite prototypes, plus custom conversion storage ST0:10 to EAX:4. A fresh
+read-only process verifies the actual references and override types, register/stack
+storage, returns, purges and unchanged instructions; it also rechecks the prior58
+receiver components and30 ordinary helper ABIs. Only the verified clone is
+transferred after primary-project hashes are confirmed unchanged. Clone/backup files
+are removed.
 
 The248621-byte decompiler hypothesis still reports the spacebase/jumptable
 warning, the same17 range-proved infeasible remainder corrections and global

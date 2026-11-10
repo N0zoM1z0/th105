@@ -110,9 +110,8 @@ then reads them back in a separate process. Layout,4097 instructions and target
 bytes remain unchanged. The verified private project replaces its predecessor;
 the duplicate is removed. IDA preflight rejects its other target and is unused.
 
-Reports use `build/aya-cpu-counter-*`; private controls are under
-`.analysis/aya-cpu-ranges-20261017/`. The final build and native-tested COFF
-objects have identical complete canonical section tails; differing COFF
-timestamps are not code differences. Local CI passes180 tests. No unrelated
-accepted unit or aggregate cold replay is claimed. Remaining work is original
-control/float lifetimes and shared store/x87 tails across the complete root.
+The final build and native-tested COFF objects have identical complete canonical
+section tails; differing COFF timestamps are not code differences. Local CI
+passes180 tests. No unrelated accepted unit or aggregate cold replay is claimed.
+Remaining work is original control/float lifetimes and shared store/x87 tails across
+the complete root.

@@ -26,7 +26,5 @@ This adds only23 compiler-library bytes: excluded2066, review305, units808.
 Authored1432/443941, source-present1637, authored1656 and mapped1821 do not change.
 No new insertion/EH/timeline support credit is counted.
 
-Private evidence: build/frontier-unsigned-deque-popback-20261102/,
-.analysis/frontier-unsigned-deque-popback-20261102/ and
-build/origin-anchors/unsigned-deque-popback/. The earlier Nov1 statement that
-413DF0 remains review is superseded by this separate positive caller proof.
+The earlier Nov1 statement that 413DF0 remains review is superseded by this separate
+positive caller proof.

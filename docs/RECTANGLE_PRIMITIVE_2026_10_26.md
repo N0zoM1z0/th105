@@ -2,12 +2,11 @@
 
 ## Source registration, 2026-11-04
 
-The complete rectangle source is registered as source-present, still nonexact.
-Fresh target and candidate replay confirms 394/395 bytes and 85 unequal common
-positions; three bounded call-observer cases agree. Those cases do not execute
-real D3D or establish broad floating-point or runtime equivalence. No exact
-bytes are added. Earlier unselected references below are historical. Receipts:
-`build/frontier-rectangle-registration-20261104/`.
+The complete rectangle source is registered as source-present, still nonexact. Fresh
+target and candidate replay confirms 394/395 bytes and 85 unequal common positions;
+three bounded call-observer cases agree. Those cases do not execute real D3D or
+establish broad floating-point or runtime equivalence. No exact bytes are added.
+Earlier unselected references below are historical.
 
 The complete rectangle provider is **nonexact**. The current source emits394
 bytes against395 target bytes; complete canonical relocation replay finds85
@@ -112,11 +111,9 @@ scripts/repo-python scripts/audit-rectangle-primitive-target.py
 scripts/repo-python scripts/audit-rectangle-primitive-target.py --object build/match-units/ExactFirst_RectanglePrimitive.obj
 ```
 
-The build and object audit currently exit1/nonexact; target-only audit exits0.
-Receipts are below `build/rectangle-4012a0-20261026/`; first/control sources and
-private target/COFF recipes are below `.analysis/rectangle-4012a0-20261026/`.
-All heavy jobs use CPU0/nice10 and run serially. Available memory remained over
-10GB; swap stayed134MB during the focused work.
-Fresh `cold-all.log` passes all526 accepted units/1414 functions under the new
-manifest. Exact totals remain1414 functions/385903 bytes; this rectangle adds
-no exact bytes. `origins-check.log` and `literals-check.log` also pass.
+The build and object audit currently exit1/nonexact; target-only audit exits0. All
+heavy jobs use CPU0/nice10 and run serially. Available memory remained over 10GB;
+swap stayed134MB during the focused work. Fresh `cold-all.log` passes all526
+accepted units/1414 functions under the new manifest. Exact totals remain1414
+functions/385903 bytes; this rectangle adds no exact bytes. `origins-check.log` and
+`literals-check.log` also pass.

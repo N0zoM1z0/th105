@@ -45,8 +45,4 @@ candidate hash `2b5e64188dc23b84678c864f0be04e49f92a843e54f95d77b398651ce43945cd
 Both before/after full-payload reports are identical. This correction adds no
 authored exact credit and makes no new Factory acceptance claim.
 
-Evidence is retained in `build/frontier-action-entry-sequence-owner-20261109/`,
-including native call contexts, full before/after comparisons and
-`verification.json`. The scoped driver is
-`.analysis/frontier-action-entry-sequence-owner-20261109/verify.py`.
 All 18 pending input-migration files and their source SHA pins are preserved.

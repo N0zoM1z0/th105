@@ -4,4 +4,5 @@ The existing combo resource loader source is now tracked individually. Native `0
 
 The source loads the combo design, binds four number adapters to the observed integer and float fields, enables their objects and looks up six additional objects in native order. `INFO_COMBO_LOAD_2026_10_28.md` records field, allocation and owner evidence. Source-view names and the native return convention's original nominal meaning remain unknown.
 
-The existing public probe emits 427 bytes against native 413 and first differs at offset 2. It is source-present and nonexact, with no partial or exact-byte credit. Fresh receipts are `build/frontier-info-combo-source-20261103/source.json` and `caller.json`.
+The existing public probe emits 427 bytes against native 413 and first differs at
+offset 2. It is source-present and nonexact, with no partial or exact-byte credit.

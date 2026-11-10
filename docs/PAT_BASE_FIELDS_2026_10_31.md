@@ -52,10 +52,8 @@ all32 previously excluded generated bodies in five header-dependent origin
 rules freshly pass their native validations. The new305-byte rule passes too.
 Unchanged unrelated origins are retained, not globally rebuilt.
 
-Private baseline/refined/formal receipts, dependency results and old-origin
-replays are retained in build/frontier-pat-base-fields-20261031/.
-The old295-byte assignment is negative layout evidence, not an alternative
-accepted implementation.
+The old295-byte assignment is negative layout evidence, not an alternative accepted
+implementation.
 
 Exclusions increase to1,641 and review decreases to614. Match units become746.
 Authored exact remains1,555 /441,708 bytes; source1,752, authored ownership1,772
@@ -87,12 +85,8 @@ All11 affected authored roots again remain exact, and the three candidate-only
 units still compile. The305-byte assignment also freshly replays exact.
 The new91-byte copy is compiler-generated, not authored game progress.
 
-New public unit: vc8-pat-base-copy-origin.
-Receipts and natural source control:
-build/frontier-pat-base-copy-20261031/ and its corresponding private analysis
-scope. Exclusions become1,642, review613 and match units747. Authored exact,
-source and ownership totals remain unchanged.
-
+New public unit: vc8-pat-base-copy-origin. Exclusions become1,642, review613 and
+match units747. Authored exact, source and ownership totals remain unchanged.
 
 The subsequent shared-construction model uses ordinary whole-object28-byte
 zeroing and naturally reproduces those optimized derived stores while preserving

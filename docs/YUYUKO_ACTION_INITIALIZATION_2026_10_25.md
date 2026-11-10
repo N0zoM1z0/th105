@@ -111,8 +111,6 @@ No standalone-object/LTCG impossibility or broader runtime contract is claimed.
 
 ## Whole-function experiments and negative controls
 
-Private inputs are retained in `.analysis/exact-first-yuyuko-action-entry-20261025/`;
-reports/objects are under `build/exact-first-yuyuko-action-entry-20261025/`.
 Every row compares the entire emitted symbol with complete relocation replay.
 
 | Complete source/control | Full bytes | SHA256 prefix | Whole result |

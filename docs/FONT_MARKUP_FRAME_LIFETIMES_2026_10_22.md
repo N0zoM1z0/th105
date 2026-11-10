@@ -99,10 +99,8 @@ there is no new aggregate cold-replay claim or selected source/header/profile/
 partition/relocation change in this checkpoint.
 
 Raw main-CFG packets, canonical bodies, stack traces and independent placement
-evidence are in `build/font-markup-length-20261021/`. Private reproducible
-controls, capture and tracing scripts are in
-`.analysis/font-markup-length-20261021/`. Unselected object outputs may be
-archived only after SHA256 readback; keep recipes and selected inputs.
+evidence are in `build/font-markup-length-20261021/`. Unselected object outputs may
+be archived only after SHA256 readback; keep recipes and selected inputs.
 
 Remaining questions are the additional fixed-frame homes, outgoing argument
 cleanup, destructor-state scheduling and actual original compiler/TU context.

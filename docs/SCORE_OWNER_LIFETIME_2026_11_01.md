@@ -75,7 +75,7 @@ sites, its complete393-byte native hash, full-inventory uniqueness and the
 existing callback's actual E9 edge. Its0.70/24/no-tail thresholds are unchanged.
 The constructor is the only new matches.csv row.
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-score-data-lifetime --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-score-data-lifetime --compare --json
     taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-score-defaults --compare --json
     taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-score-persist --compare --json
 
@@ -84,8 +84,7 @@ also freshly pass. ScoreDataDefaults.hpp and the old consumers are unchanged.
 The larger loader's known operand-order residual remains outside this scope.
 
 Receipts:build/frontier-score-owner-lifetime-20261101/final.json, defaults.json,
-persist.json, static-witness.json and canonical.json. The generated-origin
-receipt is retained under build/frontier-boost-library-20261031.
+persist.json, static-witness.json and canonical.json.
 Source:src/config/ScoreDataLifetime.cpp. Default CI312 passes.
 
 Exact1586/450027 authored bytes; source1788/authored1808/mapped1815,

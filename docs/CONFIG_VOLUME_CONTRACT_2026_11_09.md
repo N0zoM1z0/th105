@@ -44,7 +44,5 @@ keeps its previous complete 3,722-byte candidate and first difference at +863.
 All 359 non-debug COFF sections have unchanged bytes and relocation roles,
 allowing only the four explicit symbol-name changes from int to void.
 
-The build/proof files are in `build/frontier-config-volume-contract-20261109/`
-and `.analysis/frontier-config-volume-contract-20261109/`. Tracking and the
-lightweight CI pass. Existing nonexact audio providers remain nonexact, and no
-new authored exact credit is added.
+Tracking and the lightweight CI pass. Existing nonexact audio providers remain
+nonexact, and no new authored exact credit is added.

@@ -4,8 +4,11 @@ The native system-effect tracked-release body at `0x436E60` is 119 bytes, SHA-25
 
 The source uses the actual `CHandleManagerEx<SystemEffectObject>` and checked list of `SystemEffectObjectBase *`. It releases each object's handle through the pool and then clears the list. Its non-owning manager view fixes the observed pool and list layout without constructing a synthetic object. The earlier typed-handle and semantic evidence is in `SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md`.
 
-The new public `exact-first-system-effect-tracked-release` unit emits 119 bytes, but its first difference is at offset 46: source and target choose different registers for the handle. Equal size is not byte equality, and this is source-present but nonexact. No register forcing, artificial liveness, partial-byte or exact credit was introduced. Fresh receipts are `build/frontier-system-effect-release-source-20261103/source.json` and `caller.json`.
-
+The new public `exact-first-system-effect-tracked-release` unit emits 119 bytes, but
+its first difference is at offset 46: source and target choose different registers
+for the handle. Equal size is not byte equality, and this is source-present but
+nonexact. No register forcing, artificial liveness, partial-byte or exact credit was
+introduced.
 
 ## Real callable owner, 2026-11-08
 
@@ -33,7 +36,5 @@ Release still emits the same 119-byte candidate hash
 with the existing two handle-register differences. The real-owner correction
 adds no exact function or byte credit.
 
-Private before/after reports and the affected-unit list are in
-`build/frontier-system-effect-real-release-20261108/` and
-`.analysis/frontier-system-effect-real-release-20261108/`. The bounded source
-and relocation comparison covers these functions, not a whole-program link.
+The bounded source and relocation comparison covers these functions, not a
+whole-program link.

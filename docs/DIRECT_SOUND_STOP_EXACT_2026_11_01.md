@@ -89,9 +89,7 @@ Reproduction:
     scripts/repo-python scripts/compare-linked-unit.py exact-first-bgm-stream-runtime --address 0x004185E0 --address 0x00418A10 --address 0x00418D10 --json
     scripts/repo-python -m unittest discover -s tests -p test_linked_member_leaf.py
 
-Receipts: build/frontier-dsound-stop-20261101 includes rejected formal.json,
-private diagnostics, formal-bound.json, accepted-focused.json, the final
-current-input build/focused reports and CI logs. No generated DLL was executed.
+No generated DLL was executed.
 Only focused affected comparisons are required; no whole-corpus cold rebuild.
 Totals: exact1583/449354 authored bytes, source1783, authored1803, mapped1810,
 excluded1792, review432 and units765. No push.

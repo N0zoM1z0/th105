@@ -92,11 +92,7 @@ count is checked against the raw accepted extent. Temporary metadata is read
 back and rolled back; pinned primary database hashes remain unchanged. Analysis
 uses CPU0/nice10 with384 MiB heap; builds run serially on CPU0/nice10.
 
-Private recipes and the first complete source snapshot remain under
-`.analysis/exact-first-komachi-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, full CFG/table closure, attested views/
-logs/DB hashes, formal/cold receipts, first object/provenance, relocation counts,
-original origin row and input hashes. A generated-object table negative fails
-at `+0x1828 / 0x5F92D8`, targetF7/sourceF8; the target stays untouched. Earlier
-accepted input sources remain unchanged. No broad runtime matrix or aggregate
-cold replay is claimed. Continue remaining complete peers; Marisa stays parked.
+A generated-object table negative fails at `+0x1828 / 0x5F92D8`, targetF7/sourceF8;
+the target stays untouched. Earlier accepted input sources remain unchanged. No
+broad runtime matrix or aggregate cold replay is claimed. Continue remaining
+complete peers; Marisa stays parked.

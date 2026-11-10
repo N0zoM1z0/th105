@@ -114,10 +114,8 @@ and actual emitted COFF bytes: negative0,1980f,1560f,-0.03f,1560double,860f,
 - scripts/repo-python scripts/check-match-literals.py --require-target
 - scripts/repo-python scripts/ci.py
 
-Formal focused comparison and full-tail audit both pass. Complete-source
-controls, target assembly/CFG/call counts and receipts are retained in
-build/frontier-660b30-20261027/ and its corresponding private analysis directory.
-The source generator represents the first trial only, not the selected source.
+Formal focused comparison and full-tail audit both pass. The source generator
+represents the first trial only, not the selected source.
 
 Only this new unit is built; no shared header, compiler flags or prior mapping
 changed. Previous exact receipts are retained and totals are incremental, not a

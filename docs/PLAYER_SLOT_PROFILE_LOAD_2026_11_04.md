@@ -20,7 +20,6 @@ differs from the target, and live file behavior has not been tested.
 Reproduce with `scripts/repo-python scripts/build.py --unit
 exact-first-player-slot-profile-load --compare --json`.
 
-
 ## November 8: complete remote EH comparison
 
 The emitted cleanup/handler section now matches all 64 bytes at `0x006B8130`,
@@ -47,13 +46,9 @@ The fresh main-body comparison still has precisely the two differences at
 add authored exact bytes. This removes the EH uncertainty and narrows further
 work to the main body's checked-deque load order and the real reader type.
 
-Reproduction: build the configured unit, then run
-`scripts/repo-python .analysis/frontier-profile-load-context-20261108/check-eh.py`.
 The private check verifies current source/compiler/object provenance, complete
 section ownership, all relocation roles, the unwind state chain and every
-cleanup/handler boundary. Results are in
-`build/frontier-profile-load-context-20261108/baseline.json` and `eh.json`.
-
+cleanup/handler boundary.
 
 ## Use the existing CFileReader provider
 
@@ -87,7 +82,6 @@ Final receipts are `real-reader-final.json` and `real-reader-eh.json` in the
 same evidence directory. The private check now uses the actual reader symbols
 and verifies the weak-slot fallback and all five complete method bodies.
 No new authored exact functions are recorded.
-
 
 The later [global reader identity correction](FILE_READER_GLOBAL_IDENTITY_2026_11_08.md)
 removes the RTTI namespace mismatch recorded above. Both complete reader RTTI

@@ -138,9 +138,7 @@ increase. Next recover Reimu's primary-action and common-attack decision tree
 from raw target facts, then compose the shared selection algorithm with those
 character-specific branches before configuring a complete source comparison.
 
-Private packets, native adapters, source reference, hashes and metadata receipts
-are under `build/reimu-cpu-root/`; Ghidra scripts/hypothesis are under
-`.analysis/reimu-cpu-root-20261019/`. Public target reproduction is:
+Public target reproduction is:
 
 ```bash
 python3 scripts/map-giant-action-switches.py reimu-cpu-action-policy --json

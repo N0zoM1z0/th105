@@ -61,9 +61,8 @@ Current whole-body successes do not authorize changes to those residuals.
   destructor, handler, cleanup action, FuncInfo and unwind state, all fail.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
-Contract: config/linked-clone-copy-origin-anchors.toml.
-Fresh proof: build/origin-anchors/linked-clone-copy/proof.json.
-Private discovery: .analysis/frontier-linked-clone-copy-20261101/.
+Contract: config/linked-clone-copy-origin-anchors.toml. Fresh proof:
+build/origin-anchors/linked-clone-copy/proof.json.
 
 All source packages, compiler/library pins and the original seven-TU graph
 are verified afresh. The only export remains the genuine public constructor.

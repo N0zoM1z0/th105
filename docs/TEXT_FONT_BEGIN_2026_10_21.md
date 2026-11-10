@@ -132,11 +132,7 @@ cases with both actual ESI begin/end entry contracts. Its expected trace digest
 remainsc75c54eb. This models provider boundaries, unlike the separate native begin
 run; no complete font/GDI runtime claim follows.
 
-Full raw/import/config-caller facts, native layout witness, controls and formal/
-execution receipts are under `build/font-begin-20261021/`; private recipes are
-under `.analysis/font-begin-20261021/`. Completed controls are compressed only
-after per-file SHA256 readback: 117,804 ->24,186 bytes. Selected
-source/header/object/receipts remain.
+Selected source/header/object/receipts remain.
 
 ```bash
 python3 scripts/validate-tracking.py --require-target

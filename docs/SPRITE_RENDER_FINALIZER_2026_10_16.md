@@ -14,14 +14,13 @@ Existing authored-origin evidence separately pins exact caller edges from
 at `6654D0`; decoding alone is not an authored-origin argument.
 
 A sequential direct Ghidra session attested target hash, PE entry, image base,
-external-entry marker, x86 Windows analysis identity, all mapped `.text` and
-the 219-byte body before applying the no-argument thiscall/void hypothesis.
-A second read-only process checked the saved name, body size, calling
-convention, receiver-only parameter list and zero purge. Both used a 768 MiB
-heap limit and two active processors. Ghidra pseudocode remains a hypothesis;
-all implementation operations below were checked against raw instructions.
-The mandatory IDA preflight failed its target hash and that database was not
-used. Private working material is in `.analysis/sprite-render-finalizer-20261016/`.
+external-entry marker, x86 Windows analysis identity, all mapped `.text` and the
+219-byte body before applying the no-argument thiscall/void hypothesis. A second
+read-only process checked the saved name, body size, calling convention,
+receiver-only parameter list and zero purge. Both used a 768 MiB heap limit and two
+active processors. Ghidra pseudocode remains a hypothesis; all implementation
+operations below were checked against raw instructions. The mandatory IDA preflight
+failed its target hash and that database was not used.
 
 The body reads the existing `CSpriteEx::working_quad_0b0[4]`, subtracts float
 0.5 from x/y and adds it to z, then writes the corresponding fields in

@@ -8,8 +8,6 @@ CHARACTER_REAL_SPRITE_2026_11_02.md. The older sections retain historical eviden
 
 462AB0 is now canonical exact557/557 with SHA256
 6843409d8f8d40e4f3ebf4d1bd9615a666c72f0abda652943492913297aaa5a5.
-The formal selected-unit replay is recorded in
-build/frontier-texture-handle-value-20261029/formal-character.json.
 
 The constructor-facing IColor view now owns the existing four-byte
 DesignTextureHandle value at+4. Its ordinary zero-initializing constructor runs
@@ -93,10 +91,8 @@ Source:src/characters/CharacterConstructor.cpp.
 Command:
 scripts/repo-python scripts/build.py --unit exact-first-character-constructor --compare --json
 
-Formal comparison and target/source disassembly are under
-build/frontier-character-constructor-20261029/. Existing shared headers and
-accepted consumers remain unchanged. Default CI and diff checks cover final
-source selection, aliases and progress.
+Existing shared headers and accepted consumers remain unchanged. Default CI and diff
+checks cover final source selection, aliases and progress.
 
 Later CharacterEx lifetime review establishes native Character slot0 as
 purecall689934. The constructor-facing destructor is corrected to pure virtual;

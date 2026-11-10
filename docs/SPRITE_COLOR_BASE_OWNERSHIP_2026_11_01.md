@@ -56,8 +56,6 @@ replay without errors. The142 canonical scalar-wrapper bodies across51 owner
 units were refreshed under final source/manifest inputs as well. This is an
 explicitly bounded affected-header/provenance replay, not a cold all-exact run.
 
-Receipts: build/frontier-sprite-copy-lifetime-20261101/replay-*.json,
-replay-final-summary.json, origins-*.json and final-owner-copy.json.
 Original and private control sources remain in the same bounded analysis scope.
 
 Reproduce the new copy and actual owner:

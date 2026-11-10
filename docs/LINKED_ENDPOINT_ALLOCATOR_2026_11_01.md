@@ -70,13 +70,10 @@ All six remaining bodies remain nonexact, including connection524/native542,
 rejection122/native122 and endpoint-list400/native315. No source change follows
 from these residuals.
 
-Fresh prior gamepad84, byte78/input266 and original static bad_alloc five-body
-gates pass after the81-byte CFG extension. Eleven focused synthetic tests and
-ten actual target-byte corruption controls cover source connections, scope,
-partial extent, metadata, calls, control flow, parent identity and entry14.
-Evidence: build/origin-anchors/linked-endpoint-allocator.json,
-build/origin-anchors/network-receive-link/build.json and
-build/frontier-network-allocators-20261101/{ordinary,mutations}.json.
+Fresh prior gamepad84, byte78/input266 and original static bad_alloc five-body gates
+pass after the81-byte CFG extension. Eleven focused synthetic tests and ten actual
+target-byte corruption controls cover source connections, scope, partial extent,
+metadata, calls, control flow, parent identity and entry14.
 
 Excluded2010/review362; exact1431/443916 bytes, authored1655, source1635,
 mapped1820 and units777 stay unchanged. The81-byte allocator413C60 for32-byte

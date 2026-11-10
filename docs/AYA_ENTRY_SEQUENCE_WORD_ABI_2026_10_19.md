@@ -147,44 +147,34 @@ comes from the qualified ordinary COFF extent and reconciled CFG, rather than
 an assumed next-MAP-symbol function boundary. Callable credit remains4531
 bytes; the one NOP and327 metadata bytes remain outside it.
 
-The resulting payload is again6f70b6f3 with only the two ModRM differences.
-This closes the previous frame/envelope obstacle for this diagnostic context;
-it does not explain the remaining register choice or prove an original TU.
-The source CIL owns the exported entry10001000. Producer and replay receipts
-are under `build/aya-entry-registers/link/`; link receipt SHA256 is
-`aa06891c8b520ccd0bf129233aacc61c4810095cf5cf1592bbc9ae8bcca82e20`.
-The private diagnostic reproduction is
-`python3 -B build/aya-entry-registers/link-context.py` followed by
-`python3 -B build/aya-entry-registers/audit-link.py`; this is not an accepted
-linked-unit command.
+The resulting payload is again6f70b6f3 with only the two ModRM differences. This
+closes the previous frame/envelope obstacle for this diagnostic context; it does not
+explain the remaining register choice or prove an original TU. The source CIL owns
+the exported entry10001000.
 
-Fresh unselected source controls on8f036434 are also recorded there. Explicit
-856 active-branch joins, expanding its target pointer reads, and the two852
-chained scale assignments each retain the full6f70b6f3 payload. A real two-float
-direction value instead changes the frame10h->18h and85 callable bytes.
-Combining852 chains with the already rejected float copy gives4540/4867
-prefix/payload. A signed64-bit sequence conversion introduces `_ftol2`;
-canonicalization rejects that unbound REL32 in both856-only and all-call
-forms, including explicit final narrowing. Target68A1A0 instead has an SSE2
-CVTTSD2SI EAX path and a fallback branch. No `_ftol2` binding is invented.
+Unselected source controls on8f036434 were also tested. Explicit 856 active-branch
+joins, expanding its target pointer reads, and the two852 chained scale assignments
+each retain the full6f70b6f3 payload. A real two-float direction value instead
+changes the frame10h->18h and85 callable bytes. Combining852 chains with the already
+rejected float copy gives4540/4867 prefix/payload. A signed64-bit sequence
+conversion introduces `_ftol2`; canonicalization rejects that unbound REL32 in
+both856-only and all-call forms, including explicit final narrowing. Target68A1A0
+instead has an SSE2 CVTTSD2SI EAX path and a fallback branch. No `_ftol2` binding is
+invented.
 
-A fresh direct read-only Ghidra pass independently checks file/imported
-identity, entry, the complete mapped text and this4531-byte root before
-semantics. Temporary thiscall/void/body metadata is read back, and bounded
-800/810/856 pcode and decompiler output remain hypotheses. All nine primary
-DB hashes remain unchanged and the project alias is removed. The384MiB,
-CPU0/nice10 script/output are under `.analysis/aya-entry-registers-20261019/`
-and `build/aya-entry-registers/`. No IDA semantics, factory adapter or target
-patch is used.
+A fresh direct read-only Ghidra pass independently checks file/imported identity,
+entry, the complete mapped text and this4531-byte root before semantics. Temporary
+thiscall/void/body metadata is read back, and bounded 800/810/856 pcode and
+decompiler output remain hypotheses. All nine primary DB hashes remain unchanged and
+the project alias is removed. No IDA semantics, factory adapter or target patch is
+used.
 
-A final getter control on the selected5ca0fb42 source replaces only856's
-selector input with a real forced-inline member returning, respectively,
-float value, const float reference, or const float pointer. Each compiles
-and preserves the complete6f70b6f3 payload, all19 conversion calls and the
-same two differences. None is selected and no original getter API is inferred.
-Fresh baseline, sources, commands and full packets are under
-`build/aya-entry-getter/`. Further unchanged source-API tuning is deferred
-pending new ownership/TU evidence.
+A final getter control on the selected5ca0fb42 source replaces only856's selector
+input with a real forced-inline member returning, respectively, float value, const
+float reference, or const float pointer. Each compiles and preserves the
+complete6f70b6f3 payload, all19 conversion calls and the same two differences. None
+is selected and no original getter API is inferred. Further unchanged source-API
+tuning is deferred pending new ownership/TU evidence.
 
 ## Exact-first refresh, 2026-10-23
 
@@ -222,17 +212,10 @@ object and PDB. The full payload is again6f70b6f3 with only+BF7/+BFF different.
 This is an actual negative `/Zi` result; the old C1902 failure was not one.
 No other repository's PDB server was stopped or reused.
 
-Recipes: `.analysis/aya-entry-payload-view-20261023/`. Frozen controls and
-receipts: `build/aya-entry-payload-view-20261023/`, starting with `controls.json`,
-`scalar-views.json`, `lifetimes.json`, `field-views.json` and `zi-isolated.json`.
-The latter pins all six compiler/PDB inputs, the command, source, object and PDB;
-receipt SHA256 is
-`011e80269fdd775a9c6747473e765aa1ba057db69cc441bcaad971b4b95cee8f`.
-Completed source/object payloads are compressed with a verified retention list.
-Public source, unit, compiler profile and match ledgers remain unchanged.
-No new exact credit, native execution or aggregate replay is claimed. Further
-progress needs a different target-backed source/TU lead, rather than repeating
-these byte-neutral forms or importing TH075's VC7.1 `/Od` profile.
+Public source, unit, compiler profile and match ledgers remain unchanged. No new
+exact credit, native execution or aggregate replay is claimed. Further progress
+needs a different target-backed source/TU lead, rather than repeating these
+byte-neutral forms or importing TH075's VC7.1 `/Od` profile.
 
 ## Full hierarchy and compiler controls, 2026-10-24
 
@@ -268,19 +251,15 @@ Compiler-release uncertainty remains distinct from these results. The installed
 cl/c1xx/c2 components are 14.00.50727.762. Microsoft separately documents C2
 [14.0.50727.3080](https://support.microsoft.com/en-gb/topic/fix-when-you-run-an-application-that-is-built-by-using-the-ot-compiler-option-in-microsoft-visual-studio-2005-service-pack-1-sp1-some-if-statements-may-run-incorrectly-270601b8-04f6-f517-0c20-38e6de2740d7),
 [14.0.50727.4025](https://support.microsoft.com/en-us/servicing/visual-studio/hotfix/2017/01/fix-error-message-when-you-build-a-project-that-has-a-very-large-function-in-visual-studio-2005-serv)
-and [14.0.50727.5587](https://support.microsoft.com/nb-no/servicing/visual-studio/hotfix/2017/01/fix-errors-occur-after-an-exception-is-thrown-or-a-declspec-noreturn-function-is-executed-when-you-r).
-This corroborates later releases, not their use by TH105 or applicability to
-these register choices. No later backend binary was recovered or compiled here.
-The target PE timestamp 2011-10-24 is metadata, not a compiler-version proof.
-The tested archive inventories and failed mirror requests are retained; they
-do not establish that no authentic package is obtainable elsewhere.
+and
+[14.0.50727.5587](https://support.microsoft.com/nb-no/servicing/visual-studio/hotfix/2017/01/fix-errors-occur-after-an-exception-is-thrown-or-a-declspec-noreturn-function-is-executed-when-you-r).
+This corroborates later releases, not their use by TH105 or applicability to these
+register choices. No later backend binary was recovered or compiled here. The target
+PE timestamp 2011-10-24 is metadata, not a compiler-version proof.
 
-Recipes: `.analysis/aya-entry-hierarchy-20261024/`. Artifacts:
-`build/aya-entry-hierarchy-20261024/`; start with `rtti.json`,
-`baseline-build.json`, `baseline-packet.json`, `physical-hierarchy.json`,
-`profiles.json`, `gates.json` and `compiler-provenance.json`. Raw observations,
-source hypotheses, actual compiler negatives and untested release candidates
-are kept separate. The function note now supersedes its old `/Zi`-failure text.
+Raw observations, source hypotheses, actual compiler negatives and untested release
+candidates are kept separate. The function note now supersedes its old `/Zi`-failure
+text.
 
 ### Source order, TU and floating profiles
 
@@ -315,9 +294,6 @@ It was never executed and its temporary payloads were removed.
 No later C2 version was compiled. Empty unvalidated wildcard searches and failed
 requests do not establish package absence.
 
-Recipes: `.analysis/aya-entry-backend-20261024/`. Start with `packet.json`,
-`family-contexts.json`, `floating-profiles.json` and `vista-package.json` under
-`build/aya-entry-backend-20261024/`.
 Public source, compiler profiles, accepted units and exact ledgers are unchanged.
 
 ## Shared receiver and handoff cleanup, 2026-10-24
@@ -345,11 +321,9 @@ canonical23925cd4, and still differs at+22. The initializer retains its two
 register bytes. This candidate is unselected and earns no new exact credit.
 Comparing that removed frame-call site with the target is a retained lead.
 
-The new header is consumed only by the two nonexact Aya units. No global
-relocation, compiler profile, accepted source or match ledger changed.
-Recipes and frozen pre-cleanup inputs: `.analysis/aya-joint-owner-20261024/`
-and `build/aya-joint-owner-20261024/`. Start with `summary.json`.
-Current selection and continuation steps are in `RE_HANDOFF.md`.
+The new header is consumed only by the two nonexact Aya units. No global relocation,
+compiler profile, accepted source or match ledger changed. Current selection and
+continuation steps are in `RE_HANDOFF.md`.
 
 ## Whole-payload refresh and release search,2026-10-25
 
@@ -364,27 +338,22 @@ The full replay has only two unequal bytes:61FCA7 native8E/candidate86 and
 heading pointer. The alignment byte and all327 metadata bytes agree.
 There are no masks, relocation omissions or new exact claims.
 
-Reproduce the focused build with
-`scripts/repo-python scripts/build.py --unit gpt-web-aya-object-action-entry --compare --json`
-(expected exit1). Private full-section replay and hash-pinned input receipt:
-`.analysis/aya-entry-backend-20261025/baseline.py` and
-`build/aya-entry-backend-20261025/baseline-packet.json`. Selected source/header
-hashes remain fa06d792/2ed12ce9. No source, header, unit, compiler profile or
-relocation ledger changed during this refresh.
+Reproduce the focused build with `scripts/repo-python scripts/build.py --unit
+gpt-web-aya-object-action-entry --compare --json` (expected exit1). Selected
+source/header hashes remain fa06d792/2ed12ce9. No source, header, unit, compiler
+profile or relocation ledger changed during this refresh.
 
 Microsoft's retained release tables independently document later C2 versions
 [14.0.50727.3080](https://support.microsoft.com/en-gb/topic/fix-when-you-run-an-application-that-is-built-by-using-the-ot-compiler-option-in-microsoft-visual-studio-2005-service-pack-1-sp1-some-if-statements-may-run-incorrectly-270601b8-04f6-f517-0c20-38e6de2740d7),
 [14.0.50727.4025](https://support.microsoft.com/en-us/servicing/visual-studio/hotfix/2017/01/fix-error-message-when-you-build-a-project-that-has-a-very-large-function-in-visual-studio-2005-serv)
-and [14.0.50727.5587](https://support.microsoft.com/en-us/servicing/visual-studio/hotfix/2017/01/fix-errors-occur-after-an-exception-is-thrown-or-a-declspec-noreturn-function-is-executed-when-you-r).
-Their release existence does not establish which backend built TH105, or that
-the documented defects explain this register choice. No executable compiler
-package was recovered or executed. The final metadata-only Internet Archive
-item searches returned only ordinary SP1/Express items, not a later backend;
-their limited scope is recorded in `build/aya-entry-backend-20261025/archive-items.json`.
-Earlier KB932232 payload inspection already established that package has no
-C2 member; it was not repeated. Archived support/download pages alone do not
-attest a compiler binary. Keep this release question parked until an authentic
-package can be recovered; do not repeat the closed source/flag controls.
+and
+[14.0.50727.5587](https://support.microsoft.com/en-us/servicing/visual-studio/hotfix/2017/01/fix-errors-occur-after-an-exception-is-thrown-or-a-declspec-noreturn-function-is-executed-when-you-r).
+Their release existence does not establish which backend built TH105, or that the
+documented defects explain this register choice. No executable compiler package was
+recovered or executed. Earlier KB932232 payload inspection already established that
+package has no C2 member; it was not repeated. Archived support/download pages alone
+do not attest a compiler binary. Keep this release question parked until an
+authentic package can be recovered; do not repeat the closed source/flag controls.
 
 ## Rejected controls and analysis limits
 
@@ -413,16 +382,12 @@ A genuine repeated conversion/virtual operation fails the normal comparator
 when emitted out of line; no invented binding is supplied. Its inlined
 control is also fully payload-identical.
 
-A real sequence-word snapshot changes prefix/payload to4524/4851 and no
-longer has the target comparison structure. Explicitly widening the returned
-angle before negation adds the non-target materialization,4540/4867.
-Combining an unsigned formal with explicit signed conversion still produces
-the previously rejected5052/5379 payload without the19 conversion calls.
-None of these controls is selected. No register-normalized acceptance,
-source change, native claim or exact credit follows. Receipts are under
-`build/aya-entry-action856/`; the new bounded read-only Ghidra pass under
-`.analysis/aya-entry-action856-20261019/` leaves all nine DB hashes unchanged
-and removes its alias.
+A real sequence-word snapshot changes prefix/payload to4524/4851 and no longer has
+the target comparison structure. Explicitly widening the returned angle before
+negation adds the non-target materialization,4540/4867. Combining an unsigned formal
+with explicit signed conversion still produces the previously rejected5052/5379
+payload without the19 conversion calls. None of these controls is selected. No
+register-normalized acceptance, source change, native claim or exact credit follows.
 
 The earlier /GL diagnostic used seven actual source-provider objects, real
 static CRT/SDK libraries and real DLL startup. The old baseline and preserved-type
@@ -441,13 +406,10 @@ changing only the two return declarations preserves their full94/88-byte
 COFF sections and relocation inventories. This does not accept those helpers
 or modify their public sources.
 
-Private reports, pinned input receipts, RTTI, complete byte/slot comparison
-and genuine-link recipes are under `build/aya-entry-context/`. Direct Ghidra
-independently verifies imported identity, entry and all mapped text bytes.
-Its primary project initially has no Aya function; bounded read-only decoding
-of the1195 attested instruction starts and a4531-byte temporary function
-supports a decompiler hypothesis, whose unreachable-block warnings do not
-override the raw CFG. All nine DB files remain unchanged and the temporary
-project alias is removed. CPU0/384MiB recipes are under
-`.analysis/aya-entry-context-20261019/`. Required IDA preflight rejects its
-wrong target; no IDA semantics or factory adapter is used.
+Direct Ghidra independently verifies imported identity, entry and all mapped text
+bytes. Its primary project initially has no Aya function; bounded read-only decoding
+of the1195 attested instruction starts and a4531-byte temporary function supports a
+decompiler hypothesis, whose unreachable-block warnings do not override the raw CFG.
+All nine DB files remain unchanged and the temporary project alias is removed.
+Required IDA preflight rejects its wrong target; no IDA semantics or factory adapter
+is used.

@@ -106,8 +106,7 @@ python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client -
 ```
 
 The full comparison intentionally returns1 for the source-present functions.
-Reports are `build/network-udp-send-worker-{boundaries,formal}.json` and
-`build/network-udp-send-worker-affected-accepted.json`. After shared source,
+After shared source,
 header and comparator changes, fresh serial builds preserve all three
 affected accepted linked units: scene281, pool98 and release167. No all-unit
 replay or new aggregate exact claim is made. Both supported Capstone versions
@@ -126,9 +125,7 @@ Direct Ghidra independently attests executable/program SHA, image base, entry
 marker, x86 Windows identity and all mapped .text bytes before touching
 metadata. Full decompilation remains a hypothesis. Supported owner/packet
 fields, names, complete extents, stdcall stack parameter and private ESI
-storage are saved and checked in a separate read-only invocation. Logs are
-`build/network-udp-send-worker-ghidra-{save,readback}.log`; private scripts and
-saved analysis remain below `.analysis/`. Ghidra's project-name restriction
+storage are saved and checked in a separate read-only invocation. Ghidra's project-name restriction
 requires a disposable visible build path during invocation. One process uses
 768MiB heap and two CPUs; the temporary database copy is removed afterward.
 
@@ -136,8 +133,7 @@ requires a disposable visible build path during invocation. One process uses
 
 The retained real peer/accept/thread/receive/initialize/send/service graph has
 unchanged source hashes and still emits send entry10004800/16 versus native
-416D90/18. Its entry still lacks the native reserve/restore DWORD. The same
-graph emits worker10004650/423 versus395, now with an aligned frame. This is
-not a fresh exactness claim or reason to add inert storage. No source, ABI,
-export or compiler flag was changed. Record:
-build/frontier-send-entry-seven-tu-20261101/negative.json.
+416D90/18. Its entry still lacks the native reserve/restore DWORD. The same graph
+emits worker10004650/423 versus395, now with an aligned frame. This is not a fresh
+exactness claim or reason to add inert storage. No source, ABI, export or compiler
+flag was changed.

@@ -46,13 +46,6 @@ counterexample to replacing every facade in one sweep.
 Run `scripts/repo-python scripts/build.py --unit
 exact-first-spell-selection-shuffle --compare --json`.
 
-The public root, direct callers, complete providers, native ownership evidence,
-and object provenance are checked by
-`.analysis/frontier-spell-shuffle-exact-20261109/verify.py`; results are under
-`build/frontier-spell-shuffle-exact-20261109/`. The independent 108-byte erase
-proof and rejected 237-byte candidate are under
-`build/frontier-match-mode-provider-20261109/`.
-
 The local authored ledger gains one function and 196 bytes. The prior separate
 authored-origin rule is superseded by the canonical-match baseline; its target
 hash and direct-call evidence were rechecked before that transition. Generated

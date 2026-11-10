@@ -54,7 +54,6 @@ No helper or second-caller credit is added.
 
 scripts/repo-python scripts/build.py --unit exact-first-render-mode-initialize --compare --json
 
-Focused evidence: build/frontier-render-mode-initialize-20261031/.
-Default CI210 and whitespace checks pass. No whole-corpus cold rebuild.
-One authored function adds142 bytes:1576 exact /448613 bytes;
-source1771, authored1791, mapped1798, excluded1658, review578, units756.
+Default CI210 and whitespace checks pass. No whole-corpus cold rebuild. One authored
+function adds142 bytes:1576 exact /448613 bytes; source1771, authored1791,
+mapped1798, excluded1658, review578, units756.

@@ -87,16 +87,14 @@ residual. Adding this comparison does not turn either pending member exact.
 ## Native execution and counterexample
 
 `scripts/audit-family1-pair-response.py` seeds valid geometry by running the
-original46DFF0 parent in the established bounded environment. Pair entries
-then execute the real target predicate46BCA0, AABB extent46B3B0 and reset46B6C0;
-no predicate/hit/extent/game return is supplied by a callback. Pair code and
-resource pages remain read-only; writes are guarded to the arena, stack and
-one SEH cell. The pair itself must perform no allocation. The parent seed's
-limited node-allocation/free environment is disclosed in the parent audit.
-The subsequent parent v2 review initializes the target-pinned source168 bindings
-and rejects non-SEH zero-page reads. The same2638 pair cases replay with zero
-mismatches under that environment; the refreshed receipt is
-`build/collision-tail-20261020/pair-final.json`. Pair codegen remains557/542.
+original46DFF0 parent in the established bounded environment. Pair entries then
+execute the real target predicate46BCA0, AABB extent46B3B0 and reset46B6C0; no
+predicate/hit/extent/game return is supplied by a callback. Pair code and resource
+pages remain read-only; writes are guarded to the arena, stack and one SEH cell. The
+pair itself must perform no allocation. The parent seed's limited
+node-allocation/free environment is disclosed in the parent audit. The subsequent
+parent v2 review initializes the target-pinned source168 bindings and rejects
+non-SEH zero-page reads. Pair codegen remains557/542.
 
 The final2638 cases contain:
 
@@ -149,11 +147,7 @@ git diff --check
 ```
 
 The formal mixed probe returns1 for its two disclosed nonexact members; the
-accepted147-byte member remains exact. The selected native audit returns0;
-the deliberately wrong source audit returns1. Generated reports and receipts
-are under `build/family1-pair-20261020/`, with raw facts/starts, final formal
-comparison, native-final/negative-final and Ghidra-pair receipts. Private
-source trials/recipes remain under `.analysis/family1-pair-20261020/`.
-This checkpoint adds source coverage only, **zero exact bytes**. The parent
-46DFF0 remains1449/1452 with its separate+559 residual. No cold aggregate
-replay or new aggregate percentage is claimed.
+accepted147-byte member remains exact. The selected native audit returns0; the
+deliberately wrong source audit returns1. This checkpoint adds source coverage only,
+**zero exact bytes**. The parent 46DFF0 remains1449/1452 with its separate+559
+residual. No cold aggregate replay or new aggregate percentage is claimed.

@@ -9,17 +9,16 @@ timer using the low bit of pair state, selects or triggers event effects at
 Its table slot, full native body, mode-change calls, RNG and event calls are
 pinned by the focused origin rule.
 
-The recovered natural C++ in `BattleManagerEventTimer.cpp` uses the existing
-base layout and narrow helper views. Its source-facing method returns void,
-as does the actual presentation tail; the original virtual return contract is
-not established and no claims about incidental EAX values are made. Original
-nominal type and translation-unit identity are unknown. The pinned VC8 build
-emits 186 bytes versus the native 172 and is nonexact from +12, with section
-SHA-256 `a69ff764791c2b1381defff4fe0f267f87ff07e2dbf9b6cac4648edff3fc2bbb`.
-The 172-byte compared prefix hashes to
-`9944d208416642f651a33b89f43fc2aac3011765b9a4e988da3ad59a087a0973`.
-No code shaping, invented register ABI, exact bytes, or runtime equivalence is
-claimed. Build receipt: `build/frontier-battle-event-timer-20261104/formal.json`.
+The recovered natural C++ in `BattleManagerEventTimer.cpp` uses the existing base
+layout and narrow helper views. Its source-facing method returns void, as does the
+actual presentation tail; the original virtual return contract is not established
+and no claims about incidental EAX values are made. Original nominal type and
+translation-unit identity are unknown. The pinned VC8 build emits 186 bytes versus
+the native 172 and is nonexact from +12, with section SHA-256
+`a69ff764791c2b1381defff4fe0f267f87ff07e2dbf9b6cac4648edff3fc2bbb`. The 172-byte
+compared prefix hashes to
+`9944d208416642f651a33b89f43fc2aac3011765b9a4e988da3ad59a087a0973`. No code shaping,
+invented register ABI, exact bytes, or runtime equivalence is claimed.
 
 Reproduce with `scripts/repo-python scripts/build.py --unit
 exact-first-battle-event-timer --compare --json` (expected mismatch exit 1).

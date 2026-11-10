@@ -51,12 +51,12 @@ witnesses. The original constructor65 and character parser505 also stay exact.
 
 ## Focused validation
 
-    scripts/repo-python scripts/build.py --unit exact-first-script-lifecycle-linked --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-script-lifecycle-linked
+--compare --json
 
-Receipt directory: build/frontier-script-pending-owner-20261029/.
-All79 previously accepted functions in20 actual header-dependent units replay
-exact, plus the new147-byte root. The full timeline-loader1676-byte payload
-also replays separately. Nonaccepted Scenario command update retains its
-unresolved local basic_string constructor boundary; no accepted result is
-blocked. Other pre-existing constructor/render mismatches remain mismatches.
-This is an affected-unit replay, not a full corpus cold rebuild.
+All79 previously accepted functions in20 actual header-dependent units replay exact,
+plus the new147-byte root. The full timeline-loader1676-byte payload also replays
+separately. Nonaccepted Scenario command update retains its unresolved local
+basic_string constructor boundary; no accepted result is blocked. Other pre-existing
+constructor/render mismatches remain mismatches. This is an affected-unit replay,
+not a full corpus cold rebuild.

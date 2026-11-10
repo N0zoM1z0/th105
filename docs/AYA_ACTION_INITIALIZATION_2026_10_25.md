@@ -121,8 +121,6 @@ No runtime matrix, compiler-profile search or LTCG impossibility is claimed.
 
 ## Whole-function experiments and negative controls
 
-Private inputs are retained in `.analysis/exact-first-aya-action-entry-20261025/`;
-reports/objects are under `build/exact-first-aya-action-entry-20261025/`.
 Every row compares the entire emitted symbol with complete relocation replay.
 
 | Complete source/control | Full bytes | SHA256 prefix | Whole result |

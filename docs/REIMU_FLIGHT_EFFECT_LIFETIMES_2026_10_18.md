@@ -87,13 +87,10 @@ versus target121.209/221 share47B5CD;522/523 stay separate485898/485C78;
 the duplicate resource predicate and whole-root exactness remain open.
 
 Ordinary object SHA256:
-`fc96ec6699e7672671db4996be5b517d75db3c22785e0c2470ff621ba03cdbb1`.
-Linked image SHA256:
-`035d55da7ecbe12e7eb0310ae999ecd803b32fabd29de8d8043c105981da860a`.
-Fragment CRLF SHA256:
-`e58093a603f7a1e042f1a1a9eb650f7ba6d29685de8f8e9e55364ada1f15e7b7`.
-Current receipts are under `build/reimu-flight-gate/` and `build/reimu-ltcg/`.
-Run heavy commands serially with `nice -n 10 taskset -c 0`:
+`fc96ec6699e7672671db4996be5b517d75db3c22785e0c2470ff621ba03cdbb1`. Linked image
+SHA256: `035d55da7ecbe12e7eb0310ae999ecd803b32fabd29de8d8043c105981da860a`. Fragment
+CRLF SHA256: `e58093a603f7a1e042f1a1a9eb650f7ba6d29685de8f8e9e55364ada1f15e7b7`. Run
+heavy commands serially with `nice -n 10 taskset -c 0`:
 
 ```bash
 python3 scripts/probe-reimu-action-ltcg.py

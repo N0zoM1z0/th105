@@ -9,7 +9,6 @@ This is the historical selected boolean checkpoint. The following
 void return view and a complete physical-extent comparison; its source
 remains nonexact.
 
-
 This continues [903/904/905](REIMU_OBJECT_903_905_2026_10_20.md) inside authored
 update root496540. The only target is original Japanese1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
@@ -217,7 +216,6 @@ binary64 projection exceeds12.5, while the wrong float intermediate rounds to
 12.5 and lands. Ghidra's narrowed decompiler expression is therefore rejected
 by raw FSTP-qword evidence and this compiled control.
 
-
 ## Private void-ABI preparation
 
 A separate private copy renames only the coverage method to
@@ -242,11 +240,8 @@ The selected public source remains the pinned boolean checkpoint above.
 |Observed void object|`9649fd83daef7688b4d5d91fbc2d428332b69daf01907034f34e05bc924bc4ee`|
 |41480-byte void replay|`45780960252921793c5b4574f7c1cd1dd31395dbb819a989d5571a854f853816`|
 
-The private source, source-pins receipt and native report remain under
-`build/reimu-object-final-actions-20261020/void-probe`; the copied auditor is
-under the corresponding private analysis directory. Its object-only report's
-public support hashes do not attest the transformed source; the separate
-private source pins and observed build provide that distinction.
+Its object-only report's public support hashes do not attest the transformed source;
+the separate private source pins and observed build provide that distinction.
 
 ## Reproduction and remaining work
 
@@ -275,10 +270,8 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Objects, reports, raw packets and compiled wrong-control copies stay below
-`build/reimu-object-final-actions-20261020`; private recipes and Ghidra scripts
-stay below `.analysis/reimu-object-final-actions-20261020`. No executable,
-analysis DB or generated report is committed. No cold aggregate is claimed.
+No executable, analysis DB or generated report is committed. No cold aggregate is
+claimed.
 
 All41 arms having source hypotheses does not prove whole-root semantics.
 Returning world/setup/wave/event/CRT graphs, opaque buffer mutation, arbitrary

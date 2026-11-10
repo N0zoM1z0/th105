@@ -71,12 +71,10 @@ sequence4 paths and818's sequence-advance return merge differently. Packet stack
 homes, scalar lifetimes, owner-address scheduling and shared continuations remain
 unresolved. No exactness percentage follows from these diagnostic agreements.
 
-Audit: `scripts/audit-suika-object-update.py`.
-Receipts: `build/frontier-5b0460-20261028/{formal-build,full-audit,target-audit}.json`.
-Private preparation: `.analysis/frontier-5b0460-20261028/`.
-Only source/mapping ledgers advance. `matches.csv` is unchanged, and unchanged
-accepted units retain their incremental receipts. No shared ABI/profile/binding
-was modified and no full corpus rebuild was needed.
+Audit: `scripts/audit-suika-object-update.py`. Only source/mapping ledgers advance.
+`matches.csv` is unchanged, and unchanged accepted units retain their incremental
+receipts. No shared ABI/profile/binding was modified and no full corpus rebuild was
+needed.
 
 ## Actions 821, 857 and 910 motion gates, 2026-11-04
 

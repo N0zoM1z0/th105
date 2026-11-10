@@ -58,9 +58,6 @@ and every unique byte of the full24-record RTTI proof.
 
 Evidence:
 - build/origin-anchors/sprite-default/proof.json
-- build/frontier-sprite-default-20261101/affected.json and replays/
-- build/frontier-sprite-default-20261101/{positive,mutations,select-audit}.json
-- .analysis/frontier-sprite-default-20261101/ holds the private probes/replay.
 
 Subsequent narrow callback proof: SPRITE_ARRAY_CALLBACK_2026_11_01.md separately
 classifies the seven-byte421D30 destructor using its actual paired array role.

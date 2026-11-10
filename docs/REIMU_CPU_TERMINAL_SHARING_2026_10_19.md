@@ -15,11 +15,9 @@ Callable `[48D390,49120F)` SHA256 is
 The complete boundary, vslot+58 and void ECX ABI remain as recorded in
 [the root evidence](REIMU_CPU_ROOT_2026_10_19.md).
 
-Direct read-only Ghidra re-attested imported identity, entry, mapped text,
-root bytes and typed method metadata. All nine primary DB file hashes remained
-unchanged. The384MiB/CPU0 recipe is under
-`.analysis/reimu-cpu-setters-20261019/`; its project alias is removed. The
-required IDA preflight still rejects the wrong open executable. No IDA semantic
+Direct read-only Ghidra re-attested imported identity, entry, mapped text, root
+bytes and typed method metadata. All nine primary DB file hashes remained unchanged.
+The required IDA preflight still rejects the wrong open executable. No IDA semantic
 data, factory adapter or target patch was used.
 
 Static reachable policy0 CFGs close without unresolved transfers or internal
@@ -86,8 +84,7 @@ alone would not repair the complete memberships.
 ## Unselected source controls
 
 All five controls use ordinary VC8 SP1/O2 C++, unchanged fields and real helper
-bindings. Generated sources, recipes and reports stay under
-`build/reimu-cpu-setters/`; no new helper receives an invented target binding.
+bindings.
 
 1. An ordinary static inline operation writes a short policy, calls the actual
    selector and writes its int-plus-offset result into the timer word. Thirty

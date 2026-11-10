@@ -46,23 +46,21 @@ The mixed unit's comparison_failed result is expected and not an aggregate pass.
 
 Reproduction:
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit cross-v106a-battle-object-manager-runtime --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit cross-v106a-battle-object-manager-runtime --compare --json
     taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-battle-presentation-phase --compare --json
 
-Receipts: build/frontier-background-source-20261101/formal.json, caller.json and
-boundary.json, plus the scoped authored-origin validation. The older bounded
-negative controls remain under frontier-466f40-20261027; they are not new work
-or permission for register forcing, dummy lifetimes, padding or assembly.
+The older bounded negative controls remain under frontier-466f40-20261027; they are
+not new work or permission for register forcing, dummy lifetimes, padding or
+assembly.
 
 Source1784, authored1804 and mapped1811; review425, excluded1798 and units764.
 Exact1585/449721 bytes is unchanged. No new function enters matches.csv.
 
 ## Delta lifetime control, 2026-11-04
 
-Native code loads the level delta once before the zero branch. An ordinary
-used local capturing that delta tests this lifetime without register or dummy
-state. The complete candidate becomes 1045 bytes and still first differs at
-+12, rather than resolving the native branch scheduling. All nine accepted
-same-unit roots remain exact. The original source was restored; this is a
-negative control, not evidence of exactness or compiler impossibility. Receipt:
-`build/frontier-background-delta-snapshot-20261104/compare.json`.
+Native code loads the level delta once before the zero branch. An ordinary used
+local capturing that delta tests this lifetime without register or dummy state. The
+complete candidate becomes 1045 bytes and still first differs at +12, rather than
+resolving the native branch scheduling. All nine accepted same-unit roots remain
+exact. The original source was restored; this is a negative control, not evidence of
+exactness or compiler impossibility.

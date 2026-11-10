@@ -78,8 +78,6 @@ selection, missing/split MAP aliases, pointer relocation, a CALL crossing the
 window boundary and absent/duplicate exports. The full default link path is
 unchanged and was separately run after adding this mode.
 
-Public none/MT reports are `build/iku-visibility-public-{none,mt}.json` and
-context receipts live below `build/iku-action-ltcg/provider-visibility/`.
 They reuse44/44 and45/45 objects, respectively. The public all-provider run
 also reproduces+0x00 and reuses85/85 objects. The MT trial's44 aliases have
 unique same-address definitions in its inventory, which remains weaker than
@@ -114,8 +112,7 @@ alignment are hidden. Strict target59038 remains **nonexact+0x64 /620984**.
 | linked envelope59504 | `0ce3d92b61d3b860050e57f1d736a149babe2f3735068f1bc6faeea004d2f26e` |
 | linked strict target-sized59038 | `f3983570b71d51aa1e5272f7b8ecca15442de2284621c6c77e92cea7db291de6` |
 
-Report: `build/iku-state-flow-current-linked.json`; the default cache receipt
-is `build/iku-action-ltcg/receipt.json`. This supersedes the earlier link's
+This supersedes the earlier link's
 source/size/hash claims while preserving its separate historical scope.
 
 ## Other bounded observations

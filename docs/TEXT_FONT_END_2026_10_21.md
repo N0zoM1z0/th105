@@ -126,10 +126,6 @@ cases with the actual generated ESI end-entry contract. All pass, with the same
 expected trace digestc75c54eb. These caller checks still model provider boundaries;
 only the separate576-case run executes the native end body itself.
 
-Formal comparisons, raw/import facts, RTM/SP1 controls and execution receipts
-are under `build/font-end-20261021/`; private reproducibility recipes are under
-`.analysis/font-end-20261021/`.
-
 ```bash
 python3 scripts/validate-tracking.py --require-target
 taskset -c 0 nice -n 10 python3 scripts/ci.py

@@ -112,13 +112,11 @@ LTCG/standalone barrier or original TU ownership.
 Selected CRLF source SHA-256 remains
 `1bf7fcd437528a871e5297100389420fc000e791b6c0bdd54bd281303178a503`.
 Native/configured whole59458-byte sections agree at SHA-256
-`347e4d6cf2820eef3559e53f6dd2bab14cffe2065343113d4863875ffd00917b`.
-All canonical bytes and existing8/109 owner diagnostics remain unchanged;
-no exact/partial authored credit, public type/layout/profile/relocation change
-or aggregate cold replay. Reports live under `build/iku-facing-tail/`, private
-recipes under `.analysis/iku-facing-tail-20261017/`. Delete obsolete objects,
-private source controls, linked images/clones and caches; retain current proof
-objects and the small genuine-provider cache.
+`347e4d6cf2820eef3559e53f6dd2bab14cffe2065343113d4863875ffd00917b`. All canonical
+bytes and existing8/109 owner diagnostics remain unchanged; no exact/partial
+authored credit, public type/layout/profile/relocation change or aggregate cold
+replay. Delete obsolete objects, private source controls, linked images/clones and
+caches; retain current proof objects and the small genuine-provider cache.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-iku-action-state --compare --json

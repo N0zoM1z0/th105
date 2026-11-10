@@ -156,13 +156,10 @@ Both ordinary and wide616 controls reproduce their complete preceding payloads.
 This source cleanup therefore does not resolve the observed register/ownership
 differences in the tested context. No generator change is selected.
 
-Recipes and all eight build receipts are under
-`.analysis/reimu-facing-storage-20261020/` and
-`build/reimu-facing-storage-20261020/`. `probe.py` covers the five type/view
-controls, `prune.py` the two specialization controls, `facts.py` the reachable
-field packet, and `ghidra.py` the independent readback. `summary.json` retains
-artifact hashes/results before redundant generated files are removed. The
-public source/header, binding and current genuine closure remain unchanged.
+`probe.py` covers the five type/view controls, `prune.py` the two specialization
+controls, `facts.py` the reachable field packet, and `ghidra.py` the independent
+readback. The public source/header, binding and current genuine closure remain
+unchanged.
 
 ## Reproduction, safety and remaining questions
 
@@ -173,21 +170,11 @@ the three650/651 edges above. All nine primary database hashes remain unchanged;
 the temporary project alias is removed. IDA's wrong-target preflight prevents
 its use; no IDA semantics, factory adapter or target patch is used.
 
-Private recipes are in `.analysis/reimu-616-effect-lifetime-20261020/` and
-reports in `build/reimu-616-effect-lifetime-20261020/`:
-
-```bash
-taskset -c 0 nice -n 10 python3 -B .analysis/reimu-616-effect-lifetime-20261020/probe.py wide byte-y signed join-landing wide-join-landing wide-join-all inline-wide inline-byte rtm-baseline rtm-wide rtm-wide-join-all
-taskset -c 0 nice -n 10 python3 -B .analysis/reimu-616-effect-lifetime-20261020/profiles.py baseline wide signed join-landing wide-join-landing wide-join-all rtm-baseline rtm-wide rtm-wide-join-all
-taskset -c 0 nice -n 10 python3 -B .analysis/reimu-616-effect-lifetime-20261020/ghidra.py
-```
-
-`summary.json` retains hashes, complete constraints and preparation observations
-for all19 builds, including the baseline. Compiler hashes, target instruction
-packet, owner reports and database pins remain private. Redundant generated
-source/objects are removed after recording them; representative inputs remain.
-No new native execution or genuine-linked comparison is claimed for these
-unselected candidates. The selected source and its existing genuinefbc0293d
-closure remain unchanged.616's local width/lifetime context,300/320's copies,
-720's float homes and full-root/world semantics remain unknown. There is no
-standalone-object or LTCG impossibility conclusion and no aggregate cold replay.
+Compiler hashes, target instruction packet, owner reports and database pins remain
+private. Redundant generated source/objects are removed after recording them;
+representative inputs remain. No new native execution or genuine-linked comparison
+is claimed for these unselected candidates. The selected source and its existing
+genuinefbc0293d closure remain unchanged.616's local width/lifetime
+context,300/320's copies, 720's float homes and full-root/world semantics remain
+unknown. There is no standalone-object or LTCG impossibility conclusion and no
+aggregate cold replay.

@@ -38,12 +38,11 @@ engine/SceneResourceBootstrap.cpp. The larger bootstrap root remains nonexact
 and is not promoted or modified. No accepted source consumer or shared header
 changes.
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit vc8-result-input-table-lifetime --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit
+vc8-result-input-table-lifetime --compare --json
 
-Receipts:build/frontier-input-table-lifetime-20261101/formal.json,
-canonical.json and static-witness.json. The origin rule freshly rebuilds the
-same public source and checks the existing callback's actual E9 edge.
-Default CI312 passes.
+The origin rule freshly rebuilds the same public source and checks the existing
+callback's actual E9 edge. Default CI312 passes.
 
 Excluded1807/review412/units768. Exact1586/450027 authored bytes,
 source1788/authored1808/mapped1815 stay unchanged. Among the previously reviewed

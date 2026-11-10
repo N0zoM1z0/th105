@@ -27,8 +27,5 @@ Anchor: config/vc8-generated-package-map-erase-origin-anchors.toml.
 No matches.csv row or authored-byte credit: exact1582/449309 stays; source1782,
 authored1802 and mapped1809 stay. Excluded1791/review434; units765.
 
-Receipts: build/frontier-map-members-20261101/formal.json,node-dtor.json,
-store-hits.json and ci.log; new-rule full-inventory validation is under
-build/frontier-boost-library-20261031/. Default CI235 and whitespace pass.
-The unrelated larger map/PatRecord member controls remain nonmatching and get
-no inferred classification from this result.
+Default CI235 and whitespace pass. The unrelated larger map/PatRecord member
+controls remain nonmatching and get no inferred classification from this result.

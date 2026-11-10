@@ -66,9 +66,7 @@ also rebuilt and revalidated. Only the new destructor origin rule and the
 changed constructor baseline were added; unchanged origin evidence is retained.
 This is targeted incremental validation, not a full-corpus cold replay.
 
-Private receipts: build/frontier-d3d-global-20261030/ctor-final.json,
-affected-units.json, numbered verification reports and origins.log. Earlier
-private controls are retained in the matching .analysis directory.
+Earlier private controls are retained in the matching .analysis directory.
 
 Reproduction:
 
@@ -78,9 +76,8 @@ Reproduction:
 ## Real public shutdown-entry control, 2026-10-31
 
 A bounded same-CIL follow-up retained the actual independently used public
-shutdown414C50 entry alongside the global lifetimes, without adding source,
-COFF barriers or dummy callers. Constructor131 and shutdown82 both freshly
-remain exact. The global destructor still inlines shutdown and emits169/native103,
-first differing at50. Merely preserving that genuine public entry therefore
-does not recover the native call boundary. The selected source/unit remain
-unchanged. Evidence: build/frontier-d3d-public-shutdown-20261031/.
+shutdown414C50 entry alongside the global lifetimes, without adding source, COFF
+barriers or dummy callers. Constructor131 and shutdown82 both freshly remain exact.
+The global destructor still inlines shutdown and emits169/native103, first differing
+at50. Merely preserving that genuine public entry therefore does not recover the
+native call boundary. The selected source/unit remain unchanged.

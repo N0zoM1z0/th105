@@ -162,13 +162,8 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-Fresh configured reports are `build/aya-value-lifetimes-final-20261002.json`
-and `build/aya-value-lifetimes-final-owners-20261002.json`. Corresponding raw,
-guard and local-read proof reports share that prefix. Private source controls
-and proof exporter are below `.analysis/aya-value-lifetimes-20261002/`;
-their independently source-hashed summary is
-`build/aya-value-lifetimes-20261002/controls-summary.json`. Existing-object
-control comparisons have no configured build provenance and award no credit.
+Existing-object control
+comparisons have no configured build provenance and award no credit.
 
 Complete target traversal remains4,630 instructions/all19,522 bytes with
 seven validated switches and no unresolved indirect exit or unledgered direct

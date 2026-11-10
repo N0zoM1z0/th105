@@ -45,7 +45,7 @@ domain is not proved, and no fallback is invented. TU/LTCG ownership is unknown.
 
 ## Reproduction and current result
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-tenshi-action-state --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-tenshi-action-state --compare --json
     scripts/repo-python scripts/audit-tenshi-action-state.py
     scripts/repo-python scripts/map-giant-action-switches.py tenshi-vslot28 --json
     scripts/repo-python scripts/compare-giant-action-switches.py tenshi-vslot28 build/match-units/ExactFirst_TenshiActionState.obj --json
@@ -62,9 +62,8 @@ The manifest permits33 only for diagnostics, never acceptance. Mid/high36/37;
 no native group splits. Earlier35/36/37 source still failed bytes.
 
 Ten literals, two width-specific global aliases and one BGM string are added;
-existing bindings/accepted consumers are unchanged. Only this unit is built.
-Artifacts: build/frontier-63d3e0-20261027/. No assembly, copied target arrays,
-fake returns, padding locals or register coercion.
+existing bindings/accepted consumers are unchanged. Only this unit is built. No
+assembly, copied target arrays, fake returns, padding locals or register coercion.
 
 ## Coordinate and live packet refinement
 
@@ -91,12 +90,9 @@ Full positional difference46592; first table offset48008. The33/36/37 physical
 group counts and two low-owner merges remain. The preceding49404 result is
 historical. No source-selection or exact credit is added.
 
-A separate explicit shared-idle-label trial for0/2 produced49372 but placed
-the common body with action2 rather than native0. It was not adopted; more
-source label spelling is not supported as a route to physical ownership.
-Current receipts: ring-packet-build.json, ring-packet-full.json and
-ring-packet-map.json under the same build directory.
-
+A separate explicit shared-idle-label trial for0/2 produced49372 but placed the
+common body with action2 rather than native0. It was not adopted; more source label
+spelling is not supported as a route to physical ownership.
 
 ## Shared request tail and caller width
 
@@ -147,16 +143,13 @@ Receipts: rng-float-build.json/rng-float-full.json. The prior49088 comparison
 is historical. Stack diagnostics apply to that earlier snapshot; native facts
 remain unchanged, but candidate addresses must be requalified after a build.
 
-
 ## Scalar captures and request/aim lifetimes, October28
 
 Current complete unselected public replay:49032/full48968, first+8 at63D3E8,
 frame328 versus native320, SHA256
-95ab5a66b10f31e15a0939fac68faf7eb6797bdb31c263339137d531ed1d2985.
-The canonical full audit counts46094 unequal/extra/missing positions. It remains
-nonexact; no selection or exact ledger credit is added. Receipts are
-build/frontier-63d3e0-20261027/formal-lifetimes.json and
-formal-lifetimes-audit.json, with pairedargs private diagnostics.
+95ab5a66b10f31e15a0939fac68faf7eb6797bdb31c263339137d531ed1d2985. The canonical full
+audit counts46094 unequal/extra/missing positions. It remains nonexact; no selection
+or exact ledger credit is added.
 
 Native64785C/647863 captures the pre-RNG X field directly in QWORD; the former
 float base_x generated an unsupported DWORD store/reload before that capture.
@@ -191,7 +184,6 @@ The remaining eight frame bytes, physical tails, scratch allocation and field
 lifetimes remain open. No ABI contract, compiler flag, target bytes, padding or
 accepted consumer changed. The focused public build reproduces the private
 payload exactly; no full native corpus rebuild was run.
-
 
 ## November1: complete scratch census finds two missing wide captures
 
@@ -249,19 +241,15 @@ This establishes the precise storage/rounding discrepancy for the bounded
 fragment, not reachability of that synthetic large-height fixture in gameplay,
 whole-root behavior, arbitrary callback aliasing or other floating environments.
 
-Receipts: build/frontier-tenshi-stack-lifetimes-20261101/{capture-controls,
-formal,formal-full,both-map,corrected-payload-homes,precision-fragments}.json,
-corrected-audit.log and ci.log. Private audit.py/audit-low-scratch.py expose only
-diagnostic stack states from the unchanged analysis engine; complete source
-controls and precision_fragment.py are retained alongside them.
+Private audit.py/audit-low-scratch.py expose only diagnostic stack states from the
+unchanged analysis engine; complete source controls and precision_fragment.py are
+retained alongside them.
 
-A separate manager-backed byte-direction control was also closed before this
-capture work:48920 bytes/ad977b24, stillframe328 and nonexact+8. It changes only
-the ordinary spawn direction view supported by the complete existing66-byte
-forwarder and actual byte-consuming manager, not a private ABI. No header or
-parameter-width change is selected; receipts are under
-build/frontier-tenshi-spawn-width-20261101. Do not retry that width hypothesis
-as a frame-size workaround.
+A separate manager-backed byte-direction control was also closed before this capture
+work:48920 bytes/ad977b24, stillframe328 and nonexact+8. It changes only the
+ordinary spawn direction view supported by the complete existing66-byte forwarder
+and actual byte-consuming manager, not a private ABI. Do not retry that width
+hypothesis as a frame-size workaround.
 
 ## Original float sine boundary, 2026-11-01
 

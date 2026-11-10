@@ -61,9 +61,7 @@ rule. One review row becomes source-present/authored: source1635, authored1654,
 mapped1824, review299. Excluded2074, provisional4027 and units812 stay.
 Authored exact remains1427 /443604 bytes; matches.csv is unchanged.
 
-Evidence: `.analysis/frontier-client-ack-tail-20261102/` and
-`build/frontier-client-ack-tail-20261102/`. Raw pinned target, serial native
-work CPU0/nice10, no IDA semantics or push.
+Raw pinned target, serial native work CPU0/nice10, no IDA semantics or push.
 
 ## Shared-record clarification
 

@@ -132,12 +132,9 @@ comparisons do not have configured build provenance.
 | Both preceding 696 controls | 26/98; loses low3/mid304/mid311/mid401/mid402 | `+9310` | Not retained; matching baseline size does not recover its bytes. |
 | Full action-zero incoming group | 27/98; loses low3/mid304/401/402 | `+9320` | Not retained; common call moved into high797 and wider tails merged. |
 
-Probe sources are in `.analysis/youmu-710-direction-20261002/`; reports,
-source/object hashes, gains/losses and window hashes are in
-`build/youmu-710-direction-20261002/controls-summary.json`. Exact branch
-packets are `target-zero-tail-incoming.json`,
-`candidate-zero-tail-incoming.json` and `all-incoming-zero-tail-placement.json`
-in that build directory. Private reports are disposable working evidence.
+Exact branch packets are `target-zero-tail-incoming.json`,
+`candidate-zero-tail-incoming.json` and `all-incoming-zero-tail-placement.json` in
+that build directory. Private reports are disposable working evidence.
 
 ## Focused reproduction and remaining work
 
@@ -148,9 +145,6 @@ python3 scripts/audit-giant-action-owners.py youmu-vslot28 \
   --unit gpt-web-youmu-vslot28-full-root --json
 ```
 
-Fresh finished-worktree reports are
-`build/youmu-shared-zero-final-20261002.json` and
-`build/youmu-shared-zero-final-owners-20261002.json`.
 The whole-root comparison remains required for exact acceptance. No source,
 shared ABI, compiler flag, object partition, global map or exact ledger changes.
 The IDA preflight fails because the attached image SHA begins `10350095`;

@@ -58,17 +58,11 @@ scripts/compile-unit.sh src/characters/ReimuActionStateDispatch.cpp build/reimu-
 python3 scripts/audit-reimu-mid-510-actions.py build/reimu-mid-510/ReimuActionStateDispatch.obj
 ```
 
-Before editing, a fresh previous-source build passes0/72 under its existing
-oracle (`baseline-smoke.json`). Pinned VC8 SP1 `/O2 /GS- /GR /EHsc /MT`,
-default FP/no injected compiler environment, now produces23861 staged text
-bytes. Object SHA256
-`9118a5126112e985c30d24277c191a2450920a854f19f302a78276a8d8a8bee0`;
-manual compiler/source/header/object receipt:
-`build/reimu-mid-510/build-receipt.json`. The oracle separately pins its
-object/support inputs and does not itself attest compilation provenance.
-
-**0/2493 differences**, report `build/reimu-mid-510/native.json`, input SHA256
-`5d5403bfc1b43467544ac0239d045525587e86008f06b7d516def3a4b15eafd1`:
+Before editing, a fresh previous-source build passes0/72 under its existing oracle
+(`baseline-smoke.json`). Pinned VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default FP/no
+injected compiler environment, now produces23861 staged text bytes. The oracle
+separately pins its object/support inputs and does not itself attest compilation
+provenance.
 
 |Cohort|Cases|
 |---|---:|
@@ -115,12 +109,9 @@ and objects are removed after inspection.
 
 ## Preservation, analysis and next work
 
-Fresh old500 replay passes0/72 in the expanded method. All six older adapters
-rebuild with identical non-debug code/data and relocation offset/type/symbol/
-value/section identities, sizes530,771,1562,4017,4409,11271; receipt
-`build/reimu-mid-510/preserved-stages.json`. Old focused smokes pass0/9,0/88,
-0/64,0/99,0/150,0/59. Full historical matrices are not repeated. No accepted
-unit uses this private header, and no accepted source/profile/relocation
+Fresh old500 replay passes0/72 in the expanded method. Old focused smokes
+pass0/9,0/88, 0/64,0/99,0/150,0/59. Full historical matrices are not repeated. No
+accepted unit uses this private header, and no accepted source/profile/relocation
 ledger or exact total changes; no aggregate cold replay is claimed.
 
 One direct Ghidra read-only clone attests executable identity, entry68B9D2,

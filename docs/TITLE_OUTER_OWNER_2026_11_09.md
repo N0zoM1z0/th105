@@ -52,8 +52,5 @@ texture-loader and legacy design-helper controls preserve 24 non-debug COFF
 sections and their relocations. The renderer drops only an unreferenced seven-byte
 legacy forwarding helper; its complete callable remains unchanged.
 
-Evidence is under `build/frontier-title-outer-owner-20261109/`, including the
-formal unit reports, `member-verification.json`, `outer-verification.json`,
-`unchanged-sections.json` and `scalar-origin.log`. Private controls are in the
-matching `.analysis/` directory. Tracking, lightweight CI and the diff check pass.
-No source pin, comparison rule, authored count or input migration change is made.
+Tracking, lightweight CI and the diff check pass. No source pin, comparison rule,
+authored count or input migration change is made.

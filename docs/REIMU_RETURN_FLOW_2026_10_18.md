@@ -111,11 +111,10 @@ nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-owned-returns.py --smoke
 nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-circular-returns.py --smoke
 ```
 
-Receipts are under `build/reimu-sharing-review/`; the current genuine cache is
-`build/reimu-ltcg/`. Heavy jobs ran serially; returning-host child peak RSS was
-308156KiB, approximately301MiB. All nine primary database files hash unchanged
-using streamed reads. Obsolete controls, snapshots and native build products
-are disposable after their receipts are retained.
+Heavy jobs ran serially; returning-host child peak RSS was 308156KiB,
+approximately301MiB. All nine primary database files hash unchanged using streamed
+reads. Obsolete controls, snapshots and native build products are disposable after
+their receipts are retained.
 
 Remaining work is target physical sharing,214's resource guards,740's bounded
 unknown contexts, and broader world/runtime/exception coverage. Preserve the

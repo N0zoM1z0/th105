@@ -65,11 +65,9 @@ manager address and the virtual-reset tail ending in `ret 16`. No explicit
 argument-slot aliasing or register constraint is used.
 
 Reproduction: `scripts/repo-python scripts/build.py --unit
-gpt-web-system-effect-manager-spawn --compare --json`. The relocated source
-SHA-256 now equals the target hash above. Private evidence is in
-`build/frontier-system-spawn-value-20261109/`: baseline/value comparisons,
-`target.txt`, configured `formal.json`, `observer.json`, and `ci.log`. Both
-existing observer tests pass, including the changed-mode-store negative case.
+gpt-web-system-effect-manager-spawn --compare --json`. The relocated source SHA-256
+now equals the target hash above. Both existing observer tests pass, including the
+changed-mode-store negative case.
 
 Factory forced-recompile job `job:d97cbbccf07c4a739d36185e86996fd1` returned
 `pass` / `accepted`; receipt

@@ -33,8 +33,7 @@ pass117/258/164/50/504/333/226/226 bytes. Their source and compiler settings are
 unchanged. Reimu's full caller/payload replay and target-backed direct edges
 establish application ownership independently of the nonexact callee.
 
-Receipts under build/frontier-front-card-gate-20261031: formal.json,
-ownership.json, reimu.json and reimu-payload.json. No global corpus rebuild.
+No global corpus rebuild.
 
 Only source/ownership totals change: source1779, authored1799, mapped1806,
 excluded1783, review445 and units762. Exact1580/448995 remains unchanged.

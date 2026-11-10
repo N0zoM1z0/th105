@@ -116,11 +116,10 @@ The81-byte preparations6209C0/620A24/620A80 have SHA-256 respectively:
 - 8b3c7f6b0e4c9311cfb51a2162d26802cbb8f7ed88e4854bea620eea673096b1
 - bb85885286556f3e3fe984b86a1e92da64fd4eed5035b07ba8feea8e11fe81f3
 
-All nine primary project files remain unchanged; the disposable clone is
-removed. Reports live under `build/iku-one-lifetime/`; private control patches
-live under `.analysis/iku-one-lifetime-20261017/`. Superseded source/object
-controls and caches can be deleted and rebuilt; retain current proof objects
-and the small genuine-provider cache. No accepted-unit matrix was replayed.
+All nine primary project files remain unchanged; the disposable clone is removed.
+Superseded source/object controls and caches can be deleted and rebuilt; retain
+current proof objects and the small genuine-provider cache. No accepted-unit matrix
+was replayed.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-iku-action-state --compare --json

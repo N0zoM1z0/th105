@@ -83,8 +83,7 @@ credit.
 ## Four focused compiler controls
 
 All controls use the current receiver/return-flow source and ordinary compile
-receipt. They are private probes under `build/reimu-exit-flow/`, not selected
-implementations or original-source claims.
+receipt.
 
 | Control | Prefix / payload | First difference | Result |
 | --- | --- | --- | --- |
@@ -113,11 +112,10 @@ not cover this corrected source, so this fresh control is phase-specific.
 The oversized controls are never executed; all normal admission guards stay
 unchanged. Byte-identical controls require no repeated native matrix.
 
-Receipts, full-set reports and compact comparison summaries remain below
-`build/reimu-exit-flow/`. Heavy work was single-core, nice10 and serial; measured
-full-census peak RSS was298300KiB, approximately291MiB. Primary database hashes
-remain unchanged. Duplicate controls and generated binaries are disposable
-after recording their receipts. No full historical or aggregate replay runs.
+Heavy work was single-core, nice10 and serial; measured full-census peak RSS
+was298300KiB, approximately291MiB. Primary database hashes remain unchanged.
+Duplicate controls and generated binaries are disposable after recording their
+receipts. No full historical or aggregate replay runs.
 
 Next recover source/visibility and call-time state for the complete differing
 sets. Keep the existing bounded candidate; do not repeat these four controls

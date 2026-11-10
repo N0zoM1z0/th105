@@ -73,11 +73,8 @@ explicit origin-rule selections are checked before/after, remain identical
 and exclude this address; the origin-rule file is unchanged. This bounded
 acceptance does not claim a fresh complete library-anchor replay.
 
-`build/design-number-lifetime-20261021/` retains the baseline, frozen selected
-source/object, full target packet, private probe and formal build report.
-Recipes and acceptance checks are in the matching `.analysis/` directory.
-Builds run serially at CPU0/nice10; no unselected large products are created.
-The new source is used only by the six-function affected unit.
+Builds run serially at CPU0/nice10; no unselected large products are created. The
+new source is used only by the six-function affected unit.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py \

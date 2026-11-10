@@ -115,15 +115,8 @@ python3 scripts/build.py --unit cross-v106a-network-winsock-send-client --compar
 python3 scripts/build.py --unit cross-v106a-network-udp-packet-acquire --compare --json
 ```
 
-Reports are `build/network-udp-send-client-boundary.json`,
-`build/network-winsock-send-client-formal.json` and
-`build/network-udp-packet-acquire-formal.json`. Both ordinary comparisons have
+Both ordinary comparisons have
 expected exit1 with complete nonexact bodies and no unresolved relocations.
-Private sources, original commands, maps and diagnostic disassembly are below
-`.analysis/network-udp-send-client-20261016/` and
-`build/network-udp-send-client-{ltcg,mixed,public-mixed}/`. The retained-source
-private release report is `build/network-udp-send-client-public-mixed/release-diagnostic.json`;
-its driver explicitly records that no acceptance unit is configured.
 
 After the shared nonvirtual release declaration and TU move, fresh focused
 comparisons retain acquire427/410 and the accepted pool destructor98/98.
@@ -138,8 +131,7 @@ values across untyped runtime/private calls and drops the redundant checked
 iterator self-comparison; raw instructions, not that pseudocode, determine the
 source and four-argument signature. Supported sender name, complete extent,
 physical parameter storage and owner view are saved and checked in a fresh
-read-only invocation. Logs are `build/network-udp-send-client-ghidra-{inspect,save,readback}.log`.
-One Ghidra process uses768MiB and two CPUs.
+read-only invocation. One Ghidra process uses768MiB and two CPUs.
 
 The source partition and original inlining decisions remain unknown. Preserve
 the new complete source and measured private-entry evidence while keeping the

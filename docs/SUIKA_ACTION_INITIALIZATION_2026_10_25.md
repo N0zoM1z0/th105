@@ -84,9 +84,6 @@ unsigned; no substitute RNG/provider result is supplied.
 
 ## Whole-source controls and bounded loop evidence
 
-Private inputs are retained under `.analysis/exact-first-suika-action-entry-20261025/`;
-reports and objects are under `build/exact-first-suika-action-entry-20261025/`.
-
 | Complete source/control | Full bytes | Canonical SHA256 | Result |
 | --- | ---: | --- | --- |
 | First complete source | 3139 | a37d186f0e991df76908f96a0db0aaa401f73069a21baf61e77b154c1b50e562 | nonexact+15 |

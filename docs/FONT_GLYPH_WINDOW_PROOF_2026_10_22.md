@@ -107,11 +107,6 @@ records actual solver version and hashes of target/object/tool/config inputs.
 Object source/build provenance is supplied by the build receipt, not inferred
 from this proof. Selected source and public headers/profile remain unchanged.
 
-Private `build.py`, `census.py` and `native_check.py` are in
-`.analysis/font-glyph-pen-20261022/`. Reports/objects are in
-`build/font-glyph-pen-20261022/`, including `comparisons.json`,
-`raw-rel32-census.json`, `selected-build.json`, `selected-window-proof.json`
-and `native-window-check.json`.
 No origin, selection or exact rows change.
 
 Next inspect the actual linked begin/end/reset bodies for their shared EDI

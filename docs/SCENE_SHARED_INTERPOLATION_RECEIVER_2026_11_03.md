@@ -35,8 +35,6 @@ The quoted-include closure contains exactly three units. Fresh whole comparisons
   `70809ebfdd29807d174d6fc300b0ea534ba9cd6e29d8f8f54669b12ec4c3be0d`.
   No byte interpolation exact credit and no attempt to force pointer registers.
 
-The original unit selectors and function signatures now name the shared receiver;
-no matching/source/origin count changes. A private combined-source context also
-retained the three exact roots but does not prove original TU unity. The fresh
-unit replay and actual include closure are in
-`build/frontier-scene-interpolation-owner-20261103/`.
+The original unit selectors and function signatures now name the shared receiver; no
+matching/source/origin count changes. A private combined-source context also
+retained the three exact roots but does not prove original TU unity.

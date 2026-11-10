@@ -24,11 +24,9 @@ normal/story bindings and the shared effect virtual lane. Release remains
 122/native122 with its prior mismatch at +46; update/prune remains 207/native207
 with its prior mismatch at +165. No exact ledger changes are made.
 
-The baseline and final reports are retained under
-`build/frontier-effect-shared-owner-20261108/`. Changed source files are
-`EffectObjectManagerRelease.cpp`, `InfoManagerBaseBinding.cpp` and
-`InfoManagerStoryBinding.cpp`; their decorated keys are updated in the existing
-match units. No shared header was changed.
+Changed source files are `EffectObjectManagerRelease.cpp`,
+`InfoManagerBaseBinding.cpp` and `InfoManagerStoryBinding.cpp`; their decorated keys
+are updated in the existing match units. No shared header was changed.
 
 ## Shared virtual declaration still needs reconstruction
 
@@ -71,10 +69,8 @@ stored handle before clearing list nodes. Existing ordering and checked-list
 operations are unchanged. The public manager's `CollisionList` representation
 and the unresolved animation virtual hierarchy remain separate work.
 
-All three affected units were rebuilt serially. Their complete COFF section
-contents and symbolic relocations are identical before and after. All 23 root
-comparisons retain their prior results: 21 exact, with only release 46EEB0
-(122 bytes) and update/prune 422D30 (207 bytes) retaining their known mismatches.
-No new Factory acceptance is claimed. Reports and full section dumps are in
-`build/frontier-effect-tracked-state-20261110/{before,after}/`; the focused CI
-gate passes in `ci.log`.
+All three affected units were rebuilt serially. Their complete COFF section contents
+and symbolic relocations are identical before and after. All 23 root comparisons
+retain their prior results: 21 exact, with only release 46EEB0 (122 bytes) and
+update/prune 422D30 (207 bytes) retaining their known mismatches. No new Factory
+acceptance is claimed.

@@ -37,9 +37,6 @@ Reproduction and scope:
 
 - `scripts/repo-python scripts/build.py --unit exact-first-battle-render-tail-typed --compare --json`
   gives the complete exact 670-byte body.
-- A separate `scripts/compile-unit.sh` build followed by
-  `scripts/compare-function.py` independently gives the same full hash;
-  receipts are in `build/frontier-render-tail-typed-20261104/`.
 - All five `gpt-web-battle-base-effect-lifetime` bodies remain exact after
   sharing the interface. Nine accepted `cross-v106a-battle-object-manager-runtime`
   bodies, including the exact phase caller, also replay exact. That unit's
@@ -57,11 +54,11 @@ now four typed 0x24-byte vertices, preserving the asserted 0x118-byte manager
 layout and existing field offsets. The real caller's unresolved member symbol
 now has an actual source definition; a full integrated link is not claimed.
 
-A fresh independent cold build still matches the entire 670-byte original
-body. Dependency inspection found eight affected units with 18 accepted roots;
-all 18 replayed exact. The manager unit's separate `466F40` remains nonexact
-with its prior complete candidate hash unchanged. No new matching bytes are
-added by this owner cleanup. See `build/frontier-battle-overlay-real-owner-20261104/`.
+A fresh independent cold build still matches the entire 670-byte original body.
+Dependency inspection found eight affected units with 18 accepted roots; all 18
+replayed exact. The manager unit's separate `466F40` remains nonexact with its prior
+complete candidate hash unchanged. No new matching bytes are added by this owner
+cleanup.
 
 ## Real-provider linked diagnostic, 2026-11-04
 
@@ -76,7 +73,5 @@ the manager phase caller, so this is not a full application integration or an
 exact linked-image claim. The independent 670/670 ordinary COFF match remains
 the accepted evidence; the separately nonexact providers gain no credit.
 
-The real-source build recipe is in
-`.analysis/frontier-overlay-real-cil-20261104/`. The initial attempt lacked the
-real rectangle provider and failed to link; it was resolved by adding the
-existing rectangle and line sources, not by adding stubs.
+The initial attempt lacked the real rectangle provider and failed to link; it was
+resolved by adding the existing rectangle and line sources, not by adding stubs.

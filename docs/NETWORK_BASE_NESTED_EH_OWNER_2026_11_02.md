@@ -61,7 +61,5 @@ The separate CSprite type/callback checks have their own378-byte scope; overlapp
 checks are not added as unique coverage. Full OS exception execution and previously
 nonexact provider bodies are not newly proved.
 
-Evidence: build/frontier-input-packet-cleanup-20261102/ and matching .analysis/
-records retain the flat baseline, natural group control, full private/public
-comparisons and mutation receipts. Only the existing whole constructor remains
-in authored totals; EH, group support and new compiler cleanup are not recounted.
+Only the existing whole constructor remains in authored totals; EH, group support
+and new compiler cleanup are not recounted.

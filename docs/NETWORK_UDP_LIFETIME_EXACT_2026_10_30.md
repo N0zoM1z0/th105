@@ -57,10 +57,9 @@ missing EH, malformed edges and unsupported member kinds fail closed.
 - `scripts/repo-python scripts/compare-linked-unit.py exact-first-network-udp-lifetime --address 0x00413780 --json`
 - `scripts/repo-python scripts/compare-linked-unit.py exact-first-network-udp-lifetime --address 0x00413820 --json`
 
-Fresh receipts are `build/frontier-udp-owner-tree-20261030/registered-ctor.json`
-and `registered-dtor.json`. Private controls and owner/target disassembly are
-under `.analysis/frontier-udp-owner-tree-20261030/` and the matching build scope.
-The old pool-only unit is replaced; prior unaffected receipts remain valid.
+Fresh receipts are `build/frontier-udp-owner-tree-20261030/registered-ctor.json` and
+`registered-dtor.json`. The old pool-only unit is replaced; prior unaffected
+receipts remain valid.
 
 ## Bounded owner cleanup controls,2026-10-31
 
@@ -77,8 +76,7 @@ owner/peer-removal source graph, with that library context and the original
 WS2_32 import, also leaves357/341; peer lookup/removal227/446 remain nonexact.
 Both preserve the old packet-manager98/30/145 with complete constructor EH.
 
-These are rejected private controls, not new provider bindings or authored
-credit. The temporary library source was removed from the public tree. No
-private EAX interface, instruction/register forcing or equivalent-spelling
-grid is authorized by this result. Evidence is retained under
-build/frontier-udp-owner-cleanup-20261031.
+These are rejected private controls, not new provider bindings or authored credit.
+The temporary library source was removed from the public tree. No private EAX
+interface, instruction/register forcing or equivalent-spelling grid is authorized by
+this result.

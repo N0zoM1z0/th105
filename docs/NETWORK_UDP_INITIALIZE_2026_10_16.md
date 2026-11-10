@@ -142,9 +142,6 @@ python3 scripts/compare-unit-object.py cross-v106a-network-winsock-runtime build
 
 The complete comparison intentionally returns1 for initialization. Fresh
 accepted-only comparison selects413080/41DDC0/41DEC0/41DEF0 and preserves all four.
-Reports are `build/network-udp-initialize-{boundary,callers,formal}.json`,
-`build/network-udp-initialize-accepted.json` and
-`build/network-udp-initialize-ltcg-probe.diagnosis.json`.
 The target-backed origin rule pins the full main hash, both exact caller
 edges, seven exact helper edges and native callback/IAT fields. The separate
 bind adds68 authored exact bytes; initialization remains nonexact. No new
@@ -177,8 +174,6 @@ The result is `build/network-udp-bind-formal.json`. A fresh build and focused
 accepted-only replay preserve this68-byte body and the existing148/47/84
 helpers. Ghidra saves and independently reads back the supported name,68-byte
 body, ECX/EAX pointer/scalar storage, zero stack pop and AL:1 bool return.
-Logs are `build/network-udp-bind-ghidra-{save,readback}.log`; raw closure is
-`build/network-udp-bind-boundary.json`.
 
 ## Direct analysis and gate
 
@@ -192,7 +187,6 @@ read-only invocation. Existing runtime689D25 uses Ghidra's standard
 VC8-attested15-byte checker preserving EAX. This avoids mistaking the cookie
 call for the authored result; decompiler output remains a hypothesis.
 
-Logs are `build/network-udp-initialize-ghidra-{save,readback}.log`.
 One process uses768MiB heap/two CPUs. Private probes and saved analysis stay
 below `.analysis/`; temporary database copies and compiled probes are removed.
 The local CI gate passes155 tests and `git diff --check` passes. No all-unit

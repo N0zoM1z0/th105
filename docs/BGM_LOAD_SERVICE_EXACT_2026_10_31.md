@@ -71,29 +71,27 @@ Both public roots freshly pass. Focused existing source-consumer replay selects
 418A10 and418D10 in exact-first-bgm-stream-runtime. Default CI210 and whitespace
 checks pass. No cold whole-repository comparison is claimed.
 
-Two authored functions add510 bytes:1575 exact /448471 bytes;
-source1770, authored1790, mapped1797, excluded1658, review579, units755.
-Receipts: build/frontier-bgm-load-context-20261031/.
+Two authored functions add510 bytes:1575 exact /448471 bytes; source1770,
+authored1790, mapped1797, excluded1658, review579, units755.
 
 ## Separate master-gain control remains private
 
 A bounded follow-up reconstructed master-gain403A30/284 in the same actual
 service/stream context. Straightforward parameter clamping plus ordinary gain
 conversion initially emitted357 bytes with inlined math. Preserving the actual
-public stdcall gain provider and using a direct value clamp emitted300 bytes;
-a standard min/max clamp also emitted300. The native clamp's x87 value flow,
+public stdcall gain provider and using a direct value clamp emitted300 bytes; a
+standard min/max clamp also emitted300. The native clamp's x87 value flow,
 loop/register scheduling and full alignment remain different. No extra stores,
-forced alignment, synthetic helper or permissive alignment matching was added.
-Both accepted play/prepare roots still replayed exact in the private control.
-The experimental method is not selected and the accepted source was restored.
-Evidence: build/frontier-bgm-master-gain-20261031/. No new counts or credit.
+forced alignment, synthetic helper or permissive alignment matching was added. Both
+accepted play/prepare roots still replayed exact in the private control. The
+experimental method is not selected and the accepted source was restored. No new
+counts or credit.
 
 A separate wave per-handle gain401CE0/109 control reused the real gain and
-resource-handle lookup definitions, preserving their independently observed
-public entries. Its source body is101/native109 and lacks the aligned EBP
-frame; no native caller byte is waived. Real Xiph dependencies were linked
-rather than faking their providers. This unsuccessful private source is not
-selected. Evidence: build/frontier-wave-handle-gain-20261031/. The earlier
-float-overload/frame investigation in DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md
-already bounds that shared math-provider uncertainty; no overload/spill grid
-was repeated.
+resource-handle lookup definitions, preserving their independently observed public
+entries. Its source body is101/native109 and lacks the aligned EBP frame; no native
+caller byte is waived. Real Xiph dependencies were linked rather than faking their
+providers. This unsuccessful private source is not selected. The earlier
+float-overload/frame investigation in
+DIRECT_SOUND_VOLUME_SOURCE_INTEGRITY_2026_10_29.md already bounds that shared
+math-provider uncertainty; no overload/spill grid was repeated.

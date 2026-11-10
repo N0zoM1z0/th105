@@ -56,8 +56,6 @@ changed complete names and inconsistent RTTI cycles/pointer identities.
 Twenty actual code and RTTI graph byte mutations are rejected. The existing
 canonical comparator and generic origin thresholds are unchanged.
 
-Evidence: build/origin-anchors/linked-bad-exception/proof.json and
-build/frontier-bad-exception-20261101/mutations.json, plus narrow origin replay,
-CI and diff checks. No gameplay source, match unit or old exact receipt changes.
-Excluded2015/review357; authored exact1431/443916 bytes, authored1655,
-source1635, mapped1820 and units777 stay unchanged.
+No gameplay source, match unit or old exact receipt changes. Excluded2015/review357;
+authored exact1431/443916 bytes, authored1655, source1635, mapped1820 and units777
+stay unchanged.

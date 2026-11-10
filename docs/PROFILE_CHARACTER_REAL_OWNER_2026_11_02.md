@@ -61,8 +61,5 @@ same8b4c4d52 candidate, verified with fresh before/after header controls. Neithe
 pending body is promoted. Counts remain1427 exact/443604 bytes,1636 source and
 812 units.
 
-Evidence: build/frontier-profile-character-real-members-20261102/, including
-replays-accepted/, owner-proof.json, full-eh.json, scalar-wrapper receipt and
-before/after controls. The private symbolic EH audit is retained under the
-corresponding .analysis scope. Default CI and both diff checks gate the local
-checkpoint; no cold corpus replay is needed.
+Default CI and both diff checks gate the local checkpoint; no cold corpus replay is
+needed.

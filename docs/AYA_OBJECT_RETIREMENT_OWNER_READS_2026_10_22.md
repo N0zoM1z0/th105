@@ -79,12 +79,10 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-The canonical comparator intentionally exits nonzero for the nonexact root.
-Optional `--previous-object PATH` compares an old object under the same ABI.
-Private recipes and reports are under `.analysis/aya-entry-owner-context-20261022/`
-and `build/aya-entry-owner-context-20261022/`; `tail900-selected-*` identifies
-configured-source results. Whole-root numerical and non900 behavior remain
-outside this finite execution proof; complete byte/owner audits stay nonexact.
+The canonical comparator intentionally exits nonzero for the nonexact root. Optional
+`--previous-object PATH` compares an old object under the same ABI. Whole-root
+numerical and non900 behavior remain outside this finite execution proof; complete
+byte/owner audits stay nonexact.
 
 ## Entry/TU experiments that exposed this lead
 

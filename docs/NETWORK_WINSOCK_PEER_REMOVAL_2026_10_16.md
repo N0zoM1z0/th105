@@ -107,11 +107,8 @@ python3 scripts/audit-candidate-boundaries.py 0x00412A60 0x00413170 --json
 python3 scripts/build.py --unit cross-v106a-network-winsock-peer-removal --compare --json
 ```
 
-Reports are `build/network-peer-removal-boundaries.json` and
-`build/network-winsock-peer-removal-formal.json`. Private resolved LTCG drivers,
-commands and logs stay below `.analysis/network-peer-removal-20261016/` and
-`build/network-peer-removal-ltcg*/`. The expected full-unit comparison exit is1;
-neither function enters matches.csv. The existing server caller unit is
+The expected full-unit comparison
+exit is1; neither function enters matches.csv. The existing server caller unit is
 replayed separately as `gpt-web-network-server-primary-protocol`.
 
 Direct Ghidra inspection independently attests executable/program SHA, base,

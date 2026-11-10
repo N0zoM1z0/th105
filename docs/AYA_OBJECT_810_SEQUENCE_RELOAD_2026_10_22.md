@@ -69,7 +69,6 @@ Shared return placement, register/scratch lifetimes and other actions remain ope
 
 ```sh
 # Save the predecessor object before changing the source.
-cp build/match-units/GptWeb_AyaObjectActionState.obj build/aya-810-sequence-read-20261022/previous.obj
 # This configured root comparison is expected to report nonexact.
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
 python3 scripts/audit-giant-action-owners.py aya-object-vslot28 build/match-units/GptWeb_AyaObjectActionState.obj --unit gpt-web-aya-object-vslot28-full-root --json
@@ -81,5 +80,4 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Local receipts reside in `build/aya-810-sequence-read-20261022/` and are not
-committed. Omit `--previous-object` when only checking the selected source.
+Omit `--previous-object` when only checking the selected source.

@@ -113,9 +113,7 @@ python3 scripts/probe-iku-object818-actions.py --control unsigned-tick --smoke >
 python3 scripts/probe-iku-object818-actions.py --control publication-order --smoke > build/iku-object818-publication-control.json
 ```
 
-The two control commands intentionally exit1. Generated control sources,
-objects and receipts stay below `build/`; private raw inspection stays below
-`.analysis/iku-object818-20261017/`.
+The two control commands intentionally exit1.
 
 The second spawn's backend, post-effect/action/sequence backend behavior,
 expired animation, nonzero audio handles, exceptional FP/unwinding behavior,

@@ -67,13 +67,11 @@ python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare -
 python3 scripts/audit-aya-object-900-scale-prefix.py
 ```
 
-The first command intentionally reports nonexact. Private complete-source
-controls/recipe are in `.analysis/aya-900-scratch-20261022/`; reports/objects
-are in `build/aya-900-scratch-20261022/`. The selected-source result is
+The first command intentionally reports nonexact. The selected-source result is
 `selected-formal.json`, the prefix/exit receipt is `prefix.json`, and the local
-payload diagnostic is `local-payload-audit.json`. The audit deliberately pins
-the currently qualified900 region and fails if later placement changes; rederive
-its boundaries before updating those pins.
+payload diagnostic is `local-payload-audit.json`. The audit deliberately pins the
+currently qualified900 region and fails if later placement changes; rederive its
+boundaries before updating those pins.
 
 The remaining900 instruction-level differences are four scratch displacement
 bytes plus relocation/physical-sharing placement. Do not infer whole-root

@@ -104,17 +104,11 @@ python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client -
 python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client --address 0x00405200 --json
 ```
 
-Reports are `build/network-udp-send-server-boundary.json`,
-`build/network-udp-send-server-callers.json`,
-`build/network-udp-send-server-coff-comparison.json`,
-`build/network-udp-send-pair-formal.json` and `build/handle-manager-release-formal.json`.
 The full mixed comparison intentionally returns1 because both senders remain
 nonexact. Selecting only the accepted release repeats the source/target caller
 CFG and unique E8 checks. This checkpoint changes no matches or exclusion rows.
 
-After the source/TU/export change, a fresh build and accepted-only dispatcher
-retain the sole affected accepted function at167/167, recorded in
-`build/network-udp-send-server-accepted-dispatch.json`. The ordinary acquire
+The ordinary acquire
 probe remains427/410 with all relocations resolved. Local
 `python3 scripts/ci.py` passes all151 tests and generated-progress checks;
 `git diff --check` passes.
@@ -129,6 +123,5 @@ stack values across an untyped memcpy boundary; raw instructions determine the
 five-argument contract and both peer checks instead. The peer/owner views,
 supported name, complete extent, physical parameter storage and explicitly
 provisional void return are saved and checked in a fresh read-only invocation.
-Logs are `build/network-udp-send-server-ghidra-{inspect,save,readback}.log`.
 One Ghidra process uses768MiB and two CPUs; private probes stay below `.analysis/`
 and `build/`. No whole-program exact replay is performed.

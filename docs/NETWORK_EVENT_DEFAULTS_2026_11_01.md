@@ -37,9 +37,8 @@ The independently accepted client93/server289 derived route bodies freshly
 remain canonical in gpt-web-network-secondary-route-runtime. Shared source,
 headers and prior native ABI contracts are unchanged.
 
-Receipts: build/frontier-network-event-defaults-20261101/formal.json,
-owner.json and derived-routes.json. A focused ownership-rule replay checked the full
-RTTI-owned bodies and every shared native slot before promotion. Exact entries
-then use the canonical authored origin baseline, not a competing census rule. Exact1431 /443916 bytes;
-source1634/authored1654/mapped1819/review404/excluded1969/units771.
-No new library credit, cold all-exact build or push.
+A focused ownership-rule replay checked the full RTTI-owned bodies and every shared
+native slot before promotion. Exact entries then use the canonical authored origin
+baseline, not a competing census rule. Exact1431 /443916 bytes;
+source1634/authored1654/mapped1819/review404/excluded1969/units771. No new library
+credit, cold all-exact build or push.

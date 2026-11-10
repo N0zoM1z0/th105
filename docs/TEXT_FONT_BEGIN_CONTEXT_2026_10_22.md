@@ -138,12 +138,6 @@ remain. Public CPP stays76e86737, headers/default profile and matching rules
 stay fixed. Scoped serial cold replay of both affected units preserves all
 six accepted functions, including linked color/end/reset352/168/162.
 
-Private recipes are in `.analysis/font-begin-handles-20261022/`; reports under
-the matching `build/` directory include `selected-linked-build.json`,
-`selected-window-proof.json`, `native-window-check.json`,
-`selected-full-semantics.json`, the control JSONs, `inline-membership.json`,
-`eh-context.json`, `rtm-msobj-install.json` and `scoped-replay.json`.
-
 Configured public inputs and `SelectedBegin.bin` remain available.
 Control recipes retain their source epochs; original macro/type/TU/toolchain
 and exception-runtime behavior remain unknown.

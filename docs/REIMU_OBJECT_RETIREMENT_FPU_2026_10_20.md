@@ -94,14 +94,9 @@ The private complete-cleanup control is the positive: same inputs and zero
 differences in all three categories, expected exit0. Input pins agree before
 and after; the audit does not independently verify build provenance.
 
-Receipts and frozen control CPP/COFF files reside in
-`build/reimu-object-return-sharing-20261020/`. Private recipes are
-`fpu-returns.py`, `local-817.py`, `cross-fixtures.py` and `write-fpu.py` in
-the corresponding `.analysis/` directory; the fresh baseline is raw COFF
-9d0cf6aba4ed041369bfb47d092ad4033b959a36758baa020b419acac188609e.
-The control's source-based complete comparator and call/RET census must be
-read alongside its successful native write-state diagnostic. No partial
-exact credit or aggregate cold replay is claimed.
+The control's source-based complete comparator and call/RET census must be read
+alongside its successful native write-state diagnostic. No partial exact credit or
+aggregate cold replay is claimed.
 
 The next source-recovery requirement is joint: preserve the target's floating
 cleanup placement and its complete call sharing. The passing final-output and

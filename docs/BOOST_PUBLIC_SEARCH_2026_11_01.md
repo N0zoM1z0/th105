@@ -82,10 +82,7 @@ One reusable vendor comparison unit is added, for777 units total.
   including identical LF/CRLF checkout handling. Vendor source hashes remain raw.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
-Private receipts: build/frontier-regex-search-link-20261101 contains
-public-formal.json, coff-family.json, full-eh.json, find-tail.json,
-connect-regression.json and connect-full-payload.json. Its corresponding
-.analysis directory retains the exact full-EH/provider replay recipes and the
-negative public-CIL context, including source/tool/image hashes.
-Target observations use the pinned Japanese1.06a raw PE, not new IDA semantics.
-No generated executable was run and no authored progress was inferred.
+Its corresponding .analysis directory retains the exact full-EH/provider replay
+recipes and the negative public-CIL context, including source/tool/image hashes.
+Target observations use the pinned Japanese1.06a raw PE, not new IDA semantics. No
+generated executable was run and no authored progress was inferred.

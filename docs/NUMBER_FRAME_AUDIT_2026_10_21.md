@@ -61,9 +61,5 @@ The latter uses a private standard-ABI declaration as a compiler-classification
 control only; no alias is retained or accepted. These trials discriminate
 specific hypotheses, not every possible original TU or LTCG context.
 
-Private raw-COFF, source hashes, entry bytes, extents and return suffixes are
-recorded in `build/number-frame-20261021/frame-controls.json`; the same scope
-retains fresh baseline and disassembly receipts. Rejected source copies remain
-below `.analysis/number-frame-20261021/`. Comparison extents and canonical
-hashes of the three accepted callers remain unchanged. There is no unrelated
-accepted-unit replay or cold aggregate claim.
+Comparison extents and canonical hashes of the three accepted callers remain
+unchanged. There is no unrelated accepted-unit replay or cold aggregate claim.

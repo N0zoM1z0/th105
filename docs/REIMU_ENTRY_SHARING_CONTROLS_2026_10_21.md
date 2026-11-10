@@ -67,12 +67,8 @@ coverage, accepted-unit aggregate or compiler-context conclusion is claimed.
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-entry --compare --json
 ```
 
-The command remains an expected nonzero canonical comparison. Reports and
-hash-pinned controls are under `build/reimu-entry-evaluation-20261021/`, with
-`evaluation-summary.json`, `target-facts.json`, both matrix summaries and the
-individual comparisons. `selected.cpp`, `selected.obj` and
-`selected-canonical.bin` preserve the fresh baseline. Unselected inputs/outputs
-are gzip-compressed only after verified round trips; the compression receipt
-retains original hashes. Private recipes remain under the matching `.analysis/`
-scope. The public source, headers, unit settings, relocations and tracking
-ledgers remain unchanged.
+The command remains an expected nonzero canonical comparison. `selected.cpp`,
+`selected.obj` and `selected-canonical.bin` preserve the fresh baseline. Unselected
+inputs/outputs are gzip-compressed only after verified round trips; the compression
+receipt retains original hashes. The public source, headers, unit settings,
+relocations and tracking ledgers remain unchanged.

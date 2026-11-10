@@ -70,11 +70,8 @@ The selected source SHA256 is
 `9e7480879d9e3e720a1df48708bac831a64613d1b39b0562927e783984f46660`.
 Original nominal class/service names and TU membership remain unproved.
 
-The initial full comparison is `build/sprite-luma-alpha-20261022/formal-first.json`.
-After adding the shared-header offset checks, the fresh complete replay is
-also copied to `formal.json`. `target-facts.json` records the independent
-raw CFG, strings, callsites and source pins; its private recipe is retained
-under `.analysis/sprite-luma-alpha-20261022/target_facts.py`.
+After adding the shared-header offset checks, the fresh complete replay is also
+copied to `formal.json`.
 
 ## Scoped replay and next step
 

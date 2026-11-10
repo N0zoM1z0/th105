@@ -22,10 +22,7 @@ header, prove whole-TU equivalence or identify the shipped release.
 
 [Verified official source](https://github.com/boostorg/regex/blob/3cd2b52030fbca6e30d32c787e65778283c2904b/src/w32_regex_traits.cpp)
 
-Private source and build recipe:
-.analysis/frontier-regex-w32-source-20261101/. Evidence:
-build/frontier-regex-w32-source-20261101/transform-negative.json,
-history-negative.json and version.diff. The latter reflects the exploratory
-text diff; Git-blob verification and active-body equality are recorded in the
-JSON. The selected original packages stay untouched. Do not repeat this same
-ordinary/CIL or1.34.1-char-function comparison without new independent evidence.
+The latter reflects the exploratory text diff; Git-blob verification and active-body
+equality are recorded in the JSON. The selected original packages stay untouched. Do
+not repeat this same ordinary/CIL or1.34.1-char-function comparison without new
+independent evidence.

@@ -93,10 +93,6 @@ Review retained several differences from the related Reimu initializer:
 
 ## Whole comparisons and finite controls
 
-Private receipts live in `build/exact-first-common-action-entry-20261025/`;
-rejected source/context inputs remain in
-`.analysis/exact-first-common-action-entry-20261025/`.
-
 | Control | Full bytes | Canonical SHA256 | Result |
 | --- | ---: | --- | --- |
 | First complete source | 5317 | b7eefdbbcc69cdc36e2f2c4ceeeb290b37a43895dcd994e101484f2b4542ca08 | nonexact+14 |
@@ -185,8 +181,5 @@ actual native and newly compiled instructions from the observed table-entry
 preconditions through the next effect call, without substituting a provider
 return. It does not cover complete action-690 entry/deque execution or gameplay.
 
-Reports and before/after section dumps are retained in
-`build/frontier-common-skill-levels-20261110/`; `exhaust.json` is the all-byte
-control, `audit.json` is the standard diagnostic, and `ci.log` passes the local
-gate. The private driver only expands the existing diagnostic's six selected
-byte seeds to all 256 values. No shared header, callee ABI or binding changes.
+The private driver only expands the existing diagnostic's six selected byte seeds to
+all 256 values. No shared header, callee ABI or binding changes.

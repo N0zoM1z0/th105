@@ -63,8 +63,7 @@ replay. Both roots and the previous 177-byte caller pass. All unchanged origin
 rules and unaffected rows are retained; the two freshly matched authored
 baselines replace their previous unknown/review entries.
 
-Private evidence is under build/frontier-d3d-reset-20261030, particularly
-boundaries.json, formal-linked.json and caller.json. Reproduce with:
+Reproduce with:
 
 - scripts/repo-python scripts/build.py --unit exact-first-d3d-reset-window-mode --json
 - scripts/repo-python scripts/compare-linked-unit.py exact-first-d3d-reset-window-mode --json

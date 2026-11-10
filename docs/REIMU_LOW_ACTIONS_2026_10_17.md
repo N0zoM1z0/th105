@@ -126,7 +126,6 @@ landing tail and DWORD+6B8. All nine primary database files remain
 hash-identical; the clone was removed. No IDA semantics, factory adapter or
 target-byte patches were used.
 
-Small reports/recipes live in `build/reimu-low-actions/` and
-`.analysis/reimu-low-actions-20261017/`. Next recover the low71..78 family
-and its shared tails from the same81KB root. Complete remaining action source
-and a strict whole-root canonical comparison are still required.
+Next recover the low71..78 family and its shared tails from the same81KB root.
+Complete remaining action source and a strict whole-root canonical comparison are
+still required.

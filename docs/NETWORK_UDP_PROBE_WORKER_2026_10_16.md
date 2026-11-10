@@ -103,19 +103,14 @@ python3 scripts/build.py --unit cross-v106a-network-winsock-probe-thread --json
 python3 scripts/compare-unit-object.py cross-v106a-network-winsock-probe-thread build/match-units/CrossV106a_NetworkWinsockProbeThread.obj --json
 ```
 
-The boundary audit reports the ten skipped alignment bytes; the private
-hash-attested driver `.analysis/network-udp-service-20261016/audit.py` checks
-their exact form, native callback registration/imports and complete CFG.
 Its packet is `build/network-udp-service-facts.json`. The strict whole-function
-comparison intentionally returns1 for664/692 nonexact. Fresh build provenance
-is independently checked against the current source/object hashes and unit
-input digest. Reports are `build/network-udp-service-{build,formal}.json`.
-The known-type COFF control is
-`build/network-udp-service-known-packet-compare.json`; resolved-link extent
-results are `build/network-udp-service-linked-comparisons.json`, with commands,
-tool pins, source hashes and data bindings in the two
-`build/network-udp-service-linked-*.diagnosis.json` files. Private control
-source/scripts remain under `.analysis/network-udp-service-20261016/`.
+comparison intentionally returns1 for664/692 nonexact. Fresh build provenance is
+independently checked against the current source/object hashes and unit input
+digest. The known-type
+COFF control is `build/network-udp-service-known-packet-compare.json`; resolved-link
+extent results are `build/network-udp-service-linked-comparisons.json`, with
+commands, tool pins, source hashes and data bindings in the two
+`build/network-udp-service-linked-*.diagnosis.json` files.
 
 The origin rule pins the full692-byte hash, callback operand, CreateThread
 IAT load, event IATs, real removal call and native sendto thunk IAT operand.
@@ -132,5 +127,4 @@ boundary reconciliation. Owner/peer/vector/critical-section types, complete
 32-bit return are saved and checked in a fresh read-only invocation. The
 earlier decompiler's aligned-stack aliases and untyped sendto-thunk calls
 misrepresent local values, so the raw instructions determine behavior.
-Logs are `build/network-udp-service-ghidra-{inspect,save,readback}.log`.
 Only one Ghidra process runs at a time with768MiB heap/two CPUs.

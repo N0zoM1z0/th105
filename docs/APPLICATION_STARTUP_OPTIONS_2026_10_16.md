@@ -59,23 +59,19 @@ python3 scripts/build.py --unit cross-v106a-application-startup-options --compar
 python3 scripts/audit-candidate-boundaries.py 0x00407BB0 --json
 ```
 
-The formal report `build/application-startup-options-formal.json` is
-**canonical exact 54/54**, including the complete COFF section tail. There are
+There are
 no relocation fields to mask or replay. The function, source-present and exact
 ledgers advance together; candidate boundaries are independently closed first.
 No full-unit replay is needed for this isolated addition.
 
-Direct Ghidra inspection attested executable SHA, image base, entry/external
-entry marker, x86 Windows analysis identity and every mapped .text byte before
-exporting constructor/caller/bootstrap hypotheses. The database initially had
-no function at this constructor address; bounded disassembly and function
-creation were required. The accepted constructor name, thiscall contract,
-zero stack purge, self return and 40-byte option structure were saved and read
-back in a fresh read-only process. Private exports and Java scripts remain
-under `.analysis/application-startup-options-20261016/`; logs stay under
-`build/application-startup-ghidra-*.log`. Each Ghidra process used a 768 MiB
-heap and two active processors. The failing IDA hash preflight was not used
-for analysis, and no factory adapter was used.
+Direct Ghidra inspection attested executable SHA, image base, entry/external entry
+marker, x86 Windows analysis identity and every mapped .text byte before exporting
+constructor/caller/bootstrap hypotheses. The database initially had no function at
+this constructor address; bounded disassembly and function creation were required.
+The accepted constructor name, thiscall contract, zero stack purge, self return and
+40-byte option structure were saved and read back in a fresh read-only process. Each
+Ghidra process used a 768 MiB heap and two active processors. The failing IDA hash
+preflight was not used for analysis, and no factory adapter was used.
 
 The self return and caller lifetime support a source-level constructor;
 original class/TU spelling remains unknown. The unreconstructed WinMain and

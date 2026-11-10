@@ -74,10 +74,6 @@ No all-unit cold replay is claimed or needed for unchanged selected inputs.
 
 ## Receipts and storage
 
-Recipes and all complete CPP inputs:
-`.analysis/aya-902-mode-tail-20261022/{probe,placement,guard}.py` and sibling CPPs.
-Build/provenance/comparison receipts and `mode3-owner.json`:
-`build/aya-902-mode-tail-20261022/`.
 `current-formal.json` is the final configured rebuild report.
 
 Final gate: `python3 scripts/ci.py` and `git diff --check`; stable checkpoints

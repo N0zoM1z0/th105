@@ -20,7 +20,6 @@ all three accepted siblings stay exact:43CF00123,43CF80168,43BB9036 bytes.
 No shared header, compiler profile or global relocation change was needed.
 
 Unit: cross-v106a-bgm-playback.
-Receipts: build/frontier-43d030-20261028/{formal-build,boundary,callers}.json.
 Boundary traversal covers the whole body through RET43D0FF, including the
 native strlen loop and both link/schedule paths. Only208 authored bytes are
 credited; called service implementations remain independently evaluated.

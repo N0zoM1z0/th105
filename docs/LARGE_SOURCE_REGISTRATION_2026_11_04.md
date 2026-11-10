@@ -14,10 +14,9 @@ remain nonexact, so none contributes a matching function or byte:
   stack-displacement bytes. The exact 162-byte scene initializer and its three
   same-unit peers were replayed.
 
-All target audits returned the expected candidate-nonexact status, not exact.
-Raw CFG, owner, source and prior negative-control evidence remain in the
-respective existing detailed documents. This checkpoint does not establish full
-exception-path equivalence, application linkage, or runtime gameplay. Receipts:
-`build/frontier-large-source-registration-20261104/`.
-The three scoped authored-origin checks and all 1,024 target-independent CI
-tests passed, including generated-progress and whitespace checks.
+All target audits returned the expected candidate-nonexact status, not exact. Raw
+CFG, owner, source and prior negative-control evidence remain in the respective
+existing detailed documents. This checkpoint does not establish full exception-path
+equivalence, application linkage, or runtime gameplay. The three scoped
+authored-origin checks and all 1,024 target-independent CI tests passed, including
+generated-progress and whitespace checks.

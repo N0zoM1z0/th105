@@ -118,10 +118,7 @@ and temporary callee types, reads them back, and rolls them back. All nine
 pinned primary DB hashes remain unchanged. Decompiled expressions are reviewed
 hypotheses; source is written from independently checked operations and edges.
 
-Private recipes/frozen probes are in
-`.analysis/exact-first-tenshi-slot5c-20261024/`; the matching `build/` scope
-retains raw CFG/tables/literals, attestation/readback/DB pins, all comparisons
-and the formal object. Ghidra heap384MiB/one CPU; builds serial CPU0/nice10.
-Local CI and whitespace gate precede commit/push. Iku's exact representative
-and all earlier accepted sources remain unchanged. Current ledger exact count
-stays1396/324774 bytes, with no aggregate cold replay claim.
+Ghidra heap384MiB/one CPU; builds serial CPU0/nice10. Local CI and whitespace gate
+precede commit/push. Iku's exact representative and all earlier accepted sources
+remain unchanged. Current ledger exact count stays1396/324774 bytes, with no
+aggregate cold replay claim.

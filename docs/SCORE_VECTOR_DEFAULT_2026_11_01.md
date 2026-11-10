@@ -34,10 +34,6 @@ owner or paired destructor, alternate source facade and compiler drift. All45
 actual byte corruption controls fail: each of the14 constructor bytes and31
 caller-site bytes. The original complete-body comparison remains mandatory.
 
-Only14 compiler-library bytes and one exclusion are added. Source-present,
-authored exact functions and authored exact bytes are unchanged. No source,
-standard-library header, compiler setting or accepted function is modified.
-
-Evidence: build/origin-anchors/score-vector-default/proof.json and
-build/frontier-score-vector-default-20261101/{positive,mutations}.json.
-Private scripts are under .analysis/frontier-score-vector-default-20261101/.
+Only14 compiler-library bytes and one exclusion are added. Source-present, authored
+exact functions and authored exact bytes are unchanged. No source, standard-library
+header, compiler setting or accepted function is modified.

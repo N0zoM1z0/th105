@@ -84,11 +84,6 @@ pins or exact ledgers were modified.
 
 ## Evidence and next boundary
 
-Reports are in `build/frontier-derived-udp-callbacks-20261109/`: focused builds,
-`tables.json`, `sections.json`, `lifetime-eh.json`, `client-dispatch-eh.json` and
-the bounded receiver/void probes. Private replay scripts and the inherited
-worktree snapshot are in `.analysis/frontier-derived-udp-callbacks-20261109/`.
-
 The secondary interface declaration is now complete. Its concrete callback
 implementations still live in separate owner views; joining them to the
 constructor/lifetime classes also requires unifying the real primary base

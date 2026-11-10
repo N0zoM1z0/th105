@@ -89,11 +89,9 @@ context to one missing function: this texture query, reached through secondary
 animation initialization.
 
 Whole source files also brought unused method references into the link. `/Gy`
-preserved the reviewed helper results but did not eliminate those diagnostics.
-Private source partitioning therefore retains complete real methods for wave
-dispatch, effect emission, background scalar updates and secondary animation
-construction/destruction/initialization/color. All seven selected methods
-recompare exact. No synthetic method body replaces a missing dependency.
+preserved the reviewed helper results but did not eliminate those diagnostics. All
+seven selected methods recompare exact. No synthetic method body replaces a missing
+dependency.
 
 This supplies a real dependency for the larger context; it does not accept
 `496540`, which retains its selected source and nonexact +31 result. Next wire
@@ -113,10 +111,7 @@ taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-resource-handle-
 ```
 
 The first command is exact 148/148; the second remains an expected nonzero
-comparison with the unchanged 417800 source payload. Reports are
-`build/texture-size-query-20261022/formal.json`, `lookup-header-replay.json`
-and `target-facts.json`; private generation recipes remain in
-`.analysis/reimu-object-provider-link-20261022/`.
+comparison with the unchanged 417800 source payload.
 
 This promotes one existing candidate from review to authored exact, adding one
 mapping, one source-present function and 148 exact bytes. No full aggregate

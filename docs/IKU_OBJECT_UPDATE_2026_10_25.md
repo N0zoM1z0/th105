@@ -129,15 +129,11 @@ identity/mapped-byte/body/ABI readback, entry removal/rollback, and all nine
 unchanged database-file hashes. Both runs keep one core/384MiB heap. No database
 metadata is accepted or saved by these temporary analysis views.
 
-Generated observations, the raw/depth driver and the readonly script are under
-`build/exact-first-iku-object-update-20261025/` and
-`.analysis/exact-first-iku-object-update-20261025/`. Analysis artifacts remain
-private. The decompiler reports incomplete stack-spacebase tracking, so its
-stack names and array extents are not copied into source. Raw pointer pushes,
-comparison flags, store widths and actual branch merges supply the missing
-constraints. Original source spelling, nominal full layout, TU identity and
+Analysis artifacts remain private. The decompiler reports incomplete stack-spacebase
+tracking, so its stack names and array extents are not copied into source. Raw
+pointer pushes, comparison flags, store widths and actual branch merges supply the
+missing constraints. Original source spelling, nominal full layout, TU identity and
 recoverable standalone exactness remain unknown.
-
 
 ## First complete comparison and evidence-backed trials
 
@@ -232,7 +228,6 @@ unit, not an exact function. Claims remain header-only. The accepted graph
 remains524 units/1412 functions/381108 callable bytes; no fresh aggregate cold
 replay is claimed. Continue632C30 from the complete-source comparison.
 
-
 ## Return-path and direction-view controls; bounded stop
 
 Fresh target/status/tracking checks retain only JP1.06a. GUI IDA again rejects
@@ -276,12 +271,9 @@ is closed after the two identical full outputs.
 
 All three controls retain frame0x258, all25 table dimensions/176 DWORDs and the
 same199-byte remap/90 alignment byte. All29 action-level static reachable-call
-counts agree with the target for each candidate; this is not path feasibility
-or complete execution equivalence. Canonical replay covers every1010 root
-relocation for common retirement and1011 for each byte view, without masks.
-Generated full reports/bindings/per-action diagnostics/manager-width packet and
-`control-receipts.json` are under `build/iku-update-returns-20261025/`; private
-complete sources/drivers are in its same-named `.analysis/` directory.
+counts agree with the target for each candidate; this is not path feasibility or
+complete execution equivalence. Canonical replay covers every1010 root relocation
+for common retirement and1011 for each byte view, without masks.
 
 Fresh formal/full selected-source comparison still emits34748 SHA52ee04c5,
 32281 differences/+37. No source, type/header, literal binding, function mapping

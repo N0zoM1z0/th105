@@ -16,9 +16,8 @@ The genuine CIL BgmServiceRuntime unit was rebuilt. Previously accepted fade
 retain their earlier nonexact status. The gain provider and private transition
 body are not promoted by exact callers; no exact-byte total changes.
 
-Receipt:build/frontier-bgm-master-volume-20261029/threshold-formal.json.
-The obsolete source comment calling the gain provider accepted is corrected.
-The current source-integrity withdrawal of418990 remains in force.
+The obsolete source comment calling the gain provider accepted is corrected. The
+current source-integrity withdrawal of418990 remains in force.
 
 Private master-volume continuation establishes the full284-byte native policy
 and active-list88/master-gainAC/secondary-gainB0 fields. A real COFF gain-provider

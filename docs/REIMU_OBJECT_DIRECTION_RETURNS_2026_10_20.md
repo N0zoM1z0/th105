@@ -206,11 +206,9 @@ reason for TH105's frame alignment and its C++ return declarations is unknown.
 
 ## Reproduction and next work
 
-Receipts/controls stay below `build/reimu-object-cleanup-context-20261020`;
-private regeneration recipes stay in its matching `.analysis` scope. Nine
-primary Ghidra database hashes are unchanged; no Ghidra process or metadata
-write is used in this unit. IDA's wrong executable contributes no semantics.
-No aggregate cold replay or new percentage is claimed.
+Nine primary Ghidra database hashes are unchanged; no Ghidra process or metadata
+write is used in this unit. IDA's wrong executable contributes no semantics. No
+aggregate cold replay or new percentage is claimed.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json

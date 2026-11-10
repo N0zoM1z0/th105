@@ -49,13 +49,9 @@ and no short-function origin threshold is waived. Original nominal type/TU
 spelling is not uniquely established by these matches.
 
 The existing cross-v106a-info-manager-base-lifetime unit now also compares the
-28-byte constructor. Source and origin anchor both use the actual owner TU.
-The one new compiler-origin rule passes full4027-candidate uniqueness, not just
-a selected-address comparison. No target bytes or public validator change.
-Private receipts and controls are under build/frontier-info-record-lifetime-20261101
-and the corresponding .analysis scope: formal.json, first.json, handle.json,
-public-dtor.json, and the scoped origin validation receipt in the existing
-frontier-boost-library-20261031 folder.
+28-byte constructor. Source and origin anchor both use the actual owner TU. The one
+new compiler-origin rule passes full4027-candidate uniqueness, not just a
+selected-address comparison. No target bytes or public validator change.
 
 Totals: exact1582/449309 authored bytes, source1782, authored1802, mapped1809,
 units765 unchanged; compiler exclusions1792, review433. No push.

@@ -23,11 +23,9 @@ loaders remain nonexact with unchanged complete candidate hashes:
 - History list 0x4434B0: source 715 versus native 714,
   49c13aafe5dccea267821b0a9125212f5e23adeafdefe9e294be1640b9f478c3.
 
-No new authored exact bytes, helper credit, full-program linkage or complete
-Connect owner unification is claimed. Other partial Connect views remain.
-Private evidence is under .analysis/frontier-connect-real-sprites-20261102/ and
-build/frontier-connect-real-sprites-20261102/. Full CI passed 962 tests
-(98.824 seconds), tracking, generated progress and whitespace checks. Both
+No new authored exact bytes, helper credit, full-program linkage or complete Connect
+owner unification is claimed. Other partial Connect views remain. Full CI passed 962
+tests (98.824 seconds), tracking, generated progress and whitespace checks. Both
 working-tree and staged diff checks passed.
 
 Totals remain 1427 exact / 443604 bytes, 1637 source-present, 1656 authored,

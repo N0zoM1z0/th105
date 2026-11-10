@@ -30,10 +30,6 @@ exact, as do all96 generated rotation support bytes. Source, existing profiles,
 shared declarations and verification tools are unchanged. The failed advance
 163/168 controls remain failed and unselected.
 
-Receipts under build/frontier-sequence-generated-20261031: formal.json,
-rotation.json and rotation-auxiliary.json. The source-origin validation is in
-build/frontier-boost-library-20261031/vc8-generated-sequence-card-lifetime-106a-validation.json.
-
 Exclusions become1782 and review449; units761. Exact1578/448979, source1776,
 authored1796 and mapped1803 are unchanged. No compiler bytes count as game
 matching progress.

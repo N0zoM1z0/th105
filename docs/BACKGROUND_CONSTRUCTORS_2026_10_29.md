@@ -63,7 +63,7 @@ scripts/repo-python scripts/build.py --unit exact-first-bg16-constructor --compa
 scripts/repo-python scripts/build.py --unit exact-first-bg02-constructor --compare --json
 scripts/repo-python scripts/build.py --unit cross-v106a-battle-object-dispatch --compare --json
 
-Reports are under build/frontier-background-constructors-20261029/. BG04, BG16 and
-the existing986-byte factory pass; BG02 is explicitly a mismatch. Shared
-headers are unchanged in this batch, so the preceding321-function affected
-replay remains the incremental baseline. BG04 adds335 and BG16 adds868 authored bytes in their separate checkpoints.
+BG04, BG16 and the existing986-byte factory pass; BG02 is explicitly a mismatch.
+Shared headers are unchanged in this batch, so the preceding321-function affected
+replay remains the incremental baseline. BG04 adds335 and BG16 adds868 authored
+bytes in their separate checkpoints.

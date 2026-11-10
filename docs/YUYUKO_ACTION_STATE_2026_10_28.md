@@ -41,13 +41,10 @@ scripts/repo-python scripts/audit-yuyuko-action-state.py
 scripts/repo-python scripts/compare-giant-action-switches.py yuyuko-vslot28 build/match-units/ExactFirst_YuyukoActionState.obj --json
 ```
 
-Expected comparison exit status is nonzero until exact. Receipts live under
-build/frontier-55d850-20261027/: formal-ownerorder.json, formal-ownerorder-audit.json,
-ownerorder-map.json and ownerorder-action-{calls,fp-ops}.json. Source and
-focused intermediate trials remain in .analysis/frontier-55d850-20261027/.
-No whole-corpus cold build is needed: new source/header, append-only unit and
-literal bindings have no existing accepted consumers. Existing receipts remain
-unchanged; the final local CI remains mandatory before commit.
+Expected comparison exit status is nonzero until exact. No whole-corpus cold build
+is needed: new source/header, append-only unit and literal bindings have no existing
+accepted consumers. Existing receipts remain unchanged; the final local CI remains
+mandatory before commit.
 
 ## Target-backed corrections and remaining questions
 
@@ -106,7 +103,6 @@ consistent with ordered less-than. No speculative NaN rewrite was made.
 Remaining710 virtual-site discrepancy is physical timeout-tail sharing, not an
 observed extra dynamic call; native difficulties0/1 share the56AC01 tail.
 
-
 ## Captured coordinate and aim-argument refinement
 
 Action726 captures the pre-RNG X field in a double local. Native56B648 loads
@@ -126,15 +122,11 @@ but still differs in scratch offsets. These bounded windows are diagnostics,
 not whole-function acceptance or additional exact-byte credit.
 
 The combined public replay is59456/full59672, first+8, frame4F0 versus4E8,
-SHA256fae3443cfa58a7c2a829bfbab59e723ecfa12172e8a23914e37a7b610749988f.
-Receipts: build/frontier-55d850-20261027/formal-lifetimes.json and
-formal-lifetimes-audit.json. allaimargs-action-{calls,fp-ops}.json retain the
-710 virtual-site and600/603 FCHS differences noted above. Payload dataflow
-still resolves100 homes, all+8, with no unknown payload pointers. One skipped
-six-byte LEA EBX,[EBX] at candidate56A7EA is compiler alignment, not executable
-source or a masked acceptance range. All bytes remain in the canonical audit.
-The extra scalar group and ring-operation scheduling remain unresolved.
-
+SHA256fae3443cfa58a7c2a829bfbab59e723ecfa12172e8a23914e37a7b610749988f. Payload
+dataflow still resolves100 homes, all+8, with no unknown payload pointers. One
+skipped six-byte LEA EBX,[EBX] at candidate56A7EA is compiler alignment, not
+executable source or a masked acceptance range. All bytes remain in the canonical
+audit. The extra scalar group and ring-operation scheduling remain unresolved.
 
 ## Action720 surface predicate
 
@@ -148,8 +140,7 @@ which reproduces TEST AH,1/JNE and both native continuation bodies. No finite-
 only domain assumption, invented NaN handling, or defensive behavior is added.
 
 The public full payload remains59456/full59672, frame4F0 and first+8, SHA256
-893e55b4e6e1976682b96b24c1b5245becea1c35b6f0c40b5299741ddaff5323.
-Receipt: build/frontier-55d850-20261027/formal-surface720-audit.json. The strict
+893e55b4e6e1976682b96b24c1b5245becea1c35b6f0c40b5299741ddaff5323. The strict
 positional difference count is56540; there is still no exact acceptance.
 
 ## Arc and spell height grouping, 2026-11-04
@@ -237,5 +228,3 @@ against the original guards.
 
 The full root remains nonexact at +17; candidate SHA-256 is
 `45ce2e0fe7e3da0bfc754cfb19b189bd7438a21c48f93c4392a4c7958dceedd5`.
-Full comparisons, section checks and branch contexts are retained under
-`build/frontier-yuyuko-wave-guard-20261109/`.

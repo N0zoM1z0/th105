@@ -148,9 +148,7 @@ git diff --check
 ```
 
 The three focused build/comparison commands intentionally exit1 for the
-documented nonexact results. The link receipt lives at
-`build/iku-action-ltcg/receipt.json` and pins sources, objects, compiler/SDK,
-libraries, commands, aliases, data and comparisons. `--reuse` checks source,
+documented nonexact results. `--reuse` checks source,
 full unit-input digest, compiler command, tool pins and current object hash.
 A fresh follow-up run reused all44 objects and relinked successfully.
 

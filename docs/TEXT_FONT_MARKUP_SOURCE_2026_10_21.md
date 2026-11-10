@@ -132,9 +132,5 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-Full native/target disassembly, raw and canonical contexts, static EH packet,
-source/COFF snapshots and regression receipts are under
-`build/font-markup-20261021/`; private recipes are under
-`.analysis/font-markup-20261021/`. Completed controls are compressed after
-per-file SHA256 readback. Next: real color/reset/hex/setter/blend definitions
-and genuine closed-TU/link evidence; Reimu496540 remains nonexact at+31.
+Next: real color/reset/hex/setter/blend definitions and genuine closed-TU/link
+evidence; Reimu496540 remains nonexact at+31.

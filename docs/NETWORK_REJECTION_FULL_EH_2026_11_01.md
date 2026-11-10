@@ -43,8 +43,6 @@ The caller's switch-bearing receive graph also remains outside the ordinary
 private-caller closed-CFG contract. Fixing only its selection would therefore
 not solve the independently demonstrated full-EH mismatch.
 
-Evidence: build/frontier-network-rejection-20261101/full-eh-negative.json and
-its paired main-body disassemblies; shared-guard/build.json and diagnostic.json
-record the one new shared-type control. Source, match units, origins and all
-progress totals stay unchanged. This path is closed under these current source
-graphs until independent source/build-boundary evidence changes the cleanup ABI.
+Source, match units, origins and all progress totals stay unchanged. This path is
+closed under these current source graphs until independent source/build-boundary
+evidence changes the cleanup ABI.

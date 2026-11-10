@@ -58,10 +58,6 @@ actual initialized-byte corruption controls fail:13 leaf bytes,383 caller
 bytes,28 scope bytes and869 provider payload bytes. No raw BSS-byte controls
 are fabricated.
 
-Only13 runtime bytes and one exclusion are added. The catch helper, scope,
-memmove payload, vector-copy provider, aliases and authored counts do not gain
-additional credit. Current code/EH comparisons are whole and unmasked.
-
-Evidence: build/origin-anchors/vc8-validation-leaf/proof.json and
-build/frontier-crt-validation-leaf-20261101/{native-callers,graph-positive,mutations}.json.
-Private sources are under .analysis/frontier-crt-validation-leaf-20261101/.
+Only13 runtime bytes and one exclusion are added. The catch helper, scope, memmove
+payload, vector-copy provider, aliases and authored counts do not gain additional
+credit. Current code/EH comparisons are whole and unmasked.

@@ -37,8 +37,5 @@ that original nominal owner or size. Native465420 touches the handle/sprite
 prefix, which also occurs in a98-byte face resource; nominal/ICF identity is
 not uniquely determined by that cleanup. Its provisional ledger row is unchanged.
 
-Evidence is in build/frontier-character-resource-sprites-20261102/, including
-fresh before/actual controls, formal unit receipts, both generated-origin gates,
-spell-eh.json and core-baseline.log. No shared EffectSprite header, origin rule,
-source/exact count or compiler profile changed in this step. Default CI and
-both diff checks gate the local checkpoint.
+No shared EffectSprite header, origin rule, source/exact count or compiler profile
+changed in this step. Default CI and both diff checks gate the local checkpoint.

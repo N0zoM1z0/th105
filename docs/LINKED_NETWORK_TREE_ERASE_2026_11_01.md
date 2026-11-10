@@ -86,9 +86,7 @@ default and three-type metadata integrity. Twenty-three actual mutations of
 root code, call/data fields, complete literal, exception records, EH, constructors,
 destructors, rotators, iterator and CRT throw are rejected.
 
-Evidence: build/origin-anchors/linked-network-tree-erase.json,
-build/frontier-network-tree-20261101/{owner-roots,logic-support,mutations}.json
-and old-logic-regression.log. The import-context714 diagnostic is separate
-and not accepted. The finished narrow replay, CI and diff check accompany the
-checkpoint. Excluded2012/review360; exact1431/443916 bytes, authored1655,
-source1635, mapped1820 and units777 remain unchanged.
+The import-context714 diagnostic is separate and not accepted. The finished narrow
+replay, CI and diff check accompany the checkpoint. Excluded2012/review360;
+exact1431/443916 bytes, authored1655, source1635, mapped1820 and units777 remain
+unchanged.

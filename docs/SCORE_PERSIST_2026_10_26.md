@@ -64,19 +64,17 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-
 scripts/repo-python scripts/audit-score-persist-target.py --object build/match-units/ExactFirst_ScorePersist.obj
 ```
 
-Receipts: `build/frontier-42d3f0-20261026/formal-first.json`,
-`formal-second.json`, `formal-audit-first.json`, `formal-audit-second.json` and
-`target-audit.json`. Private first/control sources, full raw decode and replay
-recipe are under `.analysis/frontier-42d3f0-20261026/`.
-The audit covers inactive, populated, open-failure and zero-encoder cases.
-The332-byte serialized fixture includes signed map values, the last persisted
-slot14, deliberately populated but omitted slot15, duplicate-pair records with
-different difficulty/statistics, and values300/255 above the defaults parser's
-threshold. It verifies full serialization, transform inversion by the loader's
-formula, WriteFile behavior, release order, unchanged score object, stack,
-callee saves and FS0. API/allocation/encoder/iterator implementations are
-observers; actual I/O, compression, allocation failure and EH unwinding are not
-executed. Exactness refers to the whole callable, not a linked executable.
+Receipts: `build/frontier-42d3f0-20261026/formal-first.json`, `formal-second.json`,
+`formal-audit-first.json`, `formal-audit-second.json` and `target-audit.json`. The
+audit covers inactive, populated, open-failure and zero-encoder cases. The332-byte
+serialized fixture includes signed map values, the last persisted slot14,
+deliberately populated but omitted slot15, duplicate-pair records with different
+difficulty/statistics, and values300/255 above the defaults parser's threshold. It
+verifies full serialization, transform inversion by the loader's formula, WriteFile
+behavior, release order, unchanged score object, stack, callee saves and FS0.
+API/allocation/encoder/iterator implementations are observers; actual I/O,
+compression, allocation failure and EH unwinding are not executed. Exactness refers
+to the whole callable, not a linked executable.
 
 ## Closed family TU control
 
@@ -118,7 +116,5 @@ This ownership correction does not reopen the closed encoding experiments.
 
 All four existing persistence observer cases and all four loader observer cases
 agree again. Their original limits remain: real I/O, codec implementations and
-exception unwinding are not executed. Fresh build reports, full object dumps,
-observer receipts and the passing focused CI log are retained in
-`build/frontier-score-scalar-copies-20261110/`. No shared layout, relocation,
-source selection, exact ledger or Factory acceptance was changed.
+exception unwinding are not executed. No shared layout, relocation, source
+selection, exact ledger or Factory acceptance was changed.

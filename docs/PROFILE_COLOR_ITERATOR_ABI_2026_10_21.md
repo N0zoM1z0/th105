@@ -92,12 +92,9 @@ and no numerical/native regression coverage is claimed for these experiments.
 
 ## Retained evidence and next boundary
 
-`build/profile-list-color-20261021/` retains baseline, selected formal object,
-private controls, COFF layout witnesses and `facts-summary.json`. Private
-recipes are in the same-named `.analysis/` directory. The source guards alone
-change the selected program source; implementation bytes remain unchanged.
-40C040/40C0A0 sibling frame observations retain their earlier epochs and are
-not promoted or freshly replayed by this40BFE0 work.
+The source guards alone change the selected program source; implementation bytes
+remain unchanged. 40C040/40C0A0 sibling frame observations retain their earlier
+epochs and are not promoted or freshly replayed by this40BFE0 work.
 
 The preceding4A1CE0 initializer was also freshly rebuilt:4892 callable bytes,
 14 differences,548 equal metadata bytes and first4A2E20. Its discarded-result

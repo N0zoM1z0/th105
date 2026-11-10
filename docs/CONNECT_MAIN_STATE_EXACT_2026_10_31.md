@@ -80,13 +80,12 @@ match, with the same4D4-byte frame and all genuine string/regex lifetimes.
 
 ## Reproduction and accounting
 
-    scripts/repo-python scripts/build.py --unit exact-first-connect-main-state --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-connect-main-state --compare
+--json
 
-Source:src/ui/MenuConnectMainState.cpp.
-Formal receipt and independent full856/EH215/provider97/boundary evidence:
-build/frontier-connect-main-state-20261031 and its .analysis counterpart.
-Fresh Factory-native metadata, entry, five16-byte mapped/raw samples and
-function/disassembly/decompiler/xref/callee probes are retained there.
+Source:src/ui/MenuConnectMainState.cpp. Fresh Factory-native metadata, entry,
+five16-byte mapped/raw samples and function/disassembly/decompiler/xref/callee
+probes are retained there.
 
 At first acceptance, the authored gain was one function /827 bytes:1553 /441679. Source1749,
 authored1769, excluded1421, review837, mapped1776 and units741. The three literal

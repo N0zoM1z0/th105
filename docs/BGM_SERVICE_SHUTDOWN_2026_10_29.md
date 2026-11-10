@@ -32,7 +32,6 @@ The shipped function has an aligned EBP frame and private EAX manager-release
 calls, while ordinary source uses its normal member ABI. No invented aligned
 local, ABI declaration or padding is used to hide these differences.
 
-Unit: exact-first-bgm-service-shutdown. Focused receipts:
-`build/frontier-4034f0-20261029/{formal-build,boundary}.json`.
-No shared header, compiler profile or accepted consumer changed. Source and
-independent authored ownership advance; exact totals do not.
+Unit: exact-first-bgm-service-shutdown. No shared header, compiler profile or
+accepted consumer changed. Source and independent authored ownership advance; exact
+totals do not.

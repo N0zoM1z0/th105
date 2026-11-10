@@ -135,15 +135,12 @@ python3 scripts/audit-common-fighter-indirect-tails.py --json
 python3 scripts/probe-common-fighter-ltcg.py --inspect-image build/common-fighter-entry/nested-float-handlers/CommonRoot.dll --inspect-map build/common-fighter-entry/nested-float-handlers/CommonRoot.map
 ```
 
-Without cached providers, the original no-argument link probe regenerates
-them. Inspect mode checks target/tool/library hashes, all provider object and
-source hashes and their current unit-input digests before reuse. Its receipt
-attests the inspected image/map hashes, not a new build. Private control
-patches and the one-root compiler/link commands remain in
-`.analysis/common-fighter-entry-20261017/` and the ignored build receipts.
-The nested control's generated source SHA256 is
-`a2070ee3dbeabfc4c1c1f9fdc412d4fcd1810ffa8a3d6fdb6af730b3e728f5cd`.
-Its linked image SHA256 is
+Without cached providers, the original no-argument link probe regenerates them.
+Inspect mode checks target/tool/library hashes, all provider object and source
+hashes and their current unit-input digests before reuse. Its receipt attests the
+inspected image/map hashes, not a new build. The nested control's generated source
+SHA256 is `a2070ee3dbeabfc4c1c1f9fdc412d4fcd1810ffa8a3d6fdb6af730b3e728f5cd`. Its
+linked image SHA256 is
 `93a88aba314d167e14913c5933a4870e80a732c24c39299ff84af350e54de51a`.
 
 IDA preflight still rejects the wrong executable. A single direct read-only

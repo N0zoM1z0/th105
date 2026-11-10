@@ -16,7 +16,7 @@ python3 scripts/typed-re.py 0x004064D0 --json
 python3 scripts/build.py --unit gpt-web-angle-ratio-natural --compare --json
 ```
 
-Local report: `build/angle-ratio-natural-formal.json`. Complete target and
+Complete target and
 relocated object comparison hashes both equal
 `a5e44470d5614abc8207579229c1f2210c18d9ebe26cd1b05b000ebfbce8c847`.
 This adds one accepted function / 107 bytes, not a completed large root.
@@ -75,9 +75,7 @@ python3 scripts/reference-vc8.py --extract-topics
 ```
 
 The last page range documents explicit data alignment and is now indexed in
-`config/reference-documents.toml`. The full PDF/text and regenerated Markdown
-excerpts remain local under `build/references/vc8`; URLs, hashes, page indexes,
-the extraction script and this interpretation are tracked in Git.
+`config/reference-documents.toml`.
 
 ## Still nonexact: quantized sine/cosine and aligned abs
 
@@ -125,9 +123,7 @@ Rejected private trials, all reverted:
   frame. This independent witness still prevents treating the common
   64-byte-frame cause as solved.
 
-Useful private reports: `build/angle-aligned-index-float-strict-noexcept-compare.json`
-and `build/angle-mod-helper-compare.json`; the latter is a reproducible
-121-byte / +0x51 diagnostic checkpoint. The tracked sine and cosine sources
+The tracked sine and cosine sources
 remain the previous unverified hypotheses (94 and 88 bytes), with no new
 match rows. Their old ledger assertion that x87 proves a double return has
 been corrected: the type remains unresolved.
@@ -166,8 +162,7 @@ This is **not accepted authored progress**. The function's origin and original
 alignment reason remain unresolved. Inlining this helper into sine pins its
 scratch at ESP+0 rather than ESP+0x3C: 110 bytes, first mismatch +0x1E.
 The standalone spelling cannot simply be transferred to the shared family.
-The aligned-index sine remains 121 bytes, first mismatch +0x51. Reports are
-`build/angle-alignment-witness-{abs,sine,inline}.json`.
+The aligned-index sine remains 121 bytes, first mismatch +0x51.
 
 Other negative controls: an aligned scalar parameter is rejected by VC8
 C2719; `/Ot-` is not a supported command-line option. The supported

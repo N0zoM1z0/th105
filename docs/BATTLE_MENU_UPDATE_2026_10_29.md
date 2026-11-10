@@ -55,8 +55,6 @@ state branches. No goto-only tail shaping, dummy liveness or register forcing
 is used. Twelve extra bytes is not twelve differing positions: the full replay
 has787 unequal positions including length.
 
-Formal callable receipt and independent complete-relocation replay:
-build/frontier-battle-menu-update-20261029/formal-build.json and compare.json.
 Native CFG/tables/EH are recorded in native-facts.json in that directory.
 
 Focused command:
@@ -64,7 +62,6 @@ scripts/repo-python scripts/build.py --unit exact-first-battle-menu-update --com
 
 Default CI and diff checks cover final source/tracking/progress. No cold corpus
 build is required for this isolated source unit.
-
 
 ## Real entry-vector provider, 2026-11-10
 
@@ -88,8 +85,6 @@ and 19-byte vector-size sections. The main root remains nonexact against the
 880-byte target extent, first mismatch +48. The provider was already classified
 compiler-generated; there is no authored exact gain or new Factory acceptance.
 
-The only source consumer is `exact-first-battle-menu-update`. Receipts and
-reproduction are under `build/frontier-battle-menu-vector-20261110/` and the
-corresponding private analysis directory. The pre-existing pending input work
-and all source pins are preserved; the manifest change is only this unit's
-single provider binding.
+The only source consumer is `exact-first-battle-menu-update`. The pre-existing
+pending input work and all source pins are preserved; the manifest change is only
+this unit's single provider binding.

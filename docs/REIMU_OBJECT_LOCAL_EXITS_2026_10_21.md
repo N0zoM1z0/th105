@@ -79,13 +79,12 @@ functions. The first unequal byte at+31 is a jump displacement to the later
 default path. The target entry has neither of the source's former constant
 initializations; the new source removes both naturally.
 
-Call-sharing differences remain explicit. The target has separate advance
-calls for817 and860/861; the new source shares one across all three. Three
-World/wave pairs have906-only static membership in the target and905-only
-membership in the source. These are complete graph reachability sets assuming
-normal returns, not predicate feasibility or execution through opaque calls.
-`call-sharing-delta.json` records the actual differences. This change does not
-claim that a larger source or LTCG context cannot recover them.
+Call-sharing differences remain explicit. The target has separate advance calls
+for817 and860/861; the new source shares one across all three. Three World/wave
+pairs have906-only static membership in the target and905-only membership in the
+source. These are complete graph reachability sets assuming normal returns, not
+predicate feasibility or execution through opaque calls. This change does not claim
+that a larger source or LTCG context cannot recover them.
 
 The formal root comparison hashes the first46138 source bytes as
 `fb49c2c120a902b1b59b50a82f31cfe931e6fdc98720385ebf726b147861a1d1`.
@@ -157,13 +156,11 @@ own source/build epoch is separate; it is not presented as a fresh build.
 |Unchanged header|6f469e6886959fd41ee6976b3c784c3df0c2e753ad4729a536764a3c8cd28b4b|
 |Formal COFF|4ddca4f4ff71c900385602bad74f1159bdebcc1c01b2db8ffd7cee9c1e0f8118|
 
-Receipts and frozen baseline/control/selected inputs are under
-`build/reimu-object-cleanup-20261021/`; private regeneration recipes are in
-the corresponding `.analysis/` directory. `baseline-build.json` and
-`selected-build.json` contain both complete root comparisons and the exact
-helper. `selected-summary.json` and its owner/census reports describe the
-whole-source diagnostics. Predecessor source555da070/canonical88bd9c9b and
-earlier133192-input receipts retain their historical epoch.
+`baseline-build.json` and `selected-build.json` contain both complete root
+comparisons and the exact helper. `selected-summary.json` and its owner/census
+reports describe the whole-source diagnostics. Predecessor
+source555da070/canonical88bd9c9b and earlier133192-input receipts retain their
+historical epoch.
 
 ```bash
 # Expected exit1: complete-root mismatch+31; helper4963A0 must remain exact66/66.

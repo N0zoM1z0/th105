@@ -27,12 +27,8 @@ normal gate retains its own complete contract while permitting the separately
 proved deleting function in the same original member. No original source,
 header, compiler flag, graph export or generic threshold is changed.
 
-Seven focused tests reject altered archive/member/class, missing normal
-support, wrong delete target, prefix/masked bodies and duplicate alias credit.
-All45 real corruption controls fail across every new root byte, the delete
-stub, native vslot and selected complete-support boundaries. The narrow origin
-rule passes before the single review row changes.
-
-Evidence: build/origin-anchors/vc8-typeinfo-delete-link/proof.json and
-build/frontier-typeinfo-delete-20261101/. Private scripts are under
-.analysis/frontier-typeinfo-delete-20261101/.
+Seven focused tests reject altered archive/member/class, missing normal support,
+wrong delete target, prefix/masked bodies and duplicate alias credit. All45 real
+corruption controls fail across every new root byte, the delete stub, native vslot
+and selected complete-support boundaries. The narrow origin rule passes before the
+single review row changes.

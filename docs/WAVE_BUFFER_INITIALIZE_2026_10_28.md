@@ -23,10 +23,9 @@ buffer size. Its clear provider deliberately preserves the observed zero-length
 memset call after Lock and forwards the returned pointer/length to Unlock;
 no guessed bug fix or new lock-error guard is introduced.
 
-All234/247/85 bytes are reached by closed CFG traversal. Return boundaries and
-hashes are retained in build/frontier-401990-20261028/boundary.json. A focused
-origin rule validates the three hashes and four actual direct edges. No library
-helper or compiler alignment receives new authored credit.
+All234/247/85 bytes are reached by closed CFG traversal. A focused origin rule
+validates the three hashes and four actual direct edges. No library helper or
+compiler alignment receives new authored credit.
 
 ## Ordinary source and genuine linked context
 
@@ -59,12 +58,9 @@ binding correctly fails duplicate-definition linking and is discarded; no
 /FORCE, unresolved-code allowance or tool-contract relaxation is used. This
 private cookie diagnostic is not a public acceptance profile.
 
-Receipts: build/frontier-401990-20261028/formal-build.json, boundary.json,
-first-comparison.json, linked-internal-comparison.json, linked-comparison.json,
-private-linked-unit.json and link-driver.log. Reproduction sources/commands stay
-under .analysis/frontier-401990-20261028. The original TU/public visibility and
-remaining lifetime/code scheduling are unresolved. Only affected source was
-built; no corpus cold replay or extra gameplay/test matrix was added.
+The original TU/public visibility and remaining lifetime/code scheduling are
+unresolved. Only affected source was built; no corpus cold replay or extra
+gameplay/test matrix was added.
 
 ## Genuine private provider acceptance, 2026-10-29
 

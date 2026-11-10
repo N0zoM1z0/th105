@@ -112,10 +112,8 @@ forcing, inert values, copied bytes, padding, masked matching or LTCG claim.
 - scripts/repo-python scripts/validate-tracking.py --require-target
 - scripts/repo-python scripts/ci.py
 
-The first two commands currently exit1 with mismatch, not blocked.
-Complete controls and full raw CFG/table/ID/call evidence are under
-build/frontier-65cb40-20261027/ and corresponding private analysis directory.
-The initial generator is not the selected later source.
+The first two commands currently exit1 with mismatch, not blocked. The initial
+generator is not the selected later source.
 
 Only this new unit is rebuilt. No shared header/flag/global/literal mapping
 changes; prior receipts remain retained and totals are incremental. Final local
@@ -152,7 +150,6 @@ separate shared-ABI/binding change. The final bounded update view avoids that
 unrelated change. The visual source was restored and its two complete roots
 replayed at 80/80 and 266/266 exact.
 
-Evidence and focused CI: `build/frontier-info-effect-state-20261110/`.
-`update-final.json`, `payload-final.json` and `update-final.sections` describe
-the selected final build; intermediate `after` files are failed/unselected
-integration trials. No Factory replay, ledger promotion or new exact credit.
+`update-final.json`, `payload-final.json` and `update-final.sections` describe the
+selected final build; intermediate `after` files are failed/unselected integration
+trials. No Factory replay, ledger promotion or new exact credit.

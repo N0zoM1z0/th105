@@ -8,9 +8,8 @@ two independent virtual action700 tails. The native EBP value seen by IDA is a
 conditionally saved local, not a usercall argument.
 
 Fresh target metadata/entry/mapped bytes/inventory attestation and raw decoding
-precede the scope. The direct IDA launcher still lacks mcp1.26.0. Code below
-build/frontier-460200-20261027/ preserves the raw full target, source receipts and
-strict comparison. Decompiler output was used only as a provisional guide.
+precede the scope. The direct IDA launcher still lacks mcp1.26.0. Decompiler output
+was used only as a provisional guide.
 
 ## Corrected source and independent evidence
 

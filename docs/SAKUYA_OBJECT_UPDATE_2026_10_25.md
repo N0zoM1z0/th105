@@ -80,10 +80,7 @@ real declaration-only calls. Target instructions determine widths, physical
 edges, helper contracts, scalar rounding and publication order. No decompiler
 temporary-name translation or copied output is used as the implementation.
 
-Raw facts, disassembly, decompiler hypothesis, project hash receipts and trial
-reports live under `build/exact-first-sakuya-object-update-20261025/`; private
-source controls and the readonly driver are under the corresponding `.analysis/`
-directory. The source hypothesis does not assert full execution equivalence.
+The source hypothesis does not assert full execution equivalence.
 
 ## Callee and scalar evidence
 
@@ -210,12 +207,10 @@ references pass.
 
 ## Follow-up: physical sharing and closed controls
 
-Follow-up receipts live under `build/sakuya-object-update-epochs-20261025/`;
-private source/header snapshots and `case_paths.py` live under the corresponding
-`.analysis/` directory. The baseline formal replay retains the selected full
-29408-byte hash above and27397 differences. These are complete canonical
-comparisons with relocation replay; shorter output or fewer differing byte
-positions does not establish a better reconstruction.
+The baseline formal replay retains the selected full 29408-byte hash above and27397
+differences. These are complete canonical comparisons with relocation replay;
+shorter output or fewer differing byte positions does not establish a better
+reconstruction.
 
 Static traversal from each primary case entry distinguishes physical call
 sites, rather than only their total count. It follows both conditional edges
@@ -361,9 +356,5 @@ changes. The three provider units replay motion57, frame62, six-state66 and
 co-emitted phase73 exact; their existing Reimu parent remains unchanged and
 nonexact. No new authored exact credit or source-origin pin change.
 
-The actual source closure is this one update unit. Private scripts and reports
-are under `.analysis/frontier-sakuya-runtime-20261109/` and
-`build/frontier-sakuya-runtime-20261109/`, including native receiver propagation,
-per-action shared-tail constants, full before/after payloads and section checks.
-Tracking validation, scoped CI and diff checks pass. Unrelated input migration
-and Alice edits remain untouched.
+The actual source closure is this one update unit. Tracking validation, scoped CI
+and diff checks pass. Unrelated input migration and Alice edits remain untouched.

@@ -22,7 +22,5 @@ and private vector::at ABI boundary. The two gain callers also remain nonexact.
 A private integer-mask/shift control changes the lookup to 177 bytes and was
 not retained. No ledger, source pin or Factory acceptance was changed.
 
-Evidence and fresh six-unit receipts are under
-`build/frontier-resource-token-20261110/`, with the complete review recorded in
-`verification.json`. The target comparator verifies the original JP1.06a
-executable SHA-256 before reading its bytes.
+The target comparator verifies the original JP1.06a executable SHA-256 before
+reading its bytes.

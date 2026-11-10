@@ -14,9 +14,8 @@ functions or bytes are credited. Three targeted origin rules were revalidated.
 All 99 accepted roots in 38 actual header-dependent units, including three real
 linked units and the 670-byte battle overlay, replayed exact.
 
-The separate overlay diagnostic again links its actual texture, primitive,
-rectangle and line sources without a fake provider. Its linked overlay remains
-676/native670 and nonexact; this does not replace the independent 670/670 COFF
-proof. No real D3D rendering or gameplay was executed. Receipts:
-`build/frontier-real-line-owner-20261104/`.
-All 1,030 target-independent CI tests and generated-progress checks passed.
+The separate overlay diagnostic again links its actual texture, primitive, rectangle
+and line sources without a fake provider. Its linked overlay remains 676/native670
+and nonexact; this does not replace the independent 670/670 COFF proof. No real D3D
+rendering or gameplay was executed. All 1,030 target-independent CI tests and
+generated-progress checks passed.

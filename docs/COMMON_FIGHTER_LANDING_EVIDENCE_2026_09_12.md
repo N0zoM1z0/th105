@@ -10,9 +10,7 @@ relocation bindings are unchanged.
 
 Target identity is the original Japanese 1.06a executable, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Fresh preflight and IDA evidence are in
-`build/common-fighter-current-preflight.json` and
-`build/common-fighter-current-typed.json`. The prior documentation was used
+The prior documentation was used
 as a hypothesis list; the baseline was independently compiled and audited.
 
 | Measure | Fresh baseline | Retained change |
@@ -128,10 +126,7 @@ python3 scripts/audit-giant-action-owners.py fighter-common-action \
 ```
 
 The build/comparison deliberately returns exit 1 for the nonexact body. The
-audit returning zero only means the diagnostic succeeded. Final local reports:
-`build/common-fighter-landing-final-formal.json`,
-`build/common-fighter-landing-final-owners.json`, and
-`build/common-fighter-landing-final-map.json`. Only this function was rebuilt;
+audit returning zero only means the diagnostic succeeded. Only this function was rebuilt;
 there was no unrelated module replay or global cold build.
 
 ## Follow-up: action-790 terminal ownership (52 -> 53)
@@ -160,8 +155,6 @@ with all previous 52 preserved. Metadata remains +0x2838 and section tail
 its comparison-window hash is
 `99563500433bccf1f68e7c256b438595de9cdcf5b18aee4816f19e69e1cda835`.
 No exact ledger, compiler profile, layout or relocation mapping is changed.
-Reports: `build/common14-checkpoint-formal.json` and
-`build/common14-checkpoint-owners.json`; use the focused commands above.
 
 Additional negative controls, compiled only as private single-root probes:
 
@@ -242,9 +235,7 @@ bytes, and the owner audit cannot identify the expected low switch table.
 There is **no completed owner count** for that profile; no compiler setting
 is retained. Its empty failed-audit JSON must not be treated as a zero score.
 
-All completed owner results above come from the full-root
-`audit-giant-action-owners.py` command, with the corresponding
-`build/common13-<suffix>-audit.json` report. They are not canonical byte
+They are not canonical byte
 comparisons. For future work, preserve the distinction between reproducible
 local instruction sequences and simultaneous whole-root owner placement;
 do not retain NOP removal, padding or manufactured liveness to compensate

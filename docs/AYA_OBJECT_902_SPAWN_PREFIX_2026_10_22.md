@@ -25,9 +25,7 @@ Serial complete-root controls (canonical full payload):
 | Separate calls |20068|62f4923b|
 | Low-sequence branch first, selected |20064|d08781e4|
 
-Recipes/sources remain in `.analysis/aya-902-spawn-20261022/`; receipts and
-objects in `build/aya-902-spawn-20261022/`. The predecessor is committed7b5d2cf
-and its object SHA256 is
+The predecessor is committed7b5d2cf and its object SHA256 is
 `3acfaf6c9f02463855acfc9b928915b863bbb5f012a723670b06a06ca7e03536`.
 
 ## Executed validation
@@ -99,7 +97,6 @@ comparison; do not silently substitute another source epoch.
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-902-spawn-prefix.py
 taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-902-phase.py
-python3 scripts/audit-aya-object-normal-flow.py build/aya-902-spawn-20261022/previous.obj build/match-units/GptWeb_AyaObjectActionState.obj --exclude-action 902 --dead-carriers
 python3 scripts/audit-giant-action-owners.py aya-object-vslot28 build/match-units/GptWeb_AyaObjectActionState.obj --unit gpt-web-aya-object-vslot28-full-root --json
 python3 scripts/ci.py
 git diff --check

@@ -52,8 +52,7 @@ reopened. `matches.csv` and origin accounting remain unchanged. Exact1429 /
 443911 bytes, source1636, authored1655, mapped1823, review300, excluded2072,
 units812. This is owner/source consolidation, not an exactness increase.
 
-The namespace-qualified CSelect declarations, separate destructor-facing
-owner, remaining UI/input facades and full executable linkage are not claimed
-fully recovered. Evidence: `.analysis/frontier-select-methods-20261102/` and
-`build/frontier-select-methods-20261102/`. Native jobs serial CPU0/nice10;
-original hash-attested target only, no IDA semantic reuse, no push.
+The namespace-qualified CSelect declarations, separate destructor-facing owner,
+remaining UI/input facades and full executable linkage are not claimed fully
+recovered. Native jobs serial CPU0/nice10; original hash-attested target only, no
+IDA semantic reuse, no push.

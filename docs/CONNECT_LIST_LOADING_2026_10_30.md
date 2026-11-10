@@ -58,9 +58,8 @@ checks initialized source bytes and the target byte actually read by443223,
 without reading beyond the original three-byte source literal. This is a new
 function-local mapping; no prior mappings or comparator rules were weakened.
 
-Formal receipts: build/frontier-connect-lists-20261030/address-formal.json and
-history-formal.json. Boundary/semantic evidence is retained in the same folder.
-Both sources are new isolated match-unit inputs; no previous accepted unit is
-affected. The two authored-origin rules attest complete target body hashes and
-actual caller edges. Their classification adds no exactness credit. Existing
-exact receipts and unrelated origin evidence are preserved.
+Boundary/semantic evidence is retained in the same folder. Both sources are new
+isolated match-unit inputs; no previous accepted unit is affected. The two
+authored-origin rules attest complete target body hashes and actual caller edges.
+Their classification adds no exactness credit. Existing exact receipts and unrelated
+origin evidence are preserved.

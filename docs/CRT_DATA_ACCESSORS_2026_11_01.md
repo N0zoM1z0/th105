@@ -51,7 +51,6 @@ compare every selected whole function exact. Only30 runtime bytes and five
 exclusions are added; data, BSS, initializer and authored-code totals get no
 credit. No implementation source, vendor object or target bytes are edited.
 
-Evidence: build/origin-anchors/vc8-data-accessors/proof.json and
-build/frontier-crt-data-accessors-20261101/mutations.json. The private scope
-also retains the original-member discovery and rejects unrelated guessed
-locale-accessor identities; the accepted four functions are timezone accessors.
+The private scope also retains the original-member discovery and rejects unrelated
+guessed locale-accessor identities; the accepted four functions are timezone
+accessors.

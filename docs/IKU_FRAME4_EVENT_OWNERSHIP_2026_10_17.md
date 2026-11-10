@@ -107,11 +107,9 @@ python3 scripts/audit-iku-call-sharing.py --object build/match-units/GptWeb_IkuA
 python3 scripts/audit-giant-action-owners.py iku-vslot28 build/match-units/GptWeb_IkuActionState.obj --unit gpt-web-iku-action-state --json
 ```
 
-The strict comparison and wrong control intentionally exit 1. Local reports
-are under `build/iku-event-ownership/`; private control/readback sources are
-under `.analysis/iku-event-ownership-20261017/`. Earlier landing/effect/link/MT
-results retain their recorded source hashes. No broad native matrix or
-accepted-unit replay was needed: shared headers, ABI, profiles, partition and
-relocations are unchanged. Remaining leads are 310/409 advancement sharing,
-730's extra facing site and the effect argument join. Original source/TU/
-optimizer provenance and full-root value/exception equivalence remain open.
+The strict comparison and wrong control intentionally exit 1. Earlier
+landing/effect/link/MT results retain their recorded source hashes. No broad native
+matrix or accepted-unit replay was needed: shared headers, ABI, profiles, partition
+and relocations are unchanged. Remaining leads are 310/409 advancement sharing,
+730's extra facing site and the effect argument join. Original source/TU/ optimizer
+provenance and full-root value/exception equivalence remain open.

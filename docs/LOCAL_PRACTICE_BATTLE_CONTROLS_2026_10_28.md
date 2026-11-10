@@ -19,9 +19,9 @@ The formerly pending pre-reset472230 and accepted round initializer470BC0
 already call this exact decorated method, with unchanged contracts.
 
 Raw recursive CFG reaches all code except the explicit8-byte loop-alignment
-gap428228..428230, skipped by JMP at428226. The complete bounded comparison
-includes those bytes and final RET at428251. No boundary truncation or partial
-credit is used. Receipt: build/frontier-428070-20261028/boundary.json.
+gap428228..428230, skipped by JMP at428226. The complete bounded comparison includes
+those bytes and final RET at428251. No boundary truncation or partial credit is
+used.
 
 Only this new source/unit was built. Existing header declarations and global
 bindings were reused unchanged; no other source was affected. Origin rules

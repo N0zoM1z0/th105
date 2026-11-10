@@ -27,12 +27,11 @@ python3 scripts/audit-suika-object-entry.py \
   --object build/exact-first-suika-object-entry-20261024/cold.obj
 ```
 
-Compilation returns0; all four comparisons return1 for the retained mismatch.
-The public full audit replays every relocation through the emitted section
-tail, including switch metadata; no byte masks are used. The independent-object
-comparator reports `build_provenance_verified=false`; its separate cold compile
-supplies build evidence. Formal receipts carry source/compiler/input hashes.
-Generated reports are below `build/exact-first-suika-object-entry-20261024/`.
+Compilation returns0; all four comparisons return1 for the retained mismatch. The
+public full audit replays every relocation through the emitted section tail,
+including switch metadata; no byte masks are used. The independent-object comparator
+reports `build_provenance_verified=false`; its separate cold compile supplies build
+evidence. Formal receipts carry source/compiler/input hashes.
 
 ## Observed target identity, ownership and complete boundary
 
@@ -147,8 +146,6 @@ are introduced. Reopen only with new independent evidence.
 
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/audit-suika-object-entry-paths.py
-taskset -c 0 nice -n 10 python3 scripts/audit-suika-object-entry-paths.py \
-  --object build/exact-first-suika-object-entry-20261024/cold.obj
 ```
 
 Both return0:12 actual RET0 paths, stack delta4, zero mismatches. Vector SHA256:

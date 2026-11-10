@@ -24,10 +24,6 @@ python3 scripts/compare-unit-object.py gpt-web-secondary-animation-runtime \
   --address 0x004309F0 --json
 ```
 
-Local evidence: `build/secondary-update-acceptance-preflight.json`,
-`build/secondary-update-current-typed.json`,
-`build/secondary-update-native-build.json`, and
-`build/secondary-update-native-formal.json`.
 The existing-object comparator alone does not establish compiler provenance;
 the preceding formal unit build and its provenance file do.
 No unrelated accepted modules or global cold build were rerun.
@@ -86,10 +82,6 @@ that variant reverses the two floating operands. Restoring only the first
 named input gives the complete canonical result. Do not treat floating
 operand commutation or a normalized instruction score as exactness.
 
-Private discriminator reports are
-`build/secondary-update-baseline-formal.json`,
-`build/secondary-update-temporary-formal.json`, and
-`build/secondary-update-first-named-formal.json`.
 The final source was then independently built in the original production TU
 and passed the full 2434-byte comparison, not merely the isolated probe.
 

@@ -158,16 +158,8 @@ python3 scripts/audit-reimu-void-root.py build/reimu-ownership-20261020/selected
 taskset -c 0 nice -n 10 python3 scripts/probe-reimu-action-ltcg.py
 ```
 
-Builds and heavy native/Ghidra probes ran at nice10/CPU0, serially. Local
-reports are under `build/reimu-ownership-20261020/`: `summary.json`,
-`selected/{receipt,sharing,relocations,preservation}.json`, `listing-proof.json`,
-`effect-prefixes.json`, `native-{advance,broad,three}.json`, `native602.json`,
-`bool-stage606-native.json` and `negative-counter/native.json`.
-The genuine producer/replay are `build/reimu-ltcg/{receipt,coff-replay}.json`.
-Private control generation and execution drivers remain under
-`.analysis/reimu-ownership-20261020/`; the602 and three-action drivers are
-`.analysis/reimu-next-sequence-20261019/native602.py` and
-`.analysis/reimu-300320-slots-20261019/native-three.py`.
+Builds and heavy native/Ghidra probes ran at nice10/CPU0, serially. The genuine
+producer/replay are `build/reimu-ltcg/{receipt,coff-replay}.json`.
 
 **Unknown:** whole-root semantics and original compiler context remain
 unproved. The candidate still differs from the target, whose reachable
@@ -208,12 +200,8 @@ The byte-identical inline320 control has matching first26 instruction shapes
 for both actions, but both entry labels still refer to the same physical
 copy. Neither observation recovers two target copies.
 
-Reports and input hashes are in
-`build/reimu-300320-inline-20261020/{summary,prefixes}.json` and the per-control
-receipts; the source recipe is
-`.analysis/reimu-300320-inline-20261020/probe.py`. The raw prefix verifier is
-`prefixes.py` beside it. The named-float execution uses the same private
-`native-three.py` driver and input hash documented above. These controls
-scope the negative result to the tested source/FP contexts. They do not
-establish the original TU, unique source identities for a target address,
-or an LTCG impossibility. The selected source and all exact ledgers stay fixed.
+The raw prefix verifier is `prefixes.py` beside it. The named-float execution uses
+the same private `native-three.py` driver and input hash documented above. These
+controls scope the negative result to the tested source/FP contexts. They do not
+establish the original TU, unique source identities for a target address, or an LTCG
+impossibility. The selected source and all exact ledgers stay fixed.

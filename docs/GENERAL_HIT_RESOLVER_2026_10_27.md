@@ -60,18 +60,14 @@ and short-value mutation did not recover native branch sharing. These are
 phase-scoped negative controls, not proof of LTCG or irrecoverable original TU.
 Do not continue a spelling grid without independent caller/type/lifetime evidence.
 
-Private scope: .analysis/frontier-46bf80-20261027/ and
-build/frontier-46bf80-20261027/. public.obj, its relocs/preview, formal-public.json,
-target.asm and target-audit.json preserve the complete comparison. The ordinary
-compare-function.py invocation binds every direct callee using the rel32 mapping
-in public.obj.preview.json and the complete symbol in public.obj.relocs.json.
-The initial partial-symbol invocation failed lookup and is not a comparison.
-Native builds use the pinned VC8 compile-unit.sh profile with GS disabled,
-CPU0/nice10, and empty DISPLAY/WAYLAND_DISPLAY.
+The ordinary compare-function.py invocation binds every direct callee using the
+rel32 mapping in public.obj.preview.json and the complete symbol in
+public.obj.relocs.json. The initial partial-symbol invocation failed lookup and is
+not a comparison. Native builds use the pinned VC8 compile-unit.sh profile with GS
+disabled, CPU0/nice10, and empty DISPLAY/WAYLAND_DISPLAY.
 
 The mandatory final CI log is local-ci.log in this scope. This is a source
 correction checkpoint, not a newly accepted exact function.
-
 
 ## 2026-10-29: typed virtual calls and positive source selection
 
@@ -101,7 +97,6 @@ body-hash/caller-backed origin rule. This removes one review row, not an
 exclusion or an exact-byte award. Remaining action-block sharing and x87
 schedule are the same bounded unknowns, not a reason for a new spelling grid.
 
-Receipts: build/frontier-general-hit-virtuals-20261029/{formal-build,boundary,
-compare}.json and ci.log. The private typed-call candidate and former whole
-candidate are retained for direct equality checks. Default CI follows final
-ledger/progress edits; only the affected unit is compiled.
+The private typed-call candidate and former whole candidate are retained for direct
+equality checks. Default CI follows final ledger/progress edits; only the affected
+unit is compiled.

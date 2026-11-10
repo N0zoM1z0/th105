@@ -76,6 +76,5 @@ record type from `ResultRecord24` to `ObservedRecord24`; all other whole-object
 section/relocation dumps are identical. The existing nonexact consumer roots
 remain nonexact at the same locations. Focused CI passes.
 
-Reports: `build/frontier-score-record-owner-20261110/result-consumer/`, compared
-with its `after/` baseline. This preserves local exactness; no new Factory
-acceptance or authored-byte count is claimed.
+This preserves local exactness; no new Factory acceptance or authored-byte count is
+claimed.

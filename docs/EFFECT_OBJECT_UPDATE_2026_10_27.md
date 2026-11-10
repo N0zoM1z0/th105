@@ -110,13 +110,10 @@ uses the canonical comparator on every emitted byte and relocation. Two added
 literal bindings (double1.25 and the promoted0.94f value) are pinned by native
 absolute FPU operands and exact COFF data, with no existing mapping changes.
 
-`build/frontier-659aa0-20261027/` keeps complete target disassembly, CFG/index-map
-facts, first/control objects, formal callable/full receipts and final local-CI
-logs. Private source snapshots and the semantic artifact remain under the matching
-analysis directory. Final CI is pending at writing; terminal log/exit is the
-commit gate. Existing620 workflow tests are reused, not expanded into a runtime
-matrix. No game/RNG/callback execution is claimed. Existing exact totals remain
-unchanged and incrementally validated.
+Final CI is pending at writing; terminal log/exit is the commit gate. Existing620
+workflow tests are reused, not expanded into a runtime matrix. No game/RNG/callback
+execution is claimed. Existing exact totals remain unchanged and incrementally
+validated.
 
 ## Typed update and bounded x87 verification, 2026-11-10
 
@@ -153,9 +150,6 @@ x87 registers/tags, status and AX. This covers the concrete changed schedules;
 it does not prove full gameplay behavior, unmasked exception delivery or all
 possible floating-point inputs. It gives no exactness credit.
 
-Script: `.analysis/frontier-effect-addition-20261110/check.py`.
-Reports: `build/frontier-effect-object-state-20261110/addition-observers.json`,
-`update-typed-recheck.json`, `update-payload-selected.json`, and `ci-selected.log`.
 The prior unselected status in the entry note is superseded for this verified
-state-view change. Entry source and its exact 2676/2980-byte evidence are
-unchanged. Focused CI and diff checks pass; no Factory replay or ledger change.
+state-view change. Entry source and its exact 2676/2980-byte evidence are unchanged.
+Focused CI and diff checks pass; no Factory replay or ledger change.

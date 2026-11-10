@@ -100,15 +100,9 @@ COFF, source, data/manifest ledgers, imported audit scripts and engine versions
 before/after execution. Source-to-object build provenance is explicitly not
 attested by the execution command; retain its separate actual build receipt.
 
-Private recipes are under `.analysis/reimu-object-869-lifetimes-20261022/`:
-`facts.py`, `params_build.py`, `params_delta.py`, `probe.py`. Receipts under
-`build/reimu-object-869-lifetimes-20261022/` include `facts.json`,
-`params-comparison.json`, `params-source-delta.json`, `probe.json`,
-`public-audit.json`, `params-audit.json` and `params-804-audit.json`.
-The pointer control uses the actual int/void selector hierarchy and the
-unchanged ordinary profile from the804 typed-self experiment. Its emitted
-source SHA256 is `e6489df19cad7082bf1b4bbbcdd93ba9793c6a4ac3790c5e1515d7a1ccf9e86f`.
-Private source, objects and reports remain uncommitted.
+The pointer control uses the actual int/void selector hierarchy and the unchanged
+ordinary profile from the804 typed-self experiment. Its emitted source SHA256 is
+`e6489df19cad7082bf1b4bbbcdd93ba9793c6a4ac3790c5e1515d7a1ccf9e86f`.
 
 No public reconstruction source/header/profile, selection, byte-ownership or
 match row changes. Ledgers remain1,379 exact/234,584 bytes; no new aggregate

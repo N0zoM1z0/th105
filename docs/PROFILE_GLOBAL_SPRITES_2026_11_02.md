@@ -24,7 +24,6 @@ message/result setup and shared rendering. All compared hashes are unchanged,
 including the pending 2521-byte deck renderer. There is no new authored credit,
 compiler flag change, manual vptr, fake ABI or inlining barrier.
 
-Private controls and receipts: .analysis/frontier-profile-global-sprites-20261102/
-and build/frontier-profile-global-sprites-20261102/. Final CI passed all 962 tests in
-109.603 seconds. Both diff checks gate the local checkpoint. Counts remain 1426 exact / 443399 bytes, source 1636,
-authored 1655, mapped 1826, excluded 2075, review 297 and units 813.
+Final CI passed all 962 tests in 109.603 seconds. Both diff checks gate the local
+checkpoint. Counts remain 1426 exact / 443399 bytes, source 1636, authored 1655,
+mapped 1826, excluded 2075, review 297 and units 813.

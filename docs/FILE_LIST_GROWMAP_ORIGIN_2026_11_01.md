@@ -33,8 +33,8 @@ exact1431/443916, source1635/authored1655/mapped1820 and units772 are unchanged.
 
 Reproduce the mixed parent/helper unit:
 
-    scripts/repo-python scripts/build.py --unit exact-first-file-list-finalize --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-file-list-finalize --compare
+--json
 
-The command reports the intentional parent mismatch and exact helper341.
-Receipts: build/frontier-file-list-growmap-20261101/formal.json and canonical.json.
-No source change, threshold relaxation, all-exact rebuild or push.
+The command reports the intentional parent mismatch and exact helper341. No source
+change, threshold relaxation, all-exact rebuild or push.

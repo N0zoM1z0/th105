@@ -79,9 +79,7 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-The nine-function focused comparison intentionally reports comparison_failed:
-eight candidates are nonexact, while hex45 is exact. Selected evidence and
-receipts remain in `build/font-reset-20261021/`; private reproduction recipes
-are in `.analysis/font-reset-20261021/`. Next are genuine setter411760 and
+The nine-function focused comparison intentionally reports comparison_failed: eight
+candidates are nonexact, while hex45 is exact. Next are genuine setter411760 and
 blend4127C0 definitions, then larger font TU/link/EH recovery. Reimu496540 still
 first differs at49655F/+31.

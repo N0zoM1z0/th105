@@ -119,18 +119,16 @@ They neither enlarge the root boundary nor define a similarity score.
 | Local group receiver expression |3898 |3143 | Recovers derived receiver formation; no long-lived alias |
 | Member references in the new phase |3898 |3143 | Byte-neutral again; finite reference lane closed |
 
-Private sources, objects, canonical bytes and full JSON remain under
-`.analysis/exact-first-461b70-20261026/` and
-`build/exact-first-461b70-20261026/`. The word-array view and named-lifetime
-negative control are not copied into public source. Final full-section SHA is
-`7ab0c272d2f58c47e071d1b51edbd43f70a550ed529b87f0f186cfd9dc2471e2`.
-The public ledger-sized comparator hashes its first3885 bytes as
-`b73d385728e8133defc28ae520fd3f616bb101c3ac8dd562f852642d6c6bf855`.
-Within the actual main there are3130 unequal positions; all3898 diagnostic
-positions contain3143 differences. Remaining size, stack homes, vtable-call
-scheduling and pointer-vector erase register allocation remain nonexact.
-No source-selection or exact claim follows from recovered size/frame/guard
-counts or local operation alignment.
+The word-array view and named-lifetime negative control are not copied into public
+source. Final full-section SHA is
+`7ab0c272d2f58c47e071d1b51edbd43f70a550ed529b87f0f186cfd9dc2471e2`. The public
+ledger-sized comparator hashes its first3885 bytes as
+`b73d385728e8133defc28ae520fd3f616bb101c3ac8dd562f852642d6c6bf855`. Within the
+actual main there are3130 unequal positions; all3898 diagnostic positions
+contain3143 differences. Remaining size, stack homes, vtable-call scheduling and
+pointer-vector erase register allocation remain nonexact. No source-selection or
+exact claim follows from recovered size/frame/guard counts or local operation
+alignment.
 
 ## Reproduction and remaining limits
 

@@ -34,10 +34,9 @@ EH is87 bytes at0x6B9140 (handler0x6B917C). Each complete metadata section is68
 bytes, with the unwind table preceding FuncInfo by32 bytes. All310 support bytes
 match. These are evidence for cleanup ownership, not new authored exact bytes.
 
-Private evidence is under .analysis/frontier-config-real-sprites-20261102/ and
-build/frontier-config-real-sprites-20261102/. Final default CI passed962 tests
-(98.220 seconds), tracking, generated progress and whitespace checks. Both diff
-checks passed. No private report or target bytes are committed.
+Final default CI passed962 tests (98.220 seconds), tracking, generated progress and
+whitespace checks. Both diff checks passed. No private report or target bytes are
+committed.
 
 Counts remain1427 exact /443604 bytes,1637 source-present,1656 authored,
 1826 mapped,2074 excluded,297 review and813 units.

@@ -108,12 +108,9 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-Final configured reports share prefix `build/aya-owner-reads-final-`.
-Private controls/read-epoch checker are under
-`.analysis/aya-owner-reads-20261002/`; objects and source/object/window-hashed
-`controls-summary.json` are under `build/aya-owner-reads-20261002/`.
-Private existing-object comparisons lack configured build provenance; the
-retained source is independently rebuilt through the configured unit.
+Private
+existing-object comparisons lack configured build provenance; the retained source is
+independently rebuilt through the configured unit.
 
 Fresh raw traversal again closes4,630 instructions/all19,522 target bytes
 through seven switches.124/124 guard checks, two641-value unsignedY checks,

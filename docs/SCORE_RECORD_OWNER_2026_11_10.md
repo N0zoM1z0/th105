@@ -33,9 +33,6 @@ header inclusion also emits the ordinary SDK `bad allocation` literal, its
 static pointer relocation, and the C++ runtime default-library directive; no
 new executable code or initialization section is emitted.
 
-Evidence is under `build/frontier-score-record-owner-20261110/{before,after}/`:
-all fourteen full comparison reports and complete section/relocation dumps.
-The small serial driver is `.analysis/frontier-score-record-owner-20261110/build.py`.
 Focused CI passed. These are local exact comparisons, not new Factory acceptance.
 
 ## Story arrays: storage capacity is not the active roster size
@@ -47,13 +44,12 @@ persistence `0x42D487..0x42D4DE` copies all five DWORDs from each of `+0x08`,
 `+0x1C` and `+0x30`, including those last five bytes. Native initialization
 and the established serialized schema corroborate the twenty-byte storage.
 
-The policy loops still process fifteen characters, with thirteen initial
-secondary unlocks. Those are observed policy bounds, not array cardinalities;
-no unlock behavior or new event validation is introduced. The isolated source
-layout change preserves complete COFF contents and relocations. Fresh
-`gpt-web-score-story-progress` comparisons remain exact for both event
-publication `0x42E750` (95 bytes) and refresh `0x42E3F0` (860 bytes).
-Evidence and focused CI output: `build/frontier-score-story-arrays-20261110/`.
+The policy loops still process fifteen characters, with thirteen initial secondary
+unlocks. Those are observed policy bounds, not array cardinalities; no unlock
+behavior or new event validation is introduced. The isolated source layout change
+preserves complete COFF contents and relocations. Fresh
+`gpt-web-score-story-progress` comparisons remain exact for both event publication
+`0x42E750` (95 bytes) and refresh `0x42E3F0` (860 bytes).
 
 ## Shared owned prefix and deck availability
 
@@ -76,8 +72,7 @@ setup only reorder unchanged compiler support sections and their debug records.
 Their full section-content and relocation multisets are identical, and each
 selected root is independently compared rather than relying on that diagnostic.
 
-Reports: `build/frontier-score-record-owner-20261110/full-prefix/`, compared
-with `result-consumer/`. Focused CI and diff checks pass.
+Focused CI and diff checks pass.
 
 ## Arcade and result-menu unlock consumers
 
@@ -99,9 +94,6 @@ SafeSEH symbol indexes shift after those symbol removals; the root code and
 other support section contents are unchanged. No removed accessor was a
 native callee or independently counted exact root.
 
-Evidence and focused CI: `build/frontier-score-unlock-consumers-20261110/`,
-compared with `frontier-score-record-owner-20261110/full-prefix/`.
-
 ## One music lookup declaration
 
 `ScoreMusicLookup.hpp` now supplies the same class definition to path lookup/
@@ -111,8 +103,7 @@ member names and method lists. The shared declaration retains both real methods
 and checks the set's +0x44 offset. The narrow existing view and its decorated
 ABI names are retained; no unsupported alias to the full score type is added.
 
-All ten configured roots in the three affected units remain exact: CRC293,
-lookup99, publication86, six music-menu roots442/281/38/185/318/30, and list
-population867. Every complete COFF section and relocation is byte-for-byte
-unchanged. The 30-byte deleting destructor remains compiler-owned. Evidence
-and focused CI: `build/frontier-score-music-contract-20261110/`.
+All ten configured roots in the three affected units remain exact: CRC293, lookup99,
+publication86, six music-menu roots442/281/38/185/318/30, and list population867.
+Every complete COFF section and relocation is byte-for-byte unchanged. The 30-byte
+deleting destructor remains compiler-owned.

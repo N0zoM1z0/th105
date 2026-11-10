@@ -19,11 +19,10 @@ credit is added. The original source spelling and complete linked context are
 unknown. This is not gameplay execution, exception equivalence, or a full
 application link.
 
-All four accepted continue/end menu roots, including the 486-byte caller,
-replayed exact after sharing the owner declaration. The `Continue` literal is
-pinned to the target's full nine bytes; it is a relocation witness rather than
-extra code coverage. Receipts are in `build/frontier-continue-round-20261104/`.
-The focused authored-origin rule and all 1,027 target-independent CI tests
+All four accepted continue/end menu roots, including the 486-byte caller, replayed
+exact after sharing the owner declaration. The `Continue` literal is pinned to the
+target's full nine bytes; it is a relocation witness rather than extra code
+coverage. The focused authored-origin rule and all 1,027 target-independent CI tests
 passed, including generated-progress and whitespace checks.
 
 A follow-up replaces the opaque prefix with the independently established real

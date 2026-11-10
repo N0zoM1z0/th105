@@ -25,10 +25,6 @@ Original sharedbook.obj SHA256:
 0c98ab8712fbf5f287d563a925e7f407e3a0a67b469c0d1bd9a67c6677582704.
 
 Two formal comparisons pass. Seven focused tests reject changed source/member,
-missing calls/provider, partial/masked extents and padding-as-code credit. All
-240 actual byte-corruption controls fail, covering both entire source/native
-sections. The narrow origin rule passes before the single review row changes.
-
-Evidence: build/origin-anchors/xiph-staticbook-destroy.json and
-build/frontier-staticbook-destroy-20261101/. Private scripts are under
-.analysis/frontier-staticbook-destroy-20261101/.
+missing calls/provider, partial/masked extents and padding-as-code credit. All 240
+actual byte-corruption controls fail, covering both entire source/native sections.
+The narrow origin rule passes before the single review row changes.

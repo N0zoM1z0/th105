@@ -110,12 +110,8 @@ its transaction rolled back and project hashes remained unchanged. The second
 pass added that target-bounded temporary view and completed. No new import or
 analysis process was launched concurrently.
 
-Private receipts live under
-`build/exact-first-youmu-object-update-20261025/`: `raw-facts.json`,
-`target-audit.json`, `ghidra-receipt.json`, `ghidra.log`,
-`primary-db-before.json`, `primary-db-after.json`, and `decompile.txt`.
-Decompiler output is only a hypothesis. It does not establish signedness,
-rounding, callback read epochs or source lifetimes without instruction review.
+Decompiler output is only a hypothesis. It does not establish signedness, rounding,
+callback read epochs or source lifetimes without instruction review.
 
 ## First complete source and early comparison
 
@@ -272,16 +268,14 @@ or edges. Run this focused new check with:
 scripts/repo-python scripts/audit-youmu-object-update-paths.py --point900
 ```
 
-Current receipts have the `expressions-` prefix under the same build scope;
-the finite controls retain their own named source/preview/inventory receipts.
-The two byte-neutral frame controls and remaining stack/callback layout gap
-justify parking this full hypothesis and selecting another complete authored
-representative. It remains unselected in `implemented.csv` and absent from
-`matches.csv`: remaining instruction/source/default-arm review is incomplete.
-Identifier values outside0..3 reach target arms without explicit period/count
-assignment; their domain/default behavior is still unknown. Original source,
-complete owner layout and original TU/compiler ownership remain unknown. No
-standalone TU/LTCG impossibility is established. Remilia557690 stays parked.
+The two byte-neutral frame controls and remaining stack/callback layout gap justify
+parking this full hypothesis and selecting another complete authored representative.
+It remains unselected in `implemented.csv` and absent from `matches.csv`: remaining
+instruction/source/default-arm review is incomplete. Identifier values outside0..3
+reach target arms without explicit period/count assignment; their domain/default
+behavior is still unknown. Original source, complete owner layout and original
+TU/compiler ownership remain unknown. No standalone TU/LTCG impossibility is
+established. Remilia557690 stays parked.
 
 ## Independent trig return-width control
 
@@ -420,13 +414,18 @@ The original gates at `0x53FAB9` and `0x53FE77` branch when the signed count exc
 
 The native phase table at `0x543534` maps phase 1 to `0x53E6FE`. After the scale update, frames at least 2 inspect byte `+0x113` at `0x53E760`: values below 15 retire the object; otherwise `0x53E76E..0x53E77E` subtracts 15 from bytes `+0x111`, `+0x112`, and `+0x113` before advancing the frame. The earlier source instead tested and decremented only `+0x113` by 20. The source now follows the native threshold, two color-byte updates, and alpha-byte update. This is a real behavior correction, including the retirement threshold.
 
-A fresh complete comparison remains nonexact: the candidate section tail is 27,024 bytes and first differs at +34 against the 25,944-byte native callable. The hypothesis remains unselected and earns no exact credit. Focused receipts are `build/youmu-823-fade-fix.json`.
+A fresh complete comparison remains nonexact: the candidate section tail is 27,024
+bytes and first differs at +34 against the 25,944-byte native callable. The
+hypothesis remains unselected and earns no exact credit.
 
 ## Action 853 repeated phase-2 retirement, 2026-11-06
 
 After `advance_frame`, native action 853 checks the frame counters and phase 1 at `0x53EB56..0x53EB80`. Its next check at `0x53EB86..0x53EBB7` compares phase against 2 and jumps to `0x53DAD9`: on equality it decrements `+0x330` at `0x53DADB`, then falls through to the shared check at `0x53DAE1..0x53DB17`, which checks phase 2 again and decrements it again. If the frame-counter conditions fail, the shared check rechecks those conditions and does not decrement. The previous source's final check instead used phase 3. It now reproduces the native phase-2 double decrement, without adding a phase-3 decrement. The separate decrement for a true `advance_frame` result remains unchanged.
 
-A fresh full-root candidate is 27,020 bytes in its section tail, first mismatch +34 against the 25,944-byte callable. This behavior correction does not prove whole-function equivalence; the hypothesis remains unselected and earns no exact credit. Focused receipts: `build/youmu-853-double-phase2.json` and `.dis`.
+A fresh full-root candidate is 27,020 bytes in its section tail, first mismatch +34
+against the 25,944-byte callable. This behavior correction does not prove
+whole-function equivalence; the hypothesis remains unselected and earns no exact
+credit.
 
 ## Action 853 shared-tail correction, 2026-11-09
 
@@ -467,8 +466,6 @@ The other 241 non-debug sections across four checked objects are unchanged.
 The root remains an unselected, nonexact hypothesis, and no exact credit is
 added. This semantic correction is retained despite increasing the byte gap.
 
-Receipts and private recipes are in the matching
-`build/frontier-youmu-runtime-providers-20261109/` and `.analysis/` scope.
 No shared provider source, input-migration file or origin pin changes.
 
 ## Shared-tail follow-up, 2026-11-09
@@ -495,10 +492,7 @@ registers agree. The actual frame provider executes; no calls are mocked.
 These bounded cases and the constant facts justify leaving those paths alone,
 not accepting the still-nonexact whole root.
 
-Private analysis and receipts are in
-`.analysis/frontier-youmu-shared-tails-20261109/` and
-`build/frontier-youmu-shared-tails-20261109/` (`retirement-tails.json` and
-`motion-fades.json`). The candidate is the unchanged 27,024-byte payload
+The candidate is the unchanged 27,024-byte payload
 `f8f4ccca336eb93a9cfde74bcbacf721dad064f45a77e24e55aed23283296002`.
 
 ## Action 813 and 818 fade boundaries, November 10
@@ -517,8 +511,6 @@ actual frame-provider call traces, stack balance and saved registers agree.
 The real native provider runs without mocked calls. These finite fade-boundary
 fixtures justify retaining the current source, not whole-function equivalence.
 
-A fresh complete payload comparison still reports 27,024 candidate bytes
-against 26,576 native bytes, with first mismatch +34. No source, ledger or
-exact-credit change follows. Receipts and the small private diagnostic are in
-`build/frontier-youmu-813-818-fades-20261110/` and its matching `.analysis/`
-directory, including `full-payload.json` and `cases.json`.
+A fresh complete payload comparison still reports 27,024 candidate bytes against
+26,576 native bytes, with first mismatch +34. No source, ledger or exact-credit
+change follows.

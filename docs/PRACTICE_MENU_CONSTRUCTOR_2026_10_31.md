@@ -67,16 +67,14 @@ This is independent full cleanup evidence, not a relaxation of the public
 
 Formal command:
 
-    scripts/repo-python scripts/build.py --unit exact-first-practice-menu-constructor --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-practice-menu-constructor
+--compare --json
 
 Actual include traversal finds only the new constructor and
 gpt-web-design-base-render affected by the shared lookup extraction.
 All seven accepted design-render functions freshly remain exact. No shared
 header or old caller changes, unrelated cold replay or gameplay matrix is used.
 
-Receipts and reproducible private scripts are under
-build/frontier-practice-constructor-20261031/ and its .analysis counterpart.
-The fresh analysis preflight is under build/frontier-medium-discovery-20261031/.
 The origin row is updated incrementally through the existing canonical baseline;
-unchanged origin evidence is retained. Progress is regenerated and final CI
-and whitespace checks gate the local checkpoint. No remote push is performed.
+unchanged origin evidence is retained. Progress is regenerated and final CI and
+whitespace checks gate the local checkpoint. No remote push is performed.

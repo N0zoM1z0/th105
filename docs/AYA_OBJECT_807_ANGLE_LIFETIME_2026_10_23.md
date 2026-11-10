@@ -101,7 +101,5 @@ git diff --check
 ```
 
 The configured full-root comparator is expected to report nonexact. Omit the
-previous object option for current native replay only. The previous object's
-full canonical SHA256 isfd8dc276...; it is copied before this source change.
-Reports, source controls and integrity receipts remain in
-`build/aya-807-sequence-20261023/`; private artifacts are not committed.
+previous object option for current native replay only. The previous object's full
+canonical SHA256 isfd8dc276...; it is copied before this source change.

@@ -35,9 +35,9 @@ The unaccepted scalar-owner candidate compiles but earns no credit. Current
 linked owner construction still emits357 bytes and normal destruction341/native333;
 neither becomes accepted from the ownership correction.
 
-Receipts are under build/frontier-network-request-array-20261031. The changed
-source set and pre-edit copies are retained privately for reproducibility.
-No unrelated native units or whole origin census were cold-replayed.
+The changed source set and pre-edit copies are retained privately for
+reproducibility. No unrelated native units or whole origin census were
+cold-replayed.
 
 All reconstruction totals remain unchanged:1565 exact /446423 bytes,
 source1761/authored1781/mapped1788, excluded1658/review588, units753.

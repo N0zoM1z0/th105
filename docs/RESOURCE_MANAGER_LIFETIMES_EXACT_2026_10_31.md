@@ -11,10 +11,8 @@ Three normal application-owner destructors now match98/98 bytes each:
 - 402020, CHandleManager<CDSBuffer*>; vtable6D699C.
 - 404FD0, CHandleManager<IDirect3DTexture9*>; vtable6D69AC.
 
-Their real scalar-deleting wrappers402090,4020B0 and405040 also compare30/30
-each, but remain compiler-excluded and earn no authored credit. All six
-physical functions have complete fresh public receipts in
-build/frontier-resource-manager-lifetime-20261031/formal.json.
+Their real scalar-deleting wrappers402090,4020B0 and405040 also compare30/30 each,
+but remain compiler-excluded and earn no authored credit.
 
 Raw decoding closes all34 instructions of each98-byte normal destructor,
 with conditional frees, one RET0 and no escaping branches. Previously pinned
@@ -74,7 +72,6 @@ Three normal physical owner functions add294 authored exact bytes:
 1561 functions /444796 bytes. Source1758, authored1778, mapped1785,
 excluded1658, review591, units752. The three30-byte wrappers remain in their
 existing compiler-origin rule. No helper inflation.
-
 
 ## Selected texture context update
 

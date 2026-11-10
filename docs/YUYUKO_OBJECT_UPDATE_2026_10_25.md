@@ -12,10 +12,8 @@ original names, complete owner layout and translation-unit ownership are unknown
 ## Observed target boundary
 
 All observations use the original Japanese 1.06a executable SHA-256
-`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`,
-base `0x400000`, entry `0x68B9D2`. The GUI IDA SHA mismatches and was not used.
-The roster raw shared-callee census was refreshed before this root's analysis
-(`build/exact-first-yuyuko-object-update-20261025/roster-shared-callees.json`).
+`56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`, base `0x400000`,
+entry `0x68B9D2`. The GUI IDA SHA mismatches and was not used.
 
 The primary Object slot+0x28 cell `0x6C55EC` points to `0x56F700`.
 The candidate's main `[0x56F700,0x577CE6)` is 34,278 bytes, SHA-256
@@ -78,10 +76,9 @@ conversion calls come from ordinary casts; no fake custom ABI helper is declared
 
 One direct readonly/noanalysis Ghidra process, limited to 384 MiB, independently
 attested import identity, entry and all mapped bytes. Temporary root/callee/
-physical-ST0 call views were read back and rolled back; all nine primary DB
-hashes were unchanged. `ghidra-receipt.json` records the successful sentinel
-`YUYUKO_OBJECT_UPDATE_READONLY_ATTESTED`. Decompiler text remains a hypothesis,
-not a source-generation recipe. Manual source was written and reviewed separately.
+physical-ST0 call views were read back and rolled back; all nine primary DB hashes
+were unchanged. Decompiler text remains a hypothesis, not a source-generation
+recipe. Manual source was written and reviewed separately.
 
 Raw stack-depth propagation and backward tracing from the actual request
 argument slot establish 46 consumed three-word packet bases (-12 through -552).
@@ -105,9 +102,8 @@ support this unusual order and it is retained.
 
 ## First whole comparison and bounded controls
 
-Receipts are below `build/exact-first-yuyuko-object-update-20261025/`.
-Every candidate replays its complete COFF section and all relocations against
-all 35,060 target bytes; no instruction or metadata masking is used.
+Every candidate replays its complete COFF section and all relocations against all
+35,060 target bytes; no instruction or metadata masking is used.
 
 | Source/control | Complete size / SHA prefix | Differing bytes / first offset | Evidence and disposition |
 | --- | --- | --- | --- |
@@ -153,8 +149,6 @@ parent invalid frame `>=15`, active own frame `>=1`, counter `>=10/20`, and
 alpha `<=15`) admits the actual separate virtual exits. Candidate57155C and
 5716B9 now correspond to native571634 and571790; both still take argument2
 and reset counter144. No synthetic variable, padding or forced register is used.
-
-Fresh complete controls are retained below `build/yuyuko-update-exits-20261025/`:
 
 | Control | Full bytes / SHA prefix | Unmasked differences | Physical observations |
 | --- | --- | ---: | --- |

@@ -66,13 +66,11 @@ numeric results. The original source spelling is not uniquely recovered.
 
 ## Focused validation
 
-Three private probes independently apply only the range correction, only
-the association correction, and both. Each retains metadata `+0x92B4` and
-24/98 diagnostic owners, without gaining or losing an identical owner.
-Private sources are under `.analysis/youmu-angle-range-20261002/`; their
-objects and reports are under `build/youmu-angle-range-20261002/`.
-Existing-object comparisons are diagnostics with unverified build provenance.
-The retained source is separately rebuilt through the configured unit:
+Three private probes independently apply only the range correction, only the
+association correction, and both. Each retains metadata `+0x92B4` and 24/98
+diagnostic owners, without gaining or losing an identical owner. Existing-object
+comparisons are diagnostics with unverified build provenance. The retained source is
+separately rebuilt through the configured unit:
 
 ```bash
 python3 scripts/build.py --unit gpt-web-youmu-vslot28-full-root --compare --json
@@ -81,15 +79,13 @@ python3 scripts/audit-giant-action-owners.py youmu-vslot28 \
   --unit gpt-web-youmu-vslot28-full-root --json
 ```
 
-Fresh reports are `build/youmu-angle-final-20261002.json` and
-`build/youmu-angle-final-owners-20261002.json`. Raw target traversal still
+Raw target traversal still
 reaches all 9,912 instructions / 37,692 callable bytes without unresolved
 indirect jumps. A private AH-guard scanner pairs 136 target/candidate guards
 by physical owner and ordinal, finding six unordered-only leads before the
 correction and zero afterward. Operand and edge inspection confirms the
 three range corrections. Ordinal pairing is a lead-finding method, not proof
 that every floating comparison, value lifetime, or exception path is closed.
-Its final report is `build/youmu-angle-final-guards-20261002.json`.
 
 ## What the TH08 examples establish
 

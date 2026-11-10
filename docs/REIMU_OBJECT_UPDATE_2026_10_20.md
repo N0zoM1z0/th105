@@ -141,13 +141,11 @@ taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-scalar-actions.py bui
 python3 -m unittest discover -s tests -p test_reimu_object_update_target.py
 ```
 
-Private Ghidra recipes are below `.analysis/reimu-object-update-20261020/`;
-target maps, build logs, positive/negative inputs, receipts and the decompiler
-hypothesis stay below the corresponding `build/` directory. Builds are serial.
-The [projectile follow-up](REIMU_OBJECT_PROJECTILES_2026_10_20.md) adds
-800/801/804/807/808 against their shared exits and actual helper contracts.
-Another31 concrete arms remain. Existing Fighter478FA0 and
-Object-entry4A1CE0 source/acceptance checkpoints remain unchanged.
+Builds are serial. The [projectile
+follow-up](REIMU_OBJECT_PROJECTILES_2026_10_20.md) adds 800/801/804/807/808 against
+their shared exits and actual helper contracts. Another31 concrete arms remain.
+Existing Fighter478FA0 and Object-entry4A1CE0 source/acceptance checkpoints remain
+unchanged.
 
 ## Unsigned random conversion constants, 2026-11-05
 

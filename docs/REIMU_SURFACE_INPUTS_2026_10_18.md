@@ -130,10 +130,9 @@ No private DLL executes, and the normal producer's provider-IR guard stays
 unchanged. An additional explicit actor+4 cast replacing the staging RNG
 getter also gives the identical entire ordinary payload and is not selected.
 
-Receipts and compact evidence are below `build/reimu-height-inputs/`. Measured
-477-case peak RSS is188384KiB; read-only IR analysis is276984KiB. Heavy jobs ran
-serially on CPU0 at nice10. Primary database hashes remain unchanged; duplicate
-objects/images/input snapshots are disposable after their receipts are retained.
-No full historical or aggregate replay is claimed. Continue with the complete
-caller sharing/lifetime differences while retaining the570h opaque-provider
+Measured 477-case peak RSS is188384KiB; read-only IR analysis is276984KiB. Heavy
+jobs ran serially on CPU0 at nice10. Primary database hashes remain unchanged;
+duplicate objects/images/input snapshots are disposable after their receipts are
+retained. No full historical or aggregate replay is claimed. Continue with the
+complete caller sharing/lifetime differences while retaining the570h opaque-provider
 candidate and all strict acceptance guards.

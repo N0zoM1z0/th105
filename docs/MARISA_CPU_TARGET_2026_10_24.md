@@ -249,18 +249,10 @@ hash. Root min/max/count matches the raw extent. Temporary function/type changes
 are read back and rolled back; pinned primary DB files remain unchanged.
 Decompiler output is a hypothesis and has not been pasted into source.
 
-Private replay recipes are under `.analysis/exact-first-marisa-cpu-20261024/`:
-`raw.py`, `setup.py`, `facts.py`, the Java script and read-only launcher, plus
-first-source `probe00`, independent-case `probe01`, field-read `probe03`,
-vertical-predicate `probe04`, full normalization/difference,
-phase traversal and native execution recipes. Generated
-evidence is under the corresponding `build/` directory: raw disassembly/facts,
-full CFG and12 tables, callee/literal observations, attested call-view and logs,
-DB hashes, initial scope summary, retained-input hashes, native-tail diagnostic,
-probe00..probe24 payloads/reports, phase call-site partitions and formal-build/
-formal-paths, formal-field and formal-refined build/audit/paths receipts.
-`probe10` is rejected; `probe18` is neutral; `probe23`/`probe24` are unselected. `formal-refined-paths-pinned.json`
-adds per-input instruction-site attestation for the two posture witnesses. The initial target-only receipt is historical; the public
-source/unit and current comparison above supersede its source-selected flag.
-No target bytes are patched. Earlier CPU and input sources, compiler flags,
-layouts, object units and relocation ledgers remain unchanged.
+`probe10` is rejected; `probe18` is neutral;
+`probe23`/`probe24` are unselected. `formal-refined-paths-pinned.json` adds
+per-input instruction-site attestation for the two posture witnesses. The initial
+target-only receipt is historical; the public source/unit and current comparison
+above supersede its source-selected flag. No target bytes are patched. Earlier CPU
+and input sources, compiler flags, layouts, object units and relocation ledgers
+remain unchanged.

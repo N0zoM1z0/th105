@@ -54,18 +54,16 @@ scripts/repo-python scripts/build.py --unit cross-v106a-system-utilities --compa
 
 The first command reports the known mismatch. The second retains all five
 accepted168/97/34/138/188-byte roots. Actual quoted-include dependency inspection
-finds only these two affected units. Other exact receipts are preserved.
-Raw closure, semantic evidence and focused reports are under
-build/frontier-mouse-init-cil-20261030. No application or hardware input was run.
+finds only these two affected units. Other exact receipts are preserved. No
+application or hardware input was run.
 
 ## Typed COM control, 2026-11-04
 
 A bounded control replaced this mouse path's explicit vtable calls with ordinary
-virtual calls through a DInput-compatible interface prefix, without changing
-its globals or error helper. The complete CIL candidate remained 296 bytes,
-with the identical canonical SHA-256
-`6571161e9e1ea9f66987eb73de162cfd2b03dad69929a0bb97ff4e158fa547e4`
-and the same first mismatch. All five exact system-utility roots replayed.
-The local control was not selected; the source was restored. This does not
-prove the original nominal interface or explain the out-of-line error-helper
-boundary. Receipts: `build/frontier-mouse-typed-com-20261104/`.
+virtual calls through a DInput-compatible interface prefix, without changing its
+globals or error helper. The complete CIL candidate remained 296 bytes, with the
+identical canonical SHA-256
+`6571161e9e1ea9f66987eb73de162cfd2b03dad69929a0bb97ff4e158fa547e4` and the same
+first mismatch. All five exact system-utility roots replayed. The local control was
+not selected; the source was restored. This does not prove the original nominal
+interface or explain the out-of-line error-helper boundary.

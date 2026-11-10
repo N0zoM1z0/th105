@@ -73,11 +73,9 @@ The baseline and all controls use the current canonical target, not historical
 
 ## Retained state and unknowns
 
-`build/cnumber-initialize-20261021/` keeps formal baseline/caller receipts,
-private source/header/object controls and `facts-summary.json`. Private
-recipes are in the same-named `.analysis/` directory. The facts packet pins
-inputs, the complete stack-access trace and all five full-function controls.
-No numerical native coverage is claimed for these byte-comparison experiments.
+The facts packet pins inputs, the complete stack-access trace and all five
+full-function controls. No numerical native coverage is claimed for these
+byte-comparison experiments.
 
 Original parameter spelling, local lifetimes, compiler/TU phase and the
 unaddressed entry word remain open. The controls rule out their tested shapes;

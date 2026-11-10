@@ -30,10 +30,5 @@ compiler-generated scalar wrapper `0x492F70` at 30/30.
 All 42 non-debug COFF sections, totaling 1,118 bytes, retain their full contents,
 symbol identities and relocation roles apart from the proven free-to-array-delete
 correction. This includes the unchanged destructor EH code and metadata. The
-selected scalar-wrapper origin replay also passes with its current source
-provenance and native RTTI owners. No new authored exact credit is added.
-
-Receipts and native allocation/store observations are retained under
-`build/frontier-character-array-delete-20261109/`; the before/after driver and
-protected input-migration hashes are under
-`.analysis/frontier-character-array-delete-20261109/`.
+selected scalar-wrapper origin replay also passes with its current source provenance
+and native RTTI owners. No new authored exact credit is added.

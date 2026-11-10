@@ -24,8 +24,6 @@ existing compiler-origin groups (8 and 2 anchors) pass unchanged coverage,
 extent and complete-inventory checks. These remain compiler provenance, not
 new authored exact credit. No global cold rebuild or aggregate freshness claim.
 
-Source raw SHA256:
-5c22d10d25327ca6ff6e47f67d980219ad479e86cfed7ab8ce296e00544d517a.
-Local before/after receipts: build/frontier-timeline-real-sprite-20261102/.
-Counts unchanged: exact authored 1429 / 443911 bytes, source 1634, authored
-1653, excluded 2072, review 302, mapped 1821, units 808.
+Source raw SHA256: 5c22d10d25327ca6ff6e47f67d980219ad479e86cfed7ab8ce296e00544d517a.
+Counts unchanged: exact authored 1429 / 443911 bytes, source 1634, authored 1653,
+excluded 2072, review 302, mapped 1821, units 808.

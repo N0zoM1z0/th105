@@ -52,9 +52,6 @@ stores state344, then reads the value. A replacement must reconcile that
 ordering and the target-distinct owners. Owner preservation alone is not
 semantic acceptance or a proof of the source's alias assumptions.
 
-Sources/producer are under `.analysis/youmu-entry-sharing-20261019/`;
-packets and logs are under `build/youmu-entry-sharing-20261019/`.
-
 ## Fighter selector and spawn-interface controls
 
 Canonical primary cells6C516C and6C5150 independently identify530200 at+28
@@ -86,18 +83,13 @@ of an isolated argument window. `/O2 /Os` also compiles but loses the expected
 low switch topology; both structural checkers fail closed. No canonical result
 is claimed for that profile control. All controls remain unselected.
 
-Sources/producer are under `.analysis/youmu-state-word-20261019/`; complete
-packets, sources' compiler commands/pins and owner reports are under
-`build/youmu-state-word-20261019/`. Private copies adjust only the two include
-paths for their new location; the baseline control proves this byte-neutral.
+Private copies adjust only the two include paths for their new location; the
+baseline control proves this byte-neutral.
 
 ## Two observed control words, one consumed byte
 
-The bounded stack calculator
-`.analysis/youmu-state-word-20261019/prove-control-words.py` independently
-pins the full target root and the exact instruction windows below. It tracks
-the actual outgoing stack positions, byte arithmetic, explicit stack writes
-and the established cdecl RNG's net stack effect. At each465190 call it
+It tracks the actual outgoing stack positions, byte arithmetic, explicit stack
+writes and the established cdecl RNG's net stack effect. At each465190 call it
 requires seven outgoing slots and reads argument5 at callerESP+10h.
 
 | Path | Defining operations | Helper call | Argument5 word |
@@ -111,13 +103,11 @@ after the control was pushed; it does not change that outgoing slot. The
 calculator fails on an unmodeled ESP write and asserts both complete words,
 rather than assuming a signed extension from the consumed byte.
 
-The raw66-byte465190 wrapper forwards whole argument words, adds two leading
-factory arguments, and returns with RET1C. Root argument5 at entryESP+14h
-therefore becomes factory argument7 at entryESP+1Ch. Youmu's237-byte factory
-53B1C0 reads that byte at53B266 and stores it to object+33C at53B298; its nine
-stack slots are cleaned by RET24. Fresh complete decoding covers25 and67
-instructions respectively. The proof receipt is
-`build/youmu-state-word-20261019/control-words-proof.json`.
+The raw66-byte465190 wrapper forwards whole argument words, adds two leading factory
+arguments, and returns with RET1C. Root argument5 at entryESP+14h therefore becomes
+factory argument7 at entryESP+1Ch. Youmu's237-byte factory 53B1C0 reads that byte
+at53B266 and stores it to object+33C at53B298; its nine stack slots are cleaned by
+RET24. Fresh complete decoding covers25 and67 instructions respectively.
 
 These observations separate word transfer, byte consumption and original
 source declarations. Neither differing upper bits nor a low-byte consumer

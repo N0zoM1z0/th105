@@ -212,10 +212,8 @@ then exports the reviewed404-instruction tail union. CPU0/nice10/128MiB heap,
 one process, all nine primary DB hashes and temporary-alias cleanup are verified.
 No target bytes or analysis database are patched.
 
-Generated reports/controls remain below `build/reimu-object-animation-20261020`;
-private recipes below `.analysis/reimu-object-animation-20261020`. Object-only
-audits keep `build_provenance_verified=false`; compiler/source/COFF receipts
-are separate. The former812 page records the superseded source checkpoint.
+Object-only audits keep `build_provenance_verified=false`; compiler/source/COFF
+receipts are separate. The former812 page records the superseded source checkpoint.
 
 ```bash
 python3 scripts/verify-target.py

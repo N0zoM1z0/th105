@@ -14,7 +14,8 @@ The obsolete reference to the removed core-types.csv is removed from a comment.
 
 The full compile-only TU now passes with the repository VC8 toolchain:
 
-    taskset -c 0 nice -n 10 env TH105_ENABLE_GS=1 scripts/compile-unit.sh src/battle/CoreContracts.cpp build/core-contracts/CoreContracts.obj
+taskset -c 0 nice -n 10 env TH105_ENABLE_GS=1 scripts/compile-unit.sh
+src/battle/CoreContracts.cpp build/core-contracts/CoreContracts.obj
 
 Two private negative controls prove the checks operate: sprite offset8 rejects
 with a negative-array diagnostic, and a mutable enqueue argument rejects the
@@ -22,6 +23,6 @@ member-pointer conversion. Restoring the real header passes again. Fresh
 cross-v106a-sequence-enqueue remains canonical114 bytes at45DBA0. No manifest
 unit includes this validator, and it earns no native/source/exact credit.
 
-Evidence: build/frontier-core-contracts-20261102/. Default CI remains
-target-independent and does not silently require native compilation; the
-explicit command above validates recovered C++ declarations when needed.
+Default CI remains target-independent and does not silently require native
+compilation; the explicit command above validates recovered C++ declarations when
+needed.

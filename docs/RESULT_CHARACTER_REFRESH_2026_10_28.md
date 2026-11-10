@@ -1,9 +1,8 @@
 # Result-menu character refresh447080
 
-Complete candidate342/native342, nonexact at+38. Receipt:
-build/frontier-447080-20261028/branch-input-binding.json.
-Target SHA3e393e363d311dc2cc8f81649b9224c8f4ec66a61dd69f4f3f52170e9eebf532.
-No new exact or source-selection credit.
+Complete candidate342/native342, nonexact at+38. Target
+SHA3e393e363d311dc2cc8f81649b9224c8f4ec66a61dd69f4f3f52170e9eebf532. No new exact or
+source-selection credit.
 
 The retained source was not configured for canonical replay. Its initial
 comparison is347/native342, first+20. This scope adds the focused unit and

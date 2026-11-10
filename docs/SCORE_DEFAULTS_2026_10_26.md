@@ -92,17 +92,15 @@ TH105_ENABLE_GS=1 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py -
 scripts/repo-python scripts/audit-score-defaults-target.py --object build/match-units/ExactFirst_ScoreDefaults.obj
 ```
 
-Public receipts under `build/frontier-42ed70-20261026/`:
-`formal-first.json`, `formal-second.json`, `target-audit.json` and
-`target-audit-second.json`. Private first/control sources and raw decode recipe
-remain under `.analysis/frontier-42ed70-20261026/`.
-The audit pins the full CFG, caller sites and guard/reader census. Five native
-CSV-region executions and candidate replays cover positive/zero/negative group
-or row counts, all four reads, duplicate values across difficulties, signed -1,
-199/200 boundaries, different resolved keys, complete24-byte append values and
-stack preservation. The populated case appends six records and consumes all17
-integer reads. External services and STL providers are observers; game I/O,
-full initialization fixtures and exception unwinding are not executed.
+Public receipts under `build/frontier-42ed70-20261026/`: `formal-first.json`,
+`formal-second.json`, `target-audit.json` and `target-audit-second.json`. The audit
+pins the full CFG, caller sites and guard/reader census. Five native CSV-region
+executions and candidate replays cover positive/zero/negative group or row counts,
+all four reads, duplicate values across difficulties, signed -1, 199/200 boundaries,
+different resolved keys, complete24-byte append values and stack preservation. The
+populated case appends six records and consumes all17 integer reads. External
+services and STL providers are observers; game I/O, full initialization fixtures and
+exception unwinding are not executed.
 
 No helper receives new authored or matching credit. Existing exact constructors,
 resource wrappers, resolver and story-progress refresh retain their independent

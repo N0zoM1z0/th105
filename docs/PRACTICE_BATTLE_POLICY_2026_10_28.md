@@ -1,9 +1,8 @@
 # Practice battle policy 0x00428260
 
-Complete raw-target candidate:553 callable bytes through428489 exclusive,
-followed by three alignment bytes and a five-entry switch table at42848C.
-All decoded instructions are reachable from entry using that table.
-Private boundary receipt: build/frontier-428260-20261028/boundary.json.
+Complete raw-target candidate:553 callable bytes through428489 exclusive, followed
+by three alignment bytes and a five-entry switch table at42848C. All decoded
+instructions are reachable from entry using that table.
 
 The controller snapshots both scene fighters into a two-pointer local array.
 Practice mode8 applies guard policy cases0/2/3=1 and1=0; case4 uses the existing
@@ -33,6 +32,5 @@ lifetimes through the non-Practice path. Capturing the two fighter locals before
 forming the array was byte-neutral; no register/liveness forcing was attempted.
 No source-selection or exact credit is added.
 
-Receipts: build/frontier-428260-20261028/formal-build.json and captured-pair.json.
-Only this new unit was compiled. Shared headers, existing callers and settings
-are unchanged.
+Only this new unit was compiled. Shared headers, existing callers and settings are
+unchanged.

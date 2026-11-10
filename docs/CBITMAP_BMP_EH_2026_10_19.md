@@ -165,13 +165,9 @@ The local gate initially exposed a stale workflow test requiring the historical
 and nonexact percentage instead of a changing COFF section-size phrase.
 All five accepted-function checks remain intact.
 
-Private scripts: `.analysis/cbitmap-bmp-eh-20261019/`, including `audit-eh.py`,
-`stack-atlas.py`, the source controls and paired link commands. Receipts:
-`build/cbitmap-bmp-eh-20261019/`, including `array-interface-unit.json`,
-`*-eh.json`, `*-stack.json`, Ghidra attestation/hash readback, and
-`array-interface-pair.json`. Generated data, compiler members and linked
-images stay untracked. Previously checked149 execution cases still apply to
-the unchanged canonical selected payload; no new behavioral scope is claimed.
+Generated data, compiler members and linked images stay untracked. Previously
+checked149 execution cases still apply to the unchanged canonical selected payload;
+no new behavioral scope is claimed.
 
 Next constraints: recover how the original indexed conversion preserves its
 working registers while reloading heap bases, and obtain truthful reader/

@@ -33,11 +33,9 @@ still yields140/140 first+10. Direct listener-pointer parameter and effect-point
 facade produce the same pure-CIL bytes. Those diagnostic alternatives are not
 selected, and no register/stack padding trial is justified by these results.
 
-Receipts in build/frontier-d3d-listener-remove-20261029/: formal-build.json,
-boundary.json, mixed-result.log and ci.log. Private replay requires restoring
-the retained DeviceResetListenerList.cpp only for the unselected mixed trial;
-its temporary src/library file was removed after byte comparison. No native
-jobs or scratch sources are left active. Existing exact initializer/registration
-and five lifetime methods retain their acceptance; this scope adds140 authored
-source bytes and zero exact bytes. Continue elsewhere until genuine missing
-caller/provider context resolves the two residuals.
+Private replay requires restoring the retained DeviceResetListenerList.cpp only for
+the unselected mixed trial; its temporary src/library file was removed after byte
+comparison. No native jobs or scratch sources are left active. Existing exact
+initializer/registration and five lifetime methods retain their acceptance; this
+scope adds140 authored source bytes and zero exact bytes. Continue elsewhere until
+genuine missing caller/provider context resolves the two residuals.

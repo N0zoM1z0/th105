@@ -45,7 +45,7 @@ Software License1.0, not under this repository's MIT license.
 
 On a network-enabled development machine:
 
-    scripts/repo-python scripts/upstream_boost.py --fetch
+scripts/repo-python scripts/upstream_boost.py --fetch
     scripts/repo-python scripts/upstream_boost.py
 
 Fetch is explicit, downloads only missing files from official immutable commits,
@@ -101,7 +101,7 @@ or authored match entries are added for library helpers.
 
 ## Focused validation
 
-    scripts/repo-python scripts/build.py --unit exact-first-connect-main-state --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-connect-main-state --compare --json
     scripts/repo-python scripts/build.py --unit exact-first-replay-codec --compare --json
     scripts/repo-python scripts/ci.py
 
@@ -112,10 +112,8 @@ replayed at153/151 exact. Unrelated code/flags are unchanged; this is incrementa
 validation, not a cold corpus replay. Only the two new source-origin rules are
 recompiled/materialized; no blanket origin regeneration or exactness relaxation.
 
-Evidence is retained under build/frontier-boost-regex-20261031 and its .analysis
-counterpart. Final totals: source1750, authored1770, exact1553 /441679 bytes,
-excluded1440, review817, mapped1777 and units743. Local checkpoint only; no push.
-
+Final totals: source1750, authored1770, exact1553 /441679 bytes, excluded1440,
+review817, mapped1777 and units743. Local checkpoint only; no push.
 
 ## November1: bounded1.41 parser source check
 
@@ -134,8 +132,6 @@ no alternative-header build or canonical improvement is claimed.
 Verified source:
 https://github.com/boostorg/regex/blob/boost-1.41.0/include/boost/regex/v4/basic_regex_parser.hpp
 
-The complete fetched header remains private under
-.analysis/frontier-boost-141-parser-20261101, with its Git-blob-verified diff
-in build/frontier-boost-141-parser-20261101/parser.diff. The installed selected
-184-file package remains unchanged. Do not repeat1.40/1.41 parser version trials
-based solely on the existing match_results compatibility observation.
+The installed selected 184-file package remains unchanged. Do not repeat1.40/1.41
+parser version trials based solely on the existing match_results compatibility
+observation.

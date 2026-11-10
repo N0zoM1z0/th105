@@ -120,10 +120,7 @@ python3 scripts/audit-aya-object-fade-sharing.py build/aya-801-impact-20261023/p
 python3 scripts/validate-tracking.py --require-target
 ```
 
-The root comparison intentionally exits nonzero. Private scope
-`build/aya-801-impact-20261023/` retains frozen CPP/object epochs, formal
-comparisons, `826-canonical.json`, `826-outside.json`, strict/native receipts
-and control hashes. The exploratory full-flow script under `.analysis/` is
-diagnostic only. Frozen 801 and older owner-context inputs predate this 826
-selection; do not replace current source wholesale with them. No ABI/header,
-compiler flag, object partition or accepted relocation contract changes.
+The root comparison intentionally exits nonzero. The exploratory full-flow script
+under `.analysis/` is diagnostic only. Frozen 801 and older owner-context inputs
+predate this 826 selection; do not replace current source wholesale with them. No
+ABI/header, compiler flag, object partition or accepted relocation contract changes.

@@ -84,7 +84,6 @@ All15 newly classified bodies are third_party/boost_regex/exclude, not authored
 game bytes. Excluded1985/review387/units776; authored exact1431/443916,
 source1635/authored1655/mapped1820 stay unchanged.
 
-Receipts: build/frontier-boost-source-tus-20261101/*-formal.json, canonical.json,
-canonical.log, connect-baseline.json and results.txt. The canonical metadata
+The canonical metadata
 witnesses retain actual COFF/native types, import names and original literals.
 No full-corpus cold rebuild or push.

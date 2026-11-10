@@ -54,12 +54,8 @@ under the corrected guard and remain exact. No unrelated COFF unit or cold
 aggregate replay is claimed. The independently compared30-byte compiler
 wrapper is additional exclusion evidence, not a fourteenth authored result.
 
-Fresh preflight, captured old diagnostics, new regression results, actual
-warning rejection, vtable/export readback and the complete affected replay
-receipts are under `build/linked-warning-guard-20261021/`; recipes are under
-the matching `.analysis/` directory. IDA rejects the wrong open image; new
-target facts use only the hash-attested original Japanese1.06a PE. Builds are
-serial on CPU0 at nice10.
+IDA rejects the wrong open image; new target facts use only the hash-attested
+original Japanese1.06a PE. Builds are serial on CPU0 at nice10.
 
 ## Associated large-function diagnostics
 
@@ -74,19 +70,16 @@ are unchanged; no unnecessary native fixture replay is reported.
 
 Raw target4A076A first loads float state374, sign-extends word366, homes that
 integer at ESP+20, then FILD m32/FADDP/stores state374. Source809E97 instead
-converts the counter first and adds the memory float. These new controls do
-not fix the form. The continuation after the opaque wave remains unexecuted;
-no callback return or new whole-root behavior is fabricated. Receipts are in
-`build/reimu-object-908-post-wave-20261021/`.
+converts the counter first and adds the memory float. These new controls do not fix
+the form. The continuation after the opaque wave remains unexecuted; no callback
+return or new whole-root behavior is fabricated.
 
 An explicit `/fp:strict` CIL experiment also rechecks Gage41B3F0 using all real
-renderer/binder/lookup/angle definitions. Its1012-byte/328-instruction raw root
-is byte-identical to the preceding pragma-controlled CIL root. Changing both
-the angle declarations and their genuine definitions to float return leaves
-the diagnostic body identical after checked call/literal replay. Neither
-variant is a configured canonical unit: native literal qualification remains
-unsupported and the aligned EBP frame still differs at+0. The size variant is
-1079 bytes and triggers the now-rejected LNK4210. Its generated code and prior
-diagnostic records remain failure evidence, never new exact credit.
-These private strict-profile experiments live under
-`build/gage-strict-ltcg-20261021/`. No public compiler profile changes.
+renderer/binder/lookup/angle definitions. Its1012-byte/328-instruction raw root is
+byte-identical to the preceding pragma-controlled CIL root. Changing both the angle
+declarations and their genuine definitions to float return leaves the diagnostic
+body identical after checked call/literal replay. Neither variant is a configured
+canonical unit: native literal qualification remains unsupported and the aligned EBP
+frame still differs at+0. The size variant is 1079 bytes and triggers the
+now-rejected LNK4210. Its generated code and prior diagnostic records remain failure
+evidence, never new exact credit. No public compiler profile changes.

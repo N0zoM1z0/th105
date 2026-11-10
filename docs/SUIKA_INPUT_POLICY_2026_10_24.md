@@ -100,12 +100,6 @@ function/ABI, observed-tail and virtual-call metadata are read back and rolled
 back. Every pinned primary database hash remains unchanged. CPU0/nice10 and
 384 MiB configured heap bound Ghidra; compilation is serial on CPU0/nice10.
 
-Private recipes, whole-CFG setup and unchanged first source/header snapshots
-remain under `.analysis/exact-first-suika-slot50-20261024/`. The corresponding
-`build/` directory retains raw facts/disassembly, complete CFG and nine table
-edges, family diagnostic, attestation/logs/database pins, formal/cold receipts,
-first formal object/provenance, relocation counts and original origin row.
-
 The table-only negative changes a generated COFF byte, leaving the target
 untouched. The complete audit rejects it at `+0x16DC / 0x5B03DC`, target49 /
 source4A. Previously accepted Remilia/Tenshi/Sakuya source/header inputs stay

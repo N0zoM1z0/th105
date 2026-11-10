@@ -88,11 +88,10 @@ candidate both read0. Sequence1 raises a real CPU exception at target48C78E
 and candidate48CA59 (IDIV). Sequence6 executes real helpers and returns with
 equal compared state. No helper result or callback return is fabricated.
 
-This proves only that supplied zero-stack context. The actual stack addresses
-differ (210FA2C versus210FA04), reflecting frame570h versus598h; arbitrary
-initial bytes cannot be assumed equal. General unknown-input behavior/faults,
-source-language undefined behavior and complete canonical equality remain
-unproved. The probe/report remain below build/reimu-740-mode/.
+This proves only that supplied zero-stack context. The actual stack addresses differ
+(210FA2C versus210FA04), reflecting frame570h versus598h; arbitrary initial bytes
+cannot be assumed equal. General unknown-input behavior/faults, source-language
+undefined behavior and complete canonical equality remain unproved.
 
 ## Structural result and next phase
 

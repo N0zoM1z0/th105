@@ -41,6 +41,5 @@ excluded2067, review305, mapped1821, units808. This is an accounting correction,
 not a byte-match regression. The preceding receive-lock constructor still adds
 its real25 authored bytes; the net authored gain since that earlier baseline is18.
 
-Evidence: build/frontier-input-lifetime-origin-20261102/ and
-build/origin-anchors/input-base-cleanup/. The source hash and actual two-symbol
-contract are pinned by config/input-base-cleanup-origin-anchors.toml.
+The source hash and actual two-symbol contract are pinned by
+config/input-base-cleanup-origin-anchors.toml.

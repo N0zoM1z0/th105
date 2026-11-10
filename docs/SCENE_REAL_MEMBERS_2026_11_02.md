@@ -57,13 +57,10 @@ No spelling grid, forced register or manual-vptr replacement was introduced.
 Their private evidence remains under frontier-loading-real-sprites-20261102;
 no render change is included in this checkpoint.
 
-Main private scripts/reports are under
-.analysis/frontier-scene-real-members-20261102/ and
-build/frontier-scene-real-members-20261102/. Final CI passed 962 tests
-(111.422 seconds), tracking, generated progress and whitespace. The client wait
-timed out, but the persisted zero exit marker and full terminal log confirmed
-success without rerunning the gate. Both diff checks passed. No target bytes
-or generated binaries are committed.
+Final CI passed 962 tests (111.422 seconds), tracking, generated progress and
+whitespace. The client wait timed out, but the persisted zero exit marker and full
+terminal log confirmed success without rerunning the gate. Both diff checks passed.
+No target bytes or generated binaries are committed.
 
 Counts unchanged: 1427 exact / 443604 bytes, 1637 source-present, 1656 authored,
 1826 mapped, 2074 excluded, 297 review and 813 units.

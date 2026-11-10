@@ -152,14 +152,9 @@ and engine versions before/after execution. Source-to-object provenance is
 explicitly a separate actual build receipt. No execution report is matching
 acceptance.
 
-Private recipes are under `.analysis/reimu-object-908-lifetimes-20261022/`;
-receipts under `build/reimu-object-908-lifetimes-20261022/` include `facts.json`,
-`bp-prefix.json`, `comparison.json`, `corrected-owner-comparison.json`,
-`probe.json`, `owner-window-audit.json`, the804/869/902 owner audit reports,
-`unchanged-graphs.json`, `rtm-comparison.json` and `rtm-window-audit.json`.
-The `owner/` subdirectory retains six-TU build receipts, both links/inspections
-and `linked-angle-windows.json`. Generated sources/objects/images remain
-private and uncommitted.
+The `owner/` subdirectory retains six-TU build receipts, both links/inspections and
+`linked-angle-windows.json`. Generated sources/objects/images remain private and
+uncommitted.
 
 No public reconstruction source/header/ABI/profile/relocation/ownership or
 match-row change; ledgers stay1,379 exact/234,584 bytes without a new aggregate

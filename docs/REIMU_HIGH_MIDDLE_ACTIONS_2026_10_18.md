@@ -98,9 +98,6 @@ produces38872 staged text bytes. Object SHA256
 `build-receipt.json` pins compiler/source/header/object hashes and the separate
 previous-commit baseline. The oracle separately pins its execution inputs.
 
-**0/6376 differences**, `build/reimu-high-middle/native.json`, input SHA256
-`b0a8b6fdcc9c6d635eecba390d0237e2e0088442775cb75bf22fa6e7ee083c4c`:
-
 |Cohort|Cases|
 |---|---:|
 |Motion/landing/completion/NaN|756|

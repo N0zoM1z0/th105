@@ -96,13 +96,11 @@ python3 scripts/audit-aya-object-runtime-context.py \
   --output build/aya-owner-context-20261023/context-audit.json
 ```
 
-Private scope `build/aya-owner-context-20261023/` retains corresponding
-CPP/header/object snapshots, canonical packets and formal comparisons.
-Owner CPPs include `.analysis/aya-owner-context-20261023/AyaObjectOwnerView.hpp`;
-restore the matching frozen header before reproducing an older compiler control.
-The selected source and object were restored, then formally rebuilt at
-`2026-10-23T04:40:06.813869Z`; `restored-final-formal.json` records the expected
-19,522-byte mismatch at `+0x22` (target `0F`, source `9B`).
+Owner CPPs include the AyaObjectOwnerView control; restore the matching frozen
+header before reproducing an older compiler control. The selected source and object
+were restored, then formally rebuilt at `2026-10-23T04:40:06.813869Z`;
+`restored-final-formal.json` records the expected 19,522-byte mismatch at `+0x22`
+(target `0F`, source `9B`).
 
 `pool-anchor-replay.json`, built at `2026-10-23T04:36:16.747290Z`, records
 all 15 functions exact in a fresh serial

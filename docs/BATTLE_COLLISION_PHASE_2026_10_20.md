@@ -224,12 +224,9 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-The build command currently returns1/nonexact, not an infrastructure failure.
-The native audit returns0 for the supported full/tail fixtures; `--smoke`
-selects36 full and24 tail cases. Original source reports remain under
-`build/collision-phase-20261020/`. Refreshed v2 native/negative/child reports
-and Ghidra receipt are under `build/collision-tail-20261020/`; source controls
-and regeneration recipes are under `.analysis/collision-tail-20261020/`.
+The build command currently returns1/nonexact, not an infrastructure failure. The
+native audit returns0 for the supported full/tail fixtures; `--smoke` selects36 full
+and24 tail cases.
 
 The direct128MiB/CPU0 read-only Ghidra pass independently verifies executable
 identity, entry, full mapped text, root bytes and all five inbound E8s. The

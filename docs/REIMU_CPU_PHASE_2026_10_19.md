@@ -55,9 +55,9 @@ not confer partial exact credit or fix terminal sharing.
 ## Compiler and genuine dependency controls
 
 These controls use the preceding input source SHA256
-`7102660c044b225578aeb52fb5379ef20925ed813f34e7ab6815e760384f01eb`,
-retained as `build/reimu-cpu-phase/Baseline.cpp`. They are unselected and
-must not be attributed to a later source revision without replay.
+`7102660c044b225578aeb52fb5379ef20925ed813f34e7ab6815e760384f01eb`, retained as the
+source control. They are unselected and must not be attributed to a later source
+revision without replay.
 
 **Compiler revision:** verify the three RTM compiler/front-end/back-end hashes
 from [RTM provenance](VC8_RTM_PROBE.md), then compile identical source/options.
@@ -128,14 +128,6 @@ mapping source sites by instruction ordinal. General cases execute all five
 original helpers. These are finite diagnostics, not complete gameplay or
 exception equivalence.
 
-Reports, four actual target paths, normalization, compiler pins, exact
-dependency receipts and complete private link recipes are retained below
-`build/reimu-cpu-phase/`. To repeat the pre-checkpoint link use
-`python3 build/reimu-cpu-phase/native-link.py build/reimu-cpu-phase/Baseline.cpp`,
-then its `float-link.py`, `inspect-float.py` and `qualify-float.py` recipes.
-Regenerate the float ordinary packet with
-`python3 build/reimu-cpu-phase/native-packet.py build/reimu-cpu-phase/float-link/ordinary.obj float-coff`
-before the correspondence recipe when rebuilding from cleaned artifacts.
 Generated sources/images/compiler files remain ignored, not reconstruction
 deliverables. Selected ordinary-source reproduction uses the existing unit:
 
@@ -154,10 +146,8 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-Read-only Ghidra independently re-attests file/entry/text/root bytes and
-typed metadata; nine primary DB hashes remain unchanged and the alias is
-removed. The384MiB/CPU0 recipe is under
-`.analysis/reimu-cpu-phase-20261019/`. Required IDA preflight rejects its
-wrong target; no IDA semantics or factory adapter is used. Selected ABI,
-headers, compiler flags, source partition and relocation contracts are
+Read-only Ghidra independently re-attests file/entry/text/root bytes and typed
+metadata; nine primary DB hashes remain unchanged and the alias is removed. Required
+IDA preflight rejects its wrong target; no IDA semantics or factory adapter is used.
+Selected ABI, headers, compiler flags, source partition and relocation contracts are
 unchanged. No aggregate cold replay or new exact function/byte is claimed.

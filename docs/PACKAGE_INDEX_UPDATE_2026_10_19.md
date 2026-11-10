@@ -142,12 +142,6 @@ The related opener recompiles and its243-case instruction model is rerun
 against the current object after the shared node header changes; no differences.
 No unrelated cold aggregate replay was run.
 
-Receipts are below `build/package-index-update-20261019/`: target-spans/CFG,
-incoming edges and complete raw-reference leads, primary DB before/after pins,
-execution.json, entry-execution.json, focused comparison reports and the
-real-source link directories with command/source hashes and CFGs. Controls
-and execution drivers are under `.analysis/package-index-update-20261019/`.
-
 Remaining work includes original visibility/partition, private helper ABIs,
 EH metadata and the archive loader41BA70 before returning to reader/BMP code
 generation. Two additional old nonexact probes named array-new665B8A as

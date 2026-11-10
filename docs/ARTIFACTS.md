@@ -30,8 +30,9 @@ extents and relocations. Historical objects or receipts do not replace it.
   Preserve other analyzer projects and the pre-analysis project at
   `.analysis/archive-loader-shape-20261019/primary-before/`.
 - Six detached worktrees under `.analysis/gptweb_*_wt` contain uncommitted work.
-  The old CI checkout at `build/ci-public-checkout-20261024/checkout/` also has
-  local edits. Preserve them until their work is reconciled.
+  Preserve them until their work is reconciled.
+- Input, Scenario, MenuCursor and Alice trial inputs related to the main
+  worktree's uncommitted changes remain available for review.
 - Reimu's linked owner closure under
   `build/reimu-object-owner-closure-20261022/` and its provider inputs retain a
   qualified 48-object compiler context. Related private recipes remain under
@@ -50,8 +51,10 @@ extents and relocations. Historical objects or receipts do not replace it.
 
 Generated products belong under `build/`; private analysis belongs under
 `.analysis/`. Current `build/match-units/` and `build/origin-anchors/` caches are
-convenient working outputs. Rebuild the affected units when fresh proof is
-needed. Keep reference SDK/library inputs required by the configured tools.
+convenient working outputs. Rebuild the affected units when fresh proof is needed.
+Keep reference SDK/library inputs required by the configured tools. The optional VC8
+manual cache can be downloaded again with `scripts/repo-python
+scripts/reference-vc8.py --fetch`; its source manifest and page index stay in Git.
 
 Delete obsolete archives, duplicate evidence, superseded trial outputs and
 cleanup reports when they no longer serve a concrete open question. Remove

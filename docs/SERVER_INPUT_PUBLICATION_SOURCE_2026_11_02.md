@@ -96,9 +96,7 @@ One review row is now source-present/authored: source1636, authored1655,
 mapped1825, review298. Excluded2074, provisional4027, units812 and authored
 exact1427 /443604 bytes stay unchanged. matches.csv is untouched.
 
-Reproduce with the existing gpt-web-network-primary-packet-continuation unit
-(full comparison intentionally nonexact), audit-server-input-publish.py and
-audit-client-ack-tail.py. Private evidence is under
-`.analysis/frontier-server-input-publish-20261102/` and
-`build/frontier-server-input-publish-20261102/`. Original pinned target only,
-serial CPU0/nice10 work, no IDA semantics or push.
+Reproduce with the existing gpt-web-network-primary-packet-continuation unit (full
+comparison intentionally nonexact), audit-server-input-publish.py and
+audit-client-ack-tail.py. Original pinned target only, serial CPU0/nice10 work, no
+IDA semantics or push.

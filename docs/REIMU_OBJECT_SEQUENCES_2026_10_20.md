@@ -195,7 +195,6 @@ Fresh direct read-only Ghidra re-attests executable/import identity, entry,
 mapped text, root extent and vtable. The128MiB/CPU0/nice10 export completes;
 all nine primary DB pins remain unchanged and the alias is removed. The failed
 IDA metadata preflight supplies no semantics. No factory adapter or byte patch
-is used. Generated/private recipes stay below the matching build/analysis
-directories; VC8 builds are serial. No root implementation row, match unit or
+is used. No root implementation row, match unit or
 exact credit is added. Next recover815/816/817, then the other25 concrete arms.
 Fighter478FA0 and Object-entry4A1CE0 checkpoints remain unchanged.

@@ -29,12 +29,9 @@ as a whole52-byte body, and deque cleanup0x448DE0 as a whole5-byte tail. The
 resource-group cleanup retains its existing qualified target0x42E900. Shared
 physical member cleanup addresses do not imply exclusive nominal identities.
 
-Constructor view and remaining outer design/resource views are not unified
-by this change. No runtime/gameplay or full-program linkage claim is made.
-No support, prefix or nonexact bytes are added to authored acceptance.
-Private scripts and reports are under
-.analysis/frontier-deck-render-real-sprites-20261102/ and
-build/frontier-deck-render-real-sprites-20261102/. Full CI passed962 tests
+Constructor view and remaining outer design/resource views are not unified by this
+change. No runtime/gameplay or full-program linkage claim is made. No support,
+prefix or nonexact bytes are added to authored acceptance. Full CI passed962 tests
 (98.574 seconds), tracking, generated progress and whitespace checks. Both
 working-tree and staged diff checks passed.
 

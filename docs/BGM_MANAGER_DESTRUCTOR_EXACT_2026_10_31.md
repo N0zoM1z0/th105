@@ -57,5 +57,4 @@ authored function and279 bytes:1562 exact /445075 bytes.
 Source1759, authored1779, mapped1786, excluded1658, review590, units752.
 No allocator/release/lookup or helper credit is added.
 
-Receipts: build/frontier-bgm-manager-lifetime-20261031/public.json and
-constructor.json. The preceding list-only CIL control remains private evidence.
+The preceding list-only CIL control remains private evidence.

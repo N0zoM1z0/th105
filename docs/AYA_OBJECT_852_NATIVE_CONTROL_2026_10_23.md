@@ -65,12 +65,11 @@ A fresh configured VC8 build reproduces the selected full20136-byte payload:
 Metadata starts19668; the19522-byte canonical comparison remains nonexact at
 hex offset22, target0F/sourceA1. No exact count/byte change or aggregate replay.
 
-The cached control was restored from the prior archive only after archive and
-member SHA256 checks. Its COFF SHA256 is
-`6681b76d5a143fadd431e6aeb973087ea2c5298cae866df73946bf22f40ba891`;
-full canonical payload20096 has SHA256
+The cached control was restored from the prior archive only after archive and member
+SHA256 checks. Its COFF SHA256 is
+`6681b76d5a143fadd431e6aeb973087ea2c5298cae866df73946bf22f40ba891`; full canonical
+payload20096 has SHA256
 `b45c379032a0be5af68586aa11f4aa2a4ec2e1b3ad1f6301350b6a4b2ec4d45b`.
-Source and recipes remain in `build/aya-801-fade-20261022/`.
 
 ```sh
 # The whole-root comparator is expected to report nonexact.
@@ -82,6 +81,5 @@ git diff --check
 ```
 
 Omit `--control-object` to audit the selected object only. The native receipt
-records object hashes, complete executable bytes mapped at800000, original
-helper hashes and the input-matrix hash. Reports stay under
-`build/aya-852-native-20261023/`; executable artifacts are not committed.
+records object hashes, complete executable bytes mapped at800000, original helper
+hashes and the input-matrix hash.

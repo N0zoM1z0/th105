@@ -34,10 +34,10 @@ added for the probe or its helpers.
 
 Reproduction:
 
-    scripts/repo-python scripts/build.py --unit vc8-string-count-append-origin --compare --json
+scripts/repo-python scripts/build.py --unit vc8-string-count-append-origin --compare
+--json
 
 The new origin rule is independently validated with its existing full-inventory
-anchor validator; unchanged rules are retained incrementally. Evidence is under
-build/frontier-string-append-origin-20261031 and its .analysis counterpart.
+anchor validator; unchanged rules are retained incrementally.
 Source1750/authored1770/exact1553/441679 bytes remain unchanged. Excluded1423,
 review834 and units743. CI and whitespace checks gate the local commit; no push.

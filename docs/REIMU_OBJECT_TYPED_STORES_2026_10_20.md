@@ -139,15 +139,14 @@ Those restricted matrices also report incomplete overall site coverage; their
 nonzero exit alone is not the sensitivity claim.
 
 All19 serial commands in `selected-checks.json` finish with expected exits.
-Preserved checks include the300 fade witnesses and all72/12-byte windows,
-999's792 witnesses,869/901's128 lookup consumers,3360 animation inputs and
-actual801/852 selector calls,812/World/900/901/804/selector-family checks,
-808/812 caller checks, orientation400, alpha1170 and terrain288. The terrain
-hardware qualifications remain unchanged. The source closure has10457
-reachable instructions,404 direct plus29 indirect calls and65 RETs.
-All25 direct-callee partitions and all indirect memberships still agree.
-Source/header/object/support pins agree before and after the serial run.
-Receipts are under `build/reimu-object-exact-20261020/`.
+Preserved checks include the300 fade witnesses and all72/12-byte windows, 999's792
+witnesses,869/901's128 lookup consumers,3360 animation inputs and actual801/852
+selector calls,812/World/900/901/804/selector-family checks, 808/812 caller checks,
+orientation400, alpha1170 and terrain288. The terrain hardware qualifications remain
+unchanged. The source closure has10457 reachable instructions,404 direct plus29
+indirect calls and65 RETs. All25 direct-callee partitions and all indirect
+memberships still agree. Source/header/object/support pins agree before and after
+the serial run.
 
 Opaque World/setup/wave/event/CRT continuations, arbitrary aliases/resources/
 vtables, nonnull rendering, unmasked exceptions and hardware qualification of

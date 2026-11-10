@@ -52,6 +52,5 @@ tests cover pins, source mutation, numeric address spelling, selected extent,
 actual member kind, original owner profile/source, aliases and duplicate review
 inputs. They do not embed target instructions or fixed progress totals.
 
-Receipts: build/frontier-implicit-lifetime-accounting-20261101/{ctile,result,
-managers}.json and prior.json. Tracked anchors enumerate every selected body.
-No source rewrite, all-exact rebuild, manufactured destructor or push.
+Tracked anchors enumerate every selected body. No source rewrite, all-exact rebuild,
+manufactured destructor or push.

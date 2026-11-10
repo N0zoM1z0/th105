@@ -110,14 +110,10 @@ exceptions and other returning families remain unproved.
 
 ## Reproduction and operational state
 
-Private recipes and receipts remain under `build/reimu-effect-exits/`.
 `positions.py` and `effect-visible.py` reproduce the source controls;
-`admitted-controls.py` records the exact preceding middle-exit transform and
-builds all four native witnesses from the pinned current root cache.
-`native-sensitivity-proof.json` retains per-object hashes, execution status,
-profile/snapshot hashes and field-difference counts. `control-sizes.json`
-records all four reviewed extents. Regenerate removed object products before
-running the focused commands:
+`admitted-controls.py` records the exact preceding middle-exit transform and builds
+all four native witnesses from the pinned current root cache. Regenerate removed
+object products before running the focused commands:
 
 ```bash
 nice -n 10 taskset -c 0 python3 -B scripts/audit-reimu-shot-effect-returns.py \

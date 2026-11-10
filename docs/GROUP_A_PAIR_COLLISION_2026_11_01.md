@@ -61,12 +61,10 @@ The old A/B method in GeometryGroups.cpp remains unselected; primary197 and
 the separate group-B candidate are unchanged. No shared header, ABI, compiler
 flags or provider definition changes.
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-group-a-pair-collision --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-group-a-pair-collision --compare --json
     taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit cross-v106a-candidate-fighter-resolver --compare --json
     taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit gpt-web-collision-geometry-preparation --compare --json
 
-Receipts under build/frontier-group-a-pair-20261101:formal.json, owner.json,
-preparation.json, compare.json, boundary.json and reload-observer.json.
 Scoped origin validation uses the complete native hash and fresh exact owner.
 
 Source1787/authored1807/mapped1814/excluded1801/review419/units766.

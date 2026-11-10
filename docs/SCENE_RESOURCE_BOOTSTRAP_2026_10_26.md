@@ -82,11 +82,9 @@ this work does not establish a unique original specialization or LTCG boundary.
 
 ## First whole comparison and finite controls
 
-Every row is a complete compiling source, immediately replayed over its entire
-COFF section. Trial sources, objects, canonical bytes and JSON are retained
-privately under `.analysis/exact-first-43e2e0-20261026/` and
-`build/exact-first-43e2e0-20261026/`. Oversize candidates are diagnostic whole
-section comparisons; they do not enlarge the accepted target boundary.
+Every row is a complete compiling source, immediately replayed over its entire COFF
+section. Oversize candidates are diagnostic whole section comparisons; they do not
+enlarge the accepted target boundary.
 
 | Complete source/control | Bytes | Unequal positions | Interpretation |
 | --- | ---: | ---: | --- |
@@ -129,8 +127,7 @@ scripts/repo-python scripts/audit-scene-resource-bootstrap-target.py \
   --object build/match-units/ExactFirst_SceneResourceBootstrap.obj
 ```
 
-Target-only audit exits0. The build/object audit report nonexact and exit1 as
-expected. Public receipts: `formal-first.json`, `formal-second.json`,
+Target-only audit exits0. Public receipts: `formal-first.json`, `formal-second.json`,
 `public-target-audit.json`, `public-object-audit.json` in the build directory.
 The full `scripts/repo-python scripts/verify-exact-units.py --all` replay passes
 525 cold accepted units/all1413 functions; receipt `cold-all.log` is in that
@@ -139,7 +136,6 @@ same build directory. Exact authored totals remain1413 functions/382816 bytes.
 Original variable identity, stack allocator/TU context, nominal map/input types
 and original source spelling remain unknown. The lane is parked until new
 independent evidence explains those stack homes.
-
 
 ## Follow-up: event-effect key width, 2026-11-09
 

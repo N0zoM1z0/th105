@@ -84,15 +84,13 @@ The final configured source passes these complete-return native controls:
 The1408 boundary controls use action300, counters-32768/-1/0/1/9/10/11/89/90/
 91/92/32767, modes0..3, both facings and the eight existing MT seeds (768 cases).
 Another640 use action201, policy words-32768/-32767/-1/0/18/19/99/100/101/32767,
-timers-32768/0/1/32767, both facings and those seeds. Peer action100 bypasses
-common attacks; persistent controls start at1/-1. Action300 uses policy-1 so
-later policy output cannot conceal its stores. The native dependencies execute
-without result hooks, and comparison includes the actor, MT state, calls,
-conversion inputs, stack and x87 control word through the genuine RET.
-Boundary input SHA-256:
-`ca6517c2df8f5e0f0d22dc16a7cf22d2776cfcddf82ae8396d5df9524327ea7a`.
-Reports and private input-generation recipes use `build/cpu-inline-` and
-`.analysis/cpu-inline-20261017/`. The existing matrices remain reproducible via:
+timers-32768/0/1/32767, both facings and those seeds. Peer action100 bypasses common
+attacks; persistent controls start at1/-1. Action300 uses policy-1 so later policy
+output cannot conceal its stores. The native dependencies execute without result
+hooks, and comparison includes the actor, MT state, calls, conversion inputs, stack
+and x87 control word through the genuine RET. Boundary input SHA-256:
+`ca6517c2df8f5e0f0d22dc16a7cf22d2776cfcddf82ae8396d5df9524327ea7a`. The existing
+matrices remain reproducible via:
 
 ```bash
 python3 scripts/build.py --unit gpt-web-default-cpu-action-policy --compare --json

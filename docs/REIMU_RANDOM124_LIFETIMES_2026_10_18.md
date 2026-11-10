@@ -77,16 +77,12 @@ separate12-byte next-owner INT3 gap. First strict target difference remains
 +17/478FB1. Root stays unclassified/declaration-only; no acceptance ledger changes.
 
 Ordinary object SHA256:
-`d7fc04128ef631dce0829a97d2d11773f8b541fda81f749ed4d7293bf97e3bfd`.
-Linked image SHA256:
-`48fbfa88ae159086c4f7ce4ff5ad45ca4b7af7c606b0e330009f940e52cb9c1f`.
-Fragment CRLF SHA256:
-`e967cd518c1c51fba31ad98d6ff8c8c669343b885c80b17c9b83ef8dadc0a4ed`.
+`d7fc04128ef631dce0829a97d2d11773f8b541fda81f749ed4d7293bf97e3bfd`. Linked image
+SHA256: `48fbfa88ae159086c4f7ce4ff5ad45ca4b7af7c606b0e330009f940e52cb9c1f`. Fragment
+CRLF SHA256: `e967cd518c1c51fba31ad98d6ff8c8c669343b885c80b17c9b83ef8dadc0a4ed`.
 The720-input SHA256 is
-`ef23617286b58721ae04f28241e001adec20c7857eae429d538c04c71d7460c3`.
-Receipts and controls occupy `build/reimu-sharing-review/`; current genuine
-link products occupy `build/reimu-ltcg/`. Run heavy commands serially with
-`nice -n 10 taskset -c 0`:
+`ef23617286b58721ae04f28241e001adec20c7857eae429d538c04c71d7460c3`. Run heavy
+commands serially with `nice -n 10 taskset -c 0`:
 
 ```bash
 python3 scripts/probe-reimu-action-ltcg.py

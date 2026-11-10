@@ -33,10 +33,8 @@ The public comparator validates every E8 through the actual linked library
 symbol. The complete source-owned version literal is checked before its sole
 PUSH address is replayed to6D69D0. Neither root has C++ cleanup EH.
 
-Fresh Factory metadata, entry point and all five mapped samples passed again.
-Function inventory, disassembly, decompilation and caller/callee evidence are
-retained in build/frontier-replay-zlib-cil-20261030/ida-evidence.json. Target and
-canonical-source hashes:
+Fresh Factory metadata, entry point and all five mapped samples passed again. Target
+and canonical-source hashes:
 -4067F0:49372bd901381e34bdc4360bb1ae7a655fc1e4e6c4f4513e5506e56362545dce
 -406890:e29a0ef8cc48a960829252af8cb761f64bec1f8a645f207cf251d3b02ff9a8a4
 
@@ -53,6 +51,5 @@ scripts/repo-python scripts/build.py --unit exact-first-replay-codec --compare -
 scripts/repo-python scripts/ci.py
 ```
 
-Formal receipt: build/frontier-replay-zlib-cil-20261030/formal-final.json.
 The now-real codec provider can support subsequent full score/network caller
 investigation; this checkpoint does not claim those callers are exact.

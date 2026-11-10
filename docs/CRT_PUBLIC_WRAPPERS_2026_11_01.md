@@ -36,6 +36,5 @@ compare exact. Generic origin coverage/size thresholds are unchanged.
 Only50 runtime bytes and three exclusions are added. Authored exact functions,
 authored exact bytes and source-present counts remain unchanged.
 
-Evidence: build/origin-anchors/vc8-public-wrappers/proof.json and
-build/frontier-crt-public-wrappers-20261101/mutations.json. Private scripts and
-original-member probes are under the corresponding .analysis/build scope.
+Private scripts and original-member probes are under the corresponding
+.analysis/build scope.

@@ -77,16 +77,16 @@ also reflect common tails and the low-owner merge.
 
 ## Focused reproduction
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-patchouli-action-state --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-patchouli-action-state --compare --json
     scripts/repo-python scripts/audit-patchouli-action-state.py
     scripts/repo-python scripts/map-giant-action-switches.py patchouli-vslot28 --json
     scripts/repo-python scripts/compare-giant-action-switches.py patchouli-vslot28 build/match-units/ExactFirst_PatchouliActionState.obj --json
 
 The full audit replays every COFF relocation with the canonical comparator and
 rechecks native CFG closure. Expected mismatch exits must not become acceptance.
-Seventeen new literal bindings are supported by native operand addresses and
-COFF values; all prior bindings and accepted consumer sources are unchanged.
-Artifacts: build/frontier-50f200-20261027/. Only the new unit is compiled.
+Seventeen new literal bindings are supported by native operand addresses and COFF
+values; all prior bindings and accepted consumer sources are unchanged. Only the new
+unit is compiled.
 
 ## Branch and payload refinement
 
@@ -125,16 +125,14 @@ The preceding focused receipts use the surface-ring prefix under the artifact
 folder. No compiler flag, dependency ABI, existing relocation or accepted
 consumer changed. Broader rebuilding is not warranted by this source edit.
 
-
 ## Argument lifetimes and native branch ownership, October28
 
-The current complete unselected candidate emits55026/full55610 bytes,
-first+8 (468 frame versus460), SHA256
-0c76d2ef636a0ee3f83ad324a3209398f302deb286552cc56cb67a3114f96b54.
-The unmasked audit reports52741 unequal/missing positions, not a semantic
-percentage. Public replay exactly reproduces the private ownerorder payload.
-Receipts: build/frontier-50f200-20261027/formal-ownerorder.json and
-formal-ownerorder-audit.json. No exact/source-selection ledger changes.
+The current complete unselected candidate emits55026/full55610 bytes, first+8 (468
+frame versus460), SHA256
+0c76d2ef636a0ee3f83ad324a3209398f302deb286552cc56cb67a3114f96b54. The unmasked audit
+reports52741 unequal/missing positions, not a semantic percentage. Public replay
+exactly reproduces the private ownerorder payload. No exact/source-selection ledger
+changes.
 
 - Nineteen atan sites retain rounded DX and evaluate DY in the outgoing
   argument. Native513C82 through51BC91 place DX before loading peer Y.

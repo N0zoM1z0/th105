@@ -89,14 +89,11 @@ result control with an independently matching27-byte callee also leave the
 caller unchanged.
 These are bounded negatives, not universal rules.
 
-Recipes: `.analysis/youmu-entry-tail-20261023/`. Artifacts:
-`build/youmu-entry-tail-20261023/`; start with `baseline-build.json`,
-`joins.json`, `final-build.json`, `final-owners.json`, `final-native.json`,
-`link/receipt-resolved.json` and `link/audit.json`. Link receipt SHA256 is
-`569552a5557675df9cfbc13da04126af66ce7081fae6727ba8ef93ff0338bee5`.
-Completed controls are archived with verified member hashes. Shared headers,
-profiles, helper implementations and relocation bindings remain unchanged;
-the unit/function notes now identify this selection. No aggregate cold replay.
+Link receipt SHA256 is
+`569552a5557675df9cfbc13da04126af66ce7081fae6727ba8ef93ff0338bee5`. Completed
+controls are archived with verified member hashes. Shared headers, profiles, helper
+implementations and relocation bindings remain unchanged; the unit/function notes
+now identify this selection. No aggregate cold replay.
 
 ## TH075 offset-view control
 
@@ -106,13 +103,12 @@ a declaration-only receiver and typed offset fields while accepting the entire
 31777-byte payload. Peer source, configuration and evidence notes were read;
 its target corpus was not rebuilt and its dirty handoff was not changed.
 
-Private recipe `.analysis/th075-exact-first-review-20261023/probe.py` applies
-that concrete source property to this 5159-byte callable. It removes the local
-complete-owner field declarations and size/offset assertions, retaining all
-virtual declarations in their existing order and all actual operations. It
-replaces 309 references to 23 used fields with typed offset lvalues. The sprite
-subobject retains its existing independently typed view. This partial receiver
-is never constructed or embedded. No helper, flag, ABI promise or binding changes.
+It removes the local complete-owner field declarations and size/offset assertions,
+retaining all virtual declarations in their existing order and all actual
+operations. It replaces 309 references to 23 used fields with typed offset lvalues.
+The sprite subobject retains its existing independently typed view. This partial
+receiver is never constructed or embedded. No helper, flag, ABI promise or binding
+changes.
 
 Fresh serial baseline and control builds both have a complete COFF extent of
 5492 bytes and canonical SHA256 `d00f4fc4ceca80c8fc4510ff03dcf064e3188fa5dc33afc8e25815d880da413a`.
@@ -122,11 +118,10 @@ is `0e2a3d153a6d67af1cb6966518301a04f00ef54b4004fb622992b5cc28f4e4b4`.
 This is a native code-generation negative for this source/compiler context;
 it does not establish original layout or rule out other source shapes.
 
-Receipts, source, objects, full canonical payloads and field map are retained in
-`build/th075-exact-first-review-20261023/`. The complete `report.json` SHA256 is
-`685baf4513eb54f02790fa78ff0a32953819ff3e9fff73e1ab7a37b7cd4a3c01`.
-The public source remains unchanged. No execution matrix is rerun for these
-byte-identical payloads, no new exact credit and no aggregate replay are claimed.
+The complete `report.json` SHA256 is
+`685baf4513eb54f02790fa78ff0a32953819ff3e9fff73e1ab7a37b7cd4a3c01`. The public
+source remains unchanged. No execution matrix is rerun for these byte-identical
+payloads, no new exact credit and no aggregate replay are claimed.
 
 ## Dispatch-source controls
 
@@ -157,15 +152,12 @@ establishes the rejected compiler result, without normalizing the thunk to an
 unsupported target address, executing the DLL, claiming target equivalence or
 excluding other LTCG partitions. Provider exactness limits remain as above.
 
-Recipes: `.analysis/youmu-dispatch-context-20261023/`. Receipts and artifacts:
-`build/youmu-dispatch-context-20261023/`; start with `caller-views.json`,
-`forwarding.json`, `case-order.json`, `pmf850-native.json` and
-`pmf850-link/field-audit.json`. The member-pointer source SHA256 is
-`9915df5f348579a054bed38914cad6c0b23f41726ae885c2766a95f5d76e1e06`;
-its real link receipt SHA256 is
-`457e7d541dc198d6712bd839903312c20febb6023c6b1dcac0dd1b20ff084f09`.
-The active external native inputs remain necessary to this compiler context.
-The five remaining call/register regions are still open.
+The member-pointer source SHA256 is
+`9915df5f348579a054bed38914cad6c0b23f41726ae885c2766a95f5d76e1e06`; its real link
+receipt SHA256 is
+`457e7d541dc198d6712bd839903312c20febb6023c6b1dcac0dd1b20ff084f09`. The active
+external native inputs remain necessary to this compiler context. The five remaining
+call/register regions are still open.
 
 ## Selector visibility and native map implementation, 2026-10-24
 
@@ -214,11 +206,7 @@ python3 scripts/build.py --unit cross-v106a-animation-sequence-virtuals --compar
 python3 scripts/compare-function.py 0x0045C320 build/match-units/CrossV106a_AnimationSequenceVirtuals.obj --symbol-base '?find@?$_Tree@V?$_Tmap_traits@HPAUAnimationSequenceBlock@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHPAUAnimationSequenceBlock@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABH@Z' --json
 ```
 
-Recipes: `.analysis/youmu-selector-visibility-20261023/`. Artifacts:
-`build/youmu-selector-visibility-20261023/`; start with `public-selector-final.json`,
-`public-find-compare.json`, `public-word-witness.json`, `find-facts.json`,
-`selector-audits.json` and each of `link/`, `dual-link/`, `map-link/`.
 The last contains the full qualified root replay and the retained rejecting
-`selector-rejection.json`. No DLL execution or new runtime-matrix claim.
-The actual map context and all 23 external native inputs remain necessary.
-Exact ledgers are unchanged; no aggregate cold replay is claimed.
+`selector-rejection.json`. No DLL execution or new runtime-matrix claim. The actual
+map context and all 23 external native inputs remain necessary. Exact ledgers are
+unchanged; no aggregate cold replay is claimed.

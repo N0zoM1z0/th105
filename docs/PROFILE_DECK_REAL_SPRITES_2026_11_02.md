@@ -38,7 +38,5 @@ it remains nonexact against439 native bytes. No new source selection, exact
 count or authored bytes are added. Original complete menu nominal layout and
 full parent unwind graph are not claimed by these sprite ownership checks.
 
-Evidence: build/frontier-deck-real-sprites-20261102/ contains fresh before/actual
-comparisons, formal receipts, owner-proof.json and the three alias-consumer
-replays. The corresponding .analysis scope holds the bounded controls.
-Default CI and both diff checks gate the checkpoint.
+The corresponding .analysis scope holds the bounded controls. Default CI and both
+diff checks gate the checkpoint.

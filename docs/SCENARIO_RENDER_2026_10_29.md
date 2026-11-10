@@ -58,13 +58,11 @@ whole-program allocation context remain unknown.
 
 scripts/repo-python scripts/build.py --unit exact-first-scenario-render --compare --json
 
-Receipt:build/frontier-scenario-render-20261029/formal.json.
-Four new relocation records bind the complete five-byte PMF thunk and three
-verified floating literals. Existing relocation records and shared headers
-are unchanged; no previously accepted function is modified. The two exact
-render callees are pinned as native call witnesses by the authored-origin
-rule. Default CI validates the new source selection, ledgers and tooling;
-this is not a full cold-corpus rebuild.
+Four new relocation records bind the complete five-byte PMF thunk and three verified
+floating literals. Existing relocation records and shared headers are unchanged; no
+previously accepted function is modified. The two exact render callees are pinned as
+native call witnesses by the authored-origin rule. Default CI validates the new
+source selection, ledgers and tooling; this is not a full cold-corpus rebuild.
 
 ## Shared text-entry type, 2026-11-04
 

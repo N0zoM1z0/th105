@@ -9,8 +9,6 @@ The two next-frame/block byte statuses are positively consumed by native code.
 
 This pass used the hash-attested Japanese 1.06a PE, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Private scripts are in `.analysis/frontier-animation-return-contract-20261109/`;
-results are in the corresponding `build/` directory.
 
 - The fourteen frame/sequence virtual addresses occur in 53 primary tables with
   valid COL/type-descriptor records and offset zero. Their slots +0C through

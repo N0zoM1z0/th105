@@ -79,13 +79,11 @@ retain all 11 previously exact roots. The existing unaccepted D3D destructor
 at `414770` remains nonexact (source 103, target 169); this change does not
 promote it.
 
-Evidence is in `build/frontier-global-inline-cleanup-20261110/`: the formal
-unit report is `formal-replay.json`, and the four named lifecycle reports retain
-the regression results. These are local canonical comparisons. Factory receipt
-acceptance is a separate result and must be checked for the current inputs.
-Only the constructor adds authored exact coverage; generated lifetime support
-does not add authored functions. The pending input-source pins and all earlier
-uncommitted input/scenario edits remain unchanged.
+These are local canonical comparisons. Factory receipt acceptance is a separate
+result and must be checked for the current inputs. Only the constructor adds
+authored exact coverage; generated lifetime support does not add authored functions.
+The pending input-source pins and all earlier uncommitted input/scenario edits
+remain unchanged.
 
 ## Factory result
 

@@ -56,7 +56,3 @@ mid-helper transfers, unproved external branches, overlaps, indirect/trap
 instructions and incorrect return cleanup. All498 actual initialized-byte
 mutation controls fail: every owner byte, every helper/exit byte and every byte
 of all three data sections. The original generic CFG gate remains unchanged.
-
-Evidence: build/origin-anchors/vc8-sqrt-shared/proof.json and
-build/frontier-crt-math-owners-20261101/sqrt-*.json. Private scripts are under
-.analysis/frontier-crt-math-owners-20261101/.

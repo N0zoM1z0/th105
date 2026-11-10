@@ -70,16 +70,9 @@ scripts/compile-unit.sh src/characters/ReimuActionStateDispatch.cpp build/reimu-
 python3 scripts/audit-reimu-mid-550-actions.py build/reimu-mid-550/ReimuActionStateDispatch.obj
 ```
 
-Fresh pre-edit540 smoke passes0/40. Pinned VC8 SP1 `/O2 /GS- /GR /EHsc /MT`,
-default FP/no injected compiler environment, produces30180 staged text bytes.
-Final object SHA256
-`69ce2d497ff7dc170b46447ca26eb6c5cf40250aebec2db2bb98e53314841f2f`;
-compiler/source/header/object hashes and the separate previous-commit baseline
-are recorded in `build/reimu-mid-550/build-receipt.json`. The oracle pins its
-own inputs but does not itself attest compilation provenance.
-
-**0/2665 differences**, `build/reimu-mid-550/native.json`, input SHA256
-`4ff70fd2660f2120fd28bc8c156e806827a4672800c3fb785575729e7aad694e`:
+Fresh pre-edit540 smoke passes0/40. Pinned VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default
+FP/no injected compiler environment, produces30180 staged text bytes. The oracle
+pins its own inputs but does not itself attest compilation provenance.
 
 |Cohort|Cases|
 |---|---:|

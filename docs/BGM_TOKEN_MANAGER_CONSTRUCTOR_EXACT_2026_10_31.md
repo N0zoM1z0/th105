@@ -51,6 +51,5 @@ context. Other source consumers remain untouched. The previous checkpoint's
 BGM, wave and package regressions remain recorded; this follow-up reruns the
 three directly affected roots and default CI, not a cold whole-repository scan.
 
-One authored function adds133 bytes:1572 exact /447512 bytes;
-source1768, authored1788, mapped1795, excluded1658, review581, units755.
-Full receipts: build/frontier-bgm-token-lifetime-20261031/.
+One authored function adds133 bytes:1572 exact /447512 bytes; source1768,
+authored1788, mapped1795, excluded1658, review581, units755.

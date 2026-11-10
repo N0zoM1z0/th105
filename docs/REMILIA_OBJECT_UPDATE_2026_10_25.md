@@ -203,10 +203,9 @@ The production-lookup and whole-runtime-equivalence limits above still apply.
 Receipts: `natural-controls.json`, each control's preview/inventory and opcode
 packet, `natural-formal.json`, `natural-formal-payload.json`,
 `natural-formal-paths.json`, `natural-cold.json`, `natural-cold-payload.json`,
-`natural-cold-paths.json`, and `movement-order-control-paths.json`, all in the
-same build scope. Private controls and the diagnostic case differ live in the
-corresponding `.analysis/` directory. The differ ignores jump destinations
-only to locate source-shape problems and never records a match score or waiver.
+`natural-cold-paths.json`, and `movement-order-control-paths.json`, all in the same
+build scope. The differ ignores jump destinations only to locate source-shape
+problems and never records a match score or waiver.
 
 ### Closed local lifetime controls after the natural-body checkpoint
 
@@ -290,15 +289,10 @@ scripts/repo-python scripts/audit-remilia-object-update.py
 scripts/repo-python scripts/audit-remilia-object-update-paths.py
 ```
 
-The build/comparison and full payload audit currently return1 for the recorded
-mismatch; the target and54-prefix audits return0. Receipts are under
-`build/exact-first-remilia-object-update-20261025/`: `first-preview.json`,
-`first-inventory.json`, `formal-first.json`, `formal-first-payload.json`,
-`formal-first-paths.json`, `guard-control-paths.json` and the Ghidra receipt.
-Private source controls and recipes are in the corresponding `.analysis/`
-directory. Readonly Ghidra was target-attested, temporary views rolled back
-and all nine primary database pins unchanged; its decompilation remains a
-hypothesis. IDA's open GUI still has the wrong target and was not used.
+Readonly Ghidra was
+target-attested, temporary views rolled back and all nine primary database pins
+unchanged; its decompilation remains a hypothesis. IDA's open GUI still has the
+wrong target and was not used.
 
 The next complete authored representative is YoumuObject slot28 at53CEA0.
 Its RTTI-backed primary cell6C50E4 points to that entry; the current25944-byte

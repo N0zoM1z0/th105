@@ -27,21 +27,18 @@ Three distinct effect62/next-sequence/RET tails are also observed:
 |414|47FB24|47FB30|47FB39|
 |416|47FF5A|47FF66|47FF6F|
 
-Primary vtable6C412C has slot28 at6C4154->478FA0, slot8 at6C4134->45BFE0
-and slot14 at6C4140->45C220. The latter is the accepted138-byte sequence helper.
-Instruction facts come from decoding the attested complete root, then direct
-read-only Ghidra12.1 corroboration. Ghidra independently verifies imported
-executable hash, PE base/entry68B9D2, x86/windows analysis target, full mapped
-text SHA256 `f5cb09ff0a54362356d8c4cce853cbcb14552499cce12cf7390d0868db9ebe97`,
-root bytes, slots and instruction flows before emitting the success sentinel.
-Temporary instruction creation is confined to the read-only session. All nine
-primary DB hashes agree before/after; its build-project alias is removed.
-Recipe: `.analysis/reimu-root-branches-20261019/ghidra-readonly.py` and
-`ghidra-scripts/Th105ReimuShotTailAudit.java`; receipts/logs are under the
-corresponding `build/` directory. The initial lookup found undefined code and
-correctly failed without a sentinel; its `ghidra-first` records are retained.
-The successful run explicitly disassembles only the attested instruction ranges.
-No IDA semantics or target byte patches are used.
+Primary vtable6C412C has slot28 at6C4154->478FA0, slot8 at6C4134->45BFE0 and slot14
+at6C4140->45C220. The latter is the accepted138-byte sequence helper. Instruction
+facts come from decoding the attested complete root, then direct read-only
+Ghidra12.1 corroboration. Ghidra independently verifies imported executable hash, PE
+base/entry68B9D2, x86/windows analysis target, full mapped text SHA256
+`f5cb09ff0a54362356d8c4cce853cbcb14552499cce12cf7390d0868db9ebe97`, root bytes,
+slots and instruction flows before emitting the success sentinel. Temporary
+instruction creation is confined to the read-only session. All nine primary DB
+hashes agree before/after; its build-project alias is removed. The initial lookup
+found undefined code and correctly failed without a sentinel; its `ghidra-first`
+records are retained. The successful run explicitly disassembles only the attested
+instruction ranges. No IDA semantics or target byte patches are used.
 
 ## Selected C++ and whole-root controls
 
@@ -60,19 +57,15 @@ Private serial VC8 SP1 controls use the unchanged compiler/profile/header:
 |414 effect break only|5|220/221|57/57, equal|
 |Both changes, selected|5|220/220|57/57, equal|
 
-The join alone loses a formerly equal414 RET group and is rejected alone.
-The break alone retains an extra414 slot8 call and is rejected alone. Combined,
-all **1198 previously equal complete action-membership/multiplicity checks**
-across32 direct callees, four indirect-slot domains, RETs and aggregate indirect
-calls are preserved. The entire435240 effect partition now agrees, including
-three separate410/414/416 sites. Indirect physical counts agree per slot:
-8=132/132, mixed8/C=2/2, C=51/51,14=35/35. All per-action indirect count deltas
-are gone. Slot8 and14 complete memberships still differ: equal totals are not
-proof of equal sharing. Complete receipts are `baseline-sharing.json`, the
-three control directories, `selected-sharing.json` and
-`selected-preserved-groups.json` under `build/reimu-root-branches-20261019/`.
-Control source/commands and mutation recipe are retained privately in
-`.analysis/reimu-root-branches-20261019/probe.py`.
+The join alone loses a formerly equal414 RET group and is rejected alone. The break
+alone retains an extra414 slot8 call and is rejected alone. Combined, all **1198
+previously equal complete action-membership/multiplicity checks** across32 direct
+callees, four indirect-slot domains, RETs and aggregate indirect calls are
+preserved. The entire435240 effect partition now agrees, including three
+separate410/414/416 sites. Indirect physical counts agree per slot: 8=132/132,
+mixed8/C=2/2, C=51/51,14=35/35. All per-action indirect count deltas are gone. Slot8
+and14 complete memberships still differ: equal totals are not proof of equal
+sharing.
 
 ## Current compilation and strict comparison
 
@@ -94,10 +87,9 @@ unchanged570h; target/source reachable instructions are20243/20268.
 |First strict target mismatch|+541 /4791BD: targetA9/source4A|
 
 Object hashes include COFF timestamps; reproducible source/canonical hashes and
-compiler receipts qualify the comparison. `build/reimu-ltcg/coff-replay.json`
-contains the full linked correspondence. An earlier effect audit rejected a
-stale producer support digest; the public producer was rerun, without receipt
-hash overrides, before accepting the new effect execution.
+compiler receipts qualify the comparison. An earlier effect audit rejected a stale
+producer support digest; the public producer was rerun, without receipt hash
+overrides, before accepting the new effect execution.
 
 Reproduce the selected root diagnostics serially:
 
@@ -139,15 +131,13 @@ state differences on the sequence1/3 return paths. Input SHA256
 This is semantic sensitivity, not an early gate failure. Recipe label:
 `wrong-414-action0`; report: `wrong-414-native.json`.
 
-The independent bool stage is rebuilt from current fragments through418, with
-later includes omitted, its ordinary pending cutoff restored to418 and local
-landing fragments selected. Its recipe is
-`.analysis/reimu-root-branches-20261019/stage.py`; generated source, compiler
-receipt and native result are below `bool-stage/`. Focused motion/required-branch
-execution passes **0/578** (540+38), input SHA256
-`2da5cb344daea76aa44823d39c708c5668b419a47b14f35a91630ebc026f60f3`. The full later bool object
-is outside the old mid-shot oracle's literal scope and correctly fails that
-gate; no bindings or oracle checks are weakened to accept it.
+The independent bool stage is rebuilt from current fragments through418, with later
+includes omitted, its ordinary pending cutoff restored to418 and local landing
+fragments selected. Focused motion/required-branch execution passes **0/578**
+(540+38), input SHA256
+`2da5cb344daea76aa44823d39c708c5668b419a47b14f35a91630ebc026f60f3`. The full later
+bool object is outside the old mid-shot oracle's literal scope and correctly fails
+that gate; no bindings or oracle checks are weakened to accept it.
 
 **Unknown:** the remaining five differing direct partitions are4351C0,435D60,
 45AF40,473DD0 and478EE0. Target has1188 direct CALLs versus source1185, with one

@@ -44,11 +44,7 @@ no duplicate credit. Two focused original-SDK units provide formal replay.
 
 Ten tests protect original source/member/profile, whole extents, pointer versus
 float identity, correct bindings and initialized writable storage. All94 real
-corruption controls fail: every code/padding byte, all window pointer bytes,
-all array boundaries and the selected float-table element. Full33848-byte data
-comparison remains mandatory regardless of these selected mutation controls.
-Generic short-function thresholds are unchanged.
-
-Evidence: build/origin-anchors/xiph-table-getters.json and
-build/frontier-sdk-table-leaves-20261101/. Private scripts are under
-.analysis/frontier-sdk-table-leaves-20261101/.
+corruption controls fail: every code/padding byte, all window pointer bytes, all
+array boundaries and the selected float-table element. Full33848-byte data
+comparison remains mandatory regardless of these selected mutation controls. Generic
+short-function thresholds are unchanged.

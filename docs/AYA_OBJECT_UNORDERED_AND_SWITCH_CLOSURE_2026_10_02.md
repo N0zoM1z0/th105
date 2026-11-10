@@ -160,12 +160,9 @@ owner-state update shrinks its candidate1737->1715 versus target1773 and
 moves metadata19160->19140, without diagnostic gains. It is not retained;
 no global type or volatile qualification is inferred from this control.
 
-Private source controls and exporters are in
-`.analysis/aya-object-state-20261002/`; source/object/window hashes and focused
-reports are in `build/aya-object-state-20261002/controls-summary.json`.
-Target tables, raw instructions, guard packets and available instruction
-changes are stored in that same build directory. These existing-object probes
-have no configured build provenance and award no exact credit.
+Target tables, raw instructions, guard packets and available instruction changes are
+stored in that same build directory. These existing-object probes have no configured
+build provenance and award no exact credit.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
@@ -174,9 +171,6 @@ python3 scripts/audit-giant-action-owners.py aya-object-vslot28 \
   --unit gpt-web-aya-object-vslot28-full-root --json
 ```
 
-Finished-worktree reports are `build/aya-object-state-final-20261002.json`
-and `build/aya-object-state-final-owners-20261002.json`; the matching guard
-report is `build/aya-object-state-final-guards-20261002.json`.
 No shared header/ABI, compiler flag, helper body, relocation mapping or object
 partition changes. Exact ledgers are unchanged; no cold aggregate replay is
 claimed. IDA still fails preflight because the attached SHA begins10350095;

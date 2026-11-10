@@ -2,13 +2,14 @@
 
 ## Source registration, 2026-11-04
 
-The complete source is now registered as source-present, still nonexact. A
-fresh pinned compiler build emits 1672 bytes and preserves the seven unequal
-SIB-order bytes and candidate SHA `6641fe764731d97cf81c02a03bfaff9bf796c5cc9341aade96bd991d624ddf46`.
-The target observer audit again reports all four bounded cases equal and the
-body nonexact; its exit status 1 is expected, not an audit failure. Providers,
-real file I/O, decompression and exception unwinding remain outside that test.
-No exact byte or helper credit is added. Receipts: `build/frontier-score-load-registration-20261104/`.
+The complete source is now registered as source-present, still nonexact. A fresh
+pinned compiler build emits 1672 bytes and preserves the seven unequal SIB-order
+bytes and candidate SHA
+`6641fe764731d97cf81c02a03bfaff9bf796c5cc9341aade96bd991d624ddf46`. The target
+observer audit again reports all four bounded cases equal and the body nonexact; its
+exit status 1 is expected, not an audit failure. Providers, real file I/O,
+decompression and exception unwinding remain outside that test. No exact byte or
+helper credit is added.
 
 Historical references below to this function being unselected describe their
 respective checkpoints.
@@ -36,14 +37,10 @@ ordinary fieldwise record assignment control regresses to1698/496 and is not
 selected; the shared public record header is untouched. No spelling/flag grid
 or manual encoding transformation follows these controls.
 
-New receipts are in `build/frontier-42f6f0-clear-20261027/`: baseline.json,
-clear.json, clear-audit.json, family-summary.json, assignment-summary.json,
-formal.json, formal-audit.json and local-ci.log. The final source is the original
-complete loader with only its vector clear operation changed. Final CI is
-pending at writing; use its terminal exit file. This scope rebuilds only the
-changed loader, not the complete accepted corpus. Earlier tables below remain
-historical results, superseded where stated here.
-
+The final source is the original complete loader with only its vector clear
+operation changed. Final CI is pending at writing; use its terminal exit file. This
+scope rebuilds only the changed loader, not the complete accepted corpus. Earlier
+tables below remain historical results, superseded where stated here.
 
 The whole1672-byte target has complete source and full relocation replay.
 The public candidate is **nonexact**:1666 bytes,564 unequal shared-extent
@@ -162,12 +159,8 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-
 scripts/repo-python scripts/audit-score-load-target.py --object build/match-units/ExactFirst_ScoreLoad.obj
 ```
 
-Both commands intentionally return1 for the recorded complete nonexact result;
-the audit returns2 for an evidence/fixture failure. Reports are under
-`build/frontier-42f6f0-20261026/`: `formal-first.json`, `formal-second.json`,
-`formal-audit-first.json`, `formal-audit-second.json`, `target-audit.json` and
-`defaults-shared-replay.json`. Private first/control sources, raw decode and
-full replay recipes remain under `.analysis/frontier-42f6f0-20261026/`.
+Both commands intentionally return1 for the recorded complete nonexact result; the
+audit returns2 for an evidence/fixture failure.
 
 Four complete native executions and candidate replays cover missing file,
 decode failure, populated data and zero character count. They pin open flags,
@@ -193,11 +186,8 @@ tests and progress checks. The loader itself remains nonexact.
 
 ## Scalar byte-buffer ownership, November 10
 
-`read_u32` now uses `std::memcpy` into a real unsigned object instead of a
-casted unsigned load from its byte allocation. The fixed four-byte copy is
-fully inlined: complete COFF contents and relocations are unchanged. All four
-existing observer cases agree; the full 1672-byte body retains exactly seven
-SIB-encoding differences and is still nonexact. The paired writer remains
-1155/1155 exact. See the scalar ownership section in
-`SCORE_PERSIST_2026_10_26.md` and evidence under
-`build/frontier-score-scalar-copies-20261110/`.
+`read_u32` now uses `std::memcpy` into a real unsigned object instead of a casted
+unsigned load from its byte allocation. The fixed four-byte copy is fully inlined:
+complete COFF contents and relocations are unchanged. All four existing observer
+cases agree; the full 1672-byte body retains exactly seven SIB-encoding differences
+and is still nonexact. The paired writer remains 1155/1155 exact.

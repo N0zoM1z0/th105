@@ -47,13 +47,12 @@ roots first:
 The previous pure package/network rotations also freshly pass in this scope.
 The larger UDP owner and other nonexact neighbors are not promoted.
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_checked_iterator_origins.py vc8-linked-checked-package-iterator-106a
+taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_checked_iterator_origins.py vc8-linked-checked-package-iterator-106a
     taskset -c 0 nice -n 10 scripts/repo-python scripts/linked_checked_iterator_origins.py vc8-linked-checked-network-iterator-106a
 
-Per-rule reports are under build/origin-anchors, using the anchor manifest's
-stem plus -linked.json. They include target/source image/MAP/build receipt,
-validator and anchor hashes, full exact-root reports and both iterator proofs.
-Scope receipts:build/frontier-linked-tree-increment-20261101.
+Per-rule reports are under build/origin-anchors, using the anchor manifest's stem
+plus -linked.json. They include target/source image/MAP/build receipt, validator and
+anchor hashes, full exact-root reports and both iterator proofs.
 
 Twelve synthetic regression tests cover full comparison, forced exports,
 wrong CIL/runtime ownership, incomplete/changed helper, wrong error target,

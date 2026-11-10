@@ -91,11 +91,7 @@ min/max/count are checked against the raw accepted extent. Temporary metadata
 is read back and rolled back; pinned primary database hashes remain unchanged.
 Analysis uses CPU0/nice10 with384 MiB heap; builds run serially on CPU0/nice10.
 
-Private recipes and the first complete source snapshot remain under
-`.analysis/exact-first-iku-slot50-20261024/`. The corresponding `build/` directory
-retains raw facts/disassembly, whole CFG/table closure, attested views/logs/DB
-hashes, formal/cold receipts, first object/provenance, relocation counts,
-original origin row and input hashes. A generated-object table negative fails
-at `+0x18A0 / 0x632BE0`, target89/source8A; the target stays untouched. Previous
-accepted input sources remain unchanged. No broad runtime matrix or aggregate
-cold replay is claimed. Continue remaining complete peers; Marisa stays parked.
+A generated-object table negative fails at `+0x18A0 / 0x632BE0`, target89/source8A;
+the target stays untouched. Previous accepted input sources remain unchanged. No
+broad runtime matrix or aggregate cold replay is claimed. Continue remaining
+complete peers; Marisa stays parked.

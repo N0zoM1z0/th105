@@ -76,13 +76,10 @@ initializer or helper byte credit merely for linking successfully.
 
 Current focused receipt:
 `build/frontier-bgm-transition-context-20261029/formal-final-build.json`.
-`boundary.json` records native CFG, hashes and caller/flag facts.
 `caller-build.json` replays all three affected global facades.
-`static-global-replay.json` preserves the two existing PackageArchiveStore
-lifecycle matches163/228; `import-runtime-replay.json` preserves the existing
-wave-clear85 match and its known245/native247 caller. These two older profiles
-skip the new runtime-only table branch; the final additional callback allowlist
-only tightens the new mode. Unchanged corpus receipts are retained, not cold
-rebuilt. `tool-tests.log` and `ci.log` record the focused tooling and final gate.
-Private construction/control recipes are under
-`.analysis/frontier-bgm-transition-context-20261029/`.
+`static-global-replay.json` preserves the two existing PackageArchiveStore lifecycle
+matches163/228; `import-runtime-replay.json` preserves the existing wave-clear85
+match and its known245/native247 caller. These two older profiles skip the new
+runtime-only table branch; the final additional callback allowlist only tightens the
+new mode. Unchanged corpus receipts are retained, not cold rebuilt. `tool-tests.log`
+and `ci.log` record the focused tooling and final gate.

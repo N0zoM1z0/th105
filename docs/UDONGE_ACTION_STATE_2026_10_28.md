@@ -83,7 +83,7 @@ percentages.
 
 Only this new unit was compiled. Existing accepted receipts are unchanged.
 
-    taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-udonge-action-state --compare --json
+taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-udonge-action-state --compare --json
     scripts/repo-python scripts/audit-udonge-action-state.py
     scripts/repo-python scripts/compare-giant-action-switches.py udonge-vslot28 build/match-units/ExactFirst_UdongeActionState.obj --json
 
@@ -95,13 +95,9 @@ Five absent native-backed literal bindings were appended without changing
 existing bindings. No shared accepted source or header was changed. Default CI
 checks exact tooling and tracking without rebuilding the entire native corpus.
 
-Receipts under build/frontier-5bfd50-20261028:
-formal-build.json, formal-full.json, formal-switches.json,
-trial-orbit900-action-review.json, native-payload-review.json and
-trial-orbit900-payload-review.json. Private action slices, raw instructions and
-independent analysis attestations remain in the same bounded build directory.
-The checked-in candidate is authoritative; further refinements must be replayed
-against the complete canonical root.
+Private action slices, raw instructions and independent analysis attestations remain
+in the same bounded build directory. The checked-in candidate is authoritative;
+further refinements must be replayed against the complete canonical root.
 
 ## Action 214 facing comparisons, 2026-11-04
 

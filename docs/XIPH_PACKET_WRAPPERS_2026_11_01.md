@@ -29,12 +29,8 @@ checked after canonical relocation. The generic relocated-anchor 24-byte
 minimum is unchanged; this narrow typed gate does not admit arbitrary short
 wrappers.
 
-Three formal SDK comparisons pass. Seven focused tests reject changed SDK,
-member, symbol, provider, shortened/masked bodies and padding-as-code claims.
-All 368 real byte-corruption controls fail, covering every byte of both full
-wrapper sections and the provider section. The narrow origin rule passes
-before the two review rows are reclassified. No authored credit is added.
-
-Evidence: build/origin-anchors/xiph-packet-wrappers.json and
-build/frontier-ogg-packet-wrappers-20261101/. Private scripts are under
-.analysis/frontier-ogg-packet-wrappers-20261101/.
+Three formal SDK comparisons pass. Seven focused tests reject changed SDK, member,
+symbol, provider, shortened/masked bodies and padding-as-code claims. All 368 real
+byte-corruption controls fail, covering every byte of both full wrapper sections and
+the provider section. The narrow origin rule passes before the two review rows are
+reclassified. No authored credit is added.

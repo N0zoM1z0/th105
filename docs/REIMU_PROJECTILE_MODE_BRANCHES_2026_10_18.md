@@ -110,10 +110,8 @@ aggregate cold replay was run.
 
 ## Handoff
 
-Bounded branch/counter facts, equivalence receipts, matrices and source/compiler
-hashes are under build/reimu-projectile-branches/. Raw PE supplies the new
-facts; no IDA semantics or new Ghidra process/clone. All9 primary database
-hashes remain unchanged under the prior attestation. Superseded objects,
-prototype sources and caches are cleaned. Keep the full expanded size failure
-visible while recovering remaining call sharing/source overhead and returning
-world contexts; canonical root acceptance remains pending.
+Raw PE supplies the new facts; no IDA semantics or new Ghidra process/clone. All9
+primary database hashes remain unchanged under the prior attestation. Superseded
+objects, prototype sources and caches are cleaned. Keep the full expanded size
+failure visible while recovering remaining call sharing/source overhead and
+returning world contexts; canonical root acceptance remains pending.

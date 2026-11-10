@@ -153,13 +153,9 @@ Terrain retains240 finite equal and48 hardware-unqualified nonfinite contexts.
 All15 selected/negative/owner/runtime checks finish with their expected exits;
 the only expected nonzero result is the previous merged-object negative control.
 
-Generated receipts, source controls and COFFs remain under
-`build/reimu-object-selector-20261020`; private recipes under the matching
-`.analysis` scope. Object-only audits retain build_provenance_verified=false;
-formal build/source/COFF pins and helper-definition ownership are separate
-receipts. Accepted helper source/acceptance changes require only the three
-affected units, not a routine aggregate cold replay. No aggregate percentage
-or LTCG impossibility is claimed.
+Accepted helper
+source/acceptance changes require only the three affected units, not a routine
+aggregate cold replay. No aggregate percentage or LTCG impossibility is claimed.
 
 Next recover remaining RET sharing, two buffer slots, instruction/register
 placement and the original source/type/TU/caller context. Returning opaque

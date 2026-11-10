@@ -117,23 +117,17 @@ python3 scripts/compare-unit-object.py cross-v106a-application-bootstrap build/m
 ```
 
 The complete comparison intentionally reports three mismatches. The final
-selected comparison succeeds. Fresh reports are
-`build/application-bootstrap-formal.json`,
-`build/application-bootstrap-window-formal.json` and
-`build/application-bootstrap-boundaries.json`.
-Four source selections and durable names are recorded. The three nonexact
+selected comparison succeeds. Four source selections and durable names are recorded. The three nonexact
 roots have an independent authored-origin rule with body hashes, checked
 incoming/outgoing edges and data operands; the exact helper uses the canonical
 baseline. Only these four origin rows change. Existing fingerprint inputs and
 rules are checked unchanged and preserved without recompiling unrelated
 library anchors or replaying every exact unit.
 
-Sequential direct Ghidra sessions independently attest executable/program SHA,
-image base, entry/external entry marker, x86 Windows identity and every mapped
-.text byte before saving all four names, extents and parameter storage. Normal
-thiscall is used only for the root; private helper storage is explicit and
-custom. Same-session readback and a fresh read-only session verify names,
-sizes, purges, storage and complete body hashes. Scripts stay under
-`.analysis/application-bootstrap-20261016/ghidra-scripts/`; logs are
-`build/application-bootstrap-ghidra-*.log`. Each process uses a 768MiB heap and
-two active processors. The unattested IDA session is not used for analysis.
+Sequential direct Ghidra sessions independently attest executable/program SHA, image
+base, entry/external entry marker, x86 Windows identity and every mapped .text byte
+before saving all four names, extents and parameter storage. Normal thiscall is used
+only for the root; private helper storage is explicit and custom. Same-session
+readback and a fresh read-only session verify names, sizes, purges, storage and
+complete body hashes. Each process uses a 768MiB heap and two active processors. The
+unattested IDA session is not used for analysis.

@@ -124,11 +124,7 @@ all nine primary DB pins are unchanged. Decompiled output corroborates raw
 stack/edge interpretation and is not pasted as source. Own Ghidra heap384MiB /
 one CPU; compilation remains serial CPU0/nice10, with memory monitored.
 
-Private recipes/probes remain under
-`.analysis/exact-first-yukari-slot5c-20261024/`; the matching `build/` directory
-retains full raw CFG/tables/literals, attestation/DB pins, all full probes and
-diffs, formal comparisons and object/provenance. Existing accepted sources,
-headers, flags and relocation bindings are unchanged. Exact ledger totals
-remain1397 functions/327058 bytes, without an aggregate cold replay claim.
-Continue another complete peer; retain this nonexact checkpoint and its neutral
-controls instead of repeating them unchanged.
+Existing accepted sources, headers, flags and relocation bindings are unchanged.
+Exact ledger totals remain1397 functions/327058 bytes, without an aggregate cold
+replay claim. Continue another complete peer; retain this nonexact checkpoint and
+its neutral controls instead of repeating them unchanged.

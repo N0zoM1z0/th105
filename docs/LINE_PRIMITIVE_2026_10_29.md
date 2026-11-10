@@ -33,7 +33,6 @@ while this compiler output pushes immediate zeros. The complete suffix from
 Do not insert zero temporaries, volatile storage or assembly to force that
 prefix. Full148 comparison remains required; matching suffix is not credit.
 
-No existing function body, class declaration or accepted unit changes in this
-scope. Formal build, native boundary and negative controls are under
-build/frontier-line-primitive-20261029/. Default CI follows final ledger and
-progress updates. This adds source coverage only, zero exact bytes.
+No existing function body, class declaration or accepted unit changes in this scope.
+Default CI follows final ledger and progress updates. This adds source coverage
+only, zero exact bytes.

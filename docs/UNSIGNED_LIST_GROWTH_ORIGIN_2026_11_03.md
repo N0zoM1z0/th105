@@ -33,14 +33,12 @@ and the noncontinuable CxxThrowException witness. These are supporting evidence,
 not new authored matches. The existing target exception metadata is also used by
 other routines; no duplicate credit is awarded.
 
-The scoped origin validator pins the source/COFF closure, four VC8 headers,
-actual owner/unit/flags and target; it rebuilds and replays the four existing
-BGM lifetime roots before checking this helper. Five pure contract tests and
-six separate corrupt-root, native-owner, handler, unwind, ThrowInfo and literal
-negative controls reject. Receipts are in
-`build/origin-anchors/linked-unsigned-list-growth/` and
-`build/frontier-unsigned-list-growth-origin-20261103/`. No global origin replay
-or runtime execution of exceptional paths is claimed.
+The scoped origin validator pins the source/COFF closure, four VC8 headers, actual
+owner/unit/flags and target; it rebuilds and replays the four existing BGM lifetime
+roots before checking this helper. Five pure contract tests and six separate
+corrupt-root, native-owner, handler, unwind, ThrowInfo and literal negative controls
+reject. No global origin replay or runtime execution of exceptional paths is
+claimed.
 
 Only 0x402700 moves review → compiler-generated exclusion. Review292,
 excluded2079; exact1426 /443399 bytes, source1637, authored1656, mapped1827,

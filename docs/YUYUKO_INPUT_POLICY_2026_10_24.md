@@ -92,11 +92,7 @@ ABI, observed-tail and action-call metadata is read back and rolled back;
 pinned primary database files remain byte-identical. Analysis uses CPU0/nice10
 and384 MiB configured heap; builds are serial on CPU0/nice10.
 
-Private recipes and both full source snapshots remain under
-`.analysis/exact-first-yuyuko-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, whole CFG/table closure, attestation,
-formal/cold comparisons, first object/provenance, relocation counts, original
-origin row and input hashes. The generated-table negative is rejected at
-`+0x1824 / 0x56F6D4`, targetF9/sourceFA; the target is untouched. Previous source
-inputs remain unchanged. No broad runtime matrix or aggregate cold replay is
-claimed. Continue other complete peers; Marisa's neutral controls remain parked.
+The generated-table negative is rejected at `+0x1824 / 0x56F6D4`, targetF9/sourceFA;
+the target is untouched. Previous source inputs remain unchanged. No broad runtime
+matrix or aggregate cold replay is claimed. Continue other complete peers; Marisa's
+neutral controls remain parked.

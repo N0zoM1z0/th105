@@ -66,11 +66,8 @@ are unchanged and disjoint; no broad anchor replay or cold aggregate claim is
 needed. The shared layout header and existing relocation ledgers are unchanged
 from the preceding native-vector checkpoint.
 
-Raw target facts, ordinary/linked controls, full formal comparison, acceptance
-receipt and predecessor replays are in `build/design-base-render-20261021/`;
-private drivers are in `.analysis/design-base-render-20261021/`. IDA preflight
-again rejects the attached wrong-target session; no database semantics or
-metadata changes were used. Builds ran serially on CPU0 at nice10.
+IDA preflight again rejects the attached wrong-target session; no database semantics
+or metadata changes were used. Builds ran serially on CPU0 at nice10.
 
 Original source spelling/TU context and the rest of CDesignBase runtime remain
 open. In particular, the identified 2666-byte `40B000` loader still has no

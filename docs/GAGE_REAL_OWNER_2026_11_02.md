@@ -47,11 +47,8 @@ was made. Exact design callers do not make the indirect renderer exact.
 Constructor bytes, full-program linkage and unresolved slot bodies receive no
 new acceptance. No authored exact bytes are added by the type graph proof.
 
-Private proof scripts and receipts are under
-.analysis/frontier-gage-real-owner-20261102/ and
-build/frontier-gage-real-owner-20261102/. Final default CI passed 962 tests
-(101.468 seconds), tracking, generated progress and whitespace checks. Both
-working-tree and staged diff checks passed.
+Final default CI passed 962 tests (101.468 seconds), tracking, generated progress
+and whitespace checks. Both working-tree and staged diff checks passed.
 
 Totals stay 1427 exact /443604 bytes, 1637 source-present, 1656 authored,
 1826 mapped, 2074 excluded, 297 review and813 units.

@@ -43,8 +43,6 @@ Run serial CPU0/nice10 using scripts/repo-python:
 - scripts/audit-boost-matcher-lifetimes.py
 - scripts/ci.py
 
-Private receipts and checkpointed mutation driver are in the corresponding
-build/.analysis frontier-boost-recursion-cleanup-20261102 directories.
 No new inventory entries or authored exact credit:1429 functions /443911 bytes;
 source1634, authored1653, excluded2072, review302, mapped1821, units808.
 The8-byte callback remains support here; this audit does not silently change

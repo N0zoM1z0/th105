@@ -81,11 +81,10 @@ fact, not a complete ownership or numerical audit. Reconstruct their real
 argument schedules and lifetimes rather than assigning padding or arbitrary
 stack addresses. The root frame size itself was already identical.
 
-Private script: `.analysis/youmu-payload-lifetimes-20261002/stack-packets.py`.
-Final packet: `build/youmu-payload-lifetimes-20261002/final-stack-packets.json`.
-The preceding angle guards remain: the 136-guard ordinal scan has zero
-residual unordered-only leads after this correction. It remains a diagnostic,
-not full numerical or exception-environment closure.
+Final packet: `build/youmu-payload-lifetimes-20261002/final-stack-packets.json`. The
+preceding angle guards remain: the 136-guard ordinal scan has zero residual
+unordered-only leads after this correction. It remains a diagnostic, not full
+numerical or exception-environment closure.
 
 ## Isolated probes and byte-width discrimination
 
@@ -114,9 +113,6 @@ python3 scripts/audit-giant-action-owners.py youmu-vslot28 \
   --unit gpt-web-youmu-vslot28-full-root --json
 ```
 
-Fresh reports: `build/youmu-payload-final-20261002.json`,
-`build/youmu-payload-final-owners-20261002.json` and
-`build/youmu-payload-final-guards-20261002.json`.
 Raw traversal still reaches 9,912 instructions / all 37,692 callable bytes,
 with no unresolved indirect jumps. No new Ghidra output is used.
 Actual source/TU ownership, remaining temporary and argument schedules,

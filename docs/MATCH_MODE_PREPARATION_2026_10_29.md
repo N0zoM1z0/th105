@@ -40,19 +40,16 @@ barrier, register annotation or artificial volatile local is introduced.
 
 scripts/repo-python scripts/build.py --unit exact-first-match-mode-preparation --compare --json
 
-Source:src/ui/MatchModePreparation.cpp.
-Receipt:build/frontier-match-preparation-20261029/formal.json.
-The fresh changed-TU object also reproduces the existing standalone selected
-input rebind and scenario preparation bodies exactly, recorded in
-rebind-regression.json and scenario-regression.json. No shared source, header,
-relocation key or accepted caller is changed. Mapping/source presence is kept
-separate from exact acceptance.
+Source:src/ui/MatchModePreparation.cpp. The fresh changed-TU object also reproduces
+the existing standalone selected input rebind and scenario preparation bodies
+exactly, recorded in rebind-regression.json and scenario-regression.json. No shared
+source, header, relocation key or accepted caller is changed. Mapping/source
+presence is kept separate from exact acceptance.
 
 ## November 9 storage-type control
 
-Changing only the mode storage declaration from `GameMode` to an ordinary
-32-bit `int`, with the corresponding typed relocation, produces the identical
-286-byte canonical candidate and SHA above. It does not resolve the native
-option-before-mode publication schedule. This private control is not selected;
-no input source or shared type changed. Evidence:
-`build/frontier-match-mode-provider-20261109/integer-storage.json`.
+Changing only the mode storage declaration from `GameMode` to an ordinary 32-bit
+`int`, with the corresponding typed relocation, produces the identical 286-byte
+canonical candidate and SHA above. It does not resolve the native option-before-mode
+publication schedule. This private control is not selected; no input source or
+shared type changed.

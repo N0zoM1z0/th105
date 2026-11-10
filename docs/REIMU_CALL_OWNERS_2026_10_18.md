@@ -115,11 +115,8 @@ python3 scripts/probe-reimu-action-source-shape.py --compact --void-root --outpu
 python3 scripts/audit-reimu-void-root.py build/reimu-call-sharing/current-compact/ReimuActionStateDispatch.obj --cohort integration
 ```
 
-Local `build/reimu-call-sharing/` retains source/compiler/build receipts,
-`census.py`, baseline/current call ownership, branch/linear instruction
-packets, stack contracts, relocation and native reports. Rejected private
-float build products and superseded duplicate emissions were removed;
-current witnesses and the preceding negative baseline remain. Generated
-reports are not committed. No aggregate cold replay, accepted-unit change,
-source selection, or exact credit was made. Next recover physical call
-sharing, source overhead and compiler/LTCG ownership with new evidence.
+Rejected private float build products and superseded duplicate emissions were
+removed; current witnesses and the preceding negative baseline remain. Generated
+reports are not committed. No aggregate cold replay, accepted-unit change, source
+selection, or exact credit was made. Next recover physical call sharing, source
+overhead and compiler/LTCG ownership with new evidence.

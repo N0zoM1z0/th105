@@ -84,14 +84,13 @@ presented as runtime equivalent. Prior glyph/GDI observer receipts retain
 their actual source epochs and limits; real GDI, allocation failure, EH and
 arbitrary aliasing remain unqualified.
 
-Private recipes are `.analysis/font-glyph-arithmetic-20261022/capture.py`,
-`probe.py`, `compiler_controls.py` and `archive_controls.py`. Complete receipts under the matching
-`build/` directory are `baseline-formal.json`, `baseline-facts.json`,
-`local-top.json`, `sdk-ascent.json`, `sdk-gdi.json`, `pen-first.json`,
-`prefer-size.json` and `backend-50727-42.json`, plus compiler logs and objects.
-The original [native ABI evidence](TEXT_FONT_GLYPH_NATIVE_2026_10_21.md) and
-[SDK layout checkpoint](FONT_GLYPH_SDK_TYPES_2026_10_21.md) remain valid at
-their recorded epochs.
+Complete receipts under the matching `build/` directory are `baseline-formal.json`,
+`baseline-facts.json`, `local-top.json`, `sdk-ascent.json`, `sdk-gdi.json`,
+`pen-first.json`, `prefer-size.json` and `backend-50727-42.json`, plus compiler logs
+and objects. The original [native ABI
+evidence](TEXT_FONT_GLYPH_NATIVE_2026_10_21.md) and [SDK layout
+checkpoint](FONT_GLYPH_SDK_TYPES_2026_10_21.md) remain valid at their recorded
+epochs.
 
 These specific source/API/backend controls do not explain the residual. They
 prove neither a general standalone-object impossibility nor an LTCG requirement.

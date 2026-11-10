@@ -40,11 +40,10 @@ Formal fresh build retains update447560 at43/43. The same changed-source
 object independently replays render446F70 at270/270, normal destructor447590
 at256/256 and scalar destructor447890 at30/30. No shared header changed.
 
-Commands:
-scripts/repo-python scripts/build.py --unit cross-v106a-menu-result-update --compare --json
-scripts/repo-python scripts/compare-unit-object.py cross-v106a-menu-result-render-dtor build/frontier-result-menu-initialization-20261029/After.obj --json
-scripts/repo-python scripts/compare-unit-object.py cross-v106a-ui-scalar-deleting-dtors build/frontier-result-menu-initialization-20261029/After.obj --json
+Commands: scripts/repo-python scripts/build.py --unit cross-v106a-menu-result-update
+--compare --json scripts/repo-python scripts/compare-unit-object.py
+cross-v106a-menu-result-render-dtor the source control --json scripts/repo-python
+scripts/compare-unit-object.py cross-v106a-ui-scalar-deleting-dtors the source
+control --json
 
-Full comparisons, raw before/after assembly and exact caller facts are retained
-under build/frontier-result-menu-initialization-20261029/. Default CI and
-whitespace checks validate final source, tracking and progress.
+Default CI and whitespace checks validate final source, tracking and progress.

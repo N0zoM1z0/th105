@@ -77,12 +77,11 @@ two-edge constructor and static-path behavior remains unchanged.
 
 ## Reproduction and incremental checks
 
-    scripts/repo-python scripts/build.py --unit exact-first-csv-file-loading --json
+scripts/repo-python scripts/build.py --unit exact-first-csv-file-loading --json
     scripts/repo-python scripts/compare-linked-unit.py exact-first-csv-file-loading --address 0x00408E40 --address 0x0040F730 --address 0x0040CF20 --address 0x00419860 --address 0x00419950 --json
 
-Receipts are file-loaders-public-build.json/file-loaders-public-compare.json in
-build/frontier-csv-load-20261029. The old standalone plain/encoded comparison
-units are replaced, not counted twice. Other FileReader accessors stay exact;
-its open body stays nonexact. Legacy script95/147 and BGM constructor89 replay
-unchanged. Existing full-EH tests pass, with two targeted exact-parent tests.
-There is no whole-corpus cold rebuild or new runtime test matrix.
+The old standalone plain/encoded comparison units are replaced, not counted twice.
+Other FileReader accessors stay exact; its open body stays nonexact. Legacy
+script95/147 and BGM constructor89 replay unchanged. Existing full-EH tests pass,
+with two targeted exact-parent tests. There is no whole-corpus cold rebuild or new
+runtime test matrix.

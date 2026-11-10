@@ -55,7 +55,5 @@ BMP419FF0 remains nonexact: source section2181, first difference+16 from
 frame438h versus native430h. The correction is not permission to alter frame
 size, add padding, force registers or promote the BMP source.
 
-Evidence is retained under build/frontier-local-array-lifetimes-20261031,
-including bitmap-storage-formal.json, csv-storage-accepted.json and
-bgm-accepted.json. No full-corpus rebuild or game execution is claimed.
-Authored exact, source/ownership census and unit counts are unchanged.
+No full-corpus rebuild or game execution is claimed. Authored exact,
+source/ownership census and unit counts are unchanged.

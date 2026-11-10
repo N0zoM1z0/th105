@@ -37,9 +37,5 @@ no relocations and matches all 105 bytes through RET8, including its rejection
 branch. The bootstrap's 348 non-debug sections, relocations and SafeSEH list
 remain unchanged; its existing full-body mismatch at +863 remains unresolved.
 
-Before/after objects, native caller hashes, the thirty initialization receiver
-sites and complete comparison results are retained under
-`build/frontier-character-policy-maps-20261109/` and
-`.analysis/frontier-character-policy-maps-20261109/`. Tracking and lightweight CI
-pass. No authored exact count changes: the wrappers were already counted and
-find is generated container machinery.
+Tracking and lightweight CI pass. No authored exact count changes: the wrappers were
+already counted and find is generated container machinery.

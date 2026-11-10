@@ -32,11 +32,6 @@ node destructor remains 43/43 with SHA-256
 `5a2ca00614fc813935d1cf1f0ee40bf61d480b9cbae5f1201ca955f5c7eede82`.
 No new authored exact credit is added.
 
-The four dependent BGM-list, CSV-deque, wave-pointer-deque and package-map
-origin proofs pass after updating only this source's four input hashes.
-The input migration and its separate source pins are preserved.
-
-Before/after reports, runtime objects and origin results are retained under
-`build/frontier-package-array-delete-20261109/`; the bounded drivers and
-protected pre-existing diff are under
-`.analysis/frontier-package-array-delete-20261109/`.
+The four dependent BGM-list, CSV-deque, wave-pointer-deque and package-map origin
+proofs pass after updating only this source's four input hashes. The input migration
+and its separate source pins are preserved.

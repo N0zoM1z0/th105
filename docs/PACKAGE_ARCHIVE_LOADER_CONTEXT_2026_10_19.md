@@ -193,14 +193,13 @@ unassigned. Three real named KERNEL32 external locations become function
 metadata with the CreateFileA/ReadFile/CloseHandle stdcall prototypes and
 28/20/4-byte purges. External locations are snapshotted before mutation.
 
-The saved copy is reopened read-only. All four bodies, every register/stack
-slot, AL return, opaque tag words, nominal thiscall convention for the two
-RET4 member views, purges and all three import prototypes are
-read back, with target identity/text/scope attestation repeated. Only then is
-it promoted to primary; all nine promoted file hashes equal the verified copy.
-Current pins are `build/archive-loader-shape-20261019/primary-db-after.json`.
-The old CPU-root pins describe the predecessor. No target bytes change.
-The direct processes run sequentially, no analysis, CPU0/nice10,384 MiB heap.
+The saved copy is reopened read-only. All four bodies, every register/stack slot, AL
+return, opaque tag words, nominal thiscall convention for the two RET4 member views,
+purges and all three import prototypes are read back, with target
+identity/text/scope attestation repeated. Only then is it promoted to primary; all
+nine promoted file hashes equal the verified copy. The old CPU-root pins describe
+the predecessor. No target bytes change. The direct processes run sequentially, no
+analysis, CPU0/nice10,384 MiB heap.
 
 Decompiler output is still a hypothesis: remaining direct-callee prototypes
 and EH interpretation are incomplete. Original buffer capacity, complete
@@ -208,10 +207,6 @@ source partition, enclosing class/inheritance and game-method ownership remain
 unknown. Continue the whole629-byte caller and its real call/alias/frame
 constraints; the162-byte helper witness does not resolve those residuals.
 
-Receipts: `build/archive-loader-shape-20261019/{context-summary,target-facts}.json`,
-`native-owner/{push-back,allocator-destroy}-replay.json`, both *-integration.json,
-ordinary baseline.json, compiler-library-formal.json,
-store-with-library-formal.json, Ghidra write/readback logs and primary promotion pins.
 Private scripts/hypotheses remain below `.analysis/archive-loader-shape-20261019/`.
 Reproduce the selected probe with:
 
@@ -232,11 +227,10 @@ integer with `std::memcpy`, rather than dereferencing a potentially unaligned
 `unsigned int *`. This removes the C++ alignment requirement on ordinary valid
 index data while preserving the target's unchecked parsing policy.
 
-Fresh pinned builds preserve every byte in all 200 non-debug COFF sections and
-all 332 relocation records, including the loader and its EH support. Four valid
-variable-length record examples exercise every cursor alignment modulo four;
-the actual native load instructions recover the same offset/size words.
-The canonical whole-root comparison remains blocked at the existing private
-vector `push_back` binding, so this change adds no exact credit. Only
-`gpt-web-package-archive-loader` consumes the source. Receipts and the raw target
-loop are under `build/frontier-archive-unaligned-20261110/`.
+Fresh pinned builds preserve every byte in all 200 non-debug COFF sections and all
+332 relocation records, including the loader and its EH support. Four valid
+variable-length record examples exercise every cursor alignment modulo four; the
+actual native load instructions recover the same offset/size words. The canonical
+whole-root comparison remains blocked at the existing private vector `push_back`
+binding, so this change adds no exact credit. Only `gpt-web-package-archive-loader`
+consumes the source.

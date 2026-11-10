@@ -97,11 +97,9 @@ taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-822-argument-lifetime
   build/match-units/GptWeb_ReimuObjectActionState.obj --output build/reimu-822-current.json
 ```
 
-`build/reimu-object-822-lifetimes-20261022/` retains baseline/formal reports,
-raw width packets, complete native exports, private-provider comparisons and
-both 624-case receipts. Native exports at `800000` have their own hashes;
-they must not be confused with strict comparison hashes at target `496540`.
-Private scripts and frozen controls are in the same-named `.analysis/` directory.
+Native exports at `800000` have their own hashes; they must not be confused with
+strict comparison hashes at target `496540`. Private scripts and frozen controls are
+in the same-named `.analysis/` directory.
 
 Public source, ABI declarations, profiles, layout, bindings, ownership, origins
 and match rows remain unchanged. No aggregate cold replay or new aggregate

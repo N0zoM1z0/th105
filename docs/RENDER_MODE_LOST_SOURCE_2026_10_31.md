@@ -26,11 +26,9 @@ outgoing argument cell and initializes it through its address. This unresolved
 argument lifetime/context is not replaced by an explicit stack recipe, fake
 ABI or more nominal-type spelling trials. No exact bytes are added.
 
-Public unit: exact-first-render-mode-lost.
-Focused report: build/frontier-render-mode-lost-20261031/formal.json, which
-intentionally reports comparison_failed/mismatch. Only the new authored-origin
-rule is validated/materialized; unchanged census evidence is retained.
-Default CI210 and whitespace checks pass, with no cold all-unit replay.
+Public unit: exact-first-render-mode-lost. Only the new authored-origin rule is
+validated/materialized; unchanged census evidence is retained. Default CI210 and
+whitespace checks pass, with no cold all-unit replay.
 
 Source1772, authored1792, mapped1799, review577, excluded1658, units757.
 Authored exact stays1576 /448613 bytes.

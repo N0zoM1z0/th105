@@ -70,7 +70,5 @@ four IAT bytes. Common/BSS words are proved structurally, not counted as raw
 byte mutation cases.
 
 Original member hashes and all source/native comparisons are retained in
-build/origin-anchors/vc8-control-entries/proof.json. Private discovery and
-mutation evidence is under build/frontier-crt-initializers-20261101/ and
-.analysis/frontier-crt-control-entries-20261101/.
-Authored exact/source counts remain unchanged.
+build/origin-anchors/vc8-control-entries/proof.json. Authored exact/source counts
+remain unchanged.

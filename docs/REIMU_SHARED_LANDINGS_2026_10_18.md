@@ -104,13 +104,11 @@ claim follows from these supplied contexts.
 Current returning-host smokes also pass: owned0/14 with50 objects, circular
 0/5 with99 objects and effect0/40. No full historical matrix was replayed.
 
-Phase-specific receipts, access packets and controls are under
-`build/reimu-shared-landings/`. Heavy jobs run serially with CPU0 affinity and
-nice10. Duplicate/rejected objects and unused native snapshots are discarded
-after recording hashes; preserve the current genuine provider cache. No
-accepted source unit, exact ledger, aggregate cold replay or root credit
-changes.
-The genuine producer peaks at320944KiB (about313MiB).
+Heavy jobs run serially with CPU0 affinity and nice10. Duplicate/rejected objects
+and unused native snapshots are discarded after recording hashes; preserve the
+current genuine provider cache. No accepted source unit, exact ledger, aggregate
+cold replay or root credit changes. The genuine producer peaks at320944KiB
+(about313MiB).
 
 Next recover the remaining complete advancement/wave/request and virtual-next
 memberships. Keep the recovered landing groups intact; their target placement,

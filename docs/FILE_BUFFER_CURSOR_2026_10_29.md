@@ -31,10 +31,11 @@ private receiver flow, but not a source match. The wording is corrected.
 
 Focused command:
 
-    scripts/repo-python scripts/build.py --unit gpt-web-file-buffer-encoded-runtime --compare --json
+scripts/repo-python scripts/build.py --unit gpt-web-file-buffer-encoded-runtime
+--compare --json
 
-Receipt: build/frontier-file-buffer-context-20261029/formal.json. Target267
-SHA2564586170018493a7ba134017243b15bd26f9eaa6265e014fafc6e9f289962b5f7.
-The reported source hash43225b71c928e4ebf9145a0fcd052e4fdf08cda9b7c417cbdeec71d17249f2f9
-covers the compared267-byte prefix, not the complete272-byte source body.
-Only this source unit changed; existing exact receipts are unaffected.
+Target267 SHA2564586170018493a7ba134017243b15bd26f9eaa6265e014fafc6e9f289962b5f7.
+The reported source
+hash43225b71c928e4ebf9145a0fcd052e4fdf08cda9b7c417cbdeec71d17249f2f9 covers the
+compared267-byte prefix, not the complete272-byte source body. Only this source unit
+changed; existing exact receipts are unaffected.

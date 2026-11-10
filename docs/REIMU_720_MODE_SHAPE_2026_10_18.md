@@ -100,11 +100,10 @@ with0/216 native differences, but fail exactly source mode3 statically:
 spacing45->36 and count8->6. This demonstrates the native stopping limit
 without manufacturing subsequent execution.
 
-Reports and source/compiler/control receipts are under `build/reimu-720-mode/`.
-The earlier direct Ghidra identity is reused after current PE/instruction checks
-and all9 unchanged primary DB hashes; no new process/clone or IDA semantics.
-Superseded current-checkpoint objects, control source/objects and caches are
-cleaned; current two objects, expanded source and small evidence receipts stay.
-Next prioritize730's mode-specific request lowering, then740's undefined
-paths, complete void/default ABI, real returning world contexts and full
-relocation/compiler provenance before canonical root acceptance.
+The earlier direct Ghidra identity is reused after current PE/instruction checks and
+all9 unchanged primary DB hashes; no new process/clone or IDA semantics. Superseded
+current-checkpoint objects, control source/objects and caches are cleaned; current
+two objects, expanded source and small evidence receipts stay. Next prioritize730's
+mode-specific request lowering, then740's undefined paths, complete void/default
+ABI, real returning world contexts and full relocation/compiler provenance before
+canonical root acceptance.

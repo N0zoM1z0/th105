@@ -129,14 +129,12 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-Strict comparison and the deliberate control exit1. Reports remain under
-`build/iku-730-facing/`; private control recipes are under
-`.analysis/iku-730-arguments-20261017/`. One read-only768MiB/two-CPU Ghidra
-clone was used, reached through a temporary build-path symlink because
-headless rejects leading-dot project path components. All nine primary files
-are hash-unchanged; the clone and alias were removed. Superseded private
-objects/sources are disposable. No shared header/profile/layout/relocation,
-exact ledger or accepted unit changed; no aggregate cold replay was needed.
+Strict comparison and the deliberate control exit1. One read-only768MiB/two-CPU
+Ghidra clone was used, reached through a temporary build-path symlink because
+headless rejects leading-dot project path components. All nine primary files are
+hash-unchanged; the clone and alias were removed. Superseded private objects/sources
+are disposable. No shared header/profile/layout/relocation, exact ledger or accepted
+unit changed; no aggregate cold replay was needed.
 
 ## Aimed object813 extension
 
@@ -216,7 +214,5 @@ python3 scripts/ci.py
 git diff --check
 ```
 
-The strict comparison and deliberate control exit1. Current reports are under
-`build/iku-aim-arguments/`; private Ghidra recipes are under
-`.analysis/iku-aim-arguments-20261017/`. Superseded native objects and caches
-are disposable. No accepted unit, exact ledger or aggregate replay changed.
+The strict comparison and deliberate control exit1. Superseded native objects and
+caches are disposable. No accepted unit, exact ledger or aggregate replay changed.

@@ -34,12 +34,8 @@ cleanup 30, data helper 45, data writer 785, music scalar cleanup 30, profile
 base cleanup 28, and deck renderer 2521. Existing mismatches remain open; no
 support-body or prefix bytes were added to authored exact credit.
 
-Private reproducibility evidence is under
-.analysis/frontier-profile-editor-real-tile-20261102/ and
-build/frontier-profile-editor-real-tile-20261102/: probe.py/probe.log,
-replay.py/replay-1.log, owner-proof.json, nonexact.log and baseline.log.
-Default CI passed all 962 tests (91.330 seconds), tracking, generated progress
-and whitespace checks. Both working-tree and staged diff checks passed.
+Default CI passed all 962 tests (91.330 seconds), tracking, generated progress and
+whitespace checks. Both working-tree and staged diff checks passed.
 
 Totals unchanged: 1427 exact / 443604 bytes, 1637 source-present, 1656 authored,
 1826 mapped, 2074 excluded, 297 review and 813 units.

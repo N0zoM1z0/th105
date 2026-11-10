@@ -77,14 +77,8 @@ python3 scripts/audit-reimu-mid-500-actions.py build/reimu-mid-500/ReimuActionSt
 ```
 
 VC8 SP1 `/O2 /GS- /GR /EHsc /MT`, default FP/no injected compiler environment,
-produces23300 staged text bytes. Object SHA256
-`f93f762da95a4ff1c314b665f436c5113a676da582788dd618740593e36cea3b`;
-manual compiler/source/header/object receipt:
-`build/reimu-mid-500/build-receipt.json`. The oracle separately pins object
-and support inputs and does not itself attest compilation provenance.
-
-**0/4522 differences**, report `build/reimu-mid-500/native.json`, input SHA256
-`61521d939694eb35ef475ccca52d07114cd82b693e9f332af6d8f605154c226c`:
+produces23300 staged text bytes. The oracle separately pins object and support
+inputs and does not itself attest compilation provenance.
 
 |Cohort|Cases|
 |---|---:|
@@ -135,11 +129,11 @@ inspection. No helper result or target byte is patched.
 
 All six earlier adapters are rebuilt. Non-debug code/data and every relocation
 offset/type/symbol/value/section identity remain identical; sizes stay530,
-771,1562,4017,4409,11271. Receipt `build/reimu-mid-500/preserved-stages.json`.
-Focused old replays pass0/9,0/88,0/64,0/99,0/150,0/59; the changed monolithic
-method has the301-case integration cohort. Full historical matrices are not
-repeated. No accepted unit uses this private header, no accepted source/
-profile/relocation ledger changes, and no cold aggregate exact claim is made.
+771,1562,4017,4409,11271. Focused old replays pass0/9,0/88,0/64,0/99,0/150,0/59; the
+changed monolithic method has the301-case integration cohort. Full historical
+matrices are not repeated. No accepted unit uses this private header, no accepted
+source/ profile/relocation ledger changes, and no cold aggregate exact claim is
+made.
 
 A direct Ghidra read-only clone independently attests executable identity,
 entry68B9D2, base400000, Windows x86, complete mapped.text and full root hash.

@@ -18,6 +18,10 @@ The two private controls produced the **same canonical comparison-window SHA-256
 
 **Separate exit observation:** the four case 9 coordinate guard branches target `61A42C`, whereas the candidate branches target `61A359`. Those two 15-byte decrement-and-return tails are byte-identical in the hash-attested PE (`838630030000ff5f5e5d5b8be55dc3`). The apparent edge mismatch therefore does not establish a behavior change or justify altering the case 9 guard. It remains a physical tail-placement difference for canonical matching. This is limited to those exits; it does not prove whole-path equivalence, including x87 exceptions or surrounding effects.
 
-The checker `.analysis/aya-903-order-20261002/prove-fade-tail-controls.py` binds target PE, private source and COFF hashes, decoded path ordering, both comparison windows, 903 sizes and the two target exit byte sequences. Its report and private objects live under `build/aya-903-order-20261002/`; private existing-object comparisons lack configured-build provenance. The configured retained object is still the one from [the preceding checkpoint](AYA_OBJECT_903_CASE8_ALPHA_SNAPSHOT_2026_10_02.md), whose source/object hashes were read back unchanged. No exact credit or shared ABI/header/helper/compiler/relocation contract changed.
+The configured
+retained object is still the one from [the preceding
+checkpoint](AYA_OBJECT_903_CASE8_ALPHA_SNAPSHOT_2026_10_02.md), whose source/object
+hashes were read back unchanged. No exact credit or shared
+ABI/header/helper/compiler/relocation contract changed.
 
 Next work should seek independent original compiler/TU/LTCG or value-lifetime evidence for the shared fade tail, or another target-backed semantic discrepancy. Repeating these two case 2/3 spellings or changing case 9's coordinate predicate to force an exit address is unsupported. The attached IDA session again failed target identity and was not used; raw target PE bytes supplied this evidence. No Ghidra import or aggregate cold replay is claimed.

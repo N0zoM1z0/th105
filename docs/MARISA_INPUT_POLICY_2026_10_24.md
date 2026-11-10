@@ -118,10 +118,5 @@ image base, entry `0x68B9D2`, every raw-backed mapped section and this root hash
 Temporary metadata is read back and rolled back; pinned primary database files
 are unchanged. CPU0/nice10 and384 MiB heap bound analysis; builds are serial.
 
-Private recipes and four source snapshots remain under
-`.analysis/exact-first-marisa-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, whole-CFG and both table edges,
-attestation/logs/database pins, all trial objects/canonical payloads, complete
-comparison diagnostics, the neutral-control receipt and residual summary.
 Previous five exact input-policy source/header pairs remain unchanged. No broad
 runtime matrix, new callee credit or aggregate cold replay is claimed.

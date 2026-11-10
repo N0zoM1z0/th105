@@ -109,11 +109,10 @@ Fresh compact bool passes0/12 smoke and0/8 indeterminate740 boundaries. The
 710/711/720 static loops,48 510 packets/12 reloads and all nine earlier buffer
 partitions pass. No full historical or aggregate cold replay.
 
-Receipts, scalar/listing facts, controls and comparison reports are below
-build/reimu-scalar-frame/. The private listing build and public probe have
-identical raw code and relocation records. All9 primary Ghidra hashes remain
-unchanged under the prior attested identity; this unit uses raw PE facts,
-without IDA semantics or a new Ghidra process/clone. Superseded sources,
-listings, inaccurate exploratory packets, objects and caches are cleaned.
-Next recover the remaining constant/register sharing and call-site structure,
-then returning-world and full compiler/TU ownership before canonical acceptance.
+The private listing build and public probe have identical raw code and relocation
+records. All9 primary Ghidra hashes remain unchanged under the prior attested
+identity; this unit uses raw PE facts, without IDA semantics or a new Ghidra
+process/clone. Superseded sources, listings, inaccurate exploratory packets, objects
+and caches are cleaned. Next recover the remaining constant/register sharing and
+call-site structure, then returning-world and full compiler/TU ownership before
+canonical acceptance.

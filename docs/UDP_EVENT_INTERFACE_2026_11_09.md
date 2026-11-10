@@ -44,10 +44,8 @@ Only the three changed caller hashes and new shared-header hash were updated
 in the two linked allocator configurations. Their native anchors and all
 validation settings remain unchanged.
 
-Receipts are under `build/frontier-udp-event-interface-20261109/`: paired unit
-reports, `sections.json`, `interface.json`, `native-callbacks.json`, `origins.json`
-and copies of both actual linked build/proof reports. The matching `.analysis/`
-directory retains the narrow replay recipes. Exact ledgers are unchanged.
+The matching `.analysis/` directory retains the narrow replay recipes. Exact ledgers
+are unchanged.
 
 The separate constructor/lifetime and derived-event views are not yet joined
 to this interface. That larger ownership change needs its own affected closure.

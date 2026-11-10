@@ -102,8 +102,7 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-The full-root comparator is expected to report nonexact. Omit the previous
-object option to replay selected phase cases only; the complete one-byte delta
-check requires the retained predecessor. Reports/frozen controls stay under
-`build/aya-scale-add-order-20261023/`. No arbitrary resources, complete random/
-spawn paths, unmasked exception delivery or whole-root equivalence is proved.
+The full-root comparator is expected to report nonexact. Omit the previous object
+option to replay selected phase cases only; the complete one-byte delta check
+requires the retained predecessor. No arbitrary resources, complete random/ spawn
+paths, unmasked exception delivery or whole-root equivalence is proved.

@@ -1,10 +1,9 @@
 # Scenario label selection455490
 
-Complete276-byte native label-search root now has a275-byte unselected
-candidate. First mismatch+36 is the persistent owner/subobject receiver
-allocation. No exact/source-selection credit.
-Receipt: build/frontier-455490-20261028/formal-build.json.
-Target SHA:58a5ad2f28ad4f111408771ec435f7b34c3b1bf0bc77deb3185b7ce2f0498190.
+Complete276-byte native label-search root now has a275-byte unselected candidate.
+First mismatch+36 is the persistent owner/subobject receiver allocation. No
+exact/source-selection credit. Target
+SHA:58a5ad2f28ad4f111408771ec435f7b34c3b1bf0bc77deb3185b7ce2f0498190.
 
 The exact Scenario owned-string wrapper and phase-five caller establish the
 by-value std::string ABI and RET1C ownership. The routine resets the script
@@ -27,11 +26,8 @@ That control is private; the simpler member-access275-byte source is retained.
 No redundant arithmetic/check, fake liveness, forced register or manual vtable
 operation was introduced to retain an optimizer-eliminated check.
 
-The full target CFG closes all decoded instructions and the final RET:
-build/frontier-455490-20261028/boundary.json. The added EH address witness
-6BA908 is read from the canonical prologue and mapped prefix; no generated
-cleanup exactness is claimed. Only this new unit was built.
-
+The added EH address witness 6BA908 is read from the canonical prologue and mapped
+prefix; no generated cleanup exactness is claimed. Only this new unit was built.
 
 ## Actual owner and registry control, 2026-10-31
 
@@ -43,7 +39,6 @@ next_command member declaration. It still emits275/native276, first+36.
 The canonical compared body hash is identical to a fresh restored baseline:
 3eea55109cff650d5f922a2d9fad6ebdd64592846bb7569b67f87bedd5b09790.
 
-Thus the recovered full owner/registry layout does not resolve the receiver
-lifetime residual. Both temporary nonvirtual declarations, source and manifest
-are fully restored. No source/ledger/exact increment or ABI forcing is retained.
-Receipts: build/frontier-scenario-label-owner-20261031/formal.json and restored.json.
+Thus the recovered full owner/registry layout does not resolve the receiver lifetime
+residual. Both temporary nonvirtual declarations, source and manifest are fully
+restored. No source/ledger/exact increment or ABI forcing is retained.

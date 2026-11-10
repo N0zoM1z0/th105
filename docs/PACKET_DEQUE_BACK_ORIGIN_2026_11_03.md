@@ -27,11 +27,9 @@ compiler ownership, not runtime execution of malformed iterator paths.
 ## Checks and accounting
 
 The scoped rule rebuilds the existing source graph, checks its five source/COFF
-pins, three standard headers and compiler/runtime identities, replays the
-accepted release and validates both acquire-to-helper edges. Five contract tests
-and corrupt root, parent and runtime-target controls reject their mutations.
-The proof and receipts are in `build/origin-anchors/linked-packet-deque-back/`
-and `build/frontier-packet-deque-back-origin-20261103/`. Full global origin
+pins, three standard headers and compiler/runtime identities, replays the accepted
+release and validates both acquire-to-helper edges. Five contract tests and corrupt
+root, parent and runtime-target controls reject their mutations. Full global origin
 replay and actual exception/error execution are not claimed.
 
 Only this one row moves review → compiler-generated exclusion: review291,

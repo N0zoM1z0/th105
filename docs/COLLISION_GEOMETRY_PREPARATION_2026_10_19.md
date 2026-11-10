@@ -204,13 +204,9 @@ python3 scripts/validate-tracking.py --require-target
 python3 scripts/check-match-literals.py --require-target
 ```
 
-The established provider unit returns0/exact for all three members. The
-caller unit now returns0/exact2156/2156. The native audit returns0; `--smoke` uses96
-records/192 invocations per side. Existing-object execution reports build
-provenance as unverified; the preceding formal producer is the separate
-provenance evidence. Final reports are
-`build/animation-state-20261019/formal-exact-root.json`,
-`provider-exact-replay.json` and `native-exact.json` in the same directory.
-Private controls/recipes are below `.analysis/animation-state-20261019/`.
-This checkpoint adds one2156-byte exact function. No cold aggregate replay or
-fresh aggregate exact-byte verification is claimed.
+The established provider unit returns0/exact for all three members. The caller unit
+now returns0/exact2156/2156. The native audit returns0; `--smoke` uses96 records/192
+invocations per side. Existing-object execution reports build provenance as
+unverified; the preceding formal producer is the separate provenance evidence. This
+checkpoint adds one2156-byte exact function. No cold aggregate replay or fresh
+aggregate exact-byte verification is claimed.

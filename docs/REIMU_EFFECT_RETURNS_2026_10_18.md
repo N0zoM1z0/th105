@@ -98,17 +98,14 @@ stop. All600 effect/MT/count/FP portions still equal target; only the actor
 portion differs in480 cases. Two earlier single-arm controls exceeded the strict envelope and were
 rejected before execution; the envelope was not relaxed.
 
-Receipts and native outputs are under `build/reimu-effect-returns/`; the
-negative is under `build/reimu-effect-return-control/`. The passing complete
-snapshot-stream SHA-256 is
-`e536835e35f9d1cec1e42a0a63ed15a65cd41afbdbcb4830be61944ddfd8f4dc`.
-The receipt records this digest along with repeated-target equality,
-source/tool/input hashes, commands and Wine version. The initial completed
-run used Wine9.0 and peaked at approximately301MiB child RSS across compilation
-and native execution. All heavy commands ran serially, on CPU0 at nice10.
-Large input/snapshot streams and unused native build products were removed
-after verification; compact first-case witnesses and receipts remain. The
-commands below regenerate the full streams.
+The passing complete snapshot-stream SHA-256 is
+`e536835e35f9d1cec1e42a0a63ed15a65cd41afbdbcb4830be61944ddfd8f4dc`. The receipt
+records this digest along with repeated-target equality, source/tool/input hashes,
+commands and Wine version. The initial completed run used Wine9.0 and peaked at
+approximately301MiB child RSS across compilation and native execution. All heavy
+commands ran serially, on CPU0 at nice10. Large input/snapshot streams and unused
+native build products were removed after verification; compact first-case witnesses
+and receipts remain. The commands below regenerate the full streams.
 
 ## Reproduction and limits
 

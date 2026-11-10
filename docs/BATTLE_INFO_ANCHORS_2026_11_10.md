@@ -14,10 +14,8 @@ before/after COFF section contents and symbolic relocations are identical,
 so the branch-local scale lookup and subsequent sprite receiver have not
 changed. The separate sequence-container storage view is outside this change.
 
-Only `cross-v106a-battle-info-record-render` selects the modified source;
-there are no shared-header, provider, relocation or ledger edits. The fresh
-full unit comparisons, identical section dumps and passing focused CI log are
-in `build/frontier-battle-info-anchors-20261110/`. This removes unnecessary
+Only `cross-v106a-battle-info-record-render` selects the modified source; there are
+no shared-header, provider, relocation or ledger edits. This removes unnecessary
 source-level out-of-array pointer arithmetic while preserving existing local
 exactness; it adds no function, byte or Factory acceptance credit.
 
@@ -47,7 +45,6 @@ emit the existing 7-byte address accessor (`lea eax,[ecx+498]; ret`) with its
 compiler debug record. The accessor is inlined in the exact roots; it adds no
 accepted function or Factory credit.
 
-Before/intermediate/final build reports and full section dumps are in
-`build/frontier-info-effect-owner-20261110/`. The focused CI gate passes in
-`ci-final.log`. Native stack-slot reuse in the nonexact provider remains open;
-this owner correction does not manufacture the missing coordinate frame.
+The focused CI gate passes in `ci-final.log`. Native stack-slot reuse in the
+nonexact provider remains open; this owner correction does not manufacture the
+missing coordinate frame.

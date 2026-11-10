@@ -51,9 +51,7 @@ The only other bootstrap difference is the 44-byte COFF SafeSEH symbol-index
 list: the same eleven handlers remain, with the two map specializations swapping
 positions. Their actual handler bodies and relocations are unchanged.
 
-Private before/final objects, full comparisons, call census, target hashes and
-verification are retained under `build/frontier-event-effect-key-20261109/` and
-`.analysis/frontier-event-effect-key-20261109/`. Tracking and lightweight CI pass.
-This fixes a real source contract without adding authored exact credit: the
-wrapper was already counted and the newly matched find is compiler machinery.
-The old byte-key claim in the knowledge base and bootstrap note is superseded.
+Tracking and lightweight CI pass. This fixes a real source contract without adding
+authored exact credit: the wrapper was already counted and the newly matched find is
+compiler machinery. The old byte-key claim in the knowledge base and bootstrap note
+is superseded.

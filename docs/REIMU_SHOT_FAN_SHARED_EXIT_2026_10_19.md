@@ -48,16 +48,14 @@ still differ, and no per-action call-count delta is introduced. Counts alone
 are not ownership evidence. Selected source has20257 reachable instructions
 versus target20243; the570h frame is unchanged.
 
-Raw full-root disassembly and direct read-only Ghidra12.1 independently attest
-the target identity, base/entry68B9D2, x86/windows analysis target, complete mapped
-text SHA256 `f5cb09ff0a54362356d8c4cce853cbcb14552499cce12cf7390d0868db9ebe97`,
-root bytes and branch/CALL/RET windows. Ghidra uses exact raw-derived instruction
-starts, since initial linear decoding stopped at a jump; that first attempt
-correctly failed without its success sentinel. Both successful read-only runs
-preserve all nine primary database hashes and remove their project alias.
-Recipes are under `.analysis/reimu-300320-lifetimes-20261019/`; logs/receipts,
-including failed initial checks, are under the corresponding `build/` directory.
-No IDA semantic data or target byte patch is used.
+Raw full-root disassembly and direct read-only Ghidra12.1 independently attest the
+target identity, base/entry68B9D2, x86/windows analysis target, complete mapped text
+SHA256 `f5cb09ff0a54362356d8c4cce853cbcb14552499cce12cf7390d0868db9ebe97`, root
+bytes and branch/CALL/RET windows. Ghidra uses exact raw-derived instruction starts,
+since initial linear decoding stopped at a jump; that first attempt correctly failed
+without its success sentinel. Both successful read-only runs preserve all nine
+primary database hashes and remove their project alias. No IDA semantic data or
+target byte patch is used.
 
 ## Current compiled evidence
 
@@ -71,13 +69,11 @@ No IDA semantic data or target byte patch is used.
 |First strict target mismatch|+541 /4791BD: targetA9/source4A|
 
 The rebuilt genuine producer and ordinary object agree over all82840 bytes,
-including1372 metadata bytes. All2473 relocation fields qualify:1104 numeric,
-1185 REL32 calls,14 metadata addresses, seven globals and163 local code pointers.
-All1281 PE HIGHLOWs qualify; eight linker alignment bytes remain separate.
-The11 switches and15 request-buffer contracts pass. COFF object hashes include
-timestamps; source/canonical hashes and tool/input receipts qualify reproduction.
-Full correspondence is `build/reimu-ltcg/coff-replay.json`; selected sharing,
-relocation and preservation reports are below `build/reimu-300320-lifetimes-20261019/`.
+including1372 metadata bytes. All2473 relocation fields qualify:1104 numeric, 1185
+REL32 calls,14 metadata addresses, seven globals and163 local code pointers. All1281
+PE HIGHLOWs qualify; eight linker alignment bytes remain separate. The11 switches
+and15 request-buffer contracts pass. COFF object hashes include timestamps;
+source/canonical hashes and tool/input receipts qualify reproduction.
 
 Fresh selected-source execution passes **0/2675** shot/integration/nonflat cases,
 input SHA256 `0e67cae006499020bea8fcb508aa311d710ce27da157685ecec0e55fb33d8cdc`.
@@ -151,7 +147,6 @@ instruction sharing; they are not additional selected exact credit.
 taskset -c 0 nice -n 10 python3 -B scripts/probe-reimu-action-ltcg.py
 python3 -B scripts/audit-reimu-call-sharing.py build/reimu-ltcg/ordinary.obj
 python3 -B scripts/audit-reimu-root-relocations.py build/reimu-ltcg/ordinary.obj
-taskset -c 0 nice -n 10 python3 -B .analysis/reimu-300320-lifetimes-20261019/action9-native.py build/reimu-ltcg/ordinary.obj
 taskset -c 0 nice -n 10 python3 -B scripts/audit-reimu-void-root.py build/reimu-ltcg/ordinary.obj --cohort integration --cohort shot_boundaries --cohort surface_inputs
 ```
 

@@ -65,5 +65,4 @@ Only two whole member constructors add338 authored bytes:
 1569 exact /447032 bytes; source1765, authored1785, mapped1792,
 excluded1658, review584, units754.
 
-Receipts: build/frontier-wave-manager-constructors-20261031/, with the public
-wave-service, BGM and UDP reports. No cold whole-repository replay is claimed.
+No cold whole-repository replay is claimed.

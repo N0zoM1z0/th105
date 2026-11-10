@@ -37,14 +37,12 @@ compared. These support records receive no new authored or exact credit.
 
 ## Validation and accounting
 
-`linked-bgm-list-growth-106a` selects only 0x40C6D0 through its strict anchor
-and freshly rebuilds the existing exact BGM unit. The scoped validator checks
-the complete root, all actual call/data references, parent edges, metadata and
+`linked-bgm-list-growth-106a` selects only 0x40C6D0 through its strict anchor and
+freshly rebuilds the existing exact BGM unit. The scoped validator checks the
+complete root, all actual call/data references, parent edges, metadata and
 full-inventory uniqueness. Five contract tests plus target root, handler, unwind,
-ThrowInfo and literal corruption controls reject their respective mutations.
-Evidence lives in `build/origin-anchors/linked-bgm-list-growth/` and
-`build/frontier-list-incsize-origin-20261103/`. A full global origin replay is
-not claimed.
+ThrowInfo and literal corruption controls reject their respective mutations. A full
+global origin replay is not claimed.
 
 Only one origin row moves review → compiler-generated exclusion: review293,
 excluded2078. Exact1426 /443399 bytes, authored1656, source1637, mapped1827,

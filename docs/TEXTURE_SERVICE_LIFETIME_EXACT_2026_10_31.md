@@ -76,10 +76,8 @@ exact-first-resource-manager-lifetime to exact-first-texture-service-lifetime
 without duplicate manifest addresses or recount. Existing source bodies are
 unchanged; only their selected context changes.
 
-Receipts under build/frontier-texture-global-20261031 include restored-final.json,
-missing-cache-negative.json, the three existing-family replay JSONs and ci.log.
-The earlier independent audit.json was explicitly diagnostic-only until the
-public contract and negative tests were complete.
+The earlier independent audit.json was explicitly diagnostic-only until the public
+contract and negative tests were complete.
 
 Only193 authored bytes/one function are added: exact1582/449309, source1781,
 authored1801, mapped1808, excluded1783/review443, units764.

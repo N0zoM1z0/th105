@@ -55,14 +55,13 @@ this consumer. No full-corpus cold replay or gameplay matrix is claimed.
 
 Formal reproduction:
 
-    scripts/repo-python scripts/build.py --unit gpt-web-design-number-render --compare --json
+scripts/repo-python scripts/build.py --unit gpt-web-design-number-render --compare
+--json
 
-Full receipts, target disassembly and bounded diagnostic history are retained
-under build/frontier-number-float-cil-20261031/ and its .analysis counterpart.
-The initial static-path/static-runtime manifest combination was rejected;
-the final ordinary unexported declarations pass the unchanged graph checks.
-The interim authored AngleLookup COFF experiment is not the public graph:
-the final context includes its actual source as CIL.
+The initial static-path/static-runtime manifest combination was rejected; the final
+ordinary unexported declarations pass the unchanged graph checks. The interim
+authored AngleLookup COFF experiment is not the public graph: the final context
+includes its actual source as CIL.
 
 The former standalone authored-origin rule is superseded by canonical exact
 ownership. Progress is regenerated. The single origin row is regenerated with the existing

@@ -42,9 +42,8 @@ units776 remain unchanged. No generic minimum-byte/coverage gate is lowered.
   publications are all rejected.
 - scripts/repo-python scripts/ci.py and git diff --check pass.
 
-Contract: config/linked-list-node-origin-anchors.toml.
-Proof: build/origin-anchors/linked-list-node/proof.json.
-Private discovery: .analysis/frontier-linked-list-node-20261101/.
+Contract: config/linked-list-node-origin-anchors.toml. Proof:
+build/origin-anchors/linked-list-node/proof.json.
 
 Target is the pinned original Japanese1.06a PE. No new IDA semantic dependency,
 generated executable execution, copied implementation, fake caller or ABI

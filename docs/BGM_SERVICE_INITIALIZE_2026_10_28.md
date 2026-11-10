@@ -17,8 +17,6 @@ thread-handle offset access is used. This does not assert the original TU split.
 
 First complete build:133/133 zero-difference canonical bytes, SHA256
 c73fc8678642132b2692a27280f5bf8f68a6d2d26043c1de71573028e279770e.
-Unit exact-first-bgm-service-initialize; receipts under
-build/frontier-403460-20261028/{formal-build,boundary}.json.
 The complete body ends at4034E4 RET; its CreateThread callback addresses reuse
 the existing target-verified callback relocations. No shared header or existing
 unit changed. Only133 authored initializer bytes receive new credit, not the

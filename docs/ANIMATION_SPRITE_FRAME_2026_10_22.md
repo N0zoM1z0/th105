@@ -70,14 +70,10 @@ taskset -c 0 nice -n 10 python3 scripts/build.py \
 ```
 
 The configured ordinary `vc8-sp1-probe-o2`, `/GS-` COFF build compares the full
-335-byte symbol, with all nine REL32 and two float-literal DIR32 operands
-replayed. Source and target canonical SHA256 are both
-`403bd17fa27e733780e1a4b9845ac31cb741838e5c1d5c3e7e35e2aa1af368ec`.
-The selected source SHA256 is
-`af0c99e0cb9604de935c53701ef19c4969286bd24613d4ad35dead4203185d0c`.
-The formal result is retained at
-`build/reimu-object-owner-cil-20261022/frame-formal.json`; independent raw
-facts are at `build/animation-sprite-frame-20261022/target-facts.json`.
+335-byte symbol, with all nine REL32 and two float-literal DIR32 operands replayed.
+Source and target canonical SHA256 are both
+`403bd17fa27e733780e1a4b9845ac31cb741838e5c1d5c3e7e35e2aa1af368ec`. The selected
+source SHA256 is `af0c99e0cb9604de935c53701ef19c4969286bd24613d4ad35dead4203185d0c`.
 
 The source returns void and tail-calls the actual void transform publisher.
 The shipped nominal return type is unproved. Existing int-return sequence
@@ -93,10 +89,8 @@ Fresh serial builds pass all **19** configured comparisons across:
 - `cross-v106a-effect-animation-sequence-virtuals`: 8 functions;
 - `cross-v106a-animation-sprite-frame`: the new 335-byte body.
 
-The receipts are under `build/animation-sprite-frame-20261022/`, including
-`affected-replay.json`. This is scoped verification, not a new all-unit cold
-replay. No existing shared header, type layout or selected compiler profile
-was changed.
+This is scoped verification, not a new all-unit cold replay. No existing shared
+header, type layout or selected compiler profile was changed.
 
 The private complete-owner draft now compiles the real 17-slot ReimuObject
 hierarchy, lifetime, pool and root. Its natural void action/finalize bodies

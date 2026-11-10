@@ -127,16 +127,14 @@ step constants to10. Reuse the ordinary compile receipt's command, changing
 only source and `/Fo` paths. Pass the result using `--object`, `--cohort fan821`
 and a separate output directory; the audit returns1 for160 differences.
 
-Receipts are under `build/reimu-circular-returns/` and
-`build/reimu-circular-control/native/`; bounded helper bytes/readback are under
-`build/reimu-circular-native/`. Large streams, temporary native executables and
-negative build products are cleaned after verification. The changed shared
-owned observer also passes the14-input/50-object legacy smoke, including811
-companions and three/four-word arrays:139244 identical bytes per stream, SHA
-`03ab7121bdcac6dc7e9d3353429080dba808c92e39d2127662dea2e692f01c9c`.
-The effect observer/common native header are unchanged; no old full matrix or
-aggregate replay is claimed. All9 primary database files hash unchanged by
-streamed reads; no Ghidra process or clone was used. Child peak RSS is301MiB.
+Large streams, temporary native executables and negative build products are cleaned
+after verification. The changed shared owned observer also passes
+the14-input/50-object legacy smoke, including811 companions and three/four-word
+arrays:139244 identical bytes per stream, SHA
+`03ab7121bdcac6dc7e9d3353429080dba808c92e39d2127662dea2e692f01c9c`. The effect
+observer/common native header are unchanged; no old full matrix or aggregate replay
+is claimed. All9 primary database files hash unchanged by streamed reads; no Ghidra
+process or clone was used. Child peak RSS is301MiB.
 
 Selected object SHA remains
 `41bf3b15ff2dbf6cf7c25e0c0191ab18d963782e0e7fab5d3b9af82c0ab245fd`,

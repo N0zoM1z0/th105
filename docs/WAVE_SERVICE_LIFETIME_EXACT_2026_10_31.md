@@ -84,8 +84,6 @@ The normal tool test suite is run after final ledger updates; no cold whole
 repository replay is claimed.
 
 Unit: exact-first-wave-service-lifetime.
-Receipts: build/frontier-wave-service-lifetime-20261031/, including the public
-wave-service, resource-manager and package-store reports.
 
 The two concrete application-owner bodies add271 authored bytes:
 1567 exact /446694 bytes. Source1763, authored1783, mapped1790,

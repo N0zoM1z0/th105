@@ -10,26 +10,24 @@ focused `spell-finalize-selection-authored-106a` origin rule.
 
 `SpellDataFinalize.cpp` replaces the previous unselected hand-expanded checked
 iterator hypothesis with ordinary pinned-VC8 `std::deque<short>::iterator`
-operations against the existing 20-byte deque layout. The source does not add
-bounds checks or guards absent from the native root. Both mutable and const
-iterator controls emit a 226-byte candidate against the 260-byte native body;
-the first difference is the frame reservation at entry. Native VC8 retains a
-self-container check and additional iterator/stack lifetime that this standalone
-build optimizes away. Neither candidate is exact, and no matching-byte or
-exception-path equivalence is claimed. Candidate receipts are under
-`build/frontier-spell-finalize-natural-20261104/`.
+operations against the existing 20-byte deque layout. The source does not add bounds
+checks or guards absent from the native root. Both mutable and const iterator
+controls emit a 226-byte candidate against the 260-byte native body; the first
+difference is the frame reservation at entry. Native VC8 retains a self-container
+check and additional iterator/stack lifetime that this standalone build optimizes
+away. Neither candidate is exact, and no matching-byte or exception-path equivalence
+is claimed.
 
 Reproduce the whole-body comparison with `scripts/repo-python scripts/build.py
 --unit exact-first-spell-finalize-natural --compare --json`; a mismatch is
 expected. The native target and the targeted origin rule were checked. Exact
 source spelling and original TU/LTCG context remain unknown.
 
-Two follow-up controls retain identical canonical output: explicitly naming
-and comparing the actual end iterator each iteration, and temporarily using a
-real `std::deque<short>` member of the same checked size in the owner rather
-than its existing layout view. Both still emit the same 226-byte candidate and
-entry mismatch; temporary source/header changes were restored. Receipts are in
-`build/frontier-spell-finalize-iterator-20261104/`. These controls do not
+Two follow-up controls retain identical canonical output: explicitly naming and
+comparing the actual end iterator each iteration, and temporarily using a real
+`std::deque<short>` member of the same checked size in the owner rather than its
+existing layout view. Both still emit the same 226-byte candidate and entry
+mismatch; temporary source/header changes were restored. These controls do not
 establish the original nominal member type or a whole-program compiler context.
 
 ## Direct checked-deque expressions, 2026-11-04
@@ -60,7 +58,6 @@ receives no exact credit until that replay is accepted; no live execution or
 broad exception-equivalence claim is made. The exact caller at `0x00432360`
 was rebuilt and remains exact.
 
-
 ## November 9: use the native deque member directly
 
 The November 8 queue migration made `loaded_spell_ids_20` an actual
@@ -68,8 +65,7 @@ The November 8 queue migration made `loaded_spell_ids_20` an actual
 directly, removing two obsolete reinterpret casts and the comparison with the
 old layout facade. The iterator lifetime and lookup/read sequence are unchanged.
 
-Fresh complete comparisons before and after this cleanup both reproduce all
-260 bytes with the same canonical hash recorded above. The loader caller at
-`0x00432360` also remains 71/71. Receipts are in
-`build/frontier-spell-finalize-native-deque-20261109/`. These are local replay
-results; acceptance status and the exact ledger are unchanged.
+Fresh complete comparisons before and after this cleanup both reproduce all 260
+bytes with the same canonical hash recorded above. The loader caller at `0x00432360`
+also remains 71/71. These are local replay results; acceptance status and the exact
+ledger are unchanged.

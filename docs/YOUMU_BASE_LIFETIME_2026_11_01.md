@@ -30,7 +30,6 @@ CharacterEx table binding are resolved canonically. No masked or prefix credit.
 The implicit normal28-byte destructor is emitted but has no assigned native
 identity or separate credit. No remote exception-body equality is claimed.
 
-Formal owner receipt: build/frontier-youmu-base-lifetime-20261101/formal.json.
 Raw complete destructor and RTTI facts: native.json in the same directory.
 
 ## Attribution and replay
@@ -47,5 +46,5 @@ correction remains historically valid; this is one newly proven compiler body.
 
 Reproduce:
 
-    scripts/repo-python scripts/build.py --unit exact-first-youmu-constructor --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-youmu-constructor --compare --json
     scripts/repo-python scripts/scalar_wrapper_origins.py --check

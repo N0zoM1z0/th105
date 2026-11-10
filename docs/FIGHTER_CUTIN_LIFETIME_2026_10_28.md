@@ -7,8 +7,7 @@ the same95-byte candidate. See CHARACTER_RESOURCE_SPRITES_2026_11_02.md; the
 folded handle/sprite prefix does not uniquely prove an A0 cutin owner.
 
 Complete candidate95/native96 remains nonexact at+40; no exact/source-selection
-credit. Receipt build/frontier-465420-20261028/formal-build.json.
-Target SHA:c585cf40128cc4f0c32264c9d6948718f2f5f2aaf6982c56cdc59111164b0572.
+credit. Target SHA:c585cf40128cc4f0c32264c9d6948718f2f5f2aaf6982c56cdc59111164b0572.
 
 The exact cutin loader4651E0 and existing FighterResources contract identify
 handle00,0x94 sprite04,selector98/state9C in the0xA0 resource. Fighter destruction
@@ -27,11 +26,10 @@ lifetime, not a new guessed address. Shared resource headers remain unchanged.
 
 ## Source registration, 2026-11-04
 
-The existing source is selected for the native shared handle/sprite cleanup
-prefix. The 96-byte body, its edge from the Character destructor and its call
-to the exact title-resource release are target-pinned. Resource release and
-clearing are game ownership policy; the following sprite cleanup is implicit.
-Because the body is folded, this does not establish a unique original full
-cutin class or 0xA0 extent. A fresh build reproduces 95/native96 with first
-difference +40; no exact bytes or whole-game behavior are claimed. Receipt:
-`build/frontier-cutin-lifetime-register-20261104/formal.json`.
+The existing source is selected for the native shared handle/sprite cleanup prefix.
+The 96-byte body, its edge from the Character destructor and its call to the exact
+title-resource release are target-pinned. Resource release and clearing are game
+ownership policy; the following sprite cleanup is implicit. Because the body is
+folded, this does not establish a unique original full cutin class or 0xA0 extent. A
+fresh build reproduces 95/native96 with first difference +40; no exact bytes or
+whole-game behavior are claimed.

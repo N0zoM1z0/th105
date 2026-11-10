@@ -41,7 +41,5 @@ three functions. The real color provider and its two siblings also replay
 exact at 19, 30 and 190 bytes. The native caller scan finds exactly the two
 source-connected calls, at `0x45D170` and `0x45DFA2`.
 
-Evidence is retained in `build/frontier-sequence-effect-sprite-20261109/`,
-including fresh before/after objects, native constructor/RTTI/caller evidence,
-all six full body comparisons and `proof.json`. This restores type and provider
-consistency without adding authored exact credit or touching source pins.
+This restores type and provider consistency without adding authored exact credit or
+touching source pins.

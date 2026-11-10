@@ -64,8 +64,3 @@ python3 -m unittest discover -s tests -p test_predicate_return_range.py -v
 taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
-
-The retained local `build/aya-predicate-widths-20261022/previous.obj` was copied
-before the source edit. Passing it as `--previous-object` also verifies the
-complete three-byte delta. Local receipts are `selected-formal.json` and
-`width-proof.json` in that directory; binaries/reports are not committed.

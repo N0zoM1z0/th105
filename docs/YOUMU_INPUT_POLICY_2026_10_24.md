@@ -109,12 +109,6 @@ check saw another Java/Ghidra process and refused to start; after that PID no
 longer existed, the serial read-only pass ran successfully. No unknown process
 was killed. Each analysis pass uses CPU0/nice10 and384 MiB heap; builds are serial.
 
-Private recipes and complete/failed source snapshots are retained under
-`.analysis/exact-first-youmu-slot50-20261024/`. The corresponding `build/`
-directory retains raw facts/disassembly, whole CFG/table closure, family
-comparison, attestation/logs/database hashes, formal/cold receipts, first formal
-object/provenance, relocation counts and original origin-baseline row.
-
 A generated-object table negative fails at `+0x1784 / 0x53CB94`, target57 /
 source58. The target is never patched. Earlier Remilia/Tenshi/Sakuya/Suika
 source/header inputs stay unchanged. No broad runtime matrix or fresh aggregate

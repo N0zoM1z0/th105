@@ -28,7 +28,6 @@ CoreContracts compiles, while wrong sprite offset and mutable enqueue parameter
 controls are rejected. Compiler options and origin/ledger classifications do not
 change; manifest call symbols now identify the real texture/copy providers.
 
-Private controls and receipts: .analysis/frontier-sequence-shared-sprite-20261102/
-and build/frontier-sequence-shared-sprite-20261102/. Final CI passed all 962 tests in
-125.660 seconds. Both diff checks gate the local checkpoint. Totals remain 1426 exact / 443399 bytes, source 1636,
-authored 1655, mapped 1826, excluded 2076, review 296 and units 813.
+Final CI passed all 962 tests in 125.660 seconds. Both diff checks gate the local
+checkpoint. Totals remain 1426 exact / 443399 bytes, source 1636, authored 1655,
+mapped 1826, excluded 2076, review 296 and units 813.

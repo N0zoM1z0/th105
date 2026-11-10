@@ -102,12 +102,7 @@ checked against the raw extent. Temporary metadata is read back and rolled
 back; pinned primary DB hashes remain unchanged. Analysis uses CPU0/nice10 and
 384 MiB heap; builds run serially on CPU0/nice10.
 
-Private recipes and first complete source remain under
-`.analysis/exact-first-aya-slot50-20261024/`. The corresponding `build/` directory
-retains raw facts/disassembly, CFG/table closure, attested call-views/logs/DB
-hashes, both source receipts, formal/cold comparisons, first formal object and
-provenance, relocation counts, original origin row and input hashes. A
-generated-object table negative fails at `+0x1BFC / 0x61A25C`, targetA9/sourceAA;
-the target stays untouched. Earlier input source/header pairs remain unchanged.
-No broad runtime matrix or aggregate cold replay is claimed. Continue remaining
+A generated-object table negative fails at `+0x1BFC / 0x61A25C`, targetA9/sourceAA;
+the target stays untouched. Earlier input source/header pairs remain unchanged. No
+broad runtime matrix or aggregate cold replay is claimed. Continue remaining
 complete peers; Marisa stays parked at its recorded placement residual.

@@ -33,7 +33,6 @@ member kind and selector are all rejected; nine focused lifetime tests pass.
 The existing record-constructor origin 1 / 28 and scalar origin 1 / 30 also pass.
 No public validator or fingerprint threshold changes.
 
-Private controls and receipts: .analysis/frontier-info-lifetime-real-sprites-20261102/
-and build/frontier-info-lifetime-real-sprites-20261102/. Final CI passed all 962 tests in
-109.298 seconds. Both diff checks gate the local checkpoint. Totals: 1426 exact / 443399 bytes, source 1636,
-authored 1655, mapped 1826, excluded 2076, review 296 and units 813.
+Final CI passed all 962 tests in 109.298 seconds. Both diff checks gate the local
+checkpoint. Totals: 1426 exact / 443399 bytes, source 1636, authored 1655, mapped
+1826, excluded 2076, review 296 and units 813.

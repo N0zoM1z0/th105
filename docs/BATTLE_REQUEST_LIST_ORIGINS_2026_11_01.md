@@ -52,13 +52,11 @@ all-exact rebuild or push.
 
 Reproduce:
 
-    scripts/repo-python scripts/build.py --unit exact-first-battle-request-list-runtime --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-battle-request-list-runtime --compare --json
     scripts/repo-python scripts/build.py --unit cross-v106a-battle-object-stage --compare --json
 
-Receipts: build/frontier-battle-request-list-20261101/formal.json,
-owner-final.json, canonical.json and mappings.json. The new generated-origin
-rule independently passes its entire selected count160, body hash, caller edge
-and complete inventory uniqueness checks.
+The new generated-origin rule independently passes its entire selected count160,
+body hash, caller edge and complete inventory uniqueness checks.
 
 ## Bounded preceding negative
 

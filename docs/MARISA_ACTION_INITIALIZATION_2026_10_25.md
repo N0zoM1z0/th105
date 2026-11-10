@@ -101,10 +101,6 @@ There is no general standalone-object or LTCG impossibility claim.
 
 ## Whole-function experiments and negative
 
-Private source controls are under
-`.analysis/exact-first-marisa-action-entry-20261025/`; reports and objects are
-under `build/exact-first-marisa-action-entry-20261025/`.
-
 | Complete source/control | Full bytes | SHA256 prefix | Whole result |
 | --- | ---: | --- | --- |
 | First complete source |2818|c0556716|nonexact+15;35/38 RETs, extra shared FP tails|

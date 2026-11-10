@@ -80,11 +80,8 @@ controls are also payload-identical: typed slot calls, real post-selection
 state returns, a comma expression, void result and whole999 inlining. A member
 pointer instead introduces an unbound virtual thunk; no mapping is invented.
 
-Recipes: `.analysis/reimu-entry-exact-first-20261023/`. Receipts and retained
-inputs: `build/reimu-entry-exact-first-20261023/`; start with `owner.json`,
-`public-update-word.json`, `joint-native.json`, `zi-isolated.json` and
-`joint-link/{receipt,entry-audit}.json`. The link receipt SHA256 is
-`a6b39cc4695cc6d3708a68176dca026eb6fcd313c751a3a56568d3ebb83baa40`.
-The match ledger, callable boundary, configured profile and unit partition
-are unchanged. No aggregate cold replay or new native matrix is claimed. Existing native scoped
+The link receipt SHA256 is
+`a6b39cc4695cc6d3708a68176dca026eb6fcd313c751a3a56568d3ebb83baa40`. The match
+ledger, callable boundary, configured profile and unit partition are unchanged. No
+aggregate cold replay or new native matrix is claimed. Existing native scoped
 observations retain the identical complete update payload as their input.

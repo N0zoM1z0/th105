@@ -52,11 +52,8 @@ record cleanup still compare exactly. Restoring the real push member does not
 close its optional-texture load scheduling difference. Those authored methods
 receive no new credit.
 
-Evidence: `build/frontier-sequence-deque-provider-20261109/verification.json`
-and its before/after unit reports. The bounded driver is
-`.analysis/frontier-sequence-deque-provider-20261109/verify.py`. Public provider:
-`scripts/repo-python scripts/build.py --unit cross-v106a-sequence-enqueue
---compare --json`.
+Public provider: `scripts/repo-python scripts/build.py --unit
+cross-v106a-sequence-enqueue --compare --json`.
 
 This is a local source and ownership correction. It does not establish a new
 Factory-authoritative accepted claim or resolve the existing freshness failure.

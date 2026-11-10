@@ -36,9 +36,7 @@ ordinary ledger sense; this review did not promote an exact match.
 
 Each row compiled only `gpt-web-fighter-common-action-state` with pinned VC8,
 one compiler process on one CPU core. The complete canonical comparator and
-owner audit ran after each build. All probes were reverted. The ignored local
-reports are `build/common-73-*.json`, `build/common-75-combined-guard*.json`,
-and `build/common-current-*.json`.
+owner audit ran after each build. All probes were reverted.
 
 | Control | Candidate window SHA-256 | Identical owners / 66 | Selection ownership |
 | --- | --- | --- | --- |

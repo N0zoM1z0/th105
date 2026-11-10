@@ -85,10 +85,7 @@ definitions are unchanged. No unrelated or aggregate cold replay is claimed;
 the progress SVG reports the updated ledger snapshot with its provisional
 authored denominator and separate origin-review bar.
 
-Receipts, raw target/source disassembly, linked provenance, native COFF control,
-full caller facts and affected-scope audit are under
-`build/font-owner-config-20261021/`; private recipes are under
-`.analysis/font-owner-config-20261021/`. The final local gate is:
+The final local gate is:
 
 ```bash
 python3 scripts/validate-tracking.py --require-target

@@ -133,12 +133,11 @@ Other returning object families pass0/800 with3920 objects per process;
 focused circular0/5/99 objects and effect0/40 smokes also pass. All nine primary
 database hashes are unchanged. No full historical matrix was repeated.
 
-Receipts, exact target access packet and phase-specific control recipes are
-under `build/reimu-direction-contract/`. Heavy jobs remain serial, CPU0/nice10;
-the genuine producer peaks at320972KiB (about313MiB). No shared compiler
-profile, accepted unit source, layout or exact ledger changes. No aggregate
-cold replay is claimed. Rejected/duplicate binaries and snapshots are removed
-after recording hashes, preserving the current genuine provider cache.
+Heavy jobs remain serial, CPU0/nice10; the genuine producer peaks at320972KiB
+(about313MiB). No shared compiler profile, accepted unit source, layout or exact
+ledger changes. No aggregate cold replay is claimed. Rejected/duplicate binaries and
+snapshots are removed after recording hashes, preserving the current genuine
+provider cache.
 
 Next recover the complete522/523 landing/advance sets and the remaining six
 indirect action deltas within this source phase. Formal-width ambiguity,

@@ -86,9 +86,7 @@ python3 scripts/build.py --unit cross-v106a-application-graphics-worker --compar
 ```
 
 The raw boundary report deliberately exposes the18-byte EH-only interval;
-the exception evidence above reconciles it. Formal report
-`build/application-graphics-worker-formal.json` gives complete candidate401
-and target401 with first difference **+43 hex / +67 decimal**. After full
+the exception evidence above reconciles it. After full
 relocation replay,20 bytes differ:16 in the EH state0 store / sync-byte test /
 event-publication ordering, two selecting the pause-event argument register,
 and two selecting the catch receiver register. This is **nonexact**; no match
@@ -104,14 +102,11 @@ used. The original source spelling, class partition and compiler phase remain
 unknown; the state-store difference does not prove a semantic exception-policy
 difference between these source variants.
 
-The authored-origin rule independently replays the incoming exact callback,
-outgoing exact presentation call, whole body hash, critical data operands,
-unwind states, typed catch and table pointers. Only this origin row changes;
-unrelated fingerprints are preserved after scope/rule-overlap checks.
-Direct Ghidra initially omitted the catch in its decompilation, retained only
-as a hypothesis. Independently attested save and fresh read-only sessions
-verify the complete body, EH/type data hashes, cdecl/void no-argument contract,
-zero purge and catch label. Scripts stay under
-`.analysis/application-graphics-worker-20261016/ghidra-scripts/`, logs under
-`build/application-graphics-worker-ghidra-*.log`; processes use768MiB and two
-active processors. No unattested IDA data or factory adapter is used.
+The authored-origin rule independently replays the incoming exact callback, outgoing
+exact presentation call, whole body hash, critical data operands, unwind states,
+typed catch and table pointers. Only this origin row changes; unrelated fingerprints
+are preserved after scope/rule-overlap checks. Direct Ghidra initially omitted the
+catch in its decompilation, retained only as a hypothesis. Independently attested
+save and fresh read-only sessions verify the complete body, EH/type data hashes,
+cdecl/void no-argument contract, zero purge and catch label. No unattested IDA data
+or factory adapter is used.
