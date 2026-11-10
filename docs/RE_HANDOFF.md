@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Select/Weather/Effect/InfoEffect spawning now shares one typed virtual/state protocol. Four 115-byte spawn roots and the 30-byte preallocation wrapper remain exact. Full objects are unchanged except removal of seven obsolete InfoEffect address accessors/debug records. See `docs/EFFECT_MANAGER_VIRTUAL_SPAWN_2026_11_08.md`.
+
 2026-11-10: Battle-info group effects now use the shared record and UI-anchor owners, and both forwarding wrappers use the existing record-array accessor. Five caller roots remain exact; provider remains unchanged at 61/85. Only the real 7-byte accessor/debug record is newly emitted in the caller objects. See `docs/BATTLE_INFO_ANCHORS_2026_11_10.md`.
 
 2026-11-10: Common action 690 now models the sixteen skill alternatives as a signed 4-by-4 matrix. All 4096 native-versus-compiled byte/arm cases and 432 guard cases pass. Complete candidate is 5309 bytes and remains nonexact at +0x14; no Factory acceptance. See `docs/COMMON_ACTION_INITIALIZATION_2026_10_25.md`.

@@ -66,3 +66,31 @@ functions in the affected resource, lifetime, initialization, render and gauge
 units still compare exact. The two previously nonexact update candidates remain
 nonexact: Story retains the same first mismatch, while normal update retains its
 existing unresolved local deque relocation.
+
+## Shared typed spawn state, 2026-11-10
+
+The Select, Weather, ordinary Effect and InfoEffect spawn implementations now
+share `EffectSpawnObjectView.hpp`. The observed virtual slots and seven state
+fields are declared once, with offset assertions for position EC/F0, facing
+104, manager anchors 130/160, context 164 and spawn flag 16C. The InfoEffect
+nominal view remains a declaration-only derived view, preserving the existing
+pool-return type without duplicating the virtual protocol or raw accessors.
+No view is allocated, and unknown regions remain opaque.
+
+The order of publication is unchanged: context and manager anchors precede the
+virtual action setter; position, facing and spawn flag follow it; finalization
+is the last virtual call. Context remains the spawn API's integer token here,
+not a guessed complete object type. The object-specific update views retain
+their independently observed interpretations.
+
+Fresh serial builds preserve all five exact roots: Select 422FB0, Weather
+4377C0, ordinary Effect 437C00 and InfoEffect 46F460 are each 115/115 bytes;
+InfoEffect resource/preallocation forwarding 46F900 is 30/30. The three-family
+COFF contents and relocations are identical. The InfoEffect object differs
+only by removing seven obsolete 7-byte address-accessor COMDATs and their
+compiler debug records; all remaining contents and relocations are identical.
+
+Reports and full section dumps are in
+`build/frontier-effect-spawn-state-20261110/{before,after}/`, with the passing
+local CI result in `ci.log`. Only these two units consume the changed inputs.
+This preserves local exactness and adds no new Factory acceptance.

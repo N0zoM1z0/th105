@@ -1,24 +1,5 @@
 #include "EffectManager.hpp"
-
-
-struct EffectSpawnObjectView {
-    virtual void slot_00();
-    virtual void slot_04();
-    virtual void set_effect_id_08(int effect_id);
-    virtual void slot_0c();
-    virtual void slot_10();
-    virtual void slot_14();
-    virtual void slot_18();
-    virtual void slot_1c();
-    virtual void slot_20();
-    virtual void slot_24();
-    virtual void slot_28();
-    virtual void slot_2c();
-    virtual void slot_30();
-    virtual void slot_34();
-    virtual void slot_38();
-    virtual void finalize_3c();
-};
+#include "EffectSpawnObjectView.hpp"
 
 
 template <typename ObjectType>
@@ -28,19 +9,18 @@ ObjectType *CEffectManager<ObjectType>::spawn_effect(
 {
     ObjectType *object =
         TObjectManagerBase<ObjectType, EffectObjectBase>::acquire_and_link_object();
-    unsigned char *bytes = reinterpret_cast<unsigned char *>(object);
-    EffectSpawnObjectView *view = reinterpret_cast<EffectSpawnObjectView *>(object);
+    th105::EffectSpawnObjectView *view = reinterpret_cast<th105::EffectSpawnObjectView *>(object);
 
-    *reinterpret_cast<int *>(bytes + 0x164) = spawn_context;
-    *reinterpret_cast<void **>(bytes + 0x130) =
+    view->spawn_context_164 = spawn_context;
+    view->manager_anchor_130 =
         reinterpret_cast<unsigned char *>(this) + 0x64;
-    *reinterpret_cast<void **>(bytes + 0x160) =
+    view->manager_anchor_160 =
         reinterpret_cast<unsigned char *>(this) + 0x88;
     view->set_effect_id_08(effect_id);
-    *reinterpret_cast<float *>(bytes + 0xec) = x;
-    *reinterpret_cast<float *>(bytes + 0xf0) = y;
-    bytes[0x104] = facing;
-    bytes[0x16c] = spawn_flag;
+    view->x_0ec = x;
+    view->y_0f0 = y;
+    view->facing_104 = facing;
+    view->spawn_flag_16c = spawn_flag;
     view->finalize_3c();
     return object;
 }
