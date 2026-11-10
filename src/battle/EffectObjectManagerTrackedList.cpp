@@ -1,4 +1,5 @@
 #include "battle/EffectManager.hpp"
+#include "EffectManagerTrackedState.hpp"
 
 namespace {
 
@@ -7,24 +8,10 @@ struct EffectTrackedObjectPrefix160 {
     unsigned handle_token_15c;
 };
 
-template <typename ObjectType, typename BaseObjectType>
-struct EffectManagerTrackedListView {
-    void *manager_vtable_00;
-    CHandleManagerEx<ObjectType> handle_pool_04;
-    std::list<BaseObjectType *> linked_objects_54;
-};
-
-typedef EffectManagerTrackedListView<CSelectObject, EffectObjectBase>
-    CSelectEffectManagerTrackedListView;
 typedef char CheckEffectTrackedObjectHandleOffset[
     offsetof(EffectTrackedObjectPrefix160, handle_token_15c) == 0x15c ? 1 : -1];
 typedef char CheckEffectTrackedObjectPrefixSize[
     sizeof(EffectTrackedObjectPrefix160) == 0x160 ? 1 : -1];
-typedef char CheckCSelectEffectManagerTrackedListOffset[
-    offsetof(CSelectEffectManagerTrackedListView, linked_objects_54) == 0x54 ? 1 : -1];
-typedef char CheckCSelectEffectManagerTrackedListSize[
-    sizeof(CSelectEffectManagerTrackedListView) == 0x60 ? 1 : -1];
-
 template <typename ObjectType>
 static ObjectType *acquire_effect_for_tracked_object(
     CHandleManagerEx<ObjectType> *pool)
@@ -49,7 +36,7 @@ static BaseObjectType *acquire_effect_for_tracked_list(
 template <typename ObjectType, typename BaseObjectType>
 ObjectType *TObjectManagerBase<ObjectType, BaseObjectType>::acquire_and_link_object()
 {
-    typedef EffectManagerTrackedListView<ObjectType, BaseObjectType> ManagerView;
+    typedef EffectManagerTrackedState<ObjectType, BaseObjectType> ManagerView;
     ManagerView *const manager = reinterpret_cast<ManagerView *>(this);
     ObjectType *object = acquire_effect_for_tracked_object(&handle_pool_04);
     manager->linked_objects_54.push_back(
@@ -61,7 +48,7 @@ template <typename ObjectType, typename BaseObjectType>
 void TObjectManagerBase<ObjectType, BaseObjectType>::preallocate_object_pool(
     unsigned target_count)
 {
-    typedef EffectManagerTrackedListView<ObjectType, BaseObjectType> ManagerView;
+    typedef EffectManagerTrackedState<ObjectType, BaseObjectType> ManagerView;
     ManagerView *const manager = reinterpret_cast<ManagerView *>(this);
     if (manager->linked_objects_54.size() < target_count) {
         do {

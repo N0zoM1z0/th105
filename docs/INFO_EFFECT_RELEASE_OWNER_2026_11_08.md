@@ -52,3 +52,29 @@ closure. Adding slots only to the effect class or changing the thunk binding
 would hide the missing base contract. The retained release implementation uses
 only the established nonvirtual state/handle layout and is unaffected by this
 virtual-interface limitation.
+
+## Shared tracked-manager state, 2026-11-10
+
+Acquisition/preallocation, virtual traversal/pruning and InfoEffect release now
+use one `EffectManagerTrackedState<ObjectType, BaseObjectType>` declaration.
+The common nonconstructing view carries the real handle pool at +4 and checked
+`std::list<BaseObjectType *>` at +54, with size/offset assertions. A declared
+virtual destructor supplies its observed leading vptr; no manual vtable field
+or duplicate callable manager is needed. The view is never constructed, so it
+introduces no destructor implementation or allocation path.
+
+This unifies the actual tracking contract across the four object families:
+acquisition publishes the handle before linking the object; preallocation
+fills until the requested list size then releases; traversal invokes the real
+member pointer before pruning retired objects; bulk release returns each
+stored handle before clearing list nodes. Existing ordering and checked-list
+operations are unchanged. The public manager's `CollisionList` representation
+and the unresolved animation virtual hierarchy remain separate work.
+
+All three affected units were rebuilt serially. Their complete COFF section
+contents and symbolic relocations are identical before and after. All 23 root
+comparisons retain their prior results: 21 exact, with only release 46EEB0
+(122 bytes) and update/prune 422D30 (207 bytes) retaining their known mismatches.
+No new Factory acceptance is claimed. Reports and full section dumps are in
+`build/frontier-effect-tracked-state-20261110/{before,after}/`; the focused CI
+gate passes in `ci.log`.

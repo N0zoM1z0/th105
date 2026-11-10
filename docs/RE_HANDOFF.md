@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Effect acquisition/preallocation, traversal/pruning and InfoEffect release share one typed pool/list state. Three complete COFF objects are identical; all 23 comparisons retain their results (21 exact, two known mismatches). See `docs/INFO_EFFECT_RELEASE_OWNER_2026_11_08.md`.
+
 2026-11-10: Select/Weather/Effect/InfoEffect spawning now shares one typed virtual/state protocol. Four 115-byte spawn roots and the 30-byte preallocation wrapper remain exact. Full objects are unchanged except removal of seven obsolete InfoEffect address accessors/debug records. See `docs/EFFECT_MANAGER_VIRTUAL_SPAWN_2026_11_08.md`.
 
 2026-11-10: Battle-info group effects now use the shared record and UI-anchor owners, and both forwarding wrappers use the existing record-array accessor. Five caller roots remain exact; provider remains unchanged at 61/85. Only the real 7-byte accessor/debug record is newly emitted in the caller objects. See `docs/BATTLE_INFO_ANCHORS_2026_11_10.md`.

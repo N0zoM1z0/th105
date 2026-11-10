@@ -1,4 +1,5 @@
 #include "EffectManager.hpp"
+#include "EffectManagerTrackedState.hpp"
 
 #include <list>
 
@@ -81,16 +82,7 @@ public:
 };
 
 
-namespace {
 
-template <typename ObjectType, typename BaseObjectType>
-struct EffectManagerListView {
-    void *manager_vtable_00;
-    CHandleManagerEx<ObjectType> handle_pool_04;
-    std::list<BaseObjectType *> linked_objects_54;
-};
-
-} // namespace
 
 
 void EffectObjectBase::render_if_layer(signed char layer)
@@ -111,7 +103,7 @@ template <typename ObjectType, typename BaseObjectType>
 void TObjectManagerBase<ObjectType, BaseObjectType>::update_and_prune(
     void (BaseObjectType::*method)())
 {
-    typedef EffectManagerListView<ObjectType, BaseObjectType> ManagerView;
+    typedef EffectManagerTrackedState<ObjectType, BaseObjectType> ManagerView;
     typedef std::list<BaseObjectType *> ObjectList;
 
     ManagerView *const manager = reinterpret_cast<ManagerView *>(this);
@@ -132,7 +124,7 @@ template <typename ObjectType, typename BaseObjectType>
 void TObjectManagerBase<ObjectType, BaseObjectType>::invoke_each(
     void (BaseObjectType::*method)(signed char), signed char value)
 {
-    typedef EffectManagerListView<ObjectType, BaseObjectType> ManagerView;
+    typedef EffectManagerTrackedState<ObjectType, BaseObjectType> ManagerView;
     typedef std::list<BaseObjectType *> ObjectList;
 
     ManagerView *const manager = reinterpret_cast<ManagerView *>(this);
@@ -146,7 +138,7 @@ template <typename ObjectType, typename BaseObjectType>
 void TObjectManagerBase<ObjectType, BaseObjectType>::invoke_each(
     void (BaseObjectType::*method)(int), int value)
 {
-    typedef EffectManagerListView<ObjectType, BaseObjectType> ManagerView;
+    typedef EffectManagerTrackedState<ObjectType, BaseObjectType> ManagerView;
     typedef std::list<BaseObjectType *> ObjectList;
 
     ManagerView *const manager = reinterpret_cast<ManagerView *>(this);
