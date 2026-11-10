@@ -1703,3 +1703,4 @@ CTitle_render
 CNetworkClient_import_snapshot
 CMenuPractice_update
 update_scene_runtime
+ApplicationState_ctor

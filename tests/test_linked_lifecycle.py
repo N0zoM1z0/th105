@@ -431,5 +431,124 @@ class LifecycleTests(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(ValueError): self.object_witness(bad)
 
 
+    def inline_contract(self):
+        unit = self.contract()
+        unit["functions"].pop()
+        unit["link_objects"][0]["destructor_callback_size"] = 27
+        return unit
+
+    def test_inline_cleanup_contract_keeps_constructor_identity_and_full_eh(self):
+        core.validate_contract(self.inline_contract(), {"global", "external"})
+        changes = [lambda u: u["link_objects"][0].update(destructor_callback_size=True),
+            lambda u: u["link_objects"][0].update(destructor_callback_size=5),
+            lambda u: u["link_objects"][0].update(destructor_callback_size=4097),
+            lambda u: u["link_objects"][0].update(destructor_callback_size="27"),
+            lambda u: u["functions"].append(self.contract()["functions"][1]),
+            lambda u: u["functions"][0].update(symbol_base="??0Other@th105@@QAE@XZ"),
+            lambda u: u["functions"][0].pop("eh_cleanup"),
+            lambda u: u["functions"][0]["private_global"].update(role="destructor"),
+            lambda u: u["functions"][0].update(export_name="_constructor"),
+            lambda u: u["link_objects"][0].update(ignore_callback=True)]
+        for change in changes:
+            bad = self.inline_contract(); change(bad)
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                core.validate_contract(bad, {"global", "external"})
+
+    def inline_fixture(self):
+        f = self.object_fixture()
+        f["unit"]["functions"].pop()
+        f["unit"]["link_objects"][0]["destructor_callback_size"] = 27
+        helper = "?release@Member@@QAEXXZ"
+        f["functions"][self.start + 0x20] = [(helper, self.owner)]
+        f["unit"]["functions"][0]["rel32_targets"] = [helper + "=0x00401020"]
+        for image in (f["pe"], f["target"]):
+            base = image.OPTIONAL_HEADER.ImageBase
+            body = (b"\xc6\x05" + struct.pack("<I", base + 0x3001) + b"\x00"
+                + b"\xb9" + struct.pack("<I", base + 0x3004)
+                + b"\xe8" + struct.pack("<i", 0x1020 - 0x1331)
+                + b"\xb9" + struct.pack("<I", base + 0x3008)
+                + b"\xe9" + struct.pack("<i", 0x1020 - 0x133b))
+            image.put(0x1320, body)
+            image.put(0x1020, b"\xc3")
+        f["pe"].relocations(0x1306, 0x1322, 0x1328, 0x1332, 0x2004)
+        f["symbols"].update({"___xi_a": [(core.IMAGE_BASE + 0x2020, "libcmt:crt0init.obj")],
+                             "___xi_z": [(core.IMAGE_BASE + 0x2024, "libcmt:crt0init.obj")]})
+        f["layout_alignments"] = {self.symbol: 4}
+        return f
+
+    def inline_witness(self, fixture):
+        with patch.object(life.csv, "DictReader", side_effect=[
+                [dict(address="0x00401800", current_name="_atexit", size="1"),
+                 dict(address="0x00401020", current_name="release", size="1")],
+                [dict(address="0x00401800", origin="vc8_runtime", disposition="exclude")]]):
+            return life.object_witnesses(**fixture)
+
+    def test_inline_cleanup_compares_every_byte_call_and_highlow_field(self):
+        refs, witnesses = self.inline_witness(self.inline_fixture())
+        self.assertEqual(len(refs), 60)
+        w = witnesses[self.symbol]
+        callback = w["regions"][-1]
+        self.assertEqual((callback["kind"], callback["size"]), ("inline atexit cleanup callback", 27))
+        self.assertEqual([r["target"] for r in callback["replayed_rel32"]], [0x401020, 0x401020])
+        self.assertEqual([r["addend"] for r in callback["data_references"]], [1, 4, 8])
+        self.assertEqual(len(w["validated_initializers"]), 1)
+        changes = [lambda f: f["pe"].put(0x1326, b"\x01"),
+            lambda f: f["target"].put(0x1326, b"\x01"),
+            lambda f: f["target"].put(0x1337, bytes(4)),
+            lambda f: f["pe"].put(0x1322, struct.pack("<I", core.IMAGE_BASE + 0x303c)),
+            lambda f: f["pe"].put(0x1320, b"\x64\xa1\x00\x00\x00\x00\x90"),
+            lambda f: f["pe"].put(0x133b, b"\x90"),
+            lambda f: f["unit"]["link_objects"][0].update(destructor_callback_size=26),
+            lambda f: f["unit"]["link_objects"][0].update(destructor_callback_size=28),
+            lambda f: f["unit"]["functions"][0].update(rel32_targets=[]),
+            lambda f: f["unit"]["functions"][0].update(rel32_targets="not a list"),
+            lambda f: f["unit"]["functions"][0].update(rel32_targets=[None]),
+            lambda f: f["unit"]["functions"][0]["rel32_targets"].append("?release@Member@@QAEXXZ=0x00401020"),
+            lambda f: f["unit"]["functions"][0].update(rel32_targets=["?release@Member@@QAEXXZ=0x00401030"]),
+            lambda f: f["pe"].relocations(0x1306, 0x1328, 0x1332, 0x2004),
+            lambda f: f["pe"].relocations(0x1306, 0x1322, 0x1328, 0x1332, 0x1337, 0x2004),
+            lambda f: f["pe"].relocations(0x1306, 0x1322, 0x1322, 0x1328, 0x1332, 0x2004),
+            lambda f: f["pe"].relocations(0x1306, 0x1321, 0x1328, 0x1332, 0x2004),
+            lambda f: f["exports"].update({"_callback": self.start + 0x320}),
+            lambda f: f["functions"][self.start + 0x320].append(("_alias", self.owner)),
+            lambda f: f["pe"].put(0x303b, b"\x01"),
+            lambda f: f["symbols"].update({"_alias": [(core.IMAGE_BASE + 0x303b, self.owner)]}),
+            lambda f: f.pop("layout_alignments")]
+        for change in changes:
+            bad = self.inline_fixture(); change(bad)
+            with self.subTest(change=change), self.assertRaises(ValueError): self.inline_witness(bad)
+
+    def test_inline_object_operand_width_cannot_escape_the_native_zero_extent(self):
+        refs, _ = self.inline_witness(self.inline_fixture())
+        base = core.IMAGE_BASE + 0x3000
+        good = b"\xc6\x05" + struct.pack("<I", base + 59) + b"\x00\xc3"
+        canonical, _, data = core.canonicalize(good, self.start, 0x401000, [], lambda a: None,
+                                               self.image, self.game, internal_refs=refs)
+        self.assertEqual(canonical[2:6], struct.pack("<I", 0x40303b))
+        self.assertEqual(data[0]["size"], 1)
+        bad_width = b"\xc7\x05" + struct.pack("<I", base + 59) + bytes(4) + b"\xc3"
+        one_past = b"\xc6\x05" + struct.pack("<I", base + 60) + b"\x00\xc3"
+        for raw in (bad_width, one_past):
+            with self.assertRaises(ValueError):
+                core.canonicalize(raw, self.start, 0x401000, [], lambda a: None,
+                                  self.image, self.game, internal_refs=refs)
+
+    def test_inline_cleanup_requires_the_complete_crt_initializer_table(self):
+        for entry in (self.start + 0x20, self.start + 0x300):
+            f = self.inline_fixture()
+            f["symbols"]["___xc_z"] = [(core.IMAGE_BASE + 0x200c, "libcmt:crt0init.obj")]
+            f["pe"].put(0x2008, struct.pack("<I", entry))
+            f["pe"].relocations(0x1306, 0x1322, 0x1328, 0x1332, 0x2004, 0x2008)
+            with self.assertRaises(ValueError): self.inline_witness(f)
+        f = self.inline_fixture()
+        f["symbols"]["___xi_z"] = [(core.IMAGE_BASE + 0x2028, "libcmt:crt0init.obj")]
+        f["pe"].put(0x2024, struct.pack("<I", self.start + 0x20))
+        f["pe"].relocations(0x1306, 0x1322, 0x1328, 0x1332, 0x2004, 0x2024)
+        with self.assertRaises(ValueError): self.inline_witness(f)
+        f = self.inline_fixture()
+        f["pe"].relocations(0x1306, 0x1322, 0x1328, 0x1332)
+        with self.assertRaises(ValueError): self.inline_witness(f)
+
+
 if __name__ == "__main__":
     unittest.main()

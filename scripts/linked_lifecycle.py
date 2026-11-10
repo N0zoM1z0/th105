@@ -40,8 +40,13 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
     if external_keys.intersection(runtime_data):
         raise ValueError("native runtime storage cannot also have an absolute external provider")
     for obj in objects:
-        if not isinstance(obj, dict) or set(obj) != OBJECT_FIELDS:
+        if (not isinstance(obj, dict) or set(obj) not in
+                (OBJECT_FIELDS, OBJECT_FIELDS | {"destructor_callback_size"})):
             raise ValueError("global lifecycle requires exact layout/startup fields")
+        inline_cleanup = "destructor_callback_size" in obj
+        if inline_cleanup and (type(obj["destructor_callback_size"]) is not int
+                               or not 5 < obj["destructor_callback_size"] <= 4096):
+            raise ValueError("inline global cleanup needs a bounded complete callback extent")
         symbol = obj["symbol"]
         if (not isinstance(symbol, str) or not core.SYMBOL.fullmatch(symbol)
                 or symbol in names or symbol in external or not isinstance(obj["target"], str)
@@ -57,8 +62,9 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
             raise ValueError("global native layout must come from the real included source")
         pair = [f for f in functions if isinstance(f, dict) and isinstance(f.get("private_global"), dict)
                 and f["private_global"].get("object") == symbol]
-        if len(pair) != 2 or {f["private_global"].get("role") for f in pair} != {"constructor", "destructor"}:
-            raise ValueError("global lifecycle needs one constructor/destructor pair")
+        roles = {"constructor"} if inline_cleanup else {"constructor", "destructor"}
+        if len(pair) != len(roles) or {f["private_global"].get("role") for f in pair} != roles:
+            raise ValueError("global lifecycle needs its constructor and selected cleanup form")
         ctor = next(f.get("symbol_base") for f in pair if f["private_global"]["role"] == "constructor")
         if not isinstance(ctor, str):
             raise ValueError("global constructor needs its exact native class symbol")
@@ -67,9 +73,9 @@ def validate_contract(unit: dict, data_keys: set[str]) -> None:
         if match and len(match[1].split("@")) == 2:
             cls, namespace = match[1].split("@")
             same_type |= symbol.endswith("@" + namespace + "@@3U" + cls + "@1@A")
-        if (not same_type
-                or next(f.get("symbol_base") for f in pair if f["private_global"]["role"] == "destructor")
-                != "??1" + match[1] + "@@QAE@XZ"):
+        if (not same_type or (not inline_cleanup
+                and next(f.get("symbol_base") for f in pair if f["private_global"]["role"] == "destructor")
+                != "??1" + match[1] + "@@QAE@XZ")):
             raise ValueError("global symbol and natural lifecycle class identities disagree")
         names.add(symbol)
     for f in functions:
@@ -230,11 +236,12 @@ def validate_static_entry(pe, functions: dict) -> None:
 
 
 def validate_static_runtime_initializers(pe, functions: dict, symbols: dict, *,
-                                         allow_pinned_stdio: bool = False) -> list[dict]:
-    """No source globals: require real CRT tables and only pinned CRT C callbacks.
+                                         allow_pinned_stdio: bool = False,
+                                         source_initializers: dict | None = None) -> list[dict]:
+    """Check complete CRT tables, rejecting unqualified source initialization.
 
-    C++ initialization remains unsupported in this mode. Source-owned lifecycle
-    units retain their separate complete constructor/destructor witnesses.
+    The default permits only pinned CRT C callbacks. The global-lifecycle proof
+    may additionally supply exact private initializers it has fully witnessed.
     """
     allowed = {
         "___onexitinit": "libcmt:onexit.obj",
@@ -244,7 +251,8 @@ def validate_static_runtime_initializers(pe, functions: dict, symbols: dict, *,
     }
     if allow_pinned_stdio:
         allowed["___initstdio"] = "libcmt:_file.obj"
-    reports, seen = [], set()
+    reports, seen, seen_cpp = [], set(), set()
+    source_initializers = source_initializers or {}
     for family, lower, upper in (("C", "___xi_a", "___xi_z"),
                                  ("C++", "___xc_a", "___xc_z")):
         lo = unique_symbol(symbols, lower, "libcmt:crt0init.obj")
@@ -261,21 +269,30 @@ def validate_static_runtime_initializers(pe, functions: dict, symbols: dict, *,
                 continue
             aliases = functions.get(entry, [])
             section = pe.get_section_by_rva(entry - pe.OPTIONAL_HEADER.ImageBase)
-            if (family == "C++" or len(aliases) != 1
-                    or allowed.get(aliases[0][0]) != aliases[0][1]
-                    or aliases[0][0] in seen
+            qualified_cpp = (family == "C++" and entry in source_initializers
+                             and aliases == [source_initializers[entry]] and entry not in seen_cpp)
+            qualified_c = (family == "C" and len(aliases) == 1
+                           and allowed.get(aliases[0][0]) == aliases[0][1]
+                           and aliases[0][0] not in seen)
+            if (not (qualified_cpp or qualified_c)
                     or section is None or not section.Characteristics & 0x20000000):
                 raise ValueError("runtime-only static image has an unqualified source initializer")
-            seen.add(aliases[0][0])
+            if qualified_cpp:
+                seen_cpp.add(entry)
+            else:
+                seen.add(aliases[0][0])
             fields.append({"field_offset": offset})
             reports.append({"table": family, "slot": lo + offset, "entry": entry,
                             "symbol": aliases[0][0], "owner": aliases[0][1]})
         core.validate_body_relocations(pe, lo, len(raw), fields)
+    if seen_cpp != set(source_initializers):
+        raise ValueError("a source global initializer is absent from the complete CRT table")
     return reports
 
 
 def object_witnesses(unit: dict, pe, target, functions: dict, symbols: dict, exports: dict,
-                     cil_owner: str, known: dict, read_target, *, layout_alignments: dict | None = None) -> tuple[list[dict], dict]:
+                     cil_owner: str, known: dict, read_target, *, layout_alignments: dict | None = None,
+                     bindings=(), vtables=(), imports=None, sdk_imports=None) -> tuple[list[dict], dict]:
     """Attest complete source storage and real initializer/table/atexit reachability."""
     refs, witnesses = [], {}
     with (core.ROOT / "config/functions.csv").open(newline="") as f:
@@ -301,13 +318,20 @@ def object_witnesses(unit: dict, pe, target, functions: dict, symbols: dict, exp
         if any(base <= at < base + size for name, items in symbols.items() if name != symbol
                for at, _ in items):
             raise ValueError("source-owned global aliases another mapped symbol")
-        for off in addends:
+        # The inline-cleanup form uses the complete compiler-owned zero object,
+        # including byte members. Each operand must fit the proved BSS extent;
+        # this is not an absolute-address waiver or an extension past the object.
+        inline_cleanup = "destructor_callback_size" in obj
+        if inline_cleanup and layout_alignments is None:
+            raise ValueError("inline cleanup requires the native COFF layout witness")
+        for off in (range(size) if inline_cleanup else addends):
             refs.append({"kind": "object", "source_address": base + off, "address": dst + off,
-                         "size": 4, "symbol": symbol, "addend": off})
+                         "size": size - off if inline_cleanup else 4, "symbol": symbol, "addend": off})
         pair = {f["private_global"]["role"]: f for f in unit["functions"]
                 if f.get("private_global", {}).get("object") == symbol}
         ctor = private_entry(functions, exports, pair["constructor"]["symbol_base"], cil_owner)
-        dtor = private_entry(functions, exports, pair["destructor"]["symbol_base"], cil_owner)
+        dtor = (None if inline_cleanup else
+                private_entry(functions, exports, pair["destructor"]["symbol_base"], cil_owner))
         stem = symbol[1:].split("@@", 1)[0] + "@@YAXXZ"
         init = private_entry(functions, exports, "??__E" + stem, cil_owner, compiler=True)
         callback = private_entry(functions, exports, "??__F" + stem, cil_owner, compiler=True)
@@ -331,13 +355,15 @@ def object_witnesses(unit: dict, pe, target, functions: dict, symbols: dict, exp
         target_callback = int(obj["destructor_callback"], 0)
         init_report = require_equal(initializer(target_init, int(pair["constructor"]["address"], 0),
                                                target_callback, target_atexit), read_target(target_init, 17), "initializer")
-        source_callback = core.linked_body(pe, functions, callback)
-        if source_callback != b"\xe9" + struct.pack("<i", dtor - callback - 5):
-            raise ValueError("source atexit callback is not its full native destructor tail")
-        core.decode_closed_body(source_callback, callback, tail=True)
-        core.validate_body_relocations(pe, callback, len(source_callback), [])
-        callback_report = require_equal(b"\xe9" + struct.pack("<i", int(pair["destructor"]["address"], 0) - target_callback - 5),
-                                        read_target(target_callback, 5), "atexit callback")
+        callback_report = None
+        if not inline_cleanup:
+            source_callback = core.linked_body(pe, functions, callback)
+            if source_callback != b"\xe9" + struct.pack("<i", dtor - callback - 5):
+                raise ValueError("source atexit callback is not its full native destructor tail")
+            core.decode_closed_body(source_callback, callback, tail=True)
+            core.validate_body_relocations(pe, callback, len(source_callback), [])
+            callback_report = require_equal(b"\xe9" + struct.pack("<i", int(pair["destructor"]["address"], 0) - target_callback - 5),
+                                            read_target(target_callback, 5), "atexit callback")
         lo = unique_symbol(symbols, "___xc_a", "libcmt:crt0init.obj")
         hi = unique_symbol(symbols, "___xc_z", "libcmt:crt0init.obj")
         if lo % 4 or hi <= lo or (hi - lo) % 4 or hi - lo > 65536:
@@ -354,7 +380,7 @@ def object_witnesses(unit: dict, pe, target, functions: dict, symbols: dict, exp
             "source_initializer": init, "target_initializer": target_init,
             "source_initializer_slot": source_slot, "target_initializer_slot": target_slot,
             "source_callback": callback, "target_callback": target_callback,
-            "regions": [init_report, callback_report]}
+            "regions": [init_report] + ([callback_report] if callback_report else [])}
     for symbol in unit.get("link_runtime_data", []):
         base = unique_symbol(symbols, symbol, "libcmt:gs_cookie.obj")
         dst, raw, addends, validation = known[symbol]
@@ -367,7 +393,63 @@ def object_witnesses(unit: dict, pe, target, functions: dict, symbols: dict, exp
             if address % 4 or not section.Characteristics & 0x80000000:
                 raise ValueError("native runtime cookie is not aligned writable data")
         refs.append({"kind": "runtime", "source_address": base, "address": dst, "size": 4, "symbol": symbol})
+    inline_objects = [obj for obj in unit.get("link_objects", []) if "destructor_callback_size" in obj]
+    for obj in inline_objects:
+        witness = witnesses[obj["symbol"]]
+        parent = next(f for f in unit["functions"]
+                      if f.get("private_global", {}).get("object") == obj["symbol"])
+        witness["regions"].append(inline_cleanup_callback(
+            obj, parent, witness, pe, functions, refs, bindings, vtables,
+            imports or {}, sdk_imports, ledger, read_target,
+            (target.OPTIONAL_HEADER.ImageBase,
+             target.OPTIONAL_HEADER.ImageBase + target.OPTIONAL_HEADER.SizeOfImage)))
+    if inline_objects:
+        qualified = {w["source_initializer"]: functions[w["source_initializer"]][0]
+                     for w in witnesses.values()}
+        checked = validate_static_runtime_initializers(
+            pe, functions, symbols, source_initializers=qualified,
+            allow_pinned_stdio=(unit.get("link_xiph_sdk") is True or unit.get("link_png_sdk") is True))
+        for obj in inline_objects:
+            witnesses[obj["symbol"]]["validated_initializers"] = checked
     return refs, witnesses
+
+
+def inline_cleanup_callback(obj, parent, witness, pe, functions, refs, bindings,
+                            vtables, imports, sdk_imports, ledger, read_target, game_range):
+    """Compare the full generated no-EH callback, never an invented destructor."""
+    start, dst = witness["source_callback"], witness["target_callback"]
+    raw = core.linked_body(pe, functions, start)
+    size = obj["destructor_callback_size"]
+    if len(raw) != size:
+        raise ValueError("inline cleanup callback does not own its full configured extent")
+    expected = read_target(dst, size)
+    for data, at in ((raw, start), (expected, dst)):
+        instructions = core.decode_closed_body(data, at, tail=True)
+        if any((i.group(capstone.CS_GRP_RET) and i.op_str)
+               or any(o.type == capstone.x86.X86_OP_MEM
+                      and o.mem.segment in {capstone.x86.X86_REG_FS, capstone.x86.X86_REG_GS}
+                      for o in i.operands) for i in instructions):
+            raise ValueError("inline global callback is not a no-EH cdecl cleanup body")
+    mappings = parent.get("rel32_targets", [])
+    if not isinstance(mappings, list):
+        raise ValueError("inline cleanup callees must be an explicit symbol/address list")
+    targets = {}
+    for binding in mappings:
+        name, separator, address = binding.partition("=") if isinstance(binding, str) else ("", "", "")
+        if (not separator or not core.SYMBOL.fullmatch(name) or not ADDRESS.fullmatch(address)
+                or name in targets or int(address, 0) not in ledger):
+            raise ValueError("inline cleanup callee mapping is duplicate or outside the target candidate ledger")
+        targets[name] = int(address, 0)
+    def resolve(address):
+        return core.resolve_linked_call(address, pe, functions, imports, targets, sdk_imports)
+    canonical, calls, data = core.canonicalize(
+        raw, start, dst, bindings, resolve,
+        (pe.OPTIONAL_HEADER.ImageBase, pe.OPTIONAL_HEADER.ImageBase + pe.OPTIONAL_HEADER.SizeOfImage),
+        game_range, vtables, internal_refs=refs, tail=True)
+    core.validate_body_relocations(pe, start, len(raw), data)
+    return {**require_equal(canonical, expected, "inline atexit cleanup callback"),
+            "source_address": start, "target_address": dst,
+            "replayed_rel32": calls, "data_references": data}
 
 
 def target_handler(read_target, start: int) -> bytes:

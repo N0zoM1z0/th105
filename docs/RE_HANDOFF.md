@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Application initialization `0x407CA0` is now selected and locally canonical exact at 255 bytes, with all 139 cleanup-EH bytes and its real 73-byte inline exit callback. The bounded global-lifecycle proof checks complete CRT tables, ownership and relocations; 11 existing exact lifecycle roots replay. See `docs/APPLICATION_INLINE_CLEANUP_2026_11_10.md`. Pending input-source pins and earlier dirty changes remain untouched.
+
 2026-11-03: System-effect pool acquire `0x456B70` (499 bytes) now has natural typed source and an individual mapping. Exact tracked acquisition replays; source498 and cleanup EH remain nonexact/unproved. See `docs/SYSTEM_EFFECT_POOL_SOURCE_2026_11_03.md`.
 
 2026-11-03: System-effect tracked release `0x436E60` (119 bytes) now has typed source and an individual mapping. Exact manager lifetime roots replay; source119 remains nonexact. See `docs/SYSTEM_EFFECT_RELEASE_SOURCE_2026_11_03.md`.

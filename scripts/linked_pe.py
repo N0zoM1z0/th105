@@ -1282,7 +1282,8 @@ def compare_linked(name: str, unit: dict, addresses: set[str], image: Path | Non
     internal_refs, globals_witnesses = object_witnesses(unit, pe, game, functions, parse_map_symbols(map_text), exports,
         image.with_suffix(".ltcg.obj").name, c.known_data_targets(), c.target_bytes,
         layout_alignments={item["layout"]["symbol"]: item["layout"]["alignment"]
-                           for item in expected["layout_inputs"]}) if static else ([], {})
+                           for item in expected["layout_inputs"]},
+        bindings=bindings, vtables=vtables, imports=imports, sdk_imports=sdk_imports) if static else ([], {})
     from linked_texture_lifecycle import witnesses as texture_witnesses
     texture_refs, texture_witness = texture_witnesses(unit, pe, game, functions,
         parse_map_symbols(map_text), exports, image.with_suffix(".ltcg.obj").name,

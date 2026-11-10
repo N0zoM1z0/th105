@@ -30686,3 +30686,24 @@ rel32_targets = [
  "__invalid_parameter_noinfo=0x0068A143",
  "@__security_check_cookie@4=0x00689D25",
 ]
+
+[units.exact-first-application-initialization]
+source = "src/platform/ApplicationLifecycle.cpp"
+object = "build/match-units/ExactFirst_ApplicationInitialization.dll"
+kind = "linked_candidate"
+profile = "vc8-sp1-ltcg-o2"
+enable_gs = true
+link_runtime = "static"
+link_runtime_data = ["___security_cookie"]
+link_data_targets = ["__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8", "__imp__SetThreadPriority@8=__imp__SetThreadPriority@8", "__imp__CloseHandle@4=__imp__CloseHandle@4", "__imp__CreateThread@24=__imp__CreateThread@24"]
+link_vtables = [{ symbol = "??_7CriticalSectionWrapper@th105@@6B@", target = "??_7CriticalSectionWrapper@th105@@6B@", entry = "??_GCriticalSectionWrapper@th105@@UAEPAXI@Z=0x0040ABE0", target_type_name = ".?AVCCriticalSection@@" }]
+link_objects = [{ symbol = "?g_application_state@th105@@3UApplicationState@1@A", target = "?g_application_entry@th105@@3UApplicationEntryView@1@A", size = 184, layout_source = "src/platform/ApplicationLifecycle.cpp", initializer = "0x006BE780", initializer_table = "0x006C036C", atexit = "0x0068AF1E", destructor_callback = "0x006BEDF0", destructor_callback_size = 73 }]
+preserve_public_members = ["?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ"]
+notes = "Complete application constructor255 and cleanup EH139; real 184-byte global, initializer17, CRT reachability and generated inline cleanup73. No standalone destructor is invented. See docs/APPLICATION_INLINE_CLEANUP_2026_11_10.md."
+
+[[units.exact-first-application-initialization.functions]]
+address = "0x00407CA0"
+symbol_base = "??0ApplicationState@th105@@QAE@XZ"
+private_global = { object = "?g_application_state@th105@@3UApplicationState@1@A", role = "constructor" }
+eh_cleanup = { handler = "0x006BD7EC", info = "0x006E3DC8" }
+rel32_targets = ["??1BattleThreadHandle@th105@@QAE@XZ=0x004145F0", "?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ=0x00414640", "??_GCriticalSectionWrapper@th105@@UAEPAXI@Z=0x0040ABE0", "??2@YAPAXI@Z=0x00689DCB", "??3@YAXPAX@Z=0x006898EA", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "_atexit=0x0068AF1E", "?_Buynode@?$list@PAVIScene@th105@@V?$allocator@PAVIScene@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@PAVIScene@th105@@V?$allocator@PAVIScene@th105@@@std@@@2@XZ=0x004040B0", "?_Tidy@?$list@PAVIScene@th105@@V?$allocator@PAVIScene@th105@@@std@@@std@@IAEXXZ=0x00408A00"]

@@ -85,3 +85,7 @@ Follow-up: the scene-base pointer type and Opening color access are now
 corrected, with all affected output unchanged. See
 `docs/SCENE_BASE_FADE_POINTER_2026_11_09.md`, which also records why the currently
 supported strict global callback routes do not cover this Application candidate.
+
+Follow-up, 2026-11-10: the observed inline cleanup now has a complete strict
+global-lifecycle proof, and the Application constructor is selected and locally
+canonical exact. See `docs/APPLICATION_INLINE_CLEANUP_2026_11_10.md`.

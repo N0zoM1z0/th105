@@ -181,7 +181,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00407C40,authored_game,assets,authored,observed,canonical-exact-authored
 0x00407C50,authored_game,assets,authored,observed,canonical-exact-authored
 0x00407C70,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
-0x00407CA0,unknown,,review,unknown,ida-1.06a-initial-inventory
+0x00407CA0,authored_game,platform,authored,observed,canonical-exact-authored
 0x00407DA0,authored_game,platform,authored,observed,application-bootstrap-island-authored-106a
 0x00407F80,authored_game,platform,authored,observed,canonical-exact-authored
 0x00408080,authored_game,platform,authored,observed,application-scene-handoff-authored-106a

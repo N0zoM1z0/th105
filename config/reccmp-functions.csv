@@ -1892,3 +1892,4 @@ CTitle_render,0x00425740,function
 CNetworkClient_import_snapshot,0x0044F200,function
 CMenuPractice_update,0x00445D90,function
 update_scene_runtime,0x0043B4A0,function
+ApplicationState_ctor,0x00407CA0,function
