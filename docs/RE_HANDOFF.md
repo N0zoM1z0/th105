@@ -1277,3 +1277,14 @@ All 15 configured roots remain locally exact; all 527 non-debug sections and
 885 relocations are unchanged. INPUT's direct incoming-short reference remains
 an unresolved boundary; its temporary-copy control was not retained. No ledger,
 input-pin or Factory acceptance change. See `NETWORK_WIRE_SCALARS_2026_11_10.md`.
+
+
+## Battle pause-menu entry provider, November 10
+
+Pause-menu selection now reads the constructor-owned integer vector directly,
+removing an undefined receiver facade. Its genuine checked subscript matches
+43/43; the full 892-byte menu payload, EH and existing relocations are unchanged.
+The main root remains nonexact and gains no authored credit. Only the scoped
+provider binding changes in the manifest; pending input hunks and source pins
+are preserved. See `BATTLE_MENU_UPDATE_2026_10_29.md` and
+`build/frontier-battle-menu-vector-20261110/verification.json`.

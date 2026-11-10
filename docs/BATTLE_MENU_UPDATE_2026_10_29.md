@@ -64,3 +64,32 @@ scripts/repo-python scripts/build.py --unit exact-first-battle-menu-update --com
 
 Default CI and diff checks cover final source/tracking/progress. No cold corpus
 build is required for this isolated source unit.
+
+
+## Real entry-vector provider, 2026-11-10
+
+The selected-entry reads now use the actual `std::vector<int>` at +0x64.
+The constructor already owns and populates that vector; the former
+`BattlePauseEntries` receiver declared an operator with no implementation.
+Native calls at `440882`, `440949`, `440999` and `4409AD` all carry that same
++0x64 receiver and the cursor selection at +0x5C to `40DCC0`.
+
+Ordinary vector indexing naturally keeps these calls out of line and emits
+the complete 43-byte checked subscript. Its full relocation replay matches
+`40DCC0` exactly, including the invalid-parameter call and returned element
+address. The isolated unit binding now names this real provider. No inlining
+pragma, helper shim or new shared header is needed.
+
+Fresh before/after builds preserve all 892 owned root bytes, all 49 bytes of
+EH code, all 52 bytes of EH metadata and all 50 existing relocations, with the
+four call references renamed to the actual provider. SafeSEH still names the
+same handler. The compiler additionally emits the natural 43-byte subscript
+and 19-byte vector-size sections. The main root remains nonexact against the
+880-byte target extent, first mismatch +48. The provider was already classified
+compiler-generated; there is no authored exact gain or new Factory acceptance.
+
+The only source consumer is `exact-first-battle-menu-update`. Receipts and
+reproduction are under `build/frontier-battle-menu-vector-20261110/` and the
+corresponding private analysis directory. The pre-existing pending input work
+and all source pins are preserved; the manifest change is only this unit's
+single provider binding.

@@ -21,9 +21,6 @@ struct BattlePauseConfig {
  unsigned char prefix_00[0x71];
  unsigned char auto_save_71;
 };
-struct BattlePauseEntries {
- int &operator[](unsigned index);
-};
 class BattleMenuUpdateView : public Menu {
 public:
  virtual ~BattleMenuUpdateView();
@@ -38,7 +35,7 @@ public:
  int message_result();
  int confirmation_result();
 };
-#define ENTRY (*reinterpret_cast<BattlePauseEntries *>(&entries_64))[cursor_50.selection]
+#define ENTRY entries_64[cursor_50.selection]
 bool BattleMenuUpdateView::update()
 {
  if(owner_74->end_pending_84) return true;
