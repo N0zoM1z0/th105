@@ -140,21 +140,21 @@ unsigned int NetworkRequestReplay10::serialize(void *buffer)
 {
     unsigned char *output = static_cast<unsigned char *>(buffer);
     output[0] = 11;
-    *reinterpret_cast<unsigned int *>(output + 1) = value_008;
+    memcpy(output + 1, &value_008, sizeof(value_008));
     output[5] = tag_00c;
     return 6;
 }
 
 void NetworkRequestReplay10::parse(const unsigned char *input)
 {
-    value_008 = *reinterpret_cast<const unsigned int *>(input + 1);
+    memcpy(&value_008, input + 1, sizeof(value_008));
     tag_00c = input[5];
 }
 
 void InputPacket24::parse(const unsigned char *input)
 {
     ++input;
-    sequence_008 = *reinterpret_cast<const unsigned int *>(input);
+    memcpy(&sequence_008, input, sizeof(sequence_008));
     input += 4;
     tag_00c = *input++;
     unsigned char count = *input++;
@@ -172,7 +172,7 @@ unsigned int InputPacket24::serialize(void *buffer)
 {
     unsigned char *output = static_cast<unsigned char *>(buffer);
     *output++ = 3;
-    *reinterpret_cast<unsigned int *>(output) = sequence_008;
+    memcpy(output, &sequence_008, sizeof(sequence_008));
     output += 4;
     *output++ = tag_00c;
     *output++ = static_cast<unsigned char>(values_010.size());
@@ -180,8 +180,8 @@ unsigned int InputPacket24::serialize(void *buffer)
         unsigned int index = 0;
         if (values_010.size() > 0) {
             do {
-                *reinterpret_cast<unsigned short *>(output) =
-                    static_cast<unsigned short>(values_010[index]);
+                const short &value = values_010[index];
+                memcpy(output, &value, sizeof(value));
                 output += 2;
                 ++index;
             } while (index < values_010.size());

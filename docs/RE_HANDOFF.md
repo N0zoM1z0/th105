@@ -1267,3 +1267,13 @@ four valid records cover all cursor alignments. The existing private vector
 helper still blocks whole-root exact comparison. No new exact credit or pending
 input/pin changes. See `PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md` and
 `build/frontier-archive-unaligned-20261110/verification.json`.
+
+## Network packet scalar storage, November 10
+
+ACK_INFO now appends a genuine short instead of aliasing an int as a short
+reference. REQUEST_REPLAY, INPUT and ACK_INFO scalar copies also preserve
+packed byte-buffer accesses without integer-pointer alignment assumptions.
+All 15 configured roots remain locally exact; all 527 non-debug sections and
+885 relocations are unchanged. INPUT's direct incoming-short reference remains
+an unresolved boundary; its temporary-copy control was not retained. No ledger,
+input-pin or Factory acceptance change. See `NETWORK_WIRE_SCALARS_2026_11_10.md`.

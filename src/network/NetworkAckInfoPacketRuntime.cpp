@@ -1,6 +1,7 @@
 #include "NetworkAckInfoPacket.hpp"
 #include <deque>
 #include <stddef.h>
+#include <string.h>
 
 namespace th105 {
 
@@ -22,8 +23,8 @@ unsigned int NetworkAckInfoPacket40::serialize(void *buffer)
         unsigned index = 0;
         if (values_00c[side].size() > 0) {
             do {
-                *reinterpret_cast<unsigned short *>(output) =
-                    static_cast<unsigned short>(values_00c[side].at(index));
+                const short &value = values_00c[side].at(index);
+                memcpy(output, &value, sizeof(value));
                 output += 2;
                 ++index;
             } while (index < values_00c[side].size());
@@ -32,7 +33,7 @@ unsigned int NetworkAckInfoPacket40::serialize(void *buffer)
     }
     *output++ = tail_036;
     *output++ = tail_037;
-    *reinterpret_cast<unsigned int *>(output) = tail_038;
+    memcpy(output, &tail_038, sizeof(tail_038));
     output += 4;
     *output++ = sequence_03c;
     return static_cast<unsigned int>(output - static_cast<unsigned char *>(buffer));
@@ -54,8 +55,9 @@ void NetworkAckInfoPacket40::parse(const unsigned char *input)
         if (count > 0) {
             int remaining = count;
             do {
-                int value = *reinterpret_cast<const unsigned short *>(source);
-                values_00c[side].push_back(reinterpret_cast<const short &>(value));
+                short value;
+                memcpy(&value, source, sizeof(value));
+                values_00c[side].push_back(value);
                 source += 2;
             } while (--remaining);
         }
@@ -63,7 +65,7 @@ void NetworkAckInfoPacket40::parse(const unsigned char *input)
     }
     tail_036 = *source++;
     tail_037 = *source++;
-    tail_038 = *reinterpret_cast<const unsigned int *>(source);
+    memcpy(&tail_038, source, sizeof(tail_038));
     source += 4;
     sequence_03c = *source;
 }
