@@ -1,3 +1,4 @@
+#include "config/ScoreMusicLookup.hpp"
 #include "MenuMusic.hpp"
 
 #include "ProfileMenu.hpp"
@@ -18,12 +19,6 @@ namespace th105 {
 
 void __cdecl install_menu_object(void *object);
 
-struct ScoreMusicLookupView {
-    unsigned char unknown_000[0x44];
-    std::set<unsigned> path_hashes_044;
-
-    bool contains_bgm_path(const char *path);
-};
 
 CMenuMusic::CMenuMusic()
 {

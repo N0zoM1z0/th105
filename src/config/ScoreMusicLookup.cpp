@@ -1,3 +1,4 @@
+#include "config/ScoreMusicLookup.hpp"
 #include <set>
 #include <cstring>
 #include "assets/CaseInsensitivePathHash.cpp"
@@ -9,13 +10,6 @@ extern "C" void __cdecl _invalid_parameter_noinfo();
 // Current score/profile runtime prefix used by the music-selection menus.  The
 // checked std::set at +0x44 is independently fixed by the current 105-byte
 // std::_Tree::find COMDAT and its caller at 0x0042D880.
-struct ScoreMusicLookupView {
-    unsigned char unknown_000[0x44];
-    std::set<unsigned> path_hashes_044;
-
-    bool contains_bgm_path(const char *path);
-    void publish_bgm_path(const char *path);
-};
 
 bool ScoreMusicLookupView::contains_bgm_path(const char *path)
 {

@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Music score lookup/publication and its two consumers now share one declaration instead of divergent nominal class definitions. All ten roots remain exact, with complete COFF contents/relocations unchanged. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.
+
 2026-11-10: Arcade and result-menu unlock reads now use shared ScoreData fields instead of offset facades. Arcade setup 842/842 and four menu roots retain exactness; nonexact siblings remain unchanged. Four affected units replay, with obsolete accessor COMDATs removed. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.
 
 2026-11-10: Shared ScoreData now carries the native owned prefix through its record arrays. Deck availability uses its real common/character count maps and remains 358/358 exact. All fourteen affected units retain prior outcomes; only unchanged compiler-support section order moves in two objects. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.

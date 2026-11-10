@@ -101,3 +101,18 @@ native callee or independently counted exact root.
 
 Evidence and focused CI: `build/frontier-score-unlock-consumers-20261110/`,
 compared with `frontier-score-record-owner-20261110/full-prefix/`.
+
+## One music lookup declaration
+
+`ScoreMusicLookup.hpp` now supplies the same class definition to path lookup/
+publication, the music menu, and MusicList population. Previously all three
+translation units independently declared the nominal type, with different
+member names and method lists. The shared declaration retains both real methods
+and checks the set's +0x44 offset. The narrow existing view and its decorated
+ABI names are retained; no unsupported alias to the full score type is added.
+
+All ten configured roots in the three affected units remain exact: CRC293,
+lookup99, publication86, six music-menu roots442/281/38/185/318/30, and list
+population867. Every complete COFF section and relocation is byte-for-byte
+unchanged. The 30-byte deleting destructor remains compiler-owned. Evidence
+and focused CI: `build/frontier-score-music-contract-20261110/`.

@@ -1,3 +1,4 @@
+#include "config/ScoreMusicLookup.hpp"
 // JP1.06a MusicList population: real CSV/string/deque lifetimes and locked label.
 #include "ui/MenuMusic.hpp"
 #include "assets/CsvReader.hpp"
@@ -13,11 +14,6 @@ struct MusicCsvReader : CsvReader {
  }
 };
 typedef char MusicCsvReaderSize[sizeof(MusicCsvReader) == 0x30 ? 1 : -1];
-struct ScoreMusicLookupView {
- unsigned char prefix[0x44];
- std::set<unsigned> path_hashes_044;
- bool contains_bgm_path(const char *);
-};
 void MusicList::populate()
 {
  rows_004.clear();
