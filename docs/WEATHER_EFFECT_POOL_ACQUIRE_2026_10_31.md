@@ -61,3 +61,26 @@ No existing shared source or header changes. Existing exact receipts therefore
 remain valid; only this new unit is rebuilt. The two origin rows use the existing
 canonical baseline after acceptance; unchanged rules are not cold-replayed.
 Progress and tracking are regenerated and CI gates the local commit. No push.
+
+## Unsigned token storage, November 10, 2026
+
+Both acquire paths now write the low slot word and high generation word through
+byte copies, then read the generation from the actual unsigned token. This
+removes the unrelated `EffectObjectHandle` lvalue over the caller's unsigned
+storage. The two native stores, their order, and the post-allocation or
+post-erasure generation reload remain unchanged.
+
+Fresh VC8 builds preserve both complete 463-byte roots. All 389 non-debug
+sections and 676 relocations are identical before and after, including the
+constructors and cleanup providers. The shared 35-byte cleanup/handler and
+36-byte FuncInfo plus 8-byte unwind map also compare directly with the target.
+The manifest's include closure contains only this unit; no shared source,
+ledger, input pin or Factory acceptance changes were made.
+
+A preliminary short-copy read emitted a redundant zero extension and made each
+root six bytes longer. Reading the unsigned token's high word avoids that
+conversion. Copying the source words directly, rather than converting through
+short temporaries, preserves the native word loads. The rejected controls and
+fresh evidence are in `build/frontier-effect-pool-token-20261110/`; reproduce
+with the unit command above and the private `check_eh.py` and `verify.py` under
+`.analysis/frontier-effect-pool-token-20261110/`.

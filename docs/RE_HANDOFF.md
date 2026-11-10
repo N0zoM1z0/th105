@@ -1322,3 +1322,11 @@ consumers retain all seven exact roots. All 261 non-debug COFF sections and
 timestamps. No new exact credit or input-pin changes. See
 `TEXT_FONT_RENDER_2026_10_21.md` and
 `build/frontier-font-byte-read-20261110/verification.json`.
+
+2026-11-10: Weather/effect pool acquisition now accesses the actual unsigned
+handle token without an unrelated struct alias. Both existing 463-byte roots
+replay locally; all 389 non-debug sections and 676 relocations are unchanged.
+The complete cleanup/handler and EH metadata also replay. No new exact credit,
+Factory acceptance change or pending input-pin edits. See
+`WEATHER_EFFECT_POOL_ACQUIRE_2026_10_31.md` and
+`build/frontier-effect-pool-token-20261110/verification.json`.
