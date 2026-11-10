@@ -120,3 +120,39 @@ The initial generator is not the selected later source.
 Only this new unit is rebuilt. No shared header/flag/global/literal mapping
 changes; prior receipts remain retained and totals are incremental. Final local
 CI is pending at writing; its terminal exit/log is the commit gate.
+
+## Typed update state, 2026-11-10
+
+The complete update now uses a nonconstructing `InfoEffectState` view instead
+of the FIELD/F/I/S/B byte-offset macros. All 1,403 accesses name their actual
+coordinate, scale, alpha, action, frame, time, lifecycle-state or fade-latch
+field. Compile-time assertions fix the accessed offsets and 0x178-byte view.
+Unused sprite and animation storage remains opaque; no object is constructed
+and no virtual interface is fabricated.
+
+The target's signed-short action/frame and signed DWORD time observations are
+retained. Alpha is an unsigned byte, preserving its modulo-256 subtraction.
+The lifecycle DWORD uses the existing `CObjectBase::state_000` unsigned width
+at completed-object +0x158; this routine only decrements it. Coordinates/scales
+and float174 agree with the separately exact visual initializer's storage.
+All 144 case labels retain their original order and every statement retains
+its source position within the branches.
+
+The final entire COFF section contents and relocations are identical to the
+fresh baseline. The full 15,326-byte canonical candidate still has SHA-256
+`9ffe80ba2adc4d6abb5964d2a5a55a3182e880b2b0742d40c293a670bd694c4f`,
+including all switch metadata and all 493 resolved relocations. It remains
+nonexact against 15,330 target bytes, with the same first mismatch at +19.
+No source-spelling or epilogue search is reopened.
+
+An initial attempt to reuse the visual method's full animation-sprite type
+exposed its transitive GameMode getter declaration, which conflicts with the
+update's existing int-return facade. Reusing that full type would require a
+separate shared-ABI/binding change. The final bounded update view avoids that
+unrelated change. The visual source was restored and its two complete roots
+replayed at 80/80 and 266/266 exact.
+
+Evidence and focused CI: `build/frontier-info-effect-state-20261110/`.
+`update-final.json`, `payload-final.json` and `update-final.sections` describe
+the selected final build; intermediate `after` files are failed/unselected
+integration trials. No Factory replay, ledger promotion or new exact credit.

@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: InfoEffectObject's full update now uses typed state fields for all 144 action branches instead of 1,403 raw offset accesses. Complete COFF contents/relocations and full switch payload are unchanged; its existing nonexact +19 residual remains. Visual roots replay exact unchanged. See `docs/INFO_EFFECT_UPDATE_2026_10_27.md`.
+
 2026-11-10: Music score lookup/publication and its two consumers now share one declaration instead of divergent nominal class definitions. All ten roots remain exact, with complete COFF contents/relocations unchanged. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.
 
 2026-11-10: Arcade and result-menu unlock reads now use shared ScoreData fields instead of offset facades. Arcade setup 842/842 and four menu roots retain exactness; nonexact siblings remain unchanged. Four affected units replay, with obsolete accessor COMDATs removed. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.
