@@ -98,3 +98,27 @@ reconstruction frontier was opened afterward.
 Both origin checks and the current-manifest cold replay pass:528 accepted units/
 all1416 functions,389486 exact authored bytes. Final local CI is recorded in
 `local-ci.log`. The handoff archive and cleanup are described in ARTIFACTS.md.
+
+## Scalar byte-buffer ownership, November 10
+
+`ScoreSaveBuffer::write_u32` now copies the unsigned value's four-byte object
+representation into the byte buffer with `std::memcpy`, rather than creating
+an unsigned lvalue inside an `unsigned char[]` allocation. The matching loader
+uses the inverse copy into a real unsigned object. Position still advances by
+four, and the target x86 representation, serialized field order and unchecked
+buffer policy are unchanged.
+
+Pinned VC8 inlines these fixed-size copies into exactly the previous machine
+operations. Complete section contents and symbolic relocations are identical
+for both objects, including their cleanup/EH support. Persistence remains
+1155/1155 exact with SHA256 `7c1f377790ad3439955063dfdfabfd872385eb123a26da7c073baaab491ceb48`.
+The loader remains 1672 bytes with its same seven nonexact SIB encodings and
+candidate SHA256 `6641fe764731d97cf81c02a03bfaff9bf796c5cc9341aade96bd991d624ddf46`.
+This ownership correction does not reopen the closed encoding experiments.
+
+All four existing persistence observer cases and all four loader observer cases
+agree again. Their original limits remain: real I/O, codec implementations and
+exception unwinding are not executed. Fresh build reports, full object dumps,
+observer receipts and the passing focused CI log are retained in
+`build/frontier-score-scalar-copies-20261110/`. No shared layout, relocation,
+source selection, exact ledger or Factory acceptance was changed.

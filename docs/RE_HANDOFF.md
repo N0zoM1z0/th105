@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Score scalar serialization now uses real unsigned objects and fixed-size byte copies rather than casted lvalues in byte buffers. Persistence stays 1155/1155 exact; load retains its seven SIB differences. Complete object contents/relocations and eight observer cases are unchanged. See `docs/SCORE_PERSIST_2026_10_26.md`.
+
 2026-11-10: Battle-info render `0x470710` now reverse-indexes its actual anchor array without decrementing a pointer before the array. Full 353-byte render and 94-byte checked accessor remain exact; complete COFF contents/relocations are unchanged. See `docs/BATTLE_INFO_ANCHORS_2026_11_10.md`.
 
 2026-11-10: Scenario result render `0x454890` now uses its real parallel arrays rather than cross-array casts. The ordinary indexed loop naturally recreates the native cursor; all six runtime roots and complete COFF contents/relocations remain exact. See `docs/SCENARIO_RESULT_REAL_TILE_2026_11_02.md`.

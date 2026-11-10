@@ -8,7 +8,8 @@ struct ScoreLoadBuffer {
     explicit ScoreLoadBuffer(unsigned capacity) : position(0) { data = new unsigned char[capacity]; }
     ~ScoreLoadBuffer() { delete[] data; }
     unsigned read_u32() {
-        unsigned value = *reinterpret_cast<const unsigned *>(data + position);
+        unsigned value;
+        std::memcpy(&value, data + position, sizeof(value));
         position += 4;
         return value;
     }

@@ -8,7 +8,7 @@ struct ScoreSaveBuffer {
     explicit ScoreSaveBuffer(unsigned capacity) : position(0) { data = new unsigned char[capacity]; }
     ~ScoreSaveBuffer() { delete[] data; }
     void write_u32(unsigned value) {
-        *reinterpret_cast<unsigned *>(data + position) = value;
+        std::memcpy(data + position, &value, sizeof(value));
         position += 4;
     }
     void write(const void *in, unsigned count) {

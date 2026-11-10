@@ -190,3 +190,14 @@ provisional1155 bytes, requiring a fresh bounded preflight and early whole build
 Registration verification: defaults 2428/2428, its 205-byte implicit support,
 and persistence 1155/1155 replayed exact; target-independent CI passed 1,024
 tests and progress checks. The loader itself remains nonexact.
+
+## Scalar byte-buffer ownership, November 10
+
+`read_u32` now uses `std::memcpy` into a real unsigned object instead of a
+casted unsigned load from its byte allocation. The fixed four-byte copy is
+fully inlined: complete COFF contents and relocations are unchanged. All four
+existing observer cases agree; the full 1672-byte body retains exactly seven
+SIB-encoding differences and is still nonexact. The paired writer remains
+1155/1155 exact. See the scalar ownership section in
+`SCORE_PERSIST_2026_10_26.md` and evidence under
+`build/frontier-score-scalar-copies-20261110/`.
