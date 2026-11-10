@@ -1,8 +1,9 @@
 # Common Fighter action initialization: 2026-10-25
 
 `CommonFighter_initialize_action_entry @ 0x00477830` now has complete selected
-ordinary C++ source. The formal VC8 build emits5305 bytes against the full5521
-target payload and remains nonexact, first difference+0x14. No exact credit.
+ordinary C++ source. The original formal VC8 build emitted5305 bytes against the full5521
+target payload. The typed skill-level checkpoint below emits5309 and remains
+nonexact, first difference+0x14. No exact credit.
 All physical direct-call counts, seven zero-motion tail sites, three table
 dimensions and336 remap bytes agree. Independent cold compilation reproduces
 the selected payload. This is a source-present checkpoint, not acceptance.
@@ -157,3 +158,35 @@ Only new source-local interfaces, a new unit and22 exclusive relocation keys
 are added; accepted source/header/compiler profiles and existing bindings are
 unchanged. Source-present1546/mapped1565, authored1596/review1010, units585.
 The exact ledger remains1403/359740 bytes; no new aggregate cold replay is claimed.
+
+## Skill alternative matrix, 2026-11-10
+
+Action 690 now expresses the sixteen signed levels at 624..633 as a 4-by-4
+matrix. IDs 100..115 select successive row-major cells; incrementing a cell
+invalidates the other three rows of its column. This is the concrete repeated
+relationship visible in every native table arm, rather than sixteen unrelated
+bytes. The small nonconstructing view replaces 112 raw byte accesses. Existing
+signed narrowing, zero-to-one correction and upper clamp remain explicit.
+The dynamically indexed effect lookup at 5C0 is deliberately unchanged; this
+checkpoint does not infer its total extent from the sixteen known card IDs.
+
+The new complete VC8 candidate is 5309 bytes, SHA256
+`4219330083d415f256b237a9a96855a93eab2c8a00a123218c0760bf62e5ae55`.
+It remains nonexact at +0x14 against the 5521-byte native payload. The array
+reference changes code layout, so the previous byte-neutrality result does not
+apply. Full comparison replays every relocation and all three switch tables;
+no exact ledger or Factory acceptance is added.
+
+To check the changed region, the existing native diagnostic was run for all
+256 signed-byte bit patterns in each of the sixteen arms: 4096 comparisons,
+with no differences in the complete 0x900-byte owner or following effect-call
+packet. Its 432 root input-guard cases also pass. The diagnostic executes the
+actual native and newly compiled instructions from the observed table-entry
+preconditions through the next effect call, without substituting a provider
+return. It does not cover complete action-690 entry/deque execution or gameplay.
+
+Reports and before/after section dumps are retained in
+`build/frontier-common-skill-levels-20261110/`; `exhaust.json` is the all-byte
+control, `audit.json` is the standard diagnostic, and `ci.log` passes the local
+gate. The private driver only expands the existing diagnostic's six selected
+byte seeds to all 256 values. No shared header, callee ABI or binding changes.

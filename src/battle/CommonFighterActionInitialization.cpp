@@ -3,6 +3,12 @@
 #include "battle/SpellRuntime.hpp"
 #include <deque>
 namespace th105 {
+// Four alternatives per column. Native card IDs 100..115 select a row/column;
+// updating one level invalidates the other three alternatives in that column.
+struct CommonActionSkillLevels {
+ signed char levels[4][4];
+};
+typedef char CommonActionSkillLevels_size[sizeof(CommonActionSkillLevels)==16?1:-1];
 #define FIELD(t,o) (*reinterpret_cast<t *>(reinterpret_cast<unsigned char *>(this)+(o)))
 #define F(o) FIELD(float,o)
 #define S(o) FIELD(short,o)
@@ -132,55 +138,56 @@ void CommonActionEntryView::initialize_common_action_entry()
   if(C(0x55a)>0) {
    S(0x738)=FIELD(std::deque<FighterSequenceSlot>,0x55c)[0].record_id_00;
    I(0x180)=1;zero_motion();
+   CommonActionSkillLevels &skills = FIELD(CommonActionSkillLevels,0x624);
    switch(S(0x738)) {
    case 100:
-    if(++C(0x624)==0)C(0x624)=1;if(C(0x624)>=5)C(0x624)=4;
-    C(0x628)=-1;C(0x62c)=-1;C(0x630)=-1;break;
+    if(++skills.levels[0][0]==0)skills.levels[0][0]=1;if(skills.levels[0][0]>=5)skills.levels[0][0]=4;
+    skills.levels[1][0]=-1;skills.levels[2][0]=-1;skills.levels[3][0]=-1;break;
    case 101:
-    if(++C(0x625)==0)C(0x625)=1;if(C(0x625)>=5)C(0x625)=4;
-    C(0x629)=-1;C(0x62d)=-1;C(0x631)=-1;break;
+    if(++skills.levels[0][1]==0)skills.levels[0][1]=1;if(skills.levels[0][1]>=5)skills.levels[0][1]=4;
+    skills.levels[1][1]=-1;skills.levels[2][1]=-1;skills.levels[3][1]=-1;break;
    case 102:
-    if(++C(0x626)==0)C(0x626)=1;if(C(0x626)>=5)C(0x626)=4;
-    C(0x62a)=-1;C(0x62e)=-1;C(0x632)=-1;break;
+    if(++skills.levels[0][2]==0)skills.levels[0][2]=1;if(skills.levels[0][2]>=5)skills.levels[0][2]=4;
+    skills.levels[1][2]=-1;skills.levels[2][2]=-1;skills.levels[3][2]=-1;break;
    case 103:
-    if(++C(0x627)==0)C(0x627)=1;if(C(0x627)>=5)C(0x627)=4;
-    C(0x62b)=-1;C(0x62f)=-1;C(0x633)=-1;break;
+    if(++skills.levels[0][3]==0)skills.levels[0][3]=1;if(skills.levels[0][3]>=5)skills.levels[0][3]=4;
+    skills.levels[1][3]=-1;skills.levels[2][3]=-1;skills.levels[3][3]=-1;break;
    case 104:
-    if(++C(0x628)==0)C(0x628)=1;if(C(0x628)>=5)C(0x628)=4;
-    C(0x624)=-1;C(0x62c)=-1;C(0x630)=-1;break;
+    if(++skills.levels[1][0]==0)skills.levels[1][0]=1;if(skills.levels[1][0]>=5)skills.levels[1][0]=4;
+    skills.levels[0][0]=-1;skills.levels[2][0]=-1;skills.levels[3][0]=-1;break;
    case 105:
-    if(++C(0x629)==0)C(0x629)=1;if(C(0x629)>=5)C(0x629)=4;
-    C(0x625)=-1;C(0x62d)=-1;C(0x631)=-1;break;
+    if(++skills.levels[1][1]==0)skills.levels[1][1]=1;if(skills.levels[1][1]>=5)skills.levels[1][1]=4;
+    skills.levels[0][1]=-1;skills.levels[2][1]=-1;skills.levels[3][1]=-1;break;
    case 106:
-    if(++C(0x62a)==0)C(0x62a)=1;if(C(0x62a)>=5)C(0x62a)=4;
-    C(0x626)=-1;C(0x62e)=-1;C(0x632)=-1;break;
+    if(++skills.levels[1][2]==0)skills.levels[1][2]=1;if(skills.levels[1][2]>=5)skills.levels[1][2]=4;
+    skills.levels[0][2]=-1;skills.levels[2][2]=-1;skills.levels[3][2]=-1;break;
    case 107:
-    if(++C(0x62b)==0)C(0x62b)=1;if(C(0x62b)>=5)C(0x62b)=4;
-    C(0x627)=-1;C(0x62f)=-1;C(0x633)=-1;break;
+    if(++skills.levels[1][3]==0)skills.levels[1][3]=1;if(skills.levels[1][3]>=5)skills.levels[1][3]=4;
+    skills.levels[0][3]=-1;skills.levels[2][3]=-1;skills.levels[3][3]=-1;break;
    case 108:
-    if(++C(0x62c)==0)C(0x62c)=1;if(C(0x62c)>=5)C(0x62c)=4;
-    C(0x624)=-1;C(0x628)=-1;C(0x630)=-1;break;
+    if(++skills.levels[2][0]==0)skills.levels[2][0]=1;if(skills.levels[2][0]>=5)skills.levels[2][0]=4;
+    skills.levels[0][0]=-1;skills.levels[1][0]=-1;skills.levels[3][0]=-1;break;
    case 109:
-    if(++C(0x62d)==0)C(0x62d)=1;if(C(0x62d)>=5)C(0x62d)=4;
-    C(0x625)=-1;C(0x629)=-1;C(0x631)=-1;break;
+    if(++skills.levels[2][1]==0)skills.levels[2][1]=1;if(skills.levels[2][1]>=5)skills.levels[2][1]=4;
+    skills.levels[0][1]=-1;skills.levels[1][1]=-1;skills.levels[3][1]=-1;break;
    case 110:
-    if(++C(0x62e)==0)C(0x62e)=1;if(C(0x62e)>=5)C(0x62e)=4;
-    C(0x626)=-1;C(0x62a)=-1;C(0x632)=-1;break;
+    if(++skills.levels[2][2]==0)skills.levels[2][2]=1;if(skills.levels[2][2]>=5)skills.levels[2][2]=4;
+    skills.levels[0][2]=-1;skills.levels[1][2]=-1;skills.levels[3][2]=-1;break;
    case 111:
-    if(++C(0x62f)==0)C(0x62f)=1;if(C(0x62f)>=5)C(0x62f)=4;
-    C(0x627)=-1;C(0x62b)=-1;C(0x633)=-1;break;
+    if(++skills.levels[2][3]==0)skills.levels[2][3]=1;if(skills.levels[2][3]>=5)skills.levels[2][3]=4;
+    skills.levels[0][3]=-1;skills.levels[1][3]=-1;skills.levels[3][3]=-1;break;
    case 112:
-    if(++C(0x630)==0)C(0x630)=1;if(C(0x630)>=5)C(0x630)=4;
-    C(0x624)=-1;C(0x628)=-1;C(0x62c)=-1;break;
+    if(++skills.levels[3][0]==0)skills.levels[3][0]=1;if(skills.levels[3][0]>=5)skills.levels[3][0]=4;
+    skills.levels[0][0]=-1;skills.levels[1][0]=-1;skills.levels[2][0]=-1;break;
    case 113:
-    if(++C(0x631)==0)C(0x631)=1;if(C(0x631)>=5)C(0x631)=4;
-    C(0x625)=-1;C(0x629)=-1;C(0x62d)=-1;break;
+    if(++skills.levels[3][1]==0)skills.levels[3][1]=1;if(skills.levels[3][1]>=5)skills.levels[3][1]=4;
+    skills.levels[0][1]=-1;skills.levels[1][1]=-1;skills.levels[2][1]=-1;break;
    case 114:
-    if(++C(0x632)==0)C(0x632)=1;if(C(0x632)>=5)C(0x632)=4;
-    C(0x626)=-1;C(0x62a)=-1;C(0x62e)=-1;break;
+    if(++skills.levels[3][2]==0)skills.levels[3][2]=1;if(skills.levels[3][2]>=5)skills.levels[3][2]=4;
+    skills.levels[0][2]=-1;skills.levels[1][2]=-1;skills.levels[2][2]=-1;break;
    case 115:
-    if(++C(0x633)==0)C(0x633)=1;if(C(0x633)>=5)C(0x633)=4;
-    C(0x627)=-1;C(0x62b)=-1;C(0x62f)=-1;break;
+    if(++skills.levels[3][3]==0)skills.levels[3][3]=1;if(skills.levels[3][3]>=5)skills.levels[3][3]=4;
+    skills.levels[0][3]=-1;skills.levels[1][3]=-1;skills.levels[2][3]=-1;break;
    }
   }
   emit_effect(static_cast<short>(C(0x5c0+S(0x738))+130),F(0xec),F(0xf0),1,1);
