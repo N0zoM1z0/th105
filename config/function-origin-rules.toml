@@ -6602,7 +6602,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete scenario text, result and effect reset policy; pinned body and exact story-page loader caller. Selected source remains nonexact. docs/SCENARIO_RUNTIME_RESET_SOURCE_2026_11_04.md."
+evidence = "Complete scenario text, result and effect reset policy; pinned body and exact story-page loader caller. Selected source now replays all 334 bytes exactly. docs/SCENARIO_RUNTIME_RESET_SOURCE_2026_11_04.md."
 required_body_hashes = [{ address = "0x00457E40", size = 334, sha256 = "f6f71511691781cee605df4807a7ce2aab4323cb1720b2e639bf153b0fe8acfd" }]
 required_direct_edges = [{ caller = "0x004583E0", site = "0x00458415", target = "0x00457E40", caller_status = "matching" }]
 

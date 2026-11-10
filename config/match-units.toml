@@ -10445,7 +10445,7 @@ source = "src/battle/ScenarioRuntime.cpp"
 object = "build/match-units/CrossV106a_ScenarioRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current CScenarioData core runtime TU. Exact vslot-0 configure and vslot-1 clear share the recovered 0x524 physical class; exact ScenarioTextEntry dynamic render proves a real polymorphic 0x94 sprite member. The same TU carries a review-pending reset_runtime_state whose remaining five-byte-level difference is checked-iterator allocator/TU scheduling, not semantic drift."
+notes = "Current CScenarioData core runtime TU. Exact vslot-0 configure and vslot-1 clear share the recovered 0x524 physical class; exact ScenarioTextEntry dynamic render proves a real polymorphic 0x94 sprite member. The same TU now supplies the exact 334-byte reset_runtime_state through actual checked-map increment and render-list clear operations."
 
 [[units.cross-v106a-scenario-runtime.functions]]
 address = "0x00457DF0"
@@ -30043,12 +30043,12 @@ source = "src/battle/ScenarioRuntime.cpp"
 object = "build/match-units/ExactFirst_ScenarioRuntimeReset.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete scenario runtime reset; nonexact source with out-of-line checked-STL call interfaces."
+notes = "Complete scenario runtime reset; canonical exact 334 bytes using the actual checked-map iterator and render lists. The existing string-assignment call boundary remains separate."
 
 [[units.exact-first-scenario-runtime-reset.functions]]
 address = "0x00457E40"
 symbol_base = "?reset_runtime_state@CScenarioData@th105@@QAEXXZ"
-rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?increment@ScenarioTextMapIteratorIncrementView@th105@@QAEXXZ=0x00435C00", "?assign_bytes@ScenarioStringAssignBytesView@th105@@QAEXPBDI@Z=0x004021C0", "?clear_entries@ScenarioRenderListClearView@th105@@QAEXXZ=0x00435FF0", "?release_all_tracked_objects@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEXXZ=0x00436E60"]
+rel32_targets = ["__invalid_parameter_noinfo=0x0068A143", "?_Inc@const_iterator@?$_Tree@V?$_Tmap_traits@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@U?$less@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@V?$allocator@U?$pair@$$CBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@UScenarioTextEntryDC@th105@@@std@@@2@$0A@@std@@@std@@QAEXXZ=0x00435C00", "?assign_bytes@ScenarioStringAssignBytesView@th105@@QAEXPBDI@Z=0x004021C0", "?clear@?$list@UScenarioRenderEntry9C@th105@@V?$allocator@UScenarioRenderEntry9C@th105@@@std@@@std@@QAEXXZ=0x00435FF0", "?release_all_tracked_objects@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEXXZ=0x00436E60"]
 
 [units.exact-first-spell-selection-shuffle]
 kind = "probe"

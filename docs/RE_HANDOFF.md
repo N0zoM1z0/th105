@@ -1288,3 +1288,13 @@ The main root remains nonexact and gains no authored credit. Only the scoped
 provider binding changes in the manifest; pending input hunks and source pins
 are preserved. See `BATTLE_MENU_UPDATE_2026_10_29.md` and
 `build/frontier-battle-menu-vector-20261110/verification.json`.
+
+2026-11-10: Scenario runtime reset `0x457E40` is now locally exact 334/334.
+Actual map-iterator increment and render-list clear calls replace two opaque
+receiver views and naturally close the five-byte residue. All five existing
+runtime roots remain exact; 97 non-root sections and 50 relocations are unchanged.
+The map increment provider also replays 126/126 without authored credit. The
+separate list-clear provider and retained string-assignment visibility boundary
+are not promoted. Pending input changes and source pins remain untouched.
+See `SCENARIO_RUNTIME_RESET_SOURCE_2026_11_04.md` and
+`build/frontier-scenario-reset-containers-20261110/verification.json`.

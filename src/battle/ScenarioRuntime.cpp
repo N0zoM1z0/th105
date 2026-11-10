@@ -2,19 +2,9 @@
 
 namespace th105 {
 
-// This Scenario TU keeps three VC8 checked-STL member bodies out of line.
-// The owning std types remain in ScenarioData.hpp; these narrow views expose
-// only the target-observed member ABI at the call sites.
+// The string assignment call remains an unresolved out-of-line boundary.
 struct ScenarioStringAssignBytesView {
     void assign_bytes(const char *source, unsigned int length);
-};
-
-struct ScenarioRenderListClearView {
-    void clear_entries();
-};
-
-struct ScenarioTextMapIteratorIncrementView {
-    void increment();
 };
 
 void CScenarioData::configure(CInputManager *input)
@@ -72,8 +62,7 @@ void CScenarioData::reset_runtime_state()
         entry.flag_0d6 = 0;
         entry.flag_0d7 = 0;
         entry.flag_0d8 = 0;
-        reinterpret_cast<ScenarioTextMapIteratorIncrementView *>(&it)
-            ->increment();
+        ++it;
     }
 
     state_50c = 0;
@@ -93,12 +82,9 @@ void CScenarioData::reset_runtime_state()
     field_518 = 0;
     field_51c = 0;
     field_520 = 20;
-    reinterpret_cast<ScenarioRenderListClearView *>(&render_entries_338)
-        ->clear_entries();
-    reinterpret_cast<ScenarioRenderListClearView *>(&render_entries_344)
-        ->clear_entries();
-    reinterpret_cast<ScenarioRenderListClearView *>(&render_entries_350)
-        ->clear_entries();
+    render_entries_338.clear();
+    render_entries_344.clear();
+    render_entries_350.clear();
     system_effects_004.release_all_tracked_objects();
 }
 
