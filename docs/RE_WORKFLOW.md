@@ -73,9 +73,9 @@ IDA auto-names do not imply mappings or implementations.
 9. Add `matches.csv` only after strict zero-difference relocation replay against
    `resources/th105.exe`; update the candidate row at the same time.
 10. Update the handoff when the phase/blocker changes, then run the final local
-    `scripts/repo-python scripts/ci.py`
-    and `git diff --check` gate. Commit, push, or open a pull request only after
-    both commands pass in the finished worktree.
+    `python3 scripts/ci.py` gate, which includes staged/unstaged whitespace.
+    Commit, push, or open a pull request after the applicable focused checks
+    and basic CI pass in the finished worktree.
 
 GitHub Actions is an additional check. Rerun the local gate after changes to
 source, ledgers, scripts, tests or generated progress.
@@ -88,13 +88,15 @@ for a reconstructed function. Preserve the target's actual guards and EH paths
 in source. Use a bounded execution probe only when it answers a concrete ABI,
 lifetime, floating-point or side-effect question blocking the comparison.
 
-Default CI runs ledger/match-unit validation and exact-comparison tooling tests.
-It does not run every character audit or historical source-shape experiment.
-Run a relevant optional test by filename when changing that tool; use
-`scripts/repo-python scripts/ci.py --all-tests` for broader tooling work when
-needed. Do not add fixed progress totals, checkpoint status or source-string
-snapshots: current ledgers and canonical receipts already record those facts.
-Progress generation is explicit when inputs change; CI checks without writing.
+Basic CI checks Python/JSON/TOML/shell syntax and whitespace using the standard
+library, without requiring the reconstruction environment. Locally it checks
+changed files; GitHub Actions uses `--all` for tracked-file syntax and also
+checks commit whitespace. It does not run tests, ledger validation, native
+builds or progress checks. Run the relevant validator or test directly when
+changing that tool. Broader tests remain available through
+`scripts/repo-python -m unittest discover -s tests` when needed. Do not add
+fixed progress totals, checkpoint status or source-string snapshots.
+Generate progress explicitly when its inputs change.
 
 ## Exact-first priority from the TH075 review
 
@@ -181,9 +183,8 @@ control flow to identify unledgered direct targets and visible indirect-exit
 unknowns. A same-sized arm or a higher diagnostic count is never exact credit.
 Run the strict full-function comparator independently. See
 [GIANT_OWNER_AUDIT.md](GIANT_OWNER_AUDIT.md) for the common Fighter counterexample
-and reproducible commands. Public CI dependencies are pinned in
-`scripts/requirements-ci.txt`; install them before `scripts/ci.py` on a fresh
-Python environment.
+and reproducible commands. Analysis dependencies are pinned in
+`scripts/requirements-ci.txt`; basic CI does not use those packages.
 
 For roster Object callee discovery, use `scripts/rank-roster-object-shared-callees.py` when needed. It discovers direct external callees from raw canonical root bytes and only then annotates candidate/origin state, so missing IDA functions or stale classifications remain visible. Use the result as candidate/primitive evidence only; canonical exact acceptance still requires the normal match unit/comparator.
 

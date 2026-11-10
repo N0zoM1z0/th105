@@ -88,8 +88,19 @@ test-workflow maintenance need no target/IDA preflight or native build.
 - [Generated progress](docs/PROGRESS.md)
 - [Agent rules](AGENTS.md)
 
-Use `scripts/repo-python` for repository Python commands. It checks the exact
-CPython version in `.python-version`, all package versions in
+Basic CI needs only Python 3.11+, Git and Bash, with no package installation:
+
+```bash
+python3 scripts/ci.py
+```
+
+It checks changed Python/JSON/TOML/shell syntax and staged/unstaged whitespace.
+GitHub Actions runs `python3 scripts/ci.py --all` to check syntax across tracked
+files and whitespace in the checked commit. Native compilation, exact comparison,
+ledger validation and tests are separate task-specific commands.
+
+Use `scripts/repo-python` for reconstruction and analysis Python commands. It
+checks the exact CPython version in `.python-version`, all package versions in
 `scripts/requirements-ci.txt`, and the importable decoder/emulator native APIs
 before executing with that interpreter. Its default environment is `.venv`;
 `TH105_PYTHON` can select another interpreter meeting the same locks.
@@ -99,26 +110,22 @@ Create the isolated environment with `uv`:
 ```bash
 uv venv --python "$(cat .python-version)" .venv
 uv pip install --python .venv/bin/python -r scripts/requirements-ci.txt
-scripts/repo-python scripts/ci.py
 ```
 
 With the exact configured CPython already installed, `python3 -m venv .venv`
 and `.venv/bin/python -m pip install -r scripts/requirements-ci.txt` are equivalent
-setup steps. GitHub Actions reads the same Python version file, installs those
-dependencies into `.venv`, and uses the same launcher.
+setup steps. GitHub Actions reads the same Python version file but runs only
+basic CI, without creating `.venv` or installing analysis dependencies.
 
-Default CI checks the ledgers, match-unit graph and strict comparison tooling;
-it runs without game files, IDA or the proprietary compiler. Target-dependent
-checks skip when the executable is absent. It checks progress artifacts without
-rewriting them; run `scripts/repo-python scripts/progress.py` when ledger inputs
-change.
+Run `scripts/repo-python scripts/progress.py` when ledger inputs change.
+Progress freshness and historical source pins are not part of basic CI.
 
 The reconstruction loop is a focused VC8 build and whole-function exact
 comparison. Allocation-failure/null-pointer coverage, broad execution matrices
 and source/checkpoint snapshot tests are not routine acceptance requirements.
 Optional analysis/probe tests can be run by filename with
 `scripts/repo-python -m unittest discover -s tests -p 'test_NAME.py'`, or together
-with `scripts/repo-python scripts/ci.py --all-tests`. They diagnose specific
+with `scripts/repo-python -m unittest discover -s tests`. They diagnose specific
 questions and do not establish exactness.
 
 ## Pinned Boost reference headers

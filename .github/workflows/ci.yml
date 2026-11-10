@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version-file: ".python-version"
-      - run: python3 -m venv .venv
-      - run: .venv/bin/python -m pip install -r scripts/requirements-ci.txt
-      - run: scripts/repo-python scripts/ci.py
+      - run: python3 scripts/ci.py --all

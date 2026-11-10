@@ -54,8 +54,10 @@ actual exactness, target identity, natural-source and state-isolation rules.
 
 Reconstruct only the original Japanese TH10.5 v1.06a executable, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Use `scripts/repo-python` for repository Python commands; README.md describes
-setup, `.python-version` and `scripts/requirements-ci.txt` pin the environment.
+Use `scripts/repo-python` for reconstruction and analysis Python commands;
+README.md describes setup, `.python-version` and `scripts/requirements-ci.txt`
+pin that environment. Basic CI is the exception: `python3 scripts/ci.py` needs
+only Python 3.11+ and the standard library, without `.venv` or analysis packages.
 
 ## Work loop
 
@@ -147,16 +149,17 @@ submission rules. Do not rewrite existing commits merely to change their prefix.
 For reconstruction changes, run focused affected comparisons, then:
 
 ```bash
-scripts/repo-python scripts/ci.py
-git diff --check
+python3 scripts/ci.py
 ```
 
 The finished local gate is required before commit/push/PR; rerun after changes
-to source, ledgers, scripts, tests or generated progress. Default CI validates
-ledgers, match units and exact-comparison tooling; it does not rebuild native
-units or run all analysis tests. `scripts/ci.py --all-tests` is optional for
-broader tooling changes. Regenerate progress explicitly when inputs change;
-CI only checks it.
+to source, ledgers, scripts, tests or generated progress. Default CI checks
+changed Python/JSON/TOML/shell syntax and staged/unstaged whitespace only.
+GitHub Actions uses `--all` to check syntax across tracked files and checks
+commit whitespace. Ledger validation, affected exact comparisons and relevant
+tool tests run separately when the task requires them. Do not add a routine
+test suite, progress freshness check or environment audit to basic CI.
+Regenerate progress explicitly when its inputs change.
 
 Update `docs/RE_HANDOFF.md` when phase/blocker changes. Report addresses,
 evidence class, changed files, exact result and remaining unknowns. Commit

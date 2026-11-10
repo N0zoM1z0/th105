@@ -101,7 +101,9 @@ using the failed session through a different route.
 - `scripts/rank_retained_exact.py`: target-attested retained-1.06 source ranking for 1.06a; dual `/GS` profiles, normalized instruction shape, and relocation-masked raw mismatch counts are prioritization signals only. Repeatable `--historical-status` filters may widen the archaeology queue to old `implemented`/`compiles` rows without changing acceptance semantics.
 - `scripts/audit-roster-primary-vtable-coverage.py`: raw-PE closure check for all fifteen Fighter and fifteen Object primary-vtable surfaces. It reconstructs each vtable base from the SHA-pinned RTTI/origin-anchor manifests and reports candidate starts, candidate interiors and unledgered code pointers without consulting IDA function discovery.
 - `scripts/rank-unledgered-rdata-text-pointers.py`: aligned raw `.rdata -> .text` pointer census against `functions.csv` main spans plus reviewed remote chunks. Uncovered targets are candidate-discovery leads only; startup/EH tables, scalar-deleting destructors and table data must be separated from authored callbacks with independent provenance before promotion.
-- `scripts/ci.py`: target-independent public validation.
+- `scripts/ci.py`: standard-library syntax and whitespace checks. Run with
+  `python3`; `--all` checks syntax across tracked files. Reconstruction
+  validators, exact comparisons and tests are separate commands.
 
 ## Giant authored action-switch topology
 

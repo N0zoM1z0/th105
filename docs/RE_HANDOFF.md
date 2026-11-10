@@ -72,5 +72,8 @@ analysis session before using its semantics. Source presence, semantic probes
 and a successful link confer no exact credit.
 
 Retain a short finding and checkpoint stable work with `gpt-dots: <summary>`.
-Run the applicable focused checks and the local CI/diff gate before committing.
+Run the applicable focused checks and `python3 scripts/ci.py` before committing.
+Basic CI needs no analysis packages and runs only syntax/whitespace checks;
+GitHub Actions uses `--all` for tracked-file syntax. Tests and reconstruction
+validators run separately when relevant to the change.
 Ordinary documentation maintenance needs no native build or broad replay.
