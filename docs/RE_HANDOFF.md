@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Story-progress arrays now distinguish twenty-byte serialized storage from fifteen-character policy loops. Event publication 95/95 and refresh 860/860 remain exact with unchanged full COFF contents/relocations. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.
+
 2026-11-10: Score statistics and sequence recording now use the twenty-vector member array proven by native construction, replacing casts beyond a prefix-only owner. Fresh roots remain 191/191 and 159/159 exact; fourteen affected units replay with existing mismatches unchanged. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.
 
 2026-11-10: Wave recycler now decodes packed tokens through a real token object and a byte copy. Full root `0x401BD0` (76 bytes) and private recycler `0x405200` (167 bytes) remain exact; all DLL sections/relocations are identical except the export timestamp. See `docs/WAVE_RESOURCE_RELEASE_2026_10_29.md`.

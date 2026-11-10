@@ -37,3 +37,20 @@ Evidence is under `build/frontier-score-record-owner-20261110/{before,after}/`:
 all fourteen full comparison reports and complete section/relocation dumps.
 The small serial driver is `.analysis/frontier-score-record-owner-20261110/build.py`.
 Focused CI passed. These are local exact comparisons, not new Factory acceptance.
+
+## Story arrays: storage capacity is not the active roster size
+
+`ScoreDataStoryProgressView` now declares twenty bytes in each event/primary/
+secondary array, matching the existing defaults and persistence owner. The old
+view split each into fifteen bytes plus five supposedly reserved bytes. Native
+persistence `0x42D487..0x42D4DE` copies all five DWORDs from each of `+0x08`,
+`+0x1C` and `+0x30`, including those last five bytes. Native initialization
+and the established serialized schema corroborate the twenty-byte storage.
+
+The policy loops still process fifteen characters, with thirteen initial
+secondary unlocks. Those are observed policy bounds, not array cardinalities;
+no unlock behavior or new event validation is introduced. The isolated source
+layout change preserves complete COFF contents and relocations. Fresh
+`gpt-web-score-story-progress` comparisons remain exact for both event
+publication `0x42E750` (95 bytes) and refresh `0x42E3F0` (860 bytes).
+Evidence and focused CI output: `build/frontier-score-story-arrays-20261110/`.

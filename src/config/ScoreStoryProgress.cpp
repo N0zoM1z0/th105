@@ -9,12 +9,10 @@ void *__cdecl get_network_session();
 struct ScoreDataStoryProgressView {
     unsigned int unknown_00;
     unsigned int flags_04;
-    unsigned char event_columns_08[15];
-    unsigned char reserved_17[5];
-    unsigned char primary_available_1c[15];
-    unsigned char reserved_2b[5];
-    unsigned char secondary_available_30[15];
-    unsigned char reserved_3f[0x1d];
+    unsigned char event_columns_08[20];
+    unsigned char primary_available_1c[20];
+    unsigned char secondary_available_30[20];
+    unsigned char reserved_44[0x18];
     std::vector<int> primary_indices_5c;
     std::vector<int> secondary_indices_6c;
 
