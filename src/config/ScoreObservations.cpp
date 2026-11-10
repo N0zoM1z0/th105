@@ -18,10 +18,8 @@ void ScoreData::update_observed_record_statistics(
     }
 
     for (std::vector<ObservedRecord24>::iterator record =
-             reinterpret_cast<std::vector<ObservedRecord24> *>(
-                 reinterpret_cast<unsigned char *>(this) + 0x198)[range_selector].begin();
-         record != reinterpret_cast<std::vector<ObservedRecord24> *>(
-             reinterpret_cast<unsigned char *>(this) + 0x198)[range_selector].end();
+             records_198[range_selector].begin();
+         record != records_198[range_selector].end();
          ++record) {
         if (record->key_00 == key_00 && record->key_08 == key_08) {
             ++record->update_count_10;
