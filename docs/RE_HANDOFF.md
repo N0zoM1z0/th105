@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: SystemEffect acquisition, bulk release and update/prune now share the same typed tracking declaration while retaining their distinct object hierarchy. All three complete COFF objects are identical; acquisition stays 91/91 exact and the two known mismatches remain. See `docs/SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md`.
+
 2026-11-10: Effect acquisition/preallocation, traversal/pruning and InfoEffect release share one typed pool/list state. Three complete COFF objects are identical; all 23 comparisons retain their results (21 exact, two known mismatches). See `docs/INFO_EFFECT_RELEASE_OWNER_2026_11_08.md`.
 
 2026-11-10: Select/Weather/Effect/InfoEffect spawning now shares one typed virtual/state protocol. Four 115-byte spawn roots and the 30-byte preallocation wrapper remain exact. Full objects are unchanged except removal of seven obsolete InfoEffect address accessors/debug records. See `docs/EFFECT_MANAGER_VIRTUAL_SPAWN_2026_11_08.md`.

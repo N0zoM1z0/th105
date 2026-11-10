@@ -45,3 +45,25 @@ Source:src/battle/SystemEffectTrackedAcquire.cpp.
 Receipt:build/frontier-system-effect-acquire-20261029/formal.json.
 No shared source/header or data relocation changes. Default CI validates the
 selection and ledgers; this is an incremental replay, not a cold-corpus claim.
+
+## One tracked-state declaration through the system-effect lifecycle
+
+The 2026-11-10 checkpoint extends the shared `EffectManagerTrackedState`
+contract to SystemEffect acquisition, bulk release and update/prune. All three
+paths now name the same checked list of `SystemEffectObjectBase *` beside the
+real handle pool. Two local manager layouts and the update's independent
+list-only cast are removed. The SystemEffect base type is retained: its handle
+and state offsets differ from ordinary effects and are still obtained through
+its established hierarchy, not an ordinary-effect prefix cast.
+
+The existing sequence remains intact: acquire and publish the handle before
+linking, invoke the virtual update before checking retirement, return a retired
+handle before erasing its node, and return all handles before bulk list clear.
+No public manager layout or shared header was changed in this checkpoint.
+
+Fresh serial comparisons retain acquisition 457110 at 91/91 exact. Release
+436E60 remains 119/native119 nonexact and update/prune 456D70 remains
+201/native201 nonexact. All three full COFF section contents and relocations
+are identical before and after. Reports and full dumps are retained under
+`build/frontier-system-tracked-state-20261110/{before,after}/`; `ci.log` passes
+the focused local gate. This adds no Factory acceptance.

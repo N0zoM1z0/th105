@@ -1,11 +1,13 @@
 #include "battle/SystemEffectManager.hpp"
+#include "EffectManagerTrackedState.hpp"
 #include <list>
 template<>
 void TObjectManagerBase<SystemEffectObject,SystemEffectObjectBase>::update_and_prune(
     void (SystemEffectObjectBase::*method)())
 {
     typedef std::list<SystemEffectObjectBase *> ObjectList;
-    ObjectList &objects = *reinterpret_cast<ObjectList *>(&linked_objects_54);
+    typedef EffectManagerTrackedState<SystemEffectObject, SystemEffectObjectBase> ManagerView;
+    ObjectList &objects = reinterpret_cast<ManagerView *>(this)->linked_objects_54;
     ObjectList::iterator it = objects.begin();
     while (it != objects.end()) {
         ((*it)->*method)();
