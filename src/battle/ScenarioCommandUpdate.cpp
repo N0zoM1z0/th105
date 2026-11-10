@@ -304,7 +304,9 @@ signed char CScenarioData::update()
                 if (c->arg1.empty()) {
                     it->second.flag_0d6 = 0;
                 } else {
-                    path = "data/character/" + it->first + "/stand/" +
+                    // The map key may be a role such as "win" or "lose".
+                    // The record text holds the character resource directory.
+                    path = "data/character/" + it->second.text_098 + "/stand/" +
                            c->arg1 + ".bmp";
                     g_title_resource_manager.release_title_resource_handle(
                         it->second.resource_handle_000);

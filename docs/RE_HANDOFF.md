@@ -1330,3 +1330,11 @@ The complete cleanup/handler and EH metadata also replay. No new exact credit,
 Factory acceptance change or pending input-pin edits. See
 `WEATHER_EFFECT_POOL_ACQUIRE_2026_10_31.md` and
 `build/frontier-effect-pool-token-20261110/verification.json`.
+
+2026-11-10: Scenario Stand commands now use the record's character resource
+name rather than its map key. The exact 991-byte phase-5 caller proves ordinary
+`win`/`lose` aliases with distinct character names. Native/source instruction
+witnesses confirm the corrected field; the complete object differential checks
+300 sections and 677 relocations. The full interpreter remains unselected and
+blocked at its existing string-constructor binding. See
+`SCENARIO_STAND_RESOURCE_2026_11_10.md`; pending input files and pins are untouched.
