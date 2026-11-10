@@ -26,14 +26,13 @@ void BattleInfoRecordF8::render_470710(float shift)
     if (index < 0)
         return;
 
-    UiDesignObject **anchor_slot = &group_88[index];
     do {
         float x;
         if (index > 0) {
             if (mode_00 == 0)
-                x = (*anchor_slot)->x;
+                x = group_88[index]->x;
             else
-                x = (*anchor_slot)->x - height_ratio_08 * primary_height_04;
+                x = group_88[index]->x - height_ratio_08 * primary_height_04;
 
             set_sprite_scale(
                 &fighter_18->sequence_controller_55c
@@ -41,9 +40,9 @@ void BattleInfoRecordF8::render_470710(float shift)
                 height_ratio_08);
         } else {
             if (mode_00 == 0)
-                x = (*anchor_slot)->x;
+                x = group_88[index]->x;
             else
-                x = (*anchor_slot)->x - primary_height_04;
+                x = group_88[index]->x - primary_height_04;
 
             set_sprite_scale(
                 &fighter_18->sequence_controller_55c
@@ -55,10 +54,9 @@ void BattleInfoRecordF8::render_470710(float shift)
         NativeSequenceDeque *sequence = reinterpret_cast<NativeSequenceDeque *>(
             &fighter_18->sequence_controller_55c);
         (*sequence)[static_cast<unsigned>(index)].sprite_04.render(
-            x, (*anchor_slot)->y + shift);
+            x, group_88[index]->y + shift);
 
         --index;
-        --anchor_slot;
     } while (index >= 0);
 }
 
