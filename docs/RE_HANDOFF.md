@@ -1314,3 +1314,11 @@ The unrelated Story record view and float/int lvalue casts are removed. All
 sections plus 312 relocations are unchanged. Existing nonexact/blocked roots
 and pending input pins remain unchanged. See `STORY_INFO_SOURCE_2026_11_03.md`
 and `build/frontier-story-health-owner-20261110/verification.json`.
+
+2026-11-10: The Shift-JIS font decoder now expresses its original DWORD
+lookahead as a byte copy instead of an aligned unsigned-pointer cast. Both
+consumers retain all seven exact roots. All 261 non-debug COFF sections and
+420 relocations are unchanged; the full linked image differs only in build
+timestamps. No new exact credit or input-pin changes. See
+`TEXT_FONT_RENDER_2026_10_21.md` and
+`build/frontier-font-byte-read-20261110/verification.json`.

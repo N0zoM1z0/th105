@@ -37,10 +37,13 @@ The actual sequence is:
    reloaded destination144 and delete the array. There is no source-added RAII
    cleanup or exception path around the native GDI work.
 
-The target's double-byte path at412726 performs a DWORD read before swapping
-AL/AH. The natural source constructs the code from two byte accesses. Logical
-code/consumption agreement does not establish identical physical read footprints
-at protected-page boundaries. That issue and arbitrary aliasing remain open.
+The target's double-byte path at `0x412726` performs a DWORD read before
+swapping AL/AH. The current source retains that four-byte read through a
+fixed-size `memcpy` into an unsigned local (2026-11-10). Unlike the intervening
+unsigned-pointer cast, this permits arbitrary character-buffer alignment and
+does not read a nonexistent unsigned object. The original lookahead width,
+lead-byte ranges and length guards remain unchanged; no new bounds-safety
+claim is made.
 
 The source includes the actual VC8 `<new>` declarations. Without them the
 initial private probe emitted scalar new/delete symbols; the declared array
@@ -162,3 +165,17 @@ ANSI GDI/font/list setup in the same TU, with natural ESI entry. Complete begin
 caller is322/115, canonical7087f023 and nonexact+0. Earlier source sizes/hashes
 in this note describe frozen preceding checkpoints. Current begin4320 and
 caller13100 bounded cases pass; owner and remaining providers remain open.
+
+
+## Four-byte character read, November 10
+
+The fixed-size byte copy compiles to the same load. Both source consumers were
+freshly rebuilt: all 261 non-debug COFF sections and 420 symbolic relocations
+are unchanged, including complete helper bodies, switch data and EH metadata.
+The linked font image is identical except for its COFF and export timestamps.
+All seven existing exact roots still replay; the five nonexact roots remain
+unchanged, including the linked text entry at 335/native 326 bytes.
+
+Evidence is in `build/frontier-font-byte-read-20261110/verification.json`,
+with complete before/after receipts beside it. No ledger, source pin or Factory
+acceptance was changed.
