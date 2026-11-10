@@ -28,7 +28,8 @@ struct WaveResourceReleaseView {
 };
 void WaveSoundPool64::release(unsigned packed_token)
 {
- const ResourceHandleToken &token=*reinterpret_cast<const ResourceHandleToken *>(&packed_token);
+ ResourceHandleToken token;
+ memcpy(&token, &packed_token, sizeof(token));
  EnterCriticalSection(&critical_48.critical_section_04);
  if(generations_28[token.slot_00]==token.generation_02) {
   generations_28[token.slot_00]=0;

@@ -47,3 +47,23 @@ Private provider witness:provider-public-compare.json in the same directory.
 The full linked-symbol/CFG boundary is76, not an accepted prefix of a larger
 body. No shared source/header or previous accepted unit changed. Default CI
 and diff checks validate the final ledger/progress update.
+
+## Token object representation, 2026-11-10
+
+The recycler now copies the packed unsigned argument into a real
+`ResourceHandleToken` with `memcpy`, as the shared lookup already does. The
+asserted four-byte token retains its low-half slot and high-half generation;
+reading those fields no longer aliases an unsigned object as a different type.
+The native generation check and free-slot insertion are unchanged.
+
+Fresh VC8 LTCG comparisons retain the complete 76-byte `0x401BD0` root and
+167-byte `0x405200` recycler, including the private caller witness at `0x401C09`,
+all relative calls and both critical-section imports. Every DLL section is
+identical before and after, including relocations, except the export-directory
+build timestamp. This also preserves emitted lookup and compiler support code.
+Only this translation unit changes; no shared layout or source pin changes.
+
+Evidence: `build/frontier-wave-token-copy-20261110/` contains before/after
+public reports, DLLs, full provider reports and focused CI output. The private
+comparison script is `.analysis/frontier-wave-token-copy-20261110/compare.py`.
+Existing local exactness is preserved; this is not a new Factory acceptance.
