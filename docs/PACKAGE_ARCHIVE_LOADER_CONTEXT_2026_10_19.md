@@ -221,3 +221,22 @@ python3 scripts/build.py --unit gpt-web-package-archive-loader --compare --json
 
 The current formal outcome remains the supported unknown-vector-call block.
 No aggregate cold replay or exact percentage is claimed.
+
+## Packed index-field reads, 2026-11-10
+
+Archive entries contain two DWORDs, a byte length and that many filename bytes.
+The next entry therefore need not start on a four-byte boundary. Native
+`0x41BC57` and `0x41BC59` load the offset and size directly from that packed
+cursor. The selected source now copies each four-byte field into its unsigned
+integer with `std::memcpy`, rather than dereferencing a potentially unaligned
+`unsigned int *`. This removes the C++ alignment requirement on ordinary valid
+index data while preserving the target's unchecked parsing policy.
+
+Fresh pinned builds preserve every byte in all 200 non-debug COFF sections and
+all 332 relocation records, including the loader and its EH support. Four valid
+variable-length record examples exercise every cursor alignment modulo four;
+the actual native load instructions recover the same offset/size words.
+The canonical whole-root comparison remains blocked at the existing private
+vector `push_back` binding, so this change adds no exact credit. Only
+`gpt-web-package-archive-loader` consumes the source. Receipts and the raw target
+loop are under `build/frontier-archive-unaligned-20261110/`.

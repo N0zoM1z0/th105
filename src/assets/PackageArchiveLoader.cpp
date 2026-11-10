@@ -55,9 +55,12 @@ static bool load_package_archive_impl(const char *path)
     // The original buffer declaration remains unknown.
     char entry_path[256];
     for (unsigned int i = 0; i < entry_count; ++i) {
-        unsigned int offset = *reinterpret_cast<unsigned int *>(cursor);
+        // Entries follow variable-length names, so DWORD fields may be unaligned.
+        unsigned int offset;
+        std::memcpy(&offset, cursor, sizeof(offset));
         cursor += 4;
-        unsigned int size = *reinterpret_cast<unsigned int *>(cursor);
+        unsigned int size;
+        std::memcpy(&size, cursor, sizeof(size));
         cursor += 4;
         unsigned char length = *cursor++;
         std::memcpy(entry_path, cursor, length);

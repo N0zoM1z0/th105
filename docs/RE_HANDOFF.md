@@ -1257,3 +1257,13 @@ The root remains nonexact from +37. See the final section of
 `ALICE_OBJECT_UPDATE_2026_10_28.md` and
 `build/frontier-alice-orbit-facing-20261109/verification.json`.
 Pending input files and SHA pins remain untouched.
+
+## Packed archive index reads, November 10
+
+Archive loading now reads offset/size fields with fixed-size memcpy, matching
+the native unaligned loads after variable-length filenames. All 200 non-debug
+sections and 332 relocation records are identical in fresh before/after builds;
+four valid records cover all cursor alignments. The existing private vector
+helper still blocks whole-root exact comparison. No new exact credit or pending
+input/pin changes. See `PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md` and
+`build/frontier-archive-unaligned-20261110/verification.json`.
