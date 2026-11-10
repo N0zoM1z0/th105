@@ -117,3 +117,45 @@ analysis directory. Final CI is pending at writing; terminal log/exit is the
 commit gate. Existing620 workflow tests are reused, not expanded into a runtime
 matrix. No game/RNG/callback execution is claimed. Existing exact totals remain
 unchanged and incrementally validated.
+
+## Typed update and bounded x87 verification, 2026-11-10
+
+The selected update now shares `EffectObjectState` with the exact entry method.
+Its 79 case labels and their order are unchanged. 421 direct offset accesses
+now name coordinates, velocities, scale/angles, color channels, signed action/
+frame/time, lifecycle state and tail state. The context at +0x164 is typed;
+its signed +0x4A2 word deliberately retains a neutral name. Unsigned facing
+at emission sites remains distinct from signed facing in horizontal motion.
+The real motion receiver remains this+4, not the completed object.
+
+Full comparison remains nonexact at +8, with the same 8899 callable/9350
+payload sizes versus target8895/9448. All relocations and switch metadata are
+unchanged. The only emitted differences from the old source are three x87
+addition schedules: `FLD [ESI+F0]; FADD ST(n)` becomes
+`FLD ST(n-1); FADD [ESI+F0]`. The surrounding floating-point rounding stores
+and expression statements remain. The complete new candidate hash is
+`d2eaa42217f82af6ba4113d8bf7142d7b22abe46c42c8aa344e6298abe5feb6c`.
+
+The previously deferred arithmetic question was checked with actual native
+instruction windows beginning at `0x65AF45`, `0x65B716`, and `0x65B830`, and
+corresponding unique-prefix windows extracted from the freshly compiled body.
+Each window includes the real velocity update and its float-store/reload,
+then the affected addition, ending after position publication or comparison
+status capture. No replacement arithmetic helper is supplied.
+
+A bounded Unicorn diagnostic compares 12 vertical-position bit patterns with
+12 velocity patterns at control words0x027F and0x037F, across all three windows:
+864 comparisons, zero differences. Patterns include both zeros, finite positive/
+negative values, the minimum subnormal, maximum finite value, both infinities,
+quiet NaNs with differing signs/payloads, and a signaling NaN. Compared state
+includes all four position/velocity DWORDs, scratch float stores, live physical
+x87 registers/tags, status and AX. This covers the concrete changed schedules;
+it does not prove full gameplay behavior, unmasked exception delivery or all
+possible floating-point inputs. It gives no exactness credit.
+
+Script: `.analysis/frontier-effect-addition-20261110/check.py`.
+Reports: `build/frontier-effect-object-state-20261110/addition-observers.json`,
+`update-typed-recheck.json`, `update-payload-selected.json`, and `ci-selected.log`.
+The prior unselected status in the entry note is superseded for this verified
+state-view change. Entry source and its exact 2676/2980-byte evidence are
+unchanged. Focused CI and diff checks pass; no Factory replay or ledger change.

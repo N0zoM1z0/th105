@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: EffectObject update now uses the entry's typed state across79 actions. Its three changed x87 addition schedules pass864 native-versus-compiled fragment comparisons, including NaNs and two precision controls. Full9350-byte candidate remains nonexact+8; relocations/switch metadata unchanged. See `docs/EFFECT_OBJECT_UPDATE_2026_10_27.md`.
+
 2026-11-10: EffectObject entry now reads typed self/context fields across all 44 actions. Complete2676-byte code,2980-byte payload and full COFF contents/relocations remain exact unchanged. The related update trial changed three x87 addition schedules and was left unselected; original update replayed. See `docs/EFFECT_OBJECT_ENTRY_2026_10_27.md`.
 
 2026-11-10: InfoEffectObject's full update now uses typed state fields for all 144 action branches instead of 1,403 raw offset accesses. Complete COFF contents/relocations and full switch payload are unchanged; its existing nonexact +19 residual remains. Visual roots replay exact unchanged. See `docs/INFO_EFFECT_UPDATE_2026_10_27.md`.
