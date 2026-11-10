@@ -311,7 +311,7 @@ signed char CScenarioData::update()
                     g_title_resource_manager.release_title_resource_handle(
                         it->second.resource_handle_000);
                     unsigned int width, height, handle;
-                    g_title_resource_manager.load_texture(
+                    handle = *g_title_resource_manager.load_texture(
                         &handle, path.c_str(), &width, &height);
                     it->second.resource_handle_000 = handle;
                     it->second.sprite_004.set_texture_options(
@@ -375,9 +375,11 @@ signed char CScenarioData::update()
                 s.render_entries_338.push_back(entry);
             }
                 unsigned int width, height, handle;
-                g_title_resource_manager.load_texture(
-                    &handle, c->arg0_08.c_str(), &width, &height);
-                s.render_entries_338.back().resource_handle_000 = handle;
+                // Native selects the destination before invoking the loader.
+                ScenarioRenderEntry9C &destination = s.render_entries_338.back();
+                destination.resource_handle_000 =
+                    *g_title_resource_manager.load_texture(
+                        &handle, c->arg0_08.c_str(), &width, &height);
                 s.render_entries_338.back().sprite_004.set_texture(
                     s.render_entries_338.back().resource_handle_000,
                     0, 0, width, height);
@@ -406,9 +408,11 @@ signed char CScenarioData::update()
                 s.field_520 = 4;
             } else if (!c->arg0_08.empty()) {
                 unsigned int width, height, handle;
-                g_title_resource_manager.load_texture(
-                    &handle, c->arg0_08.c_str(), &width, &height);
-                s.render_entries_344.back().resource_handle_000 = handle;
+                // Native selects the destination before invoking the loader.
+                ScenarioRenderEntry9C &destination = s.render_entries_344.back();
+                destination.resource_handle_000 =
+                    *g_title_resource_manager.load_texture(
+                        &handle, c->arg0_08.c_str(), &width, &height);
                 s.render_entries_344.back().sprite_004.set_texture_options(
                     s.render_entries_344.back().resource_handle_000,
                     0, 0, width, height, -c->arg1, -c->arg2);
