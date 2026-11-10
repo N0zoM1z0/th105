@@ -134,8 +134,7 @@ taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-scale-adds.py --actions
 
 Private artifacts are under `build/aya-861-owner-y-20261023/`; frozen CPPs,
 formal/native receipts and the per-object registry retain their source epochs.
-Completed variants may be in its SHA-verified `completed-controls.tar.gz`;
-consult `retention.json`, restore repository-relative members with `-C .`.
+
 The partial `.analysis/` flow exploration is not acceptance evidence. Future
 work needs a supported context preserving 807's second zero-sequence check
 while closing shared-tail effects; the now-working native RTM compiler also

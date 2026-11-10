@@ -136,14 +136,6 @@ full audit, command/tool hashes, loader logs and split-TU reports are in
 receipts in `split-cil.json`. Four in-memory negative controls reject an
 unsupported state count, try map, cyclic unwind edge and unterminated action;
 the original four-state packet passes. No executable/database is patched.
-Seven finished private split PE/COFF/map artifacts are archived with every
-member SHA256 checked before loose removal:657821 ->163800 bytes. Configured
-inputs stay present. Restore the control before re-reading its image:
-
-```bash
-tar -xzf build/font-markup-guard-20261022/completed-split-context.tar.gz \
-  -C build/font-markup-guard-20261022
-```
 
 The selected native markup still differs+16:1728/frame788 versus1744/frame796.
 Its current ABI and four cleanups already agree in role with the target.

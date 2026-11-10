@@ -105,10 +105,3 @@ The configured root comparison is expected to report nonexact. `previous.obj`
 is the saved8466c73 object. Omit that argument when replaying selected code only.
 Frozen controls and reports remain under `build/aya-801-fade-20261022/`; private
 expanded diagnostics are in `.analysis/aya-801-fade-20261022/`.
-
-Three completed control objects were SHA256-verified through a tar.gz round trip
-and archived: 120637 to36068 bytes. Frozen sources, reports,
-previous/selected objects and active target/compiler inputs remain available.
-`retention.json` records member hashes and verifies the target, public source
-and active object before/after deletion. Restore members from the repository root
-with `tar -xzf build/aya-801-fade-20261022/completed-controls.tar.gz`.

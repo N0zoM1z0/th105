@@ -148,8 +148,7 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-remilia-action-initial
 Only local source/interface/unit and12 exclusive literal aliases are added.
 Prior accepted sources, shared headers, compiler settings and bindings remain
 unchanged. Formal and independent cold callable/full results agree. Complete
-serial cold replay passes all524 accepted units/1412 functions. Receipt:
-`build/exact-first-remilia-action-entry-20261025/cold-all.log`. The full2344-byte
+serial cold replay passes all524 accepted units/1412 functions. The full2344-byte
 audit also passes on the object rebuilt during that replay. The exact ledger
 records381108 callable authored bytes; metadata/alignment receive no extra
 callable credit. Source-present1557, mapped1576 and596 configured units are

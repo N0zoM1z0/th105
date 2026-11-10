@@ -27,8 +27,7 @@ No local window or behavioral audit accepts the whole root.
 | [801 fade snapshots](AYA_OBJECT_801_FADE_SNAPSHOTS_2026_10_22.md) | Selected alpha correction; 3,012 sequence-read differences remain. |
 
 Earlier selected 804/810 sequence, 821 counter and 903 fade corrections remain
-in source. Their dated records and other action/initializer history are linked
-from the [preceding handoff](RE_HANDOFF_HISTORY_2026_10_23.md).
+in source.
 
 ## Unselected context and source controls
 

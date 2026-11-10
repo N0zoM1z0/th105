@@ -76,8 +76,7 @@ the manager phase caller, so this is not a full application integration or an
 exact linked-image claim. The independent 670/670 ordinary COFF match remains
 the accepted evidence; the separately nonexact providers gain no credit.
 
-Receipt and real-source build recipe:
-`build/frontier-overlay-real-cil-20261104/run2.log` and
+The real-source build recipe is in
 `.analysis/frontier-overlay-real-cil-20261104/`. The initial attempt lacked the
 real rectangle provider and failed to link; it was resolved by adding the
 existing rectangle and line sources, not by adding stubs.

@@ -163,8 +163,7 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-aya-action-initializat
 Only new local source/interface/unit and13 exclusive literal aliases are added.
 Prior accepted sources, shared headers, compiler settings and bindings remain
 unchanged. Formal and independent cold callable/full results agree. Complete
-serial cold replay passes all522 accepted units/1410 functions. Receipt:
-`build/exact-first-aya-action-entry-20261025/cold-all.log`. The full2579-byte
+serial cold replay passes all522 accepted units/1410 functions. The full2579-byte
 audit also passes on the object rebuilt during that replay. The exact ledger
 records377464 callable authored bytes; metadata/alignment receive no extra
 callable credit. Source-present1554, mapped1573 and593 configured units are

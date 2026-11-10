@@ -80,16 +80,6 @@ Build/provenance/comparison receipts and `mode3-owner.json`:
 `build/aya-902-mode-tail-20261022/`.
 `current-formal.json` is the final configured rebuild report.
 
-The fourteen completed private OBJ/BIN files were compressed into
-`build/aya-902-mode-tail-20261022/completed-controls.tar.gz`:
-421977 original bytes to107600 archive bytes. Every decompressed member's length
-and SHA256 was verified before removing the originals; member hashes remain in
-`archive-verification.json`. Archive SHA256:
-`85d1009d5a3ef6243722c1e9336f4a65d12b234260e1484ed4255c5f71357e`.
-Selected configured object, predecessor object, source recipes and JSON receipts
-remain available. Restore archive members before rerunning an owner audit;
-regeneration scripts also rebuild the same private paths.
-
 Final gate: `python3 scripts/ci.py` and `git diff --check`; stable checkpoints
 use the current `gpt-6-astra-medium:` prefix. This is a recorded negative-control
 result, not new exact credit.

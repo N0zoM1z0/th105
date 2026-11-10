@@ -143,9 +143,7 @@ the matching `build/` directory include `selected-linked-build.json`,
 `selected-window-proof.json`, `native-window-check.json`,
 `selected-full-semantics.json`, the control JSONs, `inline-membership.json`,
 `eh-context.json`, `rtm-msobj-install.json` and `scoped-replay.json`.
-Completed private PE/COFF controls are in `completed-context-controls.tar.gz`;
-`retention.json` records every member hash read back before loose removal.
-Restore that archive in the build directory before rerunning private readers.
+
 Configured public inputs and `SelectedBegin.bin` remain available.
 Control recipes retain their source epochs; original macro/type/TU/toolchain
 and exception-runtime behavior remain unknown.

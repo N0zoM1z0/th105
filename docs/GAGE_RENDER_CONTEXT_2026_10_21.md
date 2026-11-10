@@ -121,11 +121,6 @@ formal comparisons. `selected-instructions.json` records the whole instruction
 diagnostic. Frozen baseline/selected sources and the selected COFF remain in
 the build scope; private control recipes are in
 `.analysis/gage-render-context-20261021/`.
-The thirteen unselected controls are compressed in `unselected-trials.tar.gz`,
-with per-file hashes in `unselected-trials-manifest.json`. All59 files are
-verified after compression before removing loose copies. Restore that archive
-before replaying private generators that consume an earlier control's source.
-Frozen baseline/selected sources and the selected COFF stay uncompressed.
 
 ```bash
 # Expected exit1: first mismatch41B580/+190, complete1010-byte comparison.
@@ -167,10 +162,6 @@ providers remain unchanged, so the earlier source-pinned native receipt is
 retained without another unrelated fixture replay. No new exact credit.
 
 Private regeneration recipes are in `.analysis/gage-product-20261021/`.
-All24 trial source/object/log/diagnostic files are losslessly compressed in
-`unselected-trials.tar.gz`, with a per-file SHA256 manifest and verified readback
-before removing loose copies. Restore that archive before inspecting or
-rerunning a control. The formal baseline receipt and frozen inputs stay loose.
 
 ## Floating environment and a genuine larger CIL context
 

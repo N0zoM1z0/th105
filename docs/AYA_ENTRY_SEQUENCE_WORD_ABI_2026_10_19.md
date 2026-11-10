@@ -281,8 +281,6 @@ Recipes: `.analysis/aya-entry-hierarchy-20261024/`. Artifacts:
 `profiles.json`, `gates.json` and `compiler-provenance.json`. Raw observations,
 source hypotheses, actual compiler negatives and untested release candidates
 are kept separate. The function note now supersedes its old `/Zi`-failure text.
-Completed control sources/objects/payloads are compressed after full member-hash
-verification; `retention.json` lists the archive and exact restore command.
 
 ### Source order, TU and floating profiles
 
@@ -319,8 +317,7 @@ requests do not establish package absence.
 
 Recipes: `.analysis/aya-entry-backend-20261024/`. Start with `packet.json`,
 `family-contexts.json`, `floating-profiles.json` and `vista-package.json` under
-`build/aya-entry-backend-20261024/`. Completed proofs and archived web pages are
-compressed with verified member hashes and the restore command in `retention.json`.
+`build/aya-entry-backend-20261024/`.
 Public source, compiler profiles, accepted units and exact ledgers are unchanged.
 
 ## Shared receiver and handoff cleanup, 2026-10-24
@@ -351,9 +348,8 @@ Comparing that removed frame-call site with the target is a retained lead.
 The new header is consumed only by the two nonexact Aya units. No global
 relocation, compiler profile, accepted source or match ledger changed.
 Recipes and frozen pre-cleanup inputs: `.analysis/aya-joint-owner-20261024/`
-and `build/aya-joint-owner-20261024/`. Start with `summary.json`; completed
-controls are compressed after member-hash verification, with restoration in
-`retention.json`. Current selection and continuation steps are in `RE_HANDOFF.md`.
+and `build/aya-joint-owner-20261024/`. Start with `summary.json`.
+Current selection and continuation steps are in `RE_HANDOFF.md`.
 
 ## Whole-payload refresh and release search,2026-10-25
 

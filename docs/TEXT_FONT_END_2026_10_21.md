@@ -128,9 +128,7 @@ only the separate576-case run executes the native end body itself.
 
 Formal comparisons, raw/import facts, RTM/SP1 controls and execution receipts
 are under `build/font-end-20261021/`; private reproducibility recipes are under
-`.analysis/font-end-20261021/`. Completed controls are compressed only after
-per-file SHA256 readback: 60,756 ->12,220 bytes. Selected source/header/object
-and receipts stay available.
+`.analysis/font-end-20261021/`.
 
 ```bash
 python3 scripts/validate-tracking.py --require-target

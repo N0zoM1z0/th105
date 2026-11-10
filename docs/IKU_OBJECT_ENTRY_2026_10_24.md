@@ -148,7 +148,7 @@ taskset -c 0 nice -n 10 python3 scripts/verify-exact-units.py --all
 ```
 
 The complete sequential run passes **513 cold units/all1401 accepted functions**,
-with the new Iku root last. Receipt: `build/exact-first-iku-object-entry-20261024/cold-all.log`.
+with the new Iku root last.
 A final full-payload audit of the aggregate-rebuilt Iku object also passes6551/6551
 (`cold-all-full-audit.json`). Current accepted authored code totals338302 bytes;
 the reviewed denominator remains2136806 bytes.

@@ -37,7 +37,6 @@ authored exact totals do not change.
 Private reproducible evidence:
 - `.analysis/frontier-result-replay-deque-20261109/build_units.py`
 - `.analysis/frontier-result-replay-deque-20261109/verify.py`
-- `build/frontier-result-replay-deque-20261109/resumed.log`
 - `build/frontier-result-replay-deque-20261109/verification.json`
 
 The pending input-class migration and its source pins are a separate change.

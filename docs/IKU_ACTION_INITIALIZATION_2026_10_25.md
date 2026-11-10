@@ -151,8 +151,7 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-iku-action-initializat
 Only new local source/interface/unit and15 exclusive literal aliases are added.
 Prior accepted sources, shared headers, compiler settings and bindings remain
 unchanged. Formal and independent cold callable/full results agree. Complete
-serial cold replay passes all523 accepted units/1411 functions. Receipt:
-`build/exact-first-iku-action-entry-20261025/cold-all.log`. The full2380-byte
+serial cold replay passes all523 accepted units/1411 functions. The full2380-byte
 audit also passes on the object rebuilt during that replay. The exact ledger
 records379306 callable authored bytes; metadata/alignment receive no extra
 callable credit. Source-present1556, mapped1575 and595 configured units are

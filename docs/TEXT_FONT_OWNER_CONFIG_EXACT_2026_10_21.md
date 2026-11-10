@@ -88,8 +88,7 @@ authored denominator and separate origin-review bar.
 Receipts, raw target/source disassembly, linked provenance, native COFF control,
 full caller facts and affected-scope audit are under
 `build/font-owner-config-20261021/`; private recipes are under
-`.analysis/font-owner-config-20261021/`. Completed controls are compressed only
-after per-file SHA256 readback. The final local gate is:
+`.analysis/font-owner-config-20261021/`. The final local gate is:
 
 ```bash
 python3 scripts/validate-tracking.py --require-target

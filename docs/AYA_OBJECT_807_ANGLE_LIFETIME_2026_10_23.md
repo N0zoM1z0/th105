@@ -105,9 +105,3 @@ previous object option for current native replay only. The previous object's
 full canonical SHA256 isfd8dc276...; it is copied before this source change.
 Reports, source controls and integrity receipts remain in
 `build/aya-807-sequence-20261023/`; private artifacts are not committed.
-
-Two completed unselected objects were archived after SHA256 round-trip checks,
-80674 to24271 bytes. `retention.json` retains member/archive hashes
-and target/source/current/previous object pins checked before/after removal.
-Restore controls with `tar -xzf build/aya-807-sequence-20261023/completed-controls.tar.gz`
-from the repository root. Frozen source and reports remain uncompressed.

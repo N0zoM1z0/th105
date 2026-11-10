@@ -138,7 +138,7 @@ Only the new local source/interface/unit and17 exclusive literal aliases are
 added. Prior accepted sources, headers, compiler settings and bindings are
 unchanged. Formal and independent cold results agree on both callable and full
 payload bytes. Complete serial cold replay passes all518 accepted units/1406
-functions. Receipt: `build/exact-first-tenshi-action-entry-20261025/cold-all.log`.
+functions.
 The current exact ledger records368780 callable authored bytes; full table and
 alignment payload bytes receive no extra callable credit. Source-present1550,
 mapped1569 and589 configured units are independently ledger-validated.

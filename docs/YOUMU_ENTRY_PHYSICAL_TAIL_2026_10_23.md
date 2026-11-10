@@ -164,8 +164,7 @@ Recipes: `.analysis/youmu-dispatch-context-20261023/`. Receipts and artifacts:
 `9915df5f348579a054bed38914cad6c0b23f41726ae885c2766a95f5d76e1e06`;
 its real link receipt SHA256 is
 `457e7d541dc198d6712bd839903312c20febb6023c6b1dcac0dd1b20ff084f09`.
-Completed equivalent controls are hash-verified before compression; `retention.json`
-lists their members and the active external native inputs, which must remain.
+The active external native inputs remain necessary to this compiler context.
 The five remaining call/register regions are still open.
 
 ## Selector visibility and native map implementation, 2026-10-24
@@ -221,7 +220,5 @@ Recipes: `.analysis/youmu-selector-visibility-20261023/`. Artifacts:
 `selector-audits.json` and each of `link/`, `dual-link/`, `map-link/`.
 The last contains the full qualified root replay and the retained rejecting
 `selector-rejection.json`. No DLL execution or new runtime-matrix claim.
-Completed earlier link contexts are hash-verified and compressed; restore their
-sources/objects/images from `completed-visibility-controls.tar.gz` as listed in
-`retention.json`. The actual map context and all 23 external native inputs remain.
+The actual map context and all 23 external native inputs remain necessary.
 Exact ledgers are unchanged; no aggregate cold replay is claimed.

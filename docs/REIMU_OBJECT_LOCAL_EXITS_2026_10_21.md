@@ -165,12 +165,6 @@ helper. `selected-summary.json` and its owner/census reports describe the
 whole-source diagnostics. Predecessor source555da070/canonical88bd9c9b and
 earlier133192-input receipts retain their historical epoch.
 
-Five completed bulk owner/census/excerpt reports are losslessly compressed
-with `.gz` suffixes, saving1142239 bytes. `compression-manifest.json` records
-per-file hashes and verified readback before removing loose copies. Restore a
-report with `gzip -dk` before a private recipe that consumes its original path.
-Sources, COFFs, current summaries and native/build receipts stay uncompressed.
-
 ```bash
 # Expected exit1: complete-root mismatch+31; helper4963A0 must remain exact66/66.
 taskset -c 0 nice -n 10 python3 scripts/build.py \

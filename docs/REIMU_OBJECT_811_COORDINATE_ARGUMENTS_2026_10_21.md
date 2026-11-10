@@ -101,11 +101,7 @@ Header, ABI, layout, flags, bindings, ownership, origin and matches are unchange
 `build/reimu-object-811-arguments-20261021/` retains frozen baseline, private
 candidate, formaltested.obj, positive/negative execution receipts and
 `facts-summary.json`. Private recipes live in the same-named `.analysis/`
-directory. Five preceding822 diagnostic graphs are SHA-checked/gzip-compressed
-with per-file readback in `historical-diagnostics-compression.json`; frozen
-source/COFF/native inputs and all comparison/execution receipts remain. Restore
-those `.gz` reports before rerunning older private recipes. The current811
-graphs stay loose. The graph diagnostic additionally recognizes the exact trailing
+directory. The graph diagnostic additionally recognizes the exact trailing
 register-preserving `8D4900` alignment form; it is not an acceptance rule.
 
 ```bash
@@ -115,4 +111,4 @@ taskset -c 0 nice -n 10 python3 scripts/audit-reimu-object-811-coordinate-argume
 ```
 
 See the [preceding822 checkpoint](REIMU_OBJECT_822_ARGUMENT_LIFETIMES_2026_10_21.md)
-for its frozen source/control pins and compressed completed compiler graphs.
+for the preceding source/control findings.

@@ -150,8 +150,7 @@ remain unknown; successful sampling is not exhaustive equivalence.
 
 One direct Ghidra read-only clone attests executable identity, entry68B9D2,
 base400000, Windows x86 language, mapped.text and full-root bytes. It reads
-back all13 entries plus the mid selector, shared advance tail and default;
-`REIMU_MID_NORMAL_READBACK_PASSED` is in `build/reimu-mid-normal/ghidra.log`.
+back all13 entries plus the mid selector, shared advance tail and default.
 The rejected unrelated IDA session supplies no semantics. All9 primary DB
 files remain hash-identical, and the disposable clone is deleted. Superseded
 objects, rejected control products and Python caches are cleaned after gates.

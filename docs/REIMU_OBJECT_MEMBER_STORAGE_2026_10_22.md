@@ -145,11 +145,7 @@ retain the other bounded execution results. The scalar source SHA256 is
 `a689211c4449c91615f198b303153e11a2880b6f49589dde65e0c1d6de8d71d8`;
 the five-short-array source is
 `614bd6c063653d946d294d339f43c583f34e9085830792bfa3d83bb772910b4f`.
-Four completed duplicate COFF controls are in `completed-controls.tar.gz`;
-`retention.json` records hashes verified before removing the originals
-(323,037 to99,842 bytes). Selected/scalar/short-array active inputs and the
-preceding real owner/provider graphs remain available. Restore archived
-controls with `tar -xzf completed-controls.tar.gz` in that build directory.
+
 Selected source remains77fe73a4; no shared interface/layout/profile/binding,
 source selection, origin or match row changes.
 

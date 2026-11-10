@@ -5,7 +5,6 @@
 > notes do not require full CI, native replay or document-hash/pin refreshes.
 > Older broad validation instructions apply only when their impact is relevant.
 
-
 The workflow copies TH08's conservative state machine while adapting its
 mechanics to TH105's VC8/LTCG executable.
 
@@ -212,9 +211,9 @@ it is not an instruction to rebuild all accepted native units.
 
 - Audit direct branch targets that IDA represents only as remote tail chunks. If raw PE shows an independently isolated callable (for example INT3/alignment boundary plus its own return), do not inherit IDA ownership automatically. Split/add a candidate only after control-flow/xref review and an independently reproducible source/object comparison; a tail jump alone proves neither chunk nor separate-function ownership. Conversely, when IDA and target switch edges prove that a source function owns discontiguous executable chunks, record those chunks in `function-byte-ownership.toml` and hash any alignment excluded from the provisional main span. `functions.csv` span length is not authored-byte ownership.
 - `.analysis/` contains private analysis state as well as regenerable exports.
-  Preserve the primary databases, recipes and frozen inputs needed to reproduce
-  evidence. Historical reports may be compressed after checking a lossless
-  round trip; see [artifact retention and recovery](ARTIFACTS.md).
+  Preserve analyzer projects and inputs needed by current work or a concrete
+  unresolved compiler question. Delete obsolete exports and their references;
+  keep useful findings in topic notes. See [local inputs and disposable outputs](ARTIFACTS.md).
 - `scripts/export-ida-inventory.py --write` deliberately replaces the entire
   candidate/origin baseline and never merges old status. Use it only for a
   target reset or an explicitly reviewed inventory refresh.
@@ -267,7 +266,6 @@ A target-sized candidate is useful diagnostic evidence, never acceptance. `FileB
 - A runtime ABI facade need not be reused for constructor recovery when target construction proves a more concrete physical member type. `ProfileEditor168_ctor` requires real polymorphic CTile members to obtain the target base-clear/vptr order, while runtime methods can continue using the lighter UiTile facade. Keep such constructor-only physical views isolated in their own TU and guard size/offsets with compile-time assertions.
 
 - Treat negative A/B results as **phase-scoped evidence**. A truthful source change can be wrong in isolation yet become exact after another independently proved lifetime changes the allocator/scheduler phase. The reference case is `save_battle_setup_slot`: real vector-size visibility alone was 301/305, ternary max alone was 306/305, but the two target-backed changes together are 305/305 exact. Re-test only when there is new independent target evidence; do not perform combinatorial source searching.
-
 
 ### Source-owned globals in linked comparisons
 

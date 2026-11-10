@@ -152,8 +152,7 @@ The replay reuses a prewarmed Wine service with null standard streams to avoid
 per-unit service shutdown holding captured pipes. Objects/provenance are still
 deleted and rebuilt sequentially; no compiler/source/profile setting changes.
 The final `taskset -c 0 nice -n 10 python3 scripts/verify-exact-units.py --all`
-returns0: **514 cold units/all1402 accepted functions pass**. Receipt:
-`build/exact-first-alice-object-entry-20261024/cold-all.log`. The final full
+returns0: **514 cold units/all1402 accepted functions pass**. The final full
 Alice payload audit also returns0,11072/11072, after that aggregate rebuild
 (`cold-all-full-audit.json`). Current accepted authored code totals349017 bytes;
 the reviewed denominator remains2136806 bytes.

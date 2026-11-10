@@ -85,7 +85,6 @@ inputs: `build/reimu-entry-exact-first-20261023/`; start with `owner.json`,
 `public-update-word.json`, `joint-native.json`, `zi-isolated.json` and
 `joint-link/{receipt,entry-audit}.json`. The link receipt SHA256 is
 `a6b39cc4695cc6d3708a68176dca026eb6fcd313c751a3a56568d3ebb83baa40`.
-Completed controls are compressed with per-member hash verification. No match
-ledger, callable boundary, configured profile or unit partition changes; no
-aggregate cold replay or new native matrix is claimed. Existing native scoped
+The match ledger, callable boundary, configured profile and unit partition
+are unchanged. No aggregate cold replay or new native matrix is claimed. Existing native scoped
 observations retain the identical complete update payload as their input.

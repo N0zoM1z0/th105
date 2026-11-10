@@ -118,8 +118,9 @@ than ternary constants. Fresh CIL recovers both native SBB/NEG-or-ADD/SHL
 sequences. The complete update is918/native943 and remains unaccepted; its
 frame, private receiver and volume helper boundaries remain open.
 Both accepted Ogg291 and SFL484 roots freshly retain canonical equality.
-Evidence: build/frontier-stream-update-fp-20261030/shift-update.asm and
-accepted-replay.json. No exact ledger or byte credit changes.
+The accepted-root replay is recorded in
+`build/frontier-stream-update-fp-20261030/accepted-replay.json`.
+No exact ledger or byte credit changes.
 
 Scoped exception-sensitive update FP was also checked independently. It
 materializes transition values but gives931 bytes and leaves the frame and

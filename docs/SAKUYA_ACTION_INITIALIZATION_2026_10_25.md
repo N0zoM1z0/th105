@@ -158,8 +158,7 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-sakuya-action-initiali
 Only new local source/interface/unit and14 exclusive literal aliases are added.
 Prior accepted sources, shared headers, compiler settings and bindings are
 unchanged. Formal and independent cold callable/full results agree. Complete
-serial cold replay passes all520 accepted units/1408 functions. Receipt:
-`build/exact-first-sakuya-action-entry-20261025/cold-all.log`. The current exact
+serial cold replay passes all520 accepted units/1408 functions. The current exact
 ledger records373332 callable authored bytes; metadata/alignment receive no
 extra callable credit. Source-present1552, mapped1571 and591 configured units
 are independently ledger-validated.

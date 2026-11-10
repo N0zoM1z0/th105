@@ -119,10 +119,7 @@ SHA256 is `b76d0f5de78a80fa95193c3e2159868c01c092648c9ba6aa6165e8d8934c973a`.
 Formal builds, full CFG/hash facts, independent import/member evidence, source
 controls and affected replay receipts are under
 `build/text-texture-context-20261021/`. Matching `.analysis/` recipes preserve
-the experiments. Completed control files are compressed only after per-file
-SHA256 readback: 300,427 bytes become 65,280 bytes in
-`completed-controls.tar.gz`. The selected formal source/object/receipts remain
-available.
+the experiments.
 
 ## Font provider follow-up
 
@@ -135,7 +132,6 @@ leaves the complete wrapper/backend canonical candidates50731d79/15555b85
 unchanged; current receipts are in `build/font-render-20261021/`. The earlier
 typed-pointer source SHA above describes the frozen preceding checkpoint.
 Real provider/TU closure remains open, with no new exact acceptance.
-
 
 ## November1: real font provider and shared texture callers
 

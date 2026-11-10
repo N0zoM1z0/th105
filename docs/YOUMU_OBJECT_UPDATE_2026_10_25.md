@@ -283,7 +283,6 @@ assignment; their domain/default behavior is still unknown. Original source,
 complete owner layout and original TU/compiler ownership remain unknown. No
 standalone TU/LTCG impossibility is established. Remilia557690 stays parked.
 
-
 ## Independent trig return-width control
 
 After the Tenshi transfer-width review, a fresh build of the retained complete
@@ -421,14 +420,13 @@ The original gates at `0x53FAB9` and `0x53FE77` branch when the signed count exc
 
 The native phase table at `0x543534` maps phase 1 to `0x53E6FE`. After the scale update, frames at least 2 inspect byte `+0x113` at `0x53E760`: values below 15 retire the object; otherwise `0x53E76E..0x53E77E` subtracts 15 from bytes `+0x111`, `+0x112`, and `+0x113` before advancing the frame. The earlier source instead tested and decremented only `+0x113` by 20. The source now follows the native threshold, two color-byte updates, and alpha-byte update. This is a real behavior correction, including the retirement threshold.
 
-A fresh complete comparison remains nonexact: the candidate section tail is 27,024 bytes and first differs at +34 against the 25,944-byte native callable. The hypothesis remains unselected and earns no exact credit. Focused receipts are `build/youmu-823-fade-fix.json` and `build/youmu-823-fade-fix.dis`.
+A fresh complete comparison remains nonexact: the candidate section tail is 27,024 bytes and first differs at +34 against the 25,944-byte native callable. The hypothesis remains unselected and earns no exact credit. Focused receipts are `build/youmu-823-fade-fix.json`.
 
 ## Action 853 repeated phase-2 retirement, 2026-11-06
 
 After `advance_frame`, native action 853 checks the frame counters and phase 1 at `0x53EB56..0x53EB80`. Its next check at `0x53EB86..0x53EBB7` compares phase against 2 and jumps to `0x53DAD9`: on equality it decrements `+0x330` at `0x53DADB`, then falls through to the shared check at `0x53DAE1..0x53DB17`, which checks phase 2 again and decrements it again. If the frame-counter conditions fail, the shared check rechecks those conditions and does not decrement. The previous source's final check instead used phase 3. It now reproduces the native phase-2 double decrement, without adding a phase-3 decrement. The separate decrement for a true `advance_frame` result remains unchanged.
 
 A fresh full-root candidate is 27,020 bytes in its section tail, first mismatch +34 against the 25,944-byte callable. This behavior correction does not prove whole-function equivalence; the hypothesis remains unselected and earns no exact credit. Focused receipts: `build/youmu-853-double-phase2.json` and `.dis`.
-
 
 ## Action 853 shared-tail correction, 2026-11-09
 
@@ -472,7 +470,6 @@ added. This semantic correction is retained despite increasing the byte gap.
 Receipts and private recipes are in the matching
 `build/frontier-youmu-runtime-providers-20261109/` and `.analysis/` scope.
 No shared provider source, input-migration file or origin pin changes.
-
 
 ## Shared-tail follow-up, 2026-11-09
 

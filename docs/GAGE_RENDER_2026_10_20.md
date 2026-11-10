@@ -188,9 +188,7 @@ git diff --check
 Receipts and frozen selected source/COFF are in `build/gage-render-20261020/`;
 raw target packets/private source trials and negative generation recipes are
 under `.analysis/gage-render-20261020/`. No generated object/report is committed.
-Completed unselected trial files are compressed in `unselected-trials.tar.gz`
-inside the build scope, with per-file hashes in `unselected-trials-manifest.json`;
-archive contents were verified before removing their loose copies.
+
 The function moves from review to authored/source-present with a complete
 target-pinned origin rule. Exact totals do not change. ReimuObject496540 stays
 open and untouched; no cold aggregate or broad historical replay is claimed.

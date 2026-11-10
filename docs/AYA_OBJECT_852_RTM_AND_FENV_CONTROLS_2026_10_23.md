@@ -97,6 +97,5 @@ taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-852-native.py --object 
 The first command is expected to exit nonzero for nonexactness. Per-object
 strict comparisons and original-code receipts are in the private scope, not
 accepted matching records.
-The SP1 int/if objects are retained in `completed-controls.tar.gz`; consult
-`retention.json` and restore repository-relative members with `-C .`.
+
 The RTM execution inputs, selected baseline and raw fenv object remain loose.

@@ -153,12 +153,8 @@ with private recipes in the corresponding `.analysis/` directory. The
 earlier source/object/native epoch. Native and graph reports do not certify
 compiler provenance; `selected-build.json` supplies that separate evidence.
 
-The three completed unselected controls are compressed as28 files in
-`unselected-trials.tar.gz`,2627202 to331766 bytes. Every file is checked against
-its SHA256 before loose removal; `compression-manifest.json` retains those
-pins. Restore the archive before inspecting those inputs. Private generators
-now use the frozen predecessor source/header, keeping their source epoch
-explicit. Baseline/selected/join-control sources and COFFs stay uncompressed.
+Private generators use the frozen predecessor source/header to retain the
+source epoch.
 
 ```bash
 # Expected exit1: full root mismatch+31; helper must remain exact66/66.

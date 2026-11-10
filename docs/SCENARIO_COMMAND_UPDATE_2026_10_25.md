@@ -158,8 +158,7 @@ The source dependency graph identifies eight previously accepted units that
 include ScenarioData.hpp, plus the nonaccepted interpreter. All affected
 accepted functions pass the completed full cold replay:524/524 units and all1412
 authored functions, including this new133-byte entry. All eight affected old
-units/19 functions remain exact. The receipt is
-`build/exact-first-scenario-update-20261025/cold-all.log`.
+units/19 functions remain exact.
 
 One genuine456EB0 provider hypothesis was also compiled before joining it to
 the complete caller. Pinned VC8 utility shows that make_pair takes its operands
@@ -405,5 +404,3 @@ against `BLACK`, installs a 640 by 480 untextured black sprite, and sets +520 to
 4; ordinary images negate the two requested anchor coordinates. The timer path
 458BAA..458BB3 returns for that frame even when decrementing to zero clears +50C.
 These paths already have the observed behavior, so they were left unchanged.
-The complete raw interpreter listing is retained in
-`build/frontier-scenario-command-control-20261110/target.asm`.

@@ -24,7 +24,6 @@ The focused validator checks source closure and compiler context, both exact
 owners, parent edges, source and native call roles, complete bytes, relocation
 coverage and uniqueness. Five target-independent contract tests and seven
 additional target-backed corruption controls reject altered target/source
-bodies, owner, erase, delete ownership, symbol or inventory. Receipts are
-`build/origin-anchors/linked-package-map-tidy/proof.json` and
-`build/frontier-package-map-tidy-origin-20261104/negative.log`. No full origin
+bodies, owner, erase, delete ownership, symbol or inventory. The proof is
+`build/origin-anchors/linked-package-map-tidy/proof.json`. No full origin
 census, arbitrary exception execution or gameplay execution is claimed.

@@ -143,8 +143,7 @@ profile/relocation ledger changes, and no cold aggregate exact claim is made.
 
 A direct Ghidra read-only clone independently attests executable identity,
 entry68B9D2, base400000, Windows x86, complete mapped.text and full root hash.
-It reads back all eight entries and shared exits;
-`REIMU_MID_500_READBACK_PASSED` is in `build/reimu-mid-500/ghidra.log`.
+It reads back all eight entries and shared exits.
 All9 primary DB files remain hash-identical; the clone is deleted. The wrong
 IDA image is rejected and supplies no semantics. Rejected/superseded objects
 and Python caches are removed after final gates.

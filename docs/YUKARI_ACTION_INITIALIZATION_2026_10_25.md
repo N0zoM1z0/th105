@@ -144,8 +144,7 @@ Five target-free fixtures cover all three table ranges, the ECX index, corrupt
 final indices, metadata destinations, remap truncation and unreviewed CFG tails.
 Only new local source/interfaces/unit and25 exclusive literal aliases are added.
 Prior accepted source, headers, compiler settings and bindings are unchanged.
-The complete serial cold replay passes516 units/all1404 accepted functions:
-`build/exact-first-yukari-action-entry-20261025/cold-all.log`. The exact ledger
+The complete serial cold replay passes516 units/all1404 accepted functions. The exact ledger
 now records363195 authored bytes; source-present1547/mapped1566, units586.
 
 Next source-missing same-slot representative is Patchouli51D650, candidate3132

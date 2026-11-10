@@ -155,8 +155,7 @@ and inactive secondary-event cycle bound the proof; they are not game assets.
 One direct read-only Ghidra clone attests file identity, entry68B9D2,
 base400000, Windows x86 language, complete mapped.text and full root hash.
 It reads back the six current entries, prospective410..418 entries, helpers
-and shared tails; marker `REIMU_MID_PROJECTILES_READBACK_PASSED` is in
-`build/reimu-mid-projectiles/ghidra.log`. All9 primary DB files stay hash-equal,
+and shared tails. All9 primary DB files stay hash-equal,
 and the clone is deleted. The wrong-target IDA session supplies no semantics.
 Rejected/superseded products and Python caches are removed after final gates.
 

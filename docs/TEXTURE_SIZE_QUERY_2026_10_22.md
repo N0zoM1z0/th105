@@ -94,8 +94,6 @@ Private source partitioning therefore retains complete real methods for wave
 dispatch, effect emission, background scalar updates and secondary animation
 construction/destruction/initialization/color. All seven selected methods
 recompare exact. No synthetic method body replaces a missing dependency.
-`build/reimu-object-provider-link-20261022/gy/partition-link-summary.log`
-records the remaining 404E60 edge before its reconstruction.
 
 This supplies a real dependency for the larger context; it does not accept
 `496540`, which retains its selected source and nonexact +31 result. Next wire
@@ -119,13 +117,6 @@ comparison with the unchanged 417800 source payload. Reports are
 `build/texture-size-query-20261022/formal.json`, `lookup-header-replay.json`
 and `target-facts.json`; private generation recipes remain in
 `.analysis/reimu-object-provider-link-20261022/`.
-
-Unused default native-provider objects are retained losslessly in
-`build/reimu-object-provider-link-20261022/native-default-inputs.tar.gz`;
-`native-default-archive.json` records each original size/hash and the archive
-hash. Every member was read back and verified before removing its loose copy.
-Restore from the repository root with `tar -xzf` and that archive path. Active
-Gy inputs, accepted outputs, sources, recipes and databases remain in place.
 
 This promotes one existing candidate from review to authored exact, adding one
 mapping, one source-present function and 148 exact bytes. No full aggregate

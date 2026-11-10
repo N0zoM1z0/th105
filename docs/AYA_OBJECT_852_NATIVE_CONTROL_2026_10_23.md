@@ -70,14 +70,11 @@ member SHA256 checks. Its COFF SHA256 is
 `6681b76d5a143fadd431e6aeb973087ea2c5298cae866df73946bf22f40ba891`;
 full canonical payload20096 has SHA256
 `b45c379032a0be5af68586aa11f4aa2a4ec2e1b3ad1f6301350b6a4b2ec4d45b`.
-Source/recipe/retention evidence remains in `build/aya-801-fade-20261022/`.
+Source and recipes remain in `build/aya-801-fade-20261022/`.
 
 ```sh
-# Restore just this reviewed control if its loose copy has been cleaned again.
-tar -xzf build/aya-801-fade-20261022/completed-controls.tar.gz build/aya-801-fade-20261022/cached-sequence.obj
 # The whole-root comparator is expected to report nonexact.
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-aya-object-vslot28-full-root --compare --json
-taskset -c 0 nice -n 10 python3 scripts/audit-aya-object-852-native.py --control-object build/aya-801-fade-20261022/cached-sequence.obj --output build/aya-852-native-20261023/native.json
 python3 scripts/audit-aya-object-predicate-widths.py
 python3 scripts/validate-tracking.py --require-target
 taskset -c 0 nice -n 10 python3 scripts/ci.py

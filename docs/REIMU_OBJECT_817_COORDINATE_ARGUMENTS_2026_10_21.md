@@ -115,11 +115,7 @@ is built; no cold aggregate replay is claimed.
 
 Current frozen inputs, COFFs, receipts and private recipes are under
 `build/reimu-object-rng-captures-20261021/` and its matching `.analysis/` scope.
-The active scope remains uncompressed. Six historical diagnostic JSONs from
-predecessorf158594 were losslessly compressed3456992->219205 bytes, with
-`build/reimu-object-817-tail-20261021/historical-diagnostics-compression.json`
-recording every hash. All prior source/COFF/native inputs and execution/build
-receipts remain; restore the JSON `.gz` copies before older private recipes.
+
 Primary databases, compiler installations and canonical target are preserved.
 All heavy work runs serially at CPU0/nice10.
 

@@ -27,6 +27,5 @@ owner edges, callee roles, target identity, body, relocation coverage and
 inventory uniqueness. Five target-independent contract tests and seven
 additional target-backed corruption controls reject altered target/source
 bodies, owner, erase, delete ownership, symbol or inventory. The focused proof
-is `build/origin-anchors/linked-script-map-tidy/proof.json`; the controls are in
-`build/frontier-script-map-tidy-origin-20261104/negative.log`. No full origin
+is `build/origin-anchors/linked-script-map-tidy/proof.json`. No full origin
 census, arbitrary exception execution or runtime gameplay is claimed.

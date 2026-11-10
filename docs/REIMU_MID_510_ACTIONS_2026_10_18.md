@@ -125,8 +125,7 @@ ledger or exact total changes; no aggregate cold replay is claimed.
 
 One direct Ghidra read-only clone attests executable identity, entry68B9D2,
 base400000, Windows x86, mapped.text and full-root hash, then reads back all
-four entries/shared exits. Marker `REIMU_MID_510_READBACK_PASSED` is in
-`build/reimu-mid-510/ghidra.log`. All9 primary DB file hashes are unchanged,
+four entries/shared exits. All9 primary DB file hashes are unchanged,
 and the clone is deleted. The wrong-target IDA preflight supplies no semantics.
 Superseded objects, rejected controls and Python caches are cleaned after gates.
 

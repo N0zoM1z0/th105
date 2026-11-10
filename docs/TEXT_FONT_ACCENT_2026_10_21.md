@@ -115,7 +115,6 @@ git diff --check
 
 Reports, full disassembly, frozen selected/control inputs and regression
 receipts are under `build/font-accent-20261021/`; private recipes are under
-`.analysis/font-accent-20261021/`. Completed controls are losslessly compressed
-with per-file hash readback before loose deletion. Next: actual blend and
+`.analysis/font-accent-20261021/`. Next: actual blend and
 markup1744 providers, then coherent full-font linked/source-lifetime recovery.
 Reimu496540 remains nonexact at49655F/+31.

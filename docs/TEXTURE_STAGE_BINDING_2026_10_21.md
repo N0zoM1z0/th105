@@ -170,10 +170,6 @@ git diff --check
 Selected source/COFF, target packet, control reports and native receipts are
 under `build/texture-bind-20261021/`. Private regeneration recipes are under
 `.analysis/texture-bind-20261021/`. Generated compiler/linker artifacts are not
-committed. Completed unselected controls are losslessly compressed in
-`unselected-trials.tar.gz`, with per-file hashes and a verified round trip in
-`unselected-trials-manifest.json`. Restore it before private recipes that read
-an earlier control source. Selected source/COFF, final native receipts and the
-genuine linked context remain uncompressed. Current ledgers and this source
+committed. Current ledgers and this source
 epoch supersede the older97-byte
 probe diagnosis; original frame and save-placement recovery remains open.

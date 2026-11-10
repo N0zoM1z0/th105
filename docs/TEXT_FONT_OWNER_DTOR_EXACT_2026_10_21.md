@@ -120,8 +120,7 @@ No unrelated or aggregate cold replay is claimed; progress is a ledger snapshot.
 Full raw facts, initial COFF control, canonical/private-caller results, source/
 PE/map/provenance snapshots and cold receipts are under
 `build/font-owner-dtor-20261021/`; corresponding private recipes are under
-`.analysis/font-owner-dtor-20261021/`. Completed controls are compressed only
-after per-file SHA256 readback; accepted evidence snapshots remain available.
+`.analysis/font-owner-dtor-20261021/`.
 
 ```bash
 python3 scripts/validate-tracking.py --require-target

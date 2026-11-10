@@ -120,10 +120,6 @@ Current products and frozen controls are in
 `build/reimu-object-822-arguments-20261021/`; private recipes are under the
 same-named `.analysis/` directory. `facts-summary.json` retains the complete
 native bridge, call/RET census differences and the nonexact225-byte window.
-Completed unselected control graphs are gzip-compressed with per-file SHA256
-readback in `completed-controls-compression.json`; frozen source/COFF/native
-inputs and comparison/execution receipts remain. Restore compressed graphs
-before older private recipes.
 
 ```bash
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-reimu-object-action-state --compare --json

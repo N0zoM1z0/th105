@@ -77,8 +77,7 @@ integer at ESP+20, then FILD m32/FADDP/stores state374. Source809E97 instead
 converts the counter first and adds the memory float. These new controls do
 not fix the form. The continuation after the opaque wave remains unexecuted;
 no callback return or new whole-root behavior is fabricated. Receipts are in
-`build/reimu-object-908-post-wave-20261021/`, with verified lossless archives
-for the unselected controls and a loose baseline.
+`build/reimu-object-908-post-wave-20261021/`.
 
 An explicit `/fp:strict` CIL experiment also rechecks Gage41B3F0 using all real
 renderer/binder/lookup/angle definitions. Its1012-byte/328-instruction raw root

@@ -168,12 +168,8 @@ to the tested formal COFF and to the final metadata-only rebuild. The formal
 receipt separately attests current source/compiler inputs. Older26342/133192
 receipts remain historical source epochs and are not bridged to this body.
 
-26 completed unselected/control files are compressed2029617->262971 bytes
-with per-file SHA256 readback before removal. `compression-manifest.json`
-marks the discarded initial ignored-heading receipt as invalid validation
-evidence; the actual applied-heading checks above are separate receipts.
-Baseline, selected and independent-guard control inputs remain loose.
-Primary databases, canonical executable and compiler tools are retained.
+The initial ignored-heading receipt was invalid; use the actual
+applied-heading checks described above.
 
 ```bash
 # Expected exit1 for the whole root; helper must remain66/66.

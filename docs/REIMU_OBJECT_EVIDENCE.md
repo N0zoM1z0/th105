@@ -69,8 +69,7 @@ code-generation difference, not evidence for adding another runtime callback.
 
 Dated pages preserve observations, source hypotheses, compiled controls and
 results for their own epoch. Their “current” pins and “next” instructions
-are historical unless the live handoff selects them. Restore compressed
-reports as described in [artifact recovery](ARTIFACTS.md). Do not replace an
+are historical unless the live handoff selects them. Do not replace an
 old pinned source/object with the latest file and reuse its result.
 
 For496540, the receiver in ECX, RET0 cleanup, vslot28 and4937D0 discarding

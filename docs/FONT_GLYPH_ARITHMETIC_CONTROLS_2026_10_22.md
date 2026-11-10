@@ -93,18 +93,6 @@ The original [native ABI evidence](TEXT_FONT_GLYPH_NATIVE_2026_10_21.md) and
 [SDK layout checkpoint](FONT_GLYPH_SDK_TYPES_2026_10_21.md) remain valid at
 their recorded epochs.
 
-After all comparisons, the six unselected private COFFs are losslessly archived
-as `completed-control-objects.tar.gz`:501,853 bytes become122,830. Each archived
-member is read back and checked against its build SHA256 before removing its
-loose copy; `control-object-archive.json` records every hash. Current public
-baseline COFF, sources/recipes, toolchains and all receipts remain loose.
-Restore the private objects with:
-
-```bash
-tar -xzf build/font-glyph-arithmetic-20261022/completed-control-objects.tar.gz \
-  -C build/font-glyph-arithmetic-20261022
-```
-
 These specific source/API/backend controls do not explain the residual. They
 prove neither a general standalone-object impossibility nor an LTCG requirement.
 Keep the current source. Further changes need an independent caller, lifetime

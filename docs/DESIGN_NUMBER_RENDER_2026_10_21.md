@@ -116,10 +116,6 @@ header, profile, source partition or binding changes, unrelated replay or cold
 aggregate claim is involved. Future changes to CNumberRuntime.hpp must include
 this new consumer in their affected replay set.
 
-Unselected private COFF/assembly controls are gzip-compressed after verified
-round trips; `control-compression.json` retains original and compressed hashes.
-The formal match-unit objects and comparison receipts remain available.
-
 The preceding getter checkpoint retains its constructor728, renderer312 and
 two getter6/6 results. Initializer414E40 retains its known102/104 mismatch.
 ReimuObject496540 remains nonexact at49655F/+31; this work changes no Reimu

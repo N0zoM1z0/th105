@@ -101,9 +101,3 @@ Reports, formal build commands, frozen source and native receipts remain under
 `build/aya-801-sequence-20261023/`. The exploratory alignment recipe under
 `.analysis/aya-801-sequence-20261023/` is private, incomplete and untrusted for
 acceptance; the public strict graph checker was not modified or weakened.
-
-Three completed control objects were archived after verified SHA256 round trips,
-120787 to36165 bytes. `retention.json` records member/archive
-hashes and unchanged target/source/current/previous-object pins. Restore from
-the repository root with `tar -xzf build/aya-801-sequence-20261023/completed-controls.tar.gz`.
-Current selected objects, frozen source and receipts remain directly available.

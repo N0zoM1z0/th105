@@ -146,18 +146,7 @@ The build/comparison deliberately exits1 for the pending root, while separately
 recording the accepted66-byte helper. Primary execution audits pass. Reports,
 complete body/window packets, source/object/tool fingerprints, graph receipts
 and private controls are in `build/reimu-object-908-access-20261022/`;
-recipes are in `.analysis/reimu-object-908-access-20261022/`. Finished private
-artifacts are archived after every member hash is checked. Six root controls
-shrink484631 ->149774 bytes; seven font-control files shrink467139 ->117488.
-Selected public inputs, the active baseline contrast and recipes remain loose.
-Restore controls before re-reading their objects/images:
-
-```bash
-tar -xzf build/reimu-object-908-access-20261022/completed-controls.tar.gz \
-  -C build/reimu-object-908-access-20261022
-tar -xzf build/font-accent-pixels-20261022/completed-controls.tar.gz \
-  -C build/font-accent-pixels-20261022
-```
+recipes are in `.analysis/reimu-object-908-access-20261022/`.
 
 The preceding accent store/advance experiment is closed without source
 selection: native and genuine CIL both give416/4275dddb, nonexact+6. Its six

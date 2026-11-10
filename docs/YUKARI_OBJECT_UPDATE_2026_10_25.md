@@ -266,7 +266,6 @@ First-body/full-argument controls and both admitted carrier views are retained
 with hashes. Do not repeat these argument spellings, add an inert four-byte
 local, force stack alignment or search compiler flags to obtain the frame.
 
-
 ## Follow-up: floating copies and frame exits
 
 Current artifacts: `build/yukari-update-frame-exits-20261025/`; private recipes
@@ -365,10 +364,7 @@ are `selected-formal.log`, `selected-formal-full.json`, `cold-build.log`,
 decompiler and frame/carrier receipts remain under their original prefixes.
 
 Do not resume this parked root without new independent evidence for the
-remaining branch/return context. Current tracking is mapped1581/source1562,601 units/
-1569 configured functions. Accepted1412/381108 bytes/524 units stay unchanged;
-the latest aggregate cold receipt remains the prior Remilia checkpoint,
-`build/exact-first-remilia-action-entry-20261025/cold-all.log`.
+remaining branch/return context.
 
 ## Action 810 movement bounds, 2026-11-05
 

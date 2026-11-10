@@ -156,12 +156,6 @@ native equality to that tested COFF, preserving its scoped receipts without
 replaying unchanged instructions. Recipes read the frozen predecessor when
 that control requires it.
 
-56 completed unselected-control files are losslessly compressed from5248235
-to666168 bytes in `unselected-trials.tar.gz`, with per-file SHA256 readback
-before loose removal. `compression-manifest.json` pins the archive and files.
-Baseline, selected and descending-order control sources/COFFs stay loose;
-primary databases, tools and canonical target are retained.
-
 ```bash
 # Expected exit1: root mismatch+31; helper4963A0 must remain66/66.
 taskset -c 0 nice -n 10 python3 scripts/build.py \

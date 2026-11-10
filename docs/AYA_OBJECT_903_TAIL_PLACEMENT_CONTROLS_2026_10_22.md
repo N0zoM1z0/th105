@@ -67,14 +67,6 @@ and sibling source files. Build/comparison/provenance receipts, owner reports
 and final `selected-formal.json` remain under
 `build/aya-903-tail-placement-20261022/`.
 
-Eight completed private OBJ/BIN files were archived into `completed-controls.tar.gz`
-in that build directory:240624 bytes to64375 bytes. Every decompressed member
-length/SHA256 was checked before deleting the originals. The manifest is
-`archive-verification.json`; archive SHA256:
-`5e3192866645e5ac0831519790293e082dd587395a2135caa54f75fd9d5dd2f9`.
-Recipes/CPPs/JSON receipts and the configured object were retained. Restore
-archive members before re-running a private owner audit.
-
 Final gate: `python3 scripts/ci.py` followed by `git diff --check`. Neither a
 source-present mapping nor these diagnostic/control results constitute exact
 acceptance. The full large-function objective remains open.

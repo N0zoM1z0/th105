@@ -111,9 +111,7 @@ Private `build.py`, `census.py` and `native_check.py` are in
 `.analysis/font-glyph-pen-20261022/`. Reports/objects are in
 `build/font-glyph-pen-20261022/`, including `comparisons.json`,
 `raw-rel32-census.json`, `selected-build.json`, `selected-window-proof.json`
-and `native-window-check.json`. Keep the selected and baseline COFFs available;
-completed duplicate pen controls may be restored from their hash-verified
-`completed-pen-controls.tar.gz`; `retention.json` records the readback hashes.
+and `native-window-check.json`.
 No origin, selection or exact rows change.
 
 Next inspect the actual linked begin/end/reset bodies for their shared EDI

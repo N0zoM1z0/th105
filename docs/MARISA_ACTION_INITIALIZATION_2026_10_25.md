@@ -145,8 +145,7 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-marisa-action-initiali
 Only new local source/interface/unit and12 exclusive literal aliases are added;
 prior accepted sources, shared headers, compiler settings and bindings are
 unchanged. Formal and independent cold callable/full results agree. Complete
-serial cold replay passes all519 accepted units/1407 functions. Receipt:
-`build/exact-first-marisa-action-entry-20261025/cold-all.log`. The current exact
+serial cold replay passes all519 accepted units/1407 functions. The current exact
 ledger records371226 callable authored bytes; metadata/alignment receive no
 extra callable credit. Source-present1551, mapped1570 and590 configured units
 are independently ledger-validated.

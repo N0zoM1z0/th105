@@ -139,15 +139,6 @@ distinct from exact. Baseline/selected formal comparisons, complete CFGs,
 canonical bodies, semantic/source/tool fingerprints and private native/CIL
 control receipts are in `build/font-accent-cil-20261022/`. Recipes, including
 the full execution audit, are in `.analysis/font-accent-cil-20261022/`.
-Sixteen completed private object/image/map files are archived with every member
-SHA256 checked before loose removal:1103801 ->274926 bytes. Configured public
-inputs, canonical bodies and recipes stay present. Restore controls before
-re-reading their images:
-
-```bash
-tar -xzf build/font-accent-cil-20261022/completed-controls.tar.gz \
-  -C build/font-accent-cil-20261022
-```
 
 Early topY promotion and reuse of its argument home, first-width spilling,
 pixel-loop placement and original compiler/TU ownership remain unresolved.

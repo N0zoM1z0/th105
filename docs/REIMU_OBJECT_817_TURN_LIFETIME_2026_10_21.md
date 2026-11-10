@@ -118,9 +118,7 @@ advance. It remains unselected; the selected source uses no such helper/hint.
 
 Frozen inputs/reports are under `build/reimu-object-817-tail-20261021/`; recipes
 are in the corresponding `.analysis/` scope and read frozen baseline inputs.
-29 completed unselected products are compressed2309585->303850 bytes after
-per-file SHA256 readback. Restore the archive before inspecting those controls.
-Selected/baseline inputs, tools, canonical target and primary databases remain.
+
 All heavy work is serial at CPU0/nice10.
 
 ```bash

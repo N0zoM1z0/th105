@@ -41,6 +41,12 @@ actual exactness, target identity, natural-source and state-isolation rules.
 - Keep handoff focused on current work, evidence references, blockers and the
   next useful action. Generate progress from canonical ledgers; avoid manual
   duplicate counts, recurring full reports and unrelated documentation chores.
+- Keep necessary inputs, reproducible current results and concise useful
+  knowledge. A documentation citation alone is not a reason to retain a file.
+  Delete obsolete archives, duplicate evidence, old trial outputs and cleanup
+  reports together with their references. Preserve a special compiler context
+  only when an open question depends on inputs that are difficult to recreate.
+  Do not create new archives, inventories or cleanup reports to justify deletion.
 - Preserve dirty/untracked work, targets, useful evidence, game-specific Wine
   prefixes and analyzer projects. Exactness still requires a complete strict
   comparison; knowledge and successful commands alone confer no exact credit.

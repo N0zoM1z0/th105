@@ -158,8 +158,7 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-yuyuko-action-initiali
 Only new local source/interface/unit and13 exclusive literal aliases are added.
 Prior accepted sources, shared headers, compiler settings and bindings remain
 unchanged. Formal and independent cold callable/full results agree. Complete
-serial cold replay passes all521 accepted units/1409 functions. Receipt:
-`build/exact-first-yuyuko-action-entry-20261025/cold-all.log`. The full2650-byte
+serial cold replay passes all521 accepted units/1409 functions. The full2650-byte
 audit also passes on the object rebuilt during that replay. The exact ledger
 records375415 callable authored bytes; metadata/alignment receive no extra
 callable credit. Source-present1553, mapped1572 and592 configured units are

@@ -142,7 +142,7 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-patchouli-action-initi
 Only new local source/interfaces/unit and14 exclusive literal aliases are added;
 prior accepted source/header/compiler settings and bindings are unchanged.
 Provenance check and complete serial cold replay pass517 units/all1405 accepted
-functions; receipt `build/exact-first-patchouli-action-entry-20261025/cold-all.log`.
+functions.
 The exact ledger records366327 authored bytes; source-present1548/mapped1567,
 units587. Next source-missing same-slot peer is Suika5AD4A0, candidate2577
 bytes; independently re-attest its slot and complete CFG/ABI before implementation.
