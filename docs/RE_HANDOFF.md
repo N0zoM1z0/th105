@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Descriptor-pair broad-phase arithmetic now explicitly wraps at 32 bits, matching native SUB/ADD/AND/TEST. Full geometry COFF is unchanged and its three exact roots remain exact. A signed-bit memcpy narrow-phase trial grew 248 to 260 bytes and was not selected. See `docs/COLLISION_SEMANTICS_2026_11_07.md`.
+
 2026-11-10: SystemEffect acquisition, bulk release and update/prune now share the same typed tracking declaration while retaining their distinct object hierarchy. All three complete COFF objects are identical; acquisition stays 91/91 exact and the two known mismatches remain. See `docs/SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md`.
 
 2026-11-10: Effect acquisition/preallocation, traversal/pruning and InfoEffect release share one typed pool/list state. Three complete COFF objects are identical; all 23 comparisons retain their results (21 exact, two known mismatches). See `docs/INFO_EFFECT_RELEASE_OWNER_2026_11_08.md`.

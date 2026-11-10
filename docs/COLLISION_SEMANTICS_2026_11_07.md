@@ -67,3 +67,28 @@ exact. No source or ledger change is retained. Private source and full reports
 are under `.analysis/frontier-point-sign-mask-20261108/` and
 `build/frontier-point-sign-mask-20261108/`. Further mask spelling trials need
 new compiler or source evidence.
+
+## Descriptor-pair broad phase, 2026-11-10
+
+The second broad-phase gate, in `0x46BA10`, now also computes its four endpoint
+expressions with unsigned 32-bit arithmetic. Raw pinned-PE instructions at
+46BA38..46BA5E subtract/add the endpoints, AND the results, then use TEST/JNS.
+They test the combined sign bit after modulo-2^32 arithmetic, not independent
+ordered coordinate comparisons. The source no longer relies on signed overflow
+for this gate. Later corner construction and narrow-phase expressions are
+unchanged, so this is not a claim that all collision arithmetic is now defined
+for every integer input.
+
+A fresh complete-unit replay preserves every COFF section byte and relocation.
+The 248-byte single-descriptor root and the 67/110-byte accumulation helpers
+remain exact. The point predicate and descriptor-pair root retain their prior
+nonexact results. Before/selected reports, section dumps, raw native disassembly
+and the passing CI log are in `build/frontier-descriptor-wrap-20261110/`.
+
+A separate natural narrow-phase control used unsigned products/sums and a
+four-byte memcpy to interpret their signed result. VC8 emitted four extra
+stores and a larger frame, growing the otherwise exact single-descriptor root
+from 248 to 260 bytes. That trial is not selected; its source and report are
+retained privately. The original exact narrow phase was restored and replayed.
+Resolving its remaining signed-overflow assumptions needs a source form that
+preserves the complete native comparison, not forced stack or register state.

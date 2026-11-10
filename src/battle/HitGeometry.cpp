@@ -98,13 +98,14 @@ int CollisionContext::test_descriptor_shapes_overlap(
     const CollisionAabb *second,
     const ShapeWords *second_descriptor)
 {
-    int broad_phase = second_descriptor->y0 - first_descriptor->y1 -
-        first->top + second->top;
-    broad_phase &= second->left - first->right;
-    broad_phase &= first_descriptor->y0 - second_descriptor->y1 -
-        second->top + first->top;
-    broad_phase &= first->left - second->right;
-    if ((static_cast<unsigned>(broad_phase) & 0x80000000u) == 0) {
+    // Like the single-descriptor gate, combine wrapped endpoint differences.
+    unsigned broad_phase = static_cast<unsigned>(second_descriptor->y0) -
+        first_descriptor->y1 - first->top + second->top;
+    broad_phase &= static_cast<unsigned>(second->left) - first->right;
+    broad_phase &= static_cast<unsigned>(first_descriptor->y0) -
+        second_descriptor->y1 - second->top + first->top;
+    broad_phase &= static_cast<unsigned>(first->left) - second->right;
+    if ((broad_phase & 0x80000000u) == 0) {
         return 0;
     }
 
