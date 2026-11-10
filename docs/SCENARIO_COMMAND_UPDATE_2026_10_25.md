@@ -392,3 +392,18 @@ unbound local `basic_string` constructor. This is not an unequal-byte result;
 the interpreter remains unselected and earns no exact credit. The default
 CI passed, including 1,031 target-independent tests, and the existing unrelated
 unstaged Alice audit change was left untouched.
+
+## Remaining ordinary command paths, 2026-11-10
+
+The post-Stand review found no further source correction in text suffix handling,
+background/black-overlay construction or the wait/termination gates. Raw
+458DCF/458DEC search both suffixes, then give `@` priority over backslash;
+458EF5/458FC8 rebuild before publishing their distinct continuation flags.
+Background cases 7 and 8 fade existing entries by -5, append a zero-alpha entry
+with step 5, and retain the empty-path behavior. Case 8 compares the whole name
+against `BLACK`, installs a 640 by 480 untextured black sprite, and sets +520 to
+4; ordinary images negate the two requested anchor coordinates. The timer path
+458BAA..458BB3 returns for that frame even when decrementing to zero clears +50C.
+These paths already have the observed behavior, so they were left unchanged.
+The complete raw interpreter listing is retained in
+`build/frontier-scenario-command-control-20261110/target.asm`.

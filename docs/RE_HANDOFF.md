@@ -1338,3 +1338,9 @@ witnesses confirm the corrected field; the complete object differential checks
 300 sections and 677 relocations. The full interpreter remains unselected and
 blocked at its existing string-constructor binding. See
 `SCENARIO_STAND_RESOURCE_2026_11_10.md`; pending input files and pins are untouched.
+
+2026-11-10: Remaining Scenario text/background/wait branches were checked against
+raw control flow without a further semantic correction. Two parser 405930
+command-lifetime/enqueue controls remain nonexact and were reverted; all 14
+registered exact roots in its restored linked unit replay. Do not repeat those
+controls without new frame/ownership evidence. See `SCRIPT_ARRAY_LIFETIMES_2026_10_31.md`.

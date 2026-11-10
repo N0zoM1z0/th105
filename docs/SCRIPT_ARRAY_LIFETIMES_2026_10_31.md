@@ -67,3 +67,19 @@ Only the new parser authored-origin row is materialized; its whole hash and
 exact-caller edge pass the normal validator. No existing accepted function
 or byte count changes. Source 1,752; authored ownership 1,772; mapped1,779;
 review615; exclusions1,640; match units745. Exact remains1,553 /441,679 bytes.
+
+## Shared enqueue control, 2026-11-10
+
+Native 405A78 joins the default-factory path at one enqueue block, 405A9C.
+Two bounded source controls tested that ordinary command-pointer lifetime:
+moving the declaration outside both branches emits 413 bytes, and joining both
+successful parse paths at one enqueue block emits 410 bytes. Neither reproduces
+the complete 399-byte native function; both retain a stack-aligned frame absent
+from native. The original 405-byte source was restored rather than selecting
+an unproven spelling improvement. The existing free-stdcall EH comparison
+boundary remains unchanged.
+
+Fresh restoration builds retain all 14 currently registered exact roots in the
+linked unit. Receipts and both rejected source controls are under
+`build/frontier-script-line-control-20261110/` and its matching private analysis
+scope. No shared input, comparison contract, source pin or exact ledger changed.
