@@ -16,13 +16,12 @@ void BattleInfoRecordF8::update_story_471930()
 {
     StoryInfoFighterView *fighter=reinterpret_cast<StoryInfoFighterView *>(story_fighter_1c);
     int target=fighter->health_174;
-    // Story mode overlays this normal-mode ratio cell with signed health.
-    int displayed=*reinterpret_cast<int *>(&height_ratio_08);
+    int displayed=story_health_08;
     if(displayed<target){
         int next=displayed+fighter->maximum_176/120;
         if(next>=target)next=target;
-        *reinterpret_cast<int *>(&height_ratio_08)=next;
-    }else *reinterpret_cast<int *>(&height_ratio_08)=target;
+        story_health_08=next;
+    }else story_health_08=target;
     target=fighter->secondary_47c;
     displayed=gauge_0c;
     if(displayed>target){

@@ -1306,3 +1306,11 @@ linked consumer images are identical apart from build timestamps, and all
 three existing exact caller roots replay. Lookup and gain residuals remain
 nonexact; no ledger or input-pin changes. See `RESOURCE_HANDLE_TOKEN_2026_11_10.md`
 and `build/frontier-resource-token-20261110/verification.json`.
+
+2026-11-10: Story health binding and smoothing now share the actual integer
+member of `BattleInfoRecordF8`'s +0x08 union; normal mode retains the float ratio.
+The unrelated Story record view and float/int lvalue casts are removed. All
+23 existing exact roots across ten affected units replay, and all 322 non-debug
+sections plus 312 relocations are unchanged. Existing nonexact/blocked roots
+and pending input pins remain unchanged. See `STORY_INFO_SOURCE_2026_11_03.md`
+and `build/frontier-story-health-owner-20261110/verification.json`.

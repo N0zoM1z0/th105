@@ -23,7 +23,10 @@ struct BattleInfoRecordF8 {
     signed char mode_00;
     unsigned char align_01[3];
     float primary_height_04;
-    float height_ratio_08;
+    union {
+        float height_ratio_08;
+        int story_health_08;
+    };
     int gauge_0c;
     union {
         int gauge_10;
