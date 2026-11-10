@@ -20,30 +20,6 @@ struct PlayerSlotRecordArcadeSetupView {
         int character_key);
 };
 
-struct ScoreDataArcadeSetupView {
-    unsigned char *bytes()
-    {
-        return reinterpret_cast<unsigned char *>(this);
-    }
-
-    unsigned &flags_04()
-    {
-        return *reinterpret_cast<unsigned *>(bytes() + 0x04);
-    }
-
-    unsigned char extra_character_13_3d() const
-    {
-        return *(reinterpret_cast<const unsigned char *>(this) + 0x3d);
-    }
-
-    unsigned char extra_character_14_3e() const
-    {
-        return *(reinterpret_cast<const unsigned char *>(this) + 0x3e);
-    }
-};
-
-
-
 void CBattleManagerArcade::finalize_arcade_round_473110()
 {
     std::list<int> &opponents = *reinterpret_cast<std::list<int> *>(
@@ -60,8 +36,7 @@ void CBattleManagerArcade::finalize_arcade_round_473110()
     else
         setup->sides_08[1].fighter_option_05 = 0;
 
-    if ((reinterpret_cast<ScoreDataArcadeSetupView *>(get_score_data())
-            ->flags_04() & 0x100) != 0) {
+    if ((get_score_data()->flags_04 & 0x100) != 0) {
         if (setup->sides_08[0].character_key_00 == 6) {
             setup->stage_04 = static_cast<signed char>(
                 selector_random_roll(2) ? 14 : 16);
@@ -141,11 +116,9 @@ void CBattleManagerArcade::prepare_battle_setup_472110(MatchSetup *setup)
         available.erase(available.begin() + index);
     }
 
-    if (reinterpret_cast<ScoreDataArcadeSetupView *>(get_score_data())
-            ->extra_character_13_3d())
+    if (get_score_data()->secondary_available_30[13])
         opponents.push_back(13);
-    if (reinterpret_cast<ScoreDataArcadeSetupView *>(get_score_data())
-            ->extra_character_14_3e())
+    if (get_score_data()->secondary_available_30[14])
         opponents.push_back(14);
 
     setup->sides_08[1].character_key_00 = opponents.front();
@@ -157,8 +130,7 @@ void CBattleManagerArcade::prepare_battle_setup_472110(MatchSetup *setup)
             setup->sides_08[1].input_payload_08,
             setup->sides_08[1].character_key_00);
 
-    if ((reinterpret_cast<ScoreDataArcadeSetupView *>(get_score_data())
-            ->flags_04() & 0x100) != 0) {
+    if ((get_score_data()->flags_04 & 0x100) != 0) {
         if (setup->sides_08[0].character_key_00 == 6) {
             setup->stage_04 = static_cast<signed char>(
                 selector_random_roll(2) ? 14 : 16);

@@ -21,9 +21,7 @@ CMenuResult::CMenuResult()
     available_characters_09c.clear();
     long character = 0;
     do {
-        const unsigned char *score =
-            reinterpret_cast<const unsigned char *>(get_score_data());
-        if (score[0x1C + character] != 0)
+        if (get_score_data()->primary_available_1c[character] != 0)
             available_characters_09c.append(character);
         ++character;
     } while (character < 15);

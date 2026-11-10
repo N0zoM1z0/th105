@@ -78,3 +78,26 @@ selected root is independently compared rather than relying on that diagnostic.
 
 Reports: `build/frontier-score-record-owner-20261110/full-prefix/`, compared
 with `result-consumer/`. Focused CI and diff checks pass.
+
+## Arcade and result-menu unlock consumers
+
+Arcade setup now reads `flags_04` and `secondary_available_30[13/14]` directly;
+the result-menu constructor reads `primary_available_1c[character]`. This
+replaces the four offset-accessor methods in `ScoreDataArcadeSetupView` and a
+raw byte pointer in the menu. These offsets are the same flags/unlock storage
+written by the already exact story-progress roots. Accessor call counts and
+the fifteen-character menu loop are unchanged.
+
+Four affected manifest units replay. Arcade preparation `0x473520` remains
+842/842 exact and its existing round-finalization mismatch is unchanged.
+The menu render/destructor/deleting-destructor/update wrapper remain exact
+(270/256/30/43 bytes), while its existing update mismatch remains unchanged.
+All three full menu object dumps are identical, including the constructor.
+The arcade object drops only the four obsolete accessor COMDATs (3/4/4/4
+bytes) and their debug records. Its existing switch label is renumbered and
+SafeSEH symbol indexes shift after those symbol removals; the root code and
+other support section contents are unchanged. No removed accessor was a
+native callee or independently counted exact root.
+
+Evidence and focused CI: `build/frontier-score-unlock-consumers-20261110/`,
+compared with `frontier-score-record-owner-20261110/full-prefix/`.

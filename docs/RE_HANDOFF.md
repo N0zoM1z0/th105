@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Arcade and result-menu unlock reads now use shared ScoreData fields instead of offset facades. Arcade setup 842/842 and four menu roots retain exactness; nonexact siblings remain unchanged. Four affected units replay, with obsolete accessor COMDATs removed. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.
+
 2026-11-10: Shared ScoreData now carries the native owned prefix through its record arrays. Deck availability uses its real common/character count maps and remains 358/358 exact. All fourteen affected units retain prior outcomes; only unchanged compiler-support section order moves in two objects. See `docs/SCORE_RECORD_OWNER_2026_11_10.md`.
 
 2026-11-10: ResultList now consumes the shared twenty-vector ScoreData owner and observed-record schema, including the recovered difficulty DWORD. Complete population stays 1133/1133 exact; fourteen affected units retain executable bytes and relocations. See `docs/RESULT_LIST_POPULATE_2026_10_29.md`.
