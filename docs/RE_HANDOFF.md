@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Weather entry/update now share a typed, offset-checked state instead of 534 raw accesses. Both full COFF contents/relocations are unchanged. Entry remains locally exact at 1383 code / 1630 payload bytes; update retains its 4730-byte payload and +9 nonexact residual. See `docs/WEATHER_EFFECT_ENTRY_2026_10_27.md`.
+
 2026-11-10: EffectObject update now uses the entry's typed state across79 actions. Its three changed x87 addition schedules pass864 native-versus-compiled fragment comparisons, including NaNs and two precision controls. Full9350-byte candidate remains nonexact+8; relocations/switch metadata unchanged. See `docs/EFFECT_OBJECT_UPDATE_2026_10_27.md`.
 
 2026-11-10: EffectObject entry now reads typed self/context fields across all 44 actions. Complete2676-byte code,2980-byte payload and full COFF contents/relocations remain exact unchanged. The related update trial changed three x87 addition schedules and was left unselected; original update replayed. See `docs/EFFECT_OBJECT_ENTRY_2026_10_27.md`.

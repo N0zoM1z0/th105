@@ -110,3 +110,11 @@ The first two commands are expected to exit1 with mismatch, not blocked.
 Only this new unit is rebuilt; prior accepted receipts are retained. Totals
 remain incremental. Final local CI is pending at writing; its terminal exit/log
 is the commit gate, with no post-gate source/doc edits.
+
+## Shared typed state, 2026-11-10
+
+The complete update now uses the shared weather-specific observed state rather
+than raw member-offset macros. All 463 accesses preserve their field widths and
+branch policy. Fresh full-object contents/relocations are unchanged, including
+the 4730-byte canonical payload and +9 nonexact residual. See the typed-state
+section of `WEATHER_EFFECT_ENTRY_2026_10_27.md` for both-unit evidence and scope.

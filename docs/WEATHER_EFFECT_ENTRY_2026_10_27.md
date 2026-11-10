@@ -83,3 +83,32 @@ Only this new independent unit is built. Prior exact receipts remain retained;
 totals are incremental rather than a new whole-corpus replay. Final local CI is
 pending at writing; its terminal log and exit code are the commit gate.
 No actual gameplay, RNG, rendering or hardware execution is claimed.
+
+## Typed entry and update state, 2026-11-10
+
+Both weather methods now share `WeatherEffectState.hpp`, a nonconstructing
+observed prefix with explicit offset and size assertions. Entry's 71 and
+update's 463 raw member accesses are replaced with ordinary fields. The
+32 entry action labels and all 48 update labels (including transition-mode
+cases) retain their order and policy.
+
+The native entry establishes integer retirement/event state at 170/174 and
+separate floating-point drift/state at 178/17C. These are intentionally not
+borrowed from EffectObject's differently typed tail. The common sprite fields
+retain their observed widths, including signed facing and byte alpha. Unknown
+regions remain opaque; the view adds no vtable or construction behavior.
+Update still passes the actual `this + 4` receiver to motion, rather than
+inventing a complete embedded owner.
+
+Fresh serial VC8 builds replay both functions and their complete switch tails.
+Entry remains 1383/1383 callable and 1630/1630 full payload exact. Update stays
+4353 callable and 4730 full payload against native 4381/4758, with the existing
+first mismatch at +9. Full COFF section contents and relocations are identical
+before and after for both units, not merely their callable prefixes. Their
+canonical payload hashes above remain unchanged. Dependency inspection finds
+only these two units consuming the new header.
+
+Evidence: `build/frontier-weather-state-20261110/{before,after}/`, containing
+build reports, complete payload audits and section/relocation dumps. The local
+CI gate passes in `ci.log`. This checkpoint adds no Factory acceptance and
+leaves the update's zero-promotion/register-allocation question open.
