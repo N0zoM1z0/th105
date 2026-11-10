@@ -43,3 +43,29 @@ is committed.
 
 Totals unchanged: 1426 exact / 443399 bytes, 1636 source-present, 1655 authored,
 1826 mapped, 2075 excluded, 297 review and 813 units.
+
+## Parallel-array ownership, November 10
+
+The render loop at `0x454890` now indexes the actual `colors_10c`, `scales_118`,
+`values_100`, `secondary_04c` and `primary_03c` arrays. It no longer casts a
+pointer into the float array to unrelated integer/object-pointer types and
+subtracts across the boundaries of separate array members.
+
+The native loop starts ESI at owner +0x118 and visits three four-byte cells.
+Its displacements -0x0C, -0x18, -0xCC and -0xD8 identify color +0x10C, value
++0x100, secondary pointer +0x4C and primary pointer +0x40, respectively. Thus
+the primary array uses index +1; the other arrays use index directly. The
+source retains the scale read after the color callback and the later position,
+secondary-object and mode reads, preserving the observed call boundaries.
+
+A single ordinary indexed `for` loop compiles back to the native scale cursor
+and countdown without casts, extra storage or register controls. All six
+complete unit roots remain exact: 76, 93, 67, 187, 141 and 99 bytes. The complete
+before/after COFF section contents and symbolic relocations are identical,
+including the render early return and full three-iteration body. No shared
+header, exact ledger or Factory receipt changed.
+
+Fresh evidence is in `build/frontier-scenario-result-arrays-20261110/`:
+`before.json`, `after.json`, the identical `.sections` dumps and `native.asm`.
+The focused CI and whitespace checks pass. This strengthens the source-level
+ownership of an existing exact function; it adds no new exact-byte credit.

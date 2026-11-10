@@ -6,6 +6,8 @@
 > Older broad validation instructions apply only when their impact is relevant.
 
 
+2026-11-10: Scenario result render `0x454890` now uses its real parallel arrays rather than cross-array casts. The ordinary indexed loop naturally recreates the native cursor; all six runtime roots and complete COFF contents/relocations remain exact. See `docs/SCENARIO_RESULT_REAL_TILE_2026_11_02.md`.
+
 2026-11-10: Scenario Stand/foreground/background commands now publish the loader-returned token, with list destinations selected before the load call. Fresh emitted data flow agrees; the full interpreter remains blocked on its unbound local string constructor. See `docs/SCENARIO_TEXTURE_PUBLICATION_2026_11_10.md`.
 
 2026-11-10: Story HUD `0x471930` now reads its real Fighter owner rather than a duplicate layout view. Complete COFF contents/relocations are unchanged; all four exact InfoManager caller-unit roots replay. The 321/323-byte mismatch remains in secondary-health register allocation. See `docs/STORY_INFO_SOURCE_2026_11_03.md`.

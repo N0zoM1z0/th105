@@ -110,26 +110,23 @@ void ScenarioResultResource::render()
     reinterpret_cast<TitleDesignResource *>(&design_008)->render();
 
     CTile *tile = &tile_05c;
-    float *scale = &scales_118[0];
-    int remaining = 3;
-    do {
-        tile->set_color(*(reinterpret_cast<unsigned int *>(scale) - 3));
-        const float current_scale = *scale;
+    for (unsigned int index = 0; index < 3; ++index) {
+        tile->set_color(colors_10c[index]);
+        const float current_scale = scales_118[index];
         tile->scale_x_88 = current_scale;
         tile->scale_y_8c = current_scale;
 
         ScenarioResultSecondaryObject *secondary =
-            *(reinterpret_cast<ScenarioResultSecondaryObject **>(scale) - 51);
+            secondary_04c[index];
         ScenarioResultPositionObject *primary =
-            *(reinterpret_cast<ScenarioResultPositionObject **>(scale) - 54);
-        const int mode = *(reinterpret_cast<int *>(scale) - 6);
+            primary_03c[index + 1];
+        const int mode = values_100[index];
         tile->render(
             primary->x_04 + secondary->x_0c,
             secondary->y_10,
             mode,
             0);
-        ++scale;
-    } while (--remaining != 0);
+    }
 }
 
 } // namespace th105
