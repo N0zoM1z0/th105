@@ -244,6 +244,15 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **Background runtime 0x466F40 zero register (2026-11-14).** The target
+  computes `effect_level_f8 + effect_level_delta_fc` once, so an `int const level`
+  local is right; the current source repeats the sum. With that local, VC8
+  keeps 0 in EDI and tail-merges the three `effect_level_delta_fc = 0; push 16`
+  branch tails. The target uses immediate stores, keeps each tail separate up to
+  the shared call, and pushes EDI later. A single trailing call taking a
+  `pattern` local gives the target size (1074) but still uses EDI. A mini TU
+  shows the same merging under `/O2` and LTCG, so link mode is not the cause.
+
 - **`interpolate_scene_byte` 0x4501B0 register roles (2026-11-14).** The target
   keeps `entry->start_04` in EDI for both subtractions and reuses EBX for the
   `current` pointer and `base`. The current source reloads `start_04`
