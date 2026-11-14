@@ -56,14 +56,14 @@ struct CNetworkServerStateView {
 void CNetworkServerStateView::import_state(const NetworkStateRecord4C *source)
 {
     critical_25c.enter();
-    queue_21c = source->queue_010;
+    queue_21c = source->sides_008[0].queue_08;
     peer_230->byte_004 = peer_200->byte_004;
-    value_214 = source->value_008;
-    byte_219 = source->byte_00d;
-    byte_21a = source->byte_00e;
-    value_234 = source->value_028;
-    byte_239 = source->byte_02d;
-    byte_23a = source->byte_02e;
+    value_214 = source->sides_008[0].value_00;
+    byte_219 = source->sides_008[0].byte_05;
+    byte_21a = source->sides_008[0].byte_06;
+    value_234 = source->sides_008[1].value_00;
+    byte_239 = source->sides_008[1].byte_05;
+    byte_23a = source->sides_008[1].byte_06;
     byte_210 = source->byte_004;
     byte_211 = source->byte_005;
     value_254 = source->value_048;
@@ -85,18 +85,18 @@ bool CNetworkServerStateView::export_state(NetworkStateRecord4C *destination)
         critical_0dc.leave();
 
         critical_25c.enter();
-        destination->value_008 = value_214;
-        destination->byte_00c = byte_218;
-        destination->byte_00d = byte_219;
-        destination->byte_00e = byte_21a;
-        destination->queue_010 = queue_21c;
-        destination->peer_024 = reinterpret_cast<unsigned int>(peer_230);
-        destination->value_028 = value_234;
-        destination->byte_02c = byte_238;
-        destination->byte_02d = byte_239;
-        destination->byte_02e = byte_23a;
-        destination->queue_030 = queue_23c;
-        destination->value_044 = value_250;
+        destination->sides_008[0].value_00 = value_214;
+        destination->sides_008[0].byte_04 = byte_218;
+        destination->sides_008[0].byte_05 = byte_219;
+        destination->sides_008[0].byte_06 = byte_21a;
+        destination->sides_008[0].queue_08 = queue_21c;
+        destination->sides_008[0].peer_1c = reinterpret_cast<unsigned int>(peer_230);
+        destination->sides_008[1].value_00 = value_234;
+        destination->sides_008[1].byte_04 = byte_238;
+        destination->sides_008[1].byte_05 = byte_239;
+        destination->sides_008[1].byte_06 = byte_23a;
+        destination->sides_008[1].queue_08 = queue_23c;
+        destination->sides_008[1].peer_1c = value_250;
         destination->byte_005 = byte_211;
         destination->byte_004 = byte_210;
         destination->value_048 = value_254;

@@ -69,8 +69,8 @@ void CSprite::render(float x, float y)
         g_sprite_texture_device->SetTexture(0, 0);
         g_sprite_texture_manager.cached_handles_64[0] = handle;
     } else if (handle != g_sprite_texture_manager.cached_handles_64[0]) {
-        void *texture = *g_sprite_texture_manager.lookup_token(handle);
-        g_sprite_texture_device->SetTexture(0, texture);
+        void **texture = g_sprite_texture_manager.lookup_token(handle);
+        g_sprite_texture_device->SetTexture(0, *texture);
         g_sprite_texture_manager.cached_handles_64[0] = handle;
     }
     g_render_mode_manager.device_04->SetFVF(0x144);
@@ -124,8 +124,8 @@ void CSprite::render_fvf4142(float x, float y)
         g_sprite_texture_device->SetTexture(0, 0);
         g_sprite_texture_manager.cached_handles_64[0] = handle;
     } else if (handle != g_sprite_texture_manager.cached_handles_64[0]) {
-        void *texture = *g_sprite_texture_manager.lookup_token(handle);
-        g_sprite_texture_device->SetTexture(0, texture);
+        void **texture = g_sprite_texture_manager.lookup_token(handle);
+        g_sprite_texture_device->SetTexture(0, *texture);
         g_sprite_texture_manager.cached_handles_64[0] = handle;
     }
     g_render_mode_manager.device_04->SetFVF(0x4142);

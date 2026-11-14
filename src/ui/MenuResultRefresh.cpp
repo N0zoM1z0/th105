@@ -18,8 +18,7 @@ void CMenuResult::refresh_selected_character()
 {
     char path[260];
 
-    g_title_resource_manager.release_title_resource_handle(texture_004);
-    texture_004 = 0;
+    g_title_resource_manager.release_texture(texture_004);
     if (selected_character_0c4 != 15) {
         wsprintfA(
             path,

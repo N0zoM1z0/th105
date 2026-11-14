@@ -66,6 +66,12 @@ struct TitleResourceManager : CHandleManager4 {
         unsigned int *width_out,
         unsigned int *height_out);
     unsigned char release_title_resource_handle(unsigned int handle);
+    // Releases a stored handle and clears it through the reference.
+    void release_texture(unsigned int &handle)
+    {
+        release_title_resource_handle(handle);
+        handle = 0;
+    }
     void bind_texture(unsigned int handle, int stage);
     void get_texture_size(
         unsigned int handle, unsigned int *width, unsigned int *height);

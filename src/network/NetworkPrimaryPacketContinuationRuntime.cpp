@@ -20,6 +20,14 @@ struct NetworkPeerByte5 {
     unsigned char byte_004;
 };
 
+// Owner copy of one NetworkStateSide20, with its peer as a live pointer.
+struct NetworkClientSideState20 {
+    unsigned char reserved_00[6];
+    unsigned char byte_06;
+    unsigned char reserved_07[0x15];
+    NetworkPeerByte5 *peer_1c;
+};
+
 
 
 class CNetworkClientPacketContinuationView {
@@ -31,12 +39,8 @@ public:
 
     unsigned char reserved_000[0x200];
     NetworkPeerByte5 *local_peer_200;
-    unsigned char reserved_204[0x16];
-    unsigned char side0_tail_21a;
-    unsigned char reserved_21b[0x1f];
-    unsigned char side1_tail_23a;
-    unsigned char reserved_23b[0x15];
-    NetworkPeerByte5 *remote_peer_250;
+    unsigned char reserved_204[0x10];
+    NetworkClientSideState20 sides_214[2];
     unsigned char reserved_254[8];
     CriticalSectionWrapper critical_25c;
     unsigned char reserved_278[0x12e];
@@ -60,9 +64,9 @@ void CNetworkClientPacketContinuationView::import_ack_info_tail_44e6d0(
     const NetworkStateRecord4C *source)
 {
     critical_25c.enter();
-    remote_peer_250->byte_004 = local_peer_200->byte_004;
-    side0_tail_21a = source->byte_00e;
-    side1_tail_23a = source->byte_02e;
+    sides_214[1].peer_1c->byte_004 = local_peer_200->byte_004;
+    for (int side = 0; side < 2; ++side)
+        sides_214[side].byte_06 = source->sides_008[side].byte_06;
     ack_pending_3a6 = 1;
     critical_25c.leave();
 }

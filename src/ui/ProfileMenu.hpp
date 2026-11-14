@@ -13,7 +13,8 @@
 namespace th105 {
 
 struct ProfileMenuBaseData {
-    unsigned char reserved_000[0x98];
+    unsigned int texture_000;
+    unsigned char reserved_004[0x94];
     std::string string_098;
     std::string string_0b4;
     unsigned char reserved_0d0[0x6C];

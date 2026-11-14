@@ -83,7 +83,36 @@ stores its four portal floats in x/y/x/y order ahead of the counters. Four scala
 assignments in any order, chained assignment or a zero local all interleave.
 `float portal_x_7ac[2], portal_y_7b4[2]` cleared by `for (portal = 0; portal < 2;
 ++portal)` is exact 125/125. The override also returns `int` like its slot-17
-siblings, which is byte-neutral.
+siblings, which is byte-neutral. The same holds for `import_ack_info_tail`
+0x44E6D0: its two side-tail copies are `for (side = 0; side < 2; ++side)` over
+`NetworkStateRecord4C::sides_008`, now a real `NetworkStateSide20[2]`. The
+scalar copies scheduled the second store after the `leave` receiver load.
+
+**A cap written as `__min` re-evaluates its operand.** `adjust_capped_counter_558`
+0x45CED0 recomputes `counter_558 + amount` on the in-range path, with the merged
+amount in EAX. The CRT macro `__min(counter_558 + amount, 500)` from `<stdlib.h>`
+is exact. A named `capped` local, with an `if` or a ternary, lands the amount in
+EDX, and `TH105_MIN` gives `jle` for `jl`.
+
+**Clear a released handle through a reference.** When the target stores
+`handle = 0` before loading an unrelated field of the same object, VC8 has not
+reordered them, so the store went through a pointer. The inline member
+`TitleResourceManager::release_texture(unsigned &handle)` (release, then clear)
+makes `refresh_character_preview` 0x4484F0 and `refresh_selected_character`
+0x447080 exact. The spelled-out pair lets VC8 hoist the next load above the
+store. The helper is byte-neutral in the exact 0x4245D0. It moves
+`ProfileEditor168::update_selection` 0x427C60 to 332/333: its first guarded
+release now compares in memory and reloads as the target does, but the second
+still loads into EAX, and the dead `push ecx` slot remains. The guarded 29-byte
+`ProfileMenuBaseData::cleanup` 0x431390 is unchanged.
+
+**Dereference a lookup result at the call.** `CSprite::render` 0x406BE0 and
+`render_fvf4142` 0x406E50 bind their texture through
+`void **texture = lookup_token(handle); device->SetTexture(0, *texture);`.
+Dereferencing into a `void *` local first loads the COM slot into EAX instead
+of ECX, 610/610 nonexact at +541. Passing the lookup inline loads the device
+before the lookup. The same spelling is byte-neutral in `CTile::render`
+0x4099F0, whose only residual is a dead 4-byte frame slot.
 
 **Same-shape LTCG trial for `release_all_tracked`.** The three 122-byte list
 releases (0x46EEB0, 0x56DA90; 0x436E60 is similar) differ only in EAX/EDX for the

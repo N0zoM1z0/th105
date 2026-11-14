@@ -14,8 +14,7 @@ void CSelectScenario::apply_scenario(int scenario_id)
     unsigned int width;
     unsigned int height;
 
-    g_title_resource_manager.release_title_resource_handle(texture_218);
-    texture_218 = 0;
+    g_title_resource_manager.release_texture(texture_218);
     if (scenario_id == 15)
         return;
 

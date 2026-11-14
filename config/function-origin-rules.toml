@@ -348,7 +348,7 @@ required_selected_body_calls = [
   { owner = "0x004081E0", site = "0x0040839D", target = "0x00414640", target_status = "matching" },
   { owner = "0x004081E0", site = "0x00408452", target = "0x00401060", target_status = "matching" },
   { owner = "0x004081E0", site = "0x0040821C", target = "0x00419350", target_status = "matching" },
-  { owner = "0x004081E0", site = "0x00408466", target = "0x004194D0", target_status = "implemented" },
+  { owner = "0x004081E0", site = "0x00408466", target = "0x004194D0", target_status = "matching" },
   { owner = "0x004081E0", site = "0x004084C2", target = "0x00419400", target_status = "implemented" },
 ]
 required_dword_values = [
@@ -621,8 +621,8 @@ evidence = "current 1.06a IDA caller closure proves all fifteen roster primary-v
 id = "roster-fighter-primary-vtable-authored-106a"
 pointer_anchor_file = "config/roster-fighter-vtable-origin-anchors.toml"
 skip_matching = true
-expected_count = 36
-expected_bytes = 1005664
+expected_count = 35
+expected_bytes = 1005539
 origin = "authored_game"
 subsystem = "characters"
 disposition = "authored"
@@ -1694,15 +1694,15 @@ evidence = "Seventeen canonical-exact CHandleManagerEx acquire roots across rost
 
 [[rules]]
 id = "existing-object-battle-source-stops-authored-106a"
-addresses = ["0x0042BAF0", "0x0045CED0", "0x0045D040", "0x0045D230", "0x0046C930"]
-expected_count = 5
-expected_bytes = 1166
-expected_names = ["sub_42BAF0", "sub_45CED0", "sub_45D040", "sub_45D230", "sub_46C930"]
+addresses = ["0x0042BAF0", "0x0045D040", "0x0045D230", "0x0046C930"]
+expected_count = 4
+expected_bytes = 1040
+expected_names = ["sub_42BAF0", "sub_45D040", "sub_45D230", "sub_46C930"]
 origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Canonical-exact target callers carry the current decorated game-method identities for all five entries, and the existing tracked VC8 probe objects independently emit same-name same-size bodies from BattleSetupSlots.cpp, HitCounters.cpp, SpellRuntime.cpp and ObjectResponses.cpp. Canonical comparisons remain nonexact only on previously documented checked-container visibility/register allocation or 16-bit load-width scheduling; same-size emission is discovery evidence, not exact credit."
+evidence = "Canonical-exact target callers carry the current decorated game-method identities for all four entries, and the existing tracked VC8 probe objects independently emit same-name same-size bodies from BattleSetupSlots.cpp, SpellRuntime.cpp and ObjectResponses.cpp. Canonical comparisons remain nonexact only on previously documented checked-container visibility/register allocation or 16-bit load-width scheduling; same-size emission is discovery evidence, not exact credit."
 
 [[rules]]
 id = "character-object-manager-update-prune-authored-106a"
@@ -1938,38 +1938,6 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "40F7D0 is checked string erase(begin,end);40F840 is nested-row deque push_back;40F8E0 is the EH-only inner-deque tidy thunk. The former40F730 classification is superseded: it resets two different iterator members owned by the game CSV reader, and ordinary member CIL reproduces all151 bytes. Private receiver allocation alone does not imply compiler ownership. docs/CSV_FILE_LOADING_2026_10_29.md."
-
-[[rules]]
-id = "sprite-primary-render-vslots-authored-106a"
-addresses = ["0x00406BE0", "0x00406E50"]
-expected_count = 2
-expected_bytes = 1220
-expected_names = ["sub_406BE0", "sub_406E50"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Canonical-exact CSprite ctor 0x0040ADA0 publishes vtable 0x006C0668, whose +0x1C/+0x20 slots own these two complete 610-byte RET8 renderers. Canonical-exact Menu::render_cursor directly calls the first. Both close 210 reachable instructions/all610 bytes and implement game sprite scaled-pivot/half-pixel geometry, orientation-table rotation, texture-handle cache policy and D3D submission. After normalizing local branch addresses their sole instruction difference is submitted FVF 0x144 versus 0x4142. The ctor operand, both vtable pointers, complete hashes, exact caller and implemented game-helper edges are replayed. Source and compiler comparison remain separate; neither root is exact. See docs/SPRITE_PRIMARY_RENDER_2026_10_16.md."
-required_dword_values = [
-  { address = "0x0040ADAB", value = "0x006C0668" },
-  { address = "0x006C0684", value = "0x00406BE0" },
-  { address = "0x006C0688", value = "0x00406E50" },
-]
-required_body_hashes = [
-  { address = "0x00406BE0", size = 610, sha256 = "fa3b6f746fe5529b57abb6f24113ce3f6c33c54f781f975db13b7b89ccc829bf" },
-  { address = "0x00406E50", size = 610, sha256 = "6c528e876bc6405bec90252d098e7964d2d3817159e098838b794500ffa8a5be" },
-]
-required_direct_edges = [
-  { caller = "0x0043F9D0", site = "0x0043F9FF", target = "0x00406BE0", caller_status = "matching" },
-]
-required_selected_body_calls = [
-  { owner = "0x00406BE0", site = "0x00406C90", target = "0x004063D0", target_status = "implemented" },
-  { owner = "0x00406BE0", site = "0x00406CA2", target = "0x00406360", target_status = "implemented" },
-  { owner = "0x00406BE0", site = "0x00406DED", target = "0x00417800", target_status = "implemented" },
-  { owner = "0x00406E50", site = "0x00406F00", target = "0x004063D0", target_status = "implemented" },
-  { owner = "0x00406E50", site = "0x00406F12", target = "0x00406360", target_status = "implemented" },
-  { owner = "0x00406E50", site = "0x0040705D", target = "0x00417800", target_status = "implemented" },
-]
 
 [[rules]]
 id = "shared-ui-design-binding-and-tile-render-authored-106a"
@@ -5937,19 +5905,6 @@ confidence = "observed"
 evidence = "Actual CSelect constructor naturally emits CDesignBase implicit default construction153 and destruction154 with no source constructor/destructor declaration or body. Complete canonical comparisons, reviewed source/header pins and native IColor/table/member ownership; no artificial lifetime caller. Withdraw307 pure member-lifetime bytes from authored accounting without changing exact byte comparison. docs/DESIGN_COLOR_IMPLICIT_LIFETIMES_2026_11_02.md."
 
 [[rules]]
-id = "client-ack-tail-import-authored-106a"
-addresses = ["0x0044E6D0"]
-expected_count = 1
-expected_bytes = 78
-expected_names = ["sub_44E6D0"]
-origin = "authored_game"
-subsystem = "network"
-disposition = "authored"
-confidence = "observed"
-evidence = "Whole78-byte CNetworkClient slot8 callback imports two state-snapshot bytes, publishes local peer byte to remote peer and marks pending under the actual critical section. Complete21-instruction RET4 body, RTTI/table and exact enter/leave helper edges are pinned. Existing natural78-byte source remains8 differing bytes; six finite guarded lock-boundary observations and wrong-field negative pass. docs/CLIENT_ACK_TAIL_SOURCE_2026_11_02.md."
-required_rtti_virtual_bodies = [{ address = "0x0044E6D0", size = 78, sha256 = "d0c302e135a6cab0a56a6b33b09a5f53b6d0544dd69d77e4db6697a17aee9cc0", slot = "0x006C175C", col_slot = "0x006C1750", col = "0x006D80BC", type_descriptor = "0x006E6924", type_name_contains = ".?AVCNetworkClient@@", calls = [{ site = "0x0044E6DC", target = "0x0040AC30" }, { site = "0x0044E714", target = "0x0040AC40" }] }]
-
-[[rules]]
 id = "server-input-publication-authored-106a"
 addresses = ["0x0044F9A0"]
 expected_count = 1
@@ -5963,23 +5918,6 @@ evidence = "Complete server input publication owns backpressure, ten-bit current
 required_rtti_virtual_bodies = [{ address = "0x0044F9A0", size = 409, sha256 = "058dc706f51602a4bf33490d47d37a5efc93a394c31b303a8f058481571b3ca5", slot = "0x006C1708", col_slot = "0x006C16E8", col = "0x006D803C", type_descriptor = "0x006E6904", type_name_contains = ".?AVCNetworkServer@@", calls = [{ site = "0x0044F9B1", target = "0x0040AC30" }, { site = "0x0044F9F9", target = "0x00416B60" }, { site = "0x0044FA43", target = "0x0042A4B0" }, { site = "0x0044FA4F", target = "0x0042A4B0" }, { site = "0x0044FAD4", target = "0x00416B60" }, { site = "0x0044FAEB", target = "0x0040AC30" }, { site = "0x0044FB02", target = "0x0042AA90" }, { site = "0x0044FB1B", target = "0x0042AA90" }, { site = "0x0044FB22", target = "0x0040AC40" }] }]
 required_dword_values = [{ address = "0x006C1720", value = "0x0044F550" }]
 # Outgoing tail edges are covered by the full body hash and the complete CFG audit.
-
-[[rules]]
-id = "profile-character-preview-authored-106a"
-addresses = ["0x004484F0"]
-expected_count = 1
-expected_bytes = 178
-expected_names = ["sub_4484F0"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Exact shared CProfileCharacterSelect constructor571 and update372 call this complete178-byte game preview policy. It releases and clears the prior texture, skips character -1, formats data/stand/%s.bmp, loads without extent outputs and configures the actual sprite at+8 with512x480 and FF808080 color after success. Whole55-instruction RET0 CFG and both owner edges are pinned. Actual-class source remains178/12 unequal, no exact credit. Six guarded finite helper-return fixtures agree and a wrong-field negative rejects; no helper/OS execution or universal equivalence claim. docs/PROFILE_CHARACTER_PREVIEW_SOURCE_2026_11_02.md."
-required_body_hashes = [{ address = "0x004484F0", size = 178, sha256 = "1afe0ad43b693c126df82a1725c72af49dd16db7f1a08ec8be9695bdf712a4a9" }]
-required_direct_edges = [
- { caller = "0x004487E0", site = "0x004489FE", target = "0x004484F0", kind = "call", caller_status = "matching" },
- { caller = "0x004485B0", site = "0x004486EB", target = "0x004484F0", kind = "call", caller_status = "matching" },
-]
 
 [[rules]]
 id = "implicit-profile-base-cleanup-106a"
@@ -6815,25 +6753,6 @@ required_body_hashes = [
 required_direct_edges = [
  { caller = "0x0043E2E0", site = "0x0043EE3B", target = "0x0040A6C0", caller_status = "implemented" },
  { caller = "0x0043E2E0", site = "0x0043EE47", target = "0x0040A6C0", caller_status = "implemented" },
-]
-
-[[rules]]
-id = "result-menu-character-refresh-authored-106a"
-addresses = ["0x00447080"]
-expected_count = 1
-expected_bytes = 342
-expected_names = ["sub_447080"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Result-menu game policy refreshes the selected portrait, initializes that character's list and binds the result cursor. Two independently authored result-menu callers invoke this target. Complete native body and call sites are pinned; real-source candidate remains nonexact."
-required_body_hashes = [
- { address = "0x00447080", size = 342, sha256 = "3e393e363d311dc2cc8f81649b9224c8f4ec66a61dd69f4f3f52170e9eebf532" },
-]
-required_direct_edges = [
- { caller = "0x004472A0", site = "0x00447328", target = "0x00447080", caller_status = "matching" },
- { caller = "0x00447690", site = "0x0044786B", target = "0x00447080", caller_status = "implemented" },
 ]
 
 [[rules]]

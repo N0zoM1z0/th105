@@ -8,8 +8,7 @@ const char *__cdecl character_key_to_name(int character_key);
 
 void CProfileCharacterSelect::refresh_character_preview()
 {
-    g_title_resource_manager.release_title_resource_handle(texture_04);
-    texture_04 = 0;
+    g_title_resource_manager.release_texture(texture_04);
     if (character_a0 == -1)
         return;
 

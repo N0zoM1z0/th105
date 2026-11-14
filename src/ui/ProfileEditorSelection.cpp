@@ -9,14 +9,10 @@ signed char ProfileEditor168::update_selection()
     if (g_profile_menu_controller.mode_a0f) {
         ++state_160;
         if (g_profile_menu_controller.consume_reset()) {
-            if (texture_secondary_004) {
-                g_title_resource_manager.release_title_resource_handle(texture_secondary_004);
-                texture_secondary_004 = 0;
-            }
-            if (texture_primary_000) {
-                g_title_resource_manager.release_title_resource_handle(texture_primary_000);
-                texture_primary_000 = 0;
-            }
+            if (texture_secondary_004)
+                g_title_resource_manager.release_texture(texture_secondary_004);
+            if (texture_primary_000)
+                g_title_resource_manager.release_texture(texture_primary_000);
             state_160 = 0;
             g_profile_menu_controller.set_mode(0);
             return 1;

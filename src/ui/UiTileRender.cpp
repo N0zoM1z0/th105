@@ -76,8 +76,8 @@ void CTile::render(float x, float y, int column, int row)
         g_ui_tile_texture_device->SetTexture(0, 0);
         g_ui_tile_texture_manager.cached_handles_64[0] = handle;
     } else if (handle != g_ui_tile_texture_manager.cached_handles_64[0]) {
-        void *texture = *g_ui_tile_texture_manager.lookup_token(handle);
-        g_ui_tile_texture_device->SetTexture(0, texture);
+        void **texture = g_ui_tile_texture_manager.lookup_token(handle);
+        g_ui_tile_texture_device->SetTexture(0, *texture);
         g_ui_tile_texture_manager.cached_handles_64[0] = handle;
     }
     g_render_mode_manager.device_04->SetFVF(0x144);

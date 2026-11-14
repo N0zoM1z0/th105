@@ -29631,7 +29631,7 @@ source = "src/ui/SpriteRender.cpp"
 object = "build/match-units/ExactFirst_SpritePrimaryRender.obj"
 profile = "vc8-sp1-probe-o2-fp-strict"
 enable_gs = false
-notes = "Actual global CSprite virtual methods and typed five-float tail. Whole610/610 bodies retain their COM scheduling residual; no exact credit."
+notes = "Actual global CSprite virtual methods and typed five-float tail. Both 610-byte bodies are exact with the lookup result dereferenced in the SetTexture argument."
 
 [[units.exact-first-sprite-primary-render.functions]]
 address = "0x00406BE0"

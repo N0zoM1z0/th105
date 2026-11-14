@@ -4,30 +4,26 @@
 namespace th105 {
 // In-process state snapshot, not MatchSetup or the CDPP_ACK_INFO packet object.
 // Pointer-only consumers below do not establish an original nominal class name.
+// One side of the snapshot. Its checked deque is a native VC8 deque<short>.
+struct NetworkStateSide20 {
+    unsigned int value_00;
+    unsigned char byte_04;
+    unsigned char byte_05;
+    unsigned char byte_06;
+    unsigned char reserved_07;
+    std::deque<short> queue_08;
+    unsigned int peer_1c;
+};
+
 struct NetworkStateRecord4C {
     unsigned char reserved_000[4];
     unsigned char byte_004;
     unsigned char byte_005;
     unsigned char reserved_006[2];
-    unsigned int value_008;
-    unsigned char byte_00c;
-    unsigned char byte_00d;
-    unsigned char byte_00e;
-    unsigned char reserved_00f;
-    std::deque<short> queue_010;
-    unsigned int peer_024;
-    unsigned int value_028;
-    unsigned char byte_02c;
-    unsigned char byte_02d;
-    unsigned char byte_02e;
-    unsigned char reserved_02f;
-    std::deque<short> queue_030;
-    unsigned int value_044;
+    NetworkStateSide20 sides_008[2];
     unsigned int value_048;
 };
+typedef char NetworkStateSideExtent[sizeof(NetworkStateSide20)==0x20?1:-1];
 typedef char NetworkStateRecordExtent[sizeof(NetworkStateRecord4C)==0x4c?1:-1];
-typedef char NetworkStateRecordFirstQueue[offsetof(NetworkStateRecord4C,queue_010)==0x10?1:-1];
-typedef char NetworkStateRecordSecondQueue[offsetof(NetworkStateRecord4C,queue_030)==0x30?1:-1];
-typedef char NetworkStateRecordFirstTail[offsetof(NetworkStateRecord4C,byte_00e)==0x0e?1:-1];
-typedef char NetworkStateRecordSecondTail[offsetof(NetworkStateRecord4C,byte_02e)==0x2e?1:-1];
+typedef char NetworkStateRecordSides[offsetof(NetworkStateRecord4C,sides_008)==0x08?1:-1];
 } // namespace th105

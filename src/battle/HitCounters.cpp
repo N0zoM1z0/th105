@@ -1,4 +1,5 @@
 #include "Collision.hpp"
+#include <stdlib.h>
 
 namespace th105 {
 
@@ -11,11 +12,7 @@ void Fighter::adjust_capped_counter_558(short amount)
             amount = static_cast<short>(amount / 2);
         }
 
-        int capped = static_cast<int>(counter_558) + amount;
-        if (capped >= 500) {
-            capped = 500;
-        }
-        counter_558 = static_cast<short>(capped);
+        counter_558 = static_cast<short>(__min(counter_558 + amount, 500));
     }
 }
 

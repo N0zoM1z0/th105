@@ -24,10 +24,20 @@ findings and every parked residual tried this session are in
 [VC8 source-shape patterns](VC8_SOURCE_SHAPE_PATTERNS.md). Read it before retrying
 any of those functions.
 
+Later the same day: Yukari round reset 0x58A470, capped counter 0x45CED0, client
+ACK tail import 0x44E6D0, both CSprite renderers 0x406BE0/0x406E50, and the two
+character-texture refreshes 0x4484F0/0x447080 became exact. All of these were
+equal-size "scheduling noise" cases with a real source cause: small unrolled
+loops, the CRT `__min` macro, a `void **` lookup result, and a reference-clearing
+`release_texture` helper. `NetworkStateRecord4C` now has real
+`NetworkStateSide20 sides_008[2]`. Treat equal-size residuals as source
+questions first.
+
 The quickest discovery method was to rebuild every unit that holds a nonexact
 authored function and rank the results by first-mismatch offset and size delta. A size
 difference with a late first mismatch has usually been a real source-shape
-error. Equal sizes have usually been register or scheduling noise.
+error. Equal sizes have often looked like register or scheduling noise, but
+several were not (see above).
 
 The largest remaining nonexact clusters are VC8 optimizer choices that no
 source spelling has moved so far: commutative operand order in checked-container
