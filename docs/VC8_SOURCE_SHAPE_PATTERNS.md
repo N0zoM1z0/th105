@@ -117,6 +117,14 @@ members it is 279/279, nonexact only on the EH-state scheduling seen elsewhere
 in the body, initializer-list forms, an anonymous-struct grouping and a
 vertex constructor all fail. The binder 0x404DF0 itself is still nonexact.
 
+`CSprite::render_rectangle` 0x4070C0 binds a copy of its handle: the target
+loads `value_04` only after the vertex stores. Passing `value_04` directly lets
+VC8 hoist the load. `DesignTextureHandle texture = value_04;
+bind_texture(texture, 0);` is exact, as is a by-value getter. The same local
+makes `CSpriteEx::finalize_render` 0x407AD0 exact (219/219; its new unit is
+`exact-first-sprite-ex-finalize-render`). A
+reference-taking vertex helper is not.
+
 **Statement order picks the association of a commutative sum.** In
 `draw_font_glyph` 0x411B80 the target computes `ascent - origin.y + cursor_y +
 height` from `ascent` onward. With `bottom` computed first, VC8 reassociates

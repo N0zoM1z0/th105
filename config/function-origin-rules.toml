@@ -1958,25 +1958,6 @@ required_direct_edges = [
 ]
 
 [[rules]]
-id = "sprite-render-finalizer-authored-106a"
-addresses = ["0x00407AD0"]
-expected_count = 1
-expected_bytes = 219
-expected_names = ["sub_407AD0"]
-origin = "authored_game"
-subsystem = "render"
-disposition = "authored"
-confidence = "observed"
-evidence = "Raw target CFG reaches the complete 219-byte RET-terminated body between INT3 pads. It reads sprite fields, calls texture-stage binder 0x00404DF0 (whose game-authored origin is independently attested), and dispatches D3D9 draw operations; exact AnimationObject and SpriteRenderEffect callers use it on game sprite subobjects. The independent target behavior and caller ownership support a game-authored render finalizer without claiming exact source bytes. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
-required_body_hashes = [
-  { address = "0x00407AD0", size = 219, sha256 = "5b4ed5412715bbb05c9c311f9c72fcc9548ab93fb1c5aad0dcb039a43002b698" },
-]
-required_direct_edges = [
-  { caller = "0x00435540", site = "0x0043555D", target = "0x00407AD0", kind = "jump", caller_status = "matching" },
-  { caller = "0x006654D0", site = "0x0066550F", target = "0x00407AD0", caller_status = "matching" },
-]
-
-[[rules]]
 id = "generated-container-tail-aliases-106a"
 addresses = ["0x004021B0", "0x00413770", "0x00420B80", "0x00436470", "0x0045FD50", "0x0046B1F0"]
 expected_count = 6
@@ -6806,21 +6787,6 @@ confidence = "observed"
 evidence = "CSelectObject RTTI virtual slot owns complete 154-byte frame-pivot and facing-specific sprite transform. The typed ordinary source is 154 bytes but nonexact at +25 on x87/receiver scheduling. No exact credit. docs/SELECT_CHARACTER_BINDING_2026_10_28.md."
 required_rtti_virtual_bodies = [
  { address = "0x0041FAD0", size = 154, sha256 = "10685039ec3d5eacc9462477dca640e0d83965d1d9a9c604c57b3f4b47267d5c", slot = "0x006C0988", col_slot = "0x006C0950", col = "0x006D782C", type_descriptor = "0x006E6488", type_name_contains = "CSelectObject@@", calls = [{ site = "0x0041FB02", target = "0x004073A0" }, { site = "0x0041FB3C", target = "0x004073E0" }, { site = "0x0041FB5F", target = "0x004073E0" }] },
-]
-
-[[rules]]
-id = "csprite-rectangle-render-authored-106a"
-addresses = ["0x004070C0"]
-expected_count = 1
-expected_bytes = 153
-expected_names = ["sub_4070C0"]
-origin = "authored_game"
-subsystem = "assets"
-disposition = "authored"
-confidence = "observed"
-evidence = "CSprite RTTI virtual slot owns the complete 153-byte rectangle rendering policy: half-pixel vertex coordinates, texture binding and D3D triangle-strip dispatch. Natural strict-FP source emits 153 bytes but differs at +16. No exact credit. docs/SPRITE_RECTANGLE_RENDER_2026_10_28.md."
-required_rtti_virtual_bodies = [
- { address = "0x004070C0", size = 153, sha256 = "1ae97c5fd56570a9684bcfde50d194a07e6b00e931a745ea4f918938452afb5f", slot = "0x006C0680", col_slot = "0x006C0664", col = "0x006DCCDC", type_descriptor = "0x006FA52C", type_name_contains = "CSprite@@", calls = [{ site = "0x00407124", target = "0x00404DF0" }] },
 ]
 
 [[rules]]

@@ -21,7 +21,8 @@ void CSpriteEx::finalize_render()
     vertices_08[0].rhw = vertices_08[1].rhw =
         vertices_08[2].rhw = vertices_08[3].rhw = 1.0f;
 
-    th105::g_title_resource_manager.bind_texture(value_04, 0);
+    th105::DesignTextureHandle texture = value_04;
+    th105::g_title_resource_manager.bind_texture(texture, 0);
     th105::g_render_mode_manager.device_04->SetFVF(0x144);
     th105::g_render_mode_manager.device_04->DrawPrimitiveUP(
         5, 2, vertices_08, sizeof(SpriteVertex28));
