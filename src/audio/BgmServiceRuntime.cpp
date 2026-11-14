@@ -27,6 +27,11 @@ struct BgmStreamView {
             return (status & 1) != 0;
         }
         void stop() { resource_04->stop(); }
+        void set_volume(int volume)
+        {
+            if (resource_04 != 0)
+                resource_04->set_volume(volume);
+        }
         void play_looping()
         {
             if (resource_04 != 0)
@@ -87,7 +92,7 @@ void BgmStreamView::transition(int delay, float level, int flag, int duration) {
         // Native FCOMP tests only CF: unordered values take the gain-provider path.
         if(effective <= bgm_minimum_gain)volume=-10000;
         else volume=bgm_transition_gain(effective);
-        if(buffer_24.resource_04)buffer_24.resource_04->set_volume(volume);
+        buffer_24.set_volume(volume);
     } else {
         transition_time_1350=timeGetTime()+delay;
         start_gain_135c=gain_1358;
