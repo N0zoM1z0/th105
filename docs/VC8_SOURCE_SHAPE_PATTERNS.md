@@ -59,3 +59,18 @@ rebuild the units that hold nonexact functions, not just the exact ones.
 - **Two-value switch lowered to a select.** In `CBattleSV_update` 0x426180 and
   `CBattleCL_update` 0x426380 the target branches into a shared `return 8`
   epilogue. Putting `default` first or using an `if` return does not reproduce it.
+- **Marisa input policy `||` layout.** `Marisa_dispatch_input_policy` 0x4B9FA0 is
+  exact to +6901. In the target, the action-412 body follows the first clause of
+  `(UP && FORWARD && ...) || (UP && ...)` and the second clause jumps back into
+  it. Splitting into two `if` blocks with identical bodies reproduces the first
+  clause, but VC8 merges only the tail of the duplicate body (object grows 20
+  bytes). An `else if` behaves the same, and a `goto` into the first body compiles
+  exactly like the original `||`.
+- **List erase register rotation.** The three `update_and_prune` members
+  (0x58BE10, 0x422D30, 0x456D70) differ only in the EAX/ECX/EDX names of the
+  inlined `list::erase` unlink. `erase(it++)` and a separate dead iterator both
+  remove the 12-byte frame's iterator temporary and break the prologue.
+- **Dead 4-byte stack slot (`push ecx` / `pop ecx`).** Seen in
+  `TitleResourceManager::bind_texture` 0x404DF0 and the UDP send-thread entry
+  0x416D90. A local texture pointer is neutral. The same function loads the device
+  vtable into EBP before the lookup call. No source shape reproduced either.

@@ -6,21 +6,23 @@ TH10.5 v1.06a executable with SHA-256
 
 ## Current work
 
-The November 10 maintenance removes obsolete trial sources, ledger snapshots,
-diagnostic outputs, optional bridge/manual caches and unused VC8 components. Useful
-conclusions remain in the topic notes, with obsolete artifact citations removed. The
-configured release compiler paths still match exactly in focused
-COFF/STL/import-CRT/static-CRT checks; see [ARTIFACTS.md](ARTIFACTS.md). Current
-source, exact ledgers, analyzer projects, canonical caches and unresolved compiler
-contexts remain available. Keep useful findings in the existing topic notes; a
-citation alone is not a retention reason.
+The 2026-11-14 session (commit prefix `claude-opus-5.5-high:`) committed the
+pending global-class Input refactor after replaying all 226 dependent units, and
+moved VC8 compiles off the Factory runner: `scripts/compile-unit.sh` now calls the
+system Wine directly with the same `.tools/wine-msvc8` prefix. A unit builds and
+compares in about 2 s.
 
-The latest reconstruction checkpoint before maintenance is `ec2fbccf`, joining
-battle setup to the live camera owner. The worktree also contains earlier
-uncommitted Input ownership/source-pin changes, Scenario data/render/text
-changes, MenuCursor layout work and an Alice action-214 audit change. Preserve
-those edits and inspect their diffs before resuming reconstruction. This
-maintenance does not reconcile or accept them.
+New exact functions: profile key capture 0x44B540, CMenuConfig constructor
+0x441520, descriptor point test 0x46B8B0, and three functions that were already
+exact but never accepted (0x42CF70, 0x42D010, 0x432200). Reusable source-shape
+findings and every parked residual tried this session are in
+[VC8 source-shape patterns](VC8_SOURCE_SHAPE_PATTERNS.md). Read it before retrying
+any of those functions.
+
+The quickest discovery method was to rebuild every unit that holds a nonexact
+authored function and rank the results by first-mismatch offset and size delta. A size
+difference with a late first mismatch has usually been a real source-shape
+error. Equal sizes have usually been register or scheduling noise.
 
 Read live status from the ledgers instead of copying totals into this document:
 
@@ -74,7 +76,7 @@ Keep one writable reconstruction scope and run VC8/Ghidra serially. Attest any
 analysis session before using its semantics. Source presence, semantic probes
 and a successful link confer no exact credit.
 
-Retain a short finding and checkpoint stable work with `gpt-dots: <summary>`.
+Retain a short finding and checkpoint stable work with the current commit prefix.
 Run the applicable focused checks and `python3 scripts/ci.py` before committing.
 Basic CI uses only the standard library for tracked-file syntax, whitespace,
 portable ledger/build-graph consistency and private artifact checks. GitHub
