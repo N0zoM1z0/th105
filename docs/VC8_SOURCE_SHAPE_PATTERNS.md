@@ -94,6 +94,13 @@ amount in EAX. The CRT macro `__min(counter_558 + amount, 500)` from `<stdlib.h>
 is exact. A named `capped` local, with an `if` or a ternary, lands the amount in
 EDX, and `TH105_MIN` gives `jle` for `jl`.
 
+**Statement order picks the association of a commutative sum.** In
+`draw_font_glyph` 0x411B80 the target computes `ascent - origin.y + cursor_y +
+height` from `ascent` onward. With `bottom` computed first, VC8 reassociates
+it to start from the `cursor_y` it already loaded. Operand order and
+parentheses inside the expression are canonicalized away. Computing `right`
+before `bottom`, two independent statements, is exact 624/624.
+
 **A copy-through local can rotate registers.** `CNetworkClient::import_snapshot`
 0x44F200 was 399/399 with AL and CL swapped through the rest of the body. The
 source loaded `packet->sequence_03c` into an `unsigned char` local, cleared two

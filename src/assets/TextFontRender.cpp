@@ -150,8 +150,8 @@ static void __stdcall draw_font_glyph(TextFontOwner194 *font,
     const unsigned stride = (bytes / metrics.gmBlackBoxY) & ~3u;
     const int width = static_cast<int>(metrics.gmBlackBoxX);
     const int height = static_cast<int>(metrics.gmBlackBoxY);
-    const int bottom = font->font_ascent_13c - metrics.gmptGlyphOrigin.y + font->cursor_y_138 + height;
     const int right = font->cursor_x_134 + metrics.gmptGlyphOrigin.x + width;
+    const int bottom = font->font_ascent_13c - metrics.gmptGlyphOrigin.y + font->cursor_y_138 + height;
     if (bottom >= static_cast<int>(font->surface_height_148))
         return;
     if (right > static_cast<int>(font->surface_width_14c)) {

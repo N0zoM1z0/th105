@@ -417,7 +417,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004118F0,authored_game,render,authored,observed,canonical-exact-authored
 0x004119A0,authored_game,render,authored,observed,text-font-begin-authored-106a
 0x00411AD0,authored_game,render,authored,observed,canonical-exact-authored
-0x00411B80,authored_game,render,authored,observed,text-font-glyph-authored-106a
+0x00411B80,authored_game,render,authored,observed,canonical-exact-authored
 0x00411DF0,authored_game,render,authored,observed,text-font-accent-authored-106a
 0x00411FA0,authored_game,render,authored,observed,text-font-markup-authored-106a
 0x00412670,authored_game,render,authored,observed,text-font-render-authored-106a
@@ -1461,7 +1461,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00447080,authored_game,ui,authored,observed,canonical-exact-authored
 0x004471E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00447260,compiler_generated,runtime,exclude,observed,vc8-implicit-lifetime-accounting-106a
-0x004472A0,authored_game,ui,authored,observed,ui-input-result-policy-authored-106a
+0x004472A0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00447510,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x00447560,authored_game,ui,authored,observed,canonical-exact-authored
 0x00447590,authored_game,ui,authored,observed,canonical-exact-authored
