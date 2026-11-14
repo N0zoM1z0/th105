@@ -42,6 +42,17 @@ Treat equal-size residuals as source questions first.
 
 ### Latest change
 
+Two more roots are exact. `Marisa_dispatch_input_policy` 0x4B9FA0 (7664 bytes)
+needed its action-412 pair written as two `if`s with an `if/else` body and a
+shared reset and return. Without that, VC8 does not merge a branching duplicate
+body after an earlier plain `ACTION` pair. `Fighter_try_dispatch_front_word_actions_690_696`
+0x494450 (950) needed literal `find()` keys and direct field reads. Both
+patterns are in the patterns note. To find layout-only residuals in large
+functions, diff the whole body (all instructions); the first-mismatch offset
+alone hides how small the residual is.
+
+Earlier in this session:
+
 The virtual `CSprite::set_texture` and `set_texture_options` setters also take
 `DesignTextureHandle`. So do the spell record handles (`batch_texture_handle_40`,
 `card_texture_handle_44`) and `g_common_spell_extra_handle`.
@@ -71,12 +82,10 @@ convention.
   handle typing.
 - Text-texture pair 0x404D00/0x4097A0: a real LTCG build differs only in LTCG
   promoting `width` into ECX.
-- The 64-byte-frame island (0x418990, 0x406360, 0x4063D0) matches code built
-  with global optimizations disabled (`idiv` for `% 3600`). The setting that
-  gives `and esp, -64` is unknown, and the three audio gain callers depend on
-  0x418990. [Number frame audit](NUMBER_FRAME_AUDIT_2026_10_21.md) shows
-  ordinary O2 emitting that alignment for a function with real `double` locals,
-  and `#pragma optimize("y", off)` removing it.
+- 0x418990: the existing LTCG unit already emits the `and esp, -64` frame. Only
+  two redundant float round-trips remain (see the patterns note), and the three
+  audio gain callers depend on it. The angle lookups 0x406360/0x4063D0 still look
+  globally unoptimized (`idiv` for `% 3600`).
 - Linked units are needed for the LTCG-private ABIs: `this` in ESI or EAX,
   0x41B7F0, and the PAT loader 0x461B70.
 
