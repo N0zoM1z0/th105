@@ -152,3 +152,19 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   with the local VC8 RTM toolchain (`TH105_MSVC8_ROOT=.tools/msvc80-rtm`) fixes
   none of these residuals, and it makes GameConfig_save worse (+233). The SP1
   pin stays.
+- **8-byte-aligned frames (`push ebp; mov ebp, esp; and esp, -8`).**
+  `InputStateTableStorage::add_tracked_key` 0x40A6C0 and `WaveService_load_wave`
+  0x401AF0 align their frames although neither has a visible 8-byte local. The
+  first one was compiled with each of these added to `/O2`:
+  - `/Z7`: no change;
+  - `/arch:SSE`, `/arch:SSE2`, `/Ox`, `/fp:fast`, `/G7`: no change;
+  - `/Oy-`: matches the EBP frame setup but not the alignment;
+  - `/Zi`: still fails under Wine with C1902.
+
+  `operator[]` instead of `at()` is worse (153 bytes). Together with the dead
+  `push ecx` slots, this looks like stack the target reserved for locals that our
+  compile drops. The cause is still open.
+- **`CsvReader_advance_row` register roles.** 0x40F680 swaps ESI and EDI between
+  `this` and `&row_it_14`. A local `CsvRows::iterator &` reference moves the first
+  mismatch to +15, and `rows_00.end() == row_it_14` to +22 (163 bytes, against 167).
+  Neither matches.
