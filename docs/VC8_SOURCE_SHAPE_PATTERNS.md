@@ -350,6 +350,26 @@ target lacks, so LTCG does not explain the register.
   (a `neg`/`sbb` select inside the taken branch). Neutral: swapping the `&`
   operands and putting the offset first in the sum. Worse: `>> side & 1` (337
   bytes) and the typed `payload_08[side]` (334).
+- **The 64-byte-frame island looks globally unoptimized.** The quantized angle
+  lookups 0x406360/0x4063D0 share 0x418990's `and esp, -64; sub esp, 0x40`
+  frame and float store/reload chain. They also compute `index % 3600` with
+  `cdq; mov ecx, 0xe10; idiv ecx`. At `/O2`, with or without `/GL`, VC8 always
+  turns that into a magic multiply, even when 3600 comes from an extern const
+  or a never-written global in another `/GL` object. The `idiv` appears only
+  with global optimization off: `/O1`, `/Od`, or `#pragma optimize("g", off)`.
+  - `/Od /Ob1` with the C++ `fabs(float)` overload (`magnitude =
+    fabs(magnitude)`, no `#pragma function`) reproduces the call shape, the
+    inlined overload's store/reload, and the `idiv` epilogue.
+  - Two differences remain under `/Od /Ob1`: the target's frame is
+    64-byte-aligned and uses ESP-based locals, and the target does not spill
+    `index` to the stack.
+  - `/fp:fast` reproduces the target's single-precision constants (`fmul
+    dword`); `/fp:precise` emits `qword`.
+  - `#pragma optimize("", off)` inside a `/GL` file stops the overload from
+    inlining.
+  So the island is probably a separately built object, or a region with
+  different optimization settings. The flags that produce the 64-byte
+  alignment are still unknown.
 - **0x418990 call shape, 2026-11-14.** The target's `sub esp, 8; fstp qword
   [esp]; call _log10` is the non-intrinsic double `log10` call. `/Oi-` or
   `#pragma function(log10)` reproduces it, with or without `/GL`; the default
