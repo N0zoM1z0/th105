@@ -137,3 +137,13 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   instead of a `char` view is neutral. `BattlePhaseBlock_parse_scenario_event_row`
   0x45A7A0 sinks the `push_back` value store; passing `next_int()` directly
   breaks the shared stack slot.
+- **Dead `movzx` before the `movsx` of a 16-bit value.** In
+  `CollisionContext_apply_forwarded_quantity_to_pair` 0x46C5B0, the target
+  zero-extends AX (dead) and then sign-extends it for the health sum. The deferred
+  health amount in 0x46DFF0 has the same pair. Neutral: an `unsigned short` local,
+  a double cast, an `int` holding the `unsigned short` result, and an inline
+  helper returning `short`.
+- **RTM compiler control.** Building 0x431390, 0x427390, 0x46C5B0 and 0x414E40
+  with the local VC8 RTM toolchain (`TH105_MSVC8_ROOT=.tools/msvc80-rtm`) fixes
+  none of these residuals, and it makes GameConfig_save worse (+233). The SP1
+  pin stays.
