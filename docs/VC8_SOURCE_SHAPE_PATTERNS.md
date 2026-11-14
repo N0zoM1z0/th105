@@ -171,7 +171,9 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   0x40A7F0 out of line with a private EAX receiver, while the small LTCG context
   inlines it. 0x40A7F0 has no other caller in the executable, so the inlining
   difference has another cause. These four functions need a linked unit, not
-  `/O2` source changes. The same may hold for the dead `push ecx` slots.
+  `/O2` source changes. For the dead `push ecx` slot, a linked LTCG build of
+  `bind_texture` with the real `TextureHandleRuntime.cpp` lookup still emits 102
+  bytes without the slot, so LTCG alone does not explain that pattern.
 - **`CsvReader_advance_row` register roles.** 0x40F680 swaps ESI and EDI between
   `this` and `&row_it_14`. A local `CsvRows::iterator &` reference moves the first
   mismatch to +15, and `rows_00.end() == row_it_14` to +22 (163 bytes, against 167).
