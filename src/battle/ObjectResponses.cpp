@@ -66,74 +66,54 @@ void CollisionContext::resolve_group_b_object_clash(
             left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
             right->result_180 = 4;
             right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
-            reset_collision_extents();
-            return;
-        }
-        if (left_value_12 < right_value_12) {
+        } else if (left_value_12 < right_value_12) {
             left->result_180 = 4;
             left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
             right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
             right->result_180 = 8;
-            reset_collision_extents();
-            return;
-        }
-        if (right_value_12 != 0) {
+        } else if (right_value_12 != 0) {
             left->result_180 = 8;
             left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
             right->result_180 = 4;
             right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
-            reset_collision_extents();
-            return;
-        }
-        // Observed 1.06a cross-source slot; this branch is intentionally asymmetric.
-        if (left_value_12 < right->frame_1a8->value_10) {
+        } else if (left_value_12 < right->frame_1a8->value_10) {
+            // Observed 1.06a cross-source slot; this branch is asymmetric.
             left->result_180 = 4;
             left->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
-            reset_collision_extents();
-            return;
-        }
-        left->result_180 = 8;
-        left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
-        right->result_180 = 5;
-        right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
-        reset_collision_extents();
-        return;
-    }
-
-    CollisionObjectClashFrame *right_frame = right->frame_1a8;
-    if (right_frame->value_12 != 0) {
-        if (right_frame->value_10 >= 0) {
-            left->result_180 = 5;
+        } else {
+            left->result_180 = 8;
             left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
-            right->result_180 = 8;
+            right->result_180 = 5;
             right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
-            reset_collision_extents();
-            return;
         }
-        right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
-        right->result_180 = 4;
-        reset_collision_extents();
-        return;
+    } else {
+        CollisionObjectClashFrame *right_frame = right->frame_1a8;
+        if (right_frame->value_12 != 0) {
+            if (right_frame->value_10 >= 0) {
+                left->result_180 = 5;
+                left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
+                right->result_180 = 8;
+                right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
+            } else {
+                right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
+                right->result_180 = 4;
+            }
+        } else {
+            short left_value_10 = left->frame_1a8->value_10;
+            if (right_frame->value_10 < left_value_10) {
+                right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
+                right->result_180 = 4;
+            } else if (left_value_10 < right_frame->value_10) {
+                left->result_180 = 4;
+                left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
+            } else {
+                left->result_180 = 8;
+                left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
+                right->result_180 = 8;
+                right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
+            }
+        }
     }
-
-    short left_value_10 = left->frame_1a8->value_10;
-    if (right_frame->value_10 < left_value_10) {
-        right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
-        right->result_180 = 4;
-        reset_collision_extents();
-        return;
-    }
-    if (left_value_10 < right_frame->value_10) {
-        left->result_180 = 4;
-        left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
-        reset_collision_extents();
-        return;
-    }
-
-    left->result_180 = 8;
-    left->result_slot_184 = left->snapshot_result_slot_1a0 - 1;
-    right->result_180 = 8;
-    right->result_slot_184 = right->snapshot_result_slot_1a0 - 1;
     reset_collision_extents();
 }
 

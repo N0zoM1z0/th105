@@ -44,10 +44,8 @@ void GameConfigSaveView::save_427390()
     for (unsigned i=0;i<count;++i) {
         unsigned length = recent_entries_48[i].size() > 1024 ? 1024 : recent_entries_48[i].size();
         writer.write(&length, sizeof(length));
-        if (length != 0) {
-            const char *data = recent_entries_48[i].c_str();
-            writer.write(data, length);
-        }
+        if (length != 0)
+            writer.write(recent_entries_48[i].c_str(), length);
     }
     writer.write(&flag_5c,1);
     writer.write(&flag_5d,1);
