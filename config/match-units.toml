@@ -16225,12 +16225,12 @@ rel32_targets = [
 
 [[units.gpt-web-csv-reader-next-int.functions]]
 address = "0x0040F580"
-symbol_base = "?next_string_40f580@CsvReaderNativeView@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PAV34@@Z"
+symbol_base = "?next_string_40f580@CsvReaderNativeView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AAV34@@Z"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "?assign_bytes@CsvStringAssignCallView@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
   "??D?$_Deque_iterator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@$00@std@@QBEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@1@XZ=0x0040F990",
-  "?assign_string@CsvStringAssignCallView@th105@@QAEPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@ABV34@II@Z=0x004020D0",
+  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x004020D0",
 ]
 dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=??_C@_00CNPNBAHC@?$AA@"]
 
