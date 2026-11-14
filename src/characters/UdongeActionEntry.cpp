@@ -1,5 +1,5 @@
 #include "characters/UdongeActionEntry.hpp"
-// JP1.06a 0x005D0E60: complete source candidate, nonexact.
+// JP1.06a 0x005D0E60 Udonge action entry: one switch; the 404 and 650 epilogue scheduling remains nonexact.
 // Evidence and finite controls: docs/UDONGE_ACTION_ENTRY_2026_10_24.md.
 namespace th105 {
 #define FIELD(type,o) (*reinterpret_cast<type *>(reinterpret_cast<unsigned char *>(this)+(o)))
@@ -11,9 +11,6 @@ namespace th105 {
 void UdongeActionEntryView::initialize_action_entry()
 {
     float payload[3];
-    int action=static_cast<short>(S(0x13C));
-    if (action<=301) {
-        if (action>=300) goto prepare300;
         switch (S(0x13C)) {
         case 4: F(0xF4)=4.0f; return;
         case 5: F(0xF4)=-4.0f; return;
@@ -31,11 +28,11 @@ void UdongeActionEntryView::initialize_action_entry()
             if (F(0xF4)<0.0f) S(0x730)=-1;
             F(0x12C)=0.0f; reset_action_visual_state(); return;
         case 71:
-            F(0xF4)=-F(0x18C); F(0xF8)=F(0x190); S(0x730)=7; F(0x100)=0.5f; F(0x12C)=0.0f; reset_action_visual_state(); return;
+            F(0xF4)=-F(0x18C); F(0xF8)=F(0x190); F(0x100)=0.5f; S(0x730)=7; F(0x12C)=0.0f; reset_action_visual_state(); return;
         case 72:
             F(0xF4)=-F(0x18C); F(0xF8)=F(0x190); F(0x100)=1.3f; F(0x12C)=0.0f; reset_action_visual_state(); return;
         case 73: case 88:
-            F(0xF4)=-F(0x18C); F(0xF8)=F(0x190); S(0x730)=7; F(0x100)=0.8f; F(0x12C)=0.0f; reset_action_visual_state(); return;
+            F(0xF4)=-F(0x18C); F(0xF8)=F(0x190); F(0x100)=0.8f; S(0x730)=7; F(0x12C)=0.0f; reset_action_visual_state(); return;
         case 74: case 75:
             F(0xF4)=-F(0x18C); F(0xF8)=F(0x190); F(0x100)=0.8f; F(0x12C)=0.0f; reset_action_visual_state(); return;
         case 76: {
@@ -90,17 +87,11 @@ void UdongeActionEntryView::initialize_action_entry()
         case 214:
             F(0xF4)=0.0f; S(0x736)=0; F(0xF8)=0.0f; F(0x100)=0.6f;
             F(0x108)=0.0f; F(0x10C)=95.0f; F(0x73C)=9.0f; F(0x74C)=0.0f; return;
-        default: break;
-        }
-    } else if (action<=561) {
-        if (action>=560) {
-            B(0x17C)=3; I(0x180)=0; zero_velocity_acceleration(); S(0x730)=0; S(0x732)=0; B(0x750)=1; return;
-        }
-        switch (S(0x13C)) {
+        case 300: case 301:
+            if (!B(0x47E)) zero_velocity_acceleration(); I(0x180)=0; B(0x184)=1; return;
         case 302:
             if (!B(0x47E)) zero_velocity_acceleration(); B(0x184)=1; I(0x180)=0; B(0x47E)=0; B(0x750)=1; return;
         case 303: case 321: case 322:
-prepare300:
             if (!B(0x47E)) zero_velocity_acceleration(); I(0x180)=0; B(0x184)=1; return;
         case 304:
             B(0x47E)=0; B(0x184)=1; I(0x180)=0; zero_velocity_acceleration(); B(0x750)=1; return;
@@ -127,17 +118,13 @@ prepare300:
             F(0x100)=0.0f; I(0x180)=0; S(0x730)=0; S(0x732)=0; S(0x736)=0; B(0x750)=1;
             F(0xF4)*=0.2f; F(0xF8)=0.2f*F(0xF8); return;
         case 408:
-            F(0xF4)=17.5f; F(0xF8)=0.0f; goto prepare408;
+            F(0xF4)=17.5f; F(0xF8)=0.0f; B(0x47E)=0; S(0x730)=0; B(0x184)=1; I(0x180)=0; return;
         case 409:
-            F(0x100)=0.35f;
-prepare408:
-            B(0x47E)=0; S(0x730)=0; I(0x180)=0; B(0x184)=1; return;
+            F(0x100)=0.35f; B(0x47E)=0; S(0x730)=0; B(0x184)=1; I(0x180)=0; return;
         case 410:
             I(0x180)=0; zero_velocity_acceleration(); S(0x730)=0; S(0x732)=0; S(0x736)=0; S(0x738)=0; B(0x750)=1; return;
         case 412:
-            I(0x180)=0;
-zero_motion_return:
-            zero_velocity_acceleration(); return;
+            I(0x180)=0; zero_velocity_acceleration(); return;
         case 414: case 415: case 416:
             S(0x730)=0; S(0x732)=0; S(0x736)=0; F(0xF4)*=0.25f; I(0x180)=1;
             B(0x750)=1; F(0xF8)=0.25f*F(0xF8); F(0x100)=0.0f; return;
@@ -148,7 +135,6 @@ zero_motion_return:
         case 510: case 511: B(0x17C)=8; zero_velocity_acceleration(); I(0x180)=0; B(0x47E)=0; B(0x750)=1; return;
         case 520: case 521: B(0x17C)=1; zero_velocity_acceleration(); I(0x180)=0; B(0x47E)=0; B(0x750)=1; return;
         case 525: case 526:
-prepare525:
             F(0x73C)=0.0f; S(0x730)=0; S(0x732)=0; B(0x17C)=5; zero_velocity_acceleration(); I(0x180)=0; B(0x47E)=0; B(0x750)=1; return;
         case 527: case 528:
             F(0x73C)=0.0f; S(0x730)=0; F(0x100)=0.0f; S(0x732)=0; B(0x17C)=5;
@@ -161,11 +147,9 @@ prepare525:
             B(0x17C)=6; I(0x180)=0; zero_velocity_acceleration(); S(0x730)=0; S(0x732)=0; S(0x734)=0; B(0x750)=1; return;
         case 550: case 551:
             B(0x17C)=10; I(0x180)=0; zero_velocity_acceleration(); S(0x730)=0; S(0x732)=0; S(0x734)=0; S(0x736)=0; B(0x750)=1;
-            if (C(0x60E)>3) { S(0x4AE)=2; S(0x736)=1; } return;
-        default: break;
-        }
-    } else {
-        switch (S(0x13C)) {
+            if (C(0x60E)>=4) { S(0x4AE)=2; S(0x736)=1; } return;
+        case 560: case 561:
+            B(0x17C)=3; I(0x180)=0; zero_velocity_acceleration(); S(0x730)=0; S(0x732)=0; B(0x750)=1; return;
         case 565: case 566: case 567: case 568:
             B(0x17C)=7; I(0x180)=0; zero_velocity_acceleration(); F(0x73C)=0.0f;
             S(0x730)=0; F(0x740)=0.0f; B(0x750)=1; return;
@@ -182,7 +166,7 @@ prepare525:
         case 700: return;
         case 701: case 702: case 703:
             if (B(0x47E)) return; zero_velocity_acceleration(); return;
-        case 704: case 707: goto zero_motion_return;
+        case 704: case 707: zero_velocity_acceleration(); return;
         case 705: F(0xF4)=6.0f; return;
         case 706: F(0xF4)=-6.0f; return;
         case 708: F(0xF4)=0.0f;
@@ -191,15 +175,14 @@ prepare525:
             F(0x73C)=0.0f; S(0x730)=0; S(0x732)=0; zero_velocity_acceleration(); I(0x180)=0; B(0x47E)=0; B(0x750)=1; return;
         case 725:
             I(0x180)=0; zero_velocity_acceleration(); S(0x730)=0; S(0x732)=0; S(0x734)=0; return;
-        case 726: goto prepare525;
+        case 726:
+            F(0x73C)=0.0f; S(0x730)=0; S(0x732)=0; B(0x17C)=5; zero_velocity_acceleration(); I(0x180)=0; B(0x47E)=0; B(0x750)=1; return;
         case 730:
             zero_velocity_acceleration(); F(0x73C)=0.0f; S(0x730)=0; S(0x732)=0; S(0x734)=0; S(0x736)=0; return;
         case 797: case 798:
             zero_velocity_acceleration(); F(0xF8)=0.0f; S(0x7A6)=0; S(0x730)=0; dispatch_character_wave_handle(9); return;
-        default: break;
+        default: initialize_common_action_state(); return;
         }
-    }
-    initialize_common_action_state(); return;
 }
 #undef I
 #undef C

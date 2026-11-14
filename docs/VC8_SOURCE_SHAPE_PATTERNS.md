@@ -268,6 +268,16 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **Udonge action entry 0x5D0E60 (2026-11-14).** The target is one plain switch
+  in case order: the `jg 0x12d / jge 0x12c` and `0x230/0x231` splits are VC8's
+  own decomposition. The old `if (action <= 301)` partition and its gotos were
+  replaced by ordinary cases. That, Reimu's 71/73 statement order and full bodies
+  for 408/409 and 726 took the diff from 27 regions to 7. In the remaining cases
+  404/406 and 650 the target schedules `pop edi` right after the first x87
+  store. Ours places it late, and our 650 tail then cross-jumps into case 527's.
+  Searches over all 120 integer-store orders for 404 and all 12 orders for 650
+  did not move `pop edi`.
+
 - **Reimu action initialization 0x491C40 cross-jumps (2026-11-14).** Two
   residuals remain, and both are cross-jump decisions.
   - Cases 404 and 414 share the tail `fmul st(1), st(0); mov [180], ebx; ...;
