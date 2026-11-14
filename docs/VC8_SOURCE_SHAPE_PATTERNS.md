@@ -52,6 +52,13 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   `begin()[i]`, `(begin() + i)->`, `data()`, three equivalent forms of the length
   cap, and `size_t` or `size_type` loop indices. The `<` and `int` index forms
   break earlier code.
+  The same unexplained commutative-operand swap appears in
+  `CNetworkClient_advance_frame` 0x44EAD0 (`[+0x88] + [+0x84]`; both source
+  orders and a split `=`/`+=` are neutral), `PlayerSlotRecord_load_profile`
+  0x431AC0 (deque `[+0xC] + [+0x10]`) and `ScoreData_load_42f6f0` 0x42F6F0
+  (`[eax + ecx]` addressing). An open lead is LTCG code generation: these
+  units compile with plain `/O2`. A linked trial needs real callee definitions,
+  which LTCG would inline where the target keeps the call.
 - **Clash resolver tail merging.** `resolve_group_b_object_clash` 0x46CA80 is
   557 bytes against 542. The target merges the equal case into the final
   `8/8` block with the result in EAX, and stores slot-first only there. All 24
