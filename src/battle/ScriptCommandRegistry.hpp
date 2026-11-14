@@ -41,6 +41,7 @@ public:
     ~CScript();
     void clear_commands();
     CCommandBase *next_command();
+    void seek(int index) { current_28 = pending_14.begin() + index; }
     bool load(const char *path, int option);
     void clear_pending_commands();
 

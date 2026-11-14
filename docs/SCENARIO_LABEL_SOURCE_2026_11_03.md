@@ -27,3 +27,19 @@ has not been promoted, and the script dereference helper's private ABI remains
 unresolved. The exact wrapper and all 22 accepted roots across the 11 actual
 source-dependent units replayed exact. No new function or byte is credited. The
 focused origin rule and all 1,030 target-independent CI tests passed.
+
+## 2026-11-14: exact
+
+`CScenarioData::select_label` at 0x455490 is canonical exact, 276/276. Three
+findings:
+
+- The rewind is `begin() + index` with index 0, not `begin()`. The target runs
+  both the `begin()` check and the checked-iterator `+=` range check. It is now an
+  inline `CScript::seek(int index)` called as `script_35c.seek(0)`, which also gives
+  the target's `&script_35c` base register.
+- The search is `for (;;) { command = next_command(); if (!command) return 0;
+  if (match) return 1; }`. With the old `while (...) return 1; return 0;` form,
+  VC8 places the `return 1` block before the `return 0` block, the opposite of
+  the target.
+- A local `CScript &` reference gives the same base register as `seek`, but it
+  needs the unnatural `begin() + 0`.

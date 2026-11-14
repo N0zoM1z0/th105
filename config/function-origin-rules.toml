@@ -6212,20 +6212,6 @@ required_dword_values = [
 ]
 
 [[rules]]
-id = "scenario-label-selection-authored-106a"
-addresses = ["0x00455490"]
-expected_count = 1
-expected_bytes = 276
-expected_names = ["sub_455490"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete276-byte owned-string scenario label search, called by freshly exact string wrapper. The actual source275 remains nonexact; neither partial bytes nor cleanup EH receive exact credit. docs/SCENARIO_LABEL_SOURCE_2026_11_03.md."
-required_body_hashes = [{ address = "0x00455490", size = 276, sha256 = "58a5ad2f28ad4f111408771ec435f7b34c3b1bf0bc77deb3185b7ce2f0498190" }]
-required_direct_edges = [{ caller = "0x0045A450", site = "0x0045A4A1", target = "0x00455490", caller_status = "matching" }]
-
-[[rules]]
 id = "info-combo-load-authored-106a"
 addresses = ["0x0046A8C0"]
 expected_count = 1

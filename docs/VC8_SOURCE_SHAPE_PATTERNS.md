@@ -47,6 +47,12 @@ the loop's pointer induction variable. A local such as `row = items[i]` can
 move that choice. Both were proven on `CTitle::render` 0x425740
 ([note](TITLE_RENDER_2026_11_04.md)).
 
+**Extra checked-iterator range test after `begin()`.** A `+=` range check
+directly after the `begin()` check means `begin() + n`. Look for a seek or
+index helper called with 0. Proven on `CScenarioData::select_label` 0x455490
+([note](SCENARIO_LABEL_SOURCE_2026_11_03.md)), which also needed its search loop
+written as `for (;;)` with the null exit first.
+
 **Rebuild before trusting a nonexact ledger entry.** Three functions were
 already exact in their units but had never been accepted
 ([note](PENDING_EXACT_ACCEPTANCE_2026_11_14.md)). After a shared header change,
