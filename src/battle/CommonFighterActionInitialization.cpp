@@ -24,7 +24,7 @@ void CommonActionEntryView::initialize_common_action_entry()
   if(B(0x47e)==0)zero_motion();return;
  case 6:
   if(!(B(0x724)&4)) {
-   if(U(0x6c8)==0 || I(0x6b8)>=0 || I(0x6b4)!=0) {
+   if(!(U(0x6c8)>0) || I(0x6b8)>=0 || I(0x6b4)!=0) {
     if(B(0x47e)==0)zero_motion();F(0x100)=0;return;
    }
   }
@@ -98,15 +98,15 @@ void CommonActionEntryView::initialize_common_action_entry()
  case 143:case 144:F(0xf4)=-12.0f;S(0x730)=0;F(0xf8)=0;F(0x12c)=0;return;
  case 145:F(0xf4)=-10.0f;F(0xf8)=14.0f;F(0x100)=0.5f;F(0x12c)=0;return;
  case 149:F(0xf4)=-10.0f;F(0xf8)=14.0f;F(0x100)=0.5f;return;
- case 150:case 154:F(0xf4)=-6.0f;S(0x730)=0;F(0xf8)=0;I(0x180)=0;return;
- case 151:case 155:F(0xf4)=-10.0f;S(0x730)=0;F(0xf8)=0;I(0x180)=0;return;
- case 152:case 156:F(0xf4)=-13.0f;S(0x730)=0;F(0xf8)=0;I(0x180)=0;return;
- case 153:case 157:F(0xf4)=-14.5f;S(0x730)=0;F(0xf8)=0;I(0x180)=0;return;
+ case 150:case 154:S(0x730)=0;F(0xf4)=-6.0f;F(0xf8)=0;I(0x180)=0;return;
+ case 151:case 155:S(0x730)=0;F(0xf4)=-10.0f;F(0xf8)=0;I(0x180)=0;return;
+ case 152:case 156:S(0x730)=0;F(0xf4)=-13.0f;F(0xf8)=0;I(0x180)=0;return;
+ case 153:case 157:S(0x730)=0;F(0xf4)=-14.5f;F(0xf8)=0;I(0x180)=0;return;
  case 158:F(0xf4)=-6.0f;S(0x730)=7;F(0xf8)=14.0f;S(0x732)=0;F(0x100)=0.75f;return;
- case 159:case 163:F(0xf4)=-12.0f;S(0x730)=0;F(0xf8)=0;I(0x180)=0;return;
- case 160:case 164:F(0xf4)=-20.0f;S(0x730)=0;F(0xf8)=0;I(0x180)=0;return;
- case 161:case 165:F(0xf4)=-26.0f;S(0x730)=0;F(0xf8)=0;I(0x180)=0;return;
- case 162:case 166:F(0xf4)=-29.0f;S(0x730)=0;F(0xf8)=0;I(0x180)=0;return;
+ case 159:case 163:S(0x730)=0;F(0xf4)=-12.0f;F(0xf8)=0;I(0x180)=0;return;
+ case 160:case 164:S(0x730)=0;F(0xf4)=-20.0f;F(0xf8)=0;I(0x180)=0;return;
+ case 161:case 165:S(0x730)=0;F(0xf4)=-26.0f;F(0xf8)=0;I(0x180)=0;return;
+ case 162:case 166:S(0x730)=0;F(0xf4)=-29.0f;F(0xf8)=0;I(0x180)=0;return;
  case 167:F(0xf4)=-6.0f;S(0x730)=7;F(0xf8)=8.0f;F(0x100)=0.75f;return;
  case 180:
   zero_motion();F(0xf4)=8.0f;F(0xf8)=12.5f;F(0x100)=0.75f;

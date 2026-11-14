@@ -268,6 +268,19 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **Common fighter initializer 0x477830 (2026-11-14).** Cases 150–166 are
+  `S(0x730)=0; F(0xf4)=K; F(0xf8)=0; I(0x180)=0;`. With that order the target
+  keeps each block separate, and ours had merged them. Case 6 tests
+  `!(U(0x6c8) > 0)` (`jbe`), the same form cases 7 and 8 use. These took the diff
+  from 20 regions to 8. What remains comes from the shared
+  `if (B(0x47e)==0) zero_motion(); F(0x100)=0;` path: the target schedules
+  `fldz; pop edi; fstp [100]`, so the out-of-range `ja` and the case 0–3 `jne`
+  land on a later pure epilogue. Bisection shows this depends on the size of the
+  whole switch: either half of the cases plus case 6 gives the target's order,
+  and the full set does not. Udonge 0x5D0E60's `pop edi` residual and Reimu's
+  cross-jumps look like the same effect. Removing redundant casts did not change
+  it.
+
 - **Udonge action entry 0x5D0E60 (2026-11-14).** The target is one plain switch
   in case order: the `jg 0x12d / jge 0x12c` and `0x230/0x231` splits are VC8's
   own decomposition. The old `if (action <= 301)` partition and its gotos were
