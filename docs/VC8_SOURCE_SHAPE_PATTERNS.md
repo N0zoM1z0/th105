@@ -178,3 +178,11 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   `this` and `&row_it_14`. A local `CsvRows::iterator &` reference moves the first
   mismatch to +15, and `rows_00.end() == row_it_14` to +22 (163 bytes, against 167).
   Neither matches.
+- **Aligned-frame chain through `linear_gain_to_ds_volume` 0x418990.** The callee
+  runs on a 64-byte-aligned frame (`and esp, -64; sub esp, 0x40`) and stores and
+  reloads its float log10 result through `[esp+0x3c]` twice. Its LTCG caller
+  `WaveService_load_wave` 0x401AF0 has an 8-byte-aligned EBP frame and spills the
+  gain product into a local. The existing linked unit instead emits `push ecx`
+  and reuses the dead `path` parameter slot, with the rest nearly identical. Lead:
+  recover the callee's real aligned local and float casts first, then rebuild its
+  callers in one LTCG context. Adding invented alignment is not acceptable.
