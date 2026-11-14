@@ -33,7 +33,7 @@ void TextureTokenManager::release(unsigned int packed_token)
     LeaveCriticalSection(&lock_48.critical_section_04);
 }
 
-unsigned char TitleResourceManager::release_title_resource_handle(unsigned int handle)
+unsigned char TitleResourceManager::release_title_resource_handle(DesignTextureHandle handle)
 {
     if (handle == 0)
         return 0;

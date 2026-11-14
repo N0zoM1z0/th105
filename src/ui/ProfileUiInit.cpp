@@ -48,8 +48,8 @@ extern UiDesignObject *g_profile_message_choice_c;
 extern UiDesignObject *g_profile_message_choice_d;
 extern UiDesignObject *g_profile_player_anchor;
 extern MenuCursorState g_profile_message_cursor;
-extern unsigned int g_profile_cursor_texture;
-extern unsigned int g_profile_list_seat_texture;
+extern DesignTextureHandle g_profile_cursor_texture;
+extern DesignTextureHandle g_profile_list_seat_texture;
 
 extern "C" const char profile_ui_effect_label[];
 extern "C" const char profile_menu_back_path[];

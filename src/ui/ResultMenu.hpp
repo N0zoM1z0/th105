@@ -147,7 +147,7 @@ private:
     void refresh_selected_character();
     bool update_active();
 
-    unsigned int texture_004;
+    DesignTextureHandle texture_004;
     CSprite character_sprite_008;
     SelectIntVector16 available_characters_09c;
     int character_count_0ac;

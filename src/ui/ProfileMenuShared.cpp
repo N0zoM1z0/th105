@@ -14,7 +14,7 @@ extern "C" CInputManager *g_active_menu_input;
 extern "C" ProfileNameList g_profile_name_list;
 extern MenuCursorState g_profile_global_cursor;
 extern MenuCursorState g_profile_message_cursor;
-extern unsigned int g_profile_message_texture;
+extern DesignTextureHandle g_profile_message_texture;
 extern UiDesignObject *g_profile_message_main;
 extern UiDesignObject *g_profile_message_choice_a;
 extern UiDesignObject *g_profile_message_choice_b;
@@ -28,7 +28,7 @@ void Menu::show_profile_result(const char *message)
 
     g_profile_message_texture =
         g_title_resource_manager.create_text_texture(
-            message, profile_editor_records, 512, 32, 0, 0).value;
+            message, profile_editor_records, 512, 32, 0, 0);
 
     g_profile_message_sprite.set_texture(
         g_profile_message_texture, 0, 0, 307, 18);
@@ -42,7 +42,7 @@ void Menu::show_profile_message(const char *message, bool alternate)
 
     g_profile_message_texture =
         g_title_resource_manager.create_text_texture(
-            message, profile_editor_records, 512, 32, 0, 0).value;
+            message, profile_editor_records, 512, 32, 0, 0);
 
     g_profile_message_sprite.set_texture(
         g_profile_message_texture, 0, 0, 307, 18);

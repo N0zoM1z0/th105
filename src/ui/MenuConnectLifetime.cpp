@@ -11,14 +11,6 @@ namespace th105 {
 // Pointer-only view of the existing global; no storage is constructed here.
 struct ConnectProfileListView { void shutdown(); };
 extern ConnectProfileListView g_connect_profile_list;
-struct ConnectTextureHandle {
-    unsigned int value;
-    ConnectTextureHandle() : value(0) {}
-};
-
-typedef char ConnectTextureHandle_size_must_be_0x04[
-    sizeof(ConnectTextureHandle) == 0x04 ? 1 : -1];
-
 class CMenuConnectLifetime : public Menu {
 public:
     CMenuConnectLifetime();
@@ -37,12 +29,12 @@ private:
     TitleDesignResource design_00c;
     UiDesignObject *items_040[7];
     unsigned char reserved_05c[4];
-    ConnectTextureHandle texture_060;
+    DesignTextureHandle texture_060;
     CTile tile_064;
     CNumberLifetime number_108;
     CSprite sprite_1d4;
     CSprite sprite_268;
-    ConnectTextureHandle texture_2fc;
+    DesignTextureHandle texture_2fc;
     CTile tile_300;
     std::deque<std::string> rows_3a4;
     unsigned int reserved_3b8;
@@ -67,8 +59,8 @@ typedef char CMenuConnectLifetime_size_must_be_0x118c[
 CMenuConnectLifetime::~CMenuConnectLifetime()
 {
     g_connect_profile_list.shutdown();
-    g_title_resource_manager.release_title_resource_handle(texture_060.value);
-    g_title_resource_manager.release_title_resource_handle(texture_2fc.value);
+    g_title_resource_manager.release_title_resource_handle(texture_060);
+    g_title_resource_manager.release_title_resource_handle(texture_2fc);
     design_00c.virtual_cleanup();
 }
 }

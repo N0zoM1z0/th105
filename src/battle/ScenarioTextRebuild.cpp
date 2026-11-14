@@ -11,7 +11,7 @@ class CInputManager;
 
 namespace th105 {
 struct RebuildEntryView {
-    unsigned resource_handle_000;
+    DesignTextureHandle resource_handle_000;
     CSprite sprite_004;
     // Only two semantic bytes follow the sprite; the final two are padding.
     unsigned char alpha_098;
@@ -50,7 +50,7 @@ void ScenarioTextRebuildView::rebuild_text(std::string *text)
     while(entries_350.size()>1) entries_350.pop_front();
     entries_350.push_back(RebuildEntryView());
     entries_350.back().resource_handle_000=g_title_resource_manager.create_text_texture(
-        text->c_str(),&font_068,1024,128,0,0).value;
+        text->c_str(),&font_068,1024,128,0,0);
     entries_350.back().sprite_004.set_texture_options(
         entries_350.back().resource_handle_000,0,0,640,80,-32,0);
     entries_350.back().sprite_004.set_color(0x00ffffffu);

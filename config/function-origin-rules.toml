@@ -1585,18 +1585,6 @@ required_body_hashes = [{ address = "0x004040B0", size = 26, sha256 = "51243f767
 required_direct_edges = [{ caller = "0x00411430", site = "0x00411474", target = "0x004040B0", caller_status = "matching" }]
 
 [[rules]]
-id = "profile-menu-base-cleanup-authored-106a"
-addresses = ["0x00431390"]
-expected_count = 1
-expected_bytes = 29
-expected_names = ["sub_431390"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Canonical-exact CProfileMenu_dtor 0x0044D340 directly calls this cleanup on its embedded ProfileMenuBaseData. Current ProfileMenu lifetime source independently proves the texture handle at +0 and the raw/source-reviewed TitleResourceManager_release_title_resource_handle @ 0x00404D70. Natural source is formally 28/29 nonexact; the edge/layout evidence proves authored ownership independently of codegen acceptance."
-
-[[rules]]
 id = "std-string-c-str-generated-106a"
 addresses = ["0x00401E30"]
 expected_count = 1
@@ -1643,18 +1631,6 @@ subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
 evidence = "Canonical-exact CScenarioData::clear_runtime 0x00457DF0 and load_story_page 0x004583E0 both carry the complete current VC8 decorated std::map<string,ScenarioTextEntryDC>::_Tree::_Erase REL32 identity to 0x00436D30. The target recursively erases child nodes, destroys the pair payload and frees the node. Fresh standalone VC8 emits a larger private variant, so classification relies on exact-caller decorated template identity plus the target STL lowering rather than a false byte fingerprint."
-
-[[rules]]
-id = "guide-overlay-runtime-authored-106a"
-addresses = ["0x0043F330"]
-expected_count = 1
-expected_bytes = 92
-expected_names = ["sub_43F330"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Canonical-exact Menu/Profile/Replay constructors carry GuideOverlay destructor identity to43F330; exact load/render/ctor siblings fix A8 layout. Fresh dtor90/92 retains texture-handle CSE. Update43F450 is now canonical112/112 under its exact baseline after typed color virtual and compound alpha recovery; see docs/GUIDE_OVERLAY_UPDATE_2026_10_29.md."
 
 [[rules]]
 id = "menu-cursor-update-authored-106a"
@@ -3357,20 +3333,6 @@ confidence = "observed"
 evidence = "Exact Title update425990 calls447690 at425C75. CMenuResult vtable6C2070,15 ResultList members, score-unlocked character scan, cursor/guide and selected-character refresh establish authored constructor ownership. Native initial texture004 zero was missing from retained source and is restored; full495/502 remains nonexact. docs/RESULT_MENU_INITIALIZATION_2026_10_29.md."
 required_body_hashes = [{ address = "0x00447690", size = 502, sha256 = "1b56434f8d09960a7d90dfccfe7daeadfa0ef4b7e9035e5cd1df39baaa90a65a" }]
 required_direct_edges = [{ caller = "0x00425990", site = "0x00425C75", target = "0x00447690", caller_status = "matching" }]
-
-[[rules]]
-id = "character-base-destructor-authored-106a"
-addresses = ["0x00462CE0"]
-expected_count = 1
-expected_bytes = 905
-expected_names = ["sub_462CE0"]
-origin = "authored_game"
-subsystem = "characters"
-disposition = "authored"
-confidence = "observed"
-evidence = "The independently canonical, compiler-excluded RTTI-owned CharacterEx scalar destructor64B770 calls462CE0 at64B779; the normal11-byte CharacterEx destructor also tail-enters it. Full905-byte Character cleanup releases texture/vector/deque/wave/manager/tree ownership and real base/member lifetimes. Cold range-error exits and remote second loop are included. Only one SIB operand byte differs. docs/CHARACTER_DESTRUCTOR_2026_10_29.md."
-required_body_hashes = [{ address = "0x00462CE0", size = 905, sha256 = "da514c9794ee2bc53351b4f4f246b76e45ebdce219411e81f603ff77014b7f35" }]
-required_direct_edges = [{ caller = "0x0064B770", site = "0x0064B779", target = "0x00462CE0", caller_status = "identified" }]
 
 [[rules]]
 id = "network-input-endpoint-generated-destruction-106a"
@@ -6253,20 +6215,6 @@ required_body_hashes = [{ address = "0x00460200", size = 1247, sha256 = "128d06d
 required_direct_edges = [{ caller = "0x004776D0", site = "0x004776D3", target = "0x00460200", caller_status = "matching" }]
 
 [[rules]]
-id = "ui-input-result-policy-authored-106a"
-addresses = ["0x00427C60"]
-expected_count = 1
-expected_bytes = 333
-expected_names = ["sub_427C60"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete profile selection policy called by its exact ProfileMenu owner. The result-menu and key-capture siblings are now canonical exact. docs/ORIGIN_RECOVERY_2026_11_03.md."
-required_body_hashes = [{ address = "0x00427C60", size = 333, sha256 = "41df1dc4641c5c2094e1141e91a7d2f9de01e593b875d3fefa714d6f9eb6939b" }]
-required_direct_edges = [{ caller = "0x0044CF70", site = "0x0044D04C", target = "0x00427C60", caller_status = "matching" }]
-
-[[rules]]
 id = "background-set-transition-authored-106a"
 addresses = ["0x004654F0"]
 expected_count = 1
@@ -6803,25 +6751,6 @@ evidence = "CBattleManager RTTI slot owns the 172-byte phase-specific event time
 required_rtti_virtual_bodies = [
  { address = "0x00472A70", size = 172, sha256 = "744492ad5c29309680cba21f4271bdd559ae224fff1495cdb581576f5a3c6878", slot = "0x006C1540", col_slot = "0x006C1500", col = "0x006D7EF4", type_descriptor = "0x006E685C", type_name_contains = "CBattleManager@@", calls = [{ site = "0x00472AB7", target = "0x00435CE0" }, { site = "0x00472AE1", target = "0x004067D0" }, { site = "0x00472AED", target = "0x00434E40" }, { site = "0x00472B0F", target = "0x00435CE0" }] },
 ]
-
-[[rules]]
-id = "fighter-sprite-resource-cleanup-authored-106a"
-addresses = ["0x00465420"]
-expected_count = 1
-expected_bytes = 96
-expected_names = ["sub_465420"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Character destructor calls this complete resource cleanup on the owned handle/sprite prefix. Conditional title-resource release and handle clearing are game ownership policy followed by implicit sprite teardown. A source candidate emits 95/native96 bytes and remains nonexact. Folding means this body does not uniquely identify a full nominal cutin type or extent. docs/FIGHTER_CUTIN_LIFETIME_2026_10_28.md."
-required_body_hashes = [
- { address = "0x00465420", size = 96, sha256 = "c585cf40128cc4f0c32264c9d6948718f2f5f2aaf6982c56cdc59111164b0572" },
-]
-required_direct_edges = [
- { caller = "0x00462CE0", site = "0x00462F5B", target = "0x00465420", caller_status = "implemented" },
-]
-required_selected_body_calls = [{ owner = "0x00465420", site = "0x0046545D", target = "0x00404D70", target_status = "matching" }]
 
 [[rules]]
 id = "menu-select-primary-authored-106a"

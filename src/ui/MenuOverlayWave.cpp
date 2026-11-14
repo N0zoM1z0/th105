@@ -69,7 +69,7 @@ private:
     signed char state_04;
     GuideOverlay guide_08;
     bool option_b0;
-    unsigned texture_b4;
+    DesignTextureHandle texture_b4;
     CSprite sprites_b8[2];
     int grid_width_1e0;
     int grid_height_1e4;

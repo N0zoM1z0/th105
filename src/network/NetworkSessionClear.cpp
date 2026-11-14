@@ -11,7 +11,7 @@ public:
     virtual ~CNetworkBase();
 
     unsigned char reserved_004[0x274];
-    unsigned int texture_278;
+    DesignTextureHandle texture_278;
     unsigned char reserved_27c[0x138];
     NetworkShutdownStateView shutdown_state_3b4;
 };

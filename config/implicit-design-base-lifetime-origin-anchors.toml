@@ -36,7 +36,7 @@ sha256 = "3e2ca688bd65839f4b53f4a3b05ba86795f63503868e5c3ba8dd663b7991979b"
 
 [[sources]]
 path = "src/ui/GuideOverlay.hpp"
-sha256 = "d76e44b8d9852f1978c53a7c36cae9d08636b6974a577d7785feee1ecc24e89b"
+sha256 = "695e3765d66c1de43d8325f6ca4e5c706bb271a759bae4da895059b36b12452b"
 
 [[anchors]]
 address = "0x004217F0"

@@ -14,14 +14,6 @@ extern "C" const char connect_ctor_design_path[];
 
 namespace th105 {
 
-struct ConnectTextureHandle {
-    unsigned int value;
-    ConnectTextureHandle() : value(0) {}
-};
-
-typedef char ConnectTextureHandle_size_must_be_0x04[
-    sizeof(ConnectTextureHandle) == 0x04 ? 1 : -1];
-
 class CMenuConnect : public Menu {
 public:
     CMenuConnect();
@@ -40,12 +32,12 @@ private:
     TitleDesignResource design_00c;
     UiDesignObject *items_040[7];
     unsigned char reserved_05c[4];
-    ConnectTextureHandle texture_060;
+    DesignTextureHandle texture_060;
     CTile tile_064;
     CNumber number_108;
     CSprite sprite_1d4;
     CSprite sprite_268;
-    ConnectTextureHandle texture_2fc;
+    DesignTextureHandle texture_2fc;
     CTile tile_300;
     std::deque<std::string> rows_3a4;
     unsigned int reserved_3b8;

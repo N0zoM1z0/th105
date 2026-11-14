@@ -4,7 +4,7 @@
 namespace th105 {
 
 struct FighterCutinLifetime {
-    unsigned handle_00;
+    DesignTextureHandle handle_00;
     CSprite sprite_04;
     int selector_98;
     int state_9c;

@@ -24,7 +24,7 @@ public:
     ConfigStateView *config_004;
     GuideOverlay guide_008;
     bool option_b0;
-    unsigned texture_b4;
+    DesignTextureHandle texture_b4;
     CSprite sprites_b8[2];
     unsigned width_1e0, height_1e4;
     CDesignBase design_1e8;

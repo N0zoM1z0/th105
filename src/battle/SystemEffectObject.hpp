@@ -12,7 +12,7 @@ public:
     virtual void reset_state() = 0;
     virtual void render_effect();
 
-    unsigned int resource_handle_138;
+    th105::DesignTextureHandle resource_handle_138;
 };
 
 class SystemEffectObject : public SystemEffectObjectBase {

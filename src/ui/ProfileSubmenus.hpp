@@ -19,7 +19,7 @@ public:
 
 private:
     void refresh_character_preview();
-    unsigned texture_04;
+    DesignTextureHandle texture_04;
     CSprite stand_08;
     PlayerSlotRecord *player_9c;
     int character_a0;
@@ -44,9 +44,9 @@ private:
     bool capture_key_input();
     PlayerSlotRecord *player_04;
     CDesignBase design_08;
-    unsigned texture_3c;
+    DesignTextureHandle texture_3c;
     CTile tile_40;
-    unsigned texture_e4;
+    DesignTextureHandle texture_e4;
     CTile tile_e8;
     UiDesignObject *objects_18c[4];
     GuideOverlay guides_19c[2];

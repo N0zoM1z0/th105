@@ -951,7 +951,7 @@ address = "0x00433A80"
 symbol_base = "?clear_spell_entries@SpellDataOwner@th105@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?clear_storage@DwordDeque4@th105@@QAEXXZ=0x00413A90",
   "?destroy_subtree@SpellTree@th105@@QAEXPAUSpellTreeNode@2@@Z=0x0042E370",
 ]
@@ -2883,7 +2883,7 @@ notes = "TH105 1.06a scenario stand-preview application recovered from zero non-
 address = "0x004245D0"
 symbol_base = "CSelectScenario_apply_scenario"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "_get_scenario_name=0x0043BF80",
   "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
   "@__security_check_cookie@4=0x00689D25",
@@ -2907,7 +2907,7 @@ notes = "TH105 1.06a /GS CTitle destructor recovered after current IColor/CTitle
 address = "0x00425D40"
 symbol_base = "CTitle_dtor"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??1CDesignBase@th105@@UAE@XZ=0x00421890",
 ]
 dir32_targets = [
@@ -3252,7 +3252,7 @@ dir32_targets = [
 address = "0x00447590"
 symbol_base = "CMenuResult_dtor"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
   "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
   "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
@@ -3281,7 +3281,7 @@ notes = "TH105 1.06a CSelectScenario destructor boundary recovery. Historical 27
 address = "0x00425230"
 symbol_base = "CSelectScenario_dtor"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
   "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
   "??3@YAXPAX@Z=0x006898EA",
@@ -6756,7 +6756,7 @@ notes = "TH105 1.06a SystemEffectObject family. Current RTTI proves CObjectBase 
 [[units.cross-v106a-system-effect-object.functions]]
 address = "0x00454F50"
 symbol_base = "??1SystemEffectObjectBase@@UAE@XZ"
-rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
 dir32_targets = [
   "__ehhandler$??1SystemEffectObjectBase@@UAE@XZ=__ehhandler$??1SystemEffectObjectBase@@UAE@XZ",
   "___security_cookie=___security_cookie",
@@ -7498,11 +7498,11 @@ dir32_targets = [
   "_profile_cursor_path=_profile_cursor_path",
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
   "?g_menu_cursor_sprite@th105@@3VCSprite@@A=?g_menu_cursor_sprite@th105@@3UMenuCursorSpriteView@1@A",
-  "?g_profile_cursor_texture@th105@@3IA=?g_profile_cursor_texture@th105@@3IA",
+  "?g_profile_cursor_texture@th105@@3UDesignTextureHandle@1@A=?g_profile_cursor_texture@th105@@3UDesignTextureHandle@1@A",
   "?g_profile_message_cursor@th105@@3UMenuCursorState@1@A=?g_profile_message_cursor@th105@@3UMenuCursorState@1@A",
   "_profile_list_seat_path=_profile_list_seat_path",
   "?g_profile_character_background@th105@@3VCSprite@@A=?g_profile_character_background@th105@@3UProfileSpriteView@1@A",
-  "?g_profile_list_seat_texture@th105@@3IA=?g_profile_list_seat_texture@th105@@3IA",
+  "?g_profile_list_seat_texture@th105@@3UDesignTextureHandle@1@A=?g_profile_list_seat_texture@th105@@3UDesignTextureHandle@1@A",
 ]
 
 [units.cross-v106a-profile-ui-lifecycle]
@@ -7547,7 +7547,7 @@ rel32_targets = [
   "_trim_profile_ui_menu_stack=0x00440010",
   "?shutdown@ProfileNameListShutdownView@th105@@QAEXXZ=0x0043A0A0",
   "?clear@ProfileRenderListView@th105@@QAEXXZ=0x0040BB40",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
 ]
 dir32_targets = [
   "?g_ui_selection_snapshot@th105@@3EA=?g_ui_selection_snapshot@th105@@3EA",
@@ -7556,11 +7556,11 @@ dir32_targets = [
   "?g_profile_menu_background@th105@@3UProfileRenderListView@1@A=?g_profile_menu_background@th105@@3UProfileRenderListView@1@A",
   "?g_profile_player_list@th105@@3UProfileRenderListView@1@A=?g_profile_player_list@th105@@3UProfileRenderListView@1@A",
   "?g_profile_footer_background@th105@@3UProfileRenderListView@1@A=?g_profile_footer_background@th105@@3UProfileRenderListView@1@A",
-  "?g_profile_back_texture@th105@@3IA=?g_profile_back_texture@th105@@3IA",
+  "?g_profile_back_texture@th105@@3UDesignTextureHandle@1@A=?g_profile_back_texture@th105@@3UDesignTextureHandle@1@A",
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
-  "?g_profile_list_seat_texture@th105@@3IA=?g_profile_list_seat_texture@th105@@3IA",
-  "?g_profile_cursor_texture@th105@@3IA=?g_profile_cursor_texture@th105@@3IA",
-  "?g_profile_message_texture@th105@@3IA=?g_profile_message_texture@th105@@3IA",
+  "?g_profile_list_seat_texture@th105@@3UDesignTextureHandle@1@A=?g_profile_list_seat_texture@th105@@3UDesignTextureHandle@1@A",
+  "?g_profile_cursor_texture@th105@@3UDesignTextureHandle@1@A=?g_profile_cursor_texture@th105@@3UDesignTextureHandle@1@A",
+  "?g_profile_message_texture@th105@@3UDesignTextureHandle@1@A=?g_profile_message_texture@th105@@3UDesignTextureHandle@1@A",
 ]
 
 [units.cross-v106a-menu-overlay-wave]
@@ -7609,7 +7609,7 @@ dir32_targets = [
 address = "0x00441460"
 symbol_base = "CMenuConfig_dtor"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??1TitleDesignResource@th105@@QAE@XZ=0x00421890",
   "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
   "@__security_check_cookie@4=0x00689D25",
@@ -7715,7 +7715,7 @@ notes = "Current CProfileDeckEdit 0x6B0 lifetime. Ctor/dtor and exact container 
 address = "0x0044A950"
 symbol_base = "CProfileDeckEdit_dtor"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?clear_resources@ProfileDeckResourceGroup20@th105@@QAEXXZ=0x00433A80",
   "?clear_common_resources@ProfileDeckRefreshFacade@th105@@QAEXXZ=0x00433990",
   "?reload_common_resources@ProfileDeckRefreshFacade@th105@@QAEEEEE@Z=0x00434AC0",
@@ -7754,7 +7754,7 @@ notes = "Complete real profile submenu destruction. Actual polymorphic tile life
 address = "0x00448730"
 symbol_base = "CProfileCharacterSelect_dtor"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
   "??1CDesignBase@th105@@UAE@XZ=0x00421890",
 ]
@@ -7780,7 +7780,7 @@ dir32_targets = [
 address = "0x0044B9D0"
 symbol_base = "??1CProfileKeyConfig@th105@@UAE@XZ"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
   "??1CDesignBase@th105@@UAE@XZ=0x00421890",
 ]
@@ -7997,7 +7997,7 @@ address = "0x0043A0A0"
 symbol_base = "CFileList_shutdown"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?_Tidy@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXXZ=0x00420AF0",
   "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
   "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
@@ -8655,8 +8655,8 @@ notes = "Current common Menu profile-message/selection helpers. Exact callers ac
 address = "0x0043F810"
 symbol_base = "?show_profile_result@Menu@th105@@IAEXPBD@Z"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
 ]
 
@@ -8666,8 +8666,8 @@ dir32_targets = ["?g_profile_message_sprite@th105@@3VCSprite@@A=?g_profile_messa
 address = "0x0043F640"
 symbol_base = "?show_profile_message@Menu@th105@@IAEXPBD_N@Z"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
 ]
 
@@ -10527,7 +10527,7 @@ notes = "Current /GS ScenarioResultResource normal destructor. Texture release, 
 address = "0x00454BF0"
 symbol_base = "??1ScenarioResultResource@th105@@QAE@XZ"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??1CDesignBase@th105@@UAE@XZ=0x00421890",
 ]
 dir32_targets = [
@@ -11001,8 +11001,8 @@ rel32_targets = [
   "??0ProfileSlotEffectOwner194@th105@@QAE@XZ=0x00411430",
   "_strcpy_s=0x0068AD95",
   "?configure@ProfileSlotEffectOwner194@th105@@QAEXPBUProfileSlotEffectConfig@2@@Z=0x004115A0",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "??1ProfileSlotEffectOwner194@th105@@QAE@XZ=0x004114C0",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -11099,7 +11099,7 @@ address = "0x00433990"
 symbol_base = "?clear_common_resources@ProfileDeckRefreshFacade@th105@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
   "?_Erase@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@2@@Z=0x0042E370",
 ]
@@ -12217,7 +12217,7 @@ address = "0x00465E10"
 symbol_base = "??1BackgroundBase@th105@@UAE@XZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??3@YAXPAX@Z=0x006898EA",
   "@__security_check_cookie@4=0x00689D25",
 ]
@@ -12561,7 +12561,7 @@ rel32_targets = [
   "?configure@ResultEffectOwner194@th105@@QAEXPBUResultEffectConfig128@2@@Z=0x004115A0",
   "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
   "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "operator_delete=0x006898EA",
   "??1ResultEffectOwner194@th105@@QAE@XZ=0x004114C0",
   "@__security_check_cookie@4=0x00689D25",
@@ -13015,7 +13015,7 @@ dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
 address = "0x004464B0"
 symbol_base = "??1CMenuPractice@th105@@UAE@XZ"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9",
   "??1CDesignBase@th105@@UAE@XZ=0x00421890",
   "??1GuideOverlay@th105@@QAE@XZ=0x0043F330",
@@ -13481,7 +13481,7 @@ symbol_base = "?prepare_shutdown_469ec0@EventEffectStateData@th105@@QAEXXZ"
 rel32_targets = [
   "?_Erase@?$_Tree@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@std@@IAEXPAU_Node@?$_Tree_nod@V?$_Tmap_traits@CV?$vector@EV?$allocator@E@std@@@std@@U?$less@C@2@V?$allocator@U?$pair@$$CBCV?$vector@EV?$allocator@E@std@@@std@@@std@@@2@$0A@@std@@@2@@Z=0x004371C0",
   "__invalid_parameter_noinfo=0x0068A143",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
 ]
 dir32_targets = [
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
@@ -13696,7 +13696,7 @@ rel32_targets = [
   "??0GuideOverlay@th105@@QAE@XZ=0x0043F540",
   "?get_active_input_source_43b050@th105@@YACXZ=0x0043B050",
   "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
-  "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90",
+  "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
   "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
   "?set_profile_color@PlayerSlotRecord@th105@@QAEXEEE@Z=0x00431440",
   "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390",
@@ -14623,7 +14623,7 @@ rel32_targets = [
   "??0TitleDesignResource@th105@@QAE@XZ=0x004217F0",
   "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C",
   "?get_network_session@th105@@YAPAUCNetworkBase@1@XZ=0x0043B090",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
   "?initialize@CNumber@th105@@QAEXIHHHHHMHHH@Z=0x00414E40",
   "??3@YAXPAX@Z=0x006898EA",
@@ -15616,7 +15616,7 @@ address = "0x0043B0A0"
 symbol_base = "_clear_network_session"
 rel32_targets = [
   "?shutdown_412fd0@NetworkShutdownStateView@th105@@QAEXXZ=0x00412FD0",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
 ]
 dir32_targets = [
   "?g_network_session@th105@@3PAVCNetworkBase@1@A=?g_network_session@th105@@3PAUCNetworkBase@1@A",
@@ -15776,7 +15776,7 @@ notes = "Target-pinned exact /GS scenario render-entry trimming and fade transit
 address = "0x00434C60"
 symbol_base = "??1ScenarioRenderEntry9C@th105@@QAE@XZ"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
 ]
 dir32_targets = [
   "__ehhandler$??1ScenarioRenderEntry9C@th105@@QAE@XZ=__ehhandler$??1ScenarioRenderEntry9C@th105@@QAE@XZ",
@@ -15790,7 +15790,7 @@ address = "0x00455CD0"
 symbol_base = "?trim_render_entries_and_begin_fade_455cd0@CScenarioData@th105@@QAEXXZ"
 rel32_targets = [
   "__invalid_parameter_noinfo=0x0068A143",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??3@YAXPAX@Z=0x006898EA",
 ]
 dir32_targets = [
@@ -16377,7 +16377,7 @@ dir32_targets = ["_g_profile_menu_controller=_g_profile_menu_controller"]
 address = "0x00427C40"
 symbol_base = "?shutdown@ProfileEditor168@th105@@QAEXXZ"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
 ]
 dir32_targets = [
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
@@ -16466,7 +16466,7 @@ notes = "Current CMenuEnd result bootstrap. Game-mode switch chooses a two-key M
 address = "0x004404F0"
 symbol_base = "?initialize_runtime_4404f0@CMenuEnd@th105@@QAEXXZ"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
   "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
@@ -16475,7 +16475,7 @@ rel32_targets = [
   "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
   "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
   "??3@YAXPAX@Z=0x006898EA",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
   "?persist_story_progress_42d3f0@ScoreDataEndView@th105@@QAEXXZ=0x0042D3F0",
   "@__security_check_cookie@4=0x00689D25",
@@ -16484,7 +16484,7 @@ dir32_targets = [
   "__ehhandler$?initialize_runtime_4404f0@CMenuEnd@th105@@QAEXXZ=__ehhandler$?initialize_runtime_4404f0@CMenuEnd@th105@@QAEXXZ",
   "___security_cookie=___security_cookie",
   "?g_round_counter@th105@@3EA=?g_round_counter@th105@@3EA",
-  "?g_profile_back_texture@th105@@3IA=?g_profile_back_texture@th105@@3IA",
+  "?g_profile_back_texture@th105@@3UDesignTextureHandle@1@A=?g_profile_back_texture@th105@@3UDesignTextureHandle@1@A",
   "?g_profile_text_config@th105@@3PAEA=_profile_editor_records",
   "?g_profile_tile@th105@@3VCTile@@A=?g_profile_tile@th105@@3UProfileTileView@1@A",
   "??_C@_04NKJDMFKO@?$DMbr?$DO?$AA@=_connect_break_markup",
@@ -18065,7 +18065,7 @@ notes = "Current ProfileMenuBaseData cleanup @ 0x00431390, called by the canonic
 [[units.gpt-web-profile-menu-base-cleanup.functions]]
 address = "0x00431390"
 symbol_base = "?cleanup@ProfileMenuBaseData@th105@@QAEXXZ"
-rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
 dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
 
 
@@ -19946,7 +19946,7 @@ notes = "Complete310-byte CDesignBase vslot14 cleanup. Native four-byte handle v
 [[units.gpt-web-design-base-cleanup.functions]]
 address = "0x0040BB40"
 symbol_base = "?virtual_cleanup@CDesignBase@th105@@UAEXXZ"
-rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "__invalid_parameter_noinfo=0x0068A143", "??3@YAXPAX@Z=0x006898EA", "_memmove_s=0x00689EB0", "?_Xran@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@KAXXZ=0x0040C350"]
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "__invalid_parameter_noinfo=0x0068A143", "??3@YAXPAX@Z=0x006898EA", "_memmove_s=0x00689EB0", "?_Xran@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@KAXXZ=0x0040C350"]
 
 [[units.gpt-web-design-base-cleanup.functions.error_tails]]
 kind = "vc8-vector-out-of-range"
@@ -19979,7 +19979,7 @@ notes = "Genuine C++ source for text wrapper404D00 and backend4097A0, with real 
 
 [[units.gpt-web-text-texture-runtime.functions]]
 address = "0x00404D00"
-symbol_base = "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z"
+symbol_base = "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z"
 rel32_targets = [
   "?acquire@TextTextureTokenManager@th105@@QAEPAPAXAAUResourceHandleToken@2@@Z=0x00405090",
   "?release@TextTextureTokenManager@th105@@QAEXI@Z=0x00405200",
@@ -22819,7 +22819,7 @@ rel32_targets = [
   "?pop_control_word@SynchronizedInputState@th105@@QAEGPAG@Z=0x00428930",
   "?queue_control_word@BattleInputGate@th105@@QAEXG@Z=0x0042B270",
   "?rebuild_text@ScenarioTextRebuildCallView@th105@@QAEXPAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x00456760",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?reset_for_roster@ScenarioCharacterView@th105@@QAEXPAV12@@Z=0x0045F640",
   "?reset_runtime_state@CScenarioData@th105@@QAEXXZ=0x00457E40",
   "?scenario_play_sound@th105@@YAXPBDHE@Z=0x0043D030",
@@ -22857,7 +22857,7 @@ notes = "Scenario command interpreter456EB0 actual temporary lifetime proves thi
 address = "0x00435F00"
 symbol_base = "??1ScenarioTextEntryDC@th105@@QAE@XZ"
 rel32_targets = [
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "??3@YAXPAX@Z=0x006898EA",
 ]
 dir32_targets = [
@@ -22889,7 +22889,7 @@ rel32_targets = [
   "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
   "?assign_bytes@FilteredSpellStringAssignView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0",
   "?clear_rows@CsvReader@th105@@QAEXXZ=0x0040FDB0",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?erase@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAE?AViterator@12@V312@0@Z=0x004335C0",
   "?find@?$_Tree@V?$_Tset_traits@FU?$less@F@std@@V?$allocator@F@2@$0A@@std@@@std@@QAE?AViterator@12@ABF@Z=0x00432CB0",
   "?insert@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHUSpellRecordView@th105@@@2@@Z=0x00433890",
@@ -22926,7 +22926,7 @@ rel32_targets = [
   "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
   "?assign_bytes@FilteredSpellStringAssignView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0",
   "?clear_rows@CsvReader@th105@@QAEXXZ=0x0040FDB0",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?insert@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@QAE?AU?$pair@Viterator@?$_Tree@V?$_Tmap_traits@HUSpellRecordView@th105@@U?$less@H@std@@V?$allocator@U?$pair@$$CBHUSpellRecordView@th105@@@std@@@4@$0A@@std@@@std@@_N@2@ABU?$pair@$$CBHUSpellRecordView@th105@@@2@@Z=0x00433890",
   "?load@CsvReader@th105@@QAE_NPBD@Z=0x0040F150",
   "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
@@ -24295,7 +24295,7 @@ notes = "41FB80 portrait texture and effect bank binding, complete258-byte targe
 address = "0x0041FB80"
 symbol_base = "?bind_character@CSelect@th105@@QAEXHH@Z"
 rel32_targets = [
- "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "_character_key_to_name=0x0043BF80",
  "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
  "@__security_check_cookie@4=0x00689D25",
@@ -24387,7 +24387,7 @@ notes = "Full845-byte CSelect normal destructor canonical exact through actual p
 [[units.exact-first-select-destructor.functions]]
 address = "0x00424260"
 symbol_base = "??1CSelectLifetime@th105@@UAE@XZ"
-rel32_targets = ["?_Tidy@?$deque@PAVCInputManager@@V?$allocator@PAVCInputManager@@@std@@@std@@IAEXXZ=0x00420A80", "??1CInputManager@@UAE@XZ=0x00409D50", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1UiSprite94@th105@@QAE@XZ=0x0040AD50", "??1CTile@@UAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??3@YAXPAX@Z=0x006898EA", "??1CSprite@@UAE@XZ=0x0040AD50"]
+rel32_targets = ["?_Tidy@?$deque@PAVCInputManager@@V?$allocator@PAVCInputManager@@@std@@@std@@IAEXXZ=0x00420A80", "??1CInputManager@@UAE@XZ=0x00409D50", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1UiSprite94@th105@@QAE@XZ=0x0040AD50", "??1CTile@@UAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??3@YAXPAX@Z=0x006898EA", "??1CSprite@@UAE@XZ=0x0040AD50"]
 dir32_targets = ["_title_color_vtable_anchor=_title_color_vtable_anchor_external", "__ehhandler$??1CSelectLifetime@th105@@UAE@XZ=_select_destructor_eh", "___security_cookie=___security_cookie", "??_7CSelectLifetime@th105@@6B@=??_7CSelect@th105@@6B@", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@", "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback"]
 
 [units.exact-first-replay-storage-constructor]
@@ -24473,8 +24473,8 @@ notes = "Complete447080 result-menu selected portrait/list refresh."
 address = "0x00447080"
 symbol_base = "?refresh_selected_character@CMenuResult@th105@@AAEXXZ"
 rel32_targets = [
- "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
- "?load_texture@ResultTextureCall@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?load_texture@ResultTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
  "_get_scenario_name=0x0043BF80",
  "?entry_count@ResultListBase@th105@@QBEHXZ=0x004395E0",
  "@__security_check_cookie@4=0x00689D25",
@@ -24636,7 +24636,7 @@ notes = "Complete465420 Fighter cutin resource destruction; actual0x94 sprite li
 [[units.exact-first-fighter-cutin-lifetime.functions]]
 address = "0x00465420"
 symbol_base = "??1FighterCutinLifetime@th105@@QAE@XZ"
-rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
 dir32_targets = [
  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
  "__ehhandler$??1FighterCutinLifetime@th105@@QAE@XZ=__ehhandler$??1ScenarioRenderEntry9C@th105@@QAE@XZ",
@@ -24706,7 +24706,7 @@ rel32_targets = [
  "?wait_for_exit@AsyncSceneThreadControl@th105@@QAEXXZ=0x00414640",
  "?persist@ScoreData@th105@@QAEXXZ=0x0042D3F0",
  "?shutdown@ShutdownSocketView@th105@@QAEXXZ=0x00412FD0",
- "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "?destroy_shared_battle_runtime@th105@@YAXXZ=0x004394E0",
  "?shutdown_profile_ui@th105@@YAEXZ=0x004402E0",
  "?clear_common_resources@SceneBootstrapDeckRefresh@th105@@QAEXXZ=0x00433990",
@@ -26224,7 +26224,7 @@ dir32_targets = [
   "__ehhandler$??0ProfileDeckConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@HPAVCSprite@@@Z=__ehhandler$??0ProfileDeckConstructorView@th105@@QAE@PAUPlayerSlotRecord@1@HPAUUiSprite94@1@@Z",
 ]
 rel32_targets = [
-  "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90",
+  "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
   "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0",
   "??0CDesignBase@th105@@QAE@XZ=0x004217F0",
   "??0ProfileDeckResourceGroupNative20@th105@@QAE@XZ=0x0042E880",
@@ -26235,7 +26235,7 @@ rel32_targets = [
   "_strcpy_s=0x0068AD95",
   "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0",
   "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
   "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
   "__invalid_parameter_noinfo=0x0068A143",
@@ -26302,8 +26302,8 @@ notes = "Complete439-byte selected-card display root; source440 remains nonexact
 address = "0x00448B40"
 symbol_base = "?show_record@ProfileDeckDisplayView@th105@@QAEXPAUSpellRecordView@2@@Z"
 rel32_targets = [
- "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
- "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
 ]
 
 [units.exact-first-wave-resource-release-linked]
@@ -26427,7 +26427,7 @@ address = "0x00462CE0"
 symbol_base = "??1CharacterDestructionView@th105@@UAE@XZ"
 rel32_targets = [
  "__invalid_parameter_noinfo=0x0068A143",
- "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "?_Xran@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@KAXXZ=0x0040C350",
  "?erase@?$vector@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@UDesignTextureHandle@th105@@V?$allocator@UDesignTextureHandle@th105@@@std@@@2@V32@0@Z=0x0040C270",
  "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
@@ -26568,7 +26568,7 @@ symbol_base = "??0GuideOverlay@th105@@QAE@XZ"
 [[units.exact-first-guide-overlay-lifetime.functions]]
 address = "0x0043F330"
 symbol_base = "??1GuideOverlay@th105@@QAE@XZ"
-rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70"]
 
 [units.exact-first-bgm-stream-constructor]
 kind = "linked_candidate"
@@ -26939,8 +26939,8 @@ rel32_targets = [
  "??3@YAXPAX@Z=0x006898EA",
  "?_Buynode@?$list@URebuildEntryView@th105@@V?$allocator@URebuildEntryView@th105@@@std@@@std@@IAEPAU_Node@?$_List_nod@URebuildEntryView@th105@@V?$allocator@URebuildEntryView@th105@@@std@@@2@PAU342@0ABURebuildEntryView@th105@@@Z=0x00455BE0",
  "?_Incsize@?$list@URebuildEntryView@th105@@V?$allocator@URebuildEntryView@th105@@@std@@@std@@IAEXI@Z=0x00455E50",
- "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
- "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "__invalid_parameter_noinfo=0x0068A143",
 ]
 
@@ -26958,7 +26958,7 @@ symbol_base = "??1RenderTimelineEntry@th105@@QAE@XZ"
 rel32_targets = [
  "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90",
  "?_Tidy@?$deque@VCSpriteEx@@V?$allocator@VCSpriteEx@@@std@@@std@@IAEXXZ=0x00420AF0",
- "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "__invalid_parameter_noinfo=0x0068A143",
 ]
 
@@ -27634,7 +27634,7 @@ notes = "Complete JP1.06a connect list policy; source present, nonexact. No byte
 address = "0x00443130"
 symbol_base = "?load_address_list_443130@CMenuConnectAddressListView@th105@@QAE_NXZ"
 rel32_targets = [
- "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
  "??_U@YAPAXI@Z=0x00665B8A",
  "_strtok_s=0x0068B1BC",
@@ -27644,7 +27644,7 @@ rel32_targets = [
  "?push_back@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@2@@Z=0x0040F8F0",
  "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
  "??_V@YAXPAX@Z=0x0068AA26",
- "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+ "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
  "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
  "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
  "?bind_vertical@MenuCursorState@th105@@QAEXPAVCInputManager@@HH@Z=0x00420520",
@@ -27664,7 +27664,7 @@ notes = "Complete JP1.06a connect list policy; source present, nonexact. No byte
 address = "0x004434B0"
 symbol_base = "?load_history_list_4434b0@CMenuConnectHistoryListView@th105@@QAE_NXZ"
 rel32_targets = [
- "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+ "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
  "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90",
  "__invalid_parameter_noinfo=0x0068A143",
  "?_Growmap@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXI@Z=0x0040FE30",
@@ -27673,7 +27673,7 @@ rel32_targets = [
  "??$?HDU?$char_traits@D@std@@V?$allocator@D@1@@std@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@ABV10@PBD@Z=0x00408C40",
  "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@ABV12@II@Z=0x00408B40",
  "??3@YAXPAX@Z=0x006898EA",
- "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+ "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
  "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
  "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
  "@__security_check_cookie@4=0x00689D25",
@@ -27828,7 +27828,7 @@ notes = "Complete826-byte CMenuPractice constructor with shared real cursor/look
 address = "0x00446170"
 symbol_base = "??0CMenuPractice@th105@@QAE@PAUPracticeOwnerView@1@@Z"
 dir32_targets = ["__ehhandler$??0CMenuPractice@th105@@QAE@PAUPracticeOwnerView@1@@Z=__ehhandler$??0CMenuPractice@th105@@QAE@PAUPracticeOwnerView@1@@Z", "___security_cookie=___security_cookie", "_g_scene_mode=_g_scene_mode", "??_7CMenuPractice@th105@@6B@=??_7CMenuPractice@th105@@6B@", "_select_tile_vtable_anchor=_select_tile_vtable_anchor", "??1?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ=??1?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ", "??0?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ=??0?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE@XZ", "?g_practice_settings@th105@@3PAUPracticeBattleSettingsView@1@A=?g_battle_input_gate@th105@@3PAUBattleInputGate@1@A", "_g_active_menu_input=_g_active_menu_input", "??_C@_0CA@GGKAPHAB@data?1menu?1practice?1practice?4dat?$AA@=??_C@_0CA@GGKAPHAB@data?1menu?1practice?1practice?4dat?$AA@", "??_C@_0CE@DEKBADMH@data?1menu?1practice?1Weather_list?4@=??_C@_0CE@DEKBADMH@data?1menu?1practice?1Weather_list?4@", "?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
-rel32_targets = ["??0GuideOverlay@th105@@QAE@XZ=0x0043F540", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "__invalid_parameter_noinfo=0x0068A143", "?insert@?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@2@V32@ABQAUUiDesignObject@th105@@@Z=0x004460E0", "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?configure_subcursor@CMenuPractice@th105@@QAEXH@Z=0x00445C80"]
+rel32_targets = ["??0GuideOverlay@th105@@QAE@XZ=0x0043F540", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "__invalid_parameter_noinfo=0x0068A143", "?insert@?$vector@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@std@@QAE?AV?$_Vector_iterator@PAUUiDesignObject@th105@@V?$allocator@PAUUiDesignObject@th105@@@std@@@2@V32@ABQAUUiDesignObject@th105@@@Z=0x004460E0", "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?configure_subcursor@CMenuPractice@th105@@QAEXH@Z=0x00445C80"]
 
 [units.exact-first-config-menu-constructor]
 kind = "probe"
@@ -27841,7 +27841,7 @@ notes = "Complete 868-byte CMenuConfig constructor; canonical exact after clampi
 [[units.exact-first-config-menu-constructor.functions]]
 address = "0x00441520"
 symbol_base = "??0CMenuConfig@th105@@QAE@XZ"
-rel32_targets = ["??0GuideOverlay@th105@@QAE@XZ=0x0043F540", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "?get_game_config@th105@@YAPAUGameConfig@1@XZ=0x0043AF10", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "__invalid_parameter_noinfo=0x0068A143", "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390"]
+rel32_targets = ["??0GuideOverlay@th105@@QAE@XZ=0x0043F540", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "?get_game_config@th105@@YAPAUGameConfig@1@XZ=0x0043AF10", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "__invalid_parameter_noinfo=0x0068A143", "?load_texture_value@TitleResourceManagerValueView@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390"]
 dir32_targets = ["__ehhandler$??0CMenuConfig@th105@@QAE@XZ=__ehhandler$??0CMenuConfig@th105@@QAE@XZ", "___security_cookie=___security_cookie", "_g_scene_mode=_g_scene_mode", "??_7CMenuConfig@th105@@6B@=??_7CMenuConfig@th105@@6B@", "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback", "??0CSprite@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ", "??_C@_0BM@NMNIHFEF@data?1menu?1config?1config?4dat?$AA@=_menu_config_design_path", "_g_active_menu_input=_g_active_menu_input", "??_C@_0BL@OCLANECO@data?1menu?1config?1mater?4bmp?$AA@=_menu_config_meter_path", "?g_title_resource_manager_value@th105@@3UTitleResourceManagerValueView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
 
 [units.exact-first-connect-join-state]
@@ -28211,7 +28211,7 @@ notes = "Complete CMenuConnect normal destructor443C30/315 canonical exact with 
 [[units.exact-first-connect-menu-lifetime.functions]]
 address = "0x00443C30"
 symbol_base = "??1CMenuConnectLifetime@th105@@UAE@XZ"
-rel32_targets = ["?shutdown@ConnectProfileListView@th105@@QAEXXZ=0x0043A0A0", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??1TitleDesignResource@th105@@QAE@XZ=0x00421890", "??3@YAXPAX@Z=0x006898EA", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90"]
+rel32_targets = ["?shutdown@ConnectProfileListView@th105@@QAEXXZ=0x0043A0A0", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??1TitleDesignResource@th105@@QAE@XZ=0x00421890", "??3@YAXPAX@Z=0x006898EA", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90"]
 dir32_targets = ["??_7CMenuConnectLifetime@th105@@6B@=??_7CMenuConnect@th105@@6B@", "??_7CNumber@th105@@6B@=??_7CNumber@th105@@6B@", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@", "?g_connect_profile_list@th105@@3UConnectProfileListView@1@A=_g_profile_name_list"]
 
 [units.exact-first-wave-service-lifetime]
@@ -28655,7 +28655,7 @@ edges = [
 
 [[units.gpt-web-design-base-cleanup.functions]]
 address = "0x00404D70"
-symbol_base = "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z"
+symbol_base = "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z"
 rel32_targets = [
  "?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800",
  "?release@TextureTokenManager@th105@@QAEXI@Z=0x00405200",
@@ -28797,7 +28797,7 @@ notes = "Actual global CTile member/copy ownership; complete page1155/native1106
 [[units.exact-first-file-list-finalize.functions]]
 address = "0x0043A590"
 symbol_base = "?finalize@CFileList@th105@@UAEXXZ"
-rel32_targets = ["??0TextFontOwner194@th105@@QAE@XZ=0x00411430", "_strcpy_s=0x0068AD95", "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0", "__invalid_parameter_noinfo=0x0068A143", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90", "?_Tidy@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXXZ=0x00420AF0", "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50", "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00", "?push_back_value@FileListUnsignedDequePushView@th105@@QAEXABI@Z=0x00417240", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?_Growmap@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXI@Z=0x00439D70", "??2@YAPAXI@Z=0x00689DCB", "??0CTile@@QAE@ABV0@@Z=0x004396A0", "?assign_bytes@FileListStringAssignBytesView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0", "??3@YAXPAX@Z=0x006898EA", "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0", "@__security_check_cookie@4=0x00689D25"]
+rel32_targets = ["??0TextFontOwner194@th105@@QAE@XZ=0x00411430", "_strcpy_s=0x0068AD95", "?configure@TextFontOwner194@th105@@QAEXPBUTextFontConfig128@2@@Z=0x004115A0", "__invalid_parameter_noinfo=0x0068A143", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?_Tidy@?$deque@IV?$allocator@I@std@@@std@@IAEXXZ=0x00413A90", "?_Tidy@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXXZ=0x00420AF0", "?append@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x00408A50", "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00", "?push_back_value@FileListUnsignedDequePushView@th105@@QAEXABI@Z=0x00417240", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?_Growmap@?$deque@VCTile@@V?$allocator@VCTile@@@std@@@std@@IAEXI@Z=0x00439D70", "??2@YAPAXI@Z=0x00689DCB", "??0CTile@@QAE@ABV0@@Z=0x004396A0", "?assign_bytes@FileListStringAssignBytesView@th105@@QAEAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@PBDI@Z=0x004021C0", "??3@YAXPAX@Z=0x006898EA", "??1TextFontOwner194@th105@@QAE@XZ=0x004114C0", "@__security_check_cookie@4=0x00689D25"]
 
 [[units.exact-first-file-list-finalize.functions]]
 address = "0x00439D70"
@@ -29705,7 +29705,7 @@ notes = "Complete178-byte preview policy using actual CProfileCharacterSelect an
 [[units.exact-first-profile-character-preview.functions]]
 address = "0x004484F0"
 symbol_base = "?refresh_character_preview@CProfileCharacterSelect@th105@@AAEXXZ"
-rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80", "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90", "@__security_check_cookie@4=0x00689D25"]
+rel32_targets = ["?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "?character_key_to_name@th105@@YAPBDH@Z=0x0043BF80", "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90", "@__security_check_cookie@4=0x00689D25"]
 dir32_targets = ["_profile_stand_path_format=_scenario_stand_path_format"]
 
 [[units.cross-v106a-info-manager-base-lifetime.functions]]
@@ -30093,8 +30093,8 @@ rel32_targets = [
   "?set_mode@ProfileMenuControllerRuntime@th105@@QAEXE@Z=0x0040E7F0",
   "?take_primary_text@ProfileMenuControllerRuntime@th105@@QAEPADXZ=0x0040EB60",
   "?take_secondary_text@ProfileMenuControllerRuntime@th105@@QAEPADXZ=0x0040EB70",
-  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
-  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
+  "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
+  "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
   "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
 ]
 
@@ -30233,7 +30233,7 @@ address = "0x00458340"
 symbol_base = "?spawn@?$SystemEffectManager@VSystemEffectObject@@@th105@@QAEPAVSystemEffectObject@@PBDFMM@Z"
 rel32_targets = [
  "?acquire_and_link_object@?$TObjectManagerBase@VSystemEffectObject@@VSystemEffectObjectBase@@@@QAEPAVSystemEffectObject@@XZ=0x00457110",
- "?load_texture@SpawnTextureCall@th105@@QAE?AUTextureHandleResult@2@PBDPAI1@Z=0x00404C90",
+ "?load_texture@SpawnTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90",
  "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160",
 ]
 dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]

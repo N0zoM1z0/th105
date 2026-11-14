@@ -13,7 +13,7 @@
 namespace th105 {
 
 struct ProfileMenuBaseData {
-    unsigned int texture_000;
+    DesignTextureHandle texture_000;
     unsigned char reserved_004[0x94];
     std::string string_098;
     std::string string_0b4;
@@ -51,8 +51,8 @@ struct ProfileStringTemporary {
 };
 
 struct ProfileEditor168 {
-    unsigned texture_primary_000;
-    unsigned texture_secondary_004;
+    DesignTextureHandle texture_primary_000;
+    DesignTextureHandle texture_secondary_004;
     void *source_008;
     CTile primary_tile_00c;
     CTile secondary_tile_0b0;

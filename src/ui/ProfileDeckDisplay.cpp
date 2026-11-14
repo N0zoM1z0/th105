@@ -15,7 +15,7 @@ extern unsigned g_spell_texture_upload_state;
 struct ProfileDeckDisplayView {
  unsigned char prefix_00[0x44];
  UiDesignObject *objects_44[20];
- unsigned texture_94;
+ DesignTextureHandle texture_94;
  CSprite sprite_98;
  unsigned field_12c;
  CSprite sprite_130, sprite_1c4;

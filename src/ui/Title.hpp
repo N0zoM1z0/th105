@@ -46,9 +46,8 @@ typedef char UiDesignTreeIterator_size_must_be_0x08[
 typedef char UiDesignTree_size_must_be_0x14[
     sizeof(UiDesignTree) == 0x14 ? 1 : -1];
 
-struct TextureHandleResult {
-    unsigned int value;
-};
+// Texture loaders return the same four-byte handle class the binder takes.
+typedef DesignTextureHandle TextureHandleResult;
 
 // In the pinned 1.06a target, 0x00702798 is the concrete
 // CHandleManager<IDirect3DTexture9 *> instance.
@@ -66,9 +65,12 @@ struct TitleResourceManager : CHandleManager4 {
         unsigned int height,
         unsigned int *width_out,
         unsigned int *height_out);
+    // The packed-token and handle-object overloads have identical bodies;
+    // the linker folds them into one function at 0x404D70.
     unsigned char release_title_resource_handle(unsigned int handle);
+    unsigned char release_title_resource_handle(DesignTextureHandle handle);
     // Releases a stored handle and clears it through the reference.
-    void release_texture(unsigned int &handle)
+    void release_texture(DesignTextureHandle &handle)
     {
         release_title_resource_handle(handle);
         handle = 0;

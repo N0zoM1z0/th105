@@ -94,6 +94,35 @@ amount in EAX. The CRT macro `__min(counter_558 + amount, 500)` from `<stdlib.h>
 is exact. A named `capped` local, with an `if` or a ternary, lands the amount in
 EDX, and `TH105_MIN` gives `jle` for `jl`.
 
+**Texture handles are a 4-byte class, and the release has two overloads.**
+`TitleResourceManager::release_title_resource_handle` 0x404D70 serves both
+`release(unsigned)` and `release(DesignTextureHandle)`. The bodies are
+identical, so the linker folds them into one function.
+
+The evidence:
+- All 81 target call sites push the value directly.
+- With a class-only parameter, `unsigned` arguments build a temporary in place
+  and regress about 30 callers. The background vectors provably stay
+  `vector<unsigned>`: class-typed vectors break the BG constructors through the
+  shared scalar `_Assign_n` 0x40C2E0.
+- With class-typed handle fields and the class overload, the parked
+  in-memory handle tests become exact: `Character_dtor` 0x462CE0 (905),
+  `GuideOverlay::~GuideOverlay` 0x43F330, `ProfileEditor168::update_selection`
+  0x427C60 (dead `push ecx` included), `ProfileMenuBaseData::cleanup` 0x431390,
+  and `FighterCutinLifetime` 0x465420.
+
+What changed:
+- `TextureHandleResult` is now an alias of `DesignTextureHandle`.
+- `release_texture` takes `DesignTextureHandle &`.
+- `ConnectTextureHandle` is unified into `DesignTextureHandle`.
+- About twenty handle fields and four profile globals are
+  `DesignTextureHandle`, with the globals renamed in `reccmp-relocations.csv`.
+
+`NetworkResultFinalize`'s view of `texture_278` stays `unsigned`: its
+virtual `CSprite::set_texture(unsigned, ...)` call schedules differently with
+a class argument. A matched impacted-unit replay (811 results) shows no
+regressions.
+
 **The texture binder takes a `DesignTextureHandle` by value.** Its call sites
 show the parameter's type:
 - on-device-lost 0x401610 builds the argument in place (`push 0; push ecx;

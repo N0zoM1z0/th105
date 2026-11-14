@@ -13,7 +13,7 @@ struct ShutdownSocketView { void shutdown(); };
 struct CNetworkBase {
     virtual ~CNetworkBase();
     unsigned char unknown_004[0x274];
-    unsigned texture_278;
+    DesignTextureHandle texture_278;
     unsigned char unknown_27c[0x138];
     ShutdownSocketView socket_3b4;
 };

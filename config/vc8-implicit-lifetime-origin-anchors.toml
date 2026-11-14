@@ -33,7 +33,7 @@ sha256 = "2b3618e0a36d90b58dc22c25982d74b5e31d6de489d2083e49dd1a37f17cc986"
 
 [[sources]]
 path = "src/ui/ResultMenu.hpp"
-sha256 = "8f9decc8998cb7477fd97c92ebc70a79c3faed9cb497b1ab115ccdc2fa74143c"
+sha256 = "99536287cd60076b8f599aac7962d61127609686a97652d2cbd35a5d02fee880"
 
 [[sources]]
 path = "src/engine/TextureHandleValue.hpp"

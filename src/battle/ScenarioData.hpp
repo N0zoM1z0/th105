@@ -94,7 +94,7 @@ struct ScenarioResultResource {
     CDesignBase design_008;
     ScenarioResultPositionObject *primary_03c[4];
     ScenarioResultSecondaryObject *secondary_04c[3];
-    unsigned int texture_058;
+    DesignTextureHandle texture_058;
     CTile tile_05c;
     int values_100[3];
     unsigned int colors_10c[3];
@@ -126,7 +126,7 @@ typedef char ScenarioResultResource_alpha_offset_must_be_0x124[
     offsetof(ScenarioResultResource, alpha_124) == 0x124 ? 1 : -1];
 
 struct ScenarioRenderEntry9C {
-    unsigned int resource_handle_000;
+    DesignTextureHandle resource_handle_000;
     CSprite sprite_004;
     unsigned char alpha_098;
     signed char delta_099;
@@ -139,7 +139,7 @@ typedef char ScenarioRenderEntry9C_size_must_be_0x9c[
     sizeof(ScenarioRenderEntry9C) == 0x9c ? 1 : -1];
 
 struct ScenarioTextEntryDC {
-    unsigned int resource_handle_000;
+    DesignTextureHandle resource_handle_000;
     CSprite sprite_004;
     std::string text_098;
     unsigned char flag_0b4, flag_0b5, flag_0b6, flag_0b7;

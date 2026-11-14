@@ -856,7 +856,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00427BC0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00427BD0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00427C40,authored_game,ui,authored,observed,canonical-exact-authored
-0x00427C60,authored_game,ui,authored,observed,ui-input-result-policy-authored-106a
+0x00427C60,authored_game,ui,authored,observed,canonical-exact-authored
 0x00427DB0,authored_game,ui,authored,observed,profile-editor-render-authored-106a
 0x00428000,authored_game,ui,authored,observed,canonical-exact-authored
 0x00428030,authored_game,battle,authored,observed,canonical-exact-authored
@@ -1001,7 +1001,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004306D0,compiler_generated,runtime,exclude,observed,event-background-deque-push-generated-106a
 0x00430750,authored_game,battle,authored,observed,canonical-exact-authored
 0x004309F0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00431390,authored_game,ui,authored,observed,profile-menu-base-cleanup-authored-106a
+0x00431390,authored_game,ui,authored,observed,canonical-exact-authored
 0x004313B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x004313F0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00431410,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
@@ -1327,7 +1327,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043E2E0,authored_game,engine,authored,observed,scene-resource-bootstrap-authored-106a
 0x0043F1B0,authored_game,input,authored,observed,canonical-exact-authored
 0x0043F260,compiler_generated,input,exclude,observed,vc8-generated-replay-storage-destructor-106a
-0x0043F330,authored_game,ui,authored,observed,guide-overlay-runtime-authored-106a
+0x0043F330,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043F390,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043F450,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043F4C0,authored_game,ui,authored,observed,canonical-exact-authored
@@ -1886,7 +1886,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00461B70,authored_game,battle,authored,observed,fighter-pat-resource-loader-authored-106a
 0x00462AA0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x00462AB0,authored_game,characters,authored,observed,canonical-exact-authored
-0x00462CE0,authored_game,characters,authored,observed,character-base-destructor-authored-106a
+0x00462CE0,authored_game,characters,authored,observed,canonical-exact-authored
 0x00463070,authored_game,battle,authored,observed,canonical-exact-authored
 0x004631C0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004633A0,authored_game,battle,authored,observed,canonical-exact-authored
@@ -1926,7 +1926,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004652B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004652F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004653F0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00465420,authored_game,battle,authored,observed,fighter-sprite-resource-cleanup-authored-106a
+0x00465420,authored_game,battle,authored,observed,canonical-exact-authored
 0x00465480,compiler_generated,render,exclude,observed,vc8-generated-spriteex-vector-comdats-106a
 0x004654B0,compiler_generated,render,exclude,observed,vc8-generated-spriteex-vector-comdats-106a
 0x004654F0,authored_game,battle,authored,observed,background-set-transition-authored-106a

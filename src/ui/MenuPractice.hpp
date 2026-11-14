@@ -45,7 +45,7 @@ public:
     GuideOverlay guide_008;
     unsigned char field_0b0;
     unsigned char reserved_0b1[3];
-    unsigned int texture_0b4;
+    DesignTextureHandle texture_0b4;
     CTile weather_tile_0b8;
     unsigned int unknown_15c;
     CDesignBase design_160;

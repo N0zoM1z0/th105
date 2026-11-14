@@ -115,13 +115,13 @@ private:
     std::string scenario_name_10;
     SelectIntVector16 scenario_ids_2c;
     int scenario_count_3c;
-    unsigned int texture_40;
+    DesignTextureHandle texture_40;
     CSprite color_44;
-    unsigned int texture_d8;
+    DesignTextureHandle texture_d8;
     CSprite color_dc;
-    unsigned int texture_170;
+    DesignTextureHandle texture_170;
     CTile color_174;
-    unsigned int texture_218;
+    DesignTextureHandle texture_218;
     CSprite color_21c;
     UiDesignObject *selection_data_2b0;
     UiDesignObject *scenario_data_2b4;

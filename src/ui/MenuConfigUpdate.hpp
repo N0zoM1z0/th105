@@ -23,7 +23,7 @@ struct CMenuConfigUpdateView {
     GuideOverlay guide_008;
     bool option_b0;
     unsigned char reserved_b1[3];
-    unsigned texture_b4;
+    DesignTextureHandle texture_b4;
     CSprite sprites_b8[2];
     unsigned grid_width_1e0;
     int grid_height_1e4;

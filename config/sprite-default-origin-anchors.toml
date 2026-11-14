@@ -37,7 +37,7 @@ normalized_sha256 = "da2ca133895ba338cee4ff7d141f7236c41e95e0813edad4a4a6d69e7f6
 
 [[sources]]
 path = "src/ui/GuideOverlay.hpp"
-normalized_sha256 = "c6d62e0e91a30d9d930c0b53b11ffb75959716f2a87dc511c6febc56777bbc6d"
+normalized_sha256 = "fb73365638c341703905687a11788da4417b3ee6c1533b27deed0d2cf133493b"
 
 [[anchors]]
 address = "0x0041F6E0"

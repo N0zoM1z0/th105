@@ -39,10 +39,10 @@ extern ProfileRenderListView g_profile_overlay_list;
 extern ProfileRenderListView g_profile_footer_background;
 extern ProfileRenderListView g_profile_player_list;
 extern UiDesignObject *g_profile_player_buttons[2];
-extern unsigned int g_profile_back_texture;
-extern unsigned int g_profile_cursor_texture;
-extern unsigned int g_profile_list_seat_texture;
-extern unsigned int g_profile_message_texture;
+extern DesignTextureHandle g_profile_back_texture;
+extern DesignTextureHandle g_profile_cursor_texture;
+extern DesignTextureHandle g_profile_list_seat_texture;
+extern DesignTextureHandle g_profile_message_texture;
 
 static CSprite *network_profile_sprite(CNetworkBase *session, unsigned offset)
 {

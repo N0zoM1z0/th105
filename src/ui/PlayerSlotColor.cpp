@@ -11,7 +11,7 @@ extern "C" const char profile_ui_effect_label[];
 namespace th105 {
 
 struct PlayerSlotColorLayout {
-    unsigned int texture_000;
+    DesignTextureHandle texture_000;
     CSprite sprite_004;
     std::string string_098;
     std::string string_0b4;

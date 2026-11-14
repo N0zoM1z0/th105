@@ -18,7 +18,7 @@ struct ScenarioResultResourceOwner128 {
     CDesignBase design_008;
     UiDesignObject *objects_03c[4];
     UiDesignObject *secondary_04c[3];
-    unsigned int texture_058;
+    DesignTextureHandle texture_058;
     CTile tile_05c;
     int secondary_modes_100[3];
     unsigned char unknown_10c[0x1c];

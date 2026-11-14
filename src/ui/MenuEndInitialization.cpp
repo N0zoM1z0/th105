@@ -20,7 +20,7 @@ ScoreDataEndView *__cdecl get_score_data_end_view();
 int __cdecl selector_random_roll(int limit);
 
 extern unsigned char g_round_counter;
-extern unsigned int g_profile_back_texture;
+extern DesignTextureHandle g_profile_back_texture;
 extern unsigned char g_profile_text_config[];
 
 void CMenuEnd::initialize_runtime_4404f0()

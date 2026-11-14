@@ -8,7 +8,7 @@ namespace th105 {
 struct GuideOverlay {
     bool visible;
     unsigned char reserved_01[3];
-    unsigned int texture_04;
+    DesignTextureHandle texture_04;
     CSprite sprite_08;
     float scroll_9c;
     float wrap_width_a0;

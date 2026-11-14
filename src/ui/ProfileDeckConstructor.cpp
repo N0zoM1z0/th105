@@ -59,13 +59,13 @@ public:
     CSprite *stand_0c;
     CDesignBase design_10;
     UiDesignObject *objects_44[20];
-    unsigned texture_94;
+    DesignTextureHandle texture_94;
     CSprite sprite_98;
     unsigned field_12c;
     CSprite sprite_130, sprite_1c4;
-    unsigned texture_258;
+    DesignTextureHandle texture_258;
     CTile tile_25c;
-    unsigned texture_300;
+    DesignTextureHandle texture_300;
     CSprite sprite_304;
     ProfileDeckResourceGroupNative20 resources_398;
     SpellTree *local_tree_3b8, *common_tree_3bc;
