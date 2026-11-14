@@ -103,6 +103,18 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   loader with the neighbouring `Character` constructor and destructor sources (in
   address order). It changes neither function, so that partial TU composition does
   not explain it.
+
+  **LTCG explains the `back()` case.** In a minimal probe built with `/GL` and
+  `/LTCG`, the inlined `deque::back()` deref is emitted off-first
+  (`mov edx, [q+off]; add edx, [q+size]`), exactly as in the target. The same
+  probe under plain `/O2` is size-first. Under LTCG the inlinee keeps its
+  out-of-line operand order. `operator[]` stays size-first under LTCG too, so the
+  `GameConfig_save` and spell-parser cases need another explanation. The PAT
+  loader therefore needs a linked LTCG unit. That is blocked on missing real
+  definitions: `PatFileReaderOwner` construction, destruction and `open`, and
+  `PatPaletteService::load_palette`, are views with no source body yet. The other
+  dependencies (`PatRecord88`, `FrameData`, `load_texture`,
+  `character_key_to_name`, globals and `wsprintfA`) exist.
 - **Clash resolver tail merging.** `resolve_group_b_object_clash` 0x46CA80 is
   557 bytes against 542. The target merges the equal case into the final
   `8/8` block with the result in EAX, and stores slot-first only there. All 24
