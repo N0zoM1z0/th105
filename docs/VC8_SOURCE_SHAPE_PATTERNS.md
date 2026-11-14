@@ -310,6 +310,13 @@ target lacks, so LTCG does not explain the register.
   into AX and stores it to +0x176 after setting up the next call; VC8 uses CX and
   stores at once. Inlining the record pointer and swapping the final flag
   stores are neutral.
+- **`release_all_tracked` EAX/EDX, fourth member.** The system-effect release
+  0x436E60 has the same single difference (EDX for the handle token). A range
+  `erase(begin(), end())` becomes an out-of-line call, and a `std::list &`
+  local shrinks the body to 101 bytes.
+- **`CGage::render` 0x41B3F0 case 1.** The `fraction * height` product still
+  loads `height` first. Removing the `const float &height` binding regresses to
+  +346, swapping the factors is neutral, and computing `top` earlier regresses.
 - **LTCG `this` in ESI.** `PackageFileIndexNode_ctor` 0x41B7F0 receives `this`
   in ESI and returns it from there. Only a linked unit can match it.
 - **RTM compiler control.** Building 0x431390, 0x427390, 0x46C5B0 and 0x414E40
