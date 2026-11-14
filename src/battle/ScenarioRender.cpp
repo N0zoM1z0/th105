@@ -14,7 +14,6 @@
 #include <stddef.h>
 
 namespace th105 {
-struct CInputManager;
 
 void CScenarioData::render()
 {

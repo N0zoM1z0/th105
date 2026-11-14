@@ -7,6 +7,8 @@
 #include <list>
 #include <string>
 #include <stddef.h>
+class CInputManager;
+
 namespace th105 {
 struct RebuildEntryView {
     unsigned resource_handle_000;
@@ -26,7 +28,6 @@ RebuildEntryView::~RebuildEntryView()
 {
     g_title_resource_manager.release_title_resource_handle(resource_handle_000);
 }
-struct CInputManager;
 class ScenarioTextRebuildView {
 public:
     virtual void configure(CInputManager *);

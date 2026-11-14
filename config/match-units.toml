@@ -599,7 +599,7 @@ notes = "TH105 1.06a cross-version exact logical-input mask builder with current
 
 [[units.cross-v106a-input-logical.functions]]
 address = "0x00409F70"
-symbol_base = "?update_player_input_counters_from_raw@CInputManagerEx@th105@@UAEXXZ"
+symbol_base = "?update_player_input_counters_from_raw@CInputManagerEx@@UAEXXZ"
 rel32_targets = ["CInputManager_update_player_input_counters_from_raw=0x00409DA0"]
 
 # Structural-fingerprint migration wave.  The normalized instruction shape was
@@ -9407,11 +9407,11 @@ notes = "Current MenuCursorState horizontal/vertical input binders. The two 63-b
 
 [[units.cross-v106a-menu-cursor-bindings.functions]]
 address = "0x004204E0"
-symbol_base = "?bind_horizontal@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z"
+symbol_base = "?bind_horizontal@MenuCursorState@th105@@QAEXPAVCInputManager@@HH@Z"
 
 [[units.cross-v106a-menu-cursor-bindings.functions]]
 address = "0x00420520"
-symbol_base = "?bind_vertical@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z"
+symbol_base = "?bind_vertical@MenuCursorState@th105@@QAEXPAVCInputManager@@HH@Z"
 
 [units.cross-v106a-menu-config-update]
 kind = "probe"
@@ -10458,7 +10458,7 @@ rel32_targets = [
 
 [[units.cross-v106a-scenario-runtime.functions]]
 address = "0x00454FE0"
-symbol_base = "?configure@CScenarioData@th105@@UAEXPAUCInputManager@2@@Z"
+symbol_base = "?configure@CScenarioData@th105@@UAEXPAVCInputManager@@@Z"
 rel32_targets = [
   "?configure@ScenarioEffectOwner194@th105@@QAEXPBUScenarioEffectConfig128@2@@Z=0x004115A0",
   "?reset@ScenarioResultResource@th105@@QAEXXZ=0x004549E0",
@@ -14753,7 +14753,7 @@ symbol_base = "?reset_runtime@CNetworkBaseResetView@th105@@QAEXXZ"
 rel32_targets = [
   "?enter@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC30",
   "?leave@CriticalSectionWrapper@th105@@QAEXXZ=0x0040AC40",
-  "?reset_counters@CInputManager@th105@@QAEXXZ=0x00409F40",
+  "?reset_counters@CInputManager@@QAEXXZ=0x00409F40",
   "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80",
 ]
 
@@ -15592,13 +15592,13 @@ notes = "Target-pinned 0x0043B640 selected-input initialization. The combined in
 address = "0x0043B640"
 symbol_base = "?rebind_selected_input_43b640@th105@@YAXHC@Z"
 rel32_targets = [
-  "?get_active_source@CInputManagerCluster@th105@@QBECXZ=0x0040A4E0",
+  "?get_active_source@CInputManagerCluster@@QBECXZ=0x0040A4E0",
   "?at@ResultInputRecordTableView@th105@@QAEPAUResultInputRecord68@2@I@Z=0x0043B300",
 ]
 dir32_targets = [
   "?g_selected_inputs@th105@@3PAPAUPlayerInput@1@A=?g_selected_inputs@th105@@3PAPAUPlayerInput@1@A",
   "?g_selected_input_sources@th105@@3PADA=?g_selected_input_sources@th105@@3PACA",
-  "?g_combined_menu_input@th105@@3UCInputManagerCluster@1@A=?g_combined_menu_input_storage@th105@@3PAEA",
+  "?g_combined_menu_input@th105@@3VCInputManagerCluster@@A=?g_combined_menu_input_storage@th105@@3PAEA",
   "?g_result_input_records@th105@@3UResultInputRecordTableView@1@A=?g_result_input_records@th105@@3UResultInputRecordTableView@1@A",
   "?g_default_input@th105@@3UPlayerInput@1@A=?g_default_input@th105@@3UPlayerInput@1@A",
 ]
@@ -15651,7 +15651,7 @@ notes = "Target-pinned 0x0040A0F0 combined-menu input merge. Natural checked deq
 
 [[units.gpt-web-input-merge-runtime.functions]]
 address = "0x0040A0F0"
-symbol_base = "?update_player_input_counters_from_raw@CInputManagerCluster@th105@@UAEXXZ"
+symbol_base = "?update_player_input_counters_from_raw@CInputManagerCluster@@UAEXXZ"
 rel32_targets = ["__invalid_parameter_noinfo=0x0068A143"]
 
 [units.gpt-web-profile-ui-pop]
@@ -16003,7 +16003,7 @@ dir32_targets = [
   "??0?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??0?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
   "??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ=??1?$deque@GV?$allocator@G@std@@@std@@QAE@XZ",
   "??_7CSprite@@6B@=??_7ProfileCSpriteLifetime@th105@@6B@",
-  "??_7ProfileInputManagerExLifetime@th105@@6B@=??_7CInputManagerEx@th105@@6B@",
+  "??_7ProfileInputManagerExLifetime@th105@@6B@=??_7CInputManagerEx@@6B@",
   "__ehhandler$??0ProfileMenuBaseDataLifetime@th105@@QAE@XZ=__ehhandler$??0ProfileMenuBaseDataLifetime@th105@@QAE@XZ",
   "___security_cookie=___security_cookie",
 ]
@@ -16130,7 +16130,7 @@ rel32_targets = [
 ]
 dir32_targets = [
   "___security_cookie=___security_cookie",
-  "?g_active_menu_input@3PAUCInputManager@th105@@A=_g_active_menu_input",
+  "?g_active_menu_input@3PAVCInputManager@@A=_g_active_menu_input",
   "_profile_character_select_design_path=_profile_character_select_design_path",
 ]
 
@@ -18039,7 +18039,7 @@ notes = "Current combined-menu-input active-source facade @ 0x0043B050. Exact CP
 [[units.gpt-web-input-active-source-facade.functions]]
 address = "0x0043B050"
 symbol_base = "?get_active_input_source_43b050@th105@@YACXZ"
-rel32_targets = ["?get_active_source@CInputManagerCluster@th105@@QBECXZ=0x0040A4E0"]
+rel32_targets = ["?get_active_source@CInputManagerCluster@@QBECXZ=0x0040A4E0"]
 dir32_targets = ["?g_combined_menu_input_storage@th105@@3PAEA=?g_combined_menu_input_storage@th105@@3PAEA"]
 
 [units.gpt-web-file-list-current-directory]
@@ -18079,9 +18079,9 @@ notes = "Current CInputManager base constructor @ 0x00409CF0. Canonical-exact Pr
 
 [[units.gpt-web-input-manager-constructor.functions]]
 address = "0x00409CF0"
-symbol_base = "??0CInputManager@th105@@QAE@XZ"
+symbol_base = "??0CInputManager@@QAE@XZ"
 rel32_targets = ["_memset=0x0068A440"]
-dir32_targets = ["??_7CInputManager@th105@@6B@=??_7CInputManager@@6B@"]
+dir32_targets = ["??_7CInputManager@@6B@=??_7CInputManager@@6B@"]
 
 [units.gpt-web-ui-selection-menu-stack]
 kind = "probe"
@@ -21339,7 +21339,7 @@ notes = "Complete JP1.06a CSelect4231A0,4247 main bytes and19 natural unwind sta
 [[units.exact-first-select-constructor.functions]]
 address = "0x004231A0"
 symbol_base = "??0CSelect@th105@@QAE@XZ"
-rel32_targets = ["??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@th105@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@th105@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1CSprite@@UAE@XZ=0x0040AD50", "??1CTile@@UAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20"]
+rel32_targets = ["??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1CSprite@@UAE@XZ=0x0040AD50", "??1CTile@@UAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20"]
 dir32_targets = ["??_7CSprite@@6B@=_select_sprite_vtable_anchor", "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback", "??0CSprite@@QAE@XZ=??0UiSprite94@th105@@QAE@XZ", "__real@4040000000000000=_select_ctor_double_32", "__real@4020000000000000=_select_ctor_double_8"]
 
 [units.exact-first-reimu-action-initialization]
@@ -24248,7 +24248,7 @@ rel32_targets = [
  "?copy_session_field_6c8_if_unset@NetworkSessionState@th105@@QAEXXZ=0x00426160",
  "?flush_replay_values_44d800@BattleNetworkUpdateSessionView@th105@@QAEXXZ=0x0044D800",
  "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
- "?reset_counters@CInputManager@th105@@QAEXXZ=0x00409F40",
+ "?reset_counters@CInputManager@@QAEXXZ=0x00409F40",
 
 ]
 dir32_targets = [
@@ -24267,11 +24267,11 @@ notes = "Complete421120 CSelect entry candidate using current shared CSelect lay
 address = "0x00421120"
 symbol_base = "?on_scene_enter@CSelect@th105@@UAEXH@Z"
 rel32_targets = [
- "?push_back@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@QAEXABQAUCInputManager@th105@@@Z=0x006183F0",
+ "?push_back@?$deque@PAVCInputManager@@V?$allocator@PAVCInputManager@@@std@@@std@@QAEXABQAVCInputManager@@@Z=0x006183F0",
  "?get_match_setup@th105@@YAPAUMatchSetup@1@XZ=0x0043AC50",
  "_play_bgm=0x0043CF80",
  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
- "?get_selected_input@th105@@YAPAUCInputManager@1@I@Z=0x0043B010",
+ "?get_selected_input@th105@@YAPAVCInputManager@@I@Z=0x0043B010",
  "?get_game_config@th105@@YAPAUSelectEntryConfigView@1@XZ=0x0043AF10",
  "?bind_character@CSelect@th105@@QAEXHH@Z=0x0041FB80",
  "__invalid_parameter_noinfo=0x0068A143",
@@ -24334,7 +24334,7 @@ notes = "Complete421430 CSelect frame update: actual CMenuSelect allocation, inp
 address = "0x00421430"
 symbol_base = "?update@CSelect@th105@@UAEHXZ"
 rel32_targets = [
- "?_Tidy@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@IAEXXZ=0x00420A80",
+ "?_Tidy@?$deque@PAVCInputManager@@V?$allocator@PAVCInputManager@@@std@@@std@@IAEXXZ=0x00420A80",
  "_has_ui_selection_state_changed=0x0043B6E0",
  "_is_menu_initial_press=0x0043ABD0",
  "?dispatch_indexed_event@th105@@YAXI@Z=0x0043B1A0",
@@ -24342,10 +24342,10 @@ rel32_targets = [
  "??0CMenuSelect@th105@@QAE@XZ=0x004482E0",
  "?install_menu_object@th105@@YAXPAX@Z=0x0043B0F0",
  "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
- "?get_selected_input@th105@@YAPAUCInputManager@1@I@Z=0x0043B010",
+ "?get_selected_input@th105@@YAPAVCInputManager@@I@Z=0x0043B010",
  "?get_selected_input_source@th105@@YACI@Z=0x0043B040",
  "?rebind_selected_input_43b640@th105@@YAXHC@Z=0x0043B640",
- "?push_back@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@QAEXABQAUCInputManager@th105@@@Z=0x006183F0",
+ "?push_back@?$deque@PAVCInputManager@@V?$allocator@PAVCInputManager@@@std@@@std@@QAEXABQAVCInputManager@@@Z=0x006183F0",
 ]
 dir32_targets = [
  "___security_cookie=___security_cookie",
@@ -24386,7 +24386,7 @@ notes = "Full845-byte CSelect normal destructor canonical exact through actual p
 [[units.exact-first-select-destructor.functions]]
 address = "0x00424260"
 symbol_base = "??1CSelectLifetime@th105@@UAE@XZ"
-rel32_targets = ["?_Tidy@?$deque@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@@std@@IAEXXZ=0x00420A80", "??1CInputManager@th105@@UAE@XZ=0x00409D50", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@th105@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@th105@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1UiSprite94@th105@@QAE@XZ=0x0040AD50", "??1CTile@@UAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??3@YAXPAX@Z=0x006898EA", "??1CSprite@@UAE@XZ=0x0040AD50"]
+rel32_targets = ["?_Tidy@?$deque@PAVCInputManager@@V?$allocator@PAVCInputManager@@@std@@@std@@IAEXXZ=0x00420A80", "??1CInputManager@@UAE@XZ=0x00409D50", "??0CDesignBase@th105@@QAE@XZ=0x004217F0", "??0CInputManager@@QAE@XZ=0x00409CF0", "??1?$vector@HV?$allocator@H@std@@@std@@QAE@XZ=0x0040C240", "??1CDesignBase@th105@@UAE@XZ=0x00421890", "??1CInputManagerCluster@@UAE@XZ=0x00420C10", "??1CSceneBase@th105@@UAE@XZ=0x0041DF50", "??1UiSprite94@th105@@QAE@XZ=0x0040AD50", "??1CTile@@UAE@XZ=0x0040AD50", "??_L@YGXPAXIHP6EX0@Z1@Z=0x0068A30C", "??_M@YGXPAXIHP6EX0@Z@Z=0x0068A2A9", "?bind_object_alt@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90", "?find@?$_Tree@V?$_Tmap_traits@IPAUUiDesignObject@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUUiDesignObject@th105@@@std@@@4@$0A@@std@@@std@@QAE?AViterator@12@ABI@Z=0x0040CDA0", "?find_object@CDesignBase@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x0040CC50", "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40", "?insert@?$vector@HV?$allocator@H@std@@@std@@QAE?AV?$_Vector_iterator@HV?$allocator@H@std@@@2@V32@ABH@Z=0x0040DEE0", "?load@GuideOverlay@th105@@QAEXH@Z=0x0043F390", "?load_palette@SelectPaletteCall@th105@@QAEXPBDPBEH@Z=0x00408F70", "?load_texture@SelectTextureCall@th105@@QAE?AUDesignTextureHandle@2@PBDPAI1@Z=0x00404C90", "?reset_transform@CSpriteEx@@QAEXXZ=0x004073A0", "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0", "?set_texture_options@CSpriteEx@@QAEXIHHHHHH@Z=0x00407160", "?translate@CSpriteEx@@QAEXMMM@Z=0x004073E0", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "__invalid_parameter_noinfo=0x0068A143", "_character_key_to_name=0x0043BF80", "_get_network_session=0x0043B090", "_get_player_slot_record=0x0043AFE0", "_get_score_data=0x0043AF20", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70", "??3@YAXPAX@Z=0x006898EA", "??1CSprite@@UAE@XZ=0x0040AD50"]
 dir32_targets = ["_title_color_vtable_anchor=_title_color_vtable_anchor_external", "__ehhandler$??1CSelectLifetime@th105@@UAE@XZ=_select_destructor_eh", "___security_cookie=___security_cookie", "??_7CSelectLifetime@th105@@6B@=??_7CSelect@th105@@6B@", "??_7CNumberColorLifetime@th105@@6B@=??_7IColor@@6B@", "??1CSprite@@UAE@XZ=_ui_sprite_icf_dtor_callback"]
 
 [units.exact-first-replay-storage-constructor]
@@ -24415,7 +24415,7 @@ dir32_targets = [
 address = "0x0042C930"
 symbol_base = "??0ProfileInputManagerExLifetime@th105@@QAE@XZ"
 rel32_targets = ["??0ProfileInputManagerLifetime@th105@@QAE@XZ=0x00409CF0"]
-dir32_targets = ["??_7ProfileInputManagerExLifetime@th105@@6B@=??_7CInputManagerEx@th105@@6B@"]
+dir32_targets = ["??_7ProfileInputManagerExLifetime@th105@@6B@=??_7CInputManagerEx@@6B@"]
 
 [units.exact-first-direct-sound-wave-load]
 kind = "probe"
@@ -26472,12 +26472,12 @@ notes = "Complete48-byte shared NetworkInputEndpoint7C constructor with CInputMa
 [[units.exact-first-network-input-constructor.functions]]
 address = "0x0044D8F0"
 symbol_base = "??0NetworkInputEndpoint7C@th105@@QAE@XZ"
-rel32_targets = ["??0CInputManager@th105@@QAE@XZ=0x00409CF0", "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
+rel32_targets = ["??0CInputManager@@QAE@XZ=0x00409CF0", "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
 
 [[units.exact-first-network-input-constructor.functions]]
 address = "0x0043BEA0"
 symbol_base = "??1NetworkInputEndpoint7C@th105@@QAE@XZ"
-rel32_targets = ["??1CInputManager@th105@@UAE@XZ=0x00409D50", "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
+rel32_targets = ["??1CInputManager@@UAE@XZ=0x00409D50", "?_Tidy@?$deque@FV?$allocator@F@std@@@std@@IAEXXZ=0x00420A80"]
 
 [units.exact-first-profile-defaults]
 kind = "probe"
@@ -26653,13 +26653,13 @@ notes = "Complete286-byte title/result match-mode setup. Existing selected-input
 address = "0x0043B8F0"
 symbol_base = "?prepare_title_match_mode@th105@@YAXHH@Z"
 rel32_targets = [
- "?get_active_source@CInputManagerCluster@th105@@QBECXZ=0x0040A4E0",
+ "?get_active_source@CInputManagerCluster@@QBECXZ=0x0040A4E0",
  "?at@ResultInputRecordTableView@th105@@QAEPAUResultInputRecord68@2@I@Z=0x0043B300",
  "?bind_result_input@NetworkMatchPreparationView@th105@@QAEXPAX0@Z=0x0043B410",
  "?start_async_engine_scene_load@th105@@YAEH@Z=0x0043B840",
 ]
 dir32_targets = [
- "?g_combined_menu_input@th105@@3UCInputManagerCluster@1@A=?g_combined_menu_input_storage@th105@@3PAEA",
+ "?g_combined_menu_input@th105@@3VCInputManagerCluster@@A=?g_combined_menu_input_storage@th105@@3PAEA",
  "?g_session_setup_option@th105@@3IA=?g_session_setup_option@th105@@3IC",
  "?g_game_mode@th105@@3W4GameMode@1@A=?g_game_mode@th105@@3W4GameMode@1@C",
 ]
@@ -27645,7 +27645,7 @@ rel32_targets = [
  "?create_text_texture@TitleResourceManager@th105@@QAE?AUTextureHandleResult@2@PBDPBXIIPAI2@Z=0x00404D00",
  "?set_texture@CTile@@QAEXIHHHH@Z=0x004098B0",
  "?get_combined_menu_input@th105@@YAPAUMenuInput@1@XZ=0x0043B020",
- "?bind_vertical@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z=0x00420520",
+ "?bind_vertical@MenuCursorState@th105@@QAEXPAVCInputManager@@HH@Z=0x00420520",
  "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = ["??_C@_02PCIJFNDE@?$AN?6?$AA@+0x2=connect_crlf_nul_tail"]
@@ -29981,7 +29981,7 @@ notes = "Complete Fighter base reset; source-present only, 1247-byte canonical c
 [[units.exact-first-fighter-battle-reset.functions]]
 address = "0x00460200"
 symbol_base = "?initialize_fighter_battle_state@Fighter@th105@@QAEXXZ"
-rel32_targets = ["?reset_counters@CInputManager@th105@@QAEXXZ=0x00409F40", "?initialize_fighter_phase_62380@th105@@YIXPAUFighter@1@@Z=0x004633A0", "?initialize_fighter_phase_631e0@th105@@YIXPAUFighter@1@@Z=0x00464200", "?reset_fighter_action_scratch@FighterActionScratch@th105@@QAEXXZ=0x00435110", "?set_sequence_mode@SpellDataOwner@th105@@QAEXE@Z=0x00432520", "?clear_45fc80@FighterSequenceClearView@th105@@QAEXXZ=0x0045FC80", "?prepare_next_spell_sequence_entry@Fighter@th105@@QAEXXZ=0x0045DC90", "__invalid_parameter_noinfo=0x0068A143", "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20", "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0"]
+rel32_targets = ["?reset_counters@CInputManager@@QAEXXZ=0x00409F40", "?initialize_fighter_phase_62380@th105@@YIXPAUFighter@1@@Z=0x004633A0", "?initialize_fighter_phase_631e0@th105@@YIXPAUFighter@1@@Z=0x00464200", "?reset_fighter_action_scratch@FighterActionScratch@th105@@QAEXXZ=0x00435110", "?set_sequence_mode@SpellDataOwner@th105@@QAEXE@Z=0x00432520", "?clear_45fc80@FighterSequenceClearView@th105@@QAEXXZ=0x0045FC80", "?prepare_next_spell_sequence_entry@Fighter@th105@@QAEXXZ=0x0045DC90", "__invalid_parameter_noinfo=0x0068A143", "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20", "?entry_at_checked@FighterSequenceController@th105@@QAEPAUFighterSequenceSlot@2@H@Z=0x004399C0"]
 
 [units.exact-first-profile-key-capture]
 kind = "probe"
@@ -30320,7 +30320,7 @@ notes = "Five-case CMenuConfig secondary selection 0x00440FF0 with real cursor b
 [[units.gpt-web-menu-config-secondary.functions]]
 address = "0x00440FF0"
 symbol_base = "?update_secondary_for_primary@CMenuConfigUpdateView@th105@@QAEXH@Z"
-rel32_targets = ["?bind_horizontal@MenuCursorState@th105@@QAEXPAUCInputManager@2@HH@Z=0x004204E0"]
+rel32_targets = ["?bind_horizontal@MenuCursorState@th105@@QAEXPAVCInputManager@@HH@Z=0x004204E0"]
 dir32_targets = ["_g_active_menu_input=_g_active_menu_input"]
 
 [units.gpt-web-input-raw-counters]
@@ -30333,7 +30333,7 @@ notes = "CInputManager raw gamepad/keyboard counter update 0x00409DA0; ordinary 
 
 [[units.gpt-web-input-raw-counters.functions]]
 address = "0x00409DA0"
-symbol_base = "?update_player_input_counters_from_raw@CInputManager@th105@@UAEXXZ"
+symbol_base = "?update_player_input_counters_from_raw@CInputManager@@UAEXXZ"
 rel32_targets = ["?get_gamepad_state@DirectInputBackend@th105@@QAEPAURawGamepadState@2@H@Z=0x0040D990"]
 
 [units.gpt-web-profile-editor-render]
@@ -30648,17 +30648,17 @@ address = "0x0043B4A0"
 symbol_base = "?update_scene_runtime@th105@@YAXXZ"
 rel32_targets = [
  "?update_input_state_table@InputStateTableStorage@th105@@QAEXXZ=0x0040A550",
- "?update_player_input_counters_from_raw@CInputManagerEx@th105@@UAEXXZ=0x00409F70",
- "?update_player_input_counters_from_raw@CInputManagerCluster@th105@@UAEXXZ=0x0040A0F0",
+ "?update_player_input_counters_from_raw@CInputManagerEx@@UAEXXZ=0x00409F70",
+ "?update_player_input_counters_from_raw@CInputManagerCluster@@UAEXXZ=0x0040A0F0",
  "?pop_profile_ui_menu_43ff40@th105@@YAXXZ=0x0043FF40",
  "_is_menu_initial_press=0x0043ABD0",
  "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = [
  "?g_frame_input_state@th105@@3UInputStateTableStorage@1@A=?g_global_input_state@th105@@3UGlobalInputStateFacade@1@A",
- "?g_frame_player_input@th105@@3UCInputManagerEx@1@A=?g_default_input@th105@@3UPlayerInput@1@A",
- "?g_frame_result_inputs@th105@@3V?$vector@UCInputManagerEx@th105@@V?$allocator@UCInputManagerEx@th105@@@std@@@std@@A=?g_result_input_records@th105@@3UResultInputRecordTableView@1@A",
- "?g_combined_menu_input@th105@@3UCInputManagerCluster@1@A=?g_combined_menu_input_storage@th105@@3PAEA",
+ "?g_frame_player_input@th105@@3VCInputManagerEx@@A=?g_default_input@th105@@3UPlayerInput@1@A",
+ "?g_frame_result_inputs@th105@@3V?$vector@VCInputManagerEx@@V?$allocator@VCInputManagerEx@@@std@@@std@@A=?g_result_input_records@th105@@3UResultInputRecordTableView@1@A",
+ "?g_combined_menu_input@th105@@3VCInputManagerCluster@@A=?g_combined_menu_input_storage@th105@@3PAEA",
  "?g_scene_mode@th105@@3HA=_g_scene_mode",
  "?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenuFrameView@th105@@V?$allocator@PAUUiSelectionMenuFrameView@th105@@@std@@@std@@A=?g_ui_selection_menu_stack@th105@@3V?$list@PAUUiSelectionMenu@th105@@V?$allocator@PAUUiSelectionMenu@th105@@@std@@@std@@A",
  "_g_active_menu_input=_g_active_menu_input",

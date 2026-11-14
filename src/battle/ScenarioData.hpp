@@ -13,9 +13,11 @@
 
 class SystemEffectObject;
 
+class CInputManager;
+
 namespace th105 {
 
-struct CInputManager;
+using ::CInputManager;
 
 struct ScenarioEffectConfig128 {
     char text_000[0x100];

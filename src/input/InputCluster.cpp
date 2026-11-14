@@ -3,14 +3,14 @@
 
 #include <cstring>
 
-namespace th105 {
-
-void __stdcall clear_input_key_list_storage(void *storage);
-
 signed char CInputManagerCluster::get_active_source() const
 {
     return active_source;
 }
+
+namespace th105 {
+
+void __stdcall clear_input_key_list_storage(void *storage);
 
 InputStateTableStorage::InputStateTableStorage()
 {

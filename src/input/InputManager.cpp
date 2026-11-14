@@ -47,6 +47,8 @@ int DirectInputBackend::get_gamepad_button_count(int index)
     return gamepad_button_counts[index];
 }
 
+} // namespace th105
+
 void CInputManager::reset_counters()
 {
     counters[0] = 0;
@@ -61,6 +63,8 @@ void CInputManager::reset_counters()
     counters[9] = 0;
 }
 
+
+namespace th105 {
 
 namespace {
 

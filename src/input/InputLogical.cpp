@@ -1,7 +1,5 @@
 #include "InputManager.hpp"
 
-namespace th105 {
-
 void CInputManagerEx::update_player_input_counters_from_raw()
 {
     if (use_injected_input) {
@@ -90,5 +88,3 @@ void CInputManagerEx::update_player_input_counters_from_raw()
             resolved_mask |= static_cast<unsigned short>(0x0010 << i);
     }
 }
-
-} // namespace th105

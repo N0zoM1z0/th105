@@ -1,8 +1,10 @@
 #pragma once
 
+class CInputManager;
+
 namespace th105 {
 
-struct CInputManager;
+using ::CInputManager;
 
 struct MenuCursorState {
     int item_count;

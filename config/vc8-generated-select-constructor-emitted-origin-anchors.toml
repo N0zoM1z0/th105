@@ -11,4 +11,4 @@ alignment_tail_hex = ""
 [[anchors]]
 address = "0x00420C30"
 size = 40
-symbol = "??_GCInputManagerCluster@th105@@UAEPAXI@Z"
+symbol = "??_GCInputManagerCluster@@UAEPAXI@Z"

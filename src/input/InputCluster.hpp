@@ -5,15 +5,21 @@
 #include <deque>
 #include <vector>
 
-namespace th105 {
-
-struct CInputManagerCluster : CInputManager {
+class CInputManagerCluster : public CInputManager {
+public:
     std::deque<CInputManager *> sources;
     signed char active_source;
 
     signed char get_active_source() const;
     virtual void update_player_input_counters_from_raw();
 };
+
+typedef char CInputManagerCluster_size_must_be_0x78[
+    sizeof(CInputManagerCluster) == 0x78 ? 1 : -1];
+
+namespace th105 {
+
+using ::CInputManagerCluster;
 
 struct InputStateTableStorage {
     int key_counters[256];

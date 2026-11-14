@@ -11,4 +11,4 @@ alignment_tail_hex = ""
 [[anchors]]
 address = "0x004507B0"
 size = 96
-symbol = "??A?$_Deque_iterator@PAUCInputManager@th105@@V?$allocator@PAUCInputManager@th105@@@std@@$00@std@@QBEAAPAUCInputManager@th105@@H@Z"
+symbol = "??A?$_Deque_iterator@PAVCInputManager@@V?$allocator@PAVCInputManager@@@std@@$00@std@@QBEAAPAVCInputManager@@H@Z"

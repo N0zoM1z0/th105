@@ -3,8 +3,6 @@
 #include <cstdlib>
 #include <cstring>
 
-namespace th105 {
-
 void CInputManagerCluster::update_player_input_counters_from_raw()
 {
     std::memset(&hold, 0, sizeof(hold));
@@ -31,5 +29,3 @@ void CInputManagerCluster::update_player_input_counters_from_raw()
         }
     }
 }
-
-} // namespace th105

@@ -4,12 +4,14 @@ namespace th105 {
 
 DirectInputBackend g_direct_input_backend;
 
+} // namespace th105
+
 void CInputManager::update_player_input_counters_from_raw()
 {
     signed char source_id = bindings.source_id;
     if (source_id >= 0) {
-        RawGamepadState *state =
-            g_direct_input_backend.get_gamepad_state(source_id);
+        th105::RawGamepadState *state =
+            th105::g_direct_input_backend.get_gamepad_state(source_id);
         if (state == 0)
             return;
 
@@ -51,13 +53,13 @@ void CInputManager::update_player_input_counters_from_raw()
 
     if (source_id == -1) {
         if (bindings.left >= 0 && bindings.right >= 0) {
-            if (g_direct_input_backend.raw_keyboard_state[
+            if (th105::g_direct_input_backend.raw_keyboard_state[
                     static_cast<unsigned char>(bindings.left)] & 0x80) {
                 if (hold.horizontal > 0)
                     hold.horizontal = 0;
                 --hold.horizontal;
             } else if (
-                g_direct_input_backend.raw_keyboard_state[
+                th105::g_direct_input_backend.raw_keyboard_state[
                     static_cast<unsigned char>(bindings.right)] & 0x80) {
                 if (hold.horizontal < 0)
                     hold.horizontal = 0;
@@ -67,13 +69,13 @@ void CInputManager::update_player_input_counters_from_raw()
             }
         }
         if (bindings.up >= 0 && bindings.down >= 0) {
-            if (g_direct_input_backend.raw_keyboard_state[
+            if (th105::g_direct_input_backend.raw_keyboard_state[
                     static_cast<unsigned char>(bindings.up)] & 0x80) {
                 if (hold.vertical > 0)
                     hold.vertical = 0;
                 --hold.vertical;
             } else if (
-                g_direct_input_backend.raw_keyboard_state[
+                th105::g_direct_input_backend.raw_keyboard_state[
                     static_cast<unsigned char>(bindings.down)] & 0x80) {
                 if (hold.vertical < 0)
                     hold.vertical = 0;
@@ -86,7 +88,7 @@ void CInputManager::update_player_input_counters_from_raw()
         for (int i = 0; i < 8; ++i) {
             int binding = bindings.buttons[i];
             if (binding >= 0) {
-                if (g_direct_input_backend.raw_keyboard_state[
+                if (th105::g_direct_input_backend.raw_keyboard_state[
                         static_cast<unsigned char>(binding)] & 0x80)
                     ++hold.buttons[i];
                 else
@@ -107,5 +109,3 @@ void CInputManager::update_player_input_counters_from_raw()
     counters[8] = 0;
     counters[9] = 0;
 }
-
-} // namespace th105

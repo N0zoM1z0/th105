@@ -26,21 +26,26 @@ struct HoldCounters {
     int buttons[8];
 };
 
-struct CInputManager {
+} // namespace th105
+
+// The executable RTTI identifies global classes, shared by every owner.
+class CInputManager {
+public:
     CInputManager();
     virtual ~CInputManager();
     virtual void update_player_input_counters_from_raw();
 
-    InputBindings bindings;
+    th105::InputBindings bindings;
     union {
-        HoldCounters hold;
+        th105::HoldCounters hold;
         int counters[10];
     };
 
     void reset_counters();
 };
 
-struct CInputManagerEx : CInputManager {
+class CInputManagerEx : public CInputManager {
+public:
     unsigned short injected_mask;
     unsigned short resolved_mask;
     bool use_injected_input;
@@ -49,6 +54,16 @@ struct CInputManagerEx : CInputManager {
     // Native slot +4 overrides the base update; there is no third slot.
     virtual void update_player_input_counters_from_raw();
 };
+
+typedef char CInputManager_size_must_be_0x60[
+    sizeof(CInputManager) == 0x60 ? 1 : -1];
+typedef char CInputManagerEx_size_must_be_0x68[
+    sizeof(CInputManagerEx) == 0x68 ? 1 : -1];
+
+namespace th105 {
+
+using ::CInputManager;
+using ::CInputManagerEx;
 
 struct RawGamepadState {
     int x;
