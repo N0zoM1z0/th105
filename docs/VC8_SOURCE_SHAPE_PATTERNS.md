@@ -120,7 +120,18 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   `FighterSpriteResource_cleanup` 0x465420 and `ProfileMenuBaseData_cleanup`
   0x431390 emit `cmp [obj+h], 0`, then the EH state store, then reload the handle
   for the release call. Ours loads it once and reuses the register. Typing the
-  GuideOverlay handle as `DesignTextureHandle` is neutral.
+  GuideOverlay handle as `DesignTextureHandle` is neutral. No accepted exact
+  function contains this sequence. On the 29-byte `ProfileMenuBaseData_cleanup`,
+  these are all neutral:
+  - an `int` test with an `unsigned` argument;
+  - a `const unsigned &` inline wrapper;
+  - an unsigned `> 0` test;
+  - a `void *` view with a cast argument;
+  - a real LTCG link with the release function kept public (28 bytes, same as `/O2`).
+
+  Without preserving the public release ABI, LTCG passes the handle in EBX
+  (24 bytes). So LTCG does not explain this cluster. The same pattern also
+  appears in 0x42BC40, 0x448B40 and 0x45DC90.
 - **Register-preference residuals.** `Fighter_initialize_battle_state` 0x460200
   uses CL where ours uses AL for the `state_55b` copy; reading the pointer value
   instead of a `char` view is neutral. `BattlePhaseBlock_parse_scenario_event_row`
