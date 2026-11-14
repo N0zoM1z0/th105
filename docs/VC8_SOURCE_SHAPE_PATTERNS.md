@@ -115,6 +115,24 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   `PatPaletteService::load_palette`, are views with no source body yet. The other
   dependencies (`PatRecord88`, `FrameData`, `load_texture`,
   `character_key_to_name`, globals and `wsprintfA`) exist.
+
+  **Integration attempt (2026-11-14, reverted).** The PAT source was moved onto
+  the real `FileReaderOwner` and `PaletteDecodeMode`; the palette call matches the
+  exact `CSelect` form on `&g_bootstrap_mode` with `select_palette_6fa258`. A
+  combined linked source (`ScriptFileLoading.cpp`, `PatRecordLifetime.cpp`,
+  `TitleResourceLoad.cpp`, `ScenarioEventNameResolver.cpp`, then the PAT loader)
+  compiles cleanly. Linking still needs three data globals (title resource
+  manager, scenario event name map, `select_palette_6fa258`) and three functions
+  that `TitleResourceLoad.cpp` reaches only through views:
+  `TitleResourceAcquireView::acquire` (native private-EDI 0x405090), the shared
+  release 0x405200 and `TextureLoader_load_bitmap_to_resource_cell`. These views
+  must be replaced by real definitions first.
+
+  The target calls the trivial `FileReaderOwner` constructor 0x40CF10 out of line
+  at only seven sites, including this 3885-byte loader, and inlines it everywhere
+  else. That fits LTCG's per-caller inlining budget running out in very large
+  callers. A real linked build of the loader should therefore make the same choice,
+  but plain `/O2` with the header's inline constructor cannot.
 - **Clash resolver tail merging.** `resolve_group_b_object_clash` 0x46CA80 is
   557 bytes against 542. The target merges the equal case into the final
   `8/8` block with the result in EAX, and stores slot-first only there. All 24
