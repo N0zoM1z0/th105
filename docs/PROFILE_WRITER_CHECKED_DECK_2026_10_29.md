@@ -90,3 +90,13 @@ No source change is justified by that inspection alone.
 The focused check verifies current compiler/source/object provenance, complete
 section ownership, every EH relocation and both callable graphs. No new exact root
 is recorded.
+
+## 2026-11-14: exact
+
+`ProfileMenuBaseData::save_to_profile` at 0x4317A0 is canonical exact, 784/784.
+The guard for an empty saved name is `string_098 == ""`. VC8's `operator==` inlines
+to `compare(0, size(), "", 0)`, with the literal length folded. The old explicit
+call `compare(0, string_098.size(), profile_name_empty, 0)` produced the same
+arguments but scheduled `lea edi, [esi+0x98]` after the literal push instead of
+before it. The unit maps the `""` literal symbol `??_C@_00CNPNBAHC@?$AA@` to the
+existing `_profile_name_empty` relocation at 0x6D69D6.

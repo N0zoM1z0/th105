@@ -53,6 +53,11 @@ index helper called with 0. Proven on `CScenarioData::select_label` 0x455490
 ([note](SCENARIO_LABEL_SOURCE_2026_11_03.md)), which also needed its search loop
 written as `for (;;)` with the null exit first.
 
+**`compare(0, size, ptr, 0)` means `== ""`.** An explicit compare call with
+those arguments schedules differently from the inlined `std::string == ""`.
+Map the `""` literal symbol in the unit's `dir32_targets`. Proven on 0x4317A0
+([note](PROFILE_WRITER_CHECKED_DECK_2026_10_29.md)).
+
 **Rebuild before trusting a nonexact ledger entry.** Three functions were
 already exact in their units but had never been accepted
 ([note](PENDING_EXACT_ACCEPTANCE_2026_11_14.md)). After a shared header change,

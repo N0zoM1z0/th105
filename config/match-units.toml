@@ -26180,6 +26180,7 @@ rel32_targets = [
   "@__security_check_cookie@4=0x00689D25",
 ]
 
+dir32_targets = ["??_C@_00CNPNBAHC@?$AA@=_profile_name_empty"]
 [units.exact-first-general-hit-resolver]
 kind = "probe"
 source = "src/battle/GeneralHitResolver.cpp"

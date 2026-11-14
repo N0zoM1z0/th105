@@ -92,7 +92,7 @@ bool ProfileMenuBaseData::save_to_profile(const char *path)
         file_name.assign(path, strlen(path));
         string_098.assign(path, strlen(path));
     } else {
-        if (string_098.compare(0, string_098.size(), profile_name_empty, 0) == 0)
+        if (string_098 == "")
             return false;
         file_name.assign(string_098, 0, ~0u);
     }
