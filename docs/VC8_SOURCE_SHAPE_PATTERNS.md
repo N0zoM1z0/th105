@@ -295,6 +295,14 @@ target lacks, so LTCG does not explain the register.
   are not profile-guided layout.
 - **`update_and_prune` erase rotation, more trials.** For 0x422D30, both
   `erase(it++)` and swapping the `state_158` test arms make it worse.
+- **Callee-save placement in `draw_rect` 0x4012A0.** The target pushes EDI
+  before the `filled` test, though only the outline branch uses it; VC8 saves
+  EDI inside that branch (394/395). Filled-first order, an `else` arm and
+  `filled == 0` are neutral; `#pragma optimize("y", off)` is far worse.
+- **`consume_spell_sequence_entry` 0x45D230.** The target loads `value_1e`
+  into AX and stores it to +0x176 after setting up the next call; VC8 uses CX and
+  stores at once. Inlining the record pointer and swapping the final flag
+  stores are neutral.
 - **LTCG `this` in ESI.** `PackageFileIndexNode_ctor` 0x41B7F0 receives `this`
   in ESI and returns it from there. Only a linked unit can match it.
 - **RTM compiler control.** Building 0x431390, 0x427390, 0x46C5B0 and 0x414E40
