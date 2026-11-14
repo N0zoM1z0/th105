@@ -1,5 +1,4 @@
 // JP1.06a 0x00454C70. Constructor-facing owned result resource.
-// See docs/SCENARIO_RESULT_CONSTRUCTOR_2026_10_29.md.
 #include "ui/DesignBaseLifetime.hpp"
 #include "ui/Title.hpp"
 #include "ui/UiPrimitives.hpp"

@@ -83,4 +83,4 @@ hook can be suppressed by Unicorn. This audit now uses the existing guarded
 callback helper, stops within the hook and rejects captured errors after the
 engine returns. An additional unknown-helper negative control verifies this
 path. The four positive cases and random-entry control were rerun unchanged.
-See OBSERVER_CALLBACK_GUARD_2026_11_02.md; no matching credit changes.
+No matching credit changes.

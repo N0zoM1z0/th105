@@ -144,7 +144,7 @@ root's complete boundaries, special gates, command/action pairs, offsets,
 callee ABI and every changed exit. Do not infer identity from roster order or
 copy addresses/layouts by delta.
 The first independently accepted peer is
-[Tenshi 0x64B7A0](TENSHI_INPUT_POLICY_2026_10_24.md),5352 code bytes/full5384.
+Tenshi 0x64B7A0,5352 code bytes/full5384.
 
 The earlier RemiliaObject initializer `0x55BE70` remains nonexact and unchanged.
 No large execution matrix, whole-game runtime result or aggregate cold replay

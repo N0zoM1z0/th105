@@ -3,7 +3,7 @@
 The `478FA0` root now has **800 passing native comparisons through complete
 owned-object requests and volleys**, including nested object811 companions.
 The previous request-entry stops did not execute these returning callbacks.
-This extends [the real effect backend](REIMU_EFFECT_RETURNS_2026_10_18.md);
+This extends the real effect backend;
 the selected game source, compiler profile and exact ledgers remain unchanged.
 
 ## Target and observed manager path

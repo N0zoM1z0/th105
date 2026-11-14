@@ -1,7 +1,7 @@
 #include "AngleTangent.hpp"
 
 // Strict rounding with exception-sensitive scheduling disabled, as in the
-// separately accepted integer-angle ratio. See ANGLE_TANGENT_2026_10_28.md.
+// separately accepted integer-angle ratio.
 #pragma float_control(except, off, push)
 
 namespace th105 {

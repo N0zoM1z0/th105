@@ -1,7 +1,7 @@
 # Iku's complete action-state root source
 
 > Historical first complete-source checkpoint. The current
-> [flat dispatch and ownership checkpoint](IKU_FLAT_DISPATCH_2026_10_17.md)
+> flat dispatch and ownership checkpoint
 > supersedes the source hash, compiler topology and native results below.
 
 `Iku_dispatch_action_state_vslot28 @ 620920` now has complete source in
@@ -83,7 +83,7 @@ would lose:
 - Action 204 subtracts double-widened 0.35f; action 215 clamps both velocity
   signs without clearing the motion byte. The earlier unsigned 602 offset,
   310 double increment, 780 widened 0.95f and direct-X signed-zero contracts
-  remain intact. See the [middle](IKU_MIDDLE_SOURCE_2026_10_17.md),
+  remain intact. See the
   [virtual ABI](IKU_VIRTUAL_CALLS_2026_10_17.md) and
   [random/float](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md) records.
 

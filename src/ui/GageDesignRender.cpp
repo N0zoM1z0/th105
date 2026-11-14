@@ -1,6 +1,5 @@
 // JP1.06a CDesignGage rendering and CDesignSprite scale entry40AEE0.
-// Complete canonical matches; docs/GAGE_DESIGN_RENDER_2026_10_21.md
-// and docs/DESIGN_SPRITE_SCALE_2026_10_21.md.
+// Complete canonical matches.
 #include <stddef.h>
 #include "DesignObjects.hpp"
 void CDesignSprite::set_render_parameters(unsigned, unsigned, float scale)

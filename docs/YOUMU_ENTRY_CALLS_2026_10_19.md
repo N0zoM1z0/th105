@@ -5,7 +5,7 @@ is the current selection: all target copies and metadata agree,21 callable
 bytes remain, and the public592-case audit passes. This page retains the
 earlier851 correction and its counterexample, with their original source pins.
 
-The subsequent [auxiliary-sprite checkpoint](ANIMATION_AUXILIARY_SPRITE_2026_10_19.md)
+The subsequent auxiliary-sprite checkpoint
 shares the recovered auxiliary layout/provider and changes root source SHA to
 7b0dac5f. Its complete canonical payload594a91c1, owner diagnostics and592-case
 execution remain unchanged. Source pins below identify this earlier checkpoint.

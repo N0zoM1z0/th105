@@ -1,7 +1,7 @@
 # Profile render-list color iterator ABI
 
 Historical ordinary-COFF audit. The subsequent
-[resolved LTCG checkpoint](DESIGN_BASE_COLOR_LTCG_2026_10_21.md) accepts the
+resolved LTCG checkpoint accepts the
 unchanged source at complete **81/81 exact**. The frame blocker below is resolved
 for this function; the controls retain their original narrower meaning.
 

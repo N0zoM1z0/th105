@@ -14,8 +14,8 @@ using only original Japanese 1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 IDA was preflighted and again rejected for its `10350095...` image.
 
-The new [auxiliary renderer434F30](ANIMATION_AUXILIARY_RENDER_2026_10_22.md)
-and [luma/alpha renderer6656E0](SPRITE_LUMA_ALPHA_2026_10_22.md) supply the two
+The new auxiliary renderer434F30
+and luma/alpha renderer6656E0 supply the two
 unselected authored bodies. Existing real implementations supply the other
 render adapters, draw publisher, render mode/blend, texture binding, action980
 continuation and pool locking. Eleven newly compiled native provider inputs

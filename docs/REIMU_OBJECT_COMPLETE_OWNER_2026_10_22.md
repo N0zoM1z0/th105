@@ -5,7 +5,7 @@ vtable and real pool/lifetime/root source. Twelve existing callback bodies
 remain fully canonical under a coherent void-return declaration chain. The
 first actual 36-object owner link fails with 16 unresolved symbols; there is
 no linked root comparison from this context and no new giant-root acceptance.
-The separately completed [335-byte frame provider](ANIMATION_SPRITE_FRAME_2026_10_22.md)
+The separately completed 335-byte frame provider
 is accepted in commit `6a0e81a`.
 
 ## Scope and target evidence

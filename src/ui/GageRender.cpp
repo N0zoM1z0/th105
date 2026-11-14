@@ -1,5 +1,5 @@
 // Complete source hypothesis for JP1.06a CGage vslot1C at41B3F0.
-// Canonical equality remains pending; see docs/GAGE_RENDER_2026_10_20.md.
+// Canonical equality remains pending.
 #include "engine/RenderModeManager.hpp"
 #include "ui/Title.hpp"
 #include <stddef.h>

@@ -18,7 +18,7 @@ char array and the shared194-byte owner/128-byte config. It finds '>', copies/
 terminates the token buffer, splits on space/equals/tab/newline, and performs
 the observed br/ruby/accent/color policy. There is no pasted decompiler syntax,
 manual STL layout, fake provider definition, forced register or frame filler.
-The existing [native-class audit](TEXT_FONT_NATIVE_CLASS_2026_10_21.md) pins the
+The existing native-class audit pins the
 full1744-byte target CFG and actual41276A caller edge.
 
 Source full canonical SHA256:

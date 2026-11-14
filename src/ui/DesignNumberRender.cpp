@@ -5,7 +5,6 @@
 // JP1.06a CDesignNumber render callers and CNumber value dispatch.
 // Complete source visibility is needed for the private EAX/ESI entries.
 // Four complete exact bodies in the genuine linked provider context.
-// See docs/DESIGN_NUMBER_FLOAT_EXACT_2026_10_31.md.
 #include "DesignObjects.hpp"
 #include <math.h>
 #include <stddef.h>

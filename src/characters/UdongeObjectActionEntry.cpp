@@ -1,5 +1,4 @@
 // JP1.06a 0x005DF0E0: complete source.
-// See docs/UDONGE_OBJECT_ENTRY_2026_10_24.md.
 #include "characters/UdongeObjectActionEntry.hpp"
 namespace th105 {
 #define FIELD(t,o) (*reinterpret_cast<t *>(reinterpret_cast<unsigned char *>(this)+(o)))

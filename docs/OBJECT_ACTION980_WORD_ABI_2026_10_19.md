@@ -3,7 +3,7 @@
 `CharacterObject_continue_action_980 @ 0x00596370` is now canonical
 **323/323**, using the existing `gpt-web-object-action-980` unit. This
 supersedes the pending scheduling diagnosis in
-[the October 2 report](OBJECT_ACTION980_COMPILER_SCHEDULING_2026_10_02.md).
+the October 2 report.
 The sole executable-source change is the local virtual sequence selector's
 parameter declaration: `int` becomes `short`. No compiler flag, shared header,
 helper definition, field layout or relocation binding changes.

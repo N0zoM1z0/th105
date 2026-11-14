@@ -67,6 +67,7 @@ src/network/NetworkUdpPacketPool.hpp text eol=lf
 src/network/NetworkWinsockAccept.cpp text eol=lf
 src/network/NetworkWinsockConstructorRuntime.cpp text eol=lf
 src/network/NetworkWinsockPeerRemoval.cpp text eol=lf
+src/network/NetworkWinsockPeerRemoval.hpp text eol=lf
 src/network/NetworkWinsockProbeThread.cpp text eol=lf
 src/network/NetworkWinsockReceiveThread.cpp text eol=lf
 src/network/NetworkWinsockRuntime.cpp text eol=lf

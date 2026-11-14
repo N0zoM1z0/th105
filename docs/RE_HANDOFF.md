@@ -74,7 +74,9 @@ convention.
 - The 64-byte-frame island (0x418990, 0x406360, 0x4063D0) matches code built
   with global optimizations disabled (`idiv` for `% 3600`). The setting that
   gives `and esp, -64` is unknown, and the three audio gain callers depend on
-  0x418990.
+  0x418990. [Number frame audit](NUMBER_FRAME_AUDIT_2026_10_21.md) shows
+  ordinary O2 emitting that alignment for a function with real `double` locals,
+  and `#pragma optimize("y", off)` removing it.
 - Linked units are needed for the LTCG-private ABIs: `this` in ESI or EAX,
   0x41B7F0, and the PAT loader 0x461B70.
 
@@ -89,6 +91,11 @@ These are documented in the patterns note:
 
 The giant character action roots (Reimu 0x478FA0, Komachi 0x5E20E0) have no
 source yet.
+
+The 2026-11-14 cleanup removed the single-function `audit-*`/`probe-*` scripts,
+their tests and notes whose topics are now exact. Older notes still name some of
+them; recover any from Git history (the parent of the cleanup commit) if a
+reopened residual needs one.
 
 Read live status from the ledgers instead of copying totals into this document:
 

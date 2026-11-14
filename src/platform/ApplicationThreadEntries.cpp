@@ -1,4 +1,4 @@
-// Native application thread callbacks; docs/APPLICATION_THREAD_ENTRIES_2026_10_16.md.
+// Native application thread callbacks.
 #include <stddef.h>
 
 extern "C" __declspec(dllimport) long __stdcall CoInitialize(void *);

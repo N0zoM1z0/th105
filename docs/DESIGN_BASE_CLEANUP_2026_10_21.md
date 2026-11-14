@@ -18,7 +18,7 @@ All119 instructions are reachable when the unconditional error transfer
 `40BC25 -> 40C350` terminates its path. That separate vector-at failure
 constructs `std::out_of_range`; its string/ThrowInfo and unresolved compiler
 context are documented in
-[the collision preparation audit](COLLISION_GEOMETRY_PREPARATION_2026_10_19.md).
+the collision preparation audit.
 It receives no new origin exclusion or exact credit.
 
 The function deletes the object at the **back** of list+14 and pops back,

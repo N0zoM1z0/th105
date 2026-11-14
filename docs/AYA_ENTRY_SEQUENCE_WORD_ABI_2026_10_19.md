@@ -42,7 +42,7 @@ caller experiment below supports the signed short source interpretation.
 
 ## Coupled caller and callee evidence
 
-[The older scheduling note](AYA_ENTRY_VSLOT0C_SCHEDULING_2026_10_02.md)
+The older scheduling note
 identified11 CALL EDX sites. Complete current owner comparison finds another
 eight CALL EAX sites in the same sequence-operation class. Each obtains its
 method from vtable+0C. The old candidate delays MOV ECX,ESI until after

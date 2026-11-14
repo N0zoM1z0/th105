@@ -51,7 +51,7 @@ rows covering63 distinct review addresses. This is still discovery, not an
 acceptance census: objects can be stale and nominal source types can differ.
 
 The authored spell owner4619C0 is handled separately as a full canonical101-byte
-match with complete EH (SPELL_OWNER_DESTRUCTOR_EXACT_2026_10_31.md). It is not
+match with complete EH. It is not
 excluded as a container helper. Two symbols from the temporary sequence-advance
 control are omitted because that source was restored; their old objects do not
 establish a reproducible current source. Other ambiguous hit sets overlapping

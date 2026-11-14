@@ -84,4 +84,4 @@ declaration or a fabricated fastcall facade for that generated boundary.
 A private register entry alone does not prove that LTCG is required. Recover
 true visibility, cleanup and all source callers first, then compile a closed
 unit. This recipe does not establish another helper's convention or original
-source spelling. See `docs/SPRITE_TEXTURE_SETUP_2026_10_16.md`.
+source spelling.

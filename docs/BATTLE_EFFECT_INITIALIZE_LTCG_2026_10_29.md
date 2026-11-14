@@ -70,7 +70,7 @@ boundary.json, lifetime-build.json, sdk-import-replay.json and ci.log.
 Only71 new exact authored bytes are added. Counts remain incremental; no cold
 corpus build is needed for this isolated source/context/import extension.
 
-Later same-day update: [D3D_LISTENER_FIND_LTCG_2026_10_29.md](D3D_LISTENER_FIND_LTCG_2026_10_29.md)
+Later same-day update: `D3D_LISTENER_FIND_LTCG_2026_10_29.md`
 recovers standard find/result lifetime and accepts414CB0 independently157/157.
 The initializer remains exact; source selection now records the linked wrapper
 so the actual private caller is available to the existing witness contract.

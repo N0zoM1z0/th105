@@ -2,7 +2,6 @@
 
 // Native4519E0 compares unsigned start_04, retaining equivalent timestamps.
 // The old map<int,20-byte-value> view reproduced layout but not ordering.
-// See docs/SCENE_TIMELINE_ORDERING_2026_10_29.md.
 #include <set>
 
 namespace th105 {

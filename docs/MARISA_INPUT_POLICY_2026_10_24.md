@@ -62,7 +62,7 @@ table bases and26 destination pointers. The existing float90.0 binding at
 
 ## Reviewed complete behavior
 
-[Sakuya's accepted source](SAKUYA_INPUT_POLICY_2026_10_24.md) supplies a hypothesis;
+Sakuya's accepted source supplies a hypothesis;
 complete raw byte/edge/argument review and attested Ghidra views independently
 check each changed path. Decompiler expressions are not pasted as source.
 

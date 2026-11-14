@@ -227,9 +227,9 @@ never linked into reconstruction sources or used to manufacture exact bytes.
 
 The shared10219-byte Fighter root now has a supplementary
 [typed indirect-tail fact packet](COMMON_FIGHTER_ROOT_2026_10_16.md).
-`python3 scripts/audit-common-fighter-indirect-tails.py --json` traverses all2799
-instructions with validated switch edges, ordinary x86 CALL clobbers and
-conservative provenance joins. Its eight register exits all load receiver
+The since-removed indirect-tail audit traversed all 2799 instructions with
+validated switch edges, ordinary x86 CALL clobbers and conservative provenance
+joins (recover it from Git history if the receiver domain changes). Its eight register exits all load receiver
 vtable+14 and retain entry receiver in ECX. CharacterEx plus all fifteen
 RTTI-backed roster primary tables share45C220 without a base adjustment.
 The targets are qualified only for those sixteen reviewed receiver types.

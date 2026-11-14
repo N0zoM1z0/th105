@@ -1,5 +1,4 @@
 // JP1.06a 0x00457110. Typed handle publication and checked-list ownership.
-// See docs/SYSTEM_EFFECT_TRACKED_ACQUIRE_2026_10_29.md.
 #include "battle/SystemEffectManager.hpp"
 #include "EffectManagerTrackedState.hpp"
 #include <list>

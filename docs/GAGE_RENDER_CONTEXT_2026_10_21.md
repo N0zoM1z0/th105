@@ -11,7 +11,7 @@ Only original Japanese TH10.5 v1.06a is used, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Fresh target/status/tracking checks pass. IDA still fails target attestation
 with10350095... and supplies no semantic evidence. No analysis database or
-target instruction is changed. The [previous source checkpoint](GAGE_RENDER_2026_10_20.md)
+target instruction is changed. The previous source checkpoint
 retains the full boundary, field and behavior recovery.
 
 ## Target facts and selected change
@@ -92,7 +92,7 @@ controls remain historical calibration of the unchanged audit and are not presen
 as fresh builds of this source.
 
 The finite masked-x87 fixtures and native entry stops keep the
-[previous audit's scope](GAGE_RENDER_2026_10_20.md#native-prefix-audit-and-negative-controls):
+previous audit's scope:
 no COM/binder continuation, unmasked exception delivery, arbitrary alias/input
 coverage or whole-root equality is proved. The nineteen post-binding
 instructions are compared statically, not executed by this audit.
