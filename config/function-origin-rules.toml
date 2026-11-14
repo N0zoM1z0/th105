@@ -1744,8 +1744,9 @@ evidence = "Current raw audio ownership closes this game-side Ogg/scheduler isla
 [[rules]]
 id = "audio-scheduler-runtime-authored-106a"
 addresses = ["0x00419000", "0x00419400", "0x004194D0"]
-expected_count = 3
-expected_bytes = 618
+skip_matching = true
+expected_count = 2
+expected_bytes = 434
 origin = "authored_game"
 subsystem = "audio"
 disposition = "authored"

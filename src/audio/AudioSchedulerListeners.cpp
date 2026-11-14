@@ -48,8 +48,8 @@ int __stdcall wait_audio_scheduler_listener_event(void *handle)
 {
     if (TryEnterCriticalSection(
             &g_audio_scheduler_state.critical_section_00.critical_section_04) > 0) {
-        std::list<void *>::iterator it = g_audio_scheduler_state.listeners_2c.begin();
-        std::list<void *>::iterator end = g_audio_scheduler_state.listeners_2c.end();
+        std::list<void *>::const_iterator it = g_audio_scheduler_state.listeners_2c.begin();
+        std::list<void *>::const_iterator end = g_audio_scheduler_state.listeners_2c.end();
         for (; it != end; ++it) {
             if (*it == handle)
                 break;

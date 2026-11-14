@@ -58,6 +58,12 @@ those arguments schedules differently from the inlined `std::string == ""`.
 Map the `""` literal symbol in the unit's `dir32_targets`. Proven on 0x4317A0
 ([note](PROFILE_WRITER_CHECKED_DECK_2026_10_29.md)).
 
+**Checked container comparisons kept under LTCG need `const_iterator`.** When
+the target compares an iterator's container against a global list address on every
+step, declare the loop iterators as `const_iterator`. Plain iterators let LTCG fold
+those checks. Proven on 0x4194D0 ([note](AUDIO_SCHEDULER_LISTENERS_LTCG_2026_10_29.md)).
+Linked units declare in-function alignment filler with `alignment_sites`.
+
 **Rebuild before trusting a nonexact ledger entry.** Three functions were
 already exact in their units but had never been accepted
 ([note](PENDING_EXACT_ACCEPTANCE_2026_11_14.md)). After a shared header change,

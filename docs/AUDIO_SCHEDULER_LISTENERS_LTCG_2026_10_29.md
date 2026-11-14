@@ -45,3 +45,21 @@ erase-helper call ABIs remain different; whole-image raw call scan finds414DE0
 callers only414D50 and419400. The recovered nominal pointer list types differ, so
 that shared code alone does not prove a common source type or authorize a fabricated
 ABI. No exact credit changes.
+
+## 2026-11-14: wait listener exact
+
+`wait_audio_scheduler_listener_event` at 0x4194D0 is exact in the linked LTCG
+comparison, 184/184. The target keeps every checked-iterator container comparison
+against the global list at 0x703890. With plain `iterator`s, LTCG folds those
+comparisons away (129 bytes); with `const_iterator` for `it` and `end` it keeps
+them, as the target does. The unit declares the in-function loop alignment filler
+at 0x4194FD as an `alignment_sites` entry.
+
+`std::find` is not the source: it iterates unchecked (152 bytes). Calling
+`end()` on every iteration keeps the checks but reloads the head node (196
+bytes). `remove_audio_scheduler_listener_event` 0x419400 cannot use the same
+spelling, because VC8 `list::erase` takes a non-const iterator, and with a mixed
+iterator/const_iterator comparison LTCG still folds its container checks.
+
+    scripts/repo-python scripts/build.py --unit gpt-web-audio-scheduler-listeners
+    scripts/repo-python scripts/compare-linked-unit.py gpt-web-audio-scheduler-listeners --json
