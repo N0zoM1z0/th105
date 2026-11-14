@@ -27,3 +27,23 @@ Reproduce using `scripts/repo-python scripts/build.py --unit
 exact-first-profile-key-capture --compare --json`; the mismatch is expected.
 The full retained candidate does not establish original variable names or
 all runtime behavior.
+
+## 2026-11-14: exact
+
+`CProfileKeyConfig::capture_key_input` at 0x44B540 is now canonical exact, 790/790.
+The remaining difference was only the final return topology. In the target, the
+inactive path tests `count_324 == 11` and branches with `je` to the entry's
+`xor al, al` return-false epilogue, while the fall-through returns true. The old
+source had two adjacent returns (`if (count_324 == 11) return false; return true;`),
+which VC8 folds into `setne al` and which is 5 bytes shorter.
+
+Writing the tail as one `if (active) ++state_328; else { state_328 = 0; if
+(count_324 == 11) return false; }` followed by a single `return true` keeps the
+branch and reproduces every byte. The `!active` ordering of the same `if/else` moves
+the block layout and fails at +0x0B; `return count_324 != 11` keeps `setne`.
+
+    scripts/repo-python scripts/build.py --unit exact-first-profile-key-capture --compare --json
+
+General VC8 note: when a target branches from a late test into an earlier shared
+return epilogue, look for a single trailing `return true` reached from several
+paths instead of an adjacent `return false; return true;` pair.

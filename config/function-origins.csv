@@ -1504,7 +1504,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044AAC0,authored_game,ui,authored,observed,profile-deck-constructor-authored-106a
 0x0044B320,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x0044B340,authored_game,ui,authored,observed,canonical-exact-authored
-0x0044B540,authored_game,ui,authored,observed,ui-input-result-policy-authored-106a
+0x0044B540,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044B860,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044B9D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BA90,authored_game,ui,authored,observed,canonical-exact-authored

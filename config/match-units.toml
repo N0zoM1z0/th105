@@ -29989,7 +29989,7 @@ source = "src/ui/ProfileKeyCapture.cpp"
 object = "build/match-units/ExactFirst_ProfileKeyCapture.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete keyboard and gamepad capture member; 785-byte source remains nonexact against the 790-byte target."
+notes = "Complete keyboard and gamepad capture member; canonical exact 790/790. docs/PROFILE_KEY_CAPTURE_SOURCE_2026_11_03.md."
 
 [[units.exact-first-profile-key-capture.functions]]
 address = "0x0044B540"

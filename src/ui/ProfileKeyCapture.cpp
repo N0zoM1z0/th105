@@ -67,11 +67,11 @@ bool CProfileKeyConfig::capture_key_input()
     }
     if (active) {
         ++state_328;
-        return true;
+    } else {
+        state_328 = 0;
+        if (count_324 == 11)
+            return false;
     }
-    state_328 = 0;
-    if (count_324 == 11)
-        return false;
     return true;
 }
 } // namespace th105
