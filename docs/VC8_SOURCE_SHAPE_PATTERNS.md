@@ -213,6 +213,16 @@ handle token. Six source spellings change nothing. A manual `/GL` build with
 `release_handle` visible gives that callee a private EAX `this` ABI, which the
 target lacks, so LTCG does not explain the register.
 
+- **Literal map keys reuse a dead parameter slot.**
+  `Fighter_try_dispatch_front_word_actions_690_696` 0x494450 stores the second
+  and later `find` keys into its own parameter's stack slot, once the parameter
+  lives in EBX. That only happens when `find(691)` takes a literal, so the key
+  is an unnamed temporary. A named `command_key` or a reassigned parameter gets
+  its own slot or forces an extra register copy. The same function needed its
+  150..157 range test written against the field (`action_id_13c >= 150 &&
+  action_id_13c <= 157`). Through a `short` local, VC8 folds the test into
+  `lea; cmp; ja` instead of the target's two signed compares.
+
 ## Parked residuals (tried, still nonexact)
 
 - **Checked-deque bound operand order.** `GameConfig_save` 0x427390 (2 bytes) and
