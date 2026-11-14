@@ -47,6 +47,11 @@ the scheduler interleave them the way the target does (`fld [f4]; xor ebx, ebx;
 fld c; mov [180], ebx; fmul ...`). It also changes which duplicate tails merge.
 Switching `Reimu_initialize_action_entry` 0x491C40 to the macro cut its diff
 from 25 regions to 7. The exact sibling initializers already use the macro.
+With the macro, VC8 also reorders independent stores, so a case whose stores
+come out permuted needs a brute-force search over statement order, not reasoning
+from the target order. The search made `Suika_initialize_action_entry`
+0x5AD4A0 exact: case 402 became `I(0x180)=0; B(0x184)=1; ...` and case 542
+became `I(0x180)=0; B(0x17c)=2; B(0x184)=1; B(0x750)=0;`.
 
 **A bare tail case that the target places inside another case is a
 fallthrough.** In 0x491C40, case 321 (`B(0x184)=1; ...; return;`) is only

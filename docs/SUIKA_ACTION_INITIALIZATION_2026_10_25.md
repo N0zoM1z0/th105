@@ -1,11 +1,11 @@
 # Suika action initialization: 2026-10-25
 
-`Suika_initialize_action_entry @ 0x005AD4A0` now has complete selected ordinary
-C++ source. Formal and independent cold builds reproduce3139 emitted bytes,
-SHA256 `ce5845dc668156c8b22569f82f35f4dcd35fee100afc04030b5cab248a2d3342`,
-against3171 target bytes. First whole mismatch is+0x15; there is no exact credit.
-Two subsequent target-backed publication controls reproduce this entire payload
-byte-for-byte, so preserve the receipts and select another representative.
+`Suika_initialize_action_entry @ 0x005AD4A0` is exact as of 2026-11-14. The
+2577-byte callable matches, and so does the 3171-byte payload with its switch
+tables (outside relocations). The last two fixes were statement orders: case 402
+is `I(0x180)=0; B(0x184)=1; ...` and case 542 is `I(0x180)=0; B(0x17c)=2;
+B(0x184)=1; B(0x750)=0;`. See the [patterns note](VC8_SOURCE_SHAPE_PATTERNS.md).
+The older evidence below is history.
 
 ## Observed target, boundary and ABI
 

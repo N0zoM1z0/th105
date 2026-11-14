@@ -1,4 +1,4 @@
-// JP1.06a5AD4A0: complete target-reviewed source; whole function remains nonexact.
+// JP1.06a Suika primary action initialization 0x5AD4A0; exact callable and complete 3171-byte payload.
 #include "SuikaActionInitialization.hpp"
 namespace th105 {
 #define FIELD(t,o) (*reinterpret_cast<t *>(reinterpret_cast<unsigned char *>(this)+(o)))
@@ -34,7 +34,7 @@ void SuikaActionEntryView::initialize_action_entry()
  case 331:zero_motion();B(0x184)=6;I(0x180)=0;return;
  case 400:I(0x180)=0;zero_motion();S(0x730)=0;S(0x732)=0;S(0x734)=0;B(0x750)=1;return;
  case 401:I(0x180)=0;zero_motion();S(0x736)=0;S(0x732)=0;S(0x730)=0;B(0x750)=1;return;
- case 402:B(0x184)=1;I(0x180)=0;zero_motion();S(0x736)=0;S(0x732)=0;S(0x730)=0;B(0x750)=1;return;
+ case 402:I(0x180)=0;B(0x184)=1;zero_motion();S(0x736)=0;S(0x732)=0;S(0x730)=0;B(0x750)=1;return;
  case 404:case 405:case 406:
   I(0x180)=0;S(0x730)=0;S(0x732)=0;S(0x734)=0;B(0x750)=1;F(0x100)=0;F(0xf4)*=0.2f;F(0xf8)*=0.2f;return;
  case 408:F(0xf4)=10.0f;B(0x47e)=0;S(0x730)=0;I(0x180)=0;F(0xf8)=0;B(0x184)=3;return;
@@ -53,7 +53,7 @@ void SuikaActionEntryView::initialize_action_entry()
  case 530:case 531:B(0x17c)=9;zero_motion();B(0x184)=0;B(0x47e)=0;I(0x180)=1;return;
  case 540:case 541:
   B(0x17c)=2;I(0x180)=0;zero_motion();S(0x730)=0;S(0x732)=0;S(0x736)=0;S(0x738)=0;B(0x750)=0;return;
- case 542:I(0x180)=0;B(0x750)=0;B(0x17c)=2;B(0x184)=1;return;
+ case 542:I(0x180)=0;B(0x17c)=2;B(0x184)=1;B(0x750)=0;return;
  case 545:case 546:S(0x730)=0;B(0x17c)=6;I(0x180)=0;zero_motion();B(0x750)=0;return;
  case 560:case 561:B(0x17c)=3;I(0x180)=1;zero_motion();B(0x750)=1;return;
  case 565:case 566:
