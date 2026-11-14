@@ -161,9 +161,17 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   - `/Oy-`: matches the EBP frame setup but not the alignment;
   - `/Zi`: still fails under Wine with C1902.
 
-  `operator[]` instead of `at()` is worse (153 bytes). Together with the dead
-  `push ecx` slots, this looks like stack the target reserved for locals that our
-  compile drops. The cause is still open.
+  `operator[]` instead of `at()` is worse (153 bytes).
+
+  **The cause is LTCG.** A trial `vc8-sp1-ltcg-o2` linked build of the unchanged
+  `InputStateTableUpdate.cpp` reproduces the target prologue exactly (`push ebp;
+  mov ebp, esp; and esp, -8; sub esp, 0xc`) and the whole lookup loop. The existing
+  linked audio-scheduler unit also reproduces the aligned prologue of 0x419400.
+  What still differs is that the target calls `vector<unsigned char>::insert`
+  0x40A7F0 out of line with a private EAX receiver, while the small LTCG context
+  inlines it. 0x40A7F0 has no other caller in the executable, so the inlining
+  difference has another cause. These four functions need a linked unit, not
+  `/O2` source changes. The same may hold for the dead `push ecx` slots.
 - **`CsvReader_advance_row` register roles.** 0x40F680 swaps ESI and EDI between
   `this` and `&row_it_14`. A local `CsvRows::iterator &` reference moves the first
   mismatch to +15, and `rows_00.end() == row_it_14` to +22 (163 bytes, against 167).
