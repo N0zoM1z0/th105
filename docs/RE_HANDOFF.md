@@ -42,12 +42,16 @@ Treat equal-size residuals as source questions first.
 
 ### Latest change
 
-Two more roots are exact. `Marisa_dispatch_input_policy` 0x4B9FA0 (7664 bytes)
+Three roots became exact this session: `CProfileDeckEdit_render` 0x448F60 (2521,
+a `16.0f` literal), `Marisa_dispatch_input_policy` 0x4B9FA0 (7664 bytes)
 needed its action-412 pair written as two `if`s with an `if/else` body and a
 shared reset and return. Without that, VC8 does not merge a branching duplicate
 body after an earlier plain `ACTION` pair. `Fighter_try_dispatch_front_word_actions_690_696`
-0x494450 (950) needed literal `find()` keys and direct field reads. Both
-patterns are in the patterns note. To find layout-only residuals in large
+0x494450 (950) needed literal `find()` keys and direct field reads. These patterns are in the patterns note. Open
+layout leads, each with one or two residual regions: the Youmu/Komachi
+`publish_phase` gotos (0x53A1D0, 0x5F6700), the Marisa CPU dispatch tails
+(0x4B4070), Aya control-mode duplicate tails (0x616800), and the Patchouli
+control-mode frame (+8 bytes, 0x51CB40). To find layout-only residuals in large
 functions, diff the whole body (all instructions); the first-mismatch offset
 alone hides how small the residual is.
 
