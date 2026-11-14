@@ -216,10 +216,17 @@ void MarisaInputPolicyView::dispatch_input()
         if (SURFACE) {
             if (S(0x13C) == 200 && I(0x4B8) != 5 && I(0x6B8) == 0 && FORWARD) ACTION(418);
             if (!PERMITTED) return;
-            if ((UP && FORWARD && S(0x482) >= 200 && window <= command_window(412))
-                || (UP && S(0x482) >= 200 && window <= command_window(412))) {
-                if (S(0x7A6) > 0) ACTION(431);
-                ACTION(412);
+            if (UP && FORWARD && S(0x482) >= 200 && window <= command_window(412)) {
+                if (S(0x7A6) > 0) set_action(431);
+                else set_action(412);
+                reinterpret_cast<Fighter *>(this)->reset_input_snapshot_4633a0();
+                return;
+            }
+            if (UP && S(0x482) >= 200 && window <= command_window(412)) {
+                if (S(0x7A6) > 0) set_action(431);
+                else set_action(412);
+                reinterpret_cast<Fighter *>(this)->reset_input_snapshot_4633a0();
+                return;
             }
             if (I(0x6B8) == 0 && FORWARD) {
                 if (S(0x482) < 200) return;

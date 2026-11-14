@@ -223,6 +223,18 @@ target lacks, so LTCG does not explain the register.
   action_id_13c <= 157`). Through a `short` local, VC8 folds the test into
   `lea; cmp; ja` instead of the target's two signed compares.
 
+- **Duplicate-body merging stops for a branching `ACTION` body after a plain
+  pair.** VC8 merges `if (a) S; if (b) S;` with identical `S` into `a`, `S`,
+  then `b` jumping back into `S`. In `Marisa_dispatch_input_policy` 0x4B9FA0
+  the target does this for the 308, 402 and 412 pairs. A 412 body written as
+  `if (S(0x7A6) > 0) ACTION(431); ACTION(412);` (two macro returns) stops
+  merging once an earlier plain `ACTION` pair has merged; the `||` and `goto`
+  forms lay out `a`, `b`, `S` instead. Writing the body as `if (...)
+  set_action(431); else set_action(412);` followed by one reset and `return`
+  emits identical code (VC8 duplicates the tail) and still merges. A minimal
+  repro is a plain `ACTION` pair followed by the branching pair; a `__forceinline`
+  helper behaves like the macro.
+
 ## Parked residuals (tried, still nonexact)
 
 - **Checked-deque bound operand order.** `GameConfig_save` 0x427390 (2 bytes) and
@@ -299,13 +311,6 @@ target lacks, so LTCG does not explain the register.
 - **Two-value switch lowered to a select.** In `CBattleSV_update` 0x426180 and
   `CBattleCL_update` 0x426380 the target branches into a shared `return 8`
   epilogue. Putting `default` first or using an `if` return does not reproduce it.
-- **Marisa input policy `||` layout.** `Marisa_dispatch_input_policy` 0x4B9FA0 is
-  exact to +6901. In the target, the action-412 body follows the first clause of
-  `(UP && FORWARD && ...) || (UP && ...)` and the second clause jumps back into
-  it. Splitting into two `if` blocks with identical bodies reproduces the first
-  clause, but VC8 merges only the tail of the duplicate body (object grows 20
-  bytes). An `else if` behaves the same, and a `goto` into the first body compiles
-  exactly like the original `||`.
 - **List erase register rotation.** The three `update_and_prune` members
   (0x58BE10, 0x422D30, 0x456D70) differ only in the EAX/ECX/EDX names of the
   inlined `list::erase` unlink. `erase(it++)` and a separate dead iterator both
