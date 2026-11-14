@@ -39,6 +39,22 @@ anything, so VC8 keeps the original order. Proven on the Arcade post pipeline
 0x472F80 ([note](BATTLE_ARCADE_POST_PIPELINE_2026_11_04.md)). Offset-macro
 sources such as the character input policies are candidates for the same fix.
 
+**Offset macros, not an inline accessor template.** For typed offset fields, an
+inline `template<class T> T &at(void *p, unsigned off)` hides the base from VC8's
+memory disambiguation, so stores and x87 loads stay in source order. The macro
+`*reinterpret_cast<T *>(reinterpret_cast<unsigned char *>(this) + off)` lets
+the scheduler interleave them the way the target does (`fld [f4]; xor ebx, ebx;
+fld c; mov [180], ebx; fmul ...`). It also changes which duplicate tails merge.
+Switching `Reimu_initialize_action_entry` 0x491C40 to the macro cut its diff
+from 25 regions to 7. The exact sibling initializers already use the macro.
+
+**A bare tail case that the target places inside another case is a
+fallthrough.** In 0x491C40, case 321 (`B(0x184)=1; ...; return;`) is only
+`xor ebx, ebx; jmp tail`, and the target places it at the end of case 408. Writing
+`case 408: ...; case 321: ...; return;` reproduces that layout. It also freed
+case 304's merge into case 302's `B(0x750)=1` join, which our separate case 321
+had been taking.
+
 **Member stores through a materialized subobject pointer.** If the target writes
 an embedded object's fields through a register that holds its address, use an
 inline member on that object instead of `owner.member.field = value`.
@@ -243,6 +259,30 @@ target lacks, so LTCG does not explain the register.
   expressions for literal types.
 
 ## Parked residuals (tried, still nonexact)
+
+- **Reimu action initialization 0x491C40 cross-jumps (2026-11-14).** Two
+  residuals remain, and both are cross-jump decisions.
+  - Cases 404 and 414 share the tail `fmul st(1), st(0); mov [180], ebx; ...;
+    jmp`. In the target, 404 jumps forward into 414's copy; ours makes 414 jump
+    back into 404's.
+  - Case 322's `if (B(0x47e) == 0) zero_motion();` uses a near `jne` straight
+    into case 305's `mov [738], bx; jmp` tail. The call path keeps its own copy.
+    Ours branches to its local join. The address-normalized diff hides this, so
+    compare instruction lengths too.
+
+  A manual `/GL` + `/LTCG` link with out-of-line callee stubs gives the same two
+  residuals, so this is not an LTCG effect. VC8 keeps the copy of the case that
+  comes first in source, so writing 404 after 414 gives the target's code but the
+  wrong layout. Small sub-switches sometimes merge the target's way (for example,
+  only 400/404/408/321/414 without the `default:` tail call). Removing any one or
+  two of the large cases 76, 78, 89, 609, 610, 696 or 760 does not. The following
+  made no difference: every order of the five 404 statements, the 414 store order,
+  `0.25f`, chained versus separate zero stores, label order inside a group,
+  splitting 404/406, 414/416 or 410/412 into separate cases, cast spellings and
+  loop spellings. The target also has fallthroughs 307→306 and 710–740→797,
+  which are now written that way (neutral). The next lead is some other
+  difference in earlier IR size (helpers inlined in the original, for example)
+  rather than in these cases.
 
 - **Background runtime 0x466F40 zero register (2026-11-14).** The target
   computes `effect_level_f8 + effect_level_delta_fc` once, so an `int const level`

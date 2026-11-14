@@ -1,14 +1,12 @@
-// Complete JP1.06a491C40 hypothesis from all964 raw instructions.
+// JP1.06a Reimu primary action initialization 0x491C40; the 404/414 and 322 cross-jumps remain nonexact.
 #include "ReimuActionInitialization.hpp"
 namespace th105 {
-template<class T> inline T &at(void *p,unsigned off) {
- return *reinterpret_cast<T *>(static_cast<unsigned char *>(p)+off);
-}
-#define F(o) at<float>(this,o)
-#define S(o) at<short>(this,o)
-#define B(o) at<unsigned char>(this,o)
-#define C(o) at<signed char>(this,o)
-#define I(o) at<int>(this,o)
+#define FIELD(type,offset) (*reinterpret_cast<type *>(reinterpret_cast<unsigned char *>(this)+(offset)))
+#define F(o) FIELD(float,o)
+#define S(o) FIELD(short,o)
+#define B(o) FIELD(unsigned char,o)
+#define C(o) FIELD(signed char,o)
+#define I(o) FIELD(int,o)
 void ReimuFinalizationView::initialize_action_entry()
 {
  switch(S(0x13c)) {
@@ -75,17 +73,15 @@ void ReimuFinalizationView::initialize_action_entry()
   zero_motion();B(0x750)=1;B(0x184)=1;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;
  case 305:
   F(0xf4)=15.0f;S(0x738)=0;B(0x184)=1;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;
+ case 307:
+  zero_motion();
  case 306:
   S(0x730)=0;I(0x180)=0;S(0x7cc)=0;B(0x184)=1;return;
- case 307:
-  zero_motion();S(0x730)=0;I(0x180)=0;S(0x7cc)=0;B(0x184)=1;return;
  case 308:case 309:
   I(0x180)=0;S(0x7cc)=0;B(0x184)=1;return;
  case 310:
   F(0xf4)=15.0f;S(0x730)=0;F(0x100)=0.5f;I(0x180)=0;
   S(0x7cc)=0;F(0x108)=0;B(0x184)=3;F(0x10c)=105.0f;return;
- case 321:
-  B(0x184)=1;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;
  case 322:
   if(B(0x47e)==0)zero_motion();
   S(0x738)=0;B(0x184)=1;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;
@@ -98,7 +94,9 @@ void ReimuFinalizationView::initialize_action_entry()
   F(0x100)=0;S(0x734)=0;I(0x180)=0;F(0xf4)*=0.2f;F(0xf8)*=0.2f;
   S(0x736)=S(0x732)=S(0x730)=S(0x738)=0;B(0x750)=1;S(0x7cc)=1;return;
  case 408:
-  F(0xf4)=14.0f;F(0x100)=F(0xf8)=0;B(0x184)=1;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;
+  F(0xf4)=14.0f;F(0x100)=F(0xf8)=0;
+ case 321:
+  B(0x184)=1;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;
  case 414:case 416:
   I(0x180)=0;F(0xf4)*=0.25;F(0xf8)*=0.25;
   S(0x736)=S(0x732)=S(0x730)=S(0x738)=0;B(0x750)=1;S(0x7cc)=1;return;
@@ -164,7 +162,7 @@ void ReimuFinalizationView::initialize_action_entry()
  case 650:case 651:
   S(0x732)=S(0x730)=0;I(0x180)=1;zero_motion();S(0x7cc)=1;F(0x100)=0.25f;return;
  case 669:
-  F(0x73c)=0;S(0x732)=S(0x730)=S(0x734)=0;I(0x180)=1;zero_motion();S(0x7cc)=1;return;
+  S(0x734)=0;F(0x73c)=0;S(0x732)=S(0x730)=0;I(0x180)=1;zero_motion();S(0x7cc)=1;return;
  case 695:
   B(0x184)=1;I(0x180)=0;zero_motion();dispatch_sequence_window(0,1,60);S(0x7cc)=0;return;
  case 696:
@@ -172,11 +170,11 @@ void ReimuFinalizationView::initialize_action_entry()
   emit_effect(69,F(0xec),static_cast<float>(F(0xf0)+100.0),static_cast<unsigned char>(C(0x104)),1);
   S(0x48a)=15;dispatch_sequence_window(0,1,60);S(0x7cc)=0;return;
  case 710:case 711:case 720:case 721:case 730:case 731:case 740:
-  zero_motion();S(0x730)=0;return;
+  zero_motion();
+ case 797:S(0x730)=0;return;
  case 760:
   zero_motion();S(0x730)=0;finalize_sequence_entry(-1);B(0x655)=1;
   publish_texture_state(6,-1);copy_action_word_176_to_174();dispatch_event(23);return;
- case 797:S(0x730)=0;return;
  case 798:
   zero_motion();F(0xf4)=12.0f;S(0x730)=0;F(0xf8)=0;F(0x100)=0.5f;return;
  default:initialize_common_action_entry();return;

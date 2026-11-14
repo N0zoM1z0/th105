@@ -1,13 +1,13 @@
 # Reimu primary slot3C: complete action-entry source
 
-`Reimu_initialize_action_entry @ 0x00491C40` now has complete reviewed source
-in `src/characters/ReimuActionInitialization.cpp/.hpp`. The formal and fresh
-independent objects reproduce the same **4702-byte complete payload versus
-4738 target**, SHA256
-`e14c2c806758bf13bdf439877a13fa4da809a8027239027170e7131d37eb8c6b`.
-The whole comparator remains nonexact, first at `+0x28` (a branch displacement).
-All three table dimensions, 696 remap bytes and physical direct-call counts
-agree. This is source-present only; no matches.csv row or partial exact credit.
+`Reimu_initialize_action_entry @ 0x00491C40` has complete source in
+`src/characters/ReimuActionInitialization.cpp/.hpp`. As of 2026-11-14 the
+3785-byte body differs from the target only in two cross-jump decisions: the
+404/414 shared-tail direction and case 322's branch into case 305's tail.
+Three fixes got it there. The offset-macro accessor replaced an inline `at<T>`
+template, the case 408/321 and 307/306 fallthroughs were added, and case 669
+stores 0x734 first. Trials and the open lead are in the
+[patterns note](VC8_SOURCE_SHAPE_PATTERNS.md). No exact credit.
 
 ## Observed target and boundary
 
