@@ -76,6 +76,21 @@ already exact in their units but had never been accepted
 ([note](PENDING_EXACT_ACCEPTANCE_2026_11_14.md)). After a shared header change,
 rebuild the units that hold nonexact functions, not just the exact ones.
 
+**Grouped x87 stores mean a small unrolled loop.** When VC8 interleaves x87
+stores with nearby integer stores but the target keeps them grouped, look for
+array fields cleared in a short loop. `Yukari_reset_character_state` 0x58A470
+stores its four portal floats in x/y/x/y order ahead of the counters. Four scalar
+assignments in any order, chained assignment or a zero local all interleave.
+`float portal_x_7ac[2], portal_y_7b4[2]` cleared by `for (portal = 0; portal < 2;
+++portal)` is exact 125/125. The override also returns `int` like its slot-17
+siblings, which is byte-neutral.
+
+**Same-shape LTCG trial for `release_all_tracked`.** The three 122-byte list
+releases (0x46EEB0, 0x56DA90; 0x436E60 is similar) differ only in EAX/EDX for the
+handle token. Six source spellings change nothing. A manual `/GL` build with
+`release_handle` visible gives that callee a private EAX `this` ABI, which the
+target lacks, so LTCG does not explain the register.
+
 ## Parked residuals (tried, still nonexact)
 
 - **Checked-deque bound operand order.** `GameConfig_save` 0x427390 (2 bytes) and
@@ -263,3 +278,12 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   (a `neg`/`sbb` select inside the taken branch). Neutral: swapping the `&`
   operands and putting the offset first in the sum. Worse: `>> side & 1` (337
   bytes) and the typed `payload_08[side]` (334).
+- **0x418990 call shape, 2026-11-14.** The target's `sub esp, 8; fstp qword
+  [esp]; call _log10` is the non-intrinsic double `log10` call. `/Oi-` or
+  `#pragma function(log10)` reproduces it, with or without `/GL`; the default
+  intrinsic emits `call _CIlog10` instead. With the C++ float overload and
+  extern constants, the scale order `fld units; fmul scale; fmul [gain]`
+  also matches. No combination of `/GL`, `/fp:precise`, `/arch:SSE`/`SSE2` or
+  `#pragma fenv_access(on)` (which stops `log10f` inlining) produced the
+  `and esp, -64` frame. The intrinsic setting is therefore a second unexplained
+  property of this island, alongside the frame.

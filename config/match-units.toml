@@ -16737,7 +16737,7 @@ rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004
 
 [[units.gpt-web-character-round-reset-runtime.functions]]
 address = "0x0058A470"
-symbol_base = "?reset_character_state@YukariRoundResetView@th105@@QAEXXZ"
+symbol_base = "?reset_character_state@YukariRoundResetView@th105@@QAEHXZ"
 rel32_targets = ["?reset_extended_state@FighterResetBaseView@th105@@QAEHXZ=0x004776D0"]
 
 [units.gpt-web-character-object-manager-runtime]
