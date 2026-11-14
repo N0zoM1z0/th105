@@ -194,3 +194,10 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   helper, the first 18 instructions now match (190 bytes against 198). The
   remaining difference is that ours keeps zero in ECX for the offset resets and the
   first `entry_at_checked(0)` push.
+- **Battle setup slot load: payload LEA base/index order.**
+  `BattleInputGate_load_battle_setup_slot` 0x42BAF0 is exact to +146, where the
+  target forms the payload address as `[offset + selected + 8]` and ours as
+  `[selected + offset + 8]`. The target really does test the token mask twice
+  (a `neg`/`sbb` select inside the taken branch). Neutral: swapping the `&`
+  operands and putting the offset first in the sum. Worse: `>> side & 1` (337
+  bytes) and the typed `payload_08[side]` (334).
