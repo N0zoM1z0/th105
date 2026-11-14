@@ -590,7 +590,7 @@ case 850: {
         F(0x11c)+=static_cast<double>(0.1f);F(0x120)+=static_cast<double>(0.1f);if(F(0x11c)>2.0f) F(0x11c)=2.0f;if(F(0x120)>2.0f) F(0x120)=2.0f;
         if(FIELD(OWNER,short,0x13c)!=600) RETIRE();position_relative_to_owner(-55,230);
         if(FIELD(OWNER,short,0x140)==8) {
-            next_sequence_block();int facing=C(0x104);double targetX=FIELD(TARGET,float,0xec);float groundX=static_cast<float>(targetX-lookup_orientation_ratio_quantized_abs(-20)*static_cast<double>(FIELD(TARGET,float,0xf0))*(-facing));
+            next_sequence_block();int facing=C(0x104);double targetX=FIELD(TARGET,float,0xec);float groundX=static_cast<float>(targetX-lookup_orientation_ratio_quantized_abs(-20)*FIELD(TARGET,float,0xf0)*(-facing));
             float dx=static_cast<float>((groundX-static_cast<double>(F(0xec)))*facing);float angle=-atan2_degrees(-F(0xf0),dx);float *parameters=PARAM;parameters[0]=angle;if(angle>=60.0f) parameters[0]=60.0f;if(parameters[0]<=10.0f) parameters[0]=10.0f;
         }break;
     case 1: {
