@@ -13,26 +13,10 @@ struct PlayerSlotProfileReaderHandleView {
     FileHandle file_004;
 };
 
-struct PlayerSlotProfileDataView {
-    unsigned char reserved_000[0x98];
-    std::string string_098;
-    std::string string_0b4;
-    unsigned char reserved_0d0[0x6C];
-    unsigned char flag_13c;
-    unsigned char reserved_13d[3];
-    unsigned char block_140[0x34];
-    unsigned char block_174[0x34];
-    unsigned char flag_1a8;
-    unsigned char reserved_1a9[3];
-    std::deque<unsigned short> decks_1ac[20];
-
-    void normalize_profile_name();
-};
-
 bool PlayerSlotRecord::load_profile(const char *path)
 {
-    PlayerSlotProfileDataView *data =
-        reinterpret_cast<PlayerSlotProfileDataView *>(this);
+    ProfileMenuBaseData *data =
+        reinterpret_cast<ProfileMenuBaseData *>(this);
 
     std::string profile_path(path);
     profile_path = "profile/" + profile_path;
@@ -65,8 +49,8 @@ bool PlayerSlotRecord::load_profile(const char *path)
 
 typedef char PlayerSlotProfileFileReader_size_must_be_0x0c[
     sizeof(CFileReader) == 0x0C ? 1 : -1];
-typedef char PlayerSlotProfileDataView_size_must_be_0x33c[
-    sizeof(PlayerSlotProfileDataView) == 0x33C ? 1 : -1];
+typedef char ProfileMenuBaseData_size_must_be_0x33c[
+    sizeof(ProfileMenuBaseData) == 0x33C ? 1 : -1];
 
 typedef char PlayerSlotProfileReaderHandleOffset[
     offsetof(PlayerSlotProfileReaderHandleView, file_004) == 4 ? 1 : -1];

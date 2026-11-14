@@ -33,6 +33,7 @@ struct ProfileMenuBaseData {
     bool save_to_profile(const char *path);
 
 private:
+    friend struct PlayerSlotRecord;
     void initialize_default_deck(std::deque<unsigned short> *deck, int index);
     void normalize_profile_name();
 };
