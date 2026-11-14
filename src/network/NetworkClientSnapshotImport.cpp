@@ -51,10 +51,9 @@ void ClientImportView::import_snapshot(const NetworkAckInfoPacket40 *packet)
     if (mode_6e0 == 1) {
         if (sequence_6b8 != packet->sequence_03c) {
             set_state(3);
-            unsigned char sequence = packet->sequence_03c;
+            sequence_6b8 = packet->sequence_03c;
             value_6bc = 0;
             value_6c0 = 0;
-            sequence_6b8 = sequence;
             for (int i = 0; i < 2; ++i) {
                 slots_214[i].value_000 = packet->value_008[i];
                 slots_214[i].tag_005 = packet->status_00a[i];

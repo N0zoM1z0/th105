@@ -94,6 +94,13 @@ amount in EAX. The CRT macro `__min(counter_558 + amount, 500)` from `<stdlib.h>
 is exact. A named `capped` local, with an `if` or a ternary, lands the amount in
 EDX, and `TH105_MIN` gives `jle` for `jl`.
 
+**A copy-through local can rotate registers.** `CNetworkClient::import_snapshot`
+0x44F200 was 399/399 with AL and CL swapped through the rest of the body. The
+source loaded `packet->sequence_03c` into an `unsigned char` local, cleared two
+pacing values, then stored the local. Storing `sequence_6b8 =
+packet->sequence_03c` first, then clearing the values, is exact. Dropping the
+local alone or chaining the clears is not.
+
 **A late store into a shared slot means a fresh, non-escaped local.**
 `parse_scenario_event_row` 0x45A7A0 reuses one stack slot for two values. The
 first value's address goes to `ShortDeque8::push_back`; the second goes to

@@ -1571,7 +1571,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044EDB0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044EE80,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F0F0,authored_game,network,authored,observed,canonical-exact-authored
-0x0044F200,authored_game,network,authored,observed,network-client-import-snapshot-authored-106a
+0x0044F200,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F390,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F4E0,authored_game,network,authored,observed,canonical-exact-authored
 0x0044F520,authored_game,network,authored,observed,canonical-exact-authored
