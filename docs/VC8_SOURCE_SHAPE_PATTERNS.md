@@ -283,6 +283,11 @@ target lacks, so LTCG does not explain the register.
   target places the CSV reader below the texture path buffer; VC8 places them
   in declaration order. Hoisting `path` or `width`/`height`, a block around the
   reader, and declaring `row` before `key` all fail.
+- **No PGO in the target.** Its Rich header lists `Utc1400_LTCG_CPP` (0x72,
+  42 records) and no POGO product IDs. The unmerged epilogues and block order
+  are not profile-guided layout.
+- **`update_and_prune` erase rotation, more trials.** For 0x422D30, both
+  `erase(it++)` and swapping the `state_158` test arms make it worse.
 - **LTCG `this` in ESI.** `PackageFileIndexNode_ctor` 0x41B7F0 receives `this`
   in ESI and returns it from there. Only a linked unit can match it.
 - **RTM compiler control.** Building 0x431390, 0x427390, 0x46C5B0 and 0x414E40
