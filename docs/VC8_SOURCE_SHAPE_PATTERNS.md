@@ -64,6 +64,13 @@ step, declare the loop iterators as `const_iterator`. Plain iterators let LTCG f
 those checks. Proven on 0x4194D0 ([note](AUDIO_SCHEDULER_LISTENERS_LTCG_2026_10_29.md)).
 Linked units declare in-function alignment filler with `alignment_sites`.
 
+**Compare in memory, then reload: two access paths.** A field tested directly
+and then used inside an inline member of the object that contains it (or the
+other way round) is not merged by VC8. The target then compares in memory and
+reloads. Look for an embedded object whose inline members do the work. Proven on
+0x4038D0 and 0x403840 ([note](BGM_SERVICE_LTCG_2026_10_29.md)). The 0x45D040
+deque rewrite showed the same effect.
+
 **Rebuild before trusting a nonexact ledger entry.** Three functions were
 already exact in their units but had never been accepted
 ([note](PENDING_EXACT_ACCEPTANCE_2026_11_14.md)). After a shared header change,

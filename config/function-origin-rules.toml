@@ -1816,18 +1816,6 @@ confidence = "observed"
 evidence = "Fresh pinned-VC8 NetworkAckInfoPacket40 construction names the two EH-vector callbacks as std::deque<unsigned short> constructor/destructor identities. Target 0x0044DAC0 passes exactly 0x00428A90/0x00448DE0 with element size 0x14 and count2 to eh vector ctor iterator; these are generated container lifetimes, not authored packet functions."
 
 [[rules]]
-id = "bgm-service-members-authored-106a"
-addresses = ["0x00403840", "0x004038D0"]
-expected_count = 2
-expected_bytes = 241
-expected_names = ["sub_403840", "sub_4038D0"]
-origin = "authored_game"
-subsystem = "audio"
-disposition = "authored"
-confidence = "observed"
-evidence = "Canonical-exact BGM facades establish the remaining scheduling and stop members. Raw CriticalSection20, manager38 and DirectSound state/buffer fields independently prove game audio policy. Genuine linked context emits142/143 and96/98, nonexact. Sibling fade403940 and set-level403990 are now canonical exact through real CIL transition visibility and raw flag forwarding; they use the exact-origin baseline. docs/BGM_SERVICE_LTCG_2026_10_29.md."
-
-[[rules]]
 id = "cscript-clear-commands-authored-106a"
 addresses = ["0x004056C0"]
 expected_count = 1

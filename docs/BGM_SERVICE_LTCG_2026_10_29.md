@@ -83,3 +83,20 @@ match and its known245/native247 caller. These two older profiles skip the new
 runtime-only table branch; the final additional callback allowlist only tightens the
 new mode. Unchanged corpus receipts are retained, not cold rebuilt. `tool-tests.log`
 and `ci.log` record the focused tooling and final gate.
+
+## 2026-11-14: schedule and stop exact
+
+`BgmService_schedule_or_start` 0x403840 (143) and `BgmService_stop` 0x4038D0 (98)
+are exact in the linked LTCG comparison. The stream does not hold a raw
+DirectSound pointer at +0x28. It embeds the BGM buffer object at +0x24, whose
+`resource_04` is that pointer. The service calls the buffer's inline members:
+- a status check, with `stop()`, in `stop`;
+- `play_looping()`, which tests `resource_04` itself (like the real `set_volume`
+  0x401830), in `schedule_or_start`.
+
+Reading the pointer once directly and again inside a member through `this` gives
+the target's compare-in-memory-then-reload. `schedule_or_start` is also one
+if/else chain with a single unlock, not an early return.
+
+    scripts/repo-python scripts/build.py --unit gpt-web-bgm-service-runtime
+    scripts/repo-python scripts/compare-linked-unit.py gpt-web-bgm-service-runtime --json

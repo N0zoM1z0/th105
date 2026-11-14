@@ -16,8 +16,23 @@ struct BgmStreamView {
     unsigned char reserved_00[0x1c];
     int state_1c;
     unsigned char active_20;
-    unsigned char reserved_21[0x07];
-    DirectSoundBuffer8 *buffer_28;
+    unsigned char reserved_21[0x03];
+    struct BufferView {
+        void *vptr_00;
+        DirectSoundBuffer8 *resource_04;
+        bool playing()
+        {
+            ULong status;
+            resource_04->get_status(&status);
+            return (status & 1) != 0;
+        }
+        void stop() { resource_04->stop(); }
+        void play_looping()
+        {
+            if (resource_04 != 0)
+                resource_04->play(0, 0, 1);
+        }
+    } buffer_24;
     unsigned char reserved_2c[0x1320];
     unsigned int scheduled_time_134c;
     unsigned int transition_time_1350;
@@ -72,7 +87,7 @@ void BgmStreamView::transition(int delay, float level, int flag, int duration) {
         // Native FCOMP tests only CF: unordered values take the gain-provider path.
         if(effective <= bgm_minimum_gain)volume=-10000;
         else volume=bgm_transition_gain(effective);
-        if(buffer_28)buffer_28->set_volume(volume);
+        if(buffer_24.resource_04)buffer_24.resource_04->set_volume(volume);
     } else {
         transition_time_1350=timeGetTime()+delay;
         start_gain_135c=gain_1358;
@@ -101,13 +116,9 @@ void BgmServiceView::schedule_or_start(int handle, int delay)
         stream->state_1c = 0;
         if (delay != 0) {
             stream->scheduled_time_134c = timeGetTime() + delay;
-            LeaveCriticalSection(&lock_20);
-            return;
-        }
-        if (stream->active_20 != 0) {
+        } else if (stream->active_20 != 0) {
             stream->scheduled_time_134c = 0;
-            if (stream->buffer_28 != 0)
-                stream->buffer_28->play(0, 0, 1);
+            stream->buffer_24.play_looping();
         } else {
             stream->scheduled_time_134c = timeGetTime();
         }
@@ -121,12 +132,9 @@ void BgmServiceView::stop(int handle)
     BgmStreamView *stream = handles_38.lookup(handle);
     if (stream != 0) {
         stream->state_1c = 3;
-        if (stream->active_20 != 0 && stream->buffer_28 != 0) {
-            ULong status;
-            stream->buffer_28->get_status(&status);
-            if ((status & 1) != 0)
-                stream->buffer_28->stop();
-        }
+        if (stream->active_20 != 0 && stream->buffer_24.resource_04 != 0 &&
+            stream->buffer_24.playing())
+            stream->buffer_24.stop();
     }
     LeaveCriticalSection(&lock_20);
 }
@@ -164,7 +172,7 @@ typedef char BgmServiceHandlesOffset[
 typedef char BgmStreamStateOffset[
     offsetof(BgmStreamView, state_1c) == 0x1c ? 1 : -1];
 typedef char BgmStreamBufferOffset[
-    offsetof(BgmStreamView, buffer_28) == 0x28 ? 1 : -1];
+    offsetof(BgmStreamView, buffer_24) == 0x24 ? 1 : -1];
 typedef char BgmStreamScheduledTimeOffset[
     offsetof(BgmStreamView, scheduled_time_134c) == 0x134c ? 1 : -1];
 
