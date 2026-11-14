@@ -244,6 +244,15 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **`interpolate_scene_byte` 0x4501B0 register roles (2026-11-14).** The target
+  keeps `entry->start_04` in EDI for both subtractions and reuses EBX for the
+  `current` pointer and `base`. The current source reloads `start_04`
+  (214 bytes). A named `unsigned const start` in the interpolation branch gives
+  211 bytes with identical instructions, but `entry` and `start` swap ESI/EDI.
+  Declaring `start` at function scope gets the roles right but hoists its load
+  above the `elapsed >= end` test. Neither a reference nor an assignment inside
+  the condition keeps both.
+
 - **Marisa CPU policy 0x4B4070: `goto policy_dispatch` hides a helper boundary
   (2026-11-14, not committed).** The target merges the four `approach` bodies
   into the first site, with the later sites jumping back. That is the
