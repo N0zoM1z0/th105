@@ -50,7 +50,7 @@ void ProfileDeckDisplayView::show_record(SpellRecordView *record)
     }
 
     texture_94 = g_title_resource_manager.create_text_texture(
-        record->description_20.c_str(), &g_profile_deck_font, 220, 256, 0, 0).value;
+        record->description_20.c_str(), &g_profile_deck_font, 220, 256, 0, 0);
     sprite_98.set_texture_options(
         texture_94, 0, 0, 220, 256, -70, -26);
 

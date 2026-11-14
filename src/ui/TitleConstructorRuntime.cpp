@@ -18,7 +18,7 @@ CTitle::CTitle()
         unsigned int handle1;
         texture_08.value = *g_title_resource_manager.load_texture(
             &handle1, title_base_path, &width, &height);
-        color_0c.set_texture(texture_08.value, 0, 0, 640, 480);
+        color_0c.set_texture(texture_08, 0, 0, 640, 480);
     }
 
     {
@@ -26,9 +26,9 @@ CTitle::CTitle()
         texture_a0.value = *g_title_resource_manager.load_texture(
             &handle2, title_menu_item_path, &width, &height);
         color_a4.set_texture_options(
-            texture_a0.value, 0, 0, width, 16, width >> 1, 0);
+            texture_a0, 0, 0, width, 16, width >> 1, 0);
         color_138.set_texture_options(
-            texture_a0.value, 0, 16, width, 24, width >> 1, 0);
+            texture_a0, 0, 16, width, 24, width >> 1, 0);
     }
 
     design_1dc.load(title_design_path);

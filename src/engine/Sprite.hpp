@@ -33,9 +33,9 @@ class CSprite : public CSpriteBase {
 public:
     CSprite() {}
     virtual ~CSprite() {}
-    virtual void set_texture_options(unsigned handle, int x, int y,
+    virtual void set_texture_options(th105::DesignTextureHandle handle, int x, int y,
         int width, int height, int pivot_x, int pivot_y);
-    virtual void set_texture(unsigned handle, int x, int y, int width, int height);
+    virtual void set_texture(th105::DesignTextureHandle handle, int x, int y, int width, int height);
     virtual void render_rectangle(float left, float top, float right, float bottom);
     virtual void render(float x, float y);
     virtual void render_fvf4142(float x, float y);

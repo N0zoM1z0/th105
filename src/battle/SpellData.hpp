@@ -1,4 +1,5 @@
 #pragma once
+#include "engine/TextureHandleValue.hpp"
 
 #include <deque>
 
@@ -34,8 +35,8 @@ struct SpellRecordView {
     String28 description_20;
     SpellRecordCopyShort value_3c;
     short value_3e;
-    unsigned batch_texture_handle_40;
-    unsigned card_texture_handle_44;
+    th105::DesignTextureHandle batch_texture_handle_40;
+    th105::DesignTextureHandle card_texture_handle_44;
     int value_48;
 
     SpellRecordView() {}
@@ -216,6 +217,6 @@ struct SpellDataOwner {
 
 extern SpellTree g_common_spell_tree;
 extern DwordDeque4 g_common_spell_image_handles;
-extern unsigned g_common_spell_extra_handle;
+extern DesignTextureHandle g_common_spell_extra_handle;
 
 } // namespace th105

@@ -3,7 +3,7 @@
 #include "ui/Title.hpp"
 
 namespace th105 {
-extern unsigned g_common_spell_extra_handle;
+extern DesignTextureHandle g_common_spell_extra_handle;
 
 void InfoLongRecordBindView::bind_432550(void *resource, unsigned char side)
 {

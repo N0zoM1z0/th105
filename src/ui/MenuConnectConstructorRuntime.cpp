@@ -70,13 +70,13 @@ CMenuConnect::CMenuConnect()
         256,
         0,
         0).value;
-    tile_064.set_texture(texture_060.value, 0, 0, 256, 16);
+    tile_064.set_texture(texture_060, 0, 0, 256, 16);
 
     number_108.initialize(texture_060.value, 1, 0, 15, 16, 10, 0.0f, 0, 0, 0);
     number_108.bind_value(&cursor_3bc.selection);
 
-    sprite_1d4.set_texture_options(texture_060.value, 0, 16, 16, 16, 15, -13);
-    sprite_268.set_texture(texture_060.value, 0, 32, 256, 16);
+    sprite_1d4.set_texture_options(texture_060, 0, 16, 16, 16, 15, -13);
+    sprite_268.set_texture(texture_060, 0, 32, 256, 16);
 
     design_00c.load(connect_ctor_design_path);
     for (int i = 0; i < 7; ++i) {

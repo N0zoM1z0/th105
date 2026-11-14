@@ -20,7 +20,7 @@ void CSelectScenario::apply_scenario(int scenario_id)
 
     wsprintfA(
         path, scenario_stand_path_format, get_scenario_name(scenario_id));
-    unsigned int loaded = *g_title_resource_manager.load_texture(
+    DesignTextureHandle loaded = *g_title_resource_manager.load_texture(
         &handle, path, &width, &height);
     texture_218 = loaded;
     color_21c.set_texture_options(

@@ -11,11 +11,6 @@ unsigned char __cdecl start_async_engine_scene_load(int scene);
 int __cdecl get_async_scene_load_request();
 char *__cdecl get_combined_menu_input_counters();
 
-struct SceneTextureHandle {
-    unsigned value;
-    SceneTextureHandle() : value(0) {}
-};
-
 struct SceneRenderClusterOwner93 {
     unsigned char bytes_00[0x90];
     unsigned char state_90;
@@ -55,7 +50,7 @@ public:
     virtual ~CLoadingConstructorView();
     virtual int update();
 
-    SceneTextureHandle texture_04;
+    DesignTextureHandle texture_04;
     CSprite sprite_08;
     unsigned char reserved_9c[8];
     std::deque<unsigned char> queue_a4;
@@ -68,7 +63,7 @@ public:
     virtual ~CLogoConstructorView();
     virtual int update();
 
-    SceneTextureHandle texture_04;
+    DesignTextureHandle texture_04;
     CEffectSprite sprite_08;
     CTile tile_f0;
     int state_194;
@@ -108,7 +103,7 @@ public:
     CLoadingWatchConstructorView();
     virtual ~CLoadingWatchConstructorView();
 
-    SceneTextureHandle texture_04;
+    DesignTextureHandle texture_04;
     CSprite sprite_08;
     unsigned short timer_9c;
     unsigned char reserved_9e[2];
@@ -128,7 +123,7 @@ CLoadingConstructorView::CLoadingConstructorView()
     unsigned loaded;
     texture_04.value = *g_title_resource_manager.load_texture(
         &loaded, "data/scene/logo/0002.bmp", 0, 0);
-    sprite_08.set_texture(texture_04.value, 0, 0, 128, 32);
+    sprite_08.set_texture(texture_04, 0, 0, 128, 32);
     start_async_engine_scene_load(3);
 }
 
@@ -143,7 +138,7 @@ CLogoConstructorView::CLogoConstructorView()
     unsigned loaded;
     texture_04.value = *g_title_resource_manager.load_texture(
         &loaded, "data/scene/logo/0000.bmp", 0, 0);
-    sprite_08.set_texture_options(texture_04.value, 0, 0, 640, 480, 0, 0);
+    sprite_08.set_texture_options(texture_04, 0, 0, 640, 480, 0, 0);
     state_194 = 0;
 }
 
@@ -178,12 +173,12 @@ CLoadingWatchConstructorView::CLoadingWatchConstructorView()
     unsigned loaded;
     texture_04.value = *g_title_resource_manager.load_texture(
         &loaded, "data/scene/logo/0002.bmp", 0, 0);
-    sprite_08.set_texture(texture_04.value, 0, 0, 128, 32);
+    sprite_08.set_texture(texture_04, 0, 0, 128, 32);
     state_a0 = 0;
     get_network_session()->request_scene(3);
 }
 
-typedef char SceneTextureHandle_size[sizeof(SceneTextureHandle) == 4 ? 1 : -1];
+typedef char DesignTextureHandle_size[sizeof(DesignTextureHandle) == 4 ? 1 : -1];
 typedef char CSprite_size[sizeof(CSprite) == 0x94 ? 1 : -1];
 typedef char CEffectSprite_size[sizeof(CEffectSprite) == 0xE8 ? 1 : -1];
 typedef char CTile_size[sizeof(CTile) == 0xA4 ? 1 : -1];

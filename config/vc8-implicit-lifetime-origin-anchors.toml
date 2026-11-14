@@ -41,7 +41,7 @@ sha256 = "c8ab0afa18da3d0b27d099345ad34e57849aa5a39d6ef757549304fb26f0be84"
 
 [[sources]]
 path = "src/engine/Sprite.hpp"
-sha256 = "3e2ca688bd65839f4b53f4a3b05ba86795f63503868e5c3ba8dd663b7991979b"
+sha256 = "21d7ce312ef4b4f2581d0aec9532bb27a383bbfbb2bfdfc6c633c19dd1ee130c"
 
 [[anchors]]
 address = "0x004939C0"

@@ -12,11 +12,10 @@ void CSelect::bind_character(int side,int character)
         char path[260];
         unsigned width,height;
         wsprintfA(path,select_character_portrait_format,character_key_to_name(character));
-        unsigned texture=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)
+        extra_textures_48c[side]=reinterpret_cast<SelectTextureCall *>(&g_title_resource_manager)
             ->load_texture(path,&width,&height);
         ::CSprite *sprite=&extra_images_494[side];
-        extra_textures_48c[side]=texture;
-        sprite->set_texture(texture,0,0,width,height);
+        sprite->set_texture(extra_textures_48c[side],0,0,width,height);
         if(side!=0) {
             sprite->scale_x_88=-1.0f;
             sprite->scale_y_8c=1.0f;

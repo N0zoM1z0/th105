@@ -20,7 +20,7 @@ sha256 = "b7325a149e26eb23561f628d518e70784009b99bfb180cc309c47fa9b0b96a9b"
 
 [[sources]]
 path = "src/battle/SpellData.hpp"
-sha256 = "85bb3f6edcf13e0bb654dabe55d89df910d0c30fce844d1e3b995e9f3acbc717"
+sha256 = "e599fb15690e1c40441cb78ede4acc891188b99a582d5ed4cf8d7cc696790441"
 
 [[sources]]
 path = "src/assets/CsvReader.hpp"
@@ -28,7 +28,7 @@ sha256 = "2f2910c48445d0db7171fddd3cb6838235ef34a5d9ab2fc2917d85fd829620b3"
 
 [[sources]]
 path = "src/engine/Sprite.hpp"
-sha256 = "3e2ca688bd65839f4b53f4a3b05ba86795f63503868e5c3ba8dd663b7991979b"
+sha256 = "21d7ce312ef4b4f2581d0aec9532bb27a383bbfbb2bfdfc6c633c19dd1ee130c"
 
 [[sources]]
 path = "src/engine/ColorInterface.hpp"

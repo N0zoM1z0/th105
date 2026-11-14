@@ -7347,7 +7347,7 @@ notes = "Current Profile UI infrastructure recovered as one ordinary VC8 TU: mes
 
 [[units.cross-v106a-profile-ui-infrastructure.functions]]
 address = "0x00406A60"
-symbol_base = "?set_texture@CSprite@@UAEXIHHHH@Z"
+symbol_base = "?set_texture@CSprite@@UAEXUDesignTextureHandle@th105@@HHHH@Z"
 
 [[units.cross-v106a-profile-ui-infrastructure.functions]]
 address = "0x0043F8D0"
@@ -7472,7 +7472,7 @@ rel32_targets = [
   "?load@ProfileRenderListView@th105@@QAEXPBD@Z=0x0040B000",
   "?bind_object_alt@ProfileRenderListView@th105@@QAEXPAPAUUiDesignObject@2@H@Z=0x00420B90",
   "?load_texture@TitleResourceManager@th105@@QAEPAIPAIPBD00@Z=0x00404C90",
-  "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
+  "?set_texture@CSprite@@UAEXUDesignTextureHandle@th105@@HHHH@Z=0x00406A60",
   "@__security_check_cookie@4=0x00689D25",
 ]
 dir32_targets = [
@@ -8657,7 +8657,7 @@ symbol_base = "?show_profile_result@Menu@th105@@IAEXPBD@Z"
 rel32_targets = [
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
-  "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
+  "?set_texture@CSprite@@UAEXUDesignTextureHandle@th105@@HHHH@Z=0x00406A60",
 ]
 
 dir32_targets = ["?g_profile_message_sprite@th105@@3VCSprite@@A=?g_profile_message_sprite@th105@@3UProfileSpriteView@1@A"]
@@ -8668,7 +8668,7 @@ symbol_base = "?show_profile_message@Menu@th105@@IAEXPBD_N@Z"
 rel32_targets = [
   "?release_title_resource_handle@TitleResourceManager@th105@@QAEEUDesignTextureHandle@2@@Z=0x00404D70", "?release_title_resource_handle@TitleResourceManager@th105@@QAEEI@Z=0x00404D70",
   "?create_text_texture@TitleResourceManager@th105@@QAE?AUDesignTextureHandle@2@PBDPBXIIPAI2@Z=0x00404D00",
-  "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
+  "?set_texture@CSprite@@UAEXUDesignTextureHandle@th105@@HHHH@Z=0x00406A60",
 ]
 
 dir32_targets = ["?g_profile_message_sprite@th105@@3VCSprite@@A=?g_profile_message_sprite@th105@@3UProfileSpriteView@1@A"]
@@ -11105,7 +11105,7 @@ rel32_targets = [
 ]
 dir32_targets = [
   "?g_common_spell_image_handles@th105@@3UDwordDeque4@1@A=?g_common_spell_image_handles@th105@@3V?$deque@IV?$allocator@I@std@@@std@@A",
-  "?g_common_spell_extra_handle@th105@@3IA=?g_common_spell_extra_handle@th105@@3IA",
+  "?g_common_spell_extra_handle@th105@@3UDesignTextureHandle@1@A=?g_common_spell_extra_handle@th105@@3UDesignTextureHandle@1@A",
   "?g_common_spell_tree@th105@@3USpellTree@1@A=?g_common_spell_tree@th105@@3USpellTree@1@A",
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
 ]
@@ -11124,7 +11124,7 @@ dir32_targets = [
   "___security_cookie=___security_cookie",
   "_common_spell_bar_path=_common_spell_bar_path",
   "_profile_ui_effect_label=_profile_ui_effect_label",
-  "?g_common_spell_extra_handle@th105@@3IA=?g_common_spell_extra_handle@th105@@3IA",
+  "?g_common_spell_extra_handle@th105@@3UDesignTextureHandle@1@A=?g_common_spell_extra_handle@th105@@3UDesignTextureHandle@1@A",
   "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
   "?g_spell_composite_upload_state@th105@@3UCompositeTextureUploadState@1@A=?g_spell_composite_upload_state@th105@@3UCompositeTextureUploadState@1@A",
   "?g_common_spell_tree@th105@@3USpellTree@1@A=?g_common_spell_tree@th105@@3USpellTree@1@A",
@@ -23135,7 +23135,7 @@ rel32_targets = [
   "?render_cursor@Menu@th105@@IAEXMMM@Z=0x0043F9D0",
   "?render_profile_menu_footer@DeckFooterView@th105@@QAEXXZ=0x0043F970",
   "?render_profile_player_slot@Menu@th105@@IAEXPAUPlayerSlotRecord@2@MM@Z=0x0043FAF0",
-  "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
+  "?set_texture@CSprite@@UAEXUDesignTextureHandle@th105@@HHHH@Z=0x00406A60",
   "__invalid_parameter_noinfo=0x0068A143",
 ]
 dir32_targets = ["__real@4035000000000000=_alice_fighter_update_006c21b8"]
@@ -24078,7 +24078,7 @@ symbol_base = "?prepare_next_spell_sequence_entry@Fighter@th105@@QAEXXZ"
 rel32_targets = [
  "?select_spell_record_id@SpellDataOwner@th105@@QAEFXZ=0x00432310",
  "?find_local_then_common_spell_record@SpellDataOwner@th105@@QAEPAUSpellRecordView@2@H@Z=0x00432D20",
- "?set_texture@CSprite@@UAEXIHHHH@Z=0x00406A60",
+ "?set_texture@CSprite@@UAEXUDesignTextureHandle@th105@@HHHH@Z=0x00406A60",
  "?push_back@?$deque@UFighterSequenceSlot@th105@@V?$allocator@UFighterSequenceSlot@th105@@@std@@@std@@QAEXABUFighterSequenceSlot@th105@@@Z=0x0045DBA0",
 ]
 dir32_targets = [
@@ -29723,7 +29723,7 @@ notes = "Complete334-byte actual CSprite texture policy; first mismatch149 remai
 
 [[units.exact-first-sprite-texture-options.functions]]
 address = "0x00406A90"
-symbol_base = "?set_texture_options@CSprite@@UAEXIHHHHHH@Z"
+symbol_base = "?set_texture_options@CSprite@@UAEXUDesignTextureHandle@th105@@HHHHHH@Z"
 rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60"]
 
 [units.exact-first-wave-handle-gain]

@@ -51,7 +51,7 @@ struct NetworkResultFinalizeLayout {
     void *vtable_000;
     char primary_text_004[0x20];
     char secondary_text_024[0x254];
-    unsigned int texture_278;
+    DesignTextureHandle texture_278;
     CSprite sprite_27c;
     CSprite sprite_310;
 };
@@ -94,7 +94,7 @@ void NetworkSessionResultView::finalize_result_binding_44dcb0()
     text.append(layout->secondary_text_024);
     text.append("</color>", 8);
     layout->texture_278 = g_title_resource_manager.create_text_texture(
-        text.c_str(), &text_owner, 256, 64, 0, 0).value;
+        text.c_str(), &text_owner, 256, 64, 0, 0);
     layout->sprite_27c.set_texture(layout->texture_278, 0, 0, 256, 16);
     layout->sprite_310.set_texture(layout->texture_278, 0, 16, 256, 32);
 }

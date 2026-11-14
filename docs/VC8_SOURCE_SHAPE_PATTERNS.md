@@ -123,6 +123,16 @@ virtual `CSprite::set_texture(unsigned, ...)` call schedules differently with
 a class argument. A matched impacted-unit replay (811 results) shows no
 regressions.
 
+**The virtual sprite setters take the handle class too.**
+`CSprite::set_texture` and `set_texture_options` take `DesignTextureHandle`.
+`CProfileDeckEdit::show_record` 0x448B40 tests `card_texture_handle_44` in
+memory and reloads it for the call; that is exact once the record field is the
+class (0x45DC90 as well). Two of the callers needed a change in the same pass:
+- `CSelect` character binding 0x41FB80 loads the handle into its member
+  before passing it;
+- the spell CSV parser 0x4343A0 needs a plain `SpellRecordView` local (the
+  members zero themselves) and a handle copy, not `.value`.
+
 **The texture binder takes a `DesignTextureHandle` by value.** Its call sites
 show the parameter's type:
 - on-device-lost 0x401610 builds the argument in place (`push 0; push ecx;

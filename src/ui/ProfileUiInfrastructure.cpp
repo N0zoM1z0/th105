@@ -131,7 +131,7 @@ void Menu::render_profile_tiles()
 
 } // namespace th105
 
-void CSprite::set_texture(unsigned handle, int x, int y, int width, int height)
+void CSprite::set_texture(th105::DesignTextureHandle handle, int x, int y, int width, int height)
 {
     set_texture_options(handle, x, y, width, height, 0, 0);
 }

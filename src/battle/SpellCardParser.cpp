@@ -71,12 +71,7 @@ void SpellDataOwner::parse_spell_csv_and_build_card_resources(
     bool has_next_row;
 
     do {
-        struct ParsedSpellRow : SpellRecordView {
-            ParsedSpellRow() {
-                batch_texture_handle_40 = 0;
-                card_texture_handle_44 = 0;
-            }
-        } parsed;
+        SpellRecordView parsed;
         const int key = reader.next_int();
         reader.next_string(&parsed.name_00);
         parsed.selector_1c = static_cast<signed char>(reader.next_int());
@@ -120,7 +115,7 @@ void SpellDataOwner::parse_spell_csv_and_build_card_resources(
                 RecordMap::reverse_iterator current = records->rbegin();
                 for (int index = 0; index < batch_count; ++index)
                     (current++)->second.batch_texture_handle_40 =
-                        composite_handle.value;
+                        composite_handle;
 
                 reinterpret_cast<FilteredSpellStringAssignView *>(&composite_paths)
                     ->assign_bytes("", 0);

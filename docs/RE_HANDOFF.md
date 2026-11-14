@@ -6,45 +6,89 @@ TH10.5 v1.06a executable with SHA-256
 
 ## Current work
 
-The 2026-11-14 session (commit prefix `claude-opus-5.5-high:`) committed the
-pending global-class Input refactor after replaying all 226 dependent units, and
-moved VC8 compiles off the Factory runner: `scripts/compile-unit.sh` now calls the
-system Wine directly with the same `.tools/wine-msvc8` prefix. A unit builds and
-compares in about 2 s.
+The 2026-11-14 sessions (commit prefix `claude-opus-5.5-high:`) moved VC8
+compiles to the system Wine (`scripts/compile-unit.sh`, about 2 s per unit) and
+raised exact coverage by roughly 30 functions. The recovered source-shape rules
+and every parked residual are in
+[VC8 source-shape patterns](VC8_SOURCE_SHAPE_PATTERNS.md); read it before retrying
+any near-miss. Origin fixes are in
+[origin corrections](ORIGIN_CORRECTIONS_2026_11_14.md).
 
-New exact functions: profile key capture 0x44B540, CMenuConfig constructor
-0x441520, descriptor point test 0x46B8B0, file-list parent step 0x4398B0, Arcade
-post pipeline 0x472F80, title render 0x425740, scenario label selection 0x455490,
-profile writer 0x4317A0, and three functions that were already exact but never
-accepted (0x42CF70, 0x42D010, 0x432200). 0x40FDB0 turned out to be VC8's
-`deque<CsvRow>::_Tidy` and is now excluded; see
-[origin corrections](ORIGIN_CORRECTIONS_2026_11_14.md). The CRLF working-tree and
-pin repair is described there too. The origin census reports no errors. Reusable source-shape
-findings and every parked residual tried this session are in
-[VC8 source-shape patterns](VC8_SOURCE_SHAPE_PATTERNS.md). Read it before retrying
-any of those functions.
+The most productive finding: **texture handles are the 4-byte class
+`DesignTextureHandle`** (`engine/TextureHandleValue.hpp`).
+- The binder 0x404DF0 and the release 0x404D70 take it by value.
+- The release has two linker-folded overloads, `unsigned` and
+  `DesignTextureHandle`.
+- `TextureHandleResult` aliases the class.
+- Handle fields that callers pass to these functions are class-typed. Where a
+  native helper proves `vector<unsigned>` (the background vectors and the scalar
+  `_Assign_n` 0x40C2E0), the element stays `unsigned` and uses the `unsigned`
+  overload.
 
-Later the same day: Yukari round reset 0x58A470, capped counter 0x45CED0, client
-ACK tail import 0x44E6D0, both CSprite renderers 0x406BE0/0x406E50, and the two
-character-texture refreshes 0x4484F0/0x447080 became exact. All of these were
-equal-size "scheduling noise" cases with a real source cause: small unrolled
-loops, the CRT `__min` macro, a `void **` lookup result, and a reference-clearing
-`release_texture` helper. `NetworkStateRecord4C` now has real
-`NetworkStateSide20 sides_008[2]`. Treat equal-size residuals as source
-questions first.
+Typing handles this way made about a dozen equal-size near-misses exact, including
+`Character_dtor` 0x462CE0. A call site that builds an argument in place
+(`push ecx; mov eax, esp; mov [eax], x`) is a literal converting to the class;
+two pushes of a zeroed register are `DesignTextureHandle()`; a plain push is a
+class object.
 
-The quickest discovery method was to rebuild every unit that holds a nonexact
-authored function and rank the results by first-mismatch offset and size delta. A size
-difference with a late first mismatch has usually been a real source-shape
-error. Equal sizes have often looked like register or scheduling noise, but
-several were not (see above).
+Other equal-size near-misses fell to small source causes:
+- statement order (sum association, sequence publication);
+- disjoint local scopes;
+- short unrolled loops;
+- the CRT `__min` macro;
+- binding a copied handle local.
 
-The largest remaining nonexact clusters are VC8 optimizer choices that no
-source spelling has moved so far: commutative operand order in checked-container
-bounds, compare-in-memory then reload, register preference after calls, and
-tail-merge or block placement. A real LTCG build of one of them is the next
-untested lead; it needs genuine callee definitions, without stubs or `/FORCE`.
-The giant Fighter/Object action roots remain far from exact; see their topic notes.
+Treat equal-size residuals as source questions first.
+
+### Latest change
+
+The virtual `CSprite::set_texture` and `set_texture_options` setters also take
+`DesignTextureHandle`. So do the spell record handles (`batch_texture_handle_40`,
+`card_texture_handle_44`) and `g_common_spell_extra_handle`.
+`SceneTextureHandle` is unified into `DesignTextureHandle`. This made 0x448B40
+and 0x45DC90 exact, and kept 0x41FB80 and 0x4343A0 exact through natural
+rewrites. A 389-unit replay against `matches.csv` showed no regressions.
+
+The non-virtual `CSpriteEx`/`CTile` setters still take `unsigned`. Retyping them
+is the next handle-typing step.
+
+### Verifying shared type changes
+
+After changing a shared header type, build a baseline and a new run for every
+unit whose source include-closure mentions the changed names, then compare per
+function. The session's scratch scripts did this in about 20 minutes per pass.
+Then refresh the scalar-wrapper receipts:
+
+    scripts/repo-python scripts/scalar_wrapper_origins.py --unit <unit> ...
+
+Then run `scripts/function-origins.py --check`. It needs about 10 minutes, and
+it flags header pins that need renewing; keep each pin's raw or LF hashing
+convention.
+
+### Open leads
+
+- `CSprite::set_texture` callers and remaining handle fields: continue the
+  handle typing.
+- Text-texture pair 0x404D00/0x4097A0: a real LTCG build differs only in LTCG
+  promoting `width` into ECX.
+- The 64-byte-frame island (0x418990, 0x406360, 0x4063D0) matches code built
+  with global optimizations disabled (`idiv` for `% 3600`). The setting that
+  gives `and esp, -64` is unknown, and the three audio gain callers depend on
+  0x418990.
+- Linked units are needed for the LTCG-private ABIs: `this` in ESI or EAX,
+  0x41B7F0, and the PAT loader 0x461B70.
+
+### Parked clusters
+
+These are documented in the patterns note:
+- EH-state store placement (six functions);
+- unmerged `return 0` epilogues;
+- commutative operand order;
+- register rotation in `release_all_tracked` and `update_and_prune`;
+- the dead `push ecx` slot.
+
+The giant character action roots (Reimu 0x478FA0, Komachi 0x5E20E0) have no
+source yet.
 
 Read live status from the ledgers instead of copying totals into this document:
 

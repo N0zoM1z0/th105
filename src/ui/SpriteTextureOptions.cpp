@@ -2,7 +2,7 @@
 #include "ui/Title.hpp"
 
 #pragma float_control(except, off, push)
-void CSprite::set_texture_options(unsigned handle, int x, int y,
+void CSprite::set_texture_options(th105::DesignTextureHandle handle, int x, int y,
     int width, int height, int pivot_x, int pivot_y)
 {
     texture_width_78 = static_cast<float>(width);
@@ -14,7 +14,7 @@ void CSprite::set_texture_options(unsigned handle, int x, int y,
     // Both input values have been published before their storage is reused
     // for the unsigned texture extents, as in the original size-query call.
     th105::g_title_resource_manager.get_texture_size(
-        handle, &handle, reinterpret_cast<unsigned *>(&pivot_x));
+        handle, &handle.value, reinterpret_cast<unsigned *>(&pivot_x));
 
     float left = static_cast<float>(x) / handle;
     vertices_08[0].u = left;
