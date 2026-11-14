@@ -6886,8 +6886,8 @@ symbol_base = "?submit_primitive@RenderModeManager@th105@@QAEJIIPBXII@Z"
 
 [[units.cross-v106a-render-primitives.functions]]
 address = "0x00401130"
-symbol_base = "?submit_textured_primitive@RenderModeManager@th105@@QAEJIIIPBXII@Z"
-rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0"]
+symbol_base = "?submit_textured_primitive@RenderModeManager@th105@@QAEJUDesignTextureHandle@2@IIPBXII@Z"
+rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXUDesignTextureHandle@2@H@Z=0x00404DF0"]
 dir32_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
 
 [[units.cross-v106a-render-primitives.functions]]
@@ -16983,7 +16983,7 @@ rel32_targets = [
   "??A?$deque@USecondaryAnimationPoint@th105@@V?$allocator@USecondaryAnimationPoint@th105@@@std@@@std@@QAEAAUSecondaryAnimationPoint@th105@@I@Z=0x004300B0",
   "?set_blend_mode@RenderModeManager@th105@@QAEXH@Z=0x004047E0",
   "?set_mode@RenderModeManager@th105@@QAEXH@Z=0x00404750",
-  "?submit_textured_primitive@RenderModeManager@th105@@QAEJIIIPBXII@Z=0x00401130",
+  "?submit_textured_primitive@RenderModeManager@th105@@QAEJUDesignTextureHandle@2@IIPBXII@Z=0x00401130",
 ]
 dir32_targets = [
   "?g_secondary_animation_x_offset@th105@@3MA=?g_secondary_animation_x_offset@th105@@3MA",
@@ -19765,7 +19765,7 @@ symbol_base = "?render@CGage@@UAEXMM@Z"
 rel32_targets = [
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
-  "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0",
+  "?bind_texture@TitleResourceManager@th105@@QAEXUDesignTextureHandle@2@H@Z=0x00404DF0",
 ]
 dir32_targets = [
   "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base",
@@ -19801,7 +19801,7 @@ notes = "Complete107-byte texture binder404DF0 source using ordinary typed D3D9 
 
 [[units.gpt-web-texture-slot-binding.functions]]
 address = "0x00404DF0"
-symbol_base = "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z"
+symbol_base = "?bind_texture@TitleResourceManager@th105@@QAEXUDesignTextureHandle@2@H@Z"
 rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800"]
 dir32_targets = ["?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A"]
 
@@ -23070,7 +23070,7 @@ address = "0x004012A0"
 symbol_base = "?draw_rect@RenderModeManager@th105@@QAEHMMMMIE@Z"
 rel32_targets = [
   "?draw_line@RenderModeManager@th105@@QAEHMMMMI@Z=0x00401180",
-  "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0",
+  "?bind_texture@TitleResourceManager@th105@@QAEXUDesignTextureHandle@2@H@Z=0x00404DF0",
 ]
 
 [units.exact-first-effect-resources]
@@ -24654,7 +24654,7 @@ notes = "Complete4070C0 four-edge sprite rectangle render using real vertex stor
 [[units.exact-first-sprite-rectangle-render.functions]]
 address = "0x004070C0"
 symbol_base = "?render_rectangle@CSprite@@UAEXMMMM@Z"
-rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0"]
+rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXUDesignTextureHandle@2@H@Z=0x00404DF0"]
 dir32_targets = [
  "?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A",
  "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base",
@@ -26164,7 +26164,7 @@ notes = "Complete148-byte line renderer with two20-byte XYZRHW/diffuse vertices.
 [[units.exact-first-line-primitive.functions]]
 address = "0x00401180"
 symbol_base = "?draw_line@RenderModeManager@th105@@QAEHMMMMI@Z"
-rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0"]
+rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXUDesignTextureHandle@2@H@Z=0x00404DF0"]
 
 [[units.cross-v106a-profile-data-writer.functions]]
 address = "0x004317A0"
@@ -28355,13 +28355,12 @@ source = "src/engine/RenderModeLost.cpp"
 object = "build/match-units/ExactFirst_RenderModeLost.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete CRenderer reset-listener lost callback401610. Actual existing four-byte texture value default-construction, then bind zero handle at stage0. Native renderer RTTI/vtable slot pins ownership. Whole15/native22 remains nonexact; no manual stack temporary or synthetic ABI."
+notes = "Complete CRenderer reset-listener lost callback 0x401610. Binds handle 0 at stage 0; the literal converts through the DesignTextureHandle parameter in place."
 
 [[units.exact-first-render-mode-lost.functions]]
 address = "0x00401610"
 symbol_base = "?on_device_lost@RenderModeManager@th105@@UAEXXZ"
-rel32_targets = ["?bind_texture@RenderTextureBindingView@th105@@QAEXUTextureHandleResult@2@H@Z=0x00404DF0"]
-dir32_targets = ["?g_render_texture_binding@th105@@3URenderTextureBindingView@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A"]
+rel32_targets = ["?bind_texture@TitleResourceManager@th105@@QAEXUDesignTextureHandle@2@H@Z=0x00404DF0"]
 
 [units.exact-first-directinput-shutdown]
 kind = "probe"
@@ -30076,7 +30075,7 @@ notes = "Complete battle overlay with the shared actual D3DX effect COM interfac
 [[units.exact-first-battle-render-tail-typed.functions]]
 address = "0x004666A0"
 symbol_base = "?render_tail_4666a0@BattleObjectManager@th105@@QAEXXZ"
-rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60", "?bind_texture@TitleResourceManager@th105@@QAEXIH@Z=0x00404DF0", "?submit_primitive@RenderModeManager@th105@@QAEJIIPBXII@Z=0x004010F0"]
+rel32_targets = ["?get_texture_size@TitleResourceManager@th105@@QAEXIPAI0@Z=0x00404E60", "?bind_texture@TitleResourceManager@th105@@QAEXUDesignTextureHandle@2@H@Z=0x00404DF0", "?submit_primitive@RenderModeManager@th105@@QAEJIIPBXII@Z=0x004010F0"]
 
 [units.exact-first-profile-editor-selection]
 kind = "probe"

@@ -94,6 +94,29 @@ amount in EAX. The CRT macro `__min(counter_558 + amount, 500)` from `<stdlib.h>
 is exact. A named `capped` local, with an `if` or a ternary, lands the amount in
 EDX, and `TH105_MIN` gives `jle` for `jl`.
 
+**The texture binder takes a `DesignTextureHandle` by value.** Its call sites
+show the parameter's type:
+- on-device-lost 0x401610 builds the argument in place (`push 0; push ecx;
+  mov eax, esp; mov [eax], 0`), which is `bind_texture(0, 0)` through the
+  converting constructor;
+- the line and rectangle primitives push a zeroed register twice, which is
+  `bind_texture(DesignTextureHandle(), 0)`;
+- the render tail and textured-primitive callers push the stored value, so
+  their handles are `DesignTextureHandle` objects.
+
+With `TitleResourceManager::bind_texture(DesignTextureHandle, int)`, a
+`DesignTextureHandle` parameter for `submit_textured_primitive`,
+`SecondaryAnimationRender::texture_handle_20` and `BattleObjectManager`'s two
+handles, `draw_line` 0x401180 and `on_device_lost` 0x401610 are exact. 0x401130,
+0x4666A0 and 0x4302A0 stay exact.
+
+`BattleObjectManager`'s constructor 0x4678F0 lost exact credit: its old match
+relied on `unsigned` members contradicted by the render tail. With class
+members it is 279/279, nonexact only on the EH-state scheduling seen elsewhere
+(the target keeps the two zero stores after `state = 5`). Assigning the members
+in the body, initializer-list forms, an anonymous-struct grouping and a
+vertex constructor all fail. The binder 0x404DF0 itself is still nonexact.
+
 **Statement order picks the association of a commutative sum.** In
 `draw_font_glyph` 0x411B80 the target computes `ascent - origin.y + cursor_y +
 height` from `ascent` onward. With `bottom` computed first, VC8 reassociates

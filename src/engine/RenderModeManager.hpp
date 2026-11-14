@@ -1,6 +1,7 @@
 #pragma once
 
 #include "D3DBackend.hpp"
+#include "TextureHandleValue.hpp"
 
 #include <stddef.h>
 
@@ -60,7 +61,7 @@ struct RenderModeManager : DeviceResetListener {
         unsigned stride,
         unsigned fvf);
     D3DHResult submit_textured_primitive(
-        unsigned texture_handle,
+        DesignTextureHandle texture_handle,
         unsigned primitive_type,
         unsigned primitive_count,
         const void *vertices,

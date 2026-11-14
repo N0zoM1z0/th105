@@ -30,7 +30,7 @@ int RenderModeManager::draw_rect(
     vertices[0].z = vertices[1].z = vertices[2].z = vertices[3].z = 0.5f;
     vertices[0].rhw = vertices[1].rhw = vertices[2].rhw = vertices[3].rhw = 1.0f;
     vertices[0].color = vertices[1].color = vertices[2].color = vertices[3].color = color;
-    g_title_resource_manager.bind_texture(0, 0);
+    g_title_resource_manager.bind_texture(DesignTextureHandle(), 0);
     device_04->SetFVF(0x44);
     return device_04->DrawPrimitiveUP(5, 2, vertices, sizeof(vertices[0]));
 }

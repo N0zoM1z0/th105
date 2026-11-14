@@ -104,7 +104,7 @@ private:
     int blend_mode_14;
     float texture_u_extent_18;
     float texture_v_extent_1c;
-    unsigned int texture_handle_20;
+    DesignTextureHandle texture_handle_20;
     unsigned char render_enabled_24;
     unsigned char update_step_25;
     unsigned char reserved_26[2];

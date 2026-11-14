@@ -1,6 +1,7 @@
 #pragma once
 
 #include "assets/ResourceHandleManager.hpp"
+#include "engine/TextureHandleValue.hpp"
 #include "../engine/SceneBase.hpp"
 #include "MenuCursor.hpp"
 #include "Tile.hpp"
@@ -72,7 +73,7 @@ struct TitleResourceManager : CHandleManager4 {
         release_title_resource_handle(handle);
         handle = 0;
     }
-    void bind_texture(unsigned int handle, int stage);
+    void bind_texture(DesignTextureHandle handle, int stage);
     void get_texture_size(
         unsigned int handle, unsigned int *width, unsigned int *height);
 };

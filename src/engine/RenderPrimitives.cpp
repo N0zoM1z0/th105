@@ -38,7 +38,7 @@ D3DHResult RenderModeManager::submit_primitive(
 }
 
 D3DHResult RenderModeManager::submit_textured_primitive(
-    unsigned texture_handle,
+    DesignTextureHandle texture_handle,
     unsigned primitive_type,
     unsigned primitive_count,
     const void *vertices,

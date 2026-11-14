@@ -1,6 +1,7 @@
 #pragma once
 
 #include "platform/BattleThreadHandle.hpp"
+#include "engine/TextureHandleValue.hpp"
 
 #include "battle/BattleRenderHelpers.hpp"
 
@@ -52,8 +53,8 @@ struct BattleObjectManager {
     std::list<BackgroundBase *> owned_34;
     BattleBaseEffect effect_40;
     BattleRenderVertex36 vertices_48[4];
-    unsigned texture_a_d8;
-    unsigned texture_b_dc;
+    DesignTextureHandle texture_a_d8;
+    DesignTextureHandle texture_b_dc;
     float drift_e0;
     float drift_e4;
     float drift_e8;

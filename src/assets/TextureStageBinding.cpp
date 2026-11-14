@@ -5,7 +5,7 @@
 
 namespace th105 {
 // Device is the +0x20 member of the exact-backed D3D backend aggregate.
-void TitleResourceManager::bind_texture(unsigned int handle, int stage)
+void TitleResourceManager::bind_texture(DesignTextureHandle handle, int stage)
 {
     if (handle == 0) {
         g_d3d_backend.device_020->SetTexture(stage, 0);

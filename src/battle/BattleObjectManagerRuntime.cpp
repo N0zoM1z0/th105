@@ -14,8 +14,6 @@ BattleObjectManager::BattleObjectManager()
       owned_34(),
       effect_40()
 {
-    texture_a_d8 = 0;
-    texture_b_dc = 0;
     effect_40.initialize(battle_object_effect_blob_6c2db8, 0x4d0);
 
     running_0c = 1;
