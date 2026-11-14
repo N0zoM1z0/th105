@@ -33,6 +33,8 @@ def load_audit():
 
 
 def execute(image, code, case, address):
+    if case.get("stop_after_action"):
+        case = dict(case, stop_after_scratch=True)
     if case.get("stop_after_scratch"):
         case = dict(case, stop_after_landing_check=True)
     engine = unicorn.Uc(unicorn.UC_ARCH_X86, unicorn.UC_MODE_32)
@@ -85,15 +87,18 @@ def execute(image, code, case, address):
             ((case.get("stop_at_adjust") or case.get("stop_after_adjust") or case.get("stop_after_landing_check")) and location in (0x4063D0, 0x406360)) or
             ((case.get("stop_after_adjust") or case.get("stop_after_landing_check")) and location == 0x46BF30) or
             (case.get("stop_after_landing_check") and location in (0x5F9310, 0x435D60)) or
-            (case.get("stop_after_scratch") and location == 0x435110)):
+            (case.get("stop_after_scratch") and location == 0x435110) or
+            (case.get("stop_after_action") and location in (0x45BFE0, 0x435200))):
             trace.append(hex(location))
         boundary = BOUNDARIES.get(location)
         if case.get("stop_after_landing_check") and location == 0x5F9310:
             boundary = None
         if case.get("stop_after_scratch") and location == 0x435110:
             boundary = None
-        if case.get("stop_after_scratch") and location == 0x45BFE0:
+        if case.get("stop_after_scratch") and location == 0x45BFE0 and not case.get("stop_after_action"):
             boundary = "action"
+        if case.get("stop_after_action") and location == 0x45C460:
+            boundary = "reset_sequence"
         if case.get("stop_after_landing_check") and location == RETURN:
             boundary = "root_return"
         if case.get("stop_at_cosine") and location == 0x4063D0:
