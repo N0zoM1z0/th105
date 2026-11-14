@@ -39,6 +39,14 @@ anything, so VC8 keeps the original order. Proven on the Arcade post pipeline
 0x472F80 ([note](BATTLE_ARCADE_POST_PIPELINE_2026_11_04.md)). Offset-macro
 sources such as the character input policies are candidates for the same fix.
 
+**Member stores through a materialized subobject pointer.** If the target writes
+an embedded object's fields through a register that holds its address, use an
+inline member on that object instead of `owner.member.field = value`.
+**Loop induction base.** The array referenced first inside the loop body becomes
+the loop's pointer induction variable. A local such as `row = items[i]` can
+move that choice. Both were proven on `CTitle::render` 0x425740
+([note](TITLE_RENDER_2026_11_04.md)).
+
 **Rebuild before trusting a nonexact ledger entry.** Three functions were
 already exact in their units but had never been accepted
 ([note](PENDING_EXACT_ACCEPTANCE_2026_11_14.md)). After a shared header change,

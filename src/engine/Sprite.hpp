@@ -39,6 +39,11 @@ public:
     virtual void render_rectangle(float left, float top, float right, float bottom);
     virtual void render(float x, float y);
     virtual void render_fvf4142(float x, float y);
+    void set_scale(float x, float y)
+    {
+        scale_x_88 = x;
+        scale_y_8c = y;
+    }
     float pivot_x_80;
     float pivot_y_84;
     float scale_x_88;

@@ -815,7 +815,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004256B0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x004256D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00425720,authored_game,ui,authored,observed,canonical-exact-authored
-0x00425740,authored_game,ui,authored,observed,title-render-authored-106a
+0x00425740,authored_game,ui,authored,observed,canonical-exact-authored
 0x004258F0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00425990,authored_game,ui,authored,observed,canonical-exact-authored
 0x00425D40,authored_game,ui,authored,observed,canonical-exact-authored
