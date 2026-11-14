@@ -91,6 +91,18 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   (`[eax + ecx]` addressing). An open lead is LTCG code generation: these
   units compile with plain `/O2`. A linked trial needs real callee definitions,
   which LTCG would inline where the target keeps the call.
+  `Fighter_load_pat_data_and_palette_resources` 0x461B70 (exact to +866 of 3885)
+  has the same residual in an inlined `back()`, and `Character_dtor` 0x462CE0 a
+  related SIB operand swap. Probe results:
+  - inlined VC8 deque derefs are emitted size-first;
+  - the out-of-line `back()` instantiation is off-first, like the target;
+  - the PAT loader's surrounding code matches the target instruction for
+    instruction.
+
+  So the choice comes from outside the function. One trial TU combined the PAT
+  loader with the neighbouring `Character` constructor and destructor sources (in
+  address order). It changes neither function, so that partial TU composition does
+  not explain it.
 - **Clash resolver tail merging.** `resolve_group_b_object_clash` 0x46CA80 is
   557 bytes against 542. The target merges the equal case into the final
   `8/8` block with the result in EAX, and stores slot-first only there. All 24
