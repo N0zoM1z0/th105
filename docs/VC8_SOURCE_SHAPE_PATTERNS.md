@@ -260,6 +260,9 @@ target lacks, so LTCG does not explain the register.
   reloads. VC8 loads, tests and stores the state afterwards. `release_texture`
   splits the paths only when the handle is not at offset 0. `/Ox`, `/Oy-` and
   the spelled-out `/O2` components do not help.
+- **Commutative sum order in `advance_frame` 0x44EAD0.** The target loads +0x88
+  before adding +0x84. The operand order in source, `+=`, a local, an `int` type,
+  a two-element array and a manual LTCG build all emit +0x84 first.
 - **LTCG `this` in ESI.** `PackageFileIndexNode_ctor` 0x41B7F0 receives `this`
   in ESI and returns it from there. Only a linked unit can match it.
 - **RTM compiler control.** Building 0x431390, 0x427390, 0x46C5B0 and 0x414E40

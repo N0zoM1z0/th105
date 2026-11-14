@@ -169,3 +169,22 @@ original TU boundaries remain unresolved.
 
 The corresponding private directory retains the complete source/units/recipes.
 Native work was serial CPU0/nice10; images were never executed.
+
+## 2026-11-14: argument mapping and promotion trials
+
+A scratch LTCG build of `TextFontLinked.cpp` plus `TextTextureRuntime.cpp`
+reproduces the target's aligned EBP frame for 0x4097A0, the EAX `this` for the
+release call, and the EAX argument for the population call. Decoding the target
+call at 0x404D3A, it pushes `cell, text, width, width_out, height_out`, passes
+`height` in EAX and `font` in ESI. The population body reads `width` from
+`[ebp+0x10]`. The rebuild also promotes `width` into ECX, which removes one push
+in the caller (39/40 instructions) and gives RET16 instead of RET20.
+
+These variants leave the ECX promotion in place:
+- extern linkage instead of `static`;
+- `__cdecl` (the caller then adds `add esp, 0x10`, unlike the target);
+- moving `font` after `width`, after `height`, or to the end of the list.
+
+The `memset` operand order and a `height > width` comparison are neutral too.
+The next lead is how the original body uses `width`. The target stores width
+to +0x14C and height to +0x148, and multiplies them for the `memset` size.
