@@ -247,6 +247,21 @@ target lacks, so LTCG does not explain the register.
   health amount in 0x46DFF0 has the same pair. Neutral: an `unsigned short` local,
   a double cast, an `int` holding the `unsigned short` result, and an inline
   helper returning `short`.
+- **EH state store sunk past the first load after a lock guard.** In four
+  functions (0x404330, 0x415340, 0x415B90, 0x417800) the target stores EH state 0
+  straight after `call [EnterCriticalSection]`. VC8 sinks it below the next
+  `this` load and test. A reference-holding guard, or a guard calling
+  `CriticalSectionWrapper::enter/leave`, changes nothing. `/EHs` changes
+  nothing either. `/EHa` keeps the store in place, but it adds `-1` state stores
+  before each destructor that the target lacks, so the profile is not `/EHa`.
+  The same placement explains the offset-0 handle tests in
+  `FighterSpriteResource_cleanup` 0x465420 and `ProfileMenuBaseData::cleanup`
+  0x431390. The target compares `[esi]` in memory, stores state 0, and then
+  reloads. VC8 loads, tests and stores the state afterwards. `release_texture`
+  splits the paths only when the handle is not at offset 0. `/Ox`, `/Oy-` and
+  the spelled-out `/O2` components do not help.
+- **LTCG `this` in ESI.** `PackageFileIndexNode_ctor` 0x41B7F0 receives `this`
+  in ESI and returns it from there. Only a linked unit can match it.
 - **RTM compiler control.** Building 0x431390, 0x427390, 0x46C5B0 and 0x414E40
   with the local VC8 RTM toolchain (`TH105_MSVC8_ROOT=.tools/msvc80-rtm`) fixes
   none of these residuals, and it makes GameConfig_save worse (+233). The SP1
