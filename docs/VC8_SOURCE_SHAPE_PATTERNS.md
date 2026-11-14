@@ -244,6 +244,20 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **Marisa CPU policy 0x4B4070: `goto policy_dispatch` hides a helper boundary
+  (2026-11-14, not committed).** The target merges the four `approach` bodies
+  into the first site, with the later sites jumping back. That is the
+  duplicate-merge shape for bodies ending in `return`, not `goto`. Moving the
+  `if (S(0x766)==0)` proposal block into a separate member function
+  (`goto policy_dispatch` becomes `return`, each approach site gets its own
+  body), forced inline at its single call site, fixes those first two residual
+  regions. LTCG would inline such a single-caller function the same way.
+  What remains is in the dispatch switch. The target keeps separate full tails
+  for `DURATION(0x11,20,..)` and `DURATION(0x10,20,..)`, which ours tail-merges,
+  and two block placements follow from that. The probe uses `__forceinline` only
+  to emulate that inlining, so it was not kept.
+
+
 - **Checked-deque bound operand order.** `GameConfig_save` 0x427390 (2 bytes) and
   the filtered spell CSV parser 0x433B30 (2 bytes) swap `[_Myoff]` and `[_Mysize]`
   in one `_Myoff + _Mysize` sum. Neutral: passing `c_str()` directly to `write`,
