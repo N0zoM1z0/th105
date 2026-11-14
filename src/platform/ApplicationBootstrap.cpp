@@ -256,7 +256,7 @@ static bool __stdcall initialize_audio(void *window, unsigned flags)
     unsigned listener = flags & 1;
     DirectSoundBufferDescription description = {};
     description.size = sizeof(description);
-    description.flags = 9 | (listener ? 16 : 0);
+    description.flags = 9 + (listener ? 16 : 0);
     if (static_cast<BootstrapDirectSound8 *>(g_direct_sound_globals.direct_sound)->create_sound_buffer(&description,
             reinterpret_cast<DirectSoundBuffer **>(&g_direct_sound_globals.primary_sound_buffer), 0) < 0) {
         MessageBoxA(0, sound_buffer_error, sound_error_title, 0);

@@ -487,3 +487,41 @@ target lacks, so LTCG does not explain the register.
   `#pragma fenv_access(on)` (which stops `log10f` inlining) produced the
   `and esp, -64` frame. The intrinsic setting is therefore a second unexplained
   property of this island, alongside the frame.
+- **0x418990 frame is reproduced; two float round-trips remain (2026-11-14).**
+  The current `exact-first-bgm-stream-runtime` LTCG build of the existing source
+  (`static_cast<float>(log10(static_cast<double>(gain)))` under the file's
+  `#pragma function(log10)`) already emits `push ebp; mov ebp, esp; and esp, -64;
+  sub esp, 0x40`, the `_log10` call and the float store at `[esp+0x3c]`. It is
+  87 bytes against 103. The only difference is that the target follows that
+  store with `fld; fstp [esp+0x3c]` twice before the scale multiply. That matches
+  the CRT chain `log10(float)` -> `log10f` -> `(float)log10((double)x)` with a
+  non-intrinsic inner call. Trials:
+  - `log10(gain)` (C++ overload): inner call becomes `_CIlog10`, because the
+    pragma does not reach `math.h`'s inline bodies; no frame.
+  - same with `/Oi-`, or with `#pragma function(log10)` declared before any
+    include: `_log10`, one round-trip, the value lives in the parameter slot,
+    no aligned frame (81 bytes).
+  - `double logarithm = log10(gain); float g = static_cast<float>(logarithm);`
+    with `/Oi-`: aligned frame and one round-trip, matching to +39 (95 bytes).
+  - `/fp:strict` switches to `__ftol2_sse_excpt`; `/fp:fast` (67) and `/Ob1`
+    (81) are worse; `#pragma optimize("g", off)` deoptimizes the whole body.
+- **Out-of-line tiny helpers under LTCG follow the callee module's `/Ob`.**
+  A manual two-TU LTCG link shows a helper defined in an `/Ob1` module stays out
+  of line at every call site and gets a private register argument; defined in
+  an `/Ob2` module it is inlined everywhere, even into an `/Ob1` caller module.
+  For `report_direct_input_error` 0x40D540, building the mouse unit with `/Ob1`
+  makes `initialize_mouse_device` 0x40D810 identical except one instruction:
+  LTCG propagates the single call site's constant message into the helper, so
+  the 5-byte `mov eax, message` disappears. With a second, different-message
+  caller the helper bytes match the target exactly (`mov ecx, window; ...; push
+  eax; push ecx; call MessageBoxA`). The target has no second call site, so what
+  blocks the constant propagation is still unknown. Routing all nine sibling
+  error sites through the helper under default `/Ob2` inlines all of them.
+- **Audio initializer flag composition (2026-11-14).** `initialize_audio`
+  0x418670 builds the primary-buffer flags with `add ecx, 9` after the
+  `neg/sbb/and` select, so the source is `9 + (listener ? 16 : 0)`, not `9 | ...`.
+  With that change its mnemonic sequence differs only by the stack load of
+  `flags`. The remaining residual is the private ABI: the target passes `window`
+  in ECX and `flags` on the stack (RET 4, one extra 4-byte local), while plain
+  `/O2` puts `flags` in ECX and `window` in EDI. The root 0x407DA0 also carries
+  an LTCG-style `and esp, -8` frame, so this cluster needs one linked context.
