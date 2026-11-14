@@ -1717,18 +1717,6 @@ confidence = "observed"
 evidence = "Canonical-exact CharacterObjectManager::update_objects 0x0058BF30 calls this decorated shared manager method, and all fifteen RTTI-owned manager vtables share the same runtime lane. Tracked CharacterObjectManagerRuntime.cpp emits 207/207; the only residual is the documented final inlined checked-list erase register permutation."
 
 [[rules]]
-id = "score-observed-statistics-authored-106a"
-addresses = ["0x0042D010"]
-expected_count = 1
-expected_bytes = 191
-expected_names = ["sub_42D010"]
-origin = "authored_game"
-subsystem = "config"
-disposition = "authored"
-confidence = "observed"
-evidence = "Raw current Fighter spell-sequence body 0x0045D230 calls 0x0042D010 at 0x0045D2C6 after get_score_data, matching the tracked ScoreData::update_observed_record_statistics contract over the +0x198 observed-record vector. Two local builds compare 191/191 after direct vector endpoints and the signed maximum predicate; independent replay acceptance is pending."
-
-[[rules]]
 id = "vc8-deque-string-growmap-xlen-caller-identity-106a"
 addresses = ["0x0040FE30", "0x004101F0"]
 expected_count = 2
@@ -2897,18 +2885,6 @@ required_selected_body_calls = [
 ]
 
 [[rules]]
-id = "score-sequence-result-authored-106a"
-addresses = ["0x0042CF70"]
-expected_count = 1
-expected_bytes = 159
-expected_names = ["sub_42CF70"]
-origin = "authored_game"
-subsystem = "config"
-disposition = "authored"
-confidence = "observed"
-evidence = "Hash-attested Fighter_finalize_sequence_entry45D110 calls this ScoreData method after the real singleton getter. Complete159-byte raw CFG gates on application game/session modes and increments the first record matching two application keys in the observed-record vector at198hex. The SDK checked iterator is inlined into authored record policy. The prior selected source was142/159; direct vector endpoints now produce two local 159/159 comparisons, with independent Factory acceptance pending. Earlier native1323 cases ran real getters with1317 RETs and6 genuine invalid-parameter entries. Required source provider for Iku's real link, not a library-only wrapper or exact claim. docs/IKU_REAL_LINK_2026_10_17.md."
-
-[[rules]]
 id = "package-file-entry-open-authored-106a"
 addresses = ["0x0041BFA0"]
 expected_count = 1
@@ -3929,21 +3905,6 @@ required_direct_edges = [
  {caller="0x00442790",site="0x00442899",target="0x00441BD0",caller_status="matching"},
  {caller="0x00442CE0",site="0x00442CFE",target="0x00441E10"},
 ]
-
-[[rules]]
-id = "config-menu-constructor-authored-106a"
-addresses = ["0x00441520"]
-expected_count = 1
-expected_bytes = 868
-expected_names = ["sub_441520"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "RTTI CMenuConfig, vtable publication and exact Title caller own this full configuration-menu constructor. It loads config.dat/mater.bmp, binds options and initializes volume/option UI. Full source863/native868 remains nonexact at+335; no prefix credit. docs/CONFIG_MENU_CONSTRUCTOR_2026_10_31.md."
-required_body_hashes = [{ address = "0x00441520", size = 868, sha256 = "c0c5a6d883abb20351c78aa60a5c7774d24e4f67eee8f5d6a5d63b773645da80" }]
-required_direct_edges = [{ caller = "0x00425990", site = "0x00425CCF", target = "0x00441520", caller_status = "matching" }]
-required_dword_values = [{ address = "0x00441562", value = "0x006C1A94" }]
 
 [[rules]]
 id = "connect-middle-state-authored-106a"
@@ -6541,20 +6502,6 @@ evidence = "Complete background transition policy and four native jump-table ent
 required_body_hashes = [{ address = "0x004654F0", size = 407, sha256 = "196a1aa24b152c18cb30ea6e1d56088375b203b70ea0e83a021241df3dae6443" }]
 required_direct_edges = [{ caller = "0x00467380", site = "0x004676C7", target = "0x004654F0", caller_status = "matching" }, { caller = "0x00467380", site = "0x004676FD", target = "0x004654F0", caller_status = "matching" }, { caller = "0x00467380", site = "0x00467715", target = "0x004654F0", caller_status = "matching" }]
 required_dword_values = [{ address = "0x00465688", value = "0x0046550C" }, { address = "0x0046568C", value = "0x00465515" }, { address = "0x00465690", value = "0x0046550C" }, { address = "0x00465694", value = "0x00465519" }]
-
-[[rules]]
-id = "spell-finalize-selection-authored-106a"
-addresses = ["0x00432200"]
-expected_count = 1
-expected_bytes = 260
-expected_names = ["sub_432200"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete spell selection finalization with exact load-selector caller and local/common spell lookup. Natural checked-deque source remains nonexact. docs/SPELL_FINALIZE_SOURCE_2026_11_04.md."
-required_body_hashes = [{ address = "0x00432200", size = 260, sha256 = "ea2b335f8b0495fd7bce7ebb28bbfd221c5f685b465510c9dc0a5bfcad7078ce" }]
-required_direct_edges = [{ caller = "0x00432360", site = "0x0043239C", target = "0x00432200", caller_status = "matching" }]
 
 [[rules]]
 id = "select-scene-entry-authored-106a"

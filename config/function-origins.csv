@@ -955,8 +955,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042CEA0,compiler_generated,runtime,exclude,observed,vc8-generated-score-defaults-emitted-106a
 0x0042CEF0,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x0042CF20,compiler_generated,battle,exclude,observed,vc8-generated-spell-tree-probe-comdats-106a
-0x0042CF70,authored_game,config,authored,observed,score-sequence-result-authored-106a
-0x0042D010,authored_game,config,authored,observed,score-observed-statistics-authored-106a
+0x0042CF70,authored_game,config,authored,observed,canonical-exact-authored
+0x0042D010,authored_game,config,authored,observed,canonical-exact-authored
 0x0042D0D0,compiler_generated,runtime,exclude,observed,vc8-generated-uint-set-tree-family-106a
 0x0042D140,compiler_generated,ui,exclude,observed,vc8-generated-profile-data-writer-std-comdats-106a
 0x0042D1B0,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
@@ -1017,7 +1017,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00432050,authored_game,ui,authored,observed,canonical-exact-authored
 0x004321A0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x004321B0,compiler_generated,battle,exclude,observed,vc8-generated-deque-short-front-106a
-0x00432200,authored_game,battle,authored,observed,spell-finalize-selection-authored-106a
+0x00432200,authored_game,battle,authored,observed,canonical-exact-authored
 0x00432310,authored_game,battle,authored,observed,canonical-exact-authored
 0x00432360,authored_game,battle,authored,observed,canonical-exact-authored
 0x004323B0,compiler_generated,battle,exclude,observed,vc8-generated-deque-short-erase
@@ -1368,7 +1368,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00440FF0,authored_game,ui,authored,observed,menu-config-secondary-authored-106a
 0x004411B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00441460,authored_game,ui,authored,observed,canonical-exact-authored
-0x00441520,authored_game,ui,authored,observed,config-menu-constructor-authored-106a
+0x00441520,authored_game,ui,authored,observed,canonical-exact-authored
 0x00441890,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x004418B0,vc8_runtime,crt_header,exclude,observed,vc8-counted-swprintf-header-106a
 0x004418D0,authored_game,ui,authored,observed,menu-connect-render-authored-106a

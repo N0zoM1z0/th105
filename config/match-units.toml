@@ -27834,7 +27834,7 @@ source = "src/ui/MenuConfigConstructor.cpp"
 object = "build/match-units/ExactFirst_ConfigMenuConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete868-byte native constructor; ordinary source863 remains nonexact at821. Real design lookup/cursor providers and texture-handle result temporary reproduce every earlier byte. Native repeated upper-bound comparison in the final signed0..3 clamp remains unexplained; no redundant source branch, dummy or register forcing added. docs/CONFIG_MENU_CONSTRUCTOR_2026_10_31.md."
+notes = "Complete 868-byte CMenuConfig constructor; canonical exact after clamping option_64 with TH105_CLAMP. docs/CONFIG_MENU_CONSTRUCTOR_2026_10_31.md."
 
 [[units.exact-first-config-menu-constructor.functions]]
 address = "0x00441520"

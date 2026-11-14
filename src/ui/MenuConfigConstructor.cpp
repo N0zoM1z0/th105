@@ -7,6 +7,7 @@
 #include "ui/MenuCursorBindings.cpp"
 #include "ui/DesignObjectLookup.cpp"
 #include "config/GameConfig.hpp"
+#include "engine/MinMax.hpp"
 namespace th105 {
 extern "C" CInputManager *g_active_menu_input;
 struct TitleResourceManagerValueView {
@@ -71,10 +72,6 @@ CMenuConfig::CMenuConfig() : texture_b4(0)
     guide_008.visible=true;
     option_b0=false;
     secondary_278.bind_horizontal(g_active_menu_input,4,0);
-    int selected=config_004->option_64;
-    if(selected<=3) {
-        if(selected<0)selected=0;
-    } else selected=3;
-    secondary_278.selection=selected;
+    secondary_278.selection=TH105_CLAMP(config_004->option_64,0,3);
 }
 }

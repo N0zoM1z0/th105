@@ -74,3 +74,22 @@ branch or repeat value-capture/SDK equality/member-bound variants without new
 independent evidence.
 
 The selected constructor and all ledgers remain unchanged.
+
+## 2026-11-14: exact
+
+The constructor at 0x441520 is now canonical exact, 868/868. The last five bytes
+were the saved-option clamp at the end. The target tests `option_64 > 3` first,
+then `>= 0`, then repeats `<= 3` on the in-range path, re-reading the field each
+time. That is the expansion of `max(min(option_64, 3), 0)` written as macros,
+which evaluate their arguments twice, using the `std::min`/`std::max` comparison order
+(`3 < v`, `t < 0`). The source now uses `TH105_CLAMP` from `src/engine/MinMax.hpp`.
+
+Rejected forms: the old nested `if`, `if/else if`, ternaries on a local copy (all
+check the lower bound first), CRT `__max(__min(...))` (868 bytes, but `jge` instead of
+`jg`), and `std::max(std::min(...))` (878 bytes, because the reference-returning
+templates bind temporaries).
+
+    scripts/repo-python scripts/build.py --unit exact-first-config-menu-constructor --compare --json
+
+A clamp like this elsewhere (two compares against the upper bound, operand
+re-read) is a candidate for the same macro.
