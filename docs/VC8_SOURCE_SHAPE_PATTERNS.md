@@ -348,6 +348,15 @@ target lacks, so LTCG does not explain the register.
 - **`CGage::render` 0x41B3F0 case 1.** The `fraction * height` product still
   loads `height` first. Removing the `const float &height` binding regresses to
   +346, swapping the factors is neutral, and computing `top` earlier regresses.
+- **`CsvReader::next_string` 0x40F580 return layout.** The target places the
+  row-end `return out = ""` block last and keeps the field-end one inline.
+  Nesting the field test under `row_it_14 != rows_00.end()` fixes the first
+  block, but VC8 then merges the two empty returns (249/245). An `else` arm, a
+  doubly nested form, swapped `==` operands and `!(... != ...)` all fail.
+- **Binder 0x404DF0 device reads.** In the lookup branch the target loads the
+  device's vtable before `lookup_token` and reloads the device for `this`.
+  Calling through an explicit vtable slot does not reproduce it, because VC8
+  still evaluates the slot after the arguments.
 - **LTCG `this` in ESI.** `PackageFileIndexNode_ctor` 0x41B7F0 receives `this`
   in ESI and returns it from there. Only a linked unit can match it.
 - **RTM compiler control.** Building 0x431390, 0x427390, 0x46C5B0 and 0x414E40
