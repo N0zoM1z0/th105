@@ -235,6 +235,13 @@ target lacks, so LTCG does not explain the register.
   repro is a plain `ACTION` pair followed by the branching pair; a `__forceinline`
   helper behaves like the macro.
 
+- **`fimul` needs a float literal.** `CProfileDeckEdit_render` 0x448F60 computes
+  `16.0f * row + y` with `fimul dword [row]`. `16.0 * row` (a double literal)
+  emits `fild; fmulp`, and its register pressure also flipped a later inlined
+  deque `[+0x10] + [+0xc]` operand order. One literal fixed both. Before
+  treating a commutative deque sum as an LTCG residual, check nearby x87
+  expressions for literal types.
+
 ## Parked residuals (tried, still nonexact)
 
 - **Checked-deque bound operand order.** `GameConfig_save` 0x427390 (2 bytes) and

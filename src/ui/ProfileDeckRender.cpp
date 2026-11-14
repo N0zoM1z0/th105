@@ -67,7 +67,7 @@ void CProfileDeckEdit::render()
         _invalid_parameter_noinfo();
     for (int row = 0; row < 15 && row + cursor_3e4.window_start < static_cast<int>(filtered_3cc.size()); ++row) {
         float x = static_cast<float>(objects_44[0]->x + 16.0);
-        float y = static_cast<float>(16.0 * row + objects_44[0]->y);
+        float y = static_cast<float>(16.0f * row + objects_44[0]->y);
         int available = available_count_for_index_448df0(cursor_3e4.window_start + row);
         if (available != 0) {
             int width = static_cast<int>(DECK_INDEX(cursor_3e4.window_start + row)->second.name_00.size()) * 8 < 200
