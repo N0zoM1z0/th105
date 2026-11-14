@@ -5290,20 +5290,6 @@ evidence = "Native CFileList vslot8 and full1106-byte/283-instruction page polic
 required_rtti_virtual_bodies = [{ address = "0x0043A590", size = 1106, sha256 = "42c261d42ffb94ac18d1674da6993f8078f3555c4a12bec872c015b8ab9c8342", slot = "0x006C15E8", col_slot = "0x006C15DC", col = "0x006D7F98", type_descriptor = "0x006E656C", type_name_contains = ".?AVCFileList@@", calls = [{ site = "0x0043A5D4", target = "0x00411430" }, { site = "0x0043A75B", target = "0x00404D70" }, { site = "0x0043A914", target = "0x004396A0" }, { site = "0x0043A9B5", target = "0x004114C0" }] }]
 
 [[rules]]
-id = "file-list-parent-authored-106a"
-addresses = ["0x004398B0"]
-expected_count = 1
-expected_bytes = 91
-expected_names = ["sub_4398B0"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Exact replay-delete555 caller and physical CFileList directory/filter members own complete91-byte policy. Native compares root, finds last slash with one real char, erases suffix, returns root flag. Source91 remains nonexact on char home; full linked123 also negative. docs/FILE_LIST_PARENT_SOURCE_2026_11_01.md."
-required_body_hashes = [{ address = "0x004398B0", size = 91, sha256 = "1a90e978feab9b833d8a8698b30694c28c476a2c82c74bf267eab64317cdfc39" }]
-required_direct_edges = [{ caller = "0x00446A60", site = "0x00446C21", target = "0x004398B0", kind = "call", caller_status = "matching" }]
-
-[[rules]]
 id = "vc8-generated-file-list-growmap-106a"
 vc8_generated_anchor_file = "config/vc8-generated-file-list-growmap-origin-anchors.toml"
 expected_count = 1

@@ -27,3 +27,14 @@ excluded1969/units772; exact1431 /443916 bytes unchanged.
 
 The private linked image/map and RESULT.txt record the negative control. No new
 library or prefix credit, whole-corpus rebuild or push.
+
+## 2026-11-14: exact
+
+`CFileList::go_parent_directory` at 0x4398B0 is canonical exact, 91/91. The only
+difference was where the `'/'` byte sits in its stack slot. The target stores it at
+offset 0 of the slot reserved by `push ecx`, which is where VC8 puts a by-value
+`char` parameter. A `char` local, or a `char[1]` array, goes at offset 3. The
+source now passes the separator to a small inline
+`truncate_at_last(std::string &, char)` helper that calls
+`find_last_of(&separator, npos, 1)`. The `find_last_of(char)` overload cannot be
+used: in VC8 it forwards to `rfind`.

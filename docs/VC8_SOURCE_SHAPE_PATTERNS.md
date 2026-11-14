@@ -27,6 +27,11 @@ from `(a >> 31) & (b >> 31) & ...` on `int`. An unsigned
 Proven on `test_descriptor_point_inside` 0x46B8B0
 ([note](COLLISION_SEMANTICS_2026_11_07.md)).
 
+**Char local at the bottom of its slot.** When a single `char` whose address is
+taken lives at offset 0 of a 4-byte slot, it is a by-value `char` parameter of an
+inlined helper. Scalar `char` locals and `char[1]` arrays go at offset 3. Proven on
+`CFileList::go_parent_directory` 0x4398B0 ([note](FILE_LIST_PARENT_SOURCE_2026_11_01.md)).
+
 **Rebuild before trusting a nonexact ledger entry.** Three functions were
 already exact in their units but had never been accepted
 ([note](PENDING_EXACT_ACCEPTANCE_2026_11_14.md)). After a shared header change,
