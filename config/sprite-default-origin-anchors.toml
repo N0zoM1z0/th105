@@ -33,7 +33,7 @@ normalized_sha256 = "77d42bef24d5658f458828a0c9d740484b6d3627ae66f13319711719822
 
 [[sources]]
 path = "src/engine/Sprite.hpp"
-normalized_sha256 = "acab8a3ce2a67c535fe6a93405920169a555357fc1c02b6cdb3d6e36787a2c6b"
+normalized_sha256 = "da2ca133895ba338cee4ff7d141f7236c41e95e0813edad4a4a6d69e7f67746e"
 
 [[sources]]
 path = "src/ui/GuideOverlay.hpp"

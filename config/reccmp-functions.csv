@@ -1397,7 +1397,7 @@ TGageValue_short_ptr_value,0x0046FA70,function
 BattleInfoRecordF8_bind_fighter,0x0046FA90,function
 CsvReader_next_string,0x0040F580,function
 CsvReader_advance_row,0x0040F680,function
-CsvReader_clear_rows,0x0040FDB0,function
+std_deque_CsvRow_Tidy,0x0040FDB0,function
 CsvReader_dtor,0x0042E980,function
 CNumber_dtor,0x0040ADB0,function
 CNumber_set_color,0x0040ADE0,function

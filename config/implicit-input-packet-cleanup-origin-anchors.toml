@@ -36,7 +36,7 @@ sha256 = "c8ab0afa18da3d0b27d099345ad34e57849aa5a39d6ef757549304fb26f0be84"
 
 [[sources]]
 path = "src/engine/Sprite.hpp"
-sha256 = "8dc8c7c6f5baae0f3dd537c3b2c52c808a4a89e389bb1b4f6800650663b3694d"
+sha256 = "3e2ca688bd65839f4b53f4a3b05ba86795f63503868e5c3ba8dd663b7991979b"
 
 [[sources]]
 path = "src/network/NetworkInputPacket.hpp"

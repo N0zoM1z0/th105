@@ -382,7 +382,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0040FAE0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040FBF0,unknown,,review,unknown,ida-1.06a-initial-inventory
 0x0040FC50,unknown,,review,unknown,ida-1.06a-initial-inventory
-0x0040FDB0,authored_game,assets,authored,observed,csv-reader-public-methods-authored-106a
+0x0040FDB0,compiler_generated,assets,exclude,observed,vc8-generated-csv-rows-tidy-106a
 0x0040FE30,compiler_generated,runtime,exclude,observed,vc8-deque-string-growmap-xlen-caller-identity-106a
 0x0040FF90,compiler_generated,ui,exclude,observed,vc8-generated-cfile-list-std-comdats-106a
 0x00410030,compiler_generated,std,exclude,observed,vc8-boost-narrow-library-106a
@@ -1731,9 +1731,9 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00457AD0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00457C60,authored_game,battle,authored,observed,canonical-exact-authored
 0x00457DF0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00457E40,authored_game,battle,authored,observed,scenario-runtime-reset-authored-106a
+0x00457E40,authored_game,battle,authored,observed,canonical-exact-authored
 0x00457F90,authored_game,battle,authored,observed,scenario-render-authored-106a
-0x00458340,authored_game,battle,authored,observed,system-effect-manager-spawn-authored-106a
+0x00458340,authored_game,battle,authored,observed,canonical-exact-authored
 0x004583C0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x004583E0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00458440,authored_game,battle,authored,observed,scenario-command-update-authored-106a

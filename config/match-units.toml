@@ -16244,8 +16244,8 @@ rel32_targets = [
 
 [[units.gpt-web-csv-reader-next-int.functions]]
 address = "0x0040FDB0"
-symbol_base = "?clear_rows_40fdb0@CsvReaderNativeView@th105@@QAEXXZ"
-rel32_targets = ["_Tidy=0x0040FF90"]
+symbol_base = "?_Tidy@?$deque@V?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@V?$allocator@V?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@@2@@std@@IAEXXZ"
+rel32_targets = ["?_Tidy@?$deque@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@V?$allocator@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@2@@std@@IAEXXZ=0x0040FF90", "??3@YAXPAX@Z=0x006898EA"]
 
 [units.gpt-web-battle-input-flush]
 kind = "probe"

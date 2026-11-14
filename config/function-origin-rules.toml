@@ -1928,10 +1928,10 @@ required_body_hashes = [{ address = "0x0046FA90", size = 648, sha256 = "e44f2c92
 
 [[rules]]
 id = "csv-reader-public-methods-authored-106a"
-addresses = ["0x0040F580", "0x0040F680", "0x0040FDB0"]
-expected_count = 3
-expected_bytes = 537
-expected_names = ["sub_40F580", "sub_40F680", "sub_40FDB0"]
+addresses = ["0x0040F580", "0x0040F680"]
+expected_count = 2
+expected_bytes = 412
+expected_names = ["sub_40F580", "sub_40F680"]
 origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
@@ -2760,11 +2760,11 @@ required_selected_body_calls = [
   { owner = "0x0046BCA0", site = "0x0046BD41", target = "0x0046B7B0" },
   { owner = "0x0046BCA0", site = "0x0046BD9F", target = "0x0046B7B0" },
   { owner = "0x0046BCA0", site = "0x0046BDDD", target = "0x0046B3B0" },
-  { owner = "0x0046BA10", site = "0x0046BA6F", target = "0x0046B8B0", target_status = "implemented" },
-  { owner = "0x0046BA10", site = "0x0046BA84", target = "0x0046B8B0", target_status = "implemented" },
-  { owner = "0x0046BA10", site = "0x0046BAA5", target = "0x0046B8B0", target_status = "implemented" },
-  { owner = "0x0046BA10", site = "0x0046BAC7", target = "0x0046B8B0", target_status = "implemented" },
-  { owner = "0x0046BA10", site = "0x0046BADF", target = "0x0046B8B0", target_status = "implemented" },
+  { owner = "0x0046BA10", site = "0x0046BA6F", target = "0x0046B8B0" },
+  { owner = "0x0046BA10", site = "0x0046BA84", target = "0x0046B8B0" },
+  { owner = "0x0046BA10", site = "0x0046BAA5", target = "0x0046B8B0" },
+  { owner = "0x0046BA10", site = "0x0046BAC7", target = "0x0046B8B0" },
+  { owner = "0x0046BA10", site = "0x0046BADF", target = "0x0046B8B0" },
   { owner = "0x0046BA10", site = "0x0046BAF2", target = "0x0046B5E0" },
 ]
 
@@ -6480,20 +6480,6 @@ confidence = "observed"
 evidence = "Real package archive map cleanup emitted in its genuine CIL; exact destructor calls it. Whole native body and source bytes agree after qualified erase/delete role bindings. The erase implementation is not claimed exact. docs/PACKAGE_MAP_TIDY_ORIGIN_2026_11_04.md."
 
 [[rules]]
-id = "scenario-runtime-reset-authored-106a"
-addresses = ["0x00457E40"]
-expected_count = 1
-expected_bytes = 334
-expected_names = ["sub_457E40"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete scenario text, result and effect reset policy; pinned body and exact story-page loader caller. Selected source now replays all 334 bytes exactly. docs/SCENARIO_RUNTIME_RESET_SOURCE_2026_11_04.md."
-required_body_hashes = [{ address = "0x00457E40", size = 334, sha256 = "f6f71511691781cee605df4807a7ce2aab4323cb1720b2e639bf153b0fe8acfd" }]
-required_direct_edges = [{ caller = "0x004583E0", site = "0x00458415", target = "0x00457E40", caller_status = "matching" }]
-
-[[rules]]
 id = "boost-original-recursion-info-cleanup-106a"
 boost_recursion_cleanup_anchor_file = "config/boost-recursion-cleanup-origin-anchors.toml"
 expected_count = 1
@@ -6521,29 +6507,6 @@ required_body_hashes = [
 ]
 required_direct_edges = [
  { caller = "0x00455A00", site = "0x00455A0D", target = "0x00455270" },
-]
-
-[[rules]]
-id = "system-effect-manager-spawn-authored-106a"
-addresses = ["0x00458340"]
-expected_count = 1
-expected_bytes = 125
-expected_names = ["sub_458340"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete native system-effect spawn acquires a managed game object, loads and binds its texture, stores world coordinates and a sign-extended 16-bit mode, then invokes its virtual reset. Scenario command dispatch calls it at 0x0045942A; exact SystemEffect manager acquisition and sprite texture owner methods corroborate the game policy. Source is nonexact and contributes no exact credit."
-required_body_hashes = [
- { address = "0x00458340", size = 125, sha256 = "fb7c209236cf71b44bfd6bdebd6831442618fd0f2d5310c6c6744faec56182e1" },
-]
-required_direct_edges = [
- { caller = "0x00458440", site = "0x0045942A", target = "0x00458340", caller_status = "identified" },
-]
-required_selected_body_calls = [
- { owner = "0x00458340", site = "0x00458344", target = "0x00457110", target_status = "matching" },
- { owner = "0x00458340", site = "0x00458364", target = "0x00404C90", target_status = "implemented" },
- { owner = "0x00458340", site = "0x00458387", target = "0x00407160", target_status = "matching" },
 ]
 
 [[rules]]
@@ -7255,3 +7218,14 @@ required_direct_edges = [
  { caller = "0x004217F0", site = "0x00421839", target = "0x00435E50", caller_status = "identified" },
  { caller = "0x00446DE0", site = "0x00446E6D", target = "0x00435E50", caller_status = "matching" },
 ]
+
+[[rules]]
+id = "vc8-generated-csv-rows-tidy-106a"
+vc8_generated_anchor_file = "config/vc8-generated-csv-rows-tidy-origin-anchors.toml"
+expected_count = 1
+expected_bytes = 125
+origin = "compiler_generated"
+subsystem = "assets"
+disposition = "exclude"
+confidence = "observed"
+evidence = "VC8 SP1 deque<deque<string>>::_Tidy from the existing CSV reader source reproduces the complete 125-byte body: pop every row through the row _Tidy at 0x40FF90, free each block, free the map and clear it. The reader destructor at 0x42E980 tail-enters it. Formerly misclassified as authored CsvReader_clear_rows."

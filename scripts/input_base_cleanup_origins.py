@@ -14,7 +14,7 @@ from workflow_manifest import load_manifest,compiler_sha256
 ROOT=Path(__file__).resolve().parents[1]
 UNIT='gpt-web-input-manager-lifetime'
 SOURCE='src/input/InputManagerLifetime.cpp'
-SOURCE_SHA='569d3a70893b1480be73993d3e4a18bd5ec441f8522935c2251648ced03e16fc'
+SOURCE_SHA='12c40614ec80da7bbabeb74c3f60c3b86d763ea2a0804fb3b5718efd1f9a5fea'
 COMPILER='71c93ca5bddc9b2816d0e053cac2b952f926f6b9321fab6b1ab6e8603621324c'
 ANCHORS=ROOT/'config/input-base-cleanup-origin-anchors.toml'
 OUTPUT=ROOT/'build/origin-anchors/input-base-cleanup'

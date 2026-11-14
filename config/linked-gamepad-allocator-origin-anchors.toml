@@ -3,8 +3,8 @@ target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7
 unit = "exact-first-directinput-gamepad-bootstrap"
 [source_pins]
 "src/input/DirectInputGamepadBootstrap.cpp" = "510f9271a5307a9d620336cd44bdcb9ba8266640963c5c4324a39b81968bf831"
-"src/input/InputManager.cpp" = "1dc804c6a04696badde1d692b89a9775fd7d93d088f1d5791e47cdf2faaadd5b"
-"src/input/InputManager.hpp" = "b52e71339b2381be4ff95b58cb6413892248feea986c0995500cb9f9433d3f0b"
+"src/input/InputManager.cpp" = "bba1bf4c32fa2a849c5157cd5213b95e4b67ad344ed777a7413e74d8c4f73b74"
+"src/input/InputManager.hpp" = "4c9c25d1eb99945f190ec5fb163dd680e2f58607d1c50a7d388efd1368eafd08"
 
 [[anchors]]
 address = "0x0040E000"
