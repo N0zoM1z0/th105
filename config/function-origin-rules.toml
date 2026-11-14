@@ -7279,20 +7279,6 @@ required_selected_body_calls = [
 ]
 
 [[rules]]
-id = "collision-descriptor-point-authored-106a"
-addresses = ["0x0046B8B0"]
-expected_count = 1
-expected_bytes = 142
-expected_names = ["sub_46B8B0"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Target body and five native collision-predicate call sites identify the game-owned point test. Historical source was 142/142 exact; current portable semantic spelling is nonexact. docs/COLLISION_SEMANTICS_2026_11_07.md."
-required_body_hashes = [{ address = "0x0046B8B0", size = 142, sha256 = "34cef77ded75288c9f29b2a9a3e8a3464b61f311c5ff9ef083429b931458cf84" }]
-required_direct_edges = [{ caller = "0x0046BA10", site = "0x0046BA6F", target = "0x0046B8B0", caller_status = "implemented" }]
-
-[[rules]]
 id = "vc8-generated-youmu-history-access-106a"
 vc8_generated_anchor_file = "config/vc8-generated-youmu-history-access-origin-anchors.toml"
 expected_count = 5

@@ -46,7 +46,7 @@ The broad phase in `0x46B7B0` subtracts four rectangle/descriptor endpoints as 3
 
 ## Descriptor point-test arithmetic
 
-The point test `0x46B8B0` computes four descriptor expressions, subtracts one in each, and returns -1 only when all four resulting sign bits are set. The products, sums and coordinate differences now use unsigned 32-bit arithmetic so the target's wraparound is explicit rather than signed-overflow-dependent. An explicit mask and conditional now returns -1 if all four sign bits are set and zero otherwise, without relying on implementation-defined unsigned-to-signed conversion or signed right shift. All 16 possible combinations of sign bits yield the same result as the prior VC8 x86 formulation. The complete target is 142 bytes; the fresh candidate section tail is 139 bytes and differs from +97. The former exact source is retained in Git at commit `136cbdb4`, but the selected source is now honestly tracked as nonexact and receives no exact-byte credit. The other previously exact functions in its unit still compare exactly; the unrelated descriptor-pair root remains nonexact. This establishes the bit-test equivalence, not a general runtime proof for every possible input or exception environment.
+The point test `0x46B8B0` returns -1 only when all four descriptor edge values are negative. An unsigned bit-mask rewrite of 2026-11-07 made it nonexact; the signed form is restored below.
 
 A follow-up tried expanding each sign bit with `-static_cast<int>(q >> 31)`
 before ANDing the four masks. This retains defined arithmetic but emits 150
@@ -87,3 +87,12 @@ from 248 to 260 bytes. That trial is not selected; its source and report are
 retained privately. The original exact narrow phase was restored and replayed.
 Resolving its remaining signed-overflow assumptions needs a source form that
 preserves the complete native comparison, not forced stack or register state.
+
+## 2026-11-14: descriptor point test exact
+
+`test_descriptor_point_inside` at 0x46B8B0 is canonical exact, 142/142. The target
+shifts each of the four edge values right by 31 (`sar`) and ANDs the masks, so the
+function returns -1 when all four are negative and 0 otherwise. The previous
+unsigned form, `(q0 & q1 & q2 & q3 & 0x80000000) != 0 ? -1 : 0`, lowers to one mask
+and `neg`/`sbb`, which is 3 bytes shorter. Plain `int` arithmetic with
+`(q0 >> 31) & (q1 >> 31) & (q2 >> 31) & (q3 >> 31)` reproduces the target.

@@ -40,19 +40,17 @@ int CollisionContext::test_descriptor_point_inside(
     int x,
     int y)
 {
-    const unsigned q0 = static_cast<unsigned>(descriptor->y0) *
-        (static_cast<unsigned>(aabb->top) - y) - 1u +
-        static_cast<unsigned>(descriptor->x0) * (static_cast<unsigned>(aabb->left) - x);
-    const unsigned q1 = static_cast<unsigned>(descriptor->y0) *
-        (static_cast<unsigned>(y) - aabb->bottom) - 1u +
-        static_cast<unsigned>(descriptor->x0) * (static_cast<unsigned>(x) - aabb->right);
-    const unsigned q2 = (static_cast<unsigned>(aabb->top) - y) * descriptor->y1 - 1u +
-        (static_cast<unsigned>(aabb->left) - x) * descriptor->x1;
-    const unsigned q3 = static_cast<unsigned>(descriptor->y1) *
-        (static_cast<unsigned>(y) - aabb->bottom) - 1u +
-        static_cast<unsigned>(descriptor->x1) * (static_cast<unsigned>(x) - aabb->right);
-    // The point passes when all four wrapped expressions have bit 31 set.
-    return (q0 & q1 & q2 & q3 & 0x80000000u) != 0 ? -1 : 0;
+    const int q0 = descriptor->y0 * (aabb->top - y) - 1 +
+        descriptor->x0 * (aabb->left - x);
+    const int q1 = descriptor->y0 * (y - aabb->bottom) - 1 +
+        descriptor->x0 * (x - aabb->right);
+    const int q2 = (aabb->top - y) * descriptor->y1 - 1 +
+        (aabb->left - x) * descriptor->x1;
+    const int q3 = descriptor->y1 * (y - aabb->bottom) - 1 +
+        descriptor->x1 * (x - aabb->right);
+    // Each sign mask is -1 for a negative edge value; the point is inside when
+    // all four are negative.
+    return (q0 >> 31) & (q1 >> 31) & (q2 >> 31) & (q3 >> 31);
 }
 
 int CollisionContext::test_aabb_against_descriptor_shape(
