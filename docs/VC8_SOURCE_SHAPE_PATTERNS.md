@@ -101,3 +101,12 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   `TitleResourceManager::bind_texture` 0x404DF0 and the UDP send-thread entry
   0x416D90. A local texture pointer is neutral. The same function loads the device
   vtable into EBP before the lookup call. No source shape reproduced either.
+  `CNumber::initialize` 0x414E40 shows the same slot. Rewriting `int glyph_width =
+  right - left` as `right -= left` moves its int-to-float conversion into the
+  `right` parameter slot as in the target, so the dead `push ecx` is now its only
+  difference (102 against 104 bytes).
+- **Selected-scenario transition tails.** `CSelectScenario_update_selection`
+  0x4248A0: in the target the `+1` arm owns the shared stores and epilogue and
+  the `-1` arm jumps into them. Swapping the arms only flips the condition. A
+  hoisted common tail (400 bytes), an early-return arm (437) and a ternary (406)
+  are all worse.

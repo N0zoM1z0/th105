@@ -16,8 +16,8 @@ void CNumber::initialize(
     columns_14 = columns;
     reserved_18 = reserved_a;
     reserved_1c = reserved_b;
-    int const glyph_width = right - left;
-    glyph_width_04 = static_cast<float>(glyph_width);
+    right -= left;
+    glyph_width_04 = static_cast<float>(right);
     mode_20 = static_cast<unsigned char>(mode);
     spacing_08 = spacing;
     scale_0c = secondary_scale_10 = 1.0f;
@@ -26,7 +26,7 @@ void CNumber::initialize(
         texture,
         left,
         top,
-        glyph_width,
+        right,
         bottom - top,
         0,
         0);
