@@ -32,3 +32,13 @@ changed pending-flag branch is detected. The transition virtual is mocked;
 concurrency, the real transition and full-game execution are not covered.
 Run `scripts/repo-python -m unittest discover -s tests -p
 test_arcade_post_pipeline_observer.py`. No exact-byte credit follows.
+
+## 2026-11-14: exact
+
+The Arcade post-pipeline override at 0x472F80 is canonical exact, 198/198. In the
+final `++state; transition_slot_34(3)` path, the target loads the vtable pointer
+before incrementing the byte at +0x5B0. The old view reached that byte through
+`reinterpret_cast<unsigned char *>(this)[0x5b0]`. A `char` access may alias the
+vptr, so VC8 could not hoist the load. Declaring the byte as a real
+`terminal_state_5b0` member after padding from the 0x90-byte base reproduces the
+target.

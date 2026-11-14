@@ -32,6 +32,13 @@ taken lives at offset 0 of a 4-byte slot, it is a by-value `char` parameter of a
 inlined helper. Scalar `char` locals and `char[1]` arrays go at offset 3. Proven on
 `CFileList::go_parent_directory` 0x4398B0 ([note](FILE_LIST_PARENT_SOURCE_2026_11_01.md)).
 
+**Typed fields instead of `char *` offset views.** A load hoisted above a byte
+store in the target, such as a vtable load before `++state`, needs a typed member.
+Access through `reinterpret_cast<unsigned char *>(this)[offset]` may alias
+anything, so VC8 keeps the original order. Proven on the Arcade post pipeline
+0x472F80 ([note](BATTLE_ARCADE_POST_PIPELINE_2026_11_04.md)). Offset-macro
+sources such as the character input policies are candidates for the same fix.
+
 **Rebuild before trusting a nonexact ledger entry.** Three functions were
 already exact in their units but had never been accepted
 ([note](PENDING_EXACT_ACCEPTANCE_2026_11_14.md)). After a shared header change,
