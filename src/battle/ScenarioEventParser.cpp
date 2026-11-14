@@ -25,11 +25,6 @@ struct ScenarioEventParserView {
     std::list<int> destination_values_5a4;
 };
 
-union ScenarioEventSelectedValue {
-    int integer;
-    short short_value;
-};
-
 typedef char ScenarioEventParserView_selected_column_offset_must_be_0x590[
     offsetof(ScenarioEventParserView, selected_column_590) == 0x590 ? 1 : -1];
 typedef char ScenarioEventParserView_source_values_offset_must_be_0x598[
@@ -59,21 +54,20 @@ void BattlePhaseBlock::parse_scenario_event_row_4591d0(void *destination)
     if (row_count > 0) {
         int remaining = row_count;
         do {
-            ScenarioEventSelectedValue selected_value;
-            selected_value.integer = 0;
-            for (int column = 0; column < 4; ++column) {
-                if (column == state->selected_column_590) {
-                    selected_value.integer = state->reader_038.next_int();
-                } else {
-                    state->reader_038.next_int();
+            {
+                int selected = 0;
+                for (int column = 0; column < 4; ++column) {
+                    if (column == state->selected_column_590)
+                        selected = state->reader_038.next_int();
+                    else
+                        state->reader_038.next_int();
                 }
+                selected = static_cast<unsigned short>(selected);
+                output.selected_values_08.push_back(
+                    reinterpret_cast<const short *>(&selected));
             }
-
-            selected_value.integer = static_cast<unsigned short>(
-                selected_value.integer);
-            output.selected_values_08.push_back(&selected_value.short_value);
-            selected_value.integer = state->reader_038.next_int();
-            state->source_values_598.push_back(selected_value.integer);
+            int source_value = state->reader_038.next_int();
+            state->source_values_598.push_back(source_value);
             state->reader_038.advance_row();
         } while (--remaining);
     }

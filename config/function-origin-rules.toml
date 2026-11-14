@@ -6241,20 +6241,6 @@ required_body_hashes = [{ address = "0x0045DC90", size = 259, sha256 = "9c5d531d
 required_direct_edges = [{ caller = "0x00428070", site = "0x00428238", target = "0x0045DC90", caller_status = "matching" }, { caller = "0x00428070", site = "0x00428246", target = "0x0045DC90", caller_status = "matching" }]
 
 [[rules]]
-id = "scenario-event-parser-authored-106a"
-addresses = ["0x0045A7A0"]
-expected_count = 1
-expected_bytes = 543
-expected_names = ["sub_45A7A0"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Scenario event CSV row parsing and record/list publication, anchored by its complete543-byte native span and two independently exact story/setup callers. Includes two internal alignment bytes. Selected source remains nonexact; no exact or EH-equivalence claim. docs/SCENARIO_EVENT_PARSER_ORIGIN_2026_11_03.md."
-required_body_hashes = [{ address = "0x0045A7A0", size = 543, sha256 = "a6530f7089b75b611b3f33fdfb848e7d97940381460a66c9a3ac9774dda0e38f" }]
-required_direct_edges = [{ caller = "0x00434CE0", site = "0x00434CF6", target = "0x0045A7A0", caller_status = "matching" }, { caller = "0x00470880", site = "0x00470911", target = "0x0045A7A0", caller_status = "matching" }]
-
-[[rules]]
 id = "battle-info-record-runtime-authored-106a"
 addresses = ["0x0046FF30"]
 expected_count = 1

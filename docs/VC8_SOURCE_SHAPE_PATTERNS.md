@@ -94,6 +94,15 @@ amount in EAX. The CRT macro `__min(counter_558 + amount, 500)` from `<stdlib.h>
 is exact. A named `capped` local, with an `if` or a ternary, lands the amount in
 EDX, and `TH105_MIN` gives `jle` for `jl`.
 
+**A late store into a shared slot means a fresh, non-escaped local.**
+`parse_scenario_event_row` 0x45A7A0 reuses one stack slot for two values. The
+first value's address goes to `ShortDeque8::push_back`; the second goes to
+`std::list<int>::push_back`, and the target stores it only after loading the
+list head. Reusing one variable (formerly an int/short union) makes VC8 store
+it early, because the escaped address may alias the list nodes. A fresh `int`
+would take a new slot (frame +4). Exact 543/543: give the selected column value
+its own block scope, then declare `int source_value` after the block.
+
 **Clear a released handle through a reference.** When the target stores
 `handle = 0` before loading an unrelated field of the same object, VC8 has not
 reordered them, so the store went through a pointer. The inline member
