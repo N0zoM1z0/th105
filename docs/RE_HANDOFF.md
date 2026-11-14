@@ -14,8 +14,12 @@ compares in about 2 s.
 
 New exact functions: profile key capture 0x44B540, CMenuConfig constructor
 0x441520, descriptor point test 0x46B8B0, file-list parent step 0x4398B0, Arcade
-post pipeline 0x472F80, title render 0x425740, and three functions that were
-already exact but never accepted (0x42CF70, 0x42D010, 0x432200). Reusable source-shape
+post pipeline 0x472F80, title render 0x425740, scenario label selection 0x455490,
+profile writer 0x4317A0, and three functions that were already exact but never
+accepted (0x42CF70, 0x42D010, 0x432200). 0x40FDB0 turned out to be VC8's
+`deque<CsvRow>::_Tidy` and is now excluded; see
+[origin corrections](ORIGIN_CORRECTIONS_2026_11_14.md). The CRLF working-tree and
+pin repair is described there too. The origin census reports no errors. Reusable source-shape
 findings and every parked residual tried this session are in
 [VC8 source-shape patterns](VC8_SOURCE_SHAPE_PATTERNS.md). Read it before retrying
 any of those functions.
