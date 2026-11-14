@@ -272,6 +272,17 @@ target lacks, so LTCG does not explain the register.
 - **Commutative sum order in `advance_frame` 0x44EAD0.** The target loads +0x88
   before adding +0x84. The operand order in source, `+=`, a local, an `int` type,
   a two-element array and a manual LTCG build all emit +0x84 first.
+- **Unmerged `return 0` epilogues.** `ConnectDigitEditor::update_port` 0x441BD0
+  (and 0x441E10, 0x43F6E0, 0x443030) keeps every `xor eax, eax; pop; ret`
+  separate, and lays out the final `return 0` as the fall-through of the
+  `cancel == 1 || is_menu_initial_press(...)` test. VC8 jumps back to an earlier
+  identical epilogue instead. This also happens under a manual LTCG build. An
+  `&&`/`!` early return and an `else` arm are neutral; a result variable changes
+  the layout (565 bytes).
+- **Stack slot order in `EventEffectState_initialize_resources` 0x46A260.** The
+  target places the CSV reader below the texture path buffer; VC8 places them
+  in declaration order. Hoisting `path` or `width`/`height`, a block around the
+  reader, and declaring `row` before `key` all fail.
 - **LTCG `this` in ESI.** `PackageFileIndexNode_ctor` 0x41B7F0 receives `this`
   in ESI and returns it from there. Only a linked unit can match it.
 - **RTM compiler control.** Building 0x431390, 0x427390, 0x46C5B0 and 0x414E40
