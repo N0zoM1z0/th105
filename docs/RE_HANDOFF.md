@@ -13,8 +13,9 @@ system Wine directly with the same `.tools/wine-msvc8` prefix. A unit builds and
 compares in about 2 s.
 
 New exact functions: profile key capture 0x44B540, CMenuConfig constructor
-0x441520, descriptor point test 0x46B8B0, and three functions that were already
-exact but never accepted (0x42CF70, 0x42D010, 0x432200). Reusable source-shape
+0x441520, descriptor point test 0x46B8B0, file-list parent step 0x4398B0, Arcade
+post pipeline 0x472F80, title render 0x425740, and three functions that were
+already exact but never accepted (0x42CF70, 0x42D010, 0x432200). Reusable source-shape
 findings and every parked residual tried this session are in
 [VC8 source-shape patterns](VC8_SOURCE_SHAPE_PATTERNS.md). Read it before retrying
 any of those functions.
@@ -23,6 +24,13 @@ The quickest discovery method was to rebuild every unit that holds a nonexact
 authored function and rank the results by first-mismatch offset and size delta. A size
 difference with a late first mismatch has usually been a real source-shape
 error. Equal sizes have usually been register or scheduling noise.
+
+The largest remaining nonexact clusters are VC8 optimizer choices that no
+source spelling has moved so far: commutative operand order in checked-container
+bounds, compare-in-memory then reload, register preference after calls, and
+tail-merge or block placement. A real LTCG build of one of them is the next
+untested lead; it needs genuine callee definitions, without stubs or `/FORCE`.
+The giant Fighter/Object action roots remain far from exact; see their topic notes.
 
 Read live status from the ledgers instead of copying totals into this document:
 
