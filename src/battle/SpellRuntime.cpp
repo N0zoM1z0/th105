@@ -25,35 +25,23 @@ bool Fighter::is_front_sequence_entry_ready_55a(signed char index)
     return state_55a >= required;
 }
 
+static inline std::deque<FighterSequenceSlot> &sequence_queue(Fighter *fighter)
+{
+    return reinterpret_cast<std::deque<FighterSequenceSlot> &>(
+        fighter->sequence_controller_55c);
+}
+
 void Fighter::advance_fighter_sequence_55c()
 {
-    if (sequence_controller_55c.live_count_10 > 0) {
-        FighterSequenceController *controller = &sequence_controller_55c;
-        const unsigned head = controller->head_0c;
-        if (head > head + controller->live_count_10) {
-            _invalid_parameter_noinfo();
-        }
-        if (head >= controller->live_count_10 + controller->head_0c) {
-            _invalid_parameter_noinfo();
-        }
-
-        if (controller->live_count_10 != 0) {
-            controller->slots_04[controller->head_0c]->sprite_04.~CSprite();
-            ++controller->head_0c;
-            if (controller->slot_capacity_08 <= controller->head_0c) {
-                controller->head_0c = 0;
-            }
-            if (--controller->live_count_10 == 0) {
-                controller->head_0c = 0;
-            }
-        }
-
-        int live_count = controller->live_count_10;
-        state_55a = static_cast<signed char>(live_count);
+    if (sequence_queue(this).size() > 0) {
+        sequence_queue(this).front();
+        sequence_queue(this).pop_front();
+        state_55a = static_cast<signed char>(sequence_queue(this).size());
         if (state_55a == 0) {
             return;
         }
 
+        FighterSequenceController *controller = &sequence_controller_55c;
         int record_id = controller->entry_at_checked(0)->record_id_00;
         SpellDataOwner *lookup =
             reinterpret_cast<SpellDataOwner *>(spell_lookup_4f0);

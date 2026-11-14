@@ -186,3 +186,11 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   and reuses the dead `path` parameter slot, with the rest nearly identical. Lead:
   recover the callee's real aligned local and float casts first, then rebuild its
   callers in one LTCG context. Adding invented alignment is not acceptable.
+- **Sequence pop as a real `std::deque`.** `Fighter_advance_fighter_sequence_55c`
+  0x45D040 pops a `std::deque<FighterSequenceSlot>`: `front()` (its two range
+  checks), then `pop_front()`, whose element destructor resets only the `CSprite`
+  member's vptr non-virtually. The old hand-written pop called the `CSprite`
+  destructor virtually. With the real deque, read through a `sequence_queue(this)`
+  helper, the first 18 instructions now match (190 bytes against 198). The
+  remaining difference is that ours keeps zero in ECX for the offset resets and the
+  first `entry_at_checked(0)` push.
