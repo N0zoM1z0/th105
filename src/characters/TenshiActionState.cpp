@@ -3,12 +3,12 @@
 // JP1.06a 63D3E0 complete candidate, not selected or exact.
 // Remaining semantic and compiler-ownership limits are in the evidence document.
 namespace th105 {
-#define B(o) at<unsigned char>(o)
-#define C(o) at<signed char>(o)
-#define S(o) at<short>(o)
-#define U(o) at<unsigned>(o)
-#define I(o) at<int>(o)
-#define F(o) at<float>(o)
+#define B(o) (*reinterpret_cast<unsigned char *>(reinterpret_cast<unsigned char *>(this)+(o)))
+#define C(o) (*reinterpret_cast<signed char *>(reinterpret_cast<unsigned char *>(this)+(o)))
+#define S(o) (*reinterpret_cast<short *>(reinterpret_cast<unsigned char *>(this)+(o)))
+#define U(o) (*reinterpret_cast<unsigned *>(reinterpret_cast<unsigned char *>(this)+(o)))
+#define I(o) (*reinterpret_cast<int *>(reinterpret_cast<unsigned char *>(this)+(o)))
+#define F(o) (*reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(this)+(o)))
 void TenshiActionStateView::dispatch_action_state_vslot28()
 {
     float request500[3],request501[3];

@@ -47,6 +47,9 @@ the scheduler interleave them the way the target does (`fld [f4]; xor ebx, ebx;
 fld c; mov [180], ebx; fmul ...`). It also changes which duplicate tails merge.
 Switching `Reimu_initialize_action_entry` 0x491C40 to the macro cut its diff
 from 25 regions to 7. The exact sibling initializers already use the macro.
+The giant action-state roots use a member `__forceinline` `at<T>()` template
+that behaves the same way. Switching Tenshi's (0x63D3E0) to the macro removed
+about 35 diff regions out of 1637. The other eight roots measured unchanged.
 With the macro, VC8 also reorders independent stores, so a case whose stores
 come out permuted needs a brute-force search over statement order, not reasoning
 from the target order. The search made `Suika_initialize_action_entry`
