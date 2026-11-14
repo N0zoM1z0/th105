@@ -110,3 +110,13 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   the `-1` arm jumps into them. Swapping the arms only flips the condition. A
   hoisted common tail (400 bytes), an early-return arm (437) and a ternary (406)
   are all worse.
+- **Handle test in memory, then reload.** `GuideOverlay` destructor 0x43F330,
+  `FighterSpriteResource_cleanup` 0x465420 and `ProfileMenuBaseData_cleanup`
+  0x431390 emit `cmp [obj+h], 0`, then the EH state store, then reload the handle
+  for the release call. Ours loads it once and reuses the register. Typing the
+  GuideOverlay handle as `DesignTextureHandle` is neutral.
+- **Register-preference residuals.** `Fighter_initialize_battle_state` 0x460200
+  uses CL where ours uses AL for the `state_55b` copy; reading the pointer value
+  instead of a `char` view is neutral. `BattlePhaseBlock_parse_scenario_event_row`
+  0x45A7A0 sinks the `push_back` value store; passing `next_int()` directly
+  breaks the shared stack slot.
