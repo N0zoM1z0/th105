@@ -199,6 +199,13 @@ rebuild the units that hold nonexact functions, not just the exact ones.
   and reuses the dead `path` parameter slot, with the rest nearly identical. Lead:
   recover the callee's real aligned local and float casts first, then rebuild its
   callers in one LTCG context. Adding invented alignment is not acceptable.
+  The same aligned prologue (`push ebp; mov ebp, esp; and esp, -8; push ecx`) is
+  now the only residual of `WaveService_set_handle_gain` 0x401CE0: its linked body
+  otherwise matches instruction for instruction, including the compare-then-reload
+  through `buffer->set_volume`. It also blocks `BgmStream_transition_gain`
+  0x402B70, which now reproduces the reload through the inline buffer
+  `set_volume`. Probably more of the linear-gain callers are affected, so solving
+  0x418990 is the highest-value open audio item.
 - **Sequence pop as a real `std::deque`.** `Fighter_advance_fighter_sequence_55c`
   0x45D040 pops a `std::deque<FighterSequenceSlot>`: `front()` (its two range
   checks), then `pop_front()`, whose element destructor resets only the `CSprite`
