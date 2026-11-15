@@ -47,7 +47,7 @@ case 800: {
     case 2: {
         F(0x11c)-=0.01f;F(0x120)-=0.01f;
         if(F(0x11c)<0.5 || I(0x144)>10) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}
-        if(F(0x11c)<=0.0 || B(0x113)<=0) RETIRE();
+        if(F(0x11c)<=0.0 || B(0x113)<1) RETIRE();
         float *parameters=PARAM;parameters[1]-=1.25;if(parameters[1]<1.0f) parameters[1]=1.0f;
         MOTION->set_oriented_components_f0_f4(parameters[0],parameters[1]);
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();MOVE();break;
@@ -581,7 +581,7 @@ case 815: {
         if(action!=520 && action!=521) {select_sequence(2);return;}
         if(I(0x180)==6) {I(0x180)=0;++B(0x184);}
         if(I(0x180)!=0 && ++S(0x364)>3) {S(0x364)=0;I(0x180)=0;}
-        if(I(0x144)>=30 || C(0x184)<=0) {next_sequence_block();return;}
+        if(I(0x144)>=30 || C(0x184)<1) {next_sequence_block();return;}
     }
     if(S(0x13e)==3) {if(!RELATED || FIELD(RELATED,short,0x13e)==2) RETIRE();}
     if(CORE->advance_frame_and_dispatch()) --I(0x330);
@@ -615,7 +615,7 @@ case 816: {
         if(I(0x144)%5==0) {
             float packet[3]={RF(360),0.0f,2.0f};spawn_unparented(816,F(0xec),F(0xf0),B(0x104),1,packet,3);
         }
-        if(C(0x184)<=0 || I(0x144)>=30) RETIRE();
+        if(C(0x184)<1 || I(0x144)>=30) RETIRE();
         short action=FIELD(OWNER,short,0x13c);if(action<525 || action>528) RETIRE();FINISH();
     }
     case 2:
@@ -837,7 +837,7 @@ case 825: {
             if(B(0x113)<10) RETIRE();B(0x113)-=10;return;
         }
         if(emit_repeated(0,3,5)) RETIRE();
-        if(S(0x13e)==1 && S(0x140)>=18) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}
+        if(S(0x13e)==1 && S(0x140)>17) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}
         MOVE();
         break;
     }
@@ -1057,7 +1057,7 @@ case 850: {
             publish_bounds_descriptor(static_cast<int>(F(0x11c)*-35.0),static_cast<int>(F(0x11c)*75.0),static_cast<int>(F(0x11c)*35.0),static_cast<int>(F(0x11c)*-75.0),static_cast<short>(static_cast<int>(PARAM[0])),0,0);
             F(0x11c)+=0.03f;F(0x120)=F(0x11c);CORE->advance_state_six_counter_conditional(0);int collision=I(0x180);
             if(collision!=0) {
-                if(C(0x184)<=0) {next_sequence_frame();return;}
+                if(C(0x184)<1) {next_sequence_frame();return;}
                 if(collision==4 || collision==8) S(0x364)=4;
                 if(++S(0x364)>=4) {S(0x364)=0;I(0x180)=0;}
             }
@@ -1150,7 +1150,7 @@ case 853: {
             publish_bounds_descriptor(static_cast<int>(F(0x11c)*-35.0),static_cast<int>(F(0x11c)*75.0),static_cast<int>(F(0x11c)*35.0),static_cast<int>(F(0x11c)*-75.0),static_cast<short>(static_cast<int>(PARAM[0])),0,0);
             F(0x11c)+=0.2f;if(F(0x11c)>=4.0f) F(0x11c)=4.0f;F(0x120)=F(0x11c);CORE->advance_state_six_counter_conditional(0);int collision=I(0x180);
             if(collision!=0) {
-                if(C(0x184)<=0) {next_sequence_frame();return;}
+                if(C(0x184)<1) {next_sequence_frame();return;}
                 if(collision==4 || collision==8) S(0x364)=4;
                 if(++S(0x364)>=4) {S(0x364)=0;I(0x180)=0;}
             }
@@ -1366,7 +1366,7 @@ case 859: {
     case 1:
         F(0x12c)+=5.0;F(0x11c)+=0.05f;F(0x120)=F(0x11c);if(B(0x113)<10) RETIRE();B(0x113)-=10;break;
     case 2:
-        F(0x11c)+=0.2f;F(0x120)=F(0x11c);if(B(0x113)<15) RETIRE();B(0x113)-=15;break;
+        F(0x11c)+=0.2f;F(0x120)=F(0x11c);if(B(0x113)<=14) RETIRE();B(0x113)-=15;break;
     case 3:
         F(0x11c)*=0.9f;F(0x120)=F(0x11c);if(B(0x113)<30) RETIRE();B(0x113)-=30;break;
     case 4:
@@ -1482,7 +1482,7 @@ case 910: {
     case 2: {
         F(0x11c)-=0.01f;F(0x120)-=0.01f;
         if(F(0x11c)<0.5 || I(0x144)>10) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}
-        if(F(0x11c)<=0.0 || B(0x113)<=0) RETIRE();
+        if(F(0x11c)<=0.0 || B(0x113)<1) RETIRE();
         float *parameters=PARAM;parameters[1]-=1.25;if(parameters[1]<1.0f) parameters[1]=1.0f;
         MOTION->set_oriented_components_f0_f4(parameters[0],parameters[1]);
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();MOVE();break;
@@ -1575,7 +1575,7 @@ case 912: {
         if(I(0x144)%5==0) {
             float packet[3]={RF(360),0.0f,2.0f};spawn_unparented(816,F(0xec),F(0xf0),B(0x104),1,packet,3);
         }
-        if(C(0x184)<=0 || I(0x144)>=30) RETIRE();
+        if(C(0x184)<1 || I(0x144)>=30) RETIRE();
         short action=FIELD(OWNER,short,0x13c);if(action<525 || action>528) RETIRE();FINISH();
     }
     case 2:
@@ -1660,7 +1660,7 @@ case 920: {
     case 16: {
         F(0x11c)-=0.01f;F(0x120)-=0.01f;
         if(F(0x11c)<0.5 || I(0x144)>10) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}
-        if(F(0x11c)<=0.0 || B(0x113)<=0) RETIRE();float *parameters=PARAM;parameters[1]-=1.25;if(parameters[1]<1.0f) parameters[1]=1.0f;
+        if(F(0x11c)<=0.0 || B(0x113)<1) RETIRE();float *parameters=PARAM;parameters[1]-=1.25;if(parameters[1]<1.0f) parameters[1]=1.0f;
         MOTION->set_oriented_components_f0_f4(parameters[0],parameters[1]);
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0f || F(0xf0)<-100.0) RETIRE();MOVE();break;
     }
