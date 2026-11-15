@@ -1,9 +1,31 @@
 # VC8 source-shape patterns from target residuals
 
-Short findings from the 2026-11-14 session. Each entry names the target
-signature, the source shape that reproduces it and the function where it was proven.
+Each entry names a target signature, the source shape that reproduces it and
+the function where it was proven.
 
 ## Patterns that produced exact matches
+
+**Integer comparison constants are emitted as written.** VC8 does not
+canonicalize `x < 1` and `x <= 0`: the first gives `cmp x, 1; jge`, the second
+`cmp x, 0; jg`. So the target's `cmp` immediate tells you the source literal,
+and off-by-one spellings are a large share of the residual in the giant
+character functions. A greedy search fixed many at once: for each distinct
+(operator, constant) pair, rewrite every matching integer field comparison to
+its alternative (`< k` and `<= k-1`, `> k` and `>= k+1`), rebuild, and keep
+the change only if the function's instruction diff shrinks and every other
+function in the unit stays exact. It took the Alice CPU policy
+0x4F4B80 from 91 to 40 differing instructions, Iku's object update 0x632C30
+from 722 to 541 and Komachi's 0x5F9420 from 1064 to 949. Leave float
+comparisons alone; see the next entry.
+
+**Float comparisons: `!(a > b)` is not `a <= b`.** The two differ when a value
+is NaN, and VC8 keeps the difference: after `fcomp`/`fnstsw`, a
+`test ah, 41h; jp` or `test ah, 5; jp` sequence shows which ordered test the
+source wrote. Komachi's action 214 0x5E3D97 needs `!(peer_x > self_x)`, Yukari's
+object facing 0x593222/0x594B8F needs `dx > 0 ? 1 : -1`, and Yuyuko's action 720
+guard needs an ordered `counter <= 100` test rather than an early return on
+`counter > 100`. Also keep float temporaries as `float` when the target stores
+and reloads them as m32 (Alice object actions 834/855, 0x502D4E/0x506CBD).
 
 **One trailing return reached by an else-if chain, not repeated returns.** When
 the target has several separate copies of a small return (`xor eax, eax; pop

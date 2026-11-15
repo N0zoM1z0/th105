@@ -12,4 +12,4 @@ fetch the manager too early, while the latter four controls retain the 203-byte
 candidate and first mismatch. An early-return guard shrinks the body to 199 bytes
 and changes the target branch form.
 
-This corroborates the earlier [Object giant leaf closure](KNOWLEDGE_BASE.md#object-giant-leaf-closure-and-remaining-direct-callee-floor-2026-09-08) while narrowing the first-call instruction residual. The accepted source, match unit and exact ledger remain unchanged. Original source grouping and compiler/TU context are unknown; further register-forcing or fabricated argument dependencies would not be supported by target evidence.
+This narrows the first-call instruction residual. The accepted source, match unit and exact ledger remain unchanged. Original source grouping and compiler/TU context are unknown; further register-forcing or fabricated argument dependencies would not be supported by target evidence.

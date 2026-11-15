@@ -115,8 +115,7 @@ materialization.
 
 ## TH075 cross-check
 
-TH075's locally recorded math-table evidence (`docs/KNOWLEDGE_BASE.md`, R182)
-describes the same 3600-entry / tenth-degree / 900-phase family at
+TH075's math tables describe the same 3600-entry / tenth-degree / 900-phase family at
 `41CAE0/41CB40/41CB70`. Its lookups convert to integer before integer abs;
 TH105's float-phase helpers use floating abs before conversion. This supports
 a shared engine-policy lead, not source identity, compiler-profile transfer,

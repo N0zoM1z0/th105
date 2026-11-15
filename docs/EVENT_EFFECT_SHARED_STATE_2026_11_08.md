@@ -19,8 +19,7 @@ The stage/music wrapper at `0x434DE0` now calls the shared state's actual
 `0x469DF0` returns directly when the event ID is unchanged and tail-calls the
 void stage publisher when it changes. The sole direct caller `0x434E90` passes
 through its incidental EAX value, but its observed callers discard that value.
-Both interfaces now return `void`; the publisher takes a signed-byte stage. The
-old same-return-type forwarding explanation in `KNOWLEDGE_BASE.md` is superseded.
+Both interfaces now return `void`; the publisher takes a signed-byte stage.
 The two full bodies remain exact, as do the fourteen exact roster bridges, pair
 mode and fighter system-command consumers. Yukari and the unselected Tenshi
 action candidate retain their earlier nonexact candidate hashes.
