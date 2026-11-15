@@ -83,7 +83,7 @@ void ReimuFinalizationView::initialize_action_entry()
   F(0xf4)=15.0f;S(0x730)=0;F(0x100)=0.5f;I(0x180)=0;
   S(0x7cc)=0;F(0x108)=0;B(0x184)=3;F(0x10c)=105.0f;return;
  case 322:
-  if(B(0x47e)==0)zero_motion();
+  if(B(0x47e)==0) {zero_motion();S(0x738)=0;B(0x184)=1;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;}
   S(0x738)=0;B(0x184)=1;B(0x47e)=0;I(0x180)=0;S(0x7cc)=0;return;
  case 400:case 401:case 410:case 412:
   I(0x180)=0;zero_motion();S(0x736)=S(0x732)=S(0x730)=S(0x738)=0;
