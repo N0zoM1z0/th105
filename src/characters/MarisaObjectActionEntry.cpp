@@ -157,7 +157,7 @@ void MarisaObjectEntryView::initialize_action_entry()
   if(S(0x13E)==12) F(0x120)=F(0x11C)=static_cast<float>(random_float(5)*static_cast<double>(0.1f)+0.5); return;
  }
  case 900: {
-  float payload[4]; SELECT(); if(S(0x13E)<=3) { F(0x12C)=random_float(360); B(0x184)=1; F(0x370)=AT(FIELD(void *,0x170),float,0xEC); F(0x374)=AT(FIELD(void *,0x170),float,0xF0)+100.0; replace_secondary(static_cast<unsigned short>(S(0x13E)+991),30,10,1,2); payload[0]=0; payload[1]=0; payload[2]=S(0x13E)+4; payload[3]=0; UNSPAWN(900,1,4); F(0x378)=random_float(10)-5.0; }
+  float payload[4]; SELECT(); if(S(0x13E)<=3) { F(0x12C)=random_float(360); B(0x184)=1; F(0x370)=AT(FIELD(void *,0x170),float,0xEC); F(0x374)=AT(FIELD(void *,0x170),float,0xF0)+100.0; replace_secondary(static_cast<unsigned short>(S(0x13E))+991,30,10,1,2); payload[0]=0; payload[1]=0; payload[2]=S(0x13E)+4; payload[3]=0; UNSPAWN(900,1,4); F(0x378)=random_float(10)-5.0; }
   if(S(0x13E)==12) { switch(g_match_identifier) { case 3:S(0x366)=240;break; case 2:S(0x366)=180;break; case 0: case 1:S(0x366)=120;break; } }
   if(S(0x13E)==13) { B(0x184)=0; F(0x120)=F(0x11C)=0.1f; }
   if(S(0x13E)>=14 && S(0x13E)<=17) { F(0x12C)=random_float(360); F(0x120)=F(0x11C)=static_cast<float>(random_float(50)*static_cast<double>(0.01f)+0.75); }
