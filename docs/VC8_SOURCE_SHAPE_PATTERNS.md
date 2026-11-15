@@ -541,16 +541,13 @@ target lacks, so LTCG does not explain the register.
 - **`movzx` + `movsx cx` for a deferred health amount.** `BattleCollisionPhase_run`
   0x46DFF0 is exact to +1369. Inline helpers taking `short` or `int`, a `short`
   local, and `unsigned` field types all keep the folded `movsx r32, word`.
-- **Final `return 0` laid out before a cancel block.** In both
-  `update_profile_message` 0x43F6E0 and `CMenuConnect_update_history_selection`
-  0x443030, the target puts its own `xor eax, eax; ret` straight after the
-  `cancel == 1 || is_menu_initial_press(...)` test. VC8 instead tail-merges it
-  into an earlier identical return. An inverted early return, a nested `if`,
-  an `else` arm and a result variable all fail. A `bool` local stops VC8 from
-  inlining the two-caller `static hide_message()`.
 - **Two-value switch lowered to a select.** In `CBattleSV_update` 0x426180 and
   `CBattleCL_update` 0x426380 the target branches into a shared `return 8`
   epilogue. Putting `default` first or using an `if` return does not reproduce it.
+  In 0x426380 the target keeps the final `default: return 14` as its own
+  epilogue, while VC8 jumps into the earlier `flush(); return 14;` tail. A
+  result variable, `break` forms, an inverted outer `if` and an
+  `if (phase != 1) return 14;` early return all keep the jump.
 - **List erase register rotation.** The three `update_and_prune` members
   (0x58BE10, 0x422D30, 0x456D70) differ only in the EAX/ECX/EDX names of the
   inlined `list::erase` unlink. `erase(it++)` and a separate dead iterator both
