@@ -51,7 +51,15 @@ Treat equal-size residuals as source questions first.
   - the replay browser 0x446860 (a `return 1;` ending the confirm branch, so
     every path shares one GS epilogue);
   - several UI menus through `break`/else-if forms with one trailing return
-    (see the patterns note).
+    (see the patterns note);
+  - the select scene entry/update 0x421120/0x421430 and the watch-input setup
+    0x42BC40 (re-read members, reference helpers);
+  - the scene frame update 0x43B4A0, which tail-calls a separate UI selection
+    update 0x4400D0 that earlier ledgers called a remote chunk;
+  - the scenario list fade 0x455850, the battle menu update 0x4407E0 and
+    Komachi's initializer 0x5F6700. Each repeats a tail in both branches,
+    which VC8 cross-jumps. This is the most productive lead: when one branch
+    jumps into another branch's tail, try duplicating the tail in source.
 - Down to a few scheduling or cross-jump regions each: Reimu 0x491C40,
   Udonge 0x5D0E60, the common fighter initializer 0x477830, scenario character
   install 0x456EB0 (one EH-state store) and the info effect update 0x65CB40
