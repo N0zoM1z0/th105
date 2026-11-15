@@ -13,7 +13,7 @@ void PatchouliActionStateView::dispatch_action_state_vslot28()
     S(0x7a0)=0;S(0x7a2)=103;
     if(S(0x7a4)>0) {
         --S(0x7a4);
-        if(action_id_13c>=600 && action_id_13c<=689 && (action_id_13c!=605 || sequence_index_13e<1))S(0x7a4)=0;
+        if(action_id_13c>=600 && action_id_13c<=689 && (action_id_13c!=605 || sequence_index_13e<=0))S(0x7a4)=0;
         if(owner()->at<short>(0x174)<=0 || peer()->at<short>(0x174)<=0)S(0x7a4)=0;
     }
     if(F(0x7b4)>0.0f) {
@@ -314,7 +314,7 @@ case 224:
         F(0xf4)=-10.0f;F(0xf8)=3.0f;F(0x100)=0.3f;dash_effects(true,80.0,false);
     }return;
 case 225:
-    if(sequence_index_13e>=1) {
+    if(sequence_index_13e>0) {
         F(0xf8)-=F(0x100);
         if(static_cast<unsigned char>(crossed())){zero_motion();F(0xf0)=patchouli_surface(this);set_action_and_finalize(10);return;}
     }
@@ -420,7 +420,7 @@ case 304:
             if(frame_index_140==2){F(0xf4)=15.0f;event(29);}
             if(!frame_timer_142 && frame_index_140==4)F(0xf4)=0.0f;
         }
-        if(frame_index_140>=2 && frame_index_140<=7) {
+        if(frame_index_140>=2 && frame_index_140<8) {
             F(0xf4)=static_cast<float>(F(0xf4)-0.5);if(F(0xf4)<10.0f)F(0xf4)=10.0f;
             if(time_counter_144%10==0){float p[3];p[2]=0.0f;p[1]=10.0f;ring820_ground(p,77);}
         }
@@ -687,7 +687,7 @@ case 412:
 case 414:
     if(sequence_index_13e==1)landing();
     F(0xf8)-=F(0x100);
-    if(static_cast<unsigned char>(crossed()) && sequence_index_13e<1) {
+    if(static_cast<unsigned char>(crossed()) && sequence_index_13e<=0) {
         select_sequence(1);B(0x47f)=0;F(0xf0)=patchouli_surface(this);zero_motion();return;
     }
     if(sequence_index_13e<2 && !I(0x6c4))B(0x750)=0;
@@ -781,7 +781,7 @@ case 520:
         float p[3]={0.0f,30.0f,4.0f};
         int direction=B(0x104);float y=patchouli_surface(peer());
         spawn(815,peer()->at<float>(0xec),y,direction,1,p,3);
-        if(C(0x605)>=3) {
+        if(C(0x605)>2) {
             p[1]=40.0f;p[2]=4.0f;direction=B(0x104);y=patchouli_surface(peer());
             spawn(815,static_cast<float>(peer()->at<float>(0xec)-100.0),y,direction,1,p,3);
         }
@@ -801,7 +801,7 @@ case 521:
         float p[3]={0.0f,30.0f,4.0f};
         int direction=B(0x104);float y=patchouli_surface(peer());
         spawn(815,peer()->at<float>(0xec),y,direction,1,p,3);
-        if(C(0x605)>=3) {
+        if(C(0x605)>2) {
             p[1]=40.0f;p[2]=4.0f;direction=B(0x104);y=patchouli_surface(peer());
             spawn(815,static_cast<float>(peer()->at<float>(0xec)+100.0),y,direction,1,p,3);
         }
@@ -937,7 +937,7 @@ case 566:
 case 567:
     if(sequence_index_13e==1)landing();
     B(0x17c)=8;F(0xf8)-=F(0x100);
-    if(static_cast<unsigned char>(crossed()) && sequence_index_13e<1) {
+    if(static_cast<unsigned char>(crossed()) && sequence_index_13e<=0) {
         select_sequence(1);B(0x47f)=0;F(0xf0)=patchouli_surface(this);zero_motion();return;
     }
     if(!I(0x6c0))B(0x750)=0;
@@ -955,7 +955,7 @@ case 567:
 case 568:
     if(sequence_index_13e==1)landing();
     B(0x17c)=8;F(0xf8)-=F(0x100);
-    if(static_cast<unsigned char>(crossed()) && sequence_index_13e<1) {
+    if(static_cast<unsigned char>(crossed()) && sequence_index_13e<=0) {
         select_sequence(1);B(0x47f)=0;F(0xf0)=patchouli_surface(this);zero_motion();return;
     }
     if(!I(0x6c0))B(0x750)=0;
