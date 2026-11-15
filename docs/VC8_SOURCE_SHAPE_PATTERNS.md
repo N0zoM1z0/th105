@@ -5,6 +5,17 @@ signature, the source shape that reproduces it and the function where it was pro
 
 ## Patterns that produced exact matches
 
+**Switch lowering counts distinct case bodies, not distinct addresses.** VC8
+decides between one jump table and a split decision tree before it merges
+identical case blocks. `EffectObject::update` 0x659AA0 has 79 case values in
+1..300, mapped to 62 distinct addresses. Written with shared labels
+(`case 126: case 127: ...`, giving 62 bodies), VC8 splits off case 300. Each case
+written separately, with duplicated bodies, gives the target's single 300-entry
+table. Indexing that table through `ecx` also restores every
+`mov ecx, esi` before the case calls. A greedy search shows only some groups were
+duplicated in the original (126, 131, 135, 150, 151 and 162; 58, 102, 60 and 112
+stay shared). This took the function from 55 regions to 24.
+
 **Update a global in place, not through a local copy.** A global short that is
 read before a branch and then updated in both arms
 (`mov ax, [g]; ...; sub ax, cx` / `add ax, 1`) comes from

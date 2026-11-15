@@ -245,7 +245,7 @@ void EffectObjectUpdateView::update_659aa0()
         unsigned char alpha=alpha_113;
         x_0ec=static_cast<float>(facing_104*velocity_x_0f4+x_0ec);
         y_0f0=velocity_y_0f8+y_0f0;
-        if (alpha<=10) --state_158; else alpha_113=alpha-10;
+        if (alpha>10) alpha_113=alpha-10; else --state_158;
         scale_y_120*=0.98f; scale_x_11c+=0.05f;
         FINISH;
     }
@@ -257,8 +257,8 @@ void EffectObjectUpdateView::update_659aa0()
     case 105: {
         unsigned char alpha=alpha_113;
         scale_x_11c+=0.15f; scale_y_120=scale_x_11c;
-        if (alpha<=15) --state_158;
-        else { alpha_113=alpha-15; red_112-=15; green_111-=15; }
+        if (alpha>15) { alpha_113=alpha-15; red_112-=15; green_111-=15; }
+        else --state_158;
         FINISH;
     }
     case 60: case 106:
@@ -317,8 +317,56 @@ void EffectObjectUpdateView::update_659aa0()
         alpha_113=alpha-25; red_112-=25; green_111-=25;
         FINISH;
     }
-    case 126: case 127: case 128: case 129: FINISH;
-    case 131: case 132: case 133: case 134: {
+    case 126: FINISH;
+    case 127: FINISH;
+    case 128: FINISH;
+    case 129: FINISH;
+    case 131: {
+        int time=time_144;
+        if (time==0) velocity_y_0f8=20.0f;
+        velocity_y_0f8-=1.0;
+        if (velocity_y_0f8<1.0) velocity_y_0f8=1.0f;
+        scale_x_11c+=0.1f;
+        if (scale_x_11c>1.0) scale_x_11c=1.0f;
+        scale_y_120=scale_x_11c;
+        if (time>=60) {
+            if (alpha_113<=15) KILL;
+            alpha_113-=15;
+        }
+        y_0f0=velocity_y_0f8+y_0f0;
+        FINISH;
+    }
+    case 132: {
+        int time=time_144;
+        if (time==0) velocity_y_0f8=20.0f;
+        velocity_y_0f8-=1.0;
+        if (velocity_y_0f8<1.0) velocity_y_0f8=1.0f;
+        scale_x_11c+=0.1f;
+        if (scale_x_11c>1.0) scale_x_11c=1.0f;
+        scale_y_120=scale_x_11c;
+        if (time>=60) {
+            if (alpha_113<=15) KILL;
+            alpha_113-=15;
+        }
+        y_0f0=velocity_y_0f8+y_0f0;
+        FINISH;
+    }
+    case 133: {
+        int time=time_144;
+        if (time==0) velocity_y_0f8=20.0f;
+        velocity_y_0f8-=1.0;
+        if (velocity_y_0f8<1.0) velocity_y_0f8=1.0f;
+        scale_x_11c+=0.1f;
+        if (scale_x_11c>1.0) scale_x_11c=1.0f;
+        scale_y_120=scale_x_11c;
+        if (time>=60) {
+            if (alpha_113<=15) KILL;
+            alpha_113-=15;
+        }
+        y_0f0=velocity_y_0f8+y_0f0;
+        FINISH;
+    }
+    case 134: {
         int time=time_144;
         if (time==0) velocity_y_0f8=20.0f;
         velocity_y_0f8-=1.0;
@@ -353,21 +401,62 @@ void EffectObjectUpdateView::update_659aa0()
         alpha_113=alpha-15; red_112-=15; green_111-=15;
         FINISH;
     }
-    case 135: case 142: {
+    case 135: {
         unsigned char alpha=alpha_113;
         scale_x_11c+=0.3f; scale_y_120=scale_x_11c;
         if (alpha<15) KILL;
         alpha_113=alpha-15;
         FINISH;
     }
-    case 150: case 152: case 154: {
+    case 142: {
+        unsigned char alpha=alpha_113;
+        scale_x_11c+=0.3f; scale_y_120=scale_x_11c;
+        if (alpha<15) KILL;
+        alpha_113=alpha-15;
+        FINISH;
+    }
+    case 150: {
         unsigned char alpha=alpha_113;
         scale_x_11c+=0.15f; scale_y_120=scale_x_11c;
         if (alpha<15) KILL;
         alpha_113=alpha-15;
         FINISH;
     }
-    case 151: case 153: case 155:
+    case 152: {
+        unsigned char alpha=alpha_113;
+        scale_x_11c+=0.15f; scale_y_120=scale_x_11c;
+        if (alpha<15) KILL;
+        alpha_113=alpha-15;
+        FINISH;
+    }
+    case 154: {
+        unsigned char alpha=alpha_113;
+        scale_x_11c+=0.15f; scale_y_120=scale_x_11c;
+        if (alpha<15) KILL;
+        alpha_113=alpha-15;
+        FINISH;
+    }
+    case 151: 
+        if (state_170==0.0) {
+            if (alpha_113>=240) { alpha_113=255; state_170=1.0f; }
+            else alpha_113+=15;
+        } else {
+            if (alpha_113<15) KILL;
+            alpha_113-=15;
+        }
+        y_0f0+=10.0;
+        FINISH;
+    case 153: 
+        if (state_170==0.0) {
+            if (alpha_113>=240) { alpha_113=255; state_170=1.0f; }
+            else alpha_113+=15;
+        } else {
+            if (alpha_113<15) KILL;
+            alpha_113-=15;
+        }
+        y_0f0+=10.0;
+        FINISH;
+    case 155: 
         if (state_170==0.0) {
             if (alpha_113>=240) { alpha_113=255; state_170=1.0f; }
             else alpha_113+=15;
@@ -394,7 +483,29 @@ void EffectObjectUpdateView::update_659aa0()
         if (alpha_113<15) KILL;
         alpha_113-=15; velocity_y_0f8-=0.005f; y_0f0=velocity_y_0f8+y_0f0;
         FINISH;
-    case 162: case 163: case 164: {
+    case 162: {
+        int decay=static_cast<int>(state_170);
+        unsigned char alpha=alpha_113;
+        if (alpha<static_cast<signed char>(decay)) KILL;
+        alpha_113=static_cast<unsigned char>(alpha-decay);
+        angle_z_12c=state_174+angle_z_12c;
+        velocity_y_0f8-=0.3f; velocity_x_0f4*=0.92f;
+        if (y_0f0+velocity_y_0f8<=0.0 && velocity_y_0f8<0.0) velocity_y_0f8=-velocity_y_0f8;
+        x_0ec=velocity_x_0f4*facing_104+x_0ec; y_0f0=velocity_y_0f8+y_0f0;
+        FINISH;
+    }
+    case 163: {
+        int decay=static_cast<int>(state_170);
+        unsigned char alpha=alpha_113;
+        if (alpha<static_cast<signed char>(decay)) KILL;
+        alpha_113=static_cast<unsigned char>(alpha-decay);
+        angle_z_12c=state_174+angle_z_12c;
+        velocity_y_0f8-=0.3f; velocity_x_0f4*=0.92f;
+        if (y_0f0+velocity_y_0f8<=0.0 && velocity_y_0f8<0.0) velocity_y_0f8=-velocity_y_0f8;
+        x_0ec=velocity_x_0f4*facing_104+x_0ec; y_0f0=velocity_y_0f8+y_0f0;
+        FINISH;
+    }
+    case 164: {
         int decay=static_cast<int>(state_170);
         unsigned char alpha=alpha_113;
         if (alpha<static_cast<signed char>(decay)) KILL;
