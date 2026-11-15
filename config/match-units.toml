@@ -26607,7 +26607,8 @@ target_type_name = ".?AVCDSBuffer@@"
 [[units.exact-first-bgm-stream-constructor.functions]]
 address = "0x004040D0"
 symbol_base = "?acquire@BgmAllocationManager50@th105@@QAEPAUBgmStreamAllocationView@2@AAUBgmHandleResult@2@@Z"
-rel32_targets = ["??0BgmStreamAllocationView@th105@@QAE@XZ=0x00402820"]
+eh_cleanup = { handler = "0x006BE668", info = "0x006E4E34" }
+rel32_targets = ["??0BgmStreamAllocationView@th105@@QAE@XZ=0x00402820", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
 
 [[units.exact-first-bgm-stream-constructor.functions]]
 address = "0x00402820"
@@ -27202,7 +27203,8 @@ link_literals = [
 [[units.exact-first-csv-file-loading.functions]]
 address = "0x0040F150"
 symbol_base = "?load@CsvContext@th105@@QAE_NPBD@Z"
-rel32_targets = ["?load_csv@FileBufferContext@th105@@QAE_NPBD@Z=0x00408E40", "?reset@CsvContext@th105@@QAEXXZ=0x0040F730", "?parse@CsvContext@th105@@QAEXPBD@Z=0x0040F200", "??_V@YAXPAX@Z=0x0068AA26"]
+eh_cleanup = { handler = "0x006BE388", info = "0x006E4B40" }
+rel32_targets = ["?load_csv@FileBufferContext@th105@@QAE_NPBD@Z=0x00408E40", "?reset@CsvContext@th105@@QAEXXZ=0x0040F730", "?parse@CsvContext@th105@@QAEXPBD@Z=0x0040F200", "??_V@YAXPAX@Z=0x0068AA26", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
 
 [[units.exact-first-csv-file-loading.functions]]
 address = "0x00408E40"
@@ -27364,6 +27366,8 @@ rel32_targets = ["?acquire@BgmAllocationManager50@th105@@QAEPAUBgmStreamAllocati
 [[units.exact-first-bgm-stream-lifetime.functions]]
 address = "0x00404330"
 symbol_base = "?lookup@BgmAllocationManager50@th105@@QAEPAUBgmStreamAllocationView@2@H@Z"
+eh_cleanup = { handler = "0x006BDD98", info = "0x006E43E8" }
+rel32_targets = ["??1BgmAllocationLock@th105@@QAE@XZ=0x00401870", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7"]
 
 [[units.exact-first-bgm-stream-lifetime.functions]]
 address = "0x00404270"
@@ -27442,12 +27446,14 @@ rel32_targets = ["??1NetworkUdpPacketHandleManager64@th105@@UAE@XZ=0x00413820", 
 [[units.exact-first-network-udp-lifetime.functions]]
 address = "0x00412B10"
 symbol_base = "??0NetworkWinsockState314CtorView@th105@@QAE@XZ"
-rel32_targets = ["??0NetworkUdpPacketHandleManager64@th105@@QAE@XZ=0x00413780"]
+eh_cleanup = { handler = "0x006BE255", info = "0x006E49A8" }
+rel32_targets = ["??0NetworkUdpPacketHandleManager64@th105@@QAE@XZ=0x00413780", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "??1NetworkWinsockPolymorphicBase@th105@@UAE@XZ=0x0041DDB0", "??1?$deque@IV?$allocator@I@std@@@std@@QAE@XZ=0x00413770", "??1?$map@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@@std@@QAE@XZ=0x00412CB0", "??1?$multimap@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@@std@@QAE@XZ=0x00412CA0", "??1?$vector@IV?$allocator@I@std@@@std@@QAE@XZ=0x00405060", "??1?$vector@UNetworkSendRecord20CtorView@th105@@V?$allocator@UNetworkSendRecord20CtorView@th105@@@std@@@std@@QAE@XZ=0x00405060", "??1NetworkThreadHandleCtorView@th105@@QAE@XZ=0x004145F0", "??1NetworkUdpPacketCriticalSectionView@th105@@UAE@XZ=0x0040AC10"]
 
 [[units.exact-first-network-udp-lifetime.functions]]
 address = "0x00412CC0"
 symbol_base = "??1NetworkWinsockState314CtorView@th105@@UAE@XZ"
-rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26"]
+eh_cleanup = { handler = "0x006BE63A", info = "0x006E4E08" }
+rel32_targets = ["??_V@YAXPAX@Z=0x0068AA26", "@__security_check_cookie@4=0x00689D25", "___CxxFrameHandler3=0x006899E7", "??1NetworkWinsockPolymorphicBase@th105@@UAE@XZ=0x0041DDB0", "??1?$deque@IV?$allocator@I@std@@@std@@QAE@XZ=0x00413770", "??1?$map@IIU?$less@I@std@@V?$allocator@U?$pair@$$CBII@std@@@2@@std@@QAE@XZ=0x00412CB0", "??1?$multimap@IPAUNetworkPeerRecord20@th105@@U?$less@I@std@@V?$allocator@U?$pair@$$CBIPAUNetworkPeerRecord20@th105@@@std@@@4@@std@@QAE@XZ=0x00412CA0", "??1?$vector@IV?$allocator@I@std@@@std@@QAE@XZ=0x00405060", "??1?$vector@UNetworkSendRecord20CtorView@th105@@V?$allocator@UNetworkSendRecord20CtorView@th105@@@std@@@std@@QAE@XZ=0x00405060", "??1NetworkThreadHandleCtorView@th105@@QAE@XZ=0x004145F0", "??1NetworkUdpPacketCriticalSectionView@th105@@UAE@XZ=0x0040AC10"]
 
 [[units.exact-first-network-udp-lifetime.functions]]
 address = "0x00413780"
