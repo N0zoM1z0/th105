@@ -103,29 +103,27 @@ int CollisionContext::test_descriptor_shapes_overlap(
     broad_phase &= static_cast<unsigned>(first_descriptor->y0) -
         second_descriptor->y1 - second->top + first->top;
     broad_phase &= static_cast<unsigned>(first->left) - second->right;
-    if ((broad_phase & 0x80000000u) == 0) {
-        return 0;
-    }
+    if ((broad_phase & 0x80000000u) != 0) {
 
-    if (test_descriptor_point_inside(
-            first, first_descriptor, second->left, second->top) ||
-        test_descriptor_point_inside(
-            first, first_descriptor, second->right, second->bottom) ||
-        test_descriptor_point_inside(
-            first, first_descriptor,
-            second->left + second_descriptor->x0,
-            second->top + second_descriptor->y0) ||
-        test_descriptor_point_inside(
-            first, first_descriptor,
-            second->left + second_descriptor->x1,
-            second->top + second_descriptor->y1) ||
-        test_descriptor_point_inside(
-            second, second_descriptor, first->left, first->top)) {
-        accumulate_descriptor_pair_extents(
-            first, first_descriptor, second, second_descriptor);
-        return 1;
+        if (test_descriptor_point_inside(
+                first, first_descriptor, second->left, second->top) ||
+            test_descriptor_point_inside(
+                first, first_descriptor, second->right, second->bottom) ||
+            test_descriptor_point_inside(
+                first, first_descriptor,
+                second->left + second_descriptor->x0,
+                second->top + second_descriptor->y0) ||
+            test_descriptor_point_inside(
+                first, first_descriptor,
+                second->left + second_descriptor->x1,
+                second->top + second_descriptor->y1) ||
+            test_descriptor_point_inside(
+                second, second_descriptor, first->left, first->top)) {
+            accumulate_descriptor_pair_extents(
+                first, first_descriptor, second, second_descriptor);
+            return 1;
+        }
     }
-
     return 0;
 }
 
