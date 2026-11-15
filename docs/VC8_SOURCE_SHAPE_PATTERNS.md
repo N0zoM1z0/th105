@@ -329,6 +329,18 @@ target lacks, so LTCG does not explain the register.
   `B(0x7cd)=B(0x184)=k` stores in both copies give the AL loads, but no
   statement order makes VC8 merge the copies.
 
+- **Write sibling cases' branches in the same direction.** The common fighter
+  initializer 0x477830 has cases 6, 7 and 8 that either call `set_action` or
+  run the stop tail `if (B(0x47e)==0) zero_motion(); F(0x100)=0; return;`.
+  Cases 7 and 8 test the `set_action` condition first. Case 6 was written with
+  the stop tail inside nested negated tests. Its block was then identical to
+  case 7's and became the shared retarget for the bare returns, so VC8 could
+  not schedule `pop edi` into it. Writing case 6 like its siblings, as
+  `if (set) { set_action(208); return; }` followed by the stop tail, made the
+  4849-byte function exact. Cases 150-166 also needed the store order
+  `S(0x730)=0; F(0xf4)=K; F(0xf8)=0; I(0x180)=0;`, and the skill-level updates
+  needed a field macro rather than a reference local.
+
 - **A "remote chunk" reached only by `jmp` after an epilogue is a tail call.**
   The scene frame update 0x43B4A0 pops its registers and jumps to 0x4400D0,
   which ledgers recorded as a remote chunk. It is a separate `void` function
@@ -428,30 +440,6 @@ target lacks, so LTCG does not explain the register.
     0x45E6E0, 0x41FAD0) differ only in where `push edi` or `lea edi, [esi+4]`
     sits relative to the first `fild`. Pivot declaration order, constness and a
     sprite reference do not move it.
-
-- **Common fighter initializer 0x477830 (2026-11-14).** Cases 150–166 are
-  `S(0x730)=0; F(0xf4)=K; F(0xf8)=0; I(0x180)=0;`. With that order the target
-  keeps each block separate, and ours had merged them. Case 6 tests
-  `!(U(0x6c8) > 0)` (`jbe`), the same form cases 7 and 8 use. These took the diff
-  from 20 regions to 8. What remains comes from the shared
-  `if (B(0x47e)==0) zero_motion(); F(0x100)=0;` path: the target schedules
-  `fldz; pop edi; fstp [100]`, so the out-of-range `ja` and the case 0–3 `jne`
-  land on a later pure epilogue. Bisection shows this depends on the size of the
-  whole switch: either half of the cases plus case 6 gives the target's order,
-  and the full set does not. Removing redundant casts did not change it.
-
-  The mechanism: in our build, case 7's `if (B(0x47e) == 0)` branch retargets
-  into case 6's identical `fldz; fstp [100]; epilogue` block. That block, and
-  the epilogue after it, become shared, so VC8 cannot schedule `pop edi` into
-  case 6. The out-of-range `ja`, the case 0–3 `jne` and a `jp` then all use that
-  epilogue. In the target, case 6's block has already absorbed `pop edi`, so it no
-  longer matches case 7's, and the bare returns use the epilogue after case 7's
-  `set_action(209)`. Whether a block is scheduled before or after this
-  identical-block retargeting decides the result. Reimu 0x491C40 case 322's
-  branch into case 305's tail, which the target does and we do not, is the same
-  decision in reverse, and probably Udonge 0x5D0E60's `pop edi` too. Small
-  sub-switches change it, so it follows the order in which VC8 visits blocks,
-  not any one case's spelling.
 
 - **Udonge action entry 0x5D0E60 (2026-11-14).** The target is one plain switch
   in case order: the `jg 0x12d / jge 0x12c` and `0x230/0x231` splits are VC8's

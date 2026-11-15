@@ -24,12 +24,8 @@ void CommonActionEntryView::initialize_common_action_entry()
  case 0:case 1:case 2:case 3:
   if(B(0x47e)==0)zero_motion();return;
  case 6:
-  if(!(B(0x724)&4)) {
-   if(!(U(0x6c8)>0) || I(0x6b8)>=0 || I(0x6b4)!=0) {
-    if(B(0x47e)==0)zero_motion();F(0x100)=0;return;
-   }
-  }
-  set_action(208);return;
+  if((B(0x724)&4) || (U(0x6c8)>0 && I(0x6b8)<0 && I(0x6b4)==0)) {set_action(208);return;}
+  if(B(0x47e)==0)zero_motion();F(0x100)=0;return;
  case 7:
   if((B(0x724)&16) || (U(0x6c8)>0 && I(0x6b8)<0 && C(0x104)*I(0x6b4)>0))set_action(209);
   else {if(B(0x47e)==0)zero_motion();F(0x100)=0;}return;

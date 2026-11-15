@@ -60,15 +60,16 @@ Treat equal-size residuals as source questions first.
     Komachi's initializer 0x5F6700. Each repeats a tail in both branches,
     which VC8 cross-jumps. This is the most productive lead: when one branch
     jumps into another branch's tail, try duplicating the tail in source.
+- The common fighter initializer 0x477830 (4849 bytes) became exact once
+  case 6 tested its `set_action` condition first, like cases 7 and 8.
 - Down to a few scheduling or cross-jump regions each: Reimu 0x491C40,
-  Udonge 0x5D0E60, the common fighter initializer 0x477830, scenario character
-  install 0x456EB0 (one EH-state store) and the info effect update 0x65CB40
-  (14783 bytes, two regions).
+  Udonge 0x5D0E60, scenario character install 0x456EB0 (one EH-state store)
+  and the info effect update 0x65CB40 (14783 bytes, two regions).
 - Most remaining one-to-five-region near misses are VC8 choosing a different
-  identical block for cross-jumps and branch retargets. The patterns note has
-  the mechanism, as observed in the common initializer. No compiler setting
-  reproduces the target's choice: RTM, LTCG, `/Z7`, `/fp` and `/Os` were all
-  tried.
+  identical block for cross-jumps and branch retargets. They have so far
+  yielded to source structure rather than compiler settings (RTM, LTCG,
+  `/Z7`, `/fp` and `/Os` were all tried): make sibling cases use the same
+  branch direction, or duplicate a shared tail.
 - LTCG lead: `MenuCursorState::update` 0x41FA20 originally took an `int period`
   that LTCG propagated from its 35 callers. That is why it has `idiv` by 6 and a
   `this`-only ABI (see the patterns note). Its callers' small residuals and the
