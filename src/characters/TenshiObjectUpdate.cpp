@@ -43,11 +43,11 @@ void TenshiObjectUpdateView::update_action_state()
    F(0x370)+=6.0;if(F(0x370)>90.0f)F(0x370)=90;SCALE((lookup_orientation_cosine_quantized_abs(F(0x370))*D(0.2f)+D(0.01f))+F(0x11c));FADE(11,10);B(0x112)-=10;B(0x111)-=10;break;
   case 4:
    if(emit_repeated(0,2,5))RETIRE();MOVE();H[1]+=2.0;if(H[1]>=17.5f)H[1]=17.5f;F(0x12c)=H[0];
-   if(I(0x180)!=0){CORE->advance_state_six_counter_conditional(15);if(C(0x184)>0){H[1]=3;if(S(0x364)>4){S(0x364)=0;I(0x180)=0;if(C(0x184)<=3){short frame=S(0x140);next_sequence_block();set_sequence_frame(frame);return;}}++S(0x364);}else{FADE(10,10);H[1]=1;}}
+   if(I(0x180)!=0){CORE->advance_state_six_counter_conditional(15);if(C(0x184)>0){H[1]=3;if(S(0x364)>=5){S(0x364)=0;I(0x180)=0;if(C(0x184)<=3){short frame=S(0x140);next_sequence_block();set_sequence_frame(frame);return;}}++S(0x364);}else{FADE(10,10);H[1]=1;}}
    STEP();break;
   case 5:
    if(emit_repeated(0,2,5))RETIRE();MOVE();H[1]+=2.0;if(H[1]>=17.5f)H[1]=17.5f;F(0x12c)=H[0];
-   if(I(0x180)!=0){CORE->advance_state_six_counter_conditional(15);if(C(0x184)<1){FADE(10,10);H[1]=1;}else{H[1]=3;if(S(0x364)>4){S(0x364)=0;I(0x180)=0;}++S(0x364);}}
+   if(I(0x180)!=0){CORE->advance_state_six_counter_conditional(15);if(C(0x184)<1){FADE(10,10);H[1]=1;}else{H[1]=3;if(S(0x364)>=5){S(0x364)=0;I(0x180)=0;}++S(0x364);}}
    STEP();break;
   }
   if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1260.0f || F(0xf0)<-200.0)RETIRE();break;
@@ -55,11 +55,11 @@ void TenshiObjectUpdateView::update_action_state()
   switch(S(0x13e)) {
   case 0:
    if(emit_repeated(0,0,5))RETIRE();CORE->advance_state_six_counter_conditional(5);
-   if(C(0x184)<=0){PACKET(p456,0,0,1);SPAWN(801,1,p456);p456[2]=2;SPAWN(801,1,p456);p456[2]=3;int count=6;do{p456[0]=RND(360);p456[1]=RND(10)+5.0;SPAWN(801,1,p456);}while(--count!=0);RETIRE();}
+   if(C(0x184)<1){PACKET(p456,0,0,1);SPAWN(801,1,p456);p456[2]=2;SPAWN(801,1,p456);p456[2]=3;int count=6;do{p456[0]=RND(360);p456[1]=RND(10)+5.0;SPAWN(801,1,p456);}while(--count!=0);RETIRE();}
    if(OUTSIDE(1380.0f,-100.0,960.0,-200.0))RETIRE();break;
   case 1:SCALE(F(0x11c)+D(0.1f));FADE(15,15);B(0x111)-=15;B(0x110)-=15;break;
   case 2:SCALE(F(0x11c)*D(0.85f));FADE(15,15);B(0x111)-=15;B(0x110)-=15;break;
-  case 3:H[1]*=D(0.95f);MOVE();if(I(0x144)>19){FADE(10,10);B(0x111)-=10;B(0x110)-=10;}break;
+  case 3:H[1]*=D(0.95f);MOVE();if(I(0x144)>=20){FADE(10,10);B(0x111)-=10;B(0x110)-=10;}break;
   case 4:
    if(S(0x364)==0){short owner_action=AT(P,short,0x13c);if(owner_action!=410 && owner_action!=411 && owner_action!=414 && owner_action!=415){S(0x364)=2;return;}MOVE();H[1]-=3.0;
     if(H[1]<0.0){H[1]=0;S(0x364)=1;float n=0;do{float heading=n*36.0+18.0;p584[0]=lookup_orientation_sine_quantized_abs(heading)*10.0;double c=lookup_orientation_cosine_quantized_abs(heading);p584[1]=c+c+20.0;p584[2]=0;
@@ -92,7 +92,7 @@ void TenshiObjectUpdateView::update_action_state()
   case 2:case 3:case 4:F(0x12c)+=F(0x374);F(0xf8)-=0.25;FADE(15,15);STEP();break;
   case 5:
    MOVE();H[1]-=0.5;if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;F(0x12c)+=F(0x374);SCALE(F(0x11c)+D(0.02f));if(I(0x144)>=0)FADE(6,5);break;
-  case 6:if(I(0x144)>=3)RETIRE();break;
+  case 6:if(I(0x144)>2)RETIRE();break;
   }
   if(OUTSIDE(1380.0f,-100.0,1000.0,-100.0))RETIRE();if(CORE->advance_frame_and_dispatch())RETIRE();return;
  case 811:
@@ -102,7 +102,7 @@ void TenshiObjectUpdateView::update_action_state()
    F(0x12c)+=F(0x374);F(0xf8)-=0.25;if(F(0xf8)<0.0){double y=F(0xf0);if(y<=stage_surface_height())F(0xf8)*=-0.75;}FADE(15,15);STEP();break;
   case 5:
    MOVE();H[1]-=0.5;if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;F(0x12c)+=F(0x374);SCALE(F(0x11c)+D(0.02f));if(I(0x144)>=0)FADE(6,5);break;
-  case 6:if(I(0x144)>=3)RETIRE();break;
+  case 6:if(I(0x144)>2)RETIRE();break;
   }
   if(OUTSIDE(1380.0f,-100.0,1000.0,-100.0))RETIRE();break;
  case 815:
@@ -129,7 +129,7 @@ void TenshiObjectUpdateView::update_action_state()
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
   case 0: {
-   if(AT(P,short,0x82e)<=0 || AT(A,short,0x174)<=0 || emit_repeated(0,0,0))S(0x364)=1;H[0]-=3.0;
+   if(AT(P,short,0x82e)<1 || AT(A,short,0x174)<1 || emit_repeated(0,0,0))S(0x364)=1;H[0]-=3.0;
    if(S(0x364)!=0){AT(P,int,0x834)=0;int count=3;do{PACKET(p444,RND(360),RND(10)+4.0,3);SPAWN(816,1,p444);}while(--count!=0);count=4;do{PACKET(p444,RND(360),RND(10)+4.0,4);SPAWN(816,1,p444);}while(--count!=0);RETIRE();}
    if(B(0x113)<=245)B(0x113)+=10;else{B(0x184)=1;B(0x113)=255;}if(I(0x180)!=0)I(0x180)=0;
    float *heading=H;F(0xec)=(lookup_orientation_cosine_quantized_abs(-heading[0])*heading[1])*C(0x104)+AT(P,float,0xec);
@@ -227,7 +227,7 @@ void TenshiObjectUpdateView::update_action_state()
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
   case 0: {
-   MOVE();if(I(0x144)>=80)RETIRE();
+   MOVE();if(I(0x144)>79)RETIRE();
    if(I(0x144)%20==0){
     PACKET(p620,RND(20)-75.0,20,1);double surface=stage_surface_height();unsigned char facing=B(0x104);spawn_unparented(850,RND(10)+F(0xec),(surface-RND(50))-25.0,facing,1,reinterpret_cast<const unsigned *>(p620),3);
     P->dispatch_character_wave_handle(10);p620[2]=6;facing=B(0x104);spawn_unparented(850,static_cast<float>(C(0x104)*100)+F(0xec),stage_surface_height(),facing,1,reinterpret_cast<const unsigned *>(p620),3);
@@ -239,7 +239,7 @@ void TenshiObjectUpdateView::update_action_state()
    AT(AUX,float,0xe8)=F(0xec);AT(AUX,float,0xec)=stage_surface_height();F(0xf8)-=3.0;F(0xf4)-=0.5;if(F(0xf4)<0.25f)F(0xf4)=0.25f;if(F(0xf8)<-0.25f)F(0xf8)=-0.25f;if(I(0x144)>=20){if(B(0x113)>=5)B(0x113)-=5;else --I(0x330);}STEP();break;
   case 2:case 3:case 4:F(0x12c)+=F(0x374);F(0xf8)-=0.25;FADE(15,15);STEP();break;
   case 5:MOVE();H[1]-=0.5;if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;F(0x12c)+=F(0x374);SCALE(F(0x11c)+D(0.02f));if(I(0x144)>=0)FADE(6,5);break;
-  case 6:if(I(0x144)>=3)RETIRE();break;
+  case 6:if(I(0x144)>2)RETIRE();break;
   }
   if(OUTSIDE(1380.0f,-100.0,1000.0,-100.0))RETIRE();if(CORE->advance_frame_and_dispatch())RETIRE();return;
  case 851:
@@ -270,7 +270,7 @@ void TenshiObjectUpdateView::update_action_state()
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
   case 0:
-   if(AT(P,short,0x174)<=0 || AT(A,short,0x174)<=0)RETIRE();if(I(0x144)==120)P->publish_layout_scalar(3);if(I(0x144)==240){P->publish_layout_scalar(7);P->dispatch_character_wave_handle(18);}if(I(0x144)==420){P->publish_layout_scalar(10);P->dispatch_character_wave_handle(54);}
+   if(AT(P,short,0x174)<1 || AT(A,short,0x174)<1)RETIRE();if(I(0x144)==120)P->publish_layout_scalar(3);if(I(0x144)==240){P->publish_layout_scalar(7);P->dispatch_character_wave_handle(18);}if(I(0x144)==420){P->publish_layout_scalar(10);P->dispatch_character_wave_handle(54);}
    if(I(0x144)==420 || I(0x144)==430 || I(0x144)==440 || I(0x144)==450 || I(0x144)==460 || I(0x144)==470){double y=AT(A,float,0xf0);if(A->stage_surface_height()==y){PACKET(p60,0,0,6);spawn_unparented(853,AT(A,float,0xec),0,B(0x104),1,reinterpret_cast<const unsigned *>(p60),3);}}
    if(I(0x144)==420 || I(0x144)==440 || I(0x144)==460){
     float n=0;do{PACKET(p608,RND(360),20,5);unsigned char facing=B(0x104);spawn_unparented(853,n*60.0+RND(40),20.0-RND(40),facing,1,reinterpret_cast<const unsigned *>(p608),3);n+=1.0;}while(n<22.0f);
@@ -289,7 +289,7 @@ void TenshiObjectUpdateView::update_action_state()
    }break;
   case 2:case 3:case 4:F(0x12c)+=F(0x374);F(0xf8)-=0.25;if(F(0xf8)<0.0){double y=F(0xf0);if(y<=stage_surface_height())F(0xf8)*=-0.75;}FADE(15,15);STEP();break;
   case 5:MOVE();H[1]-=0.5;if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;F(0x12c)+=F(0x374);SCALE(F(0x11c)+D(0.02f));if(I(0x144)>=0)FADE(6,5);break;
-  case 6:if(I(0x144)>=3)RETIRE();break;
+  case 6:if(I(0x144)>2)RETIRE();break;
   }
   if(OUTSIDE(1380.0f,-100.0,1000.0,-100.0))RETIRE();break;
  case 854:
@@ -297,7 +297,7 @@ void TenshiObjectUpdateView::update_action_state()
   switch(S(0x13e)) {
   case 0:
    CORE->advance_state_six_counter_conditional(0);F(0x11c)+=D(0.1f);CORE->advance_phase_counter_conditional(10);MOVE();if(I(0x144)%5==0){PACKET(p12,H[0],0,2);SPAWN(854,1,p12);}
-   if(I(0x180)==0){F(0x370)+=D(0.1f);if(F(0x370)>=1.0)F(0x370)=1;}else{F(0x370)=0.1f;if(++S(0x364)>4){S(0x364)=0;I(0x180)=0;}}
+   if(I(0x180)==0){F(0x370)+=D(0.1f);if(F(0x370)>=1.0)F(0x370)=1;}else{F(0x370)=0.1f;if(++S(0x364)>=5){S(0x364)=0;I(0x180)=0;}}
    if(I(0x144)%3==0){PACKET(p24,RND(360),RND(75)*D(0.1f)+5.0,4);unsigned char facing=B(0x104);float y=F(0xf0);double x=F(0xec)+100.0;spawn_unparented(854,x-RND(200),y,facing,1,reinterpret_cast<const unsigned *>(p24),3);}
    F(0xec)+=C(0x104)*F(0xf4)*F(0x370);F(0xf0)+=F(0xf8);break;
   case 1:F(0x120)*=D(0.95f);F(0x11c)+=F(0x370);F(0x370)*=D(0.95f);if(I(0x144)>=10){FADE(10,10);B(0x110)-=10;B(0x111)-=10;}break;
@@ -310,11 +310,11 @@ void TenshiObjectUpdateView::update_action_state()
   case 5:MOVE();H[1]*=D(0.9f);if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4)*D(0.15f);F(0xf0)+=F(0xf8);F(0x12c)+=F(0x374);SCALE(F(0x11c)+D(0.02f));if(I(0x144)>=15)FADE(6,5);break;
   case 6:
    CORE->advance_state_six_counter_conditional(0);F(0x11c)+=D(0.01f);CORE->advance_phase_counter_conditional(0);MOVE();if(I(0x144)%2==0){PACKET(p192,H[0],0,2);SPAWN(854,1,p192);}
-   if(I(0x180)==0){F(0x370)+=D(0.1f);if(F(0x370)>=1.0)F(0x370)=1;}else{F(0x370)=0.1f;if(++S(0x364)>4){S(0x364)=0;I(0x180)=0;}}
+   if(I(0x180)==0){F(0x370)+=D(0.1f);if(F(0x370)>=1.0)F(0x370)=1;}else{F(0x370)=0.1f;if(++S(0x364)>=5){S(0x364)=0;I(0x180)=0;}}
    {PACKET(p420,RND(360),RND(75)*D(0.1f)+5.0,4);unsigned char facing=B(0x104);float y=F(0xf0);double x=F(0xec)+100.0;spawn_unparented(854,x-RND(200),y,facing,1,reinterpret_cast<const unsigned *>(p420),3);}
    {PACKET(p420,static_cast<float>(static_cast<unsigned>(selector_random_roll(90)+135)),RND(75)*D(0.1f)+5.0,8);unsigned char facing=B(0x104);float y=F(0xf0);double x=F(0xec)+100.0;spawn_unparented(854,x-RND(200),y,facing,1,reinterpret_cast<const unsigned *>(p420),3);}
    F(0xec)+=C(0x104)*F(0xf4)*F(0x370);F(0xf0)+=F(0xf8);break;
-  case 7:MOVE();H[1]*=D(0.9f);if(H[1]<D(0.1f))H[1]=0.1f;F(0x11c)-=D(0.01f);STEP();if(I(0x144)>=2)FADE(11,10);break;
+  case 7:MOVE();H[1]*=D(0.9f);if(H[1]<D(0.1f))H[1]=0.1f;F(0x11c)-=D(0.01f);STEP();if(I(0x144)>1)FADE(11,10);break;
   case 8:MOVE();H[1]*=D(0.8f);if(H[1]<0.5f)H[1]=0.5f;STEP();F(0x12c)+=F(0x374);SCALE(F(0x11c)+D(0.02f));if(I(0x144)>=5)FADE(9,8);break;
   }
   if(OUTSIDE(1380.0f,-100.0,1000.0,-100.0))RETIRE();break;
@@ -323,13 +323,13 @@ void TenshiObjectUpdateView::update_action_state()
   switch(S(0x13e)) {
   case 0:if(AT(P,short,0x13c)!=605)RETIRE();position_relative(0,0);if(AT(P,short,0x13e)==4){next_sequence_block();return;}break;
   case 1:
-   if(AT(P,short,0x13c)!=605)RETIRE();position_relative(0,0);if(AT(P,short,0x13e)==4 && AT(P,short,0x140)>=3){P->publish_layout_scalar(10);int count=6;do{PACKET(p568,RND(360),RND(12)+4.0,2);SPAWN(855,1,p568);}while(--count!=0);count=8;do{PACKET(p568,RND(360),RND(12)+4.0,3);SPAWN(855,1,p568);}while(--count!=0);count=10;do{PACKET(p568,RND(360),RND(12)+4.0,4);SPAWN(855,1,p568);}while(--count!=0);RETIRE();}break;
+   if(AT(P,short,0x13c)!=605)RETIRE();position_relative(0,0);if(AT(P,short,0x13e)==4 && AT(P,short,0x140)>2){P->publish_layout_scalar(10);int count=6;do{PACKET(p568,RND(360),RND(12)+4.0,2);SPAWN(855,1,p568);}while(--count!=0);count=8;do{PACKET(p568,RND(360),RND(12)+4.0,3);SPAWN(855,1,p568);}while(--count!=0);count=10;do{PACKET(p568,RND(360),RND(12)+4.0,4);SPAWN(855,1,p568);}while(--count!=0);RETIRE();}break;
   case 2:case 3:case 4:F(0x12c)+=F(0x374);F(0xf8)-=D(0.2f);if(I(0x144)>=30)FADE(15,15);STEP();break;
   }break;
  case 856:
   if(I(0x180)==5)RETIRE();
   switch(S(0x13e)) {
-  case 0:if(AT(P,int,0x838)<=0)RETIRE();F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0);break;
+  case 0:if(AT(P,int,0x838)<1)RETIRE();F(0xec)=AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0);break;
   case 1:MOVE();H[1]-=0.5;if(H[1]<0.5f)H[1]=0.5f;F(0xec)+=C(0x104)*F(0xf4);F(0xf0)+=F(0xf8)*0.25;F(0x12c)+=F(0x374);SCALE(F(0x11c)+D(0.02f));if(I(0x144)>=0)FADE(6,5);break;
   case 2:SCALE(F(0x11c)*D(0.98f));FADE(10,10);B(0x111)-=10;B(0x110)-=10;break;
   case 3:SCALE(F(0x11c)+D(0.2f));FADE(6,6);B(0x111)-=6;B(0x110)-=6;break;
@@ -340,7 +340,7 @@ void TenshiObjectUpdateView::update_action_state()
   case 3:case 4:
    if(S(0x364)==0){
     F(0x12c)=H[0];F(0xec)=static_cast<float>(C(0x104)*90)+AT(P,float,0xec);F(0xf0)=AT(P,float,0xf0)+130.0;
-    if((AT(P,short,0x13c)!=607 && AT(P,short,0x13c)!=657) || AT(P,short,0x13e)>=2){S(0x364)=1;return;}
+    if((AT(P,short,0x13c)!=607 && AT(P,short,0x13c)!=657) || AT(P,short,0x13e)>1){S(0x364)=1;return;}
     if(I(0x144)%2==0){double heading=H[0]+30.0;PACKET(p96,heading-RND(60),RND(40)+30.0,1);SPAWN(857,1,p96);}CORE->advance_state_six_counter_conditional(0);CORE->advance_phase_counter_conditional(0);if(I(0x180)!=0 && ++S(0x366)>=4){S(0x366)=0;I(0x180)=0;B(0x184)=1;}
    }
    if(S(0x364)==1){B(0x184)=0;F(0x120)*=D(0.97f);FADE(10,10);B(0x110)-=10;B(0x111)-=10;}break;
@@ -353,7 +353,7 @@ void TenshiObjectUpdateView::update_action_state()
  case 900:
   switch(S(0x13e)) {
   case 0:
-   if(S(0x368)<3 && AT(P,short,0x174)<=0)S(0x364)=3;
+   if(S(0x368)<3 && AT(P,short,0x174)<1)S(0x364)=3;
    if(S(0x364)==0){
     if(B(0x113)<=215)B(0x113)+=40;else B(0x113)=255;if(F(0x11c)<1.0){F(0x11c)+=D(0.1f);if(F(0x11c)>1.0)F(0x11c)=1;}if(F(0x120)>1.0){F(0x120)-=D(0.2f);if(F(0x120)<1.0)F(0x120)=1;}
     if(I(0x144)>=20){F(0x11c)=F(0x120)=1;I(0x144)=0;F(0xf8)=0;F(0xf4)=RND(25)+15.0;P->dispatch_character_wave_handle(11);B(0x184)=1;I(0x180)=0;S(0x364)=1;}
@@ -372,7 +372,7 @@ void TenshiObjectUpdateView::update_action_state()
    }
    if(S(0x364)==3){F(0x11c)*=D(0.95f);F(0x120)+=D(0.1f);FADE(10,10);}break;
   case 1:
-   if(S(0x364)==0){if(OUTSIDE(1380.0f,-100.0,1000.0,-200.0))RETIRE();if(I(0x180)!=0 || AT(P,short,0x174)<=0){S(0x364)=1;F(0x11c)=F(0x120)=2;}STEP();break;}
+   if(S(0x364)==0){if(OUTSIDE(1380.0f,-100.0,1000.0,-200.0))RETIRE();if(I(0x180)!=0 || AT(P,short,0x174)<1){S(0x364)=1;F(0x11c)=F(0x120)=2;}STEP();break;}
   case 2:SCALE(F(0x11c)*D(0.95f));FADE(10,10);break;
   case 3:F(0x12c)+=F(0x370);F(0x370)*=D(0.96f);F(0xf4)*=D(0.95f);F(0xf8)+=D(0.1f);SCALE(F(0x11c)+D(0.01f));FADE(10,10);break;
   }break;
@@ -381,10 +381,10 @@ void TenshiObjectUpdateView::update_action_state()
   case 0:F(0xf0)=stage_surface_height()-F(0x370);F(0x370)*=D(0.9f);if(F(0x370)<=D(0.05f) && F(0x370)>0.0){F(0x370)=0;I(0x144)=0;}if(F(0x370)==0.0 && I(0x144)>=30){next_sequence_block();F(0xf8)=RND(70)+10.0;I(0x144)=0;return;}break;
   case 1:if(I(0x144)>=20)B(0x184)=0;F(0xf8)*=D(0.9f);if(F(0xf8)<=D(0.05f)){next_sequence_block();B(0x184)=0;F(0xf8)=0;return;}AT(P,float,0x7c4+S(0x364)*4)=F(0xec);AT(P,float,0x7f4+S(0x364)*4)=F(0xf0);break;
   case 2:
-   AT(P,float,0x7c4+S(0x364)*4)=F(0xec);AT(P,float,0x7f4+S(0x364)*4)=F(0xf0);if((AT(P,short,0x13c)==730 && AT(P,short,0x13e)==0) || AT(P,short,0x174)<=0 || I(0x144)>=150){next_sequence_block();AT(P,float,0x7c4+S(0x364)*4)=-1;AT(P,float,0x7f4+S(0x364)*4)=-1;return;}break;
+   AT(P,float,0x7c4+S(0x364)*4)=F(0xec);AT(P,float,0x7f4+S(0x364)*4)=F(0xf0);if((AT(P,short,0x13c)==730 && AT(P,short,0x13e)==0) || AT(P,short,0x174)<1 || I(0x144)>=150){next_sequence_block();AT(P,float,0x7c4+S(0x364)*4)=-1;AT(P,float,0x7f4+S(0x364)*4)=-1;return;}break;
   case 3:FADE(20,20);break;
   case 4: {
-   if(AT(P,short,0x174)<=0)RETIRE();CORE->advance_state_six_counter_conditional(0);int offset=0x7c4;
+   if(AT(P,short,0x174)<1)RETIRE();CORE->advance_state_six_counter_conditional(0);int offset=0x7c4;
    do{double dy=square_float_value(F(0xf0)-AT(P,float,offset+0x30));double dx=square_float_value(F(0xec)-AT(P,float,offset));if(dx+dy<=10000.0){PACKET(p492,0,0,5);SPAWN(920,1,p492);p492[2]=7;SPAWN(920,1,p492);p492[2]=6;int count=2;do{p492[0]=RND(360);p492[1]=RND(10)+5.0;SPAWN(920,1,p492);}while(--count!=0);RETIRE();}offset+=4;}while(offset<0x7f4);
    if(C(0x184)<1 || F(0xf0)<=stage_surface_height()){PACKET(p480,0,0,5);SPAWN(920,1,p480);p480[2]=7;SPAWN(920,1,p480);p480[2]=6;int count=2;do{p480[0]=RND(360);p480[1]=RND(10)+5.0;SPAWN(920,1,p480);}while(--count!=0);RETIRE();}
    if(F(0xec)<-100.0 || F(0xec)>1380.0f || F(0xf0)>960.0)RETIRE();break;
@@ -393,12 +393,12 @@ void TenshiObjectUpdateView::update_action_state()
   case 6:H[1]*=D(0.95f);MOVE();if(I(0x144)>=5){FADE(10,10);B(0x111)-=10;B(0x110)-=10;}break;
   case 7:SCALE(F(0x11c)*D(0.9f));FADE(15,15);B(0x111)-=15;B(0x110)-=15;break;
   case 8:
-   if(S(0x140)==0){if(AT(P,short,0x174)<=0 || AT(P,short,0x13c)!=731 || AT(P,short,0x13e)>1){set_sequence_frame(2);return;}MOVE();H[1]-=3.0;if(H[1]<0.0){H[1]=0;next_sequence_frame();return;}F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);F(0xec)=AT(P,float,0xec)+F(0x370);F(0xf0)=AT(P,float,0xf0)+F(0x374);}
-   if(S(0x140)==1){if(AT(P,short,0x174)<=0 || AT(P,short,0x13c)!=731 || AT(P,short,0x13e)>1){set_sequence_frame(2);return;}TenshiObjectUpdateView *parent=P;F(0xec)=AT(parent,float,0xec)+F(0x370);F(0xf0)=AT(parent,float,0xf0)+F(0x374);int interval=2;switch(g_update_selector){case 0:interval=10;break;case 1:interval=4;break;case 3:interval=1;break;}
+   if(S(0x140)==0){if(AT(P,short,0x174)<1 || AT(P,short,0x13c)!=731 || AT(P,short,0x13e)>1){set_sequence_frame(2);return;}MOVE();H[1]-=3.0;if(H[1]<0.0){H[1]=0;next_sequence_frame();return;}F(0x370)+=C(0x104)*F(0xf4);F(0x374)+=F(0xf8);F(0xec)=AT(P,float,0xec)+F(0x370);F(0xf0)=AT(P,float,0xf0)+F(0x374);}
+   if(S(0x140)==1){if(AT(P,short,0x174)<1 || AT(P,short,0x13c)!=731 || AT(P,short,0x13e)>1){set_sequence_frame(2);return;}TenshiObjectUpdateView *parent=P;F(0xec)=AT(parent,float,0xec)+F(0x370);F(0xf0)=AT(parent,float,0xf0)+F(0x374);int interval=2;switch(g_update_selector){case 0:interval=10;break;case 1:interval=4;break;case 3:interval=1;break;}
     if(I(0x144)%interval==0){parent->dispatch_character_wave_handle(1);PACKET(p292,RND(360),5,4);unsigned char facing=B(0x104);spawn_unparented(920,(lookup_orientation_cosine_quantized_abs(-p292[0])*50.0)*C(0x104)+F(0xec),lookup_orientation_sine_quantized_abs(-p292[0])*50.0+F(0xf0),facing,1,reinterpret_cast<const unsigned *>(p292),3);F(0x378)+=4.0;}
    }if(S(0x140)==2){F(0xf4)=F(0xf8)=0;FADE(10,10);}break;
   case 9:
-   if(S(0x364)!=2 && AT(P,short,0x174)<=0)S(0x364)=2;
+   if(S(0x364)!=2 && AT(P,short,0x174)<1)S(0x364)=2;
    if(S(0x364)==0){F(0xf4)*=D(0.99f);AT(AUX,float,0xe8)=F(0xec);double y=F(0xf8)+F(0xf0);if(y<=stage_surface_height()){P->dispatch_character_wave_handle(2);F(0xf0)=stage_surface_height();S(0x364)=2;F(0xf4)=F(0xf8)=0;PACKET(p144,AT(P,float,0x824),RND(70)+10.0,1);SPAWN(920,1,p144);if(!(AT(P,float,0x824)<=10.0f))AT(P,float,0x824)=0;else AT(P,float,0x824)+=1.0;return;}}
    if(S(0x364)==2){F(0xf4)*=D(0.98f);F(0xf8)*=D(0.98f);SCALE(F(0x11c)*D(0.99f));FADE(10,10);}break;
   case 10:
@@ -409,7 +409,7 @@ void TenshiObjectUpdateView::update_action_state()
  case 930:
   switch(S(0x13e)) {
   case 0:
-   if(AT(P,short,0x174)<=0)RETIRE();CORE->advance_state_six_counter_conditional(5);F(0xf8)-=D(0.075f);
+   if(AT(P,short,0x174)<1)RETIRE();CORE->advance_state_six_counter_conditional(5);F(0xf8)-=D(0.075f);
    if(C(0x184)<1 || F(0xf0)<=stage_surface_height()){PACKET(p504,0,0,1);SPAWN(930,1,p504);p504[2]=3;SPAWN(930,1,p504);p504[2]=2;int count=9;do{p504[0]=RND(360);p504[1]=RND(10)+5.0;SPAWN(930,1,p504);}while(--count!=0);RETIRE();}break;
   case 1:SCALE(F(0x11c)+D(0.05f));FADE(5,5);B(0x111)-=5;B(0x110)-=5;break;
   case 2:H[1]*=D(0.95f);MOVE();if(I(0x144)>=20){FADE(10,10);B(0x111)-=10;B(0x110)-=10;}break;
@@ -435,20 +435,20 @@ void TenshiObjectUpdateView::update_action_state()
    float *heading=H;F(0xec)=(lookup_orientation_cosine_quantized_abs(-heading[0])*heading[1])*C(0x104)+AT(T,float,0xec);float *h=H;F(0xf0)=lookup_orientation_sine_quantized_abs(-heading[0])*h[1]+AT(T,float,0xf0);h[1]*=D(0.95f);if(S(0x364)==0){if(B(0x113)<=245)B(0x113)+=10;else{B(0x113)=255;S(0x364)=1;}}else if(h[1]<=75.0f){FADE(15,15);B(0x110)-=15;B(0x111)-=15;}break;
   }
   case 2:
-   CORE->advance_state_six_counter_conditional(2);if(I(0x180)!=0 || F(0xf0)<=stage_surface_height() || AT(P,short,0x174)<=0 || AT(P,float,0x74c)>0.0){PACKET(p468,0,0,3);SPAWN(940,1,p468);p468[2]=5;SPAWN(940,1,p468);p468[2]=4;int count=2;do{p468[0]=RND(360);p468[1]=RND(10)+5.0;SPAWN(940,1,p468);}while(--count!=0);RETIRE();}if(F(0xec)<-100.0 || F(0xec)>1380.0f || F(0xf0)>960.0)RETIRE();break;
+   CORE->advance_state_six_counter_conditional(2);if(I(0x180)!=0 || F(0xf0)<=stage_surface_height() || AT(P,short,0x174)<1 || AT(P,float,0x74c)>0.0){PACKET(p468,0,0,3);SPAWN(940,1,p468);p468[2]=5;SPAWN(940,1,p468);p468[2]=4;int count=2;do{p468[0]=RND(360);p468[1]=RND(10)+5.0;SPAWN(940,1,p468);}while(--count!=0);RETIRE();}if(F(0xec)<-100.0 || F(0xec)>1380.0f || F(0xf0)>960.0)RETIRE();break;
   case 3:SCALE(F(0x11c)+D(0.05f));FADE(5,5);B(0x111)-=5;B(0x110)-=5;break;
   case 4:H[1]*=D(0.95f);MOVE();if(I(0x144)>=20){FADE(10,10);B(0x111)-=10;B(0x110)-=10;}break;
   case 5:SCALE(F(0x11c)*D(0.9f));FADE(15,15);B(0x111)-=15;B(0x110)-=15;break;
-  case 6:if(T==0)RETIRE();F(0xec)=AT(T,float,0xec);F(0xf0)=AT(T,float,0xf0);if(AT(T,short,0x140)>=2)SCALE(F(0x11c)*D(0.98f));break;
+  case 6:if(T==0)RETIRE();F(0xec)=AT(T,float,0xec);F(0xf0)=AT(T,float,0xf0);if(AT(T,short,0x140)>1)SCALE(F(0x11c)*D(0.98f));break;
   case 7:
-   if(S(0x140)<2 && (AT(P,short,0x174)<=0 || AT(P,float,0x74c)>0.0)){B(0x184)=0;set_sequence_frame(2);return;}
+   if(S(0x140)<2 && (AT(P,short,0x174)<1 || AT(P,float,0x74c)>0.0)){B(0x184)=0;set_sequence_frame(2);return;}
    if(T!=0){if(S(0x140)==0){F(0x120)+=D(0.05f);if(F(0x120)>=1.5f){F(0x120)=1.5f;next_sequence_frame();B(0x184)=1;return;}}if(S(0x140)==1)CORE->advance_state_six_counter_conditional(0);}
    if(S(0x140)==2){if(B(0x111)<10)RETIRE();B(0x111)-=10;B(0x110)-=10;B(0x113)-=10;F(0x120)*=D(0.9f);}break;
   case 8:F(0x12c)+=F(0x374);F(0x374)*=D(0.99f);MOVE();H[1]*=D(0.98f);if(I(0x144)>=15)FADE(10,10);if(OUTSIDE(1380.0f,-100.0,1080.0f,-280.0f))RETIRE();break;
   case 9:case 10:
    if(T!=0){F(0x12c)=H[0];F(0xec)=(lookup_orientation_cosine_quantized_abs(-H[0])*100.0)*C(0x104)+AT(T,float,0xec);F(0xf0)=lookup_orientation_sine_quantized_abs(-H[0])*100.0+AT(T,float,0xf0);}
    if(S(0x364)==0){
-    if(AT(P,short,0x174)<=0 || AT(P,float,0x74c)>0.0 || H[1]<static_cast<double>(I(0x144))){S(0x364)=1;return;}
+    if(AT(P,short,0x174)<1 || AT(P,float,0x74c)>0.0 || H[1]<static_cast<double>(I(0x144))){S(0x364)=1;return;}
     if(I(0x144)%2==0){double heading=H[0]+20.0;PACKET(p204,heading-RND(40),RND(40)+30.0,8);SPAWN(940,1,p204);}CORE->advance_state_six_counter_conditional(0);CORE->advance_phase_counter_conditional(0);if(I(0x180)!=0 && ++S(0x366)>=4){S(0x366)=0;I(0x180)=0;B(0x184)=1;}
    }if(S(0x364)==1){B(0x184)=0;F(0x120)*=D(0.97f);FADE(10,10);B(0x110)-=10;B(0x111)-=10;}break;
   case 11:
@@ -459,14 +459,14 @@ void TenshiObjectUpdateView::update_action_state()
   case 14:
    if(T==0)RETIRE();F(0xec)=AT(T,float,0xec);F(0xf0)=AT(T,float,0xf0);if(I(0x144)%10==0){if(!(H[3]>=F(0x370)))RETIRE();P->dispatch_character_wave_handle(1);float n=0;do{p156[0]=n*22.5-F(0x370)*3.0;F(0x374)=p156[0];p156[0]+=45.0;p156[1]=6.0-F(0x370);p156[2]=2;unsigned char facing=B(0x104);spawn_unparented(940,(lookup_orientation_cosine_quantized_abs(-F(0x374))*100.0)*C(0x104)+F(0xec),lookup_orientation_sine_quantized_abs(-F(0x374))*100.0+F(0xf0),facing,1,reinterpret_cast<const unsigned *>(p156),3);n+=1.0;}while(n<16.0f);F(0x370)+=1.0;}break;
   case 15: {
-   if(AT(P,short,0x174)<=0 || H[4]<=static_cast<double>(I(0x144)) || T==0)RETIRE();F(0xec)=AT(T,float,0xec);F(0xf0)=AT(T,float,0xf0);int interval;switch(g_update_selector){case 0:interval=20;break;case 1:interval=10;break;case 2:interval=6;break;case 3:interval=4;break;}
+   if(AT(P,short,0x174)<1 || H[4]<=static_cast<double>(I(0x144)) || T==0)RETIRE();F(0xec)=AT(T,float,0xec);F(0xf0)=AT(T,float,0xf0);int interval;switch(g_update_selector){case 0:interval=20;break;case 1:interval=10;break;case 2:interval=6;break;case 3:interval=4;break;}
    if(I(0x144)%interval==0){float n=0;do{PACKET(p268,n*90.0-H[0],H[3],7);unsigned char facing=B(0x104);spawn_parented(940,(lookup_orientation_cosine_quantized_abs(-p268[0])*H[3])*C(0x104)+F(0xec),lookup_orientation_sine_quantized_abs(-p268[0])*H[3]+F(0xf0),facing,1,reinterpret_cast<const unsigned *>(p268),3);n+=1.0;}while(n<4.0f);float *heading=H;heading[0]+=heading[1];heading[3]+=6.0;}break;
   }
   case 18:SCALE(F(0x11c)+D(0.35f));FADE(10,10);B(0x110)-=10;B(0x111)-=10;break;
   }STEP();break;
  case 960:
   if(static_cast<unsigned short>(S(0x13e))<8){
-   if(g_update_weather==14){if(B(0x112)<133){B(0x112)=B(0x111)=128;}else{B(0x112)-=5;B(0x111)-=5;}}else if(B(0x112)<251){B(0x112)+=5;B(0x111)+=5;}else B(0x112)=B(0x111)=255;
+   if(g_update_weather==14){if(B(0x112)<133){B(0x112)=B(0x111)=128;}else{B(0x112)-=5;B(0x111)-=5;}}else if(B(0x112)<=250){B(0x112)+=5;B(0x111)+=5;}else B(0x112)=B(0x111)=255;
    if(S(0x36c)==0){
     if(AT(P,unsigned char,0x82c)==0){
      if(I(0x144)%8==0){p256[1]=20;p256[2]=4;p256[0]=RND(360);int layer=(p256[0]>=0.0 && p256[0]<=180.0f)?1:-1;spawn_unparented(815,F(0xec),0,B(0x104),layer,reinterpret_cast<const unsigned *>(p256),3);}
@@ -489,11 +489,11 @@ void TenshiObjectUpdateView::update_action_state()
      F(0xec)=static_cast<float>(S(0x13e)*160)+80.0;float x=static_cast<float>(S(0x13e)*160);fill_stage_surface_range(x,159.0+x,F(0xf0));
     }
    }
-   if(S(0x36c)==1){F(0xf4)=0;if(AT(P,short,0x13c)==99 && AT(P,short,0x13e)>4)RETIRE();}
+   if(S(0x36c)==1){F(0xf4)=0;if(AT(P,short,0x13c)==99 && AT(P,short,0x13e)>=5)RETIRE();}
   }F(0xf0)+=F(0xf8);if(CORE->advance_frame_and_dispatch())RETIRE();return;
  case 961:
   if(static_cast<unsigned short>(S(0x13e))<8){
-   if(g_update_weather==14){if(B(0x112)<133){B(0x112)=B(0x111)=128;}else{B(0x112)-=5;B(0x111)-=5;}}else if(B(0x112)<251){B(0x112)+=5;B(0x111)+=5;}else B(0x112)=B(0x111)=255;
+   if(g_update_weather==14){if(B(0x112)<133){B(0x112)=B(0x111)=128;}else{B(0x112)-=5;B(0x111)-=5;}}else if(B(0x112)<=250){B(0x112)+=5;B(0x111)+=5;}else B(0x112)=B(0x111)=255;
    if(AT(P,unsigned char,0x82c)==0){
     if(I(0x144)%8==0){p280[1]=20;p280[2]=4;p280[0]=RND(360);int layer=(p280[0]>=0.0 && p280[0]<=180.0f)?1:-1;spawn_unparented(815,F(0xec),0,B(0x104),layer,reinterpret_cast<const unsigned *>(p280),3);}
     if(F(0xf8)>0.0)F(0xf8)=0;F(0xf8)-=0.25;if(F(0xf0)<=0.0){float x=static_cast<float>(S(0x13e)*160);fill_stage_surface_range(x,159.0+x,0);RETIRE();}
@@ -513,7 +513,7 @@ void TenshiObjectUpdateView::update_action_state()
   }F(0xf0)+=F(0xf8);if(CORE->advance_frame_and_dispatch())RETIRE();return;
  case 962:
   if(static_cast<unsigned short>(S(0x13e))<8){
-   if(g_update_weather==14 && g_update_mode!=6){if(B(0x112)<133){B(0x112)=B(0x111)=128;}else{B(0x112)-=5;B(0x111)-=5;}}else if(B(0x112)<251){B(0x112)+=5;B(0x111)+=5;}else B(0x112)=B(0x111)=255;
+   if(g_update_weather==14 && g_update_mode!=6){if(B(0x112)<133){B(0x112)=B(0x111)=128;}else{B(0x112)-=5;B(0x111)-=5;}}else if(B(0x112)<=250){B(0x112)+=5;B(0x111)+=5;}else B(0x112)=B(0x111)=255;
    F(0xf0)=AT(P,float,0x7a4+S(0x13e)*4);F(0xec)=static_cast<float>(S(0x13e)*160)+80.0;{float x=static_cast<float>(S(0x13e)*160);fill_stage_surface_range(x,159.0+x,F(0xf0));}
    if(S(0x366)==0){if(AT(P,short,0x13c)==99 && AT(P,short,0x730)==0 && I(0x144)%8==0){p340[1]=20;p340[2]=4;p340[0]=RND(360);int layer=(p340[0]>=0.0 && p340[0]<=180.0f)?1:-1;spawn_unparented(815,F(0xec),0,B(0x104),layer,reinterpret_cast<const unsigned *>(p340),3);}if(AT(P,short,0x13c)!=99){S(0x366)=1;release_auxiliary();}}
   }break;
