@@ -12,6 +12,5 @@ presence or successful compilation does not establish either status.
 Obtain current counts with
 `python3 scripts/report-reconstruction-status.py --summary`.
 Start from the [current handoff](../docs/RE_HANDOFF.md), then consult
-the [AyaObject](../docs/AYA_OBJECT_EVIDENCE.md) or
-[Reimu](../docs/REIMU_EVIDENCE.md) evidence note before changing
-those large roots. Dated reports retain their own source and object epochs.
+the [Aya](../docs/AYA_EVIDENCE.md) or [Reimu](../docs/REIMU_EVIDENCE.md)
+note before changing those large roots.

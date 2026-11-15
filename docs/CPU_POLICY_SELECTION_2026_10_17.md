@@ -1,6 +1,6 @@
 # Default CPU policy0: native instruction coverage
 
-Follow-up: the [Aya policy-tail study](AYA_CPU_POLICY_TAILS_2026_10_17.md)
+Follow-up: the Aya policy-tail study
 adds a genuine seed for roll100. The live `--selection-cases` command now runs
 16160 cases for rolls0..100. The16000-case measurements below describe the
 earlier corpus.

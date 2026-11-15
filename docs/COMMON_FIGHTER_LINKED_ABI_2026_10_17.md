@@ -86,7 +86,7 @@ and changed/unmapped data are rejected.
 The actual SDK deque member is independently canonical94/94 before and after
 linking. This closes its caller/callee ABI without the privately specialized
 EDI/index-zero boundary seen in the earlier
-[Aya link experiment](AYA_CPU_LINKED_ABI_2026_10_17.md).
+Aya link experiment.
 
 ## Linked root result and limits
 
