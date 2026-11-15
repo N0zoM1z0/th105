@@ -45,7 +45,13 @@ Treat equal-size residuals as source questions first.
 - Exact this round:
   - `Suika_initialize_action_entry` 0x5AD4A0 (two store orders);
   - `CBattleManager::update_event_timer` 0x472A70 (in-place global updates
-    instead of a local copy).
+    instead of a local copy);
+  - the continue round reset 0x471180 (an inline phase-block member, whose
+    `this` copy to EDI the target shows);
+  - the replay browser 0x446860 (a `return 1;` ending the confirm branch, so
+    every path shares one GS epilogue);
+  - several UI menus through `break`/else-if forms with one trailing return
+    (see the patterns note).
 - Down to a few scheduling or cross-jump regions each: Reimu 0x491C40,
   Udonge 0x5D0E60, the common fighter initializer 0x477830, scenario character
   install 0x456EB0 (one EH-state store) and the info effect update 0x65CB40
