@@ -312,6 +312,14 @@ target lacks, so LTCG does not explain the register.
   needed its assignment flags read as `fields_7f8[n]` bytes rather than through
   a struct pointer view, which moved an `add esp, 4` back next to its call.
 
+- **`cmp [mem], reg; je; mov r, [mem]` comes from a reference parameter.** The
+  watch-input setup 0x42BC40 tests a token pointer in memory and reloads it
+  in the branch. A small inline helper taking the token as
+  `SetupTokenInput *&` reproduces this; a direct field test or a reference
+  local loads it once into a register. Pass any other destination the helper
+  writes (here a tag byte) by reference too: a struct pointer or reference
+  parameter hoists its address computation above the branch.
+
 - **`mov ecx, [global]; ...; mov edi, ecx` is an inlined member's `this`.**
   In the round reset 0x471180 the target loads the phase-block global into
   ECX, derives addresses from it and copies it to EDI for later member calls.

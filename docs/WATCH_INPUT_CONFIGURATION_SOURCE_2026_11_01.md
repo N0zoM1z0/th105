@@ -1,43 +1,26 @@
-# Watch input configuration: complete source, nonexact
+# Watch input configuration
 
-The140-byte watch-input helper42BC40 now has complete selected source and
-independent application ownership. All48 instructions and both RET8 exits close;
-native SHA-256 is
-327ec78bdfd5cb6898887235d0ef68037400996666d03fc379a0d86385b68687.
-Fresh exact LoadingWatch4268F0/209 reaches it at42697C. Its source remains139
-bytes and nonexact, so no authored exact bytes are added.
+`BattleInputGate::configure_watch_player_42bc40` (0x42BC40, 140 bytes) is
+exact. The exact `LoadingWatch` 0x4268F0 calls it at 0x42697C.
 
-The routine computes the two-side descriptor mask and saves the setup before
-rebinding descriptors. It resets the low words68/D0 and readiness bytes6C/D4,
-copies tags into owned metadataD8/E0, then publishes those owned descriptor
-addresses to the setup. The native second-side branch reads the tag through the
-already rebound first-side descriptor, and the source deliberately preserves
-that behavior. No extra null guard, independent-right-tag replacement or other
-defensive behavior absent from the target is introduced.
+The routine computes the two-side descriptor mask and saves the setup. It then
+resets the low words 68/D0 and readiness bytes 6C/D4, copies the tags into the
+owned metadata at D8/E0, and publishes those owned descriptor addresses to the
+setup. The second side reads its tag through the already rebound first-side
+descriptor, as the target does.
 
-The related setup view now names these actual fields instead of leaving the
-whole prefix opaque; offsets are asserted and size/layout are unchanged. A
-normal nonvirtual declaration is added to BattleInputGate. No shared field,
-vtable, ABI or provider implementation is changed. View names do not establish
-unique original class/member spelling.
+## What made it exact
 
-## Complete comparisons and bounded context control
+Each side's rebind is a small inline helper,
+`rebind_saved_token(token&, tag&, saved*, source)`. Taking the token by
+reference makes VC8 test it in memory (`cmp [edi+0x24], ebx`) and reload it
+for the tag read, and the tag reference stores straight to `[esi+0xDC]`. That
+leaves AL free for the constant 1 used by both readiness stores.
+- Writing the tests inline caches the token in EAX, which moves the constant
+  to CL.
+- A `SetupTokenInput *&` local caches it the same way.
+- A helper taking the metadata by reference or pointer hoists
+  `lea eax, [esi+0xD8]` above the branch.
 
-The selected ordinary COFF unit preserves selector4284C0/60 and save42B9B0/305
-exactly. Existing load42BAF0 stays332/nonexact at+0x92. The new helper first
-differs at42BC6E (+46), where native keeps constant1 in AL and source uses CL,
-with downstream pointer-register choices. Its old private137-byte report is
-historical; this complete public source emits139/native140.
-
-A genuine CIL control includes the actual completed save/selector provider
-source, with their real public entries. Selector60 remains exact, save becomes
-352/native305, and the watch helper stays139 with the same first mismatch.
-That source context does not close the residual and is not selected. No fake
-callers, opaque return stubs, noinline/COFF barriers, register variables or
-source spelling grid is used. The original COFF remains the reproducible unit.
-
-The origin rule pins the complete native body and actual exact-caller edge. No
-corpus-wide replay is claimed.
-
-Totals: source1782/authored1802/mapped1809, excluded1789/review436, units764.
-Exact1582/449309 remains unchanged. This is source/ownership progress only.
+The same unit keeps the selector 0x4284C0 and save 0x42B9B0 exact. The load
+0x42BAF0 is still nonexact at +0x92.

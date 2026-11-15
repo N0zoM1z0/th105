@@ -626,7 +626,7 @@ source = "src/battle/BattleSetupSlots.cpp"
 object = "build/match-units/CrossV106a_BattleSetupSlots.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a battle setup slot lane. Exact checked selector 0x004284C0 remains 60/60. Recovered checked-vector size provenance plus the always-store maximum-slot lifetime makes save_battle_setup_slot 0x0042B9B0 canonical exact 305/305; load_battle_setup_slot remains332/332 nonexact+0x92. Complete watch-input configuration42BC40 is source-present139/native140, nonexact+46; no extra exact credit. docs/WATCH_INPUT_CONFIGURATION_SOURCE_2026_11_01.md."
+notes = "TH105 1.06a battle setup slot lane. Exact checked selector 0x004284C0 remains 60/60. Recovered checked-vector size provenance plus the always-store maximum-slot lifetime makes save_battle_setup_slot 0x0042B9B0 canonical exact 305/305; load_battle_setup_slot remains332/332 nonexact+0x92. Watch-input configuration 0x42BC40 is exact at 140 bytes through an inline token-rebind helper. docs/WATCH_INPUT_CONFIGURATION_SOURCE_2026_11_01.md."
 
 [[units.cross-v106a-fixed-slot-select.functions]]
 address = "0x004284C0"

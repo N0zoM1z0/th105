@@ -253,6 +253,18 @@ void BattleInputGate::load_battle_setup_slot(
         owner->selected_slot_104->tail_dword_38;
 }
 
+static inline void rebind_saved_token(
+    SetupTokenInput *&token, unsigned char &tag, SavedTokenMetadata *saved,
+    const SetupTokenInput *source)
+{
+    if (token != 0) {
+        tag = source->tag_04;
+        token = reinterpret_cast<SetupTokenInput *>(saved);
+    } else {
+        token = 0;
+    }
+}
+
 void BattleInputGate::configure_watch_player_42bc40(
     signed char slot, MatchSetup *setup)
 {
@@ -265,23 +277,13 @@ void BattleInputGate::configure_watch_player_42bc40(
     save_battle_setup_slot(slot, setup);
     owner->sequence_ready_6c = 1;
     owner->sequence_68 = 0;
-    if (config->sides_08[0].token_1c != 0) {
-        owner->saved_tokens_d8[0].tag_04 = config->sides_08[0].token_1c->tag_04;
-        config->sides_08[0].token_1c =
-            reinterpret_cast<SetupTokenInput *>(&owner->saved_tokens_d8[0]);
-    } else {
-        config->sides_08[0].token_1c = 0;
-    }
+    rebind_saved_token(config->sides_08[0].token_1c, owner->saved_tokens_d8[0].tag_04,
+        &owner->saved_tokens_d8[0], config->sides_08[0].token_1c);
     owner->frame_ready_d4 = 1;
     owner->frame_d0 = 0;
-    if (config->sides_08[1].token_1c != 0) {
-        // Native42BCAB reads the already rebound first-side token here.
-        owner->saved_tokens_d8[1].tag_04 = config->sides_08[0].token_1c->tag_04;
-        config->sides_08[1].token_1c =
-            reinterpret_cast<SetupTokenInput *>(&owner->saved_tokens_d8[1]);
-    } else {
-        config->sides_08[1].token_1c = 0;
-    }
+    // The second side copies its tag from the already rebound first-side token.
+    rebind_saved_token(config->sides_08[1].token_1c, owner->saved_tokens_d8[1].tag_04,
+        &owner->saved_tokens_d8[1], config->sides_08[0].token_1c);
 }
 
 } // namespace th105
