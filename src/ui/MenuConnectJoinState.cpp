@@ -24,11 +24,11 @@ bool ConnectJoinStateView::update_join_state()
   case 5:update_endpoint_clipboard();break;
   default:break;
   }
-  return true;
+  break;
  case 1:
   show_profile_message(connect_join_text_6c1d34,true);
   field<signed char>(9)=2;
-  return true;
+  break;
  case 2:
   field<GuideOverlay>(0xe44).visible=true;
   switch(update_profile_message()) {
@@ -41,11 +41,11 @@ bool ConnectJoinStateView::update_join_state()
    show_profile_result(connect_join_text_6c1d2c);finalize_message_4425d0();break;
   default:break;
   }
-  return true;
+  break;
  case 3: {
   field<GuideOverlay>(0xeec).visible=true;
-  unsigned char *network=field<unsigned char *>(4);
-  int state=reinterpret_cast<JoinStatusView *>(network+0x3b4)->status();
+  JoinStatusView *status=reinterpret_cast<JoinStatusView *>(field<unsigned char *>(4)+0x3b4);
+  int state=status->status();
   switch(state) {
   case 9:
    switch(*reinterpret_cast<int *>(field<unsigned char *>(4)+0x3ac)) {
@@ -64,7 +64,7 @@ bool ConnectJoinStateView::update_join_state()
    dispatch_indexed_event(0x29);field<signed char>(8)=0;hide_profile_message_43f8d0();
    clear_network_session();field<void *>(4)=0;
   }
-  return true;
+  break;
  }
  case 5:
   field<GuideOverlay>(0xe44).visible=true;
@@ -76,11 +76,11 @@ bool ConnectJoinStateView::update_join_state()
    show_profile_result(connect_join_text_6c1d2c);finalize_message_4425d0();break;
   default:break;
   }
-  return true;
+  break;
  case 6: {
   field<GuideOverlay>(0xeec).visible=true;
-  unsigned char *network=field<unsigned char *>(4);
-  int state=reinterpret_cast<JoinStatusView *>(network+0x3b4)->status();
+  JoinStatusView *status=reinterpret_cast<JoinStatusView *>(field<unsigned char *>(4)+0x3b4);
+  int state=status->status();
   switch(state) {
   case 9:
    switch(*reinterpret_cast<int *>(field<unsigned char *>(4)+0x3ac)) {
@@ -99,15 +99,16 @@ bool ConnectJoinStateView::update_join_state()
    dispatch_indexed_event(0x29);field<signed char>(8)=0;hide_profile_message_43f8d0();
    clear_network_session();field<void *>(4)=0;
   }
-  return true;
+  break;
  }
  case 10:
   field<GuideOverlay>(0x10e4).visible=true;
   if(update_profile_confirmation()) {
    field<signed char>(8)=0;clear_network_session();field<void *>(4)=0;
   }
-  return true;
- default:return true;
+  break;
+ default:break;
  }
+ return true;
 }
 }
