@@ -190,7 +190,7 @@ void YoumuObjectUpdateView::update_action_state()
   STEP(); FRAME_EXIT();
  case 815:
   B(0x17C)=4; if(I(0x180)==5) RETIRE();
-  if(S(0x13E)<2) {
+  if(S(0x13E)<=1) {
    if(emit_repeated(0,3,5)) RETIRE();
    if(I(0x180)==6) {
     if(++S(0x384)>=10) { B(0x184)=0; select_sequence(2); return; }
@@ -222,7 +222,7 @@ void YoumuObjectUpdateView::update_action_state()
    F(0xF4)*=D(0.98f); F(0xEC)+=C(0x104)*F(0xF4);
    if(B(0x113)<10) RETIRE(); F(0x120)*=D(0.92f); F(0x11C)+=D(0.05f); B(0x113)-=10;
   } else {
-   if((AT(P,short,0x13C)!=545 && AT(P,short,0x13C)!=546) || AT(P,short,0x140)>6) { S(0x364)=1; F(0xF4)=AT(P,float,0xF4); }
+   if((AT(P,short,0x13C)!=545 && AT(P,short,0x13C)!=546) || AT(P,short,0x140)>=7) { S(0x364)=1; F(0xF4)=AT(P,float,0xF4); }
    F(0xEC)=AT(P,float,0xEC); F(0xF0)=AT(P,float,0xF0);
   }
   FRAME_EXIT();
@@ -382,10 +382,10 @@ void YoumuObjectUpdateView::update_action_state()
  case 857:
   switch(S(0x13E)) {
   case 0: case 1: case 2:
-   if(S(0x364)%20==0 && S(0x13E)<2) { payload[0]=0; payload[1]=0; payload[2]=3; SPAWN_AT(857,static_cast<float>(C(0x104)*110+F(0xEC)),F(0xF0),1,3); }
+   if(S(0x364)%20==0 && S(0x13E)<=1) { payload[0]=0; payload[1]=0; payload[2]=3; SPAWN_AT(857,static_cast<float>(C(0x104)*110+F(0xEC)),F(0xF0),1,3); }
    ++S(0x364); CORE->advance_state_six_counter_conditional(0); CORE->advance_phase_counter_conditional(0);
    if(I(0x180)!=0 && ++S(0x366)>=5) { S(0x366)=0; B(0x184)=1; I(0x180)=0; }
-   if(S(0x13E)<2) {
+   if(S(0x13E)<=1) {
     payload[0]=random_float(40)-100.0; payload[1]=random_float(25)+5.0; payload[2]=4;
     { unsigned char facing=B(0x104); float y=static_cast<float>(F(0xF0)+50.0); double offset=static_cast<float>(static_cast<unsigned>(selector_random_roll(150))); float x=static_cast<float>(C(0x104)*(offset+25.0)+F(0xEC)); spawn_unparented(857,x,y,facing,1,reinterpret_cast<const unsigned *>(payload),3); }
     position_relative(50,0);
@@ -465,7 +465,7 @@ void YoumuObjectUpdateView::update_action_state()
    break;
   case 3:
    AT(P,short,0x7E6)=0; CORE->advance_state_six_counter_conditional(0);
-   if(S(0x174)<0) { B(0x184)=0; H[1]=0; F(0xF4)=0; F(0xF8)=0; select_sequence(0); B(0x33C)=255; AT(P,unsigned char,0x7E5)=0; return; }
+   if(S(0x174)<=-1) { B(0x184)=0; H[1]=0; F(0xF4)=0; F(0xF8)=0; select_sequence(0); B(0x33C)=255; AT(P,unsigned char,0x7E5)=0; return; }
    if(I(0x144)>=14 || F(0xEC)>1380.0f || F(0xEC)<-100.0) {
     H[1]-=4.0;
     if(H[1]<=0.0f) { F(0xF4)=0; F(0xF8)=0; select_sequence(0); B(0x33C)=255; AT(P,unsigned char,0x7E5)=0; return; }
@@ -515,7 +515,7 @@ void YoumuObjectUpdateView::update_action_state()
     F(0xF4)=0; F(0xF8)=0;
     if(S(0x364)<5) {
      if(I(0x144)%7==0) {
-      payload[0]=static_cast<float>(S(0x364)*20); payload[1]=0.5f; if(AT(P,signed char,0x60B)>2) payload[1]=0.6f;
+      payload[0]=static_cast<float>(S(0x364)*20); payload[1]=0.5f; if(AT(P,signed char,0x60B)>=3) payload[1]=0.6f;
       payload[2]=0; SPAWN(818,1,3); ++S(0x364);
      }
      if(I(0x144)%10==0) { payload[0]=random_float(360); payload[1]=0; payload[2]=1; SPAWN(818,1,3); }

@@ -19,7 +19,7 @@ void SuikaControlModeView::update_control_mode()
     if (S(0x13C)>49 && S(0x13C)<150) {
         S(0x76C)=0; S(0x76A)=0; S(0x766)=0; S(0x768)=0; S(0x764)=0;
     }
-    if (S(0x13C)<=199) { S(0x76C)=0; S(0x764)=0; }
+    if (S(0x13C)<200) { S(0x76C)=0; S(0x764)=0; }
     if (S(0x13C)>=50 && S(0x13C)<=149 && FIELD(unsigned char,0x113)!=255) FIELD(unsigned char,0x113)=255;
     if (C(0x55A)<1) return;
     switch (FRONT) {

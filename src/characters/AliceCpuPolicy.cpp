@@ -43,7 +43,7 @@ void AliceCpuPolicyView::update_cpu_action_policy()
     switch (S(0x13C)) {
     case 200:
         if (S(0x764)==0) { S(0x764)=100; if (h>=700.0f) S(0x764)=static_cast<short>(selector_random_roll(100)+1); }
-        if (((F(0xEC)>PEER(0xEC) && C(0x104)==-1) || (F(0xEC)<PEER(0xEC) && C(0x104)==1)) && S(0x764)>=50) {
+        if (((F(0xEC)>PEER(0xEC) && C(0x104)==-1) || (F(0xEC)<PEER(0xEC) && C(0x104)==1)) && S(0x764)>49) {
             if (h<220.0 && RNG(1000)<100 && v<50.0) { I(0x6B4)=C(0x104); I(0x6BC)=2; }
             else if (h>=400.0 && h<=600.0f && v<80.0f && RNG(1000)<50) { I(0x6B4)=C(0x104); I(0x6C0)=2; }
             else if (h>=500.0 && h<=650.0f && v==0.0f && RNG(1000)<30) { I(0x6B4)=C(0x104); I(0x6C4)=2; }

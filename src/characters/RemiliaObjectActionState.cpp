@@ -63,9 +63,9 @@ void RemiliaObjectUpdateView::update_action_state()
    if(state==4 || state==8) B(0x184)=0;
    if(state!=0) {
     H[1]=2; ++S(0x364);
-    if(S(0x364)>=3) { if(C(0x184)<=0) goto burst_801; I(0x180)=0; S(0x364)=0; }
+    if(S(0x364)>=3) { if(C(0x184)<1) goto burst_801; I(0x180)=0; S(0x364)=0; }
    }
-   if(C(0x184)<=0) {
+   if(C(0x184)<1) {
    burst_801:
     float payload[3]; payload[0]=0; payload[1]=0; payload[2]=1; SPAWN(801,1,3); { --I(0x330); return; }
    }
@@ -113,8 +113,8 @@ void RemiliaObjectUpdateView::update_action_state()
    if(emit_repeated(0,1,2)) { --I(0x330); return; }
    if(I(0x180)==6 && ++S(0x384)<10) { ++B(0x184); I(0x180)=0; }
    advance_phase(3);
-   if(I(0x180)!=0) { H[1]=2; ++S(0x364); if(S(0x364)>=3) { if(C(0x184)<=0) { --I(0x330); return; } I(0x180)=0; S(0x364)=0; } }
-   if(C(0x184)<=0) { --I(0x330); return; }
+   if(I(0x180)!=0) { H[1]=2; ++S(0x364); if(S(0x364)>=3) { if(C(0x184)<1) { --I(0x330); return; } I(0x180)=0; S(0x364)=0; } }
+   if(C(0x184)<1) { --I(0x330); return; }
    H[1]+=0.5; if(H[1]>=6.0f) turn_heading(0,0.5f,100); if(H[1]>12.0f) H[1]=12;
    MOVE(); F(0x12C)=H[0]; F(0xEC)+=C(0x104)*F(0xF4); F(0xF0)+=F(0xF8); break;
   case 2:
@@ -176,7 +176,7 @@ void RemiliaObjectUpdateView::update_action_state()
   if(S(0x13E)==0) {
    if(emit_repeated(0,1,4)) { --I(0x330); return; }
    if(I(0x180)==6) { ++B(0x184); I(0x180)=0; }
-   if(C(0x184)<=0) { if(B(0x113)<15) { --I(0x330); return; } B(0x111)-=15; B(0x110)-=15; B(0x113)-=15; }
+   if(C(0x184)<1) { if(B(0x113)<15) { --I(0x330); return; } B(0x111)-=15; B(0x110)-=15; B(0x113)-=15; }
    else if(I(0x144)%2==0) { float payload[3]; payload[0]=F(0x12C); payload[1]=0; payload[2]=2; SPAWN(817,1,3); }
    MOVE(); F(0xEC)+=C(0x104)*F(0xF4); F(0xF0)+=F(0xF8);
   }
@@ -242,7 +242,7 @@ void RemiliaObjectUpdateView::update_action_state()
    if(I(0x180)==6) { ++B(0x184); I(0x180)=0; }
    double const y=F(0xF0);
    if(y-stage_surface_height_at_x()>10.0) --I(0x330);
-   else { double const next_y=F(0xF0); if(next_y-stage_surface_height_at_x()<-10.0 || C(0x184)<=0) --I(0x330); }
+   else { double const next_y=F(0xF0); if(next_y-stage_surface_height_at_x()<-10.0 || C(0x184)<1) --I(0x330); }
    MOVE(); H[1]-=3.0; if(H[1]<0.5f) H[1]=0.5f;
    F(0xEC)+=F(0xF4)*C(0x104); F(0xF0)=static_cast<float>(F(0xF8)+F(0xF0));
    float payload[3]; payload[0]=0; payload[1]=0; payload[2]=5;
@@ -255,7 +255,7 @@ void RemiliaObjectUpdateView::update_action_state()
    if(I(0x180)==6) { ++B(0x184); I(0x180)=0; }
    double const y=F(0xF0);
    if(y-stage_surface_height_at_x()>10.0) --I(0x330);
-   else { double const next_y=F(0xF0); if(next_y-stage_surface_height_at_x()<-10.0 || C(0x184)<=0) --I(0x330); }
+   else { double const next_y=F(0xF0); if(next_y-stage_surface_height_at_x()<-10.0 || C(0x184)<1) --I(0x330); }
    MOVE(); H[1]-=3.0; if(H[1]<0.5f) H[1]=0.5f;
    F(0xEC)+=F(0xF4)*C(0x104); F(0xF0)=static_cast<float>(F(0xF8)+F(0xF0));
    float payload[3]; payload[0]=0; payload[1]=0; payload[2]=7;
@@ -436,7 +436,7 @@ void RemiliaObjectUpdateView::update_action_state()
    if(AT(P,short,0x13C)!=607 || AT(P,short,0x13E)>=2) { F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)*D(0.9f)); goto fade_857; }
    position_relative(20,100); break;
   case 1: case 2: {
-   if(AT(P,short,0x174)<=0) { --I(0x330); return; }
+   if(AT(P,short,0x174)<1) { --I(0x330); return; }
    if(I(0x144)==1 && AT(P,short,0x13C)==607 && AT(P,short,0x13E)<=1 && H[3]<=45.0f) {
     F(0x378)=H[0];
     float const wanted=-atan2_degrees(static_cast<float>(AT(A,float,0xF0)+100.0-F(0xF0)),static_cast<float>((AT(A,float,0xEC)-F(0xEC))*C(0x104)));
@@ -478,7 +478,7 @@ void RemiliaObjectUpdateView::update_action_state()
    if(AT(P,short,0x13C)==711) position_relative(0,200);
    break;
   case 1: case 2: {
-   if(AT(P,short,0x174)<=0) { --I(0x330); return; }
+   if(AT(P,short,0x174)<1) { --I(0x330); return; }
    if(I(0x144)==1 && ((AT(P,short,0x13C)==710 && AT(P,short,0x13E)<=1) || (AT(P,short,0x13C)==711 && AT(P,short,0x13E)<=2))) {
     F(0x378)=H[0];
     float const wanted=-atan2_degrees(static_cast<float>(AT(A,float,0xF0)+100.0-F(0xF0)),static_cast<float>((AT(A,float,0xEC)-F(0xEC))*C(0x104)));
@@ -571,12 +571,12 @@ void RemiliaObjectUpdateView::update_action_state()
   if(I(0x180)==5) { --I(0x330); return; }
   switch(S(0x13E)) {
   case 0:
-   if(AT(P,short,0x174)<=0 || I(0x144)>=120) goto burst_902;
+   if(AT(P,short,0x174)<1 || I(0x144)>=120) goto burst_902;
    if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==0) replace_secondary(991,20,10,1,2);
    if(I(0x180)==6) { ++S(0x384); ++B(0x184); I(0x180)=0; }
    H[1]+=0.25; MOVE(); break;
   case 1:
-   if(AT(P,short,0x174)<=0 || I(0x144)>=60) goto burst_902;
+   if(AT(P,short,0x174)<1 || I(0x144)>59) goto burst_902;
    if(S(0x364)==0) {
     if(B(0x113)<=245) B(0x113)+=10;
     else { B(0x113)=255; B(0x184)=1; S(0x364)=1; replace_secondary(991,20,10,1,2); }
@@ -592,7 +592,7 @@ void RemiliaObjectUpdateView::update_action_state()
    F(0x120)=F(0x11C)=static_cast<float>(F(0x11C)*D(0.95f)); if(B(0x113)<10) { --I(0x330); return; } B(0x113)-=10; break;
   case 5:
    if(I(0x180)==6 && ++S(0x384)<10) { ++B(0x184); I(0x180)=0; }
-   if(AT(P,short,0x174)<=0 || I(0x144)>=240 || C(0x184)<=0) goto burst_902;
+   if(AT(P,short,0x174)<1 || I(0x144)>=240 || C(0x184)<1) goto burst_902;
    MOVE(); F(0x12C)=H[0];
    if(OUTSIDE(1380.0f,-100.0,960.0,-200.0)) { --I(0x330); return; }
    break;
@@ -605,7 +605,7 @@ void RemiliaObjectUpdateView::update_action_state()
    if(S(0x364)==0) {
     F(0x11C)=static_cast<float>(F(0x11C)+D(0.3f)); if(F(0x11C)>=10.0f) F(0x11C)=10;
     F(0x120)=(1.0f-F(0x370))*D(0.8f)+D(0.2f); F(0x370)*=D(0.95f);
-    if(AT(P,short,0x174)<=0) S(0x364)=1;
+    if(AT(P,short,0x174)<1) S(0x364)=1;
     if(AT(P,short,0x730)==2) { S(0x364)=1; float payload[3]; payload[0]=H[0]; payload[1]=40; payload[2]=1; SPAWN(903,1,3); }
     F(0xEC)=AT(P,float,0xEC); F(0xF0)=AT(P,float,0xF0)+230.0;
    }
@@ -613,7 +613,7 @@ void RemiliaObjectUpdateView::update_action_state()
    break;
   case 1:
    if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) replace_secondary(991,60,10,1,2);
-   if(AT(P,short,0x174)<=0) { B(0x184)=0; if(B(0x113)<25) { --I(0x330); return; } B(0x113)-=25; B(0x110)-=25; B(0x111)-=25; }
+   if(AT(P,short,0x174)<1) { B(0x184)=0; if(B(0x113)<25) { --I(0x330); return; } B(0x113)-=25; B(0x110)-=25; B(0x111)-=25; }
    else if(I(0x144)%2==0) { float payload[3]; payload[0]=random_float(360); payload[1]=random_float(11)+4.0; payload[2]=2; SPAWN(903,1,3); }
    MOVE(); goto bounds_903;
   case 2:
@@ -621,7 +621,7 @@ void RemiliaObjectUpdateView::update_action_state()
    if(B(0x113)<15) { --I(0x330); return; } B(0x113)-=15; B(0x111)-=15; B(0x110)-=15; break;
   case 3:
    if(I(0x180)==6 && ++S(0x384)<2) { ++B(0x184); I(0x180)=0; }
-   if(AT(P,short,0x174)<=0 || I(0x144)>=240 || C(0x184)<=0) { select_sequence(4); F(0xF4)=0; F(0xF8)=0; }
+   if(AT(P,short,0x174)<1 || I(0x144)>=240 || C(0x184)<1) { select_sequence(4); F(0xF4)=0; F(0xF8)=0; }
    MOVE(); F(0x12C)=H[0];
   bounds_903:
    if(OUTSIDE(1380.0f,-100.0,960.0,-200.0)) { --I(0x330); return; } break;
