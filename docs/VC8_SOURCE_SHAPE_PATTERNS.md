@@ -282,10 +282,18 @@ target lacks, so LTCG does not explain the register.
     builds without `/Og` (unoptimized frame), and a manual LTCG link with the
     divisor as a never-written global from another TU (LTCG propagates it and
     then uses a magic multiply).
-  - The remaining explanation is LTCG constant propagation of a parameter
-    (`update(int period)` with every caller passing 6), which would also explain
-    the `this`-only ABI. The angle lookups' `idiv` by 3600 (0x406360/0x4063D0)
-    is likely the same. Testing it needs a linked unit that includes the callers.
+  - Confirmed in a scratch LTCG link: `bool MenuCursorState::update(int period)`
+    using `input % period`, linked `/LTCG` with callers that pass 6, emits the
+    target's `mov edi, 6; cdq; idiv edi` and a `this`-only ABI.
+  - Computing the new selection into a local and then assigning
+    `selection = next;` before the window checks matches the rest, except one
+    `lea` operand order (`[esi+eax-1]` vs ours `[eax+esi-1]`) that no expression
+    order changes.
+  - The target has 35 call sites across the menu TUs, so a linked unit must
+    contain them. Several of those callers are themselves one-to-three-region
+    near misses and may be LTCG effects too.
+  - The angle lookups' `idiv` by 3600 (0x406360/0x4063D0) is likely the same
+    parameter propagation.
 - **Background set_transition 0x4654F0 and Fighter sequence advance 0x45D040.**
   The first swaps the stack slots of two compiler temporaries: the inline
   `fnstcw` control word and the spilled element-offset counter. Alpha cast forms
