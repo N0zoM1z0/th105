@@ -268,6 +268,19 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **Compiler settings ruled out for the merge and scheduling residuals
+  (2026-11-14).** These left the residuals of Reimu 0x491C40, Komachi 0x5F6700,
+  the CSV reader 0x40F580 and Udonge 0x5D0E60 unchanged:
+  - VC8 RTM instead of SP1;
+  - a manual `/GL` + `/LTCG` link;
+  - `/Z7`;
+  - adding another large function to the same TU.
+
+  `/fp:fast` and `/fp:strict` are much worse. `/O1` and `/Os` turn the ack
+  packet constructor's (0x44DAC0) zero store into `and [esi+4], 0` rather than
+  the target's `xor eax, eax; mov [esi+4], eax`. Treat these residuals as
+  source-structure questions.
+
 - **One-region near misses checked on 2026-11-14.**
   - `CsvReader::next_string` 0x40F580: the target merges its two
     `return out = "";` blocks into the later copy, placed right after the second
