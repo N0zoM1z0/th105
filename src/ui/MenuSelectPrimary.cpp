@@ -36,18 +36,18 @@ bool CMenuSelect::update_primary_selection()
         case 0:
             state_04 = 1;
             active_player_70 = 0;
-            return true;
+            break;
         case 1:
             state_04 = 1;
             active_player_70 = 1;
-            return true;
+            break;
         case 2:
         {
             Menu *menu =
                 new CProfileCharacterSelect(get_player_slot_record(0));
             install_menu_object(menu);
             active_player_70 = 0;
-            return true;
+            break;
         }
         case 3:
         {
@@ -55,14 +55,14 @@ bool CMenuSelect::update_primary_selection()
                 new CProfileCharacterSelect(get_player_slot_record(1));
             install_menu_object(menu);
             active_player_70 = 1;
-            return true;
+            break;
         }
         case 4:
         {
             Menu *menu =
                 new CProfileKeyConfig(get_player_slot_record(0), 0);
             install_menu_object(menu);
-            return true;
+            break;
         }
         case 5:
         {
@@ -72,11 +72,11 @@ bool CMenuSelect::update_primary_selection()
             else
                 menu = new CProfileKeyConfig(get_player_slot_record(1), -1);
             install_menu_object(menu);
-            return true;
+            break;
         }
         case 6:
             g_scene_mode = 2;
-            return true;
+            break;
         case 7:
             return false;
         }
