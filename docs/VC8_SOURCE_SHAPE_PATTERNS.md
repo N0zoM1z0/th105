@@ -276,6 +276,23 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **Menu cursor update 0x41FA20 `idiv` by 6 (2026-11-14).** The target computes
+  `input % 6` as `mov edi, 6; cdq; idiv edi` inside otherwise `/O2` code.
+  - These do not reproduce it: `/O1` or `/Os` (`push 6; pop edi` and `inc eax`),
+    builds without `/Og` (unoptimized frame), and a manual LTCG link with the
+    divisor as a never-written global from another TU (LTCG propagates it and
+    then uses a magic multiply).
+  - The remaining explanation is LTCG constant propagation of a parameter
+    (`update(int period)` with every caller passing 6), which would also explain
+    the `this`-only ABI. The angle lookups' `idiv` by 3600 (0x406360/0x4063D0)
+    is likely the same. Testing it needs a linked unit that includes the callers.
+- **Background set_transition 0x4654F0 and Fighter sequence advance 0x45D040.**
+  The first swaps the stack slots of two compiler temporaries: the inline
+  `fnstcw` control word and the spilled element-offset counter. Alpha cast forms
+  and loop declaration styles did not change it. In the second, the target uses
+  immediate zeros in the inline `deque::pop_front`, and ours keeps zero in `ecx`.
+  `empty()` and `!= 0` forms and LTCG did not change it.
+
 - **Scenario character install 0x456EB0 initial EH state (2026-11-14).** After
   writing `entry.value_0bc = 480 + y;` before the colour bytes, only one store
   differs. The target sets the EH state to 0 before the `ScenarioTextEntryDC`
