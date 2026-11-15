@@ -302,6 +302,16 @@ target lacks, so LTCG does not explain the register.
   `if / else if` chain, while keeping the trailing return, gave the shared
   epilogue.
 
+- **Repeated `cmp eax, ebx` on one loaded value means the source re-read the
+  member.** `CSelect::update` 0x421430 tests the same input pointer once per
+  cursor, with no jump threading between the tests. Writing each publication as
+  `if (inputs_010[i]) cursor.input_counter = &inputs_010[i]->counters[n]; else
+  ... = 0;` gives that shape, because the reload is folded only after VC8 has
+  threaded jumps. A static helper taking the pointer by value threads the tests
+  together; a ternary or a per-cursor helper is worse. The same function also
+  needed its assignment flags read as `fields_7f8[n]` bytes rather than through
+  a struct pointer view, which moved an `add esp, 4` back next to its call.
+
 - **`mov ecx, [global]; ...; mov edi, ecx` is an inlined member's `this`.**
   In the round reset 0x471180 the target loads the phase-block global into
   ECX, derives addresses from it and copies it to EDI for later member calls.
