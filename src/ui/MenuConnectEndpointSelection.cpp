@@ -37,18 +37,16 @@ int ConnectEndpointSelectionView::update_history_selection()
 {
     if (field<MenuCursorState>(0x3e4).update()) {
         dispatch_indexed_event(0x27);
-        return 0;
-    }
-    if (connect_history_buttons()->confirm == 1) {
+    } else if (connect_history_buttons()->confirm == 1) {
         g_profile_message_main->enabled = false;
         dispatch_indexed_event(0x28);
         parse_endpoint(field<std::deque<std::string> >(0x3a4)[field<int>(0x3f0)]);
         return 1;
+    } else if (connect_history_buttons()->cancel == 1 || is_menu_initial_press(1,0,0,0)) {
+        g_profile_message_main->enabled = false;
+        dispatch_indexed_event(0x29);
+        return 2;
     }
-    if (connect_history_buttons()->cancel != 1 && !is_menu_initial_press(1,0,0,0))
-        return 0;
-    g_profile_message_main->enabled = false;
-    dispatch_indexed_event(0x29);
-    return 2;
+    return 0;
 }
 }
