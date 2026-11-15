@@ -77,7 +77,7 @@ test-workflow maintenance need no target/IDA preflight or native build.
 - [Current handoff](docs/RE_HANDOFF.md)
 - [Tenshi update resume notes](docs/TENSHI_OBJECT_UPDATE_2026_10_25.md)
 - [AyaObject evidence and selected checkpoint](docs/AYA_OBJECT_EVIDENCE.md)
-- [ReimuObject evidence and historical checkpoints](docs/REIMU_OBJECT_EVIDENCE.md)
+- [Reimu root functions](docs/REIMU_EVIDENCE.md)
 - [Local inputs and disposable outputs](docs/ARTIFACTS.md)
 - [Architecture and TH08/TH105 differences](docs/ARCHITECTURE.md)
 - [Reverse-engineering workflow](docs/RE_WORKFLOW.md)

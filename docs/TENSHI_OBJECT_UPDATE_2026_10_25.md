@@ -157,7 +157,7 @@ replay corroborates both complete providers77/77 and78/78; the mixed unit
 also contains the already-nonexact5F9350 and therefore exits nonzero overall.
 This is not an aggregate exact-unit claim. Their historical byte-facing
 witnesses also remain valid. This does **not** recover original formal width;
-see [the prior provider witnesses](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md).
+
 The manager factory slot04 declaration is separate and unchanged.
 
 Changing only these two local declarations emits42524 bytes, SHA670b286a...,

@@ -170,7 +170,7 @@ physical envelope, including intervening bytes. It does not mask gaps or alter
 error; linked-PE profiles continue to reject this surface. Owned-mode build
 provenance includes the inventory, ownership ledger and validator. The report
 separates owned bytes from additional physical bytes compared; those extra bytes
-do not become authored credit. See [ReimuObject's void-root evidence](REIMU_OBJECT_VOID_ROOT_2026_10_20.md).
+do not become authored credit.
 Its complete46138-byte comparison is currently nonexact. A new mode or source
 presence does not authorize `matches.csv` or `remote_exact`; acceptance still
 requires the full zero-difference contract and reviewed source semantics.

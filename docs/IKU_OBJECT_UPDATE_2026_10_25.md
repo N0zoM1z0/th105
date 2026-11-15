@@ -251,7 +251,7 @@ subtraction spelling.
 For the independent direction question, fresh raw Iku manager631140/237 reads
 CL from BYTE[ESP+20] at6311E2 and stores it to BYTE[ESI+104] at631200. DL handles
 the distinct33C byte. Its accepted complete source also uses a signed-char
-facing formal. The [complete shared-provider width witnesses](REIMU_OBJECT_822_DIRECTION_WIDTH_2026_10_22.md)
+facing formal. The complete shared-provider width witnesses
 independently admit byte-facing Object wrapper definitions/callbacks with the
 same native bodies77/78 bytes. The new raw Iku consumer check avoids substituting
 Reimu's manager for Iku. Width support does not prove original wrapper formal

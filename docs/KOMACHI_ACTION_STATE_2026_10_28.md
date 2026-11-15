@@ -90,7 +90,7 @@ RET24. The accepted roster spawn source uses byte formals.
 The shared 66-byte forwarding wrapper 0x465190 forwards full DWORD slots,
 which does not establish int formals. Independently exact int and byte
 forwarding witnesses are already recorded in
-[REIMU_SPAWN_DIRECTION_WIDTH_2026_10_18.md](REIMU_SPAWN_DIRECTION_WIDTH_2026_10_18.md).
+
 Those accepted sources are not modified here. Original signedness/type
 spelling remains ambiguous; this is a supported binary call view. The
 variant remains int in this candidate. No register or manual-stack facade.

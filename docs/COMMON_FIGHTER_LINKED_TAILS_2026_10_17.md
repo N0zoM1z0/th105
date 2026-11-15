@@ -170,5 +170,5 @@ bytes, emits `FCOMP` against memory zero rather than target `FCOMP ST(1)`,
 retains late162 ownership and loses799. Section SHA256 is
 `0aa2e5a4b3a1d42d03f602f8032388c179d59ad4fb7a758503ef2cfcd41a5b97`.
 This reconfirms an old source-shape negative and is not adopted. Active work
-moves to [Reimu's81550-byte root](REIMU_ACTION_ENTRY_2026_10_17.md) instead of
+moves to Reimu's81550-byte root instead of
 repeating the existing common-root control matrices.

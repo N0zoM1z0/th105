@@ -68,9 +68,11 @@ Other open leads:
 - The CDesignBase loader links but differs in size (2666 against 2708) and
   frame (0x3E8 against 0x3F8); see
   [real gauge context](DESIGN_LOADER_REAL_GAGE_2026_11_02.md).
-- The giant action roots of Reimu 0x478FA0 and Komachi 0x5E20E0 have no source
-  yet. The [Reimu](REIMU_OBJECT_EVIDENCE.md) and [Aya](AYA_OBJECT_EVIDENCE.md)
-  indexes collect the findings for those characters' object roots.
+- The giant action roots are not yet registered. Komachi 0x5E20E0 has a
+  complete but unselected candidate (unit `exact-first-komachi-action-state`,
+  108 actions). Reimu 0x478FA0 has only staged partial sources
+  (`src/characters/ReimuActionState*`, actions up to 798), with no unit; the
+  later high-action path is still missing.
 
 ## Checking shared type changes
 
