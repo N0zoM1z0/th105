@@ -26913,7 +26913,7 @@ source = "src/battle/ScenarioListFadeUpdate.cpp"
 object = "build/match-units/ExactFirst_ScenarioListFade.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete signed fade-step/unsigned alpha policy on Scenario 9C entries. Real checked iterator and virtual color calls; emitted list erase independently matches102 bytes. Root418/native431 remains nonexact. docs/SCENARIO_LIST_FADE_2026_10_29.md."
+notes = "Scenario 9C entry fade update, exact at 431 bytes: both surviving branches end with their own color publication and ++it, which VC8 cross-jumps. docs/SCENARIO_LIST_FADE_2026_10_29.md."
 
 [[units.exact-first-scenario-list-fade.functions]]
 address = "0x00455850"

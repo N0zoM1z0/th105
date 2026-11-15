@@ -1,53 +1,27 @@
-# Scenario render-list fading, JP1.06a
+# Scenario render-list fading
 
-455850 now has complete selected source for its431-byte native behavior.
-Source418/native431 remains nonexact, first difference+38 in the branch extent.
-Native SHA256:30d7262a2d4f9024b9f6854de92d0c5aef9f5b440182cb91ae57a9462bb67026.
-Source SHA256:669b507da07a8a1decb83dcb6723cd4226d22ce8d0a142578da173de385b6b94.
+`CScenarioData::update_list` (0x455850, 431 bytes) is exact. The interpreter
+0x458440 calls it at 0x4584A6, 0x4584B4 and 0x4585AD for the scenario's three
+0x9C-entry lists. ECX is unused; the list is the RET4 stack argument.
 
-The interpreter458440 calls it at4584A6,4584B4 and4585AD for the Scenario's
-three9C-entry lists. ECX is unused and the actual list is the RET4 stack argument.
-The pointer-only value view has a resource handle000, genuine polymorphic
-94-byte sprite004, unsigned alpha098 and signed delta099. Its declared owned
-destructor binds the independently accepted434C60 resource cleanup; no manual
-vptr or list-node writes are introduced.
+Each entry has a resource handle at +0x000, a polymorphic 0x94-byte sprite at
++0x004, an unsigned alpha at +0x098 and a signed delta at +0x099.
+- A positive delta raises alpha and saturates it at 255.
+- Otherwise the entry is erased when alpha is strictly less than -delta;
+  if not, the signed delta is added. Erasing returns the next checked
+  iterator and skips coloring.
+- Every surviving entry publishes alpha in the high colour byte (white RGB
+  for a nonzero handle, black for zero), then the iterator advances.
 
-Positive delta saturates alpha at255. Nonpositive delta erases only when
-alpha is strictly less than -delta; otherwise it adds the signed delta.
-Thus an exact fade-to-zero boundary survives for this iteration, and zero
-step with zero alpha remains in the list. Erasure returns the next checked
-iterator and skips coloring/incrementing that removed element. Every surviving
-entry receives alpha in the high color byte, with white RGB for a nonzero
-resource handle or black RGB for a zero handle, then the iterator advances.
+## What made it exact
 
-All431 native bytes through4559FC RET4 are reconciled. Ordinary source retains
-all observed guards and both color paths, but the compiler lays out the merged
-color path differently and emits418 bytes. An explicit else after the erase
-branch is byte-neutral; reversed negative comparison and negative-first branch
-controls give391/408 bytes and are not selected. No added checks, barriers,
-register variables or padding are used to force the layout.
+The target lays the delta > 0 branch out first, followed by the colour
+publication. The other branch sits after that tail and jumps back into it.
+That is VC8 cross-jumping two identical copies, so the source ends each
+surviving branch with its own copy of the colour publication and `++it`, and
+puts the erase in an `else if`. A single shared tail after the `if/else` puts
+the second branch inline (418 bytes). Inverted comparisons and negative-first
+branches also fail.
 
-The actual emitted std::list erase helper independently compares102/102 to
-4555B0, SHA425f246ce20c3aae4ae3c0fece4c72037417096745a7b4f012c5bcf28653b60f,
-with ordinary destructor/operator-delete relocation. It was already excluded
-as compiler/library ownership and receives no authored credit. The root itself
-is now source-present and authored, but contributes zero exact bytes.
-
-Reproduce with:
-scripts/repo-python scripts/build.py --unit exact-first-scenario-list-fade --compare --json
-
-Source:src/battle/ScenarioListFadeUpdate.cpp. No shared header, existing relocation
-or accepted consumer changes. Default CI and progress regeneration validate this
-incremental selection, not a cold build.
-
-## Shared list and scenario owners, 2026-11-04
-
-The two observed tail bytes are now named `alpha_098` (unsigned) and
-`delta_099` (signed) in the shared `ScenarioRenderEntry9C`. The selected fade
-source implements `CScenarioData::update_list` directly and the command
-interpreter calls that member. The emitted 418-byte candidate has the same
-full canonical SHA-256 recorded above and is still nonexact against the
-431-byte native root. Its real checked-list erase helper remains 102/102, and
-the compiler-origin witness revalidates. Twenty-two dependent accepted Scenario
-roots and both setter leaves replay exact; this change adds no authored exact
-bytes or general behavior proof.
+The emitted `std::list` erase helper matches 0x4555B0 (102 bytes); it is
+compiler/library code and gets no authored credit.

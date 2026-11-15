@@ -312,6 +312,13 @@ target lacks, so LTCG does not explain the register.
   needed its assignment flags read as `fields_7f8[n]` bytes rather than through
   a struct pointer view, which moved an `add esp, 4` back next to its call.
 
+- **A branch that jumps back into the other branch's tail means duplicated
+  source.** When the target lays out `if (a) { A; T } else { B; jmp T }`, with
+  `B` placed after `T`, the source repeats the tail statements `T` in both
+  branches and VC8 cross-jumps them. A shared tail after the `if/else` puts
+  `B` inline instead. This made the scenario list fade 0x455850 exact, where
+  `T` is the colour publication plus `++it`.
+
 - **A "remote chunk" reached only by `jmp` after an epilogue is a tail call.**
   The scene frame update 0x43B4A0 pops its registers and jumps to 0x4400D0,
   which ledgers recorded as a remote chunk. It is a separate `void` function
