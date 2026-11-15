@@ -70,8 +70,7 @@ void CMenuConnectRenderView::render()
             for (int i = 0; i < 4; ++i)
                 number_108.render(address_parts_420[i], static_cast<float>(i * 49.0 + first_x), y, 3, 0);
             number_108.render(port_428, static_cast<float>(x + 266.0), y, 5, 0);
-            int selected = cursor_3f8.selection;
-            int column = 2 * selected + (selected >= 3) + (selected >= 6) + (selected >= 9) + (selected >= 12);
+            int column = 2 * cursor_3f8.selection + (cursor_3f8.selection >= 3) + (cursor_3f8.selection >= 6) + (cursor_3f8.selection >= 9) + (cursor_3f8.selection >= 12);
             sprite_1d4.render(static_cast<float>(column * 7.0 + (x + 14.0)), y);
         } break;
         case 3: case 4: if (!substate_009) {

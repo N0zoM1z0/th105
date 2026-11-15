@@ -6478,27 +6478,6 @@ required_rtti_virtual_bodies = [
 ]
 
 [[rules]]
-id = "menu-connect-render-authored-106a"
-addresses = ["0x004418D0"]
-expected_count = 1
-expected_bytes = 752
-expected_names = ["sub_4418D0"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "CMenuConnect RTTI vtable owns the complete state-dependent menu renderer and the associated four-entry switch table. Complete natural source remains nonexact; no exact credit. docs/MENU_CONNECT_RENDER_2026_11_04.md."
-required_rtti_virtual_bodies = [
- { address = "0x004418D0", size = 752, sha256 = "64a25b4cab114f5d7f11f92b13976b995474bf7934226ffb78be63fe12b435bc", slot = "0x006C1C48", col_slot = "0x006C1C38", col = "0x006D8280", type_descriptor = "0x006E6C5C", type_name_contains = "CMenuConnect@@", calls = [{ site = "0x004418DF", target = "0x0043FA10" }, { site = "0x00441933", target = "0x0043F970" }, { site = "0x00441BAA", target = "0x0043F4C0" }] },
-]
-required_dword_values = [
- { address = "0x00441BC0", value = "0x0044194F" },
- { address = "0x00441BC4", value = "0x004419EE" },
- { address = "0x00441BC8", value = "0x00441B4C" },
- { address = "0x00441BCC", value = "0x00441B4C" },
-]
-
-[[rules]]
 id = "network-client-frame-pacing-authored-106a"
 addresses = ["0x0044EAD0"]
 expected_count = 1
