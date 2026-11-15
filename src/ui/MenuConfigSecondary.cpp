@@ -1,6 +1,7 @@
 #include "ui/MenuConfigUpdate.hpp"
 #include "ui/UiPrimitives.hpp"
 #include "input/InputManager.hpp"
+#include "engine/MinMax.hpp"
 
 extern "C" th105::CInputManager *g_active_menu_input;
 
@@ -10,22 +11,12 @@ void CMenuConfigUpdateView::update_secondary_for_primary(int primary)
     switch (primary) {
     case 0: {
         secondary_278.bind_horizontal(g_active_menu_input, 4, 0);
-        int value = config_004->option_64;
-        if (value > 3)
-            value = 3;
-        else if (value < 0)
-            value = 0;
-        secondary_278.selection = value;
+        secondary_278.selection = TH105_CLAMP(config_004->option_64, 0, 3);
         return;
     }
     case 1: {
         secondary_278.bind_horizontal(g_active_menu_input, 21, 0);
-        int value = config_004->bgm_percent_68 / 5;
-        if (value > 20)
-            value = 20;
-        else if (value < 0)
-            value = 0;
-        secondary_278.selection = value;
+        secondary_278.selection = TH105_CLAMP(config_004->bgm_percent_68 / 5, 0, 20);
         sprites_b8[0].set_texture(
             texture_b4, 0, 0,
             static_cast<int>(grid_width_1e0 *
@@ -35,12 +26,7 @@ void CMenuConfigUpdateView::update_secondary_for_primary(int primary)
     }
     case 2: {
         secondary_278.bind_horizontal(g_active_menu_input, 21, 0);
-        int value = config_004->se_percent_6c / 5;
-        if (value > 20)
-            value = 20;
-        else if (value < 0)
-            value = 0;
-        secondary_278.selection = value;
+        secondary_278.selection = TH105_CLAMP(config_004->se_percent_6c / 5, 0, 20);
         sprites_b8[1].set_texture(
             texture_b4, 0, 0,
             static_cast<int>(grid_width_1e0 *

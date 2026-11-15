@@ -59,7 +59,7 @@ void YoumuObjectUpdateView::update_action_state()
  case 800:
   if(I(0x180)==5) RETIRE();
   if(S(0x13E)==0) {
-   if(AT(P,short,0x13C)>=50 && AT(P,short,0x13C)<150) RETIRE();
+   if(AT(P,short,0x13C)>49 && AT(P,short,0x13C)<150) RETIRE();
    MOVE(); STEP();
    if(I(0x144)%2==0) {
     P->dispatch_character_wave_handle(0);
@@ -244,7 +244,7 @@ void YoumuObjectUpdateView::update_action_state()
   B(0x17C)=8; if(I(0x180)==5) RETIRE();
   if(S(0x13E)==0) {
    if(I(0x180)==0) {
-    if(AT(P,short,0x13C)>=50 && AT(P,short,0x13C)<150) {
+    if(AT(P,short,0x13C)>49 && AT(P,short,0x13C)<150) {
      for(int n=0;n<3;++n) emit_fighter_effect(201,F(0xEC),F(0xF0),B(0x104),1);
      RETIRE();
     }
@@ -461,7 +461,7 @@ void YoumuObjectUpdateView::update_action_state()
     SPAWN_AT(801,static_cast<float>(lookup_orientation_cosine_quantized_abs(-payload[0])*50.0*C(0x104)+F(0xEC)),static_cast<float>(lookup_orientation_sine_quantized_abs(-payload[0])*50.0+F(0xF0)),1,3);
     ++S(0x364);
    }
-   if((AT(P,short,0x13C)>=50 && AT(P,short,0x13C)<150) || I(0x144)>=90) { AT(P,unsigned char,0x7E5)=0; select_sequence(0); S(0x364)=0; return; }
+   if((AT(P,short,0x13C)>49 && AT(P,short,0x13C)<150) || I(0x144)>=90) { AT(P,unsigned char,0x7E5)=0; select_sequence(0); S(0x364)=0; return; }
    break;
   case 3:
    AT(P,short,0x7E6)=0; CORE->advance_state_six_counter_conditional(0);
@@ -483,7 +483,7 @@ void YoumuObjectUpdateView::update_action_state()
     SPAWN_AT(801,static_cast<float>(lookup_orientation_cosine_quantized_abs(-payload[0])*50.0*C(0x104)+F(0xEC)),static_cast<float>(lookup_orientation_sine_quantized_abs(-payload[0])*50.0+F(0xF0)),1,3);
     ++S(0x364);
    }
-   if((AT(P,short,0x13C)>=50 && AT(P,short,0x13C)<150) || I(0x144)>=90) { AT(P,unsigned char,0x7E5)=0; select_sequence(0); S(0x364)=0; return; }
+   if((AT(P,short,0x13C)>49 && AT(P,short,0x13C)<150) || I(0x144)>=90) { AT(P,unsigned char,0x7E5)=0; select_sequence(0); S(0x364)=0; return; }
    break;
   case 6:
    AT(P,short,0x7E6)=0; AT(P,unsigned char,0x7E5)=1; B(0x33C)=1;
@@ -522,7 +522,7 @@ void YoumuObjectUpdateView::update_action_state()
      if(I(0x144)%2==0) { payload[0]=random_float(360); payload[1]=random_float(60)*D(0.1f)+10.0; payload[2]=2; SPAWN(818,1,3); }
     }
    }
-   if((AT(P,short,0x13C)>=50 && AT(P,short,0x13C)<150) || I(0x144)>=120) { AT(P,unsigned char,0x7E5)=0; select_sequence(0); S(0x364)=0; return; }
+   if((AT(P,short,0x13C)>49 && AT(P,short,0x13C)<150) || I(0x144)>=120) { AT(P,unsigned char,0x7E5)=0; select_sequence(0); S(0x364)=0; return; }
    break;
   case 10:
    AT(P,short,0x7E6)=0; AT(P,unsigned char,0x7E5)=1; F(0xF4)*=0.5; F(0xF8)*=0.5;
@@ -537,7 +537,7 @@ void YoumuObjectUpdateView::update_action_state()
      ++S(0x364); F(0x370)+=10.0; P->dispatch_character_wave_handle(0);
     }
    }
-   if((AT(P,short,0x13C)>=50 && AT(P,short,0x13C)<150) || I(0x144)>=150) { AT(P,unsigned char,0x7E5)=0; select_sequence(0); S(0x364)=0; return; }
+   if((AT(P,short,0x13C)>49 && AT(P,short,0x13C)<150) || I(0x144)>=150) { AT(P,unsigned char,0x7E5)=0; select_sequence(0); S(0x364)=0; return; }
    break;
   case 11:
    B(0x17C)=255; AT(P,unsigned char,0x7E5)=0; B(0x104)=255;
