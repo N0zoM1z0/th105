@@ -24,32 +24,28 @@ bool CProfileMenu::update_primary()
         switch (cursor_39c.selection) {
         case 0:
             state_340 = 2;
-            return true;
+            break;
         case 1:
             state_340 = 3;
-            return true;
+            break;
         case 2:
             state_340 = 1;
             label_37c->enabled = true;
             g_profile_menu_controller.set_mode(1);
-            return true;
+            break;
         case 3:
             state_340 = 4;
-            return true;
+            break;
         case 4:
             state_340 = 5;
-            return true;
+            break;
         case 5:
             state_340 = 6;
-            return true;
+            break;
         case 6:
             return false;
-        default:
-            return true;
         }
-    }
-
-    if (input->buttons[1] == 1 || is_menu_initial_press(1, 0, 0, 0)) {
+    } else if (input->buttons[1] == 1 || is_menu_initial_press(1, 0, 0, 0)) {
         dispatch_indexed_event(0x29);
         return false;
     }
