@@ -88,7 +88,7 @@ after_refresh:
         }
     }
 
-    if (is_y_at_or_below_stage_surface(this) == 0 ||
+    if (static_cast<unsigned char>(is_y_at_or_below_stage_surface(this)) == 0 ||
         (frame_158->flags_4c & 4) != 0) {
         return (flags & 8) != 0 ? 5 : 0;
     }
