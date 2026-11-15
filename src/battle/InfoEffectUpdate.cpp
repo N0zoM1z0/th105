@@ -167,8 +167,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 0) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -180,8 +180,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 0) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -207,8 +207,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 110:
@@ -234,8 +234,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 1) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -247,8 +247,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 1) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -274,8 +274,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 120:
@@ -301,8 +301,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 2) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -314,8 +314,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 2) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -341,8 +341,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 130:
@@ -368,8 +368,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 3) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -381,8 +381,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 3) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -408,8 +408,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 140:
@@ -435,8 +435,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 4) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -448,8 +448,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 4) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -475,8 +475,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 150:
@@ -502,8 +502,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 5) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -515,8 +515,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 5) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -542,8 +542,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 160:
@@ -569,8 +569,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 6) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -582,8 +582,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 6) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -609,8 +609,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 170:
@@ -636,8 +636,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 7) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -649,8 +649,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 7) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -676,8 +676,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 180:
@@ -703,8 +703,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 8) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -716,8 +716,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 8) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -743,8 +743,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 190:
@@ -770,8 +770,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 9) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -783,8 +783,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 9) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -810,8 +810,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 200:
@@ -837,8 +837,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 17) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -850,8 +850,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 17) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -877,8 +877,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 210:
@@ -904,8 +904,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 10) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -917,8 +917,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 10) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -944,8 +944,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 220:
@@ -971,8 +971,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 11) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -984,8 +984,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 11) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -1011,8 +1011,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 230:
@@ -1038,8 +1038,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 12) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -1051,8 +1051,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 12) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -1078,8 +1078,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 240:
@@ -1105,8 +1105,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 13) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -1118,8 +1118,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 13) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -1145,8 +1145,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 250:
@@ -1172,8 +1172,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_event_effect_id != 14) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -1185,8 +1185,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (g_secondary_event_effect_id != 14) fade_latch_174 = 1.0f;
         if (advance_frame_and_dispatch()) --state_158; return;
@@ -1212,8 +1212,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 260:
@@ -1235,8 +1235,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 264:
@@ -1247,8 +1247,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 270:
@@ -1263,8 +1263,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 240) alpha_113 += 15;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 274:
@@ -1275,8 +1275,8 @@ void InfoEffectUpdateView::update_65cb40()
             if (alpha_113 < 245) alpha_113 += 10;
             else alpha_113 = 255;
         } else {
-            if (alpha_113 <= 20) { --state_158; return; }
-            alpha_113 -= 20;
+            if (alpha_113 > 20) alpha_113 -= 20;
+            else { --state_158; return; }
         }
         if (advance_frame_and_dispatch()) --state_158; return;
     case 900: case 901: case 902: case 903: case 904: case 905: case 906: case 907: case 908: case 909: case 910: case 911: case 912: case 913: case 914: case 915: case 916: case 917: case 918: case 919: case 920: case 921: case 922:
