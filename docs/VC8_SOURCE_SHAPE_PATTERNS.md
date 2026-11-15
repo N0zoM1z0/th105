@@ -312,6 +312,13 @@ target lacks, so LTCG does not explain the register.
   needed its assignment flags read as `fields_7f8[n]` bytes rather than through
   a struct pointer view, which moved an `add esp, 4` back next to its call.
 
+- **A hoisted field local can change zero-register placement.** In
+  `CSelect::on_scene_enter` 0x421120 the search loop compares
+  `setup_00c->sides_08[side].character_key_00` directly. A named `character`
+  local before the loop added a `jmp`, moved `xor ebx, ebx` out of both arms
+  of an earlier select and changed the setup register. Before reordering
+  statements, try removing locals that only cache a field.
+
 - **`cmp [mem], reg; je; mov r, [mem]` comes from a reference parameter.** The
   watch-input setup 0x42BC40 tests a token pointer in memory and reloads it
   in the branch. A small inline helper taking the token as

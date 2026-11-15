@@ -24262,7 +24262,7 @@ source = "src/ui/SelectSceneEntry.cpp"
 object = "build/match-units/ExactFirst_SelectSceneEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete421120 CSelect entry candidate using current shared CSelect layout, checked vectors/deque and typed cursors."
+notes = "CSelect scene entry 0x421120, exact at 783 bytes; the character search reads the setup field in each comparison."
 
 [[units.exact-first-select-scene-entry.functions]]
 address = "0x00421120"

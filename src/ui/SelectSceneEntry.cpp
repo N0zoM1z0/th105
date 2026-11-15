@@ -58,9 +58,8 @@ void CSelect::on_scene_enter(int previous_scene)
             cursors[side][1].selection=3;
             setup_00c->sides_08[side].character_key_00=15;
         } else {
-            int character=setup_00c->sides_08[side].character_key_00;
             for(int index=0;index<15;++index) {
-                if(character==select_entry_character_ids[index]) {
+                if(setup_00c->sides_08[side].character_key_00==select_entry_character_ids[index]) {
                     cursors[side][0].selection=index%4;
                     cursors[side][1].selection=index/4;
                     break;
