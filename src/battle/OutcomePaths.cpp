@@ -54,7 +54,7 @@ bool CollisionContext::try_outcome_path_a(
     }
 
     if (frame->amount_22 != 0) {
-        const short before = fighter->counter_482;
+        const unsigned short before = fighter->counter_482;
         if ((candidate->prepared_frame_1a4->flags_50 & 0x00400000) != 0) {
             fighter->counter_482 -= frame->amount_22;
             fighter->floor_486 = 0x3c;
@@ -121,7 +121,7 @@ bool CollisionContext::try_outcome_path_b(
         return true;
     }
     if (frame->amount_22 != 0) {
-        const short before = fighter->counter_482;
+        const unsigned short before = fighter->counter_482;
         unsigned amount =
             static_cast<unsigned short>(frame->amount_22);
         if ((candidate->prepared_frame_1a4->flags_50 & 0x00400000) != 0) {
