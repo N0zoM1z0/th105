@@ -155,7 +155,7 @@ case 10:
 case 99:
     landing();
     if(sequence_index_13e==3) {
-        if(B(0x113)<=3) B(0x113)=0;else B(0x113)-=3;
+        if(B(0x113)<4) B(0x113)=0;else B(0x113)-=3;
     }
     if(sequence_index_13e==4 && S(0x840)==2) {
         if(++S(0x730)==300) {
@@ -205,7 +205,7 @@ case 99:
     return;
 
 case 197:
-    if((sequence_index_13e==0 && frame_index_140<=1) || sequence_index_13e==2) landing();
+    if((sequence_index_13e==0 && frame_index_140<2) || sequence_index_13e==2) landing();
     if(sequence_index_13e<2) {
         F(0xf8)-=F(0x100);
         if(static_cast<unsigned char>(crossed())) {recover_air_sequence();return;}
@@ -220,7 +220,7 @@ case 197:
     }
     return;
 case 198:
-    if((sequence_index_13e==0 && frame_index_140<=1) || sequence_index_13e==2) landing();
+    if((sequence_index_13e==0 && frame_index_140<2) || sequence_index_13e==2) landing();
     if(sequence_index_13e<2) {
         F(0xf8)-=F(0x100);
         if(static_cast<unsigned char>(crossed())) {recover_air_sequence();return;}
@@ -312,7 +312,7 @@ case 214: {
     else {if(horizontal>0)S(0x732)=0;else if(horizontal<0)S(0x732)=180;}
     if(sequence_index_13e==5 || sequence_index_13e==6) F(0xf8)-=F(0x100);
     bool retain=true;
-    if(sequence_index_13e>0 && sequence_index_13e<5) {
+    if(sequence_index_13e>0 && sequence_index_13e<=4) {
         ++S(0x736);
         S(0x734)=static_cast<short>(S(0x732)-static_cast<int>(F(0x740)));
         if(S(0x734)>180)S(0x734)-=360;
@@ -446,7 +446,7 @@ case 301:
     if(frame_index_140>3){F(0xf4)=static_cast<float>(F(0xf4)-1.0);if(F(0xf4)<0.0f)F(0xf4)=0.0f;}
     return;
 case 302:
-    if((sequence_index_13e==0 && (frame_index_140<=3 || frame_index_140>=8)) || sequence_index_13e==1)landing();
+    if((sequence_index_13e==0 && (frame_index_140<4 || frame_index_140>=8)) || sequence_index_13e==1)landing();
     if(directional(1))return;
     if(B(0x47e)){F(0xf4)=static_cast<float>(F(0xf4)-0.5);if(F(0xf4)<0.0f){F(0xf4)=0.0f;B(0x47e)=0;}}
     if(!I(0x6bc))B(0x750)=0;
@@ -634,7 +634,7 @@ case 409:
     if(advance())set_action_and_finalize(9);return;
 case 410:
     landing();
-    if((sequence_index_13e==1 && time_counter_144>=16) || (sequence_index_13e==2 && time_counter_144>=20)){next_sequence_block();return;}
+    if((sequence_index_13e==1 && time_counter_144>15) || (sequence_index_13e==2 && time_counter_144>=20)){next_sequence_block();return;}
     if(advance())set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==8) {
         I(0x180)=1;float p[3]={-10.0f,20.0f,4.0f};
@@ -644,7 +644,7 @@ case 410:
     } return;
 case 411:
     landing();
-    if((sequence_index_13e==1 && time_counter_144>=16) || (sequence_index_13e==2 && time_counter_144>=20)){next_sequence_block();return;}
+    if((sequence_index_13e==1 && time_counter_144>15) || (sequence_index_13e==2 && time_counter_144>=20)){next_sequence_block();return;}
     if(advance())set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==8) {
         I(0x180)=1;float p[3]={-10.0f,20.0f,4.0f};
@@ -785,7 +785,7 @@ case 525:
         }
         S(0x82e)=static_cast<short>(60*(C(0x609)+2));counter(200,45);phase_counter(50);dispatch_character_wave_handle(16);
     }
-    if(frame_index_140>=6)S(0x82e)=static_cast<short>(60*(C(0x609)+2));
+    if(frame_index_140>5)S(0x82e)=static_cast<short>(60*(C(0x609)+2));
     return;
 case 526:
     landing();B(0x17c)=5;if(advance())set_action_and_finalize(0);
@@ -833,7 +833,7 @@ case 542:
             zero_motion();select_sequence(2);F(0xf0)=tenshi_surface(this);return;
         }
     }
-    if(sequence_index_13e<=1 && !I(0x6c0))B(0x750)=0;
+    if(sequence_index_13e<2 && !I(0x6c0))B(0x750)=0;
     if(advance())set_action_and_finalize(9);
     if(entry(1)){set_action_and_finalize(9);return;}
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==6) {
@@ -924,7 +924,7 @@ case 567:
     B(0x17c)=7;F(0xf8)-=F(0x100);
     {
         double next_y=static_cast<double>(F(0xf8))+F(0xf0);
-        if(tenshi_surface(this)>=next_y && F(0xf8)<0.0f && sequence_index_13e<5) {
+        if(tenshi_surface(this)>=next_y && F(0xf8)<0.0f && sequence_index_13e<=4) {
             select_sequence(5);B(0x47f)=0;F(0xf0)=tenshi_surface(this);zero_motion();return;
         }
     }
@@ -932,7 +932,7 @@ case 567:
     if(sequence_index_13e==2 && frame_index_140==2 && !frame_timer_142) {
         float dx=static_cast<float>((peer()->at<float>(0xec)-F(0xec))*static_cast<double>(facing()));
         S(0x734)=static_cast<short>(-static_cast<short>(static_cast<int>(tenshi_atan(peer()->at<float>(0xf0)-F(0xf0),dx))));
-        if(S(0x734)<-10)S(0x734)=-10;if(S(0x734)>10)S(0x734)=10;
+        if(S(0x734)<-10)S(0x734)=-10;if(S(0x734)>=11)S(0x734)=10;
         dispatch_character_wave_handle(29);I(0x180)=1;counter(200,60);phase_counter(50);
         float p[3]={0.0f,0.0f,0.0f};
         int direction=B(0x104);float y=static_cast<float>(F(0xf0)+104.0);
@@ -947,7 +947,7 @@ case 567:
         spawn(824,x,y,direction,1,p,3);
     }
     if(entry(5)){set_action_and_finalize(9);return;}
-    if(sequence_index_13e==1 && time_counter_144>10 && (!B(0x750) || time_counter_144>25))next_sequence_block();
+    if(sequence_index_13e==1 && time_counter_144>=11 && (!B(0x750) || time_counter_144>25))next_sequence_block();
     if(sequence_index_13e==3 && time_counter_144>40)next_sequence_block();
     if(sequence_index_13e==4 && !frame_timer_142 && frame_index_140==5)F(0x100)=0.6f;
     return;
@@ -1004,7 +1004,7 @@ case 601:
     }return;
 case 602:
     texture(2,2);
-    if((!sequence_index_13e && frame_index_140<=3) || sequence_index_13e==4)landing();
+    if((!sequence_index_13e && frame_index_140<4) || sequence_index_13e==4)landing();
     if(sequence_index_13e==1) {
         float p[3];
         p[0]=static_cast<float>(static_cast<float>(tenshi_random(60))+80.0);
@@ -1087,10 +1087,10 @@ case 604:
         }
     }return;
 case 605:
-    if((!sequence_index_13e && frame_index_140<=3) || sequence_index_13e==6)landing();
+    if((!sequence_index_13e && frame_index_140<4) || sequence_index_13e==6)landing();
     texture(2,2);
     if(static_cast<unsigned short>(sequence_index_13e)<=1 && I(0x180)) {
-        if(++S(0x730)>=6){S(0x730)=0;I(0x180)=0;}
+        if(++S(0x730)>5){S(0x730)=0;I(0x180)=0;}
     }
     if(sequence_index_13e==1 && time_counter_144>=20){next_sequence_block();F(0xf8)=0.0f;F(0x100)=1.0f;return;}
     if(sequence_index_13e==2 && time_counter_144>=30) {
