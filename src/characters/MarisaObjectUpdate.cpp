@@ -721,7 +721,7 @@ case 820: {
         }
         break;
     case 4:
-        if(S(0x140)<2) {
+        if(S(0x140)<=1) {
             if(I(0x180)==6) {I(0x180)=0;++B(0x184);}
             if(I(0x180)) {
                 if(++S(0x368)>10) {S(0x368)=0;I(0x180)=0;}
@@ -762,7 +762,7 @@ case 820: {
         break;
     }
     case 8: case 9: case 10:
-        if(S(0x140)<2) {
+        if(S(0x140)<=1) {
             advance_six(0);advance_phase(10);
             F(0x11c)=static_cast<float>((I(0x144)%2)*0.1f+1.0);
             F(0x120)=static_cast<float>(1.0+0.1f*(I(0x144)%2));
@@ -2436,7 +2436,7 @@ case 989: {
         float *parameters=PARAM;F(0xec)=static_cast<float>(C(0x104)*parameters[0]+FIELD(owner,float,0xec));F(0xf0)=FIELD(owner,float,0xf0)+parameters[1];
         F(0x11c)+=0.001f;F(0x120)+=0.001f;
         if(B(0x110)>=250) {B(0x110)=255;B(0x111)+=4;}else B(0x110)+=5;
-        if(I(0x144)>=120) {
+        if(I(0x144)>119) {
             select_sequence(2);float packet[3]={0.0f,0.0f,3.0f};spawn_parented(989,F(0xec),F(0xf0),B(0x104),1,packet,3);
             B(0x110)=255;B(0x111)=255;B(0x112)=255;return;
         }
