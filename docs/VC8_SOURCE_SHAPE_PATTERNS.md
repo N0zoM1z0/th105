@@ -326,9 +326,20 @@ target lacks, so LTCG does not explain the register.
   `fldz; pop edi; fstp [100]`, so the out-of-range `ja` and the case 0–3 `jne`
   land on a later pure epilogue. Bisection shows this depends on the size of the
   whole switch: either half of the cases plus case 6 gives the target's order,
-  and the full set does not. Udonge 0x5D0E60's `pop edi` residual and Reimu's
-  cross-jumps look like the same effect. Removing redundant casts did not change
-  it.
+  and the full set does not. Removing redundant casts did not change it.
+
+  The mechanism: in our build, case 7's `if (B(0x47e) == 0)` branch retargets
+  into case 6's identical `fldz; fstp [100]; epilogue` block. That block, and
+  the epilogue after it, become shared, so VC8 cannot schedule `pop edi` into
+  case 6. The out-of-range `ja`, the case 0–3 `jne` and a `jp` then all use that
+  epilogue. In the target, case 6's block has already absorbed `pop edi`, so it no
+  longer matches case 7's, and the bare returns use the epilogue after case 7's
+  `set_action(209)`. Whether a block is scheduled before or after this
+  identical-block retargeting decides the result. Reimu 0x491C40 case 322's
+  branch into case 305's tail, which the target does and we do not, is the same
+  decision in reverse, and probably Udonge 0x5D0E60's `pop edi` too. Small
+  sub-switches change it, so it follows the order in which VC8 visits blocks,
+  not any one case's spelling.
 
 - **Udonge action entry 0x5D0E60 (2026-11-14).** The target is one plain switch
   in case order: the `jg 0x12d / jge 0x12c` and `0x230/0x231` splits are VC8's
