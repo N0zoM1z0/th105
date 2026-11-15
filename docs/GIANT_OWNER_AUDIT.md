@@ -175,7 +175,7 @@ These 76 bytes are therefore not evidence for a new authored function. The
 auxiliary table and dispatch are now recorded in `config/giant-action-switches.toml`
 and checked against raw target dwords. The updated audit traverses both tables
 and reaches **5,159/5,159** Youmu callable bytes with no unresolved indirect
-exit. See [the later bounded evidence](YOUMU_OBJECT_ENTRY_SWITCH_CLOSURE_2026_09_26.md).
+exit.
 The reachability correction made no candidate, origin, source-present, or
 exact-count promotion. Any future indirect table must likewise be backed by
 its guard, raw entries, dispatch, and bounded destinations.

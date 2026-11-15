@@ -59,7 +59,7 @@ The fresh public object has **zero mismatches in 592** actual selector/frame/
 texture/commit cases, through native RETs. The matrix retains 812/820/821/848/850/851/854 and
 the four 851 alias stress inputs, with input SHA256
 `02a34a45b03f1329f3a5376e81db3579e9ffb560ffe96ca1709453ef03e30d55`.
-The [earlier audit contract](YOUMU_ENTRY_CALLS_2026_10_19.md) still applies:
+The earlier audit contract still applies:
 zero textures, bounded resources and two x87 precisions; no arbitrary-resource,
 unmasked-exception, spawning-action or whole-root execution claim follows.
 
