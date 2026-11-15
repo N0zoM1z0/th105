@@ -19116,7 +19116,7 @@ source = "src/characters/IkuActionState.cpp"
 object = "build/match-units/GptWeb_IkuActionState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Iku620920 source hypothesis:110 action IDs, original prelude/early exits/default. Source-sharing status/private helpers are inlined into the actual void entry and have no claimed original callable boundaries. All root CALL relocations name genuine target dependencies;35 new literal keys are observed root-owned width/value pairs. Whole59038 comparison is strict and nonexact; no partial byte credit. See docs/IKU_FULL_ROOT_SOURCE_2026_10_17.md."
+notes = "Complete JP1.06a Iku620920 source hypothesis:110 action IDs, original prelude/early exits/default. Source-sharing status/private helpers are inlined into the actual void entry and have no claimed original callable boundaries. All root CALL relocations name genuine target dependencies;35 new literal keys are observed root-owned width/value pairs. Whole59038 comparison is strict and nonexact; no partial byte credit. "
 
 [[units.gpt-web-iku-action-state.functions]]
 address = "0x00620920"
