@@ -268,6 +268,25 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **One-region near misses checked on 2026-11-14.**
+  - `CsvReader::next_string` 0x40F580: the target merges its two
+    `return out = "";` blocks into the later copy, placed right after the second
+    test. Separate `if`s, `||`, `else if`, nested and early-return forms all keep
+    the earlier copy, or move the shared block to the end.
+  - Network client pacing 0x44EAD0: `[+0x88] + [+0x84]` follows neither source
+    operand order nor declaration order. Only swapping the if/else that
+    increments the two counters flips it, and that breaks the layout.
+  - Yukari event bridge 0x5983B0 case 156 ends with an extra `cmp ax, ax; jne`.
+    `short const action = state_13c; return action == 794 && sequence_13e != 1
+    && action == 794;` reproduces everything except that compare.
+  - Object responses 0x46C930 loads `candidate_output_2a` with `movzx`, while
+    the general hit resolver's identical store uses `mov ax`. `short`, `int` and
+    local-variable conversions do not change it.
+  - The animation, fighter and select transforms (0x435360, 0x435740,
+    0x45E6E0, 0x41FAD0) differ only in where `push edi` or `lea edi, [esi+4]`
+    sits relative to the first `fild`. Pivot declaration order, constness and a
+    sprite reference do not move it.
+
 - **Common fighter initializer 0x477830 (2026-11-14).** Cases 150–166 are
   `S(0x730)=0; F(0xf4)=K; F(0xf8)=0; I(0x180)=0;`. With that order the target
   keeps each block separate, and ours had merged them. Case 6 tests

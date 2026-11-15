@@ -42,18 +42,36 @@ Treat equal-size residuals as source questions first.
 
 ### Latest change
 
-Three roots became exact this session: `CProfileDeckEdit_render` 0x448F60 (2521,
-a `16.0f` literal), `Marisa_dispatch_input_policy` 0x4B9FA0 (7664 bytes)
-needed its action-412 pair written as two `if`s with an `if/else` body and a
-shared reset and return. Without that, VC8 does not merge a branching duplicate
-body after an earlier plain `ACTION` pair. `Fighter_try_dispatch_front_word_actions_690_696`
-0x494450 (950) needed literal `find()` keys and direct field reads. These patterns are in the patterns note. Open
-layout leads, each with one or two residual regions: the Youmu/Komachi
-`publish_phase` gotos (0x53A1D0, 0x5F6700), the Marisa CPU dispatch tails
-(0x4B4070), Aya control-mode duplicate tails (0x616800), and the Patchouli
-control-mode frame (+8 bytes, 0x51CB40). To find layout-only residuals in large
-functions, diff the whole body (all instructions); the first-mismatch offset
-alone hides how small the residual is.
+- `Suika_initialize_action_entry` 0x5AD4A0 is exact (two store orders).
+- Reimu 0x491C40, Udonge 0x5D0E60 and the common fighter initializer 0x477830
+  are down to a few scheduling or cross-jump regions each.
+
+The rules that produced this, all in the patterns note:
+- Use offset macros, not an inline `at<T>` accessor (the accessor blocks VC8's
+  memory disambiguation).
+- A jump-table entry that lands mid-block means a source fallthrough.
+- Search store orders by brute force rather than reasoning from the target.
+
+The remaining residuals in these switches depend on the size of the whole
+function (bisection shows this) and stay open. When diffing a whole body
+instruction by instruction, compare instruction lengths too, or branch-size
+differences hide behind normalized addresses.
+
+Earlier in this session, three roots became exact: `CProfileDeckEdit_render`
+0x448F60 (2521 bytes, a `16.0f` literal), `Marisa_dispatch_input_policy`
+0x4B9FA0 (7664 bytes) and `Fighter_try_dispatch_front_word_actions_690_696`
+0x494450 (950 bytes).
+- The Marisa input policy needed its action-412 pair written as two `if`s with
+  an `if/else` body and a shared reset and return. Without that, VC8 does not
+  merge a branching duplicate body after an earlier plain `ACTION` pair.
+- The 690/696 dispatcher needed literal `find()` keys and direct field reads.
+
+Open layout leads, each with one or two residual regions:
+- the Youmu/Komachi constant-only tail merges (0x53A1D0, 0x5F6700; RTM gives
+  the same result);
+- the Marisa CPU dispatch tails (0x4B4070);
+- the Aya control-mode duplicate tails (0x616800);
+- the Patchouli control-mode frame (+8 bytes, 0x51CB40).
 
 Earlier in this session:
 
