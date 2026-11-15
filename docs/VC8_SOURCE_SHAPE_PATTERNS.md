@@ -287,6 +287,14 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **Battle menu update 0x4407E0 (2026-11-15).** Ending the three outer cases
+  with `break;` before the single trailing `return true;` makes VC8 load the
+  constant 1 into `ebx` once, in the switch head, as the target does. That took
+  the function from 10 regions to 1. The remaining region: the target lays out
+  case 3/4's inner `else { state_04 = ...; show_profile_message(...); return
+  true; }` after the `end_pending_84` assignments, and ours keeps source order
+  (and merges the `= 2` branch elsewhere).
+
 - **Menu cursor update 0x41FA20 `idiv` by 6 (2026-11-14).** The target computes
   `input % 6` as `mov edi, 6; cdq; idiv edi` inside otherwise `/O2` code.
   - These do not reproduce it: `/O1` or `/Os` (`push 6; pop edi` and `inc eax`),

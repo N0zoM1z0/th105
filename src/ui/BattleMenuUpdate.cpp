@@ -73,7 +73,7 @@ bool BattleMenuUpdateView::update()
    dispatch_indexed_event(41);
    return false;
   }
-  return true;
+  break;
  case 30:
  case 40:
   switch(message_result()) {
@@ -90,14 +90,14 @@ bool BattleMenuUpdateView::update()
    state_04=0;
    return true;
   }
-  return true;
+  break;
  case 31:
  case 41:
   if(confirmation_result()) {
    if(state_04==31) owner_74->end_pending_84=1;
    else owner_74->end_pending_84=2;
   }
-  return true;
+  break;
  }
  return true;
 }
