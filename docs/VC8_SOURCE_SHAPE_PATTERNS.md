@@ -276,6 +276,15 @@ target lacks, so LTCG does not explain the register.
 
 ## Parked residuals (tried, still nonexact)
 
+- **Scenario character install 0x456EB0 initial EH state (2026-11-14).** After
+  writing `entry.value_0bc = 480 + y;` before the colour bytes, only one store
+  differs. The target sets the EH state to 0 before the `ScenarioTextEntryDC`
+  constructor call; ours sets 1. Both unwind maps are identical (0 = `text`,
+  1 = `name`, 2 = entry, 3 and 4 = the pair temporaries). So the target treats
+  the by-value `name` parameter as not yet live at that call. Moving the entry
+  declaration, dropping the `s` alias and using a named pair local did not
+  change it.
+
 - **Compiler settings ruled out for the merge and scheduling residuals
   (2026-11-14).** These left the residuals of Reimu 0x491C40, Komachi 0x5F6700,
   the CSV reader 0x40F580 and Udonge 0x5D0E60 unchanged:

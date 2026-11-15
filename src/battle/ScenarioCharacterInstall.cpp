@@ -20,9 +20,9 @@ void CScenarioData::install_character(
         entry.value_0b8 = x;
         entry.flag_0d5 = 1;
     }
+    entry.value_0bc = 480 + y;
     entry.flag_0b5 = red;
     entry.flag_0b6 = green;
-    entry.value_0bc = 480 + y;
     entry.flag_0b7 = blue;
     s.text_entries_32c.insert(std::pair<std::string, ScenarioTextEntryDC>(name, entry));
     ScenarioEffectConfig128 *config = &s.effect_config_1fc;
