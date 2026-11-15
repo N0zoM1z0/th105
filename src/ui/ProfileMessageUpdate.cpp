@@ -34,14 +34,11 @@ extern "C" int __cdecl update_profile_message()
             g_profile_message_choice_a->enabled = false;
             g_profile_message_choice_d->enabled = false;
         }
-        return 0;
-    }
-    if (g_active_menu_input->hold.buttons[0] == 1) {
+    } else if (g_active_menu_input->hold.buttons[0] == 1) {
         dispatch_indexed_event(0x28);
         hide_message();
         return (g_profile_message_cursor.selection != 0) + 3;
-    }
-    if (g_active_menu_input->hold.buttons[1] == 1 ||
+    } else if (g_active_menu_input->hold.buttons[1] == 1 ||
         is_menu_initial_press(1,0,0,0)) {
         dispatch_indexed_event(0x29);
         hide_message();

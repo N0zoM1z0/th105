@@ -5,6 +5,15 @@ signature, the source shape that reproduces it and the function where it was pro
 
 ## Patterns that produced exact matches
 
+**One trailing return reached by an else-if chain, not repeated returns.** When
+the target has several separate copies of a small return (`xor eax, eax; pop
+ebx; ret`), including one right after the last test, write
+`if (a) {...} else if (b) {...; return x;} else if (c) {...} return 0;`. VC8
+duplicates the single trailing return into each predecessor. Separate
+`return 0;` statements instead let the last one cross-jump into an earlier copy.
+Proven on `update_profile_message` 0x43F6E0. The battle menu update 0x4407E0
+needed the switch version of the same idea (cases ending in `break`).
+
 **Switch lowering counts distinct case bodies, not distinct addresses.** VC8
 decides between one jump table and a split decision tree before it merges
 identical case blocks. `EffectObject::update` 0x659AA0 has 79 case values in
