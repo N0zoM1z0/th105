@@ -371,12 +371,12 @@ case 848: {
 
     switch(S(0x13e)) {
     case 0: {
-        if(S(0x140)<=15) position_relative_to_owner(0,0);void *owner=OWNER;if((FIELD(owner,short,0x13c)==302 && FIELD(owner,short,0x13e)==0 && FIELD(owner,short,0x140)<8) || S(0x140)>=16) break;select_frame(16);return;
+        if(S(0x140)<=15) position_relative_to_owner(0,0);void *owner=OWNER;if((FIELD(owner,short,0x13c)==302 && FIELD(owner,short,0x13e)==0 && FIELD(owner,short,0x140)<8) || S(0x140)>15) break;select_frame(16);return;
     }
     case 1:F(0x11c)*=static_cast<double>(0.95f);F(0x120)=F(0x11c);if(I(0x144)>=12) {if(B(0x113)<12) RETIRE();B(0x113)-=12;B(0x111)-=12;B(0x110)-=12;}break;
     case 2:F(0x11c)+=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(I(0x144)>=12) {if(B(0x113)<12) RETIRE();B(0x113)-=12;B(0x111)-=12;B(0x110)-=12;}break;
     case 3: {
-        if(S(0x140)<=15) position_relative_to_owner(0,0);void *owner=OWNER;if((FIELD(owner,short,0x13c)==302 && FIELD(owner,short,0x13e)==1) || S(0x140)>=16) break;select_frame(16);return;
+        if(S(0x140)<=15) position_relative_to_owner(0,0);void *owner=OWNER;if((FIELD(owner,short,0x13c)==302 && FIELD(owner,short,0x13e)==1) || S(0x140)>15) break;select_frame(16);return;
     }
     case 4:F(0x11c)*=static_cast<double>(0.9f);F(0x120)=F(0x11c);if(I(0x144)>=0) {if(B(0x113)<15) RETIRE();B(0x113)-=15;B(0x111)-=15;B(0x110)-=15;}break;
     case 5:position_relative_to_owner(0,0);{short action=FIELD(OWNER,short,0x13c);if(action!=321 && action!=322) RETIRE();}break;
@@ -512,7 +512,7 @@ case 855: {
             for(float index=0.0f;index<6.0f;index+=1.0) {packet[0]=static_cast<float>(static_cast<double>(RF(60))-120.0);packet[1]=static_cast<float>(static_cast<double>(RF(10))+10.0);packet[2]=1.0f;spawn_unparented(855,static_cast<float>(static_cast<double>(RF(300))+(static_cast<double>(F(0xec))-150.0)),F(0xf0),B(0x104),B(0x364),packet,3);}
         }
         if(F(0xec)>1480.0f || F(0xec)<-200.0) RETIRE();{double currentY=F(0xf0);if(stage_surface_height()!=currentY) RETIRE();}MOVE();break;
-    case 4:F(0x11c)+=static_cast<double>(0.025f);F(0x120)*=static_cast<double>(0.99f);if(B(0x113)<6) RETIRE();B(0x113)-=6;break;
+    case 4:F(0x11c)+=static_cast<double>(0.025f);F(0x120)*=static_cast<double>(0.99f);if(B(0x113)<=5) RETIRE();B(0x113)-=6;break;
     case 5:
         MOTION->set_components(PARAM[0],PARAM[1]);if(FIELD(OWNER,short,0x174)<=0) RETIRE();if(I(0x144)%5==0) {float packet[4]={0.0f,0.0f,6.0f,0.0f};spawn_unparented(855,F(0xec),F(0xf0),B(0x104),1,packet,4);packet[2]=7.0f;spawn_unparented(855,F(0xec),F(0xf0),B(0x104),1,packet,4);}if(PARAM[3]<=static_cast<double>(I(0x144))) RETIRE();MOVE();break;
     case 6:F(0x11c)-=static_cast<double>(0.05f);F(0x120)=F(0x11c);if(B(0x113)<=20) RETIRE();B(0x113)-=20;B(0x110)-=20;B(0x111)-=20;break;
@@ -787,7 +787,7 @@ case 940: {
     switch(S(0x13e)) {
     case 0: {
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1460.0 || F(0xf0)<-100.0) RETIRE();F(0x12c)+=40.0;
-        if(S(0x364)!=0) {B(0x184)=0;if(B(0x113)<6) RETIRE();F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);B(0x113)-=6;B(0x111)-=5;B(0x110)-=5;break;}
+        if(S(0x364)!=0) {B(0x184)=0;if(B(0x113)<=5) RETIRE();F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);B(0x113)-=6;B(0x111)-=5;B(0x110)-=5;break;}
         if(FIELD(entryOwner,short,0x174)<=0) {S(0x364)=1;return;}
         if(I(0x144)%4==0) {float packet[4]={0.0f,0.0f,5.0f,1.0f};spawn_unparented(940,static_cast<float>(static_cast<double>(RF(100))+F(0xec)-50.0),static_cast<float>(static_cast<double>(RF(100))+F(0xf0)-50.0),B(0x104),1,packet,4);}
         advance_six(0);advance_phase(0);if(I(0x180)!=0 && ++S(0x366)>=10) {S(0x366)=0;B(0x184)=1;I(0x180)=0;}
@@ -800,7 +800,7 @@ case 940: {
     }
     case 1: {
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1460.0 || F(0xf0)<-100.0) RETIRE();F(0x12c)+=40.0;
-        if(S(0x364)!=0) {B(0x184)=0;if(B(0x113)<6) RETIRE();F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);B(0x113)-=6;B(0x111)-=5;B(0x110)-=5;break;}
+        if(S(0x364)!=0) {B(0x184)=0;if(B(0x113)<=5) RETIRE();F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);B(0x113)-=6;B(0x111)-=5;B(0x110)-=5;break;}
         if(FIELD(entryOwner,short,0x174)<=0) {S(0x364)=1;return;}
         if(I(0x144)%4==0) {float packet[4]={0.0f,0.0f,5.0f,1.0f};spawn_unparented(940,static_cast<float>(static_cast<double>(RF(200))+F(0xec)-100.0),static_cast<float>(static_cast<double>(RF(200))+F(0xf0)-100.0),B(0x104),1,packet,4);}
         advance_six(0);advance_phase(0);if(I(0x180)!=0 && ++S(0x366)>=10) {S(0x366)=0;B(0x184)=1;I(0x180)=0;}
@@ -812,7 +812,7 @@ case 940: {
     }
     case 2: {
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1460.0 || F(0xf0)<-100.0) RETIRE();F(0x12c)+=40.0;
-        if(S(0x364)!=0) {B(0x184)=0;if(B(0x113)<6) RETIRE();F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);B(0x113)-=6;B(0x111)-=5;B(0x110)-=5;break;}
+        if(S(0x364)!=0) {B(0x184)=0;if(B(0x113)<=5) RETIRE();F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);B(0x113)-=6;B(0x111)-=5;B(0x110)-=5;break;}
         if(FIELD(entryOwner,short,0x174)<=0) {S(0x364)=1;return;}
         if(I(0x144)%4==0) {float packet[4]={0.0f,0.0f,5.0f,1.0f};spawn_unparented(940,static_cast<float>(static_cast<double>(RF(300))+F(0xec)-150.0),static_cast<float>(static_cast<double>(RF(300))+F(0xf0)-150.0),B(0x104),1,packet,4);}
         advance_six(0);advance_phase(0);if(I(0x180)!=0 && ++S(0x366)>=10) {S(0x366)=0;B(0x184)=1;I(0x180)=0;}
