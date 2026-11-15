@@ -37,8 +37,7 @@ on `CBattleManager::update_event_timer` 0x472A70 (172 bytes).
 back into an earlier `xor al, al; ret` while the fall-through returns true, write
 one trailing `return true` reached from several paths. An adjacent
 `if (x) return false; return true;` pair folds into `setne`.
-Proven on `CProfileKeyConfig::capture_key_input` 0x44B540
-([note](PROFILE_KEY_CAPTURE_SOURCE_2026_11_03.md)).
+Proven on `CProfileKeyConfig::capture_key_input` 0x44B540.
 
 **Clamp with a repeated upper-bound test.** The signature is
 `cmp v, hi; jg → hi; cmp v, lo; jge → (cmp v, hi; jle → v; else hi); else lo`,
@@ -46,8 +45,7 @@ with the operand re-read from memory each time. That is a macro clamp,
 `max(min(v, hi), lo)`, written with the `std::min`/`std::max` comparison order. Use
 `TH105_CLAMP` from `src/engine/MinMax.hpp`. The CRT `__min`/`__max` macros give `jge` instead of
 `jg`, and the `std::` templates bind temporaries and grow the code.
-Proven on `CMenuConfig` constructor 0x441520
-([note](CONFIG_MENU_CONSTRUCTOR_2026_10_31.md)).
+Proven on `CMenuConfig` constructor 0x441520.
 
 **AND of arithmetic sign masks.** Four `sar r, 31` results ANDed together come
 from `(a >> 31) & (b >> 31) & ...` on `int`. An unsigned
@@ -58,13 +56,13 @@ Proven on `test_descriptor_point_inside` 0x46B8B0
 **Char local at the bottom of its slot.** When a single `char` whose address is
 taken lives at offset 0 of a 4-byte slot, it is a by-value `char` parameter of an
 inlined helper. Scalar `char` locals and `char[1]` arrays go at offset 3. Proven on
-`CFileList::go_parent_directory` 0x4398B0 ([note](FILE_LIST_PARENT_SOURCE_2026_11_01.md)).
+`CFileList::go_parent_directory` 0x4398B0.
 
 **Typed fields instead of `char *` offset views.** A load hoisted above a byte
 store in the target, such as a vtable load before `++state`, needs a typed member.
 Access through `reinterpret_cast<unsigned char *>(this)[offset]` may alias
 anything, so VC8 keeps the original order. Proven on the Arcade post pipeline
-0x472F80 ([note](BATTLE_ARCADE_POST_PIPELINE_2026_11_04.md)). Offset-macro
+0x472F80. Offset-macro
 sources such as the character input policies are candidates for the same fix.
 
 **Offset macros, not an inline accessor template.** For typed offset fields, an
@@ -96,13 +94,11 @@ an embedded object's fields through a register that holds its address, use an
 inline member on that object instead of `owner.member.field = value`.
 **Loop induction base.** The array referenced first inside the loop body becomes
 the loop's pointer induction variable. A local such as `row = items[i]` can
-move that choice. Both were proven on `CTitle::render` 0x425740
-([note](TITLE_RENDER_2026_11_04.md)).
+move that choice. Both were proven on `CTitle::render` 0x425740.
 
 **Extra checked-iterator range test after `begin()`.** A `+=` range check
 directly after the `begin()` check means `begin() + n`. Look for a seek or
-index helper called with 0. Proven on `CScenarioData::select_label` 0x455490
-([note](SCENARIO_LABEL_SOURCE_2026_11_03.md)), which also needed its search loop
+index helper called with 0. Proven on `CScenarioData::select_label` 0x455490, which also needed its search loop
 written as `for (;;)` with the null exit first.
 
 **`compare(0, size, ptr, 0)` means `== ""`.** An explicit compare call with
@@ -113,14 +109,14 @@ Map the `""` literal symbol in the unit's `dir32_targets`. Proven on 0x4317A0
 **Checked container comparisons kept under LTCG need `const_iterator`.** When
 the target compares an iterator's container against a global list address on every
 step, declare the loop iterators as `const_iterator`. Plain iterators let LTCG fold
-those checks. Proven on 0x4194D0 ([note](AUDIO_SCHEDULER_LISTENERS_LTCG_2026_10_29.md)).
+those checks. Proven on 0x4194D0.
 Linked units declare in-function alignment filler with `alignment_sites`.
 
 **Compare in memory, then reload: two access paths.** A field tested directly
 and then used inside an inline member of the object that contains it (or the
 other way round) is not merged by VC8. The target then compares in memory and
 reloads. Look for an embedded object whose inline members do the work. Proven on
-0x4038D0 and 0x403840 ([note](BGM_SERVICE_LTCG_2026_10_29.md)). The 0x45D040
+0x4038D0 and 0x403840. The 0x45D040
 deque rewrite showed the same effect.
 
 **Rebuild before trusting a nonexact ledger entry.** Three functions were

@@ -49,7 +49,7 @@ tables also share these physical callbacks. The durable CDesignGage names
 identify one observed owner; each physical body is counted once.
 
 The factory, RTTI and lifetime fields explain the gauge-shaped UI subobject
-previously seen by [BattleInfo binding](BATTLE_INFO_GAUGE_BINDING_2026_10_19.md).
+previously seen by BattleInfo binding.
 They do not independently prove the dynamic XML type of every pointer supplied
 to that binding root.
 

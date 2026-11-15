@@ -146,7 +146,7 @@ complete selected source nonexact until canonical zero-difference comparison.
 
 ## Native end provider follow-up
 
-[The native end checkpoint](TEXT_FONT_END_2026_10_21.md) supplies a real
+The native end checkpoint supplies a real
 file-local end provider in this TU and extends the bounded prefix through its
 actual native color list. The selected caller is now324/116, canonicalc23fa0a9,
 still nonexact+0; the326-byte source/hash and receipts above describe the frozen

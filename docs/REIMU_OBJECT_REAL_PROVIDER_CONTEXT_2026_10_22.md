@@ -1,6 +1,6 @@
 # ReimuObject resolved real-provider context
 
-This follows [the 404E60 dependency recovery](TEXTURE_SIZE_QUERY_2026_10_22.md).
+This follows the 404E60 dependency recovery.
 The Japanese 1.06a target hash remains
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Fresh IDA preflight rejects the open image; it contributes no semantics.

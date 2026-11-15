@@ -46,4 +46,4 @@ use its handwritten vptr initialization.
 Combined accounting with the newly qualified implicit packet cleanup8:
 authored1429/443911 bytes, source-present1634, authored1653, excluded2072,
 review302, mapped1821 and units808. No parent, EH, RTTI, scalar or queue-group
-support credit is added. See NETWORK_BASE_NESTED_EH_OWNER_2026_11_02.md.
+support credit is added.

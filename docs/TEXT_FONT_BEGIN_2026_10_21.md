@@ -146,7 +146,7 @@ Do not force extra stack storage or repeat neutral compiler-version controls.
 
 ## Native owner construction follow-up
 
-[The owner constructor checkpoint](TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md)
+The owner constructor checkpoint
 recovers complete411430 at138/138 through genuine GL/LTCG and native config/list/
 string source. It resolves the ordinary142-byte sentinel-receiver difference,
 without a shared runtime-prefix change or credit for the excluded helper.

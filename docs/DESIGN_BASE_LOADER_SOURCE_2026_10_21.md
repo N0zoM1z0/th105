@@ -172,8 +172,8 @@ and honest larger TU/LTCG context remain open; no compiler setting or public
 source is changed and no new exact is recorded.
 
 No unrelated replay or aggregate claim is made. The preceding cleanup blocker is now
-superseded by [its complete 310-byte
-acceptance](DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md).
+superseded by its complete 310-byte
+acceptance.
 
 ## Shared reader forwarding control, 2026-10-31
 

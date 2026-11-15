@@ -10,7 +10,7 @@ Exact shared battle bootstrap438F50 calls46A260 at439091. Its effect owner is
 weather emitter48. The initializer calls vector<CEffectSprite>::_Assign_n at
 4663E0 and publishes CEffectSprite vptr6C072C on the fill temporary. That helper
 is independently exact186 bytes with0xE8 elements, as recorded in
-EFFECT_SPRITE_OWNER_2026_10_29.md. The earlier vector<CSpriteEx>/resize hypothesis
+The earlier vector<CSpriteEx>/resize hypothesis
 is superseded. Existing lifetime/runtime views now use the actual element type.
 The transition entry still carries a normal CSpriteEx base pointer.
 

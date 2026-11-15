@@ -73,7 +73,7 @@ source = "src/assets/FileReader.cpp"
 object = "build/match-units/CrossV106a_FileReader.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Two accessor anchors remain exact. Owner open213 and destructor15 are selected in the genuine file/CSV/script CIL unit; path constructors and real package-provider visibility recover native construction. See docs/FILE_READER_OPEN_EXACT_2026_10_30.md."
+notes = "Two accessor anchors remain exact. Owner open213 and destructor15 are selected in the genuine file/CSV/script CIL unit; path constructors and real package-provider visibility recover native construction."
 
 [[units.cross-v106a-file-reader.functions]]
 address = "0x00407C40"
@@ -105,7 +105,7 @@ source = "src/battle/BodyCollision.cpp"
 object = "build/match-units/CrossV106a_BodyCollision.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a body-collision phase. Target-pinned ordered/unordered center ties, explicit rounded directional velocities and one common average lifetime reproduce the full 1862-byte callable. The two real scratch phases use the observed byte/float stack location; no inactive union member is read. Original class/TU spelling is unknown. See docs/FIGHTER_BODY_COLLISION_2026_10_02.md."
+notes = "TH105 1.06a body-collision phase. Target-pinned ordered/unordered center ties, explicit rounded directional velocities and one common average lifetime reproduce the full 1862-byte callable. The two real scratch phases use the observed byte/float stack location; no inactive union member is read. Original class/TU spelling is unknown."
 
 [[units.cross-v106a-body-collision.functions]]
 address = "0x0046CCA0"
@@ -626,7 +626,7 @@ source = "src/battle/BattleSetupSlots.cpp"
 object = "build/match-units/CrossV106a_BattleSetupSlots.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a battle setup slot lane. Exact checked selector 0x004284C0 remains 60/60. Recovered checked-vector size provenance plus the always-store maximum-slot lifetime makes save_battle_setup_slot 0x0042B9B0 canonical exact 305/305; load_battle_setup_slot remains332/332 nonexact+0x92. Watch-input configuration 0x42BC40 is exact at 140 bytes through an inline token-rebind helper. docs/WATCH_INPUT_CONFIGURATION_SOURCE_2026_11_01.md."
+notes = "TH105 1.06a battle setup slot lane. Exact checked selector 0x004284C0 remains 60/60. Recovered checked-vector size provenance plus the always-store maximum-slot lifetime makes save_battle_setup_slot 0x0042B9B0 canonical exact 305/305; load_battle_setup_slot remains332/332 nonexact+0x92. Watch-input configuration 0x42BC40 is exact at 140 bytes through an inline token-rebind helper."
 
 [[units.cross-v106a-fixed-slot-select.functions]]
 address = "0x004284C0"
@@ -1981,7 +1981,7 @@ source = "src/characters/CommandGates.cpp"
 object = "build/match-units/CrossV106a_CommandGatesFamily.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Eight original command-gate family roots remain canonical exact. Additional complete front-card gate494450 emits950/native950 but is nonexact+72 and source-present only. Current fighter-phase/counter/lookup callees are independently bound. docs/FRONT_CARD_ACTION_GATE_SOURCE_2026_10_31.md."
+notes = "Eight original command-gate family roots remain canonical exact. Additional complete front-card gate494450 emits950/native950 but is nonexact+72 and source-present only. Current fighter-phase/counter/lookup callees are independently bound."
 
 [[units.cross-v106a-command-gates-family.functions]]
 address = "0x00493AC0"
@@ -3455,7 +3455,7 @@ source = "src/battle/EffectSprite.cpp"
 object = "build/match-units/CrossV106a_EffectSpriteScalarDtor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Native CEffectSprite is0xE8, owned by nonpolymorphic AnimationSpriteState0x12C. Member-before-owner reset recovers constructor79/79 without artificial vptr/EH stores; existing scalar and IColor lifetimes stay exact. docs/EFFECT_SPRITE_OWNER_2026_10_29.md."
+notes = "Native CEffectSprite is0xE8, owned by nonpolymorphic AnimationSpriteState0x12C. Member-before-owner reset recovers constructor79/79 without artificial vptr/EH stores; existing scalar and IColor lifetimes stay exact."
 
 [[units.cross-v106a-effect-sprite-scalar-dtor.functions]]
 address = "0x00421FF0"
@@ -6695,7 +6695,7 @@ source = "src/battle/EffectSpriteTransforms.cpp"
 object = "build/match-units/CrossV106a_EffectSpriteTransforms.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "TH105 1.06a CSpriteEx transform core. Current copy construction fixes the 0x80 source quad and 0xb0 working quad as four 12-byte xyz points. Both 0x30 quad copies, translation, three origin-scale overloads, and X/Y/Z pivot scales are natural exact. The origin-scale bodies preserve target x87 source evaluation order: points 0/3 use scale*field while points 1/2 use field*scale. The six-argument rotation is canonical exact 1095/1095 with target-proven sum grouping, function-local fenv_access(on), and shared cosine/sine/x/y/z temporaries (docs/SPRITE_PIVOT_ROTATION_2026_10_02.md)."
+notes = "TH105 1.06a CSpriteEx transform core. Current copy construction fixes the 0x80 source quad and 0xb0 working quad as four 12-byte xyz points. Both 0x30 quad copies, translation, three origin-scale overloads, and X/Y/Z pivot scales are natural exact. The origin-scale bodies preserve target x87 source evaluation order: points 0/3 use scale*field while points 1/2 use field*scale. The six-argument rotation is canonical exact 1095/1095 with target-proven sum grouping, function-local fenv_access(on), and shared cosine/sine/x/y/z temporaries."
 
 [[units.cross-v106a-effect-sprite-transforms.functions]]
 address = "0x00407340"
@@ -10421,7 +10421,7 @@ source = "src/battle/ScriptCommandLifetime.cpp"
 object = "build/match-units/CrossV106a_ScriptCommandLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Current CScript/command runtime core: exact0x34 CScript ctor and RTTI-owned CComCharacter parser. clear_commands and its actual pending cleanup now belong to the genuine linked lifecycle unit; no fabricated live-ins. docs/SCRIPT_PENDING_LIFETIME_2026_10_29.md."
+notes = "Current CScript/command runtime core: exact0x34 CScript ctor and RTTI-owned CComCharacter parser. clear_commands and its actual pending cleanup now belong to the genuine linked lifecycle unit; no fabricated live-ins."
 
 [[units.cross-v106a-script-command-lifetime.functions]]
 address = "0x00405600"
@@ -14545,7 +14545,7 @@ source = "src/ui/CNumberLifetime.cpp"
 object = "build/match-units/GptWeb_CNumberLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Raw CNumber RTTI COL 0x006DCBEC proves a zero-offset IColor base and vtable 0x006C1B60 owns deleting destructor plus three color-forwarding slots. Explicitly defining the real embedded tile destructor restores the target member-before-base vptr cleanup naturally. All six functions are canonical exact: the existing40-byte normal destructor, three11-byte forwarding virtuals and60-byte scalar deleting destructor, plus the RTTI-owned CDesignNumber61-byte scalar deleting destructor with its actual CNumber member at+18. docs/CNUMBER_MEMBER_DESTRUCTOR_2026_10_20.md; docs/DESIGN_NUMBER_LIFETIME_2026_10_21.md."
+notes = "Raw CNumber RTTI COL 0x006DCBEC proves a zero-offset IColor base and vtable 0x006C1B60 owns deleting destructor plus three color-forwarding slots. Explicitly defining the real embedded tile destructor restores the target member-before-base vptr cleanup naturally. All six functions are canonical exact: the existing40-byte normal destructor, three11-byte forwarding virtuals and60-byte scalar deleting destructor, plus the RTTI-owned CDesignNumber61-byte scalar deleting destructor with its actual CNumber member at+18.; docs/DESIGN_NUMBER_LIFETIME_2026_10_21.md."
 
 [[units.gpt-web-cnumber-lifetime.functions]]
 address = "0x0040ADB0"
@@ -14763,7 +14763,7 @@ source = "src/network/NetworkBaseConstructorRuntime.cpp"
 object = "build/match-units/GptWeb_NetworkBaseConstructorRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Actual nested queue-pair lifetime at+20C and natural global CSprite members. Main411, complete remote EH197 and metadata116 replay through scripts/audit-network-base-constructor-eh.py. Implicit packet cleanup8 is separately compiler-owned; group19 remains support outside inventory. docs/NETWORK_BASE_NESTED_EH_OWNER_2026_11_02.md."
+notes = "Actual nested queue-pair lifetime at+20C and natural global CSprite members. Main411, complete remote EH197 and metadata116 replay through scripts/audit-network-base-constructor-eh.py. Implicit packet cleanup8 is separately compiler-owned; group19 remains support outside inventory."
 
 [[units.gpt-web-network-base-constructor-runtime.functions]]
 address = "0x0044DB10"
@@ -17818,7 +17818,7 @@ source = "src/characters/ObjectAction980.cpp"
 object = "build/match-units/GptWeb_ObjectAction980.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Canonical exact323/323 @596370 after changing only the local virtual+0C sequence parameter declaration from int to short in its four-byte stack slot. Complete82-instruction/one-RET boundary and all relocation fields close under unchanged VC8 SP1 O2 profile and providers. Target/source canonical SHA1ae566c8. Supersedes the earlier nonexact scheduling/LTCG hypothesis; no global selector return/argument declaration is changed. Formal command: python3 scripts/build.py --unit gpt-web-object-action-980 --compare --json. docs/OBJECT_ACTION980_WORD_ABI_2026_10_19.md."
+notes = "Canonical exact323/323 @596370 after changing only the local virtual+0C sequence parameter declaration from int to short in its four-byte stack slot. Complete82-instruction/one-RET boundary and all relocation fields close under unchanged VC8 SP1 O2 profile and providers. Target/source canonical SHA1ae566c8. Supersedes the earlier nonexact scheduling/LTCG hypothesis; no global selector return/argument declaration is changed. Formal command: python3 scripts/build.py --unit gpt-web-object-action-980 --compare --json."
 
 [[units.gpt-web-object-action-980.functions]]
 address = "0x00596370"
@@ -18259,7 +18259,7 @@ source = "src/assets/CBitmapDataRuntime.cpp"
 object = "build/match-units/GptWeb_CBitmapDataRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI/COL 0x006DCFB0 names CBitmapData and vtable 0x006D6E10 owns the complete recovered runtime lane. /GS leaves ctor 23/23, scalar dtor 47/47, normal dtor 21/21, descriptor copy 196/196 and png read callback 33/33 exact. BMP callable is [0x00419FF0,0x0041A8A6), 2230 bytes; old 2197-byte COFF total included only 2149 code bytes, three alignment bytes and 45 switch-table bytes. Revised staged RGB1555 quantization/scalar palette loops emit 2133 code bytes plus three alignment and 45 metadata bytes (2181 total), still nonexact at +0x10 with 438h versus target430h frame. Mask widths/grouping, cleanup inlining and register lifetimes remain under investigation; the old claim that only stack coloring remained was unproved. PNG remains nonexact680/703. The raw file loader41ACA0 is now selected in genuine reader/package CIL and canonical448/full EH; see docs/BITMAP_FILE_LOAD_EXACT_2026_10_30.md. The real <new> declarations now emit array operator-new symbols mapped to the observed forwarding entry; all five accepted siblings and the BMP canonical payload are unchanged. EH tables have one cleanup state and replay equally; EH code differs in three stack-offset bytes. Palette entryESP-0x40C is invariant, scalar workspace target48/source56 bytes. See docs/CBITMAP_BMP_EH_2026_10_19.md and docs/CBITMAP_BMP_2026_10_19.md; no private ABI or byte shaping is accepted."
+notes = "Current RTTI/COL 0x006DCFB0 names CBitmapData and vtable 0x006D6E10 owns the complete recovered runtime lane. /GS leaves ctor 23/23, scalar dtor 47/47, normal dtor 21/21, descriptor copy 196/196 and png read callback 33/33 exact. BMP callable is [0x00419FF0,0x0041A8A6), 2230 bytes; old 2197-byte COFF total included only 2149 code bytes, three alignment bytes and 45 switch-table bytes. Revised staged RGB1555 quantization/scalar palette loops emit 2133 code bytes plus three alignment and 45 metadata bytes (2181 total), still nonexact at +0x10 with 438h versus target430h frame. Mask widths/grouping, cleanup inlining and register lifetimes remain under investigation; the old claim that only stack coloring remained was unproved. PNG remains nonexact680/703. The raw file loader41ACA0 is now selected in genuine reader/package CIL and canonical448/full EH; The real <new> declarations now emit array operator-new symbols mapped to the observed forwarding entry; all five accepted siblings and the BMP canonical payload are unchanged. EH tables have one cleanup state and replay equally; EH code differs in three stack-offset bytes. Palette entryESP-0x40C is invariant, scalar workspace target48/source56 bytes. See docs/CBITMAP_BMP_EH_2026_10_19.md and docs/CBITMAP_BMP_2026_10_19.md; no private ABI or byte shaping is accepted."
 
 [[units.gpt-web-cbitmap-data-runtime.functions]]
 address = "0x00419F80"
@@ -18345,7 +18345,7 @@ source = "src/battle/EffectHandlePoolAcquire.cpp"
 object = "build/match-units/GptWeb_EffectObjectHierarchyLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current RTTI PMDs prove CSelectObject/InfoEffectObject share EffectObjectBase with physical AnimationObject +0 and CObjectBase +0x158. The real handle-pool acquire TU instantiates their inline constructors and therefore emits the AnimationObject scalar lifetime COMDAT. AnimationObject +0x154 owns the same non-polymorphic {CEffectSprite} wrapper independently exact-backed by CharacterObject_release_auxiliary_renderer. Scalar lifetime is canonical 73/73 and CSelectObject-owned update slot +0x28 is a natural 5/5 tail-jump facade to exact advance_frame_and_dispatch; both derived ctors are now canonical59/59 with initialization-bearing four-byte handle values. All affected accepted consumers retain their matches; docs/OBJECT_HANDLE_VALUE_2026_10_29.md."
+notes = "Current RTTI PMDs prove CSelectObject/InfoEffectObject share EffectObjectBase with physical AnimationObject +0 and CObjectBase +0x158. The real handle-pool acquire TU instantiates their inline constructors and therefore emits the AnimationObject scalar lifetime COMDAT. AnimationObject +0x154 owns the same non-polymorphic {CEffectSprite} wrapper independently exact-backed by CharacterObject_release_auxiliary_renderer. Scalar lifetime is canonical 73/73 and CSelectObject-owned update slot +0x28 is a natural 5/5 tail-jump facade to exact advance_frame_and_dispatch; both derived ctors are now canonical59/59 with initialization-bearing four-byte handle values. All affected accepted consumers retain their matches."
 
 [[units.gpt-web-effect-object-hierarchy-lifetime.functions]]
 address = "0x00422180"
@@ -18379,7 +18379,7 @@ source = "src/audio/WaveDataRuntime.cpp"
 object = "build/match-units/GptWeb_WaveDataRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Current game-side WaveData loaders owned by DirectSound resource dispatch. .cv3 uses ordinary stdcall WaveData/path ABI; RIFF/WAVE target is LTCG scalar-replaced across ECX/stack fields, so tracked source preserves the natural 0x1C WaveData API and accepts a formal nonexact ABI residual rather than inventing registers. Real <new> declarations now select array-new symbol665B8A for the retained array expressions; complete comparison payloads remain unchanged. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
+notes = "Current game-side WaveData loaders owned by DirectSound resource dispatch. .cv3 uses ordinary stdcall WaveData/path ABI; RIFF/WAVE target is LTCG scalar-replaced across ECX/stack fields, so tracked source preserves the natural 0x1C WaveData API and accepts a formal nonexact ABI residual rather than inventing registers. Real <new> declarations now select array-new symbol665B8A for the retained array expressions; complete comparison payloads remain unchanged."
 
 [[units.gpt-web-wave-data-runtime.functions]]
 address = "0x00419690"
@@ -18534,7 +18534,7 @@ source = "src/battle/BattleInfoGaugeRuntime.cpp"
 object = "build/match-units/GptWeb_BattleInfoGaugeRuntime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Game TGageValue int*/short* virtuals20/27 and complete BattleInfoRecordF8 bind648 are canonical exact. Binding reads signed16-bit fighter inputs, releases each old gauge with scalar delete before scalar new, captures the real per-stage pointer/span lifetimes and uses the observed UI binding receiver+18/gauge+A0 layout. Double loop endpoints retain the target float rounding. The class identity behind that bounded UI view remains unknown. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md. Story binder 0x00471A80 is also canonical exact at 351 bytes using its typed integer-health owner view."
+notes = "Game TGageValue int*/short* virtuals20/27 and complete BattleInfoRecordF8 bind648 are canonical exact. Binding reads signed16-bit fighter inputs, releases each old gauge with scalar delete before scalar new, captures the real per-stage pointer/span lifetimes and uses the observed UI binding receiver+18/gauge+A0 layout. Double loop endpoints retain the target float rounding. The class identity behind that bounded UI view remains unknown. Story binder 0x00471A80 is also canonical exact at 351 bytes using its typed integer-health owner view."
 
 [[units.gpt-web-battle-info-gauge-runtime.functions]]
 address = "0x0046FA50"
@@ -19536,7 +19536,7 @@ source = "src/battle/Family1Clashes.cpp"
 object = "build/match-units/GptWeb_Family1ObjectClashes.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete native checked-list family1 dispatcher46DD40:686 target bytes, same-side and cross-side pair traversals. Indexed first pass and begin-before-end lifetimes regenerate all owner/sentinel checks naturally; no hand-written iterator assertions. Evidence: docs/FAMILY1_OBJECT_CLASHES_2026_10_20.md."
+notes = "Complete native checked-list family1 dispatcher46DD40:686 target bytes, same-side and cross-side pair traversals. Indexed first pass and begin-before-end lifetimes regenerate all owner/sentinel checks naturally; no hand-written iterator assertions. Evidence:."
 
 [[units.gpt-web-family1-object-clashes.functions]]
 address = "0x0046DD40"
@@ -19941,7 +19941,7 @@ enable_gs = false
 linked_coff_sources = ["src/library/UnsignedIntList.cpp"]
 link_data_targets = ["?g_title_resource_manager@th105@@3UTitleResourceManager@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_title_texture_cache_host@th105@@3PAXA=?g_title_texture_cache_host@th105@@3PAXA", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0"]
 preserve_public_members = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z"]
-notes = "Complete310-byte CDesignBase vslot14 cleanup. Native four-byte handle values and clear(), in the real release/lookup CIL context, recover the aligned frame and assignment loop. A typed vector-Xran contract independently proves the sole E9 error exit through original throw metadata and the genuine CRT throw import. Cleanup310 and ordinary C++ release404D70/115 are both exact. Release was already a preserved public provider, so selection keeps its normal ABI and the same real export set; lookup remains an unaccepted preserved provider. docs/DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md; docs/TITLE_RESOURCE_RELEASE_EXACT_2026_11_01.md."
+notes = "Complete310-byte CDesignBase vslot14 cleanup. Native four-byte handle values and clear(), in the real release/lookup CIL context, recover the aligned frame and assignment loop. A typed vector-Xran contract independently proves the sole E9 error exit through original throw metadata and the genuine CRT throw import. Cleanup310 and ordinary C++ release404D70/115 are both exact. Release was already a preserved public provider, so selection keeps its normal ABI and the same real export set; lookup remains an unaccepted preserved provider."
 
 [[units.gpt-web-design-base-cleanup.functions]]
 address = "0x0040BB40"
@@ -20002,7 +20002,7 @@ source = "src/assets/TextFontRender.cpp"
 object = "build/match-units/GptWeb_TextFontRender.obj"
 profile = "vc8-sp1-probe-o2-ob1"
 enable_gs = true
-notes = "Seven native font comparisons use the current source/O2/Ob1/GS: accepted surface45, hex45 and blend289; glyph624/a1f0b4e5/+89 and markup1728/a3c2e09c/+16/frame788 remain pending. Target-backed relative accent clipping and early coverage lifetime now recover417/129/frame32, canonical5a5cbf13, still nonexact+6;948 complete cases plus112 actual-allocation-entry prefixes agree with target live values. docs/TEXT_FONT_ACCENT_LIFETIMES_2026_10_22.md. Renderer/color/end/reset/begin select genuine owner/render CIL with one descriptor per address. Native begin291/728a7bf3/+7, end168/e1daa198 and reset161/261fc985 remain diagnostic alternatives in the same COFF. Input auditing retains the real packed DWORD read and source-epoch/provider scopes. docs/TEXT_FONT_PACKED_INPUT_2026_10_22.md; docs/TEXT_FONT_EDI_LTCG_2026_10_22.md; docs/TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md."
+notes = "Seven native font comparisons use the current source/O2/Ob1/GS: accepted surface45, hex45 and blend289; glyph624/a1f0b4e5/+89 and markup1728/a3c2e09c/+16/frame788 remain pending. Target-backed relative accent clipping and early coverage lifetime now recover417/129/frame32, canonical5a5cbf13, still nonexact+6;948 complete cases plus112 actual-allocation-entry prefixes agree with target live values. docs/TEXT_FONT_ACCENT_LIFETIMES_2026_10_22.md. Renderer/color/end/reset/begin select genuine owner/render CIL with one descriptor per address. Native begin291/728a7bf3/+7, end168/e1daa198 and reset161/261fc985 remain diagnostic alternatives in the same COFF. Input auditing retains the real packed DWORD read and source-epoch/provider scopes. docs/TEXT_FONT_PACKED_INPUT_2026_10_22.md; docs/TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md."
 
 [[units.gpt-web-text-font-render.functions]]
 address = "0x00411B80"
@@ -20091,7 +20091,7 @@ object = "build/match-units/GptWeb_TextFontOwner.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 link_data_targets = ["__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0"]
-notes = "Complete native font owner constructor411430138/138, destructor4114C0210/210 and configure4115A0439/439 through genuine GL/LTCG. Real config/list<unsigned*>/string source preserves complete target ownership, signed RGB interpolation and list retirement; ordinary COFF configure404/+0 becomes natural aligned-frame exact439. Compiler-only Tidy408A00 remains71/71 through actual dtor private-caller witness, without authored credit. Sentinel26 stays excluded. Only this TU/unit changes, with all prior accepted roots replayed. docs/TEXT_FONT_OWNER_CONFIG_EXACT_2026_10_21.md; docs/TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md; docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md."
+notes = "Complete native font owner constructor411430138/138, destructor4114C0210/210 and configure4115A0439/439 through genuine GL/LTCG. Real config/list<unsigned*>/string source preserves complete target ownership, signed RGB interpolation and list retirement; ordinary COFF configure404/+0 becomes natural aligned-frame exact439. Compiler-only Tidy408A00 remains71/71 through actual dtor private-caller witness, without authored credit. Sentinel26 stays excluded. Only this TU/unit changes, with all prior accepted roots replayed."
 
 [[units.gpt-web-text-font-owner.functions]]
 address = "0x00411430"
@@ -20141,7 +20141,7 @@ source = "src/assets/TextureSizeQueryUnit.cpp"
 object = "build/match-units/GptWeb_TextureSizeQuery.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = false
-notes = "JP1.06a 404E60 complete texture surface dimension query. Genuine 417800 lookup definition participates in CIL while its ordinary thiscall entry is preserved; original TU ownership remains unproved and 417800 receives no new exact credit. Ordinary COFF query is147 bytes; target is148. No fabricated provider, alignment annotation or source padding. docs/TEXTURE_SIZE_QUERY_2026_10_22.md."
+notes = "JP1.06a 404E60 complete texture surface dimension query. Genuine 417800 lookup definition participates in CIL while its ordinary thiscall entry is preserved; original TU ownership remains unproved and 417800 receives no new exact credit. Ordinary COFF query is147 bytes; target is148. No fabricated provider, alignment annotation or source padding."
 link_data_targets = [
   "?g_d3d_backend@th105@@3UD3DBackend@1@A=?g_d3d_backend@th105@@3UD3DBackend@1@A",
   "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
@@ -20169,7 +20169,7 @@ source = "src/assets/TextFontLinked.cpp"
 object = "build/match-units/GptWeb_TextFontColorLinked.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
-notes = "Real owner/render CIL recovers color352, end168 and reset162. Begin selects its actual291-byte/83-instruction ESI body with target64-byte frame/save scope; it remains nonexact+59 with10 differing bytes. Private leaves require reviewed included source, unique unexported Static symbols and actual complete caller paths; no export, ABI facade or byte/CFG/relocation waiver. Caller witnesses do not accept renderer/markup or EH. Original TU partition/helper40C6D0 equality remain open. docs/TEXT_FONT_COLOR_LTCG_2026_10_22.md; docs/TEXT_FONT_EDI_LTCG_2026_10_22.md; docs/TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md."
+notes = "Real owner/render CIL recovers color352, end168 and reset162. Begin selects its actual291-byte/83-instruction ESI body with target64-byte frame/save scope; it remains nonexact+59 with10 differing bytes. Private leaves require reviewed included source, unique unexported Static symbols and actual complete caller paths; no export, ABI facade or byte/CFG/relocation waiver. Caller witnesses do not accept renderer/markup or EH. Original TU partition/helper40C6D0 equality remain open.; docs/TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md."
 link_data_targets = [
   "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
   "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
@@ -20347,7 +20347,7 @@ source = "src/characters/RemiliaInputPolicy.cpp"
 object = "build/match-units/ExactFirst_RemiliaInputPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Remilia primary slot50 input policy556070;5415 callable bytes and full5448-byte payload/112 relocations. Pointer-only receiver with numeric commands; no complete owner layout claim. docs/REMILIA_INPUT_POLICY_2026_10_24.md."
+notes = "Complete JP1.06a Remilia primary slot50 input policy556070;5415 callable bytes and full5448-byte payload/112 relocations. Pointer-only receiver with numeric commands; no complete owner layout claim."
 
 [[units.exact-first-remilia-input-policy.functions]]
 address = "0x00556070"
@@ -20502,7 +20502,7 @@ source = "src/characters/MarisaInputPolicy.cpp"
 object = "build/match-units/ExactFirst_MarisaInputPolicy.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Marisa primary slot50 input policy4B9FA0;7664 callable bytes/full7768-byte payload. Nonexact full-body checkpoint; reviewed Sakuya-family changes with pointer-only views; no complete owner layout claim. docs/MARISA_INPUT_POLICY_2026_10_24.md."
+notes = "Complete JP1.06a Marisa primary slot50 input policy4B9FA0;7664 callable bytes/full7768-byte payload. Nonexact full-body checkpoint; reviewed Sakuya-family changes with pointer-only views; no complete owner layout claim."
 
 [[units.exact-first-marisa-input-policy.functions]]
 address = "0x004B9FA0"
@@ -21399,7 +21399,7 @@ source = "src/battle/CommonFighterActionInitialization.cpp"
 object = "build/match-units/ExactFirst_CommonFighterActionInitialization.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a shared action initializer477830;4849 callable/full5521 payload. Two remapped action tables and one16-way card-level table. Main remains nonexact; no helper or exact credit from declaration-only interfaces.; docs/COMMON_ACTION_INITIALIZATION_2026_10_25.md."
+notes = "Complete JP1.06a shared action initializer477830;4849 callable/full5521 payload. Two remapped action tables and one16-way card-level table. Main remains nonexact; no helper or exact credit from declaration-only interfaces."
 
 [[units.exact-first-common-fighter-action-initialization.functions]]
 address = "0x00477830"
@@ -21539,7 +21539,7 @@ source = "src/characters/SuikaActionInitialization.cpp"
 object = "build/match-units/ExactFirst_SuikaActionInitialization.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Suika primary slot3C5AD4A0;2577 callable/full3171 target payload. Correct unsigned-to-float RNG transport and complete eight-spawn packet loop. Whole3139 remains nonexact after two neutral controls; preserve residual.; docs/SUIKA_ACTION_INITIALIZATION_2026_10_25.md."
+notes = "Complete JP1.06a Suika primary slot3C5AD4A0;2577 callable/full3171 target payload. Correct unsigned-to-float RNG transport and complete eight-spawn packet loop. Whole3139 remains nonexact after two neutral controls; preserve residual."
 
 [[units.exact-first-suika-action-initialization.functions]]
 address = "0x005AD4A0"
@@ -21761,7 +21761,7 @@ source = "src/characters/KomachiActionInitialization.cpp"
 object = "build/match-units/ExactFirst_KomachiActionInitialization.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Komachi primary slot3C5F6700;1971 callable/full2496 target payload. Full2496 source remains nonexact at49 unmasked bytes in550/551 block placement and its destinations. Preserve finite publication/join controls; source-present only.; docs/KOMACHI_ACTION_INITIALIZATION_2026_10_25.md."
+notes = "Complete JP1.06a Komachi primary slot3C5F6700;1971 callable/full2496 target payload. Full2496 source remains nonexact at49 unmasked bytes in550/551 block placement and its destinations. Preserve finite publication/join controls; source-present only."
 
 [[units.exact-first-komachi-action-initialization.functions]]
 address = "0x005F6700"
@@ -23118,7 +23118,7 @@ source = "src/ui/ProfileDeckRender.cpp"
 object = "build/match-units/ExactFirst_ProfileDeckRender.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete2521-byte CProfileDeckEdit render448F60,744 target instructions. First complete source compared immediately. Typed sprite storage, native GS/EH, actual reused/default-assigned count iterator and independent half-scale stores recover2521/D4. Complete source remains nonexact1622 positions; first449268. Missing-count stack-offset inference was rejected by native/candidate 32-event fixture; zero default retained. Finite FP/store/visibility controls recorded. docs/PROFILE_DECK_RENDER_2026_10_26.md."
+notes = "Complete2521-byte CProfileDeckEdit render448F60,744 target instructions. First complete source compared immediately. Typed sprite storage, native GS/EH, actual reused/default-assigned count iterator and independent half-scale stores recover2521/D4. Complete source remains nonexact1622 positions; first449268. Missing-count stack-offset inference was rejected by native/candidate 32-event fixture; zero default retained. Finite FP/store/visibility controls recorded."
 
 [[units.exact-first-profile-deck-render.functions]]
 address = "0x00448F60"
@@ -23146,7 +23146,7 @@ source = "src/config/ScoreDefaults.cpp"
 object = "build/match-units/ExactFirst_ScoreDefaults.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete2428-byte ScoreData defaults/reset42ED70. Full first source compared immediately. Three20-byte availability clears, native vector clear, real dedup flag and directly constructed path preserve target ownership/EH and reproduce all2428 bytes. No helper-origin credit. docs/SCORE_DEFAULTS_2026_10_26.md. The real automatic profile local emits its complete implicit 205-byte cleanup, retained here as compiler-excluded evidence with the unchanged exact parent. docs/PROFILE_IMPLICIT_CLEANUP_2026_11_02.md."
+notes = "Complete2428-byte ScoreData defaults/reset42ED70. Full first source compared immediately. Three20-byte availability clears, native vector clear, real dedup flag and directly constructed path preserve target ownership/EH and reproduce all2428 bytes. No helper-origin credit. The real automatic profile local emits its complete implicit 205-byte cleanup, retained here as compiler-excluded evidence with the unchanged exact parent. docs/PROFILE_IMPLICIT_CLEANUP_2026_11_02.md."
 
 [[units.exact-first-score-defaults.functions]]
 address = "0x0042ED70"
@@ -26402,7 +26402,7 @@ source = "src/characters/CharacterExLifetime.cpp"
 object = "build/match-units/ExactFirst_CharacterExLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "RTTI-owned CharacterEx normal11 and scalar36 destructor pair; actual Character base dtor462CE0 remains declaration-only here. No complete object allocation/layout claim. docs/CHARACTER_EX_LIFETIME_2026_10_29.md."
+notes = "RTTI-owned CharacterEx normal11 and scalar36 destructor pair; actual Character base dtor462CE0 remains declaration-only here. No complete object allocation/layout claim."
 
 [[units.exact-first-character-ex-lifetime.functions]]
 address = "0x00491BC0"
@@ -26469,7 +26469,7 @@ source = "src/network/NetworkInputConstructor.cpp"
 object = "build/match-units/ExactFirst_NetworkInputConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete48-byte shared NetworkInputEndpoint7C constructor with CInputManagerEx member and real short deque at68. docs/NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md."
+notes = "Complete48-byte shared NetworkInputEndpoint7C constructor with CInputManagerEx member and real short deque at68."
 
 [[units.exact-first-network-input-constructor.functions]]
 address = "0x0044D8F0"
@@ -26505,7 +26505,7 @@ source = "src/ui/ProfileMessageUpdate.cpp"
 object = "build/match-units/ExactFirst_ProfileMessageUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete source for298-byte message update: choice visibility, accept and cancel paths. Natural294-byte source remains nonexact due zero-return sharing; no exact credit. docs/PROFILE_MESSAGE_UPDATE_2026_10_29.md."
+notes = "Complete source for298-byte message update: choice visibility, accept and cancel paths. Natural294-byte source remains nonexact due zero-return sharing; no exact credit."
 
 [[units.exact-first-profile-message-update.functions]]
 address = "0x0043F6E0"
@@ -26753,7 +26753,7 @@ source = "src/battle/ScenarioDataLifetime.cpp"
 object = "build/match-units/ExactFirst_ScenarioDataLifetime.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete411-byte CScenarioData destruction through genuine implicit member lifetimes. Real font194 at68, three strings, result owner, script, three lists, map and system-effect manager; no manual vptr publication. docs/SCENARIO_DATA_LIFETIME_2026_10_29.md."
+notes = "Complete411-byte CScenarioData destruction through genuine implicit member lifetimes. Real font194 at68, three strings, result owner, script, three lists, map and system-effect manager; no manual vptr publication."
 
 [[units.exact-first-scenario-data-lifetime.functions]]
 address = "0x00438A70"
@@ -26776,7 +26776,7 @@ profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
-notes = "Genuine CScript lifecycle CIL. Destructor95 and pending-command cleanup147 are canonical exact; complete destructor EH and private pending-helper caller witness are replayed. Whole clear_commands182/native170 remains nonexact on map iterator context. No synthetic globals, stubs or private ABI declarations. docs/SCRIPT_PENDING_LIFETIME_2026_10_29.md."
+notes = "Genuine CScript lifecycle CIL. Destructor95 and pending-command cleanup147 are canonical exact; complete destructor EH and private pending-helper caller witness are replayed. Whole clear_commands182/native170 remains nonexact on map iterator context. No synthetic globals, stubs or private ABI declarations."
 link_data_targets = [
  "__imp__TerminateProcess@8=__imp__TerminateProcess@8",
  "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0",
@@ -26930,7 +26930,7 @@ source = "src/battle/ScenarioTextRebuild.cpp"
 object = "build/match-units/ExactFirst_ScenarioTextRebuild.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete563-byte scenario window-text replacement with genuine sprite/handle lifetimes, checked list ownership and text texture result. Two tail bytes are semantic alpha/delta; remaining entry padding is not copied. docs/SCENARIO_TEXT_REBUILD_2026_10_29.md."
+notes = "Complete563-byte scenario window-text replacement with genuine sprite/handle lifetimes, checked list ownership and text texture result. Two tail bytes are semantic alpha/delta; remaining entry padding is not copied."
 
 [[units.exact-first-scenario-text-rebuild.functions]]
 address = "0x00456760"
@@ -26969,7 +26969,7 @@ source = "src/ui/SceneTimelineLoader.cpp"
 object = "build/match-units/ExactFirst_SceneTimelineLoader.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete18-command timeline loader with actual handle/sprite ownership and unsigned-start multiset. Native1584 code plus92 table/alignment bytes must agree. Run scripts/verify-scene-timeline-loader-payload.py after this focused build to verify the entire1676-byte COFF payload and fresh provenance. docs/SCENE_TIMELINE_LOADER_2026_10_29.md."
+notes = "Complete18-command timeline loader with actual handle/sprite ownership and unsigned-start multiset. Native1584 code plus92 table/alignment bytes must agree. Run scripts/verify-scene-timeline-loader-payload.py after this focused build to verify the entire1676-byte COFF payload and fresh provenance."
 
 [[units.exact-first-scene-timeline-loader.functions]]
 address = "0x004540F0"
@@ -27021,7 +27021,7 @@ source = "src/ui/SceneInterpolationRuntime.cpp"
 object = "build/match-units/ExactFirst_SceneInterpolation.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Actual member easing call preserves the incoming scene receiver in ECX. Direct use of its x87 result avoids extra float narrowing. Float160-byte root closes; byte214/native211 remains nonexact on a current-pointer/start reload. docs/SCENE_INTERPOLATION_RECEIVER_2026_10_29.md."
+notes = "Actual member easing call preserves the incoming scene receiver in ECX. Direct use of its x87 result avoids extra float narrowing. Float160-byte root closes; byte214/native211 remains nonexact on a current-pointer/start reload."
 
 [[units.exact-first-scene-interpolation.functions]]
 address = "0x004501B0"
@@ -27039,7 +27039,7 @@ source = "src/battle/BackgroundInitializeCommon.cpp"
 object = "build/match-units/ExactFirst_BackgroundInitialize.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Both vectors use assign, not resize. Native186-byte _Assign_n independently proves the0xE8 CEffectSprite element type. Complete512-byte initializer closes with column-before-row grid expressions and expression-scoped fill lifetime. docs/EFFECT_SPRITE_OWNER_2026_10_29.md."
+notes = "Both vectors use assign, not resize. Native186-byte _Assign_n independently proves the0xE8 CEffectSprite element type. Complete512-byte initializer closes with column-before-row grid expressions and expression-scoped fill lifetime."
 
 [[units.exact-first-background-initialize.functions]]
 address = "0x004664A0"
@@ -27063,7 +27063,7 @@ source = "src/battle/BG02Constructor.cpp"
 object = "build/match-units/ExactFirst_BG02Constructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Actual0xE8 CEffectSprite vector assignment and scoped texture setup. BG04 is335/335 exact; BG02 is924/924 nonexact with77 register/schedule byte differences. docs/BACKGROUND_CONSTRUCTORS_2026_10_29.md."
+notes = "Actual0xE8 CEffectSprite vector assignment and scoped texture setup. BG04 is335/335 exact; BG02 is924/924 nonexact with77 register/schedule byte differences."
 
 [[units.exact-first-bg02-constructor.functions]]
 address = "0x00467F90"
@@ -27085,7 +27085,7 @@ source = "src/battle/BG04Constructor.cpp"
 object = "build/match-units/ExactFirst_BG04Constructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Actual0xE8 CEffectSprite vector assignment and scoped texture setup. BG04 is335/335 exact; BG02 is924/924 nonexact with77 register/schedule byte differences. docs/BACKGROUND_CONSTRUCTORS_2026_10_29.md."
+notes = "Actual0xE8 CEffectSprite vector assignment and scoped texture setup. BG04 is335/335 exact; BG02 is924/924 nonexact with77 register/schedule byte differences."
 
 [[units.exact-first-bg04-constructor.functions]]
 address = "0x00468570"
@@ -27107,7 +27107,7 @@ source = "src/battle/BG16Constructor.cpp"
 object = "build/match-units/ExactFirst_BG16Constructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete868-byte BG16 constructor. True0xE8 CEffectSprite assign plus direct texture-handle return value and two ordinary dimension outputs recover all four texture setup lanes and frame lifetimes. docs/BACKGROUND_CONSTRUCTORS_2026_10_29.md."
+notes = "Complete868-byte BG16 constructor. True0xE8 CEffectSprite assign plus direct texture-handle return value and two ordinary dimension outputs recover all four texture setup lanes and frame lifetimes."
 
 [[units.exact-first-bg16-constructor.functions]]
 address = "0x00469100"
@@ -27183,7 +27183,7 @@ link_png_sdk = true
 link_png_read_callback = true
 link_named_import_targets = ["_D3DXCreateTexture@32=0x0068989C"]
 link_runtime_data = ["___security_cookie"]
-notes = "Reader/package/CRC/file/CSV/script/bitmap CIL comparison context with pinned libpng1.5.2 with zlib1.2.5 headers and zlib1.2.3 implementation; PNG runtime equivalence remains under investigation. DDS696 and complete cleanup EH are exact through its real bitmap caller; PNG703 and its cleanup are exact; bitmap1126 and pixel upload remain unaccepted. CSV wrapper140, reset151, public reader destructor15, plain234, encoded267, script load282, text wrapper140, reader open213, raw bitmap load448, palette dispatch163 and raw palette243 are exact. Full cleanup EH and bounded source-owned CRLF literal reads are replayed. CSV caller, command-line parser, package opener and BMP palette loader remain unaccepted. Real reader constructors and the provider normal stdcall boundary recover open213. docs/FILE_READER_OPEN_EXACT_2026_10_30.md."
+notes = "Reader/package/CRC/file/CSV/script/bitmap CIL comparison context with pinned libpng1.5.2 with zlib1.2.5 headers and zlib1.2.3 implementation; PNG runtime equivalence remains under investigation. DDS696 and complete cleanup EH are exact through its real bitmap caller; PNG703 and its cleanup are exact; bitmap1126 and pixel upload remain unaccepted. CSV wrapper140, reset151, public reader destructor15, plain234, encoded267, script load282, text wrapper140, reader open213, raw bitmap load448, palette dispatch163 and raw palette243 are exact. Full cleanup EH and bounded source-owned CRLF literal reads are replayed. CSV caller, command-line parser, package opener and BMP palette loader remain unaccepted. Real reader constructors and the provider normal stdcall boundary recover open213."
 link_data_targets = [
   "?g_d3d_backend@th105@@3UD3DBackend@1@A=dds_texture_backend_object",
   "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4",
@@ -27309,7 +27309,7 @@ link_ogg_callbacks = true
 link_numeric_literals = [{ symbol = "__real@41f0000000000000", target = "__real@41f0000000000000" }, { symbol = "__real@40e0000000000000", target = "__real@40e0000000000000" }, { symbol = "__real@4f800000", target = "__real@4f800000" }]
 preserve_public_members = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z", "??1FileReaderOwner@th105@@QAE@XZ"]
 link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__timeGetTime@0=__imp__timeGetTime@0", "?bgm_minimum_gain@th105@@3MB=_bgm_transition_minimum_gain", "?logarithmic_volume_scale@th105@@3MB=_logarithmic_volume_scale", "?direct_sound_volume_units@th105@@3MB=_direct_sound_volume_units", "_wave_lock_error=_direct_sound_lock_error", "_wave_error_title=?sound_error_title@th105@@3QBDB"]
-notes = "Private Ogg open291 is exact in the real stream-start/reader/Xiph CIL graph. SFL484 is exact with native118h frame and complete EH. Three stream bodies and gain87/103 remain nonexact; PCM418B70 is now compared in the actual service caller graph rather than exported here. Private stop4185E0 is also canonical45 under the separate complete relocation-free-member proof. Update is an ordinary exported comparison root,969/943 nonexact; no native export or caller equivalence is claimed. No private register declaration, padding or caller-byte waiver. docs/BGM_OGG_RUNTIME_2026_10_30.md; docs/DIRECT_SOUND_STOP_EXACT_2026_11_01.md."
+notes = "Private Ogg open291 is exact in the real stream-start/reader/Xiph CIL graph. SFL484 is exact with native118h frame and complete EH. Three stream bodies and gain87/103 remain nonexact; PCM418B70 is now compared in the actual service caller graph rather than exported here. Private stop4185E0 is also canonical45 under the separate complete relocation-free-member proof. Update is an ordinary exported comparison root,969/943 nonexact; no native export or caller equivalence is claimed. No private register declaration, padding or caller-byte waiver."
 
 [[units.exact-first-bgm-stream-runtime.functions]]
 address = "0x00402A00"
@@ -27425,7 +27425,7 @@ object = "build/match-units/ExactFirst_NetworkUdpLifetime.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 linked_coff_sources = ["src/library/UnsignedIntList.cpp", "src/library/UnsignedIntVector.cpp"]
-notes = "Real CNetworkUDP owner and packet manager CIL. Packet constructor413780 exact145 with complete3-state cleanup EH, real single owner call and ordinary unsigned-vector/list library ABI; owner ctor357 main body alone agrees but its EH remains nonexact. No owner or compiler helper credit. docs/NETWORK_UDP_LIFETIME_EXACT_2026_10_30.md."
+notes = "Real CNetworkUDP owner and packet manager CIL. Packet constructor413780 exact145 with complete3-state cleanup EH, real single owner call and ordinary unsigned-vector/list library ABI; owner ctor357 main body alone agrees but its EH remains nonexact. No owner or compiler helper credit."
 link_data_targets = ["__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "__imp__SetThreadPriority@8=__imp__SetThreadPriority@8", "__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8", "__imp__CloseHandle@4=__imp__CloseHandle@4"]
 link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
@@ -27471,7 +27471,7 @@ link_runtime_data = ["___security_cookie"]
 link_data_targets = ["__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4"]
 source = "src/engine/D3DBackendLifetimeLinked.cpp"
 object = "build/match-units/ExactFirst_D3DBackendLifetime.dll"
-notes = "Real backend global source lifetime; private startup/atexit and full EH. Constructor131 is complete exact with cleanup EH and startup/atexit witnesses; same-CIL destructor169/native103 remains nonexact. Native eight-aligned440-byte zero object and separate pinned CRT datum after the vtable are verified. docs/D3D_BACKEND_GLOBAL_LIFETIME_2026_10_30.md"
+notes = "Real backend global source lifetime; private startup/atexit and full EH. Constructor131 is complete exact with cleanup EH and startup/atexit witnesses; same-CIL destructor169/native103 remains nonexact. Native eight-aligned440-byte zero object and separate pinned CRT datum after the vtable are verified."
 
 [[units.exact-first-d3d-backend-lifetime.link_objects]]
 symbol = "?g_d3d_backend@th105@@3UD3DBackend@1@A"
@@ -27528,7 +27528,7 @@ source = "src/platform/ApplicationWindowMessages.cpp"
 object = "build/match-units/ExactFirst_ApplicationWindowMessages.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Window dispatcher240, callback33, private mode helper126 and cursor157 are canonical exact in the actual IME/window TU. Full IME composition375/native383 and message715-byte envelope/native715 remain nonexact. Explicit20-byte memset recovers the native private IME registers; system-command switch closes the dispatcher. docs/APPLICATION_WINDOW_MESSAGES_2026_10_30.md"
+notes = "Window dispatcher240, callback33, private mode helper126 and cursor157 are canonical exact in the actual IME/window TU. Full IME composition375/native383 and message715-byte envelope/native715 remain nonexact. Explicit20-byte memset recovers the native private IME registers; system-command switch closes the dispatcher."
 
 [[units.exact-first-application-window-messages.functions]]
 address = "0x00408690"
@@ -27842,7 +27842,7 @@ source = "src/ui/MenuConfigConstructor.cpp"
 object = "build/match-units/ExactFirst_ConfigMenuConstructor.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete 868-byte CMenuConfig constructor; canonical exact after clamping option_64 with TH105_CLAMP. docs/CONFIG_MENU_CONSTRUCTOR_2026_10_31.md."
+notes = "Complete 868-byte CMenuConfig constructor; canonical exact after clamping option_64 with TH105_CLAMP."
 
 [[units.exact-first-config-menu-constructor.functions]]
 address = "0x00441520"
@@ -27856,7 +27856,7 @@ source = "src/ui/MenuConnectJoinState.cpp"
 object = "build/match-units/ExactFirst_ConnectJoinState.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete699-byte middle-state policy and60-byte switch tables. Full source remains nonexact on branch sharing and receiver preparation; no prefix or helper credit. docs/CONNECT_JOIN_STATE_2026_10_31.md."
+notes = "Complete699-byte middle-state policy and60-byte switch tables. Full source remains nonexact on branch sharing and receiver preparation; no prefix or helper credit."
 
 [[units.exact-first-connect-join-state.functions]]
 address = "0x00444490"
@@ -27869,7 +27869,7 @@ source = "src/ui/MenuConnectEndpointActions.cpp"
 object = "build/match-units/ExactFirst_ConnectEndpointActions.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete84/85/329 endpoint action roots exact. Genuine pinned swprintf.inl emits the actual27-byte count-in-EDX header helper, excluded from authored credit. Four-WORD configuration copy is a real array loop. docs/CONNECT_ENDPOINT_ACTIONS_EXACT_2026_10_31.md."
+notes = "Complete84/85/329 endpoint action roots exact. Genuine pinned swprintf.inl emits the actual27-byte count-in-EDX header helper, excluded from authored credit. Four-WORD configuration copy is a real array loop."
 
 [[units.exact-first-connect-endpoint-actions.functions]]
 address = "0x004424D0"
@@ -27981,7 +27981,7 @@ source = "src/ui/ReplayMenuBrowse.cpp"
 object = "build/match-units/ExactFirst_ReplayMenuBrowse.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Browse policy, exact at 511 bytes: the confirm branch ends with its own return 1, so every path jumps to one GS epilogue. docs/REPLAY_MENU_BROWSE_2026_10_31.md."
+notes = "Browse policy, exact at 511 bytes: the confirm branch ends with its own return 1, so every path jumps to one GS epilogue."
 
 [[units.exact-first-replay-menu-browse.functions]]
 address = "0x00446860"
@@ -28319,7 +28319,7 @@ link_ogg_callbacks = true
 link_numeric_literals = [{ symbol = "__real@41f0000000000000", target = "__real@41f0000000000000" }]
 preserve_public_members = ["?open@FileReaderOwner@th105@@QAE_NPBD@Z", "??1FileReaderOwner@th105@@QAE@XZ", "?lookup@BgmLoadManagerView@th105@@QAEPAUBgmStreamRuntime@2@I@Z"]
 link_data_targets = ["__imp__CreateFileA@28=__imp__CreateFileA@28", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "?g_bootstrap_mode@th105@@3_NA=?g_bootstrap_mode@th105@@3_NA", "?g_package_archive_store@th105@@3UPackageArchiveStore@1@A=?g_package_archive_store@th105@@3UPackageArchiveStore@1@A", "__imp__EnterCriticalSection@4=__imp__EnterCriticalSection@4", "__imp__LeaveCriticalSection@4=__imp__LeaveCriticalSection@4", "__imp__MessageBoxA@16=__imp__MessageBoxA@16", "_direct_sound_buffer8_acquire_error=_direct_sound_buffer8_acquire_error", "_direct_sound_3d_buffer8_acquire_error=_direct_sound_3d_buffer8_acquire_error", "?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B=?iid_direct_sound_3d_buffer@th105@@3UGuid@1@B", "?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A=?g_direct_sound_globals@th105@@3UDirectSoundGlobals@1@A", "_create_sound_buffer_error=_create_sound_buffer_error", "_direct_sound_error_title=_direct_sound_error_title", "__imp__timeGetTime@0=__imp__timeGetTime@0", "?bgm_minimum_gain@th105@@3MB=_bgm_transition_minimum_gain", "?logarithmic_volume_scale@th105@@3MB=_logarithmic_volume_scale", "?direct_sound_volume_units@th105@@3MB=_direct_sound_volume_units", "_wave_lock_error=_direct_sound_lock_error", "_wave_error_title=?sound_error_title@th105@@3QBDB", "__imp__SetEvent@4=__imp__SetEvent@4"]
-notes = "Complete BGM play351 through actual stream/Ogg/DirectSound providers and real BgmHandleResult queues. Queued loads push_front; immediate success pushes active_back under the service lock; failure retires and signals. Native true return preserved. Whole private prepare159 has independent caller/EH follow-up. PCM418B70 is now canonical252 as an unexported ordinary stdcall through the bounded exact-rooted real caller graph; no intermediate stream exactness or new source/FP change. docs/OGG_PCM_EXACT_2026_11_01.md."
+notes = "Complete BGM play351 through actual stream/Ogg/DirectSound providers and real BgmHandleResult queues. Queued loads push_front; immediate success pushes active_back under the service lock; failure retires and signals. Native true return preserved. Whole private prepare159 has independent caller/EH follow-up. PCM418B70 is now canonical252 as an unexported ordinary stdcall through the bounded exact-rooted real caller graph; no intermediate stream exactness or new source/FP change."
 
 [[units.exact-first-bgm-load-service.functions]]
 address = "0x004036E0"
@@ -28560,7 +28560,7 @@ object = "build/match-units/ExactFirst_TextureServiceLifetime.dll"
 profile = "vc8-sp1-ltcg-o2"
 enable_gs = true
 linked_coff_sources = ["src/library/UnsignedIntList.cpp", "src/library/UnsignedIntVector.cpp"]
-notes = "Actual0x84-byte texture manager/cache aggregate. Private193-byte manager constructor requires complete59-byte CRT initializer,10-byte ECX callback, storage/table and fresh98/30 cleanup proofs; no authored helper credit. docs/TEXTURE_SERVICE_LIFETIME_EXACT_2026_10_31.md."
+notes = "Actual0x84-byte texture manager/cache aggregate. Private193-byte manager constructor requires complete59-byte CRT initializer,10-byte ECX callback, storage/table and fresh98/30 cleanup proofs; no authored helper credit."
 link_data_targets = ["__imp__InitializeCriticalSection@4=__imp__InitializeCriticalSection@4", "__imp__DeleteCriticalSection@4=__imp__DeleteCriticalSection@4", "__imp__TerminateProcess@8=__imp__TerminateProcess@8", "__imp__GetCurrentProcess@0=__imp__GetCurrentProcess@0", "__imp__UnhandledExceptionFilter@4=__imp__UnhandledExceptionFilter@4", "__imp__SetUnhandledExceptionFilter@4=__imp__SetUnhandledExceptionFilter@4", "__imp__IsDebuggerPresent@0=__imp__IsDebuggerPresent@0", "__imp__SetThreadPriority@8=__imp__SetThreadPriority@8", "__imp__GetExitCodeThread@8=__imp__GetExitCodeThread@8", "__imp__CloseHandle@4=__imp__CloseHandle@4"]
 link_runtime = "static"
 link_runtime_data = ["___security_cookie"]
@@ -28834,7 +28834,7 @@ source = "src/ui/FileListParent.cpp"
 object = "build/match-units/ExactFirst_FileListParent.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete91-byte CFileList parent-navigation policy; ordinary91 still uses high-byte slash local versus native low byte. Real-library LTCG123 is closed negative; no char array/union or forced helper boundary. docs/FILE_LIST_PARENT_SOURCE_2026_11_01.md."
+notes = "Complete91-byte CFileList parent-navigation policy; ordinary91 still uses high-byte slash local versus native low byte. Real-library LTCG123 is closed negative; no char array/union or forced helper boundary."
 [[units.exact-first-file-list-parent.functions]]
 address = "0x004398B0"
 symbol_base = "?go_parent_directory@CFileList@th105@@QAEEXZ"
@@ -29996,7 +29996,7 @@ source = "src/ui/ProfileKeyCapture.cpp"
 object = "build/match-units/ExactFirst_ProfileKeyCapture.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete keyboard and gamepad capture member; canonical exact 790/790. docs/PROFILE_KEY_CAPTURE_SOURCE_2026_11_03.md."
+notes = "Complete keyboard and gamepad capture member; canonical exact 790/790."
 
 [[units.exact-first-profile-key-capture.functions]]
 address = "0x0044B540"
@@ -30063,7 +30063,7 @@ source = "src/battle/SpellDataShuffle.cpp"
 object = "build/match-units/ExactFirst_SpellSelectionShuffle.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete 196-byte spell shuffle with the real push_front provider and the native out-of-line checked erase contract. Local canonical root and direct callers compare exactly; docs/SPELL_SELECTION_SHUFFLE_SOURCE_2026_11_04.md."
+notes = "Complete 196-byte spell shuffle with the real push_front provider and the native out-of-line checked erase contract. Local canonical root and direct callers compare exactly."
 
 [[units.exact-first-spell-selection-shuffle.functions]]
 address = "0x00432420"
@@ -30110,7 +30110,7 @@ source = "src/ui/ProfileMenuPrimary.cpp"
 object = "build/match-units/ExactFirst_ProfileMenuPrimary.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Profile menu primary state policy is source-present; callable remains 246 bytes against 256 target, with a 2-byte alignment and 28-byte source switch table. No exact-byte credit. docs/PROFILE_MENU_PRIMARY_SOURCE_2026_11_04.md."
+notes = "Profile menu primary state policy is source-present; callable remains 246 bytes against 256 target, with a 2-byte alignment and 28-byte source switch table. No exact-byte credit."
 
 [[units.exact-first-profile-menu-primary.functions]]
 address = "0x0044BCF0"
@@ -30725,7 +30725,7 @@ link_data_targets = ["__imp__InitializeCriticalSection@4=__imp__InitializeCritic
 link_vtables = [{ symbol = "??_7CriticalSectionWrapper@th105@@6B@", target = "??_7CriticalSectionWrapper@th105@@6B@", entry = "??_GCriticalSectionWrapper@th105@@UAEPAXI@Z=0x0040ABE0", target_type_name = ".?AVCCriticalSection@@" }]
 link_objects = [{ symbol = "?g_application_state@th105@@3UApplicationState@1@A", target = "?g_application_entry@th105@@3UApplicationEntryView@1@A", size = 184, layout_source = "src/platform/ApplicationLifecycle.cpp", initializer = "0x006BE780", initializer_table = "0x006C036C", atexit = "0x0068AF1E", destructor_callback = "0x006BEDF0", destructor_callback_size = 73 }]
 preserve_public_members = ["?wait_for_exit@BattleThreadHandle@th105@@QAEXXZ"]
-notes = "Complete application constructor255 and cleanup EH139; real 184-byte global, initializer17, CRT reachability and generated inline cleanup73. No standalone destructor is invented. See docs/APPLICATION_INLINE_CLEANUP_2026_11_10.md."
+notes = "Complete application constructor255 and cleanup EH139; real 184-byte global, initializer17, CRT reachability and generated inline cleanup73. No standalone destructor is invented."
 
 [[units.exact-first-application-initialization.functions]]
 address = "0x00407CA0"

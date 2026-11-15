@@ -65,6 +65,6 @@ VC8 SP1 uses the existing unit profiles.
 The shared source still emits namespaced struct RTTI
 (`.?AUCInputManagerEx@th105@@`), whereas the original is a global class
 (`.?AVCInputManagerEx@@`). The shared base and network endpoint constructors are now connected, as
-described in [the endpoint note](NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md).
+described in the endpoint note.
 The global lifetime definition and nominal RTTI identity remain separate; a
 future merge must reconcile that boundary with complete lifetime evidence.

@@ -111,7 +111,7 @@ cleanup and abstraction follow stable exactness. Use serial CPU0/nice10 jobs,
 monitor available memory and swap, and commit/push stable locally gated work.
 The first new bounded checkpoint is
 [RemiliaObject 0x55BE70](REMILIA_OBJECT_ENTRY_2026_10_24.md), still nonexact.
-The subsequent [Remilia input-policy representative](REMILIA_INPUT_POLICY_2026_10_24.md)
+The subsequent Remilia input-policy representative
 accepts5415 callable bytes and all5448 emitted bytes after independent cold
 builds. Its first whole comparison exposed two query/action-number errors;
 the corrected body plus direct queued-field reads matched without changing

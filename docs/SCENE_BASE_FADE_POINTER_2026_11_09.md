@@ -58,4 +58,4 @@ for Application. No acceptance retry or validator change was made.
 
 Follow-up, 2026-11-10: the observed inline cleanup now has a complete strict
 global-lifecycle proof, and the Application constructor is selected and locally
-canonical exact. See `docs/APPLICATION_INLINE_CLEANUP_2026_11_10.md`.
+canonical exact.

@@ -3,7 +3,7 @@
 November1 update: release404D70 now has an independent genuine C++115-byte
 acceptance in the actual DesignBase cleanup context. The assembly withdrawal
 below remains correct, and load404C90 stays nonexact. See
-[TITLE_RESOURCE_RELEASE_EXACT_2026_11_01.md](TITLE_RESOURCE_RELEASE_EXACT_2026_11_01.md).
+
 
 The tracked Title texture load404C90 and release404D70 implementations were
 naked inline-assembly transcriptions. Their99/115-byte equality did not meet

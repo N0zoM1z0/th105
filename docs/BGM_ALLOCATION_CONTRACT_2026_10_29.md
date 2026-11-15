@@ -39,4 +39,4 @@ Manager4040D0 is not promoted by this contract review.
 
 Current source selection is the complete BgmStreamAllocation.cpp graph and
 exact-first-bgm-stream-lifetime unit; the standalone probe above is historical.
-Its wrapper remains26/native28. See BGM_STREAM_LIFETIME_2026_10_30.md.
+Its wrapper remains26/native28.

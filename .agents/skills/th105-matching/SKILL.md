@@ -69,7 +69,7 @@ Local `fenv_access(on)` reproduces its three angle-preserving zero comparisons;
 shared real cosine/sine/x/y/z lifetimes recover its temporary stack slots.
 Immediate exception delivery is a separate contract: plain strict mode did not
 match. Keep this control local, preserve source sum association, and replay the
-whole affected object. See `docs/SPRITE_PIVOT_ROTATION_2026_10_02.md`; do not
+whole affected object. Do not
 assume that other x87 residuals have the same cause.
 
 ## Target-proven private helper visibility

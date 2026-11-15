@@ -1,7 +1,7 @@
 # CDesignBase cleanup and gauge controls
 
 Historical source-present checkpoint. The later
-[complete310-byte exact reconstruction](DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md)
+complete310-byte exact reconstruction
 supersedes the cleanup source/type/context and nonexact status below. The
 gauge controls keep their recorded source epoch.
 

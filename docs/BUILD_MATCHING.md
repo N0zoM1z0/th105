@@ -77,11 +77,11 @@ an otherwise exact unused copy under default inlining is insufficient caller
 evidence. Only this unit selects the profile; default arguments remain unchanged
 and ambient mode is reset per unit. Original nominal type/project options are
 unproven. This does not supersede a demonstrated TU boundary or authorize
-arbitrary noinline controls. See [the complete evidence](TEXT_FONT_SURFACE_EXACT_2026_10_21.md).
+arbitrary noinline controls.
 
 ### Container identity does not imply identical iterator visibility
 
-Recover native checked containers when the target proves their full physical header and operations, but keep translation-unit iterator visibility as a separate question. `CsvReader::next_int @ 0x0040F480` is the positive case: real `deque<deque<string>>` storage plus two native 0x0C iterators naturally produces all 249 target bytes. `ScoreData::refresh_story_progress @ 0x0042E3F0` now provides a second positive case: the October27 refresh reproduces the old876-byte `erase(begin,end)` body, but genuine `vector<int>::clear()` naturally matches all860 bytes. The earlier `begin + size()` rejection did not close this source-operation question. See [the superseding result](SCORE_STORY_PROGRESS_2026_10_27.md). A proven container type is still not permission to hand-write its iterator representation or delete safety checks manually.
+Recover native checked containers when the target proves their full physical header and operations, but keep translation-unit iterator visibility as a separate question. `CsvReader::next_int @ 0x0040F480` is the positive case: real `deque<deque<string>>` storage plus two native 0x0C iterators naturally produces all 249 target bytes. `ScoreData::refresh_story_progress @ 0x0042E3F0` now provides a second positive case: the October27 refresh reproduces the old876-byte `erase(begin,end)` body, but genuine `vector<int>::clear()` naturally matches all860 bytes. The earlier `begin + size()` rejection did not close this source-operation question. A proven container type is still not permission to hand-write its iterator representation or delete safety checks manually.
 
 Exact destruction can also prove a member layout even when construction remains TU-sensitive. `ProfileEditor168::~ProfileEditor168 @ 0x00427BC0` is 15/15 only when the 0x168 owner contains real `UiTileA4` members at +0x0C and +0xB0; the corresponding constructor remains 28/33 with the shared constructor-facing visibility. Preserve the truthful header for exact consumers and keep the constructor pending rather than globally changing inline visibility to win five bytes.
 
@@ -1225,7 +1225,7 @@ A medium render body can become straightforward once its small transform and lay
 
 The layout call inside that loop provides a second identity anchor: every current caller loads receiver `0x006FBCC0`, already known as global battle setup state. `BattleBackgroundLayout::place_sprite @ 0x00427200` then fixes `scale +0x14` and four viewport edges `+0x18/+0x1C/+0x30/+0x34`; ordinary 420/640/320 arithmetic followed by exact translate/X/Y origin-scale calls compares 128/128. With that helper exact, ordinary checked-deque iteration plus render-state setup, 3.0 X/Y/Z origin scaling, -100 Y translation, virtual color update, final sprite render, and the null-entry rectangle fallback reproduces the caller 511/511. Prefer this bottom-up typed-call-chain recovery over hand-transcribing a large decompiler listing.
 
-The earlier 1089-byte CSpriteEx rotation probe did not close floating-point semantics: its first vertex at each plane used the wrong sum association. The [2026-10-02 target audit](SPRITE_PIVOT_ROTATION_2026_10_02.md) restores `a*cos + (b*sin + pivot)`. Its final **1095/1095 canonical exact** solution uses function-local `fenv_access(on)` to reproduce `fld angle; fld st; fldz; fucompp`, then shares the real `cosine/sine/x/y/z` scalar lifetimes across all three planes to recover target stack slots. The ordinary pinned `/O2 /GS-` profile and all ten accepted siblings stay exact. Immediate floating-point exceptions are a separate control: plain strict mode changed ownership, while enabling environment access without immediate exceptions reproduced the target. Original pragma versus command-line provenance remains unknown; never apply this option globally based on this one function. Likewise, an 11-byte +0x48 emitter state facade differs from its natural 10-byte source only in whether the vptr or adjusted ECX is formed first. Do not use inline assembly, volatile/dummy liveness, manual vtable arithmetic, or copied machine bytes to close such gaps.
+The earlier 1089-byte CSpriteEx rotation probe did not close floating-point semantics: its first vertex at each plane used the wrong sum association. The 2026-10-02 target audit restores `a*cos + (b*sin + pivot)`. Its final **1095/1095 canonical exact** solution uses function-local `fenv_access(on)` to reproduce `fld angle; fld st; fldz; fucompp`, then shares the real `cosine/sine/x/y/z` scalar lifetimes across all three planes to recover target stack slots. The ordinary pinned `/O2 /GS-` profile and all ten accepted siblings stay exact. Immediate floating-point exceptions are a separate control: plain strict mode changed ownership, while enabling environment access without immediate exceptions reproduced the target. Original pragma versus command-line provenance remains unknown; never apply this option globally based on this one function. Likewise, an 11-byte +0x48 emitter state facade differs from its natural 10-byte source only in whether the vptr or adjusted ECX is formed first. Do not use inline assembly, volatile/dummy liveness, manual vtable arithmetic, or copied machine bytes to close such gaps.
 
 Scalar-deleting destructors are safe batch progress only after class ownership is proved. This wave regenerated five 30-byte wrappers from the already-exact CSelectScenario, CTitle, CFileList, CMenuSelect, and PatRecord88 lifetime TUs. Each target wrapper is owned by the current class vtable and directly calls that class's already-exact normal destructor before conditional `operator delete`. The shared wrapper shape is not sufficient evidence by itself; keep normalized/raw clone matches unclassified until the vtable/lifetime edge establishes authored identity.
 
@@ -1327,7 +1327,7 @@ Current RTTI identifies vtable `0x006C1374` as `CBattleManagerStory`; constructo
 
 The three methods are a batch source-shape reference. `run_threshold_pipeline @ 0x00471670` is 203/203 when the signed mode switch has only the target-observed cases 0/1/2 mapping to thresholds 0/120/180; assigning a fabricated default would change the unobserved invariant path. `run_180_300_pipeline @ 0x00471740` is 157/157 when Story terminal checks are written as a positive-success nest, naturally making both failures share the target return-2 node without a source `goto`. `run_story_pipeline @ 0x004717E0` is 309/309 under `/GS` with the real `{HANDLE handle; DWORD wait_ms}` event lifetime already proved by network scenes. Do not cache `g_battle_phase_block`: direct rereads free ESI for the event handle and reproduce the target exactly.
 
-These exact methods all call `resolve_fighter_body_collision @ 0x0046CCA0`, providing strong current Story-manager caller/TU evidence. That callee is now canonical 1862/1862 after correcting the retained vertical tie, adding target-observed float velocity rounding and sharing one actual average lifetime; its former x87/stack-coloring classification missed numerical semantics. See [the body-collision recovery](FIGHTER_BODY_COLLISION_2026_10_02.md). A real VC8 `/GL` + `/LTCG` link experiment on neighboring Story runtime `0x00471930` retained the same standalone EAX/EDX scheduling difference; treat LTCG as a hypothesis to test, not a blanket cure for allocator residuals.
+These exact methods all call `resolve_fighter_body_collision @ 0x0046CCA0`, providing strong current Story-manager caller/TU evidence. That callee is now canonical 1862/1862 after correcting the retained vertical tie, adding target-observed float velocity rounding and sharing one actual average lifetime; its former x87/stack-coloring classification missed numerical semantics. A real VC8 `/GL` + `/LTCG` link experiment on neighboring Story runtime `0x00471930` retained the same standalone EAX/EDX scheduling difference; treat LTCG as a hypothesis to test, not a blanket cure for allocator residuals.
 
 ### Let transition policy and container element type explain generated control flow
 
@@ -1633,8 +1633,7 @@ real read-only initializer sentinels, every table HIGHLOW, an empty C++ callback
 table and unique allowlisted C runtime symbol/owner pairs. Source callbacks,
 unlisted CRT callbacks, duplicate entries and missing relocations are rejected.
 This does not waive source-global constructor/destructor/EH evidence for units
-that do own globals. See BGM_SERVICE_LTCG_2026_10_29.md for the actual source
-context, complete70/69-byte acceptance and focused regression replays. Never
+that do own globals. Never
 insert a fake global merely to obtain a runtime profile or suppress LNK4210.
 
 ### Named D3DX import metadata
@@ -1645,7 +1644,7 @@ its standard short-import name policy is selected as IMPORT_NAME_UNDECORATE.
 The comparator validates the original/generated archives, actual source and
 target PE import identities and map owner. This does not permit synthetic
 code providers or arbitrary import mappings. See
-[BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md](BATTLE_EFFECT_INITIALIZE_LTCG_2026_10_29.md).
+
 
 ### Bounded compiler controls, 2026-10-30
 
@@ -1714,7 +1713,7 @@ external direct calls/tails, and identical adjacent subobject LEAs in both
 actual callers. Existing fresh CIL provenance, source identity, actual call
 mapping and caller address-role checks remain mandatory. It neither changes
 source calling conventions nor accepts the nonexact caller. See
-DIRECT_SOUND_STOP_EXACT_2026_11_01.md and tests/test_linked_member_leaf.py.
+tests/test_linked_member_leaf.py.
 
 ### Pure linked standard-container origins
 
@@ -1737,4 +1736,4 @@ checks and observed leaf stack cleanup on every return. Only named call
 relocations and no leaf address/EH state are allowed; the entire canonical leaf
 must still match. Intermediate bodies are not accepted or declared equivalent.
 The original source_only_caller rules remain unchanged. See
-OGG_PCM_EXACT_2026_11_01.md and tests/test_linked_stdcall_graph.py.
+tests/test_linked_stdcall_graph.py.

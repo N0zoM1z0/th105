@@ -41,7 +41,7 @@ Next qualify a real provider-backed compiler/link context using25 decoded direct
 callees; a raw E8 operand must not become a fictitious26th provider.
 
 That real-provider work reaches one missing body through secondary animation
-initialization: [texture query404E60](TEXTURE_SIZE_QUERY_2026_10_22.md), now
+initialization: texture query404E60, now
 accepted148/148 with genuine lookup visibility and a preserved ordinary lookup
 entry. This is a separate authored function, with no new exact credit for496540
 or417800. The subsequent [resolved provider context](REIMU_OBJECT_REAL_PROVIDER_CONTEXT_2026_10_22.md)

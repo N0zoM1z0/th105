@@ -36,7 +36,7 @@ lookup definition visible and its ordinary thiscall export preserved. The
 ordinary COFF query is147 bytes. Already attested Kernel32 IAT data cells
 resolve the real VC8 GS-report helper; no static-lifecycle guard changes or
 ABS code providers are used. The lookup's independent probe remains nonexact.
-See [the source and complete comparison](TEXTURE_SIZE_QUERY_2026_10_22.md).
+
 
 ## Build and reference identity
 
@@ -53,7 +53,7 @@ Optional `preserve_public_members` keeps genuine normal public thiscall member
 ABIs exported without registering duplicate target functions. Unique source
 CIL ownership, actual export identity and native implementations are required;
 these roots add no match credit and cannot replace the comparison root.
-See [cleanup acceptance and rejection tests](DESIGN_BASE_CLEANUP_EXACT_2026_10_21.md).
+
 
 `config/tools.lock.toml` pins cl/c1xx/c2/link, both complete header trees and
 the actual VC8 `msvcrt.lib`/`msvcprt.lib` and Platform SDK `WS2_32.Lib` import libraries. The runtime libraries
@@ -135,7 +135,7 @@ roles do not establish target data or EH equality, and are never used in the
 callee canonicalizer. Its existing full ownership, relocation and zero-byte-
 difference requirements remain unchanged. The result records every caller
 hash, actual source/target callsite and observed address field. See
-[the complete font color evidence](TEXT_FONT_COLOR_LTCG_2026_10_22.md).
+the complete font color evidence.
 
 The next linker function bounds each available span;
 only trailing linker INT3 padding outside a closed RET is removed. Full
@@ -236,7 +236,7 @@ The caller must be marked matching and freshly replay **exact in the same
 image** on every child comparison. Its source raw hash, canonical hash,
 target hash, map identity, complete CFG and HIGHLOW coverage are bound to that
 replay. Recursion, longer implicit chains and nonexact parents fail. The
-child's own complete comparison is unchanged. See FILE_BUFFER_LOADING_EXACT_2026_10_29.md.
+child's own complete comparison is unchanged.
 
 Full `eh_cleanup` comparison also supports ordinary unrenamed public members
 and this exact-parent private member case, using the real static CRT cookie.
@@ -257,7 +257,7 @@ The exact-parent report now uses the generic exact_caller key. A public
 parent is eligible only with the same fresh same-image full exact replay,
 ledger evidence, hashes, map ownership, CFG and relocation checks as the
 private-parent case. Recursion and implicit longer chains remain forbidden.
-See SCRIPT_FILE_LOADING_2026_10_29.md.
+
 
 ## Five-slot reader families
 
@@ -267,12 +267,12 @@ source CIL method ownership, native executable candidate identities and
 source HIGHLOW coverage are mandatory. Extra executable slots fail. The
 fixed-base target table is compared in full; its relocation section is
 stripped. Existing single-/two-slot and vptr-store gates are unchanged.
-See FILE_READER_OPEN_EXACT_2026_10_30.md.
+
 
 Public virtual thiscall source members are also eligible for full cleanup EH
 comparison when exported under their actual unrenamed symbol. The static
 cookie, complete handler/funclet/FuncInfo/unwind and relocation checks remain
-identical. See BITMAP_FILE_LOAD_EXACT_2026_10_30.md.
+identical.
 
 ## Original static Xiph providers and Ogg callback slots
 
@@ -285,7 +285,7 @@ link_ogg_callbacks=true verifies the complete source-owned four-function table
 against the existing native slot anchors. Only dword MOV register reads are
 admitted, and source table/code ownership and HIGHLOW coverage stay mandatory.
 There is no arbitrary callback table, data alias, import or code stub contract.
-See BGM_OGG_RUNTIME_2026_10_30.md.
+
 
 ## Source-owned IEEE numeric literals
 
@@ -300,11 +300,11 @@ preserve_public_members also accepts ordinary public nonvirtual normal
 thiscall destructors under their real decorated names. Constructors, virtual
 destructors and deleting wrappers are not included. The existing unique source
 export/ownership witness remains mandatory. See
-SFL_LOOP_METADATA_EXACT_2026_10_30.md for the complete cleanup EH example.
+for the complete cleanup EH example.
 
 A normal nonvirtual private destructor can also carry full cleanup EH through
 its real exported caller. Existing private-entry qualification still requires
 complete caller CFGs, exact edge multiplicity and unique source ownership.
 Only the child receives byte credit; every child instruction, handler, funclet
 and metadata byte still compares in full. Other private methods retain the
-exact-parent requirement. See BGM_STREAM_LIFETIME_2026_10_30.md.
+exact-parent requirement.

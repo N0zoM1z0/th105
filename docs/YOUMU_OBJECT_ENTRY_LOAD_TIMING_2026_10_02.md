@@ -76,7 +76,7 @@ Neither control establishes an assembly requirement. Complete raw decoding
 of this callable contains none of FSINCOS, FRNDINT, FSIN, FCOS, FPTAN or FPATAN.
 The [TH08 instruction-island reference](YOUMU_SHARED_ZERO_RETURN_AND_CONTROLS_2026_10_02.md)
 and the exact natural-source
-[sprite-rotation x87 control](SPRITE_PIVOT_ROTATION_2026_10_02.md) remain
+sprite-rotation x87 control remain
 separate evidence; they cannot determine this root's compilation context.
 
 ## Remaining physical ownership and reproduction

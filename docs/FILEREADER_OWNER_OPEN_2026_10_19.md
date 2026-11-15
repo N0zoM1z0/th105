@@ -1,7 +1,7 @@
 # Reader-opening dependency at0x0040CF40
 
 Historical checkpoint: the genuine complete provider/constructor CIL now
-closes213/213. See FILE_READER_OPEN_EXACT_2026_10_30.md. Earlier controls
+closes213/213. Earlier controls
 below remain evidence of their then-incomplete source context.
 
 Scope: the shared reader-opening helper used by the2230-byte BMP loader and

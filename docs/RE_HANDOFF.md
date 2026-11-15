@@ -177,17 +177,17 @@ scripts/repo-python scripts/report-reconstruction-status.py --summary
   real map-iterator and render-list operations. The interpreter remains blocked
   on its local string-constructor binding. Stand commands use the record's
   character resource name, with loader-returned texture tokens. See
-  [runtime reset](SCENARIO_RUNTIME_RESET_SOURCE_2026_11_04.md),
+  runtime reset,
   [Stand resources](SCENARIO_STAND_RESOURCE_2026_11_10.md) and
   [texture publication](SCENARIO_TEXTURE_PUBLICATION_2026_11_10.md).
 - Application initialization `0x407CA0` is locally exact across the 255-byte
   root, cleanup EH and real inline exit callback. Factory's standalone COFF
   comparator cannot accept its linked DLL. See
-  [application initialization](APPLICATION_INLINE_CLEANUP_2026_11_10.md).
+  application initialization.
 - SystemEffect spawning `0x458340` is exact at 125 bytes with Factory acceptance.
   Spell selection shuffle `0x432420` is locally exact at 196 bytes using the
   genuine deque provider. See [SystemEffect spawning](SYSTEM_EFFECT_MANAGER_SPAWN_2026_11_04.md)
-  and [spell shuffle](SPELL_SELECTION_SHUFFLE_SOURCE_2026_11_04.md).
+  and spell shuffle.
 - The real ACK-constructor CIL context lacks definitions for the IPacket base
   serialize/parse slots. Recover those providers before linking; do not invent
   bodies or change the base to pure virtual merely to satisfy the linker.

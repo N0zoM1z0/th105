@@ -114,7 +114,7 @@ none of FSINCOS, FRNDINT, FSIN, FCOS, FPTAN or FPATAN. That does not cover every
 transitive callee or other TH105 roots. TH08's examples do not establish an
 assembly requirement for this bounded scope. The target-proven natural C++
 x87 environment control in
-[the exact sprite-rotation unit](SPRITE_PIVOT_ROTATION_2026_10_02.md) is a
+the exact sprite-rotation unit is a
 separate positive example, not a universal recipe.
 
 ## Phase-scoped controls

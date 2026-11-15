@@ -101,7 +101,7 @@ pre-guard locals and external visibility also retain the caller difference.
 Repeated cap evaluation reaches1452 bytes with a28h frame; a by-value
 three-short policy reaches1452 bytes but still differs31 bytes. None is
 selected. These source-context witnesses do not establish an LTCG barrier;
-see [the family1 recovery](FAMILY1_OBJECT_CLASHES_2026_10_20.md).
+
 
 ## Native execution and its limits
 

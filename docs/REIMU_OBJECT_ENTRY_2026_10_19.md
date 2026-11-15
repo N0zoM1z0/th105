@@ -315,7 +315,7 @@ claim is produced.
 
 ## Current strict result and open questions
 
-The subsequent [shared action980 recovery](OBJECT_ACTION980_WORD_ABI_2026_10_19.md)
+The subsequent shared action980 recovery
 closes the external596370 continuation at323/323 by refining its own local
 selector argument to short. The root source/result below is unchanged.
 Fresh direct Ghidra work also exposes51 decompiler p-code addresses from that

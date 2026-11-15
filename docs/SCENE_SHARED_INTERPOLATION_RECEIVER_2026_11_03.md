@@ -14,7 +14,7 @@ The canonical 801-byte update at 0x451400 calls the byte interpolator at
 0x451594, 0x4515BB, 0x4515E2 and 0x451635, and float interpolator at 0x451685.
 Both native interpolators preserve their incoming ECX receiver into the easing
 member calls at 0x45022B and 0x4502F7 respectively. See the independently
-reviewed [receiver evidence](SCENE_INTERPOLATION_RECEIVER_2026_10_29.md).
+reviewed receiver evidence.
 The update's 0x94 layout and member offsets retain their existing assertions.
 Using one declaration describes that ordinary owner relationship without
 forcing source inlining or pretending that methods live in one original TU.

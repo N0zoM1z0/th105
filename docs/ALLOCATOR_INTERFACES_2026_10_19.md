@@ -117,7 +117,7 @@ Their corresponding source expressions and declarations need separate review;
 they are leads rather than automatically invalidated functions. The complete
 unit/source/address list is `remaining-array-bindings.json` in the receipt
 directory. None is changed in this batch. The later
-[gauge/array-declaration checkpoint](BATTLE_INFO_GAUGE_BINDING_2026_10_19.md)
+gauge/array-declaration checkpoint
 reviews all seven: six are array declarations, while46FA90 actually calls
 scalar new689DCB and now matches648/648 after ownership/layout corrections.
 

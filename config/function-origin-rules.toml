@@ -1580,7 +1580,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "All twenty canonical-exact CHandleManagerEx<T> constructors in the current SHA-pinned PE call 0x004040B0 exactly once while constructing their checked std::list<unsigned> free-handle sentinel. Their exact source owns that list specialization. A fresh VC8 _Buynode body has the same 26-byte shape, but raw fingerprint identity is deliberately not used because the separately located list sentinel 0x00435E50 has the same complete relocated body (also compiler-generated; docs/LIST_SENTINEL_OWNERSHIP_2026_11_09.md). Caller/container ownership, not byte uniqueness, proves this helper is generated STL machinery. Exact native font constructor411430 now independently calls this pooled sentinel at411474 for list<unsigned*>. Its actual CIL26-byte helper is independently equal after the named MSVCR80 operator-new import replay, and ECX scratch is defined before first use; this corroborates unused receiver/private lowering without helper credit. docs/TEXT_FONT_OWNER_CTOR_EXACT_2026_10_21.md."
+evidence = "All twenty canonical-exact CHandleManagerEx<T> constructors in the current SHA-pinned PE call 0x004040B0 exactly once while constructing their checked std::list<unsigned> free-handle sentinel. Their exact source owns that list specialization. A fresh VC8 _Buynode body has the same 26-byte shape, but raw fingerprint identity is deliberately not used because the separately located list sentinel 0x00435E50 has the same complete relocated body (also compiler-generated; docs/LIST_SENTINEL_OWNERSHIP_2026_11_09.md). Caller/container ownership, not byte uniqueness, proves this helper is generated STL machinery. Exact native font constructor411430 now independently calls this pooled sentinel at411474 for list<unsigned*>. Its actual CIL26-byte helper is independently equal after the named MSVCR80 operator-new import replay, and ECX scratch is defined before first use; this corroborates unused receiver/private lowering without helper credit."
 required_body_hashes = [{ address = "0x004040B0", size = 26, sha256 = "51243f7677d4ddc7fee890ea0c868b516ac40dfcf9644172bef7bbb3083caaa6" }]
 required_direct_edges = [{ caller = "0x00411430", site = "0x00411474", target = "0x004040B0", caller_status = "matching" }]
 
@@ -1740,7 +1740,7 @@ origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E10 own authored loader slots1/2/3 at 0x00419FF0/0x0041A910/0x0041ACA0. Slot1 is the 2230-byte BMP loader with PNG fallback and target-proved palette/pixel topology; slot2 passes canonical-exact game callback 0x0041A8E0 into embedded libpng; slot3 is the native FileReaderOwner bitmap loader. Source covers all three loader protocols. Raw file loader41ACA0 and PNG loader41A910 are canonical exact with full EH and skipped by this rule; BMP remains nonexact. See docs/BITMAP_FILE_LOAD_EXACT_2026_10_30.md. The old claim that only stack coloring remained was unproved; the BMP section-size report also included adjacent switch metadata. EH, allocator-interface and reader-provider evidence is separated in docs/CBITMAP_BMP_EH_2026_10_19.md and docs/FILEREADER_OWNER_OPEN_2026_10_19.md."
+evidence = "Current CBitmapData RTTI/COL 0x006DCFB0 and primary vtable 0x006D6E10 own authored loader slots1/2/3 at 0x00419FF0/0x0041A910/0x0041ACA0. Slot1 is the 2230-byte BMP loader with PNG fallback and target-proved palette/pixel topology; slot2 passes canonical-exact game callback 0x0041A8E0 into embedded libpng; slot3 is the native FileReaderOwner bitmap loader. Source covers all three loader protocols. Raw file loader41ACA0 and PNG loader41A910 are canonical exact with full EH and skipped by this rule; BMP remains nonexact. The old claim that only stack coloring remained was unproved; the BMP section-size report also included adjacent switch metadata. EH, allocator-interface and reader-provider evidence is separated in docs/CBITMAP_BMP_EH_2026_10_19.md and docs/FILEREADER_OWNER_OPEN_2026_10_19.md."
 
 [[rules]]
 id = "palette-data-runtime-authored-106a"
@@ -1753,7 +1753,7 @@ origin = "authored_game"
 subsystem = "assets"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current resource dispatcher 0x00408F70 owns one 8-byte palette object and routes normal BMP paths to 0x00419A60 while extension-rewritten raw palette paths call 0x00419E80. The BMP body reads a canonical 14-byte file header, 40-byte info header and 0x400 palette then converts 8-bit entries to requested 16/24/32-bit storage; the sibling frees old storage, reads a one-byte format and loads 0x200/0x400 bytes. Both are game-side FileReaderOwner consumers. Raw palette419E80 is now exact243/full EH and skipped by this rule. BMP source now1047 with the native frame but retains entry scheduling differences; no exclusive-cause claim. docs/PALETTE_FILE_LOADING_EXACT_2026_10_30.md."
+evidence = "Current resource dispatcher 0x00408F70 owns one 8-byte palette object and routes normal BMP paths to 0x00419A60 while extension-rewritten raw palette paths call 0x00419E80. The BMP body reads a canonical 14-byte file header, 40-byte info header and 0x400 palette then converts 8-bit entries to requested 16/24/32-bit storage; the sibling frees old storage, reads a one-byte format and loads 0x200/0x400 bytes. Both are game-side FileReaderOwner consumers. Raw palette419E80 is now exact243/full EH and skipped by this rule. BMP source now1047 with the native frame but retains entry scheduling differences; no exclusive-cause claim."
 
 [[rules]]
 id = "wave-data-resource-loaders-authored-106a"
@@ -1825,7 +1825,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Target4061F0 is the checked std::map iterator increment with private ESI receiver. Former inclusion of405770 as a compiler-extracted phase was unsupported: independent load405810 also calls its game-owned command-deletion policy, now reproduced by an ordinary CScript member with canonical147-byte CIL replay. See SCRIPT_PENDING_LIFETIME_2026_10_29.md."
+evidence = "Target4061F0 is the checked std::map iterator increment with private ESI receiver. Former inclusion of405770 as a compiler-extracted phase was unsupported: independent load405810 also calls its game-owned command-deletion policy, now reproduced by an ordinary CScript member with canonical147-byte CIL replay."
 
 [[rules]]
 id = "checked-vector-range-erase-clones-generated-106a"
@@ -1888,7 +1888,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "BattleInfoRecordF8::bind_fighter is game UI/Fighter policy, called by exact normal/story pair binders and owning typed16-byte TGageValue objects. Full186-instruction/648-byte raw CFG and corrected natural source are now canonical648/648, including all scalar new/delete calls, field widths, lifetime ordering and the live+18 UI binding receiver. Both vtable-owned value methods remain exact20/27. Original UI subobject class name is unknown. This archived provenance does not assign a census disposition; the canonical matching baseline owns the row. docs/BATTLE_INFO_GAUGE_BINDING_2026_10_19.md."
+evidence = "BattleInfoRecordF8::bind_fighter is game UI/Fighter policy, called by exact normal/story pair binders and owning typed16-byte TGageValue objects. Full186-instruction/648-byte raw CFG and corrected natural source are now canonical648/648, including all scalar new/delete calls, field widths, lifetime ordering and the live+18 UI binding receiver. Both vtable-owned value methods remain exact20/27. Original UI subobject class name is unknown. This archived provenance does not assign a census disposition; the canonical matching baseline owns the row."
 required_body_hashes = [{ address = "0x0046FA90", size = 648, sha256 = "e44f2c92e653701f1356ce5eb1cdb9a524d60e42e4cd381965b50bda800f985d" }]
 
 [[rules]]
@@ -2589,7 +2589,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Remaining542-byte pair resolver has complete raw RET8 closure, frame-priority comparisons and status writes at180/184; all eight exact reset-helper calls remain pinned. The separately accepted686-byte native checked-list traversal46DD40 now calls it at two canonical-exact E8 sites. Its canonical baseline is independent of this nonexact origin rule; the selected rule now owns only46CA80. Pair predicate46BCA0 has its own origin review. Pair source is now selected after2638 real-helper native cases covering every target instruction/RET, including the asymmetric46CB74 branch. Current557-byte source remains nonexact to542; original TU and exact codegen remain unknown. docs/FAMILY1_PAIR_RESPONSE_2026_10_20.md; docs/FAMILY1_OBJECT_CLASHES_2026_10_20.md; docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Remaining542-byte pair resolver has complete raw RET8 closure, frame-priority comparisons and status writes at180/184; all eight exact reset-helper calls remain pinned. The separately accepted686-byte native checked-list traversal46DD40 now calls it at two canonical-exact E8 sites. Its canonical baseline is independent of this nonexact origin rule; the selected rule now owns only46CA80. Pair predicate46BCA0 has its own origin review. Pair source is now selected after2638 real-helper native cases covering every target instruction/RET, including the asymmetric46CB74 branch. Current557-byte source remains nonexact to542; original TU and exact codegen remain unknown. docs/FAMILY1_PAIR_RESPONSE_2026_10_20.md; docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
   { address = "0x0046CA80", size = 542, sha256 = "ea54fb25e5ab2ac5e4b7c2dc17792e6073ef654b22b20a06fce6a9887c1257d6" },
 ]
@@ -2664,7 +2664,7 @@ origin = "authored_game"
 subsystem = "render"
 disposition = "authored"
 confidence = "observed"
-evidence = "Hash-attested target PE reaches all 1095 bytes through two RET 0x18 paths without gaps or indirect exits. Three optional Z/Y/X x87 rotation phases call separately source-present target cosine/sine lookup bodies and update four xyz working vertices at receiver +0xB0..+0xDC around six scalar parameters. Five distinct canonical-exact timeline/background/system-effect renderers call the body at six replayed E8 sites. Nearby CSpriteEx reset/translate/scale bodies are independently canonical exact, corroborating shared sprite ownership; the accepted rotation now belongs to the canonical matching baseline; this archived evidence is replayed by workflow tests. Six outgoing lookup E8s, six exact inbound E8s and full body hash are replayed. Original TU identity remains inferred. Natural fenv_access plus shared scalars reproduce all 1095 bytes; see docs/SPRITE_PIVOT_ROTATION_2026_10_02.md. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "Hash-attested target PE reaches all 1095 bytes through two RET 0x18 paths without gaps or indirect exits. Three optional Z/Y/X x87 rotation phases call separately source-present target cosine/sine lookup bodies and update four xyz working vertices at receiver +0xB0..+0xDC around six scalar parameters. Five distinct canonical-exact timeline/background/system-effect renderers call the body at six replayed E8 sites. Nearby CSpriteEx reset/translate/scale bodies are independently canonical exact, corroborating shared sprite ownership; the accepted rotation now belongs to the canonical matching baseline; this archived evidence is replayed by workflow tests. Six outgoing lookup E8s, six exact inbound E8s and full body hash are replayed. Original TU identity remains inferred. Natural fenv_access plus shared scalars reproduce all 1095 bytes; See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
 required_body_hashes = [
   { address = "0x00407680", size = 1095, sha256 = "313f3bb25a5e3c835faf60c91a2196b0a2d22d3507c01bcac149fe3debb69dde" },
 ]
@@ -2695,7 +2695,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "The hash-attested 1,862-byte main span reaches every byte and has five RET paths, no indirect jumps or outgoing direct branch exits, and INT3 padding after its final RET. It loads two Fighter pointers at receiver +0x0C/+0x10, clears both +0x6A4 body-overlap fields, checks their frame +0x158 body AABB pointers at +0x54, tracks game-owned boundary-owner bytes at 0x006E7B6C/6D, and calls five independently canonical-exact game collision/stage helpers at ten E8 sites. Nine distinct canonical-exact BattleManager/Story pipeline functions call it. The current source is canonical 1862/1862 in cross-v106a-body-collision after target-pinned tie comparison, float rounding and common average lifetime corrections. Original class/TU spelling remains unknown. This archived provenance assigns no census disposition; the canonical matching baseline owns the row. See docs/FIGHTER_BODY_COLLISION_2026_10_02.md and docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
+evidence = "The hash-attested 1,862-byte main span reaches every byte and has five RET paths, no indirect jumps or outgoing direct branch exits, and INT3 padding after its final RET. It loads two Fighter pointers at receiver +0x0C/+0x10, clears both +0x6A4 body-overlap fields, checks their frame +0x158 body AABB pointers at +0x54, tracks game-owned boundary-owner bytes at 0x006E7B6C/6D, and calls five independently canonical-exact game collision/stage helpers at ten E8 sites. Nine distinct canonical-exact BattleManager/Story pipeline functions call it. The current source is canonical 1862/1862 in cross-v106a-body-collision after target-pinned tie comparison, float rounding and common average lifetime corrections. Original class/TU spelling remains unknown. This archived provenance assigns no census disposition; the canonical matching baseline owns the row. md."
 required_body_hashes = [
   { address = "0x0046CCA0", size = 1862, sha256 = "c6ef9cab92b2106d93cd532e0074493d3ed0b3d53abaa3ae3ad16f06f0a10cd2" },
 ]
@@ -2924,7 +2924,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "The complete71-byte/24-instruction native list::_Tidy is generated from SHA-pinned VC8 SP1 <list> in the actual font-owner destructor TU. Exact destructor4114C0 calls it at411587 on its real list<unsigned*> member+15C; the CIL method is unique/unexported and naturally receives ESI. Full linked symbol/CFG comparison and a typed actual-caller witness reproduce all71 bytes, with two actual MSVCR80 operator-delete import calls independently bound to original6898EA. The native container member and exact caller establish compiler ownership separately from byte shape or adjacency. Other trivial word/pointer specializations may pool; exact original spelling/release/TU is not claimed. No authored implemented/match row or helper credit. docs/TEXT_FONT_OWNER_DTOR_EXACT_2026_10_21.md."
+evidence = "The complete71-byte/24-instruction native list::_Tidy is generated from SHA-pinned VC8 SP1 <list> in the actual font-owner destructor TU. Exact destructor4114C0 calls it at411587 on its real list<unsigned*> member+15C; the CIL method is unique/unexported and naturally receives ESI. Full linked symbol/CFG comparison and a typed actual-caller witness reproduce all71 bytes, with two actual MSVCR80 operator-delete import calls independently bound to original6898EA. The native container member and exact caller establish compiler ownership separately from byte shape or adjacency. Other trivial word/pointer specializations may pool; exact original spelling/release/TU is not claimed. No authored implemented/match row or helper credit."
 required_body_hashes = [
   { address = "0x00408A00", size = 71, sha256 = "a3e8a804e3fda4269c0a7507204778073fee77dfb715060c915916f2160007c0" },
 ]
@@ -3169,7 +3169,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Canonical-exact CSelectScenario_apply_scenario4245D0 calls release404D70 at4245F3 and load404C90 at424641. Raw complete99/115 bodies implement texture-token loading/failure recycle, eight cache-slot unbinds and COM release/recycle; current global/device/manager identities support game ownership independently of source exactness. Previous naked inline-assembly transcription is withdrawn. Load remains nonexact93/99. Release now has independent genuine CIL115/115 acceptance and is excluded from this remaining load-only rule; no old assembly claim is restored. docs/TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md; docs/TITLE_RESOURCE_RELEASE_EXACT_2026_11_01.md."
+evidence = "Canonical-exact CSelectScenario_apply_scenario4245D0 calls release404D70 at4245F3 and load404C90 at424641. Raw complete99/115 bodies implement texture-token loading/failure recycle, eight cache-slot unbinds and COM release/recycle; current global/device/manager identities support game ownership independently of source exactness. Previous naked inline-assembly transcription is withdrawn. Load remains nonexact93/99. Release now has independent genuine CIL115/115 acceptance and is excluded from this remaining load-only rule; no old assembly claim is restored. docs/TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md."
 required_body_hashes = [
  { address = "0x00404C90", size = 99, sha256 = "e1e7a44481f2af11e1217f3b250c9170f0855b87c9063a8b643f510ed5fe7917" },
 ]
@@ -3263,7 +3263,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "inferred"
-evidence = "Complete19-byte composed endpoint cleanup only destroys deque68 then input prefix. Exact CNetworkBase constructor44DB10 passes it as the paired array destructor at44DBB5. Natural empty C++ destructor reproduces all19 bytes, corroborating automatic member cleanup rather than authored body logic. docs/NETWORK_INPUT_CONSTRUCTOR_2026_10_29.md."
+evidence = "Complete19-byte composed endpoint cleanup only destroys deque68 then input prefix. Exact CNetworkBase constructor44DB10 passes it as the paired array destructor at44DBB5. Natural empty C++ destructor reproduces all19 bytes, corroborating automatic member cleanup rather than authored body logic."
 required_body_hashes = [
  { address = "0x0043BEA0", size = 19, sha256 = "c1652a926d37f8857611bb27cdfa6f3fb4b5f0d7f6e3427c99d50a59c2531837" },
 ]
@@ -3340,7 +3340,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete211-byte scene color interpolation applies unsigned timeline bounds, normalized progress, game easing, signed32-bit target difference and byte publication. Four calls in exact SceneRenderCluster update establish ownership; selected214-byte source retains a pointer/start reload residual. Easing is a normal member call preserving incoming ECX, not a fabricated register convention. docs/SCENE_INTERPOLATION_RECEIVER_2026_10_29.md."
+evidence = "Complete211-byte scene color interpolation applies unsigned timeline bounds, normalized progress, game easing, signed32-bit target difference and byte publication. Four calls in exact SceneRenderCluster update establish ownership; selected214-byte source retains a pointer/start reload residual. Easing is a normal member call preserving incoming ECX, not a fabricated register convention."
 required_body_hashes = [{ address = "0x004501B0", size = 211, sha256 = "46321f39d819b3cd9516a3c69bb0c5fbf843440268789ae47e43a863cbf66e47" }]
 required_direct_edges = [
  { caller = "0x00451400", site = "0x00451594", target = "0x004501B0", caller_status = "matching" },
@@ -3356,7 +3356,7 @@ origin = "compiler_generated"
 subsystem = "battle"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Pinned VC8 SP1 rebuild of BackgroundInitializeCommon.cpp emits vector<CEffectSprite>::_Assign_n. Its complete186-byte native body independently proves the0xE8 element and assign-not-resize semantics. The relocation-masked fingerprint must remain unique across the complete candidate inventory. docs/EFFECT_SPRITE_OWNER_2026_10_29.md."
+evidence = "Pinned VC8 SP1 rebuild of BackgroundInitializeCommon.cpp emits vector<CEffectSprite>::_Assign_n. Its complete186-byte native body independently proves the0xE8 element and assign-not-resize semantics. The relocation-masked fingerprint must remain unique across the complete candidate inventory."
 
 [[rules]]
 id = "bg02-constructor-authored-106a"
@@ -3368,7 +3368,7 @@ origin = "authored_game"
 subsystem = "battle"
 disposition = "authored"
 confidence = "observed"
-evidence = "Exact BattleObjectManager dispatch467380 creates the RTTI-backed0x68 BG02 owner. Constructor initializes BG2 common tiles and48 left/center/right animated textures, then state64. Actual vector<CEffectSprite> assign and path-scoped lifetime recover the complete924-byte source with77 remaining schedule bytes. docs/BACKGROUND_CONSTRUCTORS_2026_10_29.md."
+evidence = "Exact BattleObjectManager dispatch467380 creates the RTTI-backed0x68 BG02 owner. Constructor initializes BG2 common tiles and48 left/center/right animated textures, then state64. Actual vector<CEffectSprite> assign and path-scoped lifetime recover the complete924-byte source with77 remaining schedule bytes."
 required_body_hashes = [{ address = "0x00467F90", size = 924, sha256 = "b2d2eb2748fc07c5f07ad07d36d95e7924eb8270cbc8a4f4d65268297e275ce8" }]
 required_direct_edges = [{ caller = "0x00467380", site = "0x00467423", target = "0x00467F90", caller_status = "matching" }]
 
@@ -3410,7 +3410,7 @@ origin = "authored_game"
 subsystem = "audio"
 disposition = "authored"
 confidence = "observed"
-evidence = "Three complete game stream paths use the independently proved1378-byte stream, decoder+30 and CDSBuffer+24 ownership. Start calls exact Ogg open, then the ring-update and linked-stream handoff bodies; they manage the100000h ring,8000h decode chunks,scheduling,gain fades and stream links. Raw canonical bodies and incoming start edges are pinned. Source candidates remain nonexact. docs/BGM_OGG_RUNTIME_2026_10_30.md."
+evidence = "Three complete game stream paths use the independently proved1378-byte stream, decoder+30 and CDSBuffer+24 ownership. Start calls exact Ogg open, then the ring-update and linked-stream handoff bodies; they manage the100000h ring,8000h decode chunks,scheduling,gain fades and stream links. Raw canonical bodies and incoming start edges are pinned. Source candidates remain nonexact."
 required_body_hashes = [{ address = "0x00402A00", size = 358, sha256 = "73f7ccb4f53ae4cfd1a71d3dcd4ca8f76bd5f215370a0ff11904425c21919ac2" }, { address = "0x00402C10", size = 943, sha256 = "6cb0f82e49c6b4b2b1222b1f4c5f4a7270b4d43e2914fbd16f376fc8a4b2f854" }, { address = "0x00402FC0", size = 806, sha256 = "61c4852c20e1cd9fa035c956a7f17e949faeac24117323389cca962e3da404e9" }]
 required_direct_edges = [{ caller = "0x00402A00", site = "0x00402B33", target = "0x00402C10", caller_status = "implemented" }, { caller = "0x00402A00", site = "0x00402B25", target = "0x00402FC0", caller_status = "implemented" }]
 required_selected_body_calls = [{ owner = "0x00402A00", site = "0x00402A1E", target = "0x00418A10", target_status = "matching" }]
@@ -3425,7 +3425,7 @@ origin = "authored_game"
 subsystem = "audio"
 disposition = "authored"
 confidence = "observed"
-evidence = "Raw stream destructor unlinks its next stream and explicitly closes DirectSound/codec resources before member cleanup. Packed-token release and lookup operate on the independently recovered BGM pool and lock. The separately padded15-byte reader-owner418A00 and stream destructor are now canonical exact and skipped; this distinct member-lifetime rule retains only the nonexact release/lookup ownership. These authored ownership bodies are separate from their generated STL members and cleanup handlers. See BGM_STREAM_LIFETIME_2026_10_30.md."
+evidence = "Raw stream destructor unlinks its next stream and explicitly closes DirectSound/codec resources before member cleanup. Packed-token release and lookup operate on the independently recovered BGM pool and lock. The separately padded15-byte reader-owner418A00 and stream destructor are now canonical exact and skipped; this distinct member-lifetime rule retains only the nonexact release/lookup ownership. These authored ownership bodies are separate from their generated STL members and cleanup handlers."
 
 [[rules]]
 id = "bgm-loading-worker-authored-106a"
@@ -3447,7 +3447,7 @@ origin = "compiler_generated"
 subsystem = "runtime"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Complete native vector destructor reached by packet-pool unwind state1; real std::vector<packet *> destructor reproduces the ESI lifetime body. No authored credit. docs/NETWORK_UDP_LIFETIME_EXACT_2026_10_30.md."
+evidence = "Complete native vector destructor reached by packet-pool unwind state1; real std::vector<packet *> destructor reproduces the ESI lifetime body. No authored credit."
 required_body_hashes = [{ address = "0x00405060", size = 38, sha256 = "9f58761ca9ee927fa18ce171ed6ee63151ce7c630085adfd6a895794de177eb0" }]
 
 [[rules]]
@@ -3488,7 +3488,7 @@ origin = "authored_game"
 subsystem = "engine"
 disposition = "authored"
 confidence = "observed"
-evidence = "Native global D3D backend destructor owns COM shutdown, listener-list and critical-section lifetimes; real atexit tail6BEEB0 and source global constructor identify ownership. Current169/native103 source remains nonexact. docs/D3D_BACKEND_GLOBAL_LIFETIME_2026_10_30.md."
+evidence = "Native global D3D backend destructor owns COM shutdown, listener-list and critical-section lifetimes; real atexit tail6BEEB0 and source global constructor identify ownership. Current169/native103 source remains nonexact."
 required_body_hashes = [{ address = "0x00414770", size = 103, sha256 = "7815d8456cb33537eed3b18d6ad43f304e8991141b111abb6325847ab845573f" }]
 required_dword_values = [{ address = "0x006BE876", value = "0x006BEEB0" }, { address = "0x006C0388", value = "0x006BE870" }]
 
@@ -3502,7 +3502,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Real application input/composition caller, singleton text/cursor/pending-state ownership and complete Shift-JIS/Win32 message policy establish authored source. Exact cursor157 is separately accepted; this root remains nonexact. docs/PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md."
+evidence = "Real application input/composition caller, singleton text/cursor/pending-state ownership and complete Shift-JIS/Win32 message policy establish authored source. Exact cursor157 is separately accepted; this root remains nonexact."
 required_body_hashes = [{ address = "0x0040E8B0", size = 383, sha256 = "4009bf105c2af4d1107196606c3a4ea45549f5629c14bfe918997f780a9199d5" }]
 required_direct_edges = [{ caller = "0x0040E840", site = "0x0040E858", target = "0x0040E8B0" }]
 
@@ -3516,7 +3516,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Real application input/composition caller, singleton text/cursor/pending-state ownership and complete Shift-JIS/Win32 message policy establish authored source. Exact cursor157 is separately accepted; this root remains nonexact. docs/PROFILE_IME_MESSAGE_SOURCE_2026_10_30.md."
+evidence = "Real application input/composition caller, singleton text/cursor/pending-state ownership and complete Shift-JIS/Win32 message policy establish authored source. Exact cursor157 is separately accepted; this root remains nonexact."
 required_body_hashes = [{ address = "0x0040EDE0", size = 616, sha256 = "d591d71582ca4622b165b25f870e93e3381dde6f47b67b212a23a816effe3f34" }]
 required_direct_edges = [{ caller = "0x00408690", site = "0x004086B3", target = "0x0040EDE0" }]
 
@@ -3628,7 +3628,7 @@ origin = "vc8_runtime"
 subsystem = "crt_header"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Actual pinned VC8 swprintf.inl counted variadic wrapper emits complete27-byte canonical fingerprint in the three exact endpoint callers. Header SHA d92946b2263736a620b151ae80a1e7f4963112f72b1e6257b021e7c33d0dbf3f. Source uses va_start, _vswprintf_c_l with null locale and va_end; private EDX count is compiler-selected. Standard header implementation, no authored credit. docs/CONNECT_ENDPOINT_ACTIONS_EXACT_2026_10_31.md."
+evidence = "Actual pinned VC8 swprintf.inl counted variadic wrapper emits complete27-byte canonical fingerprint in the three exact endpoint callers. Header SHA d92946b2263736a620b151ae80a1e7f4963112f72b1e6257b021e7c33d0dbf3f. Source uses va_start, _vswprintf_c_l with null locale and va_end; private EDX count is compiler-selected. Standard header implementation, no authored credit."
 required_body_hashes = [{ address = "0x004418B0", size = 27, sha256 = "72d421962b54962fb5747badaabb4e2dcb808ae0232bbbe52d10bfb67af3fbc6" }]
 required_direct_edges = [{ caller = "0x004424D0", site = "0x00442516", target = "0x004418B0", caller_status = "matching" }, { caller = "0x004430D0", site = "0x00443117", target = "0x004418B0", caller_status = "matching" }, { caller = "0x00442CE0", site = "0x00442D5B", target = "0x004418B0", caller_status = "matching" }]
 
@@ -5558,7 +5558,7 @@ origin = "compiler_generated"
 subsystem = "network"
 disposition = "exclude"
 confidence = "observed"
-evidence = "Real InputPacket24 member atNetworkBase+90 has no declared destructor and owns deque<short> at+10. Full emitted8-byte cleanup matches43BE90. Actual source/native unwind funclet1 at6BA40B receives this+90 and tail-enters it; complete parent411/EH197/metadata116 replay independently. No manual cleanup body, mask, new group-helper inventory or authored credit. docs/NETWORK_BASE_NESTED_EH_OWNER_2026_11_02.md."
+evidence = "Real InputPacket24 member atNetworkBase+90 has no declared destructor and owns deque<short> at+10. Full emitted8-byte cleanup matches43BE90. Actual source/native unwind funclet1 at6BA40B receives this+90 and tail-enters it; complete parent411/EH197/metadata116 replay independently. No manual cleanup body, mask, new group-helper inventory or authored credit."
 
 [[rules]]
 id = "select-render-authored-106a"
@@ -5966,7 +5966,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete profile-menu state-one policy body, original switch table and exact dispatcher tail edge; the primary 0x44BCF0 is canonical exact. docs/ORIGIN_RECOVERY_2026_11_03.md and docs/PROFILE_MENU_PRIMARY_SOURCE_2026_11_04.md."
+evidence = "Complete profile-menu state-one policy body, original switch table and exact dispatcher tail edge; the primary 0x44BCF0 is canonical exact. docs/ORIGIN_RECOVERY_2026_11_03.md."
 required_body_hashes = [{ address = "0x0044CA80", size = 446, sha256 = "d14bb403a2a084f28285aa0cf1deb8aa6c554da1a4b026fab5874460b0adee5e" }]
 required_direct_edges = [{ caller = "0x0044D240", site = "0x0044D2E6", target = "0x0044CA80", kind = "jump", caller_status = "matching" }]
 required_dword_values = [{ address = "0x0044CC40", value = "0x0044CAC0" }, { address = "0x0044CC44", value = "0x0044CBDB" }, { address = "0x0044CC48", value = "0x0044CBDB" }, { address = "0x0044CC4C", value = "0x0044CC0B" }]
@@ -6442,7 +6442,7 @@ origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "CSelectObject RTTI virtual slot owns complete 154-byte frame-pivot and facing-specific sprite transform. The typed ordinary source is 154 bytes but nonexact at +25 on x87/receiver scheduling. No exact credit. docs/SELECT_CHARACTER_BINDING_2026_10_28.md."
+evidence = "CSelectObject RTTI virtual slot owns complete 154-byte frame-pivot and facing-specific sprite transform. The typed ordinary source is 154 bytes but nonexact at +25 on x87/receiver scheduling. No exact credit."
 required_rtti_virtual_bodies = [
  { address = "0x0041FAD0", size = 154, sha256 = "10685039ec3d5eacc9462477dca640e0d83965d1d9a9c604c57b3f4b47267d5c", slot = "0x006C0988", col_slot = "0x006C0950", col = "0x006D782C", type_descriptor = "0x006E6488", type_name_contains = "CSelectObject@@", calls = [{ site = "0x0041FB02", target = "0x004073A0" }, { site = "0x0041FB3C", target = "0x004073E0" }, { site = "0x0041FB5F", target = "0x004073E0" }] },
 ]

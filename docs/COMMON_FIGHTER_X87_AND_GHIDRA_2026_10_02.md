@@ -121,7 +121,7 @@ The inspected `ZunMath.hpp` SHA-256 is
 **Current TH105 evidence:** x87 alone does not imply an assembly requirement.
 `CSpriteEx_rotate_xyz @ 0x407680` already matches 1,095/1,095 bytes through
 ordinary C++ plus local environment control and real lifetimes; see
-[the accepted rotation evidence](SPRITE_PIVOT_ROTATION_2026_10_02.md).
+the accepted rotation evidence.
 Its trig calls are quantized lookup helpers, not `fsincos`. The body-collision
 root likewise matches through target-supported comparison orientation and
 single-precision rounding boundaries. Neither result establishes a universal
