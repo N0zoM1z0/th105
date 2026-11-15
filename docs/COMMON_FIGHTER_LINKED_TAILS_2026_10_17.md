@@ -131,8 +131,6 @@ not an original-TU, gameplay-equivalence or acceptance claim.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-fighter-common-action-state --compare --json
-python3 scripts/audit-common-fighter-indirect-tails.py --json
-python3 scripts/probe-common-fighter-ltcg.py --inspect-image build/common-fighter-entry/nested-float-handlers/CommonRoot.dll --inspect-map build/common-fighter-entry/nested-float-handlers/CommonRoot.map
 ```
 
 Without cached providers, the original no-argument link probe regenerates them.

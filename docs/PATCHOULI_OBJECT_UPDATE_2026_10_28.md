@@ -77,8 +77,7 @@ native 82 and differing packet stack homes, control-tail sharing, expression
 lifetimes and instruction scheduling remain. These agreements are diagnostics,
 not an exactness percentage or acceptance.
 
-Isolated unit: `exact-first-patchouli-object-update`. Audit:
-`scripts/audit-patchouli-object-update.py`. Only source/mapping ledgers advance;
+Isolated unit: `exact-first-patchouli-object-update`.
 `matches.csv` is unchanged. Existing accepted units keep their prior receipts
 because no shared binding/profile/source changed.
 

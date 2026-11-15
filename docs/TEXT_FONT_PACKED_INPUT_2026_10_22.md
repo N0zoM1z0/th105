@@ -42,7 +42,7 @@ row or authored-byte total changes.
 
 ## New guarded input evidence
 
-[The input audit](../scripts/audit-text-font-input.py) executes the actual
+The input audit (since removed) executed the actual
 target and canonical source caller instructions through first glyph/end entry
 or an input read fault. It uses a flat font, null output pointers, a single
 readable input page and checked begin/leaf ABI boundaries. The begin provider
@@ -98,8 +98,6 @@ equality, not source resemblance or a selected instruction window.
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit gpt-web-text-font-render --compare --json
 # Expected mixed comparison: caller324/+0, glyph624/+89, markup1728/+16.
-taskset -c 0 nice -n 10 python3 scripts/audit-text-font-input.py \
-  build/match-units/GptWeb_TextFontRender.obj --output build/font-input.json
 ```
 
 The frozen pre-correction COFF is `pre-packed-render.obj`; running the same input

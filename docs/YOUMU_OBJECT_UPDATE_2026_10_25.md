@@ -4,11 +4,6 @@
 
 This packet covers the original Japanese 1.06a executable only, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Run the read-only raw audit:
-
-```sh
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-youmu-object-update-target.py
-```
 
 RTTI-owned YoumuObject primary vtable `0x006C50BC`, slot 28 cell `0x006C50E4`,
 points to this entry. The next slot 3C initializer cell `0x006C50F8` points to
@@ -126,8 +121,6 @@ credit from this checkpoint.
 
 ```sh
 scripts/repo-python scripts/build.py --unit exact-first-youmu-object-update --compare --json
-scripts/repo-python scripts/audit-youmu-object-update.py
-scripts/repo-python scripts/audit-youmu-object-update-paths.py
 ```
 
 The build succeeds. Both strict comparison commands return 1 for the current
@@ -262,11 +255,7 @@ execute actual bounds publication, six-state/phase, cosine/sine/FTOL and atan2
 instructions to the first spawn. They use a preallocated bounds descriptor,
 axis lookup data, facing 1/FF and both x87 precisions. Boundary, owner, bounds,
 helper trace, spawn arguments and payload bytes agree without injected returns
-or edges. Run this focused new check with:
-
-```sh
-scripts/repo-python scripts/audit-youmu-object-update-paths.py --point900
-```
+or edges.
 
 The two byte-neutral frame controls and remaining stack/callback layout gap justify
 parking this full hypothesis and selecting another complete authored representative.

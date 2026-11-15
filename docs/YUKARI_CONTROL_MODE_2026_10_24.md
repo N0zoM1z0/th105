@@ -12,7 +12,6 @@ credit is added.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-yukari-control-mode --compare --json
-python3 scripts/audit-yukari-control-mode.py
 ```
 
 Both commands correctly return 1. The formal build reproduces the selected

@@ -15,11 +15,7 @@ comparison failure or partial exact claim.
 The executable is original Japanese 1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 The GUI IDA preflight rejects a different executable. No reads or writes use
-that session. Raw target evidence is independently reproducible:
-
-```sh
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-komachi-object-update.py --target-only
-```
+that session.
 
 The existing RTTI-backed roster origin anchor binds KomachiObject primary
 slot 28 cell 6C6004 to 5F9420. Separate slot 3C cell 6C6018 points to 600390, the
@@ -346,10 +342,8 @@ comparisons intentionally return 1 while nonexact:
 
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-komachi-object-update --compare --json
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-komachi-object-update.py
 TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
   taskset -c 0 nice -n 10 scripts/compile-unit.sh src/characters/KomachiObjectUpdate.cpp build/komachi-object-update-cold.obj
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-komachi-object-update.py --object build/komachi-object-update-cold.obj
 ```
 
 Changes are local source/header/audit/tests, one nonexact unit, mapping/source

@@ -19,8 +19,6 @@ matches.csv row or exact-byte credit is added.**
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-marisa-cpu-policy --compare --json
-python3 scripts/audit-marisa-cpu-policy.py
-taskset -c 0 nice -n 10 python3 scripts/audit-marisa-cpu-policy-paths.py
 ```
 
 The first two commands currently return 1 with the recorded canonical mismatch.

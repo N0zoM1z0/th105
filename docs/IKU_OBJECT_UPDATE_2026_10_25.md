@@ -50,13 +50,6 @@ instruction starts. Primary dispatch has 29 nondefault action entries plus the
 common default return 63AF79. Secondary table lengths, in address order, are
 7,6,5,6,5,7,10,5,4,6,7,5,6,9,7,8,4,9,4,4,4,9,4,5.
 
-```sh
-taskset -c 0 nice -n 10 scripts/repo-python \
-  scripts/audit-iku-object-update.py --target-only
-scripts/repo-python -m unittest discover -s tests \
-  -p test_iku_object_update_audit.py -v
-```
-
 The first command re-attests the PE, both vtable cells, callable/full hashes,
 metadata coverage, direct-call census, exact unreachable bytes and closed CFG.
 The second passes eight synthetic controls without requiring game bytes.
@@ -195,7 +188,6 @@ to a later exact/source question.
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py \
   --unit exact-first-iku-object-update --compare --json
-scripts/repo-python scripts/audit-iku-object-update.py
 TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
   taskset -c 0 nice -n 10 scripts/compile-unit.sh \
   src/characters/IkuObjectUpdate.cpp \
@@ -203,8 +195,6 @@ TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
 scripts/repo-python scripts/compare-unit-object.py \
   exact-first-iku-object-update \
   build/exact-first-iku-object-update-20261025/cold.obj --json
-scripts/repo-python scripts/audit-iku-object-update.py \
-  --object build/exact-first-iku-object-update-20261025/cold.obj
 ```
 
 The compile returns 0; each comparison/audit returns 1 with a real nonexact

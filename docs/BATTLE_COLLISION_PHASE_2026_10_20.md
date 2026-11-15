@@ -102,10 +102,9 @@ Repeated cap evaluation reaches 1452 bytes with a28h frame; a by-value
 three-short policy reaches 1452 bytes but still differs 31 bytes. None is
 selected. These source-context witnesses do not establish an LTCG barrier;
 
-
 ## Native execution and its limits
 
-The v2 `scripts/audit-battle-collision-phase.py` supersedes the earlier 114-full/
+The v2 `audit-battle-collision-phase.py` (since removed) superseded the earlier 114-full/
 396-tail execution receipt. Inspection found that the old seed left
 `candidate->source_168` zero. The real provider reads its source's byte 4EA;
 the emulator's mapped SEH page accidentally supplied a zero byte at 4EA. The
@@ -216,8 +215,6 @@ layout or accepted relocation is changed.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-battle-collision-phase --compare --json
-python3 scripts/audit-battle-collision-phase.py \
-  build/match-units/GptWeb_BattleCollisionPhase.obj
 python3 scripts/validate-tracking.py --require-target
 python3 scripts/check-match-literals.py --require-target
 python3 scripts/ci.py

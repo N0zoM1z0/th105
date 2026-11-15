@@ -142,10 +142,8 @@ full-audit commands intentionally return 1 for this retained nonexact root:
 
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-youmu-fighter-action-initialization --compare --json
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-youmu-fighter-action-initialization.py
 TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
   taskset -c 0 nice -n 10 scripts/compile-unit.sh src/characters/YoumuFighterActionInitialization.cpp build/youmu-fighter-entry-cold.obj
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-youmu-fighter-action-initialization.py --object build/youmu-fighter-entry-cold.obj
 ```
 
 Only this local source/interface/unit and 11 exclusively named literal aliases

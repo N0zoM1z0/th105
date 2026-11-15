@@ -66,7 +66,6 @@ compiled source writes 2. The corrected compiled source leaves it at zero.
 
 ## Bounded instruction-execution evidence
 
-`scripts/audit-cpu-boundary-paths.py` loads the hash-attested target image and
 separately executes the configured COFF body after normal relocation replay.
 It stops at the unique counter-766 / policy-constant-7 instruction pair,
 before the common policy phase. The probe checks the eight control DWORDs,
@@ -130,7 +129,6 @@ needed. Reproduce with:
 python3 scripts/build.py --unit gpt-web-default-cpu-action-policy --json
 python3 scripts/compare-unit-object.py gpt-web-default-cpu-action-policy build/match-units/GptWeb_DefaultCpuActionPolicy.obj --json
 python3 scripts/audit-giant-action-owners.py default-cpu-action-policy build/match-units/GptWeb_DefaultCpuActionPolicy.obj --unit gpt-web-default-cpu-action-policy --json
-python3 scripts/audit-cpu-boundary-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj
 ```
 
 The comparator exits 1 for the nonexact root. The execution command exits 1
@@ -166,11 +164,7 @@ difference report changes, from 31 edit groups to 29; all other owner reports
 are unchanged. Whole-root exactness remains unproved, with the same 14/41
 diagnostic owners, section length, metadata offset and first mismatch.
 
-The new command executes each sampled path through its actual native RET:
-
-```bash
-python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj
-```
+The path audit, since removed, executed each sampled path through its actual native RET.
 
 Unlike the bounded outer-phase control, this command executes all five original
 dependencies without replacing helper results. It runs the actual MT seed
@@ -219,12 +213,7 @@ object hashes.
 A separate complete-return negative control rebuilds the preceding CPU source
 from `9a38963`. The checked-in NaN fixture leaves target control 6D0 at 0, while
 that historical object writes 2; the current object matches. This confirms the
-native oracle detects a known defect. Reproduce the current positive control
-without rerunning the matrix:
-
-```bash
-python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj --case-file tests/fixtures/cpu-native-nan.json
-```
+native oracle detects a known defect.
 
 An explicit case file is a nonempty JSON array with the matrix's input fields;
 a `<field>_bits` hexadecimal string can supply the raw pattern for any float
@@ -274,12 +263,6 @@ policy 0 with timer 0. Float bit strings preserve NaN inputs without nonstandard
 | --- | ---: |
 | Fresh preceding configured object | **112 / 368** |
 | Corrected configured object | **0 / 368** |
-
-Reproduce the current positive control with:
-
-```bash
-python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj --height-cases
-```
 
 Both reports pin input SHA-256
 `6fef66471aadc3cf4361022df18acd143002731e0aa1bf25b34f375194a16ebf`.

@@ -35,7 +35,6 @@ Source/TU, SUB lowering and physical clamp/sequence ownership remain open.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-fighter-common-action-state --compare --json
-python3 scripts/audit-common-fighter-motion-paths.py build/match-units/GptWeb_FighterCommonActionState.obj
 ```
 
 The first command still exits 1 for the nonexact function. The new command

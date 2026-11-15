@@ -68,8 +68,6 @@ questions, not a license to manufacture dead instructions or fake liveness.
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py \
   --unit exact-first-udonge-object-update --compare --json
-scripts/repo-python scripts/audit-udonge-object-update.py --target-only
-scripts/repo-python scripts/audit-udonge-object-update.py
 ```
 
 Full selected candidate 43873 bytes, SHA256

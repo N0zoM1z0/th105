@@ -68,7 +68,6 @@ comparison_failed remains expected and is not described as a full unit pass.
 ## Checks
 
 - scripts/repo-python scripts/build.py --unit exact-first-tenshi-action-state --compare --json
-- scripts/repo-python scripts/audit-tenshi-action-state.py
 - scripts/repo-python scripts/vc8_float_sine_origins.py
 - Narrow vc8-original-float-sine-106a origin replay.
 - Eight tests protect source/header pins, LF/CRLF handling, typed scope and

@@ -64,7 +64,6 @@ boundary/padding contract and call-observer assertions.
 
 Run serial CPU 0/nice10 via scripts/repo-python:
 - scripts/build.py --unit exact-first-select-render --compare --json
-- scripts/audit-select-render.py
 - scripts/validate-tracking.py --require-target
 - scripts/ci.py
 

@@ -108,7 +108,6 @@ forcing, inert values, copied bytes, padding, masked matching or LTCG claim.
 ## Reproduce and scope
 
 - scripts/repo-python scripts/build.py --unit exact-first-info-effect-update --compare --json
-- scripts/repo-python scripts/audit-info-effect-update.py
 - scripts/repo-python scripts/validate-tracking.py --require-target
 - scripts/repo-python scripts/ci.py
 

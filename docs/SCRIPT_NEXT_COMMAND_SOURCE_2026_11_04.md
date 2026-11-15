@@ -30,7 +30,6 @@ Target-independent CI passed all 1,030 tests and progress checks.
 A new truthful CIL diagnostic emits a 156-byte root with the checked deque
 dereference inlined. It compares nonexact against the native 104-byte root at
 +28; the normal standalone unit remains blocked at the unqualified helper.
-`scripts/audit-script-next-command-real-cil.py` executes the complete native
 root and its actual dereference helper alongside the linked source root on
 seven valid fixtures, including empty/end cursors and block-map wraparound.
 Both agree with an independent cursor/result model; repeated reads also run

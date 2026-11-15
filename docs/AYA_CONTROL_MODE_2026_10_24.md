@@ -12,7 +12,6 @@ credit is added.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit gpt-web-aya-control-mode --compare --json
-python3 scripts/audit-aya-control-mode.py
 ```
 
 Both commands correctly return 1. The existing probe unit is updated rather

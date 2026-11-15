@@ -84,7 +84,6 @@ percentages.
 Only this new unit was compiled. Existing accepted receipts are unchanged.
 
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-udonge-action-state --compare --json
-    scripts/repo-python scripts/audit-udonge-action-state.py
     scripts/repo-python scripts/compare-giant-action-switches.py udonge-vslot28 build/match-units/ExactFirst_UdongeActionState.obj --json
 
 Current complete candidate 67520 versus native 67968. First mismatch+8 at 5BFD58;

@@ -71,7 +71,7 @@ sequence 4 paths and 818's sequence-advance return merge differently. Packet sta
 homes, scalar lifetimes, owner-address scheduling and shared continuations remain
 unresolved. No exactness percentage follows from these diagnostic agreements.
 
-Audit: `scripts/audit-suika-object-update.py`. Only source/mapping ledgers advance.
+Only source/mapping ledgers advance.
 `matches.csv` is unchanged, and unchanged accepted units retain their incremental
 receipts. No shared ABI/profile/binding was modified and no full corpus rebuild was
 needed.

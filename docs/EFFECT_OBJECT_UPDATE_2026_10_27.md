@@ -101,7 +101,6 @@ context. The semantic source is retained, not tuned to a masked score.
 
 ```
 scripts/repo-python scripts/build.py --unit exact-first-effect-object-update --compare --json
-scripts/repo-python scripts/audit-effect-object-update.py
 ```
 
 Both comparisons currently return 1 for a genuine mismatch; blocked/error results

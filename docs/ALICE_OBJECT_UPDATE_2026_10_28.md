@@ -64,7 +64,7 @@ Frame 348, all 28 direct-callee counts (424 calls), all 18 table dimensions and 
 120/134. Stack homes, shared tails and floating-point scheduling remain open.
 No normalized comparison, partial case or structural count receives exact credit.
 
-Audit: `scripts/audit-alice-object-update.py`. Only source and mapping advance;
+Only source and mapping advance;
 matches.csv is unchanged. Dedicated aliases do not alter existing consumers. No
 shared ABI, compiler profile or accepted source changed, so unchanged accepted
 receipts remain incremental and no corpus rebuild was required. The focused replay

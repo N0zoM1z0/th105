@@ -32,7 +32,6 @@ paths. Adding that height pair closes the instruction gap.
 
 ```bash
 python3 scripts/build.py --unit gpt-web-default-cpu-action-policy --compare --json
-python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj --selection-cases
 ```
 
 The first command still exits 1 for the nonexact root. The second executes

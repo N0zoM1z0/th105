@@ -17,14 +17,11 @@ semantic controls and instruction alignment are diagnostics, not acceptance.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-suika-object-entry --compare --json
-python3 scripts/audit-suika-object-entry.py
 taskset -c 0 nice -n 10 bash scripts/compile-unit.sh \
   src/characters/SuikaObjectActionEntry.cpp \
   build/exact-first-suika-object-entry-20261024/cold.obj
 python3 scripts/compare-unit-object.py exact-first-suika-object-entry \
   build/exact-first-suika-object-entry-20261024/cold.obj --json
-python3 scripts/audit-suika-object-entry.py \
-  --object build/exact-first-suika-object-entry-20261024/cold.obj
 ```
 
 Compilation returns 0; all four comparisons return 1 for the retained mismatch. The
@@ -144,11 +141,7 @@ are introduced. Reopen only with new independent evidence.
 
 ## Twelve focused native RET controls
 
-```sh
-taskset -c 0 nice -n 10 python3 scripts/audit-suika-object-entry-paths.py
-```
-
-Both return 0:12 actual RET 0 paths, stack delta 4, zero mismatches. Vector SHA256:
+Both path audits (since removed) returned 0: 12 actual RET 0 paths, stack delta 4, zero mismatches. Vector SHA256:
 `f37c89d5b983e8522d86635a4cbb79d6126d30240cc0d7a8f33133646e27ff55`.
 Four inputs exercise 812/0 with H[1]=+1/-1/0/quiet NaN. Eight exercise 815/940
 sequences 4/5 under x87 control words 027F and 037F. The actual native RNG returns

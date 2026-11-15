@@ -65,7 +65,7 @@ actual operand widths/IEEE bytes. Match selector 6FA894 is freshly observed at
 
 The focused unit `exact-first-sakuya-action-state` uses VC8 SP1 O2/GS-off and
 `owned_extent=true`, so formal comparison includes the main and ten remote
-chunks, plus 105 alignment bytes. `scripts/audit-sakuya-action-state.py` also
+chunks, plus 105 alignment bytes. `audit-sakuya-action-state.py` (since removed) also
 replays every section relocation and compares the entire 76336-byte payload,
 including 14 native tables and three remaps, without masks.
 

@@ -31,7 +31,6 @@ Unit: exact-first-yukari-action-state.
 
 ```
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-yukari-action-state --compare --json
-scripts/repo-python scripts/audit-yukari-action-state.py
 scripts/repo-python scripts/compare-giant-action-switches.py yukari-vslot28 build/match-units/ExactFirst_YukariActionState.obj --json
 ```
 

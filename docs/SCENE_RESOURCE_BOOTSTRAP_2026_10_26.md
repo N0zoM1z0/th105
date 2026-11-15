@@ -121,10 +121,7 @@ any read crossing its full initialized object extent. No comparator changes,
 relocation masks, copied code, assembly, fixed stack homes or buffer padding.
 
 ```bash
-scripts/repo-python scripts/audit-scene-resource-bootstrap-target.py
 scripts/repo-python scripts/build.py --unit exact-first-scene-resource-bootstrap --compare --json
-scripts/repo-python scripts/audit-scene-resource-bootstrap-target.py \
-  --object build/match-units/ExactFirst_SceneResourceBootstrap.obj
 ```
 
 Target-only audit exits 0. Public receipts: `formal-first.json`, `formal-second.json`,

@@ -34,7 +34,6 @@ complete body of 1,987 bytes against the 2,005-byte native body, with the first
 canonical mismatch at +32. This is a whole linked-body mismatch, not an
 exact result or a full game link. The regular COFF path remains blocked. No
 new authored or library bytes are credited. Reproduce with
-`scripts/repo-python scripts/probe-battle-info-update-cil.py`; the diagnostic
 reports its own result rather than treating a mismatch as success.
 
 The earlier 1,919-byte `front()` control and the separate 1,990-byte

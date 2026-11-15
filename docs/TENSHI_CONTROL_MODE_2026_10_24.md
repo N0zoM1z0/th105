@@ -12,7 +12,6 @@ retains constants differently. No matches row or new exact credit is added.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-tenshi-control-mode --compare --json
-python3 scripts/audit-tenshi-control-mode.py
 ```
 
 Both commands correctly return 1. Formal comparison replays all 61 function

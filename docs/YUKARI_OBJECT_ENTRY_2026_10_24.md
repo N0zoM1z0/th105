@@ -18,8 +18,6 @@ is an unreconstructed-byte count. No exact record or byte credit is added.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-yukari-object-entry --compare --json
-python3 scripts/audit-yukari-object-entry.py
-taskset -c 0 nice -n 10 python3 scripts/audit-yukari-object-entry-paths.py
 ```
 
 The first two commands return 1 for the recorded mismatch; the last returns 0 for

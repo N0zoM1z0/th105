@@ -15,11 +15,6 @@ The executable is original Japanese 1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 IDA preflight rejects the GUI's different executable. All analysis reads use
 the hash-attested PE or the independently attested optional database below.
-The raw audit is reproducible without an analysis GUI:
-
-```sh
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-sakuya-object-update.py --target-only
-```
 
 RTTI-backed roster evidence and raw primary slot 28 cell 6C48B4 bind SakuyaObject
 vtable 6C488C to 4E0D30. Its separate slot 3C cell 6C48C8 points to 4E8060, the
@@ -190,10 +185,8 @@ comparison commands intentionally return 1:
 
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-sakuya-object-update --compare --json
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-sakuya-object-update.py
 TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
   taskset -c 0 nice -n 10 scripts/compile-unit.sh src/characters/SakuyaObjectUpdate.cpp build/sakuya-object-update-cold.obj
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-sakuya-object-update.py --object build/sakuya-object-update-cold.obj
 ```
 
 Only the local source/interface/unit,79 exclusively named literal aliases and

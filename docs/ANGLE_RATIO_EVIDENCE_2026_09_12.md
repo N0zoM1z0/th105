@@ -53,12 +53,6 @@ recovered contract but does not uniquely distinguish float from double.
 There is no retained source consumer to update or compile. The caller root
 is not credited as implemented or exact by this work.
 
-`scripts/audit-x87-return-sites.py 0x004064D0` reproduces the caller window.
-This exposed and fixed its singleton MCP-result handling: one caller can be
-one JSON object, not an array. Malformed results still fail closed; every
-reported CALL is checked against the pinned executable. Tests cover both
-transport shapes and malformed rows.
-
 ## External compiler corroboration
 
 The pinned [Microsoft VS2005 C++ manual](https://download.microsoft.com/download/1/6/d/16d24ada-5317-4de1-b2b2-890b51813d6e/VS2005_CPP_en-us.pdf)

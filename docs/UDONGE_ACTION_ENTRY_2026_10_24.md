@@ -20,8 +20,6 @@ still differ with the callable layout. Source presence is not exact acceptance;
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-udonge-action-entry --compare --json
-python3 scripts/audit-udonge-action-entry.py
-taskset -c 0 nice -n 10 python3 scripts/audit-udonge-action-entry-paths.py
 ```
 
 The first two commands return 1 with this recorded mismatch. The last returns 0

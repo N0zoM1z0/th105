@@ -71,7 +71,6 @@ initialization domain or exception behavior; no fallback values are invented.
 
 Unit: `exact-first-aya-action-state`.
 Command: `scripts/repo-python scripts/build.py --unit exact-first-aya-action-state --compare --json`.
-Audit: `scripts/repo-python scripts/audit-aya-action-state.py`.
 
 The first complete candidate was 65752 bytes. Explicit branch-owned virtual calls
 for 10/200 and separate entry guards for 414/416 restore their native per-action

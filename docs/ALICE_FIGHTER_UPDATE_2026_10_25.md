@@ -47,7 +47,6 @@ cell, complete instruction decoding, all edges, RET cleanup, all table
 operands/destinations, remap indices, metadata coverage and alignment pins:
 
 ```sh
-scripts/repo-python scripts/audit-alice-fighter-update-target.py
 scripts/repo-python scripts/map-giant-action-switches.py alice-vslot28 --json
 ```
 
@@ -133,9 +132,6 @@ The three primary remap byte arrays also compare directly.
 
 ```sh
 scripts/repo-python scripts/build.py --unit exact-first-alice-fighter-update --compare --json
-scripts/repo-python scripts/audit-alice-fighter-update.py
-# Independent already-built object:
-scripts/repo-python scripts/audit-alice-fighter-update.py --object build/exact-first-alice-fighter-update-20261025/cold.obj
 ```
 
 All three comparisons intentionally return 1 for the nonexact hypothesis.
@@ -242,12 +238,6 @@ leaves -2 for 0. The old 8dd4473a object fails precisely the three input 6C8=0
 cases by choosing scratch reset instead of landing. This proves these bounded
 prefixes, not active-flight behavior, subsequent landing results or real-game
 reachability of the fixture combinations.
-
-```sh
-scripts/repo-python scripts/audit-alice-fighter-action214-paths.py
-# Negative control (expected exit1;3/6 differences):
-scripts/repo-python scripts/audit-alice-fighter-action214-paths.py --object build/exact-first-alice-fighter-update-20261025/action214-before.obj
-```
 
 The current 3018-line source retains only the 214 instruction/epoch correction;
 it does not select the narrow-facing caller control. Formal and independent
@@ -413,12 +403,6 @@ callback results, and it does not prove callback behavior, store-value dataflow
 or whole-function equivalence. The new complete object passes all six; the
 frozen preceding object fails precisely 410/415/416, a negative control for the
 original error rather than a test that mirrors the new source text.
-
-```sh
-scripts/repo-python scripts/audit-alice-fighter-publication-order.py
-# Expected1, old complete2655274b object:
-scripts/repo-python scripts/audit-alice-fighter-publication-order.py --object build/exact-first-alice-fighter-update-20261025/exits-cold.obj
-```
 
 The single private complete-source correction was compared immediately, before
 retention. Formal and independent fresh-object comparisons now agree on 44108
@@ -626,9 +610,7 @@ substitutes speed for the angle argument is detected. The six prior inactive
 prefix cases continue to pass.
 
 This first check is bounded prefix evidence only; it stops before cosine and does
-not itself prove later behavior. No source-selection or exact credit is added. Run
-`scripts/repo-python -m unittest discover -s tests -p
-test_alice_action214_active_prefix.py`.
+not itself prove later behavior. No source-selection or exact credit is added.
 
 ### Native lookup execution
 

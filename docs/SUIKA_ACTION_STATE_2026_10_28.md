@@ -69,7 +69,6 @@ target bytes, fake ABI, inert locals or padding is used.
 ## Reproduction
 
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-suika-action-state --compare --json
-    scripts/repo-python scripts/audit-suika-action-state.py
     scripts/repo-python scripts/compare-giant-action-switches.py suika-vslot28 build/match-units/ExactFirst_SuikaActionState.obj --json
 
 Current complete candidate: 78976 bytes versus native 81136, frame 0x578 matches

@@ -53,13 +53,6 @@ other giant roots' common retirement/default policies. The target audit
 checks the actual instruction sequence; synthetic controls reject an added
 AL test, a lifetime write or the wrong callee.
 
-```sh
-taskset -c 0 nice -n 10 scripts/repo-python \
-  scripts/audit-yukari-object-update.py --target-only
-scripts/repo-python -m unittest discover -s tests \
-  -p test_yukari_object_update_audit.py -v
-```
-
 The ten synthetic tests also cover all 20 tables, the last action 999 remap
 byte, an invalid last index, metadata destinations, truncated tail, escaping
 CFG edges and exact unreachable-byte accounting. Fixtures contain no game
@@ -332,7 +325,6 @@ Reproduce current formal callable and full-payload results:
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py \
   --unit exact-first-yukari-object-update --compare --json
-scripts/repo-python scripts/audit-yukari-object-update.py
 ```
 
 Both correctly return 1 for the recorded nonexact result. Independent cold:
@@ -345,8 +337,6 @@ TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
 scripts/repo-python scripts/compare-unit-object.py \
   exact-first-yukari-object-update \
   build/yukari-update-frame-exits-20261025/cold.obj --json
-scripts/repo-python scripts/audit-yukari-object-update.py \
-  --object build/yukari-update-frame-exits-20261025/cold.obj
 ```
 
 The existing-object comparison honestly reports build provenance unverified; the

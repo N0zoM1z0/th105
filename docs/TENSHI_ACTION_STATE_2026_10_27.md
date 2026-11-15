@@ -46,7 +46,6 @@ domain is not proved, and no fallback is invented. TU/LTCG ownership is unknown.
 ## Reproduction and current result
 
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-tenshi-action-state --compare --json
-    scripts/repo-python scripts/audit-tenshi-action-state.py
     scripts/repo-python scripts/map-giant-action-switches.py tenshi-vslot28 --json
     scripts/repo-python scripts/compare-giant-action-switches.py tenshi-vslot28 build/match-units/ExactFirst_TenshiActionState.obj --json
 

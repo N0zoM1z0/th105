@@ -76,7 +76,7 @@ there is no standalone-object or LTCG impossibility claim.
 
 ## Fresh native prefix evidence
 
-The unchanged public `audit-gage-render-prefix.py` is rerun on the selected
+The public `audit-gage-render-prefix.py` (since removed) was rerun on the selected
 formal object:0 differences in 4490 cases,1290 real RET 8 completions and 3200
 stops at the actual texture-binding entry. Actual int/short providers,
 orientation lookups and reached CRT instructions execute; no helper result is
@@ -119,9 +119,6 @@ comparisons.
 # Expected exit1: first mismatch41B580/+190, complete1010-byte comparison.
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit gpt-web-gage-render --compare --json
-taskset -c 0 nice -n 10 python3 scripts/audit-gage-render-prefix.py \
-  build/match-units/GptWeb_GageRender.obj \
-  --output build/gage-render-context-20261021/reproduced-native.json
 python3 scripts/validate-tracking.py --require-target
 taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check

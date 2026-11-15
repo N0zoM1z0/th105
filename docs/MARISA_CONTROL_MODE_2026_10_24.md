@@ -11,8 +11,6 @@ bytes are target-sized. Exactly nine bytes differ at `0x4B864D..0x4B8655`
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit gpt-web-marisa-control-mode --compare --json
-python3 scripts/audit-marisa-control-mode.py
-taskset -c 0 nice -n 10 python3 scripts/audit-marisa-control-facing.py
 ```
 
 The first two commands correctly return 1. The full audit requires length and

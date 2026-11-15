@@ -30,7 +30,6 @@ fabricated binding, exact credit or a claim about the shipped full-program link.
 
 ## Actual insertion execution, 2026-11-04
 
-`scripts/audit-input-add-key-real-growth.py` now builds the genuine input
 source CIL graph and executes its actual emitted insertion body alongside the
 original target registration and insertion bodies. Six bounded full-capacity
 cases cover empty and nonempty vectors, growth factors including 4 to 6 and

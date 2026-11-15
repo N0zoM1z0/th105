@@ -37,7 +37,6 @@ Reproduce serially:
 
 ```
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-yuyuko-action-state --compare --json
-scripts/repo-python scripts/audit-yuyuko-action-state.py
 scripts/repo-python scripts/compare-giant-action-switches.py yuyuko-vslot28 build/match-units/ExactFirst_YuyukoActionState.obj --json
 ```
 

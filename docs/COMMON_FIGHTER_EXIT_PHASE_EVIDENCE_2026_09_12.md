@@ -136,15 +136,7 @@ Linking the same GL input with /INCLUDE instead of /EXPORT also preserves that
 non-target frame. This rejects those two simple explanations; it does not
 prove that every possible real TU/caller context is impossible.
 
-The reusable diagnostic is now tracked as
-[scripts/probe-ltcg-visibility.sh](../scripts/probe-ltcg-visibility.sh):
-
-```bash
-bash scripts/probe-ltcg-visibility.sh \
-  src/battle/FighterCommonActionState.cpp \
-  '?update_common_action_state@CharacterEx@th105@@QAEXXZ'
-```
-
+The diagnostic, `probe-ltcg-visibility.sh` (since removed), worked as follows.
 It compiles one real source TU once and performs two serial links of that
 same GL object. The current production replay is `build/ltcg-visibility.Z41KS0/`.
 Both forms start PUSH EBP; MOV EBP,ESP; AND ESP,-8, unlike the target PUSH ECX.

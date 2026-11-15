@@ -186,8 +186,6 @@ Run the strict full-function comparator independently. See
 and reproducible commands. Analysis dependencies are pinned in
 `scripts/requirements-ci.txt`; basic CI does not use those packages.
 
-For roster Object callee discovery, use `scripts/rank-roster-object-shared-callees.py` when needed. It discovers direct external callees from raw canonical root bytes and only then annotates candidate/origin state, so missing IDA functions or stale classifications remain visible. Use the result as candidate/primitive evidence only; canonical exact acceptance still requires the normal match unit/comparator.
-
 When discovering candidate boundaries through indirect/data-driven call surfaces, `scripts/audit-roster-primary-vtable-coverage.py` closes the current Fighter/Object primary vtables against candidate starts, and `scripts/rank-unledgered-rdata-text-pointers.py` ranks aligned canonical `.rdata` pointers that land outside all tracked main spans and reviewed remote chunks. These are discovery tools, not per-function acceptance gates. Neither report assigns authored or exact credit. A raw pointer can name a compiler startup thunk, EH helper, deleting destructor, jump-table byte sequence or a real authored virtual/callback. Promote only after raw boundary isolation plus ownership/RTTI/caller evidence; then require the ordinary canonical comparator before exact acceptance. `CSceneManager::initialize @ 0x0041E070` is the current positive example: IDA had no containing function, but RTTI/vtable ownership plus a separately padded 162-byte body established the candidate and ordinary VC8 source subsequently matched 162/162.
 
 ## Shared-change replay

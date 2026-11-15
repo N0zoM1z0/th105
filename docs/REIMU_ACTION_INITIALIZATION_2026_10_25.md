@@ -141,11 +141,8 @@ Run serially, CPU 0/nice10:
 scripts/repo-python scripts/build.py --unit exact-first-reimu-action-initialization --compare --json
 TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
   scripts/compile-unit.sh scripts/native/reimu_effect_byte_forwarder.cpp build/reimu-byte-wrapper.obj
-scripts/repo-python scripts/audit-reimu-action-initialization.py \
-  --byte-wrapper build/reimu-byte-wrapper.obj --scoped-state
 TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
   scripts/compile-unit.sh src/characters/ReimuActionInitialization.cpp build/reimu-entry-cold.obj
-scripts/repo-python scripts/audit-reimu-action-initialization.py --object build/reimu-entry-cold.obj
 ```
 
 Full comparisons deliberately return 1 until exact. Five target-free negative/

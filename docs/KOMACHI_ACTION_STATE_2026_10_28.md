@@ -127,7 +127,6 @@ no volatile or inert duplicate gate is added.
 ## Reproduction
 
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-komachi-action-state --compare --json
-    scripts/repo-python scripts/audit-komachi-action-state.py
     scripts/repo-python scripts/ci.py
     git diff --check
 

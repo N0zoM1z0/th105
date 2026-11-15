@@ -32,7 +32,6 @@ The pinned VC8 O2 strict-FP unit emits all 334 bytes, but first differs at
 No source spelling, flag, fake local, ABI or register grid was attempted.
 The previously closed exactness lane remains closed.
 
-scripts/audit-sprite-texture-options.py freshly checks the selected object and
 executes both complete bodies under six finite modeled texture-query returns.
 Cases cover zero/nonzero/high-bit handles, signed coordinates/dimensions/pivots,
 and high-bit unsigned extents. Every complete 0x94-byte object agrees with the
@@ -52,8 +51,6 @@ visibility work, not evidence of the original translation-unit partition.
 
 - scripts/repo-python scripts/build.py --unit exact-first-sprite-texture-options --compare --json
   returns comparison_failed (expected; not an acceptance receipt).
-- scripts/repo-python scripts/audit-sprite-texture-options.py
-- scripts/repo-python -m unittest discover -s tests -p test_sprite_texture_options.py
 - scripts/repo-python scripts/ci.py
 
 No shared header or existing source unit changed, so no accepted consumer was

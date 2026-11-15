@@ -11,7 +11,6 @@ first differs. Source-present credit is added; no match or exact credit is added
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-suika-control-mode --compare --json
-python3 scripts/audit-suika-control-mode.py
 ```
 
 Both commands correctly return 1. The full audit replays all 143 relocations

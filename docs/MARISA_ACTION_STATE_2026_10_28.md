@@ -56,7 +56,6 @@ forced registers, copied target bytes or padding is used.
 ## Reproduction and current comparison
 
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-marisa-action-state --compare --json
-    scripts/repo-python scripts/audit-marisa-action-state.py
     scripts/repo-python scripts/compare-giant-action-switches.py marisa-vslot28 build/match-units/ExactFirst_MarisaActionState.obj --json
 
 The first complete public candidate is 67988 bytes versus native 67936, with

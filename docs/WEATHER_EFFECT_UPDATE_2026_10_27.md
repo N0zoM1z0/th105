@@ -100,7 +100,6 @@ overwrite the selected later source.
 ## Reproduce
 
 - scripts/repo-python scripts/build.py --unit exact-first-weather-effect-update --compare --json
-- scripts/repo-python scripts/audit-weather-effect-update.py
 - scripts/repo-python scripts/validate-tracking.py --require-target
 - scripts/repo-python scripts/ci.py
 

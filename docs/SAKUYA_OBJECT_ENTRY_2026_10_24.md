@@ -21,8 +21,6 @@ all 330 bytes after the callable agree. No partial exact credit is awarded.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-sakuya-object-entry --compare --json
-python3 scripts/audit-sakuya-object-entry.py
-taskset -c 0 nice -n 10 python3 scripts/audit-sakuya-object-entry-prefix.py
 ```
 
 The first two commands return 1 with the recorded nonexact result. The prefix

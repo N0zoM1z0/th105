@@ -17,14 +17,11 @@ payload length and local diagnostics do not establish canonical equality.
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py \
   --unit exact-first-patchouli-object-entry --compare --json
-scripts/repo-python scripts/audit-patchouli-object-entry.py
 taskset -c 0 nice -n 10 bash scripts/compile-unit.sh \
   src/characters/PatchouliObjectActionEntry.cpp \
   build/exact-first-patchouli-object-entry-20261024/cold.obj
 scripts/repo-python scripts/compare-unit-object.py exact-first-patchouli-object-entry \
   build/exact-first-patchouli-object-entry-20261024/cold.obj --json
-scripts/repo-python scripts/audit-patchouli-object-entry.py \
-  --object build/exact-first-patchouli-object-entry-20261024/cold.obj
 ```
 
 Compilation returns 0; comparisons return 1 for the retained mismatch. The public
@@ -141,10 +138,6 @@ Nominal trig return types, complete owner/input types, original TU partition and
 the source property retaining the extra pointer copy remain unknown.
 
 ## Scoped native controls and negative controls
-
-```sh
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-patchouli-object-entry-paths.py
-```
 
 All 8 inputs pass, also on the independent cold object:6 complete real RETs and
 2 first-spawn loop fragments. The original selector, checked tree, frame commit,

@@ -71,7 +71,6 @@ unverified hypothesis.
 
 ## Target observations
 
-`scripts/audit-spell-filtered-csv-target.py` verifies the executable identity,
 complete body hash
 `7d09cf25edce166f13585697b544749512d2c6d8b968c555a97d75d1cdb19cb8`,
 478/478 reachable instructions, no escaping edges or indirect jumps, and the
@@ -187,11 +186,8 @@ unknown. No LTCG impossibility claim follows.
 ## Reproduction and handoff
 
 ```bash
-scripts/repo-python scripts/audit-spell-filtered-csv-target.py
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py \
   --unit exact-first-spell-filtered-csv --compare --json
-scripts/repo-python scripts/audit-spell-filtered-csv-target.py \
-  --object build/match-units/ExactFirst_SpellCsvFilteredParser.obj
 ```
 
 Current expected exits: target audit 0; build/compare1 with `result=mismatch` at

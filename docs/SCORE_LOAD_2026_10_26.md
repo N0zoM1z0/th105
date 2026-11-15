@@ -156,7 +156,6 @@ Unit: `exact-first-score-load` (GS enabled, pinned VC8 SP1 O2).
 
 ```bash
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-score-load --compare --json
-scripts/repo-python scripts/audit-score-load-target.py --object build/match-units/ExactFirst_ScoreLoad.obj
 ```
 
 Both commands intentionally return 1 for the recorded complete nonexact result; the

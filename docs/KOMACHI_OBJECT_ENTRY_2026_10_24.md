@@ -19,8 +19,6 @@ Source presence does not establish canonical acceptance. Exact totals and
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-komachi-object-entry --compare --json
-python3 scripts/audit-komachi-object-entry.py
-taskset -c 0 nice -n 10 python3 scripts/audit-komachi-object-entry-paths.py
 ```
 
 The first two commands return 1 for the recorded mismatch; the last returns 0 for
@@ -157,7 +155,7 @@ that the original methods shared a TU or that all compiler contexts are closed.
 |Input pointer captured before BYTE184|6540|732ea4336323b83634f7669c6c8299ef3576f584dcdcf2970331514778ffa5b9|7|
 |Complete same-owner update/initializer TU|6540|732ea4336323b83634f7669c6c8299ef3576f584dcdcf2970331514778ffa5b9|7|
 
-The normal `scripts/audit-komachi-object-entry.py --object OBJECT` command replays
+The `audit-komachi-object-entry.py` script (since removed) replayed
 the initializer's complete section for either object. No bytes are masked. Accepted
 units and aggregate counts do not change; no fresh native matrix is claimed. The
 earlier eight-input witness retains its scope.
@@ -172,7 +170,6 @@ permission to inherit its boundaries, fields or exactness.
 
 ## Eight scoped native controls
 
-`scripts/audit-komachi-object-entry-paths.py` uses the original PE vtable,
 checked one-node action tree, four linked sequence blocks and valid untextured
 frames. Selector 45C390, map find 45C320, frame application/commit, FTOL, random
 roll and MT helpers execute original instructions. Only resource/RNG **data**

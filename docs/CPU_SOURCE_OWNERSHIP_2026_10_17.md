@@ -95,9 +95,6 @@ matrices remain reproducible via:
 ```bash
 python3 scripts/build.py --unit gpt-web-default-cpu-action-policy --compare --json
 python3 scripts/audit-giant-action-owners.py default-cpu-action-policy build/match-units/GptWeb_DefaultCpuActionPolicy.obj --unit gpt-web-default-cpu-action-policy --json
-python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj
-python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj --selection-cases
-python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuActionPolicy.obj --height-cases
 ```
 
 The fresh whole 15910-byte comparison still fails at **+12E /005F20AE**,

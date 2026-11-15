@@ -17,7 +17,7 @@ Main SHA256 is
 `b53af50d6bfdf124d8c16098abfa56c043f8cd1bca9606cc8d73b892610d4fe2`;
 complete payload SHA256 is
 `793c1954983d385b07ead1e850f95b4c521448100500074eaa0b371e2f3b0cd6`.
-[The target audit](../scripts/audit-remilia-object-update-target.py) checks these
+The target audit (since removed) checked these
 bytes, every table destination, physical calls and closed reachability.
 
 There are 168 direct physical calls to 16 entries and six virtual calls:
@@ -73,7 +73,7 @@ The common 816/857/900 fade tails and 855/856 fade body have target cross-edges.
 
 ## Bounded native angle/guard evidence
 
-[The prefix diagnostic](../scripts/audit-remilia-object-update-paths.py) executes
+The prefix diagnostic (since removed) executed
 real atan2, FTOL and sine/cosine instructions to the first spawn/advance entry.
 Ten cases compare owner bytes, actual helper-entry trace, spawn arguments,
 four-float payload and x87 top/control. Six test 816/857/900 with 179/-540 input
@@ -283,10 +283,7 @@ storage, guard and placement questions.
 Run serially, CPU 0/nice10, through the locked repository Python:
 
 ```sh
-scripts/repo-python scripts/audit-remilia-object-update-target.py
 scripts/repo-python scripts/build.py --unit exact-first-remilia-object-update --compare --json
-scripts/repo-python scripts/audit-remilia-object-update.py
-scripts/repo-python scripts/audit-remilia-object-update-paths.py
 ```
 
 Readonly Ghidra was

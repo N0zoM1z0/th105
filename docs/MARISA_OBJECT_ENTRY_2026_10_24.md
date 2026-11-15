@@ -17,14 +17,11 @@ still requires equality of the whole callable and complete emitted payload.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-marisa-object-entry --compare --json
-python3 scripts/audit-marisa-object-entry.py
 taskset -c 0 nice -n 10 bash scripts/compile-unit.sh \
   src/characters/MarisaObjectActionEntry.cpp \
   build/exact-first-marisa-object-entry-20261024/cold.obj
 python3 scripts/compare-unit-object.py exact-first-marisa-object-entry \
   build/exact-first-marisa-object-entry-20261024/cold.obj --json
-python3 scripts/audit-marisa-object-entry.py \
-  --object build/exact-first-marisa-object-entry-20261024/cold.obj
 ```
 
 Compilation returns 0; all four comparisons return 1 for the retained mismatch. The
@@ -161,11 +158,7 @@ independent evidence; continue another complete representative.
 
 ## Ten focused native RET controls and negative witnesses
 
-```sh
-taskset -c 0 nice -n 10 python3 scripts/audit-marisa-object-entry-paths.py
-```
-
-Both return 0: ten actual RET 0 paths, stack delta 4, zero mismatches. Vector SHA256:
+Both path audits (since removed) returned 0: ten actual RET 0 paths, stack delta 4, zero mismatches. Vector SHA256:
 `aa1db8d4272e5a37f588c89cabcc63dc0a30f1fa28eb9645d6a794489a582c36`.
 Six inputs exercise 900/12 with match identifier-1/0/1/2/3/4, confirming timer
 0/120/120/180/240/0. Three exercise 821 with H[0]=0/2/6 and H[2]=11, confirming

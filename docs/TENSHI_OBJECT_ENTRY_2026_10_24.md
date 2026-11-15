@@ -15,14 +15,11 @@ remap bytes. There are no masks or skipped relocations.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-tenshi-object-entry --compare --json
-python3 scripts/audit-tenshi-object-entry.py
 taskset -c 0 nice -n 10 bash scripts/compile-unit.sh \
   src/characters/TenshiObjectActionEntry.cpp \
   build/exact-first-tenshi-object-entry-20261024/cold.obj
 python3 scripts/compare-unit-object.py exact-first-tenshi-object-entry \
   build/exact-first-tenshi-object-entry-20261024/cold.obj --json
-python3 scripts/audit-tenshi-object-entry.py \
-  --object build/exact-first-tenshi-object-entry-20261024/cold.obj
 ```
 
 The compile returns 0; all four comparisons return 1 for the retained mismatch. The
@@ -145,11 +142,7 @@ Park this checkpoint and select another complete representative.
 
 ## Ten focused native controls
 
-```sh
-taskset -c 0 nice -n 10 python3 scripts/audit-tenshi-object-entry-paths.py
-```
-
-Both return 0: ten inputs, ten actual RETs, zero mismatches. Vector SHA256:
+Both path audits (since removed) returned 0: ten inputs, ten actual RETs, zero mismatches. Vector SHA256:
 `d5c23241eeb65cfd04d212c3588d5b585d7fbc7936d9fbed0ea350fd0c6e54ee`.
 Four inputs exercise 801/0 and 920/4 with ordinary versus BYTE184-aliased input;
 six exercise 801/4 and 920/8 with actual native random returns 49/50/51. The harness

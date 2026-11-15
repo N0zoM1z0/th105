@@ -63,8 +63,6 @@ register assignments, copied instructions, assembly or padding were introduced.
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py \
   --unit exact-first-marisa-object-update --compare --json
-scripts/repo-python scripts/audit-marisa-object-update.py --target-only
-scripts/repo-python scripts/audit-marisa-object-update.py
 ```
 
 The selected canonical full candidate is 50156 bytes,

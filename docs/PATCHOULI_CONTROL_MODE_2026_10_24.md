@@ -11,7 +11,6 @@ source 44. There is no matches row and no additional exact credit.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-patchouli-control-mode --compare --json
-python3 scripts/audit-patchouli-control-mode.py
 ```
 
 Both commands correctly return 1. The full audit checks every section-tail byte

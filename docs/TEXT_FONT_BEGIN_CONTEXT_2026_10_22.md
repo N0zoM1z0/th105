@@ -45,7 +45,6 @@ the isolated proof below does not execute or invent that return.
 
 ## Conditional endpoint proof and native checks
 
-`scripts/prove-text-font-begin-window.py` first repeats full linked build
 provenance, actual caller-path and canonical comparison checks. It rejects
 any difference outside the ten-byte window. It then symbolically executes
 the three actual MOV/PUSH instructions over arbitrary 32-bit entry registers
@@ -125,7 +124,6 @@ media/extraction tree was removed after per-file hashes and version readback.
 taskset -c 0 nice -n 10 python3 scripts/build.py --unit gpt-web-text-font-color-linked --compare --json
 python3 scripts/compare-linked-unit.py gpt-web-text-font-color-linked --address 0x004119A0 --json
 python3 -m pip install -r scripts/requirements-smt.txt
-taskset -c 0 nice -n 10 python3 scripts/prove-text-font-begin-window.py > build/font-begin-proof.json
 ```
 
 Both comparisons intentionally exit 1 for the unaccepted begin/renderer.

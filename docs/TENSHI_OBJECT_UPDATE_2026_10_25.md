@@ -113,7 +113,6 @@ A subsequent raw-exit review found an actual source error: native 65024F sends
 The source now takes the common conditional exit;825's zero-substate early RET
 and the default's ignored return remain distinct.
 
-`scripts/audit-tenshi-object-update-paths.py` executes eight full-root inputs:
 825/default799, ready/nonready frame, modes 0/1. It runs the real 4351C0,
 45C1A0/45C220, frame-apply and sprite helpers against a readonly one-block
 animation fixture, without injected helper results or transfers. The old object
@@ -131,7 +130,6 @@ Formal/current and independent fresh comparisons use the complete 41984 target.
 No exact credit is added.
 
 ```bash
-scripts/repo-python scripts/audit-tenshi-object-update-paths.py
 # Negative control: old complete object fails one native input.
 ```
 
@@ -176,7 +174,6 @@ frame 2B0,83 RETs and five physical frame calls remain nonexact. All 28
 per-action call censuses still agree. The smaller payload is diagnostic
 progress, not byte acceptance or a general compiler recipe.
 
-`scripts/audit-tenshi-object-request-paths.py` supplies 16 narrow inputs:
 eight 854 prefixes from the actual root and eight 801 loop fragments, covering
 both layers, facing 1/255 and stack fill 00/A5. The latter begin at the actual
 FLD loop counter after the attested motion/zero-crossing prefix; that earlier
@@ -194,7 +191,6 @@ permit unspecified high bytes, so it is not evidence of an in-game behavioral
 failure or proof of original int formals.825's eight real RET checks still pass.
 
 ```bash
-scripts/repo-python scripts/audit-tenshi-object-request-paths.py
 # Old byte-view negative: four full-DWORD request mismatches.
 ```
 
@@ -237,8 +233,6 @@ compiler flag or relocation binding was changed.
 
 ```bash
 scripts/repo-python scripts/build.py --unit exact-first-tenshi-object-update --compare --json
-scripts/repo-python scripts/audit-tenshi-object-update.py --target-only
-scripts/repo-python scripts/audit-tenshi-object-update.py
 ```
 
 The first and third commands currently return nonzero for the measured mismatch.

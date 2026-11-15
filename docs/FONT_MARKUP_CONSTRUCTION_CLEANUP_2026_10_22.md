@@ -126,8 +126,6 @@ taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit gpt-web-text-font-render --json
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit gpt-web-text-font-color-linked --json
-taskset -c 0 nice -n 10 python3 scripts/audit-text-font-markup-cleanup.py --json \
-  > build/font-markup-cleanup.json
 ```
 
 Four in-memory negative controls reject an unsupported state count, try map, cyclic

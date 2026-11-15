@@ -45,7 +45,6 @@ Their resource, geometry and numerical scope remains as documented in
 
 ## Real source and library link
 
-`scripts/probe-common-fighter-ltcg.py` builds the real root with `/GL`, keeps the
 explicit SDK deque member in ordinary COFF, and links 24 real game source providers
 plus the pinned static VC8 CRT and Windows SDK libraries. There are no stub bodies,
 code ABS symbols, manufactured callers, `/FORCE` options or unresolved link inputs.
@@ -126,9 +125,6 @@ python3 scripts/audit-giant-action-owners.py fighter-common-action \
   --unit gpt-web-fighter-common-action-state --json
 python3 scripts/compare-unit-object.py cross-v106a-battle-info-record-render \
   build/match-units/GptWeb_FighterCommonActionState.obj --address 0x004399C0 --json
-python3 scripts/audit-common-fighter-animation-paths.py \
-  build/match-units/GptWeb_FighterCommonActionState.obj --smoke
-python3 scripts/probe-common-fighter-ltcg.py
 python3 scripts/ci.py
 git diff --check
 ```

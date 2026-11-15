@@ -28,7 +28,6 @@ retain their own scope.
 ```bash
 python3 scripts/build.py --unit gpt-web-fighter-common-action-state --compare --json
 python3 scripts/audit-giant-action-owners.py fighter-common-action build/match-units/GptWeb_FighterCommonActionState.obj --unit gpt-web-fighter-common-action-state --json
-python3 scripts/audit-common-fighter-animation-paths.py build/match-units/GptWeb_FighterCommonActionState.obj
 ```
 
 The build returns 1 for the ordinary mismatch. The execution command returns

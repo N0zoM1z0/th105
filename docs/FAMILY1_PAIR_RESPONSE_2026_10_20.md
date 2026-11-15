@@ -86,7 +86,6 @@ residual. Adding this comparison does not turn either pending member exact.
 
 ## Native execution and counterexample
 
-`scripts/audit-family1-pair-response.py` seeds valid geometry by running the
 original 46DFF0 parent in the established bounded environment. Pair entries then
 execute the real target predicate 46BCA0, AABB extent 46B3B0 and reset 46B6C0; no
 predicate/hit/extent/game return is supplied by a callback. Pair code and resource
@@ -139,8 +138,6 @@ only a private hypothesis. No factory adapter or target byte patch is used.
 
 ```bash
 python3 scripts/build.py --unit cross-v106a-object-responses --compare --json
-python3 scripts/audit-family1-pair-response.py \
-  build/match-units/CrossV106a_ObjectResponses.obj
 python3 scripts/validate-tracking.py --require-target
 python3 scripts/ci.py
 git diff --check

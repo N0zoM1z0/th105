@@ -213,12 +213,8 @@ Refresh all four preflights and the raw shared-callee census before analyzing it
 ## Reproduction and acceptance limits
 
 ```bash
-scripts/repo-python scripts/audit-yuyuko-object-update.py --target-only
-scripts/repo-python -m unittest discover -s tests -p test_yuyuko_object_update_audit.py
 scripts/repo-python scripts/build.py --unit exact-first-yuyuko-object-update --compare --json
-scripts/repo-python scripts/audit-yuyuko-object-update.py
 scripts/compile-unit.sh src/characters/YuyukoObjectUpdate.cpp build/yuyuko-update-exits-20261025/cold.obj
-scripts/repo-python scripts/audit-yuyuko-object-update.py --object build/yuyuko-update-exits-20261025/cold.obj
 scripts/repo-python scripts/check-match-literals.py --require-target
 scripts/repo-python scripts/validate-tracking.py --require-target
 scripts/repo-python scripts/ci.py

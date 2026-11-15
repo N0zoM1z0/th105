@@ -18,14 +18,11 @@ difference nor local instruction agreement establishes whole-function equality.
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py \
   --unit exact-first-yuyuko-object-entry --compare --json
-scripts/repo-python scripts/audit-yuyuko-object-entry.py
 taskset -c 0 nice -n 10 bash scripts/compile-unit.sh \
   src/characters/YuyukoObjectActionEntry.cpp \
   build/exact-first-yuyuko-object-entry-20261024/cold.obj
 scripts/repo-python scripts/compare-unit-object.py exact-first-yuyuko-object-entry \
   build/exact-first-yuyuko-object-entry-20261024/cold.obj --json
-scripts/repo-python scripts/audit-yuyuko-object-entry.py \
-  --object build/exact-first-yuyuko-object-entry-20261024/cold.obj
 ```
 
 Compilation returns 0; comparisons return 1 for the retained mismatch. The public
@@ -158,10 +155,6 @@ this checkpoint and select another complete representative; revisit only with
 new independent evidence.
 
 ## Scoped native controls and falsifying negative controls
-
-```sh
-taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-yuyuko-object-entry-paths.py
-```
 
 All 8 inputs pass on formal and independent cold objects:4 complete real RETs
 and 4 first-spawn fragments. Selector, checked tree, frame commit, FTOL, MT and

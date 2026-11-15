@@ -133,10 +133,7 @@ alignment.
 ## Reproduction and remaining limits
 
 ```bash
-scripts/repo-python scripts/audit-fighter-pat-resources-target.py
 scripts/repo-python scripts/build.py --unit exact-first-fighter-pat-resources --compare --json
-scripts/repo-python scripts/audit-fighter-pat-resources-target.py \
-  --object build/match-units/ExactFirst_FighterPatResources.obj
 ```
 
 Target-only audit exits 0. Build/object audit report nonexact and exit 1 as

@@ -96,7 +96,6 @@ vector-helper surface or change the selected lookup implementation.
 
 ## Native prefix audit and negative control
 
-`scripts/audit-texture-binding-prefix.py` executes immutable target and
 relocated source instructions for 160 unique fixtures: stages 0..7, four handle
 words, distinct zero/equal/different cache words and null/valid device pointers.
 The input matrix SHA256 is
@@ -159,9 +158,6 @@ changes. Only the new unit is rebuilt. Existing callers retain their actual
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit gpt-web-texture-slot-binding --compare --json
 # Expected exit0:160 equal scoped prefixes.
-taskset -c 0 nice -n 10 python3 scripts/audit-texture-binding-prefix.py \
-  build/match-units/GptWeb_TextureSlotBinding.obj \
-  --output build/texture-bind-20261021/reproduced-native.json
 python3 scripts/validate-tracking.py --require-target
 taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check

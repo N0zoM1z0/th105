@@ -85,7 +85,6 @@ instruction sequence or these small sizes do not establish canonical equality.
 
 ## Focused execution evidence and limits
 
-`scripts/audit-rectangle-primitive-target.py` pins the entire target and its
 closed CFG, then executes the complete body in the pinned Unicorn environment
 with typed observers for the external line, texture and D3D calls. Three finite
 cases select 0,1,255. These resolve the concrete x87 depth ambiguity and check
@@ -107,8 +106,6 @@ evidence; return to a complete medium/large frontier candidate next.
 
 ```bash
 scripts/repo-python scripts/build.py --unit exact-first-rectangle-primitive --compare --json
-scripts/repo-python scripts/audit-rectangle-primitive-target.py
-scripts/repo-python scripts/audit-rectangle-primitive-target.py --object build/match-units/ExactFirst_RectanglePrimitive.obj
 ```
 
 The build and object audit currently exit 1/nonexact; target-only audit exits 0. All

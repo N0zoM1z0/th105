@@ -49,7 +49,6 @@ The analysis does not infer branch feasibility or an x87 value model.
 ## Qualified receiver domain and source interface
 
 The new read-only command
-`python3 scripts/audit-common-fighter-indirect-tails.py --json` independently
 checks sixteen distinct primary vtables: CharacterEx at 6C3F94 and all fifteen
 roster tables from the existing origin anchors. Each anchor's name must agree
 with raw primary RTTI. Each hierarchy contains one CharacterEx descriptor
@@ -144,7 +143,6 @@ checks:
 python3 scripts/build.py --unit gpt-web-fighter-common-action-state --json
 python3 scripts/compare-unit-object.py gpt-web-fighter-common-action-state build/match-units/GptWeb_FighterCommonActionState.obj --json
 python3 scripts/audit-giant-action-owners.py fighter-common-action build/match-units/GptWeb_FighterCommonActionState.obj --unit gpt-web-fighter-common-action-state --json
-python3 scripts/audit-common-fighter-indirect-tails.py --json
 ```
 
 The new receiver-flow tests reject volatile-call clobbers, conflicting incoming

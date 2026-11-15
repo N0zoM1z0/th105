@@ -102,8 +102,6 @@ all callable and metadata relocations and requires complete length equality.
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \
   --unit exact-first-alice-cpu-policy --compare --json
-python3 scripts/audit-alice-cpu-policy.py
-taskset -c 0 nice -n 10 python3 scripts/audit-alice-cpu-policy-paths.py
 ```
 
 The first two return 1 with the recorded mismatch; the path diagnostic returns 0.

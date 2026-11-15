@@ -124,8 +124,8 @@ without a newly demonstrated type, lifetime, source or TU distinction:
   non-target code. Standalone RTM baseline was also negative.
 - `/GL` plus `/LTCG`, exported versus retained-only, and native assignment
   versus live cross-label intermediates still produced an aligned EBP frame.
-  The tracked `scripts/probe-ltcg-visibility.sh` reproduces the visibility
-  control. Its unresolved DLLs must never be executed or treated as canonical
+  The visibility control came from `probe-ltcg-visibility.sh`, since removed;
+  its unresolved DLLs must never be executed or treated as canonical
   objects. These negatives do not prove all truthful original TU contexts
   impossible.
 

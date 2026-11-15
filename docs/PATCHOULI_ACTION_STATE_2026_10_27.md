@@ -78,7 +78,6 @@ also reflect common tails and the low-owner merge.
 ## Focused reproduction
 
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-patchouli-action-state --compare --json
-    scripts/repo-python scripts/audit-patchouli-action-state.py
     scripts/repo-python scripts/map-giant-action-switches.py patchouli-vslot28 --json
     scripts/repo-python scripts/compare-giant-action-switches.py patchouli-vslot28 build/match-units/ExactFirst_PatchouliActionState.obj --json
 
