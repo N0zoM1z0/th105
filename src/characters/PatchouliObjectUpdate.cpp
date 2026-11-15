@@ -42,7 +42,7 @@ case 800: {
         }
         if(S(0x140)==2) {
             F(0xf4)=0.0f;F(0xf8)=0.0f;F(0x11c)*=0.99f;F(0x120)=0.99f*F(0x120);
-            if(B(0x113)<10) {B(0x113)=0;RETIRE();}B(0x113)-=10;
+            if(B(0x113)<=9) {B(0x113)=0;RETIRE();}B(0x113)-=10;
         }
         S(0x364)+=2;MOVE();break;
     case 1: {
@@ -182,7 +182,7 @@ case 810: {
     }
     if(S(0x13e)==7) {
         float *parameters=PARAM;F(0x11c)+=static_cast<double>(0.005f);F(0x120)=F(0x11c);MOTION->set_components(parameters[0],parameters[1]);PARAM[1]*=static_cast<double>(0.95f);
-        if(I(0x144)>=15) {B(0x184)=0;if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}
+        if(I(0x144)>=15) {B(0x184)=0;if(B(0x113)<=9) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}
     }
     if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0 || F(0xf0)<-100.0) RETIRE();
     MOVE();if(advance_frame()) RETIRE();if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==3) --I(0x330);return;
@@ -197,7 +197,7 @@ case 811: {
         if(emit_repeated(0,0,2)) RETIRE();F(0xf4)-=0.25;if(F(0xf4)<1.0f) F(0xf4)=1.0f;F(0xf8)+=static_cast<double>(0.2f);if(F(0xf8)>4.0f) F(0xf8)=4.0f;
         F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.95f);
         if(I(0x144)<45 && C(0x184)>0) {F(0x11c)+=static_cast<double>(0.05f);F(0x120)=F(0x11c);}
-        else {B(0x184)=0;if(B(0x111)>=10) {B(0x111)-=10;B(0x110)-=10;}else {if(B(0x113)<10) RETIRE();B(0x113)-=10;}}
+        else {B(0x184)=0;if(B(0x111)>=10) {B(0x111)-=10;B(0x110)-=10;}else {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}}
         MOVE();
     }
     FINISH();
@@ -220,7 +220,7 @@ case 815: {
         if(F(0x370)<=0.0f) {F(0x370)=0.0f;if(B(0x113)<5) RETIRE();B(0x113)-=5;}
         float scale=F(0x120)+F(0x370);F(0x120)=static_cast<float>(scale*static_cast<double>(0.98f));
     }
-    if(S(0x13e)==3) {F(0x11c)+=static_cast<double>(0.025f);F(0x120)=F(0x11c);if(B(0x113)<10) RETIRE();B(0x113)-=10;}
+    if(S(0x13e)==3) {F(0x11c)+=static_cast<double>(0.025f);F(0x120)=F(0x11c);if(B(0x113)<=9) RETIRE();B(0x113)-=10;}
     if(S(0x13e)==4) {
         if(emit_repeated(0,0,0)) RETIRE();F(0xf4)=0.0f;F(0xf8)=0.0f;
         if(I(0x144)%10==0) {float packet[3]={0.0f,0.0f,3.0f};spawn_unparented(815,F(0xec),stage_surface_height(),B(0x104),-1,packet,3);}
@@ -264,7 +264,7 @@ case 816: {
         }break;
     }
     case 1:case 4:F(0x11c)+=static_cast<double>(0.2f);F(0x120)=F(0x11c);if(B(0x113)<20) RETIRE();B(0x113)-=20;break;
-    case 2:if(I(0x144)>=20) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}F(0xf8)-=0.25;F(0xf4)*=static_cast<double>(0.98f);break;
+    case 2:if(I(0x144)>=20) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}F(0xf8)-=0.25;F(0xf4)*=static_cast<double>(0.98f);break;
     case 3: {
         F(0xf4)=F(0x370);float wave=lookup_orientation_sine(2*I(0x144));F(0xf8)=wave+wave+F(0x374);F(0x370)*=static_cast<double>(0.98f);F(0x374)=static_cast<float>(static_cast<double>(0.98f)*F(0x374));
         if(S(0x140)==0) {F(0x11c)+=static_cast<double>(0.1f);if(F(0x11c)>1.0f) F(0x11c)=1.0f;F(0x120)=F(0x11c);}
@@ -384,7 +384,7 @@ case 821: {
     }
     case 5:MOTION->set_components(PARAM[0],PARAM[1]);PARAM[1]*=static_cast<double>(0.98f);if(B(0x113)<5) RETIRE();B(0x113)-=5;MOVE();break;
     case 6: {
-        float *parameters=PARAM;F(0x12c)+=20.0;F(0x11c)=parameters[1]+F(0x11c);F(0x120)=F(0x11c);parameters[1]*=static_cast<double>(0.9f);if(B(0x113)<10) RETIRE();B(0x113)-=10;MOVE();break;
+        float *parameters=PARAM;F(0x12c)+=20.0;F(0x11c)=parameters[1]+F(0x11c);F(0x120)=F(0x11c);parameters[1]*=static_cast<double>(0.9f);if(B(0x113)<=9) RETIRE();B(0x113)-=10;MOVE();break;
     }
     case 7:
         MOTION->set_components(PARAM[0],PARAM[1]);PARAM[1]*=static_cast<double>(0.95f);F(0x11c)+=static_cast<double>(0.005f);F(0x120)=F(0x11c);if(I(0x144)>=10) {if(B(0x113)<5) RETIRE();B(0x113)-=5;}
@@ -395,7 +395,7 @@ case 821: {
         if(I(0x144)%15==0) {float packet[3]={0.0f,3.0f,9.0f};spawn_unparented(821,F(0xec),F(0xf0),B(0x104),1,packet,3);}advance_six(0);advance_phase(0);break;
     }
     case 9: {
-        float *parameters=PARAM;F(0x11c)=static_cast<float>(4.0-parameters[1]);F(0x120)=F(0x11c);parameters[1]*=static_cast<double>(0.95f);F(0x12c)-=27.0;if(I(0x144)>=5) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}break;
+        float *parameters=PARAM;F(0x11c)=static_cast<float>(4.0-parameters[1]);F(0x120)=F(0x11c);parameters[1]*=static_cast<double>(0.95f);F(0x12c)-=27.0;if(I(0x144)>=5) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}break;
     }
     }
     if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>1060.0 || F(0xf0)<-100.0) RETIRE();
@@ -412,9 +412,9 @@ case 825: {
         if(S(0x364)<=1) {owner=OWNER;F(0xec)=FIELD(owner,float,0xec)+F(0x370);F(0xf0)=FIELD(owner,float,0xf0)+F(0x374);}
         if(S(0x364)==0) {if(B(0x113)>235) {B(0x113)=255;S(0x364)=1;}else B(0x113)+=20;}
         if(S(0x364)==1) {if(B(0x113)<5) RETIRE();B(0x113)-=5;}
-        if(S(0x364)==2) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}break;
+        if(S(0x364)==2) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}break;
     }
-    case 1:F(0x11c)+=static_cast<double>(0.15f);F(0x120)=F(0x11c);if(B(0x113)<10) RETIRE();B(0x113)-=10;break;
+    case 1:F(0x11c)+=static_cast<double>(0.15f);F(0x120)=F(0x11c);if(B(0x113)<=9) RETIRE();B(0x113)-=10;break;
     case 2: {
         if(emit_repeated(0,1,2)) RETIRE();void *owner=OWNER;short action=FIELD(owner,short,0x13c);
         if(action==560 || action==561) {
@@ -500,7 +500,7 @@ case 830: {
     }
     if(S(0x13e)==3) {F(0x11c)+=static_cast<double>(0.01f);F(0x120)+=static_cast<double>(0.01f);if(B(0x113)<=5) RETIRE();B(0x113)-=5;MOTION->set_components(PARAM[0],PARAM[1]);F(0xf8)*=0.25;}
     if(S(0x13e)==4) {float *parameters=PARAM;F(0x12c)=parameters[1]+F(0x12c);parameters[1]*=static_cast<double>(0.98f);F(0x11c)-=static_cast<double>(0.005f);F(0x120)-=static_cast<double>(0.005f);if(B(0x113)<=5) RETIRE();B(0x113)-=5;F(0xf8)-=static_cast<double>(0.05f);}
-    if(S(0x13e)==5) {F(0xf4)=static_cast<float>(static_cast<double>(0.98f)*F(0xf4));if(B(0x113)<10) RETIRE();B(0x113)-=10;F(0xf8)-=0.5;F(0x12c)=F(0x370)+F(0x12c);if(static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) RETIRE();}
+    if(S(0x13e)==5) {F(0xf4)=static_cast<float>(static_cast<double>(0.98f)*F(0xf4));if(B(0x113)<=9) RETIRE();B(0x113)-=10;F(0xf8)-=0.5;F(0x12c)=F(0x370)+F(0x12c);if(static_cast<unsigned char>(has_crossed_stage_surface_while_descending())) RETIRE();}
     MOVE();if(advance_frame()) RETIRE();if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13e)==3) --I(0x330);return;
 
 
@@ -568,7 +568,7 @@ case 848: {
     case 9: {
         void *owner=OWNER;if(FIELD(owner,short,0x13c)!=320 || FIELD(owner,short,0x140)>11 || FIELD(owner,short,0x140)<1) RETIRE();position_relative_to_owner(122,133);if(FIELD(OWNER,short,0x186)>0) return;break;
     }
-    case 10:F(0x12c)+=10.0;F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);if(I(0x144)>=10) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}break;
+    case 10:F(0x12c)+=10.0;F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);if(I(0x144)>=10) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}break;
     case 11:F(0x12c)-=10.0;F(0x11c)+=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(B(0x113)<15) RETIRE();B(0x113)-=15;break;
     case 12: {
         void *owner=OWNER;if(FIELD(owner,short,0x13c)!=309) RETIRE();
@@ -697,23 +697,23 @@ case 853: {
         }
         if(S(0x364)==1) {B(0x184)=0;goto patchouli_853_fade10;}break;
     case 2:
-        MOTION->set_components(PARAM[0],PARAM[1]);F(0x11c)+=static_cast<double>(0.1f);F(0x120)*=static_cast<double>(0.99f);if(I(0x144)>=15) {if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}MOVE();break;
+        MOTION->set_components(PARAM[0],PARAM[1]);F(0x11c)+=static_cast<double>(0.1f);F(0x120)*=static_cast<double>(0.99f);if(I(0x144)>=15) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}MOVE();break;
     case 3:F(0x11c)+=1.0;F(0x120)=F(0x11c);
 patchouli_853_fade10:
-        if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x110)-=10;B(0x111)-=10;break;
+        if(B(0x113)<=9) RETIRE();B(0x113)-=10;B(0x110)-=10;B(0x111)-=10;break;
     case 4:
         F(0x12c)=F(0x378)+F(0x12c);
         if(S(0x364)==0) {F(0x120)=static_cast<float>((1.0-F(0x374))*F(0x370));F(0x374)*=static_cast<double>(0.9f);if(!RELATED) S(0x364)=1;else {void *related=RELATED;F(0xec)=FIELD(related,float,0xec);F(0xf0)=FIELD(related,float,0xf0);if(FIELD(related,short,0x364)==1) S(0x364)=1;}}
-        if(S(0x364)==1) {F(0x378)*=static_cast<double>(0.98f);F(0x120)*=static_cast<double>(0.85f);if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}break;
+        if(S(0x364)==1) {F(0x378)*=static_cast<double>(0.98f);F(0x120)*=static_cast<double>(0.85f);if(B(0x113)<=9) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}break;
     case 5:
-        MOTION->set_components(PARAM[0],PARAM[1]);if(I(0x144)>=15) {if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}MOVE();break;
+        MOTION->set_components(PARAM[0],PARAM[1]);if(I(0x144)>=15) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}MOVE();break;
     case 6: {
         if(!RELATED) RETIRE();float *parameters=PARAM;double orbitX=lookup_orientation_cosine_quantized_abs(-parameters[0]);float *radius=PARAM;
         F(0xec)=static_cast<float>(orbitX*parameters[1]*static_cast<double>(C(0x104))+FIELD(RELATED,float,0xec));F(0xf0)=static_cast<float>(lookup_orientation_sine_quantized_abs(-parameters[0])*radius[1]+FIELD(RELATED,float,0xf0));radius[1]*=static_cast<double>(0.95f);
         if(S(0x364)==0) {if(B(0x113)>235) {B(0x113)=255;B(0x111)=255;B(0x110)=255;}else {B(0x113)+=20;B(0x111)+=20;B(0x110)+=20;}if(I(0x144)>=30) S(0x364)=1;}
         if(S(0x364)==1) {if(B(0x113)<5) RETIRE();B(0x113)-=5;B(0x111)-=5;B(0x110)-=5;}break;
     }
-    case 7:MOTION->set_components(PARAM[0],PARAM[1]);PARAM[1]*=static_cast<double>(0.9f);if(I(0x144)>=15) {if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}MOVE();break;
+    case 7:MOTION->set_components(PARAM[0],PARAM[1]);PARAM[1]*=static_cast<double>(0.9f);if(I(0x144)>=15) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x110)-=10;}MOVE();break;
     }FINISH();
 
 
@@ -749,7 +749,7 @@ case 854: {
             if(S(0x364)==1 && I(0x144)>=40) S(0x364)=2;if(S(0x364)!=2) break;
         }else F(0x12c)=F(0x370)+F(0x12c);
 patchouli_854_fade10:
-        if(B(0x113)<10) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x112)-=10;break;
+        if(B(0x113)<=9) RETIRE();B(0x113)-=10;B(0x111)-=10;B(0x112)-=10;break;
     case 4:
         if(RELATED) {
             F(0x120)+=2.0;if(F(0x120)>=40.0f) F(0x120)=40.0f;F(0x11c)+=static_cast<double>(0.05f);if(F(0x11c)>=0.75f) F(0x11c)=0.75f;
@@ -865,7 +865,7 @@ case 856: {
         break;
     }
     case 1:F(0x11c)+=static_cast<double>(0.2f);F(0x120)=F(0x11c);if(B(0x113)<20) {FIELD(OWNER,short,0x7a6)=360;RETIRE();}B(0x113)-=20;break;
-    case 2:case 4:if(I(0x144)>=20) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}F(0xf8)-=0.25;F(0xf4)*=static_cast<double>(0.98f);break;
+    case 2:case 4:if(I(0x144)>=20) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}F(0xf8)-=0.25;F(0xf4)*=static_cast<double>(0.98f);break;
     case 3:
         if(S(0x364)==0) {
             advance_six(0);advance_phase(3);if(F(0x11c)<1.0f) {F(0x11c)+=0.5;if(F(0x11c)>1.0f) {F(0x11c)=1.0f;B(0x184)=1;}F(0x120)=F(0x11c);}
@@ -907,8 +907,8 @@ case 857: {
         for(int count=4;count!=0;--count) {packet[0]=RF(360);float speed=static_cast<float>(RF(40)*static_cast<double>(0.1f));packet[1]=static_cast<float>(speed+3.0);packet[2]=static_cast<float>((S(0x13e)==5)+10.0);spawn_unparented(857,F(0xec),F(0xf0),B(0x104),1,packet,3);}RETIRE();
     }
     case 6:case 7:F(0x11c)*=static_cast<double>(0.7f);F(0x120)=F(0x11c);if(F(0x11c)<=0.5f) {if(B(0x113)<15) RETIRE();B(0x113)-=15;}break;
-    case 8:case 9:F(0x11c)=static_cast<float>(2.5-F(0x370)*1.5);F(0x120)=F(0x11c);F(0x370)*=static_cast<double>(0.94f);if(B(0x113)<10) RETIRE();B(0x113)-=10;break;
-    case 10:case 11:MOTION->set_components(PARAM[0],PARAM[1]);PARAM[1]*=static_cast<double>(0.9f);if(B(0x113)<10) RETIRE();B(0x113)-=10;MOVE();break;
+    case 8:case 9:F(0x11c)=static_cast<float>(2.5-F(0x370)*1.5);F(0x120)=F(0x11c);F(0x370)*=static_cast<double>(0.94f);if(B(0x113)<=9) RETIRE();B(0x113)-=10;break;
+    case 10:case 11:MOTION->set_components(PARAM[0],PARAM[1]);PARAM[1]*=static_cast<double>(0.9f);if(B(0x113)<=9) RETIRE();B(0x113)-=10;MOVE();break;
     }FINISH();
 
 
@@ -953,7 +953,7 @@ case 900: {
             if(I(0x144)>=S(0x36a) || C(0x184)<=0) {S(0x364)=2;return;}F(0x11c)+=static_cast<double>(0.05f);F(0x120)=F(0x11c);
             double currentY=F(0xf0);if(stage_surface_height()>=currentY) {for(int count=3;count!=0;--count) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(RF(30)*static_cast<double>(0.1f)+PARAM[1]);packet[2]=1.0f;spawn_unparented(900,F(0xec),F(0xf0),B(0x104),1,packet,3);}RETIRE();}
         }
-        if(S(0x364)==2) {F(0xf4)*=static_cast<double>(0.9f);F(0xf8)=static_cast<float>(static_cast<double>(0.9f)*F(0xf8));F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.95f);B(0x184)=0;if(B(0x111)>=10) {B(0x111)-=10;B(0x110)-=10;}else {if(B(0x113)<10) RETIRE();B(0x113)-=10;}}
+        if(S(0x364)==2) {F(0xf4)*=static_cast<double>(0.9f);F(0xf8)=static_cast<float>(static_cast<double>(0.9f)*F(0xf8));F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.95f);B(0x184)=0;if(B(0x111)>=10) {B(0x111)-=10;B(0x110)-=10;}else {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}}
         MOVE();break;
     case 2:
         if(F(0xec)>1580.0f || F(0xec)<-300.0 || F(0xf0)>1000.0) RETIRE();
@@ -963,17 +963,17 @@ case 900: {
             if(I(0x144)>=75 || C(0x184)<=0) {S(0x364)=2;return;}F(0x11c)+=static_cast<double>(0.05f);F(0x120)=F(0x11c);
             double currentY=F(0xf0);if(stage_surface_height()>=currentY) {for(int count=3;count!=0;--count) {float packet[3];packet[0]=RF(360);packet[1]=static_cast<float>(RF(30)*static_cast<double>(0.1f)+PARAM[1]);packet[2]=3.0f;spawn_unparented(900,F(0xec),F(0xf0),B(0x104),1,packet,3);}RETIRE();}
         }
-        if(S(0x364)==2) {F(0xf4)*=static_cast<double>(0.9f);F(0xf8)=static_cast<float>(static_cast<double>(0.9f)*F(0xf8));F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.95f);B(0x184)=0;if(B(0x111)>=10) {B(0x111)-=10;B(0x112)-=10;}else {if(B(0x113)<10) RETIRE();B(0x113)-=10;}}
+        if(S(0x364)==2) {F(0xf4)*=static_cast<double>(0.9f);F(0xf8)=static_cast<float>(static_cast<double>(0.9f)*F(0xf8));F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.95f);B(0x184)=0;if(B(0x111)>=10) {B(0x111)-=10;B(0x112)-=10;}else {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}}
         MOVE();break;
     case 1: {
-        F(0x374)+=static_cast<double>(0.2f);if(F(0x374)>2.0f) F(0x374)=2.0f;MOTION->set_components(PARAM[0],PARAM[1]);float *parameters=PARAM;F(0xf8)+=F(0x374);parameters[1]*=static_cast<double>(0.92f);if(parameters[1]<1.0f) parameters[1]=1.0f;F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.95f);if(B(0x113)<10) RETIRE();B(0x113)-=10;
+        F(0x374)+=static_cast<double>(0.2f);if(F(0x374)>2.0f) F(0x374)=2.0f;MOTION->set_components(PARAM[0],PARAM[1]);float *parameters=PARAM;F(0xf8)+=F(0x374);parameters[1]*=static_cast<double>(0.92f);if(parameters[1]<1.0f) parameters[1]=1.0f;F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.95f);if(B(0x113)<=9) RETIRE();B(0x113)-=10;
         F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)=static_cast<float>(F(0xf8)*static_cast<double>(0.2f)+F(0xf0));break;
     }
     case 3: {
-        F(0x374)+=static_cast<double>(0.2f);if(F(0x374)>2.0f) F(0x374)=2.0f;MOTION->set_components(PARAM[0],PARAM[1]);float *parameters=PARAM;F(0xf8)+=F(0x374);parameters[1]*=static_cast<double>(0.92f);if(parameters[1]<1.0f) parameters[1]=1.0f;F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.95f);if(B(0x113)<10) RETIRE();B(0x113)-=10;
+        F(0x374)+=static_cast<double>(0.2f);if(F(0x374)>2.0f) F(0x374)=2.0f;MOTION->set_components(PARAM[0],PARAM[1]);float *parameters=PARAM;F(0xf8)+=F(0x374);parameters[1]*=static_cast<double>(0.92f);if(parameters[1]<1.0f) parameters[1]=1.0f;F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.95f);if(B(0x113)<=9) RETIRE();B(0x113)-=10;
         F(0xec)=static_cast<float>(static_cast<double>(C(0x104))*F(0xf4)+F(0xec));F(0xf0)=static_cast<float>(F(0xf8)*static_cast<double>(0.2f)+F(0xf0));break;
     }
-    case 4:case 5:F(0xf4)*=static_cast<double>(0.95f);F(0xf8)*=static_cast<double>(0.95f);F(0x12c)=F(0x370)+F(0x12c);F(0x370)=static_cast<float>(static_cast<double>(0.95f)*F(0x370));if(B(0x113)<10) RETIRE();B(0x113)-=10;MOVE();break;
+    case 4:case 5:F(0xf4)*=static_cast<double>(0.95f);F(0xf8)*=static_cast<double>(0.95f);F(0x12c)=F(0x370)+F(0x12c);F(0x370)=static_cast<float>(static_cast<double>(0.95f)*F(0x370));if(B(0x113)<=9) RETIRE();B(0x113)-=10;MOVE();break;
     }FINISH();
 
 
@@ -1002,7 +1002,7 @@ float packet[3];for(float index=0.0f;index<12.0f;index+=1.0) {packet[0]=static_c
             break;
     }
     case 1:F(0x11c)+=static_cast<double>(0.2f);F(0x120)=F(0x11c);if(B(0x113)<20) {FIELD(OWNER,short,0x7a6)=360;RETIRE();}B(0x113)-=20;break;
-    case 2:case 4:if(I(0x144)>=20) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}F(0xf8)-=0.25;F(0xf4)*=static_cast<double>(0.98f);break;
+    case 2:case 4:if(I(0x144)>=20) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}F(0xf8)-=0.25;F(0xf4)*=static_cast<double>(0.98f);break;
     case 3:
         if(S(0x364)==0) {
             advance_six(0);advance_phase(3);if(F(0x11c)<1.0f) {F(0x11c)+=0.5;if(F(0x11c)>1.0f) {F(0x11c)=1.0f;B(0x184)=1;}F(0x120)=F(0x11c);}
@@ -1046,7 +1046,7 @@ case 920: {
         }break;
     case 2:
         if(S(0x364)==0) {
-            if(I(0x144)<90) {
+            if(I(0x144)<=89) {
                 if(S(0x174)>=0 && FIELD(OWNER,short,0x174)>0) break;
                 float packet[3]={0.0f,0.0f,5.0f};spawn_unparented(920,F(0xec),F(0xf0),B(0x104),1,packet,3);packet[2]=10.0f;
                 for(int count=6;count!=0;--count) {packet[0]=RF(360);packet[1]=static_cast<float>(static_cast<double>(RF(10))+10.0);spawn_unparented(920,F(0xec),F(0xf0),B(0x104),1,packet,3);}WAVE(62);RETIRE();
@@ -1057,7 +1057,7 @@ case 920: {
             }
         }break;
     case 3:case 5:F(0x11c)+=static_cast<double>(0.1f);F(0x120)=F(0x11c);if(B(0x113)<15) RETIRE();B(0x113)-=15;break;
-    case 4:case 6:F(0x11c)+=static_cast<double>(0.3f);F(0x120)=F(0x11c);if(B(0x113)<10) RETIRE();B(0x113)-=10;break;
+    case 4:case 6:F(0x11c)+=static_cast<double>(0.3f);F(0x120)=F(0x11c);if(B(0x113)<=9) RETIRE();B(0x113)-=10;break;
     case 7:case 8:
         if(S(0x364)<=2) {MOTION->set_components(PARAM[0],PARAM[1]);if(FIELD(OWNER,short,0x174)<=0) goto patchouli_920_burst;}
         if(S(0x364)==0) {float *parameters=PARAM;parameters[1]*=static_cast<double>(0.9f);if(parameters[1]<=0.1f) {parameters[1]=0.0f;S(0x364)=1;return;}}
@@ -1072,7 +1072,7 @@ patchouli_920_burst:
         if(S(0x364)==3) {F(0xf4)=0.0f;F(0xf8)=0.0f;F(0x11c)=static_cast<float>(static_cast<double>(0.9f)*F(0x11c));F(0x120)=F(0x11c);if(B(0x113)<15) RETIRE();B(0x113)-=15;}
         if(F(0xec)>1380.0f || F(0xec)<-100.0 || F(0xf0)>960.0 || F(0xf0)<-200.0f) RETIRE();break;
     case 9:case 10: {
-        float *parameters=PARAM;parameters[1]*=static_cast<double>(0.95f);MOTION->set_components(parameters[0],parameters[1]);F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.9f);F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);if(B(0x113)<10) RETIRE();B(0x113)-=10;break;
+        float *parameters=PARAM;parameters[1]*=static_cast<double>(0.95f);MOTION->set_components(parameters[0],parameters[1]);F(0x12c)=F(0x370)+F(0x12c);F(0x370)*=static_cast<double>(0.9f);F(0x11c)*=static_cast<double>(0.99f);F(0x120)=F(0x11c);if(B(0x113)<=9) RETIRE();B(0x113)-=10;break;
     }
     }MOVE();FINISH();
 
@@ -1093,7 +1093,7 @@ case 998: {
         if(FIELD(owner,short,0x13c)==158) {F(0xec)=static_cast<float>(static_cast<double>(57*C(0x104))+FIELD(owner,float,0xec));F(0xf0)=static_cast<float>(FIELD(owner,float,0xf0)+100.0);}
         action=FIELD(owner,short,0x13c);if(action<150 || action>158) {next_sequence_block();FIELD(OWNER,unsigned char,0x751)=0;}
     }
-    if(S(0x13e)==1) {if(B(0x113)<10) RETIRE();B(0x113)-=10;}FINISH();
+    if(S(0x13e)==1) {if(B(0x113)<=9) RETIRE();B(0x113)-=10;}FINISH();
 
 }
 default:advance_frame();return;
