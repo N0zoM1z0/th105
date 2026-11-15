@@ -45,6 +45,11 @@ struct BattlePhaseBlockRoundView {
     unsigned char reserved_596[2];
     std::list<int> source_598;
     std::list<int> destination_5a4;
+    void restore_round_state()
+    {
+        destination_5a4 = source_598;
+        scenario_068.reset_runtime_state();
+    }
 };
 typedef char RoundPhaseScenario_offset[offsetof(BattlePhaseBlockRoundView,scenario_068)==0x68?1:-1];
 typedef char RoundPhaseLists_source[offsetof(BattlePhaseBlockRoundView,source_598)==0x598?1:-1];
@@ -62,12 +67,7 @@ void ContinueOwnerRuntimeView::reset_battle_round_471180()
     reinterpret_cast<RoundFighterVirtual *>(fighter_10)->prepare44();
     update_global_battle_setup_state_second(g_global_battle_setup_state);
     g_shared_event_state.synchronize_targets();
-    BattlePhaseBlockRoundView *phase =
-        reinterpret_cast<BattlePhaseBlockRoundView *>(g_battle_phase_block);
-    if (&phase->destination_5a4 != &phase->source_598)
-        phase->destination_5a4.assign(
-            phase->source_598.begin(), phase->source_598.end());
-    phase->scenario_068.reset_runtime_state();
+    reinterpret_cast<BattlePhaseBlockRoundView *>(g_battle_phase_block)->restore_round_state();
     g_effect_sink->unknown_10();
     reinterpret_cast<CollisionContext *>(this)->reset_collision_extents();
     end_pending_84 = 0;

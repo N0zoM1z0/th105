@@ -30172,7 +30172,7 @@ source = "src/battle/BattleContinueRoundReset.cpp"
 object = "build/match-units/ExactFirst_ContinueRoundReset.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete current round-reset source with real int-list and virtual interfaces; 290-byte candidate is nonexact. docs/CONTINUE_ROUND_RESET_SOURCE_2026_11_04.md."
+notes = "Round reset with the phase block's inline list-copy/scenario-reset member; exact at 290 bytes."
 
 [[units.exact-first-continue-round-reset.functions]]
 address = "0x00471180"
@@ -30187,7 +30187,7 @@ rel32_targets = [
   "?dispatch_owned_string_458e80@ScenarioTransitionView@th105@@QAEEV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z=0x0045A450",
   "?run_scenario_step@BattlePhaseBlock@th105@@QAECXZ=0x0045A290",
   "?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@PBDI@Z=0x004021C0",
-  "??$_Assign@V?$_Iterator@$00@?$list@HV?$allocator@H@std@@@std@@@?$list@HV?$allocator@H@std@@@std@@QAEXV?$_Iterator@$00@01@0Uinput_iterator_tag@1@@Z=0x0045A740",
+  "??$_Assign@V?$_Const_iterator@$00@?$list@HV?$allocator@H@std@@@std@@@?$list@HV?$allocator@H@std@@@std@@QAEXV?$_Const_iterator@$00@01@0Uinput_iterator_tag@1@@Z=0x0045A740",
 ]
 dir32_targets = [
   "?g_shared_event_state@th105@@3USharedEventState@1@A=?g_global_battle_setup_state@th105@@3PAEA",
