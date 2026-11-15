@@ -31,8 +31,8 @@ void AliceFighterActionStateView::dispatch_action_state()
  unsigned char *raw=reinterpret_cast<unsigned char *>(this);
  float adjusted,zero;
  S(0x7A0)=0; S(0x7A2)=100;
- ++S(0x7AC); if(S(0x7AC)>=360) S(0x7AC)=0;
- if(S(0x174)<=0) I(0x7A4)=0;
+ ++S(0x7AC); if(S(0x7AC)>359) S(0x7AC)=0;
+ if(S(0x174)<1) I(0x7A4)=0;
  if(S(0x13C)>149 && S(0x13C)<159 && B(0x751)==0) {
   B(0x751)=1;
   if(S(0x13C)>149 && S(0x13C)<154)
@@ -384,7 +384,7 @@ void AliceFighterActionStateView::dispatch_action_state()
                     facing,
                     1);
             }
-            if (I(0x6b8) < 0) {
+            if (I(0x6b8)<=-1) {
                 input_product = static_cast<signed char>(B(0x104))
                     * I(0x6b4);
                 if (input_product > 0)
@@ -781,7 +781,7 @@ void AliceFighterActionStateView::dispatch_action_state()
             if (S(0x734)>180) S(0x734)-=360;
             if (S(0x734)<-180) S(0x734)+=360;
             if (S(0x734)>0) F(0x740)+=W(0x4B8)?0.5:1.5;
-            if (S(0x734)<0) F(0x740)-=W(0x4B8)?0.5:1.5;
+            if (S(0x734)<=-1) F(0x740)-=W(0x4B8)?0.5:1.5;
             F(0xF4)=static_cast<float>(lookup_orientation_cosine_quantized_abs(F(0x740))*F(0x73C));
             F(0xF8)=static_cast<float>(lookup_orientation_sine_quantized_abs(F(0x740))*F(0x73C));
             if (F(0xF0)>680.0f && F(0xF8)>0.0f) F(0xF8)=0;
@@ -825,7 +825,7 @@ void AliceFighterActionStateView::dispatch_action_state()
         }
         if (CROSSED()) {
             F(0xF0)=GROUND(); F(0x100)=0; F(0xF8)=0;
-            if (S(0x13E)>=5) { ACTION(10); ZERO(); }
+            if (S(0x13E)>4) { ACTION(10); ZERO(); }
             else { reinterpret_cast<AliceFighterScratchView *>(raw+4)->reset(); ACTION(215); }
         }
         return;
@@ -1644,7 +1644,7 @@ void AliceFighterActionStateView::dispatch_action_state()
     case 404: {
   if(S(0x13E)==8) RESOLVE();
   if(S(0x13E)==3 || S(0x13E)==7) F(0xF8)-=F(0x100);
-  if(CROSSED() && S(0x13E)<8) { SEQUENCE(8); F(0xF0)=GROUND(); ZERO(); return; }
+  if(CROSSED() && S(0x13E)<=7) { SEQUENCE(8); F(0xF0)=GROUND(); ZERO(); return; }
   if(I(0x6C0)==0) B(0x750)=0;
   if(FRAME()) ACTION(0);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
@@ -1670,7 +1670,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  case 406: {
   if(S(0x13E)==8) RESOLVE();
   if(S(0x13E)==3 || S(0x13E)==7) F(0xF8)-=F(0x100);
-  if(CROSSED() && S(0x13E)<8) { SEQUENCE(8); F(0xF0)=GROUND(); ZERO(); return; }
+  if(CROSSED() && S(0x13E)<=7) { SEQUENCE(8); F(0xF0)=GROUND(); ZERO(); return; }
   if(I(0x6C0)==0) B(0x750)=0;
   if(FRAME()) ACTION(0);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
@@ -2462,7 +2462,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 545: {
   RESOLVE();
-  if((S(0x13E)==1 || S(0x13E)==2) && I(0x144)%7==0 && S(0x730)<7) {
+  if((S(0x13E)==1 || S(0x13E)==2) && I(0x144)%7==0 && S(0x730)<=6) {
    float packet[3]; packet[0]=static_cast<float>(static_cast<float>(mt19937_next_u32()%110)-60.0);
    packet[1]=static_cast<float>(static_cast<float>(mt19937_next_u32()%170)+10.0); packet[2]=0;
    if(static_cast<unsigned>(selector_random_roll(100))<51) S(0x732)=1; else S(0x732)=-1;
@@ -2478,7 +2478,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  case 546: {
   RESOLVE();
   if(S(0x13E)==1) {
-   if(I(0x144)%7==0 && S(0x730)<8) {
+   if(I(0x144)%7==0 && S(0x730)<=7) {
     float packet[3]; packet[0]=static_cast<float>(static_cast<float>(mt19937_next_u32()%110)-60.0);
     packet[1]=static_cast<float>(static_cast<float>(mt19937_next_u32()%170)+10.0); packet[2]=0;
     if(static_cast<unsigned>(selector_random_roll(100))<51) S(0x732)=1; else S(0x732)=-1;
@@ -2493,7 +2493,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 547: {
   if(S(0x13E)==4) RESOLVE();
-  if((S(0x13E)==1 || S(0x13E)==2) && I(0x144)%7==0 && S(0x730)<7) {
+  if((S(0x13E)==1 || S(0x13E)==2) && I(0x144)%7==0 && S(0x730)<=6) {
    float packet[3]; packet[0]=static_cast<float>(static_cast<float>(mt19937_next_u32()%110)-60.0);
    packet[1]=static_cast<float>(static_cast<float>(mt19937_next_u32()%170)+10.0); packet[2]=0;
    if(static_cast<unsigned>(selector_random_roll(100))<51) S(0x732)=1; else S(0x732)=-1;
@@ -2536,7 +2536,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  case 565:
   RESOLVE();
   if(S(0x13E)==1 && I(0x144)>12) BLOCK();
-  if(S(0x13E)==2 && I(0x144)>=19) BLOCK();
+  if(S(0x13E)==2 && I(0x144)>18) BLOCK();
   if(FRAME()) ACTION(0);
   if(S(0x13E)==0 && S(0x142)==0 && S(0x140)==6) { WAVE(3); I(0x180)=1; ADJUST(200,120); SCALE(50); }
   return;
@@ -2552,7 +2552,7 @@ void AliceFighterActionStateView::dispatch_action_state()
   RESOLVE(); if(FRAME()) ACTION(0);
   if(S(0x142)==0 && S(0x140)==8) {
    WAVE(3); ADJUST(200,45); I(0x180)=1; SCALE(50);
-   ++S(0x7A4); if(S(0x7A4)>=3) S(0x7A4)=3;
+   ++S(0x7A4); if(S(0x7A4)>2) S(0x7A4)=3;
    float packet[3]; packet[0]=0; packet[1]=0; packet[2]=S(0x7A4);
    SPAWN(830,static_cast<float>(F(0xEC)+0.0),static_cast<float>(F(0xF0)+120.0),B(0x104),-1,packet,3);
   }
@@ -2584,7 +2584,7 @@ void AliceFighterActionStateView::dispatch_action_state()
    // As in570, the fourth transmitted word is not assigned by this arm.
    packet[0]=0;
    if(index>=1) packet[0]=-atan2_degrees(static_cast<float>(F(0x7BC+index*4)-F(0xF0)-115.0),static_cast<float>((F(0x7AC+index*4)-F(0xEC)-13*C(0x104))*C(0x104)));
-   packet[1]=30; packet[2]=5; if(C(0x60F)>3) packet[2]=6;
+   packet[1]=30; packet[2]=5; if(C(0x60F)>=4) packet[2]=6;
    SPAWN(827,static_cast<float>(13*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+115.0),B(0x104),-1,packet,4);
    packet[0]=0; packet[1]=0; packet[2]=2;
    SPAWN(827,static_cast<float>(13*C(0x104)+F(0xEC)),static_cast<float>(F(0xF0)+115.0),B(0x104),-1,packet,4);
@@ -2594,7 +2594,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 600: {
   RESOLVE(); publish_texture_state(3,2);
-  if(S(0x13E)==1 && I(0x144)>=39) { BLOCK(); return; }
+  if(S(0x13E)==1 && I(0x144)>38) { BLOCK(); return; }
   if(FRAME()) ACTION(0);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
    S(0x48A)=40; EVENT(23);
@@ -2609,7 +2609,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 601: {
   RESOLVE(); publish_texture_state(3,2);
-  if(S(0x13E)==1 && I(0x144)>=39) { BLOCK(); return; }
+  if(S(0x13E)==1 && I(0x144)>38) { BLOCK(); return; }
   if(FRAME()) ACTION(0);
   if(S(0x142)==0 && S(0x140)==2) {
    S(0x48A)=40; EVENT(23);
@@ -2644,7 +2644,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 603: {
   RESOLVE(); publish_texture_state(3,2);
-  if(S(0x13E)==1 && I(0x144)>=39) { BLOCK(); return; }
+  if(S(0x13E)==1 && I(0x144)>38) { BLOCK(); return; }
   if(FRAME()) ACTION(0);
   if(I(0x144)==0 && S(0x142)==0 && S(0x140)==0 && S(0x13E)==1) {
    S(0x48A)=40; EVENT(23);
@@ -2659,7 +2659,7 @@ void AliceFighterActionStateView::dispatch_action_state()
  }
  case 604: {
   RESOLVE(); publish_texture_state(3,2);
-  if(S(0x13E)==1 && I(0x144)>=39) { BLOCK(); return; }
+  if(S(0x13E)==1 && I(0x144)>38) { BLOCK(); return; }
   if(FRAME()) ACTION(0);
   if(S(0x142)==0 && S(0x140)==2) {
    S(0x48A)=40; EVENT(23);
@@ -2968,7 +2968,7 @@ void AliceFighterActionStateView::dispatch_action_state()
   if(FRAME()) ACTION(700);
   return;
  case 797:
-  if(S(0x13E)<3) {
+  if(S(0x13E)<=2) {
    F(0xF8)-=F(0x100);
    if(CROSSED()) { EVENT(30); SEQUENCE(3); F(0xF0)=GROUND(); F(0xF8)=0; return; }
   }
@@ -2980,7 +2980,7 @@ void AliceFighterActionStateView::dispatch_action_state()
   if(FRAME()) ACTION(0);
   return;
  case 798:
-  if(S(0x13E)<3) {
+  if(S(0x13E)<=2) {
    F(0xF8)-=F(0x100);
    if(CROSSED()) { EVENT(30); SEQUENCE(3); F(0xF0)=GROUND(); F(0xF8)=0; return; }
   }
