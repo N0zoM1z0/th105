@@ -14,8 +14,8 @@ also explains why this physical helper is shared with the existing
 SecondaryAnimationPoint specialization; that does not make the deck's
 elements animation points.
 
-The complete before/after comparisons preserve availability358 and
-update1339 as exact. Render remains the same nonexact 2521-byte body,
+The complete before/after comparisons preserve availability 358 and
+update 1339 as exact. Render remains the same nonexact 2521-byte body,
 with first mismatch +776. All three canonicalized root bodies and five
 complete root/EH sections are unchanged. The actual provider appears in
 all three objects, with two, six and four direct root call edges respectively.

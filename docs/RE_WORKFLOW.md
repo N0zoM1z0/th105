@@ -107,12 +107,12 @@ After repeated byte-neutral controls, retain a concise receipt and switch to
 another bounded candidate unless new independent evidence changes the question.
 After a representative succeeds, review and accept its family peers separately.
 Large execution matrices must resolve concrete ambiguities; naming, readability
-cleanup and abstraction follow stable exactness. Use serial CPU0/nice10 jobs,
+cleanup and abstraction follow stable exactness. Use serial CPU 0/nice10 jobs,
 monitor available memory and swap, and commit/push stable locally gated work.
 The first new bounded checkpoint is
 [RemiliaObject 0x55BE70](REMILIA_OBJECT_ENTRY_2026_10_24.md), still nonexact.
 The subsequent Remilia input-policy representative
-accepts5415 callable bytes and all5448 emitted bytes after independent cold
+accepts 5415 callable bytes and all 5448 emitted bytes after independent cold
 builds. Its first whole comparison exposed two query/action-number errors;
 the corrected body plus direct queued-field reads matched without changing
 compiler settings. Continue with independently reviewed Fighter slot+0x50 peers.
@@ -142,7 +142,7 @@ matched. These examples support early full-function comparison and checked
 family reuse. Declaration-only callees receive no implementation credit.
 Neither result is a masked structural score or proof of original source names.
 
-These peer units use VC7.1 build3077 with `/Od /Ob0 /Gy /GR- /GX- /Zi`.
+These peer units use VC7.1 build 3077 with `/Od /Ob0 /Gy /GR- /GX- /Zi`.
 TH105 uses VC8 and has 42 C++ LTCG Rich records; the current Aya root uses `/O2`.
 Copy the compile/compare discipline and independently verified family reuse,
 not addresses, fields, ABI declarations or compiler settings. The shared product
@@ -252,8 +252,8 @@ A source function may branch through compiler-emitted destination/index tables p
 
 Recover allocation and release independently; a `free` call does not prove a
 `malloc` allocation. `PackageFileIndexNode` is the current counterexample:
-constructor41B7F0 and the copies in41BCF0/41D320 allocate filename storage with
-array `new` at665B8A, while the exact destructor41B850 releases it through CRT
+constructor 41B7F0 and the copies in 41BCF0/41D320 allocate filename storage with
+array `new` at 665B8A, while the exact destructor 41B850 releases it through CRT
 `free`. Child nodes use scalar `new` and recursive `delete`. Preserve these
 observed calls rather than normalizing the filename to `malloc`, `strdup` or
 `delete[]`. Earlier wording inferred a CRT allocation from the destructor and

@@ -25,43 +25,43 @@ bytes without unresolved indirect jumps.
 ## Complete incoming group for the action-zero return
 
 **Observed:** the target tail at `0x0053058E` belongs to physical owner `low:3`:
-load vptr into EAX, slot8 into EDX, push EBX, move ESI into ECX, call EDX,
+load vptr into EAX, slot 8 into EDX, push EBX, move ESI into ECX, call EDX,
 then return through the saved-register epilogue. Thirteen explicit incoming
-jumps reach this exact tail, in addition to low3's local fallthrough:
+jumps reach this exact tail, in addition to low 3's local fallthrough:
 
 | Physical owner | Exact incoming branch addresses | Baseline candidate incoming count |
 | --- | --- | --- |
-| mid304 | `533042 JNE`, `533069 JE` | 2 |
-| mid401 | `533D8B JE` | 1 |
-| mid402 | `533EBA JE` | 1 |
-| mid526 | `535695 JNE`, `5356BE JE`, `5356E6 JE` | 1 |
-| mid540 | `535E2B JE`, `535E4E JE`, `535E72 JE` | 3 |
-| mid545 | `536359 JE` | 1 |
-| high696 | `538588 JNE`, `5385AF JE` | 0 |
+| mid 304 | `533042 JNE`, `533069 JE` | 2 |
+| mid 401 | `533D8B JE` | 1 |
+| mid 402 | `533EBA JE` | 1 |
+| mid 526 | `535695 JNE`, `5356BE JE`, `5356E6 JE` | 1 |
+| mid 540 | `535E2B JE`, `535E4E JE`, `535E72 JE` | 3 |
+| mid 545 | `536359 JE` | 1 |
+| high 696 | `538588 JNE`, `5385AF JE` | 0 |
 
-The baseline's equivalent low3 tail is `53058A`, with nine incoming jumps.
+The baseline's equivalent low 3 tail is `53058A`, with nine incoming jumps.
 This counts physical sharing, not runtime call coverage. Other physical
 zero-return tails remain present.
 
-**Observed:** EBP is initially 1, but target526 changes it to 2 at `5356C6`
-before its second idle-state comparison. Target540 sets EDI to 2 at `535DB7`.
+**Observed:** EBP is initially 1, but target 526 changes it to 2 at `5356C6`
+before its second idle-state comparison. Target 540 sets EDI to 2 at `535DB7`.
 Its three zero-return checks are for sequence 1/2/5, not 1/4/5. Register names
 alone do not identify constant values across an owner. In 401/540/545, the
 advance-result action call continues into subsequent checks; those paths
 must not be redirected into a return merely because their call argument is 0.
 
-**Inferred and tested:** a real shared source label before low3's existing
+**Inferred and tested:** a real shared source label before low 3's existing
 call can express these return paths without assembly or fake state. The
 696-only probe recovers its two destination edges, but redirects the four
 previously correct 304/401/402 edges to another zero-return tail at `531FC1`.
-Low3 also changes EAX/EDX allocation. Its same 207-byte / 63-instruction size
+Low 3 also changes EAX/EDX allocation. Its same 207-byte / 63-instruction size
 is not instruction equality.
 
 A second control explicitly redirects only the corresponding return paths
 in all seven owners. It leaves the advance-and-continue calls intact. This
-still does not recover physical placement: low3 loses its local call and
-branches to `539446`, annotated as high797. That tail uses EDX for the vptr,
-EAX for slot8 and an immediate zero. Twenty-three incoming jumps from a wider
+still does not recover physical placement: low 3 loses its local call and
+branches to `539446`, annotated as high 797. That tail uses EDX for the vptr,
+EAX for slot 8 and an immediate zero. Twenty-three incoming jumps from a wider
 owner group now reach it. Target-distinct zero-return tails are overmerged;
 31/98 diagnostics regress to 27/98. No version of this explicit label is
 retained. This is concrete backend/TU-phase evidence, not proof of the
@@ -69,15 +69,15 @@ original source layout or an LTCG cause.
 
 ## Shared floating decrement placement
 
-**Observed:** target696 compares signed frame +140 against 5 at `538605`, then
-jumps at `53860C` to the conditional `JL` at `533966` inside action311.
+**Observed:** target 696 compares signed frame +140 against 5 at `538605`, then
+jumps at `53860C` to the conditional `JL` at `533966` inside action 311.
 The common body loads velocity, subtracts 2, rounds through a dword at
 `533978`, reloads at `53397C`, and jumps to the existing sign-check path at
 `532C70`. The branch carries the preceding CMP flags.
 
 **Inferred and tested:** sharing the real decrement expression and float
 carrier in C++ preserves the value operation but does not recover this
-placement. VC8 puts the common JL/decrement in 696 instead: action311 jumps
+placement. VC8 puts the common JL/decrement in 696 instead: action 311 jumps
 from `53392A` to `53859B`; the latter has the conditional JL, followed by
 FLD/FSUB/FSTP32/FLD. Combining it with the 696 zero-return label retains the
 same wrong placement. These controls are not retained. A target-sized-looking
@@ -127,10 +127,10 @@ comparisons do not have configured build provenance.
 | --- | --- | --- | --- |
 | 710 branch calls, explicit float X and real unsigned direction snapshot | 12/98; 19 prior owners lost, no gains | `+9324` | Not retained; restores an arithmetic multiset but changes global allocation. |
 | Caller-only float lookup returns | 31/98; byte-identical compared window | `+9310` | Not retained; original prototype is not uniquely proved. |
-| Shared action-zero return from 696 | 27/98; loses low3/mid304/401/402 | `+9320` | Not retained; two recovered edges displace four correct ones. |
-| Shared 311/696 floating decrement | 29/98; loses low11/mid311 | `+92FC` | Not retained; common body placed in 696 instead of 311. |
-| Both preceding 696 controls | 26/98; loses low3/mid304/mid311/mid401/mid402 | `+9310` | Not retained; matching baseline size does not recover its bytes. |
-| Full action-zero incoming group | 27/98; loses low3/mid304/401/402 | `+9320` | Not retained; common call moved into high797 and wider tails merged. |
+| Shared action-zero return from 696 | 27/98; loses low 3/mid304/401/402 | `+9320` | Not retained; two recovered edges displace four correct ones. |
+| Shared 311/696 floating decrement | 29/98; loses low 11/mid311 | `+92FC` | Not retained; common body placed in 696 instead of 311. |
+| Both preceding 696 controls | 26/98; loses low 3/mid304/mid311/mid401/mid402 | `+9310` | Not retained; matching baseline size does not recover its bytes. |
+| Full action-zero incoming group | 27/98; loses low 3/mid304/401/402 | `+9320` | Not retained; common call moved into high 797 and wider tails merged. |
 
 Exact branch packets are `target-zero-tail-incoming.json`,
 `candidate-zero-tail-incoming.json` and `all-incoming-zero-tail-placement.json` in

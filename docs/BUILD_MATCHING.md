@@ -70,7 +70,7 @@ its current caller consumes only AL.
 The font surface setter `0x00411760` also shows why stack words do not establish
 independent scalar parameters. A meaningful two-DWORD by-value dimension pair
 naturally keeps width/height on the stack while VC8 privately passes the font
-and surface in EAX/ECX, reproducing all45 bytes and RET12. Scalar signatures
+and surface in EAX/ECX, reproducing all 45 bytes and RET 12. Scalar signatures
 instead promote height to EDX. Its explicit local `vc8-sp1-probe-o2-ob1` profile
 adds `/Ob1` after `/O2` and retains the one real parent E8 at the target callsite;
 an otherwise exact unused copy under default inlining is insufficient caller
@@ -81,7 +81,7 @@ arbitrary noinline controls.
 
 ### Container identity does not imply identical iterator visibility
 
-Recover native checked containers when the target proves their full physical header and operations, but keep translation-unit iterator visibility as a separate question. `CsvReader::next_int @ 0x0040F480` is the positive case: real `deque<deque<string>>` storage plus two native 0x0C iterators naturally produces all 249 target bytes. `ScoreData::refresh_story_progress @ 0x0042E3F0` now provides a second positive case: the October27 refresh reproduces the old876-byte `erase(begin,end)` body, but genuine `vector<int>::clear()` naturally matches all860 bytes. The earlier `begin + size()` rejection did not close this source-operation question. A proven container type is still not permission to hand-write its iterator representation or delete safety checks manually.
+Recover native checked containers when the target proves their full physical header and operations, but keep translation-unit iterator visibility as a separate question. `CsvReader::next_int @ 0x0040F480` is the positive case: real `deque<deque<string>>` storage plus two native 0x0C iterators naturally produces all 249 target bytes. `ScoreData::refresh_story_progress @ 0x0042E3F0` now provides a second positive case: the October 27 refresh reproduces the old 876-byte `erase(begin,end)` body, but genuine `vector<int>::clear()` naturally matches all 860 bytes. The earlier `begin + size()` rejection did not close this source-operation question. A proven container type is still not permission to hand-write its iterator representation or delete safety checks manually.
 
 Exact destruction can also prove a member layout even when construction remains TU-sensitive. `ProfileEditor168::~ProfileEditor168 @ 0x00427BC0` is 15/15 only when the 0x168 owner contains real `UiTileA4` members at +0x0C and +0xB0; the corresponding constructor remains 28/33 with the shared constructor-facing visibility. Preserve the truthful header for exact consumers and keep the constructor pending rather than globally changing inline visibility to win five bytes.
 
@@ -118,13 +118,13 @@ record the blocker; do not weaken the comparator or invent a source boundary.
 
 A measured LTCG path is now available for contiguous, fully closed functions:
 `linked_candidate` / `vc8-sp1-ltcg-o2`. Real C++ scene retirement `408870`
-is281/281 only after link-time generation; its ordinary COFF candidate is278.
+is 281/281 only after link-time generation; its ordinary COFF candidate is 278.
 The separate PE path requires source-owned exports/map symbols, complete CFG
 ownership, attested data bindings, named external-call replay and fresh pinned
 build provenance. Unsupported EH/data/jump-table surfaces fail closed. Existing
 COFF comparisons are unchanged; see [the exact contract](LINKED_PE_MATCHING.md).
 
-Packet-pool normal destruction `413820` extends that path to98/98 with real
+Packet-pool normal destruction `413820` extends that path to 98/98 with real
 native container members. A separate compiler-library COFF instantiation linked
 before the CIL object preserves the shared unsigned-list helper ABI. Source
 and target primary RTTI/vtable identities authorize only full dword vptr-store
@@ -132,7 +132,7 @@ operand replay, with exact HIGHLOW relocation coverage. This is neither a
 blanket internal-address allowance nor an original-TU claim. Its constructor's
 EH surface remains unsupported. See [the bounded evidence](NETWORK_UDP_PACKET_POOL_2026_10_16.md).
 
-Shared handle-token release `405200` is167/167 from a normal member definition
+Shared handle-token release `405200` is 167/167 from a normal member definition
 whose real sender caller lets LTCG generate the observed private EAX entry.
 The `private_from` contract checks its unique nonexported source map identity,
 complete source/target caller CFGs and sole E8 edge, then applies the same full
@@ -171,7 +171,7 @@ error; linked-PE profiles continue to reject this surface. Owned-mode build
 provenance includes the inventory, ownership ledger and validator. The report
 separates owned bytes from additional physical bytes compared; those extra bytes
 do not become authored credit.
-Its complete46138-byte comparison is currently nonexact. A new mode or source
+Its complete 46138-byte comparison is currently nonexact. A new mode or source
 presence does not authorize `matches.csv` or `remote_exact`; acceptance still
 requires the full zero-difference contract and reviewed source semantics.
 
@@ -483,7 +483,7 @@ The retained `InputSelection.cpp` and `Input.cpp` bodies already had the correct
 VC8 instruction shapes, but their 1.06 magic absolutes pointed at stale storage.
 Current 1.06a disassembly and accepted callers establish player records
 `0x006FBF20` (stride `0x33C`), source/pointer tables `0x006FBD38/0x006FBD3C`,
-session option `0x006FBD44`, network pointer `0x006FBD5C`, player2 storage
+session option `0x006FBD44`, network pointer `0x006FBD5C`, player 2 storage
 `0x006FBDD0`, and combined menu input `0x006FCF80`. Express these as extern
 semantic globals in C++; the compiler emits ordinary DIR32 relocations and all
 ten accessors compare exact. The counter getter relocates the combined-input
@@ -885,11 +885,11 @@ For packed RGBA multiplication, `unsigned char` components promote to `int` befo
 
 `SystemEffectObject::reset_state @ 0x00660B00` has three source cases with the same real reset semantics. Grouping `case 0: case 1: case 2:` lets VC8 replace the switch with a compact range check and emits 24 bytes. Spelling the three cases separately and repeating the same two stores lets VC8 perform its own tail merge, reproducing the target arithmetic three-case dispatch in 35 bytes. This is the same principle as duplicated event-case suffixes: duplicate real semantics and let the compiler choose the merge; do not add a goto solely to prescribe target control flow.
 
-`SystemEffectObject::update_state @ 0x00660A00` also demonstrates byte-significant source case order. Cases 0 and 2 contain a genuinely identical `alpha += 3; return` tail. Source order 2,1,0 makes VC8 keep the target case-2 copy and backward-cross-jump from case0, yielding 248/248; order 0,1,2 keeps the other copy and yields 244 bytes. Case order is legitimate source structure when each case's behavior is independently target-proved; it is not permission to insert inert branches.
+`SystemEffectObject::update_state @ 0x00660A00` also demonstrates byte-significant source case order. Cases 0 and 2 contain a genuinely identical `alpha += 3; return` tail. Source order 2,1,0 makes VC8 keep the target case-2 copy and backward-cross-jump from case 0, yielding 248/248; order 0,1,2 keeps the other copy and yields 244 bytes. Case order is legitimate source structure when each case's behavior is independently target-proved; it is not permission to insert inert branches.
 
 ### Keep semantically closed stack/register/constant blockers pending
 
-A correct type/layout model does not guarantee standalone allocation. System manager spawn `0x00458340` originally retained a 12-byte frame against target 8. This stop was closed on November 9 by the already-established four-byte texture value return: normal member sret lowering reuses the dead path slot and yields complete exact125/125 without explicit argument aliasing. System acquire/link `0x00457110` is target-length with a callee-saved receiver permutation, while pool acquire `0x00456B70` has broader allocation drift. `CSpriteEx::finalize_render @ 0x00407AD0` closes the resource/D3D9 semantics but fresh VC8 pools 0.5 as double where the target uses a single-precision dword resident on the x87 stack. Do not solve these with parameter-slot aliasing, volatile, fake locals, register variables, hand-evaluated vtables, or assembly; preserve the semantic recovery as a future TU/LTCG/codegen lead.
+A correct type/layout model does not guarantee standalone allocation. System manager spawn `0x00458340` originally retained a 12-byte frame against target 8. This stop was closed on November 9 by the already-established four-byte texture value return: normal member sret lowering reuses the dead path slot and yields complete exact 125/125 without explicit argument aliasing. System acquire/link `0x00457110` is target-length with a callee-saved receiver permutation, while pool acquire `0x00456B70` has broader allocation drift. `CSpriteEx::finalize_render @ 0x00407AD0` closes the resource/D3D9 semantics but fresh VC8 pools 0.5 as double where the target uses a single-precision dword resident on the x87 stack. Do not solve these with parameter-slot aliasing, volatile, fake locals, register variables, hand-evaluated vtables, or assembly; preserve the semantic recovery as a future TU/LTCG/codegen lead.
 
 ### Use aggregate copy/clear operations when the target shows aggregate lifetime
 
@@ -906,7 +906,7 @@ The 482-byte `RenderModeManager::apply_render_mode @ 0x00404A90` initially grew 
 ### Preserve member reloads across COM calls when aliasing permits mutation
 
 `RenderModeManager::submit_primitive @ 0x004010F0` and
-`submit_textured_primitive @ 0x00401130` are useful Direct3D9 aliasing
+`submit_textured_primitive @ 0x00401130` are useful Direct 3D9 aliasing
 references.  A source local such as `D3DDevice9 *device = device_04` lets VC8
 hoist the member load and produces shorter 55/74-byte bodies.  The target calls
 `SetFVF`, then reloads `this->device_04` before `DrawPrimitiveUP`; ordinary
@@ -1003,7 +1003,7 @@ bytes.
 `CLoadingWatch::update @ 0x004268F0` is 209/209 only when the source preserves
 the target's call-expression structure. For
 `session->accept_match_setup(get_match_setup())`, VC8 selects the virtual member
-before evaluating the argument getter. For the player2-input configuration
+before evaluating the argument getter. For the player 2-input configuration
 calls, the target evaluates game-mode/match-setup arguments before resolving
 `get_player2_input()` as the receiver. Naming receiver/argument locals changes
 that order and grows the body. Likewise, the state-1 result must be an explicit
@@ -1161,7 +1161,7 @@ Current RTTI/vtable evidence identifies `CDesignBase @ 0x006C08AC` as the binary
 
 Special-member visibility is byte-significant here. A user-defined empty `CDesignBase` destructor republishes the derived vptr before member teardown, while current `0x00421890` starts directly with container/owner destruction and only restores the IColor vptr at the end. Leaving the virtual destructor implicit produces 154/154 exactly; its scalar wrapper is 30/30 and ctor is 153/153. This is the same compiler-lifetime principle seen in roster manager families: prefer the natural implicit special member when target vtable and teardown evidence support it.
 
-The recovered layout also explains a useful stop condition. The three color-forwarding vtable members at `0x0040BFE0/0x0040C040/0x0040C0A0` semantically traverse `objects_14` and call UiDesignObject color vslots, but ordinary checked-list source emits 74-byte register-only functions. The target emits 81-byte bodies with an EBP frame and 8-byte stack alignment. Once semantics, iterator validation and virtual slots agree, this remaining frame-policy difference is not permission to add an aligned dummy, volatile local, compiler attribute, register coercion, or assembly. Keep the methods pending until a truthful TU/compiler cause is recovered. The [2026-10-21 iterator audit](PROFILE_COLOR_ITERATOR_ABI_2026_10_21.md) corrects the former no-eight-byte-object explanation: the existing checked iterator is8 bytes/aligned4. Its new compile-time guards leave all74 source bytes unchanged; the original ESP8 cause stays open.
+The recovered layout also explains a useful stop condition. The three color-forwarding vtable members at `0x0040BFE0/0x0040C040/0x0040C0A0` semantically traverse `objects_14` and call UiDesignObject color vslots, but ordinary checked-list source emits 74-byte register-only functions. The target emits 81-byte bodies with an EBP frame and 8-byte stack alignment. Once semantics, iterator validation and virtual slots agree, this remaining frame-policy difference is not permission to add an aligned dummy, volatile local, compiler attribute, register coercion, or assembly. Keep the methods pending until a truthful TU/compiler cause is recovered. The [2026-10-21 iterator audit](PROFILE_COLOR_ITERATOR_ABI_2026_10_21.md) corrects the former no-eight-byte-object explanation: the existing checked iterator is 8 bytes/aligned4. Its new compile-time guards leave all 74 source bytes unchanged; the original ESP 8 cause stays open.
 
 `CMenuContinue`/`CMenuEnd` show how the exact base lifetime composes into derived UI objects. Their visible member prefix through 0x40 is natural: `Menu`, state byte, aligned `CDesignBase @ +8`, owner pointer `+0x3C`. Their six ctor/dtor/scalar bodies compile 160/114/30 and 157/120/30 exactly using ordinary virtual design load/cleanup, Menu base lifetime, target-owned paths and caller-backed unused-this member views. Do not treat that visible prefix as proof of the complete allocation extent: all current `CMenuEnd` new-sites allocate 0x44 before ctor `0x00445100`, so the trailing four bytes remain an unresolved layout question rather than padding to fabricate.
 
@@ -1618,9 +1618,9 @@ CsvReader is a useful example of separating source ABI from optimizer ownership.
 
 ### Giant-switch decompiler machine temporaries versus real source lifetimes
 
-For giant MSVC8 switches, a Hex-Rays local that merely stores a virtual function pointer is often a machine-register artifact, not an authored C++ variable. The Youmu `+0x28` actions10/C5/C6/C7 are the positive reference: replacing explicit `vtable-slot -> function-pointer local -> call` source with ordinary direct virtual calls lets VC8 choose the shipped EAX/EDX allocation and can also prevent incorrect cross-case tail merging. This source-level correction moves the Youmu owner audit from **20/98 to 24/98** without register hints or hand-written dispatch. Do not generalize blindly: value-bearing float/facing/payload locals are retained when target stores, evaluation order, or repeated use prove a real lifetime.
+For giant MSVC8 switches, a Hex-Rays local that merely stores a virtual function pointer is often a machine-register artifact, not an authored C++ variable. The Youmu `+0x28` actions 10/C5/C6/C7 are the positive reference: replacing explicit `vtable-slot -> function-pointer local -> call` source with ordinary direct virtual calls lets VC8 choose the shipped EAX/EDX allocation and can also prevent incorrect cross-case tail merging. This source-level correction moves the Youmu owner audit from **20/98 to 24/98** without register hints or hand-written dispatch. Do not generalize blindly: value-bearing float/facing/payload locals are retained when target stores, evaluation order, or repeated use prove a real lifetime.
 
-A decompiler label can likewise represent false sharing. Youmu C8 and DF were both routed through `LABEL_173`, but target bytes contain separate action204 return blocks; restoring two ordinary early-return paths recovers the duplicate physical bodies. The inverse rule is equally important: moving a genuinely shared label lexically does not control VC8 block placement, and several such moves were byte-neutral. Change shared-label ownership only when target xrefs prove separate or shared source exits, never to move a branch by a desired number of bytes.
+A decompiler label can likewise represent false sharing. Youmu C8 and DF were both routed through `LABEL_173`, but target bytes contain separate action 204 return blocks; restoring two ordinary early-return paths recovers the duplicate physical bodies. The inverse rule is equally important: moving a genuinely shared label lexically does not control VC8 block placement, and several such moves were byte-neutral. Change shared-label ownership only when target xrefs prove separate or shared source exits, never to move a branch by a desired number of bytes.
 
 Always fresh-compile before consuming giant-owner diagnostics. Mapper/audit JSON is downstream of an object file and can look internally consistent even when a later source edit no longer compiles. The Youmu checkpoint caught exactly this after a temporary unmatched C8 brace: the old object still reported 24 owners until a direct VC8 compile exposed the syntax failure. Treat compiler provenance/mtime plus the formal unit build as a prerequisite for owner or metadata claims.
 
@@ -1648,31 +1648,31 @@ code providers or arbitrary import mappings. See
 
 ### Bounded compiler controls, 2026-10-30
 
-MenuCursor update41FA20 remains131/native117 with unchanged source in LTCG.
-A size-optimization control recovers IDIV6 but emits114 bytes and changes
-constant/scheduling choices; disabling global optimization gives239. Neither
+MenuCursor update 41FA20 remains 131/native117 with unchanged source in LTCG.
+A size-optimization control recovers IDIV6 but emits 114 bytes and changes
+constant/scheduling choices; disabling global optimization gives 239. Neither
 is selected, and no fake divisor or local is added. Evidence:
 build/frontier-menu-cursor-size-20261030/.
 
-Unchanged capped-counter45CED0 isolated in ordinary CIL remains126/native126 with
+Unchanged capped-counter45CED0 isolated in ordinary CIL remains 126/native126 with
 the same+3F branch-merge register difference. Its full old source TU needs real
 effect/sequence providers, so no stub was supplied. The isolated diagnostic receives
 no credit or public source change.
 
-Further2026-10-30 closed controls:
+Further 2026-10-30 closed controls:
 - A standard div(input,6).rem menu-cursor expression emits a real external div
   call, absent from the target. It is not selected or mapped to a fabricated body.
 - Real effect-pool release plus critical-section bodies and the existing unsigned
   list library give effect release-all129/native122 with an additional aligned
-  frame. Preserving normal public boundaries and an Ob1 control remain129;
+  frame. Preserving normal public boundaries and an Ob1 control remain 129;
   no authored COFF provider or artificial register facade is introduced.
 - Adding actual Wave initialization to the complete private BGM graph gives
-  initializer233/native234 and raw-load238/native247. Source promotes the byte
+  initializer 233/native234 and raw-load238/native247. Source promotes the byte
   count to EBX, spilling the initializer receiver; native keeps that count on
   the stack. Neither size proximity nor matching private receiver alone is exact.
-- ACK packet constructor plus its real serializer remains43/native41 in CIL.
+- ACK packet constructor plus its real serializer remains 43/native41 in CIL.
   The unimplemented normal base serializer prevents linking; an explicitly
-  qualified abstract-interface control links but is still43. That private view
+  qualified abstract-interface control links but is still 43. That private view
   does not establish original base purity and is not selected as public source.
 Evidence remains in frontier-menu-cursor-size, frontier-effect-pool-release-cil,
 frontier-bgm-complete-graph and frontier-ack-constructor-cil build directories,
@@ -1680,25 +1680,25 @@ all suffixed20261030. No exact accounting or shared source changes follow.
 
 ### 2026-10-31 FrameData construction clarification
 
-The earlier20-byte base-field memset was a sufficient source model, not proof
+The earlier 20-byte base-field memset was a sufficient source model, not proof
 of a unique original expression. With the actual eight-WORD/tag/pointer layout,
-ordinary whole-object28-byte construction reproduces the same300-byte derived
-PAT constructor and the unchanged complete2528-byte effect-loader candidate.
+ordinary whole-object28-byte construction reproduces the same 300-byte derived
+PAT constructor and the unchanged complete 2528-byte effect-loader candidate.
 The duplicate effect frame class is removed without any accepted regression.
 See FRAME_CONSTRUCTION_CONTEXT_2026_10_31.md; do not treat the old partial-range
 experiment as a requirement to keep incompatible constructor views.
 
 ### CsvReader clear: real reader CIL control, 2026-10-31
 
-The fresh existing-COFF census finds the exact125-byte nested-deque `_Tidy` shape
-at40FDB0, but that does not prove the authored clear_rows entry. A private linked
+The fresh existing-COFF census finds the exact 125-byte nested-deque `_Tidy` shape
+at 40FDB0, but that does not prove the authored clear_rows entry. A private linked
 control exports the existing actual CsvContext::clear_rows body from
 CsvFileLoading.cpp, with ordinary `rows.clear()` and its real provider source. It
-emits10 bytes, retaining an out-of-line `_Tidy` call, not the native125-byte
+emits 10 bytes, retaining an out-of-line `_Tidy` call, not the native 125-byte
 expanded method. The broad copied reader contract also stops on an unused PNG
 callback witness after dead stripping, so no canonical root receipt is claimed. The
-emitted10-byte boundary itself is already insufficient. No source or public manifest
-changed; no helper body is substituted into the authored entry. The old103-byte gain
+emitted 10-byte boundary itself is already insufficient. No source or public manifest
+changed; no helper body is substituted into the authored entry. The old 103-byte gain
 hit in the same stale-object census is from the removed aligned/volatile volume
 transcription, not the current natural source, and is not reused. Existing negative
 source-integrity guidance remains in force.
@@ -1708,7 +1708,7 @@ source-integrity guidance remains in force.
 A configured `relocation_free_member = true` caller witness is separate from
 `source_only_caller` and exact-parent paths. It is limited to an ordinary
 nonvirtual no-argument HRESULT member, full raw child equality before any
-relocation, complete RET0 CFGs, no child absolute references/PE relocations or
+relocation, complete RET 0 CFGs, no child absolute references/PE relocations or
 external direct calls/tails, and identical adjacent subobject LEAs in both
 actual callers. Existing fresh CIL provenance, source identity, actual call
 mapping and caller address-role checks remain mandatory. It neither changes
@@ -1722,7 +1722,7 @@ origin without rewriting the global census. The separate linked-anchor schema
 requires a fresh pinned CIL unit and fresh exact roots, unique source MAP
 ownership, complete unmasked relocation-free bytes/CFG and unique identity in
 the full target inventory. Only reviewed pure vector-fill/tree-rotation
-families are supported, with at least24 bytes and no calls or address bindings.
+families are supported, with at least 24 bytes and no calls or address bindings.
 The ordinary COFF0.70/24/no-tail validator is unchanged. See
 LINKED_PURE_CONTAINER_ORIGINS_2026_11_01.md and its negative tests.
 

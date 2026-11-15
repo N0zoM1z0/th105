@@ -2,25 +2,25 @@
 
 ## Status and scope
 
-Complete124-action source candidate, unselected and nonexact. Compilation,
+Complete 124-action source candidate, unselected and nonexact. Compilation,
 semantic hypotheses and local diagnostics confer no implementation/exact credit.
 The canonical target remains Japanese TH1051.06a SHA256
 56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e.
 
-Factory native IDA was checked on October28: target hashes/file size,
-entry68B9D2, initial function inventory401000/52, and16 mapped bytes at401000,
+Factory native IDA was checked on October 28: target hashes/file size,
+entry 68B9D2, initial function inventory 401000/52, and 16 mapped bytes at 401000,
 68B9D2,420000,570000,6B0000 all agree with the independently hashed PE.
-The direct repository launcher still lacks mcp1.26.0. Decompiler output is a
+The direct repository launcher still lacks mcp 1.26.0. Decompiler output is a
 hypothesis only; raw instruction evidence overrides its lost ST0 results and
 misleading shared-tail calling-convention annotations.
 
-Native callable57B030..588F02 is57042 bytes,14501 decoded/reachable instructions,
-140 RETs,889 direct calls to32 targets, no unreached ranges. Four action tables
+Native callable 57B030..588F02 is 57042 bytes,14501 decoded/reachable instructions,
+140 RETs,889 direct calls to 32 targets, no unreached ranges. Four action tables
 and five nested difficulty tables close every indirect exit. Low/mid/high/
-special tables contain44/27/47/6 destinations; the default is588EF3. Complete
-payload through5893B8 is58248 bytes, including the two bytes before the first
-table, SHA2568c76f4df41ea9627a161193cf132671508311cd6e04717a4314a7cb2390682af.
-Callable SHA2567caa43b9c69087875de1d8db150434733ad7b8a0fbd0d7bd245ee288f3db5db3.
+special tables contain 44/27/47/6 destinations; the default is 588EF3. Complete
+payload through 5893B8 is 58248 bytes, including the two bytes before the first
+table, SHA 2568c76f4df41ea9627a161193cf132671508311cd6e04717a4314a7cb2390682af.
+Callable SHA 2567caa43b9c69087875de1d8db150434733ad7b8a0fbd0d7bd245ee288f3db5db3.
 
 ## Source and replay
 
@@ -35,11 +35,11 @@ scripts/repo-python scripts/audit-yukari-action-state.py
 scripts/repo-python scripts/compare-giant-action-switches.py yukari-vslot28 build/match-units/ExactFirst_YukariActionState.obj --json
 ```
 
-Public replay emits57792 full bytes versus58248. First difference+8 is the frame
-immediate4E8 versus native4E0. Candidate SHA256:
+Public replay emits 57792 full bytes versus 58248. First difference+8 is the frame
+immediate 4E8 versus native 4E0. Candidate SHA256:
 12d9549c7a1da78ef8e507fb170ddd006203e0ead7926d0fd9e4ad11e94a2360. Full audit
-reports54483 unequal/missing positional bytes, not a semantic percentage. Comparison
-exit1 is expected.
+reports 54483 unequal/missing positional bytes, not a semantic percentage. Comparison
+exit 1 is expected.
 
 New source/header and append-only unit/literal entries have no existing accepted
 consumers. Unchanged exact receipts are retained; no whole-corpus cold build is
@@ -47,81 +47,81 @@ claimed or required. Final scripts/ci.py and git diff --check remain mandatory.
 
 ## Preserved target distinctions
 
-- Prelude998 emits paired+10/-10 one-float packets, not the null packets used by
+- Prelude 998 emits paired+10/-10 one-float packets, not the null packets used by
   other roster peers. Coordinates are(80,130),(60,80),(75,140), signed facing;
-  7A2=100. Walk speed is4.5; normal jump12.5/.55; high jumps use.65 gravity.
-- Native71..78,88,89,145 recovery actions preserve integer-truncate-then100
+  7A2=100. Walk speed is 4.5; normal jump 12.5/.55; high jumps use.65 gravity.
+- Native 71..78,88,89,145 recovery actions preserve integer-truncate-then100
   velocity captures, AL boundary tests, layout/event/reset order and one-time999.
-  197..199 use independent981 packet lifetimes;199 makes two checked deck calls
-  at receiver+55C. 201/224 landing clears VY/gravity, not VX. 201's entry4/5
+  197..199 use independent 981 packet lifetimes;199 makes two checked deck calls
+  at receiver+55C. 201/224 landing clears VY/gravity, not VX. 201's entry 4/5
   checks share the native outer time gate.
-- Yukari214 uses five/six release states, turn1/3, acceleration.3, no copied
+- Yukari 214 uses five/six release states, turn 1/3, acceleration.3, no copied
   peer angle wrapping, and direction-sensitive release selection. Native trig
   results are consumed from ST0 despite missing return assignments in IDA.
-- 400/401/404 fan800 has distinct low/high packets and timing;402/406 retain
+- 400/401/404 fan 800 has distinct low/high packets and timing;402/406 retain
   float induction and their different formulas. Counter/callback order is not
   replaced with a generalized peer pattern. 801 packets contain four floats.
-- 522/523 preserve actual atan/sqrt calls and the native constants37825,65025,
+- 522/523 preserve actual atan/sqrt calls and the native constants 37825,65025,
   128500,190800. Do not recompute those constants from presumed geometric
-  coordinates: native135/135 atan and37825 sqrt coexist. Their shared speed
-  temporaries are float, demonstrated by583389 onward.
+  coordinates: native 135/135 atan and 37825 sqrt coexist. Their shared speed
+  temporaries are float, demonstrated by 583389 onward.
 - 565/566 distinguish time-counter and frame-timer control. 566 can set frame
-  timer75 and then take its same-frame launch. 721 uses10, not75;720 reads
+  timer 75 and then take its same-frame launch. 721 uses 10, not 75;720 reads
   owner+168 Y for its difficulty burst, not peer+170 Y.
-- 710 packet fields1/2 are initialized outside each loop; subsequent callback
-  mutations are not overwritten per iteration. Difficulty740 default at588718
+- 710 packet fields 1/2 are initialized outside each loop; subsequent callback
+  mutations are not overwritten per iteration. Difficulty 740 default at 588718
   reads an uninitialized stack local. The source leaves the local unset outside
   difficulties0..3; invalid-difficulty behavior is not recovered portable
   semantics and no made-up default was introduced. Further evidence is needed
   before selecting this source.
-- 656 loads virtual slot+0C and argument5, then jumps into shared call57B867.
-  Reading only instructions immediately before call57B869 falsely suggests
+- 656 loads virtual slot+0C and argument 5, then jumps into shared call 57B867.
+  Reading only instructions immediately before call 57B869 falsely suggests
   set_action(10). The incoming register/argument context must be preserved.
 
 ## Diagnostics and remaining work
 
 Zero-offset spawn coordinates now read X directly, eliminating unsupported FP+0
-in520/521/525/526. Low cases follow raw physical-owner order. Random emission
+in 520/521/525/526. Low cases follow raw physical-owner order. Random emission
 arguments preserve target Y-before-X evaluation and captured bases while
 avoiding unnecessary source temporaries. These are natural semantic/lifetime
 changes, not padding or register forcing.
 
 Current per-action direct-call and FP-operation counts agree. Physical virtual
-site counts still differ in201(3/2),214(14/13),656(3/4); these count reachable
+site counts still differ in 201(3/2),214(14/13),656(3/4); these count reachable
 sites, not dynamic executions or nominal vtable meanings. They do not prove
-semantic equality. Native44 low owners become43, merging210/222. The manifest
-permits that candidate count only for diagnostics; target expectations remain44.
+semantic equality. Native 44 low owners become 43, merging 210/222. The manifest
+permits that candidate count only for diagnostics; target expectations remain 44.
 
-Payload dataflow resolves101 homes on each side, no unknown spawn pointers.
-Native/candidate frames1248/1256 and epilogues140/144 differ. Packet ordering,
-size-class positions and scratch lifetime are not yet exact. All49 crossed
-consumers test AL; native9/candidate8 on-surface physical sites likewise test
-AL. Candidate has3 unreachable compiler alignment bytes. General unordered FP
+Payload dataflow resolves 101 homes on each side, no unknown spawn pointers.
+Native/candidate frames 1248/1256 and epilogues 140/144 differ. Packet ordering,
+size-class positions and scratch lifetime are not yet exact. All 49 crossed
+consumers test AL; native 9/candidate8 on-surface physical sites likewise test
+AL. Candidate has 3 unreachable compiler alignment bytes. General unordered FP
 predicates, callback aliasing and original TU/lifetime context remain open.
 
 Seventeen new literals have unique native operand witnesses and matching COFF
 values; no arbitrary unresolved literal binding was allowed. No target patches,
 assembly, forced registers, inert locals or fake returns were introduced.
-Exact tracking remains1427 functions/413799 authored bytes.
+Exact tracking remains 1427 functions/413799 authored bytes.
 
 ## Direction/argument refinement
 
 The latest focused replay is formal-directionbranches.json and
 formal-directionbranches-audit.json. Explicitly capture the zero-extended
-byte direction before deriving signed coordinate offsets, as the native998
+byte direction before deriving signed coordinate offsets, as the native 998
 prelude demonstrates. Its first packet call now has the native length; exact
-register allocation and the4E8/4E0 frame remain different.
+register allocation and the 4E8/4E0 frame remain different.
 
-Native710 has separate same-facing/reversed-facing argument-setup arms that
+Native 710 has separate same-facing/reversed-facing argument-setup arms that
 converge on each spawn instruction (e.g.587262..5872B3). Expressing those as
 whole calls in if/else, instead of a ternary direction temporary, reduces the
-710 physical span discrepancy from224 to9 bytes. This is a source-shape result,
+710 physical span discrepancy from 224 to 9 bytes. This is a source-shape result,
 not exact credit. Packet, call and arithmetic semantics remain the scope;
 no assembly, target modifications or dummy dependencies were introduced.
 
 ## Aim argument lifetime refinement
 
-The current source keeps the binary32 DX local and evaluates the binary32 DY
+The current source keeps the binary 32 DX local and evaluates the binary 32 DY
 expression directly in the atan argument. Raw native sites 57FFC8, 5800AA,
 58044C, 58052E, 580844, 580C84 and 580D6A first place rounded DX in outgoing
 [esp+4], then load peer Y and prepare outgoing DY. The previous two-local
@@ -135,9 +135,9 @@ none did before. These are local diagnostic windows, not function acceptance.
 Function size, action-owner map, metadata and 4E8 frame remain unchanged. The
 complete unmasked canonical audit still mismatches at+8.
 
-The frame investigation also rejected narrowing the action730 Y capture:
+The frame investigation also rejected narrowing the action 730 Y capture:
 588639..58864A explicitly stores and compares a QWORD across surface().
-Native burst910 likewise captures its X+100 base as QWORD before RNG at
+Native burst 910 likewise captures its X+100 base as QWORD before RNG at
 587E0C, 587EEC and 587FCB. The extra frame space therefore does not justify
 changing these scalar widths. The compiler listing still places their shared
 QWORD group above the initial one-float packet; the cause remains unresolved.

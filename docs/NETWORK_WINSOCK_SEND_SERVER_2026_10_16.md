@@ -4,12 +4,12 @@
 
 Only original Japanese TH10.5 v1.06a was inspected, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-`NetworkWinsock_send_server @ 416B60` has548 bytes,168 reached instructions,
+`NetworkWinsock_send_server @ 416B60` has 548 bytes,168 reached instructions,
 and body SHA-256
 `f9c4811900e4c22873f2176f36dd601d1e2fc4782308c183d1c9c863a7e8d3f9`.
-The complete raw CFG closes at RET20 `416D81`, without indirect jumps,
+The complete raw CFG closes at RET 20 `416D81`, without indirect jumps,
 escaping direct branches, overlapping decode or uncovered tails. Its entry
-immediately follows the separate client's RET16; prior origin-rule prose
+immediately follows the separate client's RET 16; prior origin-rule prose
 incorrectly described preceding INT3 padding. The independent incoming E8
 edges and closed prologue/epilogue establish this boundary. Existing
 authored ownership already pins six exact caller sites in five Server methods;
@@ -21,7 +21,7 @@ peer index, payload pointer, byte count, options and optional result-token
 pointer. Exact wrapper `44F4E0` serializes into its buffer and passes the packet
 result field; the other exact wrappers likewise establish index/buffer/size/
 options/result positions. Raw callee stack accesses independently confirm all
-five and the20-byte pop.
+five and the 20-byte pop.
 
 ## Return uncertainty
 
@@ -41,12 +41,12 @@ side effects and this remaining return-type uncertainty are recorded separately.
 
 `src/network/NetworkWinsockSendClient.cpp` now contains both senders and the
 complete acquire/release member definitions. Its method-focused CNetworkUDP
-view replaces the formerly opaque+FC..168 region with an untouched12-byte
+view replaces the formerly opaque+FC..168 region with an untouched 12-byte
 prefix, native peer-record vector+108, untouched+118 bytes, critical wrapper
 +120 and untouched+13C bytes. Existing token deque+168, packet manager+17C,
 event+1E0 and queue lock+1E4 keep their offsets. Compile-time assertions pin
-the32-byte peer element, vector+108 and lock+120 as well as earlier offsets.
-The view reaches+200; the full known owner remains0x314 bytes elsewhere.
+the 32-byte peer element, vector+108 and lock+120 as well as earlier offsets.
+The view reaches+200; the full known owner remains 0x314 bytes elsewhere.
 
 The reconstructed server method follows these observed operations:
 
@@ -54,9 +54,9 @@ The reconstructed server method follows these observed operations:
    If it is-1, return before packet allocation, output-token writes, locking,
    queue mutation or event signaling. No new out-of-range early return is added.
 2. Initialize a packed token to zero, acquire a packet from manager+17C,
-   write opcode0D at payload+1C, copy options+14 and record timeGetTime+10.
+   write opcode 0D at payload+1C, copy options+14 and record timeGetTime+10.
 3. Enter the peer lock's native critical section at+124. Perform the second
-   checked vector access after locking and copy all16 endpoint bytes. Leave
+   checked vector access after locking and copy all 16 endpoint bytes. Leave
    that lock. The first record access is intentionally outside this lock;
    no source synchronization change is invented.
 4. Copy caller bytes to packet+1D, store byte count+1 at+18, and enter the
@@ -67,7 +67,7 @@ The reconstructed server method follows these observed operations:
    not a match was found. Append the new token, leave the queue lock and
    signal event+1E0.
 
-The peer view names only endpoint16 and signed slot+10; the final12 bytes
+The peer view names only endpoint 16 and signed slot+10; the final 12 bytes
 remain unreviewed here. The token deque uses actual native iterators and
 repeated end checks. Both locks use explicit Win32 calls, as in the target;
 no EH guard, transactional rollback or payload-capacity check is added.
@@ -95,7 +95,7 @@ larger epilogue, not an unresolved relocation. Token push_back remains expanded
 in the linked senders instead of the target's out-of-line helper. Original
 inline/TU context and register choices remain open. No fake caller, register
 ABI facade, noinline annotation or partial match is added to remove them.
-The separate ordinary acquire unit remains427/410 nonexact.
+The separate ordinary acquire unit remains 427/410 nonexact.
 
 ```bash
 python3 scripts/audit-candidate-boundaries.py 0x00416B60 --json
@@ -104,13 +104,13 @@ python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client -
 python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client --address 0x00405200 --json
 ```
 
-The full mixed comparison intentionally returns1 because both senders remain
+The full mixed comparison intentionally returns 1 because both senders remain
 nonexact. Selecting only the accepted release repeats the source/target caller
 CFG and unique E8 checks. This checkpoint changes no matches or exclusion rows.
 
 The ordinary acquire
-probe remains427/410 with all relocations resolved. Local
-`python3 scripts/ci.py` passes all151 tests and generated-progress checks;
+probe remains 427/410 with all relocations resolved. Local
+`python3 scripts/ci.py` passes all 151 tests and generated-progress checks;
 `git diff --check` passes.
 
 ## Analysis state
@@ -123,5 +123,5 @@ stack values across an untyped memcpy boundary; raw instructions determine the
 five-argument contract and both peer checks instead. The peer/owner views,
 supported name, complete extent, physical parameter storage and explicitly
 provisional void return are saved and checked in a fresh read-only invocation.
-One Ghidra process uses768MiB and two CPUs; private probes stay below `.analysis/`
+One Ghidra process uses 768MiB and two CPUs; private probes stay below `.analysis/`
 and `build/`. No whole-program exact replay is performed.

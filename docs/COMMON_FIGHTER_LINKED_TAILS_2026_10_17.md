@@ -165,9 +165,9 @@ clone had already been removed. Toolchains, canonical target and primary
 analysis databases were preserved.
 
 A fresh ordinary check commutes the shared `v4 > v3` predicate to `v3 < v4`
-without changing types or rounding points. It falls to52/66 with10805 section
+without changing types or rounding points. It falls to 52/66 with 10805 section
 bytes, emits `FCOMP` against memory zero rather than target `FCOMP ST(1)`,
-retains late162 ownership and loses799. Section SHA256 is
+retains late 162 ownership and loses 799. Section SHA256 is
 `0aa2e5a4b3a1d42d03f602f8032388c179d59ad4fb7a758503ef2cfcd41a5b97`.
 This reconfirms an old source-shape negative and is not adopted. Active work
 moves to Reimu's81550-byte root instead of

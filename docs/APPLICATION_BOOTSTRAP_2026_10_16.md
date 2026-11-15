@@ -47,24 +47,24 @@ observed current/previous scene zeroing order and initial-state stores.
 The path helper publishes HWND `702A1C` and instance `702A20`. Its real
 260-byte module-path buffer uses GetModuleFileNameA, searches for '/' and then
 '\\', retains the last separator by writing last[1]=0, and copies with
-strcpy_s to `702918`, capacity260. The target does not guard the result after
+strcpy_s to `702918`, capacity 260. The target does not guard the result after
 the second separator search. The source preserves that observed behavior.
 
-Graphics initialization saves GWL_STYLE at `703840`, obtains Direct3D9 and the
+Graphics initialization saves GWL_STYLE at `703840`, obtains Direct 3D9 and the
 adapter display mode, and zeroes the 56-byte presentation record. If either
 requested dimension is nonpositive, it zeroes a real 60-byte WINDOWINFO and
 uses its client rectangle. The target does not set cbSize after zeroing.
 Presentation settings include one back buffer, windowed mode, automatic depth
-stencil format75, flags2 and interval1 or `80000000`. Device creation tries
+stencil format 75, flags 2 and interval 1 or `80000000`. Device creation tries
 HAL/flags44, HAL/flags24, then REF/flags24. Success fills 304-byte caps, obtains
-swap chain0 and clears color/depth. Failure messages and titles are pinned to
+swap chain 0 and clears color/depth. Failure messages and titles are pinned to
 the actual Shift-JIS strings.
 
 Audio initialization creates and initializes DirectSound8, tries cooperative
-level2 then1, obtains native 96-byte capabilities, and creates a primary buffer
-from a real 36-byte descriptor. Option bit0 enables flag16 and listener
+level 2 then 1, obtains native 96-byte capabilities, and creates a primary buffer
+from a real 36-byte descriptor. Option bit 0 enables flag 16 and listener
 QueryInterface; listener success also AddRefs the primary buffer. Play uses
-flags1. The source reloads the global owner after COM calls, matching target
+flags 1. The source reloads the global owner after COM calls, matching target
 storage lifetime observations. GUIDs and error strings are independently pinned.
 
 `src/platform/ApplicationBootstrap.cpp` keeps the root and all three complete
@@ -84,7 +84,7 @@ headers and compiler flags are unchanged.
 | `4147E0` | EAX width; ESI HWND; height and byte sync on stack | 8 |
 | `418670` | ECX HWND; flags on stack | 4 |
 
-The complete path helper's naturally optimized ABI and all137 bytes match,
+The complete path helper's naturally optimized ABI and all 137 bytes match,
 including its 264-byte GS frame. All REL32/DIR32 relocations replay under the
 formal manifest; complete target and complete COFF section tail have the same
 SHA-256 shown above. A new bootstrap-only backend alias allows precisely its
@@ -94,12 +94,12 @@ The root still uses EBP as receiver in the candidate, whereas the target has an
 eight-byte-aligned frame and EBX receiver. Graphics retains HWND in ESI but the
 candidate passes width in ECX, sync in AL and only height on the stack/RET4;
 the target additionally has a 16-byte-aligned 72-byte frame. Audio's candidate
-passes flags in ECX and HWND in EDI/RET0, and reserves136 GS bytes versus the
-target140. Keep those caller/callee codegen differences explicit.
+passes flags in ECX and HWND in EDI/RET0, and reserves 136 GS bytes versus the
+target 140. Keep those caller/callee codegen differences explicit.
 
 A single diagnostic /GL /GS compilation and two serial LTCG links, exported
 versus retained-only, preserved the three nonexact entries. Both audio probes
-reserved140 bytes, but through an eight-byte-aligned EBP frame absent from the
+reserved 140 bytes, but through an eight-byte-aligned EBP frame absent from the
 target, and retained the wrong private argument assignment. This establishes
 that compiler phase can change frame reservation without changing real locals;
 it neither reproduces the target nor proves an LTCG-only obstacle. The linked

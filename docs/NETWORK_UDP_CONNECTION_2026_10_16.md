@@ -2,12 +2,12 @@
 
 The critical receive/connection chain now has all genuine implementation
 inputs for a resolved mixed COFF/LTCG link. This checkpoint adds complete
-connection542 and worker1009 source to `NetworkWinsockReceiveThread.cpp`.
+connection 542 and worker 1009 source to `NetworkWinsockReceiveThread.cpp`.
 It adds no canonical authored exact bytes.
 
 ## Observed target and boundaries
 
-Only original Japanese1.06a SHA-256
+Only original Japanese 1.06a SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`
 is used. IDA still reports another executable and is not used. Raw PE CFG
 audits close both bodies without missing bytes, external tails, indirect
@@ -15,13 +15,13 @@ jumps, invalid decoding or overlap:
 
 | Entry | Instructions / bytes | Native ABI | Full body SHA-256 |
 | --- | --- | --- | --- |
-| `415340` |160 /542| ECX owner; endpoint, port, packet, size in four stack slots; AL0/1; RET16 |`5adc2f59eba3c9831a6813a1bf82cfe0e803ae2e9db354c558524d6f83089b3b`|
-| `415D60` |286 /1009| stdcall handoff pointer at stack4; EAX0; RET4 |`96a7f05395f2e1d7f83cc661e6448e87ba2688726fbe50acc4a751f5d24383f5`|
+| `415340` |160 /542| ECX owner; endpoint, port, packet, size in four stack slots; AL 0/1; RET 16 |`5adc2f59eba3c9831a6813a1bf82cfe0e803ae2e9db354c558524d6f83089b3b`|
+| `415D60` |286 /1009| stdcall handoff pointer at stack 4; EAX 0; RET4 |`96a7f05395f2e1d7f83cc661e6448e87ba2688726fbe50acc4a751f5d24383f5`|
 
 Connection has normal calls from receive `41DBD6` and the independently exact
 MenuConnect finalizer `4426F2`. The latter supplies a40-byte ConnectPacket40;
 the former passes null endpoint/data and the FFFF reuse sentinel. Connection
-registers worker415D60 at `4154EB` through the real8-byte native thread owner
+registers worker 415D60 at `4154EB` through the real 8-byte native thread owner
 and its separately accepted `414600` start implementation. These caller,
 protocol, state and ownership operations establish authored provenance for
 both entries; no generated container/helper gains new exclusion credit.
@@ -29,12 +29,12 @@ both entries; no generated container/helper gains new exclusion credit.
 ## Connection behavior
 
 Before locking, a nonnull worker handle is queried with GetExitCodeThread;
-exit code259 rejects another start. The API result is discarded and its local
+exit code 259 rejects another start. The API result is discarded and its local
 output is not initialized by the target. Under the endpoint wrapper+E0/native
-E4 scoped lock, state2 or3 rejects the operation.
+E4 scoped lock, state 2 or 3 rejects the operation.
 
 For size below FFFF, free the old buffer+78 through CRT free, publish WORD size+7C,
-allocate a nonempty replacement through array new665B8A and copy it, or clear the pointer for zero size. FFFF
+allocate a nonempty replacement through array new 665B8A and copy it, or clear the pointer for zero size. FFFF
 preserves both old fields. No allocation-failure recovery is invented. A16-byte
 stack handoff stores owner+0, WORD size+4, data pointer+8 and DWORD copied+C;
 the unused two bytes following size remain untouched.
@@ -45,70 +45,70 @@ or null first address rejects the operation. No extra h_addr_list null guard,
 address-family check or rollback is added. A null endpoint retains the existing
 A0 address, as required by the real receive retry caller.
 
-Copy all16 endpoint bytes into published+3C and previous+4C, clear the native
-candidate vector+14C and push the retained/resolved endpoint. Publish state2,
-start415D60 with the stack handoff and poll its copied DWORD through16ms waits
+Copy all 16 endpoint bytes into published+3C and previous+4C, clear the native
+candidate vector+14C and push the retained/resolved endpoint. Publish state 2,
+start 415D60 with the stack handoff and poll its copied DWORD through 16ms waits
 on the stored worker handle. Start's bool result is discarded; the target has
 no separate failure exit. The endpoint guard remains held until acknowledgement
 and success return. The worker copies the handoff before trying that lock.
 
-Connection prologue points to the complete27-byte handler `6BE158`, SHA-256
+Connection prologue points to the complete 27-byte handler `6BE158`, SHA-256
 `bdcc78d85c1ef9c87c7a30a484b78603f7859d057dc8c7da8c0ab1b69ba6de55`.
-Its FuncInfo `6E488C` has magic19930522, one unwind state, map `6E4884` and
-flags1. State0 unwinds to-1 through the8-byte cleanup `6BE150`, which derives
-the guard at EBP-0x24 and tail-calls its real destructor. Main RETs are41553D
-and41555B. The ordinary source lacks the target's aligned EBP frame and remains
+Its FuncInfo `6E488C` has magic 19930522, one unwind state, map `6E4884` and
+flags 1. State 0 unwinds to-1 through the 8-byte cleanup `6BE150`, which derives
+the guard at EBP-0x24 and tail-calls its real destructor. Main RETs are 41553D
+and 41555B. The ordinary source lacks the target's aligned EBP frame and remains
 524/542 nonexact, first differing at entry.
 
 ## Worker behavior
 
-Capture the native worker handle before acknowledgement. Build opcode5 with
-key16 at+1, owner WORD24 at+11, low byte of peer limit11C at+13, WORD payload
+Capture the native worker handle before acknowledgement. Build opcode 5 with
+key 16 at+1, owner WORD24 at+11, low byte of peer limit 11C at+13, WORD payload
 size at+15 and copied data at+19. Holes+14/+17/+18 remain untouched. Its
-transmitted length is25+WORD size. Only after copying this data, store DWORD1
+transmitted length is 25+WORD size. Only after copying this data, store DWORD1
 at handoff+C (`415E1D`); the main function can then release its stack handoff.
 
 Create a separate UDP socket with AF_INET/SOCK_DGRAM/protocol0. Its zeroed
 local endpoint uses htonl(0) and port
 `htons((unsigned short)timeGetTime() %1000 +11000)`. The target import is
-WINMM timeGetTime at6C0258, not GetTickCount. A negative bind result closes
+WINMM timeGetTime at 6C0258, not GetTickCount. A negative bind result closes
 the socket immediately; only a successfully bound auxiliary socket is used
 or closed at final cleanup. Socket failure does not abort the handshake.
 
 Reset candidate index+148. An empty candidate vector skips the loop. Otherwise
-publish candidate0 to+3C, then take/release the endpoint lock manually on every
+publish candidate 0 to+3C, then take/release the endpoint lock manually on every
 iteration, with no EH guard added:
 
 | State | Observed policy |
 | --- | --- |
-|2| Send37-byte opcode1 with both endpoints=published and port0 through the main socket, and through the bound auxiliary socket when available. Replace the first endpoint with previous+4C; send main-socket probes to that previous address with port0, then owner WORD24+probe counter, then ntohs(local auxiliary port)+counter when auxiliary bind succeeded. The second endpoint stays published. Signed `probe_count++ >32` advances candidate index; exhaustion sets state6, otherwise reset count and copy the next checked native vector entry. Reset the request retry counter. |
-|3| Send the prepared opcode5 request through the main socket to published+3C. Signed `request_count++ >100` sets state6. Reset the probe counter. |
+|2| Send 37-byte opcode 1 with both endpoints=published and port 0 through the main socket, and through the bound auxiliary socket when available. Replace the first endpoint with previous+4C; send main-socket probes to that previous address with port 0, then owner WORD24+probe counter, then ntohs(local auxiliary port)+counter when auxiliary bind succeeded. The second endpoint stays published. Signed `probe_count++ >32` advances candidate index; exhaustion sets state 6, otherwise reset count and copy the next checked native vector entry. Reset the request retry counter. |
+|3| Send the prepared opcode 5 request through the main socket to published+3C. Signed `request_count++ >100` sets state 6. Reset the probe counter. |
 |other| Clear the loop flag. |
 
-If running+74 is zero, set state6 after the state-specific work. Unlock, wait
-128ms on the captured worker handle, then check the loop flag. Thus state6
+If running+74 is zero, set state 6 after the state-specific work. Unlock, wait
+128ms on the captured worker handle, then check the loop flag. Thus state 6
 publication does not itself skip the current wait or the next state check.
-The37-byte probe has a WORD at+21 and two untouched tail bytes+23/+24.
+The 37-byte probe has a WORD at+21 and two untouched tail bytes+23/+24.
 The worker returns zero after closing only a successfully bound auxiliary
-socket. Its sole RET4 is41614E; it has GS protection and no EH frame.
+socket. Its sole RET4 is 41614E; it has GS protection and no EH frame.
 
 ## Source inference and storage unknowns
 
 Normal C++ thiscall and stdcall signatures explain the physical entries.
 Source char versus bool spelling for connection is not uniquely determined by
-AL0/1; the existing actual caller contract uses char and is preserved. Packed
+AL 0/1; the existing actual caller contract uses char and is preserved. Packed
 wire views, native vector operations, scoped connection lock and manual worker
 locks follow the target. No volatile flag, failure recovery or additional
 packet initialization is introduced without evidence.
 
-Selected source uses only the observed37-byte probe and65-byte request
+Selected source uses only the observed 37-byte probe and 65-byte request
 (25-byte header plus the only fresh caller's40-byte payload). Original stack
-capacity remains unknown. The worker's two packet addresses are420 apart;
+capacity remains unknown. The worker's two packet addresses are 420 apart;
 this new independent observation justified one control using two genuine
-NetworkUdpPacketBuffer41C objects with views into their1024-byte payloads.
-That control is992/1009, frame860 versus target870, and is not selected.
-No16-byte padding or larger guessed packet is added to make the frame agree.
-Selected ordinary worker source is945/1009, first mismatch on the frame size.
+NetworkUdpPacketBuffer41C objects with views into their 1024-byte payloads.
+That control is 992/1009, frame 860 versus target 870, and is not selected.
+No 16-byte padding or larger guessed packet is added to make the frame agree.
+Selected ordinary worker source is 945/1009, first mismatch on the frame size.
 
 ## Genuine linked control and verification
 
@@ -120,12 +120,12 @@ The link succeeds with zero unresolved implementations. Connection is also
 exported to preserve its real external UI call surface; without that visibility
 an exploratory link specialized it to the receive caller's FFFF/null arguments
 and eliminated real DNS/copy behavior. The corrected diagnostic retains the
-complete542-byte connection body; worker is948 bytes. These lengths are not
+complete 542-byte connection body; worker is 948 bytes. These lengths are not
 canonical exact claims. The main receive map extent also contains switch
 metadata, so its map extent is not an accepted callable boundary.
 
 The configured ordinary unit compares all seven functions. The previously
-accepted callback remains14/14 exact. The148/33 dependency controls remain
+accepted callback remains 14/14 exact. The 148/33 dependency controls remain
 exact in origin review, without authored/source/exclusion credit. Receive,
 request, connection and worker remain nonexact. The fully linked callback is
 also a14-byte canonical diagnostic; native EH/GS data ownership and switch
@@ -148,27 +148,27 @@ the packet offsets, handle capture, acknowledgement and loop lifetimes.
 
 ## Linked whole-body discriminator
 
-The next bounded pass restores observed handoff publication order (copied0C,
+The next bounded pass restores observed handoff publication order (copied 0C,
 owner, data pointer, WORD size) and retains the first resolved DNS address in
 a real local before null-check and dereference. Ordinary connection remains
-524/542 nonexact; full receive/request/worker extents and the accepted14-byte
+524/542 nonexact; full receive/request/worker extents and the accepted 14-byte
 callback are unchanged. Both source changes are retained as target-backed
 lifetimes, without forcing registers.
 
 Private full-body relocation diagnostics verify real named source callees and
 the SDK import thunk/DLL/ordinal identities; native handler, cookie and thread
 pointer replay remains explicitly hypothetical, not canonical acceptance.
-With all code references resolved, baseline542 has158 differing bytes and first
+With all code references resolved, baseline 542 has 158 differing bytes and first
 real mismatch+E8; handoff order moves it to+105; the retained DNS pointer moves
-it to+14C with84 differing bytes. Remaining differences include the DNS value
+it to+14C with 84 differing bytes. Remaining differences include the DNS value
 register, endpoint-copy schedule, private vector argument placement and loop
 alignment. They are real code differences, not just metadata addresses.
 
-A direct native vector.clear control reproduces those same84 differences, so the
-existing complete wrapper is not the cause. RTM14.0.50727.42 cl/c2/link with the
+A direct native vector.clear control reproduces those same 84 differences, so the
+existing complete wrapper is not the cause. RTM 14.0.50727.42 cl/c2/link with the
 same pinned SP1 headers/import libraries and SP1 msobj80 resolver also retains
-exactly those84 differences; this mixed control is not a recovered original profile.
-No additional padding, ABI adapter or profile sweep is used. The next priority is the shared10219-byte Fighter root4740C0, called by every roster
+exactly those 84 differences; this mixed control is not a recovered original profile.
+No additional padding, ABI adapter or profile sweep is used. The next priority is the shared 10219-byte Fighter root 4740C0, called by every roster
 action root; the network residual is recorded for a later new discriminator.
 
 The [October19 allocation-interface follow-up](ALLOCATOR_INTERFACES_2026_10_19.md)

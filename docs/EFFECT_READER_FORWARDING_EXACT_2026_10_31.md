@@ -42,7 +42,7 @@ The old source-only origin rule is replaced by canonical-exact-authored.
 
 Applying the same existing helper privately to all 60 PAT-loader reads reduces
 the complete 0x00461B70 candidate from 3898 to the native 3885 bytes.
-It remains nonexact, first difference +866 at0x00461ED2, canonical source SHA
+It remains nonexact, first difference +866 at 0x00461ED2, canonical source SHA
 9e978b66bcfec49e27e802dc9ac4285608a43ba327ab15822a99afde07b38baa.
 The shared reader operations are now published for this source too, with no exact
 credit. Detailed canonical replay finds exactly four differing bytes:461ED2,
@@ -50,6 +50,6 @@ credit. Detailed canonical replay finds exactly four differing bytes:461ED2,
 loads (_Myoff and _Mysize) in an iterator range check; guards and all remaining
 bytes are unchanged. No original vendor header was edited to force that order.
 
-A bounded real reverse-iterator API control emits3853 bytes and fails earlier,
+A bounded real reverse-iterator API control emits 3853 bytes and fails earlier,
 at+158. It is rejected, not published. Do not replace actual STL operations or
 repeat equivalent-spelling grids to force the remaining load order.

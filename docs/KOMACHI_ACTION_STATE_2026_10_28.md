@@ -85,7 +85,7 @@ The complete canonical manager 0x5F78C0 is 237 bytes, SHA-256
 5facf0036e53de10e5916c20f880aa1bdff879ffd6212996a6f311072921bb80.
 It reads only BYTE direction at 0x5F7962 (ESP+20 after two saves) and BYTE
 variant at 0x5F7966 (ESP+24), stores them at object+104/+33C, and returns
-RET24. The accepted roster spawn source uses byte formals.
+RET 24. The accepted roster spawn source uses byte formals.
 
 The shared 66-byte forwarding wrapper 0x465190 forwards full DWORD slots,
 which does not establish int formals. Independently exact int and byte
@@ -158,7 +158,7 @@ request-preparation edits.
 The inference is bounded: actual loop indices are 0..11, base is roll(360),
 steps are 30/45/60 and the optional offset is 22.5. Jitter is roll(20)-10.
 All angle values here are small integer/half-integer values exactly
-representable in binary32. This is not permission to narrow arbitrary x87
+representable in binary 32. This is not permission to narrow arbitrary x87
 intermediates elsewhere. The compiler's extra store/reload around the angle
 still differs from native's FST-retained-value sequence, so the original
 expression is not claimed recovered byte-for-byte.

@@ -7,12 +7,12 @@ existing COFF path when link-time code generation owns the observed boundary.
 It does not change COFF comparison or authorize partial-function matches.
 
 The first accepted example is scene retirement `408870`,281/281, in
-`cross-v106a-application-scene-lifecycle`. Its ordinary COFF candidate is278
+`cross-v106a-application-scene-lifecycle`. Its ordinary COFF candidate is 278
 bytes; LTCG naturally emits the target's eight-byte-aligned dual-EBP frame.
-The same source's scene-handoff producer remains189/148 nonexact.
+The same source's scene-handoff producer remains 189/148 nonexact.
 
 The second accepted example is packet-handle manager destruction `413820`,
-98/98, in `cross-v106a-network-udp-packet-pool`. Its ordinary COFF form is97
+98/98, in `cross-v106a-network-udp-packet-pool`. Its ordinary COFF form is 97
 bytes. A genuine ordinary COFF `std::list<unsigned int>` instantiation linked
 before the CIL input preserves the shared list helper ABI while LTCG retains
 the packet deque's private ESI helper. The source constructor remains nonexact;
@@ -24,16 +24,16 @@ generated from an ordinary member definition and its actual sender caller.
 The real senders and native thread callback are exported; a typed caller contract independently attests
 the private entry. See [the full shared-release evidence](HANDLE_MANAGER_RELEASE_2026_10_16.md).
 
-`CDesignBase::render @ 40BC80` is also complete135/135. The same native
-member-iterator source is124 bytes under ordinary COFF; GL/LTCG naturally
+`CDesignBase::render @ 40BC80` is also complete 135/135. The same native
+member-iterator source is 124 bytes under ordinary COFF; GL/LTCG naturally
 retains the target eight-byte frame and loop alignment. Its explicit empty
 `link_data_targets = []` is accepted because no absolute game data is used;
 missing declarations and unbound absolute references still fail. See
 [the complete render evidence](DESIGN_BASE_RENDER_2026_10_21.md).
 
-Texture dimension query `404E60` is complete148/148 with the genuine handle
+Texture dimension query `404E60` is complete 148/148 with the genuine handle
 lookup definition visible and its ordinary thiscall export preserved. The
-ordinary COFF query is147 bytes. Already attested Kernel32 IAT data cells
+ordinary COFF query is 147 bytes. Already attested Kernel32 IAT data cells
 resolve the real VC8 GS-report helper; no static-lifecycle guard changes or
 ABS code providers are used. The lookup's independent probe remains nonexact.
 
@@ -81,7 +81,7 @@ Optional `link_import_targets = ["_sendto@24=0x006898CC"]` links the actual
 pinned SDK archive. This narrow registry supports only the independently
 hashed i386 code/ordinal20 short import member, with exact `_sendto@24` symbol
 and WS2_32 DLL identity. The target must be an excluded, executable six-byte
-candidate containing `FF25` to the independently attested ordinal20 IAT slot;
+candidate containing `FF25` to the independently attested ordinal 20 IAT slot;
 its literal bytes and zero addend are checked. Comparison requires the source
 PE's actual ordinal import, matching linker symbol/library ownership and the
 function's explicit callee mapping to agree with that contract. pefile's
@@ -116,8 +116,8 @@ private function still repeats every caller check. No synthetic caller,
 resolver code or forced register declaration is added.
 
 An explicit static path may additionally specify `source_file` and `via`, as
-in `gpt-web-text-font-color-linked`: exported renderer412670 -> static
-parser411FA0 -> unexported color411790. This remains one import-runtime CIL
+in `gpt-web-text-font-color-linked`: exported renderer 412670 -> static
+parser 411FA0 -> unexported color 411790. This remains one import-runtime CIL
 input, with one to four unique static intermediates, complete caller CFGs and
 one declared ordinary E8 per edge. The file must be an actual recursive quoted
 include of the primary source, and all caller ledger rows must identify its
@@ -173,8 +173,8 @@ exporting that compiler wrapper. Source/target RTTI and the actual source entry
 pointer are revalidated, and only the same-class scalar/vector compiler alias
 is allowed. This selector cannot combine with export/private/global entry
 witnesses or act as an exported caller. The unit retains a real source export
-or CRT lifecycle root. Packet wrapper4138B0 remains30/30 through this path,
-while normal destruction413820 stays98/98. Numbered linker warnings and errors
+or CRT lifecycle root. Packet wrapper 4138B0 remains 30/30 through this path,
+while normal destruction 413820 stays 98/98. Numbered linker warnings and errors
 now fail even with exit status zero; no LNK4102/LNK4210 exception is granted.
 See [the guard correction and focused replay](LINKED_WARNING_GUARD_2026_10_21.md).
 
@@ -182,10 +182,10 @@ The sidecar records source/input digest, CIL object, binding object, map and
 image hashes, additional COFF inputs, typed vtable and SDK import contracts, all
 tool/header/library pins and parser versions. Modified or
 stale artifacts are rejected before decoding. Both supported Capstone versions
-(CI4.0.2 and development5.0.6) pass the rejection tests and independently rebuild
-the same281-byte scene,98-byte pool and167-byte private release examples. A
+(CI 4.0.2 and development 5.0.6) pass the rejection tests and independently rebuild
+the same 281-byte scene,98-byte pool and 167-byte private release examples. A
 build and comparison must use the same recorded parser version. pefile is
-pinned to2024.8.26.
+pinned to 2024.8.26.
 
 ```bash
 python3 scripts/build.py --unit cross-v106a-application-scene-lifecycle --json
@@ -276,7 +276,7 @@ identical.
 
 ## Original static Xiph providers and Ogg callback slots
 
-link_xiph_sdk=true selects only the hash-pinned original1.0.1 archive and its
+link_xiph_sdk=true selects only the hash-pinned original 1.0.1 archive and its
 three static libraries. Their extracted bytes are part of build provenance.
 The option requires the pinned static CRT; only its actual libcmt:_file.obj
 stdio initializer is added to the fixed C-initializer set for this mode.
@@ -290,7 +290,7 @@ There is no arbitrary callback table, data alias, import or code stub contract.
 ## Source-owned IEEE numeric literals
 
 link_numeric_literals explicitly pairs identical existing VC8 __real@ names.
-The complete4/8-byte IEEE spelling, unique real CIL ownership, readonly source
+The complete 4/8-byte IEEE spelling, unique real CIL ownership, readonly source
 and target bytes, native literal kind and sole zero addend must agree. Only
 single-memory-operand, full-width x87 reads are canonicalized. Writes, narrow
 or interior reads and address escapes are rejected. No target anchors expand.

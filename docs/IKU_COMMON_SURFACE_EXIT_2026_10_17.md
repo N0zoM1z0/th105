@@ -70,7 +70,7 @@ bijective, without issues. Candidate pre-epilogue coverage is 14,744 PCs /
 
 Other per-callee target/candidate counts differ: advancement 107/106,
 height 19/18, velocity-clear 30/28, facing 9/10. Expanding ordinary calls by
-possible incoming action leaves only action730's five facing sites versus
+possible incoming action leaves only action 730's five facing sites versus
 four. A matching incoming set or total does not establish path feasibility,
 argument values or exact bytes. Earlier 412/418 and six-action effect groups
 remain intact.

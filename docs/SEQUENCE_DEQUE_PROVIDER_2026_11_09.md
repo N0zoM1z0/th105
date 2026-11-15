@@ -44,8 +44,8 @@ exact across all 116 bytes.
 Both affected SpellRuntime compiler profiles preserve all four authored root
 bodies and their owned EH sections after accounting for the corrected call
 symbol. Twelve complete sections retain their raw bytes and relocation roles.
-The 118-byte readiness check remains exact; advance198, consume346 and
-preparation257/native259 retain their previous nonexact hashes.
+The 118-byte readiness check remains exact; advance 198, consume 346 and
+preparation 257/native259 retain their previous nonexact hashes.
 
 Preparation's complete 44-byte exception code, 44-byte metadata and eight-byte
 record cleanup still compare exactly. Restoring the real push member does not

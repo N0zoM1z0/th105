@@ -1,25 +1,25 @@
 # Patchouli action-state 0x0050F200
 
-Complete unselected C++ candidate for109 native action labels. All three
-sparse regions plus direct300/560 are present. Compilation and a full strict
+Complete unselected C++ candidate for 109 native action labels. All three
+sparse regions plus direct 300/560 are present. Compilation and a full strict
 comparison are available; no implementation or exact ledger credit is added.
 
 ## Exact-target observations
 
 The JP1.06a target and Factory native IDA metadata, entry, mapped entry bytes
-and inventory were attested at16:40UTC on October27. Direct IDA still lacks
-mcp1.26.0/uv. Full decompilation was read as a provisional guide, not copied
+and inventory were attested at 16:40UTC on October 27. Direct IDA still lacks
+mcp 1.26.0/uv. Full decompilation was read as a provisional guide, not copied
 into source or trusted over raw instructions.
 
-Native callable50F200..51C6B4 exclusive is54452 bytes, SHA-256:
+Native callable 50F200..51C6B4 exclusive is 54452 bytes, SHA-256:
 41430c00c554e7dc169692c56b41fd43f5ef1204700cb092bab6420f327ed944.
-All14068 instructions decode;14067 are reachable. The sole unreachable
-instruction is seven-byte compiler alignment at50F8A9..50F8B0.
-There are133 RETs,807 direct call sites and29 direct targets. All four
+All 14068 instructions decode;14067 are reachable. The sole unreachable
+instruction is seven-byte compiler alignment at 50F8A9..50F8B0.
+There are 133 RETs,807 direct call sites and 29 direct targets. All four
 indirect jumps resolve: a pre-dispatch difficulty switch plus three sparse
-action tables with32/43/32 physical destinations. No indirect exit is unresolved.
+action tables with 32/43/32 physical destinations. No indirect exit is unresolved.
 
-Full code/table payload55610 bytes ends51CB3A, SHA-256:
+Full code/table payload 55610 bytes ends 51CB3A, SHA-256:
 d4d73f175e4f8b37667f04472df8c5db8cbec0ca20414d4107df08a007779043.
 Alignment after that endpoint is not included.
 
@@ -27,29 +27,29 @@ Alignment after that endpoint is not included.
 
 - Uses the accepted virtual slot order and a pointer-only receiver extension,
   not a recovered complete allocation or an instantiated Fighter.
-- Buff7A4 reads owner168 and peer170 health, not self health. Skill606 is
-  signed-byte arithmetic. Action710 emits its orbit before the hitstop guard.
-- All40 native5F9310 call sites test AL; the accepted int callee declaration is
-  retained and caller values explicitly narrow. All47 unsigned-conversion
-  bias operands are float2^32; candidate count/width agrees.
+- Buff7A4 reads owner 168 and peer170 health, not self health. Skill 606 is
+  signed-byte arithmetic. Action 710 emits its orbit before the hitstop guard.
+- All 40 native 5F9310 call sites test AL; the accepted int callee declaration is
+  retained and caller values explicitly narrow. All 47 unsigned-conversion
+  bias operands are float 2^32; candidate count/width agrees.
 - Effects carry unsigned direction bytes while coordinate multiplication is
-  signed. Ring820's layer carries the low byte of word730, including255 for-1;
+  signed. Ring 820's layer carries the low byte of word 730, including 255 for-1;
   it is not silently replaced by an int-1 argument.
 - Trig and square helpers consume actual ST0 results, not decompiler aliases.
-  Action599 sign-extends DX at519FE6 before subtracting from-20. The RNG has
+  Action 599 sign-extends DX at 519FE6 before subtracting from-20. The RNG has
   no phantom decompiler arguments.
-- Action214's alleged extra v571 virtual argument is absent in raw code.
-  Release frame restoration uses the real slot1C and preserves frame730.
+- Action 214's alleged extra v571 virtual argument is absent in raw code.
+  Release frame restoration uses the real slot 1C and preserves frame 730.
 - Ground/air fan emissions keep distinct low/high payloads. Air fan seq0 and
   seq1 checks are independent across callbacks. Landing action/select/surface/
   zero-motion order is retained for each family rather than normalized.
-- Action603 request853 adds20 in world X, unlike its direction-scaled effect.
-  Its request precedes sequence-window/resource calls. Action602 has positive
-  sine and negative cosine arguments. Actions797/798 retain different landing
-  event order and advance to0 versus700.
-- Native561 and798 unordered comparisons were checked directly; unordered
-  values skip emission/landing. Skill581 has no defined cap for levels>4,
-  unlike580's default4. That domain is still unproved; no fallback is invented.
+- Action 603 request 853 adds 20 in world X, unlike its direction-scaled effect.
+  Its request precedes sequence-window/resource calls. Action 602 has positive
+  sine and negative cosine arguments. Actions 797/798 retain different landing
+  event order and advance to 0 versus 700.
+- Native 561 and 798 unordered comparisons were checked directly; unordered
+  values skip emission/landing. Skill 581 has no defined cap for levels>4,
+  unlike 580's default 4. That domain is still unproved; no fallback is invented.
 
 Every action label has a complete candidate path, but this does not establish
 all values, callback aliasing, NaN/overflow behavior or original TU ownership.
@@ -59,19 +59,19 @@ volatile register controls are used.
 
 ## First complete comparison
 
-Candidate full54342 versus native55610; first mismatch+8 is frame468 versus460.
+Candidate full 54342 versus native 55610; first mismatch+8 is frame 468 versus 460.
 Full candidate SHA-256:
 f21ffde47c144cf7fac7a4dc1e82d5ca06b63d37bae65bcfea7d767a69a4c783.
-The full comparison has52767 unequal/missing/extra positional bytes. This
+The full comparison has 52767 unequal/missing/extra positional bytes. This
 number is not a semantic-completion percentage.
 
-Candidate sparse groups31/43/32 fold target-distinct210/222; no native group
-splits. The diagnostic31 allowance never relaxes target32 or exact acceptance.
-Native209/212/221 and585/586 genuinely share their respective target entries.
+Candidate sparse groups 31/43/32 fold target-distinct210/222; no native group
+splits. The diagnostic 31 allowance never relaxes target 32 or exact acceptance.
+Native 209/212/221 and 585/586 genuinely share their respective target entries.
 
-Per-action reachable-call counts differ at214/409/500/501/502/503, where
+Per-action reachable-call counts differ at 214/409/500/501/502/503, where
 source compilation folds virtual or request sites. Arithmetic-operation counts
-differ at214/500/501/502/503. These diagnostics identify remaining questions,
+differ at 214/500/501/502/503. These diagnostics identify remaining questions,
 not proof that the other actions are equivalent. Global helper-count changes
 also reflect common tails and the low-owner merge.
 
@@ -125,45 +125,45 @@ The preceding focused receipts use the surface-ring prefix under the artifact
 folder. No compiler flag, dependency ABI, existing relocation or accepted
 consumer changed. Broader rebuilding is not warranted by this source edit.
 
-## Argument lifetimes and native branch ownership, October28
+## Argument lifetimes and native branch ownership, October 28
 
-The current complete unselected candidate emits55026/full55610 bytes, first+8 (468
-frame versus460), SHA256
+The current complete unselected candidate emits 55026/full55610 bytes, first+8 (468
+frame versus 460), SHA256
 0c76d2ef636a0ee3f83ad324a3209398f302deb286552cc56cb67a3114f96b54. The unmasked audit
-reports52741 unequal/missing positions, not a semantic percentage. Public replay
+reports 52741 unequal/missing positions, not a semantic percentage. Public replay
 exactly reproduces the private ownerorder payload. No exact/source-selection ledger
 changes.
 
 - Nineteen atan sites retain rounded DX and evaluate DY in the outgoing
-  argument. Native513C82 through51BC91 place DX before loading peer Y.
-  All nineteen now have that instruction order; eight preceding32-byte
+  argument. Native 513C82 through 51BC91 place DX before loading peer Y.
+  All nineteen now have that instruction order; eight preceding 32-byte
   windows match verbatim, while other scratch offsets still differ.
   These bounded windows are not function acceptance.
-- rising820 captures current Y in QWORD before surface():51800F/518018 and
-  51830E/518317 directly spill/subtract the native binary64 temporary.
+- rising 820 captures current Y in QWORD before surface():51800F/518018 and
+  51830E/518317 directly spill/subtract the native binary 64 temporary.
   The double local removes the prior unsupported DWORD round trip.
-- Native502 upgraded path5171CA..51722F and ordinary path517231..51728E
-  each prepare their own complete request arguments before shared call51729C.
+- Native 502 upgraded path 5171CA..51722F and ordinary path 517231..51728E
+  each prepare their own complete request arguments before shared call 51729C.
   Source now keeps each packet and request inside its branch, rather than
   merging packet pointers and computing coordinates only afterward. The
-  separate sequence1 request remains unchanged. The502/503 physical span
-  residuals fall from79/113 to2/2 bytes, with two spawn sites still present.
-- Native500 request516B31 and516BDC each prepares effect128 immediately
-  afterward; the effect-call tail is shared at516C20. A small source emission
+  separate sequence 1 request remains unchanged. The 502/503 physical span
+  residuals fall from 79/113 to 2/2 bytes, with two spawn sites still present.
+- Native 500 request 516B31 and 516BDC each prepares effect 128 immediately
+  afterward; the effect-call tail is shared at 516C20. A small source emission
   helper keeps each packet/request/effect group within the corresponding
-  skill-level branch. The501 peer independently has the same shape.
+  skill-level branch. The 501 peer independently has the same shape.
   Their three spawn sites and arithmetic-site counts are recovered; their
   physical spans are now one byte longer than native, not accepted exact.
-- Flight214 now appears between211 and215, following native physical owner
-  order rather than after226. Its physical span discrepancy drops from237
-  to31 bytes. This changes placement, not gameplay condition order.
+- Flight 214 now appears between 211 and 215, following native physical owner
+  order rather than after 226. Its physical span discrepancy drops from 237
+  to 31 bytes. This changes placement, not gameplay condition order.
 
 The whole-root per-action direct/virtual-call and arithmetic-operation counts
 now agree (ownerorder-action-calls.json and ownerorder-action-fp-ops.json are
 empty diagnostic deltas). Global physical counts still differ because of
-sharing: native/candidate virtual sites172/165, epilogues133/127, crossed
-consumers40/39 and on-surface8/7. All observed bool consumers test AL.
-Payload dataflow resolves91 homes with no unknown pointers; candidate homes
+sharing: native/candidate virtual sites 172/165, epilogues 133/127, crossed
+consumers 40/39 and on-surface8/7. All observed bool consumers test AL.
+Payload dataflow resolves 91 homes with no unknown pointers; candidate homes
 remain uniformly+8. The residual frame, physical sharing, register allocation
 and complete semantics remain open. No compiler flags, ABI contracts, forced
 registers, padding, target bytes or unrelated accepted units were changed.

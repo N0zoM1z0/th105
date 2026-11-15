@@ -63,8 +63,8 @@ The target switch mapper now exposes the same distinction in its top-level
 statistics: `direct_call_sites` and `direct_call_target_count` come from decoded CALL instructions,
 while `raw_e8_sanity` retains the historical byte fingerprint. The legacy
 manifest `expected_direct_call_*` guards continue to check raw bytes. For
-ReimuObject496540, raw405/26 includes E8 inside FLD1 at49C35A; decoded404/25
-agrees with its existing complete CFG auditor. The apparent4C611D destination
+ReimuObject496540, raw 405/26 includes E8 inside FLD 1 at 49C35A; decoded 404/25
+agrees with its existing complete CFG auditor. The apparent 4C611D destination
 is not a call edge. Linear instruction counts alone still do not prove CFG
 closure, source ownership or exactness.
 
@@ -223,19 +223,19 @@ proof, alias accounting, invalid partitions, raw traversal, and unresolved
 indirect exits. Their small instruction fixtures are test inputs only and are
 never linked into reconstruction sources or used to manufacture exact bytes.
 
-## October16–17 receiver-domain qualification
+## October 16–17 receiver-domain qualification
 
-The shared10219-byte Fighter root now has a supplementary
+The shared 10219-byte Fighter root now has a supplementary
 [typed indirect-tail fact packet](COMMON_FIGHTER_ROOT_2026_10_16.md).
 The since-removed indirect-tail audit traversed all 2799 instructions with
 validated switch edges, ordinary x86 CALL clobbers and conservative provenance
 joins (recover it from Git history if the receiver domain changes). Its eight register exits all load receiver
 vtable+14 and retain entry receiver in ECX. CharacterEx plus all fifteen
-RTTI-backed roster primary tables share45C220 without a base adjustment.
+RTTI-backed roster primary tables share 45C220 without a base adjustment.
 The targets are qualified only for those sixteen reviewed receiver types.
 
 The original audit above still reports the eight raw indirect exits; no
 unknown edge is silently erased. The supplemental facts and Ghidra call-flow
 inferences do not change canonical comparison or owner counting. Source
-interface alignment is byte-neutral; the retained root still has53/66
+interface alignment is byte-neutral; the retained root still has 53/66
 diagnostic owners and remains entirely nonexact.

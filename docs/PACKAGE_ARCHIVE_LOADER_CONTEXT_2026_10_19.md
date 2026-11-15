@@ -11,9 +11,9 @@ unknown origin. This checkpoint adds ABI/context corroboration for it. The
 paired body replays are private compiler-origin diagnostics, not accepted
 canonical match-unit results.
 
-Only the original Japanese1.06a executable is used, SHA256
+Only the original Japanese 1.06a executable is used, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Fresh preflight rejects the attached IDA hash10350095; no IDA semantic calls
+Fresh preflight rejects the attached IDA hash 10350095; no IDA semantic calls
 are used. Exact observations come from that PE and independently attested
 mapped Ghidra bytes. Retained source, generated decompilation, original class
 names and TU ownership remain hypotheses.
@@ -22,33 +22,33 @@ names and TU ownership remain hypotheses.
 
 | Address | Bytes | Decoded / ordinary reachable | EH-augmented reachable |
 | --- | ---: | ---: | ---: |
-| Loader41BA70 | 629 | 205 / 204 | 204 |
+| Loader 41BA70 | 629 | 205 / 204 | 204 |
 | vector<string>::push_back41C270 | 162 | 67 / 67 | 67 |
-| allocator<string>::destroy4102D0 | 42 | 14 / 14 | 14 |
-| Uninitialized-fill hypothesis41D4F0 | 170 | 66 / 51 | 66 |
+| allocator<string>::destroy 4102D0 | 42 | 14 / 14 | 14 |
+| Uninitialized-fill hypothesis 41D4F0 | 170 | 66 / 51 | 66 |
 
-The loader's sole skipped instruction is the3-byte alignment LEA at41BC0D.
-Both162/42-byte helper CFGs close completely at their RET4 boundaries. The
+The loader's sole skipped instruction is the 3-byte alignment LEA at 41BC0D.
+Both 162/42-byte helper CFGs close completely at their RET4 boundaries. The
 loader supplies ESI=7028F8 and a stack string reference to push_back. The
 allocator destroy caller supplies ECX=allocator and a stack string pointer;
-the42-byte callee does not read ECX.
+the 42-byte callee does not read ECX.
 
-The170-byte fill helper reads count from ECX and first/value from its stack.
-Its ordinary CFG misses the allocator use. Target handler6BDB11 selects
+The 170-byte fill helper reads count from ECX and first/value from its stack.
+Its ordinary CFG misses the allocator use. Target handler 6BDB11 selects
 FuncInfo6E418C, whose nine DWORDs are:
 
 ```text
 19930522  3  006E4150  1  006E4178  0  0  0  1
 ```
 
-The try-map at6E4178 is `(0,1,2,1,6E4168)` and the handler record at6E4168 is
-`(40h,0,0,41D563)`. The EH landing41D563 reads allocator at `[EBP+10h]`, then
-calls4102D0 at41D573 with ECX=allocator and a stack element. Adding that entry
-reaches all66 instructions. Source/header corroboration is the pinned VC8
+The try-map at 6E4178 is `(0,1,2,1,6E4168)` and the handler record at 6E4168 is
+`(40h,0,0,41D563)`. The EH landing 41D563 reads allocator at `[EBP+10h]`, then
+calls 4102D0 at 41D573 with ECX=allocator and a stack element. Adding that entry
+reaches all 66 instructions. Source/header corroboration is the pinned VC8
 `memory` implementation of `_Uninit_fill_n`: partial-copy failure destroys
 constructed elements through its allocator and rethrows. The two tag words
 are opaque physical stack slots, not recovered original application types.
-This helper remains in origin review; its full170-byte code/EH layout has no
+This helper remains in origin review; its full 170-byte code/EH layout has no
 accepted match. A normal-RET-only extent would miss required exception code.
 
 Target scope SHA256 values:
@@ -105,17 +105,17 @@ visible.
 | native-string-allocator | 627 / 148h | 162 | 57 |
 | native-string-allocator-published-registration-mt | 628 / 148h | 162 | 61 |
 
-The all-CIL allocator destroy is34 bytes, with private ESI input and RET0.
+The all-CIL allocator destroy is 34 bytes, with private ESI input and RET 0.
 The actual native Store COFF contains a conventional allocator::destroy COMDAT.
 In that context the selected CIL destroy retains the stack element/RET4 and
-becomes42 bytes; its dependent fill retains allocator, so push_back restores
-its allocator PUSH and becomes162 bytes. The same caller can therefore change
+becomes 42 bytes; its dependent fill retains allocator, so push_back restores
+its allocator PUSH and becomes 162 bytes. The same caller can therefore change
 interface when real native template definitions are present elsewhere. This is
 an observed context dependency; it does not uniquely recover the original TU
 or compiler release.
 
 Private full-byte relocation replay of those two bodies gives zero differences
-for42/42 and162/162, with one/three named REL32 fields and no internal HIGHLOW
+for 42/42 and 162/162, with one/three named REL32 fields and no internal HIGHLOW
 fields. The source identities are the real VC8 allocator/vector template
 symbols. All other bytes, including saved registers, arguments and RET cleanup,
 are retained. Vector origin is recorded in `package-loader-string-template-context-vc8-106a`;
@@ -125,13 +125,13 @@ mapping, source-present row or matches.csv entry.
 Retaining the standard registration ABI restores four stack arguments while
 preserving the loader's8-byte alignment. Native registration instead changes
 both the interface constraints and optimizer information, yielding an
-unaligned138h frame. Publishing seed restores its61-byte normal cdecl body;
-its loader can remain628 bytes because call-sequence growth changes alignment
+unaligned 138h frame. Publishing seed restores its 61-byte normal cdecl body;
+its loader can remain 628 bytes because call-sequence growth changes alignment
 padding. Equal sizes are not equal payloads.
 
-The target still has frame150h. The current aligned controls have frame148h,
+The target still has frame 150h. The current aligned controls have frame 148h,
 a different count-publication join and different register/stack scheduling.
-The path buffer remains256 in every control; its original declaration is not
+The path buffer remains 256 in every control; its original declaration is not
 recovered from stack slack or decompiler arrays. The ordinary selected probe
 still has a conventional ECX vector call, so the new ESI witness is not added
 as a false binding to that unit.
@@ -140,37 +140,37 @@ The old allocator origin ledger supplies an independent CFileList/deque<string>
 instantiation witness. Linking the complete native FileList TU exposes six real
 UI dependencies, so that incomplete graph is not used. A smaller control
 explicitly instantiates the same real VC8 header method, retaining a genuine
-ordinary implementation. It gives627/628-byte loaders, frame148h and the same
+ordinary implementation. It gives 627/628-byte loaders, frame 148h and the same
 162-byte push_back while keeping the archive owner in CIL.
 
 `src/library/StdStringAllocator.cpp` now retains that compiler-library source.
-The dedicated unit `gpt-web-vc8-string-allocator-destroy` gives a **formal42/42
+The dedicated unit `gpt-web-vc8-string-allocator-destroy` gives a **formal 42/42
 compiler-only comparison** with its actual standard callable ABI. It receives
 no authored source-present or match row. The already-accepted archive lifetime
 unit uses that ordinary COFF support through its existing typed library-input
-contract. Its focused cold rebuild remains **163/163 and228/228 exact**, with
+contract. Its focused cold rebuild remains **163/163 and 228/228 exact**, with
 all coupled EH code/data verified. No accepted authored byte is added or lost.
-The private full-graph lifecycle replay also preserves all13 regions/606 bytes.
+The private full-graph lifecycle replay also preserves all 13 regions/606 bytes.
 
 ## Full loader/container execution
 
 Two minimal native-library graphs are executed independently against target
 instructions: `native-string-allocator` and
 `native-string-allocator-published-registration-mt`. The earlier native-owner
-pair also passes the same9 scenarios. Each passes all
+pair also passes the same 9 scenarios. Each passes all
 **9 scenarios / 31 archive API calls / 194 actual registration entries**.
 The model checks registration entry counts, final vectors/count/map/chains,
 tree links/order/red-black properties, allocation/release sizes and order,
 ABI-preserved registers and stack, and complete final destruction with no live
 allocations.
 
-The added8/12-archive scenarios reach the real vector fast path at41C2BD and
-fill entry41D4F0, and the corresponding actual source fill entry. They include
+The added 8/12-archive scenarios reach the real vector fast path at 41C2BD and
+fill entry 41D4F0, and the corresponding actual source fill entry. They include
 long archive strings and repeated updates. Earlier four-archive cases reached
 the fill helper through insertion but never reached the fast push_back block. All prior empty/failure,255-byte names,
-embedded NUL, high-bit sizes/offsets, punctuation collisions, growth and170
-registration scenarios remain. Target coverage is2277 distinct instruction
-addresses; source coverage is2191/2218 for the two minimal-library graphs.
+embedded NUL, high-bit sizes/offsets, punctuation collisions, growth and 170
+registration scenarios remain. Target coverage is 2277 distinct instruction
+addresses; source coverage is 2191/2218 for the two minimal-library graphs.
 
 Only Win32 I/O/uncontended locks, successful allocation/release and ASCII
 stricmp are modeled. Actual C++ initialization and atexit destruction execute;
@@ -199,13 +199,13 @@ purges and all three import prototypes are read back, with target
 identity/text/scope attestation repeated. Only then is it promoted to primary; all
 nine promoted file hashes equal the verified copy. The old CPU-root pins describe
 the predecessor. No target bytes change. The direct processes run sequentially, no
-analysis, CPU0/nice10,384 MiB heap.
+analysis, CPU 0/nice10,384 MiB heap.
 
 Decompiler output is still a hypothesis: remaining direct-callee prototypes
 and EH interpretation are incomplete. Original buffer capacity, complete
 source partition, enclosing class/inheritance and game-method ownership remain
-unknown. Continue the whole629-byte caller and its real call/alias/frame
-constraints; the162-byte helper witness does not resolve those residuals.
+unknown. Continue the whole 629-byte caller and its real call/alias/frame
+constraints; the 162-byte helper witness does not resolve those residuals.
 
 Private scripts/hypotheses remain below `.analysis/archive-loader-shape-20261019/`.
 Reproduce the selected probe with:

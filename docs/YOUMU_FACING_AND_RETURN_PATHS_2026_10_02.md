@@ -1,22 +1,22 @@
 # Youmu facing branches and return paths, 2026-10-02
 
-Follow-up: [the copied-input and601 audit](YOUMU_COPIED_INPUT_AND_ACTION601_2026_10_02.md)
+Follow-up: [the copied-input and 601 audit](YOUMU_COPIED_INPUT_AND_ACTION601_2026_10_02.md)
 retains these facing paths, adds four diagnostic owners and closes four
 payload-address leads. Measurements below describe the preceding checkpoint.
 
 ## Retained source and exact status
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over
-37,692 target callable bytes. Action214 now expresses both facing decisions
-with mirrored nested branches. Natural VC8 recovers all11 physical sequence
-call sites in this owner, versus9 in the preceding source and11 in the target.
-The five earlier zero/velocity comparisons and effect125 argument schedule
+37,692 target callable bytes. Action 214 now expresses both facing decisions
+with mirrored nested branches. Natural VC8 recovers all 11 physical sequence
+call sites in this owner, versus 9 in the preceding source and 11 in the target.
+The five earlier zero/velocity comparisons and effect 125 argument schedule
 remain. One unused first-facing byte snapshot is removed byte-neutrally.
 
 Fresh configured comparison first differs at `+0xCA / 0x005302CA`, target
 `64`, candidate `3C`. Candidate metadata begins at `+0x9314`, versus target
-`+0x933C`: the callable is40 bytes shorter. Its section tail is38,776 bytes.
-All97 physical switch destinations/33 low entries remain distinct. Strict
+`+0x933C`: the callable is 40 bytes shorter. Its section tail is 38,776 bytes.
+All 97 physical switch destinations/33 low entries remain distinct. Strict
 instruction/edge diagnostics remain **27/98**, without gains or losses.
 There is **zero new canonical exact credit**; regional shape agreement and
 body-size proximity do not meet the whole-root acceptance gate.
@@ -31,32 +31,32 @@ That compared window includes adjacent candidate metadata, not just its body.
 
 ## Observed target facing paths
 
-All new target observations use the hash-attested original Japanese1.06a PE,
+All new target observations use the hash-attested original Japanese 1.06a PE,
 SHA-256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`,
 entry point `0x0068B9D2`. IDA preflight exposes the different `10350095...`
 executable and fails; that session is not used. This work uses no new Ghidra
 process, database write or target patch.
 
-**Observed:** first facing decisions apply to sequence states1/2. Facing1
+**Observed:** first facing decisions apply to sequence states 1/2. Facing 1
 reverses on ordered `peerX < selfX`; other facing values reverse on ordered
 `peerX > selfX`. Reversal stores the direction byte, negates velocityX and
-selects6. The default selects5. Second decisions apply to states3/4 with the
-same ordered comparisons, but reversal selects5 and default selects6.
+selects 6. The default selects 5. Second decisions apply to states 3/4 with the
+same ordered comparisons, but reversal selects 5 and default selects 6.
 Unordered positions take the defaults and retain facing/velocity. Source
 `LABEL_392` remains necessary for the state gate that skips the first region.
 
 | Target first decision sites | Sequence / shared argument behavior |
 | --- | --- |
-| `531E42` | Select6 after facing1 reversal. |
-| `531E4D` | Select5 on facing1 default. |
+| `531E42` | Select 6 after facing 1 reversal. |
+| `531E4D` | Select 5 on facing 1 default. |
 | `531E89` | One call after the other-facing6/5 argument join. |
 
 | Target second decision sites | Sequence |
 | --- | --- |
-| `531EE6`, `531EF7` | Facing1 reversal5 / default6. |
-| `531F35`, `531F48` | Other-facing reversal5 / default6. |
+| `531EE6`, `531EF7` | Facing 1 reversal 5 / default 6. |
+| `531F35`, `531F48` | Other-facing reversal 5 / default 6. |
 
-Those seven sites plus four preceding zero-guard sequence calls give11 in
+Those seven sites plus four preceding zero-guard sequence calls give 11 in
 action214. Replacing the former shared/default goto shape with ordinary
 nested branches recovers that physical layout. Removing first-facing local
 `v45` leaves the compared window unchanged: its signed byte load/negation
@@ -64,7 +64,7 @@ can use the real direction field. Second snapshot `v49` and the two real X
 carriers remain; this does not prove unique original local types.
 
 **Observed candidate diagnostic:** target `[531DFE,531F52)` and candidate
-`[531D70,531EC4)` are both340 bytes/120 instructions. Normalize only internal
+`[531D70,531EC4)` are both 340 bytes/120 instructions. Normalize only internal
 branch destinations to region offsets and the common external epilogue edge
 to `root-return`; preserve registers, constants, operand widths and all other
 instruction text.118 rows agree; two differ:
@@ -75,49 +75,49 @@ candidate: MOV EAX,[ESI+170]; FLD [EAX+EC]
 ```
 
 Absolute placement/epilogue branch displacements also differ. This diagnostic
-does not establish340 exact bytes, an exact owner or full numerical/exception
+does not establish 340 exact bytes, an exact owner or full numerical/exception
 equivalence. Original register lifetime and compiler/TU context remain open.
 
 **Inferred source:** mirrored source branches explain the observed per-path
 call layout while preserving all ordered and unordered outcomes. An earlier
-nested-first probe lost low11 under the preceding typed-call phase. The
+nested-first probe lost low 11 under the preceding typed-call phase. The
 independently recovered zero lifetime/effect schedule changes that result;
-the new complete nested shape retains all27 preceding owners. This is a
+the new complete nested shape retains all 27 preceding owners. This is a
 phase-scoped retry supported by new target evidence, not a general source
 permutation search.
 
 ## Shared landing returns: positive edges, negative source controls
 
-**Observed target:** action308 mode0 selects action10 then jumps to `530813`
-for height/zero processing. Its positive mode1 predicate prepares sequence2
+**Observed target:** action 308 mode 0 selects action 10 then jumps to `530813`
+for height/zero processing. Its positive mode 1 predicate prepares sequence 2
 and jumps from `533619` into the shared indirect call at `5314AA`, physically
-in action208. That call falls through `5314AC` to the height lookup/store,
+in action 208. That call falls through `5314AC` to the height lookup/store,
 velocity/acceleration zero helper and return.
 
-Action414 enters with value4 and, after its positive predicate, prepares and
+Action 414 enters with value 4 and, after its positive predicate, prepares and
 calls the sequence virtual at `534523..53452B`, clears byte`+47F` at `53452D`
-and jumps from `534533` to `5314AC`. Action415 enters with value3; its positive
-lower-sequence predicate branches from `53467A` to `534523`. Action416 enters
-with value4 and branches from `534773` to that same414 selector/flag path.
-The415 timer>=15 path independently updates accelerationX to0.6 and advances
+and jumps from `534533` to `5314AC`. Action 415 enters with value 3; its positive
+lower-sequence predicate branches from `53467A` to `534523`. Action 416 enters
+with value 4 and branches from `534773` to that same 414 selector/flag path.
+The 415 timer>=15 path independently updates accelerationX to 0.6 and advances
 the sequence block; it must remain separate.
 
 | Serial private VC8 control | Result | Disposition |
 | --- | --- | --- |
-| First facing decision nested | 27/98, metadata`+9304`; owner214 slotC10/target11. | Combined with target-supported second decision. |
-| Both facing decisions nested | 27/98, metadata`+9314`; owner214 slotC11/11. | Retained. |
+| First facing decision nested | 27/98, metadata`+9304`; owner 214 slotC10/target11. | Combined with target-supported second decision. |
+| Both facing decisions nested | 27/98, metadata`+9314`; owner 214 slotC11/11. | Retained. |
 | Remove first-facing byte snapshot | Same compared window as the preceding row. | Retained cleanup. |
-| Shared208 height/zero source label used by308 | 27/98, metadata`+9304`; compiler moves height tail into308. | Not retained. |
-| Shared414 selector/flag source label used by415/416 | 26/98, metadata`+92E4`; loses mid416. | Not retained. |
-| Selector/flag plus shared height tail | 26/98, metadata`+9304`; loses mid416. | Not retained. |
-| Both308 and414/415/416 tail joins | 26/98, metadata`+9304`; loses mid416 and moves the common selector/flag/height tail into416. | Not retained. |
-| Retained facing source plus308 height join | 27/98, metadata`+9334`, only8 bytes short; wrong physical height tail remains in308. | Not retained. |
+| Shared 208 height/zero source label used by 308 | 27/98, metadata`+9304`; compiler moves height tail into 308. | Not retained. |
+| Shared 414 selector/flag source label used by 415/416 | 26/98, metadata`+92E4`; loses mid 416. | Not retained. |
+| Selector/flag plus shared height tail | 26/98, metadata`+9304`; loses mid 416. | Not retained. |
+| Both 308 and 414/415/416 tail joins | 26/98, metadata`+9304`; loses mid 416 and moves the common selector/flag/height tail into 416. | Not retained. |
+| Retained facing source plus 308 height join | 27/98, metadata`+9334`, only 8 bytes short; wrong physical height tail remains in 308. | Not retained. |
 | Isolated selector declaration `int -> short` on the preceding private control | Same compared window,27/98, metadata`+9334`. | No shared ABI change. |
 
-The eight-byte-short candidate has a separate action208 indirect call at
-`531495`, then jumps from `531497` to the308 height tail at `5335E5`. Action308
+The eight-byte-short candidate has a separate action 208 indirect call at
+`531495`, then jumps from `531497` to the 308 height tail at `5335E5`. Action 308
 has another indirect call at `5335E3`, falling into that tail. The target
-instead shares the single call at `5314AA` and places the height tail in208.
+instead shares the single call at `5314AA` and places the height tail in 208.
 Matching size/site totals cannot establish that graph. No generic function
 pointer, register forcing or assembly is introduced to fake the shared call.
 
@@ -128,19 +128,19 @@ missing shared-call lifetime. The checked-in virtual header stays unchanged.
 
 ## Whole-root checks and TH08 x87 reference
 
-Fresh explicit-object scans cover138 target/candidate floating guards and49
+Fresh explicit-object scans cover 138 target/candidate floating guards and 49
 physical spawn payloads. The guard scanner has no unequal owner counts or
 unordered-only leads under its ordinal hypotheses; all modeled payload
 definitions resolve without conflicting ESP merges. These are bounded
 diagnostics, not numerical/exception closure or exact acceptance.
-Arithmetic counts remain349/348 with three multiset leads in601/696/710;
-load/store leads remain12. The six normalized payload-address owners still
+Arithmetic counts remain 349/348 with three multiset leads in 601/696/710;
+load/store leads remain 12. The six normalized payload-address owners still
 differ. These scans do not establish stack identity or dependency order.
 
-Virtual physical-site counts at slots8/C/14/1C are target107/31/12/2 versus
-candidate106/33/13/2. Action214's slotC count lead disappears; the remaining
-slotC leads are duplicated sites in308/415. Static site counts are not runtime
-call counts. Raw traversal still covers9,912 instructions/all37,692 bytes,
+Virtual physical-site counts at slots 8/C/14/1C are target 107/31/12/2 versus
+candidate 106/33/13/2. Action 214's slotC count lead disappears; the remaining
+slotC leads are duplicated sites in 308/415. Static site counts are not runtime
+call counts. Raw traversal still covers 9,912 instructions/all37,692 bytes,
 without unresolved indirect jumps. No shared header/helper/compiler flag,
 relocation map or object partition changes; no aggregate cold-replay claim.
 

@@ -1,7 +1,7 @@
 # Youmu floating value order and integer operands, 2026-10-02
 
 Follow-up: [spawn argument schedules](YOUMU_SPAWN_ARGUMENT_SCHEDULE_2026_10_02.md)
-recovers two action603 call-expression schedules. Metrics and source/candidate
+recovers two action 603 call-expression schedules. Metrics and source/candidate
 hashes below describe the preceding value-order checkpoint.
 
 ## Retained result
@@ -44,7 +44,7 @@ change is claimed for ordinary inputs.
 
 **Observed, action 696:** `53860C JMP 533966` enters action 311's shared
 threshold/decrement path, preserving flags. Its arithmetic is
-`53396C FLD velocityX; 533972 FSUB double2; 533978 FSTP dword[ESP+10];
+`53396C FLD velocityX; 533972 FSUB double 2; 533978 FSTP dword[ESP+10];
 53397C FLD dword[ESP+10]; 533980 JMP 532C70`, which reaches the common
 field store/sign clamp. The old candidate retained the subtraction's
 unrounded x87 value for the comparison.
@@ -90,22 +90,22 @@ instruction reconciliation even though both forms contain two additions.
 
 All 49 physical spawn payloads resolve without conflicting modeled ESP
 merges. The six differing normalized address-sequence owners remain
-mid500/505 and high601/604/605/710. Target traversal still reaches all
+mid 500/505 and high 601/604/605/710. Target traversal still reaches all
 37,692 bytes / 9,912 instructions with no unresolved indirect jumps.
-Virtual physical-site counts remain target/candidate 107/105 at slot8,
-31/31 at slotC, 12/13 at slot14, and 2/2 at slot1C. These are not runtime
+Virtual physical-site counts remain target/candidate 107/105 at slot 8,
+31/31 at slotC, 12/13 at slot 14, and 2/2 at slot 1C. These are not runtime
 call counts or proof of missing behavior.
 
 ## Bounded probes and TH08 reference
 
 | Probe | Diagnostic result | Disposition |
 | --- | --- | --- |
-| Correct three integer subtractions only | 25/98, loses low11, metadata `+0x92B4`. | Property combined with independently observed floating properties. |
-| Round action696 only, float carrier or cast | 25/98, loses low11, metadata `+0x92C0`; identical compared windows. | Real float carrier retained in combined result. |
-| Group action603 additions only | 25/98, loses low11, metadata `+0x92B8`. | Grouping retained in combined result. |
-| Group603 and round696 | 26/98, no gains/losses, metadata `+0x92C4`. | Intermediate diagnostic. |
+| Correct three integer subtractions only | 25/98, loses low 11, metadata `+0x92B4`. | Property combined with independently observed floating properties. |
+| Round action 696 only, float carrier or cast | 25/98, loses low 11, metadata `+0x92C0`; identical compared windows. | Real float carrier retained in combined result. |
+| Group action 603 additions only | 25/98, loses low 11, metadata `+0x92B8`. | Grouping retained in combined result. |
+| Group 603 and round 696 | 26/98, no gains/losses, metadata `+0x92C4`. | Intermediate diagnostic. |
 | All three properties | 26/98, no gains/losses, metadata `+0x92B4`. | Retained through configured rebuild. |
-| Explicit action311/696 source join | 24/98, loses low11/mid311, metadata `+0x9298`. | Not retained; original shared source placement remains unknown. |
+| Explicit action 311/696 source join | 24/98, loses low 11/mid311, metadata `+0x9298`. | Not retained; original shared source placement remains unknown. |
 | Signed-byte spawn parameter, control / with grouping and rounding | 4/98 / 3/98, metadata `+0x9360` / `+0x9370`; first difference `+0x12`. | No signed-byte ABI or relocation changes retained. |
 
 The signed-byte probe used a private signed-char `C` decorated-symbol alias,

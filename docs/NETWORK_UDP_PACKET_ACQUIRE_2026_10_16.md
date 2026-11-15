@@ -2,7 +2,7 @@
 
 The later client-sender checkpoint
 moves this definition into `src/network/NetworkWinsockSendClient.cpp` with its
-real caller and release member. Its ordinary configured unit remains427/410;
+real caller and release member. Its ordinary configured unit remains 427/410;
 that closed context now naturally recovers the observed private stack receiver
 under LTCG, without matching the helper's full body. The isolated controls
 below remain historical measurements, not a current claim that caller context
@@ -12,10 +12,10 @@ is still missing altogether.
 
 Only original Japanese TH10.5 v1.06a was inspected, SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-`NetworkUdpPacketHandleManager_acquire @ 417660` owns410 bytes through
-RET8 at `4177F7`, SHA-256
+`NetworkUdpPacketHandleManager_acquire @ 417660` owns 410 bytes through
+RET 8 at `4177F7`, SHA-256
 `ffc37d12373208d75b91a5ce48359fc4247ae7a6775a05e824718ea56cbdd621`.
-Raw CFG traversal reaches all125 instructions, without unowned tails,
+Raw CFG traversal reaches all 125 instructions, without unowned tails,
 indirect jumps, overlapping decode or escaping direct branches. Padding
 isolates the body on both sides. Adjacent helper extents are not folded into
 this authored boundary.
@@ -24,15 +24,15 @@ Two independently classified authored send methods call acquisition:
 client `416990` at `4169AD`, and server `416B60` at `416BB5`. Both push the
 output token pointer and their UDP owner+17C, then consume the EAX packet
 pointer. The callee reads owner at entry stack+4 and token at+8, returning
-with RET8. Its physical interface can be described as stdcall; its original
+with RET 8. Its physical interface can be described as stdcall; its original
 C++ source convention remains unknown. Source keeps a normal member instead
 of imposing an external private-ABI facade.
 
-The caller immediately writes protocol opcode0E or0D at packet+1C,
+The caller immediately writes protocol opcode 0E or 0D at packet+1C,
 options+14, timeGetTime timestamp+10, endpoint+0 and copied bytes from+1D.
 Native manager construction/destruction and original RTTI
 `CHandleManager<NET_PACKET_UDP_BUFFER>` independently establish its game
-payload specialization and0x64 layout. These facts support authored ownership
+payload specialization and 0x64 layout. These facts support authored ownership
 of the allocation/token policy, without classifying any new STL helpers.
 See [the recovered manager lifetime](NETWORK_UDP_PACKET_POOL_2026_10_16.md).
 
@@ -44,10 +44,10 @@ retains the guard through its return or exception unwind.
 When the unsigned-index free list at+38 is empty:
 
 1. Read the fresh slot from packet deque size+14. Increment generation+44;
-   if its unsigned value exceedsFFFF, assign1.
-2. Write slot as the low16 bits to output+0, generation as the low16 bits to
+   if its unsigned value exceedsFFFF, assign 1.
+2. Write slot as the low 16 bits to output+0, generation as the low 16 bits to
    output+2. No additional capacity, overflow or invalid-token check is added.
-3. Zero one complete0x41C-byte packet local, then push a copy into the native
+3. Zero one complete 0x41C-byte packet local, then push a copy into the native
    packet deque at+4. Push the address of its back element into stable pointer
    vector+18, and the output generation into unsigned vector+28.
 
@@ -66,30 +66,30 @@ preserve the observed partial updates if a later allocation throws; no
 transactional rollback is invented.
 
 The source reuses the independently recovered `ResourceHandleToken` layout,
-two unsigned16-bit fields, and the real `NetworkUdpPacketHandleManager64`
-members. Packet size is0x41C: endpoint16, three DWORDs, payload1024. The new
+two unsigned 16-bit fields, and the real `NetworkUdpPacketHandleManager64`
+members. Packet size is 0x41C: endpoint 16, three DWORDs, payload 1024. The new
 method declaration is nonvirtual and adds no fields or vtable slots. No
 assembly, byte arrays, manual iterator implementation or artificial frame
 storage is introduced.
 
 ## EH and compiler context
 
-The main body pushes handler `6BE58B`. Its full33-byte body validates the
+The main body pushes handler `6BE58B`. Its full 33-byte body validates the
 security context, loads FuncInfo `6E4D8C` and tail-jumps to the C++ frame
-handler. FuncInfo magic is19930522, with one unwind state and no catches.
-Unwind map `6E4D84` contains state0 ->-1 through `6BE580`: an11-byte cleanup
+handler. FuncInfo magic is 19930522, with one unwind state and no catches.
+Unwind map `6E4D84` contains state 0 ->-1 through `6BE580`: an 11-byte cleanup
 derives the lock guard at enclosing EBP-430 and tail-jumps to `401870`.
-These compiler chunks remain separate from the410-byte callable and receive
+These compiler chunks remain separate from the 410-byte callable and receive
 no new authored or exclusion credit.
 
 The target uses an eight-byte-aligned EBP frame, stack owner and private STL
-entries. The complete source is427/410 with ordinary `/O2 /GS`; all DIR32
+entries. The complete source is 427/410 with ordinary `/O2 /GS`; all DIR32
 and REL32 fields replay, with first mismatch+0 on the prologue. The target
 has one visible cookie setup, whereas this candidate has separate buffer and
 EH cookie setups. This motivates a bounded GS-minus control rather than a
 profile claim: ordinary GS-minus387/410 still differs.
 
-Resolved `/O2 /GL /LTCG` controls give540/410 with GS and486/410 without it. Both
+Resolved `/O2 /GL /LTCG` controls give 540/410 with GS and 486/410 without it. Both
 naturally acquire the aligned EBP frame but keep source's ECX owner and change
 native helper/inlining decisions. They are diagnostic sizes, not canonical exact
 results: internal linked EH remains unsupported by the formal linked comparator. No
@@ -107,12 +107,12 @@ python3 scripts/audit-candidate-boundaries.py 0x00417660 --json
 python3 scripts/build.py --unit cross-v106a-network-udp-packet-acquire --compare --json
 ```
 
-The latter's expected exit is1
-with a full427-byte candidate, no unresolved relocation and a mismatch at+0.
+The latter's expected exit is 1
+with a full 427-byte candidate, no unresolved relocation and a mismatch at+0.
 A dedicated target-attested EH mapping is appended without modifying any
 prior permission. `matches.csv` is unchanged. A fresh rebuild/comparison of the
-accepted pool destructor `413820` remains98/98 after the shared nonvirtual
-declaration. Local `python3 scripts/ci.py` passes all147 tests, ledger and
+accepted pool destructor `413820` remains 98/98 after the shared nonvirtual
+declaration. Local `python3 scripts/ci.py` passes all 147 tests, ledger and
 generated-progress checks; `git diff --check` passes. No full replay is used.
 
 The attached IDA preflight still reports the wrong executable; no IDA analysis
@@ -123,7 +123,7 @@ marker, x86 Windows compiler identity and every mapped .text byte before use.
 Initial decompiler output was a hypothesis with missing private-register
 types, and was not pasted as source. Accepted packet/token types, physical
 stack parameters, name and complete extent were saved and checked in a fresh
-read-only invocation. One process uses768MiB and two CPUs.
+read-only invocation. One process uses 768MiB and two CPUs.
 
 The original function spelling, source partition, compiler GS setting and
 private entry specialization remain unknown. No aggregate cold replay or new

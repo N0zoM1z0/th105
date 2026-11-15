@@ -1,4 +1,4 @@
-# Complete ScoreData loader42F6F0
+# Complete ScoreData loader 42F6F0
 
 ## Source registration, 2026-11-04
 
@@ -16,24 +16,24 @@ respective checkpoints.
 
 ## Superseding focused result, 2026-10-27
 
-The newly exact story refresh42E3F0 supplied independent evidence for testing
+The newly exact story refresh 42E3F0 supplied independent evidence for testing
 native vector.clear() rather than erase(begin,end). Applying that single natural
 operation to the existing per-character record vector recovers the complete
-**1672-byte length**, with **seven unequal bytes** instead of1666/564. First
-mismatch moves from42F91B to42FBC9. This is **still nonexact and unselected**;
+**1672-byte length**, with **seven unequal bytes** instead of 1666/564. First
+mismatch moves from 42F91B to 42FBC9. This is **still nonexact and unselected**;
 no matches.csv, implemented.csv or authored exact-byte increment is made.
 
 Canonical candidate SHA256:
 6641fe764731d97cf81c02a03bfaff9bf796c5cc9341aade96bd991d624ddf46.
 The seven residuals are SIB base/index order:42FBC9/42FBCF/42FBD6/42FBDD/
-42FBE4/42FBEB use01 instead of08;42FCE3 uses08 instead of01. The same-register
+42FBE4/42FBEB use 01 instead of 08;42FCE3 uses 08 instead of 01. The same-register
 address sums are commutative, but their encodings are not equal and are not
 masked or rewritten. All four existing native/candidate observer cases agree.
 That is bounded service/container evidence, not execution of real I/O or EH.
 
 A genuine defaults/persist/load combined TU leaves the new seven-byte residual
-unchanged while preserving2428/2428 defaults and1155/1155 persistence. An isolated
-ordinary fieldwise record assignment control regresses to1698/496 and is not
+unchanged while preserving 2428/2428 defaults and 1155/1155 persistence. An isolated
+ordinary fieldwise record assignment control regresses to 1698/496 and is not
 selected; the shared public record header is untouched. No spelling/flag grid
 or manual encoding transformation follows these controls.
 
@@ -42,76 +42,76 @@ operation changed. Final CI is pending at writing; use its terminal exit file. T
 scope rebuilds only the changed loader, not the complete accepted corpus. Earlier
 tables below remain historical results, superseded where stated here.
 
-The whole1672-byte target has complete source and full relocation replay.
+The whole 1672-byte target has complete source and full relocation replay.
 The public candidate is **nonexact**:1666 bytes,564 unequal shared-extent
-positions, six missing target bytes, first difference42F91B. Candidate SHA-256
+positions, six missing target bytes, first difference 42F91B. Candidate SHA-256
 is `9979a9c50f74adbc0df6a075e2665f12a74403e48ca00cc86dcadfc84e796645`.
-The first555 bytes agree. Source is unselected; no implemented.csv or matches.csv
+The first 555 bytes agree. Source is unselected; no implemented.csv or matches.csv
 row is added. A whole native/candidate observer audit agrees in four cases.
 
 ## Observed identity, ownership and boundary
 
-Only original Japanese1.06a SHA-256
+Only original Japanese 1.06a SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`
 was used. Fresh target, status and tracking checks passed. IDA again rejected
-the10350095 target; no IDA semantic queries or writes were used.
-All521 instructions/1672 bytes are reachable, with no escaping direct edges or
-indirect jumps. Native RET0 sites are42F795,42F876 and42FD77; eight following
+the 10350095 target; no IDA semantic queries or writes were used.
+All 521 instructions/1672 bytes are reachable, with no escaping direct edges or
+indirect jumps. Native RET 0 sites are 42F795,42F876 and 42FD77; eight following
 INT3 bytes separate the next callable. Native AL is boolean: both fallbacks
 return false and the parsed-data path returns true.
-The aligned frame allocation is74, with EH cookie and handler6B8058. The file
-is a12-byte plain CFileReader lifetime with its real five-slot vtable6C0F34.
-Two independent eight-byte owning buffers each allocate512KiB through array
-new665B8A and release through array delete68AA26.
+The aligned frame allocation is 74, with EH cookie and handler 6B8058. The file
+is a12-byte plain CFileReader lifetime with its real five-slot vtable 6C0F34.
+Two independent eight-byte owning buffers each allocate 512KiB through array
+new 665B8A and release through array delete 68AA26.
 
 The `score.dat` path, reverse/XOR policy, default fallback, availability arrays,
 sets, card-count maps, story-record policy and refresh establish authored config
 ownership independently of OS, codec, allocation and STL providers. The existing
 scene resource bootstrap calls this address and ignores AL; its previously
 provisional void declaration is corrected to bool with the corresponding
-explicit decorated relocation binding. Focused caller build/audit retains3722
-bytes and11 differences, SHA
+explicit decorated relocation binding. Focused caller build/audit retains 3722
+bytes and 11 differences, SHA
 `dd302ab4d718d3e410fedf672ea3caa5aadf75ba1daf3bdcf86e363d0ded2486`.
 No additional caller exactness follows.
 
 ## Complete target behavior
 
-Open `score.dat` with CreateFileA(access1,share1,OPEN_EXISTING3,attributes80).
-INVALID_HANDLE_VALUE becomes zero. A missing file calls exact defaults42ED70
-and returns false. A valid handle owns two512KiB buffers. GetFileSize determines
+Open `score.dat` with CreateFileA(access 1,share 1,OPEN_EXISTING3,attributes 80).
+INVALID_HANDLE_VALUE becomes zero. A missing file calls exact defaults 42ED70
+and returns false. A valid handle owns two 512KiB buffers. GetFileSize determines
 the ReadFile request and the transform loop count; ReadFile's boolean and actual
 byte count are not checked here. The second buffer receives the reversed first
-buffer XORed with the low byte of7*index. Codec406890 is called with encoded
+buffer XORed with the low byte of 7*index. Codec 406890 is called with encoded
 pointer/file count/decoded pointer/512KiB capacity. A zero result calls defaults
 and returns false, preserving reverse buffer cleanup and handle closure.
 
 After successful decoding, the first DWORD is skipped. Restore flags+04 and the
-three20-byte arrays+08/+1C/+30. Clear/rebuild unsigned sets+44 then+50 from
+three 20-byte arrays+08/+1C/+30. Clear/rebuild unsigned sets+44 then+50 from
 unsigned counts and DWORD keys. Clear/rebuild common counts+9C from DWORD key/
 value pairs, preserving std::map insertion's first value for duplicate keys.
 Read an unsigned character count. For each represented character, clear/rebuild
 its map at+A8+12*index, erase the record-vector range at+198+16*index and read
 an unsigned record count. Every serialized record copies all six DWORDs.
 Deduplication compares only record+00 and+08; difficulty+04 and statistics do not
-participate, so the first complete record wins. No200 threshold applies in this
+participate, so the first complete record wins. No 200 threshold applies in this
 loader. A zero character count preserves every character map and record vector.
 No file count/character count bounds checks are added to this source hypothesis.
 
-Finally call story refresh42E3F0, set initialized byte+00 to1 and return true.
+Finally call story refresh 42E3F0, set initialized byte+00 to 1 and return true.
 Both buffers are released in reverse construction order before file closure.
-The public audit observes the caller policy; it does not execute codec406890,
+The public audit observes the caller policy; it does not execute codec 406890,
 real file I/O, allocation implementations, STL helpers or EH unwinding.
 
 ## Newly observed shared layout
 
-Native static initializer6BEC30 loads g_score_data6FCC98 and calls43E1A0 at
-6BEC35; its atexit wrapper6BF170 tail-calls43DF10 with the same receiver.
-The306-byte constructor43E1A0 has SHA-256
+Native static initializer 6BEC30 loads g_score_data6FCC98 and calls 43E1A0 at
+6BEC35; its atexit wrapper 6BF170 tail-calls43DF10 with the same receiver.
+The 306-byte constructor 43E1A0 has SHA-256
 `991bc3a6dde8fab75eeea8f3d07879689361f418cc7e241cc8ff31a513ec690c`.
-Its real vector-construction calls pass count20/stride12 at+A8 and
-count20/stride16 at+198. The prior defaults view's fifteen map slots plus opaque
-3C-byte gap are therefore corrected to20 map slots; record-vector capacity is
-also20. Defaults42ED70 still loops over only15 roster keys. No constructor,
+Its real vector-construction calls pass count 20/stride12 at+A8 and
+count 20/stride16 at+198. The prior defaults view's fifteen map slots plus opaque
+3C-byte gap are therefore corrected to 20 map slots; record-vector capacity is
+also 20. Defaults 42ED70 still loops over only 15 roster keys. No constructor,
 initializer, destructor or helper is promoted or given new coverage credit.
 
 Shared definitions now live in `src/config/ScoreDataDefaults.hpp`.
@@ -128,16 +128,16 @@ separate condition. These are diagnostics, never local-window acceptance.
 
 | Source phase | Candidate bytes | Unequal positions | Evidence/conclusion |
 | --- | ---: | ---: | --- |
-| First complete source, GS disabled |1536 |1469 | First42F704; native EH cookie requires the local GS setting. |
-| Native GS/EH setting |1553 |1247 | Native aligned74 frame/cookie recovered; generic64-byte memcpy remains external. |
-| Flags getter and three20-byte copies |1666 |627 | First398 bytes agree; header scalar-register grouping differs. |
-| One typed64-byte header assignment |1557 |1259 | Emits REP MOVSD, absent from target; discarded. |
+| First complete source, GS disabled |1536 |1469 | First 42F704; native EH cookie requires the local GS setting. |
+| Native GS/EH setting |1553 |1247 | Native aligned 74 frame/cookie recovered; generic 64-byte memcpy remains external. |
+| Flags getter and three 20-byte copies |1666 |627 | First 398 bytes agree; header scalar-register grouping differs. |
+| One typed 64-byte header assignment |1557 |1259 | Emits REP MOVSD, absent from target; discarded. |
 | DWORD-read header loop |1589 |1283 | Retains a loop, absent from target; discarded. |
-| Four real header-field copies |1666 |658 | First555 bytes agree. |
+| Four real header-field copies |1666 |658 | First 555 bytes agree. |
 | Scalar getter uses memcpy instead of dereference |1666 |658 | Whole-payload byte-neutral; getter implementation lane closed. |
 | Read set keys through actual output locals |1666 |564 | Native key-reference argument/lifetime shape recovered further. |
-| Independently proved20-slot capacity |1666 |564 | Whole-payload byte-neutral; retain corrected layout. |
-| Shared public declarations |1666 |564 | Two public builds reproduce full SHA9979a9c5. |
+| Independently proved 20-slot capacity |1666 |564 | Whole-payload byte-neutral; retain corrected layout. |
+| Shared public declarations |1666 |564 | Two public builds reproduce full SHA 9979a9c5. |
 
 A genuine local record-vector reference control externalized vector::size().
 That new provider has no qualified binding in this scope; its complete canonical
@@ -159,26 +159,26 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-
 scripts/repo-python scripts/audit-score-load-target.py --object build/match-units/ExactFirst_ScoreLoad.obj
 ```
 
-Both commands intentionally return1 for the recorded complete nonexact result; the
-audit returns2 for an evidence/fixture failure.
+Both commands intentionally return 1 for the recorded complete nonexact result; the
+audit returns 2 for an evidence/fixture failure.
 
 Four complete native executions and candidate replays cover missing file,
 decode failure, populated data and zero character count. They pin open flags,
 reverse/XOR bytes, codec capacity, set duplicate handling, first-map-value
-retention, full24-byte record preservation, value300 above the defaults parser threshold,
+retention, full 24-byte record preservation, value 300 above the defaults parser threshold,
 pair-key deduplication, unchanged
 unrepresented character slots, exact cleanup order, AL result, stack, callee
 saves and FS0 restoration. These are targeted observer cases, not general codec,
 malformed-file or exception equivalence. The new probe/data ownership and shared
 header conservatively invalidate old accepted receipts. Fresh origin generation
-and independent check both pass all4024 rows; the current-manifest cold replay
-passes527 accepted units/all1415 functions,388331 authored bytes. The prior
-score defaults remain2428/2428 and the caller3722-byte/11-difference body is
-preserved. Float audit remains399 ledger literals/1603 explicit mappings,2002
+and independent check both pass all 4024 rows; the current-manifest cold replay
+passes 527 accepted units/all1415 functions,388331 authored bytes. The prior
+score defaults remain 2428/2428 and the caller 3722-byte/11-difference body is
+preserved. Float audit remains 399 ledger literals/1603 explicit mappings,2002
 target references. Final local CI receipt: `local-ci.log`.
 
-Next coherent medium peer is score persistence42D3F0,
-provisional1155 bytes, requiring a fresh bounded preflight and early whole build.
+Next coherent medium peer is score persistence 42D3F0,
+provisional 1155 bytes, requiring a fresh bounded preflight and early whole build.
 
 Registration verification: defaults 2428/2428, its 205-byte implicit support,
 and persistence 1155/1155 replayed exact; target-independent CI passed 1,024

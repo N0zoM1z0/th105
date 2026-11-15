@@ -58,5 +58,5 @@ original-SDK witnesses; see XIPH_FLOOR_OWNED_SWITCH_ORIGINS_2026_11_01.md.
 Short/sub-threshold SDK leads remain review; proximity or a plausible symbol
 is not provenance.
 
-Excluded1799/review422; authored1806, source1786, mapped1813, units765 and
-exact1585/449721 authored bytes are unchanged.
+Excluded 1799/review422; authored 1806, source 1786, mapped 1813, units 765 and
+exact 1585/449721 authored bytes are unchanged.

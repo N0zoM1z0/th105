@@ -13,9 +13,9 @@ python3 scripts/build.py --unit gpt-web-design-base-load --compare --json
 
 ## Observed format and ownership
 
-The complete loader `40B000..40BA69` remains2666 bytes/860 instructions, SHA256
+The complete loader `40B000..40BA69` remains 2666 bytes/860 instructions, SHA256
 `756f150004243d88a9dd987bcf9aec662b7a4c7caf808a789a72749adf2b16e2`.
-Fresh CFG traversal resolves all seven table entries at40BA6C and reaches all
+Fresh CFG traversal resolves all seven table entries at 40BA6C and reaches all
 860 instructions, including the two nonreturning vector-range failure sites.
 Thirty static virtual read sites recover this stream:
 
@@ -24,16 +24,16 @@ Thirty static virtual read sites recover this stream:
 | Header | ignored four-byte signature; unsigned texture count |
 | Each texture | unsigned filename byte count; counted filename bytes; signed x/y/width/height words |
 | Object header | unsigned object count; then unsigned ID and signed one-byte tag per object |
-| Tag0: sprite | texture index; signed x/y; flags word |
-| Tag1: base object | signed x/y |
-| Tags2..5: gauge | texture index; signed x/y; flags word; mode is tag minus2 |
-| Tag6: number | texture index; signed x/y; six signed words: glyph width, glyph height, columns, spacing, integer digits, fractional digits |
+| Tag 0: sprite | texture index; signed x/y; flags word |
+| Tag 1: base object | signed x/y |
+| Tags 2..5: gauge | texture index; signed x/y; flags word; mode is tag minus 2 |
+| Tag 6: number | texture index; signed x/y; six signed words: glyph width, glyph height, columns, spacing, integer digits, fractional digits |
 
 The loader ignores open/read results and the signature value. Source preserves
 those calls and their data destinations. Split-path processing writes the
 directory and extension outputs; the latter buffer is reused for counted
-texture filenames. Each name buffer is cleared to260 bytes, then composed with
-the directory using the target-owned `%s%s` format. There are three real260-byte
+texture filenames. Each name buffer is cleared to 260 bytes, then composed with
+the directory using the target-owned `%s%s` format. There are three real 260-byte
 buffers, without artificial stack padding.
 
 The temporary native rectangle vector is filled from a zero rectangle; the
@@ -53,7 +53,7 @@ The source uses genuine polymorphic construction and guarded physical layouts;
 there are no manual vptr stores or copied instruction bytes.
 
 Positions convert signed integers to float fields+0C/+10. Sprite/gauge flag
-bit0 sets scale X to-1 and Y to1. Nonzero IDs are inserted without replacing
+bit 0 sets scale X to-1 and Y to 1. Nonzero IDs are inserted without replacing
 an existing map key, then the new object is disabled. All recognized objects
 are appended to the owning list; unknown tags consume no extra payload.
 Existing list/map state is preserved, and the final member iterator becomes
@@ -62,45 +62,45 @@ raw pointers before publication, matching the observed construction model.
 
 ## Source boundaries and remaining compiler differences
 
-The selected source has a2532-byte callable plus28 adjacent switch-table
+The selected source has a2532-byte callable plus 28 adjacent switch-table
 bytes. These are **unrelocated structure facts**, not a2532-byte canonical
 match. The target has an aligned EBP frame; the ordinary source omits it.
 Strict comparison first blocks on the unqualified function-local symbol
 `__ehhandler$?load@CDesignBase@th105@@UAEXPBD@Z`.
 
-The target's46-byte handler6BE6A6, FuncInfo6E4E68 and two unwind entries are
+The target's46-byte handler 6BE6A6, FuncInfo6E4E68 and two unwind entries are
 independently pinned. Source FuncInfo also has two states, but this does not
 establish equal frame offsets, funclets or metadata. No address binding is
 introduced to bypass that missing proof. The native Construct_n/Assign_n,
 map insertion/list growth and factory-construction boundaries also need honest
 TU/ABI recovery before a whole-parent canonical comparison can pass.
 
-For texture loading, source calls the actual normal-ECX public99-byte
+For texture loading, source calls the actual normal-ECX public 99-byte
 `TitleResourceManager::load_texture @ 404C90`, whose four stack arguments and
-RET16 were freshly verified from the target. The original loader inlines this
-operation through405090/409080/405200. Recovering that source visibility is
+RET 16 were freshly verified from the target. The original loader inlines this
+operation through 405090/409080/405200. Recovering that source visibility is
 still required. The new unit uses the public declaration only; it neither
 includes nor copies the inherited naked-assembly implementation. No ordinary
 external facade is invented for those private entries.
 
 The old unsupported `int load` header declaration becomes a source-facing
-`void load`. The four independently accepted43FCA0 caller sites ignore EAX;
+`void load`. The four independently accepted 43FCA0 caller sites ignore EAX;
 the parent cleanup does not publish an intentional result. Original nominal
 return spelling remains an inference, rather than a new ABI theorem. The
 implementation contains no fabricated return value.
 
 ## Gauge initializer and bounded controls
 
-`CGage_initialize_texture @ 41B280` is a complete360-byte/107-instruction
-RET12 callable, SHA256
+`CGage_initialize_texture @ 41B280` is a complete 360-byte/107-instruction
+RET 12 callable, SHA256
 `e160e6a43225f641135b7b956e43102d8d1c34aa8a6e1962761abbc81a26d93a`.
 The factory passes its CGage member in ESI, mode in EAX, and handle/width/height
-on the stack. The normal public size query404E60 receives the **handle parameter
+on the stack. The normal public size query 404E60 receives the **handle parameter
 as its width-output destination**, plus one height-output local.
 
 The genuine same-TU C++ helper preserves that alias, writes dimensions/mode,
 handle/pivots, UV spans and quad coordinates, colors/Z/RHW, scale and angle.
-Interleaving reused float lifetimes with their vertex stores recovers all65
+Interleaving reused float lifetimes with their vertex stores recovers all 65
 x87 operation forms under strict FP with exceptions off. Stack scratch homes
 and integer scheduling still differ; this is not native numerical, unmasked
 exception, arbitrary alias or exact coverage. Source mode is in **ECX**, while
@@ -126,12 +126,12 @@ larger TU/LTCG visibility open; they do not prove an impossibility.
 ## Durable state and replay
 
 The loader's existing authored rule retains its selection and gains current
-source evidence. A new positive rule classifies only the360-byte gauge helper,
+source evidence. A new positive rule classifies only the 360-byte gauge helper,
 with its full target hash, reachable factory call and CGage vtable witness.
-All197 predecessor selectors are unchanged; only these two bounded witness
+All 197 predecessor selectors are unchanged; only these two bounded witness
 sets were revalidated. `matches.csv` is unchanged.
 
-The shared return declaration's full quoted-include closure has15 units,
+The shared return declaration's full quoted-include closure has 15 units,
 including the new pending unit. All **50 predecessor accepted functions in
 14 actual consumers** were rebuilt serially and remain exact. No unrelated
 unit, cold aggregate replay or new aggregate percentage is claimed.
@@ -144,10 +144,10 @@ Facts, frozen controls, source/EH structure, comparison failures and all
 affected replays are under `build/design-base-loader-source-20261021/`;
 private recipes are in the same-named `.analysis/` directory. IDA rejects its
 wrong-target session; no Ghidra session or database mutation is used. Builds
-run serially on CPU0 at nice10.
+run serially on CPU 0 at nice 10.
 
 Next work must qualify the EH/TU boundary and recover real private texture and
-gauge helper visibility. CDesignBase cleanup40BB40 and Reimu496540 remain open.
+gauge helper visibility. CDesignBase cleanup 40BB40 and Reimu 496540 remain open.
 
 ## Fresh gauge argument-lifetime controls
 
@@ -158,7 +158,7 @@ CPP `0702b075` with the current handle-value header still leaves 41B280 at
 The three accepted empty virtuals in the same unit remain exact.
 
 Raw caller 40B707 sign-extends the actual tag into EAX before loading the
-checked handle value; 40B725 subtracts2, and 40B72B calls with ESI pointing at
+checked handle value; 40B725 subtracts 2, and 40B72B calls with ESI pointing at
 the member. This motivates two source-owned argument-lifetime controls:
 an explicit `const int mode = kind - 2` immediately before the real call, and
 that mode capture followed by a separate checked-handle capture. Each local
@@ -177,11 +177,11 @@ acceptance.
 
 ## Shared reader forwarding control, 2026-10-31
 
-The later genuine read_file_buffer helper was tested at all30 reader sites. A fresh
-baseline and that control emit identical raw2580-byte main COMDATs,
+The later genuine read_file_buffer helper was tested at all 30 reader sites. A fresh
+baseline and that control emit identical raw 2580-byte main COMDATs,
 SHA-256fe527be121cf925ff120f33f741054dbe3884581598a51ddb115f982e1cc4a19. This is
 section data, not a new callable-size or canonical-equality claim. The main remains
-blocked by unqualified EH; the gauge stays360/native360 and nonexact at5. All three
+blocked by unqualified EH; the gauge stays 360/native360 and nonexact at 5. All three
 existing empty-virtual witnesses still compare exact. The helper change was restored
 out of selected source. This closes the reader- forwarding question for this current
 context without another spelling grid.

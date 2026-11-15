@@ -4,19 +4,19 @@
 
 The original Japanese TH10.5 v1.06a target has SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-`NetworkWinsock_initialize_udp @ 00412E10` has149 instructions /441 bytes,
-all reached by raw CFG traversal. Three RET8 exits, no indirect jump, no
+`NetworkWinsock_initialize_udp @ 00412E10` has 149 instructions /441 bytes,
+all reached by raw CFG traversal. Three RET 8 exits, no indirect jump, no
 escaped branch or remote chunk, and surrounding INT3 padding establish its
 complete main boundary. Body SHA-256 is
 `e1f2b573d83afe2ba21e29b92e87702aad50aad9427e80f24ea90b02d394a686`.
 
 Two independently canonical-exact MenuConnect methods call this entry:
-442530 at4425AF and4425D0 at442652. ECX supplies their UDP subobject at+3B4;
-two DWORD stack slots supply the16-byte connection-key pointer and port.
+442530 at 4425AF and 4425D0 at 442652. ECX supplies their UDP subobject at+3B4;
+two DWORD stack slots supply the 16-byte connection-key pointer and port.
 The raw entry independently reads those slots and all exits pop eight bytes.
-Only AL0/1 is established. Source uses bool; original bool/char spelling is
+Only AL 0/1 is established. Source uses bool; original bool/char spelling is
 unknown. The earlier UI int declaration merely forwards full EAX in one
-wrapper and does not prove a meaningful upper24-bit return contract. That
+wrapper and does not prove a meaningful upper 24-bit return contract. That
 shared header is left for a complete consumer/return review.
 
 ## Complete recovered behavior
@@ -25,75 +25,75 @@ shared header is left for a complete consumer/return review.
 real socket-bind helper alongside the already exact Winsock lifetime/error
 functions. The method-focused owner view names only supported fields, with
 native vector/deque/thread storage and compile-time offset/element assertions.
-It reaches+17C; the separately reviewed full CNetworkUDP owner remains314
+It reaches+17C; the separately reviewed full CNetworkUDP owner remains 314
 bytes. Original class spelling and TU partition are not recovered here.
 
 The source preserves these target operations in order:
 
-1. Set state+144 to1 and the peer limit+11C to16. Assign
-   sixteen32-byte peer records, initializing only signed slot+10 to-1.
+1. Set state+144 to 1 and the peer limit+11C to 16. Assign
+   sixteen 32-byte peer records, initializing only signed slot+10 to-1.
    Endpoint and remaining bytes are left untouched in the local value, as
    observed; no blanket zero initialization is invented. Clear active count+118.
 2. Copy the four-DWORD key to owner+4, then copy it again to owner+14.
-   Acquire the process-wide Winsock runtime through exact41DDC0. On failure,
+   Acquire the process-wide Winsock runtime through exact 41DDC0. On failure,
    return false without socket creation or later cleanup/thread operations.
 3. Store `socket(AF_INET, SOCK_DGRAM, 0)` at+28. On INVALID_SOCKET, report
    the exact CP932 socket-error text and release the runtime reference before
    returning false. The source's real release call naturally inlines here,
    including reuse of zero/one constants already live in the caller.
-4. Call the private bind routine413080. On failure, call exact41DEC0 and
+4. Call the private bind routine 413080. On failure, call exact 41DEC0 and
    return false. No new socket close or address clearing is added to this path.
 5. Free a nonnull prior buffer+78 and clear its pointer. Set running+74 and
-   call the native token deque's clear operation at+168. The observed413A90
+   call the native token deque's clear operation at+168. The observed 413A90
    callee releases the deque's storage as well as emptying its elements.
 6. For each thread wrapper+5C/+64/+6C, first call exact wait-for-exit414640,
    then create a native thread with the UDP owner, zero flags, null security
    and zero stack-size arguments, and wrapper+4 as thread-id destination.
-   Store each returned handle. Entry points are416D90,41D7B0 and416F40.
-   Set the first two priorities to15, including when creation returns null;
+   Store each returned handle. Entry points are 416D90,41D7B0 and 416F40.
+   Set the first two priorities to 15, including when creation returns null;
    the third has no priority call here. No new API-error guard is inserted.
 
 The source key is a16-byte value and the peer is a32-byte POD; its only
 initialized local field is slot+10. Active-count meaning is independently
-corroborated by reviewed peer removal413170. Request415560 subsequently compares active count+118 with+11C before
+corroborated by reviewed peer removal 413170. Request 415560 subsequently compares active count+118 with+11C before
 allocating a peer, establishing the limit role independently of this initial
 constant. The source field is now named `peer_limit_11c`.
 
 ## Actual private interfaces and source controls
 
-The complete120-byte peer assignment callee4139D0 receives its record pointer
-in EDX and vector pointer on the stack, copies32 bytes, erases the old range,
+The complete 120-byte peer assignment callee 4139D0 receives its record pointer
+in EDX and vector pointer on the stack, copies 32 bytes, erases the old range,
 then inserts sixteen values. Its native insertion callee independently has
-constant16. This supports `peers.assign(16, value)` semantics; original
+constant 16. This supports `peers.assign(16, value)` semantics; original
 template/TU specialization and its private boundary remain unknown. No new
 compiler/library exclusion or authored credit is assigned to these callees.
 
-The complete68-byte bind routine413080 receives owner in ECX and port in EAX,
+The complete 68-byte bind routine 413080 receives owner in ECX and port in EAX,
 with no stack parameters. It writes AF_INET at owner+2C, converts the port
-through htons, writes INADDR_ANY and binds the complete16-byte address. Its
+through htons, writes INADDR_ANY and binds the complete 16-byte address. Its
 padding bytes are retained. SOCKET_ERROR reports the original CP932 bind text
-and returns AL0; success returns AL1. Every caller of the shared error reporter
+and returns AL 0; success returns AL 1. Every caller of the shared error reporter
 discards incidental EAX, so no fabricated status value is introduced there.
 
-The initial user-constructor/temporary peer control produced398 bytes without
+The initial user-constructor/temporary peer control produced 398 bytes without
 a GS cookie. The explicit POD local, with only slot initialized, produces the
-observed GS protection and442 bytes. Public/private member-access controls for
-bind are byte-neutral apart from symbol spelling: their76-byte ordinary
+observed GS protection and 442 bytes. Public/private member-access controls for
+bind are byte-neutral apart from symbol spelling: their 76-byte ordinary
 member still loads/pops a conventional stack port parameter. These controls
 are evidence about this source shape, not a general GS or compiler recipe.
 
 A complete file-local `static bool __stdcall` bind definition and its actual
 initialization caller naturally produce the target ECX/EAX private interface.
-The whole helper is68/68 in a diagnostic canonical comparison, and the
-initializer becomes439/441 nonexact. There is no external custom-register
+The whole helper is 68/68 in a diagnostic canonical comparison, and the
+initializer becomes 439/441 nonexact. There is no external custom-register
 prototype, forced compiler attribute or synthetic caller. Original member
 versus file-local source form remains unknown. A subsequent independent
-bounded acceptance records the complete68-byte bind below; the initializer
+bounded acceptance records the complete 68-byte bind below; the initializer
 continues to be source-present/nonexact.
 
 A separate file-local assign wrapper around the same native operation emits
 only a nine-byte wrapper and leaves the initializer unchanged. It does not
-recover the target120-byte boundary and is not retained. The selected source
+recover the target 120-byte boundary and is not retained. The selected source
 uses the direct native assign operation. No copied STL body, aligned dummy
 record, inert local or frame-padding adjustment is added.
 
@@ -109,7 +109,7 @@ PE or provide implementation/exact credit for those callback declarations.
 | --- | ---: | --- |
 | 412E10 initialization | 439 /441 | Nonexact at+0, aligned frame/private assign and API pointer allocation |
 | 413080 socket bind | 68 /68 | Exact, naturally private ECX/EAX entry |
-| 41DDC0 acquisition | 148 /148 | Exact; adjacent103 metadata bytes separately verified |
+| 41DDC0 acquisition | 148 /148 | Exact; adjacent 103 metadata bytes separately verified |
 | 41DEC0 release | 47 /47 | Exact |
 | 41DEF0 error reporter | 84 /84 | Exact |
 
@@ -123,13 +123,13 @@ same-sized diagnostic is accepted as exact.
 A real pinned `/GL` compile followed by `/LTCG /NODEFAULTLIB` link at this
 checkpoint stops with LNK2001/LNK1120 for the three actual thread-entry symbols
 and the new thread-view wait declaration. The wait and send bodies are
-recoverable from other reviewed source units. The service callback416F40 is
+recoverable from other reviewed source units. The service callback 416F40 is
 subsequently source-defined in
 [the probe-worker checkpoint](NETWORK_UDP_PROBE_WORKER_2026_10_16.md), retaining
 this initializer's existing callback symbol. The receive loop subsequently
 gains full nonexact source in [the receive checkpoint](NETWORK_WINSOCK_RECEIVE_2026_10_16.md);
-request415560 is now implemented in [the request checkpoint](NETWORK_UDP_REQUEST_2026_10_16.md),
-while its connection415340 link input remains missing. No `/FORCE`, stub, fabricated return,
+request 415560 is now implemented in [the request checkpoint](NETWORK_UDP_REQUEST_2026_10_16.md),
+while its connection 415340 link input remains missing. No `/FORCE`, stub, fabricated return,
 import facade or executable ABS binding is used to bypass them. This is a
 concrete limit of the attempted source unit; it proves neither that LTCG is
 required nor that a completed linked unit would match the initializer.
@@ -140,11 +140,11 @@ python3 scripts/build.py --unit cross-v106a-network-winsock-runtime --json
 python3 scripts/compare-unit-object.py cross-v106a-network-winsock-runtime build/match-units/CrossV106a_NetworkWinsockRuntime.obj --json
 ```
 
-The complete comparison intentionally returns1 for initialization. Fresh
-accepted-only comparison selects413080/41DDC0/41DEC0/41DEF0 and preserves all four.
+The complete comparison intentionally returns 1 for initialization. Fresh
+accepted-only comparison selects 413080/41DDC0/41DEC0/41DEF0 and preserves all four.
 The target-backed origin rule pins the full main hash, both exact caller
 edges, seven exact helper edges and native callback/IAT fields. The separate
-bind adds68 authored exact bytes; initialization remains nonexact. No new
+bind adds 68 authored exact bytes; initialization remains nonexact. No new
 exclusion rows are added. Only the affected runtime source unit is replayed.
 
 ## Accepted socket-bind boundary
@@ -152,9 +152,9 @@ exclusion rows are added. Only the affected runtime source unit is replayed.
 `NetworkWinsock_bind_udp_socket @ 00413080` is independently canonical
 **68/68**, SHA-256
 `db31570b87c5c3560214f32a8027e3b96488c1c75703b712326b0b03a4959a3f`.
-All26 instructions are reachable, with two plain RET exits and no indirect
+All 26 instructions are reachable, with two plain RET exits and no indirect
 jump, escaped edge, remote chunk or extra executable tail. Its complete
-source COFF section is68 bytes. The sole instruction-checked incoming E8 is
+source COFF section is 68 bytes. The sole instruction-checked incoming E8 is
 412EFC, and a raw absolute-entry scan finds no function-pointer references.
 
 The complete real caller and normal typed file-local definition produce the
@@ -163,7 +163,7 @@ does not declare an external custom-register ABI or use a register wrapper.
 Its native htons/bind IATs, CP932 error text and call to the complete real
 error reporter all replay; endpoint bytes+34..3B are retained. This proves a
 reproducible source/byte result, without recovering original member versus
-file-local spelling or making the439-byte caller exact.
+file-local spelling or making the 439-byte caller exact.
 
 ```bash
 python3 scripts/build.py --unit cross-v106a-network-winsock-runtime --json
@@ -171,7 +171,7 @@ python3 scripts/compare-unit-object.py cross-v106a-network-winsock-runtime build
 ```
 
 The result is `build/network-udp-bind-formal.json`. A fresh build and focused
-accepted-only replay preserve this68-byte body and the existing148/47/84
+accepted-only replay preserve this 68-byte body and the existing 148/47/84
 helpers. Ghidra saves and independently reads back the supported name,68-byte
 body, ECX/EAX pointer/scalar storage, zero stack pop and AL:1 bool return.
 
@@ -180,22 +180,22 @@ body, ECX/EAX pointer/scalar storage, zero stack pop and AL:1 bool return.
 IDA preflight reports a different executable and is not used for analysis.
 Direct Ghidra first attests executable/program SHA, base, entry marker,
 x86 Windows identity and all mapped .text bytes. Owner/key/peer types, the
-complete441-byte main extent, physical ECX/key/port storage and AL return,
+complete 441-byte main extent, physical ECX/key/port storage and AL return,
 plus EAX-port and EDX-value callee storage, are saved and checked in a fresh
-read-only invocation. Existing runtime689D25 uses Ghidra's standard
+read-only invocation. Existing runtime 689D25 uses Ghidra's standard
 `security_check_cookie` call fixup, consistent with the independently
 VC8-attested15-byte checker preserving EAX. This avoids mistaking the cookie
 call for the authored result; decompiler output remains a hypothesis.
 
-One process uses768MiB heap/two CPUs. Private probes and saved analysis stay
+One process uses 768MiB heap/two CPUs. Private probes and saved analysis stay
 below `.analysis/`; temporary database copies and compiled probes are removed.
-The local CI gate passes155 tests and `git diff --check` passes. No all-unit
+The local CI gate passes 155 tests and `git diff --check` passes. No all-unit
 replay or new aggregate exact claim is made.
 
 ## Subsequent connection-chain closure
 
 The later [connection and handshake-worker checkpoint](NETWORK_UDP_CONNECTION_2026_10_16.md)
-implements415340 and415D60 in the actual receive TU. A genuine mixed COFF/LTCG
+implements 415340 and 415D60 in the actual receive TU. A genuine mixed COFF/LTCG
 image now links with all actual peer-removal, acceptance and platform-thread
 inputs and zero missing implementations. Earlier missing-input statements above
 are historical. Native EH/GS replay and original packet storage remain open;
@@ -208,7 +208,7 @@ seven-TU all-CIL initialization graph. Four explicit opaque-view connections
 in origin-only generated contexts select real implementations; source files
 and the ordinary comparison unit stay unchanged. Sole public initialization
 export retains actual callback uses, no fake providers or COFF barriers.
-Original peer allocator413C60/81 is whole canonical with complete exception
-proof. Linked initialization470/native441 remains nonexact; ordinary439/native441
-and accepted148/47/84/68 helpers freshly retain their results. See
+Original peer allocator 413C60/81 is whole canonical with complete exception
+proof. Linked initialization 470/native441 remains nonexact; ordinary 439/native441
+and accepted 148/47/84/68 helpers freshly retain their results. See
 LINKED_PEER_ALLOCATOR_2026_11_01.md. The old unresolved-link observation is historical.

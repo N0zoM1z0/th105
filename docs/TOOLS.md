@@ -34,7 +34,7 @@ scripts/repo-python scripts/ida-mcp-call.py --call decompile_function '{"address
 explicit alternative interpreter, subject to the same checks. The launcher
 removes ambient PYTHONPATH/PYTHONHOME overrides; subprocesses use the same Python.
 CI uses this entry point as well. TH10's interpreter/decoder selection supplied
-the workflow example; TH105 retains its own Capstone4.0.2 and Unicorn1.0.2 pins.
+the workflow example; TH105 retains its own Capstone 4.0.2 and Unicorn 1.0.2 pins.
 
 The IDA client entry points pin Python package `mcp==1.26.0`. If the selected
 `python3` does not provide that version (as with the GPT-web systemd login
@@ -121,8 +121,8 @@ CALL instructions; `direct_call_census_basis` identifies the linear decode.
 The separate `raw_e8_sanity` is the historical byte-scan fingerprint. Manifest
 `expected_direct_call_sites/targets` still validate that raw fingerprint. An E8
 inside another instruction can pass its address-range filter: ReimuObject
-496540 has404 decoded direct calls to25 targets, versus raw405/26. Its dedicated
-CFG auditor already excludes the FLD1 byte at49C35B. Use the decoded/CFG evidence
+496540 has 404 decoded direct calls to 25 targets, versus raw 405/26. Its dedicated
+CFG auditor already excludes the FLD 1 byte at 49C35B. Use the decoded/CFG evidence
 when selecting callees; retain raw counts only as regression guards.
 
 Compare a compiled giant-root candidate against that target ownership map with:

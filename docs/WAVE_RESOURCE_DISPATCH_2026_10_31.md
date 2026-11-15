@@ -6,33 +6,33 @@ No new authored exact bytes are claimed.
 
 ## Target observations
 
-Wave resource dispatch408ED0 is a complete151-byte body,48 decoded instructions,
-two RET0 exits and internal conditional branches. Its SHA-256 is
+Wave resource dispatch 408ED0 is a complete 151-byte body,48 decoded instructions,
+two RET 0 exits and internal conditional branches. Its SHA-256 is
 f9f8f0ad2194ff0883e1f670e505df2337605b2ecd80a6440067d16a6e646e2c.
-The already-exact DirectSound resource loader4184B0 calls it at4184FF with the
+The already-exact DirectSound resource loader 4184B0 calls it at 4184FF with the
 output in ECX and path in EDX. This is the existing ordinary two-argument
 fastcall interface, not an invented private register declaration.
 
-The mode byte7028D8 chooses the path. Encoded mode measures the source path,
+The mode byte 7028D8 chooses the path. Encoded mode measures the source path,
 copies it into a260-byte local buffer with strcpy_s, replaces its final four
-bytes with .cv3, and calls the ordinary stdcall CV3 loader419590. There is no
-new short-filename guard. Plain mode calls419690 with the real format, data and
+bytes with .cv3, and calls the ordinary stdcall CV3 loader 419590. There is no
+new short-filename guard. Plain mode calls 419690 with the real format, data and
 size outputs. Its private compiled interface does not establish whether the
 original C++ used aggregate or separate output parameters.
 
-Factory-native IDA metadata, entry point and five16-byte mapped samples were
+Factory-native IDA metadata, entry point and five 16-byte mapped samples were
 rechecked against the pinned raw executable before using its decompilation. All
 passed; no database or target bytes were changed.
 
 ## Actual source and ownership
 
-WaveData.hpp now shares the physical20-byte format plus data pointer14 and
-size18 between the existing readers and the already-exact DirectSound owner.
+WaveData.hpp now shares the physical 20-byte format plus data pointer 14 and
+size 18 between the existing readers and the already-exact DirectSound owner.
 The owner still initializes only data and size. Both replacement paths and its
 destructor now use genuine delete[] for allocations produced by new unsigned
 char[]. Including the real <new> declaration before the inline destructor is
-essential with VC8. Scoped function bindings now identify array delete68AA26
-rather than incorrectly naming free. Full304-byte DirectSound caller replay
+essential with VC8. Scoped function bindings now identify array delete 68AA26
+rather than incorrectly naming free. Full 304-byte DirectSound caller replay
 remains canonical exact, including its normal cleanup behavior.
 
 WaveResourceDispatch.cpp supplies the complete application policy, in the real
@@ -43,19 +43,19 @@ introduced.
 
 ## Complete comparison results
 
-- Existing DirectSound owner4184B0:304/304 canonical exact after the shared type
+- Existing DirectSound owner 4184B0:304/304 canonical exact after the shared type
   and array-ownership correction.
-- New public dispatcher408ED0:145/native151, first mismatch+27. Full canonical
-  source SHA935cc3e54793e4e123cb40d4f6ddd29b298591bf214ec9c450fc86fa00990767.
-- CV3 ordinary stdcall entry419590:248/native247 in the same actual CIL graph.
+- New public dispatcher 408ED0:145/native151, first mismatch+27. Full canonical
+  source SHA 935cc3e54793e4e123cb40d4f6ddd29b298591bf214ec9c450fc86fa00990767.
+- CV3 ordinary stdcall entry 419590:248/native247 in the same actual CIL graph.
   Focused canonical comparison is blocked on an unresolved internal EH address;
   the free-function EH contract was not bypassed. This is not an exact result.
 - Existing standalone RIFF419690 remains a nonexact ordinary aggregate-API
   control. Native private output splitting is not manually declared.
 
-Preserving that real entry gives248 and dispatcher145. A normal four-output C++ RIFF
+Preserving that real entry gives 248 and dispatcher 145. A normal four-output C++ RIFF
 interface, chosen from the observed output addresses rather than forced registers,
-gives444-byte RIFF and163-byte dispatcher; it is rejected and not published.
+gives 444-byte RIFF and 163-byte dispatcher; it is rejected and not published.
 Array-ownership correction is byte-neutral in the selected CIL graph. No spelling
 grid followed.
 
@@ -66,8 +66,8 @@ reviewing its result: CV3's missing EH contract can block an aggregate report.
 
 ## Accounting and validation
 
-The new151-byte root is authored/source-present only. Its raw hash and direct
-edge from the freshly exact304-byte caller pass the new focused origin rule.
+The new 151-byte root is authored/source-present only. Its raw hash and direct
+edge from the freshly exact 304-byte caller pass the new focused origin rule.
 Existing unchanged ownership evidence is retained, not cold-regenerated.
 
 Totals:1556 exact /444236 authored bytes,1753 source-present,1773 authored,

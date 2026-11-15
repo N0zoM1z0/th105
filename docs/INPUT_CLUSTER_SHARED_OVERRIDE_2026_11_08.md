@@ -16,11 +16,11 @@ two-class hierarchy at `0x6D74CC`. Its base descriptor is the same physical
 `CInputManager` record at `0x6DCA4C` used by the extended input class.
 
 Fresh comparison of the independent global input-base lifetime also validates
-its complete RTTI graph, normal7 and scalar31 bodies. Thus the original global
+its complete RTTI graph, normal 7 and scalar 31 bodies. Thus the original global
 class identities and inheritance are established; the shared namespace-based
 source identity is still a separate migration.
 
-The actual selection constructor emits the cluster's normal19 and scalar40
+The actual selection constructor emits the cluster's normal 19 and scalar 40
 bodies. Both now have complete local byte equality and closed control flow at
 `0x420C10` and `0x420C30`. The weak deleting symbol resolves to that scalar
 body. Both complete callable slots, their relocation roles and the entire

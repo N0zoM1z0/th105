@@ -77,29 +77,29 @@ This is not operand, precision or exception closure.
 
 All 49 physical spawn payloads resolve without conflicting modeled ESP
 merges. The same six normalized address-sequence owners differ:
-mid500/505 and high601/604/605/710. Target raw traversal still reaches
+mid 500/505 and high 601/604/605/710. Target raw traversal still reaches
 9,912 instructions / all 37,692 bytes without unresolved indirect jumps.
 Arithmetic multisets remain 349/348 with leads in 601/696/710. The new
-load/store multiset census removes action603's lead; other stack identities,
+load/store multiset census removes action 603's lead; other stack identities,
 dependency orders and shared-owner placements remain unresolved.
 
 Baseline direct physical calls number 598/591. The seven-site difference is
 limited to two zero-motion calls, two surface-height calls, two frame-advance
 calls and one effect call. Owner relocation/sharing requires separate path
 reconciliation; these counts do not establish missing runtime behavior.
-Virtual site counts remain 107/105 at slot8, 31/31 at slotC, 12/13 at slot14
-and 2/2 at slot1C.
+Virtual site counts remain 107/105 at slot 8, 31/31 at slotC, 12/13 at slot 14
+and 2/2 at slot 1C.
 
 | Probe | Observation | Disposition |
 | --- | --- | --- |
-| Explicit return at shared sequence label; move label to action529 | Both byte-neutral against the preceding `347ac4b` checkpoint. | Not retained. |
-| Move label plus explicit local action740 call | 25/98, loses low11, metadata `+0x92B8`. | Not retained. |
+| Explicit return at shared sequence label; move label to action 529 | Both byte-neutral against the preceding `347ac4b` checkpoint. | Not retained. |
+| Move label plus explicit local action 740 call | 25/98, loses low 11, metadata `+0x92B8`. | Not retained. |
 | Float zero carrier; three real payload declaration-order variants | All byte-neutral against the preceding checkpoint. | Not retained; no original type/order claim. |
-| Nested first action603 spawn only | 26/98, metadata `+0x92A4`; observed argument prefix restored. | Independently tested property retained in combination. |
-| Nested second action603 spawn only | 26/98, metadata `+0x92B4`; argument prefix/order restored. | Independently tested property retained in combination. |
-| Both nested action603 spawns | 26/98, metadata `+0x92A4`, no gains/losses. | Retained through configured rebuild. |
-| Direct action545 Y field, or move its float snapshot after payload initialization | Identical windows; 26/98, metadata `+0x9244`; 545 has 114 instructions as target, but physical spawn sites drop from49 to48. | Not retained as physical-path recovery. |
-| Double action545 snapshot | 26/98, metadata `+0x92A4`; 545 still has116 instructions versus target114. | Not retained; no original snapshot type established. |
+| Nested first action 603 spawn only | 26/98, metadata `+0x92A4`; observed argument prefix restored. | Independently tested property retained in combination. |
+| Nested second action 603 spawn only | 26/98, metadata `+0x92B4`; argument prefix/order restored. | Independently tested property retained in combination. |
+| Both nested action 603 spawns | 26/98, metadata `+0x92A4`, no gains/losses. | Retained through configured rebuild. |
+| Direct action 545 Y field, or move its float snapshot after payload initialization | Identical windows; 26/98, metadata `+0x9244`; 545 has 114 instructions as target, but physical spawn sites drop from 49 to 48. | Not retained as physical-path recovery. |
+| Double action 545 snapshot | 26/98, metadata `+0x92A4`; 545 still has 116 instructions versus target 114. | Not retained; no original snapshot type established. |
 
 **Observed, action 545:** target initializes the payload at
 `53643C..53645F`, then reads Y at `536466`, before spawning at `53648B`.

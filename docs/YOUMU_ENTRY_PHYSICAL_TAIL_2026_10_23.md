@@ -1,30 +1,30 @@
 # YoumuObject initializer physical-tail recovery
 
-The selected5159-byte initializer at `0x543670` now reproduces the target's
+The selected 5159-byte initializer at `0x543670` now reproduces the target's
 physical conversion/return copies, complete callable extent and adjacent
-metadata. It still differs at21 callable bytes, first `+0x74F /0x543DBF`.
+metadata. It still differs at 21 callable bytes, first `+0x74F /0x543DBF`.
 No authored exact function or byte is added.
 
 ## Target observations and selected source
 
-Only original Japanese1.06a SHA256
+Only original Japanese 1.06a SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`
 is used. Fresh target/status/tracking checks pass. IDA preflight rejects the
 other open image; all new observations use raw PE and compiled objects.
-The complete raw CFG still covers1294 instructions/5159 bytes,29 primary
-destinations and one auxiliary switch. Vtable6C50BC binds this initializer
-at+3C and the independently reviewed45C390 selector at+0C.
+The complete raw CFG still covers 1294 instructions/5159 bytes,29 primary
+destinations and one auxiliary switch. Vtable 6C50BC binds this initializer
+at+3C and the independently reviewed 45C390 selector at+0C.
 
-Observed target edges distinguish two848 entry points.821 captures heading340,
-writes rotation and jumps to543EF1, after848's pointer load.812 jumps to
-543EEB, the pointer-load entry;854 writes state344 and falls into that entry.
-820 jumps into850 after its two scale stores. The previous source instead
-reloaded821's pointer and omitted850's physical conversion/return copy.
+Observed target edges distinguish two 848 entry points.821 captures heading 340,
+writes rotation and jumps to 543EF1, after 848's pointer load.812 jumps to
+543EEB, the pointer-load entry;854 writes state 344 and falls into that entry.
+820 jumps into 850 after its two scale stores. The previous source instead
+reloaded 821's pointer and omitted 850's physical conversion/return copy.
 
 Selected C++ expresses those actual edges with one used shared pointer and
-explicit812/854 load-entry labels.850 uses the existing
-`AnimationSequenceObjectView` int facade, as851 already did. Both int and
-natural-short consumer witnesses reproduce the complete202-byte45C390 body
+explicit 812/854 load-entry labels.850 uses the existing
+`AnimationSequenceObjectView` int facade, as 851 already did. Both int and
+natural-short consumer witnesses reproduce the complete 202-byte45C390 body
 and its four-byte stack protocol. This is a compatible runtime view, not a
 claim that the original C++ source mixed these declarations. No new prototype,
 helper, volatile/restrict promise, inert local or forced register is added.
@@ -32,15 +32,15 @@ The pointer is assigned on every source path that reaches its uses.
 
 | Complete obligation | Previous selection | Current selection / target |
 | --- | ---: | ---: |
-| Callable bytes | Source metadata overlapped the5159-byte comparison |5159|
+| Callable bytes | Source metadata overlapped the 5159-byte comparison |5159|
 | Callable instructions |1286 plus post-RET alignment|1294|
 | Direct calls / conversion calls |77 /20|78 /21|
 | RETs |22|23|
 | Metadata start / metadata bytes |5156 /332|5160 /332|
 | Full canonical payload |5488|5492|
 
-All332 metadata bytes now agree, including every primary and auxiliary code
-pointer. The natural single NOP at offset5159 also agrees; it is not callable
+All 332 metadata bytes now agree, including every primary and auxiliary code
+pointer. The natural single NOP at offset 5159 also agrees; it is not callable
 credit. All remaining differences lie in five call/register regions:
 850(6 bytes),851(3),848(5),855(5),856(2). The unchanged owner diagnostic reports
 24/30, including a source alignment NOP in its last-owner difference; that NOP
@@ -50,14 +50,14 @@ Source SHA256:
 `66d01e60ca540b11515ebe4a58dc87f913ab340dd4845bcb1e992d9000c9be2d`.
 Complete canonical payload SHA256:
 `d00f4fc4ceca80c8fc4510ff03dcf064e3188fa5dc33afc8e25815d880da413a`.
-The5159-byte target body remains
+The 5159-byte target body remains
 `d680c9d1386e6c3f8cc5e755dffccbbd431864dee308f760cf48fe00274ed245`.
 
 ## Scoped execution and genuine link context
 
-The fresh public object has **zero mismatches in592** actual selector/frame/
-texture/commit cases, through native RETs. The matrix retains812/820/821/848/850/851/854 and
-the four851 alias stress inputs, with input SHA256
+The fresh public object has **zero mismatches in 592** actual selector/frame/
+texture/commit cases, through native RETs. The matrix retains 812/820/821/848/850/851/854 and
+the four 851 alias stress inputs, with input SHA256
 `02a34a45b03f1329f3a5376e81db3579e9ffb560ffe96ca1709453ef03e30d55`.
 The [earlier audit contract](YOUMU_ENTRY_CALLS_2026_10_19.md) still applies:
 zero textures, bounded resources and two x87 precisions; no arbitrary-resource,
@@ -65,27 +65,27 @@ unmasked-exception, spawning-action or whole-root execution claim follows.
 
 A frozen equivalent source compiles with `/GL` and links with `/LTCG`,23 real
 native object inputs and pinned static CRT/SDK libraries. The missing texture
-setup dependency is supplied by its real193/261-byte native unit, freshly
-exact. Auxiliary replacement344 and the color unit also replay exact. Older
+setup dependency is supplied by its real 193/261-byte native unit, freshly
+exact. Auxiliary replacement 344 and the color unit also replay exact. Older
 fixed providers retain their own pins/status; the lookup pair,417800 and the
 ordinary texture-query candidate remain nonexact. This is not an all-exact
 dependency graph. No executable ABS binding or invented caller closes it.
 
-Independent complete replay checks229 fields:79 REL32 edges (78 calls plus
-the596370 tail),113 numeric references,3 metadata addresses,33 internal code
+Independent complete replay checks 229 fields:79 REL32 edges (78 calls plus
+the 596370 tail),113 numeric references,3 metadata addresses,33 internal code
 pointers and one game-data reference. All 149 HIGHLOW entries agree; the fixed
 foreign game-data address correctly has no base relocation. MAP destinations,
 source ownership and literal bytes/widths are checked before normalization.
-The resulting5492 bytes equal native d00f4fc4, with the same21 differences.
+The resulting 5492 bytes equal native d00f4fc4, with the same 21 differences.
 No register mask, DLL execution, original-partition proof or LTCG impossibility
 is claimed. Further work must address the remaining five regions in this epoch.
 
 RTM, a successful real `/Zi` object/PDB, a void word-result view, pointer
-declaration placement and typed parameter records do not improve these21
+declaration placement and typed parameter records do not improve these 21
 bytes. Explicit table dispatch also keeps the int-view result or loses the
-physical copy with the short view. Additional855/856 int calls worsen the
-residual to22/24/25 bytes. A rebased physical hierarchy and an unsigned RNG
-result control with an independently matching27-byte callee also leave the
+physical copy with the short view. Additional 855/856 int calls worsen the
+residual to 22/24/25 bytes. A rebased physical hierarchy and an unsigned RNG
+result control with an independently matching 27-byte callee also leave the
 caller unchanged.
 These are bounded negatives, not universal rules.
 
@@ -175,7 +175,7 @@ caller-view spelling. Its actual provider was already present: checked VC8
 `std::map::find` in `CharacterObjectSecondaryAnimation.obj`, independently
 105/105 exact against `0x45C320`. A real symbol alias resolves that source body; no
 executable ABS address or stub is used. Raw target traversal closes all 39
-instructions/105 bytes and returns with RET8. The existing compiler exclusion
+instructions/105 bytes and returns with RET 8. The existing compiler exclusion
 and unknown original template identity remain unchanged.
 
 The public improvement is in

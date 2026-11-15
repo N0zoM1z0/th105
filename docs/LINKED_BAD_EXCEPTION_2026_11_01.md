@@ -7,8 +7,8 @@ canonical target and are inventory-unique:
 -68FB16/24: std::bad_exception copy constructor.
 
 This class is bad_exception, independently established by its complete RTTI
-graph and vtable6CD9B8. The earlier bad_alloc lookalike at68EF88 was correctly
-not accepted under that wrong class identity. These69 bytes are vc8_runtime
+graph and vtable 6CD9B8. The earlier bad_alloc lookalike at 68EF88 was correctly
+not accepted under that wrong class identity. These 69 bytes are vc8_runtime
 exclusions, not authored code or guessed new source mappings.
 
 ## Source and full body checks
@@ -22,7 +22,7 @@ export and receives no new exactness claim. Pinned CRT archive/build hashes
 are retained in the fresh proof.
 
 Each body is decoded completely through RET4 or its actual tail jump. Named
-base exception destructor689FDA, copy689F82 and operator delete6898EA resolve
+base exception destructor 689FDA, copy 689F82 and operator delete 6898EA resolve
 through original CRT owners and independent accepted origin evidence. The
 normal destructor fields are REL32+7 and vptr+2; scalar fields are calls+10/+23
 and vptr+5; copy fields are call+8 and vptr+14. All source HIGHLOW entries are
@@ -33,15 +33,15 @@ not a prefix, masked pattern or short-code heuristic.
 ## Complete RTTI graph
 
 The source and native primary vtables contain exactly the checked scalar
-entry and inherited exception::what at689FF0. The latter retains its prior
-runtime ownership, with no extra credit. The vtable prefix, whole20-byte
+entry and inherited exception::what at 689FF0. The latter retains its prior
+runtime ownership, with no extra credit. The vtable prefix, whole 20-byte
 complete-object locator, both TypeDescriptors including entire names, both
 28-byte base descriptors, both hierarchy descriptors and their complete base
 arrays are canonical.
 
 Primary offsets/signatures must be zero. The bad_exception hierarchy has two
 bases, itself and exception; exception has one. Each base's contained count,
-PMD adjustment and0x40 attribute are fixed. Own-class hierarchy references
+PMD adjustment and 0x40 attribute are fixed. Own-class hierarchy references
 must close locally, shared source metadata must retain consistent target
 identity, and cycles/aliases are checked rather than ignored. All data
 relocations are exact and accounted for. This establishes the real class and
@@ -56,6 +56,6 @@ changed complete names and inconsistent RTTI cycles/pointer identities.
 Twenty actual code and RTTI graph byte mutations are rejected. The existing
 canonical comparator and generic origin thresholds are unchanged.
 
-No gameplay source, match unit or old exact receipt changes. Excluded2015/review357;
-authored exact1431/443916 bytes, authored1655, source1635, mapped1820 and units777
+No gameplay source, match unit or old exact receipt changes. Excluded 2015/review357;
+authored exact 1431/443916 bytes, authored 1655, source 1635, mapped 1820 and units 777
 stay unchanged.

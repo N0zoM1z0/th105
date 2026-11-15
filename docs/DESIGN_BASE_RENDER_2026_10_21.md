@@ -2,7 +2,7 @@
 
 The subsequent [virtual/lookup checkpoint](DESIGN_BASE_VIRTUALS_2026_10_21.md)
 expands this unit with six more complete exact functions and a real ordinary
-native tree find provider. The original135-byte acceptance below remains exact.
+native tree find provider. The original 135-byte acceptance below remains exact.
 
 Target: original Japanese TH10.5 v1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
@@ -67,9 +67,9 @@ needed. The shared layout header and existing relocation ledgers are unchanged
 from the preceding native-vector checkpoint.
 
 IDA preflight again rejects the attached wrong-target session; no database semantics
-or metadata changes were used. Builds ran serially on CPU0 at nice10.
+or metadata changes were used. Builds ran serially on CPU 0 at nice 10.
 
 Original source spelling/TU context and the rest of CDesignBase runtime remain
 open. In particular, the identified 2666-byte `40B000` loader still has no
-selected provider source or exact result. Reimu496540 also remains nonexact;
+selected provider source or exact result. Reimu 496540 also remains nonexact;
 this checkpoint does not change its status.

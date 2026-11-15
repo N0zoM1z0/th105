@@ -57,9 +57,9 @@ witnesses, not authored progress.
 
 ## Boundaries and validation
 
-The assertion-enabled basic_regex::do_assign at 6B4430 is466 source bytes versus
+The assertion-enabled basic_regex::do_assign at 6B4430 is 466 source bytes versus
 412 native bytes and remains unselected in this probe. The later isolated
-standard release-assertion configuration closes all412 bytes; see
+standard release-assertion configuration closes all 412 bytes; see
 BOOST_RELEASE_LIBRARY_ORIGINS_2026_10_31.md. A compatible historical reference
 does not uniquely identify the shipped Boost release.
 

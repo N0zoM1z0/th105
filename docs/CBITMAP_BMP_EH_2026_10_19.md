@@ -4,24 +4,24 @@ Continuation of [the boundary/source-form audit](CBITMAP_BMP_2026_10_19.md),
 with one writable scope: authored BMP root `0x00419FF0`. This checkpoint
 checks the remaining lifetime assumptions against current target and compiler
 evidence.
-Original Japanese1.06a SHA256 remains
+Original Japanese 1.06a SHA256 remains
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-**No new authored exact credit.** The2230-byte callable boundary is unchanged.
+**No new authored exact credit.** The 2230-byte callable boundary is unchanged.
 
 ## Target EH chain and compiler observations
 
-The handler pushed at419FF2 is `6BDC3B`. It checks an encoded stack cookie
-through689D25, loads EAX=`6E42B4`, then tail-jumps to6899E7. The latter is the
+The handler pushed at 419FF2 is `6BDC3B`. It checks an encoded stack cookie
+through 689D25, loads EAX=`6E42B4`, then tail-jumps to 6899E7. The latter is the
 frame-handler entry referenced by the compiler's `___CxxFrameHandler3`
-relocation. FuncInfo-style data at6E42B4 contains magic19930522, state count1,
-unwind table6E42AC, zero further table/specification fields, and flags1.
-The single unwind entry is previous state-1, cleanup action6BDC30. Named
+relocation. FuncInfo-style data at 6E42B4 contains magic 19930522, state count 1,
+unwind table 6E42AC, zero further table/specification fields, and flags 1.
+The single unwind entry is previous state-1, cleanup action 6BDC30. Named
 VC8 COFF records corroborate this layout; field names alone are not target
 source evidence.
 
 Cleanup `[6BDC30,6BDC3B)` is `LEA ECX,[EBP-428h]` followed by a tail jump to
-40CF20. That15-byte reader-owner destructor loads its owned reader, tests it,
-and calls virtual scalar deletion with argument1. Exception cleanup therefore
+40CF20. That 15-byte reader-owner destructor loads its owned reader, tests it,
+and calls virtual scalar deletion with argument 1. Exception cleanup therefore
 uses the out-of-line owner destructor while normal main-body cleanup expands
 it. The target supports one EH-managed owner lifetime; it supplies no evidence
 for an additional EH-managed palette/buffer owner.
@@ -39,7 +39,7 @@ acceptance of another authored function:
 | Region | Source/target bytes compared | Differing bytes |
 | --- | ---: | --- |
 | Cleanup thunk |11|One: owner offset-438h versus-428h|
-| EH handler |33|Two: cookie-base/cell offsets differ by8|
+| EH handler |33|Two: cookie-base/cell offsets differ by 8|
 | Unwind entry |8|Zero after its action-pointer relocation|
 | FuncInfo |36|Zero after its unwind-table relocation|
 
@@ -52,17 +52,17 @@ fields does not imply that main-body differences are only stack offsets.
 A completed direct Ghidra run independently checks imported/raw executable
 identity, entry/base/language/compiler, the complete mapped .text, root hash,
 and both EH-region hashes. Read-only typed table creation is read back and
-its44 bytes rechecked. All nine primary DB hashes remain unchanged; aliases
+its 44 bytes rechecked. All nine primary DB hashes remain unchanged; aliases
 are removed. Only completed attested output is used. No target bytes change.
 
 ## Stack workspace, using entry ESP as the reference
 
 Let E be ESP on entry, pointing at the return address. Normal CFG ESP
-propagation, with checked callee cleanup contracts, closes all666 target
-instructions and every RET4. The selected candidate similarly closes629
+propagation, with checked callee cleanup contracts, closes all 666 target
+instructions and every RET4. The selected candidate similarly closes 629
 instructions. This is stack-access evidence, not alias-aware compiler liveness.
 
-| Property | Target | Selected candidate | Member32 diagnostic |
+| Property | Target | Selected candidate | Member 32 diagnostic |
 | --- | --- | --- | --- |
 | SUB ESP frame |430h|438h|42Ch|
 | Steady ESP |E-450h|E-458h|E-44Ch|
@@ -72,30 +72,30 @@ instructions. This is stack-access evidence, not alias-aware compiler liveness.
 | Magic-word storage |E-420h|E-420h|Not needed for this control|
 | Registration record / state |E-Ch / E-4h|E-Ch / E-4h|Same frame-relative end|
 
-The palette itself does not account for the extra8 bytes. The owner offset
-also differs by16, so simply reducing SUB ESP by8 would not recover its
+The palette itself does not account for the extra 8 bytes. The owner offset
+also differs by 16, so simply reducing SUB ESP by 8 would not recover its
 placement. No such byte/stack adjustment is used.
 
-Between the palette32 allocation return and switch dispatch, target writes
-five distinct scalar stack locations: palette32 and four address deltas.
-Selected source writes seven: palette32 and six address deltas. Target keeps
+Between the palette 32 allocation return and switch dispatch, target writes
+five distinct scalar stack locations: palette 32 and four address deltas.
+Selected source writes seven: palette 32 and six address deltas. Target keeps
 two of those deltas in registers and reloads the palette base after the loop;
-selected source keeps the base in a register across the loop. Palette16 has
+selected source keeps the base in a register across the loop. Palette 16 has
 the analogous target base reload. These observations focus the next inquiry
 on table-address induction and base-pointer lifetime, without proving the
 original source spelling or optimization phase.
 
 ## Allocation interface correction
 
-The root's seven array allocations call665B8A, a five-byte E9 forwarding entry
-to689DCB. Reader-opening helper40CF40's scalar allocations call689DCB directly.
+The root's seven array allocations call 665B8A, a five-byte E9 forwarding entry
+to 689DCB. Reader-opening helper 40CF40's scalar allocations call 689DCB directly.
 Previous BMP COFF used scalar `??2@YAPAXI@Z` even for array expressions because
 the TU lacked array-new declarations. Including the real VC8 `<new>` changes
 all seven to `??_U@YAPAXI@Z`, preserving their cdecl size/pointer ABI.
 
 The pinned SP1 `libcpmt.lib` member `build/intel/mt_obj/newaop.obj` provides a
 compatible counterpart: its `??_U` body is five-byte E9 with one REL32 to
-`??2`. Extracted object size3883, SHA256
+`??2`. Extracted object size 3883, SHA256
 `846dc4ebc80bbbd4708c0697c569bfd807aeb1244c9e11b6001e79213fb94276`.
 This corroborates the array-allocation binding; a five-byte alias alone does
 not prove a unique original public symbol or target runtime release. Existing
@@ -113,17 +113,17 @@ the four affected CBitmapData functions. Canonical BMP payload remains
 2133 callable +3 alignment +45 metadata bytes. Updated source SHA256:
 `109e8b2c2dea528c4bf6969b929f7979d486e961bcda061a11653ae721af2ed7`.
 All five previously accepted siblings still compare exactly. PNG/file loaders
-remain nonexact680/703 and440/448; BMP still differs first at+10h.
+remain nonexact 680/703 and 440/448; BMP still differs first at+10h.
 
 Paired whole-program context probes (/GL compile, /LTCG link) differ only in the include, and link real
 FileReader/CRT definitions with exported root/open/global-data contracts.
-Both emit2152 callable/2197 section bytes and frame438h. With scalar symbols
-bound to689DCB and array symbols to665B8A, all21 differing bytes lie in the
+Both emit 2152 callable/2197 section bytes and frame 438h. With scalar symbols
+bound to 689DCB and array symbols to 665B8A, all 21 differing bytes lie in the
 seven allocator REL32 fields; every other canonical byte agrees. Thus the
 interface correction fixes provider identity but does not fix code generation.
 `open_package_file_entry` remains unresolved via /FORCE in these diagnostic
 links, so they are not runnable/acceptance artifacts. In the actual opening
-helper the package-entry CALL is41BFA0, not the separate40CF30/41BA70 path.
+helper the package-entry CALL is 41BFA0, not the separate 40CF30/41BA70 path.
 
 ## Source-shape controls retained privately
 
@@ -142,9 +142,9 @@ padding, register constraints or changed calling conventions:
 | Both member conversions plus visible destructor |2076 /2121|42Ch; still nonexact|
 | Four explicit ARGB32 member calls per iteration |2069 /2117|42Ch; no frame recovery|
 | Three scalar channel arguments to free inline converters |2133 /2181|438h; complete selected payload unchanged|
-| Explicit palette16 output iterator |2133 /2181|438h; no frame recovery|
-| Explicit palette32 / both output iterators |2053 /2101 each|42Ch; different induction, still nonexact|
-| Allocating palette32 helper taking the256-entry array by reference |Not canonicalized|Ordinary inliner retains a new local CALL absent from target|
+| Explicit palette 16 output iterator |2133 /2181|438h; no frame recovery|
+| Explicit palette 32 / both output iterators |2053 /2101 each|42Ch; different induction, still nonexact|
+| Allocating palette 32 helper taking the 256-entry array by reference |Not canonicalized|Ordinary inliner retains a new local CALL absent from target|
 
 Smaller code or a frame numerically nearer430h is not a match. None of these
 API/iterator/helper controls is selected. TH075's retained source search
@@ -161,17 +161,17 @@ taskset -c 0 nice -n 10 python3 scripts/build.py \
 ```
 
 The local gate initially exposed a stale workflow test requiring the historical
-`2197/2230` evidence substring. It now pins the attested callable end41A8A5
+`2197/2230` evidence substring. It now pins the attested callable end 41A8A5
 and nonexact percentage instead of a changing COFF section-size phrase.
 All five accepted-function checks remain intact.
 
 Generated data, compiler members and linked images stay untracked. Previously
-checked149 execution cases still apply to the unchanged canonical selected payload;
+checked 149 execution cases still apply to the unchanged canonical selected payload;
 no new behavioral scope is claimed.
 
 Next constraints: recover how the original indexed conversion preserves its
 working registers while reloading heap bases, and obtain truthful reader/
-package-provider context before relying on an LTCG explanation. The213-byte
+package-provider context before relying on an LTCG explanation. The 213-byte
 40CF40 opening helper already has retained source but no accepted mapping/
 unit member; reviewing it is a concrete dependency step for this large loader.
 Keep BMP as the active substantial-function objective. No aggregate exact

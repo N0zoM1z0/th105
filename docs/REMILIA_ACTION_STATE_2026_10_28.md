@@ -122,7 +122,7 @@ before calling sine (for example 0x551DF2..0x551E22), then put the rounded Y
 value on the outgoing stack before cosine. The former source instead named
 both Y and X before preparing the request.
 
-Only ring902 now expresses X/Y directly in the ordinary call arguments. It
+Only ring 902 now expresses X/Y directly in the ordinary call arguments. It
 preserves the same casts, packet writes, float loop, lookup order and field
 loads. This restores the native call-preparation lifetime and reduces frame
 0x4F8 to 0x4F0. The first strict mismatch advances from +8 to +18, at the
@@ -130,7 +130,7 @@ choice of EBX versus EBP for zero, not a newly accepted function.
 
 All 101 payload homes still resolve; their native/candidate sorted offset
 sets now coincide, including the unusual adjacent extents noted above.
-Fresh mapped-action arithmetic counts still agree, and the same action710
+Fresh mapped-action arithmetic counts still agree, and the same action 710
 physical-call residual remains. Final full payload is 62,912 versus 63,316.
 This is an independent native instruction witness, not an automatic transfer
 of Komachi's different scalar-angle cause. No packet padding, dummy locals,

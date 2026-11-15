@@ -14,8 +14,8 @@ bytes with an out-of-line erase call and iterator stack lifetime absent from
 the native body. Neither control is accepted. Do not insert an unused front()
 call, a dummy iterator or a manual register barrier to recreate checks.
 
-The directly affected front-ready peer stays exact118 in both controls; consume
-stays346/nonexact at+204. Source and temporary manifest binding are fully restored.
+The directly affected front-ready peer stays exact 118 in both controls; consume
+stays 346/nonexact at+204. Source and temporary manifest binding are fully restored.
 The earlier truthful-destructor/zero-propagation result remains a separate known
 boundary; these controls do not resolve it. No ledger or progress changes.
 
@@ -27,8 +27,8 @@ with the real `std::deque<FighterSequenceSlot>::operator[]`. The emitted
 94-byte provider matches `0x4399C0` in full, including all invalid-parameter
 calls. This is the existing 0x98-byte record, not a short-element deque.
 
-Readiness remains exact118. Advance remains198/native198, first difference +46, and
-consume remains346/native346, first difference+204. Their complete canonical
+Readiness remains exact 118. Advance remains 198/native198, first difference +46, and
+consume remains 346/native346, first difference+204. Their complete canonical
 candidate hashes are unchanged from the current source. Actual subscript visibility
 therefore does not resolve either known residual. The control stays private rather
 than publishing another declaration-only rename; no source, ledger or acceptance

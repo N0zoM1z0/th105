@@ -2,7 +2,7 @@
 
 Original Japanese 1.06a GameConfig save 427390 is now authored and source-present,
 not exact. The complete target [427390,4276FD) is 877 bytes, with 334 decoded
-instructions and RET0 at 4276FC. Its SHA256 is
+instructions and RET 0 at 4276FC. Its SHA256 is
 ad633c071c15bf198ec6c453d794d3f513e30d8aa7ceae7d3d95d522e6ee0880.
 
 ## Ownership and ordinary source

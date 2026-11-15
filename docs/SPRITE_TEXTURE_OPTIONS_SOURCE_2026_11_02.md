@@ -5,7 +5,7 @@ Target is original Japanese TH105 v1.06a, SHA-256
 
 ## Native ownership and boundary
 
-0x406A90 is a complete 334-byte body ending with RET28, 100 instructions,
+0x406A90 is a complete 334-byte body ending with RET 28, 100 instructions,
 one direct call at 0x406ACD to texture-size query 0x404E60, no indirect calls.
 The primary CSprite table at 0x6C0668 owns it at slot 0x6C0678. COL slot
 0x6C0664 points to 0x6DCCDC and type descriptor 0x6FA52C names CSprite.
@@ -37,7 +37,7 @@ executes both complete bodies under six finite modeled texture-query returns.
 Cases cover zero/nonzero/high-bit handles, signed coordinates/dimensions/pivots,
 and high-bit unsigned extents. Every complete 0x94-byte object agrees with the
 independent expected result. The guard checks the exact 28 dword write footprint,
-query receiver/arguments/pre-query publication, RET28 and nonvolatile registers;
+query receiver/arguments/pre-query publication, RET 28 and nonvolatile registers;
 volatile registers are poisoned at the helper return. A mutated handle-store
 address is rejected by the guarded write callback. Wrong output also rejects.
 Four focused tests check preserved coordinates, query identity/count, missing or

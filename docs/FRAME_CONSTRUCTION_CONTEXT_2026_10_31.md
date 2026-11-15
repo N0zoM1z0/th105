@@ -6,16 +6,16 @@ class is removed; the loader uses FrameData and its real lifetime definition.
 
 ## Context-sensitive zeroing, not a forced store sequence
 
-The earlier FrameData model wrote a20-byte memset beginning at+04, then tag14
-and pointer18. That reproduced the native derived PAT constructor, but did not
+The earlier FrameData model wrote a20-byte memset beginning at+04, then tag 14
+and pointer 18. That reproduced the native derived PAT constructor, but did not
 uniquely establish the original source expression. The independently recovered
-effect temporary instead clears all28 bytes, including its just-published
-virtual pointer, before publishing tag14 and pointer18.
+effect temporary instead clears all 28 bytes, including its just-published
+virtual pointer, before publishing tag 14 and pointer 18.
 
 A coherent ordinary constructor uses memset(this,0,sizeof(*this)), followed by
 those same two publications. In the real derived PatRecord88 context, VC8
 naturally removes overwritten base/virtual-pointer stores and emits the exact
-same300-byte constructor. No inline directive, barrier, manual vtable address,
+same 300-byte constructor. No inline directive, barrier, manual vtable address,
 padding or register annotation is used. The destructive whole-object clear
 was already independently observed in the effect temporary.
 
@@ -36,7 +36,7 @@ without changing native destinations or widening data contracts.
 Five affected PAT/base lifetime roots remain canonical exact:
 460F90/300,45FFD0/515,4601E0/30,421A70/21,421A90/47.
 
-The complete effect loader remains nonexact2528/2528 with exactly its prior
+The complete effect loader remains nonexact 2528/2528 with exactly its prior
 canonical source hash:
 94b3933b2f738df5bc2b78da6ea254f3bec748027eba57fcefc6dccfca1ab49b.
 Its first residual remains+1269/4383B5. Neither the unchanged size nor shared

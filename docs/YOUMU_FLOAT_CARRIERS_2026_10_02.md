@@ -99,7 +99,7 @@ these discrepancies do not justify additional frame padding.
 | Assignment to the existing float inside both 601 branches | Same compared window as the 601-only float carrier. | Alternate spelling not retained. |
 | Either range-result local narrowed to uchar | 19/98; loses mid 304/401/402/520/521. | Not retained; downstream byte consumption does not prove local width. |
 | Existing named animation/sequence prefix, optionally peer prefix | 25/98, metadata `+0x92A4`; no further gain. | Not retained; no shared header changed. |
-| Installed VC8 RTM, both float carriers | 25/98, metadata `+0x92BC`; first mismatch `+0xCA`, target64/candidateE3. | Private compiler probe; configured SP1 profile retained. |
+| Installed VC8 RTM, both float carriers | 25/98, metadata `+0x92BC`; first mismatch `+0xCA`, target 64/candidateE3. | Private compiler probe; configured SP1 profile retained. |
 
 RTM `cl.exe`, `c1xx.dll` and `c2.dll` report `14.0.50727.42`.
 RTM cl SHA-256 is

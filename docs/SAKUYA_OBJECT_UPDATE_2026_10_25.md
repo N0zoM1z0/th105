@@ -2,16 +2,16 @@
 
 `SakuyaObject_update_action_state @ 0x004E0D30` now has a manual complete-body
 source hypothesis. It is **not exact**. Formal and independent cold ordinary
-VC8 builds emit29408 bytes, SHA256
+VC8 builds emit 29408 bytes, SHA256
 `3e0aa7a9293563dd879d253047218a3cf9140b6fce7bfb9b8ce30c515c35bc9c`,
-against29476 target bytes. Full unmasked comparison reports27397 differing
+against 29476 target bytes. Full unmasked comparison reports 27397 differing
 bytes, first+37 in the primary default-branch destination. This is not a small
 localized residual or a partial exact claim. The later controls below leave
 this root parked pending new independent sharing/lifetime evidence.
 
 ## Observed target and complete boundary
 
-The executable is original Japanese1.06a, SHA256
+The executable is original Japanese 1.06a, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 IDA preflight rejects the GUI's different executable. All analysis reads use
 the hash-attested PE or the independently attested optional database below.
@@ -21,32 +21,32 @@ The raw audit is reproducible without an analysis GUI:
 taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-sakuya-object-update.py --target-only
 ```
 
-RTTI-backed roster evidence and raw primary slot28 cell6C48B4 bind SakuyaObject
-vtable6C488C to4E0D30. Its separate slot3C cell6C48C8 points to4E8060, the
+RTTI-backed roster evidence and raw primary slot 28 cell 6C48B4 bind SakuyaObject
+vtable 6C488C to 4E0D30. Its separate slot 3C cell 6C48C8 points to 4E8060, the
 previously reviewed initializer. No initializer implementation is changed here.
 
 The callable range is `[4E0D30,4E7E69)`,28985 bytes, SHA256
 `592df4424de962d219caa2e73d62ab420ed0d0438ba009b20b94f4b9df51ca94`.
-Raw traversal closes all6774 decoded instructions/all28985 bytes,47 RET0s,
-232 direct calls to20 entries and48 indirect calls. Every branch and table
+Raw traversal closes all 6774 decoded instructions/all28985 bytes,47 RET 0s,
+232 direct calls to 20 entries and 48 indirect calls. Every branch and table
 destination stays within the callable range. There is no external direct tail
 jump or unreviewed unreachable callable instruction.
 
-The prologue aligns ESP to eight bytes, allocates0xD0 bytes, saves EBX/EBP/ESI/
+The prologue aligns ESP to eight bytes, allocates 0xD0 bytes, saves EBX/EBP/ESI/
 EDI below that frame and retains ECX in ESI. No GS/EH frame is present. The
 source uses a pointer-only virtual view and typed offsets; never instantiate
 or embed this as a recovered complete allocation. Original nominal return
 type, full class layout and original translation unit remain unknown.
 
-Complete `[4E0D30,4E8054)` is29476 bytes, SHA256
+Complete `[4E0D30,4E8054)` is 29476 bytes, SHA256
 `453a7abb8a48642f5852078059893f8611d26b07c77ae67d8747c4fadcd42ce3`.
-Its491 noncallable bytes partition as:
+Its 491 noncallable bytes partition as:
 
 | Address | Contents |
 | --- | --- |
 | 4E7E69 | three-byte LEA ECX,[ECX] alignment |
 | 4E7E6C |33 DWORD destinations |
-| 4E7EF0 |200-byte remap for actions800..999 |
+| 4E7EF0 |200-byte remap for actions 800..999 |
 | 4E7FB8 |5 DWORD destinations |
 | 4E7FCC |5 DWORD destinations |
 | 4E7FE0 |7 DWORD destinations |
@@ -54,27 +54,27 @@ Its491 noncallable bytes partition as:
 | 4E8020 |4 DWORD destinations |
 | 4E8030 |9 DWORD destinations |
 
-All72 destination DWORDs/288 bytes and200 remap bytes participate. Twelve INT3
-bytes separate this payload from4E8060; none is included. Metadata/alignment
+All 72 destination DWORDs/288 bytes and 200 remap bytes participate. Twelve INT3
+bytes separate this payload from 4E8060; none is included. Metadata/alignment
 receive no callable-byte credit.
 
-The32 explicit primary actions are800..805,810..813,815..818,849..859,
+The 32 explicit primary actions are 800..805,810..813,815..818,849..859,
 900,901,920,930,980,998,999. All other remap entries reach the default frame
-continuation. Nested state switches belong to803,815,859,901 and999;920 also
+continuation. Nested state switches belong to 803,815,859,901 and 999;920 also
 switches on the existing match-identifier global.
 
 ## Optional analysis hypothesis and manual source
 
-A single direct Ghidra headless process ran readonly/noanalysis, CPU0/nice10,
-one CPU and384MiB heap. It attested the imported executable SHA256, PE image
+A single direct Ghidra headless process ran readonly/noanalysis, CPU 0/nice10,
+one CPU and 384MiB heap. It attested the imported executable SHA256, PE image
 base/entry, language/compiler and all mapped section bytes before inspecting
 this root. The temporary bounded body and declaration-only callee ABI views
 were read back. The root entry was removed, the transaction rolled back, and
 root metadata read back again. All nine primary project-file hashes agree
-before/after; the process terminated0 with its attestation sentinel.
+before/after; the process terminated 0 with its attestation sentinel.
 
-The private3119-line decompiler output is a control-flow/type hypothesis, not
-selected source. The manually written source expresses32 complete actions with
+The private 3119-line decompiler output is a control-flow/type hypothesis, not
+selected source. The manually written source expresses 32 complete actions with
 numeric states, typed offset reads/writes, consumed local parameter packets and
 real declaration-only calls. Target instructions determine widths, physical
 edges, helper contracts, scalar rounding and publication order. No decompiler
@@ -113,40 +113,40 @@ Examples of independently inspected source distinctions:
 
 - The RNG provider retains its accepted int declaration, while these callers
   explicitly reinterpret the result as unsigned before conversion: FILD plus
-  a conditional2^32 addition is observed. The unsigned `roll(16)-8` conversion
+  a conditional 2^32 addition is observed. The unsigned `roll(16)-8` conversion
   is preserved too. It must not be replaced with a signed random range.
-- The800-family speed products visibly store/reload a float before adding
-  the wider5/6 constants. Twenty-one corresponding random-speed expressions
+- The 800-family speed products visibly store/reload a float before adding
+  the wider 5/6 constants. Twenty-one corresponding random-speed expressions
   now retain that consumed single-precision boundary. Float-promoted qword
-  operands such as0.01/0.1/0.05 use the target's extended float values.
-- The805 and810 trigonometric consumers use ST0 without an intermediate float store.
-  Raw810 spills the captured facing value as a qword across the trig call.
+  operands such as 0.01/0.1/0.05 use the target's extended float values.
+- The 805 and 810 trigonometric consumers use ST0 without an intermediate float store.
+  Raw 810 spills the captured facing value as a qword across the trig call.
   Its duplicated owner-valid/owner-invalid orbit paths remain independent
   call sites; all six sine and six cosine calls survive. Captured owner
   pointers and vertical coordinates respect their observed call epochs.
-- The859/901 distance paths capture the radius-times90 product as a float
+- The 859/901 distance paths capture the radius-times90 product as a float
   before calls, retain the first squared result in a qword across the second
   square call, then round the sum for the square-root argument. These real
   consumed wider values restore ordinary eight-byte stack alignment.
-- Six real three-float spawn packets occur in802,804,805 twice,817 and818.
+- Six real three-float spawn packets occur in 802,804,805 twice,817 and 818.
   Giving each its observed independent local lifetime replaces one shared
- 16-byte packet with six12-byte packets: the56-byte difference explains the
-  measured frame change0x98 to0xD0 exactly. Each packet is passed to a real
+ 16-byte packet with six 12-byte packets: the 56-byte difference explains the
+  measured frame change 0x98 to 0xD0 exactly. Each packet is passed to a real
   parented/owned spawn. The remaining packets also have real call consumers.
 - Several bounds paths use ordered conjunction rejection; other paths use
   explicit outside comparisons. These differ for unordered inputs and remain
-  separate. The803 transparency conversion saves the x87 control word, sets
-  truncation bits0xC00, executes FISTP and restores the control word. Source
+  separate. The 803 transparency conversion saves the x87 control word, sets
+  truncation bits 0xC00, executes FISTP and restores the control word. Source
   byte conversions and captured scalar values retain this contract.
 - 849 performs two horizontal updates and two quarter-scaled vertical updates
-  in its phase2 path. They remain separate operations.998 performs its three
+  in its phase 2 path. They remain separate operations.998 performs its three
   distinct parent-action position checks.999 retains independent parent
   coordinate publication, repeated stage-height calls and post-frame velocity/
   gravity publications. These repeated operations are not deduplicated.
 
-Four separately declared float cells6FBD1C/20/24/28 are provisional boundary
+Four separately declared float cells 6FBD1C/20/24/28 are provisional boundary
 views. Their address aliases attest loader-zero storage, not runtime constant
-values or a complete global owner. The existing6FA894 match-identifier binding
+values or a complete global owner. The existing 6FA894 match-identifier binding
 is reused unchanged.
 
 ## Early whole-function comparison and controls
@@ -157,27 +157,27 @@ relocations. No code, jump table, remap or alignment bytes are masked.
 | Complete source/control | Full bytes | SHA256 prefix | Evidence/result |
 | --- | ---: | --- | --- |
 | First manual body |—|—|ordinary random conversion helper remained out of line; unsupported target edge stopped replay|
-| Expand the real random conversion expression |29312|f7a99fa9|first complete canonical comparison; unaligned0x8C frame,50 RETs/16 frame calls|
+| Expand the real random conversion expression |29312|f7a99fa9|first complete canonical comparison; unaligned 0x8C frame,50 RETs/16 frame calls|
 | Preserve observed double captures/results |29200|29d991de|eight-byte alignment restored;0x98 frame,52 RETs/17 frame calls|
-| Restore six independently consumed packets |29264|ba67850d|target0xD0 frame restored exactly|
+| Restore six independently consumed packets |29264|ba67850d|target 0xD0 frame restored exactly|
 | Restore random-product float boundaries |29408|f82af9da|21 rounded products retained; first+37 remains|
-| Capture803 alpha before byte conversion |29408|3e0aa7a9|selected complete source; scalar allocation changes, but alpha calls remain2/3|
+| Capture 803 alpha before byte conversion |29408|3e0aa7a9|selected complete source; scalar allocation changes, but alpha calls remain 2/3|
 
-All seven destination-table dimensions33/5/5/7/9/4/9 and the full200-byte primary
-remap agree. All48 virtual calls and19 of20 direct-callee counts agree. The
-selected source has52 RETs against47 and two secondary-alpha calls against
+All seven destination-table dimensions 33/5/5/7/9/4/9 and the full 200-byte primary
+remap agree. All 48 virtual calls and 19 of 20 direct-callee counts agree. The
+selected source has 52 RETs against 47 and two secondary-alpha calls against
 three. There is no byte-neutral repeat grid, compiler-profile change, behavior
 matrix, assembly, copied byte array, padding, inert local or fake return.
 
-All738 selected section relocations replay. Formal and independent cold
-objects reproduce the same29408-byte canonical hash and27397 differences.
+All 738 selected section relocations replay. Formal and independent cold
+objects reproduce the same 29408-byte canonical hash and 27397 differences.
 The physical comparison remains broadly different; matching frame/counts are
 diagnostics only. No `matches.csv` row or exact-byte credit is added.
 
 A generated-COFF-only negative changes the final default-remap entry for source
-action997, at generated address4E7F71/+29249, from valid index32 to valid0.
+action 997, at generated address 4E7F71/+29249, from valid index 32 to valid 0.
 That byte originally agreed with the aligned target byte. Parsing succeeds,
-but full differences rise to27398, SHA256
+but full differences rise to 27398, SHA256
 `e424044cb987942ef1e2e8524a110d3d13ac4222fb3e4b59e8e94c70c701370b`.
 The canonical PE and selected object are unchanged. Five synthetic controls
 exercise all seven tables/200 indices, an invalid final remap index, a metadata
@@ -185,8 +185,8 @@ destination, a truncated final table and an external CFG tail.
 
 ## Reproduction and continuation
 
-Use locked repository Python and serial CPU0/nice10 jobs. The retained nonexact
-comparison commands intentionally return1:
+Use locked repository Python and serial CPU 0/nice10 jobs. The retained nonexact
+comparison commands intentionally return 1:
 
 ```sh
 taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-sakuya-object-update --compare --json
@@ -199,15 +199,15 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/audit-sakuya-object-update.p
 Only the local source/interface/unit,79 exclusively named literal aliases and
 four boundary-address aliases are added. No accepted unit references these
 aliases. Previous source/layout/header/compiler/bindings remain unchanged.
-Accepted graph remains524 units/1412 functions/381108 callable authored bytes;
+Accepted graph remains 524 units/1412 functions/381108 callable authored bytes;
 the prior Remilia checkpoint is still the latest aggregate cold receipt. No
-new aggregate cold replay is claimed. Ledger validation records mapped1578,
-source-present1559 and598 configured units/1566 functions;1484 floating target
+new aggregate cold replay is claimed. Ledger validation records mapped 1578,
+source-present1559 and 598 configured units/1566 functions;1484 floating target
 references pass.
 
 ## Follow-up: physical sharing and closed controls
 
-The baseline formal replay retains the selected full 29408-byte hash above and27397
+The baseline formal replay retains the selected full 29408-byte hash above and 27397
 differences. These are complete canonical comparisons with relocation replay;
 shorter output or fewer differing byte positions does not establish a better
 reconstruction.
@@ -218,51 +218,51 @@ and every nested switch destination, so it overapproximates feasible execution.
 It is neither a runtime matrix nor a proof of execution equivalence. Some
 cases share tails; their reachable-return counts must not be summed.
 
-For frame helper4351C0, target812/815/855 reach the same physical call4E319E.
-The selected source shares812/855 at4E31B2 but leaves815 at4E3A07. Conversely,
-target816 owns4E3FC8, while the selected source folds816 into4E1DAD, shared with
+For frame helper 4351C0, target 812/815/855 reach the same physical call 4E319E.
+The selected source shares 812/855 at 4E31B2 but leaves 815 at 4E3A07. Conversely,
+target 816 owns 4E3FC8, while the selected source folds 816 into 4E1DAD, shared with
 803/811/813/850/852/856/857/858/859/900/901/980/998. The corresponding target
-group uses4E1D99 without816. Thus the matching total17 frame calls compensates
+group uses 4E1D99 without 816. Thus the matching total 17 frame calls compensates
 for two different sharing decisions; it does not establish the target graph.
 
-Target803 owns two alpha-helper calls4E18CD/4E1BD8. Its generated second path
-instead joins the first call at4E18DA through the receiver reload at4E18D8.
-Raw target0/1 loads that receiver before FNSTCW;3/4 loads it after the argument
+Target 803 owns two alpha-helper calls 4E18CD/4E1BD8. Its generated second path
+instead joins the first call at 4E18DA through the receiver reload at 4E18D8.
+Raw target 0/1 loads that receiver before FNSTCW;3/4 loads it after the argument
 push but before FLDCW. These observations identify allocation/sharing epochs,
 without proving the original source expression or nominal helper prototype.
 
-Fresh raw provider496370 is35 bytes, SHA256
+Fresh raw provider 496370 is 35 bytes, SHA256
 `6f202f689fce83ecace5dbfc88c86b7beb43987372f2320c272cb9f47f9072f1`.
 It reads only the low byte of the four-byte argument slot, composes the alpha
-word and tails42FD80, or returns with RET4 when its renderer is absent. This
+word and tails 42FD80, or returns with RET4 when its renderer is absent. This
 supports a local word-carrier diagnostic with explicit caller byte casts;
 it does not recover an original nominal int parameter or justify changing the
 selected declaration/shared provider.
 
 | Isolated question / receipt basename | Full bytes | SHA256 prefix | Differences / observation |
 | --- | ---: | --- | --- |
-|803 zero on left of comparison: `zero-left803`|29416|cfd9d773|27270;52 RETs, alpha2|
+|803 zero on left of comparison: `zero-left803`|29416|cfd9d773|27270;52 RETs, alpha 2|
 |803 consume assigned alpha directly: `consumed-alpha803`|29408|f82af9da|27397; identical to prior random-product candidate|
-|803 local low-byte word carrier: `word-carrier803`|29412|60311bf6|27279;52 RETs, alpha2|
-|815 explicitly joins812 frame tail: `shared-frame815`|29040|ffc4bfc5|27562;48 RETs,16 frame calls, alpha2|
+|803 local low-byte word carrier: `word-carrier803`|29412|60311bf6|27279;52 RETs, alpha 2|
+|815 explicitly joins 812 frame tail: `shared-frame815`|29040|ffc4bfc5|27562;48 RETs,16 frame calls, alpha 2|
 |816 early-return spelling on previous control: `early-return816`|29040|ffc4bfc5|byte-identical to previous control|
-|800 inclusive2/4/6 relation forms: `inclusive-phase800`|29404|7aafbb15|27218;52 RETs,17 frame calls, alpha2|
+|800 inclusive 2/4/6 relation forms: `inclusive-phase800`|29404|7aafbb15|27218;52 RETs,17 frame calls, alpha 2|
 |800 consumed next-Y capture: `captured-position800`|29408|3e0aa7a9|byte-identical to selected source|
 
 Each basename has a full JSON hash/comparison, canonical binary, disassembly,
-relocation bindings, object and compiler log. The explicit815 join answers a
+relocation bindings, object and compiler log. The explicit 815 join answers a
 real target edge but triggers broader tail factoring and loses a frame call;
-it is unselected. None of the controls restores three alpha calls or47 returns.
+it is unselected. None of the controls restores three alpha calls or 47 returns.
 The consumed-alpha, early-return and next-Y questions have repeated complete
 outputs and are closed absent new independent evidence. Inclusive comparisons
 do not justify adding a constant local to force EBX. No flag grid or runtime
 matrix was run.
 
 No implementation/header, accepted unit, literal binding, exact ledger or
-aggregate total changes in this follow-up. Keep the selected29408/3e0aa7a9
-source and its mandatory nonexact status. Park4E0D30 and independently review
-another source-missing large Object root;5F9420 is a provisional27874-byte
-KomachiObject slot28 candidate, requiring its own fresh attestation and complete
+aggregate total changes in this follow-up. Keep the selected 29408/3e0aa7a9
+source and its mandatory nonexact status. Park 4E0D30 and independently review
+another source-missing large Object root;5F9420 is a provisional 27874-byte
+KomachiObject slot 28 candidate, requiring its own fresh attestation and complete
 boundary/ABI review. Remaining Sakuya unknowns include full execution
 equivalence, precise expression/return sharing, original nominal owner/return
 type and original TU/compiler context. No new aggregate cold replay is claimed.
@@ -352,8 +352,8 @@ Fresh full payload comparison remains 29,228/native29,476 bytes, first mismatch
 `116e0ac5d4587b9b1c4fbe1731b5088b81a1f6bec5df01e30e115452edfb9469`.
 All 83 non-debug COFF sections retain their bytes, attributes and relocation
 roles after the three external-symbol substitutions, without local-label
-changes. The three provider units replay motion57, frame62, six-state66 and
-co-emitted phase73 exact; their existing Reimu parent remains unchanged and
+changes. The three provider units replay motion 57, frame 62, six-state66 and
+co-emitted phase 73 exact; their existing Reimu parent remains unchanged and
 nonexact. No new authored exact credit or source-origin pin change.
 
 The actual source closure is this one update unit. Tracking validation, scoped CI

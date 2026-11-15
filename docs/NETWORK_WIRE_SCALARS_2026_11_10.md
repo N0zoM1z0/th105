@@ -16,8 +16,8 @@ int object or an incompatible reference in the reconstructed C++.
 
 Three affected units were rebuilt with their unchanged pinned profiles. All
 15 configured roots remain locally canonical exact, including ACK_INFO
-serialization292/parsing183, INPUT serialization104/parsing78 and the
-REQUEST_REPLAY serialization27/parsing19 pair. All 527 non-debug sections and
+serialization 292/parsing183, INPUT serialization 104/parsing78 and the
+REQUEST_REPLAY serialization 27/parsing19 pair. All 527 non-debug sections and
 885 relocation records are identical to fresh pre-change objects, including
 EH support and the separately configured GS-off request pump. No shared header,
 relocation mapping, accepted-byte ledger or pending input pin changed.

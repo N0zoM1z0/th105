@@ -18,14 +18,14 @@ new evidence. No database or target bytes are modified.
 | 4097A0 population | 270 / 94 | `e630b34ff2c155e3cd7fc231b76fa1ff34e28afe2f0ddf6fb232e29035ab7e93` |
 
 Independent CFG traversal reaches every instruction and closes the wrapper's
-two RET28 paths and backend RET20. Existing exact UI/network callers establish
+two RET 28 paths and backend RET 20. Existing exact UI/network callers establish
 the wrapper's hidden four-byte class-result convention. The source uses the
 existing `TextureHandleResult` view; original nominal API/class names remain
 unknown.
 
 The wrapper initializes the token, acquires its stable cell, writes null to
 that cell and invokes 4097A0. A negative backend HRESULT recycles the token
-through 405200 and returns handle0. Otherwise the class result contains the
+through 405200 and returns handle 0. Otherwise the class result contains the
 acquired token. The source provides actual native deque/vector/list policy,
 generation rollover and lock lifetime for acquisition/recycling. These support
 the caller context without new helper credit; the existing 405200 acceptance
@@ -34,16 +34,16 @@ in the networking unit is unchanged.
 Backend 4097A0 uses ESI for the mutable font state, EAX for unsigned height and
 five stack words for cell/text/width/two output pointers. Its complete policy is:
 
-- Test the backend caps byte at aggregate+64, before locking. Bit20 makes the
+- Test the backend caps byte at aggregate+64, before locking. Bit 20 makes the
   unsigned dimensions square by enlarging the smaller one.
-- Lock the backend and call D3DXCreateTexture with levels1, usage0, format21
-  and pool1; unlock. Negative creation status returns immediately.
-- Lock again and call texture vslot4C/LockRect. Exactly status0 enters the
+- Lock the backend and call D3DXCreateTexture with levels 1, usage0, format 21
+  and pool 1; unlock. Negative creation status returns immediately.
+- Lock again and call texture vslot 4C/LockRect. Exactly status 0 enters the
   clear/render path; other statuses skip it and are returned after unlocking.
 - Clear `4 * height * width` bytes with 32-bit unsigned multiplication. Publish
-  font cursor144 before base140, signed pitch/4 at150, width14C and height148.
-- Call normal ECX/RET12 font entry412670 with text and the two optional output pointers.
-  Reload the texture through the original cell for vslot50/UnlockRect, whose
+  font cursor 144 before base 140, signed pitch/4 at 150, width 14C and height148.
+- Call normal ECX/RET12 font entry 412670 with text and the two optional output pointers.
+  Reload the texture through the original cell for vslot 50/UnlockRect, whose
   result is discarded. Unlock the backend and return the saved LockRect status.
 
 The fresh texture reload and ordered font publications are source-visible
@@ -52,7 +52,7 @@ virtual calls. It retains explicit backend locks, matching the target's absence
 of exception cleanup around text drawing. The acquire provider separately has
 the target-observed RAII lock/unwind policy.
 
-Raw412670 conditionally writes zero through each final argument before drawing,
+Raw 412670 conditionally writes zero through each final argument before drawing,
 then passes those pointers onward. They are optional output pointers. The public
 wrapper declaration now passes them as typed pointers; its six existing caller
 bindings use the compiler-confirmed decorated name, and existing calls supply
@@ -76,27 +76,27 @@ taskset -c 0 nice -n 10 python3 scripts/build.py \
 
 The source wrapper's release uses normal ECX while the original uses EAX.
 The real file-local backend naturally receives font in ESI and height in EAX,
-but additionally promotes width into ECX, yielding RET16 instead of target
-RET20. It lacks the target's aligned EBP frame. No external private-register
+but additionally promotes width into ECX, yielding RET 16 instead of target
+RET 20. It lacks the target's aligned EBP frame. No external private-register
 prototype, forced frame, assembly, inert local or fabricated return is used.
 These are concrete context differences; they do not prove that standalone
 recovery is impossible.
 
-The actual D3DX call at4097E3 reaches thunk68989C, whose FF25 target is IAT
+The actual D3DX call at 4097E3 reaches thunk 68989C, whose FF25 target is IAT
 6C02B0, identified as `d3dx9_33.dll!D3DXCreateTexture`. Source uses the matching
 ordinary E8 import-thunk declaration. The earlier dllimport control emitted a
 different call form. Complete comparisons include every instruction and named
 call/data relocation; neither a smaller size nor partial agreement adds credit.
 
-An honest linked experiment still needs the real normal font provider412670
+An honest linked experiment still needs the real normal font provider 412670
 and its begin/end/glyph/markup callees. This checkpoint keeps that open instead
 of manufacturing a provider. Recover those bodies or another independently
 supported TU/lifetime property before retesting CIL/private lowering.
 
 ## Binding scope, ledgers and verification
 
-The sole shared mapping addition is offset100/0x64 on the existing
-`g_d3d_backend` aggregate. The target test at4097A9 independently proves that
+The sole shared mapping addition is offset 100/0x64 on the existing
+`g_d3d_backend` aggregate. The target test at 4097A9 independently proves that
 caps+3C access; no overlapping standalone flags global is invented. Existing
 base bytes, previous offsets and validation rules stay in force.
 
@@ -105,7 +105,7 @@ Actual bindings, transitive source uses and native COFF symbol references select
 All **207 accepted functions** cold-build and compare exact after the mapping
 and output-pointer declaration changes. No unrelated or aggregate replay is claimed.
 The 270-byte game's font/D3D policy now has positive authored classification;
-the wrapper retains its existing authored rule. Acquire405090 and font412670
+the wrapper retains its existing authored rule. Acquire 405090 and font 412670
 remain outside the new source-present/credit rows.
 
 ```bash
@@ -131,32 +131,32 @@ label and any complete-size168 assumption. The earlier typed-pointer source SHA
 above describes the frozen preceding checkpoint. Real provider/TU closure remains
 open, with no new exact acceptance.
 
-## November1: real font provider and shared texture callers
+## November 1: real font provider and shared texture callers
 
 The earlier missing-provider prerequisite is now resolved for a bounded genuine
 CIL control. Actual TextFontLinked.cpp and TextTextureRuntime.cpp compile together
 with the existing GDI, D3D, runtime and source-owned data contracts. No function
 stub, guessed nothrow, fabricated private ABI or source-body change is supplied.
-The actual unexported population provider is reached from404D00 through its
-recorded404D3A call; the unchanged static-leaf gate verifies this path.
+The actual unexported population provider is reached from 404D00 through its
+recorded 404D3A call; the unchanged static-leaf gate verifies this path.
 
-Complete wrapper404D00 remains110/native111, first+7; canonical hash
+Complete wrapper 404D00 remains 110/native111, first+7; canonical hash
 cfb6e605a3603ca38bf63cfaf19a0166e1fe322003a1f9fceaa2b207743b9532.
-Population4097A0 now emits269/native270, first+17, canonical hash
+Population 4097A0 now emits 269/native270, first+17, canonical hash
 4b3fa6951917aa914a0b7f0b28303db349c5bfebc87e6108809c32a61e4e5b0e.
 It naturally gains the native aligned EBP frame/16-byte allocation but still
-passes width privately in ECX and returns16 rather than the native20. Thus the
-real font context changes the former264-byte candidate without closing the
+passes width privately in ECX and returns 16 rather than the native 20. Thus the
+real font context changes the former 264-byte candidate without closing the
 source/private-argument residual. All bytes and source address fields remain
 subject to the ordinary canonical comparison; neither result is accepted.
-The existing color352, finish168 and reset162 all freshly pass through their
+The existing color 352, finish 168 and reset 162 all freshly pass through their
 actual complete font caller paths in this same private image.
 
 One further genuine caller control combines the actual reader/PNG/DDS/bitmap
 provider graph with font/text creation and the real bitmap-load wrapper. No extra
 helper implementation is invented. The text wrapper remains identical 110/cfb6e605,
-bitmap wrapper93/native99 remains nonexact+0, acquire454 and release163 remain
-nonexact. The population body is269 but this second control is NOT an accepted
+bitmap wrapper 93/native99 remains nonexact+0, acquire 454 and release 163 remain
+nonexact. The population body is 269 but this second control is NOT an accepted
 private-leaf proof: the verifier rejects its .analysis source path, as designed. No
 verifier/source-path relaxation or extra acceptance follows. The two public wrapper
 comparisons run independently without bypassing that gate.
@@ -168,7 +168,7 @@ independent evidence. Original nominal APIs, physical argument allocation and
 original TU boundaries remain unresolved.
 
 The corresponding private directory retains the complete source/units/recipes.
-Native work was serial CPU0/nice10; images were never executed.
+Native work was serial CPU 0/nice10; images were never executed.
 
 ## 2026-11-14: argument mapping and promotion trials
 
@@ -178,7 +178,7 @@ release call, and the EAX argument for the population call. Decoding the target
 call at 0x404D3A, it pushes `cell, text, width, width_out, height_out`, passes
 `height` in EAX and `font` in ESI. The population body reads `width` from
 `[ebp+0x10]`. The rebuild also promotes `width` into ECX, which removes one push
-in the caller (39/40 instructions) and gives RET16 instead of RET20.
+in the caller (39/40 instructions) and gives RET 16 instead of RET 20.
 
 These variants leave the ECX promotion in place:
 - extern linkage instead of `static`;

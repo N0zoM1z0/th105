@@ -19,17 +19,17 @@ Pinned /O2 /GS now reproduces both entire canonical bodies:
  including both range-copy directions, real element teardown, every check,
  return iterator and all absolute/relative relocations.
 
-The public vc8-sequence-card-library-origin unit compares all658 bytes.
-Full-inventory source fingerprints independently pass unchanged0.70 minimum
+The public vc8-sequence-card-library-origin unit compares all 658 bytes.
+Full-inventory source fingerprints independently pass unchanged 0.70 minimum
 coverage,24-byte minimum, no alignment tail and complete unique hit sets. The
 source's exact nominal template spelling is a recovered view, not claimed as
 unique original text. These two bodies are compiler exclusions only.
 
-The directly reused selected rotation265 and implicit copy116 freshly replay
-exact, as do all96 generated rotation support bytes. Source, existing profiles,
+The directly reused selected rotation 265 and implicit copy 116 freshly replay
+exact, as do all 96 generated rotation support bytes. Source, existing profiles,
 shared declarations and verification tools are unchanged. The failed advance
 163/168 controls remain failed and unselected.
 
-Exclusions become1782 and review449; units761. Exact1578/448979, source1776,
-authored1796 and mapped1803 are unchanged. No compiler bytes count as game
+Exclusions become 1782 and review 449; units 761. Exact 1578/448979, source 1776,
+authored 1796 and mapped 1803 are unchanged. No compiler bytes count as game
 matching progress.

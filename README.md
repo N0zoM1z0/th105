@@ -153,7 +153,7 @@ The separate original narrow-instance library probe additionally requires
 
 ## Isolated patched VC8 runtime reference
 
-Some original-runtime provenance probes explicitly select Microsoft's KB971090
+Some original-runtime provenance probes explicitly select Microsoft's KB 971090
 archive set. This never changes the active compiler or default link libraries.
 Use `scripts/repo-python scripts/upstream_vc8_runtime.py` to verify it;
 `--fetch` explicitly downloads/extracts the official package without running

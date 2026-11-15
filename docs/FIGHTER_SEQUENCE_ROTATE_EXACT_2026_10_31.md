@@ -10,11 +10,11 @@ it is not a new exclusion or authored match.
 ## Observations and source recovery
 
 The pinned Japanese v1.06a target remains the oracle. Its sprite copy publishes
-CSpriteBase vtable 6C0654 before copying texture04, the 112-byte vertex array and
+CSpriteBase vtable 6C0654 before copying texture 04, the 112-byte vertex array and
 two dimensions; it then publishes CSprite vtable 6C0668 and copies five floats.
 There is no initial IColor vptr publication. Raw RTTI identifies those classes.
 The existing CNumberColorLifetime already models the four-byte color interface.
-A local sprite-base view gives texture04 to the sprite base, rather than to the
+A local sprite-base view gives texture 04 to the sprite base, rather than to the
 older eight-byte IColor view. This leaves EffectSprite.hpp and all shared layouts
 unchanged. Ordinary implicit C++ copy generation now reproduces the whole body;
 there are no explicit copy assignments, manual vptr stores or copied code bytes.
@@ -26,7 +26,7 @@ Making the implicit copy visible with the older base layout first eliminated
 IColor publication. Correct texture ownership gives the native 116-byte copy.
 The last parent difference was a full-width versus byte-width final count load.
 The initial nonempty test remains unsigned. After real deque front/pop_front/
-push_back, a fresh unsigned-byte value is published to state55A and returned.
+push_back, a fresh unsigned-byte value is published to state 55A and returned.
 This is the actual observed AL value on both paths, not an inert scratch local.
 The existing unsigned-char ABI is unchanged; its original nominal return type
 is still unknown. The operation rotates the front entry to the back, not removal.

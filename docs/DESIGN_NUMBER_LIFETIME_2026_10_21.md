@@ -2,31 +2,31 @@
 
 `CDesignNumber_scalar_deleting_destructor @40BB00` is **61/61 canonical
 exact** in `gpt-web-cnumber-lifetime`. The sole affected source unit also
-freshly reproduces its five existing CNumber bodies at40/11/11/11/60 bytes.
-Only the new61-byte body receives new acceptance. ReimuObject496540 remains
-nonexact49655F/+31; no aggregate cold replay or percentage is claimed.
+freshly reproduces its five existing CNumber bodies at 40/11/11/11/60 bytes.
+Only the new 61-byte body receives new acceptance. ReimuObject496540 remains
+nonexact 49655F/+31; no aggregate cold replay or percentage is claimed.
 
 ## Observed target and ownership
 
 Only the original Japanese TH10.5 v1.06a executable is used, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Target and tracking preflight pass. IDA again rejects10350095... and supplies
+Target and tracking preflight pass. IDA again rejects 10350095... and supplies
 no semantics. There is no Ghidra process, database write or target patch.
 
-Vtable6D6AC0 has COL6DCAB0 and type descriptor6FA478, naming
+Vtable 6D6AC0 has COL 6DCAB0 and type descriptor 6FA478, naming
 `.?AVCDesignNumber@@`. Its hierarchy contains the zero-offset, nonvirtual
-CDesignObjectBase and IColor bases. Slot00 points to40BB00. The independently
-observed factory path starts40B7ED: scalar new allocatesE4 bytes, primary
-vptr6D6AC0 is published at40B809, CNumber vptr6C1B60 at whole+18 is published
-at40B814, and CTile vptr6C0718 at whole+40 at40B81E. The owned-value pointer
-at whole+3C is cleared at40B825. The allocation and actual member lifetimes
-support prefix18 + CNumberCC = completeE4, rather than deriving a class layout
+CDesignObjectBase and IColor bases. Slot 00 points to 40BB00. The independently
+observed factory path starts 40B7ED: scalar new allocatesE4 bytes, primary
+vptr 6D6AC0 is published at 40B809, CNumber vptr 6C1B60 at whole+18 is published
+at 40B814, and CTile vptr 6C0718 at whole+40 at 40B81E. The owned-value pointer
+at whole+3C is cleared at 40B825. The allocation and actual member lifetimes
+support prefix 18 + CNumberCC = completeE4, rather than deriving a class layout
 from the candidate instruction count.
 
 The complete callable is `[40BB00,40BB3D)`:21 reachable instructions, two
 conditional branches, two direct deallocator calls and one RET4. Every local
 edge closes inside the body; three following INT3 bytes isolate its end.
-The preceding accepted64-byte CDesignGage lifetime ends exactly at40BB00;
+The preceding accepted 64-byte CDesignGage lifetime ends exactly at 40BB00;
 there is no preceding alignment gap. Its RTTI-owned virtual slot supplies
 independent entry evidence. The full target and relocated object SHA256 is:
 
@@ -34,10 +34,10 @@ independent entry evidence. The full target and relocated object SHA256 is:
 
 ECX is the receiver, ESI preserves it, and EAX returns the original receiver.
 The body publishes the member's CNumber vptr, conditionally releases the
-owned pointer at+3C through6898EA, then restores IColor vptr6C0624 at tile+40,
-number+18 and outer+00 in that order. It tests bit0 of the flags argument and
+owned pointer at+3C through 6898EA, then restores IColor vptr 6C0624 at tile+40,
+number+18 and outer+00 in that order. It tests bit 0 of the flags argument and
 conditionally releases the complete receiver through the same deallocator.
-No remote tail, switch table or EH region is owned by this61-byte callable.
+No remote tail, switch table or EH region is owned by this 61-byte callable.
 The target contains the game's nontrivial owned-value cleanup, as do the
 already accepted CNumber/CDesignGage lifetime bodies; it is not classified
 from the optional receiver-free scaffold alone.
@@ -48,14 +48,14 @@ from the optional receiver-free scaffold alone.
 and CDesignNumber owner containing the existing CNumberLifetime at+18. Its
 ordinary implicit destructor destroys that real member before its base.
 No manual vptr stores, custom ABI, padding for code generation, inert locals,
-assembly or fabricated return is used. Assertions guard18/CC/E4 extents and
+assembly or fabricated return is used. Assertions guard 18/CC/E4 extents and
 the consumed member/value/tile offsets. The constructor expresses the
 factory-observed base initialization and emits the ordinary class lifetime;
 constructor machine bytes and complete runtime virtuals are not accepted.
 Original declaration spelling, full base data ownership and original TU
 partition remain open.
 
-The unchanged ordinary VC8 SP1 O2, GS-off profile naturally emits exactly61
+The unchanged ordinary VC8 SP1 O2, GS-off profile naturally emits exactly 61
 bytes. The normal comparator replays both real deallocator REL32 fields and
 all CNumber/IColor DIR32 fields using existing bindings. No external binding,
 shared header, compiler flag, accepted function partition or prior signature
@@ -68,12 +68,12 @@ extension. No native fixture is substituted for the full canonical result.
 |COFF|`c16db61d34a7c3ddbba0cb79c209f2eae8faabdf17ead732d97f20ec2df227e8`|
 
 The candidate, durable name, source-present row and match row are updated
-together. The official origin `baseline()` supplies the new row. All196
+together. The official origin `baseline()` supplies the new row. All 196
 explicit origin-rule selections are checked before/after, remain identical
 and exclude this address; the origin-rule file is unchanged. This bounded
 acceptance does not claim a fresh complete library-anchor replay.
 
-Builds run serially at CPU0/nice10; no unselected large products are created. The
+Builds run serially at CPU 0/nice10; no unselected large products are created. The
 new source is used only by the six-function affected unit.
 
 ```bash
@@ -85,22 +85,22 @@ taskset -c 0 nice -n 10 python3 scripts/ci.py
 git diff --check
 ```
 
-The focused command must report40/11/11/11/60/61 exact. Existing runtime
-initialization414E40 and other CNumber source files retain their prior state.
+The focused command must report 40/11/11/11/60/61 exact. Existing runtime
+initialization 414E40 and other CNumber source files retain their prior state.
 
 ## Rendering lead retained for continued reconstruction
 
-The same raw packet closes CDesignNumber's render entries40AF80/40AFC0 at
-55/63 bytes and37-instruction private helper414EB0 at95 bytes. Both callers
+The same raw packet closes CDesignNumber's render entries 40AF80/40AFC0 at
+55/63 bytes and 37-instruction private helper 414EB0 at 95 bytes. Both callers
 load `this+18` into EAX;414EB0 preserves that pointer in ESI and consumes the
-two float stack words with RET8. The complete raw E8/E9 encoding scan finds
-only the two caller sites40AFB0/40AFF7, both validated at instruction boundaries.
-No aligned .rdata/.data pointer names414EB0. This bounds the observed direct
+two float stack words with RET 8. The complete raw E8/E9 encoding scan finds
+only the two caller sites 40AFB0/40AFF7, both validated at instruction boundaries.
+No aligned .rdata/.data pointer names 414EB0. This bounds the observed direct
 and data surfaces; it does not exclude every computed edge.
 
 The helper selects a value-adapter virtual slot based on member+1C. Its
-integer path calls the accepted ordinary CNumber renderer414F10; the floating
-path calls415050 with its owner live in ESI. A fabricated external normal
+integer path calls the accepted ordinary CNumber renderer 414F10; the floating
+path calls 415050 with its owner live in ESI. A fabricated external normal
 thiscall declaration would hide that private continuation contract. These
 three rendering bodies, the floating continuation, their source context and
 unique original types remain unselected and nonexact. The new lifetime match

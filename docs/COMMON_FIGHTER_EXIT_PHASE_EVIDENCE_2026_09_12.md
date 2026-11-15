@@ -207,10 +207,10 @@ old negative conclusion stands.
 
 The native single-switch 690-owner question was also narrowed from the target
 edge already recorded in the owner audit. Starting from the 47/66
-`common-native-6364-return` diagnostic, making case690 repeat the low54/60
+`common-native-6364-return` diagnostic, making case 690 repeat the low 54/60
 `resolve; goto action0-terminal` source drops to **45/66** and moves the low54
 owner into the high partition. Repeating complete ordinary
-`resolve + advance + set_action(0) + return` semantics in both low54/60 and 690
+`resolve + advance + set_action(0) + return` semantics in both low 54/60 and 690
 fails closed because the candidate merges target-distinct physical owners.
 These results reject both natural-repeat forms as a way to combine the native
 single-switch SUB lowering with the shipped `JE 690 -> low54` ownership.

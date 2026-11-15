@@ -24,7 +24,7 @@ Both native and source have 421 decoded instructions, 419 reachable. The only
 unreachable instructions are LEA ESP,[ESP] at 420068 and NOP at 42006F, skipped
 by EB08 at 420066 before a 16-byte loop entry. All eight bytes remain in the
 comparison; the dedicated CFG audit permits only this exact reviewed span.
-Both RET0 paths at 41FF18 and 4204D8 are covered. The apparent saved EBP/EDI
+Both RET 0 paths at 41FF18 and 4204D8 are covered. The apparent saved EBP/EDI
 registers are not fabricated source parameters: this is bool thiscall render().
 
 ## Policy and data
@@ -62,7 +62,7 @@ boundary/padding contract and call-observer assertions.
 
 ## Reproduce and accounting
 
-Run serial CPU0/nice10 via scripts/repo-python:
+Run serial CPU 0/nice10 via scripts/repo-python:
 - scripts/build.py --unit exact-first-select-render --compare --json
 - scripts/audit-select-render.py
 - scripts/validate-tracking.py --require-target

@@ -33,10 +33,10 @@ The existing real parser in ScriptFileLoading.cpp already participates in
 the accepted CScript loader's source graph, but lacked a source/ownership
 ledger row. It is now registered as authored, nonexact source.
 
-Native [405930,405ABF) is 399 bytes / 137 instructions, ending in RET8 at405ABC.
+Native [405930,405ABF) is 399 bytes / 137 instructions, ending in RET 8 at 405ABC.
 Whole native SHA-256:
 dd534e8474d97ae97348bdcc0189d47ed643b55c98635446df715eec4ad4ecc9.
-The exact CScript loader405810 calls it at4058C7.
+The exact CScript loader 405810 calls it at 4058C7.
 
 A colon triggers factory-key lookup. The key ends at the first earlier space
 if present, otherwise at the colon. A temporary char array receives that
@@ -47,13 +47,13 @@ default factory creates a command and parses the entire original line.
 The returned command is appended to the owned command-pointer deque.
 No new token trimming, missing-factory error or exception cleanup is invented.
 
-The full linked source remains 405 bytes versus399 native. Explicit real
+The full linked source remains 405 bytes versus 399 native. Explicit real
 callee bindings now describe its array allocation/deletion and actual map/
 string/deque operations. Public exact replay still lacks a supported cleanup
 contract for this ordinary free stdcall function. The member-cleanup contract
 was not widened, and no fabricated member ABI or global-lifetime witness was
-introduced merely to obtain a comparison. Native handler6BDF48, FuncInfo6E45EC
-and one string cleanup at6BDF40 were inspected only as bounded evidence.
+introduced merely to obtain a comparison. Native handler 6BDF48, FuncInfo6E45EC
+and one string cleanup at 6BDF40 were inspected only as bounded evidence.
 The parser is neither exact nor promoted by its exact caller.
 
 ## Verification and accounting
@@ -63,8 +63,8 @@ retained in the same private build scope.
 
 Only the new parser authored-origin row is materialized; its whole hash and
 exact-caller edge pass the normal validator. No existing accepted function
-or byte count changes. Source 1,752; authored ownership 1,772; mapped1,779;
-review615; exclusions1,640; match units745. Exact remains1,553 /441,679 bytes.
+or byte count changes. Source 1,752; authored ownership 1,772; mapped 1,779;
+review 615; exclusions 1,640; match units 745. Exact remains 1,553 /441,679 bytes.
 
 ## Shared enqueue control, 2026-11-10
 

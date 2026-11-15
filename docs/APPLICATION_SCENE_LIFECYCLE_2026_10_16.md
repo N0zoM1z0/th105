@@ -39,28 +39,28 @@ calls CoUninitialize, then closes the event. It adds no null-event guard, lock,
 extra final drain or event-pointer clearing.
 
 The target's list fields are proxy+84, head+88 and size+8C, followed by event+90.
-Real VC8 checked `std::list<IScene*>` has the observed12-byte header. Its native
+Real VC8 checked `std::list<IScene*>` has the observed 12-byte header. Its native
 front/pop_front operations regenerate the safe-iterator checks, scalar-deleting
 virtual call, link updates and node deletion. The same source models both
 producer and consumer in `src/platform/ApplicationSceneLifecycle.cpp`, with
 offset/size assertions and no shared-header change. The full application class
 size and original source names remain unknown.
 
-Private insertion helper `4089C0` closes53 bytes / 26 instructions. The caller
+Private insertion helper `4089C0` closes 53 bytes / 26 instructions. The caller
 supplies EAX=&old_scene and a stack container pointer; the helper reads that
 value, calls independently compiler-classified51-byte node allocator `4129E0`,
 invokes `40C6D0`, links the node and returns RET4. The pinned list header's
-push_back/_Insert/_Incsize sequence corroborates those operations. Raw154-byte
+push_back/_Insert/_Incsize sequence corroborates those operations. Raw 154-byte
 `40C6D0` checks `3fffffff - size < 1`, builds the list length error on failure,
-otherwise increments size by1 and returns without a count argument. These
+otherwise increments size by 1 and returns without a count argument. These
 private entry shapes differ from ordinary standalone template methods.
 Both helper origin rows remain in review; semantic corroboration alone is not
 new exclusion or authored credit.
 
 ## Canonical result and compiler-phase evidence
 
-The initial ordinary COFF producer/consumer candidates are186/148 and278/281.
-The consumer already has148 consecutive central bytes identical to the target,
+The initial ordinary COFF producer/consumer candidates are 186/148 and 278/281.
+The consumer already has 148 consecutive central bytes identical to the target,
 but its prologue/epilogue and loop alignment differ. A complete static insertion
 wrapper is naturally inlined and leaves the producer unchanged; no noinline
 attribute, fake external private ABI or forced alignment is retained.
@@ -70,7 +70,7 @@ eight-byte-aligned frame, saved frame-pointer/EBP=1 lifetime and the complete
 **281/281 canonical exact** body. Target and canonical linked-body SHA-256 are
 identical to the table above. Five named CRT REL32 fields (four invalid-parameter
 calls and operator delete) replay; all absolute data/IAT references are checked.
-The named linked extent and complete CFG independently agree on281 bytes.
+The named linked extent and complete CFG independently agree on 281 bytes.
 The source producer remains **189/148 nonexact**, including a different frame
 and inlined insertion ownership. Original producer TU/inline context remains open.
 
@@ -107,7 +107,7 @@ COMDAT folding, template ownership or another compiler phase produced it.
 At the time of this audit, the additional raw E8 candidate at `40B9DC` had not
 been reached by the bounded `40B000` inspection. The subsequent
 [complete CDesignBase loader audit](DESIGN_BASE_NATIVE_VECTOR_2026_10_21.md)
-resolves the switch and reaches all860 instructions, including this call to
+resolves the switch and reaches all 860 instructions, including this call to
 `40C6D0`. Count that caller edge as verified; generic-helper source ownership
 remains open.
 
@@ -137,6 +137,6 @@ Unrelated origin fingerprints are preserved after scope/overlap checks.
 
 Direct Ghidra sessions independently attest executable/program SHA, image/entry, x86
 Windows identity and every mapped .text byte before saving and freshly reading back
-both names, complete extents, return/parameter widths, cdecl0 versus stdcall4 and
-body hashes. Processes use768MiB and two active processors; no failed IDA session or
+both names, complete extents, return/parameter widths, cdecl 0 versus stdcall 4 and
+body hashes. Processes use 768MiB and two active processors; no failed IDA session or
 factory adapter supplies analysis.

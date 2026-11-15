@@ -15,27 +15,27 @@ unique full canonical hits across the function inventory. They are generated/
 library ownership, not authored-game exact credit. Long is the original
 four-byte family witness, not a guessed nominal game payload type.
 
-Actual bad_alloc RTTI at6C05A0, original source/archive symbol ownership and
-typed metadata establish identity. A preliminary25-byte shape at401780 is
+Actual bad_alloc RTTI at 6C05A0, original source/archive symbol ownership and
+typed metadata establish identity. A preliminary 25-byte shape at 401780 is
 NOT bad_alloc: it calls logic_error4017A0 and writes a different class vptr.
-The real bad_alloc copy is402680, proved by native ThrowInfo and complete code.
+The real bad_alloc copy is 402680, proved by native ThrowInfo and complete code.
 401780 remains review; no shape-only nominal classification is accepted.
 
-Only five rows change to exclusion: excluded1994/review378. Authored
-exact1431/443916 bytes, source1635/authored1655/mapped1820/units776 stay.
+Only five rows change to exclusion: excluded 1994/review378. Authored
+exact 1431/443916 bytes, source 1635/authored1655/mapped1820/units776 stay.
 
 ## Overflow and noreturn proof
 
 The allocator bodies each have an ordinary return path and a terminal CALL
 to the original C++ throw implementation. The generic linked_pe closed-body
 gate still rejects a terminal CALL; it was not loosened. A new narrow allocator
-contract independently decodes all85 bytes, walks every CFG edge, rejects
+contract independently decodes all 85 bytes, walks every CFG edge, rejects
 unreachable bytes/interior branches/indirect calls and verifies the sole
 return and final named throw call.
 
-Both complete source and target CRT throw bodies are74 bytes. Canonicalizing
+Both complete source and target CRT throw bodies are 74 bytes. Canonicalizing
 only the record and RaiseException IAT pointers makes every byte agree.
-The original32-byte exception-record initializer also agrees completely;
+The original 32-byte exception-record initializer also agrees completely;
 its flags are EXCEPTION_NONCONTINUABLE=1. Source and target PE imports prove
 kernel32!RaiseException. This, not just a symbol name, justifies the terminal
 call boundary. The full throw and record hashes retain the already-reviewed
@@ -49,10 +49,10 @@ are checked, with no nonrelocation-byte changes.
 
 ## Complete typed support
 
-ThrowInfo6E3C18/16 has the actual normal destructor401630, no forward compat
-and the two-entry CatchableTypeArray6E3C0C/12. The two complete28-byte records
-prove bad_alloc and exception with size12, zero adjustment and pdisp=-1.
-Copy entries are402680 and689F82 respectively. The84 record bytes compare
+ThrowInfo6E3C18/16 has the actual normal destructor 401630, no forward compat
+and the two-entry CatchableTypeArray6E3C0C/12. The two complete 28-byte records
+prove bad_alloc and exception with size 12, zero adjustment and pdisp=-1.
+Copy entries are 402680 and 689F82 respectively. The 84 record bytes compare
 completely after typed pointer rebasing; both complete TypeDescriptors,
 including their type_info vptr, zero spare and terminated names, are checked.
 
@@ -78,7 +78,7 @@ All source pointer fields in code and metadata have exact HIGHLOW coverage.
 
 Receipts: build/origin-anchors/linked-bad-alloc/proof.json,
 logic-error-regression.json and negative-mutations.json. Target identity remains the
-pinned original Japanese1.06a SHA-256; this scope uses raw PE evidence, not new IDA
+pinned original Japanese 1.06a SHA-256; this scope uses raw PE evidence, not new IDA
 semantics. No executable is run or committed. The public Boost
-constructor112/native111 and payload-dependent tree helpers remain unaccepted. No
+constructor 112/native111 and payload-dependent tree helpers remain unaccepted. No
 native code copying, private export or fake ABI was used.

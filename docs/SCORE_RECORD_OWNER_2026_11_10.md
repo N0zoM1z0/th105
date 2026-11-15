@@ -103,7 +103,7 @@ member names and method lists. The shared declaration retains both real methods
 and checks the set's +0x44 offset. The narrow existing view and its decorated
 ABI names are retained; no unsupported alias to the full score type is added.
 
-All ten configured roots in the three affected units remain exact: CRC293, lookup99,
-publication86, six music-menu roots442/281/38/185/318/30, and list population867.
+All ten configured roots in the three affected units remain exact: CRC 293, lookup 99,
+publication 86, six music-menu roots 442/281/38/185/318/30, and list population 867.
 Every complete COFF section and relocation is byte-for-byte unchanged. The 30-byte
 deleting destructor remains compiler-owned.

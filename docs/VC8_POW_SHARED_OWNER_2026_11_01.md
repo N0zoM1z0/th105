@@ -1,17 +1,17 @@
 # Complete original pow shared owner
 
 68C28D/453 is whole canonical and inventory-unique from original pow.obj.
-The full x87 owner650 and P4 owner2912 both match, together with every byte
-of the P4 coefficient section14656. Only453 shared runtime bytes are newly
+The full x87 owner 650 and P4 owner 2912 both match, together with every byte
+of the P4 coefficient section 14656. Only 453 shared runtime bytes are newly
 classified. Public prefixes, the already owned P4 implementation, integer
-helper40, common helpers, data and alignment receive no new credit. Authored
+helper 40, common helpers, data and alignment receive no new credit. Authored
 exact coverage remains unchanged.
 
 ## Real entrypoints and exits
 
-The actual x87 source entries are _pow at0, __CIpow at64, __CIpow_default
-at123, __pow_default at148, start at157 and _test_whether_TOS_is_int at610.
-The ordinary and CI dispatchers reach the actual P4 entries698109/6980F0.
+The actual x87 source entries are _pow at 0, __CIpow at 64, __CIpow_default
+at 123, __pow_default at 148, start at 157 and _test_whether_TOS_is_int at 610.
+The ordinary and CI dispatchers reach the actual P4 entries 698109/6980F0.
 Both complete implementations participate in the proof; no external JMP or
 conditional exit is excused by a generic allowlist. P4 has one actual libm
 error-support call. The x87 path uses the named pow helper and real one-/two-
@@ -23,18 +23,18 @@ relocations in the last helper have their actual source names and zero
 addends. Its original constants belong to the independently verified complete
 common data section. The existing SSE-selector allocation, initializer and
 x87 control-word protocol are freshly replayed through the sine/sqrt gates.
-From the two x87 public roots, all939 instructions across3833 code bytes are
+From the two x87 public roots, all 939 instructions across 3833 code bytes are
 reachable. There are no unaccounted code bytes or invented public ABIs.
 
-The complete12-byte pow data section contains half8 and the four-byte operation
-name. Extended infinity is a complete10-byte object beginning at the actual
+The complete 12-byte pow data section contains half 8 and the four-byte operation
+name. Extended infinity is a complete 10-byte object beginning at the actual
 87tran.obj __infinity label and ending at __minfinity. Its original bytes,
 native initialized writable storage and exact position are verified. Its
 external reference uses an address binding backed by that independent owner;
 it is not misrepresented as a locally defined literal in pow.obj.
 
-The original x87 separator is NOP1. P4 ends with two exact LEA ESP,[ESP]
-instructions and NOP1, totaling15 bytes. Both source/native sections include
+The original x87 separator is NOP 1. P4 ends with two exact LEA ESP,[ESP]
+instructions and NOP 1, totaling 15 bytes. Both source/native sections include
 these bytes in the comparison, but the callable graph and new credit exclude
 them. No source text label enters the P4 alignment region.
 
@@ -51,8 +51,8 @@ native byte payload is authored.
 
 Ten tests reject partial bodies/masks, integer-helper double credit, wrong
 member/provider/data bindings, broken selector protocol and generic padding or
-external-tail waivers. All3919 actual byte mutation controls fail: every byte of
+external-tail waivers. All 3919 actual byte mutation controls fail: every byte of
 both owners and the five helpers, half/name/infinity data, all P4 coefficient label
 boundaries and two interior table points. Full coefficient comparison remains
 mandatory, independent of the mutation sample selection. Mutation runs were serial
-CPU0/nice10 and resumed from saved results.
+CPU 0/nice10 and resumed from saved results.

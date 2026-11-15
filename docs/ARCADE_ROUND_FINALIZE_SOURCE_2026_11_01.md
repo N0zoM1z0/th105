@@ -7,7 +7,7 @@ implementation changed. It remains nonexact.
 ## Complete extent and independent owner
 
 The original Japanese 1.06a body [473110,47321E) contains all 89 reachable
-instructions, 270 code bytes and the RET0 at 47321D. Code SHA256:
+instructions, 270 code bytes and the RET 0 at 47321D. Code SHA256:
 495bd0881bdb435fe31e51bbba69266cdbbeee050b655f2ac7e63e2a17e858d1.
 The nine-entry switch table at 473220 is separately bounded by the unsigned
 CMP 8 / JA guard. Every entry reaches an instruction in this body; all code is
@@ -49,5 +49,5 @@ taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit cross-v106a-
 
 The audit checks both complete CFGs and actual switch entry ownership.
 
-Source1786/authored1806/mapped1813/excluded1798/review423/units765.
-Exact1585/449721 authored bytes stays unchanged. matches.csv is unchanged.
+Source 1786/authored1806/mapped1813/excluded1798/review423/units765.
+Exact 1585/449721 authored bytes stays unchanged. matches.csv is unchanged.

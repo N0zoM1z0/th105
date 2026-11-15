@@ -1,17 +1,17 @@
 # Font markup: complete checked-character comparison and live stack facts
 
-The real checked-character operation called by markup411FA0 now reproduces
-**all33 bytes /14 instructions at412920**, canonical SHA256
+The real checked-character operation called by markup 411FA0 now reproduces
+**all 33 bytes /14 instructions at 412920**, canonical SHA256
 `9a726759df76947994237e1bf64c917c2581fbfe91fbc4e851c9b7076940121a`.
 It is configured in the same font-render unit and has six actual parent calls.
 The candidate is identified but its origin remains review: no authored mapping,
 source-present entry, matches row or progress credit is added.
 
-Parent source is now1728/455, canonical
+Parent source is now 1728/455, canonical
 `a3c2e09c65e0af2c63da0a20950896721a938a3299bc3cf12b4ed600f99296ff`, versus
-target1744/463. It remains nonexact411FB0/+16, frame788 versus796. Native
+target 1744/463. It remains nonexact 411FB0/+16, frame 788 versus 796. Native
 EDX font/ECX height output/two-stack-word/RET8 entry is retained. Ten other
-complete font bodies are unchanged, including the323-byte render caller.
+complete font bodies are unchanged, including the 323-byte render caller.
 
 Only original Japanese TH10.5 v1.06a SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`
@@ -21,10 +21,10 @@ wrong open image, so this work uses the hash-attested raw PE and compiler output
 ## Observed operation, source model and ownership limit
 
 The complete target helper saves ESI, takes native string in EAX and unsigned
-index in EDI, compares size14 against index, calls the native range-error
-function on failure, chooses SSO4 or heap-pointer4 using capacity18, and returns
+index in EDI, compares size 14 against index, calls the native range-error
+function on failure, chooses SSO 4 or heap-pointer4 using capacity 18, and returns
 the character address in EAX. Both normal paths restore ESI and RET without
-stack arguments. All33 bytes are reachable; there is no EH frame, internal
+stack arguments. All 33 bytes are reachable; there is no EH frame, internal
 alignment, data relocation, cropped tail or copied implementation.
 
 The only direct callers in tracked main instruction streams are the six
@@ -56,7 +56,7 @@ authored acceptance.
 
 ## Runtime identity checked beyond the old IDA label
 
-The target412928 call reaches665B33. It is a complete63-byte native range-error
+The target 412928 call reaches 665B33. It is a complete 63-byte native range-error
 body, rather than an import thunk. The old runtime exclusion rule relied only
 on IDA names. Fresh corroboration uses pinned VC8 SP1:
 
@@ -77,35 +77,35 @@ Six actual parent runs (br, ruby-close and color on both sides) retain fixed
 frame stack reads/writes and call checkpoints. Target preserves original token
 length on stack and length+1 in EBP; source caches length+1 and keeps original
 length in EBP during allocation. At strncpy_s, pending outgoing arguments are
-16 versus20 bytes because source delays cleaning the allocation argument.
+16 versus 20 bytes because source delays cleaning the allocation argument.
 Token context and later color bytes occupy different reused slots. These are
 observed value/lifetime differences; vacant slots do not prove extra fields or
 an original sizeof. No frame filler or unproved type-size change is selected.
 
 Two additional natural controls, implicit token conversion and a font-reference
-parameter, both emit identical1728-byte parent code. Neither explains the frame
+parameter, both emit identical 1728-byte parent code. Neither explains the frame
 residual. Source/target four-state EH graphs still agree; handler, funclet,
 destructor-state and metadata differences remain unqualified.
 
 All **92/92** independent actual-helper cases pass:27 normal SSO/heap character
-references and65 unsigned full-bit range boundaries. Checks cover return
+references and 65 unsigned full-bit range boundaries. Checks cover return
 address/byte, saved ESI/EDI, ESP and the scratch registers actually preserved by
 the body. Invalid inputs stop at the actual Xran entry; they do not execute
 platform exception construction or unwind runtime.
 
 Only **2400 affected parent cases** replay: two valid hex colors, a short hex
 token, a missing color argument and a missing terminator, crossed with the
-previous dimension/state/string/output modes. All pass, executing real hex45
-and checked-character33, the latter6720 times per side;480 cases reach the
+previous dimension/state/string/output modes. All pass, executing real hex 45
+and checked-character33, the latter 6720 times per side;480 cases reach the
 native Xran boundary. The setter is loaded but not executed in this scope.
 Other CRT/STL/font/color providers remain explicit observers.
 
-Complete old/new instruction/CFG comparison proves373 instruction pairs and36
+Complete old/new instruction/CFG comparison proves 373 instruction pairs and 36
 internal edges unchanged outside color-call setup and natural strlen-loop
 alignment. All nonrelative instruction bytes outside that window agree; branch
 destinations are checked against surviving control entries. That proves the
-scope for retaining earlier br/ruby/accent evidence without repeating8640
-cases. The full render caller hash99116ccc is unchanged, so its280 cases are
+scope for retaining earlier br/ruby/accent evidence without repeating 8640
+cases. The full render caller hash 99116ccc is unchanged, so its 280 cases are
 not replayed. No GDI, actual throw/EH, allocation-failure, arbitrary-alias or
 protected-page claim is made.
 
@@ -121,13 +121,13 @@ git diff --check
 ```
 
 The font command reports comparison_failed with eight nonexact functions,
-three accepted exact leaves (setter45/hex45/blend289) and the uncredited
+three accepted exact leaves (setter 45/hex45/blend289) and the uncredited
 checked-character33 comparison. All twelve extents resolve without failures.
 Only this accepted unit rebuilds: no header/layout/profile/existing data alias,
 other accepted unit definition or object partition changes. Manifest bookkeeping
 changes its conservative global digest; other units' source/flags stay the same.
 Ten prior full bodies,
-including the433-byte accent tail, are unchanged. Aggregate replay is separate;
+including the 433-byte accent tail, are unchanged. Aggregate replay is separate;
 authored exact counts and SVG remain unchanged.
 
 Selected COFF, full canonical/target code, actual-call witness, stack/CFG/EH
@@ -138,5 +138,5 @@ compressed only after per-file SHA256 archive readback; no binary/report is
 committed.
 
 Next: original-length/allocation-size lifetimes, outgoing stack cleanup,
-destructor-state scheduling and the8-byte frame residual. Glyph coordinate
-ordering and Reimu496540/nonexact49655F/+31 remain open.
+destructor-state scheduling and the 8-byte frame residual. Glyph coordinate
+ordering and Reimu 496540/nonexact49655F/+31 remain open.

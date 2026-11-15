@@ -1,7 +1,7 @@
 # Youmu action-602 conversion, loop and shared-call recovery, 2026-10-02
 
 Follow-up: [floating value order and integer operands](YOUMU_FPU_VALUE_ORDER_2026_10_02.md)
-adds action603/696/526 corrections. Metrics and hashes below describe the
+adds action 603/696/526 corrections. Metrics and hashes below describe the
 preceding action602 checkpoint.
 
 ## Retained result
@@ -108,10 +108,10 @@ remain unresolved; this is not global semantic closure.
 | Move shared sequence tail into source action 415 and route 602 to it | 26/98, metadata `+0x92A0`, 13 physical slot-14 sites. | Extra label relocation not retained. |
 | Move shared sequence tail into source action 529 | Entire compared window byte-neutral, 26/98. | Not retained. |
 | Both relocations | 26/98, metadata `+0x92A0`; moves the remaining extra site to action 605. | Not retained as placement recovery. |
-| Two unsigned conversions only | 25/98, loses low11; metadata `+0x92C8`. | Property tested together with the independent shared exit. |
+| Two unsigned conversions only | 25/98, loses low 11; metadata `+0x92C8`. | Property tested together with the independent shared exit. |
 | Route 602 only | 26/98, metadata `+0x92A0`, 13 slot-14 sites. | Target-supported shared exit retained. |
 | Unsigned conversions plus shared exit | 26/98, metadata `+0x92B0`. | Retained with direct float index use. |
-| Change duplicate index carrier to float | 25/98, loses low11; metadata `+0x92B8`. | Not retained. |
+| Change duplicate index carrier to float | 25/98, loses low 11; metadata `+0x92B8`. | Not retained. |
 | Remove duplicate index carrier | 26/98, metadata `+0x92B0`; target loop-test template restored. | Retained through configured rebuild. |
 
 Existing-object comparisons are diagnostic with unverified build provenance. No

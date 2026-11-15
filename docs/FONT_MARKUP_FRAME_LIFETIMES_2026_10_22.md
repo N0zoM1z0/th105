@@ -10,7 +10,7 @@ exact credit is added. Work began October 21 and continued October 22.
 
 The hash-attested raw target's entire 1744-byte main body decodes into 463
 reachable instructions. Every main branch stays inside instruction boundaries;
-the single RET8 at `41266D` ends exclusively at `412670`. The complete body
+the single RET 8 at `41266D` ends exclusively at `412670`. The complete body
 SHA256 is `6343d2d6639459aaeadb9de2acd74ecbb0be02f8a908e4b84af385f1daeccebb`.
 This closes normal main control flow, not remote EH metadata or unwinding.
 IDA preflight still rejects the wrong open executable, so no IDA semantics or
@@ -19,7 +19,7 @@ metadata writes are used. Target, status and tracking checks pass.
 The selected source remains 1728 bytes /455 reachable instructions, canonical
 `a3c2e09c65e0af2c63da0a20950896721a938a3299bc3cf12b4ed600f99296ff`.
 It first differs at `411FB0 / +16`: target reserves 796 bytes, source 788.
-The current EDX font/ECX height-output/two-stack-word entry and RET8 remain.
+The current EDX font/ECX height-output/two-stack-word entry and RET 8 remain.
 
 Fresh actual-instruction traces use `br>`, `/ruby>` and `color=012aEF>` with
 explicit CRT/STL/font/color provider observers. The frame origin is calculated
@@ -92,7 +92,7 @@ taskset -c 0 nice -n 10 python3 scripts/build.py \
 ```
 
 `build/font-markup-length-20261021/formal.json` reproduces all 12 previous
-complete font hashes and sizes, including accepted setter45/hex45/blend289.
+complete font hashes and sizes, including accepted setter 45/hex45/blend289.
 The checked-character33 remains byte-equal and uncredited in origin review;
 eight candidates remain nonexact. Only the relevant font unit is rebuilt;
 there is no new aggregate cold-replay claim or selected source/header/profile/

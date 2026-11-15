@@ -2,8 +2,8 @@
 
 This checkpoint recovers complete source for the normal ECX/RET12 font text
 entry `0x00412670`, including both optional output pointers. It is
-**source-present, nonexact**: ordinary COFF is326/326 bytes and117 instructions,
-while the target has120. No exact function, byte or remote chunk is added.
+**source-present, nonexact**: ordinary COFF is 326/326 bytes and 117 instructions,
+while the target has 120. No exact function, byte or remote chunk is added.
 
 Only original Japanese TH10.5 v1.06a SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`
@@ -13,28 +13,28 @@ and the pinned VC8 compiler provide the new evidence.
 
 ## Observed entry and complete policy
 
-Raw CFG traversal reaches all326 bytes/120 instructions and closes at RET12
+Raw CFG traversal reaches all 326 bytes/120 instructions and closes at RET 12
 `0x004127B3`. Complete target SHA256:
 `5609c1c997c0d979f17f0c9e529e3df3d6d36c52456280dfc6dd04da877c3e36`.
-The candidate-ledger direct-call census finds4097A0 at409883 and markup411FA0
-at41243B. Both supply normal ECX font plus text/width-output/height-output stack
+The candidate-ledger direct-call census finds 4097A0 at 409883 and markup 411FA0
+at 41243B. Both supply normal ECX font plus text/width-output/height-output stack
 words. This census does not claim complete indirect or remote-chunk coverage.
 
 The actual sequence is:
 
 1. Capture signed-int text length from `strlen` and initialize temporary null.
-2. If font flag11D is nonzero, allocate an unsigned array with element count
-   `height148 * pitch150`, clear four times that count and publish base140.
-   The count has target32-bit multiplication and the generated array-new
+2. If font flag 11D is nonzero, allocate an unsigned array with element count
+   `height148 * pitch150`, clear four times that count and publish base 140.
+   The count has target 32-bit multiplication and the generated array-new
    overflow gate. No synthetic buffer or fixed-size allocation is used.
 3. Zero each nonnull output pointer in width-then-height order, then begin.
-4. Decode lead bytes81..9F or E0..FE as two-byte codes. A0..DF and FF are
+4. Decode lead bytes 81..9F or E0..FE as two-byte codes. A0..DF and FF are
    signed single-byte codes, not double-byte leads. Advance by one/two first.
-   Character0 clears the captured length; '<' calls markup and adds its signed
+   Character 0 clears the captured length; '<' calls markup and adds its signed
    consumed count. Other characters reach glyph only when the advanced offset
    does not exceed the captured length, skipping a truncated terminal pair.
-5. End rendering. Reload flag11D; if set, blend the temporary into freshly
-   reloaded destination144 and delete the array. There is no source-added RAII
+5. End rendering. Reload flag 11D; if set, blend the temporary into freshly
+   reloaded destination 144 and delete the array. There is no source-added RAII
    cleanup or exception path around the native GDI work.
 
 The target's double-byte path at `0x412726` performs a DWORD read before
@@ -47,35 +47,35 @@ claim is made.
 
 The source includes the actual VC8 `<new>` declarations. Without them the
 initial private probe emitted scalar new/delete symbols; the declared array
-operators emit the correct native symbols. Target665B8A is the independently
-classified E9 alias to scalar allocation689DCB, and68AA26 is the separate E9
-alias to6898EA/free. Both alias boundaries remain compiler exclusions, with no
+operators emit the correct native symbols. Target 665B8A is the independently
+classified E9 alias to scalar allocation 689DCB, and 68AA26 is the separate E9
+alias to 6898EA/free. Both alias boundaries remain compiler exclusions, with no
 new origin or exact credit.
 
 ## Rejected retained assumptions and bounded layout
 
 The retained `CompositeTextureText.cpp` omits both output parameters and treats
-all81..FE as double-byte leads. It is not selected as the new font provider.
-Raw begin291 bytes/83 instructions and end168/49 close independently, with
+all 81..FE as double-byte leads. It is not selected as the new font provider.
+Raw begin 291 bytes/83 instructions and end 168/49 close independently, with
 native list front/pop cleanup. Their accesses establish a checked native color
-list at15C, its sentinel at160 and count164. Glyph411D3F and color/reset code
-4118E2/41198B independently read/write the fallback color at168. Begin also
-writes16C/16D. Thus the old facade's `fallback_color_164` label and any inference
-that168 is the full font size are wrong.
+list at 15C, its sentinel at 160 and count 164. Glyph 411D3F and color/reset code
+4118E2/41198B independently read/write the fallback color at 168. Begin also
+writes 16C/16D. Thus the old facade's `fallback_color_164` label and any inference
+that 168 is the full font size are wrong.
 
 `TextFontRuntime.hpp` models only the fields used by the two selected source
-functions: flag11D and surface140/144/148/14C/150. It neither inherits the old
+functions: flag 11D and surface 140/144/148/14C/150. It neither inherits the old
 labels nor claims a complete font size. Its member declarations retain normal
 source ABIs. The target's private lowering is separately observed:
 
 | Provider | Target receiver / arguments |
 | --- | --- |
-| begin4119A0 / end411AD0 | ESI receiver, no stack arguments |
-| glyph411B80 | EAX receiver, code/two outputs on stack, RET12 |
-| markup411FA0 | EDX receiver, ECX height output, cursor/width output on stack, RET8 |
-| blend4127C0 | EAX receiver, source/destination on stack, RET8 |
+| begin 4119A0 / end 411AD0 | ESI receiver, no stack arguments |
+| glyph 411B80 | EAX receiver, code/two outputs on stack, RET 12 |
+| markup 411FA0 | EDX receiver, ECX height output, cursor/width output on stack, RET 8 |
+| blend 4127C0 | EAX receiver, source/destination on stack, RET 8 |
 
-Full raw markup1744/463 CFG closes, but glyph624 and blend289 have internal
+Full raw markup 1744/463 CFG closes, but glyph 624 and blend 289 have internal
 unreachable alignment instructions. Their provisional spans cannot be promoted
 through the strict linked-body gate without separate boundary/ownership work.
 The real full font owner, providers, native GDI declarations/global and TU
@@ -94,15 +94,15 @@ Selected source SHA256:
 `ab5fbbe9f2f0f76041a79e7f4165dc39c0ea75fedd9551c8a7c85c4e88bb5f06`.
 Complete canonical source SHA256:
 `f114c979bd2e32d275f9402d8ba58a350fc7aacaae8915eb7e748eb73cd01eb9`.
-The first mismatch is412670/+0: source starts PUSH ECX and uses an ordinary
+The first mismatch is 412670/+0: source starts PUSH ECX and uses an ordinary
 stack frame; target has the aligned EBP frame. Font/index registers, lead-range
 branches and source-normal versus target-private call entries also differ.
 Same size is diagnostic, not acceptance or proof that standalone recovery is
 impossible. No padding, inert local, forced alignment or assembly is used.
 
 `TextTextureRuntime.cpp` now includes the new shared prefix declaration. Its
-complete110-byte wrapper and264-byte backend remain byte-identical to the
-previous canonical candidates50731d79 and15555b85, nonexact+7/+0. Existing
+complete 110-byte wrapper and 264-byte backend remain byte-identical to the
+previous canonical candidates 50731d79 and 15555b85, nonexact+7/+0. Existing
 `Title.hpp`, compiler settings, accepted sources and relocation ledgers are
 unchanged. Transitive dependency scanning finds zero affected accepted units;
 only these two nonaccepted focused units are rebuilt. No unrelated or aggregate
@@ -118,13 +118,13 @@ It checks target-private and ordinary source argument locations separately.
 All **13,100 cases pass**: every lead byte with five representative trailing
 bytes, intermediate on/off, null/separate/aliased dimension outputs, truncated
 pairs, empty strings and markup. Selected strings additionally vary a destination
-change at end, proving the wrapper's fresh144 reload. Comparisons include
+change at end, proving the wrapper's fresh 144 reload. Comparisons include
 ordered wrapper stores, allocation/clear/publication/deletion, logical helper
 trace/arguments/consumed results, final bytes, ESP and callee-saved registers.
-Height2/pitch12 and accessible trailing text padding are explicit bounds.
+Height 2/pitch12 and accessible trailing text padding are explicit bounds.
 
-A separate100-case sensitivity run keeps selected source100/100. Restoring the
-old broad lead range fails40; deleting output initialization fails80. Both
+A separate 100-case sensitivity run keeps selected source 100/100. Restoring the
+old broad lead range fails 40; deleting output initialization fails 80. Both
 controls are genuine compiled C++ changes, retained privately and not selected.
 This supports the loop/output recovery without substituting semantic agreement
 for exactness or claiming GDI, overflow-allocation, arbitrary-alias or physical
@@ -148,20 +148,20 @@ complete selected source nonexact until canonical zero-difference comparison.
 
 The native end checkpoint supplies a real
 file-local end provider in this TU and extends the bounded prefix through its
-actual native color list. The selected caller is now324/116, canonicalc23fa0a9,
-still nonexact+0; the326-byte source/hash and receipts above describe the frozen
-preceding checkpoint. VC8 naturally supplies ESI to the complete168-byte end,
-which remains nonexact+7 solely on EDI save scope. Current caller13100 and
+actual native color list. The selected caller is now 324/116, canonicalc23fa0a9,
+still nonexact+0; the 326-byte source/hash and receipts above describe the frozen
+preceding checkpoint. VC8 naturally supplies ESI to the complete 168-byte end,
+which remains nonexact+7 solely on EDI save scope. Current caller 13100 and
 actual native-end576 bounded cases pass; all other providers remain open.
 
 ## Native begin provider follow-up
 
 [The native begin checkpoint](TEXT_FONT_BEGIN_2026_10_21.md) supplies actual
 ANSI GDI/font/list setup in the same TU, with natural ESI entry. Complete begin
-291/84 remains nonexact+7; end168/e1daa198 is unchanged. The selected current
-caller is322/115, canonical7087f023 and nonexact+0. Earlier source sizes/hashes
-in this note describe frozen preceding checkpoints. Current begin4320 and
-caller13100 bounded cases pass; owner and remaining providers remain open.
+291/84 remains nonexact+7; end 168/e1daa198 is unchanged. The selected current
+caller is 322/115, canonical 7087f023 and nonexact+0. Earlier source sizes/hashes
+in this note describe frozen preceding checkpoints. Current begin 4320 and
+caller 13100 bounded cases pass; owner and remaining providers remain open.
 
 ## Four-byte character read, November 10
 

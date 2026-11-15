@@ -8,22 +8,22 @@ members in the actual selected sources:
 -15 CharacterObjectManager normal destructors,81 bytes each. The template
  declares only its constructor and owner pointer; inherited virtual destruction
  emits the entire normal lifetime without an authored destructor declaration.
--ResultList normal destructor447260/55. The real ResultList definition declares
+-ResultList normal destructor 447260/55. The real ResultList definition declares
  its constructor and populate override, and owns four deque members. The implicit
  destructor tears those down and enters ResultListBase. No authored destructor.
--CTile copy4396A0/164. The selected CTileCopyLifetime source contains an implicit
+-CTile copy 4396A0/164. The selected CTileCopyLifetime source contains an implicit
  copy, not a user-written copy declaration or body. The source fixture exposes
  that compiler member and is not itself an accepted game function.
 
-The explicitly authored empty ICharacterObjectManager destructor491B90/7 is
+The explicitly authored empty ICharacterObjectManager destructor 491B90/7 is
 not part of this correction. Template constructors with authored pool policy
 also retain their authored attribution. No new compiler helpers are claimed.
 
-All17 complete canonical bodies were freshly reproduced from their existing
+All 17 complete canonical bodies were freshly reproduced from their existing
 three owner units. Source, mappings and proofs stay; only erroneous authored
-source/exact credit is removed. Corrected totals: exact1428 /443902 bytes,
-source1630, authored1650, excluded1969, review408, mapped1815, units769.
-Historical1445/445336 and earlier totals are superseded by this attribution
+source/exact credit is removed. Corrected totals: exact 1428 /443902 bytes,
+source 1630, authored 1650, excluded 1969, review 408, mapped 1815, units 769.
+Historical 1445/445336 and earlier totals are superseded by this attribution
 correction, not by a code regression.
 
 ## Strict evidence contract
@@ -37,14 +37,14 @@ hashes and sizes must be identical. Alias ResultList_dtor must resolve to the
 actual emitted normal destructor, not an arbitrary named stub.
 
 This is a separate complete-byte proof, not a lowered fingerprint threshold.
-In particular ResultList55 has only35 nonrelocation bytes, so the ordinary
+In particular ResultList55 has only 35 nonrelocation bytes, so the ordinary
 70-percent generated-origin fingerprint gate would reject it. That gate remains
 unchanged; no masked, partial or alignment-tail acceptance is used here.
 
 The existing canonical source contracts retain their real native RTTI/data,
 base-destructor and deque-cleanup bindings. Their surrounding owners and scalar
-wrappers were freshly compared in the same three builds. The15 manager methods
-retain65/81 nonrelocation bytes with actual per-specialization base calls; this
+wrappers were freshly compared in the same three builds. The 15 manager methods
+retain 65/81 nonrelocation bytes with actual per-specialization base calls; this
 is not counting a masked clone family as multiple authored implementations.
 
 Source/header pin changes require a renewed ownership review. Seven synthetic

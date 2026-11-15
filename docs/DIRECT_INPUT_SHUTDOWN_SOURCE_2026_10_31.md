@@ -1,23 +1,23 @@
 # Complete DirectInput shutdown policy, nonexact
 
-DirectInput shutdown40D3F0 now has complete source and independently checked
+DirectInput shutdown 40D3F0 now has complete source and independently checked
 authored ownership. Canonical original Japanese v1.06a executable SHA-256:
 56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e.
-The whole331-byte native body, through RET40D53A, has SHA-256
+The whole 331-byte native body, through RET 40D53A, has SHA-256
 ef5bbfadd0d7b228892bf466d79becdf80dd00b82d25b7f820c4440c44c00f23.
-Exact application shutdown407F80 calls it at40805B. Both the complete hash
+Exact application shutdown 407F80 calls it at 40805B. Both the complete hash
 and actual selected caller edge are replayed by the new authored-origin rule.
 
 ## Native policy and source
 
 Release order is mouse, keyboard, indexed gamepads, three vector clears, then
-the DirectInput interface. Each non-null device receives Unacquire at COM slot20,
-then Release at08, then its stored pointer is zeroed. The interface receives
+the DirectInput interface. Each non-null device receives Unacquire at COM slot 20,
+then Release at 08, then its stored pointer is zeroed. The interface receives
 only Release. A COM call may affect state, so source retains the target's later
 pointer reloads rather than caching a device across both calls.
 
 The existing DirectInputBackend header supplies the actual vectors and their
-observed offsets: devices10, raw states124, button counts134. Ordinary clear()
+observed offsets: devices10, raw states 124, button counts 134. Ordinary clear()
 retains allocated capacity; original VC8 vector.clear() itself calls
  erase(begin(), end()). No manual STL teardown, allocation release or fabricated
 vector wrapper is used. The target does not clear raw keyboard bytes, window
@@ -33,11 +33,11 @@ pointer/argument facade.
 
 ## Comparison boundary
 
-The public ordinary COFF unit emits581/native331, mismatch at5. A genuine
-LTCG source control emits585 and inlines vector clearing that the target keeps
-in separate complete helpers40DC40/58,40DC80/62 and40DD60/87. Including the real
+The public ordinary COFF unit emits 581/native331, mismatch at 5. A genuine
+LTCG source control emits 585 and inlines vector clearing that the target keeps
+in separate complete helpers 40DC40/58,40DC80/62 and 40DD60/87. Including the real
 existing gamepad enumeration/bootstrap users does not close this boundary and
-also remains585. No private ESI/ECX declaration, noinline attribute, artificial
+also remains 585. No private ESI/ECX declaration, noinline attribute, artificial
 caller or manual clear-loop substitute is introduced. Original container/TU
 context remains unresolved. Equal source semantics is not byte equality.
 
@@ -52,9 +52,9 @@ clear helpers; it does not broaden the old raw-key-state alias.
 
 Public unit: exact-first-directinput-shutdown. Private linked controls are in the
 same directory. Only the new ownership rule is materialized after focused
-body/caller validation; existing census evidence is retained. Default CI210 and
+body/caller validation; existing census evidence is retained. Default CI 210 and
 whitespace checks pass. No cold whole-corpus replay.
 
-Source1773, authored1793, mapped1800, excluded1658, review576, units758.
-Exact authored stays1576 /448613 bytes. No library helpers or partial native
+Source 1773, authored 1793, mapped 1800, excluded 1658, review 576, units 758.
+Exact authored stays 1576 /448613 bytes. No library helpers or partial native
 prefix bytes receive credit.

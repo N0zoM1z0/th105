@@ -1,6 +1,6 @@
 # Unsigned list growth: generated-code origin
 
-The entire165-byte 0x402700 function is the VC8 `std::list<unsigned>::_Incsize`
+The entire 165-byte 0x402700 function is the VC8 `std::list<unsigned>::_Incsize`
 implementation with its ordinary count argument, not a new authored function.
 Native SHA256:
 `0743f70aab2e36a82b3ee5df1e3a2cd5312c75b966f90846b4e1fd7ed7f7c79f`.
@@ -17,18 +17,18 @@ the full parent hash and actual call are pinned. Another exact game owner also
 reaches the helper. These facts support the helper's ownership without claiming
 the two source/native parents are the same exact body or adding parent credit.
 
-The complete165-byte helper matches after only named call and verified address
+The complete 165-byte helper matches after only named call and verified address
 roles are replayed; no instruction bytes are masked. Its aligned EBP frame and
 RET4 arise naturally from the genuine linked context. All same-size current
 candidate bodies are checked and the full canonical body is unique at 0x402700.
 
 ## EH, exception and verification
 
-The complete27-byte handler at 0x6BDFA8, 8-byte cleanup action, 36-byte
+The complete 27-byte handler at 0x6BDFA8, 8-byte cleanup action, 36-byte
 FuncInfo and 8-byte unwind map are compared with actual relocation roles. The
 length_error ThrowInfo, all three catchable types and descriptors, original
 literal and actual RTTI are checked. Full support bodies include both logic_error
-constructors and their EH, length_error destructor50/copy25, string destructor38
+constructors and their EH, length_error destructor 50/copy25, string destructor 38
 and the noncontinuable CxxThrowException witness. These are supporting evidence,
 not new authored matches. The existing target exception metadata is also used by
 other routines; no duplicate credit is awarded.
@@ -40,6 +40,6 @@ corrupt-root, native-owner, handler, unwind, ThrowInfo and literal negative cont
 reject. No global origin replay or runtime execution of exceptional paths is
 claimed.
 
-Only 0x402700 moves review → compiler-generated exclusion. Review292,
-excluded2079; exact1426 /443399 bytes, source1637, authored1656, mapped1827,
-units814 and candidates4027 are unchanged.
+Only 0x402700 moves review → compiler-generated exclusion. Review 292,
+excluded 2079; exact 1426 /443399 bytes, source 1637, authored 1656, mapped 1827,
+units 814 and candidates 4027 are unchanged.

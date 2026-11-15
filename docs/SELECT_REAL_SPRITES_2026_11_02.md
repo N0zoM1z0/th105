@@ -11,7 +11,7 @@ of going through an unrelated receiver view.
 ## One real base identity, not register forcing
 
 The first private control mixed actual CSprite/IColor with a second source
-interface named CNumberColorLifetime. Select destruction grew845 to850 bytes:
+interface named CNumberColorLifetime. Select destruction grew 845 to 850 bytes:
 the compiler could not reuse a constant belonging to a different source vtable
 symbol even though both mappings named the same native IColor table.
 
@@ -25,15 +25,15 @@ IColor now lives in the minimal engine/ColorInterface.hpp. Importing the whole
 battle sprite header into every number lifetime initially exposed an existing
 C/C++ dispatch_indexed_event linkage conflict in MenuConnect. The minimal
 shared interface removes that unnecessary dependency without changing either
-function declaration's ABI. MenuConnect destruction315 remains exact.
+function declaration's ABI. MenuConnect destruction 315 remains exact.
 
 ## Actual lifetime emission
 
 CSprite's empty constructor/destructor bodies are ordinary in-class definitions.
 The redundant UiSpriteLifetime.cpp definitions are removed. The existing
 lifetime match unit retains its identity but compiles the real
-NetworkBaseConstructorRuntime.cpp with its actual /GS profile, so ctor16 and
-cleanup7 are naturally emitted for the real member array. This is not a fake
+NetworkBaseConstructorRuntime.cpp with its actual /GS profile, so ctor 16 and
+cleanup 7 are naturally emitted for the real member array. This is not a fake
 caller or an emission-only TU; no forced inline/export/COFF boundary is added.
 Both the lifetime selector unit and parent unit compile that same ordinary
 source for their separate comparison selections. Final original TU partition
@@ -41,35 +41,35 @@ or whole-program linking is not claimed by these focused witnesses.
 
 ## Full results and regression scope
 
-- Select destructor845 and real character binding258 remain canonical.
-- Constructor4247 retains exactly its previous13-byte residual; complete remote
-  EH461 and metadata188 remain exact. Main candidate hash stays76c04f844fb8c2d9d30293de2e1831edc3eeb9ab2acc442138825ddf43e64d33.
-- Render1497/163, character update619/25, entry783 and frame update685 retain
+- Select destructor 845 and real character binding 258 remain canonical.
+- Constructor 4247 retains exactly its previous 13-byte residual; complete remote
+  EH 461 and metadata 188 remain exact. Main candidate hash stays 76c04f844fb8c2d9d30293de2e1831edc3eeb9ab2acc442138825ddf43e64d33.
+- Render 1497/163, character update 619/25, entry 783 and frame update 685 retain
   their entire previous canonical candidate hashes. Four render and twelve
   character observer cases, including their negative controls, pass again.
-- Network construction411/packet8 and destruction259/scalar30/reset175 stay
-  exact; complete EH197/meta116 and EH169/meta100 also pass.
-- Natural CSprite16/7, scalar31, table36, full RTTI273 and actual array site40
-  pass from the real owner source. All410 unique byte-corruption controls reject.
-- The affected include closure is130 units. All104 units containing251 accepted
+- Network construction 411/packet8 and destruction 259/scalar30/reset175 stay
+  exact; complete EH 197/meta116 and EH 169/meta100 also pass.
+- Natural CSprite16/7, scalar 31, table 36, full RTTI273 and actual array site 40
+  pass from the real owner source. All 410 unique byte-corruption controls reject.
+- The affected include closure is 130 units. All 104 units containing 251 accepted
   authored roots were freshly rebuilt and remain exact. Initial receipts before
   the minimal-interface extraction were preserved but not reused afterward.
 - Existing configured nonexact authored neighbors in those rebuilt units were
   also inspected; none becomes exact. No unrelated cold whole-corpus replay.
 
 The four affected source-origin guards were renewed only after the full proofs,
-including the new interface header. All pass; the network scalar30 receipt was
+including the new interface header. All pass; the network scalar 30 receipt was
 refreshed. The constructor EH audit now applies the same explicitly named,
 pre-attested data aliases as its main comparison. Unknown destinations, raw
 addresses and unreviewed alias chains fail; no comparison mask is introduced.
 Five alias tests and three lifetime-source review tests protect these changes.
 
-Reproduce serially on CPU0/nice10 with scripts/repo-python: the focused unit
+Reproduce serially on CPU 0/nice10 with scripts/repo-python: the focused unit
 builds, csprite_lifetime_origins.py, sprite_default_origins.py, both packet/record
 implicit-lifetime gates, the two network EH audits and the CSelect constructor,
 render and character audits. Nonexact candidate audits still report mismatch.
 
-No count or exact-byte gain: exact1429 /443911; source1636, authored1655,
-excluded2072, review300, mapped1823, units811. Remaining UiTile/other UI call
+No count or exact-byte gain: exact 1429 /443911; source 1636, authored 1655,
+excluded 2072, review 300, mapped 1823, units 811. Remaining UiTile/other UI call
 views are separate work; this is not an all-facade or full-game reconstruction
 claim.

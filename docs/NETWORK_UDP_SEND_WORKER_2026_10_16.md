@@ -45,13 +45,13 @@ null. Null skips both sending and recycling. A valid packet is sent when
 Thus the formerly provisional `options_14` field is now named for its observed
 expiry role; zero disables expiry. The two target argument-setup branches
 converge at the same six-argument native sendto call. Socket+28, packet
-payload+1C, size+18 and its complete16-byte endpoint supply the arguments;
+payload+1C, size+18 and its complete 16-byte endpoint supply the arguments;
 send failure is ignored. Every valid token is recycled through private EAX
 release `405200`, including expired packets and failed sends. Exit closes the
 event and clears the stored handle.
 
 The lookup member reuses the established scoped-lock policy of the reviewed
-shared handle lookup: check slot range and16-bit generation, return null on
+shared handle lookup: check slot range and 16-bit generation, return null on
 mismatch, otherwise return the checked stable slot. It supplies complete
 honest source context to the worker; it adds no separate source/exact claim
 for the already mapped generic lookup. The source worker uses provisional
@@ -61,7 +61,7 @@ worker return contract is established by these instructions alone.
 ## Real import-library comparison
 
 The target E8 at `416EFD` reaches six-byte thunk `6898CC`, `FF25 74026C00`,
-whose IAT `6C0274` imports WS2_32 ordinal20. Declaring sendto with dllimport
+whose IAT `6C0274` imports WS2_32 ordinal 20. Declaring sendto with dllimport
 would introduce a different six-byte call instruction. Source instead uses
 its normal six-DWORD stdcall declaration and links the actual VC8 SDK
 `PlatformSDK/Lib/WS2_32.Lib`, SHA-256
@@ -80,7 +80,7 @@ annotation as a named import. Named VC8 runtime calls remain supported;
 arbitrary external/ordinal calls remain rejected. SDK contracts and the full
 library hash join stale-artifact provenance. See [the comparison contract](LINKED_PE_MATCHING.md).
 
-The smallest ordinary COFF file-local worker control was393/395 nonexact.
+The smallest ordinary COFF file-local worker control was 393/395 nonexact.
 Recovering the target's nested running loops, with the real caller and full
 member helpers under LTCG, produces the following complete canonical results:
 
@@ -90,13 +90,13 @@ member helpers under LTCG, produces the following complete canonical results:
 | `416DB0` worker | 395 / 395 | Nonexact at+0; callee-save shrink wrapping differs |
 | `405200` shared release | 167 / 167 | Exact, preserving its real client caller witness |
 
-All five worker REL32 calls resolve. Its middle `[+0x21,+0x170)` agrees for335
+All five worker REL32 calls resolve. Its middle `[+0x21,+0x170)` agrees for 335
 canonical bytes, including queue, lookup, expiry, send, release and running
 edges. This is diagnostic evidence only: full entry/exit bytes still differ,
 so neither new function gains exact credit. The source naturally generates
 the worker's private ESI ABI; no register facade, padding, inert local or
 forced compiler attribute is used. Original frame/optimizer context remains
-open. Both existing senders remain561/464 and644/548 nonexact.
+open. Both existing senders remain 561/464 and 644/548 nonexact.
 
 ```bash
 python3 scripts/audit-candidate-boundaries.py 0x00416D90 0x00416DB0 --json
@@ -105,16 +105,16 @@ python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client -
 python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client --address 0x00405200 --json
 ```
 
-The full comparison intentionally returns1 for the source-present functions.
+The full comparison intentionally returns 1 for the source-present functions.
 After shared source,
 header and comparator changes, fresh serial builds preserve all three
-affected accepted linked units: scene281, pool98 and release167. No all-unit
+affected accepted linked units: scene 281, pool 98 and release 167. No all-unit
 replay or new aggregate exact claim is made. Both supported Capstone versions
-pass the23 linked-contract tests; the final focused replay uses4.0.2, with
-pefile2024.8.26. The local CI gate passes155 workflow tests.
+pass the 23 linked-contract tests; the final focused replay uses 4.0.2, with
+pefile 2024.8.26. The local CI gate passes 155 workflow tests.
 
 The full target-backed origin replay also corrected an older guard that still
-expected caller416990 to be identified; it is now source-present/implemented.
+expected caller 416990 to be identified; it is now source-present/implemented.
 Its original deque push_back edge and all four generated exclusions remain
 unchanged. The new authored rule pins both body hashes and real callback edge.
 
@@ -132,8 +132,8 @@ requires a disposable visible build path during invocation. One process uses
 ## November 1: genuine seven-TU initializer context remains negative
 
 The retained real peer/accept/thread/receive/initialize/send/service graph has
-unchanged source hashes and still emits send entry10004800/16 versus native
+unchanged source hashes and still emits send entry 10004800/16 versus native
 416D90/18. Its entry still lacks the native reserve/restore DWORD. The same graph
-emits worker10004650/423 versus395, now with an aligned frame. This is not a fresh
+emits worker 10004650/423 versus 395, now with an aligned frame. This is not a fresh
 exactness claim or reason to add inert storage. No source, ABI, export or compiler
 flag was changed.

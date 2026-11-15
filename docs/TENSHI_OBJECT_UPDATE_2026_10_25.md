@@ -1,33 +1,33 @@
 # Tenshi Object update boundary and resume point, 2026-10-25
 
-**Complete source-present/nonexact candidate.** Root64CD50 now has a durable
-mapping, a complete28-action/default source, an isolated VC8 unit and a public
+**Complete source-present/nonexact candidate.** Root 64CD50 now has a durable
+mapping, a complete 28-action/default source, an isolated VC8 unit and a public
 whole-payload audit. The first complete body was compared before controls.
 No exact row or byte credit was added. Original nominal types and original TU
 ownership remain unknown; pointer-only views must never be instantiated.
 
 ## Target observations
 
-Original Japanese1.06a SHA-256
+Original Japanese 1.06a SHA-256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Primary Object vtable6C670C, slot28 cell6C6734 ->64CD50. Same-owner initializer
-657150, slot3C cell6C6748, is separate source-present/nonexact context only.
+Primary Object vtable 6C670C, slot 28 cell 6C6734 ->64CD50. Same-owner initializer
+657150, slot 3C cell 6C6748, is separate source-present/nonexact context only.
 
-Main `[64CD50,656D79)` is41001 bytes, SHA-256
+Main `[64CD50,656D79)` is 41001 bytes, SHA-256
 `d5ed24f23b4e6e385588593fe81b5e9ec83bd77c402fa7a3d387412823e571b2`.
-All9800 instructions decode;9797 reached instructions cover40993 bytes. The
-three unreachable alignment instructions are64FFDD:8d4900,65269D:8d4900 and
-65561E:8bff (eight bytes). All67 exits are RET0, no escaping branches or tails.
+All 9800 instructions decode;9797 reached instructions cover 40993 bytes. The
+three unreachable alignment instructions are 64FFDD:8d4900,65269D:8d4900 and
+65561E:8bff (eight bytes). All 67 exits are RET 0, no escaping branches or tails.
 
-Full `[64CD50,657150)` is41984 bytes, SHA-256
+Full `[64CD50,657150)` is 41984 bytes, SHA-256
 `44fedf398c8bfbf882959b4a8d33f15217a8a4ddca02cdbcb695fd330af82fc4`.
-It owns28 tables/195 destination DWORDs,199 remap bytes at656DF0 and alignment
-656D79:8d4900 /656EB7:90. Seven leading INT3 bytes separate64CD00's provider.
-There is **no trailing INT3 gap**: the last table ends at initializer657150.
-Default656D6C calls4351C0 once, ignores AL and performs the aligned RET0 exit.
+It owns 28 tables/195 destination DWORDs,199 remap bytes at 656DF0 and alignment
+656D79:8d4900 /656EB7:90. Seven leading INT3 bytes separate 64CD00's provider.
+There is **no trailing INT3 gap**: the last table ends at initializer 657150.
+Default 656D6C calls 4351C0 once, ignores AL and performs the aligned RET 0 exit.
 
 Nondefault actions:800,801,810,811,815,816,820,821,825,848,850,851,852,853,854,
-855,856,857,900,920,930,940,960,961,962,980,997,998. Primary dispatch stops at998.
+855,856,857,900,920,930,940,960,961,962,980,997,998. Primary dispatch stops at 998.
 
 ## ABI facts and interpretation limits
 
@@ -36,46 +36,46 @@ EBX/EBP/ESI/EDI. ESI is the primary receiver. Restore with MOV ESP,EBP/POP EBP.
 The cause of source-level alignment is not recovered; do not force it with
 padding or inert doubles. Write complete natural source before codegen controls.
 
-The427 direct calls use22 entries.22 virtuals use the primary Object at slots
-0C/14/1C/20; their providers45C390/45C220/45C180/45C1A0 are independently exact.
-The remaining virtual651AD3 calls **manager slot04**, with ECX from
-`parent+658`, nine four-byte argument slots and RET36:
+The 427 direct calls use 22 entries.22 virtuals use the primary Object at slots
+0C/14/1C/20; their providers 45C390/45C220/45C180/45C1A0 are independently exact.
+The remaining virtual 651AD3 calls **manager slot 04**, with ECX from
+`parent+658`, nine four-byte argument slots and RET 36:
 `(0, self[16C], 853, x, y, facing, layer, packet, 3)`.
 Do not give that call the primary Object slot/purge contract.
 
-Surface helper434EE0 is stdcall, three float arguments, RET12. Sequence helper
+Surface helper 434EE0 is stdcall, three float arguments, RET 12. Sequence helper
 4399C0 is thiscall, one unsigned index, pointer/reference result, RET4; both
 callers use parent+55C as receiver and read the first WORD. This generated
 std::deque island is excluded from authored progress. All other direct call
 contracts are retained in the private Java/stack recipes and ordinary accepted
 provider sources; no new callee implementation credit is implied.
 
-Backward tracing from actual packet and count argument slots closes97 requests
-(85 unparented,11 parented,one direct factory) with53 bases/652 bytes. No pointer
+Backward tracing from actual packet and count argument slots closes 97 requests
+(85 unparented,11 parented,one direct factory) with 53 bases/652 bytes. No pointer
 or count definition remains unresolved under the recorded call/clobber/span
-contracts; this is not general alias/path-feasibility proof. Most packets have3
-words, but p244/654639 has4, p384/65473F has5, and p520/654AF8 has4. p520 is
-also used with count3. Preserve per-call counts and independently initialized
-words. There are46 qword stack accesses at relative offsets -680/-672/-664;
+contracts; this is not general alias/path-feasibility proof. Most packets have 3
+words, but p244/654639 has 4, p384/65473F has 5, and p520/654AF8 has 4. p520 is
+also used with count 3. Preserve per-call counts and independently initialized
+words. There are 46 qword stack accesses at relative offsets -680/-672/-664;
 the dataflow is not permission to add artificial alignment storage.
 
 ## Complete source and first comparison
 
-`src/characters/TenshiObjectUpdate.cpp/.hpp` manually reconstruct all28 actions
+`src/characters/TenshiObjectUpdate.cpp/.hpp` manually reconstruct all 28 actions
 and the default. Numeric states, typed offsets and declaration-only call views
 remain deliberate. The declaration-only providers receive no implementation
-credit. `config/functions.csv` retains41001 callable bytes and inclusive end
-656D78; the full audit compares41984 bytes through657150 separately.
+credit. `config/functions.csv` retains 41001 callable bytes and inclusive end
+656D78; the full audit compares 41984 bytes through 657150 separately.
 
 The first complete private body compiled under the ordinary VC8 SP1 `/O2` probe
 profile with GS disabled, without alignment or register shaping. It naturally
-emitted `AND ESP,-8` and frame2B0. Full42068 bytes, SHA-256
+emitted `AND ESP,-8` and frame 2B0. Full 42068 bytes, SHA-256
 `278d5bb4a6c1ea1c1361295568e4b8800d600aa286dd136eaf2cde1d4becbc09`, compared
-with39549 unmasked differences; first64CD58, frame allocation2B0 versus native2A8.
+with 39549 unmasked differences; first 64CD58, frame allocation 2B0 versus native 2A8.
 This is a full mismatch, not a similarity/acceptance claim.
 
 That first comparison's per-action call census identified missing **physical**
-trigonometric sites in801/820. The source had chosen a layer before one shared
+trigonometric sites in 801/820. The source had chosen a layer before one shared
 spawn expression; the native branches evaluate sine/cosine separately in each
 layer branch. The selected source preserves those branches, native multiplication
 association,801's direct cosine doubling,800's intermediate single-precision
@@ -83,51 +83,51 @@ random products and its ordered lower-bound comparison. Other actions' call
 censuses already agreed. These are scoped source/dataflow corrections, not an
 option/spelling grid or a generic codegen recipe.
 
-The initially configured source and an independent fresh build both emit42916
+The initially configured source and an independent fresh build both emit 42916
 bytes, SHA-256
 `2391a745177fb117c358ee4560c00d24412cdf4f8f8f2e6322a321b61a657083`.
-Full comparison has40643 unmasked differences, first64CD58; the selected
-natural aligned frame is2C0 versus native2A8. It has83 RETs versus67.
-All28 per-action direct/indirect call censuses agree, but this does not prove
+Full comparison has 40643 unmasked differences, first 64CD58; the selected
+natural aligned frame is 2C0 versus native 2A8. It has 83 RETs versus 67.
+All 28 per-action direct/indirect call censuses agree, but this does not prove
 execution equivalence, packet values, source ownership or exactness.
 
 The native six physical frame-call sites have these owner groups:
 
-- the main common exit for21 actions;
+- the main common exit for 21 actions;
 - 810/820/850;
 - 816/961;
 - 848;
 - 960;
 - default, which ignores AL.
 
-The initial object has five: its main group also owns816/960;825 merged with
-the default. The825 correction below moves825 to the common conditional exit
-and leaves default alone.810/820/850,848 and961 remain separate. A call count
+The initial object has five: its main group also owns 816/960;825 merged with
+the default. The 825 correction below moves 825 to the common conditional exit
+and leaves default alone.810/820/850,848 and 961 remain separate. A call count
 alone cannot substitute for the complete physical-owner audit.
 
 ## 825 frame-return correction
 
-A subsequent raw-exit review found an actual source error: native65024F sends
-825's nonzero substates to64D23A, where4351C0's AL is tested before decrementing
-+330. The first candidate incorrectly ignored AL, merging825 with the default.
+A subsequent raw-exit review found an actual source error: native 65024F sends
+825's nonzero substates to 64D23A, where 4351C0's AL is tested before decrementing
++330. The first candidate incorrectly ignored AL, merging 825 with the default.
 The source now takes the common conditional exit;825's zero-substate early RET
 and the default's ignored return remain distinct.
 
 `scripts/audit-tenshi-object-update-paths.py` executes eight full-root inputs:
-825/default799, ready/nonready frame, modes0/1. It runs the real4351C0,
+825/default799, ready/nonready frame, modes 0/1. It runs the real 4351C0,
 45C1A0/45C220, frame-apply and sprite helpers against a readonly one-block
 animation fixture, without injected helper results or transfers. The old object
-fails exactly one:825/mode0/ready retains lifetime10 versus native9. The corrected
-object passes8/8 with the same actor bytes, helper trace, real RET0 stack cleanup
+fails exactly one:825/mode0/ready retains lifetime 10 versus native 9. The corrected
+object passes 8/8 with the same actor bytes, helper trace, real RET 0 stack cleanup
 and x87 control/top. This fixture establishes only the scoped behavior, not
 real-game graph reachability or whole-function equivalence.
 
-The correction changes only the four displacement bytes at candidate65035C..F.
-Full42916 size, frame2C0,83 RETs and40643 differing bytes stay unchanged; the
+The correction changes only the four displacement bytes at candidate 65035C..F.
+Full 42916 size, frame 2C0,83 RETs and 40643 differing bytes stay unchanged; the
 canonical SHA becomes
 `f010343c86c5fe1d36512882fe89caaa1524da64cc03548e80a265d045ce8b55`.
 This is a semantic correction despite an unchanged aggregate mismatch count.
-Formal/current and independent fresh comparisons use the complete41984 target.
+Formal/current and independent fresh comparisons use the complete 41984 target.
 No exact credit is added.
 
 ```bash
@@ -139,56 +139,56 @@ Receipts: `frame-return-build.log`, `frame-return-full-audit.json`,
 `frame-return-cold-build.log`, `frame-return-cold-full-audit.json`,
 `frame-return-native-paths.json`, `frame-return-negative-paths.json`.
 
-## Caller direction width and801 cosine transfer
+## Caller direction width and 801 cosine transfer
 
 The next bounded observation was a concrete stack-dataflow difference, not a
-compiler option search. Old candidate64D665 writes CL into one byte of a home,
-then64D66C loads the whole DWORD before the801 request. Native64D5FE and
+compiler option search. Old candidate 64D665 writes CL into one byte of a home,
+then 64D66C loads the whole DWORD before the 801 request. Native 64D5FE and
 64D66A instead use MOVZX from +104. A similar byte-home transfer occurs before
-854's request. The old frame has53 packet bases/652 bytes with holes at
+854's request. The old frame has 53 packet bases/652 bytes with holes at
 -608/-604/-600/-316; qword slots are -704/-680/-608. Target packets have one
-four-byte heading gap, with qword slots -680/-672/-664. Both have46 qword
+four-byte heading gap, with qword slots -680/-672/-664. Both have 46 qword
 accesses, so counting doubles alone does not explain the frame.
 
 The selected local emitter declarations now use the independently exact public
-provider's **int-facing view** for64CCB0/4FCA60. Shared provider source and all
+provider's **int-facing view** for 64CCB0/4FCA60. Shared provider source and all
 accepted units remain unchanged. A fresh `cross-v106a-character-object-effects`
-replay corroborates both complete providers77/77 and78/78; the mixed unit
+replay corroborates both complete providers 77/77 and 78/78; the mixed unit
 also contains the already-nonexact5F9350 and therefore exits nonzero overall.
 This is not an aggregate exact-unit claim. Their historical byte-facing
 witnesses also remain valid. This does **not** recover original formal width;
 
-The manager factory slot04 declaration is separate and unchanged.
+The manager factory slot 04 declaration is separate and unchanged.
 
-Changing only these two local declarations emits42524 bytes, SHA670b286a...,
-frame2B0. Its53 packet bases cover652 contiguous bytes; qword slots are
+Changing only these two local declarations emits 42524 bytes, SHA 670b286a...,
+frame 2B0. Its 53 packet bases cover 652 contiguous bytes; qword slots are
 -688/-672/-664. The remaining eight-byte frame difference is unresolved.
-A second target-backed change keeps801's cosine result as a natural double
-value: the native4063D0 return goes directly to FADD ST0,ST0 and FADD20, with
+A second target-backed change keeps 801's cosine result as a natural double
+value: the native 4063D0 return goes directly to FADD ST0,ST0 and FADD20, with
 no intermediate single-precision store/reload. This removes the old local
 float transfer while preserving the table-float provider and its two real uses.
 
-Formal and independent fresh builds of the selected source emit42508 bytes,
+Formal and independent fresh builds of the selected source emit 42508 bytes,
 canonical SHA-256
 `8b9f620a069775b2093f8970d0e6b1fc12a6e8ea799c82b45f1f9f817583e432`.
-Full comparison against41984 has40093 unmasked differences, first64CD58;
-frame2B0,83 RETs and five physical frame calls remain nonexact. All28
+Full comparison against 41984 has 40093 unmasked differences, first 64CD58;
+frame 2B0,83 RETs and five physical frame calls remain nonexact. All 28
 per-action call censuses still agree. The smaller payload is diagnostic
 progress, not byte acceptance or a general compiler recipe.
 
-`scripts/audit-tenshi-object-request-paths.py` supplies16 narrow inputs:
-eight854 prefixes from the actual root and eight801 loop fragments, covering
-both layers, facing1/255 and stack fill00/A5. The latter begin at the actual
+`scripts/audit-tenshi-object-request-paths.py` supplies 16 narrow inputs:
+eight 854 prefixes from the actual root and eight 801 loop fragments, covering
+both layers, facing 1/255 and stack fill 00/A5. The latter begin at the actual
 FLD loop counter after the attested motion/zero-crossing prefix; that earlier
 setup is outside fragment scope. Each runs real quantized lookup, floor/FTOL,
-MT and bounded-RNG instructions as applicable, and stops at64CCB0 before any
-opaque provider return. A deterministic3600-float cosine table is a runtime
+MT and bounded-RNG instructions as applicable, and stops at 64CCB0 before any
+opaque provider return. A deterministic 3600-float cosine table is a runtime
 fixture; its original initialization is not part of this check.
 
-The selected source agrees on all16 full DWORD argument sets, packet words,
+The selected source agrees on all 16 full DWORD argument sets, packet words,
 actor state, helper trace, RNG bounds/index and x87 control/top. The old
-f010343c object fails four801/A5 inputs: it supplies A5A5A501/A5A5A5FF where
-the native full argument is1/255. Zero-filled stacks conceal that difference.
+f010343c object fails four 801/A5 inputs: it supplies A5A5A501/A5A5A5FF where
+the native full argument is 1/255. Zero-filled stacks conceal that difference.
 This diagnoses the caller's full argument transfer; a byte-formal ABI may
 permit unspecified high bytes, so it is not evidence of an in-game behavioral
 failure or proof of original int formals.825's eight real RET checks still pass.
@@ -199,27 +199,27 @@ scripts/repo-python scripts/audit-tenshi-object-request-paths.py
 ```
 
 The separate unselected `comparison-values` control removes eight named
-comparison-value carriers while retaining their expressions. It emits42508,
-SHA63a555b6..., but retains frame2B0 and the same46 qword accesses/three slots;
+comparison-value carriers while retaining their expressions. It emits 42508,
+SHA 63a555b6..., but retains frame 2B0 and the same 46 qword accesses/three slots;
 its comparison direction changes do not close the stack question. Do not repeat
 this carrier question without independent evidence. No flags, padding, dummy
 locals, forced alignment or acceptance criterion changed.
 
 Receipts use the `int-view-*` prefix: formal/cold build and full audits, request
-and825 paths, plus `int-provider-witness.log`. Private `facing-int`,
+and 825 paths, plus `int-provider-witness.log`. Private `facing-int`,
 `cosine-value` and unselected `comparison-values` sources/objects and their
 frame/packet traces remain under the same ignored analysis/build directories.
 
 ## Specific semantic limits
 
-**Observed:** 821's native x87 calculation at64FD93..64FDAE adds parent-y and100
+**Observed:** 821's native x87 calculation at 64FD93..64FDAE adds parent-y and 100
 before adding the sine product. The worksheet's flattened association is not
 source authority. The source retains the observed association. Repeated calls
 and receiver/heading capture epochs remain visible.
 
-**Observed ambiguity:** 900's selector-zero branch653294 only assigns the
-lifetime60. At65329F..6532A3, burst interval and limit reload a scratch home;
-other selectors1/2/3 set interval60, lifetime180/240/300, limit2/4/5 and
+**Observed ambiguity:** 900's selector-zero branch 653294 only assigns the
+lifetime 60. At 65329F..6532A3, burst interval and limit reload a scratch home;
+other selectors 1/2/3 set interval 60, lifetime 180/240/300, limit 2/4/5 and
 burst-count10/12/16. The out-of-range selector branch also lacks initialization.
 The candidate retains ordinary uninitialized controls rather than inventing
 values. Native executions may observe scratch reuse; deterministic behavior on
@@ -243,7 +243,7 @@ scripts/repo-python scripts/audit-tenshi-object-update.py
 
 The first and third commands currently return nonzero for the measured mismatch.
 The full audit replays every section relocation, verifies both target hashes,
-closes the complete CFG, verifies all28 tables/199 remap bytes, the aligned
+closes the complete CFG, verifies all 28 tables/199 remap bytes, the aligned
 default exit, adjacent independent initializer and exact unreachable alignment.
 It also records per-action and physical call ownership separately. Synthetic
 negative controls exercise metadata truncation, escaping destinations, default
@@ -253,7 +253,7 @@ The private recipes retain the raw facts, attested Ghidra worksheet, first body 
 branch-control source. Reports and private material are not committed.
 
 This bounded width/transfer question is checkpointed. The comparison-carrier
-question did not close frame2B0; retain it rather than repeating a carrier grid.
+question did not close frame 2B0; retain it rather than repeating a carrier grid.
 Next inspect the still source-missing YoumuObject53CEA0 independently, starting
 with its provisional boundary. Do not reduce a frame with padding, inert locals
 or forced alignment. None of these standalone differences proves LTCG

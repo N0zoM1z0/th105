@@ -7,21 +7,21 @@ Two original SDK getters now compare completely:
 
 Each entire source/native16-byte code section matches, including four original
 NOP alignment bytes. CFG closure and whole-callable inventory uniqueness are
-checked independently. Only24 library code bytes are newly classified; no
+checked independently. Only 24 library code bytes are newly classified; no
 padding or data bytes are credited as code or authored progress.
 
 ## Entire data sections, not partial array fingerprints
 
-The window object's complete32672-byte initialized .data section matches
-native6EF17C. All eight DIR32 table fields at source offsets32640..32668 point
+The window object's complete 32672-byte initialized .data section matches
+native 6EF17C. All eight DIR32 table fields at source offsets 32640..32668 point
 to their actual same-section window-array symbols, with source offsets and
 zero addends checked. Every nonpointer byte is identical too. The getter's
-_vwin symbol is at source offset32640 and resolves to native6F70FC.
+_vwin symbol is at source offset 32640 and resolves to native 6F70FC.
 
-The lsp object's entire1176-byte initialized .data section matches native
+The lsp object's entire 1176-byte initialized .data section matches native
 6F75D4 without relocations. This includes all original lookup arrays, not just
-the one returned value. INVSQ2EXP_LOOKUP is at source offset648/native6F785C;
-the code's real +128 addend selects6F78DC. Its relocation literal witness is
+the one returned value. INVSQ2EXP_LOOKUP is at source offset 648/native6F785C;
+the code's real +128 addend selects 6F78DC. Its relocation literal witness is
 therefore the bytes at the resolved address, not the different first element
 at the symbol base. Full-section proof separately covers both.
 
@@ -43,8 +43,8 @@ The corresponding vorbisfile archive copies are hash-identical and receive
 no duplicate credit. Two focused original-SDK units provide formal replay.
 
 Ten tests protect original source/member/profile, whole extents, pointer versus
-float identity, correct bindings and initialized writable storage. All94 real
+float identity, correct bindings and initialized writable storage. All 94 real
 corruption controls fail: every code/padding byte, all window pointer bytes, all
-array boundaries and the selected float-table element. Full33848-byte data
+array boundaries and the selected float-table element. Full 33848-byte data
 comparison remains mandatory regardless of these selected mutation controls. Generic
 short-function thresholds are unchanged.

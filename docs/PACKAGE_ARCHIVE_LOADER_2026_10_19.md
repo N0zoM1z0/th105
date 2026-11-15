@@ -15,7 +15,7 @@ reachable; the three-byte alignment instruction at 41BC0D is skipped. There
 are no indirect jumps or outside branch exits. A raw full-text E8/E9-lead
 scan finds only the tail jump at 40CF34. Its independently decoded nine-byte
 wrapper reads a stack path into ECX and jumps to this root. The root returns
-AL with RET0; the wrapper leaves its caller's path argument on the stack.
+AL with RET 0; the wrapper leaves its caller's path argument on the stack.
 This establishes a private ECX entry, without prescribing a custom source ABI.
 The wrapper's independent origin classification remains in review.
 
@@ -24,7 +24,7 @@ entry, x86 Windows analysis target, complete mapped text and all root bytes.
 The root's 629-byte body, ECX parameter storage and zero purge were read back.
 Decompiler output is a hypothesis; imperfect imported I/O prototypes still
 distort its stack analysis. Raw instructions establish the facts below.
-Two read-only processes ran sequentially with no analysis, CPU0/nice10 and a
+Two read-only processes ran sequentially with no analysis, CPU 0/nice10 and a
 384 MiB heap. All nine primary database hashes agree afterward; aliases are
 removed. IDA failed identity preflight and provided no semantics.
 
@@ -137,11 +137,11 @@ Continue the truthful vector-helper, EH/frame and translation-unit context revie
 before returning to reader/BMP code generation. Their previous residuals are not
 resolved by this checkpoint.
 
-The subsequent physical-store batch rebuilds17 existing affected units and preserves
-all36 outcomes/22 accepted functions. Full lifecycle execution and private
+The subsequent physical-store batch rebuilds 17 existing affected units and preserves
+all 36 outcomes/22 accepted functions. Full lifecycle execution and private
 constructor/destructor/EH receipts are in the [store
 review](PACKAGE_ARCHIVE_STORE_2026_10_19.md). The later formal linked contract
-accepts391 lifecycle bytes; the loader remains nonexact. Its fresh [template/ABI
+accepts 391 lifecycle bytes; the loader remains nonexact. Its fresh [template/ABI
 controls and persisted analysis](PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md)
 supersede the historical independent-global controls for current-source context
 claims, without changing this selected source.

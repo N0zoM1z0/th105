@@ -16,7 +16,7 @@ Root `[620920,62EFBE)` remains 59,038 bytes / 15,132 instructions, SHA-256
 | Action | Target comparison and signed branch | Meaning |
 | --- | --- | --- |
 | 225 | `62325C CMP WORD PTR [ESI+140],7`; `623264 JG 623306` | Only frames <=7 can reach the time-modulo-5 periodic effect. |
-| 408 | `625759 CMP WORD PTR [ESI+140],7`; `625761 JL 625775` | Subtract 0.75 from horizontal velocity starting at frame7, then apply the separate zero clamp. |
+| 408 | `625759 CMP WORD PTR [ESI+140],7`; `625761 JL 625775` | Subtract 0.75 from horizontal velocity starting at frame 7, then apply the separate zero clamp. |
 
 Both selected predicates now produce the same immediate-7 comparison and
 branch polarity in the candidate. Neighboring 320/321/322 gates were also

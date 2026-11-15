@@ -1,7 +1,7 @@
 # Original VC8 vector operations over the actual frame type
 
-The corrected shared FrameData definition supplies a real28-byte polymorphic
-value type with eight raw WORDs, byte14, pointer18 and natural padding. An
+The corrected shared FrameData definition supplies a real 28-byte polymorphic
+value type with eight raw WORDs, byte 14, pointer 18 and natural padding. An
 explicit instantiation of the unchanged original VC8 std::vector<FrameData>
 now reproduces thirteen previously reviewed library bodies /1,315 bytes.
 
@@ -11,7 +11,7 @@ change vendor code or introduce register/ABI controls.
 
 ## Whole canonical witnesses
 
-Six complete functions, totaling580 bytes, replay with zero differences:
+Six complete functions, totaling 580 bytes, replay with zero differences:
 
 - 421C30: forward nonscalar copy,105 bytes.
 - 421CA0: backward nonscalar copy,105 bytes.
@@ -28,15 +28,15 @@ separate from the generated-origin fingerprint evidence.
 
 The existing validator independently verifies all thirteen complete bodies,
 their current inventory names, native body hashes and full-inventory uniqueness.
-The other seven are vector copy construction4228D0/202, erase4221E0/126,
-random-access wrappers421E40/99 and421D70/94, allocation422710/81,
-tidy422260/73 and uninitialized-fill wrapper422100/60.
+The other seven are vector copy construction 4228D0/202, erase 4221E0/126,
+random-access wrappers 421E40/99 and 421D70/94, allocation 422710/81,
+tidy 422260/73 and uninitialized-fill wrapper 422100/60.
 
 The const/nonconst uninitialized-copy source instantiations share one physical
 native body; it receives one row, not two counts. The selected representative
 does not claim uniquely recoverable template constness where code is identical.
 
-The202-byte copy-constructor source section has one original trailing CC byte.
+The 202-byte copy-constructor source section has one original trailing CC byte.
 The corresponding following target byte is independently CC. The existing
 maximum-one-CC tail rule is used; no callable instruction is truncated and
 coverage/minimum-byte thresholds are unchanged. Other selected bodies have
@@ -48,6 +48,6 @@ vc8-frame-vector-origin. Anchor: config/vc8-frame-vector-origin-anchors.toml. Th
 new origin rule was natively validated; unchanged prior evidence is retained rather
 than cold-rebuilt.
 
-Exclusions become1,655 and review becomes600. Match units become748.
-Authored exact stays1,555 /441,708 bytes; source1,752, ownership1,772 and
-mapped1,779 are unchanged.
+Exclusions become 1,655 and review becomes 600. Match units become 748.
+Authored exact stays 1,555 /441,708 bytes; source 1,752, ownership 1,772 and
+mapped 1,779 are unchanged.

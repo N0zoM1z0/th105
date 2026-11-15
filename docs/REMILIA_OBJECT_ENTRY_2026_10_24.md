@@ -75,7 +75,7 @@ relocation rows and accepted source/header inputs are unchanged.
 
 The required IDA preflight again rejects the other open executable hash; that
 session was not used. The existing private IkuTarget Ghidra database was opened
-read-only, analysis disabled, in a single CPU0/nice10 process with a 384 MiB
+read-only, analysis disabled, in a single CPU 0/nice10 process with a 384 MiB
 configured heap. Its imported executable SHA256, x86 Windows language/compiler,
 image base, external entry point `0x68B9D2`, and every raw-backed section were
 independently checked against the canonical PE before decompilation.
@@ -90,7 +90,7 @@ that output.
 
 ## Whole-function experiment receipts
 
-The 00..09 source trials were serial, pinned to CPU0 at nice10, with the existing
+The 00..09 source trials were serial, pinned to CPU 0 at nice 10, with the existing
 VC8 SP1 `/O2` profile. No accepted unit or shared header was edited. A later
 optional full-origin check was cancelled after it was found to launch library
 compiler witnesses; it is not a passed validation. The selected canonical unit
@@ -134,44 +134,44 @@ neutral named-field or terminal/default controls without new independent
 instruction/compiler evidence. Switch to another bounded roster initializer
 when the next hypothesis would merely repeat these scheduler experiments.
 
-## November1: request-local lifetimes recover the real 980 tail
+## November 1: request-local lifetimes recover the real 980 tail
 
-The two actual parented requests belong only to800/sequence0 and854/sequence2.
+The two actual parented requests belong only to 800/sequence0 and 854/sequence2.
 The previous source unnecessarily kept one payload array alive for the entire
 initializer. Each request now owns an ordinary three-float array in its actual
 branch, with the existing three writes and pointer/count arguments unchanged.
 No unused local, padding, forced inline boundary or ABI change is introduced.
 
 The lifetime is supported by the complete synchronous consumer chain. Exact
-4FCA60/77 obtains owner348, manager658 and calls manager vslot4, forwarding
-pointer and count with RET28. Remilia manager constructor555DF0 installs vptr
-6C5394, whose slot4 is555E80/237. In that complete manager the count controls
-new unsigned[count], and555F08..555F12 copies count*4 bytes to the newly owned
-object340 buffer. The original request pointer is not retained. The source
+4FCA60/77 obtains owner 348, manager 658 and calls manager vslot 4, forwarding
+pointer and count with RET 28. Remilia manager constructor 555DF0 installs vptr
+6C5394, whose slot 4 is 555E80/237. In that complete manager the count controls
+new unsigned[count], and 555F08..555F12 copies count*4 bytes to the newly owned
+object 340 buffer. The original request pointer is not retained. The source
 lifetime therefore need not extend through unrelated later action branches.
 Fresh roster-manager comparisons from the immediately preceding scope include
-Remilia237; the current effect-provider replay freshly matches4FCA60/77.
+Remilia 237; the current effect-provider replay freshly matches 4FCA60/77.
 That mixed effect unit also reports its pre-existing5F9350 nonexact peer; it is
-not reported as an aggregate pass. Shared980 provider596370/323 freshly passes.
+not reported as an aggregate pass. Shared 980 provider 596370/323 freshly passes.
 
-Native spawn sites55BF9D and55C938 and their complete75/83-byte argument windows
+Native spawn sites 55BF9D and 55C938 and their complete 75/83-byte argument windows
 are byte-identical in the newly compiled candidate. Both requests still use
 three words and retain their original initialization and conversion order.
-The compiler now emits the actual980 tail JMP at55D1DE naturally, replacing
-the former CALL/RET. The native32RET count,1339 decoded/reachable instructions,
+The compiler now emits the actual 980 tail JMP at 55D1DE naturally, replacing
+the former CALL/RET. The native 32RET count,1339 decoded/reachable instructions,
 4997-byte callable and three-byte post-RET LEA are all recovered. A complete
-entry/table traversal reaches all1339 instructions on each side, closes all
-three switch tables, and permits only the independently exact596370 tail.
-The199-byte selector remap and its zero alignment byte are unchanged/equal.
+entry/table traversal reaches all 1339 instructions on each side, closes all
+three switch tables, and permits only the independently exact 596370 tail.
+The 199-byte selector remap and its zero alignment byte are unchanged/equal.
 
-The whole5384-byte canonical result remains **nonexact** at+440/55C028.
+The whole 5384-byte canonical result remains **nonexact** at+440/55C028.
 Selected SHA256:
 38fd7441435512a41e9d0ea886fa4bbc39fa2869b150cbc195753fe10b1cdd36.
-There are426 callable and11 table-byte differences,437 over the full payload.
+There are 426 callable and 11 table-byte differences,437 over the full payload.
 The target full-payload SHA256 is
 6d40a4fe209f5cb0306cb213898728fb5d1e9b0421868fbad511d777d363cfc9.
-The remaining locations are850/851 and902/903 virtual-call/heading-register
-scheduling plus901's shared heading-store/return placement. Local equality and
+The remaining locations are 850/851 and 902/903 virtual-call/heading-register
+scheduling plus 901's shared heading-store/return placement. Local equality and
 recovered physical extents are diagnostics, not partial exact-byte credit.
 No further old sequence-view or switch-placement spelling controls were run.
 
@@ -179,41 +179,41 @@ The public build reproduces the isolated lifetime control exactly. Only this sou
 its tracking evidence and documentation change; shared headers/providers stay
 intact.
 
-## November1 follow-up:901's distinct source arms and full metadata
+## November 1 follow-up:901's distinct source arms and full metadata
 
-Native901's sequence table places2/9 at55CE02 but8 at55C3A8, a different
-shared heading-store tail. The prior source grouped2/9 before3 and separately
-spelled8. Keeping the three real heading assignments in their own ascending
+Native 901's sequence table places 2/9 at 55CE02 but 8 at 55C3A8, a different
+shared heading-store tail. The prior source grouped 2/9 before 3 and separately
+spelled 8. Keeping the three real heading assignments in their own ascending
 sequence arms, rather than pre-grouping2/9, lets VC8 perform the observed tail
 merging itself. This adds no operation, goto, scratch, branch condition or fake
-liveness: only the existing case9 assignment is independently spelled after8.
-The old07 experiment coupled grouping with a float snapshot; this control does
+liveness: only the existing case 9 assignment is independently spelled after 8.
+The old 07 experiment coupled grouping with a float snapshot; this control does
 not repeat that snapshot or change any float epoch/type.
 
-The complete selected5384-byte payload is now
+The complete selected 5384-byte payload is now
 b35e53a2e1d34d1622a7adbb3f2b120bde3f69acc35702f6a9b7059bcee27dea.
-All387 suffix bytes (alignment plus three tables/map) match, and only10 callable
-bytes differ, first+2036/55C664. They are confined to850/851's two virtual-call
-preparations at55C664..55C66A and55C68E..55C694. All902/903 pointer registers
-and901's physical tail/table destinations now agree without targeted register
-edits. Whole1339-instruction reachability,32RET, actual55D1DE tail and4997-byte
+All 387 suffix bytes (alignment plus three tables/map) match, and only 10 callable
+bytes differ, first+2036/55C664. They are confined to 850/851's two virtual-call
+preparations at 55C664..55C66A and 55C68E..55C694. All 902/903 pointer registers
+and 901's physical tail/table destinations now agree without targeted register
+edits. Whole 1339-instruction reachability,32RET, actual 55D1DE tail and 4997-byte
 callable remain closed. This is still **nonexact**, with no partial credit.
 
 Finite controls, not selected:
-- Grouping2/8/9 together produces83a141f6/full5384, nonexact+1318, and changes
-  the earlier shared tail. The distinct native8 target rules out treating all
+- Grouping 2/8/9 together produces 83a141f6/full5384, nonexact+1318, and changes
+  the earlier shared tail. The distinct native 8 target rules out treating all
   three physical destinations as one recovered owner.
 - The established normal int-return/int-argument selector view across the root
   givesa86f51a7/full5384, nonexact+169. It does not establish the original nominal
   declaration or improve the original source choice.
-- On the selected separate901 source, direct short conversion at all23 source
+- On the selected separate 901 source, direct short conversion at all 23 source
   float-selector expressions and an int return with the existing short argument
   are each completely byte-neutral: fullb35e53a2/10 differences. Native primary
-  vtable6C533C slot0C really selects45C390; its ordinary int facade and actual
+  vtable 6C533C slot 0C really selects 45C390; its ordinary int facade and actual
   WORD consumption are independently known. No per-case ABI selection is made.
 
 The public build reproduces the selected isolated source. Receipts in the same
-scope: selected901.json,selected901-full.json,selected901-cfg.json and source
+scope: selected 901.json,selected 901-full.json,selected 901-cfg.json and source
 control COFF/canonical reports. Complete-CFG recipe is retained privately as
 complete_cfg.py. Stop this selector/grouping lane absent new ownership or
 compiler evidence; do not force the remaining two register/stack schedules.

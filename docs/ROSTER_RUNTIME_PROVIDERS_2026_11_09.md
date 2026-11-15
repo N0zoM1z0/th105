@@ -35,7 +35,7 @@ inventories remain identical:
 | Udonge | 43921 | 43537 | a7ffda570bf380a94ceff70c099bd035ae8f5fd915e73edadae7b86ccf26c03c |
 
 The actual include closure contains these three update units only. The three
-provider units were rebuilt as well: motion57, frame62, six-state66 and phase73
+provider units were rebuilt as well: motion 57, frame 62, six-state66 and phase 73
 remain exact. The co-emitted Reimu update remains unchanged and nonexact.
 These changes resolve real provider identities, not the parent functions'
 existing byte differences. No authored exact credit or source-origin pin changes.

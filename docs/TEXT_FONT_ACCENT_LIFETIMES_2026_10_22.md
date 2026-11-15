@@ -1,23 +1,23 @@
 # Accent clipping bearing and coverage lifetime
 
-Scope: `TextFont_draw_text_accent_dot @ 0x00411DF0`, Japanese1.06a target
+Scope: `TextFont_draw_text_accent_dot @ 0x00411DF0`, Japanese 1.06a target
 SHA256 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Two source lifetimes are corrected from actual instructions. The selected
-complete native body is now417 bytes/129 decoded instructions with a32-byte
+complete native body is now 417 bytes/129 decoded instructions with a32-byte
 frame, matching the target's size/frame. It remains **nonexact+6**; no exact
-function or byte is added. The previous433-byte body is retained as a control.
+function or byte is added. The previous 433-byte body is retained as a control.
 
 ## Target observations and the source correction
 
-The hash-attested complete417-byte target decodes129 reachable instructions,
-has one RET8 at411F8E and ends exclusively at411F91. Its SHA256 remains
+The hash-attested complete 417-byte target decodes 129 reachable instructions,
+has one RET 8 at 411F8E and ends exclusively at 411F91. Its SHA256 remains
 `1bfd2e56e3163f29c0574f58ee41be36149f5c4defc91d62e8a9039e586bda33`.
-The actual glyph411B80 caller at411DA6 uses ESI font and two DWORD coordinates.
-There is no ABI, owner0x194/config0x128, header or calling-convention change.
+The actual glyph 411B80 caller at 411DA6 uses ESI font and two DWORD coordinates.
+There is no ABI, owner 0x194/config0x128, header or calling-convention change.
 IDA preflight rejects the other image; no IDA semantics or metadata writes
 are used. Raw target bytes, actual call edges and instructions supply evidence.
 
-At411E4E..411E68, EAX initially holds `font.ascent - firstMetrics.originY`.
+At 411E4E..411E68, EAX initially holds `font.ascent - firstMetrics.originY`.
 The upper-bound sum adds first height, then topY; EAX still contains that
 relative bearing at the upper clipping comparison. Only after that branch
 does ADD EAX,EBX form absolute top and JS test its sign. The predecessor source
@@ -34,7 +34,7 @@ if (bearing_top + height + top_y >= static_cast<int>(font->surface_height_148) |
 ```
 
 The target next saves the allocated byte-array base for deletion and places
-the real coverage cursor in EDI before the second GDI call, at411E94. The same
+the real coverage cursor in EDI before the second GDI call, at 411E94. The same
 cursor is passed as the raster destination and then advanced by pixel/row work.
 The predecessor declared that cursor after GDI. The selected source establishes
 `coverage = glyph` before GDI and passes the used cursor to it; array ownership
@@ -52,30 +52,30 @@ as recorded in the [original accent evidence](TEXT_FONT_ACCENT_2026_10_21.md).
 
 The existing genuine owner/render CIL image is first attested through its
 ordinary accepted color comparison and actual renderer -> parser -> color
-path. Its actual glyph100019A0 calls private accent100017E0 at10001BC6. The
-entire433-byte CIL accent equals the predecessor native payload, after real
+path. Its actual glyph 100019A0 calls private accent 100017E0 at 10001BC6. The
+entire 433-byte CIL accent equals the predecessor native payload, after real
 named call replay and address-field attestation. It does not recover the
 target just by moving to that existing CIL context.
 
 | Actual whole-source control | Full accent bytes / decoded | Canonical SHA256 prefix | Result |
 | --- | ---: | --- | --- |
 | Predecessor native and real CIL |433 /132|d0a47cc5|Nonexact+5|
-| Relative bearing only, native and CIL |417 /129|ea76c99c|Nonexact+2; frame28|
-| Relative bearing + early used coverage, native and CIL |417 /129|5a5cbf13|Selected native; nonexact+6; frame32|
+| Relative bearing only, native and CIL |417 /129|ea76c99c|Nonexact+2; frame 28|
+| Relative bearing + early used coverage, native and CIL |417 /129|5a5cbf13|Selected native; nonexact+6; frame 32|
 | Also mutate the used topY coordinate explicitly |417 /129|5a5cbf13|Byte-neutral; spelling not selected|
 | Positive remaining-count loops in the new lifetime phase |436 /136|e9a674ed|Unselected; not the target|
 
 The countdown retest has a new independently observed clipping/cursor lifetime
-phase; it is not a repetition of the older433-byte-context result. No compiler
+phase; it is not a repetition of the older 433-byte-context result. No compiler
 flag, type, padding, fake return, source ABI facade or private export is added.
 All controls include the real glyph and render callers. CIL controls include
 real owner definitions and export only the ordinary renderer.
 
 The selected complete canonical SHA256 is
 `5a5cbf13767ef9a3b4e4a951ac2fdc945161813eea135f78cee5f031d9cf8a1b`.
-All417 bytes remain in comparisons, including the skipped3-byte LEA at+253.
-It has128 normally reachable instructions versus target129. The old source
-had132 decoded/130 reachable and8 skipped bytes. The strict linked comparator
+All 417 bytes remain in comparisons, including the skipped 3-byte LEA at+253.
+It has 128 normally reachable instructions versus target 129. The old source
+had 132 decoded/130 reachable and 8 skipped bytes. The strict linked comparator
 still rejects unaccounted unreachable instructions; diagnostics preserve them
 and confer no linked acceptance or exception to that rule.
 
@@ -92,12 +92,12 @@ Fresh Unicorn runs use the complete actual target and source instructions,
 with explicit GDI query/raster and byte-array allocation/release observers.
 The fixture checks arguments, zero metrics, first/second metric differences,
 ignored second status, array ownership, ordered pixel/owner writes, final pixels,
-normal RET8/ESP and callee-saved registers. The948 complete cases retain the
+normal RET 8/ESP and callee-saved registers. The 948 complete cases retain the
 original matrix of table/fallback, clipping, query failure, zero-byte results,
 changed second metrics and real zero-height #DE behavior. Fault engines are
 fresh; no allocation-failure or actual GDI implementation is substituted.
 
-Another112 prefixes vary originY/topY at INT32 limits. They execute the real
+Another 112 prefixes vary originY/topY at INT32 limits. They execute the real
 query and clipping instructions, then stop at the first actual new-array
 entry or naturally return. No return from that allocation is fabricated,
 and no out-of-range raster memory is accessed. These prefixes are not claimed
@@ -105,7 +105,7 @@ as full-RET coverage.
 
 Two additional live snapshots are compared: EAX relative bearing, total and
 six arithmetic flags immediately after the upper clipping CMP, and EDI coverage
-immediately before the second GDI observer. All1060 cases preserve ordinary
+immediately before the second GDI observer. All 1060 cases preserve ordinary
 effects in every source stage; the snapshots discriminate the lifetimes:
 
 | Full/prefix source stage | Normal effects agree | Both live snapshots agree |
@@ -134,7 +134,7 @@ taskset -c 0 nice -n 10 python3 scripts/build.py \
 ```
 
 Mixed nonzero comparison exits remain expected for the pending functions. The full
-selected accent must be417/5a5cbf13/nonexact+6; source-present remains distinct from
+selected accent must be 417/5a5cbf13/nonexact+6; source-present remains distinct from
 exact. Baseline/selected formal comparisons, complete CFGs, canonical bodies,
 semantic/source/tool fingerprints and private native/CIL control receipts are in
 `build/font-accent-cil-20261022/`.
@@ -142,6 +142,6 @@ semantic/source/tool fingerprints and private native/CIL control receipts are in
 Early topY promotion and reuse of its argument home, first-width spilling,
 pixel-loop placement and original compiler/TU ownership remain unresolved.
 Length/frame recovery alone is not acceptance. Keep glyph's14-byte integer
-residual, markup's8-byte frame residual and Reimu496540's larger source/physical
-tail problem pending. Exact ledgers stay1381 functions/234914 bytes (10.99%);
+residual, markup's8-byte frame residual and Reimu 496540's larger source/physical
+tail problem pending. Exact ledgers stay 1381 functions/234914 bytes (10.99%);
 the focused two-unit replay does not establish a new all-unit aggregate result.

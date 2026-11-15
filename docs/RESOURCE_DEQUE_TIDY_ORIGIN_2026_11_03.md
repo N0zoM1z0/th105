@@ -20,7 +20,7 @@ The validator pins the complete source include/COFF closure, target, compiler
 profile, unit owner and actual source/native caller edges. It identifies the
 unique source-owned helper and actual libcmt delete symbol. Both E8 call
 operands are resolved to independently excluded target delete alias 0x6898EA.
-The complete102-byte canonical result matches every native byte, including all
+The complete 102-byte canonical result matches every native byte, including all
 branch and alignment bytes. The only rewritten bytes are the two qualified
 relative call fields; nothing is masked. No image data relocation is permitted.
 A whole-body search of all same-size current candidates is unique at 0x413E10.
@@ -39,6 +39,6 @@ controls were run. Proof is written under
 `build/origin-anchors/linked-resource-deque-tidy/`.
 
 Only this one origin row changes review → compiler-generated exclusion. Exact
-remains1426 functions /443399 bytes. Source1637, authored1656, mapped1827,
-units814 and candidate count4027 remain unchanged; excluded2077, review294.
+remains 1426 functions /443399 bytes. Source 1637, authored 1656, mapped 1827,
+units 814 and candidate count 4027 remain unchanged; excluded 2077, review 294.
 No global origin replay or other candidates are implied by this scoped proof.

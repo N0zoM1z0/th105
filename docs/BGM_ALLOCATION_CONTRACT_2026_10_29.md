@@ -1,17 +1,17 @@
 # BGM handle allocation contract, JP1.06a
 
-The28-byte service4036C0 has a real semantic/type correction. Previous source
-returned a supposed manager value result directly and emitted20 bytes. The
+The 28-byte service 4036C0 has a real semantic/type correction. Previous source
+returned a supposed manager value result directly and emitted 20 bytes. The
 corrected source constructs a zero token, passes it by reference to the manager,
-then returns that value. It emits26/28 and remains nonexact; no credit is added.
+then returns that value. It emits 26/28 and remains nonexact; no credit is added.
 Source SHA256:d4544004c450a0d9e94d0cc57edcb2531773210ec0c696f793b1bd2fe1e89654.
 
 ## Direct observations
 
-4036CA zeroes the caller's result cell before4036D0 calls4040D0. The wrapper
-ignores that call's EAX and returns its own result-cell pointer at4036D6.
-Inside complete401-byte4040D0, the stack argument receives separate slot and
-generation WORD stores at404144/404150 and4041CA/4041D1. The normal return instead
+4036CA zeroes the caller's result cell before 4036D0 calls 4040D0. The wrapper
+ignores that call's EAX and returns its own result-cell pointer at 4036D6.
+Inside complete 401-byte4040D0, the stack argument receives separate slot and
+generation WORD stores at 404144/404150 and 4041CA/4041D1. The normal return instead
 loads a stream pointer from a checked manager slot and returns it in EAX at
 40424B. Thus the manager call is pointer-returning with an explicit token output,
 not itself the service's four-byte value return.
@@ -29,14 +29,14 @@ superseded: six bytes represented missing output initialization.
 scripts/repo-python scripts/build.py --unit gpt-web-bgm-handle-allocation --compare --json
 scripts/repo-python scripts/build.py --unit cross-v106a-bgm-playback --compare --json
 
-The actual playback TU is rebuilt with the same result class. Transition43D030
-208/208, load43CF00123/123, play43CF80168/168 and path-key43BB9036/36 all remain
+The actual playback TU is rebuilt with the same result class. Transition 43D030
+208/208, load 43CF00123/123, play 43CF80168/168 and path-key43BB9036/36 all remain
 exact. Their hidden result/caller ABI is unchanged. No compiler flag, private
 register convention or stub provider was introduced.
 
 Sources:src/audio/BgmHandleAllocation.cpp, BgmHandleResult.hpp and BgmPlayback.cpp.
-Manager4040D0 is not promoted by this contract review.
+Manager 4040D0 is not promoted by this contract review.
 
 Current source selection is the complete BgmStreamAllocation.cpp graph and
 exact-first-bgm-stream-lifetime unit; the standalone probe above is historical.
-Its wrapper remains26/native28.
+Its wrapper remains 26/native28.

@@ -1,6 +1,6 @@
 # Actual CGage linked context: full nonexact result, 2026-11-02
 
-The October21 genuine CIL context stopped at an unqualified internal numeric
+The October 21 genuine CIL context stopped at an unqualified internal numeric
 literal. The current source now has actual CGage/CSprite ownership, and the
 linked comparator has independently validated numeric-literal and static-runtime
 support. One bounded replay closes that specific open validation loop.
@@ -21,8 +21,8 @@ link_numeric_literals; they are not forced into external absolute symbols.
 
 Pinned target SHA-256:
 56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e.
-The full CGage renderer at0x41B3F0 is now compared through linked symbol/CFG
-ownership. It is nonexact1012 versus1010 bytes, first difference at entry:
+The full CGage renderer at 0x41B3F0 is now compared through linked symbol/CFG
+ownership. It is nonexact 1012 versus 1010 bytes, first difference at entry:
 the candidate has an aligned EBP frame, while the native begins SUB ESP,10h.
 The complete canonical candidate SHA-256 is
 5a9a6d3c620abd2a41a6ebb9e7b7cb5542b247b89f922bead9c4eb01b346ff2f.
@@ -37,6 +37,6 @@ its prior two-instruction multiplication-order mismatch. Do not repeat either
 this real linked provider context or old floating-expression grids without new
 independent evidence. Public sources, profiles, manifest and ledgers were not
 edited. This is documentation-only closure of a prior blocked comparison;
-the accepted native receipts and the last full CI962 gate remain unchanged.
+the accepted native receipts and the last full CI 962 gate remain unchanged.
 
 No generated binary is committed.

@@ -12,13 +12,13 @@ register receiver. The worker establishes singleton `702820` itself and calls
 exact `present_d3d_frame @ 401060` at `40858F`. Application-owned rendering,
 event and scene lifetime establish authored ownership independently of matching.
 
-The ordinary CFG reaches383 bytes / 131 instructions, leaving
+The ordinary CFG reaches 383 bytes / 131 instructions, leaving
 `[408649,40865B)` unexplored. It is not padding: target GS/EH handler `6BD7A0`
 loads FuncInfo `6E3D84`, which selects the typed catch at `408649`. The catch
 sets receiver running+4C to zero and returns continuation `408656`; that
 continuation restores the saved singleton pointer and joins final cleanup.
-These six instructions / 18 bytes close the complete401-byte,137-instruction
-callable. The natural VC8 COFF owner independently has that same401-byte
+These six instructions / 18 bytes close the complete 401-byte,137-instruction
+callable. The natural VC8 COFF owner independently has that same 401-byte
 extent, including its local catch funclet and continuation.
 
 ## Exception evidence
@@ -26,7 +26,7 @@ extent, including its local catch funclet and continuation.
 | Structure | Observed content |
 | --- | --- |
 | GS/EH handler `6BD7A0`,27 bytes | Cookie check `689D25`, FuncInfo `6E3D84`, tail jump `6899E7` |
-| FuncInfo `6E3D84` | Magic `19930522`, two states, unwind map `6E3D50`, one try block `6E3D70`, EH flags1 |
+| FuncInfo `6E3D84` | Magic `19930522`, two states, unwind map `6E3D50`, one try block `6E3D70`, EH flags 1 |
 | Unwind map `6E3D50` | Two `(-1, null action)` entries |
 | Try block `6E3D70` | tryLow0, tryHigh0, catchHigh1, one catch at `6E3D60` |
 | Catch descriptor `6E3D60` | adjectives0, type descriptor `6FA40C`, no named catch object, handler `408649` |
@@ -50,7 +50,7 @@ fac731285ddea78fba30f0dc5a24d5a7df4abc139309445823dfe33f102c3ad2
 The worker creates an unnamed, initially unsignaled automatic-reset event at
 application+60. The tested byte is **application+2D**, startup option+25;
 it is not application+4D. Graphics initializer `4147E0` independently uses
-that same option to choose presentation interval1 versus `80000000`, supporting
+that same option to choose presentation interval 1 versus `80000000`, supporting
 its vertical-sync role without renaming the shared startup header.
 
 When true, the worker tries native scene critical section application+98,
@@ -62,8 +62,8 @@ the scene/fade result remains a separate boolean lifetime.
 
 When false, a second local automatic-reset event supplies one-millisecond
 delays. The worker waits indefinitely on event+60, checks running+4C, then
-tries at most16 swap-chain submissions. Byte `6FA246`, backend critical
-section `7036A4` and swap chain `7036C4` gate the attempt. Present flags are1;
+tries at most 16 swap-chain submissions. Byte `6FA246`, backend critical
+section `7036A4` and swap chain `7036C4` gate the attempt. Present flags are 1;
 only HRESULT zero clears the byte, releases the lock, increments counter+48
 and exits the retry loop. A failed attempt releases any acquired lock and
 waits on the local event. The next indefinite wait again uses event+60.
@@ -85,9 +85,9 @@ python3 scripts/audit-candidate-boundaries.py 0x004084F0 --json
 python3 scripts/build.py --unit cross-v106a-application-graphics-worker --compare --json
 ```
 
-The raw boundary report deliberately exposes the18-byte EH-only interval;
+The raw boundary report deliberately exposes the 18-byte EH-only interval;
 the exception evidence above reconciles it. After full
-relocation replay,20 bytes differ:16 in the EH state0 store / sync-byte test /
+relocation replay,20 bytes differ:16 in the EH state 0 store / sync-byte test /
 event-publication ordering, two selecting the pause-event argument register,
 and two selecting the catch receiver register. This is **nonexact**; no match
 row or exact bytes are added.

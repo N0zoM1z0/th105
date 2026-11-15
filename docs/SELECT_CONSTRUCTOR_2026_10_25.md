@@ -20,7 +20,7 @@ No Ghidra process is launched for this scope.
 
 The main span is `[4231A0,424237)`, SHA256
 `9b34d6dea240fd40eede0bba84ffd3a81daeeea29dcf98296b19ee83d5551bea`.
-CFG traversal reaches 1148 instructions/4241 bytes, closes at RET0 `424236`,
+CFG traversal reaches 1148 instructions/4241 bytes, closes at RET 0 `424236`,
 and has no visible outgoing normal branch or indirect jump. The sole skipped
 six-byte LEA at `4239AA..4239AF` remains in the full comparison. The existing
 `select-base-constructor-authored-106a` rule pins this boundary, CSceneBase and
@@ -60,14 +60,14 @@ hides two entries for that gate, and populates the three selection vectors with
 16, 7 or 5 entries according to the observed flag tests. The third vector uses
 the actual third table only on the 16-entry path and -1 on the other paths.
 
-Two cursors use IDs200+i/300+i. The constant ID400 object supplies the back-
+Two cursors use IDs200+i/300+i. The constant ID 400 object supplies the back-
 sprite anchor. Both back sprites deliberately consume the dimensions from the
 second texture load. Background picture/name arrays follow checked vector
 indices. IDs100/200/300 of the background design become three anchors; IDs500..
-502 become three bound objects. The mode4/5 tests retain two separate calls.
+502 become three bound objects. The mode 4/5 tests retain two separate calls.
 Guide loads are 3/4 or 90/91. The final 15-iteration loop loads each palette
 and stand pattern and spawns two effects on the first of each manager pair,
-using the actual double32/double8 coordinate additions and direction/side args.
+using the actual double 32/double8 coordinate additions and direction/side args.
 
 All physical direct-callee counts agree, as do one RET, 10 genuine virtual
 calls and five USER32 `wsprintfA` IAT calls. This inventory is corroboration;
@@ -98,7 +98,7 @@ The existing `DesignTextureHandle` value model naturally emits every observed
 store; no unrolled byte/store recipe is inserted.
 
 `404C90` writes and returns its first stack argument and closes both exits with
-RET16. The natural four-byte class-return view produces the observed hidden
+RET 16. The natural four-byte class-return view produces the observed hidden
 result argument without an explicit long-lived scalar local, restoring the
 `1C8` frame and every EH offset. Native virtual dispatch fixes two artificial
 argument/vptr scheduling sequences introduced by UiSprite94's inline function-
@@ -119,7 +119,7 @@ No assembly, fake dependencies, forced registers or inert storage is used.
 Original nominal handle/helper names and TU partition remain hypotheses. The
 visible `CDesignBase::find_object` definition is the same real checked-map
 behavior as the accepted method. This object emits an unaccepted 118-byte
-standalone helper versus the separately accepted linked121-byte method; that
+standalone helper versus the separately accepted linked 121-byte method; that
 emission receives no implementation/matching credit. Only CSelect is selected
 by this unit. This is not a recovered whole-program link boundary.
 
@@ -132,7 +132,7 @@ to force stack padding. Callee declarations confer no implementation credit.
 
 ## Reproduction and next scope
 
-Run serially on CPU0 at nice10:
+Run serially on CPU 0 at nice 10:
 
 ```sh
 scripts/repo-python scripts/build.py --unit exact-first-select-constructor --compare --json
@@ -142,14 +142,14 @@ TH105_ENABLE_GS=1 TH105_FP_MODE=default TH105_INLINE_MODE=default \
 scripts/repo-python scripts/audit-select-constructor.py --object build/select-cold.obj
 ```
 
-The comparisons intentionally return1 while the main is nonexact. Formal and
+The comparisons intentionally return 1 while the main is nonexact. Formal and
 fresh independent builds agree on all three region hashes. Source selection
-raises source-present1543 to1544 and mapped1562 to1563; exact stays1403/359740
+raises source-present1543 to 1544 and mapped 1562 to 1563; exact stays 1403/359740
 bytes. No aggregate cold replay is claimed. Only new exclusive data aliases
 and function-local bindings are added; prior accepted keys are unchanged.
 
 A read-only ledger census finds no other source-missing authored candidate in
 4096..17999 bytes. Next select the complete medium representative `491C40`
-(provisional3785 bytes, RTTI-owned Fighter primary virtual), with fresh target/
+(provisional 3785 bytes, RTTI-owned Fighter primary virtual), with fresh target/
 CFG/call/ABI review. Keep the CSelect residual parked absent new independent
 evidence instead of cycling through byte-neutral argument spellings.

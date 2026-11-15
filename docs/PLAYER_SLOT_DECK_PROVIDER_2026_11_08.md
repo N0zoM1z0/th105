@@ -22,7 +22,7 @@ nonexact roots retain their previous bodies: profile constructor, title-mode
 preparation and client snapshot import.
 
 The normal setup comparison additionally covers its complete 556-byte owned
-section: callable521, three alignment bytes and the 32-byte switch table all
+section: callable 521, three alignment bytes and the 32-byte switch table all
 match the original. The nine source call relocations resolve to `0x431E50` at
 the same native sites, including the two nonexact callers.
 

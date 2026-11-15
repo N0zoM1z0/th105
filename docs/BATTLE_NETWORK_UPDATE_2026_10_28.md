@@ -1,20 +1,20 @@
-# Network battle updates 426180 and426380
+# Network battle updates 426180 and 426380
 
-Current RTTI-owned CBattleSV/CBattleCL tables6C04E8/6C0540 put these roots at slot04
-(cells6C04EC/6C0544). Complete native extents are247/267 bytes.
+Current RTTI-owned CBattleSV/CBattleCL tables 6C04E8/6C0540 put these roots at slot 04
+(cells 6C04EC/6C0544). Complete native extents are 247/267 bytes.
 
-Both routines exit2 on disconnection. UI-selection change or renderer phase5
-uses the guarded session6C0<-6D8 copy and renderer scene-phase dispatch.
-Otherwise the battle peer updates, the session advances, and mode3 selects
+Both routines exit 2 on disconnection. UI-selection change or renderer phase 5
+uses the guarded session 6C0<-6D8 copy and renderer scene-phase dispatch.
+Otherwise the battle peer updates, the session advances, and mode 3 selects
 the inline-copy return path. Other modes pump transition callbacks, dispatch
-renderer phase1 through the existing out-of-line guarded-copy helper, and
+renderer phase 1 through the existing out-of-line guarded-copy helper, and
 flush replay values when the loop ends. The client UI-phase1 path additionally
 resets combined input counters. Native return codes differ between SV and CL;
 the explicit source preserves those differences.
 
-Ordinary branch source emits250/259 with first+126 because the renderer-phase
+Ordinary branch source emits 250/259 with first+126 because the renderer-phase
 comparison uses CMP instead of the native SUB. A real switch dispatch closes
-that prefix: current252/native247 first+179 and259/native267 first+237.
+that prefix: current 252/native247 first+179 and 259/native267 first+237.
 The remaining differences are shared-return branch targets / tail merging.
 Positive outer nesting and explicit switch defaults are byte-neutral. No
 redundant cases, liveness tricks or goto/assembly shaping were added.
@@ -35,8 +35,8 @@ checkpoint; this added no exact-byte credit.
 ## Source registration, 2026-11-04
 
 The existing complete source hypotheses are now registered as source-present. A
-fresh pinned-VC8 replay still gives server252/native247 (first difference +179) and
-client259/native267 (first +237). These are not exact and add no matching bytes.
+fresh pinned-VC8 replay still gives server 252/native247 (first difference +179) and
+client 259/native267 (first +237). These are not exact and add no matching bytes.
 RTTI/COL ownership and the complete native bodies remain the independent evidence
 above; no gameplay or full application link is claimed. The affected RTTI/body
 ownership rule, exact 22-byte field-copy helper, and 1,024 target-independent CI

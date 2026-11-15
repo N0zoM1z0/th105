@@ -72,9 +72,9 @@ rebuild was performed.
 
 After the service lifetime/load recovery, the same worker policy was tested with the
 actual BgmHandleResult queues and complete BgmStreamRuntime provider context.
-Its326-byte size still agrees, but the first mismatch remains at65: native retains
+Its 326-byte size still agrees, but the first mismatch remains at 65: native retains
 the list owner in EBX and source selects EDI. Stream update is 918/native943 and
-also unaccepted. Both accepted play351 and prepare159 roots remain exact in this
+also unaccepted. Both accepted play 351 and prepare 159 roots remain exact in this
 private context. The token type alone therefore does not close the worker. No ABI or
 register declarations were added, and the control was restored out of selected
 source.

@@ -3,10 +3,10 @@
 Two additional original Boost release parsers are fully canonical exact,
 including every source COMDAT byte rather than merely a code prefix:
 
-- parse_perl_extension6B04E0:2478 code bytes and107 suffix bytes,2585 total.
+- parse_perl_extension6B04E0:2478 code bytes and 107 suffix bytes,2585 total.
   Complete payload SHA-256:
   c04eff569ee473d888d037b45e445cf1a6af9cccc65a919285cd13d7b1abcf29.
-- parse_extended_escape6AF880:1407 code bytes and128 suffix bytes,1535 total.
+- parse_extended_escape6AF880:1407 code bytes and 128 suffix bytes,1535 total.
   Complete payload SHA-256:
   16946d68fb558c1a76a9902c29f863b1f9d6a4b59f3ddd18f129954a6f937326.
 
@@ -17,7 +17,7 @@ configuration is compiled. No library implementation or compiler flags change.
 
 ## Why the earlier section lengths were not codegen mismatches
 
-The source2585/native2478 and source1535/native1407 comparisons mixed total
+The source 2585/native2478 and source 1535/native1407 comparisons mixed total
 COFF section lengths with native callable lengths. Direct inspection shows
 all code bytes agree after relocation replay. The remaining source bytes are
 actual compact-switch metadata, not an omitted code tail:
@@ -27,7 +27,7 @@ actual compact-switch metadata, not an omitted code tail:
 
 Every jump target is a decoded instruction inside the complete code extent,
 and every code instruction is reached by the closed CFG including the switch
-cases. The metadata ends before the next candidate entry. None of those235
+cases. The metadata ends before the next candidate entry. None of those 235
 suffix bytes is counted as authored or library callable code.
 
 ## Narrow complete-payload verification
@@ -46,7 +46,7 @@ The verifier additionally requires:
 - Actual MOVZX byte-map load and matching indexed JMP, with local COFF DIR32
   fields. Every table word has exactly one local DIR32; no map/alignment
   relocation or externally aliased local label is accepted.
-- A matching32-bit unsigned CMP/JA range guard. One observed intervening
+- A matching 32-bit unsigned CMP/JA range guard. One observed intervening
   MOV of a byte register to an ordinary stack byte is allowed because it
   changes neither flags nor index. Other intervening instructions are rejected.
 - Map indices cover and stay within all declared table entries. Destinations
@@ -76,17 +76,17 @@ relocations and additional indirect jumps. Build-level tests require failure
 in JSON/text modes and retain successful full-payload receipts.
 
 The public boost-regex-release-library-origin unit now passes six functions:
-4800 code bytes plus235 parser metadata bytes. Both new full-inventory origin
-anchors pass. All15 previously accepted connect/narrow/effect-deque canonical
-roots freshly pass, as do eight prior origin rules covering244 physical bodies.
-Default CI223 and whitespace checks pass. No cold whole-corpus reconstruction.
+4800 code bytes plus 235 parser metadata bytes. Both new full-inventory origin
+anchors pass. All 15 previously accepted connect/narrow/effect-deque canonical
+roots freshly pass, as do eight prior origin rules covering 244 physical bodies.
+Default CI 223 and whitespace checks pass. No cold whole-corpus reconstruction.
 
 New rule: boost-release-switch-library-106a. Anchors:
 config/boost-release-switch-origin-anchors.toml.
 
-Two library exclusions add3885 code bytes only: excluded1710, review524.
-Authored exact1576 /448613 bytes, source1773, authored1793, mapped1800 and
-units759 stay unchanged. No authored or helper-byte inflation.
+Two library exclusions add 3885 code bytes only: excluded 1710, review 524.
+Authored exact 1576 /448613 bytes, source 1773, authored 1793, mapped 1800 and
+units 759 stay unchanged. No authored or helper-byte inflation.
 
 ## Four more envelopes through the unchanged gate
 
@@ -104,7 +104,7 @@ replay and the same closed-code/table/index-map verification:
 - parse_repeat6A7C90:546 code /583 payload,2 entries/27 indices.
   SHA-256c3602e59ffd86be47c4c5e6592f9bd7eca91ffc07e3ae6fedf5fdf57849355ff.
 
-All944 code bytes and174 metadata bytes pass. The first two reproduce under
+All 944 code bytes and 174 metadata bytes pass. The first two reproduce under
 both reference assertion configurations, so their equality does not distinguish
 the original assertion macro. Public reproduction retains the same dedicated
 release wrapper. No source, compiler flags, verifier or tests change here.
@@ -114,8 +114,8 @@ in both configurations; section-size similarity is not accepted as equality.
 The expanded full-inventory switch rule passes all six physical bodies/4829 code
 bytes, each with its entire canonical payload. Only the four newly reviewed rows
 change classification; the previous two are not counted again. The public release
-unit now passes ten canonical roots:5744 code bytes plus409 metadata bytes. Default
-CI223 and whitespace checks pass.
+unit now passes ten canonical roots:5744 code bytes plus 409 metadata bytes. Default
+CI 223 and whitespace checks pass.
 
-Excluded1714/review520; exact1576 /448613, source1773/authored1793/mapped1800
-and units759 remain unchanged. No authored credit or table truncation.
+Excluded 1714/review520; exact 1576 /448613, source 1773/authored1793/mapped1800
+and units 759 remain unchanged. No authored credit or table truncation.

@@ -1,9 +1,9 @@
 # Iku vslot +0x28 boundary and action map, 2026-10-02
 
 The [October17 type/native follow-up](IKU_RANDOM_FLOAT_TYPES_2026_10_17.md)
-qualifies all17 removed-block warnings as infeasible unsigned remainder
-corrections, records the58-component working view and30 callee ABI models,
-and verifies action602's feasible unsigned-wrap path to object852 spawn.
+qualifies all 17 removed-block warnings as infeasible unsigned remainder
+corrections, records the 58-component working view and 30 callee ABI models,
+and verifies action602's feasible unsigned-wrap path to object 852 spawn.
 The root remains identified without complete source or exact credit. The
 observations below retain their original checkpoint scope.
 

@@ -148,10 +148,10 @@ profile experiment is justified yet.
 
 The independently proved `set_action(short)` ABI correction was used to replay
 the old explicit helper controls. `inline-slide` remains 54/66 with its old
-high799 and late-clamp regressions; `inline-body` remains 51/66. The new ABI
-therefore does not reopen those helper hypotheses. Native-single-switch case690
+high 799 and late-clamp regressions; `inline-body` remains 51/66. The new ABI
+therefore does not reopen those helper hypotheses. Native-single-switch case 690
 was also retested only from the already-proved target edge: repeating the
-low54/60 terminal source drops the 47-owner native diagnostic to 45/66, while
+low 54/60 terminal source drops the 47-owner native diagnostic to 45/66, while
 repeating the complete natural terminal fails the owner audit by merging
 target-distinct destinations. Do not repeat either 690 form.
 

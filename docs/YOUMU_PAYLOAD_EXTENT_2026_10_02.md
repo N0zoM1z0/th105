@@ -2,7 +2,7 @@
 
 Follow-up: [float X carriers and extended x87 guard coverage](YOUMU_FLOAT_CARRIERS_2026_10_02.md)
 now report 26/98 diagnostic owners, metadata `+0x92B0` and first mismatch
-`+0xCA`, target64/candidateD8. Measurements below describe the preceding
+`+0xCA`, target 64/candidateD8. Measurements below describe the preceding
 payload-extent checkpoint; its three-float correction remains retained.
 
 ## Retained result

@@ -60,9 +60,9 @@ scalar wrappers excluded from authored totals. The affected units are:
   `0x44F830/165`.
 
 The four constructor/normal-destructor owners independently replay to the
-same physical EH region: complete code35 at `0x6B8D10` and metadata44 at
+same physical EH region: complete code 35 at `0x6B8D10` and metadata 44 at
 `0x6DECFC`. Its unwind action tail-calls the base destructor at `0x43C950`.
-Both factories replay complete code38 at `0x6B8D40` and metadata44 at
+Both factories replay complete code 38 at `0x6B8D40` and metadata 44 at
 `0x6DED28`; the action calls operator delete at `0x6898EA`. Every relocation
 is resolved, both action and handler bodies close, and each metadata record
 has one unwind state with predecessor -1. Folded regions are counted once.

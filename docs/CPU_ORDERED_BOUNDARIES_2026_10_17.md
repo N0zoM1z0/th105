@@ -217,8 +217,8 @@ the report also pins Python, Unicorn, its loaded library and the configured
 object hashes.
 
 A separate complete-return negative control rebuilds the preceding CPU source
-from `9a38963`. The checked-in NaN fixture leaves target control6D0 at0, while
-that historical object writes2; the current object matches. This confirms the
+from `9a38963`. The checked-in NaN fixture leaves target control 6D0 at 0, while
+that historical object writes 2; the current object matches. This confirms the
 native oracle detects a known defect. Reproduce the current positive control
 without rerunning the matrix:
 
@@ -258,17 +258,17 @@ The source now uses the negated ordered predicates. This recovers observed
 branch semantics without asserting original source spelling or full exception
 behavior. No ABI, type/layout, compiler, partition or relocation contract changes.
 
-A concrete full-return counterexample uses action201, sequence200, self X100,
-peer X250, self Y quiet NaN, peer Y0, zero velocity, positive facing, mode1,
-resource1000, policy0, counter100, timer10, refresh1 and seed0. Target RNG1000
-results are592 and715; the preceding object additionally consumes844. The
+A concrete full-return counterexample uses action 201, sequence 200, self X100,
+peer X250, self Y quiet NaN, peer Y0, zero velocity, positive facing, mode 1,
+resource 1000, policy 0, counter 100, timer 10, refresh 1 and seed 0. Target RNG 1000
+results are 592 and 715; the preceding object additionally consumes 844. The
 immediate actor bytes happen to agree, but helper order and final MT state
 differ. The corrected object consumes exactly the target stream.
 
-The reproducible **368-case** height matrix includes224 controls over seven
-finite/NaN height pairs, distances150/200, sequences200/212 and eight real MT
-seeds. The remaining144 bypass common attacks with peer action100 and select
-policy0 with timer0. Float bit strings preserve NaN inputs without nonstandard JSON.
+The reproducible **368-case** height matrix includes 224 controls over seven
+finite/NaN height pairs, distances 150/200, sequences 200/212 and eight real MT
+seeds. The remaining 144 bypass common attacks with peer action 100 and select
+policy 0 with timer 0. Float bit strings preserve NaN inputs without nonstandard JSON.
 
 | Native complete-return execution | Differences |
 | --- | ---: |
@@ -283,18 +283,18 @@ python3 scripts/audit-cpu-policy-paths.py build/match-units/GptWeb_DefaultCpuAct
 
 Both reports pin input SHA-256
 `6fef66471aadc3cf4361022df18acd143002731e0aa1bf25b34f375194a16ebf`.
-Each target selector/MT entry executes1061 times; the preceding candidate
-has1173 calls to each and the corrected candidate1061. Each side also executes736 native conversions and
+Each target selector/MT entry executes 1061 times; the preceding candidate
+has 1173 calls to each and the corrected candidate 1061. Each side also executes 736 native conversions and
 two checked-sequence calls. This matrix executes no atan2 path; the separate
 5000 finite controls exercise all five helpers. After the final source change,
-those5000 finite controls and the16600 outer-phase controls still have zero
+those 5000 finite controls and the 16600 outer-phase controls still have zero
 differences. Complete nonfinite, exceptional and gameplay coverage remains open.
 
 The focused configured build and canonical comparator still report nonexact
-at+12E, metadata+3E18 and16521-byte section tail. All14/41 identical diagnostic
+at+12E, metadata+3E18 and 16521-byte section tail. All 14/41 identical diagnostic
 owners survive. Only the common airborne body, physically grouped under
 `actions:414` by the owner diagnostic, changes; no partial exact credit is
 recorded. Raw target facts above are mirrored in three direct Ghidra comments,
 saved and checked in a fresh read-only process after re-attesting the target,
-entry, mapped text and body hash. Target bytes and the27-field ABI view remain
+entry, mapped text and body hash. Target bytes and the 27-field ABI view remain
 unchanged.

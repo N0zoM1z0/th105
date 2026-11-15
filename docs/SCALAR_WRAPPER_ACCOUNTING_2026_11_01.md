@@ -15,8 +15,8 @@ are superseded, including the earlier 1,586 / 450,027 checkpoint.
 ## Evidence
 
 The pinned Japanese v1.06a target and pinned VC8 SP1 compiler were verified.
-Every one of the 50 actual owner units was freshly compiled serially on CPU0
-at nice10. The selected actual emitted COFF symbol must start with `??_G`;
+Every one of the 50 actual owner units was freshly compiled serially on CPU 0
+at nice 10. The selected actual emitted COFF symbol must start with `??_G`;
 legacy descriptive selectors are not themselves accepted as ownership proof.
 The full emitted function section tail and canonical native body must have
 identical size and SHA-256, with no partial-byte credit or masks. Native bodies

@@ -9,25 +9,25 @@ normalized instruction sequence, mapped byte, or partial body receives credit.
 
 Canonical Japanese TH10.5 v1.06a SHA256:
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-RTTI primary slot28 cell6C4524 points to4BBE00. Table6C44FC, COL6D9EC0 and
-TD6E7F6C identify MarisaObject. The next independent initializer starts4C8050.
+RTTI primary slot 28 cell 6C4524 points to 4BBE00. Table 6C44FC, COL 6D9EC0 and
+TD6E7F6C identify MarisaObject. The next independent initializer starts 4C8050.
 
-Callable `[4BBE00,4C7C83)` is48771 bytes, SHA256
+Callable `[4BBE00,4C7C83)` is 48771 bytes, SHA256
 `ee841171c5399bb81bbfd2514da95cfc572a90bf85d8a3f077e6064006b18b36`.
-The raw CFG reaches11310 instructions/48722 bytes, with71 RET0s,355 direct
-calls to22 targets and36 virtual calls. No tail exits the callable. Six
-internal alignment ranges account for49 unreachable bytes:
+The raw CFG reaches 11310 instructions/48722 bytes, with 71 RET 0s,355 direct
+calls to 22 targets and 36 virtual calls. No tail exits the callable. Six
+internal alignment ranges account for 49 unreachable bytes:
 4BDEE5..4BDEF0,4BDF28..4BDF30,4BE528..4BE530,4C003D..4C0040,
-4C0075..4C0080,4C1938..4C1940. The target prologue aligns ESP to8 and
-allocates0x340 bytes. These bytes remain included in all comparisons.
+4C0075..4C0080,4C1938..4C1940. The target prologue aligns ESP to 8 and
+allocates 0x340 bytes. These bytes remain included in all comparisons.
 
-Complete payload `[4BBE00,4C8050)` is49744 bytes, SHA256
+Complete payload `[4BBE00,4C8050)` is 49744 bytes, SHA256
 `ed64218fba02fe174150885db55f58797fbcb3ff7e47f79a54c4c26b9cb64e4d`.
 After the callable are one NOP,18 destination tables and four byte remaps.
 Table destination counts, in physical order:
 42,9,8,5,6,7,11,14,8,7,5,4,7,12,7,8,12,4.
-The remaps at4C7D2C/4C7F60/4C7FC4/4C7FF8 contain200/22/19/22 bytes.
-Inter-remap alignment at4C7F76/4C7FD7/4C800E is8BFF/90/8BFF.
+The remaps at 4C7D2C/4C7F60/4C7FC4/4C7FF8 contain 200/22/19/22 bytes.
+Inter-remap alignment at 4C7F76/4C7FD7/4C800E is 8BFF/90/8BFF.
 The audit validates all table edges, remap ranges, metadata coverage, target
 hashes and callable reachability. It compares the entire unmasked payload,
 including every relocation after the provisional callable boundary.
@@ -41,17 +41,17 @@ stdio provider was independently attested against canonical metadata, entry
 4BBE00 decompilation was used only as a navigation hypothesis. Raw canonical
 instructions govern all decisions; no target bytes or IDA metadata were edited.
 
-The pointer-only receiver header does not claim an allocation size. Slot0C,
-14,1C,20 and28 signatures follow the existing engine calls. Member435160 uses
-this+4. Owned spawns465190 and wave dispatch45C030 use owner348. Effect435240
-uses this except the explicit owner call4C32EB. Owner-relative5B0400 takes
-integer offsets38/54 and returns Fighter*. Shared header consumers are unchanged.
+The pointer-only receiver header does not claim an allocation size. Slot 0C,
+14,1C,20 and 28 signatures follow the existing engine calls. Member 435160 uses
+this+4. Owned spawns 465190 and wave dispatch 45C030 use owner 348. Effect 435240
+uses this except the explicit owner call 4C32EB. Owner-relative5B0400 takes
+integer offsets 38/54 and returns Fighter*. Shared header consumers are unchanged.
 
 Manual review corrected decompiler omissions of actual sine/cosine/atan2 and
 square-helper ST0 results, signed owner state bytes, qword pre-height-call Y
 captures, late callback-sensitive owner reloads, orbital Y addition grouping,
-and unordered floating guards. Phases800/848/863 deliberately retain the
-observed repeated movement steps. Action822's inner phase chain is a sequence
+and unordered floating guards. Phases 800/848/863 deliberately retain the
+observed repeated movement steps. Action 822's inner phase chain is a sequence
 of scalar tests, not an extra jump table. Its color conversion is directly to
 an unsigned byte, retaining native x87 truncation rather than a helper call.
 RNG conversions preserve float conversion before double arithmetic. Early
@@ -67,14 +67,14 @@ scripts/repo-python scripts/audit-marisa-object-update.py --target-only
 scripts/repo-python scripts/audit-marisa-object-update.py
 ```
 
-The selected canonical full candidate is50156 bytes,
+The selected canonical full candidate is 50156 bytes,
 SHA256`7378dbdae931e6b638b8b04269c50711cf02447b6cd2c75fc35d65a746d53c14`. Full
-comparison has41591 unmasked differing bytes, first+37/4BBE25 in the initial
+comparison has 41591 unmasked differing bytes, first+37/4BBE25 in the initial
 default-branch displacement. This is not merely a displacement fix: code order,
 precision, call/return sharing and later control flow remain nonexact. Candidate
-frame0x340, all18 table dimensions and four remap lengths agree;37 virtual calls
-versus36 and92 RETs versus71 remain. All22 direct callee counts agree except
-advance_frame11 versus10. These structural facts are diagnostics, not
+frame 0x340, all 18 table dimensions and four remap lengths agree;37 virtual calls
+versus 36 and 92 RETs versus 71 remain. All 22 direct callee counts agree except
+advance_frame11 versus 10. These structural facts are diagnostics, not
 execution-equivalence or byte-exact acceptance.
 
 The unit is isolated; aliases only bind this function's literal operands and
@@ -85,20 +85,20 @@ translation-unit context remain hypotheses until independently established.
 
 ## Target-backed continuation refinement
 
-The selected source now shares the observed825/826 parented expansion fade,
-812/849 owner-hitstop exit and865/901 RGB fade continuations. These are ordinary
+The selected source now shares the observed 825/826 parented expansion fade,
+812/849 owner-hitstop exit and 865/901 RGB fade continuations. These are ordinary
 source labels for identical authored behavior, not copied instruction blocks.
-The812 orbital offset expressions preserve native integer-multiply conversion
-and compute the sine radius before loading the owner Y. The825/826 subtractive
+The 812 orbital offset expressions preserve native integer-multiply conversion
+and compute the sine radius before loading the owner Y. The 825/826 subtractive
 integer offsets retain the native FISUB operation. Direct aim-call arguments
 restore X-then-Y evaluation without keeping both rounded arguments live across
 the call;900 RNG-plus-offset grouping follows its raw x87 additions.
 
-A separate whole-root shared-finish control compiled50124 bytes but moved
-previously aligned early control flow and changed advance_frame sharing to9
-versus native10. It is not selected. Smaller size is not the acceptance rule.
-The selected50156 bytes remain wholly nonexact, with all18 destination-table
-counts and all263 remap bytes equal, native0x340 frame, and the remaining
+A separate whole-root shared-finish control compiled 50124 bytes but moved
+previously aligned early control flow and changed advance_frame sharing to 9
+versus native 10. It is not selected. Smaller size is not the acceptance rule.
+The selected 50156 bytes remain wholly nonexact, with all 18 destination-table
+counts and all 263 remap bytes equal, native 0x340 frame, and the remaining
 call/return/control-sharing differences stated above.
 
 ## Action 826 effect position grouping, 2026-11-05

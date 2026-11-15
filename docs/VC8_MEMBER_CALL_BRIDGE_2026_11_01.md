@@ -4,7 +4,7 @@
 libcmt:trnsctrl.obj member-call bridge family. The actual original COMDATs for
 CallMemberFunction0, CallMemberFunction1 and CallMemberFunction2 are each seven
 bytes and have no relocations. All three complete bodies match the same native
-physical candidate. The formal unit uses the0 spelling as a representative;
+physical candidate. The formal unit uses the 0 spelling as a representative;
 bytes alone do not identify it exclusively or prove which compatible aliases
 the shipped linker retained. One physical runtime body receives seven bytes
 of library credit, never three function credits.

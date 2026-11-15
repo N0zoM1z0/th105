@@ -1,13 +1,13 @@
 # Shared handle-token release: full private-entry match
 
-October29 source-integrity correction: Title404C90/404D70's historical assembly
+October 29 source-integrity correction: Title 404C90/404D70's historical assembly
 acceptance is withdrawn. Their raw call edges remain valid, and the independent
-genuine sender/helper source still freshly replays167/167. See
+genuine sender/helper source still freshly replays 167/167. See
 [TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md](TITLE_RESOURCE_SOURCE_INTEGRITY_2026_10_29.md).
 
 The later [server-sender checkpoint](NETWORK_WINSOCK_SEND_SERVER_2026_10_16.md)
 adds the second real sender/export to this same source unit. Shared release
-still replays167/167 through its original client caller witness. Both senders
+still replays 167/167 through its original client caller witness. Both senders
 remain nonexact; the one-export controls below describe the acceptance baseline.
 
 ## Observed target and ownership
@@ -17,7 +17,7 @@ Only original Japanese TH10.5 v1.06a was inspected, SHA-256
 `CHandleManager_release_token @ 405200` is canonical **167/167** in
 `cross-v106a-network-winsock-send-client`. Body SHA-256 is
 `f225dfcb190c5b55cba3f65a784ba7a244a15da3670549afac6573f6c4166421`.
-Independent raw CFG traversal reaches all63 instructions through RET4 at
+Independent raw CFG traversal reaches all 63 instructions through RET4 at
 `4052A4`, without uncovered bytes, outgoing direct branches, indirect jumps,
 overlaps or remote chunks. Padding isolates the callable.
 
@@ -40,8 +40,8 @@ specializations and the original template spelling remain unknown.
 
 ## Complete behavior and source
 
-The function enters the manager lock, extracts unsigned slot=token low16 and
-generation=token high16, and reads the checked generation vector at that slot.
+The function enters the manager lock, extracts unsigned slot=token low 16 and
+generation=token high 16, and reads the checked generation vector at that slot.
 If it differs, it leaves the lock without recycling anything. On equality,
 it performs a second checked vector access, sets that generation to zero,
 pushes the unsigned slot onto the free list's back, then leaves the lock.
@@ -57,12 +57,12 @@ add RAII cleanup or rollback around list allocation failures.
 two-word token view, actual native vector/list members and Win32 calls.
 The file contains its real sender and acquire definitions. No external EAX
 prototype, register variable, assembly, fake caller, copied STL implementation
-or shaping local is introduced. An isolated ordinary candidate is151 bytes;
+or shaping local is introduced. An isolated ordinary candidate is 151 bytes;
 the real caller allows LTCG to generate EAX self and the aligned frame.
-Pure CIL produces163 bytes because it privately specializes the list size
+Pure CIL produces 163 bytes because it privately specializes the list size
 helper. The genuine ordinary `src/library/UnsignedIntList.cpp` instantiation
 linked before CIL preserves the normal list helper ABI and explicit increment
-argument, giving the complete167-byte target body. It receives no authored
+argument, giving the complete 167-byte target body. It receives no authored
 credit and does not establish the original TU partition.
 
 All four REL32 fields replay by name: two invalid-parameter calls to `68A143`,
@@ -102,11 +102,11 @@ full canonical comparison. The target's167-byte size is never used to crop
 the source body. Build/source/CIL/COFF/map/image/tool/header/parser hashes still
 guard every artifact before decoding. Existing COFF comparison is unchanged.
 
-The source sender remains561/464 nonexact, first difference+A2, on iterator
+The source sender remains 561/464 nonexact, first difference+A2, on iterator
 register allocation and token-queue inlining. Its role here is independent
 caller ownership evidence; no prefix or sender bytes enter matches.csv.
-Acquisition remains ordinary427/410 nonexact in its separate probe unit.
-The new exact row accounts only for the full167-byte release.
+Acquisition remains ordinary 427/410 nonexact in its separate probe unit.
+The new exact row accounts only for the full 167-byte release.
 
 ## Reproduction and validation
 
@@ -118,17 +118,17 @@ python3 scripts/compare-linked-unit.py cross-v106a-network-winsock-send-client -
 
 The complete mixed-unit
 comparison, `build/network-winsock-send-client-linked-full.json`, intentionally
-returns1: sender561/464 is nonexact while release167/167 is exact. Both supported
-Capstone versions4.0.2 and5.0.6 independently rebuild and compare the private
-167-byte entry and pass all19 linked-path acceptance/rejection tests. A build
+returns 1: sender 561/464 is nonexact while release 167/167 is exact. Both supported
+Capstone versions 4.0.2 and 5.0.6 independently rebuild and compare the private
+167-byte entry and pass all 19 linked-path acceptance/rejection tests. A build
 and comparison must use the same recorded parser version.
 
 After changing the shared linked comparator, fresh builds and accepted-function
-dispatch verify scene retirement281/281, pool destructor98/98 and this helper
+dispatch verify scene retirement 281/281, pool destructor 98/98 and this helper
 167/167. `build/handle-release-accepted-dispatch.json` records all three selected
 accepted results, including the private caller witness when only release is
 selected from its mixed unit. Local `python3 scripts/ci.py` and the pinned
-Capstone4 CI environment both pass all151 tests and generated-progress checks;
+Capstone 4 CI environment both pass all 151 tests and generated-progress checks;
 `git diff --check` passes. No unrelated aggregate cold replay is used; status
 totals remain ledger totals until a separate `--all` run.
 
@@ -142,9 +142,9 @@ x86 Windows identity and every mapped .text byte. Its saved shared prefix,
 full extent, durable name, custom EAX/stack token storage and RET4 are checked
 in a fresh read-only invocation. The source remains a normal C++ member;
 custom storage is analysis metadata describing the observed machine entry.
-One process uses768MiB and two CPUs.
+One process uses 768MiB and two CPUs.
 
 The original TU, template source spelling, broader source profile and sender
 inlining choices remain unknown. This accepted function proves the bounded
 167-byte result and its recovered policy; it does not prove the whole original
-networking module or the95% authored-byte goal.
+networking module or the 95% authored-byte goal.

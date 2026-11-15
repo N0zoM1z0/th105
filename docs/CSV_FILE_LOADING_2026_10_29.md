@@ -1,6 +1,6 @@
 # CSV file dispatch and iterator reset
 
-Later same-day result: both file loaders are now exact234/267 with full cleanup
+Later same-day result: both file loaders are now exact 234/267 with full cleanup
 EH; The initial checkpoint and
 controls below remain historical evidence.
 
@@ -11,17 +11,17 @@ Two complete authored functions are now canonical exact in the real CIL context:
 -40F730, CsvReader_reset_iterators,151 bytes:
  4baeccc6540c6f698be3d89e497f44dd296c8a0046367190e622c891e7da46b7.
 
-The291 bytes add no acceptance for the file/CSV loader bodies, parser, library
+The 291 bytes add no acceptance for the file/CSV loader bodies, parser, library
 providers or caller EH. No partial-function or size-only credit is used.
 
 ## Raw target and actual source context
 
 Factory-native IDA passed a fresh metadata/entry, five mapped-byte samples and
 inventory/disassembly/decompiler/call-graph preflight. No analysis-database metadata
-or executable bytes were changed. The575-byte parser decompilation was only
+or executable bytes were changed. The 575-byte parser decompilation was only
 navigation; raw switch/field/call instructions establish the source behavior below.
 
-The8-byte FileBufferContext owns its allocation and size. In encoded-resource
+The 8-byte FileBufferContext owns its allocation and size. In encoded-resource
 mode, load_csv copies the path into a260-byte local and replaces its last four
 bytes with .cv1; otherwise it calls the plain loader. Both return their actual
 callee result. The existing real reader, package lookup, node and casefold CRC
@@ -29,11 +29,11 @@ implementations close the link, with real static CRT/Kernel32 providers. The
 package global is bound to its independently attested native data, not a fake
 initialized substitute. The original TU partition and class names are unknown.
 
-CsvContext owns deque<deque<string>>, its12-byte row iterator, its12-byte field
+CsvContext owns deque<deque<string>>, its 12-byte row iterator, its 12-byte field
 iterator, and comment/quote bytes. load owns the file buffer, returns false on
-file-load failure, then parses and resets iterators on success. The raw170-byte
-caller is independently reached by exact default-deck loader431E80 at431FCC.
-Its current complete source emits176 bytes and remains unaccepted.
+file-load failure, then parses and resets iterators on success. The raw 170-byte
+caller is independently reached by exact default-deck loader 431E80 at 431FCC.
+Its current complete source emits 176 bytes and remains unaccepted.
 
 reset assigns rows.begin() and, only if there is a row, assigns that row's
 begin() to the field iterator. This jointly controls two reader-owned iterator
@@ -44,8 +44,8 @@ nested-row push and EH-only tidy entries retain their existing classification.
 
 Ordinary source definitions naturally produce the private entries: ECX/EDX for
 the file wrapper, ESI for reset and encoded load. Exporting the file wrapper
-as ordinary thiscall in the first private control instead produced153 bytes;
-using its actual CSV caller produces the complete140-byte native body. No
+as ordinary thiscall in the first private control instead produced 153 bytes;
+using its actual CSV caller produces the complete 140-byte native body. No
 fastcall/register declaration, noinline pragma, stub or artificial caller is
 used. The plain loader and FileReaderOwner.open retain their known normal
 public member interfaces.
@@ -63,9 +63,9 @@ unterminated row. No extra validation or cleanup behavior is invented.
 
 The casefold hash body is factored from ScoreMusicLookup.cpp into the shared
 CaseInsensitivePathHash.cpp and calls the real C get_crc_table interface.
-Its293-byte body and the99/86-byte score callers replay exact. The zlib1.2.3
+Its 293-byte body and the 99/86-byte score callers replay exact. The zlib 1.2.3
 static-table getter is supplied by ZlibCrcTable.cpp using unchanged crc32.h.
-All8192 table bytes equal canonical6C7630, SHA256
+All 8192 table bytes equal canonical 6C7630, SHA256
 24363a766de82f6877f1c0e25912659526684c30b689fea3d960cc703067a718.
 This library context receives no authored credit. No executable ABS binding,
 synthetic returned pointer, unresolved link or force option is used.
@@ -79,11 +79,11 @@ security cookie. The new explicit caller_eh contract identifies only those
 two address roles, without claiming the caller or its EH are byte-exact.
 
 It requires the static pinned CRT cookie witness, unique private compiler
-handler/cleanup funclet, bounded27-byte GS handler with actual cookie-check/
+handler/cleanup funclet, bounded 27-byte GS handler with actual cookie-check/
 FrameHandler3 branches, one-state cleanup-only FuncInfo, a valid unwind map,
 exact HIGHLOW field coverage and exactly one handler/cookie operand in each
 caller. Extra fields, aliases, wrong roles or wrong native handler/Info fail.
-Native handler6BE388 selects Info6E4B40. Source/native frame offsets differ,
+Native handler 6BE388 selects Info 6E4B40. Source/native frame offsets differ,
 and receipts explicitly say caller_or_eh_exactness_claimed=false. No field in
 either accepted callee is masked. Existing single-edge and two-edge contracts
 remain unchanged; only the separately explicit role contract is new.
@@ -99,8 +99,8 @@ EH surface. The two accepted bodies have closed CFGs and every byte/relocation i
 replayed.
 
 Focused source replay keeps all three score/hash functions exact. Legacy
-private single-edge script destructor95/pending cleanup147 and the genuine
-two-edge BGM constructor89 also replay exact. Three small checker tests cover
+private single-edge script destructor 95/pending cleanup 147 and the genuine
+two-edge BGM constructor 89 also replay exact. Three small checker tests cover
 this role contract and rejection cases; existing linked checks remain passing.
 No cold corpus rebuild or broad runtime matrix was performed.
 
@@ -132,10 +132,10 @@ native units were not rebuilt.
 
 The unchanged clear operation was exported in the full real script/file CIL graph.
 It is a10-byte wrapper, with the genuine nested-deque _Tidy125 emitted separately;
-this does not close native clear125 and does not justify copying STL internals into
-the authored method. Adding the real advance-row consumer gives207/native167 because
+this does not close native clear 125 and does not justify copying STL internals into
+the authored method. Adding the real advance-row consumer gives 207/native167 because
 its row iterator helper is inlined. Adding actual next-int and next-string consumers
-remains207; an Ob1 compiler control is also neutral. All controls stay private and
+remains 207; an Ob1 compiler control is also neutral. All controls stay private and
 receive no credit.
 
 ## Parser source registration, 2026-11-04

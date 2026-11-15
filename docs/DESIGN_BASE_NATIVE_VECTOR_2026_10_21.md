@@ -55,7 +55,7 @@ retains the complete canonical lifetime results:
 The semantic include closure selects 13 existing units. All 43 affected accepted
 functions were rebuilt serially and remain completely exact. Private
 native-container controls agree with the public lifetime replay. No flags,
-relocation bindings, or accepted extents changed. All work ran on CPU0 at nice10.
+relocation bindings, or accepted extents changed. All work ran on CPU 0 at nice 10.
 
 ## Evidence, records and remaining work
 

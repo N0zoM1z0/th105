@@ -94,15 +94,15 @@ The target helpers are:
 | Seed `406670` | 64 | `6b243ded53f47d320824fa2fa31056026b41685c3f269d8bdefc8d11a53a8bd0` |
 | Next `4066B0` | 279 | `f90693c2a6c176316bba3d1b1a83f94916893866dd276dc5ae2dc4b19db7b9a4` |
 
-Before every call a normal float80 value is live: mantissa
+Before every call a normal float 80 value is live: mantissa
 `C000000000000001`, exponent `3FFF`. Its low mantissa bit cannot survive a
-binary64 round trip. Cases cover genuine seeds 0, 1 and 119, plus index 625
+binary 64 round trip. Cases cover genuine seeds 0, 1 and 119, plus index 625
 with zero state to exercise the real default-seed path; control words `027F`
 and `037F`; and 626 consecutive draws, crossing the twist and refill edges.
 
 For both visible/noinline contexts, **10,016 paired draws pass with zero
 differences**. Checks include EAX, all 624 state words and the index, real
-RET/ESP, EBX/ESI/EDI/EBP, float80 bits, control/status/tag state. Execution
+RET/ESP, EBX/ESI/EDI/EBP, float 80 bits, control/status/tag state. Execution
 must remain inside the pinned helper image's `.text`; writes are confined
 to the MT state/index and stack. No callee result or return is injected.
 

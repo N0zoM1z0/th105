@@ -25,7 +25,7 @@ compiler profile and static runtime are pinned.
 
 ## Exception and supporting evidence
 
-The complete27-byte handler, 8-byte cleanup action, 36-byte FuncInfo and
+The complete 27-byte handler, 8-byte cleanup action, 36-byte FuncInfo and
 8-byte unwind map are compared, including each actual relocation role. The
 length_error ThrowInfo, three-catchable-type array and full length_error,
 logic_error and exception descriptors, sizes and copy pointers are checked
@@ -44,7 +44,7 @@ full-inventory uniqueness. Five contract tests plus target root, handler, unwind
 ThrowInfo and literal corruption controls reject their respective mutations. A full
 global origin replay is not claimed.
 
-Only one origin row moves review → compiler-generated exclusion: review293,
-excluded2078. Exact1426 /443399 bytes, authored1656, source1637, mapped1827,
-units814 and candidates4027 stay unchanged. Other list specializations are not
+Only one origin row moves review → compiler-generated exclusion: review 293,
+excluded 2078. Exact 1426 /443399 bytes, authored 1656, source 1637, mapped 1827,
+units 814 and candidates 4027 stay unchanged. Other list specializations are not
 classified by this single-body proof.

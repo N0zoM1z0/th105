@@ -19,15 +19,15 @@ bounded pointer views. Existing input-manager and text-owner views stay intact.
 ## Validation
 
 All 18 accepted roots in the eight-unit actual include closure remain whole
-exact. This includes profile construction192/destruction205, player color461,
-network finalization623, battle profile render753, profile frame359, shutdown129,
+exact. This includes profile construction 192/destruction205, player color 461,
+network finalization 623, battle profile render 753, profile frame 359, shutdown 129,
 the score-defaults owner and Replay owners. Three additional Replay support
 roots (208/27/5) retain fresh HEAD hashes. No accepted caller regresses.
 
 The actual profile sprite's complete RTTI (273 bytes including standalone IColor
 COL) and nine-slot table match. Full profile constructor and destructor EH each
-contain 80 code bytes and 68 metadata bytes, 296 total. Whole string cleanup38
-and implicit input cleanup5 are qualified at their observed native destinations.
+contain 80 code bytes and 68 metadata bytes, 296 total. Whole string cleanup 38
+and implicit input cleanup 5 are qualified at their observed native destinations.
 Neither equal helper bytes nor common cleanup targets prove exclusive nominal
 identity. These checks do not assert full-program linkage across all views.
 
@@ -36,7 +36,7 @@ and its new shared Sprite/Color/Handle dependencies. Its complete two-root /
 32-byte gate passes; all 12 focused validator tests pass. No origin disposition
 or exact/source totals change in this structural scope.
 
-A separate provenance question remains: the profile destructor at0x42D320 has
+A separate provenance question remains: the profile destructor at 0x42D320 has
 an explicit empty source body and may admit a natural compiler-generated witness
 from the real ScoreDefaults local object. That requires its own complete emission
 and owner proof before any reclassification; this checkpoint does not infer an

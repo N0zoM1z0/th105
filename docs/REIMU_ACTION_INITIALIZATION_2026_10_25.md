@@ -1,4 +1,4 @@
-# Reimu primary slot3C: complete action-entry source
+# Reimu primary slot 3C: complete action-entry source
 
 `Reimu_initialize_action_entry @ 0x00491C40` has complete source in
 `src/characters/ReimuActionInitialization.cpp/.hpp`. As of 2026-11-14 the
@@ -23,7 +23,7 @@ The RTTI-backed roster manifest pins Reimu primary vtable `6C412C`, cell
 bytes, SHA256
 `ab70f8336d04a7698b0acaa29ca0ea8784f7a80b36bc7abb3e155d7a5ac7b04b`.
 It preserves EBX/ESI/EDI, uses ECX as the receiver and a real four-byte
-temporary, has 39 RET0 exits and one default tail to `477830`. No GS/EH
+temporary, has 39 RET 0 exits and one default tail to `477830`. No GS/EH
 registration is present. Void is the source return view; original spelling
 and the original nominal class/TU boundary remain unknown.
 
@@ -56,14 +56,14 @@ represented. Callee declarations confer no implementation credit.
 
 The first full source was compiled and whole-compared immediately. It emits
 4674 bytes (`fbd692e7...`), with the first mismatch at+0x0D because grouping
-case300 with301 changes the switch pivot. Independent case300 restores the
-target300/301 partition (`a24e5bc4...`). All direct-callee counts and all remaps
+case 300 with 301 changes the switch pivot. Independent case 300 restores the
+target 300/301 partition (`a24e5bc4...`). All direct-callee counts and all remaps
 already agree in that first complete object; these are diagnostic facts,
 not a substitute for canonical equality.
 
 Target-backed changes preserve the observed state/velocity write order,
 floating zero-assignment order and narrow-word clear groups. The corresponding
-whole outputs are4722 bytes (`d4afd81b...`, `b2d604b8...`, `aa5bc271...`).
+whole outputs are 4722 bytes (`d4afd81b...`, `b2d604b8...`, `aa5bc271...`).
 Normalizing the facing read to one signed-byte view plus unsigned conversion
 is byte-identical to `aa5bc271...`; do not repeat that spelling question.
 
@@ -78,56 +78,56 @@ the byte into the spawned object. The corresponding flag read is `437C49`.
 
 The ordinary C++ witness `scripts/native/reimu_effect_byte_forwarder.cpp`
 uses the byte direction consistently in both wrapper and virtual declaration.
-It freshly reproduces **all52/52 bytes** of `435240`, SHA256
+It freshly reproduces **all 52/52 bytes** of `435240`, SHA256
 `766e73525d2dfc9742f5e6e054a58e61f65b5def458e9c42a3aff78b2c075fd8`,
 using the already pinned effect-sink global. It adds no helper/exact credit.
 Only this new receiver declaration changes; shared accepted headers and their
 int transport views are untouched. This establishes a valid byte interface,
 not uniqueness of the original declaration.
 
-Applying the interface to the root yields4702 bytes (`4893d60d...`). It removes
+Applying the interface to the root yields 4702 bytes (`4893d60d...`). It removes
 the artificial double extension of the same facing byte and restores the low
 switch's physical partition sizes. The whole root remains nonexact.
 
 ## A concrete native counterexample and correction
 
 The remaining shared-tail differences prompted a scoped scalar-state check.
-It found28 failures, all at **owner+750** in actions502/507. Reading those
-actual target edges back shows the complete issue: actions500/501,502/503/
+It found 28 failures, all at **owner+750** in actions 502/507. Reading those
+actual target edges back shows the complete issue: actions 500/501,502/503/
 512/513,505/506,507/508,510/511 enter the cleanup tail at `492382`, which also
 writes byte`+750=1` after the three word clears. The first source omitted that
 write from all five source arms. The selected source corrects the entire group.
 
 The extended check now passes **210/210 scoped native cases**. It covers the
-affected family plus the distinct306/307/321/797 entries, signed607 threshold,
+affected family plus the distinct 306/307/321/797 entries, signed 607 threshold,
 zero/scale paths and related clears. Finite, signed-zero, subnormal, maximal,
 infinite, quiet-NaN and signaling-NaN velocities run under both masked x87
-control words27F/37F. Each side executes the complete selected root path and,
-where called, the actual27-byte `45AF40` zero-motion helper through real RET0.
-There are84 genuine helper entries on each side. No opaque return, instruction
-stub, fabricated provider result or substituted store is used. Full0x900-byte
+control words 27F/37F. Each side executes the complete selected root path and,
+where called, the actual 27-byte `45AF40` zero-motion helper through real RET 0.
+There are 84 genuine helper entries on each side. No opaque return, instruction
+stub, fabricated provider result or substituted store is used. Full 0x900-byte
 owner snapshots, caller stack cleanup and callee-saved registers are checked.
 Effect/resource/default-helper paths are outside this bounded native cohort;
 no whole-game or unmasked-trapping-environment claim is made.
 
-The corrected whole payload is `e14c2c80...`, still4702 bytes with2489 unmasked
-differences including36 bytes of size difference. Different shared cleanup
-positions shift the tables; candidate has38 RETs versus39. Complete native
+The corrected whole payload is `e14c2c80...`, still 4702 bytes with 2489 unmasked
+differences including 36 bytes of size difference. Different shared cleanup
+positions shift the tables; candidate has 38 RETs versus 39. Complete native
 state agreement does not excuse those differences.
 
 ## Finite controls and remaining unknowns
 
-An accessed-prefix member-layout control emits4714 (`d8d164dd...`) before the byte
-interface, and4694 (`f47665e4...`) with it. Neither is selected. Capturing case76's
+An accessed-prefix member-layout control emits 4714 (`d8d164dd...`) before the byte
+interface, and 4694 (`f47665e4...`) with it. Neither is selected. Capturing case 76's
 direction/Y inputs introduces a real extra temporary/frame and changes physical
 helper/exit sharing (`5405b9af...`); it does not close the target. Capturing genuine
-double velocity products emits4694 (`75bb9e7d...`), also unselected. Preserve these
+double velocity products emits 4694 (`75bb9e7d...`), also unselected. Preserve these
 receipts instead of adding storage or register constraints.
 
 Original helper visibility, caller/TU optimization context and the remaining
 shared-tail/FP scheduling are unresolved. No standalone/LTCG impossibility is
 proved. A next useful bounded representative is the actual common initializer
-`477830`, candidate4849 bytes: first establish its origin, complete boundary
+`477830`, candidate 4849 bytes: first establish its origin, complete boundary
 and ABI from raw target/call/RTTI evidence. It currently remains unclassified
 and source-missing; Reimu's default tail is evidence to investigate, not an
 automatic promotion. This can supply real family context without fabricated
@@ -135,7 +135,7 @@ callers or a broad flag search.
 
 ## Reproduction
 
-Run serially, CPU0/nice10:
+Run serially, CPU 0/nice10:
 
 ```sh
 scripts/repo-python scripts/build.py --unit exact-first-reimu-action-initialization --compare --json
@@ -148,12 +148,12 @@ TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
 scripts/repo-python scripts/audit-reimu-action-initialization.py --object build/reimu-entry-cold.obj
 ```
 
-Full comparisons deliberately return1 until exact. Five target-free negative/
+Full comparisons deliberately return 1 until exact. Five target-free negative/
 fixture tests guard all table extents, including malformed last-table indices,
 metadata destinations, truncated remaps and unreviewed external tails.
 No prior accepted source, header, compiler profile or relocation key changes.
 Only new exclusive literal aliases and local function bindings are added.
-Source-present1545/mapped1564, units584; exact stays1403/359740 bytes. No new
+Source-present1545/mapped1564, units 584; exact stays 1403/359740 bytes. No new
 aggregate cold replay is claimed.
 
 ## Action 616 initialization tail

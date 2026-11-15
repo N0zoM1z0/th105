@@ -60,8 +60,8 @@ Exhausting that chain also returns without writing outputs.
 
 On a hit, the archive index is captured before output publication. The size
 and offset are written before opening. The selected archive name is passed to
-`CreateFileA` through IAT `6C0098`, with access `80000000`, share1, null
-security, OPEN_EXISTING3, flags80h and null template. INVALID_HANDLE_VALUE
+`CreateFileA` through IAT `6C0098`, with access `80000000`, share 1, null
+security, OPEN_EXISTING3, flags 80h and null template. INVALID_HANDLE_VALUE
 becomes zero, leaving the published outputs intact. Otherwise the target
 calls `SetFilePointer` through IAT `6C0090` with the output offset, null high
 word and FILE_BEGIN0. The seek result is ignored; it returns the file handle.
@@ -75,11 +75,11 @@ calling convention is fabricated for the search helper.
 
 | Private control | Complete root | Search helper / vector indexing |
 | --- | --- | --- |
-| Ordinary SP1, defined globals | 283 bytes | public ECX/sret-stack find105; separate vector[]68 |
+| Ordinary SP1, defined globals | 283 bytes | public ECX/sret-stack find 105; separate vector[]68 |
 | Ordinary SP1, external globals | 283 bytes | same root bytes and boundaries |
 | Ordinary SP1, const views | 283 bytes | same root bytes; const-qualified symbols |
-| Real-source SP1 GL link, exported opener | 333 bytes | private find116; vector indexing inlined |
-| Complete reader/BMP dependency link | opener333; CF40 212; BMP2152 | private find116; target boundaries still differ |
+| Real-source SP1 GL link, exported opener | 333 bytes | private find 116; vector indexing inlined |
+| Complete reader/BMP dependency link | opener 333; CF40 212; BMP 2152 | private find 116; target boundaries still differ |
 
 GL reproduces the opener's eight-byte stack alignment and inlines checked
 vector indexing. It specializes the search differently: its container becomes
@@ -95,7 +95,7 @@ it provides no RTM code-generation comparison.
 The first private link used a simple equivalent CRC loop. On checking the
 live mapping, the already accepted `case_insensitive_crc32` body was found in
 `src/config/ScoreMusicLookup.cpp`; later links use that selected body. Its
-ordinary full293-byte replay passes again. The complete dependency experiment
+ordinary full 293-byte replay passes again. The complete dependency experiment
 uses the selected BMP body, real FileReader and package sources, actual global
 container definitions, the selected CRC body, a real table-getter provider,
 vendored zlib CRC source and pinned CRT/SDK libraries. It links without
@@ -107,8 +107,8 @@ entry ABIs, the complete CF40 canonical payload is unchanged:
 212 bytes, SHA256
 `ac9caab6bf725b1f1aafb2bfa162717861bdfff8a27f3103450e2683a4df5c4c`.
 All four HIGHLOW and three E8 fields have named owners; strict mismatch is
-still +0. BMP has a 2152-byte callable plus45 metadata bytes (2197 total),
-frame438h versus target430h, with first difference +10h. All19 translated
+still +0. BMP has a 2152-byte callable plus 45 metadata bytes (2197 total),
+frame 438h versus target 430h, with first difference +10h. All 19 translated
 fields have map/local owners; diagnostic payload SHA256
 `d8eac9b5385981664658f8e56992a36a7e253b4ee2aacf8620ab50f507fa5642`.
 Completing these providers does not by itself recover the target frame or
@@ -126,7 +126,7 @@ ASCII case comparisons, three archive indices, inline/heap strings, two input
 stack alignments, shared size/offset outputs, open failure and ignored seek
 failure. Three invalid-vector cases stop at the CRT invalid-parameter entry.
 
-Coverage is 122/126 root instructions and all45 target search-helper
+Coverage is 122/126 root instructions and all 45 target search-helper
 instructions. The three impossible-under-valid-iterator owner-check failure
 calls and the continuation after the returning invalid-vector handler are
 uncovered. `_stricmp` and Win32 I/O are modeled; locale behavior, real file I/O,
@@ -134,17 +134,17 @@ handler continuation and OS exception unwinding remain outside this evidence.
 
 The selected source compiles in `gpt-web-package-file-entry`. Formal comparison
 stops at `relocation.rel32.unknown_target` for the ordinary map-find helper:
-mapping that incompatible ABI to41C450 would be false evidence. The extra
+mapping that incompatible ABI to 41C450 would be false evidence. The extra
 out-of-line vector call also has no target callable to bind. Data-address and
 the three known external-call identities are recorded independently. No
 percentage or first-byte exact comparison is claimed for this probe.
 
-Focused fresh builds replay all12 accepted functions across
+Focused fresh builds replay all 12 accepted functions across
 `gpt-web-package-file-index-runtime`, `gpt-web-score-music-lookup`,
 `cross-v106a-file-reader` and `gpt-web-cbitmap-data-runtime` exactly, including
-the43-byte destructor after its shared declaration changes. Existing CF40,
+the 43-byte destructor after its shared declaration changes. Existing CF40,
 BMP, PNG and file-loader probes remain nonexact. The ordinary selected BMP
-payload remains2181 bytes. No cold aggregate replay was run.
+payload remains 2181 bytes. No cold aggregate replay was run.
 
 Next recover the genuine shared index-helper caller/ownership context, then revisit
 reader construction and BMP workspace/EH lifetimes. The registration follow-up above

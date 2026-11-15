@@ -24,7 +24,7 @@ behavior was executed through the OS; this is static source reconstruction.
 The original recursion_info has id, return address, results and repeater-stack
 members and no user-declared destructor. The source matcher owns fifty entries.
 Both real array sites agree: construction 443BD5/31 and destruction 443AC8/29
-use count50, stride68, member offset136, cleanup443020 and constructor443A00.
+use count 50, stride 68, member offset 136, cleanup 443020 and constructor 443A00.
 The constructor's remote third cleanup repeats the real array lifetime. This
 is not a generated test caller or an invented helper implementation.
 
@@ -34,17 +34,17 @@ The new audit requires current source/compiler/object provenance and re-verifies
 the original public instantiation and vendor inputs. It replays all five formal
 library bodies plus four whole helper bodies and all four complete EH scopes.
 Eight structural tests include corruption of every byte of both array sites.
-A separate actual-target mutation sweep flips each of the1280 distinct bytes;
-all1280 are rejected by the real audit. Do not add overlap with older proof
+A separate actual-target mutation sweep flips each of the 1280 distinct bytes;
+all 1280 are rejected by the real audit. Do not add overlap with older proof
 scopes as additional code coverage.
 
-Run serial CPU0/nice10 using scripts/repo-python:
+Run serial CPU 0/nice10 using scripts/repo-python:
 - scripts/build.py --unit boost-regex-iterator-search --compare --json
 - scripts/audit-boost-matcher-lifetimes.py
 - scripts/ci.py
 
 No new inventory entries or authored exact credit:1429 functions /443911 bytes;
-source1634, authored1653, excluded2072, review302, mapped1821, units808.
-The8-byte callback remains support here; this audit does not silently change
+source 1634, authored 1653, excluded 2072, review 302, mapped 1821, units 808.
+The 8-byte callback remains support here; this audit does not silently change
 its origin row, prove find/construct_init implementations, or claim the entire
 regex engine is exact.

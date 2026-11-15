@@ -81,23 +81,23 @@ unsupported. No unknown handler is bound merely to obtain a result.
 
 ## Compiler/context evidence
 
-The previous all-GL archive graph emitted loader627/frame148h. Adding the real
+The previous all-GL archive graph emitted loader 627/frame148h. Adding the real
 FileReaderOwner count consumer preserves that result. Compiling just actual
-MT19937 as ordinary COFF restores its target61-byte seed ABI but leaves the
-loader627/frame148h. Making registration ordinary next yields loader595/frame138h,
+MT19937 as ordinary COFF restores its target 61-byte seed ABI but leaves the
+loader 627/frame148h. Making registration ordinary next yields loader 595/frame138h,
 also obtained by the broader mixed-native control. This localizes the frame
 change to the observed dependency context without proving the original TU.
 
-A physical-owner hypothesis with normal C++ members generates constructor163
-and destructor228, both with the target instruction structure. Ordinary
-internal-class compilation instead produces constructor139/destructor264 and
+A physical-owner hypothesis with normal C++ members generates constructor 163
+and destructor 228, both with the target instruction structure. Ordinary
+internal-class compilation instead produces constructor 139/destructor264 and
 a16-byte public wrapper, so that control is not selected. Neither private
 register entries nor one failed ordinary control prove a universal LTCG rule.
 
 A second, fresh CIL graph uses the **actual selected source files**, including
 PackageArchiveStore, all package/reader operations, CCriticalSection source,
 MT19937, the selected CRC body and real zlib/CRT providers. It links without
-unresolved symbols or force flags. Its loader remains627 and nonexact.
+unresolved symbols or force flags. Its loader remains 627 and nonexact.
 
 A private complete relocation replay of this selected graph finds zero
 differences in both lifecycle bodies (163/228), their five cleanup funclets,
@@ -124,19 +124,19 @@ import-runtime/NOENTRY profile keeps its existing contract.
 `scripts/linked_lifecycle.py` verifies:
 
 - A separately compiled native COFF from the actually included Store source:
-  one strong global at offset0 in a sole60-byte, align4, uninitialized .bss
+  one strong global at offset 0 in a sole 60-byte, align 4, uninitialized .bss
   section, no payload, aliases or relocations. The witness is not linked.
 - The complete source/target60-byte initially zero writable storage, the
   individually attested field addends and unique source CIL ownership.
-- The private natural constructor/destructor identities; the exact17-byte
-  generated initializer and5-byte callback; the real `_atexit` library member
+- The private natural constructor/destructor identities; the exact 17-byte
+  generated initializer and 5-byte callback; the real `_atexit` library member
   and positively classified target runtime; one initializer pointer between
-  real CRT `___xc_a/___xc_z` sentinels and the readonly target slot6C0374.
+  real CRT `___xc_a/___xc_z` sentinels and the readonly target slot 6C0374.
 - The actual static-CRT security-cookie object/value, native critical vtable
   and source RTTI identity. Typed references restrict global fields, cookie
   reads, handler PUSH and FuncInfo MOV EAX to their supported operand forms.
 - Both complete parent CFGs, both handlers, all five cleanup funclets, both
-  36-byte FuncInfo records and the16/24-byte unwind tables. Cleanup state/frame
+  36-byte FuncInfo records and the 16/24-byte unwind tables. Cleanup state/frame
   offsets, flags and all other bytes are compared, with exact HIGHLOW coverage.
   Unsupported catch metadata, states, pointers, edges or unmapped calls fail.
 
@@ -145,19 +145,19 @@ aggregates, and hashed into build provenance. Native layout artifacts, static
 libraries, image/map/CIL and the comparator are also pinned. No current function
 is accepted from an old/private report or a parent-only byte comparison.
 
-The13 parent/EH code+data regions cover606 bytes with zero differences; only the391
+The 13 parent/EH code+data regions cover 606 bytes with zero differences; only the 391
 authored body bytes enter matches.csv. The initializer, callback, table slot and
 compiler cleanup regions add no independent authored credit. All three existing
-linked accepted units are cold-rebuilt/replayed: scene408870/281,
+linked accepted units are cold-rebuilt/replayed: scene 408870/281,
 packet-pool413820/98 and shared release 405200/167; all remain exact. The affected
-Node41B850/43 is also cold-rebuilt and exact. No aggregate all-unit replay or
+Node 41B850/43 is also cold-rebuilt and exact. No aggregate all-unit replay or
 percentage claim is made.
 
-The old candidate inventory omitted `41C200`. Its complete57-byte RET body
-ends41C238, followed by seven INT3 alignment bytes. Native ESI vector access,
-string-range destruction41D5A0, operator delete6898EA, the two actual unwind
+The old candidate inventory omitted `41C200`. Its complete 57-byte RET body
+ends 41C238, followed by seven INT3 alignment bytes. Native ESI vector access,
+string-range destruction 41D5A0, operator delete 6898EA, the two actual unwind
 callers and an independently compiled pinned VC8 vector<string> destructor
-establish template ownership. Full57-byte canonical replay agrees, SHA256
+establish template ownership. Full 57-byte canonical replay agrees, SHA256
 `13256e6800e8d778c2a207a543d7a0d8ba420e11f487b2c82951b820a3808608`.
 It is recorded separately as a compiler exclusion, with no authored mapping,
 source-present or match row. Receipt:
@@ -167,8 +167,8 @@ Target-independent rejection tests cover storage/layout tampering, native
 providers/aliases, complete startup chain, typed operands, tail boundaries,
 unwind code/metadata changes even with unchanged parent bytes, missing/extra/
 duplicate/straddling HIGHLOW fields and transitive implementation dependencies.
-All40 linked tests pass with both supported Capstone4.0.2 and5.0.6 using
-pefile2024.8.26.
+All 40 linked tests pass with both supported Capstone 4.0.2 and 5.0.6 using
+pefile 2024.8.26.
 
 ## Execution and analysis evidence
 
@@ -188,13 +188,13 @@ release and ASCII stricmp are modeled. Container initialization is executed,
 not supplied by a guessed sentinel fixture. This does not establish full CRT
 startup, OS unwinding, concurrent operation, allocation failures, locale behavior
 or malformed/short-read indexes. The separate current-source loader model also
-passes100/100 cases, including its four exception call-boundary controls.
+passes 100/100 cases, including its four exception call-boundary controls.
 
 Direct Ghidra input/base/entry/x86-Windows/full-text and scope hashes are checked.
-The 60-byte bounded data view, both signatures, zero purges and163/228-byte
+The 60-byte bounded data view, both signatures, zero purges and 163/228-byte
 bodies are read back. Decompiler output remains a hypothesis; source was
 derived from raw control flow and lifetimes. The read-only/noanalysis process
-uses CPU0/nice10 and a384 MiB heap; all nine primary DB file hashes remain
+uses CPU 0/nice10 and a384 MiB heap; all nine primary DB file hashes remain
 unchanged and aliases are removed. IDA fails identity preflight and supplies
 no semantic evidence.
 
@@ -212,9 +212,9 @@ byte/EH proof does not expand the execution model's OS/runtime coverage.
 
 The later [loader context review](PACKAGE_ARCHIVE_LOADER_CONTEXT_2026_10_19.md)
 adds actual native allocator header-method support to this linked unit. A fresh
-public cold rebuild preserves163/163 and228/228 with complete EH replay;
+public cold rebuild preserves 163/163 and 228/228 with complete EH replay;
 `build/archive-loader-shape-20261019/store-with-library-formal.json` is the newest
-receipt. Compiler42/42 adds no authored credit. That checkpoint also persists
+receipt. Compiler 42/42 adds no authored credit. That checkpoint also persists
 four loader/helper ABI views and real Win32 import prototypes in a verified
 private Ghidra copy before primary replacement; its nine-file pins supersede
 the earlier unchanged-primary snapshots described above.

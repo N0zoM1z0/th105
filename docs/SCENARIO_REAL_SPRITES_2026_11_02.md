@@ -19,25 +19,25 @@ entry cleanup at 0x434C60 also matches all 85 bytes from the rebuild context;
 this is the same physical root already accepted elsewhere, not another function.
 
 All 22 accepted roots in 11 units remain exact across the 14-unit actual include
-closure. This includes dynamic text render171, text constructor95, release133,
-entry cleanup85, entry fade242 and window text rebuild563. The existing generated
+closure. This includes dynamic text render 171, text constructor 95, release 133,
+entry cleanup 85, entry fade 242 and window text rebuild 563. The existing generated
 container-origin gate passes its two roots /260 bytes without changing coverage
 thresholds or classifications. Full sprite RTTI273 and the nine-slot table pass.
 
-The pending render930, list-fade418 and ScenarioData constructor1528 keep fresh
-before/after candidate hashes. Command update0x458440 retains its unqualified
+The pending render 930, list-fade418 and ScenarioData constructor 1528 keep fresh
+before/after candidate hashes. Command update 0x458440 retains its unqualified
 ?$basic_string_ctor relocation. That blocked root still has no accepted native
 comparison; the new member types do not bypass its source/ABI uncertainty.
 
-Full EH comparisons cover rebuild58+52, text release52+52 and draw-entry
-cleanup38+44, totaling296 support bytes. Rebuild's handler is33 bytes because
+Full EH comparisons cover rebuild 58+52, text release 52+52 and draw-entry
+cleanup 38+44, totaling 296 support bytes. Rebuild's handler is 33 bytes because
 its large negative frame displacements use the longer addressing form. The
 complete source-owned region and actual native handler form are checked rather
-than imposing the usual27-byte size. The other two handlers are27 bytes. No EH,
+than imposing the usual27-byte size. The other two handlers are 27 bytes. No EH,
 copy-provider, container or duplicate cleanup bytes are added to authored credit.
 
 Final CI passed all 962 tests in 112.862 seconds. Both diff checks gate the local
 checkpoint. No target or generated binary is committed.
 
 Totals unchanged:1426 exact /443399 bytes,1636 source-present,1655 authored,
-1826 mapped,2075 excluded,297 review and813 units.
+1826 mapped,2075 excluded,297 review and 813 units.

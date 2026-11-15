@@ -1,18 +1,18 @@
 # Combo resource load 0x0046A8C0
 
-Fresh independent recovery retains the complete413-byte native body as a
+Fresh independent recovery retains the complete 413-byte native body as a
 427-byte unselected candidate. First mismatch+2 is the extra saved EBP.
 No exact/source-selection credit is added.
 
-The native root virtually loads data/battle/combo.dat, looks up ids1000..1003,
-releases each old number adapter, allocates an8-byte typed adapter and enables
-the corresponding object. Bindings are int5C, float64, int68, int60 in that
-order. It then looks up ids2103/2104/2105/2100/2101/2102 into the six slots44..58.
+The native root virtually loads data/battle/combo.dat, looks up ids 1000..1003,
+releases each old number adapter, allocates an 8-byte typed adapter and enables
+the corresponding object. Bindings are int 5C, float 64, int 68, int 60 in that
+order. It then looks up ids 2103/2104/2105/2100/2101/2102 into the six slots 44..58.
 All allocation-null paths and scalar delete/new order are preserved.
 
 The public candidate uses the shared CDesignBase and CNumber types, an
 observed UI-header18/embedded-number view, and owner fields from the exact
-combo renderer. The full native extent ends at46AA5D exclusive. Nominal
+combo renderer. The full native extent ends at 46AA5D exclusive. Nominal
 original owner names and return-value semantics remain unresolved; the local
 candidate does not manufacture a return value or change existing caller ABIs.
 
@@ -24,7 +24,7 @@ and accesses +3C; the candidate keeps both the owner and its adapter-slot
 address across calls. The simpler shared CNumber candidate is retained.
 No volatile, fake storage, register forcing or manual instruction reproduction.
 
-The added path literal is independently pinned to6C35E0 including NUL. Only the new
+The added path literal is independently pinned to 6C35E0 including NUL. Only the new
 unit was compiled; no shared header, existing binding or caller source changed.
 
 ## Shared owner follow-up, 2026-11-09

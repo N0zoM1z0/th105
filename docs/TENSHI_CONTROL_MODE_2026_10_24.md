@@ -5,7 +5,7 @@
 Tenshi Fighter primary slot `+0x5C @0x00649330` now has complete source in
 `src/characters/TenshiControlMode.cpp` with a pointer-only declaration header.
 The target owns **2973 callable bytes** and a **3268-byte emitted payload**.
-The first complete source emits3252 bytes and remains **nonexact** at
+The first complete source emits 3252 bytes and remains **nonexact** at
 `+0xA6 /0x006493D6`: a branch displacement changes because downstream code
 retains constants differently. No matches row or new exact credit is added.
 
@@ -15,9 +15,9 @@ taskset -c 0 nice -n 10 python3 scripts/build.py \
 python3 scripts/audit-tenshi-control-mode.py
 ```
 
-Both commands correctly return1. Formal comparison replays all61 function
+Both commands correctly return 1. Formal comparison replays all 61 function
 relocations (17 REL32 /44 DIR32); the full audit also compares every emitted
-table/alignment byte and requires the exact3268-byte section-tail length.
+table/alignment byte and requires the exact 3268-byte section-tail length.
 The separate `.debug$F` SECTION relocation supplies no callable evidence.
 
 Target callable SHA256:
@@ -35,63 +35,63 @@ ABI/register forcing or compiler-profile search.
 
 ## Observed target facts
 
-The only binary is original Japanese1.06a SHA256
+The only binary is original Japanese 1.06a SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
-Existing RTTI ownership establishes authored origin; primary slot5C cell6C67F0
-points to649330. The same table binds slot08/0C to45BFE0/45C390 and slot58 to
-the shared5F1F80 policy. A raw register-target chain at649879..649885 proves
-the genuine slot58 tail; it is not an unresolved computed jump table.
+Existing RTTI ownership establishes authored origin; primary slot 5C cell 6C67F0
+points to 649330. The same table binds slot 08/0C to 45BFE0/45C390 and slot 58 to
+the shared 5F1F80 policy. A raw register-target chain at 649879..649885 proves
+the genuine slot 58 tail; it is not an unresolved computed jump table.
 
-Complete raw traversal closes **713 instructions**, **20 RET0s**, **25 calls**,
+Complete raw traversal closes **713 instructions**, **20 RET 0s**, **25 calls**,
 all internal direct edges and all ten destination entries. Seventeen calls are
 direct:4399C0 once,478E60 three times,4067D0 nine times,465190 four times.
 Eight are virtual action calls. The separate virtual CPU tail earns no callee
-credit. Main prologue reserves10h, saves ESI/EDI, and the larger state arm later
+credit. Main prologue reserves 10h, saves ESI/EDI, and the larger state arm later
 saves EBX/EBP. There are no remote chunks or EH paths in this bounded source.
 
-Callable end is exclusive649ECD; LEA alignment occupies three bytes. Destination
-tables at649ED0/649EE8/649EF8 contain3/4/3 entries. Index tables at649EDC and
-649F04 contain12 and240 bytes. Payload ends exclusively649FF4; all preceding
+Callable end is exclusive 649ECD; LEA alignment occupies three bytes. Destination
+tables at 649ED0/649EE8/649EF8 contain 3/4/3 entries. Index tables at 649EDC and
+649F04 contain 12 and 240 bytes. Payload ends exclusively 649FF4; all preceding
 and following padding is independently checked. Adjacent metadata gives no
 additional authored-byte credit.
 
 | Independently reviewed surface | Native behavior preserved |
 | --- | --- |
-| Prefix |Clear commands, signed peer174>0 gate, then the additional50..199 action reset; signed55A gate follows. |
-| Records0..3 |Initial770 needs action700 only. Repeat the peer gate after deque access. Publish state2 before710; state2 faces again. Unsigned RNG12 produces signed-facing horizontal motion; RNG4 plus double12.0 and float.35 complete701. Ordered x<=640 retains its unordered behavior. |
-| Records4..7 |Initial770; repeated peer gate; state1 uses zero-first action0/700 check and720, with no state increment. |
-| Records8..11 |Identifier3/2/1/0 periods50/60/80/120; unsigned RNG40 plus double70.0 supplies packet[0], packet[1..2]=6f/9f. Spawn920 uses RNG1000 plus double120.0 for x and float900.0 for y. Action0/700 selects731; otherwise increment DWORD83C. |
-| Records12..15 |Initial770; repeated peer gate; publish state2 before740; later face, unsigned RNG8 plus double5.0, RNG4 plus double12.0, float.5, then701/state1. |
-| Records248..255 |Conditional action0 and genuine virtual CPU tail. |
-| Records16..19 |Ready action700/0 selects771. Otherwise action750/sequence1 enables independent phase736 checks at1/2/3 and signed health<=7500/5000/2500. Each sets74C=2f, packet0/0/18f, policy state1, next phase, three180 timers, then spawns940 with integer facing*30 converted to float for x and double120.0 for y. Independent checks allow multiple spawns if successive phases qualify. |
-| Policy state1 |Health intervals>=7500,>=5000,>=2500 and lower have distinct inclusive/exclusive boundaries, word timers, alternating76C, one-shot76E and signed76C%3. The RNG100 branch uses unsigned<50. All native early returns and the top-health fallthrough remain. |
-| Policy states2..8 |Each publishes the actual738 output before its timer guard. Expired2/3/5 converge to6 with delay60;4 to5 with180;6 to1 with120;7 to8 with60;8 to1 with30. State0 only resets output0/delay240. |
+| Prefix |Clear commands, signed peer 174>0 gate, then the additional 50..199 action reset; signed 55A gate follows. |
+| Records 0..3 |Initial 770 needs action700 only. Repeat the peer gate after deque access. Publish state 2 before 710; state 2 faces again. Unsigned RNG 12 produces signed-facing horizontal motion; RNG 4 plus double 12.0 and float.35 complete 701. Ordered x<=640 retains its unordered behavior. |
+| Records 4..7 |Initial 770; repeated peer gate; state 1 uses zero-first action 0/700 check and 720, with no state increment. |
+| Records 8..11 |Identifier 3/2/1/0 periods50/60/80/120; unsigned RNG 40 plus double 70.0 supplies packet[0], packet[1..2]=6f/9f. Spawn 920 uses RNG 1000 plus double 120.0 for x and float 900.0 for y. Action 0/700 selects 731; otherwise increment DWORD83C. |
+| Records 12..15 |Initial 770; repeated peer gate; publish state 2 before 740; later face, unsigned RNG 8 plus double 5.0, RNG 4 plus double 12.0, float.5, then 701/state1. |
+| Records 248..255 |Conditional action0 and genuine virtual CPU tail. |
+| Records 16..19 |Ready action 700/0 selects 771. Otherwise action 750/sequence1 enables independent phase 736 checks at 1/2/3 and signed health<=7500/5000/2500. Each sets 74C=2f, packet 0/0/18f, policy state 1, next phase, three 180 timers, then spawns 940 with integer facing*30 converted to float for x and double 120.0 for y. Independent checks allow multiple spawns if successive phases qualify. |
+| Policy state 1 |Health intervals>=7500,>=5000,>=2500 and lower have distinct inclusive/exclusive boundaries, word timers, alternating76C, one-shot76E and signed 76C%3. The RNG 100 branch uses unsigned<50. All native early returns and the top-health fallthrough remain. |
+| Policy states 2..8 |Each publishes the actual 738 output before its timer guard. Expired 2/3/5 converge to 6 with delay 60;4 to 5 with 180;6 to 1 with 120;7 to 8 with 60;8 to 1 with 30. State 0 only resets output 0/delay240. |
 
 Spawn argument order, byte direction, signed integer facing multiplication,
 packet lifetime, float rounding captures and repeated post-call reads follow
 raw operands. Identifier switch has no initialized default; native default
 loads an uninitialized stack period. Source preserves that absence rather than
 inventing a fallback. Valid-domain assumptions and invalid-input behavior are
-not claimed recovered. Global6FA894 remains `g_match_identifier`.
+not claimed recovered. Global 6FA894 remains `g_match_identifier`.
 
 ## Whole comparison and finite controls
 
 First complete probe00 already recovers every physical call, return and tail
-count and the destination/index-table shapes. Its698 callable instructions
-contrast with713 native instructions. The remaining native instructions are
-one EBP save, initialization to3, reassignment to240 and twelve EBP restores.
-Target uses this real constant register for three spawn counts, the phase3
-store/check and two240 timer stores; source uses immediate operands instead.
+count and the destination/index-table shapes. Its 698 callable instructions
+contrast with 713 native instructions. The remaining native instructions are
+one EBP save, initialization to 3, reassignment to 240 and twelve EBP restores.
+Target uses this real constant register for three spawn counts, the phase 3
+store/check and two 240 timer stores; source uses immediate operands instead.
 The resulting main/table addresses and alignment differ. Diagnostic instruction
 alignment can classify this residual but does not make any region canonically
 exact or establish original compiler/TU identity.
 
 Two isolated, target-supported controls were compiled and compared completely:
 
-1. Probe01 uses an unsigned-byte variant formal, supported by the existing
-   accepted66-byte spawn wrapper and its manager's byte-only consumption.
-   It produces exactly the same3252 canonical bytes as probe00.
-2. Probe02 makes the equality-only76A view unsigned short, consistent with the
+1. Probe 01 uses an unsigned-byte variant formal, supported by the existing
+   accepted 66-byte spawn wrapper and its manager's byte-only consumption.
+   It produces exactly the same 3252 canonical bytes as probe00.
+2. Probe 02 makes the equality-only76A view unsigned short, consistent with the
    observed zero-extending reads; signed timer, health and remainder consumers
    remain unchanged. It also produces exactly the same complete candidate.
 
@@ -101,7 +101,7 @@ complete representative. No claim is made that LTCG is necessary or sufficient;
 new independent lifetime/type/TU evidence is required to reopen this residual.
 No runtime matrix was needed to resolve a concrete ambiguity in this scope.
 
-The only new literal is float18.0 bytes00009041 at6C3E50, loaded by native
+The only new literal is float 18.0 bytes 00009041 at 6C3E50, loaded by native
 64990C/6499C9/649A88. A new named allowlist key is referenced only through this
 function's explicit `__real@41900000` override. Existing default mappings and
 all accepted-unit bindings are unchanged, so no previous accepted source unit
@@ -112,13 +112,13 @@ and hash-attested target bytes; the function comparator performs strict replay.
 
 IDA preflight rejects the different executable currently open there; no session
 semantics or writes are used. One read-only Ghidra run independently attests
-file SHA, image base, entry68B9D2, Windows x86 language/compiler and every raw
+file SHA, image base, entry 68B9D2, Windows x86 language/compiler and every raw
 section against the PE. It creates only a temporary raw-bounded2973-byte view
 and temporary callee types, reads them back, and rolls them back. All nine
 pinned primary DB hashes remain unchanged. Decompiled expressions are reviewed
 hypotheses; source is written from independently checked operations and edges.
 
-Ghidra heap384MiB/one CPU; builds serial CPU0/nice10. Local CI and whitespace gate
+Ghidra heap 384MiB/one CPU; builds serial CPU 0/nice10. Local CI and whitespace gate
 precede commit/push. Iku's exact representative and all earlier accepted sources
-remain unchanged. Current ledger exact count stays1396/324774 bytes, with no
+remain unchanged. Current ledger exact count stays 1396/324774 bytes, with no
 aggregate cold replay claim.

@@ -71,7 +71,7 @@ the deletion. Recreate the media extraction only if reinstalling that tree.
 ## RTM LTCG linker companion
 
 The compiler-only extraction above omitted `msobj80.dll`. A real RTM CIL
-link on2026-10-22 stopped with LNK1296 until this same-release companion was
+link on 2026-10-22 stopped with LNK1296 until this same-release companion was
 restored. Retrieve and verify the same bounded official payload above, extract
 its MSI/CAB, then extract this one MSI File key from `vcsetup1.cab`:
 
@@ -94,8 +94,8 @@ The completed [font begin controls](TEXT_FONT_BEGIN_CONTEXT_2026_10_22.md)
 retain the same four canonical bodies under real RTM CIL compilation/linking.
 This closes the earlier failed link, not original-project provenance or a
 general compiler equivalence claim. Retrieval/install receipts are in
-`build/font-begin-handles-20261022/`. The verified137,878,428-byte media/
-extraction tree was removed after installing the single57,856-byte companion.
+`build/font-begin-handles-20261022/`. The verified 137,878,428-byte media/
+extraction tree was removed after installing the single 57,856-byte companion.
 
 ## Measured common-Fighter result
 

@@ -42,7 +42,7 @@ pops twelve bytes and takes x/y/ID. The old `move_mode(float,float,int)` at
 now declare `render_offset_through` and `render_offset`; slot +20 is
 `render_through`. No vtable order, member size or offset changes.
 
-Lookup uses ECX for the owner and RET8 for output-pointer/ID arguments. It
+Lookup uses ECX for the owner and RET 8 for output-pointer/ID arguments. It
 searches the unsigned-key map at +20 and writes either null or the mapped
 object through its first argument. Source `int object_id` causes the native
 unsigned-key temporary observed in the target. This supported source spelling
@@ -57,7 +57,7 @@ instantiation of the **actual pinned native tree's find member** preserves
 that boundary before CIL linking. The provider is
 `src/library/UiDesignObjectMap.cpp`; it contains no replacement implementation,
 register annotation, source bytes or authored game function. Instantiating only
-the needed member keeps the library input to about9 KB.
+the needed member keeps the library input to about 9 KB.
 
 | Lookup key source | Tree find context | Complete lookup result |
 | --- | --- | --- |
@@ -87,7 +87,7 @@ and new target body-hash/exact-owner call witnesses. The game lookup's full
 The shared header's complete quoted-include closure selects 14 actual units.
 All **44 predecessor accepted functions** remain exact, including the existing
 render; the focused expanded unit also compares all six new functions. No
-unrelated unit or cold aggregate replay is claimed. All197 origin-rule
+unrelated unit or cold aggregate replay is claimed. All 197 origin-rule
 selectors are unchanged and disjoint from the six newly accepted addresses;
 only the amended compiler rule's new witnesses need evidence replay.
 
@@ -99,9 +99,9 @@ Raw span/vtable/caller facts, four controls, formal comparisons and all affected
 replays are below `build/design-base-virtuals-20261021/`; private recipes are in
 the same-named `.analysis/` folder. IDA preflight rejects its wrong-target
 session; no Ghidra, database mutation or target patch is used. Builds run
-serially on CPU0 at nice10.
+serially on CPU 0 at nice 10.
 
 Original source/TU spelling and exact compiler-helper bytes remain open.
 The 2666-byte CDesignBase loader `40B000` still has no selected provider body;
 its full implementation and the cleanup method `40BB40` are the next larger
-class-closure work. Reimu496540 remains nonexact at+31.
+class-closure work. Reimu 496540 remains nonexact at+31.

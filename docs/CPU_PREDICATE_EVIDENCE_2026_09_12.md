@@ -106,7 +106,7 @@ whole match, and was reverted. There are no retained CPU source changes from the
 
 ### Post-checkpoint discriminators
 
-After `b27b668`, placing the resource predicate between action305's lower and
+After `b27b668`, placing the resource predicate between action 305's lower and
 upper bounds prevents range folding but leaves the resource comparison in the
 wrong position. This trial was reverted. A size-optimized `/GL /Os` link still
 aligns ESP to eight bytes, with a 0x0C local allocation instead of 0x10.

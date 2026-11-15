@@ -1,61 +1,61 @@
 # Bitmap texture fallback and pixel upload source
 
-Current update: the real library-backed graph now makes DDS696 exact. Bitmap
-parent1126/native1106 and upload remain nonexact. The old standalone probe was
+Current update: the real library-backed graph now makes DDS 696 exact. Bitmap
+parent 1126/native1106 and upload remain nonexact. The old standalone probe was
 consolidated into exact-first-csv-file-loading; see
 The initial reports below are historical.
 
-Complete source now covers bitmap/mipmap loader409080 and pixel upload41AE60.
-Both remain nonexact: loader1161/native1106, upload1037-byte emitted envelope
-versus native954 callable bytes plus87 bytes of table/alignment metadata.
-There is no new exact credit. Existing1538 functions /435475 exact bytes remain.
+Complete source now covers bitmap/mipmap loader 409080 and pixel upload 41AE60.
+Both remain nonexact: loader 1161/native1106, upload 1037-byte emitted envelope
+versus native 954 callable bytes plus 87 bytes of table/alignment metadata.
+There is no new exact credit. Existing 1538 functions /435475 exact bytes remain.
 
 ## Target observations
 
 The same fresh mapped-byte-attested Factory IDA session used for DDS supplied
 provisional semantic output; raw PE independently establishes the final facts.
-Loader1106 contains333 reachable instructions and no indirect jump table.
-Upload954 contains313 instructions;311 are reachable. The two excluded CFG
-operations are the native seven-byte LEA and one-byte NOP at41B0F8/41B0FF.
+Loader 1106 contains 333 reachable instructions and no indirect jump table.
+Upload 954 contains 313 instructions;311 are reachable. The two excluded CFG
+operations are the native seven-byte LEA and one-byte NOP at 41B0F8/41B0FF.
 They remain within the compared callable extent and are not masked.
 
-The upload switches at41AE8F and41B0CB use actual four-destination tables at
-41B21C/41B248 and25-byte index maps at41B22C/41B258. Every destination is a
-verified instruction boundary. The full payload ends at41B271, before15 INT3
-bytes and the next independently bounded function41B280. The87 bytes after
-the callable comprise82 table/index bytes plus5 alignment bytes. Metadata
+The upload switches at 41AE8F and 41B0CB use actual four-destination tables at
+41B21C/41B248 and 25-byte index maps at 41B22C/41B258. Every destination is a
+verified instruction boundary. The full payload ends at 41B271, before 15 INT3
+bytes and the next independently bounded function 41B280. The 87 bytes after
+the callable comprise 82 table/index bytes plus 5 alignment bytes. Metadata
 cannot inflate authored exact credit; source table equality is not claimed.
 
-TitleResourceManager load404C90 calls loader409080 at404CBC. The loader calls
-DDS4094E0 at4090D8, then pixel upload41AE60 at40946D. Actual arguments fit normal
+TitleResourceManager load 404C90 calls loader 409080 at 404CBC. The loader calls
+DDS 4094E0 at 4090D8, then pixel upload 41AE60 at 40946D. Actual arguments fit normal
 fastcall in both new entries: loader receives height output/path in ECX/EDX and
 texture cell/width output on stack; uploader receives pitch/format in ECX/DL
-and bitmap/destination on stack. Both pop8. Source uses these ordinary typed
+and bitmap/destination on stack. Both pop 8. Source uses these ordinary typed
 four-input declarations, not custom-register wrappers. Caller ignores upload
 EAX; source does not fabricate a bitmap-pointer return from its incidental EAX.
 
 ## Loader semantics
 
-DDS is tried first. Only8876086C triggers bitmap fallback; any other HRESULT
+DDS is tried first. Only 8876086C triggers bitmap fallback; any other HRESULT
 returns unchanged. Three real CBitmapData objects own their buffers and array
 construction/unwinding. No padded replacement bitmap object is introduced.
-The source uses a friend declaration to access the existing exact32-byte class;
+The source uses a friend declaration to access the existing exact 32-byte class;
 layout, virtual order and existing methods are unchanged.
 
 The loader strips four path characters for the base stem, starts from the
-configured base variant and searches downward. Variant0 uses the original
+configured base variant and searches downward. Variant 0 uses the original
 path, other variants use %s_%d.bmp. Encoded mode replaces the final four bytes
 with .cv2 and calls load_from_file; ordinary mode calls load_bitmap. It can
 load at most three mip images, and tries extra levels only if the requested
 base variant was found. Global palette propagation, format reset, and dimension
-outputs follow the target. The three261-byte path buffers are used path data,
-not inert alignment storage; the observed260/261 strcpy_s bounds are preserved.
+outputs follow the target. The three 261-byte path buffers are used path data,
+not inert alignment storage; the observed 260/261 strcpy_s bounds are preserved.
 
 The backend square-capability policy is observed before format dispatch and
-again within the actual creation helper. Format8/16 creates format25;24/32
-creates21. Unsupported formats preserve the prior HRESULT. Every successful
+again within the actual creation helper. Format 8/16 creates format 25;24/32
+creates 21. Unsupported formats preserve the prior HRESULT. Every successful
 level lock uploads using the lock pitch and that bitmap's format. The native
-UnlockRect argument remains0 even for nonzero levels. This is recorded, not
+UnlockRect argument remains 0 even for nonzero levels. This is recorded, not
 silently corrected. Lock failure skips that level without replacing the creation
 HRESULT. Array destruction runs on every return.
 
@@ -69,8 +69,8 @@ cannot occur. Other formats reset count to zero. Every arm avoids fetching a
 new pair after the final pixel, and preserves live dimension/stride reads.
 
 Uncompressed8-bit input expands palette colors to WORD output. Uncompressed
-16-bit uses DWORD pairs and width/stride shifted right1, preserving dropped odd
-pixels.24/32-bit copies DWORD pixels. Destination pitch is divided by2 or4 as
+16-bit uses DWORD pairs and width/stride shifted right 1, preserving dropped odd
+pixels.24/32-bit copies DWORD pixels. Destination pitch is divided by 2 or 4 as
 observed, not substituted with image width. Unknown formats perform no copy.
 No runtime guards or extra memory safety behavior absent from the target is
 introduced. Original source spelling, nominal wrapper organization and full
@@ -78,17 +78,17 @@ exception-frame equivalence remain unknown.
 
 ## Validation and limits
 
-The first complete loader compiled before tuning at1153 bytes. Explicit pointer
-use for the real bitmap receiver gives1161 but retains nonexact virtual dispatch
+The first complete loader compiled before tuning at 1153 bytes. Explicit pointer
+use for the real bitmap receiver gives 1161 but retains nonexact virtual dispatch
 and frame scheduling; same-size acceptance was never used. Upload's full source
-build emits1037 including switch data, differing at its frame allocation. A
+build emits 1037 including switch data, differing at its frame allocation. A
 shared destination-pointer control is byte-neutral. Neither gets partial credit.
 The actual DDS/creation source is included, not replaced by mock functions.
 
 New unit exact-first-bitmap-texture-loading resolves every code/data relocation
 and reports both whole bodies as mismatches, with no unresolved-binding failures.
 Only CBitmapData's friend access changes a shared header. Both affected accepted
-units were rebuilt: all16 previous exact functions remain exact. Other source
+units were rebuilt: all 16 previous exact functions remain exact. Other source
 receipts are retained. No full-corpus rebuild or generic harness was added.
 
 Raw proof, complete canonical reports and private controls are under

@@ -1,16 +1,16 @@
 # CGage render context: one multiplication pair remains
 
 `CGage_render @41B3F0` remains **nonexact**. A live-height field reference now
-restores the complete41B549/41B54F multiplication pair. The selected source is
-still1010 bytes/323 instructions, but now321 instructions are identical to
+restores the complete 41B549/41B54F multiplication pair. The selected source is
+still 1010 bytes/323 instructions, but now 321 instructions are identical to
 the target. Only the fraction/height load-order pair remains different; the
-first unequal byte moves from41B54A/+15A to41B580/+190. No exact or partial
+first unequal byte moves from 41B54A/+15A to 41B580/+190. No exact or partial
 match credit is added.
 
 Only original Japanese TH10.5 v1.06a is used, SHA256
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Fresh target/status/tracking checks pass. IDA still fails target attestation
-with10350095... and supplies no semantic evidence. No analysis database or
+with 10350095... and supplies no semantic evidence. No analysis database or
 target instruction is changed. The previous source checkpoint
 retains the full boundary, field and behavior recovery.
 
@@ -18,12 +18,12 @@ retains the full boundary, field and behavior recovery.
 
 The complete target remains `[41B3F0,41B7E2)`, body SHA256
 `67b9378f09e92621dad4bba0410f9aa4905bf24a8a73dd3e4440489bf860eedb`.
-Its323 instructions close the local control-flow graph with two RET8 exits;
-fourteen following INT3 bytes are excluded. RTTI-owned CGage vtable6D6A38
-cell6D6A54/+1C owns this entry. No boundary, origin, field offset or call target
+Its 323 instructions close the local control-flow graph with two RET 8 exits;
+fourteen following INT3 bytes are excluded. RTTI-owned CGage vtable 6D6A38
+cell 6D6A54/+1C owns this entry. No boundary, origin, field offset or call target
 changes in this checkpoint.
 
-Mode1 reads float height+7C twice, separated by vertex publications. The
+Mode 1 reads float height+7C twice, separated by vertex publications. The
 selected source binds `const float &height = height_7c` at case entry and uses
 that actual field in both products. It introduces no numeric copy, new object
 storage, added stack home, forced register or fabricated operation. Width,
@@ -33,7 +33,7 @@ instruction improvement and preservation of the complete remaining body.
 
 The ordinary float-copy control from the prior checkpoint adds homes/code;
 the new double-copy control similarly adds a qword home and changes the frame
-from10h to14h. Those copied values are not selected. Pointer-to-height access
+from 10h to 14h. Those copied values are not selected. Pointer-to-height access
 reproduces the selected reference body. Moving the reference to its first
 arithmetic use instead reproduces the old body. This narrows the source
 lifetime/context question without proving a unique original declaration.
@@ -44,18 +44,18 @@ lifetime/context question without proving a unique original declaration.
 |41B581 `fmul dword ptr [esi+7C]`|41B582 `fmul st(4)`|
 
 These two instructions occupy the same five-byte range. Exactly four bytes,
-at41B580..41B583, remain unequal. Every other instruction and address agrees,
+at 41B580..41B583, remain unequal. Every other instruction and address agrees,
 including all branches, vertex/UV publications, rotation, real calls and the
 complete graphics tail. This is a diagnostic comparison, not an alternative
 acceptance boundary or a general floating-point equivalence proof.
 
 ## Bounded context controls
 
-The fresh baseline reproduces the old1010-byte canonical1c7e7946... body.
+The fresh baseline reproduces the old 1010-byte canonical 1c7e7946... body.
 
 | Control | Complete source extent / first mismatch | Result |
 | --- | --- | --- |
-|Getter declaration returns double; caller still stores float|1010 /+15A|Both original vertical pairs remain; two additional mode0 pairs differ. Unselected.|
+|Getter declaration returns double; caller still stores float|1010 /+15A|Both original vertical pairs remain; two additional mode 0 pairs differ. Unselected.|
 |Live height reference at case entry|1010 /+190|Selected; only two instructions differ.|
 |Height pointer, swapped first factors, fraction reference|1010 /+190|Same whole selected body. No further improvement.|
 |Height reference moved to first arithmetic use|1010 /+15A|Same whole old body.|
@@ -77,10 +77,10 @@ there is no standalone-object or LTCG impossibility claim.
 ## Fresh native prefix evidence
 
 The unchanged public `audit-gage-render-prefix.py` is rerun on the selected
-formal object:0 differences in4490 cases,1290 real RET8 completions and3200
+formal object:0 differences in 4490 cases,1290 real RET 8 completions and 3200
 stops at the actual texture-binding entry. Actual int/short providers,
 orientation lookups and reached CRT instructions execute; no helper result is
-substituted. Both sides visit304 of323 root instructions. Ordered writes,
+substituted. Both sides visit304 of 323 root instructions. Ordered writes,
 full object bytes, helper arguments, endpoint arguments and the existing
 x87/stack/register contract agree. Input pins are unchanged during execution.
 
@@ -142,7 +142,7 @@ lifetimes, without introducing inert storage or changing a public input:
 |Double product local with explicit promotion|1018 /325|Introduces an intermediate double home; unselected.|
 |Double accumulator across the two real products|1034 /329|Adds rounding/homes beyond the target stream; unselected.|
 |Full observed zero-offset sprite inheritance, retaining live height reference|1010 /323|Same wholefa2cc075... body and two-instruction residual.|
-|Same inheritance with direct height accesses|1010 /323|Same earlier1c7e7946... body and four-instruction residual.|
+|Same inheritance with direct height accesses|1010 /323|Same earlier 1c7e7946... body and four-instruction residual.|
 |Ordinary static double-return product helper|1032 /320|Different complete code; unselected.|
 
 The inherited/direct pair also checks the live-height interaction rather
@@ -178,8 +178,8 @@ equivalence to a new formally configured strict-LTCG profile.
 Binding compiler-owned real literals as external absolute symbols fails with
 LNK2005 duplicate definitions, and is rejected. Leaving those genuine native
 constants in the image links cleanly. The resulting source-owned root closes
-through both RET8 exits at **1012 bytes/328 instructions**; this is raw linked
-structure, not a canonical1012/1010 comparison. Strict comparison stops on
+through both RET 8 exits at **1012 bytes/328 instructions**; this is raw linked
+structure, not a canonical 1012/1010 comparison. Strict comparison stops on
 the first unqualified internal floating-literal memory reference. Existing
 linked comparison does not yet authorize that literal surface. Neither a
 forced link nor an operand mask is introduced. The different complete extent
@@ -193,7 +193,7 @@ Recipes, source/object hashes, the successful link, rejected literal binding
 and raw-root CFG receipt are in the new build scope and its `.analysis/`
 counterpart. Unselected ordinary controls are stored losslessly in the new
 scope's archive; the baseline and larger linked context stay loose. Builds
-remain serial on CPU0 at nice10. No new exact is added in this audit.
+remain serial on CPU 0 at nice 10. No new exact is added in this audit.
 
 ## Field-lifetime and getter interaction audit
 
@@ -202,8 +202,8 @@ complete source controls leave all public source and shared inputs intact:
 
 | Control | Complete extent/instructions | Unequal instructions |
 | --- | --- | --- |
-|Live reference to vertical scale in mode1|1010/323|2; same selected body|
-|Live references to both scales in mode1|1010/323|2; same selected body|
+|Live reference to vertical scale in mode 1|1010/323|2; same selected body|
+|Live references to both scales in mode 1|1010/323|2; same selected body|
 |Reference to a physical two-float scale member|1010/323|2; same selected body|
 |Height reference spanning the whole function|1010/323|10; first+DC|
 |Double-return getter with the selected live-height context|1010/323|6; first+190|

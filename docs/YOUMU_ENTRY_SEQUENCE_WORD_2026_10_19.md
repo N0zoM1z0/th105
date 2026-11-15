@@ -4,34 +4,34 @@ The [October23 physical-tail recovery](YOUMU_ENTRY_PHYSICAL_TAIL_2026_10_23.md)
 supersedes the copy/metadata deficit below. This page retains the earlier word
 interface experiments and their original source epochs.
 
-The5159-byte initializer at543670 now uses a short sequence parameter in its
-local virtual interface and computes action902's decay before its phase
-assignment. Instruction/edge-identical owner diagnostics improve6/30->23/30.
+The 5159-byte initializer at 543670 now uses a short sequence parameter in its
+local virtual interface and computes action 902's decay before its phase
+assignment. Instruction/edge-identical owner diagnostics improve 6/30->23/30.
 The complete root remains nonexact at+80; no exact function/byte is added.
 
 The subsequent [caller-width and tail controls](YOUMU_CALLER_WIDTH_CONTROLS_2026_10_19.md)
 retest duplication, inline/source tail ownership,851 carriers and scale chains
-in this word context. None closes the root; selected source and23/30 diagnostic
-result remain unchanged. The851 early-load hypothesis is not semantic acceptance.
+in this word context. None closes the root; selected source and 23/30 diagnostic
+result remain unchanged. The 851 early-load hypothesis is not semantic acceptance.
 
 ## Independent target and ABI evidence
 
-Original Japanese1.06a executable SHA256 remains
+Original Japanese 1.06a executable SHA256 remains
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`.
 Callable `[543670,544A97)` SHA256 is
 `d680c9d1386e6c3f8cc5e755dffccbbd431864dee308f760cf48fe00274ed245`.
-Fresh raw traversal reaches all1294 instructions/5159 bytes and closes both
+Fresh raw traversal reaches all 1294 instructions/5159 bytes and closes both
 validated switches, with no unledgered direct target or unresolved exit.
 
-The canonical vtable cell6C50F8 points to this initializer at+3C. Its primary
-table is6C50BC, COL6DA790 identifies YoumuObject, and slot+0C independently
-points to45C390. This establishes that the
+The canonical vtable cell 6C50F8 points to this initializer at+3C. Its primary
+table is 6C50BC, COL 6DA790 identifies YoumuObject, and slot+0C independently
+points to 45C390. This establishes that the
 [Aya sequence-word witness](AYA_ENTRY_SEQUENCE_WORD_ABI_2026_10_19.md) applies
 to this actual callee; an equal slot number alone would not suffice.
 
-At45C390, sequence publication and loop termination consume only AX from a
+At 45C390, sequence publication and loop termination consume only AX from a
 four-byte argument slot; RET4 cleans that slot. The natural short implementation
-in `scripts/probes/animation-sequence-word-abi.cpp` reproduces all202 bytes
+in `scripts/probes/animation-sequence-word-abi.cpp` reproduces all 202 bytes
 under the existing animation-sequence unit comparator. This does not change
 that unit's default int facade or add duplicate credit. The selected Youmu
 view changes only its local sequence declaration; other virtual declarations,
@@ -40,17 +40,17 @@ field layout, receiver and root void-return ABI are preserved.
 The width correction alone changes the entire canonical payload from
 `43567e38fde7a057564096c0f761f977b30a50417b4f83e63ba606e1e5fddad9`
 to `40b07bbd1269f9d10872b664b95c0e1b169432fd7e0e62cd1c23834f198b140e`.
-It recovers16 additional owner instruction/edge sequences:6/30->22/30.
+It recovers 16 additional owner instruction/edge sequences:6/30->22/30.
 It does not recover the missing conversion copy or all tail memberships.
 
-## Action902 order
+## Action 902 order
 
-The target limit6 duration path is explicit:
+The target limit 6 duration path is explicit:
 
-1. CALL4067D0 at544770, then its unsigned integer-to-x87 conversion.
-2. JGE544782 / optional FADD544784 completes the unsigned correction.
-3. FSUBR qword3.0 at54478A computes the real decay value.
-4. MOV phase byte at544790 precedes FSTP state370 at544796.
+1. CALL4067D0 at 544770, then its unsigned integer-to-x87 conversion.
+2. JGE 544782 / optional FADD544784 completes the unsigned correction.
+3. FSUBR qword 3.0 at 54478A computes the real decay value.
+4. MOV phase byte at 544790 precedes FSTP state 370 at 544796.
 
 The old source assigns phase before the subtraction expression. Its emitted
 MOV phase precedes the conversion JGE, although the overall owner size agrees.
@@ -59,7 +59,7 @@ the result first and schedule phase immediately before its final FSTP, matching
 the target. No volatile access, forced register, extra operation or false
 helper contract is introduced.
 
-This recovers the whole action902 owner diagnostic:671 bytes/157 instructions
+This recovers the whole action 902 owner diagnostic:671 bytes/157 instructions
 with the same encodings and internal/external edge roles. It is still an owner
 comparison with relocation/owner offsets, not an independent exact function.
 The complete unit continues to fail the strict canonical comparator.
@@ -68,32 +68,32 @@ The complete unit continues to fail the strict canonical comparator.
 
 Selected source SHA256:
 `09dd36f0e1c61a5f06e9f2e832a9dba9486e04d762f1190bc6ac5eea4a17c6b0`.
-Canonical5488-byte payload SHA256:
+Canonical 5488-byte payload SHA256:
 `4b9bf0a4867dc153353faa2badf411196f4da92cd30112ec91cd115e79eefdce`.
-Candidate metadata remains at5156 versus target5160. The5159-byte comparator
+Candidate metadata remains at 5156 versus target 5160. The 5159-byte comparator
 window therefore includes candidate-adjacent metadata; do not call it a
 candidate callable hash. First mismatch remains+80/5436F0, the default-exit
-branch displacement. Conversion-helper sites remain20/21 and RETs22/23.
-All29 primary action destinations remain distinct.
+branch displacement. Conversion-helper sites remain 20/21 and RETs22/23.
+All 29 primary action destinations remain distinct.
 
 The unclosed source/compiler questions are now concentrated in:
 
-- Target820 enters850 after its two scale stores. The source hoists angle
+- Target 820 enters 850 after its two scale stores. The source hoists angle
   work and uses a different shared sequence tail;850 consequently lacks a
   target conversion/return copy.
-- Action823 still differs in virtual-call register/preparation and subsequent
+- Action 823 still differs in virtual-call register/preparation and subsequent
   spawn-argument registers.
-- Target851 captures the pointer/vptr, writes state344, then loads heading[2].
+- Target 851 captures the pointer/vptr, writes state 344, then loads heading[2].
   The retained double-value capture still loads the value too early.
-- Action901's nested-table address reflects the four-byte metadata offset;
+- Action 901's nested-table address reflects the four-byte metadata offset;
   the last owner also includes source post-RET alignment outside target credit.
 
-An ordinary851 pointer-before-store/value-after-store control was repeated
+An ordinary 851 pointer-before-store/value-after-store control was repeated
 only in this newly verified word-parameter context. It still merges distinct
-851/854 owners: prefix/payload5116/5444,19 conversion sites and21 RETs.
+851/854 owners: prefix/payload5116/5444,19 conversion sites and 21 RETs.
 The public owner audit rejects it with `candidate merges distinct target
 physical owners`; its gate is unchanged and the control is not selected.
-Preserve29 distinct destinations before accepting another lifetime model.
+Preserve 29 distinct destinations before accepting another lifetime model.
 
 Read the earlier
 [load-timing evidence](YOUMU_OBJECT_ENTRY_LOAD_TIMING_2026_10_02.md) and
@@ -104,19 +104,19 @@ Original remaining lifetimes, physical sharing and TU/LTCG context are unknown.
 
 ## Follow-up argument evaluation controls
 
-A fresh build of source09dd36f0 retains canonical payload4b9bf0a4,
-prefix/payload5156/5488,29 owners,20 conversions and22 RETs. The public
-owner audit still reports23/30 instruction/edge diagnostics. The following
+A fresh build of source 09dd36f0 retains canonical payload 4b9bf0a4,
+prefix/payload5156/5488,29 owners,20 conversions and 22 RETs. The public
+owner audit still reports 23/30 instruction/edge diagnostics. The following
 controls change only this root's private source; none is selected.
 
 | Control | Result |
 | --- | --- |
-| Assign the850 angle inside the selector argument's comma expression | Complete canonical payload identical to baseline |
-| Change all23 selector argument casts from `int` to `short` | Complete canonical payload identical to baseline |
-| Cache the851 heading pointer, then write state344 inside the actual selector argument before reading parameters[2] |851/854 merge;28 owners,19 conversions,21 RETs |
-| Cache the851 pointer and a typed `__thiscall` slotC dispatch before writing state344, then read the argument and call | Same complete payload as the preceding merge |
-| Move the851 real double-value declaration after state344 in this word-parameter context | Same complete payload as the preceding merge |
-| Add a local `float *__restrict` heading alias while retaining value-before-state order |29 owners remain, but851 still loads the value too early and other owners' shared tails/registers change |
+| Assign the 850 angle inside the selector argument's comma expression | Complete canonical payload identical to baseline |
+| Change all 23 selector argument casts from `int` to `short` | Complete canonical payload identical to baseline |
+| Cache the 851 heading pointer, then write state 344 inside the actual selector argument before reading parameters[2] |851/854 merge;28 owners,19 conversions,21 RETs |
+| Cache the 851 pointer and a typed `__thiscall` slotC dispatch before writing state 344, then read the argument and call | Same complete payload as the preceding merge |
+| Move the 851 real double-value declaration after state 344 in this word-parameter context | Same complete payload as the preceding merge |
+| Add a local `float *__restrict` heading alias while retaining value-before-state order |29 owners remain, but 851 still loads the value too early and other owners' shared tails/registers change |
 
 The three merged controls all produce prefix/payload5116/5444 and SHA256
 `76c4a245d987b57a04022a1f837854ab3ffb4d1e85be0b93aae57a2a9b2564d2`.
@@ -129,17 +129,17 @@ The alias control produces prefix/payload5156/5488 and SHA256
 Every control remains nonexact at+80/5436F0.
 
 **Observed ownership evidence, limited scope:** the already accepted
-YoumuObjectManager factory53B1C0 allocates a separate count*4 buffer when
-count>0, publishes its pointer at53B240 to object+340, optionally copies
-input words, then invokes object slot+8 at53B2A4. The raw237-byte factory
-also reads its facing/field33c stack arguments as bytes at53B262/53B266.
+YoumuObjectManager factory 53B1C0 allocates a separate count*4 buffer when
+count>0, publishes its pointer at 53B240 to object+340, optionally copies
+input words, then invokes object slot+8 at 53B2A4. The raw 237-byte factory
+also reads its facing/field33c stack arguments as bytes at 53B262/53B266.
 This establishes the positive-count factory path. It does not establish
-every writer, lifetime or caller of heading340, nor a compiler-visible
+every writer, lifetime or caller of heading 340, nor a compiler-visible
 no-alias promise. No `restrict` declaration or shared helper ABI change is
 adopted from that observation.
 
 Private candidates use `scripts/compile-unit.sh`; baseline comparison and owner
-commands below remain the public producer/checker. Direct384MiB/CPU0 read-only
+commands below remain the public producer/checker. Direct 384MiB/CPU0 read-only
 Ghidra independently re-attests file/imported identity, entry, mapped text and root
 bytes before bounded decoding/decompilation. All nine primary database file hashes
 agree afterward and the temporary project alias is removed. Required IDA preflight
@@ -150,28 +150,28 @@ accepted-unit contracts and exact byte credit remain unchanged.
 ## Whole-function exit and floating-environment controls
 
 A further fresh target preflight and focused build retain the same baseline.
-Replacing all27 outer-switch `return;` statements with `break;` produces the
-same complete5488-byte canonical payload4b9bf0a4. None of these returns is
-inside the nested match-identifier switch. Moving the real action823 payload
+Replacing all 27 outer-switch `return;` statements with `break;` produces the
+same complete 5488-byte canonical payload 4b9bf0a4. None of these returns is
+inside the nested match-identifier switch. Moving the real action 823 payload
 array declaration to the beginning of its arm and assigning its three values
 at their original use point is also completely byte-neutral. The residual
 tail/register behavior is not explained by either tested source scope.
 
-Capturing heading340 once before the outer switch and using it for851's
+Capturing heading 340 once before the outer switch and using it for 851's
 post-state value load instead produces prefix/payload5000/5332, SHA256
 `1c948f562eebebcd0a6a994636020c33a635828c2530f877868bf4aad5ee5bca`.
-It first differs at+0A and has19 conversion sites/21 RETs; it is not selected.
+It first differs at+0A and has 19 conversion sites/21 RETs; it is not selected.
 Changing the local selector parameter to `unsigned short` under the same
-profile produces5880/6212, SHA256
+profile produces 5880/6212, SHA256
 `b7a1c05591fe4ca14f469b0100ece15e12e6c008dbeaaff1a3a5ee73da33bbf0`.
-It expands the frame from10h to14h and replaces all target conversion-helper
+It expands the frame from 10h to 14h and replaces all target conversion-helper
 calls with inline control-word save/change, FISTP and restore sequences.
 This is caller/profile evidence favoring the selected signed-word interface;
 the low-word callee alone does not establish original source signedness.
 
-Local `fenv_access(on)` produces5216/5548, SHA256
-`5fcd69a05d9865b6afb8123f31f5aa7892f78fb0c3c8a2074b03ea6fee7ca08f`. It preserves20
-conversions/22 RETs and first differs at+80; it does not recover the target21/23
+Local `fenv_access(on)` produces 5216/5548, SHA256
+`5fcd69a05d9865b6afb8123f31f5aa7892f78fb0c3c8a2074b03ea6fee7ca08f`. It preserves 20
+conversions/22 RETs and first differs at+80; it does not recover the target 21/23
 copies. The successful sprite-rotation environment recipe therefore does not
 transfer to this root as tested. All five controls are unselected; no shared flags,
 headers or exact ledgers change. These experiments inspect the hash-attested PE
@@ -201,7 +201,7 @@ replay. Shared headers, profiles, literal/relocation contracts and accepted
 implementations elsewhere are unchanged.
 
 Direct Ghidra re-attests executable identity, entry, mapped text and root bytes.
-Bounded read-only decoding of the1294 target instructions and temporary5159-byte
+Bounded read-only decoding of the 1294 target instructions and temporary 5159-byte
 function produces a decompiler hypothesis; it does not set the durable boundary.
 Nine primary DB hashes remain unchanged and the temporary alias is removed. Required
 IDA preflight rejects its wrong PE; no IDA semantics, target-byte patch or factory

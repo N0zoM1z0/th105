@@ -1,29 +1,29 @@
 # Youmu zero and effect lifetimes, 2026-10-02
 
 Follow-up: [the facing and return-path audit](YOUMU_FACING_AND_RETURN_PATHS_2026_10_02.md)
-retains these zero/effect recoveries and all27 diagnostic owners while
+retains these zero/effect recoveries and all 27 diagnostic owners while
 recovering action214's11 target sequence-call sites. Measurements below
 describe the preceding checkpoint.
 
 ## Retained result
 
 `Youmu_dispatch_action_state_vslot28 @ 0x00530200` remains **nonexact** over
-37,692 target bytes. Action214 now expresses all five velocity predicates
+37,692 target bytes. Action 214 now expresses all five velocity predicates
 with velocity on the left and a literal zero on the right. Natural VC8 code
 keeps zero on the x87 stack through the target memory comparisons, discards
 it before conditional virtual calls and reloads it afterward. Three extra
 velocity FLDs disappear. The repeatedly assigned zero local is unnecessary
 in the recovered source and is removed.
 
-Effect125 now computes X/Y inside its actual call arguments. The generated
+Effect 125 now computes X/Y inside its actual call arguments. The generated
 schedule prepares trailing arguments before sine-Y and cosine-X, preserving
 the target's Y association `(sine*100+selfY)+100`. Four unused floating local
 hypotheses are removed in total. The existing direction snapshot remains.
 
 Fresh configured comparison first differs at `+0xCA / 0x005302CA`, target
 `64`, candidate `0C`. Candidate metadata starts at `+0x92E4`, versus target
-`+0x933C`; its callable is 88 bytes shorter. Section tail is38,728 bytes.
-All97 physical switch destinations and33 low entries remain distinct.
+`+0x933C`; its callable is 88 bytes shorter. Section tail is 38,728 bytes.
+All 97 physical switch destinations and 33 low entries remain distinct.
 Strict instruction/edge diagnostics stay **27/98**, with no gains or losses
 from the typed-call checkpoint. There is **zero new canonical exact credit**.
 
@@ -37,7 +37,7 @@ That compared window includes candidate metadata and is not a body hash.
 
 ## Target and candidate evidence
 
-**Observed:** original Japanese1.06a PE SHA-256 is
+**Observed:** original Japanese 1.06a PE SHA-256 is
 `56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e`,
 entry point `0x0068B9D2`. Fresh IDA preflight fails with the different
 `10350095...` executable; that session is not used. All new observations
@@ -57,7 +57,7 @@ are zero in ST0 and the current velocity dword at self`+0xF4`.
 | `531CFD` | `531C6F` | `FCOMP [self+F4]` | `41 / JP` |
 
 The first guard selects the rotation correction. The remaining four guard
-sequence changes3/1/4/2. Zero is retained on paths that skip a virtual call;
+sequence changes 3/1/4/2. Zero is retained on paths that skip a virtual call;
 call paths discard it with `FSTP ST0` before the invocation and reload it
 afterward. The final FCOMP consumes zero. The velocity itself is not cached
 across calls: each comparison rereads the field. The target reloads zero at
@@ -78,7 +78,7 @@ above; it does not establish unique original source spelling or full floating
 environment/exception equivalence.
 
 **Observed effect schedule:** direction is read at `531D31`, phase at
-`531D38`, and trailing1/direction arguments are prepared at `531D3E/531D3F`.
+`531D38`, and trailing 1/direction arguments are prepared at `531D3E/531D3F`.
 Sine helper is called at `531D44`; Y is rounded at `531D5B`, reloaded and
 stored in the outgoing slot at `531D63`. Cosine helper is called at
 `531D70`; signed facing multiplication and self-X addition precede the X
@@ -105,48 +105,48 @@ claim that this is the only possible original source expression.
 | Put zero on the left of all five predicates | 27/98; metadata `+0x9314`; five extra velocity FLDs instead of the baseline three. | Not retained. |
 | Put velocity on the left throughout | 27/98; metadata `+0x9304`; action214 load/store lead disappears. | Retained property. |
 | Remove known-zero local/assignments from all-right probe | Same compared window as the preceding row. | Retained cleanup. |
-| Add nested effect125 arguments after recovered zero lifetime | 27/98; metadata `+0x92E4`; no owner gains/losses. | Retained. |
+| Add nested effect 125 arguments after recovered zero lifetime | 27/98; metadata `+0x92E4`; no owner gains/losses. | Retained. |
 | Remove four now-unused floating local declarations | Same compared window as the preceding row. | Retained cleanup. |
-| Action606 random-X expression inside spawn argument, alone | 25/98; metadata `+0x92E8`; loses low11/mid304. | Private source hypothesis. |
+| Action 606 random-X expression inside spawn argument, alone | 25/98; metadata `+0x92E8`; loses low 11/mid304. | Private source hypothesis. |
 | Random-X606 plus recovered zero lifetime | 25/98; metadata `+0x92E4`; same losses. | Not retained. |
-| Spell606 frame range as `>6 && <11` in preceding probe | Byte-neutral. | Not retained; no original range spelling proved. |
-| Both214/606 argument schedules plus zero lifetime | 25/98; metadata `+0x92D8`; same losses. | Not retained. |
+| Spell 606 frame range as `>6 && <11` in preceding probe | Byte-neutral. | Not retained; no original range spelling proved. |
+| Both 214/606 argument schedules plus zero lifetime | 25/98; metadata `+0x92D8`; same losses. | Not retained. |
 
-The earlier effect-argument probe lost low11 when combined with typed calls.
+The earlier effect-argument probe lost low 11 when combined with typed calls.
 The independently observed zero-lifetime recovery changes that result:
-the same local effect schedule now preserves all27 prior owners. Thus the
+the same local effect schedule now preserves all 27 prior owners. Thus the
 negative conclusion in
 [the typed-call checkpoint](YOUMU_TYPED_VIRTUAL_CALLS_2026_10_02.md)
 is superseded for this combination. This is a bounded retry justified by new
 target-backed lifetime evidence, not an arbitrary declaration/flag search.
 
-**Observed606 lead:** target rounds Y at `538014`, keeps the reloaded value
-through `538028 FCOMP ST1`, prepares arguments7..4 and stores outgoing Y
-at `53804C`, before the random100 call at `538051`. Baseline instead pops
+**Observed 606 lead:** target rounds Y at `538014`, keeps the reloaded value
+through `538028 FCOMP ST1`, prepares arguments 7..4 and stores outgoing Y
+at `53804C`, before the random 100 call at `538051`. Baseline instead pops
 both values at its comparison and keeps several values live across the
 random call, then reloads Y for the outgoing argument.
 
 Moving only the real random-X expression into the call argument recovers
-that local FCOMP/Y carry/trailing-prefix schedule and removes606's load/store
+that local FCOMP/Y carry/trailing-prefix schedule and removes 606's load/store
 multiset lead. It also changes shared virtual-site placement: candidate slotC
-sites decrease31->30 and slot8 sites106->105. Those are physical counts,
+sites decrease 31->30 and slot 8 sites 106->105. Those are physical counts,
 not proof of missing behavior. Full graph/register allocation remains
-nonmatching, including the low11/mid304 regressions. Original606 expression
+nonmatching, including the low 11/mid304 regressions. Original 606 expression
 and shared-tail placement remain open; the probe is recorded for a later
 independently supported compiler/lifetime phase change.
 
 ## Whole-root validation and remaining scope
 
-Fresh explicit-object scans cover all138 target/candidate masked floating
+Fresh explicit-object scans cover all 138 target/candidate masked floating
 guards, with zero unequal owner counts or unordered-only leads under ordinal
-hypotheses. All49 spawn payloads resolve without conflicting modeled ESP
+hypotheses. All 49 spawn payloads resolve without conflicting modeled ESP
 merges. The same six normalized payload-address owners differ. Arithmetic
-counts remain349/348 with three multiset leads in601/696/710. Load/store
-multiset leads decrease13->12, removing action214. These scans do not close
+counts remain 349/348 with three multiset leads in 601/696/710. Load/store
+multiset leads decrease 13->12, removing action214. These scans do not close
 all operands, dependency orders, precision or exception behavior.
 
-Virtual physical-site counts remain107/106,31/31,12/13,2/2 at slots8/C/14/1C.
-Raw target traversal still reaches9,912 instructions/all37,692 bytes without
+Virtual physical-site counts remain 107/106,31/31,12/13,2/2 at slots 8/C/14/1C.
+Raw target traversal still reaches 9,912 instructions/all37,692 bytes without
 unresolved indirect jumps. No shared header, helper, compiler flag, relocation
 map or TU partition is changed. No aggregate cold-replay claim is added.
 

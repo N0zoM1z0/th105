@@ -28,9 +28,9 @@ rerun before further source analysis; no new callee is promoted by this work.
 The IDA preflight again rejects the attached SHA beginning `10350095`; all
 observations use the hash-attested PE, with no new database/decompiler output.
 
-## Action851 observation and negative control
+## Action 851 observation and negative control
 
-**Observed:** target851 begins at `543DCE`:
+**Observed:** target 851 begins at `543DCE`:
 
 1. `543DCE MOV ECX,[ESI+340]` captures the heading pointer.
 2. `543DD4 MOV EDI,[ESI]` captures the receiver's vptr.
@@ -56,9 +56,9 @@ This control is not retained. It proves neither source-level equivalence under
 all heading aliases nor that the original source necessarily used double.
 The baseline declaration remains a hypothesis that preserves physical owners.
 
-## Action800 conversion carrier control
+## Action 800 conversion carrier control
 
-**Observed:** target800 converts heading[2] at `543721`, loads slotC into EDX
+**Observed:** target 800 converts heading[2] at `543721`, loads slotC into EDX
 at `543726`, puts the receiver in ECX at `543729`, then pushes EAX at
 `54372B` and calls EDX. The same-sized candidate exchanges receiver placement
 and the PUSH. Similar single-instruction scheduling differences occur in
@@ -69,7 +69,7 @@ argument in one local `int const sequence` before the call is a natural
 source-value representation. The resulting whole compared window is
 byte-identical to the baseline, including 29 owners, metadata at 5,156 and
 6/30 instruction/edge diagnostics. It is not retained. This closes that
-carrier spelling as a cause of the current action800 residual under the
+carrier spelling as a cause of the current action 800 residual under the
 configured compiler profile.
 
 Neither control establishes an assembly requirement. Complete raw decoding
@@ -90,7 +90,7 @@ The fresh target/candidate owner spans are explicitly:
 | 851 | 40 | 40 |
 | 854 | 9 | 9 |
 
-The target820 jump at `543C16` enters the 850 tail at `543DA7`, after its two
+The target 820 jump at `543C16` enters the 850 tail at `543DA7`, after its two
 scale stores. The candidate hoists angle work into 820 and uses another
 shared selector path. The
 [earlier switch-closure evidence](YOUMU_OBJECT_ENTRY_SWITCH_CLOSURE_2026_09_26.md)

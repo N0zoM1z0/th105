@@ -7,7 +7,7 @@ setup and cursor fields, with offset/extent assertions; no private-register
 calling convention, dummy stack lifetime or copied instruction implementation
 is introduced.
 
-A real prerequisite has changed since the private October27 investigation:
+A real prerequisite has changed since the private October 27 investigation:
 refresh_character at 41FB80 now has an independently accepted 258-byte source
 body and ordinary two-int thiscall ABI. The exact 341-byte CSelect update-flow
 at 4208E0 reaches this policy by E9 at 420A30. Both complete supporting bodies
@@ -16,10 +16,10 @@ array and lifetime spelling controls remain closed; they were not repeated.
 
 ## Full comparison and ownership
 
-The unchanged generic authored-origin gate pins the whole619-byte native hash,
-the exact caller tail edge and the skipped six-byte LEA EBX,[EBX] at41FCBA,
-preceded by EB06 at41FCB8. Native and source each contain192 instructions,
-191 reachable, and four RET0 paths at41FE2A/41FEB1/41FED7/41FEFA. All alignment
+The unchanged generic authored-origin gate pins the whole 619-byte native hash,
+the exact caller tail edge and the skipped six-byte LEA EBX,[EBX] at 41FCBA,
+preceded by EB06 at 41FCB8. Native and source each contain 192 instructions,
+191 reachable, and four RET 0 paths at 41FE2A/41FEB1/41FED7/41FEFA. All alignment
 bytes remain compared, with no partial-body or displacement mask.
 
 The entire source is still nonexact:25 unequal bytes, first at+36, associated
@@ -51,8 +51,8 @@ caller ABI use rather than accidentally granting zeroed or preserved registers.
 All twelve native/source observations agree. All external helpers are observed
 without executing them, and callbacks use the existing fail-closed guard.
 
-A negative control changes only the candidate's initial cursor base from114
-to100, superficially removing its first differing field. The observer rejects
+A negative control changes only the candidate's initial cursor base from 114
+to 100, superficially removing its first differing field. The observer rejects
 its wrong cursor receiver before any helper executes. This illustrates why an
 isolated byte patch is not source reconstruction. The altered bytes are only
 a rejected test input, never an implementation or acceptance artifact.
@@ -64,13 +64,13 @@ resource loading, actual helper bodies or OS operations.
 
 ## Reproduce and accounting
 
-Use scripts/repo-python serially on CPU0/nice10 to build
+Use scripts/repo-python serially on CPU 0/nice10 to build
 exact-first-select-character-update, exact-first-select-update-flow and
 exact-first-select-character-binding. Then run audit-select-character-update.py,
 validate-tracking.py --require-target and ci.py. The candidate compare and
-audit intentionally report mismatch; they cannot turn25 unequal bytes into
+audit intentionally report mismatch; they cannot turn 25 unequal bytes into
 exactness.
 
-Source-present rises1635 to1636, authored1654 to1655, mapped1822 to1823,
-review301 to300 and units810 to811. Excluded stays2072. Exact authored remains
+Source-present rises1635 to 1636, authored 1654 to 1655, mapped 1822 to 1823,
+review 301 to 300 and units 810 to 811. Excluded stays 2072. Exact authored remains
 1429 /443911 bytes; no matches.csv entry is added.
