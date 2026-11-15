@@ -1,12 +1,13 @@
 # Komachi action initialization: 2026-10-25
 
-`Komachi_initialize_action_entry @ 0x005F6700` now has complete target-reviewed
-source, but remains **nonexact**. Formal and independent cold ordinary VC8
-builds emit2496 bytes, SHA256
-`c6dac7e036e8d53995998560299b03e014b1f0727ddbddbbeed985b975ac915a`.
-All94 relocations are replayed. The complete target also has2496 bytes, but49
-unmasked byte positions differ:47 in550/551's code layout and two in551's
-destination pointer. This source-present checkpoint adds no exact credit.
+`Komachi_initialize_action_entry` 0x5F6700 (1971 bytes) is exact. The residual
+was the layout of cases 550/551, which differ only in `F(0x73c)` (0 or 1). The
+target keeps 550's body inline and puts 551 after it as `fld1; jmp` into 550's
+tail. A `goto` from 551 into a label in 550 puts the 551 stub in front of the
+shared code instead. Writing 551 as its own full copy, with `B(0x184)=1` before
+`F(0x73c)=1`, lets VC8 cross-jump it after the constant load. The same
+statement order as 550 does not merge. The rest of this note is the original
+boundary and ABI review.
 
 ## Observed target, boundary and ABI
 

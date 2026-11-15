@@ -42,9 +42,8 @@ void KomachiActionEntryView::initialize_action_entry()
  case 526:B(0x17c)=5;zero_motion();B(0x184)=12;I(0x180)=0;B(0x47e)=0;S(0x730)=0;return;
  case 540:case 541:case 542:case 543:B(0x17c)=2;S(0x738)=0;I(0x180)=1;zero_motion();B(0x750)=0;return;
  case 545:case 546:B(0x17c)=6;I(0x180)=1;zero_motion();B(0x750)=1;return;
- case 550:F(0x73c)=0;
- publish_550:B(0x184)=1;B(0x17c)=10;I(0x180)=0;zero_motion();B(0x750)=1;return;
- case 551:F(0x73c)=1;goto publish_550;
+ case 550:F(0x73c)=0;B(0x184)=1;B(0x17c)=10;I(0x180)=0;zero_motion();B(0x750)=1;return;
+ case 551:B(0x184)=1;F(0x73c)=1;B(0x17c)=10;I(0x180)=0;zero_motion();B(0x750)=1;return;
  case 560:case 561:B(0x17c)=3;I(0x180)=1;zero_motion();S(0x730)=0;S(0x732)=0;S(0x734)=0;S(0x736)=0;B(0x750)=1;return;
  case 565:case 566:B(0x17c)=7;I(0x180)=1;zero_motion();S(0x730)=0;S(0x732)=0;S(0x734)=0;S(0x736)=0;B(0x750)=1;return;
  case 599:I(0x180)=1;zero_motion();S(0x732)=0;S(0x736)=0;S(0x730)=0;S(0x738)=0;return;

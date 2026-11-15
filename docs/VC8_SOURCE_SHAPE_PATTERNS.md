@@ -321,6 +321,13 @@ target lacks, so LTCG does not explain the register.
   needed the same thing: its auto-save branch repeats the outer
   `end_pending_84` stores and `return true`, so the session check jumps into
   that copy and the message branch follows it.
+  Komachi's initializer 0x5F6700 needed it for two cases that differ in one
+  float constant: the second case repeats the whole body, with its first two
+  stores swapped, and VC8 cross-jumps it after `fld1`. A `goto` into the first
+  case's body lays the stub out before the shared code. Youmu's twin 0x53A1D0
+  differs in a byte constant held in AL (`mov al, 6; jmp`). Chained
+  `B(0x7cd)=B(0x184)=k` stores in both copies give the AL loads, but no
+  statement order makes VC8 merge the copies.
 
 - **A "remote chunk" reached only by `jmp` after an epilogue is a tail call.**
   The scene frame update 0x43B4A0 pops its registers and jumps to 0x4400D0,

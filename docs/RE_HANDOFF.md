@@ -91,8 +91,8 @@ Earlier in this session, three roots became exact: `CProfileDeckEdit_render`
 - The 690/696 dispatcher needed literal `find()` keys and direct field reads.
 
 Open layout leads, each with one or two residual regions:
-- the Youmu/Komachi constant-only tail merges (0x53A1D0, 0x5F6700; RTM gives
-  the same result);
+- the Youmu constant-only tail merge (0x53A1D0). Komachi's twin 0x5F6700 is
+  exact through duplicated case bodies; see the patterns note;
 - the Marisa CPU dispatch tails (0x4B4070);
 - the Aya control-mode duplicate tails (0x616800);
 - the Patchouli control-mode frame (+8 bytes, 0x51CB40).
