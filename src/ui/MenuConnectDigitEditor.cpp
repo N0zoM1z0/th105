@@ -42,9 +42,7 @@ int ConnectDigitEditorView::update()
             for (int i=0; i<digit; ++i) power *= 10;
             cursors_3f8[1].selection = 9 - port_428 / power % 10;
         }
-        return 0;
-    }
-    if (changed & 2) {
+    } else if (changed & 2) {
         dispatch_indexed_event(0x27);
         if (editing_address) {
             unsigned value = address_420[part];
@@ -71,14 +69,11 @@ int ConnectDigitEditorView::update()
                 power *= 10;
             }
         }
-        return 0;
-    }
-    if (endpoint_edit_buttons()->confirm == 1) {
+    } else if (endpoint_edit_buttons()->confirm == 1) {
         g_profile_message_main->enabled = false;
         dispatch_indexed_event(0x28);
         return 1;
-    }
-    if (endpoint_edit_buttons()->cancel == 1 || is_menu_initial_press(1,0,0,0)) {
+    } else if (endpoint_edit_buttons()->cancel == 1 || is_menu_initial_press(1,0,0,0)) {
         g_profile_message_main->enabled = false;
         dispatch_indexed_event(0x29);
         return 2;
@@ -95,9 +90,7 @@ int ConnectDigitEditorView::update_port()
         int power = 1;
         for (int i=0; i<4-cursors_3f8[0].selection; ++i) power *= 10;
         cursors_3f8[1].selection = 9 - port_428 / power % 10;
-        return 0;
-    }
-    if (changed & 2) {
+    } else if (changed & 2) {
         dispatch_indexed_event(0x27);
         unsigned value = port_428;
         int digit = 4-cursors_3f8[0].selection;
@@ -111,14 +104,11 @@ int ConnectDigitEditorView::update_port()
             value /= 10;
             power *= 10;
         }
-        return 0;
-    }
-    if (endpoint_edit_buttons()->confirm == 1) {
+    } else if (endpoint_edit_buttons()->confirm == 1) {
         g_profile_message_main->enabled = false;
         dispatch_indexed_event(0x28);
         return 1;
-    }
-    if (endpoint_edit_buttons()->cancel == 1 || is_menu_initial_press(1,0,0,0)) {
+    } else if (endpoint_edit_buttons()->cancel == 1 || is_menu_initial_press(1,0,0,0)) {
         g_profile_message_main->enabled = false;
         dispatch_indexed_event(0x29);
         return 2;
