@@ -1,6 +1,5 @@
 // Genuine C++ texture-handle providers for the real CDesignBase cleanup context.
 // Release404D70 is canonical115 here; other providers get no inherited credit.
-// See docs/TITLE_RESOURCE_RELEASE_EXACT_2026_11_01.md.
 #include "ui/Title.hpp"
 #include "engine/D3DBackend.hpp"
 #include <deque>

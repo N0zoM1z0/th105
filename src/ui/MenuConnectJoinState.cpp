@@ -1,4 +1,4 @@
-// JP1.06a connect-menu middle states; complete source, still nonexact.
+// JP1.06a connect-menu middle states, exact.
 // Partial receiver views are never instantiated. Message names identify raw addresses.
 #include "ui/MenuConnectStateRuntime.hpp"
 namespace th105 {

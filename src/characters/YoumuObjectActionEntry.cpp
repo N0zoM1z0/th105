@@ -21,7 +21,6 @@ public:
     virtual int set_action_sequence_and_finalize(short action, int sequence);
     virtual int set_action_and_finalize(short action);
     // Current primary slot +0x0C owns45C390: low16-bit value, four-byte slot.
-    // See docs/YOUMU_ENTRY_SEQUENCE_WORD_2026_10_19.md.
     virtual int select_sequence(short sequence);
     virtual int reset_sequence();
     virtual unsigned char next_sequence_block();
@@ -333,7 +332,7 @@ action850_angle_and_select:
         float *const parameters = heading_340;
         state_344 = 1;
         // Same target slot45C390 through its independently matched int ABI view.
-        // Preserve the target value load after state344; see docs/YOUMU_ENTRY_CALLS_2026_10_19.md.
+        // Preserve the target value load after state344.
         reinterpret_cast<AnimationSequenceObjectView *>(this)->select_sequence(
             static_cast<int>(parameters[2]));
         return;

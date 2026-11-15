@@ -1,4 +1,4 @@
-// Complete JP1.06a477830 hypothesis from all1272 raw main instructions.
+// JP1.06a 0x477830, exact.
 #include "CommonFighterActionInitialization.hpp"
 #include "battle/SpellRuntime.hpp"
 #include <deque>

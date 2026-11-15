@@ -1,5 +1,5 @@
 // Original Japanese TH105 1.06a Aya +0x58 CPU decision root at 006126E0.
-// Target bridge and the two character-specific branches: docs/AYA_CPU_ROOT_2026_10_17.md.
+// Target bridge and the two character-specific branches.
 #include "CpuActionPolicies.hpp"
 #include "engine/AngleAtan2.hpp"
 

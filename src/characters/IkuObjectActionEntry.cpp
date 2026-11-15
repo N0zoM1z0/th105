@@ -1,5 +1,5 @@
 #include "characters/IkuObjectActionEntry.hpp"
-// JP1.06a 0x0063B310: complete exact-first source candidate.
+// JP1.06a 0x0063B310, exact.
 namespace th105 {
 #define FIELD(type,offset) (*reinterpret_cast<type *>(reinterpret_cast<unsigned char *>(this)+(offset)))
 #define F(o) FIELD(float,o)

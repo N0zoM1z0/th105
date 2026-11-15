@@ -1,5 +1,5 @@
 // Original JP 1.06a Reimu CPU slot +0x58, 0x0048D390..0x0049120F.
-// Source-present candidate, not an exact match. See docs/REIMU_CPU_PHASE_2026_10_19.md.
+// Source-present candidate, not an exact match.
 #include "CpuActionPolicies.hpp"
 #include "engine/AngleAtan2.hpp"
 #include "../battle/Collision.hpp"
@@ -448,7 +448,7 @@ policy_dispatch:
 #undef SKILL
 #undef FRONT_SEQUENCE
 // Decisions read the signed word stored at76A. VC8 forwards the producing
-// value into ECX and eliminates reloads; see REIMU_CPU_ROLL_FIELD_2026_10_19.md.
+// value into ECX and eliminates reloads.
 switch ( policy_counter_766 )
 {
 case 0:

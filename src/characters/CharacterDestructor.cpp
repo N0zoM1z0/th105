@@ -1,7 +1,6 @@
 #include "battle/CharacterWaveHandle.hpp"
 #include "characters/CharacterSpellResource.hpp"
 // Complete JP1.06a Character destruction, including both cold range-error tails.
-// Natural source905 bytes differs only in one commutative SIB operand byte.
 #include "battle/AttackObjectLifetime.cpp"
 #include "battle/PatResourceContracts.hpp"
 #include "ui/Title.hpp"

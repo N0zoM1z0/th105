@@ -1,6 +1,5 @@
 #include "engine/Sprite.hpp"
 // JP1.06a 0x00456760. Rebuild the current window text texture.
-// See docs/SCENARIO_TEXT_REBUILD_2026_10_29.md.
 #include "ui/DesignBaseLifetime.hpp"
 #include "ui/Title.hpp"
 #include "assets/TextFontOwner.hpp"

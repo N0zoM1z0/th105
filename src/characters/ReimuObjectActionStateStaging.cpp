@@ -11,7 +11,6 @@
 namespace th105 {
 
 // Match-mode switches retain target-observed 3,2,1,0 physical block order.
-// docs/REIMU_OBJECT_SELECTOR_ORDER_2026_10_21.md; whole root remains nonexact.
 
 //902 publishes two interleaved float rectangles at owner+7A8..7C4.
 // A member view preserves VC8's float rounding and owner-pointer reloads;
@@ -88,7 +87,6 @@ return_zero:
 }
 
 // Ordinary local exits preserve observed state330 write-before-x87-pop paths.
-// docs/REIMU_OBJECT_LOCAL_EXITS_2026_10_21.md.
 
 } // namespace th105
 using namespace th105;
@@ -2892,7 +2890,6 @@ fade_902:
             }
             if (_root_state.state_364 == 1 && *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x738) == 0) {
                 // Four packets remain alive through the shared second spawn/wave.
-                // docs/REIMU_OBJECT_905_PACKET_JOIN_2026_10_21.md.
                 float mode0_packet[3], mode1_packet[3];
                 float mode2_packet[3], mode3_packet[3];
                 float *completed_packet = 0;

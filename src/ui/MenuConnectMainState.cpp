@@ -1,6 +1,6 @@
 #include <boost/regex.hpp>
 // JP1.06a444830: complete connect main-state policy and owning regex lifetimes.
-// See docs/CONNECT_MAIN_STATE_EXACT_2026_10_31.md and BOOST_REGEX_REFERENCE_2026_10_31.md.
+// See docs/BOOST_REGEX_REFERENCE_2026_10_31.md.
 #include "ui/Menu.hpp"
 #include "ui/MenuCursor.hpp"
 #include "input/InputManager.hpp"

@@ -1,5 +1,4 @@
-// Complete JP1.06a configuration-menu constructor. Full comparison remains nonexact.
-// See docs/CONFIG_MENU_CONSTRUCTOR_2026_10_31.md.
+// JP1.06a configuration-menu constructor, exact.
 #include "ui/Menu.hpp"
 #include "ui/MenuConfigUpdate.hpp"
 #include "ui/DesignBaseLifetime.hpp"

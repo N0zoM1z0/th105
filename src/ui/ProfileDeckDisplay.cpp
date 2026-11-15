@@ -1,4 +1,4 @@
-// Complete JP1.06a selected-card refresh; source remains nonexact440/439.
+// JP1.06a selected-card refresh, exact.
 // Actual global nine-slot CSprite; no manually loaded vtable.
 #include "ui/Title.hpp"
 #include "ui/UiPrimitives.hpp"

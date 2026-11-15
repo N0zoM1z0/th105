@@ -1,5 +1,4 @@
 // JP1.06a 0x004540F0. Complete timeline command loader; full code and switch payload replay.
-// See docs/SCENE_TIMELINE_LOADER_2026_10_29.md.
 #include "battle/ScriptCommandRegistry.hpp"
 #include "ui/RenderTimeline.hpp"
 #include "ui/SceneTimelineEntries.hpp"

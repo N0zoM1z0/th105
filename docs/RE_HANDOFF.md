@@ -83,6 +83,22 @@ the scalar-wrapper receipts
 `scripts/function-origins.py --check` (about 10 minutes), which flags header
 pins that need renewing.
 
+Two inputs are pinned more tightly than they look:
+- Origin anchors (`config/*anchor*.toml`) pin some source files by SHA-256,
+  hashed with the file's checkout line endings from `.gitattributes`. Even a
+  comment edit or a literal respelling in such a file needs the pin renewed;
+  three validators (`unsigned_deque_popback_origins.py` among them) also repeat
+  the hash as a constant. `tests/test_origin_source_line_endings.py` lists
+  stale pins quickly.
+- Unit input digests cover all of `match-units.toml` and
+  `reccmp-relocations.csv`, so editing even their notes invalidates every
+  scalar-wrapper receipt. Refresh them with one `scalar_wrapper_origins.py`
+  call that passes every `--unit` (about a minute).
+
+Run the tool tests with `scripts/repo-python -m unittest discover -s tests`
+(about 2.5 minutes). Some tests import sibling test modules, so run
+them through `discover` rather than `-m unittest tests.NAME`.
+
 ## Session rules
 
 Keep one writable reconstruction scope and run VC8/Ghidra serially. Attest an
