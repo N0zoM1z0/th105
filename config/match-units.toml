@@ -26351,7 +26351,7 @@ source = "src/ui/BattleMenuUpdate.cpp"
 object = "build/match-units/ExactFirst_BattleMenuUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete797-byte callable and880-byte owned target with both switch tables/remap. Source892 owned bytes remains nonexact+48; native message result4 falls through result2 state reset. docs/BATTLE_MENU_UPDATE_2026_10_29.md."
+notes = "CMenuBattle update, exact at 797 bytes with both switch tables: the auto-save branch repeats the end-pending stores and return. docs/BATTLE_MENU_UPDATE_2026_10_29.md."
 
 [[units.exact-first-battle-menu-update.functions]]
 address = "0x004407E0"

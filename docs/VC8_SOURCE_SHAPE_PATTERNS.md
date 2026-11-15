@@ -317,7 +317,10 @@ target lacks, so LTCG does not explain the register.
   `B` placed after `T`, the source repeats the tail statements `T` in both
   branches and VC8 cross-jumps them. A shared tail after the `if/else` puts
   `B` inline instead. This made the scenario list fade 0x455850 exact, where
-  `T` is the colour publication plus `++it`.
+  `T` is the colour publication plus `++it`. The battle menu update 0x4407E0
+  needed the same thing: its auto-save branch repeats the outer
+  `end_pending_84` stores and `return true`, so the session check jumps into
+  that copy and the message branch follows it.
 
 - **A "remote chunk" reached only by `jmp` after an epilogue is a tail call.**
   The scene frame update 0x43B4A0 pops its registers and jumps to 0x4400D0,
@@ -352,14 +355,6 @@ target lacks, so LTCG does not explain the register.
   which needs its own rel32 mapping.
 
 ## Parked residuals (tried, still nonexact)
-
-- **Battle menu update 0x4407E0 (2026-11-15).** Ending the three outer cases
-  with `break;` before the single trailing `return true;` makes VC8 load the
-  constant 1 into `ebx` once, in the switch head, as the target does. That took
-  the function from 10 regions to 1. The remaining region: the target lays out
-  case 3/4's inner `else { state_04 = ...; show_profile_message(...); return
-  true; }` after the `end_pending_84` assignments, and ours keeps source order
-  (and merges the `= 2` branch elsewhere).
 
 - **Menu cursor update 0x41FA20 `idiv` by 6 (2026-11-14).** The target computes
   `input % 6` as `mov edi, 6; cdq; idiv edi` inside otherwise `/O2` code.

@@ -1,4 +1,4 @@
-// JP1.06a CMenuBattle update. Complete source; canonical owned extent remains nonexact.
+// JP1.06a 0x4407E0: CMenuBattle update.
 #include "ui/Menu.hpp"
 #include "ui/MenuCursor.hpp"
 #include "ui/ProfileSubmenus.hpp"
@@ -56,9 +56,12 @@ bool BattleMenuUpdateView::update()
    case 3:
    case 4:
     if(get_session_setup_option()==1) {
-     if(reinterpret_cast<BattlePauseConfig *>(get_game_config())->auto_save_71)
+     if(reinterpret_cast<BattlePauseConfig *>(get_game_config())->auto_save_71) {
       refresh_continue_network_state();
-     else {
+      if(ENTRY==3) owner_74->end_pending_84=1;
+      else owner_74->end_pending_84=2;
+      return true;
+     } else {
       state_04=static_cast<signed char>(ENTRY)*10;
       if(ENTRY==3) show_profile_message(battle_save_select_prompt,false);
       else show_profile_message(battle_save_title_prompt,false);
