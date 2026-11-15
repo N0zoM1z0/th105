@@ -42,9 +42,19 @@ Treat equal-size residuals as source questions first.
 
 ### Latest change
 
-- `Suika_initialize_action_entry` 0x5AD4A0 is exact (two store orders).
-- Reimu 0x491C40, Udonge 0x5D0E60 and the common fighter initializer 0x477830
-  are down to a few scheduling or cross-jump regions each.
+- Exact this round:
+  - `Suika_initialize_action_entry` 0x5AD4A0 (two store orders);
+  - `CBattleManager::update_event_timer` 0x472A70 (in-place global updates
+    instead of a local copy).
+- Down to a few scheduling or cross-jump regions each: Reimu 0x491C40,
+  Udonge 0x5D0E60, the common fighter initializer 0x477830, scenario character
+  install 0x456EB0 (one EH-state store) and the info effect update 0x65CB40
+  (14783 bytes, two regions).
+- Most remaining one-to-five-region near misses are VC8 choosing a different
+  identical block for cross-jumps and branch retargets. The patterns note has
+  the mechanism, as observed in the common initializer. No compiler setting
+  reproduces the target's choice: RTM, LTCG, `/Z7`, `/fp` and `/Os` were all
+  tried.
 
 The rules that produced this, all in the patterns note:
 - Use offset macros, not an inline `at<T>` accessor (the accessor blocks VC8's
