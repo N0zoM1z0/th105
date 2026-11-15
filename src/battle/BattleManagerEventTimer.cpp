@@ -21,21 +21,18 @@ void BattleManagerEventTimerView::update_event_timer()
 {
     if (phase_88 == 2) {
         if (g_pair_mode_primary != 16) {
-            short timer = g_info_mode_value_6fa88c;
-            timer = static_cast<short>(timer - (static_cast<unsigned char>(g_pair_state) & 1));
-            g_info_mode_value_6fa88c = timer;
-            if (timer <= 0) {
+            g_info_mode_value_6fa88c -= (g_pair_state & 1);
+            if (g_info_mode_value_6fa88c <= 0) {
                 g_info_mode_value_6fa88c = 0;
                 reinterpret_cast<PairEmbeddedModeView *>(&frame_counter_04)
                     ->select_pair_mode_434780(16, 1);
             }
         } else {
-            short timer = static_cast<short>(g_info_mode_value_6fa88c + 1);
-            g_info_mode_value_6fa88c = timer;
-            if (g_secondary_event_effect_id == 16 && timer >= 499) {
+            ++g_info_mode_value_6fa88c;
+            if (g_secondary_event_effect_id == 16 && g_info_mode_value_6fa88c >= 499) {
                 reinterpret_cast<EventSubobject130 *>(&frame_counter_04)
                     ->trigger_secondary_event_effect(selector_random_roll(15));
-            } else if (timer >= 999) {
+            } else if (g_info_mode_value_6fa88c >= 999) {
                 g_info_mode_value_6fa88c = 999;
                 reinterpret_cast<PairEmbeddedModeView *>(&frame_counter_04)
                     ->select_pair_mode_434780(g_secondary_event_effect_id, 1);

@@ -5,6 +5,14 @@ signature, the source shape that reproduces it and the function where it was pro
 
 ## Patterns that produced exact matches
 
+**Update a global in place, not through a local copy.** A global short that is
+read before a branch and then updated in both arms
+(`mov ax, [g]; ...; sub ax, cx` / `add ax, 1`) comes from
+`g -= (flag & 1); if (g <= 0) ...` and `++g; if (g >= 499) ...`.
+`short timer = g; timer = ...; g = timer;` narrows the arithmetic to 8 bits and
+reloads `g` in each arm, and so does casting the flag to `unsigned char`. Proven
+on `CBattleManager::update_event_timer` 0x472A70 (172 bytes).
+
 **Late branch into the entry `return false` epilogue.** If a final test branches
 back into an earlier `xor al, al; ret` while the fall-through returns true, write
 one trailing `return true` reached from several paths. An adjacent
