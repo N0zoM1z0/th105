@@ -621,8 +621,8 @@ evidence = "current 1.06a IDA caller closure proves all fifteen roster primary-v
 id = "roster-fighter-primary-vtable-authored-106a"
 pointer_anchor_file = "config/roster-fighter-vtable-origin-anchors.toml"
 skip_matching = true
-expected_count = 35
-expected_bytes = 1005539
+expected_count = 33
+expected_bytes = 995298
 origin = "authored_game"
 subsystem = "characters"
 disposition = "authored"
@@ -2122,25 +2122,6 @@ required_direct_edges = [
 ]
 
 [[rules]]
-id = "profile-message-update-authored-106a"
-addresses = ["0x0043F6E0"]
-expected_count = 1
-expected_bytes = 298
-expected_names = ["sub_43F6E0"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Hash-attested raw PE CFG reaches all 298 candidate bytes and five RET paths; the following bytes are INT3 padding. The body updates game menu-cursor state, dispatches UI events 0x27/0x28/0x29, and toggles visibility byte +0x14 through five game UI globals before returning menu-state codes. Seven independent canonical-exact UI callers have eight E8 sites; sites in two separate caller functions are replayed here. The retained update_profile_message name agrees with behavior but source codegen remains nonexact. See docs/ORIGIN_BOUNDARY_REVIEW_2026_09_26.md."
-required_body_hashes = [
-  { address = "0x0043F6E0", size = 298, sha256 = "7cd81ee125c1ed51f0c66aec0e25e1be8f8652d63af1e0f14f1c51d3395172ed" },
-]
-required_direct_edges = [
-  { caller = "0x00442790", site = "0x00442844", target = "0x0043F6E0", caller_status = "matching" },
-  { caller = "0x0044CC50", site = "0x0044CD73", target = "0x0043F6E0", caller_status = "matching" },
-]
-
-[[rules]]
 id = "boost-exception-rtti-adjustor-thunks-106a"
 addresses = ["0x006A4D00", "0x006A4D40", "0x006A4D50", "0x006A4F40", "0x006A4F70", "0x006A4F80", "0x006B4C40", "0x006B4C70", "0x006B4C80", "0x006B4CF0", "0x006B4D20", "0x006B4D30"]
 expected_count = 12
@@ -3085,21 +3066,6 @@ required_direct_edges = [
 ]
 
 [[rules]]
-id = "profile-deck-render-authored-106a"
-addresses = ["0x00448F60"]
-expected_count = 1
-expected_bytes = 2521
-expected_names = ["sub_448F60"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete2521-byte/744-instruction RET0 renderer belongs to the CProfileDeckEdit primary RTTI render slot. Target policy renders40 deck thumbnails,15 filtered card rows, selection preview, resource availability/count digits and four guides. Exact deck-availability/menu/guide callees corroborate ownership independently of checked-container helpers. Complete2521-byte public hypothesis remains nonexact1622 positions. Native observer fixture verifies zero missing counts and rejects erroneous push-relative stack inference. No helper-origin or exact credit. docs/PROFILE_DECK_RENDER_2026_10_26.md."
-required_rtti_virtual_bodies = [
-  { address = "0x00448F60", size = 2521, sha256 = "6898ee39c83606abc8cbf1618d91834dfaa9e901fd2adb3f38163101f780fb0c", slot = "0x006C2238", col_slot = "0x006C2228", col = "0x006D8610", type_descriptor = "0x006E6DDC", type_name_contains = "CProfileDeckEdit@@", calls = [{ site = "0x0044904F", target = "0x0043F9D0" }, { site = "0x0044928E", target = "0x00448DF0" }, { site = "0x004495B6", target = "0x00448DF0" }, { site = "0x004498FD", target = "0x0043F970" }, { site = "0x00449912", target = "0x0043F4C0" }] },
-]
-
-[[rules]]
 id = "score-load-authored-106a"
 addresses = ["0x0042F6F0"]
 expected_count = 1
@@ -3699,41 +3665,6 @@ required_body_hashes = [{ address = "0x0040D810", size = 282, sha256 = "0223e073
 required_direct_edges = [{ caller = "0x00407DA0", site = "0x00407EAD", target = "0x0040D810" }]
 
 [[rules]]
-id = "connect-endpoint-digit-editors-authored-106a"
-addresses = ["0x00441BD0", "0x00441E10"]
-expected_count = 2
-expected_bytes = 1461
-expected_names = ["sub_441BD0", "sub_441E10"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Exact CMenuConnect state-one442790 calls port editor at442899; combined endpoint wrapper442CE0 calls digit editor at442CFE. Both manipulate the same independently constructor-backed CMenuConnect cursors3F8/40C, address420 and port428 and game-specific confirmation UI/events. Complete current-target CFGs are pinned; no exact credit. docs/CONNECT_DIGIT_EDITOR_2026_10_28.md."
-required_body_hashes = [
- {address="0x00441BD0",size=570,sha256="bd523913cd1a18914eff8689b69d92c41e626fc652546143b544fb94c8b7b819"},
- {address="0x00441E10",size=891,sha256="f96c0b43c0c97fcb965a04a603505f71926c95456816cccd2ae2d7c07d5f32ee"},
-]
-required_direct_edges = [
- {caller="0x00442790",site="0x00442899",target="0x00441BD0",caller_status="matching"},
- {caller="0x00442CE0",site="0x00442CFE",target="0x00441E10"},
-]
-
-[[rules]]
-id = "connect-middle-state-authored-106a"
-addresses = ["0x00444490"]
-expected_count = 1
-expected_bytes = 699
-expected_names = ["sub_444490"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Exact CMenuConnect virtual update444B90 tail-jumps444490 for outer states2..5. Complete confirmed input/connection/profile state policy owns all699 bytes and both jump tables. Source remains nonexact; no prefix credit. docs/CONNECT_JOIN_STATE_2026_10_31.md."
-required_body_hashes = [{ address = "0x00444490", size = 699, sha256 = "bb6159fbe53c1882c8797a1c1ae19f527bb3d2bed4e67463a394eec6d0c7949d" }]
-required_direct_edges = [{ caller = "0x00444B90", site = "0x00444C35", target = "0x00444490", kind = "jump", caller_status = "matching" }]
-required_selected_body_calls = [{ owner = "0x00444490", site = "0x00444537", target = "0x004425D0", target_status = "matching" }, { owner = "0x00444490", site = "0x00444612", target = "0x00443D70", target_status = "matching" }]
-
-[[rules]]
 id = "vc8-counted-swprintf-header-106a"
 addresses = ["0x004418B0"]
 expected_count = 1
@@ -3746,21 +3677,6 @@ confidence = "observed"
 evidence = "Actual pinned VC8 swprintf.inl counted variadic wrapper emits complete27-byte canonical fingerprint in the three exact endpoint callers. Header SHA d92946b2263736a620b151ae80a1e7f4963112f72b1e6257b021e7c33d0dbf3f. Source uses va_start, _vswprintf_c_l with null locale and va_end; private EDX count is compiler-selected. Standard header implementation, no authored credit. docs/CONNECT_ENDPOINT_ACTIONS_EXACT_2026_10_31.md."
 required_body_hashes = [{ address = "0x004418B0", size = 27, sha256 = "72d421962b54962fb5747badaabb4e2dcb808ae0232bbbe52d10bfb67af3fbc6" }]
 required_direct_edges = [{ caller = "0x004424D0", site = "0x00442516", target = "0x004418B0", caller_status = "matching" }, { caller = "0x004430D0", site = "0x00443117", target = "0x004418B0", caller_status = "matching" }, { caller = "0x00442CE0", site = "0x00442D5B", target = "0x004418B0", caller_status = "matching" }]
-
-[[rules]]
-id = "replay-menu-browse-authored-106a"
-addresses = ["0x00446860"]
-expected_count = 1
-expected_bytes = 511
-expected_names = ["sub_446860"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Exact replay menu dispatcher446C90 tail at446D05 owns complete511-byte navigation/recording policy. Checked directory-selection history and exact replay loader42C5C0 establish authored game behavior. Source559 remains nonexact on common GS-return sharing; no byte credit. docs/REPLAY_MENU_BROWSE_2026_10_31.md."
-required_body_hashes = [{address="0x00446860",size=511,sha256="28cfe1f2393ce046a13f4e40a105c281d3209f30023e037026ebc6ba43e9d74f"}]
-required_direct_edges = [{caller="0x00446C90",site="0x00446D05",target="0x00446860",kind="jump",caller_status="matching"}]
-required_selected_body_calls = [{owner="0x00446860",site="0x004469B4",target="0x0042C5C0",target_status="matching"}]
 
 [[rules]]
 id = "vc8-string-count-append-generated-106a"
@@ -4708,35 +4624,6 @@ evidence = "Unmodified original VC8 basic_string explicit instantiation reproduc
 required_body_hashes = [{ address = "0x004395F0", size = 165, sha256 = "aec7a62afed63afae4eab520a050f7e83055532c49890b30a13f591e29ec30f2" }]
 
 [[rules]]
-id = "front-card-action-gate-authored-106a"
-addresses = ["0x00494450"]
-expected_count = 1
-expected_bytes = 950
-expected_names = ["sub_494450"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete950-byte card action policy closes305 instructions/eight RET4 exits. Fourteen canonical-exact roster input methods call this root; Reimu6952 and full7008 payload freshly pass. Existing complete source950 remains nonexact at+72; eight family peers stay exact. No helper or partial exact credit. docs/FRONT_CARD_ACTION_GATE_SOURCE_2026_10_31.md."
-required_body_hashes = [{ address = "0x00494450", size = 950, sha256 = "48bf68351997deff88cd0dced8ffd5884cb99b38a056d59eba3ea4a273f4e140" }]
-required_direct_edges = [
- { caller = "0x00494810", site = "0x004949CB", target = "0x00494450", caller_status = "matching" },
- { caller = "0x004DF4B0", site = "0x004DF66B", target = "0x00494450", caller_status = "matching" },
- { caller = "0x004FACD0", site = "0x004FAE89", target = "0x00494450", caller_status = "matching" },
- { caller = "0x0051EF60", site = "0x0051F11B", target = "0x00494450", caller_status = "matching" },
- { caller = "0x0053B410", site = "0x0053B5C9", target = "0x00494450", caller_status = "matching" },
- { caller = "0x00556070", site = "0x0055622B", target = "0x00494450", caller_status = "matching" },
- { caller = "0x0056DEB0", site = "0x0056E06B", target = "0x00494450", caller_status = "matching" },
- { caller = "0x0058C2E0", site = "0x0058C49B", target = "0x00494450", caller_status = "matching" },
- { caller = "0x005AED00", site = "0x005AEEBB", target = "0x00494450", caller_status = "matching" },
- { caller = "0x005D2C70", site = "0x005D2E2B", target = "0x00494450", caller_status = "matching" },
- { caller = "0x005F7AB0", site = "0x005F7C69", target = "0x00494450", caller_status = "matching" },
- { caller = "0x00618660", site = "0x0061881B", target = "0x00494450", caller_status = "matching" },
- { caller = "0x00631340", site = "0x006314FB", target = "0x00494450", caller_status = "matching" },
- { caller = "0x0064B7A0", site = "0x0064B95B", target = "0x00494450", caller_status = "matching" },
-]
-
-[[rules]]
 id = "vc8-generated-flat-fixed-slot-copy-106a"
 vc8_generated_anchor_file = "config/vc8-generated-flat-fixed-slot-copy-origin-anchors.toml"
 expected_count = 6
@@ -4754,20 +4641,6 @@ required_body_hashes = [
  { address = "0x0042BE20", size = 162, sha256 = "1d409e6a49cd5b9ada1c2073023ee1a557791a7185445966460d0e8c82fb804e" },
  { address = "0x0042BF70", size = 162, sha256 = "b0625ccb3c56d0296393cbaf843c7f1253873638b2a144fba1f619529833d894" },
 ]
-
-[[rules]]
-id = "watch-input-configuration-authored-106a"
-addresses = ["0x0042BC40"]
-expected_count = 1
-expected_bytes = 140
-expected_names = ["sub_42BC40"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Fresh exact LoadingWatch209 calls the full140-byte watch-input rebinding policy. Every instruction/two RET8 exits close; source139 remains nonexact+46 in COFF and genuine save-provider CIL. Existing selector60/save305 remain exact in selected COFF; no exact/helper credit. docs/WATCH_INPUT_CONFIGURATION_SOURCE_2026_11_01.md."
-required_body_hashes = [{ address = "0x0042BC40", size = 140, sha256 = "327ec78bdfd5cb6898887235d0ef68037400996666d03fc379a0d86385b68687" }]
-required_direct_edges = [{ caller = "0x004268F0", site = "0x0042697C", target = "0x0042BC40", caller_status = "matching" }]
 
 [[rules]]
 id = "vc8-generated-short-deque-insert-106a"
@@ -6057,20 +5930,6 @@ confidence = "observed"
 evidence = "Actual BGM CIL emits the full vector<unsigned> length-error entry; source/native vector call chains and an independent exact score caller are checked. Complete nonreturning CRT throw, EH, length_error RTTI and metadata, literal and full inventory uniqueness pass. No masks or authored credit. docs/VECTOR_XLEN_ORIGIN_2026_11_03.md."
 
 [[rules]]
-id = "connect-history-selection-authored-106a"
-addresses = ["0x00443030"]
-expected_count = 1
-expected_bytes = 157
-expected_names = ["sub_443030"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete157-byte endpoint history input and selection policy called by freshly exact history action. Existing source153 remains nonexact; no partial or exact-byte credit. docs/CONNECT_HISTORY_SOURCE_2026_11_03.md."
-required_body_hashes = [{ address = "0x00443030", size = 157, sha256 = "d5ded1997bd697302ca937d005e37921d6d73f5879713483b875b3d268d4b7ea" }]
-required_direct_edges = [{ caller = "0x004430D0", site = "0x004430DA", target = "0x00443030", caller_status = "matching" }]
-
-[[rules]]
 id = "system-effect-tracked-release-authored-106a"
 addresses = ["0x00436E60"]
 expected_count = 1
@@ -6144,33 +6003,19 @@ required_rtti_virtual_bodies = [
 ]
 
 [[rules]]
-id = "battle-round-reset-authored-106a"
-addresses = ["0x00471180"]
-expected_count = 1
-expected_bytes = 290
-expected_names = ["sub_471180"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete game round reset and call from exact continue-menu update. Current source is registered but nonexact. docs/CONTINUE_ROUND_RESET_SOURCE_2026_11_04.md."
-required_body_hashes = [{ address = "0x00471180", size = 290, sha256 = "bf64af9cf4b91fa500f9fef4f90c8c9415c211fb7f164d271c69ce45a6f46317" }]
-required_direct_edges = [{ caller = "0x00444C70", site = "0x00444E0D", target = "0x00471180", caller_status = "matching" }]
-
-[[rules]]
 id = "profile-menu-switch-authored-106a"
-addresses = ["0x0044BCF0", "0x0044CA80"]
-expected_count = 2
-expected_bytes = 702
-expected_names = ["sub_44BCF0", "sub_44CA80"]
+addresses = ["0x0044CA80"]
+expected_count = 1
+expected_bytes = 446
+expected_names = ["sub_44CA80"]
 origin = "authored_game"
 subsystem = "ui"
 disposition = "authored"
 confidence = "observed"
-evidence = "Complete profile-menu state policy bodies, original switch tables and exact dispatcher tail edges. Both primary and state-one sources are selected but nonexact. docs/ORIGIN_RECOVERY_2026_11_03.md and docs/PROFILE_MENU_PRIMARY_SOURCE_2026_11_04.md."
-required_body_hashes = [{ address = "0x0044BCF0", size = 256, sha256 = "f79a07e7cea422e69917c9934a5b8b4630c1296aaa5fdfa623f30d03ee93c951" }, { address = "0x0044CA80", size = 446, sha256 = "d14bb403a2a084f28285aa0cf1deb8aa6c554da1a4b026fab5874460b0adee5e" }]
-required_direct_edges = [{ caller = "0x0044D240", site = "0x0044D2DC", target = "0x0044BCF0", kind = "jump", caller_status = "matching" }, { caller = "0x0044D240", site = "0x0044D2E6", target = "0x0044CA80", kind = "jump", caller_status = "matching" }]
-required_dword_values = [{ address = "0x0044BDF0", value = "0x0044BD52" }, { address = "0x0044BDF4", value = "0x0044BD62" }, { address = "0x0044BDF8", value = "0x0044BD72" }, { address = "0x0044BDFC", value = "0x0044BD92" }, { address = "0x0044BE00", value = "0x0044BDA2" }, { address = "0x0044BE04", value = "0x0044BDB2" }, { address = "0x0044BE08", value = "0x0044BDEA" }, { address = "0x0044CC40", value = "0x0044CAC0" }, { address = "0x0044CC44", value = "0x0044CBDB" }, { address = "0x0044CC48", value = "0x0044CBDB" }, { address = "0x0044CC4C", value = "0x0044CC0B" }]
+evidence = "Complete profile-menu state-one policy body, original switch table and exact dispatcher tail edge; the primary 0x44BCF0 is canonical exact. docs/ORIGIN_RECOVERY_2026_11_03.md and docs/PROFILE_MENU_PRIMARY_SOURCE_2026_11_04.md."
+required_body_hashes = [{ address = "0x0044CA80", size = 446, sha256 = "d14bb403a2a084f28285aa0cf1deb8aa6c554da1a4b026fab5874460b0adee5e" }]
+required_direct_edges = [{ caller = "0x0044D240", site = "0x0044D2E6", target = "0x0044CA80", kind = "jump", caller_status = "matching" }]
+required_dword_values = [{ address = "0x0044CC40", value = "0x0044CAC0" }, { address = "0x0044CC44", value = "0x0044CBDB" }, { address = "0x0044CC48", value = "0x0044CBDB" }, { address = "0x0044CC4C", value = "0x0044CC0B" }]
 
 [[rules]]
 id = "fighter-base-reset-authored-106a"
@@ -6200,20 +6045,6 @@ evidence = "Complete background transition policy and four native jump-table ent
 required_body_hashes = [{ address = "0x004654F0", size = 407, sha256 = "196a1aa24b152c18cb30ea6e1d56088375b203b70ea0e83a021241df3dae6443" }]
 required_direct_edges = [{ caller = "0x00467380", site = "0x004676C7", target = "0x004654F0", caller_status = "matching" }, { caller = "0x00467380", site = "0x004676FD", target = "0x004654F0", caller_status = "matching" }, { caller = "0x00467380", site = "0x00467715", target = "0x004654F0", caller_status = "matching" }]
 required_dword_values = [{ address = "0x00465688", value = "0x0046550C" }, { address = "0x0046568C", value = "0x00465515" }, { address = "0x00465690", value = "0x0046550C" }, { address = "0x00465694", value = "0x00465519" }]
-
-[[rules]]
-id = "select-scene-entry-authored-106a"
-addresses = ["0x00421120"]
-expected_count = 1
-expected_bytes = 783
-expected_names = ["sub_421120"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Complete CSelect scene-entry policy, pinned original body and the exact network-select on-enter caller. Source remains nonexact. docs/SELECT_SCENE_ENTRY_2026_10_28.md."
-required_body_hashes = [{ address = "0x00421120", size = 783, sha256 = "fe27b3c54058dc2f9a1b5bdb27abb28a87b40fed6698fe48a247a864ada1e76a" }]
-required_direct_edges = [{ caller = "0x004264B0", site = "0x00426554", target = "0x00421120", caller_status = "matching" }]
 
 [[rules]]
 id = "linked-script-map-tidy-106a"
@@ -6479,38 +6310,6 @@ required_selected_body_calls = [
 ]
 
 [[rules]]
-id = "menu-config-secondary-authored-106a"
-addresses = ["0x00440FF0"]
-expected_count = 1
-expected_bytes = 413
-expected_names = ["sub_440FF0"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Five-case configuration menu policy binds the secondary cursor, converts and clamps option and signed volume values, updates gauge widths, and maps two toggles. The RTTI-owned canonical-exact main update calls it; all five native switch destinations and the cursor-binding target are pinned. Natural source remains nonexact; no switch-table or exact credit is awarded."
-required_body_hashes = [
- { address = "0x00440FF0", size = 413, sha256 = "f0bc9b07396b33344711212474ac611dadb4d0d0c47eee1e47b192a042f649e5" },
-]
-required_direct_edges = [
- { caller = "0x004411B0", site = "0x004411E7", target = "0x00440FF0", caller_status = "matching" },
-]
-required_selected_body_calls = [
- { owner = "0x00440FF0", site = "0x00441019", target = "0x004204E0", target_status = "matching" },
- { owner = "0x00440FF0", site = "0x00441062", target = "0x004204E0", target_status = "matching" },
- { owner = "0x00440FF0", site = "0x004410C3", target = "0x004204E0", target_status = "matching" },
- { owner = "0x00440FF0", site = "0x00441145", target = "0x004204E0", target_status = "matching" },
- { owner = "0x00440FF0", site = "0x00441171", target = "0x004204E0", target_status = "matching" },
-]
-required_dword_values = [
- { address = "0x00441190", value = "0x00441009" },
- { address = "0x00441194", value = "0x00441051" },
- { address = "0x00441198", value = "0x004410B3" },
- { address = "0x0044119C", value = "0x00441135" },
- { address = "0x004411A0", value = "0x00441161" },
-]
-
-[[rules]]
 id = "input-raw-counters-authored-106a"
 addresses = ["0x00409DA0"]
 expected_count = 1
@@ -6680,21 +6479,6 @@ required_direct_edges = [
 ]
 
 [[rules]]
-id = "select-scene-update-authored-106a"
-addresses = ["0x00421430"]
-expected_count = 1
-expected_bytes = 697
-expected_names = ["sub_421430"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "CSelect RTTI primary update slot owns 697-byte scene selection policy, including player-input assignment, cursor binding, menu construction and input-deque lifecycle. All 231 native instructions are reachable; complete ordinary source emits 685 bytes and remains nonexact. docs/SELECT_SCENE_UPDATE_2026_10_28.md."
-required_rtti_virtual_bodies = [
- { address = "0x00421430", size = 697, sha256 = "196531baf2851a20cfb92cb487f662683b41d7c5001737d287835d0328942c63", slot = "0x006C0BC8", col_slot = "0x006C0BC0", col = "0x006D78D0", type_descriptor = "0x006E6050", type_name_contains = "CSelect@@", calls = [{ site = "0x00421457", target = "0x0043B6E0" }, { site = "0x004214F3", target = "0x004482E0" }, { site = "0x00421699", target = "0x00420A80" }] },
-]
-
-[[rules]]
 id = "select-object-transform-authored-106a"
 addresses = ["0x0041FAD0"]
 expected_count = 1
@@ -6707,53 +6491,6 @@ confidence = "observed"
 evidence = "CSelectObject RTTI virtual slot owns complete 154-byte frame-pivot and facing-specific sprite transform. The typed ordinary source is 154 bytes but nonexact at +25 on x87/receiver scheduling. No exact credit. docs/SELECT_CHARACTER_BINDING_2026_10_28.md."
 required_rtti_virtual_bodies = [
  { address = "0x0041FAD0", size = 154, sha256 = "10685039ec3d5eacc9462477dca640e0d83965d1d9a9c604c57b3f4b47267d5c", slot = "0x006C0988", col_slot = "0x006C0950", col = "0x006D782C", type_descriptor = "0x006E6488", type_name_contains = "CSelectObject@@", calls = [{ site = "0x0041FB02", target = "0x004073A0" }, { site = "0x0041FB3C", target = "0x004073E0" }, { site = "0x0041FB5F", target = "0x004073E0" }] },
-]
-
-[[rules]]
-id = "battle-event-timer-authored-106a"
-addresses = ["0x00472A70"]
-expected_count = 1
-expected_bytes = 172
-expected_names = ["sub_472A70"]
-origin = "authored_game"
-subsystem = "battle"
-disposition = "authored"
-confidence = "observed"
-evidence = "CBattleManager RTTI slot owns the 172-byte phase-specific event timer, mode transition and presentation-tail policy. Complete natural source emits 186 bytes and remains nonexact. The void source-facing view is bounded by the actual void presentation tail; original virtual return contract remains unknown. docs/BATTLE_EVENT_TIMER_2026_11_04.md."
-required_rtti_virtual_bodies = [
- { address = "0x00472A70", size = 172, sha256 = "744492ad5c29309680cba21f4271bdd559ae224fff1495cdb581576f5a3c6878", slot = "0x006C1540", col_slot = "0x006C1500", col = "0x006D7EF4", type_descriptor = "0x006E685C", type_name_contains = "CBattleManager@@", calls = [{ site = "0x00472AB7", target = "0x00435CE0" }, { site = "0x00472AE1", target = "0x004067D0" }, { site = "0x00472AED", target = "0x00434E40" }, { site = "0x00472B0F", target = "0x00435CE0" }] },
-]
-
-[[rules]]
-id = "menu-select-primary-authored-106a"
-addresses = ["0x00447D20"]
-expected_count = 1
-expected_bytes = 669
-expected_names = ["sub_447D20"]
-origin = "authored_game"
-subsystem = "ui"
-disposition = "authored"
-confidence = "observed"
-evidence = "Exact CMenuSelect update calls this game-owned selection policy. Full native body and switch destinations cover player assignment, actual profile character/key configuration menus, scene change and cancel behavior. Current source uses those real submenu types; emitted section includes its switch table and differs from the native callable and table. The remote EH code and metadata replay exactly, while the root remains nonexact and receives no exact credit. docs/MENU_SELECT_PRIMARY_2026_11_04.md."
-required_body_hashes = [
- { address = "0x00447D20", size = 669, sha256 = "1235b1756799370d4216478c8f698fa93cebcc4f382e2fcdca1be635ec44e89b" },
-]
-required_direct_edges = [
- { caller = "0x00448200", site = "0x00448247", target = "0x00447D20", caller_status = "matching", kind = "jump" },
-]
-required_selected_body_calls = [
- { owner = "0x00447D20", site = "0x00447E17", target = "0x004487E0", target_status = "matching" },
- { owner = "0x00447D20", site = "0x00447ED1", target = "0x0044BA90", target_status = "matching" },
-]
-required_dword_values = [
- { address = "0x00447FC0", value = "0x00447DB5" },
- { address = "0x00447FC4", value = "0x00447DD2" },
- { address = "0x00447FC8", value = "0x00447DF0" },
- { address = "0x00447FCC", value = "0x00447E4A" },
- { address = "0x00447FD0", value = "0x00447EA5" },
- { address = "0x00447FD4", value = "0x00447F01" },
- { address = "0x00447FD8", value = "0x00447F50" },
- { address = "0x00447FDC", value = "0x00447FA7" },
 ]
 
 [[rules]]
@@ -6820,25 +6557,6 @@ confidence = "observed"
 evidence = "CNetworkClient RTTI slot owns the complete frame pacing, queue advancement and counter publication policy. Fresh source emits 573 bytes and remains nonexact at +459. No exact credit. docs/NETWORK_CLIENT_PACING_2026_11_04.md."
 required_rtti_virtual_bodies = [
  { address = "0x0044EAD0", size = 573, sha256 = "2ed949cac1de89ef40e7801d90ac8f0da4fc8caad3bd96c3dae23cbdbe747431", slot = "0x006C1778", col_slot = "0x006C1750", col = "0x006D80BC", type_descriptor = "0x006E6924", type_name_contains = "CNetworkClient@@", calls = [{ site = "0x0044EB05", target = "0x0040AC30" }, { site = "0x0044EB12", target = "0x0040AC40" }, { site = "0x0044EC6A", target = "0x0044EA80" }, { site = "0x0044EC75", target = "0x0044EA80" }] },
-]
-
-[[rules]]
-id = "scene-frame-update-authored-106a"
-addresses = ["0x0043B4A0"]
-expected_count = 1
-expected_bytes = 209
-expected_names = ["sub_43B4A0"]
-origin = "authored_game"
-subsystem = "engine"
-disposition = "authored"
-confidence = "observed"
-evidence = "Exact CSceneManager update tail-jumps to this input, fade and UI update. The source includes the separate target UI continuation at 0x004400D0; entry-only comparison is nonexact and no bytes are credited. docs/SCENE_FRAME_UPDATE_2026_11_04.md."
-required_body_hashes = [{ address = "0x0043B4A0", size = 209, sha256 = "6613c3ab1c586bbba44b181467c439599230d4ffd81cf9c59484fd1445b0fe67" }]
-required_direct_edges = [{ caller = "0x0041E140", site = "0x0041E140", target = "0x0043B4A0", caller_status = "matching", kind = "jump" }]
-required_selected_body_calls = [
- { owner = "0x0043B4A0", site = "0x0043B4A8", target = "0x0040A550", target_status = "matching" },
- { owner = "0x0043B4A0", site = "0x0043B4B2", target = "0x00409F70", target_status = "matching" },
- { owner = "0x0043B4A0", site = "0x0043B4FF", target = "0x0040A0F0", target_status = "matching" },
 ]
 
 [[rules]]

@@ -731,8 +731,8 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00420D70,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x00420D90,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x00421050,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
-0x00421120,authored_game,ui,authored,observed,select-scene-entry-authored-106a
-0x00421430,authored_game,ui,authored,observed,select-scene-update-authored-106a
+0x00421120,authored_game,ui,authored,observed,canonical-exact-authored
+0x00421430,authored_game,ui,authored,observed,canonical-exact-authored
 0x004216F0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00421780,authored_game,battle,authored,observed,canonical-exact-authored
 0x004217F0,compiler_generated,runtime,exclude,observed,implicit-design-base-lifetimes-106a
@@ -914,7 +914,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0042B900,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042B9B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042BAF0,authored_game,battle,authored,observed,existing-object-battle-source-stops-authored-106a
-0x0042BC40,authored_game,battle,authored,observed,watch-input-configuration-authored-106a
+0x0042BC40,authored_game,battle,authored,observed,canonical-exact-authored
 0x0042BCD0,compiler_generated,battle,exclude,observed,vc8-generated-flat-fixed-slot-copy-106a
 0x0042BD50,compiler_generated,battle,exclude,observed,vc8-generated-flat-fixed-slot-copy-106a
 0x0042BDA0,compiler_generated,battle,exclude,observed,vc8-generated-flat-fixed-slot-copy-106a
@@ -1249,7 +1249,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043B340,compiler_generated,battle,exclude,observed,vc8-generated-effect-manager-lifetimes-std-comdats-106a
 0x0043B3B0,compiler_generated,input,exclude,observed,vc8-generated-input-record-allocation-106a
 0x0043B410,authored_game,network,authored,observed,canonical-exact-authored
-0x0043B4A0,authored_game,engine,authored,observed,scene-frame-update-authored-106a
+0x0043B4A0,authored_game,engine,authored,observed,canonical-exact-authored
 0x0043B580,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043B640,authored_game,input,authored,observed,canonical-exact-authored
 0x0043B6E0,authored_game,ui,authored,observed,canonical-exact-authored
@@ -1335,7 +1335,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043F560,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043F5D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043F640,authored_game,ui,authored,observed,canonical-exact-authored
-0x0043F6E0,authored_game,ui,authored,observed,profile-message-update-authored-106a
+0x0043F6E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043F810,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043F870,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043F8D0,authored_game,ui,authored,observed,canonical-exact-authored
@@ -1351,6 +1351,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0043FF40,authored_game,ui,authored,observed,canonical-exact-authored
 0x0043FFB0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440010,authored_game,ui,authored,observed,canonical-exact-authored
+0x004400D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440170,authored_game,ui,authored,observed,canonical-exact-authored
 0x004402E0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440370,compiler_generated,ui,exclude,observed,vc8-generated-replay-menu-delete-std-comdats-106a
@@ -1365,15 +1366,15 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00440E70,authored_game,ui,authored,observed,canonical-exact-authored
 0x00440F00,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x00440F20,authored_game,ui,authored,observed,canonical-exact-authored
-0x00440FF0,authored_game,ui,authored,observed,menu-config-secondary-authored-106a
+0x00440FF0,authored_game,ui,authored,observed,canonical-exact-authored
 0x004411B0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00441460,authored_game,ui,authored,observed,canonical-exact-authored
 0x00441520,authored_game,ui,authored,observed,canonical-exact-authored
 0x00441890,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x004418B0,vc8_runtime,crt_header,exclude,observed,vc8-counted-swprintf-header-106a
 0x004418D0,authored_game,ui,authored,observed,menu-connect-render-authored-106a
-0x00441BD0,authored_game,ui,authored,observed,connect-endpoint-digit-editors-authored-106a
-0x00441E10,authored_game,ui,authored,observed,connect-endpoint-digit-editors-authored-106a
+0x00441BD0,authored_game,ui,authored,observed,canonical-exact-authored
+0x00441E10,authored_game,ui,authored,observed,canonical-exact-authored
 0x00442190,authored_game,ui,authored,observed,canonical-exact-authored
 0x004421B0,compiler_generated,std,exclude,observed,boost-regex-vc8-std-106a
 0x004421D0,compiler_generated,std,exclude,observed,boost-regex-vc8-std-106a
@@ -1400,7 +1401,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00442F40,third_party,boost_regex,exclude,observed,boost-regex-reference-106a
 0x00442FD0,compiler_generated,std,exclude,observed,boost-regex-vc8-std-106a
 0x00443020,third_party,boost_regex,exclude,observed,boost-original-recursion-info-cleanup-106a
-0x00443030,authored_game,ui,authored,observed,connect-history-selection-authored-106a
+0x00443030,authored_game,ui,authored,observed,canonical-exact-authored
 0x004430D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00443130,authored_game,ui,authored,observed,connect-address-list-load-authored-106a
 0x004434B0,authored_game,ui,authored,observed,connect-history-list-load-authored-106a
@@ -1415,7 +1416,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004440A0,third_party,boost_regex,exclude,observed,boost-original-public-iterator-search-106a
 0x00444190,authored_game,ui,authored,observed,canonical-exact-authored
 0x00444470,compiler_generated,runtime,exclude,inferred,game-primary-vtable-scalar-deleting-destructors-106a
-0x00444490,authored_game,ui,authored,observed,connect-middle-state-authored-106a
+0x00444490,authored_game,ui,authored,observed,canonical-exact-authored
 0x00444790,third_party,boost_regex,exclude,observed,boost-regex-reference-106a
 0x00444830,authored_game,ui,authored,observed,canonical-exact-authored
 0x00444B90,authored_game,ui,authored,observed,canonical-exact-authored
@@ -1450,7 +1451,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00446590,authored_game,ui,authored,observed,canonical-exact-authored
 0x00446650,authored_game,ui,authored,observed,canonical-exact-authored
 0x00446770,authored_game,ui,authored,observed,canonical-exact-authored
-0x00446860,authored_game,ui,authored,observed,replay-menu-browse-authored-106a
+0x00446860,authored_game,ui,authored,observed,canonical-exact-authored
 0x00446A60,authored_game,ui,authored,observed,canonical-exact-authored
 0x00446C90,authored_game,ui,authored,observed,canonical-exact-authored
 0x00446D20,authored_game,ui,authored,observed,canonical-exact-authored
@@ -1468,7 +1469,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00447690,authored_game,ui,authored,observed,result-menu-constructor-authored-106a
 0x00447890,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x004478B0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00447D20,authored_game,ui,authored,observed,menu-select-primary-authored-106a
+0x00447D20,authored_game,ui,authored,observed,canonical-exact-authored
 0x00447FE0,authored_game,ui,authored,observed,canonical-exact-authored
 0x00448060,authored_game,ui,authored,observed,canonical-exact-authored
 0x00448200,authored_game,ui,authored,observed,canonical-exact-authored
@@ -1491,7 +1492,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00448D70,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x00448DE0,compiler_generated,runtime,exclude,observed,network-deque-ushort-lifetime-generated-106a
 0x00448DF0,authored_game,ui,authored,observed,canonical-exact-authored
-0x00448F60,authored_game,ui,authored,observed,profile-deck-render-authored-106a
+0x00448F60,authored_game,ui,authored,observed,canonical-exact-authored
 0x00449940,compiler_generated,battle,exclude,observed,vc8-generated-battle-input-slot-config-std-comdats-106a
 0x004499C0,compiler_generated,ui,exclude,observed,vc8-generated-profile-deck-counts-std-comdats-106a
 0x00449A80,compiler_generated,battle,exclude,observed,vc8-generated-event-effect-state-container-comdats-106a
@@ -1509,7 +1510,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x0044B9D0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BA90,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BCD0,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
-0x0044BCF0,authored_game,ui,authored,observed,profile-menu-switch-authored-106a
+0x0044BCF0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BE10,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BEF0,authored_game,ui,authored,observed,canonical-exact-authored
 0x0044BFE0,authored_game,ui,authored,observed,canonical-exact-authored
@@ -2117,7 +2118,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00470D60,authored_game,battle,authored,observed,canonical-exact-authored
 0x00470ED0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00470F00,authored_game,battle,authored,observed,canonical-exact-authored
-0x00471180,authored_game,battle,authored,observed,battle-round-reset-authored-106a
+0x00471180,authored_game,battle,authored,observed,canonical-exact-authored
 0x004712B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x00471340,authored_game,battle,authored,observed,canonical-exact-authored
 0x00471580,authored_game,battle,authored,observed,canonical-exact-authored
@@ -2149,7 +2150,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004724B0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004724E0,authored_game,battle,authored,observed,canonical-exact-authored
 0x004728C0,authored_game,battle,authored,observed,canonical-exact-authored
-0x00472A70,authored_game,battle,authored,observed,battle-event-timer-authored-106a
+0x00472A70,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472B20,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472D80,authored_game,battle,authored,observed,canonical-exact-authored
 0x00472DC0,authored_game,battle,authored,observed,canonical-exact-authored
@@ -2231,7 +2232,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004940E0,authored_game,characters,authored,observed,canonical-exact-authored
 0x004941D0,authored_game,characters,authored,observed,canonical-exact-authored
 0x004942C0,authored_game,characters,authored,observed,canonical-exact-authored
-0x00494450,authored_game,battle,authored,observed,front-card-action-gate-authored-106a
+0x00494450,authored_game,battle,authored,observed,canonical-exact-authored
 0x00494810,authored_game,characters,authored,observed,canonical-exact-authored
 0x00496370,authored_game,characters,authored,observed,canonical-exact-authored
 0x004963A0,authored_game,characters,authored,observed,canonical-exact-authored
@@ -2263,7 +2264,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x004B9EA0,compiler_generated,runtime,exclude,observed,vc8-implicit-lifetime-accounting-106a
 0x004B9F00,compiler_generated,runtime,exclude,observed,vc8-scalar-deleting-wrappers-106a
 0x004B9F20,authored_game,characters,authored,observed,canonical-exact-authored
-0x004B9FA0,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x004B9FA0,authored_game,characters,authored,observed,canonical-exact-authored
 0x004BBE00,authored_game,characters,authored,observed,roster-character-object-vtable-authored-106a
 0x004C8050,authored_game,characters,authored,observed,roster-character-object-vtable-authored-106a
 0x004CA980,authored_game,characters,authored,observed,canonical-exact-authored
@@ -2476,7 +2477,7 @@ address,origin,subsystem,disposition,confidence,evidence_id
 0x00598990,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x005AC680,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
 0x005AD470,authored_game,characters,authored,observed,canonical-exact-authored
-0x005AD4A0,authored_game,characters,authored,observed,roster-fighter-primary-vtable-authored-106a
+0x005AD4A0,authored_game,characters,authored,observed,canonical-exact-authored
 0x005AE110,compiler_generated,characters,exclude,observed,vc8-generated-character-object-ex-deque-comdats-106a
 0x005AE1D0,compiler_generated,battle,exclude,observed,vc8-generated-fixed-slot-std-comdats-106a
 0x005AE290,authored_game,characters,authored,observed,canonical-exact-authored

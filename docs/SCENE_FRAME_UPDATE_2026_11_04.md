@@ -1,27 +1,29 @@
-# Scene frame update hypothesis
+# Scene frame update
 
-The exact RTTI-owned `CSceneManager::update` at `0x0041E140` tail-calls
-`0x0043B4A0`. The latter's 209-byte entry region updates the keyboard and
-player inputs, visits the 0x68-byte input records, merges menu input and
-integrates the scene fade. Its exits jump to the separately located shared UI
-continuation at `0x004400D0`, ending at `0x00440170`. The source hypothesis in
-`src/engine/SceneFrameUpdate.cpp` includes both regions in one ordinary C++
-function, including the selection fade and menu-stack behavior. It is not a
-claim that the shipped source had these exact declarations.
+`update_scene_runtime` 0x43B4A0 (209 bytes) and the UI selection update
+`update_profile_ui_selection` 0x4400D0 (160 bytes) are both exact.
 
-Pinned VC8 emits a 379-byte section. Comparison against the 209-byte entry
-ledger reaches +104 before differing; this is only an entry-region comparison,
-not a comparison of the full noncontiguous target function. The target tail
-has not been replayed as a complete owned function. The complete source
-hypothesis is selected as source-present; the separately located target
-continuation has SHA-256
-`04df783d77c940ae49bf54b8b77670edac152e0c77bf56f4bd4f43de53dd87d0`.
-The function earns no exact-byte credit. No live game or
-input execution was performed.
+The exact `CSceneManager::update` 0x41E140 tail-calls 0x43B4A0. That function
+refreshes the keyboard and player inputs, visits the 0x68-byte result input
+records, merges the menu input and integrates the scene fade. Its three exits
+pop the callee-saved registers and then `jmp 0x4400D0`.
 
-The whole target has 366 owned code bytes: 206 reachable entry-region bytes
-and all 160 continuation bytes. The three skipped bytes at `0x0043B4BD` are
-loop alignment, not source code. The three entry-region exits all jump to the
-continuation, whose internal branch targets have no observed outside code
-references. This adjusts authored byte ownership only; the remote chunk has
-not been matched.
+Earlier ledgers treated 0x4400D0..0x44016F as a remote chunk of 0x43B4A0. It
+is an ordinary function, and the three jumps are tail calls:
+- it has its own two `ret`s;
+- it uses no callee-saved registers;
+- it sits in the profile UI code, between `trim_profile_ui_menu_stack`
+  0x440010 and `render_profile_ui_frame` 0x440170.
+
+Calling it as a separate `void` function from the end of 0x43B4A0 reproduces
+the epilogue-then-`jmp` exits exactly.
+
+The UI update fades the selection overlay in or out by 15 per frame. While a
+menu is active it pops the menu once both confirm buttons are released and no
+initial press is pending. Otherwise it marks the stack active when a
+scene-22 menu above the snapshot is not ready. Three source details were
+needed:
+- the fade direction is tested as `state - snapshot != 0` (`mov; sub; je`);
+- the fade-in guard is `fade < 255` (`jae`);
+- the dismiss test reads `buttons[0]` and `buttons[1]` (+0x40/+0x44). The old
+  single-function hypothesis read `vertical` and `buttons[0]`, which was wrong.

@@ -801,6 +801,7 @@ CMenuMusic_dtor
 CMenuMusic_ctor
 CMenuMusic_update_primary
 trim_profile_ui_menu_stack
+update_profile_ui_selection
 refresh_continue_network_state
 CMenuContinue_update
 CMenuContinue_render

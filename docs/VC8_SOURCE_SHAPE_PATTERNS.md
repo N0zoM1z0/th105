@@ -312,6 +312,14 @@ target lacks, so LTCG does not explain the register.
   needed its assignment flags read as `fields_7f8[n]` bytes rather than through
   a struct pointer view, which moved an `add esp, 4` back next to its call.
 
+- **A "remote chunk" reached only by `jmp` after an epilogue is a tail call.**
+  The scene frame update 0x43B4A0 pops its registers and jumps to 0x4400D0,
+  which ledgers recorded as a remote chunk. It is a separate `void` function
+  with its own returns. VC8 emits a call to it at the end of the caller as
+  `pop ...; jmp`. Check other `function-byte-ownership.toml` chunks for this
+  shape: a chunk with its own `ret`, no use of the caller's saved registers,
+  and a location among unrelated functions.
+
 - **A hoisted field local can change zero-register placement.** In
   `CSelect::on_scene_enter` 0x421120 the search loop compares
   `setup_00c->sides_08[side].character_key_00` directly. A named `character`
