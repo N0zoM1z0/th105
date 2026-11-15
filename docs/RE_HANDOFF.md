@@ -55,6 +55,14 @@ Treat equal-size residuals as source questions first.
   the mechanism, as observed in the common initializer. No compiler setting
   reproduces the target's choice: RTM, LTCG, `/Z7`, `/fp` and `/Os` were all
   tried.
+- LTCG lead: `MenuCursorState::update` 0x41FA20 originally took an `int period`
+  that LTCG propagated from its 35 callers. That is why it has `idiv` by 6 and a
+  `this`-only ABI (see the patterns note). Its callers' small residuals and the
+  angle lookups' `idiv` by 3600 may come from the same whole-program context.
+- `D3DBackend::remove_reset_listener` 0x414D50 and the audio scheduler's
+  0x419400 share one private `list::erase` (0x414DE0) that takes `this` on the
+  stack. Our single-TU LTCG units give it `ebx`, which moves the caller's
+  `listener` register.
 
 The rules that produced this, all in the patterns note:
 - Use offset macros, not an inline `at<T>` accessor (the accessor blocks VC8's
