@@ -436,7 +436,7 @@ void EffectObjectUpdateView::update_659aa0()
         alpha_113=alpha-15;
         FINISH;
     }
-    case 151: 
+    case 151:
         if (state_170==0.0) {
             if (alpha_113>=240) { alpha_113=255; state_170=1.0f; }
             else alpha_113+=15;
@@ -446,7 +446,7 @@ void EffectObjectUpdateView::update_659aa0()
         }
         y_0f0+=10.0;
         FINISH;
-    case 153: 
+    case 153:
         if (state_170==0.0) {
             if (alpha_113>=240) { alpha_113=255; state_170=1.0f; }
             else alpha_113+=15;
@@ -456,7 +456,7 @@ void EffectObjectUpdateView::update_659aa0()
         }
         y_0f0+=10.0;
         FINISH;
-    case 155: 
+    case 155:
         if (state_170==0.0) {
             if (alpha_113>=240) { alpha_113=255; state_170=1.0f; }
             else alpha_113+=15;
