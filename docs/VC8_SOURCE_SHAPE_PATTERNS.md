@@ -294,6 +294,15 @@ target lacks, so LTCG does not explain the register.
   treating a commutative deque sum as an LTCG residual, check nearby x87
   expressions for literal types.
 
+- **`mov ecx, [global]; ...; mov edi, ecx` is an inlined member's `this`.**
+  In the round reset 0x471180 the target loads the phase-block global into
+  ECX, derives addresses from it and copies it to EDI for later member calls.
+  A local pointer gets EDI directly. Wrapping the statements in a small inline
+  member called on the global reproduces the copy. The same function needed
+  `dst = src` (`list::operator=`) rather than a hand-written self-check and
+  `assign`; `operator=` uses the `_Const_iterator` `_Assign` instantiation,
+  which needs its own rel32 mapping.
+
 ## Parked residuals (tried, still nonexact)
 
 - **Battle menu update 0x4407E0 (2026-11-15).** Ending the three outer cases
