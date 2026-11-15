@@ -119,7 +119,7 @@ void YukariObjectEntryView::initialize_action_entry()
   if(S(0x13E)==3) F(0x120)=F(0x11C)=H[1];
   if(S(0x13E)==4) { F(0x124)=75; F(0x12C)=0; B(0x113)=0; F(0x128)=0; } return;
  case 854:
-  MAYSELECT(); if(S(0x13E)==0) { F(0x370)=1; B(0x184)=1; S(0x344)=1; F(0x11C)=0; F(0x120)=3; } return;
+  MAYSELECT(); if(S(0x13E)==0) { F(0x370)=1; B(0x184)=1; F(0x11C)=0; S(0x344)=1; F(0x120)=3; } return;
  case 855:
   MAYSELECT();
   if(S(0x13E)==1) F(0x120)=F(0x11C)=static_cast<float>(random_float(10)*static_cast<double>(0.1f)+0.5);
