@@ -1,58 +1,36 @@
-# Replay browser: complete source, nonexact return sharing
+# Replay browser
 
-446860 now has a durable source/unit rather than only an external dispatcher
-contract and historical private hypothesis. No exact bytes are added. The
-complete native511-byte function has156 instructions, one RET at446A5E and no
-escaping branches. Exact dispatcher446C90 tail-jumps to it at446D05.
-Canonical native SHA-256:
-28cfe1f2393ce046a13f4e40a105c281d3209f30023e037026ebc6ba43e9d74f.
+`ReplayBrowseRuntimeView::update_browse_state` (0x446860, 511 bytes) is exact.
+The exact dispatcher 0x446C90 tail-jumps to it at 0x446D05.
 
-## Recovered policy
+## Policy
 
-One actual input-record pointer supplies horizontal/confirm/cancel state.
-Horizontal+1/-1 pages forward/back; only the other branch calls vertical cursor
-update. Each successful movement emits39. Confirm emits40. Entering a directory
-pushes the old selection onto a genuine checked list<int>, changes directory and
-refreshes the file list. A selected file is looked up twice, exactly as native;
-the selected name is captured before the current directory. A real260-byte
-wsprintfA path is passed to the replay service's exact loader42C5C0. Successful
-loading changes scene mode to6.
+One input-record pointer supplies the horizontal, confirm and cancel state.
+- Horizontal +1/-1 pages forward or back. Only the other branch calls the
+  vertical cursor update. Each successful movement emits event 39.
+- Confirm emits 40.
+  - On a directory row it pushes the old selection onto the checked
+    `list<int>`, enters the directory and refreshes the file list.
+  - On a file row it looks the row up twice, as the target does, capturing the
+    name before the current directory. It formats a 260-byte `wsprintfA` path
+    and passes it to the replay loader 0x42C5C0; a successful load sets scene
+    mode 6.
+- Cancel emits 41 and asks the file list for its parent.
+  - At the root it clears state 4 and recolors the item pointers at F4/F8
+    white.
+  - Otherwise it restores the previous selection from the list's back,
+    pops it and refreshes.
+- The result is always 1.
 
-Cancel emits41 and asks the file list to go to its parent. At the root, state4
-is cleared and the original item pointers atF4/F8 are recolored white. This is
-not the F0/F8 pair used by the separate delete-state method. Otherwise the real
-checked list back/pop_back restores the previous selection before refresh.
-The byte result is always1, matching the dispatcher's observed AL contract.
-The offset-only receiver view is never instantiated; each accessed member uses
-its actual existing CReplayList/MenuCursorState/std::list/UiDesignObject type.
+## What made it exact
 
-## Bounded controls and stopping point
+The confirm branch ends with its own `return 1;` before `else if (cancel)`;
+the function keeps its trailing `return 1;`. With only the trailing return,
+VC8 kept the constant 1 in BL and duplicated the GS epilogue on three paths
+(559 bytes). With the extra return, every path jumps to one epilogue that loads
+`mov al, 1`, as in the target. Returning from every branch is worse, and so is
+splitting the `else if` into a separate `if`.
 
-An initial function-wide set of named cursor/list/history references hoisted
-receiver lifetimes, producing488 bytes and a10C-byte frame. Direct owner-member
-accesses recover the native108-byte frame, the first127 exact bytes, and the
-native input, file lookup, checked-node publication and filename sequence.
-
-The full source is559 bytes, first differing at a branch displacement+127.
-The substantive residual begins after the replay-loader call: VC8 duplicates
-three GS return paths where native shares one. This reproduces the historical
-559/511 stop; it is not claimed as a newly solved codegen issue. Bool/byte result
-and scoped/function-wide real path-buffer controls are byte-neutral. No artificial
-goto, fake lifetime, volatile/register state, padding or optimizer barrier was
-introduced. Further equivalent-spelling grids are not justified.
-
-The earlier dispatcher manifest note saying browse was already exact was stale;
-it now explicitly distinguishes exact mode/delete from nonexact browse. The
-unchanged132-byte dispatcher was freshly rebuilt and remains exact. No shared
-header/provider was modified and no unrelated corpus replay was performed.
-
-## Evidence and accounting
-
-scripts/repo-python scripts/build.py --unit exact-first-replay-menu-browse --compare --json
-    scripts/repo-python scripts/build.py --unit gpt-web-replay-menu-update --compare --json
-
-The authored rule pins the full511-byte target hash, exact incoming tail and
-outgoing exact replay-loader call. Only that new rule is materialized and validated
-incrementally; previous rule witnesses remain unchanged. Source1750, authored1770,
-excluded1421, review836, mapped1777 and units742. Exact progress stays1553 /441679.
-Final CI gates a local checkpoint; no push.
+Direct owner-member accesses are needed for the 0x108-byte frame. A
+function-wide set of named cursor/list references hoists receiver lifetimes and
+gives a 0x10C frame.

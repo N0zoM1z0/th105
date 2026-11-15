@@ -1,4 +1,4 @@
-// JP1.06a446860: complete browse policy; common GS-return tail remains nonexact.
+// JP1.06a 0x446860: replay browse policy.
 #include "ui/ReplayMenu.hpp"
 #include "ui/ReplayHeaderService.hpp"
 #include "input/InputManager.hpp"
@@ -34,6 +34,7 @@ unsigned char ReplayBrowseRuntimeView::update_browse_state()
             wsprintfA(path,"%s/%s",directory,name);
             if(get_replay_header_service()->load_recording(path)) g_scene_mode=6;
         }
+        return 1;
     } else if(input->buttons[1]==1) {
         dispatch_indexed_event(41);
         if(field<CReplayList>(8).go_parent_directory()) {

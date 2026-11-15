@@ -27975,7 +27975,7 @@ source = "src/ui/ReplayMenuBrowse.cpp"
 object = "build/match-units/ExactFirst_ReplayMenuBrowse.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = true
-notes = "Complete511-byte native browse policy; natural source559 remains nonexact on duplicated GS epilogues. Direct owner-member accesses restore native frame and input/file/list/string sequence. No fake common-tail barriers. docs/REPLAY_MENU_BROWSE_2026_10_31.md."
+notes = "Browse policy, exact at 511 bytes: the confirm branch ends with its own return 1, so every path jumps to one GS epilogue. docs/REPLAY_MENU_BROWSE_2026_10_31.md."
 
 [[units.exact-first-replay-menu-browse.functions]]
 address = "0x00446860"

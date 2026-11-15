@@ -294,6 +294,14 @@ target lacks, so LTCG does not explain the register.
   treating a commutative deque sum as an LTCG residual, check nearby x87
   expressions for literal types.
 
+- **A duplicated GS epilogue can mean a missing branch `return`.** In the
+  replay browser 0x446860 the target jumps from every path to one epilogue
+  that loads `mov al, 1`. With a single trailing `return 1;`, VC8 kept 1 in
+  BL (it was also the `== 1` compare operand) and duplicated the epilogue on
+  three paths. Adding `return 1;` at the end of the first `if` arm of the
+  `if / else if` chain, while keeping the trailing return, gave the shared
+  epilogue.
+
 - **`mov ecx, [global]; ...; mov edi, ecx` is an inlined member's `this`.**
   In the round reset 0x471180 the target loads the phase-block global into
   ECX, derives addresses from it and copies it to EDI for later member calls.
