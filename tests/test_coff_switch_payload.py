@@ -116,6 +116,39 @@ class CompactSwitchTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             payload.inspect(raw, raw, a, n, contract, r)
 
+    def test_two_tables_and_an_explicit_external_tail(self):
+        address, external = 0x401000, 0x402000
+        first = dict(alignment_hex='', table_offset=48, table_entries=2,
+                     map_offset=56, map_size=2, load_offset=5, jump_offset=12)
+        second = dict(alignment_hex='8bff', table_offset=60, table_entries=2,
+                      map_offset=68, map_size=2, load_offset=24, jump_offset=31)
+        code = (bytes.fromhex('83f801770e0fb690') + struct.pack('<I', address + 56)
+                + bytes.fromhex('ff2495') + struct.pack('<I', address + 48)
+                + bytes.fromhex('83f90177120fb681') + struct.pack('<I', address + 68)
+                + bytes.fromhex('ff2485') + struct.pack('<I', address + 60)
+                + bytes.fromhex('c333c0c3e9') + struct.pack('<i', external - address - 47)
+                + b'\xc3')
+        body = (code + struct.pack('<II', address + 38, address + 39) + b'\x00\x01'
+                + bytes.fromhex('8bff') + struct.pack('<II', address + 42, address + 47)
+                + b'\x00\x01')
+        contract = dict(first, size=len(body), sha256=hashlib.sha256(body).hexdigest(),
+                        second_table=second, tail_jumps=[42])
+        relocations = [(at, 6, '$SWITCH') for at in (8, 15, 27, 34, 48, 52, 60, 64)]
+        relocations.append((43, 20, 'tail'))
+        bindings = {'tail': external}
+        report = payload.inspect(body, body, address, len(code), contract, relocations, bindings)
+        self.assertEqual((report['switch_tables'], report['table_entries']), (2, 4))
+
+        for at in (56, 68):
+            modified, _ = changed(body, contract, at, b'\x01')
+            with self.subTest(map_offset=at), self.assertRaisesRegex(ValueError, f'{address + at:#010x}'):
+                payload.inspect(modified, body, address, len(code), contract, relocations, bindings)
+        with self.assertRaisesRegex(ValueError, 'external REL32 binding'):
+            payload.inspect(body, body, address, len(code), contract, relocations)
+        missing = [r for r in relocations if r[0] != 60]
+        with self.assertRaisesRegex(ValueError, 'local DIR32 jump word'):
+            payload.inspect(body, body, address, len(code), contract, missing, bindings)
+
     def test_build_comparison_fails_closed_on_payload_failure(self):
         unit = dict(kind='probe', object='build/fixture-switch.obj', functions=[
             dict(address='0x00401000', symbol_base='fixture', switch_payload={})])

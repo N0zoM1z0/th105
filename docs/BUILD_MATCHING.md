@@ -19,6 +19,8 @@ An exact function requires all of the following:
 - a reproducible unit in `config/match-units.toml`;
 - strict COFF symbol/extent validation and relocation replay, or the
   independently bounded [linked-PE contract](LINKED_PE_MATCHING.md);
+- strict comparison of dispatch data read by the function, such as the
+  [Sakuya initializer's two compact tables](RE_WORKFLOW.md#sakuya-action-initializer);
 - zero byte differences against canonical `resources/th105.exe`;
 - a `matches.csv` row with command/report evidence and a simultaneous
   `matching`/`100.00` ledger update.
@@ -1592,13 +1594,22 @@ Keep scalar-deleting wrapper evidence separate from normal-destructor exactness.
 
 For shared Fighter gates, repeated source predicates may be the original ownership that preserves compiler state.  `Fighter_try_dispatch_directional_action_208_210 @ 0x00478EE0` is 184/184 when three ordinary branches each retain `vertical_input_6b8 < 0`; VC8 keeps the first vertical value in EAX, retests it before later branches, and emits the shipped virtual-action tails.  Factoring the condition merely because it is redundant at the source level would erase useful target dataflow.
 
-A giant switch's tables are compiler metadata unless control-flow review proves otherwise.  Youmu `+0x28 @ 0x00530200` ends at RET `0x0053953B`; its four switch-table islands begin at `0x0053953C` and finish before the next function at `0x005399A0`.  The three byte-indexed action regions are `0..226`, `301..546`, and `565..798`; each has a dword destination table followed by a byte index table and bounded alignment.  Compare authored bytes only through the reviewed RET, while still auditing post-RET table topology to recover source case partition/order.
+A giant switch's tables are compiler metadata. Youmu `+0x28 @ 0x00530200` ends
+at RET `0x0053953B`. Its four switch tables start at `0x0053953C` and end
+before the next function at `0x005399A0`. The three byte-indexed action ranges
+are `0..226`, `301..546`, and `565..798`. Use those tables to diagnose case
+partitioning and shared tails. Verify their bytes with the complete code and
+relocations for acceptance, and count authored bytes through the reviewed RET.
 
 Do not use matching section length as compiler-profile proof.  `Fighter_add_phase_scaled_counter_558 @ 0x00478DF0` is the positive reference.  The old flat expression made ordinary `/O2` and `/fp:strict` hoist `scale_4D0` and emit 99 bytes; `/fp:fast` happened to emit 107 but reassociated the x87 operations and was correctly rejected.  The exact solution stays on pinned ordinary `/O2` and restores source evaluation lifetime: branch-local `double x=value; x*=constant; x*=scale_4D0` emits target `fild -> constant -> scale`, while the low branch remains `scale_4D0 * value` and emits `fld/fimul`.  The result is canonical **107/107**, proving that a source-shape fix, not profile hopping, was required.
 
 ### Giant shared switch roots: separate callable code, metadata, and physical case ownership
 
-`Fighter_update_common_action_state @ 0x004740C0` is the current reference for recovering a 10 KB shared root before the 30-80 KB roster roots that call it.  Do not compare a probe object's `.text` section size to the authored function ledger: VC8 emits the function plus local destination tables and byte-index tables in the same section.  The target callable ends at RET `0x004768AA`; compiler table data starts afterward.  The current natural probe likewise ends in code before its `$LN...` table symbols.  Compare the reviewed callable boundary, and audit table topology separately.
+`Fighter_update_common_action_state @ 0x004740C0` is a 10 KB shared root
+called by larger roster functions. VC8 emits code, destination tables, and
+byte-index tables in the same `.text` section. The target callable ends at RET
+`0x004768AA`. Use that boundary for code accounting, and use the table topology
+to locate case differences before running the full comparison.
 
 Use the physical switch tables as source-ownership evidence.  For this root the current target low switch has 51 destinations and the high switch has 15.  Recovering the target-proven 62/67/66 shared lane changed VC8's low table from a three-way fold at 62/63/64 into the correct three independent entries without byte padding or artificial liveness.  Conversely, attempting to preserve a destination solely by inventing locals is rejected: several safe source spellings for actions 50..52 still fold under ordinary `/O2`, and predicate rewrites that change unordered floating-point behavior are semantically invalid even when they alter code layout.
 

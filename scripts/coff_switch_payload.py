@@ -1,4 +1,4 @@
-"""Full canonical COFF envelopes with one bounded compact-switch suffix.
+"""Full canonical COFF envelopes with bounded compact-switch tables.
 
 No suffix bytes are ignored: code, original alignment, jump words and index
 bytes must all match. This is deliberately not an arbitrary trailing-data gate.
@@ -15,56 +15,52 @@ import capstone
 from capstone import x86_const as x
 
 ROOT = Path(__file__).resolve().parents[1]
-FIELDS = {'size', 'sha256', 'alignment_hex', 'table_offset', 'table_entries',
-          'map_offset', 'map_size', 'load_offset', 'jump_offset'}
+TABLE_FIELDS = {'alignment_hex', 'table_offset', 'table_entries', 'map_offset',
+                'map_size', 'load_offset', 'jump_offset'}
+FIELDS = TABLE_FIELDS | {'size', 'sha256'}
+OPTIONAL_FIELDS = {'second_table', 'tail_jumps'}
 
 
 def validate_contract(contract, code_size):
-    if not isinstance(contract, dict) or set(contract) != FIELDS:
+    if (not isinstance(contract, dict) or not FIELDS <= contract.keys()
+            or contract.keys() - FIELDS - OPTIONAL_FIELDS):
         raise ValueError('compact switch requires exact payload fields')
     if type(code_size) is not int or not 0 < code_size <= 65536:
         raise ValueError('compact switch requires a bounded complete code size')
-    for key in FIELDS - {'sha256', 'alignment_hex'}:
-        if type(contract[key]) is not int or contract[key] < 0:
-            raise ValueError('invalid compact switch integer: ' + key)
     if not re.fullmatch('[0-9a-f]{64}', str(contract['sha256'])):
         raise ValueError('compact switch requires a full target payload hash')
-    if contract['alignment_hex'] not in ('', '90', '8bff'):
-        raise ValueError('unsupported compact switch alignment')
-    pad = bytes.fromhex(contract['alignment_hex'])
-    if (contract['table_offset'] != code_size + len(pad)
-            or not 1 <= contract['table_entries'] <= 256
-            or not contract['table_entries'] <= contract['map_size'] <= 256
-            or contract['map_offset'] != contract['table_offset'] + 4 * contract['table_entries']
-            or contract['size'] != contract['map_offset'] + contract['map_size']
-            or not 0 <= contract['load_offset'] < contract['jump_offset'] < code_size):
+    tables = [{key: contract[key] for key in TABLE_FIELDS}]
+    if 'second_table' in contract:
+        tables.append(contract['second_table'])
+    end = code_size
+    for table in tables:
+        if not isinstance(table, dict) or table.keys() != TABLE_FIELDS:
+            raise ValueError('compact switch requires exact table fields')
+        for key in TABLE_FIELDS - {'alignment_hex'}:
+            if type(table[key]) is not int or table[key] < 0:
+                raise ValueError('invalid compact switch integer: ' + key)
+        if table['alignment_hex'] not in ('', '90', '8bff'):
+            raise ValueError('unsupported compact switch alignment')
+        if (table['table_offset'] != end + len(bytes.fromhex(table['alignment_hex']))
+                or not 1 <= table['table_entries'] <= table['map_size'] <= 256
+                or table['map_offset'] != table['table_offset'] + 4 * table['table_entries']
+                or not 0 <= table['load_offset'] < table['jump_offset'] < code_size):
+            raise ValueError('compact switch leaves overlapping/unaccounted payload bytes')
+        end = table['map_offset'] + table['map_size']
+    if type(contract['size']) is not int or contract['size'] != end:
         raise ValueError('compact switch leaves overlapping/unaccounted payload bytes')
+    tail_jumps = contract.get('tail_jumps', [])
+    if (not isinstance(tail_jumps, list)
+            or any(type(offset) is not int or not 0 <= offset <= code_size - 5 for offset in tail_jumps)
+            or len(set(tail_jumps)) != len(tail_jumps)):
+        raise ValueError('compact switch requires distinct in-code tail jump offsets')
+    return tables
 
 
-def inspect(canonical, target, address, code_size, contract, relocations):
-    validate_contract(contract, code_size)
-    if (type(address) is not int or address < 0 or address + contract['size'] > 0x100000000
-            or len(canonical) != contract['size'] or len(target) != contract['size']
-            or hashlib.sha256(target).hexdigest() != contract['sha256']
-            or canonical != target):
-        raise ValueError('complete canonical compact-switch payload differs')
+def inspect_table(target, address, start, contract, relocations, ins, by):
     table, index = contract['table_offset'], contract['map_offset']
-    if (address + table) % 4 or target[code_size:table] != bytes.fromhex(contract['alignment_hex']):
+    if (address + table) % 4 or target[start:table] != bytes.fromhex(contract['alignment_hex']):
         raise ValueError('compact switch alignment/address differs')
-    table_fields = set(range(table, index, 4))
-    suffix_relocs = [r for r in relocations if r[0] >= code_size]
-    if (len(suffix_relocs) != len(table_fields)
-            or {r[0] for r in suffix_relocs} != table_fields
-            or any(r[1] != 6 or not r[2].startswith('$') for r in suffix_relocs)):
-        raise ValueError('compact switch needs every and only local DIR32 jump word')
-    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
-    md.detail = True
-    ins = list(md.disasm(target[:code_size], address))
-    by = {i.address: i for i in ins}
-    if (not ins or sum(i.size for i in ins) != code_size
-            or ins[-1].address + ins[-1].size != address + code_size
-            or ins[-1].mnemonic != 'ret'):
-        raise ValueError('compact switch code does not close at its complete RET boundary')
     load = by.get(address + contract['load_offset'])
     jump = by.get(address + contract['jump_offset'])
     if (load is None or jump is None or load.mnemonic != 'movzx'
@@ -112,25 +108,76 @@ def inspect(canonical, target, address, code_size, contract, relocations):
         if (instruction.disp_size != 4 or len(hits) != 1 or hits[0][1] != 6
                 or not hits[0][2].startswith('$')):
             raise ValueError('compact switch address lacks its local DIR32 proof')
-    indices = target[index:]
+    indices = target[index:index + contract['map_size']]
     if set(indices) != set(range(contract['table_entries'])):
         raise ValueError('compact switch indices omit or escape jump entries')
     destinations = struct.unpack_from('<' + 'I' * contract['table_entries'], target, table)
     forbidden = {load.address, jump.address, guard.address}
     if spill is not None:
         forbidden.add(spill.address)
-    if any(v not in by or v in forbidden for v in destinations):
+    return jump.address, destinations, forbidden
+
+
+def inspect(canonical, target, address, code_size, contract, relocations, tail_targets=None):
+    tables = validate_contract(contract, code_size)
+    if (type(address) is not int or address < 0 or address + contract['size'] > 0x100000000
+            or len(canonical) != contract['size'] or len(target) != contract['size']
+            or hashlib.sha256(target).hexdigest() != contract['sha256']):
+        raise ValueError('complete compact-switch payload size or target hash differs')
+    if canonical != target:
+        offset = next(i for i, (actual, expected) in enumerate(zip(canonical, target))
+                      if actual != expected)
+        raise ValueError(f'complete canonical compact-switch payload differs at {address + offset:#010x}')
+
+    table_fields = {offset for table in tables
+                    for offset in range(table['table_offset'], table['map_offset'], 4)}
+    suffix_relocs = [r for r in relocations if r[0] >= code_size]
+    if (len(suffix_relocs) != len(table_fields)
+            or {r[0] for r in suffix_relocs} != table_fields
+            or any(r[1] != 6 or not r[2].startswith('$') for r in suffix_relocs)):
+        raise ValueError('compact switch needs every and only local DIR32 jump word')
+
+    md = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_32)
+    md.detail = True
+    ins = list(md.disasm(target[:code_size], address))
+    by = {i.address: i for i in ins}
+    if not ins or ins[-1].address + ins[-1].size != address + code_size or ins[-1].mnemonic != 'ret':
+        raise ValueError('compact switch code does not close at its complete RET boundary')
+    dispatches = {}
+    forbidden = set()
+    start = code_size
+    for table in tables:
+        jump, destinations, protected = inspect_table(target, address, start, table, relocations, ins, by)
+        if jump in dispatches:
+            raise ValueError('compact switch dispatch is shared by multiple tables')
+        dispatches[jump] = destinations
+        forbidden.update(protected)
+        start = table['map_offset'] + table['map_size']
+    if any(v not in by or v in forbidden for destinations in dispatches.values() for v in destinations):
         raise ValueError('compact switch destination is not an owned case instruction')
-    indirect = []
+
+    tail_targets = tail_targets or {}
+    tail_jumps = set()
+    for offset in contract.get('tail_jumps', []):
+        instruction = by.get(address + offset)
+        hits = [r for r in relocations if r[0] == offset + 1]
+        if (instruction is None or instruction.mnemonic != 'jmp' or instruction.size != 5
+                or instruction.bytes[0] != 0xe9 or len(hits) != 1 or hits[0][1] != 20
+                or address <= instruction.operands[0].imm < address + contract['size']
+                or tail_targets.get(hits[0][2]) != instruction.operands[0].imm):
+            raise ValueError('compact switch tail jump lacks an external REL32 binding')
+        tail_jumps.add(instruction.address)
+
+    indirect = set()
     for instruction in ins:
         if instruction.group(capstone.CS_GRP_JUMP):
             operand = instruction.operands[0]
             if operand.type == x.X86_OP_IMM:
-                if operand.imm not in by or operand.imm in forbidden:
+                if instruction.address not in tail_jumps and (operand.imm not in by or operand.imm in forbidden):
                     raise ValueError('branch escapes code or bypasses the compact-switch guard')
             else:
-                indirect.append(instruction.address)
-    if indirect != [jump.address]:
+                indirect.add(instruction.address)
+    if indirect != dispatches.keys():
         raise ValueError('unsupported additional indirect branch in compact-switch code')
     # Close every reachable path without interpreting metadata as executable code.
     pending, reached = [address], set()
@@ -142,21 +189,22 @@ def inspect(canonical, target, address, code_size, contract, relocations):
         if instruction is None:
             raise ValueError('reachable compact-switch path falls outside code')
         reached.add(at)
-        if instruction.mnemonic in ('ret', 'int3', 'ud2'):
+        if instruction.mnemonic in ('ret', 'int3', 'ud2') or at in tail_jumps:
             continue
-        if at == jump.address:
-            pending.extend(destinations)
+        if at in dispatches:
+            pending.extend(dispatches[at])
             continue
         if instruction.group(capstone.CS_GRP_JUMP):
             pending.append(instruction.operands[0].imm)
             if instruction.mnemonic == 'jmp':
                 continue
         pending.append(at + instruction.size)
-    if load.address not in reached or jump.address not in reached or reached != set(by):
+    if reached != by.keys():
         raise ValueError('compact-switch code has unreachable or unowned instructions')
     return dict(code_size=code_size, payload_size=len(target),
-                metadata_size=len(target) - code_size, table_entries=len(destinations),
-                index_bytes=len(indices), reachable_code_bytes=sum(by[a].size for a in reached),
+                metadata_size=len(target) - code_size, switch_tables=len(tables),
+                table_entries=len(table_fields), index_bytes=sum(t['map_size'] for t in tables),
+                reachable_code_bytes=sum(by[a].size for a in reached),
                 canonical_payload_sha256=hashlib.sha256(canonical).hexdigest(),
                 target_payload_sha256=contract['sha256'])
 
@@ -186,10 +234,11 @@ def verify(object_path, function, rows=None, read_target=None):
     known_data = c.known_data_targets()
     if any(kind == 6 and name.startswith('$') and name in known_data for _, kind, name in relocations):
         raise ValueError('local switch symbols cannot be external data aliases')
-    targets, overrides = c.known_targets(), {}
+    tail_targets, overrides = {}, {}
     for mapping in function.get('rel32_targets', []):
         name, destination = mapping.rsplit('=', 1)
-        targets[name] = int(destination, 0)
+        tail_targets[name] = int(destination, 0)
+    targets = c.known_targets() | tail_targets
     for mapping in function.get('dir32_targets', []):
         name, key = mapping.rsplit('=', 1)
         if name.startswith('$'):
@@ -205,4 +254,4 @@ def verify(object_path, function, rows=None, read_target=None):
             or pe.OPTIONAL_HEADER.ImageBase != 0x400000
             or directory.VirtualAddress or directory.Size):
         raise ValueError('compact-switch target must be the attested fixed-base stripped image')
-    return inspect(canonical, target, address, code_size, contract, relocations)
+    return inspect(canonical, target, address, code_size, contract, relocations, tail_targets)

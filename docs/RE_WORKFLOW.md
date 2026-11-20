@@ -175,16 +175,49 @@ official documentation and previous experiment notes as external corroboration,
 not proof of source shape, compiler profile, or exactness; revalidate the
 specific claim against the target and a fresh build.
 
-When diagnosing ownership for roots in `config/giant-action-switches.toml`, pair the target and
-candidate span mapper with `scripts/audit-giant-action-owners.py ROOT OBJECT
---unit UNIT`. The latter preserves instruction encodings and compares internal
-edges by physical owner plus intra-owner offset; it also traverses raw target
-control flow to identify unledgered direct targets and visible indirect-exit
-unknowns. A same-sized arm or a higher diagnostic count is never exact credit.
-Run the strict full-function comparator independently. See
-[GIANT_OWNER_AUDIT.md](GIANT_OWNER_AUDIT.md) for the common Fighter counterexample
-and reproducible commands. Analysis dependencies are pinned in
-`scripts/requirements-ci.txt`; basic CI does not use those packages.
+For a large action root with a switch map in `config/giant-action-switches.toml`,
+build the complete unit and find the first divergent action or shared tail.
+Use the switch mapper for merged or split cases and their destinations. Use the
+owner audit when the difference is inside a case or on an outgoing edge.
+
+```bash
+scripts/repo-python scripts/build.py --unit UNIT --json
+scripts/repo-python scripts/compare-giant-action-switches.py ROOT OBJECT --json
+scripts/repo-python scripts/audit-giant-action-owners.py ROOT OBJECT --unit UNIT --json
+scripts/repo-python scripts/compare-unit-object.py UNIT OBJECT --json
+```
+
+Use the generated COFF path as `OBJECT` and the switch-map name as `ROOT`.
+These commands let you diagnose and compare the same object without a second
+compile. Change one target-backed source property per trial and rerun the
+complete comparison. Before recording exactness, confirm a reproducible
+`build.py --unit UNIT --compare --json` with every owned code extent,
+relocation, and the switch data the function actually reads. A diagnostic
+owner count describes progress on case recovery. It confers zero exact credit.
+See [GIANT_OWNER_AUDIT.md](GIANT_OWNER_AUDIT.md) for the common Fighter example.
+
+### Sakuya action initializer
+
+`Sakuya_initialize_action_entry` at `0x004DE060` uses a narrow receiver layout
+with 19 typed members and checked offsets. Use names such as `velocity_x_f4`
+where the role is supported and names such as `field_734` where the evidence
+only establishes storage and access width. Keep the source's store order,
+comparisons and case grouping while introducing members. The default VC8 SP1
+`/O2 /GS-` probe reproduces the initializer with ordinary member access.
+
+```bash
+scripts/repo-python scripts/build.py --unit exact-first-sakuya-action-initialization --compare --json
+```
+
+The command verifies 2,656 bytes after relocation replay. The first 2,106 are
+callable code. The remaining 550 cover two destination tables (20 and 27
+entries), both byte maps (119 and 240 entries), and three alignment bytes.
+The table checks also close the reachable code through two `zero_motion` tail
+calls and the default tail to the common initializer. For the regression
+check, changing the first index in a temporary COFF copy from 0 to 1 redirected
+action 300. The old callable comparison passed. The full unit reports a
+mismatch at `0x004DE8EC`. Configure reviewed compact tables with
+`switch_payload` and leave their bytes outside the authored code count.
 
 When discovering candidate boundaries through indirect/data-driven call surfaces, `scripts/audit-roster-primary-vtable-coverage.py` closes the current Fighter/Object primary vtables against candidate starts, and `scripts/rank-unledgered-rdata-text-pointers.py` ranks aligned canonical `.rdata` pointers that land outside all tracked main spans and reviewed remote chunks. These are discovery tools, not per-function acceptance gates. Neither report assigns authored or exact credit. A raw pointer can name a compiler startup thunk, EH helper, deleting destructor, jump-table byte sequence or a real authored virtual/callback. Promote only after raw boundary isolation plus ownership/RTTI/caller evidence; then require the ordinary canonical comparator before exact acceptance. `CSceneManager::initialize @ 0x0041E070` is the current positive example: IDA had no containing function, but RTTI/vtable ownership plus a separately padded 162-byte body established the candidate and ordinary VC8 source subsequently matched 162/162.
 
@@ -244,7 +277,14 @@ A library fingerprint identifies the origin of the callee bytes, not the values 
 
 ### Main body versus adjacent switch metadata
 
-A source function may branch through compiler-emitted destination/index tables placed immediately after its RET. Do not extend the callable or authored-byte boundary solely to absorb those tables. Prove the main RET boundary independently, record adjacent metadata as structural/switch evidence, and compare callable bytes against that main boundary. `CBitmapData::load_bitmap 0x00419FF0` is the reference case: RET4 at `0x0041A8A3` ending exclusively at `0x0041A8A6`, alignment at `0x0041A8A6..A7`, destination table from `0x0041A8A8`, index table from `0x0041A8BC`.
+A function can read compiler-emitted destination and index tables beyond its
+final RET. Prove the callable boundary independently and verify the tables
+the function reads as part of the strict comparison. At
+`CBitmapData::load_bitmap 0x00419FF0`, RET4 ends at `0x0041A8A6` (exclusive),
+followed by two alignment bytes, the destination table at `0x0041A8A8` and the
+index table at `0x0041A8BC`. The
+[Sakuya initializer](#sakuya-action-initializer) shows how to configure the
+replay while preserving the callable byte count.
 
 ### Preserve allocator provenance inside one object lifetime
 

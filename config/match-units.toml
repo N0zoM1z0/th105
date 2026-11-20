@@ -21660,7 +21660,7 @@ source = "src/characters/SakuyaActionInitialization.cpp"
 object = "build/match-units/ExactFirst_SakuyaActionInitialization.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Sakuya primary slot3C4DE060;2106 callable/full2656 payload. Actual ordered lower clamps and independent publication/product epochs;562 preserves734.."
+notes = "Sakuya primary vtable slot +0x3C. The complete 2656-byte comparison covers 2106 callable bytes, both compact switch tables, and their alignment."
 
 [[units.exact-first-sakuya-action-initialization.functions]]
 address = "0x004DE060"
@@ -21686,6 +21686,26 @@ dir32_targets = [
     "__real@41400000=_sakuya_action_entry_006c12b0",
 ]
 
+[units.exact-first-sakuya-action-initialization.functions.switch_payload]
+size = 2656
+sha256 = "9a6c54b1b3b06de9094a73416afc795c479e9ee2cf6da969244a00726378f870"
+alignment_hex = "8bff"
+table_offset = 2108
+table_entries = 20
+map_offset = 2188
+map_size = 119
+load_offset = 169
+jump_offset = 176
+tail_jumps = [1797, 1832, 2084]
+
+[units.exact-first-sakuya-action-initialization.functions.switch_payload.second_table]
+alignment_hex = "90"
+table_offset = 2308
+table_entries = 27
+map_offset = 2416
+map_size = 240
+load_offset = 1144
+jump_offset = 1151
 
 [units.exact-first-yuyuko-action-initialization]
 kind = "probe"

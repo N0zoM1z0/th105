@@ -84,6 +84,11 @@ build.
 
 - Acceptance is zero byte differences against the canonical target, with a
   reproducible unit in `config/match-units.toml` and command/report evidence.
+- Include the switch destinations, index bytes and alignment used by the
+  recovered code in the strict comparison. Keep the callable size and authored
+  byte count bounded by code ownership. For large action roots, use the
+  [case-level workflow](docs/RE_WORKFLOW.md#giant-root-owner-diagnostics) to
+  locate a divergence, then compare the complete function and its switch data.
 - Do not require allocation-failure, null-pointer, fuzz, broad runtime or
   gameplay matrices. Preserve the target's actual guards/EH paths; do not add
   defensive behavior absent from the target.
@@ -113,6 +118,12 @@ records; standalone COFF/TU boundaries may be unrecoverable. TH08's gameplay
 structures, addresses and VC7 compiler behavior do not transfer automatically.
 Never force comparison with assembly, copied bytes, inert locals, fake returns,
 ABI lies or padding.
+
+Prefer ordinary typed members for target-observed accesses. Check their
+offsets at compile time and use offset-based names until semantics support
+better names. Keep a partial receiver layout narrow and replay the complete
+unit after changing it. The [Sakuya initializer](docs/RE_WORKFLOW.md#sakuya-action-initializer)
+is a verified example.
 
 ## Analysis sessions
 

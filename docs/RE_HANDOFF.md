@@ -30,8 +30,13 @@ parked residual with what was tried. The most productive rules:
   (`engine/TextureHandleValue.hpp`), taken by value by the binder 0x404DF0 and
   the release 0x404D70. Fields that callers pass to them are class-typed;
   vectors proven `vector<unsigned>` by native helpers keep `unsigned`.
-- Use offset macros, not an inline `at<T>` accessor, in the giant switches.
-  Re-read members per test instead of caching them in locals.
+- Prefer checked typed members for target-observed storage, as in the
+  [Sakuya initializer](RE_WORKFLOW.md#sakuya-action-initializer). Its normal
+  build now verifies the two jump tables as well as the code. When raw access
+  is still needed, an offset macro can preserve VC8 scheduling that changes
+  with an inline `at<T>` accessor.
+- For giant switches, [locate differences by action and shared tail](RE_WORKFLOW.md#giant-root-owner-diagnostics)
+  before tuning a case. Finish each trial with the full comparison.
 - A "remote chunk" reached by `jmp` after an epilogue is usually a tail call
   to a separate function (the scene frame update 0x43B4A0 tail-calls 0x4400D0).
 
@@ -76,28 +81,11 @@ Other open leads:
 
 ## Checking shared type changes
 
-After changing a shared header type, build every unit whose include closure
-names the changed type before and after, and compare per function. Then refresh
-the scalar-wrapper receipts
-(`scripts/repo-python scripts/scalar_wrapper_origins.py --unit <unit>`) and run
-`scripts/function-origins.py --check` (about 10 minutes), which flags header
-pins that need renewing.
-
-Two inputs are pinned more tightly than they look:
-- Origin anchors (`config/*anchor*.toml`) pin some source files by SHA-256,
-  hashed with the file's checkout line endings from `.gitattributes`. Even a
-  comment edit or a literal respelling in such a file needs the pin renewed;
-  three validators (`unsigned_deque_popback_origins.py` among them) also repeat
-  the hash as a constant. `tests/test_origin_source_line_endings.py` lists
-  stale pins quickly.
-- Unit input digests cover all of `match-units.toml` and
-  `reccmp-relocations.csv`, so editing even their notes invalidates every
-  scalar-wrapper receipt. Refresh them with one `scalar_wrapper_origins.py`
-  call that passes every `--unit` (about a minute).
-
-Run the tool tests with `scripts/repo-python -m unittest discover -s tests`
-(about 2.5 minutes). Some tests import sibling test modules, so run
-them through `discover` rather than `-m unittest tests.NAME`.
+Follow [the affected-consumer replay rules](RE_WORKFLOW.md#shared-change-replay).
+Inspect include closures and compare the affected accepted units after a shared
+layout or header change. Check origin anchors when the change touches their
+evidence. Checkout line endings matter for source files that an anchor hashes.
+Use focused tests for the comparison tool being changed.
 
 ## Session rules
 

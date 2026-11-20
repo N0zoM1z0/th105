@@ -28,6 +28,13 @@ Use together with `$th105-re`. Exact acceptance is defined by
 6. Record exactness only at zero differences with complete relocation replay;
    update `matches.csv` and the function ledger together.
 
+For action switches, follow the
+[case-level workflow](../../../docs/RE_WORKFLOW.md#giant-root-owner-diagnostics).
+Verify the dispatch tables in the exact unit and keep metadata outside the
+authored byte count. The [Sakuya initializer](../../../docs/RE_WORKFLOW.md#sakuya-action-initializer)
+reproduces all 2,656 bytes with typed members, checked offsets and both compact
+switch tables verified.
+
 Runtime robustness matrices and allocation-failure/null-pointer tests are not
 acceptance gates. Use diagnostics only for a concrete mismatch question; keep
 the routine loop focused on complete-function byte comparison.
