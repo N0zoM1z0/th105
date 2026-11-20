@@ -3,7 +3,8 @@
 `0x004E8060` now has complete selected source in
 `src/characters/SakuyaObjectActionEntry.cpp/.hpp`. It is an authored RTTI-owned
 SakuyaObject primary slot+3C initializer, separate from Fighter input/CPU/control
-roots. Numeric states, offsets and declaration-only call views are intentional.
+roots. The receiver uses checked members for fixed offsets and
+declaration-only call views for the motion subobject and selector.
 Never construct or embed either pointer-only view; complete nominal layout,
 original local names, source partition and compiler/TU phase remain unknown.
 
@@ -17,6 +18,16 @@ The complete unmasked comparison has **13 differing bytes**, confined to action
 virtual-selector preparation. Its call-register choice also changes the later
 facing/payload-address schedule. All remaining callable bytes, alignment and
 all 330 bytes after the callable agree. No partial exact credit is awarded.
+
+The checked-member rewrite produces the same full payload after all 218
+relocations are replayed. These separate changes to action 803 also produced
+the identical payload: aggregate initialization of the three transmitted
+floats, capturing the sequence before the guard, capturing heading and facing
+before filling the payload, and naming the selector argument. The target uses
+EAX for the virtual selector target and EDX for the later facing argument.
+The current object uses EDX for the virtual target and ECX for facing. The
+configured unit now includes the destination and byte-index tables in its
+strict comparison.
 
 ```sh
 taskset -c 0 nice -n 10 python3 scripts/build.py \

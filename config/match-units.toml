@@ -21019,6 +21019,18 @@ rel32_targets = [
     "__ftol2_sse=0x0068A1A0",
 ]
 
+[units.exact-first-sakuya-object-entry.functions.switch_payload]
+size = 6868
+sha256 = "3323c8c4ac1fa5c9725d0e921b4b343d15e8de8be40277216222b38e0a942c82"
+alignment_hex = "8bff"
+table_offset = 6540
+table_entries = 32
+map_offset = 6668
+map_size = 200
+load_offset = 132
+jump_offset = 141
+tail_jumps = [6448]
+
 [units.exact-first-udonge-action-entry]
 kind = "probe"
 source = "src/characters/UdongeActionEntry.cpp"

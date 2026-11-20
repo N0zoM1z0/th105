@@ -1,289 +1,283 @@
-#include "characters/SakuyaObjectActionEntry.hpp"
-// JP1.06a 0x004E8060: complete source candidate, nonexact.
+#include "SakuyaObjectActionEntry.hpp"
+// JP1.06a 0x004E8060: reviewed action entry with a residual in action 803.
 // Evidence and finite trials: docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md.
 namespace th105 {
-#define FIELD(type,offset) (*reinterpret_cast<type *>(reinterpret_cast<unsigned char *>(this)+(offset)))
-#define F(o) FIELD(float,o)
-#define S(o) FIELD(short,o)
-#define B(o) FIELD(unsigned char,o)
-#define I(o) FIELD(int,o)
-#define H FIELD(float *,0x340)
 #define MOTION reinterpret_cast<SakuyaEntryMotionView *>(reinterpret_cast<unsigned char *>(this)+4)
-#define SELECT() if (H[2]>0.0f) select_sequence(static_cast<int>(H[2]))
-#define SPAWN(action,count) spawn_parented(action,F(0xEC),F(0xF0),B(0x104),-1,reinterpret_cast<const unsigned *>(payload),count)
+#define SELECT() if (parameters_340[2]>0.0f) select_sequence(static_cast<int>(parameters_340[2]))
+#define SPAWN(action,count) spawn_parented(action,x_ec,y_f0,facing_104,-1,reinterpret_cast<const unsigned *>(payload),count)
 __forceinline static float random_float(int n) { return static_cast<float>(static_cast<unsigned>(selector_random_roll(n))); }
 void SakuyaObjectEntryView::initialize_action_entry()
 {
-    F(0xF4)=0.0f; F(0xF8)=0.0f;
-    F(0x370)=0.0f; F(0x374)=0.0f; F(0x378)=0.0f; F(0x37C)=0.0f;
-    S(0x384)=0; F(0x380)=0.0f; S(0x386)=0; B(0x184)=0;
-    S(0x364)=0; S(0x366)=0; S(0x368)=0; S(0x36A)=0; S(0x36C)=0;
-    switch (S(0x13C)) {
+    velocity_x_f4=0.0f; velocity_y_f8=0.0f;
+    field_370=0.0f; field_374=0.0f; field_378=0.0f; field_37c=0.0f;
+    field_384=0; field_380=0.0f; field_386=0; phase_index_184=0;
+    field_364=0; field_366=0; field_368=0; field_36a=0; field_36c=0;
+    switch (action_id_13c) {
     case 800: {
         float payload[4];
-        B(0x184)=1; F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)<=2) {
-            MOTION->set_components(H[0],H[1]);
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(800,3);
+        phase_index_184=1; field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e<=2) {
+            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(800,3);
         }
-        if (S(0x13E)>=4 && S(0x13E)<=6) {
-            MOTION->set_components(H[0],H[1]);
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=7.0f; SPAWN(800,3);
+        if (sequence_id_13e>=4 && sequence_id_13e<=6) {
+            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=7.0f; SPAWN(800,3);
         }
         return;
     }
     case 801: {
         float payload[4];
-        B(0x184)=1; F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)<=2) {
-            MOTION->set_components(H[0],H[1]);
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(801,3);
+        phase_index_184=1; field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e<=2) {
+            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(801,3);
         }
         return;
     }
     case 803: {
         float payload[4];
-        B(0x184)=1; F(0x12C)=H[0]; F(0x374)=255.0f; SELECT();
-        if (S(0x13E)==0 || S(0x13E)==3) {
-            MOTION->set_components(H[0],H[1]);
-            payload[0]=F(0x12C); payload[1]=0.0f; payload[2]=2.0f; SPAWN(803,3);
+        phase_index_184 = 1;
+        field_12c = parameters_340[0];
+        field_374 = 255.0f;
+        SELECT();
+        if (sequence_id_13e == 0 || sequence_id_13e == 3) {
+            MOTION->set_components(parameters_340[0], parameters_340[1]);
+            payload[0] = field_12c;
+            payload[1] = 0.0f;
+            payload[2] = 2.0f;
+            SPAWN(803, 3);
         }
         return;
     }
     case 805:
-        B(0x184)=1; F(0x12C)=H[0]; SELECT(); return;
+        phase_index_184=1; field_12c=parameters_340[0]; SELECT(); return;
     case 810:
-        F(0x124)=0.0f; B(0x17C)=0; F(0x128)=0.0f; S(0x344)=1; SELECT(); return;
+        field_124=0.0f; field_17c=0; field_128=0.0f; field_344=1; SELECT(); return;
     case 811: {
         float payload[4];
-        B(0x17C)=1; B(0x184)=3; SELECT();
-        if (S(0x13E)==0) {
-            MOTION->set_components(H[0],H[1]); F(0x12C)=-atan2_degrees(F(0xF8),F(0xF4));
-            payload[0]=F(0x12C); payload[1]=0.0f; payload[2]=3.0f; SPAWN(811,3);
+        field_17c=1; phase_index_184=3; SELECT();
+        if (sequence_id_13e==0) {
+            MOTION->set_components(parameters_340[0],parameters_340[1]); field_12c=-atan2_degrees(velocity_y_f8,velocity_x_f4);
+            payload[0]=field_12c; payload[1]=0.0f; payload[2]=3.0f; SPAWN(811,3);
         }
         return;
     }
     case 812: {
         float payload[4];
-        B(0x17C)=2; B(0x184)=1; F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)==0) { payload[0]=H[0]; payload[1]=0.0f; payload[2]=1.0f; SPAWN(812,3); }
+        field_17c=2; phase_index_184=1; field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e==0) { payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=1.0f; SPAWN(812,3); }
         return;
     }
     case 813:
-        F(0x370)=1.0f; B(0x17C)=3; S(0x344)=1; SELECT();
-        if (S(0x13E)<=5) {
-            F(0x12C)=random_float(90)-45.0;
-            S(0x364)=static_cast<short>(selector_random_roll(11));
-            S(0x366)=static_cast<short>(selector_random_roll(11));
-            S(0x368)=static_cast<short>(selector_random_roll(11));
-            S(0x36A)=static_cast<short>(selector_random_roll(5));
-            S(0x36C)=static_cast<short>(selector_random_roll(5));
-            F(0xF4)=random_float(9)-4.0;
-            F(0xF8)=-random_float(10)*static_cast<double>(0.1f);
+        field_370=1.0f; field_17c=3; field_344=1; SELECT();
+        if (sequence_id_13e<=5) {
+            field_12c=random_float(90)-45.0;
+            field_364=static_cast<short>(selector_random_roll(11));
+            field_366=static_cast<short>(selector_random_roll(11));
+            field_368=static_cast<short>(selector_random_roll(11));
+            field_36a=static_cast<short>(selector_random_roll(5));
+            field_36c=static_cast<short>(selector_random_roll(5));
+            velocity_x_f4=random_float(9)-4.0;
+            velocity_y_f8=-random_float(10)*static_cast<double>(0.1f);
         }
-        if (S(0x13E)==6 || S(0x13E)==7 || S(0x13E)==9 || S(0x13E)==10) {
-            F(0xF8)=H[1]; F(0xF4)=H[0];
+        if (sequence_id_13e==6 || sequence_id_13e==7 || sequence_id_13e==9 || sequence_id_13e==10) {
+            velocity_y_f8=parameters_340[1]; velocity_x_f4=parameters_340[0];
         }
         return;
     case 815:
-        F(0x124)=0.0f; B(0x17C)=4; F(0x128)=0.0f;
-        S(0x364)=static_cast<short>(static_cast<int>(F(0xEC)));
-        S(0x366)=static_cast<short>(static_cast<int>(F(0xF0)));
-        B(0x184)=1; I(0x180)=0; F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)==2) F(0x370)=0.5f;
-        if (S(0x13E)==3) F(0x370)=0.5f;
-        if (S(0x13E)==4) F(0x370)=0.6f;
+        field_124=0.0f; field_17c=4; field_128=0.0f;
+        field_364=static_cast<short>(static_cast<int>(x_ec));
+        field_366=static_cast<short>(static_cast<int>(y_f0));
+        phase_index_184=1; phase_state_180=0; field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e==2) field_370=0.5f;
+        if (sequence_id_13e==3) field_370=0.5f;
+        if (sequence_id_13e==4) field_370=0.6f;
         return;
     case 816: {
         float payload[4];
-        B(0x17C)=5;
-        if (*reinterpret_cast<signed char *>(FIELD(unsigned char *,0x348)+0x609)==4) {
-            B(0x184)=6; if (H[3]==1.0f) B(0x184)=7;
-        } else { B(0x184)=5; if (H[3]==1.0f) B(0x184)=6; }
-        F(0x374)=255.0f; SELECT();
-        if (S(0x13E)==0) {
-            MOTION->set_components(H[0],H[1]); F(0x12C)=-atan2_degrees(F(0xF8),F(0xF4));
-            payload[0]=F(0x12C); payload[1]=0.0f; payload[2]=3.0f; SPAWN(816,3);
+        field_17c=5;
+        if (*reinterpret_cast<signed char *>(owner_348+0x609)==4) {
+            phase_index_184=6; if (parameters_340[3]==1.0f) phase_index_184=7;
+        } else { phase_index_184=5; if (parameters_340[3]==1.0f) phase_index_184=6; }
+        field_374=255.0f; SELECT();
+        if (sequence_id_13e==0) {
+            MOTION->set_components(parameters_340[0],parameters_340[1]); field_12c=-atan2_degrees(velocity_y_f8,velocity_x_f4);
+            payload[0]=field_12c; payload[1]=0.0f; payload[2]=3.0f; SPAWN(816,3);
         }
         return;
     }
-    case 817: B(0x17C)=6;
+    case 817: field_17c=6;
     case 802:
-        B(0x184)=1; F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)<=2) MOTION->set_components(H[0],H[1]);
+        phase_index_184=1; field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e<=2) MOTION->set_components(parameters_340[0],parameters_340[1]);
         return;
     case 818:
-        B(0x17C)=7; B(0x184)=1; F(0x12C)=H[0]; I(0x180)=0; SELECT();
-        if (S(0x13E)==0) { S(0x344)=1; MOTION->set_components(H[0],H[1]); }
-        if (S(0x13E)==2) { S(0x344)=1; F(0x11C)=1.5f; F(0x120)=1.5f; }
+        field_17c=7; phase_index_184=1; field_12c=parameters_340[0]; phase_state_180=0; SELECT();
+        if (sequence_id_13e==0) { field_344=1; MOTION->set_components(parameters_340[0],parameters_340[1]); }
+        if (sequence_id_13e==2) { field_344=1; field_11c=1.5f; field_120=1.5f; }
         return;
-    case 849: S(0x344)=1; SELECT(); return;
+    case 849: field_344=1; SELECT(); return;
     case 804: case 850:
-        B(0x184)=1; F(0x12C)=H[0]; SELECT(); return;
-    case 851: S(0x344)=1; B(0x113)=0; SELECT(); return;
+        phase_index_184=1; field_12c=parameters_340[0]; SELECT(); return;
+    case 851: field_344=1; alpha_113=0; SELECT(); return;
     case 852: {
-        F(0x120)=F(0x11C)=static_cast<float>(random_float(7)*static_cast<double>(0.1f)+1.0);
-        F(0x124)=static_cast<unsigned>(selector_random_roll(50))+30.0f+(static_cast<unsigned>(selector_random_roll(100))<50)*180;
-        F(0x12C)=random_float(60); F(0x128)=random_float(90)-25.0;
+        field_120=field_11c=static_cast<float>(random_float(7)*static_cast<double>(0.1f)+1.0);
+        field_124=static_cast<unsigned>(selector_random_roll(50))+30.0f+(static_cast<unsigned>(selector_random_roll(100))<50)*180;
+        field_12c=random_float(60); field_128=random_float(90)-25.0;
         SELECT();
-        if (S(0x13E)==0) F(0xF4)=random_float(12);
-        if (S(0x13E)==1) { B(0x184)=1; MOTION->set_components(static_cast<float>(random_float(90)-45.0),20.0f); }
+        if (sequence_id_13e==0) velocity_x_f4=random_float(12);
+        if (sequence_id_13e==1) { phase_index_184=1; MOTION->set_components(static_cast<float>(random_float(90)-45.0),20.0f); }
         return;
     }
     case 853: {
         float payload[4];
-        B(0x184)=1; F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)==1) {
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=4.0f; payload[3]=0.0f; SPAWN(853,4);
+        phase_index_184=1; field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e==1) {
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=4.0f; payload[3]=0.0f; SPAWN(853,4);
             payload[2]=5.0f; SPAWN(853,4);
         }
         return;
     }
-    case 854: B(0x113)=0; S(0x344)=1; SELECT(); return;
+    case 854: alpha_113=0; field_344=1; SELECT(); return;
     case 855:
         SELECT();
-        if (S(0x13E)==0) {
-            F(0xF4)=random_float(12);
-            F(0x120)=F(0x11C)=static_cast<float>(random_float(9)*static_cast<double>(0.1f)+static_cast<double>(1.7f));
-            F(0x124)=static_cast<unsigned>(selector_random_roll(50))+30.0f+(static_cast<unsigned>(selector_random_roll(100))<50)*180;
-            F(0x12C)=random_float(60); F(0x128)=random_float(90)-25.0;
+        if (sequence_id_13e==0) {
+            velocity_x_f4=random_float(12);
+            field_120=field_11c=static_cast<float>(random_float(9)*static_cast<double>(0.1f)+static_cast<double>(1.7f));
+            field_124=static_cast<unsigned>(selector_random_roll(50))+30.0f+(static_cast<unsigned>(selector_random_roll(100))<50)*180;
+            field_12c=random_float(60); field_128=random_float(90)-25.0;
         }
-        if (S(0x13E)==1) {
-            F(0x120)=2.0f; H[1]=60.0f; H[0]=static_cast<unsigned>(selector_random_roll(40))-20.0f; F(0x12C)=H[0];
+        if (sequence_id_13e==1) {
+            field_120=2.0f; parameters_340[1]=60.0f; parameters_340[0]=static_cast<unsigned>(selector_random_roll(40))-20.0f; field_12c=parameters_340[0];
         }
-        if (S(0x13E)==2) { B(0x184)=1; MOTION->set_components(static_cast<float>(random_float(80)-40.0),60.0f); }
+        if (sequence_id_13e==2) { phase_index_184=1; MOTION->set_components(static_cast<float>(random_float(80)-40.0),60.0f); }
         return;
     case 856: {
         float payload[4];
-        B(0x184)=1; SELECT();
-        if (S(0x13E)==0) {
-            MOTION->set_components(H[0],H[1]); F(0x12C)=-atan2_degrees(F(0xF8),F(0xF4));
-            payload[0]=F(0x12C); payload[1]=0.0f; payload[2]=3.0f; SPAWN(856,3);
+        phase_index_184=1; SELECT();
+        if (sequence_id_13e==0) {
+            MOTION->set_components(parameters_340[0],parameters_340[1]); field_12c=-atan2_degrees(velocity_y_f8,velocity_x_f4);
+            payload[0]=field_12c; payload[1]=0.0f; payload[2]=3.0f; SPAWN(856,3);
         }
         return;
     }
     case 857: {
         float payload[4];
-        B(0x184)=1; F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)==0 || S(0x13E)==1) {
-            MOTION->set_components(H[0],H[1]);
-            if (S(0x13E)==0) { payload[0]=H[0]; payload[1]=0.0f; payload[2]=2.0f; SPAWN(857,3); }
-            if (S(0x13E)==1) { payload[0]=H[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(857,3); }
+        phase_index_184=1; field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e==0 || sequence_id_13e==1) {
+            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            if (sequence_id_13e==0) { payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=2.0f; SPAWN(857,3); }
+            if (sequence_id_13e==1) { payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(857,3); }
         }
         return;
     }
     case 858: {
         float payload[4];
-        B(0x184)=1; F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)==0) {
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=1.0f; payload[3]=0.0f; SPAWN(858,3);
-            MOTION->set_components(H[0],H[1]);
+        phase_index_184=1; field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e==0) {
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=1.0f; payload[3]=0.0f; SPAWN(858,3);
+            MOTION->set_components(parameters_340[0],parameters_340[1]);
         }
-        if (S(0x13E)==2) {
+        if (sequence_id_13e==2) {
             payload[0]=0.0f; payload[1]=0.0f; payload[2]=3.0f; payload[3]=0.0f;
-            spawn_unparented(858,F(0xEC),F(0xF0),B(0x104),1,reinterpret_cast<const unsigned *>(payload),4);
+            spawn_unparented(858,x_ec,y_f0,facing_104,1,reinterpret_cast<const unsigned *>(payload),4);
         }
         return;
     }
     case 859: {
         float payload[4];
         SELECT();
-        if (S(0x13E)==0) {
-            F(0x11C)=0.0f; F(0x120)=0.0f; B(0x113)=128;
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=1.0f;
-            spawn_parented(859,F(0xEC),F(0xF0),1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            payload[2]=2.0f; spawn_parented(859,F(0xEC),F(0xF0),1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            payload[2]=3.0f; spawn_parented(859,F(0xEC),F(0xF0),1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            MOTION->set_components(H[0],H[1]);
+        if (sequence_id_13e==0) {
+            field_11c=0.0f; field_120=0.0f; alpha_113=128;
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=1.0f;
+            spawn_parented(859,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
+            payload[2]=2.0f; spawn_parented(859,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
+            payload[2]=3.0f; spawn_parented(859,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
+            MOTION->set_components(parameters_340[0],parameters_340[1]);
         }
-        if (S(0x13E)==1) { F(0x11C)=0.0f; F(0x120)=0.0f; }
-        if (S(0x13E)==2) { F(0x12C)=random_float(360); F(0x11C)=0.0f; F(0x120)=0.0f; }
-        if (S(0x13E)==3) { F(0x12C)=random_float(360); F(0x11C)=0.0f; F(0x120)=0.0f; }
-        if (S(0x13E)==4) F(0x370)=0.75f;
-        if (S(0x13E)==5) F(0x370)=0.75f;
-        if (S(0x13E)==6) F(0x370)=0.9f;
+        if (sequence_id_13e==1) { field_11c=0.0f; field_120=0.0f; }
+        if (sequence_id_13e==2) { field_12c=random_float(360); field_11c=0.0f; field_120=0.0f; }
+        if (sequence_id_13e==3) { field_12c=random_float(360); field_11c=0.0f; field_120=0.0f; }
+        if (sequence_id_13e==4) field_370=0.75f;
+        if (sequence_id_13e==5) field_370=0.75f;
+        if (sequence_id_13e==6) field_370=0.9f;
         return;
     }
     case 900: {
         float payload[4];
-        B(0x184)=1; SELECT();
-        if (S(0x13E)==0) {
-            MOTION->set_components(H[0],H[1]); F(0x12C)=-atan2_degrees(F(0xF8),F(0xF4));
-            payload[0]=F(0x12C); payload[1]=0.0f; payload[2]=3.0f; SPAWN(856,3);
+        phase_index_184=1; SELECT();
+        if (sequence_id_13e==0) {
+            MOTION->set_components(parameters_340[0],parameters_340[1]); field_12c=-atan2_degrees(velocity_y_f8,velocity_x_f4);
+            payload[0]=field_12c; payload[1]=0.0f; payload[2]=3.0f; SPAWN(856,3);
         }
         return;
     }
     case 901: {
         float payload[4];
         SELECT();
-        if (S(0x13E)==0) {
-            F(0x11C)=0.0f; F(0x120)=0.0f; B(0x113)=128;
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=1.0f;
-            spawn_parented(901,F(0xEC),F(0xF0),1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            payload[2]=2.0f; spawn_parented(901,F(0xEC),F(0xF0),1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            payload[2]=3.0f; spawn_parented(901,F(0xEC),F(0xF0),1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            MOTION->set_components(H[0],H[1]);
+        if (sequence_id_13e==0) {
+            field_11c=0.0f; field_120=0.0f; alpha_113=128;
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=1.0f;
+            spawn_parented(901,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
+            payload[2]=2.0f; spawn_parented(901,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
+            payload[2]=3.0f; spawn_parented(901,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
+            MOTION->set_components(parameters_340[0],parameters_340[1]);
         }
-        if (S(0x13E)==1) { F(0x11C)=0.0f; F(0x120)=0.0f; }
-        if (S(0x13E)==2) { F(0x12C)=random_float(360); F(0x11C)=0.0f; F(0x120)=0.0f; }
-        if (S(0x13E)==3) { F(0x12C)=random_float(360); F(0x11C)=0.0f; F(0x120)=0.0f; }
-        if (S(0x13E)==4) F(0x370)=0.75f;
-        if (S(0x13E)==5) F(0x370)=0.75f;
-        if (S(0x13E)==6) F(0x370)=0.9f;
-        if (S(0x13E)==7) {
-            double const heading=H[0]; B(0x184)=1; F(0x12C)=heading; MOTION->set_components(H[0],H[1]);
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=8.0f; SPAWN(901,3);
+        if (sequence_id_13e==1) { field_11c=0.0f; field_120=0.0f; }
+        if (sequence_id_13e==2) { field_12c=random_float(360); field_11c=0.0f; field_120=0.0f; }
+        if (sequence_id_13e==3) { field_12c=random_float(360); field_11c=0.0f; field_120=0.0f; }
+        if (sequence_id_13e==4) field_370=0.75f;
+        if (sequence_id_13e==5) field_370=0.75f;
+        if (sequence_id_13e==6) field_370=0.9f;
+        if (sequence_id_13e==7) {
+            double const heading=parameters_340[0]; phase_index_184=1; field_12c=heading; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=8.0f; SPAWN(901,3);
         }
-        if (S(0x13E)==8) F(0x12C)=H[0];
+        if (sequence_id_13e==8) field_12c=parameters_340[0];
         return;
     }
     case 920: {
         float payload[4];
-        F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)<=1) {
-            F(0x374)=10.0f; F(0x370)=random_float(10)+20.0;
-            if (static_cast<unsigned>(selector_random_roll(100))<50) F(0x370)*=-1.0;
-            B(0x184)=1; S(0x344)=1; MOTION->set_components(H[0],H[1]);
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(920,3);
+        field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e<=1) {
+            field_374=10.0f; field_370=random_float(10)+20.0;
+            if (static_cast<unsigned>(selector_random_roll(100))<50) field_370*=-1.0;
+            phase_index_184=1; field_344=1; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(920,3);
         }
-        if (S(0x13E)==2) {
-            B(0x184)=1; MOTION->set_components(H[0],H[1]);
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(920,3);
+        if (sequence_id_13e==2) {
+            phase_index_184=1; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(920,3);
         }
-        if (S(0x13E)==3) { S(0x344)=1; F(0x12C)=H[0]; }
+        if (sequence_id_13e==3) { field_344=1; field_12c=parameters_340[0]; }
         return;
     }
     case 930: {
         float payload[4];
-        F(0x12C)=H[0]; SELECT();
-        if (S(0x13E)<=1) {
-            F(0x374)=10.0f; F(0x370)=random_float(10)+20.0;
-            if (static_cast<unsigned>(selector_random_roll(100))<50) F(0x370)*=-1.0;
-            B(0x184)=1; S(0x344)=1; MOTION->set_components(H[0],H[1]);
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(930,3);
+        field_12c=parameters_340[0]; SELECT();
+        if (sequence_id_13e<=1) {
+            field_374=10.0f; field_370=random_float(10)+20.0;
+            if (static_cast<unsigned>(selector_random_roll(100))<50) field_370*=-1.0;
+            phase_index_184=1; field_344=1; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(930,3);
         }
-        if (S(0x13E)==2) {
-            B(0x184)=1; MOTION->set_components(H[0],H[1]);
-            payload[0]=H[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(930,3);
+        if (sequence_id_13e==2) {
+            phase_index_184=1; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; SPAWN(930,3);
         }
-        if (S(0x13E)==3) { S(0x344)=1; F(0x12C)=H[0]; }
+        if (sequence_id_13e==3) { field_344=1; field_12c=parameters_340[0]; }
         return;
     }
     case 980: continue_action_980(); return;
     case 998: return;
     case 999:
-        select_sequence(static_cast<int>(H[2]));
-        if (S(0x13E)==4) { F(0xF4)=H[0]; F(0xF8)=H[1]; }
+        select_sequence(static_cast<int>(parameters_340[2]));
+        if (sequence_id_13e==4) { velocity_x_f4=parameters_340[0]; velocity_y_f8=parameters_340[1]; }
         return;
     }
 }
 #undef SPAWN
 #undef SELECT
 #undef MOTION
-#undef H
-#undef I
-#undef B
-#undef S
-#undef F
-#undef FIELD
 }

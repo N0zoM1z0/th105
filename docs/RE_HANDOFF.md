@@ -57,6 +57,13 @@ Smallest remaining character residuals, after the literal pass:
 - the initializers Reimu 0x491C40, Udonge 0x5D0E60 and Youmu 0x53A1D0 (one or
   two cross-jump regions each).
 
+The checked receiver layouts for Youmu's Fighter initializer and Sakuya's
+Object initializer preserve both complete VC8 baselines. Youmu's remaining
+difference is the placement of the shared 601/604 branch. Sakuya's is the
+virtual selector and the later spawn argument scheduling in action 803.
+See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md) and
+[Sakuya](SAKUYA_OBJECT_ENTRY_2026_10_24.md) case notes for the byte-neutral trials.
+
 Other open leads:
 - Scenario character install 0x456EB0 (one EH-state store) and the info
   effect update 0x65CB40 (14,783 bytes, two regions).

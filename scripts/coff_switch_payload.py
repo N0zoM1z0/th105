@@ -101,7 +101,7 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
         if len(dispatch_prefix) > 2 or any(
                 inst.mnemonic != 'push' or len(inst.operands) != 1
                 or inst.operands[0].type != x.X86_OP_REG
-                or inst.operands[0].reg not in (x.X86_REG_EBX, x.X86_REG_EDI)
+                or inst.operands[0].reg not in (x.X86_REG_EBX, x.X86_REG_EBP, x.X86_REG_EDI)
                 for inst in dispatch_prefix):
             raise ValueError('unsupported instruction between switch selector load and dispatch')
     number = ins.index(relocated[-1])
