@@ -234,18 +234,25 @@ class LifecycleTests(unittest.TestCase):
     def test_local_cpp_dependencies_are_transitive_and_hashed(self):
         with tempfile.TemporaryDirectory(dir=workflow.ROOT / "build") as folder:
             root = Path(folder)
-            (root / "main.cpp").write_text('#include "body.cpp"\n')
-            (root / "body.cpp").write_text('#include "leaf.hpp"\n')
+            (root / "main.cpp").write_text('#include "detail/body.cpp"\n')
+            (root / "detail").mkdir()
+            (root / "detail/body.cpp").write_text('#include "leaf.hpp"\n')
             (root / "leaf.hpp").write_text('#include "main.cpp"\n')
+            (root / "unrelated.hpp").write_text('// Unrelated include\n')
             unit = dict(source=str((root / "main.cpp").relative_to(workflow.ROOT)))
-            self.assertEqual(workflow.source_dependencies(unit), set(root.iterdir()))
+            dependencies = workflow.source_dependencies(unit, include_search_paths=True)
+            self.assertEqual(dependencies, {root / p for p in ("main.cpp", "detail/body.cpp", "leaf.hpp")})
             unit.update(kind="probe", profile="vc8-sp1-probe-o2", enable_gs=True)
             with patch.object(workflow, "compiler_sha256", return_value="a" * 64):
                 before, inputs = workflow.unit_input_digest("dependency-test", unit)
-                self.assertIn(str((root / "body.cpp").relative_to(workflow.ROOT)), inputs)
-                (root / "body.cpp").write_text('int changed;\n#include "leaf.hpp"\n')
+                self.assertIn(str((root / "detail/body.cpp").relative_to(workflow.ROOT)), inputs)
+                (root / "unrelated.hpp").write_text('int unrelated;\n')
+                self.assertEqual(before, workflow.unit_input_digest("dependency-test", unit)[0])
+                (root / "leaf.hpp").write_text('int changed;\n#include "main.cpp"\n')
                 after, _ = workflow.unit_input_digest("dependency-test", unit)
                 self.assertNotEqual(before, after)
+                self.assertNotEqual(after, workflow.unit_input_digest(
+                    "dependency-test", dict(unit, enable_gs=False))[0])
 
     def typed(self, kind="object"):
         return dict(kind=kind, source_address=core.IMAGE_BASE + 0x3000, address=0x7028dc,

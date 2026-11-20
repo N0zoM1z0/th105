@@ -70,6 +70,8 @@ def build_unit(
     elif unit["kind"] == "linked_candidate":
         command = [sys.executable, str(ROOT / "scripts/build-linked-unit.py"), name]
     else:
+        for variable in ("CL", "_CL_", "INCLUDE"):
+            environment[variable] = ""
         environment["TH105_ENABLE_GS"] = "1" if unit["enable_gs"] else "0"
         fp_mode = (
             "strict"

@@ -234,10 +234,11 @@ compiler flags, TU partitions, globals and relocation mappings require an
 explicit consumer/dependency review; replay those consumers, not unrelated
 units. Keep target identity, full-boundary and zero-difference checks intact.
 
-An append-only unit or relocation entry does not invalidate unrelated accepted
-source. Retain its prior receipts and distinguish incremental ledger totals
-from a fresh whole-corpus replay. Regenerate/check origin and progress ledgers
-when their inputs change, without automatically rebuilding the complete corpus.
+Build provenance fingerprints the selected unit settings, its local include
+closure, and any explicit vendor inputs. Comparators resolve the current
+relocation bindings when they replay an object. Keep unaffected receipts
+when adding a unit or an unrelated binding. Recheck origin and progress
+ledgers when their own inputs change.
 
 Use `scripts/repo-python scripts/verify-exact-units.py --all` only on an explicit
 user request or a demonstrated repository-wide invalidation that cannot be

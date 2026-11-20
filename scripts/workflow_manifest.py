@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import json
 import os
 from pathlib import Path
 import re
@@ -272,33 +273,55 @@ def compiler_sha256() -> str:
     return file_sha256(compiler)
 
 
-def source_dependencies(unit: dict[str, Any]) -> set[Path]:
-    """Follow local quoted includes, including C++ implementation aggregates."""
-    roots = [ROOT / "src"] + [repository_path(p) for p in unit.get("include_dirs", [])]
-    pending = [repository_path(unit["source"])]
-    pending.extend(repository_path(p) for p in unit.get("linked_coff_sources", []))
+def source_dependencies(
+    unit: dict[str, Any], *, include_search_paths: bool = False,
+) -> set[Path]:
+    """Follow local includes, including C++ implementation aggregates."""
+    external_roots = [repository_path(p) for p in unit.get("include_dirs", [])]
+    roots = [ROOT / "src", *external_roots]
+    pending = [(repository_path(p), ()) for p in [unit["source"], *unit.get("linked_coff_sources", [])]]
     found = set()
+    visited = set()
     while pending:
-        path = pending.pop()
-        if path in found:
+        path, parents = pending.pop()
+        if (path, parents) in visited or path in parents:
             continue
+        visited.add((path, parents))
         found.add(path)
-        for include in re.findall(r'^\s*#\s*include\s*"([^"\n]+)"', path.read_text(errors="strict"), re.M):
-            candidates = [(directory / include).resolve() for directory in [path.parent, *roots]]
-            dependency = next((p for p in candidates if p.is_file()), None)
+        contents = path.read_text(errors="strict").replace("\\\n", "")
+        for directive in re.findall(r'^[ \t]*#[ \t]*include\b[ \t]*(.*)$', contents, re.M):
+            quoted = re.match(r'"([^"]+)"', directive)
+            angled = re.match(r'<([^>]+)>', directive) if include_search_paths else None
+            if not quoted and not angled:
+                if include_search_paths and not directive.startswith("<"):
+                    # Macro-expanded includes can select any local source file.
+                    found.update(p for root in [path.parent, *roots]
+                                 for p in root.rglob("*") if p.is_file())
+                continue
+            if quoted:
+                search = [path.parent, *(parent.parent for parent in reversed(parents)), *roots]
+                include = quoted[1]
+            else:
+                search = roots
+                include = angled[1]
+            dependency = next((candidate.resolve() for directory in search
+                               if (candidate := directory / include).is_file()), None)
             if dependency is not None:
                 dependency.relative_to(ROOT)
-                pending.append(dependency)
+                if include_search_paths and any(dependency.is_relative_to(root) for root in external_roots):
+                    # Explicit vendor include trees are fingerprinted as a whole.
+                    found.add(dependency)
+                else:
+                    pending.append((dependency, (*parents, path) if include_search_paths else ()))
     return found
 
 
 def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
-    """Return a conservative digest for all tracked inputs that can shape a probe."""
+    """Fingerprint the unit and its build inputs. Comparisons replay current bindings."""
 
     source = repository_path(str(unit["source"]))
     paths = {
         source,
-        MANIFEST,
         ROOT / "scripts" / "build.py",
         ROOT / "scripts" / "compare-function.py",
         ROOT / "scripts" / "compile-unit.sh",
@@ -306,13 +329,9 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
         ROOT / "scripts" / "extract-msvc-library-object.py",
         ROOT / "scripts" / "match_literals.py",
         ROOT / "scripts" / "workflow_manifest.py",
-        ROOT / "config" / "known-symbols.csv",
-        ROOT / "config" / "reccmp-relocations.csv",
         TARGET_CONFIG,
     }
-    paths.update((ROOT / "src").rglob("*.h"))
-    paths.update((ROOT / "src").rglob("*.hpp"))
-    paths.update(source_dependencies(unit))
+    paths.update(source_dependencies(unit, include_search_paths=True))
     if any(function.get("owned_extent") for function in unit.get("functions", [])):
         paths.update(ROOT / path for path in (
             "config/functions.csv", "config/function-byte-ownership.toml",
@@ -325,7 +344,8 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
         ))
     # Vendored library translation units include headers beside the source.
     # Hash them too, so an upstream-header change cannot reuse stale evidence.
-    paths.update(source.parent.glob("*.h"))
+    if not source.is_relative_to(ROOT / "src"):
+        paths.update(source.parent.glob("*.h"))
     if unit["kind"] == "linked_candidate":
         paths.update(repository_path(path) for path in unit.get("linked_coff_sources", []))
         paths.update(ROOT / path for path in (
@@ -335,14 +355,13 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
         ))
     for raw_include_dir in unit.get("include_dirs", []):
         include_dir = repository_path(str(raw_include_dir))
-        paths.update(include_dir.rglob("*.h"))
-        paths.update(include_dir.rglob("*.hpp"))
+        paths.update(path for path in include_dir.rglob("*") if path.is_file())
     from upstream_boost import inputs as boost_header_inputs
     paths.update(boost_header_inputs(unit, ROOT))
     digest = hashlib.sha256()
     digest.update(name.encode("utf-8"))
-    digest.update(str(unit["profile"]).encode("utf-8"))
-    digest.update(str(unit["enable_gs"]).encode("ascii"))
+    settings = {key: value for key, value in unit.items() if key != "notes"}
+    digest.update(json.dumps(settings, sort_keys=True, separators=(",", ":")).encode("utf-8"))
     relative_paths: list[str] = []
     for path in sorted(paths):
         relative = str(path.relative_to(ROOT))
@@ -350,13 +369,6 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
         digest.update(relative.encode("utf-8"))
         digest.update(bytes.fromhex(file_sha256(path)))
 
-    if unit["kind"] == "upstream_prebuilt":
-        digest.update(str(unit["sdk_component"]).encode("ascii"))
-        digest.update(str(unit["sdk_object"]).encode("ascii"))
-    elif unit["kind"] == "msvc_prebuilt":
-        digest.update(str(unit["toolchain_library"]).encode("ascii"))
-        digest.update(str(unit["toolchain_object"]).encode("ascii"))
-        digest.update(str(unit["toolchain_archive_sha256"]).encode("ascii"))
-    else:
+    if unit["kind"] not in {"upstream_prebuilt", "msvc_prebuilt"}:
         digest.update(bytes.fromhex(compiler_sha256()))
     return digest.hexdigest(), relative_paths
