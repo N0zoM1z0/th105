@@ -22114,6 +22114,20 @@ dir32_targets = [
     "__real@3f99999a=_youmu_fighter_action_entry_006c3424",
 ]
 
+[units.exact-first-youmu-fighter-action-initialization.functions.switch_payload]
+size = 1874
+sha256 = "9ae1d2bcebc090193d038f6998f47199d9aac2ebeb60e6b9cdc540f0fefe2609"
+alignment_hex = ""
+table_offset = 1424
+table_entries = 14
+map_offset = 1480
+map_size = 119
+load_offset = 307
+jump_offset = 314
+tail_jumps = [463, 1419]
+additional_tables = [
+    { table_offset = 1600, jump_offset = 991, table_entries = 12, map_offset = 1648, map_size = 226, load_offset = 984, alignment_hex = "90" },
+]
 
 [units.exact-first-sakuya-object-update]
 kind = "probe"

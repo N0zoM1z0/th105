@@ -7,6 +7,16 @@ with 44 unmasked differing bytes. Preserve this bounded result and switch scope
 instead of repeating the two byte-neutral controls below. No `matches.csv` row
 or new accepted-byte credit is added.
 
+The later fixed-field rewrite uses checked C++ members and compiles to the
+same 1,874-byte canonical payload as the offset baseline. The comparison
+includes both dispatch tables and all 60 relocations. Cases 601 and 604 still
+share the wrong physical order. Their order also moves the entry shared by
+602, 605–607 and 710 by four bytes. An explicit reset label and chained
+publication of the already shared phase were byte-neutral. A phase helper
+stayed out of line under ordinary inlining and duplicated the case body when
+forced inline. The unit now records the dispatch tables for future strict
+comparison.
+
 ## Observed target and boundary
 
 The executable is original Japanese 1.06a, SHA256
