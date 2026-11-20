@@ -31,10 +31,12 @@ parked residual with what was tried. The most productive rules:
   the release 0x404D70. Fields that callers pass to them are class-typed;
   vectors proven `vector<unsigned>` by native helpers keep `unsigned`.
 - Prefer checked typed members for target-observed storage, as in the
-  [Sakuya initializer](RE_WORKFLOW.md#sakuya-action-initializer). Its normal
-  build now verifies the two jump tables as well as the code. When raw access
-  is still needed, an offset macro can preserve VC8 scheduling that changes
-  with an inline `at<T>` accessor.
+  [Sakuya initializer](RE_WORKFLOW.md#sakuya-action-initializer). The exact
+  roster initializers now verify their dispatch tables, and the macro-heavy
+  Fighter initializers use checked members for fixed scalar offsets. Keep
+  composite access provisional where the full subobject layout is uncertain.
+  An offset macro can preserve VC8 scheduling that changes with an inline
+  `at<T>` accessor.
 - For giant switches, [locate differences by action and shared tail](RE_WORKFLOW.md#giant-root-owner-diagnostics)
   before tuning a case. Finish each trial with the full comparison.
 - A "remote chunk" reached by `jmp` after an epilogue is usually a tail call
