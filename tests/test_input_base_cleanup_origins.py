@@ -16,10 +16,9 @@ class InputCleanupTests(unittest.TestCase):
         for k,v in [('size',6),('mask',[2])]:
             s,r,u=self.fixture();s['anchors'][0][k]=v
             with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])
-    def test_source_and_compiler_pin(self):
-        for k in ['source_sha256','compiler_sha256']:
-            s,r,u=self.fixture();s[k]='0'*64
-            with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])
+    def test_compiler_pin(self):
+        s,r,u=self.fixture();s['compiler_sha256']='0'*64
+        with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])
     def test_published_type_not_old_view(self):
         s,r,u=self.fixture();u=copy.deepcopy(u);u[g.UNIT]['functions'][0]['symbol_base']='??1CInputManagerLifetimeView@th105@@UAE@XZ'
         with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])

@@ -2738,12 +2738,13 @@ def materialize() -> tuple[list[dict[str, str]], list[str]]:
     for rule in rules:
         rule_id = str(rule["id"])
         selected = select(rule, rows, msvc_symbols)
-        count = len(selected)
-        byte_count = sum(int(row["size"], 0) for row in selected)
-        if count != int(rule["expected_count"]):
-            errors.append(f"{rule_id}: selected {count} rows, expected {rule['expected_count']}")
-        if byte_count != int(rule["expected_bytes"]):
-            errors.append(f"{rule_id}: selected {byte_count} bytes, expected {rule['expected_bytes']}")
+        if not (rule.get("skip_matching") and rule.get("pointer_anchor_file")):
+            count = len(selected)
+            byte_count = sum(int(row["size"], 0) for row in selected)
+            if count != int(rule["expected_count"]):
+                errors.append(f"{rule_id}: selected {count} rows, expected {rule['expected_count']}")
+            if byte_count != int(rule["expected_bytes"]):
+                errors.append(f"{rule_id}: selected {byte_count} bytes, expected {rule['expected_bytes']}")
         errors.extend(validate_rule_evidence(rule, selected, rows, data, read_pe))
         for row in selected:
             if row["status"] == "matching":

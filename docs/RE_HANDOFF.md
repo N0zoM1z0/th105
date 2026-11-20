@@ -86,8 +86,10 @@ Other open leads:
 Follow [the affected-consumer replay rules](RE_WORKFLOW.md#shared-change-replay).
 Inspect include closures and compare the affected accepted units after a shared
 layout or header change. Check origin anchors when the change touches their
-evidence. Checkout line endings matter for source files that an anchor hashes.
-Use focused tests for the comparison tool being changed.
+evidence. The short and unsigned deque pop-back, input cleanup, and VC8 float
+sine proofs validate fresh emitted code and its call or type evidence. Their
+build records capture the source hash automatically. The roster pointer
+manifests cover their physical slots across exact-status changes.
 
 ## Session rules
 

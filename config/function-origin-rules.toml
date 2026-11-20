@@ -621,20 +621,16 @@ evidence = "current 1.06a IDA caller closure proves all fifteen roster primary-v
 id = "roster-fighter-primary-vtable-authored-106a"
 pointer_anchor_file = "config/roster-fighter-vtable-origin-anchors.toml"
 skip_matching = true
-expected_count = 32
-expected_bytes = 993327
 origin = "authored_game"
 subsystem = "characters"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current 1.06a RTTI-owned Fighter primary vtables directly own this 73-root physical family; the origin selector skips roots already promoted by canonical exact evidence. A target-SHA-pinned pointer manifest replays every contributing vtable dword slot and every candidate byte size. This establishes authored class ownership only; source presence and exactness remain separate. Rule expected_bytes remain sums of provisional main candidate spans; reviewed remote source-function code ownership (currently Sakuya +0x28) is pinned separately in config/function-byte-ownership.toml."
+evidence = "The pinned 1.06a pointer anchors verify every contributing Fighter primary vtable slot and candidate byte size. The origin ledger uses the pointer evidence for candidates awaiting exactness and the canonical comparison for matched candidates. Reviewed remote code extents are recorded in config/function-byte-ownership.toml."
 
 [[rules]]
 id = "roster-character-object-vtable-authored-106a"
 pointer_anchor_file = "config/roster-character-object-vtable-origin-anchors.toml"
 skip_matching = true
-expected_count = 28
-expected_bytes = 649106
 origin = "authored_game"
 subsystem = "characters"
 disposition = "authored"

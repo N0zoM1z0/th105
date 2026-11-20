@@ -36,31 +36,19 @@ class FloatSineOriginTests(unittest.TestCase):
         for at in (0,offset+1,offset+5,offset+7,offset+13):
             bad=bytearray(code);bad[at]^=1
             with self.assertRaises(ValueError):sine.caller_window(bytes(bad),start,offset)
-    def source_fixture(self,root):
-        spec=dict(source_pins={})
-        for name in sine.SOURCES:
-            p=root/name;p.parent.mkdir(parents=True,exist_ok=True)
-            raw=b'std::sin(p[0]);\n'if name.endswith('.cpp')else b'// fixture header\n'
-            p.write_bytes(raw);spec['source_pins'][name]=sine.digest(raw)
-        tools=root/'tools';pins={}
-        for name in sine.HEADER_PINS:
-            p=tools/name;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(b'vendor-original\n');pins[name]=sine.digest(p.read_bytes())
-        return spec,tools,pins
-    def test_repo_crlf_normalized_but_vendor_bytes_raw(self):
-        with tempfile.TemporaryDirectory()as tmp:
-            root=Path(tmp);s,tools,pins=self.source_fixture(root)
-            with patch.object(sine,'HEADER_PINS',pins):
-                sine.verify_sources(s,tools,root)
-                for name in sine.SOURCES:
-                    p=root/name;p.write_bytes(p.read_bytes().replace(b'\n',b'\r\n'))
-                sine.verify_sources(s,tools,root)
-                p=tools/'include/math.h';p.write_bytes(p.read_bytes().replace(b'\n',b'\r\n'))
-                with self.assertRaisesRegex(ValueError,'math header'):sine.verify_sources(s,tools,root)
-    def test_changed_caller_source_rejected(self):
-        with tempfile.TemporaryDirectory()as tmp:
-            root=Path(tmp);s,tools,pins=self.source_fixture(root)
-            (root/'src/characters/TenshiActionState.cpp').write_text('custom_sine();\n')
-            with patch.object(sine,'HEADER_PINS',pins):
-                with self.assertRaisesRegex(ValueError,'caller source'):sine.verify_sources(s,tools,root)
+    def test_original_vendor_header_bytes_required(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tools = Path(tmp)
+            pins = {}
+            for name in sine.HEADER_PINS:
+                path = tools / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b'vendor-original\n')
+                pins[name] = sine.digest(path.read_bytes())
+            with patch.object(sine, 'HEADER_PINS', pins):
+                sine.verify_vendor_headers(tools)
+                (tools / 'include/math.h').write_bytes(b'vendor-altered\n')
+                with self.assertRaisesRegex(ValueError, 'math header'):
+                    sine.verify_vendor_headers(tools)
 
 if __name__=='__main__':unittest.main()

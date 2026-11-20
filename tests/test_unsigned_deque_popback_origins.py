@@ -27,10 +27,9 @@ class UnsignedDequePopTests(unittest.TestCase):
         for k,v in [('source','fake.cpp'),('profile','vc8-sp1-probe-os')]:
             s,r,u=self.fixture();u=copy.deepcopy(u);u[g.UNIT][k]=v
             with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])
-    def test_pinned_compiler_and_source_hash_required(self):
-        for k in ['compiler_sha256','source_sha256']:
-            s,r,u=self.fixture();s[k]='0'*64
-            with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])
+    def test_pinned_compiler_required(self):
+        s,r,u=self.fixture();s['compiler_sha256']='0'*64
+        with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])
     def test_original_std_member_required(self):
         s,r,u=self.fixture();u=copy.deepcopy(u);next(f for f in u[g.UNIT]['functions']if f['address']=='0x00413DF0')['symbol_base']='custom_pop'
         with self.assertRaises(ValueError):g.validate_spec(s,r,u,s['target_sha256'])

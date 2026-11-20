@@ -1,10 +1,6 @@
 schema_version = 1
 target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
 unit = "exact-first-tenshi-action-state"
-[source_pins]
-"src/characters/TenshiActionState.cpp" = "7c9be95a2c5850b1a4ab136305055ebc7a1912c20dd34173b83afd3420da0001"
-"src/characters/TenshiActionState.hpp" = "648a212faee49d11dae30df83e6cc56e27e201c3d4ae52c65859e73cfc8aaf27"
-
 [[anchors]]
 address = "0x0063D3C0"
 size = 18
