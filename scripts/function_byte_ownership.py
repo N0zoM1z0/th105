@@ -167,15 +167,15 @@ def load(
             previous_end = end
 
         remote_bytes = sum(chunk["size"] for chunk in chunks)
-        if not chunks or extent_end != chunks[-1]["end"]:
-            raise ValueError(f"{context}: extent_end does not match last remote chunk")
+        if extent_end != previous_end or (not chunks and not main_exclusions):
+            raise ValueError(f"{context}: extent_end does not match the reviewed extent")
         if int(raw.get("remote_bytes", -1)) != remote_bytes:
             raise ValueError(f"{context}: remote_bytes mismatch")
         owned_bytes = owned_main_bytes + remote_bytes
         if int(raw.get("owned_bytes", -1)) != owned_bytes:
             raise ValueError(f"{context}: owned_bytes mismatch")
         remote_exact = bool(raw.get("remote_exact", False))
-        if remote_exact and not str(raw.get("exact_evidence", "")).strip():
+        if remote_exact and (not chunks or not str(raw.get("exact_evidence", "")).strip()):
             raise ValueError(f"{context}: remote_exact requires exact_evidence")
         result[address] = {
             "address": address,

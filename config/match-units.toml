@@ -17178,6 +17178,21 @@ dir32_targets = [
   "__real@41200000=__real@41200000",
 ]
 
+[units.gpt-web-alice-action-entry.functions.switch_payload]
+table_offset = 1552
+jump_offset = 124
+table_entries = 21
+map_offset = 1636
+map_size = 221
+load_offset = 117
+alignment_hex = "90"
+size = 2150
+sha256 = "fe60762ce60d3aea3ff3c86d1d34c9f3ed014c8017b07c8c273a3483ed96173c"
+tail_jumps = [1320, 1408, 1541]
+additional_tables = [
+    { table_offset = 1860, jump_offset = 1094, table_entries = 15, map_offset = 1920, map_size = 230, load_offset = 1087, alignment_hex = "8d4900" },
+]
+
 [units.gpt-web-fighter-sequence-window]
 kind = "probe"
 source = "src/battle/FighterSequenceWindow.cpp"
@@ -21096,6 +21111,18 @@ rel32_targets = [
     "__ftol2_sse=0x0068A1A0",
 ]
 
+[units.exact-first-iku-object-entry.functions.switch_payload]
+table_offset = 6232
+jump_offset = 140
+table_entries = 30
+map_offset = 6352
+map_size = 199
+load_offset = 132
+alignment_hex = "8d4900"
+size = 6551
+sha256 = "328ac0f108052d93697a8a43cdbca339e6e6b4e452fb0fcdba5d113a1be865b2"
+tail_jumps = [6019]
+
 [units.exact-first-tenshi-object-entry]
 kind = "probe"
 source = "src/characters/TenshiObjectActionEntry.cpp"
@@ -21191,6 +21218,17 @@ rel32_targets = [
     "__CIsqrt=0x0068A380",
 ]
 
+[units.exact-first-alice-object-entry.functions.switch_payload]
+table_offset = 10716
+jump_offset = 141
+table_entries = 39
+map_offset = 10872
+map_size = 200
+load_offset = 132
+alignment_hex = "90"
+size = 11072
+sha256 = "c6c0684ebdd4a826a41a4e057574d3d96696e924282ad63fd5aa7ee5fef2bdce"
+tail_jumps = [10626]
 
 [units.exact-first-patchouli-object-entry]
 kind = "probe"
@@ -21262,6 +21300,22 @@ rel32_targets = [
     "UdongeObjectEntryView_spawn_unparented=0x0064CCB0",
     "?continue_action_980@UdongeObjectEntryView@th105@@QAEXXZ=0x00596370",
     "__ftol2_sse=0x0068A1A0",
+]
+
+[units.exact-first-udonge-object-entry.functions.switch_payload]
+table_offset = 10724
+jump_offset = 140
+table_entries = 32
+map_offset = 10852
+map_size = 199
+load_offset = 132
+alignment_hex = "90"
+size = 11112
+sha256 = "bf3801d220492a28d82be486b7c1a8706c83e8e4edfd2b6ef403618148218654"
+tail_jumps = [10710]
+additional_tables = [
+    { table_offset = 11052, jump_offset = 6717, table_entries = 4, alignment_hex = "90" },
+    { table_offset = 11068, jump_offset = 6978, table_entries = 11, alignment_hex = "" },
 ]
 
 [units.exact-first-remilia-object-update]
@@ -21438,6 +21492,21 @@ dir32_targets = [
     "__real@c1000000=_common_entry_006cd230",
 ]
 
+[units.exact-first-common-fighter-action-initialization.functions.switch_payload]
+table_offset = 4852
+jump_offset = 48
+table_entries = 50
+map_offset = 5052
+map_size = 227
+load_offset = 41
+alignment_hex = "8d4900"
+size = 5521
+sha256 = "2c1fe83f0501890e1eae9507b1a27c3a0a6d5d99577d4d341d706872162b2b49"
+tail_jumps = [74, 331, 4171, 4779, 4801, 4823, 4844]
+additional_tables = [
+    { table_offset = 5280, jump_offset = 3183, table_entries = 16, alignment_hex = "90" },
+    { table_offset = 5344, jump_offset = 4130, table_entries = 17, map_offset = 5412, map_size = 109, load_offset = 4123, alignment_hex = "" },
+]
 
 [units.exact-first-yukari-action-initialization]
 kind = "probe"
@@ -21490,6 +21559,21 @@ dir32_targets = [
     "__real@44660000=_yukari_action_entry_006c57e8",
 ]
 
+[units.exact-first-yukari-action-initialization.functions.switch_payload]
+table_offset = 3456
+jump_offset = 53
+table_entries = 14
+map_offset = 3512
+map_size = 211
+load_offset = 46
+alignment_hex = "90"
+size = 4381
+sha256 = "e0a7822f65f99607719fd6354ba4d14e4e182439d1aebae2ef0d2a1888135334"
+tail_jumps = [1919, 2934, 2977, 3167, 3450]
+additional_tables = [
+    { table_offset = 3724, jump_offset = 1682, table_entries = 26, map_offset = 3828, map_size = 248, load_offset = 1675, alignment_hex = "90" },
+    { table_offset = 4076, jump_offset = 2763, table_entries = 17, map_offset = 4144, map_size = 237, load_offset = 2756, alignment_hex = "" },
+]
 
 [units.exact-first-patchouli-action-initialization]
 kind = "probe"
@@ -21532,6 +21616,21 @@ dir32_targets = [
     "__real@3ecccccd=_patchouli_action_entry_006c4480",
 ]
 
+[units.exact-first-patchouli-action-initialization.functions.switch_payload]
+table_offset = 3132
+jump_offset = 136
+table_entries = 23
+map_offset = 3224
+map_size = 221
+load_offset = 129
+alignment_hex = ""
+size = 3868
+sha256 = "ec90d466db8f4cb187863f1125ed614967ba4547a6e557406c23328debfecd4c"
+tail_jumps = [1653, 1699, 1733, 1767, 1836, 2834, 2958, 3095]
+additional_tables = [
+    { table_offset = 3448, jump_offset = 1227, table_entries = 33, map_offset = 3580, map_size = 226, load_offset = 1220, alignment_hex = "8d4900" },
+    { table_offset = 3808, jump_offset = 1994, table_entries = 15, alignment_hex = "8bff" },
+]
 
 [units.exact-first-suika-action-initialization]
 kind = "probe"
@@ -21579,6 +21678,20 @@ dir32_targets = [
     "__real@3ff0000000000000=_suika_action_entry_006cd160",
 ]
 
+[units.exact-first-suika-action-initialization.functions.switch_payload]
+table_offset = 2580
+jump_offset = 197
+table_entries = 24
+map_offset = 2676
+map_size = 119
+load_offset = 190
+alignment_hex = "8d4900"
+size = 3171
+sha256 = "497737f1cea8be3b66368574f3f72eb2833717a47121fbdc875f75edbfb034d0"
+tail_jumps = [1795, 1837, 1878, 1990, 2028, 2084, 2210, 2572]
+additional_tables = [
+    { table_offset = 2796, jump_offset = 1228, table_entries = 32, map_offset = 2924, map_size = 247, load_offset = 1221, alignment_hex = "90" },
+]
 
 [units.exact-first-tenshi-action-initialization]
 kind = "probe"
@@ -21617,6 +21730,20 @@ dir32_targets = [
     "__real@c1700000=_tenshi_action_entry_006c3c7c",
 ]
 
+[units.exact-first-tenshi-action-initialization.functions.switch_payload]
+table_offset = 2456
+jump_offset = 197
+table_entries = 24
+map_offset = 2552
+map_size = 119
+load_offset = 190
+alignment_hex = "8d4900"
+size = 3023
+sha256 = "4ab4401633d0b2eb19e2a6abe306fccd1ae348342899e85f280a3b4bcd81cb52"
+additional_tables = [
+    { table_offset = 2672, jump_offset = 1484, table_entries = 20, map_offset = 2752, map_size = 246, load_offset = 1477, alignment_hex = "90" },
+    { table_offset = 3000, jump_offset = 2373, table_entries = 3, map_offset = 3012, map_size = 11, load_offset = 2366, alignment_hex = "8bff" },
+]
 
 [units.exact-first-marisa-action-initialization]
 kind = "probe"
@@ -21653,6 +21780,20 @@ dir32_targets = [
     "__real@41700000=_marisa_action_entry_006c3ea0",
 ]
 
+[units.exact-first-marisa-action-initialization.functions.switch_payload]
+table_offset = 2448
+jump_offset = 202
+table_entries = 23
+map_offset = 2540
+map_size = 133
+load_offset = 195
+alignment_hex = "8bff"
+size = 3034
+sha256 = "fc233d82247c3c53ebd71b3675b9393ddb228b8494717a1bc7044b4cc6e3f690"
+tail_jumps = [469, 1965, 2226, 2267, 2339, 2380]
+additional_tables = [
+    { table_offset = 2676, jump_offset = 1328, table_entries = 32, map_offset = 2804, map_size = 230, load_offset = 1321, alignment_hex = "8d4900" },
+]
 
 [units.exact-first-sakuya-action-initialization]
 kind = "probe"
@@ -21698,7 +21839,7 @@ load_offset = 169
 jump_offset = 176
 tail_jumps = [1797, 1832, 2084]
 
-[units.exact-first-sakuya-action-initialization.functions.switch_payload.second_table]
+[[units.exact-first-sakuya-action-initialization.functions.switch_payload.additional_tables]]
 alignment_hex = "90"
 table_offset = 2308
 table_entries = 27
@@ -21739,6 +21880,20 @@ dir32_targets = [
     "__real@c0c00000=_yuyuko_action_entry_006c3c60",
 ]
 
+[units.exact-first-yuyuko-action-initialization.functions.switch_payload]
+table_offset = 2084
+jump_offset = 181
+table_entries = 19
+map_offset = 2160
+map_size = 119
+load_offset = 174
+alignment_hex = "90"
+size = 2650
+sha256 = "5f8072d1c88ffed7b1afca8f6f1b59c5e5f81cf990bc2108d2c99afb95906344"
+tail_jumps = [1645, 1759, 1841, 2059]
+additional_tables = [
+    { table_offset = 2280, jump_offset = 899, table_entries = 35, map_offset = 2420, map_size = 230, load_offset = 892, alignment_hex = "90" },
+]
 
 [units.exact-first-aya-action-initialization]
 kind = "probe"
@@ -21774,6 +21929,20 @@ dir32_targets = [
     "__real@c1f00000=_aya_action_entry_006c3dd0",
 ]
 
+[units.exact-first-aya-action-initialization.functions.switch_payload]
+table_offset = 2052
+jump_offset = 192
+table_entries = 20
+map_offset = 2132
+map_size = 119
+load_offset = 185
+alignment_hex = "8d4900"
+size = 2579
+sha256 = "66057eaf0ac9f68aaf0e5f776e9cbc7b48197511501cbd4ce7f782ab81079623"
+tail_jumps = [1668, 1783, 1853, 1888, 1969, 1993]
+additional_tables = [
+    { table_offset = 2252, jump_offset = 1182, table_entries = 22, map_offset = 2340, map_size = 239, load_offset = 1175, alignment_hex = "90" },
+]
 
 [units.exact-first-komachi-action-initialization]
 kind = "probe"
@@ -21805,6 +21974,20 @@ dir32_targets = [
     "__real@3fb99999a0000000=_komachi_action_entry_006cd1e0",
 ]
 
+[units.exact-first-komachi-action-initialization.functions.switch_payload]
+table_offset = 1972
+jump_offset = 193
+table_entries = 19
+map_offset = 2048
+map_size = 119
+load_offset = 186
+alignment_hex = "90"
+size = 2496
+sha256 = "48a2fcaa2f8f97b95ab76e7a30edb91d0a0f552ad986c491e1a5be3bc8ce3b72"
+tail_jumps = [1675, 1701, 1749, 1814, 1908]
+additional_tables = [
+    { table_offset = 2168, jump_offset = 1157, table_entries = 25, map_offset = 2268, map_size = 228, load_offset = 1150, alignment_hex = "90" },
+]
 
 [units.exact-first-iku-action-initialization]
 kind = "probe"
@@ -21840,6 +22023,20 @@ dir32_targets = [
     "__real@43480000=_iku_action_entry_006c1a8c",
 ]
 
+[units.exact-first-iku-action-initialization.functions.switch_payload]
+table_offset = 1844
+jump_offset = 188
+table_entries = 21
+map_offset = 1928
+map_size = 119
+load_offset = 181
+alignment_hex = "8bff"
+size = 2380
+sha256 = "ea5aebaff6315bea69cdd8d450ebae711e21029a181bc0d6ec4af31137c7f1e4"
+tail_jumps = [1338, 1680, 1794]
+additional_tables = [
+    { table_offset = 2048, jump_offset = 1091, table_entries = 23, map_offset = 2140, map_size = 240, load_offset = 1084, alignment_hex = "90" },
+]
 
 [units.exact-first-remilia-action-initialization]
 kind = "probe"
@@ -21871,6 +22068,20 @@ dir32_targets = [
     "__real@3f000000=_remilia_action_entry_006cd140",
 ]
 
+[units.exact-first-remilia-action-initialization.functions.switch_payload]
+table_offset = 1804
+jump_offset = 181
+table_entries = 20
+map_offset = 1884
+map_size = 119
+load_offset = 174
+alignment_hex = "8bff"
+size = 2344
+sha256 = "38cb9b4ada942934d9d3dd9fe3ee94a6d62d71a65db8c21c86e38b7f57283903"
+tail_jumps = [1409, 1447, 1478, 1516, 1585, 1748]
+additional_tables = [
+    { table_offset = 2004, jump_offset = 921, table_entries = 26, map_offset = 2108, map_size = 236, load_offset = 914, alignment_hex = "90" },
+]
 
 [units.exact-first-youmu-fighter-action-initialization]
 kind = "probe"
@@ -23435,6 +23646,20 @@ rel32_targets = [
   "?dispatch_indexed_event_member@EffectObjectEntryView@th105@@QAEXI@Z=0x004359F0",
 ]
 
+[units.exact-first-effect-object-entry.functions.switch_payload]
+table_offset = 2676
+jump_offset = 51
+table_entries = 29
+map_offset = 2792
+map_size = 152
+load_offset = 44
+alignment_hex = ""
+size = 2980
+sha256 = "d91263ec1492cec60f4a530583bb936f3f3f9fac639a88035c9dc1f0574d9304"
+additional_tables = [
+    { table_offset = 2944, jump_offset = 2395, table_entries = 9, alignment_hex = "" },
+]
+
 [units.exact-first-effect-object-update]
 kind = "probe"
 source = "src/battle/EffectObjectUpdate.cpp"
@@ -23473,6 +23698,17 @@ rel32_targets = [
   "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
 ]
+
+[units.exact-first-weather-effect-entry.functions.switch_payload]
+table_offset = 1384
+jump_offset = 61
+table_entries = 19
+map_offset = 1460
+map_size = 170
+load_offset = 54
+alignment_hex = "90"
+size = 1630
+sha256 = "23d1f5b93cf37c0634ce56166095dc9c734b1d580baeb33ef68606fa33db04a5"
 
 [units.exact-first-weather-effect-update]
 kind = "probe"

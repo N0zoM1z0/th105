@@ -132,7 +132,7 @@ class CompactSwitchTests(unittest.TestCase):
                 + bytes.fromhex('8bff') + struct.pack('<II', address + 42, address + 47)
                 + b'\x00\x01')
         contract = dict(first, size=len(body), sha256=hashlib.sha256(body).hexdigest(),
-                        second_table=second, tail_jumps=[42])
+                        additional_tables=[second], tail_jumps=[42])
         relocations = [(at, 6, '$SWITCH') for at in (8, 15, 27, 34, 48, 52, 60, 64)]
         relocations.append((43, 20, 'tail'))
         bindings = {'tail': external}
@@ -148,6 +148,22 @@ class CompactSwitchTests(unittest.TestCase):
         missing = [r for r in relocations if r[0] != 60]
         with self.assertRaisesRegex(ValueError, 'local DIR32 jump word'):
             payload.inspect(body, body, address, len(code), contract, missing, bindings)
+
+    def test_dense_table_requires_instruction_targets_and_reviewed_alignment(self):
+        address = 0x401000
+        code = (bytes.fromhex('83f801770bff2485') + struct.pack('<I', address + 20)
+                + bytes.fromhex('c38d4900c3'))
+        body = code + bytes.fromhex('8d4900') + struct.pack('<II', address + 12, address + 16)
+        contract = dict(size=len(body), sha256=hashlib.sha256(body).hexdigest(),
+                        alignment_hex='8d4900', table_offset=20, table_entries=2, jump_offset=5)
+        relocations = [(at, 6, '$TABLE') for at in (8, 20, 24)]
+        report = payload.inspect(body, body, address, len(code), contract, relocations)
+        self.assertEqual(report['internal_alignment'], [(13, 16)])
+        self.assertEqual(report['index_bytes'], 0)
+        for offset, replacement in ((13, bytes.fromhex('939090')), (24, struct.pack('<I', address + 14))):
+            modified, modified_contract = changed(body, contract, offset, replacement)
+            with self.subTest(offset=offset), self.assertRaises(ValueError):
+                payload.inspect(modified, modified, address, len(code), modified_contract, relocations)
 
     def test_build_comparison_fails_closed_on_payload_failure(self):
         unit = dict(kind='probe', object='build/fixture-switch.obj', functions=[

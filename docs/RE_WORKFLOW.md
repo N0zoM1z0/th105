@@ -218,6 +218,11 @@ check, changing the first index in a temporary COFF copy from 0 to 1 redirected
 action 300. The old callable comparison passed. The full unit reports a
 mismatch at `0x004DE8EC`. Configure reviewed compact tables with
 `switch_payload` and leave their bytes outside the authored code count.
+The other exact action-entry units use the same verifier. Their reviewed
+tables include direct indexed jumps, byte maps, and dispatches with receiver
+stores or saved-register pushes scheduled around the range check. The
+verifier reports internal alignment that no reachable edge enters. Record
+such ranges in the byte-ownership ledger while still comparing their bytes.
 
 When discovering candidate boundaries through indirect/data-driven call surfaces, `scripts/audit-roster-primary-vtable-coverage.py` closes the current Fighter/Object primary vtables against candidate starts, and `scripts/rank-unledgered-rdata-text-pointers.py` ranks aligned canonical `.rdata` pointers that land outside all tracked main spans and reviewed remote chunks. These are discovery tools, not per-function acceptance gates. Neither report assigns authored or exact credit. A raw pointer can name a compiler startup thunk, EH helper, deleting destructor, jump-table byte sequence or a real authored virtual/callback. Promote only after raw boundary isolation plus ownership/RTTI/caller evidence; then require the ordinary canonical comparator before exact acceptance. `CSceneManager::initialize @ 0x0041E070` is the current positive example: IDA had no containing function, but RTTI/vtable ownership plus a separately padded 162-byte body established the candidate and ordinary VC8 source subsequently matched 162/162.
 

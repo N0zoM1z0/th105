@@ -247,7 +247,8 @@ def main() -> int:
             require_bytes=args.require_target and not args.skip_target_bytes,
         )
         for address, ownership in byte_ownership.items():
-            if functions[address]["status"] == "matching" and not ownership["remote_exact"]:
+            if (functions[address]["status"] == "matching" and ownership["remote_bytes"]
+                    and not ownership["remote_exact"]):
                 raise ValueError(
                     f"functions.csv: 0x{address:08X} is matching but remote chunks are not exact"
                 )
