@@ -235,10 +235,11 @@ explicit consumer/dependency review; replay those consumers, not unrelated
 units. Keep target identity, full-boundary and zero-difference checks intact.
 
 Build provenance fingerprints the selected unit settings, its local include
-closure, and any explicit vendor inputs. Comparators resolve the current
-relocation bindings when they replay an object. Keep unaffected receipts
-when adding a unit or an unrelated binding. Recheck origin and progress
-ledgers when their own inputs change.
+closure, and any explicit vendor inputs. Owned extents and switch payloads
+also record their boundary ledgers. Comparators resolve the current relocation
+bindings when they replay an object. Keep unaffected receipts when adding a
+unit or an unrelated binding. Recheck origin and progress ledgers when their
+own inputs change.
 
 Use `scripts/repo-python scripts/verify-exact-units.py --all` only on an explicit
 user request or a demonstrated repository-wide invalidation that cannot be

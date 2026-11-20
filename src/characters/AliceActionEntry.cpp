@@ -24,7 +24,10 @@ public:
     float acceleration_x_fc;
     float acceleration_y_100;
     signed char facing_104;
-    unsigned char unknown_105[0x37];
+    unsigned char unknown_105[3];
+    float field_108;
+    float field_10c;
+    unsigned char unknown_110[0x2c];
     short action_13c;
     unsigned char unknown_13e[0x42];
     int state_180;
@@ -52,6 +55,10 @@ public:
     }
 };
 
+typedef char AliceActionEntry_field108_offset[
+    offsetof(AliceActionEntryView, field_108) == 0x108 ? 1 : -1];
+typedef char AliceActionEntry_field10c_offset[
+    offsetof(AliceActionEntryView, field_10c) == 0x10c ? 1 : -1];
 typedef char AliceActionEntry_action_offset[
     offsetof(AliceActionEntryView, action_13c) == 0x13c ? 1 : -1];
 typedef char AliceActionEntry_state180_offset[
@@ -94,8 +101,8 @@ void AliceActionEntryView::initialize_action_entry()
             state_736 = 0;
             velocity_y_f8 = 0.0f;
             acceleration_y_100 = 0.6000000238418579f;
-            *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(this) + 0x108) = 0.0f;
-            *reinterpret_cast<float *>(reinterpret_cast<unsigned char *>(this) + 0x10c) = 95.0f;
+            field_108 = 0.0f;
+            field_10c = 95.0f;
             state_73c = 12.0f;
             state_74c = 0.0f;
             return;

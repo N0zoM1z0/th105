@@ -349,15 +349,17 @@ target lacks, so LTCG does not explain the register.
 
 - **Write sibling cases' branches in the same direction.** The common fighter
   initializer 0x477830 has cases 6, 7 and 8 that either call `set_action` or
-  run the stop tail `if (B(0x47e)==0) zero_motion(); F(0x100)=0; return;`.
+  run the stop tail that conditionally calls `zero_motion()` and clears
+  `acceleration_y_100`.
   Cases 7 and 8 test the `set_action` condition first. Case 6 was written with
   the stop tail inside nested negated tests. Its block was then identical to
   case 7's and became the shared retarget for the bare returns, so VC8 could
   not schedule `pop edi` into it. Writing case 6 like its siblings, as
   `if (set) { set_action(208); return; }` followed by the stop tail, made the
-  4849-byte function exact. Cases 150-166 also needed the store order
-  `S(0x730)=0; F(0xf4)=K; F(0xf8)=0; I(0x180)=0;`, and the skill-level updates
-  needed a field macro rather than a reference local.
+  4849-byte function exact. Cases 150–166 keep the store order for
+  `field_730`, horizontal velocity, vertical velocity, and `phase_state_180`.
+  Direct accesses to the typed `skill_levels_624` array preserve the complete
+  match, including the three jump tables.
 
 - **A "remote chunk" reached only by `jmp` after an epilogue is a tail call.**
   The scene frame update 0x43B4A0 pops its registers and jumps to 0x4400D0,
