@@ -14,10 +14,11 @@ Formal and independent cold builds both produce **6868 bytes**, the complete
 target payload length, canonical SHA256
 `99097f1b9fbbf0b163de7d2c15d0ae97646bf5a1a169a23b5631c346294e1d05`.
 The complete unmasked comparison has **13 differing bytes**, confined to action
-803 at offsets+2B3..317. First mismatch `0x004E8313`: targetCE/source53 in the
-virtual-selector preparation. Its call-register choice also changes the later
-facing/payload-address schedule. All remaining callable bytes, alignment and
-all 330 bytes after the callable agree. No partial exact credit is awarded.
+803 at offsets `+0x2B3` through `+0x317`. The first difference is at
+`0x004E8313` in the virtual selector preparation. The other differences
+are in the facing and payload-address preparation for the spawn. The
+rest of the callable, both alignment bytes and the complete table data
+agree.
 
 The checked-member rewrite produces the same full payload after all 218
 relocations are replayed. These separate changes to action 803 also produced
@@ -30,15 +31,13 @@ configured unit now includes the destination and byte-index tables in its
 strict comparison.
 
 ```sh
-taskset -c 0 nice -n 10 python3 scripts/build.py \
+DISPLAY= WAYLAND_DISPLAY= PATH="$PWD/.tools/factory-bin:$PATH" \
+  scripts/repo-python scripts/build.py \
   --unit exact-first-sakuya-object-entry --compare --json
 ```
 
-The first two commands return 1 with the recorded nonexact result. The prefix
-audit returns 0. Both audits accept `--object` for an independent object or
-negative control. The full audit replays every emitted relocation, compares
-all 6868 bytes and requires full length equality. `matches.csv` is unchanged.
-No new exact function or authored byte is claimed.
+The build comparison returns 1 at the recorded callable difference. The
+full replay covers all 6,868 bytes and 218 relocations.
 
 ## Observed target boundary, ownership and ABI
 
@@ -203,4 +202,33 @@ the same full payload 99097f1b. The three binary hashes, version fields, command
 source and object hashes are recorded. This is a compiler-release control, not
 a new public build profile or evidence of the target's original patch release.
 
-Public source/header, compiler profile and exact ledger remain unchanged.
+## Action 803 depends on allocation across the switch
+
+The exact 801 path already pushes the conversion result before loading
+the virtual target into EAX. In the full candidate, 803 instead loads that
+target into EDX and later puts the payload address in EAX and the facing
+byte in ECX. Removing only 800 or only 801 in scratch, with 803's source
+untouched, restores all three original register choices and the native
+instruction order in 803. These local disassemblies agree after accounting
+for shifted intra-function branches. Removing 805, 811 or 930 leaves the
+rebuilt register choices intact.
+
+At `c2.dll:0x10C0743C`, the indirect call and payload address use
+unassigned virtual registers. Immediately after `0x10BDA210` returns
+to `0x10C07442`, the full input has EDX for the call and EAX for the
+address. The input with 801 omitted has EAX for the call and ECX for the
+address. The facing arguments also differ at this point. In both inputs
+the conversion-result push still precedes the virtual-target load.
+Later scheduling can move the full build's load before that push.
+Both traced objects reproduce their respective complete ordinary builds.
+
+The 800/801 payload-scope, branch and switch-exit controls all reproduce
+the selected candidate. Making the exact oriented-motion callee visible
+in 803 also preserves the full bytes and the call. Using the shared int
+selector declaration in 803 leaves the EDX allocation and changes three
+scheduled bytes.
+
+Typed inline helpers now carry the sequence selection and child-spawn
+arguments. The complete canonical payload is identical to the preceding
+build. Moving the motion-view cast into a third inline helper grew the
+payload by 16 bytes, so the motion macro remains in the selected source.
