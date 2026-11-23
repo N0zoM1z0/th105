@@ -187,7 +187,8 @@ VC8 compiler naturally folds their common call/return tail into a shared
 candidate tail. This moves action 900 from 1,185/1,229 to 1,207/1,229 bytes
 and reduces its owner-difference groups from 32 to 39? The owner-local count
 increases because the branch layout is more explicit, but the whole-root
-audit improves from 1,132 to 1,124 instruction-difference groups and the
+audit improves from 1,163 to 1,127 instruction-difference groups after
+keeping the emitter pointer live across the three retirement branches; the
 candidate main code grows from 45,456 to 45,488 bytes. The shared candidate
 call tail is still physically at a different address (`0x00499CF8`) from the
 target's `0x00499DF6`/`0x00499DF8` entries, so action 900 is not exact.

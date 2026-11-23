@@ -2273,6 +2273,7 @@ advance_and_retire_on_completion:
         goto advance_and_retire_on_completion;
 
     case 900: {
+        CharacterObjectEffectEmitter *const emitter = reinterpret_cast<CharacterObjectEffectEmitter *>(this);
         float dead_sequence_zero[3];
         float completed_sequence_zero[4];
         float dead_sequence_one[3];
@@ -2282,7 +2283,7 @@ advance_and_retire_on_completion:
                 dead_sequence_zero[0] = 0.0f;
                 dead_sequence_zero[1] = 0.0f;
                 dead_sequence_zero[2] = 2.0f;
-                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                emitter->spawn_unparented_related_object(
                     900, effect_000.object_x_0e8, effect_000.object_y_0ec,
                     static_cast<unsigned char>(effect_000.object_facing_100), 1,
                     reinterpret_cast<const unsigned *>(dead_sequence_zero), 3);
@@ -2306,7 +2307,7 @@ advance_and_retire_on_completion:
                     completed_sequence_zero[3] = 15.0f;
                 else if (match_identifier == 0)
                     completed_sequence_zero[3] = 8.0f;
-                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                emitter->spawn_unparented_related_object(
                     900, effect_000.object_x_0e8, effect_000.object_y_0ec,
                     static_cast<unsigned char>(effect_000.object_facing_100), 1,
                     reinterpret_cast<const unsigned *>(completed_sequence_zero), 4);
@@ -2319,7 +2320,7 @@ advance_and_retire_on_completion:
                 dead_sequence_one[0] = 0.0f;
                 dead_sequence_one[1] = 0.0f;
                 dead_sequence_one[2] = 2.0f;
-                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                emitter->spawn_unparented_related_object(
                     900, effect_000.object_x_0e8, effect_000.object_y_0ec,
                     static_cast<unsigned char>(effect_000.object_facing_100), 1,
                     reinterpret_cast<const unsigned *>(dead_sequence_one), 3);
