@@ -424,11 +424,23 @@ the second zero argument in 811 still refers to the same unallocated
 virtual group at `0x10C073E7`. A hardware watchpoint catches the operand
 being relinked at `0x10B130F6`; the new group IDs are `0x376` for
 `< 2` and `0x3A4` for `<= 1`. Both groups then have 10 uses and
-score 3 at `+0x40`. At `0x10B17A46` they receive EBX and EDI,
-respectively. The two traced objects reproduce their uninstrumented
-builds after all 737 relocations. The trace locates the decision within
-the full-function pass. The interference or ordering difference that
-selects the register remains open.
+score 3 at `+0x40`.
+
+In `0x10B14B70`, VC8 scans the register class's order and takes the
+lowest-cost eligible entry, keeping the first on a tie. The order list
+for this class is at `0x10CE59A0`, the group points to the eligible set
+through `+0x20`, and the costs are in the DWORD array at `0x10D14F10`.
+At `0x10B14D84`, the `< 2` build permits EBX and EBP at cost zero.
+The `<= 1` build also permits EDI, which precedes EBX and ties it at
+zero. EBP has cost 3100. The store at `0x10B14E2A` records the choice
+in the group, and `0x10B17A46` copies the selected register into the
+811 operand. EDI starts eligible in both builds. In the `< 2` build,
+group `0x3B0` gets EDI first for the value 2 used in 811's sequence and
+frame comparisons. The update at `0x10B1555F` clears EDI from the zero
+argument's group. That bit survives until selection in the `<= 1`
+build. Each traced object reproduces its uninstrumented build after all
+737 relocations. The reason the cutoff changes the order of the two
+allocations is still open.
 
 TH075's Sakuya action 817 and TH105 action 998 use the same owner-action
 ranges to position the child.

@@ -93,6 +93,8 @@ joins their continuation before sequence 2. The 920 match-ID switch
 uses the original stub order, and the original signed cutoff in 816
 restores the earlier 811 constant registers. Hardware watchpoints locate
 that decision inside the whole-function pass at `c2.dll:0x10B0CF40`.
+The original 816 cutoff makes EDI eligible for the 811 zero argument.
+EDI comes before EBX in the fixed register scan and both cost zero.
 Sequences 2 through 4 of action 815 now share the target's channel fade,
 with checked byte-channel and signed time-counter fields. The late pass at
 `c2.dll:0x10B2C950` still folds 816 and 930 into other frame calls.
