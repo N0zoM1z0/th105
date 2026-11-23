@@ -560,14 +560,63 @@ recover all three cross-action jumps. Ending the frame in either
 arm alone leaves the copy in 901. Sharing an explicit angle temporary
 keeps the copy in 901 as well.
 
-The two changed paths agree through the angle store, parent guard,
-position, scale and alpha copies. At the common frame block they
-branch to the frame call, skipping the native `MOV ECX, ESI`.
-The paths otherwise agree after rebasing, including the remaining
-frame instructions. The full rebuild removes 84 bytes. Comparing
-all 200 primary dispatch entries with the preceding candidate finds
-instruction changes in 859 and 901. Replacing the angle accesses at
-`+0x12C` with a checked float member reproduces the complete output.
+The direct exits remove 84 bytes, but the shared parent-copy tail
+branches past the native `MOV ECX, ESI`. In that build, the two
+sequence-specific call records still have their own receiver moves at
+`0x10C073F3`, after register allocation. At `0x10C077B1` both call
+records remain and both moves are gone. The ordinary exit from the
+901 switch retains its move.
+
+Sending 859 sequence 3 to the exit after the 901 sequence switch and
+letting 901 sequence 1 break to that same exit gives the two paths one
+source frame call. The shared parent copy now branches to the ECX
+reload before the frame call. Moving the source exit to 859 instead
+places the shared parent copy in 901. The selected parent repair
+changes one byte of the branch displacement across the full replay.
+All three parent paths in 901 and their partners in 859 now agree
+through the frame exit after rebasing. The checked float member at
+`+0x12C` still accounts for the angle stores.
+
+## Inclusive alpha guards in 800, 801, 812 and 813
+
+The six native ten-step fades use `CMP AL, 10` and `JBE` at
+`0x004E0ED1`, `0x004E1092`, `0x004E1325`, `0x004E309C`,
+`0x004E33B0` and `0x004E342B`. Writing the inclusive comparison
+reproduces the six instruction pairs and changes twelve bytes in the
+full replay. The complete reachable paths in 800, 801 and 812 agree
+after rebasing, with 265, 180 and 194 instructions respectively.
+In 813 the two guards agree and the earlier EAX load still differs.
+
+## Action 810 comparisons and constant placement in later actions
+
+The native 810 entry uses the signed sequence cutoff `<= 1`.
+Its three owner-action tests exclude values below 500 and above
+503, and the sequence checks in those blocks compare with 2.
+The first block uses the object's own sequence. The two orbit
+blocks use the owner's sequence. The candidate still lacks the
+native `MOV EBX, 2` between the first compare and branch.
+
+Changing only the 810 comparisons moves the load of 2 to the
+native positions in 857, 859 sequence 0 and 901 sequence 0. The
+same control assigns the value 3 in 818 to EBX as in the target
+and moves an EBP load earlier in 805, where the prefix still differs.
+With those register choices, the inclusive alpha tests are the
+remaining differences in the reachable paths of 818, 857, and
+the two sequence 0 paths. Their native compares are at
+`0x004E4697`, `0x004E5B21`, `0x004E5C5E`, `0x004E650B` and
+`0x004E6FFB`. The selected rebuild matches those paths after
+rebasing, with 308, 237, 169 and 173 instructions respectively.
+The 859/901 parent-copy paths and all 17 frame-call owner groups
+remain aligned.
+
+The ground-bounce code in 811, 856, 858 and 900 has the same
+source expression for the vertical sum. The target loads Y and
+adds the rounded speed in ST(1) on all four paths. The current
+build does so in 858. In the other three paths it duplicates
+the speed on the x87 stack and adds Y from memory. Swapping the
+addition operands or capturing Y after the speed store in 900
+retains the memory add. Capturing Y before that store restores
+the add from ST(1) with an extra spill and reload.
 
 ## Actions 920 and 930 before frame advance
 
@@ -658,8 +707,8 @@ constant setup now differs again. VC8 puts 2 in EDI and zero in EBX.
 Reverting the 816 owner cutoff to `< 2` leaves these registers swapped
 and loses the native compare encoding.
 
-The current envelope is 29,492 bytes with 742 relocations, SHA256
-`09360ac8f108ef8fdd9fae096a27d630d89bb97474a501aabc27e140aec61a07`.
+The current envelope is 29,480 bytes with 742 relocations, SHA256
+`14a67892376a24c6d57b1b8e01835c41e9bd306c0966b0242d85e492ca964a86`.
 The target envelope is 29,476 bytes. The first difference is at the
 primary default branch, `0x004E0D55`. Both 803 alpha paths and the
 200-byte primary remap still agree.

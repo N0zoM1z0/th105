@@ -36,7 +36,12 @@ void SakuyaObjectUpdateView::update_action_state()
     owner_348->dispatch_character_wave_handle(3);set_sequence_frame(2);
     velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.1f))+5.0;
    }
-   if(frame_index_140==2) {angle_12c-=30.0;velocity_y_f8-=0.5;if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if (frame_index_140 == 2) {
+    angle_12c -= 30.0;
+    velocity_y_f8 -= 0.5;
+    if (alpha_113 <= 10) RETIRE();
+    alpha_113 -= 10;
+   }
   }
   if(sequence_id_13e==3 || sequence_id_13e==7) {
    if(!parent_object_34c)RETIRE();B(0x104)=AT(parent_object_34c,unsigned char,0x104);if(parent_object_34c->frame_index_140!=0)RETIRE();
@@ -49,7 +54,12 @@ void SakuyaObjectUpdateView::update_action_state()
     owner_348->dispatch_character_wave_handle(3);set_sequence_frame(2);release_secondary();
     velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.1f))+5.0;
    }
-   if(frame_index_140==2) {angle_12c-=30.0;velocity_y_f8-=0.5;if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if (frame_index_140 == 2) {
+    angle_12c -= 30.0;
+    velocity_y_f8 -= 0.5;
+    if (alpha_113 <= 10) RETIRE();
+    alpha_113 -= 10;
+   }
   }
   STEP();if(OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();
   if(CORE->advance_frame_and_dispatch())--lifetime_330;if(frame_counter_142==0 && frame_index_140==2)--lifetime_330;return;
@@ -62,7 +72,12 @@ void SakuyaObjectUpdateView::update_action_state()
     CORE->advance_state_six_counter_conditional(10);
     if(CONTACT2468) {phase_index_184=0;set_sequence_frame(2);owner_348->dispatch_character_wave_handle(3);time_counter_144=0;release_secondary();velocity_x_f4=-velocity_x_f4*0.5;velocity_y_f8=static_cast<float>(random_float(30)*D(0.1f))+5.0;return;}
    }
-   if(frame_index_140==2) {angle_12c-=30.0;velocity_y_f8-=0.5;if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if (frame_index_140 == 2) {
+    angle_12c -= 30.0;
+    velocity_y_f8 -= 0.5;
+    if (alpha_113 <= 10) RETIRE();
+    alpha_113 -= 10;
+   }
   } break; case 3: {
    if(!parent_object_34c)RETIRE();B(0x104)=AT(parent_object_34c,unsigned char,0x104);if(parent_object_34c->frame_index_140!=0)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;B(0x104)=AT(parent_object_34c,unsigned char,0x104);
   }
@@ -183,8 +198,8 @@ void SakuyaObjectUpdateView::update_action_state()
   if(OUTSIDE(1380.0f,-100.0,960.0,-120.0))RETIRE();
   if(CORE->advance_frame_and_dispatch())--lifetime_330;if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==3)--lifetime_330;return;
  case 810:
-  if(sequence_id_13e<2) {
-   if(AT(owner_348,short,0x13c)<=499 || AT(owner_348,short,0x13c)>=504 || sequence_id_13e>=3){if(alpha_113<=20)RETIRE();alpha_113-=20;}
+  if(sequence_id_13e<=1) {
+   if(AT(owner_348,short,0x13c)<500 || AT(owner_348,short,0x13c)>503 || sequence_id_13e>2){if(alpha_113<=20)RETIRE();alpha_113-=20;}
    else {x_ec=C(0x104)*AT(owner_348,float,0xf4)+AT(owner_348,float,0xec);y_f0=AT(owner_348,float,0xf8)+AT(owner_348,float,0xf0);}
    angle_12c+=10.0;
   }
@@ -198,10 +213,10 @@ void SakuyaObjectUpdateView::update_action_state()
  if(!(parameters_340[0]>=0) || parameters_340[0]>180.0f)B(0x33c)=1;else B(0x33c)=255; \
 }
   if(sequence_id_13e==2){angle_12c-=40.0;field_370+=15.0;if(field_370>parameters_340[1])field_370=parameters_340[1];
-   if(AT(owner_348,short,0x13c)<=499 || AT(owner_348,short,0x13c)>=504 || AT(owner_348,short,0x13e)>=3){ORBIT810();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {ORBIT810();}
+   if(AT(owner_348,short,0x13c)<500 || AT(owner_348,short,0x13c)>503 || AT(owner_348,short,0x13e)>2){ORBIT810();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {ORBIT810();}
   }
   if(sequence_id_13e==3){angle_12c-=20.0;field_370+=15.0;if(field_370>parameters_340[1])field_370=parameters_340[1];
-   if(AT(owner_348,short,0x13c)<=499 || AT(owner_348,short,0x13c)>=504 || AT(owner_348,short,0x13e)>=3){ORBIT810();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {ORBIT810();}
+   if(AT(owner_348,short,0x13c)<500 || AT(owner_348,short,0x13c)>503 || AT(owner_348,short,0x13e)>2){ORBIT810();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {ORBIT810();}
   }
 #undef ORBIT810
   if(CORE->advance_frame_and_dispatch())--lifetime_330;if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==1)--lifetime_330;return;
@@ -226,7 +241,7 @@ void SakuyaObjectUpdateView::update_action_state()
   if(phase_state_180==5)RETIRE();
   if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==0)replace_secondary(994,6.0f,30,2,2);
   if(sequence_id_13e==0){if(frame_index_140==0){if(emit_repeated(0,2,2))RETIRE();MOVE();CORE->advance_state_six_counter_conditional(10);if(phase_state_180==2 || phase_state_180==4 || phase_state_180==7 || phase_state_180==8){release_secondary();next_sequence_frame();owner_348->dispatch_character_wave_handle(3);time_counter_144=0;velocity_x_f4=-velocity_x_f4*0.25;velocity_y_f8=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}}
-   else{velocity_y_f8-=D(0.35f);angle_12c-=30.0;if(alpha_113<11)RETIRE();alpha_113-=10;}}
+   else{velocity_y_f8-=D(0.35f);angle_12c-=30.0;if (alpha_113 <= 10) RETIRE();alpha_113-=10;}}
   if(sequence_id_13e==1){if(!parent_object_34c)RETIRE();B(0x104)=AT(parent_object_34c,unsigned char,0x104);x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;angle_12c=parent_object_34c->angle_12c;if(parent_object_34c->frame_index_140>0)RETIRE();}
   STEP();if(OUTSIDE(1680.0,-400.0,1000.0,-160.0f))RETIRE();
   if(CORE->advance_frame_and_dispatch())--lifetime_330;if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==1)--lifetime_330;return;
@@ -237,8 +252,8 @@ void SakuyaObjectUpdateView::update_action_state()
    if(S(0x368)<=4)F(0x128)+=S(0x36c);if(S(0x368)>=5)F(0x128)-=S(0x36c);
    if(alpha_113<=8)RETIRE();alpha_113-=8;
   }
-  if(sequence_id_13e==6 || sequence_id_13e==7){velocity_x_f4*=D(0.9f);y_f0+=velocity_y_f8;x_ec+=C(0x104)*velocity_x_f4;if(frame_index_140>0){if(alpha_113<11)RETIRE();alpha_113-=10;}}
-  if(sequence_id_13e==8){field_370-=D(0.2f);if(field_370<0.001f)field_370=0.01f;scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c+field_370);if(time_counter_144>=5){if(alpha_113<11)RETIRE();alpha_113-=10;}}
+  if(sequence_id_13e==6 || sequence_id_13e==7){velocity_x_f4*=D(0.9f);y_f0+=velocity_y_f8;x_ec+=C(0x104)*velocity_x_f4;if(frame_index_140>0){if (alpha_113 <= 10) RETIRE();alpha_113-=10;}}
+  if(sequence_id_13e==8){field_370-=D(0.2f);if(field_370<0.001f)field_370=0.01f;scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c+field_370);if(time_counter_144>=5){if (alpha_113 <= 10) RETIRE();alpha_113-=10;}}
   if(sequence_id_13e==9 || sequence_id_13e==10){velocity_x_f4*=D(0.9f);y_f0+=velocity_y_f8;x_ec+=C(0x104)*velocity_x_f4;if(alpha_113<=20)RETIRE();alpha_113-=20;}
   FRAME_EXIT();
  case 815:
@@ -383,7 +398,12 @@ void SakuyaObjectUpdateView::update_action_state()
    if(frame_index_140==1){if(AT(owner_348,short,0x48c)<=0){next_sequence_frame();field_344=0;replace_secondary(994,4.0f,10,2,2);float payload[3]={parameters_340[0],0,1};PARENTED(818,-1,3);return;}MOTION->set_oriented_components_f0_f4(parameters_340[0],0);}
    if(frame_index_140==2){if(CONTACT2468){phase_index_184=0;set_sequence_frame(4);owner_348->dispatch_character_wave_handle(3);release_secondary();velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.05f))+5.0;return;}if(phase_state_180!=0){next_sequence_frame();release_secondary();return;}MOVE();}
    if(frame_index_140==3){velocity_x_f4=0;velocity_y_f8=0;if(time_counter_144>=20)RETIRE();}
-   if(frame_index_140==4){angle_12c-=5.0;velocity_y_f8-=0.5;if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if (frame_index_140 == 4) {
+    angle_12c -= 5.0;
+    velocity_y_f8 -= 0.5;
+    if (alpha_113 <= 10) RETIRE();
+    alpha_113 -= 10;
+   }
   }break; case 1:{if(!parent_object_34c)RETIRE();B(0x104)=AT(parent_object_34c,unsigned char,0x104);if(parent_object_34c->frame_index_140!=2)RETIRE();x_ec=C(0x104)*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;B(0x104)=AT(parent_object_34c,unsigned char,0x104);}
   break; case 2:{scale_x_11c-=D(0.15f);if(scale_x_11c<1)scale_x_11c=1;scale_y_120=scale_x_11c;if(time_counter_144>=20)RETIRE();}
   break;}
@@ -463,11 +483,11 @@ void SakuyaObjectUpdateView::update_action_state()
   if(phase_state_180==5)RETIRE();
   if(sequence_id_13e==0){if(frame_index_140==0)MOVE();else velocity_y_f8-=0.5;parameters_340[1]+=0.5;
    if(frame_index_140<2 && (phase_state_180==6 || phase_state_180==2 || phase_state_180==4 || phase_state_180==7)){set_sequence_frame(2);velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.1f))+5.0;}
-   if(frame_index_140==2){angle_12c-=30.0;velocity_y_f8-=0.5;if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if(frame_index_140==2){angle_12c-=30.0;velocity_y_f8-=0.5;if(alpha_113 <= 10)RETIRE();alpha_113-=10;}
   }
   if(sequence_id_13e==1){if(frame_index_140==0)MOVE();else velocity_y_f8-=0.5;parameters_340[1]+=0.5;
    if(frame_index_140<2){CORE->advance_state_six_counter_conditional(0);if(phase_state_180==2 || phase_state_180==4 || phase_state_180==7){set_sequence_frame(2);velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.1f))+5.0;}}
-   if(frame_index_140==2){angle_12c-=30.0;velocity_y_f8-=0.5;if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if(frame_index_140==2){angle_12c-=30.0;velocity_y_f8-=0.5;if(alpha_113 <= 10)RETIRE();alpha_113-=10;}
   }
   if(sequence_id_13e==2 || sequence_id_13e==3){if(!parent_object_34c)RETIRE();B(0x104)=AT(parent_object_34c,unsigned char,0x104);if(parent_object_34c->frame_index_140!=0)RETIRE();x_ec=C(0x104)*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;B(0x104)=AT(parent_object_34c,unsigned char,0x104);}
   STEP();if(OUTSIDE(1380.0f,-100.0,1000.0,-160.0f))RETIRE();FRAME_EXIT();
@@ -494,7 +514,7 @@ void SakuyaObjectUpdateView::update_action_state()
    angle_12c+=1.0;
    if(S(0x364)==0){scale_x_11c+=D(0.05f);if(scale_x_11c>=1.0f){scale_x_11c=1;scale_y_120=1;S(0x364)=1;}scale_y_120=scale_x_11c;}
    if(S(0x364)==1){++S(0x366);if(S(0x366)>=300)S(0x364)=2;float radius=static_cast<float>(scale_x_11c*90.0);double y_square=square_float_value(static_cast<float>(AT(A,float,0xf0)+100.0-y_f0));if(sqrt_float_value(static_cast<float>(square_float_value(AT(A,float,0xec)-x_ec)+y_square))<radius)AT(A,short,0x186)=2;}
-   if(S(0x364)==2){scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c-D(0.025f));if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if(S(0x364)==2){scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c-D(0.025f));if(alpha_113 <= 10)RETIRE();alpha_113-=10;}
    MOVE();parameters_340[1]*=D(0.9f);if(parameters_340[1]<1)parameters_340[1]=1;STEP();if(OUTSIDE(1480.0f,-200.0,1000.0,-260.0f))RETIRE();break;
   }
   case 1:angle_12c-=2.0;if(!parent_object_34c)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;scale_x_11c=parent_object_34c->scale_x_11c;scale_y_120=parent_object_34c->scale_y_120;alpha_113=parent_object_34c->alpha_113;break;
@@ -507,7 +527,7 @@ void SakuyaObjectUpdateView::update_action_state()
    scale_x_11c = parent_object_34c->scale_x_11c;
    scale_y_120 = parent_object_34c->scale_y_120;
    alpha_113 = parent_object_34c->alpha_113;
-   FRAME_EXIT();
+   goto advance_901_frame;
   case 4:
    scale_x_11c += field_370;
    field_370 -= D(0.1f);
@@ -570,7 +590,7 @@ void SakuyaObjectUpdateView::update_action_state()
    angle_12c+=1.0;
    if(S(0x364)==0){scale_x_11c+=D(0.05f);if(scale_x_11c>=1){scale_x_11c=1;scale_y_120=1;S(0x364)=1;}scale_y_120=scale_x_11c;}
    if(S(0x364)==1){++S(0x366);if(S(0x366)>=600 || S(0x368)>180)S(0x364)=2;float radius=static_cast<float>(scale_x_11c*90.0);double y_square=square_float_value(static_cast<float>(AT(A,float,0xf0)+100.0-y_f0));if(sqrt_float_value(static_cast<float>(square_float_value(AT(A,float,0xec)-x_ec)+y_square))<radius){++S(0x368);AT(A,short,0x186)=2;}}
-   if(S(0x364)==2){scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c-D(0.025f));if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if(S(0x364)==2){scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c-D(0.025f));if(alpha_113 <= 10)RETIRE();alpha_113-=10;}
    MOVE();parameters_340[1]*=D(0.9f);if(parameters_340[1]<1.5f)parameters_340[1]=1.5f;STEP();if(OUTSIDE(1480.0f,-200.0,1000.0,-260.0f))RETIRE();break;
   }
   case 1:
@@ -581,7 +601,7 @@ void SakuyaObjectUpdateView::update_action_state()
    scale_x_11c = parent_object_34c->scale_x_11c;
    scale_y_120 = parent_object_34c->scale_y_120;
    alpha_113 = parent_object_34c->alpha_113;
-   FRAME_EXIT();
+   break;
   case 2:angle_12c+=6.0;if(!parent_object_34c)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;scale_x_11c=parent_object_34c->scale_x_11c;scale_y_120=parent_object_34c->scale_y_120;alpha_113=parent_object_34c->alpha_113;break;
   case 3:angle_12c+=1.0;if(!parent_object_34c)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;scale_x_11c=parent_object_34c->scale_x_11c;scale_y_120=parent_object_34c->scale_y_120;alpha_113=parent_object_34c->alpha_113;break;
   case 4:
@@ -642,6 +662,7 @@ void SakuyaObjectUpdateView::update_action_state()
   case 8:
    if(!parent_object_34c)RETIRE();B(0x104)=AT(parent_object_34c,unsigned char,0x104);if(parent_object_34c->frame_index_140!=0)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;B(0x104)=AT(parent_object_34c,unsigned char,0x104);break;
   }
+ advance_901_frame:
   FRAME_EXIT();
  case 920:
   if(phase_state_180==5)RETIRE();
