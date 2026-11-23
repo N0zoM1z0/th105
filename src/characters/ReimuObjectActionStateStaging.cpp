@@ -3529,7 +3529,8 @@ fade_902:
                             908, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
                             reinterpret_cast<const unsigned *>(copied), 3);
                         reinterpret_cast<ReimuObjectOwnerSpawnView *>(_root_state.fighter_owner_348)->dispatch_character_wave_handle(1);
-                        this->state_374 += _root_state.state_366;
+                        register float previous_state_374 = this->state_374;
+                        this->state_374 = static_cast<float>(previous_state_374 + _root_state.state_366);
                     }
                     _root_state.state_366 = static_cast<short>(_root_state.state_366 - 1);
                 }

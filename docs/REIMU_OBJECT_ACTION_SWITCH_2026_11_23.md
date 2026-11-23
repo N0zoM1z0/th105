@@ -72,14 +72,14 @@ ordering. Recent focused owner extents (candidate/target) are:
 | action 807 | 272 | 300 | -28 bytes; shared advance tail is remote in candidate |
 | action 811 | 1,509 | 1,507 | +2 bytes; 38 diff groups |
 | action 812 | 1,294 | 1,376 | -82 bytes |
-| action 817 | 3,027 | 3,066 | -39 bytes; 83 diff groups |
+| action 817 | 3,027 | 3,066 | -39 bytes; 82 diff groups |
 | action 822 | 1,888 | 1,955 | -67 bytes |
 | action 869 | 1,691 | 1,736 | -45 bytes |
 | action 900 | 1,207 | 1,229 | -22 bytes |
 | action 901 | 2,247 | 2,324 | -77 bytes |
 | action 902 | 2,998 | 2,998 | exact owner extent |
 | action 903 | 1,403 | 1,397 | +6 bytes |
-| action 908 | 3,789 | 3,794 | -5 bytes |
+| action 908 | 3,791 | 3,794 | -3 bytes; x87 accumulator order now exact |
 | action 951 | 575 | 547 | +28 bytes; 2 diff groups |
 
 Action 811 keeps sequence-3 and sequence-4 channel/alpha fades as separate
@@ -115,12 +115,12 @@ their owning cases, allowing the compiler to reuse stack storage.
 ## Current root status and next work
 
 The latest focused owner audit reports a 46,138-byte target callable extent,
-45,576 candidate main bytes, a 46,444-byte candidate section tail, and 1,114
+45,580 candidate main bytes, a 46,448-byte candidate section tail, and 1,151
 instruction-difference groups. The candidate main remains 562 bytes short and
 the whole root is nonexact: the first raw-byte mismatch is still
 `0x0049655F` (offset `+0x1F`, target byte `0xF8`, candidate byte `0xC5`).
 Action 902 has an exact 2,998-byte owner extent; action 811 is +2 bytes and
-action 908 is -5 bytes. Action 951 is 575/547 bytes with only two
+action 908 is -3 bytes. Action 951 is 575/547 bytes with only two
 instruction-difference groups; its remaining extent excess is the shared
 advance tail being physically owned by the candidate's 951 region instead of
 target action 807. The largest remaining deficits include 812, 816, 817, 821,
@@ -262,3 +262,18 @@ groups at 3,027/3,066 bytes. The target still keeps zero in `EBX` and one in
 `EDI`, whereas the candidate uses a different register lifetime and retains
 `sub edi, ebx` in the loop. That mismatch remains a source-level register
 allocation problem, not a reason to add assembly or padding.
+
+
+## Action 908 x87 accumulator evaluation order
+
+The sequence-1 accumulator update now snapshots `state_374` into a natural
+C++ local before adding the integer `state_366`. This forces the target's x87
+operand order: load the existing float, load the signed integer with `fild`,
+then `faddp` and store the result. The candidate now emits that four-instruction
+sequence exactly; the action-908 owner grows from 3,789 to 3,791 bytes against
+the 3,794-byte target. The remaining owner differences are concentrated in
+register assignment (`EBX`/`EDI`), the `-1` countdown lifetime, and downstream
+control-flow layout. The latest focused root audit is 45,580 candidate main
+bytes, 46,448 candidate section-tail bytes, and 1,151 instruction-difference
+groups. This is a verified local code-generation improvement, not a whole-root
+exactness claim.
