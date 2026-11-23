@@ -418,13 +418,45 @@ used in the Object initializer's investigation. They persist at
 lifetime preserve the complete relocated output of the same C++ with
 offset accesses.
 
-The current envelope is 29,216 bytes with 737 relocations, SHA256
-`8e6969b211bbd1baf1a77c646c500060d0cf70793400a2a192393d6d204b7399`.
-It still first differs at the primary default branch, `0x004E0D55`.
-Action 803's checked alpha paths survive the frame and register changes.
+The earlier decision happens inside `0x10B0CF40`, called from
+`0x10C073EE` in the pinned VC8 SP1 `c2.dll`. In both full-root builds
+the second zero argument in 811 still refers to the same unallocated
+virtual group at `0x10C073E7`. A hardware watchpoint catches the operand
+being relinked at `0x10B130F6`; the new group IDs are `0x376` for
+`< 2` and `0x3A4` for `<= 1`. Both groups then have 10 uses and
+score 3 at `+0x40`. At `0x10B17A46` they receive EBX and EDI,
+respectively. The two traced objects reproduce their uninstrumented
+builds after all 737 relocations. The trace locates the decision within
+the full-function pass. The interference or ordering difference that
+selects the register remains open.
 
 TH075's Sakuya action 817 and TH105 action 998 use the same owner-action
 ranges to position the child.
 TH105 reads its own facing and multiplies it by 57 on all three paths
 at `0x004E7B72`, `0x004E7BB7` and `0x004E7BF2`. TH075 copies the owner's
 facing and uses three different offsets.
+
+## Shared channel fade in action 815
+
+Sequences 2 and 3/4 enter the same fade at `0x004E3999`. A signed time
+counter of at least 5 enables the update. The two unsigned byte tests
+compare with 10. The normal path subtracts 10 from both channels, and
+the saturation path clears them before testing alpha. All three sequences
+reach the same 17 instructions with matching encodings after rebasing
+the common retire and frame-continuation branches. The two channel
+members and the time counter now have compile-time offset checks.
+Replacing their offset macros with members is byte-neutral across the
+full rebuilt function.
+
+Actions 859 and 901 also fade these fields. The target has four guards.
+The low-channel branch from 901 sequence 4 goes to the 859 sequence 5/6
+tail, and 901 sequence 5/6 goes to the 859 sequence 4 tail. A scratch
+build with both destinations written explicitly still merges the two
+901 paths in VC8. Keep those tails in the full-root allocation and
+sharing investigation.
+
+The current envelope is 29,200 bytes with 737 relocations, SHA256
+`999977cecc9fe8bf719eb45a43570e1b7a9770d7d150f1b4c8904d5ccc8ee7c2`.
+The target envelope is 29,476 bytes. The first difference is at the
+primary default branch, `0x004E0D55`. Both 803 alpha paths and the
+200-byte primary remap still agree.

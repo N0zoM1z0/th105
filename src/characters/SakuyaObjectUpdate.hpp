@@ -28,14 +28,18 @@ public:
  float y_f0;
  float velocity_x_f4;
  float velocity_y_f8;
- unsigned char unknown_0fc[0x17];
+ unsigned char unknown_0fc[0x14];
+ unsigned char channel_110;
+ unsigned char channel_111;
+ unsigned char unknown_112;
  unsigned char alpha_113;
  unsigned char unknown_114[0x28];
  short action_id_13c;
  short sequence_id_13e;
  short frame_index_140;
  short frame_counter_142;
- unsigned char unknown_144[0x3c];
+ int time_counter_144;
+ unsigned char unknown_148[0x38];
  int phase_state_180;
  unsigned char unknown_184[0x1ac];
  int lifetime_330;
@@ -51,6 +55,10 @@ typedef char CheckSakuyaUpdate_velocity_x_f4[
     offsetof(SakuyaObjectUpdateView, velocity_x_f4) == 0xf4 ? 1 : -1];
 typedef char CheckSakuyaUpdate_velocity_y_f8[
     offsetof(SakuyaObjectUpdateView, velocity_y_f8) == 0xf8 ? 1 : -1];
+typedef char CheckSakuyaUpdate_channel_110[
+    offsetof(SakuyaObjectUpdateView, channel_110) == 0x110 ? 1 : -1];
+typedef char CheckSakuyaUpdate_channel_111[
+    offsetof(SakuyaObjectUpdateView, channel_111) == 0x111 ? 1 : -1];
 typedef char CheckSakuyaUpdate_alpha_113[
     offsetof(SakuyaObjectUpdateView, alpha_113) == 0x113 ? 1 : -1];
 typedef char CheckSakuyaUpdate_action_id_13c[
@@ -61,6 +69,8 @@ typedef char CheckSakuyaUpdate_frame_index_140[
     offsetof(SakuyaObjectUpdateView, frame_index_140) == 0x140 ? 1 : -1];
 typedef char CheckSakuyaUpdate_frame_counter_142[
     offsetof(SakuyaObjectUpdateView, frame_counter_142) == 0x142 ? 1 : -1];
+typedef char CheckSakuyaUpdate_time_counter_144[
+    offsetof(SakuyaObjectUpdateView, time_counter_144) == 0x144 ? 1 : -1];
 typedef char CheckSakuyaUpdate_phase_state_180[
     offsetof(SakuyaObjectUpdateView, phase_state_180) == 0x180 ? 1 : -1];
 typedef char CheckSakuyaUpdate_lifetime_330[

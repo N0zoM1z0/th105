@@ -91,10 +91,15 @@ See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md) and
 Sakuya's Object update `0x004E0D30` now retains both 803 alpha calls and
 joins their continuation before sequence 2. The 920 match-ID switch
 uses the original stub order, and the original signed cutoff in 816
-restores the earlier 811 constant registers. The late pass at
+restores the earlier 811 constant registers. Hardware watchpoints locate
+that decision inside the whole-function pass at `c2.dll:0x10B0CF40`.
+Sequences 2 through 4 of action 815 now share the target's channel fade,
+with checked byte-channel and signed time-counter fields. The late pass at
 `c2.dll:0x10B2C950` still folds 816 and 930 into other frame calls.
-The seven-table comparison first differs at `0x004E0D55`.
-[Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#frame-calls-and-cross-case-registers)
+The complete candidate is 29,200 bytes with 737 relocations. The first
+difference is at `0x004E0D55`. Actions 859 and 901 still need to recover
+the target's four fade guards and two shared low-channel tails.
+[Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#shared-channel-fade-in-action-815)
 
 Other open leads:
 - Scenario character install 0x456EB0 (one EH-state store) and the info
