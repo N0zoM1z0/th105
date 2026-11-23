@@ -955,8 +955,8 @@ advance_and_retire_on_completion:
         goto advance_with_sequence_four_retirement;
 
     case 817: {
-        register int zero = 0;
         register int one = 1;
+        register int zero = 0;
         if (_root_state.phase_state_180 == 5)
             goto retire;
         switch (_root_state.sequence_13e) {

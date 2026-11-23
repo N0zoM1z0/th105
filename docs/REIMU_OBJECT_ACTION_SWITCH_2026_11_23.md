@@ -51,62 +51,62 @@ ordering. Recent focused owner extents (candidate/target) are:
 
 | Owner | Candidate | Target | Difference |
 |---|---:|---:|---:|
-| action 802 | 31 | 31 | exact owner extent |
-| action 811 | 1,507 | 1,507 | exact owner extent; 18 diff groups |
-| action 812 | 1,393 | 1,376 | +17 bytes |
-| action 822 | 1,957 | 1,955 | +2 bytes |
-| action 869 | 1,669 | 1,736 | -67 bytes |
-| action 900 | 1,197 | 1,229 | -32 bytes |
-| action 901 | 2,244 | 2,324 | -80 bytes |
-| action 902 | 3,019 | 2,998 | +21 bytes |
+| action 802 | 33 | 31 | +2 bytes |
+| action 807 | 272 | 300 | -28 bytes; shared advance tail is remote in candidate |
+| action 811 | 1,509 | 1,507 | +2 bytes; 38 diff groups |
+| action 812 | 1,294 | 1,376 | -82 bytes |
+| action 817 | 3,027 | 3,066 | -39 bytes; 83 diff groups |
+| action 822 | 1,888 | 1,955 | -67 bytes |
+| action 869 | 1,691 | 1,736 | -45 bytes |
+| action 900 | 1,207 | 1,229 | -22 bytes |
+| action 901 | 2,247 | 2,324 | -77 bytes |
+| action 902 | 2,998 | 2,998 | exact owner extent |
 | action 903 | 1,403 | 1,397 | +6 bytes |
-| action 908 | 3,795 | 3,794 | +1 byte |
+| action 908 | 3,789 | 3,794 | -5 bytes |
+| action 951 | 486 | 547 | -61 bytes |
 
-Action 811 now keeps sequence-3 and sequence-4 channel/alpha fades as separate
+Action 811 keeps sequence-3 and sequence-4 channel/alpha fades as separate
 branches, matching the target's two control-flow paths rather than combining
 them under one `sequence == 3 || sequence == 4` condition. Its final pure
 state-field test is ordered sequence-first so Clang does not tail-merge the
-811 epilogue into action 804. This restores a distinct 1,507-byte owner; the
-owner extent now matches the target, while 18 instruction-difference groups
-remain and the condition order itself is not yet byte-identical.
+811 epilogue into action 804. The current owner is 1,509/1,507 bytes with 38
+instruction-difference groups; the condition order and final two-byte extent
+are still not exact.
 
-Action 900's sequence-0/1 retirement exits select their own packet and word
-count, then converge on one local `spawn_unparented_related_object` call and
-retirement return. The handler is currently 1,197/1,229 bytes by owner extent.
-Its target-owned shared tail is still not fully recovered after removing the
-dispatcher-wide emitter; the remaining 32-byte deficit is being treated as
-real C++ control-flow ownership, not a padding target.
+Action 900's three terminal sequence-0/1 branches now construct and emit
+their packets in the owning branches through one case-local emitter pointer.
+The handler is 1,207/1,229 bytes with 39 owner-difference groups. Clang folds
+the three calls to one candidate call tail at `0x00499CF8`; the target enters
+its shared tails at `0x00499DF6` and `0x00499DF8`. This is a source-level
+shared-call reconstruction, not yet the same physical boundary.
 
 Action 901's sequence-1 burst paths converge on one direct C++ spawn call
 inside the handler. The three-word packet is represented as three floats,
 not a four-float zero-initialized array when only three words are passed.
-Its owner is 2,241/2,324 bytes; the remaining differences are concentrated
+Its owner is 2,247/2,324 bytes; the remaining differences are concentrated
 in VC8 register lifetimes, loop control, and x87 packet preparation.
 
 The dispatcher-wide `retiring_action`, `retiring_packet`, `retiring_words`,
-and `emit_retiring_world` path have now been removed. Actions 822, 902, and
-908 issue their packet-specific spawn/decrement/return calls in their own
-natural C++ branches. This puts action 822 at 1,957/1,955 bytes and action
-908 at 3,795/3,794 bytes; action 902 is 3,019/2,998. Action 903 is now 1,403/1,397 after moving its two terminal packet calls
-into the health/burst branches; this reduced its instruction-difference groups
-from 36 to 26 and the root total from 1,204 to 1,190 at that checkpoint. The improvement is not uniform: 811, 869, 900, and 901 are now
-shorter because their target-owned shared tails still need explicit natural
-reconstruction. Packet arrays for 822, 869, 900, 902, 903, and 908 are scoped
-to their owning cases, allowing the compiler to reuse stack storage.
+and `emit_retiring_world` path have been removed. Actions 822, 902, and 908
+issue packet-specific spawn/decrement/return calls in their owning C++
+branches. Their current extents are 1,888/1,955, 2,998/2,998, and 3,789/3,794
+respectively. Action 903 remains 1,403/1,397 with 26 instruction-difference
+groups after moving its two terminal packet calls into the health/burst
+branches. Packet arrays for 822, 869, 900, 902, 903, and 908 are scoped to
+their owning cases, allowing the compiler to reuse stack storage.
 
 ## Current root status and next work
 
-The focused owner audit reports a 46,138-byte target callable extent,
-45,680 candidate main bytes, a 46,548-byte candidate section tail, and 1,191
-instruction-difference groups (down from 1,204 before restoring the distinct
-811 epilogue). Action 802 remains one exact 31-byte owner, and action 811 now
-matches its 1,507-byte owner extent. The complete root is still nonexact: the
-root comparison's first mismatch remains at `0x0049655F` (offset `+0x1F`).
-Actions 822 and 908 are within two and one bytes by owner extent. Action 869 is now 1,669/1,736 after restoring its two branch-local retirement calls. The larger
-remaining deficits include 869/900/901 and 816/817/905/951; continue
-recovering their original shared-tail and register lifetimes together with
-the remote owner boundary. Do not substitute a full cold replay for focused
-changed-owner builds.
+The latest focused owner audit reports a 46,138-byte target callable extent,
+45,488 candidate main bytes, a 46,356-byte candidate section tail, and 1,127
+instruction-difference groups. The candidate main remains 650 bytes short and
+the whole root is nonexact: the first raw-byte mismatch is still
+`0x0049655F` (offset `+0x1F`). Action 902 has an exact 2,998-byte owner extent;
+action 811 is +2 bytes and action 908 is -5 bytes. The largest remaining
+owner deficits include 812, 816, 817, 821, 822, 869, 900, 901, 905, 906,
+and 951. Continue recovering their shared-tail, register, and x87 lifetimes
+together with the remote owner boundary. Do not substitute a full cold replay
+for focused changed-owner builds.
 
 The exact 66-byte helper at `0x004963A0` remains independently exact.
 
@@ -142,8 +142,8 @@ The two sequence-0 retirement branches now build and emit their own three-word
 packets directly in the owning C++ branches. This removes the post-switch
 `retiring_packet_869`/`retiring_words_869` handoff and grows the owner from
 1,656 to 1,669 bytes while reducing its instruction-difference groups from
-57 to 46. The current root audit is 45,680 candidate main bytes against the
-46,138-byte target callable extent, with 1,191 instruction-difference groups.
+57 to 46. The latest root audit is 45,488 candidate main bytes against the
+46,138-byte target callable extent, with 1,127 instruction-difference groups.
 The target routes both branches to the shared `0x00499DF6` call tail; the
 candidate still selects different shared call tails, so this is real semantic
 and ownership progress, not an exactness claim. The full root remains
@@ -162,14 +162,15 @@ common epilogue on true. It is physically placed immediately after action
 
 The C++ `advance_and_retire_on_completion` label has been moved to the
 post-807 boundary so those large action families share the same source-level
-control-flow owner. This changes the focused audit from 1,192 to 1,132
-instruction-difference groups and moves 902 to an exact 2,998-byte owner
-extent. The new focused extents are: 807 272/300, 808 415/410, 811 1,509/1,507,
-812 1,294/1,376, 817 3,029/3,066, 821 1,083/1,119, 822 1,888/1,955,
-869 1,691/1,736, 900 1,185/1,229, 901 2,240/2,324, 902 2,998/2,998,
+control-flow owner. This changed the focused audit from 1,192 to 1,132 instruction-difference
+groups and moved 902 to an exact 2,998-byte owner extent. Reordering the
+`register one` and `register zero` declarations in action 817 then reduced the
+root to 1,127 instruction-difference groups and the candidate main to 45,488
+bytes. Current focused extents are: 807 272/300, 808 415/410, 811 1,509/1,507,
+812 1,294/1,376, 817 3,027/3,066, 821 1,083/1,119, 822 1,888/1,955,
+869 1,691/1,736, 900 1,207/1,229, 901 2,247/2,324, 902 2,998/2,998,
 903 1,403/1,397, 908 3,789/3,794, and 951 486/547. The complete root remains
-nonexact; the candidate has 45,488 main bytes against the 46,138-byte target
-extent after the action-900 branch-local packet reconstruction. The root entry branch at `0x0049655F` is still the first raw-byte
+nonexact. The root entry branch at `0x0049655F` is still the first raw-byte
 mismatch. These results are focused owner evidence only, not a cold replay.
 
 Action 901's two sequence-1 terminal burst branches now each own their
@@ -178,18 +179,30 @@ packet-specific spawn and retirement directly. This removes the extra local
 groups from 75 to 70 while preserving the three-word packet semantics.
 
 
+## Action 817 register lifetime ordering
+
+The action-817 local register declarations are now ordered `one` then `zero`.
+This source-level lifetime ordering changes Clang's allocation across the
+large switch: the focused root audit drops from 1,166 to 1,127 instruction-
+difference groups, with candidate main bytes moving from 45,492 to 45,488.
+Action 817 changes from 3,029 to 3,027 bytes, action 901 from 2,248 to 2,247,
+and action 908 from 3,793 to 3,789. The target still begins the owner with
+`xor ebx, ebx; mov edi, 1`, while the candidate retains a different register
+assignment, so this is a measurable code-generation improvement rather than
+an exact register-lifetime match.
+
 ## Action 900 terminal packet branches
 
 Action 900's three terminal sequence-0/sequence-1 branches now construct and
 emit their own packet at the branch that owns the retirement, rather than
 carrying a packet pointer and word count through one post-switch call. The
 VC8 compiler naturally folds their common call/return tail into a shared
-candidate tail. This moves action 900 from 1,185/1,229 to 1,207/1,229 bytes
-and reduces its owner-difference groups from 32 to 39? The owner-local count
-increases because the branch layout is more explicit, but the whole-root
-audit improves from 1,163 to 1,127 instruction-difference groups after
-keeping the emitter pointer live across the three retirement branches; the
-candidate main code grows from 45,456 to 45,488 bytes. The shared candidate
+candidate tail. This moves action 900 from 1,185/1,229 to 1,207/1,229 bytes and increases
+its owner-local difference groups from 32 to 39. The whole-root audit now
+improves from 1,132 to 1,127 instruction-difference groups after keeping the
+emitter pointer live across the three retirement branches and reordering the
+action-817 register locals; candidate main code grows from 45,456 to 45,488
+bytes. The shared candidate
 call tail is still physically at a different address (`0x00499CF8`) from the
 target's `0x00499DF6`/`0x00499DF8` entries, so action 900 is not exact.
 
