@@ -19,7 +19,7 @@ public:
 };
 class SuikaEntryMotionView { public: void set_components(float angle,float magnitude); };
 int __cdecl selector_random_roll(int limit);
-double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
-double __cdecl lookup_orientation_sine_quantized_abs(float phase);
+float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+float __cdecl lookup_orientation_sine_quantized_abs(float phase);
 }
 #endif

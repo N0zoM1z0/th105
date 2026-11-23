@@ -19,8 +19,8 @@ public:
 };
 class PatchouliEntryMotionView { public: void set_components(float angle,float magnitude); };
 int __cdecl selector_random_roll(int limit);
-double __cdecl lookup_orientation_cosine_quantized_abs(float angle);
-double __cdecl lookup_orientation_sine_quantized_abs(float angle);
+float __cdecl lookup_orientation_cosine_quantized_abs(float angle);
+float __cdecl lookup_orientation_sine_quantized_abs(float angle);
 extern int g_match_identifier;
 }
 #endif

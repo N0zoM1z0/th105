@@ -12,8 +12,8 @@ namespace th105 {
 
 int __cdecl selector_random_roll(int limit);
 unsigned int __cdecl mt19937_next_u32();
-double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
-double __cdecl lookup_orientation_sine_quantized_abs(float phase);
+float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+float __cdecl lookup_orientation_sine_quantized_abs(float phase);
 
 class ReimuObjectActionEntryView {
 public:

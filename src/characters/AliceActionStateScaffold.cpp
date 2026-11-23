@@ -21,8 +21,8 @@ class AliceActionStateLowScaffoldView;
 float __fastcall alice_stage_surface_height_at_x(AliceActionStateLowScaffoldView *fighter);
 int __fastcall is_y_at_or_below_stage_surface(void *fighter);
 unsigned int __cdecl mt19937_next_u32(void);
-double __cdecl lookup_orientation_sine_quantized_abs(float phase);
-double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+float __cdecl lookup_orientation_sine_quantized_abs(float phase);
+float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 struct FighterActionScratchView { void reset(); };
 
 class AliceActionStateLowScaffoldView {

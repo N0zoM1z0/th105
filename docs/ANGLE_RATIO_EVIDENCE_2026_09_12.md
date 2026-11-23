@@ -168,3 +168,15 @@ Direct CRT `div` adds a call; no fake alias or instruction override is used.
 The next bounded main-root check is strict rounding with exceptions off on
 the shared CPU root. The ratio is a positive whole-function witness that the
 old strict-only `_ftol2_sse_excpt` failure does not rule out this setting.
+
+
+## Follow-up: quantized sine/cosine recovered on 2026-11-23
+
+The historical “Still nonexact: quantized sine/cosine and aligned abs”
+section above is superseded for `0x00406360` and `0x004063D0`. A natural
+C++ float-return implementation now reproduces the complete 100-byte and
+94-byte bodies, including the 64-byte frame, SDK float abs call,
+`__ftol2_sse`, and signed `IDIV`. The divisor must remain a local
+non-const `int` initialized to 3600 for VC8 to select the target division
+sequence. The complete four-function focused unit and source/ABI discussion
+are recorded in [ANGLE_QUANTIZED_LOOKUP_2026_11_23.md](ANGLE_QUANTIZED_LOOKUP_2026_11_23.md).

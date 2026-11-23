@@ -73,11 +73,10 @@ def build_unit(
         for variable in ("CL", "_CL_", "INCLUDE"):
             environment[variable] = ""
         environment["TH105_ENABLE_GS"] = "1" if unit["enable_gs"] else "0"
-        fp_mode = (
-            "strict"
-            if unit["profile"] == "vc8-sp1-probe-o2-fp-strict"
-            else "default"
-        )
+        fp_mode = {
+            "vc8-sp1-probe-o2-fp-strict": "strict",
+            "vc8-sp1-probe-o2-fp-strict-noexcept": "strict-noexcept",
+        }.get(unit["profile"], "default")
         environment["TH105_FP_MODE"] = fp_mode
         environment["TH105_INLINE_MODE"] = (
             "explicit" if unit["profile"] == "vc8-sp1-probe-o2-ob1" else "default"
@@ -107,11 +106,10 @@ def build_unit(
         "kind": unit["kind"],
         "profile": unit["profile"],
         "enable_gs": unit["enable_gs"],
-        "fp_mode": (
-            "strict"
-            if unit["profile"] == "vc8-sp1-probe-o2-fp-strict"
-            else "default"
-        ),
+        "fp_mode": {
+            "vc8-sp1-probe-o2-fp-strict": "strict",
+            "vc8-sp1-probe-o2-fp-strict-noexcept": "strict-noexcept",
+        }.get(unit["profile"], "default"),
         "inline_mode": (
             "explicit" if unit["profile"] == "vc8-sp1-probe-o2-ob1" else "default"
         ),

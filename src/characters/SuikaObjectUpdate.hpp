@@ -19,8 +19,8 @@ public:
 class SuikaUpdateMotionView {public:void set_components(float,float);int selector_random_range(int,int);};
 class SuikaUpdateOwnerView {public:void dispatch_character_wave_handle(unsigned);void publish_battle_layout_scalar(float);};
 int __cdecl selector_random_roll(int);
-double __cdecl lookup_orientation_sine_quantized_abs(float);
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
+float __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
 float __cdecl lookup_orientation_sine(int);float __cdecl lookup_orientation_cosine(int);
 float __cdecl lookup_orientation_ratio_quantized_abs(int);
 float __cdecl square_float_value(float);float __cdecl atan2_degrees(float,float);float __cdecl absolute_scalar_float(float);

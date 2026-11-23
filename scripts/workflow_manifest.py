@@ -31,6 +31,7 @@ ALLOWED_PROFILES = {
     "vc8-sp1-probe-o2",
     "vc8-sp1-probe-o2-ob1",
     "vc8-sp1-probe-o2-fp-strict",
+    "vc8-sp1-probe-o2-fp-strict-noexcept",
     "xiph-win32sdk-1.0.1",
     "vc8-sp1-libcmt",
     "vc8-sp1-ltcg-o2",

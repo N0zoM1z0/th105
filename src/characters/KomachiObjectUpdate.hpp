@@ -17,8 +17,8 @@ public:
  void turn_heading(float,float,float);void update_ping_pong_motion();
 };
 int __cdecl selector_random_roll(int);
-double __cdecl lookup_orientation_sine_quantized_abs(float);
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
+float __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
 float __cdecl atan2_degrees(float,float);
 float __cdecl square_float_value(float);
 extern int g_match_identifier;

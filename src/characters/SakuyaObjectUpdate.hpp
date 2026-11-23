@@ -154,8 +154,8 @@ int __cdecl selector_random_roll(int);
 float __cdecl atan2_degrees(float,float);
 float __cdecl square_float_value(float);
 float __cdecl sqrt_float_value(float);
-double __cdecl lookup_orientation_sine_quantized_abs(float);
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
+float __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
 extern float sakuya_update_left, sakuya_update_top, sakuya_update_right, sakuya_update_bottom;
 extern int g_match_identifier;
 }

@@ -35,7 +35,7 @@ public:
         unsigned char direction, int variant, int params, int count);
 };
 int __cdecl selector_random_roll(int limit);
-double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 extern int g_match_identifier;
 }
 #endif

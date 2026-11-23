@@ -1,8 +1,8 @@
 #include "WeatherEffectState.hpp"
 namespace th105 {
 int __cdecl selector_random_roll(int);
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
-double __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
+float __cdecl lookup_orientation_sine_quantized_abs(float);
 extern int g_event_runtime_state;
 // Pointer-only access view; not a complete allocatable owner.
 struct WeatherEffectEntryView : WeatherEffectState { void initialize_action_664e10(); };

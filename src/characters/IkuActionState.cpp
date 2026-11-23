@@ -7,8 +7,8 @@ float __cdecl atan2_degrees(float y, float x);
 // Both target lookup entries return a value loaded from the float table in
 // ST0. The retained double declaration carries that value without rounding;
 // it does not establish the original source return type.
-double __cdecl lookup_orientation_sine_quantized_abs(float phase);
-double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+float __cdecl lookup_orientation_sine_quantized_abs(float phase);
+float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 float __cdecl absolute_scalar_float(float value);
 extern int g_match_identifier;
 

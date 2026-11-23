@@ -22,7 +22,7 @@ public:
 class RemiliaUpdateMotionView { public: void set_components(float angle,float magnitude); };
 int __cdecl selector_random_roll(int limit);
 float __cdecl atan2_degrees(float y,float x);
-double __cdecl lookup_orientation_sine_quantized_abs(float angle);
-double __cdecl lookup_orientation_cosine_quantized_abs(float angle);
+float __cdecl lookup_orientation_sine_quantized_abs(float angle);
+float __cdecl lookup_orientation_cosine_quantized_abs(float angle);
 }
 #endif

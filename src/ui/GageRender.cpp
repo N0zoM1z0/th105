@@ -6,8 +6,8 @@
 #include "Gage.hpp"
 
 namespace th105 {
-double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
-double __cdecl lookup_orientation_sine_quantized_abs(float phase);
+float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+float __cdecl lookup_orientation_sine_quantized_abs(float phase);
 
 } // namespace th105
 using namespace th105;

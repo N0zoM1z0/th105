@@ -6,8 +6,8 @@
 
 namespace th105 {
 
-double __cdecl lookup_orientation_sine_quantized_abs(float);
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
+float __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
 
 float __cdecl lookup_orientation_tangent(float phase)
 {

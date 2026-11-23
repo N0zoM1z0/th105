@@ -5,8 +5,8 @@ extern int g_event_runtime_state;
 int __cdecl selector_random_roll(int);
 float __cdecl lookup_orientation_sine(int);
 extern "C" float __cdecl lookup_orientation_cosine(int);
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
-double __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
+float __cdecl lookup_orientation_sine_quantized_abs(float);
 struct WeatherMotionView { void set_components(float, float); };
 struct WeatherEffectUpdateView : WeatherEffectState {
     void update_663b70();

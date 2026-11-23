@@ -218,10 +218,10 @@ typedef char ReimuStage_movement_attack_offsets[(offsetof(ReimuPreludePeerView, 
 
 typedef char ReimuStage_late_low_offsets[(offsetof(ReimuActionStatePreludeView, word_482) == 0x482 && offsetof(ReimuActionStatePreludeView, word_4ae) == 0x4ae && offsetof(ReimuActionStatePreludeView, field_4b8) == 0x4b8 && offsetof(ReimuActionStatePreludeView, field_6c8) == 0x6c8 && offsetof(ReimuActionStatePreludeView, word_734) == 0x734 && offsetof(ReimuActionStatePreludeView, word_736) == 0x736 && offsetof(ReimuActionStatePreludeView, field_73c) == 0x73c && offsetof(ReimuActionStatePreludeView, field_740) == 0x740) ? 1 : -1];
 
-// Both original bodies return an m32 table load in ST0. Float versus double
-// source spelling remains unresolved; retain the existing ABI-compatible view.
-double __cdecl lookup_orientation_sine_quantized_abs(float phase);
-double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+// The complete VC8 object comparisons establish the float-return ABI for
+// both quantized orientation table lookups.
+float __cdecl lookup_orientation_sine_quantized_abs(float phase);
+float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
 unsigned int __cdecl mt19937_next_u32();
 float __cdecl atan2_degrees(float y, float x);
 float __cdecl sqrt_float_value(float value);

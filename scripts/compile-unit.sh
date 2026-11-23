@@ -79,6 +79,7 @@ fp_args=()
 case "${TH105_FP_MODE:-default}" in
   default) ;;
   strict) fp_args+=(/fp:strict) ;;
+  strict-noexcept) fp_args+=(/fp:strict /fp:except-) ;;
   *)
     echo "unsupported TH105_FP_MODE: ${TH105_FP_MODE}" >&2
     exit 2

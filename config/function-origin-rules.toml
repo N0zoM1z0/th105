@@ -518,7 +518,7 @@ origin = "authored_game"
 subsystem = "engine"
 disposition = "authored"
 confidence = "observed"
-evidence = "Current SHA-pinned raw gameplay call graph proves 0x00406360/0x004063D0 are consumed across all fifteen RTTI-owned roster Object +0x28 giant roots (295/205 direct calls). Both index the game-owned 3600-entry orientation table at 0x006FE8B0, as do canonical-exact authored 0x00406480/0x004064B0. The adjacent ratio 0x004064D0 has independently become canonical exact and is classified by the exact baseline. These two helpers remain formally nonexact."
+evidence = "Current SHA-pinned raw gameplay call graph proves 0x00406360/0x004063D0 are consumed across all fifteen RTTI-owned roster Object +0x28 giant roots (295/205 direct calls). Both index the game-owned 3600-entry orientation table at 0x006FE8B0, as do canonical-exact authored 0x00406480/0x004064B0. Focused VC8 strict-noexcept C++ reconstruction now reproduces both complete bodies (100/100 and 94/94) with float return, SDK float abs, a 64-aligned index and runtime-initialized divisor. The existing call-graph evidence continues to establish authored-game origin independently of exactness; original alignment motivation and unique source spelling remain unproved. See docs/ANGLE_QUANTIZED_LOOKUP_2026_11_23.md."
 
 [[rules]]
 id = "ui-source-present-exact-caller-helpers-authored-106a"

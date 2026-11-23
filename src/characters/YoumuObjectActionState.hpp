@@ -24,7 +24,7 @@ public:
 int __cdecl selector_random_roll(int limit);
 float __cdecl atan2_degrees(float y,float x);
 float __cdecl square_float_value(float value);
-double __cdecl lookup_orientation_sine_quantized_abs(float angle);
-double __cdecl lookup_orientation_cosine_quantized_abs(float angle);
+float __cdecl lookup_orientation_sine_quantized_abs(float angle);
+float __cdecl lookup_orientation_cosine_quantized_abs(float angle);
 }
 #endif

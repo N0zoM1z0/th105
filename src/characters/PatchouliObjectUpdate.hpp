@@ -18,8 +18,8 @@ public:
 class PatchouliUpdateMotionView {public:void set_components(float,float);int selector_random_range(int,int);};
 class PatchouliUpdateOwnerView {public:void dispatch_character_wave_handle(unsigned);};
 int __cdecl selector_random_roll(int);
-double __cdecl lookup_orientation_sine_quantized_abs(float);
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
+float __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
 float __cdecl lookup_orientation_sine(int);float __cdecl lookup_orientation_cosine(int);
 float __cdecl lookup_orientation_ratio_quantized_abs(int);
 float __cdecl atan2_degrees(float,float);float __cdecl absolute_scalar_float(float);

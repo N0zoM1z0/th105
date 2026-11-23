@@ -5,8 +5,8 @@ namespace th105 {
 extern int g_event_effect_id;
 extern int g_secondary_event_effect_id;
 extern int g_fighter_state_4b8_default;
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
-double __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
+float __cdecl lookup_orientation_sine_quantized_abs(float);
 struct InfoEffectUpdateView : InfoEffectState {
     InfoEffectObject *emit_info_effect_6609c0(int, float, float, int, int);
     int dispatch_info_state_6609f0(int);

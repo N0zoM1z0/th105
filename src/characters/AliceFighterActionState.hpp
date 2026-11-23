@@ -31,6 +31,6 @@ extern int g_match_identifier;
 unsigned __cdecl mt19937_next_u32();
 int __cdecl selector_random_roll(int);
 float __cdecl atan2_degrees(float,float);
-double __cdecl lookup_orientation_sine_quantized_abs(float);
-double __cdecl lookup_orientation_cosine_quantized_abs(float);
+float __cdecl lookup_orientation_sine_quantized_abs(float);
+float __cdecl lookup_orientation_cosine_quantized_abs(float);
 }

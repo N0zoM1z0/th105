@@ -8,8 +8,8 @@ namespace th105 {
 
 extern CHandleManager4 g_sprite_texture_manager;
 extern D3DDevice9 *g_sprite_texture_device;
-double __cdecl lookup_orientation_cosine_quantized_abs(float phase);
-double __cdecl lookup_orientation_sine_quantized_abs(float phase);
+float __cdecl lookup_orientation_cosine_quantized_abs(float phase);
+float __cdecl lookup_orientation_sine_quantized_abs(float phase);
 
 } // namespace th105
 

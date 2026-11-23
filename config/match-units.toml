@@ -1886,9 +1886,9 @@ dir32_targets = ["__real@40490fdb=_orientation_pi"]
 kind = "probe"
 source = "src/engine/AngleLookup.cpp"
 object = "build/match-units/CrossV106a_AngleLookup.obj"
-profile = "vc8-sp1-probe-o2"
+profile = "vc8-sp1-probe-o2-fp-strict-noexcept"
 enable_gs = false
-notes = "TH105 1.06a angle lookup family. 0x00406480/0x004064B0 are canonical exact; atan2-degrees and the integer-angle ratio have separate strict-FP units. Current raw Object +0x28 call graph independently proves 0x00406360/0x004063D0 authored gameplay ownership. Those two quantized helpers remain formal nonexact probes with no exact credit."
+notes = "TH105 1.06a angle lookup family. 0x00406480/0x004064B0 are canonical exact; atan2-degrees and the integer-angle ratio have separate strict-FP units. Current raw Object +0x28 call graph independently proves 0x00406360/0x004063D0 authored gameplay ownership. The quantized sine/cosine bodies now use float return, float abs materialization, a 64-aligned int index, and a runtime-initialized 3600 divisor; the strict-noexcept VC8 profile emits the target IDIV and matches 100/100 and 94/94."
 
 [[units.cross-v106a-angle-lookup.functions]]
 address = "0x00406480"
@@ -1902,7 +1902,7 @@ dir32_targets = ["?g_orientation_cosine_table@th105@@3PAMA=?g_orientation_cosine
 
 [[units.cross-v106a-angle-lookup.functions]]
 address = "0x00406360"
-symbol_base = "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z"
+symbol_base = "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z"
 rel32_targets = [
   "_fabs=0x0068BAAE",
   "__ftol2_sse=0x0068A1A0",
@@ -1916,7 +1916,7 @@ dir32_targets = [
 
 [[units.cross-v106a-angle-lookup.functions]]
 address = "0x004063D0"
-symbol_base = "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z"
+symbol_base = "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z"
 rel32_targets = [
   "_fabs=0x0068BAAE",
   "__ftol2_sse=0x0068A1A0",
@@ -6741,8 +6741,8 @@ symbol_base = "?scale_z@CSpriteEx@@QAEXMM@Z"
 address = "0x00407680"
 symbol_base = "?rotate_xyz@CSpriteEx@@QAEXMMMMMM@Z"
 rel32_targets = [
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
 ]
 
 [units.cross-v106a-system-effect-object]
@@ -17504,8 +17504,8 @@ rel32_targets = [
   "?finalize_sequence_entry@YoumuActionStateView@th105@@QAEXH@Z=0x0045D110",
   "?has_crossed_stage_surface_while_descending@YoumuActionStateView@th105@@QAEHXZ=0x005F9310",
   "?is_y_at_or_below_stage_surface@th105@@YIHPAX@Z=0x00435DC0",
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
   "?publish_battle_layout_scalar@YoumuActionStateView@th105@@QAEXM@Z=0x004359D0",
   "?publish_texture_state@YoumuActionStateView@th105@@QAEXCF@Z=0x0045F560",
@@ -17902,10 +17902,8 @@ rel32_targets = [
   "?emit_fighter_effect_433cc0@CharacterObjectEffectEmitter@th105@@QAEXHMMHH@Z=0x00435240",
   "?emit_repeated_effects_for_owner_state@CharacterObjectEffectEmitter@th105@@QAEEHHH@Z=0x005575C0",
   "?has_crossed_stage_surface_while_descending@AyaObjectActionView@th105@@QAEHXZ=0x005F9310",
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
   "?lookup_orientation_sine@th105@@YAMH@Z=0x00406480",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
   "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
@@ -19168,8 +19166,8 @@ rel32_targets = [
   "?finalize_sequence_entry@IkuActionStateView@th105@@QAEXH@Z=0x0045D110",
   "?has_crossed_stage_surface_while_descending@IkuActionStateView@th105@@QAEHXZ=0x005F9310",
   "?is_y_at_or_below_stage_surface@th105@@YIHPAVIkuActionStateView@1@@Z=0x00435DC0",
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
   "?publish_texture_state@IkuActionStateView@th105@@QAEXCF@Z=0x0045F560",
   "?reset_fighter_action_scratch@IkuActionScratchView@th105@@QAEXXZ=0x00435110",
@@ -19359,8 +19357,8 @@ rel32_targets = [
   "__ftol2_sse=0x0068A1A0",
   "?spawn_parented_related_object@CharacterObjectEffectEmitter@th105@@QAEPAXHMMHHPBIH@Z=0x004FCA60",
   "?replace_secondary_animation@CharacterObjectEffectEmitter@th105@@QAEXHMHHH@Z=0x00496420",
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
 ]
 dir32_targets = [
   "__real@4f800000=__real@4f800000",
@@ -19599,9 +19597,7 @@ rel32_targets = [
   "?emit_repeated_effects_for_owner_state@CharacterObjectEffectEmitter@th105@@QAEEHHH@Z=0x005575C0",
   "?has_crossed_stage_surface_while_descending@ReimuObjectActionStateStagingView@th105@@QAEHXZ=0x005F9310",
   "?has_crossed_stage_surface_while_descending@ReimuObject@reimu_object_model@th105@@QAEHXZ=0x005F9310",
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
   "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
   "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
   "?position_relative_to_owner_offsets@CharacterObjectEffectEmitter@th105@@QAEPAUFighter@2@HH@Z=0x005B0400",
@@ -19794,8 +19790,8 @@ notes = "Complete CGage vslot1C41B3F0 source; all1010 bytes/323 reachable instru
 address = "0x0041B3F0"
 symbol_base = "?render@CGage@@UAEXMM@Z"
 rel32_targets = [
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
   "?bind_texture@TitleResourceManager@th105@@QAEXUDesignTextureHandle@2@H@Z=0x00404DF0",
 ]
 dir32_targets = [
@@ -21098,8 +21094,8 @@ address = "0x005964C0"
 symbol_base = "?initialize_action_entry@YukariObjectEntryView@th105@@UAEXXZ"
 rel32_targets = [
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
     "?set_components@YukariEntryMotionView@th105@@QAEXMM@Z=0x00435160",
     "?random_range@YukariEntryMotionView@th105@@QAEHHH@Z=0x004351A0",
     "?stage_height@YukariObjectEntryView@th105@@QAEMXZ=0x00435D60",
@@ -21179,8 +21175,8 @@ address = "0x00657150"
 symbol_base = "?initialize_action_entry@TenshiObjectEntryView@th105@@UAEXXZ"
 rel32_targets = [
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
     "?set_components@TenshiEntryMotionView@th105@@QAEXMM@Z=0x00435160",
     "?stage_height@TenshiObjectEntryView@th105@@QAEMXZ=0x00435D60",
     "?replace_auxiliary@TenshiObjectEntryView@th105@@QAEXF@Z=0x0045CD70",
@@ -21204,8 +21200,8 @@ address = "0x005BD380"
 symbol_base = "?initialize_action_entry@SuikaObjectEntryView@th105@@UAEXXZ"
 rel32_targets = [
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
     "?set_components@SuikaEntryMotionView@th105@@QAEXMM@Z=0x00435160",
     "SuikaObjectEntryView_spawn_unparented=0x0064CCB0",
     "?continue_action_980@SuikaObjectEntryView@th105@@QAEXXZ=0x00596370",
@@ -21226,7 +21222,7 @@ symbol_base = "?initialize_action_entry@MarisaObjectEntryView@th105@@UAEXXZ"
 rel32_targets = [
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
     "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
     "?set_components@MarisaEntryMotionView@th105@@QAEXMM@Z=0x00435160",
     "?replace_auxiliary@MarisaObjectEntryView@th105@@QAEXF@Z=0x0045CD70",
     "?replace_secondary@MarisaObjectEntryView@th105@@QAEXHMHHH@Z=0x00496420",
@@ -21286,8 +21282,8 @@ address = "0x0052D200"
 symbol_base = "?initialize_action_entry@PatchouliObjectEntryView@th105@@UAEXXZ"
 rel32_targets = [
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
     "?set_components@PatchouliEntryMotionView@th105@@QAEXMM@Z=0x00435160",
     "?stage_height@PatchouliObjectEntryView@th105@@QAEMXZ=0x00435D60",
     "?replace_auxiliary@PatchouliObjectEntryView@th105@@QAEXF@Z=0x0045CD70",
@@ -21312,8 +21308,8 @@ address = "0x00578000"
 symbol_base = "?initialize_action_entry@YuyukoObjectEntryView@th105@@UAEXXZ"
 rel32_targets = [
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
     "?set_components@YuyukoEntryMotionView@th105@@QAEXMM@Z=0x00435160",
     "?replace_secondary@YuyukoObjectEntryView@th105@@QAEXFMHHH@Z=0x00496420",
     "YuyukoObjectEntryView_spawn_parented=0x004FCA60",
@@ -22213,8 +22209,8 @@ rel32_targets = [
     "?atan2_degrees@th105@@YAMMM@Z=0x00406540",
     "?turn_heading@SakuyaObjectUpdateView@th105@@QAEXMMM@Z=0x004E0BF0",
     "?spawn_owned@SakuyaObjectUpdateView@th105@@QAEHHMMHHPBIH@Z=0x00465190",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
     "?spawn_unparented@SakuyaObjectUpdateView@th105@@QAEPAXHMMHHPBIH@Z=0x0064CCB0",
     "?square_float_value@th105@@YAMM@Z=0x00406580",
     "?sqrt_float_value@th105@@YAMM@Z=0x00478DD0",
@@ -22346,8 +22342,8 @@ rel32_targets = [
     "?emit_owner_gated_pair@KomachiObjectUpdateView@th105@@QAEEXZ=0x005F9350",
     "?emit_repeated@KomachiObjectUpdateView@th105@@QAEEHHH@Z=0x005575C0",
     "?has_crossed_stage_surface_while_descending@KomachiObjectUpdateView@th105@@QAEHXZ=0x005F9310",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
     "?publish_battle_layout_scalar@KomachiObjectUpdateView@th105@@QAEXM@Z=0x004359D0",
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
     "?set_oriented_components_f0_f4@CharacterObjectRuntime@th105@@QAEXMM@Z=0x00435160",
@@ -22459,8 +22455,8 @@ rel32_targets = [
     "?dispatch_character_wave_handle@IkuObjectUpdateView@th105@@QAEXI@Z=0x0045C030",
     "?emit_fighter_effect_433cc0@IkuObjectUpdateView@th105@@QAEXHMMHH@Z=0x00435240",
     "?emit_repeated@IkuObjectUpdateView@th105@@QAEEHHH@Z=0x005575C0",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
     "?position_relative@IkuObjectUpdateView@th105@@QAEPAXHH@Z=0x005B0400",
     "?publish_bounds@IkuObjectUpdateView@th105@@QAEXHHHHFFF@Z=0x004FC710",
     "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
@@ -23730,8 +23726,8 @@ address = "0x0065BF90"
 symbol_base = "?initialize_action_65bf90@EffectObjectEntryView@th105@@QAEXXZ"
 rel32_targets = [
   "?mt19937_next_u32@th105@@YAIXZ=0x004066B0",
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?emit_fighter_effect_433cc0@EffectObjectEntryView@th105@@QAEXHMMHH@Z=0x00435240",
   "?dispatch_indexed_event_member@EffectObjectEntryView@th105@@QAEXI@Z=0x004359F0",
@@ -23786,8 +23782,8 @@ address = "0x00664E10"
 symbol_base = "?initialize_action_664e10@WeatherEffectEntryView@th105@@QAEXXZ"
 rel32_targets = [
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
 ]
 
 [units.exact-first-weather-effect-entry.functions.switch_payload]
@@ -23818,8 +23814,8 @@ rel32_targets = [
   "_lookup_orientation_cosine=0x004064B0",
   "?selector_random_roll@th105@@YAHH@Z=0x004067D0",
   "?set_sprite_uv_size@WeatherEffectUpdateView@th105@@QAEXMM@Z=0x00435520",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
   "?set_components@WeatherMotionView@th105@@QAEXMM@Z=0x00435160",
 ]
 
@@ -23855,11 +23851,11 @@ symbol_base = "?update_65cb40@InfoEffectUpdateView@th105@@QAEXXZ"
 rel32_targets = [
   "?dispatch_indexed_event_member@InfoEffectUpdateView@th105@@QAEXI@Z=0x004359F0",
   "?emit_info_effect_6609c0@InfoEffectUpdateView@th105@@QAEPAVInfoEffectObject@@HMMHH@Z=0x006609C0",
-  "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+  "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
   "?dispatch_info_state_6609f0@InfoEffectUpdateView@th105@@QAEHH@Z=0x006609F0",
   "?advance_frame_and_dispatch@InfoEffectUpdateView@th105@@QAEEXZ=0x004351C0",
   "?get_game_mode@th105@@YA?AW4GameMode@1@XZ=0x0043AC40",
-  "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
+  "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
 ]
 
 [units.exact-first-info-effect-update.functions.switch_payload]
@@ -23930,8 +23926,8 @@ rel32_targets = [
     "?tenshi_on_surface@th105@@YIEPAVTenshiActionStateView@1@@Z=0x00435DC0",
     "?flip@TenshiActionStateView@th105@@QAEXXZ=0x00478E60",
     "__ftol2_sse=0x0068A1A0",
-    "?tenshi_cosine@th105@@YANM@Z=0x004063D0",
-    "?tenshi_sine@th105@@YANM@Z=0x00406360",
+    "?tenshi_cosine@th105@@YAMM@Z=0x004063D0",
+    "?tenshi_sine@th105@@YAMM@Z=0x00406360",
     "?counter@TenshiActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?reset@TenshiActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@TenshiActionStateView@th105@@QAEEH@Z=0x00478EE0",
@@ -23969,8 +23965,8 @@ symbol_base = "?dispatch_action_state_vslot28@PatchouliActionStateView@th105@@QA
 rel32_targets = [
     "?spawn@PatchouliActionStateView@th105@@QAEHHMMHHPBXH@Z=0x00465190",
     "?patchouli_random@th105@@YAIH@Z=0x004067D0",
-    "?patchouli_sine@th105@@YANM@Z=0x00406360",
-    "?patchouli_cosine@th105@@YANM@Z=0x004063D0",
+    "?patchouli_sine@th105@@YAMM@Z=0x00406360",
+    "?patchouli_cosine@th105@@YAMM@Z=0x004063D0",
     "?landing@PatchouliActionStateView@th105@@QAEEXZ=0x00473DD0",
     "?zero_motion@PatchouliActionStateView@th105@@QAEXXZ=0x0045AF40",
     "?advance@PatchouliActionStateView@th105@@QAEEXZ=0x004351C0",
@@ -24022,8 +24018,8 @@ rel32_targets = [
     "?yuyuko_on_surface@th105@@YIEPAVYuyukoActionStateView@1@@Z=0x00435DC0",
     "?flip@YuyukoActionStateView@th105@@QAEXXZ=0x00478E60",
     "__ftol2_sse=0x0068A1A0",
-    "?yuyuko_cosine@th105@@YANM@Z=0x004063D0",
-    "?yuyuko_sine@th105@@YANM@Z=0x00406360",
+    "?yuyuko_cosine@th105@@YAMM@Z=0x004063D0",
+    "?yuyuko_sine@th105@@YAMM@Z=0x00406360",
     "?counter@YuyukoActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?reset@YuyukoActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@YuyukoActionStateView@th105@@QAEEH@Z=0x00478EE0",
@@ -24068,8 +24064,8 @@ rel32_targets = [
     "?yukari_on_surface@th105@@YIEPAVYukariActionStateView@1@@Z=0x00435DC0",
     "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
     "?flip@YukariActionStateView@th105@@QAEXXZ=0x00478E60",
-    "?yukari_cosine@th105@@YANM@Z=0x004063D0",
-    "?yukari_sine@th105@@YANM@Z=0x00406360",
+    "?yukari_cosine@th105@@YAMM@Z=0x004063D0",
+    "?yukari_sine@th105@@YAMM@Z=0x00406360",
     "?counter@YukariActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?directional@YukariActionStateView@th105@@QAEEH@Z=0x00478EE0",
     "?phase_counter@YukariActionStateView@th105@@QAEHH@Z=0x00478DF0",
@@ -24111,8 +24107,8 @@ rel32_targets = [
     "?reset@RemiliaActionScratch@th105@@QAEXXZ=0x00435110",
     "?counter@RemiliaActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "__ftol2_sse=0x0068A1A0",
-    "?remilia_cosine@th105@@YANM@Z=0x004063D0",
-    "?remilia_sine@th105@@YANM@Z=0x00406360",
+    "?remilia_cosine@th105@@YAMM@Z=0x004063D0",
+    "?remilia_sine@th105@@YAMM@Z=0x00406360",
     "?directional@RemiliaActionStateView@th105@@QAEEH@Z=0x00478EE0",
     "?remilia_atan@th105@@YAMMM@Z=0x00406540",
     "?phase_counter@RemiliaActionStateView@th105@@QAEHH@Z=0x00478DF0",
@@ -24154,8 +24150,8 @@ rel32_targets = [
     "?komachi_on_surface@th105@@YIEPAVKomachiActionStateView@1@@Z=0x00435DC0",
     "?flip@KomachiActionStateView@th105@@QAEXXZ=0x00478E60",
     "__ftol2_sse=0x0068A1A0",
-    "?komachi_cosine@th105@@YANM@Z=0x004063D0",
-    "?komachi_sine@th105@@YANM@Z=0x00406360",
+    "?komachi_cosine@th105@@YAMM@Z=0x004063D0",
+    "?komachi_sine@th105@@YAMM@Z=0x00406360",
     "?counter@KomachiActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?reset@KomachiActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@KomachiActionStateView@th105@@QAEEH@Z=0x00478EE0",
@@ -24218,8 +24214,8 @@ rel32_targets = [
     "?marisa_on_surface@th105@@YIEPAVMarisaActionStateView@1@@Z=0x00435DC0",
     "?flip@MarisaActionStateView@th105@@QAEXXZ=0x00478E60",
     "__ftol2_sse=0x0068A1A0",
-    "?marisa_cosine@th105@@YANM@Z=0x004063D0",
-    "?marisa_sine@th105@@YANM@Z=0x00406360",
+    "?marisa_cosine@th105@@YAMM@Z=0x004063D0",
+    "?marisa_sine@th105@@YAMM@Z=0x00406360",
     "?counter@MarisaActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?reset@MarisaActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@MarisaActionStateView@th105@@QAEEH@Z=0x00478EE0",
@@ -24260,8 +24256,8 @@ rel32_targets = [
     "?flip@SuikaActionStateView@th105@@QAEXXZ=0x00478E60",
     "?suika_on_surface@th105@@YIEPAVSuikaActionStateView@1@@Z=0x00435DC0",
     "__ftol2_sse=0x0068A1A0",
-    "?suika_cosine@th105@@YANM@Z=0x004063D0",
-    "?suika_sine@th105@@YANM@Z=0x00406360",
+    "?suika_cosine@th105@@YAMM@Z=0x004063D0",
+    "?suika_sine@th105@@YAMM@Z=0x00406360",
     "?reset@SuikaActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@SuikaActionStateView@th105@@QAEEH@Z=0x00478EE0",
     "?dispatch_character_wave_handle@AnimationSequenceObjectView@th105@@QAEXI@Z=0x0045C030",
@@ -24312,8 +24308,8 @@ rel32_targets = [
     "?udonge_on_surface@th105@@YIEPAVUdongeActionStateView@1@@Z=0x00435DC0",
     "?flip@UdongeActionStateView@th105@@QAEXXZ=0x00478E60",
     "__ftol2_sse=0x0068A1A0",
-    "?udonge_cosine@th105@@YANM@Z=0x004063D0",
-    "?udonge_sine@th105@@YANM@Z=0x00406360",
+    "?udonge_cosine@th105@@YAMM@Z=0x004063D0",
+    "?udonge_sine@th105@@YAMM@Z=0x00406360",
     "?counter@UdongeActionStateView@th105@@QAEXFH@Z=0x0046BF30",
     "?reset@UdongeActionScratch@th105@@QAEXXZ=0x00435110",
     "?directional@UdongeActionStateView@th105@@QAEEH@Z=0x00478EE0",
@@ -24342,8 +24338,8 @@ notes = "Ordinary float cosine guard and sine/cosine expression reproduce69 byte
 address = "0x00406430"
 symbol_base = "?lookup_orientation_tangent@th105@@YAMM@Z"
 rel32_targets = [
-    "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360",
-    "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0",
+    "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360",
+    "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0",
 ]
 
 [units.exact-first-fighter-sequence-rotate]
@@ -25983,8 +25979,8 @@ rel32_targets = [
     "?directional@AyaActionStateView@th105@@QAEEH@Z=0x00478EE0",
     "?reset@AyaActionScratch@th105@@QAEXXZ=0x00435110",
     "?counter@AyaActionStateView@th105@@QAEXFH@Z=0x0046BF30",
-    "?aya_sine@th105@@YANM@Z=0x00406360",
-    "?aya_cosine@th105@@YANM@Z=0x004063D0",
+    "?aya_sine@th105@@YAMM@Z=0x00406360",
+    "?aya_cosine@th105@@YAMM@Z=0x004063D0",
     "?flip@AyaActionStateView@th105@@QAEXXZ=0x00478E60",
     "?aya_on_surface@th105@@YIHPAVAyaActionStateView@1@@Z=0x00435DC0",
     "?event@AyaActionStateView@th105@@QAEXI@Z=0x004359F0",
@@ -26178,8 +26174,8 @@ rel32_targets = [
     "?directional@SakuyaActionStateView@th105@@QAEEH@Z=0x00478EE0",
     "?reset@SakuyaActionScratch@th105@@QAEXXZ=0x00435110",
     "?counter@SakuyaActionStateView@th105@@QAEXFH@Z=0x0046BF30",
-    "?sakuya_sine@th105@@YANM@Z=0x00406360",
-    "?sakuya_cosine@th105@@YANM@Z=0x004063D0",
+    "?sakuya_sine@th105@@YAMM@Z=0x00406360",
+    "?sakuya_cosine@th105@@YAMM@Z=0x004063D0",
     "?flip@SakuyaActionStateView@th105@@QAEXXZ=0x00478E60",
     "?sakuya_on_surface@th105@@YIHPAVSakuyaActionStateView@1@@Z=0x00435DC0",
     "?event@SakuyaActionStateView@th105@@QAEXI@Z=0x004359F0",
@@ -30021,13 +30017,13 @@ notes = "Actual global CSprite virtual methods and typed five-float tail. Both 6
 [[units.exact-first-sprite-primary-render.functions]]
 address = "0x00406BE0"
 symbol_base = "?render@CSprite@@UAEXMM@Z"
-rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360"]
+rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360"]
 dir32_targets = ["?g_sprite_texture_manager@th105@@3UCHandleManager4@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_sprite_texture_device@th105@@3PAUD3DDevice9@1@A=?g_title_texture_cache_host@th105@@3PAXA", "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base"]
 
 [[units.exact-first-sprite-primary-render.functions]]
 address = "0x00406E50"
 symbol_base = "?render_fvf4142@CSprite@@UAEXMM@Z"
-rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360"]
+rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360"]
 dir32_targets = ["?g_sprite_texture_manager@th105@@3UCHandleManager4@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_sprite_texture_device@th105@@3PAUD3DDevice9@1@A=?g_title_texture_cache_host@th105@@3PAXA", "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base"]
 
 [units.exact-first-select-render]
@@ -30067,7 +30063,7 @@ notes = "Actual CTile render member with existing complete strict-FP source. Who
 [[units.exact-first-ctile-render.functions]]
 address = "0x004099F0"
 symbol_base = "?render@CTile@@QAEXMMHH@Z"
-rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YANM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YANM@Z=0x00406360"]
+rel32_targets = ["?lookup_token@CHandleManager4@th105@@QAEPAPAXI@Z=0x00417800", "?lookup_orientation_cosine_quantized_abs@th105@@YAMM@Z=0x004063D0", "?lookup_orientation_sine_quantized_abs@th105@@YAMM@Z=0x00406360"]
 dir32_targets = ["?g_ui_tile_texture_manager@th105@@3UCHandleManager4@1@A=?g_title_resource_manager@th105@@3UTitleResourceManager@1@A", "?g_ui_tile_texture_device@th105@@3PAUD3DDevice9@1@A=?g_title_texture_cache_host@th105@@3PAXA", "?g_render_mode_manager@th105@@3URenderModeManager@1@A=g_render_mode_manager_device_base"]
 
 [[units.gpt-web-network-primary-packet-continuation.functions]]
