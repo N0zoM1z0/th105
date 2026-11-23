@@ -331,7 +331,7 @@ target lacks, so LTCG does not explain the register.
   needed its assignment flags read as `fields_7f8[n]` bytes rather than through
   a struct pointer view, which moved an `add esp, 4` back next to its call.
 
-- **A branch that jumps back into the other branch's tail means duplicated
+- **A branch that jumps back into the other branch's tail can come from duplicated
   source.** When the target lays out `if (a) { A; T } else { B; jmp T }`, with
   `B` placed after `T`, the source repeats the tail statements `T` in both
   branches and VC8 cross-jumps them. A shared tail after the `if/else` puts
@@ -343,10 +343,11 @@ target lacks, so LTCG does not explain the register.
   Komachi's initializer 0x5F6700 needed it for two cases that differ in one
   float constant: the second case repeats the whole body, with its first two
   stores swapped, and VC8 cross-jumps it after `fld1`. A `goto` into the first
-  case's body lays the stub out before the shared code. Youmu's twin 0x53A1D0
-  differs in a byte constant held in AL (`mov al, 6; jmp`). Chained
-  `B(0x7cd)=B(0x184)=k` stores in both copies give the AL loads, but no
-  statement order makes VC8 merge the copies.
+  case's body lays the stub out before the shared code. Youmu's initializer
+  `0x0053A1D0` also needs distinct copies. The state clear comes first
+  in both publishing cases and the reset-only cases follow them. The first
+  successful late comparison supplies a saved length to the second.
+  [Youmu case note](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md#case-order-preserves-both-tail-merges)
 
 - **Write sibling cases' branches in the same direction.** The common fighter
   initializer 0x477830 has cases 6, 7 and 8 that either call `set_action` or

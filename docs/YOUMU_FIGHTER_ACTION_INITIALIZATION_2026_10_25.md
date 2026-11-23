@@ -1,22 +1,10 @@
-# Youmu Fighter action initialization: 2026-10-25
+# Youmu Fighter action initialization at `0x0053A1D0`
 
-`YoumuFighter_initialize_action_entry @ 0x0053A1D0` now has complete source.
-It is **not exact**. Formal and independent cold VC8 builds emit 1874 bytes,
-SHA256 `4a86c07d7cabefc28c50d2aba1978f690d0e08ef59ae00c27c84501de627e57f`,
-with 44 unmasked differing bytes. Preserve this bounded result and switch scope
-instead of repeating the two byte-neutral controls below. No `matches.csv` row
-or new accepted-byte credit is added.
-
-The later fixed-field rewrite uses checked C++ members and compiles to the
-same 1,874-byte canonical payload as the offset baseline. The comparison
-includes both dispatch tables and all 60 relocations. Cases 601 and 604 still
-share the wrong physical order. Their order also moves the entry shared by
-602, 605–607 and 710 by four bytes. The source now falls through into that
-shared reset after the two flag writes. An explicit reset label and chained
-publication of the already shared phase were byte-neutral. A phase helper
-stayed out of line under ordinary inlining and duplicated the case body when
-forced inline. The unit now records the dispatch tables for future strict
-comparison.
+The [initializer](../src/characters/YoumuFighterActionInitialization.cpp)
+matches all 1,424 callable bytes and the complete 1,874-byte envelope
+with both compact switches and all 60 relocations. The [tail comparison
+trace](#case-order-preserves-both-tail-merges) shows how case 601 retains
+the two flag stores and the shared motion reset.
 
 ## Observed target and boundary
 
@@ -112,30 +100,25 @@ parameter type or change the separately accepted provider's conservative `int`
 declaration.525/526 match the actual AL load/comparison, MOVSX AX,AL and PUSH
 EAX sequence; no fabricated upper-word contract is assumed.
 
-## Whole-function experiments and stopping point
+## Earlier complete builds
 
 | Complete source/control | Full bytes | SHA256 prefix | Whole result |
 | --- | ---: | --- | --- |
 | First complete source |1910|7d0af66a|extra 604 copy;24 RETs/15 zero calls instead of 23/14|
 | Shared consumed 601/604 phase |1874|4a86c07d|target counts restored;44 byte differences remain|
 | Reverse phase case order |1874|4c5641cf|46 differences; swaps 5/6 positions, retaining wrong join orientation|
-| Phase publication after switch |1874|4a86c07d|byte-identical to selected shared-phase source|
+| Phase publication after switch |1874|4a86c07d|byte-identical to the shared-phase source|
 | Chained flag assignments |1910|7d0af66a|byte-identical to the first source, retaining extra copy|
 
-Each control answers the observed 601/604 sharing/entry-placement question.
-The selected source uses a consumed phase byte and a real common flag/zero
-suffix. Its remainder agrees, including the entire spawn, virtual selector,
-other actions, both remaps and all external call/tail counts. No compiler flag
-grid, runtime matrix, assembly, copied target arrays, inert locals, fake returns,
-ABI lies or padding is used.
+The shared-phase source used a single flag publication and reset suffix.
+The checked member rewrite preserved its complete output, including the
+spawn, virtual selector, both remaps and external calls.
 
 The remaining 44 differences are 42 code bytes within 53A6BC..53A6E5 and two
 destination-pointer bytes at 53A830/53A834. Target 601 falls through from MOV AL,5
 into its common flag stores at 53A6BC;604 loads 6 at 53A6E2 and jumps backward.
-The selected build instead jumps over its 6 load into the common body. It also
-places the shared 602 suffix four bytes later. This is a documented physical
-layout residual, not a whole-function exact or LTCG impossibility claim. The
-two byte-neutral controls are closed absent new independent evidence.
+That build jumps over its 6 load into the common body and places the
+shared 602 suffix four bytes later.
 
 All 60 section relocations are replayed. Formal and independent cold builds give
 the same complete 1874-byte canonical hash and 44 differences. A generated-COFF-
@@ -347,14 +330,31 @@ envelopes. `#pragma optimize("t", off)` clears the flag at
 1,434 bytes as `/Os`. The selected `/O2` build retains the full
 1,874-byte envelope with 44 differences.
 
-## Reproduction and next scope
+## Case order preserves both tail merges
 
-Use locked repository Python and serial headless builds. The Youmu
-comparison returns 1 at `0x0053A6BC`. The Komachi comparison verifies
-both switches and their destinations.
+The selected source clears the phase state before assigning the two
+phase bytes in each publishing case. The reset-only group follows both
+publishing cases. At `c2.dll:0x10B30784`, VC8 compares 601 with 604 first.
+The estimate reaches 24 bytes at `0x10B30B74` by counting the two byte
+stores, receiver copy, motion call and branch. It accepts the merge.
+`0x10B30B9C` saves 20 at offset `+0x1C` of the 601 branch record.
+The subsequent comparison of 601 with 602 counts a 12-byte suffix and
+adds that saved value. The estimate of 32 passes the 20-byte cutoff.
+
+With the reset-only group between 601 and 604, the second comparison
+uses the 12-byte estimate alone and rejects the merge. The relocated
+build has 1,902 bytes and a separate motion call for 602. Moving only
+that group after 604 restores its entry at `0x0053A6C8`. The generated
+601 stores at `0x0053A6BC` still precede the state clear, and 604 jumps
+back to them from `0x0053A6E4`.
+
+The traced SP1 object and the ordinary build both replay all 1,874 bytes.
+Changing the 604 index to the valid 601 index in a scratch object
+preserves callable equality and fails the complete switch comparison at
+`0x0053A8A3`. Both RTM and SP1 reproduce the earlier shared-phase and
+independent-return candidates, including their original residuals.
 
 ```sh
 export DISPLAY= WAYLAND_DISPLAY=
 scripts/repo-python scripts/build.py --unit exact-first-youmu-fighter-action-initialization --compare --json
-scripts/repo-python scripts/build.py --unit exact-first-komachi-action-initialization --compare --json
 ```

@@ -65,6 +65,11 @@ reads in 900–922. The complete 15,330-byte comparison includes both
 switches, alignment and 493 relocations.
 [Info effect update](INFO_EFFECT_UPDATE_2026_10_27.md#the-retirement-order-and-frame-references-that-match)
 
+Youmu's Fighter initializer `0x0053A1D0` matches all 1,874 bytes.
+Writing the state clear first in 601 and 604 and moving the reset-only
+group after both makes VC8 accept both tail merges. The source keeps the
+three action paths explicit. [Youmu case note](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md#case-order-preserves-both-tail-merges)
+
 ## Open work
 
 Smallest remaining character residuals, after the literal pass:
@@ -72,8 +77,7 @@ Smallest remaining character residuals, after the literal pass:
 - the control-mode functions: Aya 0x616800, Patchouli 0x51CB40 (+8 bytes of
   frame), Suika, Yukari, Tenshi;
 - the object-entry functions of Sakuya, Marisa, Patchouli and Yuyuko, and the
-  Marisa CPU dispatch tails 0x4B4070;
-- the Youmu initializer 0x53A1D0.
+  Marisa CPU dispatch tails 0x4B4070.
 
 Reimu's initializer at 0x491C40 is exact. Cases 404/406 and 414/416 reach
 one flag reset after the switch. VC8 shares their already-lowered x87
@@ -83,19 +87,6 @@ Udonge's initializer at 0x5D0E60 matches all 5,070 bytes with its three
 switches. In 404/406, moving the horizontal multiply before the final flag
 write also restores the separate native scaling tail in 650.
 See the [Udonge case note](UDONGE_ACTION_ENTRY_2026_10_24.md).
-
-Youmu `0x0053A1D0` now expresses the 602 reset as a fallthrough and still
-differs at 44 bytes in the complete 1,874-byte envelope. For independent
-phase arms, C2 first places the 602 entry in 601. It finds five matching
-601/604 instructions but rejects the pair because its size estimate
-stops at 20 bytes before the call, and the merge requires more than 20
-at `0x10B30B74`. A shared switch exit leaves 604 falling through, so the
-late splice keeps its copy. Komachi's exact 550/551 uses the same splice
-with the native fallthrough already in place. A resolved LTCG build of
-the relevant Youmu actions reaches the same cutoff, even when the compiler
-sees the exact motion-reset definition and keeps its calls. Follow the
-block layout before changing store order or receiver scheduling.
-See the [Youmu case note](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md#vc8-rejects-the-independent-tails-at-a-20-byte-cutoff).
 
 Sakuya's Object initializer
 has 13 differing bytes in 803. Omitting either 800 or 801 in a scratch

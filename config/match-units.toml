@@ -22147,7 +22147,7 @@ source = "src/characters/YoumuFighterActionInitialization.cpp"
 object = "build/match-units/ExactFirst_YoumuFighterActionInitialization.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Youmu Fighter primary slot3C53A1D0;1424 callable/full1874 target. One-time899 spawn, signed609 virtual selector,7CD writes and601/604 shared phase. Full source1874 SHA4a86c07d remains nonexact44 bytes; no exact credit.; docs/YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md."
+notes = "JP1.06a Youmu Fighter slot 3C at 0x0053A1D0. Exact over 1424 callable bytes and the complete 1874-byte envelope with two compact switches. See docs/YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md."
 
 [[units.exact-first-youmu-fighter-action-initialization.functions]]
 address = "0x0053A1D0"

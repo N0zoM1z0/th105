@@ -257,11 +257,23 @@ void YoumuFighterActionEntryView::initialize_action_entry()
 
     case 601:
         phase = 5;
-    publish_phase:
+        phase_state_180 = 0;
         phase_index_184 = phase;
         field_7cd = phase;
-        // Fall through to the shared motion reset.
+        zero_motion();
+        field_730 = 0;
+        return;
 
+    case 604:
+        phase = 6;
+        phase_state_180 = 0;
+        phase_index_184 = phase;
+        field_7cd = phase;
+        zero_motion();
+        field_730 = 0;
+        return;
+
+    // Keep the reset-only cases after both phase changes for VC8 tail merging.
     case 602:
     case 605:
     case 606:
@@ -271,10 +283,6 @@ void YoumuFighterActionEntryView::initialize_action_entry()
         zero_motion();
         field_730 = 0;
         return;
-
-    case 604:
-        phase = 6;
-        goto publish_phase;
 
     case 720:
     case 730:
