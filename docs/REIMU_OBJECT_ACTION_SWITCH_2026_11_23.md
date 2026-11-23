@@ -87,8 +87,9 @@ The dispatcher-wide `retiring_action`, `retiring_packet`, `retiring_words`,
 and `emit_retiring_world` path have now been removed. Actions 822, 902, and
 908 issue their packet-specific spawn/decrement/return calls in their own
 natural C++ branches. This puts action 822 at 1,957/1,955 bytes and action
-908 at 3,793/3,794 bytes; action 902 is 3,019/2,998. Action 903 remains
-1,391/1,397. The improvement is not uniform: 811, 869, 900, and 901 are now
+908 at 3,793/3,794 bytes; action 902 is 3,019/2,998. Action 903 is now 1,403/1,397 after moving its two terminal packet calls
+into the health/burst branches; this reduced its instruction-difference groups
+from 36 to 26 and the root total from 1,204 to 1,190. The improvement is not uniform: 811, 869, 900, and 901 are now
 shorter because their target-owned shared tails still need explicit natural
 reconstruction. Packet arrays for 822, 869, 900, 902, 903, and 908 are scoped
 to their owning cases, allowing the compiler to reuse stack storage.
@@ -118,3 +119,18 @@ scripts/repo-python scripts/audit-giant-action-owners.py reimu-object-vslot28 bu
 ```
 
 These focused results are not whole-root exactness claims.
+
+
+## Action 903 terminal-call ownership
+
+The action-903 health and special-burst terminal paths now issue their
+packet-specific `spawn_unparented_related_object` calls directly in the
+owning sequence branches, rather than carrying a packet pointer/word count
+through a post-switch dispatcher tail. This restores the two distinct
+argument-preparation paths visible in the target and reduces the action-903
+instruction-difference groups from 36 to 26. Its candidate extent is now
+1,403/1,397 bytes (+6), while the whole-root instruction-difference count
+falls from 1,204 to 1,190. The root remains nonexact; the health-death branch
+still reaches a candidate shared call tail at a different physical address
+than the target's `0x00499DF6` tail. No padding or instruction overrides are
+used.
