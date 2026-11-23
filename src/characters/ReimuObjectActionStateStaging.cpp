@@ -647,9 +647,12 @@ advance_and_retire_on_completion:
             --_root_state.state_330;
         return;
 
-    case 812:
+    case 812: {
+        register int retire_delta = -1;
+        register int one = 1;
+        register int five = 5;
         if (effect_000.object_x_0e8 > 1380.0 || effect_000.object_x_0e8 < -100.0 || effect_000.object_y_0ec > 1000.0 || effect_000.object_y_0ec < -240.0 ||
-                _root_state.phase_state_180 == 5 || (_root_state.sequence_13e < 2 &&
+                _root_state.phase_state_180 == five || (_root_state.sequence_13e <= one &&
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
                         emit_repeated_effects_for_owner_state(0, 2, 8)) ||
                 (_root_state.sequence_13e == 2 && reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
@@ -675,12 +678,12 @@ advance_and_retire_on_completion:
             reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[1] - 1.5);
             if (reinterpret_cast<float *>(copied_words_340)[1] <= 0.0) {
                 reinterpret_cast<float *>(copied_words_340)[1] = 0.0f;
-                ++_root_state.state_364;
+                _root_state.state_364 = static_cast<short>(_root_state.state_364 + one);
                 if (_root_state.counter_144 % 3 == 0) {
                     float copied[3] = {effect_000.reset_zero_128, 0.0f, 3.0f};
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
                         spawn_unparented_related_object(812, effect_000.object_x_0e8, effect_000.object_y_0ec,
-                            static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                            static_cast<unsigned char>(effect_000.object_facing_100), one,
                             reinterpret_cast<const unsigned *>(copied), 3);
                 }
                 if (_root_state.state_364 > 3) {
@@ -690,7 +693,7 @@ advance_and_retire_on_completion:
                     copied[2] = 3.0f;
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
                         spawn_unparented_related_object(812, effect_000.object_x_0e8, effect_000.object_y_0ec,
-                            static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                            static_cast<unsigned char>(effect_000.object_facing_100), one,
                             reinterpret_cast<const unsigned *>(copied), 3);
                     for (float sector = 0.0f; sector < 8.0f; sector = static_cast<float>(sector + 1.0)) {
                         copied[0] = reinterpret_cast<float *>(copied_words_340)[0];
@@ -699,10 +702,10 @@ advance_and_retire_on_completion:
                         copied[3] = static_cast<float>(sector * 45.0 + copied[0]);
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
                             spawn_unparented_related_object(812, effect_000.object_x_0e8, effect_000.object_y_0ec,
-                                static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                                static_cast<unsigned char>(effect_000.object_facing_100), one,
                                 reinterpret_cast<const unsigned *>(copied), 4);
                     }
-                    --_root_state.state_330;
+                    _root_state.state_330 += retire_delta;
                     return;
                 }
             }
@@ -716,11 +719,11 @@ advance_and_retire_on_completion:
             break;
         case 2:
             reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[1] + 0.5);
-            if (_root_state.counter_144 % 5 == 0) {
+            if (_root_state.counter_144 % five == 0) {
                 float copied[3] = {effect_000.reset_zero_128, 0.0f, 4.0f};
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
                     spawn_unparented_related_object(812, effect_000.object_x_0e8, effect_000.object_y_0ec,
-                        static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                        static_cast<unsigned char>(effect_000.object_facing_100), one,
                         reinterpret_cast<const unsigned *>(copied), 3);
             }
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
@@ -741,21 +744,23 @@ advance_and_retire_on_completion:
             effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
             break;
         case 3: case 4:
-            if (_root_state.alpha_113 < 15) {
-                _root_state.alpha_113 = 0;
-                --_root_state.state_330;
-            } else {
-                _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 15);
-                effect_000.reset_one_118 = static_cast<float>(effect_000.reset_one_118 + static_cast<double>(0.1f));
-                effect_000.reset_one_11c = static_cast<float>(effect_000.reset_one_11c + static_cast<double>(0.1f));
-            }
+            if (_root_state.alpha_113 < 15)
+                goto action_812_alpha_retire;
+            _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 15);
+            effect_000.reset_one_118 = static_cast<float>(effect_000.reset_one_118 + static_cast<double>(0.1f));
+            effect_000.reset_one_11c = static_cast<float>(effect_000.reset_one_11c + static_cast<double>(0.1f));
+            break;
+        action_812_alpha_retire:
+            _root_state.alpha_113 = 0;
+            _root_state.state_330 += retire_delta;
             break;
         }
         if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
-            --_root_state.state_330;
+            _root_state.state_330 += retire_delta;
         if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
-            --_root_state.state_330;
+            _root_state.state_330 += retire_delta;
         return;
+    }
 
     case 815:
         if (_root_state.phase_state_180 == 5)

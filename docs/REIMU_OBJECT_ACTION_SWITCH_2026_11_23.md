@@ -71,15 +71,15 @@ ordering. Recent focused owner extents (candidate/target) are:
 | action 802 | 33 | 31 | +2 bytes |
 | action 807 | 272 | 300 | -28 bytes; shared advance tail is remote in candidate |
 | action 811 | 1,509 | 1,507 | +2 bytes; 38 diff groups |
-| action 812 | 1,294 | 1,376 | -82 bytes |
-| action 817 | 3,027 | 3,066 | -39 bytes; 82 diff groups |
+| action 812 | 1,393 | 1,376 | +17 bytes; 29 diff groups |
+| action 817 | 3,026 | 3,066 | -40 bytes; 82 diff groups |
 | action 822 | 1,888 | 1,955 | -67 bytes |
 | action 869 | 1,691 | 1,736 | -45 bytes |
 | action 900 | 1,207 | 1,229 | -22 bytes |
 | action 901 | 2,247 | 2,324 | -77 bytes |
 | action 902 | 2,998 | 2,998 | exact owner extent |
 | action 903 | 1,403 | 1,397 | +6 bytes |
-| action 908 | 3,791 | 3,794 | -3 bytes; x87 accumulator order now exact |
+| action 908 | 3,789 | 3,794 | -5 bytes; x87 accumulator order exact; 61 diff groups |
 | action 951 | 575 | 547 | +28 bytes; 2 diff groups |
 
 Action 811 keeps sequence-3 and sequence-4 channel/alpha fades as separate
@@ -115,20 +115,21 @@ their owning cases, allowing the compiler to reuse stack storage.
 ## Current root status and next work
 
 The latest focused owner audit reports a 46,138-byte target callable extent,
-45,580 candidate main bytes, a 46,448-byte candidate section tail, and 1,151
-instruction-difference groups. The candidate main remains 562 bytes short and
-the whole root is nonexact: the first raw-byte mismatch is still
-`0x0049655F` (offset `+0x1F`, target byte `0xF8`, candidate byte `0xC5`).
-Action 902 has an exact 2,998-byte owner extent; action 811 is +2 bytes and
-action 908 is -3 bytes. Action 951 is 575/547 bytes with only two
-instruction-difference groups; its remaining extent excess is the shared
-advance tail being physically owned by the candidate's 951 region instead of
-target action 807. The largest remaining deficits include 812, 816, 817, 821,
-822, 869, 900, 901, 905, and 906. Continue recovering their shared-tail,
-register, and x87 lifetimes together with the remote owner boundary. Do not
-substitute a full cold replay for focused changed-owner builds.
+45,672 candidate main bytes, a 46,540-byte candidate section tail, and 1,114
+instruction-difference groups. The candidate main remains 466 bytes short and
+the whole root is nonexact: the first raw-byte mismatch remains at
+0x0049655F (offset +0x1F, target byte 0xF8, candidate byte 0x25).
+Action 902 has an exact 2,998-byte owner extent; action 811 is +2 bytes,
+action 812 is +17 bytes with 29 difference groups, and action 908 is -5 bytes.
+Action 951 is 575/547 bytes with only two instruction-difference groups; its
+remaining extent excess is the shared advance tail being physically owned by
+the candidate's 951 region instead of target action 807. The largest remaining
+deficits include 816, 817, 821, 822, 869, 900, 901, 905, and 906. Continue
+recovering their shared-tail, register, and x87 lifetimes together with the
+remote owner boundary. Do not substitute a full cold replay for focused
+changed-owner builds.
 
-The exact 66-byte helper at `0x004963A0` remains independently exact.
+The exact 66-byte helper at 0x004963A0 remains independently exact.
 
 ## Focused reproduction
 
@@ -253,27 +254,47 @@ exactness claim.
 
 ## Action 817 collision-burst loop and register scopes
 
-The sequence-0 and sequence-9 collision bursts now use natural post-decrement
-`do/while` loops for their 14 particle emissions. Their `one` count is scoped
-to the two manager-spawn branches; the repeated particle calls and sequence-3/
-sequence-4 tests use literal one values. This removes the shared count from the
-loop lifetime and reduces the focused owner audit to 82 instruction-difference
-groups at 3,027/3,066 bytes. The target still keeps zero in `EBX` and one in
-`EDI`, whereas the candidate uses a different register lifetime and retains
-`sub edi, ebx` in the loop. That mismatch remains a source-level register
-allocation problem, not a reason to add assembly or padding.
+The sequence-0 and sequence-9 collision bursts use natural post-decrement
+do/while loops for their 14 particle emissions. Each sequence case has a
+case-local one register used by its manager-spawn call; its lexical lifetime
+still covers the adjacent collision burst. Narrowing/removing those locals and
+trying equivalent for-loop forms did not change the candidate loop lowering.
+The owner remains 3,026/3,066 bytes with 82 instruction-difference groups.
+The target initializes EBX=0 and EDI=1, then decrements the particle count
+with sub edi, 1; the candidate chooses a different constant/register
+allocation and emits sub edi, ebx. This remains a compiler-lifetime mismatch,
+not a reason to add assembly or padding.
 
 
 ## Action 908 x87 accumulator evaluation order
 
-The sequence-1 accumulator update now snapshots `state_374` into a natural
-C++ local before adding the integer `state_366`. This forces the target's x87
-operand order: load the existing float, load the signed integer with `fild`,
-then `faddp` and store the result. The candidate now emits that four-instruction
-sequence exactly; the action-908 owner grows from 3,789 to 3,791 bytes against
-the 3,794-byte target. The remaining owner differences are concentrated in
-register assignment (`EBX`/`EDI`), the `-1` countdown lifetime, and downstream
-control-flow layout. The latest focused root audit is 45,580 candidate main
-bytes, 46,448 candidate section-tail bytes, and 1,151 instruction-difference
+The sequence-1 accumulator update now snapshots state_374 into a natural C++
+local before adding the integer state_366. This forces the target x87 operand
+order: load the existing float, load the signed integer with fild, then
+faddp and store the result. The candidate emits that four-instruction
+sequence exactly. In the latest root build, action 908 is 3,789/3,794 bytes
+with 61 instruction-difference groups; remaining differences are concentrated
+in register assignment (EBX/EDI), the -1 countdown lifetime, and downstream
+control-flow layout. The focused root is 45,672 candidate main bytes,
+46,540 candidate section-tail bytes, and 1,114 instruction-difference
 groups. This is a verified local code-generation improvement, not a whole-root
 exactness claim.
+
+## Action 812 register lifetimes and alpha retirement tail
+
+Action 812 now has an explicit case scope for the three register values visible
+in the target handler: five = 5, one = 1, and retire_delta = -1. The source
+uses five for the phase-state and modulo-five tests, one for the state-364
+increment and related-object spawn arguments, and retire_delta for the
+handler's state-330 retirement updates. This recovers the target's EDI=1 and
+EBP=-1 lifetimes and reduces action 812's instruction-difference groups from
+32 to 29. The owner moves from 1,294/1,376 to 1,393/1,376 bytes (+17).
+
+The sequence-3/4 alpha branch is written with the fade path first and the
+retirement path second. This preserves the target's jb-to-retirement layout
+and its shared advance/dispatch tail. The target also keeps five in EBX for
+the phase-state comparison and modulo operation; the current compiler still
+rematerializes the constant for those sites, so action 812 is not exact. The
+focused root audit improves from 1,151 to 1,114 instruction-difference groups
+while candidate main code grows from 45,580 to 45,672 bytes. The root remains
+nonexact and its remote ownership boundary remains provisional.
