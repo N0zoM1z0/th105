@@ -25,16 +25,18 @@ implied by this boundary record.
 The target has a 200-byte selector map at `0x004A1A24` and a 42-entry
 32-bit destination table at `0x004A197C`. The current C++ switch in
 `ReimuObjectActionStateStaging.cpp` emits the same 200 selector bytes
-(200/200) in its COFF `.text` section at offset `0xAFB8`; its 42-entry
-address table is represented by 42 COFF relocations beginning at `.text`
-offset `0xAF10`. Thus all 200 actions select the same 42 handler groups as
-the target. This closes the top-level case grouping, including the remote
+(200/200) in its COFF `.text` section at offset `0xAFC4`; its 42-entry
+address table is represented by 42 `IMAGE_REL_I386_DIR32` COFF relocations
+beginning at `.text` offset `0xAF1C`. Thus all 200 actions select the same
+42 handler groups as the target. This closes the top-level case grouping, including the remote
 handler groups, without inventing missing cases or padding.
 
 The source still does not match the complete root. The focused
 `gpt-web-reimu-object-action-state` comparison remains nonexact at the entry
-branch (`0x0049655F`, offset `+0x1F` after the dispatch bound), and the
-candidate's complete owned extent is still shorter than the target. The
+branch (`0x0049655F`, offset `+0x1F` after the dispatch bound). The candidate
+COFF `.text` section tail is 45,684 bytes against the 46,138-byte target
+extent (444 bytes short of the 46,128 reviewed owned bytes, with 10 target
+bytes separately excluded). The
 remaining work is physical handler order, instruction/lifetime coupling,
 shared tails, and the exact remote body layout—not the 200-entry selector
 map. The exact 66-byte `0x004963A0` counter helper remains independently
