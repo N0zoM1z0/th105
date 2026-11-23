@@ -58,6 +58,13 @@ tables, alignment and all 393 relocations. See the
 [compiler trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) and the
 [engine and Oracle review](GIANT_ROOT_REVIEW_2026_11_23.md).
 
+Info effect update `0x0065CB40` is exact. Moving the case 10 retirement
+return below case 100 changes which decrement VC8 retains without moving
+the case entries. The reference-based fade helper preserves both frame
+reads in 900–922. The complete 15,330-byte comparison includes both
+switches, alignment and 493 relocations.
+[Info effect update](INFO_EFFECT_UPDATE_2026_10_27.md#the-retirement-order-and-frame-references-that-match)
+
 ## Open work
 
 Smallest remaining character residuals, after the literal pass:
@@ -157,14 +164,6 @@ The first difference is still at `0x004E0D55`.
 and [retirement sharing](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-853-retirement-is-shared-with-action-805-in-the-rebuild).
 
 Other open leads:
-- Info effect update `0x0065CB40` now checks both jump tables through
-  all 15,330 target bytes. The current 15,322-byte replay first differs
-  at `0x0065CB53`. The two compact regions retain all 84 physical
-  destinations. Five alpha guards choose the late retirement copy.
-  The first `0x10BAF600` call preserves the two memory reads for
-  900–922 until `0x10B49300` combines them. Inspect the memory
-  definitions and intervening stores entering that pass.
-  [Info effect update](INFO_EFFECT_UPDATE_2026_10_27.md#shared-exits-and-frame-reads-2026-11-23)
 - Scenario character install 0x456EB0 (one EH-state store).
 - LTCG context: `MenuCursorState::update` 0x41FA20 takes a propagated
   `int period` from its 35 callers, which explains its `idiv` by 6. The angle
@@ -181,7 +180,7 @@ Other open leads:
 - The CDesignBase loader links but differs in size (2666 against 2708) and
   frame (0x3E8 against 0x3F8); see
   [real gauge context](DESIGN_LOADER_REAL_GAGE_2026_11_02.md).
-- The giant action roots have no exact entries. Komachi 0x5E20E0 has a
+- Komachi 0x5E20E0 has a
   complete unselected candidate (unit `exact-first-komachi-action-state`,
   108 actions). Its [checked motion fields](KOMACHI_ACTION_STATE_2026_10_28.md#checked-motion-fields-2026-11-23)
   preserve the compiled envelope. Its strict contract covers all seven

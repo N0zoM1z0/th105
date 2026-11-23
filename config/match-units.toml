@@ -23847,7 +23847,7 @@ source = "src/battle/InfoEffectUpdate.cpp"
 object = "build/match-units/ExactFirst_InfoEffectUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "JP1.06a InfoEffect update. Owns 14783 callable bytes and two compact switches through 15330 bytes. Current comparison differs at 0x0065CB53. See docs/INFO_EFFECT_UPDATE_2026_10_27.md."
+notes = "JP1.06a InfoEffect update. Exact over 14783 callable bytes and a 15330-byte envelope with two compact switches. See docs/INFO_EFFECT_UPDATE_2026_10_27.md."
 
 [[units.exact-first-info-effect-update.functions]]
 address = "0x0065CB40"

@@ -60,7 +60,16 @@ def audit(root_name: str, object_path: Path, unit_name: str) -> dict[str, Any]:
     relocated = canonical.coff_symbol_bytes(object_path, function["symbol_base"], address, len(obj.text),
                                              rel32, canonical.known_data_targets(), dir32)
     target_code = canonical.target_bytes(address, target["callable_size"])
-    candidate_code = relocated[:candidate["metadata_start"]]
+    metadata_start = candidate["metadata_start"]
+    candidate_code = relocated[:metadata_start]
+    payload = function.get("switch_payload")
+    if payload:
+        alignment = bytes.fromhex(payload["alignment_hex"])
+        # Use the pinned callable boundary when the complete prefix agrees.
+        if alignment and candidate_code == target_code + alignment:
+            candidate_code = candidate_code[:len(target_code)]
+            final_owner = max(pairs, key=lambda pair: pair["candidate_offset"])
+            final_owner["candidate_span"] -= len(alignment)
     target_tables = []
     candidate_tables = []
     switches = {}
@@ -113,7 +122,7 @@ def audit(root_name: str, object_path: Path, unit_name: str) -> dict[str, Any]:
         "schema": "th105-giant-owner-audit-v1", "evidence": "diagnostic_only_not_exact_acceptance",
         "target_sha256": target_sha, "object_sha256": hashlib.sha256(object_path.read_bytes()).hexdigest(),
         "root": root_name, "address": address, "unit": unit_name,
-        "target_callable_size": len(target_code), "candidate_metadata_start": len(candidate_code),
+        "target_callable_size": len(target_code), "candidate_metadata_start": metadata_start,
         "candidate_canonical_section_tail_size": len(relocated),
         "candidate_canonical_section_tail_sha256": hashlib.sha256(relocated).hexdigest(),
         "owner_count_including_entry": len(owners),

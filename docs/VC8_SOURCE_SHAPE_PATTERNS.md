@@ -385,6 +385,16 @@ target lacks, so LTCG does not explain the register.
   writes (here a tag byte) by reference too: a struct pointer or reference
   parameter hoists its address computation above the branch.
 
+- **Keep a fade helper's frame test separate from the next frame read.**
+  InfoEffectObject update `0x0065CB40` compares the signed frame in memory
+  above the alpha subtraction and loads it again before the motion check.
+  Inlining just the fade with the frame, alpha and lifecycle state passed
+  by reference preserves both reads. Direct member tests share one register
+  value. The same root recovers the low retirement tail by moving the case 10
+  return below case 100 in source. VC8 then offers the case 10 copy first
+  during its late tail comparison. The emit calls retain their positions.
+  [Info effect update](INFO_EFFECT_UPDATE_2026_10_27.md#the-retirement-order-and-frame-references-that-match)
+
 - **`mov ecx, [global]; ...; mov edi, ecx` is an inlined member's `this`.**
   In the round reset 0x471180 the target loads the phase-block global into
   ECX, derives addresses from it and copies it to EDI for later member calls.

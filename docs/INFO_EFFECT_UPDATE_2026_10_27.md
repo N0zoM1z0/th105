@@ -1,9 +1,10 @@
-# InfoEffectObject update 65CB40: complete nonexact source
+# InfoEffectObject update at `0x0065CB40`
 
-The current [update source](../src/battle/InfoEffectUpdate.cpp) emits
-14,774 callable bytes and a 15,322-byte payload. The target owns 14,783
-callable bytes and a 15,330-byte payload. Comparison first differs at
-`0x0065CB53`, in the branch to the high action range.
+The [update source](../src/battle/InfoEffectUpdate.cpp) matches all 14,783
+callable bytes and the entire 15,330-byte payload with 493 relocations.
+The payload includes 84 jump destinations, 207 index bytes and four
+alignment bytes. The configured VC8 SP1 unit is
+`exact-first-info-effect-update`.
 
 ## Current-target evidence
 
@@ -23,7 +24,7 @@ Code SHA256:
 e204892021b5c8ab702961a46f650c532e05f5ef4f095ba363e37fcc91638367.
 Full target SHA256:
 6b1ddd188d86f1ae825e31b0b7eea565eb482aece797305ffe733b391fe9f695.
-Selected full candidate SHA256:
+Earlier typed candidate SHA256:
 9ffe80ba2adc4d6abb5964d2a5a55a3182e880b2b0742d40c293a670bd694c4f.
 
 InfoEffectObject primary vtable 6C37EC slot 28 cell 6C3814 owns this body.
@@ -98,20 +99,8 @@ candidate has exactly 14779 callable bytes. Independent low 21/22 copies worsen
 to 15386; independent 900..922 copies worsen to 16976. Those controls are retained,
 not selected, and the duplicate-case lane is closed absent fresh evidence.
 
-Remaining differences are shared low retirement epilogues, placement of the
-high saturated-alpha tail and frame 142 load scheduling in 900..922. They displace
-otherwise similar sequences. Do not treat normalized per-case instruction
-comparison, complete IDs or matching call counts as exactness. No register
-forcing, inert values, copied bytes, padding, masked matching or LTCG claim.
-
-## Reproduce and scope
-
-- scripts/repo-python scripts/build.py --unit exact-first-info-effect-update --compare --json
-- scripts/repo-python scripts/validate-tracking.py --require-target
-- python3 scripts/ci.py
-
-The focused comparison exits 1 for the callable mismatch. Target-backed
-tracking validation passes.
+That trial still differed in the low retirement epilogues, the high
+saturated-alpha tail and frame load scheduling in 900 through 922.
 
 ## Typed update state, 2026-11-10
 
@@ -144,7 +133,7 @@ separate shared-ABI/binding change. The final bounded update view avoids that
 unrelated change. The visual source was restored and its two complete roots
 replayed at 80/80 and 266/266 exact.
 
-## Shared exits and frame reads, 2026-11-23
+## Shared exits and frame reads before the match
 
 The match unit now runs the existing compact-switch check once the
 callable comparison passes. The raw target passes the structural check
@@ -164,8 +153,8 @@ and all 493 relocations resolve in the complete replay.
 The alpha tests for 15, 17, 16/18, 21/22 and 100 reach the retirement
 at `0x0065CC9E` in the target. Their five candidate branches all
 reach `0x0065D0F1`, the retirement after animation advance. The 100
-branch also shrinks from six to two bytes. The explicit goto control
-yields the same 15,322 bytes. In both builds the successful alpha
+branch also shrinks from six to two bytes. The first explicit goto control
+yields the same 15,322 bytes. In both early builds the successful alpha
 update is the conditional destination
 before the late `0x10B2C950` pass. Under `0x10B2E0D0`,
 `0x10BF2C00` replaces the branch operand as the pass moves
@@ -196,15 +185,40 @@ canonical candidate with SHA-256
 `8b8a8449490a12b4f60fc9949d7938e65831bc43f55a644a0940d492f873d5c0`.
 The compiler traces replay the ordinary objects in full.
 
-The repository's owner audit now accepts `info-effect-update` as a
-root. Both tables keep their 84 physical destinations with no split
-groups. The audit reaches all 14,783 native callable bytes and
-reports 77 of 85 physical spans with matching instructions and edges,
-including the dispatch entry. The two direct ranges are accounted for
-by reachability and occur inside the physical spans after 30/31 and
-274. To reproduce the audit after the focused build, run
+## The retirement order and frame references that match
+
+The positive-first alpha guard already points to its own pre-animation
+decrement at `0x10C077B1` in SP1's `c2.dll`. The late tail comparison at
+`0x10B30784` offers the post-animation decrement in case 100 first. The
+splice at `0x10B30CE6` removes the earlier copy. The guard's label now
+precedes the retained post-animation decrement.
+
+Moving only the case 10 retirement return below case 100 changes
+the order of the competing returns. The same trace offers case 10
+first and splices the alpha-retirement copies into it. The two emission
+calls and the retirement stay in their original machine-code positions.
+All five alpha guards reach `0x0065CC9E` and the animation tail stays
+at `0x0065D0E6`. The trial that moved all of case 10 also gave it the
+retirement and displaced the low switch entries. Routing all five guards
+directly to the new source label sent them back to the late retirement copy.
+
+For 900 through 922, the inline fade helper takes the frame, alpha and
+lifecycle state by reference. It emits the signed memory comparison at
+`0x00660482` and leaves the second read at `0x0066049C` in the caller.
+The [battle setup token check](VC8_SOURCE_SHAPE_PATTERNS.md#patterns-that-produced-exact-matches)
+uses the same source shape. The position update and animation advance
+still run on their original paths.
+
+The full replay and strict unit both match the pinned payload hash.
+Changing the pre-table NOP or one valid low map index in a copy of the
+COFF object leaves callable bytes equal and fails the complete comparison
+at `0x006604FF` or `0x00660533`, respectively. The owner diagnostic
+uses the callable boundary when the complete code and pre-table alignment
+agree, so that the NOP stays outside the final owner. To reproduce
+the focused check and diagnostic, run
 
 ```sh
+scripts/repo-python scripts/build.py --unit exact-first-info-effect-update --compare --json
 scripts/repo-python scripts/audit-giant-action-owners.py info-effect-update \
   build/match-units/ExactFirst_InfoEffectUpdate.obj --unit exact-first-info-effect-update
 ```
