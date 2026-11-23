@@ -28,7 +28,9 @@ public:
  float y_f0;
  float velocity_x_f4;
  float velocity_y_f8;
- unsigned char unknown_0fc[0x14];
+ unsigned char unknown_0fc[0x08];
+ signed char facing_104;
+ unsigned char unknown_105[0x0b];
  unsigned char channel_110;
  unsigned char channel_111;
  unsigned char unknown_112;
@@ -45,10 +47,14 @@ public:
  short frame_index_140;
  short frame_counter_142;
  int time_counter_144;
- unsigned char unknown_148[0x38];
+ unsigned char unknown_148[0x28];
+ SakuyaObjectUpdateView *target_170;
+ unsigned char unknown_174[0x0c];
  int phase_state_180;
  signed char phase_index_184;
- unsigned char unknown_185[0x1ab];
+ unsigned char unknown_185;
+ unsigned short update_delay_186;
+ unsigned char unknown_188[0x1a8];
  int lifetime_330;
  unsigned char unknown_334[0xc];
  float *parameters_340;
@@ -67,6 +73,12 @@ public:
  float field_374;
 };
 
+typedef char CheckSakuyaUpdate_facing_104[
+    offsetof(SakuyaObjectUpdateView, facing_104) == 0x104 ? 1 : -1];
+typedef char CheckSakuyaUpdate_target_170[
+    offsetof(SakuyaObjectUpdateView, target_170) == 0x170 ? 1 : -1];
+typedef char CheckSakuyaUpdate_update_delay_186[
+    offsetof(SakuyaObjectUpdateView, update_delay_186) == 0x186 ? 1 : -1];
 typedef char CheckSakuyaUpdate_x_ec[
     offsetof(SakuyaObjectUpdateView, x_ec) == 0xec ? 1 : -1];
 typedef char CheckSakuyaUpdate_y_f0[

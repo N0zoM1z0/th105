@@ -660,6 +660,39 @@ at `0x10C065FF`, VC8 removes the second speed load in 858 and
 folds the second Y load into the add in 900. All three read-only
 trace builds replay to the same bytes as the ordinary control.
 
+The watchpoint also reaches the operand materialization call at
+`c2.dll:0x10BB6149` in both actions. The caller's operand at
+`[ESP+0x14]` has already diverged there. It is the object-memory
+descriptor (`0x27C`) in 858 and the speed temporary descriptor
+(`0x27A`) in 900. Changing the position access back to an offset
+or a float reference leaves the full build identical. Forcing the
+landing sum into a float local changes the rounding and adds a spill.
+Keeping the rounded speed in an explicit float local changes the
+scratch slot and keeps the memory add. Omitting action 858 in a
+scratch build also keeps the 900 memory add.
+The 384 reachable instructions in action 900 pair one to one after
+rebasing. Only the load and add at `0x004E6D83` and `0x004E6D89`
+have different encodings once the pairing allows those two operations.
+
+## Action 850 heading and typed receiver fields
+
+Native action 850 reloads the parameter pointer at `0x004E4BA3`
+after the heading call at `0x004E4B9E`. The former source captured
+that pointer before the call and kept it in EDI. Computing
+the heading first gives the target's EAX load and the rounded float
+used for both stores. The first child reloads the heading written to
+the parameter array. All 235 instructions reachable from action 850
+now agree after rebasing branches, with the same calls and shared
+destinations. The other primary action paths retain their previous
+code and edges.
+
+The receiver now names the signed facing byte at `+0x104`, the target
+pointer at `+0x170`, and the update delay word at `+0x186`. The
+motion expressions sign-extend facing and the spawn calls still
+zero-extend it. The owner position and action reads use existing
+checked members. Separate VC8 controls for the facing, target and
+owner changes reproduced the complete previous candidate byte for byte.
+
 ## Actions 920 and 930 before frame advance
 
 In 920 the signed owner timer at `+0x7A4` branches to the oriented-motion
