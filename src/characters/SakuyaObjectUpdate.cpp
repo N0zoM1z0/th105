@@ -216,23 +216,83 @@ void SakuyaObjectUpdateView::update_action_state()
   if(CORE->advance_frame_and_dispatch())--lifetime_330;
   if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==1)--lifetime_330;
   if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==2)--lifetime_330;return;
- case 805:
-  if(phase_state_180==5 || (owner_348->action_id_13c>49 && owner_348->action_id_13c<150 && frame_index_140<2))RETIRE();
-  if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==0){phase_index_184=1;field_364=25;field_366=0;}
-  if(sequence_id_13e==0){field_366+=field_364;field_364-=5;if(field_364<0)field_364=0;
-   SakuyaObjectUpdateView *owner=owner_348;
-   double cosine=lookup_orientation_cosine_quantized_abs(parameters_340[0]);
-   x_ec=cosine*field_366*facing_104+owner->x_ec;
-   double owner_y=owner->y_f0;
-   y_f0=owner_y-lookup_orientation_sine_quantized_abs(parameters_340[0])*field_366+130.0;
-   if(owner_348->action_id_13c==540 && owner_348->sequence_id_13e==2){next_sequence_block();replace_secondary(994,6.0f,10,1,2);}
-   if(owner_348->action_id_13c!=540)select_sequence(2);
-   float payload[3]={parameters_340[0],0,3};owner_348->spawn_owned(805,x_ec,y_f0,static_cast<unsigned char>(facing_104),-1,WORDS(payload),3);
+ case 805: {
+  if (phase_state_180 == 5 ||
+      (owner_348->action_id_13c > 49 && owner_348->action_id_13c < 150 &&
+       frame_index_140 < 2)) {
+   --lifetime_330;
+   return;
   }
-  if(sequence_id_13e==1){MOVE();parameters_340[1]+=1.0;STEP();float payload[3]={parameters_340[0],0,3};owner_348->spawn_owned(805,x_ec,y_f0,static_cast<unsigned char>(facing_104),-1,WORDS(payload),3);if(phase_state_180==6){++phase_index_184;phase_state_180=0;}if(phase_state_180!=0){if(phase_index_184<=0)next_sequence_block();else phase_state_180=0;}}
-  if(sequence_id_13e==2){release_secondary();if (alpha_113 <= 10) RETIRE();alpha_113-=10;}
-  if(OUTSIDE(1380.0f,-100.0,960.0,-120.0))RETIRE();
-  if(CORE->advance_frame_and_dispatch())--lifetime_330;if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==3)--lifetime_330;return;
+  if (time_counter_144 == 0 && frame_counter_142 == 0 &&
+      frame_index_140 == 0 && sequence_id_13e == 0) {
+   phase_index_184 = 1;
+   field_364 = 25;
+   field_366 = 0;
+  }
+
+  if (sequence_id_13e == 0) {
+   field_366 += field_364;
+   field_364 -= 5;
+   if (field_364 < 0) field_364 = 0;
+
+   SakuyaObjectUpdateView *owner = owner_348;
+   double cosine = lookup_orientation_cosine_quantized_abs(parameters_340[0]);
+   x_ec = cosine * field_366 * facing_104 + owner->x_ec;
+   double owner_y = owner->y_f0;
+   y_f0 = owner_y - lookup_orientation_sine_quantized_abs(parameters_340[0]) * field_366 + 130.0;
+
+   if (owner_348->action_id_13c == 540 && owner_348->sequence_id_13e == 2) {
+    next_sequence_block();
+    replace_secondary(994, 6.0f, 10, 1, 2);
+   }
+   if (owner_348->action_id_13c != 540) select_sequence(2);
+
+   float payload[3] = {parameters_340[0], 0, 3};
+   owner_348->spawn_owned(805, x_ec, y_f0, static_cast<unsigned char>(facing_104),
+                          -1, reinterpret_cast<const unsigned *>(payload), 3);
+  }
+
+  if (sequence_id_13e == 1) {
+   MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+   parameters_340[1] += 1.0;
+   x_ec += facing_104 * velocity_x_f4;
+   y_f0 += velocity_y_f8;
+
+   float payload[3] = {parameters_340[0], 0, 3};
+   owner_348->spawn_owned(805, x_ec, y_f0, static_cast<unsigned char>(facing_104),
+                          -1, reinterpret_cast<const unsigned *>(payload), 3);
+   if (phase_state_180 == 6) {
+    ++phase_index_184;
+    phase_state_180 = 0;
+   }
+   if (phase_state_180 != 0) {
+    if (phase_index_184 <= 0) {
+     next_sequence_block();
+    } else {
+     phase_state_180 = 0;
+    }
+   }
+  }
+
+  if (sequence_id_13e == 2) {
+   release_secondary();
+   if (alpha_113 <= 10) {
+    --lifetime_330;
+    return;
+   }
+   alpha_113 -= 10;
+  }
+  if (x_ec > 1380.0f || x_ec < -100.0 || y_f0 > 960.0 || y_f0 < -120.0) {
+   --lifetime_330;
+   return;
+  }
+  if (CORE->advance_frame_and_dispatch()) --lifetime_330;
+  if (time_counter_144 == 0 && frame_counter_142 == 0 &&
+      frame_index_140 == 0 && sequence_id_13e == 3) {
+   --lifetime_330;
+  }
+  return;
+ }
  case 810:
   if(sequence_id_13e<=1) {
    if(owner_348->action_id_13c<500 || owner_348->action_id_13c>503 || sequence_id_13e>2){if(alpha_113<=20)RETIRE();alpha_113-=20;}

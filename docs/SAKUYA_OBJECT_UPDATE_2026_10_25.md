@@ -778,8 +778,28 @@ of 2 do not remove the 805 register group for that literal.
 
 ### The 805 literal groups before folding
 
+The frame CMP still has an encoding operand of kind `0x275` with value
+2 at `0x10C06590`. The early pass at `0x10C26030` visits its operands.
+`0x10B56700` interns constants by kind and value, then builds a symbolic
+operand. The write at `0x10BF2BF7` removes the literal from the CMP's
+first operand chain, and the replacement is already linked at
+`0x10C073E7`, before register allocation begins.
+
+The allocator relinks that symbolic operand to the group at
+`0x10B130F6`. It writes EBP to the group at `0x10B14E2A` and writes
+the 16-bit BP descriptor into the operand at `0x10B17A46`. In the
+`<= 1` control, the same stores select EBX and BX for the separate
+three-use group for 1.
+
+The final sequence test in 804 is a control for the immediate form.
+It starts as the same immediate 2 and shares 805's symbolic group at
+`0x10C073E7`. The allocator moves the two uses into different groups.
+For 804, `0x10B599B0` restores the literal while splitting uses,
+before physical register selection. Its call at `0x10B12FDD` follows
+the failed intersection of two sparse sets at `0x10B12F4D`.
+
 At `c2.dll:0x10B14D84`, the `< 2` build gives the group containing
-`select_sequence(2)` five uses and score 2. The `<= 1` control
+`select_sequence(2)` and the cutoff five uses and score 2. The `<= 1` control
 gives it four uses and score 1. Both select EBP at cost zero, with
 EBX eligible at cost 6800. The group for the second spawn's -1
 argument has five uses in both builds. It has only EDI available
@@ -796,9 +816,8 @@ and to BX (`0x10D0A3F0`) in the `<= 1` control. The bookkeeping
 record at `CMP+0x2C` survives with its literal descriptor in both
 builds. The two paths emit `66 39 AE 40 01 00 00` and
 `66 39 9E 40 01 00 00` at the return to `0x10C56EC2`. Both
-traces run without `/FAcs`. The target encodes the immediate 2 and
-loads EBP with -1 before the first sequence body. Follow the encoding
-chain through allocation to find where the cutoff acquires a register.
+traces run without `/FAcs`. The target uses immediate 2 in all five
+positions and loads EBP with -1 before the first sequence body.
 
 Reading the cutoff through a local or an inlined helper keeps the
 same full candidate. `frame + 1 <= 2` still loads EBP with 2,
@@ -812,6 +831,13 @@ their scale-add load order. Giving the phase test a local name,
 changing the earlier 803 alpha assignments, and swapping the scale
 sum's operands all retain that cross-case difference. The selected
 source keeps the preceding 805 branch shape.
+
+Writing out the motion step, bounds, and lifetime exits in 805
+preserves the full relocated output.
+A shared `const int` spawn layer and an explicit jump to the fade
+test also reproduce the same bytes. Splitting the opening guard
+through an owner-action local or flattening the phase reset perturbs
+the scale-add operand order in 813, 815, 859 and 901.
 
 ## A typed helper for the 810 orbit
 

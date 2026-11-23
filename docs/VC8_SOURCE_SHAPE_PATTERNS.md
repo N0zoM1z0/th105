@@ -5,11 +5,12 @@ the function where it was proven.
 
 ## Patterns that produced exact matches
 
-**Integer comparison constants are emitted as written.** VC8 does not
-canonicalize `x < 1` and `x <= 0`: the first gives `cmp x, 1; jge`, the second
-`cmp x, 0; jg`. So the target's `cmp` immediate tells you the source literal,
-and off-by-one spellings are a large share of the residual in the giant
-character functions. A greedy search fixed many at once: for each distinct
+**Integer comparisons can retain the written cutoff.** VC8 may emit
+`x < 1` as `cmp x, 1; jge` and `x <= 0` as `cmp x, 0; jg`. A register
+operand can also share its value with later instructions, as in
+[Sakuya's object update](SAKUYA_OBJECT_UPDATE_2026_10_25.md#the-805-literal-groups-before-folding).
+Off-by-one spellings are a large share of the residual in the giant
+character functions. A greedy search fixed many at once. For each distinct
 (operator, constant) pair, rewrite every matching integer field comparison to
 its alternative (`< k` and `<= k-1`, `> k` and `>= k+1`), rebuild, and keep
 the change only if the function's instruction diff shrinks and every other
