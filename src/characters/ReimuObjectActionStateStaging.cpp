@@ -381,6 +381,11 @@ retire_801_811:
         effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
         goto advance_and_retire_on_completion;
 
+advance_and_retire_on_completion:
+        if (!reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            return;
+        goto retire;
+
     case 808:
         if (_root_state.sequence_13e == 0) {
             if (reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
@@ -2432,7 +2437,6 @@ retire_801_811:
             break;
         }
         case 1: {
-            const unsigned *final_packet;
             if (_root_state.phase_state_180 == 6) {
                 _root_state.phase_index_184 = static_cast<unsigned char>(_root_state.phase_index_184 + 1);
                 _root_state.phase_state_180 = 0;
@@ -2463,8 +2467,12 @@ retire_801_811:
                 }
                 health_packet[1] = 0.75f;
                 health_packet[2] = 3.0f;
-                final_packet = reinterpret_cast<const unsigned *>(health_packet);
-                goto emit_901_burst_tail;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    901, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(health_packet), 3);
+                _root_state.state_330 += retire_delta;
+                return;
             }
             effect_000.reset_zero_128 += this->state_370;
             if ((static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x > 0.0 && effect_000.object_x_0e8 > 1240.0f) ||
@@ -2501,18 +2509,15 @@ retire_801_811:
                     }
                     exhausted_packet[1] = 0.75f;
                     exhausted_packet[2] = 3.0f;
-                    final_packet = reinterpret_cast<const unsigned *>(exhausted_packet);
-                    goto emit_901_burst_tail;
+                    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                        901, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                        static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                        reinterpret_cast<const unsigned *>(exhausted_packet), 3);
+                    _root_state.state_330 += retire_delta;
+                    return;
                 }
             }
             break;
-        emit_901_burst_tail:
-            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                901, effect_000.object_x_0e8, effect_000.object_y_0ec,
-                static_cast<unsigned char>(effect_000.object_facing_100), 1,
-                final_packet, 3);
-            _root_state.state_330 += retire_delta;
-            return;
         }
         case 3:
             effect_000.reset_one_118 += reinterpret_cast<float *>(copied_words_340)[1];
@@ -3903,8 +3908,4 @@ advance_with_sequence_retirement:
         --_root_state.state_330;
     return;
 
-advance_and_retire_on_completion:
-    if (!reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
-        return;
-    goto retire;
 }

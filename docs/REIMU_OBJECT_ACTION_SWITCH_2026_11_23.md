@@ -148,3 +148,31 @@ The target routes both branches to the shared `0x00499DF6` call tail; the
 candidate still selects different shared call tails, so this is real semantic
 and ownership progress, not an exactness claim. The full root remains
 nonexact, and the separate action-901 and action-817 large-body gaps remain.
+
+
+## Shared advance-and-retire boundary at `0x00497191`
+
+IDA xrefs identify `0x00497191` as a second major shared tail in the same
+46,138-byte ReimuObject root. It has 23 incoming code references across
+13 owner families: 807, 850, 851, 855, 856, 859, 866, 869, 900, 903, 951,
+980 and 998. The tail calls `advance_frame_and_dispatch`, tests the result,
+returns without retirement on false, and decrements `state_330` before the
+common epilogue on true. It is physically placed immediately after action
+807, not at the remote end of the dispatcher.
+
+The C++ `advance_and_retire_on_completion` label has been moved to the
+post-807 boundary so those large action families share the same source-level
+control-flow owner. This changes the focused audit from 1,192 to 1,132
+instruction-difference groups and moves 902 to an exact 2,998-byte owner
+extent. The new focused extents are: 807 272/300, 808 415/410, 811 1,509/1,507,
+812 1,294/1,376, 817 3,029/3,066, 821 1,083/1,119, 822 1,888/1,955,
+869 1,691/1,736, 900 1,185/1,229, 901 2,240/2,324, 902 2,998/2,998,
+903 1,403/1,397, 908 3,789/3,794, and 951 486/547. The complete root remains
+nonexact; the candidate has 45,456 main bytes against the 46,138-byte target
+extent. The root entry branch at `0x0049655F` is still the first raw-byte
+mismatch. These results are focused owner evidence only, not a cold replay.
+
+Action 901's two sequence-1 terminal burst branches now each own their
+packet-specific spawn and retirement directly. This removes the extra local
+`emit_901_burst_tail` join and reduces action-901 instruction-difference
+groups from 75 to 70 while preserving the three-word packet semantics.
