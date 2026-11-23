@@ -157,15 +157,26 @@ publication now follows phase 6. The final object encodes that branch as
 This is the same list-splicing pass observed in
 [the common Fighter trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md).
 
+The order is already decided when the list-splicing pass starts. In the
+pinned `c2.dll`, `0x10B5CD30` walks the outgoing edges at block `+0x0C` in
+depth-first order. Each edge has its next pointer at `+0` and destination
+block at `+0x0C`. The routine appends each block to the list at graph
+`+8`, through block `+0x10`, when it finishes visiting that block's
+successors. Reconstructing that traversal from the live graph gives the
+same 56 entries in the same order. The high switch reaches the phase-6
+stub before the phase-5 stub, so phase 6 discovers the common publication
+block. Reversing that postorder puts the publication after phase 6 in the
+physical instruction list. The traced build still reproduces the complete
+existing candidate, including both dispatch tables.
+
 Moving the 604 stub next to 601, putting the 602 group before both, spelling
 the shared motion reset as a direct fallthrough, and compiling independent
 copies of the 600/603 or 602 reset statements each reproduce the same
 44 differences. Placing the 604 stub before the 601 body reverses
 the two phase constants and their table entries, leaving 46 differences
-as in the earlier reversed-order control. Keep the checked source.
-Compare the incoming block lists at the layout pass when testing another
-source context. The change in layout is already present before native
-instruction encoding.
+as in the earlier reversed-order control. A further control needs to
+distinguish how the high switch adds its successor edges or how a later
+optimization forms the shared suffix from separately laid-out blocks.
 
 ## Reproduction and next scope
 
