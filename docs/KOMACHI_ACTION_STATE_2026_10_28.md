@@ -338,3 +338,19 @@ both conditions merges the entries again. The native 209/212 continuation also
 joins 221 at `0x005E40A0` after the gravity update. Sharing that suffix in
 source leaves the two spans exchanged and grows the candidate's 221 span by
 12 bytes.
+
+The headless VC8 SP1 trace at `c2.dll:0x10B26CA8` reproduces the split
+candidate's 65,356 bytes and all 1,860 relocations. Applying the
+[recovered depth-first walk](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md#vc8-block-ordering-2026-11-23)
+to its raw graph reproduces all 3,571 entries in the compiler's postorder
+list. The low switch (block 34) visits entry 212 (459) before entry 209
+(382). Its non-crossing edge through 462 discovers the shared flight block
+(386) before 209 is visited. That block still follows 209 in the physical
+list at the breakpoint, but the new order puts it after 212. The emitted
+209 branch enters the shared flight code with `JE` and 212 falls through.
+The target uses `JNE` from 209 to the landing path and `JE` from 212 back
+to the flight code inside 209.
+
+Putting 212 before 209 in source reverses their emitted entry order, while
+the flight block still follows 212. Both owner spans, the section size and
+the relocation count stay the same as in the first split candidate.

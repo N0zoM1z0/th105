@@ -101,10 +101,10 @@ Other open leads:
   preserve the compiled envelope. The ordinary replay covers the callable.
   A full exact contract must account for all seven tables. The owner
   diagnostic follows all seven native dispatches with the split 209/212
-  scratch variant. That variant places the shared flight block after 212,
-  which the native function places after 209. Reimu 0x478FA0 has staged
-  partial sources (`src/characters/ReimuActionState*`) and still needs a
-  selected whole-root unit.
+  scratch variant. The VC8 graph reaches the shared flight block through
+  212 first. The native 212 jumps back to that block inside 209. Reimu
+  0x478FA0 has staged partial sources (`src/characters/ReimuActionState*`)
+  and still needs a selected whole-root unit.
 
 ## Checking shared type changes
 
