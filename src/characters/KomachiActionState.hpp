@@ -83,13 +83,16 @@ public:
         if(peer()->x_ec>static_cast<double>(x_ec))at<unsigned char>(0x104)=1;
     }
     __forceinline void card_expiration() {
-        at<int>(0x644)=at<int>(0x648)-at<int>(0x178);
-        if(at<int>(0x644)<=0 && action_id_13c>=700 && at<unsigned char>(0x752)==1){
-            signed char direction=at<signed char>(0x104);
-            if((direction==1 && peer()->x_ec<static_cast<double>(x_ec)) ||
-               (direction==-1 && peer()->x_ec>static_cast<double>(x_ec)))at<unsigned char>(0x104)=static_cast<unsigned char>(-direction);
-            set_action_and_finalize(149);at<unsigned char>(0x752)=0;at<unsigned char>(0x654)=0;
-            effect(68,x_ec,static_cast<float>(y_f0+100.0),at<unsigned char>(0x104),1);
+        field_644 = field_648 - accumulated_hit_quantity_178;
+        if (field_644 <= 0 && action_id_13c >= 700 && field_752 == 1) {
+            signed char direction = at<signed char>(0x104);
+            if ((direction == 1 && peer()->x_ec < static_cast<double>(x_ec)) ||
+                (direction == -1 && peer()->x_ec > static_cast<double>(x_ec)))
+                at<unsigned char>(0x104) = static_cast<unsigned char>(-direction);
+            set_action_and_finalize(149);
+            field_752 = 0;
+            field_654 = 0;
+            effect(68, x_ec, static_cast<float>(y_f0 + 100.0), at<unsigned char>(0x104), 1);
         }
     }
     __forceinline void recovery_jump(float vx) {
@@ -228,17 +231,17 @@ public:
         if(at<signed char>(0x608)>=4){p[2]=extra;spawn(811,x_ec,y_f0,at<unsigned char>(0x104),1,p,3);}skill_cost(16);
     }
     __forceinline void ground811(float mode,float extra) {
-        landing();at<unsigned char>(0x17c)=4;if(advance())set_action_and_finalize(0);if(entry(1)){set_action_and_finalize(0);return;}
+        landing();field_17c=4;if(advance())set_action_and_finalize(0);if(entry(1)){set_action_and_finalize(0);return;}
         if(!sequence_index_13e && !frame_timer_142 && frame_index_140==10)shot811(mode,extra);
     }
     __forceinline void air811(int frame,float mode,float extra,int gravity_frame) {
         if(sequence_index_13e==2)landing();
         if(sequence_index_13e<=1){velocity_y_f8-=acceleration_y_100;if(static_cast<unsigned char>(crossed())){select_sequence(2);y_f0=komachi_surface(this);zero_motion();return;}}
-        at<unsigned char>(0x17c)=4;if(advance())set_action_and_finalize(0);if(entry(1)||entry(2)){set_action_and_finalize(9);return;}
+        field_17c=4;if(advance())set_action_and_finalize(0);if(entry(1)||entry(2)){set_action_and_finalize(9);return;}
         if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==frame)shot811(mode,extra);if(!frame_timer_142 && frame_index_140==gravity_frame)acceleration_y_100=0.25f;}
     }
     __forceinline void stream815(double speed) {
-        landing();at<unsigned char>(0x17c)=1;
+        landing();field_17c=1;
         if(at<short>(0x730)==1){
             int limit=5;if(at<signed char>(0x605)>=2)limit=6;if(at<signed char>(0x605)>=4)limit=8;
             if(at<short>(0x732)<limit){
@@ -262,7 +265,7 @@ public:
     __forceinline void sweep_entry() {effect(127,x_ec,y_f0,at<unsigned char>(0x104),-1);dispatch_character_wave_handle(18);counter(200,120);phase_counter(50);}
 
     __forceinline void swap820(int skill,bool extra,bool cooldown_before) {
-        at<unsigned char>(0x17c)=2;if(sequence_index_13e==3)landing();if(advance())set_action_and_finalize(9);
+        field_17c=2;if(sequence_index_13e==3)landing();if(advance())set_action_and_finalize(9);
         if(entry(2)){
             if(peer()->action_id_13c<=599){
                 float p[3]={0.0f,0.0f,1.0f};spawn_offset(820,0,100.0,p,3);
@@ -309,7 +312,7 @@ public:
         p[2]=4.0f;spawn(821,static_cast<float>(200*facing()+static_cast<double>(x_ec)),y_f0,at<unsigned char>(0x104),-1,p,3);skill_cost(19);
     }
     __forceinline void ground821(int control) {
-        landing();at<unsigned char>(0x17c)=6;if(!at<int>(control))at<unsigned char>(0x750)=0;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
+        landing();field_17c=6;if(!at<int>(control))at<unsigned char>(0x750)=0;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
         if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==7 && at<unsigned char>(0x750)){charge(-100,164.0);return;}if(frame_index_140==10)pair821(1.0f);}
         if(sequence_index_13e==1 && !frame_timer_142 && frame_index_140==4)pair821(2.0f);
     }
@@ -323,7 +326,7 @@ public:
            (x_ec>static_cast<double>(other->x_ec) && other->at<unsigned char>(0x104)==255))at<float>(0x6ac)=-at<float>(0x73c);
     }
     __forceinline void movement822(int control,int alternate,bool clear_first) {
-        landing();at<unsigned char>(0x17c)=10;if(!at<int>(control))at<unsigned char>(0x750)=0;
+        landing();field_17c=10;if(!at<int>(control))at<unsigned char>(0x750)=0;
         if(!sequence_index_13e && frame_index_140>=4){accelerate822();publish822();}
         if(sequence_index_13e==1){
             accelerate822();
@@ -345,7 +348,7 @@ public:
 
     __forceinline void primary825() {dispatch_character_wave_handle(14);float p[3]={static_cast<float>(at<float>(0x744)-at<short>(0x734)*25.0+25.0),7.0f,0.0f};spawn_offset(825,90,180.0,p,3);++at<short>(0x734);}
     __forceinline void ground825(int control) {
-        landing();at<unsigned char>(0x17c)=3;if(sequence_index_13e<2 && !at<int>(control))at<unsigned char>(0x750)=0;
+        landing();field_17c=3;if(sequence_index_13e<2 && !at<int>(control))at<unsigned char>(0x750)=0;
         if(at<short>(0x730)==1){
             if(!sequence_index_13e){if(!(at<short>(0x732)%6)){at<int>(0x180)=1;if(at<short>(0x734)<(at<signed char>(0x607)>=4)+3)primary825();}}
             else if(!(at<short>(0x732)%6)){
@@ -427,5 +430,29 @@ public:
             spawn(817,x,y,direction,-1,p,3);
         }
     }
+
+    unsigned char unknown_174[0x4];
+    int accumulated_hit_quantity_178;
+    unsigned char field_17c;
+    unsigned char unknown_17d[0x4c7];
+    int field_644;
+    int field_648;
+    unsigned char unknown_64c[0x8];
+    unsigned char field_654;
+    unsigned char unknown_655[0xfd];
+    unsigned char field_752;
 };
+
+typedef char KomachiActionState_accumulated_hit_quantity_178_offset[
+    offsetof(KomachiActionStateView, accumulated_hit_quantity_178) == 0x178 ? 1 : -1];
+typedef char KomachiActionState_field_17c_offset[
+    offsetof(KomachiActionStateView, field_17c) == 0x17c ? 1 : -1];
+typedef char KomachiActionState_field_644_offset[
+    offsetof(KomachiActionStateView, field_644) == 0x644 ? 1 : -1];
+typedef char KomachiActionState_field_648_offset[
+    offsetof(KomachiActionStateView, field_648) == 0x648 ? 1 : -1];
+typedef char KomachiActionState_field_654_offset[
+    offsetof(KomachiActionStateView, field_654) == 0x654 ? 1 : -1];
+typedef char KomachiActionState_field_752_offset[
+    offsetof(KomachiActionStateView, field_752) == 0x752 ? 1 : -1];
 }

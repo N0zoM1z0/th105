@@ -11,15 +11,33 @@ void KomachiActionStateView::dispatch_action_state_vslot28() {
 #define I(o) at<int>(o)
 #define F(o) at<float>(o)
 
-S(0x7a0)=0;S(0x7a2)=106;
-if(B(0x72c)==2 && C(0x55a)>0){
-    switch(at<std::deque<FighterSequenceSlot> >(0x55c)[0].record_id_00){
-    case 0:case 1:case 2:case 3:case 4:card_expiration();break;
-    case 5:case 6:case 7:case 8:card_expiration();break;
+S(0x7a0) = 0;
+S(0x7a2) = 106;
+
+if (B(0x72c) == 2 && C(0x55a) > 0) {
+    const short record_id = at<std::deque<FighterSequenceSlot> >(0x55c)[0].record_id_00;
+    switch (record_id) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        card_expiration();
+        break;
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+        card_expiration();
+        break;
     }
 }
-if(I(0x7a8)>0)--I(0x7a8);else I(0x7a8)=0;
-if(S(0x186) || peer()->at<short>(0x48c))return;
+if (I(0x7a8) > 0)
+    --I(0x7a8);
+else
+    I(0x7a8) = 0;
+if (S(0x186) || peer()->at<short>(0x48c))
+    return;
 
 switch(action_id_13c){
 
@@ -329,17 +347,17 @@ case 418:
 
 
 case 500:
-    landing();B(0x17c)=0;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
+    landing();field_17c=0;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==10){float p[3]={0.0f,10.0f,0.0f};spawn(810,static_cast<float>(200*facing()+static_cast<double>(x_ec)),y_f0,B(0x104),1,p,3);skill_cost(10);}return;
 case 501:
-    landing();B(0x17c)=0;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
+    landing();field_17c=0;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==10){float p[3]={0.0f,20.0f,0.0f};spawn(810,static_cast<float>(200*facing()+static_cast<double>(x_ec)),y_f0,B(0x104),1,p,3);skill_cost(10);}return;
 case 505:ground811(0.0f,3.0f);return;
 case 506:ground811(2.0f,5.0f);return;
 case 507:air811(7,0.0f,3.0f,12);return;
 case 508:air811(6,1.0f,4.0f,11);return;
 case 510:
-    landing();B(0x17c)=8;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
+    landing();field_17c=8;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==10){
         float p[3]={0.0f,10.0f,0.0f};if(C(0x60c)>=4)p[2]=2.0f;
         if(B(0x104)==1)spawn(812,static_cast<float>(komachi_boundary_6fbd24+100.0),y_f0,-1,1,p,3);
@@ -347,7 +365,7 @@ case 510:
         skill_cost(10);
     }return;
 case 511:
-    landing();B(0x17c)=8;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
+    landing();field_17c=8;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==10){
         float p[3]={0.0f,10.0f,0.0f};if(C(0x60c)>=4)p[2]=2.0f;
         if(B(0x104)==255)spawn(812,static_cast<float>(komachi_boundary_6fbd24+100.0),y_f0,-1,1,p,3);
@@ -357,13 +375,13 @@ case 511:
 case 520:stream815(20.0);return;
 case 521:stream815(25.0);return;
 case 525:
-    landing();B(0x17c)=5;
+    landing();field_17c=5;
     if(sequence_index_13e==1 && sweep817(1.0f,10.0,40))return;
     if(sequence_index_13e==3 && sweep817(1.5f,20.0,40))return;
     if(advance())set_action_and_finalize(0);if(entry(3)){set_action_and_finalize(0);return;}
     if(entry(1)){sweep_entry();if(C(0x609)>=4)select_sequence(3);}return;
 case 526:
-    landing();B(0x17c)=5;decelerate(0.25,false);
+    landing();field_17c=5;decelerate(0.25,false);
     if(sequence_index_13e==1 && sweep817(1.0f,10.0,65))return;
     if(sequence_index_13e==3 && sweep817(1.5f,20.0,65))return;
     if(advance())set_action_and_finalize(0);if(entry(3)){set_action_and_finalize(0);return;}
@@ -381,7 +399,7 @@ case 551:movement822(0x6c4,0x6c0,true);return;
 case 560:ground825(0x6c0);return;
 case 561:ground825(0x6c4);return;
 case 562:{
-    if(sequence_index_13e==5)landing();B(0x17c)=3;velocity_y_f8-=acceleration_y_100;double y=velocity_y_f8+static_cast<double>(y_f0);
+    if(sequence_index_13e==5)landing();field_17c=3;velocity_y_f8-=acceleration_y_100;double y=velocity_y_f8+static_cast<double>(y_f0);
     if(komachi_surface(this)>=y && velocity_y_f8<0.0f && sequence_index_13e<5){select_sequence(5);acceleration_y_100=0.0f;B(0x47f)=0;y_f0=komachi_surface(this);zero_motion();return;}
     if(sequence_index_13e<2 && !I(0x6c4))B(0x750)=0;
     if(S(0x730)>0 && (sequence_index_13e==2 || sequence_index_13e==3)){
@@ -397,7 +415,7 @@ case 562:{
 case 565:ground827(0x6c0);return;
 case 566:ground827(0x6c4);return;
 case 567:{
-    if(sequence_index_13e==5)landing();B(0x17c)=7;velocity_y_f8-=acceleration_y_100;double y=velocity_y_f8+static_cast<double>(y_f0);
+    if(sequence_index_13e==5)landing();field_17c=7;velocity_y_f8-=acceleration_y_100;double y=velocity_y_f8+static_cast<double>(y_f0);
     if(komachi_surface(this)>=y && velocity_y_f8<0.0f && sequence_index_13e<5){select_sequence(5);acceleration_y_100=0.0f;B(0x47f)=0;y_f0=komachi_surface(this);zero_motion();return;}
     if(sequence_index_13e<2 && !I(0x6c4))B(0x750)=0;
     if(sequence_index_13e==2 && frame_index_140==2 && !frame_timer_142){aim_short();dispatch_character_wave_handle(29);I(0x180)=1;counter(200,60);phase_counter(50);float p[3]={0.0f,0.0f,0.0f};spawn_offset(824,48,104.0,p,3);}

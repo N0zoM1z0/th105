@@ -390,3 +390,39 @@ collapses all nine remap indices to one destination. Naming the rounded
 height or reversing the face-test operands gives the selected bytes.
 Spelling separate facing arms emits two immediate direction writes
 instead of the native shared `NEG CL` and leaves the prologue difference.
+
+## The card bound is live across the dispatcher
+
+The native load at `0x005E210A` feeds the card bound and subsequent action
+paths. Following the raw CFG through all seven tables, and stopping at
+writes to EBX or its subregisters, reaches the frame tests in 322, 404,
+415, 418 and 770, the counter test in 402, the byte stores in 510/511, and
+the uses in 520/521 and 603. In the current build both the card-path load
+and bypass-path load reach the common action switch. The build still uses
+BX in 322 and 402, but uses immediate byte stores for 510/511. The latter
+two stores follow the real landing helper in both builds.
+
+On the pinned VC8 SP1 compiler, the two separate constant-load records
+already exist at `c2.dll:0x10C0661B`, before the final pass that splices
+Youmu's publication tail. The first appears after the deque call and
+signed record load. The argument records at both sites carry value 8
+into the same register class. The final listing places the two writes
+at `+0x58` and `+0x228`. The traced section replays to the same
+65,288 canonical bytes and 1,857 relocations as the ordinary build.
+
+An explicit switch default, separate range guard, signed or unsigned
+record local, and explicit forward exits to the countdown each compile
+to the same complete candidate. Further comparison can focus on the
+earlier materialization and register allocation of constants shared
+across actions.
+
+The card-expiration code and skill-state writes now use six checked
+members in the local receiver view. The hit accumulator at `+0x178`
+is also written by the native hit policy at `0x0046C6D0`. The selected
+layout and clearer card switch replay to the same complete candidate.
+
+Typing the entry guards and countdown as a group changes code in other
+actions. In 400, 402, 404 and 406, seven native memory adds from
+`+0x744` become an earlier load followed by a stack add. The probe
+also adds a jump in 525 and grows by 16 bytes overall. Those entry
+fields keep their existing spelling pending a narrower explanation.
