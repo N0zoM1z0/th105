@@ -114,6 +114,14 @@ in cases 159–162 in scoped float locals. The native steps use the double
 promotion of `0.6f` and round to float after each addition. That rewrite
 kept the complete envelope and the 53 matching owners at the time.
 
+After restoring the sequence tail, a scratch build gave the eight
+clamp consumers their own rounded motion and frame-advance statements,
+with `break` at their exits. Changing 50's exit to `break` as well
+produced the same 11,049-byte envelope and 405 relocations. Both builds
+keep the restored sequence cases, add no matching clamp owners, and
+change 799's return branches. The selected clamp therefore still needs
+the native entries between its x87 compare, speed store and advance.
+
 ## Complete comparison
 
 The full target envelope is 10,725 bytes. It ends at `0x00476AA5`, after
