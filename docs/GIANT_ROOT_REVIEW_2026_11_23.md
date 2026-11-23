@@ -3,7 +3,7 @@
 Start the compiler investigation at the shared Fighter root `0x004740C0`.
 The current VC8 SP1 build reproduces 53 of 66 physical owners in the
 instruction/edge diagnostic. Its 10,219-byte callable still differs at
-`+0x14`, and the candidate section is 10,801 bytes versus a 10,736-byte
+`+0x14`, and the candidate section is 10,801 bytes versus a 10,725-byte
 target envelope. It is small enough to review all the remaining shared
 tails and is called by all fifteen roster Fighter roots. All TH105 results
 below use the hash-attested Japanese 1.06a PE.

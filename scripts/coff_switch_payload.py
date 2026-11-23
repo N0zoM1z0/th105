@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TABLE_FIELDS = {'alignment_hex', 'table_offset', 'table_entries', 'jump_offset'}
 COMPACT_FIELDS = {'map_offset', 'map_size', 'load_offset'}
 PAYLOAD_FIELDS = {'size', 'sha256'}
-OPTIONAL_FIELDS = {'additional_tables', 'tail_jumps'}
+OPTIONAL_FIELDS = {'additional_tables', 'tail_jumps', 'virtual_tail_jumps'}
 ALIGNMENT_NOPS = {bytes.fromhex(code) for code in (
     '90', '8bff', '8d4900', '8d642400', '8d9b00000000', '8da42400000000',
 )}
@@ -69,6 +69,12 @@ def validate_contract(contract, code_size):
             or any(type(offset) is not int or not 0 <= offset <= code_size - 5 for offset in tail_jumps)
             or len(set(tail_jumps)) != len(tail_jumps)):
         raise ValueError('compact switch requires distinct in-code tail jump offsets')
+    virtual_tails = contract.get('virtual_tail_jumps', [])
+    if (not isinstance(virtual_tails, list)
+            or any(type(offset) is not int or not 0 <= offset <= code_size - 2 for offset in virtual_tails)
+            or len(set(virtual_tails)) != len(virtual_tails)
+            or set(virtual_tails) & set(tail_jumps)):
+        raise ValueError('compact switch requires distinct in-code virtual tail jump offsets')
     return tables
 
 
@@ -183,6 +189,37 @@ def inspect_table(target, address, start, contract, relocations, ins, by):
     return jump.address, destinations, forbidden | protected_bound
 
 
+def virtual_tail_setup(ins, index):
+    # VC8 loads a slot through the saved receiver, restores the Fighter frame
+    # and jumps through the loaded register. ECX setup can be scheduled among
+    # the restores when it has not already happened in the case body.
+    tail = ins[index]
+    if index < 6 or tail.mnemonic != 'jmp' or tail.operands[0].type != x.X86_OP_REG:
+        raise ValueError('compact switch virtual tail is not a register jump with an epilogue')
+    start = index - 6
+    if ins[index - 4].mnemonic == 'mov' and ins[index - 4].op_str == 'ecx, esi':
+        start -= 1
+    if start < 0:
+        raise ValueError('compact switch virtual tail is missing its setup')
+    vtable, slot, *restores = ins[start:index]
+    restores = [i for i in restores if (i.mnemonic, i.op_str) != ('mov', 'ecx, esi')]
+    if ([(i.mnemonic, i.op_str) for i in restores] !=
+            [('pop', 'edi'), ('pop', 'esi'), ('pop', 'ebx'), ('add', 'esp, 4')]):
+        raise ValueError('compact switch virtual tail does not restore the Fighter frame')
+    if any(i.mnemonic != 'mov' or i.operands[0].type != x.X86_OP_REG
+           or i.operands[1].type != x.X86_OP_MEM or i.operands[1].size != 4
+           or i.operands[1].mem.index or i.operands[1].mem.segment for i in (vtable, slot)):
+        raise ValueError('compact switch virtual tail needs two unindexed DWORD loads')
+    vptr = vtable.operands[1].mem
+    target = slot.operands[1].mem
+    if (vptr.base != x.X86_REG_ESI or vptr.disp != 0 or target.base != vtable.operands[0].reg
+            or target.disp < 0 or target.disp % 4
+            or slot.operands[0].reg != tail.operands[0].reg
+            or tail.operands[0].reg not in (x.X86_REG_EAX, x.X86_REG_EDX)):
+        raise ValueError('compact switch virtual tail register does not come from a vtable slot')
+    return {i.address for i in ins[start + 1:index + 1]}
+
+
 def inspect(canonical, target, address, code_size, contract, relocations, tail_targets=None):
     tables = validate_contract(contract, code_size)
     if (type(address) is not int or address < 0 or address + contract['size'] > 0x100000000
@@ -218,6 +255,13 @@ def inspect(canonical, target, address, code_size, contract, relocations, tail_t
         dispatches[jump] = destinations
         forbidden.update(protected)
         start = table['table_offset'] + 4 * table['table_entries'] + table.get('map_size', 0)
+    virtual_tails = {address + offset for offset in contract.get('virtual_tail_jumps', [])}
+    if virtual_tails:
+        indices = {instruction.address: index for index, instruction in enumerate(ins)}
+        for at in virtual_tails:
+            if at not in indices or at in dispatches:
+                raise ValueError('compact switch virtual tail is not a distinct instruction')
+            forbidden.update(virtual_tail_setup(ins, indices[at]))
     if any(v not in by or v in forbidden for destinations in dispatches.values() for v in destinations):
         raise ValueError('compact switch destination is not an owned case instruction')
 
@@ -232,6 +276,7 @@ def inspect(canonical, target, address, code_size, contract, relocations, tail_t
                 or tail_targets.get(hits[0][2]) != instruction.operands[0].imm):
             raise ValueError('compact switch tail jump lacks an external REL32 binding')
         tail_jumps.add(instruction.address)
+    tail_jumps.update(virtual_tails)
     if ins[-1].mnemonic != 'ret' and ins[-1].address not in tail_jumps:
         raise ValueError('switch code does not end at a RET or bound tail jump')
 
@@ -241,7 +286,8 @@ def inspect(canonical, target, address, code_size, contract, relocations, tail_t
             operand = instruction.operands[0]
             if operand.type == x.X86_OP_IMM:
                 if instruction.address not in tail_jumps and (operand.imm not in by or operand.imm in forbidden):
-                    raise ValueError('branch escapes code or bypasses the compact-switch guard')
+                    raise ValueError('branch escapes code or bypasses the compact-switch guard '
+                                     f'at {instruction.address:#010x} to {operand.imm:#010x}')
             else:
                 indirect.add(instruction.address)
         elif instruction.group(capstone.CS_GRP_CALL):
@@ -249,7 +295,7 @@ def inspect(canonical, target, address, code_size, contract, relocations, tail_t
             if operand.type == x.X86_OP_IMM and address <= operand.imm < address + code_size:
                 if operand.imm not in by or operand.imm in forbidden:
                     raise ValueError('call bypasses the compact-switch guard or enters an instruction')
-    if indirect != dispatches.keys():
+    if indirect != dispatches.keys() | virtual_tails:
         raise ValueError('unsupported additional indirect branch in compact-switch code')
     # Close every reachable path without interpreting metadata as executable code.
     pending, reached = [address], set()

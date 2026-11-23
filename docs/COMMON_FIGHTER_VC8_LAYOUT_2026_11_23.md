@@ -71,15 +71,25 @@ the float guard from the integer guards or putting the motion return first
 is also byte-neutral. Duplicating just its selection with a reversed
 velocity test loses the previously matching action 799 owner.
 
-The complete target envelope is 10,736 bytes, including 66 jump words,
-241 remap bytes and one alignment byte. The ordinary build still reports its first
-callable difference at `+0x14`. There are eight register-indirect tail jumps
-at `0x474703`, `0x47486D`, `0x474A7B`, `0x475584`, `0x47563B`,
-`0x476037`, `0x4760BE` and `0x476203`. Each loads virtual slot `+0x14`
-and restores the caller frame before jumping. In all fifteen roster vtables
-that slot points to the exact 138-byte `next_sequence_block` at
-`0x0045C220`. The current compact-switch verifier will need to recognize
-these virtual exits for final strict acceptance.
+## Complete comparison
+
+The full target envelope is 10,725 bytes. It ends at `0x00476AA5`, after
+both switch tables and before eleven inter-function INT3 bytes. The
+contract covers 10,219 callable bytes, 66 jump words, 241 remap bytes and
+one alignment byte.
+
+The checker follows the two switches and terminates paths at thirteen
+bound REL32 tail calls and eight register-indirect tail calls. The latter
+must load the jump register through the receiver's vtable and restore the
+Fighter frame. Branches may enter at the start of that setup. All sixteen
+reviewed primary vtables, including CharacterEx and the fifteen roster
+classes, bind slot `+0x14` to the exact 138-byte `next_sequence_block` at
+`0x0045C220`. [Receiver and slot evidence](COMMON_FIGHTER_ROOT_2026_10_16.md#qualified-receiver-domain-and-source-interface)
+
+The pinned target passes the structural check using its decoded relocation
+sites. Changing the last index in either table, omitting a virtual tail
+site, or removing a register restore or a direct-tail relocation is rejected.
+The fresh source still emits 10,801 bytes and differs first at `+0x14`.
 
 The focused build and owner commands are in the
 [giant root review](GIANT_ROOT_REVIEW_2026_11_23.md#reproduce-the-selected-baselines).

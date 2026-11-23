@@ -14,19 +14,19 @@ import coff_switch_payload as payload
 import build
 
 
-def fixture(spill=False, compare=b'\x83\xf8\x01'):
+def fixture(spill=False, compare=b'\x83\xf8\x01', default_code=b'\x31\xc0\xc3'):
     address = 0x401000
     middle = bytes.fromhex('885c2416') if spill else b''
     load = len(compare) + len(middle) + 2
     jump = load + 7
     case0, case1, default = jump + 7, jump + 10, jump + 16
-    code_size = default + 3
+    code_size = default + len(default_code)
     table, index = code_size + 1, code_size + 9
     body = (compare + middle + b'\x77' + bytes([default - load])
             + b'\x0f\xb6\x90' + struct.pack('<I', address + index)
             + b'\xff\x24\x95' + struct.pack('<I', address + table)
             + b'\x31\xc0\xc3' + b'\xb8\x01\x00\x00\x00\xc3'
-            + b'\x31\xc0\xc3' + b'\x90'
+            + default_code + b'\x90'
             + struct.pack('<II', address + case0, address + case1) + b'\x00\x01')
     contract = dict(size=len(body), sha256=hashlib.sha256(body).hexdigest(),
                     alignment_hex='90', table_offset=table, table_entries=2,
@@ -137,6 +137,26 @@ class CompactSwitchTests(unittest.TestCase):
         raw, contract = changed(b, c, case1, b'\xff\xe0\x90\x90\x90\xc3')
         with self.assertRaises(ValueError):
             payload.inspect(raw, raw, a, n, contract, r)
+
+    def test_virtual_tail_needs_a_slot_load_and_frame_restore(self):
+        vtail = bytes.fromhex('8b068b50145f8bce5e5b83c404ffe2')
+        body, address, size, contract, relocs = fixture(default_code=vtail)
+        without_tail = contract
+        contract = dict(contract, virtual_tail_jumps=[size - 2])
+        self.assertEqual(payload.inspect(body, body, address, size, contract, relocs)
+                         ['reachable_code_bytes'], size)
+        with self.assertRaises(ValueError):
+            payload.inspect(body, body, address, size, without_tail, relocs)
+
+        start = size - len(vtail)
+        for at, replacement in ((start + 3, b'\x51'), (start + 5, b'\x90'),
+                                (size - 1, b'\xe0')):
+            wrong, rebound = changed(body, contract, at, replacement)
+            with self.subTest(offset=at), self.assertRaisesRegex(ValueError, 'virtual tail'):
+                payload.inspect(wrong, wrong, address, size, rebound, relocs)
+        wrong, rebound = changed(body, contract, 4, bytes([start + 2 - 5]))
+        with self.assertRaisesRegex(ValueError, 'branch escapes code or bypasses'):
+            payload.inspect(wrong, wrong, address, size, rebound, relocs)
 
     def test_two_tables_and_an_explicit_external_tail(self):
         address, external = 0x401000, 0x402000

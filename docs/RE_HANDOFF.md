@@ -54,7 +54,9 @@ For shared Fighter `0x004740C0`, the read-only VC8 trace identifies
 after action 88, before x87 lowering. The next useful control is to compare
 the input block ordering with a source variant that keeps all three
 predecessors. The 53/66 owner baseline and its complete relocated bytes
-survive the clearer sequence label and comparisons. See the
+survive the clearer sequence label and comparisons. The 10,725-byte
+comparison contract now covers both switch tables and recognizes the
+eight virtual tails alongside the bound direct tails. See the
 [compiler trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) and the
 [engine and Oracle review](GIANT_ROOT_REVIEW_2026_11_23.md).
 

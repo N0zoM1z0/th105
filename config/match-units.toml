@@ -17441,6 +17441,22 @@ dir32_targets = [
   "__real@c1000000=__real@c1000000",
 ]
 
+[units.gpt-web-fighter-common-action-state.functions.switch_payload]
+size = 10725
+sha256 = "89ef5cacaf818c04a5106554bf4cfe1448035e5f267074839a871d67ef0dfbdd"
+alignment_hex = "90"
+table_offset = 10220
+table_entries = 51
+map_offset = 10424
+map_size = 132
+load_offset = 44
+jump_offset = 51
+tail_jumps = [1905, 1920, 2102, 2942, 6627, 8699, 8848, 9084, 9188, 9220, 9503, 9750, 10038]
+virtual_tail_jumps = [1603, 1965, 2491, 5316, 5499, 8055, 8190, 8515]
+additional_tables = [
+    { alignment_hex = "", table_offset = 10556, table_entries = 15, map_offset = 10616, map_size = 109, load_offset = 7534, jump_offset = 7541 },
+]
+
 [units.gpt-web-fighter-giant-shared-primitives]
 kind = "probe"
 source = "src/battle/FighterGiantSharedPrimitives.cpp"
