@@ -1,6 +1,7 @@
 // Manual source hypothesis for JP1.06a SakuyaObject slot28, 4E0D30.
 #include "SakuyaObjectUpdate.hpp"
 #include "characters/CharacterObjectRuntime.hpp"
+#include "battle/Collision.hpp"
 namespace th105 {
 #define AT(p,t,o) (*reinterpret_cast<t *>(reinterpret_cast<unsigned char *>(p)+(o)))
 #define D(x) static_cast<double>(x)
@@ -17,6 +18,17 @@ namespace th105 {
 #define SPAWN(a,l,c) spawn_unparented(a,x_ec,y_f0,static_cast<unsigned char>(facing_104),l,WORDS(payload),c)
 #define PARENTED(a,l,c) spawn_parented(a,x_ec,y_f0,static_cast<unsigned char>(facing_104),l,WORDS(payload),c)
 #define random_float(limit) static_cast<float>(static_cast<unsigned>(selector_random_roll(limit)))
+
+typedef char CheckSakuyaOwnerHealth[offsetof(Fighter, health_174) == 0x174 ? 1 : -1];
+typedef char CheckSakuyaOwnerGate[offsetof(Fighter, gate_48c) == 0x48c ? 1 : -1];
+typedef char CheckSakuyaOwnerScalarModifiers[
+    offsetof(Fighter, scalar_modifier_table_604) == 0x604 ? 1 : -1];
+
+static __forceinline const Fighter &owner_fighter(const SakuyaObjectUpdateView *owner)
+{
+ return *reinterpret_cast<const Fighter *>(owner);
+}
+
 __forceinline void SakuyaObjectUpdateView::advance_orbit()
 {
  parameters_340[0] += 10.0;
@@ -322,7 +334,10 @@ void SakuyaObjectUpdateView::update_action_state()
 
    if (frame_index_140 == 0) {
     if (CORE->advance_state_six_counter_conditional(15)) phase_index_184 = 0;
-    if (AT(owner_348, signed char, 0x609) <= 1 && phase_state_180 != 0) phase_index_184 = 0;
+    if (owner_fighter(owner_348).scalar_modifier_table_604[5] <= 1 &&
+        phase_state_180 != 0) {
+     phase_index_184 = 0;
+    }
 
     if (CONTACT24768 && phase_index_184 <= 0) {
      next_sequence_frame();
@@ -416,7 +431,17 @@ void SakuyaObjectUpdateView::update_action_state()
   switch(sequence_id_13e){case 0:{
    if(frame_index_140<2 && emit_repeated(0,0,3))RETIRE();
    if(frame_index_140==0)MOVE();
-   if(frame_index_140==1){if(AT(owner_348,short,0x48c)<=0){next_sequence_frame();field_344=0;replace_secondary(994,4.0f,10,2,2);float payload[3]={parameters_340[0],0,1};PARENTED(818,-1,3);return;}MOTION->set_oriented_components_f0_f4(parameters_340[0],0);}
+   if (frame_index_140 == 1) {
+    if (owner_fighter(owner_348).gate_48c <= 0) {
+     next_sequence_frame();
+     field_344 = 0;
+     replace_secondary(994, 4.0f, 10, 2, 2);
+     float payload[3] = {parameters_340[0], 0, 1};
+     PARENTED(818, -1, 3);
+     return;
+    }
+    MOTION->set_oriented_components_f0_f4(parameters_340[0], 0);
+   }
    if(frame_index_140==2){if(CONTACT2468){phase_index_184=0;set_sequence_frame(4);owner_348->dispatch_character_wave_handle(3);release_secondary();velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.05f))+5.0;return;}if(phase_state_180!=0){next_sequence_frame();release_secondary();return;}MOVE();}
    if(frame_index_140==3){velocity_x_f4=0;velocity_y_f8=0;if(time_counter_144>=20)RETIRE();}
    if (frame_index_140 == 4) {
@@ -621,7 +646,14 @@ void SakuyaObjectUpdateView::update_action_state()
   if(phase_state_180==5 || OUTSIDE(1680.0,-400.0,1000.0,-160.0f))RETIRE();
   if(sequence_id_13e<=2){
    if(frame_index_140==0){CORE->advance_state_six_counter_conditional(3);
-    if(AT(owner_348,short,0x174)<=0 || CONTACT24768){next_sequence_frame();owner_348->dispatch_character_wave_handle(3);time_counter_144=0;velocity_x_f4=-velocity_x_f4*0.5;velocity_y_f8=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
+    if (owner_fighter(owner_348).health_174 <= 0 || CONTACT24768) {
+     next_sequence_frame();
+     owner_348->dispatch_character_wave_handle(3);
+     time_counter_144 = 0;
+     velocity_x_f4 = -velocity_x_f4 * 0.5;
+     velocity_y_f8 = static_cast<float>(random_float(40) * D(0.1f) + 6.0);
+     return;
+    }
     if(phase_index_184<=0){field_374-=20.0;alpha_113=static_cast<unsigned char>(field_374);if(field_374<0)RETIRE();}
     else if(sequence_id_13e==0 || (sequence_id_13e==1 && (g_match_identifier==3 || g_match_identifier==2))){
      if(facing_104*velocity_x_f4>0 && x_ec>=sakuya_update_right){velocity_x_f4=-velocity_x_f4;if(sequence_id_13e==0){velocity_x_f4*=0.5;velocity_y_f8*=0.5;}owner_348->dispatch_character_wave_handle(3);phase_state_180=0;next_sequence_block();angle_12c=-atan2_degrees(velocity_y_f8,velocity_x_f4);}
@@ -731,7 +763,14 @@ void SakuyaObjectUpdateView::update_action_state()
      CORE->advance_state_six_counter_conditional(1);
      break;
     }
-    if(AT(owner_348,short,0x174)<=0 || CONTACT2468){phase_index_184=0;owner_348->dispatch_character_wave_handle(3);set_sequence_frame(2);release_secondary();velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.05f))+5.0;}
+    if (owner_fighter(owner_348).health_174 <= 0 || CONTACT2468) {
+     phase_index_184 = 0;
+     owner_348->dispatch_character_wave_handle(3);
+     set_sequence_frame(2);
+     release_secondary();
+     velocity_x_f4 = -velocity_x_f4 * (0.5 - random_float(30) * D(0.01f));
+     velocity_y_f8 = static_cast<float>(random_float(30) * D(0.05f)) + 5.0;
+    }
     if (sequence_id_13e == 0 || sequence_id_13e == 1) {
      if (frame_index_140 == 0) {
       if (AT(owner_348, short, 0x7a4) > 0) {
@@ -788,7 +827,14 @@ void SakuyaObjectUpdateView::update_action_state()
      CORE->advance_state_six_counter_conditional(1);
      break;
     }
-    if(AT(owner_348,short,0x174)<=0 || CONTACT2468){phase_index_184=0;owner_348->dispatch_character_wave_handle(3);set_sequence_frame(2);release_secondary();velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.05f))+5.0;}
+    if (owner_fighter(owner_348).health_174 <= 0 || CONTACT2468) {
+     phase_index_184 = 0;
+     owner_348->dispatch_character_wave_handle(3);
+     set_sequence_frame(2);
+     release_secondary();
+     velocity_x_f4 = -velocity_x_f4 * (0.5 - random_float(30) * D(0.01f));
+     velocity_y_f8 = static_cast<float>(random_float(30) * D(0.05f)) + 5.0;
+    }
     if(sequence_id_13e==0 || sequence_id_13e==1){if(frame_index_140==0){if(AT(owner_348,short,0x7a4)>0){phase_index_184=0;if(AT(owner_348,short,0x7a4)==60){next_sequence_block();return;}if(AT(owner_348,short,0x7a4)==1){phase_index_184=1;phase_state_180=0;}}}else field_344=0;}
     if(sequence_id_13e==2){field_344=0;MOVE();angle_12c=parameters_340[0];}
    }

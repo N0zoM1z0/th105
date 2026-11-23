@@ -53,6 +53,10 @@ All 72 destination DWORDs/288 bytes and 200 remap bytes participate. Twelve INT3
 bytes separate this payload from 4E8060; none is included. Metadata/alignment
 receive no callable-byte credit.
 
+The switch checker traverses all 28,985 callable bytes with the expected
+relocation sites. It rejects a change to another valid index at `0x004E7FB7`
+and the removal of one table-word relocation in separate controls.
+
 The 32 explicit primary actions are 800..805,810..813,815..818,849..859,
 900,901,920,930,980,998,999. All other remap entries reach the default frame
 continuation. Nested state switches belong to 803,815,859,901 and 999;920 also
@@ -783,12 +787,23 @@ in the baseline and only EBX in the control. The assignment at
 `0x10B14E2A` records those choices. Both ordinary builds agree with
 their traced versions after complete relocation replay.
 
-The candidate's frame compare ultimately uses BP. The source-tagged
-compare still has its immediate operand at `0x10C077B6`, after
-both `0x10BDA210` and the tail-folding call. The original keeps the
-immediate 2 and loads EBP with -1 before the first sequence body.
-The remaining question is where the later lowering chooses BP
-for the candidate's compare.
+The frame compare already has BP in its encoding operand chain at
+`0x10C073F3`, after `0x10B0CF40` returns and before `0x10BDA210`
+and tail folding. For this CMP the encoder loads the first operand
+from `CMP+0x28` and follows its link at `0x10C210F1`. The first
+linked descriptor points to BP (`0x10D0A4B0`) in the `< 2` build
+and to BX (`0x10D0A3F0`) in the `<= 1` control. The bookkeeping
+record at `CMP+0x2C` survives with its literal descriptor in both
+builds. The two paths emit `66 39 AE 40 01 00 00` and
+`66 39 9E 40 01 00 00` at the return to `0x10C56EC2`. Both
+traces run without `/FAcs`. The target encodes the immediate 2 and
+loads EBP with -1 before the first sequence body. Follow the encoding
+chain through allocation to find where the cutoff acquires a register.
+
+Reading the cutoff through a local or an inlined helper keeps the
+same full candidate. `frame + 1 <= 2` still loads EBP with 2,
+and `frame - 1 < 1` introduces a widened comparison and still
+keeps the other six 853 branches on the 805 retirement tail.
 
 Putting the phase reset before the alternate sequence advance in
 805 sequence 1 restores the local signed JLE and the native virtual
@@ -807,6 +822,13 @@ receiver fields. VC8 emits an out-of-line call with ordinary
 of all 742 relocations. Twenty private labels get new names during
 inlining. The separate conversion of the random macro to a forced-inline
 function changes the emitted bytes.
+
+## Fighter fields used by the owner
+
+Actions 816, 818, 900, 920 and 930 use the existing `Fighter` layout
+for five owner reads through checked signed fields at `+0x174`,
+`+0x48C` and `+0x609`. The full relocated candidate is equal before
+and after the change, including the switch tables and remap.
 
 ## Actions 920 and 930 before frame advance
 

@@ -17,11 +17,11 @@ Read [VC8 source-shape patterns](VC8_SOURCE_SHAPE_PATTERNS.md) before retrying
 any near-miss. It lists the source shapes that produced exact matches and every
 parked residual with what was tried. The most productive rules:
 
-- **Integer comparison constants are emitted as written** (`x < 1` is not
-  `x <= 0` to VC8). A greedy respelling pass over the giant character
-  functions removed hundreds of differing instructions; the target's `cmp`
-  immediate gives the source literal. Float comparisons need the ordered form
-  the target tests (`!(a > b)` is not `a <= b`).
+- **VC8 can preserve the written integer cutoff** (`x < 1` and `x <= 0`
+  often emit different comparisons). A greedy respelling pass over the giant
+  character functions removed hundreds of differing instructions. Check
+  whether the target `cmp` reads an immediate or a register before choosing
+  a source shape. Float comparisons need the ordered form the target tests.
 - **Duplicate a shared tail in source** when one branch jumps into another
   branch's tail. VC8 then cross-jumps the copies the way the target does. This
   closed the scenario list fade 0x455850, the battle menu update 0x4407E0 and
@@ -114,11 +114,13 @@ landing-sum instructions. The entry Y bounds change the address
 definition used by the early C2 pass. Compare how that definition
 reaches the landing sum. The 853 sequence 7 exit now uses the native
 local target. Its other six branches still share the 805 copy.
-The 805 literal group keeps EBP when the cutoff changes, but the
--1 group moves from EDI to EBX. The frame compare retains its
-literal through `0x10C077B6`. Follow that operand into emission
-before adjusting the exit edges again. The complete candidate is
-29,480 bytes with 742 relocations and first differs at `0x004E0D55`.
+The 805 group for 2 keeps EBP when the cutoff changes, and the -1
+group moves from EDI to EBX. The frame compare follows a separate
+encoding operand chain. It already contains BP when allocation returns
+to `0x10C073F3`. Follow that chain through allocation before moving
+the exit edges again. The five checked owner reads through `Fighter`
+preserve the complete 29,480-byte candidate and all 742 relocation sites.
+The first difference is still at `0x004E0D55`.
 [Fade tails](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
 and [retirement sharing](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-853-retirement-is-shared-with-action-805-in-the-rebuild).
 
