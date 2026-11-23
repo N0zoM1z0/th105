@@ -96,8 +96,6 @@ void th105::reimu_object_model::ReimuObject::dispatch_action_state()
         *reinterpret_cast<th105::ReimuObjectActionStateStagingView *>(this);
     float health_packet[3];
     float exhausted_packet[3];
-    float packet_908_sequence_6[3];
-    float packet_908_sequence_7[3];
     unsigned retiring_action;
     const unsigned *retiring_packet;
     int retiring_words;
@@ -1428,7 +1426,8 @@ emit_retiring_world:
             retiring_action, effect_000.object_x_0e8, effect_000.object_y_0ec,
             static_cast<unsigned char>(effect_000.object_facing_100), 1,
             retiring_packet, retiring_words);
-        goto retire;
+        --_root_state.state_330;
+        return;
 
     case 825: {
         const short owner_action = *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13c);
@@ -3494,7 +3493,9 @@ fade_902:
         effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
         goto advance_with_sequence_three_retirement;
 
-    case 908:
+    case 908: {
+        float packet_908_sequence_6[3];
+        float packet_908_sequence_7[3];
         switch (_root_state.sequence_13e) {
         case 0:
             effect_000.reset_zero_128 += reinterpret_cast<float *>(copied_words_340)[1];
@@ -3775,6 +3776,7 @@ fade_902:
         if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 3)
             --_root_state.state_330;
         return;
+    }
 
     case 951: {
         _root_state.alpha_113 = _root_state.fighter_owner_348[0x113];
