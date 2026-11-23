@@ -379,7 +379,6 @@ retire_801_811:
             }
         }
         effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
-        goto advance_and_retire_on_completion;
 
 advance_and_retire_on_completion:
         if (!reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
@@ -956,6 +955,8 @@ advance_and_retire_on_completion:
         goto advance_with_sequence_four_retirement;
 
     case 817: {
+        register int zero = 0;
+        register int one = 1;
         if (_root_state.phase_state_180 == 5)
             goto retire;
         switch (_root_state.sequence_13e) {
@@ -967,20 +968,20 @@ advance_and_retire_on_completion:
                     select_sequence(6);
                     float copied[3] = {0.0f, 0.0f, 4.0f};
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_parented_related_object(
-                        817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                        817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), one,
                         reinterpret_cast<const unsigned *>(copied), 3);
                     for (int remaining = 14; remaining != 0; --remaining) {
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
                         copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(25))) + 15.0);
                         copied[2] = 8.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_parented_related_object(
-                            817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                            817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), one,
                             reinterpret_cast<const unsigned *>(copied), 3);
                     }
                     return;
                 }
                 const int remainder = _root_state.counter_144 % 30;
-                if (remainder == 0 || remainder == 2 || remainder == 4) {
+                if (remainder == zero || remainder == 2 || remainder == 4) {
                     float copied[3];
                     copied[0] = static_cast<float>(45.0 - static_cast<float>(static_cast<unsigned int>(selector_random_roll(270))));
                     copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(40)));
@@ -991,7 +992,7 @@ advance_and_retire_on_completion:
                         817,
                         static_cast<float>(origin_x - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200)))),
                         static_cast<float>(origin_y - static_cast<float>(static_cast<unsigned int>(selector_random_roll(100)))),
-                        static_cast<unsigned char>(effect_000.object_facing_100), 1, reinterpret_cast<int>(copied), 3);
+                        static_cast<unsigned char>(effect_000.object_facing_100), one, reinterpret_cast<int>(copied), 3);
                 }
             }
 
@@ -999,7 +1000,7 @@ advance_and_retire_on_completion:
                 goto retire;
             if ((*reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13c) == 530 ||
                     *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13c) == 531) &&
-                    *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13e) == 0)
+                    *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13e) == zero)
                 goto retire;
             break;
         case 1:
@@ -1009,7 +1010,7 @@ advance_and_retire_on_completion:
                 if (_root_state.alpha_113 < 20)
                     goto retire;
                 _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 20);
-                _root_state.channel_111 = _root_state.channel_112 = 0;
+                _root_state.channel_111 = _root_state.channel_112 = static_cast<unsigned char>(zero);
             } else {
                 _root_state.channel_111 = static_cast<unsigned char>(_root_state.channel_111 - 20);
                 _root_state.channel_112 = static_cast<unsigned char>(_root_state.channel_112 - 20);
@@ -1024,13 +1025,13 @@ advance_and_retire_on_completion:
                 goto retire;
             effect_000.object_x_0e8 = _root_state.parent_object_34c->x_ec;
             effect_000.object_y_0ec = _root_state.parent_object_34c->y_f0;
-            if (_root_state.parent_object_34c->sequence_13e != 0 && _root_state.parent_object_34c->sequence_13e != 9)
+            if (_root_state.parent_object_34c->sequence_13e != zero && _root_state.parent_object_34c->sequence_13e != 9)
                 goto retire;
             break;
         }
         case 3: {
-            if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 3)
-                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->replace_secondary_animation(992, 4.0f, 60, 1, 2);
+            if (_root_state.counter_144 == zero && _root_state.frame_timer_142 == zero && _root_state.frame_140 == zero && _root_state.sequence_13e == 3)
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->replace_secondary_animation(992, 4.0f, 60, one, 2);
             reinterpret_cast<float *>(copied_words_340)[0] += static_cast<float>(
                 static_cast<unsigned int>(selector_random_roll(360)) - 180u);
             reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(60)) + 40u);
@@ -1047,21 +1048,21 @@ advance_and_retire_on_completion:
         case 4:
             if (!_root_state.parent_object_34c)
                 goto retire;
-            reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(0);
-            if (_root_state.phase_state_180 != 0) {
+            reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(zero);
+            if (_root_state.phase_state_180 != zero) {
                 ++_root_state.state_364;
                 if (_root_state.state_364 >= 6) {
-                    _root_state.state_364 = 0;
-                    _root_state.phase_state_180 = 0;
+                    _root_state.state_364 = static_cast<short>(zero);
+                    _root_state.phase_state_180 = zero;
                 }
             }
-            if (static_cast<signed char>(_root_state.phase_index_184) > 0 && _root_state.parent_object_34c->state_364 != 1) {
+            if (static_cast<signed char>(_root_state.phase_index_184) > zero && _root_state.parent_object_34c->state_364 != one) {
                 const float jitter = static_cast<float>(
                     static_cast<float>(static_cast<unsigned int>(selector_random_roll(10))) * static_cast<double>(0.01f));
                 effect_000.reset_one_118 = static_cast<float>(jitter + 1.0);
                 effect_000.reset_one_11c = effect_000.reset_one_118;
             } else {
-                _root_state.phase_index_184 = 0;
+                _root_state.phase_index_184 = static_cast<unsigned char>(zero);
                 effect_000.reset_one_118 = static_cast<float>(effect_000.reset_one_118 * static_cast<double>(0.9f));
                 effect_000.reset_one_11c += this->state_370;
                 this->state_370 = static_cast<float>(this->state_370 - static_cast<double>(0.1f));
@@ -1108,7 +1109,7 @@ advance_and_retire_on_completion:
                 if (_root_state.alpha_113 < decrement)
                     goto retire;
                 _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - decrement);
-                _root_state.channel_111 = _root_state.channel_112 = 0;
+                _root_state.channel_111 = _root_state.channel_112 = static_cast<unsigned char>(zero);
             }
             effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
             effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
@@ -1126,20 +1127,20 @@ advance_and_retire_on_completion:
                     select_sequence(6);
                     float copied[3] = {0.0f, 0.0f, 4.0f};
                     reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_parented_related_object(
-                        817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                        817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), one,
                         reinterpret_cast<const unsigned *>(copied), 3);
                     for (int remaining = 14; remaining != 0; --remaining) {
                         copied[0] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(360)));
                         copied[1] = static_cast<float>(static_cast<float>(static_cast<unsigned int>(selector_random_roll(25))) + 15.0);
                         copied[2] = 8.0f;
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_parented_related_object(
-                            817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                            817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), one,
                             reinterpret_cast<const unsigned *>(copied), 3);
                     }
                     return;
                 }
                 const int remainder = _root_state.counter_144 % 30;
-                if (remainder == 0 || remainder == 2 || remainder == 4) {
+                if (remainder == zero || remainder == 2 || remainder == 4) {
                     float copied[3];
                     copied[0] = static_cast<float>(45.0 - static_cast<float>(static_cast<unsigned int>(selector_random_roll(270))));
                     copied[1] = static_cast<float>(static_cast<unsigned int>(selector_random_roll(40)));
@@ -1150,7 +1151,7 @@ advance_and_retire_on_completion:
                         817,
                         static_cast<float>(origin_x - static_cast<float>(static_cast<unsigned int>(selector_random_roll(200)))),
                         static_cast<float>(origin_y - static_cast<float>(static_cast<unsigned int>(selector_random_roll(100)))),
-                        static_cast<unsigned char>(effect_000.object_facing_100), 1, reinterpret_cast<int>(copied), 3);
+                        static_cast<unsigned char>(effect_000.object_facing_100), one, reinterpret_cast<int>(copied), 3);
                 }
             }
 
@@ -1158,16 +1159,16 @@ advance_and_retire_on_completion:
                 goto retire;
             if ((*reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13c) == 530 ||
                     *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13c) == 531) &&
-                    *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13e) == 0)
+                    *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13e) == zero)
                 goto retire;
             effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
             break;
         }
         if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
             --_root_state.state_330;
-        if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 1)
+        if (_root_state.counter_144 == zero && _root_state.frame_timer_142 == zero && _root_state.frame_140 == zero && _root_state.sequence_13e == 1)
             --_root_state.state_330;
-        if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
+        if (_root_state.counter_144 == zero && _root_state.frame_timer_142 == zero && _root_state.frame_140 == zero && _root_state.sequence_13e == 2)
             --_root_state.state_330;
         return;
 
@@ -2275,17 +2276,18 @@ advance_and_retire_on_completion:
         float dead_sequence_zero[3];
         float completed_sequence_zero[4];
         float dead_sequence_one[3];
-        const unsigned *retiring_packet_900 = 0;
-        int retiring_words_900 = 0;
         switch (_root_state.sequence_13e) {
         case 0:
             if (*reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x174) <= 0) {
                 dead_sequence_zero[0] = 0.0f;
                 dead_sequence_zero[1] = 0.0f;
                 dead_sequence_zero[2] = 2.0f;
-                retiring_packet_900 = reinterpret_cast<const unsigned *>(dead_sequence_zero);
-                retiring_words_900 = 3;
-                break;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    900, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(dead_sequence_zero), 3);
+                --_root_state.state_330;
+                return;
             }
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(0);
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_phase_counter_conditional(0);
@@ -2304,9 +2306,12 @@ advance_and_retire_on_completion:
                     completed_sequence_zero[3] = 15.0f;
                 else if (match_identifier == 0)
                     completed_sequence_zero[3] = 8.0f;
-                retiring_packet_900 = reinterpret_cast<const unsigned *>(completed_sequence_zero);
-                retiring_words_900 = 4;
-                break;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    900, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(completed_sequence_zero), 4);
+                --_root_state.state_330;
+                return;
             }
             break;
         case 1:
@@ -2314,9 +2319,12 @@ advance_and_retire_on_completion:
                 dead_sequence_one[0] = 0.0f;
                 dead_sequence_one[1] = 0.0f;
                 dead_sequence_one[2] = 2.0f;
-                retiring_packet_900 = reinterpret_cast<const unsigned *>(dead_sequence_one);
-                retiring_words_900 = 3;
-                break;
+                reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                    900, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                    static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                    reinterpret_cast<const unsigned *>(dead_sequence_one), 3);
+                --_root_state.state_330;
+                return;
             }
             reinterpret_cast<float *>(copied_words_340)[1] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[1] + static_cast<double>(0.4f));
             reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)->
@@ -2367,14 +2375,6 @@ advance_and_retire_on_completion:
             if (reinterpret_cast<float *>(copied_words_340)[3] <= this->state_370)
                 goto retire;
             break;
-        }
-        if (retiring_packet_900) {
-            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-                900, effect_000.object_x_0e8, effect_000.object_y_0ec,
-                static_cast<unsigned char>(effect_000.object_facing_100), 1,
-                retiring_packet_900, retiring_words_900);
-            --_root_state.state_330;
-            return;
         }
         effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
         effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;

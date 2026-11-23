@@ -168,11 +168,32 @@ extent. The new focused extents are: 807 272/300, 808 415/410, 811 1,509/1,507,
 812 1,294/1,376, 817 3,029/3,066, 821 1,083/1,119, 822 1,888/1,955,
 869 1,691/1,736, 900 1,185/1,229, 901 2,240/2,324, 902 2,998/2,998,
 903 1,403/1,397, 908 3,789/3,794, and 951 486/547. The complete root remains
-nonexact; the candidate has 45,456 main bytes against the 46,138-byte target
-extent. The root entry branch at `0x0049655F` is still the first raw-byte
+nonexact; the candidate has 45,488 main bytes against the 46,138-byte target
+extent after the action-900 branch-local packet reconstruction. The root entry branch at `0x0049655F` is still the first raw-byte
 mismatch. These results are focused owner evidence only, not a cold replay.
 
 Action 901's two sequence-1 terminal burst branches now each own their
 packet-specific spawn and retirement directly. This removes the extra local
 `emit_901_burst_tail` join and reduces action-901 instruction-difference
 groups from 75 to 70 while preserving the three-word packet semantics.
+
+
+## Action 900 terminal packet branches
+
+Action 900's three terminal sequence-0/sequence-1 branches now construct and
+emit their own packet at the branch that owns the retirement, rather than
+carrying a packet pointer and word count through one post-switch call. The
+VC8 compiler naturally folds their common call/return tail into a shared
+candidate tail. This moves action 900 from 1,185/1,229 to 1,207/1,229 bytes
+and reduces its owner-difference groups from 32 to 39? The owner-local count
+increases because the branch layout is more explicit, but the whole-root
+audit improves from 1,132 to 1,124 instruction-difference groups and the
+candidate main code grows from 45,456 to 45,488 bytes. The shared candidate
+call tail is still physically at a different address (`0x00499CF8`) from the
+target's `0x00499DF6`/`0x00499DF8` entries, so action 900 is not exact.
+
+The target has three action-900 branches entering those two target tail
+addresses: one jumps to `0x00499DF8`, while two jump to `0x00499DF6`. The
+candidate currently folds the three natural C++ calls to one common call
+site. This is an explicit next boundary to refine; no padding or instruction
+overrides were introduced.
