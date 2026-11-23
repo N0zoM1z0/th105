@@ -188,6 +188,56 @@ All 396 relocation sites, types and resolved references are preserved.
 The frame-advance tests also use the helper's declared `unsigned char`
 return type directly. That cleanup alone reproduces the previous candidate.
 
+### Rounded assignments restore 55 and 56
+
+In the target, the speed guard leaves `FLDZ` live on both edges of each
+case. The false edge enters `0x00474139` with only zero on the x87 stack.
+The true edge stores and reloads the rounded float and enters `0x00474122`
+with the adjusted speed above zero. Both paths consume the zero in 50.
+The detached clamp in the rebuild carries that zero too, then loads
+another one for `FCOMPP`.
+
+Giving 55 and 56 their own rounded assignment inside the comparison and
+their own switch exit restores both branch destinations in each case.
+Splitting the assignment and test into separate statements can merge the
+spill and reload into the shared tail, shortening both spans to 41 bytes.
+The selected spelling preserves both 49-byte spans and changes only four
+branch displacements in the 10,801-byte candidate. The contiguous target
+range `0x004740FA` through `0x004743E0` now matches all 743 bytes. The owner
+diagnostic rises from 58 to 60 of 66 without losing a span.
+
+Giving 159–162 the same local clamp and switch exits emits `FCOMP ST(1)`
+and the target's two float roundings. Each copy survives in its own
+146-byte span. In this full duplication control, 55/56 and the action-2
+group 67/163–166 all keep their clamp and frame-advance calls through
+x87 lowering. At `0x10B30A1F` the late matcher counts twelve equivalent IR
+instructions for 50 with 55/56 and for 62 with 67/163–166. It accepts all
+seven pairs. The same comparator trace sees no pair between 50 and
+159–162. Moving the float temporaries to function scope or using a
+compound update preserves the duplicated result.
+
+### Action 50 must merge before action 62
+
+All of these exits initially enter the same late return list. In the
+full duplication control, 62 reaches `0x10B30766` while the original
+return edges of 159–166 still belong to that list. At `0x10BF2CD0`, the
+four edges from 159–162 are unlinked during splices whose retained branch
+belongs to 62. A separate snapshot at 50's turn finds all four already
+absent. The emitted 159–162 copies still contain their own clamp and
+publication. The shorter shared return consumes the edge the longer
+action-0 merge needed.
+
+Keep the local rounded assignments and give 50 the direct return and
+62 the switch exit. Changing only 50's exit reproduces the duplicated
+result. With both changes, the breakpoint first observes the splices
+of 159–162 into 50. A later round shares the intermediate suffix with
+55 before final branch cleanup. The native object restores all four
+61-byte spans in 159–162, the six clamp paths into 50 and the existing
+action-2 paths through 62.
+Changing 62's assignment to a separate local in this arrangement loses
+the original rounding spill sites in some of the action-2 callers.
+The selected source uses the original rounded assignment for 62.
+
 ## Complete comparison
 
 The full target envelope is 10,725 bytes. It ends at `0x00476AA5`, after
@@ -206,11 +256,14 @@ classes, bind slot `+0x14` to the exact 138-byte `next_sequence_block` at
 The pinned target passes the structural check using its decoded relocation
 sites. Changing the last index in either table, omitting a virtual tail
 site, or removing a register restore or a direct-tail relocation is rejected.
-The selected source emits 10,801 bytes and differs first at `+0x14`.
-The remaining owner differences are the six clamp cases (55, 56 and
-159–162) and the two switch selector instructions. The next clamp test
-needs to preserve the live x87 zero when those cases branch to the
-speed store or publication in 50.
+The complete 10,725-byte candidate resolves all 393 relocations and
+differs in seven bytes. At `0x004740DE` and `0x00475E20`, VC8 emits
+`ADD EAX,-50` and `ADD EAX,-691`; the target uses `SUB EAX,50` and
+`SUB EAX,691`. The alignment byte at `0x004768AB` matches, as do all 66
+jump words and 241 remap bytes. The owner diagnostic counts the trailing
+NOP as part of candidate action 799 and excludes it from the target
+callable, so it also reports that span despite its identical code and
+alignment bytes. The remaining exact work is the two selector encodings.
 
 The focused build and owner commands are in the
 [giant root review](GIANT_ROOT_REVIEW_2026_11_23.md#reproduce-the-selected-baselines).

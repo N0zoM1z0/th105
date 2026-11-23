@@ -136,8 +136,6 @@ float __fastcall stage_surface_height_at_x(CharacterEx *fighter);
 
 void CharacterEx::update_common_action_state()
 {
-  const double horizontal_speed_limit = 0.0;
-  double adjusted_horizontal_speed;
   double v30; // st7
   int v32; // eax
   int v33; // ecx
@@ -196,32 +194,19 @@ void CharacterEx::update_common_action_state()
     {
     switch (action)
     {
-      // A common switch exit lets VC8 merge the lowered frame advances
-      // from actions 53 and 54 into action 50.
+      // This return lets the action-0 clamp merge before the action-2
+      // clamp at case 62, which exits through the switch.
       case 50:
         resolve_stage_surface_landing_transition();
         if (velocity_x_f4 < 0.0) {
-          const float adjusted = static_cast<float>(velocity_x_f4 + 3.0);
-          velocity_x_f4 = adjusted;
-          if (adjusted > 0.0f)
+          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 3.0)) > 0.0f)
             velocity_x_f4 = 0.0f;
         }
         if (classify_fighter_x_boundary() && unknown_490)
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
         if (advance_frame_and_dispatch())
           set_action(0);
-        break;
-
-clamp_horizontal_speed:
-        velocity_x_f4 = adjusted_horizontal_speed;
-        if ( adjusted_horizontal_speed > horizontal_speed_limit )
-          velocity_x_f4 = horizontal_speed_limit;
-publish_boundary_speed:
-        if (classify_fighter_x_boundary() && unknown_490)
-          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
-        if (advance_frame_and_dispatch())
-          set_action(0);
-        break;
+        return;
 
       case 51:
         resolve_stage_surface_landing_transition();
@@ -285,21 +270,29 @@ resolve_landing_then_advance:
       case 55:
       case 61:
         resolve_stage_surface_landing_transition();
-        if ( velocity_x_f4 > 0.0 ) {
-          adjusted_horizontal_speed = static_cast<float>(velocity_x_f4 - 1.5);
-          goto clamp_horizontal_speed;
+        if (velocity_x_f4 > 0.0f) {
+          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 - 1.5)) > 0.0f)
+            velocity_x_f4 = 0.0f;
         }
-        goto publish_boundary_speed;
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
+        if (advance_frame_and_dispatch())
+          set_action(0);
+        break;
 
       case 56:
       case 57:
       case 58:
         resolve_stage_surface_landing_transition();
-        if ( velocity_x_f4 < 0.0 ) {
-          adjusted_horizontal_speed = static_cast<float>(velocity_x_f4 + 1.5);
-          goto clamp_horizontal_speed;
+        if (velocity_x_f4 < 0.0f) {
+          if ((velocity_x_f4 = static_cast<float>(velocity_x_f4 + 1.5)) > 0.0f)
+            velocity_x_f4 = 0.0f;
         }
-        goto publish_boundary_speed;
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
+        if (advance_frame_and_dispatch())
+          set_action(0);
+        break;
 
       case 62:
         resolve_stage_surface_landing_transition();
@@ -311,7 +304,7 @@ resolve_landing_then_advance:
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
         if (advance_frame_and_dispatch())
           set_action(2);
-        return;
+        break;
 
       case 63:
         resolve_stage_surface_landing_transition();
@@ -323,8 +316,6 @@ resolve_landing_then_advance:
           peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
         if (advance_frame_and_dispatch())
           set_action(2);
-        // The shared action-2 clamp belongs to case 62, not this sibling.
-        // Joining the switch exit preserves its 66/67 and 163..166 edges.
         break;
 
       case 64:
@@ -980,44 +971,56 @@ resolve_landing_then_advance:
         return;
       case 159:
         resolve_stage_surface_landing_transition();
-        if (!(velocity_x_f4 < 0.0f))
-          goto publish_boundary_speed;
-        {
+        if (velocity_x_f4 < 0.0f) {
           const float first_step = velocity_x_f4 + static_cast<double>(0.6f);
           const float second_step = first_step + static_cast<double>(0.6f);
-          adjusted_horizontal_speed = second_step;
+          if ((velocity_x_f4 = second_step) > 0.0f)
+            velocity_x_f4 = 0.0f;
         }
-        goto clamp_horizontal_speed;
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
+        if (advance_frame_and_dispatch())
+          set_action(0);
+        break;
       case 160:
         resolve_stage_surface_landing_transition();
-        if (!(velocity_x_f4 < 0.0f))
-          goto publish_boundary_speed;
-        {
+        if (velocity_x_f4 < 0.0f) {
           const float first_step = velocity_x_f4 + static_cast<double>(0.6f);
           const float second_step = first_step + static_cast<double>(0.6f);
-          adjusted_horizontal_speed = second_step;
+          if ((velocity_x_f4 = second_step) > 0.0f)
+            velocity_x_f4 = 0.0f;
         }
-        goto clamp_horizontal_speed;
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
+        if (advance_frame_and_dispatch())
+          set_action(0);
+        break;
       case 161:
         resolve_stage_surface_landing_transition();
-        if (!(velocity_x_f4 < 0.0f))
-          goto publish_boundary_speed;
-        {
+        if (velocity_x_f4 < 0.0f) {
           const float first_step = velocity_x_f4 + static_cast<double>(0.6f);
           const float second_step = first_step + static_cast<double>(0.6f);
-          adjusted_horizontal_speed = second_step;
+          if ((velocity_x_f4 = second_step) > 0.0f)
+            velocity_x_f4 = 0.0f;
         }
-        goto clamp_horizontal_speed;
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
+        if (advance_frame_and_dispatch())
+          set_action(0);
+        break;
       case 162:
         resolve_stage_surface_landing_transition();
-        if (!(velocity_x_f4 < 0.0f))
-          goto publish_boundary_speed;
-        {
+        if (velocity_x_f4 < 0.0f) {
           const float first_step = velocity_x_f4 + static_cast<double>(0.6f);
           const float second_step = first_step + static_cast<double>(0.6f);
-          adjusted_horizontal_speed = second_step;
+          if ((velocity_x_f4 = second_step) > 0.0f)
+            velocity_x_f4 = 0.0f;
         }
-        goto clamp_horizontal_speed;
+        if (classify_fighter_x_boundary() && unknown_490)
+          peer_component_6ac = static_cast<float>(velocity_x_f4 * 0.75);
+        if (advance_frame_and_dispatch())
+          set_action(0);
+        break;
       case 163:
         resolve_stage_surface_landing_transition();
         if (velocity_x_f4 < 0.0f) {

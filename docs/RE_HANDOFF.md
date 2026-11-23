@@ -49,17 +49,15 @@ and `/Os` trials left several such residuals unchanged.
 
 ## Giant action root follow-up
 
-Shared Fighter `0x004740C0` matches the 645-byte span of actions 50–54.
-Giving the six frame-advance copies the same switch exit lets VC8 keep
-50, 51 and 52 distinct and merge 53 and 54 into 50 after x87 lowering.
-The selected candidate preserves all 56 previously matching owners,
-including 73, 75 and 88, and reaches 58 of 66. The first strict difference
-remains at `0x004740D4`. The remaining owners are the two switch selectors
-and clamp cases 55, 56 and 159–162. Action 162 discovers the speed store
-and publication first in the early DFS. The six cases need to reach the
-native entries in 50 with an x87 zero live. The 10,725-byte target
-contract covers both switch tables, the bound direct tails and eight
-virtual tails. See the
+Shared Fighter `0x004740C0` now differs by seven bytes across the complete
+10,725-byte envelope. Local rounded assignments restore 55/56. Giving 50
+the direct return and 62 the switch exit lets 50 merge 159–162 before 62
+consumes their return edges. All clamp and sequence paths now match, as
+do both switch tables and the alignment byte. The remaining two
+instructions are `ADD EAX,-50` and `ADD EAX,-691` at `0x004740DE` and
+`0x00475E20`, where the target has `SUB` with positive immediates. The
+first byte difference is `0x004740DF`. Trace their lowering from the
+compiler's switch IR while keeping the repaired case ownership. See the
 [compiler trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) and the
 [engine and Oracle review](GIANT_ROOT_REVIEW_2026_11_23.md).
 
