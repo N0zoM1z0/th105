@@ -88,8 +88,9 @@ advances the search position at `c2.dll:0x10D0F854`, so the full build's
 See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md) and
 [Sakuya](SAKUYA_OBJECT_ENTRY_2026_10_24.md) case notes.
 
-Sakuya's Object update `0x004E0D30` now retains both 803 alpha calls and
-joins their continuation before sequence 2. The signed phase byte at
+Sakuya's Object update `0x004E0D30` now reproduces all 387 reachable
+instructions in 803 after rebasing, including both alpha calls and the
+sequence 2 branch to the frame retirement. The signed phase byte at
 `+0x184` restores all 17 native frame-call owner groups. It keeps
 all uses of 30 in 920 in one EBX group and leaves EBP for the 920
 zero. The 930 comparison still uses BX and its call survives. Both
@@ -109,8 +110,9 @@ in 818, 857, 859 and 901. Actions 800, 801, 812, 813, 818, 850, 857 and
 sequence 0 of 859 and 901 agree after rebasing. Action 815 now has
 the native frame cutoff. Its two x87 operand orders and alpha tail
 still differ. Action 900 pairs after rebasing except for its two x87
-landing-sum instructions. Compare how the 858 and 900 operand trees
-enter the early C2 pass. The complete candidate is 29,492 bytes with 742
+landing-sum instructions. The entry Y bounds change the address
+definition used by the early C2 pass. Compare how that definition
+reaches the landing sum. The complete candidate is 29,484 bytes with 742
 relocations and first differs at `0x004E0D55`.
 [Fade tails](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
 and [heading and receiver fields](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-850-heading-and-typed-receiver-fields).

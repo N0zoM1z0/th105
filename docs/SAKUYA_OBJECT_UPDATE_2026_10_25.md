@@ -373,7 +373,21 @@ candidate has lost the sequences 3/4 call record. The duplicated-update
 build retains both records. Read-only traced builds reproduce the
 complete ordinary outputs.
 
-The selected 29,212-byte candidate replays all 737 relocations. Its full
+Sequence 2 branches to the frame exit's retirement at `0x004E1DA6`
+when alpha is below 20. Eligible objects join the subtraction at
+`0x004E1D5C`. Targeting the existing retirement from sequence 2
+restores the native JB and removes a duplicate return. Updating
+`field_374` in place before the byte conversion in both frame-zero
+arms also restores the rounding spill and reload before FNSTCW at
+`0x004E1B63`. All 387 reachable instructions agree after rebasing.
+
+Changing only the second conversion restores its local instructions
+but reverses the scale-add loads in 813, 815, 859 and 901. The two
+identical in-place updates retain the earlier code in all four
+actions and keep both alpha calls. The complete replay is 29,484 bytes
+with 742 relocations and still first differs at `0x004E0D55`.
+
+That earlier 29,212-byte candidate replays all 737 relocations. Its full
 SHA256 is `922e46fce0ffbb6b11083754bf33dc3a245f42372cfd0c6d9b5534b75d15874f`.
 Using checked members for position, velocity, alpha, action, sequence,
 frame index and the float at `+0x374` reproduces those complete bytes.
@@ -674,6 +688,33 @@ The 384 reachable instructions in action 900 pair one to one after
 rebasing. Only the load and add at `0x004E6D83` and `0x004E6D89`
 have different encodings once the pairing allows those two operations.
 
+### The entry Y bounds affect the landing sum
+
+The two moves are still in speed-first order on entry to the
+`0x10C06D34` call. On return at `0x10C06D39`, 858 has moved the
+Y load ahead of the speed load. A watch on the Y operand's flags word
+at `+0x10` records `0x10B2692A` copying `0x1020231` from a child
+definition in 858. In 900, `0x10B26962` stores `0x10008` from
+`0x10BB6670`. The traces produce the same relocated bytes as the
+ordinary build.
+
+Keeping the state check and both X bounds but omitting both Y bounds
+in a scratch build changes the later 900 landing sum to the native
+`FLD [ESI+0xF0]; FADD ST(1)`. Leaving either Y bound in the entry
+guard preserves the memory add. The state check, X limits and later
+ceiling and floor rebounds can each be removed without fixing the
+memory add when the entry Y limits remain. Splitting the guard or
+changing the float literal spelling keeps the full output identical.
+A local Y copy introduces a spill in the bounds check and still
+leaves the memory add. The native entry performs both Y comparisons,
+so the remaining question is why those earlier loads yield different
+operand definitions in the original compiler context.
+
+Removing the complete entry guard also changes the 900 trace to the
+858 path at `0x10B2692A`. Both copy `0x1020231` from an address
+definition with opcode `0x2A5` in that control. The ordinary build
+of the same scratch source reproduces the traced object's bytes.
+
 ## Action 850 heading and typed receiver fields
 
 Native action 850 reloads the parameter pointer at `0x004E4BA3`
@@ -692,6 +733,11 @@ motion expressions sign-extend facing and the spawn calls still
 zero-extend it. The owner position and action reads use existing
 checked members. Separate VC8 controls for the facing, target and
 owner changes reproduced the complete previous candidate byte for byte.
+
+The update view also exposes gravity at `+0x100` and the spawn byte at
+`+0x33C`, which use float and byte accesses respectively in 999 and
+810. The typed control reproduces the complete preceding build. Action
+999's landing calculation keeps its QWORD sum across the surface query.
 
 ## Actions 920 and 930 before frame advance
 

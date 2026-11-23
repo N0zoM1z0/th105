@@ -28,7 +28,8 @@ public:
  float y_f0;
  float velocity_x_f4;
  float velocity_y_f8;
- unsigned char unknown_0fc[0x08];
+ unsigned char unknown_0fc[0x04];
+ float gravity_100;
  signed char facing_104;
  unsigned char unknown_105[0x0b];
  unsigned char channel_110;
@@ -56,7 +57,9 @@ public:
  unsigned short update_delay_186;
  unsigned char unknown_188[0x1a8];
  int lifetime_330;
- unsigned char unknown_334[0xc];
+ unsigned char unknown_334[0x8];
+ unsigned char spawn_field_33c;
+ unsigned char unknown_33d[0x3];
  float *parameters_340;
  short field_344;
  unsigned char unknown_346[0x2];
@@ -73,6 +76,10 @@ public:
  float field_374;
 };
 
+typedef char CheckSakuyaUpdate_gravity_100[
+    offsetof(SakuyaObjectUpdateView, gravity_100) == 0x100 ? 1 : -1];
+typedef char CheckSakuyaUpdate_spawn_field_33c[
+    offsetof(SakuyaObjectUpdateView, spawn_field_33c) == 0x33c ? 1 : -1];
 typedef char CheckSakuyaUpdate_facing_104[
     offsetof(SakuyaObjectUpdateView, facing_104) == 0x104 ? 1 : -1];
 typedef char CheckSakuyaUpdate_target_170[

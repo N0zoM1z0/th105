@@ -3,10 +3,6 @@
 #include "characters/CharacterObjectRuntime.hpp"
 namespace th105 {
 #define AT(p,t,o) (*reinterpret_cast<t *>(reinterpret_cast<unsigned char *>(p)+(o)))
-#define F(o) AT(this,float,o)
-#define I(o) AT(this,int,o)
-#define S(o) AT(this,short,o)
-#define B(o) AT(this,unsigned char,o)
 #define D(x) static_cast<double>(x)
 #define CORE reinterpret_cast<CharacterObjectRuntime *>(this)
 #define MOTION reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this)+4)
@@ -111,9 +107,8 @@ void SakuyaObjectUpdateView::update_action_state()
    if(frame_index_140==0) {
     if(CONTACT24768) {release_secondary();set_sequence_frame(1);owner_348->dispatch_character_wave_handle(3);time_counter_144=0;velocity_x_f4=-velocity_x_f4;velocity_y_f8=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
     if (phase_index_184 <= 0) {
-     float alpha = static_cast<float>(field_374 - 20.0);
-     field_374 = alpha;
-     alpha_113 = static_cast<unsigned char>(alpha);
+     field_374 -= 20.0;
+     alpha_113 = static_cast<unsigned char>(field_374);
      if (field_374 < 0) RETIRE();
      set_secondary_alpha(static_cast<unsigned char>(field_374));
     }
@@ -132,7 +127,10 @@ void SakuyaObjectUpdateView::update_action_state()
    goto step803;
   case 2:
    if(!parent_object_34c)RETIRE();facing_104=parent_object_34c->facing_104;x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;angle_12c=parent_object_34c->angle_12c;
-   if(!(parent_object_34c->frame_index_140<=0 && parent_object_34c->phase_index_184>0)) {if(alpha_113<20)RETIRE();alpha_113-=20;}
+   if (!(parent_object_34c->frame_index_140 <= 0 && parent_object_34c->phase_index_184 > 0)) {
+    if (alpha_113 < 20) goto retire_803;
+    alpha_113 -= 20;
+   }
    goto step803;
   case 3:case 4:
    if(frame_index_140==0 && emit_repeated(0,0,3))RETIRE();
@@ -140,9 +138,8 @@ void SakuyaObjectUpdateView::update_action_state()
    if(frame_index_140==0) {
     if(CONTACT24768) {release_secondary();next_sequence_frame();owner_348->dispatch_character_wave_handle(3);time_counter_144=0;velocity_x_f4=-velocity_x_f4;velocity_y_f8=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
     if (phase_index_184 <= 0) {
-     float alpha = static_cast<float>(field_374 - 20.0);
-     field_374 = alpha;
-     alpha_113 = static_cast<unsigned char>(alpha);
+     field_374 -= 20.0;
+     alpha_113 = static_cast<unsigned char>(field_374);
      if (field_374 < 0) RETIRE();
      set_secondary_alpha(static_cast<unsigned char>(field_374));
     }
@@ -164,7 +161,14 @@ void SakuyaObjectUpdateView::update_action_state()
    goto step803;
   default:goto step803;
   }
- step803:STEP();FRAME_EXIT();
+ step803:
+  STEP();
+  if (CORE->advance_frame_and_dispatch()) {
+  retire_803:
+   --lifetime_330;
+   return;
+  }
+  return;
  case 804:
   if(phase_state_180==5 || (owner_348->action_id_13c>49 && owner_348->action_id_13c<150 && sequence_id_13e==0))RETIRE();
   if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==0){phase_index_184=1;field_364=0;}
@@ -184,8 +188,8 @@ void SakuyaObjectUpdateView::update_action_state()
   if(sequence_id_13e==0){field_366+=field_364;field_364-=5;if(field_364<0)field_364=0;
    SakuyaObjectUpdateView *owner=owner_348;
    double cosine=lookup_orientation_cosine_quantized_abs(parameters_340[0]);
-   x_ec=cosine*field_366*facing_104+AT(owner,float,0xec);
-   double owner_y=AT(owner,float,0xf0);
+   x_ec=cosine*field_366*facing_104+owner->x_ec;
+   double owner_y=owner->y_f0;
    y_f0=owner_y-lookup_orientation_sine_quantized_abs(parameters_340[0])*field_366+130.0;
    if(owner_348->action_id_13c==540 && owner_348->sequence_id_13e==2){next_sequence_block();replace_secondary(994,6.0f,10,1,2);}
    if(owner_348->action_id_13c!=540)select_sequence(2);
@@ -205,10 +209,10 @@ void SakuyaObjectUpdateView::update_action_state()
  parameters_340[0]+=10.0;if(parameters_340[0]>360.0f)parameters_340[0]-=360.0; \
  double facing=facing_104;SakuyaObjectUpdateView *owner=owner_348; \
  double cosine=lookup_orientation_cosine_quantized_abs(parameters_340[0]);SakuyaObjectUpdateView *vertical_owner=owner_348; \
- x_ec=facing*AT(owner,float,0xf4)+AT(owner,float,0xec)+cosine*field_370*facing; \
+ x_ec=facing*AT(owner,float,0xf4)+owner->x_ec+cosine*field_370*facing; \
  double sine=lookup_orientation_sine_quantized_abs(parameters_340[0]); \
  y_f0=AT(vertical_owner,float,0xf0)+125.0+AT(vertical_owner,float,0xf8)+sine*field_370*0.25; \
- if(!(parameters_340[0]>=0) || parameters_340[0]>180.0f)B(0x33c)=1;else B(0x33c)=255; \
+ if(!(parameters_340[0]>=0) || parameters_340[0]>180.0f)spawn_field_33c=1;else spawn_field_33c=255; \
 }
   if(sequence_id_13e==2){angle_12c-=40.0;field_370+=15.0;if(field_370>parameters_340[1])field_370=parameters_340[1];
    if(owner_348->action_id_13c<500 || owner_348->action_id_13c>503 || owner_348->sequence_id_13e>2){ORBIT810();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {ORBIT810();}
@@ -786,24 +790,60 @@ void SakuyaObjectUpdateView::update_action_state()
   }
   FRAME_EXIT();
  case 999:
-  switch(sequence_id_13e){
-  case 0:case 1:case 2:owner_348->x_ec=x_ec;if(x_ec>1480.0f || x_ec<-200.0)RETIRE();if(sequence_id_13e>=1)velocity_y_f8-=F(0x100);break;
-  case 4:{velocity_y_f8-=D(0.35f);double next_y=static_cast<double>(velocity_y_f8)+y_f0;if(next_y<=stage_surface_height()){AT(owner_348,short,0x78c)=1;y_f0=stage_surface_height();velocity_x_f4=0;velocity_y_f8=0;F(0x100)=0;select_sequence(5);return;}break;}
-  case 6:if(AT(owner_348,short,0x78e)==1){next_sequence_block();facing_104=1;return;}break;
-  case 7:case 8:if(sequence_id_13e>=8)velocity_y_f8-=F(0x100);break;
+  switch (sequence_id_13e) {
+  case 0:
+  case 1:
+  case 2:
+   owner_348->x_ec = x_ec;
+   if (x_ec > 1480.0f || x_ec < -200.0) RETIRE();
+   if (sequence_id_13e >= 1) velocity_y_f8 -= gravity_100;
+   break;
+  case 4: {
+   velocity_y_f8 -= D(0.35f);
+   const double next_y = static_cast<double>(velocity_y_f8) + y_f0;
+   if (next_y <= stage_surface_height()) {
+    AT(owner_348, short, 0x78c) = 1;
+    y_f0 = stage_surface_height();
+    velocity_x_f4 = 0;
+    velocity_y_f8 = 0;
+    gravity_100 = 0;
+    select_sequence(5);
+    return;
+   }
+   break;
   }
-  STEP();if(CORE->advance_frame_and_dispatch())--lifetime_330;
-  if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==1){velocity_x_f4=15.0f;velocity_y_f8=15.0f;F(0x100)=0.2f;}
-  if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==8){velocity_x_f4=15.0f;velocity_y_f8=15.0f;F(0x100)=0.2f;}return;
+  case 6:
+   if (AT(owner_348, short, 0x78e) == 1) {
+    next_sequence_block();
+    facing_104 = 1;
+    return;
+   }
+   break;
+  case 7:
+  case 8:
+   if (sequence_id_13e >= 8) velocity_y_f8 -= gravity_100;
+   break;
+  }
+  STEP();
+  if (CORE->advance_frame_and_dispatch()) --lifetime_330;
+  if (time_counter_144 == 0 && frame_counter_142 == 0 &&
+      frame_index_140 == 0 && sequence_id_13e == 1) {
+   velocity_x_f4 = 15.0f;
+   velocity_y_f8 = 15.0f;
+   gravity_100 = 0.2f;
+  }
+  if (time_counter_144 == 0 && frame_counter_142 == 0 &&
+      frame_index_140 == 0 && sequence_id_13e == 8) {
+   velocity_x_f4 = 15.0f;
+   velocity_y_f8 = 15.0f;
+   gravity_100 = 0.2f;
+  }
+  return;
  default:CORE->advance_frame_and_dispatch();return;
  }
 }
 #undef random_float
 #undef AT
-#undef F
-#undef I
-#undef S
-#undef B
 #undef D
 #undef CORE
 #undef MOTION
