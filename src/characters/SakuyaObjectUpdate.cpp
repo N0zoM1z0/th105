@@ -498,12 +498,43 @@ void SakuyaObjectUpdateView::update_action_state()
      break;
     }
     if(AT(P,short,0x174)<=0 || CONTACT2468){B(0x184)=0;P->dispatch_character_wave_handle(3);set_sequence_frame(2);release_secondary();velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.05f))+5.0;}
-    if(sequence_id_13e==0 || sequence_id_13e==1){if(frame_index_140==0){if(AT(P,short,0x7a4)<=0){MOTION->set_oriented_components_f0_f4(H[0],H[1]+field_374);field_374*=D(0.85f);F(0x12c)=H[0];}
-     else {velocity_x_f4=0;velocity_y_f8=0;if(AT(P,short,0x7a4)>30){F(0x12c)+=F(0x370);B(0x184)=0;}if(AT(P,short,0x7a4)==30){B(0x184)=1;phase_state_180=0;next_sequence_block();turn_heading(0,360.0f,100.0f);H[0]=(random_float(30)-15.0)+H[0];F(0x12c)=H[0];H[1]=static_cast<float>(random_float(30)*D(0.1f)+3.0);return;}}
-    }else S(0x344)=0;}
+    if (sequence_id_13e == 0 || sequence_id_13e == 1) {
+     if (frame_index_140 == 0) {
+      if (AT(P, short, 0x7a4) > 0) {
+       velocity_x_f4 = 0;
+       velocity_y_f8 = 0;
+       if (AT(P, short, 0x7a4) > 30) {
+        F(0x12c) += F(0x370);
+        B(0x184) = 0;
+       }
+       if (AT(P, short, 0x7a4) == 30) {
+        B(0x184) = 1;
+        phase_state_180 = 0;
+        next_sequence_block();
+        turn_heading(0, 360.0f, 100.0f);
+        H[0] = (random_float(30) - 15.0) + H[0];
+        F(0x12c) = H[0];
+        H[1] = static_cast<float>(random_float(30) * D(0.1f) + 3.0);
+        return;
+       }
+      } else {
+       MOTION->set_oriented_components_f0_f4(H[0], H[1] + field_374);
+       field_374 *= D(0.85f);
+       F(0x12c) = H[0];
+      }
+     } else {
+      S(0x344) = 0;
+     }
+    }
     if(sequence_id_13e==2){S(0x344)=0;MOVE();F(0x12c)=H[0];}
    }
-   if(frame_index_140==2){S(0x344)=0;F(0x12c)-=30.0;velocity_y_f8-=0.5;if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if (frame_index_140 == 2) {
+    S(0x344) = 0;
+    F(0x12c) -= 30.0;
+    velocity_y_f8 -= 0.5;
+    if (alpha_113 <= 10) RETIRE();
+    alpha_113 -= 10;
+   }
   }break; case 3:{if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>1)RETIRE();x_ec=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);y_f0=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
   break;}
   STEP();if(x_ec>1780.0 || x_ec<-500.0 || y_f0>1400.0f || y_f0<-560.0f)RETIRE();
@@ -511,12 +542,29 @@ void SakuyaObjectUpdateView::update_action_state()
  case 930:
   if(phase_state_180==5)RETIRE();
   switch(sequence_id_13e){case 0:case 1:case 2:{
-   if(frame_index_140<2){if(sequence_id_13e==0 || sequence_id_13e==1)CORE->advance_state_six_counter_conditional(0);else if(sequence_id_13e==2)CORE->advance_state_six_counter_conditional(1);
+   if (frame_index_140 < 2) {
+    switch (sequence_id_13e) {
+    case 0:
+     CORE->advance_state_six_counter_conditional(0);
+     break;
+    case 1:
+     CORE->advance_state_six_counter_conditional(0);
+     break;
+    case 2:
+     CORE->advance_state_six_counter_conditional(1);
+     break;
+    }
     if(AT(P,short,0x174)<=0 || CONTACT2468){B(0x184)=0;P->dispatch_character_wave_handle(3);set_sequence_frame(2);release_secondary();velocity_x_f4=-velocity_x_f4*(0.5-random_float(30)*D(0.01f));velocity_y_f8=static_cast<float>(random_float(30)*D(0.05f))+5.0;}
     if(sequence_id_13e==0 || sequence_id_13e==1){if(frame_index_140==0){if(AT(P,short,0x7a4)>0){B(0x184)=0;if(AT(P,short,0x7a4)==60){next_sequence_block();return;}if(AT(P,short,0x7a4)==1){B(0x184)=1;phase_state_180=0;}}}else S(0x344)=0;}
     if(sequence_id_13e==2){S(0x344)=0;MOVE();F(0x12c)=H[0];}
    }
-   if(frame_index_140==2){S(0x344)=0;F(0x12c)-=30.0;velocity_y_f8-=0.5;if(alpha_113<11)RETIRE();alpha_113-=10;}
+   if (frame_index_140 == 2) {
+    S(0x344) = 0;
+    F(0x12c) -= 30.0;
+    velocity_y_f8 -= 0.5;
+    if (alpha_113 <= 10) RETIRE();
+    alpha_113 -= 10;
+   }
   }break; case 3:{if(!R)RETIRE();B(0x104)=AT(R,unsigned char,0x104);F(0x12c)=AT(R,float,0x12c);if(AT(R,short,0x140)>1)RETIRE();x_ec=C(0x104)*AT(R,float,0xf4)+AT(R,float,0xec);y_f0=AT(R,float,0xf8)+AT(R,float,0xf0);B(0x104)=AT(R,unsigned char,0x104);}
   break;}
   if(AT(P,short,0x7a4)==0)STEP();

@@ -439,8 +439,24 @@ group `0x3B0` gets EDI first for the value 2 used in 811's sequence and
 frame comparisons. The update at `0x10B1555F` clears EDI from the zero
 argument's group. That bit survives until selection in the `<= 1`
 build. Each traced object reproduces its uninstrumented build after all
-737 relocations. The reason the cutoff changes the order of the two
-allocations is still open.
+737 relocations.
+
+The order reverses when the allocator splits and requeues whole-function
+groups. At `0x10B0D22F`, both builds put the unsplit 2 and zero groups
+in queue positions 253 and 255, respectively. The insertion routine at
+`0x10B11970` orders the linked list by signed priority at `+0x0C`
+and then the unsigned key at `+0x44`. The first split request at
+`0x10B0D27D` follows an EBX allocation to group `0x1D`, whose defining
+instruction is tagged to the right-wall rebound in 816. With `< 2`,
+the pruning call at `0x10B0D480` removes EBX, the last eligible
+register for both groups. The request includes both constants, and
+the 811 fragments reenter one queue. The 2 fragment's priority of −10
+puts it ahead of zero at −28. With `<= 1`, the unsplit 2 group still has
+EBP after that call, so only zero is split in the first round. The 2
+group splits in the third round, after zero has already taken EDI. The
+two fragments keep the same priorities across both builds. The next
+point to trace is where the `< 2` build removes EBP from the unsplit 2
+group.
 
 TH075's Sakuya action 817 and TH105 action 998 use the same owner-action
 ranges to position the child.
@@ -467,8 +483,27 @@ build with both destinations written explicitly still merges the two
 901 paths in VC8. Keep those tails in the full-root allocation and
 sharing investigation.
 
-The current envelope is 29,200 bytes with 737 relocations, SHA256
-`999977cecc9fe8bf719eb45a43570e1b7a9770d7d150f1b4c8904d5ccc8ee7c2`.
+## Actions 920 and 930 before frame advance
+
+In 920 the signed owner timer at `+0x7A4` branches to the oriented-motion
+block on `JLE` at `0x004E7554`. The positive-first source puts that block
+after the positive path, as in the target. Both action 920 and 930 fade
+checks now emit `CMP AL, 10` and `JBE`. In 930, separate source arms for
+sequences 0 and 1 produce the target's three successive SUB tests.
+VC8 merges the arms into the same zero push and shared
+`advance_state_six_counter_conditional` call. Grouping the two labels on
+one source statement emits a range test instead.
+
+The 187 instructions in 930 through the bounds checks now agree after
+rebasing branches and calls. The branches reach the same local blocks
+and shared retire tail, and the calls retain their target addresses.
+The candidate still jumps to 920's frame call where the target calls
+directly. In 920 the zero value stays in EBX and 30 in EBP, with the
+opposite register roles in the target. The target loads 30 before the
+contact branch and uses it for all four random calls in 920.
+
+The current envelope is 29,192 bytes with 737 relocations, SHA256
+`a27d44ed13dcc44e965567ad59174e6655b7afe3a94bf31be99f6025df4f70a2`.
 The target envelope is 29,476 bytes. The first difference is at the
 primary default branch, `0x004E0D55`. Both 803 alpha paths and the
 200-byte primary remap still agree.

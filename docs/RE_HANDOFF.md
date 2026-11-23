@@ -93,15 +93,16 @@ joins their continuation before sequence 2. The 920 match-ID switch
 uses the original stub order, and the original signed cutoff in 816
 restores the earlier 811 constant registers. Hardware watchpoints locate
 that decision inside the whole-function pass at `c2.dll:0x10B0CF40`.
-The original 816 cutoff makes EDI eligible for the 811 zero argument.
-EDI comes before EBX in the fixed register scan and both cost zero.
+The original 816 cutoff delays splitting the whole-function group for 2.
+The zero argument is allocated first and takes EDI.
 Sequences 2 through 4 of action 815 now share the target's channel fade,
-with checked byte-channel and signed time-counter fields. The late pass at
+with checked byte-channel and signed time-counter fields. Action 930 now
+agrees through its bounds checks. The late pass at
 `c2.dll:0x10B2C950` still folds 816 and 930 into other frame calls.
-The complete candidate is 29,200 bytes with 737 relocations. The first
+The complete candidate is 29,192 bytes with 737 relocations. The first
 difference is at `0x004E0D55`. Actions 859 and 901 still need to recover
 the target's four fade guards and two shared low-channel tails.
-[Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#shared-channel-fade-in-action-815)
+[Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#actions-920-and-930-before-frame-advance)
 
 Other open leads:
 - Scenario character install 0x456EB0 (one EH-state store) and the info
