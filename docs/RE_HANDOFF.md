@@ -126,11 +126,20 @@ The early pass at `0x10C26030` substitutes a symbolic operand for the
 uses BX for the cutoff and gives EBX to the separate -1 group. The
 804 sequence test starts in the same group for 2 as the 805 cutoff.
 `0x10B599B0` restores the 804 immediate after splitting removes `0x39A`
-from the lookup sets. The 805 block retains `0x3A1`. The 805 alpha-local
-control also splits all seven 853 exits from 805, and changes the
-registers and destinations in 816's last two parent exits. The selected
-29,480-byte candidate preserves all 742 relocations and 17 frame-call
-sites. The first difference is still at `0x004E0D55`.
+from the lookup sets. The 805 block retains the group for 2. Its three
+comparisons each add one point against one definition. Removing just
+the frame use leaves the four-use group at score 1, still in EBP.
+`0x10B15562` removes the last eligible register from the first
+805 spawn's -1 fragment after assigning a different group. The second
+spawn and the retirement retain a separate register. Trace the first
+fragment and its competing group together before retrying a cutoff.
+Combining the 805 inclusive cutoff with the 804 positive-first phase
+branch reproduces 804 and 853 after rebasing and reverses the x87
+loads in 813, 815, 859 and 901. The earlier 805 alpha-local control
+restores 853 and changes 816's last two parent exits. The selected
+29,480-byte candidate gives the 805 child calls a typed packet helper
+and preserves all 742 relocations and 17 frame-call sites. The first
+difference is still at `0x004E0D55`.
 [Fade tails](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
 and [retirement sharing](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-853-retirement-is-shared-with-action-805-in-the-rebuild).
 

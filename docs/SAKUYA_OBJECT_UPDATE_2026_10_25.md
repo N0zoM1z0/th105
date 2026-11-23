@@ -866,10 +866,29 @@ builds. The two paths emit `66 39 AE 40 01 00 00` and
 traces run without `/FAcs`. The target uses immediate 2 in all five
 positions and loads EBP with -1 before the first sequence body.
 
+In the current build, the score writes at `0x10B10F88` and `0x10B109C8`
+show how the frame comparison changes allocation. The definition costs one
+point. The frame, owner-sequence and fade-sequence comparisons each add one
+point. The group containing these comparisons and the two push operands
+reaches allocation at score 2, priority -44. Rewriting the frame test as
+`<= 1` removes just its contribution. The remaining four operands reach
+allocation at score 1, priority -28, and still get EBP.
+
+In the first fragment of 805's -1 group, `0x10B15562` removes the last
+available register after assigning group `0x3BE`. In the selected build
+this removes EBX, leaving the first child call with an immediate push.
+In the inclusive control it removes EDI. The second fragment keeps EDI in
+the selected build and EBX in the inclusive control. Reproducing the
+native EBP setup before both spawns therefore requires preserving the
+first fragment as well as changing the allocation of 2.
+
 Reading the cutoff through a local or an inlined helper keeps the
 same full candidate. `frame + 1 <= 2` still loads EBP with 2,
 and `frame - 1 < 1` introduces a widened comparison and still
 keeps the other six 853 branches on the 805 retirement tail.
+Routing both owner-action outcomes to one explicit selection block leaves
+the five uses of EBP intact. Duplicating the selection call to retain the
+owner reread after the two calls adds 12 bytes and still keeps EBP.
 
 Putting the phase reset before the alternate sequence advance in
 805 sequence 1 restores the local signed JLE and the native virtual
@@ -879,13 +898,29 @@ changing the earlier 803 alpha assignments, and swapping the scale
 sum's operands all retain that cross-case difference. The selected
 source keeps the preceding 805 branch shape.
 
+Putting the phase reset first in 804 has the same effect on those x87
+loads. Together with the 805 inclusive cutoff, the new order reproduces
+all 227 reachable instructions in 804 and all 298 in 853 after
+rebasing. That control keeps the wrong registers in 805 and reverses
+the x87 loads. Replacing only 802's second frame guard with `< 3`
+connects its first guard to the second as in the target, but VC8
+loads 3 into a register for the second comparison and also uses that
+register for the wave handle. The target branches to the immediate
+comparison at `0x004E14D0` and pushes the wave handle as an immediate.
+Combining the 802 cutoff edit with the 804 phase edit restores the
+four later actions' previous x87 order even though either edit alone
+reverses it.
+
 Storing the final 805 sequence-3 retirement test in a Boolean local also
 changes those four actions' scale-add order while preserving every 805
 path after rebasing. Repeating the sequence-3 test on both sides of the
 frame-advance result leaves a second copy of the counter checks in 805.
 
 Writing out the motion step, bounds, and lifetime exits in 805
-preserves the full relocated output.
+preserves the full relocated output. The two three-float packets stay
+local to their sequence bodies and now share a typed child-spawn
+helper. This preserves the full 29,480-byte replay and the positions,
+kinds and resolved values of all 742 relocations.
 A shared `const int` spawn layer and an explicit jump to the fade
 test also reproduce the same bytes. Splitting the opening guard
 through an owner-action local or flattening the phase reset perturbs

@@ -51,6 +51,14 @@ __forceinline void SakuyaObjectUpdateView::advance_orbit()
  }
 }
 
+static __forceinline void spawn_805_child(
+    SakuyaObjectUpdateView &object, const float (&parameters)[3])
+{
+ object.owner_348->spawn_owned(
+     805, object.x_ec, object.y_f0, static_cast<unsigned char>(object.facing_104),
+     -1, reinterpret_cast<const unsigned *>(parameters), 3);
+}
+
 static __forceinline void spawn_853_child(
     SakuyaObjectUpdateView &object, const float (&parameters)[4])
 {
@@ -256,8 +264,7 @@ void SakuyaObjectUpdateView::update_action_state()
    if (owner_348->action_id_13c != 540) select_sequence(2);
 
    float payload[3] = {parameters_340[0], 0, 3};
-   owner_348->spawn_owned(805, x_ec, y_f0, static_cast<unsigned char>(facing_104),
-                          -1, reinterpret_cast<const unsigned *>(payload), 3);
+   spawn_805_child(*this, payload);
   }
 
   if (sequence_id_13e == 1) {
@@ -267,8 +274,7 @@ void SakuyaObjectUpdateView::update_action_state()
    y_f0 += velocity_y_f8;
 
    float payload[3] = {parameters_340[0], 0, 3};
-   owner_348->spawn_owned(805, x_ec, y_f0, static_cast<unsigned char>(facing_104),
-                          -1, reinterpret_cast<const unsigned *>(payload), 3);
+   spawn_805_child(*this, payload);
    if (phase_state_180 == 6) {
     ++phase_index_184;
     phase_state_180 = 0;
