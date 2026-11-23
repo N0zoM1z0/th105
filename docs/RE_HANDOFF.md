@@ -89,11 +89,12 @@ See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md) and
 [Sakuya](SAKUYA_OBJECT_ENTRY_2026_10_24.md) case notes.
 
 Sakuya's Object update `0x004E0D30` now retains both 803 alpha calls and
-joins their native continuation before sequence 2. Duplicating the
-frame-index-1 update in source lets VC8 share that update while keeping
-the calls separate. The complete comparison now requires all seven
-tables. The current build still first differs at `0x004E0D55`.
-[Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-803-keeps-two-alpha-calls)
+joins their continuation before sequence 2. The 920 match-ID switch
+uses the original stub order, and the original signed cutoff in 816
+restores the earlier 811 constant registers. The late pass at
+`c2.dll:0x10B2C950` still folds 816 and 930 into other frame calls.
+The seven-table comparison first differs at `0x004E0D55`.
+[Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#frame-calls-and-cross-case-registers)
 
 Other open leads:
 - Scenario character install 0x456EB0 (one EH-state store) and the info

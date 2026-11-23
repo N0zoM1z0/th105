@@ -22193,7 +22193,7 @@ source = "src/characters/SakuyaObjectUpdate.cpp"
 object = "build/match-units/ExactFirst_SakuyaObjectUpdate.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Sakuya Object slot 28 at 0x004E0D30. Strict envelope covers 28985 callable bytes and all seven tables. Action 803 retains its two alpha calls and their shared continuation. First mismatch 0x004E0D55. See docs/SAKUYA_OBJECT_UPDATE_2026_10_25.md."
+notes = "Complete JP1.06a Sakuya Object slot 28 at 0x004E0D30. Strict envelope covers 28985 callable bytes and all seven tables. Action 803 retains two alpha calls. The 920 match-ID stub order and 816 signed cutoff agree. First mismatch 0x004E0D55. See docs/SAKUYA_OBJECT_UPDATE_2026_10_25.md."
 
 [[units.exact-first-sakuya-object-update.functions]]
 address = "0x004E0D30"

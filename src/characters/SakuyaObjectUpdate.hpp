@@ -34,7 +34,12 @@ public:
  short action_id_13c;
  short sequence_id_13e;
  short frame_index_140;
- unsigned char unknown_142[0x232];
+ short frame_counter_142;
+ unsigned char unknown_144[0x3c];
+ int phase_state_180;
+ unsigned char unknown_184[0x1ac];
+ int lifetime_330;
+ unsigned char unknown_334[0x40];
  float field_374;
 };
 
@@ -54,6 +59,12 @@ typedef char CheckSakuyaUpdate_sequence_id_13e[
     offsetof(SakuyaObjectUpdateView, sequence_id_13e) == 0x13e ? 1 : -1];
 typedef char CheckSakuyaUpdate_frame_index_140[
     offsetof(SakuyaObjectUpdateView, frame_index_140) == 0x140 ? 1 : -1];
+typedef char CheckSakuyaUpdate_frame_counter_142[
+    offsetof(SakuyaObjectUpdateView, frame_counter_142) == 0x142 ? 1 : -1];
+typedef char CheckSakuyaUpdate_phase_state_180[
+    offsetof(SakuyaObjectUpdateView, phase_state_180) == 0x180 ? 1 : -1];
+typedef char CheckSakuyaUpdate_lifetime_330[
+    offsetof(SakuyaObjectUpdateView, lifetime_330) == 0x330 ? 1 : -1];
 typedef char CheckSakuyaUpdate_field_374[
     offsetof(SakuyaObjectUpdateView, field_374) == 0x374 ? 1 : -1];
 

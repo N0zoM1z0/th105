@@ -2,9 +2,10 @@
 
 `SakuyaObject_update_action_state @ 0x004E0D30` now has a manual complete-body
 source hypothesis. The current comparison first differs at `0x004E0D55`,
-the primary default-branch destination. The latest change restores action
-803's two alpha calls and their shared continuation. See
-[the action 803 comparison](#action-803-keeps-two-alpha-calls).
+the primary default-branch destination. The selected source restores action
+803's alpha continuations and the 920 match-ID switch layout. See
+[the action 803 comparison](#action-803-keeps-two-alpha-calls) and
+[the frame-path comparison](#frame-calls-and-cross-case-registers).
 
 ## Observed target and complete boundary
 
@@ -385,3 +386,45 @@ and three alignment bytes. It recognizes the `PUSH EDI` at `0x004E0D52`
 and the `MOV EDI, 1` at `0x004E34B9` and `0x004E7C64` between the switch
 CMP and JA. A separate byte change in each table, the last remap byte
 and the alignment is rejected at the changed address.
+
+## Frame calls and cross-case registers
+
+The selected build has 15 frame-advance call sites compared with 17 in
+the target. The native 812/815/855 group already uses one physical call
+in the current build. The two remaining merges are 816 into the 803
+group and 930 into 920. The pinned `c2.dll` has all four relevant call
+records at `0x10C077B1`. After `0x10B2C950` returns to `0x10C077B6`,
+the 816 and 930 call records are gone. The traced object reproduces
+the prior complete candidate. Reversing the two post-advance tests
+splits 920 and 930 at the cost of reversing the native comparison order.
+Duplicating the post-call test splits the calls and leaves duplicate code.
+
+Action 920 reads `g_match_identifier` at `0x006FA894`, the same DWORD
+written at `0x0047096A` in the exact battle setup. Writing the case groups
+in the order 2/3, 1, 0 restores the native stub order and the relative
+destinations of the four table words. The zero argument still comes from
+EBX in the build and EBP in the target. This source change by itself
+changes only 13 relocated bytes in the stubs and table.
+
+Changing the signed owner byte guard in 816 from `< 2` to `<= 1` gives
+the native `CMP BYTE PTR [EDX+0x609], 1` and `JG`. It also changes the
+earlier 811 action with its source held fixed. VC8 puts 2 in EBX and zero
+in EDI, matching the target. With branch destinations normalized, all
+13 instructions starting at that register setup agree, including the
+two stack arguments. A read-only trace shows the assignments already
+differ at `c2.dll:0x10C0743C`, before the allocator routine `0x10BDA210`
+used in the Object initializer's investigation. They persist at
+`0x10C07442`. Checked members for the frame counter, phase state and
+lifetime preserve the complete relocated output of the same C++ with
+offset accesses.
+
+The current envelope is 29,216 bytes with 737 relocations, SHA256
+`8e6969b211bbd1baf1a77c646c500060d0cf70793400a2a192393d6d204b7399`.
+It still first differs at the primary default branch, `0x004E0D55`.
+Action 803's checked alpha paths survive the frame and register changes.
+
+TH075's Sakuya action 817 and TH105 action 998 use the same owner-action
+ranges to position the child.
+TH105 reads its own facing and multiplies it by 57 on all three paths
+at `0x004E7B72`, `0x004E7BB7` and `0x004E7BF2`. TH075 copies the owner's
+facing and uses three different offsets.
