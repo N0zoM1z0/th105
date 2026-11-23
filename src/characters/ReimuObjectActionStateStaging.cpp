@@ -961,12 +961,12 @@ advance_812:
         goto advance_with_sequence_four_retirement;
 
     case 817: {
+        register int one = 1;
         register int zero = 0;
         if (_root_state.phase_state_180 == 5)
             goto retire;
         switch (_root_state.sequence_13e) {
         case 0: {
-            register int one = 1;
             if (_root_state.counter_144 >= 30) {
                 const CharacterObjectEffectEmitter *target = reinterpret_cast<CharacterObjectEffectEmitter *>(this)->target_170;
                 const float dx = target->x_ec - effect_000.object_x_0e8;
@@ -1124,7 +1124,6 @@ advance_812:
             break;
         }
         case 9: {
-            register int one = 1;
             if (effect_000.motion_0f0.velocity_x > 0.0f) {
                 effect_000.motion_0f0.velocity_x = static_cast<float>(effect_000.motion_0f0.velocity_x - 0.5);
                 if (effect_000.motion_0f0.velocity_x < 0.0f)

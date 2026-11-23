@@ -72,7 +72,7 @@ ordering. Recent focused owner extents (candidate/target) are:
 | action 807 | 272 | 300 | -28 bytes; shared advance tail is remote in candidate |
 | action 811 | 1,509 | 1,507 | +2 bytes; 38 diff groups |
 | action 812 | 1,361 | 1,376 | -15 bytes; 28 diff groups |
-| action 817 | 3,026 | 3,066 | -40 bytes; 82 diff groups |
+| action 817 | 3,024 | 3,066 | -42 bytes; 80 diff groups |
 | action 822 | 1,888 | 1,955 | -67 bytes |
 | action 869 | 1,691 | 1,736 | -45 bytes |
 | action 900 | 1,207 | 1,229 | -22 bytes |
@@ -115,7 +115,7 @@ their owning cases, allowing the compiler to reuse stack storage.
 ## Current root status and next work
 
 The latest focused owner audit reports a 46,138-byte target callable extent,
-45,640 candidate main bytes, a 46,508-byte candidate section tail, and 1,113
+45,640 candidate main bytes, a 46,508-byte candidate section tail, and 1,108
 instruction-difference groups. The candidate main remains 498 bytes short and
 the whole root is nonexact: the first raw-byte mismatch remains at
 0x0049655F (offset +0x1F, target byte 0xF8, candidate byte 0x05).
@@ -202,15 +202,17 @@ groups from 75 to 70 while preserving the three-word packet semantics.
 
 ## Action 817 register lifetime ordering
 
-The action-817 local register declarations are now ordered `one` then `zero`.
-This source-level lifetime ordering changes Clang's allocation across the
-large switch: the focused root audit drops from 1,166 to 1,127 instruction-
-difference groups, with candidate main bytes moving from 45,492 to 45,488.
-Action 817 changes from 3,029 to 3,027 bytes, action 901 from 2,248 to 2,247,
-and action 908 from 3,793 to 3,789. The target still begins the owner with
-`xor ebx, ebx; mov edi, 1`, while the candidate retains a different register
-assignment, so this is a measurable code-generation improvement rather than
-an exact register-lifetime match.
+Action 817 now keeps `one` then `zero` as root-scoped register locals,
+while the two 14-particle collision bursts retain literal-one spawn arguments.
+This shortens the constant-one lifetime at each loop and changes code layout
+across the switch. The focused root audit drops from 1,113 to 1,108
+instruction-difference groups without changing the 45,640-byte candidate
+main span. Action 817 moves from 3,026/3,066 to 3,024/3,066 bytes and from
+82 to 80 owner-difference groups. The target still begins the owner with
+`xor ebx, ebx; mov edi, 1`, while the candidate emits `mov ebx, 1`; the
+particle loop also remains `sub edi, ebx` rather than `sub edi, 1`.
+This is a measurable source-level code-generation improvement, not an exact
+register-lifetime match.
 
 ## Action 900 terminal packet branches
 
@@ -255,15 +257,18 @@ exactness claim.
 ## Action 817 collision-burst loop and register scopes
 
 The sequence-0 and sequence-9 collision bursts use natural post-decrement
-do/while loops for their 14 particle emissions. Each sequence case has a
-case-local one register used by its manager-spawn call; its lexical lifetime
-still covers the adjacent collision burst. Narrowing/removing those locals and
-trying equivalent for-loop forms did not change the candidate loop lowering.
-The owner remains 3,026/3,066 bytes with 82 instruction-difference groups.
-The target initializes EBX=0 and EDI=1, then decrements the particle count
-with sub edi, 1; the candidate chooses a different constant/register
-allocation and emits sub edi, ebx. This remains a compiler-lifetime mismatch,
-not a reason to add assembly or padding.
+do/while loops for their 14 particle emissions. The two manager-spawn branches
+share the root-scoped one/zero register locals, while the collision-burst
+calls pass literal 1 so the one lifetime does not come from those packet
+arguments. This reduces owner and root difference counts, although Clang still
+chooses EBX for one and reuses it for the loop decrement.
+The owner is now 3,024/3,066 bytes with 80 instruction-difference groups.
+The two manager-spawn branches share root-scoped `one`/ `zero` locals, but
+the collision bursts pass literal 1. The target initializes EBX=0 and EDI=1,
+then decrements the particle count with `sub edi, 1`; the candidate still
+initializes EBX=1 and emits `sub edi, ebx`. The owner and root group counts
+improve, but this compiler-lifetime mismatch remains open; no assembly or
+padding is used.
 
 
 ## Action 908 x87 accumulator evaluation order
@@ -276,7 +281,7 @@ sequence exactly. In the latest root build, action 908 is 3,789/3,794 bytes
 with 61 instruction-difference groups; remaining differences are concentrated
 in register assignment (EBX/EDI), the -1 countdown lifetime, and downstream
 control-flow layout. The focused root is now 45,640 candidate main bytes,
-46,508 candidate section-tail bytes, and 1,113 instruction-difference
+46,508 candidate section-tail bytes, and 1,108 instruction-difference
 groups. This is a verified local code-generation improvement, not a whole-root
 exactness claim.
 
@@ -295,8 +300,9 @@ sequences through one natural C++ move_with_facing_velocity_812 label. The
 target's advance/dispatch tail at 0x004982CF is also represented by a shared
 advance_812 label, with sequence 3/4 retirement bypassing the movement block.
 This reduces the action-812 owner to 1,361/1,376 bytes (-15) and 28
-instruction-difference groups. The whole-root audit improves from 1,114 to
-1,113 groups and candidate main code moves from 45,672 to 45,640 bytes.
+instruction-difference groups. The whole-root audit now reports 1,108 groups after the subsequent
+action-817 register-lifetime refinement; candidate main code remains
+45,640 bytes.
 
 The target also keeps five in EBX for the phase-state comparison and modulo
 operation; the current compiler still rematerializes the constant at those
