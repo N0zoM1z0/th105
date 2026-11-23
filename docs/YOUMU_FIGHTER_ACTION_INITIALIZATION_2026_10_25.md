@@ -174,9 +174,23 @@ the shared motion reset as a direct fallthrough, and compiling independent
 copies of the 600/603 or 602 reset statements each reproduce the same
 44 differences. Placing the 604 stub before the 601 body reverses
 the two phase constants and their table entries, leaving 46 differences
-as in the earlier reversed-order control. A further control needs to
-distinguish how the high switch adds its successor edges or how a later
-optimization forms the shared suffix from separately laid-out blocks.
+as in the earlier reversed-order control.
+
+The compact switch edges are created before the depth-first walk. At
+`c2.dll:0x10B26B65`, all 56 physical blocks already exist and the two compact
+switches have empty outgoing lists. In `0x10B28910`, the compiler walks the
+destination blocks in physical order. The instructions at `0x10B289BC`
+through `0x10B289C5` prepend each incoming reference to its source block's
+outgoing list. Reversing the 20 and 22 insertions captured for the two
+switches reproduces their entire edge lists, including repeated destinations.
+The high switch therefore visits its later phase-6 block before phase 5.
+This trace reproduces the complete 1,874-byte baseline with 60 relocations.
+
+Two source controls separate the case label from its phase assignment with
+a forward or backward `goto`. Moving 604's label before 601 and moving 601's
+label after 604 both generate the same four-byte change as swapping the full
+cases. They exchange the two phase constants and table entries. A source
+shape that shares the publication after block ordering is still open.
 
 ## Reproduction and next scope
 
