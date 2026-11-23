@@ -175,6 +175,14 @@ class OwnedExtentComparisonTests(unittest.TestCase):
         self.assertEqual(result, 1)
         self.assertEqual(report["first_mismatch"]["offset"], 6)
 
+    def test_main_only_exclusions_merge_with_remote_ownership(self):
+        rows = self.ownership.load(require_bytes=True)
+        self.assertEqual(rows[0x0050C1C0]["main_excluded_bytes"], 19)
+        self.assertEqual(rows[0x0050C1C0]["remote_bytes"], 0)
+        self.assertEqual(rows[0x0050C1C0]["extent_end"], rows[0x0050C1C0]["main_end"])
+        self.assertEqual(rows[0x005DF0E0]["main_excluded_bytes"], 26)
+        self.assertEqual(rows[0x00496540]["remote_bytes"], 6282)
+
     def test_absent_ownership_does_not_fall_back_to_main(self):
         result, report = self.run_comparison(ownership={})
         self.assertEqual(result, 1)
@@ -233,6 +241,7 @@ class ManifestOwnedExtentTests(unittest.TestCase):
         for path in (
             "config/functions.csv",
             "config/function-byte-ownership.toml",
+            "config/function-byte-exclusions.toml",
             "scripts/function_byte_ownership.py",
         ):
             self.assertIn(path, paths)

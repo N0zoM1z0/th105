@@ -1,0 +1,91 @@
+schema_version = 1
+target_sha256 = "56350024879199861579c11b0e1c67b9590e10a8d40cd5996b109deec9afca7e"
+
+# Main-span alignment exclusions for functions with no discontiguous remote code.
+[[functions]]
+address = "0x0050C1C0"
+main_size = 10715
+main_end = "0x0050EB9A"
+main_excluded_bytes = 19
+evidence = "Complete compact-switch replay for exact-first-alice-object-entry verifies these unreachable VC8 alignment ranges in the callable span."
+
+[[functions.main_exclusions]]
+start = "0x0050D5C9"
+end = "0x0050D5CF"
+size = 7
+sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+
+[[functions.main_exclusions]]
+start = "0x0050D814"
+end = "0x0050D81F"
+size = 12
+sha256 = "0246d3de3e95c58c7adea803487d78ae2402c711f9504c722255a56a6ae58424"
+
+[[functions]]
+address = "0x005DF0E0"
+main_size = 10723
+main_end = "0x005E1AC2"
+main_excluded_bytes = 26
+evidence = "Complete compact-switch replay for exact-first-udonge-object-entry verifies these unreachable VC8 alignment ranges in the callable span."
+
+[[functions.main_exclusions]]
+start = "0x005E07E9"
+end = "0x005E07EF"
+size = 7
+sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+
+[[functions.main_exclusions]]
+start = "0x005E0EDA"
+end = "0x005E0EDF"
+size = 6
+sha256 = "9c0c14b32f072e4754db06cf03a739a0bc15ee7771300256e607504f53b3c43a"
+
+[[functions.main_exclusions]]
+start = "0x005E155A"
+end = "0x005E155F"
+size = 6
+sha256 = "9c0c14b32f072e4754db06cf03a739a0bc15ee7771300256e607504f53b3c43a"
+
+[[functions.main_exclusions]]
+start = "0x005E19B9"
+end = "0x005E19BF"
+size = 7
+sha256 = "4fe06c07aad18cb5faea1a925ff71a52931084bbb3f844ffd60bae6a9ce14cce"
+
+[[functions]]
+address = "0x00477830"
+main_size = 4849
+main_end = "0x00478B20"
+main_excluded_bytes = 19
+evidence = "Complete compact-switch replay for exact-first-common-fighter-action-initialization verifies these unreachable VC8 alignment ranges in the callable span."
+
+[[functions.main_exclusions]]
+start = "0x00477D48"
+end = "0x00477D4F"
+size = 8
+sha256 = "c6c5e53a181580333c3d9b6dfd57f37f0ecde9b739c5bd8887704cf87dad1e17"
+
+[[functions.main_exclusions]]
+start = "0x00477F15"
+end = "0x00477F1F"
+size = 11
+sha256 = "37ca90ada85cdbea91ceb81677e9aae198256a6dd9cc746ddb56e5baf92cecdd"
+
+[[functions]]
+address = "0x0058A4F0"
+main_size = 3455
+main_end = "0x0058B26E"
+main_excluded_bytes = 14
+evidence = "Complete compact-switch replay for exact-first-yukari-action-initialization verifies these unreachable VC8 alignment ranges in the callable span."
+
+[[functions.main_exclusions]]
+start = "0x0058A848"
+end = "0x0058A84F"
+size = 8
+sha256 = "c6c5e53a181580333c3d9b6dfd57f37f0ecde9b739c5bd8887704cf87dad1e17"
+
+[[functions.main_exclusions]]
+start = "0x0058A97A"
+end = "0x0058A97F"
+size = 6
+sha256 = "9c0c14b32f072e4754db06cf03a739a0bc15ee7771300256e607504f53b3c43a"

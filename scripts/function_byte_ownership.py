@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / "config"
 TARGET = ROOT / "resources" / "th105.exe"
 MANIFEST = CONFIG / "function-byte-ownership.toml"
+EXCLUSIONS_MANIFEST = CONFIG / "function-byte-exclusions.toml"
 ADDRESS = re.compile(r"^0x[0-9A-F]{8}$")
 SHA256 = re.compile(r"^[0-9a-f]{64}$")
 
@@ -62,18 +63,24 @@ def load(
     *,
     require_bytes: bool = False,
 ) -> dict[int, dict[str, Any]]:
-    if not MANIFEST.exists():
+    if not MANIFEST.exists() and not EXCLUSIONS_MANIFEST.exists():
         return {}
-    with MANIFEST.open("rb") as stream:
-        manifest = tomllib.load(stream)
-    if manifest.get("schema_version") != 1:
-        raise ValueError("function-byte-ownership.toml: unsupported schema_version")
 
     with (CONFIG / "target.toml").open("rb") as stream:
         target_manifest = tomllib.load(stream)
     target_sha = str(target_manifest["target"]["sha256"])
-    if manifest.get("target_sha256") != target_sha:
-        raise ValueError("function-byte-ownership.toml: target SHA-256 mismatch")
+
+    manifests: list[tuple[Path, dict[str, Any]]] = []
+    for path in (MANIFEST, EXCLUSIONS_MANIFEST):
+        if not path.exists():
+            continue
+        with path.open("rb") as stream:
+            manifest = tomllib.load(stream)
+        if manifest.get("schema_version") != 1:
+            raise ValueError(f"{path.name}: unsupported schema_version")
+        if manifest.get("target_sha256") != target_sha:
+            raise ValueError(f"{path.name}: target SHA-256 mismatch")
+        manifests.append((path, manifest))
 
     image = TARGET.read_bytes() if require_bytes else b""
     if require_bytes and hashlib.sha256(image).hexdigest() != target_sha:
@@ -81,117 +88,118 @@ def load(
     read_target = pe_reader(image) if require_bytes else None
 
     result: dict[int, dict[str, Any]] = {}
-    for index, raw in enumerate(manifest.get("functions", []), start=1):
-        context = f"function-byte-ownership.toml:functions[{index}]"
-        address = parse_address(raw.get("address"), context)
-        if address in result:
-            raise ValueError(f"{context}: duplicate function address")
-        main_size = int(raw.get("main_size", 0))
-        main_end = parse_address(raw.get("main_end"), context)
-        extent_end = parse_address(raw.get("extent_end", raw.get("main_end")), context)
-        if main_size <= 0 or main_end != address + main_size - 1:
-            raise ValueError(f"{context}: inconsistent main chunk boundary")
-        if functions is not None:
-            row = functions.get(address)
-            if row is None:
-                raise ValueError(f"{context}: address is not in functions.csv")
-            if int(row["size"], 0) != main_size or int(row["span_end"], 0) != main_end:
-                raise ValueError(f"{context}: main chunk disagrees with functions.csv")
-
-        main_exclusions: list[dict[str, Any]] = []
-        previous_exclusion_end = address - 1
-        for exclusion_index, exclusion in enumerate(raw.get("main_exclusions", []), start=1):
-            exclusion_context = f"{context}.main_exclusions[{exclusion_index}]"
-            start = parse_address(exclusion.get("start"), exclusion_context)
-            end = parse_address(exclusion.get("end"), exclusion_context)
-            size = int(exclusion.get("size", 0))
-            digest = str(exclusion.get("sha256", ""))
-            if (
-                start < address
-                or end > main_end
-                or start <= previous_exclusion_end
-                or end < start
-                or size != end - start + 1
-            ):
-                raise ValueError(
-                    f"{exclusion_context}: invalid or overlapping main exclusion"
-                )
-            if not SHA256.fullmatch(digest):
-                raise ValueError(f"{exclusion_context}: invalid SHA-256")
-            if read_target is not None:
-                actual = hashlib.sha256(read_target(start, size)).hexdigest()
-                if actual != digest:
-                    raise ValueError(f"{exclusion_context}: canonical bytes changed")
-            main_exclusions.append(
-                {"start": start, "end": end, "size": size, "sha256": digest}
-            )
-            previous_exclusion_end = end
-
-        main_excluded_bytes = sum(exclusion["size"] for exclusion in main_exclusions)
-        if int(raw.get("main_excluded_bytes", 0)) != main_excluded_bytes:
-            raise ValueError(f"{context}: main_excluded_bytes mismatch")
-        owned_main_bytes = main_size - main_excluded_bytes
-        if owned_main_bytes <= 0:
-            raise ValueError(f"{context}: main exclusions consume the entire main span")
-
-        chunks: list[dict[str, Any]] = []
-        previous_end = main_end
-        for chunk_index, chunk in enumerate(raw.get("chunks", []), start=1):
-            chunk_context = f"{context}.chunks[{chunk_index}]"
-            start = parse_address(chunk.get("start"), chunk_context)
-            end = parse_address(chunk.get("end"), chunk_context)
-            size = int(chunk.get("size", 0))
-            digest = str(chunk.get("sha256", ""))
-            if start <= previous_end or end < start or size != end - start + 1:
-                raise ValueError(f"{chunk_context}: invalid or overlapping chunk span")
-            if not SHA256.fullmatch(digest):
-                raise ValueError(f"{chunk_context}: invalid SHA-256")
+    for path, manifest in manifests:
+        for index, raw in enumerate(manifest.get("functions", []), start=1):
+            context = f"{path.name}:functions[{index}]"
+            address = parse_address(raw.get("address"), context)
+            if address in result:
+                raise ValueError(f"{context}: duplicate function address")
+            main_size = int(raw.get("main_size", 0))
+            main_end = parse_address(raw.get("main_end"), context)
+            if main_size <= 0 or main_end != address + main_size - 1:
+                raise ValueError(f"{context}: inconsistent main chunk boundary")
             if functions is not None:
-                intruders = [
-                    other
-                    for other in functions
-                    if other != address and start <= other <= end
-                ]
-                if intruders:
-                    raise ValueError(
-                        f"{chunk_context}: overlaps tracked candidate start "
-                        f"0x{min(intruders):08X}"
-                    )
-            if read_target is not None:
-                actual = hashlib.sha256(read_target(start, size)).hexdigest()
-                if actual != digest:
-                    raise ValueError(f"{chunk_context}: canonical bytes changed")
-            chunks.append(
-                {"start": start, "end": end, "size": size, "sha256": digest}
-            )
-            previous_end = end
+                row = functions.get(address)
+                if row is None:
+                    raise ValueError(f"{context}: address is not in functions.csv")
+                if int(row["size"], 0) != main_size or int(row["span_end"], 0) != main_end:
+                    raise ValueError(f"{context}: main chunk disagrees with functions.csv")
 
-        remote_bytes = sum(chunk["size"] for chunk in chunks)
-        if extent_end != previous_end or (not chunks and not main_exclusions):
-            raise ValueError(f"{context}: extent_end does not match the reviewed extent")
-        if int(raw.get("remote_bytes", -1)) != remote_bytes:
-            raise ValueError(f"{context}: remote_bytes mismatch")
-        owned_bytes = owned_main_bytes + remote_bytes
-        if int(raw.get("owned_bytes", -1)) != owned_bytes:
-            raise ValueError(f"{context}: owned_bytes mismatch")
-        remote_exact = bool(raw.get("remote_exact", False))
-        if remote_exact and (not chunks or not str(raw.get("exact_evidence", "")).strip()):
-            raise ValueError(f"{context}: remote_exact requires exact_evidence")
-        result[address] = {
-            "address": address,
-            "main_size": main_size,
-            "main_end": main_end,
-            "main_excluded_bytes": main_excluded_bytes,
-            "owned_main_bytes": owned_main_bytes,
-            "main_exclusions": main_exclusions,
-            "extent_end": extent_end,
-            "remote_bytes": remote_bytes,
-            "owned_bytes": owned_bytes,
-            "remote_exact": remote_exact,
-            "exact_evidence": str(raw.get("exact_evidence", "")),
-            "evidence": str(raw.get("evidence", "")),
-            "chunks": chunks,
-        }
+            main_exclusions: list[dict[str, Any]] = []
+            previous_exclusion_end = address - 1
+            for exclusion_index, exclusion in enumerate(raw.get("main_exclusions", []), start=1):
+                exclusion_context = f"{context}.main_exclusions[{exclusion_index}]"
+                start = parse_address(exclusion.get("start"), exclusion_context)
+                end = parse_address(exclusion.get("end"), exclusion_context)
+                size = int(exclusion.get("size", 0))
+                digest = str(exclusion.get("sha256", ""))
+                if (
+                    start < address
+                    or end > main_end
+                    or start <= previous_exclusion_end
+                    or end < start
+                    or size != end - start + 1
+                ):
+                    raise ValueError(
+                        f"{exclusion_context}: invalid or overlapping main exclusion"
+                    )
+                if not SHA256.fullmatch(digest):
+                    raise ValueError(f"{exclusion_context}: invalid SHA-256")
+                if read_target is not None:
+                    actual = hashlib.sha256(read_target(start, size)).hexdigest()
+                    if actual != digest:
+                        raise ValueError(f"{exclusion_context}: canonical bytes changed")
+                main_exclusions.append(
+                    {"start": start, "end": end, "size": size, "sha256": digest}
+                )
+                previous_exclusion_end = end
+
+            main_excluded_bytes = sum(exclusion["size"] for exclusion in main_exclusions)
+            if int(raw.get("main_excluded_bytes", 0)) != main_excluded_bytes:
+                raise ValueError(f"{context}: main_excluded_bytes mismatch")
+            owned_main_bytes = main_size - main_excluded_bytes
+            if owned_main_bytes <= 0:
+                raise ValueError(f"{context}: main exclusions consume the entire main span")
+
+            chunks: list[dict[str, Any]] = []
+            previous_end = main_end
+            for chunk_index, chunk in enumerate(raw.get("chunks", []), start=1):
+                chunk_context = f"{context}.chunks[{chunk_index}]"
+                start = parse_address(chunk.get("start"), chunk_context)
+                end = parse_address(chunk.get("end"), chunk_context)
+                size = int(chunk.get("size", 0))
+                digest = str(chunk.get("sha256", ""))
+                if start <= previous_end or end < start or size != end - start + 1:
+                    raise ValueError(f"{chunk_context}: invalid or overlapping chunk span")
+                if not SHA256.fullmatch(digest):
+                    raise ValueError(f"{chunk_context}: invalid SHA-256")
+                if functions is not None:
+                    intruders = [
+                        other
+                        for other in functions
+                        if other != address and start <= other <= end
+                    ]
+                    if intruders:
+                        raise ValueError(
+                            f"{chunk_context}: overlaps tracked candidate start "
+                            f"0x{min(intruders):08X}"
+                        )
+                if read_target is not None:
+                    actual = hashlib.sha256(read_target(start, size)).hexdigest()
+                    if actual != digest:
+                        raise ValueError(f"{chunk_context}: canonical bytes changed")
+                chunks.append(
+                    {"start": start, "end": end, "size": size, "sha256": digest}
+                )
+                previous_end = end
+
+            remote_bytes = sum(chunk["size"] for chunk in chunks)
+            extent_end = parse_address(raw.get("extent_end", raw.get("main_end")), context)
+            if extent_end != previous_end or (not chunks and not main_exclusions):
+                raise ValueError(f"{context}: extent_end does not match the reviewed extent")
+            if int(raw.get("remote_bytes", remote_bytes)) != remote_bytes:
+                raise ValueError(f"{context}: remote_bytes mismatch")
+            owned_bytes = owned_main_bytes + remote_bytes
+            if int(raw.get("owned_bytes", owned_bytes)) != owned_bytes:
+                raise ValueError(f"{context}: owned_bytes mismatch")
+            remote_exact = bool(raw.get("remote_exact", False))
+            if remote_exact and (not chunks or not str(raw.get("exact_evidence", "")).strip()):
+                raise ValueError(f"{context}: remote_exact requires exact_evidence")
+            result[address] = {
+                "address": address,
+                "main_size": main_size,
+                "main_end": main_end,
+                "main_excluded_bytes": main_excluded_bytes,
+                "owned_main_bytes": owned_main_bytes,
+                "main_exclusions": main_exclusions,
+                "extent_end": extent_end,
+                "remote_bytes": remote_bytes,
+                "owned_bytes": owned_bytes,
+                "remote_exact": remote_exact,
+                "exact_evidence": str(raw.get("exact_evidence", "")),
+                "evidence": str(raw.get("evidence", "")),
+                "chunks": chunks,
+            }
     return result
 
 

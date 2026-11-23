@@ -157,8 +157,11 @@ bytes.
 
 Keep the main span in `functions.csv` so existing single-span comparators remain
 fail-closed.  Record reviewed remote code in SHA-pinned
-`config/function-byte-ownership.toml`; status/progress then count main + remote
-code in the confirmed authored-byte denominator.  Remote chunks contribute to
+`config/function-byte-ownership.toml`; main-only alignment exclusions are
+kept separately in `config/function-byte-exclusions.toml`. The local ownership
+loader merges both target-hashed ledgers, and defaults a main-only extent to
+`main_end`; status/progress then count main + remote code in the confirmed
+authored-byte denominator. Remote chunks contribute to
 the exact numerator only after separate exact evidence, and tracking validation
 rejects a `matching` function while owned remote chunks remain unverified.  Do
 not solve multi-chunk ownership by inflating `span_end` across alignment or by

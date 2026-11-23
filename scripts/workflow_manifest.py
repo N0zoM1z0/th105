@@ -336,7 +336,7 @@ def unit_input_digest(name: str, unit: dict[str, Any]) -> tuple[str, list[str]]:
     if any(function.get("owned_extent") for function in unit.get("functions", [])):
         paths.update(ROOT / path for path in (
             "config/functions.csv", "config/function-byte-ownership.toml",
-            "scripts/function_byte_ownership.py",
+            "config/function-byte-exclusions.toml", "scripts/function_byte_ownership.py",
         ))
     if any("switch_payload" in function for function in unit.get("functions", [])):
         paths.update(ROOT / path for path in (
