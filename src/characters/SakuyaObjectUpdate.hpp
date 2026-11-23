@@ -36,7 +36,8 @@ public:
  unsigned char unknown_114[0x8];
  float scale_x_11c;
  float scale_y_120;
- unsigned char unknown_124[0x8];
+ float field_124;
+ float field_128;
  float angle_12c;
  unsigned char unknown_130[0xc];
  short action_id_13c;
@@ -55,7 +56,13 @@ public:
  unsigned char unknown_346[0x2];
  SakuyaObjectUpdateView *owner_348;
  SakuyaObjectUpdateView *parent_object_34c;
- unsigned char unknown_350[0x20];
+ unsigned char unknown_350[0x14];
+ short field_364;
+ short field_366;
+ short field_368;
+ short field_36a;
+ short field_36c;
+ unsigned char unknown_36e[0x2];
  float field_370;
  float field_374;
 };
@@ -78,6 +85,10 @@ typedef char CheckSakuyaUpdate_scale_x_11c[
     offsetof(SakuyaObjectUpdateView, scale_x_11c) == 0x11c ? 1 : -1];
 typedef char CheckSakuyaUpdate_scale_y_120[
     offsetof(SakuyaObjectUpdateView, scale_y_120) == 0x120 ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_124[
+    offsetof(SakuyaObjectUpdateView, field_124) == 0x124 ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_128[
+    offsetof(SakuyaObjectUpdateView, field_128) == 0x128 ? 1 : -1];
 typedef char CheckSakuyaUpdate_angle_12c[
     offsetof(SakuyaObjectUpdateView, angle_12c) == 0x12c ? 1 : -1];
 typedef char CheckSakuyaUpdate_action_id_13c[
@@ -104,6 +115,16 @@ typedef char CheckSakuyaUpdate_owner_348[
     offsetof(SakuyaObjectUpdateView, owner_348) == 0x348 ? 1 : -1];
 typedef char CheckSakuyaUpdate_parent_object_34c[
     offsetof(SakuyaObjectUpdateView, parent_object_34c) == 0x34c ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_364[
+    offsetof(SakuyaObjectUpdateView, field_364) == 0x364 ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_366[
+    offsetof(SakuyaObjectUpdateView, field_366) == 0x366 ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_368[
+    offsetof(SakuyaObjectUpdateView, field_368) == 0x368 ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_36a[
+    offsetof(SakuyaObjectUpdateView, field_36a) == 0x36a ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_36c[
+    offsetof(SakuyaObjectUpdateView, field_36c) == 0x36c ? 1 : -1];
 typedef char CheckSakuyaUpdate_field_370[
     offsetof(SakuyaObjectUpdateView, field_370) == 0x370 ? 1 : -1];
 typedef char CheckSakuyaUpdate_field_374[

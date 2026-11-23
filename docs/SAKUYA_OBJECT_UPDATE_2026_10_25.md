@@ -585,7 +585,40 @@ The six native ten-step fades use `CMP AL, 10` and `JBE` at
 reproduces the six instruction pairs and changes twelve bytes in the
 full replay. The complete reachable paths in 800, 801 and 812 agree
 after rebasing, with 265, 180 and 194 instructions respectively.
-In 813 the two guards agree and the earlier EAX load still differs.
+
+## Signed bounds in action 813
+
+Within the `sequence <= 5` path, the native add branches compare
+the three signed fields to BX holding 5. The subtract branches
+compare them to AX holding 4. Writing the bounds as `< 5` and
+`> 4` puts the load of 4 after the first add branch, at the
+position corresponding to `0x004E3271`. Either change alone
+leaves a difference in the placement or use of EAX.
+
+All 170 reachable instructions in 813 now agree after rebasing.
+This change leaves the other primary dispatch entries equivalent
+under the same comparison. The signed short members at
+`+0x364..+0x36C` and float members at `+0x124` and `+0x128`
+also appear in the Sakuya action initializer. Compile-time checks
+fix their offsets in the update view. The typed and offset-based
+builds with the corrected bounds reproduce the same full output.
+
+## Frame cutoff and fade in action 815
+
+The native sequence 0 frame cutoff compares with DI holding 1 at
+`0x004E34EF`. The inclusive source comparison restores that
+instruction and its signed JG. The two arms next differ in the
+x87 load order at `0x004E3502` and `0x004E37ED`.
+
+Four more ten-step alpha guards compare with 10 and branch on
+JBE in the target. They are at `0x004E162B`, `0x004E2431`,
+`0x004E3805` and `0x004E42EF` in 802, 805, 815 and 817.
+The first, second and fourth rebuild with their native comparisons.
+The 815 frame 2/3 guard now has its own branch, while the later
+saturation tail keeps its separate comparison. VC8 emits JA to
+their shared subtraction and leaves retirement in the fallthrough
+path. A goto to the local retirement block reproduces those same
+bytes. Using the retirement block in 803 changes frame-call ownership.
 
 ## Action 810 comparisons and constant placement in later actions
 
@@ -617,6 +650,15 @@ the speed on the x87 stack and adds Y from memory. Swapping the
 addition operands or capturing Y after the speed store in 900
 retains the memory add. Capturing Y before that store restores
 the add from ST(1) with an extra spill and reload.
+
+At `0x10C06F03` the first of the two moves feeding the sum in
+858 already reads Y from object memory. In 900 it reads the rounded
+speed temporary. A hardware watch on the first operand pointer
+catches both assignments at `0x10BF388B` under the early pass
+called at `0x10C06D34` (`0x10BAF600`). Later, across the call
+at `0x10C065FF`, VC8 removes the second speed load in 858 and
+folds the second Y load into the add in 900. All three read-only
+trace builds replay to the same bytes as the ordinary control.
 
 ## Actions 920 and 930 before frame advance
 
@@ -707,8 +749,8 @@ constant setup now differs again. VC8 puts 2 in EDI and zero in EBX.
 Reverting the 816 owner cutoff to `< 2` leaves these registers swapped
 and loses the native compare encoding.
 
-The current envelope is 29,480 bytes with 742 relocations, SHA256
-`14a67892376a24c6d57b1b8e01835c41e9bd306c0966b0242d85e492ca964a86`.
+The current envelope is 29,492 bytes with 742 relocations, SHA256
+`cc919178c9c15f2cde245c0486a12d50a1a1a075aba053291f4403e264d2a40d`.
 The target envelope is 29,476 bytes. The first difference is at the
 primary default branch, `0x004E0D55`. Both 803 alpha paths and the
 200-byte primary remap still agree.

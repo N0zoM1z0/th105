@@ -105,10 +105,11 @@ The rebuilt clear block jumps to the alpha test in 998. All three 901
 parent updates now jump to their native partners in 859 with the new
 angle still on the x87 stack. All three paths agree through the shared
 ECX reload and frame call. The comparison forms in 810 restore constants
-in 818, 857, 859 and 901. With the inclusive alpha guards, 800, 801, 812,
-818, 857 and sequence 0 of 859 and 901 agree after rebasing. The complete
-candidate is 29,480 bytes with 742 relocations and first differs at
-`0x004E0D55`.
+in 818, 857, 859 and 901. Actions 800, 801, 812, 813, 818, 857 and
+sequence 0 of 859 and 901 agree after rebasing. Action 815 now has
+the native frame cutoff. Its two x87 operand orders and alpha tail
+still differ. The complete candidate is 29,492 bytes with 742
+relocations and first differs at `0x004E0D55`.
 [Fade tails](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
 and [parent updates](SAKUYA_OBJECT_UPDATE_2026_10_25.md#parent-updates-in-actions-859-and-901).
 
