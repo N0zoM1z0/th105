@@ -15,9 +15,7 @@ double __cdecl komachi_cosine(float);
 float __fastcall komachi_surface(KomachiActionStateView *);
 unsigned char __fastcall komachi_on_surface(KomachiActionStateView *);
 struct KomachiActionScratch { void reset(); };
-// Pointer-only extension, not a complete owner layout.
-// Pointer-only extension; never instantiate as a recovered complete Fighter.
-// Pointer-only extension; never instantiate as a recovered complete Fighter.
+// Pointer-only view of the Fighter state used by this dispatcher.
 class KomachiActionStateView : public AnimationSequenceObjectView {
 public:
     void dispatch_action_state_vslot28();
@@ -55,77 +53,102 @@ public:
         reinterpret_cast<KomachiActionScratch *>(reinterpret_cast<unsigned char *>(this)+4)->reset();
     }
     __forceinline void dash_dust(bool reverse) {
-        double base=at<float>(0xec)+50.0;
+        double base=x_ec+50.0;
         int direction=reverse?static_cast<unsigned char>(-at<unsigned char>(0x104)):at<unsigned char>(0x104);
         effect(124,static_cast<float>(base-static_cast<float>(komachi_random_u32()%100u)),
-               static_cast<float>(static_cast<float>(komachi_random_u32()%200u)+at<float>(0xf0)),direction,1);
+               static_cast<float>(static_cast<float>(komachi_random_u32()%200u)+y_f0),direction,1);
     }
     __forceinline void dash_effects(bool reverse,double height,bool ahead) {
         int direction=reverse?static_cast<unsigned char>(-at<unsigned char>(0x104)):at<unsigned char>(0x104);
-        float y=static_cast<float>(at<float>(0xf0)+height);
-        float x=ahead?static_cast<float>(80*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec))):at<float>(0xec);
+        float y=static_cast<float>(y_f0+height);
+        float x=ahead?static_cast<float>(80*static_cast<signed char>(direction)+static_cast<double>(x_ec)):x_ec;
         effect(125,x,y,direction,1);
-        effect(126,at<float>(0xec),static_cast<float>(at<float>(0xf0)+height),
+        effect(126,x_ec,static_cast<float>(y_f0+height),
                reverse?static_cast<unsigned char>(-at<unsigned char>(0x104)):at<unsigned char>(0x104),1);
         event(31);
     }
 
     __forceinline void idle_motion() {
         if(!at<unsigned char>(0x47e)){zero_motion();return;}
-        if(at<float>(0xf4)>0.0f){at<float>(0xf4)=static_cast<float>(at<float>(0xf4)-0.5);if(at<float>(0xf4)<0.0f){zero_motion();at<unsigned char>(0x47e)=0;}}
-        if(at<float>(0xf4)<0.0f){at<float>(0xf4)=static_cast<float>(at<float>(0xf4)+0.5);if(at<float>(0xf4)>0.0f){zero_motion();at<unsigned char>(0x47e)=0;}}
+        if(velocity_x_f4>0.0f){velocity_x_f4=static_cast<float>(velocity_x_f4-0.5);if(velocity_x_f4<0.0f){zero_motion();at<unsigned char>(0x47e)=0;}}
+        if(velocity_x_f4<0.0f){velocity_x_f4=static_cast<float>(velocity_x_f4+0.5);if(velocity_x_f4>0.0f){zero_motion();at<unsigned char>(0x47e)=0;}}
     }
     __forceinline void normal_jump(float vx) {
         if(!sequence_index_13e){landing();if(!sequence_index_13e && !at<unsigned char>(0x47e))zero_motion();}
-        if(sequence_index_13e>0){at<float>(0xf8)-=at<float>(0x100);if(static_cast<unsigned char>(crossed())){set_action_and_finalize(10);at<float>(0xf0)=komachi_surface(this);zero_motion();return;}}
-        advance();if(entry(1)){at<float>(0xf4)=vx;at<float>(0xf8)=15.0f;at<float>(0x100)=0.6f;at<unsigned char>(0x47e)=0;}
+        if(sequence_index_13e>0){velocity_y_f8-=acceleration_y_100;if(static_cast<unsigned char>(crossed())){set_action_and_finalize(10);y_f0=komachi_surface(this);zero_motion();return;}}
+        advance();if(entry(1)){velocity_x_f4=vx;velocity_y_f8=15.0f;acceleration_y_100=0.6f;at<unsigned char>(0x47e)=0;}
     }
     __forceinline void face_peer() {
-        if(peer()->at<float>(0xec)<static_cast<double>(at<float>(0xec)))at<unsigned char>(0x104)=255;
-        if(peer()->at<float>(0xec)>static_cast<double>(at<float>(0xec)))at<unsigned char>(0x104)=1;
+        if(peer()->x_ec<static_cast<double>(x_ec))at<unsigned char>(0x104)=255;
+        if(peer()->x_ec>static_cast<double>(x_ec))at<unsigned char>(0x104)=1;
     }
     __forceinline void card_expiration() {
         at<int>(0x644)=at<int>(0x648)-at<int>(0x178);
         if(at<int>(0x644)<=0 && action_id_13c>=700 && at<unsigned char>(0x752)==1){
             signed char direction=at<signed char>(0x104);
-            if((direction==1 && peer()->at<float>(0xec)<static_cast<double>(at<float>(0xec))) ||
-               (direction==-1 && peer()->at<float>(0xec)>static_cast<double>(at<float>(0xec))))at<unsigned char>(0x104)=static_cast<unsigned char>(-direction);
+            if((direction==1 && peer()->x_ec<static_cast<double>(x_ec)) ||
+               (direction==-1 && peer()->x_ec>static_cast<double>(x_ec)))at<unsigned char>(0x104)=static_cast<unsigned char>(-direction);
             set_action_and_finalize(149);at<unsigned char>(0x752)=0;at<unsigned char>(0x654)=0;
-            effect(68,at<float>(0xec),static_cast<float>(at<float>(0xf0)+100.0),at<unsigned char>(0x104),1);
+            effect(68,x_ec,static_cast<float>(y_f0+100.0),at<unsigned char>(0x104),1);
         }
     }
     __forceinline void recovery_jump(float vx) {
         if(!sequence_index_13e || sequence_index_13e==3)landing();
-        else{at<float>(0xf8)-=at<float>(0x100);if(static_cast<unsigned char>(crossed())){at<float>(0xf0)=komachi_surface(this);zero_motion();select_sequence(3);return;}}
+        else{velocity_y_f8-=acceleration_y_100;if(static_cast<unsigned char>(crossed())){y_f0=komachi_surface(this);zero_motion();select_sequence(3);return;}}
         if(advance()){if(at<unsigned char>(0x72c)==2){set_action_and_finalize(700);at<short>(0x4a8)=3;at<short>(0x4ac)=3;return;}set_action_and_finalize(0);if(at<int>(0x6b8)>0)set_action_and_finalize(1);}
         if(sequence_index_13e==3 && frame_index_140==1 && !frame_timer_142)face_peer();
-        if(entry(1)){at<float>(0xf8)=6.0f;at<float>(0xf4)=vx;at<float>(0x100)=0.5f;}
+        if(entry(1)){velocity_y_f8=6.0f;velocity_x_f4=vx;acceleration_y_100=0.5f;}
     }
 
-    __forceinline void high_jump(float vx,float vy,float gravity,bool clamp,bool floor_after) {
-        if(!sequence_index_13e)landing();
-        if(static_cast<unsigned char>(crossed())){set_action_and_finalize(10);at<float>(0xf0)=komachi_surface(this);zero_motion();return;}
-        if(!floor_after && (komachi_on_surface(this) || at<float>(0xf8)>0.0f))at<short>(0x4ae)=2;
-        if(sequence_index_13e>0){at<float>(0xf8)-=at<float>(0x100);if(clamp && at<float>(0xf8)<-20.0f)at<float>(0xf8)=-20.0f;}
-        if(floor_after && (komachi_on_surface(this) || at<float>(0xf8)>0.0f))at<short>(0x4ae)=2;
-        if(sequence_index_13e==1 && at<float>(0xf8)<4.0f)select_sequence(2);advance();
-        if(entry(1)){at<float>(0xf4)=vx;at<float>(0xf8)=vy;at<float>(0x100)=gravity;at<unsigned char>(0x47e)=0;effect(63,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),1);}
+    __forceinline void high_jump(
+        float vx, float vy, float gravity, bool clamp, bool floor_after) {
+        if (!sequence_index_13e)
+            landing();
+
+        if (static_cast<unsigned char>(crossed())) {
+            set_action_and_finalize(10);
+            y_f0 = komachi_surface(this);
+            zero_motion();
+            return;
+        }
+
+        if (!floor_after && (komachi_on_surface(this) || velocity_y_f8 > 0.0f))
+            at<short>(0x4ae) = 2;
+        if (sequence_index_13e > 0) {
+            velocity_y_f8 -= acceleration_y_100;
+            if (clamp && velocity_y_f8 < -20.0f)
+                velocity_y_f8 = -20.0f;
+        }
+        if (floor_after && (komachi_on_surface(this) || velocity_y_f8 > 0.0f))
+            at<short>(0x4ae) = 2;
+
+        if (sequence_index_13e == 1 && velocity_y_f8 < 4.0f)
+            select_sequence(2);
+        advance();
+
+        if (entry(1)) {
+            velocity_x_f4 = vx;
+            velocity_y_f8 = vy;
+            acceleration_y_100 = gravity;
+            at<unsigned char>(0x47e) = 0;
+            effect(63, x_ec, y_f0, at<unsigned char>(0x104), 1);
+        }
     }
 
     __forceinline void decelerate(double amount,bool clear) {
-        at<float>(0xf4)=static_cast<float>(at<float>(0xf4)-amount);
-        if(at<float>(0xf4)<0.0f){at<float>(0xf4)=0.0f;if(clear)at<unsigned char>(0x47e)=0;}
+        velocity_x_f4=static_cast<float>(velocity_x_f4-amount);
+        if(velocity_x_f4<0.0f){velocity_x_f4=0.0f;if(clear)at<unsigned char>(0x47e)=0;}
     }
     __forceinline void normal301() {
         if(at<unsigned char>(0x47e))decelerate(0.5,true);
-        if(at<float>(0xf4)>0.0f && frame_index_140>=7)decelerate(0.5,false);
+        if(velocity_x_f4>0.0f && frame_index_140>=7)decelerate(0.5,false);
         if(advance())set_action_and_finalize(0);
         if(!frame_timer_142){if(frame_index_140==4){event(29);at<unsigned char>(0x47e)=0;}
-            if(!frame_timer_142){if(frame_index_140==3)at<float>(0xf4)=10.0f;if(!frame_timer_142 && frame_index_140==7)at<float>(0xf4)=static_cast<float>(at<float>(0xf4)*0.25);}}
+            if(!frame_timer_142){if(frame_index_140==3)velocity_x_f4=10.0f;if(!frame_timer_142 && frame_index_140==7)velocity_x_f4=static_cast<float>(velocity_x_f4*0.25);}}
     }
     __forceinline void charge(int xoff,double height) {
-        next_sequence_block();int direction=at<unsigned char>(0x104);float y=static_cast<float>(at<float>(0xf0)+height);
-        float x=xoff<0?static_cast<float>(at<float>(0xec)-(-xoff)*static_cast<signed char>(direction)):static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec)));
+        next_sequence_block();int direction=at<unsigned char>(0x104);float y=static_cast<float>(y_f0+height);
+        float x=xoff<0?static_cast<float>(x_ec-(-xoff)*static_cast<signed char>(direction)):static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(x_ec));
         effect(62,x,y,direction,1);
     }
     __forceinline void ring817() {
@@ -136,18 +159,18 @@ public:
         }
     }
     __forceinline bool air_normal_land() {
-        at<float>(0xf8)-=at<float>(0x100);
+        velocity_y_f8-=acceleration_y_100;
         if(!static_cast<unsigned char>(crossed()))return false;
-        set_action_and_finalize(10);at<float>(0xf0)=komachi_surface(this);at<float>(0x100)=0.0f;at<float>(0xf8)=0.0f;return true;
+        set_action_and_finalize(10);y_f0=komachi_surface(this);acceleration_y_100=0.0f;velocity_y_f8=0.0f;return true;
     }
 
     __forceinline void spawn_offset(int object,int xoff,double height,float *p,int count) {
-        int direction=at<unsigned char>(0x104);float y=static_cast<float>(at<float>(0xf0)+height);
-        float x=xoff==0?at<float>(0xec):(xoff<0?static_cast<float>(at<float>(0xec)-(-xoff)*static_cast<signed char>(direction)):static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec))));
+        int direction=at<unsigned char>(0x104);float y=static_cast<float>(y_f0+height);
+        float x=xoff==0?x_ec:(xoff<0?static_cast<float>(x_ec-(-xoff)*static_cast<signed char>(direction)):static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(x_ec)));
         spawn(object,x,y,direction,1,p,count);
     }
     __forceinline void aim(float low,float high) {
-        float dx=static_cast<float>((peer()->at<float>(0xec)-at<float>(0xec))*static_cast<double>(facing()));float dy=peer()->at<float>(0xf0)-at<float>(0xf0);at<float>(0x744)=-komachi_atan(dy,dx);
+        float dx=static_cast<float>((peer()->x_ec-x_ec)*static_cast<double>(facing()));float dy=peer()->y_f0-y_f0;at<float>(0x744)=-komachi_atan(dy,dx);
         if(at<float>(0x744)<low)at<float>(0x744)=low;if(at<float>(0x744)>high)at<float>(0x744)=high;
     }
     __forceinline void start800(float low,float high,bool early_flag) {
@@ -170,25 +193,25 @@ public:
         if(sequence_index_13e==1 && !frame_timer_142 && frame_index_140==3)start800(low,high,false);
     }
     __forceinline bool air_shot_landing(bool clear_gravity) {
-        if(sequence_index_13e==2)landing();at<float>(0xf8)-=at<float>(0x100);
-        if(sequence_index_13e<2 && static_cast<unsigned char>(crossed())){select_sequence(2);if(clear_gravity)at<float>(0x100)=0.0f;at<unsigned char>(0x47f)=0;at<float>(0xf0)=komachi_surface(this);zero_motion();return true;}
+        if(sequence_index_13e==2)landing();velocity_y_f8-=acceleration_y_100;
+        if(sequence_index_13e<2 && static_cast<unsigned char>(crossed())){select_sequence(2);if(clear_gravity)acceleration_y_100=0.0f;at<unsigned char>(0x47f)=0;y_f0=komachi_surface(this);zero_motion();return true;}
         return false;
     }
 
     __forceinline void emit801(float *p,double xoff,double yoff) {
         if(xoff==0.0) {
             unsigned int direction=at<unsigned char>(0x104);
-            float y=static_cast<float>(komachi_sine(-p[0])*150.0+at<float>(0xf0)+yoff);
+            float y=static_cast<float>(komachi_sine(-p[0])*150.0+y_f0+yoff);
             double cosine=komachi_cosine(-p[0]);
             int signed_facing=at<signed char>(0x104);
-            float x=static_cast<float>(cosine*150.0*signed_facing+at<float>(0xec));
+            float x=static_cast<float>(cosine*150.0*signed_facing+x_ec);
             spawn(801,x,y,direction,1,p,3);
         } else {
             unsigned int direction=at<unsigned char>(0x104);
-            float y=static_cast<float>(komachi_sine(-p[0])*150.0+at<float>(0xf0)+yoff);
+            float y=static_cast<float>(komachi_sine(-p[0])*150.0+y_f0+yoff);
             double cosine=komachi_cosine(-p[0]);
             int signed_facing=at<signed char>(0x104);
-            float x=static_cast<float>((cosine*150.0+xoff)*signed_facing+at<float>(0xec));
+            float x=static_cast<float>((cosine*150.0+xoff)*signed_facing+x_ec);
             spawn(801,x,y,direction,1,p,3);
         }
     }
@@ -201,8 +224,8 @@ public:
 
     __forceinline void skill_cost(int wave) {counter(200,120);phase_counter(50);dispatch_character_wave_handle(wave);}
     __forceinline void shot811(float mode,float extra) {
-        float p[3]={0.0f,0.0f,mode};spawn(811,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);
-        if(at<signed char>(0x608)>=4){p[2]=extra;spawn(811,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);}skill_cost(16);
+        float p[3]={0.0f,0.0f,mode};spawn(811,x_ec,y_f0,at<unsigned char>(0x104),1,p,3);
+        if(at<signed char>(0x608)>=4){p[2]=extra;spawn(811,x_ec,y_f0,at<unsigned char>(0x104),1,p,3);}skill_cost(16);
     }
     __forceinline void ground811(float mode,float extra) {
         landing();at<unsigned char>(0x17c)=4;if(advance())set_action_and_finalize(0);if(entry(1)){set_action_and_finalize(0);return;}
@@ -210,9 +233,9 @@ public:
     }
     __forceinline void air811(int frame,float mode,float extra,int gravity_frame) {
         if(sequence_index_13e==2)landing();
-        if(sequence_index_13e<=1){at<float>(0xf8)-=at<float>(0x100);if(static_cast<unsigned char>(crossed())){select_sequence(2);at<float>(0xf0)=komachi_surface(this);zero_motion();return;}}
+        if(sequence_index_13e<=1){velocity_y_f8-=acceleration_y_100;if(static_cast<unsigned char>(crossed())){select_sequence(2);y_f0=komachi_surface(this);zero_motion();return;}}
         at<unsigned char>(0x17c)=4;if(advance())set_action_and_finalize(0);if(entry(1)||entry(2)){set_action_and_finalize(9);return;}
-        if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==frame)shot811(mode,extra);if(!frame_timer_142 && frame_index_140==gravity_frame)at<float>(0x100)=0.25f;}
+        if(!sequence_index_13e && !frame_timer_142){if(frame_index_140==frame)shot811(mode,extra);if(!frame_timer_142 && frame_index_140==gravity_frame)acceleration_y_100=0.25f;}
     }
     __forceinline void stream815(double speed) {
         landing();at<unsigned char>(0x17c)=1;
@@ -220,7 +243,7 @@ public:
             int limit=5;if(at<signed char>(0x605)>=2)limit=6;if(at<signed char>(0x605)>=4)limit=8;
             if(at<short>(0x732)<limit){
                 if(!(at<short>(0x734)%3)){float p[3];p[0]=static_cast<float>(-80.0-static_cast<double>(static_cast<float>(komachi_random(20))));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(50)))*static_cast<double>(0.1f)+speed);p[2]=0.0f;
-                    spawn(815,static_cast<float>(113*facing()+static_cast<double>(at<float>(0xec))),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);++at<short>(0x732);}
+                    spawn(815,static_cast<float>(113*facing()+static_cast<double>(x_ec)),y_f0,at<unsigned char>(0x104),1,p,3);++at<short>(0x732);}
                 ++at<short>(0x734);
             }
         }
@@ -236,54 +259,54 @@ public:
         }
         if(time_counter_144>=timeout){next_sequence_block();return true;}return false;
     }
-    __forceinline void sweep_entry() {effect(127,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),-1);dispatch_character_wave_handle(18);counter(200,120);phase_counter(50);}
+    __forceinline void sweep_entry() {effect(127,x_ec,y_f0,at<unsigned char>(0x104),-1);dispatch_character_wave_handle(18);counter(200,120);phase_counter(50);}
 
     __forceinline void swap820(int skill,bool extra,bool cooldown_before) {
         at<unsigned char>(0x17c)=2;if(sequence_index_13e==3)landing();if(advance())set_action_and_finalize(9);
         if(entry(2)){
             if(peer()->action_id_13c<=599){
                 float p[3]={0.0f,0.0f,1.0f};spawn_offset(820,0,100.0,p,3);
-                p[1]=1.0f;spawn(820,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+100.0),at<unsigned char>(0x104),1,p,3);
+                p[1]=1.0f;spawn(820,peer()->x_ec,static_cast<float>(peer()->y_f0+100.0),at<unsigned char>(0x104),1,p,3);
                 p[1]=0.0f;p[2]=2.0f;spawn_offset(820,0,100.0,p,3);
-                p[1]=1.0f;spawn(820,peer()->at<float>(0xec),static_cast<float>(peer()->at<float>(0xf0)+100.0),at<unsigned char>(0x104),1,p,3);
+                p[1]=1.0f;spawn(820,peer()->x_ec,static_cast<float>(peer()->y_f0+100.0),at<unsigned char>(0x104),1,p,3);
                 if(cooldown_before && at<unsigned char>(skill)!=4){peer()->at<short>(0x4a8)=15;peer()->at<short>(0x4ac)=15;}
                 if(komachi_on_surface(this)){
                     for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(40)))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
-                        int layer=(p[0]>=0.0f && p[0]<=180.0f)?1:-1;spawn(817,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),layer,p,3);}
+                        int layer=(p[0]>=0.0f && p[0]<=180.0f)?1:-1;spawn(817,x_ec,y_f0,at<unsigned char>(0x104),layer,p,3);}
                 }
                 if(komachi_on_surface(peer())){
                     for(int angle=0;angle<360;angle+=45){p[0]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(40)))+(static_cast<double>(angle)+30.0));p[1]=13.0f;p[2]=2.0f;
-                        if(!(p[0]>=0.0f && p[0]<=180.0f))spawn(817,peer()->at<float>(0xec),peer()->at<float>(0xf0),at<unsigned char>(0x104),-1,p,3);
-                        else spawn(817,peer()->at<float>(0xec),peer()->at<float>(0xf0),at<unsigned char>(0x104),1,p,3);}
+                        if(!(p[0]>=0.0f && p[0]<=180.0f))spawn(817,peer()->x_ec,peer()->y_f0,at<unsigned char>(0x104),-1,p,3);
+                        else spawn(817,peer()->x_ec,peer()->y_f0,at<unsigned char>(0x104),1,p,3);}
                 }
                 if(!cooldown_before){
                     if(extra && at<unsigned char>(skill)==4){
                         float ring[3]={0.0f,0.0f,4.0f};
                         for(float n=0.0f;n<6.0f;n=static_cast<float>(n+1.0)){
                             float angle=static_cast<float>(-n*60.0);int direction=at<unsigned char>(0x104);
-                            float y=static_cast<float>(komachi_sine(angle)*200.0+(static_cast<double>(at<float>(0xf0))+100.0));
+                            float y=static_cast<float>(komachi_sine(angle)*200.0+(static_cast<double>(y_f0)+100.0));
                             double cosine=komachi_cosine(angle);
                             int signed_facing=at<signed char>(0x104);
-                            float x=static_cast<float>(cosine*200.0*signed_facing+at<float>(0xec));
+                            float x=static_cast<float>(cosine*200.0*signed_facing+x_ec);
                             spawn(820,x,y,direction,1,ring,3);
                         }
                     }else if(at<unsigned char>(skill)!=4){peer()->at<short>(0x4a8)=15;peer()->at<short>(0x4ac)=15;}
                 }
-                KomachiActionStateView *other=peer();at<float>(0x73c)=at<float>(0xec);at<float>(0x740)=at<float>(0xf0);
-                at<float>(0xec)=other->at<float>(0xec);at<float>(0xf0)=other->at<float>(0xf0);
-                other->at<float>(0xec)=at<float>(0x73c);peer()->at<float>(0xf0)=at<float>(0x740);
+                KomachiActionStateView *other=peer();at<float>(0x73c)=x_ec;at<float>(0x740)=y_f0;
+                x_ec=other->x_ec;y_f0=other->y_f0;
+                other->x_ec=at<float>(0x73c);peer()->y_f0=at<float>(0x740);
             }
             dispatch_character_wave_handle(13);counter(200,120);phase_counter(50);at<short>(0x738)=1;
         }
         if(entry(3) && !komachi_on_surface(this)){select_sequence(4);return;}
         if(entry(4)){set_action_and_finalize(0);return;}
-        if(!sequence_index_13e && !frame_timer_142 && frame_index_140==2){float p[3]={0.0f,0.0f,0.0f};spawn(820,at<float>(0xec),static_cast<float>(at<float>(0xf0)+100.0),at<unsigned char>(0x104),-1,p,3);p[1]=1.0f;spawn(820,at<float>(0xec),static_cast<float>(at<float>(0xf0)+100.0),at<unsigned char>(0x104),-1,p,3);}
-        if(sequence_index_13e==4 && !frame_timer_142 && frame_index_140==1)at<float>(0x100)=0.5f;
+        if(!sequence_index_13e && !frame_timer_142 && frame_index_140==2){float p[3]={0.0f,0.0f,0.0f};spawn(820,x_ec,static_cast<float>(y_f0+100.0),at<unsigned char>(0x104),-1,p,3);p[1]=1.0f;spawn(820,x_ec,static_cast<float>(y_f0+100.0),at<unsigned char>(0x104),-1,p,3);}
+        if(sequence_index_13e==4 && !frame_timer_142 && frame_index_140==1)acceleration_y_100=0.5f;
     }
 
     __forceinline void pair821(float mode) {
-        float p[3]={mode,10.0f,0.0f};spawn(821,static_cast<float>(200*facing()+static_cast<double>(at<float>(0xec))),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);
-        p[2]=4.0f;spawn(821,static_cast<float>(200*facing()+static_cast<double>(at<float>(0xec))),at<float>(0xf0),at<unsigned char>(0x104),-1,p,3);skill_cost(19);
+        float p[3]={mode,10.0f,0.0f};spawn(821,static_cast<float>(200*facing()+static_cast<double>(x_ec)),y_f0,at<unsigned char>(0x104),1,p,3);
+        p[2]=4.0f;spawn(821,static_cast<float>(200*facing()+static_cast<double>(x_ec)),y_f0,at<unsigned char>(0x104),-1,p,3);skill_cost(19);
     }
     __forceinline void ground821(int control) {
         landing();at<unsigned char>(0x17c)=6;if(!at<int>(control))at<unsigned char>(0x750)=0;if(advance())set_action_and_finalize(0);if(entry(1))set_action_and_finalize(0);
@@ -296,15 +319,15 @@ public:
     }
     __forceinline void publish822() {
         KomachiActionStateView *other=peer();at<float>(0x6ac)=at<float>(0x73c);
-        if((at<float>(0xec)<static_cast<double>(other->at<float>(0xec)) && other->at<unsigned char>(0x104)==1) ||
-           (at<float>(0xec)>static_cast<double>(other->at<float>(0xec)) && other->at<unsigned char>(0x104)==255))at<float>(0x6ac)=-at<float>(0x73c);
+        if((x_ec<static_cast<double>(other->x_ec) && other->at<unsigned char>(0x104)==1) ||
+           (x_ec>static_cast<double>(other->x_ec) && other->at<unsigned char>(0x104)==255))at<float>(0x6ac)=-at<float>(0x73c);
     }
     __forceinline void movement822(int control,int alternate,bool clear_first) {
         landing();at<unsigned char>(0x17c)=10;if(!at<int>(control))at<unsigned char>(0x750)=0;
         if(!sequence_index_13e && frame_index_140>=4){accelerate822();publish822();}
         if(sequence_index_13e==1){
             accelerate822();
-            if(!(time_counter_144%3)){float p[3]={static_cast<float>(komachi_random(360)),static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(150)))+250.0),0.0f};spawn(822,at<float>(0xec),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);}
+            if(!(time_counter_144%3)){float p[3]={static_cast<float>(komachi_random(360)),static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(150)))+250.0),0.0f};spawn(822,x_ec,y_f0,at<unsigned char>(0x104),1,p,3);}
             publish822();
             if(time_counter_144>=10){
                 if(!at<unsigned char>(0x750) || time_counter_144>=90){if(clear_first){at<int>(0x180)=0;next_sequence_block();}else{next_sequence_block();at<int>(0x180)=0;}return;}
@@ -336,7 +359,7 @@ public:
         if(sequence_index_13e==1 && !frame_timer_142 && frame_index_140==2){at<short>(0x730)=1;counter(200,120);phase_counter(50);aim(-20.0f,10.0f);}
     }
     __forceinline void aim_short() {
-        float dx=static_cast<float>((peer()->at<float>(0xec)-at<float>(0xec))*static_cast<double>(facing()));float dy=peer()->at<float>(0xf0)-at<float>(0xf0);
+        float dx=static_cast<float>((peer()->x_ec-x_ec)*static_cast<double>(facing()));float dy=peer()->y_f0-y_f0;
         at<short>(0x734)=static_cast<short>(-static_cast<short>(static_cast<int>(komachi_atan(dy,dx))));
         if(at<short>(0x734)<-10)at<short>(0x734)=-10;if(at<short>(0x734)>10)at<short>(0x734)=10;
     }
@@ -355,8 +378,8 @@ public:
     }
 
     __forceinline void spell_flash(int xoff,double height,int outcome) {
-        at<short>(0x48a)=40;event(23);int direction=at<unsigned char>(0x104);float y=static_cast<float>(at<float>(0xf0)+height);
-        float x=xoff==0?at<float>(0xec):(xoff<0?static_cast<float>(at<float>(0xec)-(-xoff)*static_cast<signed char>(direction)):static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec))));
+        at<short>(0x48a)=40;event(23);int direction=at<unsigned char>(0x104);float y=static_cast<float>(y_f0+height);
+        float x=xoff==0?x_ec:(xoff<0?static_cast<float>(x_ec-(-xoff)*static_cast<signed char>(direction)):static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(x_ec)));
         effect(115,x,y,direction,1);sequence_window(0,outcome,60);secondary_cycle();
     }
     __forceinline void ring817_at(float *p,int xoff) {
@@ -365,33 +388,38 @@ public:
     }
     __forceinline void spell_ground_particles(int object,int random_range,double bias,double speed,float mode) {
         float p[3];p[0]=static_cast<float>(bias-static_cast<double>(static_cast<float>(komachi_random(random_range))));p[1]=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(5)))+speed);p[2]=mode;
-        spawn(object,static_cast<float>(80*facing()+static_cast<double>(at<float>(0xec))),at<float>(0xf0),at<unsigned char>(0x104),1,p,3);
+        spawn(object,static_cast<float>(80*facing()+static_cast<double>(x_ec)),y_f0,at<unsigned char>(0x104),1,p,3);
     }
     __forceinline void grab_peer() {peer()->set_action_and_finalize(102);peer()->zero_motion();next_sequence_block();}
 
-    __forceinline void ring902(float *p,float base,float jitter,int count,double step,double offset,bool reversed,float speed) {
-        for(float n=0.0f;n<count;n=static_cast<float>(n+1.0)){
-            double angle=offset==0.0?n*step+base:n*step+base+offset;
-            float coordinate=static_cast<float>(reversed?angle:angle+180.0);
-            p[0]=static_cast<float>(reversed?angle+jitter+180.0:angle+jitter);p[1]=speed;p[2]=0.0f;
-            float neg=-coordinate;
-            unsigned int direction=at<unsigned char>(0x104);
-            double sine=komachi_sine(neg);
-            KomachiActionStateView *y_peer=peer();
-            float y=static_cast<float>(sine*500.0+y_peer->at<float>(0xf0)+100.0);
-            double cosine=komachi_cosine(neg);
-            int signed_facing=at<signed char>(0x104);
-            float x=static_cast<float>(cosine*500.0*signed_facing+peer()->at<float>(0xec));
-            spawn(902,x,y,direction,1,p,3);
+    __forceinline void ring902(
+        float *p, float base, float jitter, int count, double step,
+        double offset, bool reversed, float speed) {
+        for (float n = 0.0f; n < count; n = static_cast<float>(n + 1.0)) {
+            double angle = offset == 0.0 ? n * step + base : n * step + base + offset;
+            float coordinate = static_cast<float>(reversed ? angle : angle + 180.0);
+            p[0] = static_cast<float>(reversed ? angle + jitter + 180.0 : angle + jitter);
+            p[1] = speed;
+            p[2] = 0.0f;
+
+            float neg = -coordinate;
+            unsigned int direction = at<unsigned char>(0x104);
+            double sine = komachi_sine(neg);
+            KomachiActionStateView *y_peer = peer();
+            float y = static_cast<float>(sine * 500.0 + y_peer->y_f0 + 100.0);
+            double cosine = komachi_cosine(neg);
+            int signed_facing = at<signed char>(0x104);
+            float x = static_cast<float>(cosine * 500.0 * signed_facing + peer()->x_ec);
+            spawn(902, x, y, direction, 1, p, 3);
         }
     }
 
     __forceinline void spawn_ring817(float *p,int xoff) {
         if(p[0]>=0.0f && p[0]<=180.0f){
-            int direction=at<unsigned char>(0x104);float y=at<float>(0xf0);float x=xoff==0?at<float>(0xec):static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec)));
+            int direction=at<unsigned char>(0x104);float y=y_f0;float x=xoff==0?x_ec:static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(x_ec));
             spawn(817,x,y,direction,1,p,3);
         }else{
-            int direction=at<unsigned char>(0x104);float y=at<float>(0xf0);float x=xoff==0?at<float>(0xec):static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(at<float>(0xec)));
+            int direction=at<unsigned char>(0x104);float y=y_f0;float x=xoff==0?x_ec:static_cast<float>(xoff*static_cast<signed char>(direction)+static_cast<double>(x_ec));
             spawn(817,x,y,direction,-1,p,3);
         }
     }

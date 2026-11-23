@@ -40,7 +40,15 @@ public:
         int quantity, int scalar_per_thousand,
         short forwarded_counter_delta, signed char use_dynamic_scalar);
 
-    unsigned char unknown_004[0x138];
+    unsigned char unknown_004[0xe8];
+    float x_ec;
+    float y_f0;
+    float velocity_x_f4;
+    float velocity_y_f8;
+    unsigned char unknown_0fc[4];
+    float acceleration_y_100;
+    unsigned char unknown_104[0x38];
+
     short action_id_13c;
     short sequence_index_13e;
     short frame_index_140;
@@ -74,5 +82,16 @@ typedef char AnimationSequenceObject_tree_offset_must_be_0x160[
     offsetof(AnimationSequenceObjectView, sequence_tree_160) == 0x160 ? 1 : -1];
 typedef char AnimationSequenceObject_related_offset_must_be_0x170[
     offsetof(AnimationSequenceObjectView, related_170) == 0x170 ? 1 : -1];
+
+typedef char AnimationSequenceObject_x_ec_offset[
+    offsetof(AnimationSequenceObjectView, x_ec) == 0xec ? 1 : -1];
+typedef char AnimationSequenceObject_y_f0_offset[
+    offsetof(AnimationSequenceObjectView, y_f0) == 0xf0 ? 1 : -1];
+typedef char AnimationSequenceObject_velocity_x_f4_offset[
+    offsetof(AnimationSequenceObjectView, velocity_x_f4) == 0xf4 ? 1 : -1];
+typedef char AnimationSequenceObject_velocity_y_f8_offset[
+    offsetof(AnimationSequenceObjectView, velocity_y_f8) == 0xf8 ? 1 : -1];
+typedef char AnimationSequenceObject_acceleration_y_100_offset[
+    offsetof(AnimationSequenceObjectView, acceleration_y_100) == 0x100 ? 1 : -1];
 
 } // namespace th105

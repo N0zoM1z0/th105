@@ -100,15 +100,12 @@ target comparison establishes byte equality at the reviewed extent.
   lifetimes and comparing whole dispatchers is transferable. See EFZ
   `src/Character10State.cpp`, `docs/ORACLES.md` and
   [TH105 sequence evidence](ANIMATION_SEQUENCE_SEMANTICS_2026_11_07.md).
-- The Komachi source's one-letter macros hide access width and make it hard
-  to scan reads and writes across case boundaries. A scratch build replaced
-  447 float offset accesses with five checked members for position, velocity
-  and vertical acceleration. It reproduced the same 65,304-byte canonical
-  candidate and the same switch topology. Apply this incrementally to
-  fields already supported by the target. Keep offset names for unknown
-  semantics, and preserve signed and unsigned consumers, evaluation order,
-  and individual x87 rounding points. Shared-header adoption needs replay
-  of the affected consumers. The scratch header is local to Komachi.
+- The Komachi dispatcher now uses five checked position, velocity and
+  acceleration members in place of 447 float offset accesses. Its complete
+  65,304-byte candidate and switch topology are identical to the offset
+  version. Applying typed fields incrementally keeps signed and unsigned
+  consumers, evaluation order and individual x87 rounding points visible
+  during review. [Checked motion fields](KOMACHI_ACTION_STATE_2026_10_28.md#checked-motion-fields-2026-11-23)
 
 ## Reproduce the selected baselines
 

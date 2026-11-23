@@ -97,11 +97,12 @@ Other open leads:
   [real gauge context](DESIGN_LOADER_REAL_GAGE_2026_11_02.md).
 - The giant action roots have no exact entries. Komachi 0x5E20E0 has a
   complete unselected candidate (unit `exact-first-komachi-action-state`,
-  108 actions). Its ordinary replay covers the callable and a full exact
-  contract must account for all seven tables. The owner diagnostic stops
-  at the merged 209/212 entry. Reimu 0x478FA0 has staged partial sources
-  (`src/characters/ReimuActionState*`) and still needs a selected whole-root
-  unit.
+  108 actions). Its [checked motion fields](KOMACHI_ACTION_STATE_2026_10_28.md#checked-motion-fields-2026-11-23)
+  preserve the compiled envelope. The ordinary replay covers the callable.
+  A full exact contract must account for all seven tables. The owner
+  diagnostic stops at the merged 209/212 entry. Reimu 0x478FA0 has staged
+  partial sources (`src/characters/ReimuActionState*`) and still needs a
+  selected whole-root unit.
 
 ## Checking shared type changes
 

@@ -6,13 +6,9 @@
 It is **unselected and nonexact**. No implemented.csv, matches.csv, function
 status, or accepted byte total changes.
 
-The complete candidate emits 64,884 bytes versus 65,176 target bytes.
-The stack allocation now equals native 0x490. First difference is +42 at
-0x5E210A, constant materialization/save ordering after an identical prefix.
-Near-equal lengths do not imply near-exact instructions.
-
-Only the new unit was built. Shared accepted implementations and their
-previous acceptance receipts remain unchanged; no cold full-corpus run.
+The current candidate emits 65,304 bytes versus 65,176 target bytes, with
+its first difference at `+8` in the stack allocation. The dated sections
+below retain the earlier code-generation controls and their results.
 
 ## Current-target evidence
 
@@ -310,3 +306,27 @@ comparison outcomes now select the native sequence and reversal behavior.
 The complete 63,993-byte callable and its switch payload remain nonexact against the
 65,176-byte original extent, first difference +8. The new full candidate SHA-256 is
 `4c4bf8d203af7047cb15a442d62954ee1e28f873cd839264a9fe525cb4a0e88e`.
+
+## Checked motion fields, 2026-11-23
+
+`AnimationSequenceObjectView` now exposes five checked floats at `+0xEC`,
+`+0xF0`, `+0xF4`, `+0xF8` and `+0x100`. These are the current target's
+position, velocity and vertical acceleration fields, also present in the
+checked receiver for the exact Komachi initializer at `0x005F6700`. The root
+snapshots, peer reads, surface transitions and motion initializers use the
+members directly. This replaces 447 float offset accesses between
+`KomachiActionState.cpp` and its inline helpers. Cases 0–10 also expose the
+call order and conditional transitions on separate lines.
+
+Headless builds of the old and new sources replay all 1,857 selected COFF
+relocations. The complete 65,304-byte candidate and its switch topology
+are identical, including the merged 209/212 entry. All 170 accepted functions
+that depend on the shared header still compare exactly across 47 units.
+
+Ending action 212 with `break` emits the same candidate. A scratch build
+with explicit shared paths for crossing and continued flight restores both
+dispatch entries. VC8 places the continued-flight body after 212 instead of
+209, exchanging the 48- and 102-byte owner spans. The scratch section grows
+to 65,356 bytes. With separate entries the owner audit reaches a second
+problem. It includes the card-expiration switch data before the first action
+table in the candidate instruction span and fails to decode it.
