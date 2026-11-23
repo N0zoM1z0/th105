@@ -51,6 +51,14 @@ __forceinline void SakuyaObjectUpdateView::advance_orbit()
  }
 }
 
+static __forceinline void spawn_853_child(
+    SakuyaObjectUpdateView &object, const float (&parameters)[4])
+{
+ object.spawn_unparented(853, object.x_ec, object.y_f0,
+                         static_cast<unsigned char>(object.facing_104), 1,
+                         reinterpret_cast<const unsigned *>(parameters), 4);
+}
+
 void SakuyaObjectUpdateView::update_action_state()
 {
  switch(action_id_13c) {
@@ -577,17 +585,14 @@ void SakuyaObjectUpdateView::update_action_state()
     float child_index = 0;
     do {
      child_parameters[0] = (parameters_340[0] + 15.0) - child_index * 15.0;
-     spawn_unparented(853, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                      reinterpret_cast<const unsigned *>(child_parameters), 4);
+     spawn_853_child(*this, child_parameters);
      child_index += 1.0;
     } while (child_index < 3.0f);
 
     child_parameters[2] = 6;
-    spawn_unparented(853, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                     reinterpret_cast<const unsigned *>(child_parameters), 4);
+    spawn_853_child(*this, child_parameters);
     child_parameters[2] = 7;
-    spawn_unparented(853, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
-                     reinterpret_cast<const unsigned *>(child_parameters), 4);
+    spawn_853_child(*this, child_parameters);
    }
   }
   if (sequence_id_13e == 1) {

@@ -773,7 +773,7 @@ both resolve to group `0x361`, which gets EDI. In the all-jump control,
 the first split of the whole-function -1 group follows EBX assignment
 to the 901 phase guard's constant 5. Both 853 uses enter group `0x360`.
 The next relevant split at `0x10B0D27D` follows group `0x381`, whose
-constant-1 definition is tagged to the child-spawn loop. The child
+constant-1 definition supplies the child-spawn loop's layer argument. The child
 decrement briefly resolves to `0x1E`; the frame lookup already has an
 empty intersection. Both decrements become immediate -1 by the end
 of the split. `0x10C073F3` still has the frame call. It survives until
@@ -782,9 +782,22 @@ The traced objects reproduce both ordinary builds in full.
 Changing the child loop to a float `for` loop or narrowing the spawn
 facing or layer formal leaves the all-jump replay identical.
 
+Both builds retain EBP and EDI as eligible registers for the loop's layer
+group at `0x10B0D350`. Its score is -1 in both builds. The selected -1 group
+has three uses and score 1, so it has already received EDI when the layer
+group is processed again. The all-jump -1 group has two uses and score 0.
+The scorer subtracts one for each of two definitions at `0x10B10F85` and
+adds one per decrement at `0x10B109C5`. The loop group puts the zero-score
+group into the same split batch at `0x10B0D7F5`. Moving the explicit alpha
+jump from sequence 7 to sequence 6 keeps the three uses, and sequence 7
+then jumps to the earlier 805 retirement with a near branch in place of
+its native short one.
+
 The selected source spells out the action's child packet, homing update
-and sequence 6 lifetime check. All 29,480 relocated bytes and all 742
-relocation records agree with the previous source.
+and sequence 6 lifetime check. The three child calls share an inlined
+helper that accepts the four-float packet by reference. The full relocated
+output is unchanged, with the same locations, kinds and resolved values
+for all 742 relocations.
 
 At `c2.dll:0x10C077B1` the 853 alpha branches still have separate
 label references. After `0x10B2C950` returns to `0x10C077B6`, both
@@ -865,6 +878,11 @@ their scale-add load order. Giving the phase test a local name,
 changing the earlier 803 alpha assignments, and swapping the scale
 sum's operands all retain that cross-case difference. The selected
 source keeps the preceding 805 branch shape.
+
+Storing the final 805 sequence-3 retirement test in a Boolean local also
+changes those four actions' scale-add order while preserving every 805
+path after rebasing. Repeating the sequence-3 test on both sides of the
+frame-advance result leaves a second copy of the counter checks in 805.
 
 Writing out the motion step, bounds, and lifetime exits in 805
 preserves the full relocated output.

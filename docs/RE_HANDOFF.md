@@ -114,11 +114,12 @@ landing-sum instructions. The entry Y bounds change the address
 definition used by the early C2 pass. Compare how that definition
 reaches the landing sum. Six 853 branches now use the native local
 retirement. Only sequence 6's alpha exit still uses the 805 copy.
-In the all-jump control, the constant-1 definition tagged to the 853
-child-spawn loop triggers the split that leaves its frame decrement
-without a reaching definition. The allocator restores immediate -1
-before `0x10B2C950` merges the frame call. Follow the options for that
-loop definition to find why the extra jump changes eligibility.
+The 853 frame decrement and its layer argument still have EBP and EDI
+eligible in the all-jump control. The two-use -1 group scores zero and
+joins the layer group's split batch at `0x10B0D7F5`. It becomes immediate
+-1 before `0x10B2C950` merges the frame call. The selected three-use
+group gets EDI. The remaining lead is to restore the separate 805
+retirement register so that 853 can keep all three uses.
 The early pass at `0x10C26030` substitutes a symbolic operand for the
 805 immediate cutoff. `0x10B130F6` links it to the five-use group for
 2, and `0x10B17A46` installs BP after allocation. The `<= 1` control
