@@ -984,7 +984,7 @@ advance_812:
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_parented_related_object(
                             817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
                             reinterpret_cast<const unsigned *>(copied), 3);
-                    } while (--remaining != 0);
+                    } while (--remaining != zero);
                     return;
                 }
                 const int remainder = _root_state.counter_144 % 30;
@@ -1145,7 +1145,7 @@ advance_812:
                         reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_parented_related_object(
                             817, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
                             reinterpret_cast<const unsigned *>(copied), 3);
-                    } while (--remaining != 0);
+                    } while (--remaining != zero);
                     return;
                 }
                 const int remainder = _root_state.counter_144 % 30;

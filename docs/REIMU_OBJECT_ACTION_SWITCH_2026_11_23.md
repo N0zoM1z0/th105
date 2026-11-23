@@ -72,7 +72,7 @@ ordering. Recent focused owner extents (candidate/target) are:
 | action 807 | 272 | 300 | -28 bytes; shared advance tail is remote in candidate |
 | action 811 | 1,509 | 1,507 | +2 bytes; 38 diff groups |
 | action 812 | 1,361 | 1,376 | -15 bytes; 28 diff groups |
-| action 817 | 3,026 | 3,066 | -40 bytes; 82 diff groups |
+| action 817 | 3,024 | 3,066 | -42 bytes; 80 diff groups |
 | action 822 | 1,886 | 1,955 | -69 bytes; 19 diff groups |
 | action 869 | 1,691 | 1,736 | -45 bytes; 48 diff groups |
 | action 900 | 1,209 | 1,229 | -20 bytes; 27 diff groups |
@@ -116,7 +116,7 @@ their owning cases, allowing the compiler to reuse stack storage.
 ## Current root status and next work
 
 The latest focused owner audit reports a 46,138-byte target callable extent,
-45,636 candidate main bytes, a 46,504-byte candidate section tail, and 1,100
+45,636 candidate main bytes, a 46,504-byte candidate section tail, and 1,095
 instruction-difference groups. The candidate main remains 502 bytes short and
 the whole root is nonexact: the first raw-byte mismatch remains at
 0x0049655F (offset +0x1F, target byte 0xF8, candidate byte 0x00).
@@ -189,7 +189,7 @@ groups and moved 902 to an exact 2,998-byte owner extent. Reordering the
 `register one` and `register zero` declarations in action 817 then reduced the
 root to 1,127 instruction-difference groups and the candidate main to 45,488
 bytes. Current focused extents are: 807 272/300, 808 415/410, 811 1,509/1,507,
-812 1,361/1,376, 817 3,026/3,066, 821 1,083/1,119, 822 1,886/1,955,
+812 1,361/1,376, 817 3,024/3,066, 821 1,083/1,119, 822 1,886/1,955,
 869 1,691/1,736, 900 1,209/1,229, 901 2,239/2,324, 902 2,998/2,998,
 903 1,403/1,397, 908 3,793/3,794, and 951 547/547. The complete root remains
 nonexact. The root entry branch at `0x0049655F` is still the first raw-byte
@@ -208,8 +208,9 @@ Action 817 keeps one then zero as root-scoped register locals, while the two
 previous checkpoint this lowered the root to 1,108 difference groups and the
 owner to 3,024/3,066 bytes with 80 groups. The subsequent action-822 branch
 rewrite changes register allocation and physical layout across the large
-switch; current action 817 is 3,026/3,066 bytes with 82 groups and the root is
-at 1,100 groups after the action-980/998 remote-order move.
+switch; the current action-817 owner is 3,024/3,066 bytes with 80 groups
+after using the root-scoped zero local in both do/while termination tests.
+The root is now at 1,095 groups.
 The target still begins the owner with
 `xor ebx, ebx; mov edi, 1`, while the candidate emits `mov ebx, 1`;
 the particle loop also remains `sub edi, ebx` rather than
@@ -249,7 +250,7 @@ the owner flag before returning. This reduces the action-951 owner audit from
 547/547 bytes; the remaining two groups are branch destinations to the shared
 advance tail. The target tail is at `0x00497191` after action 807; Clang places the
 same advance/retire sequence at `0x004A1505` inside the candidate action-951
-owner. The latest focused root audit reports 1,100 instruction-difference groups,
+owner. The latest focused root audit reports 1,095 instruction-difference groups,
 with 45,636 candidate main bytes and 46,504 candidate section-tail bytes.
 This is a local control-flow improvement with an open physical ownership boundary, not a whole-root
 exactness claim.
@@ -258,12 +259,17 @@ exactness claim.
 ## Action 817 collision-burst loop and register scopes
 
 The sequence-0 and sequence-9 collision bursts use natural post-decrement
-do/while loops for their 14 particle emissions. The two manager-spawn branches
-share the root-scoped one/zero register locals, while the collision-burst
-calls pass literal 1 so the one lifetime does not come from those packet
-arguments. The current owner is 3,026/3,066 bytes with 82 instruction-
-difference groups after the subsequent action-822 layout change. Clang still
-chooses EBX for one and reuses it for the loop decrement.
+do/while loops for their 14 particle emissions. Both termination tests now
+compare the decremented counter with the existing root-scoped zero local
+rather than a literal zero. This moves action 817 from 3,026/3,066 bytes and
+82 difference groups to 3,024/3,066 bytes and 80 groups, and reduces the
+focused root from 1,100 to 1,095 groups without changing its 45,636-byte
+candidate main span.
+
+The target initializes EBX=0 and EDI=1, then decrements the particle count
+with `sub edi, 1`; the candidate still initializes EBX=1 and emits
+`sub edi, ebx`. This is a source-level code-generation improvement, not an
+exact register-lifetime match.
 
 ## Action 822 sequence entries and alpha saturation
 
@@ -317,7 +323,7 @@ sequence exactly. In the latest root build, action 908 is 3,793/3,794 bytes
 with 100 instruction-difference groups after the remote-owner source-order
 move; remaining differences are concentrated in register assignment
 (EBX/EDI), the -1 countdown lifetime, and downstream control-flow layout. The focused root is now 45,636 candidate main bytes,
-46,504 candidate section-tail bytes, and 1,100 instruction-difference
+46,504 candidate section-tail bytes, and 1,095 instruction-difference
 groups. This is a verified local code-generation improvement, not a whole-root
 exactness claim.
 
@@ -336,8 +342,8 @@ sequences through one natural C++ move_with_facing_velocity_812 label. The
 target's advance/dispatch tail at 0x004982CF is also represented by a shared
 advance_812 label, with sequence 3/4 retirement bypassing the movement block.
 This reduces the action-812 owner to 1,361/1,376 bytes (-15) and 28
-instruction-difference groups. The whole-root audit now reports 1,100 groups after the action-980/998
-remote-order move; candidate main code is 45,636 bytes.
+instruction-difference groups. The whole-root audit now reports 1,095 groups after the action-817
+loop-termination refinement; candidate main code is 45,636 bytes.
 
 The target also keeps five in EBX for the phase-state comparison and modulo
 operation; the current compiler still rematerializes the constant at those
