@@ -210,6 +210,15 @@ merge and complete candidate. Leaving either phase arm with its own return
 brings back the 1,910-byte duplicate. A successful late source shape still
 needs to keep 601's stores and route 604 backward to them.
 
+A hardware watchpoint on the link to 601's first store stops just after
+`c2.dll:0x10B2E587` rewrites it to the second store inside the late splice
+routine at `0x10B2E1B0`. The traced build reproduces the same relocated
+1,874-byte candidate. Moving the group of reset-only cases before or after
+both publishing cases leaves those bytes identical. Giving the reset its
+own label inside the switch also reproduces the original baseline across all
+three positions. Changing the lexical placement of the reset group alone
+does not change the splice direction.
+
 ## Reproduction and next scope
 
 Use locked repository Python and serial CPU 0/nice10 jobs. Build/comparison and
