@@ -768,6 +768,24 @@ keeps the 17 frame calls. It also changes the register and tail shape
 in 816's last two parent exits. The selected six local branches preserve
 816's previous instruction encodings and change only 853's destinations.
 
+In the selected build, the child-spawn decrement and the frame decrement
+both resolve to group `0x361`, which gets EDI. In the all-jump control,
+the first split of the whole-function -1 group follows EBX assignment
+to the 901 phase guard's constant 5. Both 853 uses enter group `0x360`.
+The next relevant split at `0x10B0D27D` follows group `0x381`, whose
+constant-1 definition is tagged to the child-spawn loop. The child
+decrement briefly resolves to `0x1E`; the frame lookup already has an
+empty intersection. Both decrements become immediate -1 by the end
+of the split. `0x10C073F3` still has the frame call. It survives until
+`0x10C077B1` and disappears when `0x10B2C950` returns at `0x10C077B6`.
+The traced objects reproduce both ordinary builds in full.
+Changing the child loop to a float `for` loop or narrowing the spawn
+facing or layer formal leaves the all-jump replay identical.
+
+The selected source spells out the action's child packet, homing update
+and sequence 6 lifetime check. All 29,480 relocated bytes and all 742
+relocation records agree with the previous source.
+
 At `c2.dll:0x10C077B1` the 853 alpha branches still have separate
 label references. After `0x10B2C950` returns to `0x10C077B6`, both
 reference the same label (`+0x18` in the `0x284` operand). In a

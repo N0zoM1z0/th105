@@ -557,11 +557,52 @@ void SakuyaObjectUpdateView::update_action_state()
   if(sequence_id_13e==1 && ((owner_348->action_id_13c>49 && owner_348->action_id_13c<150) || owner_348->action_id_13c!=602 || time_counter_144>=15))RETIRE();
   STEP();FRAME_EXIT();
  case 853:
-  if(phase_state_180==5)RETIRE();
-  if(sequence_id_13e==0){angle_12c+=40.0;parameters_340[1]-=1.0;if(parameters_340[1]<0.5f)parameters_340[1]=0.5f;MOVE();if(time_counter_144>=parameters_340[3]){--lifetime_330;float children[4];children[1]=30;children[2]=1;children[3]=90;owner_348->dispatch_character_wave_handle(13);
-    float count=0;do{children[0]=(parameters_340[0]+15.0)-count*15.0;spawn_unparented(853,x_ec,y_f0,static_cast<unsigned char>(facing_104),1,WORDS(children),4);count+=1.0;}while(count<3.0f);
-    children[2]=6;spawn_unparented(853,x_ec,y_f0,static_cast<unsigned char>(facing_104),1,WORDS(children),4);children[2]=7;spawn_unparented(853,x_ec,y_f0,static_cast<unsigned char>(facing_104),1,WORDS(children),4);}}
-  if(sequence_id_13e==1){MOVE();if(time_counter_144>=parameters_340[3]){next_sequence_block();float *words=parameters_340;words[0]=-atan2_degrees(static_cast<float>(target_170->y_f0+100.0-y_f0),static_cast<float>(facing_104*(target_170->x_ec-x_ec)));words[1]=80.0f;angle_12c=words[0];return;}}
+  if (phase_state_180 == 5) {
+   --lifetime_330;
+   return;
+  }
+  if (sequence_id_13e == 0) {
+   angle_12c += 40.0;
+   parameters_340[1] -= 1.0;
+   if (parameters_340[1] < 0.5f) parameters_340[1] = 0.5f;
+   MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+   if (time_counter_144 >= parameters_340[3]) {
+    --lifetime_330;
+    float child_parameters[4];
+    child_parameters[1] = 30;
+    child_parameters[2] = 1;
+    child_parameters[3] = 90;
+    owner_348->dispatch_character_wave_handle(13);
+
+    float child_index = 0;
+    do {
+     child_parameters[0] = (parameters_340[0] + 15.0) - child_index * 15.0;
+     spawn_unparented(853, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                      reinterpret_cast<const unsigned *>(child_parameters), 4);
+     child_index += 1.0;
+    } while (child_index < 3.0f);
+
+    child_parameters[2] = 6;
+    spawn_unparented(853, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                     reinterpret_cast<const unsigned *>(child_parameters), 4);
+    child_parameters[2] = 7;
+    spawn_unparented(853, x_ec, y_f0, static_cast<unsigned char>(facing_104), 1,
+                     reinterpret_cast<const unsigned *>(child_parameters), 4);
+   }
+  }
+  if (sequence_id_13e == 1) {
+   MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+   if (time_counter_144 >= parameters_340[3]) {
+    next_sequence_block();
+    float *parameters = parameters_340;
+    parameters[0] = -atan2_degrees(
+        static_cast<float>(target_170->y_f0 + 100.0 - y_f0),
+        static_cast<float>(facing_104 * (target_170->x_ec - x_ec)));
+    parameters[1] = 80.0f;
+    angle_12c = parameters[0];
+    return;
+   }
+  }
   if (sequence_id_13e == 2) {
    MOVE();
    if (time_counter_144 >= 180) goto retire_853;
@@ -582,7 +623,16 @@ void SakuyaObjectUpdateView::update_action_state()
    scale_y_120 *= D(0.95f);
    if (parent_object_34c->frame_index_140 > 0) goto retire_853;
   }
-  if(sequence_id_13e==6){scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c-D(0.01f));if(alpha_113<=20)RETIRE();alpha_113-=20;channel_110-=20;channel_111-=20;}
+  if (sequence_id_13e == 6) {
+   scale_y_120 = scale_x_11c = static_cast<float>(scale_x_11c - D(0.01f));
+   if (alpha_113 <= 20) {
+    --lifetime_330;
+    return;
+   }
+   alpha_113 -= 20;
+   channel_110 -= 20;
+   channel_111 -= 20;
+  }
   if (sequence_id_13e == 7) {
    scale_y_120 = scale_x_11c = static_cast<float>(scale_x_11c + D(0.2f));
    if (alpha_113 <= 30) goto retire_853;
