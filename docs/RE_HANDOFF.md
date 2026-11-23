@@ -56,8 +56,11 @@ consumes their return edges. All clamp and sequence paths now match, as
 do both switch tables and the alignment byte. The remaining two
 instructions are `ADD EAX,-50` and `ADD EAX,-691` at `0x004740DE` and
 `0x00475E20`, where the target has `SUB` with positive immediates. The
-first byte difference is `0x004740DF`. Trace their lowering from the
-compiler's switch IR while keeping the repaired case ownership. See the
+first byte difference is `0x004740DF`. At `0x10C0B1FE`, VC8 sees distinct
+input and result symbols in the split shape and one symbol in the flat
+shape. This decides the instruction before both builds allocate EAX.
+A flat control now puts 690 back in low case 54, with merged slots and a
+moved default return. See the
 [compiler trace](COMMON_FIGHTER_VC8_LAYOUT_2026_11_23.md) and the
 [engine and Oracle review](GIANT_ROOT_REVIEW_2026_11_23.md).
 

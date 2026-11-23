@@ -238,6 +238,48 @@ Changing 62's assignment to a separate local in this arrangement loses
 the original rounding spill sites in some of the action-2 callers.
 The selected source uses the original rounded assignment for 62.
 
+## Selector lowering after block placement
+
+Both the selected split switch and the flat switch with action 690
+in its case list use `0x2A6` with positive 50 and 691 in the IR read at
+`0x10C064F9`. The original nodes still hold those operands after block
+placement at `0x10B26CAE`. The split build keeps the operation nodes
+through expression lowering. At `0x10C0B291` VC8 changes them to `0x12`
+and passes the negated immediates to the operand builder. The writes at
+`0x10C28BB7` select `0x2D`, which is encoded as `ADD` with those same
+immediates.
+
+In the flat build, at `0x10BB2C43` each of the two expressions has a
+single remaining operand, the negative constant. VC8 returns it and
+releases the old operation through `0x10BB6A80`.
+
+At `0x10C0B1C5`, both builds present kind-1 operands without pending
+definitions. In the split build, the source and destination refer to
+different symbols at operand offset `+0x18`. The comparison at
+`0x10C0B1FE` sends both operations to the `ADD` fallback. In the flat
+build, each new operation uses the same symbol on both sides. The same
+check accepts it, and `0x10C0B24D` negates the constant and selects
+`0x32` for the final `SUB`. Both builds eventually allocate EAX for the
+operation. The encoding choice has already been made by then.
+
+The traced objects reproduce the complete ordinary builds. Subtracting
+the base in place before each split switch, reading the field as the
+switch operand, and using separate branch locals all reproduce the
+selected 10,725-byte candidate. Giving both split switches a shared
+normalized index puts two `LEA` instructions ahead of the original
+conditional branches and changes the physical layout.
+
+The original flat control places the shared 54/690 entry near the high
+dispatcher. Giving 54 the direct return and 690 its own switch exit
+keeps both `SUB` instructions and moves their joint entry back among the
+low cases, between 53 and 55. This control has 48 low destinations.
+It aliases 51/52 and 62/63/64 and places the common return at the end
+of the high cases. A direct return in 690 instead separates 62/63/64
+and moves the joint pivot back near the high dispatcher. Moving the
+lexical `default` label in the early-pivot trial preserves its complete
+output. A source change needs the in-place operand identities at
+`0x10C0B1FE` and the physical case entries of the selected build.
+
 ## Complete comparison
 
 The full target envelope is 10,725 bytes. It ends at `0x00476AA5`, after
