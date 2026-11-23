@@ -825,6 +825,16 @@ address = "0x005E20E0"
 callable_end = "0x005F1AD9"
 metadata_end = "0x005F1F78"
 
+# The entry card gate emits its compact table before the three action tables.
+[[roots.regions]]
+name = "card-expiration"
+case_min = 0
+case_max = 8
+destination_table = "0x005F1ADC"
+destination_count = 2
+index_table = "0x005F1AE4"
+expected_physical_groups = 2
+
 [[roots.regions]]
 name = "low"
 case_min = 0
@@ -854,6 +864,24 @@ destination_count = 31
 candidate_destination_counts = [30, 31]
 index_table = "0x005F1E60"
 expected_physical_groups = 31
+
+[[roots.auxiliary_switches]]
+name = "action710-match-identifier"
+dispatch = "0x005F0707"
+destination_table = "0x005F1F48"
+destinations = ["0x005F0730", "0x005F071F", "0x005F070E", "0x005F070E"]
+
+[[roots.auxiliary_switches]]
+name = "action720-match-identifier"
+dispatch = "0x005F0B31"
+destination_table = "0x005F1F58"
+destinations = ["0x005F0C82", "0x005F0C14", "0x005F0BA6", "0x005F0B38"]
+
+[[roots.auxiliary_switches]]
+name = "action730-match-identifier"
+dispatch = "0x005F0DC8"
+destination_table = "0x005F1F68"
+destinations = ["0x005F11E7", "0x005F10E0", "0x005F0FD9", "0x005F0DCF"]
 
 # Marisa complete callable and all three sparse action regions.
 [[roots]]

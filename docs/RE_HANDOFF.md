@@ -100,7 +100,9 @@ Other open leads:
   108 actions). Its [checked motion fields](KOMACHI_ACTION_STATE_2026_10_28.md#checked-motion-fields-2026-11-23)
   preserve the compiled envelope. The ordinary replay covers the callable.
   A full exact contract must account for all seven tables. The owner
-  diagnostic stops at the merged 209/212 entry. Reimu 0x478FA0 has staged
+  diagnostic follows all seven native dispatches with the split 209/212
+  scratch variant. That variant places the shared flight block after 212,
+  which the native function places after 209. Reimu 0x478FA0 has staged
   partial sources (`src/characters/ReimuActionState*`) and still needs a
   selected whole-root unit.
 

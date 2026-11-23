@@ -63,12 +63,13 @@ That unit compares the 63,993-byte callable and currently fails at `+8`
 (frame `0x490` native, `0x498` rebuilt). A separate replay of the complete
 candidate section resolves 1,857 relocations and compares 65,304 rebuilt
 bytes against the 65,176-byte target envelope. The switch mapper pairs the
-three action tables. The native root also reads the card gate and three
-tables keyed by `g_match_identifier`. The selector reads at `0x005F06F9`,
+card gate and the three action tables. The raw owner audit follows those
+four tables and the three keyed by `g_match_identifier`, covering all
+63,993 callable bytes. The selector reads at `0x005F06F9`,
 `0x005F0B23` and `0x005F0DB6` all address `0x006FA894`, which the exact
 battle setup writes from the first `MatchSetup` DWORD at `0x0047096A`.
 Owner pairing stops because actions 209 and 212
-share one candidate entry. Their native entries at `0x005E3661` and
+share one entry in the selected candidate. Their native entries at `0x005E3661` and
 `0x005E3815` have distinct prefixes and join at `0x005E3683` on the
 non-crossing path. Expanding action 212's helper and spelling its branch
 in the opposite direction still emits the original candidate.

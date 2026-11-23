@@ -327,6 +327,14 @@ Ending action 212 with `break` emits the same candidate. A scratch build
 with explicit shared paths for crossing and continued flight restores both
 dispatch entries. VC8 places the continued-flight body after 212 instead of
 209, exchanging the 48- and 102-byte owner spans. The scratch section grows
-to 65,356 bytes. With separate entries the owner audit reaches a second
-problem. It includes the card-expiration switch data before the first action
-table in the candidate instruction span and fails to decode it.
+to 65,356 bytes. Registering the leading card-expiration table at `0x005F1ADC`
+sets the candidate instruction boundary before the switch data. Registering
+the three match-identifier tables closes the remaining raw target edges.
+The scratch owner audit now completes across 107 owners and reaches all
+63,993 native callable bytes through seven dispatches.
+
+Negating only 209's source condition reproduces the split candidate. Negating
+both conditions merges the entries again. The native 209/212 continuation also
+joins 221 at `0x005E40A0` after the gravity update. Sharing that suffix in
+source leaves the two spans exchanged and grows the candidate's 221 span by
+12 bytes.
