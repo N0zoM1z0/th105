@@ -21037,7 +21037,7 @@ source = "src/characters/UdongeActionEntry.cpp"
 object = "build/match-units/ExactFirst_UdongeActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP1.06a Udonge Fighter slot3C root5D0E60;4057 callable/full5070 target. Complete numeric/offset source, nonexact; real payload lifetime, three regional switches,10 scoped native controls. docs/UDONGE_ACTION_ENTRY_2026_10_24.md."
+notes = "Complete JP 1.06a Udonge Fighter slot 3C at 0x5D0E60. The 5070-byte comparison contract covers the 4057-byte callable and three compact switches. The two scaling arms still differ in x87 scheduling and tail sharing. See docs/UDONGE_ACTION_ENTRY_2026_10_24.md."
 
 [[units.exact-first-udonge-action-entry.functions]]
 address = "0x005D0E60"
@@ -21052,6 +21052,21 @@ rel32_targets = [
     "UdongeActionEntryView_spawn_owned_object_via_manager=0x00465190",
     "UdongeActionEntryView_dispatch_character_wave_handle=0x0045C030",
     "UdongeActionEntryView_initialize_common_action_state=0x00477830",
+]
+
+[units.exact-first-udonge-action-entry.functions.switch_payload]
+size = 5070
+sha256 = "8f038ebad8a86ccfd5a48f007796421cd0d68b741fec384e4540cc905cb917aa"
+alignment_hex = "8d4900"
+table_offset = 4060
+table_entries = 28
+map_offset = 4172
+map_size = 211
+load_offset = 51
+jump_offset = 58
+additional_tables = [
+    { alignment_hex = "90", table_offset = 4384, table_entries = 31, map_offset = 4508, map_size = 250, load_offset = 2081, jump_offset = 2088 },
+    { alignment_hex = "8bff", table_offset = 4760, table_entries = 19, map_offset = 4836, map_size = 234, load_offset = 3526, jump_offset = 3533 },
 ]
 
 [units.exact-first-yukari-object-entry]

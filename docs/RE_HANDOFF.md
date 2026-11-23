@@ -72,15 +72,16 @@ Reimu's initializer at 0x491C40 is exact. Cases 404/406 and 414/416 reach
 one flag reset after the switch. VC8 shares their already-lowered x87
 multiplication forward into 414. See the [case note](REIMU_ACTION_INITIALIZATION_2026_10_25.md#shared-reset-after-the-switch).
 
-The checked receiver layouts for Youmu's Fighter initializer and Sakuya's
-Object initializer preserve both complete VC8 baselines. Youmu's remaining
-difference is the placement of the shared 601/604 branch. The same early
-C2 pass adds the jump after Youmu's phase-5 assignment. The high switch
-visits 604 first because C2 prepends edges in physical destination order.
-Sakuya still differs at the virtual selector and the later spawn argument
-scheduling in action 803.
-See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md) and
-[Sakuya](SAKUYA_OBJECT_ENTRY_2026_10_24.md) case notes for the byte-neutral trials.
+The checked receiver layouts for Youmu, Udonge and Sakuya's Object
+initializer preserve their complete VC8 baselines. With a shared switch
+exit in Youmu, the late C2 pass at 0x10B2C950 discards the publication in
+601 and retains it in 604. In Udonge the same pass folds 650's two x87
+products into the 404/406 tail, where EDI is restored too late. The Udonge
+comparison now covers the complete 5,070-byte target and all three switches.
+Sakuya still differs at the virtual selector and spawn argument scheduling
+in action 803. See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md),
+[Udonge](UDONGE_ACTION_ENTRY_2026_10_24.md) and
+[Sakuya](SAKUYA_OBJECT_ENTRY_2026_10_24.md) case notes.
 
 Other open leads:
 - Scenario character install 0x456EB0 (one EH-state store) and the info

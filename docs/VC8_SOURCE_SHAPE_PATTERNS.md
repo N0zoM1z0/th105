@@ -467,7 +467,9 @@ target lacks, so LTCG does not explain the register.
   replaced by ordinary cases. That, Reimu's 71/73 statement order and full bodies
   for 408/409 and 726 took the diff from 27 regions to 7. In the remaining cases
   404/406 and 650 the target schedules `pop edi` right after the first x87
-  store. Ours places it late, and our 650 tail then cross-jumps into case 527's.
+  store. The current candidate places it late and jumps from 650 into
+  404/406's tail. The compiler trace identifies the late pass that drops
+  650's separate x87 products. [Udonge scaling tails](UDONGE_ACTION_ENTRY_2026_10_24.md#where-the-404406-and-650-tails-diverge)
   Searches over all 120 integer-store orders for 404 and all 12 orders for 650
   did not move `pop edi`.
 

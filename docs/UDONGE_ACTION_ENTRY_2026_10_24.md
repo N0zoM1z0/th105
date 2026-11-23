@@ -7,26 +7,42 @@ intentional; full nominal layout and original compiler/TU context are unknown.
 
 ## Current complete comparison
 
-Formal and independent cold builds both emit **5118 bytes against 5070 target**,
-canonical SHA256
-`3dc949e40be9fb85b71de6b164eeba5cf164f4afa8b0c911a7db10ad8013c0f4`.
-First mismatch is **+0x16 /0x005D0E76**, targetE1/source13, a downstream regional
-branch displacement. This size difference is not an unreconstructed-byte count.
-All three destination counts 28/31/19 and all 211/250/234 remap bytes are retained;
-the three remap byte arrays independently compare equal. Destination addresses
-still differ with the callable layout. Source presence is not exact acceptance;
-`matches.csv` and exact totals are unchanged.
+The current build emits 5,038 bytes against the 5,070-byte target. The
+canonical comparison first differs in a regional branch displacement at
+`+0x2F` (`0x005D0E8F`). The full-envelope contract checks all three switch
+tables, including 78 destination words, 695 remap bytes and alignment.
 
 ```sh
-taskset -c 0 nice -n 10 python3 scripts/build.py \
+DISPLAY= WAYLAND_DISPLAY= PATH="$PWD/.tools/factory-bin:$PATH" \
+  scripts/repo-python scripts/build.py \
   --unit exact-first-udonge-action-entry --compare --json
 ```
 
-The first two commands return 1 with this recorded mismatch. The last returns 0
-for ten scoped inputs. Both audits accept `--object` for an independent object
-or a negative control. The full audit replays every emitted relocation and
-requires complete payload length/byte equality; no callable or metadata bytes
-are masked. No partial exact or aggregate cold-replay claim is made.
+The full-envelope verifier accepts the pinned target structure and rejects
+a changed remap byte in each of the three tables. The current source COMDAT
+fails the size check. Replaying all 197 relocations across the 5,038-byte
+candidate gives identical canonical bytes before and after replacing 168
+literal accesses with checked receiver members for motion, facing, action ID
+and phase state. Direct users of the old facing byte retain the explicit
+unsigned conversion. The receiver view is local to this translation unit.
+
+## Where the 404/406 and 650 tails diverge
+
+The native 404/406 entry at `0x005D18CD` restores EDI at `0x005D18D7` after
+its first x87 store. Native 650 starts at `0x005D1CED`, restores EDI at
+`0x005D1CF7` and computes both products locally. In the relocated candidate,
+404/406 instead restores EDI at `0x005D1901`. Case 650 jumps from
+`0x005D1D09` into the 404/406 tail at `0x005D18FF`.
+
+The pinned VC8 SP1 C2 still carries both case-local multiply pairs at
+`0x10C0661B`. At `0x10C077B6`, immediately after the pass at `0x10B2C950`,
+the 650 pair has disappeared and the 404/406 pair survives. The read-only
+headless trace emits the same complete candidate bytes. This is the same
+late pass that shares Reimu's x87 tail. Trying a shared switch exit, a
+post-switch vertical product, float or double capture locals, and reversed
+multiplication operands produced either the baseline or an alternate join
+with layout changes. A useful next probe needs to change the lowered
+successor graph or the liveness of the restore across both scaling arms.
 
 ## Observed target identity, boundary and ABI
 
@@ -39,7 +55,7 @@ ledger, with no durable name/source selection before this work.
 The 4057-byte callable spans 5D0E60..5D1E38 inclusive, SHA256
 `ee9042f9ce3cce0eca2ffeced71d6ee622ed0aadd6c8e0c7a96dc5fed816c863`.
 It decodes 1023 instructions:1018 reachable instructions plus five unreachable
-compiler alignment instructions totaling 23 bytes. They are 6-byte LEA at 5D12BA,
+compiler alignment instructions totaling 24 bytes. They are 6-byte LEA at 5D12BA,
 7-byte LEA at 5D1408, NOP at 5D140F,7-byte LEA at 5D1496 and 3-byte LEA at 5D149D.
 Full CFG traversal accounts for exactly those alignment instructions and all
 other edges; there are 54 RET 0 exits,65 direct calls, no indirect calls and no
@@ -67,10 +83,8 @@ The root receives ECX, reserves 16 local bytes and saves EBX/ESI/EDI. Native cal
 comprise 14 visual resets 5D06D0,4 secondary-event cycles 473F90,10 effect emits 435240,
 2 scalar publications 4359D0,2 indexed events 4359F0,30 motion clears 45AF40,one
 object request 465190,one wave-handle dispatch 45C030 andone common fallback 477830.
-The selected source has every count except visual-reset physical copies:17
-versus 14, and 56 RETs versus 54. Its extra copies implement the still-unmerged
-71/73/74/145 acceleration/visual family. All three action-remap arrays agree;
-these counts do not establish canonical equality.
+The October candidate emitted 17 visual-reset copies and 56 RETs. The
+71/73/74/145 acceleration and visual arms accounted for the additional copies.
 
 The existing 27-byte visual helper remains independently exact and unchanged.
 The new local effect-call declaration exposes the target's byte-facing argument
@@ -96,18 +110,12 @@ before tuning. No decompiler text was mechanically pasted as source.
 |06, unselected|Double acceleration removes the float spill but selects non-native QWORD literal loads and still keeps 17 copies. Full 5102. Size is not acceptance.|
 |07, neutral|Place the shared acceleration labels at their native first-use arm. Entire output is byte-identical to 04.|
 |08, neutral|A typed offset-prefix view, with compiled offsetof checks, is byte-identical to 04. Do not repeat the layout/spelling question.|
-|Selected|Drop the rejected phi and retain the ordinary per-case02 body with the proven 04 byte call view. Full 5118, matching formal/cold SHA above. All ten scoped native controls pass.|
+|October checkpoint|Drop the rejected phi and retain the ordinary per-case body with the byte call view. Full 5118. All ten scoped native controls pass.|
 
 These working artifacts are not committed. Source retains actual function-scope
 float payload, signed WORD state writes, signed BYTE60E guard, independent repeated
 callbacks and declaration-only helper interfaces. No asm, copied machine bytes,
 inert locals, fake returns or ABI/register forcing is used.
-
-The regional branch placement, three extra visual-reset copies and some x87
-storage scheduling remain nonexact. Original source variables, complete owner
-layout, TU visibility and standalone/LTCG ownership are unknown. Two neutral
-controls are retained; switch to another complete representative unless new
-independent evidence changes the question.
 
 ## Ten concrete native controls
 
