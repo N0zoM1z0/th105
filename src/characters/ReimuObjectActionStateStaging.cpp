@@ -1364,7 +1364,10 @@ advance_812:
             effect_000.reset_one_118 = static_cast<float>(lookup_orientation_sine_quantized_abs(
                 static_cast<float>(_root_state.counter_144 * 10.0)) * static_cast<double>(0.1f) + 1.0);
             effect_000.reset_one_11c = effect_000.reset_one_118;
-            _root_state.alpha_113 = _root_state.alpha_113 <= 205 ? static_cast<unsigned char>(_root_state.alpha_113 + 50) : 255;
+            if (_root_state.alpha_113 <= 205)
+                _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 + 50);
+            else
+                _root_state.alpha_113 = 255;
             break;
         case 2: case 3:
             effect_000.reset_one_118 = _root_state.sequence_13e == 2 ?
