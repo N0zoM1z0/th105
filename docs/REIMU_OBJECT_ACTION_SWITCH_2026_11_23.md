@@ -86,3 +86,21 @@ shared emitter/epilogue body placed with the earlier 822 family, whereas
 this compiler currently keeps the local call/return in 900. The next boundary
 experiment moves the shared natural C++ label toward its 822 owner, then
 rechecks the adjacent 869/900/901/902 owners.
+
+## Action 900 retirement dispatch reconstruction
+
+Action 900's sequence-0 dead/complete and sequence-1 dead exits now select a
+packet and word count locally, then flow through one natural
+`spawn_unparented_related_object` call and the ordinary retirement return.
+This replaces the function-wide generic `emit_retiring_world` path for this
+handler. The focused owner grows from 1,103 to 1,217 bytes against the
+1,229-byte target (12 bytes short); the 66-byte `0x004963A0` helper remains
+exact. The owner audit now places action 900 within 12 bytes by extent,
+without padding or instruction overrides.
+
+The remaining action-900 differences include the target's shared spawn-call
+tail at `0x00499DF8` (entered from action 900 and owned physically by the
+preceding action-822 region), plus stack-slot and register-order differences
+in the packet preparation. The focused root still has 45,212 candidate
+callable bytes against 46,138 target bytes and is not exact. Continue with
+the 869/901/902 large handlers and the shared action-822 spawn tail.

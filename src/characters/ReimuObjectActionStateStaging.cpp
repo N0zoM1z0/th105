@@ -1430,6 +1430,13 @@ retire_801_811:
             --_root_state.state_330;
         return;
 
+emit_retiring_world:
+        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+            retiring_action, effect_000.object_x_0e8, effect_000.object_y_0ec,
+            static_cast<unsigned char>(effect_000.object_facing_100), 1,
+            retiring_packet, retiring_words);
+        goto retire;
+
     case 825: {
         const short owner_action = *reinterpret_cast<short *>(_root_state.fighter_owner_348 + 0x13c);
         if (_root_state.sequence_13e == 0) {
@@ -3838,12 +3845,6 @@ fade_902:
         reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch();
         return;
     }
-
-emit_retiring_world:
-    reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
-        retiring_action, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
-        retiring_packet, retiring_words);
-    goto retire;
 
 advance_with_sequence_three_retirement:
     if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
