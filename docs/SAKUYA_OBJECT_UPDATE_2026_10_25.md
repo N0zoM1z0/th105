@@ -487,7 +487,7 @@ then branches to the common retirement block when alpha is below 10.
 Otherwise it subtracts 10 from alpha and jumps to the common frame
 continuation.
 
-On the full root, VC8 SP1's `c2.dll` keeps all four guards through
+In the earlier source, VC8 SP1's `c2.dll` keeps all four guards through
 register allocation and into the late pass at `0x10B2C950`. A hardware
 watch on each guard's predecessor links caught the 859 sequence 4 record
 being unlinked under `0x10B2E1B0`, then the 901 sequences 5/6 record
@@ -498,19 +498,43 @@ to the same complete bytes as the untraced control.
 In a full-root control, using `>= 10` for the four channel updates,
 writing the two shared low-channel destinations explicitly, and
 placing the successful alpha update first in one low-channel path
-reproduces all four guards and their cross-action destinations. It
-also preserves the 17 frame-call owner groups. VC8 places both low
-tails inside 901, reversing which guards need near branches, and
-shares their alpha subtraction. Explicit jumps to the common retire
-and frame blocks did not recover the native placement. The next
-question is how the late passes choose a physical copy for each tail.
+reproduces all four guards and their cross-action destinations. In
+that control, each alpha check is already ordered after its 901
+guard at `0x10C06F03`, as a compare record with opcode `0x2B6`.
+The order survives the call to `0x10BA2E00`, the early branch
+simplification loop at `0x10C06F60`, and the remaining passes through
+emission. Moving both shared labels to 901 brought one tail back
+to 859 but made its channel test branch to another sequence's
+subtraction block.
+
+The first native tail has another predecessor. At `0x004E7C52`,
+998 sequence 1 jumps to the alpha load at `0x004E67D4`, after both
+channel clears. The second alpha load at `0x004E689B` has only the
+preceding clears as its incoming path. Following these edges across
+the whole root explains why the two identical tails have different
+roles.
+
+The current source shares the channel clears between 859 sequence 4
+and 901 sequences 5/6, and shares their alpha test with 998 sequence
+1. VC8 now keeps all four guards and both low-channel destinations.
+The full paths from 859 sequence 5 and 901 sequence 4 agree after
+rebasing all branch destinations, for 62 and 60 instructions,
+respectively. Sequence 6 uses the same switch entry as 5. The other
+pair's clears land in 901 and jump to the alpha test in 998. The
+generated test uses JAE to share the subtraction with the second
+tail. Recovering the first contiguous native tail means keeping the
+998 entry on the alpha test without letting 998 own that test.
 
 Sequence 7 of 901 uses `CMP AL, 10` and `JBE` at `0x004E7301`.
 Spelling the alpha test as `<= 10` aligns all 139 reachable
 instructions after rebasing control-flow edges. It changes two bytes
 in the full replay. Separate comparisons with offset reads and checked
 float members at `+0x11C` and `+0x120` produce identical full
-outputs, including the parent scale reads.
+outputs, including the parent scale reads. The checked float at
+`+0x370` likewise reproduces the complete current output while
+replacing the offset accesses used by these scale updates.
+Comparing all 200 primary dispatch entries with the previous build
+after rebasing puts the instruction changes in 859, 901, and 998.
 
 ## Actions 920 and 930 before frame advance
 
@@ -601,8 +625,8 @@ constant setup now differs again. VC8 puts 2 in EDI and zero in EBX.
 Reverting the 816 owner cutoff to `< 2` leaves these registers swapped
 and loses the native compare encoding.
 
-The current envelope is 29,304 bytes with 739 relocations, SHA256
-`600ba569fd9bc959af0d72b5f468f10f35478cb2b698cd6f12c696911ae8ab54`.
+The current envelope is 29,576 bytes with 742 relocations, SHA256
+`e0de843db6a42cf2fe49ff75de44d088ee4a4d20b7d809952170a967dbdcc903`.
 The target envelope is 29,476 bytes. The first difference is at the
 primary default branch, `0x004E0D55`. Both 803 alpha paths and the
 200-byte primary remap still agree.

@@ -53,7 +53,8 @@ public:
  unsigned char unknown_346[0x2];
  SakuyaObjectUpdateView *owner_348;
  SakuyaObjectUpdateView *parent_object_34c;
- unsigned char unknown_350[0x24];
+ unsigned char unknown_350[0x20];
+ float field_370;
  float field_374;
 };
 
@@ -99,6 +100,8 @@ typedef char CheckSakuyaUpdate_owner_348[
     offsetof(SakuyaObjectUpdateView, owner_348) == 0x348 ? 1 : -1];
 typedef char CheckSakuyaUpdate_parent_object_34c[
     offsetof(SakuyaObjectUpdateView, parent_object_34c) == 0x34c ? 1 : -1];
+typedef char CheckSakuyaUpdate_field_370[
+    offsetof(SakuyaObjectUpdateView, field_370) == 0x370 ? 1 : -1];
 typedef char CheckSakuyaUpdate_field_374[
     offsetof(SakuyaObjectUpdateView, field_374) == 0x374 ? 1 : -1];
 

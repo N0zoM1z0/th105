@@ -192,15 +192,15 @@ void SakuyaObjectUpdateView::update_action_state()
  parameters_340[0]+=10.0;if(parameters_340[0]>360.0f)parameters_340[0]-=360.0; \
  double facing=C(0x104);SakuyaObjectUpdateView *owner=owner_348; \
  double cosine=lookup_orientation_cosine_quantized_abs(parameters_340[0]);SakuyaObjectUpdateView *vertical_owner=owner_348; \
- x_ec=facing*AT(owner,float,0xf4)+AT(owner,float,0xec)+cosine*F(0x370)*facing; \
+ x_ec=facing*AT(owner,float,0xf4)+AT(owner,float,0xec)+cosine*field_370*facing; \
  double sine=lookup_orientation_sine_quantized_abs(parameters_340[0]); \
- y_f0=AT(vertical_owner,float,0xf0)+125.0+AT(vertical_owner,float,0xf8)+sine*F(0x370)*0.25; \
+ y_f0=AT(vertical_owner,float,0xf0)+125.0+AT(vertical_owner,float,0xf8)+sine*field_370*0.25; \
  if(!(parameters_340[0]>=0) || parameters_340[0]>180.0f)B(0x33c)=1;else B(0x33c)=255; \
 }
-  if(sequence_id_13e==2){F(0x12c)-=40.0;F(0x370)+=15.0;if(F(0x370)>parameters_340[1])F(0x370)=parameters_340[1];
+  if(sequence_id_13e==2){F(0x12c)-=40.0;field_370+=15.0;if(field_370>parameters_340[1])field_370=parameters_340[1];
    if(AT(owner_348,short,0x13c)<=499 || AT(owner_348,short,0x13c)>=504 || AT(owner_348,short,0x13e)>=3){ORBIT810();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {ORBIT810();}
   }
-  if(sequence_id_13e==3){F(0x12c)-=20.0;F(0x370)+=15.0;if(F(0x370)>parameters_340[1])F(0x370)=parameters_340[1];
+  if(sequence_id_13e==3){F(0x12c)-=20.0;field_370+=15.0;if(field_370>parameters_340[1])field_370=parameters_340[1];
    if(AT(owner_348,short,0x13c)<=499 || AT(owner_348,short,0x13c)>=504 || AT(owner_348,short,0x13e)>=3){ORBIT810();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {ORBIT810();}
   }
 #undef ORBIT810
@@ -238,16 +238,16 @@ void SakuyaObjectUpdateView::update_action_state()
    if(alpha_113<=8)RETIRE();alpha_113-=8;
   }
   if(sequence_id_13e==6 || sequence_id_13e==7){velocity_x_f4*=D(0.9f);y_f0+=velocity_y_f8;x_ec+=C(0x104)*velocity_x_f4;if(frame_index_140>0){if(alpha_113<11)RETIRE();alpha_113-=10;}}
-  if(sequence_id_13e==8){F(0x370)-=D(0.2f);if(F(0x370)<0.001f)F(0x370)=0.01f;scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c+F(0x370));if(time_counter_144>=5){if(alpha_113<11)RETIRE();alpha_113-=10;}}
+  if(sequence_id_13e==8){field_370-=D(0.2f);if(field_370<0.001f)field_370=0.01f;scale_y_120=scale_x_11c=static_cast<float>(scale_x_11c+field_370);if(time_counter_144>=5){if(alpha_113<11)RETIRE();alpha_113-=10;}}
   if(sequence_id_13e==9 || sequence_id_13e==10){velocity_x_f4*=D(0.9f);y_f0+=velocity_y_f8;x_ec+=C(0x104)*velocity_x_f4;if(alpha_113<=20)RETIRE();alpha_113-=20;}
   FRAME_EXIT();
  case 815:
   switch(sequence_id_13e) {
   case 0:
    if(emit_repeated(0,1,2))RETIRE();F(0x12c)+=20.0;
-   if(frame_index_140<2){F(0x370)+=parameters_340[1];parameters_340[1]-=0.5;if(parameters_340[1]<=D(0.1f))parameters_340[1]=0.1f;field_374+=C(0x104)*6;
-    x_ec=S(0x364)+lookup_orientation_cosine_quantized_abs(field_374+parameters_340[0])*F(0x370);
-    y_f0=S(0x366)+lookup_orientation_sine_quantized_abs(parameters_340[0]+field_374)*F(0x370);
+   if(frame_index_140<2){field_370+=parameters_340[1];parameters_340[1]-=0.5;if(parameters_340[1]<=D(0.1f))parameters_340[1]=0.1f;field_374+=C(0x104)*6;
+    x_ec=S(0x364)+lookup_orientation_cosine_quantized_abs(field_374+parameters_340[0])*field_370;
+    y_f0=S(0x366)+lookup_orientation_sine_quantized_abs(parameters_340[0]+field_374)*field_370;
     if(frame_index_140==1){if(frame_counter_142==0){float child[3]={0,0,1};spawn_parented(815,x_ec,y_f0,B(0x104),1,WORDS(child),3);child[1]=-15;child[2]=4;spawn_unparented(815,x_ec,y_f0,B(0x104),1,WORDS(child),3);}
      if(CONTACT24768){set_sequence_frame(3);owner_348->dispatch_character_wave_handle(3);time_counter_144=0;velocity_x_f4=static_cast<float>(static_cast<unsigned>(selector_random_roll(16)-8));velocity_y_f8=static_cast<float>(random_float(40)*D(0.1f)+6.0);return;}
      if(phase_index_184<=0){set_sequence_frame(2);return;}
@@ -255,13 +255,13 @@ void SakuyaObjectUpdateView::update_action_state()
    }
    if(frame_index_140==2 || frame_index_140==3){if(frame_counter_142==0 && frame_index_140==2){velocity_x_f4=static_cast<float>(static_cast<unsigned>(selector_random_roll(16)-8));velocity_y_f8=static_cast<float>(random_float(40)*D(0.1f)+6.0);}velocity_y_f8-=D(0.35f);F(0x12c)+=10.0;STEP();if(alpha_113<11)RETIRE();alpha_113-=10;}break;
   case 1:
-   F(0x12c)-=20.0;F(0x370)+=15.0;if(!parent_object_34c)RETIRE();B(0x104)=AT(parent_object_34c,unsigned char,0x104);x_ec=C(0x104)*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;if(parent_object_34c->frame_index_140!=1)RETIRE();break;
+   F(0x12c)-=20.0;field_370+=15.0;if(!parent_object_34c)RETIRE();B(0x104)=AT(parent_object_34c,unsigned char,0x104);x_ec=C(0x104)*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;if(parent_object_34c->frame_index_140!=1)RETIRE();break;
   case 2:
-   scale_x_11c+=F(0x370);F(0x370)-=D(0.1f);if(F(0x370)<=0.02f)F(0x370)=0.02f;
+   scale_x_11c+=field_370;field_370-=D(0.1f);if(field_370<=0.02f)field_370=0.02f;
    if(time_counter_144<=3)scale_y_120+=0.5;else scale_y_120*=D(0.9f);
    goto fade_815_channels;
   case 3:case 4:
-   scale_x_11c+=F(0x370);F(0x370)-=D(0.1f);if(F(0x370)<=0.02f)F(0x370)=0.02f;scale_y_120=scale_x_11c;F(0x12c)+=parameters_340[1];parameters_340[1]*=D(0.95f);
+   scale_x_11c+=field_370;field_370-=D(0.1f);if(field_370<=0.02f)field_370=0.02f;scale_y_120=scale_x_11c;F(0x12c)+=parameters_340[1];parameters_340[1]*=D(0.95f);
  fade_815_channels:
    if (time_counter_144 >= 5) {
     if (channel_111 >= 10) {
@@ -501,11 +501,41 @@ void SakuyaObjectUpdateView::update_action_state()
   case 2:F(0x12c)+=6.0;if(!parent_object_34c)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;scale_x_11c=parent_object_34c->scale_x_11c;scale_y_120=parent_object_34c->scale_y_120;alpha_113=parent_object_34c->alpha_113;break;
   case 3:F(0x12c)+=1.0;if(!parent_object_34c)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;scale_x_11c=parent_object_34c->scale_x_11c;scale_y_120=parent_object_34c->scale_y_120;alpha_113=parent_object_34c->alpha_113;break;
   case 4:
-   scale_x_11c+=F(0x370);F(0x370)-=D(0.1f);if(F(0x370)<=0.02f)F(0x370)=0.02f;if(time_counter_144<=3)scale_y_120+=0.5;else scale_y_120*=D(0.9f);
-   if(time_counter_144>=5){if(channel_111<=9){channel_111=0;channel_110=0;if(alpha_113<=9)RETIRE();alpha_113-=10;}else{channel_111-=10;channel_110-=10;}}break;
+   scale_x_11c += field_370;
+   field_370 -= D(0.1f);
+   if (field_370 <= 0.02f) field_370 = 0.02f;
+   scale_y_120 = time_counter_144 <= 3 ? scale_y_120 + 0.5 : scale_y_120 * D(0.9f);
+   if (time_counter_144 >= 5) {
+    if (channel_111 >= 10) {
+     channel_111 -= 10;
+     channel_110 -= 10;
+    } else {
+    clear_channels_859_four:
+     channel_111 = 0;
+     channel_110 = 0;
+     goto fade_alpha_by_ten;
+    }
+   }
+   break;
   case 5:case 6:
-   scale_x_11c+=F(0x370);F(0x370)-=D(0.1f);if(F(0x370)<=0.02f)F(0x370)=0.02f;scale_y_120=scale_x_11c;F(0x12c)+=parameters_340[1];parameters_340[1]*=D(0.95f);
-   if(time_counter_144>=5){if(channel_111<=9){channel_111=0;channel_110=0;if(alpha_113<=9)RETIRE();alpha_113-=10;}else{channel_111-=10;channel_110-=10;}}break;
+   scale_x_11c += field_370;
+   field_370 -= D(0.1f);
+   if (field_370 <= 0.02f) field_370 = 0.02f;
+   scale_y_120 = scale_x_11c;
+   F(0x12c) += parameters_340[1];
+   parameters_340[1] *= D(0.95f);
+   if (time_counter_144 >= 5) {
+    if (channel_111 >= 10) {
+     channel_111 -= 10;
+     channel_110 -= 10;
+    } else {
+     channel_111 = 0;
+     channel_110 = 0;
+     if (alpha_113 < 10) RETIRE();
+     alpha_113 -= 10;
+    }
+   }
+   break;
   }
   FRAME_EXIT();
  case 900:
@@ -539,11 +569,38 @@ void SakuyaObjectUpdateView::update_action_state()
   case 2:F(0x12c)+=6.0;if(!parent_object_34c)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;scale_x_11c=parent_object_34c->scale_x_11c;scale_y_120=parent_object_34c->scale_y_120;alpha_113=parent_object_34c->alpha_113;break;
   case 3:F(0x12c)+=1.0;if(!parent_object_34c)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;scale_x_11c=parent_object_34c->scale_x_11c;scale_y_120=parent_object_34c->scale_y_120;alpha_113=parent_object_34c->alpha_113;break;
   case 4:
-   scale_x_11c+=F(0x370);F(0x370)-=D(0.1f);if(F(0x370)<=0.02f)F(0x370)=0.02f;if(time_counter_144<=3)scale_y_120+=0.5;else scale_y_120*=D(0.9f);
-   if(time_counter_144>=5){if(channel_111<=9){channel_111=0;channel_110=0;if(alpha_113<=9)RETIRE();alpha_113-=10;}else{channel_111-=10;channel_110-=10;}}break;
+   scale_x_11c += field_370;
+   field_370 -= D(0.1f);
+   if (field_370 <= 0.02f) field_370 = 0.02f;
+   scale_y_120 = time_counter_144 <= 3 ? scale_y_120 + 0.5 : scale_y_120 * D(0.9f);
+   if (time_counter_144 >= 5) {
+    if (channel_111 >= 10) {
+     channel_111 -= 10;
+     channel_110 -= 10;
+    } else {
+     channel_111 = 0;
+     channel_110 = 0;
+     if (alpha_113 < 10) RETIRE();
+     alpha_113 -= 10;
+    }
+   }
+   break;
   case 5:case 6:
-   scale_x_11c+=F(0x370);F(0x370)-=D(0.1f);if(F(0x370)<=0.02f)F(0x370)=0.02f;scale_y_120=scale_x_11c;F(0x12c)+=parameters_340[1];parameters_340[1]*=D(0.95f);
-   if(time_counter_144>=5){if(channel_111<=9){channel_111=0;channel_110=0;if(alpha_113<=9)RETIRE();alpha_113-=10;}else{channel_111-=10;channel_110-=10;}}break;
+   scale_x_11c += field_370;
+   field_370 -= D(0.1f);
+   if (field_370 <= 0.02f) field_370 = 0.02f;
+   scale_y_120 = scale_x_11c;
+   F(0x12c) += parameters_340[1];
+   parameters_340[1] *= D(0.95f);
+   if (time_counter_144 >= 5) {
+    if (channel_111 >= 10) {
+     channel_111 -= 10;
+     channel_110 -= 10;
+    } else {
+     goto clear_channels_859_four;
+    }
+   }
+   break;
   case 7:
    if (frame_index_140 < 2) {
     CORE->advance_state_six_counter_conditional(10);
@@ -593,7 +650,7 @@ void SakuyaObjectUpdateView::update_action_state()
        velocity_x_f4 = 0;
        velocity_y_f8 = 0;
        if (AT(owner_348, short, 0x7a4) > 30) {
-        F(0x12c) += F(0x370);
+        F(0x12c) += field_370;
         phase_index_184 = 0;
        }
        if (AT(owner_348, short, 0x7a4) == 30) {
@@ -662,7 +719,12 @@ void SakuyaObjectUpdateView::update_action_state()
  case 980:update_ping_pong_motion();FRAME_EXIT();
  case 998:
   if(sequence_id_13e==0){if(AT(owner_348,short,0x13c)>153 && AT(owner_348,short,0x13c)<158){x_ec=C(0x104)*57+AT(owner_348,float,0xec);y_f0=AT(owner_348,float,0xf0)+60.0;}if(AT(owner_348,short,0x13c)>149 && AT(owner_348,short,0x13c)<154){x_ec=C(0x104)*57+AT(owner_348,float,0xec);y_f0=AT(owner_348,float,0xf0)+94.0;}if(AT(owner_348,short,0x13c)==158){x_ec=C(0x104)*57+AT(owner_348,float,0xec);y_f0=AT(owner_348,float,0xf0)+100.0;}if(AT(owner_348,short,0x13c)<150 || AT(owner_348,short,0x13c)>158){next_sequence_block();AT(owner_348,unsigned char,0x751)=0;}}
-  if(sequence_id_13e==1){if(alpha_113<=9)RETIRE();alpha_113-=10;}FRAME_EXIT();
+  if (sequence_id_13e == 1) {
+  fade_alpha_by_ten:
+   if (alpha_113 < 10) RETIRE();
+   alpha_113 -= 10;
+  }
+  FRAME_EXIT();
  case 999:
   switch(sequence_id_13e){
   case 0:case 1:case 2:AT(owner_348,float,0xec)=x_ec;if(x_ec>1480.0f || x_ec<-200.0)RETIRE();if(sequence_id_13e>=1)velocity_y_f8-=F(0x100);break;

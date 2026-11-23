@@ -96,13 +96,13 @@ zero. The 930 comparison still uses BX and its call survives. Both
 actions agree through their complete reachable paths after rebasing.
 Action 816 still merges two byte-identical retirement tails. The 811
 constant registers have swapped again. The 815 fade and 854 saturation
-paths survive these changes. All 139 reachable instructions in 901
-sequence 7 now agree after rebasing. The complete candidate is 29,304
-bytes with 739 relocations and first differs at `0x004E0D55`. Two
-VC8 routines under `0x10B2C950` discard fade guards in 859 and 901.
-A full-root control preserves all four guards and their pairwise
-destinations. The two saturation tails still need to move from 901
-to their native positions in 859.
+paths survive these changes. The selected source has all four fade
+guards and both shared saturation destinations. The reachable paths
+of 859 sequences 5/6 and 901 sequences 4 and 7 agree after rebasing.
+Action 998 sequence 1 enters the first native tail after the channel
+clears. The rebuilt clears are in 901 and jump to the alpha test in
+998. The complete candidate is 29,576 bytes with 742 relocations and
+first differs at `0x004E0D55`.
 [Case note](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
 
 Other open leads:
