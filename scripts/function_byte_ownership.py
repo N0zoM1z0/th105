@@ -88,7 +88,7 @@ def load(
             raise ValueError(f"{context}: duplicate function address")
         main_size = int(raw.get("main_size", 0))
         main_end = parse_address(raw.get("main_end"), context)
-        extent_end = parse_address(raw.get("extent_end"), context)
+        extent_end = parse_address(raw.get("extent_end", raw.get("main_end")), context)
         if main_size <= 0 or main_end != address + main_size - 1:
             raise ValueError(f"{context}: inconsistent main chunk boundary")
         if functions is not None:
