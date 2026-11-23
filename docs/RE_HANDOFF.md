@@ -86,8 +86,10 @@ phase arms, C2 first places the 602 entry in 601. It finds five matching
 stops at 20 bytes before the call, and the merge requires more than 20
 at `0x10B30B74`. A shared switch exit leaves 604 falling through, so the
 late splice keeps its copy. Komachi's exact 550/551 uses the same splice
-with the native fallthrough already in place. Follow that block layout
-before changing store order or looking at the later receiver scheduling.
+with the native fallthrough already in place. A resolved LTCG build of
+the relevant Youmu actions reaches the same cutoff, even when the compiler
+sees the exact motion-reset definition and keeps its calls. Follow the
+block layout before changing store order or receiver scheduling.
 See the [Youmu case note](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md#vc8-rejects-the-independent-tails-at-a-20-byte-cutoff).
 
 Sakuya's Object initializer

@@ -312,6 +312,41 @@ the selected initializer. The resulting call count and switch size agree
 with the target. This is a bounded compiler witness for the
 [TH09 translation-unit control](GIANT_ROOT_REVIEW_2026_11_23.md#the-difference-can-originate-in-another-case).
 
+## The cutoff survives a resolved LTCG link
+
+A headless scratch build keeps 600/603, 601, 604, the reset-only group,
+and 720/730 from the independent-return source. The root links against a
+separate ordinary COFF definition of the real 27-byte motion reset.
+Both an ordinary build and a `/GL` build linked with `/LTCG` reproduce
+the same 347-byte envelope. This covers 192 bytes of code and alignment,
+six jump words and 131 remap bytes. Both images have eight HIGHLOW
+records at the expected fields and four calls to the exact motion reset
+at the address in the link map. The links use the pinned VC8 tools and
+`msvcrt.lib`.
+
+Both back-end traces reject the 601/604 merge at `0x10B30B74` with
+an estimate of 20 and a cutoff of 20. In this smaller context the
+two-byte instruction in the estimate is the zeroing of EDI. The full
+initializer counts the receiver copy instead. Both traces reproduce
+their ordinary linked output.
+
+Compiling the motion reset with `/GL` exposes its real body at link
+time. With `noinline`, the linked leaf is still exact and all four
+calls survive. The root now keeps the receiver in ECX across those
+calls instead of saving it in ESI. Its envelope shrinks to 335 bytes
+with the same eight HIGHLOW records, and the trace still rejects the
+merge at 20 bytes. Allowing inlining removes all four calls and leaves
+a 299-byte envelope. These runs isolate visibility of the leaf within
+this subset of actions.
+
+In the full initializer, separating the low and high switches around
+500 or 505 changes both code and table layout. Giving the reset-only
+actions their own duplicate bodies reproduces the two starting
+envelopes. `#pragma optimize("t", off)` clears the flag at
+`0x10D0D71C`. The independent-return build then produces the same
+1,434 bytes as `/Os`. The selected `/O2` build retains the full
+1,874-byte envelope with 44 differences.
+
 ## Reproduction and next scope
 
 Use locked repository Python and serial headless builds. The Youmu
