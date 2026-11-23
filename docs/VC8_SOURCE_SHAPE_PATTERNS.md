@@ -465,13 +465,12 @@ target lacks, so LTCG does not explain the register.
   in case order: the `jg 0x12d / jge 0x12c` and `0x230/0x231` splits are VC8's
   own decomposition. The old `if (action <= 301)` partition and its gotos were
   replaced by ordinary cases. That, Reimu's 71/73 statement order and full bodies
-  for 408/409 and 726 took the diff from 27 regions to 7. In the remaining cases
-  404/406 and 650 the target schedules `pop edi` right after the first x87
-  store. The current candidate places it late and jumps from 650 into
-  404/406's tail. The compiler trace identifies the late pass that drops
-  650's separate x87 products. [Udonge scaling tails](UDONGE_ACTION_ENTRY_2026_10_24.md#where-the-404406-and-650-tails-diverge)
-  Searches over all 120 integer-store orders for 404 and all 12 orders for 650
-  did not move `pop edi`.
+  for 408/409 and 726 took the diff from 27 regions to 7. Changing only the
+  integer-store order leaves the wrong EDI restore and the jump from 650
+  into 404/406's tail. The 2026-11-23 match moves the first x87 operation
+  before the last flag store in 404/406. Both arms then restore EDI after
+  the initial x87 store and keep their own scaling code.
+  [Udonge scaling tails](UDONGE_ACTION_ENTRY_2026_10_24.md#ordering-the-horizontal-multiply-in-cases-404-and-406)
 
 - **Reimu action initialization 0x491C40 cross-jumps.** The November 14
   baseline had two cross-jump differences.

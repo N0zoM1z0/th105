@@ -121,8 +121,8 @@ void UdongeActionEntryView::initialize_action_entry()
             S(0x730) = 0;
             S(0x732) = 0;
             S(0x736) = 0;
-            B(0x750) = 1;
             velocity_x_f4 *= 0.2f;
+            B(0x750) = 1;
             velocity_y_f8 = 0.2f * velocity_y_f8;
             return;
         case 408:

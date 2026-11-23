@@ -21037,7 +21037,7 @@ source = "src/characters/UdongeActionEntry.cpp"
 object = "build/match-units/ExactFirst_UdongeActionEntry.obj"
 profile = "vc8-sp1-probe-o2"
 enable_gs = false
-notes = "Complete JP 1.06a Udonge Fighter slot 3C at 0x5D0E60. The 5070-byte comparison contract covers the 4057-byte callable and three compact switches. The two scaling arms still differ in x87 scheduling and tail sharing. See docs/UDONGE_ACTION_ENTRY_2026_10_24.md."
+notes = "Exact JP 1.06a Udonge Fighter slot 3C at 0x5D0E60. The 5070-byte comparison covers the 4057-byte callable and three compact switches. The 404/406 and 650 scaling arms keep local x87 tails. See docs/UDONGE_ACTION_ENTRY_2026_10_24.md."
 
 [[units.exact-first-udonge-action-entry.functions]]
 address = "0x005D0E60"

@@ -1,4 +1,4 @@
-# Udonge action initializer: complete source, nonexact
+# Udonge action initializer at 0x005D0E60
 
 `0x005D0E60`, Udonge Fighter primary slot+3C, now has complete selected source in
 `src/characters/UdongeActionEntry.cpp/.hpp`. The pointer-only call view must never
@@ -7,10 +7,12 @@ intentional; full nominal layout and original compiler/TU context are unknown.
 
 ## Current complete comparison
 
-The current build emits 5,038 bytes against the 5,070-byte target. The
-canonical comparison first differs in a regional branch displacement at
-`+0x2F` (`0x005D0E8F`). The full-envelope contract checks all three switch
-tables, including 78 destination words, 695 remap bytes and alignment.
+The selected VC8 SP1 build matches all 5,070 bytes after replaying 197
+relocations. The comparison includes all three switch tables, including
+78 destination words, 695 remap bytes and alignment.
+Changing the final remap byte in any of the three tables in a copy of the
+matched object preserves callable equality. The full comparison catches
+each change at its own address.
 
 ```sh
 DISPLAY= WAYLAND_DISPLAY= PATH="$PWD/.tools/factory-bin:$PATH" \
@@ -18,31 +20,38 @@ DISPLAY= WAYLAND_DISPLAY= PATH="$PWD/.tools/factory-bin:$PATH" \
   --unit exact-first-udonge-action-entry --compare --json
 ```
 
-The full-envelope verifier accepts the pinned target structure and rejects
-a changed remap byte in each of the three tables. The current source COMDAT
-fails the size check. Replaying all 197 relocations across the 5,038-byte
-candidate gives identical canonical bytes before and after replacing 168
-literal accesses with checked receiver members for motion, facing, action ID
-and phase state. Direct users of the old facing byte retain the explicit
-unsigned conversion. The receiver view is local to this translation unit.
+Before the scheduling change, replacing 168 literal accesses with checked
+receiver members produced identical canonical bytes across the complete
+5,038-byte candidate. The members cover motion, facing, action ID and
+phase state. Call sites that pass an unsigned direction still explicitly
+convert the signed facing byte. The receiver view is local to this
+translation unit.
 
-## Where the 404/406 and 650 tails diverge
+## Ordering the horizontal multiply in cases 404 and 406
 
 The native 404/406 entry at `0x005D18CD` restores EDI at `0x005D18D7` after
 its first x87 store. Native 650 starts at `0x005D1CED`, restores EDI at
-`0x005D1CF7` and computes both products locally. In the relocated candidate,
-404/406 instead restores EDI at `0x005D1901`. Case 650 jumps from
+`0x005D1CF7` and computes both products locally. In the previous build,
+404/406 restored EDI at `0x005D1901`. Case 650 jumped from
 `0x005D1D09` into the 404/406 tail at `0x005D18FF`.
 
-The pinned VC8 SP1 C2 still carries both case-local multiply pairs at
+The pinned VC8 SP1 C2 carries both case-local multiply pairs at
 `0x10C0661B`. At `0x10C077B6`, immediately after the pass at `0x10B2C950`,
 the 650 pair has disappeared and the 404/406 pair survives. The read-only
 headless trace emits the same complete candidate bytes. This is the same
-late pass that shares Reimu's x87 tail. Trying a shared switch exit, a
-post-switch vertical product, float or double capture locals, and reversed
-multiplication operands produced either the baseline or an alternate join
-with layout changes. A useful next probe needs to change the lowered
-successor graph or the liveness of the restore across both scaling arms.
+late pass that shares Reimu's x87 tail.
+
+Moving the horizontal multiplication just before the 404/406 write to
+`+0x750` changes both arms. At `0x10C0661B`, the flag store now separates
+the two multiply sequences in 404/406, while 650 has no flag store between
+them. At `0x10C077B6`, all four multiply nodes retain their identities.
+The traced build matches the full 5,070 bytes, including both native EDI
+restores. Moving the horizontal operation earlier in 650 alone also
+yields the same relocated bytes. Moving the vertical operation first
+keeps the complete size and differs by four bytes in the affected arm.
+A shared switch exit, staging the product in a temporary and reversing
+multiplication operands either preserve the old result or move the join.
+The retained source changes the order of two statements in 404/406.
 
 ## Observed target identity, boundary and ABI
 

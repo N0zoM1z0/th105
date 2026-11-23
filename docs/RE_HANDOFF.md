@@ -66,21 +66,21 @@ Smallest remaining character residuals, after the literal pass:
   frame), Suika, Yukari, Tenshi;
 - the object-entry functions of Sakuya, Marisa, Patchouli and Yuyuko, and the
   Marisa CPU dispatch tails 0x4B4070;
-- the initializers Udonge 0x5D0E60 and Youmu 0x53A1D0.
+- the Youmu initializer 0x53A1D0.
 
 Reimu's initializer at 0x491C40 is exact. Cases 404/406 and 414/416 reach
 one flag reset after the switch. VC8 shares their already-lowered x87
 multiplication forward into 414. See the [case note](REIMU_ACTION_INITIALIZATION_2026_10_25.md#shared-reset-after-the-switch).
 
-The checked receiver layouts for Youmu, Udonge and Sakuya's Object
-initializer preserve their complete VC8 baselines. With a shared switch
-exit in Youmu, the late C2 pass at 0x10B2C950 discards the publication in
-601 and retains it in 604. In Udonge the same pass folds 650's two x87
-products into the 404/406 tail, where EDI is restored too late. The Udonge
-comparison now covers the complete 5,070-byte target and all three switches.
-Sakuya still differs at the virtual selector and spawn argument scheduling
-in action 803. See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md),
-[Udonge](UDONGE_ACTION_ENTRY_2026_10_24.md) and
+Udonge's initializer at 0x5D0E60 matches all 5,070 bytes with its three
+switches. In 404/406, moving the horizontal multiply before the final flag
+write also restores the separate native scaling tail in 650.
+See the [Udonge case note](UDONGE_ACTION_ENTRY_2026_10_24.md).
+
+With a shared switch exit in Youmu, the late C2 pass at 0x10B2C950 discards
+the publication in 601 and retains it in 604. Sakuya's Object initializer
+differs at the virtual selector and spawn argument scheduling in 803.
+See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md) and
 [Sakuya](SAKUYA_OBJECT_ENTRY_2026_10_24.md) case notes.
 
 Other open leads:
