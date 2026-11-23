@@ -22,6 +22,7 @@ public:
  void *spawn_unparented(int,float,float,int,int,const unsigned *,int);
  int spawn_owned(int,float,float,int,int,const unsigned *,int);
  void update_ping_pong_motion();
+ void advance_orbit();
 
  unsigned char unknown_004[0xe8];
  float x_ec;

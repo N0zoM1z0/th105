@@ -772,6 +772,42 @@ restores all 298 instructions and their sharing in 853. It gives the
 casts, separate guards and reordered operands that retain the bound
 of 2 do not remove the 805 register group for that literal.
 
+### The 805 literal groups before folding
+
+At `c2.dll:0x10B14D84`, the `< 2` build gives the group containing
+`select_sequence(2)` five uses and score 2. The `<= 1` control
+gives it four uses and score 1. Both select EBP at cost zero, with
+EBX eligible at cost 6800. The group for the second spawn's -1
+argument has five uses in both builds. It has only EDI available
+in the baseline and only EBX in the control. The assignment at
+`0x10B14E2A` records those choices. Both ordinary builds agree with
+their traced versions after complete relocation replay.
+
+The candidate's frame compare ultimately uses BP. The source-tagged
+compare still has its immediate operand at `0x10C077B6`, after
+both `0x10BDA210` and the tail-folding call. The original keeps the
+immediate 2 and loads EBP with -1 before the first sequence body.
+The remaining question is where the later lowering chooses BP
+for the candidate's compare.
+
+Putting the phase reset before the alternate sequence advance in
+805 sequence 1 restores the local signed JLE and the native virtual
+call placement. In the same full build, 813, 815, 859 and 901 switch
+their scale-add load order. Giving the phase test a local name,
+changing the earlier 803 alpha assignments, and swapping the scale
+sum's operands all retain that cross-case difference. The selected
+source keeps the preceding 805 branch shape.
+
+## A typed helper for the 810 orbit
+
+The four orbit paths use `advance_orbit()` with the existing
+receiver fields. VC8 emits an out-of-line call with ordinary
+`inline`. The forced-inline definition reproduces the complete
+29,480-byte candidate and the locations, kinds and resolved targets
+of all 742 relocations. Twenty private labels get new names during
+inlining. The separate conversion of the random macro to a forced-inline
+function changes the emitted bytes.
+
 ## Actions 920 and 930 before frame advance
 
 In 920 the signed owner timer at `+0x7A4` branches to the oriented-motion

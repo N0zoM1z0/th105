@@ -114,9 +114,11 @@ landing-sum instructions. The entry Y bounds change the address
 definition used by the early C2 pass. Compare how that definition
 reaches the landing sum. The 853 sequence 7 exit now uses the native
 local target. Its other six branches still share the 805 copy.
-Trace the 805 register group for literal 2 before adjusting those
-edges again. The complete candidate is 29,480 bytes with 742
-relocations and first differs at `0x004E0D55`.
+The 805 literal group keeps EBP when the cutoff changes, but the
+-1 group moves from EDI to EBX. The frame compare retains its
+literal through `0x10C077B6`. Follow that operand into emission
+before adjusting the exit edges again. The complete candidate is
+29,480 bytes with 742 relocations and first differs at `0x004E0D55`.
 [Fade tails](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
 and [retirement sharing](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-853-retirement-is-shared-with-action-805-in-the-rebuild).
 

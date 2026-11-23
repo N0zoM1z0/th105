@@ -17,6 +17,28 @@ namespace th105 {
 #define SPAWN(a,l,c) spawn_unparented(a,x_ec,y_f0,static_cast<unsigned char>(facing_104),l,WORDS(payload),c)
 #define PARENTED(a,l,c) spawn_parented(a,x_ec,y_f0,static_cast<unsigned char>(facing_104),l,WORDS(payload),c)
 #define random_float(limit) static_cast<float>(static_cast<unsigned>(selector_random_roll(limit)))
+__forceinline void SakuyaObjectUpdateView::advance_orbit()
+{
+ parameters_340[0] += 10.0;
+ if (parameters_340[0] > 360.0f) parameters_340[0] -= 360.0;
+
+ double facing = facing_104;
+ SakuyaObjectUpdateView *owner = owner_348;
+ double cosine = lookup_orientation_cosine_quantized_abs(parameters_340[0]);
+ SakuyaObjectUpdateView *vertical_owner = owner_348;
+ x_ec = facing * owner->velocity_x_f4 + owner->x_ec + cosine * field_370 * facing;
+
+ double sine = lookup_orientation_sine_quantized_abs(parameters_340[0]);
+ y_f0 = vertical_owner->y_f0 + 125.0 + vertical_owner->velocity_y_f8 +
+        sine * field_370 * 0.25;
+
+ if (!(parameters_340[0] >= 0) || parameters_340[0] > 180.0f) {
+  spawn_field_33c = 1;
+ } else {
+  spawn_field_33c = 255;
+ }
+}
+
 void SakuyaObjectUpdateView::update_action_state()
 {
  switch(action_id_13c) {
@@ -205,22 +227,12 @@ void SakuyaObjectUpdateView::update_action_state()
    else {x_ec=facing_104*owner_348->velocity_x_f4+owner_348->x_ec;y_f0=owner_348->velocity_y_f8+owner_348->y_f0;}
    angle_12c+=10.0;
   }
-#define ORBIT810() { \
- parameters_340[0]+=10.0;if(parameters_340[0]>360.0f)parameters_340[0]-=360.0; \
- double facing=facing_104;SakuyaObjectUpdateView *owner=owner_348; \
- double cosine=lookup_orientation_cosine_quantized_abs(parameters_340[0]);SakuyaObjectUpdateView *vertical_owner=owner_348; \
- x_ec=facing*owner->velocity_x_f4+owner->x_ec+cosine*field_370*facing; \
- double sine=lookup_orientation_sine_quantized_abs(parameters_340[0]); \
- y_f0=vertical_owner->y_f0+125.0+vertical_owner->velocity_y_f8+sine*field_370*0.25; \
- if(!(parameters_340[0]>=0) || parameters_340[0]>180.0f)spawn_field_33c=1;else spawn_field_33c=255; \
-}
   if(sequence_id_13e==2){angle_12c-=40.0;field_370+=15.0;if(field_370>parameters_340[1])field_370=parameters_340[1];
-   if(owner_348->action_id_13c<500 || owner_348->action_id_13c>503 || owner_348->sequence_id_13e>2){ORBIT810();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {ORBIT810();}
+   if(owner_348->action_id_13c<500 || owner_348->action_id_13c>503 || owner_348->sequence_id_13e>2){advance_orbit();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {advance_orbit();}
   }
   if(sequence_id_13e==3){angle_12c-=20.0;field_370+=15.0;if(field_370>parameters_340[1])field_370=parameters_340[1];
-   if(owner_348->action_id_13c<500 || owner_348->action_id_13c>503 || owner_348->sequence_id_13e>2){ORBIT810();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {ORBIT810();}
+   if(owner_348->action_id_13c<500 || owner_348->action_id_13c>503 || owner_348->sequence_id_13e>2){advance_orbit();if(alpha_113<=20)RETIRE();alpha_113-=20;}else {advance_orbit();}
   }
-#undef ORBIT810
   if(CORE->advance_frame_and_dispatch())--lifetime_330;if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==1)--lifetime_330;return;
  case 811:
   if(phase_state_180==5 || OUTSIDE(1680.0,-400.0,1000.0,-160.0f))RETIRE();
