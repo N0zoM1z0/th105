@@ -219,19 +219,79 @@ void SakuyaObjectUpdateView::update_action_state()
    return;
   }
   return;
- case 804:
-  if(phase_state_180==5 || (owner_348->action_id_13c>49 && owner_348->action_id_13c<150 && sequence_id_13e==0))RETIRE();
-  if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==0){phase_index_184=1;field_364=0;}
-  if(sequence_id_13e==0) {
-   if(frame_index_140==0){angle_12c-=30.0;parameters_340[1]-=2.5;if(parameters_340[1]<0)parameters_340[1]=0;}
-   if(frame_index_140==1){if(frame_counter_142==0){replace_secondary(994,6.0f,20,1,2);turn_heading(0,180.0f,100.0f);}parameters_340[1]+=2.5;angle_12c=parameters_340[0];MOVE();if(phase_state_180==6){++phase_index_184;phase_state_180=0;}if(phase_state_180!=0){if(phase_index_184<=0){next_sequence_block();scale_y_120=scale_x_11c=2.0f;}else phase_state_180=0;}}
-   MOVE();STEP();if(frame_index_140==1){float payload[3]={parameters_340[0],0,2};owner_348->spawn_owned(804,x_ec,y_f0,static_cast<unsigned char>(facing_104),-1,WORDS(payload),3);}
+ case 804: {
+  if (phase_state_180 == 5 ||
+      (owner_348->action_id_13c > 49 && owner_348->action_id_13c < 150 &&
+       sequence_id_13e == 0)) {
+   --lifetime_330;
+   return;
   }
-  if(sequence_id_13e==1){scale_x_11c+=D(0.1f);scale_y_120*=D(0.65f);MOVE();STEP();}
-  if(OUTSIDE(1680.0,-400.0,960.0,-120.0))RETIRE();
-  if(CORE->advance_frame_and_dispatch())--lifetime_330;
-  if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==1)--lifetime_330;
-  if(time_counter_144==0 && frame_counter_142==0 && frame_index_140==0 && sequence_id_13e==2)--lifetime_330;return;
+
+  if (time_counter_144 == 0 && frame_counter_142 == 0 &&
+      frame_index_140 == 0 && sequence_id_13e == 0) {
+   phase_index_184 = 1;
+   field_364 = 0;
+  }
+
+  if (sequence_id_13e == 0) {
+   if (frame_index_140 == 0) {
+    angle_12c -= 30.0;
+    parameters_340[1] -= 2.5;
+    if (parameters_340[1] < 0) parameters_340[1] = 0;
+   }
+   if (frame_index_140 == 1) {
+    if (frame_counter_142 == 0) {
+     replace_secondary(994, 6.0f, 20, 1, 2);
+     turn_heading(0, 180.0f, 100.0f);
+    }
+    parameters_340[1] += 2.5;
+    angle_12c = parameters_340[0];
+    MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+    if (phase_state_180 == 6) {
+     ++phase_index_184;
+     phase_state_180 = 0;
+    }
+    if (phase_state_180 != 0) {
+     if (phase_index_184 <= 0) {
+      next_sequence_block();
+      scale_y_120 = scale_x_11c = 2.0f;
+     } else {
+      phase_state_180 = 0;
+     }
+    }
+   }
+   MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+   x_ec += facing_104 * velocity_x_f4;
+   y_f0 += velocity_y_f8;
+   if (frame_index_140 == 1) {
+    float payload[3] = {parameters_340[0], 0, 2};
+    owner_348->spawn_owned(804, x_ec, y_f0, static_cast<unsigned char>(facing_104),
+                           -1, reinterpret_cast<const unsigned *>(payload), 3);
+   }
+  }
+
+  if (sequence_id_13e == 1) {
+   scale_x_11c += D(0.1f);
+   scale_y_120 *= D(0.65f);
+   MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+   x_ec += facing_104 * velocity_x_f4;
+   y_f0 += velocity_y_f8;
+  }
+  if (x_ec > 1680.0 || x_ec < -400.0 || y_f0 > 960.0 || y_f0 < -120.0) {
+   --lifetime_330;
+   return;
+  }
+  if (CORE->advance_frame_and_dispatch()) --lifetime_330;
+  if (time_counter_144 == 0 && frame_counter_142 == 0 &&
+      frame_index_140 == 0 && sequence_id_13e == 1) {
+   --lifetime_330;
+  }
+  if (time_counter_144 == 0 && frame_counter_142 == 0 &&
+      frame_index_140 == 0 && sequence_id_13e == 2) {
+   --lifetime_330;
+  }
+  return;
+ }
  case 805: {
   if (phase_state_180 == 5 ||
       (owner_348->action_id_13c > 49 && owner_348->action_id_13c < 150 &&

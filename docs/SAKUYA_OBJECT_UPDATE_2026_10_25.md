@@ -911,6 +911,25 @@ Combining the 802 cutoff edit with the 804 phase edit restores the
 four later actions' previous x87 order even though either edit alone
 reverses it.
 
+The early pass called at `0x10C06D34` (`0x10BAF600`) places the two
+memory reads that feed 813's scale sum. Both builds enter with one
+memory move immediately before the add. On return at `0x10C06D39`,
+each has two adjacent memory moves, in opposite orders. The same
+records survive until `0x10C06597`, where their displacements confirm
+that the selected build reads `+0x370` then `+0x11C` and the
+positive-first 804 branch reverses them. The call at `0x10C065FF`
+folds the second load into the add. The alpha decrement on the same
+source line has a separate integer-add record (`0x32` after lowering).
+Compare the input definitions for the two memory reads inside
+`0x10BAF600` to find what the earlier phase branch changes.
+
+The nested and early-skip spellings of the positive-first 804 branch
+produce the same full output. Flattening the tests into a conjunction
+and an alternate phase check adds a separate state load. The selected
+804 body spells out the original motion, bounds and lifetime updates.
+It retains the complete 29,480-byte replay, including all switch data
+and the positions, kinds and resolved values of 742 relocations.
+
 Storing the final 805 sequence-3 retirement test in a Boolean local also
 changes those four actions' scale-add order while preserving every 805
 path after rebasing. Repeating the sequence-3 test on both sides of the

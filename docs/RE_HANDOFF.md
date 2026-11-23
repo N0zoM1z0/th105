@@ -135,11 +135,14 @@ spawn and the retirement retain a separate register. Trace the first
 fragment and its competing group together before retrying a cutoff.
 Combining the 805 inclusive cutoff with the 804 positive-first phase
 branch reproduces 804 and 853 after rebasing and reverses the x87
-loads in 813, 815, 859 and 901. The earlier 805 alpha-local control
-restores 853 and changes 816's last two parent exits. The selected
-29,480-byte candidate gives the 805 child calls a typed packet helper
-and preserves all 742 relocations and 17 frame-call sites. The first
-difference is still at `0x004E0D55`.
+loads in 813, 815, 859 and 901. The early pass `0x10BAF600` already
+puts the two 813 scale reads in opposite orders. Compare the
+definitions entering that pass. The earlier
+805 alpha-local control restores 853 and changes 816's last two
+parent exits. The selected 29,480-byte candidate spells out 804's
+motion and exit updates and gives the 805 child calls a typed
+packet helper. It preserves all 742 relocations and 17 frame-call
+sites. The first difference is still at `0x004E0D55`.
 [Fade tails](SAKUYA_OBJECT_UPDATE_2026_10_25.md#fade-tail-folding-in-actions-859-and-901)
 and [retirement sharing](SAKUYA_OBJECT_UPDATE_2026_10_25.md#action-853-retirement-is-shared-with-action-805-in-the-rebuild).
 
