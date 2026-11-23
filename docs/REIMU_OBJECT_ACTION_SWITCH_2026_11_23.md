@@ -104,3 +104,19 @@ preceding action-822 region), plus stack-slot and register-order differences
 in the packet preparation. The focused root still has 45,212 candidate
 callable bytes against 46,138 target bytes and is not exact. Continue with
 the 869/901/902 large handlers and the shared action-822 spawn tail.
+
+## Action 869 owner-retirement reconstruction
+
+Action 869's two sequence-0 owner exits now retain their packet pointer and
+word count in the handler and use one natural spawn/retire call site after
+the sequence switch. This removes the function-wide `emit_retiring_world`
+path from this handler. The focused owner grows from 1,636 to 1,676 bytes
+against the 1,736-byte target (60 bytes short). Action 900 remains at
+1,217/1,229 bytes after its analogous sequence-specific retirement
+reconstruction. The root's candidate callable bytes are now 45,292/46,138;
+all changes remain ordinary C++ and the root is still nonexact.
+
+The remaining 869 differences are primarily register lifetimes and x87
+operand/stack ordering in the two orbit-position paths, plus the target's
+shared spawn tail at `0x00499DF6`. Continue with the 901/902 large handlers
+and the shared tail ownership around action 822.
