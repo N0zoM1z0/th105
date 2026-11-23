@@ -920,15 +920,37 @@ that the selected build reads `+0x370` then `+0x11C` and the
 positive-first 804 branch reverses them. The call at `0x10C065FF`
 folds the second load into the add. The alpha decrement on the same
 source line has a separate integer-add record (`0x32` after lowering).
-Compare the input definitions for the two memory reads inside
-`0x10BAF600` to find what the earlier phase branch changes.
+
+The comparator at `0x10BB6490` orders the two move records by their
+descending unsigned keys at `+0x10`. In these reads, the address
+operand refers to a kind-3 temporary with no active definition.
+`0x10BB6806` shifts the temporary's ordinal left by six, and
+`0x10BB67C2` shifts the address contribution left by another eight.
+The low 16 bits therefore keep just the ordinal's last two bits.
+For these two moves, the remaining parts of the key are `0x20025`.
+The keys measured at `0x10BB5F99` agree with this calculation.
+
+| Source | Ordinal for `+0x370` | Ordinal for `+0x11C` | Keys in that order | First read |
+| --- | --- | --- | --- | --- |
+| Selected | `0x276F` | `0x271A` | `0x2C025`, `0x28025` | `+0x370` |
+| Positive-first 804 phase | `0x2770` | `0x271B` | `0x20025`, `0x2C025` | `+0x11C` |
+| Positive-first 804 phase and the 802 `< 3` guard | `0x2771` | `0x271C` | `0x24025`, `0x20025` | `+0x370` |
+
+The next source control should compare where the adjacent temporary
+ordinals are assigned. Changing 813's chained scale assignment to
+a named result keeps the reversed loads in the positive-first 804
+control. Capturing the old scale ahead of the clamp adds a spill.
+Writing the 804 scale resets as two assignments keeps the same
+output as the positive-first branch.
 
 The nested and early-skip spellings of the positive-first 804 branch
 produce the same full output. Flattening the tests into a conjunction
 and an alternate phase check adds a separate state load. The selected
 804 body spells out the original motion, bounds and lifetime updates.
-It retains the complete 29,480-byte replay, including all switch data
-and the positions, kinds and resolved values of 742 relocations.
+The adjustment of horizontal scale and its decreasing rate now uses
+one typed helper at six sites in 815, 859 and 901. These readability
+edits preserve the complete 29,480-byte replay, including all switch
+data and the positions, kinds and resolved values of 742 relocations.
 
 Storing the final 805 sequence-3 retirement test in a Boolean local also
 changes those four actions' scale-add order while preserving every 805

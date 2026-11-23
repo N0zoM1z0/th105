@@ -67,6 +67,13 @@ static __forceinline void spawn_853_child(
                          reinterpret_cast<const unsigned *>(parameters), 4);
 }
 
+static __forceinline void advance_fade_scale(SakuyaObjectUpdateView &object)
+{
+ object.scale_x_11c += object.field_370;
+ object.field_370 -= static_cast<double>(0.1f);
+ if (object.field_370 <= 0.02f) object.field_370 = 0.02f;
+}
+
 void SakuyaObjectUpdateView::update_action_state()
 {
  switch(action_id_13c) {
@@ -439,11 +446,15 @@ void SakuyaObjectUpdateView::update_action_state()
   case 1:
    angle_12c-=20.0;field_370+=15.0;if(!parent_object_34c)RETIRE();facing_104=parent_object_34c->facing_104;x_ec=facing_104*parent_object_34c->velocity_x_f4+parent_object_34c->x_ec;y_f0=parent_object_34c->velocity_y_f8+parent_object_34c->y_f0;if(parent_object_34c->frame_index_140!=1)RETIRE();break;
   case 2:
-   scale_x_11c+=field_370;field_370-=D(0.1f);if(field_370<=0.02f)field_370=0.02f;
+   advance_fade_scale(*this);
    if(time_counter_144<=3)scale_y_120+=0.5;else scale_y_120*=D(0.9f);
    goto fade_815_channels;
-  case 3:case 4:
-   scale_x_11c+=field_370;field_370-=D(0.1f);if(field_370<=0.02f)field_370=0.02f;scale_y_120=scale_x_11c;angle_12c+=parameters_340[1];parameters_340[1]*=D(0.95f);
+  case 3:
+  case 4:
+   advance_fade_scale(*this);
+   scale_y_120 = scale_x_11c;
+   angle_12c += parameters_340[1];
+   parameters_340[1] *= D(0.95f);
  fade_815_channels:
    if (time_counter_144 >= 5) {
     if (channel_111 >= 10) {
@@ -803,9 +814,7 @@ void SakuyaObjectUpdateView::update_action_state()
    alpha_113 = parent_object_34c->alpha_113;
    goto advance_901_frame;
   case 4:
-   scale_x_11c += field_370;
-   field_370 -= D(0.1f);
-   if (field_370 <= 0.02f) field_370 = 0.02f;
+   advance_fade_scale(*this);
    scale_y_120 = time_counter_144 <= 3 ? scale_y_120 + 0.5 : scale_y_120 * D(0.9f);
    if (time_counter_144 >= 5) {
     if (channel_111 >= 10) {
@@ -820,9 +829,7 @@ void SakuyaObjectUpdateView::update_action_state()
    }
    break;
   case 5:case 6:
-   scale_x_11c += field_370;
-   field_370 -= D(0.1f);
-   if (field_370 <= 0.02f) field_370 = 0.02f;
+   advance_fade_scale(*this);
    scale_y_120 = scale_x_11c;
    angle_12c += parameters_340[1];
    parameters_340[1] *= D(0.95f);
@@ -886,9 +893,7 @@ void SakuyaObjectUpdateView::update_action_state()
   case 2:angle_12c+=6.0;if(!parent_object_34c)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;scale_x_11c=parent_object_34c->scale_x_11c;scale_y_120=parent_object_34c->scale_y_120;alpha_113=parent_object_34c->alpha_113;break;
   case 3:angle_12c+=1.0;if(!parent_object_34c)RETIRE();x_ec=parent_object_34c->x_ec;y_f0=parent_object_34c->y_f0;scale_x_11c=parent_object_34c->scale_x_11c;scale_y_120=parent_object_34c->scale_y_120;alpha_113=parent_object_34c->alpha_113;break;
   case 4:
-   scale_x_11c += field_370;
-   field_370 -= D(0.1f);
-   if (field_370 <= 0.02f) field_370 = 0.02f;
+   advance_fade_scale(*this);
    scale_y_120 = time_counter_144 <= 3 ? scale_y_120 + 0.5 : scale_y_120 * D(0.9f);
    if (time_counter_144 >= 5) {
     if (channel_111 >= 10) {
@@ -903,9 +908,7 @@ void SakuyaObjectUpdateView::update_action_state()
    }
    break;
   case 5:case 6:
-   scale_x_11c += field_370;
-   field_370 -= D(0.1f);
-   if (field_370 <= 0.02f) field_370 = 0.02f;
+   advance_fade_scale(*this);
    scale_y_120 = scale_x_11c;
    angle_12c += parameters_340[1];
    parameters_340[1] *= D(0.95f);
