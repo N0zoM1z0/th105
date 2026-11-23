@@ -52,3 +52,23 @@ scripts/repo-python scripts/build.py --unit gpt-web-reimu-object-action-state --
 Do not treat this scoped switch-map result as whole-root exactness. The
 separate 81,550-byte Fighter root at `0x00478FA0` is a different function
 and a different vtable ownership boundary.
+
+## Action 811 sequence-specific fade reconstruction
+
+The 811 handler's sequence-3 and sequence-4 channel/alpha fade paths are
+separate in the target. The source previously combined them under one
+`sequence == 3 || sequence == 4` condition, allowing VC8 to share one block.
+The source now keeps the two branches separate and in target order. In the
+focused object, action 811 grows from 1,288 to 1,328 bytes; action 804's
+reconstructed extent also grows from 1,093 to 1,111 bytes after removing the
+shared bounded-projectile tail label. The neighboring action 812 remains
+1,376/1,376 bytes by extent.
+
+The root is still not exact. The current focused owner audit totals 45,084
+candidate callable bytes against 46,138 target bytes. Action 811 remains
+179 bytes short because VC8 reuses the action-804 bounds/frame-advance tail
+at the candidate's `0x496FC9` destination, while the target emits a separate
+811 tail at `0x497D11`. This is a real control-flow/layout difference, not
+missing action-selector entries or padding. The next source work is to
+recover the target's distinct live-register lifetimes around the 811 tail
+and continue with the larger 900/869/901 action families.

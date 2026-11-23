@@ -187,16 +187,6 @@ retire:
     --_root_state.state_330;
     return;
 
-bounded_projectile_advance:
-    if (effect_000.object_x_0e8 > 1380.0 || effect_000.object_x_0e8 < -100.0 || effect_000.object_y_0ec > 1000.0 || effect_000.object_y_0ec < -120.0)
-        goto retire;
-advance_with_sequence_two_retirement:
-    if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
-        --_root_state.state_330;
-    if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
-        --_root_state.state_330;
-    return;
-
     case 801:
         if (effect_000.object_x_0e8 > 1380.0 || effect_000.object_x_0e8 < -100.0 || effect_000.object_y_0ec > 1000.0 || effect_000.object_y_0ec < -240.0 ||
                 _root_state.phase_state_180 == 5 || (_root_state.sequence_13e < 2 &&
@@ -629,8 +619,16 @@ retire_801_811:
         if (_root_state.sequence_13e == 3) {
             effect_000.reset_one_118 = static_cast<float>(effect_000.reset_one_118 + static_cast<double>(0.02f));
             effect_000.reset_one_11c = effect_000.reset_one_118;
+            if (_root_state.channel_111 < 40) {
+                _root_state.channel_111 = 0;
+                if (_root_state.alpha_113 < 40)
+                    goto retire;
+                _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 40);
+            } else {
+                _root_state.channel_111 = static_cast<unsigned char>(_root_state.channel_111 - 40);
+            }
         }
-        if (_root_state.sequence_13e == 3 || _root_state.sequence_13e == 4) {
+        if (_root_state.sequence_13e == 4) {
             if (_root_state.channel_111 < 40) {
                 _root_state.channel_111 = 0;
                 if (_root_state.alpha_113 < 40)
@@ -1271,7 +1269,13 @@ retire_801_811:
             effect_000.object_y_0ec = static_cast<float>(*reinterpret_cast<float *>(_root_state.fighter_owner_348 + 0xf0) + 100.0);
             effect_000.reset_zero_128 = static_cast<float>(effect_000.reset_zero_128 + 10.0);
         }
-        goto bounded_projectile_advance;
+        if (effect_000.object_x_0e8 > 1380.0 || effect_000.object_x_0e8 < -100.0 || effect_000.object_y_0ec > 1000.0 || effect_000.object_y_0ec < -120.0)
+            goto retire;
+        if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
+            --_root_state.state_330;
+        if (_root_state.counter_144 == 0 && _root_state.frame_timer_142 == 0 && _root_state.frame_140 == 0 && _root_state.sequence_13e == 2)
+            --_root_state.state_330;
+        return;
 
     case 822:
         if (_root_state.phase_state_180 == 5)
