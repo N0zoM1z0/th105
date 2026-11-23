@@ -81,13 +81,14 @@ See the [Udonge case note](UDONGE_ACTION_ENTRY_2026_10_24.md).
 
 Youmu `0x0053A1D0` now expresses the 602 reset as a fallthrough and still
 differs at 44 bytes in the complete 1,874-byte envelope. For independent
-phase arms, C2 merges the reset into 601 before the late scheduler moves
-604's receiver load. With a shared switch exit, `0x10B2C950` keeps the
-flag writes in 604. Follow the merge decision before scheduling. Exposing
-the exact motion reset removes the native receiver loads before a virtual
-selector and an event dispatch. The selected initializer keeps the
-declaration-only context.
-See the [Youmu case note](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md#the-receiver-load-moves-after-tail-merging).
+phase arms, C2 first places the 602 entry in 601. It finds five matching
+601/604 instructions but rejects the pair because its size estimate
+stops at 20 bytes before the call, and the merge requires more than 20
+at `0x10B30B74`. A shared switch exit leaves 604 falling through, so the
+late splice keeps its copy. Komachi's exact 550/551 uses the same splice
+with the native fallthrough already in place. Follow that block layout
+before changing store order or looking at the later receiver scheduling.
+See the [Youmu case note](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md#vc8-rejects-the-independent-tails-at-a-20-byte-cutoff).
 
 Sakuya's Object initializer
 has 13 differing bytes in 803. Omitting either 800 or 801 in a scratch

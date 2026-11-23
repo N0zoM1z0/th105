@@ -240,9 +240,7 @@ link of the first 604 store stops at `0x10C721DA`, immediately after
 late instruction scheduler runs after the merge decision. Removing only
 the reset-only case group in a scratch build also moves 601's receiver
 load above the stores. Omitting 600/603, 720/730 or 797/798 leaves it
-below them. The 602 entry accounts for an instruction-order difference
-in a different action, and the next merge investigation belongs before
-the scheduler.
+below them.
 
 The selected fallthrough source replays the same 1,874 bytes as the
 prior selection, with identical relocation sites and kinds. The complete
@@ -251,6 +249,44 @@ replay has 42 DIR32 and 18 REL32 fields, including 26 local jump words,
 rejects the candidate at `0x0053A6BC`. A separate complete comparison
 finds 42 changed callable bytes through `0x0053A6E5` and two changed
 destination bytes at `0x0053A830` and `0x0053A834`.
+
+## VC8 rejects the independent tails at a 20-byte cutoff
+
+In the independent-return build, `c2.dll:0x10B30784` first pairs the 601
+and 602 exits. It matches the motion call, the receiver copy and the
+`+0x180` clear. The successful merge calls `0x10B2A2C0` from
+`0x10B30C0F` to move the existing 602 label to 601's clear. The scheduler
+later moves the receiver copy to the beginning of that block.
+
+The same comparison then pairs 601 and 604. All five lowered
+instructions match through both byte stores. The first unequal
+instruction loads the phase constant. The size estimate at
+`0x10B30B26` counts the two six-byte flag stores, the six-byte clear and
+the two-byte receiver copy. The loop stops at 20 bytes, before it visits
+the already matched call. At `0x10B30B74`, the strict greater-than test
+fails with both operands equal to 20. There is no saved fallback cutoff
+and the pair is rejected. This identifies the decision in the pinned
+VC8 SP1 `/O2` build.
+
+With a shared switch exit, the earlier layout puts the 604 flag writes
+immediately before the reset label. The late splice in `0x10B2E1B0`
+uses that fallthrough and redirects 601. In the exact Komachi
+initializer, the same splice keeps 550's fallthrough. The instruction
+link write at `0x10B2E589` removes 551's copied tail after its
+`FLD1`. That headless traced build passes
+all 2,496 bytes and 94 relocations. Retargeting only 551's COFF jump
+word to 550's valid entry leaves the 1,971-byte callable exact. The
+switch verifier rejects the altered object at `0x005F6F9C`.
+
+Moving the independent phase bodies outside the switch and inlining
+the reset helper reproduce their respective starting bytes.
+Sharing only the final `+0x730` clear between 601 and 604 leaves the
+same 44 differences and adds nine in the 797/798 body at
+`0x0053A731`. Moving the event actions' disjoint clear within their own
+bodies leaves the independent build unchanged. The `/Os` control
+changes the complete layout to 1,434 bytes. A remaining source question
+is how to present the 601 fallthrough to the late splice while retaining
+the separate 602 entry.
 
 ## The visible motion-reset definition changes later calls
 
@@ -278,24 +314,12 @@ with the target. This is a bounded compiler witness for the
 
 ## Reproduction and next scope
 
-Use locked repository Python and serial CPU 0/nice10 jobs. Build/comparison and
-full-audit commands intentionally return 1 for this retained nonexact root:
+Use locked repository Python and serial headless builds. The Youmu
+comparison returns 1 at `0x0053A6BC`. The Komachi comparison verifies
+both switches and their destinations.
 
 ```sh
-taskset -c 0 nice -n 10 scripts/repo-python scripts/build.py --unit exact-first-youmu-fighter-action-initialization --compare --json
-TH105_ENABLE_GS=0 TH105_FP_MODE=default TH105_INLINE_MODE=default \
-  taskset -c 0 nice -n 10 scripts/compile-unit.sh src/characters/YoumuFighterActionInitialization.cpp build/youmu-fighter-entry-cold.obj
+export DISPLAY= WAYLAND_DISPLAY=
+scripts/repo-python scripts/build.py --unit exact-first-youmu-fighter-action-initialization --compare --json
+scripts/repo-python scripts/build.py --unit exact-first-komachi-action-initialization --compare --json
 ```
-
-Only this local source/interface/unit and 11 exclusively named literal aliases
-are added. No accepted function references these aliases; prior headers,
-profiles, sources and bindings remain unchanged. The accepted graph remains
-524 units/1412 functions/381108 callable bytes. Its latest full cold receipt is
-the preceding Remilia checkpoint; no new aggregate cold replay is claimed.
-Mapped 1577/source-present1558 and 597 configured units/1565 functions are
-ledger-validated. All 1405 floating target references agree.
-
-Next independently review SakuyaObject slot 28 at 4E0D30, candidate 28985 bytes,
-whose authored source remains missing. Re-attest slot 6C48B4, its complete CFG,
-ABI and metadata ownership before implementing the first whole body. Keep
-the parked initializer/common/Object residuals closed absent new target facts.
