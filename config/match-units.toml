@@ -21458,6 +21458,21 @@ dir32_targets = [
     "__real@41400000=_reimu_entry_006c12b0",
 ]
 
+[units.exact-first-reimu-action-initialization.functions.switch_payload]
+size = 4738
+sha256 = "ae72adaa4142577f69d3e97cf57e629c4bcce932a82457c8421dafdf9075f842"
+alignment_hex = "8d4900"
+table_offset = 3788
+table_entries = 14
+map_offset = 3844
+map_size = 211
+load_offset = 44
+jump_offset = 51
+tail_jumps = [3780]
+additional_tables = [
+    { alignment_hex = "90", table_offset = 4056, table_entries = 31, map_offset = 4180, map_size = 251, load_offset = 1484, jump_offset = 1491 },
+    { alignment_hex = "90", table_offset = 4432, table_entries = 18, map_offset = 4504, map_size = 234, load_offset = 2728, jump_offset = 2735 },
+]
 
 [units.exact-first-common-fighter-action-initialization]
 kind = "probe"

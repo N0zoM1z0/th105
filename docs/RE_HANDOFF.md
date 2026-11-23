@@ -69,6 +69,10 @@ Smallest remaining character residuals, after the literal pass:
 - the initializers Reimu 0x491C40, Udonge 0x5D0E60 and Youmu 0x53A1D0 (one or
   two cross-jump regions each).
 
+Reimu's [checked initializer fields](REIMU_ACTION_INITIALIZATION_2026_10_25.md#checked-fields-and-late-x87-tail-merging-2026-11-23)
+preserve the full candidate. Case 322 already matches. The 404/414 shared
+tail changes owner in the post-x87 pass `c2.dll:0x10B2C950`.
+
 The checked receiver layouts for Youmu's Fighter initializer and Sakuya's
 Object initializer preserve both complete VC8 baselines. Youmu's remaining
 difference is the placement of the shared 601/604 branch. The same early

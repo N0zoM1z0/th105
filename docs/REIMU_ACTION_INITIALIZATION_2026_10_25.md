@@ -1,13 +1,11 @@
 # Reimu primary slot 3C: complete action-entry source
 
 `Reimu_initialize_action_entry @ 0x00491C40` has complete source in
-`src/characters/ReimuActionInitialization.cpp/.hpp`. As of 2026-11-14 the
-3785-byte body differs from the target only in two cross-jump decisions: the
-404/414 shared-tail direction and case 322's branch into case 305's tail.
-Three fixes got it there. The offset-macro accessor replaced an inline `at<T>`
-template, the case 408/321 and 307/306 fallthroughs were added, and case 669
-stores 0x734 first. Trials and the open lead are in the
-[patterns note](VC8_SOURCE_SHAPE_PATTERNS.md). No exact credit.
+`src/characters/ReimuActionInitialization.cpp/.hpp`. The current 4,738-byte
+candidate has 70 differing bytes after relocation, concentrated in the
+404/414 shared tail and three relocated destination bytes. Action 322 now
+matches, including its conditional branch into 305. The build unit checks
+the full extent, including all three tables, after the callable matches.
 
 ## Observed target and boundary
 
@@ -132,6 +130,35 @@ and ABI from raw target/call/RTTI evidence. It currently remains unclassified
 and source-missing; Reimu's default tail is evidence to investigate, not an
 automatic promotion. This can supply real family context without fabricated
 callers or a broad flag search.
+
+## Checked fields and late x87 tail merging, 2026-11-23
+
+The action selector, signed facing byte, position, velocity and vertical
+acceleration now use seven checked members. This replaces 109 offset
+accesses. The complete old and new COFF sections agree across 4,738 bytes
+and all 171 relocation sites. The checked receiver is local to this
+initializer. The full-envelope contract accounts for 63 jump words, 696
+remap bytes, five bytes of table alignment and the tail to `0x00477830`.
+Structural checks against the target reject changes to the final remap
+byte of every table, an alignment byte and a jump word.
+
+The pinned VC8 SP1 back end still has separate 404 and 414 multiplication
+tails at `c2.dll:0x10C0661B`, after x87 lowering. When the pass at
+`0x10B2C950` returns to `0x10C077B6`, 404 retains both multiplies and 414
+branches backward after loading its coefficient. Inside that pass, the
+call at `0x10B30784` compares the two outgoing instruction tails in
+404-then-414 order and reports a successful merge. The native 404 branches
+forward at `0x00492400` to 414's multiply at `0x00492431`, with the old
+horizontal speed and the coefficient live on the x87 stack. The 67
+differing code bytes lie between `0x00492400` and `0x00492451`. The second
+table has three more differences in relocated destinations. This back-end
+trace reproduces the ordinary build's entire relocated section.
+
+An explicit join through a shared `double` coefficient puts the tail in
+414, with the horizontal-speed load hoisted into the tail. Capturing that
+speed before the join adds a stack spill. Sharing the later flag-reset
+tail with action 400 in source shifts the dispatch layout. Both behaviors
+provide controls for the x87 live values and the later cross-jump pass.
 
 ## Reproduction
 
