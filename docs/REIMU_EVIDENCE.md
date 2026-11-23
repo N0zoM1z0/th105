@@ -54,3 +54,15 @@ the object root.
 
 The per-checkpoint notes from October 17–25 were removed in the commit that
 added this note; Git history keeps them.
+
+
+## Follow-up: Object action-state switch map (2026-11-23)
+
+The complete `0x00496540` ownership extent remains one ReimuObject vslot
+`+0x28` root with a 6,282-byte remote chunk. The top-level 200-byte action
+selector map is now reproduced 200/200 by the candidate source, with all 42
+handler destination entries represented by COFF relocations. This confirms
+that the current source covers the target's top-level action grouping; it does
+not make the 46,138-byte owned root exact. The current entry comparison still
+differs at `+0x1F`. See
+[ReimuObject switch and remote ownership](REIMU_OBJECT_ACTION_SWITCH_2026_11_23.md).

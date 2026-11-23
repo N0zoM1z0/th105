@@ -103,7 +103,7 @@ extent_end = "0x004A1979"
 remote_bytes = 6282
 owned_bytes = 46128
 remote_exact = false
-evidence = "Current attested IDA function ownership for ReimuObject primary-vtable +0x28 is three executable chunks: [0x00496540,0x0049D169), [0x0049D170,0x004A00ED), and [0x004A00F0,0x004A197A). The provisional main span contains one seven-byte alignment NOP, while the 6,282-byte final chunk lies beyond functions.csv and carries top-level actions 908/951/980/998/999 plus the default owner. The top-level PE switch table at 0x004A197C uses all 42 destinations and directly targets those remote owners; no other candidate starts inside the remote chunk."
+evidence = "Current attested IDA function ownership for ReimuObject primary-vtable +0x28 is three executable chunks: [0x00496540,0x0049D169), [0x0049D170,0x004A00ED), and [0x004A00F0,0x004A197A). The provisional main span contains one seven-byte alignment NOP, while the 6,282-byte final chunk lies beyond functions.csv and carries top-level actions 908/951/980/998/999 plus the default owner. The top-level PE switch table at 0x004A197C has 42 destinations; the current source candidate reproduces its 200-byte action selector map 200/200 and emits 42 destination relocations, including the remote owners. Complete root codegen remains nonexact; see docs/REIMU_OBJECT_ACTION_SWITCH_2026_11_23.md."
 
 [[functions.main_exclusions]]
 start = "0x0049D169"
@@ -128,6 +128,8 @@ remote_bytes = 0
 owned_bytes = 10696
 evidence = "Complete compact-switch replay for exact-first-alice-object-entry verifies these unreachable VC8 alignment ranges in the callable span."
 
+chunks = []
+
 [[functions.main_exclusions]]
 start = "0x0050D5C9"
 end = "0x0050D5CF"
@@ -149,6 +151,8 @@ extent_end = "0x005E1AC2"
 remote_bytes = 0
 owned_bytes = 10697
 evidence = "Complete compact-switch replay for exact-first-udonge-object-entry verifies these unreachable VC8 alignment ranges in the callable span."
+
+chunks = []
 
 [[functions.main_exclusions]]
 start = "0x005E07E9"
@@ -184,6 +188,8 @@ remote_bytes = 0
 owned_bytes = 4830
 evidence = "Complete compact-switch replay for exact-first-common-fighter-action-initialization verifies these unreachable VC8 alignment ranges in the callable span."
 
+chunks = []
+
 [[functions.main_exclusions]]
 start = "0x00477D48"
 end = "0x00477D4F"
@@ -205,6 +211,8 @@ extent_end = "0x0058B26E"
 remote_bytes = 0
 owned_bytes = 3441
 evidence = "Complete compact-switch replay for exact-first-yukari-action-initialization verifies these unreachable VC8 alignment ranges in the callable span."
+
+chunks = []
 
 [[functions.main_exclusions]]
 start = "0x0058A848"
