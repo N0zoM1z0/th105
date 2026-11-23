@@ -1,8 +1,11 @@
 #include "SakuyaObjectActionEntry.hpp"
+#include "characters/CharacterObjectEffects.hpp"
+#include "characters/CharacterObjectRuntime.hpp"
 // JP1.06a 0x004E8060: reviewed action entry with a residual in action 803.
 // Evidence and finite trials: docs/SAKUYA_OBJECT_ENTRY_2026_10_24.md.
 namespace th105 {
-#define MOTION reinterpret_cast<SakuyaEntryMotionView *>(reinterpret_cast<unsigned char *>(this)+4)
+// The motion method receives the animation subobject at +0x4.
+#define MOTION reinterpret_cast<CharacterObjectRuntime *>(reinterpret_cast<unsigned char *>(this) + 4)
 
 __forceinline static void select_requested_sequence(SakuyaObjectEntryView *entry)
 {
@@ -10,11 +13,17 @@ __forceinline static void select_requested_sequence(SakuyaObjectEntryView *entry
         entry->select_sequence(static_cast<int>(entry->parameters_340[2]));
 }
 
+__forceinline static CharacterObjectEffectEmitter *object_effects(SakuyaObjectEntryView *entry)
+{
+    return reinterpret_cast<CharacterObjectEffectEmitter *>(entry);
+}
+
 __forceinline static void spawn_entry_child(SakuyaObjectEntryView *entry, int action,
                                            const float *payload, int count)
 {
-    entry->spawn_parented(action, entry->x_ec, entry->y_f0, entry->facing_104,
-                          -1, reinterpret_cast<const unsigned *>(payload), count);
+    object_effects(entry)->spawn_parented_related_object(
+        action, entry->x_ec, entry->y_f0, entry->facing_104, -1,
+        reinterpret_cast<const unsigned *>(payload), count);
 }
 
 __forceinline static float random_float(int n) { return static_cast<float>(static_cast<unsigned>(selector_random_roll(n))); }
@@ -29,11 +38,11 @@ void SakuyaObjectEntryView::initialize_action_entry()
         float payload[4];
         phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this);
         if (sequence_id_13e<=2) {
-            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 800, payload, 3);
         }
         if (sequence_id_13e>=4 && sequence_id_13e<=6) {
-            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=7.0f; spawn_entry_child(this, 800, payload, 3);
         }
         return;
@@ -42,7 +51,7 @@ void SakuyaObjectEntryView::initialize_action_entry()
         float payload[4];
         phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this);
         if (sequence_id_13e<=2) {
-            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 801, payload, 3);
         }
         return;
@@ -54,7 +63,7 @@ void SakuyaObjectEntryView::initialize_action_entry()
         field_374 = 255.0f;
         select_requested_sequence(this);
         if (sequence_id_13e == 0 || sequence_id_13e == 3) {
-            MOTION->set_components(parameters_340[0], parameters_340[1]);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             payload[0] = field_12c;
             payload[1] = 0.0f;
             payload[2] = 2.0f;
@@ -70,7 +79,8 @@ void SakuyaObjectEntryView::initialize_action_entry()
         float payload[4];
         field_17c=1; phase_index_184=3; select_requested_sequence(this);
         if (sequence_id_13e==0) {
-            MOTION->set_components(parameters_340[0],parameters_340[1]); field_12c=-atan2_degrees(velocity_y_f8,velocity_x_f4);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            field_12c = -atan2_degrees(velocity_y_f8, velocity_x_f4);
             payload[0]=field_12c; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 811, payload, 3);
         }
         return;
@@ -114,7 +124,8 @@ void SakuyaObjectEntryView::initialize_action_entry()
         } else { phase_index_184=5; if (parameters_340[3]==1.0f) phase_index_184=6; }
         field_374=255.0f; select_requested_sequence(this);
         if (sequence_id_13e==0) {
-            MOTION->set_components(parameters_340[0],parameters_340[1]); field_12c=-atan2_degrees(velocity_y_f8,velocity_x_f4);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            field_12c = -atan2_degrees(velocity_y_f8, velocity_x_f4);
             payload[0]=field_12c; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 816, payload, 3);
         }
         return;
@@ -122,11 +133,14 @@ void SakuyaObjectEntryView::initialize_action_entry()
     case 817: field_17c=6;
     case 802:
         phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this);
-        if (sequence_id_13e<=2) MOTION->set_components(parameters_340[0],parameters_340[1]);
+        if (sequence_id_13e<=2) MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
         return;
     case 818:
         field_17c=7; phase_index_184=1; field_12c=parameters_340[0]; phase_state_180=0; select_requested_sequence(this);
-        if (sequence_id_13e==0) { field_344=1; MOTION->set_components(parameters_340[0],parameters_340[1]); }
+        if (sequence_id_13e==0) {
+            field_344=1;
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+        }
         if (sequence_id_13e==2) { field_344=1; field_11c=1.5f; field_120=1.5f; }
         return;
     case 849: field_344=1; select_requested_sequence(this); return;
@@ -139,7 +153,10 @@ void SakuyaObjectEntryView::initialize_action_entry()
         field_12c=random_float(60); field_128=random_float(90)-25.0;
         select_requested_sequence(this);
         if (sequence_id_13e==0) velocity_x_f4=random_float(12);
-        if (sequence_id_13e==1) { phase_index_184=1; MOTION->set_components(static_cast<float>(random_float(90)-45.0),20.0f); }
+        if (sequence_id_13e==1) {
+            phase_index_184=1;
+            MOTION->set_oriented_components_f0_f4(static_cast<float>(random_float(90)-45.0),20.0f);
+        }
         return;
     }
     case 853: {
@@ -163,13 +180,17 @@ void SakuyaObjectEntryView::initialize_action_entry()
         if (sequence_id_13e==1) {
             field_120=2.0f; parameters_340[1]=60.0f; parameters_340[0]=static_cast<unsigned>(selector_random_roll(40))-20.0f; field_12c=parameters_340[0];
         }
-        if (sequence_id_13e==2) { phase_index_184=1; MOTION->set_components(static_cast<float>(random_float(80)-40.0),60.0f); }
+        if (sequence_id_13e==2) {
+            phase_index_184=1;
+            MOTION->set_oriented_components_f0_f4(static_cast<float>(random_float(80)-40.0),60.0f);
+        }
         return;
     case 856: {
         float payload[4];
         phase_index_184=1; select_requested_sequence(this);
         if (sequence_id_13e==0) {
-            MOTION->set_components(parameters_340[0],parameters_340[1]); field_12c=-atan2_degrees(velocity_y_f8,velocity_x_f4);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            field_12c = -atan2_degrees(velocity_y_f8, velocity_x_f4);
             payload[0]=field_12c; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 856, payload, 3);
         }
         return;
@@ -178,7 +199,7 @@ void SakuyaObjectEntryView::initialize_action_entry()
         float payload[4];
         phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this);
         if (sequence_id_13e==0 || sequence_id_13e==1) {
-            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             if (sequence_id_13e==0) { payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=2.0f; spawn_entry_child(this, 857, payload, 3); }
             if (sequence_id_13e==1) { payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 857, payload, 3); }
         }
@@ -189,11 +210,13 @@ void SakuyaObjectEntryView::initialize_action_entry()
         phase_index_184=1; field_12c=parameters_340[0]; select_requested_sequence(this);
         if (sequence_id_13e==0) {
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=1.0f; payload[3]=0.0f; spawn_entry_child(this, 858, payload, 3);
-            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
         }
         if (sequence_id_13e==2) {
             payload[0]=0.0f; payload[1]=0.0f; payload[2]=3.0f; payload[3]=0.0f;
-            spawn_unparented(858,x_ec,y_f0,facing_104,1,reinterpret_cast<const unsigned *>(payload),4);
+            object_effects(this)->spawn_unparented_related_object(
+                858, x_ec, y_f0, facing_104, 1,
+                reinterpret_cast<const unsigned *>(payload), 4);
         }
         return;
     }
@@ -203,10 +226,18 @@ void SakuyaObjectEntryView::initialize_action_entry()
         if (sequence_id_13e==0) {
             field_11c=0.0f; field_120=0.0f; alpha_113=128;
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=1.0f;
-            spawn_parented(859,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            payload[2]=2.0f; spawn_parented(859,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            payload[2]=3.0f; spawn_parented(859,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            object_effects(this)->spawn_parented_related_object(
+                859, x_ec, y_f0, 1, -1,
+                reinterpret_cast<const unsigned *>(payload), 3);
+            payload[2] = 2.0f;
+            object_effects(this)->spawn_parented_related_object(
+                859, x_ec, y_f0, 1, -1,
+                reinterpret_cast<const unsigned *>(payload), 3);
+            payload[2] = 3.0f;
+            object_effects(this)->spawn_parented_related_object(
+                859, x_ec, y_f0, 1, -1,
+                reinterpret_cast<const unsigned *>(payload), 3);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
         }
         if (sequence_id_13e==1) { field_11c=0.0f; field_120=0.0f; }
         if (sequence_id_13e==2) { field_12c=random_float(360); field_11c=0.0f; field_120=0.0f; }
@@ -220,7 +251,8 @@ void SakuyaObjectEntryView::initialize_action_entry()
         float payload[4];
         phase_index_184=1; select_requested_sequence(this);
         if (sequence_id_13e==0) {
-            MOTION->set_components(parameters_340[0],parameters_340[1]); field_12c=-atan2_degrees(velocity_y_f8,velocity_x_f4);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
+            field_12c = -atan2_degrees(velocity_y_f8, velocity_x_f4);
             payload[0]=field_12c; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 856, payload, 3);
         }
         return;
@@ -231,10 +263,18 @@ void SakuyaObjectEntryView::initialize_action_entry()
         if (sequence_id_13e==0) {
             field_11c=0.0f; field_120=0.0f; alpha_113=128;
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=1.0f;
-            spawn_parented(901,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            payload[2]=2.0f; spawn_parented(901,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            payload[2]=3.0f; spawn_parented(901,x_ec,y_f0,1,-1,reinterpret_cast<const unsigned *>(payload),3);
-            MOTION->set_components(parameters_340[0],parameters_340[1]);
+            object_effects(this)->spawn_parented_related_object(
+                901, x_ec, y_f0, 1, -1,
+                reinterpret_cast<const unsigned *>(payload), 3);
+            payload[2] = 2.0f;
+            object_effects(this)->spawn_parented_related_object(
+                901, x_ec, y_f0, 1, -1,
+                reinterpret_cast<const unsigned *>(payload), 3);
+            payload[2] = 3.0f;
+            object_effects(this)->spawn_parented_related_object(
+                901, x_ec, y_f0, 1, -1,
+                reinterpret_cast<const unsigned *>(payload), 3);
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
         }
         if (sequence_id_13e==1) { field_11c=0.0f; field_120=0.0f; }
         if (sequence_id_13e==2) { field_12c=random_float(360); field_11c=0.0f; field_120=0.0f; }
@@ -243,7 +283,8 @@ void SakuyaObjectEntryView::initialize_action_entry()
         if (sequence_id_13e==5) field_370=0.75f;
         if (sequence_id_13e==6) field_370=0.9f;
         if (sequence_id_13e==7) {
-            double const heading=parameters_340[0]; phase_index_184=1; field_12c=heading; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            double const heading=parameters_340[0]; phase_index_184=1; field_12c=heading;
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=8.0f; spawn_entry_child(this, 901, payload, 3);
         }
         if (sequence_id_13e==8) field_12c=parameters_340[0];
@@ -255,11 +296,13 @@ void SakuyaObjectEntryView::initialize_action_entry()
         if (sequence_id_13e<=1) {
             field_374=10.0f; field_370=random_float(10)+20.0;
             if (static_cast<unsigned>(selector_random_roll(100))<50) field_370*=-1.0;
-            phase_index_184=1; field_344=1; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            phase_index_184=1; field_344=1;
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 920, payload, 3);
         }
         if (sequence_id_13e==2) {
-            phase_index_184=1; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            phase_index_184=1;
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 920, payload, 3);
         }
         if (sequence_id_13e==3) { field_344=1; field_12c=parameters_340[0]; }
@@ -271,11 +314,13 @@ void SakuyaObjectEntryView::initialize_action_entry()
         if (sequence_id_13e<=1) {
             field_374=10.0f; field_370=random_float(10)+20.0;
             if (static_cast<unsigned>(selector_random_roll(100))<50) field_370*=-1.0;
-            phase_index_184=1; field_344=1; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            phase_index_184=1; field_344=1;
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 930, payload, 3);
         }
         if (sequence_id_13e==2) {
-            phase_index_184=1; MOTION->set_components(parameters_340[0],parameters_340[1]);
+            phase_index_184=1;
+            MOTION->set_oriented_components_f0_f4(parameters_340[0], parameters_340[1]);
             payload[0]=parameters_340[0]; payload[1]=0.0f; payload[2]=3.0f; spawn_entry_child(this, 930, payload, 3);
         }
         if (sequence_id_13e==3) { field_344=1; field_12c=parameters_340[0]; }

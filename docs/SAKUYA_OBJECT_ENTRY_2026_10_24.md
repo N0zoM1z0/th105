@@ -3,10 +3,9 @@
 `0x004E8060` now has complete selected source in
 `src/characters/SakuyaObjectActionEntry.cpp/.hpp`. It is an authored RTTI-owned
 SakuyaObject primary slot+3C initializer, separate from Fighter input/CPU/control
-roots. The receiver uses checked members for fixed offsets and
-declaration-only call views for the motion subobject and selector.
-Never construct or embed either pointer-only view; complete nominal layout,
-original local names, source partition and compiler/TU phase remain unknown.
+roots. The receiver uses checked members for fixed offsets, the shared motion
+and object spawn declarations, and a local view of the virtual selector.
+The complete nominal layout and original translation unit are still unknown.
 
 ## Complete comparison and remaining difference
 
@@ -230,5 +229,40 @@ scheduled bytes.
 
 Typed inline helpers now carry the sequence selection and child-spawn
 arguments. The complete canonical payload is identical to the preceding
-build. Moving the motion-view cast into a third inline helper grew the
-payload by 16 bytes, so the motion macro remains in the selected source.
+build. Calling the shared declarations for motion and both spawns also
+preserves the full relocated payload. The motion macro now uses the shared
+runtime view. A member accessor for that view grew the payload by 16 bytes.
+
+### The allocator carries a register search position between cases
+
+At 803's virtual target allocation, EAX is free in the full build and
+both omission controls. ECX already holds `this`. The preferred integer
+register search starts at the pointer in `c2.dll:0x10D0F854`. It scans
+the first three candidates in the list at `0x10D0CFD0`, EAX, ECX and EDX,
+starting from the saved position.
+
+| Input | Last assignment before the 803 target search | Search starts at | 803 target |
+| --- | --- | --- | --- |
+| Full | 801 facing byte to EAX | ECX | EDX |
+| Only 801 omitted | 800's second facing byte to EDX | EAX | EAX |
+| Only 800 omitted | 801 facing byte to EDX | EAX | EAX |
+
+Use the pinned SP1 `c2.dll` and the ordinary O2 profile. A hardware
+breakpoint at `0x10C23537` sees the new search position in EAX and, on
+this path, the assigning IR instruction at `[ESP+0x30]`. For the last
+assignment in the full build that instruction is the byte load from
+the 801 spawn arguments. At `0x10BDA65C` the next search sees the saved
+position and the register occupancy. The indirect call operand receives
+its physical register at `0x10BDA594`. After 803 chooses EDX, the search
+wraps to EAX, leaving EAX for the subsequent payload address. When 803
+chooses EAX, the next search starts at ECX and uses it for the address.
+
+The read-only traces used the macro spelling from before `74cb9619`.
+The full traced build reproduces the selected 6,868 bytes after replaying
+218 relocations, and both omission traces reproduce their corresponding
+ordinary builds. Capturing 801's facing before the spawn, capturing its
+coordinates, and changing the payload's local declaration or pointer
+all reproduce the selected bytes. The real int-facing spawn definition,
+when visible in 801's translation unit, preserves the call and the full
+bytes. A full-source shape that preserves 801's native bytes while
+restoring 803's search position remains open.

@@ -26,10 +26,6 @@ public:
     virtual void slot38();
     virtual void initialize_action_entry();
     void continue_action_980();
-    void *spawn_parented(int action, float x, float y, unsigned char facing,
-                         int layer, const unsigned *words, int count);
-    void *spawn_unparented(int action, float x, float y, unsigned char facing,
-                           int layer, const unsigned *words, int count);
 
     unsigned char unknown_004[0xe8];
     float x_ec;
@@ -138,10 +134,6 @@ typedef char CheckSakuyaObject_field_384[
 typedef char CheckSakuyaObject_field_386[
     offsetof(SakuyaObjectEntryView, field_386) == 0x386 ? 1 : -1];
 
-class SakuyaEntryMotionView {
-public:
-    void set_components(float angle, float magnitude);
-};
 int __cdecl selector_random_roll(int limit);
 float __cdecl atan2_degrees(float y, float x);
 }

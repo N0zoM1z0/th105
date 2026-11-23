@@ -82,8 +82,9 @@ See the [Udonge case note](UDONGE_ACTION_ENTRY_2026_10_24.md).
 With a shared switch exit in Youmu, the late C2 pass at 0x10B2C950 discards
 the publication in 601 and retains it in 604. Sakuya's Object initializer
 has 13 differing bytes in 803. Omitting either 800 or 801 in a scratch
-build restores 803's native register choices. The first observed divergence
-is in C2 register allocation at 0x10BDA210.
+build restores 803's native register choices. The 801 facing-byte load
+advances the search position at `c2.dll:0x10D0F854`, so the full build's
+803 virtual target search starts at ECX and skips the available EAX.
 See the [Youmu](YOUMU_FIGHTER_ACTION_INITIALIZATION_2026_10_25.md) and
 [Sakuya](SAKUYA_OBJECT_ENTRY_2026_10_24.md) case notes.
 
