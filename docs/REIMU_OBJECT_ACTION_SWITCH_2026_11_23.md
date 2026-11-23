@@ -73,13 +73,13 @@ ordering. Recent focused owner extents (candidate/target) are:
 | action 811 | 1,509 | 1,507 | +2 bytes; 38 diff groups |
 | action 812 | 1,361 | 1,376 | -15 bytes; 28 diff groups |
 | action 817 | 3,026 | 3,066 | -40 bytes; 82 diff groups |
-| action 822 | 1,881 | 1,955 | -74 bytes; 45 diff groups |
-| action 869 | 1,691 | 1,736 | -45 bytes |
-| action 900 | 1,207 | 1,229 | -22 bytes |
+| action 822 | 1,886 | 1,955 | -69 bytes; 19 diff groups |
+| action 869 | 1,691 | 1,736 | -45 bytes; 48 diff groups |
+| action 900 | 1,207 | 1,229 | -22 bytes; 37 diff groups |
 | action 901 | 2,247 | 2,324 | -77 bytes |
 | action 902 | 2,998 | 2,998 | exact owner extent |
 | action 903 | 1,403 | 1,397 | +6 bytes |
-| action 908 | 3,789 | 3,794 | -5 bytes; x87 accumulator order exact; 61 diff groups |
+| action 908 | 3,789 | 3,794 | -5 bytes; x87 accumulator order exact; 60 diff groups |
 | action 951 | 575 | 547 | +28 bytes; 2 diff groups |
 
 Action 811 keeps sequence-3 and sequence-4 channel/alpha fades as separate
@@ -106,7 +106,7 @@ in VC8 register lifetimes, loop control, and x87 packet preparation.
 The dispatcher-wide `retiring_action`, `retiring_packet`, `retiring_words`,
 and `emit_retiring_world` path have been removed. Actions 822, 902, and 908
 issue packet-specific spawn/decrement/return calls in their owning C++
-branches. Their current extents are 1,881/1,955, 2,998/2,998, and 3,789/3,794
+branches. Their current extents are 1,886/1,955, 2,998/2,998, and 3,789/3,794
 respectively. Action 903 remains 1,403/1,397 with 26 instruction-difference
 groups after moving its two terminal packet calls into the health/burst
 branches. Packet arrays for 822, 869, 900, 902, 903, and 908 are scoped to
@@ -115,10 +115,10 @@ their owning cases, allowing the compiler to reuse stack storage.
 ## Current root status and next work
 
 The latest focused owner audit reports a 46,138-byte target callable extent,
-45,624 candidate main bytes, a 46,492-byte candidate section tail, and 1,107
-instruction-difference groups. The candidate main remains 514 bytes short and
+45,640 candidate main bytes, a 46,508-byte candidate section tail, and 1,082
+instruction-difference groups. The candidate main remains 498 bytes short and
 the whole root is nonexact: the first raw-byte mismatch remains at
-0x0049655F (offset +0x1F, target byte 0xF8, candidate byte 0xF5).
+0x0049655F (offset +0x1F, target byte 0xF8, candidate byte 0x05).
 Action 902 has an exact 2,998-byte owner extent; action 811 is +2 bytes,
 action 812 is -15 bytes with 28 difference groups, and action 908 is -5 bytes.
 Action 951 is 575/547 bytes with only two instruction-difference groups; its
@@ -188,7 +188,7 @@ groups and moved 902 to an exact 2,998-byte owner extent. Reordering the
 `register one` and `register zero` declarations in action 817 then reduced the
 root to 1,127 instruction-difference groups and the candidate main to 45,488
 bytes. Current focused extents are: 807 272/300, 808 415/410, 811 1,509/1,507,
-812 1,361/1,376, 817 3,026/3,066, 821 1,083/1,119, 822 1,881/1,955,
+812 1,361/1,376, 817 3,026/3,066, 821 1,083/1,119, 822 1,886/1,955,
 869 1,691/1,736, 900 1,207/1,229, 901 2,247/2,324, 902 2,998/2,998,
 903 1,403/1,397, 908 3,789/3,794, and 951 575/547. The complete root remains
 nonexact. The root entry branch at `0x0049655F` is still the first raw-byte
@@ -208,7 +208,8 @@ previous checkpoint this lowered the root to 1,108 difference groups and the
 owner to 3,024/3,066 bytes with 80 groups. The subsequent action-822 branch
 rewrite changes register allocation and physical layout across the large
 switch; current action 817 is 3,026/3,066 bytes with 82 groups and the root is
-at 1,107 groups. The target still begins the owner with
+at 1,082 groups after the latest action-822 sequence-2/3 reconstruction.
+The target still begins the owner with
 `xor ebx, ebx; mov edi, 1`, while the candidate emits `mov ebx, 1`;
 the particle loop also remains `sub edi, ebx` rather than
 `sub edi, 1`. This is a measurable source-level code-generation
@@ -247,8 +248,8 @@ the owner flag before returning. This reduces the action-951 owner audit from
 (+28): the remaining two groups are branch destinations to the shared advance
 tail. The target tail is at `0x00497191` after action 807; Clang places the
 same advance/retire sequence at `0x004A1505` inside the candidate action-951
-owner. The latest focused root audit reports 1,107 instruction-difference groups,
-with 45,624 candidate main bytes and 46,492 candidate section-tail bytes.
+owner. The latest focused root audit reports 1,082 instruction-difference groups,
+with 45,640 candidate main bytes and 46,508 candidate section-tail bytes.
 This is a local control-flow improvement with an open physical ownership boundary, not a whole-root
 exactness claim.
 
@@ -263,17 +264,29 @@ arguments. The current owner is 3,026/3,066 bytes with 82 instruction-
 difference groups after the subsequent action-822 layout change. Clang still
 chooses EBX for one and reuses it for the loop decrement.
 
-## Action 822 alpha saturation branch
+## Action 822 sequence entries and alpha saturation
 
-The sequence-1 alpha saturation now uses a natural C++ if/else instead of a
+The sequence-1 alpha saturation uses a natural C++ if/else rather than a
 conditional expression. This reproduces the target instruction block exactly:
 `cmp al, 0xcd; ja; add al, 0x32; mov [esi+0x113], al; jmp; mov byte [esi+0x113], 0xff`.
 The target block is at `0x0049A185..0x0049A1A3`; the candidate block at object
-offset `0x3B87..0x3BA5` has the same instruction sequence. The action-822
-owner is 1,881/1,955 bytes with 45 difference groups. The focused root moves
-from 1,108 to 1,107 groups, and candidate main/tail sizes move from
-45,640/46,508 to 45,624/46,492 bytes. The first root mismatch remains at
-`0x0049655F`; this is an exact local block, not a whole-root match.
+offset `0x3B87..0x3BA5` has the same instruction sequence.
+
+Sequences 2 and 3 are now separate C++ switch entries instead of a
+sequence-equality ternary. Sequence 3 uses a mutable float local and compound
+addition to recover the target x87 operand order:
+`fld [esi+0x11c]; fadd qword [0x6c0e80]`.
+The rounded result is then published to both float fields before the shared
+alpha/channel fade. The remaining local mismatch is that the candidate
+publishes the fields inline, whereas the target's sequence-3 path jumps to the
+shared publish tail at `0x0049A1BC`; the temporary also occupies a different
+stack slot.
+
+Action 822 is now 1,886/1,955 bytes with 19 instruction-difference groups,
+down from 45 groups. The focused root moves from 1,107 to 1,082 groups; the
+candidate main and section-tail sizes are 45,640 and 46,508 bytes. The first
+root mismatch remains at `0x0049655F`; these are focused local improvements,
+not a whole-root match.
 
 ## Action 908 x87 accumulator evaluation order
 
@@ -284,8 +297,8 @@ faddp and store the result. The candidate emits that four-instruction
 sequence exactly. In the latest root build, action 908 is 3,789/3,794 bytes
 with 61 instruction-difference groups; remaining differences are concentrated
 in register assignment (EBX/EDI), the -1 countdown lifetime, and downstream
-control-flow layout. The focused root is now 45,624 candidate main bytes,
-46,492 candidate section-tail bytes, and 1,107 instruction-difference
+control-flow layout. The focused root is now 45,640 candidate main bytes,
+46,508 candidate section-tail bytes, and 1,082 instruction-difference
 groups. This is a verified local code-generation improvement, not a whole-root
 exactness claim.
 
@@ -304,8 +317,8 @@ sequences through one natural C++ move_with_facing_velocity_812 label. The
 target's advance/dispatch tail at 0x004982CF is also represented by a shared
 advance_812 label, with sequence 3/4 retirement bypassing the movement block.
 This reduces the action-812 owner to 1,361/1,376 bytes (-15) and 28
-instruction-difference groups. The whole-root audit now reports 1,107 groups after the subsequent
-action-822 alpha-branch refinement; candidate main code is 45,624 bytes.
+instruction-difference groups. The whole-root audit now reports 1,082 groups after the subsequent
+action-822 sequence-2/3 reconstruction; candidate main code is 45,640 bytes.
 
 The target also keeps five in EBX for the phase-state comparison and modulo
 operation; the current compiler still rematerializes the constant at those

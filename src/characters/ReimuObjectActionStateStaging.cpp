@@ -1369,11 +1369,20 @@ advance_812:
             else
                 _root_state.alpha_113 = 255;
             break;
-        case 2: case 3:
-            effect_000.reset_one_118 = _root_state.sequence_13e == 2 ?
-                static_cast<float>(effect_000.reset_one_118 - static_cast<double>(0.05f)) :
-                static_cast<float>(effect_000.reset_one_118 + static_cast<double>(0.2f));
+        case 2:
+            effect_000.reset_one_118 = static_cast<float>(
+                effect_000.reset_one_118 - static_cast<double>(0.05f));
+            goto action_822_sequence_2_3_fade;
+        case 3: {
+            float updated_reset = effect_000.reset_one_118;
+            updated_reset += static_cast<double>(0.2f);
+            effect_000.reset_one_118 = updated_reset;
+            effect_000.reset_one_11c = updated_reset;
+            goto action_822_sequence_2_3_fade_after_publish;
+        }
+action_822_sequence_2_3_fade:
             effect_000.reset_one_11c = effect_000.reset_one_118;
+action_822_sequence_2_3_fade_after_publish:
             if (_root_state.alpha_113 < 20)
                 goto retire;
             _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 20);
