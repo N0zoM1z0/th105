@@ -736,12 +736,13 @@ advance_and_retire_on_completion:
             if (this->state_370 < 0.0f)
                 this->state_370 = 0.0f;
             reinterpret_cast<CharacterObjectRuntime *>(this)->advance_state_six_counter_conditional(3);
-            if (_root_state.phase_state_180 != 0) {
+            if (_root_state.phase_state_180 == 0) {
+                effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
+                effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
+            } else {
                 select_sequence(3);
                 return;
             }
-            effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
-            effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
             break;
         case 3: case 4:
             if (_root_state.alpha_113 < 15)

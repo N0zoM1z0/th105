@@ -71,7 +71,7 @@ ordering. Recent focused owner extents (candidate/target) are:
 | action 802 | 33 | 31 | +2 bytes |
 | action 807 | 272 | 300 | -28 bytes; shared advance tail is remote in candidate |
 | action 811 | 1,509 | 1,507 | +2 bytes; 38 diff groups |
-| action 812 | 1,393 | 1,376 | +17 bytes; 29 diff groups |
+| action 812 | 1,361 | 1,376 | -15 bytes; 28 diff groups |
 | action 817 | 3,026 | 3,066 | -40 bytes; 82 diff groups |
 | action 822 | 1,888 | 1,955 | -67 bytes |
 | action 869 | 1,691 | 1,736 | -45 bytes |
@@ -115,12 +115,12 @@ their owning cases, allowing the compiler to reuse stack storage.
 ## Current root status and next work
 
 The latest focused owner audit reports a 46,138-byte target callable extent,
-45,672 candidate main bytes, a 46,540-byte candidate section tail, and 1,114
-instruction-difference groups. The candidate main remains 466 bytes short and
+45,640 candidate main bytes, a 46,508-byte candidate section tail, and 1,113
+instruction-difference groups. The candidate main remains 498 bytes short and
 the whole root is nonexact: the first raw-byte mismatch remains at
-0x0049655F (offset +0x1F, target byte 0xF8, candidate byte 0x25).
+0x0049655F (offset +0x1F, target byte 0xF8, candidate byte 0x05).
 Action 902 has an exact 2,998-byte owner extent; action 811 is +2 bytes,
-action 812 is +17 bytes with 29 difference groups, and action 908 is -5 bytes.
+action 812 is -15 bytes with 28 difference groups, and action 908 is -5 bytes.
 Action 951 is 575/547 bytes with only two instruction-difference groups; its
 remaining extent excess is the shared advance tail being physically owned by
 the candidate's 951 region instead of target action 807. The largest remaining
@@ -275,26 +275,30 @@ faddp and store the result. The candidate emits that four-instruction
 sequence exactly. In the latest root build, action 908 is 3,789/3,794 bytes
 with 61 instruction-difference groups; remaining differences are concentrated
 in register assignment (EBX/EDI), the -1 countdown lifetime, and downstream
-control-flow layout. The focused root is 45,672 candidate main bytes,
-46,540 candidate section-tail bytes, and 1,114 instruction-difference
+control-flow layout. The focused root is now 45,640 candidate main bytes,
+46,508 candidate section-tail bytes, and 1,113 instruction-difference
 groups. This is a verified local code-generation improvement, not a whole-root
 exactness claim.
 
-## Action 812 register lifetimes and alpha retirement tail
+## Action 812 register lifetimes and shared movement tail
 
-Action 812 now has an explicit case scope for the three register values visible
-in the target handler: five = 5, one = 1, and retire_delta = -1. The source
-uses five for the phase-state and modulo-five tests, one for the state-364
-increment and related-object spawn arguments, and retire_delta for the
-handler's state-330 retirement updates. This recovers the target's EDI=1 and
-EBP=-1 lifetimes and reduces action 812's instruction-difference groups from
-32 to 29. The owner moves from 1,294/1,376 to 1,393/1,376 bytes (+17).
+Action 812 has an explicit case scope for the three register values visible in
+the target handler: five = 5, one = 1, and retire_delta = -1. The source uses
+five for the phase-state and modulo-five tests, one for the state-364 increment
+and related-object spawn arguments, and retire_delta for state-330 retirement
+updates. This recovers the target's EDI=1 and EBP=-1 lifetimes and reduced the
+owner from 1,294/1,376 to 1,393/1,376 bytes (+17), with 29 difference groups.
 
-The sequence-3/4 alpha branch is written with the fade path first and the
-retirement path second. This preserves the target's jb-to-retirement layout
-and its shared advance/dispatch tail. The target also keeps five in EBX for
-the phase-state comparison and modulo operation; the current compiler still
-rematerializes the constant for those sites, so action 812 is not exact. The
-focused root audit improves from 1,151 to 1,114 instruction-difference groups
-while candidate main code grows from 45,580 to 45,672 bytes. The root remains
-nonexact and its remote ownership boundary remains provisional.
+IDA xrefs confirm the target's movement tail at 0x00497F17 has three entries,
+from action 812 sequences 0, 1, and 2. The source now routes those three
+sequences through one natural C++ move_with_facing_velocity_812 label. The
+target's advance/dispatch tail at 0x004982CF is also represented by a shared
+advance_812 label, with sequence 3/4 retirement bypassing the movement block.
+This reduces the action-812 owner to 1,361/1,376 bytes (-15) and 28
+instruction-difference groups. The whole-root audit improves from 1,114 to
+1,113 groups and candidate main code moves from 45,672 to 45,640 bytes.
+
+The target also keeps five in EBX for the phase-state comparison and modulo
+operation; the current compiler still rematerializes the constant at those
+sites, so action 812 is not exact. The root remains nonexact and its remote
+ownership boundary remains provisional.
