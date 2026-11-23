@@ -2254,46 +2254,6 @@ action_822_sequence_2_3_fade_after_publish:
 
     }
 
-    case 980:
-        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
-            update_ping_pong_motion_and_periodic_spawn();
-        goto advance_and_retire_on_completion;
-
-    case 998:
-        effect_000.reset_zero_128 = static_cast<float>(effect_000.reset_zero_128 + 5.0);
-        if (_root_state.sequence_13e == 0) {
-            // The owner is reread after the virtual sequence operation below.
-            const unsigned char *const owner = _root_state.fighter_owner_348;
-            if (*reinterpret_cast<const short *>(owner + 0x13c) > 153 &&
-                    *reinterpret_cast<const short *>(owner + 0x13c) < 158) {
-                effect_000.object_x_0e8 = static_cast<float>(effect_000.object_facing_100 * 57 +
-                    *reinterpret_cast<const float *>(owner + 0xec));
-                effect_000.object_y_0ec = static_cast<float>(*reinterpret_cast<const float *>(owner + 0xf0) + 60.0);
-            }
-            if (*reinterpret_cast<const short *>(owner + 0x13c) > 149 &&
-                    *reinterpret_cast<const short *>(owner + 0x13c) < 154) {
-                effect_000.object_x_0e8 = static_cast<float>(effect_000.object_facing_100 * 57 +
-                    *reinterpret_cast<const float *>(owner + 0xec));
-                effect_000.object_y_0ec = static_cast<float>(*reinterpret_cast<const float *>(owner + 0xf0) + 94.0);
-            }
-            if (*reinterpret_cast<const short *>(owner + 0x13c) == 158) {
-                effect_000.object_x_0e8 = static_cast<float>(effect_000.object_facing_100 * 57 +
-                    *reinterpret_cast<const float *>(owner + 0xec));
-                effect_000.object_y_0ec = static_cast<float>(*reinterpret_cast<const float *>(owner + 0xf0) + 100.0);
-            }
-            if (*reinterpret_cast<const short *>(owner + 0x13c) < 150 ||
-                    *reinterpret_cast<const short *>(owner + 0x13c) > 158) {
-                next_sequence_block();
-                _root_state.fighter_owner_348[0x751] = 0;
-            }
-        }
-        if (_root_state.sequence_13e == 1) {
-            if (_root_state.alpha_113 < 10)
-                goto retire;
-            _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 10);
-        }
-        goto advance_and_retire_on_completion;
-
     case 900: {
         CharacterObjectEffectEmitter *const emitter = reinterpret_cast<CharacterObjectEffectEmitter *>(this);
         float dead_sequence_zero[3];
@@ -3844,6 +3804,46 @@ fade_902:
             return;
         goto advance_and_retire_on_completion;
     }
+    case 980:
+        reinterpret_cast<CharacterObjectEffectEmitter *>(this)->
+            update_ping_pong_motion_and_periodic_spawn();
+        goto advance_and_retire_on_completion;
+
+    case 998:
+        effect_000.reset_zero_128 = static_cast<float>(effect_000.reset_zero_128 + 5.0);
+        if (_root_state.sequence_13e == 0) {
+            // The owner is reread after the virtual sequence operation below.
+            const unsigned char *const owner = _root_state.fighter_owner_348;
+            if (*reinterpret_cast<const short *>(owner + 0x13c) > 153 &&
+                    *reinterpret_cast<const short *>(owner + 0x13c) < 158) {
+                effect_000.object_x_0e8 = static_cast<float>(effect_000.object_facing_100 * 57 +
+                    *reinterpret_cast<const float *>(owner + 0xec));
+                effect_000.object_y_0ec = static_cast<float>(*reinterpret_cast<const float *>(owner + 0xf0) + 60.0);
+            }
+            if (*reinterpret_cast<const short *>(owner + 0x13c) > 149 &&
+                    *reinterpret_cast<const short *>(owner + 0x13c) < 154) {
+                effect_000.object_x_0e8 = static_cast<float>(effect_000.object_facing_100 * 57 +
+                    *reinterpret_cast<const float *>(owner + 0xec));
+                effect_000.object_y_0ec = static_cast<float>(*reinterpret_cast<const float *>(owner + 0xf0) + 94.0);
+            }
+            if (*reinterpret_cast<const short *>(owner + 0x13c) == 158) {
+                effect_000.object_x_0e8 = static_cast<float>(effect_000.object_facing_100 * 57 +
+                    *reinterpret_cast<const float *>(owner + 0xec));
+                effect_000.object_y_0ec = static_cast<float>(*reinterpret_cast<const float *>(owner + 0xf0) + 100.0);
+            }
+            if (*reinterpret_cast<const short *>(owner + 0x13c) < 150 ||
+                    *reinterpret_cast<const short *>(owner + 0x13c) > 158) {
+                next_sequence_block();
+                _root_state.fighter_owner_348[0x751] = 0;
+            }
+        }
+        if (_root_state.sequence_13e == 1) {
+            if (_root_state.alpha_113 < 10)
+                goto retire;
+            _root_state.alpha_113 = static_cast<unsigned char>(_root_state.alpha_113 - 10);
+        }
+        goto advance_and_retire_on_completion;
+
     case 999:
         switch (_root_state.sequence_13e) {
         case 0: case 1: case 2: case 3:
