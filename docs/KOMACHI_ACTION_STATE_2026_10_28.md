@@ -6,9 +6,10 @@
 It is **unselected and nonexact**. No implemented.csv, matches.csv, function
 status, or accepted byte total changes.
 
-The current candidate emits 65,304 bytes versus 65,176 target bytes, with
-its first difference at `+8` in the stack allocation. The dated sections
-below retain the earlier code-generation controls and their results.
+The current candidate emits 65,288 bytes versus 65,176 target bytes. It
+matches the original `0x490` stack allocation and first differs at
+`+0x2A` in the card-switch prologue. The dated sections below retain
+the earlier code-generation controls and their results.
 
 ## Current-target evidence
 
@@ -354,3 +355,30 @@ to the flight code inside 209.
 Putting 212 before 209 in source reverses their emitted entry order, while
 the flight block still follows 212. Both owner spans, the section size and
 the relocation count stay the same as in the first split candidate.
+
+## Shared high-jump landing and ring frame, 2026-11-23
+
+The native crossing paths in 208–211 all enter the virtual call to
+`set_action(10)` inside 212 at `0x005E3837`. A scratch version with all five
+landing paths using the same source label keeps two 209/212 dispatch entries
+and emits 65,356 bytes. VC8 still assigns the flight to 212 and the landing
+to 209, leaving their 48- and 102-byte spans exchanged. Joining 221's
+sequence check simultaneously leaves those spans exchanged and moves the
+physical landing owner again. Duplicating the flight with a shared late
+launch effect merges the 209/212 entries. These variants remain unselected.
+
+In action 730, the native first ring for match mode 3 stores its coordinate
+angle at `0x005F0DEF` while keeping the x87 value live. It then adds the
+jitter and the 180-degree turn inside the loop. VC8 previously hoisted
+`jitter + 180` into a QWORD local and grew the whole dispatcher frame from
+`0x490` to `0x498`. Separate double updates for the packet angle restore
+both additions to the loop and remove the QWORD spill. The packet still
+rounds to float once, after the additions. The coordinate store remains
+later than the original.
+
+The selected 65,288-byte rebuild replays 1,857 relocations. The seven
+dispatches, compact remap bytes and external relocation counts agree with
+the preceding candidate. The first difference moves from `+8` to `+0x2A`
+(`0x005E210A`). The native hoists `EBX = 8` before the card gate, then
+derives `EDI = 2` with LEA. The current build loads EDI directly and defines
+EBX after the deque call or on the bypass edge.

@@ -107,7 +107,9 @@ Other open leads:
   complete unselected candidate (unit `exact-first-komachi-action-state`,
   108 actions). Its [checked motion fields](KOMACHI_ACTION_STATE_2026_10_28.md#checked-motion-fields-2026-11-23)
   preserve the compiled envelope. Its strict contract covers all seven
-  tables. The callable check still fails at `+0x8`. The owner
+  tables. The ring-902 angle update restores frame `0x490`. The callable
+  check now first differs at `+0x2A`, where native loads EBX before the
+  card gate. The owner
   diagnostic follows all seven native dispatches with the split 209/212
   scratch variant. The VC8 graph reaches the shared flight block through
   212 first. The native 212 jumps back to that block inside 209. Reimu

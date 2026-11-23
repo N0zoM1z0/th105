@@ -398,7 +398,11 @@ public:
         for (float n = 0.0f; n < count; n = static_cast<float>(n + 1.0)) {
             double angle = offset == 0.0 ? n * step + base : n * step + base + offset;
             float coordinate = static_cast<float>(reversed ? angle : angle + 180.0);
-            p[0] = static_cast<float>(reversed ? angle + jitter + 180.0 : angle + jitter);
+            double packet_angle = angle;
+            packet_angle += jitter;
+            if (reversed)
+                packet_angle += 180.0;
+            p[0] = static_cast<float>(packet_angle);
             p[1] = speed;
             p[2] = 0.0f;
 

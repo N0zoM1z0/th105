@@ -547,16 +547,33 @@ case 720:
         }
     }return;
 case 730:
-    if(sequence_index_13e==1 && time_counter_144>=120)next_sequence_block();if(advance())set_action_and_finalize(700);
-    if(entry(1)){
-        dispatch_character_wave_handle(12);float base=static_cast<float>(komachi_random(360));float jitter=static_cast<float>(static_cast<double>(static_cast<float>(komachi_random(20)))-10.0);float p[3];
-        switch(g_match_identifier){
-        case 0:ring902(p,base,jitter,6,60.0,0.0,false,5.0f);break;
-        case 1:ring902(p,base,jitter,8,45.0,0.0,false,5.0f);break;
-        case 2:ring902(p,base,jitter,12,30.0,0.0,false,5.0f);break;
-        case 3:ring902(p,base,jitter,8,45.0,0.0,true,6.0f);ring902(p,base,jitter,8,45.0,22.5,false,4.0f);break;
+    if (sequence_index_13e == 1 && time_counter_144 >= 120)
+        next_sequence_block();
+    if (advance())
+        set_action_and_finalize(700);
+    if (entry(1)) {
+        dispatch_character_wave_handle(12);
+        const float base_angle = static_cast<float>(komachi_random(360));
+        const float jitter = static_cast<float>(
+            static_cast<double>(static_cast<float>(komachi_random(20))) - 10.0);
+        float packet[3];
+        switch (g_match_identifier) {
+        case 0:
+            ring902(packet, base_angle, jitter, 6, 60.0, 0.0, false, 5.0f);
+            break;
+        case 1:
+            ring902(packet, base_angle, jitter, 8, 45.0, 0.0, false, 5.0f);
+            break;
+        case 2:
+            ring902(packet, base_angle, jitter, 12, 30.0, 0.0, false, 5.0f);
+            break;
+        case 3:
+            ring902(packet, base_angle, jitter, 8, 45.0, 0.0, true, 6.0f);
+            ring902(packet, base_angle, jitter, 8, 45.0, 22.5, false, 4.0f);
+            break;
         }
-    }return;
+    }
+    return;
 case 732:
     if(sequence_index_13e==3)landing();if(advance())set_action_and_finalize(704);
     if(!sequence_index_13e && !frame_timer_142 && frame_index_140==2){float p[3]={0.0f,0.0f,0.0f};spawn(930,x_ec,static_cast<float>(y_f0+100.0),B(0x104),-1,p,3);
