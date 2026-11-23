@@ -120,3 +120,14 @@ The remaining 869 differences are primarily register lifetimes and x87
 operand/stack ordering in the two orbit-position paths, plus the target's
 shared spawn tail at `0x00499DF6`. Continue with the 901/902 large handlers
 and the shared tail ownership around action 822.
+
+## Action 901 burst-retirement call recovery
+
+The two sequence-1 terminal burst paths now converge on one direct natural
+C++ `spawn_unparented_related_object` call within action 901 rather than
+routing through the function-wide generic emitter label. The focused owner
+grows from 2,246 to 2,264 bytes against the 2,324-byte target (60 bytes
+short). This preserves the shared packet selection but moves the actual
+call/retirement back into the action's physical owner. The root remains
+nonexact; remaining differences are dominated by VC8 register lifetimes
+and x87 packet preparation order.

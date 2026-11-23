@@ -2390,7 +2390,8 @@ emit_retiring_world:
 
     }
 
-    case 901:
+    case 901: {
+        register int retire_delta = -1;
         switch (_root_state.sequence_13e) {
         case 0: {
             reinterpret_cast<float *>(copied_words_340)[0] = static_cast<float>(reinterpret_cast<float *>(copied_words_340)[0] + 3.0);
@@ -2418,7 +2419,7 @@ emit_retiring_world:
                         901, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
                         reinterpret_cast<const unsigned *>(copied), 3);
                 }
-                --_root_state.state_330;
+                _root_state.state_330 += retire_delta;
                 return;
             }
             effect_000.reset_zero_128 = static_cast<float>(effect_000.reset_zero_128 + 2.0);
@@ -2438,7 +2439,7 @@ emit_retiring_world:
                 reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
                     901, effect_000.object_x_0e8, effect_000.object_y_0ec, static_cast<unsigned char>(effect_000.object_facing_100), 1,
                     reinterpret_cast<const unsigned *>(copied), 4);
-                --_root_state.state_330;
+                _root_state.state_330 += retire_delta;
                 return;
             }
             break;
@@ -2519,10 +2520,12 @@ emit_retiring_world:
             }
             break;
         emit_901_burst_tail:
-            retiring_action = 901;
-            retiring_packet = final_packet;
-            retiring_words = 3;
-            goto emit_retiring_world;
+            reinterpret_cast<CharacterObjectEffectEmitter *>(this)->spawn_unparented_related_object(
+                901, effect_000.object_x_0e8, effect_000.object_y_0ec,
+                static_cast<unsigned char>(effect_000.object_facing_100), 1,
+                final_packet, 3);
+            _root_state.state_330 += retire_delta;
+            return;
         }
         case 3:
             effect_000.reset_one_118 += reinterpret_cast<float *>(copied_words_340)[1];
@@ -2577,8 +2580,9 @@ emit_retiring_world:
         effect_000.object_x_0e8 += static_cast<float>(effect_000.object_facing_100) * effect_000.motion_0f0.velocity_x;
         effect_000.object_y_0ec += effect_000.motion_0f0.velocity_y;
         if (reinterpret_cast<CharacterObjectRuntime *>(this)->advance_frame_and_dispatch())
-            --_root_state.state_330;
+            _root_state.state_330 += retire_delta;
         return;
+    }
 
     case 902:
         switch (_root_state.sequence_13e) {
